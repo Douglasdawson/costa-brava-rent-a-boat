@@ -38,73 +38,95 @@ export default function Hero() {
         </div>
 
         {/* Booking Widget */}
-        <Card className="bg-white/95 backdrop-blur-md p-6 max-w-4xl w-full shadow-2xl">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                <Calendar className="inline w-4 h-4 mr-2" />
-                Fecha
-              </label>
-              <input
-                type="date"
-                value={selectedDate}
-                onChange={(e) => setSelectedDate(e.target.value)}
-                className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
-                data-testid="input-booking-date"
-              />
+        <Card className="bg-white/95 backdrop-blur-md p-8 max-w-5xl w-full shadow-2xl border-0">
+          <div className="text-center mb-6">
+            <h3 className="text-2xl font-bold text-gray-900 mb-2">Reserva tu aventura</h3>
+            <p className="text-gray-600">Completa los datos para encontrar tu embarcación perfecta</p>
+          </div>
+          
+          <div className="bg-gray-50/80 rounded-2xl p-6 mb-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {/* Fecha */}
+              <div className="bg-white rounded-xl p-4 shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                <label className="flex items-center text-sm font-semibold text-gray-800 mb-3">
+                  <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center mr-3">
+                    <Calendar className="w-4 h-4 text-primary" />
+                  </div>
+                  Fecha
+                </label>
+                <input
+                  type="date"
+                  value={selectedDate}
+                  onChange={(e) => setSelectedDate(e.target.value)}
+                  min={new Date().toISOString().split('T')[0]}
+                  className="w-full p-3 border-0 bg-gray-50 rounded-lg focus:ring-2 focus:ring-primary focus:bg-white transition-all text-gray-900 font-medium"
+                  data-testid="input-booking-date"
+                />
+              </div>
+              
+              {/* Embarcación */}
+              <div className="bg-white rounded-xl p-4 shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                <label className="flex items-center text-sm font-semibold text-gray-800 mb-3">
+                  <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center mr-3">
+                    <Users className="w-4 h-4 text-primary" />
+                  </div>
+                  Embarcación
+                </label>
+                <select
+                  value={selectedBoat}
+                  onChange={(e) => setSelectedBoat(e.target.value)}
+                  className="w-full p-3 border-0 bg-gray-50 rounded-lg focus:ring-2 focus:ring-primary focus:bg-white transition-all text-gray-900 font-medium appearance-none cursor-pointer"
+                  data-testid="select-boat-type"
+                >
+                  <option value="">Seleccionar barco</option>
+                  <option value="astec-400">ASTEC 400 (Sin licencia) - desde 70€</option>
+                  <option value="remus-450">REMUS 450 (Sin licencia) - desde 75€</option>
+                  <option value="solar-450">SOLAR 450 (Sin licencia) - desde 75€</option>
+                  <option value="astec-450">ASTEC 450 (Sin licencia) - desde 80€</option>
+                  <option value="pacific-craft-625">PACIFIC CRAFT 625 (Con licencia) - desde 180€</option>
+                  <option value="trimarchi-57s">TRIMARCHI 57S (Con licencia) - desde 160€</option>
+                  <option value="mingolla-brava-19">MINGOLLA BRAVA 19 (Con licencia) - desde 150€</option>
+                </select>
+              </div>
+              
+              {/* Duración */}
+              <div className="bg-white rounded-xl p-4 shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                <label className="flex items-center text-sm font-semibold text-gray-800 mb-3">
+                  <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center mr-3">
+                    <Clock className="w-4 h-4 text-primary" />
+                  </div>
+                  Duración
+                </label>
+                <select
+                  value={selectedDuration}
+                  onChange={(e) => setSelectedDuration(e.target.value)}
+                  className="w-full p-3 border-0 bg-gray-50 rounded-lg focus:ring-2 focus:ring-primary focus:bg-white transition-all text-gray-900 font-medium appearance-none cursor-pointer"
+                  data-testid="select-duration"
+                >
+                  <option value="">Seleccionar duración</option>
+                  <option value="1h">1 hora</option>
+                  <option value="2h">2 horas</option>
+                  <option value="3h">3 horas</option>
+                  <option value="4h">4 horas</option>
+                  <option value="6h">6 horas</option>
+                  <option value="8h">8 horas - Día completo</option>
+                </select>
+              </div>
             </div>
-            
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                <Users className="inline w-4 h-4 mr-2" />
-                Embarcación
-              </label>
-              <select
-                value={selectedBoat}
-                onChange={(e) => setSelectedBoat(e.target.value)}
-                className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
-                data-testid="select-boat-type"
-              >
-                <option value="">Seleccionar barco</option>
-                <option value="astec-450">ASTEC 450 (Sin licencia)</option>
-                <option value="solar-450">SOLAR 450 (Sin licencia)</option>
-                <option value="remus-450">REMUS 450 (Sin licencia)</option>
-                <option value="trimarchi-57s">TRIMARCHI 57S (Con licencia)</option>
-                <option value="pacific-craft-625">PACIFIC CRAFT 625 (Con licencia)</option>
-                <option value="mingolla-brava-19">MINGOLLA BRAVA 19 (Con licencia)</option>
-              </select>
-            </div>
-            
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                <Clock className="inline w-4 h-4 mr-2" />
-                Duración
-              </label>
-              <select
-                value={selectedDuration}
-                onChange={(e) => setSelectedDuration(e.target.value)}
-                className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
-                data-testid="select-duration"
-              >
-                <option value="">Seleccionar</option>
-                <option value="1h">1 hora - desde 70€</option>
-                <option value="2h">2 horas - desde 80€</option>
-                <option value="3h">3 horas - desde 90€</option>
-                <option value="4h">4 horas - desde 120€</option>
-                <option value="6h">6 horas - desde 150€</option>
-                <option value="8h">8 horas - desde 180€</option>
-              </select>
-            </div>
-            
-            <div className="flex flex-col justify-end">
-              <Button 
-                onClick={handleBookingSearch}
-                className="w-full py-3 bg-primary hover:bg-primary/90 text-white font-semibold"
-                data-testid="button-search-availability"
-              >
-                Buscar Disponibilidad
-              </Button>
-            </div>
+          </div>
+          
+          {/* Botón de búsqueda */}
+          <div className="text-center">
+            <Button 
+              onClick={handleBookingSearch}
+              className="bg-primary hover:bg-primary/90 text-white font-bold py-4 px-12 text-lg rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 min-w-64"
+              data-testid="button-search-availability"
+            >
+              🚤 Buscar Disponibilidad
+            </Button>
+            <p className="text-sm text-gray-500 mt-3">
+              Sin compromiso • Confirmación inmediata • Gasolina incluida
+            </p>
           </div>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">

@@ -49,6 +49,26 @@ function Remus450Page() {
   return <BoatDetailPage boatId="remus-450" />;
 }
 
+function Astec400Page() {
+  return <BoatDetailPage boatId="astec-400" />;
+}
+
+function Astec450Page() {
+  return <BoatDetailPage boatId="astec-450" />;
+}
+
+function PacificCraft625Page() {
+  return <BoatDetailPage boatId="pacific-craft-625" />;
+}
+
+function Trimarchi57SPage() {
+  return <BoatDetailPage boatId="trimarchi-57s" />;
+}
+
+function MingollaBrava19Page() {
+  return <BoatDetailPage boatId="mingolla-brava-19" />;
+}
+
 // Router Component
 function Router() {
   return (
@@ -58,6 +78,11 @@ function Router() {
       <Route path="/crm" component={CRMDashboardPage} />
       <Route path="/barco/solar-450" component={Solar450Page} />
       <Route path="/barco/remus-450" component={Remus450Page} />
+      <Route path="/barco/astec-400" component={Astec400Page} />
+      <Route path="/barco/astec-450" component={Astec450Page} />
+      <Route path="/barco/pacific-craft-625" component={PacificCraft625Page} />
+      <Route path="/barco/trimarchi-57s" component={Trimarchi57SPage} />
+      <Route path="/barco/mingolla-brava-19" component={MingollaBrava19Page} />
       <Route component={NotFound} />
     </Switch>
   );

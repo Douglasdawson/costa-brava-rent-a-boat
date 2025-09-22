@@ -391,7 +391,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
         </Card>
 
         {/* Important Info */}
-        <Card>
+        <Card className="mb-8">
           <CardHeader>
             <CardTitle>Información Importante</CardTitle>
           </CardHeader>

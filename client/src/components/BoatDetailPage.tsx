@@ -407,7 +407,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
             <div className="mt-4 p-4 bg-blue-50 rounded-lg">
               <p className="text-blue-800 text-sm">
                 <strong>Condiciones:</strong> Revisa{" "}
-                <a href="#" className="underline">las condiciones generales del alquiler</a>{" "}
+                <a href="/condiciones-generales" className="underline">las condiciones generales del alquiler</a>{" "}
                 antes de hacer tu reserva.
               </p>
             </div>

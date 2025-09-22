@@ -90,27 +90,27 @@ export default function BoatCard({
         </div>
       </div>
 
-      <CardContent className="p-4">
+      <CardContent className="p-3 sm:p-4">
         <div className="flex items-start justify-between mb-2">
-          <h3 className="font-heading font-semibold text-lg text-gray-900">{name}</h3>
-          <div className="text-right">
-            <div className="text-sm text-gray-500">desde</div>
-            <div className="font-bold text-primary flex items-center">
-              <Euro className="w-4 h-4 mr-1" />
+          <h3 className="font-heading font-semibold text-base sm:text-lg text-gray-900 flex-1 mr-2">{name}</h3>
+          <div className="text-right flex-shrink-0">
+            <div className="text-xs sm:text-sm text-gray-500">desde</div>
+            <div className="font-bold text-primary flex items-center text-sm sm:text-base">
+              <Euro className="w-3 h-3 sm:w-4 sm:h-4 mr-1" />
               {basePrice}
             </div>
           </div>
         </div>
 
-        <p className="text-gray-600 text-sm mb-3 line-clamp-2">{description}</p>
+        <p className="text-gray-600 text-xs sm:text-sm mb-3 line-clamp-2">{description}</p>
 
-        <div className="flex items-center gap-4 mb-3 text-sm text-gray-600">
+        <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 mb-3 text-xs sm:text-sm text-gray-600">
           <div className="flex items-center">
-            <Users className="w-4 h-4 mr-1" />
+            <Users className="w-3 h-3 sm:w-4 sm:h-4 mr-1" />
             <span>Hasta {capacity} pax</span>
           </div>
           <div className="flex items-center">
-            <Clock className="w-4 h-4 mr-1" />
+            <Clock className="w-3 h-3 sm:w-4 sm:h-4 mr-1" />
             <span>1-8 horas</span>
           </div>
         </div>
@@ -129,17 +129,19 @@ export default function BoatCard({
         </div>
       </CardContent>
 
-      <CardFooter className="p-4 pt-0 flex gap-2">
+      <CardFooter className="p-3 sm:p-4 pt-0 flex flex-col sm:flex-row gap-2">
         <Button 
           variant="outline" 
-          className="flex-1"
+          size="sm"
+          className="flex-1 text-xs sm:text-sm"
           onClick={handleDetails}
           data-testid={`button-details-${id}`}
         >
           Ver detalles
         </Button>
         <Button 
-          className="flex-1" 
+          size="sm"
+          className="flex-1 text-xs sm:text-sm" 
           onClick={handleBooking}
           disabled={!available}
           data-testid={`button-book-${id}`}

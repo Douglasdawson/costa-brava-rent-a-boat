@@ -114,13 +114,13 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
       />
       <Navigation />
       
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-4 py-6 sm:py-8">
         {/* Back Button */}
         {onBack && (
           <Button
             variant="ghost"
             onClick={onBack}
-            className="mb-4 text-gray-600 hover:text-gray-900"
+            className="mb-4 text-gray-600 hover:text-gray-900 text-sm sm:text-base"
             data-testid="button-back"
           >
             <ArrowLeft className="w-4 h-4 mr-2" />
@@ -129,24 +129,24 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
         )}
 
         {/* Boat Title */}
-        <div className="text-center mb-8">
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-3">
+        <div className="text-center mb-6 sm:mb-8 px-2">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-2 sm:mb-3">
             {boatData.name}
           </h1>
-          <p className="text-xl text-gray-600 mb-2">{boatData.subtitle}</p>
-          <Badge variant="outline" className="text-primary border-primary">
+          <p className="text-base sm:text-lg md:text-xl text-gray-600 mb-2">{boatData.subtitle}</p>
+          <Badge variant="outline" className="text-primary border-primary text-xs sm:text-sm">
             Alquiler en Blanes, Costa Brava
           </Badge>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 mb-6 sm:mb-8">
           {/* Left Column - Image */}
-          <div className="space-y-6">
+          <div className="space-y-4 sm:space-y-6">
             <div className="bg-white rounded-xl overflow-hidden shadow-lg">
               <img 
                 src={boatData.image} 
                 alt={`Alquiler ${boatData.name} ${boatData.subtitle.includes("Sin Licencia") ? "sin licencia" : "con licencia"} en Blanes Costa Brava`}
-                className="w-full h-96 object-cover"
+                className="w-full h-64 sm:h-80 md:h-96 object-cover"
                 loading="lazy"
                 data-testid="img-boat-main"
               />
@@ -155,13 +155,13 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
             {/* Key Features */}
             <Card>
               <CardHeader>
-                <CardTitle className="flex items-center">
-                  <Star className="w-5 h-5 mr-2 text-yellow-500" />
+                <CardTitle className="flex items-center text-base sm:text-lg">
+                  <Star className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-yellow-500" />
                   Características Principales
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                   {boatData.features.map((feature, index) => (
                     <div key={index} className="flex items-center">
                       <CheckCircle className="w-4 h-4 text-green-600 mr-2" />

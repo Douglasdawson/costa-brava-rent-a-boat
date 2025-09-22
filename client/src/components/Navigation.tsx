@@ -62,9 +62,10 @@ export default function Navigation() {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex items-center space-x-2" data-testid="brand-logo">
-            <Anchor className="w-8 h-8 text-primary" />
-            <span className="font-heading font-bold text-xl text-gray-900">
-              Costa Brava Rent a Boat Blanes
+            <Anchor className="w-6 h-6 sm:w-8 sm:h-8 text-primary" />
+            <span className="font-heading font-bold text-sm sm:text-lg lg:text-xl text-gray-900">
+              <span className="hidden sm:inline">Costa Brava Rent a Boat Blanes</span>
+              <span className="sm:hidden">CB Rent Boat</span>
             </span>
           </div>
 
@@ -116,35 +117,35 @@ export default function Navigation() {
 
         {/* Mobile Navigation */}
         {isOpen && (
-          <div className="md:hidden py-4 border-t border-gray-200 bg-white">
-            <div className="flex flex-col space-y-2">
+          <div className="md:hidden py-4 border-t border-gray-200 bg-white/95 backdrop-blur-md">
+            <div className="flex flex-col space-y-1">
               {navigationItems.map((item) => (
                 <button
                   key={item.label}
                   onClick={() => handleNavigation(item.href, item.label)}
-                  className="px-4 py-2 text-gray-700 hover:text-primary hover:bg-gray-50 transition-colors w-full text-left bg-transparent border-none cursor-pointer"
+                  className="px-4 py-3 text-gray-700 hover:text-primary hover:bg-gray-50 transition-colors w-full text-left bg-transparent border-none cursor-pointer font-medium"
                   data-testid={`mobile-nav-${item.label.toLowerCase()}`}
                 >
                   {item.label}
                 </button>
               ))}
               <div className="px-4 py-2 border-t border-gray-200 mt-2 pt-4">
-                <div className="flex flex-col space-y-2">
+                <div className="flex flex-col space-y-3">
                   <Button 
                     variant="ghost" 
-                    className="justify-start"
+                    className="justify-start h-12 px-4"
                     onClick={handleLogin}
                     data-testid="mobile-button-login"
                   >
-                    <User className="w-4 h-4 mr-2" />
+                    <User className="w-4 h-4 mr-3" />
                     {isLoggedIn ? "CRM" : "Admin"}
                   </Button>
                   <Button 
-                    className="justify-start"
+                    className="justify-start h-12 px-4"
                     onClick={handleBooking}
                     data-testid="mobile-button-book"
                   >
-                    <Calendar className="w-4 h-4 mr-2" />
+                    <Calendar className="w-4 h-4 mr-3" />
                     Reservar Ahora
                   </Button>
                 </div>

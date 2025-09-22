@@ -103,18 +103,18 @@ export default function FleetSection() {
   };
 
   return (
-    <section className="py-16 bg-gray-50" id="fleet">
+    <section className="py-12 sm:py-16 bg-gray-50" id="fleet">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
-          <h2 className="font-heading text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+        <div className="text-center mb-8 sm:mb-12">
+          <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-3 sm:mb-4 px-2">
             Nuestra flota de alquiler en Blanes
           </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto px-4">
             Descubre nuestra flota de alquiler de barcos con licencia o sin licencia y con gasolina incluida en Blanes, Costa Brava. Embarcaciones ideales para salidas con amigos o en familias.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-8 sm:mb-12">
           {boats.map((boat) => (
             <BoatCard
               key={boat.id}
@@ -125,21 +125,21 @@ export default function FleetSection() {
           ))}
         </div>
 
-        <div className="text-center">
-          <p className="text-gray-600 mb-4">¿Necesitas ayuda para elegir tu alquiler de barco en Blanes?</p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+        <div className="text-center px-4">
+          <p className="text-sm sm:text-base text-gray-600 mb-4 sm:mb-6">¿Necesitas ayuda para elegir tu alquiler de barco en Blanes?</p>
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center max-w-lg mx-auto">
             <button 
-              className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-medium flex items-center justify-center transition-colors"
+              className="bg-green-600 hover:bg-green-700 text-white px-4 sm:px-6 py-3 rounded-lg font-medium flex items-center justify-center transition-colors text-sm sm:text-base"
               onClick={() => openWhatsApp("Hola! Necesito ayuda para elegir el mejor barco para alquilar en Blanes. ¿Podrían asesorarme sobre precios y disponibilidad?")}
               data-testid="button-whatsapp-help"
             >
-              💬 Consulta por WhatsApp
+              💬 <span className="ml-2">Consulta por WhatsApp</span>
             </button>
             <button 
-              className="border border-gray-300 hover:border-gray-400 text-gray-700 px-6 py-3 rounded-lg font-medium transition-colors"
+              className="border border-gray-300 hover:border-gray-400 text-gray-700 px-4 sm:px-6 py-3 rounded-lg font-medium transition-colors text-sm sm:text-base"
               data-testid="button-call-help"
             >
-              📞 Llama al +34 611 500 372
+              📞 <span className="ml-1 hidden sm:inline">Llama al </span><span className="ml-1">+34 611 500 372</span>
             </button>
           </div>
         </div>

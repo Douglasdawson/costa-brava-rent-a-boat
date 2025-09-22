@@ -26,29 +26,29 @@ export default function Hero() {
       {/* Dark overlay for text readability */}
       <div className="absolute inset-0 bg-black/40"></div>
       
-      <div className="relative z-10 container mx-auto px-4 pt-24 pb-12 min-h-screen flex flex-col justify-center items-center text-center">
-        <div className="max-w-4xl mx-auto mb-12">
-          <h1 className="font-heading text-xl md:text-3xl font-bold text-white mb-6 leading-tight">
+      <div className="relative z-10 container mx-auto px-4 pt-20 sm:pt-24 pb-8 sm:pb-12 min-h-screen flex flex-col justify-center items-center text-center">
+        <div className="max-w-4xl mx-auto mb-8 sm:mb-12">
+          <h1 className="font-heading text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-white mb-4 sm:mb-6 leading-tight px-2">
             Alquiler de barcos en Blanes (Costa Brava) sin licencia | Costa Brava Rent a Boat
           </h1>
-          <p className="text-xl md:text-2xl text-white/90 mb-4">
+          <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/90 mb-3 sm:mb-4 px-2">
             Alquiler de embarcaciones sin licencia y con licencia. Gasolina incluida, fácil y seguro.
           </p>
-          <p className="text-lg text-white/80 mb-8 max-w-2xl mx-auto">
+          <p className="text-sm sm:text-base md:text-lg text-white/80 mb-6 sm:mb-8 max-w-2xl mx-auto px-4">
             La mayor flota de alquiler de barcos en Blanes con la mejor flexibilidad horaria de la Costa Brava Sur. 
             Incluye snorkel, paddle surf y nevera con bebidas frías. Salidas desde Puerto de Blanes.
           </p>
         </div>
 
         {/* Booking Widget */}
-        <Card className="bg-white/95 backdrop-blur-md p-6 max-w-4xl w-full shadow-2xl border-0">
-          <div className="text-center mb-5">
-            <h3 className="text-xl font-bold text-gray-900 mb-2">Reserva tu aventura</h3>
-            <p className="text-sm text-gray-600">Completa los datos para encontrar tu embarcación perfecta</p>
+        <Card className="bg-white/95 backdrop-blur-md p-4 sm:p-6 max-w-4xl w-full shadow-2xl border-0 mx-4">
+          <div className="text-center mb-4 sm:mb-5">
+            <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2">Reserva tu aventura</h3>
+            <p className="text-xs sm:text-sm text-gray-600">Completa los datos para encontrar tu embarcación perfecta</p>
           </div>
           
-          <div className="bg-gray-50/80 rounded-xl p-4 mb-5">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="bg-gray-50/80 rounded-xl p-3 sm:p-4 mb-4 sm:mb-5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
               {/* Fecha */}
               <div className="bg-white rounded-lg p-3 shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
                 <label className="flex items-center text-xs font-semibold text-gray-800 mb-2">
@@ -132,18 +132,19 @@ export default function Hero() {
             </p>
           </div>
           
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mt-6">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center mt-4 sm:mt-6">
             <Button 
               variant="outline" 
               onClick={handleWhatsApp}
-              className="bg-white/90 backdrop-blur border-white/50 hover:bg-white"
+              className="bg-white/90 backdrop-blur border-white/50 hover:bg-white w-full sm:w-auto text-sm sm:text-base"
               data-testid="button-whatsapp-contact"
             >
               <Phone className="w-4 h-4 mr-2" />
-              WhatsApp +34 611 500 372
+              <span className="hidden sm:inline">WhatsApp +34 611 500 372</span>
+              <span className="sm:hidden">WhatsApp</span>
             </Button>
             
-            <div className="flex items-center text-sm text-gray-600">
+            <div className="flex items-center text-xs sm:text-sm text-gray-600">
               <MapPin className="w-4 h-4 mr-2" />
               {BUSINESS_LOCATION}
             </div>
@@ -151,7 +152,7 @@ export default function Hero() {
         </Card>
 
         {/* Trust indicators */}
-        <div className="mt-8 flex flex-wrap justify-center gap-6 text-white/80 text-sm">
+        <div className="mt-6 sm:mt-8 flex flex-wrap justify-center gap-3 sm:gap-4 lg:gap-6 text-white/80 text-xs sm:text-sm px-4">
           <div className="flex items-center">
             <div className="w-2 h-2 bg-green-400 rounded-full mr-2"></div>
             Gasolina incluida

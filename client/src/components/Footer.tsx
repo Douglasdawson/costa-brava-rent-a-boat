@@ -9,21 +9,22 @@ export default function Footer() {
 
   return (
     <footer className="bg-gray-900 text-gray-300">
-      <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+      <div className="container mx-auto px-4 py-8 sm:py-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
           {/* Company Info */}
-          <div className="md:col-span-1">
+          <div className="sm:col-span-2 lg:col-span-1">
             <div className="flex items-center space-x-2 mb-4">
-              <Anchor className="w-6 h-6 text-primary" />
-              <span className="font-heading font-bold text-xl text-white">
-                Costa Brava Rent a Boat Blanes
+              <Anchor className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
+              <span className="font-heading font-bold text-lg sm:text-xl text-white">
+                <span className="hidden sm:inline">Costa Brava Rent a Boat Blanes</span>
+                <span className="sm:hidden">CB Rent Boat Blanes</span>
               </span>
             </div>
-            <p className="text-sm text-gray-400 mb-4">
+            <p className="text-xs sm:text-sm text-gray-400 mb-4">
               Alquiler de embarcaciones en Blanes. Sin licencia requerida para la mayoría de nuestros barcos. 
               Experiencias únicas en la Costa Brava desde 2020.
             </p>
-            <div className="flex items-center space-x-2 text-sm">
+            <div className="flex items-center space-x-2 text-xs sm:text-sm">
               <div className="w-2 h-2 bg-green-400 rounded-full"></div>
               <span>Temporada operativa: Abril - Octubre</span>
             </div>

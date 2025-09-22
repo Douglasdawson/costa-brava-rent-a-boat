@@ -402,6 +402,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
               <p>• Perfecto para explorar las calas de la Costa Brava</p>
               <p>• Gasolina, seguro y equipo de seguridad incluidos</p>
               <p>• Fianza: {boatData.specifications.deposit}</p>
+              <p>• <strong>Imprescindible:</strong> Acudir con documento de identidad o pasaporte</p>
             </div>
             <div className="mt-4 p-4 bg-blue-50 rounded-lg">
               <p className="text-blue-800 text-sm">

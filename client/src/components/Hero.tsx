@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Calendar, Users, Clock, MapPin, Phone } from "lucide-react";
+import { Calendar, Anchor, Clock, MapPin, Phone } from "lucide-react";
 import { openWhatsApp } from "@/utils/whatsapp";
 import { BUSINESS_LOCATION } from "@/lib/config";
 import heroImage from "@assets/generated_images/Mediterranean_coastal_hero_scene_8df465c2.png";
@@ -70,7 +70,7 @@ export default function Hero() {
               <div className="bg-white rounded-lg p-3 shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
                 <label className="flex items-center text-xs font-semibold text-gray-800 mb-2">
                   <div className="w-6 h-6 bg-primary/10 rounded-full flex items-center justify-center mr-2">
-                    <Users className="w-3 h-3 text-primary" />
+                    <Anchor className="w-3 h-3 text-primary" />
                   </div>
                   Embarcación
                 </label>

@@ -14,6 +14,7 @@ import {
   Navigation as NavigationIcon,
   Ruler,
   ArrowUpDown,
+  ArrowLeftRight,
   Zap,
   Shield,
   Car,
@@ -209,14 +210,14 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                   </div>
                   <div className="flex items-center justify-between">
                     <div className="flex items-center">
-                      <Ruler className="w-4 h-4 mr-2 text-blue-600" />
+                      <ArrowUpDown className="w-4 h-4 mr-2 text-blue-600" />
                       <span className="font-medium">Eslora:</span>
                     </div>
                     <span>{boatData.specifications.length}</span>
                   </div>
                   <div className="flex items-center justify-between">
                     <div className="flex items-center">
-                      <ArrowUpDown className="w-4 h-4 mr-2 text-blue-600" />
+                      <ArrowLeftRight className="w-4 h-4 mr-2 text-blue-600" />
                       <span className="font-medium">Manga:</span>
                     </div>
                     <span>{boatData.specifications.beam}</span>

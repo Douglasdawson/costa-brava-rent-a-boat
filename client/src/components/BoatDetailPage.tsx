@@ -434,14 +434,14 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
               {/* Embedded Google Map */}
               <div className="w-full h-64 md:h-80 rounded-lg overflow-hidden border">
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2973.8553686!2d2.7833!3d41.6667!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a2b8c5c5c5c5c5%3A0x1234567890!2sPuerto%20de%20Blanes!5e0!3m2!1ses!2ses!4v1640995200000!5m2!1ses!2ses&q=Puerto+de+Blanes,+Costa+Brava+Rent+a+Boat"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2973.8553686!2d2.7833!3d41.6667!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a2b8c5c5c5c5c5%3A0x1234567890!2sCosta%20Brava%20Rent%20a%20Boat%20Blanes!5e0!3m2!1ses!2ses!4v1640995200000!5m2!1ses!2ses&q=Costa+Brava+Rent+a+Boat+Blanes"
                   width="100%"
                   height="100%"
                   style={{ border: 0 }}
                   allowFullScreen
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
-                  title="Ubicación de Costa Brava Rent a Boat en Puerto de Blanes"
+                  title="Ubicación de Costa Brava Rent a Boat Blanes"
                   data-testid="map-location"
                 />
               </div>

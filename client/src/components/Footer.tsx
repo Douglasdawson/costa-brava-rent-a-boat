@@ -16,7 +16,7 @@ export default function Footer() {
             <div className="flex items-center space-x-2 mb-4">
               <Anchor className="w-6 h-6 text-primary" />
               <span className="font-heading font-bold text-xl text-white">
-                Costa Brava Rent a Boat
+                Costa Brava Rent a Boat Blanes
               </span>
             </div>
             <p className="text-sm text-gray-400 mb-4">

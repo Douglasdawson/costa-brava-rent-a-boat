@@ -29,7 +29,7 @@ export default function Navigation() {
           <div className="flex items-center space-x-2" data-testid="brand-logo">
             <Anchor className="w-8 h-8 text-primary" />
             <span className="font-heading font-bold text-xl text-gray-900">
-              Costa Brava Rent a Boat
+              Costa Brava Rent a Boat Blanes
             </span>
           </div>
 

@@ -73,7 +73,7 @@ export default function FeaturesSection() {
         {/* Main Features */}
         <div className="text-center mb-12">
           <h2 className="font-heading text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            ¿Por qué Costa Brava Rent a Boat?
+            ¿Por qué Costa Brava Rent a Boat Blanes?
           </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
             La empresa con la mayor oferta de horas y mayor flexibilidad horaria contratables en la zona.

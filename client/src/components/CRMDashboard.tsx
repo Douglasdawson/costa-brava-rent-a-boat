@@ -112,7 +112,7 @@ export default function CRMDashboard() {
           <div className="flex items-center space-x-3">
             <Anchor className="w-8 h-8 text-primary" />
             <div>
-              <h1 className="text-2xl font-bold text-gray-900">CRM Costa Brava</h1>
+              <h1 className="text-2xl font-bold text-gray-900">CRM Costa Brava Rent a Boat Blanes</h1>
               <p className="text-sm text-gray-600">Sistema de gestión de reservas</p>
             </div>
           </div>

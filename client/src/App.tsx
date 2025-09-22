@@ -23,8 +23,8 @@ function HomePage() {
     <div className="min-h-screen">
       <Navigation />
       <Hero />
-      <FeaturesSection />
       <FleetSection />
+      <FeaturesSection />
       <ContactSection />
       <Footer />
     </div>
@@ -68,7 +68,7 @@ function App() {
           <div className="min-h-screen bg-gray-100 p-8">
             <div className="max-w-2xl mx-auto text-center mb-8">
               <h1 className="text-3xl font-bold text-gray-900 mb-4">
-                Costa Brava Rent a Boat - Vista Previa de Componentes
+                Costa Brava Rent a Boat Blanes - Vista Previa de Componentes
               </h1>
               <p className="text-gray-600 mb-4">
                 Estos son los componentes individuales del sistema de reservas.

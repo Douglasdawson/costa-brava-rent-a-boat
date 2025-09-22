@@ -1,0 +1,254 @@
+# Prompt maestro para Replit (Ghostwriter / AI Agent)
+
+**Objetivo:** Construir, desde cero, una web pública con reservas online mediante calendario y un CRM interno para Costa Brava Rent a Boat Blanes, desplegada en Replit, con base de datos relacional externa y pagos.
+
+---
+
+## 🎯 Rol que debes adoptar
+
+Actúa como *senior full‑stack engineer* y *product designer*. Entrega código funcional, limpio y documentado, con foco en DX, seguridad y mantenibilidad. Responde con pasos ejecutables y explica brevemente las decisiones clave.
+
+---
+
+## 🧱 Stack solicitado (preferente)
+
+* **Frontend**: Next.js 14 (App Router) + TypeScript + TailwindCSS + shadcn/ui.
+* **Backend**: Next.js API Routes (o route handlers) con **tRPC** opcional.
+* **ORM**: Prisma.
+* **DB**: PostgreSQL (Neon o Supabase). **No usar** Replit DB para producción.
+* **Auth**: NextAuth (email magic link) o Clerk. Roles: `ADMIN`, `STAFF`.
+* **Pagos**: Stripe (modo prueba habilitado por defecto, moneda **EUR**).
+* **Email**: Resend o Nodemailer (SMTP).
+* **Mensajería/WhatsApp**: Link "Click to WhatsApp" y preparar integración futura con WhatsApp Business Cloud API (webhook + plantillas, pero dejarlo desactivado por defecto).
+* **Mapas**: Leaflet o Google Maps (marcar ubicación de la base en Blanes).
+* **Despliegue**: Replit (servidor Node que ejecuta Next). Variables de entorno en Secrets de Replit.
+
+> Si algo del stack no está disponible en Replit, propone alternativa mínima equivalente sin perder funcionalidades.
+
+---
+
+## 🏝️ Contexto del negocio
+
+* Empresa: **Costa Brava Rent a Boat Blanes**.
+* Temporada operativa: **abril–octubre** (fuera de ese rango, calendario bloqueado por defecto).
+* Duraciones típicas:
+
+  * **Barcos sin licencia**: 1h, 2h, 3h, 4h, 6h, 8h.
+  * **Barcos con licencia**: 2h, 4h, 8h.
+    Permitir configurar más franjas (desactivadas por defecto).
+* Embarcación destacada: **ASTEC 450** (sin licencia, hasta 5 pax, gasolina incluida). Extras disponibles: **snorkel, paddle surf, nevera, seascooter**.
+* **Flota actual**:
+
+  * **Sin licencia (5 pax)**: Astec 400, Remus 450, Solar 450, Astec 480
+  * **Con licencia**: Trimarchi 57S (7 pax), Mingolla Brava 19 (6 pax), Pacificadnos Craft 625 (7 pax)
+* Contacto: **Tel/WhatsApp +34611500372** · **Email [costabravarentboat@gmail.com](mailto:costabravarentboat@gmail.com)**.
+* Idiomas: **ES (por defecto)**, **CA**, **FR**, **DE**, **NL**, **IT**, **RU**. Zona horaria: **Europe/Madrid**. Moneda: **EUR**.
+
+---
+
+## 🔐 Requisitos de seguridad y legales
+
+* RGPD: checkbox de consentimiento y enlaces a **Términos**, **Privacidad**, **Política de cancelación**.
+* Sanitizar entradas, CSRF en formularios, rate‑limit en APIs sensibles, validación Zod.
+* Logging de auditoría básico para operaciones críticas del CRM.
+
+---
+
+## 🗂️ Módulos y páginas
+
+### Pública
+
+1. **Landing** (hero, valor diferencial, reseñas, CTA reservar, WhatsApp).
+2. **Flota** (fichas con fotos, capacidad, si requiere licencia, precios por franja, qué incluye).
+3. **Calendario de reservas** por embarcación (UX simple: seleccionar fecha → franja → extras → resumen → checkout Stripe).
+4. **Contacto** (form + link WhatsApp + mapa ubicación).
+5. **FAQ / Políticas**.
+
+### CRM (acceso privado)
+
+1. **Dashboard** (hoy, próximos 7 días, estado de la flota, KPIs).
+2. **Calendario/Agenda** (vista día/semana/mes, por embarcación).
+3. **Reservas**: crear/editar; estados `PENDING`, `HOLD`, `PAID`, `CANCELLED`; aplicar extras; override de disponibilidad por ADMIN.
+4. **Clientes**: fichas (nombre, email, teléfono, documento ID opcional, notas, histórico, consentimientos).
+5. **Flota**: alta/baja de embarcaciones, mantenimiento, fotos.
+6. **Extras**: catálogo con precio fijo o por franja.
+7. **Informes/Export**: CSV para contabilidad y marketing.
+8. **Ajustes**: franjas horarias, buffers, temporada, política cancelación, plantillas email/WhatsApp, usuarios y roles.
+
+---
+
+## 📦 Modelo de datos (Prisma, orientativo)
+
+Define Prisma schema aproximado con migraciones iniciales y seeds.
+
+* **User**: id, name, email (unique), phone, role(`ADMIN|STAFF`), createdAt.
+* **Boat**: id, name, slug, requiresLicense (bool), capacity, description, photos\[], active, baseLocation, cancellationPolicy (markdown).
+* **TimeSlot**: id, label ("1h", "2h", "3h", "4h", "6h", "8h"), startTime, endTime, durationMin, bufferMin, **licenseCategory** ("NO\_LICENSE"|"LICENSED"|"ANY"), active.
+
+  * Para `1h`, `3h`, `6h` usar `licenseCategory = NO_LICENSE`.
+  * Para `2h`, `4h`, `8h` usar `licenseCategory = ANY` (válido para ambas clases).
+* **Season**: id, code("BAJA"|"MEDIA"|"ALTA"), name, startDate, endDate, active.
+* **PriceRule**: id, scope ("CLASS"|"BOAT"), class ("NO\_LICENSE"|"LICENSED")?, boatId→Boat?, seasonId→Season, timeSlotId→TimeSlot, priceEUR.
+* **Extra**: id, name, description, priceEUR, unit ("flat"|"per\_slot"), active.
+* **Customer**: id, firstName, lastName, email, phone, docId, notes, consentMarketing (bool), createdAt.
+* **Booking**: id, code (unique), boatId→Boat, customerId→Customer, start (tz Europe/Madrid), end, status, totalEUR, stripePaymentIntentId, notes.
+* **BookingExtra**: bookingId→Booking, extraId→Extra, quantity, priceEUR.
+* **BlockedRange**: id, boatId→Boat, start, end, reason.
+* **AuditLog**: id, userId→User, action, entity, entityId, meta(json), at.
+
+> Semillas: crear la flota inicial con sus `Boat` y fotos de ejemplo:
+>
+> * **Sin licencia (5 pax)**: Astec 400, Remus 450, Solar 450, Astec 480
+> * **Con licencia**: Trimarchi 57S (7 pax), Mingolla Brava 19 (6 pax), Pacificadnos Craft 625 (7 pax)
+>   además de la embarcación destacada **ASTEC 450** (sin licencia, 5 pax).
+>   Añadir los extras citados y las franjas:
+> * **Sin licencia**: 1h, 2h, 3h, 4h, 6h, 8h
+> * **Con licencia**: 2h, 4h, 8h
+>   con `bufferMin=30`.
+>   **Tarifas (sin licencia, todas salvo Astec 480)**
+> * **Temporada BAJA (1/4–30/6 y 1/9–cierre)**: 1h 75€, 2h 115€, 3h 130€, 4h 150€, 6h 190€, 8h 220€
+> * **Temporada MEDIA (1/7–31/7)**: 1h 85€, 2h 130€, 3h 160€, 4h 180€, 6h 230€, 8h 270€
+> * **Temporada ALTA (1/8–31/8)**: 1h 95€, 2h 140€, 3h 170€, 4h 195€, 6h 240€, 8h 290€
+>   **Astec 480** (override):
+> * **BAJA**: 1h 80€, 2h 130€, 3h 155€, 4h 180€, 6h 230€, 8h 270€
+> * **MEDIA**: 1h 90€, 2h 150€, 3h 190€, 4h 220€, 6h 270€, 8h 310€
+> * **ALTA**: 1h 100€, 2h 170€, 3h 200€, 4h 230€, 6h 290€, 8h 340€
+>   **Con licencia** (2h/4h/8h):
+> * **BAJA**: 2h 160€, 4h 240€, 8h 290€
+> * **MEDIA**: 2h 180€, 4h 260€, 8h 340€
+> * **ALTA**: 2h 200€, 4h 280€, 8h 390€
+
+## 🧮 Lógica de disponibilidad
+
+* Una franja es **reservable** si: no hay *Booking* que se solape **incluyendo buffer** y no cae dentro de *BlockedRange* ni fuera de temporada.
+* Al iniciar checkout, crear **hold** temporal (estado `HOLD`) que caduca a los **15 min** si no se paga. Eliminar hold al cancelar o al expirar.
+* Prevenir **doble reserva** con transacción atómica.
+* ADMIN puede crear reservas **sin pago** o marcarlas como `PAID` manualmente.
+* Las franjas disponibles respetan la categoría del barco: **sin licencia** → 1h/2h/3h/4h/6h/8h; **con licencia** → 2h/4h/8h.
+
+---
+
+## 💳 Pagos & precios
+
+### Estructura de tarifas
+
+* Temporadas: **BAJA** (1 abril–30 junio y 1 septiembre–cierre), **MEDIA** (1–31 julio), **ALTA** (1–31 agosto).
+* Usar **PriceRule** por temporada con *fallback* por **clase** (NO\_LICENSE / LICENSED) y *override* por **barco** (ej. Astec 480).
+
+### Clase **NO\_LICENSE** (sin licencia, **todas salvo Astec 480**)
+
+* **BAJA** → 1h **75€**, 2h **115€**, 3h **130€**, 4h **150€**, 6h **190€**, 8h **220€**
+* **MEDIA** → 1h **85€**, 2h **130€**, 3h **160€**, 4h **180€**, 6h **230€**, 8h **270€**
+* **ALTA** → 1h **95€**, 2h **140€**, 3h **170€**, 4h **195€**, 6h **240€**, 8h **290€**
+
+### **Astec 480** (override por barco)
+
+* **BAJA (1/4–30/6 y 1/9–cierre)** → 1h **80€**, 2h **130€**, 3h **155€**, 4h **180€**, 6h **230€**, 8h **270€**
+* **MEDIA (1/7–31/7)** → 1h **90€**, 2h **150€**, 3h **190€**, 4h **220€**, 6h **270€**, 8h **310€**
+* **ALTA (1/8–31/8)** → 1h **100€**, 2h **170€**, 3h **200€**, 4h **230€**, 6h **290€**, 8h **340€**
+
+### Clase **LICENSED** (con licencia: Trimarchi 57S, Mingolla Brava 19, Pacificadnos Craft 625)
+
+* **BAJA** → 2h **160€**, 4h **240€**, 8h **290€**
+
+* **MEDIA** → 2h **180€**, 4h **260€**, 8h **340€**
+
+* **ALTA** → 2h **200€**, 4h **280€**, 8h **390€**
+
+* Mostrar desglose: precio base franja + extras + impuestos (si aplica) + depósitos (si se usan, simular con Stripe PaymentIntent capture/confirm según configuración).
+
+* Precios por embarcación y franja. Usar **PriceRule** por temporada (BAJA, MEDIA, ALTA) con *fallback* por **clase** y *override* por **barco** (ej. Astec 480).
+
+* Guardar `stripePaymentIntentId` y webhooks `/api/webhooks/stripe`.
+
+## 🔔 Notificaciones
+
+* Email al cliente (confirmación con ics adjunto) y a `costabravarentboat@gmail.com`.
+* Enlace directo **WhatsApp** pre-relleno con datos de la reserva para comunicación rápida (sin API, por ahora).
+
+---
+
+## 🌐 i18n
+
+* next-intl o i18next. Empezar con **ES** y preparar plantillas para **CA, FR, DE, NL, IT, RU**. Formatos de fecha/hora en **Europe/Madrid**.
+
+---
+
+## 🖥️ UX/UI
+
+* Diseño limpio, marino, accesible (WCAG AA), responsive.
+* Calendario claro: selección de barco → fecha → franja → extras → checkout.
+* En admin, vista tipo kanban/lista + calendario.
+
+---
+
+## 🔧 Comandos & estructura
+
+* Scripts: `dev`, `build`, `start`, `prisma migrate dev`, `prisma db seed`.
+* `.env.example` con claves: DATABASE\_URL, NEXTAUTH\_SECRET, NEXTAUTH\_URL, STRIPE\_SECRET\_KEY, STRIPE\_WEBHOOK\_SECRET, RESEND\_API\_KEY, SITE\_URL, DEFAULT\_LOCALE, BUSINESS\_PHONE.
+* Documentación `README.md` con pasos para Replit (añadir secrets, ejecutar migraciones y seed, arrancar).
+
+---
+
+## 🔗 Endpoints/API (ejemplos)
+
+* `GET /api/boats` (list), `GET /api/boats/:slug` (detail)
+* `POST /api/availability` { boatId, date } → franjas libres
+* `POST /api/bookings` (crear hold) → { bookingId, clientSecret }
+* `POST /api/bookings/:id/confirm` (confirmar pago Stripe webhook)
+* `POST /api/bookings/:id/cancel`
+* `POST /api/webhooks/stripe`
+* CRUD autenticado para **boats, extras, seasons, timeslots, blockedRanges, customers, bookings** (solo ADMIN/STAFF).
+
+---
+
+## ✅ Criterios de aceptación
+
+1. Puedo seleccionar un barco **sin licencia** estándar (no Astec 480) en una fecha de **julio** y ver franjas **1h/2h/3h/4h/6h/8h** con precios correctos de **temporada MEDIA** (p. ej., **1h = 85€**, **4h = 180€**), completar pago Stripe (modo test) sin doble reserva.
+2. En **agosto**, un barco sin licencia estándar muestra **4h = 195€** y **8h = 290€** (temporada ALTA). Para **Astec 480**, en **agosto**, **4h = 230€** (override por barco).
+3. Puedo seleccionar **Trimarchi 57S** (con licencia), ver solo **2h/4h/8h** y que en **julio** **4h = 260€** y **8h = 340€**. Crear desde el CRM una reserva de **4h** y marcarla manualmente `PAID`.
+4. Recibo email de confirmación con archivo `.ics` y link de WhatsApp pre-relleno.
+5. En el CRM, veo el calendario semanal por embarcación y puedo crear una reserva manual sin pago.
+6. Export CSV de reservas del mes.
+7. La app arranca en Replit con variables de entorno y seed funcionando.
+
+---
+
+## 🛠️ Tareas paso a paso que debes ejecutar
+
+1. Inicializa proyecto Next.js + Tailwind + shadcn/ui + Prisma.
+2. Configura PostgreSQL (Neon/Supabase) y añade `DATABASE_URL` en Replit Secrets.
+3. Crea el **schema.prisma** y `prisma db push`; luego **seed** con ASTEC 450, extras y franjas.
+4. Implementa auth con roles y protectores de ruta (middleware).
+5. Implementa API de disponibilidad con transacciones y buffer.
+6. Implementa flujo de checkout Stripe (hold + confirmación por webhook).
+7. Construye el calendario público y las vistas del CRM.
+8. Añade i18n (ES listo, CA/EN marcado TODO) y políticas legales.
+9. Emails de confirmación + archivo ICS (calEvent) y links de WhatsApp.
+10. README con instrucciones específicas de Replit.
+
+---
+
+## 📄 Copia de ejemplo para la web (ES)
+
+* **Hero**: "Alquila tu barco en Blanes. Sin licencia. Fácil, seguro y con gasolina incluida."
+* **CTA**: "Reservar ahora" / "Hablar por WhatsApp".
+* **ASTEC 450**: "Hasta 5 personas, solárium, toldo, escalera de baño. Opciones: snorkel, paddle surf, nevera, seascooter."
+
+---
+
+## 🧪 Datos de prueba
+
+* Cliente: Ana García, [ana@example.com](mailto:ana@example.com), +34 600 000 000.
+* Reserva: 12 de julio, 10:00–14:00, ASTEC 450, extras: paddle surf + nevera.
+
+---
+
+## 📎 Notas
+
+* Usa Zod para validar payloads.
+* Considera *soft deletes* (campo `deletedAt`) para registros críticos.
+* Escribe tests básicos para la lógica de solapes y hold.
+* Optimiza imágenes (next/image).
+
+> **Entrega**: repositorio funcional con instrucciones claras y todo lo necesario para ejecutar en Replit sin pasos manuales ocultos.

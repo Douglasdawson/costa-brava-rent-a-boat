@@ -38,19 +38,19 @@ export default function Hero() {
         </div>
 
         {/* Booking Widget */}
-        <Card className="bg-white/95 backdrop-blur-md p-8 max-w-5xl w-full shadow-2xl border-0">
-          <div className="text-center mb-6">
-            <h3 className="text-2xl font-bold text-gray-900 mb-2">Reserva tu aventura</h3>
-            <p className="text-gray-600">Completa los datos para encontrar tu embarcación perfecta</p>
+        <Card className="bg-white/95 backdrop-blur-md p-6 max-w-4xl w-full shadow-2xl border-0">
+          <div className="text-center mb-5">
+            <h3 className="text-xl font-bold text-gray-900 mb-2">Reserva tu aventura</h3>
+            <p className="text-sm text-gray-600">Completa los datos para encontrar tu embarcación perfecta</p>
           </div>
           
-          <div className="bg-gray-50/80 rounded-2xl p-6 mb-6">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="bg-gray-50/80 rounded-xl p-4 mb-5">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {/* Fecha */}
-              <div className="bg-white rounded-xl p-4 shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
-                <label className="flex items-center text-sm font-semibold text-gray-800 mb-3">
-                  <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center mr-3">
-                    <Calendar className="w-4 h-4 text-primary" />
+              <div className="bg-white rounded-lg p-3 shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                <label className="flex items-center text-xs font-semibold text-gray-800 mb-2">
+                  <div className="w-6 h-6 bg-primary/10 rounded-full flex items-center justify-center mr-2">
+                    <Calendar className="w-3 h-3 text-primary" />
                   </div>
                   Fecha
                 </label>
@@ -59,23 +59,23 @@ export default function Hero() {
                   value={selectedDate}
                   onChange={(e) => setSelectedDate(e.target.value)}
                   min={new Date().toISOString().split('T')[0]}
-                  className="w-full p-3 border-0 bg-gray-50 rounded-lg focus:ring-2 focus:ring-primary focus:bg-white transition-all text-gray-900 font-medium"
+                  className="w-full p-2.5 border-0 bg-gray-50 rounded-md focus:ring-2 focus:ring-primary focus:bg-white transition-all text-gray-900 font-medium text-sm"
                   data-testid="input-booking-date"
                 />
               </div>
               
               {/* Embarcación */}
-              <div className="bg-white rounded-xl p-4 shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
-                <label className="flex items-center text-sm font-semibold text-gray-800 mb-3">
-                  <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center mr-3">
-                    <Users className="w-4 h-4 text-primary" />
+              <div className="bg-white rounded-lg p-3 shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                <label className="flex items-center text-xs font-semibold text-gray-800 mb-2">
+                  <div className="w-6 h-6 bg-primary/10 rounded-full flex items-center justify-center mr-2">
+                    <Users className="w-3 h-3 text-primary" />
                   </div>
                   Embarcación
                 </label>
                 <select
                   value={selectedBoat}
                   onChange={(e) => setSelectedBoat(e.target.value)}
-                  className="w-full p-3 border-0 bg-gray-50 rounded-lg focus:ring-2 focus:ring-primary focus:bg-white transition-all text-gray-900 font-medium appearance-none cursor-pointer"
+                  className="w-full p-2.5 border-0 bg-gray-50 rounded-md focus:ring-2 focus:ring-primary focus:bg-white transition-all text-gray-900 font-medium appearance-none cursor-pointer text-sm"
                   data-testid="select-boat-type"
                 >
                   <option value="">Seleccionar barco</option>
@@ -90,17 +90,17 @@ export default function Hero() {
               </div>
               
               {/* Duración */}
-              <div className="bg-white rounded-xl p-4 shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
-                <label className="flex items-center text-sm font-semibold text-gray-800 mb-3">
-                  <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center mr-3">
-                    <Clock className="w-4 h-4 text-primary" />
+              <div className="bg-white rounded-lg p-3 shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                <label className="flex items-center text-xs font-semibold text-gray-800 mb-2">
+                  <div className="w-6 h-6 bg-primary/10 rounded-full flex items-center justify-center mr-2">
+                    <Clock className="w-3 h-3 text-primary" />
                   </div>
                   Duración
                 </label>
                 <select
                   value={selectedDuration}
                   onChange={(e) => setSelectedDuration(e.target.value)}
-                  className="w-full p-3 border-0 bg-gray-50 rounded-lg focus:ring-2 focus:ring-primary focus:bg-white transition-all text-gray-900 font-medium appearance-none cursor-pointer"
+                  className="w-full p-2.5 border-0 bg-gray-50 rounded-md focus:ring-2 focus:ring-primary focus:bg-white transition-all text-gray-900 font-medium appearance-none cursor-pointer text-sm"
                   data-testid="select-duration"
                 >
                   <option value="">Seleccionar duración</option>
@@ -119,12 +119,12 @@ export default function Hero() {
           <div className="text-center">
             <Button 
               onClick={handleBookingSearch}
-              className="bg-primary hover:bg-primary/90 text-white font-bold py-4 px-12 text-lg rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 min-w-64"
+              className="bg-primary hover:bg-primary/90 text-white font-bold py-3 px-8 rounded-lg shadow-lg hover:shadow-xl transition-all duration-200"
               data-testid="button-search-availability"
             >
               🚤 Buscar Disponibilidad
             </Button>
-            <p className="text-sm text-gray-500 mt-3">
+            <p className="text-xs text-gray-500 mt-2">
               Sin compromiso • Confirmación inmediata • Gasolina incluida
             </p>
           </div>

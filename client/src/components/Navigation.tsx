@@ -49,7 +49,7 @@ export default function Navigation() {
   };
 
   const navigationItems = [
-    { label: "Inicio", href: "#home" },
+    { label: "Inicio", href: "/" },
     { label: "Flota", href: "#fleet" },
     { label: "Reserva", href: "#booking" },
     { label: "Contacto", href: "#contact" },

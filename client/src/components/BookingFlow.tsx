@@ -32,17 +32,18 @@ export default function BookingFlow({ boatId = "astec-450", onClose }: BookingFl
   ];
 
   const availableExtras = [
-    { id: "snorkel", name: "Snorkel", price: 15, description: "Equipo completo de snorkel" },
-    { id: "paddle", name: "Paddle Surf", price: 25, description: "Tabla de paddle surf" },
-    { id: "cooler", name: "Nevera", price: 10, description: "Nevera con hielo" },
-    { id: "seascooter", name: "Seascooter", price: 40, description: "Scooter acuático" }
+    { id: "snorkel", name: "Equipo de Snorkel", price: 15, description: "Equipo completo de snorkel para explorar la vida marina" },
+    { id: "paddle", name: "Tabla de Paddle Surf", price: 25, description: "Tabla de paddle surf para explorar calas" },
+    { id: "cooler", name: "Nevera con Bebidas Frías", price: 10, description: "Nevera con hielo y bebidas refrescantes" }
   ];
 
   const durations = [
-    { id: "1h", label: "1 hora", price: 75 },
-    { id: "2h", label: "2 horas", price: 115 },
-    { id: "4h", label: "4 horas", price: 150 },
-    { id: "8h", label: "8 horas", price: 220 }
+    { id: "1h", label: "1 hora", price: 70 },
+    { id: "2h", label: "2 horas", price: 80 },
+    { id: "3h", label: "3 horas", price: 90 },
+    { id: "4h", label: "4 horas", price: 120 },
+    { id: "6h", label: "6 horas", price: 150 },
+    { id: "8h", label: "8 horas", price: 180 }
   ];
 
   const handleTimeSelect = (timeId: string) => {

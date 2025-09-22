@@ -32,8 +32,8 @@ export default function Hero() {
             Sin licencia. Fácil, seguro y con gasolina incluida.
           </p>
           <p className="text-lg text-white/80 mb-8 max-w-2xl mx-auto">
-            Hasta 5 personas, solárium, toldo, escalera de baño. 
-            Opciones: snorkel, paddle surf, nevera, seascooter.
+            La empresa con la mayor oferta de horas y mayor flexibilidad horaria contratables en la zona.
+            Opciones: snorkel, paddle surf, nevera con bebidas frías.
           </p>
         </div>
 
@@ -67,8 +67,11 @@ export default function Hero() {
               >
                 <option value="">Seleccionar barco</option>
                 <option value="astec-450">ASTEC 450 (Sin licencia)</option>
-                <option value="astec-480">ASTEC 480 (Sin licencia)</option>
-                <option value="trimarchi">Trimarchi 57S (Con licencia)</option>
+                <option value="solar-450">SOLAR 450 (Sin licencia)</option>
+                <option value="remus-450">REMUS 450 (Sin licencia)</option>
+                <option value="trimarchi-57s">TRIMARCHI 57S (Con licencia)</option>
+                <option value="pacific-craft-625">PACIFIC CRAFT 625 (Con licencia)</option>
+                <option value="mingolla-brava-19">MINGOLLA BRAVA 19 (Con licencia)</option>
               </select>
             </div>
             
@@ -84,10 +87,12 @@ export default function Hero() {
                 data-testid="select-duration"
               >
                 <option value="">Seleccionar</option>
-                <option value="1h">1 hora - desde 75€</option>
-                <option value="2h">2 horas - desde 115€</option>
-                <option value="4h">4 horas - desde 150€</option>
-                <option value="8h">8 horas - desde 220€</option>
+                <option value="1h">1 hora - desde 70€</option>
+                <option value="2h">2 horas - desde 80€</option>
+                <option value="3h">3 horas - desde 90€</option>
+                <option value="4h">4 horas - desde 120€</option>
+                <option value="6h">6 horas - desde 150€</option>
+                <option value="8h">8 horas - desde 180€</option>
               </select>
             </div>
             

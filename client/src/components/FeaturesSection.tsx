@@ -76,7 +76,7 @@ export default function FeaturesSection() {
             ¿Por qué Costa Brava Rent a Boat?
           </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Ofrecemos la experiencia más completa y segura para disfrutar del mar Mediterráneo.
+            La empresa con la mayor oferta de horas y mayor flexibilidad horaria contratables en la zona.
           </p>
         </div>
 
@@ -144,18 +144,18 @@ export default function FeaturesSection() {
               <div className="w-12 h-12 mx-auto mb-4 bg-blue-100 rounded-full flex items-center justify-center">
                 <span className="text-2xl">❄️</span>
               </div>
-              <h4 className="font-semibold text-gray-900 mb-2">Nevera</h4>
-              <p className="text-gray-600 text-sm mb-2">Nevera con hielo para bebidas</p>
+              <h4 className="font-semibold text-gray-900 mb-2">Nevera con Bebidas Frías</h4>
+              <p className="text-gray-600 text-sm mb-2">Nevera con hielo y bebidas refrescantes</p>
               <span className="text-lg font-bold text-primary">10€</span>
             </Card>
 
-            <Card className="p-6 text-center border-dashed border-2 border-gray-300 bg-white/50">
-              <div className="w-12 h-12 mx-auto mb-4 bg-blue-100 rounded-full flex items-center justify-center">
-                <span className="text-2xl">🏄‍♂️</span>
+            <Card className="p-6 text-center border-dashed border-2 border-gray-300 bg-white/50 opacity-50">
+              <div className="w-12 h-12 mx-auto mb-4 bg-gray-100 rounded-full flex items-center justify-center">
+                <span className="text-2xl text-gray-400">🚤</span>
               </div>
-              <h4 className="font-semibold text-gray-900 mb-2">Seascooter</h4>
-              <p className="text-gray-600 text-sm mb-2">Scooter acuático para explorar</p>
-              <span className="text-lg font-bold text-primary">40€</span>
+              <h4 className="font-semibold text-gray-500 mb-2">Excursión Privada</h4>
+              <p className="text-gray-500 text-sm mb-2">Con patrón incluido</p>
+              <span className="text-lg font-bold text-gray-500">Desde 180€</span>
             </Card>
           </div>
         </div>

@@ -13,7 +13,7 @@ export default function FleetSection() {
     // Navigate to boat detail page
   };
 
-  // todo: remove mock functionality - replace with real API data
+  // Real boat data from costabravarentaboat.com
   const boats = [
     {
       id: "astec-450",
@@ -21,70 +21,82 @@ export default function FleetSection() {
       image: astec450Image,
       capacity: 5,
       requiresLicense: false,
-      description: "La embarcación más popular. Perfect para familias con solárium, toldo y escalera de baño. Gasolina incluida.",
-      basePrice: 75,
+      description: "La más grande que tenemos sin licencia. Ancha, cómoda, y con un enorme solárium acolchado. También cuenta equipo de música bluetooth.",
+      basePrice: 80,
       rating: 4.8,
-      features: ["Gasolina incluida", "Solárium", "Toldo", "Escalera", "Nevera opcional"],
+      features: ["Gasolina incluida", "Solárium", "Toldo", "Escalera", "Música bluetooth"],
       available: true
     },
     {
-      id: "astec-480",
-      name: "ASTEC 480",
+      id: "astec-400",
+      name: "ASTEC 400",
+      image: astec450Image,
+      capacity: 4,
+      requiresLicense: false,
+      description: "Perfecta para parejas y familias con niños. Gran solárium para tumbarse y escalera de baño para disfrutar del mar.",
+      basePrice: 70,
+      rating: 4.7,
+      features: ["Gasolina incluida", "Solárium", "Escalera", "Perfecta parejas"],
+      available: false // TEMPORALMENTE NO DISPONIBLE según web
+    },
+    {
+      id: "solar-450",
+      name: "SOLAR 450",
       image: astec450Image,
       capacity: 5,
       requiresLicense: false,
-      description: "Versión premium del ASTEC con más espacio y comodidades. Ideal para grupos que buscan mayor confort.",
-      basePrice: 80,
-      rating: 4.9,
-      features: ["Gasolina incluida", "Solárium amplio", "Toldo premium", "Escalera", "Nevera incluida"],
+      description: "Embarcación sin licencia muy cómoda con enorme solárium con cojines en proa, toldo y escalera de baño.",
+      basePrice: 75,
+      rating: 4.6,
+      features: ["Gasolina incluida", "Solárium", "Toldo", "Escalera", "Cojines proa"],
+      available: true
+    },
+    {
+      id: "remus-450",
+      name: "REMUS 450",
+      image: astec450Image,
+      capacity: 5,
+      requiresLicense: false,
+      description: "Embarcación sin licencia muy cómoda con enorme solárium con cojines en proa, toldo y escalera de baño.",
+      basePrice: 75,
+      rating: 4.7,
+      features: ["Gasolina incluida", "Solárium", "Toldo", "Escalera", "Cojines proa"],
       available: true
     },
     {
       id: "trimarchi-57s",
-      name: "Trimarchi 57S",
+      name: "TRIMARCHI 57S",
       image: trimarchiImage,
       capacity: 7,
       requiresLicense: true,
-      description: "Embarcación de lujo para navegantes con licencia. Máximo confort y prestaciones para grupos grandes.",
+      description: "Magnífica embarcación para 7 personas, deportiva, con equipo de música bluetooth ducha de agua dulce, mesa y solárium en proa.",
       basePrice: 160,
       rating: 4.9,
-      features: ["Gran potencia", "Solárium deluxe", "Cabina", "Cocina", "Baño", "Sistema audio"],
-      available: false
-    },
-    {
-      id: "remus-450",
-      name: "Remus 450",
-      image: astec450Image,
-      capacity: 5,
-      requiresLicense: false,
-      description: "Barco robusto y cómodo, perfecto para exploraciones familiares por la costa. Sin licencia requerida.",
-      basePrice: 75,
-      rating: 4.7,
-      features: ["Gasolina incluida", "Solárium", "Toldo", "Escalera", "Almacenamiento"],
+      features: ["Música bluetooth", "Ducha agua dulce", "Mesa", "Solárium proa"],
       available: true
     },
     {
-      id: "solar-450",
-      name: "Solar 450",
-      image: astec450Image,
-      capacity: 5,
-      requiresLicense: false,
-      description: "Diseño moderno y funcional. Excelente maniobrabilidad para descubrir calas escondidas.",
-      basePrice: 75,
-      rating: 4.6,
-      features: ["Gasolina incluida", "Solárium", "Toldo", "Escalera", "GPS básico"],
+      id: "pacific-craft-625",
+      name: "PACIFIC CRAFT 625",
+      image: trimarchiImage,
+      capacity: 7,
+      requiresLicense: true,
+      description: "¡La más premium que tenemos! Para 7 personas esta embarcación es alta, ancha y estable. Cuenta con camarote pequeño, un gran solárium y está equipada con ducha y mesa.",
+      basePrice: 180,
+      rating: 4.9,
+      features: ["Camarote", "Gran solárium", "Ducha", "Mesa", "Premium"],
       available: true
     },
     {
-      id: "mingolla-brava",
-      name: "Mingolla Brava 19",
+      id: "mingolla-brava-19",
+      name: "MINGOLLA BRAVA 19",
       image: trimarchiImage,
       capacity: 6,
       requiresLicense: true,
-      description: "Embarcación italiana de alta calidad. Combina elegancia y rendimiento para experiencias únicas.",
-      basePrice: 160,
+      description: "Magnífica embarcación para 6 personas muy ancha con equipo de música bluetooth ducha de agua dulce, mesa y solárium en proa.",
+      basePrice: 150,
       rating: 4.8,
-      features: ["Motor potente", "Acabados premium", "Cabina", "Nevera", "Sistema navegación"],
+      features: ["Música bluetooth", "Ducha agua dulce", "Mesa", "Solárium proa"],
       available: true
     }
   ];

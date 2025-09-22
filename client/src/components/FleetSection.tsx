@@ -1,6 +1,7 @@
 import BoatCard from "./BoatCard";
 import { openWhatsApp, createBookingMessage } from "@/utils/whatsapp";
 import { useLocation } from "wouter";
+import { BOAT_DATA } from "@shared/boatData";
 import astec450Image from "@assets/generated_images/ASTEC_450_speedboat_photo_fc9de4ed.png";
 import astec400Image from "@assets/generated_images/ASTEC_400_boat_photo_9dde16a8.png";
 import solar450Image from "@assets/generated_images/SOLAR_450_boat_photo_b70eb7e1.png";
@@ -12,11 +13,75 @@ import mingollaImage from "@assets/generated_images/MINGOLLA_BRAVA_19_boat_c0e4a
 export default function FleetSection() {
   const [, setLocation] = useLocation();
 
+  // Real boat data from costabravarentaboat.com - Ordered as requested
+  // Using centralized data with fleet-specific information
+  const fleetInfo = {
+    "astec-400": { rating: 4.7, available: false }, // TEMPORALMENTE NO DISPONIBLE según web
+    "remus-450": { rating: 4.7, available: true },
+    "solar-450": { rating: 4.6, available: true },
+    "astec-450": { rating: 4.8, available: true },
+    "pacific-craft-625": { rating: 4.9, available: true },
+    "trimarchi-57s": { rating: 4.9, available: true },
+    "mingolla-brava-19": { rating: 4.8, available: true }
+  };
+
+  // Fleet order as requested
+  const fleetOrder = [
+    "astec-400", "remus-450", "solar-450", "astec-450", 
+    "pacific-craft-625", "trimarchi-57s", "mingolla-brava-19"
+  ];
+
+  const boats = fleetOrder.map(boatId => {
+    const boatData = BOAT_DATA[boatId];
+    const info = fleetInfo[boatId as keyof typeof fleetInfo];
+    
+    if (!boatData) return null;
+
+    // Extract capacity as number
+    const capacity = parseInt(boatData.specifications.capacity.split(' ')[0]);
+    
+    // Determine if license is required
+    const requiresLicense = boatData.subtitle.includes("Con Licencia");
+    
+    // Base price from BAJA season
+    const basePrice = Math.min(...Object.values(boatData.pricing.BAJA.prices));
+    
+    // Create features list with specific highlights
+    const features = [
+      ...boatData.features.slice(0, 2), // First 2 features
+      ...boatData.equipment.slice(0, 2)  // First 2 equipment items
+    ];
+
+    return {
+      id: boatId,
+      name: boatData.name,
+      image: boatData.image,
+      capacity,
+      requiresLicense,
+      description: boatData.description.substring(0, 150) + "...", // Truncate for cards
+      basePrice,
+      rating: info.rating,
+      features,
+      available: info.available
+    };
+  }).filter(Boolean) as Array<{
+    id: string;
+    name: string;
+    image: string;
+    capacity: number;
+    requiresLicense: boolean;
+    description: string;
+    basePrice: number;
+    rating: number;
+    features: string[];
+    available: boolean;
+  }>;
+
   const handleBooking = (boatId: string) => {
     console.log("Booking initiated for:", boatId);
-    const boat = boats.find(b => b.id === boatId);
-    const boatName = boat?.name;
-    const basePrice = boat?.basePrice;
+    const boat = boats.find(b => b?.id === boatId);
+    const boatName = boat?.name || "barco";
+    const basePrice = boat?.basePrice || 0;
     
     const message = createBookingMessage(boatName, basePrice);
     openWhatsApp(message);
@@ -24,102 +89,16 @@ export default function FleetSection() {
 
   const handleDetails = (boatId: string) => {
     console.log("View details for:", boatId);
-    // Navigate to boat detail page based on ID
-    if (boatId === "solar-450" || boatId === "remus-450") {
+    // Navigate to boat detail page - now works for all boats
+    if (BOAT_DATA[boatId]) {
       setLocation(`/barco/${boatId}`);
     } else {
-      console.log(`Detail page not yet available for ${boatId}`);
-      // For other boats, could show a coming soon message or redirect to contact
+      console.log(`Detail page not available for ${boatId}`);
+      // Fallback to contact
+      const message = `Hola, me gustaría obtener más información sobre el barco ${boatId}`;
+      openWhatsApp(message);
     }
   };
-
-  // Real boat data from costabravarentaboat.com - Ordered as requested
-  const boats = [
-    {
-      id: "astec-400",
-      name: "ASTEC 400",
-      image: astec400Image,
-      capacity: 4,
-      requiresLicense: false,
-      description: "Perfecta para parejas y familias con niños. Gran solárium para tumbarse y escalera de baño para disfrutar del mar.",
-      basePrice: 70,
-      rating: 4.7,
-      features: ["Gasolina incluida", "Solárium", "Escalera", "Perfecta parejas"],
-      available: false // TEMPORALMENTE NO DISPONIBLE según web
-    },
-    {
-      id: "remus-450",
-      name: "REMUS 450",
-      image: remus450Image,
-      capacity: 5,
-      requiresLicense: false,
-      description: "Embarcación sin licencia muy cómoda con enorme solárium con cojines en proa, toldo y escalera de baño.",
-      basePrice: 75,
-      rating: 4.7,
-      features: ["Gasolina incluida", "Solárium", "Toldo", "Escalera", "Cojines proa"],
-      available: true
-    },
-    {
-      id: "solar-450",
-      name: "SOLAR 450",
-      image: solar450Image,
-      capacity: 5,
-      requiresLicense: false,
-      description: "Embarcación sin licencia muy cómoda con enorme solárium con cojines en proa, toldo y escalera de baño.",
-      basePrice: 75,
-      rating: 4.6,
-      features: ["Gasolina incluida", "Solárium", "Toldo", "Escalera", "Cojines proa"],
-      available: true
-    },
-    {
-      id: "astec-450",
-      name: "ASTEC 450",
-      image: astec450Image,
-      capacity: 5,
-      requiresLicense: false,
-      description: "La más grande que tenemos sin licencia. Ancha, cómoda, y con un enorme solárium acolchado. También cuenta equipo de música bluetooth.",
-      basePrice: 80,
-      rating: 4.8,
-      features: ["Gasolina incluida", "Solárium", "Toldo", "Escalera", "Música bluetooth"],
-      available: true
-    },
-    {
-      id: "pacific-craft-625",
-      name: "PACIFIC CRAFT 625",
-      image: pacificCraftImage,
-      capacity: 7,
-      requiresLicense: true,
-      description: "¡La más premium que tenemos! Para 7 personas esta embarcación es alta, ancha y estable. Cuenta con camarote pequeño, un gran solárium y está equipada con ducha y mesa.",
-      basePrice: 180,
-      rating: 4.9,
-      features: ["Camarote", "Gran solárium", "Ducha", "Mesa", "Premium"],
-      available: true
-    },
-    {
-      id: "trimarchi-57s",
-      name: "TRIMARCHI 57S",
-      image: trimarchiImage,
-      capacity: 7,
-      requiresLicense: true,
-      description: "Magnífica embarcación para 7 personas, deportiva, con equipo de música bluetooth ducha de agua dulce, mesa y solárium en proa.",
-      basePrice: 160,
-      rating: 4.9,
-      features: ["Música bluetooth", "Ducha agua dulce", "Mesa", "Solárium proa"],
-      available: true
-    },
-    {
-      id: "mingolla-brava-19",
-      name: "MINGOLLA BRAVA 19",
-      image: mingollaImage,
-      capacity: 6,
-      requiresLicense: true,
-      description: "Magnífica embarcación para 6 personas muy ancha con equipo de música bluetooth ducha de agua dulce, mesa y solárium en proa.",
-      basePrice: 150,
-      rating: 4.8,
-      features: ["Música bluetooth", "Ducha agua dulce", "Mesa", "Solárium proa"],
-      available: true
-    }
-  ];
 
   return (
     <section className="py-16 bg-gray-50" id="fleet">

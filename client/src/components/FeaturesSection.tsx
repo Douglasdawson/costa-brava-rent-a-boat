@@ -41,7 +41,7 @@ export default function FeaturesSection() {
     {
       icon: MapPin,
       title: "Ubicación Privilegiada",
-      description: "Salida directa desde el puerto de Blanes, en pleno corazón de la Costa Brava.",
+      description: "Salida directa desde el puerto de Blanes, dónde empieza la Costa Brava.",
       color: "text-red-600"
     },
     {

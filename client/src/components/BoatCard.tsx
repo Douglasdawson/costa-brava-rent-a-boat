@@ -40,7 +40,11 @@ export default function BoatCard({
 
   const handleDetails = () => {
     console.log(`View details for boat ${id}`);
-    onDetails(id);
+    if (id === "solar-450") {
+      window.location.href = "/barco/solar-450";
+    } else {
+      onDetails(id);
+    }
   };
 
   return (

@@ -15,6 +15,7 @@ import ContactSection from "./components/ContactSection";
 import Footer from "./components/Footer";
 import BookingFlow from "./components/BookingFlow";
 import CRMDashboard from "./components/CRMDashboard";
+import BoatDetailPage from "./components/BoatDetailPage";
 import NotFound from "@/pages/not-found";
 
 // Main Home Page Component
@@ -40,6 +41,10 @@ function CRMDashboardPage() {
   return <CRMDashboard />;
 }
 
+function Solar450Page() {
+  return <BoatDetailPage boatId="solar-450" />;
+}
+
 // Router Component
 function Router() {
   return (
@@ -47,6 +52,7 @@ function Router() {
       <Route path="/" component={HomePage} />
       <Route path="/booking" component={BookingFlowPage} />
       <Route path="/crm" component={CRMDashboardPage} />
+      <Route path="/barco/solar-450" component={Solar450Page} />
       <Route component={NotFound} />
     </Switch>
   );

@@ -285,7 +285,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
           </CardHeader>
           <CardContent>
             {/* Season Selector */}
-            <div className="flex flex-wrap gap-2 mb-6">
+            <div className="flex flex-wrap gap-2 mb-6 justify-center">
               {Object.keys(boatData.pricing).map((season) => (
                 <Button
                   key={season}

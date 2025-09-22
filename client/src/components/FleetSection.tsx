@@ -10,7 +10,12 @@ import mingollaImage from "@assets/generated_images/MINGOLLA_BRAVA_19_boat_c0e4a
 export default function FleetSection() {
   const handleBooking = (boatId: string) => {
     console.log("Booking initiated for:", boatId);
-    // Navigate to booking flow
+    const boat = boats.find(b => b.id === boatId);
+    const boatName = boat ? boat.name : "barco";
+    const basePrice = boat ? boat.basePrice : "";
+    
+    const message = encodeURIComponent(`Hola! Me interesa hacer una reserva del ${boatName}${basePrice ? ` (desde ${basePrice}€)` : ""}. ¿Podrían ayudarme con la disponibilidad y precios? ¡Gracias!`);
+    window.open(`https://wa.me/34611500372?text=${message}`, "_blank");
   };
 
   const handleDetails = (boatId: string) => {

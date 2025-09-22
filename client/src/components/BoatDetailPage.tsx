@@ -92,6 +92,8 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
 
   const handleReservation = () => {
     console.log("Navigate to booking for Solar 450");
+    const message = encodeURIComponent(`Hola! Me gustaría hacer una reserva del ${boatData.name} (desde ${boatData.specifications.capacity}, sin licencia requerida). He visto los precios por temporada en vuestra web. ¿Podrían confirmarme disponibilidad? ¡Muchas gracias!`);
+    window.open(`https://wa.me/34611500372?text=${message}`, "_blank");
   };
 
   const handleWhatsApp = () => {

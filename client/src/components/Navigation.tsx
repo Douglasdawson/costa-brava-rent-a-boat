@@ -13,6 +13,11 @@ export default function Navigation() {
     console.log("Login toggled:", !isLoggedIn);
   };
 
+  const handleBooking = () => {
+    const message = encodeURIComponent("Hola! Me gustaría hacer una reserva para alquilar un barco. ¿Podrían ayudarme con la disponibilidad y precios?");
+    window.open(`https://wa.me/34611500372?text=${message}`, "_blank");
+  };
+
   const navigationItems = [
     { label: "Inicio", href: "#home" },
     { label: "Flota", href: "#fleet" },
@@ -57,7 +62,10 @@ export default function Navigation() {
               <User className="w-4 h-4 mr-2" />
               {isLoggedIn ? "CRM" : "Admin"}
             </Button>
-            <Button data-testid="button-book-now">
+            <Button 
+              onClick={handleBooking}
+              data-testid="button-book-now"
+            >
               <Calendar className="w-4 h-4 mr-2" />
               Reservar Ahora
             </Button>
@@ -104,6 +112,7 @@ export default function Navigation() {
                   </Button>
                   <Button 
                     className="justify-start"
+                    onClick={handleBooking}
                     data-testid="mobile-button-book"
                   >
                     <Calendar className="w-4 h-4 mr-2" />

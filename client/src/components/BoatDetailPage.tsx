@@ -15,7 +15,13 @@ import {
   Ruler,
   ArrowUpDown,
   Zap,
-  Shield
+  Shield,
+  Car,
+  Refrigerator,
+  Coffee,
+  Eye,
+  Activity,
+  MessageSquare
 } from "lucide-react";
 import { openWhatsApp } from "@/utils/whatsapp";
 import { BOAT_DATA } from "@shared/boatData";
@@ -28,7 +34,7 @@ interface BoatDetailPageProps {
 }
 
 export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDetailPageProps) {
-  const [selectedSeason, setSelectedSeason] = useState("BAJA");
+  const [selectedSeason, setSelectedSeason] = useState<"BAJA" | "MEDIA" | "ALTA">("BAJA");
   
   // Get boat data dynamically based on boatId
   const boatData = BOAT_DATA[boatId];
@@ -222,7 +228,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                 <Button
                   key={season}
                   variant={selectedSeason === season ? "default" : "outline"}
-                  onClick={() => setSelectedSeason(season)}
+                  onClick={() => setSelectedSeason(season as "BAJA" | "MEDIA" | "ALTA")}
                   className="text-sm"
                   data-testid={`button-season-${season.toLowerCase()}`}
                 >
@@ -267,13 +273,31 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-              {boatData.extras.map((extra, index) => (
-                <div key={index} className="text-center p-4 border rounded-lg hover:bg-gray-50 transition-colors">
-                  <div className="text-2xl mb-2">{extra.icon}</div>
-                  <div className="font-medium text-sm">{extra.name}</div>
-                  <div className="text-primary font-bold">{extra.price}</div>
-                </div>
-              ))}
+              {boatData.extras.map((extra, index) => {
+                const getIcon = (iconName: string) => {
+                  const iconMap: { [key: string]: any } = {
+                    Car,
+                    Refrigerator,
+                    Coffee,
+                    Eye,
+                    Activity,
+                    Zap
+                  };
+                  return iconMap[iconName] || Star;
+                };
+                
+                const IconComponent = getIcon(extra.icon);
+                
+                return (
+                  <div key={index} className="text-center p-4 border rounded-lg hover:bg-gray-50 transition-colors">
+                    <div className="flex justify-center mb-2">
+                      <IconComponent className="w-6 h-6 text-primary" />
+                    </div>
+                    <div className="font-medium text-sm">{extra.name}</div>
+                    <div className="text-primary font-bold">{extra.price}</div>
+                  </div>
+                );
+              })}
             </div>
             <p className="text-sm text-gray-600 mt-4">
               Puedes añadir cualquiera de estos extras al completar tu reserva online o directamente en el puerto antes de zarpar.
@@ -303,7 +327,8 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                   onClick={handleWhatsApp}
                   data-testid="button-whatsapp-info"
                 >
-                  💬 Más información por WhatsApp
+                  <MessageSquare className="w-4 h-4 mr-2" />
+                  Más información por WhatsApp
                 </Button>
               </div>
             </div>

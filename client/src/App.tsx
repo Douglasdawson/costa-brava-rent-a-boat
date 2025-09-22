@@ -45,6 +45,10 @@ function Solar450Page() {
   return <BoatDetailPage boatId="solar-450" />;
 }
 
+function Remus450Page() {
+  return <BoatDetailPage boatId="remus-450" />;
+}
+
 // Router Component
 function Router() {
   return (
@@ -53,6 +57,7 @@ function Router() {
       <Route path="/booking" component={BookingFlowPage} />
       <Route path="/crm" component={CRMDashboardPage} />
       <Route path="/barco/solar-450" component={Solar450Page} />
+      <Route path="/barco/remus-450" component={Remus450Page} />
       <Route component={NotFound} />
     </Switch>
   );

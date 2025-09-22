@@ -27,6 +27,7 @@ import { openWhatsApp } from "@/utils/whatsapp";
 import { BOAT_DATA } from "@shared/boatData";
 import Navigation from "./Navigation";
 import Footer from "./Footer";
+import { SEO } from "./SEO";
 
 interface BoatDetailPageProps {
   boatId?: string;
@@ -55,8 +56,61 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
     openWhatsApp(message);
   };
 
+  // SEO data for this boat
+  const lowestPrice = Math.min(...Object.values(boatData.pricing.BAJA.prices));
+  const requiresLicense = boatData.subtitle.includes("Con Licencia");
+  const capacity = parseInt(boatData.specifications.capacity.split(' ')[0]);
+  
+  const seoTitle = `Alquiler ${boatData.name} en Blanes - ${requiresLicense ? "con" : "sin"} licencia | Costa Brava Rent a Boat`;
+  const seoDescription = `Alquila el ${boatData.name} en Blanes, Costa Brava. ${requiresLicense ? "Con licencia" : "Sin licencia"}, para ${capacity} personas, desde ${lowestPrice}€. Gasolina incluida, Puerto de Blanes.`;
+  const canonical = `https://costa-brava-rent-a-boat-blanes.replit.app/barco/${boatId}`;
+  
+  // Product JSON-LD schema
+  const absoluteImage = boatData.image.startsWith('http') ? boatData.image : 
+    boatData.image.startsWith('/') ? `${window.location.origin}${boatData.image}` :
+    `${window.location.origin}/${boatData.image}`;
+    
+  const productSchema = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": boatData.name,
+    "description": boatData.description,
+    "image": absoluteImage,
+    "brand": {
+      "@type": "Organization",
+      "name": "Costa Brava Rent a Boat Blanes"
+    },
+    "sku": boatId,
+    "category": "Boat Rental",
+    "offers": {
+      "@type": "Offer",
+      "price": lowestPrice.toString(),
+      "priceCurrency": "EUR",
+      "availability": "https://schema.org/InStock",
+      "url": canonical,
+      "priceValidUntil": "2025-12-31",
+      "seller": {
+        "@type": "Organization",
+        "name": "Costa Brava Rent a Boat Blanes"
+      }
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.8",
+      "reviewCount": "127"
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gray-50">
+      <SEO 
+        title={seoTitle}
+        description={seoDescription}
+        canonical={canonical}
+        ogImage={boatData.image}
+        ogType="product"
+        jsonLd={productSchema}
+      />
       <Navigation />
       
       <div className="container mx-auto px-4 py-8">

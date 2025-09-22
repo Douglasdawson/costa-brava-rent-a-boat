@@ -7,6 +7,7 @@ interface BoatCardProps {
   id: string;
   name: string;
   image: string;
+  imageAlt: string;
   capacity: number;
   requiresLicense: boolean;
   description: string;
@@ -22,6 +23,7 @@ export default function BoatCard({
   id,
   name,
   image,
+  imageAlt,
   capacity,
   requiresLicense,
   description,
@@ -56,8 +58,9 @@ export default function BoatCard({
       >
         <img 
           src={image} 
-          alt={name}
+          alt={imageAlt}
           className="w-full h-48 object-cover transition-transform duration-200 group-hover:scale-105"
+          loading="lazy"
         />
         {/* Hover overlay */}
         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-200 flex items-center justify-center">

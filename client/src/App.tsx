@@ -17,11 +17,17 @@ import BookingFlow from "./components/BookingFlow";
 import CRMDashboard from "./components/CRMDashboard";
 import BoatDetailPage from "./components/BoatDetailPage";
 import NotFound from "@/pages/not-found";
+import { SEO } from "./components/SEO";
 
 // Main Home Page Component
 function HomePage() {
   return (
     <div className="min-h-screen">
+      <SEO 
+        title="Alquiler de barcos en Blanes (Costa Brava) sin licencia | Costa Brava Rent a Boat"
+        description="Alquiler de barcos sin licencia y con licencia en Blanes, Costa Brava. Gasolina incluida, desde Puerto de Blanes. 7 embarcaciones para 4-7 personas. Incluye snorkel y paddle surf."
+        canonical="https://costa-brava-rent-a-boat-blanes.replit.app/"
+      />
       <Navigation />
       <Hero />
       <FleetSection />

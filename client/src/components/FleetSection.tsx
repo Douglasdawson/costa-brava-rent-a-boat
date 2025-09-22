@@ -56,6 +56,7 @@ export default function FleetSection() {
       id: boatId,
       name: boatData.name,
       image: boatData.image,
+      imageAlt: `Alquiler ${boatData.name} ${requiresLicense ? "con licencia" : "sin licencia"} en Blanes Costa Brava para ${capacity} personas`,
       capacity,
       requiresLicense,
       description: boatData.description.substring(0, 150) + "...", // Truncate for cards
@@ -68,6 +69,7 @@ export default function FleetSection() {
     id: string;
     name: string;
     image: string;
+    imageAlt: string;
     capacity: number;
     requiresLicense: boolean;
     description: string;

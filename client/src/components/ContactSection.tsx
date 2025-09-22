@@ -222,7 +222,7 @@ export default function ContactSection() {
               </p>
               <Button 
                 variant="outline" 
-                onClick={() => window.open("https://maps.google.com?q=Puerto+Blanes+Girona", "_blank")}
+                onClick={() => window.open("https://maps.app.goo.gl/VrSkZNG7289VVdJD9", "_blank")}
                 data-testid="button-view-map"
               >
                 Ver en Google Maps

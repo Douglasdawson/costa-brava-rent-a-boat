@@ -421,31 +421,31 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
         {/* Location & Map Section */}
         <Card className="mb-8">
           <CardHeader>
-            <CardTitle>Ubicación - Puerto de Blanes</CardTitle>
+            <CardTitle>Ubicación - Costa Brava Rent a Boat</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
               <div className="text-sm text-gray-700">
                 <p className="mb-2">
-                  <strong>Costa Brava Rent a Boat</strong> se encuentra en el Puerto de Blanes, 
+                  <strong>Costa Brava Rent a Boat - Blanes | Alquiler de Barcos Con y Sin Licencia</strong> se encuentra en el Puerto de Blanes, 
                   el punto de partida perfecto para explorar las calas más hermosas de la Costa Brava.
                 </p>
                 <p className="text-gray-600">
-                  📍 Puerto de Blanes, 17300 Blanes, Girona
+                  📍 Costa Brava Rent a Boat - Blanes, Puerto de Blanes, 17300 Blanes, Girona
                 </p>
               </div>
               
               {/* Embedded Google Map */}
               <div className="w-full h-64 md:h-80 rounded-lg overflow-hidden border">
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2973.8553686!2d2.7833!3d41.6667!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a2b8c5c5c5c5c5%3A0x1234567890!2sCosta%20Brava%20Rent%20a%20Boat%20Blanes!5e0!3m2!1ses!2ses!4v1640995200000!5m2!1ses!2ses&q=Costa+Brava+Rent+a+Boat+Blanes"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2974.234!2d2.7993!3d41.6754!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDHCsDQwJzMxLjQiTiAywrA0Nyc1Ny41IkU!5e0!3m2!1ses!2ses!4v1640995200000!5m2!1ses!2ses&q=Costa+Brava+Rent+a+Boat+-+Blanes+%7C+Alquiler+de+Barcos+Con+y+Sin+Licencia,Puerto+de+Blanes,17300+Blanes,Girona"
                   width="100%"
                   height="100%"
                   style={{ border: 0 }}
                   allowFullScreen
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
-                  title="Ubicación de Costa Brava Rent a Boat Blanes"
+                  title="Ubicación de Costa Brava Rent a Boat - Blanes | Alquiler de Barcos Con y Sin Licencia"
                   data-testid="map-location"
                 />
               </div>

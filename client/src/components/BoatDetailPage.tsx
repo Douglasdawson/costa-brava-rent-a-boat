@@ -14,7 +14,7 @@ import {
   Navigation as NavigationIcon,
   Ruler,
   ArrowUpDown,
-  Cog,
+  Zap,
   Shield
 } from "lucide-react";
 import Navigation from "./Navigation";
@@ -223,7 +223,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
               </div>
               <div className="flex items-center justify-between py-3 px-4 bg-gray-50 rounded-lg">
                 <div className="flex items-center">
-                  <Cog className="w-5 h-5 text-orange-600 mr-3" />
+                  <Zap className="w-5 h-5 text-orange-600 mr-3" />
                   <span className="font-medium">Motor:</span>
                 </div>
                 <span className="font-semibold">{boatData.specifications.engine}</span>

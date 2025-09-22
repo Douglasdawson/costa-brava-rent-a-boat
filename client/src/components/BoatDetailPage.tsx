@@ -177,6 +177,62 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
           </div>
         </div>
 
+        {/* Technical Specifications - Moved here and made compact */}
+        <Card className="mb-8">
+          <CardHeader className="pb-4">
+            <CardTitle className="flex items-center text-lg">
+              <Anchor className="w-5 h-5 mr-2" />
+              Características Técnicas
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="pt-0">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+              <div className="flex items-center gap-3 py-2 px-3 bg-gray-50 rounded-lg">
+                <Anchor className="w-4 h-4 text-primary flex-shrink-0" />
+                <div className="min-w-0">
+                  <div className="text-xs text-gray-500 uppercase tracking-wide">Modelo</div>
+                  <div className="font-semibold text-sm">{boatData.specifications.model}</div>
+                </div>
+              </div>
+              <div className="flex items-center gap-3 py-2 px-3 bg-gray-50 rounded-lg">
+                <Ruler className="w-4 h-4 text-blue-600 flex-shrink-0" />
+                <div className="min-w-0">
+                  <div className="text-xs text-gray-500 uppercase tracking-wide">Eslora</div>
+                  <div className="font-semibold text-sm">{boatData.specifications.length}</div>
+                </div>
+              </div>
+              <div className="flex items-center gap-3 py-2 px-3 bg-gray-50 rounded-lg">
+                <ArrowUpDown className="w-4 h-4 text-purple-600 flex-shrink-0" />
+                <div className="min-w-0">
+                  <div className="text-xs text-gray-500 uppercase tracking-wide">Manga</div>
+                  <div className="font-semibold text-sm">{boatData.specifications.beam}</div>
+                </div>
+              </div>
+              <div className="flex items-center gap-3 py-2 px-3 bg-gray-50 rounded-lg">
+                <Zap className="w-4 h-4 text-orange-600 flex-shrink-0" />
+                <div className="min-w-0">
+                  <div className="text-xs text-gray-500 uppercase tracking-wide">Motor</div>
+                  <div className="font-semibold text-sm">{boatData.specifications.engine}</div>
+                </div>
+              </div>
+              <div className="flex items-center gap-3 py-2 px-3 bg-gray-50 rounded-lg">
+                <Fuel className="w-4 h-4 text-green-600 flex-shrink-0" />
+                <div className="min-w-0">
+                  <div className="text-xs text-gray-500 uppercase tracking-wide">Combustible</div>
+                  <div className="font-semibold text-sm">{boatData.specifications.fuel}</div>
+                </div>
+              </div>
+              <div className="flex items-center gap-3 py-2 px-3 bg-primary/10 rounded-lg border border-primary/20">
+                <Shield className="w-4 h-4 text-primary flex-shrink-0" />
+                <div className="min-w-0">
+                  <div className="text-xs text-primary/70 uppercase tracking-wide">Fianza</div>
+                  <div className="font-bold text-primary">{boatData.specifications.deposit}</div>
+                </div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
         {/* Description */}
         <Card className="mb-8">
           <CardContent className="p-6">
@@ -190,61 +246,6 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
           </CardContent>
         </Card>
 
-        {/* Technical Specifications */}
-        <Card className="mb-8">
-          <CardHeader>
-            <CardTitle className="flex items-center">
-              <Anchor className="w-5 h-5 mr-2" />
-              Características Técnicas
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              <div className="flex items-center justify-between py-3 px-4 bg-gray-50 rounded-lg">
-                <div className="flex items-center">
-                  <Anchor className="w-5 h-5 text-primary mr-3" />
-                  <span className="font-medium">Modelo:</span>
-                </div>
-                <span className="font-semibold">{boatData.specifications.model}</span>
-              </div>
-              <div className="flex items-center justify-between py-3 px-4 bg-gray-50 rounded-lg">
-                <div className="flex items-center">
-                  <Ruler className="w-5 h-5 text-blue-600 mr-3" />
-                  <span className="font-medium">Eslora:</span>
-                </div>
-                <span className="font-semibold">{boatData.specifications.length}</span>
-              </div>
-              <div className="flex items-center justify-between py-3 px-4 bg-gray-50 rounded-lg">
-                <div className="flex items-center">
-                  <ArrowUpDown className="w-5 h-5 text-purple-600 mr-3" />
-                  <span className="font-medium">Manga:</span>
-                </div>
-                <span className="font-semibold">{boatData.specifications.beam}</span>
-              </div>
-              <div className="flex items-center justify-between py-3 px-4 bg-gray-50 rounded-lg">
-                <div className="flex items-center">
-                  <Zap className="w-5 h-5 text-orange-600 mr-3" />
-                  <span className="font-medium">Motor:</span>
-                </div>
-                <span className="font-semibold">{boatData.specifications.engine}</span>
-              </div>
-              <div className="flex items-center justify-between py-3 px-4 bg-gray-50 rounded-lg">
-                <div className="flex items-center">
-                  <Fuel className="w-5 h-5 text-green-600 mr-3" />
-                  <span className="font-medium">Combustible:</span>
-                </div>
-                <span className="font-semibold">{boatData.specifications.fuel}</span>
-              </div>
-              <div className="flex items-center justify-between py-3 px-4 bg-primary/10 rounded-lg border-2 border-primary/20">
-                <div className="flex items-center">
-                  <Shield className="w-5 h-5 text-primary mr-3" />
-                  <span className="font-medium">Fianza:</span>
-                </div>
-                <span className="text-primary font-bold text-lg">{boatData.specifications.deposit}</span>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
 
         {/* Equipment */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">

@@ -76,7 +76,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
         {/* Boat Title */}
         <div className="text-center mb-8">
           <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
-            {boatData.name}
+            Alquiler {boatData.name} en Blanes - {boatData.subtitle.includes("Sin Licencia") ? "sin" : "con"} licencia | Costa Brava Rent a Boat
           </h1>
           <p className="text-lg text-gray-600">{boatData.subtitle}</p>
         </div>
@@ -87,8 +87,9 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
             <div className="bg-white rounded-xl overflow-hidden shadow-lg">
               <img 
                 src={boatData.image} 
-                alt={boatData.name}
+                alt={`Alquiler ${boatData.name} ${boatData.subtitle.includes("Sin Licencia") ? "sin licencia" : "con licencia"} en Blanes Costa Brava`}
                 className="w-full h-96 object-cover"
+                loading="lazy"
                 data-testid="img-boat-main"
               />
             </div>

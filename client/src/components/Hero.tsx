@@ -131,7 +131,7 @@ export default function Hero() {
             </p>
           </div>
           
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mt-8">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mt-6">
             <Button 
               variant="outline" 
               onClick={handleWhatsApp}

@@ -110,7 +110,7 @@ export default function FleetSection() {
             Nuestra flota de alquiler en Blanes
           </h2>
           <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto px-4">
-            Descubre nuestra flota de alquiler de barcos con licencia o sin licencia y con gasolina incluida en Blanes, Costa Brava. Embarcaciones ideales para salidas con amigos o en familias.
+            Descubre nuestra flota de alquiler de barcos con licencia o sin licencia en Blanes, Costa Brava. Embarcaciones ideales para salidas con amigos o en familias.
           </p>
         </div>
 

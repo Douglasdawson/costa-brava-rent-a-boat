@@ -26,7 +26,7 @@ function HomePage() {
     <div className="min-h-screen">
       <SEO 
         title="Alquiler de barcos en Blanes (Costa Brava) sin licencia | Costa Brava Rent a Boat"
-        description="Alquiler de barcos sin licencia y con licencia en Blanes, Costa Brava. Gasolina incluida, desde Puerto de Blanes. 7 embarcaciones para 4-7 personas. Incluye snorkel y paddle surf."
+        description="Alquiler de barcos sin licencia y con licencia en Blanes, Costa Brava. Desde Puerto de Blanes. 7 embarcaciones para 4-7 personas. Incluye snorkel y paddle surf."
         canonical="https://costa-brava-rent-a-boat-blanes.replit.app/"
       />
       <Navigation />

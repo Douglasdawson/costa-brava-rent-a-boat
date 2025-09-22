@@ -22,8 +22,8 @@ export default function FeaturesSection() {
     },
     {
       icon: Fuel,
-      title: "Gasolina Incluida", 
-      description: "Todos nuestros precios incluyen el combustible. Sin sorpresas ni costos adicionales.",
+      title: "Combustible Transparente", 
+      description: "Barcos sin licencia incluyen gasolina. Barcos con licencia, combustible aparte. Todo claramente indicado.",
       color: "text-blue-600"
     },
     {

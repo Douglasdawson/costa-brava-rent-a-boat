@@ -64,7 +64,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
   const capacity = parseInt(boatData.specifications.capacity.split(' ')[0]);
   
   const seoTitle = `Alquiler ${boatData.name} en Blanes - ${requiresLicense ? "con" : "sin"} licencia | Costa Brava Rent a Boat`;
-  const seoDescription = `Alquila el ${boatData.name} en Blanes, Costa Brava. ${requiresLicense ? "Con licencia" : "Sin licencia"}, para ${capacity} personas, desde ${lowestPrice}€. Gasolina incluida, Puerto de Blanes.`;
+  const seoDescription = `Alquila el ${boatData.name} en Blanes, Costa Brava. ${requiresLicense ? "Con licencia" : "Sin licencia"}, para ${capacity} personas, desde ${lowestPrice}€. ${requiresLicense ? "Combustible no incluido" : "Gasolina incluida"}, Puerto de Blanes.`;
   const canonical = `https://costa-brava-rent-a-boat-blanes.replit.app/barco/${boatId}`;
   
   // Product JSON-LD schema
@@ -185,9 +185,11 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                 <p className="text-gray-700 leading-relaxed">
                   {boatData.description}
                 </p>
-                <div className="mt-4 p-4 bg-green-50 rounded-lg">
-                  <p className="text-green-800 font-medium">¡Gasolina incluida!</p>
-                </div>
+                {!requiresLicense && (
+                  <div className="mt-4 p-4 bg-green-50 rounded-lg">
+                    <p className="text-green-800 font-medium">¡Gasolina incluida!</p>
+                  </div>
+                )}
               </CardContent>
             </Card>
 

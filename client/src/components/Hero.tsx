@@ -32,7 +32,7 @@ export default function Hero() {
             Alquiler de barcos en Blanes (Costa Brava) sin licencia | Costa Brava Rent a Boat
           </h1>
           <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/90 mb-3 sm:mb-4 px-2">
-            Alquiler de embarcaciones sin licencia y con licencia. Gasolina incluida, fácil y seguro.
+            Alquiler de embarcaciones sin licencia y con licencia. Fácil, seguro y transparente.
           </p>
           <p className="text-sm sm:text-base md:text-lg text-white/80 mb-6 sm:mb-8 max-w-2xl mx-auto px-4">
             La mayor flota de alquiler de barcos en Blanes con la mejor flexibilidad horaria de la Costa Brava Sur. 
@@ -128,7 +128,7 @@ export default function Hero() {
               🚤 Buscar Disponibilidad
             </Button>
             <p className="text-xs text-gray-500 mt-6">
-              Sin compromiso • Confirmación inmediata • Gasolina incluida
+              Sin compromiso • Confirmación inmediata • Precios transparentes
             </p>
           </div>
           
@@ -155,7 +155,7 @@ export default function Hero() {
         <div className="mt-6 sm:mt-8 flex flex-wrap justify-center gap-3 sm:gap-4 lg:gap-6 text-white/80 text-xs sm:text-sm px-4">
           <div className="flex items-center">
             <div className="w-2 h-2 bg-green-400 rounded-full mr-2"></div>
-            Gasolina incluida
+            Precios sin sorpresas
           </div>
           <div className="flex items-center">
             <div className="w-2 h-2 bg-green-400 rounded-full mr-2"></div>

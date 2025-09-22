@@ -130,10 +130,13 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
 
         {/* Boat Title */}
         <div className="text-center mb-8">
-          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
-            Alquiler {boatData.name} en Blanes - {boatData.subtitle.includes("Sin Licencia") ? "sin" : "con"} licencia | Costa Brava Rent a Boat
+          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-3">
+            {boatData.name}
           </h1>
-          <p className="text-lg text-gray-600">{boatData.subtitle}</p>
+          <p className="text-xl text-gray-600 mb-2">{boatData.subtitle}</p>
+          <Badge variant="outline" className="text-primary border-primary">
+            Alquiler en Blanes, Costa Brava
+          </Badge>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">

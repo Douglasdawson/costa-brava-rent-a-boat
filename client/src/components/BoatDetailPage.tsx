@@ -357,6 +357,60 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
             </div>
           </CardContent>
         </Card>
+
+        {/* Location & Map Section */}
+        <Card className="mb-8">
+          <CardHeader>
+            <CardTitle>Ubicación - Puerto de Blanes</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-4">
+              <div className="text-sm text-gray-700">
+                <p className="mb-2">
+                  <strong>Costa Brava Rent a Boat</strong> se encuentra en el Puerto de Blanes, 
+                  el punto de partida perfecto para explorar las calas más hermosas de la Costa Brava.
+                </p>
+                <p className="text-gray-600">
+                  📍 Puerto de Blanes, 17300 Blanes, Girona
+                </p>
+              </div>
+              
+              {/* Embedded Google Map */}
+              <div className="w-full h-64 md:h-80 rounded-lg overflow-hidden border">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2973.8553686!2d2.7833!3d41.6667!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a2b8c5c5c5c5c5%3A0x1234567890!2sPuerto%20de%20Blanes!5e0!3m2!1ses!2ses!4v1640995200000!5m2!1ses!2ses&q=Puerto+de+Blanes,+Costa+Brava+Rent+a+Boat"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="Ubicación de Costa Brava Rent a Boat en Puerto de Blanes"
+                  data-testid="map-location"
+                />
+              </div>
+
+              <div className="grid md:grid-cols-2 gap-4 text-sm text-gray-600">
+                <div>
+                  <h4 className="font-medium text-gray-900 mb-2">Cómo llegar:</h4>
+                  <ul className="space-y-1">
+                    <li>• Desde Barcelona: AP-7 hacia Girona, salida Blanes</li>
+                    <li>• Desde Girona: N-II dirección Blanes</li>
+                    <li>• Parking disponible en el puerto</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 className="font-medium text-gray-900 mb-2">Servicios cercanos:</h4>
+                  <ul className="space-y-1">
+                    <li>• Restaurantes y chiringuitos</li>
+                    <li>• Tiendas náuticas</li>
+                    <li>• Estación de servicio marina</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
       </div>
 
       <Footer />

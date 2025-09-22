@@ -21,6 +21,19 @@ export default function Navigation() {
     openWhatsApp(message);
   };
 
+  const scrollToSection = (sectionId: string, maxAttempts = 10) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+      return;
+    }
+    
+    // If element not found and we have attempts left, try again
+    if (maxAttempts > 0) {
+      requestAnimationFrame(() => scrollToSection(sectionId, maxAttempts - 1));
+    }
+  };
+
   const handleNavigation = (href: string, label: string) => {
     console.log(`Navigating to: ${label} (${href})`);
     
@@ -31,16 +44,28 @@ export default function Navigation() {
       // Navigate to booking page
       setLocation("/booking");
     } else if (href === "#faq") {
-      // FAQ doesn't exist, redirect to contact
-      const contactElement = document.getElementById("contact");
-      if (contactElement) {
-        contactElement.scrollIntoView({ behavior: "smooth" });
+      // FAQ doesn't exist, redirect to contact section on homepage
+      const currentPath = window.location.pathname;
+      if (currentPath !== "/") {
+        setLocation("/");
+        // Use robust scroll after navigation
+        setTimeout(() => scrollToSection("contact"), 50);
+      } else {
+        scrollToSection("contact");
       }
     } else if (href.startsWith("#")) {
-      // Scroll to section for anchor links
-      const element = document.getElementById(href.substring(1));
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth" });
+      // For anchor links, first navigate to homepage if not already there
+      const sectionId = href.substring(1);
+      const currentPath = window.location.pathname;
+      
+      if (currentPath !== "/") {
+        // Navigate to homepage first, then scroll to section
+        setLocation("/");
+        // Use robust scroll after navigation
+        setTimeout(() => scrollToSection(sectionId), 50);
+      } else {
+        // Already on homepage, just scroll to section
+        scrollToSection(sectionId);
       }
     } else {
       // Regular navigation
@@ -64,8 +89,8 @@ export default function Navigation() {
           <div className="flex items-center space-x-2" data-testid="brand-logo">
             <Anchor className="w-6 h-6 sm:w-8 sm:h-8 text-primary" />
             <span className="font-heading font-bold text-sm sm:text-lg lg:text-xl text-gray-900">
-              <span className="hidden sm:inline">Costa Brava Rent a Boat Blanes</span>
-              <span className="sm:hidden">CB Rent Boat</span>
+              <span className="hidden lg:inline">Costa Brava Rent a Boat Blanes</span>
+              <span className="lg:hidden">Costa Brava Rent a Boat - Blanes</span>
             </span>
           </div>
 

@@ -19,8 +19,9 @@ import {
   Car,
   Refrigerator,
   Coffee,
-  Eye,
-  Activity,
+  Glasses,
+  Waves,
+  Fish,
   MessageSquare
 } from "lucide-react";
 import { openWhatsApp } from "@/utils/whatsapp";
@@ -334,9 +335,9 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                     Car,
                     Refrigerator,
                     Coffee,
-                    Eye,
-                    Activity,
-                    Zap
+                    Glasses,
+                    Waves,
+                    Fish
                   };
                   return iconMap[iconName] || Star;
                 };

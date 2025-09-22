@@ -1,0 +1,236 @@
+import { useState } from "react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { MapPin, Phone, Mail, Clock, Send } from "lucide-react";
+
+export default function ContactSection() {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    message: ""
+  });
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log("Contact form submitted:", formData);
+    // todo: remove mock functionality - implement real form submission
+    alert("Mensaje enviado correctamente. Te contactaremos pronto.");
+    setFormData({ name: "", email: "", phone: "", message: "" });
+  };
+
+  const handleWhatsApp = () => {
+    const message = encodeURIComponent(
+      `Hola, soy ${formData.name}. ${formData.message || "Me gustaría información sobre el alquiler de barcos."}`
+    );
+    window.open(`https://wa.me/34611500372?text=${message}`, "_blank");
+  };
+
+  return (
+    <section className="py-16 bg-white" id="contact">
+      <div className="container mx-auto px-4">
+        <div className="text-center mb-12">
+          <h2 className="font-heading text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            Contacto
+          </h2>
+          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            ¿Tienes alguna pregunta? Estamos aquí para ayudarte a planificar tu experiencia perfecta en el mar.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
+          {/* Contact Information */}
+          <Card className="p-6">
+            <CardHeader>
+              <CardTitle>Información de Contacto</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-6">
+              <div className="flex items-start space-x-4">
+                <div className="flex-shrink-0 w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
+                  <Phone className="w-5 h-5 text-primary" />
+                </div>
+                <div>
+                  <h3 className="font-medium text-gray-900 mb-1">Teléfono & WhatsApp</h3>
+                  <p className="text-gray-600">+34 611 500 372</p>
+                  <p className="text-sm text-gray-500">Disponible 9:00 - 20:00</p>
+                </div>
+              </div>
+
+              <div className="flex items-start space-x-4">
+                <div className="flex-shrink-0 w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
+                  <Mail className="w-5 h-5 text-primary" />
+                </div>
+                <div>
+                  <h3 className="font-medium text-gray-900 mb-1">Email</h3>
+                  <p className="text-gray-600">costabravarentboat@gmail.com</p>
+                  <p className="text-sm text-gray-500">Respuesta en 24h</p>
+                </div>
+              </div>
+
+              <div className="flex items-start space-x-4">
+                <div className="flex-shrink-0 w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
+                  <MapPin className="w-5 h-5 text-primary" />
+                </div>
+                <div>
+                  <h3 className="font-medium text-gray-900 mb-1">Ubicación</h3>
+                  <p className="text-gray-600">Puerto de Blanes</p>
+                  <p className="text-sm text-gray-500">Girona, Costa Brava</p>
+                </div>
+              </div>
+
+              <div className="flex items-start space-x-4">
+                <div className="flex-shrink-0 w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
+                  <Clock className="w-5 h-5 text-primary" />
+                </div>
+                <div>
+                  <h3 className="font-medium text-gray-900 mb-1">Temporada</h3>
+                  <p className="text-gray-600">Abril - Octubre</p>
+                  <p className="text-sm text-gray-500">Horarios flexibles según disponibilidad</p>
+                </div>
+              </div>
+
+              {/* Quick WhatsApp Button */}
+              <div className="pt-4 border-t border-gray-200">
+                <Button 
+                  onClick={() => window.open("https://wa.me/34611500372", "_blank")}
+                  className="w-full bg-green-600 hover:bg-green-700 text-white"
+                  data-testid="button-whatsapp-quick"
+                >
+                  <span className="mr-2">💬</span>
+                  Contactar por WhatsApp
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Contact Form */}
+          <Card className="p-6">
+            <CardHeader>
+              <CardTitle>Envíanos un Mensaje</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Nombre *
+                  </label>
+                  <input
+                    type="text"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleInputChange}
+                    required
+                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
+                    placeholder="Tu nombre completo"
+                    data-testid="input-contact-name"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Email *
+                  </label>
+                  <input
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    required
+                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
+                    placeholder="tu@email.com"
+                    data-testid="input-contact-email"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Teléfono
+                  </label>
+                  <input
+                    type="tel"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleInputChange}
+                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
+                    placeholder="+34 600 000 000"
+                    data-testid="input-contact-phone"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Mensaje *
+                  </label>
+                  <textarea
+                    name="message"
+                    value={formData.message}
+                    onChange={handleInputChange}
+                    required
+                    rows={4}
+                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary resize-none"
+                    placeholder="Cuéntanos qué necesitas: fechas, tipo de barco, número de personas, extras..."
+                    data-testid="textarea-contact-message"
+                  />
+                </div>
+
+                <div className="flex flex-col sm:flex-row gap-3">
+                  <Button 
+                    type="submit" 
+                    className="flex-1"
+                    data-testid="button-send-message"
+                  >
+                    <Send className="w-4 h-4 mr-2" />
+                    Enviar Mensaje
+                  </Button>
+                  
+                  {formData.name && (
+                    <Button 
+                      type="button"
+                      variant="outline" 
+                      onClick={handleWhatsApp}
+                      className="flex-1 border-green-600 text-green-600 hover:bg-green-50"
+                      data-testid="button-whatsapp-with-message"
+                    >
+                      <span className="mr-2">💬</span>
+                      Enviar por WhatsApp
+                    </Button>
+                  )}
+                </div>
+              </form>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Map placeholder */}
+        <div className="mt-12">
+          <Card className="overflow-hidden">
+            <div className="bg-gradient-to-r from-primary/10 to-primary/5 p-8 text-center">
+              <MapPin className="w-12 h-12 text-primary mx-auto mb-4" />
+              <h3 className="font-heading text-xl font-semibold text-gray-900 mb-2">
+                Nos encontramos en el Puerto de Blanes
+              </h3>
+              <p className="text-gray-600 mb-4">
+                Fácil acceso y parking disponible cerca del puerto deportivo.
+              </p>
+              <Button 
+                variant="outline" 
+                onClick={() => window.open("https://maps.google.com?q=Puerto+Blanes+Girona", "_blank")}
+                data-testid="button-view-map"
+              >
+                Ver en Google Maps
+              </Button>
+            </div>
+          </Card>
+        </div>
+      </div>
+    </section>
+  );
+}

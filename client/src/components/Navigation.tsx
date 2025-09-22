@@ -2,10 +2,12 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X, User, Calendar, Anchor } from "lucide-react";
 import { openWhatsApp, createBookingMessage } from "@/utils/whatsapp";
+import { useLocation } from "wouter";
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [, setLocation] = useLocation();
 
   const toggleMenu = () => setIsOpen(!isOpen);
   
@@ -17,6 +19,33 @@ export default function Navigation() {
   const handleBooking = () => {
     const message = createBookingMessage();
     openWhatsApp(message);
+  };
+
+  const handleNavigation = (href: string, label: string) => {
+    console.log(`Navigating to: ${label} (${href})`);
+    
+    // Close mobile menu
+    setIsOpen(false);
+    
+    if (href === "#booking") {
+      // Navigate to booking page
+      setLocation("/booking");
+    } else if (href === "#faq") {
+      // FAQ doesn't exist, redirect to contact
+      const contactElement = document.getElementById("contact");
+      if (contactElement) {
+        contactElement.scrollIntoView({ behavior: "smooth" });
+      }
+    } else if (href.startsWith("#")) {
+      // Scroll to section for anchor links
+      const element = document.getElementById(href.substring(1));
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    } else {
+      // Regular navigation
+      setLocation(href);
+    }
   };
 
   const navigationItems = [
@@ -42,14 +71,14 @@ export default function Navigation() {
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             {navigationItems.map((item) => (
-              <a
+              <button
                 key={item.label}
-                href={item.href}
-                className="text-gray-700 hover:text-primary transition-colors font-medium"
+                onClick={() => handleNavigation(item.href, item.label)}
+                className="text-gray-700 hover:text-primary transition-colors font-medium cursor-pointer bg-transparent border-none"
                 data-testid={`nav-link-${item.label.toLowerCase()}`}
               >
                 {item.label}
-              </a>
+              </button>
             ))}
           </div>
 
@@ -90,15 +119,14 @@ export default function Navigation() {
           <div className="md:hidden py-4 border-t border-gray-200 bg-white">
             <div className="flex flex-col space-y-2">
               {navigationItems.map((item) => (
-                <a
+                <button
                   key={item.label}
-                  href={item.href}
-                  className="px-4 py-2 text-gray-700 hover:text-primary hover:bg-gray-50 transition-colors"
-                  onClick={() => setIsOpen(false)}
+                  onClick={() => handleNavigation(item.href, item.label)}
+                  className="px-4 py-2 text-gray-700 hover:text-primary hover:bg-gray-50 transition-colors w-full text-left bg-transparent border-none cursor-pointer"
                   data-testid={`mobile-nav-${item.label.toLowerCase()}`}
                 >
                   {item.label}
-                </a>
+                </button>
               ))}
               <div className="px-4 py-2 border-t border-gray-200 mt-2 pt-4">
                 <div className="flex flex-col space-y-2">

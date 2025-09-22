@@ -21,6 +21,7 @@ export default function Hero() {
 
   return (
     <div className="relative min-h-screen bg-cover bg-center bg-no-repeat" 
+         id="home"
          style={{ backgroundImage: `url(${heroImage})` }}>
       {/* Dark overlay for text readability */}
       <div className="absolute inset-0 bg-black/40"></div>

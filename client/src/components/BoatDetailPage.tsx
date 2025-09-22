@@ -11,7 +11,11 @@ import {
   Calendar,
   CheckCircle,
   Star,
-  Navigation as NavigationIcon
+  Navigation as NavigationIcon,
+  Ruler,
+  ArrowUpDown,
+  Cog,
+  Shield
 } from "lucide-react";
 import Navigation from "./Navigation";
 import Footer from "./Footer";
@@ -196,29 +200,47 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              <div className="flex justify-between py-2">
-                <span className="font-medium">Modelo:</span>
-                <span>{boatData.specifications.model}</span>
+              <div className="flex items-center justify-between py-3 px-4 bg-gray-50 rounded-lg">
+                <div className="flex items-center">
+                  <Anchor className="w-5 h-5 text-primary mr-3" />
+                  <span className="font-medium">Modelo:</span>
+                </div>
+                <span className="font-semibold">{boatData.specifications.model}</span>
               </div>
-              <div className="flex justify-between py-2">
-                <span className="font-medium">Eslora:</span>
-                <span>{boatData.specifications.length}</span>
+              <div className="flex items-center justify-between py-3 px-4 bg-gray-50 rounded-lg">
+                <div className="flex items-center">
+                  <Ruler className="w-5 h-5 text-blue-600 mr-3" />
+                  <span className="font-medium">Eslora:</span>
+                </div>
+                <span className="font-semibold">{boatData.specifications.length}</span>
               </div>
-              <div className="flex justify-between py-2">
-                <span className="font-medium">Manga:</span>
-                <span>{boatData.specifications.beam}</span>
+              <div className="flex items-center justify-between py-3 px-4 bg-gray-50 rounded-lg">
+                <div className="flex items-center">
+                  <ArrowUpDown className="w-5 h-5 text-purple-600 mr-3" />
+                  <span className="font-medium">Manga:</span>
+                </div>
+                <span className="font-semibold">{boatData.specifications.beam}</span>
               </div>
-              <div className="flex justify-between py-2">
-                <span className="font-medium">Motor:</span>
-                <span>{boatData.specifications.engine}</span>
+              <div className="flex items-center justify-between py-3 px-4 bg-gray-50 rounded-lg">
+                <div className="flex items-center">
+                  <Cog className="w-5 h-5 text-orange-600 mr-3" />
+                  <span className="font-medium">Motor:</span>
+                </div>
+                <span className="font-semibold">{boatData.specifications.engine}</span>
               </div>
-              <div className="flex justify-between py-2">
-                <span className="font-medium">Combustible:</span>
-                <span>{boatData.specifications.fuel}</span>
+              <div className="flex items-center justify-between py-3 px-4 bg-gray-50 rounded-lg">
+                <div className="flex items-center">
+                  <Fuel className="w-5 h-5 text-green-600 mr-3" />
+                  <span className="font-medium">Combustible:</span>
+                </div>
+                <span className="font-semibold">{boatData.specifications.fuel}</span>
               </div>
-              <div className="flex justify-between py-2">
-                <span className="font-medium">Fianza:</span>
-                <span className="text-primary font-semibold">{boatData.specifications.deposit}</span>
+              <div className="flex items-center justify-between py-3 px-4 bg-primary/10 rounded-lg border-2 border-primary/20">
+                <div className="flex items-center">
+                  <Shield className="w-5 h-5 text-primary mr-3" />
+                  <span className="font-medium">Fianza:</span>
+                </div>
+                <span className="text-primary font-bold text-lg">{boatData.specifications.deposit}</span>
               </div>
             </div>
           </CardContent>

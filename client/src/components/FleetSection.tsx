@@ -105,11 +105,12 @@ export default function FleetSection() {
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="font-heading text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            Nuestra Flota
+            Nuestra flota de alquiler en Blanes
           </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Descubre nuestra selección de embarcaciones, desde barcos sin licencia perfectos para familias 
-            hasta yates de lujo para navegantes experimentados.
+            Descubre nuestra flota de alquiler de barcos y lanchas en Blanes, Costa Brava. 
+            Embarcaciones sin licencia para familias y barcos con licencia para grupos grandes. 
+            Todas incluyen gasolina y equipamiento completo.
           </p>
         </div>
 
@@ -125,11 +126,11 @@ export default function FleetSection() {
         </div>
 
         <div className="text-center">
-          <p className="text-gray-600 mb-4">¿Necesitas ayuda para elegir?</p>
+          <p className="text-gray-600 mb-4">¿Necesitas ayuda para elegir tu alquiler de barco en Blanes?</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button 
               className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-medium flex items-center justify-center transition-colors"
-              onClick={() => openWhatsApp("Hola! Necesito ayuda para elegir el barco ideal para mi grupo. ¿Podrían asesorarme?")}
+              onClick={() => openWhatsApp("Hola! Necesito ayuda para elegir el mejor barco para alquilar en Blanes. ¿Podrían asesorarme sobre precios y disponibilidad?")}
               data-testid="button-whatsapp-help"
             >
               💬 Consulta por WhatsApp

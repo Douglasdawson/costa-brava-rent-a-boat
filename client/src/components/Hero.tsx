@@ -29,14 +29,14 @@ export default function Hero() {
       <div className="relative z-10 container mx-auto px-4 pt-24 pb-12 min-h-screen flex flex-col justify-center items-center text-center">
         <div className="max-w-4xl mx-auto mb-12">
           <h1 className="font-heading text-xl md:text-3xl font-bold text-white mb-6 leading-tight">
-            ¡BIENVENIDO AL MEJOR SITIO PARA ALQUILAR TU BARCO EN BLANES!
+            Alquiler de barcos en Blanes (Costa Brava) sin licencia | Costa Brava Rent a Boat
           </h1>
           <p className="text-xl md:text-2xl text-white/90 mb-4">
-            Sin licencia. Fácil, seguro y con gasolina incluida.
+            Alquiler de embarcaciones sin licencia y con licencia. Gasolina incluida, fácil y seguro.
           </p>
           <p className="text-lg text-white/80 mb-8 max-w-2xl mx-auto">
-            La empresa con la mayor oferta de horas y mayor flexibilidad horaria contratables en la zona.
-            Opciones: snorkel, paddle surf, nevera con bebidas frías.
+            La mayor flota de alquiler de barcos en Blanes con la mejor flexibilidad horaria de la Costa Brava Sur. 
+            Incluye snorkel, paddle surf y nevera con bebidas frías. Salidas desde Puerto de Blanes.
           </p>
         </div>
 

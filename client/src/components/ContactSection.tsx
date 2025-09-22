@@ -39,10 +39,11 @@ export default function ContactSection() {
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="font-heading text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            Contacto
+            Contacto - Alquiler de barcos en Blanes
           </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            ¿Tienes alguna pregunta? Estamos aquí para ayudarte a planificar tu experiencia perfecta en el mar.
+            ¿Tienes alguna pregunta sobre el alquiler de barcos en Blanes? Estamos en Puerto de Blanes, Costa Brava, 
+            para ayudarte a planificar tu experiencia perfecta en el mar.
           </p>
         </div>
 
@@ -81,8 +82,8 @@ export default function ContactSection() {
                 </div>
                 <div>
                   <h3 className="font-medium text-gray-900 mb-1">Ubicación</h3>
-                  <p className="text-gray-600">Puerto de Blanes</p>
-                  <p className="text-sm text-gray-500">Girona, Costa Brava</p>
+                  <p className="text-gray-600">Puerto de Blanes, Costa Brava</p>
+                  <p className="text-sm text-gray-500">Girona, España - Zona de embarque</p>
                 </div>
               </div>
 

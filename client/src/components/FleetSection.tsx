@@ -18,20 +18,8 @@ export default function FleetSection() {
     // Navigate to boat detail page
   };
 
-  // Real boat data from costabravarentaboat.com
+  // Real boat data from costabravarentaboat.com - Ordered as requested
   const boats = [
-    {
-      id: "astec-450",
-      name: "ASTEC 450",
-      image: astec450Image,
-      capacity: 5,
-      requiresLicense: false,
-      description: "La más grande que tenemos sin licencia. Ancha, cómoda, y con un enorme solárium acolchado. También cuenta equipo de música bluetooth.",
-      basePrice: 80,
-      rating: 4.8,
-      features: ["Gasolina incluida", "Solárium", "Toldo", "Escalera", "Música bluetooth"],
-      available: true
-    },
     {
       id: "astec-400",
       name: "ASTEC 400",
@@ -43,18 +31,6 @@ export default function FleetSection() {
       rating: 4.7,
       features: ["Gasolina incluida", "Solárium", "Escalera", "Perfecta parejas"],
       available: false // TEMPORALMENTE NO DISPONIBLE según web
-    },
-    {
-      id: "solar-450",
-      name: "SOLAR 450",
-      image: solar450Image,
-      capacity: 5,
-      requiresLicense: false,
-      description: "Embarcación sin licencia muy cómoda con enorme solárium con cojines en proa, toldo y escalera de baño.",
-      basePrice: 75,
-      rating: 4.6,
-      features: ["Gasolina incluida", "Solárium", "Toldo", "Escalera", "Cojines proa"],
-      available: true
     },
     {
       id: "remus-450",
@@ -69,15 +45,27 @@ export default function FleetSection() {
       available: true
     },
     {
-      id: "trimarchi-57s",
-      name: "TRIMARCHI 57S",
-      image: trimarchiImage,
-      capacity: 7,
-      requiresLicense: true,
-      description: "Magnífica embarcación para 7 personas, deportiva, con equipo de música bluetooth ducha de agua dulce, mesa y solárium en proa.",
-      basePrice: 160,
-      rating: 4.9,
-      features: ["Música bluetooth", "Ducha agua dulce", "Mesa", "Solárium proa"],
+      id: "solar-450",
+      name: "SOLAR 450",
+      image: solar450Image,
+      capacity: 5,
+      requiresLicense: false,
+      description: "Embarcación sin licencia muy cómoda con enorme solárium con cojines en proa, toldo y escalera de baño.",
+      basePrice: 75,
+      rating: 4.6,
+      features: ["Gasolina incluida", "Solárium", "Toldo", "Escalera", "Cojines proa"],
+      available: true
+    },
+    {
+      id: "astec-450",
+      name: "ASTEC 450",
+      image: astec450Image,
+      capacity: 5,
+      requiresLicense: false,
+      description: "La más grande que tenemos sin licencia. Ancha, cómoda, y con un enorme solárium acolchado. También cuenta equipo de música bluetooth.",
+      basePrice: 80,
+      rating: 4.8,
+      features: ["Gasolina incluida", "Solárium", "Toldo", "Escalera", "Música bluetooth"],
       available: true
     },
     {
@@ -90,6 +78,18 @@ export default function FleetSection() {
       basePrice: 180,
       rating: 4.9,
       features: ["Camarote", "Gran solárium", "Ducha", "Mesa", "Premium"],
+      available: true
+    },
+    {
+      id: "trimarchi-57s",
+      name: "TRIMARCHI 57S",
+      image: trimarchiImage,
+      capacity: 7,
+      requiresLicense: true,
+      description: "Magnífica embarcación para 7 personas, deportiva, con equipo de música bluetooth ducha de agua dulce, mesa y solárium en proa.",
+      basePrice: 160,
+      rating: 4.9,
+      features: ["Música bluetooth", "Ducha agua dulce", "Mesa", "Solárium proa"],
       available: true
     },
     {

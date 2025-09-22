@@ -89,6 +89,7 @@ export default function Footer() {
               <li><a href="#" className="hover:text-primary transition-colors">Extras: Paddle Surf</a></li>
               <li><a href="#" className="hover:text-primary transition-colors">Extras: Seascooter</a></li>
               <li><a href="#" className="hover:text-primary transition-colors">Alquiler por horas</a></li>
+              <li><a href="#" className="hover:text-primary transition-colors">Parking dentro del puerto</a></li>
             </ul>
           </div>
 

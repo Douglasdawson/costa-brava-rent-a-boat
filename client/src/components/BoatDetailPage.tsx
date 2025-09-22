@@ -155,7 +155,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
               </div>
             </div>
 
-            <div className="flex gap-4">
+            <div className="flex gap-4 mb-6">
               <Button 
                 onClick={handleReservation}
                 className="flex-1"
@@ -174,64 +174,60 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                 💬 WhatsApp
               </Button>
             </div>
-          </div>
-        </div>
 
-        {/* Technical Specifications - Moved here and made compact */}
-        <Card className="mb-8">
-          <CardHeader className="pb-4">
-            <CardTitle className="flex items-center text-lg">
-              <Anchor className="w-5 h-5 mr-2" />
-              Características Técnicas
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="pt-0">
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-              <div className="flex items-center gap-3 py-2 px-3 bg-gray-50 rounded-lg">
-                <Anchor className="w-4 h-4 text-primary flex-shrink-0" />
-                <div className="min-w-0">
-                  <div className="text-xs text-gray-500 uppercase tracking-wide">Modelo</div>
-                  <div className="font-semibold text-sm">{boatData.specifications.model}</div>
+            {/* Technical Specifications - Compact version */}
+            <div className="bg-white border rounded-xl p-4">
+              <h3 className="flex items-center text-lg font-semibold mb-4">
+                <Anchor className="w-5 h-5 mr-2" />
+                Características Técnicas
+              </h3>
+              <div className="grid grid-cols-1 gap-3">
+                <div className="flex items-center gap-3 py-2 px-3 bg-gray-50 rounded-lg">
+                  <Anchor className="w-4 h-4 text-primary flex-shrink-0" />
+                  <div className="min-w-0">
+                    <div className="text-xs text-gray-500 uppercase tracking-wide">Modelo</div>
+                    <div className="font-semibold text-sm">{boatData.specifications.model}</div>
+                  </div>
                 </div>
-              </div>
-              <div className="flex items-center gap-3 py-2 px-3 bg-gray-50 rounded-lg">
-                <Ruler className="w-4 h-4 text-blue-600 flex-shrink-0" />
-                <div className="min-w-0">
-                  <div className="text-xs text-gray-500 uppercase tracking-wide">Eslora</div>
-                  <div className="font-semibold text-sm">{boatData.specifications.length}</div>
+                <div className="flex items-center gap-3 py-2 px-3 bg-gray-50 rounded-lg">
+                  <Ruler className="w-4 h-4 text-blue-600 flex-shrink-0" />
+                  <div className="min-w-0">
+                    <div className="text-xs text-gray-500 uppercase tracking-wide">Eslora</div>
+                    <div className="font-semibold text-sm">{boatData.specifications.length}</div>
+                  </div>
                 </div>
-              </div>
-              <div className="flex items-center gap-3 py-2 px-3 bg-gray-50 rounded-lg">
-                <ArrowUpDown className="w-4 h-4 text-purple-600 flex-shrink-0" />
-                <div className="min-w-0">
-                  <div className="text-xs text-gray-500 uppercase tracking-wide">Manga</div>
-                  <div className="font-semibold text-sm">{boatData.specifications.beam}</div>
+                <div className="flex items-center gap-3 py-2 px-3 bg-gray-50 rounded-lg">
+                  <ArrowUpDown className="w-4 h-4 text-purple-600 flex-shrink-0" />
+                  <div className="min-w-0">
+                    <div className="text-xs text-gray-500 uppercase tracking-wide">Manga</div>
+                    <div className="font-semibold text-sm">{boatData.specifications.beam}</div>
+                  </div>
                 </div>
-              </div>
-              <div className="flex items-center gap-3 py-2 px-3 bg-gray-50 rounded-lg">
-                <Zap className="w-4 h-4 text-orange-600 flex-shrink-0" />
-                <div className="min-w-0">
-                  <div className="text-xs text-gray-500 uppercase tracking-wide">Motor</div>
-                  <div className="font-semibold text-sm">{boatData.specifications.engine}</div>
+                <div className="flex items-center gap-3 py-2 px-3 bg-gray-50 rounded-lg">
+                  <Zap className="w-4 h-4 text-orange-600 flex-shrink-0" />
+                  <div className="min-w-0">
+                    <div className="text-xs text-gray-500 uppercase tracking-wide">Motor</div>
+                    <div className="font-semibold text-sm">{boatData.specifications.engine}</div>
+                  </div>
                 </div>
-              </div>
-              <div className="flex items-center gap-3 py-2 px-3 bg-gray-50 rounded-lg">
-                <Fuel className="w-4 h-4 text-green-600 flex-shrink-0" />
-                <div className="min-w-0">
-                  <div className="text-xs text-gray-500 uppercase tracking-wide">Combustible</div>
-                  <div className="font-semibold text-sm">{boatData.specifications.fuel}</div>
+                <div className="flex items-center gap-3 py-2 px-3 bg-gray-50 rounded-lg">
+                  <Fuel className="w-4 h-4 text-green-600 flex-shrink-0" />
+                  <div className="min-w-0">
+                    <div className="text-xs text-gray-500 uppercase tracking-wide">Combustible</div>
+                    <div className="font-semibold text-sm">{boatData.specifications.fuel}</div>
+                  </div>
                 </div>
-              </div>
-              <div className="flex items-center gap-3 py-2 px-3 bg-primary/10 rounded-lg border border-primary/20">
-                <Shield className="w-4 h-4 text-primary flex-shrink-0" />
-                <div className="min-w-0">
-                  <div className="text-xs text-primary/70 uppercase tracking-wide">Fianza</div>
-                  <div className="font-bold text-primary">{boatData.specifications.deposit}</div>
+                <div className="flex items-center gap-3 py-2 px-3 bg-primary/10 rounded-lg border border-primary/20">
+                  <Shield className="w-4 h-4 text-primary flex-shrink-0" />
+                  <div className="min-w-0">
+                    <div className="text-xs text-primary/70 uppercase tracking-wide">Fianza</div>
+                    <div className="font-bold text-primary">{boatData.specifications.deposit}</div>
+                  </div>
                 </div>
               </div>
             </div>
-          </CardContent>
-        </Card>
+          </div>
+        </div>
 
         {/* Description */}
         <Card className="mb-8">

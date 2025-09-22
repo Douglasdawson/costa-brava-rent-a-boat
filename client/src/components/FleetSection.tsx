@@ -1,6 +1,11 @@
 import BoatCard from "./BoatCard";
 import astec450Image from "@assets/generated_images/ASTEC_450_speedboat_photo_fc9de4ed.png";
+import astec400Image from "@assets/generated_images/ASTEC_400_boat_photo_9dde16a8.png";
+import solar450Image from "@assets/generated_images/SOLAR_450_boat_photo_b70eb7e1.png";
+import remus450Image from "@assets/generated_images/REMUS_450_boat_photo_ec8b926c.png";
 import trimarchiImage from "@assets/generated_images/Trimarchi_57S_luxury_boat_0ef0159a.png";
+import pacificCraftImage from "@assets/generated_images/PACIFIC_CRAFT_625_boat_fbe4f4d0.png";
+import mingollaImage from "@assets/generated_images/MINGOLLA_BRAVA_19_boat_c0e4a5b5.png";
 
 export default function FleetSection() {
   const handleBooking = (boatId: string) => {
@@ -30,7 +35,7 @@ export default function FleetSection() {
     {
       id: "astec-400",
       name: "ASTEC 400",
-      image: astec450Image,
+      image: astec400Image,
       capacity: 4,
       requiresLicense: false,
       description: "Perfecta para parejas y familias con niños. Gran solárium para tumbarse y escalera de baño para disfrutar del mar.",
@@ -42,7 +47,7 @@ export default function FleetSection() {
     {
       id: "solar-450",
       name: "SOLAR 450",
-      image: astec450Image,
+      image: solar450Image,
       capacity: 5,
       requiresLicense: false,
       description: "Embarcación sin licencia muy cómoda con enorme solárium con cojines en proa, toldo y escalera de baño.",
@@ -54,7 +59,7 @@ export default function FleetSection() {
     {
       id: "remus-450",
       name: "REMUS 450",
-      image: astec450Image,
+      image: remus450Image,
       capacity: 5,
       requiresLicense: false,
       description: "Embarcación sin licencia muy cómoda con enorme solárium con cojines en proa, toldo y escalera de baño.",
@@ -78,7 +83,7 @@ export default function FleetSection() {
     {
       id: "pacific-craft-625",
       name: "PACIFIC CRAFT 625",
-      image: trimarchiImage,
+      image: pacificCraftImage,
       capacity: 7,
       requiresLicense: true,
       description: "¡La más premium que tenemos! Para 7 personas esta embarcación es alta, ancha y estable. Cuenta con camarote pequeño, un gran solárium y está equipada con ducha y mesa.",
@@ -90,7 +95,7 @@ export default function FleetSection() {
     {
       id: "mingolla-brava-19",
       name: "MINGOLLA BRAVA 19",
-      image: trimarchiImage,
+      image: mingollaImage,
       capacity: 6,
       requiresLicense: true,
       description: "Magnífica embarcación para 6 personas muy ancha con equipo de música bluetooth ducha de agua dulce, mesa y solárium en proa.",

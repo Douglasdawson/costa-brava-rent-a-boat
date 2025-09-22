@@ -142,7 +142,7 @@ export default function FeaturesSection() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <Card className="p-6 text-center border-dashed border-2 border-gray-300 bg-white/50">
               <div className="w-12 h-12 mx-auto mb-4 bg-blue-100 rounded-full flex items-center justify-center">
-                <span className="text-2xl">❄️</span>
+                <span className="text-2xl">🧊</span>
               </div>
               <h4 className="font-semibold text-gray-900 mb-2">Nevera con Bebidas Frías</h4>
               <p className="text-gray-600 text-sm mb-2">Nevera con hielo y bebidas refrescantes</p>

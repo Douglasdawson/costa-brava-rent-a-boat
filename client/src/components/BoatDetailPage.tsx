@@ -83,7 +83,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
 
   const extras = [
     { name: "Parking", price: "10€", icon: "🅿️" },
-    { name: "Nevera", price: "5€", icon: "❄️" },
+    { name: "Nevera", price: "5€", icon: "🧊" },
     { name: "Agua y bebidas", price: "2,5€/ud", icon: "🥤" },
     { name: "Equipo de snorkel", price: "7,5€", icon: "🤿" },
     { name: "Paddle Surf", price: "25€", icon: "🏄‍♂️" },

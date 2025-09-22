@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X, User, Calendar, Anchor } from "lucide-react";
+import { openWhatsApp, createBookingMessage } from "@/utils/whatsapp";
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
@@ -14,8 +15,8 @@ export default function Navigation() {
   };
 
   const handleBooking = () => {
-    const message = encodeURIComponent("Hola! Me gustaría hacer una reserva para alquilar un barco. ¿Podrían ayudarme con la disponibilidad y precios?");
-    window.open(`https://wa.me/34611500372?text=${message}`, "_blank");
+    const message = createBookingMessage();
+    openWhatsApp(message);
   };
 
   const navigationItems = [

@@ -2,6 +2,8 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Calendar, Users, Clock, MapPin, Phone } from "lucide-react";
+import { openWhatsApp } from "@/utils/whatsapp";
+import { BUSINESS_LOCATION } from "@/lib/config";
 import heroImage from "@assets/generated_images/Mediterranean_coastal_hero_scene_8df465c2.png";
 
 export default function Hero() {
@@ -14,7 +16,7 @@ export default function Hero() {
   };
 
   const handleWhatsApp = () => {
-    window.open("https://wa.me/34611500372?text=Hola%2C%20me%20gustar%C3%ADa%20informaci%C3%B3n%20sobre%20el%20alquiler%20de%20barcos", "_blank");
+    openWhatsApp("Hola, me gustaría información sobre el alquiler de barcos");
   };
 
   return (
@@ -23,8 +25,8 @@ export default function Hero() {
       {/* Dark overlay for text readability */}
       <div className="absolute inset-0 bg-black/40"></div>
       
-      <div className="relative z-10 container mx-auto px-4 py-12 min-h-screen flex flex-col justify-center items-center text-center">
-        <div className="max-w-4xl mx-auto mb-8">
+      <div className="relative z-10 container mx-auto px-4 pt-24 pb-12 min-h-screen flex flex-col justify-center items-center text-center">
+        <div className="max-w-4xl mx-auto mb-12">
           <h1 className="font-heading text-xl md:text-3xl font-bold text-white mb-6 leading-tight">
             ¡BIENVENIDO AL MEJOR SITIO PARA ALQUILAR TU BARCO EN BLANES!
           </h1>
@@ -124,12 +126,12 @@ export default function Hero() {
             >
               🚤 Buscar Disponibilidad
             </Button>
-            <p className="text-xs text-gray-500 mt-2">
+            <p className="text-xs text-gray-500 mt-6">
               Sin compromiso • Confirmación inmediata • Gasolina incluida
             </p>
           </div>
           
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mt-8">
             <Button 
               variant="outline" 
               onClick={handleWhatsApp}
@@ -142,7 +144,7 @@ export default function Hero() {
             
             <div className="flex items-center text-sm text-gray-600">
               <MapPin className="w-4 h-4 mr-2" />
-              Blanes, Costa Brava
+              {BUSINESS_LOCATION}
             </div>
           </div>
         </Card>

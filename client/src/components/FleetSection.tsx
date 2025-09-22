@@ -1,4 +1,5 @@
 import BoatCard from "./BoatCard";
+import { openWhatsApp, createBookingMessage } from "@/utils/whatsapp";
 import astec450Image from "@assets/generated_images/ASTEC_450_speedboat_photo_fc9de4ed.png";
 import astec400Image from "@assets/generated_images/ASTEC_400_boat_photo_9dde16a8.png";
 import solar450Image from "@assets/generated_images/SOLAR_450_boat_photo_b70eb7e1.png";
@@ -11,11 +12,11 @@ export default function FleetSection() {
   const handleBooking = (boatId: string) => {
     console.log("Booking initiated for:", boatId);
     const boat = boats.find(b => b.id === boatId);
-    const boatName = boat ? boat.name : "barco";
-    const basePrice = boat ? boat.basePrice : "";
+    const boatName = boat?.name;
+    const basePrice = boat?.basePrice;
     
-    const message = encodeURIComponent(`Hola! Me interesa hacer una reserva del ${boatName}${basePrice ? ` (desde ${basePrice}€)` : ""}. ¿Podrían ayudarme con la disponibilidad y precios? ¡Gracias!`);
-    window.open(`https://wa.me/34611500372?text=${message}`, "_blank");
+    const message = createBookingMessage(boatName, basePrice);
+    openWhatsApp(message);
   };
 
   const handleDetails = (boatId: string) => {
@@ -140,7 +141,7 @@ export default function FleetSection() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button 
               className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-medium flex items-center justify-center transition-colors"
-              onClick={() => window.open("https://wa.me/34611500372", "_blank")}
+              onClick={() => openWhatsApp("Hola! Necesito ayuda para elegir el barco ideal para mi grupo. ¿Podrían asesorarme?")}
               data-testid="button-whatsapp-help"
             >
               💬 Consulta por WhatsApp

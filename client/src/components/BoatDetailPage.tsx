@@ -17,6 +17,7 @@ import {
   Zap,
   Shield
 } from "lucide-react";
+import { openWhatsApp } from "@/utils/whatsapp";
 import Navigation from "./Navigation";
 import Footer from "./Footer";
 import solar450Image from "@assets/generated_images/SOLAR_450_boat_photo_b70eb7e1.png";
@@ -92,13 +93,14 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
 
   const handleReservation = () => {
     console.log("Navigate to booking for Solar 450");
-    const message = encodeURIComponent(`Hola! Me gustaría hacer una reserva del ${boatData.name} (desde ${boatData.specifications.capacity}, sin licencia requerida). He visto los precios por temporada en vuestra web. ¿Podrían confirmarme disponibilidad? ¡Muchas gracias!`);
-    window.open(`https://wa.me/34611500372?text=${message}`, "_blank");
+    const lowestPrice = Math.min(...Object.values(boatData.pricing.BAJA.prices));
+    const message = `Hola! Me gustaría hacer una reserva del ${boatData.name} (desde ${lowestPrice}€, sin licencia requerida). He visto los precios por temporada en vuestra web. ¿Podrían confirmarme disponibilidad? ¡Muchas gracias!`;
+    openWhatsApp(message);
   };
 
   const handleWhatsApp = () => {
-    const message = encodeURIComponent(`Hola, me interesa el ${boatData.name}. ¿Podrían darme más información?`);
-    window.open(`https://wa.me/34611500372?text=${message}`, "_blank");
+    const message = `Hola, me interesa el ${boatData.name}. ¿Podrían darme más información?`;
+    openWhatsApp(message);
   };
 
   return (

@@ -51,7 +51,7 @@ export default function Navigation() {
   const navigationItems = [
     { label: "Inicio", href: "#home" },
     { label: "Flota", href: "#fleet" },
-    { label: "Reservas", href: "#booking" },
+    { label: "Reserva", href: "#booking" },
     { label: "Contacto", href: "#contact" },
     { label: "FAQ", href: "#faq" },
   ];

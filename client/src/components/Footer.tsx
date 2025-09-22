@@ -72,7 +72,15 @@ export default function Footer() {
               <div className="flex items-center space-x-3">
                 <MapPin className="w-4 h-4 text-primary" />
                 <div>
-                  <p className="text-sm">Puerto de Blanes</p>
+                  <a 
+                    href="https://maps.app.goo.gl/NHV4PcaFPmwBYqCt5"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm hover:text-primary transition-colors cursor-pointer"
+                    data-testid="maps-link"
+                  >
+                    Puerto de Blanes
+                  </a>
                   <p className="text-xs text-gray-400">Girona, Costa Brava</p>
                 </div>
               </div>

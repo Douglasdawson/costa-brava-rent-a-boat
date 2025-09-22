@@ -36,14 +36,36 @@ export default function Footer() {
               <div className="flex items-center space-x-3">
                 <Phone className="w-4 h-4 text-primary" />
                 <div>
-                  <p className="text-sm">+34 611 500 372</p>
+                  <div className="flex items-center space-x-2">
+                    <a 
+                      href="tel:+34611500372"
+                      className="text-sm hover:text-primary transition-colors cursor-pointer"
+                      data-testid="phone-call-link"
+                    >
+                      +34 611 500 372
+                    </a>
+                    <span className="text-xs text-gray-500">|</span>
+                    <button
+                      onClick={handleWhatsApp}
+                      className="text-xs text-green-400 hover:text-green-300 transition-colors cursor-pointer"
+                      data-testid="phone-whatsapp-link"
+                    >
+                      WhatsApp
+                    </button>
+                  </div>
                   <p className="text-xs text-gray-400">Llamadas y WhatsApp</p>
                 </div>
               </div>
               <div className="flex items-center space-x-3">
                 <Mail className="w-4 h-4 text-primary" />
                 <div>
-                  <p className="text-sm">costabravarentboat@gmail.com</p>
+                  <a 
+                    href="mailto:costabravarentboat@gmail.com"
+                    className="text-sm hover:text-primary transition-colors cursor-pointer"
+                    data-testid="email-link"
+                  >
+                    costabravarentboat@gmail.com
+                  </a>
                   <p className="text-xs text-gray-400">Respuesta en 24h</p>
                 </div>
               </div>

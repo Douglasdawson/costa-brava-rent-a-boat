@@ -44,15 +44,8 @@ export default function Navigation() {
       // Navigate to booking page
       setLocation("/booking");
     } else if (href === "#faq") {
-      // FAQ doesn't exist, redirect to contact section on homepage
-      const currentPath = window.location.pathname;
-      if (currentPath !== "/") {
-        setLocation("/");
-        // Use robust scroll after navigation
-        setTimeout(() => scrollToSection("contact"), 50);
-      } else {
-        scrollToSection("contact");
-      }
+      // Navigate to FAQ page
+      setLocation("/faq");
     } else if (href.startsWith("#")) {
       // For anchor links, first navigate to homepage if not already there
       const sectionId = href.substring(1);

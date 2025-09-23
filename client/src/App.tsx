@@ -17,6 +17,7 @@ import BookingFlow from "./components/BookingFlow";
 import CRMDashboard from "./components/CRMDashboard";
 import BoatDetailPage from "./components/BoatDetailPage";
 import CondicionesGenerales from "./components/CondicionesGenerales";
+import FAQPage from "@/pages/faq";
 import NotFound from "@/pages/not-found";
 import { SEO } from "./components/SEO";
 
@@ -80,6 +81,10 @@ function CondicionesGeneralesPage() {
   return <CondicionesGenerales />;
 }
 
+function FAQPageWrapper() {
+  return <FAQPage />;
+}
+
 // Router Component
 function Router() {
   return (
@@ -95,6 +100,7 @@ function Router() {
       <Route path="/barco/trimarchi-57s" component={Trimarchi57SPage} />
       <Route path="/barco/mingolla-brava-19" component={MingollaBrava19Page} />
       <Route path="/condiciones-generales" component={CondicionesGeneralesPage} />
+      <Route path="/faq" component={FAQPageWrapper} />
       <Route component={NotFound} />
     </Switch>
   );

@@ -22,7 +22,7 @@ export default function FeaturesSection() {
     },
     {
       icon: Fuel,
-      title: "Combustible Transparente", 
+      title: "Combustible Incluido", 
       description: "Barcos sin licencia incluyen gasolina. Barcos con licencia, combustible aparte. Todo claramente indicado.",
       color: "text-blue-600"
     },

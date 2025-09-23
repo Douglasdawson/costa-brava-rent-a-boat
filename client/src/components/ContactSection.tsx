@@ -50,7 +50,7 @@ export default function ContactSection() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
           {/* Contact Information */}
           <Card className="flex flex-col">
-            <CardHeader className="pb-4">
+            <CardHeader className="pb-6">
               <CardTitle>Información de Contacto</CardTitle>
             </CardHeader>
             <CardContent className="flex-1 flex flex-col space-y-6">

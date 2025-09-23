@@ -37,7 +37,7 @@ export default function Hero() {
           </p>
           <p className="text-sm sm:text-base md:text-lg text-white/80 mb-6 sm:mb-8 max-w-2xl mx-auto px-4">
             La mayor flota de alquiler de barcos en Blanes con la mejor flexibilidad horaria de la Costa Brava Sur. 
-            También puedes incluir equipo de snorkel, paddle surf y nevera. Salidas desde Puerto de Blanes.
+            También puedes incluir equipo de snorkel, paddle surf, nevera y parking para el coche dentro del puerto y delante del barco. Salidas desde Puerto de Blanes.
           </p>
         </div>
 

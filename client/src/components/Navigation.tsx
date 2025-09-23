@@ -3,11 +3,14 @@ import { Button } from "@/components/ui/button";
 import { Menu, X, User, Calendar, Anchor } from "lucide-react";
 import { openWhatsApp, createBookingMessage } from "@/utils/whatsapp";
 import { useLocation } from "wouter";
+import LanguageSelector from "./LanguageSelector";
+import { useTranslations } from "@/lib/translations";
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [, setLocation] = useLocation();
+  const t = useTranslations();
 
   const toggleMenu = () => setIsOpen(!isOpen);
   
@@ -67,11 +70,11 @@ export default function Navigation() {
   };
 
   const navigationItems = [
-    { label: "Inicio", href: "/" },
-    { label: "Flota", href: "#fleet" },
-    { label: "Reserva", href: "#booking" },
-    { label: "Contacto", href: "#contact" },
-    { label: "FAQ", href: "#faq" },
+    { label: t.nav.home, href: "/" },
+    { label: t.nav.fleet, href: "#fleet" },
+    { label: t.nav.booking, href: "#booking" },
+    { label: t.nav.contact, href: "#contact" },
+    { label: t.nav.faq, href: "#faq" },
   ];
 
   return (
@@ -99,6 +102,7 @@ export default function Navigation() {
                 {item.label}
               </button>
             ))}
+            <LanguageSelector variant="minimal" />
           </div>
 
           {/* Right side buttons */}

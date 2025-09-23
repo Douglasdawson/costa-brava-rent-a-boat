@@ -5,6 +5,7 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Button } from "@/components/ui/button";
+import { LanguageProvider } from "@/hooks/use-language";
 
 // Import all components
 import Navigation from "./components/Navigation";
@@ -118,7 +119,8 @@ function App() {
   if (demoMode) {
     return (
       <QueryClientProvider client={queryClient}>
-        <TooltipProvider>
+        <LanguageProvider>
+          <TooltipProvider>
           <div className="min-h-screen bg-gray-100 p-8">
             <div className="max-w-2xl mx-auto text-center mb-8">
               <h1 className="text-3xl font-bold text-gray-900 mb-4">
@@ -155,13 +157,15 @@ function App() {
           </div>
           <Toaster />
         </TooltipProvider>
+        </LanguageProvider>
       </QueryClientProvider>
     );
   }
 
   return (
     <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
+      <LanguageProvider>
+        <TooltipProvider>
         <div className="fixed top-4 right-4 z-50">
           <Button 
             onClick={toggleDemo}
@@ -176,6 +180,7 @@ function App() {
         <Toaster />
         <Router />
       </TooltipProvider>
+      </LanguageProvider>
     </QueryClientProvider>
   );
 }

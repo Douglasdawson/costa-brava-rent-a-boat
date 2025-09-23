@@ -68,29 +68,29 @@ export default function FeaturesSection() {
   ];
 
   return (
-    <section className="py-16 bg-white">
-      <div className="container mx-auto px-4">
+    <section className="py-8 sm:py-12 lg:py-16 bg-white">
+      <div className="container mx-auto px-3 sm:px-4">
         {/* Main Features */}
-        <div className="text-center mb-12">
-          <h2 className="font-heading text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+        <div className="text-center mb-8 sm:mb-10 lg:mb-12">
+          <h2 className="font-heading text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-2 sm:mb-3 lg:mb-4">
             ¿Por qué Costa Brava Rent a Boat Blanes?
           </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="text-sm sm:text-base lg:text-lg text-gray-600 max-w-xl sm:max-w-2xl mx-auto px-2">
             La empresa con la mayor oferta de horas y mayor flexibilidad horaria contratables en la zona.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 lg:gap-6 mb-8 sm:mb-12 lg:mb-16">
           {features.map((feature, index) => (
             <Card key={index} className="hover-elevate border-0 shadow-sm">
-              <CardContent className="p-6 text-center">
-                <div className={`w-16 h-16 mx-auto mb-4 bg-gray-50 rounded-full flex items-center justify-center`}>
-                  <feature.icon className={`w-8 h-8 ${feature.color}`} />
+              <CardContent className="p-3 sm:p-4 lg:p-6 text-center">
+                <div className={`w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 mx-auto mb-2 sm:mb-3 lg:mb-4 bg-gray-50 rounded-full flex items-center justify-center`}>
+                  <feature.icon className={`w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8 ${feature.color}`} />
                 </div>
-                <h3 className="font-heading font-semibold text-lg text-gray-900 mb-2">
+                <h3 className="font-heading font-semibold text-base sm:text-lg text-gray-900 mb-1 sm:mb-2">
                   {feature.title}
                 </h3>
-                <p className="text-gray-600">
+                <p className="text-xs sm:text-sm lg:text-base text-gray-600">
                   {feature.description}
                 </p>
               </CardContent>
@@ -99,9 +99,9 @@ export default function FeaturesSection() {
         </div>
 
         {/* Extras Section */}
-        <div className="bg-gray-50 rounded-2xl p-8">
-          <div className="text-center mb-8">
-            <h3 className="font-heading text-2xl md:text-3xl font-bold text-gray-900 mb-4">
+        <div className="bg-gray-50 rounded-xl sm:rounded-2xl p-4 sm:p-6 lg:p-8">
+          <div className="text-center mb-4 sm:mb-6 lg:mb-8">
+            <h3 className="font-heading text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-gray-900 mb-2 sm:mb-3 lg:mb-4">
               Extras Disponibles
             </h3>
             <p className="text-gray-600">

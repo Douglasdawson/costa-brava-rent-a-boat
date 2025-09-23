@@ -42,19 +42,19 @@ export default function Hero() {
         </div>
 
         {/* Booking Widget */}
-        <Card className="bg-white/95 backdrop-blur-md p-4 sm:p-6 max-w-4xl w-full shadow-2xl border-0 mx-4">
-          <div className="text-center mb-4 sm:mb-5">
-            <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2">Reserva tu aventura</h3>
+        <Card className="bg-white/95 backdrop-blur-md p-3 sm:p-4 lg:p-6 max-w-5xl w-full shadow-2xl border-0 mx-2 sm:mx-4">
+          <div className="text-center mb-3 sm:mb-4 lg:mb-5">
+            <h3 className="text-base sm:text-lg lg:text-xl font-bold text-gray-900 mb-1 sm:mb-2">Reserva tu aventura</h3>
             <p className="text-xs sm:text-sm text-gray-600">Completa los datos para encontrar tu embarcación perfecta</p>
           </div>
           
-          <div className="bg-gray-50/80 rounded-xl p-3 sm:p-4 mb-4 sm:mb-5">
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
+          <div className="bg-gray-50/80 rounded-xl p-2 sm:p-3 lg:p-4 mb-3 sm:mb-4 lg:mb-5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-3 lg:gap-4">
               {/* Fecha */}
-              <div className="bg-white rounded-lg p-3 shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
-                <label className="flex items-center text-xs font-semibold text-gray-800 mb-2">
-                  <div className="w-6 h-6 bg-primary/10 rounded-full flex items-center justify-center mr-2">
-                    <Calendar className="w-3 h-3 text-primary" />
+              <div className="bg-white rounded-lg p-2 sm:p-3 shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                <label className="flex items-center text-xs font-semibold text-gray-800 mb-1 sm:mb-2">
+                  <div className="w-5 h-5 sm:w-6 sm:h-6 bg-primary/10 rounded-full flex items-center justify-center mr-1 sm:mr-2">
+                    <Calendar className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-primary" />
                   </div>
                   Fecha
                 </label>
@@ -63,23 +63,23 @@ export default function Hero() {
                   value={selectedDate}
                   onChange={(e) => setSelectedDate(e.target.value)}
                   min={new Date().toISOString().split('T')[0]}
-                  className="w-full p-2.5 border-0 bg-gray-50 rounded-md focus:ring-2 focus:ring-primary focus:bg-white transition-all text-gray-900 font-medium text-sm"
+                  className="w-full p-2 sm:p-2.5 border-0 bg-gray-50 rounded-md focus:ring-2 focus:ring-primary focus:bg-white transition-all text-gray-900 font-medium text-xs sm:text-sm"
                   data-testid="input-booking-date"
                 />
               </div>
               
               {/* Embarcación */}
-              <div className="bg-white rounded-lg p-3 shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
-                <label className="flex items-center text-xs font-semibold text-gray-800 mb-2">
-                  <div className="w-6 h-6 bg-primary/10 rounded-full flex items-center justify-center mr-2">
-                    <Anchor className="w-3 h-3 text-primary" />
+              <div className="bg-white rounded-lg p-2 sm:p-3 shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                <label className="flex items-center text-xs font-semibold text-gray-800 mb-1 sm:mb-2">
+                  <div className="w-5 h-5 sm:w-6 sm:h-6 bg-primary/10 rounded-full flex items-center justify-center mr-1 sm:mr-2">
+                    <Anchor className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-primary" />
                   </div>
                   Embarcación
                 </label>
                 <select
                   value={selectedBoat}
                   onChange={(e) => setSelectedBoat(e.target.value)}
-                  className="w-full p-2.5 border-0 bg-gray-50 rounded-md focus:ring-2 focus:ring-primary focus:bg-white transition-all text-gray-900 font-medium appearance-none cursor-pointer text-sm"
+                  className="w-full p-2 sm:p-2.5 border-0 bg-gray-50 rounded-md focus:ring-2 focus:ring-primary focus:bg-white transition-all text-gray-900 font-medium appearance-none cursor-pointer text-xs sm:text-sm"
                   data-testid="select-boat-type"
                 >
                   <option value="">Seleccionar barco</option>
@@ -94,17 +94,17 @@ export default function Hero() {
               </div>
               
               {/* Duración */}
-              <div className="bg-white rounded-lg p-3 shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
-                <label className="flex items-center text-xs font-semibold text-gray-800 mb-2">
-                  <div className="w-6 h-6 bg-primary/10 rounded-full flex items-center justify-center mr-2">
-                    <Clock className="w-3 h-3 text-primary" />
+              <div className="bg-white rounded-lg p-2 sm:p-3 shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                <label className="flex items-center text-xs font-semibold text-gray-800 mb-1 sm:mb-2">
+                  <div className="w-5 h-5 sm:w-6 sm:h-6 bg-primary/10 rounded-full flex items-center justify-center mr-1 sm:mr-2">
+                    <Clock className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-primary" />
                   </div>
                   Duración
                 </label>
                 <select
                   value={selectedDuration}
                   onChange={(e) => setSelectedDuration(e.target.value)}
-                  className="w-full p-2.5 border-0 bg-gray-50 rounded-md focus:ring-2 focus:ring-primary focus:bg-white transition-all text-gray-900 font-medium appearance-none cursor-pointer text-sm"
+                  className="w-full p-2 sm:p-2.5 border-0 bg-gray-50 rounded-md focus:ring-2 focus:ring-primary focus:bg-white transition-all text-gray-900 font-medium appearance-none cursor-pointer text-xs sm:text-sm"
                   data-testid="select-duration"
                 >
                   <option value="">Seleccionar duración</option>
@@ -123,24 +123,24 @@ export default function Hero() {
           <div>
             <Button 
               onClick={handleBookingSearch}
-              className="w-full bg-primary hover:bg-primary/90 text-white font-bold py-3 px-8 rounded-lg shadow-lg hover:shadow-xl transition-all duration-200"
+              className="w-full bg-primary hover:bg-primary/90 text-white font-bold py-2.5 sm:py-3 px-4 sm:px-8 rounded-lg shadow-lg hover:shadow-xl transition-all duration-200 text-sm sm:text-base"
               data-testid="button-search-availability"
             >
-              🚤 Buscar Disponibilidad
+              🚤 <span className="hidden sm:inline">Buscar Disponibilidad</span><span className="sm:hidden">Buscar</span>
             </Button>
-            <p className="text-xs text-gray-500 mt-6 text-center">
+            <p className="text-xs text-gray-500 mt-3 sm:mt-4 lg:mt-6 text-center">
               Sin compromiso • Confirmación inmediata • Precios transparentes
             </p>
           </div>
           
-          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center mt-4 sm:mt-6">
+          <div className="flex flex-col xs:flex-row gap-2 sm:gap-3 lg:gap-4 justify-center items-center mt-3 sm:mt-4 lg:mt-6">
             <Button 
               variant="outline" 
               onClick={handleWhatsApp}
-              className="bg-white/90 backdrop-blur border-white/50 hover:bg-green-500 hover:text-white hover:border-green-500 w-full sm:w-auto text-sm sm:text-base transition-all duration-200"
+              className="bg-white/90 backdrop-blur border-white/50 hover:bg-green-500 hover:text-white hover:border-green-500 w-full xs:w-auto text-xs sm:text-sm lg:text-base transition-all duration-200 py-2 sm:py-2.5"
               data-testid="button-whatsapp-contact"
             >
-              <Phone className="w-4 h-4 mr-2" />
+              <Phone className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
               <span className="hidden sm:inline">WhatsApp +34 611 500 372</span>
               <span className="sm:hidden">WhatsApp</span>
             </Button>
@@ -148,10 +148,10 @@ export default function Hero() {
             <Button 
               variant="outline" 
               onClick={() => window.open("https://www.google.com/maps/place/Costa+Brava+Rent+a+Boat+-+Blanes+%7C+Alquiler+de+Barcos+Con+y+Sin+Licencia/@41.6722544,2.7952876,17z/data=!3m1!4b1!4m6!3m5!1s0x12bb172c94a8856f:0x9a2dfa936ef2e0a7!8m2!3d41.6722504!4d2.7978625!16s%2Fg%2F11q2xl6s9f?entry=ttu&g_ep=EgoyMDI1MDkxNy4wIKXMDSoASAFQAw%3D%3D", "_blank")}
-              className="bg-white/90 backdrop-blur border-white/50 hover:bg-blue-400 hover:text-white hover:border-blue-400 w-full sm:w-auto text-sm sm:text-base transition-all duration-200"
+              className="bg-white/90 backdrop-blur border-white/50 hover:bg-blue-400 hover:text-white hover:border-blue-400 w-full xs:w-auto text-xs sm:text-sm lg:text-base transition-all duration-200 py-2 sm:py-2.5"
               data-testid="button-location-maps"
             >
-              <MapPin className="w-4 h-4 mr-2" />
+              <MapPin className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
               <span className="hidden sm:inline">{BUSINESS_LOCATION}</span>
               <span className="sm:hidden">Ubicación</span>
             </Button>
@@ -159,22 +159,22 @@ export default function Hero() {
         </Card>
 
         {/* Trust indicators */}
-        <div className="mt-6 sm:mt-8 flex flex-wrap justify-center gap-3 sm:gap-4 lg:gap-6 text-white/80 text-xs sm:text-sm px-4">
-          <div className="flex items-center">
-            <div className="w-2 h-2 bg-green-400 rounded-full mr-2"></div>
-            Precios sin sorpresas
+        <div className="mt-4 sm:mt-6 lg:mt-8 grid grid-cols-2 sm:flex sm:flex-wrap justify-center gap-2 sm:gap-3 lg:gap-6 text-white/80 text-xs sm:text-sm px-2 sm:px-4">
+          <div className="flex items-center justify-center sm:justify-start">
+            <div className="w-2 h-2 bg-green-400 rounded-full mr-1 sm:mr-2 flex-shrink-0"></div>
+            <span className="text-center sm:text-left">Precios sin sorpresas</span>
           </div>
-          <div className="flex items-center">
-            <div className="w-2 h-2 bg-green-400 rounded-full mr-2"></div>
-            Sin licencia requerida
+          <div className="flex items-center justify-center sm:justify-start">
+            <div className="w-2 h-2 bg-green-400 rounded-full mr-1 sm:mr-2 flex-shrink-0"></div>
+            <span className="text-center sm:text-left">Sin licencia requerida</span>
           </div>
-          <div className="flex items-center">
-            <div className="w-2 h-2 bg-green-400 rounded-full mr-2"></div>
-            Hasta 5 personas
+          <div className="flex items-center justify-center sm:justify-start">
+            <div className="w-2 h-2 bg-green-400 rounded-full mr-1 sm:mr-2 flex-shrink-0"></div>
+            <span className="text-center sm:text-left">Hasta 7 personas</span>
           </div>
-          <div className="flex items-center">
-            <div className="w-2 h-2 bg-green-400 rounded-full mr-2"></div>
-            Extras disponibles
+          <div className="flex items-center justify-center sm:justify-start">
+            <div className="w-2 h-2 bg-green-400 rounded-full mr-1 sm:mr-2 flex-shrink-0"></div>
+            <span className="text-center sm:text-left">Extras disponibles</span>
           </div>
         </div>
       </div>

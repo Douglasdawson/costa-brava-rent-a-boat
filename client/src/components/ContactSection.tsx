@@ -35,19 +35,19 @@ export default function ContactSection() {
   };
 
   return (
-    <section className="py-16 bg-white" id="contact">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
-          <h2 className="font-heading text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+    <section className="py-8 sm:py-12 lg:py-16 bg-white" id="contact">
+      <div className="container mx-auto px-3 sm:px-4">
+        <div className="text-center mb-6 sm:mb-8 lg:mb-12">
+          <h2 className="font-heading text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-2 sm:mb-3 lg:mb-4">
             Contacto - Alquiler de barcos en Blanes
           </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="text-sm sm:text-base lg:text-lg text-gray-600 max-w-xl sm:max-w-2xl mx-auto px-2">
             ¿Tienes alguna pregunta sobre el alquiler de barcos en Blanes? Estamos en Puerto de Blanes, Costa Brava, 
             para ayudarte a planificar tu experiencia perfecta en el mar.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-8 max-w-6xl mx-auto">
           {/* Contact Information */}
           <Card className="flex flex-col">
             <CardHeader className="pb-6">
@@ -55,20 +55,20 @@ export default function ContactSection() {
             </CardHeader>
             <CardContent className="flex-1 flex flex-col space-y-6">
               <div>
-                <div className="flex items-start space-x-4 mb-3">
-                  <div className="flex-shrink-0 w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
-                    <Phone className="w-5 h-5 text-primary" />
+                <div className="flex items-start space-x-3 sm:space-x-4 mb-3">
+                  <div className="flex-shrink-0 w-8 h-8 sm:w-10 sm:h-10 bg-primary/10 rounded-lg flex items-center justify-center">
+                    <Phone className="w-4 h-4 sm:w-5 sm:h-5 text-primary" />
                   </div>
                   <div>
-                    <h3 className="font-medium text-gray-900 mb-2">Teléfono & WhatsApp</h3>
+                    <h3 className="font-medium text-gray-900 mb-1 sm:mb-2 text-sm sm:text-base">Teléfono & WhatsApp</h3>
                     <a 
                       href="tel:+34611500372" 
-                      className="text-gray-600 hover:text-primary transition-colors cursor-pointer block mb-1"
+                      className="text-gray-600 hover:text-primary transition-colors cursor-pointer block mb-1 text-sm sm:text-base"
                       data-testid="phone-link"
                     >
                       +34 611 500 372
                     </a>
-                    <p className="text-sm text-gray-500">Disponible 9:00 - 20:00</p>
+                    <p className="text-xs sm:text-sm text-gray-500">Disponible 9:00 - 20:00</p>
                   </div>
                 </div>
               </div>

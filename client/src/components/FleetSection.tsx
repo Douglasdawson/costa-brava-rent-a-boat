@@ -81,12 +81,8 @@ export default function FleetSection() {
 
   const handleBooking = (boatId: string) => {
     console.log("Booking initiated for:", boatId);
-    const boat = boats.find(b => b?.id === boatId);
-    const boatName = boat?.name || "barco";
-    const basePrice = boat?.basePrice || 0;
-    
-    const message = createBookingMessage(boatName, basePrice);
-    openWhatsApp(message);
+    // Navigate to internal booking flow instead of WhatsApp
+    setLocation(`/booking?boat=${boatId}`);
   };
 
   const handleDetails = (boatId: string) => {

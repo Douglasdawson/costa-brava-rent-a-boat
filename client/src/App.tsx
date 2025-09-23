@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Switch, Route } from "wouter";
+import { Switch, Route, useSearch } from "wouter";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
@@ -43,7 +43,11 @@ function HomePage() {
 
 // Wrapper components for router
 function BookingFlowPage() {
-  return <BookingFlow />;
+  const search = useSearch();
+  const params = new URLSearchParams(search);
+  const boatId = params.get('boat') || 'astec-450'; // Default boat if none specified
+  
+  return <BookingFlow boatId={boatId} />;
 }
 
 function CRMDashboardPage() {

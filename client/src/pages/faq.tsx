@@ -462,8 +462,6 @@ export default function FAQPage() {
                       <p><strong>Procedimiento de emergencia:</strong></p>
                       <ol className="list-decimal pl-6 space-y-1">
                         <li><strong>Mantén la calma</strong></li>
-                        <li><strong>Llama al 112</strong> (emergencias generales)</li>
-                        <li><strong>Contacta al 902 202 202</strong> (Salvamento Marítimo)</li>
                         <li><strong>Llámanos inmediatamente:</strong> +34 611 500 372</li>
                         <li><strong>Encontraremos tu posición gracias a los GPS que tienen instalados nuestros barcos </strong></li>
                       </ol>

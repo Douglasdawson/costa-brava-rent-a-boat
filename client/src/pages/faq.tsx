@@ -413,7 +413,7 @@ export default function FAQPage() {
                       </ul>
                       <div className="flex items-center gap-2 mt-3 p-3 bg-blue-50 rounded-lg">
                         <MapPin className="w-5 h-5 text-blue-600" />
-                        <span className="text-sm">Te proporcionamos mapa detallado con puntos de interés</span>
+                        <span className="text-sm">Durante el Check-In te proporcionamos las mejores ubicaciones detalladas</span>
                       </div>
                     </div>
                   </AccordionContent>

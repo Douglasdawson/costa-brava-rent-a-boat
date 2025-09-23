@@ -15,16 +15,16 @@ export default function Footer() {
           <div className="sm:col-span-2 lg:col-span-1">
             <div className="flex items-center space-x-2 mb-4">
               <Anchor className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
-              <span className="font-heading font-bold text-lg sm:text-xl text-white">
+              <span className="font-heading font-bold text-base sm:text-lg text-white">
                 <span className="hidden sm:inline">Costa Brava Rent a Boat Blanes</span>
                 <span className="sm:hidden">CB Rent Boat Blanes</span>
               </span>
             </div>
-            <p className="text-xs sm:text-sm text-gray-400 mb-4">
+            <p className="text-xs sm:text-xs text-gray-400 mb-4">
               Alquiler de embarcaciones en Blanes. Sin licencia requerida para la mayoría de nuestros barcos. 
               Experiencias únicas en la Costa Brava desde 2020.
             </p>
-            <div className="flex items-center space-x-2 text-xs sm:text-sm">
+            <div className="flex items-center space-x-2 text-xs sm:text-xs">
               <div className="w-2 h-2 bg-green-400 rounded-full"></div>
               <span>Temporada operativa: Abril - Octubre</span>
             </div>
@@ -40,7 +40,7 @@ export default function Footer() {
                   <div className="flex items-center space-x-2">
                     <a 
                       href="tel:+34611500372"
-                      className="text-sm hover:text-primary transition-colors cursor-pointer"
+                      className="text-xs hover:text-primary transition-colors cursor-pointer"
                       data-testid="phone-call-link"
                     >
                       +34 611 500 372
@@ -62,7 +62,7 @@ export default function Footer() {
                 <div>
                   <a 
                     href="mailto:costabravarentboat@gmail.com"
-                    className="text-sm hover:text-primary transition-colors cursor-pointer"
+                    className="text-xs hover:text-primary transition-colors cursor-pointer"
                     data-testid="email-link"
                   >
                     costabravarentboat@gmail.com
@@ -77,7 +77,7 @@ export default function Footer() {
                     href="https://maps.app.goo.gl/NHV4PcaFPmwBYqCt5"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-sm hover:text-primary transition-colors cursor-pointer"
+                    className="text-xs hover:text-primary transition-colors cursor-pointer"
                     data-testid="maps-link"
                   >
                     Puerto de Blanes
@@ -91,7 +91,7 @@ export default function Footer() {
           {/* Services */}
           <div>
             <h3 className="font-semibold text-white mb-4">Servicios</h3>
-            <ul className="space-y-2 text-sm">
+            <ul className="space-y-2 text-xs">
               <li><a href="#" className="hover:text-primary transition-colors">Barcos sin licencia</a></li>
               <li><a href="#" className="hover:text-primary transition-colors">Barcos con licencia</a></li>
               <li><a href="#" className="hover:text-primary transition-colors">Extras: Snorkel</a></li>
@@ -105,7 +105,7 @@ export default function Footer() {
           {/* Hours & Legal */}
           <div>
             <h3 className="font-semibold text-white mb-4">Horarios</h3>
-            <div className="space-y-2 text-sm mb-6">
+            <div className="space-y-2 text-xs mb-6">
               <div className="flex items-center space-x-2">
                 <Clock className="w-4 h-4 text-primary" />
                 <span>9:00 - 19:00 (Temporada alta)</span>
@@ -116,7 +116,7 @@ export default function Footer() {
             </div>
 
             <h4 className="font-medium text-white mb-2">Legal</h4>
-            <ul className="space-y-1 text-sm">
+            <ul className="space-y-1 text-xs">
               <li><a href="#" className="hover:text-primary transition-colors">Términos y Condiciones</a></li>
               <li><a href="#" className="hover:text-primary transition-colors">Política de Privacidad</a></li>
               <li><a href="#" className="hover:text-primary transition-colors">Política de Cancelación</a></li>
@@ -126,14 +126,14 @@ export default function Footer() {
 
         {/* Bottom Section */}
         <div className="border-t border-gray-800 mt-8 pt-8 flex flex-col md:flex-row items-center justify-between">
-          <p className="text-sm text-gray-400">
+          <p className="text-xs text-gray-400">
             © {currentYear} Costa Brava Rent a Boat Blanes. Todos los derechos reservados.
           </p>
           
           <div className="flex items-center space-x-4 mt-4 md:mt-0">
             <button 
               onClick={handleWhatsApp}
-              className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg text-sm font-medium flex items-center space-x-2 transition-colors"
+              className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg text-xs font-medium flex items-center space-x-2 transition-colors"
               data-testid="footer-whatsapp-button"
             >
               <span>💬</span>
@@ -142,7 +142,7 @@ export default function Footer() {
             
             <a 
               href="tel:+34611500372"
-              className="border border-gray-600 hover:border-gray-500 text-gray-300 hover:text-white px-4 py-2 rounded-lg text-sm font-medium flex items-center space-x-2 transition-colors"
+              className="border border-gray-600 hover:border-gray-500 text-gray-300 hover:text-white px-4 py-2 rounded-lg text-xs font-medium flex items-center space-x-2 transition-colors"
               data-testid="footer-call-button"
             >
               <Phone className="w-4 h-4" />

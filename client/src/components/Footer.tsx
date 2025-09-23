@@ -125,12 +125,8 @@ export default function Footer() {
         </div>
 
         {/* Bottom Section */}
-        <div className="border-t border-gray-800 mt-8 pt-8 flex flex-col md:flex-row items-center justify-between">
-          <p className="text-xs text-gray-400">
-            © {currentYear} Costa Brava Rent a Boat Blanes. Todos los derechos reservados.
-          </p>
-          
-          <div className="flex items-center space-x-4 mt-4 md:mt-0">
+        <div className="border-t border-gray-800 mt-8 pt-8 flex flex-col items-center">
+          <div className="flex items-center space-x-4 mb-4">
             <button 
               onClick={handleWhatsApp}
               className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg text-xs font-medium flex items-center space-x-2 transition-colors"
@@ -149,6 +145,10 @@ export default function Footer() {
               <span>Llamar</span>
             </a>
           </div>
+          
+          <p className="text-xs text-gray-400 text-center">
+            © {currentYear} Costa Brava Rent a Boat Blanes. Todos los derechos reservados.
+          </p>
         </div>
       </div>
     </footer>

@@ -108,19 +108,19 @@ export default function Navigation() {
           {/* Right side buttons */}
           <div className="hidden md:flex items-center space-x-4">
             <Button 
+              onClick={handleBooking}
+              data-testid="button-book-now"
+            >
+              <Calendar className="w-4 h-4 mr-2" />
+              Reservar Ahora
+            </Button>
+            <Button 
               variant="ghost" 
               onClick={handleLogin}
               data-testid="button-login"
             >
               <User className="w-4 h-4 mr-2" />
               {isLoggedIn ? "CRM" : "Admin"}
-            </Button>
-            <Button 
-              onClick={handleBooking}
-              data-testid="button-book-now"
-            >
-              <Calendar className="w-4 h-4 mr-2" />
-              Reservar Ahora
             </Button>
           </div>
 

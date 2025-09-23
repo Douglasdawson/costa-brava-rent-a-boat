@@ -94,8 +94,16 @@ export default function ContactSection() {
                 </div>
                 <div>
                   <h3 className="font-medium text-gray-900 mb-1">Ubicación</h3>
-                  <p className="text-gray-600">Puerto de Blanes, Costa Brava</p>
-                  <p className="text-sm text-gray-500">Girona, España - Zona de embarque</p>
+                  <a 
+                    href="https://www.google.com/maps/place/Costa+Brava+Rent+a+Boat+-+Blanes+%7C+Alquiler+de+Barcos+Con+y+Sin+Licencia/@41.6722544,2.7952876,17z/data=!3m1!4b1!4m6!3m5!1s0x12bb172c94a8856f:0x9a2dfa936ef2e0a7!8m2!3d41.6722504!4d2.7978625!16s%2Fg%2F11q2xl6s9f?entry=ttu&g_ep=EgoyMDI1MDkxNy4wIKXMDSoASAFQAw%3D%3D"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-600 hover:text-primary transition-colors cursor-pointer"
+                    data-testid="location-link"
+                  >
+                    <span className="block">Puerto de Blanes, Costa Brava</span>
+                    <span className="block text-sm text-gray-500 hover:text-primary/80">Girona, España - Zona de embarque</span>
+                  </a>
                 </div>
               </div>
 

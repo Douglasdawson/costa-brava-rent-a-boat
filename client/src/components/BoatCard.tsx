@@ -47,6 +47,8 @@ export default function BoatCard({
     } else {
       onDetails(id);
     }
+    // Ensure scroll to top for consistent behavior
+    setTimeout(() => window.scrollTo(0, 0), 50);
   };
 
   return (

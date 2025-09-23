@@ -90,6 +90,8 @@ export default function FleetSection() {
     // Navigate to boat detail page - now works for all boats
     if (BOAT_DATA[boatId]) {
       setLocation(`/barco/${boatId}`);
+      // Scroll to top when navigating to boat details
+      window.scrollTo(0, 0);
     } else {
       console.log(`Detail page not available for ${boatId}`);
       // Fallback to contact

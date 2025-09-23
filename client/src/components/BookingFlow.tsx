@@ -389,9 +389,6 @@ export default function BookingFlow({ boatId = "astec-450", onClose }: BookingFl
                         />
                         <div>
                           <h3 className="font-semibold text-gray-900">{boat.name}</h3>
-                          <p className="text-xs font-medium text-primary" data-testid={`text-license-${boat.id}`}>
-                            {/\bcon licencia\b/i.test(boat.subtitle) ? "Con Licencia" : "Sin Licencia"}
-                          </p>
                           <p className="text-sm text-gray-600">{boat.subtitle}</p>
                         </div>
                       </div>

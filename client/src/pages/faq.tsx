@@ -427,7 +427,6 @@ export default function FAQPage() {
                       <ul className="list-disc pl-6 space-y-1">
                         <li>Chalecos salvavidas homologados para todos</li>
                         <li>Kit de seguridad reglamentario</li>
-                        <li>Radio VHF para emergencias</li>
                         <li>GPS y plotter en barcos grandes</li>
                         <li>Señalización marítima completa</li>
                         <li>Contacto 24h para emergencias</li>

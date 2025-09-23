@@ -132,9 +132,8 @@ export default function FAQPage() {
                     <div className="space-y-3">
                       <p>Nuestros precios varían según la embarcación y duración:</p>
                       <ul className="list-disc pl-6 space-y-1">
-                        <li><strong>Barcos sin licencia:</strong> Desde 70€ (2-4 horas)</li>
-                        <li><strong>Barcos con licencia:</strong> Desde 150€ (2-4 horas)</li>
-                        <li><strong>Día completo:</strong> Desde 200€ (8 horas)</li>
+                        <li><strong>Barcos sin licencia:</strong> Desde 70€. Con gasolina incluida y posibilidad de alquilar 1h, 2h, 3h, 4h, 6h, o 8h</li>
+                        <li><strong>Barcos con licencia:</strong> Desde 150€. Sin gasolina incluida y posibilidad de alquilar 2h, 4h y 8h.</li>
                       </ul>
                       <p className="text-sm text-gray-600">*Precios orientativos. Consulta disponibilidad y precios exactos para tu fecha.</p>
                     </div>

@@ -71,7 +71,7 @@ export default function BoatCard({
           </div>
         </div>
         <div className="absolute top-3 left-3">
-          <Badge variant={requiresLicense ? "destructive" : "secondary"}>
+          <Badge variant={requiresLicense ? "default" : "secondary"}>
             {requiresLicense ? "Con licencia" : "Sin licencia"}
           </Badge>
         </div>

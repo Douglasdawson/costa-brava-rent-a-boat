@@ -29,7 +29,8 @@ export default function Hero() {
       <div className="relative z-10 container mx-auto px-4 pt-20 sm:pt-24 pb-8 sm:pb-12 min-h-screen flex flex-col justify-center items-center text-center">
         <div className="max-w-4xl mx-auto mb-8 sm:mb-12">
           <h1 className="font-heading text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-white mb-4 sm:mb-6 leading-tight px-2">
-            Alquiler de barcos en Blanes (Costa Brava) sin licencia | Costa Brava Rent a Boat
+            <div>Alquiler de barcos en Blanes (Costa Brava) sin licencia</div>
+            <div className="mt-2">Costa Brava Rent a Boat - Blanes</div>
           </h1>
           <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/90 mb-3 sm:mb-4 px-2">
             Alquiler de embarcaciones sin licencia y con licencia. Fácil, seguro y transparente.

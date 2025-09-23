@@ -434,6 +434,8 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
       deposit: "500€"
     },
     equipment: [
+      "Radio bluetooth",
+      "Altavoces",
       "Solarium en proa y popa",
       "Toldo bimini inox",
       "Mesa en popa y/o proa", 

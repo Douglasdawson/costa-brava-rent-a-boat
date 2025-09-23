@@ -50,12 +50,12 @@ export default function FAQPage() {
       <div className="bg-gradient-to-br from-blue-50 to-teal-50 pt-24 pb-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="flex items-center justify-center mb-6">
-            <Anchor className="w-12 h-12 text-primary mr-4" />
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold text-gray-900">
+            <Anchor className="w-8 h-8 text-primary mr-4" />
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold text-gray-900">
               Preguntas Frecuentes
             </h1>
           </div>
-          <p className="text-lg sm:text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
+          <p className="text-base sm:text-lg text-gray-600 mb-8 max-w-3xl mx-auto">
             Encuentra respuestas a todas tus dudas sobre el alquiler de barcos en Blanes, Costa Brava. 
             Si no encuentras lo que buscas, ¡contáctanos directamente!
           </p>

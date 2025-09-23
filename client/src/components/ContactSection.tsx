@@ -53,68 +53,76 @@ export default function ContactSection() {
             <CardHeader className="pb-4">
               <CardTitle>Información de Contacto</CardTitle>
             </CardHeader>
-            <CardContent className="flex-1 flex flex-col space-y-5">
-              <div className="flex items-start space-x-4">
-                <div className="flex-shrink-0 w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
-                  <Phone className="w-5 h-5 text-primary" />
-                </div>
-                <div>
-                  <h3 className="font-medium text-gray-900 mb-1">Teléfono & WhatsApp</h3>
-                  <a 
-                    href="tel:+34611500372" 
-                    className="text-gray-600 hover:text-primary transition-colors cursor-pointer"
-                    data-testid="phone-link"
-                  >
-                    +34 611 500 372
-                  </a>
-                  <p className="text-sm text-gray-500">Disponible 9:00 - 20:00</p>
-                </div>
-              </div>
-
-              <div className="flex items-start space-x-4">
-                <div className="flex-shrink-0 w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
-                  <Mail className="w-5 h-5 text-primary" />
-                </div>
-                <div>
-                  <h3 className="font-medium text-gray-900 mb-1">Email</h3>
-                  <a 
-                    href="mailto:costabravarentboat@gmail.com" 
-                    className="text-gray-600 hover:text-primary transition-colors cursor-pointer"
-                    data-testid="email-link"
-                  >
-                    costabravarentboat@gmail.com
-                  </a>
-                  <p className="text-sm text-gray-500">Respuesta en 24h</p>
+            <CardContent className="flex-1 flex flex-col space-y-6">
+              <div>
+                <div className="flex items-start space-x-4 mb-3">
+                  <div className="flex-shrink-0 w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
+                    <Phone className="w-5 h-5 text-primary" />
+                  </div>
+                  <div>
+                    <h3 className="font-medium text-gray-900 mb-2">Teléfono & WhatsApp</h3>
+                    <a 
+                      href="tel:+34611500372" 
+                      className="text-gray-600 hover:text-primary transition-colors cursor-pointer block mb-1"
+                      data-testid="phone-link"
+                    >
+                      +34 611 500 372
+                    </a>
+                    <p className="text-sm text-gray-500">Disponible 9:00 - 20:00</p>
+                  </div>
                 </div>
               </div>
 
-              <div className="flex items-start space-x-4">
-                <div className="flex-shrink-0 w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
-                  <MapPin className="w-5 h-5 text-primary" />
-                </div>
-                <div>
-                  <h3 className="font-medium text-gray-900 mb-1">Ubicación</h3>
-                  <a 
-                    href="https://www.google.com/maps/place/Costa+Brava+Rent+a+Boat+-+Blanes+%7C+Alquiler+de+Barcos+Con+y+Sin+Licencia/@41.6722544,2.7952876,17z/data=!3m1!4b1!4m6!3m5!1s0x12bb172c94a8856f:0x9a2dfa936ef2e0a7!8m2!3d41.6722504!4d2.7978625!16s%2Fg%2F11q2xl6s9f?entry=ttu&g_ep=EgoyMDI1MDkxNy4wIKXMDSoASAFQAw%3D%3D"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-gray-600 hover:text-primary transition-colors cursor-pointer"
-                    data-testid="location-link"
-                  >
-                    <span className="block">Puerto de Blanes, Costa Brava</span>
-                    <span className="block text-sm text-gray-500 hover:text-primary/80">Girona, España - Zona de embarque</span>
-                  </a>
+              <div>
+                <div className="flex items-start space-x-4 mb-3">
+                  <div className="flex-shrink-0 w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
+                    <Mail className="w-5 h-5 text-primary" />
+                  </div>
+                  <div>
+                    <h3 className="font-medium text-gray-900 mb-2">Email</h3>
+                    <a 
+                      href="mailto:costabravarentboat@gmail.com" 
+                      className="text-gray-600 hover:text-primary transition-colors cursor-pointer block mb-1"
+                      data-testid="email-link"
+                    >
+                      costabravarentboat@gmail.com
+                    </a>
+                    <p className="text-sm text-gray-500">Respuesta en 24h</p>
+                  </div>
                 </div>
               </div>
 
-              <div className="flex items-start space-x-4">
-                <div className="flex-shrink-0 w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
-                  <Clock className="w-5 h-5 text-primary" />
+              <div>
+                <div className="flex items-start space-x-4 mb-3">
+                  <div className="flex-shrink-0 w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
+                    <MapPin className="w-5 h-5 text-primary" />
+                  </div>
+                  <div>
+                    <h3 className="font-medium text-gray-900 mb-2">Ubicación</h3>
+                    <a 
+                      href="https://www.google.com/maps/place/Costa+Brava+Rent+a+Boat+-+Blanes+%7C+Alquiler+de+Barcos+Con+y+Sin+Licencia/@41.6722544,2.7952876,17z/data=!3m1!4b1!4m6!3m5!1s0x12bb172c94a8856f:0x9a2dfa936ef2e0a7!8m2!3d41.6722504!4d2.7978625!16s%2Fg%2F11q2xl6s9f?entry=ttu&g_ep=EgoyMDI1MDkxNy4wIKXMDSoASAFQAw%3D%3D"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-gray-600 hover:text-primary transition-colors cursor-pointer"
+                      data-testid="location-link"
+                    >
+                      <span className="block mb-1">Puerto de Blanes, Costa Brava</span>
+                      <span className="block text-sm text-gray-500 hover:text-primary/80">Girona, España - Zona de embarque</span>
+                    </a>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="font-medium text-gray-900 mb-1">Temporada</h3>
-                  <p className="text-gray-600">Abril - Octubre</p>
-                  <p className="text-sm text-gray-500">Horarios flexibles según disponibilidad</p>
+              </div>
+
+              <div>
+                <div className="flex items-start space-x-4 mb-3">
+                  <div className="flex-shrink-0 w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
+                    <Clock className="w-5 h-5 text-primary" />
+                  </div>
+                  <div>
+                    <h3 className="font-medium text-gray-900 mb-2">Temporada</h3>
+                    <p className="text-gray-600 mb-1">Abril - Octubre</p>
+                    <p className="text-sm text-gray-500">Horarios flexibles según disponibilidad</p>
+                  </div>
                 </div>
               </div>
 

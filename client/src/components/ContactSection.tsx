@@ -60,7 +60,13 @@ export default function ContactSection() {
                 </div>
                 <div>
                   <h3 className="font-medium text-gray-900 mb-1">Teléfono & WhatsApp</h3>
-                  <p className="text-gray-600">+34 611 500 372</p>
+                  <a 
+                    href="tel:+34611500372" 
+                    className="text-gray-600 hover:text-primary transition-colors cursor-pointer"
+                    data-testid="phone-link"
+                  >
+                    +34 611 500 372
+                  </a>
                   <p className="text-sm text-gray-500">Disponible 9:00 - 20:00</p>
                 </div>
               </div>
@@ -71,7 +77,13 @@ export default function ContactSection() {
                 </div>
                 <div>
                   <h3 className="font-medium text-gray-900 mb-1">Email</h3>
-                  <p className="text-gray-600">costabravarentboat@gmail.com</p>
+                  <a 
+                    href="mailto:costabravarentboat@gmail.com" 
+                    className="text-gray-600 hover:text-primary transition-colors cursor-pointer"
+                    data-testid="email-link"
+                  >
+                    costabravarentboat@gmail.com
+                  </a>
                   <p className="text-sm text-gray-500">Respuesta en 24h</p>
                 </div>
               </div>
@@ -98,17 +110,6 @@ export default function ContactSection() {
                 </div>
               </div>
 
-              {/* Quick WhatsApp Button */}
-              <div className="pt-4 border-t border-gray-200">
-                <Button 
-                  onClick={() => window.open("https://wa.me/34611500372", "_blank")}
-                  className="w-full bg-green-600 hover:bg-green-700 text-white"
-                  data-testid="button-whatsapp-quick"
-                >
-                  <span className="mr-2">💬</span>
-                  Contactar por WhatsApp
-                </Button>
-              </div>
             </CardContent>
           </Card>
 
@@ -118,7 +119,7 @@ export default function ContactSection() {
               <CardTitle>Envíanos un Mensaje</CardTitle>
             </CardHeader>
             <CardContent>
-              <form onSubmit={handleSubmit} className="space-y-4">
+              <form id="contact-form" onSubmit={handleSubmit} className="space-y-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Nombre *
@@ -182,32 +183,34 @@ export default function ContactSection() {
                   />
                 </div>
 
-                <div className="flex flex-col sm:flex-row gap-3">
-                  <Button 
-                    type="submit" 
-                    className="flex-1"
-                    data-testid="button-send-message"
-                  >
-                    <Send className="w-4 h-4 mr-2" />
-                    Enviar Mensaje
-                  </Button>
-                  
-                  {formData.name && (
-                    <Button 
-                      type="button"
-                      variant="outline" 
-                      onClick={handleWhatsApp}
-                      className="flex-1 border-green-600 text-green-600 hover:bg-green-50"
-                      data-testid="button-whatsapp-with-message"
-                    >
-                      <span className="mr-2">💬</span>
-                      Enviar por WhatsApp
-                    </Button>
-                  )}
-                </div>
               </form>
             </CardContent>
           </Card>
+        </div>
+
+        {/* Aligned CTA Buttons */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto mt-6">
+          <div>
+            <Button 
+              onClick={() => window.open("https://wa.me/34611500372", "_blank")}
+              className="w-full bg-green-600 hover:bg-green-700 text-white"
+              data-testid="button-whatsapp-quick"
+            >
+              <span className="mr-2">💬</span>
+              Contactar por WhatsApp
+            </Button>
+          </div>
+          <div>
+            <Button 
+              form="contact-form"
+              type="submit" 
+              className="w-full"
+              data-testid="button-send-message"
+            >
+              <Send className="w-4 h-4 mr-2" />
+              Enviar Mensaje
+            </Button>
+          </div>
         </div>
 
         {/* Map placeholder */}

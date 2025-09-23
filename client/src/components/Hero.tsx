@@ -120,15 +120,15 @@ export default function Hero() {
           </div>
           
           {/* Botón de búsqueda */}
-          <div className="text-center">
+          <div>
             <Button 
               onClick={handleBookingSearch}
-              className="bg-primary hover:bg-primary/90 text-white font-bold py-3 px-8 rounded-lg shadow-lg hover:shadow-xl transition-all duration-200"
+              className="w-full bg-primary hover:bg-primary/90 text-white font-bold py-3 px-8 rounded-lg shadow-lg hover:shadow-xl transition-all duration-200"
               data-testid="button-search-availability"
             >
               🚤 Buscar Disponibilidad
             </Button>
-            <p className="text-xs text-gray-500 mt-6">
+            <p className="text-xs text-gray-500 mt-6 text-center">
               Sin compromiso • Confirmación inmediata • Precios transparentes
             </p>
           </div>

@@ -407,7 +407,7 @@ export default function FAQPage() {
                       <p><strong>Zona de navegación autorizada:</strong></p>
                       <ul className="list-disc pl-6 space-y-1">
                         <li><strong>Norte:</strong> Para las embarcaciones Sin licencia, hasta la Playa de Fenals  (Lloret de Mar). Y para las embarcaciones Con Licencia, recomendamos no sobrepasar Sant Feliu de Guixols</li>
-                        <li><strong>Sur:</strong> Hasta Malgrat de Mar</li>
+                        <li><strong>Sur:</strong> Hasta el final de la playa de Blanes para las embarcaciones sin licencia. Y sin límite para las embarcaciones Con Licencia</li>
                         <li><strong>Distancia:</strong> Máximo 3 millas de la costa</li>
                         <li><strong>Calas recomendadas:</strong> Cala Brava, Cala Sant Francesc, Playa de Lloret</li>
                       </ul>

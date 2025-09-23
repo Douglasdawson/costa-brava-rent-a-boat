@@ -540,9 +540,9 @@ export default function FAQPage() {
                     <div className="space-y-3">
                       <p><strong>Opciones de aparcamiento:</strong></p>
                       <ul className="list-disc pl-6 space-y-1">
-                        <li><strong>Parking Puerto:</strong> 2€/hora (muy cerca)</li>
-                        <li><strong>Zona azul:</strong> 1,5€/hora (5 min andando)</li>
-                        <li><strong>Parking gratuito:</strong> 10 min andando</li>
+                        <li><strong>Parking Puerto:</strong> 10€/alquiler (dentro del puerto y delante del barco)</li>
+                        <li><strong>Zona azul:</strong> 1,5€/hora (10 min andando)</li>
+                        <li><strong>Parking gratuito:</strong> 20/30 min andando</li>
                         <li><strong>Temporada alta:</strong> Recomendamos reservar plaza</li>
                       </ul>
                       <p className="text-sm text-gray-600">Te enviamos ubicaciones exactas con la confirmación.</p>

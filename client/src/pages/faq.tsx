@@ -319,19 +319,12 @@ export default function FAQPage() {
                 </AccordionItem>
 
                 <AccordionItem value="combustible" data-testid="faq-combustible">
-                  <AccordionTrigger>¿Tengo que pagar combustible extra?</AccordionTrigger>
+                  <AccordionTrigger>¿Tengo que pagar combustible?</AccordionTrigger>
                   <AccordionContent>
                     <div className="space-y-3">
-                      <p><strong>El combustible está incluido para uso normal:</strong></p>
-                      <ul className="list-disc pl-6 space-y-1">
-                        <li>Navegación por la zona autorizada</li>
-                        <li>Paradas para bañarse y fondear</li>
-                        <li>Uso típico de recreo familiar</li>
-                      </ul>
-                      <div className="flex items-center gap-2 mt-3 p-3 bg-yellow-50 rounded-lg">
-                        <Fuel className="w-5 h-5 text-yellow-600" />
-                        <span className="text-sm">Solo se cobra combustible extra en caso de uso excesivo (navegación a alta velocidad constante)</span>
-                      </div>
+                      <p>El combustible únicamente no está incluido en las embarcaciones que precisan de licencia.</p>
+                      <p>En las embarcaciones que no precisan de licencia, el combustible está incluido.</p>
+                      <p>Las embarcaciones que precisan de licencia, se entregarán con del depósito lleno, y nuestro equipo te acompañará a la gasolina al finalizar tu alquiler, para llenar de nuevo el depósito.</p>
                     </div>
                   </AccordionContent>
                 </AccordionItem>

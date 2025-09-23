@@ -118,16 +118,11 @@ export default function BoatCard({
         </div>
 
         <div className="flex flex-wrap gap-1 mb-3">
-          {features.slice(0, 3).map((feature, index) => (
+          {features.map((feature, index) => (
             <Badge key={index} variant="outline" className="text-xs">
               {feature}
             </Badge>
           ))}
-          {features.length > 3 && (
-            <Badge variant="outline" className="text-xs">
-              +{features.length - 3} más
-            </Badge>
-          )}
         </div>
       </CardContent>
 

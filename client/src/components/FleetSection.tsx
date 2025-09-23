@@ -46,10 +46,9 @@ export default function FleetSection() {
     // Base price from BAJA season
     const basePrice = Math.min(...Object.values(boatData.pricing.BAJA.prices));
     
-    // Create features list with specific highlights
+    // Create features list with all equipment included
     const features = [
-      ...boatData.features.slice(0, 2), // First 2 features
-      ...boatData.equipment.slice(0, 2)  // First 2 equipment items
+      ...boatData.equipment  // All equipment items
     ];
 
     return {

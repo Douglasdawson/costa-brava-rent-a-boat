@@ -140,60 +140,56 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
           </Badge>
         </div>
 
+        {/* Image and Description Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 mb-6 sm:mb-8">
           {/* Left Column - Image */}
-          <div className="space-y-4 sm:space-y-6">
-            <div className="bg-white rounded-xl overflow-hidden shadow-lg">
-              <img 
-                src={boatData.image} 
-                alt={`Alquiler ${boatData.name} ${boatData.subtitle.includes("Sin Licencia") ? "sin licencia" : "con licencia"} en Blanes Costa Brava`}
-                className="w-full h-64 sm:h-80 md:h-96 object-cover"
-                loading="lazy"
-                data-testid="img-boat-main"
-              />
-            </div>
+          <div className="bg-white rounded-xl overflow-hidden shadow-lg">
+            <img 
+              src={boatData.image} 
+              alt={`Alquiler ${boatData.name} ${boatData.subtitle.includes("Sin Licencia") ? "sin licencia" : "con licencia"} en Blanes Costa Brava`}
+              className="w-full h-64 sm:h-80 md:h-96 object-cover"
+              loading="lazy"
+              data-testid="img-boat-main"
+            />
+          </div>
 
-            {/* Key Features */}
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center text-base sm:text-lg">
-                  <Star className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-yellow-500" />
-                  Características Principales
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
-                  {boatData.features.map((feature, index) => (
-                    <div key={index} className="flex items-center">
-                      <CheckCircle className="w-4 h-4 text-green-600 mr-2" />
-                      <span className="text-sm">{feature}</span>
-                    </div>
-                  ))}
+          {/* Right Column - Description */}
+          <Card>
+            <CardHeader>
+              <CardTitle>Descripción</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-gray-700 leading-relaxed">
+                {boatData.description}
+              </p>
+              {!requiresLicense && (
+                <div className="mt-4 p-4 bg-green-50 rounded-lg">
+                  <p className="text-green-800 font-medium">¡Gasolina incluida!</p>
                 </div>
-              </CardContent>
-            </Card>
-          </div>
-
-          {/* Right Column - Details */}
-          <div className="space-y-6">
-            {/* Description */}
-            <Card>
-              <CardHeader>
-                <CardTitle>Descripción</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-700 leading-relaxed">
-                  {boatData.description}
-                </p>
-                {!requiresLicense && (
-                  <div className="mt-4 p-4 bg-green-50 rounded-lg">
-                    <p className="text-green-800 font-medium">¡Gasolina incluida!</p>
-                  </div>
-                )}
-              </CardContent>
-            </Card>
-          </div>
+              )}
+            </CardContent>
+          </Card>
         </div>
+
+        {/* Key Features - Full Width */}
+        <Card className="mb-6 sm:mb-8">
+          <CardHeader>
+            <CardTitle className="flex items-center text-base sm:text-lg">
+              <Star className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-yellow-500" />
+              Características Principales
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4">
+              {boatData.features.map((feature, index) => (
+                <div key={index} className="flex items-center">
+                  <CheckCircle className="w-4 h-4 text-green-600 mr-2" />
+                  <span className="text-sm">{feature}</span>
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
 
         {/* Technical Specifications and Equipment - Full Width */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 mb-6 sm:mb-8">

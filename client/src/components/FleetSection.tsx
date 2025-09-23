@@ -124,7 +124,7 @@ export default function FleetSection() {
 
         <div className="text-center px-4">
           <p className="text-sm sm:text-base text-gray-600 mb-4 sm:mb-6">¿Necesitas ayuda para elegir tu alquiler de barco en Blanes?</p>
-          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center max-w-lg mx-auto">
+          <div className="flex flex-col lg:flex-row gap-3 lg:gap-4 justify-center max-w-lg mx-auto">
             <button 
               className="bg-green-600 hover:bg-green-700 text-white px-4 sm:px-6 py-3 rounded-lg font-medium flex items-center justify-center transition-colors text-sm sm:text-base"
               onClick={() => openWhatsApp("Hola! Necesito ayuda para elegir el mejor barco para alquilar en Blanes. ¿Podrían asesorarme sobre precios y disponibilidad?")}

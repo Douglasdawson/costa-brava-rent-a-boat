@@ -464,8 +464,8 @@ export default function FAQPage() {
                         <li><strong>Mantén la calma</strong></li>
                         <li><strong>Llama al 112</strong> (emergencias generales)</li>
                         <li><strong>Contacta al 902 202 202</strong> (Salvamento Marítimo)</li>
-                        <li><strong>Llámanos inmediatamente:</strong> +34 XXX XXX XXX</li>
-                        <li><strong>Da tu posición GPS</strong> (la encontrarás en el plotter)</li>
+                        <li><strong>Llámanos inmediatamente:</strong> +34 611 500 372</li>
+                        <li><strong>Encontraremos tu posición gracias a los GPS que tienen instalados nuestros barcos </strong></li>
                       </ol>
                       <div className="flex items-center gap-2 mt-3 p-3 bg-red-50 rounded-lg">
                         <AlertCircle className="w-5 h-5 text-red-600" />

@@ -336,12 +336,12 @@ export default function FAQPage() {
                       <p><strong>Extras disponibles:</strong></p>
                       <div className="grid gap-3">
                         <div className="flex justify-between items-center p-2 bg-gray-50 rounded">
-                          <span>Toldo/Bimini extra</span>
+                          <span>Paddle Surf</span>
                           <Badge variant="outline">+25€</Badge>
                         </div>
                         <div className="flex justify-between items-center p-2 bg-gray-50 rounded">
-                          <span>Equipo snorkel profesional</span>
-                          <Badge variant="outline">+15€</Badge>
+                          <span>Gafas de snorkel</span>
+                          <Badge variant="outline">+5€</Badge>
                         </div>
                         <div className="flex justify-between items-center p-2 bg-gray-50 rounded">
                           <span>Cámara acuática GoPro</span>

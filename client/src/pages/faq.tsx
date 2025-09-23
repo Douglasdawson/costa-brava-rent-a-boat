@@ -19,7 +19,8 @@ import {
   Calendar,
   Fuel,
   Camera,
-  Umbrella
+  Umbrella,
+  Ship
 } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
@@ -103,7 +104,7 @@ export default function FAQPage() {
             </Card>
             <Card className="text-center hover-elevate">
               <CardContent className="p-6">
-                <Users className="w-8 h-8 text-primary mx-auto mb-3" />
+                <Ship className="w-8 h-8 text-primary mx-auto mb-3" />
                 <h3 className="font-semibold text-lg mb-2">7 Embarcaciones</h3>
                 <p className="text-gray-600 text-sm">Flota para desde 4-7 personas. Con y sin licencia náutica.</p>
               </CardContent>

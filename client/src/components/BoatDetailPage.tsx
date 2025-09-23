@@ -402,11 +402,11 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
           </CardHeader>
           <CardContent>
             <div className="text-sm text-gray-700 space-y-2">
-              <p>• <strong>Imprescindible:</strong> Acudir con documento de identidad o pasaporte</p>
-              <p>• Sin necesidad de licencia náutica</p>
-              <p>• Ideal para familias y grupos de hasta 5 personas</p>
+              <p>• <strong>Imprescindible:</strong> Acudir con documento de identidad o pasaporte{requiresLicense ? " y licencia de navegacion original" : ""}</p>
+              <p>• {requiresLicense ? "Licencia náutica requerida" : "Sin necesidad de licencia náutica"}</p>
+              <p>• Ideal para familias y grupos de hasta {capacity} personas</p>
               <p>• Perfecto para explorar las calas de la Costa Brava</p>
-              <p>• Gasolina, seguro y equipo de seguridad incluidos</p>
+              <p>• {requiresLicense ? "Combustible NO incluido, seguro y equipo de seguridad incluidos" : "Gasolina, seguro y equipo de seguridad incluidos"}</p>
               <p>• Fianza: {boatData.specifications.deposit}</p>
             </div>
             <div className="mt-4 p-4 bg-blue-50 rounded-lg">

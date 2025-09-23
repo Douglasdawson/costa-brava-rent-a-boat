@@ -49,11 +49,11 @@ export default function ContactSection() {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
           {/* Contact Information */}
-          <Card className="p-6">
-            <CardHeader>
+          <Card className="flex flex-col">
+            <CardHeader className="pb-4">
               <CardTitle>Información de Contacto</CardTitle>
             </CardHeader>
-            <CardContent className="space-y-6">
+            <CardContent className="flex-1 flex flex-col space-y-5">
               <div className="flex items-start space-x-4">
                 <div className="flex-shrink-0 w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
                   <Phone className="w-5 h-5 text-primary" />
@@ -119,10 +119,10 @@ export default function ContactSection() {
               </div>
 
               {/* WhatsApp Button */}
-              <div className="pt-4 border-t border-gray-200">
+              <div className="mt-auto pt-6 border-t border-gray-200">
                 <Button 
                   onClick={() => window.open("https://wa.me/34611500372", "_blank")}
-                  className="w-full bg-green-600 hover:bg-green-700 text-white px-6 py-3"
+                  className="w-full bg-green-600 hover:bg-green-700 text-white px-6 py-3 h-12"
                   data-testid="button-whatsapp-quick"
                 >
                   <span className="mr-2">💬</span>
@@ -134,12 +134,12 @@ export default function ContactSection() {
           </Card>
 
           {/* Contact Form */}
-          <Card className="p-6">
-            <CardHeader>
+          <Card className="flex flex-col">
+            <CardHeader className="pb-4">
               <CardTitle>Envíanos un Mensaje</CardTitle>
             </CardHeader>
-            <CardContent>
-              <form id="contact-form" onSubmit={handleSubmit} className="space-y-4">
+            <CardContent className="flex-1 flex flex-col">
+              <form id="contact-form" onSubmit={handleSubmit} className="flex-1 flex flex-col space-y-5">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Nombre *
@@ -150,7 +150,7 @@ export default function ContactSection() {
                     value={formData.name}
                     onChange={handleInputChange}
                     required
-                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
+                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary h-12"
                     placeholder="Tu nombre completo"
                     data-testid="input-contact-name"
                   />
@@ -166,7 +166,7 @@ export default function ContactSection() {
                     value={formData.email}
                     onChange={handleInputChange}
                     required
-                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
+                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary h-12"
                     placeholder="tu@email.com"
                     data-testid="input-contact-email"
                   />
@@ -181,7 +181,7 @@ export default function ContactSection() {
                     name="phone"
                     value={formData.phone}
                     onChange={handleInputChange}
-                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
+                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary h-12"
                     placeholder="+34 600 000 000"
                     data-testid="input-contact-phone"
                   />
@@ -196,19 +196,19 @@ export default function ContactSection() {
                     value={formData.message}
                     onChange={handleInputChange}
                     required
-                    rows={4}
-                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary resize-none"
+                    rows={5}
+                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary resize-none flex-1 min-h-[120px]"
                     placeholder="Cuéntanos qué necesitas: fechas, tipo de barco, número de personas, extras..."
                     data-testid="textarea-contact-message"
                   />
                 </div>
 
                 {/* Form Buttons */}
-                <div className="space-y-3 pt-4 border-t border-gray-200">
+                <div className="mt-auto space-y-3 pt-6 border-t border-gray-200">
                   <Button 
                     form="contact-form"
                     type="submit" 
-                    className="w-full bg-primary hover:bg-primary/90 text-white px-6 py-3"
+                    className="w-full bg-primary hover:bg-primary/90 text-white px-6 py-3 h-12"
                     data-testid="button-submit-form"
                   >
                     <Mail className="w-4 h-4 mr-2" />
@@ -217,7 +217,7 @@ export default function ContactSection() {
                   <Button 
                     onClick={() => window.open("tel:+34611500372", "_self")}
                     variant="outline"
-                    className="w-full px-6 py-3"
+                    className="w-full px-6 py-3 h-12"
                     data-testid="button-call-phone"
                   >
                     <Phone className="w-4 h-4 mr-2" />

@@ -303,24 +303,17 @@ export default function FAQPage() {
                   <AccordionContent>
                     <div className="space-y-3">
                       <p><strong>Incluido en todas las reservas:</strong></p>
-                      <div className="grid sm:grid-cols-2 gap-4">
-                        <ul className="list-disc pl-6 space-y-1">
-                          <li>Embarcación completamente equipada</li>
-                          <li>Combustible para uso normal</li>
-                          <li>Chalecos salvavidas</li>
-                          <li>Kit de seguridad obligatorio</li>
-                          <li>Ancla y cabo</li>
-                          <li>Escalera de baño</li>
-                        </ul>
-                        <ul className="list-disc pl-6 space-y-1">
-                          <li>Equipo de snorkel básico</li>
-                          <li>Paddle surf hinchable</li>
-                          <li>Nevera portátil</li>
-                          <li>Instrucciones y mapa</li>
-                          <li>Seguro básico</li>
-                          <li>Soporte telefónico</li>
-                        </ul>
-                      </div>
+                      <ul className="list-disc pl-6 space-y-1">
+                        <li>Embarcación completamente equipada</li>
+                        <li>Combustible incluido en las embarcaciones sin licencia</li>
+                        <li>Chalecos salvavidas</li>
+                        <li>Kit de seguridad obligatorio</li>
+                        <li>Ancla y cabo</li>
+                        <li>Escalera de baño</li>
+                        <li>Instrucciones y mapa</li>
+                        <li>Seguro básico de la embarcacion</li>
+                        <li>Soporte telefónico</li>
+                      </ul>
                     </div>
                   </AccordionContent>
                 </AccordionItem>

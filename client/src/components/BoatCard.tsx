@@ -129,7 +129,7 @@ export default function BoatCard({
         </div>
       </CardContent>
 
-      <CardFooter className="p-3 sm:p-4 pt-0 flex flex-col sm:flex-row gap-2">
+      <CardFooter className="p-3 sm:p-4 pt-0 flex flex-row gap-2">
         <Button 
           variant="outline" 
           size="sm"

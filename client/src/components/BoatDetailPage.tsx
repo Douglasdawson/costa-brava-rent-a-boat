@@ -17,12 +17,11 @@ import {
   ArrowLeftRight,
   Zap,
   Shield,
-  Car,
-  Refrigerator,
-  Coffee,
-  Glasses,
+  CircleParking,
+  Snowflake,
+  Beer,
+  Eye,
   Waves,
-  Fish,
   MessageSquare
 } from "lucide-react";
 import { openWhatsApp } from "@/utils/whatsapp";
@@ -337,12 +336,12 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
               {boatData.extras.map((extra, index) => {
                 const getIcon = (iconName: string) => {
                   const iconMap: { [key: string]: any } = {
-                    Car,
-                    Refrigerator,
-                    Coffee,
-                    Glasses,
+                    CircleParking,
+                    Snowflake,
+                    Beer,
+                    Eye,
                     Waves,
-                    Fish
+                    Zap
                   };
                   return iconMap[iconName] || Star;
                 };

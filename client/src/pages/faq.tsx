@@ -173,7 +173,7 @@ export default function FAQPage() {
                         <li>Efectivo (solo en puerto, antes de salir)</li>
                         <li>Bizum (para clientes españoles)</li>
                       </ul>
-                      <p className="text-sm text-gray-600">Se requiere una seña del 50% para confirmar la reserva.</p>
+                      <p className="text-sm text-gray-600">Se requiere una paga y señal de 50€ para confirmar la reserva.</p>
                     </div>
                   </AccordionContent>
                 </AccordionItem>

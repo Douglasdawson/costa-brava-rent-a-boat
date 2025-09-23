@@ -118,6 +118,18 @@ export default function ContactSection() {
                 </div>
               </div>
 
+              {/* WhatsApp Button */}
+              <div className="pt-4 border-t border-gray-200">
+                <Button 
+                  onClick={() => window.open("https://wa.me/34611500372", "_blank")}
+                  className="w-full bg-green-600 hover:bg-green-700 text-white px-6 py-3"
+                  data-testid="button-whatsapp-quick"
+                >
+                  <span className="mr-2">💬</span>
+                  Consulta por WhatsApp
+                </Button>
+              </div>
+
             </CardContent>
           </Card>
 
@@ -191,32 +203,33 @@ export default function ContactSection() {
                   />
                 </div>
 
+                {/* Form Buttons */}
+                <div className="space-y-3 pt-4 border-t border-gray-200">
+                  <Button 
+                    form="contact-form"
+                    type="submit" 
+                    className="w-full bg-primary hover:bg-primary/90 text-white px-6 py-3"
+                    data-testid="button-submit-form"
+                  >
+                    <Mail className="w-4 h-4 mr-2" />
+                    Enviar Mensaje
+                  </Button>
+                  <Button 
+                    onClick={() => window.open("tel:+34611500372", "_self")}
+                    variant="outline"
+                    className="w-full px-6 py-3"
+                    data-testid="button-call-phone"
+                  >
+                    <Phone className="w-4 h-4 mr-2" />
+                    Llama al +34 611 500 372
+                  </Button>
+                </div>
+
               </form>
             </CardContent>
           </Card>
         </div>
 
-        {/* Aligned CTA Buttons */}
-        <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-4xl mx-auto mt-6">
-          <Button 
-            onClick={() => window.open("https://wa.me/34611500372", "_blank")}
-            className="bg-green-600 hover:bg-green-700 text-white px-6 py-3"
-            data-testid="button-whatsapp-quick"
-          >
-            <span className="mr-2">💬</span>
-            Consulta por WhatsApp
-          </Button>
-          <Button 
-            form="contact-form"
-            type="submit" 
-            variant="outline"
-            className="px-6 py-3"
-            data-testid="button-send-message"
-          >
-            <Phone className="w-4 h-4 mr-2" />
-            Llama al +34 611 500 372
-          </Button>
-        </div>
 
         {/* Map placeholder */}
         <div className="mt-12">

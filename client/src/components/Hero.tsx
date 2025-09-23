@@ -83,10 +83,10 @@ export default function Hero() {
                   data-testid="select-boat-type"
                 >
                   <option value="">Seleccionar barco</option>
-                  <option value="astec-400">ASTEC 400 (Sin licencia) - desde 70€</option>
+                  <option value="astec-400">Astec 400 (Sin licencia) - desde 70€</option>
                   <option value="remus-450">REMUS 450 (Sin licencia) - desde 75€</option>
                   <option value="solar-450">SOLAR 450 (Sin licencia) - desde 75€</option>
-                  <option value="astec-450">ASTEC 450 (Sin licencia) - desde 80€</option>
+                  <option value="astec-450">Astec 450 (Sin licencia) - desde 80€</option>
                   <option value="pacific-craft-625">PACIFIC CRAFT 625 (Con licencia) - desde 180€</option>
                   <option value="trimarchi-57s">TRIMARCHI 57S (Con licencia) - desde 160€</option>
                   <option value="mingolla-brava-19">MINGOLLA BRAVA 19 (Con licencia) - desde 150€</option>

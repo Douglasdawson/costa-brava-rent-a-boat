@@ -171,10 +171,10 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
 
   "astec-400": {
     id: "astec-400",
-    name: "ASTEC 400",
+    name: "Astec 400",
     image: astec400Image,
     subtitle: "Sin Licencia Para Alquilar en Blanes",
-    description: "Alquiler ASTEC 400 sin licencia en Blanes, Costa Brava. Embarcación perfecta para parejas o familias pequeñas, hasta 4 personas con gasolina incluida. Ideal para alquilar barco sin licencia en Puerto de Blanes. Incluye solárium con cojines, toldo, escalera de baño y arranque eléctrico. Perfecta para explorar las calas de Blanes de manera sencilla y segura.",
+    description: "Alquiler Astec 400 sin licencia en Blanes, Costa Brava. Embarcación perfecta para parejas o familias pequeñas, hasta 4 personas con gasolina incluida. Ideal para alquilar barco sin licencia en Puerto de Blanes. Incluye solárium con cojines, toldo, escalera de baño y arranque eléctrico. Perfecta para explorar las calas de Blanes de manera sencilla y segura.",
     specifications: {
       model: "Fibra Astec 400",
       length: "4m",
@@ -232,10 +232,10 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
 
   "astec-450": {
     id: "astec-450",
-    name: "ASTEC 450", // Nota: El usuario quiere que se llame 480 en la página
+    name: "Astec 450", // Nota: El usuario quiere que se llame 480 en la página
     image: astec450Image,
     subtitle: "Sin Licencia Para Alquilar en Blanes",
-    description: "Alquiler ASTEC 450 sin licencia en Blanes, Costa Brava. Nuestra embarcación sin licencia más espaciosa para grupos de hasta 5 personas con gasolina incluida. La mejor opción para alquilar barco sin licencia en Puerto de Blanes. Incluye solárium acolchado, toldo, escalera de baño, arranque eléctrico y equipo bluetooth. Ideal para navegación confortable en Costa Brava Sur.",
+    description: "Alquiler Astec 450 sin licencia en Blanes, Costa Brava. Nuestra embarcación sin licencia más espaciosa para grupos de hasta 5 personas con gasolina incluida. La mejor opción para alquilar barco sin licencia en Puerto de Blanes. Incluye solárium acolchado, toldo, escalera de baño, arranque eléctrico y equipo bluetooth. Ideal para navegación confortable en Costa Brava Sur.",
     specifications: {
       model: "Fibra Astec 450",
       length: "4m",

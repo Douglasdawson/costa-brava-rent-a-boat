@@ -14,7 +14,7 @@ export default function BoatCardExample() {
     <div className="p-8 max-w-sm">
       <BoatCard
         id="astec-450"
-        name="ASTEC 450"
+        name="Astec 450"
         image={astec450Image}
         capacity={5}
         requiresLicense={false}

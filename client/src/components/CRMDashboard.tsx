@@ -35,7 +35,7 @@ export default function CRMDashboard() {
     {
       id: "BK001",
       customerName: "Ana García",
-      boatName: "ASTEC 450",
+      boatName: "Astec 450",
       date: "2024-09-22",
       time: "09:00",
       duration: "2h",
@@ -57,7 +57,7 @@ export default function CRMDashboard() {
     {
       id: "BK003",
       customerName: "Maria Santos",
-      boatName: "ASTEC 480",
+      boatName: "Astec 480",
       date: "2024-09-22",
       time: "15:00",
       duration: "8h",
@@ -81,7 +81,7 @@ export default function CRMDashboard() {
     {
       id: "BK005",
       customerName: "Laura Fernández", 
-      boatName: "ASTEC 450",
+      boatName: "Astec 450",
       date: "2024-09-23",
       time: "14:00",
       duration: "2h",

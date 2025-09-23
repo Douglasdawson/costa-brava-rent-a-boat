@@ -106,7 +106,7 @@ export default function FleetSection() {
           <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-3 sm:mb-4 px-2">
             Nuestra flota de alquiler en Blanes
           </h2>
-          <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto px-4">
+          <p className="text-base sm:text-lg text-gray-600 max-w-2xl lg:max-w-4xl mx-auto px-4">
             Descubre nuestra flota de alquiler de barcos con licencia o sin licencia en Blanes, Costa Brava. Embarcaciones ideales para salidas con amigos o en familias.
           </p>
         </div>

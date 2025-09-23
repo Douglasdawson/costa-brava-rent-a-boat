@@ -36,8 +36,8 @@ export default function Hero() {
             Alquiler de embarcaciones sin licencia y con licencia. Fácil, seguro y transparente.
           </p>
           <p className="text-sm sm:text-base md:text-lg text-white/80 mb-6 sm:mb-8 max-w-2xl mx-auto px-4">
-            La mayor flota de alquiler en Blanes con horarios flexibles. Salidas desde el Puerto de Blanes.<br />
-            Añade snorkel, paddle surf, nevera y parking en el puerto, frente al barco
+            Mayor flota de alquiler en Blanes con horarios flexibles.<br />
+            Salidas desde Puerto de Blanes. Snorkel, paddle surf y parking.
           </p>
         </div>
 

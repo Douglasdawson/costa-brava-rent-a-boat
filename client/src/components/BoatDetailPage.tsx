@@ -192,87 +192,90 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                 )}
               </CardContent>
             </Card>
-
-            {/* Technical Specifications */}
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center">
-                  <NavigationIcon className="w-5 h-5 mr-2" />
-                  Especificaciones Técnicas
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="grid grid-cols-1 gap-4">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center">
-                      <Anchor className="w-4 h-4 mr-2 text-blue-600" />
-                      <span className="font-medium">Modelo:</span>
-                    </div>
-                    <span>{boatData.specifications.model}</span>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center">
-                      <ArrowUpDown className="w-4 h-4 mr-2 text-blue-600" />
-                      <span className="font-medium">Eslora:</span>
-                    </div>
-                    <span>{boatData.specifications.length}</span>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center">
-                      <ArrowLeftRight className="w-4 h-4 mr-2 text-blue-600" />
-                      <span className="font-medium">Manga:</span>
-                    </div>
-                    <span>{boatData.specifications.beam}</span>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center">
-                      <Zap className="w-4 h-4 mr-2 text-blue-600" />
-                      <span className="font-medium">Motor:</span>
-                    </div>
-                    <span>{boatData.specifications.engine}</span>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center">
-                      <Fuel className="w-4 h-4 mr-2 text-blue-600" />
-                      <span className="font-medium">Combustible:</span>
-                    </div>
-                    <span>{boatData.specifications.fuel}</span>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center">
-                      <Users className="w-4 h-4 mr-2 text-blue-600" />
-                      <span className="font-medium">Capacidad:</span>
-                    </div>
-                    <span>{boatData.specifications.capacity}</span>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center">
-                      <Shield className="w-4 h-4 mr-2 text-blue-600" />
-                      <span className="font-medium">Fianza:</span>
-                    </div>
-                    <span>{boatData.specifications.deposit}</span>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Equipment */}
-            <Card>
-              <CardHeader>
-                <CardTitle>Equipamiento Incluido</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="grid grid-cols-1 gap-2">
-                  {boatData.equipment.map((item, index) => (
-                    <div key={index} className="flex items-center">
-                      <CheckCircle className="w-4 h-4 text-green-600 mr-2" />
-                      <span>{item}</span>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
           </div>
+        </div>
+
+        {/* Technical Specifications and Equipment - Full Width */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 mb-6 sm:mb-8">
+          {/* Technical Specifications */}
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center">
+                <NavigationIcon className="w-5 h-5 mr-2" />
+                Especificaciones Técnicas
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="grid grid-cols-1 gap-4">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center">
+                    <Anchor className="w-4 h-4 mr-2 text-blue-600" />
+                    <span className="font-medium">Modelo:</span>
+                  </div>
+                  <span>{boatData.specifications.model}</span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center">
+                    <ArrowUpDown className="w-4 h-4 mr-2 text-blue-600" />
+                    <span className="font-medium">Eslora:</span>
+                  </div>
+                  <span>{boatData.specifications.length}</span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center">
+                    <ArrowLeftRight className="w-4 h-4 mr-2 text-blue-600" />
+                    <span className="font-medium">Manga:</span>
+                  </div>
+                  <span>{boatData.specifications.beam}</span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center">
+                    <Zap className="w-4 h-4 mr-2 text-blue-600" />
+                    <span className="font-medium">Motor:</span>
+                  </div>
+                  <span>{boatData.specifications.engine}</span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center">
+                    <Fuel className="w-4 h-4 mr-2 text-blue-600" />
+                    <span className="font-medium">Combustible:</span>
+                  </div>
+                  <span>{boatData.specifications.fuel}</span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center">
+                    <Users className="w-4 h-4 mr-2 text-blue-600" />
+                    <span className="font-medium">Capacidad:</span>
+                  </div>
+                  <span>{boatData.specifications.capacity}</span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center">
+                    <Shield className="w-4 h-4 mr-2 text-blue-600" />
+                    <span className="font-medium">Fianza:</span>
+                  </div>
+                  <span>{boatData.specifications.deposit}</span>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Equipment */}
+          <Card>
+            <CardHeader>
+              <CardTitle>Equipamiento Incluido</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="grid grid-cols-1 gap-2">
+                {boatData.equipment.map((item, index) => (
+                  <div key={index} className="flex items-center">
+                    <CheckCircle className="w-4 h-4 text-green-600 mr-2" />
+                    <span>{item}</span>
+                  </div>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
         </div>
 
         {/* Pricing Section */}

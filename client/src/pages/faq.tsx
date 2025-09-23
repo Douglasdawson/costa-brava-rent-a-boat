@@ -84,9 +84,9 @@ export default function FAQPage() {
       </div>
 
       {/* Quick Info Cards */}
-      <div className="py-12 bg-white">
+      <div className="py-8 sm:py-12 bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-3 gap-6 mb-12">
+          <div className="grid md:grid-cols-3 gap-4 sm:gap-6 mb-8 sm:mb-12">
             <Card className="text-center hover-elevate">
               <CardContent className="p-6">
                 <MapPin className="w-8 h-8 text-primary mx-auto mb-3" />
@@ -113,11 +113,11 @@ export default function FAQPage() {
       </div>
 
       {/* FAQ Sections */}
-      <div className="py-16 bg-gray-50">
+      <div className="py-10 sm:py-16 bg-gray-50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           
           {/* Reservas y Precios */}
-          <Card className="mb-8">
+          <Card className="mb-6 sm:mb-8">
             <CardHeader>
               <CardTitle className="flex items-center gap-3 text-xl">
                 <Euro className="w-6 h-6 text-primary" />
@@ -198,7 +198,7 @@ export default function FAQPage() {
           </Card>
 
           {/* Licencias y Requisitos */}
-          <Card className="mb-8">
+          <Card className="mb-6 sm:mb-8">
             <CardHeader>
               <CardTitle className="flex items-center gap-3 text-xl">
                 <Shield className="w-6 h-6 text-primary" />
@@ -289,7 +289,7 @@ export default function FAQPage() {
           </Card>
 
           {/* Qué Incluye */}
-          <Card className="mb-8">
+          <Card className="mb-6 sm:mb-8">
             <CardHeader>
               <CardTitle className="flex items-center gap-3 text-xl">
                 <CheckCircle className="w-6 h-6 text-primary" />
@@ -391,7 +391,7 @@ export default function FAQPage() {
           </Card>
 
           {/* Navegación y Seguridad */}
-          <Card className="mb-8">
+          <Card className="mb-6 sm:mb-8">
             <CardHeader>
               <CardTitle className="flex items-center gap-3 text-xl">
                 <Waves className="w-6 h-6 text-primary" />
@@ -477,7 +477,7 @@ export default function FAQPage() {
           </Card>
 
           {/* Información Práctica */}
-          <Card className="mb-8">
+          <Card className="mb-6 sm:mb-8">
             <CardHeader>
               <CardTitle className="flex items-center gap-3 text-xl">
                 <Clock className="w-6 h-6 text-primary" />
@@ -573,7 +573,7 @@ export default function FAQPage() {
           </Card>
 
           {/* Temporada y Disponibilidad */}
-          <Card className="mb-8">
+          <Card className="mb-6 sm:mb-8">
             <CardHeader>
               <CardTitle className="flex items-center gap-3 text-xl">
                 <Sun className="w-6 h-6 text-primary" />

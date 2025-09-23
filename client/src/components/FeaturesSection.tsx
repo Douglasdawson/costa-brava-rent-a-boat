@@ -177,7 +177,15 @@ export default function FeaturesSection() {
             </div>
             <div className="flex items-center space-x-2">
               <CheckCircle className="w-5 h-5 text-green-600" />
-              <span className="font-medium">+500 clientes satisfechos</span>
+              <a 
+                href="https://www.google.com/maps/place/Costa+Brava+Rent+a+Boat+-+Blanes+%7C+Alquiler+de+Barcos+Con+y+Sin+Licencia/@41.6722544,2.7952876,17z/data=!3m1!4b1!4m6!3m5!1s0x12bb172c94a8856f:0x9a2dfa936ef2e0a7!8m2!3d41.6722504!4d2.7978625!16s%2Fg%2F11q2xl6s9f?entry=ttu&g_ep=EgoyMDI1MDkxNy4wIKXMDSoASAFQAw%3D%3D"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-medium hover:text-primary transition-colors cursor-pointer"
+                data-testid="satisfied-clients-link"
+              >
+                +500 clientes satisfechos
+              </a>
             </div>
             <div className="flex items-center space-x-2">
               <Shield className="w-5 h-5 text-blue-600" />

@@ -136,7 +136,7 @@ export default function FleetSection() {
               className="border border-gray-300 hover:border-gray-400 text-gray-700 px-4 sm:px-6 py-3 rounded-lg font-medium transition-colors text-sm sm:text-base"
               data-testid="button-call-help"
             >
-              📞 <span className="ml-1 hidden sm:inline">Llama al </span><span className="ml-1">+34 611 500 372</span>
+              📞 <span className="ml-1">Llama al +34 611 500 372</span>
             </button>
           </div>
         </div>

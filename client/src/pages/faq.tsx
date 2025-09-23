@@ -545,7 +545,7 @@ export default function FAQPage() {
                         <li><strong>Parking gratuito:</strong> 20/30 min andando</li>
                         <li><strong>Temporada alta:</strong> Recomendamos reservar plaza</li>
                       </ul>
-                      <p className="text-sm text-gray-600">Te enviamos ubicaciones exactas con la confirmación.</p>
+                      <p className="text-sm text-gray-600">Te enviamos ubicaciones exactas con la confirmación de la reserva.</p>
                     </div>
                   </AccordionContent>
                 </AccordionItem>

@@ -137,7 +137,7 @@ export default function Hero() {
             <Button 
               variant="outline" 
               onClick={handleWhatsApp}
-              className="bg-white/90 backdrop-blur border-white/50 hover:bg-white w-full sm:w-auto text-sm sm:text-base"
+              className="bg-white/90 backdrop-blur border-white/50 hover:bg-green-500 hover:text-white hover:border-green-500 w-full sm:w-auto text-sm sm:text-base transition-all duration-200"
               data-testid="button-whatsapp-contact"
             >
               <Phone className="w-4 h-4 mr-2" />
@@ -148,7 +148,7 @@ export default function Hero() {
             <Button 
               variant="outline" 
               onClick={() => window.open("https://www.google.com/maps/place/Costa+Brava+Rent+a+Boat+-+Blanes+%7C+Alquiler+de+Barcos+Con+y+Sin+Licencia/@41.6722544,2.7952876,17z/data=!3m1!4b1!4m6!3m5!1s0x12bb172c94a8856f:0x9a2dfa936ef2e0a7!8m2!3d41.6722504!4d2.7978625!16s%2Fg%2F11q2xl6s9f?entry=ttu&g_ep=EgoyMDI1MDkxNy4wIKXMDSoASAFQAw%3D%3D", "_blank")}
-              className="bg-white/90 backdrop-blur border-white/50 hover:bg-white w-full sm:w-auto text-sm sm:text-base"
+              className="bg-white/90 backdrop-blur border-white/50 hover:bg-blue-400 hover:text-white hover:border-blue-400 w-full sm:w-auto text-sm sm:text-base transition-all duration-200"
               data-testid="button-location-maps"
             >
               <MapPin className="w-4 h-4 mr-2" />

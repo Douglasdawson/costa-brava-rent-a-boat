@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Calendar, Clock, Users, Plus, Minus, Euro, CreditCard, Anchor } from "lucide-react";
+import { Calendar, Clock, Users, Plus, Minus, Euro, CreditCard, Anchor, Gauge } from "lucide-react";
 import { BOAT_DATA } from "@shared/boatData";
 
 interface BookingFlowProps {
@@ -389,13 +389,16 @@ export default function BookingFlow({ boatId = "astec-450", onClose }: BookingFl
                         />
                         <div>
                           <h3 className="font-semibold text-gray-900">{boat.name}</h3>
+                          <p className="text-xs font-medium text-primary" data-testid={`text-license-${boat.id}`}>
+                            {/\bcon licencia\b/i.test(boat.subtitle) ? "Con Licencia" : "Sin Licencia"}
+                          </p>
                           <p className="text-sm text-gray-600">{boat.subtitle}</p>
                         </div>
                       </div>
                       <div className="grid grid-cols-2 gap-2 text-xs text-gray-600">
                         <div>👥 {boat.specifications.capacity}</div>
                         <div>📏 {boat.specifications.length}</div>
-                        <div>⛽ {boat.specifications.engine}</div>
+                        <div className="flex items-center"><Gauge className="w-3 h-3 mr-1" />{boat.specifications.engine}</div>
                         <div>💰 Desde {Math.min(...Object.values(boat.pricing.BAJA.prices))}€</div>
                       </div>
                     </div>

@@ -142,6 +142,34 @@ export interface Translations {
     customerData: string;
     continueToPayment: string;
     stripePaymentSecure: string;
+    // New booking translations
+    extrasDetails: {
+      parking: { name: string; description: string };
+      cooler: { name: string; description: string };
+      snorkel: { name: string; description: string };
+      paddle: { name: string; description: string };
+      seascooter: { name: string; description: string };
+    };
+    summaryTitle: string;
+    summaryDate: string;
+    summarySchedule: string;
+    summaryBoat: string;
+    summaryBasePrice: string;
+    summaryTotal: string;
+    close: string;
+    pay: string;
+    error: string;
+    missingFields: string;
+    missingPersonalData: string;
+    boatNotFound: string;
+    bookingError: string;
+    paymentError: string;
+    noPaymentSession: string;
+    bookingCreated: string;
+    redirectingPayment: string;
+    acceptTerms: string;
+    termsAndConditions: string;
+    privacyPolicy: string;
   };
   
   // FAQ Page
@@ -363,6 +391,39 @@ export const translations: Record<Language, Translations> = {
       customerData: 'Datos del cliente',
       continueToPayment: 'Continuar al pago',
       stripePaymentSecure: 'Pago seguro procesado por Stripe. Se aplicará una retención temporal de 15 minutos.',
+      // Extras details
+      extrasDetails: {
+        parking: { name: 'Parking dentro del puerto', description: 'Parking dentro del puerto y delante del barco' },
+        cooler: { name: 'Nevera', description: 'Nevera para mantener bebidas frías' },
+        snorkel: { name: 'Equipo snorkel', description: 'Equipo completo de snorkel' },
+        paddle: { name: 'Tabla de paddlesurf', description: 'Tabla de paddle surf' },
+        seascooter: { name: 'Seascooter', description: 'Scooter acuático' }
+      },
+      // Summary
+      summaryTitle: 'Resumen de la reserva',
+      summaryDate: 'Fecha:',
+      summarySchedule: 'Horario:',
+      summaryBoat: 'Embarcación:',
+      summaryBasePrice: 'Precio base:',
+      summaryTotal: 'Total:',
+      // Navigation & Actions  
+      close: 'Cerrar',
+      pay: 'Pagar',
+      // Errors
+      error: 'Error',
+      missingFields: 'Por favor completa todos los campos requeridos.',
+      missingPersonalData: 'Por favor completa todos los datos personales requeridos.',
+      boatNotFound: 'Barco no encontrado',
+      bookingError: 'Error al crear la reserva',
+      paymentError: 'Error al procesar el pago',
+      noPaymentSession: 'No se pudo crear la sesión de pago',
+      // Success
+      bookingCreated: 'Reserva creada',
+      redirectingPayment: 'Redirigiendo a la pasarela de pago segura...',
+      // Terms
+      acceptTerms: 'Acepto los términos y condiciones y la política de privacidad',
+      termsAndConditions: 'términos y condiciones',
+      privacyPolicy: 'política de privacidad',
     },
     faq: {
       title: 'Preguntas Frecuentes',

@@ -63,11 +63,11 @@ export default function BookingFlow({ boatId = "astec-450", onClose }: BookingFl
   const timeSlots = generateTimeSlots();
 
   const availableExtras = [
-    { id: "parking", name: "Parking dentro del puerto", price: 10, description: "Parking dentro del puerto y delante del barco" },
-    { id: "cooler", name: "Nevera", price: 5, description: "Nevera para mantener bebidas frías" },
-    { id: "snorkel", name: "Equipo snorkel", price: 5, description: "Equipo completo de snorkel" },
-    { id: "paddle", name: "Tabla de paddlesurf", price: 25, description: "Tabla de paddle surf" },
-    { id: "seascooter", name: "Seascooter", price: 50, description: "Scooter acuático" }
+    { id: "parking", name: t.booking.extrasDetails.parking.name, price: 10, description: t.booking.extrasDetails.parking.description },
+    { id: "cooler", name: t.booking.extrasDetails.cooler.name, price: 5, description: t.booking.extrasDetails.cooler.description },
+    { id: "snorkel", name: t.booking.extrasDetails.snorkel.name, price: 5, description: t.booking.extrasDetails.snorkel.description },
+    { id: "paddle", name: t.booking.extrasDetails.paddle.name, price: 25, description: t.booking.extrasDetails.paddle.description },
+    { id: "seascooter", name: t.booking.extrasDetails.seascooter.name, price: 50, description: t.booking.extrasDetails.seascooter.description }
   ];
 
   const phoneCountries = [
@@ -349,12 +349,12 @@ export default function BookingFlow({ boatId = "astec-450", onClose }: BookingFl
   }, [selectedBoat, maxCapacity, customerData.numberOfPeople]);
 
   const durations = [
-    { id: "1h", label: "1 hora", price: 70 },
-    { id: "2h", label: "2 horas", price: 80 },
-    { id: "3h", label: "3 horas", price: 90 },
-    { id: "4h", label: "4 horas", price: 120 },
-    { id: "6h", label: "6 horas", price: 150 },
-    { id: "8h", label: "8 horas", price: 180 }
+    { id: "1h", label: t.booking.oneHour, price: 70 },
+    { id: "2h", label: t.booking.twoHours, price: 80 },
+    { id: "3h", label: t.booking.threeHours, price: 90 },
+    { id: "4h", label: t.booking.fourHours, price: 120 },
+    { id: "6h", label: t.booking.sixHours, price: 150 },
+    { id: "8h", label: t.booking.eightHours, price: 180 }
   ];
 
   // Filter available durations based on selected start time (max return time 19:00)
@@ -417,8 +417,8 @@ export default function BookingFlow({ boatId = "astec-450", onClose }: BookingFl
   const handlePayment = async () => {
     if (!selectedDate || !selectedTime || !selectedBoat) {
       toast({
-        title: "Error",
-        description: "Por favor completa todos los campos requeridos.",
+        title: t.booking.error,
+        description: t.booking.missingFields,
         variant: "destructive",
       });
       return;
@@ -426,8 +426,8 @@ export default function BookingFlow({ boatId = "astec-450", onClose }: BookingFl
 
     if (!customerData.customerName || !customerData.customerSurname || !customerData.customerPhone || !customerData.customerNationality) {
       toast({
-        title: "Error", 
-        description: "Por favor completa todos los datos personales requeridos.",
+        title: t.booking.error, 
+        description: t.booking.missingPersonalData,
         variant: "destructive",
       });
       return;
@@ -498,8 +498,8 @@ export default function BookingFlow({ boatId = "astec-450", onClose }: BookingFl
 
       // Create Stripe checkout session and redirect to payment
       toast({
-        title: "Reserva creada",
-        description: "Redirigiendo a la pasarela de pago segura...",
+        title: t.booking.bookingCreated,
+        description: t.booking.redirectingPayment,
       });
 
       // Create Stripe Checkout Session
@@ -965,7 +965,7 @@ export default function BookingFlow({ boatId = "astec-450", onClose }: BookingFl
                 className="w-full py-3"
                 data-testid="button-continue-payment"
               >
-                Continuar al pago
+                {t.booking.continueToPayment}
               </Button>
             </CardContent>
           </Card>
@@ -982,23 +982,23 @@ export default function BookingFlow({ boatId = "astec-450", onClose }: BookingFl
             </CardHeader>
             <CardContent>
               <div className="bg-gray-50 p-4 rounded-lg mb-6">
-                <h3 className="font-medium text-gray-900 mb-3">Resumen de la reserva</h3>
+                <h3 className="font-medium text-gray-900 mb-3">{t.booking.summaryTitle}</h3>
                 <div className="space-y-2 text-sm">
                   <div className="flex justify-between">
-                    <span>Fecha:</span>
+                    <span>{t.booking.summaryDate}</span>
                     <span className="font-medium">{selectedDate}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span>Horario:</span>
+                    <span>{t.booking.summarySchedule}</span>
                     <span className="font-medium">{selectedTime} ({duration})</span>
                   </div>
                   <div className="flex justify-between">
-                    <span>Embarcación:</span>
+                    <span>{t.booking.summaryBoat}</span>
                     <span className="font-medium">{BOAT_DATA[selectedBoat]?.name || 'N/A'}</span>
                   </div>
                   <hr className="my-2" />
                   <div className="flex justify-between">
-                    <span>Precio base:</span>
+                    <span>{t.booking.summaryBasePrice}</span>
                     <span>{durations.find(d => d.id === duration)?.price}€</span>
                   </div>
                   {Object.entries(extras).map(([id, quantity]) => {
@@ -1013,7 +1013,7 @@ export default function BookingFlow({ boatId = "astec-450", onClose }: BookingFl
                   })}
                   <hr className="my-2" />
                   <div className="flex justify-between font-bold text-base">
-                    <span>Total:</span>
+                    <span>{t.booking.summaryTotal}</span>
                     <span className="flex items-center">
                       <Euro className="w-4 h-4 mr-1" />
                       {calculateTotal()}
@@ -1026,7 +1026,7 @@ export default function BookingFlow({ boatId = "astec-450", onClose }: BookingFl
                 <div className="flex items-center space-x-2 text-sm text-gray-600">
                   <input type="checkbox" id="terms" className="rounded" />
                   <label htmlFor="terms">
-                    Acepto los <a href="#" className="text-primary hover:underline">términos y condiciones</a> y la <a href="#" className="text-primary hover:underline">política de privacidad</a>
+                    Acepto los <a href="#" className="text-primary hover:underline">{t.booking.termsAndConditions}</a> y la <a href="#" className="text-primary hover:underline">{t.booking.privacyPolicy}</a>
                   </label>
                 </div>
 
@@ -1036,7 +1036,7 @@ export default function BookingFlow({ boatId = "astec-450", onClose }: BookingFl
                   data-testid="button-pay-now"
                 >
                   <CreditCard className="w-5 h-5 mr-2" />
-                  Pagar {calculateTotal()}€
+                  {t.booking.pay} {calculateTotal()}€
                 </Button>
 
                 <p className="text-xs text-gray-500 text-center">
@@ -1055,7 +1055,7 @@ export default function BookingFlow({ boatId = "astec-450", onClose }: BookingFl
               onClick={() => setStep(step - 1)}
               data-testid="button-back-step"
             >
-              Atrás
+              {t.booking.back}
             </Button>
           </div>
         )}
@@ -1067,7 +1067,7 @@ export default function BookingFlow({ boatId = "astec-450", onClose }: BookingFl
               onClick={onClose}
               data-testid="button-close-booking"
             >
-              Cerrar
+              {t.booking.close}
             </Button>
           </div>
         )}

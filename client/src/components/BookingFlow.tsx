@@ -10,6 +10,7 @@ import { useQuery } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
 import { loadStripe } from "@stripe/stripe-js";
+import { useTranslations } from "@/lib/translations";
 
 interface BookingFlowProps {
   boatId?: string;
@@ -38,6 +39,7 @@ export default function BookingFlow({ boatId = "astec-450", onClose }: BookingFl
   const [nationalitySearch, setNationalitySearch] = useState("");
   const [showNationalityDropdown, setShowNationalityDropdown] = useState(false);
   const { toast } = useToast();
+  const t = useTranslations();
 
   // Fetch boats from API
   const { data: boats = [] } = useQuery({
@@ -567,7 +569,7 @@ export default function BookingFlow({ boatId = "astec-450", onClose }: BookingFl
             <CardHeader>
               <CardTitle className="flex items-center">
                 <Calendar className="w-5 h-5 mr-2" />
-                Selecciona la fecha
+{t.booking.selectDate}
               </CardTitle>
             </CardHeader>
             <CardContent>

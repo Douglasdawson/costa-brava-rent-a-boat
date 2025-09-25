@@ -136,6 +136,12 @@ export interface Translations {
     fourHours: string;
     sixHours: string;
     eightHours: string;
+    selectDate: string;
+    selectYourBoat: string;
+    continue: string;
+    customerData: string;
+    continueToPayment: string;
+    stripePaymentSecure: string;
   };
   
   // FAQ Page
@@ -330,6 +336,33 @@ export const translations: Record<Language, Translations> = {
       next: 'Siguiente',
       back: 'Atrás',
       complete: 'Completar',
+      // Validation messages  
+      dateRequired: 'Fecha requerida',
+      dateRequiredDesc: 'Por favor selecciona una fecha',
+      boatRequired: 'Embarcación requerida', 
+      boatRequiredDesc: 'Por favor selecciona una embarcación',
+      durationRequired: 'Duración requerida',
+      durationRequiredDesc: 'Por favor selecciona la duración',
+      connectionError: 'Error de conexión',
+      connectionErrorDesc: 'No se pudo conectar al servidor',
+      // Form elements
+      verifying: 'Verificando disponibilidad...',
+      verifyingShort: 'Verificando...',
+      searchAvailability: 'Buscar Disponibilidad',
+      searchShort: 'Buscar',
+      selectDuration: 'Seleccionar duración',
+      oneHour: '1 hora',
+      twoHours: '2 horas',
+      threeHours: '3 horas',
+      fourHours: '4 horas - Media día',
+      sixHours: '6 horas',
+      eightHours: '8 horas - Día completo',
+      selectDate: 'Selecciona la fecha',
+      selectYourBoat: 'Selecciona tu embarcación',
+      continue: 'Continuar',
+      customerData: 'Datos del cliente',
+      continueToPayment: 'Continuar al pago',
+      stripePaymentSecure: 'Pago seguro procesado por Stripe. Se aplicará una retención temporal de 15 minutos.',
     },
     faq: {
       title: 'Preguntas Frecuentes',
@@ -703,6 +736,12 @@ export const translations: Record<Language, Translations> = {
       eightHours: '8 hours - Full day',
       searchAvailability: 'Check Availability',
       searchShort: 'Check',
+      selectDate: 'Select the date',
+      selectYourBoat: 'Select your boat',
+      continue: 'Continue',
+      customerData: 'Customer Data',
+      continueToPayment: 'Continue to Payment',
+      stripePaymentSecure: 'Secure payment processed by Stripe. A temporary 15-minute hold will be applied.',
     },
     faq: {
       title: 'Frequently Asked Questions',

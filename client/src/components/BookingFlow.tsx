@@ -578,7 +578,7 @@ export default function BookingFlow({ boatId = "astec-450", onClose }: BookingFl
                 value={selectedDate}
                 onChange={(e) => setSelectedDate(e.target.value)}
                 min={new Date().toISOString().split('T')[0]}
-                className="w-full p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary text-lg"
+                className="w-full p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary text-lg text-left"
                 data-testid="input-booking-date"
               />
               <div className="mt-6">

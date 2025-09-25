@@ -11,7 +11,17 @@ import { apiRequest } from "@/lib/queryClient";
 import heroImage from "../assets/generated_images/Mediterranean_coastal_hero_scene_8df465c2.png";
 
 export default function Hero() {
-  const [selectedDate, setSelectedDate] = useState<string>("");
+  // Helper function to get local date in YYYY-MM-DD format
+  const getLocalISODate = () => {
+    const d = new Date();
+    const y = d.getFullYear();
+    const m = String(d.getMonth() + 1).padStart(2, '0');
+    const day = String(d.getDate()).padStart(2, '0');
+    return `${y}-${m}-${day}`;
+  };
+  
+  // Initialize with today's local date using lazy initialization
+  const [selectedDate, setSelectedDate] = useState(() => getLocalISODate());
   const [selectedBoat, setSelectedBoat] = useState<string>("");
   const [selectedDuration, setSelectedDuration] = useState<string>("");
   const [isSearching, setIsSearching] = useState(false);
@@ -156,7 +166,7 @@ export default function Hero() {
                   type="date"
                   value={selectedDate}
                   onChange={(e) => setSelectedDate(e.target.value)}
-                  min={new Date().toISOString().split('T')[0]}
+                  min={getLocalISODate()}
                   className="w-full p-2 sm:p-2.5 border-0 bg-gray-50 rounded-md focus:ring-2 focus:ring-primary focus:bg-white transition-all text-gray-900 font-medium text-xs sm:text-sm"
                   data-testid="input-booking-date"
                 />

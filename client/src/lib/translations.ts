@@ -306,7 +306,7 @@ export const translations: Record<Language, Translations> = {
       title: 'Por qué elegir Costa Brava Rent a Boat',
       subtitle: 'Todo lo que necesitas para una experiencia perfecta en el mar',
       withoutLicense: {
-        title: 'Barcos sin Licencia',
+        title: 'Barcos Con y Sin Licencia',
         description: 'Perfectos para principiantes. Fáciles de manejar y seguros.',
       },
       withLicense: {

@@ -32,6 +32,10 @@ export default function BookingFlow({ boatId = "astec-450", onClose }: BookingFl
     numberOfPeople: 1
   });
   const [isLoading, setIsLoading] = useState(false);
+  const [phonePrefixSearch, setPhonePrefixSearch] = useState("");
+  const [showPhonePrefixDropdown, setShowPhonePrefixDropdown] = useState(false);
+  const [nationalitySearch, setNationalitySearch] = useState("");
+  const [showNationalityDropdown, setShowNationalityDropdown] = useState(false);
   const { toast } = useToast();
 
   // Fetch boats from API
@@ -270,6 +274,38 @@ export default function BookingFlow({ boatId = "astec-450", onClose }: BookingFl
     { code: "+996", country: "Kirguistán" },
     { code: "+998", country: "Uzbekistán" }
   ];
+
+  const nationalities = [
+    "Afgana", "Albanesa", "Alemana", "Andorrana", "Angoleña", "Argentina", "Armenia", "Australiana", "Austríaca",
+    "Azerbaiyana", "Bahameña", "Bangladesí", "Barbadense", "Bareiní", "Belga", "Beliceña", "Beninesa", "Bielorrusa",
+    "Boliviana", "Bosnia", "Botsuanesa", "Brasileña", "Británica", "Bruneana", "Búlgara", "Burkinesa", "Burundesa",
+    "Caboverdiana", "Camboyana", "Camerunesa", "Canadiense", "Catarí", "Chadiana", "Checa", "Chilena", "China", "Chipriota",
+    "Colombiana", "Comorense", "Congoleña", "Coreana", "Costarricense", "Croata", "Cubana", "Danesa", "Dominicana", "Ecuatoriana",
+    "Egipcia", "Salvadoreña", "Emiratí", "Eritrea", "Escocesa", "Eslovaca", "Eslovena", "Española", "Estadounidense", "Estonia",
+    "Etíope", "Filipina", "Finlandesa", "Fiyiana", "Francesa", "Gabonesa", "Gambiana", "Georgiana", "Ghanesa", "Granadina",
+    "Griega", "Guatemalteca", "Guineana", "Guyanesa", "Haitiana", "Hondureña", "Húngara", "India", "Indonesia", "Iraní",
+    "Iraquí", "Irlandesa", "Islandesa", "Israelí", "Italiana", "Jamaicana", "Japonesa", "Jordana", "Kazaja", "Keniana",
+    "Kirguisa", "Kuwaití", "Laosiana", "Lesothense", "Letona", "Libanesa", "Liberiana", "Libia", "Liechtensteiniana",
+    "Lituana", "Luxemburguesa", "Macedónica", "Madagascarense", "Malasia", "Malauí", "Maldiva", "Maliense", "Maltesa", "Marroquí",
+    "Marshallesa", "Mauriciana", "Mauritana", "Mexicana", "Moldava", "Monegasca", "Mongola", "Montenegrina", "Mozambiqueña",
+    "Namibia", "Nauruana", "Nepalesa", "Nicaragüense", "Nigerina", "Nigeriana", "Norcoreana", "Noruega", "Neozelandesa", "Omaní",
+    "Pakistaní", "Palauana", "Palestina", "Panameña", "Paraguaya", "Peruana", "Polaca", "Portuguesa", "Puertorriqueña",
+    "Rumana", "Rusa", "Ruandesa", "Salomonense", "Salvadoreña", "Samoana", "Sanmarinense", "Santotomense", "Saudí", "Senegalesa",
+    "Serbia", "Seychellense", "Sierraleonesa", "Singapurense", "Siria", "Somalí", "Srilanquesa", "Suaza", "Sudafricana", "Sudanesa",
+    "Sueca", "Suiza", "Surinamesa", "Tailandesa", "Tanzana", "Tayika", "Timorense", "Togolesa", "Tongana", "Trinitense",
+    "Tunecina", "Turca", "Turcomena", "Tuvaluana", "Ucraniana", "Ugandesa", "Uruguaya", "Uzbeka", "Vanuatuense", "Vaticana",
+    "Venezolana", "Vietnamita", "Yemení", "Yibutiana", "Zambiana", "Zimbabuense"
+  ];
+
+  // Filter functions for search
+  const filteredPhoneCountries = phoneCountries.filter(country =>
+    country.country.toLowerCase().includes(phonePrefixSearch.toLowerCase()) ||
+    country.code.includes(phonePrefixSearch)
+  );
+
+  const filteredNationalities = nationalities.filter(nationality =>
+    nationality.toLowerCase().includes(nationalitySearch.toLowerCase())
+  );
 
   // Use boats from API instead of static data
   const availableBoats = boats.length > 0 ? boats : Object.values(BOAT_DATA);
@@ -747,18 +783,39 @@ export default function BookingFlow({ boatId = "astec-450", onClose }: BookingFl
                     Teléfono *
                   </label>
                   <div className="flex gap-2">
-                    <Select value={customerData.phonePrefix} onValueChange={(value) => setCustomerData(prev => ({...prev, phonePrefix: value}))}>
-                      <SelectTrigger className="w-32">
-                        <SelectValue />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {phoneCountries.map((country) => (
-                          <SelectItem key={country.code} value={country.code}>
-                            {country.code} {country.country}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
+                    <div className="relative w-32">
+                      <input
+                        type="text"
+                        value={phonePrefixSearch || customerData.phonePrefix}
+                        onChange={(e) => {
+                          setPhonePrefixSearch(e.target.value);
+                          setShowPhonePrefixDropdown(true);
+                        }}
+                        onFocus={() => setShowPhonePrefixDropdown(true)}
+                        placeholder="Buscar país"
+                        className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary text-sm"
+                        data-testid="input-phone-prefix-search"
+                      />
+                      {showPhonePrefixDropdown && filteredPhoneCountries.length > 0 && (
+                        <div className="absolute z-10 w-64 max-h-48 overflow-y-auto bg-white border border-gray-300 rounded-lg shadow-lg mt-1">
+                          {filteredPhoneCountries.slice(0, 8).map((country) => (
+                            <button
+                              key={country.code}
+                              type="button"
+                              onClick={() => {
+                                setCustomerData(prev => ({...prev, phonePrefix: country.code}));
+                                setPhonePrefixSearch("");
+                                setShowPhonePrefixDropdown(false);
+                              }}
+                              className="w-full text-left px-3 py-2 hover:bg-gray-50 focus:bg-gray-50 text-sm border-b last:border-b-0"
+                              data-testid={`option-prefix-${country.code}`}
+                            >
+                              <span className="font-mono">{country.code}</span> {country.country}
+                            </button>
+                          ))}
+                        </div>
+                      )}
+                    </div>
                     <input
                       type="tel"
                       value={customerData.customerPhone}
@@ -774,14 +831,39 @@ export default function BookingFlow({ boatId = "astec-450", onClose }: BookingFl
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       Nacionalidad *
                     </label>
-                    <input
-                      type="text"
-                      value={customerData.customerNationality}
-                      onChange={(e) => setCustomerData(prev => ({...prev, customerNationality: e.target.value}))}
-                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
-                      placeholder="Española"
-                      data-testid="input-customer-nationality"
-                    />
+                    <div className="relative">
+                      <input
+                        type="text"
+                        value={nationalitySearch || customerData.customerNationality}
+                        onChange={(e) => {
+                          setNationalitySearch(e.target.value);
+                          setShowNationalityDropdown(true);
+                        }}
+                        onFocus={() => setShowNationalityDropdown(true)}
+                        placeholder="Buscar nacionalidad"
+                        className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
+                        data-testid="input-nationality-search"
+                      />
+                      {showNationalityDropdown && filteredNationalities.length > 0 && (
+                        <div className="absolute z-10 w-full max-h-48 overflow-y-auto bg-white border border-gray-300 rounded-lg shadow-lg mt-1">
+                          {filteredNationalities.slice(0, 10).map((nationality) => (
+                            <button
+                              key={nationality}
+                              type="button"
+                              onClick={() => {
+                                setCustomerData(prev => ({...prev, customerNationality: nationality}));
+                                setNationalitySearch("");
+                                setShowNationalityDropdown(false);
+                              }}
+                              className="w-full text-left px-3 py-2 hover:bg-gray-50 focus:bg-gray-50 border-b last:border-b-0"
+                              data-testid={`option-nationality-${nationality.toLowerCase()}`}
+                            >
+                              {nationality}
+                            </button>
+                          ))}
+                        </div>
+                      )}
+                    </div>
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">

@@ -4,15 +4,107 @@ import { Card } from "@/components/ui/card";
 import { Calendar, Anchor, Clock, MapPin, Phone } from "lucide-react";
 import { openWhatsApp } from "@/utils/whatsapp";
 import { BUSINESS_LOCATION } from "@/lib/config";
+import { useToast } from "@/hooks/use-toast";
+import { useLocation } from "wouter";
+import { apiRequest } from "@/lib/queryClient";
 import heroImage from "@assets/generated_images/Mediterranean_coastal_hero_scene_8df465c2.png";
 
 export default function Hero() {
   const [selectedDate, setSelectedDate] = useState<string>("");
   const [selectedBoat, setSelectedBoat] = useState<string>("");
   const [selectedDuration, setSelectedDuration] = useState<string>("");
+  const [isSearching, setIsSearching] = useState(false);
+  
+  const { toast } = useToast();
+  const [, setLocation] = useLocation();
 
-  const handleBookingSearch = () => {
-    console.log("Booking search triggered", { selectedDate, selectedBoat, selectedDuration });
+  const handleBookingSearch = async () => {
+    // Validate all fields are selected
+    if (!selectedDate) {
+      toast({
+        title: "Fecha requerida",
+        description: "Por favor selecciona una fecha para tu alquiler",
+        variant: "destructive",
+      });
+      return;
+    }
+    
+    if (!selectedBoat) {
+      toast({
+        title: "Embarcación requerida", 
+        description: "Por favor selecciona una embarcación",
+        variant: "destructive",
+      });
+      return;
+    }
+    
+    if (!selectedDuration) {
+      toast({
+        title: "Duración requerida",
+        description: "Por favor selecciona la duración del alquiler",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    setIsSearching(true);
+
+    try {
+      // Convert duration to hours
+      const hours = parseInt(selectedDuration.replace('h', ''));
+      
+      // Create start time at 10:00 AM (can be adjusted based on business hours)
+      const selectedDateObj = new Date(selectedDate);
+      const startTime = new Date(selectedDateObj);
+      startTime.setHours(10, 0, 0, 0); // 10:00 AM
+      
+      const endTime = new Date(startTime);
+      endTime.setHours(startTime.getHours() + hours);
+
+      // Check availability
+      const response = await apiRequest(
+        "POST",
+        `/api/boats/${selectedBoat}/check-availability`,
+        {
+          startTime: startTime.toISOString(),
+          endTime: endTime.toISOString(),
+        }
+      );
+
+      const data = await response.json();
+
+      if (data.available) {
+        // Navigate to booking page with pre-selected parameters
+        const searchParams = new URLSearchParams({
+          boat: selectedBoat,
+          date: selectedDate,
+          duration: selectedDuration,
+          time: "10:00"
+        });
+        
+        toast({
+          title: "¡Barco disponible!",
+          description: "Te redirigimos a completar tu reserva",
+        });
+        
+        setLocation(`/booking?${searchParams.toString()}`);
+      } else {
+        toast({
+          title: "No disponible",
+          description: `El barco ${selectedBoat} no está disponible el ${selectedDate} para ${selectedDuration}. Prueba con otra fecha o duración.`,
+          variant: "destructive",
+        });
+      }
+    } catch (error: any) {
+      console.error("Error checking availability:", error);
+      toast({
+        title: "Error de conexión",
+        description: "No pudimos verificar la disponibilidad. Por favor intenta nuevamente o contacta por WhatsApp.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSearching(false);
+    }
   };
 
   const handleWhatsApp = () => {
@@ -123,10 +215,15 @@ export default function Hero() {
           <div>
             <Button 
               onClick={handleBookingSearch}
-              className="w-full bg-primary hover:bg-primary/90 text-white font-bold py-2.5 sm:py-3 px-4 sm:px-8 rounded-lg shadow-lg hover:shadow-xl transition-all duration-200 text-sm sm:text-base"
+              disabled={isSearching}
+              className="w-full bg-primary hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed text-white font-bold py-2.5 sm:py-3 px-4 sm:px-8 rounded-lg shadow-lg hover:shadow-xl transition-all duration-200 text-sm sm:text-base"
               data-testid="button-search-availability"
             >
-              🚤 <span className="hidden sm:inline">Buscar Disponibilidad</span><span className="sm:hidden">Buscar</span>
+              {isSearching ? (
+                <>⏳ <span className="hidden sm:inline">Verificando...</span><span className="sm:hidden">Verificando...</span></>
+              ) : (
+                <>🚤 <span className="hidden sm:inline">Buscar Disponibilidad</span><span className="sm:hidden">Buscar</span></>
+              )}
             </Button>
             <p className="text-xs text-gray-500 mt-3 sm:mt-4 lg:mt-6 text-center">
               Sin compromiso • Confirmación inmediata • Precios transparentes

@@ -54,8 +54,18 @@ export default function Navigation() {
       // Navigate to booking page
       setLocation("/booking");
     } else if (href === "#faq") {
-      // Navigate to FAQ page
-      setLocation("/faq");
+      // Navigate to FAQ page or scroll to top if already on FAQ page
+      const currentPath = window.location.pathname;
+      if (currentPath === "/faq") {
+        // Already on FAQ page, scroll to top
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth"
+        });
+      } else {
+        // Navigate to FAQ page
+        setLocation("/faq");
+      }
     } else if (href.startsWith("#")) {
       // For anchor links, first navigate to homepage if not already there
       const sectionId = href.substring(1);

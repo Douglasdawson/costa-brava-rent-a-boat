@@ -356,8 +356,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Initialize boats data - temporary endpoint for setup - now protected
   app.post("/api/admin/init-boats", requireAdminAuth, async (req, res) => {
     try {
-      // Import BOAT_DATA from shared file
-      const { BOAT_DATA } = await import("@shared/boatData");
+      // Import SERVER_BOAT_DATA from server-specific file (no PNG imports)
+      const { SERVER_BOAT_DATA } = await import("./boatData");
       
       const boatsToCreate = [
         {

@@ -2,6 +2,7 @@ import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Users, Clock, Star, Euro, CheckCircle, AlertCircle } from "lucide-react";
+import { useTranslations } from "@/lib/translations";
 
 interface BoatCardProps {
   id: string;
@@ -34,6 +35,7 @@ export default function BoatCard({
   onBooking,
   onDetails
 }: BoatCardProps) {
+  const t = useTranslations();
 
   const handleBooking = () => {
     console.log(`Booking initiated for boat ${id}`);
@@ -67,20 +69,20 @@ export default function BoatCard({
         {/* Hover overlay */}
         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-200 flex items-center justify-center">
           <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-sm font-medium text-gray-800">
-            Ver detalles
+            {t.boats.viewDetails}
           </div>
         </div>
         <div className="absolute top-3 left-3">
           <Badge variant={requiresLicense ? "default" : "secondary"}>
-            {requiresLicense ? "Con licencia" : "Sin licencia"}
+            {requiresLicense ? t.boats.withLicense : t.boats.withoutLicense}
           </Badge>
         </div>
         <div className="absolute top-3 right-3">
           <Badge variant={available ? "default" : "secondary"} className="bg-white/90 text-gray-800">
             {available ? (
-              <><CheckCircle className="w-3 h-3 mr-1 text-green-600" /> Disponible</>
+              <><CheckCircle className="w-3 h-3 mr-1 text-green-600" /> {t.boats.available}</>
             ) : (
-              <><AlertCircle className="w-3 h-3 mr-1 text-orange-600" /> Ocupado</>
+              <><AlertCircle className="w-3 h-3 mr-1 text-orange-600" /> {t.boats.occupied}</>
             )}
           </Badge>
         </div>
@@ -96,7 +98,7 @@ export default function BoatCard({
         <div className="flex items-start justify-between mb-2">
           <h3 className="font-heading font-semibold text-base sm:text-lg text-gray-900 flex-1 mr-2">{name}</h3>
           <div className="text-right flex-shrink-0">
-            <div className="text-xs sm:text-sm text-gray-500">desde</div>
+            <div className="text-xs sm:text-sm text-gray-500">{t.boats.from}</div>
             <div className="font-bold text-primary flex items-center text-sm sm:text-base">
               <Euro className="w-3 h-3 sm:w-4 sm:h-4 mr-1" />
               {basePrice}
@@ -109,11 +111,11 @@ export default function BoatCard({
         <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 mb-3 text-xs sm:text-sm text-gray-600">
           <div className="flex items-center">
             <Users className="w-3 h-3 sm:w-4 sm:h-4 mr-1" />
-            <span>Hasta {capacity} pax</span>
+            <span>{t.boats.upTo} {capacity} {t.boats.people}</span>
           </div>
           <div className="flex items-center">
             <Clock className="w-3 h-3 sm:w-4 sm:h-4 mr-1" />
-            <span>1-8 horas</span>
+            <span>{t.boats.hours}</span>
           </div>
         </div>
 
@@ -134,7 +136,7 @@ export default function BoatCard({
           onClick={handleDetails}
           data-testid={`button-details-${id}`}
         >
-          Ver detalles
+          {t.boats.viewDetails}
         </Button>
         <Button 
           size="sm"
@@ -143,7 +145,7 @@ export default function BoatCard({
           disabled={!available}
           data-testid={`button-book-${id}`}
         >
-          {available ? "Reservar" : "No disponible"}
+          {available ? t.boats.book : t.boats.notAvailable}
         </Button>
       </CardFooter>
     </Card>

@@ -17,8 +17,19 @@ export interface Translations {
     subtitle: string;
     bookNow: string;
     viewFleet: string;
+    trustText: string;
+    whatsappContact: string;
+    location: string;
   };
   
+  // Fleet Section
+  fleet: {
+    title: string;
+    subtitle: string;
+    helpText: string;
+    callButton: string;
+  };
+
   // Boat Cards
   boats: {
     viewDetails: string;
@@ -104,6 +115,27 @@ export interface Translations {
     next: string;
     back: string;
     complete: string;
+    // Validation messages
+    dateRequired: string;
+    dateRequiredDesc: string;
+    boatRequired: string;
+    boatRequiredDesc: string;
+    durationRequired: string;
+    durationRequiredDesc: string;
+    connectionError: string;
+    connectionErrorDesc: string;
+    // Form elements
+    verifying: string;
+    verifyingShort: string;
+    searchAvailability: string;
+    searchShort: string;
+    selectDuration: string;
+    oneHour: string;
+    twoHours: string;
+    threeHours: string;
+    fourHours: string;
+    sixHours: string;
+    eightHours: string;
   };
   
   // FAQ Page
@@ -211,6 +243,16 @@ export const translations: Record<Language, Translations> = {
       subtitle: 'Descubre las mejores calas de la Costa Brava con nuestros barcos con y sin licencia. Salidas desde Puerto de Blanes.',
       bookNow: 'Reservar Ahora',
       viewFleet: 'Ver Flota',
+      trustText: 'Sin compromiso • Confirmación inmediata • Precios transparentes',
+      whatsappContact: 'WhatsApp +34 611 500 372',
+      location: 'Ubicación',
+    },
+    
+    fleet: {
+      title: 'Nuestra flota de alquiler en Blanes',
+      subtitle: 'Descubre nuestra flota de alquiler de barcos con licencia o sin licencia en Blanes, Costa Brava. Embarcaciones ideales para salidas con amigos o en familias.',
+      helpText: '¿Necesitas ayuda para elegir tu alquiler de barco en Blanes?',
+      callButton: 'Llama al +34 611 500 372',
     },
     boats: {
       viewDetails: 'Ver detalles',
@@ -383,6 +425,16 @@ export const translations: Record<Language, Translations> = {
       subtitle: 'Descobreix les millors cales de la Costa Brava amb les nostres barques amb i sense llicència. Sortides des del Port de Blanes.',
       bookNow: 'Reservar Ara',
       viewFleet: 'Veure Flota',
+      trustText: 'Sense comproms • Confirmació immediata • Preus transparents',
+      whatsappContact: 'WhatsApp +34 611 500 372',
+      location: 'Ubicació',
+    },
+    
+    fleet: {
+      title: 'La nostra flota de lloguer a Blanes',
+      subtitle: 'Descobreix la nostra flota de lloguer de vaixells amb llicència o sense llicència a Blanes, Costa Brava. Embarcacions ideals per sortides amb amics o en famílies.',
+      helpText: 'Necessites ajuda per triar el teu lloguer de vaixell a Blanes?',
+      callButton: 'Truca al +34 611 500 372',
     },
     boats: {
       viewDetails: 'Veure detalls',
@@ -555,6 +607,16 @@ export const translations: Record<Language, Translations> = {
       subtitle: 'Discover the best coves of Costa Brava with our licensed and license-free boats. Departures from Blanes Port.',
       bookNow: 'Book Now',
       viewFleet: 'View Fleet',
+      trustText: 'No commitment • Instant confirmation • Transparent prices',
+      whatsappContact: 'WhatsApp +34 611 500 372',
+      location: 'Location',
+    },
+    
+    fleet: {
+      title: 'Our rental fleet in Blanes',
+      subtitle: 'Discover our rental fleet of licensed and license-free boats in Blanes, Costa Brava. Ideal boats for trips with friends or families.',
+      helpText: 'Need help choosing your boat rental in Blanes?',
+      callButton: 'Call +34 611 500 372',
     },
     boats: {
       viewDetails: 'View details',
@@ -632,6 +694,15 @@ export const translations: Record<Language, Translations> = {
       next: 'Next',
       back: 'Back',
       complete: 'Complete',
+      selectDuration: 'Select duration',
+      oneHour: '1 hour',
+      twoHours: '2 hours', 
+      threeHours: '3 hours',
+      fourHours: '4 hours - Half day',
+      sixHours: '6 hours',
+      eightHours: '8 hours - Full day',
+      searchAvailability: 'Check Availability',
+      searchShort: 'Check',
     },
     faq: {
       title: 'Frequently Asked Questions',
@@ -727,6 +798,16 @@ export const translations: Record<Language, Translations> = {
       subtitle: 'Découvrez les plus belles criques de la Costa Brava avec nos bateaux avec et sans permis. Départ du Port de Blanes.',
       bookNow: 'Réserver Maintenant',
       viewFleet: 'Voir la Flotte',
+      trustText: 'Sans engagement • Confirmation immédiate • Prix transparents',
+      whatsappContact: 'WhatsApp +34 611 500 372',
+      location: 'Emplacement',
+    },
+    
+    fleet: {
+      title: 'Notre flotte de location à Blanes',
+      subtitle: 'Découvrez notre flotte de location de bateaux avec et sans permis à Blanes, Costa Brava. Bateaux idéaux pour des sorties avec des amis ou en famille.',
+      helpText: 'Besoin d\'aide pour choisir votre location de bateau à Blanes?',
+      callButton: 'Appelez le +34 611 500 372',
     },
     boats: {
       viewDetails: 'Voir détails',
@@ -900,6 +981,13 @@ export const translations: Record<Language, Translations> = {
       bookNow: 'Jetzt Buchen',
       viewFleet: 'Flotte Anzeigen',
     },
+    
+    fleet: {
+      title: 'Unsere Mietflotte in Blanes',
+      subtitle: 'Entdecken Sie unsere Mietflotte von Booten mit und ohne Führerschein in Blanes, Costa Brava. Ideale Boote für Ausflüge mit Freunden oder Familien.',
+      helpText: 'Brauchen Sie Hilfe bei der Auswahl Ihrer Bootsvermietung in Blanes?',
+      callButton: 'Anrufen +34 611 500 372',
+    },
     boats: {
       viewDetails: 'Details anzeigen',
       book: 'Buchen',
@@ -1071,6 +1159,13 @@ export const translations: Record<Language, Translations> = {
       subtitle: 'Ontdek de mooiste baaien van Costa Brava met onze boten met en zonder vaarbewijs. Vertrek vanuit Haven van Blanes.',
       bookNow: 'Nu Boeken',
       viewFleet: 'Vloot Bekijken',
+    },
+    
+    fleet: {
+      title: 'Onze huurvloot in Blanes',
+      subtitle: 'Ontdek onze huurvloot van boten met en zonder vergunning in Blanes, Costa Brava. Ideale boten voor uitstapjes met vrienden of gezinnen.',
+      helpText: 'Heeft u hulp nodig bij het kiezen van uw bootverhuur in Blanes?',
+      callButton: 'Bel +34 611 500 372',
     },
     boats: {
       viewDetails: 'Details bekijken',
@@ -1244,6 +1339,13 @@ export const translations: Record<Language, Translations> = {
       bookNow: 'Prenota Ora',
       viewFleet: 'Visualizza Flotta',
     },
+    
+    fleet: {
+      title: 'La nostra flotta di noleggio a Blanes',
+      subtitle: 'Scopri la nostra flotta di noleggio di barche con e senza patente a Blanes, Costa Brava. Imbarcazioni ideali per gite con amici o famiglie.',
+      helpText: 'Hai bisogno di aiuto per scegliere il tuo noleggio barche a Blanes?',
+      callButton: 'Chiama +34 611 500 372',
+    },
     boats: {
       viewDetails: 'Vedi dettagli',
       book: 'Prenota',
@@ -1415,6 +1517,13 @@ export const translations: Record<Language, Translations> = {
       subtitle: 'Откройте для себя лучшие бухты Коста Брава с нашими лодками с лицензией и без лицензии. Отправление из порта Бланес.',
       bookNow: 'Забронировать Сейчас',
       viewFleet: 'Посмотреть Флот',
+    },
+    
+    fleet: {
+      title: 'Наш арендный флот в Бланесе',
+      subtitle: 'Откройте для себя наш арендный флот лодок с лицензией и без лицензии в Бланесе, Коста-Брава. Идеальные лодки для поездок с друзьями или семьями.',
+      helpText: 'Нужна помощь в выборе аренды лодки в Бланесе?',
+      callButton: 'Звоните +34 611 500 372',
     },
     boats: {
       viewDetails: 'Подробности',

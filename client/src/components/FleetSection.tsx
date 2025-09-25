@@ -3,8 +3,10 @@ import { openWhatsApp, createBookingMessage } from "@/utils/whatsapp";
 import { useLocation } from "wouter";
 import { BOAT_DATA } from "@shared/boatData";
 import { getBoatImage } from "@/utils/boatImages";
+import { useTranslations } from "@/lib/translations";
 
 export default function FleetSection() {
+  const t = useTranslations();
   const [, setLocation] = useLocation();
 
   // Real boat data from costabravarentaboat.com - Ordered as requested
@@ -98,10 +100,10 @@ export default function FleetSection() {
       <div className="container mx-auto px-3 sm:px-4">
         <div className="text-center mb-6 sm:mb-8 lg:mb-12">
           <h2 className="font-heading text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-2 sm:mb-3 lg:mb-4 px-2">
-            Nuestra flota de alquiler en Blanes
+            {t.fleet.title}
           </h2>
           <p className="text-sm sm:text-base lg:text-lg text-gray-600 max-w-xl sm:max-w-2xl lg:max-w-4xl mx-auto px-2 sm:px-4">
-            Descubre nuestra flota de alquiler de barcos con licencia o sin licencia en Blanes, Costa Brava. Embarcaciones ideales para salidas con amigos o en familias.
+            {t.fleet.subtitle}
           </p>
         </div>
 
@@ -117,20 +119,20 @@ export default function FleetSection() {
         </div>
 
         <div className="text-center px-2 sm:px-4">
-          <p className="text-xs sm:text-sm lg:text-base text-gray-600 mb-3 sm:mb-4 lg:mb-6">¿Necesitas ayuda para elegir tu alquiler de barco en Blanes?</p>
+          <p className="text-xs sm:text-sm lg:text-base text-gray-600 mb-3 sm:mb-4 lg:mb-6">{t.fleet.helpText}</p>
           <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 lg:gap-4 justify-center max-w-sm sm:max-w-lg mx-auto">
             <button 
               className="bg-green-600 hover:bg-green-700 text-white px-3 sm:px-4 lg:px-6 py-2.5 sm:py-3 rounded-lg font-medium flex items-center justify-center transition-colors text-xs sm:text-sm lg:text-base"
               onClick={() => openWhatsApp("Hola! Necesito ayuda para elegir el mejor barco para alquilar en Blanes. ¿Podrían asesorarme sobre precios y disponibilidad?")}
               data-testid="button-whatsapp-help"
             >
-              💬 <span className="ml-1 sm:ml-2">Consulta por WhatsApp</span>
+              💬 <span className="ml-1 sm:ml-2">{t.contact.whatsapp}</span>
             </button>
             <button 
               className="border border-gray-300 hover:border-gray-400 text-gray-700 px-3 sm:px-4 lg:px-6 py-2.5 sm:py-3 rounded-lg font-medium transition-colors text-xs sm:text-sm lg:text-base"
               data-testid="button-call-help"
             >
-              📞 <span className="ml-1">Llama al +34 611 500 372</span>
+              📞 <span className="ml-1">{t.fleet.callButton}</span>
             </button>
           </div>
         </div>

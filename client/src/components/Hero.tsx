@@ -201,10 +201,10 @@ export default function Hero() {
                   className="w-full p-2 sm:p-2.5 border-0 bg-gray-50 rounded-md focus:ring-2 focus:ring-primary focus:bg-white transition-all text-gray-900 font-medium appearance-none cursor-pointer text-xs sm:text-sm"
                   data-testid="select-duration"
                 >
-                  <option value="">Seleccionar duración</option>
-                  <option value="1h">1 hora</option>
-                  <option value="2h">2 horas</option>
-                  <option value="3h">3 horas</option>
+                  <option value="">{t.booking.selectDuration || 'Seleccionar duración'}</option>
+                  <option value="1h">{t.booking.oneHour || '1 hora'}</option>
+                  <option value="2h">{t.booking.twoHours || '2 horas'}</option>
+                  <option value="3h">{t.booking.threeHours || '3 horas'}</option>
                   <option value="4h">4 horas - Media día</option>
                   <option value="6h">6 horas</option>
                   <option value="8h">8 horas - Día completo</option>
@@ -224,11 +224,11 @@ export default function Hero() {
               {isSearching ? (
                 <>⏳ <span className="hidden sm:inline">Verificando...</span><span className="sm:hidden">Verificando...</span></>
               ) : (
-                <>🚤 <span className="hidden sm:inline">Buscar Disponibilidad</span><span className="sm:hidden">Buscar</span></>
+                <>🚤 <span className="hidden sm:inline">{t.booking.searchAvailability || 'Buscar Disponibilidad'}</span><span className="sm:hidden">{t.booking.searchShort || 'Buscar'}</span></>
               )}
             </Button>
             <p className="text-xs text-gray-500 mt-3 sm:mt-4 lg:mt-6 text-center">
-              Sin compromiso • Confirmación inmediata • Precios transparentes
+              {t.hero.trustText}
             </p>
           </div>
           
@@ -240,7 +240,7 @@ export default function Hero() {
               data-testid="button-whatsapp-contact"
             >
               <Phone className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
-              <span className="hidden sm:inline">WhatsApp +34 611 500 372</span>
+              <span className="hidden sm:inline">{t.hero.whatsappContact}</span>
               <span className="sm:hidden">WhatsApp</span>
             </Button>
             
@@ -252,7 +252,7 @@ export default function Hero() {
             >
               <MapPin className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
               <span className="hidden sm:inline">{BUSINESS_LOCATION}</span>
-              <span className="sm:hidden">Ubicación</span>
+              <span className="sm:hidden">{t.hero.location}</span>
             </Button>
           </div>
         </Card>

@@ -126,7 +126,7 @@ export default function Hero() {
             <div>{t.hero.title}</div>
             <div className="mt-2">Costa Brava Rent a Boat - Blanes</div>
           </h1>
-          <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/90 mb-3 sm:mb-4 px-2 lg:whitespace-nowrap">
+          <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/90 mb-3 sm:mb-4 px-2 text-center">
             {t.hero.subtitle}
           </p>
           <p className="text-sm sm:text-base md:text-lg text-white/80 mb-6 sm:mb-8 max-w-2xl mx-auto px-4">

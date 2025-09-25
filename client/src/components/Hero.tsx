@@ -139,7 +139,7 @@ export default function Hero() {
           <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/90 mb-3 sm:mb-4 px-2 text-center">
             {t.hero.subtitle}
           </p>
-          <p className="text-sm sm:text-base md:text-lg text-white/80 mb-6 sm:mb-8 max-w-2xl mx-auto px-4">
+          <p className="text-xs sm:text-sm md:text-base text-white/80 mb-6 sm:mb-8 max-w-2xl mx-auto px-4">
             Mayor flota de alquiler en Blanes con horarios flexibles.<br />
             Salidas desde Puerto de Blanes. Snorkel, paddle surf y parking.
           </p>

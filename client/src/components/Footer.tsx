@@ -1,10 +1,20 @@
 import { Anchor, Phone, Mail, MapPin, Clock } from "lucide-react";
+import { useLocation } from "wouter";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
+  const [, setLocation] = useLocation();
 
   const handleWhatsApp = () => {
     window.open("https://wa.me/34611500372?text=Hola%2C%20me%20gustar%C3%ADa%20informaci%C3%B3n%20sobre%20el%20alquiler%20de%20barcos", "_blank");
+  };
+
+  const handleLogoClick = () => {
+    setLocation("/");
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
   };
 
   return (
@@ -13,13 +23,17 @@ export default function Footer() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
           {/* Company Info */}
           <div className="sm:col-span-2 lg:col-span-1">
-            <div className="flex items-center space-x-2 mb-4">
+            <button 
+              onClick={handleLogoClick}
+              className="flex items-center space-x-2 mb-4 hover:opacity-80 transition-opacity cursor-pointer bg-transparent border-none p-0"
+              data-testid="footer-logo-button"
+            >
               <Anchor className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
               <span className="font-heading font-bold text-base sm:text-lg text-white">
                 <span className="hidden sm:inline">Costa Brava Rent a Boat Blanes</span>
                 <span className="sm:hidden">Costa Brava Rent a Boat - Blanes</span>
               </span>
-            </div>
+            </button>
             <p className="text-xs sm:text-xs text-gray-400 mb-4">
               Alquiler de embarcaciones en Blanes. Sin licencia requerida para la mayoría de nuestros barcos. 
               Experiencias únicas en la Costa Brava desde 2020.

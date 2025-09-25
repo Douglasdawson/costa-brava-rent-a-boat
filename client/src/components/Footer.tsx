@@ -8,7 +8,8 @@ export default function Footer() {
   const [, setLocation] = useLocation();
 
   const handleWhatsApp = () => {
-    window.open("https://wa.me/34611500372?text=Hola%2C%20me%20gustar%C3%ADa%20informaci%C3%B3n%20sobre%20el%20alquiler%20de%20barcos", "_blank");
+    const message = encodeURIComponent(t.footer.whatsappMessage);
+    window.open(`https://wa.me/34611500372?text=${message}`, "_blank");
   };
 
   const handleLogoClick = () => {
@@ -41,7 +42,7 @@ export default function Footer() {
             </p>
             <div className="flex items-center space-x-2 text-xs sm:text-xs">
               <div className="w-2 h-2 bg-green-400 rounded-full"></div>
-              <span>Temporada operativa: Abril - Octubre</span>
+              <span>{t.footer.operatingSeason}</span>
             </div>
           </div>
 
@@ -69,7 +70,7 @@ export default function Footer() {
                       WhatsApp
                     </button>
                   </div>
-                  <p className="text-xs text-gray-400">Llamadas y WhatsApp</p>
+                  <p className="text-xs text-gray-400">{t.footer.callsAndWhatsapp}</p>
                 </div>
               </div>
               <div className="flex items-center space-x-3">
@@ -82,7 +83,7 @@ export default function Footer() {
                   >
                     costabravarentboat@gmail.com
                   </a>
-                  <p className="text-xs text-gray-400">Respuesta en 24h</p>
+                  <p className="text-xs text-gray-400">{t.footer.responseTime}</p>
                 </div>
               </div>
               <div className="flex items-center space-x-3">
@@ -95,9 +96,9 @@ export default function Footer() {
                     className="text-xs hover:text-primary transition-colors cursor-pointer"
                     data-testid="maps-link"
                   >
-                    Puerto de Blanes
+                    {t.footer.location}
                   </a>
-                  <p className="text-xs text-gray-400">Girona, Costa Brava</p>
+                  <p className="text-xs text-gray-400">{t.footer.region}</p>
                 </div>
               </div>
             </div>
@@ -105,36 +106,36 @@ export default function Footer() {
 
           {/* Services */}
           <div>
-            <h3 className="font-semibold text-white mb-4">Servicios</h3>
+            <h3 className="font-semibold text-white mb-4">{t.footer.services}</h3>
             <ul className="space-y-2 text-xs">
-              <li><a href="#" className="hover:text-primary transition-colors">Barcos sin licencia</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">Barcos con licencia</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">Extras: Snorkel</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">Extras: Paddle Surf</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">Extras: Seascooter</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">Alquiler por horas</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">Parking dentro del puerto</a></li>
+              <li><a href="#" className="hover:text-primary transition-colors">{t.boats.withoutLicense}</a></li>
+              <li><a href="#" className="hover:text-primary transition-colors">{t.boats.withLicense}</a></li>
+              <li><a href="#" className="hover:text-primary transition-colors">{t.footer.extrasSnorkel}</a></li>
+              <li><a href="#" className="hover:text-primary transition-colors">{t.footer.extrasPaddle}</a></li>
+              <li><a href="#" className="hover:text-primary transition-colors">{t.footer.extrasSeascooter}</a></li>
+              <li><a href="#" className="hover:text-primary transition-colors">{t.footer.hourlyRental}</a></li>
+              <li><a href="#" className="hover:text-primary transition-colors">{t.footer.portParking}</a></li>
             </ul>
           </div>
 
           {/* Hours & Legal */}
           <div>
-            <h3 className="font-semibold text-white mb-4">Horarios</h3>
+            <h3 className="font-semibold text-white mb-4">{t.footer.hours}</h3>
             <div className="space-y-2 text-xs mb-6">
               <div className="flex items-center space-x-2">
                 <Clock className="w-4 h-4 text-primary" />
-                <span>9:00 - 19:00 (Temporada alta)</span>
+                <span>{t.footer.businessHours}</span>
               </div>
               <p className="text-xs text-gray-400">
-                Horarios flexibles según disponibilidad
+                {t.footer.flexibleHours}
               </p>
             </div>
 
-            <h4 className="font-medium text-white mb-2">Legal</h4>
+            <h4 className="font-medium text-white mb-2">{t.footer.legal}</h4>
             <ul className="space-y-1 text-xs">
-              <li><a href="#" className="hover:text-primary transition-colors">Términos y Condiciones</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">Política de Privacidad</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">Política de Cancelación</a></li>
+              <li><a href="#" className="hover:text-primary transition-colors">{t.footer.terms}</a></li>
+              <li><a href="#" className="hover:text-primary transition-colors">{t.footer.privacy}</a></li>
+              <li><a href="#" className="hover:text-primary transition-colors">{t.footer.cancelationPolicy}</a></li>
             </ul>
           </div>
         </div>
@@ -157,12 +158,12 @@ export default function Footer() {
               data-testid="footer-call-button"
             >
               <Phone className="w-4 h-4" />
-              <span>Llamar</span>
+              <span>{t.footer.call}</span>
             </a>
           </div>
           
           <p className="text-xs text-gray-400 text-center">
-            © {currentYear} Costa Brava Rent a Boat Blanes. Todos los derechos reservados.
+            © {currentYear} Costa Brava Rent a Boat Blanes. {t.footer.rights}
           </p>
         </div>
       </div>

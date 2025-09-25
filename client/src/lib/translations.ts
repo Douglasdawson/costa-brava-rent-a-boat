@@ -94,6 +94,24 @@ export interface Translations {
     terms: string;
     privacy: string;
     whatsappInfo: string;
+    operatingSeason: string;
+    callsAndWhatsapp: string;
+    responseTime: string;
+    location: string;
+    region: string;
+    services: string;
+    hours: string;
+    businessHours: string;
+    flexibleHours: string;
+    legal: string;
+    call: string;
+    cancelationPolicy: string;
+    extrasSnorkel: string;
+    extrasPaddle: string;
+    extrasSeascooter: string;
+    hourlyRental: string;
+    portParking: string;
+    whatsappMessage: string;
   };
   
   // Booking Flow
@@ -345,6 +363,24 @@ export const translations: Record<Language, Translations> = {
       terms: 'Términos y Condiciones',
       privacy: 'Política de Privacidad',
       whatsappInfo: 'Información por WhatsApp',
+      operatingSeason: 'Temporada operativa: Abril - Octubre',
+      callsAndWhatsapp: 'Llamadas y WhatsApp',
+      responseTime: 'Respuesta en 24h',
+      location: 'Puerto de Blanes',
+      region: 'Girona, Costa Brava',
+      services: 'Servicios',
+      hours: 'Horarios',
+      businessHours: '9:00 - 19:00 (Temporada alta)',
+      flexibleHours: 'Horarios flexibles según disponibilidad',
+      legal: 'Legal',
+      call: 'Llamar',
+      cancelationPolicy: 'Política de Cancelación',
+      extrasSnorkel: 'Extras: Snorkel',
+      extrasPaddle: 'Extras: Paddle Surf',
+      extrasSeascooter: 'Extras: Seascooter',
+      hourlyRental: 'Alquiler por horas',
+      portParking: 'Parking dentro del puerto',
+      whatsappMessage: 'Hola, me gustaría información sobre el alquiler de barcos',
     },
     booking: {
       title: 'Reserva tu Barco',
@@ -587,6 +623,24 @@ export const translations: Record<Language, Translations> = {
       terms: 'Termes i Condicions',
       privacy: 'Política de Privacitat',
       whatsappInfo: 'Informació per WhatsApp',
+      operatingSeason: 'Temporada operativa: Abril - Octubre',
+      callsAndWhatsapp: 'Trucades i WhatsApp',
+      responseTime: 'Resposta en 24h',
+      location: 'Port de Blanes',
+      region: 'Girona, Costa Brava',
+      services: 'Serveis',
+      hours: 'Horaris',
+      businessHours: '9:00 - 19:00 (Temporada alta)',
+      flexibleHours: 'Horaris flexibles segons disponibilitat',
+      legal: 'Legal',
+      call: 'Trucar',
+      cancelationPolicy: 'Política de Cancel·lació',
+      extrasSnorkel: 'Extres: Snorkel',
+      extrasPaddle: 'Extres: Paddle Surf',
+      extrasSeascooter: 'Extres: Seascooter',
+      hourlyRental: 'Lloguer per hores',
+      portParking: 'Aparcament dins del port',
+      whatsappMessage: 'Hola, m\'agradaria informació sobre el lloguer de barques',
     },
     booking: {
       title: 'Reserva la teva Barca',

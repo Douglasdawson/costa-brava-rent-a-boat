@@ -9,8 +9,8 @@ import {
   Star,
   CheckCircle 
 } from "lucide-react";
-import snorkelImage from "@assets/generated_images/Family_snorkeling_activity_scene_b0ab1783.png";
-import paddleImage from "@assets/generated_images/Paddle_surfing_couple_scene_cc635043.png";
+import snorkelImage from "../assets/generated_images/Family_snorkeling_activity_scene_b0ab1783.png";
+import paddleImage from "../assets/generated_images/Paddle_surfing_couple_scene_cc635043.png";
 
 export default function FeaturesSection() {
   const features = [

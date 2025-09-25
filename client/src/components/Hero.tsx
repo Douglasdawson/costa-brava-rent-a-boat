@@ -7,7 +7,7 @@ import { BUSINESS_LOCATION } from "@/lib/config";
 import { useToast } from "@/hooks/use-toast";
 import { useLocation } from "wouter";
 import { apiRequest } from "@/lib/queryClient";
-import heroImage from "@assets/generated_images/Mediterranean_coastal_hero_scene_8df465c2.png";
+import heroImage from "../assets/generated_images/Mediterranean_coastal_hero_scene_8df465c2.png";
 
 export default function Hero() {
   const [selectedDate, setSelectedDate] = useState<string>("");

@@ -203,7 +203,7 @@ export default function Hero() {
                   <option value="1h">1 hora</option>
                   <option value="2h">2 horas</option>
                   <option value="3h">3 horas</option>
-                  <option value="4h">4 horas</option>
+                  <option value="4h">4 horas - Media día</option>
                   <option value="6h">6 horas</option>
                   <option value="8h">8 horas - Día completo</option>
                 </select>

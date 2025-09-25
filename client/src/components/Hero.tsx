@@ -141,7 +141,7 @@ export default function Hero() {
           </div>
           
           <div className="bg-gray-50/80 rounded-xl p-2 sm:p-3 lg:p-4 mb-3 sm:mb-4 lg:mb-5">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-3 lg:gap-4">
+            <div className="grid grid-cols-1 xl:grid-cols-3 gap-2 sm:gap-3 lg:gap-4">
               {/* Fecha */}
               <div className="bg-white rounded-lg p-2 sm:p-3 shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
                 <label className="flex items-center text-xs font-semibold text-gray-800 mb-1 sm:mb-2">

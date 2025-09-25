@@ -8,7 +8,7 @@ import { BOAT_DATA } from "@shared/boatData";
 import { useQuery } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
-// Stripe will be added later - for now we'll use a simple payment placeholder
+import { loadStripe } from "@stripe/stripe-js";
 
 interface BookingFlowProps {
   boatId?: string;
@@ -408,14 +408,33 @@ export default function BookingFlow({ boatId = "astec-450", onClose }: BookingFl
 
       const booking = await bookingResponse.json();
 
-      // For now, show success message (later we'll integrate Stripe)
+      // Create Stripe checkout session and redirect to payment
       toast({
-        title: "¡Reserva creada con éxito!",
-        description: `Tu reserva para el ${selectedDate} a las ${selectedTime} ha sido confirmada.`,
+        title: "Reserva creada",
+        description: "Redirigiendo a la pasarela de pago segura...",
       });
 
-      // Reset form or redirect
-      setStep(6); // Move to confirmation step
+      // Create Stripe Checkout Session
+      const checkoutResponse = await apiRequest('POST', '/api/create-checkout-session', {
+        bookingId: booking.id
+      });
+
+      if (!checkoutResponse.ok) {
+        const error = await checkoutResponse.json();
+        throw new Error(error.message || "Error al procesar el pago");
+      }
+
+      const { url } = await checkoutResponse.json();
+
+      // Store booking info for return journey
+      sessionStorage.setItem('bookingId', booking.id);
+
+      // Redirect to Stripe Checkout
+      if (url) {
+        window.location.href = url;
+      } else {
+        throw new Error("No se pudo crear la sesión de pago");
+      }
 
     } catch (error: any) {
       console.error('Error creating booking:', error);

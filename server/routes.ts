@@ -236,6 +236,63 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Create Stripe Checkout Session for full payment experience
+  app.post("/api/create-checkout-session", async (req, res) => {
+    try {
+      const stripeInstance = getStripe();
+      if (!stripeInstance) {
+        return res.status(503).json({ message: "Payment service unavailable - Stripe not configured" });
+      }
+
+      const { bookingId } = req.body;
+      
+      if (!bookingId) {
+        return res.status(400).json({ message: "Booking ID is required" });
+      }
+
+      // Get booking from database to create checkout session
+      const booking = await storage.getBooking(bookingId);
+      if (!booking) {
+        return res.status(404).json({ message: "Booking not found" });
+      }
+
+      const amount = parseFloat(booking.totalAmount);
+      if (amount <= 0) {
+        return res.status(400).json({ message: "Invalid booking amount" });
+      }
+
+      const session = await stripeInstance.checkout.sessions.create({
+        payment_method_types: ['card'],
+        line_items: [
+          {
+            price_data: {
+              currency: 'eur',
+              product_data: {
+                name: `Reserva de barco - ${booking.boatId}`,
+                description: `Reserva para ${booking.customerName} ${booking.customerSurname} el ${booking.bookingDate.toISOString().split('T')[0]}`,
+              },
+              unit_amount: Math.round(amount * 100), // Convert to cents
+            },
+            quantity: 1,
+          },
+        ],
+        mode: 'payment',
+        success_url: `${req.headers.origin}/booking/success?session_id={CHECKOUT_SESSION_ID}&booking_id=${bookingId}`,
+        cancel_url: `${req.headers.origin}/booking?step=6&booking_id=${bookingId}`,
+        metadata: {
+          bookingId: bookingId
+        }
+      });
+
+      res.json({ 
+        sessionId: session.id,
+        url: session.url 
+      });
+    } catch (error: any) {
+      res.status(500).json({ message: "Error creating checkout session: " + error.message });
+    }
+  });
+
   // Update booking payment status
   app.post("/api/bookings/:id/payment-status", async (req, res) => {
     try {

@@ -892,14 +892,14 @@ export default function BookingFlow({ boatId = "astec-450", onClose }: BookingFl
         )}
 
         {/* Navigation buttons */}
-        {step > 1 && step < 6 && (
+        {step > 1 && (
           <div className="mt-4">
             <Button 
               variant="outline"
               onClick={() => setStep(step - 1)}
               data-testid="button-back-step"
             >
-              Volver
+              Atrás
             </Button>
           </div>
         )}

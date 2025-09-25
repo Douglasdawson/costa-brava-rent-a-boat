@@ -333,7 +333,7 @@ export const translations: Record<Language, Translations> = {
       },
       includes: {
         title: 'Gasolina Incluida',
-        description: 'Combustible, snorkel, paddle surf y equipo de seguridad incluidos.',
+        description: 'Combistiboe incluido en nuestras embarcaciones sin licencia',
       },
       security: {
         title: 'Máxima Seguridad',

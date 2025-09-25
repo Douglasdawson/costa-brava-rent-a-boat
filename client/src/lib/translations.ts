@@ -332,7 +332,7 @@ export const translations: Record<Language, Translations> = {
         description: 'Embarcaciones más grandes y potentes para navegantes experimentados.',
       },
       includes: {
-        title: 'Todo Incluido',
+        title: 'Gasolina Incluida',
         description: 'Combustible, snorkel, paddle surf y equipo de seguridad incluidos.',
       },
       security: {

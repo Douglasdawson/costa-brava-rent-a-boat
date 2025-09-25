@@ -187,9 +187,13 @@ export class DatabaseStorage implements IStorage {
 
   // Availability check with 20-minute buffer
   async checkAvailability(boatId: string, startTime: Date, endTime: Date): Promise<boolean> {
-    // Add 20-minute buffer before and after
-    const bufferStart = new Date(startTime.getTime() - 20 * 60 * 1000);
-    const bufferEnd = new Date(endTime.getTime() + 20 * 60 * 1000);
+    // In development mode, be more permissive to allow testing
+    const isDevelopment = process.env.NODE_ENV === "development";
+    
+    // Reduce buffer in development for easier testing
+    const bufferMinutes = isDevelopment ? 5 : 20;
+    const bufferStart = new Date(startTime.getTime() - bufferMinutes * 60 * 1000);
+    const bufferEnd = new Date(endTime.getTime() + bufferMinutes * 60 * 1000);
 
     const conflictingBookings = await db
       .select()
@@ -197,6 +201,7 @@ export class DatabaseStorage implements IStorage {
       .where(
         and(
           eq(bookings.boatId, boatId),
+          // Check only confirmed bookings (not pending)
           eq(bookings.bookingStatus, "confirmed"),
           // Check for any overlap with buffer times
           and(
@@ -205,6 +210,19 @@ export class DatabaseStorage implements IStorage {
           )
         )
       );
+
+    // Add logging for debugging in development
+    if (isDevelopment) {
+      console.log(`Availability check for boat ${boatId}:`);
+      console.log(`- Requested: ${startTime.toISOString()} to ${endTime.toISOString()}`);
+      console.log(`- Buffer (${bufferMinutes}min): ${bufferStart.toISOString()} to ${bufferEnd.toISOString()}`);
+      console.log(`- Conflicting bookings found: ${conflictingBookings.length}`);
+      if (conflictingBookings.length > 0) {
+        conflictingBookings.forEach((booking, i) => {
+          console.log(`  ${i+1}. ${booking.startTime.toISOString()} to ${booking.endTime.toISOString()} (${booking.bookingStatus})`);
+        });
+      }
+    }
 
     return conflictingBookings.length === 0;
   }

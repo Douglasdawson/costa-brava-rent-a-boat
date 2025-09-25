@@ -2,6 +2,15 @@ import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { insertBookingSchema, insertBookingExtraSchema } from "@shared/schema";
+
+// Server-side extras catalog for price validation
+const EXTRAS_CATALOG = {
+  "parking": { name: "Parking dentro del puerto", price: 10 },
+  "cooler": { name: "Nevera", price: 5 },
+  "snorkel": { name: "Equipo snorkel", price: 5 },
+  "paddle": { name: "Tabla de paddlesurf", price: 25 },
+  "seascooter": { name: "Seascooter", price: 50 }
+};
 import Stripe from "stripe";
 
 // Initialize Stripe lazily only when needed
@@ -9,7 +18,7 @@ let stripe: Stripe | null = null;
 const getStripe = () => {
   if (!stripe && process.env.STRIPE_SECRET_KEY) {
     stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
-      apiVersion: "2025-08-27.basil",
+      apiVersion: "2024-12-18.acacia",
     });
   }
   return stripe;
@@ -18,7 +27,11 @@ const getStripe = () => {
 // Simple admin authentication middleware
 const requireAdminAuth = (req: any, res: any, next: any) => {
   const authHeader = req.headers.authorization;
-  const adminToken = process.env.ADMIN_TOKEN || "admin-secret-2024";
+  const adminToken = process.env.ADMIN_TOKEN;
+  
+  if (!adminToken) {
+    return res.status(503).json({ message: "Admin access not configured" });
+  }
   
   if (!authHeader || authHeader !== `Bearer ${adminToken}`) {
     return res.status(401).json({ message: "Unauthorized access" });
@@ -105,11 +118,16 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const hours = bookingData.totalHours;
       const subtotal = basePrice * hours;
       
-      // Calculate extras total
+      // Calculate extras total - validate against server catalog
       let extrasTotal = 0;
       if (req.body.extras && Array.isArray(req.body.extras)) {
         for (const extra of req.body.extras) {
-          extrasTotal += extra.price * (extra.quantity || 1);
+          const catalogExtra = EXTRAS_CATALOG[extra.id as keyof typeof EXTRAS_CATALOG];
+          if (!catalogExtra) {
+            return res.status(400).json({ message: `Invalid extra: ${extra.id}` });
+          }
+          // Use server price, not client price
+          extrasTotal += catalogExtra.price * (extra.quantity || 1);
         }
       }
       
@@ -130,12 +148,15 @@ export async function registerRoutes(app: Express): Promise<Server> {
       // Create extras if provided
       if (req.body.extras && Array.isArray(req.body.extras)) {
         for (const extra of req.body.extras) {
-          await storage.createBookingExtra({
-            bookingId: booking.id,
-            extraName: extra.name,
-            extraPrice: extra.price.toString(),
-            quantity: extra.quantity || 1
-          });
+          const catalogExtra = EXTRAS_CATALOG[extra.id as keyof typeof EXTRAS_CATALOG];
+          if (catalogExtra) {
+            await storage.createBookingExtra({
+              bookingId: booking.id,
+              extraName: catalogExtra.name,
+              extraPrice: catalogExtra.price.toString(),
+              quantity: extra.quantity || 1
+            });
+          }
         }
       }
 
@@ -180,17 +201,29 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(503).json({ message: "Payment service unavailable - Stripe not configured" });
       }
 
-      const { amount, bookingId } = req.body;
+      const { bookingId } = req.body;
       
-      if (!amount || amount <= 0) {
-        return res.status(400).json({ message: "Valid amount is required" });
+      if (!bookingId) {
+        return res.status(400).json({ message: "Booking ID is required" });
+      }
+
+      // Get booking from database to verify amount
+      const booking = await storage.getBooking(bookingId);
+      if (!booking) {
+        return res.status(404).json({ message: "Booking not found" });
+      }
+
+      // Use server-calculated total amount from booking
+      const amount = parseFloat(booking.totalAmount);
+      if (amount <= 0) {
+        return res.status(400).json({ message: "Invalid booking amount" });
       }
 
       const paymentIntent = await stripeInstance.paymentIntents.create({
         amount: Math.round(amount * 100), // Convert to cents
         currency: "eur", // Costa Brava uses EUR
         metadata: {
-          bookingId: bookingId || "unknown"
+          bookingId: bookingId
         }
       });
 
@@ -207,6 +240,14 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.post("/api/bookings/:id/payment-status", async (req, res) => {
     try {
       const { status, stripePaymentIntentId } = req.body;
+      
+      // Validate payment status values
+      const validStatuses = ["pending", "paid", "failed", "cancelled", "refunded"];
+      if (!validStatuses.includes(status)) {
+        return res.status(400).json({ 
+          message: `Invalid payment status. Must be one of: ${validStatuses.join(", ")}` 
+        });
+      }
       
       const updatedBooking = await storage.updateBookingPaymentStatus(
         req.params.id,

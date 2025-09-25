@@ -23,14 +23,13 @@ export default function BookingFlow({ boatId = "astec-450", onClose }: BookingFl
   const [duration, setDuration] = useState("2h");
   const [extras, setExtras] = useState<{[key: string]: number}>({});
   const [customerData, setCustomerData] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    phone: "",
+    customerName: "",
+    customerSurname: "",
+    customerEmail: "",
+    customerPhone: "",
     phonePrefix: "+34",
-    nationality: "",
-    numberOfPeople: 1,
-    document: ""
+    customerNationality: "",
+    numberOfPeople: 1
   });
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
@@ -337,7 +336,7 @@ export default function BookingFlow({ boatId = "astec-450", onClose }: BookingFl
       return;
     }
 
-    if (!customerData.firstName || !customerData.lastName || !customerData.phone) {
+    if (!customerData.customerName || !customerData.customerSurname || !customerData.customerPhone || !customerData.customerNationality) {
       toast({
         title: "Error", 
         description: "Por favor completa todos los datos personales requeridos.",
@@ -375,11 +374,11 @@ export default function BookingFlow({ boatId = "astec-450", onClose }: BookingFl
         bookingDate: new Date(selectedDate),
         startTime: startDateTime,
         endTime: endDateTime,
-        customerName: customerData.firstName,
-        customerSurname: customerData.lastName,
-        customerPhone: `${customerData.phonePrefix}${customerData.phone}`,
-        customerEmail: customerData.email || null,
-        customerNationality: customerData.nationality,
+        customerName: customerData.customerName,
+        customerSurname: customerData.customerSurname,
+        customerPhone: `${customerData.phonePrefix}${customerData.customerPhone}`,
+        customerEmail: customerData.customerEmail || null,
+        customerNationality: customerData.customerNationality,
         numberOfPeople: customerData.numberOfPeople,
         totalHours: durationHours,
         subtotal: subtotal.toString(),
@@ -505,7 +504,7 @@ export default function BookingFlow({ boatId = "astec-450", onClose }: BookingFl
                   // Handle both database boats and static data boats
                   const boatName = boat.name;
                   const boatCapacity = boat.capacity || parseInt(boat.specifications?.capacity?.split(' ')[0] || '5');
-                  const boatPrice = boat.pricePerHour ? parseFloat(boat.pricePerHour) : Math.min(...Object.values(boat.pricing?.BAJA?.prices || {"1h": 75}));
+                  const boatPrice = boat.pricePerHour ? parseFloat(boat.pricePerHour) : Math.min(...Object.values(boat.pricing?.BAJA?.prices || {"1h": 75}) as number[]);
                   const boatImage = boat.image || BOAT_DATA[boat.id]?.image || "/placeholder-boat.jpg";
                   const requiresLicense = boat.requiresLicense !== undefined ? boat.requiresLicense : boat.subtitle?.includes("Con Licencia");
                   
@@ -690,11 +689,11 @@ export default function BookingFlow({ boatId = "astec-450", onClose }: BookingFl
                     </label>
                     <input
                       type="text"
-                      value={customerData.firstName}
-                      onChange={(e) => setCustomerData(prev => ({...prev, firstName: e.target.value}))}
+                      value={customerData.customerName}
+                      onChange={(e) => setCustomerData(prev => ({...prev, customerName: e.target.value}))}
                       className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
                       placeholder="Ana"
-                      data-testid="input-customer-firstname"
+                      data-testid="input-customer-name"
                     />
                   </div>
                   <div>
@@ -703,11 +702,11 @@ export default function BookingFlow({ boatId = "astec-450", onClose }: BookingFl
                     </label>
                     <input
                       type="text"
-                      value={customerData.lastName}
-                      onChange={(e) => setCustomerData(prev => ({...prev, lastName: e.target.value}))}
+                      value={customerData.customerSurname}
+                      onChange={(e) => setCustomerData(prev => ({...prev, customerSurname: e.target.value}))}
                       className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
                       placeholder="García López"
-                      data-testid="input-customer-lastname"
+                      data-testid="input-customer-surname"
                     />
                   </div>
                 </div>
@@ -717,10 +716,10 @@ export default function BookingFlow({ boatId = "astec-450", onClose }: BookingFl
                   </label>
                   <input
                     type="email"
-                    value={customerData.email}
-                    onChange={(e) => setCustomerData(prev => ({...prev, email: e.target.value}))}
+                    value={customerData.customerEmail}
+                    onChange={(e) => setCustomerData(prev => ({...prev, customerEmail: e.target.value}))}
                     className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
-                    placeholder="ana@ejemplo.com"
+                    placeholder="ana@ejemplo.com (opcional)"
                     data-testid="input-customer-email"
                   />
                 </div>
@@ -743,32 +742,51 @@ export default function BookingFlow({ boatId = "astec-450", onClose }: BookingFl
                     </Select>
                     <input
                       type="tel"
-                      value={customerData.phone}
-                      onChange={(e) => setCustomerData(prev => ({...prev, phone: e.target.value}))}
+                      value={customerData.customerPhone}
+                      onChange={(e) => setCustomerData(prev => ({...prev, customerPhone: e.target.value}))}
                       className="flex-1 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
                       placeholder="600 000 000"
                       data-testid="input-customer-phone"
                     />
                   </div>
                 </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Número de documento *
-                  </label>
-                  <input
-                    type="text"
-                    value={customerData.document}
-                    onChange={(e) => setCustomerData(prev => ({...prev, document: e.target.value}))}
-                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
-                    placeholder="DNI, NIE, Pasaporte..."
-                    data-testid="input-customer-document"
-                  />
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Nacionalidad *
+                    </label>
+                    <input
+                      type="text"
+                      value={customerData.customerNationality}
+                      onChange={(e) => setCustomerData(prev => ({...prev, customerNationality: e.target.value}))}
+                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
+                      placeholder="Española"
+                      data-testid="input-customer-nationality"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Número de personas *
+                    </label>
+                    <Select value={customerData.numberOfPeople.toString()} onValueChange={(value) => setCustomerData(prev => ({...prev, numberOfPeople: parseInt(value)}))}>
+                      <SelectTrigger>
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {[1,2,3,4,5,6,7,8].map((num) => (
+                          <SelectItem key={num} value={num.toString()}>
+                            {num} {num === 1 ? 'persona' : 'personas'}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
                 </div>
               </div>
 
               <Button 
                 onClick={() => setStep(6)}
-                disabled={!customerData.firstName || !customerData.lastName || !customerData.email || !customerData.phone || !customerData.document}
+                disabled={!customerData.customerName || !customerData.customerSurname || !customerData.customerPhone || !customerData.customerNationality || customerData.numberOfPeople < 1 || customerData.customerPhone.length < 9}
                 className="w-full py-3"
                 data-testid="button-continue-payment"
               >

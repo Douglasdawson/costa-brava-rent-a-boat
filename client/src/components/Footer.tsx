@@ -1,7 +1,9 @@
 import { Anchor, Phone, Mail, MapPin, Clock } from "lucide-react";
+import { useTranslations } from "@/lib/translations";
 import { useLocation } from "wouter";
 
 export default function Footer() {
+  const t = useTranslations();
   const currentYear = new Date().getFullYear();
   const [, setLocation] = useLocation();
 
@@ -35,8 +37,7 @@ export default function Footer() {
               </span>
             </button>
             <p className="text-xs sm:text-xs text-gray-400 mb-4">
-              Alquiler de embarcaciones en Blanes. Sin licencia requerida para la mayoría de nuestros barcos. 
-              Experiencias únicas en la Costa Brava desde 2020.
+              {t.footer.description}
             </p>
             <div className="flex items-center space-x-2 text-xs sm:text-xs">
               <div className="w-2 h-2 bg-green-400 rounded-full"></div>
@@ -46,7 +47,7 @@ export default function Footer() {
 
           {/* Contact Info */}
           <div>
-            <h3 className="font-semibold text-white mb-4">Contacto</h3>
+            <h3 className="font-semibold text-white mb-4">{t.footer.contact}</h3>
             <div className="space-y-3">
               <div className="flex items-center space-x-3">
                 <Phone className="w-4 h-4 text-primary" />

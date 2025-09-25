@@ -9,26 +9,28 @@ import {
   Star,
   CheckCircle 
 } from "lucide-react";
+import { useTranslations } from "@/lib/translations";
 import snorkelImage from "../assets/generated_images/Family_snorkeling_activity_scene_b0ab1783.png";
 import paddleImage from "../assets/generated_images/Paddle_surfing_couple_scene_cc635043.png";
 
 export default function FeaturesSection() {
+  const t = useTranslations();
   const features = [
     {
       icon: Shield,
-      title: "Sin Licencia Requerida",
-      description: "La mayoría de nuestros barcos no requieren licencia náutica. Perfecto para principiantes y familias.",
+      title: t.features.withoutLicense.title,
+      description: t.features.withoutLicense.description,
       color: "text-green-600"
     },
     {
       icon: Fuel,
-      title: "Combustible Incluido", 
-      description: "Barcos sin licencia incluyen gasolina. Barcos con licencia, combustible aparte. Todo claramente indicado.",
+      title: t.features.includes.title, 
+      description: t.features.includes.description,
       color: "text-blue-600"
     },
     {
       icon: Users,
-      title: "Hasta 7 Personas",
+      title: "Hasta 7 " + t.boats.people,
       description: "Flota variada desde embarcaciones para 5 personas hasta barcos de lujo para 7.",
       color: "text-purple-600"
     },

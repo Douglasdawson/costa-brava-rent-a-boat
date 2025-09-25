@@ -6,6 +6,7 @@ import { openWhatsApp } from "@/utils/whatsapp";
 import { BUSINESS_LOCATION } from "@/lib/config";
 import { useToast } from "@/hooks/use-toast";
 import { useLocation } from "wouter";
+import { useTranslations } from "@/lib/translations";
 import { apiRequest } from "@/lib/queryClient";
 import heroImage from "../assets/generated_images/Mediterranean_coastal_hero_scene_8df465c2.png";
 
@@ -17,6 +18,7 @@ export default function Hero() {
   
   const { toast } = useToast();
   const [, setLocation] = useLocation();
+  const t = useTranslations();
 
   const handleBookingSearch = async () => {
     // Validate all fields are selected
@@ -121,11 +123,11 @@ export default function Hero() {
       <div className="relative z-10 container mx-auto px-4 pt-20 sm:pt-24 pb-8 sm:pb-12 min-h-screen flex flex-col justify-center items-center text-center">
         <div className="max-w-4xl mx-auto mb-8 sm:mb-12">
           <h1 className="font-heading text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-white mb-4 sm:mb-6 leading-tight px-2">
-            <div>Alquiler de barcos en Blanes (Costa Brava) sin licencia</div>
+            <div>{t.hero.title}</div>
             <div className="mt-2">Costa Brava Rent a Boat - Blanes</div>
           </h1>
           <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/90 mb-3 sm:mb-4 px-2 lg:whitespace-nowrap">
-            Alquiler de embarcaciones sin licencia y con licencia. Fácil, seguro y transparente.
+            {t.hero.subtitle}
           </p>
           <p className="text-sm sm:text-base md:text-lg text-white/80 mb-6 sm:mb-8 max-w-2xl mx-auto px-4">
             Mayor flota de alquiler en Blanes con horarios flexibles.<br />
@@ -136,7 +138,7 @@ export default function Hero() {
         {/* Booking Widget */}
         <Card className="bg-white/95 backdrop-blur-md p-3 sm:p-4 lg:p-6 max-w-5xl w-full shadow-2xl border-0 mx-2 sm:mx-4">
           <div className="text-center mb-3 sm:mb-4 lg:mb-5">
-            <h3 className="text-base sm:text-lg lg:text-xl font-bold text-gray-900 mb-1 sm:mb-2">Realiza tu petición de reserva</h3>
+            <h3 className="text-base sm:text-lg lg:text-xl font-bold text-gray-900 mb-1 sm:mb-2">{t.booking.title}</h3>
             <p className="text-xs sm:text-sm text-gray-600">Completa los datos para encontrar tu embarcación perfecta</p>
           </div>
           
@@ -148,7 +150,7 @@ export default function Hero() {
                   <div className="w-5 h-5 sm:w-6 sm:h-6 bg-primary/10 rounded-full flex items-center justify-center mr-1 sm:mr-2">
                     <Calendar className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-primary" />
                   </div>
-                  Fecha
+                  {t.booking.date}
                 </label>
                 <input
                   type="date"
@@ -166,7 +168,7 @@ export default function Hero() {
                   <div className="w-5 h-5 sm:w-6 sm:h-6 bg-primary/10 rounded-full flex items-center justify-center mr-1 sm:mr-2">
                     <Anchor className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-primary" />
                   </div>
-                  Embarcación
+                  {t.booking.selectBoat}
                 </label>
                 <select
                   value={selectedBoat}
@@ -191,7 +193,7 @@ export default function Hero() {
                   <div className="w-5 h-5 sm:w-6 sm:h-6 bg-primary/10 rounded-full flex items-center justify-center mr-1 sm:mr-2">
                     <Clock className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-primary" />
                   </div>
-                  Duración
+                  {t.booking.duration}
                 </label>
                 <select
                   value={selectedDuration}

@@ -1,9 +1,11 @@
 import { useState } from "react";
+import { useTranslations } from "@/lib/translations";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { MapPin, Phone, Mail, Clock, Send } from "lucide-react";
 
 export default function ContactSection() {
+  const t = useTranslations();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -39,11 +41,10 @@ export default function ContactSection() {
       <div className="container mx-auto px-3 sm:px-4">
         <div className="text-center mb-6 sm:mb-8 lg:mb-12">
           <h2 className="font-heading text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-2 sm:mb-3 lg:mb-4">
-            Contacto - Alquiler de barcos en Blanes
+            {t.contact.title}
           </h2>
           <p className="text-sm sm:text-base lg:text-lg text-gray-600 max-w-xl sm:max-w-2xl mx-auto px-2">
-            ¿Tienes alguna pregunta sobre el alquiler de barcos en Blanes? Estamos en Puerto de Blanes, Costa Brava, 
-            para ayudarte a planificar tu experiencia perfecta en el mar.
+            {t.contact.subtitle}
           </p>
         </div>
 
@@ -51,7 +52,7 @@ export default function ContactSection() {
           {/* Contact Information */}
           <Card className="flex flex-col">
             <CardHeader className="pb-6">
-              <CardTitle>Información de Contacto</CardTitle>
+              <CardTitle>{t.contact.title}</CardTitle>
             </CardHeader>
             <CardContent className="flex-1 flex flex-col space-y-6">
               <div>
@@ -60,7 +61,7 @@ export default function ContactSection() {
                     <Phone className="w-4 h-4 sm:w-5 sm:h-5 text-primary" />
                   </div>
                   <div>
-                    <h3 className="font-medium text-gray-900 mb-1 sm:mb-2 text-sm sm:text-base">Teléfono & WhatsApp</h3>
+                    <h3 className="font-medium text-gray-900 mb-1 sm:mb-2 text-sm sm:text-base">{t.contact.phone} & {t.contact.whatsapp}</h3>
                     <a 
                       href="tel:+34611500372" 
                       className="text-gray-600 hover:text-primary transition-colors cursor-pointer block mb-1 text-sm sm:text-base"
@@ -68,7 +69,7 @@ export default function ContactSection() {
                     >
                       +34 611 500 372
                     </a>
-                    <p className="text-xs sm:text-sm text-gray-500">Disponible 9:00 - 20:00</p>
+                    <p className="text-xs sm:text-sm text-gray-500">{t.contact.scheduleTime}</p>
                   </div>
                 </div>
               </div>

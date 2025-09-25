@@ -325,4 +325,20 @@
   .border.hover-elevate:not(.no-hover-interaction-elevate)::after {
     inset: -1px;
   }
+
+  /* Custom date input left alignment */
+  .date-left-align {
+    text-align: left !important;
+    direction: ltr !important;
+  }
+
+  /* Target date input specific parts */
+  .date-left-align::-webkit-datetime-edit {
+    text-align: left !important;
+  }
+  
+  .date-left-align::-webkit-inner-spin-button,
+  .date-left-align::-webkit-calendar-picker-indicator {
+    text-align: left !important;
+  }
 }

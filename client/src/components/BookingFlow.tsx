@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Calendar, Clock, Users, Plus, Minus, Euro, CreditCard, Anchor, Gauge } from "lucide-react";
 import { BOAT_DATA } from "@shared/boatData";
+import { getBoatImage } from "@/utils/boatImages";
 import { useQuery } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
@@ -609,7 +610,7 @@ export default function BookingFlow({ boatId = "astec-450", onClose }: BookingFl
                   const boatName = boat.name;
                   const boatCapacity = boat.capacity || parseInt(boat.specifications?.capacity?.split(' ')[0] || '5');
                   const boatPrice = boat.pricePerHour ? parseFloat(boat.pricePerHour) : Math.min(...Object.values(boat.pricing?.BAJA?.prices || {"1h": 75}) as number[]);
-                  const boatImage = boat.image || BOAT_DATA[boat.id]?.image || "/placeholder-boat.jpg";
+                  const boatImage = boat.image || (BOAT_DATA[boat.id]?.image ? getBoatImage(BOAT_DATA[boat.id].image) : "/placeholder-boat.jpg");
                   const requiresLicense = boat.requiresLicense !== undefined ? boat.requiresLicense : boat.subtitle?.includes("Con Licencia");
                   
                   return (

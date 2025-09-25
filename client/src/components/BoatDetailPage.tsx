@@ -26,6 +26,7 @@ import {
 } from "lucide-react";
 import { openWhatsApp } from "@/utils/whatsapp";
 import { BOAT_DATA } from "@shared/boatData";
+import { getBoatImage } from "@/utils/boatImages";
 import Navigation from "./Navigation";
 import Footer from "./Footer";
 import { SEO } from "./SEO";
@@ -67,9 +68,10 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
   const canonical = `https://costa-brava-rent-a-boat-blanes.replit.app/barco/${boatId}`;
   
   // Product JSON-LD schema
-  const absoluteImage = boatData.image.startsWith('http') ? boatData.image : 
-    boatData.image.startsWith('/') ? `${window.location.origin}${boatData.image}` :
-    `${window.location.origin}/${boatData.image}`;
+  const resolvedImage = getBoatImage(boatData.image);
+  const absoluteImage = resolvedImage.startsWith('http') ? resolvedImage : 
+    resolvedImage.startsWith('/') ? `${window.location.origin}${resolvedImage}` :
+    `${window.location.origin}/${resolvedImage}`;
     
   const productSchema = {
     "@context": "https://schema.org",
@@ -108,7 +110,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
         title={seoTitle}
         description={seoDescription}
         canonical={canonical}
-        ogImage={boatData.image}
+        ogImage={getBoatImage(boatData.image)}
         ogType="product"
         jsonLd={productSchema}
       />
@@ -144,7 +146,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
           {/* Left Column - Image */}
           <div className="bg-white rounded-xl overflow-hidden shadow-lg">
             <img 
-              src={boatData.image} 
+              src={getBoatImage(boatData.image)} 
               alt={`Alquiler ${boatData.name} ${boatData.subtitle.includes("Sin Licencia") ? "sin licencia" : "con licencia"} en Blanes Costa Brava`}
               className="w-full h-64 sm:h-80 md:h-96 object-cover"
               loading="lazy"

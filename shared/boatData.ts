@@ -1,11 +1,5 @@
 // Real boat data from costabravarentaboat.com
-import solar450Image from "../client/src/assets/generated_images/SOLAR_450_boat_photo_b70eb7e1.png";
-import remus450Image from "../client/src/assets/generated_images/REMUS_450_boat_photo_ec8b926c.png";
-import astec400Image from "../client/src/assets/generated_images/ASTEC_400_boat_photo_9dde16a8.png";
-import astec450Image from "../client/src/assets/generated_images/ASTEC_400_boat_photo_9dde16a8.png"; // Usando ASTEC 400 para el 450 también
-import mingollaImage from "../client/src/assets/generated_images/MINGOLLA_BRAVA_19_boat_c0e4a5b5.png";
-import trimarchiImage from "../client/src/assets/generated_images/Trimarchi_57S_luxury_boat_0ef0159a.png";
-import pacificCraftImage from "../client/src/assets/generated_images/PACIFIC_CRAFT_625_boat_fbe4f4d0.png";
+// Image imports moved to client-side to avoid ESBuild PNG import issues during server build
 
 export interface BoatData {
   id: string;
@@ -50,7 +44,7 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
   "solar-450": {
     id: "solar-450",
     name: "Solar 450",
-    image: solar450Image,
+    image: "SOLAR_450_boat_photo_b70eb7e1.png",
     subtitle: "Sin Licencia Para Alquilar en Blanes",
     description: "Alquiler Solar 450 sin licencia en Blanes, Costa Brava. Embarcación ideal para hasta 5 personas con gasolina incluida. Perfecta para familias que buscan alquilar barco sin licencia en Puerto de Blanes. Incluye amplio solárium acolchado, toldo, escalera de baño y arranque eléctrico. Ideal para explorar las calas de Blanes y Costa Brava Sur.",
     specifications: {
@@ -111,7 +105,7 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
   "remus-450": {
     id: "remus-450",
     name: "Remus 450",
-    image: remus450Image,
+    image: "REMUS_450_boat_photo_ec8b926c.png",
     subtitle: "Sin Licencia Para Alquilar en Blanes",
     description: "Alquiler Remus 450 sin licencia en Blanes, Costa Brava. Barco ideal para hasta 5 personas con gasolina incluida. Perfecto para familias que buscan alquilar embarcación sin licencia en Puerto de Blanes. Equipado con solárium amplio, toldo Bi Mini y escalera de baño. Ideal para explorar las calas de Blanes y Costa Brava Sur.",
     specifications: {
@@ -172,7 +166,7 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
   "astec-400": {
     id: "astec-400",
     name: "Astec 400",
-    image: astec400Image,
+    image: "ASTEC_400_boat_photo_9dde16a8.png",
     subtitle: "Sin Licencia Para Alquilar en Blanes",
     description: "Alquiler Astec 400 sin licencia en Blanes, Costa Brava. Embarcación perfecta para parejas o familias pequeñas, hasta 4 personas con gasolina incluida. Ideal para alquilar barco sin licencia en Puerto de Blanes. Incluye solárium con cojines, toldo, escalera de baño y arranque eléctrico. Perfecta para explorar las calas de Blanes de manera sencilla y segura.",
     specifications: {
@@ -233,7 +227,7 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
   "astec-450": {
     id: "astec-450",
     name: "Astec 450", // Nota: El usuario quiere que se llame 480 en la página
-    image: astec450Image,
+    image: "ASTEC_400_boat_photo_9dde16a8.png",
     subtitle: "Sin Licencia Para Alquilar en Blanes",
     description: "Alquiler Astec 450 sin licencia en Blanes, Costa Brava. Nuestra embarcación sin licencia más espaciosa para grupos de hasta 5 personas con gasolina incluida. La mejor opción para alquilar barco sin licencia en Puerto de Blanes. Incluye solárium acolchado, toldo, escalera de baño, arranque eléctrico y equipo bluetooth. Ideal para navegación confortable en Costa Brava Sur.",
     specifications: {
@@ -295,7 +289,7 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
   "mingolla-brava-19": {
     id: "mingolla-brava-19",
     name: "Mingolla Brava 19",
-    image: mingollaImage,
+    image: "MINGOLLA_BRAVA_19_boat_c0e4a5b5.png",
     subtitle: "Con Licencia Básica Para Alquilar en Blanes",
     description: "Alquiler Mingolla Brava 19 con licencia en Blanes, Costa Brava. Espectacular embarcación deportiva para 6 personas con equipamiento premium. Ideal para alquilar barco con licencia en Puerto de Blanes. Destaca por diseño elegante, ducha agua dulce, bluetooth y GPS. Perfecta para explorar la Costa Brava Sur con estilo y confort.",
     specifications: {
@@ -358,7 +352,7 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
   "trimarchi-57s": {
     id: "trimarchi-57s",
     name: "Trimarchi 57S",
-    image: trimarchiImage,
+    image: "Trimarchi_57S_luxury_boat_0ef0159a.png",
     subtitle: "Con Licencia Básica Para Alquilar en Blanes",
     description: "Alquiler Trimarchi 57S con licencia en Blanes, Costa Brava. Barco deportivo premium para 7 personas, ideal para grupos que buscan alquilar embarcación con licencia en Puerto de Blanes. Incluye solárium en proa y popa, equipo bluetooth, mesa central y ducha agua dulce. Perfecta para aventuras en Costa Brava Sur.",
     specifications: {
@@ -421,7 +415,7 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
   "pacific-craft-625": {
     id: "pacific-craft-625",
     name: "Pacific Craft 625",
-    image: pacificCraftImage,
+    image: "PACIFIC_CRAFT_625_boat_fbe4f4d0.png",
     subtitle: "Con Licencia Básica Para Alquilar en Blanes",
     description: "Alquiler Pacific Craft 625 con licencia en Blanes, Costa Brava. Embarcación premium para 7 personas, la mejor opción para alquilar barco de lujo con licencia en Puerto de Blanes. Incluye bluetooth, ducha agua dulce, mesa, solárium proa y popa. Experiencia náutica inigualable en Costa Brava Sur.",
     specifications: {

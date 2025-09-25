@@ -310,6 +310,41 @@ export default function BookingFlow({ boatId = "astec-450", onClose }: BookingFl
   // Use boats from API instead of static data
   const availableBoats = boats.length > 0 ? boats : Object.values(BOAT_DATA);
 
+  // Get maximum capacity based on selected boat
+  const getMaxCapacity = (boatId: string): number => {
+    // First try to get capacity from the actual boat data
+    const boat = availableBoats.find(b => b.id === boatId);
+    if (boat && boat.capacity) {
+      return boat.capacity;
+    }
+    
+    // Fallback to hardcoded mapping if boat data doesn't have capacity
+    switch (boatId) {
+      case "astec-400":
+        return 4;
+      case "solar-450":
+      case "remus-450":
+      case "astec-450": // Astec 480 appears to be astec-450 in the system
+        return 5;
+      case "pacific-craft-625":
+      case "trimarchi-57s":
+        return 7;
+      case "mingolla-brava-19":
+        return 6;
+      default:
+        return 4; // Conservative fallback instead of 8
+    }
+  };
+
+  const maxCapacity = getMaxCapacity(selectedBoat);
+
+  // Clamp numberOfPeople if it exceeds the new boat's capacity
+  useEffect(() => {
+    if (customerData.numberOfPeople > maxCapacity) {
+      setCustomerData(prev => ({...prev, numberOfPeople: Math.min(prev.numberOfPeople, maxCapacity)}));
+    }
+  }, [selectedBoat, maxCapacity, customerData.numberOfPeople]);
+
   const durations = [
     { id: "1h", label: "1 hora", price: 70 },
     { id: "2h", label: "2 horas", price: 80 },
@@ -874,7 +909,7 @@ export default function BookingFlow({ boatId = "astec-450", onClose }: BookingFl
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent>
-                        {[1,2,3,4,5,6,7,8].map((num) => (
+                        {Array.from({ length: maxCapacity }, (_, i) => i + 1).map((num) => (
                           <SelectItem key={num} value={num.toString()}>
                             {num} {num === 1 ? 'persona' : 'personas'}
                           </SelectItem>

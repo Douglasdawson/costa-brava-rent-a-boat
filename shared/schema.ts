@@ -69,13 +69,21 @@ export const insertBookingSchema = createInsertSchema(bookings).omit({
   whatsappConfirmationSent: true,
   whatsappReminderSent: true,
 }).extend({
-  // Custom validation for booking form
+  // Custom validation for booking form with date coercion
+  bookingDate: z.coerce.date(),
+  startTime: z.coerce.date(),
+  endTime: z.coerce.date(),
   customerName: z.string().min(2, "El nombre debe tener al menos 2 caracteres"),
   customerSurname: z.string().min(2, "Los apellidos deben tener al menos 2 caracteres"),
   customerPhone: z.string().min(9, "El teléfono debe tener al menos 9 dígitos"),
-  customerEmail: z.string().email("Email inválido").optional(),
+  customerEmail: z.string().email("Email inválido").optional().or(z.literal("")),
+  customerNationality: z.string().min(1, "La nacionalidad es requerida"),
   numberOfPeople: z.number().min(1, "Debe ser al menos 1 persona"),
   totalHours: z.number().min(1, "Debe ser al menos 1 hora"),
+  subtotal: z.string(),
+  extrasTotal: z.string(),
+  deposit: z.string(),
+  totalAmount: z.string(),
 });
 
 export const insertBookingExtraSchema = createInsertSchema(bookingExtras).omit({

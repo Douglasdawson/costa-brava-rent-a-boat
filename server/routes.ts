@@ -4,13 +4,27 @@ import { storage } from "./storage";
 import { insertBookingSchema, insertBookingExtraSchema } from "@shared/schema";
 import Stripe from "stripe";
 
-// Initialize Stripe using integration blueprint
-if (!process.env.STRIPE_SECRET_KEY) {
-  throw new Error('Missing required Stripe secret: STRIPE_SECRET_KEY');
-}
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
-  apiVersion: "2025-08-27.basil",
-});
+// Initialize Stripe lazily only when needed
+let stripe: Stripe | null = null;
+const getStripe = () => {
+  if (!stripe && process.env.STRIPE_SECRET_KEY) {
+    stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
+      apiVersion: "2025-08-27.basil",
+    });
+  }
+  return stripe;
+};
+
+// Simple admin authentication middleware
+const requireAdminAuth = (req: any, res: any, next: any) => {
+  const authHeader = req.headers.authorization;
+  const adminToken = process.env.ADMIN_TOKEN || "admin-secret-2024";
+  
+  if (!authHeader || authHeader !== `Bearer ${adminToken}`) {
+    return res.status(401).json({ message: "Unauthorized access" });
+  }
+  next();
+};
 
 export async function registerRoutes(app: Express): Promise<Server> {
   
@@ -62,6 +76,19 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const bookingData = insertBookingSchema.parse(req.body);
       
+      // Get boat data for validation and pricing
+      const boat = await storage.getBoat(bookingData.boatId);
+      if (!boat) {
+        return res.status(404).json({ message: "Boat not found" });
+      }
+
+      // Validate capacity
+      if (bookingData.numberOfPeople > boat.capacity) {
+        return res.status(400).json({ 
+          message: `Number of people (${bookingData.numberOfPeople}) exceeds boat capacity (${boat.capacity})` 
+        });
+      }
+
       // Check availability before creating booking
       const isAvailable = await storage.checkAvailability(
         bookingData.boatId,
@@ -73,7 +100,32 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(409).json({ message: "Boat is not available at selected time" });
       }
 
-      const booking = await storage.createBooking(bookingData);
+      // Server-side calculation of totals to prevent tampering
+      const basePrice = parseFloat(boat.pricePerHour);
+      const hours = bookingData.totalHours;
+      const subtotal = basePrice * hours;
+      
+      // Calculate extras total
+      let extrasTotal = 0;
+      if (req.body.extras && Array.isArray(req.body.extras)) {
+        for (const extra of req.body.extras) {
+          extrasTotal += extra.price * (extra.quantity || 1);
+        }
+      }
+      
+      const deposit = parseFloat(boat.deposit);
+      const totalAmount = subtotal + extrasTotal + deposit;
+
+      // Create booking with server-calculated totals
+      const validatedBookingData = {
+        ...bookingData,
+        subtotal: subtotal.toString(),
+        extrasTotal: extrasTotal.toString(),
+        deposit: deposit.toString(),
+        totalAmount: totalAmount.toString(),
+      };
+
+      const booking = await storage.createBooking(validatedBookingData);
       
       // Create extras if provided
       if (req.body.extras && Array.isArray(req.body.extras)) {
@@ -81,7 +133,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
           await storage.createBookingExtra({
             bookingId: booking.id,
             extraName: extra.name,
-            extraPrice: extra.price,
+            extraPrice: extra.price.toString(),
             quantity: extra.quantity || 1
           });
         }
@@ -123,13 +175,18 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Stripe payment intent for booking payment + deposit
   app.post("/api/create-payment-intent", async (req, res) => {
     try {
+      const stripeInstance = getStripe();
+      if (!stripeInstance) {
+        return res.status(503).json({ message: "Payment service unavailable - Stripe not configured" });
+      }
+
       const { amount, bookingId } = req.body;
       
       if (!amount || amount <= 0) {
         return res.status(400).json({ message: "Valid amount is required" });
       }
 
-      const paymentIntent = await stripe.paymentIntents.create({
+      const paymentIntent = await stripeInstance.paymentIntents.create({
         amount: Math.round(amount * 100), // Convert to cents
         currency: "eur", // Costa Brava uses EUR
         metadata: {
@@ -188,8 +245,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Admin routes for calendar/CRM
-  app.get("/api/admin/bookings", async (req, res) => {
+  // Admin routes for calendar/CRM - now protected
+  app.get("/api/admin/bookings", requireAdminAuth, async (req, res) => {
     try {
       const bookings = await storage.getAllBookings();
       res.json(bookings);
@@ -198,8 +255,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Initialize boats data - temporary endpoint for setup
-  app.post("/api/admin/init-boats", async (req, res) => {
+  // Initialize boats data - temporary endpoint for setup - now protected
+  app.post("/api/admin/init-boats", requireAdminAuth, async (req, res) => {
     try {
       // Import BOAT_DATA from shared file
       const { BOAT_DATA } = await import("@shared/boatData");

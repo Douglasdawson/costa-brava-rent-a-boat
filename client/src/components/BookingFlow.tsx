@@ -1,10 +1,14 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Calendar, Clock, Users, Plus, Minus, Euro, CreditCard, Anchor, Gauge } from "lucide-react";
 import { BOAT_DATA } from "@shared/boatData";
+import { useQuery } from "@tanstack/react-query";
+import { apiRequest } from "@/lib/queryClient";
+import { useToast } from "@/hooks/use-toast";
+// Stripe will be added later - for now we'll use a simple payment placeholder
 
 interface BookingFlowProps {
   boatId?: string;
@@ -24,17 +28,33 @@ export default function BookingFlow({ boatId = "astec-450", onClose }: BookingFl
     email: "",
     phone: "",
     phonePrefix: "+34",
+    nationality: "",
+    numberOfPeople: 1,
     document: ""
   });
+  const [isLoading, setIsLoading] = useState(false);
+  const { toast } = useToast();
 
-  // todo: remove mock functionality - replace with real API data
-  const timeSlots = [
-    { id: "09:00", label: "09:00", available: true, price: 115 },
-    { id: "11:00", label: "11:00", available: false, price: 115 },
-    { id: "13:00", label: "13:00", available: true, price: 115 },
-    { id: "15:00", label: "15:00", available: true, price: 115 },
-    { id: "17:00", label: "17:00", available: true, price: 115 },
-  ];
+  // Fetch boats from API
+  const { data: boats = [] } = useQuery({
+    queryKey: ['/api/boats'],
+    queryFn: () => apiRequest('GET', '/api/boats').then(res => res.json()),
+  });
+
+  // Generate time slots for booking
+  const generateTimeSlots = () => {
+    const slots = [];
+    for (let hour = 9; hour <= 17; hour++) {
+      slots.push({
+        id: `${hour.toString().padStart(2, '0')}:00`,
+        label: `${hour.toString().padStart(2, '0')}:00`,
+        available: true // Will be checked against API
+      });
+    }
+    return slots;
+  };
+
+  const timeSlots = generateTimeSlots();
 
   const availableExtras = [
     { id: "parking", name: "Parking dentro del puerto", price: 10, description: "Parking dentro del puerto y delante del barco" },
@@ -252,7 +272,8 @@ export default function BookingFlow({ boatId = "astec-450", onClose }: BookingFl
     { code: "+998", country: "Uzbekistán" }
   ];
 
-  const availableBoats = Object.values(BOAT_DATA);
+  // Use boats from API instead of static data
+  const availableBoats = boats.length > 0 ? boats : Object.values(BOAT_DATA);
 
   const durations = [
     { id: "1h", label: "1 hora", price: 70 },
@@ -285,17 +306,128 @@ export default function BookingFlow({ boatId = "astec-450", onClose }: BookingFl
     return basePrice + extrasTotal;
   };
 
-  const handlePayment = () => {
-    console.log("Processing payment:", {
-      boatId,
-      selectedDate,
-      selectedTime,
-      duration,
-      extras,
-      customerData,
-      total: calculateTotal()
-    });
-    // Navigate to Stripe payment
+  // Check availability for selected time slot
+  const checkAvailability = async (timeSlot: string) => {
+    if (!selectedDate || !selectedBoat) return true;
+
+    const startDateTime = new Date(`${selectedDate}T${timeSlot}:00`);
+    const durationHours = parseInt(duration.replace('h', ''));
+    const endDateTime = new Date(startDateTime.getTime() + durationHours * 60 * 60 * 1000);
+
+    try {
+      const response = await apiRequest('POST', `/api/boats/${selectedBoat}/check-availability`, {
+        startTime: startDateTime.toISOString(),
+        endTime: endDateTime.toISOString()
+      });
+      const result = await response.json();
+      return result.available;
+    } catch (error) {
+      console.error('Error checking availability:', error);
+      return true; // Assume available on error
+    }
+  };
+
+  const handlePayment = async () => {
+    if (!selectedDate || !selectedTime || !selectedBoat) {
+      toast({
+        title: "Error",
+        description: "Por favor completa todos los campos requeridos.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    if (!customerData.firstName || !customerData.lastName || !customerData.phone) {
+      toast({
+        title: "Error", 
+        description: "Por favor completa todos los datos personales requeridos.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    setIsLoading(true);
+
+    try {
+      // Calculate start and end times
+      const startDateTime = new Date(`${selectedDate}T${selectedTime}:00`);
+      const durationHours = parseInt(duration.replace('h', ''));
+      const endDateTime = new Date(startDateTime.getTime() + durationHours * 60 * 60 * 1000);
+      
+      // Get selected boat data
+      const selectedBoatData = boats.find((boat: any) => boat.id === selectedBoat);
+      if (!selectedBoatData) {
+        throw new Error("Barco no encontrado");
+      }
+
+      // Calculate totals
+      const subtotal = durations.find(d => d.id === duration)?.price || 0;
+      const extrasTotal = Object.entries(extras).reduce((total, [id, quantity]) => {
+        const extra = availableExtras.find(e => e.id === id);
+        return total + (extra ? extra.price * quantity : 0);
+      }, 0);
+      const deposit = parseFloat(selectedBoatData.deposit || "0");
+      const totalAmount = subtotal + extrasTotal + deposit;
+
+      // Create booking
+      const bookingData = {
+        boatId: selectedBoat,
+        bookingDate: new Date(selectedDate),
+        startTime: startDateTime,
+        endTime: endDateTime,
+        customerName: customerData.firstName,
+        customerSurname: customerData.lastName,
+        customerPhone: `${customerData.phonePrefix}${customerData.phone}`,
+        customerEmail: customerData.email || null,
+        customerNationality: customerData.nationality,
+        numberOfPeople: customerData.numberOfPeople,
+        totalHours: durationHours,
+        subtotal: subtotal.toString(),
+        extrasTotal: extrasTotal.toString(),
+        deposit: deposit.toString(),
+        totalAmount: totalAmount.toString(),
+        paymentStatus: "pending"
+      };
+
+      // Create the booking
+      const bookingResponse = await apiRequest('POST', '/api/bookings', {
+        ...bookingData,
+        extras: Object.entries(extras).map(([id, quantity]) => {
+          const extra = availableExtras.find(e => e.id === id);
+          return {
+            name: extra?.name || id,
+            price: extra?.price || 0,
+            quantity
+          };
+        }).filter(extra => extra.quantity > 0)
+      });
+
+      if (!bookingResponse.ok) {
+        const error = await bookingResponse.json();
+        throw new Error(error.message || "Error al crear la reserva");
+      }
+
+      const booking = await bookingResponse.json();
+
+      // For now, show success message (later we'll integrate Stripe)
+      toast({
+        title: "¡Reserva creada con éxito!",
+        description: `Tu reserva para el ${selectedDate} a las ${selectedTime} ha sido confirmada.`,
+      });
+
+      // Reset form or redirect
+      setStep(6); // Move to confirmation step
+
+    } catch (error: any) {
+      console.error('Error creating booking:', error);
+      toast({
+        title: "Error al procesar la reserva",
+        description: error.message || "Ha ocurrido un error inesperado. Por favor, inténtalo de nuevo.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -368,8 +500,15 @@ export default function BookingFlow({ boatId = "astec-450", onClose }: BookingFl
             </CardHeader>
             <CardContent>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {availableBoats.map((boat) => {
+                {availableBoats.map((boat: any) => {
                   const isSelected = selectedBoat === boat.id;
+                  // Handle both database boats and static data boats
+                  const boatName = boat.name;
+                  const boatCapacity = boat.capacity || parseInt(boat.specifications?.capacity?.split(' ')[0] || '5');
+                  const boatPrice = boat.pricePerHour ? parseFloat(boat.pricePerHour) : Math.min(...Object.values(boat.pricing?.BAJA?.prices || {"1h": 75}));
+                  const boatImage = boat.image || BOAT_DATA[boat.id]?.image || "/placeholder-boat.jpg";
+                  const requiresLicense = boat.requiresLicense !== undefined ? boat.requiresLicense : boat.subtitle?.includes("Con Licencia");
+                  
                   return (
                     <div
                       key={boat.id}
@@ -383,20 +522,22 @@ export default function BookingFlow({ boatId = "astec-450", onClose }: BookingFl
                     >
                       <div className="flex items-center mb-3">
                         <img 
-                          src={boat.image} 
-                          alt={boat.name}
+                          src={boatImage} 
+                          alt={boatName}
                           className="w-16 h-16 object-cover rounded-lg mr-3"
                         />
                         <div>
-                          <h3 className="font-semibold text-gray-900">{boat.name}</h3>
-                          <p className="text-sm text-gray-600">{boat.subtitle}</p>
+                          <h3 className="font-semibold text-gray-900">{boatName}</h3>
+                          <p className="text-sm text-gray-600">
+                            {requiresLicense ? "Con Licencia" : "Sin Licencia"}
+                          </p>
                         </div>
                       </div>
                       <div className="grid grid-cols-2 gap-2 text-xs text-gray-600">
-                        <div>👥 {boat.specifications.capacity}</div>
-                        <div>📏 {boat.specifications.length}</div>
-                        <div className="flex items-center"><Gauge className="w-3 h-3 mr-1" />{boat.specifications.engine}</div>
-                        <div>💰 Desde {Math.min(...Object.values(boat.pricing.BAJA.prices))}€</div>
+                        <div>👥 {boatCapacity} personas</div>
+                        <div>📏 {boat.specifications?.length || "4-6m"}</div>
+                        <div className="flex items-center"><Gauge className="w-3 h-3 mr-1" />{boat.specifications?.engine || boat.specifications?.model || "Motor"}</div>
+                        <div>💰 Desde {boatPrice}€</div>
                       </div>
                     </div>
                   );

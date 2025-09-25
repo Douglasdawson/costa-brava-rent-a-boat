@@ -313,7 +313,7 @@ export default function BookingFlow({ boatId = "astec-450", onClose }: BookingFl
   // Get maximum capacity based on selected boat
   const getMaxCapacity = (boatId: string): number => {
     // First try to get capacity from the actual boat data
-    const boat = availableBoats.find(b => b.id === boatId);
+    const boat = availableBoats.find((b: any) => b.id === boatId);
     if (boat && boat.capacity) {
       return boat.capacity;
     }
@@ -353,6 +353,20 @@ export default function BookingFlow({ boatId = "astec-450", onClose }: BookingFl
     { id: "6h", label: "6 horas", price: 150 },
     { id: "8h", label: "8 horas", price: 180 }
   ];
+
+  // Filter available durations based on selected start time (max return time 19:00)
+  const getAvailableDurations = (startTime: string) => {
+    if (!startTime) return durations;
+    
+    const [startHour] = startTime.split(':').map(Number);
+    const maxReturnHour = 19; // 19:00 (7:00 PM)
+    
+    return durations.filter(dur => {
+      const durationHours = parseInt(dur.id.replace('h', ''));
+      const endHour = startHour + durationHours;
+      return endHour <= maxReturnHour;
+    });
+  };
 
   const handleTimeSelect = (timeId: string) => {
     setSelectedTime(timeId);
@@ -657,27 +671,6 @@ export default function BookingFlow({ boatId = "astec-450", onClose }: BookingFl
             </CardHeader>
             <CardContent>
               <div className="mb-6">
-                <h3 className="font-medium text-gray-900 mb-3">Duración</h3>
-                <div className="grid grid-cols-2 gap-3">
-                  {durations.map((dur) => (
-                    <button
-                      key={dur.id}
-                      onClick={() => setDuration(dur.id)}
-                      className={`p-3 border rounded-lg text-center hover-elevate ${
-                        duration === dur.id 
-                          ? 'border-primary bg-primary/10 text-primary' 
-                          : 'border-gray-200 hover:border-gray-300'
-                      }`}
-                      data-testid={`button-duration-${dur.id}`}
-                    >
-                      <div className="font-medium">{dur.label}</div>
-                      <div className="text-sm text-gray-600">{dur.price}€</div>
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              <div>
                 <h3 className="font-medium text-gray-900 mb-3">Horario de inicio</h3>
                 <div className="space-y-2">
                   {timeSlots.map((slot) => (
@@ -686,13 +679,21 @@ export default function BookingFlow({ boatId = "astec-450", onClose }: BookingFl
                       onClick={() => {
                         setSelectedTime(slot.id);
                         console.log("Time selected:", slot.id);
-                        setStep(4);
+                        
+                        // Reset duration if it's not available for the new time
+                        const availableDurations = getAvailableDurations(slot.id);
+                        const isDurationStillAvailable = availableDurations.some(d => d.id === duration);
+                        if (!isDurationStillAvailable) {
+                          setDuration("2h"); // Reset to default duration
+                        }
                       }}
                       disabled={!slot.available}
                       className={`w-full p-3 border rounded-lg flex items-center justify-between hover-elevate ${
-                        !slot.available 
-                          ? 'border-gray-200 bg-gray-50 text-gray-400 cursor-not-allowed' 
-                          : 'border-gray-200 hover:border-primary hover:bg-primary/5'
+                        selectedTime === slot.id
+                          ? 'border-primary bg-primary/10 text-primary'
+                          : !slot.available 
+                            ? 'border-gray-200 bg-gray-50 text-gray-400 cursor-not-allowed' 
+                            : 'border-gray-200 hover:border-primary hover:bg-primary/5'
                       }`}
                       data-testid={`button-timeslot-${slot.id}`}
                     >
@@ -706,6 +707,41 @@ export default function BookingFlow({ boatId = "astec-450", onClose }: BookingFl
                   ))}
                 </div>
               </div>
+
+              {selectedTime && (
+                <div className="mb-6">
+                  <h3 className="font-medium text-gray-900 mb-3">Duración</h3>
+                  <div className="grid grid-cols-2 gap-3">
+                    {getAvailableDurations(selectedTime).map((dur) => (
+                      <button
+                        key={dur.id}
+                        onClick={() => setDuration(dur.id)}
+                        className={`p-3 border rounded-lg text-center hover-elevate ${
+                          duration === dur.id 
+                            ? 'border-primary bg-primary/10 text-primary' 
+                            : 'border-gray-200 hover:border-gray-300'
+                        }`}
+                        data-testid={`button-duration-${dur.id}`}
+                      >
+                        <div className="font-medium">{dur.label}</div>
+                        <div className="text-sm text-gray-600">{dur.price}€</div>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {selectedTime && duration && (
+                <div className="mt-6">
+                  <Button 
+                    onClick={() => setStep(4)}
+                    className="w-full py-3"
+                    data-testid="button-continue-extras"
+                  >
+                    Continuar
+                  </Button>
+                </div>
+              )}
             </CardContent>
           </Card>
         )}

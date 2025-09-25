@@ -44,9 +44,10 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     if (savedLanguage && ['es', 'ca', 'fr', 'de', 'nl', 'it', 'ru', 'en'].includes(savedLanguage)) {
       setLanguageState(savedLanguage);
     } else {
-      // Default to Spanish for Costa Brava (Spanish company)
-      setLanguageState('es');
-      localStorage.setItem('costa-brava-language', 'es');
+      // Detect browser language and save it
+      const detectedLanguage = detectBrowserLanguage();
+      setLanguageState(detectedLanguage);
+      localStorage.setItem('costa-brava-language', detectedLanguage);
     }
     
     setIsLoading(false);

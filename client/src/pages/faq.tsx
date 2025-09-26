@@ -22,6 +22,7 @@ import {
   Umbrella,
   Ship
 } from "lucide-react";
+import { SiWhatsapp } from "react-icons/si";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { SEO } from "@/components/SEO";
@@ -610,8 +611,12 @@ export default function FAQPage() {
                 Nuestro equipo responde rápidamente y estará encantado de resolver cualquier duda.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button onClick={handleWhatsAppContact} className="gap-2 flex-1" data-testid="button-whatsapp-questions">
-                  <Phone className="w-5 h-5" />
+                <Button 
+                  onClick={handleWhatsAppContact} 
+                  className="gap-2 flex-1 bg-[#25D366] hover:bg-[#128C7E] active:bg-[#075E54] border-[#25D366]" 
+                  data-testid="button-whatsapp-questions"
+                >
+                  <SiWhatsapp className="w-5 h-5" />
                   Preguntar por WhatsApp
                 </Button>
                 <Button onClick={handleBookingWhatsApp} variant="outline" className="gap-2 flex-1" data-testid="button-direct-booking">

@@ -151,7 +151,26 @@ export default function Footer() {
                   {t.footer.privacy}
                 </button>
               </li>
-              <li><a href="#" className="hover:text-primary transition-colors">{t.footer.cancelationPolicy}</a></li>
+              <li>
+                <button 
+                  onClick={() => {
+                    setLocation("/terms-conditions");
+                    setTimeout(() => {
+                      const element = document.getElementById("cancelaciones-cambios");
+                      if (element) {
+                        element.scrollIntoView({
+                          behavior: "smooth",
+                          block: "start"
+                        });
+                      }
+                    }, 100);
+                  }} 
+                  className="hover:text-primary transition-colors cursor-pointer bg-transparent border-none p-0 text-left"
+                  data-testid="footer-cancellation-link"
+                >
+                  {t.footer.cancelationPolicy}
+                </button>
+              </li>
             </ul>
           </div>
 

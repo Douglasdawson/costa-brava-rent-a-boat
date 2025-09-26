@@ -181,7 +181,7 @@ export default function TermsConditionsPage() {
           </Card>
 
           {/* Cancelaciones y Cambios */}
-          <Card className="mb-6 sm:mb-8">
+          <Card className="mb-6 sm:mb-8" id="cancelaciones-cambios">
             <CardHeader>
               <CardTitle className="text-xl">
                 Cancelaciones y Cambios

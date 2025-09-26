@@ -149,7 +149,7 @@ export default function Navigation() {
               onClick={toggleMenu}
               data-testid="button-mobile-menu"
             >
-              {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {isOpen ? <X className="w-7 h-7" /> : <Menu className="w-7 h-7" />}
             </Button>
           </div>
         </div>

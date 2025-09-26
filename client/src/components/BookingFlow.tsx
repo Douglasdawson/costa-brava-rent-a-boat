@@ -1,10 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Calendar, Clock, Users, Plus, Minus, Euro, CreditCard, Anchor, Gauge } from "lucide-react";
 import { BOAT_DATA } from "@shared/boatData";
+import { getSeason } from "@shared/pricing";
 import { getBoatImage } from "@/utils/boatImages";
 import { useQuery } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
@@ -346,19 +347,50 @@ export default function BookingFlow({ boatId = "astec-450", onClose }: BookingFl
 
   // Clamp numberOfPeople if it exceeds the new boat's capacity
   useEffect(() => {
-    if (customerData.numberOfPeople > maxCapacity) {
+    if (customerData.numberOfPeople > maxCapacity && maxCapacity > 0) {
       setCustomerData(prev => ({...prev, numberOfPeople: Math.min(prev.numberOfPeople, maxCapacity)}));
     }
-  }, [selectedBoat, maxCapacity, customerData.numberOfPeople]);
+  }, [selectedBoat, maxCapacity]);
 
-  const durations = [
-    { id: "1h", label: t.booking.oneHour, price: 70 },
-    { id: "2h", label: t.booking.twoHours, price: 80 },
-    { id: "3h", label: t.booking.threeHours, price: 90 },
-    { id: "4h", label: t.booking.fourHours, price: 120 },
-    { id: "6h", label: t.booking.sixHours, price: 150 },
-    { id: "8h", label: t.booking.eightHours, price: 180 }
-  ];
+  // Calculate duration prices based on selected boat and date
+  const durations = useMemo(() => {
+    if (!selectedBoat || !selectedDate) {
+      // Fallback prices if no boat/date selected
+      return [
+        { id: "1h", label: t.booking.oneHour, price: 70 },
+        { id: "2h", label: t.booking.twoHours, price: 80 },
+        { id: "3h", label: t.booking.threeHours, price: 90 },
+        { id: "4h", label: t.booking.fourHours, price: 120 },
+        { id: "6h", label: t.booking.sixHours, price: 150 },
+        { id: "8h", label: t.booking.eightHours, price: 180 }
+      ];
+    }
+
+    try {
+      const boat = BOAT_DATA[selectedBoat];
+      const season = getSeason(new Date(selectedDate));
+      const seasonPrices = boat.pricing[season].prices;
+
+      return [
+        { id: "1h", label: t.booking.oneHour, price: seasonPrices["1h"] || 70 },
+        { id: "2h", label: t.booking.twoHours, price: seasonPrices["2h"] || 80 },
+        { id: "3h", label: t.booking.threeHours, price: seasonPrices["3h"] || 90 },
+        { id: "4h", label: t.booking.fourHours, price: seasonPrices["4h"] || 120 },
+        { id: "6h", label: t.booking.sixHours, price: seasonPrices["6h"] || 150 },
+        { id: "8h", label: t.booking.eightHours, price: seasonPrices["8h"] || 180 }
+      ];
+    } catch (error) {
+      // If date is outside season or other error, use fallback prices
+      return [
+        { id: "1h", label: t.booking.oneHour, price: 70 },
+        { id: "2h", label: t.booking.twoHours, price: 80 },
+        { id: "3h", label: t.booking.threeHours, price: 90 },
+        { id: "4h", label: t.booking.fourHours, price: 120 },
+        { id: "6h", label: t.booking.sixHours, price: 150 },
+        { id: "8h", label: t.booking.eightHours, price: 180 }
+      ];
+    }
+  }, [selectedBoat, selectedDate, t.booking]);
 
   // Filter available durations based on selected start time (max return time 19:00)
   const getAvailableDurations = (startTime: string) => {
@@ -961,12 +993,16 @@ export default function BookingFlow({ boatId = "astec-450", onClose }: BookingFl
                         type="text"
                         value={nationalitySearch || customerData.customerNationality}
                         onChange={(e) => {
-                          setNationalitySearch(e.target.value);
+                          const value = e.target.value;
+                          setNationalitySearch(value);
                           setShowNationalityDropdown(true);
+                          
+                          // Update customerNationality immediately for better UX
+                          setCustomerData(prev => ({...prev, customerNationality: value}));
                         }}
                         onBlur={() => {
-                          // If user typed a valid nationality, set it directly
-                          if (nationalitySearch && nationalities.includes(nationalitySearch)) {
+                          // Always accept the typed value
+                          if (nationalitySearch) {
                             setCustomerData(prev => ({...prev, customerNationality: nationalitySearch}));
                             setNationalitySearch("");
                           }
@@ -1020,7 +1056,7 @@ export default function BookingFlow({ boatId = "astec-450", onClose }: BookingFl
 
               <Button 
                 onClick={() => setStep(6)}
-                disabled={!customerData.customerName || !customerData.customerSurname || !customerData.customerPhone || !customerData.customerNationality || customerData.numberOfPeople < 1 || customerData.customerPhone.length < 9}
+                disabled={!customerData.customerName || !customerData.customerSurname || !customerData.customerEmail || !customerData.customerPhone || !customerData.customerNationality || customerData.numberOfPeople < 1 || customerData.customerPhone?.length < 9}
                 className="w-full py-3"
                 data-testid="button-continue-payment"
               >

@@ -369,36 +369,6 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
           </CardContent>
         </Card>
 
-        {/* Booking Actions */}
-        <Card className="mb-8">
-          <CardContent className="p-6">
-            <div className="text-center space-y-4">
-              <h3 className="text-xl font-bold text-gray-900">¿Listo para tu aventura?</h3>
-              <p className="text-gray-600">Reserva ahora tu {boatData.name} y disfruta de las calas de la Costa Brava</p>
-              
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button 
-                  onClick={handleReservation}
-                  className="bg-primary hover:bg-primary/90 text-white px-8 py-3"
-                  data-testid="button-make-reservation"
-                >
-                  <Calendar className="w-4 h-4 mr-2" />
-                  Reservar Ahora
-                </Button>
-                
-                <Button 
-                  variant="outline"
-                  onClick={handleWhatsApp}
-                  data-testid="button-whatsapp-info"
-                >
-                  <MessageSquare className="w-4 h-4 mr-2" />
-                  Más información por WhatsApp
-                </Button>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-
         {/* Important Info */}
         <Card className="mb-8">
           <CardHeader>
@@ -437,6 +407,36 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                 </button>{" "}
                 antes de hacer tu reserva.
               </p>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Booking Actions */}
+        <Card className="mb-8">
+          <CardContent className="p-6">
+            <div className="text-center space-y-4">
+              <h3 className="text-xl font-bold text-gray-900">¿Listo para tu aventura?</h3>
+              <p className="text-gray-600">Reserva ahora tu {boatData.name} y disfruta de las calas de la Costa Brava</p>
+              
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Button 
+                  onClick={handleReservation}
+                  className="bg-primary hover:bg-primary/90 text-white px-8 py-3"
+                  data-testid="button-make-reservation"
+                >
+                  <Calendar className="w-4 h-4 mr-2" />
+                  Reservar Ahora
+                </Button>
+                
+                <Button 
+                  variant="outline"
+                  onClick={handleWhatsApp}
+                  data-testid="button-whatsapp-info"
+                >
+                  <MessageSquare className="w-4 h-4 mr-2" />
+                  Más información por WhatsApp
+                </Button>
+              </div>
             </div>
           </CardContent>
         </Card>

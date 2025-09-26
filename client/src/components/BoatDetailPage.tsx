@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { useLocation } from "wouter";
 import { 
   ArrowLeft, 
   Users, 
@@ -38,6 +39,7 @@ interface BoatDetailPageProps {
 
 export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDetailPageProps) {
   const [selectedSeason, setSelectedSeason] = useState<"BAJA" | "MEDIA" | "ALTA">("BAJA");
+  const [, setLocation] = useLocation();
   
   // Get boat data dynamically based on boatId
   const boatData = BOAT_DATA[boatId];
@@ -414,7 +416,25 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
             <div className="mt-4 p-4 bg-blue-50 rounded-lg">
               <p className="text-blue-800 text-sm">
                 <strong>Condiciones:</strong> Revisa{" "}
-                <a href="/condiciones-generales" className="underline">las condiciones generales del alquiler</a>{" "}
+                <button
+                  onClick={() => {
+                    const targetSection = requiresLicense ? "embarcaciones-con-licencia" : "embarcaciones-sin-licencia";
+                    setLocation("/terms-conditions");
+                    setTimeout(() => {
+                      const element = document.getElementById(targetSection);
+                      if (element) {
+                        element.scrollIntoView({
+                          behavior: "smooth",
+                          block: "start"
+                        });
+                      }
+                    }, 100);
+                  }}
+                  className="underline bg-transparent border-none p-0 text-blue-800 cursor-pointer hover:text-blue-600 transition-colors"
+                  data-testid="link-terms-conditions"
+                >
+                  las condiciones generales del alquiler
+                </button>{" "}
                 antes de hacer tu reserva.
               </p>
             </div>

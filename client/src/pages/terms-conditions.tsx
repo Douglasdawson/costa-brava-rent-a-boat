@@ -31,7 +31,7 @@ export default function TermsConditionsPage() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           
           {/* Embarcaciones CON Titulación */}
-          <Card className="mb-6 sm:mb-8">
+          <Card className="mb-6 sm:mb-8" id="embarcaciones-con-licencia">
             <CardHeader>
               <CardTitle className="flex items-center gap-3 text-xl">
                 <FileText className="w-6 h-6 text-primary" />
@@ -114,7 +114,7 @@ export default function TermsConditionsPage() {
           </Card>
 
           {/* Embarcaciones SIN Titulación */}
-          <Card className="mb-6 sm:mb-8">
+          <Card className="mb-6 sm:mb-8" id="embarcaciones-sin-licencia">
             <CardHeader>
               <CardTitle className="flex items-center gap-3 text-xl">
                 <FileText className="w-6 h-6 text-primary" />

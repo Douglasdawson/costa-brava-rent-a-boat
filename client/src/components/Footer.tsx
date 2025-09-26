@@ -123,7 +123,13 @@ export default function Footer() {
             <ul className="space-y-1 text-xs">
               <li>
                 <button 
-                  onClick={() => setLocation("/terms-conditions")} 
+                  onClick={() => {
+                    setLocation("/terms-conditions");
+                    window.scrollTo({
+                      top: 0,
+                      behavior: "smooth"
+                    });
+                  }} 
                   className="hover:text-primary transition-colors cursor-pointer bg-transparent border-none p-0 text-left"
                   data-testid="footer-terms-link"
                 >

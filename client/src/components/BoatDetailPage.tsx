@@ -260,7 +260,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
           {/* Equipment */}
           <Card>
             <CardHeader>
-              <CardTitle>Equipamiento Incluido</CardTitle>
+              <CardTitle className="text-base sm:text-lg">Equipamiento Incluido</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="grid grid-cols-1 gap-2">

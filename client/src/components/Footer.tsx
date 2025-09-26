@@ -131,10 +131,12 @@ export default function Footer() {
                 <button 
                   onClick={() => {
                     setLocation("/terms-conditions");
-                    window.scrollTo({
-                      top: 0,
-                      behavior: "smooth"
-                    });
+                    setTimeout(() => {
+                      window.scrollTo({
+                        top: 0,
+                        behavior: "smooth"
+                      });
+                    }, 100);
                   }} 
                   className="hover:text-primary transition-colors cursor-pointer bg-transparent border-none p-0 text-left"
                   data-testid="footer-terms-link"

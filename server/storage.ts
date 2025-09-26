@@ -26,8 +26,10 @@ export interface IStorage {
   // Booking methods
   createBooking(booking: InsertBooking): Promise<Booking>;
   getBooking(id: string): Promise<Booking | undefined>;
+  getBookingById(id: string): Promise<Booking | undefined>;
   getBookingsByDate(date: Date): Promise<Booking[]>;
   getBookingsByBoatAndDateRange(boatId: string, startDate: Date, endDate: Date): Promise<Booking[]>;
+  updateBooking(id: string, updates: Partial<InsertBooking>): Promise<Booking | undefined>;
   updateBookingPaymentStatus(id: string, status: string, stripePaymentIntentId?: string): Promise<Booking | undefined>;
   updateBookingWhatsAppStatus(id: string, confirmationSent?: boolean, reminderSent?: boolean): Promise<Booking | undefined>;
   getAllBookings(): Promise<Booking[]>;
@@ -105,6 +107,11 @@ export class DatabaseStorage implements IStorage {
     return booking || undefined;
   }
 
+  async getBookingById(id: string): Promise<Booking | undefined> {
+    const [booking] = await db.select().from(bookings).where(eq(bookings.id, id));
+    return booking || undefined;
+  }
+
   async getBookingsByDate(date: Date): Promise<Booking[]> {
     const startOfDay = new Date(date);
     startOfDay.setHours(0, 0, 0, 0);
@@ -159,6 +166,15 @@ export class DatabaseStorage implements IStorage {
           inArray(bookings.bookingStatus, ["hold", "pending_payment", "confirmed"])
         )
       );
+  }
+
+  async updateBooking(id: string, updates: Partial<InsertBooking>): Promise<Booking | undefined> {
+    const [updatedBooking] = await db
+      .update(bookings)
+      .set(updates)
+      .where(eq(bookings.id, id))
+      .returning();
+    return updatedBooking || undefined;
   }
 
   async updateBookingPaymentStatus(id: string, status: string, stripePaymentIntentId?: string): Promise<Booking | undefined> {

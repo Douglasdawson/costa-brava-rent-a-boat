@@ -1,9 +1,29 @@
 import type { Express } from "express";
+import express from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { insertBookingSchema, insertBookingExtraSchema, bookings } from "@shared/schema";
 import { db } from "./db";
 import { and, eq, lte } from "drizzle-orm";
+import Stripe from "stripe";
+
+// Initialize Stripe lazily with proper validation
+let stripe: Stripe | null = null;
+const getStripe = () => {
+  if (!stripe) {
+    const secretKey = process.env.STRIPE_SECRET_KEY;
+    if (!secretKey) {
+      throw new Error('Missing STRIPE_SECRET_KEY environment variable');
+    }
+    if (!secretKey.startsWith('sk_')) {
+      throw new Error('Invalid Stripe secret key: must start with sk_');
+    }
+    stripe = new Stripe(secretKey, {
+      apiVersion: "2023-10-16",
+    });
+  }
+  return stripe;
+};
 
 // Server-side extras catalog for price validation
 const EXTRAS_CATALOG = {
@@ -12,18 +32,6 @@ const EXTRAS_CATALOG = {
   "snorkel": { name: "Equipo snorkel", price: 5 },
   "paddle": { name: "Tabla de paddlesurf", price: 25 },
   "seascooter": { name: "Seascooter", price: 50 }
-};
-import Stripe from "stripe";
-
-// Initialize Stripe lazily only when needed
-let stripe: Stripe | null = null;
-const getStripe = () => {
-  if (!stripe && process.env.STRIPE_SECRET_KEY) {
-    stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
-      apiVersion: "2025-08-27.basil",
-    });
-  }
-  return stripe;
 };
 
 // Simple admin authentication middleware
@@ -338,6 +346,327 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.status(500).json({ 
         message: "Error al limpiar holds expirados: " + error.message 
       });
+    }
+  });
+
+  // Stripe payment endpoint for boat bookings
+  app.post("/api/create-payment-intent", async (req, res) => {
+    try {
+      // Validate Stripe configuration
+      let stripe: Stripe;
+      try {
+        stripe = getStripe();
+      } catch (error: any) {
+        return res.status(503).json({
+          message: "Servicio de pagos no disponible: " + error.message,
+          success: false
+        });
+      }
+
+      const { holdId } = req.body;
+
+      if (!holdId) {
+        return res.status(400).json({
+          message: "ID de hold requerido",
+          success: false
+        });
+      }
+
+      // Find the hold
+      const hold = await storage.getBookingById(holdId);
+      if (!hold) {
+        return res.status(404).json({
+          message: "Hold no encontrado",
+          success: false
+        });
+      }
+
+      if (hold.bookingStatus !== "hold") {
+        return res.status(400).json({
+          message: "El hold ya no está disponible",
+          success: false,
+          status: hold.bookingStatus
+        });
+      }
+
+      // Check if hold has expired
+      if (hold.expiresAt && new Date() > hold.expiresAt) {
+        return res.status(410).json({
+          message: "El hold ha expirado",
+          success: false
+        });
+      }
+
+      // Create Stripe PaymentIntent with EUR currency
+      const paymentIntent = await stripe.paymentIntents.create({
+        amount: Math.round(Number(hold.totalAmount) * 100), // Convert to cents
+        currency: "eur",
+        metadata: {
+          holdId: hold.id,
+          sessionId: hold.sessionId || "",
+          boatId: hold.boatId,
+          bookingDate: hold.bookingDate.toISOString(),
+          startTime: hold.startTime.toISOString(),
+          endTime: hold.endTime.toISOString(),
+          numberOfPeople: hold.numberOfPeople.toString()
+        },
+        description: `Reserva de barco ${hold.boatId} - ${hold.bookingDate.toISOString().split('T')[0]}`
+      });
+
+      // Update booking to pending_payment status with payment intent
+      await storage.updateBooking(hold.id, {
+        bookingStatus: "pending_payment",
+        paymentStatus: "pending",
+        stripePaymentIntentId: paymentIntent.id
+      });
+
+      res.json({
+        success: true,
+        clientSecret: paymentIntent.client_secret,
+        paymentIntentId: paymentIntent.id,
+        amount: Number(hold.totalAmount),
+        currency: "eur"
+      });
+
+    } catch (error: any) {
+      console.error("Error creating payment intent:", error);
+      res.status(500).json({
+        message: "Error al crear el intent de pago: " + error.message,
+        success: false
+      });
+    }
+  });
+
+  // Mock payment endpoint for testing when Stripe keys are not properly configured
+  // Only available in development mode or with admin authentication
+  app.post("/api/create-payment-intent-mock", async (req, res) => {
+    // Check if we're in production mode
+    if (process.env.NODE_ENV === 'production') {
+      return res.status(404).json({
+        message: "Endpoint no disponible en producción",
+        success: false
+      });
+    }
+
+    try {
+      const { holdId } = req.body;
+
+      if (!holdId) {
+        return res.status(400).json({
+          message: "ID de hold requerido",
+          success: false
+        });
+      }
+
+      // Find the hold
+      const hold = await storage.getBookingById(holdId);
+      if (!hold) {
+        return res.status(404).json({
+          message: "Hold no encontrado",
+          success: false
+        });
+      }
+
+      if (hold.bookingStatus !== "hold") {
+        return res.status(400).json({
+          message: "El hold ya no está disponible",
+          success: false,
+          status: hold.bookingStatus
+        });
+      }
+
+      // Check if hold has expired
+      if (hold.expiresAt && new Date() > hold.expiresAt) {
+        return res.status(410).json({
+          message: "El hold ha expirado",
+          success: false
+        });
+      }
+
+      // Mock PaymentIntent ID
+      const mockPaymentIntentId = `pi_mock_${Date.now()}_${Math.random().toString(36).substring(7)}`;
+
+      // Update booking to pending_payment status with mock payment intent
+      await storage.updateBooking(hold.id, {
+        bookingStatus: "pending_payment",
+        paymentStatus: "pending",
+        stripePaymentIntentId: mockPaymentIntentId
+      });
+
+      res.json({
+        success: true,
+        clientSecret: `${mockPaymentIntentId}_secret_mock`,
+        paymentIntentId: mockPaymentIntentId,
+        amount: Number(hold.totalAmount),
+        currency: "eur",
+        mockMode: true,
+        note: "This is a mock payment for testing. Use /api/simulate-payment-success to complete the payment."
+      });
+
+    } catch (error: any) {
+      console.error("Error creating mock payment intent:", error);
+      res.status(500).json({
+        message: "Error al crear el intent de pago mock: " + error.message,
+        success: false
+      });
+    }
+  });
+
+  // Simulate successful payment for testing
+  // Only available in development mode or with admin authentication
+  app.post("/api/simulate-payment-success", async (req, res) => {
+    // Check if we're in production mode
+    if (process.env.NODE_ENV === 'production') {
+      return res.status(404).json({
+        message: "Endpoint no disponible en producción",
+        success: false
+      });
+    }
+
+    try {
+      const { paymentIntentId } = req.body;
+
+      if (!paymentIntentId) {
+        return res.status(400).json({
+          message: "PaymentIntent ID requerido",
+          success: false
+        });
+      }
+
+      // Find booking by payment intent ID
+      const booking = await db
+        .select()
+        .from(bookings)
+        .where(eq(bookings.stripePaymentIntentId, paymentIntentId))
+        .limit(1);
+
+      if (booking.length === 0) {
+        return res.status(404).json({
+          message: "Reserva no encontrada para este PaymentIntent",
+          success: false
+        });
+      }
+
+      const bookingRecord = booking[0];
+
+      // Update booking to confirmed status
+      await storage.updateBooking(bookingRecord.id, {
+        bookingStatus: "confirmed",
+        paymentStatus: "paid",
+        paidAt: new Date()
+      });
+
+      res.json({
+        success: true,
+        message: "Pago simulado exitosamente",
+        bookingId: bookingRecord.id,
+        status: "confirmed"
+      });
+
+    } catch (error: any) {
+      console.error("Error simulating payment success:", error);
+      res.status(500).json({
+        message: "Error al simular el pago: " + error.message,
+        success: false
+      });
+    }
+  });
+
+  // Stripe webhook endpoint for payment confirmations
+  app.post("/api/stripe-webhook", express.raw({ type: 'application/json' }), async (req, res) => {
+    const sig = req.headers['stripe-signature'] as string;
+    
+    // Validate Stripe configuration and webhook secret
+    let stripe: Stripe;
+    try {
+      stripe = getStripe();
+    } catch (error: any) {
+      console.error('Stripe not configured for webhook:', error.message);
+      return res.status(503).json({ error: 'Payment service not configured' });
+    }
+
+    // In production, require webhook secret
+    if (process.env.NODE_ENV === 'production' && !process.env.STRIPE_WEBHOOK_SECRET) {
+      console.error('STRIPE_WEBHOOK_SECRET is required in production');
+      return res.status(503).json({ error: 'Webhook not properly configured' });
+    }
+
+    let event: Stripe.Event;
+
+    try {
+      if (process.env.STRIPE_WEBHOOK_SECRET) {
+        event = stripe.webhooks.constructEvent(req.body, sig, process.env.STRIPE_WEBHOOK_SECRET);
+      } else {
+        // In development mode, parse the event directly
+        event = JSON.parse(req.body.toString());
+      }
+    } catch (err: any) {
+      console.error(`Webhook signature verification failed.`, err.message);
+      return res.status(400).send(`Webhook Error: ${err.message}`);
+    }
+
+    try {
+      // Handle the event
+      switch (event.type) {
+        case 'payment_intent.succeeded':
+          const paymentIntent = event.data.object as Stripe.PaymentIntent;
+          console.log('Payment succeeded:', paymentIntent.id);
+
+          // Find booking by payment intent ID
+          const booking = await db
+            .select()
+            .from(bookings)
+            .where(eq(bookings.stripePaymentIntentId, paymentIntent.id))
+            .limit(1);
+
+          if (booking.length > 0) {
+            const bookingRecord = booking[0];
+            
+            // Update booking to confirmed status
+            await storage.updateBooking(bookingRecord.id, {
+              bookingStatus: "confirmed",
+              paymentStatus: "paid",
+              paidAt: new Date()
+            });
+
+            console.log(`Booking ${bookingRecord.id} confirmed after successful payment`);
+          } else {
+            console.warn(`No booking found for payment intent ${paymentIntent.id}`);
+          }
+          break;
+
+        case 'payment_intent.payment_failed':
+          const failedPayment = event.data.object as Stripe.PaymentIntent;
+          console.log('Payment failed:', failedPayment.id);
+
+          // Find booking by payment intent ID
+          const failedBooking = await db
+            .select()
+            .from(bookings)
+            .where(eq(bookings.stripePaymentIntentId, failedPayment.id))
+            .limit(1);
+
+          if (failedBooking.length > 0) {
+            const bookingRecord = failedBooking[0];
+            
+            // Update payment status to failed but keep booking as pending_payment
+            // They can retry the payment
+            await storage.updateBooking(bookingRecord.id, {
+              paymentStatus: "failed"
+            });
+
+            console.log(`Payment failed for booking ${bookingRecord.id}`);
+          }
+          break;
+
+        default:
+          console.log(`Unhandled event type ${event.type}`);
+      }
+
+      res.json({ received: true });
+    } catch (error: any) {
+      console.error('Error processing webhook:', error);
+      res.status(500).json({ error: 'Webhook processing failed' });
     }
   });
 

@@ -1,4 +1,4 @@
-import { FileText, UserCheck, AlertTriangle, Shield, ArrowLeftRight, Fuel, DollarSign, MapPin, XCircle, Edit, Cloud } from "lucide-react";
+import { FileText, UserCheck, AlertTriangle, Shield, ArrowLeftRight, Fuel, DollarSign, MapPin, XCircle, Edit, Cloud, Wrench, Scale } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
@@ -236,7 +236,10 @@ export default function TermsConditionsPage() {
             <CardContent className="space-y-6">
               
               <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-3">En Caso de Avería</h3>
+                <h3 className="text-lg font-semibold text-gray-900 mb-3 flex items-center gap-2">
+                  <Wrench className="w-5 h-5 text-primary" />
+                  En Caso de Avería
+                </h3>
                 <div className="space-y-3 text-sm text-gray-700">
                   <p>En caso de avería, colisión o pérdida de material, el arrendatario deberá avisar inmediatamente a Costa Brava Rent a Boat.</p>
                   <p>Si la avería no es imputable al arrendatario, Costa Brava Rent a Boat reembolsará las horas no navegadas o entregará una embarcación de características similares.</p>
@@ -245,7 +248,10 @@ export default function TermsConditionsPage() {
               </div>
 
               <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-3">Limitación de Responsabilidad</h3>
+                <h3 className="text-lg font-semibold text-gray-900 mb-3 flex items-center gap-2">
+                  <Scale className="w-5 h-5 text-primary" />
+                  Limitación de Responsabilidad
+                </h3>
                 <div className="space-y-3 text-sm text-gray-700">
                   <p>La empresa no asume responsabilidad alguna por pérdidas o daños en cualquiera de los bienes que el arrendatario u otra persona olvide, deposite o transporte en la embarcación.</p>
                   <p>El arrendatario asume el riesgo de tales pérdidas y exime a la empresa de toda reclamación por retrasos consecuencia de avería o cambios meteorológicos imprevistas.</p>

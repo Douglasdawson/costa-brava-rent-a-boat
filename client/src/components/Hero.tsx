@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Calendar, Anchor, Clock, MapPin, Phone } from "lucide-react";
+import { SiWhatsapp } from "react-icons/si";
 import { openWhatsApp } from "@/utils/whatsapp";
 import { BUSINESS_LOCATION } from "@/lib/config";
 import { useToast } from "@/hooks/use-toast";
@@ -248,7 +249,7 @@ export default function Hero() {
               className="bg-white/90 backdrop-blur border-white/50 hover:bg-green-500 hover:text-white hover:border-green-500 w-full xs:w-auto text-xs sm:text-sm lg:text-base transition-all duration-200 py-2 sm:py-2.5"
               data-testid="button-whatsapp-contact"
             >
-              <Phone className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
+              <SiWhatsapp className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
               <span className="hidden sm:inline">{t.hero.whatsappContact}</span>
               <span className="sm:hidden">WhatsApp</span>
             </Button>

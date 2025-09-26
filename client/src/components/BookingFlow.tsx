@@ -1175,7 +1175,7 @@ export default function BookingFlow({ boatId = "astec-450", onClose }: BookingFl
                       ) : (
                         <CreditCard className="w-5 h-5 mr-2" />
                       )}
-                      {isLoading ? "Procesando pago..." : `${t.booking.pay} ${calculateTotal()}€`}
+                      {isLoading ? "Procesando pago..." : `${t.booking.pay || 'Pagar'} ${calculateTotal()}€`}
                     </Button>
 
                     <p className="text-xs text-gray-500 text-center">

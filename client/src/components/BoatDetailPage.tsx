@@ -393,9 +393,12 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                     setTimeout(() => {
                       const element = document.getElementById(targetSection);
                       if (element) {
-                        element.scrollIntoView({
-                          behavior: "smooth",
-                          block: "center"
+                        const elementPosition = element.offsetTop;
+                        const offsetPosition = elementPosition - 100; // Subir 100px más
+                        
+                        window.scrollTo({
+                          top: offsetPosition,
+                          behavior: "smooth"
                         });
                       }
                     }, 100);

@@ -434,7 +434,15 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                   el punto de partida perfecto para explorar las calas más hermosas de la Costa Brava.
                 </p>
                 <p className="text-gray-600">
-                  📍 Costa Brava Rent a Boat - Blanes, Puerto de Blanes, 17300 Blanes, Girona
+                  📍 <a 
+                    href="https://maps.app.goo.gl/ma3qtsJbuFNhcr4bA"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-primary transition-colors cursor-pointer underline"
+                    data-testid="link-location-maps"
+                  >
+                    Costa Brava Rent a Boat - Blanes, Puerto de Blanes, 17300 Blanes, Girona
+                  </a>
                 </p>
               </div>
               

@@ -38,6 +38,9 @@ export default function BookingFlow({ boatId = "astec-450", onClose }: BookingFl
   const [showPhonePrefixDropdown, setShowPhonePrefixDropdown] = useState(false);
   const [nationalitySearch, setNationalitySearch] = useState("");
   const [showNationalityDropdown, setShowNationalityDropdown] = useState(false);
+  const [quote, setQuote] = useState<any>(null);
+  const [holdId, setHoldId] = useState<string | null>(null);
+  const [paymentIntentId, setPaymentIntentId] = useState<string | null>(null);
   const { toast } = useToast();
   const t = useTranslations();
 
@@ -63,11 +66,11 @@ export default function BookingFlow({ boatId = "astec-450", onClose }: BookingFl
   const timeSlots = generateTimeSlots();
 
   const availableExtras = [
-    { id: "parking", name: t.booking.extrasDetails.parking.name, price: 10, description: t.booking.extrasDetails.parking.description },
-    { id: "cooler", name: t.booking.extrasDetails.cooler.name, price: 5, description: t.booking.extrasDetails.cooler.description },
-    { id: "snorkel", name: t.booking.extrasDetails.snorkel.name, price: 5, description: t.booking.extrasDetails.snorkel.description },
-    { id: "paddle", name: t.booking.extrasDetails.paddle.name, price: 25, description: t.booking.extrasDetails.paddle.description },
-    { id: "seascooter", name: t.booking.extrasDetails.seascooter.name, price: 50, description: t.booking.extrasDetails.seascooter.description }
+    { id: "parking", name: t.booking?.extrasDetails?.parking?.name || "Parking dentro del puerto", price: 10, description: t.booking?.extrasDetails?.parking?.description || "Parking seguro en el puerto" },
+    { id: "cooler", name: t.booking?.extrasDetails?.cooler?.name || "Nevera", price: 5, description: t.booking?.extrasDetails?.cooler?.description || "Nevera con hielo" },
+    { id: "snorkel", name: t.booking?.extrasDetails?.snorkel?.name || "Equipo snorkel", price: 5, description: t.booking?.extrasDetails?.snorkel?.description || "Equipo de snorkel completo" },
+    { id: "paddle", name: t.booking?.extrasDetails?.paddle?.name || "Tabla de paddlesurf", price: 25, description: t.booking?.extrasDetails?.paddle?.description || "Tabla de paddle surf" },
+    { id: "seascooter", name: t.booking?.extrasDetails?.seascooter?.name || "Seascooter", price: 50, description: t.booking?.extrasDetails?.seascooter?.description || "Scooter acuático" }
   ];
 
   const phoneCountries = [
@@ -385,6 +388,12 @@ export default function BookingFlow({ boatId = "astec-450", onClose }: BookingFl
   };
 
   const calculateTotal = () => {
+    // Use server-side quote pricing if available
+    if (quote) {
+      return quote.total;
+    }
+    
+    // Fallback to client-side calculation for display purposes
     const basePrice = durations.find(d => d.id === duration)?.price || 0;
     const extrasTotal = Object.entries(extras).reduce((total, [id, quantity]) => {
       const extra = availableExtras.find(e => e.id === id);
@@ -393,7 +402,7 @@ export default function BookingFlow({ boatId = "astec-450", onClose }: BookingFl
     return basePrice + extrasTotal;
   };
 
-  // Check availability for selected time slot
+  // Check availability for selected time slot using new API
   const checkAvailability = async (timeSlot: string) => {
     if (!selectedDate || !selectedBoat) return true;
 
@@ -402,7 +411,8 @@ export default function BookingFlow({ boatId = "astec-450", onClose }: BookingFl
     const endDateTime = new Date(startDateTime.getTime() + durationHours * 60 * 60 * 1000);
 
     try {
-      const response = await apiRequest('POST', `/api/boats/${selectedBoat}/check-availability`, {
+      const response = await apiRequest('POST', '/api/check-availability', {
+        boatId: selectedBoat,
         startTime: startDateTime.toISOString(),
         endTime: endDateTime.toISOString()
       });
@@ -414,23 +424,15 @@ export default function BookingFlow({ boatId = "astec-450", onClose }: BookingFl
     }
   };
 
-  const handlePayment = async () => {
+  // Create quote to get server-side pricing and hold
+  const createQuote = async () => {
     if (!selectedDate || !selectedTime || !selectedBoat) {
       toast({
         title: t.booking.error,
         description: t.booking.missingFields,
         variant: "destructive",
       });
-      return;
-    }
-
-    if (!customerData.customerName || !customerData.customerSurname || !customerData.customerPhone || !customerData.customerNationality) {
-      toast({
-        title: t.booking.error, 
-        description: t.booking.missingPersonalData,
-        variant: "destructive",
-      });
-      return;
+      return false;
     }
 
     setIsLoading(true);
@@ -440,94 +442,143 @@ export default function BookingFlow({ boatId = "astec-450", onClose }: BookingFl
       const startDateTime = new Date(`${selectedDate}T${selectedTime}:00`);
       const durationHours = parseInt(duration.replace('h', ''));
       const endDateTime = new Date(startDateTime.getTime() + durationHours * 60 * 60 * 1000);
-      
-      // Get selected boat data
-      const selectedBoatData = boats.find((boat: any) => boat.id === selectedBoat);
-      if (!selectedBoatData) {
-        throw new Error("Barco no encontrado");
-      }
 
-      // Calculate totals
-      const subtotal = durations.find(d => d.id === duration)?.price || 0;
-      const extrasTotal = Object.entries(extras).reduce((total, [id, quantity]) => {
-        const extra = availableExtras.find(e => e.id === id);
-        return total + (extra ? extra.price * quantity : 0);
-      }, 0);
-      const deposit = parseFloat(selectedBoatData.deposit || "0");
-      const totalAmount = subtotal + extrasTotal + deposit;
+      // Get selected extras - send IDs not names
+      const selectedExtras = Object.entries(extras)
+        .filter(([_, quantity]) => quantity > 0)
+        .map(([id, _]) => id); // Send the ID for server-side catalog lookup
 
-      // Create booking
-      const bookingData = {
+      // Create quote with server-side pricing
+      const quoteResponse = await apiRequest('POST', '/api/quote', {
         boatId: selectedBoat,
-        bookingDate: new Date(selectedDate),
-        startTime: startDateTime,
-        endTime: endDateTime,
-        customerName: customerData.customerName,
-        customerSurname: customerData.customerSurname,
-        customerPhone: `${customerData.phonePrefix}${customerData.customerPhone}`,
-        customerEmail: customerData.customerEmail || null,
-        customerNationality: customerData.customerNationality,
+        startTime: startDateTime.toISOString(),
+        endTime: endDateTime.toISOString(),
         numberOfPeople: customerData.numberOfPeople,
-        totalHours: durationHours,
-        subtotal: subtotal.toString(),
-        extrasTotal: extrasTotal.toString(),
-        deposit: deposit.toString(),
-        totalAmount: totalAmount.toString(),
-        paymentStatus: "pending"
-      };
-
-      // Create the booking
-      const bookingResponse = await apiRequest('POST', '/api/bookings', {
-        ...bookingData,
-        extras: Object.entries(extras).map(([id, quantity]) => {
-          const extra = availableExtras.find(e => e.id === id);
-          return {
-            name: extra?.name || id,
-            price: extra?.price || 0,
-            quantity
-          };
-        }).filter(extra => extra.quantity > 0)
+        extras: selectedExtras
       });
 
-      if (!bookingResponse.ok) {
-        const error = await bookingResponse.json();
-        throw new Error(error.message || "Error al crear la reserva");
+      if (!quoteResponse.ok) {
+        const error = await quoteResponse.json();
+        throw new Error(error.message || "Error al crear la cotización");
       }
 
-      const booking = await bookingResponse.json();
+      const quoteData = await quoteResponse.json();
+      setQuote(quoteData.quote);
+      setHoldId(quoteData.holdId);
 
-      // Create Stripe checkout session and redirect to payment
       toast({
-        title: t.booking.bookingCreated,
-        description: t.booking.redirectingPayment,
+        title: "Cotización creada",
+        description: `Precio confirmado: ${quoteData.quote.total}€. Tienes 30 minutos para completar el pago.`,
       });
 
-      // Create Stripe Checkout Session
-      const checkoutResponse = await apiRequest('POST', '/api/create-checkout-session', {
-        bookingId: booking.id
+      return true;
+    } catch (error: any) {
+      console.error('Error creating quote:', error);
+      toast({
+        title: "Error al crear cotización",
+        description: error.message || "Ha ocurrido un error inesperado. Por favor, inténtalo de nuevo.",
+        variant: "destructive",
+      });
+      return false;
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handlePayment = async () => {
+    if (!quote || !holdId) {
+      // First create the quote if we don't have one
+      const quoteCreated = await createQuote();
+      if (!quoteCreated) return;
+      
+      // Quote creation will update the state, but we need to wait for it
+      // Let's continue with payment after quote creation
+      setTimeout(() => {
+        proceedWithPayment();
+      }, 100);
+      return;
+    }
+
+    proceedWithPayment();
+  };
+
+  const proceedWithPayment = async () => {
+    if (!customerData.customerName || !customerData.customerSurname || !customerData.customerPhone || !customerData.customerNationality) {
+      toast({
+        title: t.booking.error, 
+        description: t.booking.missingPersonalData,
+        variant: "destructive",
+      });
+      return;
+    }
+
+    if (!holdId) {
+      toast({
+        title: "Error",
+        description: "No hay una cotización válida. Por favor, inténtalo de nuevo.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    setIsLoading(true);
+
+    try {
+      // Create PaymentIntent from hold
+      const paymentResponse = await apiRequest('POST', '/api/create-payment-intent-mock', {
+        holdId: holdId
       });
 
-      if (!checkoutResponse.ok) {
-        const error = await checkoutResponse.json();
+      if (!paymentResponse.ok) {
+        const error = await paymentResponse.json();
         throw new Error(error.message || "Error al procesar el pago");
       }
 
-      const { url } = await checkoutResponse.json();
+      const paymentData = await paymentResponse.json();
+      setPaymentIntentId(paymentData.paymentIntentId);
 
-      // Store booking info for return journey
-      sessionStorage.setItem('bookingId', booking.id);
+      // In a real implementation, you would use Stripe Elements here
+      // For now, we'll simulate payment success for testing
+      toast({
+        title: "Procesando pago...",
+        description: "Simulando pago exitoso para testing",
+      });
 
-      // Redirect to Stripe Checkout
-      if (url) {
-        window.location.href = url;
-      } else {
-        throw new Error("No se pudo crear la sesión de pago");
-      }
+      // Simulate payment success after a delay
+      setTimeout(async () => {
+        try {
+          const successResponse = await apiRequest('POST', '/api/simulate-payment-success', {
+            paymentIntentId: paymentData.paymentIntentId
+          });
+
+          if (successResponse.ok) {
+            const result = await successResponse.json();
+            
+            toast({
+              title: "¡Pago exitoso!",
+              description: `Reserva confirmada. ID: ${result.bookingId}`,
+            });
+
+            // Reset form or redirect
+            if (onClose) {
+              onClose();
+            }
+          } else {
+            throw new Error("Error en la simulación de pago");
+          }
+        } catch (error: any) {
+          toast({
+            title: "Error en el pago",
+            description: error.message,
+            variant: "destructive",
+          });
+        }
+      }, 2000);
 
     } catch (error: any) {
-      console.error('Error creating booking:', error);
+      console.error('Error processing payment:', error);
       toast({
-        title: "Error al procesar la reserva",
+        title: "Error al procesar el pago",
         description: error.message || "Ha ocurrido un error inesperado. Por favor, inténtalo de nuevo.",
         variant: "destructive",
       });
@@ -997,51 +1048,133 @@ export default function BookingFlow({ boatId = "astec-450", onClose }: BookingFl
                     <span className="font-medium">{BOAT_DATA[selectedBoat]?.name || 'N/A'}</span>
                   </div>
                   <hr className="my-2" />
-                  <div className="flex justify-between">
-                    <span>{t.booking.summaryBasePrice}</span>
-                    <span>{durations.find(d => d.id === duration)?.price}€</span>
-                  </div>
-                  {Object.entries(extras).map(([id, quantity]) => {
-                    const extra = availableExtras.find(e => e.id === id);
-                    if (!quantity || !extra) return null;
-                    return (
-                      <div key={id} className="flex justify-between">
-                        <span>{extra.name} x{quantity}:</span>
-                        <span>{extra.price * quantity}€</span>
+                  {quote ? (
+                    // Show server-side pricing from quote
+                    <>
+                      <div className="flex justify-between">
+                        <span>{t.booking.summaryBasePrice} ({quote.season})</span>
+                        <span>{quote.basePrice}€</span>
                       </div>
-                    );
-                  })}
-                  <hr className="my-2" />
-                  <div className="flex justify-between font-bold text-base">
-                    <span>{t.booking.summaryTotal}</span>
-                    <span className="flex items-center">
-                      <Euro className="w-4 h-4 mr-1" />
-                      {calculateTotal()}
-                    </span>
-                  </div>
+                      {quote.selectedExtras && quote.selectedExtras.length > 0 && (
+                        <div className="flex justify-between">
+                          <span>Extras: {quote.selectedExtras.join(', ')}</span>
+                          <span>{quote.extrasPrice}€</span>
+                        </div>
+                      )}
+                      <div className="flex justify-between">
+                        <span>Depósito</span>
+                        <span>{quote.deposit}€</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span>Subtotal</span>
+                        <span>{quote.subtotal}€</span>
+                      </div>
+                      <hr className="my-2" />
+                      <div className="flex justify-between font-bold text-base">
+                        <span>{t.booking.summaryTotal}</span>
+                        <span className="flex items-center">
+                          <Euro className="w-4 h-4 mr-1" />
+                          {quote.total}
+                        </span>
+                      </div>
+                      {quote.season && (
+                        <p className="text-xs text-gray-500 mt-2">
+                          Temporada {quote.season} • {quote.duration} • {quote.numberOfPeople} personas
+                        </p>
+                      )}
+                    </>
+                  ) : (
+                    // Fallback to client-side pricing display
+                    <>
+                      <div className="flex justify-between">
+                        <span>{t.booking.summaryBasePrice}</span>
+                        <span>{durations.find(d => d.id === duration)?.price}€</span>
+                      </div>
+                      {Object.entries(extras).map(([id, quantity]) => {
+                        const extra = availableExtras.find(e => e.id === id);
+                        if (!quantity || !extra) return null;
+                        return (
+                          <div key={id} className="flex justify-between">
+                            <span>{extra.name} x{quantity}:</span>
+                            <span>{extra.price * quantity}€</span>
+                          </div>
+                        );
+                      })}
+                      <hr className="my-2" />
+                      <div className="flex justify-between font-bold text-base">
+                        <span>{t.booking.summaryTotal}</span>
+                        <span className="flex items-center">
+                          <Euro className="w-4 h-4 mr-1" />
+                          {calculateTotal()}
+                        </span>
+                      </div>
+                      <p className="text-xs text-gray-500 mt-2">
+                        *Precio estimado. El precio final se calculará con las tarifas de temporada.
+                      </p>
+                    </>
+                  )}
                 </div>
               </div>
 
               <div className="space-y-4">
-                <div className="flex items-center space-x-2 text-sm text-gray-600">
-                  <input type="checkbox" id="terms" className="rounded" />
-                  <label htmlFor="terms">
-                    Acepto los <a href="#" className="text-primary hover:underline">{t.booking.termsAndConditions}</a> y la <a href="#" className="text-primary hover:underline">{t.booking.privacyPolicy}</a>
-                  </label>
-                </div>
+                {!quote ? (
+                  // Show quote button when no quote exists
+                  <>
+                    <Button 
+                      onClick={createQuote}
+                      disabled={isLoading}
+                      className="w-full py-3 text-lg font-medium"
+                      data-testid="button-get-quote"
+                    >
+                      {isLoading ? (
+                        <div className="animate-spin w-4 h-4 border-2 border-white border-t-transparent rounded-full mr-2" />
+                      ) : (
+                        <Euro className="w-5 h-5 mr-2" />
+                      )}
+                      {isLoading ? "Creando cotización..." : "Obtener Cotización"}
+                    </Button>
+                    <p className="text-xs text-gray-500 text-center">
+                      Obtén el precio final con tarifas de temporada y crea una reserva temporal de 30 minutos.
+                    </p>
+                  </>
+                ) : (
+                  // Show payment options when quote exists
+                  <>
+                    <div className="bg-green-50 p-3 rounded-lg">
+                      <p className="text-sm text-green-800">
+                        ✓ Cotización creada. Tienes <strong>30 minutos</strong> para completar el pago.
+                        {holdId && (
+                          <span className="block text-xs mt-1">Hold ID: {holdId}</span>
+                        )}
+                      </p>
+                    </div>
 
-                <Button 
-                  onClick={handlePayment}
-                  className="w-full py-3 text-lg font-medium"
-                  data-testid="button-pay-now"
-                >
-                  <CreditCard className="w-5 h-5 mr-2" />
-                  {t.booking.pay} {calculateTotal()}€
-                </Button>
+                    <div className="flex items-center space-x-2 text-sm text-gray-600">
+                      <input type="checkbox" id="terms" className="rounded" />
+                      <label htmlFor="terms">
+                        Acepto los <a href="#" className="text-primary hover:underline">{t.booking.termsAndConditions}</a> y la <a href="#" className="text-primary hover:underline">{t.booking.privacyPolicy}</a>
+                      </label>
+                    </div>
 
-                <p className="text-xs text-gray-500 text-center">
-                  Pago seguro procesado por Stripe. Se aplicará una retención temporal de 15 minutos.
-                </p>
+                    <Button 
+                      onClick={handlePayment}
+                      disabled={isLoading}
+                      className="w-full py-3 text-lg font-medium"
+                      data-testid="button-pay-now"
+                    >
+                      {isLoading ? (
+                        <div className="animate-spin w-4 h-4 border-2 border-white border-t-transparent rounded-full mr-2" />
+                      ) : (
+                        <CreditCard className="w-5 h-5 mr-2" />
+                      )}
+                      {isLoading ? "Procesando pago..." : `${t.booking.pay} ${calculateTotal()}€`}
+                    </Button>
+
+                    <p className="text-xs text-gray-500 text-center">
+                      Pago seguro procesado por Stripe. Simulación de pago para testing.
+                    </p>
+                  </>
+                )}
               </div>
             </CardContent>
           </Card>

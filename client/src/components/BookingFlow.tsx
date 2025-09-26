@@ -964,6 +964,14 @@ export default function BookingFlow({ boatId = "astec-450", onClose }: BookingFl
                           setNationalitySearch(e.target.value);
                           setShowNationalityDropdown(true);
                         }}
+                        onBlur={() => {
+                          // If user typed a valid nationality, set it directly
+                          if (nationalitySearch && nationalities.includes(nationalitySearch)) {
+                            setCustomerData(prev => ({...prev, customerNationality: nationalitySearch}));
+                            setNationalitySearch("");
+                          }
+                          setShowNationalityDropdown(false);
+                        }}
                         onFocus={() => setShowNationalityDropdown(true)}
                         placeholder="Buscar nacionalidad"
                         className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"

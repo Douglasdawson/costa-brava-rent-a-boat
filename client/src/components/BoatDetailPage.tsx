@@ -449,7 +449,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
               {/* Embedded Google Map */}
               <div className="w-full h-64 md:h-80 rounded-lg overflow-hidden border">
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2974.319516967157!2d2.7967746158075044!3d41.67542597925045!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12bb196d5d9b9b9b%3A0x9b9b9b9b9b9b9b9b!2sEsplanada%20del%20Port%2C%2017300%20Blanes%2C%20Girona%2C%20Spain!5e0!3m2!1sen!2sus!4v1234567890123!5m2!1sen!2sus"
+                  src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2980.1411982500704!2d2.7957177!3d41.6742939!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12bb172c94a8856f%3A0x9a2dfa936ef2e0a7!2sCosta%20Brava%20Rent%20a%20Boat%20-%20Blanes%20%7C%20Alquiler%20de%20Barcos%20Con%20y%20Sin%20Licencia!5e0!3m2!1ses!2ses!4v1758876869141!5m2!1ses!2ses"
                   width="100%"
                   height="100%"
                   style={{ border: 0 }}

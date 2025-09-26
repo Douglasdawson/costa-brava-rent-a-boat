@@ -27,7 +27,7 @@ export default function TermsConditionsPage() {
       </div>
 
       {/* Content */}
-      <div className="pt-6 pb-10 sm:pt-8 sm:pb-16 bg-gray-50">
+      <div className="pt-4 pb-10 sm:pt-8 sm:pb-16 bg-gray-50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           
           {/* Embarcaciones CON Titulación */}

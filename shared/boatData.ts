@@ -170,7 +170,7 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
     subtitle: "Sin Licencia Para Alquilar en Blanes",
     description: "Alquiler Astec 400 sin licencia en Blanes, Costa Brava. Embarcación perfecta para parejas o familias pequeñas, hasta 4 personas con gasolina incluida. Ideal para alquilar barco sin licencia en Puerto de Blanes. Incluye solárium con cojines, toldo, escalera de baño y arranque eléctrico. Perfecta para explorar las calas de Blanes de manera sencilla y segura.",
     specifications: {
-      model: "Fibra Astec 400",
+      model: "Astec 400",
       length: "4m",
       beam: "1,75m",
       engine: "Suzuki 15hp 4t",

@@ -60,27 +60,6 @@ export default function FAQPage() {
             Encuentra respuestas a todas tus dudas sobre el alquiler de barcos en Blanes, Costa Brava. 
             Si no encuentras lo que buscas, ¡contáctanos directamente!
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button 
-              onClick={handleBookingWhatsApp}
-              size="lg"
-              className="gap-2"
-              data-testid="button-book-now"
-            >
-              <Phone className="w-5 h-5" />
-              Reservar Ahora
-            </Button>
-            <Button 
-              onClick={handleWhatsAppContact}
-              variant="outline"
-              size="lg"
-              className="gap-2"
-              data-testid="button-contact"
-            >
-              <Phone className="w-5 h-5" />
-              Hacer Pregunta
-            </Button>
-          </div>
         </div>
       </div>
 
@@ -671,6 +650,29 @@ export default function FAQPage() {
                 <p className="text-gray-600 text-sm">Flota para desde 4-7 personas. Con y sin licencia náutica.</p>
               </CardContent>
             </Card>
+          </div>
+          
+          {/* Action Buttons */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button 
+              onClick={handleBookingWhatsApp}
+              size="lg"
+              className="gap-2"
+              data-testid="button-book-now"
+            >
+              <Phone className="w-5 h-5" />
+              Reservar Ahora
+            </Button>
+            <Button 
+              onClick={handleWhatsAppContact}
+              variant="outline"
+              size="lg"
+              className="gap-2"
+              data-testid="button-contact"
+            >
+              <Phone className="w-5 h-5" />
+              Hacer Pregunta
+            </Button>
           </div>
         </div>
       </div>

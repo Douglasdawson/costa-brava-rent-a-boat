@@ -395,7 +395,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                       if (element) {
                         element.scrollIntoView({
                           behavior: "smooth",
-                          block: "start"
+                          block: "center"
                         });
                       }
                     }, 100);

@@ -8,6 +8,12 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
   const [, setLocation] = useLocation();
 
+  // Detectar si estamos en temporada operativa (Abril - Octubre)
+  const isOperatingSeason = () => {
+    const currentMonth = new Date().getMonth(); // 0-11 (Enero = 0)
+    return currentMonth >= 3 && currentMonth <= 9; // Abril (3) - Octubre (9)
+  };
+
   const handleWhatsApp = () => {
     const message = encodeURIComponent(t.footer.whatsappMessage);
     window.open(`https://wa.me/34611500372?text=${message}`, "_blank");
@@ -42,7 +48,7 @@ export default function Footer() {
               {t.footer.description}
             </p>
             <div className="flex items-center space-x-2 text-xs sm:text-xs">
-              <div className="w-2 h-2 bg-green-400 rounded-full"></div>
+              <div className={`w-2 h-2 rounded-full ${isOperatingSeason() ? 'bg-green-400' : 'bg-red-400'}`}></div>
               <span>{t.footer.operatingSeason}</span>
             </div>
           </div>

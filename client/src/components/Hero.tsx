@@ -131,7 +131,7 @@ export default function Hero() {
       {/* Dark overlay for text readability */}
       <div className="absolute inset-0 bg-black/40"></div>
       
-      <div className="relative z-10 container mx-auto px-4 pt-20 sm:pt-24 pb-8 sm:pb-12 min-h-screen flex flex-col justify-center items-center text-center">
+      <div className="relative z-10 container mx-auto px-4 pt-24 sm:pt-28 pb-8 sm:pb-12 min-h-screen flex flex-col justify-center items-center text-center">
         <div className="max-w-4xl mx-auto mb-8 sm:mb-12">
           <h1 className="font-heading text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-white mb-4 sm:mb-6 leading-tight px-2">
             <div>Alquiler de Barcos en Blanes</div>

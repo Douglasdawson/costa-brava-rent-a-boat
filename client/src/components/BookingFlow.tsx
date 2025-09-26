@@ -629,7 +629,7 @@ export default function BookingFlow({ boatId = "astec-450", onClose }: BookingFl
                 value={selectedDate}
                 onChange={(e) => setSelectedDate(e.target.value)}
                 min={new Date().toISOString().split('T')[0]}
-                className="w-full p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary text-lg text-left"
+                className="w-full p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary text-lg text-left text-gray-900"
                 data-testid="input-booking-date"
               />
               <div className="mt-6">
@@ -871,7 +871,7 @@ export default function BookingFlow({ boatId = "astec-450", onClose }: BookingFl
                       type="text"
                       value={customerData.customerName}
                       onChange={(e) => setCustomerData(prev => ({...prev, customerName: e.target.value}))}
-                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
+                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary text-gray-900"
                       placeholder="Ana"
                       data-testid="input-customer-name"
                     />
@@ -884,7 +884,7 @@ export default function BookingFlow({ boatId = "astec-450", onClose }: BookingFl
                       type="text"
                       value={customerData.customerSurname}
                       onChange={(e) => setCustomerData(prev => ({...prev, customerSurname: e.target.value}))}
-                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
+                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary text-gray-900"
                       placeholder="García López"
                       data-testid="input-customer-surname"
                     />
@@ -898,7 +898,7 @@ export default function BookingFlow({ boatId = "astec-450", onClose }: BookingFl
                     type="email"
                     value={customerData.customerEmail}
                     onChange={(e) => setCustomerData(prev => ({...prev, customerEmail: e.target.value}))}
-                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
+                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary text-gray-900"
                     placeholder="ana@ejemplo.com (opcional)"
                     data-testid="input-customer-email"
                   />
@@ -918,7 +918,7 @@ export default function BookingFlow({ boatId = "astec-450", onClose }: BookingFl
                         }}
                         onFocus={() => setShowPhonePrefixDropdown(true)}
                         placeholder="Buscar país"
-                        className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary text-sm"
+                        className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary text-sm text-gray-900"
                         data-testid="input-phone-prefix-search"
                       />
                       {showPhonePrefixDropdown && filteredPhoneCountries.length > 0 && (
@@ -932,7 +932,7 @@ export default function BookingFlow({ boatId = "astec-450", onClose }: BookingFl
                                 setPhonePrefixSearch("");
                                 setShowPhonePrefixDropdown(false);
                               }}
-                              className="w-full text-left px-3 py-2 hover:bg-gray-50 focus:bg-gray-50 text-sm border-b last:border-b-0"
+                              className="w-full text-left px-3 py-2 hover:bg-gray-50 focus:bg-gray-50 text-sm border-b last:border-b-0 text-gray-900"
                               data-testid={`option-prefix-${country.code}`}
                             >
                               <span className="font-mono">{country.code}</span> {country.country}
@@ -945,7 +945,7 @@ export default function BookingFlow({ boatId = "astec-450", onClose }: BookingFl
                       type="tel"
                       value={customerData.customerPhone}
                       onChange={(e) => setCustomerData(prev => ({...prev, customerPhone: e.target.value}))}
-                      className="flex-1 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
+                      className="flex-1 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary text-gray-900"
                       placeholder="600 000 000"
                       data-testid="input-customer-phone"
                     />
@@ -974,7 +974,7 @@ export default function BookingFlow({ boatId = "astec-450", onClose }: BookingFl
                         }}
                         onFocus={() => setShowNationalityDropdown(true)}
                         placeholder="Buscar nacionalidad"
-                        className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
+                        className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary text-gray-900"
                         data-testid="input-nationality-search"
                       />
                       {showNationalityDropdown && filteredNationalities.length > 0 && (
@@ -988,7 +988,7 @@ export default function BookingFlow({ boatId = "astec-450", onClose }: BookingFl
                                 setNationalitySearch("");
                                 setShowNationalityDropdown(false);
                               }}
-                              className="w-full text-left px-3 py-2 hover:bg-gray-50 focus:bg-gray-50 border-b last:border-b-0"
+                              className="w-full text-left px-3 py-2 hover:bg-gray-50 focus:bg-gray-50 border-b last:border-b-0 text-gray-900"
                               data-testid={`option-nationality-${nationality.toLowerCase()}`}
                             >
                               {nationality}

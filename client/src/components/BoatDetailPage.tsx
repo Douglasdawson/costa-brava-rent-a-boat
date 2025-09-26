@@ -197,7 +197,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
           {/* Technical Specifications */}
           <Card>
             <CardHeader>
-              <CardTitle className="flex items-center">
+              <CardTitle className="flex items-center text-base sm:text-lg">
                 <NavigationIcon className="w-5 h-5 mr-2" />
                 Especificaciones Técnicas
               </CardTitle>

@@ -63,24 +63,89 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Availability check
+  // Enhanced availability check with seasonal validation and conflict details
   app.post("/api/boats/:id/check-availability", async (req, res) => {
     try {
       const { startTime, endTime } = req.body;
       
       if (!startTime || !endTime) {
-        return res.status(400).json({ message: "Start time and end time are required" });
+        return res.status(400).json({ 
+          message: "La hora de inicio y fin son obligatorias",
+          available: false,
+          reason: "missing_params",
+          conflictingBookings: []
+        });
       }
 
-      const isAvailable = await storage.checkAvailability(
-        req.params.id,
-        new Date(startTime),
-        new Date(endTime)
-      );
+      const start = new Date(startTime);
+      const end = new Date(endTime);
 
-      res.json({ available: isAvailable });
+      // Validate time range
+      if (start >= end) {
+        return res.status(400).json({ 
+          message: "La hora de inicio debe ser anterior a la hora de fin",
+          available: false,
+          reason: "invalid_time_range",
+          conflictingBookings: []
+        });
+      }
+
+      // Check if dates are in operational season (April-October)
+      const { isOperationalSeason } = await import("@shared/pricing");
+      const startInSeason = isOperationalSeason(start);
+      const endInSeason = isOperationalSeason(end);
+
+      if (!startInSeason || !endInSeason) {
+        return res.json({ 
+          available: false,
+          reason: "out_of_season",
+          message: "Las reservas solo están disponibles de abril a octubre",
+          conflictingBookings: []
+        });
+      }
+
+      // Check boat exists
+      const boat = await storage.getBoat(req.params.id);
+      if (!boat) {
+        return res.status(404).json({ 
+          message: "Barco no encontrado",
+          available: false,
+          reason: "boat_not_found",
+          conflictingBookings: []
+        });
+      }
+
+      // Check database availability (includes hold, pending_payment, confirmed bookings)
+      const isAvailable = await storage.checkAvailability(req.params.id, start, end);
+
+      // If not available, get conflicting bookings using same buffer logic
+      let conflictingBookings: any[] = [];
+      if (!isAvailable) {
+        conflictingBookings = await storage.getOverlappingBookingsWithBuffer(
+          req.params.id, 
+          start, 
+          end
+        );
+      }
+
+      res.json({ 
+        available: isAvailable,
+        reason: isAvailable ? null : "booking_conflict",
+        conflictingBookings: conflictingBookings.map(booking => ({
+          id: booking.id,
+          startTime: booking.startTime,
+          endTime: booking.endTime,
+          status: booking.bookingStatus,
+          customerName: `${booking.customerName} ${booking.customerSurname ? booking.customerSurname.charAt(0) : ''}.`
+        }))
+      });
     } catch (error: any) {
-      res.status(500).json({ message: "Error checking availability: " + error.message });
+      res.status(500).json({ 
+        message: "Error al verificar disponibilidad: " + error.message,
+        available: false,
+        reason: "server_error",
+        conflictingBookings: []
+      });
     }
   });
 

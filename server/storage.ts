@@ -6,7 +6,7 @@ import {
   type BookingExtra, type InsertBookingExtra
 } from "@shared/schema";
 import { db } from "./db";
-import { eq, and, gte, lte, between } from "drizzle-orm";
+import { eq, and, gte, lte, between, inArray } from "drizzle-orm";
 
 // modify the interface with any CRUD methods
 // you might need
@@ -38,6 +38,9 @@ export interface IStorage {
 
   // Availability check
   checkAvailability(boatId: string, startTime: Date, endTime: Date): Promise<boolean>;
+  
+  // Get overlapping bookings with buffer
+  getOverlappingBookingsWithBuffer(boatId: string, startTime: Date, endTime: Date): Promise<Booking[]>;
 }
 
 // rewrite MemStorage to DatabaseStorage
@@ -129,7 +132,31 @@ export class DatabaseStorage implements IStorage {
           eq(bookings.boatId, boatId),
           gte(bookings.startTime, startDate),
           lte(bookings.endTime, endDate),
-          eq(bookings.bookingStatus, "confirmed")
+          // Include all active booking statuses: hold, pending_payment, confirmed
+          inArray(bookings.bookingStatus, ["hold", "pending_payment", "confirmed"])
+        )
+      );
+  }
+
+  // Get overlapping bookings using same buffer logic as availability check
+  async getOverlappingBookingsWithBuffer(boatId: string, startTime: Date, endTime: Date): Promise<Booking[]> {
+    // Apply same buffer logic as checkAvailability
+    const isDevelopment = process.env.NODE_ENV === "development";
+    const bufferMinutes = isDevelopment ? 5 : 20;
+    const bufferStart = new Date(startTime.getTime() - bufferMinutes * 60 * 1000);
+    const bufferEnd = new Date(endTime.getTime() + bufferMinutes * 60 * 1000);
+
+    return await db
+      .select()
+      .from(bookings)
+      .where(
+        and(
+          eq(bookings.boatId, boatId),
+          // Use proper overlap logic: existing.start <= bufferEnd AND existing.end >= bufferStart
+          lte(bookings.startTime, bufferEnd),
+          gte(bookings.endTime, bufferStart),
+          // Include all active booking statuses: hold, pending_payment, confirmed
+          inArray(bookings.bookingStatus, ["hold", "pending_payment", "confirmed"])
         )
       );
   }
@@ -201,8 +228,8 @@ export class DatabaseStorage implements IStorage {
       .where(
         and(
           eq(bookings.boatId, boatId),
-          // Check only confirmed bookings (not pending)
-          eq(bookings.bookingStatus, "confirmed"),
+          // Check all active booking statuses: hold, pending_payment, confirmed
+          inArray(bookings.bookingStatus, ["hold", "pending_payment", "confirmed"]),
           // Check for any overlap with buffer times
           and(
             lte(bookings.startTime, bufferEnd),

@@ -7,6 +7,10 @@ interface SEOProps {
   ogImage?: string;
   ogType?: string;
   jsonLd?: object;
+  hreflang?: Array<{
+    lang: string;
+    url: string;
+  }>;
 }
 
 export function SEO({ 
@@ -15,7 +19,8 @@ export function SEO({
   canonical = "https://costa-brava-rent-a-boat-blanes.replit.app/",
   ogImage = "https://costa-brava-rent-a-boat-blanes.replit.app/assets/Mediterranean_coastal_hero_scene_8df465c2.png",
   ogType = "website",
-  jsonLd 
+  jsonLd,
+  hreflang
 }: SEOProps) {
   // Ensure absolute URLs for images
   const absoluteOgImage = ogImage.startsWith('http') ? ogImage : 
@@ -86,6 +91,22 @@ export function SEO({
     updateTwitterTag('image', absoluteOgImage);
     updateTwitterTag('url', canonical);
 
+    // Add hreflang tags if provided
+    if (hreflang && hreflang.length > 0) {
+      // Remove existing hreflang tags
+      const existingHreflangTags = document.querySelectorAll('link[hreflang]');
+      existingHreflangTags.forEach(tag => tag.remove());
+      
+      // Add new hreflang tags
+      hreflang.forEach(({ lang, url }) => {
+        const hreflangLink = document.createElement('link');
+        hreflangLink.rel = 'alternate';
+        hreflangLink.hreflang = lang;
+        hreflangLink.href = url;
+        document.head.appendChild(hreflangLink);
+      });
+    }
+
     // Add JSON-LD if provided
     let jsonLdScript: HTMLScriptElement | null = null;
     if (jsonLd) {
@@ -108,7 +129,7 @@ export function SEO({
         document.head.removeChild(jsonLdScript);
       }
     };
-  }, [title, description, canonical, ogImage, ogType, jsonLd]);
+  }, [title, description, canonical, ogImage, ogType, jsonLd, hreflang]);
 
   return null;
 }

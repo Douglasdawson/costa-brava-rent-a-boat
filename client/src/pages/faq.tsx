@@ -39,12 +39,71 @@ export default function FAQPage() {
     openWhatsApp(message);
   };
 
+  // FAQ Schema for structured data
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "name": "Preguntas Frecuentes - Alquiler de Barcos en Blanes",
+    "description": "Resuelve todas tus dudas sobre el alquiler de barcos en Blanes, Costa Brava",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "¿Cuáles son los precios del alquiler?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nuestros precios varían según la embarcación y duración. Barcos sin licencia desde 70€ con gasolina incluida (1h, 2h, 3h, 4h, 6h, 8h). Barcos con licencia desde 150€ sin gasolina incluida (2h, 4h, 8h)."
+        }
+      },
+      {
+        "@type": "Question", 
+        "name": "¿Cómo puedo hacer una reserva?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Hacer una reserva es muy fácil: 1) Selecciona tu barco favorito, 2) Elige fecha, hora y duración, 3) Completa tus datos y extras, 4) Realiza el pago seguro, 5) Recibe confirmación por WhatsApp y email."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Puedo alquilar sin tener licencia náutica?",
+        "acceptedAnswer": {
+          "@type": "Answer", 
+          "text": "¡Sí! Tenemos barcos perfectos sin licencia. Son de hasta 15 CV, máximo 4-5 personas, fáciles de manejar con briefing completo. Solo necesitas ser mayor de 18 años."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué está incluido en el precio?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Incluido: embarcación equipada, combustible (en barcos sin licencia), chalecos salvavidas, kit de seguridad, ancla, escalera de baño, instrucciones, seguro básico y soporte telefónico."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Cuál es la política de cancelación?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Política flexible: Más de 48h antes = 100% reembolso, 24-48h antes = 50% reembolso, menos de 24h = sin reembolso. Mal tiempo = reprogramación gratuita o 100% reembolso."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Por dónde puedo navegar?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Zona autorizada: Norte hasta Playa de Fenals (sin licencia) o Sant Feliu de Guíxols (con licencia). Sur hasta final playa de Blanes (sin licencia) o sin límite (con licencia). Máximo 2 millas de la costa."
+        }
+      }
+    ]
+  };
+
   return (
     <div className="min-h-screen">
       <SEO 
         title="Preguntas Frecuentes (FAQ) - Alquiler de Barcos en Blanes | Costa Brava Rent a Boat"
         description="Resuelve todas tus dudas sobre el alquiler de barcos en Blanes, Costa Brava. Precios, requisitos, qué incluye, políticas de cancelación y más. Sin licencia y con licencia."
         canonical="https://costa-brava-rent-a-boat-blanes.replit.app/faq"
+        jsonLd={faqSchema}
       />
       <Navigation />
       

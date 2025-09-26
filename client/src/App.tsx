@@ -21,6 +21,7 @@ import CondicionesGenerales from "./components/CondicionesGenerales";
 import FAQPage from "@/pages/faq";
 import PrivacyPolicyPage from "@/pages/privacy-policy";
 import TermsConditionsPage from "@/pages/terms-conditions";
+import LocationBlanesPage from "@/pages/location-blanes";
 import NotFound from "@/pages/not-found";
 import { SEO } from "./components/SEO";
 
@@ -100,6 +101,10 @@ function TermsConditionsPageWrapper() {
   return <TermsConditionsPage />;
 }
 
+function LocationBlanesPageWrapper() {
+  return <LocationBlanesPage />;
+}
+
 // Router Component
 function Router() {
   return (
@@ -118,6 +123,7 @@ function Router() {
       <Route path="/faq" component={FAQPageWrapper} />
       <Route path="/privacy-policy" component={PrivacyPolicyPageWrapper} />
       <Route path="/terms-conditions" component={TermsConditionsPageWrapper} />
+      <Route path="/alquiler-barcos-blanes" component={LocationBlanesPageWrapper} />
       <Route component={NotFound} />
     </Switch>
   );

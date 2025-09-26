@@ -1,0 +1,17 @@
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://costa-brava-rent-a-boat-blanes.replit.app/sitemap.xml
+
+# Block CRM and admin areas
+Disallow: /crm
+
+# Allow all main content pages
+Allow: /
+Allow: /barco/
+Allow: /alquiler-barcos-blanes
+Allow: /faq
+Allow: /terms-conditions
+Allow: /privacy-policy
+Allow: /condiciones-generales

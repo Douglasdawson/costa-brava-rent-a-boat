@@ -106,20 +106,6 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Services */}
-          <div>
-            <h3 className="font-semibold text-white mb-4">{t.footer.services}</h3>
-            <ul className="space-y-2 text-xs">
-              <li><a href="#" className="hover:text-primary transition-colors">{t.boats.withoutLicense}</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">{t.boats.withLicense}</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">{t.footer.extrasSnorkel}</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">{t.footer.extrasPaddle}</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">{t.footer.extrasSeascooter}</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">{t.footer.hourlyRental}</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">{t.footer.portParking}</a></li>
-            </ul>
-          </div>
-
           {/* Hours & Legal */}
           <div>
             <h3 className="font-semibold text-white mb-4">{t.footer.hours}</h3>
@@ -154,6 +140,20 @@ export default function Footer() {
                 </button>
               </li>
               <li><a href="#" className="hover:text-primary transition-colors">{t.footer.cancelationPolicy}</a></li>
+            </ul>
+          </div>
+
+          {/* Services */}
+          <div>
+            <h3 className="font-semibold text-white mb-4">{t.footer.services}</h3>
+            <ul className="space-y-2 text-xs">
+              <li><a href="#" className="hover:text-primary transition-colors">{t.boats.withoutLicense}</a></li>
+              <li><a href="#" className="hover:text-primary transition-colors">{t.boats.withLicense}</a></li>
+              <li><a href="#" className="hover:text-primary transition-colors">{t.footer.extrasSnorkel}</a></li>
+              <li><a href="#" className="hover:text-primary transition-colors">{t.footer.extrasPaddle}</a></li>
+              <li><a href="#" className="hover:text-primary transition-colors">{t.footer.extrasSeascooter}</a></li>
+              <li><a href="#" className="hover:text-primary transition-colors">{t.footer.hourlyRental}</a></li>
+              <li><a href="#" className="hover:text-primary transition-colors">{t.footer.portParking}</a></li>
             </ul>
           </div>
         </div>

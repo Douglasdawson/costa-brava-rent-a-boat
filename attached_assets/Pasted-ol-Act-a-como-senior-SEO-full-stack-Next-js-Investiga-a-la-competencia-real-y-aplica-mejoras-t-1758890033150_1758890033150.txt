@@ -1,0 +1,62 @@
+ol: Actúa como senior SEO + full-stack (Next.js). Investiga a la competencia real y aplica mejoras técnicas, de contenido y UX para maximizar ranking y conversiones. Trabaja sobre mi repo actual en Replit.
+1) Investigación de competencia (SERPs reales)
+Busca y documenta los top 10–20 resultados para estas consultas (ES y traducidas a CA/FR/DE/NL/IT/RU):
+“alquiler de barcos costa brava”, “alquiler de barcos blanes/lloret/tossa”, “barco sin licencia costa brava”, “boat rental costa brava”, “rent a boat blanes”, etc.
+Para cada competidor: captura títulos, metadescripciones, H1, estructura de URLs, contenido clave, interlinking, Schema usado (LocalBusiness, Product/Service, FAQ, Breadcrumb), idiomas/hreflang, páginas de ubicación, blog/guías, velocidad (Lighthouse), y elementos de confianza (reseñas, fotos, políticas).
+Entrega un informe Gap Analysis (tabla markdown) con fortalezas y oportunidades que adoptaremos/superaremos.
+2) Arquitectura SEO multilingüe (ES/CA/FR/DE/NL/IT/RU)
+Implementa i18n con rutas limpias: /es, /ca, /fr, /de, /nl, /it, /ru.
+Hreflang + canonicals correctos en todas las páginas.
+Páginas estratégicas:
+Ubicaciones: “alquiler de barcos en Blanes / Lloret de Mar / Tossa de Mar / Calella / Platja d’Aro / Palamós / Roses / Cadaqués”.
+Categorías: “barcos sin licencia”, “barcos con licencia”.
+Modelos: página por barco (ya existen) con contenido ampliado.
+Guías (pillar + clusters): calas y rutas, normativa, mejores horas/temporadas, consejos de seguridad, qué llevar, meteorología.
+Breadcrumbs e interlinking interno entre categorías, ubicaciones y modelos.
+3) On-page y metadatos (Next.js 14)
+Usa Metadata API para <title>, <meta name="description">, alternates.hreflang, alternates.canonical.
+Genera OG/Twitter (incluye OG image dinámico por barco/ubicación).
+Estructura de H1–H3 clara, con FAQs al final de cada página relevante.
+4) Datos estructurados (JSON-LD)
+LocalBusiness (NAP, horarios, geo, teléfono +34611500372, área de servicio Costa Brava).
+Product/Service por barco con offers (usa precio “desde” por duración típica; no hace falta listar todas las combinaciones en el JSON-LD).
+FAQPage en páginas informativas.
+BreadcrumbList.
+AggregateRating/Review si tenemos testimonios (si no, deja preparado).
+5) Técnica y rendimiento (Core Web Vitals)
+Optimiza LCP/CLS/INP: next/image con tamaños correctos, lazyload, preconnect a Stripe si se usa, fuentes con font-display: swap, minifica CSS/JS, elimina CSS no usado, evita hidratar componentes innecesarios.
+Sitemap dinámico con todas las rutas e idiomas, lastmod, y robots.txt correcto.
+ISR/SSR donde convenga, cache Cache-Control para assets.
+Limpia redirecciones, 404/410 útiles.
+6) Conversión (sin pago online)
+Mantén el flujo de selección igual, pero el CTA principal será “Solicitar reserva” (request-only).
+Evento de conversión (GA4): reservation_request.
+Pantalla de gracias con alternativas (WhatsApp y email).
+(Opcional) Si está activa la Cloud API, enviar WhatsApp auto al negocio; si no, email.
+7) Analytics y medición
+Añade GA4 y Search Console (verificación por HTML tag).
+Reporte Lighthouse antes/después (desktop y móvil).
+Valida JSON-LD con el Rich Results Test y hreflang con Sitebulb/validador simple.
+8) Entregables
+Informe de competencia + Gap Analysis con acciones priorizadas (impacto/ esfuerzo).
+PRs con:
+Metadata y hreflang completos.
+JSON-LD (LocalBusiness, Product/Service, FAQ, Breadcrumb).
+Sitemap y robots.txt.
+Páginas de ubicación (mín. Blanes, Lloret, Tossa) y categorías (sin licencia / con licencia).
+Mejoras de rendimiento (lista de cambios).
+CTA “Solicitar reserva” + endpoint request-only.
+README-SEO.md con cómo mantener contenidos, palabras clave por idioma y checklist de cada nueva página.
+9) Criterios de aceptación
+Lighthouse móvil ≥ 90 en Performance y SEO en home, una página de barco y una de ubicación.
+Todas las rutas tienen canonical + hreflang correctos para 7 idiomas.
+Rich Results: 0 errores en LocalBusiness/FAQ/Breadcrumb.
+Sitemap y robots servidos y enlazados (/robots.txt incluye Sitemap: …).
+CTA de Solicitud de reserva operativo (email o WhatsApp según env).
+Informe de competencia entregado y mejoras aplicadas que superen las prácticas de los top-competidores.
+10) Notas del negocio (usar en copies y schema)
+Nombre: Costa Brava Rent a Boat Blanes
+Tel/WhatsApp: +34611500372
+Idiomas: ES, CA, FR, DE, NL, IT, RU
+Servicios: alquiler de barcos sin licencia (1/2/3/4/6/8h) y con licencia (2/4/8h) en Costa Brava.
+Inicia ya con el análisis de SERPs, entrega primero el Gap Analysis, y luego abre PRs iterativos aplicando las mejoras con pruebas (Lighthouse/validadores) y un changelog por cada grupo de cambios.

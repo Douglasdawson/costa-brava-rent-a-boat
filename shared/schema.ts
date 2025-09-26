@@ -1,12 +1,12 @@
 import { sql } from "drizzle-orm";
-import { pgTable, text, varchar, integer, decimal, timestamp, boolean, json } from "drizzle-orm/pg-core";
+import { pgTable, text, varchar, integer, decimal, timestamp, boolean, json, index, unique } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
 export const users = pgTable("users", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
   username: text("username").notNull().unique(),
-  password: text("password").notNull(),
+  passwordHash: text("password_hash").notNull(),
 });
 
 export const boats = pgTable("boats", {
@@ -39,13 +39,31 @@ export const bookings = pgTable("bookings", {
   deposit: decimal("deposit", { precision: 10, scale: 2 }).notNull(),
   totalAmount: decimal("total_amount", { precision: 10, scale: 2 }).notNull(),
   stripePaymentIntentId: text("stripe_payment_intent_id"),
-  paymentStatus: text("payment_status").notNull().default("pending"), // pending, completed, failed
-  bookingStatus: text("booking_status").notNull().default("confirmed"), // confirmed, cancelled
+  paymentStatus: text("payment_status").notNull().default("pending"), // pending, completed, failed, refunded
+  bookingStatus: text("booking_status").notNull().default("draft"), // draft, pending_payment, confirmed, cancelled
+  source: text("source").notNull().default("web"), // web, admin
+  couponCode: text("coupon_code"), // Optional discount code
+  refundStatus: text("refund_status"), // null, requested, processing, completed
+  refundAmount: decimal("refund_amount", { precision: 10, scale: 2 }), // Amount refunded if any
+  sessionId: text("session_id"), // Browser session for holds
+  expiresAt: timestamp("expires_at", { withTimezone: true }), // Expiration time for holds
   whatsappConfirmationSent: boolean("whatsapp_confirmation_sent").notNull().default(false),
   whatsappReminderSent: boolean("whatsapp_reminder_sent").notNull().default(false),
   notes: text("notes"),
   createdAt: timestamp("created_at", { withTimezone: true }).notNull().default(sql`now()`),
-});
+}, (table) => ({
+  // Performance indexes
+  boatTimeIdx: index("booking_boat_time_idx").on(table.boatId, table.startTime, table.endTime),
+  bookingDateIdx: index("booking_date_idx").on(table.bookingDate),
+  // Partial index for active bookings and holds
+  activeBookingsIdx: index("active_bookings_idx").on(table.boatId, table.startTime, table.endTime)
+    .where(sql`booking_status IN ('hold', 'pending_payment', 'confirmed')`),
+  // Index for expired holds cleanup
+  expiresAtIdx: index("bookings_expires_at_idx").on(table.expiresAt)
+    .where(sql`booking_status = 'hold'`),
+}));
+
+// Note: booking_holds functionality unified into bookings table with 'hold' status
 
 export const bookingExtras = pgTable("booking_extras", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
@@ -58,7 +76,7 @@ export const bookingExtras = pgTable("booking_extras", {
 // Zod schemas for validation
 export const insertUserSchema = createInsertSchema(users).pick({
   username: true,
-  password: true,
+  passwordHash: true,
 });
 
 export const insertBoatSchema = createInsertSchema(boats);
@@ -68,6 +86,8 @@ export const insertBookingSchema = createInsertSchema(bookings).omit({
   createdAt: true,
   whatsappConfirmationSent: true,
   whatsappReminderSent: true,
+  refundStatus: true,
+  refundAmount: true,
 }).extend({
   // Custom validation for booking form with date coercion
   bookingDate: z.coerce.date(),
@@ -84,6 +104,13 @@ export const insertBookingSchema = createInsertSchema(bookings).omit({
   extrasTotal: z.string(),
   deposit: z.string(),
   totalAmount: z.string(),
+  // Enum validations
+  paymentStatus: z.enum(['pending', 'completed', 'failed', 'refunded']),
+  bookingStatus: z.enum(['draft', 'hold', 'pending_payment', 'confirmed', 'cancelled']),
+  source: z.enum(['web', 'admin']),
+}).refine((data) => data.startTime < data.endTime, {
+  message: "La hora de fin debe ser posterior a la hora de inicio",
+  path: ["endTime"],
 });
 
 export const insertBookingExtraSchema = createInsertSchema(bookingExtras).omit({
@@ -102,3 +129,28 @@ export type Booking = typeof bookings.$inferSelect;
 
 export type InsertBookingExtra = z.infer<typeof insertBookingExtraSchema>;
 export type BookingExtra = typeof bookingExtras.$inferSelect;
+
+// Booking status enums for type safety
+export const BOOKING_STATUS = {
+  DRAFT: 'draft',
+  HOLD: 'hold',
+  PENDING_PAYMENT: 'pending_payment', 
+  CONFIRMED: 'confirmed',
+  CANCELLED: 'cancelled'
+} as const;
+
+export const PAYMENT_STATUS = {
+  PENDING: 'pending',
+  COMPLETED: 'completed',
+  FAILED: 'failed',
+  REFUNDED: 'refunded'
+} as const;
+
+export const BOOKING_SOURCE = {
+  WEB: 'web',
+  ADMIN: 'admin'
+} as const;
+
+export type BookingStatus = typeof BOOKING_STATUS[keyof typeof BOOKING_STATUS];
+export type PaymentStatus = typeof PAYMENT_STATUS[keyof typeof PAYMENT_STATUS];
+export type BookingSource = typeof BOOKING_SOURCE[keyof typeof BOOKING_SOURCE];

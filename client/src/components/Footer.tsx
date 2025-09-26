@@ -145,21 +145,6 @@ export default function Footer() {
               <li>
                 <button 
                   onClick={() => {
-                    setLocation("/privacy-policy");
-                    window.scrollTo({
-                      top: 0,
-                      behavior: "smooth"
-                    });
-                  }} 
-                  className="hover:text-primary transition-colors cursor-pointer bg-transparent border-none p-0 text-left"
-                  data-testid="footer-privacy-link"
-                >
-                  {t.footer.privacy}
-                </button>
-              </li>
-              <li>
-                <button 
-                  onClick={() => {
                     setLocation("/terms-conditions");
                     setTimeout(() => {
                       const element = document.getElementById("cancelaciones-cambios");
@@ -175,6 +160,21 @@ export default function Footer() {
                   data-testid="footer-cancellation-link"
                 >
                   {t.footer.cancelationPolicy}
+                </button>
+              </li>
+              <li>
+                <button 
+                  onClick={() => {
+                    setLocation("/privacy-policy");
+                    window.scrollTo({
+                      top: 0,
+                      behavior: "smooth"
+                    });
+                  }} 
+                  className="hover:text-primary transition-colors cursor-pointer bg-transparent border-none p-0 text-left"
+                  data-testid="footer-privacy-link"
+                >
+                  {t.footer.privacy}
                 </button>
               </li>
             </ul>

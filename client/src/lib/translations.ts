@@ -295,7 +295,7 @@ export const translations: Record<Language, Translations> = {
       subtitle: 'Descubre las mejores calas de la Costa Brava con nuestros barcos con y sin licencia. Salidas desde Puerto de Blanes.',
       bookNow: 'Reservar Ahora',
       viewFleet: 'Ver Flota',
-      trustText: 'Sin compromiso • Confirmación inmediata • Precios transparentes',
+      trustText: 'Sin compromiso • Precios transparentes',
       whatsappContact: 'WhatsApp +34 611 500 372',
       location: 'Ubicación',
     },

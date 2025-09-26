@@ -529,7 +529,7 @@ export default function FAQPage() {
           <Card className="mb-6 sm:mb-8">
             <CardHeader>
               <CardTitle className="flex items-center gap-3 text-xl">
-                <Sun className="w-6 h-6 text-primary" />
+                <Calendar className="w-6 h-6 text-primary" />
                 Temporada y Disponibilidad
               </CardTitle>
             </CardHeader>

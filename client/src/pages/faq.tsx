@@ -84,34 +84,6 @@ export default function FAQPage() {
         </div>
       </div>
 
-      {/* Quick Info Cards */}
-      <div className="py-8 sm:py-12 bg-white">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-3 gap-4 sm:gap-6 mb-8 sm:mb-12">
-            <Card className="text-center hover-elevate">
-              <CardContent className="p-6">
-                <MapPin className="w-8 h-8 text-primary mx-auto mb-3" />
-                <h3 className="font-semibold text-lg mb-2">Puerto de Blanes</h3>
-                <p className="text-gray-600 text-sm">Salida desde Puerto de Blanes, Costa Brava. Fácil acceso y parking disponible.</p>
-              </CardContent>
-            </Card>
-            <Card className="text-center hover-elevate">
-              <CardContent className="p-6">
-                <Calendar className="w-8 h-8 text-primary mx-auto mb-3" />
-                <h3 className="font-semibold text-lg mb-2">Temporada</h3>
-                <p className="text-gray-600 text-sm">Abril - Octubre. Reservas flexibles con duración de 1-8 horas.</p>
-              </CardContent>
-            </Card>
-            <Card className="text-center hover-elevate">
-              <CardContent className="p-6">
-                <Ship className="w-8 h-8 text-primary mx-auto mb-3" />
-                <h3 className="font-semibold text-lg mb-2">7 Embarcaciones</h3>
-                <p className="text-gray-600 text-sm">Flota para desde 4-7 personas. Con y sin licencia náutica.</p>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </div>
 
       {/* FAQ Sections */}
       <div className="py-10 sm:py-16 bg-gray-50">
@@ -671,6 +643,35 @@ export default function FAQPage() {
             </CardContent>
           </Card>
 
+        </div>
+      </div>
+
+      {/* Quick Info Cards */}
+      <div className="py-8 sm:py-12 bg-white">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid md:grid-cols-3 gap-4 sm:gap-6 mb-8 sm:mb-12">
+            <Card className="text-center hover-elevate">
+              <CardContent className="p-6">
+                <MapPin className="w-8 h-8 text-primary mx-auto mb-3" />
+                <h3 className="font-semibold text-lg mb-2">Puerto de Blanes</h3>
+                <p className="text-gray-600 text-sm">Salida desde Puerto de Blanes, Costa Brava. Fácil acceso y parking disponible.</p>
+              </CardContent>
+            </Card>
+            <Card className="text-center hover-elevate">
+              <CardContent className="p-6">
+                <Calendar className="w-8 h-8 text-primary mx-auto mb-3" />
+                <h3 className="font-semibold text-lg mb-2">Temporada</h3>
+                <p className="text-gray-600 text-sm">Abril - Octubre. Reservas flexibles con duración de 1-8 horas.</p>
+              </CardContent>
+            </Card>
+            <Card className="text-center hover-elevate">
+              <CardContent className="p-6">
+                <Ship className="w-8 h-8 text-primary mx-auto mb-3" />
+                <h3 className="font-semibold text-lg mb-2">7 Embarcaciones</h3>
+                <p className="text-gray-600 text-sm">Flota para desde 4-7 personas. Con y sin licencia náutica.</p>
+              </CardContent>
+            </Card>
+          </div>
         </div>
       </div>
 

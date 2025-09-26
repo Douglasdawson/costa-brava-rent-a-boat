@@ -1,4 +1,4 @@
-import { FileText, UserCheck, AlertTriangle, Shield, ArrowLeftRight, Fuel, DollarSign, MapPin } from "lucide-react";
+import { FileText, UserCheck, AlertTriangle, Shield, ArrowLeftRight, Fuel, DollarSign, MapPin, XCircle, Edit, Cloud } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
@@ -100,7 +100,7 @@ export default function TermsConditionsPage() {
 
               <div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-3 flex items-center gap-2">
-                  <DollarSign className="w-5 h-5 text-primary" />
+                  <Shield className="w-5 h-5 text-primary" />
                   Seguro y Fianza
                 </h3>
                 <div className="space-y-3 text-sm text-gray-700">
@@ -168,7 +168,7 @@ export default function TermsConditionsPage() {
 
               <div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-3 flex items-center gap-2">
-                  <DollarSign className="w-5 h-5 text-primary" />
+                  <Shield className="w-5 h-5 text-primary" />
                   Seguro y Fianza
                 </h3>
                 <div className="space-y-3 text-sm text-gray-700">
@@ -190,12 +190,18 @@ export default function TermsConditionsPage() {
             <CardContent className="space-y-6">
               
               <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-3">Política de Cancelación</h3>
+                <h3 className="text-lg font-semibold text-gray-900 mb-3 flex items-center gap-2">
+                  <XCircle className="w-5 h-5 text-primary" />
+                  Política de Cancelación
+                </h3>
                 <p className="text-sm text-gray-700 mb-3">La cancelación de la reserva por parte del cliente ocasionará gastos de tramitación, gestión y bloqueo de la embarcación, por lo que <strong>todas las cancelaciones conllevarán la no devolución del importe pagado</strong> al formalizar la reserva.</p>
               </div>
 
               <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-3">Cambios de Reserva</h3>
+                <h3 className="text-lg font-semibold text-gray-900 mb-3 flex items-center gap-2">
+                  <Edit className="w-5 h-5 text-primary" />
+                  Cambios de Reserva
+                </h3>
                 <div className="space-y-3 text-sm text-gray-700">
                   <p>Costa Brava Rent a Boat acepta el cambio de una reserva únicamente con una comunicación previa por escrito a:</p>
                   <ul className="list-disc pl-6 space-y-1">
@@ -207,7 +213,10 @@ export default function TermsConditionsPage() {
               </div>
 
               <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-3">Condiciones Meteorológicas</h3>
+                <h3 className="text-lg font-semibold text-gray-900 mb-3 flex items-center gap-2">
+                  <Cloud className="w-5 h-5 text-primary" />
+                  Condiciones Meteorológicas
+                </h3>
                 <div className="space-y-3 text-sm text-gray-700">
                   <p>Cuando el alquiler no pueda disfrutarse por motivos climatológicos justificados y verificados por Costa Brava Rent a Boat, se ofrecerá al cliente un cambio de fecha, sujeto a disponibilidad.</p>
                   <p>Si el cliente decide no salir a navegar aun siendo positivo el veredicto de nuestro personal, no se efectuará la devolución del importe pagado.</p>

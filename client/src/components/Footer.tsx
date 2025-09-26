@@ -138,7 +138,13 @@ export default function Footer() {
               </li>
               <li>
                 <button 
-                  onClick={() => setLocation("/privacy-policy")} 
+                  onClick={() => {
+                    setLocation("/privacy-policy");
+                    window.scrollTo({
+                      top: 0,
+                      behavior: "smooth"
+                    });
+                  }} 
                   className="hover:text-primary transition-colors cursor-pointer bg-transparent border-none p-0 text-left"
                   data-testid="footer-privacy-link"
                 >

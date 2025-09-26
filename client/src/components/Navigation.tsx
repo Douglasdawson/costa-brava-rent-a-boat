@@ -44,6 +44,15 @@ export default function Navigation() {
     }
   };
 
+  const handleLogoClick = () => {
+    setIsOpen(false); // Close mobile menu if open
+    setLocation("/");
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  };
+
   const handleNavigation = (href: string, label: string) => {
     console.log(`Navigating to: ${label} (${href})`);
     
@@ -99,13 +108,17 @@ export default function Navigation() {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <div className="flex items-center space-x-2" data-testid="brand-logo">
+          <button 
+            onClick={handleLogoClick}
+            className="flex items-center space-x-2 hover:opacity-80 transition-opacity cursor-pointer bg-transparent border-none p-0"
+            data-testid="brand-logo"
+          >
             <Anchor className="w-6 h-6 sm:w-8 sm:h-8 text-primary" />
             <span className="font-heading font-bold text-sm sm:text-lg lg:text-xl text-gray-900">
               <span className="hidden lg:inline">Costa Brava Rent a Boat Blanes</span>
               <span className="lg:hidden">Costa Brava Rent a Boat - Blanes</span>
             </span>
-          </div>
+          </button>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">

@@ -1,4 +1,5 @@
 import { Anchor, Phone, Mail, MapPin, Clock } from "lucide-react";
+import { SiWhatsapp } from "react-icons/si";
 import { useTranslations } from "@/lib/translations";
 import { useLocation } from "wouter";
 
@@ -64,10 +65,11 @@ export default function Footer() {
                     <span className="text-xs text-gray-500">|</span>
                     <button
                       onClick={handleWhatsApp}
-                      className="text-xs text-green-400 hover:text-green-300 transition-colors cursor-pointer"
+                      className="text-xs text-green-400 hover:text-green-300 transition-colors cursor-pointer flex items-center space-x-1"
                       data-testid="phone-whatsapp-link"
                     >
-                      WhatsApp
+                      <SiWhatsapp className="w-3 h-3" />
+                      <span>WhatsApp</span>
                     </button>
                   </div>
                   <p className="text-xs text-gray-400">{t.footer.callsAndWhatsapp}</p>
@@ -148,7 +150,7 @@ export default function Footer() {
               className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg text-xs font-medium flex items-center space-x-2 transition-colors"
               data-testid="footer-whatsapp-button"
             >
-              <span>💬</span>
+              <SiWhatsapp className="w-4 h-4" />
               <span>WhatsApp</span>
             </button>
             

@@ -20,6 +20,7 @@ import BoatDetailPage from "./components/BoatDetailPage";
 import CondicionesGenerales from "./components/CondicionesGenerales";
 import FAQPage from "@/pages/faq";
 import PrivacyPolicyPage from "@/pages/privacy-policy";
+import TermsConditionsPage from "@/pages/terms-conditions";
 import NotFound from "@/pages/not-found";
 import { SEO } from "./components/SEO";
 
@@ -95,6 +96,10 @@ function PrivacyPolicyPageWrapper() {
   return <PrivacyPolicyPage />;
 }
 
+function TermsConditionsPageWrapper() {
+  return <TermsConditionsPage />;
+}
+
 // Router Component
 function Router() {
   return (
@@ -112,6 +117,7 @@ function Router() {
       <Route path="/condiciones-generales" component={CondicionesGeneralesPage} />
       <Route path="/faq" component={FAQPageWrapper} />
       <Route path="/privacy-policy" component={PrivacyPolicyPageWrapper} />
+      <Route path="/terms-conditions" component={TermsConditionsPageWrapper} />
       <Route component={NotFound} />
     </Switch>
   );

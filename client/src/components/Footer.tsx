@@ -135,7 +135,15 @@ export default function Footer() {
 
             <h4 className="font-medium text-white mb-2">{t.footer.legal}</h4>
             <ul className="space-y-1 text-xs">
-              <li><a href="#" className="hover:text-primary transition-colors">{t.footer.terms}</a></li>
+              <li>
+                <button 
+                  onClick={() => setLocation("/terms-conditions")} 
+                  className="hover:text-primary transition-colors cursor-pointer bg-transparent border-none p-0 text-left"
+                  data-testid="footer-terms-link"
+                >
+                  {t.footer.terms}
+                </button>
+              </li>
               <li>
                 <button 
                   onClick={() => setLocation("/privacy-policy")} 

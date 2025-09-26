@@ -1,4 +1,4 @@
-import { FileText } from "lucide-react";
+import { FileText, UserCheck, AlertTriangle, Shield, ArrowLeftRight, Fuel, DollarSign, MapPin } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
@@ -41,12 +41,18 @@ export default function TermsConditionsPage() {
             <CardContent className="space-y-6">
               
               <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-3">Requisitos de Alquiler</h3>
+                <h3 className="text-lg font-semibold text-gray-900 mb-3 flex items-center gap-2">
+                  <UserCheck className="w-5 h-5 text-primary" />
+                  Requisitos de Alquiler
+                </h3>
                 <p className="text-sm text-gray-700">Las embarcaciones con titulación sólo podrán ser arrendadas por la persona designada en el contrato y que debe poseer la correspondiente titulación en vigor.</p>
               </div>
 
               <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-3">Prohibiciones</h3>
+                <h3 className="text-lg font-semibold text-gray-900 mb-3 flex items-center gap-2">
+                  <AlertTriangle className="w-5 h-5 text-primary" />
+                  Prohibiciones
+                </h3>
                 <ul className="list-disc pl-6 space-y-2 text-sm text-gray-700">
                   <li>Sobrepasar la distancia de una milla desde la costa</li>
                   <li>Sobrepasar el número de plazas máximo permitido según el modelo de la embarcación</li>
@@ -57,7 +63,10 @@ export default function TermsConditionsPage() {
               </div>
 
               <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-3">Responsabilidades</h3>
+                <h3 className="text-lg font-semibold text-gray-900 mb-3 flex items-center gap-2">
+                  <Shield className="w-5 h-5 text-primary" />
+                  Responsabilidades
+                </h3>
                 <div className="space-y-3 text-sm text-gray-700">
                   <ul className="list-disc pl-6 space-y-2">
                     <li>La velocidad máxima en puertos y canales específicos es de 3 nudos</li>
@@ -71,7 +80,10 @@ export default function TermsConditionsPage() {
               </div>
 
               <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-3">Entrega y Recogida</h3>
+                <h3 className="text-lg font-semibold text-gray-900 mb-3 flex items-center gap-2">
+                  <ArrowLeftRight className="w-5 h-5 text-primary" />
+                  Entrega y Recogida
+                </h3>
                 <div className="space-y-3 text-sm text-gray-700">
                   <p>La embarcación será entregada y devuelta en el Puerto de Blanes. Se devolverá con todo su equipamiento en las mismas condiciones en las que se entregó.</p>
                   <p><strong>Importante:</strong> Si el check-out se realiza más tarde de la hora estipulada sin aviso se cobrará 150€ por cada 30 minutos de retraso.</p>
@@ -79,12 +91,18 @@ export default function TermsConditionsPage() {
               </div>
 
               <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-3">Carburante</h3>
+                <h3 className="text-lg font-semibold text-gray-900 mb-3 flex items-center gap-2">
+                  <Fuel className="w-5 h-5 text-primary" />
+                  Carburante
+                </h3>
                 <p className="text-sm text-gray-700">La gasolina NO está incluida en el precio. La embarcación se entregará con el depósito lleno y se devolverá en el mismo estado.</p>
               </div>
 
               <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-3">Seguro y Fianza</h3>
+                <h3 className="text-lg font-semibold text-gray-900 mb-3 flex items-center gap-2">
+                  <DollarSign className="w-5 h-5 text-primary" />
+                  Seguro y Fianza
+                </h3>
                 <div className="space-y-3 text-sm text-gray-700">
                   <p>Las tarifas incluyen seguro de Responsabilidad Civil Obligatoria y seguro para daños físicos para la tripulación.</p>
                   <p><strong>Fianza:</strong> 500€ o 1.000€ dependiendo de la embarcación alquilada para responder a cualquier desperfecto, pérdida de material o retraso en la devolución.</p>
@@ -106,12 +124,18 @@ export default function TermsConditionsPage() {
             <CardContent className="space-y-6">
               
               <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-3">Requisitos de Alquiler</h3>
+                <h3 className="text-lg font-semibold text-gray-900 mb-3 flex items-center gap-2">
+                  <UserCheck className="w-5 h-5 text-primary" />
+                  Requisitos de Alquiler
+                </h3>
                 <p className="text-sm text-gray-700">La embarcación sólo podrá ser arrendada por la persona designada en el contrato, que debe ser mayor de 18 años.</p>
               </div>
 
               <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-3">Prohibiciones</h3>
+                <h3 className="text-lg font-semibold text-gray-900 mb-3 flex items-center gap-2">
+                  <AlertTriangle className="w-5 h-5 text-primary" />
+                  Prohibiciones
+                </h3>
                 <ul className="list-disc pl-6 space-y-2 text-sm text-gray-700">
                   <li>Sobrepasar la distancia de una milla desde la costa (1.8 km)</li>
                   <li>Sobrepasar el número de plazas máximo permitido</li>
@@ -123,7 +147,10 @@ export default function TermsConditionsPage() {
               </div>
 
               <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-3">Zona de Navegación Restringida</h3>
+                <h3 className="text-lg font-semibold text-gray-900 mb-3 flex items-center gap-2">
+                  <MapPin className="w-5 h-5 text-primary" />
+                  Zona de Navegación Restringida
+                </h3>
                 <div className="space-y-3 text-sm text-gray-700">
                   <p>Las embarcaciones tienen una zona restringida de navegación que abarca desde el río Tordera al sur hasta el final de la playa de Fenals al norte.</p>
                   <p><strong>Importante:</strong> Si se sobrepasa la zona de navegación indicada podrá ser sancionado con 200€ por imprudencia.</p>
@@ -132,12 +159,18 @@ export default function TermsConditionsPage() {
               </div>
 
               <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-3">Carburante</h3>
+                <h3 className="text-lg font-semibold text-gray-900 mb-3 flex items-center gap-2">
+                  <Fuel className="w-5 h-5 text-primary" />
+                  Carburante
+                </h3>
                 <p className="text-sm text-gray-700">La gasolina SÍ está incluida en el precio. Las embarcaciones disponen de un depósito de 25 litros incluido en el precio del alquiler.</p>
               </div>
 
               <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-3">Seguro y Fianza</h3>
+                <h3 className="text-lg font-semibold text-gray-900 mb-3 flex items-center gap-2">
+                  <DollarSign className="w-5 h-5 text-primary" />
+                  Seguro y Fianza
+                </h3>
                 <div className="space-y-3 text-sm text-gray-700">
                   <p>Las tarifas incluyen seguro de Responsabilidad Civil Obligatoria y seguro para daños físicos para la tripulación.</p>
                   <p><strong>Fianza:</strong> 200€ para responder a cualquier desperfecto, pérdida de material o retraso en la devolución de la embarcación.</p>

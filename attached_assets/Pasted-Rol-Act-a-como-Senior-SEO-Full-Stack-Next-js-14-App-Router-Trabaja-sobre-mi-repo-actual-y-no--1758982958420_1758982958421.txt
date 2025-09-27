@@ -1,0 +1,103 @@
+Rol: Actúa como Senior SEO + Full-Stack (Next.js 14, App Router). Trabaja sobre mi repo actual y no rompas el flujo de “Solicitud de reserva” (request-only) ni el CRM. Aplica mejoras SEO con cambios pequeños, seguros y versionados.
+
+0) Contexto del negocio (usar en titles, schema y copy)
+	•	Marca: Costa Brava Rent a Boat Blanes
+	•	Tel/WhatsApp: +34611500372
+	•	Servicios: alquiler de barcos sin licencia (1/2/3/4/6/8 h) y con licencia (2/4/8 h) en la Costa Brava
+	•	Idiomas: ES, CA, FR, DE, NL, IT, RU (ES por defecto)
+
+⸻
+
+1) Investigación de competencia (SERPs reales)
+	•	Investiga top 10–20 resultados para:
+“alquiler de barcos costa brava”, “alquiler de barcos blanes”, “alquiler barco sin licencia costa brava”, “boat rental costa brava / blanes / lloret / tossa”… (ES+CA+EN; y referencia cruzada en FR/DE/NL/IT/RU).
+	•	Para cada dominio relevante, captura en una tabla: Title, Meta-description, H1, estructura de URLs, interlinking, tipos de página (categorías, ubicaciones, modelos, guías), schema (LocalBusiness/Service/Product/FAQ/Breadcrumb), idiomas/hreflang, señales de confianza (reseñas, fotos), y performance (Lighthouse resumen).
+	•	Entrega Gap Analysis: lista priorizada de fortalezas que adoptaremos y oportunidades que vamos a superar.
+
+Importante: No copies texto ajeno; inspírate en su estructura y temas. Genera contenido original y mejor.
+
+⸻
+
+2) Arquitectura SEO e i18n
+	•	Implementa rutas con i18n: /es, /ca, /fr, /de, /nl, /it, /ru y hreflang + x-default correctos en todas las páginas.
+	•	Crea y enlaza páginas estratégicas (contenido original, mínimo 600–900 palabras por página, FAQ al final):
+	•	Ubicaciones: Blanes, Lloret de Mar, Tossa de Mar, Platja d’Aro, Palamós, Roses, Cadaqués.
+	•	Categorías: Barcos sin licencia / con licencia.
+	•	Guías (pillar/cluster): calas y rutas recomendadas, normativa y seguridad, qué llevar, meteorología/olas/ventanas de salida, mejores horas por temporada.
+	•	Añade breadcrumbs y enlazado interno entre landing → categorías → modelos → ubicaciones → guías.
+
+⸻
+
+3) On-page (Next.js Metadata API)
+	•	Usa la Metadata API para: <title>, <meta name="description">, alternates.hreflang, alternates.canonical, y Open Graph/Twitter.
+	•	Reglas de copy: keyword + valor (“sin licencia”, “gasolina incluida”, “Costa Brava”, “reservas de 2–8 h”) + beneficio/CTA suave.
+	•	Encabezados: un solo H1 claro por página; H2/H3 jerárquicos. Todas las imágenes con alt descriptivo.
+
+⸻
+
+4) Datos estructurados (JSON-LD)
+	•	LocalBusiness (NAP, geo, phone +34611500372, área de servicio Costa Brava).
+	•	Service / Product por barco con offers (precio “desde”, moneda EUR).
+	•	FAQPage en páginas informativas y de ubicación.
+	•	BreadcrumbList.
+	•	(Si procede) AggregateRating y Review (placeholder, no inventar datos).
+	•	Valida que no existan errores en Rich Results.
+
+⸻
+
+5) Técnica y rendimiento (Core Web Vitals)
+	•	Sitemap dinámico con todas las rutas/idiomas (/sitemap.xml) y robots.txt con Sitemap: ….
+	•	Canonical consistente; noindex en /crm/*, /api/* y páginas internas.
+	•	Optimiza LCP/CLS/INP: next/image, tamaños correctos, lazyload, preconnect y font-display: swap.
+	•	Minimiza JS hidrata-do: componentes críticos islas y evitar renders innecesarios.
+	•	OG images dinámicas por barco/ubicación para mejorar CTR en compartidos.
+
+⸻
+
+6) Conversión (request-only)
+	•	Mantén el flujo actual de Solicitud de reserva (sin pago).
+	•	Copy en CTA: “Solicitar reserva (te contactamos para confirmar)”.
+	•	Evento GA4 reservation_request.
+	•	Email o WhatsApp Business API al negocio según variables de entorno (si faltan, fallback a email).
+
+⸻
+
+7) Medición y verificación
+	•	Integra GA4 y Search Console (verificación por meta-tag).
+	•	Ejecuta Lighthouse (móvil) en home, 1 página de barco y 1 de ubicación; adjunta reporte.
+	•	Valida hreflang y JSON-LD (sin errores).
+	•	Entrega un README-SEO.md con checklist para cualquier nueva página/idioma.
+
+⸻
+
+8) Entregables y forma de trabajo
+	•	Informe de competencia + Gap Analysis (tabla markdown + conclusiones).
+	•	Commits/PRs pequeños por bloque:
+	1.	Metadata/hreflang/canonicals
+	2.	Sitemap/robots
+	3.	JSON-LD
+	4.	Páginas de ubicación + categorías + interlinking
+	5.	Rendimiento (LCP/CLS/INP)
+	6.	Medición (GA4/SConsole)
+	•	Changelog por PR con qué y por qué.
+	•	No eliminar ni romper funcionalidades existentes.
+
+⸻
+
+9) Criterios de aceptación (medibles)
+	•	Lighthouse móvil: ≥ 90 en SEO y Performance para home, 1 barco y 1 ubicación.
+	•	0 errores en datos estructurados (LocalBusiness/Service/Product/FAQ/Breadcrumb).
+	•	Canonical + hreflang correctos y consistentes en 7 idiomas.
+	•	Sitemap y robots.txt servidos y enlazados; /crm/* y /api/* fuera del índice.
+	•	Contenido de ubicaciones y categorías publicado con interlinking correcto.
+	•	CTA de Solicitud de reserva operativo (email o WhatsApp según env).
+
+⸻
+
+10) Notas técnicas del repo (si no existen, créalas)
+	•	Rutas o handlers para /sitemap.xml y /robots.txt.
+	•	Utilidades de SEO (helper para Metadata API y JSON-LD).
+	•	Configuración i18n (next-intl o similar) con archivos por idioma y hreflang automáticos.
+	•	OG image generativa (por barco/ubicación) con @vercel/og o equivalente.
+
+Comienza por el informe de competencia y el Gap Analysis, y luego abre PRs incrementales aplicando las mejoras con métricas antes/después.

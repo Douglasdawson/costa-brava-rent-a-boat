@@ -369,19 +369,52 @@ export default function BookingFlow({ boatId = "astec-450", onClose }: BookingFl
     }
 
     try {
-      const boat = BOAT_DATA[selectedBoat];
-      const season = getSeason(new Date(selectedDate));
-      const seasonPrices = boat.pricing[season].prices;
+      // First try to find boat in availableBoats (API data), then fallback to BOAT_DATA
+      let boat = availableBoats.find((b: any) => b.id === selectedBoat);
+      
+      // If boat not found in availableBoats, try BOAT_DATA
+      if (!boat) {
+        boat = BOAT_DATA[selectedBoat];
+      }
+      
+      if (!boat) {
+        throw new Error(`Boat ${selectedBoat} not found`);
+      }
 
-      return [
-        { id: "1h", label: t.booking.oneHour, price: seasonPrices["1h"] || 70 },
-        { id: "2h", label: t.booking.twoHours, price: seasonPrices["2h"] || 80 },
-        { id: "3h", label: t.booking.threeHours, price: seasonPrices["3h"] || 90 },
-        { id: "4h", label: t.booking.fourHours, price: seasonPrices["4h"] || 120 },
-        { id: "6h", label: t.booking.sixHours, price: seasonPrices["6h"] || 150 },
-        { id: "8h", label: t.booking.eightHours, price: seasonPrices["8h"] || 180 }
-      ];
+      // Handle API boat data (has pricePerHour) vs static boat data (has pricing object)
+      if (boat.pricePerHour) {
+        // API boat - use pricePerHour for all durations
+        const basePrice = parseFloat(boat.pricePerHour);
+        return [
+          { id: "1h", label: t.booking.oneHour, price: basePrice },
+          { id: "2h", label: t.booking.twoHours, price: Math.round(basePrice * 1.8) },
+          { id: "3h", label: t.booking.threeHours, price: Math.round(basePrice * 2.5) },
+          { id: "4h", label: t.booking.fourHours, price: Math.round(basePrice * 3.2) },
+          { id: "6h", label: t.booking.sixHours, price: Math.round(basePrice * 4.5) },
+          { id: "8h", label: t.booking.eightHours, price: Math.round(basePrice * 5.8) }
+        ];
+      } else if (boat.pricing) {
+        // Static boat data - use seasonal pricing
+        const season = getSeason(new Date(selectedDate));
+        const seasonPrices = boat.pricing[season]?.prices;
+        
+        if (!seasonPrices) {
+          throw new Error(`No pricing found for season ${season}`);
+        }
+
+        return [
+          { id: "1h", label: t.booking.oneHour, price: seasonPrices["1h"] || 70 },
+          { id: "2h", label: t.booking.twoHours, price: seasonPrices["2h"] || 80 },
+          { id: "3h", label: t.booking.threeHours, price: seasonPrices["3h"] || 90 },
+          { id: "4h", label: t.booking.fourHours, price: seasonPrices["4h"] || 120 },
+          { id: "6h", label: t.booking.sixHours, price: seasonPrices["6h"] || 150 },
+          { id: "8h", label: t.booking.eightHours, price: seasonPrices["8h"] || 180 }
+        ];
+      } else {
+        throw new Error(`Boat ${selectedBoat} has no pricing data`);
+      }
     } catch (error) {
+      console.error('Error calculating durations:', error);
       // If date is outside season or other error, use fallback prices
       return [
         { id: "1h", label: t.booking.oneHour, price: 70 },
@@ -392,7 +425,7 @@ export default function BookingFlow({ boatId = "astec-450", onClose }: BookingFl
         { id: "8h", label: t.booking.eightHours, price: 180 }
       ];
     }
-  }, [selectedBoat, selectedDate, t.booking]);
+  }, [selectedBoat, selectedDate, availableBoats, t.booking]);
 
   // Filter available durations based on selected start time (max return time 19:00)
   const getAvailableDurations = (startTime: string) => {
@@ -410,7 +443,6 @@ export default function BookingFlow({ boatId = "astec-450", onClose }: BookingFl
 
   const handleTimeSelect = (timeId: string) => {
     setSelectedTime(timeId);
-    console.log("Time selected:", timeId);
     setStep(3);
   };
 

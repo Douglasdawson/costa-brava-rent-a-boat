@@ -341,4 +341,61 @@
   .date-left-align::-webkit-calendar-picker-indicator {
     text-align: left !important;
   }
+
+  /* Smooth scrolling optimizations for mobile */
+  * {
+    scroll-behavior: smooth;
+  }
+
+  /* Mobile scrolling enhancements */
+  @media (max-width: 768px) {
+    body, html {
+      -webkit-overflow-scrolling: touch;
+      overscroll-behavior-y: contain;
+      scroll-behavior: smooth;
+    }
+
+    /* Optimize all scrollable containers on mobile */
+    [class*="overflow-auto"],
+    [class*="overflow-y-auto"],
+    [class*="overflow-x-auto"],
+    .scroll-area {
+      -webkit-overflow-scrolling: touch;
+      overscroll-behavior: contain;
+      scroll-behavior: smooth;
+      transform: translateZ(0);
+      backface-visibility: hidden;
+      will-change: scroll-position;
+    }
+
+    /* Specific optimizations for commonly scrolled elements */
+    main, article, section, div[role="main"] {
+      -webkit-overflow-scrolling: touch;
+      overscroll-behavior-y: contain;
+    }
+
+    /* Smooth momentum scrolling for the main content */
+    #root {
+      -webkit-overflow-scrolling: touch;
+      overscroll-behavior-y: contain;
+      scroll-behavior: smooth;
+    }
+
+    /* Optimize booking flow and modals for mobile */
+    .booking-content,
+    [role="dialog"],
+    [data-state="open"] {
+      -webkit-overflow-scrolling: touch;
+      transform: translateZ(0);
+      backface-visibility: hidden;
+    }
+  }
+
+  /* Hardware acceleration for better performance */
+  .smooth-scroll {
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+  }
 }

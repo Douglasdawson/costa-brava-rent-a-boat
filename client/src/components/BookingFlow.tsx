@@ -3,7 +3,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Calendar, Clock, Users, Plus, Minus, Euro, CreditCard, Anchor, Gauge } from "lucide-react";
+import { Calendar, Clock, Users, Plus, Minus, Euro, CreditCard, Anchor, Gauge, ArrowLeft } from "lucide-react";
+import { useLocation } from "wouter";
 import { BOAT_DATA } from "@shared/boatData";
 import { getSeason } from "@shared/pricing";
 import { getBoatImage } from "@/utils/boatImages";
@@ -19,6 +20,7 @@ interface BookingFlowProps {
 }
 
 export default function BookingFlow({ boatId = "astec-450", onClose }: BookingFlowProps) {
+  const [, setLocation] = useLocation();
   const [step, setStep] = useState(1);
   const [selectedDate, setSelectedDate] = useState("");
   const [selectedBoat, setSelectedBoat] = useState(boatId);
@@ -622,6 +624,19 @@ export default function BookingFlow({ boatId = "astec-450", onClose }: BookingFl
   return (
     <div className="min-h-screen bg-gray-50 py-4 sm:py-8">
       <div className="container mx-auto px-4 max-w-2xl">
+        {/* Back to home button */}
+        <div className="mb-4">
+          <Button 
+            variant="ghost" 
+            onClick={() => setLocation("/")}
+            className="flex items-center text-gray-600 hover:text-gray-900"
+            data-testid="button-back-home"
+          >
+            <ArrowLeft className="w-4 h-4 mr-2" />
+            Volver al inicio
+          </Button>
+        </div>
+
         {/* Progress indicator */}
         <div className="flex items-center justify-center mb-6 sm:mb-8 overflow-x-auto">
           {[1, 2, 3, 4, 5, 6].map((stepNumber) => (

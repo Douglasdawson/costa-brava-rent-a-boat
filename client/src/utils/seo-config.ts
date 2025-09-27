@@ -67,6 +67,11 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       description: "Alquiler de barcos para visitar Lloret de Mar desde Puerto de Blanes. Embarcaciones sin licencia y con licencia. Explora las playas de Lloret navegando desde Blanes.",
       keywords: "alquiler barcos lloret de mar, visitar lloret en barco, excursion lloret desde blanes, barcos lloret costa brava"
     },
+    locationTossa: {
+      title: "Alquiler de Barcos en Tossa de Mar, Costa Brava - Excursiones desde Blanes",
+      description: "Alquiler de barcos para visitar Tossa de Mar desde Puerto de Blanes. 1 hora navegando hasta el pueblo medieval más bonito de la Costa Brava. Barcos sin licencia y con licencia.",
+      keywords: "alquiler barcos tossa de mar, visitar tossa en barco, excursion tossa desde blanes, barcos tossa costa brava, vila vella tossa"
+    },
     privacyPolicy: {
       title: "Política de Privacidad | Costa Brava Rent a Boat",
       description: "Política de privacidad y protección de datos de Costa Brava Rent a Boat. Información sobre el tratamiento de tus datos personales.",
@@ -113,6 +118,11 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       title: "Boat Rental to Visit Lloret de Mar, Costa Brava - Excursions from Blanes",
       description: "Boat rental to visit Lloret de Mar from Blanes Port. Boats without license and with license. Explore Lloret beaches sailing from Blanes.",
       keywords: "boat rental lloret de mar, visit lloret by boat, lloret excursion from blanes, boats lloret costa brava"
+    },
+    locationTossa: {
+      title: "Boat Rental to Visit Tossa de Mar, Costa Brava - Excursions from Blanes",
+      description: "Boat rental to visit Tossa de Mar from Blanes Port. 1 hour sailing to the most beautiful medieval town of Costa Brava. Boats without license and with license.",
+      keywords: "boat rental tossa de mar, visit tossa by boat, tossa excursion from blanes, boats tossa costa brava, vila vella tossa"
     },
     privacyPolicy: {
       title: "Privacy Policy | Costa Brava Rent a Boat",
@@ -161,6 +171,11 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       description: "Lloguer de barques per visitar Lloret de Mar des del Port de Blanes. Embarcacions sense llicència i amb llicència. Explora les platges de Lloret navegant des de Blanes.",
       keywords: "lloguer barques lloret de mar, visitar lloret en barque, excursió lloret des de blanes"
     },
+    locationTossa: {
+      title: "Lloguer de Barques per Visitar Tossa de Mar - Excursions des de Blanes",
+      description: "Lloguer de barques per visitar Tossa de Mar des del Port de Blanes. 1 hora navegant fins al poble medieval més bonic de la Costa Brava. Embarcacions sense llicència i amb llicència.",
+      keywords: "lloguer barques tossa de mar, visitar tossa en barque, excursió tossa des de blanes, vila vella tossa"
+    },
     privacyPolicy: {
       title: "Política de Privacitat | Costa Brava Rent a Boat",
       description: "Política de privacitat i protecció de dades de Costa Brava Rent a Boat.",
@@ -192,6 +207,11 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       title: "Location de Bateaux pour Visiter Lloret de Mar - Excursions depuis Blanes",
       description: "Location de bateaux pour visiter Lloret de Mar depuis le Port de Blanes. Bateaux sans permis et avec permis. Explorez les plages de Lloret en naviguant depuis Blanes.",
       keywords: "location bateaux lloret de mar, visiter lloret en bateau, excursion lloret depuis blanes"
+    },
+    locationTossa: {
+      title: "Location de Bateaux pour Visiter Tossa de Mar - Excursions depuis Blanes",
+      description: "Location de bateaux pour visiter Tossa de Mar depuis le Port de Blanes. 1 heure de navigation vers la plus belle ville médiévale de la Costa Brava. Bateaux sans permis et avec permis.",
+      keywords: "location bateaux tossa de mar, visiter tossa en bateau, excursion tossa depuis blanes, vila vella tossa"
     },
     privacyPolicy: {
       title: "Politique de Confidentialité | Costa Brava Rent a Boat",
@@ -225,6 +245,11 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       description: "Bootsverleih für Lloret de Mar Besuch vom Hafen Blanes. Boote ohne Führerschein und mit Führerschein. Erkunden Sie Lloret Strände von Blanes aus.",
       keywords: "bootsverleih lloret de mar, lloret per boot besuchen, lloret ausflug von blanes"
     },
+    locationTossa: {
+      title: "Bootsverleih für Tossa de Mar Besuch - Ausflüge von Blanes",
+      description: "Bootsverleih für Tossa de Mar Besuch vom Hafen Blanes. 1 Stunde Segeln zur schönsten mittelalterlichen Stadt der Costa Brava. Boote ohne Führerschein und mit Führerschein.",
+      keywords: "bootsverleih tossa de mar, tossa per boot besuchen, tossa ausflug von blanes, vila vella tossa"
+    },
     privacyPolicy: {
       title: "Datenschutzrichtlinie | Costa Brava Rent a Boat",
       description: "Datenschutzrichtlinie und Datenschutz von Costa Brava Rent a Boat.",
@@ -256,6 +281,11 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       title: "Bootverhuur voor Lloret de Mar Bezoek - Excursies vanuit Blanes",
       description: "Bootverhuur voor Lloret de Mar bezoek vanuit Haven Blanes. Boten zonder vaarbewijs en met vaarbewijs. Verken Lloret stranden vanuit Blanes.",
       keywords: "bootverhuur lloret de mar, lloret bezoeken per boot, lloret excursie vanuit blanes"
+    },
+    locationTossa: {
+      title: "Bootverhuur voor Tossa de Mar Bezoek - Excursies vanuit Blanes",
+      description: "Bootverhuur voor Tossa de Mar bezoek vanuit Haven Blanes. 1 uur varen naar de mooiste middeleeuwse stad van de Costa Brava. Boten zonder vaarbewijs en met vaarbewijs.",
+      keywords: "bootverhuur tossa de mar, tossa bezoeken per boot, tossa excursie vanuit blanes, vila vella tossa"
     },
     privacyPolicy: {
       title: "Privacybeleid | Costa Brava Rent a Boat",
@@ -289,6 +319,11 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       description: "Noleggio barche per visitare Lloret de Mar dal Porto di Blanes. Barche senza patente e con patente. Esplora le spiagge di Lloret navigando da Blanes.",
       keywords: "noleggio barche lloret de mar, visitare lloret in barca, escursione lloret da blanes"
     },
+    locationTossa: {
+      title: "Noleggio Barche per Visitare Tossa de Mar - Escursioni da Blanes",
+      description: "Noleggio barche per visitare Tossa de Mar dal Porto di Blanes. 1 ora di navigazione verso la più bella città medievale della Costa Brava. Barche senza patente e con patente.",
+      keywords: "noleggio barche tossa de mar, visitare tossa in barca, escursione tossa da blanes, vila vella tossa"
+    },
     privacyPolicy: {
       title: "Politica sulla Privacy | Costa Brava Rent a Boat",
       description: "Politica sulla privacy e protezione dei dati di Costa Brava Rent a Boat.",
@@ -320,6 +355,11 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       title: "Аренда лодок для посещения Льорет-де-Мар - Экскурсии из Бланеса",
       description: "Аренда лодок для посещения Льорет-де-Мар из Порта Бланес. Лодки без лицензии и с лицензией. Исследуйте пляжи Льорета из Бланеса.",
       keywords: "аренда лодок льорет де мар, посетить льорет на лодке, экскурсия льорет из бланеса"
+    },
+    locationTossa: {
+      title: "Аренда лодок для посещения Тосса-де-Мар - Экскурсии из Бланеса",
+      description: "Аренда лодок для посещения Тосса-де-Мар из Порта Бланес. 1 час плавания к самому красивому средневековому городу Коста-Брава. Лодки без лицензии и с лицензией.",
+      keywords: "аренда лодок тосса де мар, посетить тосса на лодке, экскурсия тосса из бланеса, вила велла тосса"
     },
     privacyPolicy: {
       title: "Политика конфиденциальности | Costa Brava Rent a Boat",
@@ -390,6 +430,7 @@ const getPagePath = (pageName: string): string => {
     faq: 'faq',
     locationBlanes: 'alquiler-barcos-blanes',
     locationLloret: 'alquiler-barcos-lloret-de-mar',
+    locationTossa: 'alquiler-barcos-tossa-de-mar',
     privacyPolicy: 'privacy-policy',
     termsConditions: 'terms-conditions',
     condicionesGenerales: 'condiciones-generales',

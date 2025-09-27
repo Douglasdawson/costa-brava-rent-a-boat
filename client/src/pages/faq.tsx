@@ -27,7 +27,12 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { SEO } from "@/components/SEO";
 import { useLanguage } from "@/hooks/use-language";
-import { getSEOConfig, generateHreflangLinks, generateCanonicalUrl } from "@/utils/seo-config";
+import { 
+  getSEOConfig, 
+  generateHreflangLinks, 
+  generateCanonicalUrl,
+  generateBreadcrumbSchema
+} from "@/utils/seo-config";
 import { openWhatsApp, createBookingMessage } from "@/utils/whatsapp";
 
 export default function FAQPage() {
@@ -104,6 +109,21 @@ export default function FAQPage() {
     ]
   };
 
+  // Generate breadcrumb schema
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: "Inicio", url: "/" },
+    { name: "Preguntas Frecuentes", url: "/faq" }
+  ]);
+
+  // Combine schemas using @graph
+  const combinedJsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      faqSchema,
+      breadcrumbSchema
+    ]
+  };
+
   return (
     <div className="min-h-screen">
       <SEO 
@@ -111,7 +131,7 @@ export default function FAQPage() {
         description={seoConfig.description}
         canonical={canonical}
         hreflang={hreflangLinks}
-        jsonLd={faqSchema}
+        jsonLd={combinedJsonLd}
       />
       <Navigation />
       

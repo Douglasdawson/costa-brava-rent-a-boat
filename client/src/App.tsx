@@ -25,7 +25,14 @@ import LocationBlanesPage from "@/pages/location-blanes";
 import NotFound from "@/pages/not-found";
 import { SEO } from "./components/SEO";
 import { useLanguage } from "@/hooks/use-language";
-import { getSEOConfig, generateHreflangLinks, generateCanonicalUrl } from "@/utils/seo-config";
+import { 
+  getSEOConfig, 
+  generateHreflangLinks, 
+  generateCanonicalUrl,
+  generateLocalBusinessSchema,
+  generateServiceSchema,
+  generateBreadcrumbSchema
+} from "@/utils/seo-config";
 
 // Main Home Page Component
 function HomePage() {
@@ -34,6 +41,23 @@ function HomePage() {
   const hreflangLinks = generateHreflangLinks('home');
   const canonical = generateCanonicalUrl('home', language);
 
+  // Generate combined JSON-LD schemas for homepage
+  const localBusinessSchema = generateLocalBusinessSchema(language);
+  const serviceSchema = generateServiceSchema(language);
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: "Inicio", url: "/" }
+  ]);
+
+  // Combine multiple schemas using @graph
+  const combinedJsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      localBusinessSchema,
+      serviceSchema,
+      breadcrumbSchema
+    ]
+  };
+
   return (
     <div className="min-h-screen">
       <SEO 
@@ -41,6 +65,7 @@ function HomePage() {
         description={seoConfig.description}
         canonical={canonical}
         hreflang={hreflangLinks}
+        jsonLd={combinedJsonLd}
       />
       <Navigation />
       <Hero />

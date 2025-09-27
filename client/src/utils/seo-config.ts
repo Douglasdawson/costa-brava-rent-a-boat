@@ -11,6 +11,34 @@ export interface PageSEOConfig {
   [key: string]: SEOConfig;
 }
 
+// Business information for JSON-LD schemas
+export const BUSINESS_INFO = {
+  name: "Costa Brava Rent a Boat Blanes",
+  legalName: "Costa Brava Rent a Boat - Blanes",
+  description: "Alquiler de barcos sin licencia y con licencia en Blanes, Costa Brava. Desde Puerto de Blanes. 7 embarcaciones para 4-7 personas.",
+  phone: "+34611500372",
+  email: "costabravarentaboat@gmail.com",
+  url: typeof window !== 'undefined' ? window.location.origin : "https://costa-brava-rent-a-boat-blanes.replit.app",
+  address: {
+    streetAddress: "Puerto de Blanes",
+    addressLocality: "Blanes", 
+    addressRegion: "Girona",
+    postalCode: "17300",
+    addressCountry: "ES"
+  },
+  geo: {
+    latitude: 41.6667,
+    longitude: 2.7833
+  },
+  openingHours: [
+    "Mo-Su 09:00-20:00"  // April-October season
+  ],
+  seasonalHours: "April to October",
+  priceRange: "€€",
+  servesCuisine: null,
+  hasDeliveryService: false
+};
+
 // Base domain for canonical URLs - configurable for production
 export const BASE_DOMAIN = typeof window !== 'undefined' 
   ? window.location.origin 
@@ -308,7 +336,7 @@ export const generateHreflangLinks = (pageName: string, params?: string): Array<
   }
   
   hreflangLinks.push({
-    lang: 'x-default',
+    lang: 'x-default' as any,
     url: defaultUrl
   });
 
@@ -378,3 +406,206 @@ const replacePlaceholders = (text: string, data: Record<string, string>): string
   }
   return result;
 };
+
+// Generate LocalBusiness JSON-LD schema
+export function generateLocalBusinessSchema(language: Language = 'es') {
+  const baseUrl = typeof window !== 'undefined' ? window.location.origin : BUSINESS_INFO.url;
+  
+  return {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "@id": `${baseUrl}/#organization`,
+    "name": BUSINESS_INFO.name,
+    "legalName": BUSINESS_INFO.legalName,
+    "description": BUSINESS_INFO.description,
+    "url": baseUrl,
+    "telephone": BUSINESS_INFO.phone,
+    "email": BUSINESS_INFO.email,
+    "priceRange": BUSINESS_INFO.priceRange,
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": BUSINESS_INFO.address.streetAddress,
+      "addressLocality": BUSINESS_INFO.address.addressLocality,
+      "addressRegion": BUSINESS_INFO.address.addressRegion,
+      "postalCode": BUSINESS_INFO.address.postalCode,
+      "addressCountry": BUSINESS_INFO.address.addressCountry
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": BUSINESS_INFO.geo.latitude,
+      "longitude": BUSINESS_INFO.geo.longitude
+    },
+    "openingHoursSpecification": {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+      "opens": "09:00",
+      "closes": "20:00",
+      "validFrom": "2024-04-01",
+      "validThrough": "2024-10-31"
+    },
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Alquiler de Barcos",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Alquiler de barcos sin licencia",
+            "description": "Embarcaciones hasta 15 CV que no requieren titulación náutica"
+          }
+        },
+        {
+          "@type": "Offer", 
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Alquiler de barcos con licencia",
+            "description": "Embarcaciones que requieren titulación náutica oficial"
+          }
+        }
+      ]
+    },
+    "areaServed": {
+      "@type": "GeoCircle",
+      "geoMidpoint": {
+        "@type": "GeoCoordinates",
+        "latitude": BUSINESS_INFO.geo.latitude,
+        "longitude": BUSINESS_INFO.geo.longitude
+      },
+      "geoRadius": "50000"
+    },
+    "serviceType": ["Boat Rental", "Maritime Tourism", "Water Sports"],
+    "knowsAbout": ["Costa Brava", "Blanes", "Boat Navigation", "Maritime Safety"],
+    "slogan": "Explora la Costa Brava desde el agua"
+  };
+}
+
+// Generate Service JSON-LD schema
+export function generateServiceSchema(language: Language = 'es') {
+  const baseUrl = typeof window !== 'undefined' ? window.location.origin : BUSINESS_INFO.url;
+  
+  return {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "@id": `${baseUrl}/#service`,
+    "name": "Alquiler de Barcos en Costa Brava",
+    "description": "Servicio de alquiler de embarcaciones sin licencia y con licencia en Blanes, Costa Brava. Desde 1 hora hasta jornada completa.",
+    "provider": {
+      "@type": "LocalBusiness",
+      "@id": `${baseUrl}/#organization`
+    },
+    "areaServed": {
+      "@type": "State",
+      "name": "Cataluña"
+    },
+    "availableChannel": {
+      "@type": "ServiceChannel",
+      "availableLanguage": ["Spanish", "Catalan", "English", "French", "German", "Dutch", "Italian", "Russian"],
+      "servicePhone": BUSINESS_INFO.phone,
+      "serviceUrl": baseUrl
+    },
+    "category": "Transportation",
+    "serviceType": "Boat Rental",
+    "hoursAvailable": {
+      "@type": "OpeningHoursSpecification", 
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+      "opens": "09:00",
+      "closes": "20:00",
+      "validFrom": "2024-04-01",
+      "validThrough": "2024-10-31"
+    },
+    "offers": [
+      {
+        "@type": "Offer",
+        "name": "Alquiler por horas",
+        "description": "Desde 1 hora de duración",
+        "priceCurrency": "EUR",
+        "eligibleQuantity": {
+          "@type": "QuantitativeValue",
+          "minValue": 1,
+          "maxValue": 8,
+          "unitText": "hours"
+        }
+      }
+    ],
+    "serviceOutput": {
+      "@type": "Thing",
+      "name": "Experiencia náutica en Costa Brava"
+    }
+  };
+}
+
+// Generate BreadcrumbList JSON-LD schema  
+export function generateBreadcrumbSchema(breadcrumbs: Array<{name: string, url: string}>) {
+  const baseUrl = typeof window !== 'undefined' ? window.location.origin : BUSINESS_INFO.url;
+  
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": breadcrumbs.map((crumb, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "name": crumb.name,
+      "item": crumb.url.startsWith('http') ? crumb.url : `${baseUrl}${crumb.url}`
+    }))
+  };
+}
+
+// Generate enhanced Product JSON-LD schema for boats
+export function generateEnhancedProductSchema(boatData: any, language: Language = 'es') {
+  const baseUrl = typeof window !== 'undefined' ? window.location.origin : BUSINESS_INFO.url;
+  
+  return {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "@id": `${baseUrl}/barco/${boatData.id}`,
+    "name": boatData.name,
+    "description": boatData.description,
+    "brand": {
+      "@type": "Brand",
+      "name": boatData.brand || "Costa Brava Rent a Boat"
+    },
+    "category": "Boat Rental",
+    "additionalType": "https://schema.org/Vehicle",
+    "vehicleModelDate": boatData.year || new Date().getFullYear(),
+    "vehicleSeatingCapacity": boatData.capacity,
+    "vehicleEngine": {
+      "@type": "EngineSpecification",
+      "enginePower": {
+        "@type": "QuantitativeValue",
+        "value": boatData.power,
+        "unitText": "CV"
+      }
+    },
+    "offers": {
+      "@type": "Offer",
+      "url": `${baseUrl}/barco/${boatData.id}`,
+      "priceCurrency": "EUR",
+      "price": boatData.pricePerHour,
+      "priceSpecification": {
+        "@type": "UnitPriceSpecification",
+        "price": boatData.pricePerHour,
+        "priceCurrency": "EUR",
+        "unitText": "hour"
+      },
+      "availability": "https://schema.org/InStock",
+      "validFrom": "2024-04-01",
+      "validThrough": "2024-10-31",
+      "seller": {
+        "@type": "LocalBusiness",
+        "@id": `${baseUrl}/#organization`
+      },
+      "offeredBy": {
+        "@type": "LocalBusiness", 
+        "@id": `${baseUrl}/#organization`
+      }
+    },
+    "manufacturer": {
+      "@type": "Organization",
+      "name": boatData.brand || "Various"
+    },
+    "itemCondition": "https://schema.org/UsedCondition",
+    "isAccessibleForFree": false,
+    "requiresSubscription": false
+  };
+}

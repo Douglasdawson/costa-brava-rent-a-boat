@@ -32,7 +32,13 @@ import Navigation from "./Navigation";
 import Footer from "./Footer";
 import { SEO } from "./SEO";
 import { useLanguage } from "@/hooks/use-language";
-import { getSEOConfig, generateHreflangLinks, generateCanonicalUrl } from "@/utils/seo-config";
+import { 
+  getSEOConfig, 
+  generateHreflangLinks, 
+  generateCanonicalUrl,
+  generateEnhancedProductSchema,
+  generateBreadcrumbSchema
+} from "@/utils/seo-config";
 
 interface BoatDetailPageProps {
   boatId?: string;
@@ -78,41 +84,52 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
   const hreflangLinks = generateHreflangLinks('boatDetail', boatId);
   const canonical = generateCanonicalUrl('boatDetail', language, boatId);
   
-  // Product JSON-LD schema
+  // Enhanced Product JSON-LD schema with breadcrumbs
   const resolvedImage = getBoatImage(boatData.image);
   const absoluteImage = resolvedImage.startsWith('http') ? resolvedImage : 
     resolvedImage.startsWith('/') ? `${window.location.origin}${resolvedImage}` :
     `${window.location.origin}/${resolvedImage}`;
-    
-  const productSchema = {
-    "@context": "https://schema.org",
-    "@type": "Product",
-    "name": boatData.name,
-    "description": boatData.description,
-    "image": absoluteImage,
-    "brand": {
-      "@type": "Organization",
-      "name": "Costa Brava Rent a Boat Blanes"
-    },
-    "sku": boatId,
-    "category": "Boat Rental",
-    "offers": {
-      "@type": "Offer",
-      "price": lowestPrice.toString(),
-      "priceCurrency": "EUR",
-      "availability": "https://schema.org/InStock",
-      "url": canonical,
-      "priceValidUntil": "2025-12-31",
-      "seller": {
-        "@type": "Organization",
-        "name": "Costa Brava Rent a Boat Blanes"
-      }
-    },
-    "aggregateRating": {
+
+  // Adapt boat data for enhanced schema
+  const adaptedBoatData = {
+    id: boatId,
+    name: boatData.name,
+    description: boatData.description,
+    image: absoluteImage,
+    brand: "Costa Brava Rent a Boat",
+    power: parseInt(boatData.specifications.engine.match(/\d+/)?.[0] || "15"),
+    capacity: parseInt(boatData.specifications.capacity.split(' ')[0]),
+    pricePerHour: lowestPrice,
+    year: new Date().getFullYear() - 2 // Assuming boats are ~2 years old
+  };
+
+  const baseProductSchema = generateEnhancedProductSchema(adaptedBoatData, language);
+  
+  // Add image and aggregate rating to enhanced schema
+  const enhancedProductSchema = {
+    ...baseProductSchema,
+    image: absoluteImage,
+    aggregateRating: {
       "@type": "AggregateRating",
       "ratingValue": "4.8",
       "reviewCount": "127"
     }
+  };
+
+  // Generate breadcrumb schema
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: "Inicio", url: "/" },
+    { name: "Barcos", url: "/#flota" },
+    { name: boatData.name, url: `/barco/${boatId}` }
+  ]);
+
+  // Combine schemas using @graph
+  const combinedJsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      enhancedProductSchema,
+      breadcrumbSchema
+    ]
   };
 
   return (
@@ -124,7 +141,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
         hreflang={hreflangLinks}
         ogImage={getBoatImage(boatData.image)}
         ogType="product"
-        jsonLd={productSchema}
+        jsonLd={combinedJsonLd}
       />
       <Navigation />
       

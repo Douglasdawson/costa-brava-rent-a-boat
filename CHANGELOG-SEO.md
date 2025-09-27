@@ -161,4 +161,38 @@ const canonical = generateCanonicalUrl('pageName', language);
 
 **Status**: ✅ COMPLETADO
 **Fecha**: 27 Septiembre 2025
-**Próximo bloque**: Sitemap/Robots.txt
+
+## [2025-09-27] Bloque 2: Robots.txt y Sitemap dinámicos ✅
+
+### Implementado
+- **robots.txt dinámico** en `/robots.txt`:
+  - Allow: / (acceso general)  
+  - Disallow: /crm/, /api/, /booking/confirmation, /admin/ (áreas privadas)
+  - Declaración de sitemap: `Sitemap: ${BASE_URL}/sitemap.xml`
+  - Content-Type: text/plain correcto
+
+- **sitemap.xml dinámico** en `/sitemap.xml`:
+  - Homepage con prioridad 1.0 y changefreq daily
+  - Todas las páginas de barcos (/barco/{boatId}) con prioridad 0.8
+  - Páginas de ubicaciones (/alquiler-barcos-blanes) con prioridad 0.7
+  - FAQ con prioridad 0.6
+  - Páginas legales con prioridad 0.3 y changefreq monthly
+  - **URLs multiidioma**: Incluye variantes con ?lang=xx para cada idioma
+  - Timestamps dinámicos con lastModified actual
+  - Content-Type: application/xml correcto
+
+### Corregido
+- Problema de routing: SEO endpoints movidos al inicio de routes.ts para evitar interceptación por middleware de Vite
+- Eliminado archivo estático robots.txt que causaba conflictos
+- BASE_URL configurable desde variables de entorno
+
+### Verificado
+- robots.txt accesible y retorna formato correcto ✅
+- sitemap.xml accesible y retorna XML válido con 56+ URLs ✅ 
+- Test automatizado confirma funcionamiento de ambos endpoints ✅
+
+---
+
+**Status**: ✅ COMPLETADO
+**Fecha**: 27 Septiembre 2025
+**Próximo bloque**: JSON-LD avanzado

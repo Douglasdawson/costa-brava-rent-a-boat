@@ -1,0 +1,61 @@
+Rol: Actúa como Senior SEO + Full-Stack (Next.js 14 App Router). Trabaja sobre mi repo en Replit sin romper el flujo actual de “Solicitud de reserva” (request-only) ni el CRM. Aplica mejoras SEO técnicas, de contenido e i18n hasta lograr Lighthouse móvil ≥ 90 en SEO y Performance.
+
+Contexto negocio (usar en titles, schema y copy):
+Marca: Costa Brava Rent a Boat Blanes · Tel/WhatsApp: +34611500372 · Servicios: alquiler de barcos sin licencia (1/2/3/4/6/8 h) y con licencia (2/4/8 h) en la Costa Brava · Idiomas: ES, CA, FR, DE, NL, IT, RU (ES por defecto) · SITE_URL en env.
+
+⸻
+
+1) Metadatos e i18n (obligatorio)
+	•	Implementa Metadata API en todas las plantillas (home, flota, barco, ubicaciones, categorías): <title>, description, alternates.canonical y alternates.languages (hreflang para /es /ca /fr /de /nl /it /ru + x-default).
+	•	Crea helper src/lib/seo.ts con buildMetadata() y hreflangAlternates() y úsalo en todas las páginas.
+	•	Un solo H1 por página; jerarquía H2/H3, alt descriptivo en imágenes.
+
+2) Robots y Sitemap (dinámicos)
+	•	app/robots.ts: permitir /, disallow /crm y /api, y declarar Sitemap: ${SITE_URL}/sitemap.xml.
+	•	app/sitemap.ts: incluir /, /boats, cada /boats/[slug], /locations, cada /locations/[slug] y rutas por idioma cuando existan; setea lastModified y priority.
+
+3) JSON-LD (Rich Results sin errores)
+	•	Layout: LocalBusiness (NAP, geo, +34611500372, areaServed “Costa Brava”).
+	•	Barco: Service/Product con offers “precio desde” (EUR), brand y especificaciones básicas.
+	•	Ubicaciones y páginas informativas: FAQPage (FAQs reales) + BreadcrumbList.
+	•	Componente components/SeoJsonLd.tsx para inyectar JSON-LD. Validar 0 errores.
+
+4) Arquitectura de contenido (mínimo viable)
+	•	app/locations/page.tsx e índice con enlaces a: Blanes, Lloret de Mar, Tossa de Mar, Platja d’Aro, Palamós, Roses, Cadaqués.
+	•	app/locations/[slug]/page.tsx: 600–900 palabras de contenido original + sección de rutas/calas + FAQ + CTA “Solicitar reserva”.
+	•	Añade páginas de categoría: Barcos sin licencia y Barcos con licencia con interlinking hacia modelos.
+
+5) Core Web Vitals y rendimiento
+	•	Usar next/image (sizes correctos, lazy), preload de imagen hero, font-display: swap, preconnect a orígenes usados (p. ej. Stripe sólo si activo).
+	•	Evitar hidratar componentes no críticos; dividir código y marcar componentes de cliente sólo cuando sea necesario.
+	•	Cabeceras de caché para assets estáticos.
+
+6) OG/Twitter y compartidos
+	•	Open Graph/Twitter Card completas en todas las plantillas.
+	•	Generar OG image por barco/ubicación (puede ser estática al principio).
+
+7) Medición
+	•	Insertar GA4 con GA_MEASUREMENT_ID (env); evento de conversión reservation_request.
+	•	Añadir Search Console (meta-tag) en el layout.
+
+8) No indexar áreas internas
+	•	Asegurar disallow en robots y/o noindex en /crm/*, /api/* y páginas técnicas.
+
+9) Entregables (commits/PRs pequeños)
+	1.	Metadata/hreflang/canonical + helper SEO.
+	2.	robots/sitemap.
+	3.	JSON-LD (LocalBusiness, Service/Product, FAQ, Breadcrumb).
+	4.	Ubicaciones + Categorías con contenido y enlazado interno.
+	5.	CWV (optimización imágenes, preload, fuentes) + OG.
+	6.	GA4/Search Console.
+Incluye changelog y, si es posible, captura de Lighthouse móvil antes/después.
+
+10) Criterios de aceptación (medibles, bloquear merge si no se cumplen)
+	•	Lighthouse móvil ≥ 90 en SEO y Performance para: /, una página de barco y una de ubicación.
+	•	0 errores en Rich Results (LocalBusiness/Service/Product/FAQ/Breadcrumb).
+	•	Canonical + hreflang correctos en 7 idiomas en todas las rutas públicas.
+	•	/sitemap.xml servido y listado en /robots.txt; /crm/* y /api/* fuera del índice.
+	•	Interlinking interno funcional (home ↔ categorías ↔ modelos ↔ ubicaciones).
+	•	No se rompe el flujo request-only ni el CRM.
+
+Empieza aplicando robots/sitemap + Metadata/hreflang en home, una página de barco y /locations/blanes y reporta Lighthouse móvil; luego extiende al resto.

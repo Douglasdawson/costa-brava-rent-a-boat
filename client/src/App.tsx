@@ -24,6 +24,8 @@ import TermsConditionsPage from "@/pages/terms-conditions";
 import LocationBlanesPage from "@/pages/location-blanes";
 import LocationLloretPage from "@/pages/location-lloret-de-mar";
 import LocationTossaPage from "@/pages/location-tossa-de-mar";
+import CategoryLicenseFreePage from "@/pages/category-license-free";
+import CategoryLicensedPage from "@/pages/category-licensed";
 import NotFound from "@/pages/not-found";
 import { SEO } from "./components/SEO";
 import { useLanguage } from "@/hooks/use-language";
@@ -148,6 +150,14 @@ function LocationTossaPageWrapper() {
   return <LocationTossaPage />;
 }
 
+function CategoryLicenseFreePageWrapper() {
+  return <CategoryLicenseFreePage />;
+}
+
+function CategoryLicensedPageWrapper() {
+  return <CategoryLicensedPage />;
+}
+
 // Router Component
 function Router() {
   return (
@@ -169,6 +179,8 @@ function Router() {
       <Route path="/alquiler-barcos-blanes" component={LocationBlanesPageWrapper} />
       <Route path="/alquiler-barcos-lloret-de-mar" component={LocationLloretPageWrapper} />
       <Route path="/alquiler-barcos-tossa-de-mar" component={LocationTossaPageWrapper} />
+      <Route path="/barcos-sin-licencia" component={CategoryLicenseFreePageWrapper} />
+      <Route path="/barcos-con-licencia" component={CategoryLicensedPageWrapper} />
       <Route component={NotFound} />
     </Switch>
   );

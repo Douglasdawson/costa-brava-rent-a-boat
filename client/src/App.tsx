@@ -22,6 +22,7 @@ import FAQPage from "@/pages/faq";
 import PrivacyPolicyPage from "@/pages/privacy-policy";
 import TermsConditionsPage from "@/pages/terms-conditions";
 import LocationBlanesPage from "@/pages/location-blanes";
+import LocationLloretPage from "@/pages/location-lloret-de-mar";
 import NotFound from "@/pages/not-found";
 import { SEO } from "./components/SEO";
 import { useLanguage } from "@/hooks/use-language";
@@ -138,6 +139,10 @@ function LocationBlanesPageWrapper() {
   return <LocationBlanesPage />;
 }
 
+function LocationLloretPageWrapper() {
+  return <LocationLloretPage />;
+}
+
 // Router Component
 function Router() {
   return (
@@ -157,6 +162,7 @@ function Router() {
       <Route path="/privacy-policy" component={PrivacyPolicyPageWrapper} />
       <Route path="/terms-conditions" component={TermsConditionsPageWrapper} />
       <Route path="/alquiler-barcos-blanes" component={LocationBlanesPageWrapper} />
+      <Route path="/alquiler-barcos-lloret-de-mar" component={LocationLloretPageWrapper} />
       <Route component={NotFound} />
     </Switch>
   );

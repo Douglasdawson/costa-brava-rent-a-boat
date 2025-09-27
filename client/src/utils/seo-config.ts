@@ -62,6 +62,11 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       description: "Alquiler de barcos en Blanes, Costa Brava. Puerto de Blanes. Embarcaciones sin licencia y con licencia para 4-7 personas. Explora las calas de la Costa Brava desde Blanes.",
       keywords: "alquiler barcos blanes puerto, embarcaciones blanes costa brava, barcos sin licencia blanes, calas costa brava desde blanes"
     },
+    locationLloret: {
+      title: "Alquiler de Barcos en Lloret de Mar, Costa Brava - Excursiones desde Blanes",
+      description: "Alquiler de barcos para visitar Lloret de Mar desde Puerto de Blanes. Embarcaciones sin licencia y con licencia. Explora las playas de Lloret navegando desde Blanes.",
+      keywords: "alquiler barcos lloret de mar, visitar lloret en barco, excursion lloret desde blanes, barcos lloret costa brava"
+    },
     privacyPolicy: {
       title: "Política de Privacidad | Costa Brava Rent a Boat",
       description: "Política de privacidad y protección de datos de Costa Brava Rent a Boat. Información sobre el tratamiento de tus datos personales.",
@@ -103,6 +108,11 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       title: "Boat Rental in Blanes, Costa Brava - Without License | Costa Brava Rent a Boat",
       description: "Boat rental in Blanes, Costa Brava. Port of Blanes. Boats without license and with license for 4-7 people. Explore Costa Brava coves from Blanes.",
       keywords: "boat rental blanes port, boats blanes costa brava, boats without license blanes, costa brava coves from blanes"
+    },
+    locationLloret: {
+      title: "Boat Rental to Visit Lloret de Mar, Costa Brava - Excursions from Blanes",
+      description: "Boat rental to visit Lloret de Mar from Blanes Port. Boats without license and with license. Explore Lloret beaches sailing from Blanes.",
+      keywords: "boat rental lloret de mar, visit lloret by boat, lloret excursion from blanes, boats lloret costa brava"
     },
     privacyPolicy: {
       title: "Privacy Policy | Costa Brava Rent a Boat",
@@ -146,6 +156,11 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       description: "Lloguer de barques a Blanes, Costa Brava. Port de Blanes. Embarcacions sense llicència i amb llicència per a 4-7 persones.",
       keywords: "lloguer barques blanes port, embarcacions blanes costa brava, barques sense llicència blanes"
     },
+    locationLloret: {
+      title: "Lloguer de Barques per Visitar Lloret de Mar - Excursions des de Blanes",
+      description: "Lloguer de barques per visitar Lloret de Mar des del Port de Blanes. Embarcacions sense llicència i amb llicència. Explora les platges de Lloret navegant des de Blanes.",
+      keywords: "lloguer barques lloret de mar, visitar lloret en barque, excursió lloret des de blanes"
+    },
     privacyPolicy: {
       title: "Política de Privacitat | Costa Brava Rent a Boat",
       description: "Política de privacitat i protecció de dades de Costa Brava Rent a Boat.",
@@ -172,6 +187,11 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       title: "Location de Bateaux à Blanes, Costa Brava - Sans Permis | Costa Brava Rent a Boat",
       description: "Location de bateaux à Blanes, Costa Brava. Port de Blanes. Bateaux sans permis et avec permis pour 4-7 personnes.",
       keywords: "location bateaux blanes port, embarcations blanes costa brava, bateaux sans permis blanes"
+    },
+    locationLloret: {
+      title: "Location de Bateaux pour Visiter Lloret de Mar - Excursions depuis Blanes",
+      description: "Location de bateaux pour visiter Lloret de Mar depuis le Port de Blanes. Bateaux sans permis et avec permis. Explorez les plages de Lloret en naviguant depuis Blanes.",
+      keywords: "location bateaux lloret de mar, visiter lloret en bateau, excursion lloret depuis blanes"
     },
     privacyPolicy: {
       title: "Politique de Confidentialité | Costa Brava Rent a Boat",
@@ -200,6 +220,11 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       description: "Bootsverleih in Blanes, Costa Brava. Hafen von Blanes. Boote ohne Führerschein und mit Führerschein für 4-7 Personen.",
       keywords: "bootsverleih blanes hafen, boote blanes costa brava, boote ohne führerschein blanes"
     },
+    locationLloret: {
+      title: "Bootsverleih für Lloret de Mar Besuch - Ausflüge von Blanes",
+      description: "Bootsverleih für Lloret de Mar Besuch vom Hafen Blanes. Boote ohne Führerschein und mit Führerschein. Erkunden Sie Lloret Strände von Blanes aus.",
+      keywords: "bootsverleih lloret de mar, lloret per boot besuchen, lloret ausflug von blanes"
+    },
     privacyPolicy: {
       title: "Datenschutzrichtlinie | Costa Brava Rent a Boat",
       description: "Datenschutzrichtlinie und Datenschutz von Costa Brava Rent a Boat.",
@@ -226,6 +251,11 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       title: "Bootverhuur in Blanes, Costa Brava - Zonder Vaarbewijs | Costa Brava Rent a Boat",
       description: "Bootverhuur in Blanes, Costa Brava. Haven van Blanes. Boten zonder vaarbewijs en met vaarbewijs voor 4-7 personen.",
       keywords: "bootverhuur blanes haven, boten blanes costa brava, boten zonder vaarbewijs blanes"
+    },
+    locationLloret: {
+      title: "Bootverhuur voor Lloret de Mar Bezoek - Excursies vanuit Blanes",
+      description: "Bootverhuur voor Lloret de Mar bezoek vanuit Haven Blanes. Boten zonder vaarbewijs en met vaarbewijs. Verken Lloret stranden vanuit Blanes.",
+      keywords: "bootverhuur lloret de mar, lloret bezoeken per boot, lloret excursie vanuit blanes"
     },
     privacyPolicy: {
       title: "Privacybeleid | Costa Brava Rent a Boat",
@@ -254,6 +284,11 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       description: "Noleggio barche a Blanes, Costa Brava. Porto di Blanes. Barche senza patente e con patente per 4-7 persone.",
       keywords: "noleggio barche blanes porto, barche blanes costa brava, barche senza patente blanes"
     },
+    locationLloret: {
+      title: "Noleggio Barche per Visitare Lloret de Mar - Escursioni da Blanes",
+      description: "Noleggio barche per visitare Lloret de Mar dal Porto di Blanes. Barche senza patente e con patente. Esplora le spiagge di Lloret navigando da Blanes.",
+      keywords: "noleggio barche lloret de mar, visitare lloret in barca, escursione lloret da blanes"
+    },
     privacyPolicy: {
       title: "Politica sulla Privacy | Costa Brava Rent a Boat",
       description: "Politica sulla privacy e protezione dei dati di Costa Brava Rent a Boat.",
@@ -280,6 +315,11 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       title: "Аренда лодок в Бланесе, Коста-Брава - Без лицензии | Costa Brava Rent a Boat",
       description: "Аренда лодок в Бланесе, Коста-Брава. Порт Бланес. Лодки без лицензии и с лицензией для 4-7 человек.",
       keywords: "аренда лодок бланес порт, лодки бланес коста брава, лодки без лицензии бланес"
+    },
+    locationLloret: {
+      title: "Аренда лодок для посещения Льорет-де-Мар - Экскурсии из Бланеса",
+      description: "Аренда лодок для посещения Льорет-де-Мар из Порта Бланес. Лодки без лицензии и с лицензией. Исследуйте пляжи Льорета из Бланеса.",
+      keywords: "аренда лодок льорет де мар, посетить льорет на лодке, экскурсия льорет из бланеса"
     },
     privacyPolicy: {
       title: "Политика конфиденциальности | Costa Brava Rent a Boat",
@@ -349,6 +389,7 @@ const getPagePath = (pageName: string): string => {
     home: '',
     faq: 'faq',
     locationBlanes: 'alquiler-barcos-blanes',
+    locationLloret: 'alquiler-barcos-lloret-de-mar',
     privacyPolicy: 'privacy-policy',
     termsConditions: 'terms-conditions',
     condicionesGenerales: 'condiciones-generales',

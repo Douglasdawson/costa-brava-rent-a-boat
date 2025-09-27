@@ -3,14 +3,22 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { SEO } from "@/components/SEO";
+import { useLanguage } from "@/hooks/use-language";
+import { getSEOConfig, generateHreflangLinks, generateCanonicalUrl } from "@/utils/seo-config";
 
 export default function PrivacyPolicyPage() {
+  const { language } = useLanguage();
+  const seoConfig = getSEOConfig('privacyPolicy', language);
+  const hreflangLinks = generateHreflangLinks('privacyPolicy');
+  const canonical = generateCanonicalUrl('privacyPolicy', language);
+
   return (
     <div className="min-h-screen">
       <SEO 
-        title="Política de Privacidad - Alquiler de Barcos en Blanes | Costa Brava Rent a Boat"
-        description="Conoce nuestra política de privacidad y cookies en Costa Brava Rent a Boat Blanes. Información sobre el tratamiento de datos y navegación en nuestro sitio web."
-        canonical="https://costa-brava-rent-a-boat-blanes.replit.app/privacy-policy"
+        title={seoConfig.title}
+        description={seoConfig.description}
+        canonical={canonical}
+        hreflang={hreflangLinks}
       />
       <Navigation />
       

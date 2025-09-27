@@ -3,14 +3,22 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { SEO } from "@/components/SEO";
+import { useLanguage } from "@/hooks/use-language";
+import { getSEOConfig, generateHreflangLinks, generateCanonicalUrl } from "@/utils/seo-config";
 
 export default function TermsConditionsPage() {
+  const { language } = useLanguage();
+  const seoConfig = getSEOConfig('termsConditions', language);
+  const hreflangLinks = generateHreflangLinks('termsConditions');
+  const canonical = generateCanonicalUrl('termsConditions', language);
+
   return (
     <div className="min-h-screen">
       <SEO 
-        title="Términos y Condiciones - Alquiler de Barcos en Blanes | Costa Brava Rent a Boat"
-        description="Condiciones generales del alquiler de embarcaciones con y sin licencia en Costa Brava Rent a Boat Blanes. Términos, responsabilidades y políticas de cancelación."
-        canonical="https://costa-brava-rent-a-boat-blanes.replit.app/terms-conditions"
+        title={seoConfig.title}
+        description={seoConfig.description}
+        canonical={canonical}
+        hreflang={hreflangLinks}
       />
       <Navigation />
       

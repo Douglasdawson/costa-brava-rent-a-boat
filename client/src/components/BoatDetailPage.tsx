@@ -31,6 +31,8 @@ import { getBoatImage } from "@/utils/boatImages";
 import Navigation from "./Navigation";
 import Footer from "./Footer";
 import { SEO } from "./SEO";
+import { useLanguage } from "@/hooks/use-language";
+import { getSEOConfig, generateHreflangLinks, generateCanonicalUrl } from "@/utils/seo-config";
 
 interface BoatDetailPageProps {
   boatId?: string;
@@ -61,13 +63,20 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
   };
 
   // SEO data for this boat
+  const { language } = useLanguage();
   const lowestPrice = Math.min(...Object.values(boatData.pricing.BAJA.prices));
   const requiresLicense = boatData.subtitle.includes("Con Licencia");
   const capacity = parseInt(boatData.specifications.capacity.split(' ')[0]);
   
-  const seoTitle = `Alquiler ${boatData.name} en Blanes - ${requiresLicense ? "con" : "sin"} licencia | Costa Brava Rent a Boat`;
-  const seoDescription = `Alquila el ${boatData.name} en Blanes, Costa Brava. ${requiresLicense ? "Con licencia" : "Sin licencia"}, para ${capacity} personas, desde ${lowestPrice}€. ${requiresLicense ? "Combustible no incluido" : "Gasolina incluida"}, Puerto de Blanes.`;
-  const canonical = `https://costa-brava-rent-a-boat-blanes.replit.app/barco/${boatId}`;
+  const dynamicSEOData = {
+    boatName: boatData.name,
+    capacity: capacity.toString(),
+    license: requiresLicense ? "con licencia" : "sin licencia"
+  };
+  
+  const seoConfig = getSEOConfig('boatDetail', language, dynamicSEOData);
+  const hreflangLinks = generateHreflangLinks('boatDetail', boatId);
+  const canonical = generateCanonicalUrl('boatDetail', language, boatId);
   
   // Product JSON-LD schema
   const resolvedImage = getBoatImage(boatData.image);
@@ -109,9 +118,10 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
   return (
     <div className="min-h-screen bg-gray-50">
       <SEO 
-        title={seoTitle}
-        description={seoDescription}
+        title={seoConfig.title}
+        description={seoConfig.description}
         canonical={canonical}
+        hreflang={hreflangLinks}
         ogImage={getBoatImage(boatData.image)}
         ogType="product"
         jsonLd={productSchema}

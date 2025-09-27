@@ -26,9 +26,16 @@ import { SiWhatsapp } from "react-icons/si";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { SEO } from "@/components/SEO";
+import { useLanguage } from "@/hooks/use-language";
+import { getSEOConfig, generateHreflangLinks, generateCanonicalUrl } from "@/utils/seo-config";
 import { openWhatsApp, createBookingMessage } from "@/utils/whatsapp";
 
 export default function FAQPage() {
+  const { language } = useLanguage();
+  const seoConfig = getSEOConfig('faq', language);
+  const hreflangLinks = generateHreflangLinks('faq');
+  const canonical = generateCanonicalUrl('faq', language);
+
   const handleWhatsAppContact = () => {
     const message = "Hola, tengo una pregunta sobre el alquiler de barcos. ¿Podrían ayudarme?";
     openWhatsApp(message);
@@ -100,9 +107,10 @@ export default function FAQPage() {
   return (
     <div className="min-h-screen">
       <SEO 
-        title="Preguntas Frecuentes (FAQ) - Alquiler de Barcos en Blanes | Costa Brava Rent a Boat"
-        description="Resuelve todas tus dudas sobre el alquiler de barcos en Blanes, Costa Brava. Precios, requisitos, qué incluye, políticas de cancelación y más. Sin licencia y con licencia."
-        canonical="https://costa-brava-rent-a-boat-blanes.replit.app/faq"
+        title={seoConfig.title}
+        description={seoConfig.description}
+        canonical={canonical}
+        hreflang={hreflangLinks}
         jsonLd={faqSchema}
       />
       <Navigation />

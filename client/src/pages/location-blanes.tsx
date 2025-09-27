@@ -17,9 +17,16 @@ import {
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { SEO } from "@/components/SEO";
+import { useLanguage } from "@/hooks/use-language";
+import { getSEOConfig, generateHreflangLinks, generateCanonicalUrl } from "@/utils/seo-config";
 import { openWhatsApp, createBookingMessage } from "@/utils/whatsapp";
 
 export default function LocationBlanesPage() {
+  const { language } = useLanguage();
+  const seoConfig = getSEOConfig('locationBlanes', language);
+  const hreflangLinks = generateHreflangLinks('locationBlanes');
+  const canonical = generateCanonicalUrl('locationBlanes', language);
+
   const handleBookingWhatsApp = () => {
     const message = createBookingMessage();
     openWhatsApp(message);
@@ -57,9 +64,10 @@ export default function LocationBlanesPage() {
   return (
     <div className="min-h-screen">
       <SEO 
-        title="Alquiler de Barcos en Blanes, Costa Brava - Sin Licencia | Costa Brava Rent a Boat"
-        description="Alquiler de barcos en Blanes, Costa Brava. Puerto de Blanes. Embarcaciones sin licencia y con licencia para 4-7 personas. Explora las calas de la Costa Brava desde Blanes."
-        canonical="https://costa-brava-rent-a-boat-blanes.replit.app/alquiler-barcos-blanes"
+        title={seoConfig.title}
+        description={seoConfig.description}
+        canonical={canonical}
+        hreflang={hreflangLinks}
         jsonLd={locationSchema}
       />
       <Navigation />

@@ -2,14 +2,22 @@ import Navigation from "./Navigation";
 import Footer from "./Footer";
 import { SEO } from "./SEO";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { useLanguage } from "@/hooks/use-language";
+import { getSEOConfig, generateHreflangLinks, generateCanonicalUrl } from "@/utils/seo-config";
 
 export default function CondicionesGenerales() {
+  const { language } = useLanguage();
+  const seoConfig = getSEOConfig('condicionesGenerales', language);
+  const hreflangLinks = generateHreflangLinks('condicionesGenerales');
+  const canonical = generateCanonicalUrl('condicionesGenerales', language);
+
   return (
     <div className="min-h-screen bg-gray-50">
       <SEO 
-        title="Condiciones Generales del Alquiler | Costa Brava Rent a Boat Blanes"
-        description="Condiciones generales del alquiler de embarcaciones con y sin licencia en Costa Brava Rent a Boat Blanes. Información sobre seguros, fianzas, prohibiciones y responsabilidades."
-        canonical="https://costa-brava-rent-a-boat-blanes.replit.app/condiciones-generales"
+        title={seoConfig.title}
+        description={seoConfig.description}
+        canonical={canonical}
+        hreflang={hreflangLinks}
       />
       <Navigation />
       

@@ -24,15 +24,23 @@ import TermsConditionsPage from "@/pages/terms-conditions";
 import LocationBlanesPage from "@/pages/location-blanes";
 import NotFound from "@/pages/not-found";
 import { SEO } from "./components/SEO";
+import { useLanguage } from "@/hooks/use-language";
+import { getSEOConfig, generateHreflangLinks, generateCanonicalUrl } from "@/utils/seo-config";
 
 // Main Home Page Component
 function HomePage() {
+  const { language } = useLanguage();
+  const seoConfig = getSEOConfig('home', language);
+  const hreflangLinks = generateHreflangLinks('home');
+  const canonical = generateCanonicalUrl('home', language);
+
   return (
     <div className="min-h-screen">
       <SEO 
-        title="Alquiler de barcos en Blanes (Costa Brava) sin licencia | Costa Brava Rent a Boat"
-        description="Alquiler de barcos sin licencia y con licencia en Blanes, Costa Brava. Desde Puerto de Blanes. 7 embarcaciones para 4-7 personas. Incluye snorkel y paddle surf."
-        canonical="https://costa-brava-rent-a-boat-blanes.replit.app/"
+        title={seoConfig.title}
+        description={seoConfig.description}
+        canonical={canonical}
+        hreflang={hreflangLinks}
       />
       <Navigation />
       <Hero />

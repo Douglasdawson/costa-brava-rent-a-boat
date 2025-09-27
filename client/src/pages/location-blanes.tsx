@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import RelatedLocationsSection from "@/components/RelatedLocationsSection";
 import { SEO } from "@/components/SEO";
 import { useLanguage } from "@/hooks/use-language";
 import { getSEOConfig, generateHreflangLinks, generateCanonicalUrl } from "@/utils/seo-config";
@@ -289,6 +290,8 @@ export default function LocationBlanesPage() {
         </div>
       </div>
 
+      <RelatedLocationsSection currentLocation="blanes" />
+      
       <Footer />
     </div>
   );

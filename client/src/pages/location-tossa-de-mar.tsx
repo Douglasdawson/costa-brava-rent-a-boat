@@ -18,6 +18,7 @@ import {
 } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import RelatedLocationsSection from "@/components/RelatedLocationsSection";
 import { SEO } from "@/components/SEO";
 import { useLanguage } from "@/hooks/use-language";
 import { 
@@ -337,6 +338,8 @@ export default function LocationTossaPage() {
         </div>
       </div>
 
+      <RelatedLocationsSection currentLocation="tossa" />
+      
       <Footer />
     </div>
   );

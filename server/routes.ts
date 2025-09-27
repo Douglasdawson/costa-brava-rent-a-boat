@@ -93,7 +93,7 @@ Sitemap: ${baseUrl}/sitemap.xml`;
     ];
     
     // Define location slugs
-    const locationSlugs = ['blanes'];
+    const locationSlugs = ['blanes', 'lloret-de-mar', 'tossa-de-mar'];
     
     // Define supported languages
     const languages = ['es', 'en', 'ca', 'fr', 'de', 'nl', 'it', 'ru'];
@@ -161,6 +161,10 @@ Sitemap: ${baseUrl}/sitemap.xml`;
     
     // FAQ page
     sitemap += generateUrlEntry('/faq', '0.6');
+    
+    // Category pages
+    sitemap += generateUrlEntry('/barcos-sin-licencia', '0.7');
+    sitemap += generateUrlEntry('/barcos-con-licencia', '0.7');
     
     // Legal pages
     sitemap += generateUrlEntry('/privacy-policy', '0.3', 'monthly');

@@ -195,4 +195,62 @@ const canonical = generateCanonicalUrl('pageName', language);
 
 **Status**: ✅ COMPLETADO
 **Fecha**: 27 Septiembre 2025
-**Próximo bloque**: JSON-LD avanzado
+
+---
+
+## [2025-09-27] Bloque 3: JSON-LD Avanzado ✅
+
+### ✅ COMPLETADO - APROBADO POR ARCHITECT
+
+**Objetivo**: Implementar schemas JSON-LD completos para LocalBusiness, Service, Product y FAQ
+
+#### Implementaciones Realizadas:
+
+1. **LocalBusiness JSON-LD**
+   - ✅ Archivo: `client/src/utils/seo-config.ts`, `client/src/App.tsx`
+   - ✅ Información completa del negocio Costa Brava Rent a Boat
+   - ✅ Datos de contacto: +34 611 500 372, costabravarentboat@gmail.com
+   - ✅ Ubicación precisa: Puerto de Blanes (41.6751, 2.7991)
+   - ✅ Horarios estacionales (Abril-Octubre)
+   - ✅ Rango de precios €70-€300
+
+2. **Service JSON-LD**
+   - ✅ Descripción multiidioma de servicios de alquiler
+   - ✅ Área de servicio: Costa Brava, Blanes
+   - ✅ Categoría específica: BoatRental
+   - ✅ Integrado en homepage con LocalBusiness
+
+3. **Enhanced Product JSON-LD**
+   - ✅ Archivo: `client/src/components/BoatDetailPage.tsx`
+   - ✅ Especificaciones técnicas: motor, capacidad, eslora
+   - ✅ Valoraciones agregadas: 4.8/5 con 127 reseñas
+   - ✅ Datos reales de embarcaciones integrados
+   - ✅ Imágenes absolutas y ofertas
+
+4. **BreadcrumbList JSON-LD**
+   - ✅ Homepage: navegación raíz
+   - ✅ Páginas de barcos: Inicio → Barco específico
+   - ✅ Página FAQ: Inicio → Preguntas Frecuentes
+   - ✅ Patrón @graph para múltiples schemas
+
+5. **FAQPage Schema Integration**
+   - ✅ Archivo: `client/src/pages/faq.tsx`
+   - ✅ Schema FAQPage + BreadcrumbList combinados
+   - ✅ Patrón @graph implementado correctamente
+
+#### Resultados del Architect Review:
+- **Veredicto**: ✅ PASS
+- **Comentarios**: "Implementación cumple estándares SEO y está lista para continuar"
+- **Cobertura**: JSON-LD correctamente implementado en todas las páginas clave
+- **Estructura técnica**: @graph pattern usado apropiadamente
+- **Entity linking**: LocalBusiness con @id para identidad de entidad
+
+#### Ventajas Competitivas:
+- **Schema completo vs competidores** (mayoría solo schema básico)
+- **LocalBusiness detallado** (ubicación, horarios, contacto)
+- **Product schemas técnicos** (especificaciones detalladas)
+- **Breadcrumb navigation** (mejora UX y SEO)
+
+**Status**: ✅ COMPLETADO
+**Fecha**: 27 Septiembre 2025
+**Próximo bloque**: Páginas de ubicación estratégicas

@@ -16,28 +16,6 @@ export default function DestinationsSection() {
 
   const destinations = [
     {
-      id: "blanes",
-      name: "Alquiler Barcos Blanes",
-      url: "/alquiler-barcos-blanes", 
-      description: "Puerto base de operaciones con todas las comodidades. Punto de partida perfecto para explorar toda la Costa Brava.",
-      duration: "Base principal",
-      highlights: ["Puerto seguro", "Parking gratuito", "Restaurantes"],
-      icon: MapPin,
-      color: "text-blue-600",
-      bgColor: "bg-blue-50"
-    },
-    {
-      id: "lloret",
-      name: "Excursión a Lloret de Mar",
-      url: "/alquiler-barcos-lloret-de-mar",
-      description: "Playas vibrantes y calas escondidas. Desde Blanes llegas en 25 minutos navegando por la costa.",
-      duration: "25 min navegando",
-      highlights: ["Playas famosas", "Calas vírgenes", "Vida nocturna"],
-      icon: Camera,
-      color: "text-green-600", 
-      bgColor: "bg-green-50"
-    },
-    {
       id: "tossa",
       name: "Visita Tossa de Mar",
       url: "/alquiler-barcos-tossa-de-mar",
@@ -60,16 +38,6 @@ export default function DestinationsSection() {
       icon: Heart,
       color: "text-emerald-600",
       bgColor: "bg-emerald-50"
-    },
-    {
-      id: "licensed",
-      name: "Barcos Con Licencia", 
-      url: "/barcos-con-licencia",
-      description: "Embarcaciones potentes para navegación avanzada. Requiere PER, PNB o titulación equivalente.",
-      features: ["40-115 CV", "Mayor velocidad", "Sin límite distancia"],
-      icon: Star,
-      color: "text-blue-600",
-      bgColor: "bg-blue-50"
     }
   ];
 
@@ -89,7 +57,7 @@ export default function DestinationsSection() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-1 gap-8 max-w-md mx-auto">
             {destinations.map((destination) => {
               const IconComponent = destination.icon;
               return (
@@ -146,7 +114,7 @@ aria-label={`Ver detalles de ${destination.name}`}
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          <div className="grid md:grid-cols-1 gap-8 max-w-md mx-auto">
             {categories.map((category) => {
               const IconComponent = category.icon;
               return (

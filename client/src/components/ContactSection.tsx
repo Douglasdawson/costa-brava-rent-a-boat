@@ -2,7 +2,9 @@ import { useState } from "react";
 import { useTranslations } from "@/lib/translations";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { MapPin, Phone, Mail, Clock, Send } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import { MapPin, Phone, Mail, Clock, Send, Camera, Star, Heart, ExternalLink, Waves } from "lucide-react";
+import { Link } from "wouter";
 
 export default function ContactSection() {
   const t = useTranslations();
@@ -239,9 +241,127 @@ export default function ContactSection() {
           </Card>
         </div>
 
+        {/* Navigation Boxes - Moved from DestinationsSection */}
+        <div className="mt-12 mb-8">
+          <div className="text-center mb-8">
+            <h2 className="font-heading text-2xl lg:text-3xl font-bold text-gray-900 mb-4">
+              Descubre Más Opciones
+            </h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              Explora nuestros destinos y tipos de embarcación
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            {/* Alquiler Barcos Blanes */}
+            <Link href="/alquiler-barcos-blanes" asChild>
+              <Card className="hover:shadow-lg transition-shadow cursor-pointer group">
+                <CardHeader>
+                  <div className="w-12 h-12 bg-blue-50 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
+                    <MapPin className="w-6 h-6 text-blue-600" />
+                  </div>
+                  <CardTitle className="text-lg text-center">Alquiler Barcos Blanes</CardTitle>
+                </CardHeader>
+                <CardContent className="text-center">
+                  <div className="mb-3">
+                    <Badge variant="outline" className="mb-2">
+                      <Clock className="w-3 h-3 mr-1" />
+                      Base principal
+                    </Badge>
+                  </div>
+                  <p className="text-gray-600 mb-3 text-sm leading-relaxed">
+                    Puerto base de operaciones con todas las comodidades. Punto de partida perfecto para explorar toda la Costa Brava.
+                  </p>
+                  <div className="flex flex-wrap gap-1 justify-center mb-3">
+                    <span className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded">Puerto seguro</span>
+                    <span className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded">Parking gratuito</span>
+                    <span className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded">Restaurantes</span>
+                  </div>
+                  <Button 
+                    variant="outline" 
+                    size="sm"
+                    className="group-hover:bg-primary group-hover:text-white transition-colors"
+                    data-testid="link-blanes"
+                  >
+                    Ver Detalles
+                    <ExternalLink className="w-3 h-3 ml-1" />
+                  </Button>
+                </CardContent>
+              </Card>
+            </Link>
+
+            {/* Excursión a Lloret de Mar */}
+            <Link href="/alquiler-barcos-lloret-de-mar" asChild>
+              <Card className="hover:shadow-lg transition-shadow cursor-pointer group">
+                <CardHeader>
+                  <div className="w-12 h-12 bg-green-50 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
+                    <Camera className="w-6 h-6 text-green-600" />
+                  </div>
+                  <CardTitle className="text-lg text-center">Excursión a Lloret de Mar</CardTitle>
+                </CardHeader>
+                <CardContent className="text-center">
+                  <div className="mb-3">
+                    <Badge variant="outline" className="mb-2">
+                      <Clock className="w-3 h-3 mr-1" />
+                      25 min desde Blanes
+                    </Badge>
+                  </div>
+                  <p className="text-gray-600 mb-3 text-sm leading-relaxed">
+                    Playas vibrantes y calas escondidas. Desde Blanes llegas en 25 minutos navegando por la costa.
+                  </p>
+                  <div className="flex flex-wrap gap-1 justify-center mb-3">
+                    <span className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded">Playas famosas</span>
+                    <span className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded">Calas vírgenes</span>
+                    <span className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded">Vida nocturna</span>
+                  </div>
+                  <Button 
+                    variant="outline" 
+                    size="sm"
+                    className="group-hover:bg-primary group-hover:text-white transition-colors"
+                    data-testid="link-lloret"
+                  >
+                    Ver Detalles
+                    <ExternalLink className="w-3 h-3 ml-1" />
+                  </Button>
+                </CardContent>
+              </Card>
+            </Link>
+
+            {/* Barcos Con Licencia */}
+            <Link href="/barcos-con-licencia" asChild>
+              <Card className="hover:shadow-lg transition-shadow cursor-pointer group">
+                <CardHeader>
+                  <div className="w-12 h-12 bg-blue-50 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
+                    <Star className="w-6 h-6 text-blue-600" />
+                  </div>
+                  <CardTitle className="text-lg text-center">Barcos Con Licencia</CardTitle>
+                </CardHeader>
+                <CardContent className="text-center">
+                  <p className="text-gray-600 mb-3 text-sm leading-relaxed">
+                    Embarcaciones potentes para navegación avanzada con titulación.
+                  </p>
+                  <div className="flex flex-wrap gap-1 justify-center mb-3">
+                    <span className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded">40-115 CV</span>
+                    <span className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded">Mayor velocidad</span>
+                    <span className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded">Sin límite distancia</span>
+                  </div>
+                  <Button 
+                    variant="outline" 
+                    size="sm"
+                    className="group-hover:bg-primary group-hover:text-white transition-colors"
+                    data-testid="link-licensed"
+                  >
+                    Ver Barcos
+                    <Waves className="w-3 h-3 ml-1" />
+                  </Button>
+                </CardContent>
+              </Card>
+            </Link>
+          </div>
+        </div>
 
         {/* Map placeholder */}
-        <div className="mt-12">
+        <div className="mt-8">
           <Card className="overflow-hidden">
             <div className="bg-gradient-to-r from-primary/10 to-primary/5 p-8 text-center">
               <MapPin className="w-12 h-12 text-primary mx-auto mb-4" />

@@ -23,7 +23,10 @@ import {
   Beer,
   Eye,
   Waves,
-  MessageSquare
+  MessageSquare,
+  Heart,
+  Sun,
+  Clock
 } from "lucide-react";
 import { openWhatsApp } from "@/utils/whatsapp";
 import { BOAT_DATA } from "@shared/boatData";
@@ -221,8 +224,8 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
           </CardContent>
         </Card>
 
-        {/* Technical Specifications and Equipment - Full Width */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 mb-6 sm:mb-8">
+        {/* Technical Specifications, Equipment and Advantages */}
+        <div className={`grid grid-cols-1 ${!requiresLicense ? 'lg:grid-cols-3' : 'lg:grid-cols-2'} gap-6 sm:gap-8 mb-6 sm:mb-8`}>
           {/* Technical Specifications */}
           <Card>
             <CardHeader>
@@ -302,6 +305,64 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
               </div>
             </CardContent>
           </Card>
+
+          {/* License-Free Advantages - Only for boats without license */}
+          {!requiresLicense && (
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center text-base sm:text-lg">
+                  <Heart className="w-5 h-5 mr-2 text-primary" />
+                  Ventajas de los Barcos Sin Licencia
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4">
+                  <div>
+                    <h4 className="font-semibold text-sm mb-2">Accesibilidad Total</h4>
+                    <div className="space-y-1">
+                      <div className="flex items-center">
+                        <Star className="w-3 h-3 text-green-600 mr-2" />
+                        <span className="text-sm">No necesitas licencia ni titulación</span>
+                      </div>
+                      <div className="flex items-center">
+                        <Star className="w-3 h-3 text-green-600 mr-2" />
+                        <span className="text-sm">Aprendizaje rápido (15 minutos)</span>
+                      </div>
+                      <div className="flex items-center">
+                        <Star className="w-3 h-3 text-green-600 mr-2" />
+                        <span className="text-sm">Menor coste de alquiler</span>
+                      </div>
+                      <div className="flex items-center">
+                        <Star className="w-3 h-3 text-green-600 mr-2" />
+                        <span className="text-sm">Perfecto para principiantes</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-sm mb-2">Diversión Garantizada</h4>
+                    <div className="space-y-1">
+                      <div className="flex items-center">
+                        <Waves className="w-3 h-3 text-green-600 mr-2" />
+                        <span className="text-sm">Acceso a calas y playas desde el mar</span>
+                      </div>
+                      <div className="flex items-center">
+                        <Sun className="w-3 h-3 text-green-600 mr-2" />
+                        <span className="text-sm">Ideal para familias con niños</span>
+                      </div>
+                      <div className="flex items-center">
+                        <NavigationIcon className="w-3 h-3 text-green-600 mr-2" />
+                        <span className="text-sm">Navegación en zona segura costera</span>
+                      </div>
+                      <div className="flex items-center">
+                        <Clock className="w-3 h-3 text-green-600 mr-2" />
+                        <span className="text-sm">Disponibilidad inmediata</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          )}
         </div>
 
         {/* Pricing Section */}

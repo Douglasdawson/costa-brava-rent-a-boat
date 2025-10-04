@@ -15,11 +15,6 @@ export default function Navigation() {
 
   const toggleMenu = () => setIsOpen(!isOpen);
   
-  const handleAdminClick = () => {
-    setIsOpen(false); // Close mobile menu if open
-    setLocation("/crm");
-  };
-
   const handleMyAccountClick = () => {
     setIsOpen(false); // Close mobile menu if open
     setLocation("/client/dashboard");
@@ -27,7 +22,7 @@ export default function Navigation() {
 
   const handleLoginClick = () => {
     setIsOpen(false); // Close mobile menu if open
-    window.location.href = "/api/login";
+    setLocation("/login");
   };
 
   const handleBooking = () => {
@@ -175,14 +170,6 @@ export default function Navigation() {
                 Mi Cuenta
               </Button>
             )}
-            <Button 
-              variant="ghost" 
-              onClick={handleAdminClick}
-              data-testid="button-admin"
-            >
-              <User className="w-4 h-4 mr-2" />
-              Admin
-            </Button>
           </div>
 
           {/* Mobile menu button */}
@@ -236,15 +223,6 @@ export default function Navigation() {
                       Mi Cuenta
                     </Button>
                   )}
-                  <Button 
-                    variant="ghost" 
-                    className="justify-start h-12 px-4"
-                    onClick={handleAdminClick}
-                    data-testid="mobile-button-admin"
-                  >
-                    <User className="w-4 h-4 mr-3" />
-                    Admin
-                  </Button>
                   <Button 
                     className="justify-start h-12 px-4"
                     onClick={handleBooking}

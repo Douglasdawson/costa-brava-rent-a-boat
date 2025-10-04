@@ -29,6 +29,7 @@ import LocationTossaPage from "@/pages/location-tossa-de-mar";
 import CategoryLicenseFreePage from "@/pages/category-license-free";
 import CategoryLicensedPage from "@/pages/category-licensed";
 import ClientDashboardPage from "@/pages/ClientDashboardPage";
+import LoginPage from "@/pages/LoginPage";
 import NotFound from "@/pages/not-found";
 import { SEO } from "./components/SEO";
 import { useLanguage } from "@/hooks/use-language";
@@ -188,6 +189,7 @@ function Router() {
   return (
     <Switch>
       <Route path="/" component={HomePage} />
+      <Route path="/login" component={LoginPage} />
       <Route path="/booking" component={BookingFlowPage} />
       <Route path="/crm" component={CRMDashboardPage} />
       <Route path="/mi-cuenta" component={ClientDashboardPage} />

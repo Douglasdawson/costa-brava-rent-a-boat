@@ -23,19 +23,40 @@ Preferred communication style: Simple, everyday language.
 - **API Structure**: RESTful endpoints with `/api` prefix, organized through route registration system
 - **Database Access**: Repository pattern implemented through storage interface with database-specific implementations
 - **Development Setup**: Vite integration for hot module replacement and development middleware
+- **Customer API Endpoints**:
+  - `GET /api/customer/profile`: Retrieve authenticated customer profile
+  - `PATCH /api/customer/profile`: Update customer profile with validation
+  - `GET /api/customer/bookings`: Fetch customer booking history with fallback to email/phone matching
+- **Authentication Endpoints**:
+  - `GET /api/auth/callback`: Replit Auth OIDC callback handler with customer upsert
+  - `GET /api/auth/me`: Check customer authentication status
+  - `GET /api/auth/logout`: Customer logout with session destruction
 
 ### Data Storage Solutions
 - **Database**: PostgreSQL using Neon serverless database with connection pooling
 - **ORM**: Drizzle ORM with Neon serverless adapter for type-safe database operations
 - **Schema Management**: Centralized schema definitions in TypeScript with Zod validation
 - **Migrations**: Drizzle Kit for database schema migrations and management
+- **Customer Data**: `customers` table with user profiles (userId, firstName, lastName, email, phonePrefix, phoneNumber, nationality, documentType, documentNumber)
+- **Booking Integration**: `bookings` table includes optional `customerId` field for authenticated customer bookings with fallback to guest booking data (customerEmail, customerPhone)
 
 ### Authentication and Authorization
+#### Admin Authentication
 - **CRM Access**: Admin panel accessible via "Admin" button in header navigation (both desktop and mobile)
 - **PIN Authentication**: CRM protected with PIN (0760) for secure access
 - **Session Management**: Token-based sessions stored in sessionStorage with automatic expiration handling
 - **Middleware Protection**: All admin endpoints secured with requireAdminSession middleware
 - **Role-based Access**: Designed for ADMIN and STAFF roles for CRM access
+
+#### Customer Authentication
+- **Authentication Provider**: Replit Auth (OIDC) for secure customer authentication
+- **Session Management**: Express-session with MemoryStore for customer sessions
+- **User Management**: Automatic customer record creation/update on login via user upsert
+- **Profile Access**: "Mi Cuenta" button in navigation (visible only when authenticated) links to customer dashboard
+- **Customer Dashboard**: Three-tab interface (Profile, Bookings, New Booking) for account management
+- **Auto-fill Integration**: BookingFlow detects authenticated users and pre-fills customer data from profile
+- **Protected Routes**: Customer endpoints secured with requireCustomerSession middleware
+- **Database Integration**: Customer table with userId (Replit Auth), personal details, and booking history
 
 ### Component Architecture
 - **Reusable Components**: Modular component structure with examples directory for documentation

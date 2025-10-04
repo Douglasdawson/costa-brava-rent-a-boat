@@ -18,7 +18,8 @@ import {
   LogOut,
   Search,
   X,
-  Check
+  Check,
+  Save
 } from "lucide-react";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { useToast } from "@/hooks/use-toast";
@@ -27,12 +28,40 @@ import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from "@/components/ui/dialog";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
 import type { Booking } from "@shared/schema";
 import { queryClient } from "@/lib/queryClient";
 
 interface CRMDashboardProps {
   adminToken: string;
 }
+
+// Validation schema for editing booking
+const editBookingSchema = z.object({
+  customerName: z.string().min(2, "El nombre debe tener al menos 2 caracteres"),
+  customerSurname: z.string().min(2, "Los apellidos deben tener al menos 2 caracteres"),
+  customerPhone: z.string().min(9, "El teléfono debe tener al menos 9 dígitos"),
+  customerEmail: z.string().email("Email inválido").optional().or(z.literal("")),
+  customerNationality: z.string().min(1, "La nacionalidad es requerida"),
+  numberOfPeople: z.coerce.number().min(1, "Debe ser al menos 1 persona"),
+  boatId: z.string().min(1, "El barco es requerido"),
+  startTime: z.string(),
+  endTime: z.string(),
+  totalHours: z.coerce.number().min(1, "Debe ser al menos 1 hora"),
+  subtotal: z.string(),
+  extrasTotal: z.string(),
+  deposit: z.string(),
+  totalAmount: z.string(),
+  bookingStatus: z.enum(['draft', 'hold', 'pending_payment', 'confirmed', 'cancelled']),
+  paymentStatus: z.enum(['pending', 'completed', 'failed', 'refunded']),
+  notes: z.string().optional(),
+});
+
+type EditBookingFormData = z.infer<typeof editBookingSchema>;
 
 export default function CRMDashboard({ adminToken }: CRMDashboardProps) {
   const [selectedTab, setSelectedTab] = useState("dashboard");
@@ -41,7 +70,13 @@ export default function CRMDashboard({ adminToken }: CRMDashboardProps) {
   const [statusFilter, setStatusFilter] = useState<string>("all");
   const [selectedBooking, setSelectedBooking] = useState<Booking | null>(null);
   const [showBookingDetails, setShowBookingDetails] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
   const { toast } = useToast();
+
+  // Form for editing bookings
+  const editForm = useForm<EditBookingFormData>({
+    resolver: zodResolver(editBookingSchema),
+  });
 
   // Fetch stats with authentication
   const { data: stats, isLoading: statsLoading, error: statsError } = useQuery({
@@ -242,6 +277,44 @@ export default function CRMDashboard({ adminToken }: CRMDashboardProps) {
     }
   });
 
+  // Mutation for full booking edit
+  const editBookingMutation = useMutation({
+    mutationFn: async ({ bookingId, data }: { bookingId: string; data: EditBookingFormData }) => {
+      const response = await fetch(`/api/admin/bookings/${bookingId}`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${adminToken}`
+        },
+        body: JSON.stringify(data),
+      });
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.message || 'Error al actualizar la reserva');
+      }
+      return response.json();
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['/api/admin/bookings'] });
+      queryClient.invalidateQueries({ queryKey: ['/api/admin/stats'] });
+      queryClient.invalidateQueries({ queryKey: ['/api/admin/customers'] });
+      toast({
+        title: "Reserva actualizada",
+        description: "Los cambios se han guardado correctamente",
+      });
+      setIsEditing(false);
+      setShowBookingDetails(false);
+      setSelectedBooking(null);
+    },
+    onError: (error: Error) => {
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: error.message || "No se pudo actualizar la reserva",
+      });
+    }
+  });
+
   const handleBookingAction = (action: string, bookingId: string) => {
     if (action === "view") {
       // Find the booking and open details modal
@@ -249,6 +322,35 @@ export default function CRMDashboard({ adminToken }: CRMDashboardProps) {
       if (booking) {
         setSelectedBooking(booking);
         setShowBookingDetails(true);
+        setIsEditing(false);
+      }
+    } else if (action === "edit") {
+      // Find the booking and open edit mode
+      const booking = bookingsData?.find((b: Booking) => b.id === bookingId);
+      if (booking) {
+        setSelectedBooking(booking);
+        setShowBookingDetails(true);
+        setIsEditing(true);
+        // Populate form with booking data
+        editForm.reset({
+          customerName: booking.customerName,
+          customerSurname: booking.customerSurname,
+          customerPhone: booking.customerPhone,
+          customerEmail: booking.customerEmail || "",
+          customerNationality: booking.customerNationality,
+          numberOfPeople: booking.numberOfPeople,
+          boatId: booking.boatId,
+          startTime: format(new Date(booking.startTime), "yyyy-MM-dd'T'HH:mm"),
+          endTime: format(new Date(booking.endTime), "yyyy-MM-dd'T'HH:mm"),
+          totalHours: booking.totalHours,
+          subtotal: booking.subtotal,
+          extrasTotal: booking.extrasTotal,
+          deposit: booking.deposit,
+          totalAmount: booking.totalAmount,
+          bookingStatus: booking.bookingStatus as any,
+          paymentStatus: booking.paymentStatus as any,
+          notes: booking.notes || "",
+        });
       }
     } else if (action === "confirm") {
       updateBookingMutation.mutate({
@@ -267,12 +369,21 @@ export default function CRMDashboard({ adminToken }: CRMDashboardProps) {
           }
         });
       }
-    } else if (action === "edit") {
-      toast({
-        title: "Funcionalidad en desarrollo",
-        description: "La edición de reservas estará disponible próximamente",
+    }
+  };
+
+  const handleEditSubmit = (data: EditBookingFormData) => {
+    if (selectedBooking) {
+      editBookingMutation.mutate({
+        bookingId: selectedBooking.id,
+        data
       });
     }
+  };
+
+  const handleCancelEdit = () => {
+    setIsEditing(false);
+    editForm.reset();
   };
 
   // Process bookings data

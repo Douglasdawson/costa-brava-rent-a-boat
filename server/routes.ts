@@ -1155,6 +1155,18 @@ Sitemap: ${baseUrl}/sitemap.xml`;
     }
   });
 
+  // Logout endpoint
+  app.post('/api/auth/logout', (req: any, res) => {
+    req.session?.destroy((err: any) => {
+      if (err) {
+        console.error("Error destroying session:", err);
+        return res.status(500).json({ message: "Failed to logout" });
+      }
+      res.clearCookie('connect.sid');
+      res.json({ message: "Logged out successfully" });
+    });
+  });
+
   // Get customer profile
   app.get('/api/customer/profile', isAuthenticated, async (req: any, res) => {
     try {

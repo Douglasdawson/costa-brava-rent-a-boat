@@ -28,6 +28,7 @@ import LocationLloretPage from "@/pages/location-lloret-de-mar";
 import LocationTossaPage from "@/pages/location-tossa-de-mar";
 import CategoryLicenseFreePage from "@/pages/category-license-free";
 import CategoryLicensedPage from "@/pages/category-licensed";
+import ClientDashboardPage from "@/pages/ClientDashboardPage";
 import NotFound from "@/pages/not-found";
 import { SEO } from "./components/SEO";
 import { useLanguage } from "@/hooks/use-language";
@@ -189,6 +190,7 @@ function Router() {
       <Route path="/" component={HomePage} />
       <Route path="/booking" component={BookingFlowPage} />
       <Route path="/crm" component={CRMDashboardPage} />
+      <Route path="/mi-cuenta" component={ClientDashboardPage} />
       <Route path="/barco/solar-450" component={Solar450Page} />
       <Route path="/barco/remus-450" component={Remus450Page} />
       <Route path="/barco/astec-400" component={Astec400Page} />

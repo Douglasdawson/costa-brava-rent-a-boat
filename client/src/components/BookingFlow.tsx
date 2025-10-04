@@ -13,10 +13,24 @@ import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
 import { loadStripe } from "@stripe/stripe-js";
 import { useTranslations } from "@/lib/translations";
+import { useAuth } from "@/hooks/useAuth";
 
 interface BookingFlowProps {
   boatId?: string;
   onClose?: () => void;
+}
+
+interface Customer {
+  id: string;
+  userId: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  phonePrefix: string;
+  phoneNumber: string;
+  nationality: string;
+  documentType: string;
+  documentNumber: string;
 }
 
 export default function BookingFlow({ boatId = "astec-450", onClose }: BookingFlowProps) {
@@ -46,6 +60,29 @@ export default function BookingFlow({ boatId = "astec-450", onClose }: BookingFl
   const [paymentIntentId, setPaymentIntentId] = useState<string | null>(null);
   const { toast } = useToast();
   const t = useTranslations();
+  
+  // Check if user is logged in and load their profile
+  const { isAuthenticated } = useAuth();
+  const { data: customerProfile } = useQuery<Customer>({
+    queryKey: ["/api/customer/profile"],
+    enabled: isAuthenticated,
+    retry: false,
+  });
+
+  // Autocomplete customer data when profile loads (only fill empty fields)
+  useEffect(() => {
+    if (customerProfile) {
+      setCustomerData(prev => ({
+        customerName: prev.customerName || customerProfile.firstName || "",
+        customerSurname: prev.customerSurname || customerProfile.lastName || "",
+        customerEmail: prev.customerEmail || customerProfile.email || "",
+        customerPhone: prev.customerPhone || customerProfile.phoneNumber || "",
+        phonePrefix: prev.phonePrefix !== "+34" ? prev.phonePrefix : (customerProfile.phonePrefix || "+34"),
+        customerNationality: prev.customerNationality || customerProfile.nationality || "",
+        numberOfPeople: prev.numberOfPeople // Never overwrite numberOfPeople
+      }));
+    }
+  }, [customerProfile]);
 
   // Fetch boats from API
   const { data: boats = [] } = useQuery({

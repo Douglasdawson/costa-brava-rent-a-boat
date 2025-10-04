@@ -19,7 +19,7 @@ const getStripe = () => {
       throw new Error('Invalid Stripe secret key: must start with sk_');
     }
     stripe = new Stripe(secretKey, {
-      apiVersion: "2023-10-16",
+      apiVersion: "2025-08-27.basil",
     });
   }
   return stripe;
@@ -764,8 +764,7 @@ Sitemap: ${baseUrl}/sitemap.xml`;
       // Update booking to confirmed status
       await storage.updateBooking(bookingRecord.id, {
         bookingStatus: "confirmed",
-        paymentStatus: "paid",
-        paidAt: new Date()
+        paymentStatus: "completed"
       });
 
       res.json({
@@ -837,8 +836,7 @@ Sitemap: ${baseUrl}/sitemap.xml`;
             // Update booking to confirmed status
             await storage.updateBooking(bookingRecord.id, {
               bookingStatus: "confirmed",
-              paymentStatus: "paid",
-              paidAt: new Date()
+              paymentStatus: "completed"
             });
 
             console.log(`Booking ${bookingRecord.id} confirmed after successful payment`);
@@ -1141,13 +1139,93 @@ Sitemap: ${baseUrl}/sitemap.xml`;
     }
   });
 
+  // Admin login endpoint
+  app.post("/api/admin/login", async (req, res) => {
+    try {
+      const { pin } = req.body;
+      const adminPin = process.env.ADMIN_PIN;
+
+      if (!adminPin) {
+        return res.status(503).json({ message: "Admin access not configured" });
+      }
+
+      if (pin !== adminPin) {
+        return res.status(401).json({ message: "PIN incorrecto" });
+      }
+
+      // Generate a simple token (in production, use JWT)
+      const token = `admin_${Date.now()}_${Math.random().toString(36)}`;
+      
+      res.json({ 
+        success: true, 
+        token,
+        message: "Login successful" 
+      });
+    } catch (error: any) {
+      res.status(500).json({ message: "Error during login: " + error.message });
+    }
+  });
+
+  // Middleware to check admin token from session
+  const requireAdminSession = (req: any, res: any, next: any) => {
+    const authHeader = req.headers.authorization;
+    
+    if (!authHeader || !authHeader.startsWith('Bearer ')) {
+      return res.status(401).json({ message: "No autorizado" });
+    }
+
+    const token = authHeader.substring(7);
+    
+    // Simple token validation (starts with admin_)
+    if (!token.startsWith('admin_')) {
+      return res.status(401).json({ message: "Token inválido" });
+    }
+
+    next();
+  };
+
   // Admin routes for calendar/CRM - now protected
-  app.get("/api/admin/bookings", requireAdminAuth, async (req, res) => {
+  app.get("/api/admin/bookings", requireAdminSession, async (req, res) => {
     try {
       const bookings = await storage.getAllBookings();
       res.json(bookings);
     } catch (error: any) {
       res.status(500).json({ message: "Error fetching all bookings: " + error.message });
+    }
+  });
+
+  // Admin dashboard stats endpoint
+  app.get("/api/admin/stats", requireAdminSession, async (req, res) => {
+    try {
+      const { period = "today" } = req.query;
+      
+      const now = new Date();
+      let startDate = new Date(now);
+      let endDate = new Date(now);
+      
+      if (period === "today") {
+        startDate.setHours(0, 0, 0, 0);
+        endDate.setHours(23, 59, 59, 999);
+      } else if (period === "week") {
+        startDate.setDate(now.getDate() - 7);
+        startDate.setHours(0, 0, 0, 0);
+        endDate.setHours(23, 59, 59, 999);
+      } else if (period === "month") {
+        startDate.setDate(now.getDate() - 30);
+        startDate.setHours(0, 0, 0, 0);
+        endDate.setHours(23, 59, 59, 999);
+      }
+
+      const stats = await storage.getDashboardStats(startDate, endDate);
+      const fleet = await storage.getFleetAvailability();
+
+      res.json({
+        ...stats,
+        ...fleet,
+        period
+      });
+    } catch (error: any) {
+      res.status(500).json({ message: "Error fetching dashboard stats: " + error.message });
     }
   });
 

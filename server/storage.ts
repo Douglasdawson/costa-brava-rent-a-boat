@@ -43,6 +43,19 @@ export interface IStorage {
   
   // Get overlapping bookings with buffer
   getOverlappingBookingsWithBuffer(boatId: string, startTime: Date, endTime: Date): Promise<Booking[]>;
+
+  // Admin dashboard statistics
+  getDashboardStats(startDate: Date, endDate: Date): Promise<{
+    bookingsCount: number;
+    revenue: number;
+    confirmedBookings: number;
+    pendingBookings: number;
+  }>;
+  
+  getFleetAvailability(): Promise<{
+    totalBoats: number;
+    availableBoats: number;
+  }>;
 }
 
 // rewrite MemStorage to DatabaseStorage
@@ -268,6 +281,69 @@ export class DatabaseStorage implements IStorage {
     }
 
     return conflictingBookings.length === 0;
+  }
+
+  // Admin dashboard statistics
+  async getDashboardStats(startDate: Date, endDate: Date): Promise<{
+    bookingsCount: number;
+    revenue: number;
+    confirmedBookings: number;
+    pendingBookings: number;
+  }> {
+    const bookingsInRange = await db
+      .select()
+      .from(bookings)
+      .where(
+        and(
+          gte(bookings.bookingDate, startDate),
+          lte(bookings.bookingDate, endDate),
+          inArray(bookings.bookingStatus, ["confirmed", "pending_payment"])
+        )
+      );
+
+    const confirmedBookings = bookingsInRange.filter(b => b.bookingStatus === "confirmed");
+    const pendingBookings = bookingsInRange.filter(b => b.bookingStatus === "pending_payment");
+    
+    const revenue = confirmedBookings.reduce((sum, booking) => {
+      return sum + parseFloat(booking.totalAmount);
+    }, 0);
+
+    return {
+      bookingsCount: bookingsInRange.length,
+      revenue: Math.round(revenue * 100) / 100,
+      confirmedBookings: confirmedBookings.length,
+      pendingBookings: pendingBookings.length,
+    };
+  }
+
+  async getFleetAvailability(): Promise<{
+    totalBoats: number;
+    availableBoats: number;
+  }> {
+    const allBoats = await db.select().from(boats).where(eq(boats.isActive, true));
+    const now = new Date();
+    const todayEnd = new Date(now);
+    todayEnd.setHours(23, 59, 59, 999);
+
+    // Check which boats have active bookings right now
+    const activeBookings = await db
+      .select()
+      .from(bookings)
+      .where(
+        and(
+          lte(bookings.startTime, now),
+          gte(bookings.endTime, now),
+          inArray(bookings.bookingStatus, ["confirmed", "pending_payment"])
+        )
+      );
+
+    const bookedBoatIds = new Set(activeBookings.map(b => b.boatId));
+    const availableBoats = allBoats.filter(boat => !bookedBoatIds.has(boat.id));
+
+    return {
+      totalBoats: allBoats.length,
+      availableBoats: availableBoats.length,
+    };
   }
 }
 

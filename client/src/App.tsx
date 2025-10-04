@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Switch, Route, useSearch } from "wouter";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
@@ -17,6 +17,7 @@ import ContactSection from "./components/ContactSection";
 import Footer from "./components/Footer";
 import BookingFlow from "./components/BookingFlow";
 import CRMDashboard from "./components/CRMDashboard";
+import AdminLogin from "./components/AdminLogin";
 import BoatDetailPage from "./components/BoatDetailPage";
 import CondicionesGenerales from "./components/CondicionesGenerales";
 import FAQPage from "@/pages/faq";
@@ -93,7 +94,28 @@ function BookingFlowPage() {
 }
 
 function CRMDashboardPage() {
-  return <CRMDashboard />;
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [adminToken, setAdminToken] = useState<string | null>(null);
+
+  // Check for existing session on mount
+  useEffect(() => {
+    const token = sessionStorage.getItem("adminToken");
+    if (token) {
+      setAdminToken(token);
+      setIsAuthenticated(true);
+    }
+  }, []);
+
+  const handleLoginSuccess = (token: string) => {
+    setAdminToken(token);
+    setIsAuthenticated(true);
+  };
+
+  if (!isAuthenticated) {
+    return <AdminLogin onLoginSuccess={handleLoginSuccess} />;
+  }
+
+  return <CRMDashboard adminToken={adminToken!} />;
 }
 
 function Solar450Page() {
@@ -231,7 +253,7 @@ function App() {
               <div className="bg-white rounded-lg p-4">
                 <h2 className="text-xl font-semibold mb-4">Componente: CRM Dashboard</h2>
                 <div className="h-96 overflow-hidden">
-                  <CRMDashboard />
+                  <CRMDashboard adminToken="demo_token" />
                 </div>
               </div>
             </div>

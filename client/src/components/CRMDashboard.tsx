@@ -104,9 +104,38 @@ export default function CRMDashboard({ adminToken }: CRMDashboardProps) {
     },
   });
 
+  // Fetch all customers
+  const { data: customersData, isLoading: customersLoading, error: customersError } = useQuery({
+    queryKey: ['/api/admin/customers'],
+    queryFn: async () => {
+      const response = await fetch('/api/admin/customers', {
+        headers: {
+          'Authorization': `Bearer ${adminToken}`
+        }
+      });
+      if (!response.ok) {
+        let errorMessage = 'Error fetching customers';
+        try {
+          const errorData = await response.json();
+          errorMessage = errorData.message || errorMessage;
+        } catch {
+          errorMessage = response.statusText || errorMessage;
+        }
+        const error: any = new Error(errorMessage);
+        error.status = response.status;
+        throw error;
+      }
+      return response.json();
+    },
+    retry: (failureCount, error: any) => {
+      if (error?.status === 401) return false;
+      return failureCount < 2;
+    },
+  });
+
   // Handle authentication errors - logout if 401
   useEffect(() => {
-    const error = statsError || bookingsError;
+    const error = statsError || bookingsError || customersError;
     if (error && (error as any)?.status === 401) {
       toast({
         variant: "destructive",
@@ -116,7 +145,7 @@ export default function CRMDashboard({ adminToken }: CRMDashboardProps) {
       // Delay logout slightly to ensure toast is shown
       setTimeout(handleLogout, 1000);
     }
-  }, [statsError, bookingsError, toast]);
+  }, [statsError, bookingsError, customersError, toast]);
 
   // Show error toasts for non-auth errors
   useEffect(() => {
@@ -138,6 +167,16 @@ export default function CRMDashboard({ adminToken }: CRMDashboardProps) {
       });
     }
   }, [bookingsError, toast]);
+
+  useEffect(() => {
+    if (customersError && (customersError as any)?.status !== 401) {
+      toast({
+        variant: "destructive",
+        title: "Error cargando clientes",
+        description: customersError.message || "No se pudieron cargar los clientes. Intenta recargar la página.",
+      });
+    }
+  }, [customersError, toast]);
 
   const handleLogout = () => {
     sessionStorage.removeItem("adminToken");
@@ -652,19 +691,161 @@ export default function CRMDashboard({ adminToken }: CRMDashboardProps) {
           </div>
         )}
 
-        {/* Other Tabs - Customers and Fleet */}
-        {(selectedTab === "customers" || selectedTab === "fleet") && (
+        {/* Customers Tab */}
+        {selectedTab === "customers" && (
+          <div className="space-y-6">
+            {/* Customers Table */}
+            <Card>
+              <CardHeader>
+                <CardTitle>Todos los Clientes</CardTitle>
+                <p className="text-sm text-gray-600">
+                  Lista de clientes únicos extraídos de las reservas
+                </p>
+              </CardHeader>
+              <CardContent>
+                {customersLoading ? (
+                  <div className="text-center py-12 text-gray-500">Cargando clientes...</div>
+                ) : customersError ? (
+                  <div className="text-center py-12 text-red-500">Error cargando clientes</div>
+                ) : !customersData || customersData.length === 0 ? (
+                  <div className="text-center py-12 text-gray-500">No hay clientes registrados</div>
+                ) : (
+                  <div className="overflow-x-auto">
+                    <Table>
+                      <TableHeader>
+                        <TableRow>
+                          <TableHead>Nombre</TableHead>
+                          <TableHead>Contacto</TableHead>
+                          <TableHead>Nacionalidad</TableHead>
+                          <TableHead>Reservas</TableHead>
+                          <TableHead>Gasto Total</TableHead>
+                          <TableHead>Última Reserva</TableHead>
+                          <TableHead className="text-right">Acciones</TableHead>
+                        </TableRow>
+                      </TableHeader>
+                      <TableBody>
+                        {customersData.map((customer: any, index: number) => (
+                          <TableRow key={index} data-testid={`row-customer-${index}`}>
+                            <TableCell className="font-medium">
+                              {customer.customerName} {customer.customerSurname}
+                            </TableCell>
+                            <TableCell className="text-sm text-gray-600">
+                              <div>{customer.customerPhone}</div>
+                              {customer.customerEmail && (
+                                <div className="text-xs">{customer.customerEmail}</div>
+                              )}
+                            </TableCell>
+                            <TableCell>{customer.customerNationality}</TableCell>
+                            <TableCell>
+                              <Badge variant="secondary">
+                                {customer.bookingsCount} {customer.bookingsCount === 1 ? 'reserva' : 'reservas'}
+                              </Badge>
+                            </TableCell>
+                            <TableCell className="font-semibold">
+                              €{customer.totalSpent.toFixed(2)}
+                            </TableCell>
+                            <TableCell>
+                              {format(new Date(customer.lastBookingDate), 'dd/MM/yyyy')}
+                            </TableCell>
+                            <TableCell className="text-right">
+                              <Button
+                                variant="ghost"
+                                size="sm"
+                                onClick={() => {
+                                  // Show customer's bookings history
+                                  toast({
+                                    title: "Ver historial",
+                                    description: `Historial de ${customer.customerName} estará disponible próximamente`,
+                                  });
+                                }}
+                                data-testid={`button-view-customer-${index}`}
+                              >
+                                <Eye className="w-4 h-4" />
+                              </Button>
+                            </TableCell>
+                          </TableRow>
+                        ))}
+                      </TableBody>
+                    </Table>
+                  </div>
+                )}
+              </CardContent>
+            </Card>
+
+            {/* Customer Stats */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <Card>
+                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                  <CardTitle className="text-sm font-medium">Total Clientes</CardTitle>
+                  <Users className="h-4 w-4 text-muted-foreground" />
+                </CardHeader>
+                <CardContent>
+                  <div className="text-2xl font-bold">
+                    {customersLoading ? "..." : customersError ? "Error" : customersData?.length ?? 0}
+                  </div>
+                  <p className="text-xs text-muted-foreground">
+                    Clientes únicos registrados
+                  </p>
+                </CardContent>
+              </Card>
+
+              <Card>
+                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                  <CardTitle className="text-sm font-medium">Mejor Cliente</CardTitle>
+                  <TrendingUp className="h-4 w-4 text-muted-foreground" />
+                </CardHeader>
+                <CardContent>
+                  <div className="text-xl font-bold">
+                    {customersLoading ? "..." : customersError ? "Error" : 
+                      customersData && customersData.length > 0 
+                        ? `${customersData[0].customerName} ${customersData[0].customerSurname}`
+                        : "N/A"
+                    }
+                  </div>
+                  <p className="text-xs text-muted-foreground">
+                    {customersData && customersData.length > 0 
+                      ? `€${customersData[0].totalSpent.toFixed(2)} gastados`
+                      : "Sin datos"
+                    }
+                  </p>
+                </CardContent>
+              </Card>
+
+              <Card>
+                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                  <CardTitle className="text-sm font-medium">Promedio por Cliente</CardTitle>
+                  <Euro className="h-4 w-4 text-muted-foreground" />
+                </CardHeader>
+                <CardContent>
+                  <div className="text-2xl font-bold">
+                    {customersLoading ? "..." : customersError ? "Error" : 
+                      customersData && customersData.length > 0
+                        ? `€${(customersData.reduce((sum: number, c: any) => sum + c.totalSpent, 0) / customersData.length).toFixed(2)}`
+                        : "€0.00"
+                    }
+                  </div>
+                  <p className="text-xs text-muted-foreground">
+                    Gasto promedio por cliente
+                  </p>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        )}
+
+        {/* Fleet Tab */}
+        {selectedTab === "fleet" && (
           <Card>
             <CardContent className="py-12 text-center">
               <div className="max-w-md mx-auto">
                 <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  {selectedTab === "customers" ? <Users className="w-8 h-8 text-gray-400" /> : <Anchor className="w-8 h-8 text-gray-400" />}
+                  <Anchor className="w-8 h-8 text-gray-400" />
                 </div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">
                   Sección en Desarrollo
                 </h3>
                 <p className="text-gray-600 mb-6">
-                  La sección "{selectedTab === "customers" ? "Clientes" : "Flota"}" estará disponible próximamente.
+                  La sección "Flota" estará disponible próximamente.
                 </p>
                 <Button 
                   variant="outline" 

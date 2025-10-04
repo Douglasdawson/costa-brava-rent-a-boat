@@ -1230,6 +1230,52 @@ Sitemap: ${baseUrl}/sitemap.xml`;
     }
   });
 
+  // Get all unique customers from bookings
+  app.get("/api/admin/customers", requireAdminSession, async (req, res) => {
+    try {
+      const allBookings = await storage.getAllBookings();
+      
+      // Create a map to aggregate customer data
+      const customersMap = new Map();
+      
+      allBookings.forEach((booking: any) => {
+        const key = `${booking.customerEmail || booking.customerPhone}`;
+        
+        if (!customersMap.has(key)) {
+          customersMap.set(key, {
+            customerName: booking.customerName,
+            customerSurname: booking.customerSurname,
+            customerPhone: booking.customerPhone,
+            customerEmail: booking.customerEmail,
+            customerNationality: booking.customerNationality,
+            bookingsCount: 0,
+            totalSpent: 0,
+            lastBookingDate: booking.startTime,
+            bookingIds: []
+          });
+        }
+        
+        const customer = customersMap.get(key);
+        customer.bookingsCount += 1;
+        customer.totalSpent += parseFloat(booking.totalAmount);
+        customer.bookingIds.push(booking.id);
+        
+        // Update last booking date if this one is more recent
+        if (new Date(booking.startTime) > new Date(customer.lastBookingDate)) {
+          customer.lastBookingDate = booking.startTime;
+        }
+      });
+      
+      // Convert map to array and sort by total spent
+      const customers = Array.from(customersMap.values()).sort((a, b) => b.totalSpent - a.totalSpent);
+      
+      res.json(customers);
+    } catch (error: any) {
+      console.error("Error fetching customers:", error);
+      res.status(500).json({ message: "Error fetching customers: " + error.message });
+    }
+  });
+
   // Admin dashboard stats endpoint
   app.get("/api/admin/stats", requireAdminSession, async (req, res) => {
     try {

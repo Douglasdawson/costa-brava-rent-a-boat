@@ -31,8 +31,10 @@ Preferred communication style: Simple, everyday language.
 - **Migrations**: Drizzle Kit for database schema migrations and management
 
 ### Authentication and Authorization
-- **User Management**: Basic user system with username/password authentication
-- **Session Handling**: Planned session-based authentication (infrastructure in place)
+- **CRM Access**: Admin panel accessible via "Admin" button in header navigation (both desktop and mobile)
+- **PIN Authentication**: CRM protected with PIN (0760) for secure access
+- **Session Management**: Token-based sessions stored in sessionStorage with automatic expiration handling
+- **Middleware Protection**: All admin endpoints secured with requireAdminSession middleware
 - **Role-based Access**: Designed for ADMIN and STAFF roles for CRM access
 
 ### Component Architecture

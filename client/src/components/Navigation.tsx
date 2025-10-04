@@ -8,15 +8,14 @@ import { useTranslations } from "@/lib/translations";
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [, setLocation] = useLocation();
   const t = useTranslations();
 
   const toggleMenu = () => setIsOpen(!isOpen);
   
-  const handleLogin = () => {
-    setIsLoggedIn(!isLoggedIn);
-    console.log("Login toggled:", !isLoggedIn);
+  const handleAdminClick = () => {
+    setIsOpen(false); // Close mobile menu if open
+    setLocation("/crm");
   };
 
   const handleBooking = () => {
@@ -146,11 +145,11 @@ export default function Navigation() {
             </Button>
             <Button 
               variant="ghost" 
-              onClick={handleLogin}
-              data-testid="button-login"
+              onClick={handleAdminClick}
+              data-testid="button-admin"
             >
               <User className="w-4 h-4 mr-2" />
-              {isLoggedIn ? "CRM" : "Admin"}
+              Admin
             </Button>
           </div>
 
@@ -186,11 +185,11 @@ export default function Navigation() {
                   <Button 
                     variant="ghost" 
                     className="justify-start h-12 px-4"
-                    onClick={handleLogin}
-                    data-testid="mobile-button-login"
+                    onClick={handleAdminClick}
+                    data-testid="mobile-button-admin"
                   >
                     <User className="w-4 h-4 mr-3" />
-                    {isLoggedIn ? "CRM" : "Admin"}
+                    Admin
                   </Button>
                   <Button 
                     className="justify-start h-12 px-4"

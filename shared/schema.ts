@@ -1,12 +1,51 @@
 import { sql } from "drizzle-orm";
-import { pgTable, text, varchar, integer, decimal, timestamp, boolean, json, index, unique } from "drizzle-orm/pg-core";
+import { pgTable, text, varchar, integer, decimal, timestamp, boolean, json, jsonb, index, unique } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
-export const users = pgTable("users", {
+// Admin users (existing system - for CRM access)
+export const adminUsers = pgTable("admin_users", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
   username: text("username").notNull().unique(),
   passwordHash: text("password_hash").notNull(),
+});
+
+// Session storage table for Replit Auth
+export const sessions = pgTable(
+  "sessions",
+  {
+    sid: varchar("sid").primaryKey(),
+    sess: jsonb("sess").notNull(),
+    expire: timestamp("expire").notNull(),
+  },
+  (table) => [index("IDX_session_expire").on(table.expire)],
+);
+
+// Customer users (Replit Auth - for customer accounts)
+export const customerUsers = pgTable("customer_users", {
+  id: varchar("id").primaryKey(),
+  email: varchar("email").unique(),
+  firstName: varchar("first_name"),
+  lastName: varchar("last_name"),
+  profileImageUrl: varchar("profile_image_url"),
+  createdAt: timestamp("created_at").defaultNow(),
+  updatedAt: timestamp("updated_at").defaultNow(),
+});
+
+// Customer profiles (extended info beyond Replit Auth)
+export const customers = pgTable("customers", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  userId: varchar("user_id").notNull().references(() => customerUsers.id).unique(),
+  firstName: varchar("first_name").notNull(),
+  lastName: varchar("last_name").notNull(),
+  email: varchar("email").notNull(),
+  phonePrefix: varchar("phone_prefix").notNull(),
+  phoneNumber: varchar("phone_number").notNull(),
+  nationality: varchar("nationality").notNull(),
+  documentType: varchar("document_type").notNull(), // passport, dni, nie, etc
+  documentNumber: varchar("document_number").notNull(),
+  createdAt: timestamp("created_at").defaultNow(),
+  updatedAt: timestamp("updated_at").defaultNow(),
 });
 
 export const boats = pgTable("boats", {
@@ -23,6 +62,7 @@ export const boats = pgTable("boats", {
 
 export const bookings = pgTable("bookings", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  customerId: varchar("customer_id").references(() => customers.id), // Optional link to customer profile
   boatId: varchar("boat_id").notNull().references(() => boats.id),
   bookingDate: timestamp("booking_date", { withTimezone: true }).notNull(),
   startTime: timestamp("start_time", { withTimezone: true }).notNull(),
@@ -74,9 +114,16 @@ export const bookingExtras = pgTable("booking_extras", {
 });
 
 // Zod schemas for validation
-export const insertUserSchema = createInsertSchema(users).pick({
+export const insertAdminUserSchema = createInsertSchema(adminUsers).pick({
   username: true,
   passwordHash: true,
+});
+
+export const upsertCustomerUserSchema = createInsertSchema(customerUsers);
+export const insertCustomerSchema = createInsertSchema(customers).omit({
+  id: true,
+  createdAt: true,
+  updatedAt: true,
 });
 
 export const insertBoatSchema = createInsertSchema(boats);
@@ -148,8 +195,14 @@ export const updateBookingSchema = z.object({
 });
 
 // Types
-export type InsertUser = z.infer<typeof insertUserSchema>;
-export type User = typeof users.$inferSelect;
+export type InsertAdminUser = z.infer<typeof insertAdminUserSchema>;
+export type AdminUser = typeof adminUsers.$inferSelect;
+
+export type UpsertCustomerUser = z.infer<typeof upsertCustomerUserSchema>;
+export type CustomerUser = typeof customerUsers.$inferSelect;
+
+export type InsertCustomer = z.infer<typeof insertCustomerSchema>;
+export type Customer = typeof customers.$inferSelect;
 
 export type InsertBoat = z.infer<typeof insertBoatSchema>;
 export type Boat = typeof boats.$inferSelect;

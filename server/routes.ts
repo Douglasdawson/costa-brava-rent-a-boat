@@ -6,6 +6,7 @@ import { insertBookingSchema, insertBookingExtraSchema, updateBookingSchema, boo
 import { db } from "./db";
 import { and, eq, lte } from "drizzle-orm";
 import Stripe from "stripe";
+import { setupAuth, isAuthenticated } from "./replitAuth";
 
 // Initialize Stripe lazily with proper validation
 let stripe: Stripe | null = null;
@@ -50,6 +51,8 @@ const requireAdminAuth = (req: any, res: any, next: any) => {
 };
 
 export async function registerRoutes(app: Express): Promise<Server> {
+  // Setup Replit Auth (customer authentication)
+  await setupAuth(app);
   
   // Get base URL for SEO endpoints from request or environment
   const getBaseUrl = (req?: any) => {
@@ -1136,6 +1139,82 @@ Sitemap: ${baseUrl}/sitemap.xml`;
       res.json(updatedBooking);
     } catch (error: any) {
       res.status(500).json({ message: "Error updating WhatsApp status: " + error.message });
+    }
+  });
+
+  // ==================== Customer Auth Routes ====================
+  // Get current authenticated user
+  app.get('/api/auth/user', isAuthenticated, async (req: any, res) => {
+    try {
+      const userId = req.user.claims.sub;
+      const user = await storage.getCustomerUser(userId);
+      res.json(user);
+    } catch (error) {
+      console.error("Error fetching user:", error);
+      res.status(500).json({ message: "Failed to fetch user" });
+    }
+  });
+
+  // Get customer profile
+  app.get('/api/customer/profile', isAuthenticated, async (req: any, res) => {
+    try {
+      const userId = req.user.claims.sub;
+      const customer = await storage.getCustomerByUserId(userId);
+      
+      if (!customer) {
+        return res.status(404).json({ message: "Customer profile not found" });
+      }
+
+      res.json(customer);
+    } catch (error: any) {
+      console.error("Error fetching customer profile:", error);
+      res.status(500).json({ message: "Failed to fetch customer profile" });
+    }
+  });
+
+  // Update customer profile
+  app.patch('/api/customer/profile', isAuthenticated, async (req: any, res) => {
+    try {
+      const userId = req.user.claims.sub;
+      const customer = await storage.getCustomerByUserId(userId);
+      
+      if (!customer) {
+        return res.status(404).json({ message: "Customer profile not found" });
+      }
+
+      const updates = req.body;
+      const updatedCustomer = await storage.updateCustomer(customer.id, updates);
+
+      res.json(updatedCustomer);
+    } catch (error: any) {
+      console.error("Error updating customer profile:", error);
+      res.status(500).json({ message: "Failed to update customer profile" });
+    }
+  });
+
+  // Get customer bookings
+  app.get('/api/customer/bookings', isAuthenticated, async (req: any, res) => {
+    try {
+      const userId = req.user.claims.sub;
+      const customer = await storage.getCustomerByUserId(userId);
+      
+      if (!customer) {
+        return res.json([]); // Return empty array if no profile yet
+      }
+
+      // Get all bookings for this customer using customerId
+      const allBookings = await storage.getAllBookings();
+      const customerBookings = allBookings.filter(booking => 
+        booking.customerId === customer.id ||
+        // Fallback for old bookings without customerId: match by email or phone
+        booking.customerEmail === customer.email ||
+        booking.customerPhone === `${customer.phonePrefix}${customer.phoneNumber}`
+      );
+
+      res.json(customerBookings);
+    } catch (error: any) {
+      console.error("Error fetching customer bookings:", error);
+      res.status(500).json({ message: "Failed to fetch bookings" });
     }
   });
 

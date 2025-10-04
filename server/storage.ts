@@ -1,6 +1,8 @@
 import { 
-  users, boats, bookings, bookingExtras,
-  type User, type InsertUser,
+  adminUsers, customerUsers, customers, boats, bookings, bookingExtras,
+  type AdminUser, type InsertAdminUser,
+  type CustomerUser, type UpsertCustomerUser,
+  type Customer, type InsertCustomer,
   type Boat, type InsertBoat,
   type Booking, type InsertBooking,
   type BookingExtra, type InsertBookingExtra
@@ -12,10 +14,20 @@ import { eq, and, gte, lte, between, inArray } from "drizzle-orm";
 // you might need
 
 export interface IStorage {
-  // User methods
-  getUser(id: string): Promise<User | undefined>;
-  getUserByUsername(username: string): Promise<User | undefined>;
-  createUser(user: InsertUser): Promise<User>;
+  // Admin User methods (CRM access)
+  getAdminUser(id: string): Promise<AdminUser | undefined>;
+  getAdminUserByUsername(username: string): Promise<AdminUser | undefined>;
+  createAdminUser(user: InsertAdminUser): Promise<AdminUser>;
+
+  // Customer User methods (Replit Auth)
+  getCustomerUser(id: string): Promise<CustomerUser | undefined>;
+  upsertCustomerUser(user: UpsertCustomerUser): Promise<CustomerUser>;
+
+  // Customer Profile methods
+  getCustomer(id: string): Promise<Customer | undefined>;
+  getCustomerByUserId(userId: string): Promise<Customer | undefined>;
+  createCustomer(customer: InsertCustomer): Promise<Customer>;
+  updateCustomer(id: string, customer: Partial<InsertCustomer>): Promise<Customer | undefined>;
 
   // Boat methods
   getAllBoats(): Promise<Boat[]>;
@@ -60,23 +72,72 @@ export interface IStorage {
 
 // rewrite MemStorage to DatabaseStorage
 export class DatabaseStorage implements IStorage {
-  // User methods
-  async getUser(id: string): Promise<User | undefined> {
-    const [user] = await db.select().from(users).where(eq(users.id, id));
+  // Admin User methods (CRM access)
+  async getAdminUser(id: string): Promise<AdminUser | undefined> {
+    const [user] = await db.select().from(adminUsers).where(eq(adminUsers.id, id));
     return user || undefined;
   }
 
-  async getUserByUsername(username: string): Promise<User | undefined> {
-    const [user] = await db.select().from(users).where(eq(users.username, username));
+  async getAdminUserByUsername(username: string): Promise<AdminUser | undefined> {
+    const [user] = await db.select().from(adminUsers).where(eq(adminUsers.username, username));
     return user || undefined;
   }
 
-  async createUser(insertUser: InsertUser): Promise<User> {
+  async createAdminUser(insertUser: InsertAdminUser): Promise<AdminUser> {
     const [user] = await db
-      .insert(users)
+      .insert(adminUsers)
       .values(insertUser)
       .returning();
     return user;
+  }
+
+  // Customer User methods (Replit Auth)
+  async getCustomerUser(id: string): Promise<CustomerUser | undefined> {
+    const [user] = await db.select().from(customerUsers).where(eq(customerUsers.id, id));
+    return user || undefined;
+  }
+
+  async upsertCustomerUser(userData: UpsertCustomerUser): Promise<CustomerUser> {
+    const [user] = await db
+      .insert(customerUsers)
+      .values(userData)
+      .onConflictDoUpdate({
+        target: customerUsers.id,
+        set: {
+          ...userData,
+          updatedAt: new Date(),
+        },
+      })
+      .returning();
+    return user;
+  }
+
+  // Customer Profile methods
+  async getCustomer(id: string): Promise<Customer | undefined> {
+    const [customer] = await db.select().from(customers).where(eq(customers.id, id));
+    return customer || undefined;
+  }
+
+  async getCustomerByUserId(userId: string): Promise<Customer | undefined> {
+    const [customer] = await db.select().from(customers).where(eq(customers.userId, userId));
+    return customer || undefined;
+  }
+
+  async createCustomer(insertCustomer: InsertCustomer): Promise<Customer> {
+    const [customer] = await db
+      .insert(customers)
+      .values(insertCustomer)
+      .returning();
+    return customer;
+  }
+
+  async updateCustomer(id: string, updates: Partial<InsertCustomer>): Promise<Customer | undefined> {
+    const [customer] = await db
+      .update(customers)
+      .set({ ...updates, updatedAt: new Date() })
+      .where(eq(customers.id, id))
+      .returning();
+    return customer || undefined;
   }
 
   // Boat methods

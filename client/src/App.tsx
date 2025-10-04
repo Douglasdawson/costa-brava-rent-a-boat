@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Switch, Route, useSearch } from "wouter";
+import { Switch, Route, useSearch, useLocation } from "wouter";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
@@ -17,7 +17,6 @@ import ContactSection from "./components/ContactSection";
 import Footer from "./components/Footer";
 import BookingFlow from "./components/BookingFlow";
 import CRMDashboard from "./components/CRMDashboard";
-import AdminLogin from "./components/AdminLogin";
 import BoatDetailPage from "./components/BoatDetailPage";
 import CondicionesGenerales from "./components/CondicionesGenerales";
 import FAQPage from "@/pages/faq";
@@ -98,6 +97,7 @@ function BookingFlowPage() {
 function CRMDashboardPage() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [adminToken, setAdminToken] = useState<string | null>(null);
+  const [, setLocation] = useLocation();
 
   // Check for existing session on mount
   useEffect(() => {
@@ -105,16 +105,14 @@ function CRMDashboardPage() {
     if (token) {
       setAdminToken(token);
       setIsAuthenticated(true);
+    } else {
+      // Redirect to unified login page if not authenticated
+      setLocation("/login");
     }
-  }, []);
-
-  const handleLoginSuccess = (token: string) => {
-    setAdminToken(token);
-    setIsAuthenticated(true);
-  };
+  }, [setLocation]);
 
   if (!isAuthenticated) {
-    return <AdminLogin onLoginSuccess={handleLoginSuccess} />;
+    return null; // Will redirect in useEffect
   }
 
   return <CRMDashboard adminToken={adminToken!} />;

@@ -25,6 +25,11 @@ export default function Navigation() {
     setLocation("/client/dashboard");
   };
 
+  const handleLoginClick = () => {
+    setIsOpen(false); // Close mobile menu if open
+    window.location.href = "/api/login";
+  };
+
   const handleBooking = () => {
     const message = createBookingMessage();
     openWhatsApp(message);
@@ -150,6 +155,16 @@ export default function Navigation() {
               <Calendar className="w-4 h-4 mr-2" />
               Reservar Ahora
             </Button>
+            {!isAuthenticated && (
+              <Button 
+                variant="ghost" 
+                onClick={handleLoginClick}
+                data-testid="button-login"
+              >
+                <UserCircle className="w-4 h-4 mr-2" />
+                Login
+              </Button>
+            )}
             {isAuthenticated && (
               <Button 
                 variant="ghost" 
@@ -199,6 +214,17 @@ export default function Navigation() {
               ))}
               <div className="px-4 py-2 border-t border-gray-200 mt-2 pt-4">
                 <div className="flex flex-col space-y-3">
+                  {!isAuthenticated && (
+                    <Button 
+                      variant="ghost" 
+                      className="justify-start h-12 px-4"
+                      onClick={handleLoginClick}
+                      data-testid="mobile-button-login"
+                    >
+                      <UserCircle className="w-4 h-4 mr-3" />
+                      Login
+                    </Button>
+                  )}
                   {isAuthenticated && (
                     <Button 
                       variant="ghost" 

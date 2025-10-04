@@ -1155,15 +1155,12 @@ Sitemap: ${baseUrl}/sitemap.xml`;
     }
   });
 
-  // Logout endpoint
+  // Logout endpoint - redirects to OIDC logout
   app.post('/api/auth/logout', (req: any, res) => {
-    req.session?.destroy((err: any) => {
-      if (err) {
-        console.error("Error destroying session:", err);
-        return res.status(500).json({ message: "Failed to logout" });
-      }
-      res.clearCookie('connect.sid');
-      res.json({ message: "Logged out successfully" });
+    // Simply redirect to the GET /api/logout which handles OIDC logout properly
+    res.json({ 
+      message: "Logout initiated",
+      redirectUrl: "/api/logout"
     });
   });
 

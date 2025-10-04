@@ -191,6 +191,7 @@ function Router() {
       <Route path="/booking" component={BookingFlowPage} />
       <Route path="/crm" component={CRMDashboardPage} />
       <Route path="/mi-cuenta" component={ClientDashboardPage} />
+      <Route path="/client/dashboard" component={ClientDashboardPage} />
       <Route path="/barco/solar-450" component={Solar450Page} />
       <Route path="/barco/remus-450" component={Remus450Page} />
       <Route path="/barco/astec-400" component={Astec400Page} />

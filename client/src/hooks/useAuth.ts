@@ -15,10 +15,18 @@ export function useAuth() {
 
   const logout = async () => {
     try {
-      await fetch("/api/auth/logout", { method: "POST" });
+      const response = await fetch("/api/auth/logout", { method: "POST" });
+      const data = await response.json();
+      
       queryClient.setQueryData(["/api/auth/user"], null);
       queryClient.clear();
-      window.location.href = "/";
+      
+      // Redirect to OIDC logout endpoint to properly end Replit session
+      if (data.redirectUrl) {
+        window.location.href = data.redirectUrl;
+      } else {
+        window.location.href = "/";
+      }
     } catch (error) {
       console.error("Logout error:", error);
       throw error;

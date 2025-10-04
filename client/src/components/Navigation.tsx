@@ -1,21 +1,28 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Menu, X, User, Calendar, Anchor } from "lucide-react";
+import { Menu, X, User, Calendar, Anchor, UserCircle } from "lucide-react";
 import { openWhatsApp, createBookingMessage } from "@/utils/whatsapp";
 import { useLocation } from "wouter";
 import LanguageSelector from "./LanguageSelector";
 import { useTranslations } from "@/lib/translations";
+import { useAuth } from "@/hooks/useAuth";
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
   const [, setLocation] = useLocation();
   const t = useTranslations();
+  const { isAuthenticated } = useAuth();
 
   const toggleMenu = () => setIsOpen(!isOpen);
   
   const handleAdminClick = () => {
     setIsOpen(false); // Close mobile menu if open
     setLocation("/crm");
+  };
+
+  const handleMyAccountClick = () => {
+    setIsOpen(false); // Close mobile menu if open
+    setLocation("/client/dashboard");
   };
 
   const handleBooking = () => {
@@ -143,6 +150,16 @@ export default function Navigation() {
               <Calendar className="w-4 h-4 mr-2" />
               Reservar Ahora
             </Button>
+            {isAuthenticated && (
+              <Button 
+                variant="ghost" 
+                onClick={handleMyAccountClick}
+                data-testid="button-my-account"
+              >
+                <UserCircle className="w-4 h-4 mr-2" />
+                Mi Cuenta
+              </Button>
+            )}
             <Button 
               variant="ghost" 
               onClick={handleAdminClick}
@@ -182,6 +199,17 @@ export default function Navigation() {
               ))}
               <div className="px-4 py-2 border-t border-gray-200 mt-2 pt-4">
                 <div className="flex flex-col space-y-3">
+                  {isAuthenticated && (
+                    <Button 
+                      variant="ghost" 
+                      className="justify-start h-12 px-4"
+                      onClick={handleMyAccountClick}
+                      data-testid="mobile-button-my-account"
+                    >
+                      <UserCircle className="w-4 h-4 mr-3" />
+                      Mi Cuenta
+                    </Button>
+                  )}
                   <Button 
                     variant="ghost" 
                     className="justify-start h-12 px-4"

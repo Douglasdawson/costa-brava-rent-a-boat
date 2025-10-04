@@ -975,13 +975,13 @@ export default function CRMDashboard({ adminToken }: CRMDashboardProps) {
       <Dialog open={showBookingDetails} onOpenChange={setShowBookingDetails}>
         <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
           <DialogHeader>
-            <DialogTitle>Detalles de la Reserva</DialogTitle>
+            <DialogTitle>{isEditing ? "Editar Reserva" : "Detalles de la Reserva"}</DialogTitle>
             <DialogDescription>
               ID: {selectedBooking?.id}
             </DialogDescription>
           </DialogHeader>
           
-          {selectedBooking && (
+          {selectedBooking && !isEditing && (
             <div className="space-y-6">
               {/* Customer Info */}
               <div>
@@ -1140,11 +1140,237 @@ export default function CRMDashboard({ adminToken }: CRMDashboardProps) {
               </div>
             </div>
           )}
+
+          {/* Edit Form */}
+          {selectedBooking && isEditing && (
+            <form onSubmit={editForm.handleSubmit(handleEditSubmit)} className="space-y-6">
+              {/* Customer Info */}
+              <div>
+                <h3 className="font-semibold text-lg mb-3">Información del Cliente</h3>
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <Label htmlFor="customerName">Nombre</Label>
+                    <Input
+                      id="customerName"
+                      {...editForm.register("customerName")}
+                      data-testid="input-customer-name"
+                    />
+                    {editForm.formState.errors.customerName && (
+                      <p className="text-red-500 text-xs mt-1">{editForm.formState.errors.customerName.message}</p>
+                    )}
+                  </div>
+                  <div>
+                    <Label htmlFor="customerSurname">Apellidos</Label>
+                    <Input
+                      id="customerSurname"
+                      {...editForm.register("customerSurname")}
+                      data-testid="input-customer-surname"
+                    />
+                    {editForm.formState.errors.customerSurname && (
+                      <p className="text-red-500 text-xs mt-1">{editForm.formState.errors.customerSurname.message}</p>
+                    )}
+                  </div>
+                  <div>
+                    <Label htmlFor="customerPhone">Teléfono</Label>
+                    <Input
+                      id="customerPhone"
+                      {...editForm.register("customerPhone")}
+                      data-testid="input-customer-phone"
+                    />
+                    {editForm.formState.errors.customerPhone && (
+                      <p className="text-red-500 text-xs mt-1">{editForm.formState.errors.customerPhone.message}</p>
+                    )}
+                  </div>
+                  <div>
+                    <Label htmlFor="customerEmail">Email (opcional)</Label>
+                    <Input
+                      id="customerEmail"
+                      type="email"
+                      {...editForm.register("customerEmail")}
+                      data-testid="input-customer-email"
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="customerNationality">Nacionalidad</Label>
+                    <Input
+                      id="customerNationality"
+                      {...editForm.register("customerNationality")}
+                      data-testid="input-customer-nationality"
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="numberOfPeople">Número de Personas</Label>
+                    <Input
+                      id="numberOfPeople"
+                      type="number"
+                      {...editForm.register("numberOfPeople")}
+                      data-testid="input-number-people"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* Booking Info */}
+              <div>
+                <h3 className="font-semibold text-lg mb-3">Detalles de la Reserva</h3>
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <Label htmlFor="boatId">Barco</Label>
+                    <Input
+                      id="boatId"
+                      {...editForm.register("boatId")}
+                      data-testid="input-boat-id"
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="totalHours">Horas Totales</Label>
+                    <Input
+                      id="totalHours"
+                      type="number"
+                      {...editForm.register("totalHours")}
+                      data-testid="input-total-hours"
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="startTime">Fecha y Hora de Inicio</Label>
+                    <Input
+                      id="startTime"
+                      type="datetime-local"
+                      {...editForm.register("startTime")}
+                      data-testid="input-start-time"
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="endTime">Fecha y Hora de Fin</Label>
+                    <Input
+                      id="endTime"
+                      type="datetime-local"
+                      {...editForm.register("endTime")}
+                      data-testid="input-end-time"
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="bookingStatus">Estado de Reserva</Label>
+                    <Select
+                      value={editForm.watch("bookingStatus")}
+                      onValueChange={(value) => editForm.setValue("bookingStatus", value as any)}
+                    >
+                      <SelectTrigger data-testid="select-booking-status">
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="draft">Borrador</SelectItem>
+                        <SelectItem value="hold">En Espera</SelectItem>
+                        <SelectItem value="pending_payment">Pendiente de Pago</SelectItem>
+                        <SelectItem value="confirmed">Confirmada</SelectItem>
+                        <SelectItem value="cancelled">Cancelada</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  <div>
+                    <Label htmlFor="paymentStatus">Estado de Pago</Label>
+                    <Select
+                      value={editForm.watch("paymentStatus")}
+                      onValueChange={(value) => editForm.setValue("paymentStatus", value as any)}
+                    >
+                      <SelectTrigger data-testid="select-payment-status">
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="pending">Pendiente</SelectItem>
+                        <SelectItem value="completed">Completado</SelectItem>
+                        <SelectItem value="failed">Fallido</SelectItem>
+                        <SelectItem value="refunded">Reembolsado</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                </div>
+              </div>
+
+              {/* Payment Info */}
+              <div>
+                <h3 className="font-semibold text-lg mb-3">Información de Pago</h3>
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <Label htmlFor="subtotal">Subtotal (€)</Label>
+                    <Input
+                      id="subtotal"
+                      {...editForm.register("subtotal")}
+                      data-testid="input-subtotal"
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="extrasTotal">Extras (€)</Label>
+                    <Input
+                      id="extrasTotal"
+                      {...editForm.register("extrasTotal")}
+                      data-testid="input-extras-total"
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="deposit">Depósito (€)</Label>
+                    <Input
+                      id="deposit"
+                      {...editForm.register("deposit")}
+                      data-testid="input-deposit"
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="totalAmount">Total (€)</Label>
+                    <Input
+                      id="totalAmount"
+                      {...editForm.register("totalAmount")}
+                      data-testid="input-total-amount"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* Notes */}
+              <div>
+                <Label htmlFor="notes">Notas (opcional)</Label>
+                <Textarea
+                  id="notes"
+                  {...editForm.register("notes")}
+                  rows={3}
+                  data-testid="input-notes"
+                />
+              </div>
+
+              <div className="flex gap-2">
+                <Button
+                  type="submit"
+                  disabled={editBookingMutation.isPending}
+                  data-testid="button-save-booking"
+                >
+                  {editBookingMutation.isPending ? (
+                    "Guardando..."
+                  ) : (
+                    <>
+                      <Save className="w-4 h-4 mr-2" />
+                      Guardar Cambios
+                    </>
+                  )}
+                </Button>
+                <Button
+                  type="button"
+                  variant="outline"
+                  onClick={handleCancelEdit}
+                  disabled={editBookingMutation.isPending}
+                  data-testid="button-cancel-edit"
+                >
+                  Cancelar
+                </Button>
+              </div>
+            </form>
+          )}
           
           <DialogFooter>
-            <Button variant="outline" onClick={() => setShowBookingDetails(false)} data-testid="button-close-modal">
-              Cerrar
-            </Button>
+            {!isEditing && (
+              <Button variant="outline" onClick={() => setShowBookingDetails(false)} data-testid="button-close-modal">
+                Cerrar
+              </Button>
+            )}
           </DialogFooter>
         </DialogContent>
       </Dialog>

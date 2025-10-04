@@ -1194,11 +1194,11 @@ Sitemap: ${baseUrl}/sitemap.xml`;
     }
   });
 
-  // Update booking status (confirm/cancel)
+  // Update booking - full edit support
   app.patch("/api/admin/bookings/:id", requireAdminSession, async (req, res) => {
     try {
       const { id } = req.params;
-      const { bookingStatus, paymentStatus, notes } = req.body;
+      const updates = req.body;
 
       // Validate booking exists
       const existingBooking = await storage.getBooking(id);
@@ -1206,14 +1206,44 @@ Sitemap: ${baseUrl}/sitemap.xml`;
         return res.status(404).json({ message: "Reserva no encontrada" });
       }
 
-      // Prepare updates
-      const updates: any = {};
-      if (bookingStatus) updates.bookingStatus = bookingStatus;
-      if (paymentStatus) updates.paymentStatus = paymentStatus;
-      if (notes !== undefined) updates.notes = notes;
+      // Prepare updates - allow all editable fields
+      const allowedFields = [
+        'customerName',
+        'customerSurname',
+        'customerPhone',
+        'customerEmail',
+        'customerNationality',
+        'numberOfPeople',
+        'boatId',
+        'startTime',
+        'endTime',
+        'totalHours',
+        'subtotal',
+        'extrasTotal',
+        'deposit',
+        'totalAmount',
+        'bookingStatus',
+        'paymentStatus',
+        'notes'
+      ];
+
+      const filteredUpdates: any = {};
+      allowedFields.forEach(field => {
+        if (updates[field] !== undefined) {
+          filteredUpdates[field] = updates[field];
+        }
+      });
+
+      // Convert datetime strings to Date objects if provided
+      if (filteredUpdates.startTime) {
+        filteredUpdates.startTime = new Date(filteredUpdates.startTime);
+      }
+      if (filteredUpdates.endTime) {
+        filteredUpdates.endTime = new Date(filteredUpdates.endTime);
+      }
 
       // Update booking
-      const updatedBooking = await storage.updateBooking(id, updates);
+      const updatedBooking = await storage.updateBooking(id, filteredUpdates);
       
       if (!updatedBooking) {
         return res.status(500).json({ message: "Error actualizando la reserva" });

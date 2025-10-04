@@ -1194,6 +1194,42 @@ Sitemap: ${baseUrl}/sitemap.xml`;
     }
   });
 
+  // Update booking status (confirm/cancel)
+  app.patch("/api/admin/bookings/:id", requireAdminSession, async (req, res) => {
+    try {
+      const { id } = req.params;
+      const { bookingStatus, paymentStatus, notes } = req.body;
+
+      // Validate booking exists
+      const existingBooking = await storage.getBooking(id);
+      if (!existingBooking) {
+        return res.status(404).json({ message: "Reserva no encontrada" });
+      }
+
+      // Prepare updates
+      const updates: any = {};
+      if (bookingStatus) updates.bookingStatus = bookingStatus;
+      if (paymentStatus) updates.paymentStatus = paymentStatus;
+      if (notes !== undefined) updates.notes = notes;
+
+      // Update booking
+      const updatedBooking = await storage.updateBooking(id, updates);
+      
+      if (!updatedBooking) {
+        return res.status(500).json({ message: "Error actualizando la reserva" });
+      }
+
+      res.json({
+        success: true,
+        booking: updatedBooking,
+        message: "Reserva actualizada exitosamente"
+      });
+    } catch (error: any) {
+      console.error("Error updating booking:", error);
+      res.status(500).json({ message: "Error actualizando reserva: " + error.message });
+    }
+  });
+
   // Admin dashboard stats endpoint
   app.get("/api/admin/stats", requireAdminSession, async (req, res) => {
     try {

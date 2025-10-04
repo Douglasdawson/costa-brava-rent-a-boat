@@ -117,6 +117,36 @@ export const insertBookingExtraSchema = createInsertSchema(bookingExtras).omit({
   id: true,
 });
 
+// Update booking schema for PATCH requests (all fields optional)
+export const updateBookingSchema = z.object({
+  customerName: z.string().min(2, "El nombre debe tener al menos 2 caracteres").optional(),
+  customerSurname: z.string().min(2, "Los apellidos deben tener al menos 2 caracteres").optional(),
+  customerPhone: z.string().min(9, "El teléfono debe tener al menos 9 dígitos").optional(),
+  customerEmail: z.string().email("Email inválido").optional().or(z.literal("")),
+  customerNationality: z.string().min(1, "La nacionalidad es requerida").optional(),
+  numberOfPeople: z.coerce.number().int("Debe ser un número entero").min(1, "Debe ser al menos 1 persona").optional(),
+  boatId: z.string().optional(),
+  startTime: z.coerce.date().optional(),
+  endTime: z.coerce.date().optional(),
+  totalHours: z.coerce.number().int("Debe ser un número entero").min(1, "Debe ser al menos 1 hora").optional(),
+  subtotal: z.coerce.number().min(0, "El subtotal no puede ser negativo").optional(),
+  extrasTotal: z.coerce.number().min(0, "Los extras no pueden ser negativos").optional(),
+  deposit: z.coerce.number().min(0, "El depósito no puede ser negativo").optional(),
+  totalAmount: z.coerce.number().min(0, "El total no puede ser negativo").optional(),
+  paymentStatus: z.enum(['pending', 'completed', 'failed', 'refunded']).optional(),
+  bookingStatus: z.enum(['draft', 'hold', 'pending_payment', 'confirmed', 'cancelled']).optional(),
+  notes: z.string().optional(),
+}).refine((data) => {
+  // If both startTime and endTime are provided, validate their order
+  if (data.startTime && data.endTime) {
+    return data.startTime < data.endTime;
+  }
+  return true;
+}, {
+  message: "La hora de fin debe ser posterior a la hora de inicio",
+  path: ["endTime"],
+});
+
 // Types
 export type InsertUser = z.infer<typeof insertUserSchema>;
 export type User = typeof users.$inferSelect;

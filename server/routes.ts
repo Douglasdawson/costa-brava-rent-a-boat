@@ -2,7 +2,7 @@ import type { Express } from "express";
 import express from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
-import { insertBookingSchema, insertBookingExtraSchema, bookings } from "@shared/schema";
+import { insertBookingSchema, insertBookingExtraSchema, updateBookingSchema, bookings } from "@shared/schema";
 import { db } from "./db";
 import { and, eq, lte } from "drizzle-orm";
 import Stripe from "stripe";
@@ -1194,56 +1194,51 @@ Sitemap: ${baseUrl}/sitemap.xml`;
     }
   });
 
-  // Update booking - full edit support
+  // Update booking - full edit support with validation
   app.patch("/api/admin/bookings/:id", requireAdminSession, async (req, res) => {
     try {
       const { id } = req.params;
-      const updates = req.body;
-
+      
       // Validate booking exists
       const existingBooking = await storage.getBooking(id);
       if (!existingBooking) {
         return res.status(404).json({ message: "Reserva no encontrada" });
       }
 
-      // Prepare updates - allow all editable fields
-      const allowedFields = [
-        'customerName',
-        'customerSurname',
-        'customerPhone',
-        'customerEmail',
-        'customerNationality',
-        'numberOfPeople',
-        'boatId',
-        'startTime',
-        'endTime',
-        'totalHours',
-        'subtotal',
-        'extrasTotal',
-        'deposit',
-        'totalAmount',
-        'bookingStatus',
-        'paymentStatus',
-        'notes'
-      ];
-
-      const filteredUpdates: any = {};
-      allowedFields.forEach(field => {
-        if (updates[field] !== undefined) {
-          filteredUpdates[field] = updates[field];
-        }
-      });
-
-      // Convert datetime strings to Date objects if provided
-      if (filteredUpdates.startTime) {
-        filteredUpdates.startTime = new Date(filteredUpdates.startTime);
+      // Validate request body with Zod schema
+      const validationResult = updateBookingSchema.safeParse(req.body);
+      if (!validationResult.success) {
+        return res.status(400).json({ 
+          message: "Datos inválidos",
+          errors: validationResult.error.errors 
+        });
       }
-      if (filteredUpdates.endTime) {
-        filteredUpdates.endTime = new Date(filteredUpdates.endTime);
-      }
+
+      const validatedUpdates = validationResult.data;
+
+      // Prepare updates with proper type conversion
+      const updates: any = {};
+      
+      if (validatedUpdates.customerName !== undefined) updates.customerName = validatedUpdates.customerName;
+      if (validatedUpdates.customerSurname !== undefined) updates.customerSurname = validatedUpdates.customerSurname;
+      if (validatedUpdates.customerPhone !== undefined) updates.customerPhone = validatedUpdates.customerPhone;
+      if (validatedUpdates.customerEmail !== undefined) updates.customerEmail = validatedUpdates.customerEmail;
+      if (validatedUpdates.customerNationality !== undefined) updates.customerNationality = validatedUpdates.customerNationality;
+      if (validatedUpdates.numberOfPeople !== undefined) updates.numberOfPeople = validatedUpdates.numberOfPeople;
+      if (validatedUpdates.boatId !== undefined) updates.boatId = validatedUpdates.boatId;
+      if (validatedUpdates.startTime !== undefined) updates.startTime = validatedUpdates.startTime;
+      if (validatedUpdates.endTime !== undefined) updates.endTime = validatedUpdates.endTime;
+      if (validatedUpdates.totalHours !== undefined) updates.totalHours = validatedUpdates.totalHours;
+      if (validatedUpdates.subtotal !== undefined) updates.subtotal = validatedUpdates.subtotal.toString();
+      if (validatedUpdates.extrasTotal !== undefined) updates.extrasTotal = validatedUpdates.extrasTotal.toString();
+      if (validatedUpdates.deposit !== undefined) updates.deposit = validatedUpdates.deposit.toString();
+      if (validatedUpdates.totalAmount !== undefined) updates.totalAmount = validatedUpdates.totalAmount.toString();
+      if (validatedUpdates.bookingStatus !== undefined) updates.bookingStatus = validatedUpdates.bookingStatus;
+      if (validatedUpdates.paymentStatus !== undefined) updates.paymentStatus = validatedUpdates.paymentStatus;
+      if (validatedUpdates.notes !== undefined) updates.notes = validatedUpdates.notes;
 
       // Update booking
-      const updatedBooking = await storage.updateBooking(id, filteredUpdates);
+      const updatedBooking = await storage.updateBooking(id, updates);
       
       if (!updatedBooking) {
         return res.status(500).json({ message: "Error actualizando la reserva" });

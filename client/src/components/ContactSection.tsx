@@ -408,21 +408,35 @@ export default function ContactSection() {
         {/* Map placeholder */}
         <div className="mt-8">
           <Card className="overflow-hidden">
-            <div className="bg-gradient-to-r from-primary/10 to-primary/5 p-8 text-center">
-              <MapPin className="w-12 h-12 text-primary mx-auto mb-4" />
-              <h3 className="font-heading text-xl font-semibold text-gray-900 mb-2">
-                Nos encontramos en el Puerto de Blanes
-              </h3>
-              <p className="text-gray-600 mb-4">
-                Fácil acceso y parking disponible cerca del puerto deportivo.
-              </p>
-              <Button 
-                variant="outline" 
-                onClick={() => window.open("https://maps.app.goo.gl/VrSkZNG7289VVdJD9", "_blank")}
-                data-testid="button-view-map"
-              >
-                Ver en Google Maps
-              </Button>
+            <div 
+              className="relative p-8 text-center min-h-[300px] flex flex-col items-center justify-center"
+              style={{
+                backgroundImage: `url(https://maps.googleapis.com/maps/api/staticmap?center=41.6722504,2.7978625&zoom=14&size=1200x400&maptype=roadmap&markers=color:red%7Clabel:P%7C41.6722504,2.7978625&key=AIzaSyBXzKg7NeN1RvVJGqGqzKqQVqVBQaGO8Dc)`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center'
+              }}
+            >
+              {/* Overlay oscuro para mejor legibilidad */}
+              <div className="absolute inset-0 bg-black/40"></div>
+              
+              {/* Contenido */}
+              <div className="relative z-10">
+                <MapPin className="w-12 h-12 text-white mx-auto mb-4 drop-shadow-lg" />
+                <h3 className="font-heading text-xl font-semibold text-white mb-2 drop-shadow-lg">
+                  Nos encontramos en el Puerto de Blanes
+                </h3>
+                <p className="text-white/90 mb-4 drop-shadow-lg">
+                  Fácil acceso y parking disponible cerca del puerto deportivo.
+                </p>
+                <Button 
+                  variant="outline" 
+                  onClick={() => window.open("https://maps.app.goo.gl/VrSkZNG7289VVdJD9", "_blank")}
+                  className="bg-white/90 backdrop-blur hover:bg-white"
+                  data-testid="button-view-map"
+                >
+                  Ver en Google Maps
+                </Button>
+              </div>
             </div>
           </Card>
         </div>

@@ -69,7 +69,6 @@ const boatSchema = z.object({
   name: z.string().min(2, "El nombre debe tener al menos 2 caracteres"),
   capacity: z.coerce.number().min(1, "La capacidad debe ser al menos 1"),
   requiresLicense: z.boolean(),
-  pricePerHour: z.string().min(1, "El precio por hora es requerido"),
   deposit: z.string().min(1, "El depósito es requerido"),
   isActive: z.boolean(),
 });
@@ -89,7 +88,6 @@ function FleetManagement({ adminToken }: { adminToken: string }) {
       name: "",
       capacity: 0,
       requiresLicense: false,
-      pricePerHour: "",
       deposit: "",
       isActive: true,
     },
@@ -240,7 +238,6 @@ function FleetManagement({ adminToken }: { adminToken: string }) {
       name: boat.name,
       capacity: boat.capacity,
       requiresLicense: boat.requiresLicense,
-      pricePerHour: boat.pricePerHour,
       deposit: boat.deposit,
       isActive: boat.isActive,
     });
@@ -316,7 +313,6 @@ function FleetManagement({ adminToken }: { adminToken: string }) {
                   <TableHead>Nombre</TableHead>
                   <TableHead>Capacidad</TableHead>
                   <TableHead>Licencia</TableHead>
-                  <TableHead>Precio/Hora</TableHead>
                   <TableHead>Depósito</TableHead>
                   <TableHead>Estado</TableHead>
                   <TableHead className="text-right">Acciones</TableHead>
@@ -332,7 +328,6 @@ function FleetManagement({ adminToken }: { adminToken: string }) {
                         {boat.requiresLicense ? "Requerida" : "No requerida"}
                       </Badge>
                     </TableCell>
-                    <TableCell>€{boat.pricePerHour}/h</TableCell>
                     <TableCell>€{boat.deposit}</TableCell>
                     <TableCell>
                       <Badge variant={boat.isActive ? "default" : "secondary"}>
@@ -430,19 +425,6 @@ function FleetManagement({ adminToken }: { adminToken: string }) {
                 data-testid="checkbox-requires-license"
               />
               <Label htmlFor="requiresLicense">Requiere licencia náutica</Label>
-            </div>
-
-            <div>
-              <Label htmlFor="pricePerHour">Precio por hora (€)</Label>
-              <Input
-                id="pricePerHour"
-                {...boatForm.register("pricePerHour")}
-                placeholder="75.00"
-                data-testid="input-boat-price"
-              />
-              {boatForm.formState.errors.pricePerHour && (
-                <p className="text-sm text-red-500">{boatForm.formState.errors.pricePerHour.message}</p>
-              )}
             </div>
 
             <div>

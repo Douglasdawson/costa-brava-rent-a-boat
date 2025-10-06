@@ -374,56 +374,6 @@ Sitemap: ${baseUrl}/sitemap.xml`;
     }
   });
 
-  // Admin boat management routes (protected)
-  app.post("/api/admin/boats", requireAdminAuth, async (req, res) => {
-    try {
-      const validationResult = insertBoatSchema.safeParse(req.body);
-      if (!validationResult.success) {
-        return res.status(400).json({ 
-          message: "Datos inválidos",
-          errors: validationResult.error.errors 
-        });
-      }
-
-      const newBoat = await storage.createBoat(validationResult.data);
-      res.status(201).json(newBoat);
-    } catch (error: any) {
-      res.status(500).json({ message: "Error creating boat: " + error.message });
-    }
-  });
-
-  app.patch("/api/admin/boats/:id", requireAdminAuth, async (req, res) => {
-    try {
-      const { id } = req.params;
-      
-      const existingBoat = await storage.getBoat(id);
-      if (!existingBoat) {
-        return res.status(404).json({ message: "Barco no encontrado" });
-      }
-
-      const updatedBoat = await storage.updateBoat(id, req.body);
-      res.json(updatedBoat);
-    } catch (error: any) {
-      res.status(500).json({ message: "Error updating boat: " + error.message });
-    }
-  });
-
-  app.delete("/api/admin/boats/:id", requireAdminAuth, async (req, res) => {
-    try {
-      const { id } = req.params;
-      
-      const existingBoat = await storage.getBoat(id);
-      if (!existingBoat) {
-        return res.status(404).json({ message: "Barco no encontrado" });
-      }
-
-      await storage.updateBoat(id, { isActive: false });
-      res.json({ message: "Barco desactivado correctamente" });
-    } catch (error: any) {
-      res.status(500).json({ message: "Error deleting boat: " + error.message });
-    }
-  });
-
   // Quote endpoint - Calculate pricing and create temporary hold
   app.post("/api/quote", async (req, res) => {
     try {
@@ -1322,6 +1272,56 @@ Sitemap: ${baseUrl}/sitemap.xml`;
     next();
   };
 
+  // Admin boat management routes (protected)
+  app.post("/api/admin/boats", requireAdminSession, async (req, res) => {
+    try {
+      const validationResult = insertBoatSchema.safeParse(req.body);
+      if (!validationResult.success) {
+        return res.status(400).json({ 
+          message: "Datos inválidos",
+          errors: validationResult.error.errors 
+        });
+      }
+
+      const newBoat = await storage.createBoat(validationResult.data);
+      res.status(201).json(newBoat);
+    } catch (error: any) {
+      res.status(500).json({ message: "Error creating boat: " + error.message });
+    }
+  });
+
+  app.patch("/api/admin/boats/:id", requireAdminSession, async (req, res) => {
+    try {
+      const { id } = req.params;
+      
+      const existingBoat = await storage.getBoat(id);
+      if (!existingBoat) {
+        return res.status(404).json({ message: "Barco no encontrado" });
+      }
+
+      const updatedBoat = await storage.updateBoat(id, req.body);
+      res.json(updatedBoat);
+    } catch (error: any) {
+      res.status(500).json({ message: "Error updating boat: " + error.message });
+    }
+  });
+
+  app.delete("/api/admin/boats/:id", requireAdminSession, async (req, res) => {
+    try {
+      const { id } = req.params;
+      
+      const existingBoat = await storage.getBoat(id);
+      if (!existingBoat) {
+        return res.status(404).json({ message: "Barco no encontrado" });
+      }
+
+      await storage.updateBoat(id, { isActive: false });
+      res.json({ message: "Barco desactivado correctamente" });
+    } catch (error: any) {
+      res.status(500).json({ message: "Error deleting boat: " + error.message });
+    }
+  });
+
   // Admin routes for calendar/CRM - now protected
   app.get("/api/admin/bookings", requireAdminSession, async (req, res) => {
     try {
@@ -1475,7 +1475,7 @@ Sitemap: ${baseUrl}/sitemap.xml`;
   });
 
   // Initialize boats data - temporary endpoint for setup - now protected
-  app.post("/api/admin/init-boats", requireAdminAuth, async (req, res) => {
+  app.post("/api/admin/init-boats", requireAdminSession, async (req, res) => {
     try {
       // Import SERVER_BOAT_DATA from server-specific file (no PNG imports)
       const { SERVER_BOAT_DATA } = await import("./boatData");

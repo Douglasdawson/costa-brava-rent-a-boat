@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Calendar, Anchor, Clock, MapPin, User, Mail, Phone as PhoneIcon, ChevronDown, Search } from "lucide-react";
+import { Calendar, Anchor, Clock, MapPin, User, Mail, Phone as PhoneIcon, ChevronDown, Search, Shield, Star, CheckCircle } from "lucide-react";
 import { SiWhatsapp } from "react-icons/si";
 import { openWhatsApp } from "@/utils/whatsapp";
 import { BUSINESS_LOCATION } from "@/lib/config";
@@ -891,23 +891,41 @@ export default function Hero() {
           </div>
         </Card>
 
-        {/* Trust indicators */}
-        <div className="mt-4 sm:mt-6 lg:mt-8 grid grid-cols-2 sm:flex sm:flex-wrap justify-center gap-2 sm:gap-3 lg:gap-6 text-white/80 text-xs sm:text-sm px-2 sm:px-4">
-          <div className="flex items-center justify-center sm:justify-start">
-            <div className="w-2 h-2 bg-green-400 rounded-full mr-1 sm:mr-2 flex-shrink-0"></div>
-            <span className="text-center sm:text-left">Precios sin sorpresas</span>
-          </div>
-          <div className="flex items-center justify-center sm:justify-start">
-            <div className="w-2 h-2 bg-green-400 rounded-full mr-1 sm:mr-2 flex-shrink-0"></div>
-            <span className="text-center sm:text-left">Sin licencia requerida</span>
-          </div>
-          <div className="flex items-center justify-center sm:justify-start">
-            <div className="w-2 h-2 bg-green-400 rounded-full mr-1 sm:mr-2 flex-shrink-0"></div>
-            <span className="text-center sm:text-left">Hasta 7 personas</span>
-          </div>
-          <div className="flex items-center justify-center sm:justify-start">
-            <div className="w-2 h-2 bg-green-400 rounded-full mr-1 sm:mr-2 flex-shrink-0"></div>
-            <span className="text-center sm:text-left">Extras disponibles</span>
+        {/* Trust Indicators */}
+        <div className="mt-4 sm:mt-6 max-w-3xl w-full mx-2 sm:mx-4">
+          <div className="flex flex-wrap justify-center items-center gap-3 sm:gap-4 lg:gap-6 text-white/90 text-xs sm:text-sm bg-white/10 backdrop-blur-sm rounded-lg p-3 sm:p-4">
+            <div className="flex items-center space-x-2">
+              <Star className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-400 fill-current flex-shrink-0" />
+              <a 
+                href="https://www.google.com/maps/place/Costa+Brava+Rent+a+Boat+-+Blanes+%7C+Alquiler+de+Barcos+Con+y+Sin+Licencia/@41.6722544,2.7952876,17z/data=!3m1!4b1!4m6!3m5!1s0x12bb172c94a8856f:0x9a2dfa936ef2e0a7!8m2!3d41.6722504!4d2.7978625!16s%2Fg%2F11q2xl6s9f?entry=ttu&g_ep=EgoyMDI1MDkxNy4wIKXMDSoASAFQAw%3D%3D"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-medium hover:text-white transition-colors cursor-pointer"
+                data-testid="google-reviews-link"
+              >
+                4.8/5 valoración media en Google
+              </a>
+            </div>
+            <div className="flex items-center space-x-2">
+              <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-green-400 flex-shrink-0" />
+              <a 
+                href="https://www.google.com/maps/place/Costa+Brava+Rent+a+Boat+-+Blanes+%7C+Alquiler+de+Barcos+Con+y+Sin+Licencia/@41.6722544,2.7952876,17z/data=!3m1!4b1!4m6!3m5!1s0x12bb172c94a8856f:0x9a2dfa936ef2e0a7!8m2!3d41.6722504!4d2.7978625!16s%2Fg%2F11q2xl6s9f?entry=ttu&g_ep=EgoyMDI1MDkxNy4wIKXMDSoASAFQAw%3D%3D"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-medium hover:text-white transition-colors cursor-pointer"
+                data-testid="satisfied-clients-link"
+              >
+                +500 clientes satisfechos
+              </a>
+            </div>
+            <div className="flex items-center space-x-2">
+              <Shield className="w-4 h-4 sm:w-5 sm:h-5 text-blue-400 flex-shrink-0" />
+              <span className="font-medium">Totalmente asegurado</span>
+            </div>
+            <div className="flex items-center space-x-2">
+              <Clock className="w-4 h-4 sm:w-5 sm:h-5 text-purple-400 flex-shrink-0" />
+              <span className="font-medium">5 años de experiencia</span>
+            </div>
           </div>
         </div>
       </div>

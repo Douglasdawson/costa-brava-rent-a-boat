@@ -622,7 +622,7 @@ export default function Hero() {
                 </label>
                 <div className="flex gap-1">
                   {/* Dropdown personalizado de prefijos */}
-                  <div className="relative w-14 sm:w-16 lg:w-28">
+                  <div className="relative w-20 sm:w-24 lg:w-28">
                     <button
                       type="button"
                       onClick={() => {
@@ -698,7 +698,7 @@ export default function Hero() {
                     value={phoneNumber}
                     onChange={(e) => setPhoneNumber(e.target.value)}
                     placeholder="612345678"
-                    className="flex-1 lg:flex-[0.6] px-1 py-1.5 sm:p-2.5 border-0 bg-gray-50 rounded-md focus:ring-2 focus:ring-primary focus:bg-white transition-all text-gray-900 font-medium text-[10px] sm:text-sm text-center md:text-left"
+                    className="flex-1 max-w-[140px] sm:max-w-none lg:flex-[0.6] px-1 py-1.5 sm:p-2.5 border-0 bg-gray-50 rounded-md focus:ring-2 focus:ring-primary focus:bg-white transition-all text-gray-900 font-medium text-[10px] sm:text-sm text-center md:text-left"
                     data-testid="input-phone-number"
                   />
                 </div>

@@ -168,9 +168,6 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
             {boatData.name}
           </h1>
           <p className="text-base sm:text-lg md:text-xl text-gray-600 mb-2">{boatData.subtitle}</p>
-          <Badge variant="outline" className="text-primary border-primary text-xs sm:text-sm">
-            Alquiler en Blanes, Costa Brava
-          </Badge>
         </div>
 
         {/* Image and Description Grid */}
@@ -518,81 +515,11 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                   <Calendar className="w-4 h-4 mr-2" />
                   Reservar Ahora
                 </Button>
-                
-                <Button 
-                  variant="outline"
-                  onClick={handleWhatsApp}
-                  data-testid="button-whatsapp-info"
-                >
-                  <MessageSquare className="w-4 h-4 mr-2" />
-                  Más información por WhatsApp
-                </Button>
               </div>
             </div>
           </CardContent>
         </Card>
 
-        {/* Location & Map Section */}
-        <Card className="mb-8">
-          <CardHeader>
-            <CardTitle>Ubicación - Costa Brava Rent a Boat</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-4">
-              <div className="text-sm text-gray-700">
-                <p className="mb-2">
-                  <strong>Costa Brava Rent a Boat - Blanes | Alquiler de Barcos Con y Sin Licencia</strong> se encuentra en el Puerto de Blanes, 
-                  el punto de partida perfecto para explorar las calas más hermosas de la Costa Brava.
-                </p>
-                <p className="text-gray-600">
-                  📍 <a 
-                    href="https://maps.app.goo.gl/ma3qtsJbuFNhcr4bA"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="hover:text-primary transition-colors cursor-pointer underline"
-                    data-testid="link-location-maps"
-                  >
-                    Costa Brava Rent a Boat - Blanes, Puerto de Blanes, 17300 Blanes, Girona
-                  </a>
-                </p>
-              </div>
-              
-              {/* Embedded Google Map */}
-              <div className="w-full h-64 md:h-80 rounded-lg overflow-hidden border">
-                <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2980.1411982500704!2d2.7957177!3d41.6742939!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12bb172c94a8856f%3A0x9a2dfa936ef2e0a7!2sCosta%20Brava%20Rent%20a%20Boat%20-%20Blanes%20%7C%20Alquiler%20de%20Barcos%20Con%20y%20Sin%20Licencia!5e0!3m2!1ses!2ses!4v1758876869141!5m2!1ses!2ses"
-                  width="100%"
-                  height="100%"
-                  style={{ border: 0 }}
-                  allowFullScreen
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  title="Ubicación de Costa Brava Rent a Boat - Blanes | Alquiler de Barcos Con y Sin Licencia"
-                  data-testid="map-location"
-                />
-              </div>
-
-              <div className="grid md:grid-cols-2 gap-4 text-sm text-gray-600">
-                <div>
-                  <h4 className="font-medium text-gray-900 mb-2">Cómo llegar:</h4>
-                  <ul className="space-y-1">
-                    <li>• Desde Barcelona: AP-7 hacia Girona, salida Blanes</li>
-                    <li>• Desde Girona: N-II dirección Blanes</li>
-                    <li>• Parking disponible en el puerto</li>
-                  </ul>
-                </div>
-                <div>
-                  <h4 className="font-medium text-gray-900 mb-2">Servicios cercanos:</h4>
-                  <ul className="space-y-1">
-                    <li>• Restaurantes y chiringuitos</li>
-                    <li>• Tiendas náuticas</li>
-                    <li>• Estación de servicio marina</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
       </div>
 
       <Footer />

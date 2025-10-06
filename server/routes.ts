@@ -2,7 +2,7 @@ import type { Express } from "express";
 import express from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
-import { insertBookingSchema, insertBookingExtraSchema, updateBookingSchema, bookings } from "@shared/schema";
+import { insertBookingSchema, insertBookingExtraSchema, updateBookingSchema, bookings, insertBoatSchema } from "@shared/schema";
 import { db } from "./db";
 import { and, eq, lte } from "drizzle-orm";
 import Stripe from "stripe";
@@ -371,6 +371,56 @@ Sitemap: ${baseUrl}/sitemap.xml`;
         reason: "server_error",
         conflictingBookings: []
       });
+    }
+  });
+
+  // Admin boat management routes (protected)
+  app.post("/api/admin/boats", requireAdminAuth, async (req, res) => {
+    try {
+      const validationResult = insertBoatSchema.safeParse(req.body);
+      if (!validationResult.success) {
+        return res.status(400).json({ 
+          message: "Datos inválidos",
+          errors: validationResult.error.errors 
+        });
+      }
+
+      const newBoat = await storage.createBoat(validationResult.data);
+      res.status(201).json(newBoat);
+    } catch (error: any) {
+      res.status(500).json({ message: "Error creating boat: " + error.message });
+    }
+  });
+
+  app.patch("/api/admin/boats/:id", requireAdminAuth, async (req, res) => {
+    try {
+      const { id } = req.params;
+      
+      const existingBoat = await storage.getBoat(id);
+      if (!existingBoat) {
+        return res.status(404).json({ message: "Barco no encontrado" });
+      }
+
+      const updatedBoat = await storage.updateBoat(id, req.body);
+      res.json(updatedBoat);
+    } catch (error: any) {
+      res.status(500).json({ message: "Error updating boat: " + error.message });
+    }
+  });
+
+  app.delete("/api/admin/boats/:id", requireAdminAuth, async (req, res) => {
+    try {
+      const { id } = req.params;
+      
+      const existingBoat = await storage.getBoat(id);
+      if (!existingBoat) {
+        return res.status(404).json({ message: "Barco no encontrado" });
+      }
+
+      await storage.updateBoat(id, { isActive: false });
+      res.json({ message: "Barco desactivado correctamente" });
+    } catch (error: any) {
+      res.status(500).json({ message: "Error deleting boat: " + error.message });
     }
   });
 

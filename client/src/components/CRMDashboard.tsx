@@ -202,6 +202,37 @@ function FleetManagement({ adminToken }: { adminToken: string }) {
     },
   });
 
+  // Import boats mutation
+  const importBoatsMutation = useMutation({
+    mutationFn: async () => {
+      const response = await fetch('/api/admin/init-boats', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${adminToken}`,
+        },
+      });
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.message || 'Error al importar barcos');
+      }
+      return response.json();
+    },
+    onSuccess: (data) => {
+      queryClient.invalidateQueries({ queryKey: ['/api/boats'] });
+      toast({
+        title: "Barcos importados",
+        description: `Se han importado ${data.created} de ${data.total} barcos correctamente`,
+      });
+    },
+    onError: (error: Error) => {
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: error.message,
+      });
+    },
+  });
+
   const handleEditBoat = (boat: any) => {
     setEditingBoat(boat);
     boatForm.reset({
@@ -252,11 +283,25 @@ function FleetManagement({ adminToken }: { adminToken: string }) {
           <CardContent className="py-12 text-center">
             <Anchor className="w-12 h-12 mx-auto mb-4 text-gray-400" />
             <h3 className="text-lg font-semibold mb-2">No hay barcos registrados</h3>
-            <p className="text-gray-600 mb-4">Comienza agregando tu primer barco a la flota</p>
-            <Button onClick={() => setShowBoatDialog(true)} data-testid="button-add-first-boat">
-              <Plus className="w-4 h-4 mr-2" />
-              Agregar Primer Barco
-            </Button>
+            <p className="text-gray-600 mb-4">Importa los 7 barcos de la flota o agrega uno manualmente</p>
+            <div className="flex justify-center gap-4">
+              <Button 
+                onClick={() => importBoatsMutation.mutate()} 
+                disabled={importBoatsMutation.isPending}
+                data-testid="button-import-boats"
+              >
+                <Download className="w-4 h-4 mr-2" />
+                {importBoatsMutation.isPending ? "Importando..." : "Importar Flota (7 barcos)"}
+              </Button>
+              <Button 
+                variant="outline"
+                onClick={() => setShowBoatDialog(true)} 
+                data-testid="button-add-first-boat"
+              >
+                <Plus className="w-4 h-4 mr-2" />
+                Agregar Manualmente
+              </Button>
+            </div>
           </CardContent>
         </Card>
       ) : (

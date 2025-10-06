@@ -1486,7 +1486,7 @@ Sitemap: ${baseUrl}/sitemap.xml`;
           name: "Solar 450",
           capacity: 5,
           requiresLicense: false,
-          pricePerHour: "75", // Base price from BAJA season
+          pricePerHour: "75",
           deposit: "250",
           specifications: {
             model: "Solar 450",
@@ -1532,7 +1532,7 @@ Sitemap: ${baseUrl}/sitemap.xml`;
         {
           id: "astec-450",
           name: "Astec 450",
-          capacity: 6,
+          capacity: 5,
           requiresLicense: false,
           pricePerHour: "85",
           deposit: "300",
@@ -1551,7 +1551,7 @@ Sitemap: ${baseUrl}/sitemap.xml`;
           capacity: 7,
           requiresLicense: true,
           pricePerHour: "120",
-          deposit: "400",
+          deposit: "500",
           specifications: {
             model: "Pacific Craft 625",
             length: "6,25m",
@@ -1559,12 +1559,12 @@ Sitemap: ${baseUrl}/sitemap.xml`;
             engine: "Mercury 115cv 4t",
             fuel: "Gasolina 150L",
           },
-          equipment: ["Toldo Bimini", "Solárium proa y popa", "Escalera de baño", "Equipo de navegación", "Equipo de seguridad"]
+          equipment: ["Toldo Bimini", "Solárium proa y popa", "Escalera de baño", "Equipo de navegación", "Equipo de seguridad", "Equipo de música"]
         },
         {
           id: "trimarchi-57s",
           name: "Trimarchi 57S",
-          capacity: 8,
+          capacity: 7,
           requiresLicense: true,
           pricePerHour: "140",
           deposit: "500",
@@ -1580,10 +1580,10 @@ Sitemap: ${baseUrl}/sitemap.xml`;
         {
           id: "mingolla-brava-19",
           name: "Mingolla Brava 19",
-          capacity: 8,
+          capacity: 6,
           requiresLicense: true,
           pricePerHour: "150",
-          deposit: "600",
+          deposit: "500",
           specifications: {
             model: "Mingolla Brava 19",
             length: "5,80m",

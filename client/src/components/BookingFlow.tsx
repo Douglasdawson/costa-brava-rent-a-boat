@@ -807,7 +807,7 @@ export default function BookingFlow({
             <CardContent>
               {/* License Filter */}
               <div className="mb-6">
-                <h3 className="font-medium text-gray-900 mb-3">Tipo de embarcación</h3>
+                <h3 className="font-medium text-gray-900 mb-3 text-base">Tipo de embarcación</h3>
                 <div className="flex gap-2">
                   <Button
                     variant={licenseFilter === "all" ? "default" : "outline"}
@@ -905,7 +905,7 @@ export default function BookingFlow({
             </CardHeader>
             <CardContent>
               <div className="mb-6">
-                <h3 className="font-medium text-gray-900 mb-3">Horario de inicio</h3>
+                <h3 className="font-medium text-gray-900 mb-3 text-base">Horario de inicio</h3>
                 <div className="space-y-2">
                   {timeSlots.map((slot) => (
                     <button
@@ -944,7 +944,7 @@ export default function BookingFlow({
 
               {selectedTime && (
                 <div className="mb-6">
-                  <h3 className="font-medium text-gray-900 mb-3">Duración</h3>
+                  <h3 className="font-medium text-gray-900 mb-3 text-base">Duración</h3>
                   <div className="grid grid-cols-2 gap-3">
                     {getAvailableDurations(selectedTime).map((dur) => (
                       <button
@@ -1044,7 +1044,7 @@ export default function BookingFlow({
               <div className="space-y-4 mb-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-base font-medium text-gray-700 mb-2">
                       Nombre *
                     </label>
                     <input
@@ -1057,7 +1057,7 @@ export default function BookingFlow({
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-base font-medium text-gray-700 mb-2">
                       Apellidos *
                     </label>
                     <input
@@ -1071,7 +1071,7 @@ export default function BookingFlow({
                   </div>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-base font-medium text-gray-700 mb-2">
                     Email *
                   </label>
                   <input
@@ -1084,7 +1084,7 @@ export default function BookingFlow({
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-base font-medium text-gray-700 mb-2">
                     Teléfono *
                   </label>
                   <div className="flex gap-2">

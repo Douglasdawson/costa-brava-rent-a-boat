@@ -111,29 +111,29 @@ export default function FeaturesSection() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+          <div className="grid grid-cols-2 gap-3 sm:gap-4 md:gap-6 mb-8">
             {extras.map((extra, index) => (
               <Card key={index} className="overflow-hidden hover-elevate">
-                <div className="md:flex">
-                  <div className="md:w-1/2">
+                <div className="flex flex-col">
+                  <div className="w-full aspect-square">
                     <img 
                       src={extra.image} 
                       alt={extra.name}
-                      className="w-full h-48 md:h-full object-cover"
+                      className="w-full h-full object-cover"
                     />
                   </div>
-                  <div className="md:w-1/2 p-6 flex flex-col justify-center">
-                    <h4 className="font-heading font-semibold text-xl text-gray-900 mb-2">
+                  <div className="p-3 sm:p-4 md:p-6 flex flex-col justify-center">
+                    <h4 className="font-heading font-semibold text-sm sm:text-base md:text-xl text-gray-900 mb-1 sm:mb-2">
                       {extra.name}
                     </h4>
-                    <p className="text-gray-600 mb-4">
+                    <p className="text-xs sm:text-sm md:text-base text-gray-600 mb-2 sm:mb-3 md:mb-4">
                       {extra.description}
                     </p>
                     <div className="flex items-center justify-between">
-                      <span className="text-2xl font-bold text-primary">
+                      <span className="text-base sm:text-xl md:text-2xl font-bold text-primary">
                         {extra.price}
                       </span>
-                      <CheckCircle className="w-5 h-5 text-green-600" />
+                      <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-green-600" />
                     </div>
                   </div>
                 </div>

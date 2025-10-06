@@ -192,7 +192,7 @@ export default function ContactSection() {
                     name="phone"
                     value={formData.phone}
                     onChange={handleInputChange}
-                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary h-12 bg-white text-gray-900"
+                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary h-12 bg-white text-gray-900 overflow-hidden text-ellipsis"
                     placeholder="+34 600 000 000"
                     data-testid="input-contact-phone"
                   />

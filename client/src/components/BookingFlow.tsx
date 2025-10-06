@@ -1087,8 +1087,8 @@ export default function BookingFlow({
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Teléfono *
                   </label>
-                  <div className="flex gap-2 w-full">
-                    <div className="relative" style={{ width: '120px', flexShrink: 0 }}>
+                  <div className="flex gap-2">
+                    <div className="relative w-28 flex-shrink-0">
                       <input
                         type="text"
                         value={phonePrefixSearch || customerData.phonePrefix}
@@ -1105,7 +1105,7 @@ export default function BookingFlow({
                         data-testid="input-phone-prefix-search"
                       />
                       {showPhonePrefixDropdown && filteredPhoneCountries.length > 0 && (
-                        <div className="absolute z-10 left-0 w-72 max-h-48 overflow-y-auto bg-white border border-gray-300 rounded-lg shadow-lg mt-1">
+                        <div className="absolute z-10 left-0 min-w-full w-max max-w-xs max-h-48 overflow-y-auto bg-white border border-gray-300 rounded-lg shadow-lg mt-1">
                           {filteredPhoneCountries.slice(0, 8).map((country) => (
                             <button
                               key={country.code}

@@ -327,6 +327,43 @@ export default function ContactSection() {
               </Card>
             </Link>
 
+            {/* Visita Tossa de Mar */}
+            <Link href="/visita-tossa-de-mar" asChild>
+              <Card className="hover:shadow-lg transition-shadow cursor-pointer group">
+                <CardHeader>
+                  <div className="w-12 h-12 bg-purple-50 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
+                    <Camera className="w-6 h-6 text-purple-600" />
+                  </div>
+                  <CardTitle className="text-lg text-center">Visita Tossa de Mar</CardTitle>
+                </CardHeader>
+                <CardContent className="text-center">
+                  <div className="mb-3">
+                    <Badge variant="outline" className="mb-2">
+                      <Clock className="w-3 h-3 mr-1" />
+                      45 min desde Blanes
+                    </Badge>
+                  </div>
+                  <p className="text-gray-600 mb-3 text-sm leading-relaxed">
+                    Pueblo medieval con castillo y aguas cristalinas. Un paraíso mediterráneo que no puedes perderte.
+                  </p>
+                  <div className="flex flex-wrap gap-1 justify-center mb-3">
+                    <span className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded">Castillo medieval</span>
+                    <span className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded">Aguas cristalinas</span>
+                    <span className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded">Pueblo pintoresco</span>
+                  </div>
+                  <Button 
+                    variant="outline" 
+                    size="sm"
+                    className="group-hover:bg-primary group-hover:text-white transition-colors"
+                    data-testid="link-tossa"
+                  >
+                    Ver Detalles
+                    <ExternalLink className="w-3 h-3 ml-1" />
+                  </Button>
+                </CardContent>
+              </Card>
+            </Link>
+
             {/* Barcos Con Licencia */}
             <Link href="/barcos-con-licencia" asChild>
               <Card className="hover:shadow-lg transition-shadow cursor-pointer group">

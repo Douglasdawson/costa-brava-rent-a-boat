@@ -123,10 +123,10 @@ export default function Hero() {
   }, [selectedBoat, selectedBoatInfo, licenseFilter]);
 
   const handleBookingSearch = async () => {
-    // Validate all fields
+    // Validate all fields - ALL ARE REQUIRED
     if (!firstName.trim()) {
       toast({
-        title: "Nombre requerido",
+        title: "Campo vacío: Nombre",
         description: "Por favor ingresa tu nombre",
         variant: "destructive",
       });
@@ -135,7 +135,7 @@ export default function Hero() {
 
     if (!lastName.trim()) {
       toast({
-        title: "Apellidos requeridos",
+        title: "Campo vacío: Apellidos",
         description: "Por favor ingresa tus apellidos",
         variant: "destructive",
       });
@@ -144,14 +144,23 @@ export default function Hero() {
 
     if (!phoneNumber.trim()) {
       toast({
-        title: "Teléfono requerido",
+        title: "Campo vacío: Teléfono",
         description: "Por favor ingresa tu número de teléfono",
         variant: "destructive",
       });
       return;
     }
 
-    if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    if (!email.trim()) {
+      toast({
+        title: "Campo vacío: Email",
+        description: "Por favor ingresa tu correo electrónico",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       toast({
         title: "Email inválido",
         description: "Por favor ingresa un email válido",
@@ -162,7 +171,7 @@ export default function Hero() {
     
     if (!selectedDate) {
       toast({
-        title: "Fecha requerida",
+        title: "Campo vacío: Fecha",
         description: "Por favor selecciona una fecha para tu alquiler",
         variant: "destructive",
       });
@@ -171,7 +180,7 @@ export default function Hero() {
     
     if (!selectedBoat) {
       toast({
-        title: "Embarcación requerida", 
+        title: "Campo vacío: Barco", 
         description: "Por favor selecciona una embarcación",
         variant: "destructive",
       });
@@ -180,7 +189,7 @@ export default function Hero() {
     
     if (!selectedDuration) {
       toast({
-        title: "Duración requerida",
+        title: "Campo vacío: Duración",
         description: "Por favor selecciona la duración del alquiler",
         variant: "destructive",
       });
@@ -224,7 +233,7 @@ export default function Hero() {
           lastName: lastName.trim(),
           phonePrefix: phonePrefix,
           phoneNumber: phoneNumber.trim(),
-          ...(email && { email: email.trim() })
+          email: email.trim()
         });
         
         toast({
@@ -364,7 +373,7 @@ export default function Hero() {
                   <div className="w-5 h-5 sm:w-6 sm:h-6 bg-primary/10 rounded-full flex items-center justify-center mr-1 sm:mr-2">
                     <Mail className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-primary" />
                   </div>
-                  Email (opcional)
+                  Email
                 </label>
                 <input
                   type="email"

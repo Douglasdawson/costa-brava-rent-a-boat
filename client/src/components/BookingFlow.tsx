@@ -767,7 +767,7 @@ export default function BookingFlow({
         {step === 1 && (
           <Card>
             <CardHeader>
-              <CardTitle className="flex items-center">
+              <CardTitle className="flex items-center text-lg">
                 <Calendar className="w-5 h-5 mr-2" />
 {t.booking.selectDate}
               </CardTitle>
@@ -799,7 +799,7 @@ export default function BookingFlow({
         {step === 2 && (
           <Card>
             <CardHeader>
-              <CardTitle className="flex items-center">
+              <CardTitle className="flex items-center text-lg">
                 <Anchor className="w-5 h-5 mr-2" />
                 Selecciona tu embarcación
               </CardTitle>

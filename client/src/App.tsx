@@ -11,7 +11,6 @@ import { LanguageProvider } from "@/hooks/use-language";
 import Navigation from "./components/Navigation";
 import Hero from "./components/Hero";
 import FeaturesSection from "./components/FeaturesSection";
-import DestinationsSection from "./components/DestinationsSection";
 import FleetSection from "./components/FleetSection";
 import ContactSection from "./components/ContactSection";
 import Footer from "./components/Footer";
@@ -76,7 +75,6 @@ function HomePage() {
       />
       <Navigation />
       <Hero />
-      <DestinationsSection />
       <FleetSection />
       <FeaturesSection />
       <ContactSection />

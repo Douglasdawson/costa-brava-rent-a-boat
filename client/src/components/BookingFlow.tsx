@@ -1083,7 +1083,7 @@ export default function BookingFlow({
                     data-testid="input-customer-email"
                   />
                 </div>
-                <div>
+                <div className="max-w-[70%]">
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Teléfono *
                   </label>

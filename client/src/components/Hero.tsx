@@ -665,9 +665,9 @@ export default function Hero() {
                           {/* Lista de prefijos */}
                           <div className="overflow-y-auto flex-1">
                             {filteredPrefixes.length > 0 ? (
-                              filteredPrefixes.map((prefix) => (
+                              filteredPrefixes.map((prefix, index) => (
                                 <button
-                                  key={prefix.code}
+                                  key={`prefix-${index}`}
                                   type="button"
                                   onClick={() => {
                                     setPhonePrefix(prefix.code);

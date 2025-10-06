@@ -588,7 +588,7 @@ export default function Hero() {
                   value={firstName}
                   onChange={(e) => setFirstName(e.target.value)}
                   placeholder="Ej: Juan"
-                  className="w-full p-2 sm:p-2.5 border-0 bg-gray-50 rounded-md focus:ring-2 focus:ring-primary focus:bg-white transition-all text-gray-900 font-medium text-xs sm:text-sm"
+                  className="w-full p-2 sm:p-2.5 border-0 bg-gray-50 rounded-md focus:ring-2 focus:ring-primary focus:bg-white transition-all text-gray-900 font-medium text-xs sm:text-sm text-center"
                   data-testid="input-first-name"
                 />
               </div>
@@ -606,7 +606,7 @@ export default function Hero() {
                   value={lastName}
                   onChange={(e) => setLastName(e.target.value)}
                   placeholder="Ej: García López"
-                  className="w-full p-2 sm:p-2.5 border-0 bg-gray-50 rounded-md focus:ring-2 focus:ring-primary focus:bg-white transition-all text-gray-900 font-medium text-xs sm:text-sm"
+                  className="w-full p-2 sm:p-2.5 border-0 bg-gray-50 rounded-md focus:ring-2 focus:ring-primary focus:bg-white transition-all text-gray-900 font-medium text-xs sm:text-sm text-center"
                   data-testid="input-last-name"
                 />
               </div>
@@ -697,7 +697,7 @@ export default function Hero() {
                     value={phoneNumber}
                     onChange={(e) => setPhoneNumber(e.target.value)}
                     placeholder="612345678"
-                    className="flex-1 p-2 sm:p-2.5 border-0 bg-gray-50 rounded-md focus:ring-2 focus:ring-primary focus:bg-white transition-all text-gray-900 font-medium text-xs sm:text-sm"
+                    className="flex-1 p-2 sm:p-2.5 border-0 bg-gray-50 rounded-md focus:ring-2 focus:ring-primary focus:bg-white transition-all text-gray-900 font-medium text-xs sm:text-sm text-center"
                     data-testid="input-phone-number"
                   />
                 </div>
@@ -716,7 +716,7 @@ export default function Hero() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="ejemplo@email.com"
-                  className="w-full p-2 sm:p-2.5 border-0 bg-gray-50 rounded-md focus:ring-2 focus:ring-primary focus:bg-white transition-all text-gray-900 font-medium text-xs sm:text-sm"
+                  className="w-full p-2 sm:p-2.5 border-0 bg-gray-50 rounded-md focus:ring-2 focus:ring-primary focus:bg-white transition-all text-gray-900 font-medium text-xs sm:text-sm text-center"
                   data-testid="input-email"
                 />
               </div>
@@ -780,7 +780,7 @@ export default function Hero() {
                   value={selectedBoat}
                   onChange={(e) => setSelectedBoat(e.target.value)}
                   disabled={isLoadingBoats}
-                  className="w-full p-2 border-0 bg-gray-50 rounded-md focus:ring-2 focus:ring-primary focus:bg-white transition-all text-gray-900 font-medium appearance-none cursor-pointer text-xs disabled:opacity-50"
+                  className="w-full p-2 border-0 bg-gray-50 rounded-md focus:ring-2 focus:ring-primary focus:bg-white transition-all text-gray-900 font-medium appearance-none cursor-pointer text-xs disabled:opacity-50 text-center"
                   data-testid="select-boat-type"
                 >
                   <option value="">
@@ -810,7 +810,7 @@ export default function Hero() {
                   value={selectedDate}
                   onChange={(e) => setSelectedDate(e.target.value)}
                   min={getLocalISODate()}
-                  className="w-full p-2 border-0 bg-gray-50 rounded-md focus:ring-2 focus:ring-primary focus:bg-white transition-all text-gray-900 font-medium text-xs date-left-align"
+                  className="w-full p-2 border-0 bg-gray-50 rounded-md focus:ring-2 focus:ring-primary focus:bg-white transition-all text-gray-900 font-medium text-xs text-center"
                   data-testid="input-booking-date"
                 />
               </div>
@@ -826,7 +826,7 @@ export default function Hero() {
                 <select
                   value={selectedDuration}
                   onChange={(e) => setSelectedDuration(e.target.value)}
-                  className="w-full p-2 border-0 bg-gray-50 rounded-md focus:ring-2 focus:ring-primary focus:bg-white transition-all text-gray-900 font-medium appearance-none cursor-pointer text-xs"
+                  className="w-full p-2 border-0 bg-gray-50 rounded-md focus:ring-2 focus:ring-primary focus:bg-white transition-all text-gray-900 font-medium appearance-none cursor-pointer text-xs text-center"
                   data-testid="select-duration"
                 >
                   <option value="">Seleccionar</option>

@@ -408,34 +408,41 @@ export default function ContactSection() {
         {/* Map placeholder */}
         <div className="mt-8">
           <Card className="overflow-hidden">
-            <div 
-              className="relative p-8 text-center min-h-[300px] flex flex-col items-center justify-center"
-              style={{
-                backgroundImage: `url(https://maps.googleapis.com/maps/api/staticmap?center=41.6722504,2.7978625&zoom=14&size=1200x400&maptype=roadmap&markers=color:red%7Clabel:P%7C41.6722504,2.7978625&key=AIzaSyBXzKg7NeN1RvVJGqGqzKqQVqVBQaGO8Dc)`,
-                backgroundSize: 'cover',
-                backgroundPosition: 'center'
-              }}
-            >
+            <div className="relative min-h-[400px] sm:min-h-[450px]">
+              {/* Google Maps iframe de fondo */}
+              <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2980.1411982500704!2d2.7957177!3d41.6742939!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12bb172c94a8856f%3A0x9a2dfa936ef2e0a7!2sCosta%20Brava%20Rent%20a%20Boat%20-%20Blanes%20%7C%20Alquiler%20de%20Barcos%20Con%20y%20Sin%20Licencia!5e0!3m2!1ses!2ses!4v1759782051685!5m2!1ses!2ses" 
+                className="absolute inset-0 w-full h-full"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy" 
+                referrerPolicy="no-referrer-when-downgrade"
+              />
+              
               {/* Overlay oscuro para mejor legibilidad */}
-              <div className="absolute inset-0 bg-black/40"></div>
+              <div className="absolute inset-0 bg-black/40 pointer-events-none"></div>
               
               {/* Contenido */}
-              <div className="relative z-10">
-                <MapPin className="w-12 h-12 text-white mx-auto mb-4 drop-shadow-lg" />
-                <h3 className="font-heading text-xl font-semibold text-white mb-2 drop-shadow-lg">
-                  Nos encontramos en el Puerto de Blanes
-                </h3>
-                <p className="text-white/90 mb-4 drop-shadow-lg">
-                  Fácil acceso y parking disponible cerca del puerto deportivo.
-                </p>
-                <Button 
-                  variant="outline" 
-                  onClick={() => window.open("https://maps.app.goo.gl/VrSkZNG7289VVdJD9", "_blank")}
-                  className="bg-white/90 backdrop-blur hover:bg-white"
-                  data-testid="button-view-map"
-                >
-                  Ver en Google Maps
-                </Button>
+              <div className="relative z-10 p-8 flex flex-col items-center justify-center min-h-[400px] sm:min-h-[450px] pointer-events-none">
+                <div className="pointer-events-auto">
+                  <MapPin className="w-12 h-12 text-white mx-auto mb-4 drop-shadow-lg" />
+                  <h3 className="font-heading text-xl font-semibold text-white mb-2 drop-shadow-lg text-center">
+                    Nos encontramos en el Puerto de Blanes
+                  </h3>
+                  <p className="text-white/90 mb-4 drop-shadow-lg text-center">
+                    Fácil acceso y parking disponible cerca del puerto deportivo.
+                  </p>
+                  <div className="text-center">
+                    <Button 
+                      variant="outline" 
+                      onClick={() => window.open("https://maps.app.goo.gl/VrSkZNG7289VVdJD9", "_blank")}
+                      className="bg-white/90 backdrop-blur hover:bg-white"
+                      data-testid="button-view-map"
+                    >
+                      Ver en Google Maps
+                    </Button>
+                  </div>
+                </div>
               </div>
             </div>
           </Card>

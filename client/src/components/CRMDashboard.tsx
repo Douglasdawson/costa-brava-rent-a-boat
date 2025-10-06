@@ -63,6 +63,395 @@ const editBookingSchema = z.object({
 
 type EditBookingFormData = z.infer<typeof editBookingSchema>;
 
+// Validation schema for boat
+const boatSchema = z.object({
+  id: z.string().min(1, "El ID es requerido"),
+  name: z.string().min(2, "El nombre debe tener al menos 2 caracteres"),
+  capacity: z.coerce.number().min(1, "La capacidad debe ser al menos 1"),
+  requiresLicense: z.boolean(),
+  pricePerHour: z.string().min(1, "El precio por hora es requerido"),
+  deposit: z.string().min(1, "El depósito es requerido"),
+  isActive: z.boolean(),
+});
+
+type BoatFormData = z.infer<typeof boatSchema>;
+
+// Fleet Management Component
+function FleetManagement({ adminToken }: { adminToken: string }) {
+  const [showBoatDialog, setShowBoatDialog] = useState(false);
+  const [editingBoat, setEditingBoat] = useState<any | null>(null);
+  const { toast } = useToast();
+
+  const boatForm = useForm<BoatFormData>({
+    resolver: zodResolver(boatSchema),
+    defaultValues: {
+      id: "",
+      name: "",
+      capacity: 0,
+      requiresLicense: false,
+      pricePerHour: "",
+      deposit: "",
+      isActive: true,
+    },
+  });
+
+  // Fetch all boats (including inactive)
+  const { data: boats, isLoading: boatsLoading } = useQuery({
+    queryKey: ['/api/boats'],
+  });
+
+  // Create boat mutation
+  const createBoatMutation = useMutation({
+    mutationFn: async (data: BoatFormData) => {
+      const response = await fetch('/api/admin/boats', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${adminToken}`,
+        },
+        body: JSON.stringify(data),
+      });
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.message || 'Error al crear el barco');
+      }
+      return response.json();
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['/api/boats'] });
+      toast({
+        title: "Barco creado",
+        description: "El barco se ha agregado correctamente",
+      });
+      setShowBoatDialog(false);
+      boatForm.reset();
+    },
+    onError: (error: Error) => {
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: error.message,
+      });
+    },
+  });
+
+  // Update boat mutation
+  const updateBoatMutation = useMutation({
+    mutationFn: async ({ id, data }: { id: string; data: Partial<BoatFormData> }) => {
+      const response = await fetch(`/api/admin/boats/${id}`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${adminToken}`,
+        },
+        body: JSON.stringify(data),
+      });
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.message || 'Error al actualizar el barco');
+      }
+      return response.json();
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['/api/boats'] });
+      toast({
+        title: "Barco actualizado",
+        description: "Los cambios se han guardado correctamente",
+      });
+      setShowBoatDialog(false);
+      setEditingBoat(null);
+      boatForm.reset();
+    },
+    onError: (error: Error) => {
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: error.message,
+      });
+    },
+  });
+
+  // Delete (deactivate) boat mutation
+  const deleteBoatMutation = useMutation({
+    mutationFn: async (id: string) => {
+      const response = await fetch(`/api/admin/boats/${id}`, {
+        method: 'DELETE',
+        headers: {
+          'Authorization': `Bearer ${adminToken}`,
+        },
+      });
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.message || 'Error al eliminar el barco');
+      }
+      return response.json();
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['/api/boats'] });
+      toast({
+        title: "Barco desactivado",
+        description: "El barco ha sido desactivado correctamente",
+      });
+    },
+    onError: (error: Error) => {
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: error.message,
+      });
+    },
+  });
+
+  const handleEditBoat = (boat: any) => {
+    setEditingBoat(boat);
+    boatForm.reset({
+      id: boat.id,
+      name: boat.name,
+      capacity: boat.capacity,
+      requiresLicense: boat.requiresLicense,
+      pricePerHour: boat.pricePerHour,
+      deposit: boat.deposit,
+      isActive: boat.isActive,
+    });
+    setShowBoatDialog(true);
+  };
+
+  const handleSubmit = (data: BoatFormData) => {
+    if (editingBoat) {
+      updateBoatMutation.mutate({ id: data.id, data });
+    } else {
+      createBoatMutation.mutate(data);
+    }
+  };
+
+  return (
+    <div className="space-y-6">
+      <div className="flex items-center justify-between">
+        <h2 className="text-2xl font-bold">Gestión de Flota</h2>
+        <Button
+          onClick={() => {
+            setEditingBoat(null);
+            boatForm.reset();
+            setShowBoatDialog(true);
+          }}
+          data-testid="button-add-boat"
+        >
+          <Plus className="w-4 h-4 mr-2" />
+          Agregar Barco
+        </Button>
+      </div>
+
+      {boatsLoading ? (
+        <Card>
+          <CardContent className="py-12 text-center">
+            <p className="text-gray-600">Cargando flota...</p>
+          </CardContent>
+        </Card>
+      ) : !boats || boats.length === 0 ? (
+        <Card>
+          <CardContent className="py-12 text-center">
+            <Anchor className="w-12 h-12 mx-auto mb-4 text-gray-400" />
+            <h3 className="text-lg font-semibold mb-2">No hay barcos registrados</h3>
+            <p className="text-gray-600 mb-4">Comienza agregando tu primer barco a la flota</p>
+            <Button onClick={() => setShowBoatDialog(true)} data-testid="button-add-first-boat">
+              <Plus className="w-4 h-4 mr-2" />
+              Agregar Primer Barco
+            </Button>
+          </CardContent>
+        </Card>
+      ) : (
+        <Card>
+          <CardHeader>
+            <CardTitle>Barcos ({boats.length})</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead>Nombre</TableHead>
+                  <TableHead>Capacidad</TableHead>
+                  <TableHead>Licencia</TableHead>
+                  <TableHead>Precio/Hora</TableHead>
+                  <TableHead>Depósito</TableHead>
+                  <TableHead>Estado</TableHead>
+                  <TableHead className="text-right">Acciones</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {boats.map((boat: any) => (
+                  <TableRow key={boat.id}>
+                    <TableCell className="font-medium">{boat.name}</TableCell>
+                    <TableCell>{boat.capacity} personas</TableCell>
+                    <TableCell>
+                      <Badge variant={boat.requiresLicense ? "default" : "secondary"}>
+                        {boat.requiresLicense ? "Requerida" : "No requerida"}
+                      </Badge>
+                    </TableCell>
+                    <TableCell>€{boat.pricePerHour}/h</TableCell>
+                    <TableCell>€{boat.deposit}</TableCell>
+                    <TableCell>
+                      <Badge variant={boat.isActive ? "default" : "secondary"}>
+                        {boat.isActive ? "Activo" : "Inactivo"}
+                      </Badge>
+                    </TableCell>
+                    <TableCell className="text-right">
+                      <div className="flex justify-end space-x-2">
+                        <Button
+                          size="icon"
+                          variant="ghost"
+                          onClick={() => handleEditBoat(boat)}
+                          data-testid={`button-edit-boat-${boat.id}`}
+                        >
+                          <Edit className="w-4 h-4" />
+                        </Button>
+                        {boat.isActive && (
+                          <Button
+                            size="icon"
+                            variant="ghost"
+                            onClick={() => {
+                              if (confirm(`¿Estás seguro de desactivar ${boat.name}?`)) {
+                                deleteBoatMutation.mutate(boat.id);
+                              }
+                            }}
+                            data-testid={`button-delete-boat-${boat.id}`}
+                          >
+                            <Trash2 className="w-4 h-4" />
+                          </Button>
+                        )}
+                      </div>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </CardContent>
+        </Card>
+      )}
+
+      {/* Add/Edit Boat Dialog */}
+      <Dialog open={showBoatDialog} onOpenChange={setShowBoatDialog}>
+        <DialogContent className="max-w-md">
+          <DialogHeader>
+            <DialogTitle>{editingBoat ? "Editar Barco" : "Agregar Barco"}</DialogTitle>
+          </DialogHeader>
+          <form onSubmit={boatForm.handleSubmit(handleSubmit)} className="space-y-4">
+            <div>
+              <Label htmlFor="id">ID del Barco</Label>
+              <Input
+                id="id"
+                {...boatForm.register("id")}
+                placeholder="solar-450"
+                disabled={!!editingBoat}
+                data-testid="input-boat-id"
+              />
+              {boatForm.formState.errors.id && (
+                <p className="text-sm text-red-500">{boatForm.formState.errors.id.message}</p>
+              )}
+            </div>
+
+            <div>
+              <Label htmlFor="name">Nombre</Label>
+              <Input
+                id="name"
+                {...boatForm.register("name")}
+                placeholder="Solar 450"
+                data-testid="input-boat-name"
+              />
+              {boatForm.formState.errors.name && (
+                <p className="text-sm text-red-500">{boatForm.formState.errors.name.message}</p>
+              )}
+            </div>
+
+            <div>
+              <Label htmlFor="capacity">Capacidad (personas)</Label>
+              <Input
+                id="capacity"
+                type="number"
+                {...boatForm.register("capacity")}
+                placeholder="6"
+                data-testid="input-boat-capacity"
+              />
+              {boatForm.formState.errors.capacity && (
+                <p className="text-sm text-red-500">{boatForm.formState.errors.capacity.message}</p>
+              )}
+            </div>
+
+            <div className="flex items-center space-x-2">
+              <input
+                id="requiresLicense"
+                type="checkbox"
+                {...boatForm.register("requiresLicense")}
+                className="w-4 h-4"
+                data-testid="checkbox-requires-license"
+              />
+              <Label htmlFor="requiresLicense">Requiere licencia náutica</Label>
+            </div>
+
+            <div>
+              <Label htmlFor="pricePerHour">Precio por hora (€)</Label>
+              <Input
+                id="pricePerHour"
+                {...boatForm.register("pricePerHour")}
+                placeholder="75.00"
+                data-testid="input-boat-price"
+              />
+              {boatForm.formState.errors.pricePerHour && (
+                <p className="text-sm text-red-500">{boatForm.formState.errors.pricePerHour.message}</p>
+              )}
+            </div>
+
+            <div>
+              <Label htmlFor="deposit">Depósito (€)</Label>
+              <Input
+                id="deposit"
+                {...boatForm.register("deposit")}
+                placeholder="300.00"
+                data-testid="input-boat-deposit"
+              />
+              {boatForm.formState.errors.deposit && (
+                <p className="text-sm text-red-500">{boatForm.formState.errors.deposit.message}</p>
+              )}
+            </div>
+
+            <div className="flex items-center space-x-2">
+              <input
+                id="isActive"
+                type="checkbox"
+                {...boatForm.register("isActive")}
+                className="w-4 h-4"
+                data-testid="checkbox-is-active"
+              />
+              <Label htmlFor="isActive">Barco activo</Label>
+            </div>
+
+            <DialogFooter>
+              <Button
+                type="button"
+                variant="outline"
+                onClick={() => {
+                  setShowBoatDialog(false);
+                  setEditingBoat(null);
+                  boatForm.reset();
+                }}
+                data-testid="button-cancel-boat"
+              >
+                Cancelar
+              </Button>
+              <Button
+                type="submit"
+                disabled={createBoatMutation.isPending || updateBoatMutation.isPending}
+                data-testid="button-save-boat"
+              >
+                {createBoatMutation.isPending || updateBoatMutation.isPending ? "Guardando..." : "Guardar"}
+              </Button>
+            </DialogFooter>
+          </form>
+        </DialogContent>
+      </Dialog>
+    </div>
+  );
+}
+
 export default function CRMDashboard({ adminToken }: CRMDashboardProps) {
   const [selectedTab, setSelectedTab] = useState("dashboard");
   const [selectedTimeRange, setSelectedTimeRange] = useState("today");
@@ -946,28 +1335,7 @@ export default function CRMDashboard({ adminToken }: CRMDashboardProps) {
 
         {/* Fleet Tab */}
         {selectedTab === "fleet" && (
-          <Card>
-            <CardContent className="py-12 text-center">
-              <div className="max-w-md mx-auto">
-                <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Anchor className="w-8 h-8 text-gray-400" />
-                </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                  Sección en Desarrollo
-                </h3>
-                <p className="text-gray-600 mb-6">
-                  La sección "Flota" estará disponible próximamente.
-                </p>
-                <Button 
-                  variant="outline" 
-                  onClick={() => setSelectedTab("dashboard")}
-                  data-testid="button-back-dashboard"
-                >
-                  Volver al Dashboard
-                </Button>
-              </div>
-            </CardContent>
-          </Card>
+          <FleetManagement adminToken={adminToken} />
         )}
       </div>
 

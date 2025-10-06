@@ -568,8 +568,8 @@ export default function Hero() {
         {/* Booking Widget */}
         <Card className="bg-white/95 backdrop-blur-md p-3 sm:p-4 w-full shadow-2xl border-0">
           <div className="text-center mb-2 sm:mb-3">
-            <h3 className="text-sm sm:text-base lg:text-lg font-bold text-gray-900 mb-1">{t.booking.title}</h3>
-            <p className="text-xs text-gray-600">Completa los datos para solicitar la reserva de tu barco perfecto</p>
+            <h3 className="text-base sm:text-base lg:text-lg font-bold text-gray-900 mb-1">{t.booking.title}</h3>
+            <p className="text-sm text-gray-600">Completa los datos para solicitar la reserva de tu barco perfecto</p>
           </div>
           
           {/* Personal Information Section */}
@@ -578,7 +578,7 @@ export default function Hero() {
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-2">
               {/* First Name */}
               <div className="bg-white rounded-lg p-2 sm:p-3 shadow-sm border border-gray-100">
-                <label className="flex items-center justify-center md:justify-start text-xs font-semibold text-gray-800 mb-1 sm:mb-2">
+                <label className="flex items-center justify-center md:justify-start text-sm font-semibold text-gray-800 mb-1 sm:mb-2">
                   <div className="w-5 h-5 sm:w-6 sm:h-6 bg-primary/10 rounded-full flex items-center justify-center mr-1 sm:mr-2">
                     <User className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-primary" />
                   </div>
@@ -589,14 +589,14 @@ export default function Hero() {
                   value={firstName}
                   onChange={(e) => setFirstName(e.target.value)}
                   placeholder="Ej: Juan"
-                  className="w-full p-2 sm:p-2.5 border-0 bg-gray-50 rounded-md focus:ring-2 focus:ring-primary focus:bg-white transition-all text-gray-900 font-medium text-xs sm:text-sm text-center md:text-left"
+                  className="w-full p-2 sm:p-2.5 border-0 bg-gray-50 rounded-md focus:ring-2 focus:ring-primary focus:bg-white transition-all text-gray-900 font-medium text-sm sm:text-sm text-center md:text-left"
                   data-testid="input-first-name"
                 />
               </div>
 
               {/* Last Name */}
               <div className="bg-white rounded-lg p-2 sm:p-3 shadow-sm border border-gray-100">
-                <label className="flex items-center justify-center md:justify-start text-xs font-semibold text-gray-800 mb-1 sm:mb-2">
+                <label className="flex items-center justify-center md:justify-start text-sm font-semibold text-gray-800 mb-1 sm:mb-2">
                   <div className="w-5 h-5 sm:w-6 sm:h-6 bg-primary/10 rounded-full flex items-center justify-center mr-1 sm:mr-2">
                     <User className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-primary" />
                   </div>
@@ -607,14 +607,14 @@ export default function Hero() {
                   value={lastName}
                   onChange={(e) => setLastName(e.target.value)}
                   placeholder="Ej: García López"
-                  className="w-full p-2 sm:p-2.5 border-0 bg-gray-50 rounded-md focus:ring-2 focus:ring-primary focus:bg-white transition-all text-gray-900 font-medium text-xs sm:text-sm text-center md:text-left"
+                  className="w-full p-2 sm:p-2.5 border-0 bg-gray-50 rounded-md focus:ring-2 focus:ring-primary focus:bg-white transition-all text-gray-900 font-medium text-sm sm:text-sm text-center md:text-left"
                   data-testid="input-last-name"
                 />
               </div>
 
               {/* Phone Number */}
               <div className="col-span-2 lg:col-span-1 bg-white rounded-lg p-2 sm:p-3 shadow-sm border border-gray-100">
-                <label className="flex items-center justify-center md:justify-start text-xs font-semibold text-gray-800 mb-1 sm:mb-2">
+                <label className="flex items-center justify-center md:justify-start text-sm font-semibold text-gray-800 mb-1 sm:mb-2">
                   <div className="w-5 h-5 sm:w-6 sm:h-6 bg-primary/10 rounded-full flex items-center justify-center mr-1 sm:mr-2">
                     <PhoneIcon className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-primary" />
                   </div>
@@ -629,7 +629,7 @@ export default function Hero() {
                         setShowPrefixDropdown(!showPrefixDropdown);
                         setPrefixSearch("");
                       }}
-                      className="w-full h-full px-1 py-2 sm:px-1.5 sm:py-2.5 border-0 bg-gray-50 rounded-md focus:ring-2 focus:ring-primary transition-all text-gray-900 font-medium text-[10px] sm:text-sm flex items-center justify-center sm:justify-between"
+                      className="w-full h-full px-1 py-2 sm:px-1.5 sm:py-2.5 border-0 bg-gray-50 rounded-md focus:ring-2 focus:ring-primary transition-all text-gray-900 font-medium text-xs sm:text-sm flex items-center justify-center sm:justify-between"
                       data-testid="select-phone-prefix"
                     >
                       <span className="whitespace-nowrap overflow-hidden text-ellipsis text-center sm:text-left">{selectedPrefixInfo?.flag} {phonePrefix}</span>
@@ -698,7 +698,7 @@ export default function Hero() {
                     value={phoneNumber}
                     onChange={(e) => setPhoneNumber(e.target.value)}
                     placeholder="612345678"
-                    className="flex-1 min-w-0 px-1 py-1.5 sm:p-2.5 border-0 bg-gray-50 rounded-md focus:ring-2 focus:ring-primary focus:bg-white transition-all text-gray-900 font-medium text-[10px] sm:text-sm text-center sm:text-left overflow-hidden"
+                    className="flex-1 min-w-0 px-1 py-1.5 sm:p-2.5 border-0 bg-gray-50 rounded-md focus:ring-2 focus:ring-primary focus:bg-white transition-all text-gray-900 font-medium text-xs sm:text-sm text-center sm:text-left overflow-hidden"
                     data-testid="input-phone-number"
                   />
                 </div>
@@ -706,7 +706,7 @@ export default function Hero() {
 
               {/* Email */}
               <div className="col-span-2 lg:col-span-1 bg-white rounded-lg p-2 sm:p-3 shadow-sm border border-gray-100">
-                <label className="flex items-center justify-center md:justify-start text-xs font-semibold text-gray-800 mb-1 sm:mb-2">
+                <label className="flex items-center justify-center md:justify-start text-sm font-semibold text-gray-800 mb-1 sm:mb-2">
                   <div className="w-5 h-5 sm:w-6 sm:h-6 bg-primary/10 rounded-full flex items-center justify-center mr-1 sm:mr-2">
                     <Mail className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-primary" />
                   </div>
@@ -717,7 +717,7 @@ export default function Hero() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="ejemplo@email.com"
-                  className="w-full p-2 sm:p-2.5 border-0 bg-gray-50 rounded-md focus:ring-2 focus:ring-primary focus:bg-white transition-all text-gray-900 font-medium text-xs sm:text-sm text-center md:text-left"
+                  className="w-full p-2 sm:p-2.5 border-0 bg-gray-50 rounded-md focus:ring-2 focus:ring-primary focus:bg-white transition-all text-gray-900 font-medium text-sm sm:text-sm text-center md:text-left"
                   data-testid="input-email"
                 />
               </div>
@@ -733,7 +733,7 @@ export default function Hero() {
               <div className="flex gap-1 sm:gap-2">
                 <button
                   onClick={() => setLicenseFilter("all")}
-                  className={`flex-1 p-1.5 rounded-md text-xs font-medium transition-all ${
+                  className={`flex-1 p-1.5 rounded-md text-sm font-medium transition-all ${
                     licenseFilter === "all"
                       ? "bg-primary text-white shadow-md"
                       : "bg-gray-100 text-gray-700 hover:bg-gray-200"
@@ -744,7 +744,7 @@ export default function Hero() {
                 </button>
                 <button
                   onClick={() => setLicenseFilter("without")}
-                  className={`flex-1 p-1.5 rounded-md text-xs font-medium transition-all ${
+                  className={`flex-1 p-1.5 rounded-md text-sm font-medium transition-all ${
                     licenseFilter === "without"
                       ? "bg-primary text-white shadow-md"
                       : "bg-gray-100 text-gray-700 hover:bg-gray-200"
@@ -755,7 +755,7 @@ export default function Hero() {
                 </button>
                 <button
                   onClick={() => setLicenseFilter("with")}
-                  className={`flex-1 p-1.5 rounded-md text-xs font-medium transition-all ${
+                  className={`flex-1 p-1.5 rounded-md text-sm font-medium transition-all ${
                     licenseFilter === "with"
                       ? "bg-primary text-white shadow-md"
                       : "bg-gray-100 text-gray-700 hover:bg-gray-200"
@@ -771,7 +771,7 @@ export default function Hero() {
             <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
               {/* Boat Selector */}
               <div className="bg-white rounded-lg p-2 shadow-sm border border-gray-100 col-span-2 md:col-span-1">
-                <label className="flex items-center justify-center md:justify-start text-xs font-semibold text-gray-800 mb-1">
+                <label className="flex items-center justify-center md:justify-start text-sm font-semibold text-gray-800 mb-1">
                   <div className="w-4 h-4 bg-primary/10 rounded-full flex items-center justify-center mr-1">
                     <Anchor className="w-2.5 h-2.5 text-primary" />
                   </div>
@@ -781,7 +781,7 @@ export default function Hero() {
                   value={selectedBoat}
                   onChange={(e) => setSelectedBoat(e.target.value)}
                   disabled={isLoadingBoats}
-                  className="w-full p-2 border-0 bg-gray-50 rounded-md focus:ring-2 focus:ring-primary focus:bg-white transition-all text-gray-900 font-medium appearance-none cursor-pointer text-xs disabled:opacity-50 text-center md:text-left"
+                  className="w-full p-2 border-0 bg-gray-50 rounded-md focus:ring-2 focus:ring-primary focus:bg-white transition-all text-gray-900 font-medium appearance-none cursor-pointer text-sm disabled:opacity-50 text-center md:text-left"
                   data-testid="select-boat-type"
                 >
                   <option value="">
@@ -794,13 +794,13 @@ export default function Hero() {
                   ))}
                 </select>
                 {filteredBoats.length === 0 && !isLoadingBoats && (
-                  <p className="text-xs text-gray-500 mt-1">No hay barcos disponibles</p>
+                  <p className="text-sm text-gray-500 mt-1">No hay barcos disponibles</p>
                 )}
               </div>
 
               {/* Date */}
               <div className="bg-white rounded-lg p-2 shadow-sm border border-gray-100">
-                <label className="flex items-center justify-center md:justify-start text-xs font-semibold text-gray-800 mb-1">
+                <label className="flex items-center justify-center md:justify-start text-sm font-semibold text-gray-800 mb-1">
                   <div className="w-4 h-4 bg-primary/10 rounded-full flex items-center justify-center mr-1">
                     <Calendar className="w-2.5 h-2.5 text-primary" />
                   </div>
@@ -811,14 +811,14 @@ export default function Hero() {
                   value={selectedDate}
                   onChange={(e) => setSelectedDate(e.target.value)}
                   min={getLocalISODate()}
-                  className="w-full p-2 border-0 bg-gray-50 rounded-md focus:ring-2 focus:ring-primary focus:bg-white transition-all text-gray-900 font-medium text-xs text-center"
+                  className="w-full p-2 border-0 bg-gray-50 rounded-md focus:ring-2 focus:ring-primary focus:bg-white transition-all text-gray-900 font-medium text-sm text-center"
                   data-testid="input-booking-date"
                 />
               </div>
               
               {/* Duration */}
               <div className="bg-white rounded-lg p-2 shadow-sm border border-gray-100">
-                <label className="flex items-center justify-center md:justify-start text-xs font-semibold text-gray-800 mb-1">
+                <label className="flex items-center justify-center md:justify-start text-sm font-semibold text-gray-800 mb-1">
                   <div className="w-4 h-4 bg-primary/10 rounded-full flex items-center justify-center mr-1">
                     <Clock className="w-2.5 h-2.5 text-primary" />
                   </div>
@@ -827,7 +827,7 @@ export default function Hero() {
                 <select
                   value={selectedDuration}
                   onChange={(e) => setSelectedDuration(e.target.value)}
-                  className="w-full p-2 border-0 bg-gray-50 rounded-md focus:ring-2 focus:ring-primary focus:bg-white transition-all text-gray-900 font-medium appearance-none cursor-pointer text-xs text-center"
+                  className="w-full p-2 border-0 bg-gray-50 rounded-md focus:ring-2 focus:ring-primary focus:bg-white transition-all text-gray-900 font-medium appearance-none cursor-pointer text-sm text-center"
                   data-testid="select-duration"
                 >
                   <option value="">Seleccionar</option>
@@ -838,7 +838,7 @@ export default function Hero() {
                   ))}
                 </select>
                 {selectedBoatInfo && (
-                  <p className="text-xs text-gray-500 mt-1">
+                  <p className="text-sm text-gray-500 mt-1">
                     {selectedBoatInfo.requiresLicense 
                       ? "Con licencia: 2h, 4h, 8h" 
                       : "Sin licencia: 1-8h"}
@@ -853,7 +853,7 @@ export default function Hero() {
             <Button 
               onClick={handleBookingSearch}
               disabled={isSearching}
-              className="w-full bg-primary hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed text-white font-bold py-2 sm:py-2.5 px-4 rounded-lg shadow-lg hover:shadow-xl transition-all duration-200 text-xs sm:text-sm"
+              className="w-full bg-primary hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed text-white font-bold py-2 sm:py-2.5 px-4 rounded-lg shadow-lg hover:shadow-xl transition-all duration-200 text-sm sm:text-sm"
               data-testid="button-search-availability"
             >
               {isSearching ? (
@@ -862,7 +862,7 @@ export default function Hero() {
                 <><span className="hidden sm:inline">Enviar Petición de Reserva</span><span className="sm:hidden">Enviar Petición</span></>
               )}
             </Button>
-            <p className="text-xs text-gray-500 mt-2 text-center">
+            <p className="text-sm text-gray-500 mt-2 text-center">
               {t.hero.trustText}
             </p>
           </div>

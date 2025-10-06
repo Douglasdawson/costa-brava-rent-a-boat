@@ -1087,8 +1087,8 @@ export default function BookingFlow({
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Teléfono *
                   </label>
-                  <div className="flex gap-2 max-w-full">
-                    <div className="relative w-20 flex-shrink-0">
+                  <div className="flex gap-1.5 w-full">
+                    <div className="relative w-16 flex-shrink-0">
                       <input
                         type="text"
                         value={phonePrefixSearch || customerData.phonePrefix}
@@ -1101,7 +1101,7 @@ export default function BookingFlow({
                           setTimeout(() => setShowPhonePrefixDropdown(false), 200);
                         }}
                         placeholder="+34"
-                        className="w-full px-2 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary text-sm text-gray-900"
+                        className="w-full px-1.5 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary text-sm text-gray-900"
                         data-testid="input-phone-prefix-search"
                       />
                       {showPhonePrefixDropdown && filteredPhoneCountries.length > 0 && (
@@ -1128,7 +1128,7 @@ export default function BookingFlow({
                       type="tel"
                       value={customerData.customerPhone}
                       onChange={(e) => setCustomerData(prev => ({...prev, customerPhone: e.target.value}))}
-                      className="flex-1 min-w-0 px-2 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary text-gray-900"
+                      className="flex-1 min-w-0 px-2 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary text-gray-900 max-w-full"
                       placeholder="612345678"
                       data-testid="input-customer-phone"
                     />

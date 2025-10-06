@@ -147,7 +147,7 @@ export default function FeaturesSection() {
                     <h4 className="font-heading font-semibold text-sm sm:text-base md:text-xl text-gray-900 mb-1 sm:mb-2">
                       {extra.name}
                     </h4>
-                    <p className="text-xs sm:text-sm md:text-base text-gray-600 mb-2 sm:mb-3 md:mb-4">
+                    <p className="text-[10px] sm:text-xs md:text-sm text-gray-600 mb-2 sm:mb-3 md:mb-4">
                       {extra.description}
                     </p>
                     <div className="flex items-center justify-between">

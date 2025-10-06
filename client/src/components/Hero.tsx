@@ -69,7 +69,21 @@ export default function Hero() {
   // Duration options based on license requirement
   const getDurationOptions = () => {
     if (!selectedBoatInfo) {
-      // Show all options if no boat selected
+      // If license filter is set but no boat selected, adapt options to filter
+      if (licenseFilter === "with") {
+        return [
+          { value: "4h", label: "4 horas - Media día" },
+          { value: "6h", label: "6 horas" },
+          { value: "8h", label: "8 horas - Día completo" },
+        ];
+      } else if (licenseFilter === "without") {
+        return [
+          { value: "1h", label: "1 hora" },
+          { value: "2h", label: "2 horas" },
+          { value: "3h", label: "3 horas" },
+        ];
+      }
+      // Show all options if filter is "all"
       return [
         { value: "1h", label: "1 hora" },
         { value: "2h", label: "2 horas" },
@@ -97,16 +111,16 @@ export default function Hero() {
     }
   };
 
-  // Reset duration if it's no longer valid for selected boat
+  // Reset duration if it's no longer valid for selected boat or license filter
   useEffect(() => {
-    if (selectedBoatInfo && selectedDuration) {
+    if (selectedDuration) {
       const validOptions = getDurationOptions();
       const isValid = validOptions.some(opt => opt.value === selectedDuration);
       if (!isValid) {
         setSelectedDuration("");
       }
     }
-  }, [selectedBoat, selectedBoatInfo]);
+  }, [selectedBoat, selectedBoatInfo, licenseFilter]);
 
   const handleBookingSearch = async () => {
     // Validate all fields
@@ -503,9 +517,9 @@ export default function Hero() {
               data-testid="button-search-availability"
             >
               {isSearching ? (
-                <>⏳ <span className="hidden sm:inline">Verificando...</span><span className="sm:hidden">Verificando...</span></>
+                <><span className="hidden sm:inline">Verificando disponibilidad...</span><span className="sm:hidden">Verificando...</span></>
               ) : (
-                <>🚤 <span className="hidden sm:inline">{t.booking.searchAvailability || 'Buscar Disponibilidad'}</span><span className="sm:hidden">{t.booking.searchShort || 'Buscar'}</span></>
+                <><span className="hidden sm:inline">{t.booking.searchAvailability || 'Buscar Disponibilidad'}</span><span className="sm:hidden">{t.booking.searchShort || 'Buscar'}</span></>
               )}
             </Button>
             <p className="text-xs text-gray-500 mt-3 sm:mt-4 lg:mt-6 text-center">

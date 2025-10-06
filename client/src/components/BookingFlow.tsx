@@ -18,6 +18,16 @@ import { useAuth } from "@/hooks/useAuth";
 interface BookingFlowProps {
   boatId?: string;
   onClose?: () => void;
+  initialDate?: string;
+  initialDuration?: string;
+  initialTime?: string;
+  initialCustomerData?: {
+    firstName?: string;
+    lastName?: string;
+    phonePrefix?: string;
+    phoneNumber?: string;
+    email?: string;
+  };
 }
 
 interface Customer {
@@ -33,20 +43,27 @@ interface Customer {
   documentNumber: string;
 }
 
-export default function BookingFlow({ boatId = "astec-450", onClose }: BookingFlowProps) {
+export default function BookingFlow({ 
+  boatId = "astec-450", 
+  onClose,
+  initialDate = "",
+  initialDuration = "2h",
+  initialTime = "",
+  initialCustomerData = {}
+}: BookingFlowProps) {
   const [, setLocation] = useLocation();
   const [step, setStep] = useState(1);
-  const [selectedDate, setSelectedDate] = useState("");
+  const [selectedDate, setSelectedDate] = useState(initialDate);
   const [selectedBoat, setSelectedBoat] = useState(boatId);
-  const [selectedTime, setSelectedTime] = useState("");
-  const [duration, setDuration] = useState("2h");
+  const [selectedTime, setSelectedTime] = useState(initialTime);
+  const [duration, setDuration] = useState(initialDuration);
   const [extras, setExtras] = useState<{[key: string]: number}>({});
   const [customerData, setCustomerData] = useState({
-    customerName: "",
-    customerSurname: "",
-    customerEmail: "",
-    customerPhone: "",
-    phonePrefix: "+34",
+    customerName: initialCustomerData.firstName || "",
+    customerSurname: initialCustomerData.lastName || "",
+    customerEmail: initialCustomerData.email || "",
+    customerPhone: initialCustomerData.phoneNumber || "",
+    phonePrefix: initialCustomerData.phonePrefix || "+34",
     customerNationality: "",
     numberOfPeople: 1
   });

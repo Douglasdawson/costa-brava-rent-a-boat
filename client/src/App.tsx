@@ -90,8 +90,30 @@ function BookingFlowPage() {
   const search = useSearch();
   const params = new URLSearchParams(search);
   const boatId = params.get('boat') || 'astec-450'; // Default boat if none specified
+  const date = params.get('date') || '';
+  const duration = params.get('duration') || '';
+  const time = params.get('time') || '';
+  const firstName = params.get('firstName') || '';
+  const lastName = params.get('lastName') || '';
+  const phonePrefix = params.get('phonePrefix') || '';
+  const phoneNumber = params.get('phoneNumber') || '';
+  const email = params.get('email') || '';
   
-  return <BookingFlow boatId={boatId} />;
+  return (
+    <BookingFlow 
+      boatId={boatId}
+      initialDate={date}
+      initialDuration={duration}
+      initialTime={time}
+      initialCustomerData={{
+        firstName,
+        lastName,
+        phonePrefix,
+        phoneNumber,
+        email
+      }}
+    />
+  );
 }
 
 function CRMDashboardPage() {

@@ -380,7 +380,7 @@ export default function Hero() {
                   <select
                     value={phonePrefix}
                     onChange={(e) => setPhonePrefix(e.target.value)}
-                    className="w-24 p-2 sm:p-2.5 border-0 bg-gray-50 rounded-md focus:ring-2 focus:ring-primary focus:bg-white transition-all text-gray-900 font-medium text-xs sm:text-sm"
+                    className="w-24 p-2 sm:p-2.5 border-0 bg-white rounded-md focus:ring-2 focus:ring-primary transition-all text-gray-900 font-medium text-xs sm:text-sm"
                     data-testid="select-phone-prefix"
                   >
                     <option value="+34">🇪🇸 +34</option>

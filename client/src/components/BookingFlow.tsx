@@ -1087,7 +1087,7 @@ export default function BookingFlow({
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Teléfono *
                   </label>
-                  <div className="flex gap-1">
+                  <div className="grid grid-cols-[56px_1fr] gap-1">
                     <input
                       type="text"
                       value={phonePrefixSearch || customerData.phonePrefix}
@@ -1100,11 +1100,11 @@ export default function BookingFlow({
                         setTimeout(() => setShowPhonePrefixDropdown(false), 200);
                       }}
                       placeholder="+34"
-                      className="w-14 px-1 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary text-xs text-gray-900"
+                      className="px-1 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary text-xs text-gray-900"
                       data-testid="input-phone-prefix-search"
                     />
                     {showPhonePrefixDropdown && filteredPhoneCountries.length > 0 && (
-                      <div className="absolute z-10 w-72 max-h-48 overflow-y-auto bg-white border border-gray-300 rounded-lg shadow-lg mt-1" style={{ marginTop: '44px' }}>
+                      <div className="absolute z-10 w-72 max-h-48 overflow-y-auto bg-white border border-gray-300 rounded-lg shadow-lg" style={{ marginTop: '44px' }}>
                         {filteredPhoneCountries.slice(0, 8).map((country) => (
                           <button
                             key={country.code}
@@ -1126,10 +1126,9 @@ export default function BookingFlow({
                       type="tel"
                       value={customerData.customerPhone}
                       onChange={(e) => setCustomerData(prev => ({...prev, customerPhone: e.target.value}))}
-                      className="w-full px-1.5 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary text-gray-900 text-sm"
+                      className="px-1.5 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary text-gray-900 text-sm"
                       placeholder="612345678"
                       data-testid="input-customer-phone"
-                      style={{ maxWidth: 'calc(100% - 60px)' }}
                     />
                   </div>
                 </div>

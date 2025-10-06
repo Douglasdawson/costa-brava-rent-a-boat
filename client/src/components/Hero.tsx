@@ -811,7 +811,7 @@ export default function Hero() {
                   value={selectedDate}
                   onChange={(e) => setSelectedDate(e.target.value)}
                   min={getLocalISODate()}
-                  className="w-full p-2 border-0 bg-gray-50 rounded-md focus:ring-2 focus:ring-primary focus:bg-white transition-all text-gray-900 font-medium text-xs text-center md:text-left"
+                  className="w-full p-2 border-0 bg-gray-50 rounded-md focus:ring-2 focus:ring-primary focus:bg-white transition-all text-gray-900 font-medium text-xs text-center"
                   data-testid="input-booking-date"
                 />
               </div>
@@ -827,7 +827,7 @@ export default function Hero() {
                 <select
                   value={selectedDuration}
                   onChange={(e) => setSelectedDuration(e.target.value)}
-                  className="w-full p-2 border-0 bg-gray-50 rounded-md focus:ring-2 focus:ring-primary focus:bg-white transition-all text-gray-900 font-medium appearance-none cursor-pointer text-xs text-center md:text-left"
+                  className="w-full p-2 border-0 bg-gray-50 rounded-md focus:ring-2 focus:ring-primary focus:bg-white transition-all text-gray-900 font-medium appearance-none cursor-pointer text-xs text-center"
                   data-testid="select-duration"
                 >
                   <option value="">Seleccionar</option>

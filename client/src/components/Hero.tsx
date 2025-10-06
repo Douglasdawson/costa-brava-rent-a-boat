@@ -629,7 +629,7 @@ export default function Hero() {
                         setShowPrefixDropdown(!showPrefixDropdown);
                         setPrefixSearch("");
                       }}
-                      className="w-full h-full px-1 py-2 sm:px-1.5 sm:py-2.5 border-0 bg-gray-50 rounded-md focus:ring-2 focus:ring-primary transition-all text-gray-900 font-medium text-[9px] sm:text-xs lg:text-sm flex items-center justify-center sm:justify-between"
+                      className="w-full h-full px-1 py-2 sm:px-1.5 sm:py-2.5 border-0 bg-gray-50 rounded-md focus:ring-2 focus:ring-primary transition-all text-gray-900 font-medium text-[10px] sm:text-sm flex items-center justify-center sm:justify-between"
                       data-testid="select-phone-prefix"
                     >
                       <span className="whitespace-nowrap overflow-hidden text-ellipsis text-center sm:text-left">{selectedPrefixInfo?.flag} {phonePrefix}</span>

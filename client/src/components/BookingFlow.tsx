@@ -57,6 +57,7 @@ export default function BookingFlow({
   const [selectedBoat, setSelectedBoat] = useState(boatId);
   const [selectedTime, setSelectedTime] = useState(initialTime);
   const [duration, setDuration] = useState(initialDuration);
+  const [licenseFilter, setLicenseFilter] = useState<"all" | "with" | "without">("all");
   const [extras, setExtras] = useState<{[key: string]: number}>({});
   const [customerData, setCustomerData] = useState({
     customerName: initialCustomerData.firstName || "",
@@ -371,7 +372,22 @@ export default function BookingFlow({
   );
 
   // Use boats from API instead of static data
-  const availableBoats = boats.length > 0 ? boats : Object.values(BOAT_DATA);
+  const allBoats = boats.length > 0 ? boats : Object.values(BOAT_DATA);
+  
+  // Filter boats based on license filter
+  const availableBoats = useMemo(() => {
+    if (licenseFilter === "all") return allBoats;
+    
+    return allBoats.filter((boat: any) => {
+      const requiresLicense = boat.requiresLicense !== undefined 
+        ? boat.requiresLicense 
+        : boat.subtitle?.includes("Con Licencia");
+      
+      if (licenseFilter === "with") return requiresLicense;
+      if (licenseFilter === "without") return !requiresLicense;
+      return true;
+    });
+  }, [allBoats, licenseFilter]);
 
   // Get maximum capacity based on selected boat
   const getMaxCapacity = (boatId: string): number => {
@@ -789,6 +805,37 @@ export default function BookingFlow({
               </CardTitle>
             </CardHeader>
             <CardContent>
+              {/* License Filter */}
+              <div className="mb-6">
+                <h3 className="font-medium text-gray-900 mb-3">Tipo de embarcación</h3>
+                <div className="flex gap-2">
+                  <Button
+                    variant={licenseFilter === "all" ? "default" : "outline"}
+                    onClick={() => setLicenseFilter("all")}
+                    className="flex-1"
+                    data-testid="button-filter-all"
+                  >
+                    Todos
+                  </Button>
+                  <Button
+                    variant={licenseFilter === "without" ? "default" : "outline"}
+                    onClick={() => setLicenseFilter("without")}
+                    className="flex-1"
+                    data-testid="button-filter-without-license"
+                  >
+                    Sin Licencia
+                  </Button>
+                  <Button
+                    variant={licenseFilter === "with" ? "default" : "outline"}
+                    onClick={() => setLicenseFilter("with")}
+                    className="flex-1"
+                    data-testid="button-filter-with-license"
+                  >
+                    Con Licencia
+                  </Button>
+                </div>
+              </div>
+
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {availableBoats.map((boat: any) => {
                   const isSelected = selectedBoat === boat.id;

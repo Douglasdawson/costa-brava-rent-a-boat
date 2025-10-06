@@ -154,7 +154,70 @@ export default function Hero() {
     }
   }, [selectedBoat, selectedBoatInfo, licenseFilter]);
 
-  const handleBookingSearch = async () => {
+  // Helper function to get price for selected boat and duration
+  const getBookingPrice = () => {
+    if (!selectedBoatInfo || !selectedDuration) return null;
+    const boatData = BOAT_DATA[selectedBoatInfo.id];
+    if (!boatData) return null;
+    
+    const season = getCurrentSeason();
+    const seasonPricing = boatData.pricing[season];
+    return seasonPricing?.prices[selectedDuration] || null;
+  };
+
+  // Helper function to format date in Spanish
+  const formatDateSpanish = (dateString: string) => {
+    const date = new Date(dateString);
+    const months = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 
+                    'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+    return `${date.getDate()} de ${months[date.getMonth()]} de ${date.getFullYear()}`;
+  };
+
+  // Helper function to format date in English
+  const formatDateEnglish = (dateString: string) => {
+    const date = new Date(dateString);
+    const months = ['January', 'February', 'March', 'April', 'May', 'June',
+                    'July', 'August', 'September', 'October', 'November', 'December'];
+    return `${months[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
+  };
+
+  // Create WhatsApp message based on phone prefix
+  const createWhatsAppBookingMessage = () => {
+    const isSpanish = phonePrefix === '+34';
+    const price = getBookingPrice();
+    const fullName = `${firstName.trim()} ${lastName.trim()}`;
+    const phone = `${phonePrefix} ${phoneNumber.trim()}`;
+    const boatName = selectedBoatInfo?.name || selectedBoat;
+    const formattedDate = isSpanish ? formatDateSpanish(selectedDate) : formatDateEnglish(selectedDate);
+    
+    // Get duration label
+    const durationOption = getDurationOptions().find(opt => opt.value === selectedDuration);
+    const durationText = durationOption?.label.split(' - ')[0] || selectedDuration; // Get just the duration part without price
+    
+    if (isSpanish) {
+      return `Hola! Me gustaría saber si es posible alquilar este barco:
+
+* 📋 Nombre: ${fullName}
+* 📞 Teléfono: ${phone}
+* ✉️ Email: ${email.trim()}
+* ⛵ Barco: ${boatName}
+* 📅 Fecha: ${formattedDate}
+* ⏰ Duración: ${durationText}
+* 💰 Precio: ${price}€`;
+    } else {
+      return `Hello! I would like to know if it's possible to rent this boat:
+
+* 📋 Name: ${fullName}
+* 📞 Phone: ${phone}
+* ✉️ Email: ${email.trim()}
+* ⛵ Boat: ${boatName}
+* 📅 Date: ${formattedDate}
+* ⏰ Duration: ${durationText}
+* 💰 Price: ${price}€`;
+    }
+  };
+
+  const handleBookingSearch = () => {
     // Validate all fields - ALL ARE REQUIRED
     if (!firstName.trim()) {
       toast({
@@ -228,69 +291,9 @@ export default function Hero() {
       return;
     }
 
-    setIsSearching(true);
-
-    try {
-      // Convert duration to hours
-      const hours = parseInt(selectedDuration.replace('h', ''));
-      
-      // Create start time at 10:00 AM (can be adjusted based on business hours)
-      const selectedDateObj = new Date(selectedDate);
-      const startTime = new Date(selectedDateObj);
-      startTime.setHours(10, 0, 0, 0); // 10:00 AM
-      
-      const endTime = new Date(startTime);
-      endTime.setHours(startTime.getHours() + hours);
-
-      // Check availability
-      const response = await apiRequest(
-        "POST",
-        `/api/boats/${selectedBoat}/check-availability`,
-        {
-          startTime: startTime.toISOString(),
-          endTime: endTime.toISOString(),
-        }
-      );
-
-      const data = await response.json();
-
-      if (data.available) {
-        // Navigate to booking page with pre-selected parameters including customer data
-        const searchParams = new URLSearchParams({
-          boat: selectedBoat,
-          date: selectedDate,
-          duration: selectedDuration,
-          time: "10:00",
-          firstName: firstName.trim(),
-          lastName: lastName.trim(),
-          phonePrefix: phonePrefix,
-          phoneNumber: phoneNumber.trim(),
-          email: email.trim()
-        });
-        
-        toast({
-          title: "¡Barco disponible!",
-          description: "Te redirigimos a completar tu reserva",
-        });
-        
-        setLocation(`/booking?${searchParams.toString()}`);
-      } else {
-        toast({
-          title: "No disponible",
-          description: `El barco no está disponible el ${selectedDate} para ${selectedDuration}. Prueba con otra fecha o duración.`,
-          variant: "destructive",
-        });
-      }
-    } catch (error: any) {
-      console.error("Error checking availability:", error);
-      toast({
-        title: "Error de conexión",
-        description: "No pudimos verificar la disponibilidad. Por favor intenta nuevamente o contacta por WhatsApp.",
-        variant: "destructive",
-      });
-    } finally {
-      setIsSearching(false);
-    }
+    // Create and send WhatsApp message
+    const message = createWhatsAppBookingMessage();
+    openWhatsApp(message);
   };
 
   const handleWhatsApp = () => {

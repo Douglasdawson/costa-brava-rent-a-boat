@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Calendar, Anchor, Clock, MapPin, Phone } from "lucide-react";
+import { Calendar, Anchor, Clock, MapPin, User, Mail, Phone as PhoneIcon } from "lucide-react";
 import { SiWhatsapp } from "react-icons/si";
 import { openWhatsApp } from "@/utils/whatsapp";
 import { BUSINESS_LOCATION } from "@/lib/config";
@@ -9,6 +9,8 @@ import { useToast } from "@/hooks/use-toast";
 import { useLocation } from "wouter";
 import { useTranslations } from "@/lib/translations";
 import { apiRequest } from "@/lib/queryClient";
+import { useQuery } from "@tanstack/react-query";
+import type { Boat } from "@shared/schema";
 import heroImage from "../assets/generated_images/Mediterranean_coastal_hero_scene_8df465c2.png";
 
 export default function Hero() {
@@ -21,9 +23,15 @@ export default function Hero() {
     return `${y}-${m}-${day}`;
   };
   
-  // Initialize with today's local date using lazy initialization
-  const [selectedDate, setSelectedDate] = useState(() => getLocalISODate());
+  // Form state
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [phonePrefix, setPhonePrefix] = useState("+34");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [email, setEmail] = useState("");
+  const [licenseFilter, setLicenseFilter] = useState<"all" | "with" | "without">("all");
   const [selectedBoat, setSelectedBoat] = useState<string>("");
+  const [selectedDate, setSelectedDate] = useState(() => getLocalISODate());
   const [selectedDuration, setSelectedDuration] = useState<string>("");
   const [isSearching, setIsSearching] = useState(false);
   
@@ -31,8 +39,113 @@ export default function Hero() {
   const [, setLocation] = useLocation();
   const t = useTranslations();
 
+  // Fetch all boats from API
+  const { data: allBoats = [], isLoading: isLoadingBoats } = useQuery<Boat[]>({
+    queryKey: ["/api/boats"],
+  });
+
+  // Filter boats based on license selection
+  const filteredBoats = allBoats.filter(boat => {
+    if (licenseFilter === "all") return true;
+    if (licenseFilter === "with") return boat.requiresLicense === true;
+    if (licenseFilter === "without") return boat.requiresLicense === false;
+    return true;
+  });
+
+  // Get selected boat info
+  const selectedBoatInfo = allBoats.find(boat => boat.id === selectedBoat);
+
+  // Reset boat selection when license filter changes if current boat doesn't match filter
+  useEffect(() => {
+    if (selectedBoat && selectedBoatInfo) {
+      if (licenseFilter === "with" && !selectedBoatInfo.requiresLicense) {
+        setSelectedBoat("");
+      } else if (licenseFilter === "without" && selectedBoatInfo.requiresLicense) {
+        setSelectedBoat("");
+      }
+    }
+  }, [licenseFilter, selectedBoat, selectedBoatInfo]);
+
+  // Duration options based on license requirement
+  const getDurationOptions = () => {
+    if (!selectedBoatInfo) {
+      // Show all options if no boat selected
+      return [
+        { value: "1h", label: "1 hora" },
+        { value: "2h", label: "2 horas" },
+        { value: "3h", label: "3 horas" },
+        { value: "4h", label: "4 horas - Media día" },
+        { value: "6h", label: "6 horas" },
+        { value: "8h", label: "8 horas - Día completo" },
+      ];
+    }
+
+    if (selectedBoatInfo.requiresLicense) {
+      // Boats with license: 4h minimum
+      return [
+        { value: "4h", label: "4 horas - Media día" },
+        { value: "6h", label: "6 horas" },
+        { value: "8h", label: "8 horas - Día completo" },
+      ];
+    } else {
+      // Boats without license: 1-3h only
+      return [
+        { value: "1h", label: "1 hora" },
+        { value: "2h", label: "2 horas" },
+        { value: "3h", label: "3 horas" },
+      ];
+    }
+  };
+
+  // Reset duration if it's no longer valid for selected boat
+  useEffect(() => {
+    if (selectedBoatInfo && selectedDuration) {
+      const validOptions = getDurationOptions();
+      const isValid = validOptions.some(opt => opt.value === selectedDuration);
+      if (!isValid) {
+        setSelectedDuration("");
+      }
+    }
+  }, [selectedBoat, selectedBoatInfo]);
+
   const handleBookingSearch = async () => {
-    // Validate all fields are selected
+    // Validate all fields
+    if (!firstName.trim()) {
+      toast({
+        title: "Nombre requerido",
+        description: "Por favor ingresa tu nombre",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    if (!lastName.trim()) {
+      toast({
+        title: "Apellidos requeridos",
+        description: "Por favor ingresa tus apellidos",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    if (!phoneNumber.trim()) {
+      toast({
+        title: "Teléfono requerido",
+        description: "Por favor ingresa tu número de teléfono",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      toast({
+        title: "Email inválido",
+        description: "Por favor ingresa un email válido",
+        variant: "destructive",
+      });
+      return;
+    }
+    
     if (!selectedDate) {
       toast({
         title: "Fecha requerida",
@@ -87,12 +200,17 @@ export default function Hero() {
       const data = await response.json();
 
       if (data.available) {
-        // Navigate to booking page with pre-selected parameters
+        // Navigate to booking page with pre-selected parameters including customer data
         const searchParams = new URLSearchParams({
           boat: selectedBoat,
           date: selectedDate,
           duration: selectedDuration,
-          time: "10:00"
+          time: "10:00",
+          firstName: firstName.trim(),
+          lastName: lastName.trim(),
+          phonePrefix: phonePrefix,
+          phoneNumber: phoneNumber.trim(),
+          ...(email && { email: email.trim() })
         });
         
         toast({
@@ -104,7 +222,7 @@ export default function Hero() {
       } else {
         toast({
           title: "No disponible",
-          description: `El barco ${selectedBoat} no está disponible el ${selectedDate} para ${selectedDuration}. Prueba con otra fecha o duración.`,
+          description: `El barco no está disponible el ${selectedDate} para ${selectedDuration}. Prueba con otra fecha o duración.`,
           variant: "destructive",
         });
       }
@@ -152,10 +270,182 @@ export default function Hero() {
             <p className="text-xs sm:text-sm text-gray-600">Completa los datos para encontrar tu barco perfecto</p>
           </div>
           
-          <div className="bg-gray-50/80 rounded-xl p-2 sm:p-3 lg:p-4 mb-3 sm:mb-4 lg:mb-5">
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-2 sm:gap-3 lg:gap-4">
-              {/* Fecha */}
-              <div className="bg-white rounded-lg p-2 sm:p-3 shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+          {/* Personal Information Section */}
+          <div className="bg-gray-50/80 rounded-xl p-2 sm:p-3 lg:p-4 mb-3 sm:mb-4">
+            <h4 className="text-xs sm:text-sm font-semibold text-gray-800 mb-2 sm:mb-3">Datos personales</h4>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2 sm:gap-3">
+              {/* First Name */}
+              <div className="bg-white rounded-lg p-2 sm:p-3 shadow-sm border border-gray-100">
+                <label className="flex items-center text-xs font-semibold text-gray-800 mb-1 sm:mb-2">
+                  <div className="w-5 h-5 sm:w-6 sm:h-6 bg-primary/10 rounded-full flex items-center justify-center mr-1 sm:mr-2">
+                    <User className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-primary" />
+                  </div>
+                  Nombre
+                </label>
+                <input
+                  type="text"
+                  value={firstName}
+                  onChange={(e) => setFirstName(e.target.value)}
+                  placeholder="Ej: Juan"
+                  className="w-full p-2 sm:p-2.5 border-0 bg-gray-50 rounded-md focus:ring-2 focus:ring-primary focus:bg-white transition-all text-gray-900 font-medium text-xs sm:text-sm"
+                  data-testid="input-first-name"
+                />
+              </div>
+
+              {/* Last Name */}
+              <div className="bg-white rounded-lg p-2 sm:p-3 shadow-sm border border-gray-100">
+                <label className="flex items-center text-xs font-semibold text-gray-800 mb-1 sm:mb-2">
+                  <div className="w-5 h-5 sm:w-6 sm:h-6 bg-primary/10 rounded-full flex items-center justify-center mr-1 sm:mr-2">
+                    <User className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-primary" />
+                  </div>
+                  Apellidos
+                </label>
+                <input
+                  type="text"
+                  value={lastName}
+                  onChange={(e) => setLastName(e.target.value)}
+                  placeholder="Ej: García López"
+                  className="w-full p-2 sm:p-2.5 border-0 bg-gray-50 rounded-md focus:ring-2 focus:ring-primary focus:bg-white transition-all text-gray-900 font-medium text-xs sm:text-sm"
+                  data-testid="input-last-name"
+                />
+              </div>
+
+              {/* Phone Number */}
+              <div className="bg-white rounded-lg p-2 sm:p-3 shadow-sm border border-gray-100">
+                <label className="flex items-center text-xs font-semibold text-gray-800 mb-1 sm:mb-2">
+                  <div className="w-5 h-5 sm:w-6 sm:h-6 bg-primary/10 rounded-full flex items-center justify-center mr-1 sm:mr-2">
+                    <PhoneIcon className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-primary" />
+                  </div>
+                  Teléfono
+                </label>
+                <div className="flex gap-2">
+                  <select
+                    value={phonePrefix}
+                    onChange={(e) => setPhonePrefix(e.target.value)}
+                    className="w-24 p-2 sm:p-2.5 border-0 bg-gray-50 rounded-md focus:ring-2 focus:ring-primary focus:bg-white transition-all text-gray-900 font-medium text-xs sm:text-sm"
+                    data-testid="select-phone-prefix"
+                  >
+                    <option value="+34">🇪🇸 +34</option>
+                    <option value="+33">🇫🇷 +33</option>
+                    <option value="+44">🇬🇧 +44</option>
+                    <option value="+49">🇩🇪 +49</option>
+                    <option value="+31">🇳🇱 +31</option>
+                    <option value="+39">🇮🇹 +39</option>
+                    <option value="+1">🇺🇸 +1</option>
+                  </select>
+                  <input
+                    type="tel"
+                    value={phoneNumber}
+                    onChange={(e) => setPhoneNumber(e.target.value)}
+                    placeholder="612345678"
+                    className="flex-1 p-2 sm:p-2.5 border-0 bg-gray-50 rounded-md focus:ring-2 focus:ring-primary focus:bg-white transition-all text-gray-900 font-medium text-xs sm:text-sm"
+                    data-testid="input-phone-number"
+                  />
+                </div>
+              </div>
+
+              {/* Email */}
+              <div className="bg-white rounded-lg p-2 sm:p-3 shadow-sm border border-gray-100">
+                <label className="flex items-center text-xs font-semibold text-gray-800 mb-1 sm:mb-2">
+                  <div className="w-5 h-5 sm:w-6 sm:h-6 bg-primary/10 rounded-full flex items-center justify-center mr-1 sm:mr-2">
+                    <Mail className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-primary" />
+                  </div>
+                  Email (opcional)
+                </label>
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="ejemplo@email.com"
+                  className="w-full p-2 sm:p-2.5 border-0 bg-gray-50 rounded-md focus:ring-2 focus:ring-primary focus:bg-white transition-all text-gray-900 font-medium text-xs sm:text-sm"
+                  data-testid="input-email"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Boat Selection Section */}
+          <div className="bg-gray-50/80 rounded-xl p-2 sm:p-3 lg:p-4 mb-3 sm:mb-4">
+            <h4 className="text-xs sm:text-sm font-semibold text-gray-800 mb-2 sm:mb-3">Selección de barco</h4>
+            
+            {/* License Filter */}
+            <div className="bg-white rounded-lg p-2 sm:p-3 shadow-sm border border-gray-100 mb-2 sm:mb-3">
+              <label className="block text-xs font-semibold text-gray-800 mb-2">
+                ¿Tienes licencia náutica?
+              </label>
+              <div className="flex gap-2">
+                <button
+                  onClick={() => setLicenseFilter("all")}
+                  className={`flex-1 p-2 rounded-md text-xs sm:text-sm font-medium transition-all ${
+                    licenseFilter === "all"
+                      ? "bg-primary text-white shadow-md"
+                      : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                  }`}
+                  data-testid="button-license-all"
+                >
+                  Todos
+                </button>
+                <button
+                  onClick={() => setLicenseFilter("without")}
+                  className={`flex-1 p-2 rounded-md text-xs sm:text-sm font-medium transition-all ${
+                    licenseFilter === "without"
+                      ? "bg-primary text-white shadow-md"
+                      : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                  }`}
+                  data-testid="button-license-without"
+                >
+                  Sin licencia
+                </button>
+                <button
+                  onClick={() => setLicenseFilter("with")}
+                  className={`flex-1 p-2 rounded-md text-xs sm:text-sm font-medium transition-all ${
+                    licenseFilter === "with"
+                      ? "bg-primary text-white shadow-md"
+                      : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                  }`}
+                  data-testid="button-license-with"
+                >
+                  Con licencia
+                </button>
+              </div>
+            </div>
+
+            {/* Boat Selector */}
+            <div className="bg-white rounded-lg p-2 sm:p-3 shadow-sm border border-gray-100">
+              <label className="flex items-center text-xs font-semibold text-gray-800 mb-1 sm:mb-2">
+                <div className="w-5 h-5 sm:w-6 sm:h-6 bg-primary/10 rounded-full flex items-center justify-center mr-1 sm:mr-2">
+                  <Anchor className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-primary" />
+                </div>
+                Seleccionar barco
+              </label>
+              <select
+                value={selectedBoat}
+                onChange={(e) => setSelectedBoat(e.target.value)}
+                disabled={isLoadingBoats}
+                className="w-full p-2 sm:p-2.5 border-0 bg-gray-50 rounded-md focus:ring-2 focus:ring-primary focus:bg-white transition-all text-gray-900 font-medium appearance-none cursor-pointer text-xs sm:text-sm disabled:opacity-50"
+                data-testid="select-boat-type"
+              >
+                <option value="">
+                  {isLoadingBoats ? "Cargando barcos..." : "Seleccionar barco"}
+                </option>
+                {filteredBoats.map((boat) => (
+                  <option key={boat.id} value={boat.id}>
+                    {boat.name} ({boat.requiresLicense ? "Con licencia" : "Sin licencia"}) - desde {boat.pricePerHour}€/h
+                  </option>
+                ))}
+              </select>
+              {filteredBoats.length === 0 && !isLoadingBoats && (
+                <p className="text-xs text-gray-500 mt-1">No hay barcos disponibles para este filtro</p>
+              )}
+            </div>
+          </div>
+
+          {/* Date and Duration Section */}
+          <div className="bg-gray-50/80 rounded-xl p-2 sm:p-3 lg:p-4 mb-3 sm:mb-4">
+            <h4 className="text-xs sm:text-sm font-semibold text-gray-800 mb-2 sm:mb-3">Fecha y duración</h4>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2 sm:gap-3">
+              {/* Date */}
+              <div className="bg-white rounded-lg p-2 sm:p-3 shadow-sm border border-gray-100">
                 <label className="flex items-center text-xs font-semibold text-gray-800 mb-1 sm:mb-2">
                   <div className="w-5 h-5 sm:w-6 sm:h-6 bg-primary/10 rounded-full flex items-center justify-center mr-1 sm:mr-2">
                     <Calendar className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-primary" />
@@ -172,33 +462,8 @@ export default function Hero() {
                 />
               </div>
               
-              {/* Embarcación */}
-              <div className="bg-white rounded-lg p-2 sm:p-3 shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
-                <label className="flex items-center text-xs font-semibold text-gray-800 mb-1 sm:mb-2">
-                  <div className="w-5 h-5 sm:w-6 sm:h-6 bg-primary/10 rounded-full flex items-center justify-center mr-1 sm:mr-2">
-                    <Anchor className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-primary" />
-                  </div>
-                  {t.booking.selectBoat}
-                </label>
-                <select
-                  value={selectedBoat}
-                  onChange={(e) => setSelectedBoat(e.target.value)}
-                  className="w-full p-2 sm:p-2.5 border-0 bg-gray-50 rounded-md focus:ring-2 focus:ring-primary focus:bg-white transition-all text-gray-900 font-medium appearance-none cursor-pointer text-xs sm:text-sm"
-                  data-testid="select-boat-type"
-                >
-                  <option value="">Seleccionar barco</option>
-                  <option value="astec-400">Astec 400 (Sin licencia) - desde 70€</option>
-                  <option value="remus-450">REMUS 450 (Sin licencia) - desde 75€</option>
-                  <option value="solar-450">SOLAR 450 (Sin licencia) - desde 75€</option>
-                  <option value="astec-450">Astec 450 (Sin licencia) - desde 80€</option>
-                  <option value="pacific-craft-625">PACIFIC CRAFT 625 (Con licencia) - desde 180€</option>
-                  <option value="trimarchi-57s">TRIMARCHI 57S (Con licencia) - desde 160€</option>
-                  <option value="mingolla-brava-19">MINGOLLA BRAVA 19 (Con licencia) - desde 150€</option>
-                </select>
-              </div>
-              
-              {/* Duración */}
-              <div className="bg-white rounded-lg p-2 sm:p-3 shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+              {/* Duration */}
+              <div className="bg-white rounded-lg p-2 sm:p-3 shadow-sm border border-gray-100">
                 <label className="flex items-center text-xs font-semibold text-gray-800 mb-1 sm:mb-2">
                   <div className="w-5 h-5 sm:w-6 sm:h-6 bg-primary/10 rounded-full flex items-center justify-center mr-1 sm:mr-2">
                     <Clock className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-primary" />
@@ -211,19 +476,25 @@ export default function Hero() {
                   className="w-full p-2 sm:p-2.5 border-0 bg-gray-50 rounded-md focus:ring-2 focus:ring-primary focus:bg-white transition-all text-gray-900 font-medium appearance-none cursor-pointer text-xs sm:text-sm"
                   data-testid="select-duration"
                 >
-                  <option value="">{t.booking.selectDuration || 'Seleccionar duración'}</option>
-                  <option value="1h">{t.booking.oneHour || '1 hora'}</option>
-                  <option value="2h">{t.booking.twoHours || '2 horas'}</option>
-                  <option value="3h">{t.booking.threeHours || '3 horas'}</option>
-                  <option value="4h">4 horas - Media día</option>
-                  <option value="6h">6 horas</option>
-                  <option value="8h">8 horas - Día completo</option>
+                  <option value="">Seleccionar duración</option>
+                  {getDurationOptions().map((option) => (
+                    <option key={option.value} value={option.value}>
+                      {option.label}
+                    </option>
+                  ))}
                 </select>
+                {selectedBoatInfo && (
+                  <p className="text-xs text-gray-500 mt-1">
+                    {selectedBoatInfo.requiresLicense 
+                      ? "Barcos con licencia: mínimo 4 horas" 
+                      : "Barcos sin licencia: máximo 3 horas"}
+                  </p>
+                )}
               </div>
             </div>
           </div>
           
-          {/* Botón de búsqueda */}
+          {/* Search Button */}
           <div>
             <Button 
               onClick={handleBookingSearch}

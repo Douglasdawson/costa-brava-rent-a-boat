@@ -1087,8 +1087,8 @@ export default function BookingFlow({
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Teléfono *
                   </label>
-                  <div className="flex gap-2 items-start">
-                    <div className="relative w-36 flex-shrink-0">
+                  <div className="flex gap-2 w-full overflow-hidden">
+                    <div className="relative" style={{ width: '120px', flexShrink: 0 }}>
                       <input
                         type="text"
                         value={phonePrefixSearch || customerData.phonePrefix}
@@ -1124,14 +1124,16 @@ export default function BookingFlow({
                         </div>
                       )}
                     </div>
-                    <input
-                      type="tel"
-                      value={customerData.customerPhone}
-                      onChange={(e) => setCustomerData(prev => ({...prev, customerPhone: e.target.value}))}
-                      className="flex-1 min-w-0 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary text-gray-900"
-                      placeholder="600 000 000"
-                      data-testid="input-customer-phone"
-                    />
+                    <div className="flex-1 min-w-0">
+                      <input
+                        type="tel"
+                        value={customerData.customerPhone}
+                        onChange={(e) => setCustomerData(prev => ({...prev, customerPhone: e.target.value}))}
+                        className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary text-gray-900"
+                        placeholder="600 000 000"
+                        data-testid="input-customer-phone"
+                      />
+                    </div>
                   </div>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

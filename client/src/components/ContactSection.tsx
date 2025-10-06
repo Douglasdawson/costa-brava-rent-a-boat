@@ -252,7 +252,7 @@ export default function ContactSection() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-6">
             {/* Alquiler Barcos Blanes */}
             <Link href="/alquiler-barcos-blanes" asChild>
               <Card className="hover:shadow-lg transition-shadow cursor-pointer group">

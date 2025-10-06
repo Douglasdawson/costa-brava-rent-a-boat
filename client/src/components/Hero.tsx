@@ -893,8 +893,8 @@ export default function Hero() {
 
         {/* Trust Indicators */}
         <div className="mt-4 sm:mt-6 max-w-3xl w-full mx-2 sm:mx-4">
-          <div className="flex flex-wrap justify-center items-center gap-3 sm:gap-4 lg:gap-6 text-white/90 text-xs sm:text-sm bg-white/10 backdrop-blur-sm rounded-lg p-3 sm:p-4">
-            <div className="flex items-center space-x-2">
+          <div className="flex flex-wrap sm:grid sm:grid-cols-2 justify-center items-center gap-3 sm:gap-x-8 sm:gap-y-3 text-white/90 text-xs sm:text-sm bg-white/10 backdrop-blur-sm rounded-lg p-3 sm:p-4">
+            <div className="flex items-center space-x-2 sm:justify-center">
               <Star className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-400 fill-current flex-shrink-0" />
               <a 
                 href="https://www.google.com/maps/place/Costa+Brava+Rent+a+Boat+-+Blanes+%7C+Alquiler+de+Barcos+Con+y+Sin+Licencia/@41.6722544,2.7952876,17z/data=!3m1!4b1!4m6!3m5!1s0x12bb172c94a8856f:0x9a2dfa936ef2e0a7!8m2!3d41.6722504!4d2.7978625!16s%2Fg%2F11q2xl6s9f?entry=ttu&g_ep=EgoyMDI1MDkxNy4wIKXMDSoASAFQAw%3D%3D"
@@ -906,7 +906,7 @@ export default function Hero() {
                 4.8/5 valoración media en Google
               </a>
             </div>
-            <div className="flex items-center space-x-2">
+            <div className="flex items-center space-x-2 sm:justify-center">
               <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-green-400 flex-shrink-0" />
               <a 
                 href="https://www.google.com/maps/place/Costa+Brava+Rent+a+Boat+-+Blanes+%7C+Alquiler+de+Barcos+Con+y+Sin+Licencia/@41.6722544,2.7952876,17z/data=!3m1!4b1!4m6!3m5!1s0x12bb172c94a8856f:0x9a2dfa936ef2e0a7!8m2!3d41.6722504!4d2.7978625!16s%2Fg%2F11q2xl6s9f?entry=ttu&g_ep=EgoyMDI1MDkxNy4wIKXMDSoASAFQAw%3D%3D"
@@ -918,11 +918,11 @@ export default function Hero() {
                 +500 clientes satisfechos
               </a>
             </div>
-            <div className="flex items-center space-x-2">
+            <div className="flex items-center space-x-2 sm:justify-center">
               <Shield className="w-4 h-4 sm:w-5 sm:h-5 text-blue-400 flex-shrink-0" />
               <span className="font-medium">Totalmente asegurado</span>
             </div>
-            <div className="flex items-center space-x-2">
+            <div className="flex items-center space-x-2 sm:justify-center">
               <Clock className="w-4 h-4 sm:w-5 sm:h-5 text-purple-400 flex-shrink-0" />
               <span className="font-medium">5 años de experiencia</span>
             </div>

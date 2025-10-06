@@ -578,7 +578,7 @@ export default function Hero() {
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-2">
               {/* First Name */}
               <div className="bg-white rounded-lg p-2 sm:p-3 shadow-sm border border-gray-100">
-                <label className="flex items-center justify-center md:justify-start text-xs font-semibold text-gray-800 mb-1 sm:mb-2">
+                <label className="flex items-center justify-center md:justify-start text-xs md:text-sm font-semibold text-gray-800 mb-1 sm:mb-2">
                   <div className="w-5 h-5 sm:w-6 sm:h-6 bg-primary/10 rounded-full flex items-center justify-center mr-1 sm:mr-2">
                     <User className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-primary" />
                   </div>
@@ -596,7 +596,7 @@ export default function Hero() {
 
               {/* Last Name */}
               <div className="bg-white rounded-lg p-2 sm:p-3 shadow-sm border border-gray-100">
-                <label className="flex items-center justify-center md:justify-start text-xs font-semibold text-gray-800 mb-1 sm:mb-2">
+                <label className="flex items-center justify-center md:justify-start text-xs md:text-sm font-semibold text-gray-800 mb-1 sm:mb-2">
                   <div className="w-5 h-5 sm:w-6 sm:h-6 bg-primary/10 rounded-full flex items-center justify-center mr-1 sm:mr-2">
                     <User className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-primary" />
                   </div>
@@ -614,7 +614,7 @@ export default function Hero() {
 
               {/* Phone Number */}
               <div className="col-span-2 lg:col-span-1 bg-white rounded-lg p-2 sm:p-3 shadow-sm border border-gray-100">
-                <label className="flex items-center justify-center md:justify-start text-xs font-semibold text-gray-800 mb-1 sm:mb-2">
+                <label className="flex items-center justify-center md:justify-start text-xs md:text-sm font-semibold text-gray-800 mb-1 sm:mb-2">
                   <div className="w-5 h-5 sm:w-6 sm:h-6 bg-primary/10 rounded-full flex items-center justify-center mr-1 sm:mr-2">
                     <PhoneIcon className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-primary" />
                   </div>
@@ -706,7 +706,7 @@ export default function Hero() {
 
               {/* Email */}
               <div className="col-span-2 lg:col-span-1 bg-white rounded-lg p-2 sm:p-3 shadow-sm border border-gray-100">
-                <label className="flex items-center justify-center md:justify-start text-xs font-semibold text-gray-800 mb-1 sm:mb-2">
+                <label className="flex items-center justify-center md:justify-start text-xs md:text-sm font-semibold text-gray-800 mb-1 sm:mb-2">
                   <div className="w-5 h-5 sm:w-6 sm:h-6 bg-primary/10 rounded-full flex items-center justify-center mr-1 sm:mr-2">
                     <Mail className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-primary" />
                   </div>

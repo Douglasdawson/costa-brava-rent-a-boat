@@ -278,16 +278,16 @@ export default function Hero() {
         </div>
 
         {/* Booking Widget */}
-        <Card className="bg-white/95 backdrop-blur-md p-3 sm:p-4 lg:p-6 max-w-5xl w-full shadow-2xl border-0 mx-2 sm:mx-4">
-          <div className="text-center mb-3 sm:mb-4 lg:mb-5">
-            <h3 className="text-base sm:text-lg lg:text-xl font-bold text-gray-900 mb-1 sm:mb-2">{t.booking.title}</h3>
-            <p className="text-xs sm:text-sm text-gray-600">Completa los datos para encontrar tu barco perfecto</p>
+        <Card className="bg-white/95 backdrop-blur-md p-3 sm:p-4 max-w-3xl w-full shadow-2xl border-0 mx-2 sm:mx-4">
+          <div className="text-center mb-2 sm:mb-3">
+            <h3 className="text-sm sm:text-base lg:text-lg font-bold text-gray-900 mb-1">{t.booking.title}</h3>
+            <p className="text-xs text-gray-600">Completa los datos para encontrar tu barco perfecto</p>
           </div>
           
           {/* Personal Information Section */}
-          <div className="bg-gray-50/80 rounded-xl p-2 sm:p-3 lg:p-4 mb-3 sm:mb-4">
-            <h4 className="text-xs sm:text-sm font-semibold text-gray-800 mb-2 sm:mb-3">Datos personales</h4>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-2 sm:gap-3">
+          <div className="bg-gray-50/80 rounded-lg p-2 sm:p-3 mb-2 sm:mb-3">
+            <h4 className="text-xs font-semibold text-gray-800 mb-2">Datos personales</h4>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               {/* First Name */}
               <div className="bg-white rounded-lg p-2 sm:p-3 shadow-sm border border-gray-100">
                 <label className="flex items-center text-xs font-semibold text-gray-800 mb-1 sm:mb-2">
@@ -378,19 +378,19 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Boat Selection Section */}
-          <div className="bg-gray-50/80 rounded-xl p-2 sm:p-3 lg:p-4 mb-3 sm:mb-4">
-            <h4 className="text-xs sm:text-sm font-semibold text-gray-800 mb-2 sm:mb-3">Selección de barco</h4>
+          {/* Boat, Date and Duration Section - All in one column */}
+          <div className="bg-gray-50/80 rounded-lg p-2 sm:p-3 mb-2 sm:mb-3">
+            <h4 className="text-xs font-semibold text-gray-800 mb-2">Selección de reserva</h4>
             
             {/* License Filter */}
-            <div className="bg-white rounded-lg p-2 sm:p-3 shadow-sm border border-gray-100 mb-2 sm:mb-3">
-              <label className="block text-xs font-semibold text-gray-800 mb-2">
+            <div className="bg-white rounded-lg p-2 shadow-sm border border-gray-100 mb-2">
+              <label className="block text-xs font-semibold text-gray-800 mb-1">
                 ¿Tienes licencia náutica?
               </label>
-              <div className="flex gap-2">
+              <div className="flex gap-1">
                 <button
                   onClick={() => setLicenseFilter("all")}
-                  className={`flex-1 p-2 rounded-md text-xs sm:text-sm font-medium transition-all ${
+                  className={`flex-1 p-1.5 rounded-md text-xs font-medium transition-all ${
                     licenseFilter === "all"
                       ? "bg-primary text-white shadow-md"
                       : "bg-gray-100 text-gray-700 hover:bg-gray-200"
@@ -401,7 +401,7 @@ export default function Hero() {
                 </button>
                 <button
                   onClick={() => setLicenseFilter("without")}
-                  className={`flex-1 p-2 rounded-md text-xs sm:text-sm font-medium transition-all ${
+                  className={`flex-1 p-1.5 rounded-md text-xs font-medium transition-all ${
                     licenseFilter === "without"
                       ? "bg-primary text-white shadow-md"
                       : "bg-gray-100 text-gray-700 hover:bg-gray-200"
@@ -412,7 +412,7 @@ export default function Hero() {
                 </button>
                 <button
                   onClick={() => setLicenseFilter("with")}
-                  className={`flex-1 p-2 rounded-md text-xs sm:text-sm font-medium transition-all ${
+                  className={`flex-1 p-1.5 rounded-md text-xs font-medium transition-all ${
                     licenseFilter === "with"
                       ? "bg-primary text-white shadow-md"
                       : "bg-gray-100 text-gray-700 hover:bg-gray-200"
@@ -424,45 +424,42 @@ export default function Hero() {
               </div>
             </div>
 
-            {/* Boat Selector */}
-            <div className="bg-white rounded-lg p-2 sm:p-3 shadow-sm border border-gray-100">
-              <label className="flex items-center text-xs font-semibold text-gray-800 mb-1 sm:mb-2">
-                <div className="w-5 h-5 sm:w-6 sm:h-6 bg-primary/10 rounded-full flex items-center justify-center mr-1 sm:mr-2">
-                  <Anchor className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-primary" />
-                </div>
-                Seleccionar barco
-              </label>
-              <select
-                value={selectedBoat}
-                onChange={(e) => setSelectedBoat(e.target.value)}
-                disabled={isLoadingBoats}
-                className="w-full p-2 sm:p-2.5 border-0 bg-gray-50 rounded-md focus:ring-2 focus:ring-primary focus:bg-white transition-all text-gray-900 font-medium appearance-none cursor-pointer text-xs sm:text-sm disabled:opacity-50"
-                data-testid="select-boat-type"
-              >
-                <option value="">
-                  {isLoadingBoats ? "Cargando barcos..." : "Seleccionar barco"}
-                </option>
-                {filteredBoats.map((boat) => (
-                  <option key={boat.id} value={boat.id}>
-                    {boat.name} ({boat.requiresLicense ? "Con licencia" : "Sin licencia"}) - desde {boat.pricePerHour}€/h
+            {/* All fields in single column */}
+            <div className="space-y-2">
+              {/* Boat Selector */}
+              <div className="bg-white rounded-lg p-2 shadow-sm border border-gray-100">
+                <label className="flex items-center text-xs font-semibold text-gray-800 mb-1">
+                  <div className="w-4 h-4 bg-primary/10 rounded-full flex items-center justify-center mr-1">
+                    <Anchor className="w-2.5 h-2.5 text-primary" />
+                  </div>
+                  Seleccionar barco
+                </label>
+                <select
+                  value={selectedBoat}
+                  onChange={(e) => setSelectedBoat(e.target.value)}
+                  disabled={isLoadingBoats}
+                  className="w-full p-2 border-0 bg-gray-50 rounded-md focus:ring-2 focus:ring-primary focus:bg-white transition-all text-gray-900 font-medium appearance-none cursor-pointer text-xs disabled:opacity-50"
+                  data-testid="select-boat-type"
+                >
+                  <option value="">
+                    {isLoadingBoats ? "Cargando barcos..." : "Seleccionar barco"}
                   </option>
-                ))}
-              </select>
-              {filteredBoats.length === 0 && !isLoadingBoats && (
-                <p className="text-xs text-gray-500 mt-1">No hay barcos disponibles para este filtro</p>
-              )}
-            </div>
-          </div>
+                  {filteredBoats.map((boat) => (
+                    <option key={boat.id} value={boat.id}>
+                      {boat.name} ({boat.requiresLicense ? "Con licencia" : "Sin licencia"}) - desde {boat.pricePerHour}€/h
+                    </option>
+                  ))}
+                </select>
+                {filteredBoats.length === 0 && !isLoadingBoats && (
+                  <p className="text-xs text-gray-500 mt-1">No hay barcos disponibles para este filtro</p>
+                )}
+              </div>
 
-          {/* Date and Duration Section */}
-          <div className="bg-gray-50/80 rounded-xl p-2 sm:p-3 lg:p-4 mb-3 sm:mb-4">
-            <h4 className="text-xs sm:text-sm font-semibold text-gray-800 mb-2 sm:mb-3">Fecha y duración</h4>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-2 sm:gap-3">
               {/* Date */}
-              <div className="bg-white rounded-lg p-2 sm:p-3 shadow-sm border border-gray-100">
-                <label className="flex items-center text-xs font-semibold text-gray-800 mb-1 sm:mb-2">
-                  <div className="w-5 h-5 sm:w-6 sm:h-6 bg-primary/10 rounded-full flex items-center justify-center mr-1 sm:mr-2">
-                    <Calendar className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-primary" />
+              <div className="bg-white rounded-lg p-2 shadow-sm border border-gray-100">
+                <label className="flex items-center text-xs font-semibold text-gray-800 mb-1">
+                  <div className="w-4 h-4 bg-primary/10 rounded-full flex items-center justify-center mr-1">
+                    <Calendar className="w-2.5 h-2.5 text-primary" />
                   </div>
                   {t.booking.date}
                 </label>
@@ -471,23 +468,23 @@ export default function Hero() {
                   value={selectedDate}
                   onChange={(e) => setSelectedDate(e.target.value)}
                   min={getLocalISODate()}
-                  className="w-full p-2 sm:p-2.5 border-0 bg-gray-50 rounded-md focus:ring-2 focus:ring-primary focus:bg-white transition-all text-gray-900 font-medium text-xs sm:text-sm date-left-align"
+                  className="w-full p-2 border-0 bg-gray-50 rounded-md focus:ring-2 focus:ring-primary focus:bg-white transition-all text-gray-900 font-medium text-xs date-left-align"
                   data-testid="input-booking-date"
                 />
               </div>
               
               {/* Duration */}
-              <div className="bg-white rounded-lg p-2 sm:p-3 shadow-sm border border-gray-100">
-                <label className="flex items-center text-xs font-semibold text-gray-800 mb-1 sm:mb-2">
-                  <div className="w-5 h-5 sm:w-6 sm:h-6 bg-primary/10 rounded-full flex items-center justify-center mr-1 sm:mr-2">
-                    <Clock className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-primary" />
+              <div className="bg-white rounded-lg p-2 shadow-sm border border-gray-100">
+                <label className="flex items-center text-xs font-semibold text-gray-800 mb-1">
+                  <div className="w-4 h-4 bg-primary/10 rounded-full flex items-center justify-center mr-1">
+                    <Clock className="w-2.5 h-2.5 text-primary" />
                   </div>
                   {t.booking.duration}
                 </label>
                 <select
                   value={selectedDuration}
                   onChange={(e) => setSelectedDuration(e.target.value)}
-                  className="w-full p-2 sm:p-2.5 border-0 bg-gray-50 rounded-md focus:ring-2 focus:ring-primary focus:bg-white transition-all text-gray-900 font-medium appearance-none cursor-pointer text-xs sm:text-sm"
+                  className="w-full p-2 border-0 bg-gray-50 rounded-md focus:ring-2 focus:ring-primary focus:bg-white transition-all text-gray-900 font-medium appearance-none cursor-pointer text-xs"
                   data-testid="select-duration"
                 >
                   <option value="">Seleccionar duración</option>
@@ -513,7 +510,7 @@ export default function Hero() {
             <Button 
               onClick={handleBookingSearch}
               disabled={isSearching}
-              className="w-full bg-primary hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed text-white font-bold py-2.5 sm:py-3 px-4 sm:px-8 rounded-lg shadow-lg hover:shadow-xl transition-all duration-200 text-sm sm:text-base"
+              className="w-full bg-primary hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed text-white font-bold py-2 sm:py-2.5 px-4 rounded-lg shadow-lg hover:shadow-xl transition-all duration-200 text-xs sm:text-sm"
               data-testid="button-search-availability"
             >
               {isSearching ? (
@@ -522,19 +519,19 @@ export default function Hero() {
                 <><span className="hidden sm:inline">{t.booking.searchAvailability || 'Buscar Disponibilidad'}</span><span className="sm:hidden">{t.booking.searchShort || 'Buscar'}</span></>
               )}
             </Button>
-            <p className="text-xs text-gray-500 mt-3 sm:mt-4 lg:mt-6 text-center">
+            <p className="text-xs text-gray-500 mt-2 text-center">
               {t.hero.trustText}
             </p>
           </div>
           
-          <div className="flex flex-col xs:flex-row gap-2 sm:gap-3 lg:gap-4 justify-center items-center mt-3 sm:mt-4 lg:mt-6">
+          <div className="flex flex-col xs:flex-row gap-2 justify-center items-center mt-2">
             <Button 
               variant="outline" 
               onClick={handleWhatsApp}
-              className="bg-white/90 backdrop-blur border-white/50 hover:bg-green-500 hover:text-white hover:border-green-500 w-full xs:w-auto text-xs sm:text-sm lg:text-base transition-all duration-200 py-2 sm:py-2.5"
+              className="bg-white/90 backdrop-blur border-white/50 hover:bg-green-500 hover:text-white hover:border-green-500 w-full xs:w-auto text-xs transition-all duration-200"
               data-testid="button-whatsapp-contact"
             >
-              <SiWhatsapp className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
+              <SiWhatsapp className="w-3 h-3 mr-1" />
               <span className="hidden sm:inline">{t.hero.whatsappContact}</span>
               <span className="sm:hidden">WhatsApp</span>
             </Button>
@@ -542,10 +539,10 @@ export default function Hero() {
             <Button 
               variant="outline" 
               onClick={() => window.open("https://www.google.com/maps/place/Costa+Brava+Rent+a+Boat+-+Blanes+%7C+Alquiler+de+Barcos+Con+y+Sin+Licencia/@41.6722544,2.7952876,17z/data=!3m1!4b1!4m6!3m5!1s0x12bb172c94a8856f:0x9a2dfa936ef2e0a7!8m2!3d41.6722504!4d2.7978625!16s%2Fg%2F11q2xl6s9f?entry=ttu&g_ep=EgoyMDI1MDkxNy4wIKXMDSoASAFQAw%3D%3D", "_blank")}
-              className="bg-white/90 backdrop-blur border-white/50 hover:bg-blue-400 hover:text-white hover:border-blue-400 w-full xs:w-auto text-xs sm:text-sm lg:text-base transition-all duration-200 py-2 sm:py-2.5"
+              className="bg-white/90 backdrop-blur border-white/50 hover:bg-blue-400 hover:text-white hover:border-blue-400 w-full xs:w-auto text-xs transition-all duration-200"
               data-testid="button-location-maps"
             >
-              <MapPin className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
+              <MapPin className="w-3 h-3 mr-1" />
               <span className="hidden sm:inline">{BUSINESS_LOCATION}</span>
               <span className="sm:hidden">{t.hero.location}</span>
             </Button>

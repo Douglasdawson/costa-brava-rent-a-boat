@@ -570,7 +570,7 @@ export default function Hero() {
         <Card className="bg-white/95 backdrop-blur-md p-3 sm:p-4 max-w-5xl w-full shadow-2xl border-0 mx-2 sm:mx-4">
           <div className="text-center mb-2 sm:mb-3">
             <h3 className="text-sm sm:text-base lg:text-lg font-bold text-gray-900 mb-1">{t.booking.title}</h3>
-            <p className="text-xs text-gray-600">Completa los datos para encontrar tu barco perfecto</p>
+            <p className="text-xs text-gray-600">Completa los datos para solicitar la reserva de tu barco perfecto</p>
           </div>
           
           {/* Personal Information Section */}

@@ -96,7 +96,7 @@ function FleetManagement({ adminToken }: { adminToken: string }) {
   });
 
   // Fetch all boats (including inactive)
-  const { data: boats, isLoading: boatsLoading } = useQuery({
+  const { data: boats, isLoading: boatsLoading } = useQuery<any[]>({
     queryKey: ['/api/boats'],
   });
 

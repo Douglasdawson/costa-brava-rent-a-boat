@@ -1087,8 +1087,8 @@ export default function BookingFlow({
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Teléfono *
                   </label>
-                  <div className="flex gap-2">
-                    <div className="relative w-32">
+                  <div className="flex gap-2 items-start">
+                    <div className="relative w-36 flex-shrink-0">
                       <input
                         type="text"
                         value={phonePrefixSearch || customerData.phonePrefix}
@@ -1097,12 +1097,15 @@ export default function BookingFlow({
                           setShowPhonePrefixDropdown(true);
                         }}
                         onFocus={() => setShowPhonePrefixDropdown(true)}
-                        placeholder="Buscar país"
+                        onBlur={() => {
+                          setTimeout(() => setShowPhonePrefixDropdown(false), 200);
+                        }}
+                        placeholder="+34"
                         className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary text-sm text-gray-900"
                         data-testid="input-phone-prefix-search"
                       />
                       {showPhonePrefixDropdown && filteredPhoneCountries.length > 0 && (
-                        <div className="absolute z-10 w-64 max-h-48 overflow-y-auto bg-white border border-gray-300 rounded-lg shadow-lg mt-1">
+                        <div className="absolute z-10 left-0 w-72 max-h-48 overflow-y-auto bg-white border border-gray-300 rounded-lg shadow-lg mt-1">
                           {filteredPhoneCountries.slice(0, 8).map((country) => (
                             <button
                               key={country.code}
@@ -1125,7 +1128,7 @@ export default function BookingFlow({
                       type="tel"
                       value={customerData.customerPhone}
                       onChange={(e) => setCustomerData(prev => ({...prev, customerPhone: e.target.value}))}
-                      className="flex-1 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary text-gray-900"
+                      className="flex-1 min-w-0 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary text-gray-900"
                       placeholder="600 000 000"
                       data-testid="input-customer-phone"
                     />

@@ -628,7 +628,7 @@ export default function Hero() {
                         setShowPrefixDropdown(!showPrefixDropdown);
                         setPrefixSearch("");
                       }}
-                      className="w-full p-2 sm:p-2.5 border-0 bg-white rounded-md focus:ring-2 focus:ring-primary transition-all text-gray-900 font-medium text-xs sm:text-sm flex items-center justify-between"
+                      className="w-full p-2 sm:p-2.5 border-0 bg-gray-50 rounded-md focus:ring-2 focus:ring-primary transition-all text-gray-900 font-medium text-xs sm:text-sm flex items-center justify-between"
                       data-testid="select-phone-prefix"
                     >
                       <span>{selectedPrefixInfo?.flag} {phonePrefix}</span>

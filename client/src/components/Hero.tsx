@@ -11,6 +11,7 @@ import { useTranslations } from "@/lib/translations";
 import { apiRequest } from "@/lib/queryClient";
 import { useQuery } from "@tanstack/react-query";
 import type { Boat } from "@shared/schema";
+import { BOAT_DATA } from "@shared/boatData";
 import heroImage from "../assets/generated_images/Mediterranean_coastal_hero_scene_8df465c2.png";
 
 export default function Hero() {
@@ -66,18 +67,30 @@ export default function Hero() {
     }
   }, [licenseFilter, selectedBoat, selectedBoatInfo]);
 
+  // Helper function to get current season
+  const getCurrentSeason = () => {
+    const month = new Date().getMonth() + 1; // 1-12
+    if (month === 8) return "ALTA"; // Agosto
+    if (month === 7) return "MEDIA"; // Julio
+    return "BAJA"; // Abril-Junio, Septiembre-Cierre
+  };
+
   // Duration options based on license requirement
   const getDurationOptions = () => {
-    // Helper function to calculate price for duration
-    const calculatePrice = (hours: number) => {
+    // Helper function to get price for duration from BOAT_DATA
+    const getPriceForDuration = (durationKey: string) => {
       if (!selectedBoatInfo) return null;
-      const pricePerHour = parseFloat(selectedBoatInfo.pricePerHour);
-      return (pricePerHour * hours).toFixed(0);
+      const boatData = BOAT_DATA[selectedBoatInfo.id];
+      if (!boatData) return null;
+      
+      const season = getCurrentSeason();
+      const seasonPricing = boatData.pricing[season];
+      return seasonPricing?.prices[durationKey] || null;
     };
 
     // Helper function to format label with price
-    const formatLabel = (hours: number, baseLabel: string) => {
-      const price = calculatePrice(hours);
+    const formatLabel = (durationKey: string, baseLabel: string) => {
+      const price = getPriceForDuration(durationKey);
       return price ? `${baseLabel} - ${price}€` : baseLabel;
     };
 
@@ -113,19 +126,19 @@ export default function Hero() {
     if (selectedBoatInfo.requiresLicense) {
       // Boats with license: 2h, 4h, 8h (with prices)
       return [
-        { value: "2h", label: formatLabel(2, "2 horas") },
-        { value: "4h", label: formatLabel(4, "4 horas - Media día") },
-        { value: "8h", label: formatLabel(8, "8 horas - Día completo") },
+        { value: "2h", label: formatLabel("2h", "2 horas") },
+        { value: "4h", label: formatLabel("4h", "4 horas - Media día") },
+        { value: "8h", label: formatLabel("8h", "8 horas - Día completo") },
       ];
     } else {
       // Boats without license: 1h, 2h, 3h, 4h, 6h, 8h (with prices)
       return [
-        { value: "1h", label: formatLabel(1, "1 hora") },
-        { value: "2h", label: formatLabel(2, "2 horas") },
-        { value: "3h", label: formatLabel(3, "3 horas") },
-        { value: "4h", label: formatLabel(4, "4 horas - Media día") },
-        { value: "6h", label: formatLabel(6, "6 horas") },
-        { value: "8h", label: formatLabel(8, "8 horas - Día completo") },
+        { value: "1h", label: formatLabel("1h", "1 hora") },
+        { value: "2h", label: formatLabel("2h", "2 horas") },
+        { value: "3h", label: formatLabel("3h", "3 horas") },
+        { value: "4h", label: formatLabel("4h", "4 horas - Media día") },
+        { value: "6h", label: formatLabel("6h", "6 horas") },
+        { value: "8h", label: formatLabel("8h", "8 horas - Día completo") },
       ];
     }
   };

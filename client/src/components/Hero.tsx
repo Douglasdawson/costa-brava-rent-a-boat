@@ -72,8 +72,8 @@ export default function Hero() {
       // If license filter is set but no boat selected, adapt options to filter
       if (licenseFilter === "with") {
         return [
+          { value: "2h", label: "2 horas" },
           { value: "4h", label: "4 horas - Media día" },
-          { value: "6h", label: "6 horas" },
           { value: "8h", label: "8 horas - Día completo" },
         ];
       } else if (licenseFilter === "without") {
@@ -81,6 +81,9 @@ export default function Hero() {
           { value: "1h", label: "1 hora" },
           { value: "2h", label: "2 horas" },
           { value: "3h", label: "3 horas" },
+          { value: "4h", label: "4 horas - Media día" },
+          { value: "6h", label: "6 horas" },
+          { value: "8h", label: "8 horas - Día completo" },
         ];
       }
       // Show all options if filter is "all"
@@ -95,18 +98,21 @@ export default function Hero() {
     }
 
     if (selectedBoatInfo.requiresLicense) {
-      // Boats with license: 4h minimum
+      // Boats with license: 2h, 4h, 8h
       return [
+        { value: "2h", label: "2 horas" },
         { value: "4h", label: "4 horas - Media día" },
-        { value: "6h", label: "6 horas" },
         { value: "8h", label: "8 horas - Día completo" },
       ];
     } else {
-      // Boats without license: 1-3h only
+      // Boats without license: 1h, 2h, 3h, 4h, 6h, 8h
       return [
         { value: "1h", label: "1 hora" },
         { value: "2h", label: "2 horas" },
         { value: "3h", label: "3 horas" },
+        { value: "4h", label: "4 horas - Media día" },
+        { value: "6h", label: "6 horas" },
+        { value: "8h", label: "8 horas - Día completo" },
       ];
     }
   };
@@ -506,8 +512,8 @@ export default function Hero() {
                 {selectedBoatInfo && (
                   <p className="text-xs text-gray-500 mt-1">
                     {selectedBoatInfo.requiresLicense 
-                      ? "Con licencia: mín. 4h" 
-                      : "Sin licencia: máx. 3h"}
+                      ? "Con licencia: 2h, 4h, 8h" 
+                      : "Sin licencia: 1-8h"}
                   </p>
                 )}
               </div>

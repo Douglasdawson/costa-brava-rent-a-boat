@@ -859,7 +859,7 @@ export default function Hero() {
               {isSearching ? (
                 <><span className="hidden sm:inline">Verificando disponibilidad...</span><span className="sm:hidden">Verificando...</span></>
               ) : (
-                <><span className="hidden sm:inline">Enviar Petición de Reserva</span><span className="sm:hidden">Enviar Petición</span></>
+                <><span className="hidden sm:inline">ENVIAR PETICIÓN DE RESERVA</span><span className="sm:hidden">ENVIAR PETICIÓN</span></>
               )}
             </Button>
             <p className="text-sm text-gray-500 mt-2 text-center">

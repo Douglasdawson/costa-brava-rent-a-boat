@@ -12,6 +12,9 @@ import {
 import { useTranslations } from "@/lib/translations";
 import snorkelImage from "../assets/generated_images/Family_snorkeling_activity_scene_b0ab1783.png";
 import paddleImage from "../assets/generated_images/Paddle_surfing_couple_scene_cc635043.png";
+import coolerImage from "@assets/stock_images/cooler_with_ice_and__e74f58f1.jpg";
+import privateTourImage from "@assets/stock_images/private_boat_tour_wi_507c646c.jpg";
+import parkingImage from "@assets/stock_images/parking_lot_near_mar_df673930.jpg";
 
 export default function FeaturesSection() {
   const t = useTranslations();
@@ -66,6 +69,24 @@ export default function FeaturesSection() {
       image: paddleImage,
       price: "25€",
       description: "Tabla de paddle surf para explorar calas y costas"
+    },
+    {
+      name: "Nevera con Bebidas",
+      image: coolerImage,
+      price: "10€",
+      description: "Nevera con hielo y bebidas refrescantes para tu día en el mar"
+    },
+    {
+      name: "Excursión Privada",
+      image: privateTourImage,
+      price: "Desde 180€",
+      description: "Tour privado con patrón incluido para una experiencia exclusiva"
+    },
+    {
+      name: "Parking",
+      image: parkingImage,
+      price: "10€/día",
+      description: "Plaza de parking cerca del puerto para mayor comodidad"
     }
   ];
 
@@ -139,26 +160,6 @@ export default function FeaturesSection() {
                 </div>
               </Card>
             ))}
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <Card className="p-6 text-center border-dashed border-2 border-gray-300 bg-white/50">
-              <div className="w-12 h-12 mx-auto mb-4 bg-blue-100 rounded-full flex items-center justify-center">
-                <span className="text-2xl">🧊</span>
-              </div>
-              <h4 className="font-semibold text-gray-900 mb-2">Nevera con Bebidas Frías</h4>
-              <p className="text-gray-600 text-sm mb-2">Nevera con hielo y bebidas refrescantes</p>
-              <span className="text-lg font-bold text-primary">10€</span>
-            </Card>
-
-            <Card className="p-6 text-center border-dashed border-2 border-gray-300 bg-white/50 opacity-50">
-              <div className="w-12 h-12 mx-auto mb-4 bg-gray-100 rounded-full flex items-center justify-center">
-                <span className="text-2xl text-gray-400">🚤</span>
-              </div>
-              <h4 className="font-semibold text-gray-500 mb-2">Excursión Privada</h4>
-              <p className="text-gray-500 text-sm mb-2">Con patrón incluido</p>
-              <span className="text-lg font-bold text-gray-500">Desde 180€</span>
-            </Card>
           </div>
         </div>
 

@@ -789,7 +789,7 @@ export default function Hero() {
                   </option>
                   {filteredBoats.map((boat) => (
                     <option key={boat.id} value={boat.id}>
-                      {boat.name} ({boat.requiresLicense ? "Con licencia" : "Sin licencia"}) - desde {boat.pricePerHour}€/h
+                      {boat.name} ({boat.requiresLicense ? "Con licencia" : "Sin licencia"})
                     </option>
                   ))}
                 </select>

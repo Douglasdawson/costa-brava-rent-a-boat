@@ -383,7 +383,7 @@ export const translations: Record<Language, Translations> = {
       whatsappMessage: 'Hola, me gustaría información sobre el alquiler de barcos',
     },
     booking: {
-      title: '¡Solicita aquí la peticion de tu barco!',
+      title: '¡SOLICITA AQUÍ LA PETICIÓN DE TU BARCO!',
       selectBoat: 'Seleccionar Barco',
       dateTime: 'Fecha y Hora',
       customerDetails: 'Datos del Cliente',

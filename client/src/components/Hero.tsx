@@ -565,7 +565,7 @@ export default function Hero() {
         </div>
 
         {/* Booking Widget */}
-        <Card className="bg-white/95 backdrop-blur-md p-3 sm:p-4 max-w-3xl w-full shadow-2xl border-0 mx-2 sm:mx-4">
+        <Card className="bg-white/95 backdrop-blur-md p-3 sm:p-4 max-w-5xl w-full shadow-2xl border-0 mx-2 sm:mx-4">
           <div className="text-center mb-2 sm:mb-3">
             <h3 className="text-sm sm:text-base lg:text-lg font-bold text-gray-900 mb-1">{t.booking.title}</h3>
             <p className="text-xs text-gray-600">Completa los datos para encontrar tu barco perfecto</p>
@@ -892,7 +892,7 @@ export default function Hero() {
         </Card>
 
         {/* Trust Indicators */}
-        <div className="mt-4 sm:mt-6 max-w-3xl w-full mx-2 sm:mx-4">
+        <div className="mt-4 sm:mt-6 max-w-5xl w-full mx-2 sm:mx-4">
           <div className="flex flex-wrap sm:grid sm:grid-cols-2 justify-center items-center gap-3 sm:gap-x-8 sm:gap-y-3 text-white/90 text-xs sm:text-sm bg-white/10 backdrop-blur-sm rounded-lg p-3 sm:p-4">
             <div className="flex items-center space-x-2 sm:justify-center">
               <Star className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-400 fill-current flex-shrink-0" />

@@ -557,7 +557,9 @@ export default function Hero() {
             <div>Costa Brava.</div>
           </h1>
           <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/90 mb-3 sm:mb-4 px-2 text-center">
-            {t.hero.subtitle}
+            Descubre las mejores calas de la Costa Brava con nuestros barcos con y sin licencia.{' '}
+            <span className="hidden md:inline"><br /></span>
+            Salidas desde Puerto de Blanes.
           </p>
           <p className="text-[10px] sm:text-xs md:text-sm text-white/80 mb-2 sm:mb-3 max-w-2xl mx-auto px-4 sm:whitespace-nowrap">
             Horarios flexibles y salida desde Puerto de Blanes. Añade extras como snorkel, paddle surf y parking.

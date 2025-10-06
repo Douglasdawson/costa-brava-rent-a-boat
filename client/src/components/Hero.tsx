@@ -866,30 +866,6 @@ export default function Hero() {
               {t.hero.trustText}
             </p>
           </div>
-          
-          <div className="flex flex-col xs:flex-row gap-2 justify-center items-center mt-2">
-            <Button 
-              variant="outline" 
-              onClick={handleWhatsApp}
-              className="bg-white/90 backdrop-blur border-white/50 hover:bg-green-500 hover:text-white hover:border-green-500 w-full xs:w-auto text-xs transition-all duration-200"
-              data-testid="button-whatsapp-contact"
-            >
-              <SiWhatsapp className="w-3 h-3 mr-1" />
-              <span className="hidden sm:inline">{t.hero.whatsappContact}</span>
-              <span className="sm:hidden">WhatsApp</span>
-            </Button>
-            
-            <Button 
-              variant="outline" 
-              onClick={() => window.open("https://www.google.com/maps/place/Costa+Brava+Rent+a+Boat+-+Blanes+%7C+Alquiler+de+Barcos+Con+y+Sin+Licencia/@41.6722544,2.7952876,17z/data=!3m1!4b1!4m6!3m5!1s0x12bb172c94a8856f:0x9a2dfa936ef2e0a7!8m2!3d41.6722504!4d2.7978625!16s%2Fg%2F11q2xl6s9f?entry=ttu&g_ep=EgoyMDI1MDkxNy4wIKXMDSoASAFQAw%3D%3D", "_blank")}
-              className="bg-white/90 backdrop-blur border-white/50 hover:bg-blue-400 hover:text-white hover:border-blue-400 w-full xs:w-auto text-xs transition-all duration-200"
-              data-testid="button-location-maps"
-            >
-              <MapPin className="w-3 h-3 mr-1" />
-              <span className="hidden sm:inline">{BUSINESS_LOCATION}</span>
-              <span className="sm:hidden">{t.hero.location}</span>
-            </Button>
-          </div>
         </Card>
 
         {/* Trust Indicators */}

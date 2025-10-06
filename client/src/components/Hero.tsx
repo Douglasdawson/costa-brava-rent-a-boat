@@ -574,7 +574,7 @@ export default function Hero() {
           {/* Personal Information Section */}
           <div className="bg-gray-50/80 rounded-lg p-2 sm:p-3 mb-2 sm:mb-3">
             <h4 className="text-xs font-semibold text-gray-800 mb-2 text-center md:text-left">Datos personales</h4>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+            <div className="grid grid-cols-2 gap-2">
               {/* First Name */}
               <div className="bg-white rounded-lg p-2 sm:p-3 shadow-sm border border-gray-100">
                 <label className="flex items-center justify-center md:justify-start text-xs font-semibold text-gray-800 mb-1 sm:mb-2">

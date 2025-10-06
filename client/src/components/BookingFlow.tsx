@@ -1087,7 +1087,7 @@ export default function BookingFlow({
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Teléfono *
                   </label>
-                  <div className="flex gap-2 w-full overflow-hidden">
+                  <div className="flex gap-2 w-full">
                     <div className="relative" style={{ width: '120px', flexShrink: 0 }}>
                       <input
                         type="text"

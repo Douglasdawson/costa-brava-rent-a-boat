@@ -557,7 +557,7 @@ export default function Hero() {
               {isSearching ? (
                 <><span className="hidden sm:inline">Verificando disponibilidad...</span><span className="sm:hidden">Verificando...</span></>
               ) : (
-                <><span className="hidden sm:inline">{t.booking.searchAvailability || 'Buscar Disponibilidad'}</span><span className="sm:hidden">{t.booking.searchShort || 'Buscar'}</span></>
+                <><span className="hidden sm:inline">Enviar Petición</span><span className="sm:hidden">Enviar</span></>
               )}
             </Button>
             <p className="text-xs text-gray-500 mt-2 text-center">

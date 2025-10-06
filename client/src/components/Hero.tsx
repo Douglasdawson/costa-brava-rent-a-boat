@@ -433,15 +433,15 @@ export default function Hero() {
               </div>
             </div>
 
-            {/* All fields in single column */}
-            <div className="space-y-2">
+            {/* Boat, Date, Duration in same row */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
               {/* Boat Selector */}
               <div className="bg-white rounded-lg p-2 shadow-sm border border-gray-100">
                 <label className="flex items-center text-xs font-semibold text-gray-800 mb-1">
                   <div className="w-4 h-4 bg-primary/10 rounded-full flex items-center justify-center mr-1">
                     <Anchor className="w-2.5 h-2.5 text-primary" />
                   </div>
-                  Seleccionar barco
+                  Barco
                 </label>
                 <select
                   value={selectedBoat}
@@ -451,7 +451,7 @@ export default function Hero() {
                   data-testid="select-boat-type"
                 >
                   <option value="">
-                    {isLoadingBoats ? "Cargando barcos..." : "Seleccionar barco"}
+                    {isLoadingBoats ? "Cargando..." : "Seleccionar"}
                   </option>
                   {filteredBoats.map((boat) => (
                     <option key={boat.id} value={boat.id}>
@@ -460,7 +460,7 @@ export default function Hero() {
                   ))}
                 </select>
                 {filteredBoats.length === 0 && !isLoadingBoats && (
-                  <p className="text-xs text-gray-500 mt-1">No hay barcos disponibles para este filtro</p>
+                  <p className="text-xs text-gray-500 mt-1">No hay barcos disponibles</p>
                 )}
               </div>
 
@@ -496,7 +496,7 @@ export default function Hero() {
                   className="w-full p-2 border-0 bg-gray-50 rounded-md focus:ring-2 focus:ring-primary focus:bg-white transition-all text-gray-900 font-medium appearance-none cursor-pointer text-xs"
                   data-testid="select-duration"
                 >
-                  <option value="">Seleccionar duración</option>
+                  <option value="">Seleccionar</option>
                   {getDurationOptions().map((option) => (
                     <option key={option.value} value={option.value}>
                       {option.label}
@@ -506,8 +506,8 @@ export default function Hero() {
                 {selectedBoatInfo && (
                   <p className="text-xs text-gray-500 mt-1">
                     {selectedBoatInfo.requiresLicense 
-                      ? "Barcos con licencia: mínimo 4 horas" 
-                      : "Barcos sin licencia: máximo 3 horas"}
+                      ? "Con licencia: mín. 4h" 
+                      : "Sin licencia: máx. 3h"}
                   </p>
                 )}
               </div>

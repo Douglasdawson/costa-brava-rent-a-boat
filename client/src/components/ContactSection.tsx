@@ -255,14 +255,14 @@ export default function ContactSection() {
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-6">
             {/* Alquiler Barcos Blanes */}
             <Link href="/alquiler-barcos-blanes" asChild>
-              <Card className="hover:shadow-lg transition-shadow cursor-pointer group">
+              <Card className="hover:shadow-lg transition-shadow cursor-pointer group h-full flex flex-col">
                 <CardHeader>
                   <div className="w-12 h-12 bg-blue-50 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
                     <MapPin className="w-6 h-6 text-blue-600" />
                   </div>
                   <CardTitle className="text-lg text-center">Alquiler Barcos Blanes</CardTitle>
                 </CardHeader>
-                <CardContent className="text-center">
+                <CardContent className="text-center flex-1 flex flex-col">
                   <div className="mb-3">
                     <Badge variant="outline" className="mb-2">
                       <Clock className="w-3 h-3 mr-1" />
@@ -277,29 +277,31 @@ export default function ContactSection() {
                     <span className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded">Parking gratuito</span>
                     <span className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded">Restaurantes</span>
                   </div>
-                  <Button 
-                    variant="outline" 
-                    size="sm"
-                    className="group-hover:bg-primary group-hover:text-white transition-colors"
-                    data-testid="link-blanes"
-                  >
-                    Ver Detalles
-                    <ExternalLink className="w-3 h-3 ml-1" />
-                  </Button>
+                  <div className="mt-auto">
+                    <Button 
+                      variant="outline" 
+                      size="sm"
+                      className="group-hover:bg-primary group-hover:text-white transition-colors"
+                      data-testid="link-blanes"
+                    >
+                      Ver Detalles
+                      <ExternalLink className="w-3 h-3 ml-1" />
+                    </Button>
+                  </div>
                 </CardContent>
               </Card>
             </Link>
 
             {/* Excursión a Lloret de Mar */}
             <Link href="/alquiler-barcos-lloret-de-mar" asChild>
-              <Card className="hover:shadow-lg transition-shadow cursor-pointer group">
+              <Card className="hover:shadow-lg transition-shadow cursor-pointer group h-full flex flex-col">
                 <CardHeader>
                   <div className="w-12 h-12 bg-green-50 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
                     <Camera className="w-6 h-6 text-green-600" />
                   </div>
                   <CardTitle className="text-lg text-center">Excursión a Lloret de Mar</CardTitle>
                 </CardHeader>
-                <CardContent className="text-center">
+                <CardContent className="text-center flex-1 flex flex-col">
                   <div className="mb-3">
                     <Badge variant="outline" className="mb-2">
                       <Clock className="w-3 h-3 mr-1" />
@@ -314,29 +316,31 @@ export default function ContactSection() {
                     <span className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded">Calas vírgenes</span>
                     <span className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded">Vida nocturna</span>
                   </div>
-                  <Button 
-                    variant="outline" 
-                    size="sm"
-                    className="group-hover:bg-primary group-hover:text-white transition-colors"
-                    data-testid="link-lloret"
-                  >
-                    Ver Detalles
-                    <ExternalLink className="w-3 h-3 ml-1" />
-                  </Button>
+                  <div className="mt-auto">
+                    <Button 
+                      variant="outline" 
+                      size="sm"
+                      className="group-hover:bg-primary group-hover:text-white transition-colors"
+                      data-testid="link-lloret"
+                    >
+                      Ver Detalles
+                      <ExternalLink className="w-3 h-3 ml-1" />
+                    </Button>
+                  </div>
                 </CardContent>
               </Card>
             </Link>
 
             {/* Visita Tossa de Mar */}
             <Link href="/visita-tossa-de-mar" asChild>
-              <Card className="hover:shadow-lg transition-shadow cursor-pointer group">
+              <Card className="hover:shadow-lg transition-shadow cursor-pointer group h-full flex flex-col">
                 <CardHeader>
                   <div className="w-12 h-12 bg-purple-50 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
                     <Camera className="w-6 h-6 text-purple-600" />
                   </div>
                   <CardTitle className="text-lg text-center">Visita Tossa de Mar</CardTitle>
                 </CardHeader>
-                <CardContent className="text-center">
+                <CardContent className="text-center flex-1 flex flex-col">
                   <div className="mb-3">
                     <Badge variant="outline" className="mb-2">
                       <Clock className="w-3 h-3 mr-1" />
@@ -351,29 +355,31 @@ export default function ContactSection() {
                     <span className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded">Aguas cristalinas</span>
                     <span className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded">Pueblo pintoresco</span>
                   </div>
-                  <Button 
-                    variant="outline" 
-                    size="sm"
-                    className="group-hover:bg-primary group-hover:text-white transition-colors"
-                    data-testid="link-tossa"
-                  >
-                    Ver Detalles
-                    <ExternalLink className="w-3 h-3 ml-1" />
-                  </Button>
+                  <div className="mt-auto">
+                    <Button 
+                      variant="outline" 
+                      size="sm"
+                      className="group-hover:bg-primary group-hover:text-white transition-colors"
+                      data-testid="link-tossa"
+                    >
+                      Ver Detalles
+                      <ExternalLink className="w-3 h-3 ml-1" />
+                    </Button>
+                  </div>
                 </CardContent>
               </Card>
             </Link>
 
             {/* Barcos Con Licencia */}
             <Link href="/barcos-con-licencia" asChild>
-              <Card className="hover:shadow-lg transition-shadow cursor-pointer group">
+              <Card className="hover:shadow-lg transition-shadow cursor-pointer group h-full flex flex-col">
                 <CardHeader>
                   <div className="w-12 h-12 bg-blue-50 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
                     <Star className="w-6 h-6 text-blue-600" />
                   </div>
                   <CardTitle className="text-lg text-center">Barcos Con Licencia</CardTitle>
                 </CardHeader>
-                <CardContent className="text-center">
+                <CardContent className="text-center flex-1 flex flex-col">
                   <p className="text-gray-600 mb-3 text-sm leading-relaxed">
                     Embarcaciones potentes para navegación avanzada con titulación.
                   </p>
@@ -382,15 +388,17 @@ export default function ContactSection() {
                     <span className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded">Mayor velocidad</span>
                     <span className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded">Sin límite distancia</span>
                   </div>
-                  <Button 
-                    variant="outline" 
-                    size="sm"
-                    className="group-hover:bg-primary group-hover:text-white transition-colors"
-                    data-testid="link-licensed"
-                  >
-                    Ver Barcos
-                    <Waves className="w-3 h-3 ml-1" />
-                  </Button>
+                  <div className="mt-auto">
+                    <Button 
+                      variant="outline" 
+                      size="sm"
+                      className="group-hover:bg-primary group-hover:text-white transition-colors"
+                      data-testid="link-licensed"
+                    >
+                      Ver Barcos
+                      <Waves className="w-3 h-3 ml-1" />
+                    </Button>
+                  </div>
                 </CardContent>
               </Card>
             </Link>

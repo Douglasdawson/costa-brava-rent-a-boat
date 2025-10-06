@@ -14,7 +14,7 @@ import snorkelImage from "../assets/generated_images/Family_snorkeling_activity_
 import paddleImage from "../assets/generated_images/Paddle_surfing_couple_scene_cc635043.png";
 import coolerImage from "@assets/stock_images/cooler_with_ice_and__e74f58f1.jpg";
 import privateTourImage from "@assets/stock_images/private_boat_tour_wi_507c646c.jpg";
-import parkingImage from "@assets/stock_images/parking_lot_near_mar_df673930.jpg";
+import parkingImage from "@assets/stock_images/empty_parking_space__d7110dae.jpg";
 
 export default function FeaturesSection() {
   const t = useTranslations();

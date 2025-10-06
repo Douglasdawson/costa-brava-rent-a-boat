@@ -1087,50 +1087,49 @@ export default function BookingFlow({
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Teléfono *
                   </label>
-                  <div className="flex gap-1 w-full">
-                    <div className="relative w-14 flex-shrink-0">
-                      <input
-                        type="text"
-                        value={phonePrefixSearch || customerData.phonePrefix}
-                        onChange={(e) => {
-                          setPhonePrefixSearch(e.target.value);
-                          setShowPhonePrefixDropdown(true);
-                        }}
-                        onFocus={() => setShowPhonePrefixDropdown(true)}
-                        onBlur={() => {
-                          setTimeout(() => setShowPhonePrefixDropdown(false), 200);
-                        }}
-                        placeholder="+34"
-                        className="w-full px-1 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary text-xs text-gray-900"
-                        data-testid="input-phone-prefix-search"
-                      />
-                      {showPhonePrefixDropdown && filteredPhoneCountries.length > 0 && (
-                        <div className="absolute z-10 left-0 w-72 max-h-48 overflow-y-auto bg-white border border-gray-300 rounded-lg shadow-lg mt-1">
-                          {filteredPhoneCountries.slice(0, 8).map((country) => (
-                            <button
-                              key={country.code}
-                              type="button"
-                              onClick={() => {
-                                setCustomerData(prev => ({...prev, phonePrefix: country.code}));
-                                setPhonePrefixSearch("");
-                                setShowPhonePrefixDropdown(false);
-                              }}
-                              className="w-full text-left px-3 py-2 hover:bg-gray-50 focus:bg-gray-50 text-sm border-b last:border-b-0 text-gray-900"
-                              data-testid={`option-prefix-${country.code}`}
-                            >
-                              <span className="font-mono">{country.code}</span> {country.country}
-                            </button>
-                          ))}
-                        </div>
-                      )}
-                    </div>
+                  <div className="flex gap-1">
+                    <input
+                      type="text"
+                      value={phonePrefixSearch || customerData.phonePrefix}
+                      onChange={(e) => {
+                        setPhonePrefixSearch(e.target.value);
+                        setShowPhonePrefixDropdown(true);
+                      }}
+                      onFocus={() => setShowPhonePrefixDropdown(true)}
+                      onBlur={() => {
+                        setTimeout(() => setShowPhonePrefixDropdown(false), 200);
+                      }}
+                      placeholder="+34"
+                      className="w-14 px-1 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary text-xs text-gray-900"
+                      data-testid="input-phone-prefix-search"
+                    />
+                    {showPhonePrefixDropdown && filteredPhoneCountries.length > 0 && (
+                      <div className="absolute z-10 w-72 max-h-48 overflow-y-auto bg-white border border-gray-300 rounded-lg shadow-lg mt-1" style={{ marginTop: '44px' }}>
+                        {filteredPhoneCountries.slice(0, 8).map((country) => (
+                          <button
+                            key={country.code}
+                            type="button"
+                            onClick={() => {
+                              setCustomerData(prev => ({...prev, phonePrefix: country.code}));
+                              setPhonePrefixSearch("");
+                              setShowPhonePrefixDropdown(false);
+                            }}
+                            className="w-full text-left px-3 py-2 hover:bg-gray-50 focus:bg-gray-50 text-sm border-b last:border-b-0 text-gray-900"
+                            data-testid={`option-prefix-${country.code}`}
+                          >
+                            <span className="font-mono">{country.code}</span> {country.country}
+                          </button>
+                        ))}
+                      </div>
+                    )}
                     <input
                       type="tel"
                       value={customerData.customerPhone}
                       onChange={(e) => setCustomerData(prev => ({...prev, customerPhone: e.target.value}))}
-                      className="flex-1 min-w-0 px-1.5 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary text-gray-900 text-sm"
+                      className="w-full px-1.5 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary text-gray-900 text-sm"
                       placeholder="612345678"
                       data-testid="input-customer-phone"
+                      style={{ maxWidth: 'calc(100% - 60px)' }}
                     />
                   </div>
                 </div>

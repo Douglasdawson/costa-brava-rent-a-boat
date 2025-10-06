@@ -613,7 +613,7 @@ export default function Hero() {
               </div>
 
               {/* Phone Number */}
-              <div className="col-span-2 lg:col-span-1 bg-white rounded-lg p-2 sm:p-3 shadow-sm border border-gray-100">
+              <div className="col-span-2 lg:col-span-1 bg-white rounded-lg p-2 sm:p-3 shadow-sm border border-gray-100 lg:max-w-[50%]">
                 <label className="flex items-center justify-center md:justify-start text-xs md:text-sm font-semibold text-gray-800 mb-1 sm:mb-2">
                   <div className="w-5 h-5 sm:w-6 sm:h-6 bg-primary/10 rounded-full flex items-center justify-center mr-1 sm:mr-2">
                     <PhoneIcon className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-primary" />
@@ -622,7 +622,7 @@ export default function Hero() {
                 </label>
                 <div className="flex gap-1">
                   {/* Dropdown personalizado de prefijos */}
-                  <div className="relative w-20 sm:w-24 lg:w-28">
+                  <div className="relative w-16 sm:w-20 lg:w-20">
                     <button
                       type="button"
                       onClick={() => {
@@ -698,7 +698,7 @@ export default function Hero() {
                     value={phoneNumber}
                     onChange={(e) => setPhoneNumber(e.target.value)}
                     placeholder="612345678"
-                    className="flex-1 max-w-[140px] sm:max-w-none lg:flex-[0.6] px-1 py-1.5 sm:p-2.5 border-0 bg-gray-50 rounded-md focus:ring-2 focus:ring-primary focus:bg-white transition-all text-gray-900 font-medium text-[10px] sm:text-sm text-center sm:text-left"
+                    className="flex-1 px-1 py-1.5 sm:p-2.5 border-0 bg-gray-50 rounded-md focus:ring-2 focus:ring-primary focus:bg-white transition-all text-gray-900 font-medium text-[10px] sm:text-sm text-center sm:text-left"
                     data-testid="input-phone-number"
                   />
                 </div>

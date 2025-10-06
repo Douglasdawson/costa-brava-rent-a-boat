@@ -654,7 +654,7 @@ export default function Hero() {
                                 value={prefixSearch}
                                 onChange={(e) => setPrefixSearch(e.target.value)}
                                 placeholder="Buscar por código..."
-                                className="w-full pl-7 pr-2 py-1.5 text-xs border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
+                                className="w-full pl-7 pr-2 py-1.5 text-xs bg-white text-gray-600 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary placeholder:text-gray-400"
                                 data-testid="input-prefix-search"
                                 autoFocus
                               />

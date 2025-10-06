@@ -619,20 +619,20 @@ export default function Hero() {
                   </div>
                   Teléfono
                 </label>
-                <div className="flex gap-2">
+                <div className="flex gap-1.5">
                   {/* Dropdown personalizado de prefijos */}
-                  <div className="relative w-24">
+                  <div className="relative w-20">
                     <button
                       type="button"
                       onClick={() => {
                         setShowPrefixDropdown(!showPrefixDropdown);
                         setPrefixSearch("");
                       }}
-                      className="w-full p-2 sm:p-2.5 border-0 bg-gray-50 rounded-md focus:ring-2 focus:ring-primary transition-all text-gray-900 font-medium text-xs sm:text-sm flex items-center justify-between"
+                      className="w-full h-full p-2 sm:p-2.5 border-0 bg-gray-50 rounded-md focus:ring-2 focus:ring-primary transition-all text-gray-900 font-medium text-xs sm:text-sm flex items-center justify-between"
                       data-testid="select-phone-prefix"
                     >
-                      <span>{selectedPrefixInfo?.flag} {phonePrefix}</span>
-                      <ChevronDown className="w-3 h-3" />
+                      <span className="whitespace-nowrap">{selectedPrefixInfo?.flag} {phonePrefix}</span>
+                      <ChevronDown className="w-3 h-3 flex-shrink-0" />
                     </button>
 
                     {showPrefixDropdown && (

@@ -68,8 +68,21 @@ export default function Hero() {
 
   // Duration options based on license requirement
   const getDurationOptions = () => {
+    // Helper function to calculate price for duration
+    const calculatePrice = (hours: number) => {
+      if (!selectedBoatInfo) return null;
+      const pricePerHour = parseFloat(selectedBoatInfo.pricePerHour);
+      return (pricePerHour * hours).toFixed(0);
+    };
+
+    // Helper function to format label with price
+    const formatLabel = (hours: number, baseLabel: string) => {
+      const price = calculatePrice(hours);
+      return price ? `${baseLabel} - ${price}€` : baseLabel;
+    };
+
     if (!selectedBoatInfo) {
-      // If license filter is set but no boat selected, adapt options to filter
+      // If license filter is set but no boat selected, adapt options to filter (without prices)
       if (licenseFilter === "with") {
         return [
           { value: "2h", label: "2 horas" },
@@ -98,21 +111,21 @@ export default function Hero() {
     }
 
     if (selectedBoatInfo.requiresLicense) {
-      // Boats with license: 2h, 4h, 8h
+      // Boats with license: 2h, 4h, 8h (with prices)
       return [
-        { value: "2h", label: "2 horas" },
-        { value: "4h", label: "4 horas - Media día" },
-        { value: "8h", label: "8 horas - Día completo" },
+        { value: "2h", label: formatLabel(2, "2 horas") },
+        { value: "4h", label: formatLabel(4, "4 horas - Media día") },
+        { value: "8h", label: formatLabel(8, "8 horas - Día completo") },
       ];
     } else {
-      // Boats without license: 1h, 2h, 3h, 4h, 6h, 8h
+      // Boats without license: 1h, 2h, 3h, 4h, 6h, 8h (with prices)
       return [
-        { value: "1h", label: "1 hora" },
-        { value: "2h", label: "2 horas" },
-        { value: "3h", label: "3 horas" },
-        { value: "4h", label: "4 horas - Media día" },
-        { value: "6h", label: "6 horas" },
-        { value: "8h", label: "8 horas - Día completo" },
+        { value: "1h", label: formatLabel(1, "1 hora") },
+        { value: "2h", label: formatLabel(2, "2 horas") },
+        { value: "3h", label: formatLabel(3, "3 horas") },
+        { value: "4h", label: formatLabel(4, "4 horas - Media día") },
+        { value: "6h", label: formatLabel(6, "6 horas") },
+        { value: "8h", label: formatLabel(8, "8 horas - Día completo") },
       ];
     }
   };

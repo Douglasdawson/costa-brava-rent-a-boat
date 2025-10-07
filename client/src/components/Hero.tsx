@@ -559,9 +559,6 @@ export default function Hero() {
             <span className="hidden md:inline"><br /></span>
             Salidas desde Puerto de Blanes.
           </p>
-          <p className="text-[10px] sm:text-xs md:text-sm text-white/80 mb-2 sm:mb-3 max-w-2xl mx-auto px-4 sm:whitespace-nowrap">
-            Horarios flexibles y salida desde Puerto de Blanes. Añade extras como snorkel, paddle surf y parking.
-          </p>
         </div>
 
         {/* Booking Widget */}

@@ -265,7 +265,7 @@ export default function Hero() {
   const [email, setEmail] = useState("");
   const [showPrefixDropdown, setShowPrefixDropdown] = useState(false);
   const [prefixSearch, setPrefixSearch] = useState("");
-  const [licenseFilter, setLicenseFilter] = useState<"all" | "with" | "without">("all");
+  const [licenseFilter, setLicenseFilter] = useState<"with" | "without">("without");
   const [selectedBoat, setSelectedBoat] = useState<string>("");
   const [selectedDate, setSelectedDate] = useState(() => getLocalISODate());
   const [selectedDuration, setSelectedDuration] = useState<string>("");
@@ -290,7 +290,6 @@ export default function Hero() {
 
   // Filter boats based on license selection
   const filteredBoats = allBoats.filter(boat => {
-    if (licenseFilter === "all") return true;
     if (licenseFilter === "with") return boat.requiresLicense === true;
     if (licenseFilter === "without") return boat.requiresLicense === false;
     return true;
@@ -729,17 +728,6 @@ export default function Hero() {
             <div className="bg-white rounded-lg p-2 sm:p-3 shadow-sm border border-gray-100 mb-2">
               <div className="flex gap-1 sm:gap-2">
                 <button
-                  onClick={() => setLicenseFilter("all")}
-                  className={`flex-1 p-1.5 rounded-md text-xs [@media(min-width:400px)]:text-sm font-medium transition-all ${
-                    licenseFilter === "all"
-                      ? "bg-primary text-white shadow-md"
-                      : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-                  }`}
-                  data-testid="button-license-all"
-                >
-                  Todos
-                </button>
-                <button
                   onClick={() => setLicenseFilter("without")}
                   className={`flex-1 p-1.5 rounded-md text-xs [@media(min-width:400px)]:text-sm font-medium transition-all ${
                     licenseFilter === "without"
@@ -748,7 +736,7 @@ export default function Hero() {
                   }`}
                   data-testid="button-license-without"
                 >
-                  Sin licencia
+                  Barcos Sin Licencia
                 </button>
                 <button
                   onClick={() => setLicenseFilter("with")}
@@ -759,7 +747,7 @@ export default function Hero() {
                   }`}
                   data-testid="button-license-with"
                 >
-                  Con licencia
+                  Barcos Con Licencia
                 </button>
               </div>
             </div>

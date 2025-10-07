@@ -568,7 +568,7 @@ export default function Hero() {
         {/* Booking Widget */}
         <Card id="booking-form" className="bg-white/95 backdrop-blur-md p-3 sm:p-4 w-full shadow-2xl border-0">
           <div className="text-center mb-2 sm:mb-3">
-            <h3 className="text-lg sm:text-base lg:text-lg font-bold text-gray-900 mb-1">{t.booking.title}</h3>
+            <h3 className="text-base sm:text-base lg:text-lg font-bold text-gray-900 mb-1">{t.booking.title}</h3>
             <p className="text-xs [@media(min-width:400px)]:text-sm text-gray-600">Completa los datos para solicitar la reserva de tu barco perfecto</p>
           </div>
           

@@ -574,7 +574,6 @@ export default function Hero() {
           
           {/* Personal Information Section */}
           <div className="bg-gray-50/80 rounded-lg p-2 sm:p-3 mb-2 sm:mb-3">
-            <h4 className="text-lg font-semibold text-gray-800 mb-2 text-center uppercase">Datos personales</h4>
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-2">
               {/* First Name */}
               <div className="bg-white rounded-lg p-2 sm:p-3 shadow-sm border border-gray-100">
@@ -726,8 +725,6 @@ export default function Hero() {
 
           {/* Boat, Date and Duration Section - All in one column */}
           <div className="bg-gray-50/80 rounded-lg p-2 sm:p-3 mb-2 sm:mb-3">
-            <h4 className="text-lg font-semibold text-gray-800 mb-2 text-center uppercase">Petición de reserva</h4>
-            
             {/* License Filter */}
             <div className="bg-white rounded-lg p-2 sm:p-3 shadow-sm border border-gray-100 mb-2">
               <div className="flex gap-1 sm:gap-2">

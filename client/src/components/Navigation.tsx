@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X, User, Calendar, Anchor, UserCircle } from "lucide-react";
-import { openWhatsApp, createBookingMessage } from "@/utils/whatsapp";
 import { useLocation } from "wouter";
 import LanguageSelector from "./LanguageSelector";
 import { useTranslations } from "@/lib/translations";
@@ -26,8 +25,19 @@ export default function Navigation() {
   };
 
   const handleBooking = () => {
-    const message = createBookingMessage();
-    openWhatsApp(message);
+    setIsOpen(false); // Close mobile menu
+    
+    const currentPath = window.location.pathname;
+    
+    if (currentPath !== "/") {
+      // Navigate to homepage first, then scroll to booking form
+      setLocation("/");
+      // Use robust scroll after navigation
+      setTimeout(() => scrollToSection("booking-form"), 50);
+    } else {
+      // Already on homepage, just scroll to booking form
+      scrollToSection("booking-form");
+    }
   };
 
   const scrollToSection = (sectionId: string, maxAttempts = 10) => {

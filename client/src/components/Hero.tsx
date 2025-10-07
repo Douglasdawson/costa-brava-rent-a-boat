@@ -837,13 +837,6 @@ export default function Hero() {
                     </option>
                   ))}
                 </select>
-                {selectedBoatInfo && (
-                  <p className="text-xs [@media(min-width:400px)]:text-sm text-gray-500 mt-1">
-                    {selectedBoatInfo.requiresLicense 
-                      ? "Con licencia: 2h, 4h, 8h" 
-                      : "Sin licencia: 1-8h"}
-                  </p>
-                )}
               </div>
             </div>
           </div>

@@ -1209,7 +1209,7 @@ export default function BookingFlow({
 
               <Button 
                 onClick={() => setStep(6)}
-                disabled={!customerData.customerName || !customerData.customerSurname || !customerData.customerEmail || !customerData.customerPhone || !customerData.customerNationality || customerData.numberOfPeople < 1 || customerData.customerPhone?.length < 9}
+                disabled={!customerData.customerName || !customerData.customerSurname || !customerData.customerPhone || !customerData.customerNationality || customerData.numberOfPeople < 1 || customerData.customerPhone?.length < 9}
                 className="w-full py-3"
                 data-testid="button-continue-payment"
               >

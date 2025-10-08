@@ -12,7 +12,7 @@ import { apiRequest } from "@/lib/queryClient";
 import { useQuery } from "@tanstack/react-query";
 import type { Boat } from "@shared/schema";
 import { BOAT_DATA } from "@shared/boatData";
-import heroImage from "../assets/generated_images/Mediterranean_coastal_hero_scene_8df465c2.png";
+import heroImage from "../assets/generated_images/Mediterranean_coastal_hero_scene_8df465c2.webp";
 
 // Lista completa de prefijos telefónicos
 const PHONE_PREFIXES = [

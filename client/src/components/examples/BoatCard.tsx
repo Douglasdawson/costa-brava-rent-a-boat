@@ -1,5 +1,5 @@
 import BoatCard from '../BoatCard';
-import astec450Image from "../../assets/generated_images/ASTEC_450_speedboat_photo_fc9de4ed.png";
+import astec450Image from "../../assets/generated_images/ASTEC_450_speedboat_photo_fc9de4ed.webp";
 
 export default function BoatCardExample() {
   const handleBooking = (boatId: string) => {

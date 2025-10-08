@@ -10,8 +10,8 @@ import {
   CheckCircle 
 } from "lucide-react";
 import { useTranslations } from "@/lib/translations";
-import snorkelImage from "../assets/generated_images/Family_snorkeling_activity_scene_b0ab1783.png";
-import paddleImage from "../assets/generated_images/Paddle_surfing_couple_scene_cc635043.png";
+import snorkelImage from "../assets/generated_images/Family_snorkeling_activity_scene_b0ab1783.webp";
+import paddleImage from "../assets/generated_images/Paddle_surfing_couple_scene_cc635043.webp";
 import coolerImage from "@assets/stock_images/cooler_with_ice_and__e74f58f1.jpg";
 import privateTourImage from "@assets/stock_images/private_boat_tour_wi_507c646c.jpg";
 import parkingImage from "@assets/stock_images/empty_parking_space__d7110dae.jpg";

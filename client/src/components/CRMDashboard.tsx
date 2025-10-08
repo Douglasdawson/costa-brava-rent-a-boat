@@ -1923,8 +1923,9 @@ export default function CRMDashboard({ adminToken }: CRMDashboardProps) {
         {/* Customers Tab */}
         {selectedTab === "customers" && (
           <div className="space-y-6">
-            {/* Customers Table */}
-            <Card>
+            {/* Customers Table - Responsive */}
+            {/* Desktop Table View */}
+            <Card className="hidden md:block">
               <CardHeader>
                 <CardTitle>Todos los Clientes</CardTitle>
                 <p className="text-sm text-gray-600">
@@ -2000,6 +2001,83 @@ export default function CRMDashboard({ adminToken }: CRMDashboardProps) {
                 )}
               </CardContent>
             </Card>
+
+            {/* Mobile Card View */}
+            <div className="md:hidden space-y-3">
+              <div className="text-sm font-medium text-gray-600 px-1">
+                Todos los Clientes
+              </div>
+              {customersLoading ? (
+                <Card>
+                  <CardContent className="py-12 text-center text-gray-500">
+                    Cargando clientes...
+                  </CardContent>
+                </Card>
+              ) : customersError ? (
+                <Card>
+                  <CardContent className="py-12 text-center text-red-500">
+                    Error cargando clientes
+                  </CardContent>
+                </Card>
+              ) : !customersData || customersData.length === 0 ? (
+                <Card>
+                  <CardContent className="py-12 text-center text-gray-500">
+                    No hay clientes registrados
+                  </CardContent>
+                </Card>
+              ) : (
+                customersData.map((customer: any, index: number) => (
+                  <Card key={index} data-testid={`card-customer-${index}`}>
+                    <CardContent className="p-4">
+                      <div className="flex justify-between items-start mb-3">
+                        <div className="flex-1">
+                          <h3 className="font-semibold text-base">
+                            {customer.customerName} {customer.customerSurname}
+                          </h3>
+                          <p className="text-sm text-gray-600 mt-1">{customer.customerNationality}</p>
+                          <div className="flex gap-2 mt-2">
+                            <Badge variant="secondary" className="text-xs">
+                              {customer.bookingsCount} {customer.bookingsCount === 1 ? 'reserva' : 'reservas'}
+                            </Badge>
+                          </div>
+                        </div>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => {
+                            toast({
+                              title: "Ver historial",
+                              description: `Historial de ${customer.customerName} estará disponible próximamente`,
+                            });
+                          }}
+                          data-testid={`button-view-customer-${index}`}
+                        >
+                          <Eye className="w-4 h-4" />
+                        </Button>
+                      </div>
+                      <div className="grid grid-cols-2 gap-2 text-sm border-t pt-3 mt-3">
+                        <div>
+                          <span className="text-gray-600">Gasto Total:</span>
+                          <span className="ml-1 font-semibold">€{customer.totalSpent.toFixed(2)}</span>
+                        </div>
+                        <div className="text-right">
+                          <span className="text-gray-600">Última Reserva:</span>
+                          <span className="ml-1 font-medium text-xs">
+                            {format(new Date(customer.lastBookingDate), 'dd/MM/yy')}
+                          </span>
+                        </div>
+                        <div className="col-span-2">
+                          <span className="text-gray-600 text-xs">{customer.customerPhone}</span>
+                          {customer.customerEmail && (
+                            <span className="text-gray-600 text-xs ml-2">{customer.customerEmail}</span>
+                          )}
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))
+              )}
+            </div>
 
             {/* Customer Stats */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">

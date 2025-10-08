@@ -14,6 +14,7 @@ import { useToast } from "@/hooks/use-toast";
 import { loadStripe } from "@stripe/stripe-js";
 import { useTranslations } from "@/lib/translations";
 import { useAuth } from "@/hooks/useAuth";
+import type { Boat } from "@shared/schema";
 
 interface BookingFlowProps {
   boatId?: string;
@@ -103,9 +104,8 @@ export default function BookingFlow({
   }, [customerProfile]);
 
   // Fetch boats from API
-  const { data: boats = [] } = useQuery({
-    queryKey: ['/api/boats'],
-    queryFn: () => apiRequest('GET', '/api/boats').then(res => res.json()),
+  const { data: boats = [] } = useQuery<Boat[]>({
+    queryKey: ['/api/boats']
   });
 
   // Generate time slots for booking
@@ -380,7 +380,7 @@ export default function BookingFlow({
     
     return allBoats.filter((boat: any) => {
       const requiresLicense = boat.requiresLicense !== undefined 
-        ? boat.requiresLicense 
+        ? !!boat.requiresLicense 
         : boat.subtitle?.includes("Con Licencia");
       
       if (licenseFilter === "with") return requiresLicense;
@@ -393,8 +393,8 @@ export default function BookingFlow({
   const getMaxCapacity = (boatId: string): number => {
     // First try to get capacity from the actual boat data
     const boat = availableBoats.find((b: any) => b.id === boatId);
-    if (boat && boat.capacity) {
-      return boat.capacity;
+    if (boat && (boat as any).capacity) {
+      return (boat as any).capacity;
     }
     
     // Fallback to hardcoded mapping if boat data doesn't have capacity
@@ -452,9 +452,9 @@ export default function BookingFlow({
       }
 
       // Handle API boat data (has pricePerHour) vs static boat data (has pricing object)
-      if (boat.pricePerHour) {
+      if ((boat as any).pricePerHour) {
         // API boat - use pricePerHour for all durations
-        const basePrice = parseFloat(boat.pricePerHour);
+        const basePrice = parseFloat((boat as any).pricePerHour);
         return [
           { id: "1h", label: t.booking.oneHour, price: basePrice },
           { id: "2h", label: t.booking.twoHours, price: Math.round(basePrice * 1.8) },
@@ -1172,7 +1172,8 @@ export default function BookingFlow({
                             <button
                               key={nationality}
                               type="button"
-                              onClick={() => {
+                              onMouseDown={(e) => {
+                                e.preventDefault(); // Prevent onBlur from firing
                                 setCustomerData(prev => ({...prev, customerNationality: nationality}));
                                 setNationalitySearch("");
                                 setShowNationalityDropdown(false);

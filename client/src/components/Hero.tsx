@@ -290,8 +290,8 @@ export default function Hero() {
 
   // Filter boats based on license selection
   const filteredBoats = allBoats.filter(boat => {
-    if (licenseFilter === "with") return boat.requiresLicense === true;
-    if (licenseFilter === "without") return boat.requiresLicense === false;
+    if (licenseFilter === "with") return !!boat.requiresLicense;
+    if (licenseFilter === "without") return !boat.requiresLicense;
     return true;
   });
 
@@ -303,7 +303,7 @@ export default function Hero() {
     if (selectedBoat && selectedBoatInfo) {
       if (licenseFilter === "with" && !selectedBoatInfo.requiresLicense) {
         setSelectedBoat("");
-      } else if (licenseFilter === "without" && selectedBoatInfo.requiresLicense) {
+      } else if (licenseFilter === "without" && !!selectedBoatInfo.requiresLicense) {
         setSelectedBoat("");
       }
     }

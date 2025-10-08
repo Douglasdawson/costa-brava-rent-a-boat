@@ -26,7 +26,10 @@ import {
   Compass,
   LifeBuoy,
   Music,
-  Droplets
+  Droplets,
+  Fuel,
+  Sparkles,
+  Shield
 } from "lucide-react";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { useToast } from "@/hooks/use-toast";
@@ -130,6 +133,16 @@ const EQUIPMENT_OPTIONS = [
   { id: 'ducha-agua-dulce', label: 'Ducha de agua dulce', icon: Droplets },
 ];
 
+// Included in price catalog with icons
+const INCLUDED_OPTIONS = [
+  { id: 'iva', label: 'IVA', icon: Euro },
+  { id: 'carburante', label: 'Carburante', icon: Fuel },
+  { id: 'amarre', label: 'Amarre', icon: Anchor },
+  { id: 'limpieza', label: 'Limpieza', icon: Sparkles },
+  { id: 'seguro', label: 'Seguro', icon: Shield },
+  { id: 'patron', label: 'Patrón', icon: Users },
+];
+
 // Fleet Management Component
 function FleetManagement({ adminToken }: { adminToken: string }) {
   const [showBoatDialog, setShowBoatDialog] = useState(false);
@@ -137,7 +150,7 @@ function FleetManagement({ adminToken }: { adminToken: string }) {
   const [imageGalleryText, setImageGalleryText] = useState("");
   const [featuresText, setFeaturesText] = useState("");
   const [selectedEquipment, setSelectedEquipment] = useState<string[]>([]);
-  const [includedText, setIncludedText] = useState("");
+  const [selectedIncluded, setSelectedIncluded] = useState<string[]>([]);
   const { toast } = useToast();
 
   const boatForm = useForm<BoatFormData>({
@@ -319,7 +332,7 @@ function FleetManagement({ adminToken }: { adminToken: string }) {
     setImageGalleryText(boat.imageGallery?.join('\n') || '');
     setFeaturesText(boat.features?.join('\n') || '');
     setSelectedEquipment(boat.equipment || []);
-    setIncludedText(boat.included?.join('\n') || '');
+    setSelectedIncluded(boat.included || []);
     
     boatForm.reset({
       id: boat.id,
@@ -372,7 +385,7 @@ function FleetManagement({ adminToken }: { adminToken: string }) {
             setImageGalleryText("");
             setFeaturesText("");
             setSelectedEquipment([]);
-            setIncludedText("");
+            setSelectedIncluded([]);
             boatForm.reset();
             setShowBoatDialog(true);
           }}
@@ -704,18 +717,40 @@ function FleetManagement({ adminToken }: { adminToken: string }) {
                 </div>
               </div>
               <div>
-                <Label>Incluido en el precio (una por línea)</Label>
-                <Textarea
-                  placeholder="IVA&#10;Carburante&#10;Amarre&#10;Limpieza"
-                  rows={3}
-                  value={includedText}
-                  onChange={(e) => {
-                    setIncludedText(e.target.value);
-                    const included = e.target.value.split('\n').filter(i => i.trim());
-                    boatForm.setValue('included', included);
-                  }}
-                  data-testid="input-boat-included"
-                />
+                <Label>Incluido en el precio</Label>
+                <div className="grid grid-cols-2 gap-3 mt-2">
+                  {INCLUDED_OPTIONS.map((item) => {
+                    const Icon = item.icon;
+                    const isSelected = selectedIncluded.includes(item.label);
+                    
+                    return (
+                      <div
+                        key={item.id}
+                        className={`flex items-center gap-3 p-3 border rounded-lg cursor-pointer transition-colors ${
+                          isSelected ? 'bg-primary/10 border-primary' : 'hover:bg-gray-50'
+                        }`}
+                        onClick={() => {
+                          const newIncluded = isSelected
+                            ? selectedIncluded.filter(i => i !== item.label)
+                            : [...selectedIncluded, item.label];
+                          setSelectedIncluded(newIncluded);
+                          boatForm.setValue('included', newIncluded);
+                        }}
+                        data-testid={`checkbox-included-${item.id}`}
+                      >
+                        <div className={`w-5 h-5 flex items-center justify-center border rounded ${
+                          isSelected ? 'bg-primary border-primary' : 'border-gray-300'
+                        }`}>
+                          {isSelected && <Check className="w-3 h-3 text-white" />}
+                        </div>
+                        <Icon className={`w-5 h-5 ${isSelected ? 'text-primary' : 'text-gray-600'}`} />
+                        <span className={`text-sm ${isSelected ? 'font-medium' : ''}`}>
+                          {item.label}
+                        </span>
+                      </div>
+                    );
+                  })}
+                </div>
               </div>
             </div>
 
@@ -896,7 +931,7 @@ function FleetManagement({ adminToken }: { adminToken: string }) {
                   setImageGalleryText("");
                   setFeaturesText("");
                   setSelectedEquipment([]);
-                  setIncludedText("");
+                  setSelectedIncluded([]);
                   boatForm.reset();
                 }}
                 data-testid="button-cancel-boat"

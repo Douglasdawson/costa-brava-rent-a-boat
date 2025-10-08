@@ -674,6 +674,10 @@ function FleetManagement({ adminToken }: { adminToken: string }) {
                   <Label>Capacidad</Label>
                   <Input placeholder="5 Personas" onChange={(e) => boatForm.setValue('specifications.capacity', e.target.value)} />
                 </div>
+                <div>
+                  <Label>Fianza</Label>
+                  <Input placeholder="300€" onChange={(e) => boatForm.setValue('specifications.deposit', e.target.value)} />
+                </div>
               </div>
             </div>
 

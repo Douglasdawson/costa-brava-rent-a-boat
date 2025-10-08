@@ -564,7 +564,7 @@ export default function Hero() {
         {/* Booking Widget */}
         <Card id="booking-form" className="bg-white/75 backdrop-blur-md p-3 sm:p-4 w-full shadow-2xl border-0">
           <div className="text-center mb-2 sm:mb-3">
-            <h3 className="text-base sm:text-base lg:text-lg font-bold text-gray-900 mb-1">{t.booking.title}</h3>
+            <h2 className="text-base sm:text-base lg:text-lg font-bold text-gray-900 mb-1">{t.booking.title}</h2>
             <p className="text-xs [@media(min-width:400px)]:text-sm text-gray-600">Completa los datos para solicitar la reserva de tu barco perfecto</p>
           </div>
           
@@ -573,7 +573,7 @@ export default function Hero() {
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-2">
               {/* First Name */}
               <div className="bg-white rounded-lg p-2 sm:p-3 shadow-sm border border-gray-100">
-                <label className="flex items-center justify-center md:justify-start text-xs [@media(min-width:400px)]:text-sm font-semibold text-gray-800 mb-1 sm:mb-2">
+                <label htmlFor="first-name" className="flex items-center justify-center md:justify-start text-xs [@media(min-width:400px)]:text-sm font-semibold text-gray-800 mb-1 sm:mb-2">
                   <div className="w-5 h-5 sm:w-6 sm:h-6 bg-primary/10 rounded-full flex items-center justify-center mr-1 sm:mr-2">
                     <User className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-primary" />
                   </div>
@@ -581,17 +581,19 @@ export default function Hero() {
                 </label>
                 <input
                   type="text"
+                  id="first-name"
                   value={firstName}
                   onChange={(e) => setFirstName(e.target.value)}
                   placeholder="Ej: Juan"
                   className="w-full p-2 sm:p-2.5 border-0 bg-gray-50 rounded-md focus:ring-2 focus:ring-primary focus:bg-white transition-all text-gray-900 font-medium text-xs [@media(min-width:400px)]:text-sm sm:text-sm text-center md:text-left"
                   data-testid="input-first-name"
+                  aria-label="Nombre del cliente"
                 />
               </div>
 
               {/* Last Name */}
               <div className="bg-white rounded-lg p-2 sm:p-3 shadow-sm border border-gray-100">
-                <label className="flex items-center justify-center md:justify-start text-xs [@media(min-width:400px)]:text-sm font-semibold text-gray-800 mb-1 sm:mb-2">
+                <label htmlFor="last-name" className="flex items-center justify-center md:justify-start text-xs [@media(min-width:400px)]:text-sm font-semibold text-gray-800 mb-1 sm:mb-2">
                   <div className="w-5 h-5 sm:w-6 sm:h-6 bg-primary/10 rounded-full flex items-center justify-center mr-1 sm:mr-2">
                     <User className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-primary" />
                   </div>
@@ -599,17 +601,19 @@ export default function Hero() {
                 </label>
                 <input
                   type="text"
+                  id="last-name"
                   value={lastName}
                   onChange={(e) => setLastName(e.target.value)}
                   placeholder="Ej: García López"
                   className="w-full p-2 sm:p-2.5 border-0 bg-gray-50 rounded-md focus:ring-2 focus:ring-primary focus:bg-white transition-all text-gray-900 font-medium text-xs [@media(min-width:400px)]:text-sm sm:text-sm text-center md:text-left"
                   data-testid="input-last-name"
+                  aria-label="Apellido del cliente"
                 />
               </div>
 
               {/* Phone Number */}
               <div className="col-span-2 lg:col-span-1 bg-white rounded-lg p-2 sm:p-3 shadow-sm border border-gray-100">
-                <label className="flex items-center justify-center md:justify-start text-xs [@media(min-width:400px)]:text-sm font-semibold text-gray-800 mb-1 sm:mb-2">
+                <label htmlFor="phone-number" className="flex items-center justify-center md:justify-start text-xs [@media(min-width:400px)]:text-sm font-semibold text-gray-800 mb-1 sm:mb-2">
                   <div className="w-5 h-5 sm:w-6 sm:h-6 bg-primary/10 rounded-full flex items-center justify-center mr-1 sm:mr-2">
                     <PhoneIcon className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-primary" />
                   </div>
@@ -620,12 +624,23 @@ export default function Hero() {
                   <div className="relative w-20 sm:w-24 lg:w-24">
                     <button
                       type="button"
+                      role="button"
                       onClick={() => {
                         setShowPrefixDropdown(!showPrefixDropdown);
                         setPrefixSearch("");
                       }}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                          e.preventDefault();
+                          setShowPrefixDropdown(!showPrefixDropdown);
+                          setPrefixSearch("");
+                        }
+                      }}
                       className="w-full h-full px-1 py-2 sm:px-1.5 sm:py-2.5 border-0 bg-gray-50 rounded-md focus:ring-2 focus:ring-primary transition-all text-gray-900 font-medium text-[10px] [@media(min-width:400px)]:text-xs sm:text-sm flex items-center justify-center sm:justify-between"
                       data-testid="select-phone-prefix"
+                      aria-label="Seleccionar prefijo telefónico internacional"
+                      aria-expanded={showPrefixDropdown}
+                      aria-haspopup="listbox"
                     >
                       <span className="whitespace-nowrap overflow-hidden text-ellipsis text-center sm:text-left">{selectedPrefixInfo?.flag} {phonePrefix}</span>
                       <ChevronDown className="w-2 h-2 sm:w-3 sm:h-3 flex-shrink-0 ml-0.5 hidden sm:inline" />
@@ -673,6 +688,7 @@ export default function Hero() {
                                     phonePrefix === prefix.code ? 'bg-primary/10' : ''
                                   }`}
                                   data-testid={`option-prefix-${prefix.code}`}
+                                  aria-label={`Seleccionar prefijo ${prefix.code} para ${prefix.country}`}
                                 >
                                   <span className="font-medium">{prefix.flag} {prefix.code}</span>
                                   <span className="text-gray-500 ml-2">{prefix.country}</span>
@@ -690,18 +706,20 @@ export default function Hero() {
                   </div>
                   <input
                     type="tel"
+                    id="phone-number"
                     value={phoneNumber}
                     onChange={(e) => setPhoneNumber(e.target.value)}
                     placeholder="612345678"
                     className="flex-1 min-w-0 px-1 py-1.5 sm:p-2.5 border-0 bg-gray-50 rounded-md focus:ring-2 focus:ring-primary focus:bg-white transition-all text-gray-900 font-medium text-[10px] [@media(min-width:400px)]:text-xs sm:text-sm text-center sm:text-left overflow-hidden"
                     data-testid="input-phone-number"
+                    aria-label="Número de teléfono"
                   />
                 </div>
               </div>
 
               {/* Email */}
               <div className="col-span-2 lg:col-span-1 bg-white rounded-lg p-2 sm:p-3 shadow-sm border border-gray-100">
-                <label className="flex items-center justify-center md:justify-start text-xs [@media(min-width:400px)]:text-sm font-semibold text-gray-800 mb-1 sm:mb-2">
+                <label htmlFor="email-input" className="flex items-center justify-center md:justify-start text-xs [@media(min-width:400px)]:text-sm font-semibold text-gray-800 mb-1 sm:mb-2">
                   <div className="w-5 h-5 sm:w-6 sm:h-6 bg-primary/10 rounded-full flex items-center justify-center mr-1 sm:mr-2">
                     <Mail className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-primary" />
                   </div>
@@ -709,11 +727,13 @@ export default function Hero() {
                 </label>
                 <input
                   type="email"
+                  id="email-input"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="ejemplo@email.com"
                   className="w-full p-2 sm:p-2.5 border-0 bg-gray-50 rounded-md focus:ring-2 focus:ring-primary focus:bg-white transition-all text-gray-900 font-medium text-xs [@media(min-width:400px)]:text-sm sm:text-sm text-center md:text-left"
                   data-testid="input-email"
+                  aria-label="Correo electrónico"
                 />
               </div>
             </div>
@@ -732,6 +752,8 @@ export default function Hero() {
                       : "bg-gray-100 text-gray-700 hover:bg-gray-200"
                   }`}
                   data-testid="button-license-without"
+                  aria-label="Filtrar barcos sin licencia"
+                  aria-pressed={licenseFilter === "without"}
                 >
                   Barcos Sin Licencia
                 </button>
@@ -743,6 +765,8 @@ export default function Hero() {
                       : "bg-gray-100 text-gray-700 hover:bg-gray-200"
                   }`}
                   data-testid="button-license-with"
+                  aria-label="Filtrar barcos con licencia"
+                  aria-pressed={licenseFilter === "with"}
                 >
                   Barcos Con Licencia
                 </button>
@@ -753,18 +777,20 @@ export default function Hero() {
             <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
               {/* Boat Selector */}
               <div className="bg-white rounded-lg p-2 shadow-sm border border-gray-100 col-span-2 md:col-span-1">
-                <label className="flex items-center justify-center md:justify-start text-xs [@media(min-width:400px)]:text-sm font-semibold text-gray-800 mb-1">
+                <label htmlFor="boat-selector" className="flex items-center justify-center md:justify-start text-xs [@media(min-width:400px)]:text-sm font-semibold text-gray-800 mb-1">
                   <div className="w-4 h-4 bg-primary/10 rounded-full flex items-center justify-center mr-1">
                     <Anchor className="w-2.5 h-2.5 text-primary" />
                   </div>
                   Barco
                 </label>
                 <select
+                  id="boat-selector"
                   value={selectedBoat}
                   onChange={(e) => setSelectedBoat(e.target.value)}
                   disabled={isLoadingBoats}
                   className="w-full p-2 border-0 bg-gray-50 rounded-md focus:ring-2 focus:ring-primary focus:bg-white transition-all text-gray-900 font-medium appearance-none cursor-pointer text-xs [@media(min-width:400px)]:text-sm disabled:opacity-50 text-center md:text-left"
                   data-testid="select-boat-type"
+                  aria-label="Seleccionar tipo de barco"
                 >
                   <option value="">
                     {isLoadingBoats ? "Cargando..." : "Seleccionar"}
@@ -782,7 +808,7 @@ export default function Hero() {
 
               {/* Date */}
               <div className="bg-white rounded-lg p-2 shadow-sm border border-gray-100">
-                <label className="flex items-center justify-center md:justify-start text-xs [@media(min-width:400px)]:text-sm font-semibold text-gray-800 mb-1">
+                <label htmlFor="booking-date" className="flex items-center justify-center md:justify-start text-xs [@media(min-width:400px)]:text-sm font-semibold text-gray-800 mb-1">
                   <div className="w-4 h-4 bg-primary/10 rounded-full flex items-center justify-center mr-1">
                     <Calendar className="w-2.5 h-2.5 text-primary" />
                   </div>
@@ -790,27 +816,31 @@ export default function Hero() {
                 </label>
                 <input
                   type="date"
+                  id="booking-date"
                   value={selectedDate}
                   onChange={(e) => setSelectedDate(e.target.value)}
                   min={getLocalISODate()}
                   className="w-full p-2 border-0 bg-gray-50 rounded-md focus:ring-2 focus:ring-primary focus:bg-white transition-all text-gray-900 font-medium text-xs [@media(min-width:400px)]:text-sm text-center"
                   data-testid="input-booking-date"
+                  aria-label="Fecha de reserva"
                 />
               </div>
               
               {/* Duration */}
               <div className="bg-white rounded-lg p-2 shadow-sm border border-gray-100">
-                <label className="flex items-center justify-center md:justify-start text-xs [@media(min-width:400px)]:text-sm font-semibold text-gray-800 mb-1">
+                <label htmlFor="duration-selector" className="flex items-center justify-center md:justify-start text-xs [@media(min-width:400px)]:text-sm font-semibold text-gray-800 mb-1">
                   <div className="w-4 h-4 bg-primary/10 rounded-full flex items-center justify-center mr-1">
                     <Clock className="w-2.5 h-2.5 text-primary" />
                   </div>
                   {t.booking.duration}
                 </label>
                 <select
+                  id="duration-selector"
                   value={selectedDuration}
                   onChange={(e) => setSelectedDuration(e.target.value)}
                   className="w-full p-2 border-0 bg-gray-50 rounded-md focus:ring-2 focus:ring-primary focus:bg-white transition-all text-gray-900 font-medium appearance-none cursor-pointer text-xs [@media(min-width:400px)]:text-sm text-center"
                   data-testid="select-duration"
+                  aria-label="Seleccionar duración del alquiler"
                 >
                   <option value="">Seleccionar</option>
                   {getDurationOptions().map((option) => (

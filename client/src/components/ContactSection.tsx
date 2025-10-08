@@ -73,7 +73,7 @@ export default function ContactSection() {
                     >
                       +34 683 172 154
                     </a>
-                    <p className="text-xs sm:text-sm text-gray-500">{t.contact.scheduleTime}</p>
+                    <p className="text-xs sm:text-sm text-gray-600">{t.contact.scheduleTime}</p>
                   </div>
                 </div>
               </div>
@@ -93,7 +93,7 @@ export default function ContactSection() {
                     >
                       costabravarentboat@gmail.com
                     </a>
-                    <p className="text-sm text-gray-500">Respuesta en 24h</p>
+                    <p className="text-sm text-gray-600">Respuesta en 24h</p>
                   </div>
                 </div>
               </div>
@@ -114,7 +114,7 @@ export default function ContactSection() {
                       aria-label="Ver ubicación en Google Maps: Puerto de Blanes"
                     >
                       <span className="block mb-1">Puerto de Blanes, Costa Brava</span>
-                      <span className="block text-sm text-gray-500 hover:text-primary/80">Girona, España - Zona de embarque</span>
+                      <span className="block text-sm text-gray-600 hover:text-primary/80">Girona, España - Zona de embarque</span>
                     </a>
                   </div>
                 </div>
@@ -128,7 +128,7 @@ export default function ContactSection() {
                   <div>
                     <h3 className="font-medium text-gray-900 mb-2">Temporada</h3>
                     <p className="text-gray-600 mb-1">Abril - Octubre</p>
-                    <p className="text-sm text-gray-500">Horarios flexibles según disponibilidad</p>
+                    <p className="text-sm text-gray-600">Horarios flexibles según disponibilidad</p>
                   </div>
                 </div>
               </div>
@@ -137,7 +137,7 @@ export default function ContactSection() {
               <div className="mt-auto pt-6 border-t border-gray-200">
                 <Button 
                   onClick={() => window.open("https://wa.me/34683172154", "_blank")}
-                  className="w-full bg-green-600 hover:bg-green-700 text-white px-6 py-3 h-12"
+                  className="w-full bg-green-700 hover:bg-green-800 text-white px-6 py-3 h-12"
                   data-testid="button-whatsapp-quick"
                   aria-label="Consultar disponibilidad por WhatsApp"
                 >

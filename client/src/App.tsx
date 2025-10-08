@@ -33,6 +33,7 @@ const ClientDashboardPage = lazy(() => import("@/pages/ClientDashboardPage"));
 const LoginPage = lazy(() => import("@/pages/LoginPage"));
 const NotFound = lazy(() => import("@/pages/not-found"));
 import { useLanguage } from "@/hooks/use-language";
+import { usePrefetchCriticalRoutes } from "@/hooks/usePrefetch";
 import { 
   getSEOConfig, 
   generateHreflangLinks, 
@@ -45,6 +46,7 @@ import {
 // Main Home Page Component
 function HomePage() {
   const { language } = useLanguage();
+  usePrefetchCriticalRoutes();
   const seoConfig = getSEOConfig('home', language);
   const hreflangLinks = generateHreflangLinks('home');
   const canonical = generateCanonicalUrl('home', language);

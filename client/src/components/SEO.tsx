@@ -16,8 +16,8 @@ interface SEOProps {
 export function SEO({ 
   title, 
   description, 
-  canonical = "https://costa-brava-rent-a-boat-blanes.replit.app/",
-  ogImage = "https://costa-brava-rent-a-boat-blanes.replit.app/assets/Mediterranean_coastal_hero_scene_8df465c2.png",
+  canonical = "https://costa-brava-rent-a-boat-web-ivanrd9.replit.app/",
+  ogImage = "https://costa-brava-rent-a-boat-web-ivanrd9.replit.app/assets/Mediterranean_coastal_hero_scene_8df465c2.png",
   ogType = "website",
   jsonLd,
   hreflang

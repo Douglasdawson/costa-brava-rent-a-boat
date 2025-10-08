@@ -380,13 +380,16 @@ function FleetManagement({ adminToken }: { adminToken: string }) {
         capacity: "",
         deposit: "",
       },
+      // Ensure equipment and included use the local state (in case form data is outdated)
+      equipment: selectedEquipment,
+      included: selectedIncluded,
     };
     
     // Sanitize deposit field - remove currency symbols for numeric field
     if (formattedData.deposit) {
       const depositStr = String(formattedData.deposit);
       const numericDeposit = depositStr.replace(/[€$,\s]/g, '');
-      formattedData.deposit = numericDeposit ? Number(numericDeposit) : formattedData.deposit;
+      formattedData.deposit = numericDeposit || '0';
     }
     
     if (editingBoat) {
@@ -625,7 +628,7 @@ function FleetManagement({ adminToken }: { adminToken: string }) {
                     id="deposit"
                     {...boatForm.register("deposit")}
                     placeholder="300.00"
-                    data-testid="input-boat-deposit"
+                    data-testid="input-main-deposit"
                   />
                 </div>
               </div>
@@ -724,7 +727,7 @@ function FleetManagement({ adminToken }: { adminToken: string }) {
                   <Input 
                     placeholder="300€" 
                     {...boatForm.register('specifications.deposit')}
-                    data-testid="input-boat-deposit"
+                    data-testid="input-spec-fianza"
                   />
                 </div>
               </div>

@@ -3,6 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useLocation } from "wouter";
+import { useQuery } from "@tanstack/react-query";
 import { 
   ArrowLeft, 
   Users, 
@@ -29,7 +30,6 @@ import {
   Clock
 } from "lucide-react";
 import { openWhatsApp } from "@/utils/whatsapp";
-import { BOAT_DATA } from "@shared/boatData";
 import { getBoatImage } from "@/utils/boatImages";
 import Navigation from "./Navigation";
 import Footer from "./Footer";
@@ -42,6 +42,7 @@ import {
   generateEnhancedProductSchema,
   generateBreadcrumbSchema
 } from "@/utils/seo-config";
+import type { Boat } from "@shared/schema";
 
 interface BoatDetailPageProps {
   boatId?: string;
@@ -52,16 +53,36 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
   const [selectedSeason, setSelectedSeason] = useState<"BAJA" | "MEDIA" | "ALTA">("BAJA");
   const [, setLocation] = useLocation();
   
-  // Get boat data dynamically based on boatId
-  const boatData = BOAT_DATA[boatId];
+  // Fetch boat data from API
+  const { data: boats, isLoading, error } = useQuery<Boat[]>({
+    queryKey: ['/api/boats']
+  });
+
+  const boatData = boats?.find(boat => boat.id === boatId);
   
-  if (!boatData) {
-    return <div>Barco no encontrado</div>;
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <div className="text-lg">Cargando...</div>
+        </div>
+      </div>
+    );
+  }
+
+  if (error || !boatData) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <div className="text-lg">Barco no encontrado</div>
+        </div>
+      </div>
+    );
   }
 
   const handleReservation = () => {
     console.log(`Navigate to booking for ${boatData.name}`);
-    const lowestPrice = Math.min(...Object.values(boatData.pricing.BAJA.prices));
+    const lowestPrice = boatData.pricing ? Math.min(...Object.values(boatData.pricing.BAJA.prices)) : 0;
     const message = `Hola! Me gustaría hacer una reserva del ${boatData.name} (desde ${lowestPrice}€, sin licencia requerida). He visto los precios por temporada en vuestra web. ¿Podrían confirmarme disponibilidad? ¡Muchas gracias!`;
     openWhatsApp(message);
   };
@@ -73,9 +94,9 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
 
   // SEO data for this boat
   const { language } = useLanguage();
-  const lowestPrice = Math.min(...Object.values(boatData.pricing.BAJA.prices));
-  const requiresLicense = boatData.subtitle.includes("Con Licencia");
-  const capacity = parseInt(boatData.specifications.capacity.split(' ')[0]);
+  const lowestPrice = boatData.pricing ? Math.min(...Object.values(boatData.pricing.BAJA.prices)) : 0;
+  const requiresLicense = boatData.subtitle?.includes("Con Licencia") ?? boatData.requiresLicense;
+  const capacity = boatData.specifications ? parseInt(boatData.specifications.capacity?.split(' ')[0] || String(boatData.capacity)) : boatData.capacity;
   
   const dynamicSEOData = {
     boatName: boatData.name,
@@ -88,7 +109,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
   const canonical = generateCanonicalUrl('boatDetail', language, boatId);
   
   // Enhanced Product JSON-LD schema with breadcrumbs
-  const resolvedImage = getBoatImage(boatData.image);
+  const resolvedImage = getBoatImage(boatData.imageUrl || '');
   const absoluteImage = resolvedImage.startsWith('http') ? resolvedImage : 
     resolvedImage.startsWith('/') ? `${window.location.origin}${resolvedImage}` :
     `${window.location.origin}/${resolvedImage}`;
@@ -100,8 +121,8 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
     description: boatData.description,
     image: absoluteImage,
     brand: "Costa Brava Rent a Boat",
-    power: parseInt(boatData.specifications.engine.match(/\d+/)?.[0] || "15"),
-    capacity: parseInt(boatData.specifications.capacity.split(' ')[0]),
+    power: parseInt(boatData.specifications?.engine?.match(/\d+/)?.[0] || "15"),
+    capacity: capacity,
     pricePerHour: lowestPrice,
     year: new Date().getFullYear() - 2 // Assuming boats are ~2 years old
   };
@@ -142,7 +163,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
         description={seoConfig.description}
         canonical={canonical}
         hreflang={hreflangLinks}
-        ogImage={getBoatImage(boatData.image)}
+        ogImage={getBoatImage(boatData.imageUrl || '')}
         ogType="product"
         jsonLd={combinedJsonLd}
       />
@@ -175,8 +196,8 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
           {/* Left Column - Image */}
           <div className="bg-white rounded-xl overflow-hidden shadow-lg">
             <img 
-              src={getBoatImage(boatData.image)} 
-              alt={`Alquiler ${boatData.name} ${boatData.subtitle.includes("Sin Licencia") ? "sin licencia" : "con licencia"} en Blanes Costa Brava`}
+              src={getBoatImage(boatData.imageUrl || '')} 
+              alt={`Alquiler ${boatData.name} ${boatData.subtitle?.includes("Sin Licencia") ? "sin licencia" : "con licencia"} en Blanes Costa Brava`}
               className="w-full h-64 sm:h-80 md:h-96 object-cover"
               loading="lazy"
               data-testid="img-boat-main"
@@ -211,12 +232,12 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4">
-              {boatData.features.map((feature, index) => (
+              {boatData.features?.map((feature, index) => (
                 <div key={index} className="flex items-center">
                   <CheckCircle className="w-4 h-4 text-green-600 mr-2" />
                   <span className="text-sm">{feature}</span>
                 </div>
-              ))}
+              )) || <span className="text-sm text-gray-500">No hay características disponibles</span>}
             </div>
           </CardContent>
         </Card>
@@ -233,55 +254,69 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
             </CardHeader>
             <CardContent>
               <div className="grid grid-cols-1 gap-4">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center">
-                    <Anchor className="w-4 h-4 mr-2 text-blue-600" />
-                    <span className="font-medium">Modelo:</span>
+                {boatData.specifications?.model && (
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center">
+                      <Anchor className="w-4 h-4 mr-2 text-blue-600" />
+                      <span className="font-medium">Modelo:</span>
+                    </div>
+                    <span>{boatData.specifications.model}</span>
                   </div>
-                  <span>{boatData.specifications.model}</span>
-                </div>
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center">
-                    <ArrowUpDown className="w-4 h-4 mr-2 text-blue-600" />
-                    <span className="font-medium">Eslora:</span>
+                )}
+                {boatData.specifications?.length && (
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center">
+                      <ArrowUpDown className="w-4 h-4 mr-2 text-blue-600" />
+                      <span className="font-medium">Eslora:</span>
+                    </div>
+                    <span>{boatData.specifications.length}</span>
                   </div>
-                  <span>{boatData.specifications.length}</span>
-                </div>
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center">
-                    <ArrowLeftRight className="w-4 h-4 mr-2 text-blue-600" />
-                    <span className="font-medium">Manga:</span>
+                )}
+                {boatData.specifications?.beam && (
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center">
+                      <ArrowLeftRight className="w-4 h-4 mr-2 text-blue-600" />
+                      <span className="font-medium">Manga:</span>
+                    </div>
+                    <span>{boatData.specifications.beam}</span>
                   </div>
-                  <span>{boatData.specifications.beam}</span>
-                </div>
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center">
-                    <Zap className="w-4 h-4 mr-2 text-blue-600" />
-                    <span className="font-medium">Motor:</span>
+                )}
+                {boatData.specifications?.engine && (
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center">
+                      <Zap className="w-4 h-4 mr-2 text-blue-600" />
+                      <span className="font-medium">Motor:</span>
+                    </div>
+                    <span>{boatData.specifications.engine}</span>
                   </div>
-                  <span>{boatData.specifications.engine}</span>
-                </div>
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center">
-                    <Fuel className="w-4 h-4 mr-2 text-blue-600" />
-                    <span className="font-medium">Combustible:</span>
+                )}
+                {boatData.specifications?.fuel && (
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center">
+                      <Fuel className="w-4 h-4 mr-2 text-blue-600" />
+                      <span className="font-medium">Combustible:</span>
+                    </div>
+                    <span>{boatData.specifications.fuel}</span>
                   </div>
-                  <span>{boatData.specifications.fuel}</span>
-                </div>
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center">
-                    <Users className="w-4 h-4 mr-2 text-blue-600" />
-                    <span className="font-medium">Capacidad:</span>
+                )}
+                {boatData.specifications?.capacity && (
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center">
+                      <Users className="w-4 h-4 mr-2 text-blue-600" />
+                      <span className="font-medium">Capacidad:</span>
+                    </div>
+                    <span>{boatData.specifications.capacity}</span>
                   </div>
-                  <span>{boatData.specifications.capacity}</span>
-                </div>
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center">
-                    <Shield className="w-4 h-4 mr-2 text-blue-600" />
-                    <span className="font-medium">Fianza:</span>
+                )}
+                {boatData.specifications?.deposit && (
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center">
+                      <Shield className="w-4 h-4 mr-2 text-blue-600" />
+                      <span className="font-medium">Fianza:</span>
+                    </div>
+                    <span>{boatData.specifications.deposit}</span>
                   </div>
-                  <span>{boatData.specifications.deposit}</span>
-                </div>
+                )}
               </div>
             </CardContent>
           </Card>
@@ -293,12 +328,12 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
             </CardHeader>
             <CardContent>
               <div className="grid grid-cols-1 gap-2">
-                {boatData.equipment.map((item, index) => (
+                {boatData.equipment?.map((item, index) => (
                   <div key={index} className="flex items-center">
                     <CheckCircle className="w-4 h-4 text-green-600 mr-2" />
                     <span>{item}</span>
                   </div>
-                ))}
+                )) || <span className="text-sm text-gray-500">No hay equipamiento disponible</span>}
               </div>
             </CardContent>
           </Card>
@@ -372,46 +407,52 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
           </CardHeader>
           <CardContent>
             {/* Season Selector */}
-            <div className="flex flex-wrap gap-2 mb-6 justify-center">
-              {Object.keys(boatData.pricing).map((season) => (
-                <Button
-                  key={season}
-                  variant={selectedSeason === season ? "default" : "outline"}
-                  onClick={() => setSelectedSeason(season as "BAJA" | "MEDIA" | "ALTA")}
-                  className="text-sm"
-                  data-testid={`button-season-${season.toLowerCase()}`}
-                >
-                  {season}
-                </Button>
-              ))}
-            </div>
+            {boatData.pricing && (
+              <>
+                <div className="flex flex-wrap gap-2 mb-6 justify-center">
+                  {Object.keys(boatData.pricing).map((season) => (
+                    <Button
+                      key={season}
+                      variant={selectedSeason === season ? "default" : "outline"}
+                      onClick={() => setSelectedSeason(season as "BAJA" | "MEDIA" | "ALTA")}
+                      className="text-sm"
+                      data-testid={`button-season-${season.toLowerCase()}`}
+                    >
+                      {season}
+                    </Button>
+                  ))}
+                </div>
 
-            {/* Selected Season Details */}
-            <div className="bg-gray-50 rounded-lg p-4 mb-4 text-left md:text-center">
-              <h4 className="font-medium mb-2">Temporada {selectedSeason}</h4>
-              <p className="text-sm text-gray-600 mb-4">{boatData.pricing[selectedSeason].period}</p>
-              
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-                {Object.entries(boatData.pricing[selectedSeason].prices).map(([duration, price]) => (
-                  <div key={duration} className="text-left md:text-center p-3 bg-white rounded-lg border">
-                    <div className="font-bold text-lg text-primary">{price}€</div>
-                    <div className="text-sm text-gray-600">{duration}</div>
+                {/* Selected Season Details */}
+                <div className="bg-gray-50 rounded-lg p-4 mb-4 text-left md:text-center">
+                  <h4 className="font-medium mb-2">Temporada {selectedSeason}</h4>
+                  <p className="text-sm text-gray-600 mb-4">{boatData.pricing[selectedSeason].period}</p>
+                  
+                  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+                    {Object.entries(boatData.pricing[selectedSeason].prices).map(([duration, price]) => (
+                      <div key={duration} className="text-left md:text-center p-3 bg-white rounded-lg border">
+                        <div className="font-bold text-lg text-primary">{price}€</div>
+                        <div className="text-sm text-gray-600">{duration}</div>
+                      </div>
+                    ))}
                   </div>
-                ))}
-              </div>
-            </div>
+                </div>
+              </>
+            )}
 
-            <div className="text-sm text-gray-600 text-left md:text-center">
-              <p className="mb-3"><strong>El precio incluye:</strong></p>
-              <div className="flex flex-wrap justify-start md:justify-center items-center gap-4">
-                {boatData.included.map((item, index) => (
-                  <div key={index} className="flex items-center">
-                    <CheckCircle className="w-3 h-3 text-green-600 mr-1" />
-                    <span className="text-xs">{item}</span>
-                  </div>
-                ))}
+            {boatData.included && boatData.included.length > 0 && (
+              <div className="text-sm text-gray-600 text-left md:text-center">
+                <p className="mb-3"><strong>El precio incluye:</strong></p>
+                <div className="flex flex-wrap justify-start md:justify-center items-center gap-4">
+                  {boatData.included.map((item, index) => (
+                    <div key={index} className="flex items-center">
+                      <CheckCircle className="w-3 h-3 text-green-600 mr-1" />
+                      <span className="text-xs">{item}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
-            </div>
+            )}
           </CardContent>
         </Card>
 
@@ -422,7 +463,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-              {boatData.extras.map((extra, index) => {
+              {boatData.extras?.map((extra, index) => {
                 const getIcon = (iconName: string) => {
                   const iconMap: { [key: string]: any } = {
                     CircleParking,
@@ -466,7 +507,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
               <p>• Ideal para familias y grupos de hasta {capacity} personas</p>
               <p>• Perfecto para explorar las calas de la Costa Brava</p>
               <p>• {requiresLicense ? "Combustible NO incluido, seguro y equipo de seguridad incluidos" : "Gasolina, seguro y equipo de seguridad incluidos"}</p>
-              <p>• Fianza: {boatData.specifications.deposit}</p>
+              {boatData.specifications?.deposit && <p>• Fianza: {boatData.specifications.deposit}</p>}
             </div>
             <div className="mt-4 p-4 bg-blue-50 rounded-lg">
               <p className="text-blue-800 text-sm">

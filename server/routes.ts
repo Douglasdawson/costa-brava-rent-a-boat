@@ -932,7 +932,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       }
 
       // Server-side calculation of totals to prevent tampering
-      const basePrice = parseFloat(boat.pricePerHour);
+      const basePrice = parseFloat(boat.pricePerHour || '0');
       const hours = bookingData.totalHours;
       const subtotal = basePrice * hours;
       
@@ -1318,15 +1318,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(404).json({ message: "Barco no encontrado" });
       }
 
-      console.log("[PATCH /api/admin/boats/:id] Request body:", JSON.stringify(req.body, null, 2));
-      
       const updatedBoat = await storage.updateBoat(id, req.body);
-      
-      console.log("[PATCH /api/admin/boats/:id] Updated boat:", JSON.stringify(updatedBoat, null, 2));
-      
       res.json(updatedBoat);
     } catch (error: any) {
-      console.error("[PATCH /api/admin/boats/:id] Error:", error);
       res.status(500).json({ message: "Error updating boat: " + error.message });
     }
   });

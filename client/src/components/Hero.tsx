@@ -552,8 +552,7 @@ export default function Hero() {
       <div className="relative z-10 container mx-auto px-3 sm:px-4 pt-32 sm:pt-36 pb-8 sm:pb-12 min-h-screen md:h-screen flex flex-col justify-center items-center text-center">
         <div className="max-w-5xl mx-auto mb-8 sm:mb-12 w-full px-2 sm:px-4">
           <h1 className="font-heading text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 sm:mb-6 leading-tight px-2">
-            Alquiler de Barcos en Blanes,<br />
-            Costa Brava.
+            Alquiler de Barcos en Blanes,<br className="lg:hidden" /> Costa Brava.
           </h1>
           <p className="text-sm sm:text-base md:text-lg lg:text-xl text-white/90 mb-3 sm:mb-4 px-2 text-center">
             Descubre las mejores calas de la Costa Brava con nuestros barcos con y sin licencia.{' '}

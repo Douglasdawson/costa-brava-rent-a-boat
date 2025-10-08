@@ -302,7 +302,7 @@ export const translations: Record<Language, Translations> = {
     
     fleet: {
       title: 'Nuestra flota de alquiler en Blanes',
-      subtitle: 'Descubre nuestra flota de alquiler de barcos con licencia o sin licencia en Blanes, Costa Brava. Embarcaciones ideales para salidas con amigos o en familias.',
+      subtitle: 'Descubre nuestra flota de alquiler de barcos con licencia o sin licencia en Blanes, Costa Brava.',
       helpText: '¿Necesitas ayuda para elegir tu alquiler de barco en Blanes?',
       callButton: 'Llama al +34 611 500 372',
     },
@@ -562,7 +562,7 @@ export const translations: Record<Language, Translations> = {
     
     fleet: {
       title: 'La nostra flota de lloguer a Blanes',
-      subtitle: 'Descobreix la nostra flota de lloguer de vaixells amb llicència o sense llicència a Blanes, Costa Brava. Embarcacions ideals per sortides amb amics o en famílies.',
+      subtitle: 'Descobreix la nostra flota de lloguer de vaixells amb llicència o sense llicència a Blanes, Costa Brava.',
       helpText: 'Necessites ajuda per triar el teu lloguer de vaixell a Blanes?',
       callButton: 'Truca al +34 611 500 372',
     },
@@ -762,7 +762,7 @@ export const translations: Record<Language, Translations> = {
     
     fleet: {
       title: 'Our rental fleet in Blanes',
-      subtitle: 'Discover our rental fleet of licensed and license-free boats in Blanes, Costa Brava. Ideal boats for trips with friends or families.',
+      subtitle: 'Discover our rental fleet of licensed and license-free boats in Blanes, Costa Brava.',
       helpText: 'Need help choosing your boat rental in Blanes?',
       callButton: 'Call +34 611 500 372',
     },
@@ -959,7 +959,7 @@ export const translations: Record<Language, Translations> = {
     
     fleet: {
       title: 'Notre flotte de location à Blanes',
-      subtitle: 'Découvrez notre flotte de location de bateaux avec et sans permis à Blanes, Costa Brava. Bateaux idéaux pour des sorties avec des amis ou en famille.',
+      subtitle: 'Découvrez notre flotte de location de bateaux avec et sans permis à Blanes, Costa Brava.',
       helpText: 'Besoin d\'aide pour choisir votre location de bateau à Blanes?',
       callButton: 'Appelez le +34 611 500 372',
     },
@@ -1138,7 +1138,7 @@ export const translations: Record<Language, Translations> = {
     
     fleet: {
       title: 'Unsere Mietflotte in Blanes',
-      subtitle: 'Entdecken Sie unsere Mietflotte von Booten mit und ohne Führerschein in Blanes, Costa Brava. Ideale Boote für Ausflüge mit Freunden oder Familien.',
+      subtitle: 'Entdecken Sie unsere Mietflotte von Booten mit und ohne Führerschein in Blanes, Costa Brava.',
       helpText: 'Brauchen Sie Hilfe bei der Auswahl Ihrer Bootsvermietung in Blanes?',
       callButton: 'Anrufen +34 611 500 372',
     },
@@ -1317,7 +1317,7 @@ export const translations: Record<Language, Translations> = {
     
     fleet: {
       title: 'Onze huurvloot in Blanes',
-      subtitle: 'Ontdek onze huurvloot van boten met en zonder vergunning in Blanes, Costa Brava. Ideale boten voor uitstapjes met vrienden of gezinnen.',
+      subtitle: 'Ontdek onze huurvloot van boten met en zonder vergunning in Blanes, Costa Brava.',
       helpText: 'Heeft u hulp nodig bij het kiezen van uw bootverhuur in Blanes?',
       callButton: 'Bel +34 611 500 372',
     },
@@ -1496,7 +1496,7 @@ export const translations: Record<Language, Translations> = {
     
     fleet: {
       title: 'La nostra flotta di noleggio a Blanes',
-      subtitle: 'Scopri la nostra flotta di noleggio di barche con e senza patente a Blanes, Costa Brava. Imbarcazioni ideali per gite con amici o famiglie.',
+      subtitle: 'Scopri la nostra flotta di noleggio di barche con e senza patente a Blanes, Costa Brava.',
       helpText: 'Hai bisogno di aiuto per scegliere il tuo noleggio barche a Blanes?',
       callButton: 'Chiama +34 611 500 372',
     },
@@ -1675,7 +1675,7 @@ export const translations: Record<Language, Translations> = {
     
     fleet: {
       title: 'Наш арендный флот в Бланесе',
-      subtitle: 'Откройте для себя наш арендный флот лодок с лицензией и без лицензии в Бланесе, Коста-Брава. Идеальные лодки для поездок с друзьями или семьями.',
+      subtitle: 'Откройте для себя наш арендный флот лодок с лицензией и без лицензии в Бланесе, Коста-Брава.',
       helpText: 'Нужна помощь в выборе аренды лодки в Бланесе?',
       callButton: 'Звоните +34 611 500 372',
     },

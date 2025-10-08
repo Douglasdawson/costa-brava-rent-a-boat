@@ -1,7 +1,8 @@
 "use client"
 
 import * as React from "react"
-import * as RechartsPrimitive from "recharts"
+// Note: recharts removed to reduce bundle size. Reinstall if charts are needed.
+// import * as RechartsPrimitive from "recharts"
 
 import { cn } from "@/lib/utils"
 

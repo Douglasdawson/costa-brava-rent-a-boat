@@ -69,10 +69,21 @@ app.use((req, res, next) => {
   if (app.get("env") === "development") {
     await setupVite(app, server);
   } else {
-    // NOTE: HTTP caching headers for static assets are best configured at the CDN/reverse proxy level
-    // For production deployments, use Replit deployment settings or CDN configuration to set:
-    // - Static assets (js, css, images, fonts): Cache-Control: public, max-age=31536000, immutable
-    // - HTML files: Cache-Control: public, max-age=0, must-revalidate
+    // Add Cache-Control headers for production static assets
+    app.use((req, res, next) => {
+      const path = req.path;
+      
+      // Static assets with content hash (immutable, long cache)
+      if (path.match(/\.(js|css|woff2?|ttf|eot|otf|svg|png|jpg|jpeg|gif|webp|ico|map)$/)) {
+        res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
+      }
+      // HTML files (always revalidate)
+      else if (path.match(/\.html$/) || path === '/') {
+        res.setHeader('Cache-Control', 'public, max-age=0, must-revalidate');
+      }
+      
+      next();
+    });
     
     serveStatic(app);
   }

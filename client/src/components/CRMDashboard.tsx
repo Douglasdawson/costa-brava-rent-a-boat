@@ -71,6 +71,43 @@ const boatSchema = z.object({
   requiresLicense: z.boolean(),
   deposit: z.string().min(1, "El depósito es requerido"),
   isActive: z.boolean(),
+  
+  // Extended fields
+  imageUrl: z.string().optional(),
+  imageGallery: z.array(z.string()).optional(),
+  subtitle: z.string().optional(),
+  description: z.string().optional(),
+  specifications: z.object({
+    model: z.string(),
+    length: z.string(),
+    beam: z.string(),
+    engine: z.string(),
+    fuel: z.string(),
+    capacity: z.string(),
+    deposit: z.string(),
+  }).optional(),
+  equipment: z.array(z.string()).optional(),
+  included: z.array(z.string()).optional(),
+  features: z.array(z.string()).optional(),
+  pricing: z.object({
+    BAJA: z.object({
+      period: z.string(),
+      prices: z.record(z.number()),
+    }),
+    MEDIA: z.object({
+      period: z.string(),
+      prices: z.record(z.number()),
+    }),
+    ALTA: z.object({
+      period: z.string(),
+      prices: z.record(z.number()),
+    }),
+  }).optional(),
+  extras: z.array(z.object({
+    name: z.string(),
+    price: z.string(),
+    icon: z.string(),
+  })).optional(),
 });
 
 type BoatFormData = z.infer<typeof boatSchema>;
@@ -240,6 +277,20 @@ function FleetManagement({ adminToken }: { adminToken: string }) {
       requiresLicense: boat.requiresLicense,
       deposit: boat.deposit,
       isActive: boat.isActive,
+      imageUrl: boat.imageUrl || '',
+      imageGallery: boat.imageGallery || [],
+      subtitle: boat.subtitle || '',
+      description: boat.description || '',
+      specifications: boat.specifications || {},
+      equipment: boat.equipment || [],
+      included: boat.included || [],
+      features: boat.features || [],
+      pricing: boat.pricing || {
+        BAJA: { period: '', prices: {} },
+        MEDIA: { period: '', prices: {} },
+        ALTA: { period: '', prices: {} },
+      },
+      extras: boat.extras || [],
     });
     setShowBoatDialog(true);
   };
@@ -370,85 +421,376 @@ function FleetManagement({ adminToken }: { adminToken: string }) {
 
       {/* Add/Edit Boat Dialog */}
       <Dialog open={showBoatDialog} onOpenChange={setShowBoatDialog}>
-        <DialogContent className="max-w-md">
+        <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
           <DialogHeader>
             <DialogTitle>{editingBoat ? "Editar Barco" : "Agregar Barco"}</DialogTitle>
+            <DialogDescription>Complete todos los campos del barco</DialogDescription>
           </DialogHeader>
-          <form onSubmit={boatForm.handleSubmit(handleSubmit)} className="space-y-4">
-            <div>
-              <Label htmlFor="id">ID del Barco</Label>
-              <Input
-                id="id"
-                {...boatForm.register("id")}
-                placeholder="solar-450"
-                disabled={!!editingBoat}
-                data-testid="input-boat-id"
-              />
-              {boatForm.formState.errors.id && (
-                <p className="text-sm text-red-500">{boatForm.formState.errors.id.message}</p>
-              )}
+          <form onSubmit={boatForm.handleSubmit(handleSubmit)} className="space-y-6">
+            {/* Información Básica */}
+            <div className="space-y-4">
+              <h3 className="text-lg font-semibold">Información Básica</h3>
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <Label htmlFor="id">ID del Barco *</Label>
+                  <Input
+                    id="id"
+                    {...boatForm.register("id")}
+                    placeholder="solar-450"
+                    disabled={!!editingBoat}
+                    data-testid="input-boat-id"
+                  />
+                  {boatForm.formState.errors.id && (
+                    <p className="text-sm text-red-500">{boatForm.formState.errors.id.message}</p>
+                  )}
+                </div>
+                <div>
+                  <Label htmlFor="name">Nombre *</Label>
+                  <Input
+                    id="name"
+                    {...boatForm.register("name")}
+                    placeholder="Solar 450"
+                    data-testid="input-boat-name"
+                  />
+                  {boatForm.formState.errors.name && (
+                    <p className="text-sm text-red-500">{boatForm.formState.errors.name.message}</p>
+                  )}
+                </div>
+              </div>
+              
+              <div>
+                <Label htmlFor="subtitle">Subtítulo</Label>
+                <Input
+                  id="subtitle"
+                  {...boatForm.register("subtitle")}
+                  placeholder="Sin Licencia Para Alquilar en Blanes"
+                  data-testid="input-boat-subtitle"
+                />
+              </div>
+              
+              <div>
+                <Label htmlFor="description">Descripción</Label>
+                <Textarea
+                  id="description"
+                  {...boatForm.register("description")}
+                  placeholder="Descripción detallada del barco..."
+                  rows={4}
+                  data-testid="input-boat-description"
+                />
+              </div>
             </div>
 
-            <div>
-              <Label htmlFor="name">Nombre</Label>
-              <Input
-                id="name"
-                {...boatForm.register("name")}
-                placeholder="Solar 450"
-                data-testid="input-boat-name"
-              />
-              {boatForm.formState.errors.name && (
-                <p className="text-sm text-red-500">{boatForm.formState.errors.name.message}</p>
-              )}
+            {/* Imágenes */}
+            <div className="space-y-4">
+              <h3 className="text-lg font-semibold">Imágenes</h3>
+              <div>
+                <Label htmlFor="imageUrl">URL Imagen Principal</Label>
+                <Input
+                  id="imageUrl"
+                  {...boatForm.register("imageUrl")}
+                  placeholder="https://ejemplo.com/barco.jpg"
+                  data-testid="input-boat-image-url"
+                />
+              </div>
+              <div>
+                <Label>URLs Galería de Imágenes (una por línea)</Label>
+                <Textarea
+                  placeholder="https://ejemplo.com/imagen1.jpg&#10;https://ejemplo.com/imagen2.jpg"
+                  rows={3}
+                  onChange={(e) => {
+                    const urls = e.target.value.split('\n').filter(url => url.trim());
+                    boatForm.setValue('imageGallery', urls);
+                  }}
+                  data-testid="input-boat-image-gallery"
+                />
+              </div>
             </div>
 
-            <div>
-              <Label htmlFor="capacity">Capacidad (personas)</Label>
-              <Input
-                id="capacity"
-                type="number"
-                {...boatForm.register("capacity")}
-                placeholder="6"
-                data-testid="input-boat-capacity"
-              />
-              {boatForm.formState.errors.capacity && (
-                <p className="text-sm text-red-500">{boatForm.formState.errors.capacity.message}</p>
-              )}
+            {/* Características Principales */}
+            <div className="space-y-4">
+              <h3 className="text-lg font-semibold">Características Principales</h3>
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <Label htmlFor="capacity">Capacidad (personas) *</Label>
+                  <Input
+                    id="capacity"
+                    type="number"
+                    {...boatForm.register("capacity")}
+                    placeholder="6"
+                    data-testid="input-boat-capacity"
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="deposit">Depósito (€) *</Label>
+                  <Input
+                    id="deposit"
+                    {...boatForm.register("deposit")}
+                    placeholder="300.00"
+                    data-testid="input-boat-deposit"
+                  />
+                </div>
+              </div>
+              <div className="flex gap-6">
+                <div className="flex items-center space-x-2">
+                  <input
+                    id="requiresLicense"
+                    type="checkbox"
+                    {...boatForm.register("requiresLicense")}
+                    className="w-4 h-4"
+                    data-testid="checkbox-requires-license"
+                  />
+                  <Label htmlFor="requiresLicense">Requiere licencia náutica</Label>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <input
+                    id="isActive"
+                    type="checkbox"
+                    {...boatForm.register("isActive")}
+                    className="w-4 h-4"
+                    data-testid="checkbox-is-active"
+                  />
+                  <Label htmlFor="isActive">Barco activo</Label>
+                </div>
+              </div>
+              <div>
+                <Label>Características (una por línea)</Label>
+                <Textarea
+                  placeholder="Sin licencia requerida&#10;Hasta 5 personas&#10;Gasolina incluida"
+                  rows={4}
+                  onChange={(e) => {
+                    const features = e.target.value.split('\n').filter(f => f.trim());
+                    boatForm.setValue('features', features);
+                  }}
+                  data-testid="input-boat-features"
+                />
+              </div>
             </div>
 
-            <div className="flex items-center space-x-2">
-              <input
-                id="requiresLicense"
-                type="checkbox"
-                {...boatForm.register("requiresLicense")}
-                className="w-4 h-4"
-                data-testid="checkbox-requires-license"
-              />
-              <Label htmlFor="requiresLicense">Requiere licencia náutica</Label>
+            {/* Especificaciones Técnicas */}
+            <div className="space-y-4">
+              <h3 className="text-lg font-semibold">Especificaciones Técnicas</h3>
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <Label>Modelo</Label>
+                  <Input placeholder="Solar 450" onChange={(e) => boatForm.setValue('specifications.model', e.target.value)} />
+                </div>
+                <div>
+                  <Label>Eslora</Label>
+                  <Input placeholder="4,50m" onChange={(e) => boatForm.setValue('specifications.length', e.target.value)} />
+                </div>
+                <div>
+                  <Label>Manga</Label>
+                  <Input placeholder="1,50m" onChange={(e) => boatForm.setValue('specifications.beam', e.target.value)} />
+                </div>
+                <div>
+                  <Label>Motor</Label>
+                  <Input placeholder="Mercury 15cv 4t" onChange={(e) => boatForm.setValue('specifications.engine', e.target.value)} />
+                </div>
+                <div>
+                  <Label>Combustible</Label>
+                  <Input placeholder="Gasolina 30L" onChange={(e) => boatForm.setValue('specifications.fuel', e.target.value)} />
+                </div>
+                <div>
+                  <Label>Capacidad</Label>
+                  <Input placeholder="5 Personas" onChange={(e) => boatForm.setValue('specifications.capacity', e.target.value)} />
+                </div>
+              </div>
             </div>
 
-            <div>
-              <Label htmlFor="deposit">Depósito (€)</Label>
-              <Input
-                id="deposit"
-                {...boatForm.register("deposit")}
-                placeholder="300.00"
-                data-testid="input-boat-deposit"
-              />
-              {boatForm.formState.errors.deposit && (
-                <p className="text-sm text-red-500">{boatForm.formState.errors.deposit.message}</p>
-              )}
+            {/* Equipamiento */}
+            <div className="space-y-4">
+              <h3 className="text-lg font-semibold">Equipamiento e Incluido</h3>
+              <div>
+                <Label>Equipamiento (una por línea)</Label>
+                <Textarea
+                  placeholder="Toldo&#10;Arranque eléctrico&#10;Escalera de baño"
+                  rows={3}
+                  onChange={(e) => {
+                    const equipment = e.target.value.split('\n').filter(e => e.trim());
+                    boatForm.setValue('equipment', equipment);
+                  }}
+                  data-testid="input-boat-equipment"
+                />
+              </div>
+              <div>
+                <Label>Incluido en el precio (una por línea)</Label>
+                <Textarea
+                  placeholder="IVA&#10;Carburante&#10;Amarre&#10;Limpieza"
+                  rows={3}
+                  onChange={(e) => {
+                    const included = e.target.value.split('\n').filter(i => i.trim());
+                    boatForm.setValue('included', included);
+                  }}
+                  data-testid="input-boat-included"
+                />
+              </div>
             </div>
 
-            <div className="flex items-center space-x-2">
-              <input
-                id="isActive"
-                type="checkbox"
-                {...boatForm.register("isActive")}
-                className="w-4 h-4"
-                data-testid="checkbox-is-active"
-              />
-              <Label htmlFor="isActive">Barco activo</Label>
+            {/* Precios por Temporada */}
+            <div className="space-y-4">
+              <h3 className="text-lg font-semibold">Precios por Temporada</h3>
+              
+              {/* Temporada BAJA */}
+              <div className="border rounded-lg p-4 space-y-3">
+                <h4 className="font-medium">Temporada BAJA</h4>
+                <Input 
+                  placeholder="Periodo (ej: Abril-Junio, Septiembre-Cierre)"
+                  onChange={(e) => boatForm.setValue('pricing.BAJA.period', e.target.value)}
+                />
+                <div className="grid grid-cols-3 gap-2">
+                  {boatForm.watch('requiresLicense') ? (
+                    <>
+                      <div>
+                        <Label className="text-xs">2h</Label>
+                        <Input type="number" placeholder="0" onChange={(e) => boatForm.setValue('pricing.BAJA.prices.2h', parseFloat(e.target.value) || 0)} />
+                      </div>
+                      <div>
+                        <Label className="text-xs">4h</Label>
+                        <Input type="number" placeholder="0" onChange={(e) => boatForm.setValue('pricing.BAJA.prices.4h', parseFloat(e.target.value) || 0)} />
+                      </div>
+                      <div>
+                        <Label className="text-xs">8h</Label>
+                        <Input type="number" placeholder="0" onChange={(e) => boatForm.setValue('pricing.BAJA.prices.8h', parseFloat(e.target.value) || 0)} />
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      <div>
+                        <Label className="text-xs">1h</Label>
+                        <Input type="number" placeholder="0" onChange={(e) => boatForm.setValue('pricing.BAJA.prices.1h', parseFloat(e.target.value) || 0)} />
+                      </div>
+                      <div>
+                        <Label className="text-xs">2h</Label>
+                        <Input type="number" placeholder="0" onChange={(e) => boatForm.setValue('pricing.BAJA.prices.2h', parseFloat(e.target.value) || 0)} />
+                      </div>
+                      <div>
+                        <Label className="text-xs">3h</Label>
+                        <Input type="number" placeholder="0" onChange={(e) => boatForm.setValue('pricing.BAJA.prices.3h', parseFloat(e.target.value) || 0)} />
+                      </div>
+                      <div>
+                        <Label className="text-xs">4h</Label>
+                        <Input type="number" placeholder="0" onChange={(e) => boatForm.setValue('pricing.BAJA.prices.4h', parseFloat(e.target.value) || 0)} />
+                      </div>
+                      <div>
+                        <Label className="text-xs">6h</Label>
+                        <Input type="number" placeholder="0" onChange={(e) => boatForm.setValue('pricing.BAJA.prices.6h', parseFloat(e.target.value) || 0)} />
+                      </div>
+                      <div>
+                        <Label className="text-xs">8h</Label>
+                        <Input type="number" placeholder="0" onChange={(e) => boatForm.setValue('pricing.BAJA.prices.8h', parseFloat(e.target.value) || 0)} />
+                      </div>
+                    </>
+                  )}
+                </div>
+              </div>
+
+              {/* Temporada MEDIA */}
+              <div className="border rounded-lg p-4 space-y-3">
+                <h4 className="font-medium">Temporada MEDIA</h4>
+                <Input 
+                  placeholder="Periodo (ej: Julio)"
+                  onChange={(e) => boatForm.setValue('pricing.MEDIA.period', e.target.value)}
+                />
+                <div className="grid grid-cols-3 gap-2">
+                  {boatForm.watch('requiresLicense') ? (
+                    <>
+                      <div>
+                        <Label className="text-xs">2h</Label>
+                        <Input type="number" placeholder="0" onChange={(e) => boatForm.setValue('pricing.MEDIA.prices.2h', parseFloat(e.target.value) || 0)} />
+                      </div>
+                      <div>
+                        <Label className="text-xs">4h</Label>
+                        <Input type="number" placeholder="0" onChange={(e) => boatForm.setValue('pricing.MEDIA.prices.4h', parseFloat(e.target.value) || 0)} />
+                      </div>
+                      <div>
+                        <Label className="text-xs">8h</Label>
+                        <Input type="number" placeholder="0" onChange={(e) => boatForm.setValue('pricing.MEDIA.prices.8h', parseFloat(e.target.value) || 0)} />
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      <div>
+                        <Label className="text-xs">1h</Label>
+                        <Input type="number" placeholder="0" onChange={(e) => boatForm.setValue('pricing.MEDIA.prices.1h', parseFloat(e.target.value) || 0)} />
+                      </div>
+                      <div>
+                        <Label className="text-xs">2h</Label>
+                        <Input type="number" placeholder="0" onChange={(e) => boatForm.setValue('pricing.MEDIA.prices.2h', parseFloat(e.target.value) || 0)} />
+                      </div>
+                      <div>
+                        <Label className="text-xs">3h</Label>
+                        <Input type="number" placeholder="0" onChange={(e) => boatForm.setValue('pricing.MEDIA.prices.3h', parseFloat(e.target.value) || 0)} />
+                      </div>
+                      <div>
+                        <Label className="text-xs">4h</Label>
+                        <Input type="number" placeholder="0" onChange={(e) => boatForm.setValue('pricing.MEDIA.prices.4h', parseFloat(e.target.value) || 0)} />
+                      </div>
+                      <div>
+                        <Label className="text-xs">6h</Label>
+                        <Input type="number" placeholder="0" onChange={(e) => boatForm.setValue('pricing.MEDIA.prices.6h', parseFloat(e.target.value) || 0)} />
+                      </div>
+                      <div>
+                        <Label className="text-xs">8h</Label>
+                        <Input type="number" placeholder="0" onChange={(e) => boatForm.setValue('pricing.MEDIA.prices.8h', parseFloat(e.target.value) || 0)} />
+                      </div>
+                    </>
+                  )}
+                </div>
+              </div>
+
+              {/* Temporada ALTA */}
+              <div className="border rounded-lg p-4 space-y-3">
+                <h4 className="font-medium">Temporada ALTA</h4>
+                <Input 
+                  placeholder="Periodo (ej: Agosto)"
+                  onChange={(e) => boatForm.setValue('pricing.ALTA.period', e.target.value)}
+                />
+                <div className="grid grid-cols-3 gap-2">
+                  {boatForm.watch('requiresLicense') ? (
+                    <>
+                      <div>
+                        <Label className="text-xs">2h</Label>
+                        <Input type="number" placeholder="0" onChange={(e) => boatForm.setValue('pricing.ALTA.prices.2h', parseFloat(e.target.value) || 0)} />
+                      </div>
+                      <div>
+                        <Label className="text-xs">4h</Label>
+                        <Input type="number" placeholder="0" onChange={(e) => boatForm.setValue('pricing.ALTA.prices.4h', parseFloat(e.target.value) || 0)} />
+                      </div>
+                      <div>
+                        <Label className="text-xs">8h</Label>
+                        <Input type="number" placeholder="0" onChange={(e) => boatForm.setValue('pricing.ALTA.prices.8h', parseFloat(e.target.value) || 0)} />
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      <div>
+                        <Label className="text-xs">1h</Label>
+                        <Input type="number" placeholder="0" onChange={(e) => boatForm.setValue('pricing.ALTA.prices.1h', parseFloat(e.target.value) || 0)} />
+                      </div>
+                      <div>
+                        <Label className="text-xs">2h</Label>
+                        <Input type="number" placeholder="0" onChange={(e) => boatForm.setValue('pricing.ALTA.prices.2h', parseFloat(e.target.value) || 0)} />
+                      </div>
+                      <div>
+                        <Label className="text-xs">3h</Label>
+                        <Input type="number" placeholder="0" onChange={(e) => boatForm.setValue('pricing.ALTA.prices.3h', parseFloat(e.target.value) || 0)} />
+                      </div>
+                      <div>
+                        <Label className="text-xs">4h</Label>
+                        <Input type="number" placeholder="0" onChange={(e) => boatForm.setValue('pricing.ALTA.prices.4h', parseFloat(e.target.value) || 0)} />
+                      </div>
+                      <div>
+                        <Label className="text-xs">6h</Label>
+                        <Input type="number" placeholder="0" onChange={(e) => boatForm.setValue('pricing.ALTA.prices.6h', parseFloat(e.target.value) || 0)} />
+                      </div>
+                      <div>
+                        <Label className="text-xs">8h</Label>
+                        <Input type="number" placeholder="0" onChange={(e) => boatForm.setValue('pricing.ALTA.prices.8h', parseFloat(e.target.value) || 0)} />
+                      </div>
+                    </>
+                  )}
+                </div>
+              </div>
             </div>
 
             <DialogFooter>

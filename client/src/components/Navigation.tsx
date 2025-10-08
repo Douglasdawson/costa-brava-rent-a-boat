@@ -30,13 +30,20 @@ export default function Navigation() {
     const currentPath = window.location.pathname;
     
     if (currentPath !== "/") {
-      // Navigate to homepage first, then scroll to booking form
+      // Navigate to homepage first, then scroll to top
       setLocation("/");
-      // Use robust scroll after navigation
-      setTimeout(() => scrollToSection("booking-form"), 50);
+      setTimeout(() => {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth"
+        });
+      }, 50);
     } else {
-      // Already on homepage, just scroll to booking form
-      scrollToSection("booking-form");
+      // Already on homepage, just scroll to top
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
     }
   };
 

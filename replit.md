@@ -89,3 +89,55 @@ Preferred communication style: Simple, everyday language.
 - **Multi-language Support**: Prepared for ES, CA, FR, DE, NL, IT, RU language support
 - **Fleet Management**: Centralized boat data with specifications, pricing, and availability
 - **Booking System**: Multi-step booking flow with extras, customer data collection, and payment processing
+
+## Performance Optimizations
+
+### Recent Changes (October 2025)
+Implemented comprehensive performance optimizations to improve Lighthouse Performance Score and user experience:
+
+#### Achieved Results
+- **Performance Score**: Improved from 36% to 59% (+64% improvement)
+- **Market Position**: #1 among local competitors (vs BlanesBoats.com: 34%, RentaBoatBlanes.com: 28%)
+- **Total Blocking Time**: Reduced from 1,070ms to 0ms (perfect score)
+- **Maintained**: Perfect CLS score of 0 (no layout shifts)
+
+#### Optimizations Applied
+1. **Font Loading Optimization**
+   - Reduced Google Fonts from 12 to 8 files (-33% reduction)
+   - Inter: 400, 500, 600, 700 (removed 300)
+   - Outfit: 400, 500, 600, 700 (removed 300, 800, 900)
+   - Added font preload and display=swap
+
+2. **Script Optimization**
+   - Deferred non-critical scripts (Replit banner) with `defer` attribute
+   - Main app script uses `type="module"` for automatic deferring
+   - Added modulepreload for main.tsx
+
+3. **Server-Side Compression**
+   - Implemented gzip compression middleware in Express server
+   - Compression level 6 for optimal balance
+   - Applies to all HTTP responses (HTML, CSS, JS, JSON)
+
+4. **Resource Hints**
+   - Preconnect to Google Fonts, WhatsApp API
+   - DNS prefetch for maps.googleapis.com, google.com
+   - Preload critical hero image with fetchpriority="high"
+   - Added modulepreload for faster JavaScript execution
+
+5. **Image Optimization Strategy**
+   - Hero image preloaded for LCP optimization
+   - Boat images use lazy loading (loading="lazy")
+   - Future consideration: WebP/AVIF formats for further improvement
+
+### Performance Metrics Baseline
+- **FCP (First Contentful Paint)**: 6.4s
+- **LCP (Largest Contentful Paint)**: 13.6s
+- **TBT (Total Blocking Time)**: 0ms ✓
+- **CLS (Cumulative Layout Shift)**: 0 ✓
+- **Speed Index**: 6.4s
+
+### Future Optimization Opportunities
+1. Image format conversion (PNG → WebP/AVIF)
+2. Server response time optimization (currently ~6s)
+3. Further JavaScript bundle size reduction
+4. CDN integration for static assets

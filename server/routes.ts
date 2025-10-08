@@ -1496,123 +1496,40 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Initialize boats data - temporary endpoint for setup - now protected
   app.post("/api/admin/init-boats", requireAdminSession, async (req, res) => {
     try {
-      // Import SERVER_BOAT_DATA from server-specific file (no PNG imports)
-      const { SERVER_BOAT_DATA } = await import("./boatData");
+      // Import boat data from shared file
+      const { BOAT_DATA } = await import("@shared/boatData");
       
-      const boatsToCreate = [
-        {
-          id: "solar-450",
-          name: "Solar 450",
-          capacity: 5,
-          requiresLicense: false,
-          pricePerHour: "75",
-          deposit: "250",
-          specifications: {
-            model: "Solar 450",
-            length: "4,50m",
-            beam: "1,50m",
-            engine: "Mercury 15cv 4t",
-            fuel: "Gasolina 30L",
-          },
-          equipment: ["Toldo", "Arranque eléctrico", "Gran solárium de proa", "Escalera de baño", "Equipo de seguridad y salvamento"]
-        },
-        {
-          id: "remus-450",
-          name: "Remus 450",
-          capacity: 5,
-          requiresLicense: false,
-          pricePerHour: "75",
-          deposit: "200",
-          specifications: {
-            model: "Remus 450",
-            length: "4,5m",
-            beam: "1,6m",
-            engine: "Suzuki 15cv 4t",
-            fuel: "Gasolina 25L",
-          },
-          equipment: ["Toldo Bi Mini", "Solárium amplio", "Escalera de baño", "Equipo de seguridad y salvamento"]
-        },
-        {
-          id: "astec-400",
-          name: "Astec 400",
-          capacity: 5,
-          requiresLicense: false,
-          pricePerHour: "75",
-          deposit: "250",
-          specifications: {
-            model: "Astec 400",
-            length: "4,00m",
-            beam: "1,50m",
-            engine: "Mercury 15cv 4t",
-            fuel: "Gasolina 20L",
-          },
-          equipment: ["Toldo", "Solárium", "Escalera de baño", "Equipo de seguridad y salvamento"]
-        },
-        {
-          id: "astec-450",
-          name: "Astec 450",
-          capacity: 5,
-          requiresLicense: false,
-          pricePerHour: "85",
-          deposit: "300",
-          specifications: {
-            model: "Astec 450",
-            length: "4,50m",
-            beam: "1,80m",
-            engine: "Mercury 20cv 4t",
-            fuel: "Gasolina 30L",
-          },
-          equipment: ["Toldo", "Gran solárium", "Escalera de baño", "Equipo de seguridad y salvamento"]
-        },
-        {
-          id: "pacific-craft-625",
-          name: "Pacific Craft 625",
-          capacity: 7,
-          requiresLicense: true,
-          pricePerHour: "120",
-          deposit: "500",
-          specifications: {
-            model: "Pacific Craft 625",
-            length: "6,25m",
-            beam: "2,40m",
-            engine: "Mercury 115cv 4t",
-            fuel: "Gasolina 150L",
-          },
-          equipment: ["Toldo Bimini", "Solárium proa y popa", "Escalera de baño", "Equipo de navegación", "Equipo de seguridad", "Equipo de música"]
-        },
-        {
-          id: "trimarchi-57s",
-          name: "Trimarchi 57S",
-          capacity: 7,
-          requiresLicense: true,
-          pricePerHour: "140",
-          deposit: "500",
-          specifications: {
-            model: "Trimarchi 57S",
-            length: "5,70m",
-            beam: "2,30m",
-            engine: "Mercury 100cv 4t",
-            fuel: "Gasolina 120L",
-          },
-          equipment: ["Toldo Bimini", "Solárium delantero", "Mesa central", "Escalera de baño", "Equipo de navegación"]
-        },
-        {
-          id: "mingolla-brava-19",
-          name: "Mingolla Brava 19",
-          capacity: 6,
-          requiresLicense: true,
-          pricePerHour: "150",
-          deposit: "500",
-          specifications: {
-            model: "Mingolla Brava 19",
-            length: "5,80m",
-            beam: "2,50m",
-            engine: "Mercury 150cv 4t",
-            fuel: "Gasolina 180L",
-          },
-          equipment: ["Toldo eléctrico", "Solárium de proa", "Mesa convertible", "Ducha", "Escalera de baño", "GPS"]
-        }
-      ];
+      const boatsToCreate = Object.values(BOAT_DATA).map((boat: any) => {
+        // Extract capacity number from string like "5 Personas"
+        const capacityMatch = boat.specifications.capacity.match(/(\d+)/);
+        const capacity = capacityMatch ? parseInt(capacityMatch[1]) : 5;
+        
+        // Extract deposit number from string like "250€"
+        const depositMatch = boat.specifications.deposit.match(/(\d+)/);
+        const deposit = depositMatch ? depositMatch[1] : "0";
+        
+        // Determine if license is required based on boat ID
+        const requiresLicense = ['pacific-craft-625', 'trimarchi-57s', 'mingolla-brava-19'].includes(boat.id);
+        
+        return {
+          id: boat.id,
+          name: boat.name,
+          capacity: capacity,
+          requiresLicense: requiresLicense,
+          deposit: deposit,
+          isActive: true,
+          imageUrl: boat.image || null,
+          imageGallery: [],
+          subtitle: boat.subtitle,
+          description: boat.description,
+          specifications: boat.specifications,
+          equipment: boat.equipment,
+          included: boat.included,
+          features: boat.features,
+          pricing: boat.pricing,
+          extras: boat.extras,
+        };
+      });
 
       const createdBoats = [];
       for (const boatData of boatsToCreate) {

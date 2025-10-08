@@ -138,6 +138,25 @@ Implemented comprehensive performance optimizations to improve Lighthouse Perfor
    - Updated preload and meta tags in index.html to reference WebP
    - WebP browser support: 97%+ (no fallback needed for modern apps)
 
+7. **Code Splitting & Lazy Loading** (October 2025)
+   - Implemented React.lazy() for all non-critical routes and components
+   - Lazy loaded components: BookingFlow, CRMDashboard, all boat detail pages, FAQ, legal pages, category pages, location pages
+   - Critical components remain static for LCP: Navigation, Hero, FleetSection, FeaturesSection, ContactSection, Footer
+   - Suspense boundary with loading spinner for smooth transitions
+   - Reduced initial bundle size by moving secondary features to separate chunks
+
+8. **Intelligent Prefetch** (October 2025)
+   - Custom usePrefetch hook to warm critical lazy chunks after initial load
+   - Prefetches BookingFlow and BoatDetailPage after 2s delay
+   - Improves navigation speed without affecting initial load metrics
+   - Uses setTimeout to defer prefetch without blocking initial render
+   - Cleanup logic prevents duplicate fetches in StrictMode
+
+9. **Route Optimization**
+   - Added alternative route paths for better UX (/categoria/*, /destino/*)
+   - All pages have canonical tags for SEO protection
+   - Duplicate routes reuse same lazy-loaded components for efficiency
+
 ### Performance Metrics Baseline
 - **FCP (First Contentful Paint)**: 6.4s
 - **LCP (Largest Contentful Paint)**: 13.6s
@@ -147,7 +166,10 @@ Implemented comprehensive performance optimizations to improve Lighthouse Perfor
 
 ### Future Optimization Opportunities
 1. ~~Image format conversion (PNG → WebP)~~ ✅ **Completed** (88.7% reduction)
-2. Server response time optimization (currently ~6s)
-3. Further JavaScript bundle size reduction
-4. CDN integration for static assets
-5. Consider AVIF format for even better compression (if browser support allows)
+2. ~~Code splitting and lazy loading~~ ✅ **Completed** (React.lazy for all secondary routes)
+3. ~~Intelligent prefetch of critical routes~~ ✅ **Completed** (usePrefetch hook with 2s delay)
+4. Server response time optimization (currently ~6s) - Next priority
+5. HTTP caching headers for static assets
+6. CDN integration for global asset delivery
+7. Consider AVIF format for even better compression (if browser support >90%)
+8. Network-aware prefetch (skip on Save-Data or slow connections)

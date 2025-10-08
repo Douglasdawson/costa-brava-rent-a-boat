@@ -253,81 +253,14 @@ function Router() {
   );
 }
 
-// Demo Mode Toggle (for design preview)
 function App() {
-  const [demoMode, setDemoMode] = useState(false);
-  
-  const toggleDemo = () => {
-    console.log("Demo mode toggled:", !demoMode);
-    setDemoMode(!demoMode);
-  };
-
-  if (demoMode) {
-    return (
-      <QueryClientProvider client={queryClient}>
-        <LanguageProvider>
-          <TooltipProvider>
-          <div className="min-h-screen bg-gray-100 p-8">
-            <div className="max-w-2xl mx-auto text-center mb-8">
-              <h1 className="text-3xl font-bold text-gray-900 mb-4">
-                Costa Brava Rent a Boat Blanes - Vista Previa de Componentes
-              </h1>
-              <p className="text-gray-600 mb-4">
-                Estos son los componentes individuales del sistema de reservas.
-              </p>
-              <Button onClick={toggleDemo} variant="outline" data-testid="button-exit-demo">
-                Ver Aplicación Completa
-              </Button>
-            </div>
-            
-            <div className="space-y-12">
-              <div className="bg-white rounded-lg p-4">
-                <h2 className="text-xl font-semibold mb-4">Componente: Navegación</h2>
-                <Navigation />
-              </div>
-              
-              <div className="bg-white rounded-lg p-4">
-                <h2 className="text-xl font-semibold mb-4">Componente: Hero</h2>
-                <div className="h-96 overflow-hidden">
-                  <Hero />
-                </div>
-              </div>
-              
-              <Suspense fallback={<LoadingFallback />}>
-                <div className="bg-white rounded-lg p-4">
-                  <h2 className="text-xl font-semibold mb-4">Componente: CRM Dashboard</h2>
-                  <div className="h-96 overflow-hidden">
-                    <CRMDashboard adminToken="demo_token" />
-                  </div>
-                </div>
-              </Suspense>
-            </div>
-          </div>
-          <Toaster />
-        </TooltipProvider>
-        </LanguageProvider>
-      </QueryClientProvider>
-    );
-  }
-
   return (
     <QueryClientProvider client={queryClient}>
       <LanguageProvider>
         <TooltipProvider>
-        <div className="fixed top-4 right-4 z-50">
-          <Button 
-            onClick={toggleDemo}
-            variant="outline"
-            size="sm"
-            className="bg-white/90 backdrop-blur-sm"
-            data-testid="button-demo-mode"
-          >
-            Ver Componentes
-          </Button>
-        </div>
-        <Toaster />
-        <Router />
-      </TooltipProvider>
+          <Toaster />
+          <Router />
+        </TooltipProvider>
       </LanguageProvider>
     </QueryClientProvider>
   );

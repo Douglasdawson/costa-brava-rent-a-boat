@@ -238,8 +238,13 @@ function Router() {
         <Route path="/alquiler-barcos-blanes" component={LocationBlanesPageWrapper} />
         <Route path="/alquiler-barcos-lloret-de-mar" component={LocationLloretPageWrapper} />
         <Route path="/alquiler-barcos-tossa-de-mar" component={LocationTossaPageWrapper} />
+        <Route path="/destino/blanes" component={LocationBlanesPageWrapper} />
+        <Route path="/destino/lloret-de-mar" component={LocationLloretPageWrapper} />
+        <Route path="/destino/tossa-de-mar" component={LocationTossaPageWrapper} />
         <Route path="/barcos-sin-licencia" component={CategoryLicenseFreePageWrapper} />
         <Route path="/barcos-con-licencia" component={CategoryLicensedPageWrapper} />
+        <Route path="/categoria/sin-licencia" component={CategoryLicenseFreePageWrapper} />
+        <Route path="/categoria/con-licencia" component={CategoryLicensedPageWrapper} />
         <Route component={NotFound} />
       </Switch>
     </Suspense>

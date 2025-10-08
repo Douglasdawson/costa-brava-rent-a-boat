@@ -438,8 +438,8 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                 const IconComponent = getIcon(extra.icon);
                 
                 return (
-                  <div key={index} className="text-center p-4 border rounded-lg hover:bg-gray-50 transition-colors">
-                    <div className="flex justify-center mb-2">
+                  <div key={index} className="text-left md:text-center p-4 border rounded-lg hover:bg-gray-50 transition-colors">
+                    <div className="flex justify-start md:justify-center mb-2">
                       <IconComponent className="w-6 h-6 text-primary" />
                     </div>
                     <div className="font-medium text-sm">{extra.name}</div>
@@ -448,7 +448,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                 );
               })}
             </div>
-            <p className="text-sm text-gray-600 mt-4">
+            <p className="text-sm text-gray-600 mt-4 text-left md:text-center">
               Puedes añadir cualquiera de estos extras al completar tu reserva online o directamente en el puerto antes de zarpar.
             </p>
           </CardContent>

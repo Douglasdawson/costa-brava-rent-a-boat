@@ -1699,8 +1699,9 @@ export default function CRMDashboard({ adminToken }: CRMDashboardProps) {
               </CardContent>
             </Card>
 
-            {/* Bookings Table */}
-            <Card>
+            {/* Bookings Table - Responsive */}
+            {/* Desktop Table View */}
+            <Card className="hidden md:block">
               <CardHeader>
                 <CardTitle>Todas las Reservas</CardTitle>
               </CardHeader>
@@ -1812,6 +1813,110 @@ export default function CRMDashboard({ adminToken }: CRMDashboardProps) {
                 )}
               </CardContent>
             </Card>
+
+            {/* Mobile Card View */}
+            <div className="md:hidden space-y-3">
+              <div className="text-sm font-medium text-gray-600 px-1">
+                Todas las Reservas
+              </div>
+              {bookingsLoading ? (
+                <Card>
+                  <CardContent className="py-12 text-center text-gray-500">
+                    Cargando reservas...
+                  </CardContent>
+                </Card>
+              ) : bookingsError ? (
+                <Card>
+                  <CardContent className="py-12 text-center text-red-500">
+                    Error cargando reservas
+                  </CardContent>
+                </Card>
+              ) : (() => {
+                let filteredBookings = bookingsData || [];
+                
+                if (statusFilter !== "all") {
+                  filteredBookings = filteredBookings.filter((b: Booking) => 
+                    b.bookingStatus === statusFilter
+                  );
+                }
+                
+                if (searchQuery) {
+                  const query = searchQuery.toLowerCase();
+                  filteredBookings = filteredBookings.filter((b: Booking) => 
+                    b.customerName.toLowerCase().includes(query) ||
+                    b.customerSurname.toLowerCase().includes(query) ||
+                    b.customerEmail?.toLowerCase().includes(query) ||
+                    b.customerPhone.toLowerCase().includes(query)
+                  );
+                }
+
+                if (filteredBookings.length === 0) {
+                  return (
+                    <Card>
+                      <CardContent className="py-12 text-center text-gray-500">
+                        No se encontraron reservas
+                      </CardContent>
+                    </Card>
+                  );
+                }
+
+                return filteredBookings.map((booking: Booking) => (
+                  <Card key={booking.id} data-testid={`card-booking-${booking.id}`}>
+                    <CardContent className="p-4">
+                      <div className="flex justify-between items-start mb-3">
+                        <div className="flex-1">
+                          <h3 className="font-semibold text-base">
+                            {booking.customerName} {booking.customerSurname}
+                          </h3>
+                          <p className="text-sm text-gray-600 mt-1">
+                            {format(new Date(booking.startTime), 'dd/MM/yy HH:mm')} - {booking.totalHours}h
+                          </p>
+                          <div className="flex gap-2 mt-2 flex-wrap">
+                            <Badge variant={getStatusColor(booking.bookingStatus)} className="text-xs">
+                              {getStatusLabel(booking.bookingStatus)}
+                            </Badge>
+                            <Badge variant={booking.paymentStatus === 'completed' ? 'default' : 'outline'} className="text-xs">
+                              {booking.paymentStatus === 'completed' ? 'Pagado' : 
+                               booking.paymentStatus === 'pending' ? 'Pendiente' :
+                               booking.paymentStatus === 'failed' ? 'Fallido' : 'Reembolsado'}
+                            </Badge>
+                          </div>
+                        </div>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => {
+                            setSelectedBooking(booking);
+                            setShowBookingDetails(true);
+                          }}
+                          data-testid={`button-view-${booking.id}`}
+                        >
+                          <Eye className="w-4 h-4" />
+                        </Button>
+                      </div>
+                      <div className="grid grid-cols-2 gap-2 text-sm border-t pt-3 mt-3">
+                        <div>
+                          <span className="text-gray-600">Barco:</span>
+                          <span className="ml-1 font-medium">{booking.boatId}</span>
+                        </div>
+                        <div className="text-right">
+                          <span className="text-gray-600">Total:</span>
+                          <span className="ml-1 font-semibold text-base">
+                            €{parseFloat(booking.totalAmount).toFixed(2)}
+                          </span>
+                        </div>
+                        <div className="col-span-2">
+                          <span className="text-gray-600 text-xs">{booking.customerPhone}</span>
+                          {booking.customerEmail && (
+                            <span className="text-gray-600 text-xs ml-2">{booking.customerEmail}</span>
+                          )}
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                ));
+              })()}
+            </div>
           </div>
         )}
 

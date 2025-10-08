@@ -1030,7 +1030,7 @@ export default function CRMDashboard({ adminToken }: CRMDashboardProps) {
 
   const handleLogout = () => {
     sessionStorage.removeItem("adminToken");
-    window.location.reload();
+    window.location.href = "/";
   };
 
   const getStatusColor = (status: string) => {

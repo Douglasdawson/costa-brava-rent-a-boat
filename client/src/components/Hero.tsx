@@ -617,7 +617,7 @@ export default function Hero() {
                 </label>
                 <div className="flex gap-1">
                   {/* Dropdown personalizado de prefijos */}
-                  <div className="relative w-20 sm:w-24 lg:w-28">
+                  <div className="relative w-20 sm:w-24 lg:w-24">
                     <button
                       type="button"
                       onClick={() => {

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, lazy, Suspense } from "react";
 import { Switch, Route, useSearch, useLocation } from "wouter";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
@@ -7,29 +7,31 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { Button } from "@/components/ui/button";
 import { LanguageProvider } from "@/hooks/use-language";
 
-// Import all components
+// Import critical components (above the fold)
 import Navigation from "./components/Navigation";
 import Hero from "./components/Hero";
 import FeaturesSection from "./components/FeaturesSection";
 import FleetSection from "./components/FleetSection";
 import ContactSection from "./components/ContactSection";
 import Footer from "./components/Footer";
-import BookingFlow from "./components/BookingFlow";
-import CRMDashboard from "./components/CRMDashboard";
-import BoatDetailPage from "./components/BoatDetailPage";
-import CondicionesGenerales from "./components/CondicionesGenerales";
-import FAQPage from "@/pages/faq";
-import PrivacyPolicyPage from "@/pages/privacy-policy";
-import TermsConditionsPage from "@/pages/terms-conditions";
-import LocationBlanesPage from "@/pages/location-blanes";
-import LocationLloretPage from "@/pages/location-lloret-de-mar";
-import LocationTossaPage from "@/pages/location-tossa-de-mar";
-import CategoryLicenseFreePage from "@/pages/category-license-free";
-import CategoryLicensedPage from "@/pages/category-licensed";
-import ClientDashboardPage from "@/pages/ClientDashboardPage";
-import LoginPage from "@/pages/LoginPage";
-import NotFound from "@/pages/not-found";
 import { SEO } from "./components/SEO";
+
+// Lazy load non-critical components
+const BookingFlow = lazy(() => import("./components/BookingFlow"));
+const CRMDashboard = lazy(() => import("./components/CRMDashboard"));
+const BoatDetailPage = lazy(() => import("./components/BoatDetailPage"));
+const CondicionesGenerales = lazy(() => import("./components/CondicionesGenerales"));
+const FAQPage = lazy(() => import("@/pages/faq"));
+const PrivacyPolicyPage = lazy(() => import("@/pages/privacy-policy"));
+const TermsConditionsPage = lazy(() => import("@/pages/terms-conditions"));
+const LocationBlanesPage = lazy(() => import("@/pages/location-blanes"));
+const LocationLloretPage = lazy(() => import("@/pages/location-lloret-de-mar"));
+const LocationTossaPage = lazy(() => import("@/pages/location-tossa-de-mar"));
+const CategoryLicenseFreePage = lazy(() => import("@/pages/category-license-free"));
+const CategoryLicensedPage = lazy(() => import("@/pages/category-licensed"));
+const ClientDashboardPage = lazy(() => import("@/pages/ClientDashboardPage"));
+const LoginPage = lazy(() => import("@/pages/LoginPage"));
+const NotFound = lazy(() => import("@/pages/not-found"));
 import { useLanguage } from "@/hooks/use-language";
 import { 
   getSEOConfig, 
@@ -202,34 +204,45 @@ function CategoryLicensedPageWrapper() {
   return <CategoryLicensedPage />;
 }
 
+// Loading fallback component
+function LoadingFallback() {
+  return (
+    <div className="min-h-screen flex items-center justify-center">
+      <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+    </div>
+  );
+}
+
 // Router Component
 function Router() {
   return (
-    <Switch>
-      <Route path="/" component={HomePage} />
-      <Route path="/login" component={LoginPage} />
-      <Route path="/booking" component={BookingFlowPage} />
-      <Route path="/crm" component={CRMDashboardPage} />
-      <Route path="/mi-cuenta" component={ClientDashboardPage} />
-      <Route path="/client/dashboard" component={ClientDashboardPage} />
-      <Route path="/barco/solar-450" component={Solar450Page} />
-      <Route path="/barco/remus-450" component={Remus450Page} />
-      <Route path="/barco/astec-400" component={Astec400Page} />
-      <Route path="/barco/astec-450" component={Astec450Page} />
-      <Route path="/barco/pacific-craft-625" component={PacificCraft625Page} />
-      <Route path="/barco/trimarchi-57s" component={Trimarchi57SPage} />
-      <Route path="/barco/mingolla-brava-19" component={MingollaBrava19Page} />
-      <Route path="/condiciones-generales" component={CondicionesGeneralesPage} />
-      <Route path="/faq" component={FAQPageWrapper} />
-      <Route path="/privacy-policy" component={PrivacyPolicyPageWrapper} />
-      <Route path="/terms-conditions" component={TermsConditionsPageWrapper} />
-      <Route path="/alquiler-barcos-blanes" component={LocationBlanesPageWrapper} />
-      <Route path="/alquiler-barcos-lloret-de-mar" component={LocationLloretPageWrapper} />
-      <Route path="/alquiler-barcos-tossa-de-mar" component={LocationTossaPageWrapper} />
-      <Route path="/barcos-sin-licencia" component={CategoryLicenseFreePageWrapper} />
-      <Route path="/barcos-con-licencia" component={CategoryLicensedPageWrapper} />
-      <Route component={NotFound} />
-    </Switch>
+    <Suspense fallback={<LoadingFallback />}>
+      <Switch>
+        <Route path="/" component={HomePage} />
+        <Route path="/login" component={LoginPage} />
+        <Route path="/booking" component={BookingFlowPage} />
+        <Route path="/crm" component={CRMDashboardPage} />
+        <Route path="/mi-cuenta" component={ClientDashboardPage} />
+        <Route path="/client/dashboard" component={ClientDashboardPage} />
+        <Route path="/barco/solar-450" component={Solar450Page} />
+        <Route path="/barco/remus-450" component={Remus450Page} />
+        <Route path="/barco/astec-400" component={Astec400Page} />
+        <Route path="/barco/astec-450" component={Astec450Page} />
+        <Route path="/barco/pacific-craft-625" component={PacificCraft625Page} />
+        <Route path="/barco/trimarchi-57s" component={Trimarchi57SPage} />
+        <Route path="/barco/mingolla-brava-19" component={MingollaBrava19Page} />
+        <Route path="/condiciones-generales" component={CondicionesGeneralesPage} />
+        <Route path="/faq" component={FAQPageWrapper} />
+        <Route path="/privacy-policy" component={PrivacyPolicyPageWrapper} />
+        <Route path="/terms-conditions" component={TermsConditionsPageWrapper} />
+        <Route path="/alquiler-barcos-blanes" component={LocationBlanesPageWrapper} />
+        <Route path="/alquiler-barcos-lloret-de-mar" component={LocationLloretPageWrapper} />
+        <Route path="/alquiler-barcos-tossa-de-mar" component={LocationTossaPageWrapper} />
+        <Route path="/barcos-sin-licencia" component={CategoryLicenseFreePageWrapper} />
+        <Route path="/barcos-con-licencia" component={CategoryLicensedPageWrapper} />
+        <Route component={NotFound} />
+      </Switch>
+    </Suspense>
   );
 }
 
@@ -273,12 +286,14 @@ function App() {
                 </div>
               </div>
               
-              <div className="bg-white rounded-lg p-4">
-                <h2 className="text-xl font-semibold mb-4">Componente: CRM Dashboard</h2>
-                <div className="h-96 overflow-hidden">
-                  <CRMDashboard adminToken="demo_token" />
+              <Suspense fallback={<LoadingFallback />}>
+                <div className="bg-white rounded-lg p-4">
+                  <h2 className="text-xl font-semibold mb-4">Componente: CRM Dashboard</h2>
+                  <div className="h-96 overflow-hidden">
+                    <CRMDashboard adminToken="demo_token" />
+                  </div>
                 </div>
-              </div>
+              </Suspense>
             </div>
           </div>
           <Toaster />

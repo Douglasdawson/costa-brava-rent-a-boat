@@ -16,6 +16,7 @@ export default function BoatCardExample() {
         id="astec-450"
         name="Astec 450"
         image={astec450Image}
+        imageAlt="Astec 450 - Embarcación sin licencia"
         capacity={5}
         requiresLicense={false}
         description="Embarcación perfecta para familias. Incluye solárium, toldo y escalera de baño. Gasolina incluida."

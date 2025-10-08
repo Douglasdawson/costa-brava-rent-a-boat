@@ -55,8 +55,39 @@ export const boats = pgTable("boats", {
   requiresLicense: boolean("requires_license").notNull(),
   pricePerHour: decimal("price_per_hour", { precision: 10, scale: 2 }).notNull(),
   deposit: decimal("deposit", { precision: 10, scale: 2 }).notNull(),
-  specifications: json("specifications"), // Engine, length, etc.
-  equipment: json("equipment"), // Array of equipment items
+  
+  // Extended boat information
+  imageUrl: text("image_url"), // Main boat image
+  imageGallery: text("image_gallery").array(), // Additional images
+  subtitle: text("subtitle"), // e.g., "Sin Licencia Para Alquilar en Blanes"
+  description: text("description"), // Full boat description
+  
+  // Specifications as JSON
+  specifications: json("specifications").$type<{
+    model: string;
+    length: string;
+    beam: string;
+    engine: string;
+    fuel: string;
+    capacity: string;
+    deposit: string;
+  }>(),
+  
+  // Arrays
+  equipment: text("equipment").array(), // Equipment items
+  included: text("included").array(), // What's included in rental
+  features: text("features").array(), // Key features
+  
+  // Seasonal pricing as JSON
+  pricing: json("pricing").$type<{
+    BAJA: { period: string; prices: { [key: string]: number } };
+    MEDIA: { period: string; prices: { [key: string]: number } };
+    ALTA: { period: string; prices: { [key: string]: number } };
+  }>(),
+  
+  // Extras as JSON array
+  extras: json("extras").$type<Array<{ name: string; price: string; icon: string }>>(),
+  
   isActive: boolean("is_active").notNull().default(true),
 });
 

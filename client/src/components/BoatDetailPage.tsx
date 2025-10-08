@@ -387,13 +387,13 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
             </div>
 
             {/* Selected Season Details */}
-            <div className="bg-gray-50 rounded-lg p-4 mb-4 text-center">
+            <div className="bg-gray-50 rounded-lg p-4 mb-4 text-left md:text-center">
               <h4 className="font-medium mb-2">Temporada {selectedSeason}</h4>
               <p className="text-sm text-gray-600 mb-4">{boatData.pricing[selectedSeason].period}</p>
               
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
                 {Object.entries(boatData.pricing[selectedSeason].prices).map(([duration, price]) => (
-                  <div key={duration} className="text-center p-3 bg-white rounded-lg border">
+                  <div key={duration} className="text-left md:text-center p-3 bg-white rounded-lg border">
                     <div className="font-bold text-lg text-primary">{price}€</div>
                     <div className="text-sm text-gray-600">{duration}</div>
                   </div>
@@ -401,9 +401,9 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
               </div>
             </div>
 
-            <div className="text-sm text-gray-600 text-center">
+            <div className="text-sm text-gray-600 text-left md:text-center">
               <p className="mb-3"><strong>El precio incluye:</strong></p>
-              <div className="flex flex-wrap justify-center items-center gap-4">
+              <div className="flex flex-wrap justify-start md:justify-center items-center gap-4">
                 {boatData.included.map((item, index) => (
                   <div key={index} className="flex items-center">
                     <CheckCircle className="w-3 h-3 text-green-600 mr-1" />

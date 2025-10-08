@@ -216,6 +216,13 @@ Implemented comprehensive performance optimizations to improve Lighthouse Perfor
 - **CLS (Cumulative Layout Shift)**: 0 ✓
 - **Speed Index**: 6.4s
 
+### Known Issues (Non-Performance)
+1. **BookingFlow Email Validation Mismatch** (October 2025)
+   - Frontend marks email as optional but backend may require it for authenticated users
+   - Need to align frontend/backend validation: either make email truly optional everywhere or enforce for auth users
+   - Name/surname fields need trimming before validation (currently allows whitespace-only values)
+   - Issue tracked for future fix, not blocking performance optimizations
+
 ### Future Optimization Opportunities
 1. ~~Image format conversion (PNG → WebP)~~ ✅ **Completed** (88.7% reduction)
 2. ~~Code splitting and lazy loading~~ ✅ **Completed** (React.lazy for all secondary routes)

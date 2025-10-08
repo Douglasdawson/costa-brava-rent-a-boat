@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { MapPin, Phone, Mail, Clock, Send, Camera, Star, Heart, ExternalLink, Waves } from "lucide-react";
+import { SiWhatsapp } from "react-icons/si";
 import { Link } from "wouter";
 
 export default function ContactSection() {
@@ -136,7 +137,7 @@ export default function ContactSection() {
                   className="w-full bg-green-600 hover:bg-green-700 text-white px-6 py-3 h-12"
                   data-testid="button-whatsapp-quick"
                 >
-                  <span className="mr-2">💬</span>
+                  <SiWhatsapp className="w-5 h-5 mr-2" />
                   Consulta por WhatsApp
                 </Button>
               </div>

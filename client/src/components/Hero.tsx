@@ -875,8 +875,8 @@ export default function Hero() {
         </Card>
 
         {/* Trust Indicators */}
-        <div className="mt-4 sm:mt-6 w-full">
-          <div className="flex flex-wrap sm:grid sm:grid-cols-2 justify-center items-center gap-3 sm:gap-x-8 sm:gap-y-3 text-white/90 text-xs sm:text-sm bg-white/10 backdrop-blur-sm rounded-lg p-3 sm:p-4">
+        <div className="mt-4 sm:mt-6 w-full max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 justify-items-center items-center gap-3 sm:gap-x-6 lg:gap-x-8 sm:gap-y-3 text-white/90 text-xs sm:text-sm bg-white/10 backdrop-blur-sm rounded-lg p-3 sm:p-4">
             <div className="flex items-center space-x-2 sm:justify-center">
               <Star className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-400 fill-current flex-shrink-0" />
               <a 

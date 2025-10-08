@@ -17,7 +17,7 @@ Preferred communication style: Simple, everyday language.
 - **Routing**: Wouter for client-side routing.
 - **State Management**: TanStack Query for server state.
 - **Form Handling**: React Hook Form with Zod validation.
-- **Responsiveness**: Mobile-first design.
+- **Responsiveness**: Mobile-first design with fully responsive CRM (tables convert to cards on mobile < 768px).
 
 ### Backend
 - **Server**: Express.js with TypeScript on Node.js.
@@ -39,6 +39,14 @@ Preferred communication style: Simple, everyday language.
 - **UI/UX**: Emphasis on Mediterranean coastal aesthetics, user-friendly booking flow inspired by Airbnb/Booking.com.
 - **Technical Implementations**: Component-based architecture, centralized boat data management, seasonal pricing and availability.
 - **Feature Specifications**: Multi-step booking flow, customer data collection, payment processing, CRM for reservation management, customer authentication via Replit Auth.
+- **CRM Mobile Responsiveness** (December 2024):
+  - Header: Compact layout with icon-only buttons and shortened text on mobile
+  - Navigation: Horizontal scrollable tabs for touch-friendly access
+  - Data Tables: Desktop tables (md+) transform to vertical cards on mobile (<768px)
+  - Fleet/Reservas/Clientes: Card-based mobile view with essential info hierarchy
+  - Dialogs: Fullscreen on mobile for better form interaction
+  - Filters: Stack vertically on mobile, horizontal on desktop
+  - Tested: E2E Playwright verification on iPhone 12 viewport
 - **Performance Optimizations**:
     - Reduced font files and applied preload/display=swap.
     - Deferred non-critical scripts.

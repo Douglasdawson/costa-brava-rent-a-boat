@@ -101,6 +101,14 @@ export const bookings = pgTable("bookings", {
   // Index for expired holds cleanup
   expiresAtIdx: index("bookings_expires_at_idx").on(table.expiresAt)
     .where(sql`booking_status = 'hold'`),
+  // Indexes for status filtering (admin dashboard)
+  bookingStatusIdx: index("booking_status_idx").on(table.bookingStatus),
+  paymentStatusIdx: index("payment_status_idx").on(table.paymentStatus),
+  // Index for customer lookups (admin customers endpoint)
+  customerEmailIdx: index("customer_email_idx").on(table.customerEmail),
+  customerPhoneIdx: index("customer_phone_idx").on(table.customerPhone),
+  // Composite index for customer bookings lookup
+  customerIdDateIdx: index("customer_id_date_idx").on(table.customerId, table.startTime),
 }));
 
 // Note: booking_holds functionality unified into bookings table with 'hold' status

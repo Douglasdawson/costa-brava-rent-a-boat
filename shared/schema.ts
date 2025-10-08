@@ -121,6 +121,27 @@ export const bookingExtras = pgTable("booking_extras", {
   quantity: integer("quantity").notNull().default(1),
 });
 
+// Page visits analytics
+export const pageVisits = pgTable("page_visits", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  pagePath: text("page_path").notNull(),
+  ipAddress: text("ip_address"),
+  userAgent: text("user_agent"),
+  deviceType: text("device_type"), // mobile, tablet, desktop
+  browserName: text("browser_name"),
+  osName: text("os_name"),
+  language: text("language"),
+  country: text("country"),
+  city: text("city"),
+  referrer: text("referrer"),
+  sessionId: text("session_id"),
+  visitedAt: timestamp("visited_at", { withTimezone: true }).notNull().default(sql`now()`),
+}, (table) => ({
+  visitedAtIdx: index("page_visits_visited_at_idx").on(table.visitedAt),
+  pagePathIdx: index("page_visits_page_path_idx").on(table.pagePath),
+  sessionIdIdx: index("page_visits_session_idx").on(table.sessionId),
+}));
+
 // Zod schemas for validation
 export const insertAdminUserSchema = createInsertSchema(adminUsers).pick({
   username: true,
@@ -170,6 +191,11 @@ export const insertBookingSchema = createInsertSchema(bookings).omit({
 
 export const insertBookingExtraSchema = createInsertSchema(bookingExtras).omit({
   id: true,
+});
+
+export const insertPageVisitSchema = createInsertSchema(pageVisits).omit({
+  id: true,
+  visitedAt: true,
 });
 
 // Update booking schema for PATCH requests (all fields optional)

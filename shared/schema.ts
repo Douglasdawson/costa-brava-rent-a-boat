@@ -53,7 +53,7 @@ export const boats = pgTable("boats", {
   name: text("name").notNull(),
   capacity: integer("capacity").notNull(),
   requiresLicense: boolean("requires_license").notNull(),
-  pricePerHour: decimal("price_per_hour", { precision: 10, scale: 2 }).notNull(),
+  pricePerHour: decimal("price_per_hour", { precision: 10, scale: 2 }),
   deposit: decimal("deposit", { precision: 10, scale: 2 }).notNull(),
   
   // Extended boat information

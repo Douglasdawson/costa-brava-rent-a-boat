@@ -116,6 +116,10 @@ type BoatFormData = z.infer<typeof boatSchema>;
 function FleetManagement({ adminToken }: { adminToken: string }) {
   const [showBoatDialog, setShowBoatDialog] = useState(false);
   const [editingBoat, setEditingBoat] = useState<any | null>(null);
+  const [imageGalleryText, setImageGalleryText] = useState("");
+  const [featuresText, setFeaturesText] = useState("");
+  const [equipmentText, setEquipmentText] = useState("");
+  const [includedText, setIncludedText] = useState("");
   const { toast } = useToast();
 
   const boatForm = useForm<BoatFormData>({
@@ -127,6 +131,28 @@ function FleetManagement({ adminToken }: { adminToken: string }) {
       requiresLicense: false,
       deposit: "",
       isActive: true,
+      imageUrl: "",
+      imageGallery: [],
+      subtitle: "",
+      description: "",
+      specifications: {
+        model: "",
+        length: "",
+        beam: "",
+        engine: "",
+        fuel: "",
+        capacity: "",
+        deposit: "",
+      },
+      equipment: [],
+      included: [],
+      features: [],
+      pricing: {
+        BAJA: { period: "", prices: {} },
+        MEDIA: { period: "", prices: {} },
+        ALTA: { period: "", prices: {} },
+      },
+      extras: [],
     },
   });
 
@@ -270,6 +296,13 @@ function FleetManagement({ adminToken }: { adminToken: string }) {
 
   const handleEditBoat = (boat: any) => {
     setEditingBoat(boat);
+    
+    // Set textarea states for editing
+    setImageGalleryText(boat.imageGallery?.join('\n') || '');
+    setFeaturesText(boat.features?.join('\n') || '');
+    setEquipmentText(boat.equipment?.join('\n') || '');
+    setIncludedText(boat.included?.join('\n') || '');
+    
     boatForm.reset({
       id: boat.id,
       name: boat.name,
@@ -281,7 +314,15 @@ function FleetManagement({ adminToken }: { adminToken: string }) {
       imageGallery: boat.imageGallery || [],
       subtitle: boat.subtitle || '',
       description: boat.description || '',
-      specifications: boat.specifications || {},
+      specifications: boat.specifications || {
+        model: "",
+        length: "",
+        beam: "",
+        engine: "",
+        fuel: "",
+        capacity: "",
+        deposit: "",
+      },
       equipment: boat.equipment || [],
       included: boat.included || [],
       features: boat.features || [],
@@ -310,6 +351,10 @@ function FleetManagement({ adminToken }: { adminToken: string }) {
         <Button
           onClick={() => {
             setEditingBoat(null);
+            setImageGalleryText("");
+            setFeaturesText("");
+            setEquipmentText("");
+            setIncludedText("");
             boatForm.reset();
             setShowBoatDialog(true);
           }}
@@ -497,7 +542,9 @@ function FleetManagement({ adminToken }: { adminToken: string }) {
                 <Textarea
                   placeholder="https://ejemplo.com/imagen1.jpg&#10;https://ejemplo.com/imagen2.jpg"
                   rows={3}
+                  value={imageGalleryText}
                   onChange={(e) => {
+                    setImageGalleryText(e.target.value);
                     const urls = e.target.value.split('\n').filter(url => url.trim());
                     boatForm.setValue('imageGallery', urls);
                   }}
@@ -557,7 +604,9 @@ function FleetManagement({ adminToken }: { adminToken: string }) {
                 <Textarea
                   placeholder="Sin licencia requerida&#10;Hasta 5 personas&#10;Gasolina incluida"
                   rows={4}
+                  value={featuresText}
                   onChange={(e) => {
+                    setFeaturesText(e.target.value);
                     const features = e.target.value.split('\n').filter(f => f.trim());
                     boatForm.setValue('features', features);
                   }}
@@ -605,7 +654,9 @@ function FleetManagement({ adminToken }: { adminToken: string }) {
                 <Textarea
                   placeholder="Toldo&#10;Arranque eléctrico&#10;Escalera de baño"
                   rows={3}
+                  value={equipmentText}
                   onChange={(e) => {
+                    setEquipmentText(e.target.value);
                     const equipment = e.target.value.split('\n').filter(e => e.trim());
                     boatForm.setValue('equipment', equipment);
                   }}
@@ -617,7 +668,9 @@ function FleetManagement({ adminToken }: { adminToken: string }) {
                 <Textarea
                   placeholder="IVA&#10;Carburante&#10;Amarre&#10;Limpieza"
                   rows={3}
+                  value={includedText}
                   onChange={(e) => {
+                    setIncludedText(e.target.value);
                     const included = e.target.value.split('\n').filter(i => i.trim());
                     boatForm.setValue('included', included);
                   }}
@@ -800,6 +853,10 @@ function FleetManagement({ adminToken }: { adminToken: string }) {
                 onClick={() => {
                   setShowBoatDialog(false);
                   setEditingBoat(null);
+                  setImageGalleryText("");
+                  setFeaturesText("");
+                  setEquipmentText("");
+                  setIncludedText("");
                   boatForm.reset();
                 }}
                 data-testid="button-cancel-boat"

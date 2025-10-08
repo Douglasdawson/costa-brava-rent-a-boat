@@ -1435,7 +1435,7 @@ export default function CRMDashboard({ adminToken }: CRMDashboardProps) {
         </div>
 
         {/* Navigation Tabs - Mobile optimized */}
-        <div className="flex space-x-2 sm:space-x-6 mt-6 overflow-x-auto pb-2 -mx-4 px-4 sm:mx-0 sm:px-0 scrollbar-hide">
+        <div className="flex gap-2 sm:gap-4 mt-4 sm:mt-6 overflow-x-auto pb-2 -mx-4 px-4 sm:mx-0 sm:px-0 scrollbar-hide">
           {[
             { id: "dashboard", label: "Dashboard", icon: TrendingUp },
             { id: "bookings", label: "Reservas", icon: Calendar },
@@ -1445,15 +1445,15 @@ export default function CRMDashboard({ adminToken }: CRMDashboardProps) {
             <button
               key={tab.id}
               onClick={() => setSelectedTab(tab.id)}
-              className={`flex items-center space-x-2 px-3 sm:px-4 py-2 font-medium rounded-lg transition-colors whitespace-nowrap flex-shrink-0 ${
+              className={`flex items-center justify-center gap-2 px-3 sm:px-4 py-2 sm:py-2.5 font-medium rounded-lg transition-colors whitespace-nowrap flex-shrink-0 min-w-[44px] ${
                 selectedTab === tab.id
                   ? 'bg-primary text-white'
                   : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
               }`}
               data-testid={`tab-${tab.id}`}
             >
-              <tab.icon className="w-4 h-4" />
-              <span>{tab.label}</span>
+              <tab.icon className="w-5 h-5 sm:w-4 sm:h-4" />
+              <span className="hidden sm:inline text-sm sm:text-base">{tab.label}</span>
             </button>
           ))}
         </div>

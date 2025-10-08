@@ -4,8 +4,13 @@ import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
 
 const app = express();
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+
+// Enable ETag for better caching (default is weak ETag)
+app.set('etag', 'strong');
+
+// Optimize JSON parsing
+app.use(express.json({ limit: '1mb' }));
+app.use(express.urlencoded({ extended: false, limit: '1mb' }));
 
 app.use(compression({
   filter: (req: Request, res: Response) => {
@@ -64,6 +69,11 @@ app.use((req, res, next) => {
   if (app.get("env") === "development") {
     await setupVite(app, server);
   } else {
+    // NOTE: HTTP caching headers for static assets are best configured at the CDN/reverse proxy level
+    // For production deployments, use Replit deployment settings or CDN configuration to set:
+    // - Static assets (js, css, images, fonts): Cache-Control: public, max-age=31536000, immutable
+    // - HTML files: Cache-Control: public, max-age=0, must-revalidate
+    
     serveStatic(app);
   }
 

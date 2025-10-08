@@ -7,6 +7,7 @@ import { db } from "./db";
 import { and, eq, lte } from "drizzle-orm";
 import Stripe from "stripe";
 import { setupAuth, isAuthenticated } from "./replitAuth";
+import memoize from "memoizee";
 
 // Initialize Stripe lazily with proper validation
 let stripe: Stripe | null = null;
@@ -50,26 +51,10 @@ const requireAdminAuth = (req: any, res: any, next: any) => {
   next();
 };
 
-export async function registerRoutes(app: Express): Promise<Server> {
-  // Setup Replit Auth (customer authentication)
-  await setupAuth(app);
-  
-  // Get base URL for SEO endpoints from request or environment
-  const getBaseUrl = (req?: any) => {
-    if (req) {
-      const protocol = req.protocol || 'https';
-      const host = req.get('host') || req.get('Host');
-      if (host) {
-        return `${protocol}://${host}`;
-      }
-    }
-    return process.env.BASE_URL || 'https://costa-brava-rent-a-boat-blanes.replit.app';
-  };
-
-  // SEO routes - Must be first to avoid being caught by Vite middleware
-  app.get("/robots.txt", (req, res) => {
-    const baseUrl = getBaseUrl(req);
-    const robotsTxt = `User-agent: *
+// Cached robots.txt generator (1 hour TTL)
+const generateRobotsTxt = memoize(
+  (baseUrl: string): string => {
+    return `User-agent: *
 Allow: /
 Disallow: /crm/
 Disallow: /crm/*
@@ -79,14 +64,13 @@ Disallow: /booking/confirmation
 Disallow: /admin/
 
 Sitemap: ${baseUrl}/sitemap.xml`;
+  },
+  { maxAge: 60 * 60 * 1000 } // 1 hour cache
+);
 
-    res.set('Content-Type', 'text/plain');
-    res.send(robotsTxt);
-  });
-
-  // Sitemap.xml endpoint
-  app.get("/sitemap.xml", (req, res) => {
-    const baseUrl = getBaseUrl(req);
+// Cached sitemap.xml generator (1 hour TTL)
+const generateSitemapXml = memoize(
+  (baseUrl: string): string => {
     const now = new Date().toISOString();
     
     // Define all boats IDs (from the boat data)
@@ -175,6 +159,41 @@ Sitemap: ${baseUrl}/sitemap.xml`;
     sitemap += generateUrlEntry('/condiciones-generales', '0.3', 'monthly');
 
     sitemap += `</urlset>`;
+
+    return sitemap;
+  },
+  { maxAge: 60 * 60 * 1000 } // 1 hour cache
+);
+
+export async function registerRoutes(app: Express): Promise<Server> {
+  // Setup Replit Auth (customer authentication)
+  await setupAuth(app);
+  
+  // Get base URL for SEO endpoints from request or environment
+  const getBaseUrl = (req?: any) => {
+    if (req) {
+      const protocol = req.protocol || 'https';
+      const host = req.get('host') || req.get('Host');
+      if (host) {
+        return `${protocol}://${host}`;
+      }
+    }
+    return process.env.BASE_URL || 'https://costa-brava-rent-a-boat-blanes.replit.app';
+  };
+
+  // SEO routes - Must be first to avoid being caught by Vite middleware
+  app.get("/robots.txt", (req, res) => {
+    const baseUrl = getBaseUrl(req);
+    const robotsTxt = generateRobotsTxt(baseUrl);
+
+    res.set('Content-Type', 'text/plain');
+    res.send(robotsTxt);
+  });
+
+  // Sitemap.xml endpoint
+  app.get("/sitemap.xml", (req, res) => {
+    const baseUrl = getBaseUrl(req);
+    const sitemap = generateSitemapXml(baseUrl);
 
     res.set('Content-Type', 'application/xml');
     res.send(sitemap);

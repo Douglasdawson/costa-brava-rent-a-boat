@@ -596,7 +596,7 @@ function FleetManagement({ adminToken }: { adminToken: string }) {
             {/* Información Básica */}
             <div className="space-y-4">
               <h3 className="text-lg font-semibold">Información Básica</h3>
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <Label htmlFor="id">ID del Barco *</Label>
                   <Input
@@ -677,7 +677,7 @@ function FleetManagement({ adminToken }: { adminToken: string }) {
             {/* Características Principales */}
             <div className="space-y-4">
               <h3 className="text-lg font-semibold">Características Principales</h3>
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <Label htmlFor="capacity">Capacidad (personas) *</Label>
                   <Input
@@ -698,7 +698,7 @@ function FleetManagement({ adminToken }: { adminToken: string }) {
                   />
                 </div>
               </div>
-              <div className="flex gap-6">
+              <div className="flex flex-col sm:flex-row gap-4 sm:gap-6">
                 <div className="flex items-center space-x-2">
                   <input
                     id="requiresLicense"
@@ -739,7 +739,7 @@ function FleetManagement({ adminToken }: { adminToken: string }) {
             {/* Especificaciones Técnicas */}
             <div className="space-y-4">
               <h3 className="text-lg font-semibold">Especificaciones Técnicas</h3>
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <Label>Modelo</Label>
                   <Input 
@@ -804,7 +804,7 @@ function FleetManagement({ adminToken }: { adminToken: string }) {
               <h3 className="text-lg font-semibold">Equipamiento e Incluido</h3>
               <div>
                 <Label>Equipamiento</Label>
-                <div className="grid grid-cols-2 gap-3 mt-2">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-2">
                   {EQUIPMENT_OPTIONS.map((equipment) => {
                     const Icon = equipment.icon;
                     const isSelected = selectedEquipment.includes(equipment.label);
@@ -840,7 +840,7 @@ function FleetManagement({ adminToken }: { adminToken: string }) {
               </div>
               <div>
                 <Label>Incluido en el precio</Label>
-                <div className="grid grid-cols-2 gap-3 mt-2">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-2">
                   {INCLUDED_OPTIONS.map((item) => {
                     const Icon = item.icon;
                     const isSelected = selectedIncluded.includes(item.label);

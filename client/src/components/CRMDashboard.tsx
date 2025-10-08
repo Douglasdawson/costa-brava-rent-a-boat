@@ -22,9 +22,9 @@ import {
   Save,
   Umbrella,
   Sun,
-  MoveVertical,
+  Ship,
   Compass,
-  ShieldCheck,
+  LifeBuoy,
   Music,
   Droplets
 } from "lucide-react";
@@ -123,9 +123,9 @@ type BoatFormData = z.infer<typeof boatSchema>;
 const EQUIPMENT_OPTIONS = [
   { id: 'toldo-bimini', label: 'Toldo Bimini', icon: Umbrella },
   { id: 'solarium-proa-popa', label: 'Solárium proa y popa', icon: Sun },
-  { id: 'escalera-bano', label: 'Escalera de baño', icon: MoveVertical },
+  { id: 'escalera-bano', label: 'Escalera de baño', icon: Ship },
   { id: 'equipo-navegacion', label: 'Equipo de navegación', icon: Compass },
-  { id: 'equipo-seguridad', label: 'Equipo de seguridad', icon: ShieldCheck },
+  { id: 'equipo-seguridad', label: 'Equipo de seguridad', icon: LifeBuoy },
   { id: 'equipo-musica', label: 'Equipo de música', icon: Music },
   { id: 'ducha-agua-dulce', label: 'Ducha de agua dulce', icon: Droplets },
 ];

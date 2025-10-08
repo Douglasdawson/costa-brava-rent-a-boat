@@ -400,9 +400,9 @@ function FleetManagement({ adminToken }: { adminToken: string }) {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 sm:space-y-6">
       <div className="flex items-center justify-between">
-        <h2 className="text-2xl font-bold">Gestión de Flota</h2>
+        <h2 className="text-xl sm:text-2xl font-bold">Gestión de Flota</h2>
         <Button
           onClick={() => {
             setEditingBoat(null);
@@ -414,9 +414,12 @@ function FleetManagement({ adminToken }: { adminToken: string }) {
             setShowBoatDialog(true);
           }}
           data-testid="button-add-boat"
+          size="sm"
+          className="sm:h-10"
         >
-          <Plus className="w-4 h-4 mr-2" />
-          Agregar Barco
+          <Plus className="w-4 h-4 sm:mr-2" />
+          <span className="hidden sm:inline">Agregar Barco</span>
+          <span className="sm:hidden">Agregar</span>
         </Button>
       </div>
 
@@ -453,75 +456,138 @@ function FleetManagement({ adminToken }: { adminToken: string }) {
           </CardContent>
         </Card>
       ) : (
-        <Card>
-          <CardHeader>
-            <CardTitle>Barcos ({boats.length})</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead>Nombre</TableHead>
-                  <TableHead>Capacidad</TableHead>
-                  <TableHead>Licencia</TableHead>
-                  <TableHead>Depósito</TableHead>
-                  <TableHead>Estado</TableHead>
-                  <TableHead className="text-right">Acciones</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {boats.map((boat: any) => (
-                  <TableRow key={boat.id}>
-                    <TableCell className="font-medium">{boat.name}</TableCell>
-                    <TableCell>{boat.capacity} personas</TableCell>
-                    <TableCell>
-                      <Badge variant={boat.requiresLicense ? "default" : "secondary"}>
-                        {boat.requiresLicense ? "Requerida" : "No requerida"}
-                      </Badge>
-                    </TableCell>
-                    <TableCell>€{boat.deposit}</TableCell>
-                    <TableCell>
-                      <Badge variant={boat.isActive ? "default" : "secondary"}>
-                        {boat.isActive ? "Activo" : "Inactivo"}
-                      </Badge>
-                    </TableCell>
-                    <TableCell className="text-right">
-                      <div className="flex justify-end space-x-2">
-                        <Button
-                          size="icon"
-                          variant="ghost"
-                          onClick={() => handleEditBoat(boat)}
-                          data-testid={`button-edit-boat-${boat.id}`}
-                        >
-                          <Edit className="w-4 h-4" />
-                        </Button>
-                        {boat.isActive && (
+        <>
+          {/* Desktop Table View */}
+          <Card className="hidden md:block">
+            <CardHeader>
+              <CardTitle>Barcos ({boats.length})</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Nombre</TableHead>
+                    <TableHead>Capacidad</TableHead>
+                    <TableHead>Licencia</TableHead>
+                    <TableHead>Depósito</TableHead>
+                    <TableHead>Estado</TableHead>
+                    <TableHead className="text-right">Acciones</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {boats.map((boat: any) => (
+                    <TableRow key={boat.id}>
+                      <TableCell className="font-medium">{boat.name}</TableCell>
+                      <TableCell>{boat.capacity} personas</TableCell>
+                      <TableCell>
+                        <Badge variant={boat.requiresLicense ? "default" : "secondary"}>
+                          {boat.requiresLicense ? "Requerida" : "No requerida"}
+                        </Badge>
+                      </TableCell>
+                      <TableCell>€{boat.deposit}</TableCell>
+                      <TableCell>
+                        <Badge variant={boat.isActive ? "default" : "secondary"}>
+                          {boat.isActive ? "Activo" : "Inactivo"}
+                        </Badge>
+                      </TableCell>
+                      <TableCell className="text-right">
+                        <div className="flex justify-end space-x-2">
                           <Button
                             size="icon"
                             variant="ghost"
-                            onClick={() => {
-                              if (confirm(`¿Estás seguro de desactivar ${boat.name}?`)) {
-                                deleteBoatMutation.mutate(boat.id);
-                              }
-                            }}
-                            data-testid={`button-delete-boat-${boat.id}`}
+                            onClick={() => handleEditBoat(boat)}
+                            data-testid={`button-edit-boat-${boat.id}`}
                           >
-                            <Trash2 className="w-4 h-4" />
+                            <Edit className="w-4 h-4" />
                           </Button>
-                        )}
+                          {boat.isActive && (
+                            <Button
+                              size="icon"
+                              variant="ghost"
+                              onClick={() => {
+                                if (confirm(`¿Estás seguro de desactivar ${boat.name}?`)) {
+                                  deleteBoatMutation.mutate(boat.id);
+                                }
+                              }}
+                              data-testid={`button-delete-boat-${boat.id}`}
+                            >
+                              <Trash2 className="w-4 h-4" />
+                            </Button>
+                          )}
+                        </div>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </CardContent>
+          </Card>
+
+          {/* Mobile Card View */}
+          <div className="md:hidden space-y-3">
+            <div className="text-sm font-medium text-gray-600 px-1">
+              Barcos ({boats.length})
+            </div>
+            {boats.map((boat: any) => (
+              <Card key={boat.id}>
+                <CardContent className="p-4">
+                  <div className="flex justify-between items-start mb-3">
+                    <div className="flex-1">
+                      <h3 className="font-semibold text-lg">{boat.name}</h3>
+                      <div className="flex gap-2 mt-2">
+                        <Badge variant={boat.requiresLicense ? "default" : "secondary"} className="text-xs">
+                          {boat.requiresLicense ? "Licencia" : "Sin licencia"}
+                        </Badge>
+                        <Badge variant={boat.isActive ? "default" : "secondary"} className="text-xs">
+                          {boat.isActive ? "Activo" : "Inactivo"}
+                        </Badge>
                       </div>
-                    </TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </CardContent>
-        </Card>
+                    </div>
+                    <div className="flex gap-1">
+                      <Button
+                        size="icon"
+                        variant="ghost"
+                        onClick={() => handleEditBoat(boat)}
+                        data-testid={`button-edit-boat-${boat.id}`}
+                      >
+                        <Edit className="w-4 h-4" />
+                      </Button>
+                      {boat.isActive && (
+                        <Button
+                          size="icon"
+                          variant="ghost"
+                          onClick={() => {
+                            if (confirm(`¿Estás seguro de desactivar ${boat.name}?`)) {
+                              deleteBoatMutation.mutate(boat.id);
+                            }
+                          }}
+                          data-testid={`button-delete-boat-${boat.id}`}
+                        >
+                          <Trash2 className="w-4 h-4" />
+                        </Button>
+                      )}
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-2 gap-2 text-sm">
+                    <div>
+                      <span className="text-gray-600">Capacidad:</span>
+                      <span className="ml-1 font-medium">{boat.capacity} personas</span>
+                    </div>
+                    <div>
+                      <span className="text-gray-600">Depósito:</span>
+                      <span className="ml-1 font-medium">€{boat.deposit}</span>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </>
       )}
 
-      {/* Add/Edit Boat Dialog */}
+      {/* Add/Edit Boat Dialog - Mobile fullscreen */}
       <Dialog open={showBoatDialog} onOpenChange={setShowBoatDialog}>
-        <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+        <DialogContent className="max-w-4xl max-h-[90vh] md:max-h-[90vh] h-full md:h-auto overflow-y-auto p-4 sm:p-6">
           <DialogHeader>
             <DialogTitle>{editingBoat ? "Editar Barco" : "Agregar Barco"}</DialogTitle>
             <DialogDescription>Complete todos los campos del barco</DialogDescription>
@@ -1341,34 +1407,35 @@ export default function CRMDashboard({ adminToken }: CRMDashboardProps) {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <div className="bg-white border-b border-gray-200 px-6 py-4">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-3">
-            <Anchor className="w-8 h-8 text-primary" />
+      {/* Header - Mobile optimized */}
+      <div className="bg-white border-b border-gray-200 px-4 sm:px-6 py-3 sm:py-4">
+        <div className="flex items-center justify-between flex-wrap gap-3">
+          <div className="flex items-center space-x-2 sm:space-x-3">
+            <Anchor className="w-6 h-6 sm:w-8 sm:h-8 text-primary" />
             <div>
-              <h1 className="text-2xl font-bold text-gray-900">CRM Costa Brava Rent a Boat Blanes</h1>
-              <p className="text-sm text-gray-600">Sistema de gestión de reservas</p>
+              <h1 className="text-lg sm:text-2xl font-bold text-gray-900">CRM Costa Brava</h1>
+              <p className="text-xs sm:text-sm text-gray-600 hidden sm:block">Sistema de gestión de reservas</p>
             </div>
           </div>
-          <div className="flex items-center space-x-4">
-            <Button variant="outline" onClick={handleLogout} data-testid="button-logout">
-              <LogOut className="w-4 h-4 mr-2" />
-              Cerrar Sesión
+          <div className="flex items-center gap-2 sm:space-x-4">
+            <Button variant="outline" onClick={handleLogout} data-testid="button-logout" size="sm" className="sm:h-10">
+              <LogOut className="w-4 h-4 sm:mr-2" />
+              <span className="hidden sm:inline">Cerrar Sesión</span>
             </Button>
-            <Button variant="outline" data-testid="button-export-data">
+            <Button variant="outline" data-testid="button-export-data" size="sm" className="hidden sm:flex sm:h-10">
               <Download className="w-4 h-4 mr-2" />
               Exportar
             </Button>
-            <Button data-testid="button-new-booking">
-              <Plus className="w-4 h-4 mr-2" />
-              Nueva Reserva
+            <Button data-testid="button-new-booking" size="sm" className="sm:h-10">
+              <Plus className="w-4 h-4 sm:mr-2" />
+              <span className="hidden sm:inline">Nueva Reserva</span>
+              <span className="sm:hidden">Nueva</span>
             </Button>
           </div>
         </div>
 
-        {/* Navigation Tabs */}
-        <div className="flex space-x-6 mt-6">
+        {/* Navigation Tabs - Mobile optimized */}
+        <div className="flex space-x-2 sm:space-x-6 mt-6 overflow-x-auto pb-2 -mx-4 px-4 sm:mx-0 sm:px-0 scrollbar-hide">
           {[
             { id: "dashboard", label: "Dashboard", icon: TrendingUp },
             { id: "bookings", label: "Reservas", icon: Calendar },
@@ -1378,7 +1445,7 @@ export default function CRMDashboard({ adminToken }: CRMDashboardProps) {
             <button
               key={tab.id}
               onClick={() => setSelectedTab(tab.id)}
-              className={`flex items-center space-x-2 px-3 py-2 font-medium rounded-lg transition-colors ${
+              className={`flex items-center space-x-2 px-3 sm:px-4 py-2 font-medium rounded-lg transition-colors whitespace-nowrap flex-shrink-0 ${
                 selectedTab === tab.id
                   ? 'bg-primary text-white'
                   : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'

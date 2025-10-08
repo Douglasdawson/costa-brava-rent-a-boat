@@ -170,6 +170,24 @@ Implemented comprehensive performance optimizations to improve Lighthouse Perfor
    - Gzip compression already active (level 6)
    - HTTP caching headers documented for CDN/deployment configuration
 
+12. **Async Font Loading** (October 2025)
+   - Changed Google Fonts from render-blocking to async loading
+   - Uses preload with onload swap: `<link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'">`
+   - Includes noscript fallback for non-JS browsers
+   - Eliminates font render-blocking to improve FCP
+
+13. **Critical CSS Inline** (October 2025)
+   - Added critical CSS inline in index.html for faster FCP
+   - Includes: CSS variables, box-sizing, body/html styles, root layout
+   - Above-the-fold content renders without waiting for external CSS
+   - CSS bundle reduced from 90.86 KB to 88.37 KB (14.43 KB gzipped)
+
+14. **Resource Optimization** (October 2025)
+   - Removed redundant DNS prefetch hints (fonts already have preconnect)
+   - Cleaned up unused dependencies: recharts removed (35 packages)
+   - Disabled unused chart.tsx component to prevent future bloat
+   - Streamlined resource hints for essential services only
+
 ### Performance Metrics Baseline
 - **FCP (First Contentful Paint)**: 6.4s
 - **LCP (Largest Contentful Paint)**: 13.6s
@@ -183,7 +201,10 @@ Implemented comprehensive performance optimizations to improve Lighthouse Perfor
 3. ~~Intelligent prefetch of critical routes~~ ✅ **Completed** (usePrefetch hook with 2s delay)
 4. ~~Network-aware prefetch~~ ✅ **Completed** (Save-Data and slow connection detection)
 5. ~~Server configuration optimizations~~ ✅ **Completed** (ETag, request limits, compression)
-6. Server response time optimization (currently ~6s) - Next priority
-7. HTTP caching headers via CDN/deployment configuration (documented in server/index.ts)
-8. CDN integration for global asset delivery
-9. Consider AVIF format for even better compression (if browser support >90%)
+6. ~~Async font loading~~ ✅ **Completed** (preload with onload swap, noscript fallback)
+7. ~~Critical CSS inline~~ ✅ **Completed** (essential styles in index.html)
+8. ~~Resource cleanup~~ ✅ **Completed** (recharts removed, redundant prefetch eliminated)
+9. Server response time optimization (currently ~6s) - Next priority
+10. HTTP caching headers via CDN/deployment configuration (documented in server/index.ts)
+11. CDN integration for global asset delivery
+12. Consider AVIF format for even better compression (if browser support >90%)

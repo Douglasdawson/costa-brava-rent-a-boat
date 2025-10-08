@@ -27,18 +27,17 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://api.whatsapp.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Async load fonts to prevent render blocking -->
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;500;600;700&display=swap"></noscript>
     
     <!-- Preload critical assets for LCP optimization -->
-    <link rel="preload" as="image" href="/assets/Mediterranean_coastal_hero_scene_8df465c2.webp" fetchpriority="high" imagesrcset="" imagesizes="">
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;500;600;700&display=swap">
+    <link rel="preload" as="image" href="/assets/Mediterranean_coastal_hero_scene_8df465c2.webp" fetchpriority="high">
     <link rel="modulepreload" href="/src/main.tsx">
     
     <!-- DNS Prefetch for external resources -->
-    <link rel="dns-prefetch" href="https://maps.googleapis.com">
-    <link rel="dns-prefetch" href="https://www.google.com">
-    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
-    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link rel="dns-prefetch" href="https://api.whatsapp.com">
     
     <!-- Resource hints for better performance -->
     <meta name="color-scheme" content="light dark">
@@ -46,6 +45,15 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="format-detection" content="telephone=no">
+    
+    <!-- Critical CSS for faster FCP -->
+    <style>
+      :root{--background:200 20% 98%;--foreground:210 60% 20%;--primary:210 85% 25%;}
+      *,::before,::after{box-sizing:border-box;border-width:0;border-style:solid;}
+      html{-webkit-text-size-adjust:100%;tab-size:4;font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent;}
+      body{margin:0;line-height:inherit;font-family:Inter,system-ui,-apple-system,sans-serif;}
+      #root{min-height:100vh;}
+    </style>
     
     <!-- JSON-LD Structured Data -->
     <script type="application/ld+json">

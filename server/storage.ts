@@ -9,6 +9,7 @@ import {
 } from "@shared/schema";
 import { db } from "./db";
 import { eq, and, gte, lte, between, inArray } from "drizzle-orm";
+import memoize from "memoizee";
 
 // modify the interface with any CRUD methods
 // you might need
@@ -72,6 +73,28 @@ export interface IStorage {
 
 // rewrite MemStorage to DatabaseStorage
 export class DatabaseStorage implements IStorage {
+  // Private cached versions of boat queries with 5 minute TTL
+  private _getAllBoatsCached = memoize(
+    async (): Promise<Boat[]> => {
+      return await db.select().from(boats).where(eq(boats.isActive, true));
+    },
+    { maxAge: 5 * 60 * 1000, promise: true } // 5 minutes cache
+  );
+
+  private _getBoatCached = memoize(
+    async (id: string): Promise<Boat | undefined> => {
+      const [boat] = await db.select().from(boats).where(eq(boats.id, id));
+      return boat || undefined;
+    },
+    { maxAge: 5 * 60 * 1000, promise: true } // 5 minutes cache
+  );
+
+  // Method to invalidate boat cache (called on create/update)
+  private invalidateBoatCache() {
+    this._getAllBoatsCached.clear();
+    this._getBoatCached.clear();
+  }
+
   // Admin User methods (CRM access)
   async getAdminUser(id: string): Promise<AdminUser | undefined> {
     const [user] = await db.select().from(adminUsers).where(eq(adminUsers.id, id));
@@ -140,14 +163,13 @@ export class DatabaseStorage implements IStorage {
     return customer || undefined;
   }
 
-  // Boat methods
+  // Boat methods (with caching)
   async getAllBoats(): Promise<Boat[]> {
-    return await db.select().from(boats).where(eq(boats.isActive, true));
+    return await this._getAllBoatsCached();
   }
 
   async getBoat(id: string): Promise<Boat | undefined> {
-    const [boat] = await db.select().from(boats).where(eq(boats.id, id));
-    return boat || undefined;
+    return await this._getBoatCached(id);
   }
 
   async createBoat(boat: InsertBoat): Promise<Boat> {
@@ -155,6 +177,7 @@ export class DatabaseStorage implements IStorage {
       .insert(boats)
       .values(boat)
       .returning();
+    this.invalidateBoatCache();
     return newBoat;
   }
 
@@ -164,6 +187,7 @@ export class DatabaseStorage implements IStorage {
       .set(boat)
       .where(eq(boats.id, id))
       .returning();
+    this.invalidateBoatCache();
     return updatedBoat || undefined;
   }
 

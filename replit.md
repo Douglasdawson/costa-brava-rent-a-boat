@@ -152,10 +152,23 @@ Implemented comprehensive performance optimizations to improve Lighthouse Perfor
    - Uses setTimeout to defer prefetch without blocking initial render
    - Cleanup logic prevents duplicate fetches in StrictMode
 
-9. **Route Optimization**
+9. **Network-Aware Prefetch** (October 2025)
+   - Detects Save-Data preference via `navigator.connection.saveData`
+   - Checks connection speed via `navigator.connection.effectiveType`
+   - Skips prefetch on slow connections (slow-2g, 2g) to save bandwidth
+   - Respects user data-saving preferences automatically
+   - Degrades gracefully on browsers without Network Information API
+
+10. **Route Optimization**
    - Added alternative route paths for better UX (/categoria/*, /destino/*)
    - All pages have canonical tags for SEO protection
    - Duplicate routes reuse same lazy-loaded components for efficiency
+
+11. **Server Optimizations** (October 2025)
+   - Configured strong ETags for efficient browser caching
+   - Set 1MB request body limit to prevent abuse
+   - Gzip compression already active (level 6)
+   - HTTP caching headers documented for CDN/deployment configuration
 
 ### Performance Metrics Baseline
 - **FCP (First Contentful Paint)**: 6.4s
@@ -168,8 +181,9 @@ Implemented comprehensive performance optimizations to improve Lighthouse Perfor
 1. ~~Image format conversion (PNG → WebP)~~ ✅ **Completed** (88.7% reduction)
 2. ~~Code splitting and lazy loading~~ ✅ **Completed** (React.lazy for all secondary routes)
 3. ~~Intelligent prefetch of critical routes~~ ✅ **Completed** (usePrefetch hook with 2s delay)
-4. Server response time optimization (currently ~6s) - Next priority
-5. HTTP caching headers for static assets
-6. CDN integration for global asset delivery
-7. Consider AVIF format for even better compression (if browser support >90%)
-8. Network-aware prefetch (skip on Save-Data or slow connections)
+4. ~~Network-aware prefetch~~ ✅ **Completed** (Save-Data and slow connection detection)
+5. ~~Server configuration optimizations~~ ✅ **Completed** (ETag, request limits, compression)
+6. Server response time optimization (currently ~6s) - Next priority
+7. HTTP caching headers via CDN/deployment configuration (documented in server/index.ts)
+8. CDN integration for global asset delivery
+9. Consider AVIF format for even better compression (if browser support >90%)

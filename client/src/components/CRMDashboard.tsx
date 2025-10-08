@@ -368,10 +368,31 @@ function FleetManagement({ adminToken }: { adminToken: string }) {
   };
 
   const handleSubmit = (data: BoatFormData) => {
+    // Ensure specifications is properly formatted as an object
+    const formattedData = {
+      ...data,
+      specifications: data.specifications || {
+        model: "",
+        length: "",
+        beam: "",
+        engine: "",
+        fuel: "",
+        capacity: "",
+        deposit: "",
+      },
+    };
+    
+    // Sanitize deposit field - remove currency symbols for numeric field
+    if (formattedData.deposit) {
+      const depositStr = String(formattedData.deposit);
+      const numericDeposit = depositStr.replace(/[€$,\s]/g, '');
+      formattedData.deposit = numericDeposit ? Number(numericDeposit) : formattedData.deposit;
+    }
+    
     if (editingBoat) {
-      updateBoatMutation.mutate({ id: data.id, data });
+      updateBoatMutation.mutate({ id: formattedData.id, data: formattedData });
     } else {
-      createBoatMutation.mutate(data);
+      createBoatMutation.mutate(formattedData);
     }
   };
 
@@ -652,31 +673,59 @@ function FleetManagement({ adminToken }: { adminToken: string }) {
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <Label>Modelo</Label>
-                  <Input placeholder="Solar 450" onChange={(e) => boatForm.setValue('specifications.model', e.target.value)} />
+                  <Input 
+                    placeholder="Solar 450" 
+                    {...boatForm.register('specifications.model')}
+                    data-testid="input-boat-model"
+                  />
                 </div>
                 <div>
                   <Label>Eslora</Label>
-                  <Input placeholder="4,50m" onChange={(e) => boatForm.setValue('specifications.length', e.target.value)} />
+                  <Input 
+                    placeholder="4,50m" 
+                    {...boatForm.register('specifications.length')}
+                    data-testid="input-boat-length"
+                  />
                 </div>
                 <div>
                   <Label>Manga</Label>
-                  <Input placeholder="1,50m" onChange={(e) => boatForm.setValue('specifications.beam', e.target.value)} />
+                  <Input 
+                    placeholder="1,50m" 
+                    {...boatForm.register('specifications.beam')}
+                    data-testid="input-boat-beam"
+                  />
                 </div>
                 <div>
                   <Label>Motor</Label>
-                  <Input placeholder="Mercury 15cv 4t" onChange={(e) => boatForm.setValue('specifications.engine', e.target.value)} />
+                  <Input 
+                    placeholder="Mercury 15cv 4t" 
+                    {...boatForm.register('specifications.engine')}
+                    data-testid="input-boat-engine"
+                  />
                 </div>
                 <div>
                   <Label>Combustible</Label>
-                  <Input placeholder="Gasolina 30L" onChange={(e) => boatForm.setValue('specifications.fuel', e.target.value)} />
+                  <Input 
+                    placeholder="Gasolina 30L" 
+                    {...boatForm.register('specifications.fuel')}
+                    data-testid="input-boat-fuel"
+                  />
                 </div>
                 <div>
                   <Label>Capacidad</Label>
-                  <Input placeholder="5 Personas" onChange={(e) => boatForm.setValue('specifications.capacity', e.target.value)} />
+                  <Input 
+                    placeholder="5 Personas" 
+                    {...boatForm.register('specifications.capacity')}
+                    data-testid="input-boat-capacity"
+                  />
                 </div>
                 <div>
                   <Label>Fianza</Label>
-                  <Input placeholder="300€" onChange={(e) => boatForm.setValue('specifications.deposit', e.target.value)} />
+                  <Input 
+                    placeholder="300€" 
+                    {...boatForm.register('specifications.deposit')}
+                    data-testid="input-boat-deposit"
+                  />
                 </div>
               </div>
             </div>

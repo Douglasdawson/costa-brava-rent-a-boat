@@ -159,7 +159,7 @@ export default function CondicionesGenerales() {
                 <h3 className="text-lg font-semibold text-gray-900 mb-3">CANCELACIONES Y CAMBIOS:</h3>
                 <div className="space-y-3 text-gray-700">
                   <p>La cancelación de la reserva por parte del cliente ocasionará gastos de tramitación, gestión y bloqueo de la embarcación, por lo que todas las cancelaciones conllevarán la no devolución del importe pagado al formalizar la reserva.</p>
-                  <p>• Costa Brava Rent a Boat Blanes acepta el cambio de una reserva por parte del cliente únicamente con una comunicación previa por escrito a <a href="mailto:costabravarentboat@gmail.com" className="text-primary underline">costabravarentboat@gmail.com</a> o por WhatsApp al +34 611 500 372, con un mínimo de 7 días de antelación al día del alquiler.</p>
+                  <p>• Costa Brava Rent a Boat Blanes acepta el cambio de una reserva por parte del cliente únicamente con una comunicación previa por escrito a <a href="mailto:costabravarentboat@gmail.com" className="text-primary underline">costabravarentboat@gmail.com</a> o por WhatsApp al +34 683 172 154, con un mínimo de 7 días de antelación al día del alquiler.</p>
                   <p>• Cuando el alquiler no pueda disfrutarse por motivos climatológicos justificados y verificados por Costa Brava Rent a Boat Blanes, se ofrecerá al cliente un cambio de fecha para disfrutar del alquiler otro día, sujeto a la disponibilidad de la embarcación.</p>
                   <p>• No se realizarán cambios por condiciones meteorológicas hasta el mismo día del alquiler. Nuestro personal informará de las condiciones meteorológicas en la fecha de la reserva. Si el cliente decide no salir a navegar aun siendo positivo el veredicto de nuestro personal, Costa Brava Rent a Boat Blanes no efectuará la devolución del importe pagado al formalizar la reserva.</p>
                   <p>• Si el cliente no puede salir a navegar por un problema personal, Costa Brava Rent a Boat Blanes no se hará responsable, por lo tanto no se devolverá el importe de la reserva ni se cambiará el día del alquiler.</p>
@@ -200,7 +200,7 @@ export default function CondicionesGenerales() {
                     Enviar email
                   </a>
                   <a 
-                    href="https://wa.me/34611500372"
+                    href="https://wa.me/34683172154"
                     className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-medium transition-colors"
                   >
                     WhatsApp

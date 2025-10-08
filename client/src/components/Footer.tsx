@@ -16,7 +16,7 @@ export default function Footer() {
 
   const handleWhatsApp = () => {
     const message = encodeURIComponent(t.footer.whatsappMessage);
-    window.open(`https://wa.me/34611500372?text=${message}`, "_blank");
+    window.open(`https://wa.me/34683172154?text=${message}`, "_blank");
   };
 
   const handleLogoClick = () => {
@@ -62,11 +62,11 @@ export default function Footer() {
                 <div>
                   <div className="flex items-center space-x-2">
                     <a 
-                      href="tel:+34611500372"
+                      href="tel:+34683172154"
                       className="text-xs hover:text-primary transition-colors cursor-pointer"
                       data-testid="phone-call-link"
                     >
-                      +34 611 500 372
+                      +34 683 172 154
                     </a>
                     <span className="text-xs text-gray-500">|</span>
                     <button
@@ -210,7 +210,7 @@ export default function Footer() {
             </button>
             
             <a 
-              href="tel:+34611500372"
+              href="tel:+34683172154"
               className="border border-gray-600 hover:border-gray-500 text-gray-300 hover:text-white px-4 py-2 rounded-lg text-xs font-medium flex items-center space-x-2 transition-colors"
               data-testid="footer-call-button"
             >

@@ -36,7 +36,7 @@ export default function ContactSection() {
     const message = encodeURIComponent(
       `Hola, soy ${formData.name}. ${formData.message || "Me gustaría información sobre el alquiler de barcos."}`
     );
-    window.open(`https://wa.me/34611500372?text=${message}`, "_blank");
+    window.open(`https://wa.me/34683172154?text=${message}`, "_blank");
   };
 
   return (
@@ -66,11 +66,11 @@ export default function ContactSection() {
                   <div>
                     <h3 className="font-medium text-gray-900 mb-1 sm:mb-2 text-sm sm:text-base">{t.contact.phone} & {t.contact.whatsapp}</h3>
                     <a 
-                      href="tel:+34611500372" 
+                      href="tel:+34683172154" 
                       className="text-gray-600 hover:text-primary transition-colors cursor-pointer block mb-1 text-sm sm:text-base"
                       data-testid="phone-link"
                     >
-                      +34 611 500 372
+                      +34 683 172 154
                     </a>
                     <p className="text-xs sm:text-sm text-gray-500">{t.contact.scheduleTime}</p>
                   </div>
@@ -133,7 +133,7 @@ export default function ContactSection() {
               {/* WhatsApp Button */}
               <div className="mt-auto pt-6 border-t border-gray-200">
                 <Button 
-                  onClick={() => window.open("https://wa.me/34611500372", "_blank")}
+                  onClick={() => window.open("https://wa.me/34683172154", "_blank")}
                   className="w-full bg-green-600 hover:bg-green-700 text-white px-6 py-3 h-12"
                   data-testid="button-whatsapp-quick"
                 >
@@ -227,7 +227,7 @@ export default function ContactSection() {
                     Enviar Mensaje
                   </Button>
                   <Button 
-                    onClick={() => window.open("tel:+34611500372", "_self")}
+                    onClick={() => window.open("tel:+34683172154", "_self")}
                     variant="outline"
                     className="w-full px-6 py-3 h-12"
                     data-testid="button-call-phone"

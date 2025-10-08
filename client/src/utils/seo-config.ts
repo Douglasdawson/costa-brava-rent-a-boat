@@ -16,9 +16,9 @@ export const BUSINESS_INFO = {
   name: "Costa Brava Rent a Boat Blanes",
   legalName: "Costa Brava Rent a Boat - Blanes",
   description: "Alquiler de barcos sin licencia y con licencia en Blanes, Costa Brava. Desde Puerto de Blanes. 7 embarcaciones para 4-7 personas.",
-  phone: "+34611500372",
-  email: "costabravarentaboat@gmail.com",
-  url: typeof window !== 'undefined' ? window.location.origin : "https://costa-brava-rent-a-boat-blanes.replit.app",
+  phone: "+34683172154",
+  email: "costabravarentboat@gmail.com",
+  url: typeof window !== 'undefined' ? window.location.origin : "https://costa-brava-rent-a-boat-web-ivanrd9.replit.app",
   address: {
     streetAddress: "Puerto de Blanes",
     addressLocality: "Blanes", 
@@ -42,7 +42,7 @@ export const BUSINESS_INFO = {
 // Base domain for canonical URLs - configurable for production
 export const BASE_DOMAIN = typeof window !== 'undefined' 
   ? window.location.origin 
-  : import.meta.env.VITE_BASE_DOMAIN || "https://costa-brava-rent-a-boat-blanes.replit.app";
+  : import.meta.env.VITE_BASE_DOMAIN || "https://costa-brava-rent-a-boat-web-ivanrd9.replit.app";
 
 // Language-specific SEO configurations
 export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {

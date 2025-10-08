@@ -37,6 +37,7 @@ export default function Footer() {
               onClick={handleLogoClick}
               className="flex items-center space-x-2 mb-4 hover:opacity-80 transition-opacity cursor-pointer bg-transparent border-none p-0"
               data-testid="footer-logo-button"
+              aria-label="Ir a la página principal"
             >
               <Anchor className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
               <span className="font-heading font-bold text-base sm:text-lg text-white">
@@ -65,6 +66,7 @@ export default function Footer() {
                       href="tel:+34683172154"
                       className="text-xs hover:text-primary transition-colors cursor-pointer"
                       data-testid="phone-call-link"
+                      aria-label="Llamar al teléfono +34 683 172 154"
                     >
                       +34 683 172 154
                     </a>
@@ -73,6 +75,7 @@ export default function Footer() {
                       onClick={handleWhatsApp}
                       className="text-xs text-green-400 hover:text-green-300 transition-colors cursor-pointer flex items-center space-x-1"
                       data-testid="phone-whatsapp-link"
+                      aria-label="Contactar por WhatsApp"
                     >
                       <SiWhatsapp className="w-3 h-3" />
                       <span>WhatsApp</span>
@@ -88,6 +91,7 @@ export default function Footer() {
                     href="mailto:costabravarentboat@gmail.com"
                     className="text-xs hover:text-primary transition-colors cursor-pointer"
                     data-testid="email-link"
+                    aria-label="Enviar email a costabravarentboat@gmail.com"
                   >
                     costabravarentboat@gmail.com
                   </a>
@@ -103,6 +107,7 @@ export default function Footer() {
                     rel="noopener noreferrer"
                     className="text-xs hover:text-primary transition-colors cursor-pointer"
                     data-testid="maps-link"
+                    aria-label="Ver ubicación en Google Maps: Puerto de Blanes"
                   >
                     {t.footer.location}
                   </a>
@@ -140,6 +145,7 @@ export default function Footer() {
                   }} 
                   className="hover:text-primary transition-colors cursor-pointer bg-transparent border-none p-0 text-left"
                   data-testid="footer-terms-link"
+                  aria-label="Ver términos y condiciones del servicio"
                 >
                   {t.footer.terms}
                 </button>
@@ -160,6 +166,7 @@ export default function Footer() {
                   }} 
                   className="hover:text-primary transition-colors cursor-pointer bg-transparent border-none p-0 text-left"
                   data-testid="footer-cancellation-link"
+                  aria-label="Ver política de cancelaciones y cambios"
                 >
                   {t.footer.cancelationPolicy}
                 </button>
@@ -175,6 +182,7 @@ export default function Footer() {
                   }} 
                   className="hover:text-primary transition-colors cursor-pointer bg-transparent border-none p-0 text-left"
                   data-testid="footer-privacy-link"
+                  aria-label="Ver política de privacidad"
                 >
                   {t.footer.privacy}
                 </button>
@@ -204,6 +212,7 @@ export default function Footer() {
               onClick={handleWhatsApp}
               className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg text-xs font-medium flex items-center space-x-2 transition-colors"
               data-testid="footer-whatsapp-button"
+              aria-label="Abrir chat de WhatsApp para consultas"
             >
               <SiWhatsapp className="w-4 h-4" />
               <span>WhatsApp</span>
@@ -213,6 +222,7 @@ export default function Footer() {
               href="tel:+34683172154"
               className="border border-gray-600 hover:border-gray-500 text-gray-300 hover:text-white px-4 py-2 rounded-lg text-xs font-medium flex items-center space-x-2 transition-colors"
               data-testid="footer-call-button"
+              aria-label="Llamar al teléfono de Costa Brava Rent a Boat"
             >
               <Phone className="w-4 h-4" />
               <span>{t.footer.call}</span>

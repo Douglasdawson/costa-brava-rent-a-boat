@@ -69,6 +69,7 @@ export default function ContactSection() {
                       href="tel:+34683172154" 
                       className="text-gray-600 hover:text-primary transition-colors cursor-pointer block mb-1 text-sm sm:text-base"
                       data-testid="phone-link"
+                      aria-label="Llamar al teléfono +34 683 172 154"
                     >
                       +34 683 172 154
                     </a>
@@ -88,6 +89,7 @@ export default function ContactSection() {
                       href="mailto:costabravarentboat@gmail.com" 
                       className="text-gray-600 hover:text-primary transition-colors cursor-pointer block mb-1"
                       data-testid="email-link"
+                      aria-label="Enviar email a costabravarentboat@gmail.com"
                     >
                       costabravarentboat@gmail.com
                     </a>
@@ -109,6 +111,7 @@ export default function ContactSection() {
                       rel="noopener noreferrer"
                       className="text-gray-600 hover:text-primary transition-colors cursor-pointer"
                       data-testid="location-link"
+                      aria-label="Ver ubicación en Google Maps: Puerto de Blanes"
                     >
                       <span className="block mb-1">Puerto de Blanes, Costa Brava</span>
                       <span className="block text-sm text-gray-500 hover:text-primary/80">Girona, España - Zona de embarque</span>
@@ -136,6 +139,7 @@ export default function ContactSection() {
                   onClick={() => window.open("https://wa.me/34683172154", "_blank")}
                   className="w-full bg-green-600 hover:bg-green-700 text-white px-6 py-3 h-12"
                   data-testid="button-whatsapp-quick"
+                  aria-label="Consultar disponibilidad por WhatsApp"
                 >
                   <SiWhatsapp className="w-5 h-5 mr-2" />
                   Consulta por WhatsApp
@@ -153,58 +157,67 @@ export default function ContactSection() {
             <CardContent className="flex-1 flex flex-col">
               <form id="contact-form" onSubmit={handleSubmit} className="flex-1 flex flex-col space-y-5">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label htmlFor="contact-name" className="block text-sm font-medium text-gray-700 mb-2">
                     Nombre *
                   </label>
                   <input
                     type="text"
                     name="name"
+                    id="contact-name"
                     value={formData.name}
                     onChange={handleInputChange}
                     required
                     className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary h-12 bg-white text-gray-900"
                     placeholder="Tu nombre completo"
                     data-testid="input-contact-name"
+                    aria-label="Nombre completo"
+                    aria-required="true"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label htmlFor="contact-email" className="block text-sm font-medium text-gray-700 mb-2">
                     Email *
                   </label>
                   <input
                     type="email"
                     name="email"
+                    id="contact-email"
                     value={formData.email}
                     onChange={handleInputChange}
                     required
                     className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary h-12 bg-white text-gray-900"
                     placeholder="tu@email.com"
                     data-testid="input-contact-email"
+                    aria-label="Correo electrónico"
+                    aria-required="true"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label htmlFor="contact-phone" className="block text-sm font-medium text-gray-700 mb-2">
                     Teléfono
                   </label>
                   <input
                     type="tel"
                     name="phone"
+                    id="contact-phone"
                     value={formData.phone}
                     onChange={handleInputChange}
                     className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary h-12 bg-white text-gray-900 overflow-hidden text-ellipsis"
                     placeholder="+34 600 000 000"
                     data-testid="input-contact-phone"
+                    aria-label="Teléfono de contacto"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label htmlFor="contact-message" className="block text-sm font-medium text-gray-700 mb-2">
                     Mensaje *
                   </label>
                   <textarea
                     name="message"
+                    id="contact-message"
                     value={formData.message}
                     onChange={handleInputChange}
                     required
@@ -212,6 +225,8 @@ export default function ContactSection() {
                     className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary resize-none flex-1 min-h-[120px] bg-white text-gray-900"
                     placeholder="Cuéntanos qué necesitas: fechas, tipo de barco, número de personas, extras..."
                     data-testid="textarea-contact-message"
+                    aria-label="Mensaje o consulta"
+                    aria-required="true"
                   />
                 </div>
 
@@ -231,9 +246,10 @@ export default function ContactSection() {
                     variant="outline"
                     className="w-full px-6 py-3 h-12"
                     data-testid="button-call-phone"
+                    aria-label="Llamar al teléfono +34 683 172 154"
                   >
                     <Phone className="w-4 h-4 mr-2" />
-                    Llama al +34 611 500 372
+                    Llama al +34 683 172 154
                   </Button>
                 </div>
 
@@ -418,6 +434,7 @@ export default function ContactSection() {
                 allowFullScreen
                 loading="lazy" 
                 referrerPolicy="no-referrer-when-downgrade"
+                title="Ubicación de Costa Brava Rent a Boat en Puerto de Blanes"
               />
               
               {/* Overlay oscuro para mejor legibilidad */}
@@ -439,6 +456,7 @@ export default function ContactSection() {
                       onClick={() => window.open("https://maps.app.goo.gl/VrSkZNG7289VVdJD9", "_blank")}
                       className="bg-white/90 backdrop-blur hover:bg-white"
                       data-testid="button-view-map"
+                      aria-label="Ver ubicación completa en Google Maps"
                     >
                       Ver en Google Maps
                     </Button>

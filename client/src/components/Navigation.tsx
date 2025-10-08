@@ -135,6 +135,7 @@ export default function Navigation() {
             onClick={handleLogoClick}
             className="flex items-center space-x-2 hover:opacity-80 transition-opacity cursor-pointer bg-transparent border-none p-0"
             data-testid="brand-logo"
+            aria-label="Ir a la página principal de Costa Brava Rent a Boat Blanes"
           >
             <Anchor className="w-6 h-6 sm:w-8 sm:h-8 text-primary" />
             <span className="font-heading font-bold text-sm sm:text-lg lg:text-xl text-gray-900">
@@ -151,6 +152,7 @@ export default function Navigation() {
                 onClick={() => handleNavigation(item.href, item.label)}
                 className="text-gray-700 hover:text-primary transition-colors font-medium cursor-pointer bg-transparent border-none"
                 data-testid={`nav-link-${item.label.toLowerCase()}`}
+                aria-label={`Navegar a ${item.label}`}
               >
                 {item.label}
               </button>
@@ -163,6 +165,7 @@ export default function Navigation() {
             <Button 
               onClick={handleBooking}
               data-testid="button-book-now"
+              aria-label="Reservar barco ahora"
             >
               <Calendar className="w-4 h-4 mr-2" />
               Reservar Ahora
@@ -172,6 +175,7 @@ export default function Navigation() {
                 variant="ghost" 
                 onClick={handleLoginClick}
                 data-testid="button-login"
+                aria-label="Iniciar sesión en tu cuenta"
               >
                 <UserCircle className="w-4 h-4 mr-2" />
                 Login
@@ -182,6 +186,7 @@ export default function Navigation() {
                 variant="ghost" 
                 onClick={handleMyAccountClick}
                 data-testid="button-my-account"
+                aria-label="Acceder a mi cuenta de cliente"
               >
                 <UserCircle className="w-4 h-4 mr-2" />
                 Mi Cuenta
@@ -196,6 +201,8 @@ export default function Navigation() {
               size="icon"
               onClick={toggleMenu}
               data-testid="button-mobile-menu"
+              aria-label={isOpen ? "Cerrar menú de navegación" : "Abrir menú de navegación"}
+              aria-expanded={isOpen}
             >
               {isOpen ? <X className="w-7 h-7" /> : <Menu className="w-7 h-7" />}
             </Button>
@@ -212,6 +219,7 @@ export default function Navigation() {
                   onClick={() => handleNavigation(item.href, item.label)}
                   className="px-4 py-3 text-gray-700 hover:text-primary hover:bg-gray-50 transition-colors w-full text-left bg-transparent border-none cursor-pointer font-medium"
                   data-testid={`mobile-nav-${item.label.toLowerCase()}`}
+                  aria-label={`Navegar a ${item.label}`}
                 >
                   {item.label}
                 </button>
@@ -224,6 +232,7 @@ export default function Navigation() {
                       className="justify-start h-12 px-4"
                       onClick={handleLoginClick}
                       data-testid="mobile-button-login"
+                      aria-label="Iniciar sesión en tu cuenta"
                     >
                       <UserCircle className="w-4 h-4 mr-3" />
                       Login
@@ -235,6 +244,7 @@ export default function Navigation() {
                       className="justify-start h-12 px-4"
                       onClick={handleMyAccountClick}
                       data-testid="mobile-button-my-account"
+                      aria-label="Acceder a mi cuenta de cliente"
                     >
                       <UserCircle className="w-4 h-4 mr-3" />
                       Mi Cuenta
@@ -244,6 +254,7 @@ export default function Navigation() {
                     className="justify-start h-12 px-4"
                     onClick={handleBooking}
                     data-testid="mobile-button-book"
+                    aria-label="Reservar barco ahora"
                   >
                     <Calendar className="w-4 h-4 mr-3" />
                     Reservar Ahora

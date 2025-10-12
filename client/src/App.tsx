@@ -42,6 +42,8 @@ import {
   generateServiceSchema,
   generateBreadcrumbSchema
 } from "@/utils/seo-config";
+import { generateItemListSchema } from "@/utils/seo-schemas";
+import { BOAT_DATA } from "@shared/boatData";
 
 // Main Home Page Component
 function HomePage() {
@@ -58,13 +60,27 @@ function HomePage() {
     { name: "Inicio", url: "/" }
   ]);
 
+  // Generate ItemList schema for fleet section
+  const fleetOrder = [
+    "astec-400", "remus-450", "solar-450", "astec-450", 
+    "pacific-craft-625", "trimarchi-57s", "mingolla-brava-19"
+  ];
+  const fleetItems = fleetOrder
+    .filter(boatId => BOAT_DATA[boatId])
+    .map(boatId => ({
+      id: boatId,
+      name: BOAT_DATA[boatId].name
+    }));
+  const itemListSchema = generateItemListSchema(fleetItems);
+
   // Combine multiple schemas using @graph
   const combinedJsonLd = {
     "@context": "https://schema.org",
     "@graph": [
       localBusinessSchema,
       serviceSchema,
-      breadcrumbSchema
+      breadcrumbSchema,
+      itemListSchema
     ]
   };
 

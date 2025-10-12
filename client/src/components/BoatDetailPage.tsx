@@ -46,6 +46,8 @@ import {
   generateBreadcrumbSchema
 } from "@/utils/seo-config";
 import type { Boat } from "@shared/schema";
+import { Breadcrumbs } from "./Breadcrumbs";
+import { useTranslations } from "@/lib/translations";
 
 interface BoatDetailPageProps {
   boatId?: string;
@@ -95,6 +97,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
 
   // SEO data for this boat
   const { language } = useLanguage();
+  const t = useTranslations();
   const lowestPrice = boatData.pricing ? Math.min(...Object.values(boatData.pricing.BAJA.prices)) : 0;
   const requiresLicense = boatData.subtitle?.includes("Con Licencia") ?? boatData.requiresLicense;
   const capacity = boatData.specifications ? parseInt(boatData.specifications.capacity?.split(' ')[0] || String(boatData.capacity)) : boatData.capacity;
@@ -141,10 +144,10 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
     }
   };
 
-  // Generate breadcrumb schema
+  // Generate breadcrumb schema with localized names
   const breadcrumbSchema = generateBreadcrumbSchema([
-    { name: "Inicio", url: "/" },
-    { name: "Barcos", url: "/#flota" },
+    { name: t.breadcrumbs.home, url: "/" },
+    { name: t.breadcrumbs.boats, url: "/#flota" },
     { name: boatData.name, url: `/barco/${boatId}` }
   ]);
 
@@ -170,7 +173,19 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
       />
       <Navigation />
       
-      <div className="container mx-auto px-4 pt-20 sm:pt-24 pb-6 sm:pb-8">
+      {/* Breadcrumbs */}
+      <div className="bg-gray-50 border-b border-gray-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+          <Breadcrumbs 
+            items={[
+              { label: t.breadcrumbs.boats, href: '/#flota' },
+              { label: boatData.name }
+            ]}
+          />
+        </div>
+      </div>
+      
+      <div className="container mx-auto px-4 pt-6 sm:pt-8 pb-6 sm:pb-8">
         {/* Back Button */}
         {onBack && (
           <Button

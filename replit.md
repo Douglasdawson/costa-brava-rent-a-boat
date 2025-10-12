@@ -52,6 +52,13 @@ Preferred communication style: Simple, everyday language.
     - CTA button "Solicita ya tu petición de reserva" opens Dialog modal with BookingFormWidget
     - Hero title displays on two lines on mobile: "Alquiler de Barcos en Blanes" / "Costa Brava."
     - Modal-based booking (removed inline form for cleaner hero)
+  - **Fleet Section Booking** (October 2025):
+    - Changed button text from "Reservar" to "Solicitar Reserva" for consistency
+    - Opens Dialog modal with BookingFormWidget instead of navigating to /booking page
+    - Pre-selects clicked boat and disables boat selector in modal (read-only mode)
+    - Uses translation system (t.booking.title and t.booking.modalSubtitle) for full i18n compliance
+    - DialogDescription added for accessibility (aria-describedby) compliance
+    - BookingFormWidget conditionally hides internal header when used in modal context
   - **Boat Detail Pages**: Opens Dialog modal with BookingFormWidget and pre-selected boat
   - **Modal Responsiveness**: Booking modal is nearly fullscreen on mobile (95vw × 95vh) with forced centering (!left-1/2 !top-1/2 transforms), responsive padding (p-3 sm:p-4 md:p-6), max-width 4xl on desktop
   - **Mobile Booking Modal** (October 2025):

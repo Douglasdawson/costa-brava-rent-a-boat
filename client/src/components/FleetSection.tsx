@@ -1,13 +1,24 @@
+import { useState } from "react";
 import BoatCard from "./BoatCard";
+import BookingFormWidget from "./BookingFormWidget";
 import { openWhatsApp, createBookingMessage } from "@/utils/whatsapp";
 import { useLocation } from "wouter";
 import { BOAT_DATA } from "@shared/boatData";
 import { getBoatImage } from "@/utils/boatImages";
 import { useTranslations } from "@/lib/translations";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+} from "@/components/ui/dialog";
 
 export default function FleetSection() {
   const t = useTranslations();
   const [, setLocation] = useLocation();
+  const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
+  const [selectedBoatId, setSelectedBoatId] = useState<string | undefined>(undefined);
 
   // Real boat data from costabravarentaboat.com - Ordered as requested
   // Using centralized data with fleet-specific information
@@ -75,9 +86,8 @@ export default function FleetSection() {
   }>;
 
   const handleBooking = (boatId: string) => {
-    console.log("Booking initiated for:", boatId);
-    // Navigate to internal booking flow instead of WhatsApp
-    setLocation(`/booking?boat=${boatId}`);
+    setSelectedBoatId(boatId);
+    setIsBookingModalOpen(true);
   };
 
   const handleDetails = (boatId: string) => {
@@ -140,6 +150,21 @@ export default function FleetSection() {
           </div>
         </div>
       </div>
+
+      {/* Booking Modal */}
+      <Dialog open={isBookingModalOpen} onOpenChange={setIsBookingModalOpen}>
+        <DialogContent className="!max-w-4xl w-[95vw] h-[95vh] max-h-[95vh] p-3 sm:p-4 md:p-6 !left-1/2 !top-1/2 !-translate-x-1/2 !-translate-y-1/2 overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle className="text-xl sm:text-2xl font-bold text-center mb-2">
+              {t.booking.title}
+            </DialogTitle>
+            <DialogDescription className="text-sm sm:text-base text-gray-600 text-center">
+              {t.booking.modalSubtitle}
+            </DialogDescription>
+          </DialogHeader>
+          <BookingFormWidget preSelectedBoatId={selectedBoatId} />
+        </DialogContent>
+      </Dialog>
     </section>
   );
 }

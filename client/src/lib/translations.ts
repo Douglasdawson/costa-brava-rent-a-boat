@@ -117,6 +117,7 @@ export interface Translations {
   // Booking Flow
   booking: {
     title: string;
+    modalSubtitle: string;
     selectBoat: string;
     dateTime: string;
     customerDetails: string;
@@ -308,7 +309,7 @@ export const translations: Record<Language, Translations> = {
     },
     boats: {
       viewDetails: 'Ver detalles',
-      book: 'Reservar',
+      book: 'Solicitar Reserva',
       notAvailable: 'No disponible',
       from: 'desde',
       upTo: 'Hasta',
@@ -384,6 +385,7 @@ export const translations: Record<Language, Translations> = {
     },
     booking: {
       title: '¡SOLICITA AQUÍ LA PETICIÓN DE TU BARCO!',
+      modalSubtitle: 'Completa los datos para solicitar la reserva de tu barco perfecto',
       selectBoat: 'Seleccionar Barco',
       dateTime: 'Fecha y Hora',
       customerDetails: 'Datos del Cliente',
@@ -644,6 +646,7 @@ export const translations: Record<Language, Translations> = {
     },
     booking: {
       title: 'Reserva la teva Barca',
+      modalSubtitle: 'Completa les dades per sol·licitar la reserva de la teva barca perfecta',
       selectBoat: 'Seleccionar Barca',
       dateTime: 'Data i Hora',
       customerDetails: 'Dades del Client',
@@ -826,6 +829,7 @@ export const translations: Record<Language, Translations> = {
     },
     booking: {
       title: 'Book Your Boat',
+      modalSubtitle: 'Complete the details to request your perfect boat booking',
       selectBoat: 'Select Boat',
       dateTime: 'Date & Time',
       customerDetails: 'Customer Details',
@@ -1023,6 +1027,7 @@ export const translations: Record<Language, Translations> = {
     },
     booking: {
       title: 'Réservez Votre Bateau',
+      modalSubtitle: 'Complétez les détails pour demander la réservation de votre bateau parfait',
       selectBoat: 'Sélectionner Bateau',
       dateTime: 'Date et Heure',
       customerDetails: 'Détails Client',
@@ -1202,6 +1207,7 @@ export const translations: Record<Language, Translations> = {
     },
     booking: {
       title: 'Ihr Boot Buchen',
+      modalSubtitle: 'Füllen Sie die Details aus, um Ihre perfekte Bootsbuchung anzufordern',
       selectBoat: 'Boot Auswählen',
       dateTime: 'Datum & Uhrzeit',
       customerDetails: 'Kundendaten',
@@ -1381,6 +1387,7 @@ export const translations: Record<Language, Translations> = {
     },
     booking: {
       title: 'Boek Je Boot',
+      modalSubtitle: 'Vul de gegevens in om uw perfecte bootboeking aan te vragen',
       selectBoat: 'Boot Selecteren',
       dateTime: 'Datum & Tijd',
       customerDetails: 'Klantgegevens',
@@ -1560,6 +1567,7 @@ export const translations: Record<Language, Translations> = {
     },
     booking: {
       title: 'Prenota la Tua Barca',
+      modalSubtitle: 'Completa i dettagli per richiedere la prenotazione della tua barca perfetta',
       selectBoat: 'Seleziona Barca',
       dateTime: 'Data e Ora',
       customerDetails: 'Dettagli Cliente',
@@ -1739,6 +1747,7 @@ export const translations: Record<Language, Translations> = {
     },
     booking: {
       title: 'Забронируйте Вашу Лодку',
+      modalSubtitle: 'Заполните данные, чтобы запросить бронирование вашей идеальной лодки',
       selectBoat: 'Выбрать Лодку',
       dateTime: 'Дата и Время',
       customerDetails: 'Данные Клиента',

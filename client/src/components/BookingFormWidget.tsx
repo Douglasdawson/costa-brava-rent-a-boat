@@ -550,12 +550,15 @@ export default function BookingFormWidget({ preSelectedBoatId, onClose }: Bookin
 
   return (
     <Card id="booking-form" className="bg-white/75 backdrop-blur-md p-3 sm:p-4 w-full shadow-2xl border-0">
-      <div className="text-center mb-2 sm:mb-3">
-        <h2 className="text-base sm:text-base lg:text-lg font-bold text-gray-900 mb-2 sm:mb-3">{t.booking.title}</h2>
-        <p className="text-xs [@media(min-width:400px)]:text-sm text-gray-600">
-          {preSelectedBoatId ? "Completa los datos para solicitar la reserva" : "Completa los datos para solicitar la reserva de tu barco perfecto"}
-        </p>
-      </div>
+      {/* Only show header when not in modal (no preSelectedBoatId) */}
+      {!preSelectedBoatId && (
+        <div className="text-center mb-2 sm:mb-3">
+          <h2 className="text-base sm:text-base lg:text-lg font-bold text-gray-900 mb-2 sm:mb-3">{t.booking.title}</h2>
+          <p className="text-xs [@media(min-width:400px)]:text-sm text-gray-600">
+            {t.booking.modalSubtitle}
+          </p>
+        </div>
+      )}
       
       {/* Personal Information Section */}
       <div className="bg-gray-50/80 rounded-lg p-2 sm:p-3 mb-2 sm:mb-3">

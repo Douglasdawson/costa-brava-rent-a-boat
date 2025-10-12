@@ -754,7 +754,7 @@ export default function BookingFormWidget({ preSelectedBoatId, onClose }: Bookin
                 value={selectedBoat}
                 onChange={(e) => setSelectedBoat(e.target.value)}
                 disabled={!!preSelectedBoatId}
-                className="w-full p-2 sm:p-2.5 border-0 bg-white rounded-md focus:outline-none text-gray-900 font-medium text-xs [@media(min-width:400px)]:text-sm disabled:opacity-60"
+                className="clean-select w-full p-2 sm:p-2.5 border-0 !bg-white rounded-md focus:outline-none text-gray-900 font-medium text-xs [@media(min-width:400px)]:text-sm disabled:opacity-60"
                 data-testid="select-boat"
               >
                 <option value="">Seleccionar...</option>
@@ -779,7 +779,7 @@ export default function BookingFormWidget({ preSelectedBoatId, onClose }: Bookin
               id="duration-select"
               value={selectedDuration}
               onChange={(e) => setSelectedDuration(e.target.value)}
-              className="w-full p-2 sm:p-2.5 border-0 bg-white rounded-md focus:outline-none text-gray-900 font-medium text-xs [@media(min-width:400px)]:text-sm"
+              className="clean-select w-full p-2 sm:p-2.5 border-0 !bg-white rounded-md focus:outline-none text-gray-900 font-medium text-xs [@media(min-width:400px)]:text-sm"
               data-testid="select-duration"
             >
               <option value="">Seleccionar...</option>

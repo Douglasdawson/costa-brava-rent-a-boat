@@ -48,7 +48,7 @@ export const BASE_DOMAIN = typeof window !== 'undefined'
 export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
   es: {
     home: {
-      title: "Alquiler Barcos Blanes Sin Licencia | Costa Brava",
+      title: "Alquiler de Barcos en Blanes y Lloret de Mar | Costa Brava Rent a Boat",
       description: "Alquiler de barcos sin licencia y con licencia en Blanes, Costa Brava. Desde Puerto de Blanes. 7 embarcaciones para 4-7 personas. Incluye snorkel y paddle surf.",
       keywords: "alquiler barcos blanes, barcos sin licencia costa brava, alquiler embarcaciones blanes, costa brava rent boat, puerto blanes"
     },

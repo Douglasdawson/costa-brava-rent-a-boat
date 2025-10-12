@@ -234,7 +234,7 @@ export default function Footer() {
             <h4 className="text-sm font-semibold text-white mb-3 text-center">Síguenos</h4>
             <div className="flex items-center justify-center space-x-4">
               <a
-                href="#"
+                href="https://www.instagram.com/costabravarentaboat/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-400 hover:text-pink-500 transition-colors"
@@ -244,7 +244,7 @@ export default function Footer() {
                 <SiInstagram className="w-6 h-6" />
               </a>
               <a
-                href="#"
+                href="https://www.facebook.com/costabravarentaboat"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-400 hover:text-blue-500 transition-colors"
@@ -254,7 +254,7 @@ export default function Footer() {
                 <SiFacebook className="w-6 h-6" />
               </a>
               <a
-                href="#"
+                href="https://www.tiktok.com/@costabravarentaboat"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-400 hover:text-white transition-colors"

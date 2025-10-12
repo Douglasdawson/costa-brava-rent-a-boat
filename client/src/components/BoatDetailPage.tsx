@@ -2,7 +2,9 @@ import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { useLocation } from "wouter";
+import BookingFlow from "./BookingFlow";
 import { useQuery } from "@tanstack/react-query";
 import { 
   ArrowLeft, 

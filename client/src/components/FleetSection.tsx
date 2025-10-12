@@ -1,11 +1,12 @@
 import { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import BoatCard from "./BoatCard";
 import BookingFormWidget from "./BookingFormWidget";
 import { openWhatsApp, createBookingMessage } from "@/utils/whatsapp";
 import { useLocation } from "wouter";
-import { BOAT_DATA } from "@shared/boatData";
 import { getBoatImage } from "@/utils/boatImages";
 import { useTranslations } from "@/lib/translations";
+import type { Boat } from "@shared/schema";
 import {
   Dialog,
   DialogContent,
@@ -20,70 +21,47 @@ export default function FleetSection() {
   const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
   const [selectedBoatId, setSelectedBoatId] = useState<string | undefined>(undefined);
 
-  // Real boat data from costabravarentaboat.com - Ordered as requested
-  // Using centralized data with fleet-specific information
-  const fleetInfo = {
-    "astec-400": { rating: 4.7, available: false }, // TEMPORALMENTE NO DISPONIBLE según web
-    "remus-450": { rating: 4.7, available: true },
-    "solar-450": { rating: 4.6, available: true },
-    "astec-450": { rating: 4.8, available: true },
-    "pacific-craft-625": { rating: 4.9, available: true },
-    "trimarchi-57s": { rating: 4.9, available: true },
-    "mingolla-brava-19": { rating: 4.8, available: true }
+  // Fetch boats from API
+  const { data: boatsData, isLoading } = useQuery<Boat[]>({
+    queryKey: ['/api/boats'],
+  });
+
+  // Default ratings for boats (can be moved to DB in future)
+  const defaultRatings: Record<string, number> = {
+    "astec-400": 4.7,
+    "remus-450": 4.7,
+    "solar-450": 4.6,
+    "astec-450": 4.8,
+    "pacific-craft-625": 4.9,
+    "trimarchi-57s": 4.9,
+    "mingolla-brava-19": 4.8
   };
 
-  // Fleet order as requested
-  const fleetOrder = [
-    "astec-400", "remus-450", "solar-450", "astec-450", 
-    "pacific-craft-625", "trimarchi-57s", "mingolla-brava-19"
-  ];
+  // Transform API data to BoatCard format
+  const boats = (boatsData || [])
+    .filter(boat => boat.isActive)
+    .map(boat => {
+      // Base price from BAJA season
+      const basePrice = boat.pricing?.BAJA?.prices 
+        ? Math.min(...Object.values(boat.pricing.BAJA.prices))
+        : 0;
 
-  const boats = fleetOrder.map(boatId => {
-    const boatData = BOAT_DATA[boatId];
-    const info = fleetInfo[boatId as keyof typeof fleetInfo];
-    
-    if (!boatData) return null;
-
-    // Extract capacity as number
-    const capacity = parseInt(boatData.specifications.capacity.split(' ')[0]);
-    
-    // Determine if license is required
-    const requiresLicense = boatData.subtitle.includes("Con Licencia");
-    
-    // Base price from BAJA season
-    const basePrice = Math.min(...Object.values(boatData.pricing.BAJA.prices));
-    
-    // Create features list with all equipment included
-    const features = [
-      ...boatData.equipment  // All equipment items
-    ];
-
-    return {
-      id: boatId,
-      name: boatData.name,
-      image: getBoatImage(boatData.image),
-      imageAlt: `Alquiler ${boatData.name} ${requiresLicense ? "con licencia" : "sin licencia"} en Blanes Costa Brava para ${capacity} personas`,
-      capacity,
-      requiresLicense,
-      description: boatData.description.substring(0, 150) + "...", // Truncate for cards
-      basePrice,
-      rating: info.rating,
-      features,
-      available: info.available
-    };
-  }).filter(Boolean) as Array<{
-    id: string;
-    name: string;
-    image: string;
-    imageAlt: string;
-    capacity: number;
-    requiresLicense: boolean;
-    description: string;
-    basePrice: number;
-    rating: number;
-    features: string[];
-    available: boolean;
-  }>;
+      return {
+        id: boat.id,
+        name: boat.name,
+        image: boat.imageUrl || '/placeholder-boat.jpg',
+        imageAlt: `Alquiler ${boat.name} ${boat.requiresLicense ? "con licencia" : "sin licencia"} en Blanes Costa Brava para ${boat.capacity} personas`,
+        capacity: boat.capacity,
+        requiresLicense: boat.requiresLicense,
+        description: boat.description 
+          ? (boat.description.length > 150 ? boat.description.substring(0, 150) + "..." : boat.description)
+          : '',
+        basePrice,
+        rating: defaultRatings[boat.id] || 4.5,
+        features: boat.equipment || [],
+        available: true
+      };
+    });
 
   const handleBooking = (boatId: string) => {
     setSelectedBoatId(boatId);
@@ -92,17 +70,10 @@ export default function FleetSection() {
 
   const handleDetails = (boatId: string) => {
     console.log("View details for:", boatId);
-    // Navigate to boat detail page - now works for all boats
-    if (BOAT_DATA[boatId]) {
-      setLocation(`/barco/${boatId}`);
-      // Scroll to top when navigating to boat details
-      window.scrollTo(0, 0);
-    } else {
-      console.log(`Detail page not available for ${boatId}`);
-      // Fallback to contact
-      const message = `Hola, me gustaría obtener más información sobre el barco ${boatId}`;
-      openWhatsApp(message);
-    }
+    // Navigate to boat detail page - works for all boats from API
+    setLocation(`/barco/${boatId}`);
+    // Scroll to top when navigating to boat details
+    window.scrollTo(0, 0);
   };
 
   return (
@@ -118,14 +89,26 @@ export default function FleetSection() {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-3 sm:gap-4 lg:gap-6 mb-6 sm:mb-8 lg:mb-12">
-          {boats.map((boat) => (
-            <BoatCard
-              key={boat.id}
-              {...boat}
-              onBooking={handleBooking}
-              onDetails={handleDetails}
-            />
-          ))}
+          {isLoading ? (
+            // Loading skeleton
+            Array.from({ length: 6 }).map((_, i) => (
+              <div key={i} className="bg-white rounded-lg p-4 animate-pulse">
+                <div className="bg-gray-200 h-48 rounded mb-4"></div>
+                <div className="bg-gray-200 h-6 rounded mb-2"></div>
+                <div className="bg-gray-200 h-4 rounded mb-4"></div>
+                <div className="bg-gray-200 h-10 rounded"></div>
+              </div>
+            ))
+          ) : (
+            boats.map((boat) => (
+              <BoatCard
+                key={boat.id}
+                {...boat}
+                onBooking={handleBooking}
+                onDetails={handleDetails}
+              />
+            ))
+          )}
         </div>
 
         <div className="text-center px-2 sm:px-4">

@@ -36,10 +36,10 @@ export default function Hero() {
           <Button 
             onClick={() => setIsBookingOpen(true)}
             size="lg"
-            className="text-base sm:text-lg px-8 sm:px-12 py-6 sm:py-7 shadow-2xl hover:scale-105 transition-transform"
+            className="shadow-2xl"
             data-testid="button-hero-cta"
           >
-            <SiWhatsapp className="w-5 h-5 sm:w-6 sm:h-6 mr-2" />
+            <SiWhatsapp className="w-5 h-5 mr-2" />
             Solicita ya tu petición de reserva
           </Button>
         </div>

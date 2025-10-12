@@ -15,6 +15,17 @@ interface BreadcrumbsProps {
 export function Breadcrumbs({ items, className = "" }: BreadcrumbsProps) {
   const t = useTranslations();
   
+  // Helper function to get translated text from a key
+  const getTranslatedLabel = (label: string): string => {
+    // If label starts with 'breadcrumbs.', it's a translation key
+    if (label.startsWith('breadcrumbs.')) {
+      const key = label.split('.')[1] as keyof typeof t.breadcrumbs;
+      return t.breadcrumbs?.[key] || label;
+    }
+    // Otherwise return as-is (for direct text)
+    return label;
+  };
+  
   return (
     <nav aria-label="Breadcrumb" className={`flex items-center space-x-2 text-sm ${className}`}>
       <ol className="flex items-center space-x-2">
@@ -27,17 +38,18 @@ export function Breadcrumbs({ items, className = "" }: BreadcrumbsProps) {
         
         {items.map((item, index) => {
           const isLast = index === items.length - 1;
+          const translatedLabel = getTranslatedLabel(item.label);
           
           return (
             <li key={index} className="flex items-center">
               <ChevronRight className="w-4 h-4 mx-1 text-gray-400" />
               {isLast ? (
                 <span className="text-gray-600 font-medium" aria-current="page" data-testid={`breadcrumb-current`}>
-                  {item.label}
+                  {translatedLabel}
                 </span>
               ) : (
                 <Link href={item.href!} className="text-primary hover:underline" data-testid={`breadcrumb-link-${index}`}>
-                  {item.label}
+                  {translatedLabel}
                 </Link>
               )}
             </li>

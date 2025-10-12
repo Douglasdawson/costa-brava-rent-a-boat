@@ -26,9 +26,12 @@ import {
   generateBreadcrumbSchema
 } from "@/utils/seo-config";
 import { openWhatsApp, createBookingMessage } from "@/utils/whatsapp";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { useTranslations } from "@/lib/translations";
 
 export default function CategoryLicenseFreePage() {
   const { language } = useLanguage();
+  const t = useTranslations();
   const seoConfig = getSEOConfig('categoryLicenseFree', language);
   const hreflangLinks = generateHreflangLinks('categoryLicenseFree');
   const canonical = generateCanonicalUrl('categoryLicenseFree', language);
@@ -71,8 +74,8 @@ export default function CategoryLicenseFreePage() {
 
   // Generate breadcrumb schema
   const breadcrumbSchema = generateBreadcrumbSchema([
-    { name: "Inicio", url: "/" },
-    { name: "Barcos sin Licencia", url: "/barcos-sin-licencia" }
+    { name: t.breadcrumbs.home, url: "/" },
+    { name: t.breadcrumbs.categoryLicenseFree, url: "/barcos-sin-licencia" }
   ]);
 
   // Combine schemas using @graph
@@ -119,6 +122,18 @@ export default function CategoryLicenseFreePage() {
         jsonLd={combinedJsonLd}
       />
       <Navigation />
+      
+      {/* Breadcrumbs */}
+      <div className="bg-gray-50 border-b border-gray-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+          <Breadcrumbs 
+            items={[
+              { label: 'breadcrumbs.home', href: '/' },
+              { label: 'breadcrumbs.categoryLicenseFree' }
+            ]}
+          />
+        </div>
+      </div>
       
       {/* Hero Section */}
       <div className="bg-gradient-to-br from-green-50 to-emerald-50 pt-24 pb-12">

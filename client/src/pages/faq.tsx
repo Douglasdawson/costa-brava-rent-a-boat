@@ -35,9 +35,12 @@ import {
 } from "@/utils/seo-config";
 import { openWhatsApp, createBookingMessage } from "@/utils/whatsapp";
 import { useState } from "react";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { useTranslations } from "@/lib/translations";
 
 export default function FAQPage() {
   const { language } = useLanguage();
+  const t = useTranslations();
   const seoConfig = getSEOConfig('faq', language);
   const hreflangLinks = generateHreflangLinks('faq');
   const canonical = generateCanonicalUrl('faq', language);
@@ -112,10 +115,10 @@ export default function FAQPage() {
     ]
   };
 
-  // Generate breadcrumb schema
+  // Generate breadcrumb schema with localized names
   const breadcrumbSchema = generateBreadcrumbSchema([
-    { name: "Inicio", url: "/" },
-    { name: "Preguntas Frecuentes", url: "/faq" }
+    { name: t.breadcrumbs.home, url: "/" },
+    { name: t.breadcrumbs.faq, url: "/faq" }
   ]);
 
   // Combine schemas using @graph
@@ -151,6 +154,18 @@ export default function FAQPage() {
         jsonLd={combinedJsonLd}
       />
       <Navigation />
+      
+      {/* Breadcrumbs */}
+      <div className="bg-gray-50 border-b border-gray-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+          <Breadcrumbs 
+            items={[
+              { label: 'breadcrumbs.home', href: '/' },
+              { label: 'breadcrumbs.faq' }
+            ]}
+          />
+        </div>
+      </div>
       
       {/* Hero Section */}
       <div className="bg-gradient-to-br from-blue-50 to-teal-50 pt-24 pb-8">

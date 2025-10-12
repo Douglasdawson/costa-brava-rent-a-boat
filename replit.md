@@ -4,6 +4,11 @@
 
 This project is a boat rental platform for Costa Brava Rent a Boat in Blanes, Spain. It offers a public website for browsing and booking boats, and an internal CRM for managing reservations and the fleet. The platform operates seasonally (April-October) with 7 boats, providing both licensed and license-free rentals with flexible hourly durations. The design emphasizes Mediterranean aesthetics and a user-friendly booking experience, inspired by popular vacation rental sites. The business vision is to provide an intuitive and efficient boat rental service, capitalizing on the growing tourism in the Costa Brava region.
 
+**Recent SEO Enhancements (October 2025):**
+- Breadcrumb navigation with BreadcrumbList JSON-LD schema implemented across 8 key pages (FAQ, 3 locations, 2 categories, 2 legal pages)
+- Localized breadcrumb schemas in 8 languages for improved international SEO
+- Part of comprehensive SEO strategy targeting +20-30% CTR improvement and Google Sitelinks
+
 ## User Preferences
 
 Preferred communication style: Simple, everyday language.

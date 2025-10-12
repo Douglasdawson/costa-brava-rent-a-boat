@@ -28,9 +28,12 @@ import {
   generateBreadcrumbSchema
 } from "@/utils/seo-config";
 import { openWhatsApp, createBookingMessage } from "@/utils/whatsapp";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { useTranslations } from "@/lib/translations";
 
 export default function LocationTossaPage() {
   const { language } = useLanguage();
+  const t = useTranslations();
   const seoConfig = getSEOConfig('locationTossa', language);
   const hreflangLinks = generateHreflangLinks('locationTossa');
   const canonical = generateCanonicalUrl('locationTossa', language);
@@ -70,8 +73,8 @@ export default function LocationTossaPage() {
 
   // Generate breadcrumb schema
   const breadcrumbSchema = generateBreadcrumbSchema([
-    { name: "Inicio", url: "/" },
-    { name: "Tossa de Mar", url: "/alquiler-barcos-tossa-de-mar" }
+    { name: t.breadcrumbs.home, url: "/" },
+    { name: t.breadcrumbs.locationTossa, url: "/alquiler-barcos-tossa-de-mar" }
   ]);
 
   // Combine schemas using @graph
@@ -93,6 +96,18 @@ export default function LocationTossaPage() {
         jsonLd={combinedJsonLd}
       />
       <Navigation />
+      
+      {/* Breadcrumbs */}
+      <div className="bg-gray-50 border-b border-gray-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+          <Breadcrumbs 
+            items={[
+              { label: 'breadcrumbs.home', href: '/' },
+              { label: 'breadcrumbs.locationTossa' }
+            ]}
+          />
+        </div>
+      </div>
       
       {/* Hero Section */}
       <div className="bg-gradient-to-br from-blue-50 to-emerald-50 pt-24 pb-12">

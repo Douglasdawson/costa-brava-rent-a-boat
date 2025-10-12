@@ -4,13 +4,22 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { SEO } from "@/components/SEO";
 import { useLanguage } from "@/hooks/use-language";
-import { getSEOConfig, generateHreflangLinks, generateCanonicalUrl } from "@/utils/seo-config";
+import { getSEOConfig, generateHreflangLinks, generateCanonicalUrl, generateBreadcrumbSchema } from "@/utils/seo-config";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { useTranslations } from "@/lib/translations";
 
 export default function TermsConditionsPage() {
   const { language } = useLanguage();
+  const t = useTranslations();
   const seoConfig = getSEOConfig('termsConditions', language);
   const hreflangLinks = generateHreflangLinks('termsConditions');
   const canonical = generateCanonicalUrl('termsConditions', language);
+
+  // Generate breadcrumb schema with localized names
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: t.breadcrumbs.home, url: "/" },
+    { name: t.breadcrumbs.termsConditions, url: "/terms-conditions" }
+  ]);
 
   return (
     <div className="min-h-screen">
@@ -19,8 +28,21 @@ export default function TermsConditionsPage() {
         description={seoConfig.description}
         canonical={canonical}
         hreflang={hreflangLinks}
+        jsonLd={breadcrumbSchema}
       />
       <Navigation />
+      
+      {/* Breadcrumbs */}
+      <div className="bg-gray-50 border-b border-gray-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+          <Breadcrumbs 
+            items={[
+              { label: 'breadcrumbs.home', href: '/' },
+              { label: 'breadcrumbs.termsConditions' }
+            ]}
+          />
+        </div>
+      </div>
       
       {/* Hero Section */}
       <div className="bg-gradient-to-br from-blue-50 to-teal-50 pt-24 pb-8">

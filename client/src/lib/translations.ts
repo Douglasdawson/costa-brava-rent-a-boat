@@ -288,6 +288,13 @@ export interface Translations {
     categories: string;
     legal: string;
     faq: string;
+    categoryLicenseFree: string;
+    categoryLicensed: string;
+    locationBlanes: string;
+    locationLloret: string;
+    locationTossa: string;
+    privacyPolicy: string;
+    termsConditions: string;
   };
 }
 
@@ -558,6 +565,13 @@ export const translations: Record<Language, Translations> = {
       categories: 'Categorías',
       legal: 'Legal',
       faq: 'FAQ',
+      categoryLicenseFree: 'Barcos Sin Licencia',
+      categoryLicensed: 'Barcos Con Licencia',
+      locationBlanes: 'Blanes',
+      locationLloret: 'Lloret de Mar',
+      locationTossa: 'Tossa de Mar',
+      privacyPolicy: 'Política de Privacidad',
+      termsConditions: 'Términos y Condiciones',
     },
   },
   
@@ -767,6 +781,13 @@ export const translations: Record<Language, Translations> = {
       categories: 'Categories',
       legal: 'Legal',
       faq: 'FAQ',
+      categoryLicenseFree: 'Barques Sense Llicència',
+      categoryLicensed: 'Barques Amb Llicència',
+      locationBlanes: 'Blanes',
+      locationLloret: 'Lloret de Mar',
+      locationTossa: 'Tossa de Mar',
+      privacyPolicy: 'Política de Privacitat',
+      termsConditions: 'Termes i Condicions',
     },
   },
   
@@ -973,6 +994,13 @@ export const translations: Record<Language, Translations> = {
       categories: 'Categories',
       legal: 'Legal',
       faq: 'FAQ',
+      categoryLicenseFree: 'License-Free Boats',
+      categoryLicensed: 'Licensed Boats',
+      locationBlanes: 'Blanes',
+      locationLloret: 'Lloret de Mar',
+      locationTossa: 'Tossa de Mar',
+      privacyPolicy: 'Privacy Policy',
+      termsConditions: 'Terms and Conditions',
     },
   },
   
@@ -1164,6 +1192,13 @@ export const translations: Record<Language, Translations> = {
       categories: 'Catégories',
       legal: 'Légal',
       faq: 'FAQ',
+      categoryLicenseFree: 'Bateaux Sans Permis',
+      categoryLicensed: 'Bateaux Avec Permis',
+      locationBlanes: 'Blanes',
+      locationLloret: 'Lloret de Mar',
+      locationTossa: 'Tossa de Mar',
+      privacyPolicy: 'Politique de Confidentialité',
+      termsConditions: 'Conditions Générales',
     },
   },
   
@@ -1352,6 +1387,13 @@ export const translations: Record<Language, Translations> = {
       categories: 'Kategorien',
       legal: 'Rechtliches',
       faq: 'FAQ',
+      categoryLicenseFree: 'Boote ohne Führerschein',
+      categoryLicensed: 'Boote mit Führerschein',
+      locationBlanes: 'Blanes',
+      locationLloret: 'Lloret de Mar',
+      locationTossa: 'Tossa de Mar',
+      privacyPolicy: 'Datenschutz',
+      termsConditions: 'Geschäftsbedingungen',
     },
   },
   
@@ -1540,6 +1582,13 @@ export const translations: Record<Language, Translations> = {
       categories: 'Categorieën',
       legal: 'Juridisch',
       faq: 'FAQ',
+      categoryLicenseFree: 'Boten zonder Vaarbewijs',
+      categoryLicensed: 'Boten met Vaarbewijs',
+      locationBlanes: 'Blanes',
+      locationLloret: 'Lloret de Mar',
+      locationTossa: 'Tossa de Mar',
+      privacyPolicy: 'Privacybeleid',
+      termsConditions: 'Algemene Voorwaarden',
     },
   },
   
@@ -1728,6 +1777,13 @@ export const translations: Record<Language, Translations> = {
       categories: 'Categorie',
       legal: 'Legale',
       faq: 'FAQ',
+      categoryLicenseFree: 'Barche senza Patente',
+      categoryLicensed: 'Barche con Patente',
+      locationBlanes: 'Blanes',
+      locationLloret: 'Lloret de Mar',
+      locationTossa: 'Tossa de Mar',
+      privacyPolicy: 'Privacy Policy',
+      termsConditions: 'Termini e Condizioni',
     },
   },
   
@@ -1916,6 +1972,13 @@ export const translations: Record<Language, Translations> = {
       categories: 'Категории',
       legal: 'Правовая информация',
       faq: 'FAQ',
+      categoryLicenseFree: 'Лодки без Лицензии',
+      categoryLicensed: 'Лодки с Лицензией',
+      locationBlanes: 'Бланес',
+      locationLloret: 'Льорет-де-Мар',
+      locationTossa: 'Тосса-де-Мар',
+      privacyPolicy: 'Политика Конфиденциальности',
+      termsConditions: 'Условия и Положения',
     },
   },
 };

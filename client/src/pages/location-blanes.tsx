@@ -19,11 +19,14 @@ import Footer from "@/components/Footer";
 import RelatedLocationsSection from "@/components/RelatedLocationsSection";
 import { SEO } from "@/components/SEO";
 import { useLanguage } from "@/hooks/use-language";
-import { getSEOConfig, generateHreflangLinks, generateCanonicalUrl } from "@/utils/seo-config";
+import { getSEOConfig, generateHreflangLinks, generateCanonicalUrl, generateBreadcrumbSchema } from "@/utils/seo-config";
 import { openWhatsApp, createBookingMessage } from "@/utils/whatsapp";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { useTranslations } from "@/lib/translations";
 
 export default function LocationBlanesPage() {
   const { language } = useLanguage();
+  const t = useTranslations();
   const seoConfig = getSEOConfig('locationBlanes', language);
   const hreflangLinks = generateHreflangLinks('locationBlanes');
   const canonical = generateCanonicalUrl('locationBlanes', language);
@@ -62,6 +65,18 @@ export default function LocationBlanesPage() {
     }
   };
 
+  // Generate breadcrumb schema
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: t.breadcrumbs.home, url: "/" },
+    { name: t.breadcrumbs.locationBlanes, url: "/alquiler-barcos-blanes" }
+  ]);
+
+  // Combine schemas
+  const combinedJsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [locationSchema, breadcrumbSchema]
+  };
+
   return (
     <div className="min-h-screen">
       <SEO 
@@ -69,9 +84,21 @@ export default function LocationBlanesPage() {
         description={seoConfig.description}
         canonical={canonical}
         hreflang={hreflangLinks}
-        jsonLd={locationSchema}
+        jsonLd={combinedJsonLd}
       />
       <Navigation />
+      
+      {/* Breadcrumbs */}
+      <div className="bg-gray-50 border-b border-gray-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+          <Breadcrumbs 
+            items={[
+              { label: 'breadcrumbs.home', href: '/' },
+              { label: 'breadcrumbs.locationBlanes' }
+            ]}
+          />
+        </div>
+      </div>
       
       {/* Hero Section */}
       <div className="bg-gradient-to-br from-blue-50 to-teal-50 pt-24 pb-12">

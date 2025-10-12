@@ -152,7 +152,7 @@ export default function ContactSection() {
           {/* Contact Form */}
           <Card className="flex flex-col bg-white">
             <CardHeader className="pb-4">
-              <CardTitle className="text-[#0a4076]">Envíanos un Mensaje</CardTitle>
+              <CardTitle className="text-[#143352]">Envíanos un Mensaje</CardTitle>
             </CardHeader>
             <CardContent className="flex-1 flex flex-col">
               <form id="contact-form" onSubmit={handleSubmit} className="flex-1 flex flex-col space-y-5">

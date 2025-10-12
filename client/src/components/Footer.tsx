@@ -30,7 +30,7 @@ export default function Footer() {
   return (
     <footer className="bg-gray-900 text-gray-300">
       <div className="container mx-auto px-4 py-8 sm:py-12">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 sm:gap-8">
           {/* Company Info */}
           <div className="sm:col-span-2 lg:col-span-1">
             <button 
@@ -199,6 +199,52 @@ export default function Footer() {
               <li><a href="#" className="hover:text-primary transition-colors">{t.footer.extrasSeascooter}</a></li>
               <li><a href="#" className="hover:text-primary transition-colors">{t.footer.hourlyRental}</a></li>
               <li><a href="#" className="hover:text-primary transition-colors">{t.footer.portParking}</a></li>
+            </ul>
+          </div>
+
+          {/* Social Media */}
+          <div>
+            <h3 className="font-semibold text-white mb-4">Síguenos</h3>
+            <ul className="space-y-3">
+              <li>
+                <a
+                  href="https://www.instagram.com/costabravarentaboat/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center space-x-3 text-gray-400 hover:text-pink-500 transition-colors"
+                  data-testid="footer-instagram"
+                  aria-label="Síguenos en Instagram"
+                >
+                  <SiInstagram className="w-5 h-5" />
+                  <span className="text-xs">Instagram</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.facebook.com/costabravarentaboat"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center space-x-3 text-gray-400 hover:text-blue-500 transition-colors"
+                  data-testid="footer-facebook"
+                  aria-label="Síguenos en Facebook"
+                >
+                  <SiFacebook className="w-5 h-5" />
+                  <span className="text-xs">Facebook</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.tiktok.com/@costabravarentaboat"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center space-x-3 text-gray-400 hover:text-white transition-colors"
+                  data-testid="footer-tiktok"
+                  aria-label="Síguenos en TikTok"
+                >
+                  <SiTiktok className="w-5 h-5" />
+                  <span className="text-xs">TikTok</span>
+                </a>
+              </li>
             </ul>
           </div>
         </div>

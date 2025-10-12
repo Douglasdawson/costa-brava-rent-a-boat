@@ -50,13 +50,13 @@ export default function Navigation() {
   const scrollToSection = (sectionId: string, maxAttempts = 10) => {
     const element = document.getElementById(sectionId);
     if (element) {
-      // Calculate position with offset for fixed navbar (h-16 = 64px + extra padding)
-      const navbarOffset = 80; // 64px navbar height + 16px extra padding
-      const elementPosition = element.offsetTop - navbarOffset;
-      
-      window.scrollTo({
-        top: elementPosition,
-        behavior: "smooth"
+      // Use scrollIntoView which respects CSS scroll-margin-top
+      // Wait for next frame to ensure mobile menu has fully closed
+      requestAnimationFrame(() => {
+        element.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
       });
       return;
     }

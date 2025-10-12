@@ -574,6 +574,7 @@ export default function BookingFormWidget({ preSelectedBoatId, onClose }: Bookin
               value={firstName}
               onChange={(e) => setFirstName(e.target.value)}
               placeholder="Ej: Juan"
+              autoComplete="given-name"
               className="w-full p-2 sm:p-2.5 border-0 bg-gray-50 rounded-md focus:ring-2 focus:ring-primary focus:bg-white transition-all text-gray-900 font-medium text-xs [@media(min-width:400px)]:text-sm sm:text-sm text-center md:text-left"
               data-testid="input-first-name"
             />
@@ -593,6 +594,7 @@ export default function BookingFormWidget({ preSelectedBoatId, onClose }: Bookin
               value={lastName}
               onChange={(e) => setLastName(e.target.value)}
               placeholder="Ej: García López"
+              autoComplete="family-name"
               className="w-full p-2 sm:p-2.5 border-0 bg-gray-50 rounded-md focus:ring-2 focus:ring-primary focus:bg-white transition-all text-gray-900 font-medium text-xs [@media(min-width:400px)]:text-sm sm:text-sm text-center md:text-left"
               data-testid="input-last-name"
             />
@@ -659,6 +661,7 @@ export default function BookingFormWidget({ preSelectedBoatId, onClose }: Bookin
                 value={phoneNumber}
                 onChange={(e) => setPhoneNumber(e.target.value)}
                 placeholder="123456789"
+                autoComplete="tel"
                 className="flex-1 p-2 sm:p-2.5 border-0 bg-gray-50 rounded-md focus:ring-2 focus:ring-primary focus:bg-white transition-all text-gray-900 font-medium text-xs [@media(min-width:400px)]:text-sm"
                 data-testid="input-phone-number"
               />
@@ -679,6 +682,7 @@ export default function BookingFormWidget({ preSelectedBoatId, onClose }: Bookin
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="tu@email.com"
+              autoComplete="email"
               className="w-full p-2 sm:p-2.5 border-0 bg-gray-50 rounded-md focus:ring-2 focus:ring-primary focus:bg-white transition-all text-gray-900 font-medium text-xs [@media(min-width:400px)]:text-sm text-center md:text-left"
               data-testid="input-email"
             />

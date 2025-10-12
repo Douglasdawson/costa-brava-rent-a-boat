@@ -796,7 +796,7 @@ export default function BookingFormWidget({ preSelectedBoatId, onClose }: Bookin
         data-testid="button-submit-booking"
       >
         <SiWhatsapp className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
-        Buscar Disponibilidad
+        Solicitar peticion de reserva
       </Button>
     </Card>
   );

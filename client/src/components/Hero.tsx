@@ -23,7 +23,6 @@ export default function Hero() {
          style={{ backgroundImage: `url(${heroImage})` }}>
       {/* Dark overlay for text readability */}
       <div className="absolute inset-0 bg-black/40"></div>
-      
       <div className="relative z-10 container mx-auto px-3 sm:px-4 pt-24 sm:pt-36 pb-8 sm:pb-12 min-h-screen md:h-screen flex flex-col justify-center items-center text-center">
         <div className="max-w-5xl mx-auto mb-6 sm:mb-8 w-full px-2 sm:px-4">
           <h1 className="font-heading text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-6 sm:mb-8 leading-tight px-2">
@@ -70,9 +69,7 @@ export default function Hero() {
                 rel="noopener noreferrer"
                 className="font-medium hover:text-white transition-colors cursor-pointer"
                 data-testid="satisfied-clients-link"
-              >
-                +500 clientes satisfechos
-              </a>
+              >+5000 clientes satisfechos</a>
             </div>
             <div className="flex items-center space-x-2 sm:justify-center">
               <Shield className="w-4 h-4 sm:w-5 sm:h-5 text-blue-400 flex-shrink-0" />
@@ -80,12 +77,11 @@ export default function Hero() {
             </div>
             <div className="flex items-center space-x-2 sm:justify-center">
               <Clock className="w-4 h-4 sm:w-5 sm:h-5 text-purple-400 flex-shrink-0" />
-              <span className="font-medium">5 años de experiencia</span>
+              <span className="font-medium">+ de 5 años de experiencia</span>
             </div>
           </div>
         </div>
       </div>
-
       {/* Booking Modal */}
       <Dialog open={isBookingOpen} onOpenChange={setIsBookingOpen}>
         <DialogContent className="!max-w-4xl w-[95vw] h-[95vh] max-h-[95vh] p-3 sm:p-4 md:p-6 !left-1/2 !top-1/2 !-translate-x-1/2 !-translate-y-1/2 overflow-y-auto">

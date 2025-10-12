@@ -1,7 +1,7 @@
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Users, Clock, Star, Euro, CheckCircle, AlertCircle } from "lucide-react";
+import { Users, Clock, Star, Euro, CheckCircle, AlertCircle, Gauge } from "lucide-react";
 import { useTranslations } from "@/lib/translations";
 
 interface BoatCardProps {
@@ -16,6 +16,7 @@ interface BoatCardProps {
   rating: number;
   features: string[];
   available: boolean;
+  enginePower?: string;
   onBooking: (boatId: string) => void;
   onDetails: (boatId: string) => void;
 }
@@ -32,6 +33,7 @@ export default function BoatCard({
   rating,
   features,
   available,
+  enginePower,
   onBooking,
   onDetails
 }: BoatCardProps) {
@@ -112,6 +114,12 @@ export default function BoatCard({
             <Users className="w-3 h-3 sm:w-4 sm:h-4 mr-1" />
             <span>{t.boats.upTo} {capacity} {t.boats.people}</span>
           </div>
+          {enginePower && (
+            <div className="flex items-center">
+              <Gauge className="w-3 h-3 sm:w-4 sm:h-4 mr-1" />
+              <span>{enginePower}</span>
+            </div>
+          )}
           <div className="flex items-center">
             <Clock className="w-3 h-3 sm:w-4 sm:h-4 mr-1" />
             <span>{t.boats.hours}</span>

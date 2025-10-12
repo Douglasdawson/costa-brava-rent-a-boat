@@ -48,6 +48,9 @@ export default function FleetSection() {
         ? Math.min(...Object.values(boat.pricing.BAJA.prices))
         : 0;
 
+      // Extract engine power from specifications
+      const enginePower = boat.specifications?.engine || '';
+
       return {
         id: boat.id,
         name: boat.name,
@@ -61,7 +64,8 @@ export default function FleetSection() {
         basePrice,
         rating: defaultRatings[boat.id] || 4.5,
         features: boat.equipment || [],
-        available: true
+        available: true,
+        enginePower: enginePower
       };
     });
 

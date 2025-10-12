@@ -48,42 +48,42 @@ export const BASE_DOMAIN = typeof window !== 'undefined'
 export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
   es: {
     home: {
-      title: "Alquiler de barcos en Blanes (Costa Brava) sin licencia | Costa Brava Rent a Boat",
+      title: "Alquiler Barcos Blanes Sin Licencia | Costa Brava",
       description: "Alquiler de barcos sin licencia y con licencia en Blanes, Costa Brava. Desde Puerto de Blanes. 7 embarcaciones para 4-7 personas. Incluye snorkel y paddle surf.",
       keywords: "alquiler barcos blanes, barcos sin licencia costa brava, alquiler embarcaciones blanes, costa brava rent boat, puerto blanes"
     },
     booking: {
-      title: "Reservar Barco en Blanes | Costa Brava Rent a Boat",
+      title: "Reservar Barco Blanes | Costa Brava Rent a Boat",
       description: "Completa el formulario para reservar tu barco en Blanes, Costa Brava. Barcos sin licencia y con licencia. Respuesta rápida por WhatsApp.",
       keywords: "reservar barco blanes, formulario reserva embarcación, booking barco costa brava"
     },
     faq: {
-      title: "Preguntas Frecuentes (FAQ) - Alquiler de Barcos en Blanes | Costa Brava Rent a Boat",
+      title: "FAQ Alquiler Barcos Blanes | Costa Brava",
       description: "Resuelve todas tus dudas sobre el alquiler de barcos en Blanes, Costa Brava. Precios, requisitos, qué incluye, políticas de cancelación y más. Sin licencia y con licencia.",
       keywords: "faq alquiler barcos, preguntas frecuentes embarcaciones, dudas alquiler barcos costa brava, información barcos blanes"
     },
     locationBlanes: {
-      title: "Alquiler de Barcos en Blanes, Costa Brava - Sin Licencia | Costa Brava Rent a Boat",
+      title: "Alquiler Barcos Blanes Sin Licencia | Puerto Blanes",
       description: "Alquiler de barcos en Blanes, Costa Brava. Puerto de Blanes. Embarcaciones sin licencia y con licencia para 4-7 personas. Explora las calas de la Costa Brava desde Blanes.",
       keywords: "alquiler barcos blanes puerto, embarcaciones blanes costa brava, barcos sin licencia blanes, calas costa brava desde blanes"
     },
     locationLloret: {
-      title: "Alquiler de Barcos en Lloret de Mar, Costa Brava - Excursiones desde Blanes",
+      title: "Barcos a Lloret de Mar desde Blanes | Costa Brava",
       description: "Alquiler de barcos para visitar Lloret de Mar desde Puerto de Blanes. Embarcaciones sin licencia y con licencia. Explora las playas de Lloret navegando desde Blanes.",
       keywords: "alquiler barcos lloret de mar, visitar lloret en barco, excursion lloret desde blanes, barcos lloret costa brava"
     },
     locationTossa: {
-      title: "Alquiler de Barcos en Tossa de Mar, Costa Brava - Excursiones desde Blanes",
+      title: "Barcos a Tossa de Mar desde Blanes | Costa Brava",
       description: "Alquiler de barcos para visitar Tossa de Mar desde Puerto de Blanes. 1 hora navegando hasta el pueblo medieval más bonito de la Costa Brava. Barcos sin licencia y con licencia.",
       keywords: "alquiler barcos tossa de mar, visitar tossa en barco, excursion tossa desde blanes, barcos tossa costa brava, vila vella tossa"
     },
     categoryLicenseFree: {
-      title: "Alquiler de Barcos Sin Licencia en Blanes, Costa Brava | Costa Brava Rent a Boat",
+      title: "Barcos Sin Licencia Blanes | Costa Brava",
       description: "Alquiler de barcos sin licencia en Blanes, Costa Brava. Embarcaciones de hasta 15 CV para 4-7 personas. No necesitas titulación náutica. Explora las calas desde Puerto de Blanes.",
       keywords: "barcos sin licencia blanes, alquiler barcos sin titulo, embarcaciones sin permiso costa brava, barcos 15cv blanes"
     },
     categoryLicensed: {
-      title: "Alquiler de Barcos Con Licencia en Blanes, Costa Brava | Costa Brava Rent a Boat",
+      title: "Barcos Con Licencia Blanes | Costa Brava",
       description: "Alquiler de barcos con licencia en Blanes, Costa Brava. Embarcaciones potentes para navegación avanzada. Requiere titulación náutica PER, PNB o superior. Máxima libertad en la Costa Brava.",
       keywords: "barcos con licencia blanes, alquiler barcos PER, embarcaciones titulacion nautica, barcos potentes costa brava"
     },
@@ -115,42 +115,42 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
   },
   en: {
     home: {
-      title: "Boat Rental in Blanes (Costa Brava) without license | Costa Brava Rent a Boat",
+      title: "Boat Rental Blanes No License | Costa Brava",
       description: "Boat rental without license and with license in Blanes, Costa Brava. From Port of Blanes. 7 boats for 4-7 people. Includes snorkel and paddle surf.",
       keywords: "boat rental blanes, boats without license costa brava, boat charter blanes, costa brava rent boat, blanes port"
     },
     booking: {
-      title: "Book a Boat in Blanes | Costa Brava Rent a Boat",
+      title: "Book Boat Blanes | Costa Brava Rent a Boat",
       description: "Complete the form to book your boat in Blanes, Costa Brava. License-free and licensed boats. Quick WhatsApp response.",
       keywords: "book boat blanes, boat booking form, boat reservation costa brava"
     },
     faq: {
-      title: "Frequently Asked Questions (FAQ) - Boat Rental in Blanes | Costa Brava Rent a Boat",
+      title: "FAQ Boat Rental Blanes | Costa Brava",
       description: "Solve all your doubts about boat rental in Blanes, Costa Brava. Prices, requirements, what's included, cancellation policies and more. Without license and with license.",
       keywords: "faq boat rental, frequently asked questions boats, boat rental costa brava info, blanes boats information"
     },
     locationBlanes: {
-      title: "Boat Rental in Blanes, Costa Brava - Without License | Costa Brava Rent a Boat",
+      title: "Boat Rental Blanes No License | Port Blanes",
       description: "Boat rental in Blanes, Costa Brava. Port of Blanes. Boats without license and with license for 4-7 people. Explore Costa Brava coves from Blanes.",
       keywords: "boat rental blanes port, boats blanes costa brava, boats without license blanes, costa brava coves from blanes"
     },
     locationLloret: {
-      title: "Boat Rental to Visit Lloret de Mar, Costa Brava - Excursions from Blanes",
+      title: "Boats to Lloret de Mar from Blanes | Costa Brava",
       description: "Boat rental to visit Lloret de Mar from Blanes Port. Boats without license and with license. Explore Lloret beaches sailing from Blanes.",
       keywords: "boat rental lloret de mar, visit lloret by boat, lloret excursion from blanes, boats lloret costa brava"
     },
     locationTossa: {
-      title: "Boat Rental to Visit Tossa de Mar, Costa Brava - Excursions from Blanes",
+      title: "Boats to Tossa de Mar from Blanes | Costa Brava",
       description: "Boat rental to visit Tossa de Mar from Blanes Port. 1 hour sailing to the most beautiful medieval town of Costa Brava. Boats without license and with license.",
       keywords: "boat rental tossa de mar, visit tossa by boat, tossa excursion from blanes, boats tossa costa brava, vila vella tossa"
     },
     categoryLicenseFree: {
-      title: "License-Free Boat Rental in Blanes, Costa Brava | Costa Brava Rent a Boat",
+      title: "No License Boats Blanes | Costa Brava",
       description: "License-free boat rental in Blanes, Costa Brava. Boats up to 15 HP for 4-7 people. No boating license required. Explore Costa Brava coves from Blanes Port.",
       keywords: "license free boats blanes, boats without license, no license boat rental costa brava, 15hp boats blanes"
     },
     categoryLicensed: {
-      title: "Licensed Boat Rental in Blanes, Costa Brava | Costa Brava Rent a Boat",
+      title: "Licensed Boats Blanes | Costa Brava",
       description: "Licensed boat rental in Blanes, Costa Brava. Powerful boats for advanced navigation. Requires boating license ICC, RYA or equivalent. Maximum freedom on Costa Brava.",
       keywords: "licensed boats blanes, boats with license, ICC boat rental, powerful boats costa brava"
     },
@@ -182,7 +182,7 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
   },
   ca: {
     home: {
-      title: "Lloguer de barques a Blanes (Costa Brava) sense llicència | Costa Brava Rent a Boat",
+      title: "Lloguer Barques Blanes Sense Llicència | Costa Brava",
       description: "Lloguer de barques sense llicència i amb llicència a Blanes, Costa Brava. Des del Port de Blanes. 7 embarcacions per a 4-7 persones. Inclou snorkel i paddle surf.",
       keywords: "lloguer barques blanes, barques sense llicència costa brava, lloguer embarcacions blanes, costa brava rent boat, port blanes"
     },
@@ -192,32 +192,32 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       keywords: "reservar barque blanes, formulari reserva embarcació, booking barque costa brava"
     },
     faq: {
-      title: "Preguntes Freqüents (FAQ) - Lloguer de Barques a Blanes | Costa Brava Rent a Boat",
+      title: "FAQ Lloguer Barques Blanes | Costa Brava",
       description: "Resol tots els teus dubtes sobre el lloguer de barques a Blanes, Costa Brava. Preus, requisits, què inclou, polítiques de cancel·lació i més.",
       keywords: "faq lloguer barques, preguntes freqüents embarcacions, dubtes lloguer barques costa brava"
     },
     locationBlanes: {
-      title: "Lloguer de Barques a Blanes, Costa Brava - Sense Llicència | Costa Brava Rent a Boat",
+      title: "Lloguer Barques Blanes Sense Llicència | Port Blanes",
       description: "Lloguer de barques a Blanes, Costa Brava. Port de Blanes. Embarcacions sense llicència i amb llicència per a 4-7 persones.",
       keywords: "lloguer barques blanes port, embarcacions blanes costa brava, barques sense llicència blanes"
     },
     locationLloret: {
-      title: "Lloguer de Barques per Visitar Lloret de Mar - Excursions des de Blanes",
+      title: "Barques a Lloret de Mar des de Blanes | Costa Brava",
       description: "Lloguer de barques per visitar Lloret de Mar des del Port de Blanes. Embarcacions sense llicència i amb llicència. Explora les platges de Lloret navegant des de Blanes.",
       keywords: "lloguer barques lloret de mar, visitar lloret en barque, excursió lloret des de blanes"
     },
     locationTossa: {
-      title: "Lloguer de Barques per Visitar Tossa de Mar - Excursions des de Blanes",
+      title: "Barques a Tossa de Mar des de Blanes | Costa Brava",
       description: "Lloguer de barques per visitar Tossa de Mar des del Port de Blanes. 1 hora navegant fins al poble medieval més bonic de la Costa Brava. Embarcacions sense llicència i amb llicència.",
       keywords: "lloguer barques tossa de mar, visitar tossa en barque, excursió tossa des de blanes, vila vella tossa"
     },
     categoryLicenseFree: {
-      title: "Lloguer de Barques sense Llicència a Blanes, Costa Brava | Costa Brava Rent a Boat",
+      title: "Barques Sense Llicència Blanes | Costa Brava",
       description: "Lloguer de barques sense llicència a Blanes, Costa Brava. Embarcacions de fins a 15 CV per a 4-7 persones. No necessites titulació nàutica. Explora les cales des del Port de Blanes.",
       keywords: "barques sense llicència blanes, lloguer barques sense títol, embarcacions sense permís costa brava, barques 15cv blanes"
     },
     categoryLicensed: {
-      title: "Lloguer de Barques amb Llicència a Blanes, Costa Brava | Costa Brava Rent a Boat",
+      title: "Barques Amb Llicència Blanes | Costa Brava",
       description: "Lloguer de barques amb llicència a Blanes, Costa Brava. Embarcacions potents per a navegació avançada. Requereix titulació nàutica PER, PNB o superior. Màxima llibertat a la Costa Brava.",
       keywords: "barques amb llicència blanes, lloguer barques PER, embarcacions titulació nàutica, barques potents costa brava"
     },
@@ -234,7 +234,7 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
   },
   fr: {
     home: {
-      title: "Location de bateaux à Blanes (Costa Brava) sans permis | Costa Brava Rent a Boat",
+      title: "Location Bateaux Blanes Sans Permis | Costa Brava",
       description: "Location de bateaux sans permis et avec permis à Blanes, Costa Brava. Depuis le Port de Blanes. 7 bateaux pour 4-7 personnes. Inclut snorkel et paddle surf.",
       keywords: "location bateaux blanes, bateaux sans permis costa brava, location embarcations blanes, costa brava rent boat, port blanes"
     },
@@ -244,32 +244,32 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       keywords: "réserver bateau blanes, formulaire réservation bateau, booking bateau costa brava"
     },
     faq: {
-      title: "Questions Fréquentes (FAQ) - Location de Bateaux à Blanes | Costa Brava Rent a Boat",
+      title: "FAQ Location Bateaux Blanes | Costa Brava",
       description: "Résolvez tous vos doutes sur la location de bateaux à Blanes, Costa Brava. Prix, exigences, ce qui est inclus, politiques d'annulation et plus.",
       keywords: "faq location bateaux, questions fréquentes embarcations, doutes location bateaux costa brava"
     },
     locationBlanes: {
-      title: "Location de Bateaux à Blanes, Costa Brava - Sans Permis | Costa Brava Rent a Boat",
+      title: "Location Bateaux Blanes Sans Permis | Port Blanes",
       description: "Location de bateaux à Blanes, Costa Brava. Port de Blanes. Bateaux sans permis et avec permis pour 4-7 personnes.",
       keywords: "location bateaux blanes port, embarcations blanes costa brava, bateaux sans permis blanes"
     },
     locationLloret: {
-      title: "Location de Bateaux pour Visiter Lloret de Mar - Excursions depuis Blanes",
+      title: "Bateaux vers Lloret de Mar depuis Blanes | Costa Brava",
       description: "Location de bateaux pour visiter Lloret de Mar depuis le Port de Blanes. Bateaux sans permis et avec permis. Explorez les plages de Lloret en naviguant depuis Blanes.",
       keywords: "location bateaux lloret de mar, visiter lloret en bateau, excursion lloret depuis blanes"
     },
     locationTossa: {
-      title: "Location de Bateaux pour Visiter Tossa de Mar - Excursions depuis Blanes",
+      title: "Bateaux vers Tossa de Mar depuis Blanes | Costa Brava",
       description: "Location de bateaux pour visiter Tossa de Mar depuis le Port de Blanes. 1 heure de navigation vers la plus belle ville médiévale de la Costa Brava. Bateaux sans permis et avec permis.",
       keywords: "location bateaux tossa de mar, visiter tossa en bateau, excursion tossa depuis blanes, vila vella tossa"
     },
     categoryLicenseFree: {
-      title: "Location de Bateaux sans Permis à Blanes, Costa Brava | Costa Brava Rent a Boat",
+      title: "Bateaux Sans Permis Blanes | Costa Brava",
       description: "Location de bateaux sans permis à Blanes, Costa Brava. Embarcations jusqu'à 15 CV pour 4-7 personnes. Aucun permis bateau requis. Explorez les criques depuis le Port de Blanes.",
       keywords: "bateaux sans permis blanes, location bateaux sans license, embarcations sans permis costa brava, bateaux 15cv blanes"
     },
     categoryLicensed: {
-      title: "Location de Bateaux avec Permis à Blanes, Costa Brava | Costa Brava Rent a Boat",
+      title: "Bateaux Avec Permis Blanes | Costa Brava",
       description: "Location de bateaux avec permis à Blanes, Costa Brava. Embarcations puissantes pour navigation avancée. Permis bateau requis ICC, permis côtier ou équivalent. Liberté maximale sur la Costa Brava.",
       keywords: "bateaux avec permis blanes, location bateaux ICC, embarcations permis bateau, bateaux puissants costa brava"
     },
@@ -286,42 +286,42 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
   },
   de: {
     home: {
-      title: "Bootsverleih in Blanes (Costa Brava) ohne Führerschein | Costa Brava Rent a Boat",
+      title: "Bootsverleih Blanes Ohne Führerschein | Costa Brava",
       description: "Bootsverleih ohne Führerschein und mit Führerschein in Blanes, Costa Brava. Vom Hafen Blanes. 7 Boote für 4-7 Personen. Inklusive Schnorchel und Paddle Surf.",
       keywords: "bootsverleih blanes, boote ohne führerschein costa brava, bootscharter blanes, costa brava rent boat, hafen blanes"
     },
     booking: {
-      title: "Boot Buchen in Blanes | Costa Brava Rent a Boat",
+      title: "Boot Buchen Blanes | Costa Brava Rent a Boat",
       description: "Füllen Sie das Formular aus, um Ihr Boot in Blanes, Costa Brava zu buchen. Boote ohne und mit Führerschein. Schnelle WhatsApp-Antwort.",
       keywords: "boot buchen blanes, buchungsformular boot, boot reservierung costa brava"
     },
     faq: {
-      title: "Häufig gestellte Fragen (FAQ) - Bootsverleih in Blanes | Costa Brava Rent a Boat",
+      title: "FAQ Bootsverleih Blanes | Costa Brava",
       description: "Lösen Sie alle Ihre Zweifel über Bootsverleih in Blanes, Costa Brava. Preise, Anforderungen, was enthalten ist, Stornierungsrichtlinien und mehr.",
       keywords: "faq bootsverleih, häufige fragen boote, zweifel bootsverleih costa brava"
     },
     locationBlanes: {
-      title: "Bootsverleih in Blanes, Costa Brava - Ohne Führerschein | Costa Brava Rent a Boat",
+      title: "Bootsverleih Blanes Ohne Führerschein | Hafen Blanes",
       description: "Bootsverleih in Blanes, Costa Brava. Hafen von Blanes. Boote ohne Führerschein und mit Führerschein für 4-7 Personen.",
       keywords: "bootsverleih blanes hafen, boote blanes costa brava, boote ohne führerschein blanes"
     },
     locationLloret: {
-      title: "Bootsverleih für Lloret de Mar Besuch - Ausflüge von Blanes",
+      title: "Boote nach Lloret de Mar von Blanes | Costa Brava",
       description: "Bootsverleih für Lloret de Mar Besuch vom Hafen Blanes. Boote ohne Führerschein und mit Führerschein. Erkunden Sie Lloret Strände von Blanes aus.",
       keywords: "bootsverleih lloret de mar, lloret per boot besuchen, lloret ausflug von blanes"
     },
     locationTossa: {
-      title: "Bootsverleih für Tossa de Mar Besuch - Ausflüge von Blanes",
+      title: "Boote nach Tossa de Mar von Blanes | Costa Brava",
       description: "Bootsverleih für Tossa de Mar Besuch vom Hafen Blanes. 1 Stunde Segeln zur schönsten mittelalterlichen Stadt der Costa Brava. Boote ohne Führerschein und mit Führerschein.",
       keywords: "bootsverleih tossa de mar, tossa per boot besuchen, tossa ausflug von blanes, vila vella tossa"
     },
     categoryLicenseFree: {
-      title: "Bootsverleih ohne Führerschein in Blanes, Costa Brava | Costa Brava Rent a Boat",
+      title: "Boote Ohne Führerschein Blanes | Costa Brava",
       description: "Bootsverleih ohne Führerschein in Blanes, Costa Brava. Boote bis 15 PS für 4-7 Personen. Kein Bootsführerschein erforderlich. Erkunden Sie Costa Brava Buchten vom Hafen Blanes.",
       keywords: "boote ohne führerschein blanes, bootsverleih ohne lizenz, boote ohne erlaubnis costa brava, 15ps boote blanes"
     },
     categoryLicensed: {
-      title: "Bootsverleih mit Führerschein in Blanes, Costa Brava | Costa Brava Rent a Boat",
+      title: "Boote Mit Führerschein Blanes | Costa Brava",
       description: "Bootsverleih mit Führerschein in Blanes, Costa Brava. Starke Boote für fortgeschrittene Navigation. Bootsführerschein ICC, SBF oder gleichwertig erforderlich. Maximale Freiheit an der Costa Brava.",
       keywords: "boote mit führerschein blanes, bootsverleih ICC, boote bootsführerschein, starke boote costa brava"
     },
@@ -338,42 +338,42 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
   },
   nl: {
     home: {
-      title: "Bootverhuur in Blanes (Costa Brava) zonder vaarbewijs | Costa Brava Rent a Boat",
+      title: "Bootverhuur Blanes Zonder Vaarbewijs | Costa Brava",
       description: "Bootverhuur zonder vaarbewijs en met vaarbewijs in Blanes, Costa Brava. Vanaf Haven van Blanes. 7 boten voor 4-7 personen. Inclusief snorkel en paddle surf.",
       keywords: "bootverhuur blanes, boten zonder vaarbewijs costa brava, bootcharter blanes, costa brava rent boat, haven blanes"
     },
     booking: {
-      title: "Boot Reserveren in Blanes | Costa Brava Rent a Boat",
+      title: "Boot Reserveren Blanes | Costa Brava Rent a Boat",
       description: "Vul het formulier in om uw boot in Blanes, Costa Brava te reserveren. Boten zonder en met vaarbewijs. Snelle WhatsApp-reactie.",
       keywords: "boot reserveren blanes, reserveringsformulier boot, boot booking costa brava"
     },
     faq: {
-      title: "Veelgestelde Vragen (FAQ) - Bootverhuur in Blanes | Costa Brava Rent a Boat",
+      title: "FAQ Bootverhuur Blanes | Costa Brava",
       description: "Los al je twijfels op over bootverhuur in Blanes, Costa Brava. Prijzen, vereisten, wat inbegrepen is, annuleringsbeleid en meer.",
       keywords: "faq bootverhuur, veelgestelde vragen boten, twijfels bootverhuur costa brava"
     },
     locationBlanes: {
-      title: "Bootverhuur in Blanes, Costa Brava - Zonder Vaarbewijs | Costa Brava Rent a Boat",
+      title: "Bootverhuur Blanes Zonder Vaarbewijs | Haven Blanes",
       description: "Bootverhuur in Blanes, Costa Brava. Haven van Blanes. Boten zonder vaarbewijs en met vaarbewijs voor 4-7 personen.",
       keywords: "bootverhuur blanes haven, boten blanes costa brava, boten zonder vaarbewijs blanes"
     },
     locationLloret: {
-      title: "Bootverhuur voor Lloret de Mar Bezoek - Excursies vanuit Blanes",
+      title: "Boten naar Lloret de Mar vanuit Blanes | Costa Brava",
       description: "Bootverhuur voor Lloret de Mar bezoek vanuit Haven Blanes. Boten zonder vaarbewijs en met vaarbewijs. Verken Lloret stranden vanuit Blanes.",
       keywords: "bootverhuur lloret de mar, lloret bezoeken per boot, lloret excursie vanuit blanes"
     },
     locationTossa: {
-      title: "Bootverhuur voor Tossa de Mar Bezoek - Excursies vanuit Blanes",
+      title: "Boten naar Tossa de Mar vanuit Blanes | Costa Brava",
       description: "Bootverhuur voor Tossa de Mar bezoek vanuit Haven Blanes. 1 uur varen naar de mooiste middeleeuwse stad van de Costa Brava. Boten zonder vaarbewijs en met vaarbewijs.",
       keywords: "bootverhuur tossa de mar, tossa bezoeken per boot, tossa excursie vanuit blanes, vila vella tossa"
     },
     categoryLicenseFree: {
-      title: "Bootverhuur zonder Vaarbewijs in Blanes, Costa Brava | Costa Brava Rent a Boat",
+      title: "Boten Zonder Vaarbewijs Blanes | Costa Brava",
       description: "Bootverhuur zonder vaarbewijs in Blanes, Costa Brava. Boten tot 15 PK voor 4-7 personen. Geen vaarbewijs vereist. Verken Costa Brava baaien vanuit Haven Blanes.",
       keywords: "boten zonder vaarbewijs blanes, bootverhuur zonder licentie, boten zonder vergunning costa brava, 15pk boten blanes"
     },
     categoryLicensed: {
-      title: "Bootverhuur met Vaarbewijs in Blanes, Costa Brava | Costa Brava Rent a Boat",
+      title: "Boten Met Vaarbewijs Blanes | Costa Brava",
       description: "Bootverhuur met vaarbewijs in Blanes, Costa Brava. Krachtige boten voor gevorderde navigatie. Vaarbewijs ICC, KVB of equivalent vereist. Maximale vrijheid op de Costa Brava.",
       keywords: "boten met vaarbewijs blanes, bootverhuur ICC, boten vaarbewijs, krachtige boten costa brava"
     },
@@ -390,37 +390,37 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
   },
   it: {
     home: {
-      title: "Noleggio barche a Blanes (Costa Brava) senza patente | Costa Brava Rent a Boat",
+      title: "Noleggio Barche Blanes Senza Patente | Costa Brava",
       description: "Noleggio barche senza patente e con patente a Blanes, Costa Brava. Dal Porto di Blanes. 7 barche per 4-7 persone. Include snorkel e paddle surf.",
       keywords: "noleggio barche blanes, barche senza patente costa brava, charter barche blanes, costa brava rent boat, porto blanes"
     },
     faq: {
-      title: "Domande Frequenti (FAQ) - Noleggio Barche a Blanes | Costa Brava Rent a Boat",
+      title: "FAQ Noleggio Barche Blanes | Costa Brava",
       description: "Risolvi tutti i tuoi dubbi sul noleggio barche a Blanes, Costa Brava. Prezzi, requisiti, cosa è incluso, politiche di cancellazione e altro.",
       keywords: "faq noleggio barche, domande frequenti barche, dubbi noleggio barche costa brava"
     },
     locationBlanes: {
-      title: "Noleggio Barche a Blanes, Costa Brava - Senza Patente | Costa Brava Rent a Boat",
+      title: "Noleggio Barche Blanes Senza Patente | Porto Blanes",
       description: "Noleggio barche a Blanes, Costa Brava. Porto di Blanes. Barche senza patente e con patente per 4-7 persone.",
       keywords: "noleggio barche blanes porto, barche blanes costa brava, barche senza patente blanes"
     },
     locationLloret: {
-      title: "Noleggio Barche per Visitare Lloret de Mar - Escursioni da Blanes",
+      title: "Barche verso Lloret de Mar da Blanes | Costa Brava",
       description: "Noleggio barche per visitare Lloret de Mar dal Porto di Blanes. Barche senza patente e con patente. Esplora le spiagge di Lloret navigando da Blanes.",
       keywords: "noleggio barche lloret de mar, visitare lloret in barca, escursione lloret da blanes"
     },
     locationTossa: {
-      title: "Noleggio Barche per Visitare Tossa de Mar - Escursioni da Blanes",
+      title: "Barche verso Tossa de Mar da Blanes | Costa Brava",
       description: "Noleggio barche per visitare Tossa de Mar dal Porto di Blanes. 1 ora di navigazione verso la più bella città medievale della Costa Brava. Barche senza patente e con patente.",
       keywords: "noleggio barche tossa de mar, visitare tossa in barca, escursione tossa da blanes, vila vella tossa"
     },
     categoryLicenseFree: {
-      title: "Noleggio Barche senza Patente a Blanes, Costa Brava | Costa Brava Rent a Boat",
+      title: "Barche Senza Patente Blanes | Costa Brava",
       description: "Noleggio barche senza patente a Blanes, Costa Brava. Imbarcazioni fino a 15 CV per 4-7 persone. Nessuna patente nautica richiesta. Esplora le cale dal Porto di Blanes.",
       keywords: "barche senza patente blanes, noleggio barche senza licenza, imbarcazioni senza permesso costa brava, barche 15cv blanes"
     },
     categoryLicensed: {
-      title: "Noleggio Barche con Patente a Blanes, Costa Brava | Costa Brava Rent a Boat",
+      title: "Barche Con Patente Blanes | Costa Brava",
       description: "Noleggio barche con patente a Blanes, Costa Brava. Imbarcazioni potenti per navigazione avanzata. Richiede patente nautica ICC, patente costiera o equivalente. Massima libertà sulla Costa Brava.",
       keywords: "barche con patente blanes, noleggio barche ICC, imbarcazioni patente nautica, barche potenti costa brava"
     },
@@ -437,37 +437,37 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
   },
   ru: {
     home: {
-      title: "Аренда лодок в Бланесе (Коста-Брава) без лицензии | Costa Brava Rent a Boat",
+      title: "Аренда Лодок Бланес Без Лицензии | Коста-Брава",
       description: "Аренда лодок без лицензии и с лицензией в Бланесе, Коста-Брава. Из порта Бланес. 7 лодок для 4-7 человек. Включает снорклинг и SUP.",
       keywords: "аренда лодок бланес, лодки без лицензии коста брава, чартер лодок бланес, costa brava rent boat, порт бланес"
     },
     faq: {
-      title: "Часто задаваемые вопросы (FAQ) - Аренда лодок в Бланесе | Costa Brava Rent a Boat",
+      title: "FAQ Аренда Лодок Бланес | Коста-Брава",
       description: "Решите все ваши сомнения по аренде лодок в Бланесе, Коста-Брава. Цены, требования, что включено, политика отмены и многое другое.",
       keywords: "faq аренда лодок, часто задаваемые вопросы лодки, сомнения аренда лодок коста брава"
     },
     locationBlanes: {
-      title: "Аренда лодок в Бланесе, Коста-Брава - Без лицензии | Costa Brava Rent a Boat",
+      title: "Аренда Лодок Бланес Без Лицензии | Порт Бланес",
       description: "Аренда лодок в Бланесе, Коста-Брава. Порт Бланес. Лодки без лицензии и с лицензией для 4-7 человек.",
       keywords: "аренда лодок бланес порт, лодки бланес коста брава, лодки без лицензии бланес"
     },
     locationLloret: {
-      title: "Аренда лодок для посещения Льорет-де-Мар - Экскурсии из Бланеса",
+      title: "Лодки в Льорет-де-Мар из Бланеса | Коста-Брава",
       description: "Аренда лодок для посещения Льорет-де-Мар из Порта Бланес. Лодки без лицензии и с лицензией. Исследуйте пляжи Льорета из Бланеса.",
       keywords: "аренда лодок льорет де мар, посетить льорет на лодке, экскурсия льорет из бланеса"
     },
     locationTossa: {
-      title: "Аренда лодок для посещения Тосса-де-Мар - Экскурсии из Бланеса",
+      title: "Лодки в Тосса-де-Мар из Бланеса | Коста-Брава",
       description: "Аренда лодок для посещения Тосса-де-Мар из Порта Бланес. 1 час плавания к самому красивому средневековому городу Коста-Брава. Лодки без лицензии и с лицензией.",
       keywords: "аренда лодок тосса де мар, посетить тосса на лодке, экскурсия тосса из бланеса, вила велла тосса"
     },
     categoryLicenseFree: {
-      title: "Аренда лодок без лицензии в Бланесе, Коста-Брава | Costa Brava Rent a Boat",
+      title: "Лодки Без Лицензии Бланес | Коста-Брава",
       description: "Аренда лодок без лицензии в Бланесе, Коста-Брава. Лодки до 15 л.с. для 4-7 человек. Лицензия на управление не требуется. Исследуйте бухты Коста-Брава из порта Бланес.",
       keywords: "лодки без лицензии бланес, аренда лодок без прав, лодки без разрешения коста брава, лодки 15лс бланес"
     },
     categoryLicensed: {
-      title: "Аренда лодок с лицензией в Бланесе, Коста-Брава | Costa Brava Rent a Boat",
+      title: "Лодки С Лицензией Бланес | Коста-Брава",
       description: "Аренда лодок с лицензией в Бланесе, Коста-Брава. Мощные лодки для продвинутой навигации. Требуется лицензия ICC, права на управление или эквивалент. Максимальная свобода на Коста-Брава.",
       keywords: "лодки с лицензией бланес, аренда лодок ICC, лодки с правами, мощные лодки коста брава"
     },

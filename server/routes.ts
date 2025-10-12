@@ -8,6 +8,7 @@ import { and, eq, lte } from "drizzle-orm";
 import Stripe from "stripe";
 import { setupAuth, isAuthenticated } from "./replitAuth";
 import memoize from "memoizee";
+import { ObjectStorageService, ObjectNotFoundError } from "./objectStorage";
 
 // Initialize Stripe lazily with proper validation
 let stripe: Stripe | null = null;
@@ -1548,6 +1549,54 @@ export async function registerRoutes(app: Express): Promise<Server> {
       });
     } catch (error: any) {
       res.status(500).json({ message: "Error initializing boats: " + error.message });
+    }
+  });
+
+  // ===== OBJECT STORAGE ROUTES =====
+  // Reference: javascript_object_storage blueprint integration
+  
+  // Endpoint to serve uploaded boat images (public access without auth)
+  app.get("/objects/:objectPath(*)", async (req, res) => {
+    const objectStorageService = new ObjectStorageService();
+    try {
+      const objectFile = await objectStorageService.getObjectEntityFile(req.path);
+      objectStorageService.downloadObject(objectFile, res);
+    } catch (error) {
+      console.error("Error serving object:", error);
+      if (error instanceof ObjectNotFoundError) {
+        return res.sendStatus(404);
+      }
+      return res.sendStatus(500);
+    }
+  });
+
+  // Endpoint to get presigned upload URL for boat images (admin only)
+  app.post("/api/admin/boat-images/upload", requireAdminSession, async (req, res) => {
+    try {
+      const objectStorageService = new ObjectStorageService();
+      const uploadURL = await objectStorageService.getObjectEntityUploadURL();
+      res.json({ uploadURL });
+    } catch (error: any) {
+      console.error("Error generating upload URL:", error);
+      res.status(500).json({ error: "Failed to generate upload URL" });
+    }
+  });
+
+  // Endpoint to normalize uploaded image URLs for boat (admin only)
+  app.post("/api/admin/boat-images/normalize", requireAdminSession, async (req, res) => {
+    try {
+      const { imageUrl } = req.body;
+      if (!imageUrl) {
+        return res.status(400).json({ error: "imageUrl is required" });
+      }
+
+      const objectStorageService = new ObjectStorageService();
+      const normalizedPath = objectStorageService.normalizeObjectEntityPath(imageUrl);
+      
+      res.json({ normalizedPath });
+    } catch (error: any) {
+      console.error("Error normalizing image URL:", error);
+      res.status(500).json({ error: "Failed to normalize image URL" });
     }
   });
 

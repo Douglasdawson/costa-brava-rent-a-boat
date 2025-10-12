@@ -29,7 +29,8 @@ import {
   MessageSquare,
   Heart,
   Sun,
-  Clock
+  Clock,
+  Package
 } from "lucide-react";
 import { openWhatsApp } from "@/utils/whatsapp";
 import { getBoatImage } from "@/utils/boatImages";
@@ -345,7 +346,10 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
           {/* Equipment */}
           <Card>
             <CardHeader>
-              <CardTitle className="text-base sm:text-lg">Equipamiento Incluido</CardTitle>
+              <CardTitle className="text-base sm:text-lg flex items-center gap-2">
+                <Package className="w-5 h-5 text-primary" />
+                Equipamiento Incluido
+              </CardTitle>
             </CardHeader>
             <CardContent>
               <div className="grid grid-cols-1 gap-2">

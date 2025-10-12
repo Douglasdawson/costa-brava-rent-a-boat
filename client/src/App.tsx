@@ -91,6 +91,7 @@ function HomePage() {
         title={seoConfig.title}
         description={seoConfig.description}
         ogTitle="Alquiler de Barcos en Blanes y Lloret de Mar | Costa Brava Rent a Boat - Blanes"
+        ogDescription="Descubre nuestra flota de barcos en Blanes. Alquiler con o sin licencia en la Costa Brava. ¡Reserva tu aventura hoy!"
         canonical={canonical}
         hreflang={hreflangLinks}
         jsonLd={combinedJsonLd}

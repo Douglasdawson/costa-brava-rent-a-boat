@@ -1,13 +1,16 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Menu, X, Anchor, UserCircle, Calendar } from "lucide-react";
 import { useLocation } from "wouter";
 import LanguageSelector from "./LanguageSelector";
 import { useTranslations } from "@/lib/translations";
 import { useAuth } from "@/hooks/useAuth";
+import BookingFormWidget from "./BookingFormWidget";
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
   const [, setLocation] = useLocation();
   const t = useTranslations();
   const { isAuthenticated } = useAuth();
@@ -26,7 +29,7 @@ export default function Navigation() {
 
   const handleMobileBooking = () => {
     setIsOpen(false); // Close mobile menu
-    setLocation("/booking");
+    setIsBookingModalOpen(true); // Open booking modal
   };
 
   const scrollToSection = (sectionId: string, maxAttempts = 10) => {
@@ -251,6 +254,13 @@ export default function Navigation() {
           </div>
         )}
       </div>
+
+      {/* Booking Modal */}
+      <Dialog open={isBookingModalOpen} onOpenChange={setIsBookingModalOpen}>
+        <DialogContent className="!max-w-[95vw] sm:!max-w-[90vw] md:!max-w-4xl !w-[95vw] sm:!w-[90vw] md:!w-full !h-[95vh] sm:!h-[90vh] md:!h-auto !max-h-[95vh] sm:!max-h-[90vh] md:!max-h-[90vh] overflow-y-auto p-3 sm:p-4 md:p-6 !left-1/2 !top-1/2 !-translate-x-1/2 !-translate-y-1/2">
+          <BookingFormWidget />
+        </DialogContent>
+      </Dialog>
     </nav>
   );
 }

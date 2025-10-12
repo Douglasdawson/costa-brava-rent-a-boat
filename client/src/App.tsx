@@ -24,6 +24,7 @@ const CondicionesGenerales = lazy(() => import("./components/CondicionesGenerale
 const FAQPage = lazy(() => import("@/pages/faq"));
 const PrivacyPolicyPage = lazy(() => import("@/pages/privacy-policy"));
 const TermsConditionsPage = lazy(() => import("@/pages/terms-conditions"));
+const CookiesPolicyPage = lazy(() => import("@/pages/cookies-policy"));
 const LocationBlanesPage = lazy(() => import("@/pages/location-blanes"));
 const LocationLloretPage = lazy(() => import("@/pages/location-lloret-de-mar"));
 const LocationTossaPage = lazy(() => import("@/pages/location-tossa-de-mar"));
@@ -184,6 +185,10 @@ function TermsConditionsPageWrapper() {
   return <TermsConditionsPage />;
 }
 
+function CookiesPolicyPageWrapper() {
+  return <CookiesPolicyPage />;
+}
+
 function LocationBlanesPageWrapper() {
   return <LocationBlanesPage />;
 }
@@ -228,6 +233,7 @@ function Router() {
         <Route path="/faq" component={FAQPageWrapper} />
         <Route path="/privacy-policy" component={PrivacyPolicyPageWrapper} />
         <Route path="/terms-conditions" component={TermsConditionsPageWrapper} />
+        <Route path="/cookies-policy" component={CookiesPolicyPageWrapper} />
         <Route path="/alquiler-barcos-blanes" component={LocationBlanesPageWrapper} />
         <Route path="/alquiler-barcos-lloret-de-mar" component={LocationLloretPageWrapper} />
         <Route path="/alquiler-barcos-tossa-de-mar" component={LocationTossaPageWrapper} />

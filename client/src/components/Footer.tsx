@@ -211,6 +211,22 @@ export default function Footer() {
                   {t.footer.privacy}
                 </button>
               </li>
+              <li>
+                <button 
+                  onClick={() => {
+                    setLocation("/cookies-policy");
+                    window.scrollTo({
+                      top: 0,
+                      behavior: "smooth"
+                    });
+                  }} 
+                  className="hover:text-primary transition-colors cursor-pointer bg-transparent border-none p-0 text-left"
+                  data-testid="footer-cookies-link"
+                  aria-label="Ver política de cookies"
+                >
+                  Política de Cookies
+                </button>
+              </li>
             </ul>
           </div>
 

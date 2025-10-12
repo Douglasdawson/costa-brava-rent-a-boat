@@ -118,6 +118,11 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       description: "Condiciones generales para el alquiler de embarcaciones en Blanes, Costa Brava. Términos y responsabilidades.",
       keywords: "condiciones generales alquiler, términos alquiler barcos blanes"
     },
+    cookiesPolicy: {
+      title: "Política de Cookies | Costa Brava Rent a Boat",
+      description: "Información sobre el uso de cookies en Costa Brava Rent a Boat. Aprende cómo utilizamos cookies para mejorar tu experiencia.",
+      keywords: "política cookies, cookies costa brava rent boat, uso cookies, privacidad navegación"
+    },
     boatDetail: {
       title: "Alquiler {boatName} en Blanes | Desde {pricePerHour}€/h",
       description: "Alquila {boatName} en Blanes, Costa Brava. Capacidad {capacity} personas, {license}. Desde {pricePerHour}€/hora. ¡Reserva online!",

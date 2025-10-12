@@ -43,7 +43,7 @@ export default function ContactSection() {
     <section className="py-8 sm:py-12 lg:py-16 bg-white" id="contact">
       <div className="container mx-auto px-3 sm:px-4">
         <div className="text-center mb-6 sm:mb-8 lg:mb-12">
-          <h2 className="font-heading text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-2 sm:mb-3 lg:mb-4">
+          <h2 className="font-heading text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-2 sm:mb-3 lg:mb-4 text-[#0a4076]">
             {t.contact.title}
           </h2>
           <p className="text-sm sm:text-base lg:text-lg text-gray-600 max-w-xl sm:max-w-2xl mx-auto px-2">

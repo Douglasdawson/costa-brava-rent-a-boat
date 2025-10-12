@@ -289,7 +289,7 @@ export default function ContactSection() {
                       Base principal
                     </Badge>
                   </div>
-                  <p className="text-gray-600 mb-3 text-sm leading-relaxed">
+                  <p className="text-gray-600 mb-3 text-[13px]">
                     Puerto base de operaciones con todas las comodidades. Punto de partida perfecto para explorar toda la Costa Brava.
                   </p>
                   <div className="flex flex-wrap gap-1 justify-center mb-3">

@@ -39,10 +39,9 @@ export default function Footer() {
               data-testid="footer-logo-button"
               aria-label="Ir a la página principal"
             >
-              <Anchor className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
-              <span className="font-heading font-bold text-base sm:text-lg text-white">
-                <span className="hidden sm:inline text-[17px]">Costa Brava Rent a Boat Blanes</span>
-                <span className="sm:hidden">Costa Brava Rent a Boat - Blanes</span>
+              <Anchor className="w-5 h-5 sm:w-6 sm:h-6 text-primary flex-shrink-0" />
+              <span className="font-heading font-bold text-white whitespace-nowrap text-[13px] xs:text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px]">
+                Costa Brava Rent a Boat Blanes
               </span>
             </button>
             <p className="text-xs sm:text-xs text-gray-400 mb-4">
@@ -237,52 +236,6 @@ export default function Footer() {
                 </a>
               </div>
             </div>
-          </div>
-
-          {/* Social Media */}
-          <div>
-            <h3 className="font-semibold text-white mb-4">Síguenos</h3>
-            <ul className="space-y-3">
-              <li>
-                <a
-                  href="https://www.instagram.com/costabravarentaboat/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center space-x-3 text-gray-400 hover:text-pink-500 transition-colors"
-                  data-testid="footer-instagram"
-                  aria-label="Síguenos en Instagram"
-                >
-                  <SiInstagram className="w-5 h-5" />
-                  <span className="text-xs">Instagram</span>
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://www.facebook.com/costabravarentaboat"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center space-x-3 text-gray-400 hover:text-blue-500 transition-colors"
-                  data-testid="footer-facebook"
-                  aria-label="Síguenos en Facebook"
-                >
-                  <SiFacebook className="w-5 h-5" />
-                  <span className="text-xs">Facebook</span>
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://www.tiktok.com/@costabravarentaboat"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center space-x-3 text-gray-400 hover:text-white transition-colors"
-                  data-testid="footer-tiktok"
-                  aria-label="Síguenos en TikTok"
-                >
-                  <SiTiktok className="w-5 h-5" />
-                  <span className="text-xs">TikTok</span>
-                </a>
-              </li>
-            </ul>
           </div>
         </div>
 

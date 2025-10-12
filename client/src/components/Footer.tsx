@@ -1,5 +1,5 @@
 import { Anchor, Phone, Mail, MapPin, Clock } from "lucide-react";
-import { SiWhatsapp } from "react-icons/si";
+import { SiWhatsapp, SiInstagram, SiFacebook, SiTiktok } from "react-icons/si";
 import { useTranslations } from "@/lib/translations";
 import { useLocation } from "wouter";
 
@@ -227,6 +227,43 @@ export default function Footer() {
               <Phone className="w-4 h-4" />
               <span>{t.footer.call}</span>
             </a>
+          </div>
+
+          {/* Social Media Section */}
+          <div className="mb-6">
+            <h4 className="text-sm font-semibold text-white mb-3 text-center">Síguenos</h4>
+            <div className="flex items-center justify-center space-x-4">
+              <a
+                href="#"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-pink-500 transition-colors"
+                data-testid="social-instagram"
+                aria-label="Síguenos en Instagram"
+              >
+                <SiInstagram className="w-6 h-6" />
+              </a>
+              <a
+                href="#"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-blue-500 transition-colors"
+                data-testid="social-facebook"
+                aria-label="Síguenos en Facebook"
+              >
+                <SiFacebook className="w-6 h-6" />
+              </a>
+              <a
+                href="#"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-white transition-colors"
+                data-testid="social-tiktok"
+                aria-label="Síguenos en TikTok"
+              >
+                <SiTiktok className="w-6 h-6" />
+              </a>
+            </div>
           </div>
           
           <p className="text-xs text-gray-400 text-center">

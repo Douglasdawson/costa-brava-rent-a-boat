@@ -46,9 +46,16 @@ Preferred communication style: Simple, everyday language.
     - When pre-selected, boat selector is disabled (read-only mode)
     - Contains all booking form logic: state management, boat filtering, WhatsApp integration
     - Includes phone prefix selector with 200+ international prefixes
+    - Submit button text: "ENVIAR PETICIÓN DE RESERVA" (uppercase)
   - **Hero Section**: Uses BookingFormWidget for homepage booking form
   - **Boat Detail Pages**: Opens Dialog modal with BookingFormWidget and pre-selected boat
   - **Modal Responsiveness**: Booking modal is nearly fullscreen on mobile (95vw × 95vh) with forced centering (!left-1/2 !top-1/2 transforms), responsive padding (p-3 sm:p-4 md:p-6), max-width 4xl on desktop
+  - **Mobile Booking Page** (October 2025):
+    - Dedicated `/booking` route for mobile users
+    - Accessed via "Reservar Ahora" button in mobile menu
+    - Shows BookingFormWidget with full Navigation and Footer
+    - Dedicated SEO configuration for all languages (es, en, ca, fr, de, nl)
+    - Canonical URLs and hreflang properly configured for /booking
   - **WhatsApp Integration**: All booking forms send structured messages to +34 611 500 372
   - E2E tested: Full booking flow from boat detail page through WhatsApp redirect, iPhone 12 mobile viewport verified
 - **Navigation Scroll Alignment** (October 2025):

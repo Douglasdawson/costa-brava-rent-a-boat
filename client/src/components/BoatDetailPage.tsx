@@ -247,6 +247,65 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
           </CardContent>
         </Card>
 
+        {/* Pricing Section */}
+        <Card className="mb-8">
+          <CardHeader>
+            <CardTitle className="flex items-center md:justify-center">
+              <Euro className="w-5 h-5 mr-2 text-green-600" />
+              Precios por Temporada
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            {/* Season Selector */}
+            {boatData.pricing && (
+              <>
+                <div className="flex flex-wrap gap-2 mb-6 justify-center">
+                  {Object.keys(boatData.pricing).map((season) => (
+                    <Button
+                      key={season}
+                      variant={selectedSeason === season ? "default" : "outline"}
+                      onClick={() => setSelectedSeason(season as "BAJA" | "MEDIA" | "ALTA")}
+                      className="text-sm"
+                      data-testid={`button-season-${season.toLowerCase()}`}
+                    >
+                      {season}
+                    </Button>
+                  ))}
+                </div>
+
+                {/* Selected Season Details */}
+                <div className="bg-gray-50 rounded-lg p-4 mb-4 text-left md:text-center">
+                  <h4 className="font-medium mb-2">Temporada {selectedSeason}</h4>
+                  <p className="text-sm text-gray-600 mb-4">{boatData.pricing[selectedSeason].period}</p>
+                  
+                  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+                    {Object.entries(boatData.pricing[selectedSeason].prices).map(([duration, price]) => (
+                      <div key={duration} className="text-left md:text-center p-3 bg-white rounded-lg border">
+                        <div className="font-bold text-lg text-primary">{price}€</div>
+                        <div className="text-sm text-gray-600">{duration}</div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </>
+            )}
+
+            {boatData.included && boatData.included.length > 0 && (
+              <div className="text-sm text-gray-600 text-left md:text-center">
+                <p className="mb-3"><strong>El precio incluye:</strong></p>
+                <div className="flex flex-wrap justify-start md:justify-center items-center gap-4">
+                  {boatData.included.map((item, index) => (
+                    <div key={index} className="flex items-center">
+                      <CheckCircle className="w-3 h-3 text-green-600 mr-1" />
+                      <span className="text-xs">{item}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+          </CardContent>
+        </Card>
+
         {/* Key Features - Full Width */}
         <Card className="mb-6 sm:mb-8">
           <CardHeader>
@@ -424,65 +483,6 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
             </Card>
           )}
         </div>
-
-        {/* Pricing Section */}
-        <Card className="mb-8">
-          <CardHeader>
-            <CardTitle className="flex items-center md:justify-center">
-              <Euro className="w-5 h-5 mr-2 text-green-600" />
-              Precios por Temporada
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            {/* Season Selector */}
-            {boatData.pricing && (
-              <>
-                <div className="flex flex-wrap gap-2 mb-6 justify-center">
-                  {Object.keys(boatData.pricing).map((season) => (
-                    <Button
-                      key={season}
-                      variant={selectedSeason === season ? "default" : "outline"}
-                      onClick={() => setSelectedSeason(season as "BAJA" | "MEDIA" | "ALTA")}
-                      className="text-sm"
-                      data-testid={`button-season-${season.toLowerCase()}`}
-                    >
-                      {season}
-                    </Button>
-                  ))}
-                </div>
-
-                {/* Selected Season Details */}
-                <div className="bg-gray-50 rounded-lg p-4 mb-4 text-left md:text-center">
-                  <h4 className="font-medium mb-2">Temporada {selectedSeason}</h4>
-                  <p className="text-sm text-gray-600 mb-4">{boatData.pricing[selectedSeason].period}</p>
-                  
-                  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-                    {Object.entries(boatData.pricing[selectedSeason].prices).map(([duration, price]) => (
-                      <div key={duration} className="text-left md:text-center p-3 bg-white rounded-lg border">
-                        <div className="font-bold text-lg text-primary">{price}€</div>
-                        <div className="text-sm text-gray-600">{duration}</div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </>
-            )}
-
-            {boatData.included && boatData.included.length > 0 && (
-              <div className="text-sm text-gray-600 text-left md:text-center">
-                <p className="mb-3"><strong>El precio incluye:</strong></p>
-                <div className="flex flex-wrap justify-start md:justify-center items-center gap-4">
-                  {boatData.included.map((item, index) => (
-                    <div key={index} className="flex items-center">
-                      <CheckCircle className="w-3 h-3 text-green-600 mr-1" />
-                      <span className="text-xs">{item}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
-          </CardContent>
-        </Card>
 
         {/* Extras Section */}
         <Card className="mb-8">

@@ -30,9 +30,9 @@ export default function Footer() {
   return (
     <footer className="bg-gray-900 text-gray-300">
       <div className="container mx-auto px-4 py-8 sm:py-12 lg:px-8">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 sm:gap-10 lg:gap-12 xl:gap-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
           {/* Company Info */}
-          <div className="sm:col-span-2 lg:col-span-1">
+          <div>
             <button 
               onClick={handleLogoClick}
               className="flex items-center space-x-2 mb-4 hover:opacity-80 transition-opacity cursor-pointer bg-transparent border-none p-0"
@@ -40,51 +40,51 @@ export default function Footer() {
               aria-label="Ir a la página principal"
             >
               <Anchor className="w-5 h-5 sm:w-6 sm:h-6 text-primary flex-shrink-0" />
-              <span className="font-heading font-bold text-white whitespace-nowrap text-[13px] xs:text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px]">
-                Costa Brava Rent a Boat Blanes
+              <span className="font-heading font-bold text-white text-sm sm:text-base">
+                Costa Brava Rent a Boat
               </span>
             </button>
-            <p className="text-xs sm:text-xs text-gray-400 mb-4">
+            <p className="text-xs text-gray-400 mb-4">
               {t.footer.description}
             </p>
-            <div className="flex items-center space-x-2 text-xs sm:text-xs mb-6">
+            <div className="flex items-center space-x-2 text-xs mb-6">
               <div className={`w-2 h-2 rounded-full ${isOperatingSeason() ? 'bg-green-400' : 'bg-red-400'}`}></div>
               <span>{t.footer.operatingSeason}</span>
             </div>
             
-            {/* Social Media - Desktop only */}
-            <div className="hidden lg:block">
-              <h3 className="font-semibold text-white mb-4">Síguenos</h3>
+            {/* Social Media */}
+            <div>
+              <h3 className="font-semibold text-white mb-3 text-sm">Síguenos</h3>
               <div className="flex items-center space-x-4">
                 <a
                   href="https://www.instagram.com/costabravarentaboat/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-gray-400 hover:text-pink-500 transition-colors"
-                  data-testid="social-instagram-desktop"
+                  data-testid="social-instagram"
                   aria-label="Síguenos en Instagram"
                 >
-                  <SiInstagram className="w-6 h-6" />
+                  <SiInstagram className="w-5 h-5" />
                 </a>
                 <a
                   href="https://www.facebook.com/costabravarentaboat"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-gray-400 hover:text-blue-500 transition-colors"
-                  data-testid="social-facebook-desktop"
+                  data-testid="social-facebook"
                   aria-label="Síguenos en Facebook"
                 >
-                  <SiFacebook className="w-6 h-6" />
+                  <SiFacebook className="w-5 h-5" />
                 </a>
                 <a
                   href="https://www.tiktok.com/@costabravarentaboat"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-gray-400 hover:text-white transition-colors"
-                  data-testid="social-tiktok-desktop"
+                  data-testid="social-tiktok"
                   aria-label="Síguenos en TikTok"
                 >
-                  <SiTiktok className="w-6 h-6" />
+                  <SiTiktok className="w-5 h-5" />
                 </a>
               </div>
             </div>
@@ -92,38 +92,27 @@ export default function Footer() {
 
           {/* Contact Info */}
           <div>
-            <h3 className="font-semibold text-white mb-4">{t.footer.contact}</h3>
+            <h3 className="font-semibold text-white mb-4 text-sm">{t.footer.contact}</h3>
             <div className="space-y-3">
-              <div className="flex items-center space-x-3">
-                <Phone className="w-4 h-4 text-primary" />
-                <div>
-                  <div className="flex items-center space-x-2">
-                    <a 
-                      href="tel:+34611500372"
-                      className="text-xs hover:text-primary transition-colors cursor-pointer"
-                      data-testid="phone-call-link"
-                      aria-label="Llamar al teléfono +34 611 500 372"
-                    >+34 611 500 372</a>
-                    <span className="text-xs text-gray-500">|</span>
-                    <button
-                      onClick={handleWhatsApp}
-                      className="text-xs text-green-400 hover:text-green-300 transition-colors cursor-pointer flex items-center space-x-1"
-                      data-testid="phone-whatsapp-link"
-                      aria-label="Contactar por WhatsApp"
-                    >
-                      <SiWhatsapp className="w-3 h-3" />
-                      <span>WhatsApp</span>
-                    </button>
-                  </div>
+              <div className="flex items-start space-x-3">
+                <Phone className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
+                <div className="flex-1">
+                  <a 
+                    href="tel:+34611500372"
+                    className="text-xs hover:text-primary transition-colors block mb-1"
+                    data-testid="phone-call-link"
+                    aria-label="Llamar al teléfono +34 611 500 372"
+                  >+34 611 500 372</a>
                   <p className="text-xs text-gray-400">{t.footer.callsAndWhatsapp}</p>
                 </div>
               </div>
-              <div className="flex items-center space-x-3">
-                <Mail className="w-4 h-4 text-primary" />
-                <div>
+              
+              <div className="flex items-start space-x-3">
+                <Mail className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
+                <div className="flex-1">
                   <a 
                     href="mailto:costabravarentboat@gmail.com"
-                    className="text-xs hover:text-primary transition-colors cursor-pointer"
+                    className="text-xs hover:text-primary transition-colors block mb-1 break-all"
                     data-testid="email-link"
                     aria-label="Enviar email a costabravarentboat@gmail.com"
                   >
@@ -132,14 +121,15 @@ export default function Footer() {
                   <p className="text-xs text-gray-400">{t.footer.responseTime}</p>
                 </div>
               </div>
-              <div className="flex items-center space-x-3">
-                <MapPin className="w-4 h-4 text-primary" />
-                <div>
+              
+              <div className="flex items-start space-x-3">
+                <MapPin className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
+                <div className="flex-1">
                   <a 
                     href="https://maps.app.goo.gl/NHV4PcaFPmwBYqCt5"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-xs hover:text-primary transition-colors cursor-pointer"
+                    className="text-xs hover:text-primary transition-colors block mb-1"
                     data-testid="maps-link"
                     aria-label="Ver ubicación en Google Maps: Puerto de Blanes"
                   >
@@ -153,10 +143,10 @@ export default function Footer() {
 
           {/* Hours & Legal */}
           <div>
-            <h3 className="font-semibold text-white mb-4">{t.footer.hours}</h3>
+            <h3 className="font-semibold text-white mb-4 text-sm">{t.footer.hours}</h3>
             <div className="space-y-2 text-xs mb-6">
               <div className="flex items-center space-x-2">
-                <Clock className="w-4 h-4 text-primary" />
+                <Clock className="w-4 h-4 text-primary flex-shrink-0" />
                 <span>{t.footer.businessHours}</span>
               </div>
               <p className="text-xs text-gray-400">
@@ -164,8 +154,8 @@ export default function Footer() {
               </p>
             </div>
 
-            <h4 className="font-medium text-white mb-2">{t.footer.legal}</h4>
-            <ul className="space-y-1 text-xs">
+            <h4 className="font-semibold text-white mb-3 text-sm">{t.footer.legal}</h4>
+            <ul className="space-y-2 text-xs">
               <li>
                 <button 
                   onClick={() => {
@@ -226,54 +216,18 @@ export default function Footer() {
 
           {/* Services */}
           <div>
-            <h3 className="font-semibold text-white mb-4">{t.footer.services}</h3>
+            <h3 className="font-semibold text-white mb-4 text-sm">{t.footer.services}</h3>
             <ul className="space-y-2 text-xs">
-              <li><a href="#" className="hover:text-primary transition-colors">{t.boats.withoutLicense}</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">{t.boats.withLicense}</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">{t.footer.extrasSnorkel}</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">{t.footer.extrasPaddle}</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">{t.footer.extrasSeascooter}</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">{t.footer.hourlyRental}</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">{t.footer.portParking}</a></li>
+              <li><a href="#fleet" className="hover:text-primary transition-colors">{t.boats.withoutLicense}</a></li>
+              <li><a href="#fleet" className="hover:text-primary transition-colors">{t.boats.withLicense}</a></li>
+              <li><a href="#fleet" className="hover:text-primary transition-colors">{t.footer.extrasSnorkel}</a></li>
+              <li><a href="#fleet" className="hover:text-primary transition-colors">{t.footer.extrasPaddle}</a></li>
+              <li><a href="#fleet" className="hover:text-primary transition-colors">{t.footer.extrasSeascooter}</a></li>
+              <li><a href="#fleet" className="hover:text-primary transition-colors">{t.footer.hourlyRental}</a></li>
+              <li><a href="#contact" className="hover:text-primary transition-colors">{t.footer.portParking}</a></li>
             </ul>
           </div>
 
-          {/* Social Media - Mobile/Tablet only */}
-          <div className="lg:hidden">
-            <h3 className="font-semibold text-white mb-4">Síguenos</h3>
-            <div className="flex items-center space-x-4">
-              <a
-                href="https://www.instagram.com/costabravarentaboat/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-400 hover:text-pink-500 transition-colors"
-                data-testid="social-instagram-mobile"
-                aria-label="Síguenos en Instagram"
-              >
-                <SiInstagram className="w-6 h-6" />
-              </a>
-              <a
-                href="https://www.facebook.com/costabravarentaboat"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-400 hover:text-blue-500 transition-colors"
-                data-testid="social-facebook-mobile"
-                aria-label="Síguenos en Facebook"
-              >
-                <SiFacebook className="w-6 h-6" />
-              </a>
-              <a
-                href="https://www.tiktok.com/@costabravarentaboat"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-400 hover:text-white transition-colors"
-                data-testid="social-tiktok-mobile"
-                aria-label="Síguenos en TikTok"
-              >
-                <SiTiktok className="w-6 h-6" />
-              </a>
-            </div>
-          </div>
         </div>
 
         {/* Bottom Section */}

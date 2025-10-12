@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Anchor, UserCircle } from "lucide-react";
+import { Menu, X, Anchor, UserCircle, Calendar } from "lucide-react";
 import { useLocation } from "wouter";
 import LanguageSelector from "./LanguageSelector";
 import { useTranslations } from "@/lib/translations";
@@ -22,6 +22,11 @@ export default function Navigation() {
   const handleLoginClick = () => {
     setIsOpen(false); // Close mobile menu if open
     setLocation("/login");
+  };
+
+  const handleMobileBooking = () => {
+    setIsOpen(false); // Close mobile menu
+    setLocation("/booking");
   };
 
   const scrollToSection = (sectionId: string, maxAttempts = 10) => {
@@ -207,6 +212,15 @@ export default function Navigation() {
               ))}
               <div className="px-4 py-2 border-t border-gray-200 mt-2 pt-4">
                 <div className="flex flex-col space-y-3">
+                  <Button 
+                    className="justify-start h-12 px-4"
+                    onClick={handleMobileBooking}
+                    data-testid="mobile-button-book"
+                    aria-label="Reservar barco ahora"
+                  >
+                    <Calendar className="w-4 h-4 mr-3" />
+                    Reservar Ahora
+                  </Button>
                   {!isAuthenticated && (
                     <Button 
                       variant="ghost" 

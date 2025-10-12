@@ -126,11 +126,11 @@ export default function Navigation() {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200 shadow-sm">
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-16">
-          {/* Logo */}
+        <div className="relative flex items-center justify-between h-16">
+          {/* Logo - Left */}
           <button 
             onClick={handleLogoClick}
-            className="flex items-center space-x-2 hover:opacity-80 transition-opacity cursor-pointer bg-transparent border-none p-0"
+            className="flex items-center space-x-2 hover:opacity-80 transition-opacity cursor-pointer bg-transparent border-none p-0 z-10"
             data-testid="brand-logo"
             aria-label="Ir a la página principal de Costa Brava Rent a Boat Blanes"
           >
@@ -141,13 +141,13 @@ export default function Navigation() {
             </span>
           </button>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          {/* Desktop Navigation - Absolutely Centered */}
+          <div className="hidden md:flex items-center space-x-6 lg:space-x-8 absolute left-1/2 -translate-x-1/2">
             {navigationItems.map((item) => (
               <button
                 key={item.label}
                 onClick={() => handleNavigation(item.href, item.label)}
-                className="text-gray-700 hover:text-primary transition-colors font-medium cursor-pointer bg-transparent border-none"
+                className="text-gray-700 hover:text-primary transition-colors font-medium cursor-pointer bg-transparent border-none whitespace-nowrap"
                 data-testid={`nav-link-${item.label.toLowerCase()}`}
                 aria-label={`Navegar a ${item.label}`}
               >
@@ -158,7 +158,7 @@ export default function Navigation() {
           </div>
 
           {/* Right side buttons */}
-          <div className="hidden md:flex items-center space-x-4">
+          <div className="hidden md:flex items-center space-x-4 z-10">
             {!isAuthenticated && (
               <Button 
                 variant="ghost" 

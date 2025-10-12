@@ -425,7 +425,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
         {/* Pricing Section */}
         <Card className="mb-8">
           <CardHeader>
-            <CardTitle className="flex items-center">
+            <CardTitle className="flex items-center md:justify-center">
               <Euro className="w-5 h-5 mr-2 text-green-600" />
               Precios por Temporada
             </CardTitle>
@@ -484,7 +484,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
         {/* Extras Section */}
         <Card className="mb-8">
           <CardHeader>
-            <CardTitle>Extras Disponibles</CardTitle>
+            <CardTitle className="md:text-center">Extras Disponibles</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">

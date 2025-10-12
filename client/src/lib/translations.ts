@@ -279,6 +279,16 @@ export interface Translations {
     showMore: string;
     showLess: string;
   };
+
+  // Breadcrumbs
+  breadcrumbs: {
+    home: string;
+    boats: string;
+    locations: string;
+    categories: string;
+    legal: string;
+    faq: string;
+  };
 }
 
 export const translations: Record<Language, Translations> = {
@@ -541,6 +551,14 @@ export const translations: Record<Language, Translations> = {
       showMore: 'Ver más',
       showLess: 'Ver menos',
     },
+    breadcrumbs: {
+      home: 'Inicio',
+      boats: 'Barcos',
+      locations: 'Ubicaciones',
+      categories: 'Categorías',
+      legal: 'Legal',
+      faq: 'FAQ',
+    },
   },
   
   ca: {
@@ -742,6 +760,14 @@ export const translations: Record<Language, Translations> = {
       showMore: 'Veure més',
       showLess: 'Veure menys',
     },
+    breadcrumbs: {
+      home: 'Inici',
+      boats: 'Barques',
+      locations: 'Ubicacions',
+      categories: 'Categories',
+      legal: 'Legal',
+      faq: 'FAQ',
+    },
   },
   
   en: {
@@ -940,6 +966,14 @@ export const translations: Record<Language, Translations> = {
       showMore: 'Show more',
       showLess: 'Show less',
     },
+    breadcrumbs: {
+      home: 'Home',
+      boats: 'Boats',
+      locations: 'Locations',
+      categories: 'Categories',
+      legal: 'Legal',
+      faq: 'FAQ',
+    },
   },
   
   fr: {
@@ -1123,6 +1157,14 @@ export const translations: Record<Language, Translations> = {
       showMore: 'Voir plus',
       showLess: 'Voir moins',
     },
+    breadcrumbs: {
+      home: 'Accueil',
+      boats: 'Bateaux',
+      locations: 'Emplacements',
+      categories: 'Catégories',
+      legal: 'Légal',
+      faq: 'FAQ',
+    },
   },
   
   de: {
@@ -1302,6 +1344,14 @@ export const translations: Record<Language, Translations> = {
       sort: 'Sortieren',
       showMore: 'Mehr anzeigen',
       showLess: 'Weniger anzeigen',
+    },
+    breadcrumbs: {
+      home: 'Startseite',
+      boats: 'Boote',
+      locations: 'Standorte',
+      categories: 'Kategorien',
+      legal: 'Rechtliches',
+      faq: 'FAQ',
     },
   },
   
@@ -1483,6 +1533,14 @@ export const translations: Record<Language, Translations> = {
       showMore: 'Meer tonen',
       showLess: 'Minder tonen',
     },
+    breadcrumbs: {
+      home: 'Home',
+      boats: 'Boten',
+      locations: 'Locaties',
+      categories: 'Categorieën',
+      legal: 'Juridisch',
+      faq: 'FAQ',
+    },
   },
   
   it: {
@@ -1663,6 +1721,14 @@ export const translations: Record<Language, Translations> = {
       showMore: 'Mostra di più',
       showLess: 'Mostra di meno',
     },
+    breadcrumbs: {
+      home: 'Home',
+      boats: 'Barche',
+      locations: 'Posizioni',
+      categories: 'Categorie',
+      legal: 'Legale',
+      faq: 'FAQ',
+    },
   },
   
   ru: {
@@ -1842,6 +1908,14 @@ export const translations: Record<Language, Translations> = {
       sort: 'Сортировать',
       showMore: 'Показать больше',
       showLess: 'Показать меньше',
+    },
+    breadcrumbs: {
+      home: 'Главная',
+      boats: 'Лодки',
+      locations: 'Места',
+      categories: 'Категории',
+      legal: 'Правовая информация',
+      faq: 'FAQ',
     },
   },
 };

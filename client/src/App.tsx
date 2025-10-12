@@ -1,7 +1,7 @@
 import { useState, useEffect, lazy, Suspense } from "react";
-import { Switch, Route, useSearch, useLocation } from "wouter";
+import { Switch, Route, useSearch, useLocation, useRoute } from "wouter";
 import { queryClient } from "./lib/queryClient";
-import { QueryClientProvider } from "@tanstack/react-query";
+import { QueryClientProvider, useQuery } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Button } from "@/components/ui/button";
@@ -43,7 +43,7 @@ import {
   generateBreadcrumbSchema
 } from "@/utils/seo-config";
 import { generateItemListSchema } from "@/utils/seo-schemas";
-import { BOAT_DATA } from "@shared/boatData";
+import type { Boat } from "@shared/schema";
 
 // Main Home Page Component
 function HomePage() {
@@ -53,6 +53,11 @@ function HomePage() {
   const hreflangLinks = generateHreflangLinks('home');
   const canonical = generateCanonicalUrl('home', language);
 
+  // Fetch boats for ItemList schema
+  const { data: boats } = useQuery<Boat[]>({
+    queryKey: ['/api/boats']
+  });
+
   // Generate combined JSON-LD schemas for homepage
   const localBusinessSchema = generateLocalBusinessSchema(language);
   const serviceSchema = generateServiceSchema(language);
@@ -60,16 +65,12 @@ function HomePage() {
     { name: "Inicio", url: "/" }
   ]);
 
-  // Generate ItemList schema for fleet section
-  const fleetOrder = [
-    "astec-400", "remus-450", "solar-450", "astec-450", 
-    "pacific-craft-625", "trimarchi-57s", "mingolla-brava-19"
-  ];
-  const fleetItems = fleetOrder
-    .filter(boatId => BOAT_DATA[boatId])
-    .map(boatId => ({
-      id: boatId,
-      name: BOAT_DATA[boatId].name
+  // Generate ItemList schema for fleet section (from API data)
+  const fleetItems = (boats || [])
+    .filter(boat => boat.isActive)
+    .map(boat => ({
+      id: boat.id,
+      name: boat.name
     }));
   const itemListSchema = generateItemListSchema(fleetItems);
 
@@ -158,32 +159,11 @@ function CRMDashboardPage() {
   return <CRMDashboard adminToken={adminToken!} />;
 }
 
-function Solar450Page() {
-  return <BoatDetailPage boatId="solar-450" />;
-}
-
-function Remus450Page() {
-  return <BoatDetailPage boatId="remus-450" />;
-}
-
-function Astec400Page() {
-  return <BoatDetailPage boatId="astec-400" />;
-}
-
-function Astec450Page() {
-  return <BoatDetailPage boatId="astec-450" />;
-}
-
-function PacificCraft625Page() {
-  return <BoatDetailPage boatId="pacific-craft-625" />;
-}
-
-function Trimarchi57SPage() {
-  return <BoatDetailPage boatId="trimarchi-57s" />;
-}
-
-function MingollaBrava19Page() {
-  return <BoatDetailPage boatId="mingolla-brava-19" />;
+// Dynamic boat detail page wrapper
+function BoatPage() {
+  const [match, params] = useRoute("/barco/:id");
+  const boatId = params?.id || "solar-450"; // Fallback to default
+  return <BoatDetailPage boatId={boatId} />;
 }
 
 function CondicionesGeneralesPage() {
@@ -241,13 +221,7 @@ function Router() {
         <Route path="/crm" component={CRMDashboardPage} />
         <Route path="/mi-cuenta" component={ClientDashboardPage} />
         <Route path="/client/dashboard" component={ClientDashboardPage} />
-        <Route path="/barco/solar-450" component={Solar450Page} />
-        <Route path="/barco/remus-450" component={Remus450Page} />
-        <Route path="/barco/astec-400" component={Astec400Page} />
-        <Route path="/barco/astec-450" component={Astec450Page} />
-        <Route path="/barco/pacific-craft-625" component={PacificCraft625Page} />
-        <Route path="/barco/trimarchi-57s" component={Trimarchi57SPage} />
-        <Route path="/barco/mingolla-brava-19" component={MingollaBrava19Page} />
+        <Route path="/barco/:id" component={BoatPage} />
         <Route path="/condiciones-generales" component={CondicionesGeneralesPage} />
         <Route path="/faq" component={FAQPageWrapper} />
         <Route path="/privacy-policy" component={PrivacyPolicyPageWrapper} />

@@ -8,7 +8,6 @@ import { useToast } from "@/hooks/use-toast";
 import { useTranslations } from "@/lib/translations";
 import { useQuery } from "@tanstack/react-query";
 import type { Boat } from "@shared/schema";
-import { BOAT_DATA } from "@shared/boatData";
 import { getBoatImage } from "@/utils/boatImages";
 
 // Lista completa de prefijos telefónicos
@@ -333,12 +332,10 @@ export default function BookingFormWidget({ preSelectedBoatId, onClose }: Bookin
   // Duration options based on license requirement
   const getDurationOptions = () => {
     const getPriceForDuration = (durationKey: string) => {
-      if (!selectedBoatInfo) return null;
-      const boatData = BOAT_DATA[selectedBoatInfo.id];
-      if (!boatData) return null;
+      if (!selectedBoatInfo || !selectedBoatInfo.pricing) return null;
       
       const season = getCurrentSeason();
-      const seasonPricing = boatData.pricing[season];
+      const seasonPricing = selectedBoatInfo.pricing[season];
       return seasonPricing?.prices[durationKey] || null;
     };
 
@@ -405,12 +402,10 @@ export default function BookingFormWidget({ preSelectedBoatId, onClose }: Bookin
 
   // Helper function to get price
   const getBookingPrice = () => {
-    if (!selectedBoatInfo || !selectedDuration) return null;
-    const boatData = BOAT_DATA[selectedBoatInfo.id];
-    if (!boatData) return null;
+    if (!selectedBoatInfo || !selectedDuration || !selectedBoatInfo.pricing) return null;
     
     const season = getCurrentSeason();
-    const seasonPricing = boatData.pricing[season];
+    const seasonPricing = selectedBoatInfo.pricing[season];
     return seasonPricing?.prices[selectedDuration] || null;
   };
 

@@ -5,7 +5,6 @@ import { Badge } from "@/components/ui/badge";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Calendar, Clock, Users, Plus, Minus, Euro, CreditCard, Anchor, Gauge, ArrowLeft } from "lucide-react";
 import { useLocation } from "wouter";
-import { BOAT_DATA } from "@shared/boatData";
 import { getSeason } from "@shared/pricing";
 import { getBoatImage } from "@/utils/boatImages";
 import { useQuery } from "@tanstack/react-query";
@@ -371,8 +370,8 @@ export default function BookingFlow({
     nationality.toLowerCase().includes(nationalitySearch.toLowerCase())
   );
 
-  // Use boats from API instead of static data
-  const allBoats = boats.length > 0 ? boats : Object.values(BOAT_DATA);
+  // Use boats from API
+  const allBoats = boats || [];
   
   // Filter boats based on license filter
   const availableBoats = useMemo(() => {
@@ -439,13 +438,8 @@ export default function BookingFlow({
     }
 
     try {
-      // First try to find boat in availableBoats (API data), then fallback to BOAT_DATA
-      let boat = availableBoats.find((b: any) => b.id === selectedBoat);
-      
-      // If boat not found in availableBoats, try BOAT_DATA
-      if (!boat) {
-        boat = BOAT_DATA[selectedBoat];
-      }
+      // Find boat in availableBoats (API data)
+      const boat = availableBoats.find((b: any) => b.id === selectedBoat);
       
       if (!boat) {
         throw new Error(`Boat ${selectedBoat} not found`);
@@ -839,11 +833,11 @@ export default function BookingFlow({
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {availableBoats.map((boat: any) => {
                   const isSelected = selectedBoat === boat.id;
-                  // Handle both database boats and static data boats
+                  // Handle boat data from API
                   const boatName = boat.name;
                   const boatCapacity = boat.capacity || parseInt(boat.specifications?.capacity?.split(' ')[0] || '5');
                   const boatPrice = boat.pricePerHour ? parseFloat(boat.pricePerHour) : Math.min(...Object.values(boat.pricing?.BAJA?.prices || {"1h": 75}) as number[]);
-                  const boatImage = boat.image || (BOAT_DATA[boat.id]?.image ? getBoatImage(BOAT_DATA[boat.id].image) : "/placeholder-boat.jpg");
+                  const boatImage = boat.imageUrl || boat.image || "/placeholder-boat.jpg";
                   const requiresLicense = boat.requiresLicense !== undefined ? boat.requiresLicense : boat.subtitle?.includes("Con Licencia");
                   
                   return (
@@ -1243,7 +1237,7 @@ export default function BookingFlow({
                   </div>
                   <div className="flex justify-between">
                     <span>{t.booking.summaryBoat}</span>
-                    <span className="font-medium">{BOAT_DATA[selectedBoat]?.name || 'N/A'}</span>
+                    <span className="font-medium">{availableBoats.find((b: any) => b.id === selectedBoat)?.name || 'N/A'}</span>
                   </div>
                   <hr className="my-2" />
                   {quote ? (

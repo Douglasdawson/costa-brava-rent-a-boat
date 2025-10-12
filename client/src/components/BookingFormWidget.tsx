@@ -796,7 +796,7 @@ export default function BookingFormWidget({ preSelectedBoatId, onClose }: Bookin
       {/* Submit Button */}
       <Button 
         onClick={handleBookingSearch} 
-        className="w-full py-5 sm:py-6 text-sm sm:text-base font-semibold shadow-lg"
+        className="w-full py-5 sm:py-6 md:py-4 text-sm sm:text-base md:text-sm font-semibold shadow-lg"
         data-testid="button-submit-booking"
       >
         <SiWhatsapp className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />

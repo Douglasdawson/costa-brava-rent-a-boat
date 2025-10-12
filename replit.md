@@ -39,6 +39,16 @@ Preferred communication style: Simple, everyday language.
 - **UI/UX**: Emphasis on Mediterranean coastal aesthetics, user-friendly booking flow inspired by Airbnb/Booking.com.
 - **Technical Implementations**: Component-based architecture, centralized boat data management, seasonal pricing and availability.
 - **Feature Specifications**: Multi-step booking flow, customer data collection, payment processing, CRM for reservation management, customer authentication via Replit Auth.
+- **Booking System Architecture** (October 2025):
+  - **BookingFormWidget**: Reusable booking form component (`client/src/components/BookingFormWidget.tsx`)
+    - Accepts optional `preSelectedBoatId` prop for boat pre-selection
+    - When pre-selected, boat selector is disabled (read-only mode)
+    - Contains all booking form logic: state management, boat filtering, WhatsApp integration
+    - Includes phone prefix selector with 200+ international prefixes
+  - **Hero Section**: Uses BookingFormWidget for homepage booking form
+  - **Boat Detail Pages**: Opens Dialog modal with BookingFormWidget and pre-selected boat
+  - **WhatsApp Integration**: All booking forms send structured messages to +34 611 500 372
+  - E2E tested: Full booking flow from boat detail page through WhatsApp redirect
 - **Navigation Scroll Alignment** (October 2025):
   - CSS scroll-margin-top: 72px applied to all sections with IDs (64px navbar + 8px padding)
   - JavaScript scrollIntoView with requestAnimationFrame to prevent mobile menu timing issues

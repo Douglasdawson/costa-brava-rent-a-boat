@@ -23,7 +23,7 @@ export default function Hero() {
       
       <div className="relative z-10 container mx-auto px-3 sm:px-4 pt-24 sm:pt-36 pb-8 sm:pb-12 min-h-screen md:h-screen flex flex-col justify-center items-center text-center">
         <div className="max-w-5xl mx-auto mb-6 sm:mb-8 w-full px-2 sm:px-4">
-          <h1 className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 sm:mb-8 leading-tight px-2">
+          <h1 className="font-heading text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-6 sm:mb-8 leading-tight px-2">
             Alquiler de Barcos en Blanes,<br /> Costa Brava.
           </h1>
           <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/90 mb-8 sm:mb-10 px-2 text-center">

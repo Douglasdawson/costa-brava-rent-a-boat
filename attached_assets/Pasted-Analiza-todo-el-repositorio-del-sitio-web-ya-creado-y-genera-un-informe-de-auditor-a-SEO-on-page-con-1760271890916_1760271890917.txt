@@ -1,0 +1,59 @@
+Analiza todo el repositorio del sitio web ya creado y genera un informe de auditoría SEO on-page con foco en Google Sitelinks.
+Dominio canónico final: https://www.costabravarentaboat.com
+Preview actual (si lo necesitas): https://costa-brava-rent-a-boat-web-ivanrd9.replit.app
+No cambies archivos automáticamente. Devuélveme un listado priorizado de tareas pendientes, con ejemplos de código y rutas exactas de archivos para implementarlas después.
+Contexto del negocio (para metadatos y schema)
+Marca: Costa Brava Rent a Boat Blanes
+Ubicación: Blanes (Girona, Costa Brava), España
+Teléfono/WhatsApp: +34 611 500 372
+Email: costabravarentboat@gmail.com
+Temporada: abril–octubre
+No hay producto destacado (si hay fichas de embarcaciones, tratarlas de forma equilibrada).
+Qué debes entregar (formato del informe)
+Responde en Markdown con estas secciones, en este orden:
+Resumen Ejecutivo
+Puntuación SEO on-page (0–100)
+Probabilidad de Sitelinks: baja / media / alta (y motivo)
+Las 5 mejoras más impactantes
+Checklist Prioritario
+Lista con casillas [ ] agrupada en Crítico / Alto / Medio / Bajo.
+Cada ítem: archivo(s), qué falta, por qué ayuda a sitelinks, cómo arreglarlo.
+Metadatos por página
+Tabla con: Ruta, <title> (caracteres), meta description (caracteres), H1, canonical, index/noindex, duplicidades.
+Proponer títulos/descripciones cuando falten o se repitan (convención: Beneficio | Marca).
+Datos estructurados (JSON-LD)
+Estado por página de: WebSite + SearchAction (Sitelinks SearchBox), BreadcrumbList, LocalBusiness (Home/Contacto), FAQPage (FAQ).
+Opcional: Product/Offer solo si existen fichas de embarcaciones individuales, sin destacar ninguna en especial.
+Para cada tipo ausente o con errores, incluye snippet listo para pegar y ruta/archivo sugeridos. Evita duplicados o incoherencias.
+Navegación e Interlinking (clave para sitelinks)
+Verifica menú y footer idénticos en todas las páginas: Inicio, Embarcaciones, Precios, Rutas, FAQ, Contacto (y fichas, si existen).
+Breadcrumbs visibles en internas.
+Desde Home, enlaces claros a cada sección con anchor text descriptivo.
+Lista páginas huérfanas y propone enlaces internos concretos (origen → destino + texto ancla).
+Sitemap, Robots y Canónicas
+Indica si existen sitemap.xml y robots.txt; muestra su contenido y si declaran Sitemap: https://www.costabravarentaboat.com/sitemap.xml.
+Revisa <link rel="canonical"> en todas las páginas y su coherencia.
+Propón reglas de 301 (https, www/no-www, trailing slash) según el stack detectado.
+Si falta algo, aporta plantillas completas de robots.txt y sitemap.xml.
+Rendimiento on-page relevante para SEO
+Detecta imágenes sin width/height o sin alt, oportunidades de lazy-load, y recursos que bloquean render.
+Acciones concretas con fragmentos de código (loading="lazy", fetchpriority, preload, etc.).
+Diffs/Parches propuestos
+Para cada tarea clave, incluye un diff mínimo (ruta del archivo, línea aproximada, antes → después).
+Adapta al stack real (HTML, React/Vite, Next.js App/Pages, etc.) indicando el sitio exacto (layout/head).
+Guía rápida para Search Console
+Verificación de dominio, envío de sitemap.xml, revisión de Cobertura y mejoras.
+Qué chequear tras el deploy para favorecer sitelinks (navegación consistente, canónicas, ausencia de noindex, etc.).
+Comprobaciones técnicas obligatorias
+Un solo H1 por página y jerarquía correcta.
+<html lang="es">.
+Open Graph / Twitter Cards coherentes (sin duplicados).
+Canónica absoluta al dominio final en cada página.
+WebSite + SearchAction apuntando a /buscar?q={search_term_string} (o ruta equivalente).
+BreadcrumbList en todas las internas.
+LocalBusiness con:
+addressLocality:"Blanes", addressRegion:"Girona", areaServed:"Costa Brava", telephone:"+34611500372", email:"costabravarentboat@gmail.com".
+FAQPage en /faq.
+robots.txt con Allow: / y Sitemap: correcto.
+sitemap.xml con al menos: /, /embarcaciones/, /precios/, /rutas/, /faq/, /contacto/ (añadir fichas si existen).
+Objetivo final: un informe accionable y priorizado para dejar la web lista para sitelinks y con SEO on-page sólido, sin tocar el diseño ni la lógica.

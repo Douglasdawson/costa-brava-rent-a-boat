@@ -9,10 +9,13 @@ import {
   DialogContent,
   DialogHeader,
   DialogTitle,
+  DialogDescription,
 } from "./ui/dialog";
+import { useTranslations } from "@/lib/translations";
 
 export default function Hero() {
   const [isBookingOpen, setIsBookingOpen] = useState(false);
+  const t = useTranslations();
 
   return (
     <div className="relative min-h-screen md:h-screen bg-cover bg-center bg-no-repeat" 
@@ -86,13 +89,13 @@ export default function Hero() {
       {/* Booking Modal */}
       <Dialog open={isBookingOpen} onOpenChange={setIsBookingOpen}>
         <DialogContent className="!max-w-4xl w-[95vw] h-[95vh] max-h-[95vh] p-3 sm:p-4 md:p-6 !left-1/2 !top-1/2 !-translate-x-1/2 !-translate-y-1/2 overflow-y-auto">
-          <DialogHeader>
-            <DialogTitle className="text-xl sm:text-2xl font-bold text-center mb-2">
-              ¡SOLICITA AQUÍ LA PETICIÓN DE TU BARCO!
+          <DialogHeader className="space-y-1 pb-3">
+            <DialogTitle className="text-xl sm:text-2xl font-bold text-center">
+              {t.booking.title}
             </DialogTitle>
-            <p className="text-sm sm:text-base text-gray-600 text-center">
-              Completa los datos para solicitar la reserva de tu barco perfecto
-            </p>
+            <DialogDescription className="text-sm sm:text-base text-gray-600 text-center">
+              {t.booking.modalSubtitle}
+            </DialogDescription>
           </DialogHeader>
           <BookingFormWidget />
         </DialogContent>

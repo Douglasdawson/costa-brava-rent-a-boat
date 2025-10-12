@@ -154,8 +154,8 @@ export default function FleetSection() {
       {/* Booking Modal */}
       <Dialog open={isBookingModalOpen} onOpenChange={setIsBookingModalOpen}>
         <DialogContent className="!max-w-4xl w-[95vw] h-[95vh] max-h-[95vh] p-3 sm:p-4 md:p-6 !left-1/2 !top-1/2 !-translate-x-1/2 !-translate-y-1/2 overflow-y-auto">
-          <DialogHeader>
-            <DialogTitle className="text-xl sm:text-2xl font-bold text-center mb-2">
+          <DialogHeader className="space-y-1 pb-3">
+            <DialogTitle className="text-xl sm:text-2xl font-bold text-center">
               {t.booking.title}
             </DialogTitle>
             <DialogDescription className="text-sm sm:text-base text-gray-600 text-center">

@@ -18,6 +18,7 @@ Preferred communication style: Simple, everyday language.
 - **State Management**: TanStack Query for server state.
 - **Form Handling**: React Hook Form with Zod validation.
 - **Responsiveness**: Mobile-first design with fully responsive CRM (tables convert to cards on mobile < 768px).
+- **Form Autocomplete**: HTML autocomplete attributes on all forms (name, email, phone) for improved UX across all devices (October 2025).
 
 ### Backend
 - **Server**: Express.js with TypeScript on Node.js.

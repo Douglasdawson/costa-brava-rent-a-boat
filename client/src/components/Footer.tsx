@@ -47,9 +47,46 @@ export default function Footer() {
             <p className="text-xs sm:text-xs text-gray-400 mb-4">
               {t.footer.description}
             </p>
-            <div className="flex items-center space-x-2 text-xs sm:text-xs">
+            <div className="flex items-center space-x-2 text-xs sm:text-xs mb-6">
               <div className={`w-2 h-2 rounded-full ${isOperatingSeason() ? 'bg-green-400' : 'bg-red-400'}`}></div>
               <span>{t.footer.operatingSeason}</span>
+            </div>
+            
+            {/* Social Media - Desktop only */}
+            <div className="hidden lg:block">
+              <h3 className="font-semibold text-white mb-4">Síguenos</h3>
+              <div className="flex items-center space-x-4">
+                <a
+                  href="https://www.instagram.com/costabravarentaboat/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-400 hover:text-pink-500 transition-colors"
+                  data-testid="social-instagram-desktop"
+                  aria-label="Síguenos en Instagram"
+                >
+                  <SiInstagram className="w-6 h-6" />
+                </a>
+                <a
+                  href="https://www.facebook.com/costabravarentaboat"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-400 hover:text-blue-500 transition-colors"
+                  data-testid="social-facebook-desktop"
+                  aria-label="Síguenos en Facebook"
+                >
+                  <SiFacebook className="w-6 h-6" />
+                </a>
+                <a
+                  href="https://www.tiktok.com/@costabravarentaboat"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-400 hover:text-white transition-colors"
+                  data-testid="social-tiktok-desktop"
+                  aria-label="Síguenos en TikTok"
+                >
+                  <SiTiktok className="w-6 h-6" />
+                </a>
+              </div>
             </div>
           </div>
 
@@ -201,8 +238,8 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Social Media */}
-          <div>
+          {/* Social Media - Mobile/Tablet only */}
+          <div className="lg:hidden">
             <h3 className="font-semibold text-white mb-4">Síguenos</h3>
             <div className="flex items-center space-x-4">
               <a
@@ -210,7 +247,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-400 hover:text-pink-500 transition-colors"
-                data-testid="social-instagram-grid"
+                data-testid="social-instagram-mobile"
                 aria-label="Síguenos en Instagram"
               >
                 <SiInstagram className="w-6 h-6" />
@@ -220,7 +257,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-400 hover:text-blue-500 transition-colors"
-                data-testid="social-facebook-grid"
+                data-testid="social-facebook-mobile"
                 aria-label="Síguenos en Facebook"
               >
                 <SiFacebook className="w-6 h-6" />
@@ -230,7 +267,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-400 hover:text-white transition-colors"
-                data-testid="social-tiktok-grid"
+                data-testid="social-tiktok-mobile"
                 aria-label="Síguenos en TikTok"
               >
                 <SiTiktok className="w-6 h-6" />

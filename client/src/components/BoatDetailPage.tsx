@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { useLocation } from "wouter";
-import BookingFlow from "./BookingFlow";
+import BookingFormWidget from "./BookingFormWidget";
 import { useQuery } from "@tanstack/react-query";
 import { 
   ArrowLeft, 
@@ -565,9 +565,9 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
 
       {/* Booking Modal */}
       <Dialog open={isBookingModalOpen} onOpenChange={setIsBookingModalOpen}>
-        <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
-          <BookingFlow 
-            boatId={boatId}
+        <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto p-2 sm:p-6">
+          <BookingFormWidget 
+            preSelectedBoatId={boatId}
             onClose={() => setIsBookingModalOpen(false)}
           />
         </DialogContent>

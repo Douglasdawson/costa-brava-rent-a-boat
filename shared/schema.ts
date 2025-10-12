@@ -55,6 +55,7 @@ export const boats = pgTable("boats", {
   requiresLicense: boolean("requires_license").notNull(),
   pricePerHour: decimal("price_per_hour", { precision: 10, scale: 2 }),
   deposit: decimal("deposit", { precision: 10, scale: 2 }).notNull(),
+  displayOrder: integer("display_order").default(999),
   
   // Extended boat information
   imageUrl: text("image_url"), // Main boat image

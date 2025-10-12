@@ -1342,6 +1342,25 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  app.post("/api/admin/boats/reorder", requireAdminSession, async (req, res) => {
+    try {
+      const { order } = req.body;
+      
+      if (!order || !Array.isArray(order)) {
+        return res.status(400).json({ message: "Orden inválido" });
+      }
+
+      // Update display order for each boat
+      for (const item of order) {
+        await storage.updateBoat(item.id, { displayOrder: item.displayOrder });
+      }
+
+      res.json({ message: "Orden actualizado correctamente" });
+    } catch (error: any) {
+      res.status(500).json({ message: "Error reordering boats: " + error.message });
+    }
+  });
+
   // Admin routes for calendar/CRM - now protected
   app.get("/api/admin/bookings", requireAdminSession, async (req, res) => {
     try {

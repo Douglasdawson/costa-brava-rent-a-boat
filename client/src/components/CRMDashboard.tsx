@@ -29,8 +29,26 @@ import {
   Droplets,
   Fuel,
   Sparkles,
-  Shield
+  Shield,
+  GripVertical
 } from "lucide-react";
+import {
+  DndContext,
+  closestCenter,
+  KeyboardSensor,
+  PointerSensor,
+  useSensor,
+  useSensors,
+  DragEndEvent,
+} from '@dnd-kit/core';
+import {
+  arrayMove,
+  SortableContext,
+  sortableKeyboardCoordinates,
+  verticalListSortingStrategy,
+  useSortable,
+} from '@dnd-kit/sortable';
+import { CSS } from '@dnd-kit/utilities';
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { useToast } from "@/hooks/use-toast";
 import { format } from "date-fns";
@@ -82,6 +100,7 @@ const boatSchema = z.object({
   requiresLicense: z.boolean(),
   deposit: z.string().min(1, "El depósito es requerido"),
   isActive: z.boolean(),
+  displayOrder: z.number().optional(),
   
   // Extended fields
   imageUrl: z.string().optional(),
@@ -144,6 +163,150 @@ const INCLUDED_OPTIONS = [
   { id: 'patron', label: 'Patrón', icon: Users },
 ];
 
+// Sortable row component for drag and drop
+function SortableBoatRow({ boat, onEdit, onDelete }: { boat: any; onEdit: (boat: any) => void; onDelete: (id: string) => void }) {
+  const {
+    attributes,
+    listeners,
+    setNodeRef,
+    transform,
+    transition,
+    isDragging,
+  } = useSortable({ id: boat.id });
+
+  const style = {
+    transform: CSS.Transform.toString(transform),
+    transition,
+    opacity: isDragging ? 0.5 : 1,
+  };
+
+  return (
+    <TableRow ref={setNodeRef} style={style} className={isDragging ? 'bg-gray-50' : ''}>
+      <TableCell>
+        <div {...attributes} {...listeners} className="cursor-grab active:cursor-grabbing">
+          <GripVertical className="w-4 h-4 text-gray-400" />
+        </div>
+      </TableCell>
+      <TableCell className="font-medium">{boat.name}</TableCell>
+      <TableCell>{boat.capacity} personas</TableCell>
+      <TableCell>
+        <Badge variant={boat.requiresLicense ? "default" : "secondary"}>
+          {boat.requiresLicense ? "Requerida" : "No requerida"}
+        </Badge>
+      </TableCell>
+      <TableCell>€{boat.deposit}</TableCell>
+      <TableCell>
+        <Badge variant={boat.isActive ? "default" : "secondary"}>
+          {boat.isActive ? "Activo" : "Inactivo"}
+        </Badge>
+      </TableCell>
+      <TableCell className="text-right">
+        <div className="flex justify-end space-x-2">
+          <Button
+            size="icon"
+            variant="ghost"
+            onClick={() => onEdit(boat)}
+            data-testid={`button-edit-boat-${boat.id}`}
+          >
+            <Edit className="w-4 h-4" />
+          </Button>
+          {boat.isActive && (
+            <Button
+              size="icon"
+              variant="ghost"
+              onClick={() => {
+                if (confirm(`¿Estás seguro de desactivar ${boat.name}?`)) {
+                  onDelete(boat.id);
+                }
+              }}
+              data-testid={`button-delete-boat-${boat.id}`}
+            >
+              <Trash2 className="w-4 h-4" />
+            </Button>
+          )}
+        </div>
+      </TableCell>
+    </TableRow>
+  );
+}
+
+// Sortable boat card for mobile
+function SortableBoatCard({ boat, onEdit, onDelete }: { boat: any; onEdit: (boat: any) => void; onDelete: (id: string) => void }) {
+  const {
+    attributes,
+    listeners,
+    setNodeRef,
+    transform,
+    transition,
+    isDragging,
+  } = useSortable({ id: boat.id });
+
+  const style = {
+    transform: CSS.Transform.toString(transform),
+    transition,
+    opacity: isDragging ? 0.5 : 1,
+  };
+
+  return (
+    <Card ref={setNodeRef} style={style}>
+      <CardContent className="p-4">
+        <div className="flex items-start gap-3 mb-3">
+          <div {...attributes} {...listeners} className="cursor-grab active:cursor-grabbing mt-1">
+            <GripVertical className="w-5 h-5 text-gray-400" />
+          </div>
+          <div className="flex-1">
+            <div className="flex justify-between items-start mb-2">
+              <h3 className="font-semibold text-lg">{boat.name}</h3>
+              <div className="flex gap-1">
+                <Button
+                  size="icon"
+                  variant="ghost"
+                  onClick={() => onEdit(boat)}
+                  data-testid={`button-edit-boat-${boat.id}`}
+                >
+                  <Edit className="w-4 h-4" />
+                </Button>
+                {boat.isActive && (
+                  <Button
+                    size="icon"
+                    variant="ghost"
+                    onClick={() => {
+                      if (confirm(`¿Estás seguro de desactivar ${boat.name}?`)) {
+                        onDelete(boat.id);
+                      }
+                    }}
+                    data-testid={`button-delete-boat-${boat.id}`}
+                  >
+                    <Trash2 className="w-4 h-4" />
+                  </Button>
+                )}
+              </div>
+            </div>
+            <div className="flex gap-2 mb-3">
+              <Badge variant={boat.requiresLicense ? "default" : "secondary"} className="text-xs">
+                {boat.requiresLicense ? "Licencia" : "Sin licencia"}
+              </Badge>
+              <Badge variant={boat.isActive ? "default" : "secondary"} className="text-xs">
+                {boat.isActive ? "Activo" : "Inactivo"}
+              </Badge>
+            </div>
+            <div className="grid grid-cols-2 gap-2 text-sm">
+              <div>
+                <span className="text-gray-600">Capacidad:</span>
+                <span className="ml-1 font-medium">{boat.capacity} personas</span>
+              </div>
+              <div>
+                <span className="text-gray-600">Depósito:</span>
+                <span className="ml-1 font-medium">€{boat.deposit}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </CardContent>
+    </Card>
+  );
+}
+
 // Fleet Management Component
 function FleetManagement({ adminToken }: { adminToken: string }) {
   const [showBoatDialog, setShowBoatDialog] = useState(false);
@@ -151,7 +314,16 @@ function FleetManagement({ adminToken }: { adminToken: string }) {
   const [featuresText, setFeaturesText] = useState("");
   const [selectedEquipment, setSelectedEquipment] = useState<string[]>([]);
   const [selectedIncluded, setSelectedIncluded] = useState<string[]>([]);
+  const [orderedBoats, setOrderedBoats] = useState<any[]>([]);
   const { toast } = useToast();
+
+  // Drag and drop sensors
+  const sensors = useSensors(
+    useSensor(PointerSensor),
+    useSensor(KeyboardSensor, {
+      coordinateGetter: sortableKeyboardCoordinates,
+    })
+  );
 
   const boatForm = useForm<BoatFormData>({
     resolver: zodResolver(boatSchema),
@@ -191,6 +363,73 @@ function FleetManagement({ adminToken }: { adminToken: string }) {
   const { data: boats, isLoading: boatsLoading } = useQuery<any[]>({
     queryKey: ['/api/boats'],
   });
+
+  // Initialize ordered boats when boats data changes
+  useEffect(() => {
+    if (boats) {
+      const sorted = [...boats].sort((a, b) => 
+        (a.displayOrder ?? 999) - (b.displayOrder ?? 999)
+      );
+      setOrderedBoats(sorted);
+    }
+  }, [boats]);
+
+  // Reorder boats mutation
+  const reorderBoatsMutation = useMutation({
+    mutationFn: async (newOrder: any[]) => {
+      const response = await fetch('/api/admin/boats/reorder', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${adminToken}`,
+        },
+        body: JSON.stringify({
+          order: newOrder.map((boat, index) => ({
+            id: boat.id,
+            displayOrder: index
+          }))
+        }),
+      });
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.message || 'Error al reordenar barcos');
+      }
+      return response.json();
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['/api/boats'] });
+      toast({
+        title: "Orden actualizado",
+        description: "El orden de los barcos se ha guardado correctamente",
+      });
+    },
+    onError: (error: Error) => {
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: error.message,
+      });
+    },
+  });
+
+  // Handle drag end
+  const handleDragEnd = (event: DragEndEvent) => {
+    const { active, over } = event;
+
+    if (over && active.id !== over.id) {
+      setOrderedBoats((items) => {
+        const oldIndex = items.findIndex((item) => item.id === active.id);
+        const newIndex = items.findIndex((item) => item.id === over.id);
+        
+        const newOrder = arrayMove(items, oldIndex, newIndex);
+        
+        // Save to backend
+        reorderBoatsMutation.mutate(newOrder);
+        
+        return newOrder;
+      });
+    }
+  };
 
   // Create boat mutation
   const createBoatMutation = useMutation({
@@ -458,127 +697,70 @@ function FleetManagement({ adminToken }: { adminToken: string }) {
           {/* Desktop Table View */}
           <Card className="hidden md:block">
             <CardHeader>
-              <CardTitle>Barcos ({boats.length})</CardTitle>
+              <CardTitle>Barcos ({orderedBoats.length})</CardTitle>
             </CardHeader>
             <CardContent>
-              <Table>
-                <TableHeader>
-                  <TableRow>
-                    <TableHead>Nombre</TableHead>
-                    <TableHead>Capacidad</TableHead>
-                    <TableHead>Licencia</TableHead>
-                    <TableHead>Depósito</TableHead>
-                    <TableHead>Estado</TableHead>
-                    <TableHead className="text-right">Acciones</TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  {boats.map((boat: any) => (
-                    <TableRow key={boat.id}>
-                      <TableCell className="font-medium">{boat.name}</TableCell>
-                      <TableCell>{boat.capacity} personas</TableCell>
-                      <TableCell>
-                        <Badge variant={boat.requiresLicense ? "default" : "secondary"}>
-                          {boat.requiresLicense ? "Requerida" : "No requerida"}
-                        </Badge>
-                      </TableCell>
-                      <TableCell>€{boat.deposit}</TableCell>
-                      <TableCell>
-                        <Badge variant={boat.isActive ? "default" : "secondary"}>
-                          {boat.isActive ? "Activo" : "Inactivo"}
-                        </Badge>
-                      </TableCell>
-                      <TableCell className="text-right">
-                        <div className="flex justify-end space-x-2">
-                          <Button
-                            size="icon"
-                            variant="ghost"
-                            onClick={() => handleEditBoat(boat)}
-                            data-testid={`button-edit-boat-${boat.id}`}
-                          >
-                            <Edit className="w-4 h-4" />
-                          </Button>
-                          {boat.isActive && (
-                            <Button
-                              size="icon"
-                              variant="ghost"
-                              onClick={() => {
-                                if (confirm(`¿Estás seguro de desactivar ${boat.name}?`)) {
-                                  deleteBoatMutation.mutate(boat.id);
-                                }
-                              }}
-                              data-testid={`button-delete-boat-${boat.id}`}
-                            >
-                              <Trash2 className="w-4 h-4" />
-                            </Button>
-                          )}
-                        </div>
-                      </TableCell>
+              <DndContext
+                sensors={sensors}
+                collisionDetection={closestCenter}
+                onDragEnd={handleDragEnd}
+              >
+                <Table>
+                  <TableHeader>
+                    <TableRow>
+                      <TableHead className="w-12"></TableHead>
+                      <TableHead>Nombre</TableHead>
+                      <TableHead>Capacidad</TableHead>
+                      <TableHead>Licencia</TableHead>
+                      <TableHead>Depósito</TableHead>
+                      <TableHead>Estado</TableHead>
+                      <TableHead className="text-right">Acciones</TableHead>
                     </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
+                  </TableHeader>
+                  <TableBody>
+                    <SortableContext
+                      items={orderedBoats.map(b => b.id)}
+                      strategy={verticalListSortingStrategy}
+                    >
+                      {orderedBoats.map((boat: any) => (
+                        <SortableBoatRow
+                          key={boat.id}
+                          boat={boat}
+                          onEdit={handleEditBoat}
+                          onDelete={(id) => deleteBoatMutation.mutate(id)}
+                        />
+                      ))}
+                    </SortableContext>
+                  </TableBody>
+                </Table>
+              </DndContext>
             </CardContent>
           </Card>
 
           {/* Mobile Card View */}
           <div className="md:hidden space-y-3">
             <div className="text-sm font-medium text-gray-600 px-1">
-              Barcos ({boats.length})
+              Barcos ({orderedBoats.length})
             </div>
-            {boats.map((boat: any) => (
-              <Card key={boat.id}>
-                <CardContent className="p-4">
-                  <div className="flex justify-between items-start mb-3">
-                    <div className="flex-1">
-                      <h3 className="font-semibold text-lg">{boat.name}</h3>
-                      <div className="flex gap-2 mt-2">
-                        <Badge variant={boat.requiresLicense ? "default" : "secondary"} className="text-xs">
-                          {boat.requiresLicense ? "Licencia" : "Sin licencia"}
-                        </Badge>
-                        <Badge variant={boat.isActive ? "default" : "secondary"} className="text-xs">
-                          {boat.isActive ? "Activo" : "Inactivo"}
-                        </Badge>
-                      </div>
-                    </div>
-                    <div className="flex gap-1">
-                      <Button
-                        size="icon"
-                        variant="ghost"
-                        onClick={() => handleEditBoat(boat)}
-                        data-testid={`button-edit-boat-${boat.id}`}
-                      >
-                        <Edit className="w-4 h-4" />
-                      </Button>
-                      {boat.isActive && (
-                        <Button
-                          size="icon"
-                          variant="ghost"
-                          onClick={() => {
-                            if (confirm(`¿Estás seguro de desactivar ${boat.name}?`)) {
-                              deleteBoatMutation.mutate(boat.id);
-                            }
-                          }}
-                          data-testid={`button-delete-boat-${boat.id}`}
-                        >
-                          <Trash2 className="w-4 h-4" />
-                        </Button>
-                      )}
-                    </div>
-                  </div>
-                  <div className="grid grid-cols-2 gap-2 text-sm">
-                    <div>
-                      <span className="text-gray-600">Capacidad:</span>
-                      <span className="ml-1 font-medium">{boat.capacity} personas</span>
-                    </div>
-                    <div>
-                      <span className="text-gray-600">Depósito:</span>
-                      <span className="ml-1 font-medium">€{boat.deposit}</span>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
+            <DndContext
+              sensors={sensors}
+              collisionDetection={closestCenter}
+              onDragEnd={handleDragEnd}
+            >
+              <SortableContext
+                items={orderedBoats.map(b => b.id)}
+                strategy={verticalListSortingStrategy}
+              >
+                {orderedBoats.map((boat: any) => (
+                  <SortableBoatCard
+                    key={boat.id}
+                    boat={boat}
+                    onEdit={handleEditBoat}
+                    onDelete={(id) => deleteBoatMutation.mutate(id)}
+                  />
+                ))}
+              </SortableContext>
+            </DndContext>
           </div>
         </>
       )}

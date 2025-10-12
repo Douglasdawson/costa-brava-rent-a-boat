@@ -43,7 +43,7 @@ export default function ContactSection() {
     <section className="py-8 sm:py-12 lg:py-16 bg-white" id="contact">
       <div className="container mx-auto px-3 sm:px-4">
         <div className="text-center mb-6 sm:mb-8 lg:mb-12">
-          <h2 className="font-heading text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-2 sm:mb-3 lg:mb-4 text-[#0a4076]">
+          <h2 className="font-heading text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-2 sm:mb-3 lg:mb-4 text-[#143352]">
             {t.contact.title}
           </h2>
           <p className="text-sm sm:text-base lg:text-lg text-gray-600 max-w-xl sm:max-w-2xl mx-auto px-2">
@@ -152,7 +152,7 @@ export default function ContactSection() {
           {/* Contact Form */}
           <Card className="flex flex-col bg-white">
             <CardHeader className="pb-4">
-              <CardTitle className="text-gray-900">Envíanos un Mensaje</CardTitle>
+              <CardTitle className="text-[#0a4076]">Envíanos un Mensaje</CardTitle>
             </CardHeader>
             <CardContent className="flex-1 flex flex-col">
               <form id="contact-form" onSubmit={handleSubmit} className="flex-1 flex flex-col space-y-5">

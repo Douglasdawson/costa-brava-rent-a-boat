@@ -167,6 +167,7 @@ export default function ContactSection() {
                     value={formData.name}
                     onChange={handleInputChange}
                     required
+                    autoComplete="name"
                     className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary h-12 bg-white text-gray-900"
                     placeholder="Tu nombre completo"
                     data-testid="input-contact-name"
@@ -186,6 +187,7 @@ export default function ContactSection() {
                     value={formData.email}
                     onChange={handleInputChange}
                     required
+                    autoComplete="email"
                     className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary h-12 bg-white text-gray-900"
                     placeholder="tu@email.com"
                     data-testid="input-contact-email"
@@ -204,6 +206,7 @@ export default function ContactSection() {
                     id="contact-phone"
                     value={formData.phone}
                     onChange={handleInputChange}
+                    autoComplete="tel"
                     className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary h-12 bg-white text-gray-900 overflow-hidden text-ellipsis"
                     placeholder="+34 600 000 000"
                     data-testid="input-contact-phone"

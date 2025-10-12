@@ -39,6 +39,11 @@ Preferred communication style: Simple, everyday language.
 - **UI/UX**: Emphasis on Mediterranean coastal aesthetics, user-friendly booking flow inspired by Airbnb/Booking.com.
 - **Technical Implementations**: Component-based architecture, centralized boat data management, seasonal pricing and availability.
 - **Feature Specifications**: Multi-step booking flow, customer data collection, payment processing, CRM for reservation management, customer authentication via Replit Auth.
+- **Navigation Scroll Alignment** (October 2025):
+  - CSS scroll-margin-top: 72px applied to all sections with IDs (64px navbar + 8px padding)
+  - JavaScript scrollIntoView with requestAnimationFrame to prevent mobile menu timing issues
+  - Smooth scroll to Fleet, Contact, and other sections perfectly aligned across all devices
+  - No navbar overlap on desktop, tablet, or mobile viewports
 - **CRM Mobile Responsiveness** (December 2024):
   - Header: Compact layout with icon-only buttons and shortened text on mobile
   - Navigation: Horizontal scrollable tabs for touch-friendly access

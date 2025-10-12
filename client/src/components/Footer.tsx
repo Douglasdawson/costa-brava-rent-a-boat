@@ -190,7 +190,7 @@ export default function Footer() {
           {/* Services */}
           <div>
             <h3 className="font-semibold text-white mb-4">{t.footer.services}</h3>
-            <ul className="space-y-2 text-xs mb-6">
+            <ul className="space-y-2 text-xs">
               <li><a href="#" className="hover:text-primary transition-colors">{t.boats.withoutLicense}</a></li>
               <li><a href="#" className="hover:text-primary transition-colors">{t.boats.withLicense}</a></li>
               <li><a href="#" className="hover:text-primary transition-colors">{t.footer.extrasSnorkel}</a></li>
@@ -199,49 +199,49 @@ export default function Footer() {
               <li><a href="#" className="hover:text-primary transition-colors">{t.footer.hourlyRental}</a></li>
               <li><a href="#" className="hover:text-primary transition-colors">{t.footer.portParking}</a></li>
             </ul>
-            
-            {/* Social Media */}
-            <div>
-              <h4 className="font-semibold text-white mb-3 text-sm">Síguenos</h4>
-              <div className="flex items-center space-x-3">
-                <a
-                  href="https://www.instagram.com/costabravarentaboat/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-gray-400 hover:text-pink-500 transition-colors"
-                  data-testid="social-instagram-grid"
-                  aria-label="Síguenos en Instagram"
-                >
-                  <SiInstagram className="w-5 h-5" />
-                </a>
-                <a
-                  href="https://www.facebook.com/costabravarentaboat"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-gray-400 hover:text-blue-500 transition-colors"
-                  data-testid="social-facebook-grid"
-                  aria-label="Síguenos en Facebook"
-                >
-                  <SiFacebook className="w-5 h-5" />
-                </a>
-                <a
-                  href="https://www.tiktok.com/@costabravarentaboat"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-gray-400 hover:text-white transition-colors"
-                  data-testid="social-tiktok-grid"
-                  aria-label="Síguenos en TikTok"
-                >
-                  <SiTiktok className="w-5 h-5" />
-                </a>
-              </div>
+          </div>
+
+          {/* Social Media */}
+          <div>
+            <h3 className="font-semibold text-white mb-4">Síguenos</h3>
+            <div className="flex items-center space-x-4">
+              <a
+                href="https://www.instagram.com/costabravarentaboat/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-pink-500 transition-colors"
+                data-testid="social-instagram-grid"
+                aria-label="Síguenos en Instagram"
+              >
+                <SiInstagram className="w-6 h-6" />
+              </a>
+              <a
+                href="https://www.facebook.com/costabravarentaboat"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-blue-500 transition-colors"
+                data-testid="social-facebook-grid"
+                aria-label="Síguenos en Facebook"
+              >
+                <SiFacebook className="w-6 h-6" />
+              </a>
+              <a
+                href="https://www.tiktok.com/@costabravarentaboat"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-white transition-colors"
+                data-testid="social-tiktok-grid"
+                aria-label="Síguenos en TikTok"
+              >
+                <SiTiktok className="w-6 h-6" />
+              </a>
             </div>
           </div>
         </div>
 
         {/* Bottom Section */}
         <div className="border-t border-gray-800 mt-8 pt-8 flex flex-col items-center">
-          <div className="flex items-center space-x-4 mb-4">
+          <div className="flex items-center space-x-4 mb-6">
             <button 
               onClick={handleWhatsApp}
               className="bg-green-700 hover:bg-green-800 text-white px-4 py-2 rounded-lg text-xs font-medium flex items-center space-x-2 transition-colors"
@@ -261,43 +261,6 @@ export default function Footer() {
               <Phone className="w-4 h-4" />
               <span>{t.footer.call}</span>
             </a>
-          </div>
-
-          {/* Social Media Section */}
-          <div className="mb-6">
-            <h4 className="text-sm font-semibold text-white mb-3 text-center">Síguenos</h4>
-            <div className="flex items-center justify-center space-x-4">
-              <a
-                href="https://www.instagram.com/costabravarentaboat/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-400 hover:text-pink-500 transition-colors"
-                data-testid="social-instagram"
-                aria-label="Síguenos en Instagram"
-              >
-                <SiInstagram className="w-6 h-6" />
-              </a>
-              <a
-                href="https://www.facebook.com/costabravarentaboat"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-400 hover:text-blue-500 transition-colors"
-                data-testid="social-facebook"
-                aria-label="Síguenos en Facebook"
-              >
-                <SiFacebook className="w-6 h-6" />
-              </a>
-              <a
-                href="https://www.tiktok.com/@costabravarentaboat"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-400 hover:text-white transition-colors"
-                data-testid="social-tiktok"
-                aria-label="Síguenos en TikTok"
-              >
-                <SiTiktok className="w-6 h-6" />
-              </a>
-            </div>
           </div>
           
           <p className="text-xs text-gray-400 text-center">

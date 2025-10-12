@@ -82,6 +82,8 @@ export default function LocationBlanesPage() {
       <SEO 
         title={seoConfig.title}
         description={seoConfig.description}
+        ogTitle={seoConfig.ogTitle}
+        ogDescription={seoConfig.ogDescription}
         canonical={canonical}
         hreflang={hreflangLinks}
         jsonLd={combinedJsonLd}

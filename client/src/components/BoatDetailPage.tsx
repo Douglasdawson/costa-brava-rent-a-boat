@@ -236,7 +236,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                   data-testid="button-make-reservation"
                 >
                   <Calendar className="w-4 h-4 mr-2" />
-                  Reservar Ahora
+                  Solicita tu petición de reserva
                 </Button>
               </div>
             </div>

@@ -18,6 +18,7 @@ import { SEO } from "./components/SEO";
 
 // Lazy load non-critical components
 const BookingFlow = lazy(() => import("./components/BookingFlow"));
+const MobileBooking = lazy(() => import("@/pages/MobileBooking"));
 const CRMDashboard = lazy(() => import("./components/CRMDashboard"));
 const BoatDetailPage = lazy(() => import("./components/BoatDetailPage"));
 const CondicionesGenerales = lazy(() => import("./components/CondicionesGenerales"));
@@ -222,7 +223,7 @@ function Router() {
       <Switch>
         <Route path="/" component={HomePage} />
         <Route path="/login" component={LoginPage} />
-        <Route path="/booking" component={BookingFlowPage} />
+        <Route path="/booking" component={MobileBooking} />
         <Route path="/crm" component={CRMDashboardPage} />
         <Route path="/mi-cuenta" component={ClientDashboardPage} />
         <Route path="/client/dashboard" component={ClientDashboardPage} />

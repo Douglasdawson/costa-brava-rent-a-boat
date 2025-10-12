@@ -73,7 +73,19 @@ Preferred communication style: Simple, everyday language.
 - **ORM**: Drizzle ORM with Neon serverless adapter.
 - **Schema Management**: TypeScript schema definitions with Zod.
 - **Migrations**: Drizzle Kit.
-- **Core Tables**: `customers` (user profiles) and `bookings` (including optional `customerId` for authenticated users).
+- **Core Tables**: 
+  - `customers` (user profiles)
+  - `bookings` (including optional `customerId` for authenticated users)
+  - `boats` (fleet management with complete data: pricing, equipment, specs, images)
+
+**Dynamic Boat Management** (October 2025):
+- Migrated from static BOAT_DATA to PostgreSQL-driven system
+- All boats now managed through CRM, auto-appear on public site
+- Fleet dynamically loads from /api/boats endpoint
+- Dynamic routing: /barco/:id supports any boat added via CRM
+- SEO schemas (ItemList, Product) use live database data
+- Components updated: FleetSection, BookingFormWidget, BookingFlow, HomePage
+- E2E tested: 7 boats display correctly, navigation works, booking flow functional
 
 ### System Design
 - **UI/UX**: Emphasis on Mediterranean coastal aesthetics, user-friendly booking flow inspired by Airbnb/Booking.com.

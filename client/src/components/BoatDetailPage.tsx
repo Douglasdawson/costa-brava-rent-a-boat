@@ -53,6 +53,7 @@ interface BoatDetailPageProps {
 
 export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDetailPageProps) {
   const [selectedSeason, setSelectedSeason] = useState<"BAJA" | "MEDIA" | "ALTA">("BAJA");
+  const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
   const [, setLocation] = useLocation();
   
   // Fetch boat data from API

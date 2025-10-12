@@ -41,7 +41,7 @@ export default function Footer() {
             >
               <Anchor className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
               <span className="font-heading font-bold text-base sm:text-lg text-white">
-                <span className="hidden sm:inline">Costa Brava Rent a Boat Blanes</span>
+                <span className="hidden sm:inline text-[17px]">Costa Brava Rent a Boat Blanes</span>
                 <span className="sm:hidden">Costa Brava Rent a Boat - Blanes</span>
               </span>
             </button>

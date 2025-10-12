@@ -565,7 +565,13 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
 
       {/* Booking Modal */}
       <Dialog open={isBookingModalOpen} onOpenChange={setIsBookingModalOpen}>
-        <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto p-2 sm:p-6">
+        <DialogContent className="
+          w-[calc(100vw-1rem)] max-w-4xl 
+          h-[calc(100vh-1rem)] max-h-[90vh] md:h-auto
+          overflow-y-auto 
+          p-3 sm:p-4 md:p-6
+          gap-0
+        ">
           <BookingFormWidget 
             preSelectedBoatId={boatId}
             onClose={() => setIsBookingModalOpen(false)}

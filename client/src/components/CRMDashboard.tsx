@@ -2327,6 +2327,7 @@ export default function CRMDashboard({ adminToken }: CRMDashboardProps) {
                     <Label htmlFor="customerName">Nombre</Label>
                     <Input
                       id="customerName"
+                      autoComplete="given-name"
                       {...editForm.register("customerName")}
                       data-testid="input-customer-name"
                     />
@@ -2338,6 +2339,7 @@ export default function CRMDashboard({ adminToken }: CRMDashboardProps) {
                     <Label htmlFor="customerSurname">Apellidos</Label>
                     <Input
                       id="customerSurname"
+                      autoComplete="family-name"
                       {...editForm.register("customerSurname")}
                       data-testid="input-customer-surname"
                     />
@@ -2349,6 +2351,7 @@ export default function CRMDashboard({ adminToken }: CRMDashboardProps) {
                     <Label htmlFor="customerPhone">Teléfono</Label>
                     <Input
                       id="customerPhone"
+                      autoComplete="tel"
                       {...editForm.register("customerPhone")}
                       data-testid="input-customer-phone"
                     />
@@ -2361,6 +2364,7 @@ export default function CRMDashboard({ adminToken }: CRMDashboardProps) {
                     <Input
                       id="customerEmail"
                       type="email"
+                      autoComplete="email"
                       {...editForm.register("customerEmail")}
                       data-testid="input-customer-email"
                     />

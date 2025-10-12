@@ -365,9 +365,9 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                   <h4 className="font-medium mb-2">Temporada {selectedSeason}</h4>
                   <p className="text-sm text-gray-600 mb-4">{boatData.pricing[selectedSeason].period}</p>
                   
-                  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 justify-items-center">
+                  <div className="flex flex-wrap justify-center gap-4">
                     {Object.entries(boatData.pricing[selectedSeason].prices).map(([duration, price]) => (
-                      <div key={duration} className="text-center p-3 bg-white rounded-lg border w-full">
+                      <div key={duration} className="text-center p-3 bg-white rounded-lg border min-w-[120px]">
                         <div className="font-bold text-lg text-primary">{price}€</div>
                         <div className="text-sm text-gray-600">{duration}</div>
                       </div>

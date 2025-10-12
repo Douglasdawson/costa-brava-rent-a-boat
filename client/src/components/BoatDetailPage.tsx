@@ -186,7 +186,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
 
         {/* Boat Title */}
         <div className="text-center mb-6 sm:mb-8 px-2">
-          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-2 sm:mb-3">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-1">
             {boatData.name}
           </h1>
           <p className="text-base sm:text-lg md:text-xl text-gray-600 mb-2">{boatData.subtitle}</p>

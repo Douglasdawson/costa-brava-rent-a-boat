@@ -84,10 +84,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
   }
 
   const handleReservation = () => {
-    console.log(`Navigate to booking for ${boatData.name}`);
-    const lowestPrice = boatData.pricing ? Math.min(...Object.values(boatData.pricing.BAJA.prices)) : 0;
-    const message = `Hola! Me gustaría hacer una reserva del ${boatData.name} (desde ${lowestPrice}€, sin licencia requerida). He visto los precios por temporada en vuestra web. ¿Podrían confirmarme disponibilidad? ¡Muchas gracias!`;
-    openWhatsApp(message);
+    setIsBookingModalOpen(true);
   };
 
   const handleWhatsApp = () => {

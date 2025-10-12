@@ -192,7 +192,7 @@ function ProfileTab() {
                   <FormItem>
                     <FormLabel>Nombre</FormLabel>
                     <FormControl>
-                      <Input {...field} data-testid="input-firstName" />
+                      <Input {...field} autoComplete="given-name" data-testid="input-firstName" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -206,7 +206,7 @@ function ProfileTab() {
                   <FormItem>
                     <FormLabel>Apellidos</FormLabel>
                     <FormControl>
-                      <Input {...field} data-testid="input-lastName" />
+                      <Input {...field} autoComplete="family-name" data-testid="input-lastName" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -220,7 +220,7 @@ function ProfileTab() {
                   <FormItem>
                     <FormLabel>Email</FormLabel>
                     <FormControl>
-                      <Input {...field} type="email" readOnly disabled data-testid="input-email" className="bg-muted" />
+                      <Input {...field} type="email" autoComplete="email" readOnly disabled data-testid="input-email" className="bg-muted" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -284,7 +284,7 @@ function ProfileTab() {
                   <FormItem>
                     <FormLabel>Número de teléfono</FormLabel>
                     <FormControl>
-                      <Input {...field} type="tel" data-testid="input-phoneNumber" />
+                      <Input {...field} type="tel" autoComplete="tel" data-testid="input-phoneNumber" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>

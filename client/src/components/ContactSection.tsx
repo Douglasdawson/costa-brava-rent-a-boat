@@ -136,7 +136,7 @@ export default function ContactSection() {
               {/* WhatsApp Button */}
               <div className="mt-auto pt-6 border-t border-gray-200">
                 <Button 
-                  onClick={() => window.open("https://wa.me/34683172154", "_blank")}
+                  onClick={() => window.open("https://wa.me/34611500372", "_blank")}
                   className="w-full bg-green-700 hover:bg-green-800 text-white px-6 py-3 h-12"
                   data-testid="button-whatsapp-quick"
                   aria-label="Consultar disponibilidad por WhatsApp"

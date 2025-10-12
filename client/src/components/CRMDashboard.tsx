@@ -629,7 +629,7 @@ function FleetManagement({ adminToken }: { adminToken: string }) {
                 <Input
                   id="subtitle"
                   {...boatForm.register("subtitle")}
-                  placeholder="Sin Licencia Para Alquilar en Blanes"
+                  placeholder="¡Barco sin licencia para alquilar en Blanes!"
                   data-testid="input-boat-subtitle"
                 />
               </div>

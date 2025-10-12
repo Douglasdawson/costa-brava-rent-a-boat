@@ -43,7 +43,7 @@ export const SERVER_BOAT_DATA: { [key: string]: ServerBoatData } = {
   "solar-450": {
     id: "solar-450",
     name: "Solar 450",
-    subtitle: "Sin Licencia Para Alquilar en Blanes",
+    subtitle: "¡Barco sin licencia para alquilar en Blanes!",
     description: "Alquiler Solar 450 sin licencia en Blanes, Costa Brava. Embarcación ideal para hasta 5 personas con gasolina incluida. Perfecta para familias que buscan alquilar barco sin licencia en Puerto de Blanes. Incluye amplio solárium acolchado, toldo, escalera de baño y arranque eléctrico. Ideal para explorar las calas de Blanes y Costa Brava Sur.",
     specifications: {
       model: "Solar 450",
@@ -103,7 +103,7 @@ export const SERVER_BOAT_DATA: { [key: string]: ServerBoatData } = {
   "remus-450": {
     id: "remus-450",
     name: "Remus 450",
-    subtitle: "Sin Licencia Para Alquilar en Blanes",
+    subtitle: "¡Barco sin licencia para alquilar en Blanes!",
     description: "Alquiler Remus 450 sin licencia en Blanes, Costa Brava. Barco ideal para hasta 5 personas con gasolina incluida. Perfecto para familias que buscan alquilar embarcación sin licencia en Puerto de Blanes. Equipado con solárium amplio, toldo Bi Mini y escalera de baño. Ideal para explorar las calas de Blanes y Costa Brava Sur.",
     specifications: {
       model: "Remus 450",
@@ -163,7 +163,7 @@ export const SERVER_BOAT_DATA: { [key: string]: ServerBoatData } = {
   "astec-400": {
     id: "astec-400",
     name: "Astec 400",
-    subtitle: "Sin Licencia Para Alquilar en Blanes",
+    subtitle: "¡Barco sin licencia para alquilar en Blanes!",
     description: "Alquiler Astec 400 sin licencia en Blanes, Costa Brava. Embarcación perfecta para parejas o familias pequeñas, hasta 4 personas con gasolina incluida. Ideal para alquilar barco sin licencia en Puerto de Blanes. Incluye solárium con cojines, toldo, escalera de baño y arranque eléctrico. Perfecta para explorar las calas de Blanes de manera sencilla y segura.",
     specifications: {
       model: "Fibra Astec 400",
@@ -223,7 +223,7 @@ export const SERVER_BOAT_DATA: { [key: string]: ServerBoatData } = {
   "astec-450": {
     id: "astec-450",
     name: "Astec 450",
-    subtitle: "Sin Licencia Para Alquilar en Blanes",
+    subtitle: "¡Barco sin licencia para alquilar en Blanes!",
     description: "Alquiler Astec 450 sin licencia en Blanes, Costa Brava. Nuestra embarcación sin licencia más espaciosa para grupos de hasta 5 personas con gasolina incluida. La mejor opción para alquilar barco sin licencia en Puerto de Blanes. Incluye solárium acolchado, toldo, escalera de baño, arranque eléctrico y equipo bluetooth. Ideal para navegación confortable en Costa Brava Sur.",
     specifications: {
       model: "Fibra Astec 450",

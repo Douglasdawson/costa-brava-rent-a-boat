@@ -59,7 +59,7 @@ export const boats = pgTable("boats", {
   // Extended boat information
   imageUrl: text("image_url"), // Main boat image
   imageGallery: text("image_gallery").array(), // Additional images
-  subtitle: text("subtitle"), // e.g., "Sin Licencia Para Alquilar en Blanes"
+  subtitle: text("subtitle"), // e.g., "¡Barco sin licencia para alquilar en Blanes!"
   description: text("description"), // Full boat description
   
   // Specifications as JSON

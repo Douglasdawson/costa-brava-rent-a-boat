@@ -14,6 +14,8 @@ import {
   DialogTitle,
   DialogDescription,
 } from "@/components/ui/dialog";
+import { SiWhatsapp } from "react-icons/si";
+import { Phone } from "lucide-react";
 
 export default function FleetSection() {
   const t = useTranslations();
@@ -120,15 +122,17 @@ export default function FleetSection() {
               data-testid="button-whatsapp-help"
               aria-label="Consultar por WhatsApp para elegir barco"
             >
-              💬 <span className="ml-1 sm:ml-2">{t.contact.whatsapp}</span>
+              <SiWhatsapp className="w-4 h-4 sm:w-5 sm:h-5" />
+              <span className="ml-1 sm:ml-2">{t.contact.whatsapp}</span>
             </button>
             <button 
-              className="border border-gray-300 hover:border-gray-400 text-gray-700 px-3 sm:px-4 lg:px-6 py-2.5 sm:py-3 rounded-lg font-medium transition-colors text-xs sm:text-sm lg:text-base"
+              className="border border-gray-300 hover:border-gray-400 text-gray-700 px-3 sm:px-4 lg:px-6 py-2.5 sm:py-3 rounded-lg font-medium flex items-center justify-center transition-colors text-xs sm:text-sm lg:text-base"
               data-testid="button-call-help"
               aria-label="Llamar para ayuda en la elección de barco"
-              onClick={() => window.open("tel:+34683172154", "_self")}
+              onClick={() => window.open("tel:+34611500372", "_self")}
             >
-              📞 <span className="ml-1">{t.fleet.callButton}</span>
+              <Phone className="w-4 h-4 sm:w-5 sm:h-5" />
+              <span className="ml-1">{t.fleet.callButton}</span>
             </button>
           </div>
         </div>

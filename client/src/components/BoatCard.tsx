@@ -93,20 +93,19 @@ export default function BoatCard({
           </div>
         </div>
       </div>
-
       <CardContent className="p-3 sm:p-4">
         <div className="flex items-start justify-between mb-2">
           <h3 className="font-heading font-semibold text-base sm:text-lg text-gray-900 flex-1 mr-2">{name}</h3>
           <div className="text-right flex-shrink-0">
             <div className="text-xs sm:text-sm text-gray-500">{t.boats.from}</div>
-            <div className="font-bold text-primary flex items-center text-sm sm:text-base">
+            <div className="font-bold text-primary flex items-center sm:text-base text-[20px]">
               <Euro className="w-3 h-3 sm:w-4 sm:h-4 mr-1" />
               {basePrice}
             </div>
           </div>
         </div>
 
-        <p className="text-gray-600 text-xs sm:text-sm mb-3 line-clamp-2">{description}</p>
+        <p className="text-gray-600 sm:text-sm mb-3 line-clamp-2 text-[13px]">{description}</p>
 
         <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 mb-3 text-xs sm:text-sm text-gray-600">
           <div className="flex items-center">
@@ -127,7 +126,6 @@ export default function BoatCard({
           ))}
         </div>
       </CardContent>
-
       <CardFooter className="p-3 sm:p-4 pt-0 flex flex-row gap-2">
         <Button 
           variant="outline" 

@@ -191,7 +191,7 @@ export default function Footer() {
           {/* Services */}
           <div>
             <h3 className="font-semibold text-white mb-4">{t.footer.services}</h3>
-            <ul className="space-y-2 text-xs">
+            <ul className="space-y-2 text-xs mb-6">
               <li><a href="#" className="hover:text-primary transition-colors">{t.boats.withoutLicense}</a></li>
               <li><a href="#" className="hover:text-primary transition-colors">{t.boats.withLicense}</a></li>
               <li><a href="#" className="hover:text-primary transition-colors">{t.footer.extrasSnorkel}</a></li>
@@ -200,6 +200,43 @@ export default function Footer() {
               <li><a href="#" className="hover:text-primary transition-colors">{t.footer.hourlyRental}</a></li>
               <li><a href="#" className="hover:text-primary transition-colors">{t.footer.portParking}</a></li>
             </ul>
+            
+            {/* Social Media */}
+            <div>
+              <h4 className="font-semibold text-white mb-3 text-sm">Síguenos</h4>
+              <div className="flex items-center space-x-3">
+                <a
+                  href="https://www.instagram.com/costabravarentaboat/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-400 hover:text-pink-500 transition-colors"
+                  data-testid="social-instagram-grid"
+                  aria-label="Síguenos en Instagram"
+                >
+                  <SiInstagram className="w-5 h-5" />
+                </a>
+                <a
+                  href="https://www.facebook.com/costabravarentaboat"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-400 hover:text-blue-500 transition-colors"
+                  data-testid="social-facebook-grid"
+                  aria-label="Síguenos en Facebook"
+                >
+                  <SiFacebook className="w-5 h-5" />
+                </a>
+                <a
+                  href="https://www.tiktok.com/@costabravarentaboat"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-400 hover:text-white transition-colors"
+                  data-testid="social-tiktok-grid"
+                  aria-label="Síguenos en TikTok"
+                >
+                  <SiTiktok className="w-5 h-5" />
+                </a>
+              </div>
+            </div>
           </div>
 
           {/* Social Media */}

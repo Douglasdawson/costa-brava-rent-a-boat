@@ -52,6 +52,11 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       description: "Alquiler de barcos sin licencia y con licencia en Blanes, Costa Brava. Desde Puerto de Blanes. 7 embarcaciones para 4-7 personas. Incluye snorkel y paddle surf.",
       keywords: "alquiler barcos blanes, barcos sin licencia costa brava, alquiler embarcaciones blanes, costa brava rent boat, puerto blanes"
     },
+    booking: {
+      title: "Reservar Barco en Blanes | Costa Brava Rent a Boat",
+      description: "Completa el formulario para reservar tu barco en Blanes, Costa Brava. Barcos sin licencia y con licencia. Respuesta rápida por WhatsApp.",
+      keywords: "reservar barco blanes, formulario reserva embarcación, booking barco costa brava"
+    },
     faq: {
       title: "Preguntas Frecuentes (FAQ) - Alquiler de Barcos en Blanes | Costa Brava Rent a Boat",
       description: "Resuelve todas tus dudas sobre el alquiler de barcos en Blanes, Costa Brava. Precios, requisitos, qué incluye, políticas de cancelación y más. Sin licencia y con licencia.",
@@ -113,6 +118,11 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       title: "Boat Rental in Blanes (Costa Brava) without license | Costa Brava Rent a Boat",
       description: "Boat rental without license and with license in Blanes, Costa Brava. From Port of Blanes. 7 boats for 4-7 people. Includes snorkel and paddle surf.",
       keywords: "boat rental blanes, boats without license costa brava, boat charter blanes, costa brava rent boat, blanes port"
+    },
+    booking: {
+      title: "Book a Boat in Blanes | Costa Brava Rent a Boat",
+      description: "Complete the form to book your boat in Blanes, Costa Brava. License-free and licensed boats. Quick WhatsApp response.",
+      keywords: "book boat blanes, boat booking form, boat reservation costa brava"
     },
     faq: {
       title: "Frequently Asked Questions (FAQ) - Boat Rental in Blanes | Costa Brava Rent a Boat",
@@ -176,6 +186,11 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       description: "Lloguer de barques sense llicència i amb llicència a Blanes, Costa Brava. Des del Port de Blanes. 7 embarcacions per a 4-7 persones. Inclou snorkel i paddle surf.",
       keywords: "lloguer barques blanes, barques sense llicència costa brava, lloguer embarcacions blanes, costa brava rent boat, port blanes"
     },
+    booking: {
+      title: "Reservar Barque a Blanes | Costa Brava Rent a Boat",
+      description: "Completa el formulari per reservar la teva barque a Blanes, Costa Brava. Barques sense llicència i amb llicència. Resposta ràpida per WhatsApp.",
+      keywords: "reservar barque blanes, formulari reserva embarcació, booking barque costa brava"
+    },
     faq: {
       title: "Preguntes Freqüents (FAQ) - Lloguer de Barques a Blanes | Costa Brava Rent a Boat",
       description: "Resol tots els teus dubtes sobre el lloguer de barques a Blanes, Costa Brava. Preus, requisits, què inclou, polítiques de cancel·lació i més.",
@@ -222,6 +237,11 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       title: "Location de bateaux à Blanes (Costa Brava) sans permis | Costa Brava Rent a Boat",
       description: "Location de bateaux sans permis et avec permis à Blanes, Costa Brava. Depuis le Port de Blanes. 7 bateaux pour 4-7 personnes. Inclut snorkel et paddle surf.",
       keywords: "location bateaux blanes, bateaux sans permis costa brava, location embarcations blanes, costa brava rent boat, port blanes"
+    },
+    booking: {
+      title: "Réserver un Bateau à Blanes | Costa Brava Rent a Boat",
+      description: "Complétez le formulaire pour réserver votre bateau à Blanes, Costa Brava. Bateaux sans permis et avec permis. Réponse rapide par WhatsApp.",
+      keywords: "réserver bateau blanes, formulaire réservation bateau, booking bateau costa brava"
     },
     faq: {
       title: "Questions Fréquentes (FAQ) - Location de Bateaux à Blanes | Costa Brava Rent a Boat",
@@ -270,6 +290,11 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       description: "Bootsverleih ohne Führerschein und mit Führerschein in Blanes, Costa Brava. Vom Hafen Blanes. 7 Boote für 4-7 Personen. Inklusive Schnorchel und Paddle Surf.",
       keywords: "bootsverleih blanes, boote ohne führerschein costa brava, bootscharter blanes, costa brava rent boat, hafen blanes"
     },
+    booking: {
+      title: "Boot Buchen in Blanes | Costa Brava Rent a Boat",
+      description: "Füllen Sie das Formular aus, um Ihr Boot in Blanes, Costa Brava zu buchen. Boote ohne und mit Führerschein. Schnelle WhatsApp-Antwort.",
+      keywords: "boot buchen blanes, buchungsformular boot, boot reservierung costa brava"
+    },
     faq: {
       title: "Häufig gestellte Fragen (FAQ) - Bootsverleih in Blanes | Costa Brava Rent a Boat",
       description: "Lösen Sie alle Ihre Zweifel über Bootsverleih in Blanes, Costa Brava. Preise, Anforderungen, was enthalten ist, Stornierungsrichtlinien und mehr.",
@@ -316,6 +341,11 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       title: "Bootverhuur in Blanes (Costa Brava) zonder vaarbewijs | Costa Brava Rent a Boat",
       description: "Bootverhuur zonder vaarbewijs en met vaarbewijs in Blanes, Costa Brava. Vanaf Haven van Blanes. 7 boten voor 4-7 personen. Inclusief snorkel en paddle surf.",
       keywords: "bootverhuur blanes, boten zonder vaarbewijs costa brava, bootcharter blanes, costa brava rent boat, haven blanes"
+    },
+    booking: {
+      title: "Boot Reserveren in Blanes | Costa Brava Rent a Boat",
+      description: "Vul het formulier in om uw boot in Blanes, Costa Brava te reserveren. Boten zonder en met vaarbewijs. Snelle WhatsApp-reactie.",
+      keywords: "boot reserveren blanes, reserveringsformulier boot, boot booking costa brava"
     },
     faq: {
       title: "Veelgestelde Vragen (FAQ) - Bootverhuur in Blanes | Costa Brava Rent a Boat",
@@ -507,6 +537,7 @@ export const generateHreflangLinks = (pageName: string, params?: string): Array<
 const getPagePath = (pageName: string): string => {
   const paths: Record<string, string> = {
     home: '',
+    booking: 'booking',
     faq: 'faq',
     locationBlanes: 'alquiler-barcos-blanes',
     locationLloret: 'alquiler-barcos-lloret-de-mar',

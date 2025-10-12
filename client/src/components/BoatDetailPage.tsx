@@ -367,7 +367,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                   
                   <div className="flex flex-wrap justify-center gap-4">
                     {Object.entries(boatData.pricing[selectedSeason].prices).map(([duration, price]) => (
-                      <div key={duration} className="text-center p-3 bg-white rounded-lg border min-w-[120px]">
+                      <div key={duration} className="text-center p-3 bg-white rounded-lg border min-w-[120px] hover:bg-blue-50 transition-colors cursor-pointer">
                         <div className="font-bold text-lg text-primary">{price}€</div>
                         <div className="text-sm text-gray-600">{duration}</div>
                       </div>

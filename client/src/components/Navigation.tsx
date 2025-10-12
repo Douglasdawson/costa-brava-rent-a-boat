@@ -81,8 +81,8 @@ export default function Navigation() {
         setLocation("/");
       }
     } else if (href === "#booking") {
-      // Navigate to booking page
-      setLocation("/booking");
+      // Open booking modal
+      setIsBookingModalOpen(true);
     } else if (href === "#faq") {
       // Navigate to FAQ page or scroll to top if already on FAQ page
       const currentPath = window.location.pathname;

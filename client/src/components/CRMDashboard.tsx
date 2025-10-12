@@ -45,6 +45,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import type { Booking } from "@shared/schema";
 import { queryClient } from "@/lib/queryClient";
+import { ImageGalleryUploader } from "@/components/ImageGalleryUploader";
 
 interface CRMDashboardProps {
   adminToken: string;
@@ -147,7 +148,6 @@ const INCLUDED_OPTIONS = [
 function FleetManagement({ adminToken }: { adminToken: string }) {
   const [showBoatDialog, setShowBoatDialog] = useState(false);
   const [editingBoat, setEditingBoat] = useState<any | null>(null);
-  const [imageGalleryText, setImageGalleryText] = useState("");
   const [featuresText, setFeaturesText] = useState("");
   const [selectedEquipment, setSelectedEquipment] = useState<string[]>([]);
   const [selectedIncluded, setSelectedIncluded] = useState<string[]>([]);
@@ -329,7 +329,6 @@ function FleetManagement({ adminToken }: { adminToken: string }) {
     setEditingBoat(boat);
     
     // Set textarea states for editing
-    setImageGalleryText(boat.imageGallery?.join('\n') || '');
     setFeaturesText(boat.features?.join('\n') || '');
     setSelectedEquipment(boat.equipment || []);
     setSelectedIncluded(boat.included || []);
@@ -406,7 +405,6 @@ function FleetManagement({ adminToken }: { adminToken: string }) {
         <Button
           onClick={() => {
             setEditingBoat(null);
-            setImageGalleryText("");
             setFeaturesText("");
             setSelectedEquipment([]);
             setSelectedIncluded([]);
@@ -659,17 +657,11 @@ function FleetManagement({ adminToken }: { adminToken: string }) {
                 />
               </div>
               <div>
-                <Label>URLs Galería de Imágenes (una por línea)</Label>
-                <Textarea
-                  placeholder="https://ejemplo.com/imagen1.jpg&#10;https://ejemplo.com/imagen2.jpg"
-                  rows={3}
-                  value={imageGalleryText}
-                  onChange={(e) => {
-                    setImageGalleryText(e.target.value);
-                    const urls = e.target.value.split('\n').filter(url => url.trim());
-                    boatForm.setValue('imageGallery', urls);
-                  }}
-                  data-testid="input-boat-image-gallery"
+                <Label>Galería de Imágenes</Label>
+                <ImageGalleryUploader
+                  images={boatForm.watch('imageGallery') || []}
+                  onImagesChange={(images) => boatForm.setValue('imageGallery', images)}
+                  maxImages={10}
                 />
               </div>
             </div>
@@ -1050,7 +1042,6 @@ function FleetManagement({ adminToken }: { adminToken: string }) {
                 onClick={() => {
                   setShowBoatDialog(false);
                   setEditingBoat(null);
-                  setImageGalleryText("");
                   setFeaturesText("");
                   setSelectedEquipment([]);
                   setSelectedIncluded([]);

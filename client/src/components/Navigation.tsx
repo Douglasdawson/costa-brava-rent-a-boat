@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Menu, X, User, Calendar, Anchor, UserCircle } from "lucide-react";
+import { Menu, X, Anchor, UserCircle } from "lucide-react";
 import { useLocation } from "wouter";
 import LanguageSelector from "./LanguageSelector";
 import { useTranslations } from "@/lib/translations";
@@ -22,29 +22,6 @@ export default function Navigation() {
   const handleLoginClick = () => {
     setIsOpen(false); // Close mobile menu if open
     setLocation("/login");
-  };
-
-  const handleBooking = () => {
-    setIsOpen(false); // Close mobile menu
-    
-    const currentPath = window.location.pathname;
-    
-    if (currentPath !== "/") {
-      // Navigate to homepage first, then scroll to top
-      setLocation("/");
-      setTimeout(() => {
-        window.scrollTo({
-          top: 0,
-          behavior: "smooth"
-        });
-      }, 50);
-    } else {
-      // Already on homepage, just scroll to top
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-      });
-    }
   };
 
   const scrollToSection = (sectionId: string, maxAttempts = 10) => {
@@ -134,7 +111,6 @@ export default function Navigation() {
   const navigationItems = [
     { label: t.nav.home, href: "/" },
     { label: t.nav.fleet, href: "#fleet" },
-    { label: t.nav.booking, href: "#booking" },
     { label: t.nav.contact, href: "#contact" },
     { label: t.nav.faq, href: "#faq" },
   ];
@@ -175,14 +151,6 @@ export default function Navigation() {
 
           {/* Right side buttons */}
           <div className="hidden md:flex items-center space-x-4">
-            <Button 
-              onClick={handleBooking}
-              data-testid="button-book-now"
-              aria-label="Reservar barco ahora"
-            >
-              <Calendar className="w-4 h-4 mr-2" />
-              Reservar Ahora
-            </Button>
             {!isAuthenticated && (
               <Button 
                 variant="ghost" 
@@ -263,15 +231,6 @@ export default function Navigation() {
                       Mi Cuenta
                     </Button>
                   )}
-                  <Button 
-                    className="justify-start h-12 px-4"
-                    onClick={handleBooking}
-                    data-testid="mobile-button-book"
-                    aria-label="Reservar barco ahora"
-                  >
-                    <Calendar className="w-4 h-4 mr-3" />
-                    Reservar Ahora
-                  </Button>
                 </div>
               </div>
             </div>

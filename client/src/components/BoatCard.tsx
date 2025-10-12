@@ -100,7 +100,7 @@ export default function BoatCard({
           <h3 className="font-heading font-semibold text-base sm:text-lg text-gray-900 flex-1 mr-2">{name}</h3>
           <div className="text-right flex-shrink-0">
             <div className="text-xs sm:text-sm text-gray-500">{t.boats.from}</div>
-            <div className="font-bold text-primary flex items-center sm:text-base text-[20px]">
+            <div className="font-bold text-primary flex items-center sm:text-base text-[25px]">
               <Euro className="w-3 h-3 sm:w-4 sm:h-4 mr-1" />
               {basePrice}
             </div>

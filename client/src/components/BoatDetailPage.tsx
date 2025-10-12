@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -30,7 +30,9 @@ import {
   Heart,
   Sun,
   Clock,
-  Package
+  Package,
+  ChevronLeft,
+  ChevronRight
 } from "lucide-react";
 import { openWhatsApp } from "@/utils/whatsapp";
 import { getBoatImage } from "@/utils/boatImages";
@@ -57,6 +59,7 @@ interface BoatDetailPageProps {
 export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDetailPageProps) {
   const [selectedSeason, setSelectedSeason] = useState<"BAJA" | "MEDIA" | "ALTA">("BAJA");
   const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [, setLocation] = useLocation();
   
   // Fetch boat data from API
@@ -93,6 +96,24 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
   const handleWhatsApp = () => {
     const message = `Hola, me interesa el ${boatData.name}. ¿Podrían darme más información?`;
     openWhatsApp(message);
+  };
+
+  // Image gallery handling
+  const displayImages = boatData.imageGallery && boatData.imageGallery.length > 0 
+    ? boatData.imageGallery 
+    : [boatData.imageUrl || ''];
+
+  // Reset image index when boat changes or image count changes
+  useEffect(() => {
+    setCurrentImageIndex(0);
+  }, [boatId, displayImages.length]);
+
+  const nextImage = () => {
+    setCurrentImageIndex((prev) => (prev + 1) % displayImages.length);
+  };
+
+  const prevImage = () => {
+    setCurrentImageIndex((prev) => (prev - 1 + displayImages.length) % displayImages.length);
   };
 
   // SEO data for this boat
@@ -209,15 +230,66 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
 
         {/* Image and Description Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 mb-6 sm:mb-8">
-          {/* Left Column - Image */}
+          {/* Left Column - Image Gallery Carousel */}
           <div className="bg-white rounded-xl overflow-hidden shadow-lg">
-            <img 
-              src={getBoatImage(boatData.imageUrl || '')} 
-              alt={`Alquiler ${boatData.name} ${boatData.subtitle?.includes("Sin Licencia") ? "sin licencia" : "con licencia"} en Blanes Costa Brava`}
-              className="w-full h-64 sm:h-80 md:h-96 object-cover"
-              loading="lazy"
-              data-testid="img-boat-main"
-            />
+            <div className="relative group">
+              <img 
+                src={getBoatImage(displayImages[currentImageIndex])} 
+                alt={`Alquiler ${boatData.name} ${boatData.subtitle?.includes("Sin Licencia") ? "sin licencia" : "con licencia"} en Blanes Costa Brava - Imagen ${currentImageIndex + 1}`}
+                className="w-full h-64 sm:h-80 md:h-96 object-cover"
+                loading="lazy"
+                data-testid="img-boat-main"
+              />
+              
+              {/* Navigation arrows - only show if more than one image */}
+              {displayImages.length > 1 && (
+                <>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    onClick={prevImage}
+                    className="absolute left-2 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white/90 opacity-0 group-hover:opacity-100 transition-opacity"
+                    data-testid="button-prev-image"
+                  >
+                    <ChevronLeft className="w-6 h-6" />
+                  </Button>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    onClick={nextImage}
+                    className="absolute right-2 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white/90 opacity-0 group-hover:opacity-100 transition-opacity"
+                    data-testid="button-next-image"
+                  >
+                    <ChevronRight className="w-6 h-6" />
+                  </Button>
+                </>
+              )}
+              
+              {/* Image counter */}
+              {displayImages.length > 1 && (
+                <div className="absolute bottom-2 right-2 bg-black/70 text-white px-3 py-1 rounded-full text-sm">
+                  {currentImageIndex + 1} / {displayImages.length}
+                </div>
+              )}
+            </div>
+            
+            {/* Thumbnail dots - only show if more than one image */}
+            {displayImages.length > 1 && (
+              <div className="flex justify-center gap-2 p-4 bg-gray-50">
+                {displayImages.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentImageIndex(index)}
+                    className={`w-2 h-2 rounded-full transition-all ${
+                      index === currentImageIndex 
+                        ? 'bg-primary w-8' 
+                        : 'bg-gray-300 hover:bg-gray-400'
+                    }`}
+                    data-testid={`button-thumbnail-${index}`}
+                  />
+                ))}
+              </div>
+            )}
           </div>
 
           {/* Right Column - Description */}

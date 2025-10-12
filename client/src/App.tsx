@@ -90,6 +90,7 @@ function HomePage() {
       <SEO 
         title={seoConfig.title}
         description={seoConfig.description}
+        ogTitle="Alquiler de Barcos en Blanes y Lloret de Mar | Costa Brava Rent a Boat - Blanes"
         canonical={canonical}
         hreflang={hreflangLinks}
         jsonLd={combinedJsonLd}

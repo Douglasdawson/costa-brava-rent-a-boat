@@ -6,6 +6,7 @@ interface SEOProps {
   canonical?: string;
   ogImage?: string;
   ogType?: string;
+  ogTitle?: string;
   jsonLd?: object;
   hreflang?: Array<{
     lang: string;
@@ -19,6 +20,7 @@ export function SEO({
   canonical = "https://costa-brava-rent-a-boat-web-ivanrd9.replit.app/",
   ogImage = "https://costa-brava-rent-a-boat-web-ivanrd9.replit.app/assets/Mediterranean_coastal_hero_scene_8df465c2.png",
   ogType = "website",
+  ogTitle,
   jsonLd,
   hreflang
 }: SEOProps) {
@@ -65,7 +67,7 @@ export function SEO({
       }
     };
 
-    updateOGTag('og:title', title);
+    updateOGTag('og:title', ogTitle || title);
     updateOGTag('og:description', description);
     updateOGTag('og:image', absoluteOgImage);
     updateOGTag('og:type', ogType);
@@ -86,7 +88,7 @@ export function SEO({
     };
 
     updateTwitterTag('card', 'summary_large_image');
-    updateTwitterTag('title', title);
+    updateTwitterTag('title', ogTitle || title);
     updateTwitterTag('description', description);
     updateTwitterTag('image', absoluteOgImage);
     updateTwitterTag('url', canonical);
@@ -129,7 +131,7 @@ export function SEO({
         document.head.removeChild(jsonLdScript);
       }
     };
-  }, [title, description, canonical, ogImage, ogType, jsonLd, hreflang]);
+  }, [title, description, canonical, ogImage, ogType, ogTitle, jsonLd, hreflang]);
 
   return null;
 }

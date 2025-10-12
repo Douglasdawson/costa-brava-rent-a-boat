@@ -204,8 +204,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.get("/api/boats", async (req, res) => {
     try {
       const boats = await storage.getAllBoats();
+      console.log('API /api/boats - Retrieved boats count:', boats.length);
+      console.log('API /api/boats - Boats data:', JSON.stringify(boats, null, 2));
       res.json(boats);
     } catch (error: any) {
+      console.error('API /api/boats - Error:', error);
       res.status(500).json({ message: "Error fetching boats: " + error.message });
     }
   });

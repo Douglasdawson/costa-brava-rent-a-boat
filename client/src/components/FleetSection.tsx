@@ -24,9 +24,14 @@ export default function FleetSection() {
   const [selectedBoatId, setSelectedBoatId] = useState<string | undefined>(undefined);
 
   // Fetch boats from API
-  const { data: boatsData, isLoading } = useQuery<Boat[]>({
+  const { data: boatsData, isLoading, error } = useQuery<Boat[]>({
     queryKey: ['/api/boats'],
   });
+
+  // Debug logging
+  console.log('FleetSection - Boats data:', boatsData);
+  console.log('FleetSection - Is loading:', isLoading);
+  console.log('FleetSection - Error:', error);
 
   // Default ratings for boats (can be moved to DB in future)
   const defaultRatings: Record<string, number> = {
@@ -41,12 +46,17 @@ export default function FleetSection() {
 
   // Transform API data to BoatCard format
   const boats = (boatsData || [])
-    .filter(boat => boat.isActive)
+    .filter(boat => {
+      console.log(`Boat ${boat.id} - isActive:`, boat.isActive);
+      return boat.isActive;
+    })
     .map(boat => {
       // Base price from BAJA season
+      console.log(`Boat ${boat.id} - pricing:`, boat.pricing);
       const basePrice = boat.pricing?.BAJA?.prices 
         ? Math.min(...Object.values(boat.pricing.BAJA.prices))
         : 0;
+      console.log(`Boat ${boat.id} - basePrice:`, basePrice);
 
       // Extract engine power from specifications
       const enginePower = boat.specifications?.engine || '';
@@ -68,6 +78,9 @@ export default function FleetSection() {
         enginePower: enginePower
       };
     });
+
+  console.log('FleetSection - Final boats array:', boats);
+  console.log('FleetSection - Boats count:', boats.length);
 
   const handleBooking = (boatId: string) => {
     setSelectedBoatId(boatId);

@@ -77,7 +77,7 @@ export default function Hero() {
             </div>
             <div className="flex items-center space-x-2 sm:justify-center">
               <Clock className="w-4 h-4 sm:w-5 sm:h-5 text-purple-400 flex-shrink-0" />
-              <span className="font-medium">+ de 5 años de experiencia</span>
+              <span className="font-medium">+5 años de experiencia</span>
             </div>
           </div>
         </div>

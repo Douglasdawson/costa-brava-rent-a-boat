@@ -339,7 +339,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
             <CardContent>
               <div className="grid grid-cols-1 gap-4">
                 {boatData.specifications?.model && (
-                  <div className="flex items-center justify-between">
+                  <div className="flex items-center justify-between text-sm">
                     <div className="flex items-center">
                       <Anchor className="w-4 h-4 mr-2 text-blue-600" />
                       <span className="font-medium">Modelo:</span>
@@ -348,7 +348,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                   </div>
                 )}
                 {boatData.specifications?.length && (
-                  <div className="flex items-center justify-between">
+                  <div className="flex items-center justify-between text-sm">
                     <div className="flex items-center">
                       <ArrowUpDown className="w-4 h-4 mr-2 text-blue-600" />
                       <span className="font-medium">Eslora:</span>
@@ -357,7 +357,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                   </div>
                 )}
                 {boatData.specifications?.beam && (
-                  <div className="flex items-center justify-between">
+                  <div className="flex items-center justify-between text-sm">
                     <div className="flex items-center">
                       <ArrowLeftRight className="w-4 h-4 mr-2 text-blue-600" />
                       <span className="font-medium">Manga:</span>
@@ -366,7 +366,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                   </div>
                 )}
                 {boatData.specifications?.engine && (
-                  <div className="flex items-center justify-between">
+                  <div className="flex items-center justify-between text-sm">
                     <div className="flex items-center">
                       <Zap className="w-4 h-4 mr-2 text-blue-600" />
                       <span className="font-medium">Motor:</span>
@@ -375,7 +375,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                   </div>
                 )}
                 {boatData.specifications?.fuel && (
-                  <div className="flex items-center justify-between">
+                  <div className="flex items-center justify-between text-sm">
                     <div className="flex items-center">
                       <Fuel className="w-4 h-4 mr-2 text-blue-600" />
                       <span className="font-medium">Combustible:</span>
@@ -384,7 +384,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                   </div>
                 )}
                 {boatData.specifications?.capacity && (
-                  <div className="flex items-center justify-between">
+                  <div className="flex items-center justify-between text-sm">
                     <div className="flex items-center">
                       <Users className="w-4 h-4 mr-2 text-blue-600" />
                       <span className="font-medium">Capacidad:</span>
@@ -393,7 +393,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                   </div>
                 )}
                 {boatData.specifications?.deposit && (
-                  <div className="flex items-center justify-between">
+                  <div className="flex items-center justify-between text-sm">
                     <div className="flex items-center">
                       <Shield className="w-4 h-4 mr-2 text-blue-600" />
                       <span className="font-medium">Fianza:</span>

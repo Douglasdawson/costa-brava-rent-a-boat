@@ -82,7 +82,20 @@ export default function Navigation() {
     // Close mobile menu
     setIsOpen(false);
     
-    if (href === "#booking") {
+    if (href === "/") {
+      // Navigate to homepage
+      const currentPath = window.location.pathname;
+      if (currentPath === "/") {
+        // Already on homepage, scroll to top
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth"
+        });
+      } else {
+        // Navigate to homepage
+        setLocation("/");
+      }
+    } else if (href === "#booking") {
       // Navigate to booking page
       setLocation("/booking");
     } else if (href === "#faq") {

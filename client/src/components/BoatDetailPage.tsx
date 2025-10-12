@@ -62,6 +62,11 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [, setLocation] = useLocation();
   
+  // Reset image index when boat changes
+  useEffect(() => {
+    setCurrentImageIndex(0);
+  }, [boatId]);
+  
   // Fetch boat data from API
   const { data: boats, isLoading, error } = useQuery<Boat[]>({
     queryKey: ['/api/boats']
@@ -102,11 +107,6 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
   const displayImages = boatData.imageGallery && boatData.imageGallery.length > 0 
     ? boatData.imageGallery 
     : [boatData.imageUrl || ''];
-
-  // Reset image index when boat changes or image count changes
-  useEffect(() => {
-    setCurrentImageIndex(0);
-  }, [boatId, displayImages.length]);
 
   const nextImage = () => {
     setCurrentImageIndex((prev) => (prev + 1) % displayImages.length);

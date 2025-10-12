@@ -138,12 +138,20 @@ export function ImageGalleryUploader({
       setUploading(true);
 
       try {
+        // Get admin token from sessionStorage
+        const adminToken = sessionStorage.getItem("adminToken");
+        if (!adminToken) {
+          throw new Error("Admin token not found. Please login again.");
+        }
+
         const uploadPromises = filesToUpload.map(async (file) => {
           // Get presigned upload URL
           const urlResponse = await fetch("/api/admin/boat-images/upload", {
             method: "POST",
+            credentials: "include",
             headers: {
               "Content-Type": "application/json",
+              "Authorization": `Bearer ${adminToken}`,
             },
           });
 
@@ -171,8 +179,10 @@ export function ImageGalleryUploader({
             "/api/admin/boat-images/normalize",
             {
               method: "POST",
+              credentials: "include",
               headers: {
                 "Content-Type": "application/json",
+                "Authorization": `Bearer ${adminToken}`,
               },
               body: JSON.stringify({ imageUrl: uploadURL }),
             }

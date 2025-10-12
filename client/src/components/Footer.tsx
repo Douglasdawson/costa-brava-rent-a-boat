@@ -67,9 +67,7 @@ export default function Footer() {
                       className="text-xs hover:text-primary transition-colors cursor-pointer"
                       data-testid="phone-call-link"
                       aria-label="Llamar al teléfono +34 683 172 154"
-                    >
-                      +34 683 172 154
-                    </a>
+                    >+34 611 500 372</a>
                     <span className="text-xs text-gray-500">|</span>
                     <button
                       onClick={handleWhatsApp}

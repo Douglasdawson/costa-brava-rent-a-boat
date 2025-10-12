@@ -47,7 +47,11 @@ Preferred communication style: Simple, everyday language.
     - Contains all booking form logic: state management, boat filtering, WhatsApp integration
     - Includes phone prefix selector with 200+ international prefixes
     - Submit button text: "ENVIAR PETICIÓN DE RESERVA" (uppercase)
-  - **Hero Section**: Uses BookingFormWidget for homepage booking form
+  - **Hero Section** (October 2025):
+    - Simplified design with centered title, subtitle, and CTA button
+    - CTA button "Solicita ya tu petición de reserva" opens Dialog modal with BookingFormWidget
+    - Hero title displays on two lines on mobile: "Alquiler de Barcos en Blanes" / "Costa Brava."
+    - Modal-based booking (removed inline form for cleaner hero)
   - **Boat Detail Pages**: Opens Dialog modal with BookingFormWidget and pre-selected boat
   - **Modal Responsiveness**: Booking modal is nearly fullscreen on mobile (95vw × 95vh) with forced centering (!left-1/2 !top-1/2 transforms), responsive padding (p-3 sm:p-4 md:p-6), max-width 4xl on desktop
   - **Mobile Booking Modal** (October 2025):
@@ -57,11 +61,19 @@ Preferred communication style: Simple, everyday language.
     - Closes on submit or when user clicks outside
   - **WhatsApp Integration**: All booking forms send structured messages to +34 611 500 372
   - E2E tested: Full booking flow from boat detail page through WhatsApp redirect, iPhone 12 mobile viewport verified
-- **Navigation Scroll Alignment** (October 2025):
-  - CSS scroll-margin-top: 72px applied to all sections with IDs (64px navbar + 8px padding)
+- **Navigation Header** (October 2025):
+  - **Perfect Menu Centering**: Desktop menu uses absolute positioning (`absolute left-1/2 -translate-x-1/2`) for pixel-perfect centering regardless of logo/button sizes
+  - Logo and account buttons have `z-10` to prevent overlap issues
+  - Verified 0px centering offset across all desktop widths (1920px, 1440px, 1280px)
+  - **Scroll Alignment**: CSS scroll-margin-top: 72px applied to all sections with IDs (64px navbar + 8px padding)
   - JavaScript scrollIntoView with requestAnimationFrame to prevent mobile menu timing issues
   - Smooth scroll to Fleet, Contact, and other sections perfectly aligned across all devices
   - No navbar overlap on desktop, tablet, or mobile viewports
+- **Footer Social Media** (October 2025):
+  - "Síguenos" section with Instagram, Facebook, and TikTok links
+  - Icons from react-icons/si with custom hover colors (pink/blue/white)
+  - Located after CTA buttons, before copyright
+  - Fully responsive on mobile and desktop
 - **CRM Mobile Responsiveness** (December 2024):
   - Header: Compact layout with icon-only buttons and shortened text on mobile
   - Navigation: Horizontal scrollable tabs for touch-friendly access

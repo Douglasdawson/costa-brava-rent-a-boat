@@ -563,6 +563,16 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
 
       </div>
 
+      {/* Booking Modal */}
+      <Dialog open={isBookingModalOpen} onOpenChange={setIsBookingModalOpen}>
+        <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+          <BookingFlow 
+            boatId={boatId}
+            onClose={() => setIsBookingModalOpen(false)}
+          />
+        </DialogContent>
+      </Dialog>
+
       <Footer />
     </div>
   );

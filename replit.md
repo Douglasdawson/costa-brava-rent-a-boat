@@ -47,7 +47,7 @@ Preferred communication style: Simple, everyday language.
     - Includes phone prefix selector with 200+ international prefixes
   - **Hero Section**: Uses BookingFormWidget for homepage booking form
   - **Boat Detail Pages**: Opens Dialog modal with BookingFormWidget and pre-selected boat
-  - **Modal Responsiveness**: Booking modal is nearly fullscreen on mobile (calc(100vw-1rem) × calc(100vh-1rem)) with responsive padding (p-3 sm:p-4 md:p-6), max-width 4xl on desktop
+  - **Modal Responsiveness**: Booking modal is nearly fullscreen on mobile (95vw × 95vh) with forced centering (!left-1/2 !top-1/2 transforms), responsive padding (p-3 sm:p-4 md:p-6), max-width 4xl on desktop
   - **WhatsApp Integration**: All booking forms send structured messages to +34 611 500 372
   - E2E tested: Full booking flow from boat detail page through WhatsApp redirect, iPhone 12 mobile viewport verified
 - **Navigation Scroll Alignment** (October 2025):

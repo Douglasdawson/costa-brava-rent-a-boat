@@ -216,7 +216,10 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
               </p>
               {!requiresLicense && (
                 <div className="mt-4 p-4 bg-green-50 rounded-lg">
-                  <p className="text-green-800 font-medium">¡Gasolina incluida!</p>
+                  <p className="text-green-800 font-medium flex items-center gap-2">
+                    <Fuel className="w-5 h-5" />
+                    ¡Gasolina incluida!
+                  </p>
                 </div>
               )}
             </CardContent>

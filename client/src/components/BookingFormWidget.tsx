@@ -321,9 +321,10 @@ export default function BookingFormWidget({ preSelectedBoatId, onClose }: Bookin
     }
   }, [licenseFilter, selectedBoat, selectedBoatInfo, preSelectedBoatId]);
 
-  // Helper function to get current season
+  // Helper function to get current season based on selected date
   const getCurrentSeason = () => {
-    const month = new Date().getMonth() + 1;
+    const date = selectedDate ? new Date(selectedDate) : new Date();
+    const month = date.getMonth() + 1;
     if (month === 8) return "ALTA";
     if (month === 7) return "MEDIA";
     return "BAJA";
@@ -389,7 +390,7 @@ export default function BookingFormWidget({ preSelectedBoatId, onClose }: Bookin
     }
   };
 
-  // Reset duration if it's no longer valid
+  // Reset duration if it's no longer valid or update when date changes
   useEffect(() => {
     if (selectedDuration) {
       const validOptions = getDurationOptions();
@@ -398,7 +399,7 @@ export default function BookingFormWidget({ preSelectedBoatId, onClose }: Bookin
         setSelectedDuration("");
       }
     }
-  }, [selectedBoat, selectedBoatInfo, licenseFilter]);
+  }, [selectedBoat, selectedBoatInfo, licenseFilter, selectedDate]);
 
   // Helper function to get price
   const getBookingPrice = () => {

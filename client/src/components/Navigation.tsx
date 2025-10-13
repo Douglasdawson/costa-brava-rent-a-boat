@@ -257,7 +257,7 @@ export default function Navigation() {
 
       {/* Booking Modal */}
       <Dialog open={isBookingModalOpen} onOpenChange={setIsBookingModalOpen}>
-        <DialogContent className="!max-w-[95vw] sm:!max-w-[90vw] md:!max-w-4xl !w-[95vw] sm:!w-[90vw] md:!w-full !h-[95vh] sm:!h-[90vh] md:!h-auto !max-h-[95vh] sm:!max-h-[90vh] md:!max-h-[90vh] overflow-y-auto p-3 sm:p-4 md:p-6 !left-1/2 !top-1/2 !-translate-x-1/2 !-translate-y-1/2">
+        <DialogContent className="!max-w-4xl !w-[95vw] !max-h-[85vh] overflow-y-auto p-3 sm:p-4 md:p-6 !left-1/2 !top-1/2 !-translate-x-1/2 !-translate-y-1/2">
           <BookingFormWidget />
         </DialogContent>
       </Dialog>

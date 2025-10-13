@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Calendar, Anchor, Clock, User, Mail, Phone as PhoneIcon, ChevronDown, Search } from "lucide-react";
@@ -391,7 +391,13 @@ export default function BookingFormWidget({ preSelectedBoatId, onClose, hideHead
     }
   };
 
-  // Reset duration if it's no longer valid or update when date changes
+  // Reset duration when date changes to ensure correct seasonal pricing
+  useEffect(() => {
+    // Always reset duration when date changes to show updated prices
+    setSelectedDuration("");
+  }, [selectedDate]);
+
+  // Reset duration if it's no longer valid when boat or license changes
   useEffect(() => {
     if (selectedDuration) {
       const validOptions = getDurationOptions();
@@ -400,7 +406,7 @@ export default function BookingFormWidget({ preSelectedBoatId, onClose, hideHead
         setSelectedDuration("");
       }
     }
-  }, [selectedBoat, selectedBoatInfo, licenseFilter, selectedDate]);
+  }, [selectedBoat, selectedBoatInfo, licenseFilter]);
 
   // Helper function to get price
   const getBookingPrice = () => {
@@ -789,6 +795,11 @@ export default function BookingFormWidget({ preSelectedBoatId, onClose, hideHead
                 </option>
               ))}
             </select>
+            {selectedBoat && (
+              <p className="text-[10px] text-gray-500 mt-1 text-center md:text-left">
+                Los precios se actualizan según la fecha
+              </p>
+            )}
           </div>
         </div>
       </div>

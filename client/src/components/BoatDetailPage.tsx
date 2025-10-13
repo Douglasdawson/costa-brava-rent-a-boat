@@ -662,7 +662,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
         <DialogContent className="
           !left-1/2 !top-1/2 !-translate-x-1/2 !-translate-y-1/2
           w-[95vw] sm:w-[90vw] md:w-full max-w-4xl 
-          h-[95vh] sm:h-[90vh] md:h-auto max-h-[90vh]
+          max-h-[85vh]
           overflow-y-auto 
           p-3 sm:p-4 md:p-6
           gap-0

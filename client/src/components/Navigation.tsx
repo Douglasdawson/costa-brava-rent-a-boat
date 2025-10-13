@@ -155,11 +155,11 @@ export default function Navigation() {
                 {item.label}
               </button>
             ))}
-            <LanguageSelector variant="minimal" />
           </div>
 
           {/* Right side buttons */}
           <div className="hidden md:flex items-center space-x-4 z-10">
+            <LanguageSelector variant="minimal" />
             {!isAuthenticated && (
               <Button 
                 variant="ghost" 
@@ -249,6 +249,9 @@ export default function Navigation() {
                       Mi Cuenta
                     </Button>
                   )}
+                  <div className="pt-2">
+                    <LanguageSelector variant="minimal" />
+                  </div>
                 </div>
               </div>
             </div>

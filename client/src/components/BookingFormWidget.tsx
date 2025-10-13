@@ -246,9 +246,10 @@ const PHONE_PREFIXES = [
 interface BookingFormWidgetProps {
   preSelectedBoatId?: string;
   onClose?: () => void;
+  hideHeader?: boolean;
 }
 
-export default function BookingFormWidget({ preSelectedBoatId, onClose }: BookingFormWidgetProps) {
+export default function BookingFormWidget({ preSelectedBoatId, onClose, hideHeader = false }: BookingFormWidgetProps) {
   const getLocalISODate = () => {
     const d = new Date();
     const y = d.getFullYear();
@@ -546,8 +547,8 @@ export default function BookingFormWidget({ preSelectedBoatId, onClose }: Bookin
 
   return (
     <Card id="booking-form" className="bg-white/75 backdrop-blur-md p-3 sm:p-4 w-full shadow-2xl border-0">
-      {/* Only show header when not in modal (no preSelectedBoatId) */}
-      {!preSelectedBoatId && (
+      {/* Only show header when hideHeader is false */}
+      {!hideHeader && (
         <div className="text-center mb-2 sm:mb-3">
           <h2 className="text-base sm:text-base lg:text-lg font-bold text-gray-900 mb-2 sm:mb-3">{t.booking.title}</h2>
           <p className="text-xs [@media(min-width:400px)]:text-sm text-gray-600">

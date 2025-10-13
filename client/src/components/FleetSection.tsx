@@ -152,7 +152,7 @@ export default function FleetSection() {
               {t.booking.modalSubtitle}
             </DialogDescription>
           </DialogHeader>
-          <BookingFormWidget preSelectedBoatId={selectedBoatId} />
+          <BookingFormWidget preSelectedBoatId={selectedBoatId} hideHeader={true} />
         </DialogContent>
       </Dialog>
     </section>

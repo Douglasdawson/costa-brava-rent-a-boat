@@ -93,7 +93,7 @@ export default function Hero() {
               {t.booking.modalSubtitle}
             </DialogDescription>
           </DialogHeader>
-          <BookingFormWidget />
+          <BookingFormWidget hideHeader={true} />
         </DialogContent>
       </Dialog>
     </div>

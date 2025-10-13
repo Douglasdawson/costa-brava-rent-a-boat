@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Menu, X, Anchor, UserCircle, Calendar } from "lucide-react";
 import { useLocation } from "wouter";
 import LanguageSelector from "./LanguageSelector";
@@ -262,7 +262,15 @@ export default function Navigation() {
       {/* Booking Modal */}
       <Dialog open={isBookingModalOpen} onOpenChange={setIsBookingModalOpen}>
         <DialogContent className="!max-w-4xl !w-[95vw] !max-h-[85vh] overflow-y-auto p-3 sm:p-4 md:p-6 !left-1/2 !top-1/2 !-translate-x-1/2 !-translate-y-1/2">
-          <BookingFormWidget />
+          <DialogHeader className="space-y-1 py-4 sm:py-3">
+            <DialogTitle className="text-xl sm:text-2xl font-bold text-center">
+              {t.booking.title}
+            </DialogTitle>
+            <DialogDescription className="text-sm sm:text-base text-gray-600 text-center">
+              {t.booking.modalSubtitle}
+            </DialogDescription>
+          </DialogHeader>
+          <BookingFormWidget hideHeader={true} />
         </DialogContent>
       </Dialog>
     </nav>

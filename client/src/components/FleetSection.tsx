@@ -42,6 +42,7 @@ export default function FleetSection() {
   // Transform API data to BoatCard format
   const boats = (boatsData || [])
     .filter(boat => boat.isActive)
+    .sort((a, b) => (a.displayOrder ?? 999) - (b.displayOrder ?? 999))
     .map(boat => {
       // Base price from BAJA season
       const basePrice = boat.pricing?.BAJA?.prices 

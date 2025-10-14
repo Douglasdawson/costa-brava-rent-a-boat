@@ -22,5 +22,16 @@ export const BOAT_IMAGE_MAP: { [key: string]: string } = {
 
 // Helper function to resolve boat image path to actual imported image
 export function getBoatImage(imagePath: string): string {
-  return BOAT_IMAGE_MAP[imagePath] || imagePath;
+  // First, check if it's in the static WebP map
+  if (BOAT_IMAGE_MAP[imagePath]) {
+    return BOAT_IMAGE_MAP[imagePath];
+  }
+  
+  // If not in map and looks like a filename, construct Object Storage URL
+  if (imagePath && !imagePath.startsWith('http') && !imagePath.startsWith('/')) {
+    return `/objects/${imagePath}`;
+  }
+  
+  // Otherwise return as-is (could be full URL or path already)
+  return imagePath;
 }

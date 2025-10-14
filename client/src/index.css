@@ -402,7 +402,7 @@
   /* Scroll margin for sections with anchors to account for fixed navbar */
   section[id],
   div[id] {
-    scroll-margin-top: 72px; /* 64px navbar + 8px minimal padding */
+    scroll-margin-top: 64px; /* Navbar height only - sections have their own internal padding */
   }
 
   /* Remove native select styling to prevent browser gradients */

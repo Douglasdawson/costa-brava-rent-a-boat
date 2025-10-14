@@ -126,10 +126,10 @@ Preferred communication style: Simple, everyday language.
   - **Perfect Menu Centering**: Desktop menu uses absolute positioning (`absolute left-1/2 -translate-x-1/2`) for pixel-perfect centering regardless of logo/button sizes
   - Logo and account buttons have `z-10` to prevent overlap issues
   - Verified 0px centering offset across all desktop widths (1920px, 1440px, 1280px)
-  - **Scroll Alignment**: CSS scroll-margin-top: 72px applied to all sections with IDs (64px navbar + 8px padding)
+  - **Scroll Alignment**: CSS scroll-margin-top: 64px applied to all sections with IDs (navbar height only - sections have internal padding)
   - JavaScript scrollIntoView with requestAnimationFrame to prevent mobile menu timing issues
   - Smooth scroll to Fleet, Contact, and other sections perfectly aligned across all devices
-  - No navbar overlap on desktop, tablet, or mobile viewports
+  - No navbar overlap or hero section visible when navigating to sections
 - **Footer Social Media** (October 2025):
   - "Síguenos" section with Instagram, Facebook, and TikTok links
   - Icons from react-icons/si with custom hover colors (pink/blue/white)

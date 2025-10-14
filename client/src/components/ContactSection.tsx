@@ -37,12 +37,12 @@ export default function ContactSection() {
                   </div>
                   <h3 className="font-medium text-gray-900 mb-2 text-sm">{t.contact.phone} & {t.contact.whatsapp}</h3>
                   <a 
-                    href="tel:+34683172154" 
+                    href="tel:+34611500372" 
                     className="text-gray-600 hover:text-primary transition-colors cursor-pointer block mb-1 text-sm"
                     data-testid="phone-link"
-                    aria-label="Llamar al teléfono +34 683 172 154"
+                    aria-label="Llamar al teléfono +34 611 500 372"
                   >
-                    +34 683 172 154
+                    +34 611 500 372
                   </a>
                 </div>
 

@@ -70,7 +70,7 @@ export default function LoginPage() {
         <Button
           variant="ghost"
           size="icon"
-          className="absolute top-4 right-4 z-10"
+          className="absolute top-2 right-2 z-10"
           onClick={() => setLocation("/")}
           data-testid="button-close-login"
           aria-label="Volver a la página de inicio"

@@ -21,8 +21,8 @@ export default function ContactSection() {
           </p>
         </div>
 
-        {/* Contact Information - Centered Vertical Layout */}
-        <div className="max-w-3xl mx-auto mb-12">
+        {/* Contact Information - Full Width Layout */}
+        <div className="mb-12">
           <Card>
             <CardHeader className="text-center pb-6">
               <CardTitle className="text-2xl">{t.contact.title}</CardTitle>

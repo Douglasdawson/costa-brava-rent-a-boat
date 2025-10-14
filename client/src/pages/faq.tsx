@@ -178,7 +178,7 @@ export default function FAQPage() {
               Preguntas Frecuentes
             </h1>
           </div>
-          <p className="text-base sm:text-lg text-gray-600 mb-4 sm:mb-8 max-w-3xl mx-auto">
+          <p className="text-base sm:text-lg text-gray-600 mb-4 sm:mb-8 max-w-4xl mx-auto">
             Encuentra respuestas a todas tus dudas sobre el alquiler de barcos en Blanes, Costa Brava.
             <br />
             Si no encuentras lo que buscas, ¡contáctanos directamente!

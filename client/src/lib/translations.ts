@@ -40,6 +40,7 @@ export interface Translations {
     people: string;
     hours: string;
     hoursWithLicense: string;
+    hoursTooltip: string;
     withLicense: string;
     withoutLicense: string;
     available: string;
@@ -334,6 +335,7 @@ export const translations: Record<Language, Translations> = {
       people: 'pax',
       hours: '1-8 horas',
       hoursWithLicense: '2-8h',
+      hoursTooltip: 'Elige entre 2h, 4h, u 8h para alquilar nuestra {boatName}',
       withLicense: 'Con licencia',
       withoutLicense: 'Sin licencia',
       available: 'Disponible',
@@ -611,6 +613,7 @@ export const translations: Record<Language, Translations> = {
       people: 'pax',
       hours: '1-8 hores',
       hoursWithLicense: '2-8h',
+      hoursTooltip: 'Tria entre 2h, 4h, o 8h per llogar la nostra {boatName}',
       withLicense: 'Amb llicència',
       withoutLicense: 'Sense llicència',
       available: 'Disponible',
@@ -828,6 +831,7 @@ export const translations: Record<Language, Translations> = {
       people: 'pax',
       hours: '1-8 hours',
       hoursWithLicense: '2-8h',
+      hoursTooltip: 'Choose between 2h, 4h, or 8h to rent our {boatName}',
       withLicense: 'With license',
       withoutLicense: 'Without license',
       available: 'Available',
@@ -1042,6 +1046,7 @@ export const translations: Record<Language, Translations> = {
       people: 'pax',
       hours: '1-8 heures',
       hoursWithLicense: '2-8h',
+      hoursTooltip: 'Choisissez entre 2h, 4h ou 8h pour louer notre {boatName}',
       withLicense: 'Avec permis',
       withoutLicense: 'Sans permis',
       available: 'Disponible',
@@ -1238,6 +1243,7 @@ export const translations: Record<Language, Translations> = {
       people: 'Pers.',
       hours: '1-8 Stunden',
       hoursWithLicense: '2-8h',
+      hoursTooltip: 'Wählen Sie zwischen 2h, 4h oder 8h, um unser {boatName} zu mieten',
       withLicense: 'Mit Führerschein',
       withoutLicense: 'Ohne Führerschein',
       available: 'Verfügbar',
@@ -1434,6 +1440,7 @@ export const translations: Record<Language, Translations> = {
       people: 'pers.',
       hours: '1-8 uren',
       hoursWithLicense: '2-8h',
+      hoursTooltip: 'Kies tussen 2u, 4u of 8u om onze {boatName} te huren',
       withLicense: 'Met vaarbewijs',
       withoutLicense: 'Zonder vaarbewijs',
       available: 'Beschikbaar',
@@ -1630,6 +1637,7 @@ export const translations: Record<Language, Translations> = {
       people: 'pax',
       hours: '1-8 ore',
       hoursWithLicense: '2-8h',
+      hoursTooltip: 'Scegli tra 2h, 4h o 8h per noleggiare la nostra {boatName}',
       withLicense: 'Con patente',
       withoutLicense: 'Senza patente',
       available: 'Disponibile',
@@ -1826,6 +1834,7 @@ export const translations: Record<Language, Translations> = {
       people: 'чел.',
       hours: '1-8 часов',
       hoursWithLicense: '2-8h',
+      hoursTooltip: 'Выберите между 2ч, 4ч или 8ч для аренды нашей {boatName}',
       withLicense: 'С лицензией',
       withoutLicense: 'Без лицензии',
       available: 'Доступно',

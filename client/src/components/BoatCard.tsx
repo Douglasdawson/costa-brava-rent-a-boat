@@ -1,8 +1,10 @@
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { Users, Clock, Star, Euro, CheckCircle, AlertCircle, Gauge } from "lucide-react";
 import { useTranslations } from "@/lib/translations";
+import { useMemo } from "react";
 
 interface BoatCardProps {
   id: string;
@@ -38,6 +40,10 @@ export default function BoatCard({
   onDetails
 }: BoatCardProps) {
   const t = useTranslations();
+
+  const tooltipText = useMemo(() => {
+    return t.boats.hoursTooltip.replace('{boatName}', name);
+  }, [t.boats.hoursTooltip, name]);
 
   const handleBooking = () => {
     console.log(`Booking initiated for boat ${id}`);
@@ -120,10 +126,17 @@ export default function BoatCard({
               <span>{enginePower}</span>
             </div>
           )}
-          <div className="flex items-center">
-            <Clock className="w-3 h-3 sm:w-4 sm:h-4 mr-1" />
-            <span>{requiresLicense ? t.boats.hoursWithLicense : t.boats.hours}</span>
-          </div>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <div className="flex items-center cursor-help">
+                <Clock className="w-3 h-3 sm:w-4 sm:h-4 mr-1" />
+                <span>{requiresLicense ? t.boats.hoursWithLicense : t.boats.hours}</span>
+              </div>
+            </TooltipTrigger>
+            <TooltipContent>
+              <p>{tooltipText}</p>
+            </TooltipContent>
+          </Tooltip>
         </div>
 
         <div className="flex flex-wrap gap-1 mb-3">

@@ -28,8 +28,8 @@ export default function ContactSection() {
               <CardTitle className="text-2xl">{t.contact.title}</CardTitle>
             </CardHeader>
             <CardContent>
-              {/* Contact Items Grid - Horizontal on Desktop/Tablet, Vertical on Mobile */}
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
+              {/* Contact Items Grid - 2 Columns on Mobile, 4 Columns on Desktop/Tablet */}
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-6">
                 {/* Phone & WhatsApp */}
                 <div className="flex flex-col items-center text-center">
                   <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-3">

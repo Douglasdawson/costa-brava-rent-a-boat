@@ -44,7 +44,6 @@ export default function ContactSection() {
                   >
                     +34 683 172 154
                   </a>
-                  <p className="text-xs text-gray-600">{t.contact.scheduleTime}</p>
                 </div>
 
                 {/* Email */}

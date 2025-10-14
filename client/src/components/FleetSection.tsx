@@ -55,7 +55,7 @@ export default function FleetSection() {
       return {
         id: boat.id,
         name: boat.name,
-        image: boat.imageUrl || '/placeholder-boat.jpg',
+        image: boat.imageUrl ? `/objects/${boat.imageUrl}` : '/placeholder-boat.jpg',
         imageAlt: `Alquiler ${boat.name} ${boat.requiresLicense ? "con licencia" : "sin licencia"} en Blanes Costa Brava para ${boat.capacity} personas`,
         capacity: boat.capacity,
         requiresLicense: boat.requiresLicense,

@@ -39,6 +39,7 @@ export interface Translations {
     upTo: string;
     people: string;
     hours: string;
+    hoursWithLicense: string;
     withLicense: string;
     withoutLicense: string;
     available: string;
@@ -332,6 +333,7 @@ export const translations: Record<Language, Translations> = {
       upTo: 'Hasta',
       people: 'pax',
       hours: '1-8 horas',
+      hoursWithLicense: '2-8h',
       withLicense: 'Con licencia',
       withoutLicense: 'Sin licencia',
       available: 'Disponible',
@@ -608,6 +610,7 @@ export const translations: Record<Language, Translations> = {
       upTo: 'Fins a',
       people: 'pax',
       hours: '1-8 hores',
+      hoursWithLicense: '2-8h',
       withLicense: 'Amb llicència',
       withoutLicense: 'Sense llicència',
       available: 'Disponible',
@@ -824,6 +827,7 @@ export const translations: Record<Language, Translations> = {
       upTo: 'Up to',
       people: 'pax',
       hours: '1-8 hours',
+      hoursWithLicense: '2-8h',
       withLicense: 'With license',
       withoutLicense: 'Without license',
       available: 'Available',
@@ -1037,6 +1041,7 @@ export const translations: Record<Language, Translations> = {
       upTo: 'Jusqu\'à',
       people: 'pax',
       hours: '1-8 heures',
+      hoursWithLicense: '2-8h',
       withLicense: 'Avec permis',
       withoutLicense: 'Sans permis',
       available: 'Disponible',
@@ -1232,6 +1237,7 @@ export const translations: Record<Language, Translations> = {
       upTo: 'Bis zu',
       people: 'Pers.',
       hours: '1-8 Stunden',
+      hoursWithLicense: '2-8h',
       withLicense: 'Mit Führerschein',
       withoutLicense: 'Ohne Führerschein',
       available: 'Verfügbar',
@@ -1427,6 +1433,7 @@ export const translations: Record<Language, Translations> = {
       upTo: 'Tot',
       people: 'pers.',
       hours: '1-8 uren',
+      hoursWithLicense: '2-8h',
       withLicense: 'Met vaarbewijs',
       withoutLicense: 'Zonder vaarbewijs',
       available: 'Beschikbaar',
@@ -1622,6 +1629,7 @@ export const translations: Record<Language, Translations> = {
       upTo: 'Fino a',
       people: 'pax',
       hours: '1-8 ore',
+      hoursWithLicense: '2-8h',
       withLicense: 'Con patente',
       withoutLicense: 'Senza patente',
       available: 'Disponibile',
@@ -1817,6 +1825,7 @@ export const translations: Record<Language, Translations> = {
       upTo: 'До',
       people: 'чел.',
       hours: '1-8 часов',
+      hoursWithLicense: '2-8h',
       withLicense: 'С лицензией',
       withoutLicense: 'Без лицензии',
       available: 'Доступно',

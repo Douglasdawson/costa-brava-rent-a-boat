@@ -122,7 +122,7 @@ export default function BoatCard({
           )}
           <div className="flex items-center">
             <Clock className="w-3 h-3 sm:w-4 sm:h-4 mr-1" />
-            <span>{t.boats.hours}</span>
+            <span>{requiresLicense ? t.boats.hoursWithLicense : t.boats.hours}</span>
           </div>
         </div>
 

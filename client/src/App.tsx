@@ -31,6 +31,7 @@ const LocationTossaPage = lazy(() => import("@/pages/location-tossa-de-mar"));
 const CategoryLicenseFreePage = lazy(() => import("@/pages/category-license-free"));
 const CategoryLicensedPage = lazy(() => import("@/pages/category-licensed"));
 const TestimoniosPage = lazy(() => import("@/pages/testimonios"));
+const BlogPage = lazy(() => import("@/pages/blog"));
 const ClientDashboardPage = lazy(() => import("@/pages/ClientDashboardPage"));
 const LoginPage = lazy(() => import("@/pages/LoginPage"));
 const NotFound = lazy(() => import("@/pages/not-found"));
@@ -214,6 +215,10 @@ function TestimoniosPageWrapper() {
   return <TestimoniosPage />;
 }
 
+function BlogPageWrapper() {
+  return <BlogPage />;
+}
+
 // Loading fallback component
 function LoadingFallback() {
   return (
@@ -250,6 +255,7 @@ function Router() {
         <Route path="/categoria/sin-licencia" component={CategoryLicenseFreePageWrapper} />
         <Route path="/categoria/con-licencia" component={CategoryLicensedPageWrapper} />
         <Route path="/testimonios" component={TestimoniosPageWrapper} />
+        <Route path="/blog" component={BlogPageWrapper} />
         <Route component={NotFound} />
       </Switch>
     </Suspense>

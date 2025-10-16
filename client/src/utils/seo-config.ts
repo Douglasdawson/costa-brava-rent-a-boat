@@ -130,6 +130,13 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       description: "Información sobre el uso de cookies en Costa Brava Rent a Boat. Aprende cómo utilizamos cookies para mejorar tu experiencia.",
       keywords: "política cookies, cookies costa brava rent boat, uso cookies, privacidad navegación"
     },
+    blog: {
+      title: "Blog de Navegación y Destinos | Costa Brava",
+      description: "Guías, consejos y destinos para alquilar barcos en Blanes y la Costa Brava. Descubre calas secretas, rutas náuticas y tips de navegación.",
+      keywords: "blog alquiler barcos, guías navegación costa brava, destinos en barco blanes, calas secretas costa brava, rutas náuticas",
+      ogTitle: "Blog de Navegación Costa Brava | Guías y Destinos en Barco",
+      ogDescription: "Descubre guías completas, consejos de navegación y los mejores destinos de la Costa Brava. Calas secretas, rutas y tips para tu aventura en barco."
+    },
     boatDetail: {
       title: "Alquiler {boatName} en Blanes | Desde {pricePerHour}€/h",
       description: "Alquila {boatName} en Blanes, Costa Brava. Capacidad {capacity} personas, {license}. Desde {pricePerHour}€/hora. ¡Reserva online!",
@@ -210,6 +217,13 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       title: "General Rental Conditions | Costa Brava Rent a Boat",
       description: "General conditions for boat rental in Blanes, Costa Brava. Terms and responsibilities.",
       keywords: "general rental conditions, boat rental terms blanes"
+    },
+    blog: {
+      title: "Navigation and Destinations Blog | Costa Brava",
+      description: "Guides, tips and destinations for boat rental in Blanes and Costa Brava. Discover secret coves, nautical routes and navigation tips.",
+      keywords: "boat rental blog, costa brava navigation guides, boat destinations blanes, secret coves costa brava, nautical routes",
+      ogTitle: "Costa Brava Navigation Blog | Boat Guides and Destinations",
+      ogDescription: "Discover complete guides, navigation tips and the best destinations of Costa Brava. Secret coves, routes and tips for your boat adventure."
     },
     boatDetail: {
       title: "Rent {boatName} in Blanes | From {pricePerHour}€/h",

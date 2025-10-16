@@ -30,7 +30,7 @@ import {
   Heart,
   Sun,
   Clock,
-  Package,
+  Settings,
   ChevronLeft,
   ChevronRight
 } from "lucide-react";
@@ -496,7 +496,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
           <Card>
             <CardHeader>
               <CardTitle className="text-base sm:text-lg flex items-center gap-2">
-                <Package className="w-5 h-5 text-primary" />
+                <Settings className="w-5 h-5 text-primary" />
                 Equipamiento Incluido
               </CardTitle>
             </CardHeader>

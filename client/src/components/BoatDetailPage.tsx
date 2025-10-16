@@ -32,8 +32,7 @@ import {
   Clock,
   Settings,
   ChevronLeft,
-  ChevronRight,
-  X
+  ChevronRight
 } from "lucide-react";
 import { openWhatsApp } from "@/utils/whatsapp";
 import { getBoatImage } from "@/utils/boatImages";
@@ -60,7 +59,6 @@ interface BoatDetailPageProps {
 export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDetailPageProps) {
   const [selectedSeason, setSelectedSeason] = useState<"BAJA" | "MEDIA" | "ALTA">("BAJA");
   const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
-  const [isGalleryModalOpen, setIsGalleryModalOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [, setLocation] = useLocation();
   
@@ -238,9 +236,8 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
               <img 
                 src={getBoatImage(displayImages[currentImageIndex])} 
                 alt={`Alquiler ${boatData.name} ${boatData.subtitle?.includes("Sin Licencia") ? "sin licencia" : "con licencia"} en Blanes Costa Brava - Imagen ${currentImageIndex + 1}`}
-                className="w-full h-64 sm:h-80 md:h-96 object-cover cursor-pointer"
+                className="w-full h-64 sm:h-80 md:h-96 object-cover"
                 loading="lazy"
-                onClick={() => setIsGalleryModalOpen(true)}
                 data-testid="img-boat-main"
               />
               
@@ -674,74 +671,6 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
             preSelectedBoatId={boatId}
             onClose={() => setIsBookingModalOpen(false)}
           />
-        </DialogContent>
-      </Dialog>
-
-      {/* Image Gallery Modal */}
-      <Dialog open={isGalleryModalOpen} onOpenChange={setIsGalleryModalOpen}>
-        <DialogContent className="!left-1/2 !top-1/2 !-translate-x-1/2 !-translate-y-1/2 max-w-7xl w-[95vw] h-[95vh] p-0 overflow-hidden bg-black/95 border-0">
-          <Button
-            variant="outline"
-            size="icon"
-            onClick={() => setIsGalleryModalOpen(false)}
-            className="absolute right-4 top-4 z-50 text-white border-white/30 bg-transparent hover:bg-white/20 hover:border-white/50"
-            data-testid="button-close-gallery"
-            aria-label="Cerrar galería"
-          >
-            <X className="w-6 h-6" />
-          </Button>
-
-          <div className="relative w-full h-full flex items-center justify-center p-4">
-            <img 
-              src={getBoatImage(displayImages[currentImageIndex])} 
-              alt={`${boatData.name} - Imagen ${currentImageIndex + 1}`}
-              className="max-w-full max-h-full object-contain"
-              data-testid="img-gallery-main"
-            />
-
-            {/* Navigation arrows - only show if more than one image */}
-            {displayImages.length > 1 && (
-              <>
-                <Button
-                  variant="outline"
-                  size="icon"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    prevImage();
-                  }}
-                  className="absolute left-4 top-1/2 -translate-y-1/2 z-50 bg-white/20 hover:bg-white/30 text-white border-white/30"
-                  data-testid="button-gallery-prev"
-                  aria-label="Imagen anterior"
-                >
-                  <ChevronLeft className="w-8 h-8" />
-                </Button>
-                <Button
-                  variant="outline"
-                  size="icon"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    nextImage();
-                  }}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 z-50 bg-white/20 hover:bg-white/30 text-white border-white/30"
-                  data-testid="button-gallery-next"
-                  aria-label="Imagen siguiente"
-                >
-                  <ChevronRight className="w-8 h-8" />
-                </Button>
-              </>
-            )}
-
-            {/* Image counter */}
-            {displayImages.length > 1 && (
-              <div 
-                className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/70 text-white px-4 py-2 rounded-full"
-                data-testid="text-image-counter"
-                aria-label={`Imagen ${currentImageIndex + 1} de ${displayImages.length}`}
-              >
-                {currentImageIndex + 1} / {displayImages.length}
-              </div>
-            )}
-          </div>
         </DialogContent>
       </Dialog>
 

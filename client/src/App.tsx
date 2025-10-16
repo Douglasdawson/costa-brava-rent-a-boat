@@ -60,6 +60,7 @@ function HomePage() {
   });
 
   // Generate combined JSON-LD schemas for homepage
+  // Note: AggregateRating omitted until real review data is available
   const localBusinessSchema = generateLocalBusinessSchema(language);
   const serviceSchema = generateServiceSchema(language);
   const breadcrumbSchema = generateBreadcrumbSchema([
@@ -67,12 +68,11 @@ function HomePage() {
   ]);
 
   // Generate ItemList schema for fleet section (from API data)
-  const fleetItems = (boats || [])
-    .filter(boat => boat.isActive)
-    .map(boat => ({
-      id: boat.id,
-      name: boat.name
-    }));
+  const activeBoats = (boats || []).filter(boat => boat.isActive);
+  const fleetItems = activeBoats.map(boat => ({
+    id: boat.id,
+    name: boat.name
+  }));
   const itemListSchema = generateItemListSchema(fleetItems);
 
   // Combine multiple schemas using @graph

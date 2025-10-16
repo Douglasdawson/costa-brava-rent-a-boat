@@ -21,6 +21,8 @@ interface BoatProduct {
   requiresLicense: boolean;
   minPrice?: string;
   maxPrice?: string;
+  rating?: number;
+  reviewCount?: number;
 }
 
 interface ListItem {
@@ -42,7 +44,7 @@ export function generateBreadcrumbSchema(items: BreadcrumbItem[]) {
 }
 
 export function generateProductSchema(boat: BoatProduct) {
-  return {
+  const schema: any = {
     "@context": "https://schema.org",
     "@type": "Product",
     "name": boat.name,
@@ -80,6 +82,18 @@ export function generateProductSchema(boat: BoatProduct) {
       }
     ]
   };
+
+  // Add rating if available
+  if (boat.rating && boat.reviewCount) {
+    schema.aggregateRating = {
+      "@type": "AggregateRating",
+      "ratingValue": boat.rating.toString(),
+      "reviewCount": boat.reviewCount.toString(),
+      "bestRating": "5"
+    };
+  }
+
+  return schema;
 }
 
 export function generateFAQPageSchema(faqs: FAQItem[]) {
@@ -108,4 +122,36 @@ export function generateItemListSchema(items: ListItem[]) {
       "name": item.name
     }))
   };
+}
+
+export function generateAggregateRatingSchema(rating: number, reviewCount: number, bestRating: number = 5) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "AggregateRating",
+    "ratingValue": rating.toString(),
+    "reviewCount": reviewCount.toString(),
+    "bestRating": bestRating.toString()
+  };
+}
+
+export function generateReviewSchema(reviews: Array<{
+  author: string;
+  datePublished: string;
+  reviewBody: string;
+  ratingValue: number;
+}>) {
+  return reviews.map(review => ({
+    "@type": "Review",
+    "author": {
+      "@type": "Person",
+      "name": review.author
+    },
+    "datePublished": review.datePublished,
+    "reviewBody": review.reviewBody,
+    "reviewRating": {
+      "@type": "Rating",
+      "ratingValue": review.ratingValue.toString(),
+      "bestRating": "5"
+    }
+  }));
 }

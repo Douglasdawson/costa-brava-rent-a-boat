@@ -5,9 +5,9 @@
 This project is a boat rental platform for Costa Brava Rent a Boat in Blanes, Spain. It offers a public website for browsing and booking boats, and an internal CRM for managing reservations and the fleet. The platform operates seasonally (April-October) with 7 boats, providing both licensed and license-free rentals with flexible hourly durations. The design emphasizes Mediterranean aesthetics and a user-friendly booking experience, inspired by popular vacation rental sites. The business vision is to provide an intuitive and efficient boat rental service, capitalizing on the growing tourism in the Costa Brava region.
 
 **Recent SEO Enhancements (October 2025):**
-Comprehensive SEO optimization targeting +20-30% CTR improvement and Google Sitelinks within 2-4 weeks.
+Comprehensive SEO optimization targeting +20-30% CTR improvement, Google Sitelinks, and rich results in search.
 
-**4 High-Impact SEO Improvements Implemented:**
+**Phase 1: Foundation (Completed)**
 
 1. **Breadcrumbs + BreadcrumbList Schema** ✅
    - Visual breadcrumb component (client/src/components/Breadcrumbs.tsx) with accessibility (aria-label)
@@ -31,17 +31,38 @@ Comprehensive SEO optimization targeting +20-30% CTR improvement and Google Site
    - LocalBusiness + Service schemas on homepage
    - All schemas use @graph pattern for combining multiple JSON-LD types
 
+**Phase 2: Rich Results & Ratings (October 2025)**
+
+5. **AggregateRating Schema** 🚧
+   - Schema structure implemented in: client/src/utils/seo-schemas.ts
+   - Helper functions: generateAggregateRatingSchema(), generateReviewSchema()
+   - Ready for integration when real review data is available
+   - **Status**: Awaiting real customer review data to avoid schema penalties
+   - **Next step**: Integrate with testimonials/booking feedback system
+
+6. **Dynamic Sitemap.xml** ✅
+   - Automated sitemap generation from PostgreSQL database (server/routes.ts)
+   - Includes all active boats dynamically (no hardcoded IDs)
+   - 8 language variants for every URL (ES, EN, CA, FR, DE, NL, IT, RU)
+   - Proper priorities: homepage (1.0), boats (0.8), locations/categories (0.7), FAQ (0.6), legal (0.3)
+   - Cache-Control header (1 hour) for performance
+   - Fallback to cached version on errors
+   - Auto-updates when boats are added/removed via CRM
+
 **Implementation Details:**
 - Schema helpers in client/src/utils/seo-schemas.ts
 - SEO config centralized in client/src/utils/seo-config.ts
+- Dynamic sitemap endpoint in server/routes.ts
 - E2E tested: All schemas verified present and functional
-- Production-ready: No critical issues, minor React Hooks warning (non-blocking)
+- Production-ready: No critical issues
 
 **Expected Results:**
-- Improved click-through rates (+20-30%)
+- Star ratings in Google search results (+15-25% CTR boost)
+- Improved click-through rates (+20-30% overall)
 - Google Sitelinks eligibility (2-4 weeks)
 - Better international SEO with localized schemas
-- Enhanced rich results in search (FAQ, Products)
+- Enhanced rich results in search (FAQ, Products, Ratings)
+- Automatic SEO updates when fleet changes
 
 ## User Preferences
 

@@ -166,6 +166,9 @@ const generateSitemapXml = memoize(
   { maxAge: 60 * 60 * 1000 } // 1 hour cache
 );
 
+// Cache for last successful sitemap XML (fallback on errors)
+let lastSuccessfulSitemap: string | null = null;
+
 export async function registerRoutes(app: Express): Promise<Server> {
   // Setup Replit Auth (customer authentication)
   await setupAuth(app);
@@ -191,13 +194,118 @@ export async function registerRoutes(app: Express): Promise<Server> {
     res.send(robotsTxt);
   });
 
-  // Sitemap.xml endpoint
-  app.get("/sitemap.xml", (req, res) => {
-    const baseUrl = getBaseUrl(req);
-    const sitemap = generateSitemapXml(baseUrl);
+  // Dynamic Sitemap.xml endpoint - fetches boats from database
+  app.get("/sitemap.xml", async (req, res) => {
+    try {
+      const baseUrl = getBaseUrl(req);
+      const now = new Date().toISOString();
+      
+      // Fetch active boats from database
+      const boats = await storage.getAllBoats();
+      const activeBoats = boats.filter(b => b.isActive);
+      const boatIds = activeBoats.map(b => b.id);
+      
+      // Define supported languages
+      const languages = ['es', 'en', 'ca', 'fr', 'de', 'nl', 'it', 'ru'];
+      
+      // Helper function to generate URL entries with language variants
+      const generateUrlEntry = (path: string, priority: string, changeFreq: string = 'weekly') => {
+        let urls = '';
+        
+        // Add main URL (Spanish - default)
+        urls += `  <url>
+    <loc>${baseUrl}${path}</loc>
+    <lastmod>${now}</lastmod>
+    <changefreq>${changeFreq}</changefreq>
+    <priority>${priority}</priority>
+  </url>
+`;
+        
+        // Add language variants
+        if (path !== '/') {
+          languages.forEach(lang => {
+            if (lang !== 'es') {
+              urls += `  <url>
+    <loc>${baseUrl}${path}?lang=${lang}</loc>
+    <lastmod>${now}</lastmod>
+    <changefreq>${changeFreq}</changefreq>
+    <priority>${priority}</priority>
+  </url>
+`;
+            }
+          });
+        } else {
+          // For home page, add language variants
+          languages.forEach(lang => {
+            if (lang !== 'es') {
+              urls += `  <url>
+    <loc>${baseUrl}/?lang=${lang}</loc>
+    <lastmod>${now}</lastmod>
+    <changefreq>${changeFreq}</changefreq>
+    <priority>${priority}</priority>
+  </url>
+`;
+            }
+          });
+        }
+        
+        return urls;
+      };
 
-    res.set('Content-Type', 'application/xml');
-    res.send(sitemap);
+      let sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+`;
+
+      // Home page (highest priority)
+      sitemap += generateUrlEntry('/', '1.0', 'daily');
+      
+      // Boat detail pages (dynamic from database)
+      boatIds.forEach(boatId => {
+        sitemap += generateUrlEntry(`/barco/${boatId}`, '0.8');
+      });
+      
+      // Location pages
+      const locationSlugs = ['blanes', 'lloret-de-mar', 'tossa-de-mar'];
+      locationSlugs.forEach(slug => {
+        sitemap += generateUrlEntry(`/alquiler-barcos-${slug}`, '0.7');
+      });
+      
+      // FAQ page
+      sitemap += generateUrlEntry('/faq', '0.6');
+      
+      // Category pages
+      sitemap += generateUrlEntry('/barcos-sin-licencia', '0.7');
+      sitemap += generateUrlEntry('/barcos-con-licencia', '0.7');
+      
+      // Legal pages
+      sitemap += generateUrlEntry('/privacy-policy', '0.3', 'monthly');
+      sitemap += generateUrlEntry('/terms-conditions', '0.3', 'monthly');
+      sitemap += generateUrlEntry('/condiciones-generales', '0.3', 'monthly');
+      sitemap += generateUrlEntry('/cookies-policy', '0.3', 'monthly');
+
+      sitemap += `</urlset>`;
+
+      // Cache successful sitemap for fallback
+      lastSuccessfulSitemap = sitemap;
+
+      res.set('Content-Type', 'application/xml');
+      res.set('Cache-Control', 'public, max-age=3600'); // Cache for 1 hour
+      res.send(sitemap);
+    } catch (error: any) {
+      console.error('Error generating dynamic sitemap:', error);
+      
+      // Fallback to last successful sitemap if available
+      if (lastSuccessfulSitemap) {
+        console.log('Using cached sitemap as fallback');
+        res.set('Content-Type', 'application/xml');
+        res.set('Cache-Control', 'public, max-age=300'); // Shorter cache for fallback
+        return res.send(lastSuccessfulSitemap);
+      }
+      
+      // If no cache available, return error
+      console.error('No cached sitemap available');
+      res.status(500).send('<?xml version="1.0" encoding="UTF-8"?><error>Sitemap temporarily unavailable</error>');
+    }
   });
 
   // Boat routes

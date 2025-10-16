@@ -652,10 +652,10 @@ const replacePlaceholders = (text: string, data: Record<string, string>): string
 };
 
 // Generate LocalBusiness JSON-LD schema
-export function generateLocalBusinessSchema(language: Language = 'es') {
+export function generateLocalBusinessSchema(language: Language = 'es', rating?: number, reviewCount?: number) {
   const baseUrl = typeof window !== 'undefined' ? window.location.origin : BUSINESS_INFO.url;
   
-  return {
+  const schema: any = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "@id": `${baseUrl}/#organization`,
@@ -684,8 +684,8 @@ export function generateLocalBusinessSchema(language: Language = 'es') {
       "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
       "opens": "09:00",
       "closes": "20:00",
-      "validFrom": "2024-04-01",
-      "validThrough": "2024-10-31"
+      "validFrom": "2025-04-01",
+      "validThrough": "2025-10-31"
     },
     "hasOfferCatalog": {
       "@type": "OfferCatalog",
@@ -722,6 +722,18 @@ export function generateLocalBusinessSchema(language: Language = 'es') {
     "knowsAbout": ["Costa Brava", "Blanes", "Boat Navigation", "Maritime Safety"],
     "slogan": "Explora la Costa Brava desde el agua"
   };
+
+  // Add aggregate rating if provided
+  if (rating && reviewCount) {
+    schema.aggregateRating = {
+      "@type": "AggregateRating",
+      "ratingValue": rating.toString(),
+      "reviewCount": reviewCount.toString(),
+      "bestRating": "5"
+    };
+  }
+
+  return schema;
 }
 
 // Generate Service JSON-LD schema

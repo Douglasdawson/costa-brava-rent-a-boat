@@ -300,6 +300,13 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       title: "Termes i Condicions | Costa Brava Rent a Boat",
       description: "Termes i condicions del servei de lloguer de barques a Blanes, Costa Brava.",
       keywords: "termes condicions, condicions lloguer barques, normes ús embarcacions"
+    },
+    blog: {
+      title: "Blog de Navegació i Destinacions | Costa Brava",
+      description: "Guies, consells i destinacions per llogar barques a Blanes i la Costa Brava. Descobreix cales secretes, rutes nàutiques i consells de navegació.",
+      keywords: "blog lloguer barques, guies navegació costa brava, destinacions en barca blanes, cales secretes costa brava, rutes nàutiques",
+      ogTitle: "Blog de Navegació Costa Brava | Guies i Destinacions en Barca",
+      ogDescription: "Descobreix guies completes, consells de navegació i les millors destinacions de la Costa Brava. Cales secretes, rutes i consells per a la teva aventura en barca."
     }
   },
   fr: {
@@ -352,6 +359,13 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       title: "Termes et Conditions | Costa Brava Rent a Boat",
       description: "Termes et conditions du service de location de bateaux à Blanes, Costa Brava.",
       keywords: "termes conditions, conditions location bateaux, règles usage embarcations"
+    },
+    blog: {
+      title: "Blog de Navigation et Destinations | Costa Brava",
+      description: "Guides, conseils et destinations pour louer des bateaux à Blanes et Costa Brava. Découvrez criques secrètes, routes nautiques et conseils de navigation.",
+      keywords: "blog location bateaux, guides navigation costa brava, destinations bateau blanes, criques secrètes costa brava, routes nautiques",
+      ogTitle: "Blog de Navigation Costa Brava | Guides et Destinations en Bateau",
+      ogDescription: "Découvrez des guides complets, conseils de navigation et meilleures destinations de Costa Brava. Criques secrètes, routes et conseils pour votre aventure en bateau."
     }
   },
   de: {
@@ -404,6 +418,13 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       title: "Geschäftsbedingungen | Costa Brava Rent a Boat",
       description: "Geschäftsbedingungen des Bootsverleihs in Blanes, Costa Brava.",
       keywords: "geschäftsbedingungen, bootsverleihs bedingungen, nutzungsregeln boote"
+    },
+    blog: {
+      title: "Navigation und Reiseziele Blog | Costa Brava",
+      description: "Anleitungen, Tipps und Reiseziele für Bootsvermietung in Blanes und Costa Brava. Entdecken Sie geheime Buchten, Seerouten und Navigationstipps.",
+      keywords: "bootsvermietung blog, navigationsanleitungen costa brava, bootsziele blanes, geheime buchten costa brava, seerouten",
+      ogTitle: "Costa Brava Navigations-Blog | Boot-Anleitungen und Reiseziele",
+      ogDescription: "Entdecken Sie vollständige Anleitungen, Navigationstipps und die besten Reiseziele der Costa Brava. Geheime Buchten, Routen und Tipps für Ihr Bootsabenteuer."
     }
   },
   nl: {
@@ -456,6 +477,13 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       title: "Algemene Voorwaarden | Costa Brava Rent a Boat",
       description: "Algemene voorwaarden van de bootverhuurservice in Blanes, Costa Brava.",
       keywords: "algemene voorwaarden, bootverhuur voorwaarden, gebruiksregels boten"
+    },
+    blog: {
+      title: "Navigatie en Bestemmingen Blog | Costa Brava",
+      description: "Gidsen, tips en bestemmingen voor bootverhuur in Blanes en Costa Brava. Ontdek geheime baaien, nautische routes en navigatietips.",
+      keywords: "bootverhuur blog, navigatiegidsen costa brava, bootbestemmingen blanes, geheime baaien costa brava, nautische routes",
+      ogTitle: "Costa Brava Navigatie Blog | Bootgidsen en Bestemmingen",
+      ogDescription: "Ontdek volledige gidsen, navigatietips en de beste bestemmingen van Costa Brava. Geheime baaien, routes en tips voor uw bootavontuur."
     }
   },
   it: {
@@ -503,6 +531,13 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       title: "Termini e Condizioni | Costa Brava Rent a Boat",
       description: "Termini e condizioni del servizio di noleggio barche a Blanes, Costa Brava.",
       keywords: "termini condizioni, condizioni noleggio barche, regole uso barche"
+    },
+    blog: {
+      title: "Blog di Navigazione e Destinazioni | Costa Brava",
+      description: "Guide, consigli e destinazioni per noleggio barche a Blanes e Costa Brava. Scopri calette segrete, rotte nautiche e consigli di navigazione.",
+      keywords: "blog noleggio barche, guide navigazione costa brava, destinazioni barca blanes, calette segrete costa brava, rotte nautiche",
+      ogTitle: "Blog di Navigazione Costa Brava | Guide e Destinazioni in Barca",
+      ogDescription: "Scopri guide complete, consigli di navigazione e le migliori destinazioni della Costa Brava. Calette segrete, rotte e consigli per la tua avventura in barca."
     }
   },
   ru: {
@@ -550,6 +585,13 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       title: "Условия использования | Costa Brava Rent a Boat",
       description: "Условия использования службы аренды лодок в Бланесе, Коста-Брава.",
       keywords: "условия использования, условия аренды лодок, правила использования лодок"
+    },
+    blog: {
+      title: "Блог о Навигации и Направлениях | Costa Brava",
+      description: "Руководства, советы и направления для аренды лодок в Бланесе и Коста-Брава. Откройте секретные бухты, морские маршруты и советы по навигации.",
+      keywords: "блог аренда лодок, гиды навигация коста брава, направления лодка бланес, секретные бухты коста брава, морские маршруты",
+      ogTitle: "Блог Навигации Коста-Брава | Гиды и Направления на Лодке",
+      ogDescription: "Откройте полные гиды, советы по навигации и лучшие направления Коста-Бравы. Секретные бухты, маршруты и советы для вашего приключения на лодке."
     }
   }
 };

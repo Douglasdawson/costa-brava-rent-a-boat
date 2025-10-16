@@ -154,8 +154,40 @@ export default function Footer() {
               </p>
             </div>
 
-            <h4 className="font-semibold text-white mb-3 text-sm">{t.footer.legal}</h4>
+            <h4 className="font-semibold text-white mb-3 text-sm">Información</h4>
             <ul className="space-y-2 text-xs">
+              <li>
+                <button 
+                  onClick={() => {
+                    setLocation("/faq");
+                    window.scrollTo({
+                      top: 0,
+                      behavior: "smooth"
+                    });
+                  }} 
+                  className="hover:text-primary transition-colors cursor-pointer bg-transparent border-none p-0 text-left"
+                  data-testid="footer-faq-link"
+                  aria-label="Ver preguntas frecuentes"
+                >
+                  Preguntas Frecuentes
+                </button>
+              </li>
+              <li>
+                <button 
+                  onClick={() => {
+                    setLocation("/testimonios");
+                    window.scrollTo({
+                      top: 0,
+                      behavior: "smooth"
+                    });
+                  }} 
+                  className="hover:text-primary transition-colors cursor-pointer bg-transparent border-none p-0 text-left"
+                  data-testid="footer-testimonials-link"
+                  aria-label="Ver opiniones de clientes"
+                >
+                  Opiniones de Clientes
+                </button>
+              </li>
               <li>
                 <button 
                   onClick={() => {

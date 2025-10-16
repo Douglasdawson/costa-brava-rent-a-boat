@@ -303,3 +303,30 @@ export const BOOKING_SOURCE = {
 export type BookingStatus = typeof BOOKING_STATUS[keyof typeof BOOKING_STATUS];
 export type PaymentStatus = typeof PAYMENT_STATUS[keyof typeof PAYMENT_STATUS];
 export type BookingSource = typeof BOOKING_SOURCE[keyof typeof BOOKING_SOURCE];
+
+// Testimonials table for customer reviews
+export const testimonials = pgTable("testimonials", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  customerName: varchar("customer_name").notNull(),
+  boatId: varchar("boat_id").references(() => boats.id),
+  boatName: varchar("boat_name"), // Denormalized for display even if boat deleted
+  rating: integer("rating").notNull(), // 1-5 stars
+  comment: text("comment").notNull(),
+  date: timestamp("date", { withTimezone: true }).notNull().default(sql`now()`),
+  isVerified: boolean("is_verified").notNull().default(false), // Admin verification
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().default(sql`now()`),
+});
+
+// Insert schemas
+export const insertTestimonialSchema = createInsertSchema(testimonials).omit({
+  id: true,
+  createdAt: true,
+  isVerified: true, // Prevent users from self-verifying - must be done by admin
+}).extend({
+  rating: z.number().int().min(1).max(5),
+  comment: z.string().min(10, "El comentario debe tener al menos 10 caracteres"),
+});
+
+// Types
+export type InsertTestimonial = z.infer<typeof insertTestimonialSchema>;
+export type Testimonial = typeof testimonials.$inferSelect;

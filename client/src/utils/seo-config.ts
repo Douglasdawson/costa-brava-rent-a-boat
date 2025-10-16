@@ -103,6 +103,13 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       ogTitle: "Barcos Con Licencia en Blanes | PER Costa Brava",
       ogDescription: "Barcos potentes y rápidos en Blanes. Requiere PER o titulación náutica. Máxima libertad en la Costa Brava. ¡Reserva tu barco!"
     },
+    testimonios: {
+      title: "Opiniones Clientes Alquiler Barcos Blanes",
+      description: "Lee opiniones reales de clientes que alquilaron barcos en Blanes. +100 reviews verificadas. Experiencias en Costa Brava. ¡Descubre por qué nos eligen!",
+      keywords: "opiniones alquiler barcos blanes, reviews costa brava rent boat, testimonios clientes barcos, experiencias alquiler embarcaciones",
+      ogTitle: "Opiniones Verificadas Alquiler Barcos Blanes | Costa Brava",
+      ogDescription: "+100 opiniones reales de clientes satisfechos. Descubre experiencias únicas navegando por la Costa Brava desde Blanes. ¡Lee y reserva!"
+    },
     privacyPolicy: {
       title: "Política de Privacidad | Costa Brava Rent a Boat",
       description: "Política de privacidad y protección de datos de Costa Brava Rent a Boat. Información sobre el tratamiento de tus datos personales.",

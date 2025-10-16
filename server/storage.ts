@@ -1,11 +1,12 @@
 import { 
-  adminUsers, customerUsers, customers, boats, bookings, bookingExtras,
+  adminUsers, customerUsers, customers, boats, bookings, bookingExtras, testimonials,
   type AdminUser, type InsertAdminUser,
   type CustomerUser, type UpsertCustomerUser,
   type Customer, type InsertCustomer,
   type Boat, type InsertBoat,
   type Booking, type InsertBooking,
-  type BookingExtra, type InsertBookingExtra
+  type BookingExtra, type InsertBookingExtra,
+  type Testimonial, type InsertTestimonial
 } from "@shared/schema";
 import { db } from "./db";
 import { eq, and, gte, lte, between, inArray } from "drizzle-orm";
@@ -69,6 +70,11 @@ export interface IStorage {
     totalBoats: number;
     availableBoats: number;
   }>;
+
+  // Testimonial methods
+  getTestimonials(): Promise<Testimonial[]>;
+  getTestimonialsByBoat(boatId: string): Promise<Testimonial[]>;
+  createTestimonial(testimonial: InsertTestimonial): Promise<Testimonial>;
 }
 
 // rewrite MemStorage to DatabaseStorage
@@ -429,6 +435,28 @@ export class DatabaseStorage implements IStorage {
       totalBoats: allBoats.length,
       availableBoats: availableBoats.length,
     };
+  }
+
+  // Testimonial methods
+  async getTestimonials(): Promise<Testimonial[]> {
+    return await db.select().from(testimonials).where(eq(testimonials.isVerified, true));
+  }
+
+  async getTestimonialsByBoat(boatId: string): Promise<Testimonial[]> {
+    return await db.select()
+      .from(testimonials)
+      .where(and(
+        eq(testimonials.boatId, boatId),
+        eq(testimonials.isVerified, true)
+      ));
+  }
+
+  async createTestimonial(insertTestimonial: InsertTestimonial): Promise<Testimonial> {
+    const [testimonial] = await db
+      .insert(testimonials)
+      .values(insertTestimonial)
+      .returning();
+    return testimonial;
   }
 }
 

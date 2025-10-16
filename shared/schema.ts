@@ -330,3 +330,71 @@ export const insertTestimonialSchema = createInsertSchema(testimonials).omit({
 // Types
 export type InsertTestimonial = z.infer<typeof insertTestimonialSchema>;
 export type Testimonial = typeof testimonials.$inferSelect;
+
+// Blog Posts table for SEO content
+export const blogPosts = pgTable("blog_posts", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  title: varchar("title", { length: 255 }).notNull(),
+  slug: varchar("slug", { length: 255 }).notNull().unique(),
+  excerpt: text("excerpt"), // Short summary for cards
+  content: text("content").notNull(), // Full article content (supports Markdown)
+  category: varchar("category", { length: 100 }).notNull(), // e.g., "Guías", "Destinos", "Consejos"
+  author: varchar("author", { length: 255 }).notNull().default("Costa Brava Rent a Boat"),
+  featuredImage: text("featured_image"), // Main article image URL
+  metaDescription: varchar("meta_description", { length: 160 }), // SEO description
+  tags: text("tags").array(), // SEO tags/keywords
+  isPublished: boolean("is_published").notNull().default(false),
+  publishedAt: timestamp("published_at", { withTimezone: true }),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().default(sql`now()`),
+  updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().default(sql`now()`),
+});
+
+// Destinations landing pages for SEO
+export const destinations = pgTable("destinations", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  name: varchar("name", { length: 255 }).notNull(), // e.g., "Cala Bona"
+  slug: varchar("slug", { length: 255 }).notNull().unique(), // e.g., "cala-bona"
+  description: text("description").notNull(), // Short intro
+  content: text("content").notNull(), // Full page content (supports Markdown)
+  coordinates: json("coordinates").$type<{ lat: number; lng: number }>(), // GPS coordinates
+  featuredImage: text("featured_image"), // Main destination image
+  imageGallery: text("image_gallery").array(), // Additional images
+  metaDescription: varchar("meta_description", { length: 160 }), // SEO description
+  nearbyAttractions: text("nearby_attractions").array(), // List of nearby points of interest
+  distanceFromPort: varchar("distance_from_port", { length: 100 }), // e.g., "2.5 km"
+  recommendedBoats: text("recommended_boats").array(), // Boat IDs that work well for this destination
+  isPublished: boolean("is_published").notNull().default(true),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().default(sql`now()`),
+  updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().default(sql`now()`),
+});
+
+// Insert schemas for blog and destinations
+export const insertBlogPostSchema = createInsertSchema(blogPosts).omit({
+  id: true,
+  createdAt: true,
+  updatedAt: true,
+}).extend({
+  title: z.string().min(10, "El título debe tener al menos 10 caracteres").max(255),
+  slug: z.string().min(3).max(255).regex(/^[a-z0-9-]+$/, "El slug debe contener solo letras minúsculas, números y guiones"),
+  content: z.string().min(100, "El contenido debe tener al menos 100 caracteres"),
+  category: z.string().min(1, "La categoría es obligatoria"),
+  metaDescription: z.string().max(160).optional(),
+});
+
+export const insertDestinationSchema = createInsertSchema(destinations).omit({
+  id: true,
+  createdAt: true,
+  updatedAt: true,
+}).extend({
+  name: z.string().min(3, "El nombre debe tener al menos 3 caracteres"),
+  slug: z.string().min(3).max(255).regex(/^[a-z0-9-]+$/, "El slug debe contener solo letras minúsculas, números y guiones"),
+  description: z.string().min(50, "La descripción debe tener al menos 50 caracteres"),
+  content: z.string().min(100, "El contenido debe tener al menos 100 caracteres"),
+  metaDescription: z.string().max(160).optional(),
+});
+
+// Types
+export type BlogPost = typeof blogPosts.$inferSelect;
+export type InsertBlogPost = z.infer<typeof insertBlogPostSchema>;
+export type Destination = typeof destinations.$inferSelect;
+export type InsertDestination = z.infer<typeof insertDestinationSchema>;

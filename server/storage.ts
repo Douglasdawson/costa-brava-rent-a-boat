@@ -1,12 +1,15 @@
 import { 
   adminUsers, customerUsers, customers, boats, bookings, bookingExtras, testimonials,
+  blogPosts, destinations,
   type AdminUser, type InsertAdminUser,
   type CustomerUser, type UpsertCustomerUser,
   type Customer, type InsertCustomer,
   type Boat, type InsertBoat,
   type Booking, type InsertBooking,
   type BookingExtra, type InsertBookingExtra,
-  type Testimonial, type InsertTestimonial
+  type Testimonial, type InsertTestimonial,
+  type BlogPost, type InsertBlogPost,
+  type Destination, type InsertDestination
 } from "@shared/schema";
 import { db } from "./db";
 import { eq, and, gte, lte, between, inArray } from "drizzle-orm";
@@ -75,6 +78,25 @@ export interface IStorage {
   getTestimonials(): Promise<Testimonial[]>;
   getTestimonialsByBoat(boatId: string): Promise<Testimonial[]>;
   createTestimonial(testimonial: InsertTestimonial): Promise<Testimonial>;
+
+  // Blog Post methods
+  getAllBlogPosts(): Promise<BlogPost[]>;
+  getPublishedBlogPosts(): Promise<BlogPost[]>;
+  getBlogPost(id: string): Promise<BlogPost | undefined>;
+  getBlogPostBySlug(slug: string): Promise<BlogPost | undefined>;
+  getBlogPostsByCategory(category: string): Promise<BlogPost[]>;
+  createBlogPost(post: InsertBlogPost): Promise<BlogPost>;
+  updateBlogPost(id: string, post: Partial<InsertBlogPost>): Promise<BlogPost | undefined>;
+  deleteBlogPost(id: string): Promise<boolean>;
+
+  // Destination methods
+  getAllDestinations(): Promise<Destination[]>;
+  getPublishedDestinations(): Promise<Destination[]>;
+  getDestination(id: string): Promise<Destination | undefined>;
+  getDestinationBySlug(slug: string): Promise<Destination | undefined>;
+  createDestination(destination: InsertDestination): Promise<Destination>;
+  updateDestination(id: string, destination: Partial<InsertDestination>): Promise<Destination | undefined>;
+  deleteDestination(id: string): Promise<boolean>;
 }
 
 // rewrite MemStorage to DatabaseStorage
@@ -457,6 +479,114 @@ export class DatabaseStorage implements IStorage {
       .values(insertTestimonial)
       .returning();
     return testimonial;
+  }
+
+  // Blog Post methods
+  async getAllBlogPosts(): Promise<BlogPost[]> {
+    return await db.select().from(blogPosts);
+  }
+
+  async getPublishedBlogPosts(): Promise<BlogPost[]> {
+    return await db.select()
+      .from(blogPosts)
+      .where(eq(blogPosts.isPublished, true));
+  }
+
+  async getBlogPost(id: string): Promise<BlogPost | undefined> {
+    const [post] = await db.select().from(blogPosts).where(eq(blogPosts.id, id));
+    return post || undefined;
+  }
+
+  async getBlogPostBySlug(slug: string): Promise<BlogPost | undefined> {
+    const [post] = await db.select().from(blogPosts).where(eq(blogPosts.slug, slug));
+    return post || undefined;
+  }
+
+  async getBlogPostsByCategory(category: string): Promise<BlogPost[]> {
+    return await db.select()
+      .from(blogPosts)
+      .where(and(
+        eq(blogPosts.category, category),
+        eq(blogPosts.isPublished, true)
+      ));
+  }
+
+  async createBlogPost(insertPost: InsertBlogPost): Promise<BlogPost> {
+    const [post] = await db
+      .insert(blogPosts)
+      .values({
+        ...insertPost,
+        publishedAt: insertPost.isPublished ? new Date() : null
+      })
+      .returning();
+    return post;
+  }
+
+  async updateBlogPost(id: string, updates: Partial<InsertBlogPost>): Promise<BlogPost | undefined> {
+    const updateData: any = { ...updates, updatedAt: new Date() };
+    
+    // Set publishedAt if changing to published
+    if (updates.isPublished === true) {
+      const existing = await this.getBlogPost(id);
+      if (existing && !existing.publishedAt) {
+        updateData.publishedAt = new Date();
+      }
+    }
+
+    const [post] = await db
+      .update(blogPosts)
+      .set(updateData)
+      .where(eq(blogPosts.id, id))
+      .returning();
+    return post || undefined;
+  }
+
+  async deleteBlogPost(id: string): Promise<boolean> {
+    const result = await db.delete(blogPosts).where(eq(blogPosts.id, id));
+    return result.rowCount !== null && result.rowCount > 0;
+  }
+
+  // Destination methods
+  async getAllDestinations(): Promise<Destination[]> {
+    return await db.select().from(destinations);
+  }
+
+  async getPublishedDestinations(): Promise<Destination[]> {
+    return await db.select()
+      .from(destinations)
+      .where(eq(destinations.isPublished, true));
+  }
+
+  async getDestination(id: string): Promise<Destination | undefined> {
+    const [destination] = await db.select().from(destinations).where(eq(destinations.id, id));
+    return destination || undefined;
+  }
+
+  async getDestinationBySlug(slug: string): Promise<Destination | undefined> {
+    const [destination] = await db.select().from(destinations).where(eq(destinations.slug, slug));
+    return destination || undefined;
+  }
+
+  async createDestination(insertDestination: InsertDestination): Promise<Destination> {
+    const [destination] = await db
+      .insert(destinations)
+      .values(insertDestination)
+      .returning();
+    return destination;
+  }
+
+  async updateDestination(id: string, updates: Partial<InsertDestination>): Promise<Destination | undefined> {
+    const [destination] = await db
+      .update(destinations)
+      .set({ ...updates, updatedAt: new Date() })
+      .where(eq(destinations.id, id))
+      .returning();
+    return destination || undefined;
+  }
+
+  async deleteDestination(id: string): Promise<boolean> {
+    const result = await db.delete(destinations).where(eq(destinations.id, id));
+    return result.rowCount !== null && result.rowCount > 0;
   }
 }
 

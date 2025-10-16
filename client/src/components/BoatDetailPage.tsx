@@ -237,8 +237,9 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
               <img 
                 src={getBoatImage(displayImages[currentImageIndex])} 
                 alt={`Alquiler ${boatData.name} ${boatData.subtitle?.includes("Sin Licencia") ? "sin licencia" : "con licencia"} en Blanes Costa Brava - Imagen ${currentImageIndex + 1}`}
-                className="w-full h-64 sm:h-80 md:h-96 object-cover"
+                className="w-full h-64 sm:h-80 md:h-96 object-cover cursor-pointer"
                 loading="lazy"
+                onClick={() => setIsGalleryModalOpen(true)}
                 data-testid="img-boat-main"
               />
               

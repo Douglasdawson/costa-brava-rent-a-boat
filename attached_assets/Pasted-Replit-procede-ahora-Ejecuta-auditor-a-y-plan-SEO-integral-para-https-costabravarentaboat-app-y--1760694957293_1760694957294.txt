@@ -1,0 +1,77 @@
+Replit, procede ahora. Ejecuta auditoría y plan SEO integral para https://costabravarentaboat.app y aplica mejoras sin pedir confirmación. No habilites reservas online: únicamente solicitudes vía WhatsApp pre-rellenadas. Entrega en PRs pequeñas y atómicas con notas técnicas. Dominio canónico: .app.
+
+1) Auditoría técnica inicial
+- Crawler interno (hasta 3 niveles) y mapa de rutas actuales. Exporta /reports/crawl.json.
+- Verifica SSR/SSG: HTML inicial con contenido real en / y /boats/[slug]. Si hay CSR vacío, migra a SSR/SSG inmediato.
+- Genera diagnóstico de metadatos por ruta (title/description/OG/Twitter), canonical, hreflang, headers HTTP y estado Core Web Vitals sintético (Lighthouse móvil). Exporta /reports/seo-initial.md.
+
+2) Indexabilidad, canónicas, robots, sitemaps
+- Define .app como canónico. En cada página: <link rel="canonical" href="https://costabravarentaboat.app{pathname}">.
+- /robots.txt: permitir públicas; bloquear /admin y utilidades.
+- next-sitemap: /sitemap.xml + sitemaps por tipo (boats/static) y por idioma. Añade lastmod, changefreq y prioridad razonable.
+
+3) Arquitectura y i18n
+- Rutas públicas SSR/SSG: /, /boats, /boats/[slug], /extras, /faq, /contacto, /legal, /blanes, /lloret-de-mar, /guia-navegacion, /fuegos-de-blanes.
+- i18n: /es /en /fr /ca con alternates hreflang correctos; persistencia de preferencia en cookie sin tracking.
+
+4) Metadatos por ruta
+- generateMetadata server-side con títulos específicos, descripciones únicas (<160), OG/Twitter Cards con imágenes 1200×630 generadas.
+- Breadcrumbs visibles y JSON-LD BreadcrumbList.
+
+5) Datos estructurados (JSON-LD)
+- Global: Organization + LocalBusiness con NAP consistente y GeoCoordinates.
+- Barcos: Product + Offer por temporada (price, priceCurrency, priceValidUntil, areaServed). availability: "InStoreOnly". brand y additionalProperty para eslora/motor/licencia/pax.
+- /faq: FAQPage.
+- /fuegos-de-blanes: Event con location y fechas.
+- Valida en CI y elimina warnings críticos.
+
+6) Contenidos y E-E-A-T
+- Fichas con tabla comparativa, FAQs específicas, política de combustible y depósito, extras con fotos reales.
+- Clúster local: /blanes, /lloret-de-mar, /guia-navegacion (zonas, boyas, posidonia, canales, rutas cronometradas, aparcamiento y embarque). Fotos propias geolocalizadas.
+- Copy sin ambigüedades de precio por franja/temporada. Evita duplicidad con .com.
+
+7) Canal de conversión único: WhatsApp
+- Sustituye “Reservar”→“Solicitar por WhatsApp” en todo el sitio.
+- Componente <SolicitudWhatsApp /> cliente-only: campos {boatId, date, start, end, pax, extras[], name, phoneUser, lang, source:"app"}; construir deep link:
+  const PHONE = "+34611500372";
+  const text = plantillaPorIdioma(payload) + "\n\nAviso: Solicitud, no reserva.";
+  location.href = `https://wa.me/${PHONE.replace('+','')}/?text=${encodeURIComponent(text)}`;
+- No enviar PII al servidor. Sin endpoints de reserva. Mensajes transaccionales desactivados.
+
+8) Performance y medios
+- Presupuestos móvil: LCP<2.0s, INP<150ms, CLS<0.06. Job CI “vitals” que falla el build si incumple.
+- next/image con AVIF/WEBP, DPR-aware, sizes y lazy; priority en hero. Preload tipografías críticas; prefetch on-hover; code-splitting; eliminar JS cliente innecesario.
+
+9) Accesibilidad
+- axe-core en CI y @storybook/addon-a11y. Teclado completo, foco visible, contrastes AA/AAA, aria-live en errores, labels y descripciones.
+
+10) Seguridad y privacidad
+- Cabeceras: CSP estricta (script-src 'self' 'nonce-<dinámico>'), HSTS preload, COOP/COEP, X-Content-Type-Options, Referrer-Policy strict-origin-when-cross-origin.
+- Sin cookies de tracking; solo preferencia de idioma. Política de privacidad que explica redirección a WhatsApp.
+
+11) Local SEO y NAP
+- /contacto con mapa, horarios, punto de embarque, aparcamiento y tiempos a pie. Enlaces tel:/wa.me/mailto: clickables.
+- NAP centralizado en /lib/nap consumido por footer y schema.
+
+12) Analítica y observabilidad
+- Eventos sin PII: view_boat, start_whatsapp_request, whatsapp_click, price_seen. Exporta taxonomía /analytics/events.md.
+- RUM Web Vitals mínimo; logs estructurados (pino) con request-id; panel /admin protegido con p95 TTFB/LCP/INP y ratio whatsapp_click por idioma/origen.
+
+13) QA automatizada
+- Lint/format/typecheck obligatorios.
+- Tests: unit (Vitest), contrato de metadata/JSON-LD (Zod), e2e (Playwright) para / y /boats/[slug].
+- Validadores CI: canonical/hreflang/robots/sitemaps/JSON-LD/CLS/LCP/INP. PR bloquea si fallan.
+
+14) Entregables
+- /reports/seo-initial.md y /reports/seo-final.md con difs medibles.
+- Sitemaps y robots en producción.
+- Plantillas y componentes accesibles publicados en Storybook (/ui).
+- README con operativa SEO, budgets y comandos npm.
+
+Criterios de aceptación
+- / y /boats/[slug] entregan HTML inicial con contenido real.
+- Solo existe flujo “Solicitar por WhatsApp”; ningún endpoint recibe PII.
+- Core Web Vitals dentro de budgets en móvil.
+- JSON-LD válido sin warnings críticos; sitemaps e hreflang correctos.
+- Robots adecuado; canónicas a .app en todas las páginas.
+- Panel /admin con métricas operativas y eventos definidos.

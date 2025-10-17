@@ -32,6 +32,7 @@ const CategoryLicenseFreePage = lazy(() => import("@/pages/category-license-free
 const CategoryLicensedPage = lazy(() => import("@/pages/category-licensed"));
 const TestimoniosPage = lazy(() => import("@/pages/testimonios"));
 const BlogPage = lazy(() => import("@/pages/blog"));
+const BlogDetailPage = lazy(() => import("@/pages/blog-detail"));
 const ClientDashboardPage = lazy(() => import("@/pages/ClientDashboardPage"));
 const LoginPage = lazy(() => import("@/pages/LoginPage"));
 const NotFound = lazy(() => import("@/pages/not-found"));
@@ -219,6 +220,10 @@ function BlogPageWrapper() {
   return <BlogPage />;
 }
 
+function BlogDetailPageWrapper() {
+  return <BlogDetailPage />;
+}
+
 // Loading fallback component
 function LoadingFallback() {
   return (
@@ -255,6 +260,7 @@ function Router() {
         <Route path="/categoria/sin-licencia" component={CategoryLicenseFreePageWrapper} />
         <Route path="/categoria/con-licencia" component={CategoryLicensedPageWrapper} />
         <Route path="/testimonios" component={TestimoniosPageWrapper} />
+        <Route path="/blog/:slug" component={BlogDetailPageWrapper} />
         <Route path="/blog" component={BlogPageWrapper} />
         <Route component={NotFound} />
       </Switch>

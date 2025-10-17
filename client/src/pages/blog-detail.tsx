@@ -50,8 +50,8 @@ export default function BlogDetailPage() {
     keywords: ''
   };
 
-  const hreflangLinks = generateHreflangLinks(`blog/${slug}`);
-  const canonical = generateCanonicalUrl(`blog/${slug}`, language);
+  const hreflangLinks = generateHreflangLinks('blogDetail', slug);
+  const canonical = generateCanonicalUrl('blogDetail', language, slug);
 
   // Generate breadcrumb schema
   const breadcrumbSchema = post ? generateBreadcrumbSchema([

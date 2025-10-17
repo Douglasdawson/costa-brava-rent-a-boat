@@ -36,8 +36,8 @@ export default function DestinationDetailPage() {
     description: '',
   };
 
-  const hreflangLinks = generateHreflangLinks(`destinos/${slug}`);
-  const canonical = generateCanonicalUrl(`destinos/${slug}`, language);
+  const hreflangLinks = generateHreflangLinks('destinationDetail', slug);
+  const canonical = generateCanonicalUrl('destinationDetail', language, slug);
 
   // Generate breadcrumb schema
   const breadcrumbSchema = destination ? generateBreadcrumbSchema([

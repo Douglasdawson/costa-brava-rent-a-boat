@@ -649,7 +649,10 @@ const getPagePath = (pageName: string): string => {
   const paths: Record<string, string> = {
     home: '',
     booking: 'booking',
+    blog: 'blog',
+    destinations: 'destinations',
     faq: 'faq',
+    testimonios: 'testimonios',
     locationBlanes: 'alquiler-barcos-blanes',
     locationLloret: 'alquiler-barcos-lloret-de-mar',
     locationTossa: 'alquiler-barcos-tossa-de-mar',
@@ -657,8 +660,11 @@ const getPagePath = (pageName: string): string => {
     categoryLicensed: 'barcos-con-licencia',
     privacyPolicy: 'privacy-policy',
     termsConditions: 'terms-conditions',
+    cookiesPolicy: 'cookies-policy',
     condicionesGenerales: 'condiciones-generales',
     boatDetail: 'barco', // This will be handled dynamically
+    blogDetail: 'blog', // This will be handled dynamically with slug
+    destinationDetail: 'destination', // This will be handled dynamically with slug
     notFound: '404'
   };
   
@@ -666,6 +672,8 @@ const getPagePath = (pageName: string): string => {
 };
 
 // Generate canonical URL for a page
+// NOTE: Canonical URLs must be clean without language query params
+// Language variants are handled via hreflang tags, not canonicals
 export const generateCanonicalUrl = (pageName: string, language: Language = 'es', params?: string): string => {
   const pagePath = getPagePath(pageName);
   let baseUrl = '';
@@ -679,11 +687,9 @@ export const generateCanonicalUrl = (pageName: string, language: Language = 'es'
     baseUrl = BASE_DOMAIN;
   }
   
-  // Add language query param for non-Spanish languages
-  if (language !== 'es') {
-    const separator = baseUrl.includes('?') ? '&' : '?';
-    baseUrl += `${separator}lang=${language}`;
-  }
+  // DO NOT add language query params to canonical URLs
+  // Canonical URLs must be clean and consistent for proper SEO
+  // Language variants are indicated through hreflang tags instead
   
   return baseUrl;
 };

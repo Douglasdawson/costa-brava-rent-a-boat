@@ -6,14 +6,10 @@
 // Canonical domain (always use in production)
 export const CANONICAL_DOMAIN = 'costabravarentaboat.app';
 
-// Get the base URL based on environment
+// Get the base URL (always canonical domain for SEO)
 export function getBaseUrl(): string {
-  // In development, use current origin
-  if (import.meta.env.DEV) {
-    return window.location.origin;
-  }
-  
-  // In production, always use canonical domain
+  // Always use canonical domain for SEO consistency
+  // This ensures canonical URLs, hreflang, and OG tags always point to production domain
   return `https://${CANONICAL_DOMAIN}`;
 }
 

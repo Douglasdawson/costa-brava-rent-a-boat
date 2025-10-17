@@ -454,7 +454,7 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
     },
     locationTossa: {
       title: "Boten naar Tossa de Mar vanuit Blanes | Costa Brava",
-      description: "Bootverhuur voor Tossa de Mar bezoek vanuit Haven Blanes. 1 uur varen naar de mooiste middeleeuwse stad van de Costa Brava. Boten zonder vaarbewijs en met vaarbewijs.",
+      description: "Bootverhuur voor Tossa de Mar vanuit Haven Blanes. 1u varen naar mooiste middeleeuwse stad Costa Brava. Boten zonder en met vaarbewijs.",
       keywords: "bootverhuur tossa de mar, tossa bezoeken per boot, tossa excursie vanuit blanes, vila vella tossa"
     },
     categoryLicenseFree: {
@@ -464,7 +464,7 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
     },
     categoryLicensed: {
       title: "Boten Met Vaarbewijs Blanes | Costa Brava",
-      description: "Bootverhuur met vaarbewijs in Blanes, Costa Brava. Krachtige boten voor gevorderde navigatie. Vaarbewijs ICC, KVB of equivalent vereist. Maximale vrijheid op de Costa Brava.",
+      description: "Bootverhuur met vaarbewijs in Blanes. Krachtige boten voor gevorderde navigatie. ICC, KVB of equivalent vereist. Maximale vrijheid Costa Brava.",
       keywords: "boten met vaarbewijs blanes, bootverhuur ICC, boten vaarbewijs, krachtige boten costa brava"
     },
     privacyPolicy: {
@@ -508,17 +508,17 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
     },
     locationTossa: {
       title: "Barche verso Tossa de Mar da Blanes | Costa Brava",
-      description: "Noleggio barche per visitare Tossa de Mar dal Porto di Blanes. 1 ora di navigazione verso la più bella città medievale della Costa Brava. Barche senza patente e con patente.",
+      description: "Noleggio barche per Tossa de Mar dal Porto Blanes. 1h di navigazione verso la città medievale più bella. Barche senza e con patente.",
       keywords: "noleggio barche tossa de mar, visitare tossa in barca, escursione tossa da blanes, vila vella tossa"
     },
     categoryLicenseFree: {
       title: "Barche Senza Patente Blanes | Costa Brava",
-      description: "Noleggio barche senza patente a Blanes, Costa Brava. Imbarcazioni fino a 15 CV per 4-7 persone. Nessuna patente nautica richiesta. Esplora le cale dal Porto di Blanes.",
+      description: "Noleggio barche senza patente a Blanes. Imbarcazioni fino a 15 CV per 4-7 persone. Nessuna patente richiesta. Esplora le cale dal Porto.",
       keywords: "barche senza patente blanes, noleggio barche senza licenza, imbarcazioni senza permesso costa brava, barche 15cv blanes"
     },
     categoryLicensed: {
       title: "Barche Con Patente Blanes | Costa Brava",
-      description: "Noleggio barche con patente a Blanes, Costa Brava. Imbarcazioni potenti per navigazione avanzata. Richiede patente nautica ICC, patente costiera o equivalente. Massima libertà sulla Costa Brava.",
+      description: "Noleggio barche con patente a Blanes. Imbarcazioni potenti per navigazione avanzata. Richiede ICC, patente costiera o equivalente.",
       keywords: "barche con patente blanes, noleggio barche ICC, imbarcazioni patente nautica, barche potenti costa brava"
     },
     privacyPolicy: {
@@ -567,12 +567,12 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
     },
     categoryLicenseFree: {
       title: "Лодки Без Лицензии Бланес | Коста-Брава",
-      description: "Аренда лодок без лицензии в Бланесе, Коста-Брава. Лодки до 15 л.с. для 4-7 человек. Лицензия на управление не требуется. Исследуйте бухты Коста-Брава из порта Бланес.",
+      description: "Аренда лодок без лицензии в Бланесе. Лодки до 15 л.с. для 4-7 человек. Лицензия не требуется. Исследуйте бухты Коста-Брава.",
       keywords: "лодки без лицензии бланес, аренда лодок без прав, лодки без разрешения коста брава, лодки 15лс бланес"
     },
     categoryLicensed: {
       title: "Лодки С Лицензией Бланес | Коста-Брава",
-      description: "Аренда лодок с лицензией в Бланесе, Коста-Брава. Мощные лодки для продвинутой навигации. Требуется лицензия ICC, права на управление или эквивалент. Максимальная свобода на Коста-Брава.",
+      description: "Аренда лодок с лицензией в Бланесе. Мощные лодки для продвинутой навигации. Требуется ICC, права или эквивалент. Свобода Коста-Брава.",
       keywords: "лодки с лицензией бланес, аренда лодок ICC, лодки с правами, мощные лодки коста брава"
     },
     privacyPolicy: {

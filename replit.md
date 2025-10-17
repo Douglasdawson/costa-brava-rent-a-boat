@@ -52,8 +52,14 @@ Preferred communication style: Simple, everyday language.
     - /sitemap-destinations.xml: Dynamic destinations with image tags
   - **Image SEO**: Image sitemap tags with descriptive captions and titles for boats and destinations
   - **Multi-language**: 8 language variants (ES, EN, CA, FR, DE, NL, IT, RU) in sitemaps
-  - **Content**: Optimized page titles, meta descriptions, and alt text with keyword and geo-localization
+  - **Content**: Optimized page titles, meta descriptions (<160 chars), and alt text with keyword and geo-localization
   - **Landing Pages**: Blog and Destination pages with structured content and schemas
+  - **Technical SEO (Oct 2025)**:
+    - robots.txt: Optimized static file with crawl directives, sitemap location, admin blocking
+    - Canonical URLs: Clean URLs without language query params; language variants via hreflang only
+    - HTTPS Enforcement: Canonical domain redirect middleware (costabravarentaboat.app) with trust proxy
+    - SEO Validation: Automated check-seo.mjs script with jsdom for canonical/hreflang verification
+    - Dynamic Pages: Fixed blog/destination detail canonical URLs to use pageName+params pattern
 
 ## External Dependencies
 

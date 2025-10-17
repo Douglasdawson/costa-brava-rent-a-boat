@@ -69,7 +69,9 @@ export default function BlogDetailPage() {
     datePublished: typeof post.publishedAt === 'string' 
       ? post.publishedAt 
       : post.publishedAt?.toISOString() || post.createdAt?.toISOString() || new Date().toISOString(),
-    dateModified: post.updatedAt?.toISOString(),
+    dateModified: typeof post.updatedAt === 'string' 
+      ? post.updatedAt 
+      : post.updatedAt?.toISOString() || undefined,
     image: post.featuredImage || undefined,
     category: post.category
   }) : null;

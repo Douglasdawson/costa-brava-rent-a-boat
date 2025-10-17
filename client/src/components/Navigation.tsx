@@ -83,6 +83,19 @@ export default function Navigation() {
     } else if (href === "#booking") {
       // Open booking modal
       setIsBookingModalOpen(true);
+    } else if (href === "/blog") {
+      // Navigate to Blog page or scroll to top if already on Blog page
+      const currentPath = window.location.pathname;
+      if (currentPath === "/blog" || currentPath.startsWith("/blog/")) {
+        // Already on Blog, scroll to top
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth"
+        });
+      } else {
+        // Navigate to Blog page
+        setLocation("/blog");
+      }
     } else if (href === "#faq") {
       // Navigate to FAQ page or scroll to top if already on FAQ page
       const currentPath = window.location.pathname;
@@ -119,6 +132,7 @@ export default function Navigation() {
   const navigationItems = [
     { label: t.nav.home, href: "/" },
     { label: t.nav.fleet, href: "#fleet" },
+    { label: "Blog", href: "/blog" },
     { label: t.nav.contact, href: "#contact" },
     { label: t.nav.faq, href: "#faq" },
   ];

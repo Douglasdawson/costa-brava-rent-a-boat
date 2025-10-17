@@ -159,6 +159,22 @@ export default function Footer() {
               <li>
                 <button 
                   onClick={() => {
+                    setLocation("/blog");
+                    window.scrollTo({
+                      top: 0,
+                      behavior: "smooth"
+                    });
+                  }} 
+                  className="hover:text-primary transition-colors cursor-pointer bg-transparent border-none p-0 text-left"
+                  data-testid="footer-blog-link"
+                  aria-label="Ver artículos del blog"
+                >
+                  Blog
+                </button>
+              </li>
+              <li>
+                <button 
+                  onClick={() => {
                     setLocation("/faq");
                     window.scrollTo({
                       top: 0,

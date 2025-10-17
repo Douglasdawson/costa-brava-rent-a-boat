@@ -23,6 +23,11 @@ interface BoatProduct {
   maxPrice?: string;
   rating?: number;
   reviewCount?: number;
+  pricing?: {
+    BAJA: { period: string; prices: { [key: string]: number } };
+    MEDIA: { period: string; prices: { [key: string]: number } };
+    ALTA: { period: string; prices: { [key: string]: number } };
+  };
 }
 
 interface ListItem {
@@ -44,6 +49,92 @@ export function generateBreadcrumbSchema(items: BreadcrumbItem[]) {
 }
 
 export function generateProductSchema(boat: BoatProduct) {
+  const currentYear = new Date().getFullYear();
+  
+  // Helper to parse season period and generate dates
+  const parseSeasonDates = (period: string, seasonName: string) => {
+    const months: { [key: string]: number } = {
+      'enero': 0, 'febrero': 1, 'marzo': 2, 'abril': 3, 'mayo': 4, 'junio': 5,
+      'julio': 6, 'agosto': 7, 'septiembre': 8, 'octubre': 9, 'noviembre': 10, 'diciembre': 11,
+      'cierre': 9 // Map "Cierre" to October (end of season)
+    };
+    
+    const periodLower = period.toLowerCase().trim();
+    
+    // Handle single month (e.g., "Julio", "Agosto")
+    if (months[periodLower] !== undefined) {
+      const monthNum = months[periodLower];
+      return {
+        validFrom: new Date(currentYear, monthNum, 1).toISOString().split('T')[0],
+        validThrough: new Date(currentYear, monthNum + 1, 0).toISOString().split('T')[0]
+      };
+    }
+    
+    // Handle comma-separated ranges (e.g., "Abril-Junio, Septiembre-Cierre")
+    const segments = periodLower.split(',').map(s => s.trim());
+    let earliestStart: Date | null = null;
+    let latestEnd: Date | null = null;
+    
+    for (const segment of segments) {
+      const parts = segment.split('-').map(p => p.trim());
+      
+      if (parts.length === 2) {
+        const startMonth = months[parts[0]];
+        const endMonth = months[parts[1]];
+        
+        if (startMonth !== undefined && endMonth !== undefined) {
+          const segmentStart = new Date(currentYear, startMonth, 1);
+          const segmentEnd = new Date(currentYear, endMonth + 1, 0);
+          
+          if (!earliestStart || segmentStart < earliestStart) {
+            earliestStart = segmentStart;
+          }
+          if (!latestEnd || segmentEnd > latestEnd) {
+            latestEnd = segmentEnd;
+          }
+        }
+      } else if (parts.length === 1 && months[parts[0]] !== undefined) {
+        // Single month in segment
+        const monthNum = months[parts[0]];
+        const segmentStart = new Date(currentYear, monthNum, 1);
+        const segmentEnd = new Date(currentYear, monthNum + 1, 0);
+        
+        if (!earliestStart || segmentStart < earliestStart) {
+          earliestStart = segmentStart;
+        }
+        if (!latestEnd || segmentEnd > latestEnd) {
+          latestEnd = segmentEnd;
+        }
+      }
+    }
+    
+    // If we successfully parsed segments, return the range
+    if (earliestStart && latestEnd) {
+      return {
+        validFrom: earliestStart.toISOString().split('T')[0],
+        validThrough: latestEnd.toISOString().split('T')[0]
+      };
+    }
+    
+    // Fallback dates based on season name (only if parsing completely failed)
+    if (seasonName === 'BAJA') {
+      return {
+        validFrom: `${currentYear}-04-01`,
+        validThrough: `${currentYear}-06-30`
+      };
+    } else if (seasonName === 'MEDIA') {
+      return {
+        validFrom: `${currentYear}-07-01`,
+        validThrough: `${currentYear}-07-31`
+      };
+    } else { // ALTA
+      return {
+        validFrom: `${currentYear}-08-01`,
+        validThrough: `${currentYear}-08-31`
+      };
+    }
+  };
+
   const schema: any = {
     "@context": "https://schema.org",
     "@type": "Product",
@@ -55,14 +146,6 @@ export function generateProductSchema(boat: BoatProduct) {
     "brand": {
       "@type": "Brand",
       "name": boat.brand || "Costa Brava Rent a Boat"
-    },
-    "offers": {
-      "@type": "AggregateOffer",
-      "priceCurrency": "EUR",
-      "lowPrice": boat.minPrice || "70",
-      "highPrice": boat.maxPrice || "390",
-      "availability": "https://schema.org/InStock",
-      "url": `${BASE_DOMAIN}/barco/${boat.id}`
     },
     "additionalProperty": [
       {
@@ -82,6 +165,82 @@ export function generateProductSchema(boat: BoatProduct) {
       }
     ]
   };
+
+  // Enhanced Offers with seasonal pricing
+  if (boat.pricing) {
+    const offers: any[] = [];
+    
+    // Generate offer for each season
+    ['BAJA', 'MEDIA', 'ALTA'].forEach((season) => {
+      const seasonData = boat.pricing![season as keyof typeof boat.pricing];
+      if (seasonData && seasonData.prices) {
+        const prices = Object.values(seasonData.prices).filter(p => p > 0);
+        if (prices.length > 0) {
+          const dates = parseSeasonDates(seasonData.period, season);
+          
+          offers.push({
+            "@type": "Offer",
+            "name": `Temporada ${season}`,
+            "priceCurrency": "EUR",
+            "price": Math.min(...prices).toString(),
+            "lowPrice": Math.min(...prices).toString(),
+            "highPrice": Math.max(...prices).toString(),
+            "priceValidUntil": dates.validThrough,
+            "validFrom": dates.validFrom,
+            "validThrough": dates.validThrough,
+            "availability": "https://schema.org/InStock",
+            "eligibleRegion": {
+              "@type": "Place",
+              "name": "Costa Brava, Girona, España",
+              "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Blanes",
+                "addressRegion": "Girona",
+                "addressCountry": "ES"
+              }
+            },
+            "url": `${BASE_DOMAIN}/barco/${boat.id}`
+          });
+        }
+      }
+    });
+
+    // Use AggregateOffer if multiple seasons, or single Offer
+    if (offers.length > 1) {
+      const allPrices = offers.flatMap(o => [parseFloat(o.lowPrice), parseFloat(o.highPrice)]);
+      schema.offers = {
+        "@type": "AggregateOffer",
+        "priceCurrency": "EUR",
+        "lowPrice": Math.min(...allPrices).toString(),
+        "highPrice": Math.max(...allPrices).toString(),
+        "offerCount": offers.length.toString(),
+        "offers": offers,
+        "availability": "https://schema.org/InStock",
+        "url": `${BASE_DOMAIN}/barco/${boat.id}`
+      };
+    } else if (offers.length === 1) {
+      schema.offers = offers[0];
+    } else {
+      // Fallback to simple offer
+      schema.offers = {
+        "@type": "Offer",
+        "priceCurrency": "EUR",
+        "price": boat.minPrice || "70",
+        "availability": "https://schema.org/InStock",
+        "url": `${BASE_DOMAIN}/barco/${boat.id}`
+      };
+    }
+  } else {
+    // Fallback when no pricing data
+    schema.offers = {
+      "@type": "AggregateOffer",
+      "priceCurrency": "EUR",
+      "lowPrice": boat.minPrice || "70",
+      "highPrice": boat.maxPrice || "390",
+      "availability": "https://schema.org/InStock",
+      "url": `${BASE_DOMAIN}/barco/${boat.id}`
+    };
+  }
 
   // Add rating if available
   if (boat.rating && boat.reviewCount) {

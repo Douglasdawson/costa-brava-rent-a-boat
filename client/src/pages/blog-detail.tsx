@@ -169,7 +169,7 @@ export default function BlogDetailPage() {
           data-testid="button-back-to-blog"
         >
           <Link href="/blog">
-            <ArrowLeft className="h-4 w-4 mr-2" />
+            <ArrowLeft className="h-4 w-4 mr-3" />
             Volver al Blog
           </Link>
         </Button>

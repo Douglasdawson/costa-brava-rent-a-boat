@@ -1,0 +1,105 @@
+Replit: refactor total de costabravarentaboat.app para superar a la .com
+
+Contexto
+- Proyecto ya existente en Replit. Mantener repo y despliegue actuales.
+- Objetivo: HTML inicial con contenido real, SEO superior, conversión sólida, DX/observabilidad de nivel producción.
+- Dominio canónico: .app
+
+Acciones
+
+1) Plataforma y render
+- Migra a Next.js 14 (app router) con React Server Components.
+- Rutas públicas SSR/SSG: /, /boats/[slug], /extras, /faq, /legal, /contacto.
+- generateMetadata en cada ruta; HTML inicial no vacío; cache-control por ruta; edge donde aporte.
+- Sustituye CSR puro; hydration selectiva y sólo donde aporte.
+
+2) Canonicalización y robots
+- En todas las páginas: <link rel="canonical" href="https://costabravarentaboat.app{pathname}">
+- <meta name="robots" content="index,follow"> en públicas; noindex en vistas privadas.
+- Redirecciones 301 desde alternos en edge/CDN cuando se delegue.
+
+3) Data layer tipado
+- Crea /lib/domain con TypeScript+Zod: Boat, Season, Offer, Extra.
+- Campos mínimos: nombre, capacidad, licencia (sí/no), eslora, motor, extras, franjas horarias, precios por temporada, depósito, política de combustible, disponibilidad.
+- Fuente única para UI, schema.org y feeds. Persistencia simple (JSON/YAML/KV); API sólo para disponibilidad.
+
+4) APIs transaccionales
+- /api/availability (GET): boatId, date → slots libres.
+- /api/reservations (POST): idempotency-key, validación server-side, rate limit, reCAPTCHA.
+- Acuse inmediato; emails transaccionales (confirmación/cancelación); logs estructurados.
+
+5) Imágenes y medios
+- next/image con loader CDN; formatos AVIF/WEBP; tamaños responsivos; DPR-aware; lazy por defecto; priority en hero.
+- Thumbnails 1:1 y 16:9; nada de texto incrustado en imágenes.
+
+6) i18n y hreflang
+- Idiomas: ES, EN, FR, CA con rutas /es /en /fr /ca.
+- <link rel="alternate" hreflang="..."> por página.
+- Detección suave; sin redirecciones duras por Accept-Language.
+
+7) Datos estructurados
+- JSON-LD:
+  - Organization y LocalBusiness site-wide (NAP consistente).
+  - Product+Offer en /boats/[slug] (precio por temporada con priceValidUntil).
+  - FAQPage en /faq.
+  - Event en landings estacionales.
+- Validación y limpieza de warnings en CI.
+
+8) SEO on-page superior
+- Hero con propuesta de valor, prueba social y CTA primario.
+- Fichas de barco: tabla comparativa, FAQs específicas, zonas de navegación, política de combustible y depósito.
+- Sitemaps por idioma y por tipo: /sitemap.xml, /sitemap-boats.xml, /sitemap-static.xml.
+
+9) Performance budgets y build gates
+- Budgets móvil: LCP<2.0s, INP<150ms, CLS<0.06.
+- Script de medición en CI (Lighthouse/psi) que falla el build si se incumplen.
+- Eliminación de JS/CSS muertos; code-splitting; RSC primero; evitar hidratar listas estáticas.
+
+10) PWA
+- manifest.webmanifest; service worker con precache de shells y stale-while-revalidate para datos.
+- Offline básico para /, /boats/[slug], /legal. Iconos múltiples tamaños.
+
+11) Seguridad y cabeceras
+- CSP estricta (script-src 'self' 'nonce-<dinámico>'); HSTS preload; SRI en externos; COOP/COEP; X-Content-Type-Options; Referrer-Policy strict-origin-when-cross-origin.
+- Cookies HttpOnly; SameSite=Lax; Secure en producción.
+- Sanitización y validación exhaustiva en API; auditoría de dependencias.
+
+12) Accesibilidad
+- axe-core en CI; @storybook/addon-a11y en componentes.
+- Navegación por teclado, foco visible, roles/landmarks correctos, contrastes AA/AAA, aria-live para errores.
+
+13) Analítica y experimentación
+- Taxonomía cerrada de eventos: view_boat, start_reservation, submit_reservation, whatsapp_click, price_seen.
+- A/B testing con asignación estable; métricas predefinidas.
+
+14) UX de formularios y error
+- Estados: idle/loading/success/error; bloqueo de doble envío; reintentos idempotentes.
+- Validación dual (cliente+servidor), máscaras de teléfono; honeypot + reCAPTCHA.
+- 404/500 útiles con caminos de retorno.
+
+15) Observabilidad
+- Logs estructurados (pino), trazas OpenTelemetry, métricas (p95 TTFB/LCP/INP, conversión por fuente/idioma).
+- RUM ligero de Web Vitals; panel /admin protegido.
+
+16) DX y CI/CD
+- Monorepo con turborepo. Lint/format/typecheck obligatorios.
+- Tests: unit (Vitest), contrato (OpenAPI), e2e (Playwright) para / y /boats/[slug].
+- Despliegues canarios; feature flags con expiración y cleanup.
+
+17) NAP y contacto
+- Módulo central /lib/nap consumido por footer, JSON-LD y enlaces tel:/mailto:/wa.me.
+- Página /contacto con mapa, horarios y canales.
+
+18) Velocidad percibida
+- Preload de tipografías críticas y hero; prefetch de rutas vecinas on-hover; Brotli; HTTP/2/3 activados.
+
+19) Sistema de diseño
+- Design tokens (color/spacing/radius/typography), componentes accesibles (card de barco, selector de horas, pricing por temporada, comparador), Storybook publicado en /ui.
+
+Criterios de aceptación
+- HTML inicial con contenido visible en / y /boats/[slug].
+- Core Web Vitals dentro de budgets en móvil real.
+- Validación JSON-LD sin warnings críticos.
+- Sitemap e hreflang correctos por idioma.
+- Reserva con acuse inmediato y WhatsApp fallback operativo.
+- Logs, trazas y métricas visibles; panel /admin accesible con auth.

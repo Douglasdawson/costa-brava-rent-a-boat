@@ -1,0 +1,56 @@
+Replit, procede ahora. Mantén React + Vite + Express. Añade SSR/SSG, SEO completo, i18n, PWA y sólo solicitudes vía WhatsApp (sin reservas online ni PII en servidor). Entrega en PRs pequeñas, sin pedir confirmación.
+
+Fase 0 — Estructura y dependencias
+- Instala prod: express helmet compression etag react-helmet-async react-router-dom@^6 react-router-dom-server i18next react-i18next zod vite-imagetools vite-plugin-pwa
+- Instala dev: @types/express @types/node typescript eslint prettier cross-env
+- Estructura:
+  /server/index.ts
+  /server/ssr.tsx
+  /src/entry-client.tsx
+  /src/entry-server.tsx
+  /src/routes.tsx
+  /src/i18n/{index.ts,locales/{es,en,fr,ca}.json}
+  /src/components/{SolicitudWhatsApp.tsx,JSONLD.tsx,Meta.tsx}
+  /src/lib/{domain.ts,nap.ts,seo.ts,images.ts}
+  /public/{robots.txt,manifest.webmanifest}
+  /scripts/{gen-sitemaps.ts,gen-hreflang.ts,check-vitals.mjs}
+  /reports/.keep
+- Scripts package.json: dev, build, start, lint, typecheck, pwa, sitemap, hreflang, vitals
+
+Fase 1 — SSR con React 18 + Express
+- server/index.ts: Express con helmet, compression, etag, static max-age=31536000 para /assets. Rutas: GET * → ssr handler.
+- server/ssr.tsx: usa react-dom/server renderToPipeableStream con timeout abort 5s. Inyecta HTML con:
+  - <link rel="canonical"> por ruta
+  - etiquetas de react-helmet-async (title, meta OG/Twitter)
+  - <script type="application/ld+json"> de JSONLD.tsx
+  - atributos lang y dir según i18n
+  - preload de fuentes e imagen hero cuando exista
+- src/entry-server.tsx: StaticRouterProvider de react-router-dom/server, Hydration mismatched error boundary.
+- src/entry-client.tsx: hydrateRoot, quitar hidratos innecesarios (root-only).
+
+Fase 2 — SSG selectivo (pre-render)
+- Añade script scripts/gen-static.mjs que renderiza a archivo /dist-ssg para rutas: /, /boats, /boats/[slug] (todas desde domain.ts), /extras, /faq, /contacto, /legal, /blanes, /lloret-de-mar, /fuegos-de-blanes y variantes /es /en /fr /ca.
+- En build: primero build Vite, luego SSG a /dist exportando HTML estático y copiando /assets. Express sirve /dist en prod y hace SSR sólo como fallback.
+
+Fase 3 — Routing e i18n
+- src/routes.tsx: data routers con segmentos por idioma: /:lang(es|en|fr|ca)? y children: /, /boats, /boats/:slug, /extras, /faq, /contacto, /legal, /blanes, /lloret-de-mar, /fuegos-de-blanes.
+- i18n/index.ts: react-i18next con recursos estáticos; persistencia de preferencia en cookie (no tracking). No redirecciones duras por Accept-Language.
+- scripts/gen-hreflang.ts: genera mapping alternates para cada ruta y lo inyecta en Meta.tsx.
+
+Fase 4 — Capa de datos tipada
+- lib/domain.ts: Zod esquemas Boat, Season, Offer, Extra. Fuente única (JSON/YAML) con: nombre, capacidad, licencia, eslora, motor, extras, franjas horarias, precios por temporada, depósito, política de combustible, zonas navegación, slugs.
+- Todas las páginas consumen domain.ts; prohibido duplicar datos en componentes.
+
+Fase 5 — Metadatos y JSON-LD
+- components/Meta.tsx: usa HelmetProvider/Helmet para title/description/OG/Twitter per-route y <link rel="canonical" href="https://costabravarentaboat.app{pathname}">.
+- components/JSONLD.tsx: emite Organization+LocalBusiness global; Product+Offer por barco (price, priceCurrency, priceValidUntil; availability:"InStoreOnly"); FAQPage en /faq; Event en /fuegos-de-blanes.
+- Validación en build: si falta title/description o JSON-LD requerido, falla.
+
+Fase 6 — Robots, sitemaps y canonical
+- public/robots.txt: permitir públicas, bloquear /admin y utilidades.
+- scripts/gen-sitemaps.ts: sitemaps por idioma y tipo (boats/static) con lastmod, changefreq, priority; índice /sitemap.xml.
+- Canónica siempre a .app. Si detectas host alterno, devuelve 301 a .app (middleware Express).
+
+Fase 7 — WhatsApp como único canal
+- Elimina endpoints de reserva. No guardar ni procesar PII en servidor.
+- components/SolicitudWhatsApp.tsx: formulario cliente-only (Zod) con campos {boatId

@@ -42,7 +42,18 @@ Preferred communication style: Simple, everyday language.
 - **Footer**: Includes social media links for Instagram, Facebook, and TikTok.
 - **CRM Mobile Responsiveness**: Header, navigation, data tables, dialogs, and filters are optimized for mobile devices.
 - **Performance Optimizations**: Font optimization, deferred scripts, Gzip compression, resource hints, WebP image conversion and lazy loading, code splitting, HTTP caching, in-memory caching, Service Worker for PWA, and database indexing.
-- **SEO Enhancements**: Comprehensive SEO schema implementation (BreadcrumbList, Product, FAQPage, ItemList, LocalBusiness, Service, AggregateRating, Article, Place/TouristAttraction), dynamic sitemap generation (including boats, blog posts, destinations, and 8 language variants), optimized page titles, meta descriptions, and alt text for images with keyword and geo-localization. Enhanced Offer Schema includes seasonal pricing and dynamic `priceValidUntil` for better rich results. Blog and Destination landing pages provide structured content and schemas.
+- **SEO Enhancements**: 
+  - **Schemas**: Comprehensive JSON-LD implementation (BreadcrumbList, Product, FAQPage, ItemList, LocalBusiness, Service, AggregateRating, Article, Place/TouristAttraction)
+  - **Offer Schema**: Enhanced with seasonal pricing (ALTA/MEDIA/BAJA), validFrom/validThrough dates, priceValidUntil, availability, and eligibleRegion. Known limitation: disjoint date ranges are merged into continuous ranges (future enhancement planned)
+  - **Sitemaps**: Specialized sitemap system with sitemap index (/sitemap.xml) referencing 4 specialized sitemaps:
+    - /sitemap-pages.xml: Static pages with 8 language variants
+    - /sitemap-boats.xml: Dynamic boats with image tags for Google Images SEO
+    - /sitemap-blog.xml: Blog listing and published posts
+    - /sitemap-destinations.xml: Dynamic destinations with image tags
+  - **Image SEO**: Image sitemap tags with descriptive captions and titles for boats and destinations
+  - **Multi-language**: 8 language variants (ES, EN, CA, FR, DE, NL, IT, RU) in sitemaps
+  - **Content**: Optimized page titles, meta descriptions, and alt text with keyword and geo-localization
+  - **Landing Pages**: Blog and Destination pages with structured content and schemas
 
 ## External Dependencies
 

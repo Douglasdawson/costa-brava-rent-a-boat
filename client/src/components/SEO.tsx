@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { getCanonicalUrl, getDefaultOgImage } from "@/lib/domain";
 
 interface SEOProps {
   title: string;
@@ -18,8 +19,8 @@ interface SEOProps {
 export function SEO({ 
   title, 
   description, 
-  canonical = "https://costa-brava-rent-a-boat-web-ivanrd9.replit.app/",
-  ogImage = "https://costa-brava-rent-a-boat-web-ivanrd9.replit.app/assets/Mediterranean_coastal_hero_scene_8df465c2.png",
+  canonical = getCanonicalUrl('/'),
+  ogImage = getDefaultOgImage(),
   ogType = "website",
   ogTitle,
   ogDescription,

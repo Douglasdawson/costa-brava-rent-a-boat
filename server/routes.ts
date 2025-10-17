@@ -52,22 +52,8 @@ const requireAdminAuth = (req: any, res: any, next: any) => {
   next();
 };
 
-// Cached robots.txt generator (1 hour TTL)
-const generateRobotsTxt = memoize(
-  (baseUrl: string): string => {
-    return `User-agent: *
-Allow: /
-Disallow: /crm/
-Disallow: /crm/*
-Disallow: /api/
-Disallow: /api/*
-Disallow: /booking/confirmation
-Disallow: /admin/
-
-Sitemap: ${baseUrl}/sitemap.xml`;
-  },
-  { maxAge: 60 * 60 * 1000 } // 1 hour cache
-);
+// NOTE: robots.txt is now served as a static file from /public/robots.txt
+// Old dynamic generator removed in favor of static file for better SEO control
 
 // Cache for last successful sitemap XML (fallback on errors)
 let lastSuccessfulSitemap: string | null = null;
@@ -88,14 +74,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
     return process.env.BASE_URL || 'https://costa-brava-rent-a-boat-blanes.replit.app';
   };
 
-  // SEO routes - Must be first to avoid being caught by Vite middleware
-  app.get("/robots.txt", (req, res) => {
-    const baseUrl = getBaseUrl(req);
-    const robotsTxt = generateRobotsTxt(baseUrl);
-
-    res.set('Content-Type', 'text/plain');
-    res.send(robotsTxt);
-  });
+  // NOTE: /robots.txt is now served as a static file from /public/robots.txt
+  // Dynamic robots.txt handler removed - static file provides better SEO control
 
   // Define supported languages
   const SUPPORTED_LANGUAGES = ['es', 'en', 'ca', 'fr', 'de', 'nl', 'it', 'ru'];
@@ -1092,7 +1072,12 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Booking routes
+  // ===== BOOKING ROUTES =====
+  // NOTE: Public booking endpoint DISABLED per SEO requirements
+  // Business decision: All reservations must go through WhatsApp (no PII on server)
+  // If CRM needs to create bookings, use admin-protected endpoint instead
+  
+  /* DISABLED - WhatsApp-only policy
   app.post("/api/bookings", async (req, res) => {
     try {
       const bookingData = insertBookingSchema.parse(req.body);
@@ -1173,6 +1158,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.status(400).json({ message: "Error creating booking: " + error.message });
     }
   });
+  */ // END DISABLED booking endpoint
 
   app.get("/api/bookings/:id", async (req, res) => {
     try {

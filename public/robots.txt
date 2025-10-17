@@ -1,0 +1,45 @@
+# Robots.txt - Costa Brava Rent a Boat
+# https://costabravarentaboat.app
+
+User-agent: *
+
+# Allow public pages
+Allow: /
+Allow: /barco/*
+Allow: /barcos-sin-licencia
+Allow: /barcos-con-licencia
+Allow: /blanes
+Allow: /lloret-de-mar
+Allow: /tossa-de-mar
+Allow: /faq
+Allow: /blog
+Allow: /blog/*
+Allow: /destinos/*
+Allow: /contacto
+
+# Block admin and utility pages
+Disallow: /admin
+Disallow: /admin/*
+Disallow: /crm
+Disallow: /crm/*
+Disallow: /login
+Disallow: /dashboard
+Disallow: /api/*
+
+# Block legal pages (low value for SEO)
+Disallow: /politica-privacidad
+Disallow: /terminos-condiciones
+Disallow: /politica-cookies
+
+# Allow search engines to access assets
+Allow: /assets/*
+Allow: /*.css
+Allow: /*.js
+Allow: /*.jpg
+Allow: /*.jpeg
+Allow: /*.png
+Allow: /*.webp
+Allow: /*.svg
+
+# Sitemap location
+Sitemap: https://costabravarentaboat.app/sitemap.xml

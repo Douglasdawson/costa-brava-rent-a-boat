@@ -5,6 +5,9 @@ import { setupVite, serveStatic, log } from "./vite";
 
 const app = express();
 
+// Trust proxy for correct protocol detection behind reverse proxies
+app.set('trust proxy', 1);
+
 // Enable ETag for better caching (default is weak ETag)
 app.set('etag', 'strong');
 
@@ -21,6 +24,29 @@ app.use(compression({
   },
   level: 6,
 }));
+
+// Canonical domain redirection middleware (SEO)
+// Force all traffic to HTTPS costabravarentaboat.app
+app.use((req: Request, res: Response, next: NextFunction) => {
+  const host = req.hostname;
+  const canonicalDomain = 'costabravarentaboat.app';
+  
+  // Skip in development (localhost)
+  if (host === 'localhost' || host === '127.0.0.1' || host.includes('.replit.dev')) {
+    return next();
+  }
+  
+  // Check if request is secure (handles trust proxy and X-Forwarded-Proto)
+  const isSecure = req.secure || req.headers['x-forwarded-proto'] === 'https';
+  
+  // Redirect if not canonical domain OR not HTTPS
+  if (host !== canonicalDomain || !isSecure) {
+    const canonicalUrl = `https://${canonicalDomain}${req.originalUrl}`;
+    return res.redirect(301, canonicalUrl);
+  }
+  
+  next();
+});
 
 app.use((req, res, next) => {
   const start = Date.now();

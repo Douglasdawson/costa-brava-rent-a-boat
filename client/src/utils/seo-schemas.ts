@@ -209,3 +209,48 @@ export function generateArticleSchema(article: BlogArticle) {
 
   return schema;
 }
+
+interface PlaceDestination {
+  name: string;
+  slug: string;
+  description: string;
+  coordinates?: { lat: number; lng: number };
+  image?: string;
+  address?: string;
+}
+
+export function generatePlaceSchema(place: PlaceDestination) {
+  const schema: any = {
+    "@context": "https://schema.org",
+    "@type": "TouristAttraction",
+    "name": place.name,
+    "description": place.description,
+    "url": `${BASE_DOMAIN}/destinos/${place.slug}`
+  };
+
+  // Add image if available
+  if (place.image) {
+    schema.image = place.image.startsWith('http') 
+      ? place.image 
+      : `${BASE_DOMAIN}${place.image}`;
+  }
+
+  // Add geo coordinates if available
+  if (place.coordinates) {
+    schema.geo = {
+      "@type": "GeoCoordinates",
+      "latitude": place.coordinates.lat.toString(),
+      "longitude": place.coordinates.lng.toString()
+    };
+  }
+
+  // Add address info
+  schema.address = {
+    "@type": "PostalAddress",
+    "addressLocality": "Blanes",
+    "addressRegion": "Girona",
+    "addressCountry": "ES"
+  };
+
+  return schema;
+}

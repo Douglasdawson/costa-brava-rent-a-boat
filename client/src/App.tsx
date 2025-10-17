@@ -33,6 +33,7 @@ const CategoryLicensedPage = lazy(() => import("@/pages/category-licensed"));
 const TestimoniosPage = lazy(() => import("@/pages/testimonios"));
 const BlogPage = lazy(() => import("@/pages/blog"));
 const BlogDetailPage = lazy(() => import("@/pages/blog-detail"));
+const DestinationDetailPage = lazy(() => import("@/pages/destination-detail"));
 const ClientDashboardPage = lazy(() => import("@/pages/ClientDashboardPage"));
 const LoginPage = lazy(() => import("@/pages/LoginPage"));
 const NotFound = lazy(() => import("@/pages/not-found"));
@@ -224,6 +225,10 @@ function BlogDetailPageWrapper() {
   return <BlogDetailPage />;
 }
 
+function DestinationDetailPageWrapper() {
+  return <DestinationDetailPage />;
+}
+
 // Loading fallback component
 function LoadingFallback() {
   return (
@@ -262,6 +267,7 @@ function Router() {
         <Route path="/testimonios" component={TestimoniosPageWrapper} />
         <Route path="/blog/:slug" component={BlogDetailPageWrapper} />
         <Route path="/blog" component={BlogPageWrapper} />
+        <Route path="/destinos/:slug" component={DestinationDetailPageWrapper} />
         <Route component={NotFound} />
       </Switch>
     </Suspense>

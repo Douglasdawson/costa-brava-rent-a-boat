@@ -69,103 +69,6 @@ Sitemap: ${baseUrl}/sitemap.xml`;
   { maxAge: 60 * 60 * 1000 } // 1 hour cache
 );
 
-// Cached sitemap.xml generator (1 hour TTL)
-const generateSitemapXml = memoize(
-  (baseUrl: string): string => {
-    const now = new Date().toISOString();
-    
-    // Define all boats IDs (from the boat data)
-    const boatIds = [
-      'solar-450', 'remus-450', 'astec-400', 'astec-450', 
-      'pacific-craft-625', 'trimarchi-57s', 'mingolla-brava-19'
-    ];
-    
-    // Define location slugs
-    const locationSlugs = ['blanes', 'lloret-de-mar', 'tossa-de-mar'];
-    
-    // Define supported languages
-    const languages = ['es', 'en', 'ca', 'fr', 'de', 'nl', 'it', 'ru'];
-    
-    // Helper function to generate URL entries with language variants
-    const generateUrlEntry = (path: string, priority: string, changeFreq: string = 'weekly') => {
-      let urls = '';
-      
-      // Add main URL (Spanish - default)
-      urls += `  <url>
-    <loc>${baseUrl}${path}</loc>
-    <lastmod>${now}</lastmod>
-    <changefreq>${changeFreq}</changefreq>
-    <priority>${priority}</priority>
-  </url>
-`;
-      
-      // Add language variants for non-home pages
-      if (path !== '/') {
-        languages.forEach(lang => {
-          if (lang !== 'es') {
-            urls += `  <url>
-    <loc>${baseUrl}${path}?lang=${lang}</loc>
-    <lastmod>${now}</lastmod>
-    <changefreq>${changeFreq}</changefreq>
-    <priority>${priority}</priority>
-  </url>
-`;
-          }
-        });
-      } else {
-        // For home page, add language variants
-        languages.forEach(lang => {
-          if (lang !== 'es') {
-            urls += `  <url>
-    <loc>${baseUrl}/?lang=${lang}</loc>
-    <lastmod>${now}</lastmod>
-    <changefreq>${changeFreq}</changefreq>
-    <priority>${priority}</priority>
-  </url>
-`;
-          }
-        });
-      }
-      
-      return urls;
-    };
-
-    let sitemap = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-`;
-
-    // Home page (highest priority)
-    sitemap += generateUrlEntry('/', '1.0', 'daily');
-    
-    // Boat detail pages
-    boatIds.forEach(boatId => {
-      sitemap += generateUrlEntry(`/barco/${boatId}`, '0.8');
-    });
-    
-    // Location pages  
-    locationSlugs.forEach(slug => {
-      sitemap += generateUrlEntry(`/alquiler-barcos-${slug}`, '0.7');
-    });
-    
-    // FAQ page
-    sitemap += generateUrlEntry('/faq', '0.6');
-    
-    // Category pages
-    sitemap += generateUrlEntry('/barcos-sin-licencia', '0.7');
-    sitemap += generateUrlEntry('/barcos-con-licencia', '0.7');
-    
-    // Legal pages
-    sitemap += generateUrlEntry('/privacy-policy', '0.3', 'monthly');
-    sitemap += generateUrlEntry('/terms-conditions', '0.3', 'monthly');
-    sitemap += generateUrlEntry('/condiciones-generales', '0.3', 'monthly');
-
-    sitemap += `</urlset>`;
-
-    return sitemap;
-  },
-  { maxAge: 60 * 60 * 1000 } // 1 hour cache
-);
-
 // Cache for last successful sitemap XML (fallback on errors)
 let lastSuccessfulSitemap: string | null = null;
 
@@ -276,6 +179,23 @@ export async function registerRoutes(app: Express): Promise<Server> {
       // Category pages
       sitemap += generateUrlEntry('/barcos-sin-licencia', '0.7');
       sitemap += generateUrlEntry('/barcos-con-licencia', '0.7');
+      
+      // Blog posts (dynamic from database)
+      const blogPosts = await storage.getAllBlogPosts();
+      const publishedBlogPosts = blogPosts.filter(post => post.isPublished);
+      publishedBlogPosts.forEach(post => {
+        sitemap += generateUrlEntry(`/blog/${post.slug}`, '0.7');
+      });
+      
+      // Blog listing page
+      sitemap += generateUrlEntry('/blog', '0.6');
+      
+      // Destination pages (dynamic from database)
+      const destinations = await storage.getAllDestinations();
+      const publishedDestinations = destinations.filter(dest => dest.isPublished);
+      publishedDestinations.forEach(destination => {
+        sitemap += generateUrlEntry(`/destinos/${destination.slug}`, '0.7');
+      });
       
       // Legal pages
       sitemap += generateUrlEntry('/privacy-policy', '0.3', 'monthly');

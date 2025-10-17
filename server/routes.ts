@@ -97,133 +97,291 @@ export async function registerRoutes(app: Express): Promise<Server> {
     res.send(robotsTxt);
   });
 
-  // Dynamic Sitemap.xml endpoint - fetches boats from database
-  app.get("/sitemap.xml", async (req, res) => {
-    try {
-      const baseUrl = getBaseUrl(req);
-      const now = new Date().toISOString();
-      
-      // Fetch active boats from database
-      const boats = await storage.getAllBoats();
-      const activeBoats = boats.filter(b => b.isActive);
-      const boatIds = activeBoats.map(b => b.id);
-      
-      // Define supported languages
-      const languages = ['es', 'en', 'ca', 'fr', 'de', 'nl', 'it', 'ru'];
-      
-      // Helper function to generate URL entries with language variants
-      const generateUrlEntry = (path: string, priority: string, changeFreq: string = 'weekly') => {
-        let urls = '';
-        
-        // Add main URL (Spanish - default)
-        urls += `  <url>
+  // Define supported languages
+  const SUPPORTED_LANGUAGES = ['es', 'en', 'ca', 'fr', 'de', 'nl', 'it', 'ru'];
+
+  // Helper function to generate URL entries with language variants
+  const generateUrlEntry = (baseUrl: string, path: string, priority: string, now: string, changeFreq: string = 'weekly') => {
+    let urls = '';
+    
+    // Add main URL (Spanish - default)
+    urls += `  <url>
     <loc>${baseUrl}${path}</loc>
     <lastmod>${now}</lastmod>
     <changefreq>${changeFreq}</changefreq>
     <priority>${priority}</priority>
   </url>
 `;
-        
-        // Add language variants
-        if (path !== '/') {
-          languages.forEach(lang => {
-            if (lang !== 'es') {
-              urls += `  <url>
+    
+    // Add language variants
+    if (path !== '/') {
+      SUPPORTED_LANGUAGES.forEach(lang => {
+        if (lang !== 'es') {
+          urls += `  <url>
     <loc>${baseUrl}${path}?lang=${lang}</loc>
     <lastmod>${now}</lastmod>
     <changefreq>${changeFreq}</changefreq>
     <priority>${priority}</priority>
   </url>
 `;
-            }
-          });
-        } else {
-          // For home page, add language variants
-          languages.forEach(lang => {
-            if (lang !== 'es') {
-              urls += `  <url>
+        }
+      });
+    } else {
+      // For home page, add language variants
+      SUPPORTED_LANGUAGES.forEach(lang => {
+        if (lang !== 'es') {
+          urls += `  <url>
     <loc>${baseUrl}/?lang=${lang}</loc>
     <lastmod>${now}</lastmod>
     <changefreq>${changeFreq}</changefreq>
     <priority>${priority}</priority>
   </url>
 `;
-            }
-          });
         }
-        
-        return urls;
-      };
+      });
+    }
+    
+    return urls;
+  };
 
+  // Sitemap Index - Main entry point
+  app.get("/sitemap.xml", async (req, res) => {
+    try {
+      const baseUrl = getBaseUrl(req);
+      const now = new Date().toISOString();
+      
+      const sitemapIndex = `<?xml version="1.0" encoding="UTF-8"?>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <sitemap>
+    <loc>${baseUrl}/sitemap-pages.xml</loc>
+    <lastmod>${now}</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc>${baseUrl}/sitemap-boats.xml</loc>
+    <lastmod>${now}</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc>${baseUrl}/sitemap-blog.xml</loc>
+    <lastmod>${now}</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc>${baseUrl}/sitemap-destinations.xml</loc>
+    <lastmod>${now}</lastmod>
+  </sitemap>
+</sitemapindex>`;
+
+      res.set('Content-Type', 'application/xml');
+      res.set('Cache-Control', 'public, max-age=3600');
+      res.send(sitemapIndex);
+    } catch (error: any) {
+      console.error('Error generating sitemap index:', error);
+      res.status(500).send('<?xml version="1.0" encoding="UTF-8"?><error>Sitemap temporarily unavailable</error>');
+    }
+  });
+
+  // Pages Sitemap
+  app.get("/sitemap-pages.xml", async (req, res) => {
+    try {
+      const baseUrl = getBaseUrl(req);
+      const now = new Date().toISOString();
+      
       let sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 `;
 
       // Home page (highest priority)
-      sitemap += generateUrlEntry('/', '1.0', 'daily');
-      
-      // Boat detail pages (dynamic from database)
-      boatIds.forEach(boatId => {
-        sitemap += generateUrlEntry(`/barco/${boatId}`, '0.8');
-      });
+      sitemap += generateUrlEntry(baseUrl, '/', '1.0', now, 'daily');
       
       // Location pages
       const locationSlugs = ['blanes', 'lloret-de-mar', 'tossa-de-mar'];
       locationSlugs.forEach(slug => {
-        sitemap += generateUrlEntry(`/alquiler-barcos-${slug}`, '0.7');
+        sitemap += generateUrlEntry(baseUrl, `/alquiler-barcos-${slug}`, '0.7', now);
       });
       
       // FAQ page
-      sitemap += generateUrlEntry('/faq', '0.6');
+      sitemap += generateUrlEntry(baseUrl, '/faq', '0.6', now);
       
       // Category pages
-      sitemap += generateUrlEntry('/barcos-sin-licencia', '0.7');
-      sitemap += generateUrlEntry('/barcos-con-licencia', '0.7');
-      
-      // Blog posts (dynamic from database)
-      const blogPosts = await storage.getAllBlogPosts();
-      const publishedBlogPosts = blogPosts.filter(post => post.isPublished);
-      publishedBlogPosts.forEach(post => {
-        sitemap += generateUrlEntry(`/blog/${post.slug}`, '0.7');
-      });
-      
-      // Blog listing page
-      sitemap += generateUrlEntry('/blog', '0.6');
-      
-      // Destination pages (dynamic from database)
-      const destinations = await storage.getAllDestinations();
-      const publishedDestinations = destinations.filter(dest => dest.isPublished);
-      publishedDestinations.forEach(destination => {
-        sitemap += generateUrlEntry(`/destinos/${destination.slug}`, '0.7');
-      });
+      sitemap += generateUrlEntry(baseUrl, '/barcos-sin-licencia', '0.7', now);
+      sitemap += generateUrlEntry(baseUrl, '/barcos-con-licencia', '0.7', now);
       
       // Legal pages
-      sitemap += generateUrlEntry('/privacy-policy', '0.3', 'monthly');
-      sitemap += generateUrlEntry('/terms-conditions', '0.3', 'monthly');
-      sitemap += generateUrlEntry('/condiciones-generales', '0.3', 'monthly');
-      sitemap += generateUrlEntry('/cookies-policy', '0.3', 'monthly');
+      sitemap += generateUrlEntry(baseUrl, '/privacy-policy', '0.3', now, 'monthly');
+      sitemap += generateUrlEntry(baseUrl, '/terms-conditions', '0.3', now, 'monthly');
+      sitemap += generateUrlEntry(baseUrl, '/condiciones-generales', '0.3', now, 'monthly');
+      sitemap += generateUrlEntry(baseUrl, '/cookies-policy', '0.3', now, 'monthly');
 
       sitemap += `</urlset>`;
 
-      // Cache successful sitemap for fallback
-      lastSuccessfulSitemap = sitemap;
-
       res.set('Content-Type', 'application/xml');
-      res.set('Cache-Control', 'public, max-age=3600'); // Cache for 1 hour
+      res.set('Cache-Control', 'public, max-age=3600');
       res.send(sitemap);
     } catch (error: any) {
-      console.error('Error generating dynamic sitemap:', error);
+      console.error('Error generating pages sitemap:', error);
+      res.status(500).send('<?xml version="1.0" encoding="UTF-8"?><error>Sitemap temporarily unavailable</error>');
+    }
+  });
+
+  // Boats Sitemap with image tags
+  app.get("/sitemap-boats.xml", async (req, res) => {
+    try {
+      const baseUrl = getBaseUrl(req);
+      const now = new Date().toISOString();
       
-      // Fallback to last successful sitemap if available
-      if (lastSuccessfulSitemap) {
-        console.log('Using cached sitemap as fallback');
-        res.set('Content-Type', 'application/xml');
-        res.set('Cache-Control', 'public, max-age=300'); // Shorter cache for fallback
-        return res.send(lastSuccessfulSitemap);
-      }
+      const boats = await storage.getAllBoats();
+      const activeBoats = boats.filter(b => b.isActive);
       
-      // If no cache available, return error
-      console.error('No cached sitemap available');
+      let sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+`;
+
+      activeBoats.forEach(boat => {
+        const boatPath = `/barco/${boat.id}`;
+        
+        // Add main URL with image
+        sitemap += `  <url>
+    <loc>${baseUrl}${boatPath}</loc>
+    <lastmod>${now}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>`;
+        
+        // Add image tag if boat has image
+        if (boat.imageUrl) {
+          const imageUrl = boat.imageUrl.startsWith('http') 
+            ? boat.imageUrl 
+            : `${baseUrl}/object-storage/${boat.imageUrl}`;
+          
+          sitemap += `
+    <image:image>
+      <image:loc>${imageUrl}</image:loc>
+      <image:caption>Alquiler barco ${boat.name} en Blanes Costa Brava - ${boat.requiresLicense ? 'Con licencia' : 'Sin licencia'}</image:caption>
+      <image:title>${boat.name} - Costa Brava Rent a Boat</image:title>
+    </image:image>`;
+        }
+        
+        sitemap += `
+  </url>
+`;
+        
+        // Add language variants
+        SUPPORTED_LANGUAGES.forEach(lang => {
+          if (lang !== 'es') {
+            sitemap += `  <url>
+    <loc>${baseUrl}${boatPath}?lang=${lang}</loc>
+    <lastmod>${now}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+`;
+          }
+        });
+      });
+
+      sitemap += `</urlset>`;
+
+      res.set('Content-Type', 'application/xml');
+      res.set('Cache-Control', 'public, max-age=3600');
+      res.send(sitemap);
+    } catch (error: any) {
+      console.error('Error generating boats sitemap:', error);
+      res.status(500).send('<?xml version="1.0" encoding="UTF-8"?><error>Sitemap temporarily unavailable</error>');
+    }
+  });
+
+  // Blog Sitemap
+  app.get("/sitemap-blog.xml", async (req, res) => {
+    try {
+      const baseUrl = getBaseUrl(req);
+      const now = new Date().toISOString();
+      
+      const blogPosts = await storage.getAllBlogPosts();
+      const publishedBlogPosts = blogPosts.filter(post => post.isPublished);
+      
+      let sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+`;
+
+      // Blog listing page
+      sitemap += generateUrlEntry(baseUrl, '/blog', '0.6', now);
+      
+      // Blog posts
+      publishedBlogPosts.forEach(post => {
+        sitemap += generateUrlEntry(baseUrl, `/blog/${post.slug}`, '0.7', now);
+      });
+
+      sitemap += `</urlset>`;
+
+      res.set('Content-Type', 'application/xml');
+      res.set('Cache-Control', 'public, max-age=3600');
+      res.send(sitemap);
+    } catch (error: any) {
+      console.error('Error generating blog sitemap:', error);
+      res.status(500).send('<?xml version="1.0" encoding="UTF-8"?><error>Sitemap temporarily unavailable</error>');
+    }
+  });
+
+  // Destinations Sitemap with image tags
+  app.get("/sitemap-destinations.xml", async (req, res) => {
+    try {
+      const baseUrl = getBaseUrl(req);
+      const now = new Date().toISOString();
+      
+      const destinations = await storage.getAllDestinations();
+      const publishedDestinations = destinations.filter(dest => dest.isPublished);
+      
+      let sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+`;
+
+      publishedDestinations.forEach(destination => {
+        const destPath = `/destinos/${destination.slug}`;
+        
+        // Add main URL with image
+        sitemap += `  <url>
+    <loc>${baseUrl}${destPath}</loc>
+    <lastmod>${now}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>`;
+        
+        // Add image tag if destination has image
+        if (destination.featuredImage) {
+          const imageUrl = destination.featuredImage.startsWith('http') 
+            ? destination.featuredImage 
+            : `${baseUrl}/object-storage/${destination.featuredImage}`;
+          
+          sitemap += `
+    <image:image>
+      <image:loc>${imageUrl}</image:loc>
+      <image:caption>${destination.name} - Destino Costa Brava cerca de Blanes</image:caption>
+      <image:title>${destination.name} - Costa Brava</image:title>
+    </image:image>`;
+        }
+        
+        sitemap += `
+  </url>
+`;
+        
+        // Add language variants
+        SUPPORTED_LANGUAGES.forEach(lang => {
+          if (lang !== 'es') {
+            sitemap += `  <url>
+    <loc>${baseUrl}${destPath}?lang=${lang}</loc>
+    <lastmod>${now}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+`;
+          }
+        });
+      });
+
+      sitemap += `</urlset>`;
+
+      res.set('Content-Type', 'application/xml');
+      res.set('Cache-Control', 'public, max-age=3600');
+      res.send(sitemap);
+    } catch (error: any) {
+      console.error('Error generating destinations sitemap:', error);
       res.status(500).send('<?xml version="1.0" encoding="UTF-8"?><error>Sitemap temporarily unavailable</error>');
     }
   });
@@ -1626,11 +1784,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.post("/api/testimonials", async (req, res) => {
     try {
       const validatedData = insertTestimonialSchema.parse(req.body);
-      // Force isVerified to false for security - only admins can verify
-      const testimonial = await storage.createTestimonial({
-        ...validatedData,
-        isVerified: false
-      });
+      // isVerified defaults to false in database - only admins can verify
+      const testimonial = await storage.createTestimonial(validatedData);
       res.status(201).json(testimonial);
     } catch (error: any) {
       if (error.name === 'ZodError') {

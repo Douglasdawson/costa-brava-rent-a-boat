@@ -838,19 +838,36 @@ function FleetManagement({ adminToken }: { adminToken: string }) {
             <div className="space-y-4">
               <h3 className="text-lg font-semibold">Imágenes</h3>
               <div>
-                <Label htmlFor="imageUrl">URL Imagen Principal</Label>
+                <Label htmlFor="imageUrl">URL Imagen Principal (auto-sincronizada)</Label>
                 <Input
                   id="imageUrl"
-                  {...boatForm.register("imageUrl")}
-                  placeholder="https://ejemplo.com/barco.jpg"
+                  value={boatForm.watch('imageUrl') || ''}
+                  placeholder="Se sincroniza automáticamente con la primera imagen de la galería"
                   data-testid="input-boat-image-url"
+                  readOnly
+                  className="bg-muted cursor-not-allowed"
                 />
+                <p className="text-xs text-muted-foreground mt-1">
+                  La primera imagen de la galería se usa como imagen principal en el grid de inicio
+                </p>
               </div>
               <div>
                 <Label>Galería de Imágenes</Label>
                 <ImageGalleryUploader
                   images={boatForm.watch('imageGallery') || []}
-                  onImagesChange={(images) => boatForm.setValue('imageGallery', images)}
+                  onImagesChange={(images) => {
+                    boatForm.setValue('imageGallery', images);
+                    // Sync imageUrl with first image
+                    if (images.length > 0) {
+                      boatForm.setValue('imageUrl', images[0]);
+                    } else {
+                      boatForm.setValue('imageUrl', '');
+                    }
+                  }}
+                  onMainImageChange={(mainImageUrl) => {
+                    // Update imageUrl when main image changes
+                    boatForm.setValue('imageUrl', mainImageUrl || '');
+                  }}
                   maxImages={10}
                 />
               </div>

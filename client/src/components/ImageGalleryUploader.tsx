@@ -25,6 +25,7 @@ import { cn } from "@/lib/utils";
 interface ImageGalleryUploaderProps {
   images: string[];
   onImagesChange: (images: string[]) => void;
+  onMainImageChange?: (mainImageUrl: string | null) => void;
   maxImages?: number;
 }
 
@@ -108,6 +109,7 @@ function SortableImage({ id, imageUrl, index, onRemove }: SortableImageProps) {
 export function ImageGalleryUploader({
   images,
   onImagesChange,
+  onMainImageChange,
   maxImages = 10,
 }: ImageGalleryUploaderProps) {
   const [uploading, setUploading] = useState(false);
@@ -197,7 +199,13 @@ export function ImageGalleryUploader({
         });
 
         const uploadedPaths = await Promise.all(uploadPromises);
-        onImagesChange([...images, ...uploadedPaths]);
+        const newImages = [...images, ...uploadedPaths];
+        onImagesChange(newImages);
+        
+        // Notify main image change if callback provided
+        if (onMainImageChange && newImages.length > 0) {
+          onMainImageChange(newImages[0]);
+        }
       } catch (error) {
         console.error("Error uploading images:", error);
         alert("Error al subir las imágenes. Por favor, intenta de nuevo.");
@@ -225,7 +233,13 @@ export function ImageGalleryUploader({
       const newIndex = images.findIndex((_, i) => `image-${i}` === over.id);
 
       if (oldIndex !== -1 && newIndex !== -1) {
-        onImagesChange(arrayMove(images, oldIndex, newIndex));
+        const newImages = arrayMove(images, oldIndex, newIndex);
+        onImagesChange(newImages);
+        
+        // Notify main image change if first position changed
+        if (onMainImageChange && (oldIndex === 0 || newIndex === 0)) {
+          onMainImageChange(newImages[0]);
+        }
       }
     }
   };
@@ -233,6 +247,11 @@ export function ImageGalleryUploader({
   const handleRemove = (index: number) => {
     const newImages = images.filter((_, i) => i !== index);
     onImagesChange(newImages);
+    
+    // Notify main image change if first image was removed or if no images left
+    if (onMainImageChange && index === 0) {
+      onMainImageChange(newImages.length > 0 ? newImages[0] : null);
+    }
   };
 
   return (

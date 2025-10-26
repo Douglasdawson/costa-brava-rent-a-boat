@@ -64,7 +64,7 @@ export default function Footer() {
                   data-testid="social-instagram"
                   aria-label="Síguenos en Instagram"
                 >
-                  <SiInstagram className="w-5 h-5" />
+                  <SiInstagram className="w-7 h-7" />
                 </a>
                 <a
                   href="https://www.facebook.com/costabravarentaboat"
@@ -74,7 +74,7 @@ export default function Footer() {
                   data-testid="social-facebook"
                   aria-label="Síguenos en Facebook"
                 >
-                  <SiFacebook className="w-5 h-5" />
+                  <SiFacebook className="w-7 h-7" />
                 </a>
                 <a
                   href="https://www.tiktok.com/@costabravarentaboat"
@@ -84,7 +84,7 @@ export default function Footer() {
                   data-testid="social-tiktok"
                   aria-label="Síguenos en TikTok"
                 >
-                  <SiTiktok className="w-5 h-5" />
+                  <SiTiktok className="w-7 h-7" />
                 </a>
               </div>
             </div>

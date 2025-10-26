@@ -595,6 +595,18 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
   }
 };
 
+// Map language codes to full hreflang codes with country
+const HREFLANG_CODES: Record<Language, string> = {
+  'es': 'es-ES',  // Spanish (Spain)
+  'en': 'en-GB',  // English (United Kingdom)
+  'ca': 'ca-ES',  // Catalan (Spain)
+  'fr': 'fr-FR',  // French (France)
+  'de': 'de-DE',  // German (Germany)
+  'nl': 'nl-NL',  // Dutch (Netherlands)
+  'it': 'it-IT',  // Italian (Italy)
+  'ru': 'ru-RU'   // Russian (Russia)
+};
+
 // Generate hreflang links for a page
 export const generateHreflangLinks = (pageName: string, params?: string): Array<{ lang: string; url: string }> => {
   const languages: Language[] = ['es', 'en', 'ca', 'fr', 'de', 'nl', 'it', 'ru'];
@@ -619,7 +631,7 @@ export const generateHreflangLinks = (pageName: string, params?: string): Array<
     }
     
     return {
-      lang,
+      lang: HREFLANG_CODES[lang], // Use full hreflang code with country
       url
     };
   });
@@ -637,7 +649,7 @@ export const generateHreflangLinks = (pageName: string, params?: string): Array<
   }
   
   hreflangLinks.push({
-    lang: 'x-default' as any,
+    lang: 'x-default',
     url: defaultUrl
   });
 

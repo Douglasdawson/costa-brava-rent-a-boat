@@ -24,10 +24,7 @@ export default function ContactSection() {
         {/* Contact Information - Full Width Layout */}
         <div className="mb-12">
           <Card>
-            <CardHeader className="text-center pb-6">
-              <CardTitle className="text-2xl">{t.contact.title}</CardTitle>
-            </CardHeader>
-            <CardContent>
+            <CardContent className="pt-6">
               {/* Contact Items Grid - 2 Columns on Mobile, 4 Columns on Desktop/Tablet */}
               <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-6">
                 {/* Phone & WhatsApp */}

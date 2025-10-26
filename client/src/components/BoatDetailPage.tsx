@@ -126,7 +126,8 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
   const dynamicSEOData = {
     boatName: boatData.name,
     capacity: capacity.toString(),
-    license: requiresLicense ? "con licencia" : "sin licencia"
+    license: requiresLicense ? "con licencia" : "sin licencia",
+    pricePerHour: lowestPrice.toString()
   };
   
   const seoConfig = getSEOConfig('boatDetail', language, dynamicSEOData);

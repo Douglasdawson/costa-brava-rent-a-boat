@@ -1,0 +1,188 @@
+Prompt para Agente de Replit — Correcciones SEO “Costa Brava Rent a Boat Blanes”
+
+Contexto
+- Dominio principal: costabravarentaboat.com
+- Dominio secundario a consolidar por 301: costabravarentaboat.app
+- Idiomas: es-ES (principal), ca-ES, en-GB
+- Negocio local en Blanes (Girona). Tel: +34 611 500 372. Email: costabravarentboat@gmail.com
+- Oferta clave: alquiler de barcos sin licencia, gasolina incluida, hasta 5 personas, salidas desde Puerto de Blanes. Embarcación destacada: ASTEC 450
+
+Objetivo
+- Consolidar señales de dominio, corregir metadatos rotos, garantizar indexación completa, añadir marcado estructurado, endurecer rendimiento Core Web Vitals, unificar arquitectura multilingüe y elevar CTR orgánico
+
+Alcance técnico mínimo (Definition of Done)
+- 301 .app ⇒ .com ruta a ruta, sin cadenas
+- SSR o prerender estático completo de todas las páginas indexables
+- Titles/Descriptions limpios, sin placeholders, por idioma
+- robots.txt + sitemap.xml operativos y enlazados en /robots.txt
+- hreflang recíproco es|ca|en + x-default
+- JSON-LD: Organization + LocalBusiness + Service/Offer por ficha
+- Enlazado interno completo a fichas y páginas de intención
+- CWV: LCP ≤ 2.5s, CLS ≤ 0.1, INP ≤ 200ms en móvil (Lighthouse)
+- Open Graph/Twitter Cards por URL indexable
+- Sin duplicados canónicos, sin 404 internas, sin parámetros para contenido core
+
+Plan de trabajo — ejecutar en orden
+
+1) Consolidación de dominio y canónicos
+- Redirecciones 301 permanentes .app ⇒ .com, 1:1:
+  - NGINX
+    server {
+      server_name costabravarentaboat.app www.costabravarentaboat.app;
+      return 301 https://costabravarentaboat.com$request_uri;
+    }
+  - Apache (.htaccess)
+    RewriteEngine On
+    RewriteCond %{HTTP_HOST} ^(www\.)?costabravarentaboat\.app$ [NC]
+    RewriteRule ^(.*)$ https://costabravarentaboat.com/$1 [L,R=301]
+- En .com añadir rel="canonical" absoluto a sí mismo en todas las páginas:
+  <link rel="canonical" href="https://costabravarentaboat.com/ruta/" />
+
+2) Renderizado para bots (SSR / Prerender)
+- Si stack React/SPA, habilitar prerender a build-time (react-snap, vite-ssg) o migrar a SSR (Next.js, SvelteKit)
+- Incluir <noscript> con H1 y copy esencial en todas las plantillas:
+  <noscript>
+    <h1>Alquiler de barcos en Blanes sin licencia</h1>
+    <p>Gasolina incluida · Hasta 5 personas · Salida desde Puerto de Blanes</p>
+  </noscript>
+
+3) Metadatos — Titles y Descriptions por tipo de página
+- Home (ES)
+  - Title: Alquiler de barcos en Blanes sin licencia | Gasolina incluida
+  - Description: Barcos sin licencia en Blanes. Gasolina incluida, hasta 5 personas, salidas desde el Puerto de Blanes. Reserva por WhatsApp al +34 611 500 372.
+- Listado/Categoría (ES)
+  - Title: Barcos sin licencia en Blanes – Precios y disponibilidad
+  - Description: Explora nuestras lanchas sin licencia en Blanes con gasolina incluida. Salidas de 3–4 h. Extras: snorkel, paddle, nevera, seascooter.
+- Ficha ASTEC 450 (ES)
+  - Title: ASTEC 450 en Blanes – Barco sin licencia desde 75 €
+  - Description: Hasta 5 personas · Gasolina incluida · Solárium y toldo · Salida Puerto de Blanes. Reserva por WhatsApp.
+- Eliminar placeholders no resueltos (“{pricePerHour}”, etc.) en titles/descriptions/H1
+
+4) robots.txt y sitemap.xml
+- /robots.txt:
+  User-agent: *
+  Disallow:
+  Sitemap: https://costabravarentaboat.com/sitemap.xml
+- /sitemap.xml (ejemplo mínimo):
+  <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url><loc>https://costabravarentaboat.com/</loc><changefreq>daily</changefreq></url>
+    <url><loc>https://costabravarentaboat.com/alquiler-blanes/</loc></url>
+    <url><loc>https://costabravarentaboat.com/barcos/astec-450/</loc></url>
+    <url><loc>https://costabravarentaboat.com/ca/</loc></url>
+    <url><loc>https://costabravarentaboat.com/en/</loc></url>
+  </urlset>
+
+5) Estructura multilingüe y hreflang
+- Rutas limpias:
+  - ES: /  (contenido en español)
+  - CA: /ca/
+  - EN: /en/
+- En cada conjunto de equivalentes, inyectar:
+  <link rel="alternate" hreflang="es-ES" href="https://costabravarentaboat.com/ruta/" />
+  <link rel="alternate" hreflang="ca-ES" href="https://costabravarentaboat.com/ca/ruta/" />
+  <link rel="alternate" hreflang="en-GB" href="https://costabravarentaboat.com/en/ruta/" />
+  <link rel="alternate" hreflang="x-default" href="https://costabravarentaboat.com/" />
+
+6) Datos estructurados (JSON-LD)
+- Inyectar en todas las páginas (Organization + LocalBusiness):
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Costa Brava Rent a Boat Blanes",
+    "url": "https://costabravarentaboat.com/",
+    "telephone": "+34 611 500 372",
+    "email": "costabravarentboat@gmail.com",
+    "areaServed": ["Blanes","Lloret de Mar"],
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Blanes",
+      "addressRegion": "Girona",
+      "addressCountry": "ES"
+    },
+    "sameAs": []
+  }
+  </script>
+- En fichas, añadir Service + Offer:
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "serviceType": "Alquiler de barco sin licencia",
+    "provider": {"@type":"LocalBusiness","name":"Costa Brava Rent a Boat Blanes"},
+    "areaServed": "Blanes",
+    "hasOfferCatalog": {
+      "@type":"OfferCatalog",
+      "name":"Alquiler de embarcaciones",
+      "itemListElement":[
+        {
+          "@type":"Offer",
+          "name":"ASTEC 450",
+          "description":"Gasolina incluida, hasta 5 personas, solárium, toldo, escalera de baño, extras snorkel/paddle/nevera/seascooter",
+          "priceSpecification":{"@type":"UnitPriceSpecification","price":"75","priceCurrency":"EUR"},
+          "availability":"https://schema.org/InStock",
+          "areaServed":"Blanes",
+          "url":"https://costabravarentaboat.com/barcos/astec-450/"
+        }
+      ]
+    }
+  }
+  </script>
+
+7) On-page semántico y contenidos
+- H1 único por página con intención + geo:
+  - Home: Alquiler de barcos en Blanes sin licencia
+- H2 de beneficios: Gasolina incluida; Hasta 5 personas; Salida desde Puerto de Blanes
+- Añadir entidades locales en el copy: Cala Sant Francesc, Cala Sa Forcanera, Cala Treumal, Jardí Botànic Marimurtra
+- Páginas de intención nuevas:
+  - /alquiler-barco-lloret-de-mar/
+  - /excursion-privada-costa-brava/
+  - /alquiler-barco-sin-licencia-blanes/
+- Enlazado interno desde home y categorías hacia todas las fichas y páginas de intención con anchors descriptivos
+
+8) Medios, OG y tarjetas sociales
+- Imágenes en WebP/AVIF; loading="lazy" en no críticas; width/height definidos para evitar CLS
+- Preload de hero y tipografías locales
+- Metas sociales por URL:
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Alquiler de barcos en Blanes sin licencia">
+  <meta property="og:description" content="Gasolina incluida · Hasta 5 personas · Puerto de Blanes">
+  <meta property="og:image" content="https://costabravarentaboat.com/static/og/home.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+
+9) Higiene técnica
+- URLs minúsculas, con guiones, sin parámetros para contenido core
+- 404 personalizada; 410 para retiradas definitivas
+- Eliminar duplicados por mayúsculas, trailing slashes inconsistentes o index.html visibles
+- Evitar cadenas de redirección y bucles
+- Noindex en páginas utilitarias no destinadas a rankear
+
+10) Rendimiento y CWV
+- CSS crítico minificado y precargado; diferir el resto
+- Reducir JS en above-the-fold; quitar scripts no usados
+- Prefetch para rutas de fichas desde listados
+- Objetivo Lighthouse móvil: Performance ≥ 90, Accessibility ≥ 90, Best Practices ≥ 90, SEO ≥ 100
+
+Validaciones automáticas al finalizar
+- Lighthouse CI en móvil contra /, /alquiler-blanes/, /barcos/astec-450/, /ca/, /en
+- Prueba de Rich Results para JSON-LD
+- Verificación de hreflang recíproco
+- Comprobación de canónicos únicos por URL
+- Rastreo local:
+  wget --spider -r -nd -nv https://costabravarentaboat.com/  (sin 404/500)
+
+Checklist de entregables
+- Archivo de redirecciones (nginx.conf o .htaccess o _redirects) mapeando .app ⇒ .com
+- Plantillas de <head> actualizadas con titles/descriptions sin placeholders
+- robots.txt y sitemap.xml generados y enlazados
+- Hreflang implementado y validado
+- JSON-LD inyectado en home, categorías y fichas
+- Capturas Lighthouse pre/post con métricas móviles y dif
+- Informe de enlaces internos (lista de URLs indexables y su in-degree interno)
+- Lista de URLs nuevas creadas (intención/geo) con indexabilidad confirmada
+
+Notas de implementación rápida
+- SPA: añadir prerender en build (react-snap, vite-ssg) o migrar a SSR
+- <meta name="robots" content="index,follow"> por defecto; usar noindex con criterio
+- <html lang="es|ca|en"> por idioma
+- WhatsApp “click to chat” solo como <a>; no bloquear recursos de render

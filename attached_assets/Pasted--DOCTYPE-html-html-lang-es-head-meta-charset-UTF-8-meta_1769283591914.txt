@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- SEO Básico -->
+  <title>Alquiler de Barcos en Blanes sin Licencia | Desde 70€ | Costa Brava Rent a Boat</title>
+  <meta name="description" content="Alquila barcos sin licencia en Blanes desde 70€. Gasolina incluida, hasta 5 personas. 7 embarcaciones disponibles. WhatsApp +34 611 500 372. Descubre la Costa Brava.">
+  <link rel="canonical" href="https://costabravarentaboat.app">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      line-height: 1.6;
+      color: #333;
+    }
+    
+    .hero {
+      background: linear-gradient(135deg, #0066cc 0%, #004c99 100%);
+      color: white;
+      padding: 60px 20px;
+      text-align: center;
+    }
+    
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 15px;
+    }
+    
+    .hero-subtitle {
+      font-size: 1.2rem;
+      margin-bottom: 25px;
+      opacity: 0.95;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+    
+    .section-title {
+      font-size: 2rem;
+      margin-bottom: 30px;
+      color: #0066cc;
+    }
+    
+    .boats-section {
+      margin-bottom: 50px;
+    }
+    
+    .boat-list {
+      list-style: none;
+    }
+    
+    .boat-item {
+      padding: 15px;
+      margin-bottom: 10px;
+      background: #f8f9fa;
+      border-radius: 8px;
+      border-left: 4px solid #0066cc;
+    }
+    
+    .boat-name {
+      font-weight: 700;
+      font-size: 1.3rem;
+      color: #0066cc;
+      margin-bottom: 5px;
+    }
+    
+    .boat-capacity {
+      color: #666;
+      margin-bottom: 5px;
+    }
+    
+    .boat-price {
+      font-weight: 700;
+      color: #00aa00;
+      font-size: 1.2rem;
+    }
+    
+    .contact-section {
+      background: #f8f9fa;
+      padding: 30px;
+      border-radius: 12px;
+      text-align: center;
+    }
+    
+    .contact-item {
+      margin: 15px 0;
+      font-size: 1.2rem;
+    }
+    
+    .contact-item a {
+      color: #0066cc;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    
+    .contact-item a:hover {
+      text-decoration: underline;
+    }
+    
+    footer {
+      background: #333;
+      color: white;
+      padding: 30px 20px;
+      text-align: center;
+      margin-top: 50px;
+    }
+    
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 1.8rem;
+      }
+      .hero-subtitle {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Hero Section -->
+  <div class="hero">
+    <h1>Alquiler de Barcos en Blanes sin Licencia</h1>
+    <p class="hero-subtitle">⛽ Gasolina incluida · 👥 Hasta 5 personas · 📍 Salida desde Puerto de Blanes</p>
+  </div>
+
+  <!-- Contenido Principal -->
+  <div class="container">
+    <!-- Barcos sin licencia -->
+    <section class="boats-section">
+      <h2 class="section-title">🚤 Barcos sin Licencia Náutica</h2>
+      <ul class="boat-list">
+        <li class="boat-item">
+          <div class="boat-name">ASTEC 450</div>
+          <div class="boat-capacity">👥 Hasta 5 personas</div>
+          <div class="boat-price">Desde 80€</div>
+        </li>
+        <li class="boat-item">
+          <div class="boat-name">SOLAR 450</div>
+          <div class="boat-capacity">👥 Hasta 5 personas</div>
+          <div class="boat-price">Desde 75€</div>
+        </li>
+        <li class="boat-item">
+          <div class="boat-name">REMUS 450</div>
+          <div class="boat-capacity">👥 Hasta 5 personas</div>
+          <div class="boat-price">Desde 75€</div>
+        </li>
+        <li class="boat-item">
+          <div class="boat-name">ASTEC 400</div>
+          <div class="boat-capacity">👥 Hasta 4 personas</div>
+          <div class="boat-price">Desde 70€</div>
+        </li>
+      </ul>
+    </section>
+
+    <!-- Barcos con licencia -->
+    <section class="boats-section">
+      <h2 class="section-title">⛵ Barcos con Licencia Náutica</h2>
+      <ul class="boat-list">
+        <li class="boat-item">
+          <div class="boat-name">PACIFIC CRAFT 625</div>
+          <div class="boat-capacity">👥 Hasta 7 personas</div>
+          <div class="boat-price">Desde 180€</div>
+        </li>
+        <li class="boat-item">
+          <div class="boat-name">TRIMARCHI 57S</div>
+          <div class="boat-capacity">👥 Hasta 7 personas</div>
+          <div class="boat-price">Desde 160€</div>
+        </li>
+        <li class="boat-item">
+          <div class="boat-name">MINGOLLA BRAVA 19</div>
+          <div class="boat-capacity">👥 Hasta 6 personas</div>
+          <div class="boat-price">Desde 150€</div>
+        </li>
+      </ul>
+    </section>
+
+    <!-- Contacto -->
+    <section class="contact-section">
+      <h2 class="section-title">📞 Contacto</h2>
+      <div class="contact-item">
+        <strong>Teléfono:</strong> <a href="tel:+34611500372">+34 611 500 372</a>
+      </div>
+      <div class="contact-item">
+        <strong>Email:</strong> <a href="mailto:costabravarentaboat@gmail.com">costabravarentaboat@gmail.com</a>
+      </div>
+      <div class="contact-item">
+        <strong>WhatsApp:</strong> <a href="https://wa.me/34611500372">Chat directo</a>
+      </div>
+    </section>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Costa Brava Rent a Boat | Blanes, Girona</p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,92 @@
+Necesito que corrijas los siguientes datos en el archivo client/index.html:
+
+CAMBIOS A REALIZAR:
+
+1. CORRECCIÓN DE EMAIL EN JSON-LD SCHEMA
+En la línea 117 aproximadamente, dentro del JSON-LD Schema, cambia:
+"email": "costabravarentboat@gmail.com"
+POR:
+"email": "costabravarentaboat@gmail.com"
+
+2. CORRECCIÓN DE EMAIL EN NOSCRIPT
+En la sección <noscript>, cambia:
+<a href="mailto:costabravarentboat@gmail.com">costabravarentboat@gmail.com</a>
+POR:
+<a href="mailto:costabravarentaboat@gmail.com">costabravarentaboat@gmail.com</a>
+
+3. ACTUALIZACIÓN DE PRECIOS EN JSON-LD SCHEMA
+Reemplaza toda la sección "offers" del JSON-LD con esta versión actualizada:
+
+"offers": [
+  {
+    "@type": "Offer",
+    "name": "Alquiler Barco sin Licencia ASTEC 450",
+    "description": "Barco sin licencia para 5 personas. Gasolina incluida.",
+    "price": "80",
+    "priceCurrency": "EUR",
+    "availability": "https://schema.org/InStock"
+  },
+  {
+    "@type": "Offer",
+    "name": "Alquiler Barco sin Licencia SOLAR 450",
+    "description": "Barco sin licencia para 5 personas. Gasolina incluida.",
+    "price": "75",
+    "priceCurrency": "EUR",
+    "availability": "https://schema.org/InStock"
+  },
+  {
+    "@type": "Offer",
+    "name": "Alquiler Barco sin Licencia REMUS 450",
+    "description": "Barco sin licencia para 5 personas. Gasolina incluida.",
+    "price": "75",
+    "priceCurrency": "EUR",
+    "availability": "https://schema.org/InStock"
+  },
+  {
+    "@type": "Offer",
+    "name": "Alquiler Barco con Licencia PACIFIC CRAFT 625",
+    "description": "Barco premium para 7 personas. Requiere licencia básica.",
+    "price": "180",
+    "priceCurrency": "EUR",
+    "availability": "https://schema.org/InStock"
+  },
+  {
+    "@type": "Offer",
+    "name": "Alquiler Barco con Licencia MINGOLLA BRAVA 19",
+    "description": "Barco deportivo para 6 personas. Requiere licencia básica.",
+    "price": "150",
+    "priceCurrency": "EUR",
+    "availability": "https://schema.org/InStock"
+  },
+  {
+    "@type": "Offer",
+    "name": "Alquiler Barco con Licencia TRIMARCHI 57S",
+    "description": "Barco deportivo para 7 personas. Requiere licencia básica.",
+    "price": "160",
+    "priceCurrency": "EUR",
+    "availability": "https://schema.org/InStock"
+  }
+]
+
+4. ACTUALIZACIÓN DE PRECIOS EN NOSCRIPT
+Dentro de la sección <noscript>, actualiza los precios de los barcos:
+
+ASTEC 450: Desde 80€ (actualmente dice 85€)
+SOLAR 450: Desde 75€ (mantener)
+REMUS 450: Desde 75€ (mantener)
+ASTEC 400: Desde 70€ (mantener - pero cambiar capacidad a "4 personas")
+PACIFIC CRAFT 625: Desde 180€ (mantener)
+TRIMARCHI 57S: Desde 160€ (actualmente dice 280€)
+MINGOLLA BRAVA 19: Desde 150€ (actualmente dice 300€)
+
+5. VERIFICACIÓN DE WHATSAPP
+Asegúrate de que todos los enlaces de WhatsApp apunten a: +34611500372
+(Sin espacios ni guiones en el número dentro del href)
+
+IMPORTANTE:
+- Realiza TODOS estos cambios
+- NO modifiques ninguna otra parte del archivo
+- Mantén el formato y estructura exactos
+- Guarda el archivo después de los cambios
+
+Confirma cuando hayas completado todos los cambios y muéstrame un resumen de lo que modificaste.

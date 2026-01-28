@@ -1072,6 +1072,28 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // ===== WHATSAPP CHATBOT ROUTES =====
+  // Import WhatsApp webhook handlers
+  const { handleWhatsAppWebhook, handleWebhookValidation, handleStatusCallback } = await import("./whatsapp/webhookHandler");
+
+  // Main webhook endpoint for incoming WhatsApp messages
+  app.post("/api/whatsapp/webhook", express.urlencoded({ extended: false }), handleWhatsAppWebhook);
+
+  // Webhook validation endpoint (GET request from Twilio)
+  app.get("/api/whatsapp/webhook", handleWebhookValidation);
+
+  // Status callback for message delivery status
+  app.post("/api/whatsapp/status", express.urlencoded({ extended: false }), handleStatusCallback);
+
+  // Health check for WhatsApp integration
+  app.get("/api/whatsapp/health", async (req, res) => {
+    const { isTwilioConfigured } = await import("./whatsapp/twilioClient");
+    res.json({
+      configured: isTwilioConfigured(),
+      webhookUrl: `${process.env.BASE_URL || req.protocol + '://' + req.get('host')}/api/whatsapp/webhook`,
+    });
+  });
+
   // ===== BOOKING ROUTES =====
   // NOTE: Public booking endpoint DISABLED per SEO requirements
   // Business decision: All reservations must go through WhatsApp (no PII on server)

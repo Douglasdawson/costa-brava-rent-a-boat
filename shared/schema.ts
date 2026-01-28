@@ -398,3 +398,81 @@ export type BlogPost = typeof blogPosts.$inferSelect;
 export type InsertBlogPost = z.infer<typeof insertBlogPostSchema>;
 export type Destination = typeof destinations.$inferSelect;
 export type InsertDestination = z.infer<typeof insertDestinationSchema>;
+
+// ===== WHATSAPP CHATBOT =====
+
+// Conversation states for the chatbot flow
+export const CHATBOT_STATES = {
+  WELCOME: 'welcome',
+  MAIN_MENU: 'main_menu',
+  LIST_BOATS: 'list_boats',
+  BOAT_DETAIL: 'boat_detail',
+  CHECK_AVAILABILITY: 'check_availability',
+  SELECT_BOAT_FOR_CHECK: 'select_boat_for_check',
+  SHOW_AVAILABILITY: 'show_availability',
+  SHOW_PRICES: 'show_prices',
+  START_BOOKING: 'start_booking',
+  BOOKING_DATE: 'booking_date',
+  BOOKING_BOAT: 'booking_boat',
+  BOOKING_TIME: 'booking_time',
+  BOOKING_DURATION: 'booking_duration',
+  BOOKING_PEOPLE: 'booking_people',
+  BOOKING_EXTRAS: 'booking_extras',
+  BOOKING_CONTACT_NAME: 'booking_contact_name',
+  BOOKING_CONTACT_EMAIL: 'booking_contact_email',
+  BOOKING_CONFIRM: 'booking_confirm',
+  BOOKING_PAYMENT: 'booking_payment',
+  AGENT_HANDOFF: 'agent_handoff',
+} as const;
+
+export type ChatbotState = typeof CHATBOT_STATES[keyof typeof CHATBOT_STATES];
+
+// WhatsApp Chatbot Conversations table
+export const chatbotConversations = pgTable("chatbot_conversations", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  phoneNumber: varchar("phone_number", { length: 20 }).notNull(),
+  currentState: varchar("current_state", { length: 50 }).notNull().default('welcome'),
+  language: varchar("language", { length: 5 }).notNull().default('es'),
+  context: jsonb("context").default({}), // Additional context data
+
+  // Booking flow data (stored during conversation)
+  selectedBoatId: varchar("selected_boat_id", { length: 50 }),
+  selectedDate: timestamp("selected_date", { withTimezone: true }),
+  selectedStartTime: varchar("selected_start_time", { length: 10 }), // "10:00"
+  selectedDuration: varchar("selected_duration", { length: 10 }), // "2h", "4h", etc.
+  selectedExtras: text("selected_extras").array(),
+  customerName: varchar("customer_name", { length: 100 }),
+  customerEmail: varchar("customer_email", { length: 100 }),
+  numberOfPeople: integer("number_of_people"),
+
+  // Tracking
+  lastMessageAt: timestamp("last_message_at", { withTimezone: true }).notNull().default(sql`now()`),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().default(sql`now()`),
+  messagesCount: integer("messages_count").notNull().default(0),
+
+  // Reference to created booking (if any)
+  createdBookingId: varchar("created_booking_id").references(() => bookings.id),
+}, (table) => ({
+  phoneIdx: index("chatbot_phone_idx").on(table.phoneNumber),
+  stateIdx: index("chatbot_state_idx").on(table.currentState),
+  lastMessageIdx: index("chatbot_last_message_idx").on(table.lastMessageAt),
+}));
+
+// Insert schema for chatbot conversations
+export const insertChatbotConversationSchema = createInsertSchema(chatbotConversations).omit({
+  id: true,
+  createdAt: true,
+  lastMessageAt: true,
+  messagesCount: true,
+});
+
+export const updateChatbotConversationSchema = createInsertSchema(chatbotConversations).partial().omit({
+  id: true,
+  createdAt: true,
+  phoneNumber: true, // Phone number should not be changed
+});
+
+// Types
+export type ChatbotConversation = typeof chatbotConversations.$inferSelect;
+export type InsertChatbotConversation = z.infer<typeof insertChatbotConversationSchema>;
+export type UpdateChatbotConversation = z.infer<typeof updateChatbotConversationSchema>;

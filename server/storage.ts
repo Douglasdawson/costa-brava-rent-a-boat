@@ -1,6 +1,6 @@
-import { 
+import {
   adminUsers, customerUsers, customers, boats, bookings, bookingExtras, testimonials,
-  blogPosts, destinations,
+  blogPosts, destinations, chatbotConversations,
   type AdminUser, type InsertAdminUser,
   type CustomerUser, type UpsertCustomerUser,
   type Customer, type InsertCustomer,
@@ -9,10 +9,11 @@ import {
   type BookingExtra, type InsertBookingExtra,
   type Testimonial, type InsertTestimonial,
   type BlogPost, type InsertBlogPost,
-  type Destination, type InsertDestination
+  type Destination, type InsertDestination,
+  type ChatbotConversation, type InsertChatbotConversation, type UpdateChatbotConversation
 } from "@shared/schema";
 import { db } from "./db";
-import { eq, and, gte, lte, between, inArray } from "drizzle-orm";
+import { eq, and, gte, lte, between, inArray, sql } from "drizzle-orm";
 import memoize from "memoizee";
 
 // modify the interface with any CRUD methods
@@ -97,6 +98,13 @@ export interface IStorage {
   createDestination(destination: InsertDestination): Promise<Destination>;
   updateDestination(id: string, destination: Partial<InsertDestination>): Promise<Destination | undefined>;
   deleteDestination(id: string): Promise<boolean>;
+
+  // Chatbot Conversation methods (WhatsApp)
+  getChatbotConversation(phoneNumber: string): Promise<ChatbotConversation | undefined>;
+  createChatbotConversation(conversation: InsertChatbotConversation): Promise<ChatbotConversation>;
+  updateChatbotConversation(phoneNumber: string, updates: UpdateChatbotConversation): Promise<ChatbotConversation | undefined>;
+  resetChatbotConversation(phoneNumber: string): Promise<ChatbotConversation | undefined>;
+  getOrCreateChatbotConversation(phoneNumber: string, language?: string): Promise<ChatbotConversation>;
 }
 
 // rewrite MemStorage to DatabaseStorage
@@ -587,6 +595,80 @@ export class DatabaseStorage implements IStorage {
   async deleteDestination(id: string): Promise<boolean> {
     const result = await db.delete(destinations).where(eq(destinations.id, id));
     return result.rowCount !== null && result.rowCount > 0;
+  }
+
+  // ===== CHATBOT CONVERSATION METHODS =====
+
+  async getChatbotConversation(phoneNumber: string): Promise<ChatbotConversation | undefined> {
+    const [conversation] = await db
+      .select()
+      .from(chatbotConversations)
+      .where(eq(chatbotConversations.phoneNumber, phoneNumber));
+    return conversation || undefined;
+  }
+
+  async createChatbotConversation(conversation: InsertChatbotConversation): Promise<ChatbotConversation> {
+    const [newConversation] = await db
+      .insert(chatbotConversations)
+      .values(conversation)
+      .returning();
+    return newConversation;
+  }
+
+  async updateChatbotConversation(
+    phoneNumber: string,
+    updates: UpdateChatbotConversation
+  ): Promise<ChatbotConversation | undefined> {
+    const [conversation] = await db
+      .update(chatbotConversations)
+      .set({
+        ...updates,
+        lastMessageAt: new Date(),
+        messagesCount: sql`messages_count + 1`,
+      })
+      .where(eq(chatbotConversations.phoneNumber, phoneNumber))
+      .returning();
+    return conversation || undefined;
+  }
+
+  async resetChatbotConversation(phoneNumber: string): Promise<ChatbotConversation | undefined> {
+    const [conversation] = await db
+      .update(chatbotConversations)
+      .set({
+        currentState: 'welcome',
+        selectedBoatId: null,
+        selectedDate: null,
+        selectedStartTime: null,
+        selectedDuration: null,
+        selectedExtras: null,
+        customerName: null,
+        customerEmail: null,
+        numberOfPeople: null,
+        context: {},
+        lastMessageAt: new Date(),
+      })
+      .where(eq(chatbotConversations.phoneNumber, phoneNumber))
+      .returning();
+    return conversation || undefined;
+  }
+
+  async getOrCreateChatbotConversation(
+    phoneNumber: string,
+    language: string = 'es'
+  ): Promise<ChatbotConversation> {
+    // Try to get existing conversation
+    let conversation = await this.getChatbotConversation(phoneNumber);
+
+    if (!conversation) {
+      // Create new conversation
+      conversation = await this.createChatbotConversation({
+        phoneNumber,
+        language,
+        currentState: 'welcome',
+      });
+    }
+
+    return conversation;
   }
 }
 

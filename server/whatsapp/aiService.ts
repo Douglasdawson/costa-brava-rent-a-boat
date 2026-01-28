@@ -59,9 +59,23 @@ Tu objetivo es:
 3. Proporcionar informacion util sobre la experiencia
 4. Cuando el cliente quiera reservar, dirigirlo al WhatsApp (+34 611 500 372) o web para reservar
 
-Responde siempre en el mismo idioma que el usuario. Se amable, profesional y entusiasta sobre la experiencia nautica.
+IDIOMA: Responde SIEMPRE en el idioma indicado en IDIOMA_USUARIO. Si dice "es" responde en espanol, si dice "en" en ingles, "fr" frances, "de" aleman, "nl" holandes, "it" italiano, "ru" ruso, "ca" catalan.
+
+Se amable, profesional y entusiasta sobre la experiencia nautica.
 Si no sabes algo especifico, sugiere contactar directamente por WhatsApp o email.
 `;
+
+// Language codes and their full names for the AI
+const LANGUAGE_NAMES: Record<string, string> = {
+  es: "espanol",
+  en: "ingles",
+  fr: "frances",
+  de: "aleman",
+  nl: "holandes",
+  it: "italiano",
+  ru: "ruso",
+  ca: "catalan",
+};
 
 // Format boat info for the AI context
 function formatBoatForAI(boat: Boat): string {
@@ -204,6 +218,9 @@ export async function getAIResponseEnhanced(
     // Get boats context
     const boatsContext = await getBoatsContext();
 
+    // Get language name for clearer instructions
+    const languageName = LANGUAGE_NAMES[language] || "espanol";
+    
     // Build the system prompt
     const systemPrompt = `${BUSINESS_CONTEXT}
 
@@ -211,8 +228,8 @@ ${boatsContext}
 
 ${ragContext ? `\n${ragContext}\n` : ""}
 
-IDIOMA DETECTADO DEL USUARIO: ${language}
-Responde siempre en el idioma del usuario. Si el usuario escribe en ingles, responde en ingles. Si escribe en espanol, responde en espanol, etc.
+IDIOMA_USUARIO: ${language} (${languageName})
+INSTRUCCION CRITICA: Debes responder EXCLUSIVAMENTE en ${languageName}. No cambies de idioma bajo ninguna circunstancia.
 
 Manten las respuestas concisas y amigables (maximo 300 palabras). No uses emojis en tus respuestas.
 

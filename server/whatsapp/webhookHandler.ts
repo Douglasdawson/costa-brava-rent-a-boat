@@ -1,13 +1,14 @@
 // WhatsApp Webhook Handler - Main entry point for incoming messages
 import type { Request, Response } from "express";
 import { sendWhatsAppMessage, isTwilioConfigured } from "./twilioClient";
-import { getSession, updateState, resetSession, isSessionStale } from "./sessionManager";
+import { getSession, updateState, resetSession, isSessionStale, updateSessionLanguage } from "./sessionManager";
 import { detectIntent, detectLanguage } from "./intentDetector";
 import { processMessage } from "./messageRouter";
 import { getTranslation } from "./translations";
 import { CHATBOT_STATES } from "@shared/schema";
 import { getAIResponseEnhanced, isAIConfigured, getBoatImageUrl } from "./aiService";
 import { sendWhatsAppMessageWithMedia } from "./twilioClient";
+import { detectLanguageFromPhone, getWelcomeMessage, isGreeting } from "./languageDetector";
 
 /**
  * Twilio WhatsApp Webhook Request Body
@@ -66,17 +67,41 @@ async function processIncomingMessage(
   try {
     // Get or create session
     const session = await getSession(from, messageBody);
-    const language = session.language || "es";
+    
+    // Detect language from phone prefix (primary) or message content (fallback)
+    const phoneLanguage = detectLanguageFromPhone(from);
+    const messageLanguage = detectLanguage(messageBody);
+    const finalLang = messageLanguage || phoneLanguage || session.language || "es";
+    
+    console.log(`[Webhook] Language detection - Phone: ${phoneLanguage}, Message: ${messageLanguage}, Final: ${finalLang}`);
 
     // Check if session is stale (>24h) and reset
-    if (isSessionStale(session)) {
+    const wasStale = isSessionStale(session);
+    if (wasStale) {
       console.log(`[Webhook] Session stale for ${from}, resetting`);
       await resetSession(from);
     }
-
-    // Detect language from message if not set
-    const detectedLang = detectLanguage(messageBody);
-    const finalLang = detectedLang || language;
+    
+    // Check if this is a new conversation or first message
+    const isFirstMessage = session.messagesCount <= 1 || wasStale;
+    const userIsGreeting = isGreeting(messageBody);
+    
+    // Send personalized welcome message for first-time users
+    // Always send welcome on first message, then continue to process their question
+    if (isFirstMessage) {
+      // Persist the detected language to session
+      await updateSessionLanguage(from, finalLang);
+      
+      const welcomeMessage = getWelcomeMessage(finalLang);
+      console.log(`[Webhook] Sending welcome message in ${finalLang}`);
+      await sendWhatsAppMessage(from, welcomeMessage);
+      
+      // If it's just a greeting, wait for their next message
+      if (userIsGreeting) {
+        return;
+      }
+      // Otherwise, continue to answer their question below
+    }
 
     // Detect intent for global commands (menu, cancel, greeting)
     const intent = detectIntent(messageBody, finalLang as any);

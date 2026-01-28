@@ -68,6 +68,26 @@ export async function updateState(
 }
 
 /**
+ * Update session language
+ */
+export async function updateSessionLanguage(
+  phoneNumber: string,
+  language: string
+): Promise<ChatbotConversation | undefined> {
+  const normalizedPhone = phoneNumber.replace("whatsapp:", "");
+  
+  const conversation = await storage.updateChatbotConversation(normalizedPhone, {
+    language,
+  });
+  
+  if (conversation) {
+    console.log(`[Session] Language updated for ${normalizedPhone}: ${language}`);
+  }
+  
+  return conversation;
+}
+
+/**
  * Update conversation context (JSON field)
  */
 export async function updateContext(

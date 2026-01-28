@@ -79,8 +79,11 @@ async function processIncomingMessage(
     const intent = detectIntent(messageBody, session.language as any);
     console.log(`[Webhook] Detected intent: ${intent} for state: ${session.currentState}`);
 
-    // Handle global commands (menu, cancel)
-    if (intent === "menu") {
+    // Handle global commands that reset to menu (menu, cancel, greeting when not in main states)
+    const isInMainState = session.currentState === CHATBOT_STATES.WELCOME || 
+                          session.currentState === CHATBOT_STATES.MAIN_MENU;
+    
+    if (intent === "menu" || intent === "cancel" || (intent === "greeting" && !isInMainState)) {
       await resetSession(from);
       const freshSession = await getSession(from);
       await sendMainMenu(from, getTranslation(freshSession.language as any));

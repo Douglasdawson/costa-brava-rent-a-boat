@@ -477,5 +477,116 @@ export type ChatbotConversation = typeof chatbotConversations.$inferSelect;
 export type InsertChatbotConversation = z.infer<typeof insertChatbotConversationSchema>;
 export type UpdateChatbotConversation = z.infer<typeof updateChatbotConversationSchema>;
 
+// ===== AI CHATBOT ENHANCED TABLES =====
+
+// AI Chat Sessions - Persistent conversation sessions
+export const aiChatSessions = pgTable("ai_chat_sessions", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  phoneNumber: varchar("phone_number", { length: 20 }).notNull(),
+  language: varchar("language", { length: 5 }).notNull().default('es'),
+  
+  // Session metadata
+  profileName: varchar("profile_name", { length: 100 }),
+  totalMessages: integer("total_messages").notNull().default(0),
+  
+  // Lead scoring
+  intentScore: integer("intent_score").notNull().default(0), // 0-100 purchase intent
+  isLead: boolean("is_lead").notNull().default(false),
+  leadQuality: varchar("lead_quality", { length: 20 }), // 'hot', 'warm', 'cold'
+  
+  // Analytics
+  topicsDiscussed: text("topics_discussed").array(),
+  boatsViewed: text("boats_viewed").array(),
+  
+  // Timestamps
+  firstMessageAt: timestamp("first_message_at", { withTimezone: true }).notNull().default(sql`now()`),
+  lastMessageAt: timestamp("last_message_at", { withTimezone: true }).notNull().default(sql`now()`),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().default(sql`now()`),
+}, (table) => ({
+  phoneIdx: index("ai_chat_phone_idx").on(table.phoneNumber),
+  leadIdx: index("ai_chat_lead_idx").on(table.isLead, table.intentScore),
+  lastMsgIdx: index("ai_chat_last_msg_idx").on(table.lastMessageAt),
+}));
+
+// AI Chat Messages - Individual messages with metadata
+export const aiChatMessages = pgTable("ai_chat_messages", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  sessionId: varchar("session_id").notNull().references(() => aiChatSessions.id, { onDelete: "cascade" }),
+  
+  // Message content
+  role: varchar("role", { length: 20 }).notNull(), // 'user' or 'assistant'
+  content: text("content").notNull(),
+  
+  // AI analysis
+  detectedIntent: varchar("detected_intent", { length: 50 }), // 'price_inquiry', 'availability', 'booking', etc.
+  detectedBoatId: varchar("detected_boat_id", { length: 50 }),
+  sentiment: varchar("sentiment", { length: 20 }), // 'positive', 'neutral', 'negative'
+  
+  // Token usage
+  tokensUsed: integer("tokens_used"),
+  
+  // Timestamps
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().default(sql`now()`),
+}, (table) => ({
+  sessionIdx: index("ai_msg_session_idx").on(table.sessionId),
+  intentIdx: index("ai_msg_intent_idx").on(table.detectedIntent),
+  createdIdx: index("ai_msg_created_idx").on(table.createdAt),
+}));
+
+// Knowledge Base - For RAG with embeddings
+export const knowledgeBase = pgTable("knowledge_base", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  
+  // Content
+  title: varchar("title", { length: 255 }).notNull(),
+  content: text("content").notNull(),
+  category: varchar("category", { length: 50 }).notNull(), // 'faq', 'policy', 'route', 'boat_info', 'general'
+  language: varchar("language", { length: 5 }).notNull().default('es'),
+  
+  // Embeddings for semantic search (stored as JSON array of floats)
+  embedding: json("embedding").$type<number[]>(),
+  
+  // Metadata
+  keywords: text("keywords").array(),
+  priority: integer("priority").notNull().default(0), // Higher = more important
+  isActive: boolean("is_active").notNull().default(true),
+  
+  // Timestamps
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().default(sql`now()`),
+  updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().default(sql`now()`),
+}, (table) => ({
+  categoryIdx: index("kb_category_idx").on(table.category),
+  languageIdx: index("kb_language_idx").on(table.language),
+  activeIdx: index("kb_active_idx").on(table.isActive),
+}));
+
+// Insert schemas
+export const insertAiChatSessionSchema = createInsertSchema(aiChatSessions).omit({
+  id: true,
+  createdAt: true,
+  firstMessageAt: true,
+  lastMessageAt: true,
+  totalMessages: true,
+});
+
+export const insertAiChatMessageSchema = createInsertSchema(aiChatMessages).omit({
+  id: true,
+  createdAt: true,
+});
+
+export const insertKnowledgeBaseSchema = createInsertSchema(knowledgeBase).omit({
+  id: true,
+  createdAt: true,
+  updatedAt: true,
+});
+
+// Types
+export type AiChatSession = typeof aiChatSessions.$inferSelect;
+export type InsertAiChatSession = z.infer<typeof insertAiChatSessionSchema>;
+export type AiChatMessage = typeof aiChatMessages.$inferSelect;
+export type InsertAiChatMessage = z.infer<typeof insertAiChatMessageSchema>;
+export type KnowledgeBaseEntry = typeof knowledgeBase.$inferSelect;
+export type InsertKnowledgeBaseEntry = z.infer<typeof insertKnowledgeBaseSchema>;
+
 // Re-export chat models for AI integrations
 export { conversations, messages } from "@shared/models/chat";

@@ -6,10 +6,8 @@ import { detectIntent, detectLanguage } from "./intentDetector";
 import { processMessage } from "./messageRouter";
 import { getTranslation } from "./translations";
 import { CHATBOT_STATES } from "@shared/schema";
-import { getAIResponse, isAIConfigured } from "./aiService";
-
-// In-memory conversation history for AI context (per phone number)
-const conversationHistory: Map<string, Array<{ role: "user" | "assistant"; content: string }>> = new Map();
+import { getAIResponseEnhanced, isAIConfigured, getBoatImageUrl } from "./aiService";
+import { sendWhatsAppMessageWithMedia } from "./twilioClient";
 
 /**
  * Twilio WhatsApp Webhook Request Body
@@ -70,11 +68,10 @@ async function processIncomingMessage(
     const session = await getSession(from, messageBody);
     const language = session.language || "es";
 
-    // Check if session is stale (>24h) and reset conversation history
+    // Check if session is stale (>24h) and reset
     if (isSessionStale(session)) {
       console.log(`[Webhook] Session stale for ${from}, resetting`);
       await resetSession(from);
-      conversationHistory.delete(from);
     }
 
     // Detect language from message if not set
@@ -89,7 +86,6 @@ async function processIncomingMessage(
     // Handle global reset commands even in AI mode
     if (intent === "menu" || intent === "cancel" || (intent === "greeting" && !isInMainState)) {
       await resetSession(from);
-      conversationHistory.delete(from); // Clear AI history too
       const freshSession = await getSession(from);
       const t = getTranslation(freshSession.language as any);
       await sendMainMenu(from, t);
@@ -107,27 +103,26 @@ async function processIncomingMessage(
       return;
     }
 
-    // AI-powered response
-    console.log(`[Webhook] Using AI for response (lang: ${finalLang})`);
+    // AI-powered response with RAG, Memory, and Function Calling
+    console.log(`[Webhook] Using enhanced AI for response (lang: ${finalLang})`);
 
-    // Get conversation history for this user
-    const history = conversationHistory.get(from) || [];
-
-    // Get AI response
-    const aiResponse = await getAIResponse(messageBody, history, finalLang);
-
-    // Update conversation history
-    history.push({ role: "user", content: messageBody });
-    history.push({ role: "assistant", content: aiResponse });
-    
-    // Keep only last 20 messages to prevent memory bloat
-    if (history.length > 20) {
-      history.splice(0, history.length - 20);
-    }
-    conversationHistory.set(from, history);
+    // Get enhanced AI response (handles memory persistence internally)
+    const result = await getAIResponseEnhanced(from, messageBody, finalLang, profileName);
 
     // Send AI response
-    await sendWhatsAppMessage(from, aiResponse);
+    await sendWhatsAppMessage(from, result.response);
+
+    // If a specific boat was detected and user seems interested, send image
+    if (result.detectedBoatId && result.detectedIntent === 'boat_info') {
+      const imageUrl = await getBoatImageUrl(result.detectedBoatId);
+      if (imageUrl) {
+        try {
+          await sendWhatsAppMessageWithMedia(from, "", imageUrl);
+        } catch (imgError: any) {
+          console.warn(`[Webhook] Could not send boat image: ${imgError.message}`);
+        }
+      }
+    }
 
   } catch (error: any) {
     console.error(`[Webhook] Error processing message from ${from}:`, error.message);

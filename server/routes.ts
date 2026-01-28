@@ -1116,6 +1116,21 @@ export async function registerRoutes(app: Express): Promise<Server> {
     });
   });
 
+  // ===== CHATBOT ANALYTICS ROUTES =====
+  const { registerChatbotAnalyticsRoutes } = await import("./whatsapp/analyticsEndpoints");
+  registerChatbotAnalyticsRoutes(app);
+
+  // Seed knowledge base on startup (if not already seeded)
+  const { isKnowledgeBaseSeeded, seedKnowledgeBase } = await import("./whatsapp/seedKnowledgeBase");
+  isKnowledgeBaseSeeded().then(seeded => {
+    if (!seeded) {
+      console.log("[Startup] Knowledge base empty, seeding with default content...");
+      seedKnowledgeBase().catch(err => console.error("[Startup] Error seeding knowledge base:", err));
+    } else {
+      console.log("[Startup] Knowledge base already seeded");
+    }
+  });
+
   // ===== BOOKING ROUTES =====
   // NOTE: Public booking endpoint DISABLED per SEO requirements
   // Business decision: All reservations must go through WhatsApp (no PII on server)

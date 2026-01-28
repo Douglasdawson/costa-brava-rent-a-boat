@@ -61,12 +61,45 @@ Preferred communication style: Simple, everyday language.
     - SEO Validation: Automated check-seo.mjs script with jsdom for canonical/hreflang verification
     - Dynamic Pages: Fixed blog/destination detail canonical URLs to use pageName+params pattern
 
+## WhatsApp AI Chatbot
+
+### Architecture
+- **AI Model**: OpenAI gpt-4o-mini with function calling
+- **RAG System**: text-embedding-3-small for semantic search over knowledge base
+- **Database Tables**: 
+  - `ai_chat_sessions`: Conversation context, lead scoring, intent tracking
+  - `ai_chat_messages`: Message history with detected intents and sentiment
+  - `knowledge_base`: FAQs, policies, routes with vector embeddings
+
+### Features
+- **Natural Language Understanding**: Conversational AI understands context and intent
+- **Function Calling**: Real-time queries for boat availability, pricing, and details
+- **RAG Knowledge Retrieval**: Semantic search for FAQs, policies, recommended routes
+- **Lead Scoring**: Automatic intent detection (booking_request=30, availability=20, price_inquiry=15)
+- **Boat Images**: Sends boat photos when user asks about specific boats
+- **Memory System**: Persistent conversation history across sessions
+
+### API Endpoints
+- `POST /api/whatsapp/webhook`: Main Twilio webhook for messages
+- `GET /api/chatbot/analytics`: Metrics dashboard (sessions, leads, intents)
+- `GET /api/chatbot/leads`: Hot/warm/cold leads for CRM
+- `GET /api/chatbot/conversations`: Recent conversations list
+- `GET /api/chatbot/knowledge`: Knowledge base entries
+
+### Key Files
+- `server/whatsapp/aiService.ts`: OpenAI integration and response generation
+- `server/whatsapp/ragService.ts`: Embedding generation and semantic search
+- `server/whatsapp/chatMemoryService.ts`: Session management and lead scoring
+- `server/whatsapp/functionCallingService.ts`: Availability and pricing queries
+- `server/whatsapp/seedKnowledgeBase.ts`: Auto-populates FAQs on startup
+
 ## External Dependencies
 
 ### Third-party Services
 - **Email**: SendGrid.
 - **Payments**: Stripe with React Stripe.js.
-- **Communication**: Direct WhatsApp links.
+- **Communication**: WhatsApp via Twilio with AI-powered chatbot.
+- **AI/LLM**: OpenAI (gpt-4o-mini, text-embedding-3-small).
 - **Authentication**: Replit Auth (OIDC).
 
 ### Development Tools

@@ -6,6 +6,10 @@ import { detectIntent, detectLanguage } from "./intentDetector";
 import { processMessage } from "./messageRouter";
 import { getTranslation } from "./translations";
 import { CHATBOT_STATES } from "@shared/schema";
+import { getAIResponse, isAIConfigured } from "./aiService";
+
+// In-memory conversation history for AI context (per phone number)
+const conversationHistory: Map<string, Array<{ role: "user" | "assistant"; content: string }>> = new Map();
 
 /**
  * Twilio WhatsApp Webhook Request Body
@@ -54,6 +58,7 @@ export async function handleWhatsAppWebhook(req: Request, res: Response) {
 
 /**
  * Process an incoming WhatsApp message
+ * Now uses AI-powered responses for natural language understanding
  */
 async function processIncomingMessage(
   from: string,
@@ -63,40 +68,67 @@ async function processIncomingMessage(
   try {
     // Get or create session
     const session = await getSession(from, messageBody);
-    const t = getTranslation(session.language as any);
+    const language = session.language || "es";
 
-    // Check if session is stale (>24h) and reset if needed
+    // Check if session is stale (>24h) and reset conversation history
     if (isSessionStale(session)) {
       console.log(`[Webhook] Session stale for ${from}, resetting`);
       await resetSession(from);
-      // Re-fetch session after reset
-      const freshSession = await getSession(from, messageBody);
-      await sendWelcomeMessage(from, freshSession, t, profileName);
-      return;
+      conversationHistory.delete(from);
     }
 
-    // Detect intent from message
-    const intent = detectIntent(messageBody, session.language as any);
-    console.log(`[Webhook] Detected intent: ${intent} for state: ${session.currentState}`);
+    // Detect language from message if not set
+    const detectedLang = detectLanguage(messageBody);
+    const finalLang = detectedLang || language;
 
-    // Handle global commands that reset to menu (menu, cancel, greeting when not in main states)
+    // Detect intent for global commands (menu, cancel, greeting)
+    const intent = detectIntent(messageBody, finalLang as any);
     const isInMainState = session.currentState === CHATBOT_STATES.WELCOME || 
                           session.currentState === CHATBOT_STATES.MAIN_MENU;
-    
+
+    // Handle global reset commands even in AI mode
     if (intent === "menu" || intent === "cancel" || (intent === "greeting" && !isInMainState)) {
       await resetSession(from);
+      conversationHistory.delete(from); // Clear AI history too
       const freshSession = await getSession(from);
-      await sendMainMenu(from, getTranslation(freshSession.language as any));
+      const t = getTranslation(freshSession.language as any);
+      await sendMainMenu(from, t);
       return;
     }
 
-    // Process message based on current state and intent
-    const response = await processMessage(session, messageBody, intent);
-
-    // Send response
-    if (response) {
-      await sendWhatsAppMessage(from, response);
+    // Check if AI is configured
+    if (!isAIConfigured()) {
+      console.warn("[Webhook] OpenAI not configured, falling back to menu-based flow");
+      // Fall back to traditional menu-based flow
+      const response = await processMessage(session, messageBody, intent);
+      if (response) {
+        await sendWhatsAppMessage(from, response);
+      }
+      return;
     }
+
+    // AI-powered response
+    console.log(`[Webhook] Using AI for response (lang: ${finalLang})`);
+
+    // Get conversation history for this user
+    const history = conversationHistory.get(from) || [];
+
+    // Get AI response
+    const aiResponse = await getAIResponse(messageBody, history, finalLang);
+
+    // Update conversation history
+    history.push({ role: "user", content: messageBody });
+    history.push({ role: "assistant", content: aiResponse });
+    
+    // Keep only last 20 messages to prevent memory bloat
+    if (history.length > 20) {
+      history.splice(0, history.length - 20);
+    }
+    conversationHistory.set(from, history);
+
+    // Send AI response
+    await sendWhatsAppMessage(from, aiResponse);
+
   } catch (error: any) {
     console.error(`[Webhook] Error processing message from ${from}:`, error.message);
 
@@ -106,7 +138,6 @@ async function processIncomingMessage(
       const t = getTranslation(session.language as any);
       await sendWhatsAppMessage(from, t.error);
     } catch {
-      // If we can't even send error message, just log it
       console.error("[Webhook] Failed to send error message");
     }
   }

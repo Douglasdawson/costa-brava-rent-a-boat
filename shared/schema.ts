@@ -476,3 +476,6 @@ export const updateChatbotConversationSchema = createInsertSchema(chatbotConvers
 export type ChatbotConversation = typeof chatbotConversations.$inferSelect;
 export type InsertChatbotConversation = z.infer<typeof insertChatbotConversationSchema>;
 export type UpdateChatbotConversation = z.infer<typeof updateChatbotConversationSchema>;
+
+// Re-export chat models for AI integrations
+export { conversations, messages } from "@shared/models/chat";

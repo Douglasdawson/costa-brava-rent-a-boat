@@ -1087,10 +1087,23 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   // Health check for WhatsApp integration
   app.get("/api/whatsapp/health", async (req, res) => {
-    const { isTwilioConfigured } = await import("./whatsapp/twilioClient");
+    const { isTwilioConfigured, getWhatsAppFromNumber } = await import("./whatsapp/twilioClient");
+    const accountSid = process.env.TWILIO_ACCOUNT_SID;
+    const authToken = process.env.TWILIO_AUTH_TOKEN;
+    const fromNumber = process.env.TWILIO_WHATSAPP_FROM;
+    
     res.json({
       configured: isTwilioConfigured(),
       webhookUrl: `${process.env.BASE_URL || req.protocol + '://' + req.get('host')}/api/whatsapp/webhook`,
+      diagnostics: {
+        hasAccountSid: !!accountSid,
+        accountSidPrefix: accountSid ? accountSid.substring(0, 4) : null,
+        hasAuthToken: !!authToken,
+        authTokenLength: authToken ? authToken.length : 0,
+        hasFromNumber: !!fromNumber,
+        fromNumber: getWhatsAppFromNumber(),
+        nodeEnv: process.env.NODE_ENV,
+      }
     });
   });
 

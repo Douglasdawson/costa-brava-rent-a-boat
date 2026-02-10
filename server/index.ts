@@ -1,9 +1,39 @@
 import express, { type Request, Response, NextFunction } from "express";
 import compression from "compression";
+import helmet from "helmet";
+import rateLimit from "express-rate-limit";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
 
 const app = express();
+
+// Security headers
+app.use(helmet({
+  contentSecurityPolicy: false, // Disabled to allow inline scripts from Vite
+  crossOriginEmbedderPolicy: false, // Allow embedded resources (Stripe, maps, etc.)
+}));
+
+// Rate limiting for API endpoints
+const apiLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100, // 100 requests per window per IP
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { message: "Demasiadas solicitudes. Intenta de nuevo mas tarde." },
+});
+
+const paymentLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 20, // Stricter limit for payment endpoints
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { message: "Demasiados intentos de pago. Intenta de nuevo mas tarde." },
+});
+
+app.use("/api/quote", apiLimiter);
+app.use("/api/create-payment-intent", paymentLimiter);
+app.use("/api/create-checkout-session", paymentLimiter);
+app.use("/api/whatsapp/webhook", apiLimiter);
 
 // Trust proxy for correct protocol detection behind reverse proxies
 app.set('trust proxy', 1);

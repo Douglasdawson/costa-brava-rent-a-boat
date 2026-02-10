@@ -60,7 +60,7 @@ export default function LocationBlanesPage() {
     "provider": {
       "@type": "LocalBusiness",
       "name": "Costa Brava Rent a Boat Blanes",
-      "telephone": "+34683172154",
+      "telephone": "+34611500372",
       "url": "https://costa-brava-rent-a-boat-web-ivanrd9.replit.app/"
     }
   };

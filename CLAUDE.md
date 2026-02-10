@@ -147,7 +147,7 @@ const [updated] = await db
 
 - **Temporada**: Abril - Octubre (fuera de temporada no se aceptan reservas)
 - **Ubicación**: Puerto de Blanes, Girona, España
-- **Teléfono**: +34 683 172 154
+- **Teléfono**: +34 611 500 372
 - **Email**: costabravarentboat@gmail.com
 - **PIN Admin CRM**: 0760
 

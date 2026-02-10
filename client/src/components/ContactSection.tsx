@@ -197,7 +197,7 @@ export default function ContactSection() {
             </Link>
 
             {/* Visita Tossa de Mar */}
-            <Link href="/visita-tossa-de-mar" asChild>
+            <Link href="/alquiler-barcos-tossa-de-mar" asChild>
               <Card className="hover:shadow-lg transition-shadow cursor-pointer group h-full flex flex-col">
                 <CardHeader>
                   <div className="w-12 h-12 bg-purple-50 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">

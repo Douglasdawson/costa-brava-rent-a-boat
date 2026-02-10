@@ -19,7 +19,7 @@ export const BUSINESS_INFO = {
   name: "Costa Brava Rent a Boat Blanes",
   legalName: "Costa Brava Rent a Boat - Blanes",
   description: "Alquiler de barcos sin licencia y con licencia en Blanes, Costa Brava. Desde Puerto de Blanes. 7 embarcaciones para 4-7 personas.",
-  phone: "+34683172154",
+  phone: "+34611500372",
   email: "costabravarentboat@gmail.com",
   url: getBaseUrl(),
   address: {
@@ -52,7 +52,7 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       title: "Alquiler Barcos Blanes y Lloret | Costa Brava",
       description: "Descubre la Costa Brava desde el mar con nuestros barcos en Blanes. Alquiler con o sin licencia. ¡Fácil, rápido y seguro!",
       keywords: "alquiler barcos blanes, barcos sin licencia costa brava, alquiler embarcaciones blanes, costa brava rent boat, puerto blanes",
-      ogTitle: "Alquiler de Barcos en Blanes y Lloret | Costa Brava 2025",
+      ogTitle: "Alquiler de Barcos en Blanes y Lloret | Costa Brava 2026",
       ogDescription: "Descubre la Costa Brava desde el mar. 7 barcos con y sin licencia. Explora calas paradisíacas. ¡Reserva tu aventura hoy!"
     },
     booking: {
@@ -68,10 +68,10 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       ogDescription: "¿Licencia necesaria? ¿Qué incluye? ¿Precios? Todas las respuestas sobre alquilar barcos en Blanes. ¡Información clara y completa!"
     },
     locationBlanes: {
-      title: "Alquiler Barcos en Blanes Puerto | Costa Brava 2025",
+      title: "Alquiler Barcos en Blanes Puerto | Costa Brava 2026",
       description: "Alquila barcos en Puerto de Blanes. Sin licencia y con licencia. 7 embarcaciones disponibles. Explora calas y playas de la Costa Brava. ¡Reserva ya!",
       keywords: "alquiler barcos blanes puerto, embarcaciones blanes costa brava, barcos sin licencia blanes, calas costa brava desde blanes",
-      ogTitle: "Alquiler de Barcos en Puerto de Blanes | Costa Brava 2025",
+      ogTitle: "Alquiler de Barcos en Puerto de Blanes | Costa Brava 2026",
       ogDescription: "Alquila barcos desde Puerto de Blanes. Con y sin licencia. 7 embarcaciones disponibles. Explora calas y playas. ¡Reserva ya!"
     },
     locationLloret: {
@@ -152,7 +152,7 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       title: "Boat Rental Blanes & Lloret de Mar | Costa Brava",
       description: "Discover Costa Brava from the sea with our boats in Blanes. With or without license. Easy, fast & safe!",
       keywords: "boat rental blanes, boats without license costa brava, boat charter blanes, costa brava rent boat, blanes port",
-      ogTitle: "Boat Rental in Blanes & Lloret de Mar | Costa Brava 2025",
+      ogTitle: "Boat Rental in Blanes & Lloret de Mar | Costa Brava 2026",
       ogDescription: "Discover Costa Brava from the sea. 7 boats with and without license. Explore paradise coves. Book your adventure today!"
     },
     booking: {
@@ -168,10 +168,10 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       ogDescription: "Need a license? What's included? Prices? All answers about renting boats in Blanes. Clear and complete information!"
     },
     locationBlanes: {
-      title: "Boat Rental in Blanes Port | Costa Brava 2025",
+      title: "Boat Rental in Blanes Port | Costa Brava 2026",
       description: "Rent boats in Blanes Port. With and without license. 7 boats available. Explore coves and beaches of Costa Brava. Book now!",
       keywords: "boat rental blanes port, boats blanes costa brava, boats without license blanes, costa brava coves from blanes",
-      ogTitle: "Boat Rental at Blanes Port | Costa Brava 2025",
+      ogTitle: "Boat Rental at Blanes Port | Costa Brava 2026",
       ogDescription: "Rent boats from Blanes Port. With and without license. 7 boats available. Explore coves and beaches. Book now!"
     },
     locationLloret: {
@@ -240,7 +240,7 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       title: "Lloguer de Barques a Blanes i Lloret de Mar | Costa Brava",
       description: "Descobreix la Costa Brava des del mar amb les nostres barques a Blanes. Lloguer amb o sense llicència. Fàcil, ràpid i segur!",
       keywords: "lloguer barques blanes, barques sense llicència costa brava, lloguer embarcacions blanes, costa brava rent boat, port blanes",
-      ogTitle: "Lloguer de Barques a Blanes i Lloret | Costa Brava 2025",
+      ogTitle: "Lloguer de Barques a Blanes i Lloret | Costa Brava 2026",
       ogDescription: "Descobreix la Costa Brava des del mar. 7 barques amb i sense llicència. Explora cales paradisíaques. Reserva la teva aventura!"
     },
     booking: {
@@ -256,10 +256,10 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       ogDescription: "Necessito llicència? Què inclou? Preus? Totes les respostes sobre llogar barques a Blanes. Informació clara i completa!"
     },
     locationBlanes: {
-      title: "Lloguer Barques al Port de Blanes | Costa Brava 2025",
+      title: "Lloguer Barques al Port de Blanes | Costa Brava 2026",
       description: "Lloga barques al Port de Blanes. Sense llicència i amb llicència. 7 embarcacions disponibles. Explora cales i platges. Reserva ja!",
       keywords: "lloguer barques blanes port, embarcacions blanes costa brava, barques sense llicència blanes",
-      ogTitle: "Lloguer de Barques al Port de Blanes | Costa Brava 2025",
+      ogTitle: "Lloguer de Barques al Port de Blanes | Costa Brava 2026",
       ogDescription: "Lloga barques des del Port de Blanes. Amb i sense llicència. 7 embarcacions disponibles. Explora cales i platges. Reserva ja!"
     },
     locationLloret: {
@@ -325,7 +325,7 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       keywords: "faq location bateaux, questions fréquentes embarcations, doutes location bateaux costa brava"
     },
     locationBlanes: {
-      title: "Location Bateaux au Port de Blanes | Costa Brava 2025",
+      title: "Location Bateaux au Port de Blanes | Costa Brava 2026",
       description: "Louez des bateaux au Port de Blanes. Avec et sans permis. 7 bateaux disponibles. Explorez criques et plages. Réservez maintenant!",
       keywords: "location bateaux blanes port, embarcations blanes costa brava, bateaux sans permis blanes"
     },
@@ -384,7 +384,7 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       keywords: "faq bootsverleih, häufige fragen boote, zweifel bootsverleih costa brava"
     },
     locationBlanes: {
-      title: "Bootsverleih im Hafen Blanes | Costa Brava 2025",
+      title: "Bootsverleih im Hafen Blanes | Costa Brava 2026",
       description: "Mieten Sie Boote im Hafen Blanes. Mit und ohne Führerschein. 7 Boote verfügbar. Erkunden Sie Buchten und Strände. Jetzt buchen!",
       keywords: "bootsverleih blanes hafen, boote blanes costa brava, boote ohne führerschein blanes"
     },
@@ -764,8 +764,8 @@ export function generateLocalBusinessSchema(language: Language = 'es', rating?: 
       "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
       "opens": "09:00",
       "closes": "20:00",
-      "validFrom": "2025-04-01",
-      "validThrough": "2025-10-31"
+      "validFrom": "2026-04-01",
+      "validThrough": "2026-10-31"
     },
     "hasOfferCatalog": {
       "@type": "OfferCatalog",

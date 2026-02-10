@@ -107,12 +107,12 @@ export const AVAILABLE_FUNCTIONS: OpenAI.Chat.Completions.ChatCompletionTool[] =
   },
 ];
 
-// Determine season for a date
+// Determine season for a date - uses same logic as shared/pricing.ts
 function getSeasonForDate(date: Date): 'BAJA' | 'MEDIA' | 'ALTA' {
   const month = date.getMonth() + 1; // 1-12
-  if (month === 7 || month === 8) return 'ALTA';
-  if (month === 6 || month === 9) return 'MEDIA';
-  return 'BAJA'; // April, May, October
+  if (month === 8) return 'ALTA'; // August
+  if (month === 7) return 'MEDIA'; // July
+  return 'BAJA'; // April-June, September-October
 }
 
 // Execute a function call
@@ -220,9 +220,9 @@ async function getPriceForDate(
     boat_name: boat.name,
     date: dateStr,
     season,
-    season_description: season === 'ALTA' ? 'Temporada Alta (Julio-Agosto)' 
-      : season === 'MEDIA' ? 'Temporada Media (Junio, Septiembre)' 
-      : 'Temporada Baja (Abril, Mayo, Octubre)',
+    season_description: season === 'ALTA' ? 'Temporada Alta (Agosto)'
+      : season === 'MEDIA' ? 'Temporada Media (Julio)'
+      : 'Temporada Baja (Abril, Mayo, Junio, Septiembre, Octubre)',
     duration_hours: durationHours,
     price: price,
     deposit: boat.deposit,

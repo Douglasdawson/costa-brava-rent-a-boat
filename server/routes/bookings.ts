@@ -3,6 +3,7 @@ import { storage } from "../storage";
 import { db } from "../db";
 import { bookings } from "@shared/schema";
 import { and, eq, lte } from "drizzle-orm";
+import { requireAdminSession } from "./auth";
 
 export function registerBookingRoutes(app: Express) {
   // Get booking by ID
@@ -163,8 +164,8 @@ export function registerBookingRoutes(app: Express) {
     }
   });
 
-  // Clean up expired holds
-  app.post("/api/cleanup-expired-holds", async (req, res) => {
+  // Clean up expired holds (admin only)
+  app.post("/api/cleanup-expired-holds", requireAdminSession, async (req, res) => {
     try {
       const now = new Date();
 
@@ -197,8 +198,8 @@ export function registerBookingRoutes(app: Express) {
     }
   });
 
-  // Update booking payment status
-  app.post("/api/bookings/:id/payment-status", async (req, res) => {
+  // Update booking payment status (admin only)
+  app.post("/api/bookings/:id/payment-status", requireAdminSession, async (req, res) => {
     try {
       const { status, stripePaymentIntentId } = req.body;
       const validStatuses = ["pending", "paid", "failed", "cancelled", "refunded"];
@@ -225,8 +226,8 @@ export function registerBookingRoutes(app: Express) {
     }
   });
 
-  // Update WhatsApp status
-  app.post("/api/bookings/:id/whatsapp-status", async (req, res) => {
+  // Update WhatsApp status (admin only)
+  app.post("/api/bookings/:id/whatsapp-status", requireAdminSession, async (req, res) => {
     try {
       const { confirmationSent, reminderSent } = req.body;
 

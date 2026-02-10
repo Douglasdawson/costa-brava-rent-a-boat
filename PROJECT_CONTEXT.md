@@ -19,7 +19,7 @@ Plataforma full-stack de alquiler de barcos en Blanes, Costa Brava. Combina:
 |-------|-------|
 | Ubicación | Puerto de Blanes, Girona, España |
 | Coordenadas | 41.6667° N, 2.7833° E |
-| Teléfono | +34 683 172 154 |
+| Teléfono | +34 611 500 372 |
 | Email | costabravarentboat@gmail.com |
 | Temporada | Abril - Octubre |
 

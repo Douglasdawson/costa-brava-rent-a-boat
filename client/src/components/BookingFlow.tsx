@@ -125,7 +125,7 @@ export default function BookingFlow({
   const availableExtras = [
     { id: "parking", name: t.booking?.extrasDetails?.parking?.name || "Parking dentro del puerto", price: 10, description: t.booking?.extrasDetails?.parking?.description || "Parking seguro en el puerto" },
     { id: "cooler", name: t.booking?.extrasDetails?.cooler?.name || "Nevera", price: 5, description: t.booking?.extrasDetails?.cooler?.description || "Nevera con hielo" },
-    { id: "snorkel", name: t.booking?.extrasDetails?.snorkel?.name || "Equipo snorkel", price: 5, description: t.booking?.extrasDetails?.snorkel?.description || "Equipo de snorkel completo" },
+    { id: "snorkel", name: t.booking?.extrasDetails?.snorkel?.name || "Equipo snorkel", price: 7.5, description: t.booking?.extrasDetails?.snorkel?.description || "Equipo de snorkel completo" },
     { id: "paddle", name: t.booking?.extrasDetails?.paddle?.name || "Tabla de paddlesurf", price: 25, description: t.booking?.extrasDetails?.paddle?.description || "Tabla de paddle surf" },
     { id: "seascooter", name: t.booking?.extrasDetails?.seascooter?.name || "Seascooter", price: 50, description: t.booking?.extrasDetails?.seascooter?.description || "Scooter acuático" }
   ];

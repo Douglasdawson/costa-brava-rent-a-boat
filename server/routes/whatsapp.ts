@@ -1,5 +1,6 @@
 import type { Express } from "express";
 import express from "express";
+import { requireAdminSession } from "./auth";
 
 export async function registerWhatsAppRoutes(app: Express) {
   // Import WhatsApp webhook handlers
@@ -16,14 +17,10 @@ export async function registerWhatsAppRoutes(app: Express) {
   // Status callback for message delivery status
   app.post("/api/whatsapp/status", express.urlencoded({ extended: false }), handleStatusCallback);
 
-  // Health check for WhatsApp integration
-  app.get("/api/whatsapp/health", async (req, res) => {
-    const { isTwilioConfigured, getWhatsAppFromNumber } = await import("../whatsapp/twilioClient");
+  // Health check for WhatsApp integration (admin only, sanitized)
+  app.get("/api/whatsapp/health", requireAdminSession, async (req, res) => {
+    const { isTwilioConfigured } = await import("../whatsapp/twilioClient");
     const { isAIConfigured } = await import("../whatsapp/aiService");
-    const accountSid = process.env.TWILIO_ACCOUNT_SID;
-    const authToken = process.env.TWILIO_AUTH_TOKEN;
-    const fromNumber = process.env.TWILIO_WHATSAPP_FROM;
-    const openaiKey = process.env.OPENAI_API_KEY;
 
     res.json({
       configured: isTwilioConfigured(),
@@ -31,16 +28,12 @@ export async function registerWhatsAppRoutes(app: Express) {
       webhookUrl: `${process.env.BASE_URL || req.protocol + "://" + req.get("host")}/api/whatsapp/webhook`,
       diagnostics: {
         twilio: {
-          hasAccountSid: !!accountSid,
-          accountSidPrefix: accountSid ? accountSid.substring(0, 4) : null,
-          hasAuthToken: !!authToken,
-          authTokenLength: authToken ? authToken.length : 0,
-          hasFromNumber: !!fromNumber,
-          fromNumber: getWhatsAppFromNumber(),
+          hasAccountSid: !!process.env.TWILIO_ACCOUNT_SID,
+          hasAuthToken: !!process.env.TWILIO_AUTH_TOKEN,
+          hasFromNumber: !!process.env.TWILIO_WHATSAPP_FROM,
         },
         openai: {
-          hasApiKey: !!openaiKey,
-          apiKeyPrefix: openaiKey ? openaiKey.substring(0, 7) : null,
+          hasApiKey: !!process.env.OPENAI_API_KEY,
         },
         nodeEnv: process.env.NODE_ENV,
       },

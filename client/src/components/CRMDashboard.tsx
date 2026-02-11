@@ -16,6 +16,9 @@ import {
   X,
   Check,
   Save,
+  Download,
+  Plus,
+  MessageCircle,
 } from "lucide-react";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { useToast } from "@/hooks/use-toast";
@@ -59,6 +62,7 @@ export default function CRMDashboard({ adminToken }: CRMDashboardProps) {
   const [selectedBooking, setSelectedBooking] = useState<Booking | null>(null);
   const [showBookingDetails, setShowBookingDetails] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
+  const [isCreatingBooking, setIsCreatingBooking] = useState(false);
   const { toast } = useToast();
 
   // Form for editing bookings
@@ -369,9 +373,177 @@ export default function CRMDashboard({ adminToken }: CRMDashboardProps) {
     }
   };
 
+  const handleCreateSubmit = (data: EditBookingFormData) => {
+    createBookingMutation.mutate(data);
+  };
+
   const handleCancelEdit = () => {
     setIsEditing(false);
+    setIsCreatingBooking(false);
     editForm.reset();
+  };
+
+  // Mutation for creating a new booking
+  const createBookingMutation = useMutation({
+    mutationFn: async (data: EditBookingFormData) => {
+      const startDate = new Date(data.startTime);
+      const endDate = new Date(data.endTime);
+      const response = await fetch('/api/admin/bookings', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${adminToken}`
+        },
+        body: JSON.stringify({
+          ...data,
+          bookingDate: startDate.toISOString(),
+          startTime: startDate.toISOString(),
+          endTime: endDate.toISOString(),
+          source: 'admin',
+        }),
+      });
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.message || 'Error al crear la reserva');
+      }
+      return response.json();
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['/api/admin/bookings'] });
+      queryClient.invalidateQueries({ queryKey: ['/api/admin/stats'] });
+      queryClient.invalidateQueries({ queryKey: ['/api/admin/customers'] });
+      toast({
+        title: "Reserva creada",
+        description: "La nueva reserva se ha creado correctamente",
+      });
+      setIsCreatingBooking(false);
+      setIsEditing(false);
+      setShowBookingDetails(false);
+      setSelectedBooking(null);
+      editForm.reset();
+    },
+    onError: (error: Error) => {
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: error.message || "No se pudo crear la reserva",
+      });
+    }
+  });
+
+  // Handle new booking button
+  const handleNewBooking = () => {
+    const now = new Date();
+    const defaultStart = new Date(now);
+    defaultStart.setHours(10, 0, 0, 0);
+    if (defaultStart < now) defaultStart.setDate(defaultStart.getDate() + 1);
+    const defaultEnd = new Date(defaultStart);
+    defaultEnd.setHours(defaultStart.getHours() + 2);
+
+    editForm.reset({
+      customerName: "",
+      customerSurname: "",
+      customerPhone: "",
+      customerEmail: "",
+      customerNationality: "ES",
+      numberOfPeople: 1,
+      boatId: "",
+      startTime: format(defaultStart, "yyyy-MM-dd'T'HH:mm"),
+      endTime: format(defaultEnd, "yyyy-MM-dd'T'HH:mm"),
+      totalHours: 2,
+      subtotal: "0",
+      extrasTotal: "0",
+      deposit: "0",
+      totalAmount: "0",
+      bookingStatus: "draft",
+      paymentStatus: "pending",
+      notes: "",
+    });
+    setSelectedBooking(null);
+    setIsCreatingBooking(true);
+    setIsEditing(true);
+    setShowBookingDetails(true);
+  };
+
+  // Export bookings to CSV
+  const handleExportCSV = () => {
+    if (!bookingsData || bookingsData.length === 0) {
+      toast({
+        variant: "destructive",
+        title: "Sin datos",
+        description: "No hay reservas para exportar",
+      });
+      return;
+    }
+
+    let dataToExport = bookingsData;
+    if (statusFilter !== "all") {
+      dataToExport = dataToExport.filter((b: Booking) => b.bookingStatus === statusFilter);
+    }
+    if (searchQuery) {
+      const query = searchQuery.toLowerCase();
+      dataToExport = dataToExport.filter((b: Booking) =>
+        b.customerName.toLowerCase().includes(query) ||
+        b.customerSurname.toLowerCase().includes(query) ||
+        b.customerEmail?.toLowerCase().includes(query) ||
+        b.customerPhone.toLowerCase().includes(query)
+      );
+    }
+
+    const headers = [
+      "ID", "Fecha", "Hora Inicio", "Hora Fin", "Cliente", "Apellidos",
+      "Teléfono", "Email", "Nacionalidad", "Personas", "Barco",
+      "Horas", "Subtotal", "Extras", "Depósito", "Total",
+      "Estado Reserva", "Estado Pago", "Fuente", "Notas"
+    ];
+
+    const rows = dataToExport.map((b: Booking) => [
+      b.id,
+      format(new Date(b.bookingDate), 'dd/MM/yyyy'),
+      format(new Date(b.startTime), 'dd/MM/yyyy HH:mm'),
+      format(new Date(b.endTime), 'dd/MM/yyyy HH:mm'),
+      b.customerName,
+      b.customerSurname,
+      b.customerPhone,
+      b.customerEmail || "",
+      b.customerNationality,
+      b.numberOfPeople,
+      b.boatId,
+      b.totalHours,
+      b.subtotal,
+      b.extrasTotal,
+      b.deposit,
+      b.totalAmount,
+      getStatusLabel(b.bookingStatus),
+      b.paymentStatus === 'completed' ? 'Pagado' : b.paymentStatus === 'pending' ? 'Pendiente' : b.paymentStatus,
+      b.source,
+      (b.notes || "").replace(/"/g, '""'),
+    ]);
+
+    const csvContent = [
+      headers.join(","),
+      ...rows.map((row: (string | number)[]) => row.map((cell: string | number) => `"${cell}"`).join(","))
+    ].join("\n");
+
+    const blob = new Blob(["\uFEFF" + csvContent], { type: "text/csv;charset=utf-8;" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = `reservas_${format(new Date(), 'yyyy-MM-dd')}.csv`;
+    link.click();
+    URL.revokeObjectURL(url);
+
+    toast({
+      title: "Exportación completada",
+      description: `${dataToExport.length} reservas exportadas a CSV`,
+    });
+  };
+
+  // Open WhatsApp chat with customer
+  const openWhatsApp = (phone: string, customerName: string) => {
+    const cleanPhone = phone.replace(/[^0-9+]/g, '').replace(/^\+/, '');
+    const message = encodeURIComponent(`Hola ${customerName}, le contactamos desde Costa Brava Rent a Boat respecto a su reserva.`);
+    window.open(`https://wa.me/${cleanPhone}?text=${message}`, '_blank');
   };
 
   // Process bookings data
@@ -398,11 +570,11 @@ export default function CRMDashboard({ adminToken }: CRMDashboardProps) {
               <LogOut className="w-4 h-4 sm:mr-2" />
               <span className="hidden sm:inline">Cerrar Sesión</span>
             </Button>
-            <Button variant="outline" data-testid="button-export-data" size="sm" className="hidden sm:flex sm:h-10">
+            <Button variant="outline" onClick={handleExportCSV} data-testid="button-export-data" size="sm" className="hidden sm:flex sm:h-10">
               <Download className="w-4 h-4 mr-2" />
               Exportar
             </Button>
-            <Button data-testid="button-new-booking" size="sm" className="sm:h-10">
+            <Button onClick={handleNewBooking} data-testid="button-new-booking" size="sm" className="sm:h-10">
               <Plus className="w-4 h-4 sm:mr-2" />
               <span className="hidden sm:inline">Nueva Reserva</span>
               <span className="sm:hidden">Nueva</span>
@@ -766,7 +938,15 @@ export default function CRMDashboard({ adminToken }: CRMDashboardProps) {
                                 </Badge>
                               </TableCell>
                               <TableCell className="text-right">
-                                <div className="flex justify-end space-x-2">
+                                <div className="flex justify-end space-x-1">
+                                  <Button
+                                    variant="ghost"
+                                    size="sm"
+                                    onClick={() => openWhatsApp(booking.customerPhone, booking.customerName)}
+                                    title="WhatsApp"
+                                  >
+                                    <MessageCircle className="w-4 h-4 text-green-600" />
+                                  </Button>
                                   <Button
                                     variant="ghost"
                                     size="sm"
@@ -954,20 +1134,28 @@ export default function CRMDashboard({ adminToken }: CRMDashboardProps) {
                               {format(new Date(customer.lastBookingDate), 'dd/MM/yyyy')}
                             </TableCell>
                             <TableCell className="text-right">
-                              <Button
-                                variant="ghost"
-                                size="sm"
-                                onClick={() => {
-                                  // Show customer's bookings history
-                                  toast({
-                                    title: "Ver historial",
-                                    description: `Historial de ${customer.customerName} estará disponible próximamente`,
-                                  });
-                                }}
-                                data-testid={`button-view-customer-${index}`}
-                              >
-                                <Eye className="w-4 h-4" />
-                              </Button>
+                              <div className="flex justify-end space-x-1">
+                                <Button
+                                  variant="ghost"
+                                  size="sm"
+                                  onClick={() => openWhatsApp(customer.customerPhone, customer.customerName)}
+                                  title="WhatsApp"
+                                >
+                                  <MessageCircle className="w-4 h-4 text-green-600" />
+                                </Button>
+                                <Button
+                                  variant="ghost"
+                                  size="sm"
+                                  onClick={() => {
+                                    setSearchQuery(customer.customerPhone);
+                                    setSelectedTab("bookings");
+                                  }}
+                                  title="Ver reservas"
+                                  data-testid={`button-view-customer-${index}`}
+                                >
+                                  <Eye className="w-4 h-4" />
+                                </Button>
+                              </div>
                             </TableCell>
                           </TableRow>
                         ))}
@@ -1017,19 +1205,28 @@ export default function CRMDashboard({ adminToken }: CRMDashboardProps) {
                             </Badge>
                           </div>
                         </div>
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          onClick={() => {
-                            toast({
-                              title: "Ver historial",
-                              description: `Historial de ${customer.customerName} estará disponible próximamente`,
-                            });
-                          }}
-                          data-testid={`button-view-customer-${index}`}
-                        >
-                          <Eye className="w-4 h-4" />
-                        </Button>
+                        <div className="flex gap-1">
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            onClick={() => openWhatsApp(customer.customerPhone, customer.customerName)}
+                            title="WhatsApp"
+                          >
+                            <MessageCircle className="w-4 h-4 text-green-600" />
+                          </Button>
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            onClick={() => {
+                              setSearchQuery(customer.customerPhone);
+                              setSelectedTab("bookings");
+                            }}
+                            title="Ver reservas"
+                            data-testid={`button-view-customer-${index}`}
+                          >
+                            <Eye className="w-4 h-4" />
+                          </Button>
+                        </div>
                       </div>
                       <div className="grid grid-cols-2 gap-2 text-sm border-t pt-3 mt-3">
                         <div>
@@ -1123,12 +1320,18 @@ export default function CRMDashboard({ adminToken }: CRMDashboardProps) {
       </div>
 
       {/* Booking Details Modal */}
-      <Dialog open={showBookingDetails} onOpenChange={setShowBookingDetails}>
+      <Dialog open={showBookingDetails} onOpenChange={(open) => {
+        setShowBookingDetails(open);
+        if (!open) {
+          setIsCreatingBooking(false);
+          setIsEditing(false);
+        }
+      }}>
         <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
           <DialogHeader>
-            <DialogTitle>{isEditing ? "Editar Reserva" : "Detalles de la Reserva"}</DialogTitle>
+            <DialogTitle>{isCreatingBooking ? "Nueva Reserva" : isEditing ? "Editar Reserva" : "Detalles de la Reserva"}</DialogTitle>
             <DialogDescription>
-              ID: {selectedBooking?.id}
+              {isCreatingBooking ? "Crear reserva manualmente desde el CRM" : `ID: ${selectedBooking?.id}`}
             </DialogDescription>
           </DialogHeader>
           
@@ -1254,6 +1457,15 @@ export default function CRMDashboard({ adminToken }: CRMDashboardProps) {
               <div className="border-t pt-4">
                 <h3 className="font-semibold text-lg mb-3">Acciones</h3>
                 <div className="flex flex-wrap gap-2">
+                  <Button
+                    variant="outline"
+                    className="bg-green-50 border-green-300 text-green-700 hover:bg-green-100"
+                    onClick={() => openWhatsApp(selectedBooking.customerPhone, selectedBooking.customerName)}
+                    data-testid="button-whatsapp-booking"
+                  >
+                    <MessageCircle className="w-4 h-4 mr-2" />
+                    WhatsApp
+                  </Button>
                   {selectedBooking.bookingStatus === 'pending_payment' && (
                     <Button
                       variant="default"
@@ -1292,9 +1504,9 @@ export default function CRMDashboard({ adminToken }: CRMDashboardProps) {
             </div>
           )}
 
-          {/* Edit Form */}
-          {selectedBooking && isEditing && (
-            <form onSubmit={editForm.handleSubmit(handleEditSubmit)} className="space-y-6">
+          {/* Edit / Create Form */}
+          {(isCreatingBooking || (selectedBooking && isEditing)) && (
+            <form onSubmit={editForm.handleSubmit(isCreatingBooking ? handleCreateSubmit : handleEditSubmit)} className="space-y-6">
               {/* Customer Info */}
               <div>
                 <h3 className="font-semibold text-lg mb-3">Información del Cliente</h3>
@@ -1495,15 +1707,15 @@ export default function CRMDashboard({ adminToken }: CRMDashboardProps) {
               <div className="flex gap-2">
                 <Button
                   type="submit"
-                  disabled={editBookingMutation.isPending}
+                  disabled={isCreatingBooking ? createBookingMutation.isPending : editBookingMutation.isPending}
                   data-testid="button-save-booking"
                 >
-                  {editBookingMutation.isPending ? (
+                  {(isCreatingBooking ? createBookingMutation.isPending : editBookingMutation.isPending) ? (
                     "Guardando..."
                   ) : (
                     <>
                       <Save className="w-4 h-4 mr-2" />
-                      Guardar Cambios
+                      {isCreatingBooking ? "Crear Reserva" : "Guardar Cambios"}
                     </>
                   )}
                 </Button>
@@ -1511,7 +1723,7 @@ export default function CRMDashboard({ adminToken }: CRMDashboardProps) {
                   type="button"
                   variant="outline"
                   onClick={handleCancelEdit}
-                  disabled={editBookingMutation.isPending}
+                  disabled={isCreatingBooking ? createBookingMutation.isPending : editBookingMutation.isPending}
                   data-testid="button-cancel-edit"
                 >
                   Cancelar

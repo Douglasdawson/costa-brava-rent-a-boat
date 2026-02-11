@@ -1,6 +1,6 @@
 import type { Express } from "express";
 import { storage } from "../storage";
-import { updateBookingSchema, insertBoatSchema } from "@shared/schema";
+import { updateBookingSchema, insertBookingSchema, insertBoatSchema } from "@shared/schema";
 import { requireAdminSession } from "./auth";
 import { ObjectStorageService, ObjectNotFoundError } from "../objectStorage";
 
@@ -118,6 +118,35 @@ export function registerAdminRoutes(app: Express) {
   });
 
   // ===== BOOKING MANAGEMENT =====
+
+  // Create a new booking manually (from CRM)
+  app.post("/api/admin/bookings", requireAdminSession, async (req, res) => {
+    try {
+      const bookingData = {
+        ...req.body,
+        source: "admin",
+      };
+
+      const validationResult = insertBookingSchema.safeParse(bookingData);
+      if (!validationResult.success) {
+        return res.status(400).json({
+          message: "Datos inválidos",
+          errors: validationResult.error.errors,
+        });
+      }
+
+      const newBooking = await storage.createBooking(validationResult.data);
+
+      res.status(201).json({
+        success: true,
+        booking: newBooking,
+        message: "Reserva creada exitosamente",
+      });
+    } catch (error: any) {
+      console.error("Error creating booking:", error);
+      res.status(500).json({ message: "Error creando reserva: " + error.message });
+    }
+  });
 
   app.get("/api/admin/bookings", requireAdminSession, async (req, res) => {
     try {

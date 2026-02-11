@@ -362,6 +362,37 @@ export interface Translations {
     subtitle: string;
     bookBoat: string;
   };
+
+  // Gift Cards
+  giftCards: {
+    title: string;
+    subtitle: string;
+    selectAmount: string;
+    customAmount: string;
+    details: string;
+    yourName: string;
+    yourEmail: string;
+    yourNameRequired: string;
+    yourEmailRequired: string;
+    recipientInfo: string;
+    recipientName: string;
+    recipientEmail: string;
+    recipientNameRequired: string;
+    recipientEmailRequired: string;
+    message: string;
+    messagePlaceholder: string;
+    total: string;
+    validOneYear: string;
+    allBoats: string;
+    buy: string;
+    processing: string;
+    purchaseSuccess: string;
+    purchaseSuccessDesc: string;
+    code: string;
+    forRecipient: string;
+    backHome: string;
+    buyAnother: string;
+  };
 }
 
 export const translations: Record<Language, Translations> = {
@@ -699,6 +730,35 @@ export const translations: Record<Language, Translations> = {
       subtitle: 'Descubre las mejores rutas en barco desde el Puerto de Blanes',
       bookBoat: 'Reservar barco',
     },
+    giftCards: {
+      title: 'Tarjetas Regalo',
+      subtitle: 'Regala una experiencia nautica inolvidable en la Costa Brava',
+      selectAmount: 'Selecciona importe',
+      customAmount: 'Importe personalizado',
+      details: 'Tus datos',
+      yourName: 'Tu nombre',
+      yourEmail: 'Tu email',
+      yourNameRequired: 'Tu nombre es obligatorio',
+      yourEmailRequired: 'Tu email es obligatorio',
+      recipientInfo: 'Datos del destinatario',
+      recipientName: 'Nombre del destinatario',
+      recipientEmail: 'Email del destinatario',
+      recipientNameRequired: 'El nombre del destinatario es obligatorio',
+      recipientEmailRequired: 'El email del destinatario es obligatorio',
+      message: 'Mensaje personal (opcional)',
+      messagePlaceholder: 'Escribe un mensaje para el destinatario...',
+      total: 'Total',
+      validOneYear: 'Valida durante 1 ano',
+      allBoats: 'Canjeable en todos los barcos',
+      buy: 'Comprar tarjeta regalo',
+      processing: 'Procesando...',
+      purchaseSuccess: 'Compra realizada!',
+      purchaseSuccessDesc: 'La tarjeta regalo ha sido creada correctamente',
+      code: 'Codigo de la tarjeta',
+      forRecipient: 'Para',
+      backHome: 'Volver al inicio',
+      buyAnother: 'Comprar otra',
+    },
   },
 
   ca: {
@@ -972,6 +1032,35 @@ export const translations: Record<Language, Translations> = {
       title: 'Rutes Suggerides',
       subtitle: 'Descobreix les millors rutes en barca des del Port de Blanes',
       bookBoat: 'Reservar barca',
+    },
+    giftCards: {
+      title: 'Targetes Regal',
+      subtitle: 'Regala una experiencia nautica inoblidable a la Costa Brava',
+      selectAmount: 'Selecciona import',
+      customAmount: 'Import personalitzat',
+      details: 'Les teves dades',
+      yourName: 'El teu nom',
+      yourEmail: 'El teu email',
+      yourNameRequired: 'El teu nom es obligatori',
+      yourEmailRequired: 'El teu email es obligatori',
+      recipientInfo: 'Dades del destinatari',
+      recipientName: 'Nom del destinatari',
+      recipientEmail: 'Email del destinatari',
+      recipientNameRequired: 'El nom del destinatari es obligatori',
+      recipientEmailRequired: 'L\'email del destinatari es obligatori',
+      message: 'Missatge personal (opcional)',
+      messagePlaceholder: 'Escriu un missatge per al destinatari...',
+      total: 'Total',
+      validOneYear: 'Valida durant 1 any',
+      allBoats: 'Canviable en totes les barques',
+      buy: 'Comprar targeta regal',
+      processing: 'Processant...',
+      purchaseSuccess: 'Compra realitzada!',
+      purchaseSuccessDesc: 'La targeta regal s\'ha creat correctament',
+      code: 'Codi de la targeta',
+      forRecipient: 'Per a',
+      backHome: 'Tornar a l\'inici',
+      buyAnother: 'Comprar una altra',
     },
   },
 
@@ -1252,6 +1341,35 @@ export const translations: Record<Language, Translations> = {
       subtitle: 'Discover the best boat routes from Blanes Port',
       bookBoat: 'Book a boat',
     },
+    giftCards: {
+      title: 'Gift Cards',
+      subtitle: 'Give an unforgettable nautical experience on the Costa Brava',
+      selectAmount: 'Select amount',
+      customAmount: 'Custom amount',
+      details: 'Your details',
+      yourName: 'Your name',
+      yourEmail: 'Your email',
+      yourNameRequired: 'Your name is required',
+      yourEmailRequired: 'Your email is required',
+      recipientInfo: 'Recipient details',
+      recipientName: 'Recipient name',
+      recipientEmail: 'Recipient email',
+      recipientNameRequired: 'Recipient name is required',
+      recipientEmailRequired: 'Recipient email is required',
+      message: 'Personal message (optional)',
+      messagePlaceholder: 'Write a message for the recipient...',
+      total: 'Total',
+      validOneYear: 'Valid for 1 year',
+      allBoats: 'Redeemable on all boats',
+      buy: 'Buy gift card',
+      processing: 'Processing...',
+      purchaseSuccess: 'Purchase complete!',
+      purchaseSuccessDesc: 'The gift card has been created successfully',
+      code: 'Card code',
+      forRecipient: 'For',
+      backHome: 'Back to home',
+      buyAnother: 'Buy another',
+    },
   },
 
   fr: {
@@ -1508,6 +1626,35 @@ export const translations: Record<Language, Translations> = {
       subtitle: 'Decouvrez les meilleures routes en bateau depuis le port de Blanes',
       bookBoat: 'Reserver un bateau',
     },
+    giftCards: {
+      title: 'Cartes Cadeaux',
+      subtitle: 'Offrez une experience nautique inoubliable sur la Costa Brava',
+      selectAmount: 'Selectionner le montant',
+      customAmount: 'Montant personnalise',
+      details: 'Vos coordonnees',
+      yourName: 'Votre nom',
+      yourEmail: 'Votre email',
+      yourNameRequired: 'Votre nom est obligatoire',
+      yourEmailRequired: 'Votre email est obligatoire',
+      recipientInfo: 'Coordonnees du destinataire',
+      recipientName: 'Nom du destinataire',
+      recipientEmail: 'Email du destinataire',
+      recipientNameRequired: 'Le nom du destinataire est obligatoire',
+      recipientEmailRequired: 'L\'email du destinataire est obligatoire',
+      message: 'Message personnel (facultatif)',
+      messagePlaceholder: 'Ecrivez un message pour le destinataire...',
+      total: 'Total',
+      validOneYear: 'Valable pendant 1 an',
+      allBoats: 'Echangeable sur tous les bateaux',
+      buy: 'Acheter une carte cadeau',
+      processing: 'Traitement en cours...',
+      purchaseSuccess: 'Achat effectue!',
+      purchaseSuccessDesc: 'La carte cadeau a ete creee avec succes',
+      code: 'Code de la carte',
+      forRecipient: 'Pour',
+      backHome: 'Retour a l\'accueil',
+      buyAnother: 'Acheter une autre',
+    },
   },
 
   de: {
@@ -1760,6 +1907,35 @@ export const translations: Record<Language, Translations> = {
       title: 'Vorgeschlagene Routen',
       subtitle: 'Entdecken Sie die besten Bootsrouten ab dem Hafen von Blanes',
       bookBoat: 'Boot buchen',
+    },
+    giftCards: {
+      title: 'Geschenkkarten',
+      subtitle: 'Verschenken Sie ein unvergessliches Erlebnis auf dem Meer an der Costa Brava',
+      selectAmount: 'Betrag wahlen',
+      customAmount: 'Individueller Betrag',
+      details: 'Ihre Daten',
+      yourName: 'Ihr Name',
+      yourEmail: 'Ihre E-Mail',
+      yourNameRequired: 'Ihr Name ist erforderlich',
+      yourEmailRequired: 'Ihre E-Mail ist erforderlich',
+      recipientInfo: 'Empfangerdaten',
+      recipientName: 'Name des Empfangers',
+      recipientEmail: 'E-Mail des Empfangers',
+      recipientNameRequired: 'Der Name des Empfangers ist erforderlich',
+      recipientEmailRequired: 'Die E-Mail des Empfangers ist erforderlich',
+      message: 'Personliche Nachricht (optional)',
+      messagePlaceholder: 'Schreiben Sie eine Nachricht fur den Empfanger...',
+      total: 'Gesamt',
+      validOneYear: '1 Jahr gultig',
+      allBoats: 'Einlosbar fur alle Boote',
+      buy: 'Geschenkkarte kaufen',
+      processing: 'Wird verarbeitet...',
+      purchaseSuccess: 'Kauf abgeschlossen!',
+      purchaseSuccessDesc: 'Die Geschenkkarte wurde erfolgreich erstellt',
+      code: 'Kartencode',
+      forRecipient: 'Fur',
+      backHome: 'Zuruck zur Startseite',
+      buyAnother: 'Weitere kaufen',
     },
   },
 
@@ -2014,6 +2190,35 @@ export const translations: Record<Language, Translations> = {
       subtitle: 'Ontdek de beste bootroutes vanuit de haven van Blanes',
       bookBoat: 'Boot boeken',
     },
+    giftCards: {
+      title: 'Cadeaukaarten',
+      subtitle: 'Geef een onvergetelijke nautische ervaring aan de Costa Brava',
+      selectAmount: 'Selecteer bedrag',
+      customAmount: 'Aangepast bedrag',
+      details: 'Uw gegevens',
+      yourName: 'Uw naam',
+      yourEmail: 'Uw e-mail',
+      yourNameRequired: 'Uw naam is verplicht',
+      yourEmailRequired: 'Uw e-mail is verplicht',
+      recipientInfo: 'Gegevens ontvanger',
+      recipientName: 'Naam ontvanger',
+      recipientEmail: 'E-mail ontvanger',
+      recipientNameRequired: 'De naam van de ontvanger is verplicht',
+      recipientEmailRequired: 'Het e-mailadres van de ontvanger is verplicht',
+      message: 'Persoonlijk bericht (optioneel)',
+      messagePlaceholder: 'Schrijf een bericht voor de ontvanger...',
+      total: 'Totaal',
+      validOneYear: '1 jaar geldig',
+      allBoats: 'Inwisselbaar voor alle boten',
+      buy: 'Cadeaukaart kopen',
+      processing: 'Verwerken...',
+      purchaseSuccess: 'Aankoop voltooid!',
+      purchaseSuccessDesc: 'De cadeaukaart is succesvol aangemaakt',
+      code: 'Kaartcode',
+      forRecipient: 'Voor',
+      backHome: 'Terug naar home',
+      buyAnother: 'Nog een kopen',
+    },
   },
 
   it: {
@@ -2267,6 +2472,35 @@ export const translations: Record<Language, Translations> = {
       subtitle: 'Scopri i migliori percorsi in barca dal Porto di Blanes',
       bookBoat: 'Prenota barca',
     },
+    giftCards: {
+      title: 'Carte Regalo',
+      subtitle: 'Regala un\'esperienza nautica indimenticabile sulla Costa Brava',
+      selectAmount: 'Seleziona importo',
+      customAmount: 'Importo personalizzato',
+      details: 'I tuoi dati',
+      yourName: 'Il tuo nome',
+      yourEmail: 'La tua email',
+      yourNameRequired: 'Il tuo nome e obbligatorio',
+      yourEmailRequired: 'La tua email e obbligatoria',
+      recipientInfo: 'Dati del destinatario',
+      recipientName: 'Nome del destinatario',
+      recipientEmail: 'Email del destinatario',
+      recipientNameRequired: 'Il nome del destinatario e obbligatorio',
+      recipientEmailRequired: 'L\'email del destinatario e obbligatoria',
+      message: 'Messaggio personale (facoltativo)',
+      messagePlaceholder: 'Scrivi un messaggio per il destinatario...',
+      total: 'Totale',
+      validOneYear: 'Valida per 1 anno',
+      allBoats: 'Utilizzabile su tutte le barche',
+      buy: 'Acquista carta regalo',
+      processing: 'Elaborazione...',
+      purchaseSuccess: 'Acquisto completato!',
+      purchaseSuccessDesc: 'La carta regalo e stata creata con successo',
+      code: 'Codice della carta',
+      forRecipient: 'Per',
+      backHome: 'Torna alla home',
+      buyAnother: 'Acquista un\'altra',
+    },
   },
 
   ru: {
@@ -2519,6 +2753,35 @@ export const translations: Record<Language, Translations> = {
       title: 'Рекомендуемые Маршруты',
       subtitle: 'Откройте лучшие лодочные маршруты из порта Бланес',
       bookBoat: 'Забронировать лодку',
+    },
+    giftCards: {
+      title: 'Подарочные карты',
+      subtitle: 'Подарите незабываемый морской опыт на Коста-Браве',
+      selectAmount: 'Выберите сумму',
+      customAmount: 'Произвольная сумма',
+      details: 'Ваши данные',
+      yourName: 'Ваше имя',
+      yourEmail: 'Ваш email',
+      yourNameRequired: 'Ваше имя обязательно',
+      yourEmailRequired: 'Ваш email обязателен',
+      recipientInfo: 'Данные получателя',
+      recipientName: 'Имя получателя',
+      recipientEmail: 'Email получателя',
+      recipientNameRequired: 'Имя получателя обязательно',
+      recipientEmailRequired: 'Email получателя обязателен',
+      message: 'Личное сообщение (необязательно)',
+      messagePlaceholder: 'Напишите сообщение для получателя...',
+      total: 'Итого',
+      validOneYear: 'Действительна 1 год',
+      allBoats: 'Можно использовать на всех лодках',
+      buy: 'Купить подарочную карту',
+      processing: 'Обработка...',
+      purchaseSuccess: 'Покупка завершена!',
+      purchaseSuccessDesc: 'Подарочная карта успешно создана',
+      code: 'Код карты',
+      forRecipient: 'Для',
+      backHome: 'На главную',
+      buyAnother: 'Купить ещё',
     },
   },
 };

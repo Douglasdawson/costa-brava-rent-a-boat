@@ -3,7 +3,7 @@ import express from "express";
 import Stripe from "stripe";
 import { storage } from "../storage";
 import { db } from "../db";
-import { bookings } from "@shared/schema";
+import { bookings, giftCards } from "@shared/schema";
 import { eq } from "drizzle-orm";
 
 // Initialize Stripe lazily
@@ -308,6 +308,18 @@ export function registerPaymentRoutes(app: Express) {
           const paymentIntent = event.data.object as Stripe.PaymentIntent;
           console.log("Payment succeeded:", paymentIntent.id);
 
+          // Check if this is a gift card payment
+          if (paymentIntent.metadata?.type === "gift_card" && paymentIntent.metadata?.giftCardId) {
+            const giftCardId = paymentIntent.metadata.giftCardId;
+            await storage.updateGiftCard(giftCardId, {
+              paymentStatus: "completed",
+              status: "active",
+            });
+            console.log(`Gift card ${giftCardId} activated after successful payment`);
+            break;
+          }
+
+          // Otherwise, it's a booking payment
           const booking = await db
             .select()
             .from(bookings)

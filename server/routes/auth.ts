@@ -83,6 +83,18 @@ export const requireAdminRole = (req: Request, res: Response, next: NextFunction
   next();
 };
 
+// Owner middleware - only Ivan (PIN login) can manage employees
+export const requireOwner = (req: Request, res: Response, next: NextFunction) => {
+  const tokenData = getTokenData(req);
+  if (!tokenData) {
+    return res.status(401).json({ message: "No autorizado" });
+  }
+  if (tokenData.username !== "ivan") {
+    return res.status(403).json({ message: "Solo el propietario puede realizar esta accion" });
+  }
+  next();
+};
+
 export function registerAuthRoutes(app: Express) {
   // Get current authenticated user (customer)
   app.get("/api/auth/user", isAuthenticated, async (req: any, res) => {
@@ -227,14 +239,16 @@ export function registerAuthRoutes(app: Express) {
       }
 
       // Successful login - reset attempts and generate verified token
+      // PIN login is reserved for the owner (Ivan) - super admin
       loginAttempts.delete(clientIp);
-      const token = generateAdminToken("admin", "admin");
+      const token = generateAdminToken("admin", "ivan");
 
       res.json({
         success: true,
         token,
         role: "admin",
-        username: "admin",
+        username: "ivan",
+        displayName: "Ivan",
         message: "Login successful",
       });
     } catch (error: unknown) {

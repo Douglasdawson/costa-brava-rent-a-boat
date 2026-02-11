@@ -49,11 +49,11 @@ export default function LoginPage() {
 
       sessionStorage.setItem("adminToken", data.token);
       sessionStorage.setItem("adminRole", data.role || "admin");
-      sessionStorage.setItem("adminUsername", data.username || "admin");
+      sessionStorage.setItem("adminUsername", data.displayName || data.username || "admin");
 
       toast({
         title: "Acceso concedido",
-        description: "Bienvenido al panel de administracion",
+        description: `Bienvenido, ${data.displayName || data.username}`,
       });
 
       setLocation("/crm");

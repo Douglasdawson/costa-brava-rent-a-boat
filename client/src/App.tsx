@@ -39,6 +39,7 @@ const ClientDashboardPage = lazy(() => import("@/pages/ClientDashboardPage"));
 const LoginPage = lazy(() => import("@/pages/LoginPage"));
 const GalleryPage = lazy(() => import("@/pages/gallery"));
 const RoutesPage = lazy(() => import("@/pages/routes"));
+const GiftCardsPage = lazy(() => import("@/pages/gift-cards"));
 const NotFound = lazy(() => import("@/pages/not-found"));
 import { useLanguage } from "@/hooks/use-language";
 import { usePrefetchCriticalRoutes } from "@/hooks/usePrefetch";
@@ -270,6 +271,7 @@ function Router() {
         <Route path="/categoria/con-licencia">{() => <Redirect to="/barcos-con-licencia" />}</Route>
         <Route path="/galeria" component={GalleryPage} />
         <Route path="/rutas" component={RoutesPage} />
+        <Route path="/tarjetas-regalo" component={GiftCardsPage} />
         <Route path="/testimonios" component={TestimoniosPageWrapper} />
         <Route path="/blog/:slug" component={BlogDetailPageWrapper} />
         <Route path="/blog" component={BlogPageWrapper} />

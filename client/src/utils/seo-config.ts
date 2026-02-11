@@ -155,6 +155,13 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       ogTitle: "Rutas en Barco desde Blanes | Costa Brava 2026",
       ogDescription: "5 rutas en barco desde Blanes. Sa Palomera, Cala Sant Francesc, Lloret de Mar, Tossa de Mar. Mapas interactivos!"
     },
+    giftCards: {
+      title: "Tarjetas Regalo Alquiler Barcos | Costa Brava Rent a Boat",
+      description: "Regala una experiencia nautica en la Costa Brava. Tarjetas regalo desde 50EUR para alquilar barcos en Blanes. Validas 1 ano.",
+      keywords: "tarjetas regalo barcos, regalo alquiler barco blanes, experiencia nautica regalo, costa brava regalo",
+      ogTitle: "Tarjetas Regalo | Costa Brava Rent a Boat",
+      ogDescription: "Regala una experiencia nautica inolvidable. Tarjetas desde 50EUR canjeables en todos nuestros barcos en Blanes."
+    },
     notFound: {
       title: "Página no encontrada | Costa Brava Rent a Boat",
       description: "La página que buscas no existe. Vuelve al inicio para alquilar barcos en Blanes, Costa Brava.",
@@ -257,6 +264,13 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       ogTitle: "Boat Routes from Blanes | Costa Brava 2026",
       ogDescription: "5 boat routes from Blanes. Sa Palomera, Cala Sant Francesc, Lloret de Mar, Tossa de Mar. Interactive maps!"
     },
+    giftCards: {
+      title: "Gift Cards Boat Rental | Costa Brava Rent a Boat",
+      description: "Give a nautical experience on Costa Brava. Gift cards from 50EUR for boat rental in Blanes. Valid for 1 year.",
+      keywords: "boat gift cards, boat rental gift blanes, nautical experience gift, costa brava gift",
+      ogTitle: "Gift Cards | Costa Brava Rent a Boat",
+      ogDescription: "Give an unforgettable nautical experience. Cards from 50EUR redeemable on all our boats in Blanes."
+    },
     notFound: {
       title: "Page not found | Costa Brava Rent a Boat",
       description: "The page you're looking for doesn't exist. Return to home to rent boats in Blanes, Costa Brava.",
@@ -344,6 +358,11 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       title: "Rutes en Barca des de Blanes | Costa Brava",
       description: "Descobreix les millors rutes en barca des de Blanes. Des de Sa Palomera fins a Tossa de Mar. Mapes interactius i guia de navegacio.",
       keywords: "rutes barca blanes, excursions barca costa brava, mapa rutes nautiques, tossa de mar barca"
+    },
+    giftCards: {
+      title: "Targetes Regal Lloguer Barques | Costa Brava Rent a Boat",
+      description: "Regala una experiencia nautica a la Costa Brava. Targetes regal des de 50EUR per llogar barques a Blanes. Valides 1 any.",
+      keywords: "targetes regal barques, regal lloguer barca blanes, experiencia nautica regal, costa brava regal"
     }
   },
   fr: {
@@ -413,6 +432,11 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       title: "Itineraires en Bateau depuis Blanes | Costa Brava",
       description: "Decouvrez les meilleures routes en bateau depuis Blanes. De Sa Palomera a Tossa de Mar. Cartes interactives et guide de navigation.",
       keywords: "routes bateau blanes, excursions bateau costa brava, carte routes nautiques, tossa de mar bateau"
+    },
+    giftCards: {
+      title: "Cartes Cadeaux Location Bateaux | Costa Brava Rent a Boat",
+      description: "Offrez une experience nautique sur la Costa Brava. Cartes cadeaux des 50EUR pour louer des bateaux a Blanes. Valables 1 an.",
+      keywords: "cartes cadeaux bateaux, cadeau location bateau blanes, experience nautique cadeau, costa brava cadeau"
     }
   },
   de: {
@@ -482,6 +506,11 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       title: "Bootsrouten ab Blanes | Costa Brava",
       description: "Entdecken Sie die besten Bootsrouten ab Blanes. Von Sa Palomera bis Tossa de Mar. Interaktive Karten und Navigationsführer.",
       keywords: "bootsrouten blanes, bootsausflüge costa brava, nautische routenkarte, tossa de mar boot"
+    },
+    giftCards: {
+      title: "Geschenkkarten Bootsverleih | Costa Brava Rent a Boat",
+      description: "Verschenken Sie ein nautisches Erlebnis an der Costa Brava. Geschenkkarten ab 50EUR fur Bootsverleih in Blanes. 1 Jahr gultig.",
+      keywords: "geschenkkarten boote, geschenk bootsverleih blanes, nautisches erlebnis geschenk, costa brava geschenk"
     }
   },
   nl: {
@@ -551,6 +580,11 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       title: "Bootroutes vanuit Blanes | Costa Brava",
       description: "Ontdek de beste bootroutes vanuit Blanes. Van Sa Palomera tot Tossa de Mar. Interactieve kaarten en navigatiegids.",
       keywords: "bootroutes blanes, bootexcursies costa brava, nautische routekaart, tossa de mar boot"
+    },
+    giftCards: {
+      title: "Cadeaukaarten Bootverhuur | Costa Brava Rent a Boat",
+      description: "Geef een nautische ervaring aan de Costa Brava. Cadeaukaarten vanaf 50EUR voor bootverhuur in Blanes. 1 jaar geldig.",
+      keywords: "cadeaukaarten boten, cadeau bootverhuur blanes, nautische ervaring cadeau, costa brava cadeau"
     }
   },
   it: {
@@ -615,6 +649,11 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       title: "Percorsi in Barca da Blanes | Costa Brava",
       description: "Scopri i migliori percorsi in barca da Blanes. Da Sa Palomera a Tossa de Mar. Mappe interattive e guida alla navigazione.",
       keywords: "percorsi barca blanes, escursioni barca costa brava, mappa rotte nautiche, tossa de mar barca"
+    },
+    giftCards: {
+      title: "Carte Regalo Noleggio Barche | Costa Brava Rent a Boat",
+      description: "Regala un'esperienza nautica sulla Costa Brava. Carte regalo da 50EUR per noleggio barche a Blanes. Valide 1 anno.",
+      keywords: "carte regalo barche, regalo noleggio barca blanes, esperienza nautica regalo, costa brava regalo"
     }
   },
   ru: {
@@ -679,6 +718,11 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       title: "Маршруты на Лодке из Бланеса | Коста-Брава",
       description: "Откройте лучшие маршруты на лодке из Бланеса. От Са Паломера до Тосса-де-Мар. Интерактивные карты и навигационный гид.",
       keywords: "маршруты лодка бланес, экскурсии лодка коста брава, карта морских маршрутов, тосса де мар лодка"
+    },
+    giftCards: {
+      title: "Подарочные Карты Аренда Лодок | Costa Brava Rent a Boat",
+      description: "Подарите морской опыт на Коста-Браве. Подарочные карты от 50EUR на аренду лодок в Бланесе. Действительны 1 год.",
+      keywords: "подарочные карты лодки, подарок аренда лодки бланес, морской опыт подарок, коста брава подарок"
     }
   }
 };
@@ -765,6 +809,9 @@ const getPagePath = (pageName: string): string => {
     boatDetail: 'barco', // This will be handled dynamically
     blogDetail: 'blog', // This will be handled dynamically with slug
     destinationDetail: 'destination', // This will be handled dynamically with slug
+    gallery: 'galeria',
+    routes: 'rutas',
+    giftCards: 'tarjetas-regalo',
     notFound: '404'
   };
   

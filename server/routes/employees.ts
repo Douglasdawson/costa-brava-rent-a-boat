@@ -1,13 +1,13 @@
 import type { Express } from "express";
 import bcrypt from "bcrypt";
 import { storage } from "../storage";
-import { requireAdminSession, requireAdminRole } from "./auth";
+import { requireAdminSession, requireOwner } from "./auth";
 
 const BCRYPT_ROUNDS = 10;
 
 export function registerEmployeeRoutes(app: Express) {
   // List all employees (admin only)
-  app.get("/api/admin/employees", requireAdminSession, requireAdminRole, async (_req, res) => {
+  app.get("/api/admin/employees", requireAdminSession, requireOwner, async (_req, res) => {
     try {
       const employees = await storage.getAllAdminUsers();
       // Remove password hashes from response
@@ -20,7 +20,7 @@ export function registerEmployeeRoutes(app: Express) {
   });
 
   // Create employee (admin only)
-  app.post("/api/admin/employees", requireAdminSession, requireAdminRole, async (req, res) => {
+  app.post("/api/admin/employees", requireAdminSession, requireOwner, async (req, res) => {
     try {
       const { username, password, displayName, role } = req.body;
 
@@ -55,7 +55,7 @@ export function registerEmployeeRoutes(app: Express) {
   });
 
   // Update employee (admin only)
-  app.patch("/api/admin/employees/:id", requireAdminSession, requireAdminRole, async (req, res) => {
+  app.patch("/api/admin/employees/:id", requireAdminSession, requireOwner, async (req, res) => {
     try {
       const { id } = req.params;
       const { displayName, role, password, isActive } = req.body;
@@ -90,7 +90,7 @@ export function registerEmployeeRoutes(app: Express) {
   });
 
   // Deactivate employee (admin only)
-  app.delete("/api/admin/employees/:id", requireAdminSession, requireAdminRole, async (req, res) => {
+  app.delete("/api/admin/employees/:id", requireAdminSession, requireOwner, async (req, res) => {
     try {
       const { id } = req.params;
 

@@ -19,6 +19,7 @@ import {
   Download,
   Plus,
   MessageCircle,
+  Camera,
 } from "lucide-react";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { useToast } from "@/hooks/use-toast";
@@ -48,7 +49,7 @@ import type { Booking } from "@shared/schema";
 import { queryClient } from "@/lib/queryClient";
 
 // Import from CRM module
-import { FleetManagement, editBookingSchema, type EditBookingFormData } from "./crm";
+import { FleetManagement, EmployeeManagement, GalleryManagement, editBookingSchema, type EditBookingFormData } from "./crm";
 
 interface CRMDashboardProps {
   adminToken: string;
@@ -59,6 +60,8 @@ export default function CRMDashboard({ adminToken }: CRMDashboardProps) {
   const [selectedTimeRange, setSelectedTimeRange] = useState("today");
   const [searchQuery, setSearchQuery] = useState("");
   const [statusFilter, setStatusFilter] = useState<string>("all");
+  const adminRole = sessionStorage.getItem("adminRole") || "admin";
+  const adminUsername = sessionStorage.getItem("adminUsername") || "Admin";
   const [selectedBooking, setSelectedBooking] = useState<Booking | null>(null);
   const [showBookingDetails, setShowBookingDetails] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
@@ -562,7 +565,7 @@ export default function CRMDashboard({ adminToken }: CRMDashboardProps) {
             <Anchor className="w-6 h-6 sm:w-8 sm:h-8 text-primary" />
             <div>
               <h1 className="text-lg sm:text-2xl font-bold text-gray-900">CRM Costa Brava</h1>
-              <p className="text-xs sm:text-sm text-gray-600 hidden sm:block">Sistema de gestión de reservas</p>
+              <p className="text-xs sm:text-sm text-gray-600 hidden sm:block">{adminUsername} ({adminRole === "admin" ? "Administrador" : "Empleado"})</p>
             </div>
           </div>
           <div className="flex items-center gap-2 sm:space-x-4">
@@ -587,8 +590,12 @@ export default function CRMDashboard({ adminToken }: CRMDashboardProps) {
           {[
             { id: "dashboard", label: "Dashboard", icon: TrendingUp },
             { id: "bookings", label: "Reservas", icon: Calendar },
-            { id: "customers", label: "Clientes", icon: Users },
-            { id: "fleet", label: "Flota", icon: Anchor },
+            ...(adminRole === "admin" ? [
+              { id: "customers", label: "Clientes", icon: Users },
+              { id: "fleet", label: "Flota", icon: Anchor },
+              { id: "gallery", label: "Galeria", icon: Camera },
+              { id: "employees", label: "Equipo", icon: Users },
+            ] : []),
           ].map((tab) => (
             <button
               key={tab.id}
@@ -1316,6 +1323,16 @@ export default function CRMDashboard({ adminToken }: CRMDashboardProps) {
         {/* Fleet Tab */}
         {selectedTab === "fleet" && (
           <FleetManagement adminToken={adminToken} />
+        )}
+
+        {/* Gallery Tab */}
+        {selectedTab === "gallery" && (
+          <GalleryManagement adminToken={adminToken} />
+        )}
+
+        {/* Employees Tab */}
+        {selectedTab === "employees" && (
+          <EmployeeManagement adminToken={adminToken} />
         )}
       </div>
 

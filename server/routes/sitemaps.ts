@@ -113,6 +113,8 @@ export function registerSitemapRoutes(app: Express) {
         sitemap += generateUrlEntry(baseUrl, `/alquiler-barcos-${slug}`, "0.7", now);
       });
 
+      sitemap += generateUrlEntry(baseUrl, "/galeria", "0.6", now);
+      sitemap += generateUrlEntry(baseUrl, "/rutas", "0.7", now);
       sitemap += generateUrlEntry(baseUrl, "/faq", "0.6", now);
       sitemap += generateUrlEntry(baseUrl, "/barcos-sin-licencia", "0.7", now);
       sitemap += generateUrlEntry(baseUrl, "/barcos-con-licencia", "0.7", now);

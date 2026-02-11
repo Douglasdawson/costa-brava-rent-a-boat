@@ -13,6 +13,9 @@ import { registerBlogRoutes } from "./blog";
 import { registerDestinationRoutes } from "./destinations";
 import { registerTestimonialRoutes } from "./testimonials";
 import { registerWhatsAppRoutes } from "./whatsapp";
+import { registerAvailabilityRoutes } from "./availability";
+import { registerEmployeeRoutes } from "./employees";
+import { registerGalleryRoutes } from "./gallery";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // Setup Replit Auth (customer authentication)
@@ -28,6 +31,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
   registerBlogRoutes(app);
   registerDestinationRoutes(app);
   registerTestimonialRoutes(app);
+  registerAvailabilityRoutes(app);
+  registerEmployeeRoutes(app);
+  registerGalleryRoutes(app);
 
   // WhatsApp routes are async due to dynamic imports
   await registerWhatsAppRoutes(app);

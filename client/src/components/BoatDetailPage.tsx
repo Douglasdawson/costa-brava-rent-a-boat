@@ -50,6 +50,7 @@ import {
 import type { Boat } from "@shared/schema";
 import { Breadcrumbs } from "./Breadcrumbs";
 import { useTranslations } from "@/lib/translations";
+import AvailabilityCalendar from "./AvailabilityCalendar";
 
 interface BoatDetailPageProps {
   boatId?: string;
@@ -393,6 +394,11 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
             )}
           </CardContent>
         </Card>
+
+        {/* Availability Calendar */}
+        <div className="mb-6 sm:mb-8">
+          <AvailabilityCalendar boatId={boatId} />
+        </div>
 
         {/* Key Features - Full Width */}
         <Card className="mb-6 sm:mb-8">

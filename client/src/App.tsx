@@ -37,6 +37,8 @@ const BlogDetailPage = lazy(() => import("@/pages/blog-detail"));
 const DestinationDetailPage = lazy(() => import("@/pages/destination-detail"));
 const ClientDashboardPage = lazy(() => import("@/pages/ClientDashboardPage"));
 const LoginPage = lazy(() => import("@/pages/LoginPage"));
+const GalleryPage = lazy(() => import("@/pages/gallery"));
+const RoutesPage = lazy(() => import("@/pages/routes"));
 const NotFound = lazy(() => import("@/pages/not-found"));
 import { useLanguage } from "@/hooks/use-language";
 import { usePrefetchCriticalRoutes } from "@/hooks/usePrefetch";
@@ -266,6 +268,8 @@ function Router() {
         <Route path="/barcos-con-licencia" component={CategoryLicensedPageWrapper} />
         <Route path="/categoria/sin-licencia">{() => <Redirect to="/barcos-sin-licencia" />}</Route>
         <Route path="/categoria/con-licencia">{() => <Redirect to="/barcos-con-licencia" />}</Route>
+        <Route path="/galeria" component={GalleryPage} />
+        <Route path="/rutas" component={RoutesPage} />
         <Route path="/testimonios" component={TestimoniosPageWrapper} />
         <Route path="/blog/:slug" component={BlogDetailPageWrapper} />
         <Route path="/blog" component={BlogPageWrapper} />

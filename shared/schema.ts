@@ -8,6 +8,11 @@ export const adminUsers = pgTable("admin_users", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
   username: text("username").notNull().unique(),
   passwordHash: text("password_hash").notNull(),
+  role: text("role").notNull().default("employee"), // 'admin' | 'employee'
+  displayName: text("display_name"),
+  isActive: boolean("is_active").notNull().default(true),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().default(sql`now()`),
+  lastLoginAt: timestamp("last_login_at", { withTimezone: true }),
 });
 
 // Session storage table for Replit Auth
@@ -178,6 +183,8 @@ export const pageVisits = pgTable("page_visits", {
 export const insertAdminUserSchema = createInsertSchema(adminUsers).pick({
   username: true,
   passwordHash: true,
+  role: true,
+  displayName: true,
 });
 
 export const upsertCustomerUserSchema = createInsertSchema(customerUsers);
@@ -398,6 +405,58 @@ export type BlogPost = typeof blogPosts.$inferSelect;
 export type InsertBlogPost = z.infer<typeof insertBlogPostSchema>;
 export type Destination = typeof destinations.$inferSelect;
 export type InsertDestination = z.infer<typeof insertDestinationSchema>;
+
+// Client Photos (gallery)
+export const clientPhotos = pgTable("client_photos", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  imageUrl: text("image_url").notNull(),
+  caption: text("caption"),
+  customerName: varchar("customer_name", { length: 255 }).notNull(),
+  boatName: varchar("boat_name", { length: 255 }),
+  boatId: varchar("boat_id").references(() => boats.id),
+  tripDate: timestamp("trip_date", { withTimezone: true }),
+  isApproved: boolean("is_approved").notNull().default(false),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().default(sql`now()`),
+  approvedAt: timestamp("approved_at", { withTimezone: true }),
+});
+
+export const insertClientPhotoSchema = createInsertSchema(clientPhotos).omit({
+  id: true,
+  createdAt: true,
+  approvedAt: true,
+  isApproved: true,
+});
+
+export type ClientPhoto = typeof clientPhotos.$inferSelect;
+export type InsertClientPhoto = z.infer<typeof insertClientPhotoSchema>;
+
+// ===== GIFT CARDS =====
+
+export const giftCards = pgTable("gift_cards", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  code: varchar("code", { length: 20 }).notNull().unique(),
+  amount: decimal("amount", { precision: 10, scale: 2 }).notNull(),
+  remainingAmount: decimal("remaining_amount", { precision: 10, scale: 2 }).notNull(),
+  purchaserName: text("purchaser_name").notNull(),
+  purchaserEmail: text("purchaser_email").notNull(),
+  recipientName: text("recipient_name").notNull(),
+  recipientEmail: text("recipient_email").notNull(),
+  personalMessage: text("personal_message"),
+  stripePaymentIntentId: text("stripe_payment_intent_id"),
+  paymentStatus: text("payment_status").notNull().default("pending"), // pending, completed, failed
+  status: text("status").notNull().default("pending"), // pending, active, used, expired, cancelled
+  usedBookingId: varchar("used_booking_id"),
+  expiresAt: timestamp("expires_at", { withTimezone: true }).notNull(),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().default(sql`now()`),
+});
+
+export const insertGiftCardSchema = createInsertSchema(giftCards).omit({
+  id: true,
+  createdAt: true,
+});
+
+export type GiftCard = typeof giftCards.$inferSelect;
+export type InsertGiftCard = z.infer<typeof insertGiftCardSchema>;
 
 // ===== WHATSAPP CHATBOT =====
 

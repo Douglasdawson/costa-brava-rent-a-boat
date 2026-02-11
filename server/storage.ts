@@ -1,6 +1,6 @@
 import {
   adminUsers, customerUsers, customers, boats, bookings, bookingExtras, testimonials,
-  blogPosts, destinations, chatbotConversations,
+  blogPosts, destinations, chatbotConversations, clientPhotos,
   type AdminUser, type InsertAdminUser,
   type CustomerUser, type UpsertCustomerUser,
   type Customer, type InsertCustomer,
@@ -10,7 +10,10 @@ import {
   type Testimonial, type InsertTestimonial,
   type BlogPost, type InsertBlogPost,
   type Destination, type InsertDestination,
-  type ChatbotConversation, type InsertChatbotConversation, type UpdateChatbotConversation
+  type ChatbotConversation, type InsertChatbotConversation, type UpdateChatbotConversation,
+  type ClientPhoto, type InsertClientPhoto,
+  giftCards,
+  type GiftCard, type InsertGiftCard
 } from "@shared/schema";
 import { db } from "./db";
 import { eq, and, gte, lte, between, inArray, sql } from "drizzle-orm";
@@ -24,6 +27,8 @@ export interface IStorage {
   getAdminUser(id: string): Promise<AdminUser | undefined>;
   getAdminUserByUsername(username: string): Promise<AdminUser | undefined>;
   createAdminUser(user: InsertAdminUser): Promise<AdminUser>;
+  updateAdminUser(id: string, updates: Partial<AdminUser>): Promise<AdminUser | undefined>;
+  getAllAdminUsers(): Promise<AdminUser[]>;
 
   // Customer User methods (Replit Auth)
   getCustomerUser(id: string): Promise<CustomerUser | undefined>;
@@ -55,6 +60,9 @@ export interface IStorage {
   // Booking extras methods
   createBookingExtra(extra: InsertBookingExtra): Promise<BookingExtra>;
   getBookingExtras(bookingId: string): Promise<BookingExtra[]>;
+
+  // Monthly bookings for availability calendar
+  getMonthlyBookings(boatId: string, year: number, month: number): Promise<Booking[]>;
 
   // Availability check
   checkAvailability(boatId: string, startTime: Date, endTime: Date): Promise<boolean>;
@@ -98,6 +106,20 @@ export interface IStorage {
   createDestination(destination: InsertDestination): Promise<Destination>;
   updateDestination(id: string, destination: Partial<InsertDestination>): Promise<Destination | undefined>;
   deleteDestination(id: string): Promise<boolean>;
+
+  // Client Photo (Gallery) methods
+  getApprovedPhotos(): Promise<ClientPhoto[]>;
+  getAllPhotos(): Promise<ClientPhoto[]>;
+  createClientPhoto(photo: InsertClientPhoto): Promise<ClientPhoto>;
+  updateClientPhoto(id: string, updates: Partial<ClientPhoto>): Promise<ClientPhoto | undefined>;
+  deleteClientPhoto(id: string): Promise<boolean>;
+
+  // Gift Card methods
+  getAllGiftCards(): Promise<GiftCard[]>;
+  getGiftCardByCode(code: string): Promise<GiftCard | undefined>;
+  getGiftCardById(id: string): Promise<GiftCard | undefined>;
+  createGiftCard(giftCard: InsertGiftCard): Promise<GiftCard>;
+  updateGiftCard(id: string, updates: Partial<GiftCard>): Promise<GiftCard | undefined>;
 
   // Chatbot Conversation methods (WhatsApp)
   getChatbotConversation(phoneNumber: string): Promise<ChatbotConversation | undefined>;
@@ -148,6 +170,19 @@ export class DatabaseStorage implements IStorage {
       .values(insertUser)
       .returning();
     return user;
+  }
+
+  async updateAdminUser(id: string, updates: Partial<AdminUser>): Promise<AdminUser | undefined> {
+    const [user] = await db
+      .update(adminUsers)
+      .set(updates)
+      .where(eq(adminUsers.id, id))
+      .returning();
+    return user || undefined;
+  }
+
+  async getAllAdminUsers(): Promise<AdminUser[]> {
+    return await db.select().from(adminUsers);
   }
 
   // Customer User methods (Replit Auth)
@@ -360,6 +395,24 @@ export class DatabaseStorage implements IStorage {
       .select()
       .from(bookingExtras)
       .where(eq(bookingExtras.bookingId, bookingId));
+  }
+
+  // Monthly bookings for availability calendar
+  async getMonthlyBookings(boatId: string, year: number, month: number): Promise<Booking[]> {
+    const startDate = new Date(year, month - 1, 1);
+    const endDate = new Date(year, month, 0, 23, 59, 59, 999);
+
+    return await db
+      .select()
+      .from(bookings)
+      .where(
+        and(
+          eq(bookings.boatId, boatId),
+          gte(bookings.startTime, startDate),
+          lte(bookings.endTime, endDate),
+          inArray(bookings.bookingStatus, ["hold", "pending_payment", "confirmed"])
+        )
+      );
   }
 
   // Availability check with 20-minute buffer
@@ -595,6 +648,57 @@ export class DatabaseStorage implements IStorage {
   async deleteDestination(id: string): Promise<boolean> {
     const result = await db.delete(destinations).where(eq(destinations.id, id));
     return result.rowCount !== null && result.rowCount > 0;
+  }
+
+  // ===== CLIENT PHOTO (GALLERY) METHODS =====
+
+  async getApprovedPhotos(): Promise<ClientPhoto[]> {
+    return await db.select().from(clientPhotos).where(eq(clientPhotos.isApproved, true));
+  }
+
+  async getAllPhotos(): Promise<ClientPhoto[]> {
+    return await db.select().from(clientPhotos);
+  }
+
+  async createClientPhoto(photo: InsertClientPhoto): Promise<ClientPhoto> {
+    const [newPhoto] = await db.insert(clientPhotos).values(photo).returning();
+    return newPhoto;
+  }
+
+  async updateClientPhoto(id: string, updates: Partial<ClientPhoto>): Promise<ClientPhoto | undefined> {
+    const [updated] = await db.update(clientPhotos).set(updates).where(eq(clientPhotos.id, id)).returning();
+    return updated || undefined;
+  }
+
+  async deleteClientPhoto(id: string): Promise<boolean> {
+    const result = await db.delete(clientPhotos).where(eq(clientPhotos.id, id));
+    return result.rowCount !== null && result.rowCount > 0;
+  }
+
+  // ===== GIFT CARD METHODS =====
+
+  async getAllGiftCards(): Promise<GiftCard[]> {
+    return await db.select().from(giftCards);
+  }
+
+  async getGiftCardByCode(code: string): Promise<GiftCard | undefined> {
+    const [card] = await db.select().from(giftCards).where(eq(giftCards.code, code));
+    return card;
+  }
+
+  async getGiftCardById(id: string): Promise<GiftCard | undefined> {
+    const [card] = await db.select().from(giftCards).where(eq(giftCards.id, id));
+    return card;
+  }
+
+  async createGiftCard(giftCard: InsertGiftCard): Promise<GiftCard> {
+    const [created] = await db.insert(giftCards).values(giftCard).returning();
+    return created;
+  }
+
+  async updateGiftCard(id: string, updates: Partial<GiftCard>): Promise<GiftCard | undefined> {
+    const [updated] = await db.update(giftCards).set(updates).where(eq(giftCards.id, id)).returning();
+    return updated;
   }
 
   // ===== CHATBOT CONVERSATION METHODS =====

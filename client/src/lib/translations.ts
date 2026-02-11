@@ -328,6 +328,40 @@ export interface Translations {
     privacyPolicy: string;
     termsConditions: string;
   };
+
+  // Availability Calendar
+  availability: {
+    title: string;
+    available: string;
+    partial: string;
+    booked: string;
+    offSeason: string;
+    slotsFor: string;
+    noSlots: string;
+    selectDay: string;
+  };
+
+  // Gallery
+  gallery: {
+    title: string;
+    subtitle: string;
+    sharePhoto: string;
+    noPhotos: string;
+    submitTitle: string;
+    photo: string;
+    yourName: string;
+    caption: string;
+    boat: string;
+    tripDate: string;
+    submit: string;
+  };
+
+  // Routes
+  routes: {
+    title: string;
+    subtitle: string;
+    bookBoat: string;
+  };
 }
 
 export const translations: Record<Language, Translations> = {
@@ -637,8 +671,36 @@ export const translations: Record<Language, Translations> = {
       privacyPolicy: 'Política de Privacidad',
       termsConditions: 'Términos y Condiciones',
     },
+    availability: {
+      title: 'Disponibilidad',
+      available: 'Disponible',
+      partial: 'Parcial',
+      booked: 'Ocupado',
+      offSeason: 'Fuera de temporada',
+      slotsFor: 'Horarios para',
+      noSlots: 'No hay horarios disponibles para esta fecha',
+      selectDay: 'Selecciona un día para ver los horarios disponibles',
+    },
+    gallery: {
+      title: 'Galeria de Fotos',
+      subtitle: 'Fotos de nuestros clientes disfrutando de la Costa Brava',
+      sharePhoto: 'Comparte tu foto',
+      noPhotos: 'Aun no hay fotos. Se el primero en compartir!',
+      submitTitle: 'Comparte tu foto',
+      photo: 'Foto',
+      yourName: 'Tu nombre',
+      caption: 'Descripcion (opcional)',
+      boat: 'Barco',
+      tripDate: 'Fecha',
+      submit: 'Enviar foto',
+    },
+    routes: {
+      title: 'Rutas Sugeridas',
+      subtitle: 'Descubre las mejores rutas en barco desde el Puerto de Blanes',
+      bookBoat: 'Reservar barco',
+    },
   },
-  
+
   ca: {
     nav: {
       home: 'Inici',
@@ -883,8 +945,36 @@ export const translations: Record<Language, Translations> = {
       privacyPolicy: 'Política de Privacitat',
       termsConditions: 'Termes i Condicions',
     },
+    availability: {
+      title: 'Disponibilitat',
+      available: 'Disponible',
+      partial: 'Parcial',
+      booked: 'Ocupat',
+      offSeason: 'Fora de temporada',
+      slotsFor: 'Horaris per',
+      noSlots: 'No hi ha horaris disponibles per aquesta data',
+      selectDay: 'Selecciona un dia per veure els horaris disponibles',
+    },
+    gallery: {
+      title: 'Galeria de Fotos',
+      subtitle: 'Fotos dels nostres clients gaudint de la Costa Brava',
+      sharePhoto: 'Comparteix la teva foto',
+      noPhotos: 'Encara no hi ha fotos. Sigues el primer en compartir!',
+      submitTitle: 'Comparteix la teva foto',
+      photo: 'Foto',
+      yourName: 'El teu nom',
+      caption: 'Descripcio (opcional)',
+      boat: 'Barca',
+      tripDate: 'Data',
+      submit: 'Enviar foto',
+    },
+    routes: {
+      title: 'Rutes Suggerides',
+      subtitle: 'Descobreix les millors rutes en barca des del Port de Blanes',
+      bookBoat: 'Reservar barca',
+    },
   },
-  
+
   en: {
     nav: {
       home: 'Home',
@@ -1134,8 +1224,36 @@ export const translations: Record<Language, Translations> = {
       privacyPolicy: 'Privacy Policy',
       termsConditions: 'Terms and Conditions',
     },
+    availability: {
+      title: 'Availability',
+      available: 'Available',
+      partial: 'Partial',
+      booked: 'Booked',
+      offSeason: 'Off season',
+      slotsFor: 'Time slots for',
+      noSlots: 'No time slots available for this date',
+      selectDay: 'Select a day to see available time slots',
+    },
+    gallery: {
+      title: 'Photo Gallery',
+      subtitle: 'Photos from our customers enjoying the Costa Brava',
+      sharePhoto: 'Share your photo',
+      noPhotos: 'No photos yet. Be the first to share!',
+      submitTitle: 'Share your photo',
+      photo: 'Photo',
+      yourName: 'Your name',
+      caption: 'Description (optional)',
+      boat: 'Boat',
+      tripDate: 'Date',
+      submit: 'Submit photo',
+    },
+    routes: {
+      title: 'Suggested Routes',
+      subtitle: 'Discover the best boat routes from Blanes Port',
+      bookBoat: 'Book a boat',
+    },
   },
-  
+
   fr: {
     nav: {
       home: 'Accueil',
@@ -1362,8 +1480,36 @@ export const translations: Record<Language, Translations> = {
       privacyPolicy: 'Politique de Confidentialité',
       termsConditions: 'Conditions Générales',
     },
+    availability: {
+      title: 'Disponibilité',
+      available: 'Disponible',
+      partial: 'Partiel',
+      booked: 'Réservé',
+      offSeason: 'Hors saison',
+      slotsFor: 'Horaires pour le',
+      noSlots: 'Aucun créneau disponible pour cette date',
+      selectDay: 'Sélectionnez un jour pour voir les créneaux disponibles',
+    },
+    gallery: {
+      title: 'Galerie Photos',
+      subtitle: 'Photos de nos clients profitant de la Costa Brava',
+      sharePhoto: 'Partagez votre photo',
+      noPhotos: 'Pas encore de photos. Soyez le premier a partager!',
+      submitTitle: 'Partagez votre photo',
+      photo: 'Photo',
+      yourName: 'Votre nom',
+      caption: 'Description (optionnel)',
+      boat: 'Bateau',
+      tripDate: 'Date',
+      submit: 'Envoyer la photo',
+    },
+    routes: {
+      title: 'Itineraires Suggeres',
+      subtitle: 'Decouvrez les meilleures routes en bateau depuis le port de Blanes',
+      bookBoat: 'Reserver un bateau',
+    },
   },
-  
+
   de: {
     nav: {
       home: 'Startseite',
@@ -1587,8 +1733,36 @@ export const translations: Record<Language, Translations> = {
       privacyPolicy: 'Datenschutz',
       termsConditions: 'Geschäftsbedingungen',
     },
+    availability: {
+      title: 'Verfügbarkeit',
+      available: 'Verfügbar',
+      partial: 'Teilweise',
+      booked: 'Gebucht',
+      offSeason: 'Nebensaison',
+      slotsFor: 'Zeitfenster für',
+      noSlots: 'Keine Zeitfenster für dieses Datum verfügbar',
+      selectDay: 'Wählen Sie einen Tag, um verfügbare Zeitfenster zu sehen',
+    },
+    gallery: {
+      title: 'Fotogalerie',
+      subtitle: 'Fotos unserer Kunden an der Costa Brava',
+      sharePhoto: 'Teilen Sie Ihr Foto',
+      noPhotos: 'Noch keine Fotos. Seien Sie der Erste!',
+      submitTitle: 'Teilen Sie Ihr Foto',
+      photo: 'Foto',
+      yourName: 'Ihr Name',
+      caption: 'Beschreibung (optional)',
+      boat: 'Boot',
+      tripDate: 'Datum',
+      submit: 'Foto senden',
+    },
+    routes: {
+      title: 'Vorgeschlagene Routen',
+      subtitle: 'Entdecken Sie die besten Bootsrouten ab dem Hafen von Blanes',
+      bookBoat: 'Boot buchen',
+    },
   },
-  
+
   nl: {
     nav: {
       home: 'Home',
@@ -1812,8 +1986,36 @@ export const translations: Record<Language, Translations> = {
       privacyPolicy: 'Privacybeleid',
       termsConditions: 'Algemene Voorwaarden',
     },
+    availability: {
+      title: 'Beschikbaarheid',
+      available: 'Beschikbaar',
+      partial: 'Gedeeltelijk',
+      booked: 'Geboekt',
+      offSeason: 'Buiten seizoen',
+      slotsFor: 'Tijdsloten voor',
+      noSlots: 'Geen tijdsloten beschikbaar voor deze datum',
+      selectDay: 'Selecteer een dag om beschikbare tijdsloten te zien',
+    },
+    gallery: {
+      title: 'Fotogalerij',
+      subtitle: "Foto's van onze klanten die genieten van de Costa Brava",
+      sharePhoto: 'Deel je foto',
+      noPhotos: 'Nog geen fotos. Wees de eerste om te delen!',
+      submitTitle: 'Deel je foto',
+      photo: 'Foto',
+      yourName: 'Je naam',
+      caption: 'Beschrijving (optioneel)',
+      boat: 'Boot',
+      tripDate: 'Datum',
+      submit: 'Foto versturen',
+    },
+    routes: {
+      title: 'Voorgestelde Routes',
+      subtitle: 'Ontdek de beste bootroutes vanuit de haven van Blanes',
+      bookBoat: 'Boot boeken',
+    },
   },
-  
+
   it: {
     nav: {
       home: 'Home',
@@ -2037,8 +2239,36 @@ export const translations: Record<Language, Translations> = {
       privacyPolicy: 'Privacy Policy',
       termsConditions: 'Termini e Condizioni',
     },
+    availability: {
+      title: 'Disponibilità',
+      available: 'Disponibile',
+      partial: 'Parziale',
+      booked: 'Prenotato',
+      offSeason: 'Fuori stagione',
+      slotsFor: 'Orari per il',
+      noSlots: 'Nessun orario disponibile per questa data',
+      selectDay: 'Seleziona un giorno per vedere gli orari disponibili',
+    },
+    gallery: {
+      title: 'Galleria Fotografica',
+      subtitle: 'Foto dei nostri clienti che si godono la Costa Brava',
+      sharePhoto: 'Condividi la tua foto',
+      noPhotos: 'Nessuna foto ancora. Sii il primo a condividere!',
+      submitTitle: 'Condividi la tua foto',
+      photo: 'Foto',
+      yourName: 'Il tuo nome',
+      caption: 'Descrizione (opzionale)',
+      boat: 'Barca',
+      tripDate: 'Data',
+      submit: 'Invia foto',
+    },
+    routes: {
+      title: 'Percorsi Suggeriti',
+      subtitle: 'Scopri i migliori percorsi in barca dal Porto di Blanes',
+      bookBoat: 'Prenota barca',
+    },
   },
-  
+
   ru: {
     nav: {
       home: 'Главная',
@@ -2261,6 +2491,34 @@ export const translations: Record<Language, Translations> = {
       locationTossa: 'Тосса-де-Мар',
       privacyPolicy: 'Политика Конфиденциальности',
       termsConditions: 'Условия и Положения',
+    },
+    availability: {
+      title: 'Доступность',
+      available: 'Доступно',
+      partial: 'Частично',
+      booked: 'Забронировано',
+      offSeason: 'Вне сезона',
+      slotsFor: 'Время на',
+      noSlots: 'Нет доступных временных слотов на эту дату',
+      selectDay: 'Выберите день, чтобы увидеть доступные временные слоты',
+    },
+    gallery: {
+      title: 'Фотогалерея',
+      subtitle: 'Фотографии наших клиентов на Коста Брава',
+      sharePhoto: 'Поделитесь фото',
+      noPhotos: 'Пока нет фотографий. Будьте первым!',
+      submitTitle: 'Поделитесь своим фото',
+      photo: 'Фото',
+      yourName: 'Ваше имя',
+      caption: 'Описание (необязательно)',
+      boat: 'Лодка',
+      tripDate: 'Дата',
+      submit: 'Отправить фото',
+    },
+    routes: {
+      title: 'Рекомендуемые Маршруты',
+      subtitle: 'Откройте лучшие лодочные маршруты из порта Бланес',
+      bookBoat: 'Забронировать лодку',
     },
   },
 };

@@ -141,6 +141,20 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       description: "Alquila {boatName} en Blanes, Costa Brava. Capacidad {capacity} personas, {license}. Desde {pricePerHour}€/hora. ¡Reserva online!",
       keywords: "alquiler {boatName}, {boatName} blanes, barco {capacity} personas costa brava"
     },
+    gallery: {
+      title: "Galeria de Fotos Clientes | Costa Brava Rent a Boat",
+      description: "Fotos reales de nuestros clientes disfrutando en barco por la Costa Brava desde Blanes. Comparte tu experiencia nautica!",
+      keywords: "fotos clientes barcos blanes, galeria alquiler barcos costa brava, experiencias barco blanes",
+      ogTitle: "Galeria de Fotos | Costa Brava Rent a Boat",
+      ogDescription: "Fotos reales de clientes navegando por la Costa Brava desde Blanes. Comparte tu experiencia!"
+    },
+    routes: {
+      title: "Rutas en Barco desde Blanes | Costa Brava",
+      description: "Descubre las mejores rutas en barco desde Blanes. Desde Sa Palomera hasta Tossa de Mar. Mapas interactivos y guia de navegacion.",
+      keywords: "rutas barco blanes, excursiones barco costa brava, mapa rutas nauticas, tossa de mar barco, lloret barco",
+      ogTitle: "Rutas en Barco desde Blanes | Costa Brava 2026",
+      ogDescription: "5 rutas en barco desde Blanes. Sa Palomera, Cala Sant Francesc, Lloret de Mar, Tossa de Mar. Mapas interactivos!"
+    },
     notFound: {
       title: "Página no encontrada | Costa Brava Rent a Boat",
       description: "La página que buscas no existe. Vuelve al inicio para alquilar barcos en Blanes, Costa Brava.",
@@ -229,6 +243,20 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       description: "Rent {boatName} in Blanes, Costa Brava. Capacity {capacity} people, {license}. From {pricePerHour}€/hour. Book online!",
       keywords: "rent {boatName}, {boatName} blanes, boat {capacity} people costa brava"
     },
+    gallery: {
+      title: "Customer Photo Gallery | Costa Brava Rent a Boat",
+      description: "Real photos from our customers enjoying boat trips on Costa Brava from Blanes. Share your nautical experience!",
+      keywords: "customer photos boats blanes, gallery boat rental costa brava, boat trip experiences blanes",
+      ogTitle: "Photo Gallery | Costa Brava Rent a Boat",
+      ogDescription: "Real photos from customers sailing the Costa Brava from Blanes. Share your experience!"
+    },
+    routes: {
+      title: "Boat Routes from Blanes | Costa Brava",
+      description: "Discover the best boat routes from Blanes. From Sa Palomera to Tossa de Mar. Interactive maps and navigation guide.",
+      keywords: "boat routes blanes, boat excursions costa brava, nautical route maps, tossa de mar boat, lloret boat",
+      ogTitle: "Boat Routes from Blanes | Costa Brava 2026",
+      ogDescription: "5 boat routes from Blanes. Sa Palomera, Cala Sant Francesc, Lloret de Mar, Tossa de Mar. Interactive maps!"
+    },
     notFound: {
       title: "Page not found | Costa Brava Rent a Boat",
       description: "The page you're looking for doesn't exist. Return to home to rent boats in Blanes, Costa Brava.",
@@ -306,6 +334,16 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       keywords: "blog lloguer barques, guies navegació costa brava, destinacions en barca blanes, cales secretes costa brava, rutes nàutiques",
       ogTitle: "Blog de Navegació Costa Brava | Guies i Destinacions en Barca",
       ogDescription: "Descobreix guies completes, consells de navegació i les millors destinacions de la Costa Brava. Cales secretes, rutes i consells per a la teva aventura en barca."
+    },
+    gallery: {
+      title: "Galeria de Fotos Clients | Costa Brava Rent a Boat",
+      description: "Fotos reals dels nostres clients gaudint en barca per la Costa Brava des de Blanes. Comparteix la teva experiencia nautica!",
+      keywords: "fotos clients barques blanes, galeria lloguer barques costa brava, experiencies barca blanes"
+    },
+    routes: {
+      title: "Rutes en Barca des de Blanes | Costa Brava",
+      description: "Descobreix les millors rutes en barca des de Blanes. Des de Sa Palomera fins a Tossa de Mar. Mapes interactius i guia de navegacio.",
+      keywords: "rutes barca blanes, excursions barca costa brava, mapa rutes nautiques, tossa de mar barca"
     }
   },
   fr: {
@@ -365,6 +403,16 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       keywords: "blog location bateaux, guides navigation costa brava, destinations bateau blanes, criques secrètes costa brava, routes nautiques",
       ogTitle: "Blog de Navigation Costa Brava | Guides et Destinations en Bateau",
       ogDescription: "Découvrez des guides complets, conseils de navigation et meilleures destinations de Costa Brava. Criques secrètes, routes et conseils pour votre aventure en bateau."
+    },
+    gallery: {
+      title: "Galerie Photos Clients | Costa Brava Rent a Boat",
+      description: "Photos reelles de nos clients profitant de la Costa Brava en bateau depuis Blanes. Partagez votre experience nautique!",
+      keywords: "photos clients bateaux blanes, galerie location bateaux costa brava, experiences bateau blanes"
+    },
+    routes: {
+      title: "Itineraires en Bateau depuis Blanes | Costa Brava",
+      description: "Decouvrez les meilleures routes en bateau depuis Blanes. De Sa Palomera a Tossa de Mar. Cartes interactives et guide de navigation.",
+      keywords: "routes bateau blanes, excursions bateau costa brava, carte routes nautiques, tossa de mar bateau"
     }
   },
   de: {
@@ -424,6 +472,16 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       keywords: "bootsvermietung blog, navigationsanleitungen costa brava, bootsziele blanes, geheime buchten costa brava, seerouten",
       ogTitle: "Costa Brava Navigations-Blog | Boot-Anleitungen und Reiseziele",
       ogDescription: "Entdecken Sie vollständige Anleitungen, Navigationstipps und die besten Reiseziele der Costa Brava. Geheime Buchten, Routen und Tipps für Ihr Bootsabenteuer."
+    },
+    gallery: {
+      title: "Kundenfotogalerie | Costa Brava Rent a Boat",
+      description: "Echte Fotos unserer Kunden auf Bootsausflügen an der Costa Brava ab Blanes. Teilen Sie Ihr nautisches Erlebnis!",
+      keywords: "kundenfotos boote blanes, galerie bootsverleih costa brava, bootserlebnisse blanes"
+    },
+    routes: {
+      title: "Bootsrouten ab Blanes | Costa Brava",
+      description: "Entdecken Sie die besten Bootsrouten ab Blanes. Von Sa Palomera bis Tossa de Mar. Interaktive Karten und Navigationsführer.",
+      keywords: "bootsrouten blanes, bootsausflüge costa brava, nautische routenkarte, tossa de mar boot"
     }
   },
   nl: {
@@ -483,6 +541,16 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       keywords: "bootverhuur blog, navigatiegidsen costa brava, bootbestemmingen blanes, geheime baaien costa brava, nautische routes",
       ogTitle: "Costa Brava Navigatie Blog | Bootgidsen en Bestemmingen",
       ogDescription: "Ontdek volledige gidsen, navigatietips en de beste bestemmingen van Costa Brava. Geheime baaien, routes en tips voor uw bootavontuur."
+    },
+    gallery: {
+      title: "Klantenfotogalerij | Costa Brava Rent a Boat",
+      description: "Echte foto's van onze klanten die genieten van boottochten aan de Costa Brava vanuit Blanes. Deel uw nautische ervaring!",
+      keywords: "klantenfoto's boten blanes, galerij bootverhuur costa brava, bootervaring blanes"
+    },
+    routes: {
+      title: "Bootroutes vanuit Blanes | Costa Brava",
+      description: "Ontdek de beste bootroutes vanuit Blanes. Van Sa Palomera tot Tossa de Mar. Interactieve kaarten en navigatiegids.",
+      keywords: "bootroutes blanes, bootexcursies costa brava, nautische routekaart, tossa de mar boot"
     }
   },
   it: {
@@ -537,6 +605,16 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       keywords: "blog noleggio barche, guide navigazione costa brava, destinazioni barca blanes, calette segrete costa brava, rotte nautiche",
       ogTitle: "Blog di Navigazione Costa Brava | Guide e Destinazioni in Barca",
       ogDescription: "Scopri guide complete, consigli di navigazione e le migliori destinazioni della Costa Brava. Calette segrete, rotte e consigli per la tua avventura in barca."
+    },
+    gallery: {
+      title: "Galleria Fotografica Clienti | Costa Brava Rent a Boat",
+      description: "Foto reali dei nostri clienti che si godono gite in barca sulla Costa Brava da Blanes. Condividi la tua esperienza nautica!",
+      keywords: "foto clienti barche blanes, galleria noleggio barche costa brava, esperienze barca blanes"
+    },
+    routes: {
+      title: "Percorsi in Barca da Blanes | Costa Brava",
+      description: "Scopri i migliori percorsi in barca da Blanes. Da Sa Palomera a Tossa de Mar. Mappe interattive e guida alla navigazione.",
+      keywords: "percorsi barca blanes, escursioni barca costa brava, mappa rotte nautiche, tossa de mar barca"
     }
   },
   ru: {
@@ -591,6 +669,16 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       keywords: "блог аренда лодок, гиды навигация коста брава, направления лодка бланес, секретные бухты коста брава, морские маршруты",
       ogTitle: "Блог Навигации Коста-Брава | Гиды и Направления на Лодке",
       ogDescription: "Откройте полные гиды, советы по навигации и лучшие направления Коста-Бравы. Секретные бухты, маршруты и советы для вашего приключения на лодке."
+    },
+    gallery: {
+      title: "Фотогалерея Клиентов | Costa Brava Rent a Boat",
+      description: "Реальные фото наших клиентов на лодочных прогулках по Коста-Браве из Бланеса. Поделитесь своим морским опытом!",
+      keywords: "фото клиентов лодки бланес, галерея аренда лодок коста брава, впечатления лодка бланес"
+    },
+    routes: {
+      title: "Маршруты на Лодке из Бланеса | Коста-Брава",
+      description: "Откройте лучшие маршруты на лодке из Бланеса. От Са Паломера до Тосса-де-Мар. Интерактивные карты и навигационный гид.",
+      keywords: "маршруты лодка бланес, экскурсии лодка коста брава, карта морских маршрутов, тосса де мар лодка"
     }
   }
 };

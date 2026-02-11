@@ -250,7 +250,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                     variant="ghost"
                     size="icon"
                     onClick={prevImage}
-                    className="absolute left-2 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white/90 opacity-0 group-hover:opacity-100 transition-opacity"
+                    className="absolute left-2 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white/90 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity"
                     data-testid="button-prev-image"
                   >
                     <ChevronLeft className="w-6 h-6" />
@@ -259,7 +259,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                     variant="ghost"
                     size="icon"
                     onClick={nextImage}
-                    className="absolute right-2 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white/90 opacity-0 group-hover:opacity-100 transition-opacity"
+                    className="absolute right-2 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white/90 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity"
                     data-testid="button-next-image"
                   >
                     <ChevronRight className="w-6 h-6" />

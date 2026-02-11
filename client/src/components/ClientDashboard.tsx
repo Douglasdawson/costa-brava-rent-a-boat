@@ -398,8 +398,8 @@ function BookingsTab() {
       {bookings.map((booking) => (
         <Card key={booking.id}>
           <CardHeader>
-            <div className="flex justify-between items-start">
-              <div>
+            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2">
+              <div className="min-w-0">
                 <CardTitle className="text-lg">Reserva #{booking.id.slice(0, 8)}</CardTitle>
                 <CardDescription>
                   {new Date(booking.bookingDate).toLocaleDateString()} -{" "}
@@ -407,7 +407,7 @@ function BookingsTab() {
                   {booking.totalHours} horas
                 </CardDescription>
               </div>
-              <div className="text-right">
+              <div className="text-left sm:text-right shrink-0">
                 <div className="font-bold text-lg">{booking.totalAmount} €</div>
                 <div
                   className={`text-sm ${
@@ -424,7 +424,7 @@ function BookingsTab() {
             </div>
           </CardHeader>
           <CardContent>
-            <div className="grid grid-cols-2 gap-2 text-sm">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm">
               <div>
                 <span className="text-muted-foreground">Personas:</span> {booking.numberOfPeople}
               </div>
@@ -503,12 +503,12 @@ export default function ClientDashboard() {
   return (
     <div className="min-h-screen bg-background">
       <div className="container max-w-5xl mx-auto py-8 px-4">
-        <div className="flex justify-between items-center mb-8">
+        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-8">
           <div>
-            <h1 className="text-3xl font-bold" data-testid="title-dashboard">Mi Cuenta</h1>
-            <p className="text-muted-foreground">{user.email}</p>
+            <h1 className="text-2xl sm:text-3xl font-bold" data-testid="title-dashboard">Mi Cuenta</h1>
+            <p className="text-muted-foreground text-sm sm:text-base truncate">{user.email}</p>
           </div>
-          <Button variant="outline" onClick={handleLogout} data-testid="button-logout">
+          <Button variant="outline" onClick={handleLogout} data-testid="button-logout" className="self-start sm:self-auto">
             <LogOut className="mr-2 h-4 w-4" />
             Cerrar sesión
           </Button>
@@ -517,16 +517,16 @@ export default function ClientDashboard() {
         <Tabs defaultValue="profile" className="space-y-4">
           <TabsList className="grid w-full grid-cols-3">
             <TabsTrigger value="profile" data-testid="tab-profile">
-              <User className="mr-2 h-4 w-4" />
+              <User className="mr-2 h-4 w-4 hidden sm:block" />
               Perfil
             </TabsTrigger>
             <TabsTrigger value="bookings" data-testid="tab-bookings">
-              <Calendar className="mr-2 h-4 w-4" />
-              Mis Reservas
+              <Calendar className="mr-2 h-4 w-4 hidden sm:block" />
+              Reservas
             </TabsTrigger>
             <TabsTrigger value="new-booking" data-testid="tab-new-booking">
-              <Ship className="mr-2 h-4 w-4" />
-              Nueva Reserva
+              <Ship className="mr-2 h-4 w-4 hidden sm:block" />
+              Nueva
             </TabsTrigger>
           </TabsList>
 

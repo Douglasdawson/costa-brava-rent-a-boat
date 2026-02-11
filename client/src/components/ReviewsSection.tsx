@@ -49,7 +49,7 @@ export default function ReviewsSection() {
         </div>
 
         {/* Reviews Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 mb-8">
           {topReviews.map((review) => (
             <Card key={review.id} className="bg-white hover:shadow-md transition-shadow">
               <CardContent className="p-4 sm:p-5">
@@ -74,7 +74,7 @@ export default function ReviewsSection() {
         {/* CTA */}
         <div className="text-center">
           <a href="/testimonios">
-            <Button variant="outline" size="sm" className="gap-1">
+            <Button variant="outline" size="default" className="gap-1 h-10 sm:h-9 px-4">
               Ver todas las opiniones
               <ChevronRight className="w-4 h-4" />
             </Button>

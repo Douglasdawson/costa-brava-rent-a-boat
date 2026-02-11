@@ -16,6 +16,7 @@ import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { useTranslations } from "@/lib/translations";
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
+import { useLocation } from "wouter";
 import type { Testimonial } from "@shared/schema";
 
 export default function TestimoniosPage() {
@@ -26,6 +27,7 @@ export default function TestimoniosPage() {
   const canonical = generateCanonicalUrl('testimonios', language);
 
   const [selectedBoat, setSelectedBoat] = useState<string>('all');
+  const [, setLocation] = useLocation();
 
   // Fetch testimonials from API
   const { data: testimonials, isLoading, isError } = useQuery<Testimonial[]>({
@@ -134,13 +136,13 @@ export default function TestimoniosPage() {
             <p className="text-gray-600 mb-6">
               No pudimos cargar las opiniones de clientes en este momento. Por favor, intenta de nuevo más tarde.
             </p>
-            <button
+            <Button
               onClick={() => window.location.reload()}
-              className="bg-primary text-white px-6 py-2 rounded-lg hover:bg-primary/90 transition-colors"
+              size="lg"
               data-testid="reload-button"
             >
               Reintentar
-            </button>
+            </Button>
           </div>
         </div>
         <Footer />
@@ -172,9 +174,9 @@ export default function TestimoniosPage() {
           />
           
           <div className="text-center mt-8">
-            <div className="inline-flex items-center justify-center mb-6">
-              <Quote className="w-12 h-12 mr-4" />
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6">
+              <Quote className="w-10 h-10 sm:w-12 sm:h-12 hidden sm:block" />
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold text-center">
                 Opiniones de Nuestros Clientes
               </h1>
             </div>
@@ -240,7 +242,7 @@ export default function TestimoniosPage() {
             {filteredTestimonials.map((testimonial) => (
               <Card key={testimonial.id} className="hover-elevate" data-testid={`testimonial-${testimonial.id}`}>
                 <CardHeader className="pb-3">
-                  <div className="flex items-start justify-between">
+                  <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2">
                     <div className="flex-1">
                       <div className="flex items-center gap-2 mb-1">
                         <h3 className="font-semibold text-lg text-gray-900">

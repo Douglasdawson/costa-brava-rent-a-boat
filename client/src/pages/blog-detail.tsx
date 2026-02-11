@@ -187,7 +187,7 @@ export default function BlogDetailPage() {
             </Badge>
 
             <h1 
-              className="text-4xl font-bold tracking-tight"
+              className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight"
               data-testid={`text-title-${post.slug}`}
             >
               {post.title}
@@ -260,7 +260,7 @@ export default function BlogDetailPage() {
             <h2 className="text-2xl font-bold mb-6" data-testid="text-related-posts-title">
               Artículos Relacionados
             </h2>
-            <div className="grid md:grid-cols-3 gap-6">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {relatedPosts.map((relatedPost) => (
                 <Card 
                   key={relatedPost.id} 

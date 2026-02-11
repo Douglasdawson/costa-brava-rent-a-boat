@@ -127,7 +127,7 @@ export default function FeaturesSection() {
             <h3 className="font-heading text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-gray-900 mb-2 sm:mb-3 lg:mb-4">
               Extras Disponibles
             </h3>
-            <p className="text-gray-600">
+            <p className="text-sm sm:text-base text-gray-600">
               Completa tu experiencia con nuestros extras opcionales.
             </p>
           </div>
@@ -147,7 +147,7 @@ export default function FeaturesSection() {
                     <h4 className="font-heading font-semibold text-sm sm:text-base md:text-xl text-gray-900 mb-1 sm:mb-2">
                       {extra.name}
                     </h4>
-                    <p className="text-[10px] sm:text-xs md:text-sm text-gray-600 mb-2 sm:mb-3 md:mb-4">
+                    <p className="text-xs sm:text-sm text-gray-600 mb-2 sm:mb-3 md:mb-4">
                       {extra.description}
                     </p>
                     <div className="flex items-center justify-between">

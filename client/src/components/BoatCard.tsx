@@ -151,7 +151,7 @@ export default function BoatCard({
         <Button 
           variant="outline" 
           size="sm"
-          className="flex-1 text-xs sm:text-sm"
+          className="flex-1 text-xs sm:text-sm h-10 sm:h-8"
           onClick={handleDetails}
           data-testid={`button-details-${id}`}
         >
@@ -159,7 +159,7 @@ export default function BoatCard({
         </Button>
         <Button 
           size="sm"
-          className="flex-1 text-xs sm:text-sm" 
+          className="flex-1 text-xs sm:text-sm h-10 sm:h-8"
           onClick={handleBooking}
           disabled={!available}
           data-testid={`button-book-${id}`}

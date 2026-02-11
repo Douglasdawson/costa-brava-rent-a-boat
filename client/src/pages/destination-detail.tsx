@@ -146,7 +146,7 @@ export default function DestinationDetailPage() {
         <article className="space-y-6">
           <header className="space-y-4">
             <h1 
-              className="text-4xl font-bold tracking-tight"
+              className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight"
               data-testid={`text-title-${destination.slug}`}
             >
               {destination.name}
@@ -246,7 +246,7 @@ export default function DestinationDetailPage() {
                     key={index}
                     src={image} 
                     alt={`${destination.name} - Imagen ${index + 1}`}
-                    className="w-full h-48 object-cover rounded-lg"
+                    className="w-full h-32 sm:h-48 object-cover rounded-lg"
                     data-testid={`img-gallery-${index}`}
                   />
                 ))}
@@ -264,7 +264,7 @@ export default function DestinationDetailPage() {
                 <p className="text-muted-foreground">
                   Alquila un barco y descubre este increíble destino de la Costa Brava
                 </p>
-                <div className="flex gap-4">
+                <div className="flex flex-col sm:flex-row gap-4">
                   <Button asChild data-testid="button-cta-booking">
                     <Link href="/#fleet">
                       Ver Barcos Disponibles

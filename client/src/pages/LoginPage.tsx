@@ -149,15 +149,15 @@ export default function LoginPage() {
           <Tabs defaultValue="user" className="w-full">
             <TabsList className="grid w-full grid-cols-3">
               <TabsTrigger value="user" data-testid="tab-user">
-                <User className="w-4 h-4 mr-2" />
+                <User className="w-4 h-4 mr-2 hidden sm:block" />
                 Equipo
               </TabsTrigger>
               <TabsTrigger value="admin" data-testid="tab-admin">
-                <Lock className="w-4 h-4 mr-2" />
+                <Lock className="w-4 h-4 mr-2 hidden sm:block" />
                 PIN Admin
               </TabsTrigger>
               <TabsTrigger value="cliente" data-testid="tab-cliente">
-                <UserCircle className="w-4 h-4 mr-2" />
+                <UserCircle className="w-4 h-4 mr-2 hidden sm:block" />
                 Cliente
               </TabsTrigger>
             </TabsList>

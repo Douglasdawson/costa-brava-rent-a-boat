@@ -51,7 +51,7 @@ export default function ContactSection() {
                   <h3 className="font-medium text-gray-900 mb-2 text-sm">Email</h3>
                   <a 
                     href="mailto:costabravarentboat@gmail.com" 
-                    className="text-gray-600 hover:text-primary transition-colors cursor-pointer block mb-1 text-sm"
+                    className="text-gray-600 hover:text-primary transition-colors cursor-pointer block mb-1 text-xs sm:text-sm break-all"
                     data-testid="email-link"
                     aria-label="Enviar email a costabravarentboat@gmail.com"
                   >
@@ -109,15 +109,15 @@ export default function ContactSection() {
         {/* Navigation Boxes */}
         <div className="mt-12 mb-8">
           <div className="text-center mb-8">
-            <h2 className="font-heading text-2xl lg:text-3xl font-bold text-gray-900 mb-4">
+            <h2 className="font-heading text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 mb-2 sm:mb-4">
               Descubre Más Opciones
             </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            <p className="text-sm sm:text-base lg:text-lg text-gray-600 max-w-2xl mx-auto">
               Explora nuestros destinos y tipos de embarcación
             </p>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-6">
             {/* Alquiler Barcos Blanes */}
             <Link href="/alquiler-barcos-blanes" asChild>
               <Card className="hover:shadow-lg transition-shadow cursor-pointer group h-full flex flex-col">
@@ -125,7 +125,7 @@ export default function ContactSection() {
                   <div className="w-12 h-12 bg-blue-50 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
                     <MapPin className="w-6 h-6 text-blue-600" />
                   </div>
-                  <CardTitle className="text-lg text-center">Alquiler Barcos Blanes</CardTitle>
+                  <CardTitle className="text-sm sm:text-base lg:text-lg text-center">Alquiler Barcos Blanes</CardTitle>
                 </CardHeader>
                 <CardContent className="text-center flex-1 flex flex-col">
                   <div className="mb-3">
@@ -134,7 +134,7 @@ export default function ContactSection() {
                       Base principal
                     </Badge>
                   </div>
-                  <p className="text-gray-600 mb-3 text-[13px]">
+                  <p className="text-gray-600 mb-3 text-xs sm:text-sm leading-relaxed">
                     Puerto base de operaciones con todas las comodidades. Punto de partida perfecto para explorar toda la Costa Brava.
                   </p>
                   <div className="flex flex-wrap gap-1 justify-center mb-3">
@@ -164,7 +164,7 @@ export default function ContactSection() {
                   <div className="w-12 h-12 bg-green-50 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
                     <Camera className="w-6 h-6 text-green-600" />
                   </div>
-                  <CardTitle className="text-lg text-center">Excursión a Lloret de Mar</CardTitle>
+                  <CardTitle className="text-sm sm:text-base lg:text-lg text-center">Excursión a Lloret de Mar</CardTitle>
                 </CardHeader>
                 <CardContent className="text-center flex-1 flex flex-col">
                   <div className="mb-3">
@@ -203,7 +203,7 @@ export default function ContactSection() {
                   <div className="w-12 h-12 bg-purple-50 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
                     <Camera className="w-6 h-6 text-purple-600" />
                   </div>
-                  <CardTitle className="text-lg text-center">Visita Tossa de Mar</CardTitle>
+                  <CardTitle className="text-sm sm:text-base lg:text-lg text-center">Visita Tossa de Mar</CardTitle>
                 </CardHeader>
                 <CardContent className="text-center flex-1 flex flex-col">
                   <div className="mb-3">
@@ -242,7 +242,7 @@ export default function ContactSection() {
                   <div className="w-12 h-12 bg-blue-50 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
                     <Star className="w-6 h-6 text-blue-600" />
                   </div>
-                  <CardTitle className="text-lg text-center">Barcos Con Licencia</CardTitle>
+                  <CardTitle className="text-sm sm:text-base lg:text-lg text-center">Barcos Con Licencia</CardTitle>
                 </CardHeader>
                 <CardContent className="text-center flex-1 flex flex-col">
                   <p className="text-gray-600 mb-3 text-sm leading-relaxed">
@@ -273,7 +273,7 @@ export default function ContactSection() {
         {/* Map */}
         <div className="mt-8">
           <Card className="overflow-hidden">
-            <div className="relative min-h-[400px] sm:min-h-[450px]">
+            <div className="relative min-h-[300px] sm:min-h-[400px] lg:min-h-[450px]">
               {/* Google Maps iframe de fondo */}
               <iframe 
                 src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2980.1411982500704!2d2.7957177!3d41.6742939!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12bb172c94a8856f%3A0x9a2dfa936ef2e0a7!2sCosta%20Brava%20Rent%20a%20Boat%20-%20Blanes%20%7C%20Alquiler%20de%20Barcos%20Con%20y%20Sin%20Licencia!5e0!3m2!1ses!2ses!4v1759782051685!5m2!1ses!2ses" 
@@ -289,13 +289,13 @@ export default function ContactSection() {
               <div className="absolute inset-0 bg-black/40 pointer-events-none"></div>
               
               {/* Contenido */}
-              <div className="relative z-10 p-8 flex flex-col items-center justify-center min-h-[400px] sm:min-h-[450px] pointer-events-none">
+              <div className="relative z-10 p-4 sm:p-6 lg:p-8 flex flex-col items-center justify-center min-h-[300px] sm:min-h-[400px] lg:min-h-[450px] pointer-events-none">
                 <div className="pointer-events-auto">
                   <MapPin className="w-12 h-12 text-white mx-auto mb-4 drop-shadow-lg" />
-                  <h3 className="font-heading text-xl font-semibold text-white mb-2 drop-shadow-lg text-center">
+                  <h3 className="font-heading text-lg sm:text-xl font-semibold text-white mb-2 drop-shadow-lg text-center">
                     Nos encontramos en el Puerto de Blanes
                   </h3>
-                  <p className="text-white/90 mb-4 drop-shadow-lg text-center">
+                  <p className="text-sm sm:text-base text-white/90 mb-4 drop-shadow-lg text-center">
                     Fácil acceso y parking disponible cerca del puerto deportivo.
                   </p>
                   <div className="text-center">

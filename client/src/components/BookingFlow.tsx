@@ -983,7 +983,7 @@ export default function BookingFlow({
             <CardContent>
               <div className="space-y-4 mb-6">
                 {availableExtras.map((extra) => (
-                  <div key={extra.id} className="flex items-center justify-between p-4 border border-gray-200 rounded-lg">
+                  <div key={extra.id} className="flex flex-col sm:flex-row sm:items-center justify-between p-4 border border-gray-200 rounded-lg gap-3">
                     <div className="flex-1">
                       <h4 className="font-medium text-gray-900">{extra.name}</h4>
                       <p className="text-sm text-gray-600">{extra.description}</p>
@@ -1099,7 +1099,7 @@ export default function BookingFlow({
                         data-testid="input-phone-prefix-search"
                       />
                       {showPhonePrefixDropdown && filteredPhoneCountries.length > 0 && (
-                        <div className="absolute z-10 left-0 min-w-full w-max max-w-xs max-h-48 overflow-y-auto bg-white border border-gray-300 rounded-lg shadow-lg mt-1">
+                        <div className="absolute z-10 left-0 w-full max-w-xs max-h-48 overflow-y-auto bg-white border border-gray-300 rounded-lg shadow-lg mt-1">
                           {filteredPhoneCountries.slice(0, 8).map((country) => (
                             <button
                               key={country.code}

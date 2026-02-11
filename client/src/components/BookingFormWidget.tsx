@@ -482,7 +482,7 @@ Looking forward to confirmation. Thanks!`;
                 </button>
 
                 {showPrefixDropdown && (
-                  <div className="absolute top-full left-0 mt-1 w-64 bg-white border border-gray-200 rounded-lg shadow-lg z-50 max-h-64 overflow-y-auto">
+                  <div className="absolute top-full left-0 mt-1 w-[min(16rem,calc(100vw-3rem))] bg-white border border-gray-200 rounded-lg shadow-lg z-50 max-h-64 overflow-y-auto">
                     <div className="p-2 border-b sticky top-0 bg-white">
                       <input
                         type="text"
@@ -552,7 +552,7 @@ Looking forward to confirmation. Thanks!`;
 
       {/* Booking Details Section */}
       <div className="bg-gray-50/80 rounded-lg p-2 sm:p-3 mb-2 sm:mb-3">
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-2">
           {/* Date */}
           <div className="bg-white rounded-lg p-2 sm:p-3 shadow-sm border border-gray-100">
             <label htmlFor="booking-date" className="flex items-center justify-center md:justify-start text-xs [@media(min-width:400px)]:text-sm font-semibold text-gray-800 mb-1 sm:mb-2">

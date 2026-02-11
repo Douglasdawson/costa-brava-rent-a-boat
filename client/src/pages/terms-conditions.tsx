@@ -45,7 +45,7 @@ export default function TermsConditionsPage() {
       </div>
       
       {/* Hero Section */}
-      <div className="bg-gradient-to-br from-blue-50 to-teal-50 pt-24 pb-8">
+      <div className="bg-gradient-to-br from-blue-50 to-teal-50 pt-20 sm:pt-24 pb-8">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="flex items-center justify-center mb-6">
             <FileText className="w-8 h-8 text-primary mr-4" />

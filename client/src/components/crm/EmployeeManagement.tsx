@@ -176,7 +176,7 @@ export function EmployeeManagement({ adminToken }: EmployeeManagementProps) {
       </div>
 
       <Card>
-        <CardContent className="p-0">
+        <CardContent className="p-0 overflow-x-auto">
           {isLoading ? (
             <div className="p-8 text-center">Cargando...</div>
           ) : (

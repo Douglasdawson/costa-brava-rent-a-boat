@@ -618,7 +618,7 @@ export default function CRMDashboard({ adminToken }: CRMDashboardProps) {
         </div>
       </div>
 
-      <div className="p-6">
+      <div className="p-3 sm:p-6">
         {/* Dashboard Tab */}
         {selectedTab === "dashboard" && (
           <div className="space-y-6">
@@ -727,7 +727,7 @@ export default function CRMDashboard({ adminToken }: CRMDashboardProps) {
                 ) : (
                   <div className="space-y-4">
                     {recentBookings.map((booking: any) => (
-                      <div key={booking.id} className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                      <div key={booking.id} className="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-gray-50 rounded-lg gap-2">
                         <div className="flex-1">
                           <div className="flex items-center space-x-3">
                             <div>
@@ -786,7 +786,7 @@ export default function CRMDashboard({ adminToken }: CRMDashboardProps) {
                 ) : (
                   <div className="space-y-4">
                     {upcomingBookings.map((booking: any) => (
-                      <div key={booking.id} className="flex items-center justify-between p-4 bg-blue-50 rounded-lg">
+                      <div key={booking.id} className="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-blue-50 rounded-lg gap-2">
                         <div className="flex-1">
                           <div className="flex items-center space-x-3">
                             <Clock className="w-5 h-5 text-blue-600" />
@@ -1366,7 +1366,7 @@ export default function CRMDashboard({ adminToken }: CRMDashboardProps) {
               {/* Customer Info */}
               <div>
                 <h3 className="font-semibold text-lg mb-3">Informaci\u00f3n del Cliente</h3>
-                <div className="grid grid-cols-2 gap-4 text-sm">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
                   <div>
                     <p className="text-gray-600">Nombre Completo</p>
                     <p className="font-medium">{selectedBooking.customerName} {selectedBooking.customerSurname}</p>
@@ -1395,7 +1395,7 @@ export default function CRMDashboard({ adminToken }: CRMDashboardProps) {
               {/* Booking Info */}
               <div>
                 <h3 className="font-semibold text-lg mb-3">Detalles de la Reserva</h3>
-                <div className="grid grid-cols-2 gap-4 text-sm">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
                   <div>
                     <p className="text-gray-600">Barco</p>
                     <p className="font-medium">{selectedBooking.boatId}</p>
@@ -1432,7 +1432,7 @@ export default function CRMDashboard({ adminToken }: CRMDashboardProps) {
               {/* Payment Info */}
               <div>
                 <h3 className="font-semibold text-lg mb-3">Informaci\u00f3n de Pago</h3>
-                <div className="grid grid-cols-2 gap-4 text-sm">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
                   <div>
                     <p className="text-gray-600">Subtotal</p>
                     <p className="font-medium">\u20ac{parseFloat(selectedBooking.subtotal).toFixed(2)}</p>
@@ -1536,7 +1536,7 @@ export default function CRMDashboard({ adminToken }: CRMDashboardProps) {
               {/* Customer Info */}
               <div>
                 <h3 className="font-semibold text-lg mb-3">Información del Cliente</h3>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <Label htmlFor="customerName">Nombre</Label>
                     <Input
@@ -1606,7 +1606,7 @@ export default function CRMDashboard({ adminToken }: CRMDashboardProps) {
               {/* Booking Info */}
               <div>
                 <h3 className="font-semibold text-lg mb-3">Detalles de la Reserva</h3>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <Label htmlFor="boatId">Barco</Label>
                     <Input
@@ -1683,7 +1683,7 @@ export default function CRMDashboard({ adminToken }: CRMDashboardProps) {
               {/* Payment Info */}
               <div>
                 <h3 className="font-semibold text-lg mb-3">Información de Pago</h3>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <Label htmlFor="subtotal">Subtotal (€)</Label>
                     <Input

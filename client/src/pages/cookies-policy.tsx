@@ -4,6 +4,8 @@ import { SEO } from "@/components/SEO";
 import { getSEOConfig } from "@/utils/seo-config";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { useLanguage } from "@/hooks/use-language";
+import Navigation from "@/components/Navigation";
+import Footer from "@/components/Footer";
 
 export default function CookiesPolicy() {
   const t = useTranslations();
@@ -20,8 +22,9 @@ export default function CookiesPolicy() {
         title={seoConfig.title}
         description={seoConfig.description}
       />
+      <Navigation />
       <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-800">
-        <div className="container mx-auto px-4 py-8 sm:py-12 lg:py-16 max-w-4xl">
+        <div className="container mx-auto px-4 pt-20 sm:pt-24 pb-8 sm:pb-12 lg:pb-16 max-w-4xl">
           <Breadcrumbs 
             items={[
               { label: 'breadcrumbs.home', href: '/' },
@@ -29,7 +32,7 @@ export default function CookiesPolicy() {
             ]}
           />
           
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold text-gray-900 dark:text-white mb-6 sm:mb-8">
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold text-gray-900 dark:text-white mb-6 sm:mb-8">
             Política de Cookies
           </h1>
 
@@ -224,6 +227,7 @@ export default function CookiesPolicy() {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 }

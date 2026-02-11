@@ -125,7 +125,7 @@ export default function PhotoSubmissionForm({ open, onOpenChange, onSuccess }: P
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-md">
+      <DialogContent className="max-w-md max-h-[90vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2">
             <Camera className="w-5 h-5" />
@@ -187,7 +187,7 @@ export default function PhotoSubmissionForm({ open, onOpenChange, onSuccess }: P
             />
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="space-y-2">
               <Label htmlFor="photo-boat">{t.gallery?.boat || "Barco"}</Label>
               <select

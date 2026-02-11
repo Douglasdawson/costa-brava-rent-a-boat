@@ -35,7 +35,7 @@ export default function PhotoLightbox({ photos, initialIndex, open, onOpenChange
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-4xl w-[95vw] p-0 gap-0 bg-black/95 border-none">
+      <DialogContent className="max-w-4xl w-[95vw] p-0 gap-0 bg-black/95 border-none [&>button]:hidden">
         <div className="relative">
           {/* Close button */}
           <Button
@@ -62,18 +62,18 @@ export default function PhotoLightbox({ photos, initialIndex, open, onOpenChange
               <Button
                 variant="ghost"
                 size="icon"
-                className="absolute left-2 top-1/2 -translate-y-1/2 text-white hover:bg-white/20"
+                className="absolute left-1 sm:left-2 top-1/2 -translate-y-1/2 text-white hover:bg-white/20 active:bg-white/20"
                 onClick={goPrev}
               >
-                <ChevronLeft className="w-8 h-8" />
+                <ChevronLeft className="w-6 h-6 sm:w-8 sm:h-8" />
               </Button>
               <Button
                 variant="ghost"
                 size="icon"
-                className="absolute right-2 top-1/2 -translate-y-1/2 text-white hover:bg-white/20"
+                className="absolute right-1 sm:right-2 top-1/2 -translate-y-1/2 text-white hover:bg-white/20 active:bg-white/20"
                 onClick={goNext}
               >
-                <ChevronRight className="w-8 h-8" />
+                <ChevronRight className="w-6 h-6 sm:w-8 sm:h-8" />
               </Button>
             </>
           )}

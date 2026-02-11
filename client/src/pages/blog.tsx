@@ -144,13 +144,13 @@ export default function BlogPage() {
             <p className="text-gray-600 mb-6">
               No pudimos cargar los artículos del blog en este momento. Por favor, intenta de nuevo más tarde.
             </p>
-            <button
+            <Button
               onClick={() => window.location.reload()}
-              className="bg-primary text-white px-6 py-2 rounded-lg hover:bg-primary/90 transition-colors"
+              size="lg"
               data-testid="button-reload"
             >
               Reintentar
-            </button>
+            </Button>
           </div>
         </div>
         <Footer />

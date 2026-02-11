@@ -11,7 +11,7 @@ const getBaseUrl = (req?: any) => {
       return `${protocol}://${host}`;
     }
   }
-  return process.env.BASE_URL || "https://costa-brava-rent-a-boat-blanes.replit.app";
+  return process.env.BASE_URL || "https://costabravarentaboat.app";
 };
 
 const generateUrlEntry = (

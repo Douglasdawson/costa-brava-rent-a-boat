@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Calendar, Anchor, Clock, User, Mail, Phone as PhoneIcon, ChevronDown, Search } from "lucide-react";
+import { Calendar, Anchor, Clock, User, Users, Mail, Phone as PhoneIcon, ChevronDown, Search } from "lucide-react";
 import { SiWhatsapp } from "react-icons/si";
 import { openWhatsApp } from "@/utils/whatsapp";
 import { useToast } from "@/hooks/use-toast";
@@ -10,237 +10,77 @@ import { useQuery } from "@tanstack/react-query";
 import type { Boat } from "@shared/schema";
 import { getBoatImage } from "@/utils/boatImages";
 
-// Lista completa de prefijos telefónicos
+// Common phone prefixes (prioritized by Costa Brava tourism)
 const PHONE_PREFIXES = [
-  { code: "+93", flag: "🇦🇫", country: "Afghanistan" },
-  { code: "+355", flag: "🇦🇱", country: "Albania" },
-  { code: "+213", flag: "🇩🇿", country: "Algeria" },
-  { code: "+1-684", flag: "🇦🇸", country: "American Samoa" },
-  { code: "+376", flag: "🇦🇩", country: "Andorra" },
-  { code: "+244", flag: "🇦🇴", country: "Angola" },
-  { code: "+1-264", flag: "🇦🇮", country: "Anguilla" },
-  { code: "+1-268", flag: "🇦🇬", country: "Antigua & Barbuda" },
-  { code: "+54", flag: "🇦🇷", country: "Argentina" },
-  { code: "+374", flag: "🇦🇲", country: "Armenia" },
-  { code: "+297", flag: "🇦🇼", country: "Aruba" },
-  { code: "+61", flag: "🇦🇺", country: "Australia" },
-  { code: "+43", flag: "🇦🇹", country: "Austria" },
-  { code: "+994", flag: "🇦🇿", country: "Azerbaijan" },
-  { code: "+1-242", flag: "🇧🇸", country: "Bahamas" },
-  { code: "+973", flag: "🇧🇭", country: "Bahrain" },
-  { code: "+880", flag: "🇧🇩", country: "Bangladesh" },
-  { code: "+1-246", flag: "🇧🇧", country: "Barbados" },
-  { code: "+375", flag: "🇧🇾", country: "Belarus" },
-  { code: "+32", flag: "🇧🇪", country: "Belgium" },
-  { code: "+501", flag: "🇧🇿", country: "Belize" },
-  { code: "+229", flag: "🇧🇯", country: "Benin" },
-  { code: "+1-441", flag: "🇧🇲", country: "Bermuda" },
-  { code: "+975", flag: "🇧🇹", country: "Bhutan" },
-  { code: "+591", flag: "🇧🇴", country: "Bolivia" },
-  { code: "+387", flag: "🇧🇦", country: "Bosnia & Herzegovina" },
-  { code: "+267", flag: "🇧🇼", country: "Botswana" },
-  { code: "+55", flag: "🇧🇷", country: "Brazil" },
-  { code: "+1-284", flag: "🇻🇬", country: "British Virgin Islands" },
-  { code: "+673", flag: "🇧🇳", country: "Brunei" },
-  { code: "+359", flag: "🇧🇬", country: "Bulgaria" },
-  { code: "+226", flag: "🇧🇫", country: "Burkina Faso" },
-  { code: "+257", flag: "🇧🇮", country: "Burundi" },
-  { code: "+855", flag: "🇰🇭", country: "Cambodia" },
-  { code: "+237", flag: "🇨🇲", country: "Cameroon" },
-  { code: "+1", flag: "🇨🇦", country: "Canada" },
-  { code: "+238", flag: "🇨🇻", country: "Cape Verde" },
-  { code: "+1-345", flag: "🇰🇾", country: "Cayman Islands" },
-  { code: "+236", flag: "🇨🇫", country: "Central African Rep." },
-  { code: "+235", flag: "🇹🇩", country: "Chad" },
-  { code: "+56", flag: "🇨🇱", country: "Chile" },
-  { code: "+86", flag: "🇨🇳", country: "China" },
-  { code: "+57", flag: "🇨🇴", country: "Colombia" },
-  { code: "+269", flag: "🇰🇲", country: "Comoros" },
-  { code: "+242", flag: "🇨🇬", country: "Congo" },
-  { code: "+243", flag: "🇨🇩", country: "Congo, DR" },
-  { code: "+682", flag: "🇨🇰", country: "Cook Islands" },
-  { code: "+506", flag: "🇨🇷", country: "Costa Rica" },
-  { code: "+385", flag: "🇭🇷", country: "Croatia" },
-  { code: "+53", flag: "🇨🇺", country: "Cuba" },
-  { code: "+599", flag: "🇨🇼", country: "Curaçao" },
-  { code: "+357", flag: "🇨🇾", country: "Cyprus" },
-  { code: "+420", flag: "🇨🇿", country: "Czech Republic" },
-  { code: "+45", flag: "🇩🇰", country: "Denmark" },
-  { code: "+253", flag: "🇩🇯", country: "Djibouti" },
-  { code: "+1-767", flag: "🇩🇲", country: "Dominica" },
-  { code: "+1-809", flag: "🇩🇴", country: "Dominican Republic" },
-  { code: "+593", flag: "🇪🇨", country: "Ecuador" },
-  { code: "+20", flag: "🇪🇬", country: "Egypt" },
-  { code: "+503", flag: "🇸🇻", country: "El Salvador" },
-  { code: "+240", flag: "🇬🇶", country: "Equatorial Guinea" },
-  { code: "+291", flag: "🇪🇷", country: "Eritrea" },
-  { code: "+372", flag: "🇪🇪", country: "Estonia" },
-  { code: "+268", flag: "🇸🇿", country: "Eswatini" },
-  { code: "+251", flag: "🇪🇹", country: "Ethiopia" },
-  { code: "+500", flag: "🇫🇰", country: "Falkland Islands" },
-  { code: "+298", flag: "🇫🇴", country: "Faroe Islands" },
-  { code: "+679", flag: "🇫🇯", country: "Fiji" },
-  { code: "+358", flag: "🇫🇮", country: "Finland" },
-  { code: "+33", flag: "🇫🇷", country: "France" },
-  { code: "+594", flag: "🇬🇫", country: "French Guiana" },
-  { code: "+689", flag: "🇵🇫", country: "French Polynesia" },
-  { code: "+241", flag: "🇬🇦", country: "Gabon" },
-  { code: "+220", flag: "🇬🇲", country: "Gambia" },
-  { code: "+995", flag: "🇬🇪", country: "Georgia" },
-  { code: "+49", flag: "🇩🇪", country: "Germany" },
-  { code: "+233", flag: "🇬🇭", country: "Ghana" },
-  { code: "+350", flag: "🇬🇮", country: "Gibraltar" },
-  { code: "+30", flag: "🇬🇷", country: "Greece" },
-  { code: "+299", flag: "🇬🇱", country: "Greenland" },
-  { code: "+1-473", flag: "🇬🇩", country: "Grenada" },
-  { code: "+590", flag: "🇬🇵", country: "Guadeloupe" },
-  { code: "+1-671", flag: "🇬🇺", country: "Guam" },
-  { code: "+502", flag: "🇬🇹", country: "Guatemala" },
-  { code: "+224", flag: "🇬🇳", country: "Guinea" },
-  { code: "+245", flag: "🇬🇼", country: "Guinea-Bissau" },
-  { code: "+592", flag: "🇬🇾", country: "Guyana" },
-  { code: "+509", flag: "🇭🇹", country: "Haiti" },
-  { code: "+504", flag: "🇭🇳", country: "Honduras" },
-  { code: "+852", flag: "🇭🇰", country: "Hong Kong" },
-  { code: "+36", flag: "🇭🇺", country: "Hungary" },
-  { code: "+354", flag: "🇮🇸", country: "Iceland" },
-  { code: "+91", flag: "🇮🇳", country: "India" },
-  { code: "+62", flag: "🇮🇩", country: "Indonesia" },
-  { code: "+98", flag: "🇮🇷", country: "Iran" },
-  { code: "+964", flag: "🇮🇶", country: "Iraq" },
-  { code: "+353", flag: "🇮🇪", country: "Ireland" },
-  { code: "+972", flag: "🇮🇱", country: "Israel" },
-  { code: "+39", flag: "🇮🇹", country: "Italy" },
-  { code: "+225", flag: "🇨🇮", country: "Ivory Coast" },
-  { code: "+1-876", flag: "🇯🇲", country: "Jamaica" },
-  { code: "+81", flag: "🇯🇵", country: "Japan" },
-  { code: "+962", flag: "🇯🇴", country: "Jordan" },
-  { code: "+7", flag: "🇰🇿", country: "Kazakhstan" },
-  { code: "+254", flag: "🇰🇪", country: "Kenya" },
-  { code: "+686", flag: "🇰🇮", country: "Kiribati" },
-  { code: "+850", flag: "🇰🇵", country: "North Korea" },
-  { code: "+82", flag: "🇰🇷", country: "South Korea" },
-  { code: "+383", flag: "🇽🇰", country: "Kosovo" },
-  { code: "+965", flag: "🇰🇼", country: "Kuwait" },
-  { code: "+996", flag: "🇰🇬", country: "Kyrgyzstan" },
-  { code: "+856", flag: "🇱🇦", country: "Laos" },
-  { code: "+371", flag: "🇱🇻", country: "Latvia" },
-  { code: "+961", flag: "🇱🇧", country: "Lebanon" },
-  { code: "+266", flag: "🇱🇸", country: "Lesotho" },
-  { code: "+231", flag: "🇱🇷", country: "Liberia" },
-  { code: "+218", flag: "🇱🇾", country: "Libya" },
-  { code: "+423", flag: "🇱🇮", country: "Liechtenstein" },
-  { code: "+370", flag: "🇱🇹", country: "Lithuania" },
-  { code: "+352", flag: "🇱🇺", country: "Luxembourg" },
-  { code: "+853", flag: "🇲🇴", country: "Macau" },
-  { code: "+261", flag: "🇲🇬", country: "Madagascar" },
-  { code: "+265", flag: "🇲🇼", country: "Malawi" },
-  { code: "+60", flag: "🇲🇾", country: "Malaysia" },
-  { code: "+960", flag: "🇲🇻", country: "Maldives" },
-  { code: "+223", flag: "🇲🇱", country: "Mali" },
-  { code: "+356", flag: "🇲🇹", country: "Malta" },
-  { code: "+692", flag: "🇲🇭", country: "Marshall Islands" },
-  { code: "+596", flag: "🇲🇶", country: "Martinique" },
-  { code: "+222", flag: "🇲🇷", country: "Mauritania" },
-  { code: "+230", flag: "🇲🇺", country: "Mauritius" },
-  { code: "+262", flag: "🇾🇹", country: "Mayotte" },
-  { code: "+52", flag: "🇲🇽", country: "Mexico" },
-  { code: "+691", flag: "🇫🇲", country: "Micronesia" },
-  { code: "+373", flag: "🇲🇩", country: "Moldova" },
-  { code: "+377", flag: "🇲🇨", country: "Monaco" },
-  { code: "+976", flag: "🇲🇳", country: "Mongolia" },
-  { code: "+382", flag: "🇲🇪", country: "Montenegro" },
-  { code: "+1-664", flag: "🇲🇸", country: "Montserrat" },
-  { code: "+212", flag: "🇲🇦", country: "Morocco" },
-  { code: "+258", flag: "🇲🇿", country: "Mozambique" },
-  { code: "+95", flag: "🇲🇲", country: "Myanmar" },
-  { code: "+264", flag: "🇳🇦", country: "Namibia" },
-  { code: "+674", flag: "🇳🇷", country: "Nauru" },
-  { code: "+977", flag: "🇳🇵", country: "Nepal" },
-  { code: "+31", flag: "🇳🇱", country: "Netherlands" },
-  { code: "+687", flag: "🇳🇨", country: "New Caledonia" },
-  { code: "+64", flag: "🇳🇿", country: "New Zealand" },
-  { code: "+505", flag: "🇳🇮", country: "Nicaragua" },
-  { code: "+227", flag: "🇳🇪", country: "Niger" },
-  { code: "+234", flag: "🇳🇬", country: "Nigeria" },
-  { code: "+683", flag: "🇳🇺", country: "Niue" },
-  { code: "+672", flag: "🇳🇫", country: "Norfolk Island" },
-  { code: "+389", flag: "🇲🇰", country: "North Macedonia" },
-  { code: "+1-670", flag: "🇲🇵", country: "Northern Mariana Islands" },
-  { code: "+47", flag: "🇳🇴", country: "Norway" },
-  { code: "+968", flag: "🇴🇲", country: "Oman" },
-  { code: "+92", flag: "🇵🇰", country: "Pakistan" },
-  { code: "+680", flag: "🇵🇼", country: "Palau" },
-  { code: "+970", flag: "🇵🇸", country: "Palestine" },
-  { code: "+507", flag: "🇵🇦", country: "Panama" },
-  { code: "+675", flag: "🇵🇬", country: "Papua New Guinea" },
-  { code: "+595", flag: "🇵🇾", country: "Paraguay" },
-  { code: "+51", flag: "🇵🇪", country: "Peru" },
-  { code: "+63", flag: "🇵🇭", country: "Philippines" },
-  { code: "+48", flag: "🇵🇱", country: "Poland" },
-  { code: "+351", flag: "🇵🇹", country: "Portugal" },
-  { code: "+1-787", flag: "🇵🇷", country: "Puerto Rico" },
-  { code: "+974", flag: "🇶🇦", country: "Qatar" },
-  { code: "+40", flag: "🇷🇴", country: "Romania" },
-  { code: "+7", flag: "🇷🇺", country: "Russia" },
-  { code: "+250", flag: "🇷🇼", country: "Rwanda" },
-  { code: "+290", flag: "🇸🇭", country: "Saint Helena" },
-  { code: "+1-869", flag: "🇰🇳", country: "Saint Kitts & Nevis" },
-  { code: "+1-758", flag: "🇱🇨", country: "Saint Lucia" },
-  { code: "+508", flag: "🇵🇲", country: "Saint Pierre & Miquelon" },
-  { code: "+1-784", flag: "🇻🇨", country: "Saint Vincent & Grenadines" },
-  { code: "+685", flag: "🇼🇸", country: "Samoa" },
-  { code: "+378", flag: "🇸🇲", country: "San Marino" },
-  { code: "+239", flag: "🇸🇹", country: "São Tomé & Príncipe" },
-  { code: "+966", flag: "🇸🇦", country: "Saudi Arabia" },
-  { code: "+221", flag: "🇸🇳", country: "Senegal" },
-  { code: "+381", flag: "🇷🇸", country: "Serbia" },
-  { code: "+248", flag: "🇸🇨", country: "Seychelles" },
-  { code: "+232", flag: "🇸🇱", country: "Sierra Leone" },
-  { code: "+65", flag: "🇸🇬", country: "Singapore" },
-  { code: "+1-721", flag: "🇸🇽", country: "Sint Maarten" },
-  { code: "+421", flag: "🇸🇰", country: "Slovakia" },
-  { code: "+386", flag: "🇸🇮", country: "Slovenia" },
-  { code: "+677", flag: "🇸🇧", country: "Solomon Islands" },
-  { code: "+252", flag: "🇸🇴", country: "Somalia" },
-  { code: "+27", flag: "🇿🇦", country: "South Africa" },
-  { code: "+211", flag: "🇸🇸", country: "South Sudan" },
-  { code: "+34", flag: "🇪🇸", country: "Spain" },
-  { code: "+94", flag: "🇱🇰", country: "Sri Lanka" },
-  { code: "+249", flag: "🇸🇩", country: "Sudan" },
-  { code: "+597", flag: "🇸🇷", country: "Suriname" },
-  { code: "+46", flag: "🇸🇪", country: "Sweden" },
-  { code: "+41", flag: "🇨🇭", country: "Switzerland" },
-  { code: "+963", flag: "🇸🇾", country: "Syria" },
-  { code: "+886", flag: "🇹🇼", country: "Taiwan" },
-  { code: "+992", flag: "🇹🇯", country: "Tajikistan" },
-  { code: "+255", flag: "🇹🇿", country: "Tanzania" },
-  { code: "+66", flag: "🇹🇭", country: "Thailand" },
-  { code: "+670", flag: "🇹🇱", country: "Timor-Leste" },
-  { code: "+228", flag: "🇹🇬", country: "Togo" },
-  { code: "+690", flag: "🇹🇰", country: "Tokelau" },
-  { code: "+676", flag: "🇹🇴", country: "Tonga" },
-  { code: "+1-868", flag: "🇹🇹", country: "Trinidad & Tobago" },
-  { code: "+216", flag: "🇹🇳", country: "Tunisia" },
-  { code: "+90", flag: "🇹🇷", country: "Turkey" },
-  { code: "+993", flag: "🇹🇲", country: "Turkmenistan" },
-  { code: "+1-649", flag: "🇹🇨", country: "Turks & Caicos Islands" },
-  { code: "+688", flag: "🇹🇻", country: "Tuvalu" },
-  { code: "+256", flag: "🇺🇬", country: "Uganda" },
-  { code: "+380", flag: "🇺🇦", country: "Ukraine" },
-  { code: "+971", flag: "🇦🇪", country: "United Arab Emirates" },
-  { code: "+44", flag: "🇬🇧", country: "United Kingdom" },
-  { code: "+1", flag: "🇺🇸", country: "United States" },
-  { code: "+598", flag: "🇺🇾", country: "Uruguay" },
-  { code: "+1-340", flag: "🇻🇮", country: "US Virgin Islands" },
-  { code: "+998", flag: "🇺🇿", country: "Uzbekistan" },
-  { code: "+678", flag: "🇻🇺", country: "Vanuatu" },
-  { code: "+58", flag: "🇻🇪", country: "Venezuela" },
-  { code: "+84", flag: "🇻🇳", country: "Vietnam" },
-  { code: "+681", flag: "🇼🇫", country: "Wallis & Futuna" },
-  { code: "+967", flag: "🇾🇪", country: "Yemen" },
-  { code: "+260", flag: "🇿🇲", country: "Zambia" },
-  { code: "+263", flag: "🇿🇼", country: "Zimbabwe" },
+  { code: "+34", flag: "\u{1F1EA}\u{1F1F8}", country: "Spain" },
+  { code: "+33", flag: "\u{1F1EB}\u{1F1F7}", country: "France" },
+  { code: "+44", flag: "\u{1F1EC}\u{1F1E7}", country: "United Kingdom" },
+  { code: "+49", flag: "\u{1F1E9}\u{1F1EA}", country: "Germany" },
+  { code: "+31", flag: "\u{1F1F3}\u{1F1F1}", country: "Netherlands" },
+  { code: "+32", flag: "\u{1F1E7}\u{1F1EA}", country: "Belgium" },
+  { code: "+39", flag: "\u{1F1EE}\u{1F1F9}", country: "Italy" },
+  { code: "+351", flag: "\u{1F1F5}\u{1F1F9}", country: "Portugal" },
+  { code: "+41", flag: "\u{1F1E8}\u{1F1ED}", country: "Switzerland" },
+  { code: "+43", flag: "\u{1F1E6}\u{1F1F9}", country: "Austria" },
+  { code: "+46", flag: "\u{1F1F8}\u{1F1EA}", country: "Sweden" },
+  { code: "+47", flag: "\u{1F1F3}\u{1F1F4}", country: "Norway" },
+  { code: "+45", flag: "\u{1F1E9}\u{1F1F0}", country: "Denmark" },
+  { code: "+358", flag: "\u{1F1EB}\u{1F1EE}", country: "Finland" },
+  { code: "+48", flag: "\u{1F1F5}\u{1F1F1}", country: "Poland" },
+  { code: "+420", flag: "\u{1F1E8}\u{1F1FF}", country: "Czech Republic" },
+  { code: "+7", flag: "\u{1F1F7}\u{1F1FA}", country: "Russia" },
+  { code: "+380", flag: "\u{1F1FA}\u{1F1E6}", country: "Ukraine" },
+  { code: "+353", flag: "\u{1F1EE}\u{1F1EA}", country: "Ireland" },
+  { code: "+1", flag: "\u{1F1FA}\u{1F1F8}", country: "United States" },
+  { code: "+52", flag: "\u{1F1F2}\u{1F1FD}", country: "Mexico" },
+  { code: "+54", flag: "\u{1F1E6}\u{1F1F7}", country: "Argentina" },
+  { code: "+55", flag: "\u{1F1E7}\u{1F1F7}", country: "Brazil" },
+  { code: "+56", flag: "\u{1F1E8}\u{1F1F1}", country: "Chile" },
+  { code: "+57", flag: "\u{1F1E8}\u{1F1F4}", country: "Colombia" },
+  { code: "+90", flag: "\u{1F1F9}\u{1F1F7}", country: "Turkey" },
+  { code: "+972", flag: "\u{1F1EE}\u{1F1F1}", country: "Israel" },
+  { code: "+971", flag: "\u{1F1E6}\u{1F1EA}", country: "United Arab Emirates" },
+  { code: "+966", flag: "\u{1F1F8}\u{1F1E6}", country: "Saudi Arabia" },
+  { code: "+61", flag: "\u{1F1E6}\u{1F1FA}", country: "Australia" },
+  { code: "+81", flag: "\u{1F1EF}\u{1F1F5}", country: "Japan" },
+  { code: "+82", flag: "\u{1F1F0}\u{1F1F7}", country: "South Korea" },
+  { code: "+86", flag: "\u{1F1E8}\u{1F1F3}", country: "China" },
+  { code: "+91", flag: "\u{1F1EE}\u{1F1F3}", country: "India" },
+  { code: "+60", flag: "\u{1F1F2}\u{1F1FE}", country: "Malaysia" },
+  { code: "+65", flag: "\u{1F1F8}\u{1F1EC}", country: "Singapore" },
+  { code: "+66", flag: "\u{1F1F9}\u{1F1ED}", country: "Thailand" },
+  { code: "+62", flag: "\u{1F1EE}\u{1F1E9}", country: "Indonesia" },
+  { code: "+63", flag: "\u{1F1F5}\u{1F1ED}", country: "Philippines" },
+  { code: "+212", flag: "\u{1F1F2}\u{1F1E6}", country: "Morocco" },
+  { code: "+27", flag: "\u{1F1FF}\u{1F1E6}", country: "South Africa" },
+  { code: "+20", flag: "\u{1F1EA}\u{1F1EC}", country: "Egypt" },
+  { code: "+234", flag: "\u{1F1F3}\u{1F1EC}", country: "Nigeria" },
+  { code: "+254", flag: "\u{1F1F0}\u{1F1EA}", country: "Kenya" },
+  { code: "+30", flag: "\u{1F1EC}\u{1F1F7}", country: "Greece" },
+  { code: "+36", flag: "\u{1F1ED}\u{1F1FA}", country: "Hungary" },
+  { code: "+40", flag: "\u{1F1F7}\u{1F1F4}", country: "Romania" },
+  { code: "+359", flag: "\u{1F1E7}\u{1F1EC}", country: "Bulgaria" },
+  { code: "+385", flag: "\u{1F1ED}\u{1F1F7}", country: "Croatia" },
+  { code: "+386", flag: "\u{1F1F8}\u{1F1EE}", country: "Slovenia" },
+  { code: "+381", flag: "\u{1F1F7}\u{1F1F8}", country: "Serbia" },
+  { code: "+370", flag: "\u{1F1F1}\u{1F1F9}", country: "Lithuania" },
+  { code: "+371", flag: "\u{1F1F1}\u{1F1FB}", country: "Latvia" },
+  { code: "+372", flag: "\u{1F1EA}\u{1F1EA}", country: "Estonia" },
+  { code: "+421", flag: "\u{1F1F8}\u{1F1F0}", country: "Slovakia" },
+  { code: "+376", flag: "\u{1F1E6}\u{1F1E9}", country: "Andorra" },
+  { code: "+352", flag: "\u{1F1F1}\u{1F1FA}", country: "Luxembourg" },
+  { code: "+356", flag: "\u{1F1F2}\u{1F1F9}", country: "Malta" },
+  { code: "+357", flag: "\u{1F1E8}\u{1F1FE}", country: "Cyprus" },
+  { code: "+354", flag: "\u{1F1EE}\u{1F1F8}", country: "Iceland" },
+  { code: "+377", flag: "\u{1F1F2}\u{1F1E8}", country: "Monaco" },
+  { code: "+350", flag: "\u{1F1EC}\u{1F1EE}", country: "Gibraltar" },
+];
+
+// Time slots from 9:00 to 18:00 in 30min increments
+const TIME_SLOTS = [
+  "09:00", "09:30", "10:00", "10:30", "11:00", "11:30",
+  "12:00", "12:30", "13:00", "13:30", "14:00", "14:30",
+  "15:00", "15:30", "16:00", "16:30", "17:00", "17:30", "18:00",
 ];
 
 interface BookingFormWidgetProps {
@@ -257,22 +97,25 @@ export default function BookingFormWidget({ preSelectedBoatId, onClose, hideHead
     const day = String(d.getDate()).padStart(2, '0');
     return `${y}-${m}-${day}`;
   };
-  
+
   // Form state
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [phonePrefix, setPhonePrefix] = useState("+34");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [email, setEmail] = useState("");
+  const [numberOfPeople, setNumberOfPeople] = useState("");
+  const [preferredTime, setPreferredTime] = useState("");
   const [showPrefixDropdown, setShowPrefixDropdown] = useState(false);
   const [prefixSearch, setPrefixSearch] = useState("");
   const [licenseFilter, setLicenseFilter] = useState<"with" | "without">("without");
   const [selectedBoat, setSelectedBoat] = useState<string>(preSelectedBoatId || "");
   const [selectedDate, setSelectedDate] = useState(() => getLocalISODate());
   const [selectedDuration, setSelectedDuration] = useState<string>("");
-  
+
   const { toast } = useToast();
   const t = useTranslations();
+  const prefixDropdownRef = useRef<HTMLDivElement>(null);
 
   // Update boat when preSelectedBoatId changes
   useEffect(() => {
@@ -281,16 +124,30 @@ export default function BookingFormWidget({ preSelectedBoatId, onClose, hideHead
     }
   }, [preSelectedBoatId]);
 
-  // Filtrar prefijos por búsqueda
-  const filteredPrefixes = PHONE_PREFIXES.filter(prefix => 
-    prefix.code.replace(/[+-]/g, '').includes(prefixSearch.replace(/[+-]/g, ''))
+  // Close prefix dropdown on outside click
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (prefixDropdownRef.current && !prefixDropdownRef.current.contains(event.target as Node)) {
+        setShowPrefixDropdown(false);
+      }
+    };
+    if (showPrefixDropdown) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [showPrefixDropdown]);
+
+  // Filter prefixes by search
+  const filteredPrefixes = PHONE_PREFIXES.filter(prefix =>
+    prefix.code.replace(/[+-]/g, '').includes(prefixSearch.replace(/[+-]/g, '')) ||
+    prefix.country.toLowerCase().includes(prefixSearch.toLowerCase())
   );
 
-  // Obtener info del prefijo seleccionado
+  // Get selected prefix info
   const selectedPrefixInfo = PHONE_PREFIXES.find(p => p.code === phonePrefix);
 
   // Fetch all boats from API
-  const { data: allBoats = [], isLoading: isLoadingBoats } = useQuery<Boat[]>({
+  const { data: allBoats = [] } = useQuery<Boat[]>({
     queryKey: ["/api/boats"],
   });
 
@@ -335,7 +192,7 @@ export default function BookingFormWidget({ preSelectedBoatId, onClose, hideHead
   const getDurationOptions = () => {
     const getPriceForDuration = (durationKey: string) => {
       if (!selectedBoatInfo || !selectedBoatInfo.pricing) return null;
-      
+
       const season = getCurrentSeason();
       const seasonPricing = selectedBoatInfo.pricing[season];
       return seasonPricing?.prices[durationKey] || null;
@@ -349,51 +206,50 @@ export default function BookingFormWidget({ preSelectedBoatId, onClose, hideHead
     if (!selectedBoatInfo) {
       if (licenseFilter === "with") {
         return [
-          { value: "2h", label: "2 horas" },
-          { value: "4h", label: "4 horas - Media día" },
-          { value: "8h", label: "8 horas - Día completo" },
+          { value: "2h", label: t.booking.twoHours || "2 horas" },
+          { value: "4h", label: t.booking.fourHours || "4 horas - Media día" },
+          { value: "8h", label: t.booking.eightHours || "8 horas - Día completo" },
         ];
       } else if (licenseFilter === "without") {
         return [
-          { value: "1h", label: "1 hora" },
-          { value: "2h", label: "2 horas" },
-          { value: "3h", label: "3 horas" },
-          { value: "4h", label: "4 horas - Media día" },
-          { value: "6h", label: "6 horas" },
-          { value: "8h", label: "8 horas - Día completo" },
+          { value: "1h", label: t.booking.oneHour || "1 hora" },
+          { value: "2h", label: t.booking.twoHours || "2 horas" },
+          { value: "3h", label: t.booking.threeHours || "3 horas" },
+          { value: "4h", label: t.booking.fourHours || "4 horas - Media día" },
+          { value: "6h", label: t.booking.sixHours || "6 horas" },
+          { value: "8h", label: t.booking.eightHours || "8 horas - Día completo" },
         ];
       }
       return [
-        { value: "1h", label: "1 hora" },
-        { value: "2h", label: "2 horas" },
-        { value: "3h", label: "3 horas" },
-        { value: "4h", label: "4 horas - Media día" },
-        { value: "6h", label: "6 horas" },
-        { value: "8h", label: "8 horas - Día completo" },
+        { value: "1h", label: t.booking.oneHour || "1 hora" },
+        { value: "2h", label: t.booking.twoHours || "2 horas" },
+        { value: "3h", label: t.booking.threeHours || "3 horas" },
+        { value: "4h", label: t.booking.fourHours || "4 horas - Media día" },
+        { value: "6h", label: t.booking.sixHours || "6 horas" },
+        { value: "8h", label: t.booking.eightHours || "8 horas - Día completo" },
       ];
     }
 
     if (selectedBoatInfo.requiresLicense) {
       return [
-        { value: "2h", label: formatLabel("2h", "2 horas") },
-        { value: "4h", label: formatLabel("4h", "4 horas - Media día") },
-        { value: "8h", label: formatLabel("8h", "8 horas - Día completo") },
+        { value: "2h", label: formatLabel("2h", t.booking.twoHours || "2 horas") },
+        { value: "4h", label: formatLabel("4h", t.booking.fourHours || "4 horas - Media día") },
+        { value: "8h", label: formatLabel("8h", t.booking.eightHours || "8 horas - Día completo") },
       ];
     } else {
       return [
-        { value: "1h", label: formatLabel("1h", "1 hora") },
-        { value: "2h", label: formatLabel("2h", "2 horas") },
-        { value: "3h", label: formatLabel("3h", "3 horas") },
-        { value: "4h", label: formatLabel("4h", "4 horas - Media día") },
-        { value: "6h", label: formatLabel("6h", "6 horas") },
-        { value: "8h", label: formatLabel("8h", "8 horas - Día completo") },
+        { value: "1h", label: formatLabel("1h", t.booking.oneHour || "1 hora") },
+        { value: "2h", label: formatLabel("2h", t.booking.twoHours || "2 horas") },
+        { value: "3h", label: formatLabel("3h", t.booking.threeHours || "3 horas") },
+        { value: "4h", label: formatLabel("4h", t.booking.fourHours || "4 horas - Media día") },
+        { value: "6h", label: formatLabel("6h", t.booking.sixHours || "6 horas") },
+        { value: "8h", label: formatLabel("8h", t.booking.eightHours || "8 horas - Día completo") },
       ];
     }
   };
 
   // Reset duration when date changes to ensure correct seasonal pricing
   useEffect(() => {
-    // Always reset duration when date changes to show updated prices
     setSelectedDuration("");
   }, [selectedDate]);
 
@@ -411,16 +267,22 @@ export default function BookingFormWidget({ preSelectedBoatId, onClose, hideHead
   // Helper function to get price
   const getBookingPrice = () => {
     if (!selectedBoatInfo || !selectedDuration || !selectedBoatInfo.pricing) return null;
-    
+
     const season = getCurrentSeason();
     const seasonPricing = selectedBoatInfo.pricing[season];
     return seasonPricing?.prices[selectedDuration] || null;
   };
 
+  // Get max capacity for selected boat
+  const getMaxCapacity = () => {
+    if (selectedBoatInfo) return selectedBoatInfo.capacity;
+    return licenseFilter === "with" ? 8 : 7;
+  };
+
   // Helper functions to format date
   const formatDateSpanish = (dateString: string) => {
     const date = new Date(dateString);
-    const months = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 
+    const months = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio',
                     'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
     return `${date.getDate()} de ${months[date.getMonth()]} de ${date.getFullYear()}`;
   };
@@ -432,7 +294,15 @@ export default function BookingFormWidget({ preSelectedBoatId, onClose, hideHead
     return `${months[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
   };
 
-  // Create WhatsApp message
+  // Get season label for the WhatsApp message
+  const getSeasonLabel = () => {
+    const season = getCurrentSeason();
+    if (season === "ALTA") return "Alta (Agosto)";
+    if (season === "MEDIA") return "Media (Julio)";
+    return "Baja (Abr-Jun, Sep-Oct)";
+  };
+
+  // Create WhatsApp message with all booking details
   const createWhatsAppBookingMessage = () => {
     const isSpanish = phonePrefix === '+34';
     const price = getBookingPrice();
@@ -440,112 +310,98 @@ export default function BookingFormWidget({ preSelectedBoatId, onClose, hideHead
     const phone = `${phonePrefix} ${phoneNumber.trim()}`;
     const boatName = selectedBoatInfo?.name || selectedBoat;
     const formattedDate = isSpanish ? formatDateSpanish(selectedDate) : formatDateEnglish(selectedDate);
-    
+    const capacity = selectedBoatInfo?.capacity || "?";
+    const deposit = selectedBoatInfo?.specifications?.deposit || "?";
+
     const durationOption = getDurationOptions().find(opt => opt.value === selectedDuration);
     const durationText = durationOption?.label.split(' - ')[0] || selectedDuration;
-    
+
     if (isSpanish) {
-      return `Hola! Me gustaría saber si es posible alquilar este barco:
+      return `Hola! Me gustaría reservar un barco:
 
-* 📋 Nombre: ${fullName}
-* 📞 Teléfono: ${phone}
-* ✉️ Email: ${email.trim()}
-* ⛵ Barco: ${boatName}
-* 📅 Fecha: ${formattedDate}
-* ⏰ Duración: ${durationText}
-* 💰 Precio: ${price}€`;
+*DATOS DEL CLIENTE*
+Nombre: ${fullName}
+Tel: ${phone}
+Email: ${email.trim()}
+
+*DETALLES DE LA RESERVA*
+Barco: ${boatName}
+Fecha: ${formattedDate}
+Hora inicio: ${preferredTime}h
+Duracion: ${durationText}
+Personas: ${numberOfPeople} de ${capacity} max
+Temporada: ${getSeasonLabel()}
+Precio: ${price ? price + '€' : 'Consultar'}
+Fianza: ${deposit}
+
+Quedo a la espera de confirmacion. Gracias!`;
     } else {
-      return `Hello! I would like to know if it's possible to rent this boat:
+      return `Hello! I would like to book a boat:
 
-* 📋 Name: ${fullName}
-* 📞 Phone: ${phone}
-* ✉️ Email: ${email.trim()}
-* ⛵ Boat: ${boatName}
-* 📅 Date: ${formattedDate}
-* ⏰ Duration: ${durationText}
-* 💰 Price: ${price}€`;
+*CLIENT DETAILS*
+Name: ${fullName}
+Phone: ${phone}
+Email: ${email.trim()}
+
+*BOOKING DETAILS*
+Boat: ${boatName}
+Date: ${formattedDate}
+Start time: ${preferredTime}h
+Duration: ${durationText}
+People: ${numberOfPeople} of ${capacity} max
+Season: ${getSeasonLabel()}
+Price: ${price ? price + '€' : 'Ask'}
+Deposit: ${deposit}
+
+Looking forward to confirmation. Thanks!`;
     }
   };
 
   const handleBookingSearch = () => {
-    // Validate all fields
     if (!firstName.trim()) {
-      toast({
-        title: "Campo vacío: Nombre",
-        description: "Por favor ingresa tu nombre",
-        variant: "destructive",
-      });
+      toast({ title: t.booking.firstNameRequired, description: t.booking.firstNameRequiredDesc, variant: "destructive" });
       return;
     }
-
     if (!lastName.trim()) {
-      toast({
-        title: "Campo vacío: Apellidos",
-        description: "Por favor ingresa tus apellidos",
-        variant: "destructive",
-      });
+      toast({ title: t.booking.lastNameRequired, description: t.booking.lastNameRequiredDesc, variant: "destructive" });
       return;
     }
-
     if (!phoneNumber.trim()) {
-      toast({
-        title: "Campo vacío: Teléfono",
-        description: "Por favor ingresa tu número de teléfono",
-        variant: "destructive",
-      });
+      toast({ title: t.booking.phoneRequired, description: t.booking.phoneRequiredDesc, variant: "destructive" });
       return;
     }
-
     if (!email.trim()) {
-      toast({
-        title: "Campo vacío: Email",
-        description: "Por favor ingresa tu correo electrónico",
-        variant: "destructive",
-      });
+      toast({ title: t.booking.emailRequired, description: t.booking.emailRequiredDesc, variant: "destructive" });
       return;
     }
-
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      toast({
-        title: "Email inválido",
-        description: "Por favor ingresa un email válido",
-        variant: "destructive",
-      });
+      toast({ title: t.booking.emailInvalid, description: t.booking.emailInvalidDesc, variant: "destructive" });
       return;
     }
-    
     if (!selectedDate) {
-      toast({
-        title: "Campo vacío: Fecha",
-        description: "Por favor selecciona una fecha para tu alquiler",
-        variant: "destructive",
-      });
+      toast({ title: t.booking.dateRequired, description: t.booking.dateRequiredDesc, variant: "destructive" });
       return;
     }
-    
     if (!selectedBoat) {
-      toast({
-        title: "Campo vacío: Barco", 
-        description: "Por favor selecciona una embarcación",
-        variant: "destructive",
-      });
+      toast({ title: t.booking.boatRequired, description: t.booking.boatRequiredDesc, variant: "destructive" });
       return;
     }
-    
     if (!selectedDuration) {
-      toast({
-        title: "Campo vacío: Duración",
-        description: "Por favor selecciona la duración del alquiler",
-        variant: "destructive",
-      });
+      toast({ title: t.booking.durationRequired, description: t.booking.durationRequiredDesc, variant: "destructive" });
+      return;
+    }
+    if (!numberOfPeople || parseInt(numberOfPeople) < 1) {
+      toast({ title: t.booking.peopleRequired, description: t.booking.peopleRequiredDesc, variant: "destructive" });
+      return;
+    }
+    if (!preferredTime) {
+      toast({ title: t.booking.timeRequired, description: t.booking.timeRequiredDesc, variant: "destructive" });
       return;
     }
 
-    // Create and send WhatsApp message
     const message = createWhatsAppBookingMessage();
     openWhatsApp(message);
-    
-    // Close modal if provided
+
     if (onClose) {
       onClose();
     }
@@ -553,7 +409,6 @@ export default function BookingFormWidget({ preSelectedBoatId, onClose, hideHead
 
   return (
     <Card id="booking-form" className="bg-white/75 backdrop-blur-md p-3 sm:p-4 w-full shadow-2xl border-0">
-      {/* Only show header when hideHeader is false */}
       {!hideHeader && (
         <div className="text-center mb-2 sm:mb-3">
           <h2 className="text-base sm:text-base lg:text-lg font-bold text-gray-900 mb-2 sm:mb-3">{t.booking.title}</h2>
@@ -562,7 +417,7 @@ export default function BookingFormWidget({ preSelectedBoatId, onClose, hideHead
           </p>
         </div>
       )}
-      
+
       {/* Personal Information Section */}
       <div className="bg-gray-50/80 rounded-lg p-2 sm:p-3 mb-2 sm:mb-3">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-2">
@@ -572,7 +427,7 @@ export default function BookingFormWidget({ preSelectedBoatId, onClose, hideHead
               <div className="w-5 h-5 sm:w-6 sm:h-6 bg-primary/10 rounded-full flex items-center justify-center mr-1 sm:mr-2">
                 <User className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-primary" />
               </div>
-              Nombre
+              {t.booking.firstName}
             </label>
             <input
               type="text"
@@ -592,7 +447,7 @@ export default function BookingFormWidget({ preSelectedBoatId, onClose, hideHead
               <div className="w-5 h-5 sm:w-6 sm:h-6 bg-primary/10 rounded-full flex items-center justify-center mr-1 sm:mr-2">
                 <User className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-primary" />
               </div>
-              Apellidos
+              {t.booking.lastName}
             </label>
             <input
               type="text"
@@ -612,10 +467,10 @@ export default function BookingFormWidget({ preSelectedBoatId, onClose, hideHead
               <div className="w-5 h-5 sm:w-6 sm:h-6 bg-primary/10 rounded-full flex items-center justify-center mr-1 sm:mr-2">
                 <PhoneIcon className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-primary" />
               </div>
-              Teléfono
+              {t.booking.phone}
             </label>
             <div className="flex gap-1">
-              <div className="relative w-20 sm:w-24 lg:w-24">
+              <div className="relative w-20 sm:w-24 lg:w-24" ref={prefixDropdownRef}>
                 <button
                   type="button"
                   onClick={() => setShowPrefixDropdown(!showPrefixDropdown)}
@@ -625,7 +480,7 @@ export default function BookingFormWidget({ preSelectedBoatId, onClose, hideHead
                   <span>{selectedPrefixInfo?.flag} {phonePrefix}</span>
                   <ChevronDown className="w-3 h-3" />
                 </button>
-                
+
                 {showPrefixDropdown && (
                   <div className="absolute top-full left-0 mt-1 w-64 bg-white border border-gray-200 rounded-lg shadow-lg z-50 max-h-64 overflow-y-auto">
                     <div className="p-2 border-b sticky top-0 bg-white">
@@ -633,7 +488,7 @@ export default function BookingFormWidget({ preSelectedBoatId, onClose, hideHead
                         type="text"
                         value={prefixSearch}
                         onChange={(e) => setPrefixSearch(e.target.value)}
-                        placeholder="Buscar código..."
+                        placeholder="Search..."
                         className="w-full p-2 border border-gray-300 rounded-md text-sm"
                         data-testid="input-prefix-search"
                       />
@@ -641,7 +496,7 @@ export default function BookingFormWidget({ preSelectedBoatId, onClose, hideHead
                     <div>
                       {filteredPrefixes.map((prefix) => (
                         <button
-                          key={prefix.code}
+                          key={`${prefix.code}-${prefix.country}`}
                           type="button"
                           onClick={() => {
                             setPhonePrefix(prefix.code);
@@ -649,7 +504,6 @@ export default function BookingFormWidget({ preSelectedBoatId, onClose, hideHead
                             setPrefixSearch("");
                           }}
                           className="w-full p-2 hover:bg-gray-100 text-left flex items-center gap-2 text-sm transition-colors"
-                          data-testid={`option-prefix-${prefix.code}`}
                         >
                           <span className="text-lg">{prefix.flag}</span>
                           <span className="font-medium">{prefix.code}</span>
@@ -660,7 +514,7 @@ export default function BookingFormWidget({ preSelectedBoatId, onClose, hideHead
                   </div>
                 )}
               </div>
-              
+
               <input
                 type="tel"
                 id="phone-number"
@@ -680,7 +534,7 @@ export default function BookingFormWidget({ preSelectedBoatId, onClose, hideHead
               <div className="w-5 h-5 sm:w-6 sm:h-6 bg-primary/10 rounded-full flex items-center justify-center mr-1 sm:mr-2">
                 <Mail className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-primary" />
               </div>
-              Email
+              {t.booking.emailLabel}
             </label>
             <input
               type="email"
@@ -698,14 +552,14 @@ export default function BookingFormWidget({ preSelectedBoatId, onClose, hideHead
 
       {/* Booking Details Section */}
       <div className="bg-gray-50/80 rounded-lg p-2 sm:p-3 mb-2 sm:mb-3">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2">
           {/* Date */}
           <div className="bg-white rounded-lg p-2 sm:p-3 shadow-sm border border-gray-100">
             <label htmlFor="booking-date" className="flex items-center justify-center md:justify-start text-xs [@media(min-width:400px)]:text-sm font-semibold text-gray-800 mb-1 sm:mb-2">
               <div className="w-5 h-5 sm:w-6 sm:h-6 bg-primary/10 rounded-full flex items-center justify-center mr-1 sm:mr-2">
                 <Calendar className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-primary" />
               </div>
-              Fecha
+              {t.booking.date}
             </label>
             <input
               type="date"
@@ -718,13 +572,35 @@ export default function BookingFormWidget({ preSelectedBoatId, onClose, hideHead
             />
           </div>
 
-          {/* Boat Selection */}
+          {/* Preferred Time */}
           <div className="bg-white rounded-lg p-2 sm:p-3 shadow-sm border border-gray-100">
+            <label htmlFor="preferred-time" className="flex items-center justify-center md:justify-start text-xs [@media(min-width:400px)]:text-sm font-semibold text-gray-800 mb-1 sm:mb-2">
+              <div className="w-5 h-5 sm:w-6 sm:h-6 bg-primary/10 rounded-full flex items-center justify-center mr-1 sm:mr-2">
+                <Clock className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-primary" />
+              </div>
+              {t.booking.preferredTime}
+            </label>
+            <select
+              id="preferred-time"
+              value={preferredTime}
+              onChange={(e) => setPreferredTime(e.target.value)}
+              className="clean-select w-full p-2 sm:p-2.5 border-0 !bg-white rounded-md focus:outline-none text-gray-900 font-medium text-xs [@media(min-width:400px)]:text-sm"
+              data-testid="select-preferred-time"
+            >
+              <option value="">{t.booking.selectTime}</option>
+              {TIME_SLOTS.map((time) => (
+                <option key={time} value={time}>{time}h</option>
+              ))}
+            </select>
+          </div>
+
+          {/* Boat Selection */}
+          <div className="col-span-2 bg-white rounded-lg p-2 sm:p-3 shadow-sm border border-gray-100">
             <label htmlFor="boat-select" className="flex items-center justify-center md:justify-start text-xs [@media(min-width:400px)]:text-sm font-semibold text-gray-800 mb-1 sm:mb-2">
               <div className="w-5 h-5 sm:w-6 sm:h-6 bg-primary/10 rounded-full flex items-center justify-center mr-1 sm:mr-2">
                 <Anchor className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-primary" />
               </div>
-              Barco
+              {t.booking.boat}
             </label>
             <div className="space-y-1">
               {!preSelectedBoatId && (
@@ -739,7 +615,7 @@ export default function BookingFormWidget({ preSelectedBoatId, onClose, hideHead
                     }`}
                     data-testid="button-filter-without"
                   >
-                    Sin Licencia
+                    {t.booking.withoutLicense}
                   </button>
                   <button
                     type="button"
@@ -751,7 +627,7 @@ export default function BookingFormWidget({ preSelectedBoatId, onClose, hideHead
                     }`}
                     data-testid="button-filter-with"
                   >
-                    Con Licencia
+                    {t.booking.withLicense}
                   </button>
                 </div>
               )}
@@ -763,7 +639,7 @@ export default function BookingFormWidget({ preSelectedBoatId, onClose, hideHead
                 className="clean-select w-full p-2 sm:p-2.5 border-0 !bg-white rounded-md focus:outline-none text-gray-900 font-medium text-xs [@media(min-width:400px)]:text-sm disabled:opacity-60"
                 data-testid="select-boat"
               >
-                <option value="">Seleccionar...</option>
+                <option value="">{t.booking.select}</option>
                 {filteredBoats.map((boat) => (
                   <option key={boat.id} value={boat.id}>
                     {boat.name}
@@ -779,7 +655,7 @@ export default function BookingFormWidget({ preSelectedBoatId, onClose, hideHead
               <div className="w-5 h-5 sm:w-6 sm:h-6 bg-primary/10 rounded-full flex items-center justify-center mr-1 sm:mr-2">
                 <Clock className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-primary" />
               </div>
-              Duración
+              {t.booking.duration}
             </label>
             <select
               id="duration-select"
@@ -788,7 +664,7 @@ export default function BookingFormWidget({ preSelectedBoatId, onClose, hideHead
               className="clean-select w-full p-2 sm:p-2.5 border-0 !bg-white rounded-md focus:outline-none text-gray-900 font-medium text-xs [@media(min-width:400px)]:text-sm"
               data-testid="select-duration"
             >
-              <option value="">Seleccionar...</option>
+              <option value="">{t.booking.select}</option>
               {getDurationOptions().map((option) => (
                 <option key={option.value} value={option.value}>
                   {option.label}
@@ -797,7 +673,39 @@ export default function BookingFormWidget({ preSelectedBoatId, onClose, hideHead
             </select>
             {selectedBoat && (
               <p className="text-[10px] text-gray-500 mt-1 text-center md:text-left">
-                Los precios se actualizan según la fecha
+                {t.booking.pricesUpdateByDate}
+              </p>
+            )}
+          </div>
+
+          {/* Number of People */}
+          <div className="bg-white rounded-lg p-2 sm:p-3 shadow-sm border border-gray-100">
+            <label htmlFor="number-of-people" className="flex items-center justify-center md:justify-start text-xs [@media(min-width:400px)]:text-sm font-semibold text-gray-800 mb-1 sm:mb-2">
+              <div className="w-5 h-5 sm:w-6 sm:h-6 bg-primary/10 rounded-full flex items-center justify-center mr-1 sm:mr-2">
+                <Users className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-primary" />
+              </div>
+              {t.booking.numberOfPeople}
+            </label>
+            <input
+              type="number"
+              id="number-of-people"
+              value={numberOfPeople}
+              onChange={(e) => {
+                const val = e.target.value;
+                const max = getMaxCapacity();
+                if (val === "" || (parseInt(val) >= 1 && parseInt(val) <= max)) {
+                  setNumberOfPeople(val);
+                }
+              }}
+              min={1}
+              max={getMaxCapacity()}
+              placeholder={`1-${getMaxCapacity()}`}
+              className="w-full p-2 sm:p-2.5 border-0 bg-gray-50 rounded-md focus:ring-2 focus:ring-primary focus:bg-white transition-all text-gray-900 font-medium text-xs [@media(min-width:400px)]:text-sm text-center"
+              data-testid="input-number-of-people"
+            />
+            {selectedBoatInfo && (
+              <p className="text-[10px] text-gray-500 mt-1 text-center">
+                max {selectedBoatInfo.capacity}
               </p>
             )}
           </div>
@@ -805,13 +713,13 @@ export default function BookingFormWidget({ preSelectedBoatId, onClose, hideHead
       </div>
 
       {/* Submit Button */}
-      <Button 
-        onClick={handleBookingSearch} 
+      <Button
+        onClick={handleBookingSearch}
         className="w-full py-5 sm:py-6 md:py-4 text-sm sm:text-base md:text-sm font-semibold shadow-lg"
         data-testid="button-submit-booking"
       >
         <SiWhatsapp className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
-        ENVIAR PETICIÓN DE RESERVA
+        {t.booking.sendBookingRequest}
       </Button>
     </Card>
   );

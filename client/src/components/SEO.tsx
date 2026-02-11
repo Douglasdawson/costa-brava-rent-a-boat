@@ -76,6 +76,7 @@ export function SEO({
     updateOGTag('og:type', ogType);
     updateOGTag('og:url', canonical);
     updateOGTag('og:site_name', 'Costa Brava Rent a Boat Blanes');
+    updateOGTag('og:image:alt', ogTitle || title);
 
     // Update Twitter tags (using name attribute, not property)
     const updateTwitterTag = (name: string, content: string) => {

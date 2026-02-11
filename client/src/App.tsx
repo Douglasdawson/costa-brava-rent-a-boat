@@ -1,5 +1,5 @@
 import { useState, useEffect, lazy, Suspense } from "react";
-import { Switch, Route, useSearch, useLocation, useRoute } from "wouter";
+import { Switch, Route, useSearch, useLocation, useRoute, Redirect } from "wouter";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider, useQuery } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
@@ -12,6 +12,7 @@ import Navigation from "./components/Navigation";
 import Hero from "./components/Hero";
 import FeaturesSection from "./components/FeaturesSection";
 import FleetSection from "./components/FleetSection";
+import ReviewsSection from "./components/ReviewsSection";
 import ContactSection from "./components/ContactSection";
 import Footer from "./components/Footer";
 import { SEO } from "./components/SEO";
@@ -104,6 +105,7 @@ function HomePage() {
       <Navigation />
       <Hero />
       <FleetSection />
+      <ReviewsSection />
       <FeaturesSection />
       <ContactSection />
       <Footer />
@@ -257,13 +259,13 @@ function Router() {
         <Route path="/alquiler-barcos-blanes" component={LocationBlanesPageWrapper} />
         <Route path="/alquiler-barcos-lloret-de-mar" component={LocationLloretPageWrapper} />
         <Route path="/alquiler-barcos-tossa-de-mar" component={LocationTossaPageWrapper} />
-        <Route path="/destino/blanes" component={LocationBlanesPageWrapper} />
-        <Route path="/destino/lloret-de-mar" component={LocationLloretPageWrapper} />
-        <Route path="/destino/tossa-de-mar" component={LocationTossaPageWrapper} />
+        <Route path="/destino/blanes">{() => <Redirect to="/alquiler-barcos-blanes" />}</Route>
+        <Route path="/destino/lloret-de-mar">{() => <Redirect to="/alquiler-barcos-lloret-de-mar" />}</Route>
+        <Route path="/destino/tossa-de-mar">{() => <Redirect to="/alquiler-barcos-tossa-de-mar" />}</Route>
         <Route path="/barcos-sin-licencia" component={CategoryLicenseFreePageWrapper} />
         <Route path="/barcos-con-licencia" component={CategoryLicensedPageWrapper} />
-        <Route path="/categoria/sin-licencia" component={CategoryLicenseFreePageWrapper} />
-        <Route path="/categoria/con-licencia" component={CategoryLicensedPageWrapper} />
+        <Route path="/categoria/sin-licencia">{() => <Redirect to="/barcos-sin-licencia" />}</Route>
+        <Route path="/categoria/con-licencia">{() => <Redirect to="/barcos-con-licencia" />}</Route>
         <Route path="/testimonios" component={TestimoniosPageWrapper} />
         <Route path="/blog/:slug" component={BlogDetailPageWrapper} />
         <Route path="/blog" component={BlogPageWrapper} />

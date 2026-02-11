@@ -8,14 +8,14 @@ Allow: /
 Allow: /barco/*
 Allow: /barcos-sin-licencia
 Allow: /barcos-con-licencia
-Allow: /blanes
-Allow: /lloret-de-mar
-Allow: /tossa-de-mar
+Allow: /alquiler-barcos-blanes
+Allow: /alquiler-barcos-lloret-de-mar
+Allow: /alquiler-barcos-tossa-de-mar
 Allow: /faq
 Allow: /blog
 Allow: /blog/*
 Allow: /destinos/*
-Allow: /contacto
+Allow: /testimonios
 
 # Block admin and utility pages
 Disallow: /admin
@@ -23,13 +23,18 @@ Disallow: /admin/*
 Disallow: /crm
 Disallow: /crm/*
 Disallow: /login
-Disallow: /dashboard
+Disallow: /mi-cuenta
 Disallow: /api/*
 
+# Block legacy duplicate routes
+Disallow: /destino/*
+Disallow: /categoria/*
+
 # Block legal pages (low value for SEO)
-Disallow: /politica-privacidad
-Disallow: /terminos-condiciones
-Disallow: /politica-cookies
+Disallow: /privacy-policy
+Disallow: /terms-conditions
+Disallow: /cookies-policy
+Disallow: /condiciones-generales
 
 # Allow search engines to access assets
 Allow: /assets/*

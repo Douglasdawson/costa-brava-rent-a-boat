@@ -12,3 +12,6 @@ vite.config.ts.*
 
 # NPM cache (local)
 .npm-cache
+
+# Claude Code config (local)
+.claude/

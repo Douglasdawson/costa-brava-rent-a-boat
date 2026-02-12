@@ -6,6 +6,7 @@ import LanguageSelector from "./LanguageSelector";
 import { useTranslations } from "@/lib/translations";
 import { useAuth } from "@/hooks/useAuth";
 import { useBookingModal } from "@/hooks/useBookingModal";
+import { trackBookingFormOpen } from "@/utils/analytics";
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
@@ -28,6 +29,7 @@ export default function Navigation() {
 
   const handleMobileBooking = () => {
     setIsOpen(false); // Close mobile menu
+    trackBookingFormOpen();
     openBookingModal(); // Open booking modal
   };
 
@@ -81,6 +83,7 @@ export default function Navigation() {
       }
     } else if (href === "#booking") {
       // Open booking modal
+      trackBookingFormOpen();
       openBookingModal();
     } else if (href === "/blog") {
       // Navigate to Blog page or scroll to top if already on Blog page

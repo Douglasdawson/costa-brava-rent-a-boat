@@ -14,6 +14,14 @@ const getBaseUrl = (req?: any) => {
   return process.env.BASE_URL || "https://costabravarentaboat.app";
 };
 
+// Helper to format a date or timestamp as YYYY-MM-DD for sitemaps
+const formatSitemapDate = (date?: Date | string | null): string => {
+  if (!date) return "2026-02-12";
+  const d = typeof date === "string" ? new Date(date) : date;
+  if (isNaN(d.getTime())) return "2026-02-12";
+  return d.toISOString().split("T")[0];
+};
+
 const generateUrlEntry = (
   baseUrl: string,
   path: string,
@@ -65,7 +73,7 @@ export function registerSitemapRoutes(app: Express) {
   app.get("/sitemap.xml", async (req, res) => {
     try {
       const baseUrl = getBaseUrl(req);
-      const now = new Date().toISOString();
+      const now = formatSitemapDate(new Date());
 
       const sitemapIndex = `<?xml version="1.0" encoding="UTF-8"?>
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
@@ -100,7 +108,7 @@ export function registerSitemapRoutes(app: Express) {
   app.get("/sitemap-pages.xml", async (req, res) => {
     try {
       const baseUrl = getBaseUrl(req);
-      const now = new Date().toISOString();
+      const now = formatSitemapDate(new Date());
 
       let sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
@@ -139,7 +147,7 @@ export function registerSitemapRoutes(app: Express) {
   app.get("/sitemap-boats.xml", async (req, res) => {
     try {
       const baseUrl = getBaseUrl(req);
-      const now = new Date().toISOString();
+      const fallbackDate = formatSitemapDate(new Date());
 
       const boats = await storage.getAllBoats();
       const activeBoats = boats.filter(b => b.isActive);
@@ -150,10 +158,11 @@ export function registerSitemapRoutes(app: Express) {
 
       activeBoats.forEach(boat => {
         const boatPath = `/barco/${boat.id}`;
+        const boatLastmod = formatSitemapDate((boat as any).updatedAt || (boat as any).createdAt) || fallbackDate;
 
         sitemap += `  <url>
     <loc>${baseUrl}${boatPath}</loc>
-    <lastmod>${now}</lastmod>
+    <lastmod>${boatLastmod}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>`;
 
@@ -178,7 +187,7 @@ export function registerSitemapRoutes(app: Express) {
           if (lang !== "es") {
             sitemap += `  <url>
     <loc>${baseUrl}${boatPath}?lang=${lang}</loc>
-    <lastmod>${now}</lastmod>
+    <lastmod>${boatLastmod}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -202,7 +211,7 @@ export function registerSitemapRoutes(app: Express) {
   app.get("/sitemap-blog.xml", async (req, res) => {
     try {
       const baseUrl = getBaseUrl(req);
-      const now = new Date().toISOString();
+      const fallbackDate = formatSitemapDate(new Date());
 
       const blogPosts = await storage.getAllBlogPosts();
       const publishedBlogPosts = blogPosts.filter(post => post.isPublished);
@@ -211,10 +220,11 @@ export function registerSitemapRoutes(app: Express) {
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 `;
 
-      sitemap += generateUrlEntry(baseUrl, "/blog", "0.6", now);
+      sitemap += generateUrlEntry(baseUrl, "/blog", "0.6", fallbackDate);
 
       publishedBlogPosts.forEach(post => {
-        sitemap += generateUrlEntry(baseUrl, `/blog/${post.slug}`, "0.7", now);
+        const postDate = formatSitemapDate((post as any).updatedAt || (post as any).publishedAt || (post as any).createdAt) || fallbackDate;
+        sitemap += generateUrlEntry(baseUrl, `/blog/${post.slug}`, "0.7", postDate);
       });
 
       sitemap += `</urlset>`;
@@ -232,7 +242,7 @@ export function registerSitemapRoutes(app: Express) {
   app.get("/sitemap-destinations.xml", async (req, res) => {
     try {
       const baseUrl = getBaseUrl(req);
-      const now = new Date().toISOString();
+      const fallbackDate = formatSitemapDate(new Date());
 
       const destinations = await storage.getAllDestinations();
       const publishedDestinations = destinations.filter(dest => dest.isPublished);
@@ -243,10 +253,11 @@ export function registerSitemapRoutes(app: Express) {
 
       publishedDestinations.forEach(destination => {
         const destPath = `/destinos/${destination.slug}`;
+        const destLastmod = formatSitemapDate((destination as any).updatedAt || (destination as any).createdAt) || fallbackDate;
 
         sitemap += `  <url>
     <loc>${baseUrl}${destPath}</loc>
-    <lastmod>${now}</lastmod>
+    <lastmod>${destLastmod}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>`;
 
@@ -271,7 +282,7 @@ export function registerSitemapRoutes(app: Express) {
           if (lang !== "es") {
             sitemap += `  <url>
     <loc>${baseUrl}${destPath}?lang=${lang}</loc>
-    <lastmod>${now}</lastmod>
+    <lastmod>${destLastmod}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>

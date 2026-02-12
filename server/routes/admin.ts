@@ -370,4 +370,21 @@ export function registerAdminRoutes(app: Express) {
       res.status(500).json({ error: "Failed to normalize image URL" });
     }
   });
+
+  // ===== BLOG SEED =====
+
+  app.post("/api/admin/seed-blog", requireAdminSession, async (req, res) => {
+    try {
+      const { seedBlogPosts } = await import("../seeds/blogSeed");
+      const created = await seedBlogPosts(storage);
+      res.json({
+        message: "Blog seed completed",
+        created,
+        total: 6,
+      });
+    } catch (error: any) {
+      console.error("Error seeding blog posts:", error);
+      res.status(500).json({ message: "Error seeding blog posts: " + error.message });
+    }
+  });
 }

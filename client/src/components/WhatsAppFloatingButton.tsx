@@ -1,5 +1,6 @@
 import { useLocation } from "wouter";
 import { SiWhatsapp } from "react-icons/si";
+import { trackWhatsAppClick } from "@/utils/analytics";
 
 export default function WhatsAppFloatingButton() {
   const [location] = useLocation();
@@ -16,6 +17,7 @@ export default function WhatsAppFloatingButton() {
       rel="noopener noreferrer"
       title="WhatsApp"
       aria-label="Contactar por WhatsApp"
+      onClick={() => trackWhatsAppClick("floating_button")}
       className="fixed bottom-6 right-6 z-40 flex items-center justify-center w-14 h-14 md:w-16 md:h-16 rounded-full shadow-lg transition-transform hover:scale-110 animate-bounce-once"
       style={{ backgroundColor: "#25D366" }}
     >

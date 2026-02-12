@@ -9,6 +9,7 @@ import { useTranslations } from "@/lib/translations";
 import { useQuery } from "@tanstack/react-query";
 import type { Boat } from "@shared/schema";
 import { getBoatImage } from "@/utils/boatImages";
+import { trackBookingStarted } from "@/utils/analytics";
 
 // Common phone prefixes (prioritized by Costa Brava tourism)
 const PHONE_PREFIXES = [
@@ -457,6 +458,9 @@ Looking forward to confirmation. Thanks!`;
       toast({ title: t.booking.timeRequired, description: t.booking.timeRequiredDesc, variant: "destructive" });
       return;
     }
+
+    // Track booking started conversion event
+    trackBookingStarted(selectedBoat, selectedBoatInfo?.name || selectedBoat);
 
     const message = createWhatsAppBookingMessage();
     openWhatsApp(message);

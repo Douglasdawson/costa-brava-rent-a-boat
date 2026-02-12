@@ -8,6 +8,7 @@ import {
 } from "@/components/ui/dialog";
 import { useTranslations } from "@/lib/translations";
 import BookingFormWidget from "@/components/BookingFormWidget";
+import { trackBookingFormOpen } from "@/utils/analytics";
 
 interface BookingModalContextType {
   openBookingModal: (boatId?: string) => void;
@@ -22,6 +23,7 @@ export function BookingModalProvider({ children }: { children: React.ReactNode }
   const t = useTranslations();
 
   const openBookingModal = useCallback((boatId?: string) => {
+    trackBookingFormOpen(boatId);
     setSelectedBoatId(boatId);
     setIsOpen(true);
   }, []);

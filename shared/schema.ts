@@ -1,6 +1,6 @@
 import { sql } from "drizzle-orm";
 import { pgTable, text, varchar, integer, decimal, timestamp, boolean, json, jsonb, index, unique } from "drizzle-orm/pg-core";
-import { createInsertSchema } from "drizzle-zod";
+import { createInsertSchema, createSelectSchema } from "drizzle-zod";
 import { z } from "zod";
 
 // Admin users (existing system - for CRM access)
@@ -126,6 +126,8 @@ export const bookings = pgTable("bookings", {
   expiresAt: timestamp("expires_at", { withTimezone: true }), // Expiration time for holds
   whatsappConfirmationSent: boolean("whatsapp_confirmation_sent").notNull().default(false),
   whatsappReminderSent: boolean("whatsapp_reminder_sent").notNull().default(false),
+  emailReminderSent: boolean("email_reminder_sent").notNull().default(false),
+  emailThankYouSent: boolean("email_thank_you_sent").notNull().default(false),
   notes: text("notes"),
   createdAt: timestamp("created_at", { withTimezone: true }).notNull().default(sql`now()`),
 }, (table) => ({
@@ -201,6 +203,8 @@ export const insertBookingSchema = createInsertSchema(bookings).omit({
   createdAt: true,
   whatsappConfirmationSent: true,
   whatsappReminderSent: true,
+  emailReminderSent: true,
+  emailThankYouSent: true,
   refundStatus: true,
   refundAmount: true,
 }).extend({
@@ -457,6 +461,31 @@ export const insertGiftCardSchema = createInsertSchema(giftCards).omit({
 
 export type GiftCard = typeof giftCards.$inferSelect;
 export type InsertGiftCard = z.infer<typeof insertGiftCardSchema>;
+
+// ===== DISCOUNT CODES =====
+
+export const discountCodes = pgTable("discount_codes", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  code: varchar("code", { length: 30 }).notNull().unique(),
+  discountPercent: integer("discount_percent").notNull(), // e.g., 10 for 10%
+  maxUses: integer("max_uses").notNull().default(1),
+  currentUses: integer("current_uses").notNull().default(0),
+  customerEmail: text("customer_email"), // null = universal, set = specific customer
+  isActive: boolean("is_active").notNull().default(true),
+  expiresAt: timestamp("expires_at", { withTimezone: true }),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().default(sql`now()`),
+});
+
+export const insertDiscountCodeSchema = createInsertSchema(discountCodes).omit({
+  id: true,
+  createdAt: true,
+  currentUses: true,
+});
+
+export const selectDiscountCodeSchema = createSelectSchema(discountCodes);
+
+export type DiscountCode = typeof discountCodes.$inferSelect;
+export type InsertDiscountCode = z.infer<typeof insertDiscountCodeSchema>;
 
 // ===== WHATSAPP CHATBOT =====
 

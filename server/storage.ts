@@ -13,10 +13,12 @@ import {
   type ChatbotConversation, type InsertChatbotConversation, type UpdateChatbotConversation,
   type ClientPhoto, type InsertClientPhoto,
   giftCards,
-  type GiftCard, type InsertGiftCard
+  type GiftCard, type InsertGiftCard,
+  discountCodes,
+  type DiscountCode, type InsertDiscountCode
 } from "@shared/schema";
 import { db } from "./db";
-import { eq, and, gte, lte, between, inArray, sql } from "drizzle-orm";
+import { eq, and, gte, lte, between, inArray, sql, or, isNull } from "drizzle-orm";
 import memoize from "memoizee";
 
 // modify the interface with any CRUD methods
@@ -120,6 +122,20 @@ export interface IStorage {
   getGiftCardById(id: string): Promise<GiftCard | undefined>;
   createGiftCard(giftCard: InsertGiftCard): Promise<GiftCard>;
   updateGiftCard(id: string, updates: Partial<GiftCard>): Promise<GiftCard | undefined>;
+
+  // Discount Code methods
+  createDiscountCode(data: InsertDiscountCode): Promise<DiscountCode>;
+  getDiscountCodeByCode(code: string): Promise<DiscountCode | undefined>;
+  useDiscountCode(code: string, bookingId: string): Promise<DiscountCode | undefined>;
+  getDiscountCodes(): Promise<DiscountCode[]>;
+  getDiscountCodesByEmail(email: string): Promise<DiscountCode[]>;
+  generateRepeatCustomerCode(email: string, bookingId: string): Promise<DiscountCode>;
+
+  // Email/scheduler methods
+  getUpcomingBookingsForReminder(hoursAhead: number): Promise<Booking[]>;
+  getCompletedBookingsForThankYou(hoursAfter: number): Promise<Booking[]>;
+  isRepeatCustomer(email: string): Promise<boolean>;
+  updateBookingEmailStatus(id: string, reminderSent?: boolean, thankYouSent?: boolean): Promise<Booking | undefined>;
 
   // Chatbot Conversation methods (WhatsApp)
   getChatbotConversation(phoneNumber: string): Promise<ChatbotConversation | undefined>;
@@ -699,6 +715,180 @@ export class DatabaseStorage implements IStorage {
   async updateGiftCard(id: string, updates: Partial<GiftCard>): Promise<GiftCard | undefined> {
     const [updated] = await db.update(giftCards).set(updates).where(eq(giftCards.id, id)).returning();
     return updated;
+  }
+
+  // ===== DISCOUNT CODE METHODS =====
+
+  async createDiscountCode(data: InsertDiscountCode): Promise<DiscountCode> {
+    const [created] = await db.insert(discountCodes).values(data).returning();
+    return created;
+  }
+
+  async getDiscountCodeByCode(code: string): Promise<DiscountCode | undefined> {
+    const [found] = await db
+      .select()
+      .from(discountCodes)
+      .where(
+        and(
+          eq(discountCodes.code, code.toUpperCase().trim()),
+          eq(discountCodes.isActive, true)
+        )
+      );
+    return found || undefined;
+  }
+
+  async useDiscountCode(code: string, bookingId: string): Promise<DiscountCode | undefined> {
+    const [updated] = await db
+      .update(discountCodes)
+      .set({ currentUses: sql`current_uses + 1` })
+      .where(eq(discountCodes.code, code.toUpperCase().trim()))
+      .returning();
+    return updated || undefined;
+  }
+
+  async getDiscountCodes(): Promise<DiscountCode[]> {
+    return await db.select().from(discountCodes);
+  }
+
+  async getDiscountCodesByEmail(email: string): Promise<DiscountCode[]> {
+    return await db
+      .select()
+      .from(discountCodes)
+      .where(eq(discountCodes.customerEmail, email.toLowerCase().trim()));
+  }
+
+  async generateRepeatCustomerCode(email: string, bookingId: string): Promise<DiscountCode> {
+    // Generate code: REPEAT-{first6 of email hash}
+    const emailHash = email.toLowerCase().trim().split("").reduce((hash, char) => {
+      return ((hash << 5) - hash + char.charCodeAt(0)) | 0;
+    }, 0);
+    const hashStr = Math.abs(emailHash).toString(36).toUpperCase().slice(0, 6).padEnd(6, "X");
+    const code = `REPEAT-${hashStr}`;
+
+    // Expires in 12 months
+    const expiresAt = new Date();
+    expiresAt.setFullYear(expiresAt.getFullYear() + 1);
+
+    const [created] = await db
+      .insert(discountCodes)
+      .values({
+        code,
+        discountPercent: 10,
+        maxUses: 1,
+        customerEmail: email.toLowerCase().trim(),
+        isActive: true,
+        expiresAt,
+      })
+      .onConflictDoNothing({ target: discountCodes.code })
+      .returning();
+
+    // If code already existed (conflict), return the existing one
+    if (!created) {
+      const existing = await this.getDiscountCodeByCode(code);
+      if (existing) return existing;
+      // Fallback: generate with a suffix to avoid collision
+      const fallbackCode = `REPEAT-${hashStr}-${Date.now().toString(36).slice(-3).toUpperCase()}`;
+      const [fallback] = await db
+        .insert(discountCodes)
+        .values({
+          code: fallbackCode,
+          discountPercent: 10,
+          maxUses: 1,
+          customerEmail: email.toLowerCase().trim(),
+          isActive: true,
+          expiresAt,
+        })
+        .returning();
+      return fallback;
+    }
+
+    return created;
+  }
+
+  // ===== EMAIL / SCHEDULER METHODS =====
+
+  /**
+   * Get confirmed bookings starting within a time window around hoursAhead (22-26h),
+   * where emailReminderSent is false and the customer has an email.
+   */
+  async getUpcomingBookingsForReminder(hoursAhead: number): Promise<Booking[]> {
+    const now = new Date();
+    // Window: hoursAhead - 2h to hoursAhead + 2h (e.g., 22h to 26h for hoursAhead=24)
+    const windowStart = new Date(now.getTime() + (hoursAhead - 2) * 60 * 60 * 1000);
+    const windowEnd = new Date(now.getTime() + (hoursAhead + 2) * 60 * 60 * 1000);
+
+    return await db
+      .select()
+      .from(bookings)
+      .where(
+        and(
+          eq(bookings.bookingStatus, "confirmed"),
+          eq(bookings.emailReminderSent, false),
+          gte(bookings.startTime, windowStart),
+          lte(bookings.startTime, windowEnd)
+        )
+      );
+  }
+
+  /**
+   * Get confirmed bookings that ended within a time window around hoursAfter (22-26h ago),
+   * where emailThankYouSent is false and the customer has an email.
+   */
+  async getCompletedBookingsForThankYou(hoursAfter: number): Promise<Booking[]> {
+    const now = new Date();
+    // Window: hoursAfter - 2h to hoursAfter + 2h ago
+    const windowEnd = new Date(now.getTime() - (hoursAfter - 2) * 60 * 60 * 1000);
+    const windowStart = new Date(now.getTime() - (hoursAfter + 2) * 60 * 60 * 1000);
+
+    return await db
+      .select()
+      .from(bookings)
+      .where(
+        and(
+          eq(bookings.bookingStatus, "confirmed"),
+          eq(bookings.emailThankYouSent, false),
+          gte(bookings.endTime, windowStart),
+          lte(bookings.endTime, windowEnd)
+        )
+      );
+  }
+
+  /**
+   * Check if a customer email has previous confirmed bookings.
+   */
+  async isRepeatCustomer(email: string): Promise<boolean> {
+    const result = await db
+      .select()
+      .from(bookings)
+      .where(
+        and(
+          eq(bookings.customerEmail, email.toLowerCase().trim()),
+          eq(bookings.bookingStatus, "confirmed")
+        )
+      )
+      .limit(2); // Only need to know if there is more than 1
+
+    return result.length > 1;
+  }
+
+  /**
+   * Update email tracking flags on a booking.
+   */
+  async updateBookingEmailStatus(id: string, reminderSent?: boolean, thankYouSent?: boolean): Promise<Booking | undefined> {
+    const updateData: Record<string, boolean> = {};
+    if (reminderSent !== undefined) {
+      updateData.emailReminderSent = reminderSent;
+    }
+    if (thankYouSent !== undefined) {
+      updateData.emailThankYouSent = thankYouSent;
+    }
+
+    const [updatedBooking] = await db
+      .update(bookings)
+      .set(updateData)
+      .where(eq(bookings.id, id))
+      .returning();
+    return updatedBooking || undefined;
   }
 
   // ===== CHATBOT CONVERSATION METHODS =====

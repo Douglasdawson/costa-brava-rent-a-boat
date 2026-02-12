@@ -21,6 +21,7 @@ import {
   MessageCircle,
   Camera,
   Gift,
+  Percent,
 } from "lucide-react";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { useToast } from "@/hooks/use-toast";
@@ -50,7 +51,7 @@ import type { Booking } from "@shared/schema";
 import { queryClient } from "@/lib/queryClient";
 
 // Import from CRM module
-import { FleetManagement, EmployeeManagement, GalleryManagement, GiftCardManagement, editBookingSchema, type EditBookingFormData } from "./crm";
+import { FleetManagement, EmployeeManagement, GalleryManagement, GiftCardManagement, DiscountManagement, editBookingSchema, type EditBookingFormData } from "./crm";
 
 interface CRMDashboardProps {
   adminToken: string;
@@ -596,6 +597,7 @@ export default function CRMDashboard({ adminToken }: CRMDashboardProps) {
               { id: "fleet", label: "Flota", icon: Anchor },
               { id: "gallery", label: "Galeria", icon: Camera },
               { id: "giftcards", label: "Regalos", icon: Gift },
+              { id: "discounts", label: "Descuentos", icon: Percent },
             ] : []),
             ...(adminUsername.toLowerCase() === "ivan" ? [
               { id: "employees", label: "Equipo", icon: Users },
@@ -1337,6 +1339,11 @@ export default function CRMDashboard({ adminToken }: CRMDashboardProps) {
         {/* Gift Cards Tab */}
         {selectedTab === "giftcards" && (
           <GiftCardManagement adminToken={adminToken} />
+        )}
+
+        {/* Discounts Tab */}
+        {selectedTab === "discounts" && (
+          <DiscountManagement adminToken={adminToken} />
         )}
 
         {/* Employees Tab */}

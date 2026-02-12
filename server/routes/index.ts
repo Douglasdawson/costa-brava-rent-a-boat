@@ -17,6 +17,8 @@ import { registerAvailabilityRoutes } from "./availability";
 import { registerEmployeeRoutes } from "./employees";
 import { registerGalleryRoutes } from "./gallery";
 import { registerGiftCardRoutes } from "./giftcards";
+import { registerDiscountRoutes } from "./discounts";
+import { startScheduledServices } from "../services";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // Setup Replit Auth (customer authentication)
@@ -36,9 +38,13 @@ export async function registerRoutes(app: Express): Promise<Server> {
   registerEmployeeRoutes(app);
   registerGalleryRoutes(app);
   registerGiftCardRoutes(app);
+  registerDiscountRoutes(app);
 
   // WhatsApp routes are async due to dynamic imports
   await registerWhatsAppRoutes(app);
+
+  // Start background scheduled services (email reminders, thank-you emails)
+  startScheduledServices();
 
   const httpServer = createServer(app);
 

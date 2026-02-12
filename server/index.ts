@@ -9,31 +9,40 @@ const app = express();
 
 // Security headers
 app.use(helmet({
-  contentSecurityPolicy: false, // Disabled to allow inline scripts from Vite
-  crossOriginEmbedderPolicy: false, // Allow embedded resources (Stripe, maps, etc.)
+  contentSecurityPolicy: {
+    directives: {
+      defaultSrc: ["'self'"],
+      scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'", "https://www.googletagmanager.com", "https://www.google-analytics.com"],
+      styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
+      fontSrc: ["'self'", "https://fonts.gstatic.com"],
+      imgSrc: ["'self'", "data:", "https:", "blob:"],
+      connectSrc: ["'self'", "https://www.google-analytics.com", "https://api.stripe.com", "wss:"],
+      frameSrc: ["'self'", "https://js.stripe.com"],
+    }
+  },
+  crossOriginEmbedderPolicy: false,
 }));
 
-// Rate limiting for API endpoints
-const apiLimiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 100, // 100 requests per window per IP
-  standardHeaders: true,
-  legacyHeaders: false,
-  message: { message: "Demasiadas solicitudes. Intenta de nuevo mas tarde." },
-});
-
-const paymentLimiter = rateLimit({
+// Rate limiting
+const generalLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
-  max: 20, // Stricter limit for payment endpoints
+  max: 100,
   standardHeaders: true,
   legacyHeaders: false,
-  message: { message: "Demasiados intentos de pago. Intenta de nuevo mas tarde." },
+  message: { message: "Demasiadas peticiones. Intenta de nuevo en unos minutos." },
 });
 
-app.use("/api/quote", apiLimiter);
-app.use("/api/create-payment-intent", paymentLimiter);
-app.use("/api/create-checkout-session", paymentLimiter);
-app.use("/api/whatsapp/webhook", apiLimiter);
+const authLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 5,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { message: "Demasiados intentos de login. Intenta de nuevo en 15 minutos." },
+});
+
+app.use("/api/", generalLimiter);
+app.use("/api/admin/login", authLimiter);
+app.use("/api/admin/login-user", authLimiter);
 
 // Trust proxy for correct protocol detection behind reverse proxies
 app.set('trust proxy', 1);
@@ -116,7 +125,6 @@ app.use((req, res, next) => {
     const message = err.message || "Internal Server Error";
 
     res.status(status).json({ message });
-    throw err;
   });
 
   // importantly only setup vite in development and after

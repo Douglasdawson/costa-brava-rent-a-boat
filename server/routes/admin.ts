@@ -1,8 +1,24 @@
 import type { Express } from "express";
+import { z } from "zod";
 import { storage } from "../storage";
 import { updateBookingSchema, insertBookingSchema, insertBoatSchema } from "@shared/schema";
 import { requireAdminSession } from "./auth";
 import { ObjectStorageService, ObjectNotFoundError } from "../objectStorage";
+
+const boatReorderSchema = z.object({
+  order: z.array(z.object({
+    id: z.string().min(1),
+    displayOrder: z.number().int().min(0),
+  })).min(1, "Orden requerido"),
+});
+
+const normalizeImageSchema = z.object({
+  imageUrl: z.string().min(1, "imageUrl es requerido"),
+});
+
+const adminStatsQuerySchema = z.object({
+  period: z.enum(["today", "week", "month"]).optional().default("today"),
+});
 
 export function registerAdminRoutes(app: Express) {
   // ===== BOAT MANAGEMENT =====
@@ -12,8 +28,8 @@ export function registerAdminRoutes(app: Express) {
       const validationResult = insertBoatSchema.safeParse(req.body);
       if (!validationResult.success) {
         return res.status(400).json({
-          message: "Datos inválidos",
-          errors: validationResult.error.errors,
+          message: "Datos invalidos",
+          errors: validationResult.error.flatten().fieldErrors,
         });
       }
       const newBoat = await storage.createBoat(validationResult.data);
@@ -29,7 +45,14 @@ export function registerAdminRoutes(app: Express) {
       if (!existingBoat) {
         return res.status(404).json({ message: "Barco no encontrado" });
       }
-      const updatedBoat = await storage.updateBoat(req.params.id, req.body);
+      const parsed = insertBoatSchema.partial().safeParse(req.body);
+      if (!parsed.success) {
+        return res.status(400).json({
+          message: "Datos invalidos",
+          errors: parsed.error.flatten().fieldErrors,
+        });
+      }
+      const updatedBoat = await storage.updateBoat(req.params.id, parsed.data);
       res.json(updatedBoat);
     } catch (error: any) {
       res.status(500).json({ message: "Error updating boat: " + error.message });
@@ -51,10 +74,15 @@ export function registerAdminRoutes(app: Express) {
 
   app.post("/api/admin/boats/reorder", requireAdminSession, async (req, res) => {
     try {
-      const { order } = req.body;
-      if (!order || !Array.isArray(order)) {
-        return res.status(400).json({ message: "Orden inválido" });
+      const parsed = boatReorderSchema.safeParse(req.body);
+      if (!parsed.success) {
+        return res.status(400).json({
+          message: "Datos invalidos",
+          errors: parsed.error.flatten().fieldErrors,
+        });
       }
+
+      const { order } = parsed.data;
       for (const item of order) {
         await storage.updateBoat(item.id, { displayOrder: item.displayOrder });
       }
@@ -130,8 +158,8 @@ export function registerAdminRoutes(app: Express) {
       const validationResult = insertBookingSchema.safeParse(bookingData);
       if (!validationResult.success) {
         return res.status(400).json({
-          message: "Datos inválidos",
-          errors: validationResult.error.errors,
+          message: "Datos invalidos",
+          errors: validationResult.error.flatten().fieldErrors,
         });
       }
 
@@ -167,8 +195,8 @@ export function registerAdminRoutes(app: Express) {
       const validationResult = updateBookingSchema.safeParse(req.body);
       if (!validationResult.success) {
         return res.status(400).json({
-          message: "Datos inválidos",
-          errors: validationResult.error.errors,
+          message: "Datos invalidos",
+          errors: validationResult.error.flatten().fieldErrors,
         });
       }
 
@@ -256,7 +284,15 @@ export function registerAdminRoutes(app: Express) {
 
   app.get("/api/admin/stats", requireAdminSession, async (req, res) => {
     try {
-      const { period = "today" } = req.query;
+      const queryParsed = adminStatsQuerySchema.safeParse(req.query);
+      if (!queryParsed.success) {
+        return res.status(400).json({
+          message: "Datos invalidos",
+          errors: queryParsed.error.flatten().fieldErrors,
+        });
+      }
+
+      const { period } = queryParsed.data;
 
       const now = new Date();
       let startDate = new Date(now);
@@ -317,10 +353,15 @@ export function registerAdminRoutes(app: Express) {
 
   app.post("/api/admin/boat-images/normalize", requireAdminSession, async (req, res) => {
     try {
-      const { imageUrl } = req.body;
-      if (!imageUrl) {
-        return res.status(400).json({ error: "imageUrl is required" });
+      const parsed = normalizeImageSchema.safeParse(req.body);
+      if (!parsed.success) {
+        return res.status(400).json({
+          error: "Datos invalidos",
+          errors: parsed.error.flatten().fieldErrors,
+        });
       }
+
+      const { imageUrl } = parsed.data;
       const objectStorageService = new ObjectStorageService();
       const normalizedPath = objectStorageService.normalizeObjectEntityPath(imageUrl);
       res.json({ normalizedPath });

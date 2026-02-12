@@ -1,6 +1,16 @@
 import type { Express } from "express";
+import { z } from "zod";
 import { storage } from "../storage";
 import { requireAdminSession, requireAdminRole } from "./auth";
+
+const gallerySubmitSchema = z.object({
+  imageUrl: z.string().url("URL de imagen invalida"),
+  caption: z.string().max(500).optional(),
+  customerName: z.string().min(1, "El nombre es requerido").max(100),
+  boatName: z.string().max(100).optional(),
+  boatId: z.string().max(100).optional(),
+  tripDate: z.string().optional(),
+});
 
 // Simple rate limiting for photo submissions
 const submitAttempts = new Map<string, { count: number; firstAttempt: number }>();
@@ -34,11 +44,15 @@ export function registerGalleryRoutes(app: Express) {
         }
       }
 
-      const { imageUrl, caption, customerName, boatName, boatId, tripDate } = req.body;
-
-      if (!imageUrl || !customerName) {
-        return res.status(400).json({ message: "La imagen y el nombre son requeridos" });
+      const parsed = gallerySubmitSchema.safeParse(req.body);
+      if (!parsed.success) {
+        return res.status(400).json({
+          message: "Datos invalidos",
+          errors: parsed.error.flatten().fieldErrors,
+        });
       }
+
+      const { imageUrl, caption, customerName, boatName, boatId, tripDate } = parsed.data;
 
       const photo = await storage.createClientPhoto({
         imageUrl,

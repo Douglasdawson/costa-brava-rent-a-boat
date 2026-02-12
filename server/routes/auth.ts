@@ -1,54 +1,106 @@
 import type { Express, Request, Response, NextFunction } from "express";
-import crypto from "crypto";
+import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
+import { z } from "zod";
 import { storage } from "../storage";
 import { isAuthenticated } from "../replitAuth";
 
-// Token data now includes role and username
-interface TokenData {
-  createdAt: number;
-  expiresAt: number;
+const updateCustomerProfileSchema = z.object({
+  firstName: z.string().min(1).max(100).optional(),
+  lastName: z.string().min(1).max(100).optional(),
+  email: z.string().email().optional(),
+  phonePrefix: z.string().max(10).optional(),
+  phoneNumber: z.string().max(20).optional(),
+  nationality: z.string().max(50).optional(),
+  preferredLanguage: z.string().max(10).optional(),
+});
+
+// JWT secret - must be set via environment variable in production
+const JWT_SECRET = process.env.JWT_SECRET || "cbrb-admin-secret-change-in-production";
+
+// JWT payload interface
+interface JwtPayload {
+  userId: string;
   role: string;
   username: string;
+  iat?: number;
+  exp?: number;
 }
 
-// In-memory store for valid admin tokens with expiration
-const adminTokens = new Map<string, TokenData>();
-const TOKEN_TTL_MS = 24 * 60 * 60 * 1000; // 24 hours
+// Token metadata for session tracking (not used for auth verification)
+interface TokenMeta {
+  createdAt: number;
+  role: string;
+  username: string;
+  userId: string;
+}
 
-// Clean expired tokens periodically
+// In-memory store for active session tracking
+const activeSessions = new Map<string, TokenMeta>();
+
+// Blacklisted tokens (logged out before expiry)
+const blacklistedTokens = new Set<string>();
+
+// Clean expired sessions and blacklisted tokens periodically
 setInterval(() => {
-  const now = Date.now();
-  const entries = Array.from(adminTokens.entries());
-  for (const [token, data] of entries) {
-    if (now > data.expiresAt) {
-      adminTokens.delete(token);
+  // Clean expired sessions from tracking map
+  const sessionEntries = Array.from(activeSessions.entries());
+  for (const [token] of sessionEntries) {
+    try {
+      jwt.verify(token, JWT_SECRET);
+    } catch {
+      activeSessions.delete(token);
+    }
+  }
+  // Clean expired tokens from blacklist (no need to keep them after they expire)
+  const blacklistEntries = Array.from(blacklistedTokens);
+  for (const token of blacklistEntries) {
+    try {
+      jwt.verify(token, JWT_SECRET);
+    } catch {
+      blacklistedTokens.delete(token);
     }
   }
 }, 60 * 60 * 1000); // Clean every hour
 
-export function generateAdminToken(role: string = "admin", username: string = "admin"): string {
-  const token = `admin_${crypto.randomBytes(32).toString("hex")}`;
-  adminTokens.set(token, {
+// Generate a signed JWT token
+export function generateAdminToken(role: string = "admin", username: string = "admin", userId: string = "owner"): string {
+  const token = jwt.sign(
+    { userId, role, username } as JwtPayload,
+    JWT_SECRET,
+    { expiresIn: "24h" }
+  );
+
+  // Track session metadata
+  activeSessions.set(token, {
     createdAt: Date.now(),
-    expiresAt: Date.now() + TOKEN_TTL_MS,
     role,
     username,
+    userId,
   });
+
   return token;
 }
 
-// Helper to get token data from request
-function getTokenData(req: Request): TokenData | null {
+// Helper to extract and verify JWT from request, returns decoded payload or null
+function getTokenData(req: Request): JwtPayload | null {
   const authHeader = req.headers.authorization;
   if (!authHeader || !authHeader.startsWith("Bearer ")) return null;
+
   const token = authHeader.substring(7);
-  const tokenData = adminTokens.get(token);
-  if (!tokenData || Date.now() > tokenData.expiresAt) return null;
-  return tokenData;
+
+  // Check if token has been blacklisted (logged out)
+  if (blacklistedTokens.has(token)) return null;
+
+  try {
+    const decoded = jwt.verify(token, JWT_SECRET) as JwtPayload;
+    return decoded;
+  } catch {
+    return null;
+  }
 }
 
-// Admin session middleware - verifies token exists in store
+// Admin session middleware - verifies JWT signature and expiry
 export const requireAdminSession = (req: Request, res: Response, next: NextFunction) => {
   const authHeader = req.headers.authorization;
 
@@ -57,18 +109,24 @@ export const requireAdminSession = (req: Request, res: Response, next: NextFunct
   }
 
   const token = authHeader.substring(7);
-  const tokenData = adminTokens.get(token);
 
-  if (!tokenData) {
+  // Check if token has been blacklisted (logged out)
+  if (blacklistedTokens.has(token)) {
     return res.status(401).json({ message: "Token invalido o expirado" });
   }
 
-  if (Date.now() > tokenData.expiresAt) {
-    adminTokens.delete(token);
-    return res.status(401).json({ message: "Token expirado" });
+  try {
+    const decoded = jwt.verify(token, JWT_SECRET) as JwtPayload;
+    // Attach decoded user info to request for downstream use
+    (req as any).adminUser = decoded;
+    next();
+  } catch (error) {
+    if (error instanceof jwt.TokenExpiredError) {
+      activeSessions.delete(token);
+      return res.status(401).json({ message: "Token expirado" });
+    }
+    return res.status(401).json({ message: "Token invalido o expirado" });
   }
-
-  next();
 };
 
 // Admin role middleware - requires 'admin' role for destructive operations
@@ -108,7 +166,7 @@ export function registerAuthRoutes(app: Express) {
     }
   });
 
-  // Logout endpoint
+  // Logout endpoint (customer - Replit Auth)
   app.post("/api/auth/logout", (req: any, res) => {
     res.json({
       message: "Logout initiated",
@@ -143,8 +201,15 @@ export function registerAuthRoutes(app: Express) {
         return res.status(404).json({ message: "Customer profile not found" });
       }
 
-      const updates = req.body;
-      const updatedCustomer = await storage.updateCustomer(customer.id, updates);
+      const parsed = updateCustomerProfileSchema.safeParse(req.body);
+      if (!parsed.success) {
+        return res.status(400).json({
+          message: "Datos invalidos",
+          errors: parsed.error.flatten().fieldErrors,
+        });
+      }
+
+      const updatedCustomer = await storage.updateCustomer(customer.id, parsed.data);
 
       res.json(updatedCustomer);
     } catch (error: unknown) {
@@ -188,6 +253,17 @@ export function registerAuthRoutes(app: Express) {
       username: tokenData.username,
       role: tokenData.role,
     });
+  });
+
+  // Admin logout - blacklist the JWT token
+  app.post("/api/admin/logout", requireAdminSession, (req, res) => {
+    const authHeader = req.headers.authorization;
+    if (authHeader && authHeader.startsWith("Bearer ")) {
+      const token = authHeader.substring(7);
+      blacklistedTokens.add(token);
+      activeSessions.delete(token);
+    }
+    res.json({ success: true, message: "Sesion cerrada correctamente" });
   });
 
   // Admin login with rate limiting
@@ -238,10 +314,10 @@ export function registerAuthRoutes(app: Express) {
         return res.status(401).json({ message: "PIN incorrecto" });
       }
 
-      // Successful login - reset attempts and generate verified token
+      // Successful login - reset attempts and generate signed JWT
       // PIN login is reserved for the owner (Ivan) - super admin
       loginAttempts.delete(clientIp);
-      const token = generateAdminToken("admin", "ivan");
+      const token = generateAdminToken("admin", "ivan", "owner");
 
       res.json({
         success: true,
@@ -286,7 +362,7 @@ export function registerAuthRoutes(app: Express) {
       await storage.updateAdminUser(user.id, { lastLoginAt: new Date() });
 
       loginAttempts.delete(clientIp);
-      const token = generateAdminToken(user.role, user.username);
+      const token = generateAdminToken(user.role, user.username, user.id);
 
       res.json({
         success: true,

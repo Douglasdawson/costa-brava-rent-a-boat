@@ -1,5 +1,15 @@
 import type { Express } from "express";
+import { z } from "zod";
 import { storage } from "../storage";
+
+const checkAvailabilitySchema = z.object({
+  startTime: z.string().min(1, "La hora de inicio es requerida"),
+  endTime: z.string().min(1, "La hora de fin es requerida"),
+});
+
+const checkAvailabilityWithBoatSchema = checkAvailabilitySchema.extend({
+  boatId: z.string().min(1, "El ID del barco es requerido"),
+});
 
 export function registerBoatRoutes(app: Express) {
   // Get all active boats
@@ -30,16 +40,18 @@ export function registerBoatRoutes(app: Express) {
   // Check availability for a specific boat
   app.post("/api/boats/:id/check-availability", async (req, res) => {
     try {
-      const { startTime, endTime } = req.body;
-
-      if (!startTime || !endTime) {
+      const parsed = checkAvailabilitySchema.safeParse(req.body);
+      if (!parsed.success) {
         return res.status(400).json({
-          message: "La hora de inicio y fin son obligatorias",
+          message: "Datos invalidos",
           available: false,
           reason: "missing_params",
+          errors: parsed.error.flatten().fieldErrors,
           conflictingBookings: [],
         });
       }
+
+      const { startTime, endTime } = parsed.data;
 
       const start = new Date(startTime);
       const end = new Date(endTime);
@@ -107,16 +119,18 @@ export function registerBoatRoutes(app: Express) {
   // Alternative availability check endpoint
   app.post("/api/check-availability", async (req, res) => {
     try {
-      const { boatId, startTime, endTime } = req.body;
-
-      if (!boatId || !startTime || !endTime) {
+      const parsed = checkAvailabilityWithBoatSchema.safeParse(req.body);
+      if (!parsed.success) {
         return res.status(400).json({
-          message: "Boat ID, start time and end time are required",
+          message: "Datos invalidos",
           available: false,
           reason: "missing_params",
+          errors: parsed.error.flatten().fieldErrors,
           conflictingBookings: [],
         });
       }
+
+      const { boatId, startTime, endTime } = parsed.data;
 
       const start = new Date(startTime);
       const end = new Date(endTime);

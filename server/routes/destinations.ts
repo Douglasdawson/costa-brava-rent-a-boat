@@ -44,13 +44,16 @@ export function registerDestinationRoutes(app: Express) {
   // Create a new destination (admin only)
   app.post("/api/admin/destinations", requireAdminSession, async (req, res) => {
     try {
-      const validatedData = insertDestinationSchema.parse(req.body);
-      const destination = await storage.createDestination(validatedData);
+      const parsed = insertDestinationSchema.safeParse(req.body);
+      if (!parsed.success) {
+        return res.status(400).json({
+          message: "Datos invalidos",
+          errors: parsed.error.flatten().fieldErrors,
+        });
+      }
+      const destination = await storage.createDestination(parsed.data);
       res.status(201).json(destination);
     } catch (error: any) {
-      if (error.name === "ZodError") {
-        return res.status(400).json({ message: "Validation error", errors: error.errors });
-      }
       res.status(500).json({ message: "Error creating destination: " + error.message });
     }
   });
@@ -58,16 +61,19 @@ export function registerDestinationRoutes(app: Express) {
   // Update a destination (admin only)
   app.put("/api/admin/destinations/:id", requireAdminSession, async (req, res) => {
     try {
-      const validatedData = insertDestinationSchema.partial().parse(req.body);
-      const destination = await storage.updateDestination(req.params.id, validatedData);
+      const parsed = insertDestinationSchema.partial().safeParse(req.body);
+      if (!parsed.success) {
+        return res.status(400).json({
+          message: "Datos invalidos",
+          errors: parsed.error.flatten().fieldErrors,
+        });
+      }
+      const destination = await storage.updateDestination(req.params.id, parsed.data);
       if (!destination) {
         return res.status(404).json({ message: "Destination not found" });
       }
       res.json(destination);
     } catch (error: any) {
-      if (error.name === "ZodError") {
-        return res.status(400).json({ message: "Validation error", errors: error.errors });
-      }
       res.status(500).json({ message: "Error updating destination: " + error.message });
     }
   });

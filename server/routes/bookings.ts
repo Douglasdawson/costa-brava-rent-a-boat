@@ -1,9 +1,30 @@
 import type { Express } from "express";
+import { z } from "zod";
 import { storage } from "../storage";
 import { db } from "../db";
 import { bookings } from "@shared/schema";
 import { and, eq, lte } from "drizzle-orm";
 import { requireAdminSession } from "./auth";
+
+const quoteSchema = z.object({
+  boatId: z.string().min(1, "boatId es requerido"),
+  startTime: z.string().min(1, "startTime es requerido"),
+  endTime: z.string().min(1, "endTime es requerido"),
+  numberOfPeople: z.number().int().min(1, "Minimo 1 persona").max(20, "Maximo 20 personas"),
+  extras: z.array(z.string()).optional(),
+});
+
+const paymentStatusSchema = z.object({
+  status: z.enum(["pending", "paid", "failed", "cancelled", "refunded"], {
+    errorMap: () => ({ message: "Estado de pago invalido" }),
+  }),
+  stripePaymentIntentId: z.string().optional(),
+});
+
+const whatsappStatusSchema = z.object({
+  confirmationSent: z.boolean().optional(),
+  reminderSent: z.boolean().optional(),
+});
 
 export function registerBookingRoutes(app: Express) {
   // Get booking by ID
@@ -34,15 +55,17 @@ export function registerBookingRoutes(app: Express) {
   // Quote endpoint - Calculate pricing and create temporary hold
   app.post("/api/quote", async (req, res) => {
     try {
-      const { boatId, startTime, endTime, numberOfPeople, extras } = req.body;
-
-      if (!boatId || !startTime || !endTime || !numberOfPeople) {
+      const parsed = quoteSchema.safeParse(req.body);
+      if (!parsed.success) {
         return res.status(400).json({
-          message: "Faltan campos obligatorios: boatId, startTime, endTime, numberOfPeople",
+          message: "Datos invalidos",
           available: false,
           reason: "missing_fields",
+          errors: parsed.error.flatten().fieldErrors,
         });
       }
+
+      const { boatId, startTime, endTime, numberOfPeople, extras } = parsed.data;
 
       const start = new Date(startTime);
       const end = new Date(endTime);
@@ -201,14 +224,15 @@ export function registerBookingRoutes(app: Express) {
   // Update booking payment status (admin only)
   app.post("/api/bookings/:id/payment-status", requireAdminSession, async (req, res) => {
     try {
-      const { status, stripePaymentIntentId } = req.body;
-      const validStatuses = ["pending", "paid", "failed", "cancelled", "refunded"];
-
-      if (!validStatuses.includes(status)) {
+      const parsed = paymentStatusSchema.safeParse(req.body);
+      if (!parsed.success) {
         return res.status(400).json({
-          message: `Invalid payment status. Must be one of: ${validStatuses.join(", ")}`,
+          message: "Datos invalidos",
+          errors: parsed.error.flatten().fieldErrors,
         });
       }
+
+      const { status, stripePaymentIntentId } = parsed.data;
 
       const updatedBooking = await storage.updateBookingPaymentStatus(
         req.params.id,
@@ -229,7 +253,15 @@ export function registerBookingRoutes(app: Express) {
   // Update WhatsApp status (admin only)
   app.post("/api/bookings/:id/whatsapp-status", requireAdminSession, async (req, res) => {
     try {
-      const { confirmationSent, reminderSent } = req.body;
+      const parsed = whatsappStatusSchema.safeParse(req.body);
+      if (!parsed.success) {
+        return res.status(400).json({
+          message: "Datos invalidos",
+          errors: parsed.error.flatten().fieldErrors,
+        });
+      }
+
+      const { confirmationSent, reminderSent } = parsed.data;
 
       const updatedBooking = await storage.updateBookingWhatsAppStatus(
         req.params.id,

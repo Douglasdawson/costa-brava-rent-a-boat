@@ -26,6 +26,11 @@ const validateCodeSchema = z.object({
   code: z.string().min(1),
 });
 
+const updateGiftCardSchema = z.object({
+  status: z.enum(["pending", "active", "used", "expired", "cancelled"]).optional(),
+  paymentStatus: z.enum(["pending", "completed", "failed", "refunded"]).optional(),
+});
+
 export function registerGiftCardRoutes(app: Express) {
   // Purchase a gift card (public)
   app.post("/api/gift-cards/purchase", async (req, res) => {
@@ -169,7 +174,16 @@ export function registerGiftCardRoutes(app: Express) {
   app.patch("/api/admin/gift-cards/:id", requireAdminSession, requireAdminRole, async (req, res) => {
     try {
       const { id } = req.params;
-      const { status, paymentStatus } = req.body;
+
+      const parsed = updateGiftCardSchema.safeParse(req.body);
+      if (!parsed.success) {
+        return res.status(400).json({
+          message: "Datos invalidos",
+          errors: parsed.error.flatten().fieldErrors,
+        });
+      }
+
+      const { status, paymentStatus } = parsed.data;
 
       const updates: Record<string, string> = {};
       if (status) updates.status = status;

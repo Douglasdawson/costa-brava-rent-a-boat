@@ -1,9 +1,24 @@
 import type { Express } from "express";
 import bcrypt from "bcrypt";
+import { z } from "zod";
 import { storage } from "../storage";
 import { requireAdminSession, requireOwner } from "./auth";
 
 const BCRYPT_ROUNDS = 10;
+
+const createEmployeeSchema = z.object({
+  username: z.string().min(1, "Usuario requerido").max(50),
+  password: z.string().min(6, "La contrasena debe tener al menos 6 caracteres").max(128),
+  displayName: z.string().max(100).optional(),
+  role: z.enum(["admin", "employee"]).optional(),
+});
+
+const updateEmployeeSchema = z.object({
+  displayName: z.string().max(100).optional(),
+  role: z.enum(["admin", "employee"]).optional(),
+  password: z.string().min(6, "La contrasena debe tener al menos 6 caracteres").max(128).optional(),
+  isActive: z.boolean().optional(),
+});
 
 export function registerEmployeeRoutes(app: Express) {
   // List all employees (admin only)
@@ -22,15 +37,15 @@ export function registerEmployeeRoutes(app: Express) {
   // Create employee (admin only)
   app.post("/api/admin/employees", requireAdminSession, requireOwner, async (req, res) => {
     try {
-      const { username, password, displayName, role } = req.body;
-
-      if (!username || !password) {
-        return res.status(400).json({ message: "Usuario y contraseña requeridos" });
+      const parsed = createEmployeeSchema.safeParse(req.body);
+      if (!parsed.success) {
+        return res.status(400).json({
+          message: "Datos invalidos",
+          errors: parsed.error.flatten().fieldErrors,
+        });
       }
 
-      if (password.length < 6) {
-        return res.status(400).json({ message: "La contraseña debe tener al menos 6 caracteres" });
-      }
+      const { username, password, displayName, role } = parsed.data;
 
       // Check if username already exists
       const existing = await storage.getAdminUserByUsername(username);
@@ -58,7 +73,16 @@ export function registerEmployeeRoutes(app: Express) {
   app.patch("/api/admin/employees/:id", requireAdminSession, requireOwner, async (req, res) => {
     try {
       const { id } = req.params;
-      const { displayName, role, password, isActive } = req.body;
+
+      const parsed = updateEmployeeSchema.safeParse(req.body);
+      if (!parsed.success) {
+        return res.status(400).json({
+          message: "Datos invalidos",
+          errors: parsed.error.flatten().fieldErrors,
+        });
+      }
+
+      const { displayName, role, password, isActive } = parsed.data;
 
       const existing = await storage.getAdminUser(id);
       if (!existing) {
@@ -67,12 +91,9 @@ export function registerEmployeeRoutes(app: Express) {
 
       const updates: Record<string, unknown> = {};
       if (displayName !== undefined) updates.displayName = displayName;
-      if (role !== undefined) updates.role = role === "admin" ? "admin" : "employee";
+      if (role !== undefined) updates.role = role;
       if (isActive !== undefined) updates.isActive = isActive;
       if (password) {
-        if (password.length < 6) {
-          return res.status(400).json({ message: "La contraseña debe tener al menos 6 caracteres" });
-        }
         updates.passwordHash = await bcrypt.hash(password, BCRYPT_ROUNDS);
       }
 

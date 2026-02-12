@@ -52,13 +52,16 @@ export function registerBlogRoutes(app: Express) {
   // Create a new blog post (admin only)
   app.post("/api/admin/blog", requireAdminSession, async (req, res) => {
     try {
-      const validatedData = insertBlogPostSchema.parse(req.body);
-      const post = await storage.createBlogPost(validatedData);
+      const parsed = insertBlogPostSchema.safeParse(req.body);
+      if (!parsed.success) {
+        return res.status(400).json({
+          message: "Datos invalidos",
+          errors: parsed.error.flatten().fieldErrors,
+        });
+      }
+      const post = await storage.createBlogPost(parsed.data);
       res.status(201).json(post);
     } catch (error: any) {
-      if (error.name === "ZodError") {
-        return res.status(400).json({ message: "Validation error", errors: error.errors });
-      }
       res.status(500).json({ message: "Error creating blog post: " + error.message });
     }
   });
@@ -66,16 +69,19 @@ export function registerBlogRoutes(app: Express) {
   // Update a blog post (admin only)
   app.put("/api/admin/blog/:id", requireAdminSession, async (req, res) => {
     try {
-      const validatedData = insertBlogPostSchema.partial().parse(req.body);
-      const post = await storage.updateBlogPost(req.params.id, validatedData);
+      const parsed = insertBlogPostSchema.partial().safeParse(req.body);
+      if (!parsed.success) {
+        return res.status(400).json({
+          message: "Datos invalidos",
+          errors: parsed.error.flatten().fieldErrors,
+        });
+      }
+      const post = await storage.updateBlogPost(req.params.id, parsed.data);
       if (!post) {
         return res.status(404).json({ message: "Blog post not found" });
       }
       res.json(post);
     } catch (error: any) {
-      if (error.name === "ZodError") {
-        return res.status(400).json({ message: "Validation error", errors: error.errors });
-      }
       res.status(500).json({ message: "Error updating blog post: " + error.message });
     }
   });

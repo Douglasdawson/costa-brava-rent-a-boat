@@ -1,10 +1,30 @@
 import type { Express } from "express";
 import express from "express";
 import Stripe from "stripe";
+import { z } from "zod";
 import { storage } from "../storage";
 import { db } from "../db";
 import { bookings, giftCards } from "@shared/schema";
 import { eq } from "drizzle-orm";
+
+const createPaymentIntentSchema = z.object({
+  holdId: z.string().optional(),
+  bookingId: z.string().optional(),
+}).refine(data => data.holdId || data.bookingId, {
+  message: "holdId o bookingId es requerido",
+});
+
+const createCheckoutSessionSchema = z.object({
+  bookingId: z.string().min(1, "Booking ID es requerido"),
+});
+
+const mockPaymentIntentSchema = z.object({
+  holdId: z.string().min(1, "ID de hold requerido"),
+});
+
+const simulatePaymentSchema = z.object({
+  paymentIntentId: z.string().min(1, "PaymentIntent ID requerido"),
+});
 
 // Initialize Stripe lazily
 let stripe: Stripe | null = null;
@@ -38,15 +58,17 @@ export function registerPaymentRoutes(app: Express) {
         });
       }
 
-      const { holdId, bookingId } = req.body;
-      const targetId = holdId || bookingId;
-
-      if (!targetId) {
+      const parsed = createPaymentIntentSchema.safeParse(req.body);
+      if (!parsed.success) {
         return res.status(400).json({
-          message: "ID de hold o booking requerido",
+          message: "Datos invalidos",
           success: false,
+          errors: parsed.error.flatten().fieldErrors,
         });
       }
+
+      const { holdId, bookingId } = parsed.data;
+      const targetId = (holdId || bookingId) as string;
 
       const hold = await storage.getBookingById(targetId);
       if (!hold) {
@@ -117,11 +139,16 @@ export function registerPaymentRoutes(app: Express) {
   app.post("/api/create-checkout-session", async (req, res) => {
     try {
       const stripeInstance = getStripe();
-      const { bookingId } = req.body;
 
-      if (!bookingId) {
-        return res.status(400).json({ message: "Booking ID is required" });
+      const parsed = createCheckoutSessionSchema.safeParse(req.body);
+      if (!parsed.success) {
+        return res.status(400).json({
+          message: "Datos invalidos",
+          errors: parsed.error.flatten().fieldErrors,
+        });
       }
+
+      const { bookingId } = parsed.data;
 
       const booking = await storage.getBooking(bookingId);
       if (!booking) {
@@ -175,10 +202,16 @@ export function registerPaymentRoutes(app: Express) {
     }
 
     try {
-      const { holdId } = req.body;
-      if (!holdId) {
-        return res.status(400).json({ message: "ID de hold requerido", success: false });
+      const parsed = mockPaymentIntentSchema.safeParse(req.body);
+      if (!parsed.success) {
+        return res.status(400).json({
+          message: "Datos invalidos",
+          success: false,
+          errors: parsed.error.flatten().fieldErrors,
+        });
       }
+
+      const { holdId } = parsed.data;
 
       const hold = await storage.getBookingById(holdId);
       if (!hold) {
@@ -232,10 +265,16 @@ export function registerPaymentRoutes(app: Express) {
     }
 
     try {
-      const { paymentIntentId } = req.body;
-      if (!paymentIntentId) {
-        return res.status(400).json({ message: "PaymentIntent ID requerido", success: false });
+      const parsed = simulatePaymentSchema.safeParse(req.body);
+      if (!parsed.success) {
+        return res.status(400).json({
+          message: "Datos invalidos",
+          success: false,
+          errors: parsed.error.flatten().fieldErrors,
+        });
       }
+
+      const { paymentIntentId } = parsed.data;
 
       const booking = await db
         .select()

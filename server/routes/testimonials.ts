@@ -24,14 +24,17 @@ export function registerTestimonialRoutes(app: Express) {
   // Create a new testimonial (public - will be unverified by default)
   app.post("/api/testimonials", async (req, res) => {
     try {
-      const validatedData = insertTestimonialSchema.parse(req.body);
+      const parsed = insertTestimonialSchema.safeParse(req.body);
+      if (!parsed.success) {
+        return res.status(400).json({
+          message: "Datos invalidos",
+          errors: parsed.error.flatten().fieldErrors,
+        });
+      }
       // isVerified defaults to false in database - only admins can verify
-      const testimonial = await storage.createTestimonial(validatedData);
+      const testimonial = await storage.createTestimonial(parsed.data);
       res.status(201).json(testimonial);
     } catch (error: any) {
-      if (error.name === "ZodError") {
-        return res.status(400).json({ message: "Validation error", errors: error.errors });
-      }
       res.status(500).json({ message: "Error creating testimonial: " + error.message });
     }
   });

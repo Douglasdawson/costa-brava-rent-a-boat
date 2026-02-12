@@ -61,7 +61,7 @@ export default function FeaturesSection() {
     {
       name: "Snorkel",
       image: snorkelImage,
-      price: "15€",
+      price: "7,50€",
       description: "Equipo completo de snorkel para descubrir la vida marina"
     },
     {

@@ -221,7 +221,7 @@ export default function CookiesPolicy() {
 
             <div className="text-center mt-8">
               <p className="text-sm text-gray-500 dark:text-gray-400">
-                Última actualización: Octubre 2025
+                Última actualización: Febrero 2026
               </p>
             </div>
           </div>

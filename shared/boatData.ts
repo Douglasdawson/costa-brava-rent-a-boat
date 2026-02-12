@@ -163,6 +163,67 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
     ]
   },
 
+  "remus-450-ii": {
+    id: "remus-450-ii",
+    name: "Remus 450 II",
+    image: "REMUS_450_boat_photo_ec8b926c.png",
+    subtitle: "¡Barco sin licencia para alquilar en Blanes!",
+    description: "Alquiler Remus 450 II sin licencia en Blanes, Costa Brava. Barco ideal para hasta 5 personas con gasolina incluida. Perfecto para familias que buscan alquilar embarcación sin licencia en Puerto de Blanes. Equipado con solárium amplio, toldo Bi Mini y escalera de baño. Ideal para explorar las calas de Blanes y Costa Brava Sur.",
+    specifications: {
+      model: "Remus 450",
+      length: "4,5m",
+      beam: "1,6m",
+      engine: "Suzuki 15cv 4t",
+      fuel: "Gasolina 25L",
+      capacity: "5 Personas",
+      deposit: "200€"
+    },
+    equipment: [
+      "Toldo Bi Mini",
+      "Arranque eléctrico",
+      "Gran solárium de proa",
+      "Escalera de baño",
+      "Equipo de seguridad y salvamento"
+    ],
+    included: [
+      "IVA",
+      "Carburante",
+      "Amarre",
+      "Limpieza",
+      "Seguro embarcación y ocupantes"
+    ],
+    features: [
+      "Sin licencia requerida",
+      "Hasta 5 personas",
+      "Gasolina incluida",
+      "Seguro incluido",
+      "Equipo de seguridad",
+      "Escalera de baño"
+    ],
+    pricing: {
+      BAJA: {
+        period: "Abril-Junio, Septiembre-Cierre",
+        prices: { "1h": 75, "2h": 115, "3h": 130, "4h": 150, "6h": 190, "8h": 220 }
+      },
+      MEDIA: {
+        period: "Julio",
+        prices: { "1h": 85, "2h": 130, "3h": 160, "4h": 180, "6h": 230, "8h": 270 }
+      },
+      ALTA: {
+        period: "Agosto",
+        prices: { "1h": 95, "2h": 140, "3h": 170, "4h": 195, "6h": 240, "8h": 290 }
+      }
+    },
+    extras: [
+      { name: "Parking", price: "10€", icon: "CircleParking" },
+      { name: "Nevera", price: "5€", icon: "Snowflake" },
+      { name: "Bebidas", price: "2,5€/ud", icon: "Beer" },
+      { name: "Snorkel", price: "7,5€", icon: "Eye" },
+      { name: "Paddle Surf", price: "25€", icon: "Waves" },
+      { name: "Seascooter", price: "50€", icon: "Zap" }
+    ]
+  },
+
   "astec-400": {
     id: "astec-400",
     name: "Astec 400",
@@ -224,15 +285,15 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
     ]
   },
 
-  "astec-450": {
-    id: "astec-450",
-    name: "Astec 450", // Nota: El usuario quiere que se llame 480 en la página
+  "astec-480": {
+    id: "astec-480",
+    name: "Astec 480",
     image: "ASTEC_400_boat_photo_9dde16a8.png",
     subtitle: "¡Barco sin licencia para alquilar en Blanes!",
-    description: "Alquiler Astec 450 sin licencia en Blanes, Costa Brava. Nuestra embarcación sin licencia más espaciosa para grupos de hasta 5 personas con gasolina incluida. La mejor opción para alquilar barco sin licencia en Puerto de Blanes. Incluye solárium acolchado, toldo, escalera de baño, arranque eléctrico y equipo bluetooth. Ideal para navegación confortable en Costa Brava Sur.",
+    description: "Alquiler Astec 480 sin licencia en Blanes, Costa Brava. Nuestra embarcación sin licencia más espaciosa para grupos de hasta 5 personas con gasolina incluida. La mejor opción para alquilar barco sin licencia en Puerto de Blanes. Incluye solárium acolchado, toldo, escalera de baño, arranque eléctrico y equipo bluetooth. Ideal para navegación confortable en Costa Brava Sur.",
     specifications: {
-      model: "Fibra Astec 450",
-      length: "4m",
+      model: "Fibra Astec 480",
+      length: "4,80m",
       beam: "1,75m",
       engine: "Parsun 40/15cv",
       fuel: "Gasolina 50L",
@@ -476,6 +537,71 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
       { name: "Snorkel", price: "7,5€", icon: "Eye" },
       { name: "Paddle Surf", price: "25€", icon: "Waves" },
       { name: "Seascooter", price: "50€", icon: "Zap" }
+    ]
+  },
+
+  "excursion-privada": {
+    id: "excursion-privada",
+    name: "Excursion Privada con Capitan",
+    image: "PACIFIC_CRAFT_625_boat_fbe4f4d0.png",
+    subtitle: "Excursion privada con patron en la Costa Brava",
+    description: "Disfruta de una excursion privada en barco con patron por la Costa Brava, explorando la costa de Blanes, Lloret y Tossa. Navega por calas escondidas, cuevas y playas tranquilas. Fondearemos en una cala ideal para nadar y relajarse, elegida por el capitan segun las condiciones del mar. Ideal para parejas, familias o grupos que buscan una experiencia exclusiva desde el mar.",
+    specifications: {
+      model: "Pacific Craft 625 Open",
+      length: "6,24m",
+      beam: "2,51m",
+      engine: "Yamaha 115cv 4T",
+      fuel: "Gasolina 127L",
+      capacity: "7 Personas",
+      deposit: "500€"
+    },
+    equipment: [
+      "Patron profesional",
+      "Radio bluetooth",
+      "Altavoces",
+      "Solarium en proa y popa",
+      "Toldo bimini inox",
+      "Mesa en popa y/o proa",
+      "Ducha de agua dulce",
+      "Escalera de bano",
+      "Equipo de seguridad y salvamento"
+    ],
+    included: [
+      "IVA",
+      "Patron profesional",
+      "Amarre",
+      "Limpieza",
+      "Seguro embarcacion y ocupantes"
+    ],
+    features: [
+      "No requiere licencia",
+      "Patron profesional incluido",
+      "Hasta 7 personas",
+      "Calas escondidas y cuevas",
+      "Parada para nadar",
+      "Combustible NO incluido"
+    ],
+    pricing: {
+      BAJA: {
+        period: "Abril-Junio, Septiembre-Cierre",
+        prices: { "2h": 240, "3h": 320, "4h": 380 }
+      },
+      MEDIA: {
+        period: "Julio",
+        prices: { "2h": 260, "3h": 340, "4h": 400 }
+      },
+      ALTA: {
+        period: "Agosto",
+        prices: { "2h": 280, "3h": 360, "4h": 420 }
+      }
+    },
+    extras: [
+      { name: "Parking", price: "10€", icon: "CircleParking" },
+      { name: "Nevera", price: "5€", icon: "Snowflake" },
+      { name: "Agua y refrescos", price: "2€/ud", icon: "Beer" },
+      { name: "Snorkel", price: "7,5€", icon: "Eye" },
+      { name: "Paddle Surf", price: "25€", icon: "Waves" },
+      { name: "Seascooter", price: "60€", icon: "Zap" }
     ]
   }
 };

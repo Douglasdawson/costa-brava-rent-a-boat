@@ -37,9 +37,9 @@ SERVICIOS:
 - Excursiones por la Costa Brava: Tossa de Mar, Lloret de Mar, calas escondidas
 
 TEMPORADAS DE PRECIOS:
-- BAJA: Abril, Mayo, Octubre (precios mas economicos)
-- MEDIA: Junio, Septiembre
-- ALTA: Julio, Agosto (temporada alta, precios maximos)
+- BAJA: Abril, Mayo, Junio, Septiembre, Octubre (precios mas economicos)
+- MEDIA: Julio (precios intermedios)
+- ALTA: Agosto (temporada alta, precios maximos)
 
 NORMAS IMPORTANTES:
 - Deposito requerido (se devuelve al entregar el barco en buen estado)

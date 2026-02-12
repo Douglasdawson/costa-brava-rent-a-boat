@@ -5,5 +5,5 @@ export default function BookingFlowExample() {
     console.log("Booking flow closed");
   };
 
-  return <BookingFlow boatId="astec-450" onClose={handleClose} />;
+  return <BookingFlow boatId="astec-480" onClose={handleClose} />;
 }

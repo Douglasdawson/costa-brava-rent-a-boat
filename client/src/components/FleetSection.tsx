@@ -33,7 +33,8 @@ export default function FleetSection() {
     "astec-400": 4.7,
     "remus-450": 4.7,
     "solar-450": 4.6,
-    "astec-450": 4.8,
+    "astec-480": 4.8,
+    "remus-450-ii": 4.7,
     "pacific-craft-625": 4.9,
     "trimarchi-57s": 4.9,
     "mingolla-brava-19": 4.8

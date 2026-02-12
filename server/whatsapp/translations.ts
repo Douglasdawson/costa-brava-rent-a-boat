@@ -116,9 +116,9 @@ export const TRANSLATIONS: Record<SupportedLanguage, ChatbotTranslations> = {
     // Availability
     checkAvailabilityTitle: "📅 *Consultar Disponibilidad*",
     enterDatePrompt:
-      "¿Para qué fecha quieres consultar?\n\n_Escribe la fecha en formato DD/MM/AAAA (ej: 15/07/2025)_",
+      "¿Para qué fecha quieres consultar?\n\n_Escribe la fecha en formato DD/MM/AAAA (ej: 15/07/2026)_",
     invalidDateFormat:
-      "❌ Formato de fecha incorrecto. Por favor usa DD/MM/AAAA (ej: 15/07/2025)",
+      "❌ Formato de fecha incorrecto. Por favor usa DD/MM/AAAA (ej: 15/07/2026)",
     outOfSeason:
       "⚠️ Esa fecha está fuera de temporada. Operamos de *abril a octubre*.",
     availabilityResult: "📅 *Disponibilidad para {date}*",
@@ -231,9 +231,9 @@ export const TRANSLATIONS: Record<SupportedLanguage, ChatbotTranslations> = {
     // Availability
     checkAvailabilityTitle: "📅 *Check Availability*",
     enterDatePrompt:
-      "What date would you like to check?\n\n_Enter date as DD/MM/YYYY (e.g., 15/07/2025)_",
+      "What date would you like to check?\n\n_Enter date as DD/MM/YYYY (e.g., 15/07/2026)_",
     invalidDateFormat:
-      "❌ Invalid date format. Please use DD/MM/YYYY (e.g., 15/07/2025)",
+      "❌ Invalid date format. Please use DD/MM/YYYY (e.g., 15/07/2026)",
     outOfSeason:
       "⚠️ That date is out of season. We operate from *April to October*.",
     availabilityResult: "📅 *Availability for {date}*",
@@ -346,9 +346,9 @@ export const TRANSLATIONS: Record<SupportedLanguage, ChatbotTranslations> = {
     // Availability
     checkAvailabilityTitle: "📅 *Vérifier Disponibilité*",
     enterDatePrompt:
-      "Pour quelle date souhaitez-vous vérifier?\n\n_Entrez la date au format JJ/MM/AAAA (ex: 15/07/2025)_",
+      "Pour quelle date souhaitez-vous vérifier?\n\n_Entrez la date au format JJ/MM/AAAA (ex: 15/07/2026)_",
     invalidDateFormat:
-      "❌ Format de date incorrect. Utilisez JJ/MM/AAAA (ex: 15/07/2025)",
+      "❌ Format de date incorrect. Utilisez JJ/MM/AAAA (ex: 15/07/2026)",
     outOfSeason:
       "⚠️ Cette date est hors saison. Nous opérons d'*avril à octobre*.",
     availabilityResult: "📅 *Disponibilité pour {date}*",
@@ -461,9 +461,9 @@ export const TRANSLATIONS: Record<SupportedLanguage, ChatbotTranslations> = {
     // Availability
     checkAvailabilityTitle: "📅 *Consultar Disponibilitat*",
     enterDatePrompt:
-      "Per a quina data vols consultar?\n\n_Escriu la data en format DD/MM/AAAA (ex: 15/07/2025)_",
+      "Per a quina data vols consultar?\n\n_Escriu la data en format DD/MM/AAAA (ex: 15/07/2026)_",
     invalidDateFormat:
-      "❌ Format de data incorrecte. Si us plau utilitza DD/MM/AAAA (ex: 15/07/2025)",
+      "❌ Format de data incorrecte. Si us plau utilitza DD/MM/AAAA (ex: 15/07/2026)",
     outOfSeason:
       "⚠️ Aquesta data és fora de temporada. Operem d'*abril a octubre*.",
     availabilityResult: "📅 *Disponibilitat per {date}*",

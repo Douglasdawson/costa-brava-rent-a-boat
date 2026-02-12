@@ -237,7 +237,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
             <div className="relative group">
               <img 
                 src={getBoatImage(displayImages[currentImageIndex])} 
-                alt={`Alquiler barco ${boatData.name} ${boatData.subtitle?.includes("Sin Licencia") ? "sin licencia" : "con licencia"} en Blanes Costa Brava 2025 - Imagen ${currentImageIndex + 1}`}
+                alt={`Alquiler barco ${boatData.name} ${boatData.subtitle?.includes("Sin Licencia") ? "sin licencia" : "con licencia"} en Blanes Costa Brava 2026 - Imagen ${currentImageIndex + 1}`}
                 className="w-full h-64 sm:h-80 md:h-96 object-cover"
                 loading="lazy"
                 data-testid="img-boat-main"

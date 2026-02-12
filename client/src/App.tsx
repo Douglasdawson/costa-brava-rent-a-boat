@@ -120,7 +120,7 @@ function HomePage() {
 function BookingFlowPage() {
   const search = useSearch();
   const params = new URLSearchParams(search);
-  const boatId = params.get('boat') || 'astec-450'; // Default boat if none specified
+  const boatId = params.get('boat') || 'astec-480'; // Default boat if none specified
   const date = params.get('date') || '';
   const duration = params.get('duration') || '';
   const time = params.get('time') || '';

@@ -13,10 +13,10 @@ export default function BoatCardExample() {
   return (
     <div className="p-8 max-w-sm">
       <BoatCard
-        id="astec-450"
-        name="Astec 450"
+        id="astec-480"
+        name="Astec 480"
         image={astec450Image}
-        imageAlt="Astec 450 - Embarcación sin licencia"
+        imageAlt="Astec 480 - Embarcación sin licencia"
         capacity={5}
         requiresLicense={false}
         description="Embarcación perfecta para familias. Incluye solárium, toldo y escalera de baño. Gasolina incluida."

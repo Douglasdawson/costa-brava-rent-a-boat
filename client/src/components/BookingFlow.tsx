@@ -44,7 +44,7 @@ interface Customer {
 }
 
 export default function BookingFlow({ 
-  boatId = "astec-450", 
+  boatId = "astec-480",
   onClose,
   initialDate = "",
   initialDuration = "2h",
@@ -402,7 +402,8 @@ export default function BookingFlow({
         return 4;
       case "solar-450":
       case "remus-450":
-      case "astec-450": // Astec 480 appears to be astec-450 in the system
+      case "astec-480":
+      case "remus-450-ii":
         return 5;
       case "pacific-craft-625":
       case "trimarchi-57s":

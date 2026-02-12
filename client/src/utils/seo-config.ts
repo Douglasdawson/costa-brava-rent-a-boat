@@ -982,8 +982,8 @@ export function generateServiceSchema(language: Language = 'es') {
       "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
       "opens": "09:00",
       "closes": "20:00",
-      "validFrom": "2024-04-01",
-      "validThrough": "2024-10-31"
+      "validFrom": "2026-04-01",
+      "validThrough": "2026-10-31"
     },
     "offers": [
       {

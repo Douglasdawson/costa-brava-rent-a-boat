@@ -92,7 +92,7 @@ export default function CategoryLicensedPage() {
   // Licensed boats data
   const licensedBoats = [
     {
-      name: "Astec 450",
+      name: "Astec 480",
       capacity: "6-7 personas",
       engine: "40 CV",
       features: ["GPS", "Sonda", "Radio VHF", "Bimini grande"],

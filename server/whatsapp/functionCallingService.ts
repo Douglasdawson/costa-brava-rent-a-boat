@@ -2,6 +2,7 @@
 import OpenAI from "openai";
 import { storage } from "../storage";
 import type { Boat } from "@shared/schema";
+import { getSeason, isOperationalSeason, getSeasonDisplayName, type Season } from "@shared/pricing";
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
@@ -107,14 +108,6 @@ export const AVAILABLE_FUNCTIONS: OpenAI.Chat.Completions.ChatCompletionTool[] =
   },
 ];
 
-// Determine season for a date - uses same logic as shared/pricing.ts
-function getSeasonForDate(date: Date): 'BAJA' | 'MEDIA' | 'ALTA' {
-  const month = date.getMonth() + 1; // 1-12
-  if (month === 8) return 'ALTA'; // August
-  if (month === 7) return 'MEDIA'; // July
-  return 'BAJA'; // April-June, September-October
-}
-
 // Execute a function call
 export async function executeFunction(
   name: string,
@@ -194,13 +187,21 @@ async function getPriceForDate(
   }
 
   const date = new Date(dateStr);
-  const season = getSeasonForDate(date);
+
+  if (!isOperationalSeason(date)) {
+    return JSON.stringify({
+      boat_name: boat.name,
+      error: "Esa fecha esta fuera de temporada. Operamos de abril a octubre.",
+    });
+  }
+
+  const season = getSeason(date);
   const pricing = boat.pricing as any;
 
   if (!pricing || !pricing[season]) {
-    return JSON.stringify({ 
+    return JSON.stringify({
       boat_name: boat.name,
-      error: "Precios no disponibles para esta temporada" 
+      error: "Precios no disponibles para esta temporada"
     });
   }
 
@@ -220,9 +221,7 @@ async function getPriceForDate(
     boat_name: boat.name,
     date: dateStr,
     season,
-    season_description: season === 'ALTA' ? 'Temporada Alta (Agosto)'
-      : season === 'MEDIA' ? 'Temporada Media (Julio)'
-      : 'Temporada Baja (Abril, Mayo, Junio, Septiembre, Octubre)',
+    season_description: getSeasonDisplayName(season),
     duration_hours: durationHours,
     price: price,
     deposit: boat.deposit,
@@ -238,7 +237,17 @@ async function listAvailableBoats(
 ): Promise<string> {
   const allBoats = await storage.getAllBoats();
   const date = new Date(dateStr);
-  const season = getSeasonForDate(date);
+
+  if (!isOperationalSeason(date)) {
+    return JSON.stringify({
+      date: dateStr,
+      error: "Esa fecha esta fuera de temporada. Operamos de abril a octubre.",
+      total_available: 0,
+      boats: [],
+    });
+  }
+
+  const season = getSeason(date);
 
   // Filter boats
   let filteredBoats = allBoats;

@@ -40,7 +40,7 @@ const FAQS_ES = [
   },
   {
     title: "Temporadas y precios",
-    content: "Tenemos tres temporadas: BAJA (abril, mayo, octubre) con los mejores precios; MEDIA (junio, septiembre) con precios intermedios; y ALTA (julio, agosto) que es la temporada de maxima demanda. Los precios varian segun el barco y la duracion del alquiler.",
+    content: "Tenemos tres temporadas: BAJA (abril, mayo, junio, septiembre, octubre) con los mejores precios; MEDIA (julio) con precios intermedios; y ALTA (agosto) que es la temporada de maxima demanda. Los precios varian segun el barco y la duracion del alquiler.",
     category: "faq",
     keywords: ["temporada", "precio", "tarifa", "coste"],
     priority: 8,

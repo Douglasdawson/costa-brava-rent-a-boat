@@ -6,6 +6,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Button } from "@/components/ui/button";
 import { LanguageProvider } from "@/hooks/use-language";
+import { BookingModalProvider } from "@/hooks/useBookingModal";
 
 // Import critical components (above the fold)
 import Navigation from "./components/Navigation";
@@ -42,6 +43,7 @@ const RoutesPage = lazy(() => import("@/pages/routes"));
 const GiftCardsPage = lazy(() => import("@/pages/gift-cards"));
 const NotFound = lazy(() => import("@/pages/not-found"));
 import { useLanguage } from "@/hooks/use-language";
+import WhatsAppFloatingButton from "./components/WhatsAppFloatingButton";
 import { usePrefetchCriticalRoutes } from "@/hooks/usePrefetch";
 import { 
   getSEOConfig, 
@@ -286,10 +288,13 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <LanguageProvider>
-        <TooltipProvider>
-          <Toaster />
-          <Router />
-        </TooltipProvider>
+        <BookingModalProvider>
+          <TooltipProvider>
+            <Toaster />
+            <Router />
+            <WhatsAppFloatingButton />
+          </TooltipProvider>
+        </BookingModalProvider>
       </LanguageProvider>
     </QueryClientProvider>
   );

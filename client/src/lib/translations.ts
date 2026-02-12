@@ -393,6 +393,15 @@ export interface Translations {
     backHome: string;
     buyAnother: string;
   };
+
+  // Inline validation messages
+  validation: {
+    required: string;
+    invalidEmail: string;
+    invalidPhone: string;
+    futureDate: string;
+    minPeople: string;
+  };
 }
 
 export const translations: Record<Language, Translations> = {
@@ -759,6 +768,13 @@ export const translations: Record<Language, Translations> = {
       backHome: 'Volver al inicio',
       buyAnother: 'Comprar otra',
     },
+    validation: {
+      required: 'Este campo es obligatorio',
+      invalidEmail: 'Email no valido',
+      invalidPhone: 'Solo numeros',
+      futureDate: 'Selecciona una fecha futura',
+      minPeople: 'Minimo 1 persona',
+    },
   },
 
   ca: {
@@ -1061,6 +1077,13 @@ export const translations: Record<Language, Translations> = {
       forRecipient: 'Per a',
       backHome: 'Tornar a l\'inici',
       buyAnother: 'Comprar una altra',
+    },
+    validation: {
+      required: 'Aquest camp es obligatori',
+      invalidEmail: 'Email no valid',
+      invalidPhone: 'Nomes numeros',
+      futureDate: 'Selecciona una data futura',
+      minPeople: 'Minim 1 persona',
     },
   },
 
@@ -1370,6 +1393,13 @@ export const translations: Record<Language, Translations> = {
       backHome: 'Back to home',
       buyAnother: 'Buy another',
     },
+    validation: {
+      required: 'This field is required',
+      invalidEmail: 'Invalid email',
+      invalidPhone: 'Numbers only',
+      futureDate: 'Select a future date',
+      minPeople: 'Minimum 1 person',
+    },
   },
 
   fr: {
@@ -1655,6 +1685,13 @@ export const translations: Record<Language, Translations> = {
       backHome: 'Retour a l\'accueil',
       buyAnother: 'Acheter une autre',
     },
+    validation: {
+      required: 'Ce champ est obligatoire',
+      invalidEmail: 'Email invalide',
+      invalidPhone: 'Chiffres uniquement',
+      futureDate: 'Selectionnez une date future',
+      minPeople: 'Minimum 1 personne',
+    },
   },
 
   de: {
@@ -1936,6 +1973,13 @@ export const translations: Record<Language, Translations> = {
       forRecipient: 'Fur',
       backHome: 'Zuruck zur Startseite',
       buyAnother: 'Weitere kaufen',
+    },
+    validation: {
+      required: 'Dieses Feld ist erforderlich',
+      invalidEmail: 'Ungultige E-Mail',
+      invalidPhone: 'Nur Zahlen',
+      futureDate: 'Wahlen Sie ein zukunftiges Datum',
+      minPeople: 'Mindestens 1 Person',
     },
   },
 
@@ -2219,6 +2263,13 @@ export const translations: Record<Language, Translations> = {
       backHome: 'Terug naar home',
       buyAnother: 'Nog een kopen',
     },
+    validation: {
+      required: 'Dit veld is verplicht',
+      invalidEmail: 'Ongeldig e-mailadres',
+      invalidPhone: 'Alleen cijfers',
+      futureDate: 'Selecteer een toekomstige datum',
+      minPeople: 'Minimaal 1 persoon',
+    },
   },
 
   it: {
@@ -2501,6 +2552,13 @@ export const translations: Record<Language, Translations> = {
       backHome: 'Torna alla home',
       buyAnother: 'Acquista un\'altra',
     },
+    validation: {
+      required: 'Questo campo e obbligatorio',
+      invalidEmail: 'Email non valida',
+      invalidPhone: 'Solo numeri',
+      futureDate: 'Seleziona una data futura',
+      minPeople: 'Minimo 1 persona',
+    },
   },
 
   ru: {
@@ -2782,6 +2840,13 @@ export const translations: Record<Language, Translations> = {
       forRecipient: 'Для',
       backHome: 'На главную',
       buyAnother: 'Купить ещё',
+    },
+    validation: {
+      required: 'Это поле обязательно',
+      invalidEmail: 'Неверный email',
+      invalidPhone: 'Только цифры',
+      futureDate: 'Выберите будущую дату',
+      minPeople: 'Минимум 1 человек',
     },
   },
 };

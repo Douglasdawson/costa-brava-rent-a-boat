@@ -1,27 +1,18 @@
-import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import BoatCard from "./BoatCard";
-import BookingFormWidget from "./BookingFormWidget";
-import { openWhatsApp, createBookingMessage } from "@/utils/whatsapp";
+import { openWhatsApp } from "@/utils/whatsapp";
 import { useLocation } from "wouter";
 import { getBoatImage } from "@/utils/boatImages";
 import { useTranslations } from "@/lib/translations";
 import type { Boat } from "@shared/schema";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogDescription,
-} from "@/components/ui/dialog";
 import { SiWhatsapp } from "react-icons/si";
 import { Phone } from "lucide-react";
+import { useBookingModal } from "@/hooks/useBookingModal";
 
 export default function FleetSection() {
   const t = useTranslations();
   const [, setLocation] = useLocation();
-  const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
-  const [selectedBoatId, setSelectedBoatId] = useState<string | undefined>(undefined);
+  const { openBookingModal } = useBookingModal();
 
   // Fetch boats from API
   const { data: boatsData, isLoading } = useQuery<Boat[]>({
@@ -72,8 +63,7 @@ export default function FleetSection() {
     });
 
   const handleBooking = (boatId: string) => {
-    setSelectedBoatId(boatId);
-    setIsBookingModalOpen(true);
+    openBookingModal(boatId);
   };
 
   const handleDetails = (boatId: string) => {
@@ -143,20 +133,6 @@ export default function FleetSection() {
         </div>
       </div>
 
-      {/* Booking Modal */}
-      <Dialog open={isBookingModalOpen} onOpenChange={setIsBookingModalOpen}>
-        <DialogContent className="!max-w-4xl w-[95vw] max-h-[85vh] p-3 sm:p-4 md:p-6 !left-1/2 !top-1/2 !-translate-x-1/2 !-translate-y-1/2 overflow-y-auto">
-          <DialogHeader className="space-y-1 py-4 sm:py-3">
-            <DialogTitle className="text-xl sm:text-2xl font-bold text-center">
-              {t.booking.title}
-            </DialogTitle>
-            <DialogDescription className="text-sm sm:text-base text-gray-600 text-center">
-              {t.booking.modalSubtitle}
-            </DialogDescription>
-          </DialogHeader>
-          <BookingFormWidget preSelectedBoatId={selectedBoatId} hideHeader={true} />
-        </DialogContent>
-      </Dialog>
     </section>
   );
 }

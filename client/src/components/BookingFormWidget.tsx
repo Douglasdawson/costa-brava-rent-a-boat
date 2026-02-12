@@ -113,6 +113,13 @@ export default function BookingFormWidget({ preSelectedBoatId, onClose, hideHead
   const [selectedDate, setSelectedDate] = useState(() => getLocalISODate());
   const [selectedDuration, setSelectedDuration] = useState<string>("");
 
+  // Track which fields the user has interacted with (blurred)
+  const [touched, setTouched] = useState<Record<string, boolean>>({});
+
+  const handleBlur = (field: string) => {
+    setTouched(prev => ({ ...prev, [field]: true }));
+  };
+
   const { toast } = useToast();
   const t = useTranslations();
   const prefixDropdownRef = useRef<HTMLDivElement>(null);
@@ -279,6 +286,45 @@ export default function BookingFormWidget({ preSelectedBoatId, onClose, hideHead
     return licenseFilter === "with" ? 8 : 7;
   };
 
+  // Inline validation: returns error message for a given field, or empty string if valid
+  const getFieldError = (field: string): string => {
+    switch (field) {
+      case 'firstName':
+        return !firstName.trim() ? t.validation.required : '';
+      case 'lastName':
+        return !lastName.trim() ? t.validation.required : '';
+      case 'email':
+        if (!email.trim()) return t.validation.required;
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return t.validation.invalidEmail;
+        return '';
+      case 'phone':
+        if (!phoneNumber.trim()) return t.validation.required;
+        if (!/^\d+$/.test(phoneNumber.trim())) return t.validation.invalidPhone;
+        return '';
+      case 'date':
+        if (!selectedDate) return t.validation.required;
+        if (selectedDate < getLocalISODate()) return t.validation.futureDate;
+        return '';
+      case 'time':
+        return !preferredTime ? t.validation.required : '';
+      case 'duration':
+        return !selectedDuration ? t.validation.required : '';
+      case 'boat':
+        return !selectedBoat ? t.validation.required : '';
+      case 'people':
+        if (!numberOfPeople) return t.validation.required;
+        if (parseInt(numberOfPeople) < 1) return t.validation.minPeople;
+        return '';
+      default:
+        return '';
+    }
+  };
+
+  // Check if a field should show an error (touched AND invalid)
+  const showFieldError = (field: string): boolean => {
+    return !!touched[field] && !!getFieldError(field);
+  };
+
   // Helper functions to format date
   const formatDateSpanish = (dateString: string) => {
     const date = new Date(dateString);
@@ -358,6 +404,19 @@ Looking forward to confirmation. Thanks!`;
   };
 
   const handleBookingSearch = () => {
+    // Mark all fields as touched so inline errors appear on submit attempt
+    setTouched({
+      firstName: true,
+      lastName: true,
+      phone: true,
+      email: true,
+      date: true,
+      time: true,
+      boat: true,
+      duration: true,
+      people: true,
+    });
+
     if (!firstName.trim()) {
       toast({ title: t.booking.firstNameRequired, description: t.booking.firstNameRequiredDesc, variant: "destructive" });
       return;
@@ -422,7 +481,7 @@ Looking forward to confirmation. Thanks!`;
       <div className="bg-gray-50/80 rounded-lg p-2 sm:p-3 mb-2 sm:mb-3">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-2">
           {/* First Name */}
-          <div className="bg-white rounded-lg p-2 sm:p-3 shadow-sm border border-gray-100">
+          <div className={`bg-white rounded-lg p-2 sm:p-3 shadow-sm border ${showFieldError('firstName') ? 'border-red-500' : 'border-gray-100'}`}>
             <label htmlFor="first-name" className="flex items-center justify-center md:justify-start text-xs [@media(min-width:400px)]:text-sm font-semibold text-gray-800 mb-1 sm:mb-2">
               <div className="w-5 h-5 sm:w-6 sm:h-6 bg-primary/10 rounded-full flex items-center justify-center mr-1 sm:mr-2">
                 <User className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-primary" />
@@ -434,15 +493,19 @@ Looking forward to confirmation. Thanks!`;
               id="first-name"
               value={firstName}
               onChange={(e) => setFirstName(e.target.value)}
+              onBlur={() => handleBlur('firstName')}
               placeholder="Ej: Juan"
               autoComplete="given-name"
               className="w-full p-2 sm:p-2.5 border-0 bg-gray-50 rounded-md focus:ring-2 focus:ring-primary focus:bg-white transition-all text-gray-900 font-medium text-xs [@media(min-width:400px)]:text-sm sm:text-sm text-center md:text-left"
               data-testid="input-first-name"
             />
+            {showFieldError('firstName') && (
+              <p className="text-xs text-red-500 mt-1">{getFieldError('firstName')}</p>
+            )}
           </div>
 
           {/* Last Name */}
-          <div className="bg-white rounded-lg p-2 sm:p-3 shadow-sm border border-gray-100">
+          <div className={`bg-white rounded-lg p-2 sm:p-3 shadow-sm border ${showFieldError('lastName') ? 'border-red-500' : 'border-gray-100'}`}>
             <label htmlFor="last-name" className="flex items-center justify-center md:justify-start text-xs [@media(min-width:400px)]:text-sm font-semibold text-gray-800 mb-1 sm:mb-2">
               <div className="w-5 h-5 sm:w-6 sm:h-6 bg-primary/10 rounded-full flex items-center justify-center mr-1 sm:mr-2">
                 <User className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-primary" />
@@ -454,15 +517,19 @@ Looking forward to confirmation. Thanks!`;
               id="last-name"
               value={lastName}
               onChange={(e) => setLastName(e.target.value)}
-              placeholder="Ej: García López"
+              onBlur={() => handleBlur('lastName')}
+              placeholder="Ej: Garcia Lopez"
               autoComplete="family-name"
               className="w-full p-2 sm:p-2.5 border-0 bg-gray-50 rounded-md focus:ring-2 focus:ring-primary focus:bg-white transition-all text-gray-900 font-medium text-xs [@media(min-width:400px)]:text-sm sm:text-sm text-center md:text-left"
               data-testid="input-last-name"
             />
+            {showFieldError('lastName') && (
+              <p className="text-xs text-red-500 mt-1">{getFieldError('lastName')}</p>
+            )}
           </div>
 
           {/* Phone Number */}
-          <div className="col-span-2 lg:col-span-1 bg-white rounded-lg p-2 sm:p-3 shadow-sm border border-gray-100">
+          <div className={`col-span-2 lg:col-span-1 bg-white rounded-lg p-2 sm:p-3 shadow-sm border ${showFieldError('phone') ? 'border-red-500' : 'border-gray-100'}`}>
             <label htmlFor="phone-number" className="flex items-center justify-center md:justify-start text-xs [@media(min-width:400px)]:text-sm font-semibold text-gray-800 mb-1 sm:mb-2">
               <div className="w-5 h-5 sm:w-6 sm:h-6 bg-primary/10 rounded-full flex items-center justify-center mr-1 sm:mr-2">
                 <PhoneIcon className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-primary" />
@@ -520,16 +587,20 @@ Looking forward to confirmation. Thanks!`;
                 id="phone-number"
                 value={phoneNumber}
                 onChange={(e) => setPhoneNumber(e.target.value)}
+                onBlur={() => handleBlur('phone')}
                 placeholder="123456789"
                 autoComplete="tel"
                 className="flex-1 p-2 sm:p-2.5 border-0 bg-gray-50 rounded-md focus:ring-2 focus:ring-primary focus:bg-white transition-all text-gray-900 font-medium text-xs [@media(min-width:400px)]:text-sm"
                 data-testid="input-phone-number"
               />
             </div>
+            {showFieldError('phone') && (
+              <p className="text-xs text-red-500 mt-1">{getFieldError('phone')}</p>
+            )}
           </div>
 
           {/* Email */}
-          <div className="col-span-2 lg:col-span-1 bg-white rounded-lg p-2 sm:p-3 shadow-sm border border-gray-100">
+          <div className={`col-span-2 lg:col-span-1 bg-white rounded-lg p-2 sm:p-3 shadow-sm border ${showFieldError('email') ? 'border-red-500' : 'border-gray-100'}`}>
             <label htmlFor="email" className="flex items-center justify-center md:justify-start text-xs [@media(min-width:400px)]:text-sm font-semibold text-gray-800 mb-1 sm:mb-2">
               <div className="w-5 h-5 sm:w-6 sm:h-6 bg-primary/10 rounded-full flex items-center justify-center mr-1 sm:mr-2">
                 <Mail className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-primary" />
@@ -541,11 +612,15 @@ Looking forward to confirmation. Thanks!`;
               id="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              onBlur={() => handleBlur('email')}
               placeholder="tu@email.com"
               autoComplete="email"
               className="w-full p-2 sm:p-2.5 border-0 bg-gray-50 rounded-md focus:ring-2 focus:ring-primary focus:bg-white transition-all text-gray-900 font-medium text-xs [@media(min-width:400px)]:text-sm text-center md:text-left"
               data-testid="input-email"
             />
+            {showFieldError('email') && (
+              <p className="text-xs text-red-500 mt-1">{getFieldError('email')}</p>
+            )}
           </div>
         </div>
       </div>
@@ -554,7 +629,7 @@ Looking forward to confirmation. Thanks!`;
       <div className="bg-gray-50/80 rounded-lg p-2 sm:p-3 mb-2 sm:mb-3">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-2">
           {/* Date */}
-          <div className="bg-white rounded-lg p-2 sm:p-3 shadow-sm border border-gray-100">
+          <div className={`bg-white rounded-lg p-2 sm:p-3 shadow-sm border ${showFieldError('date') ? 'border-red-500' : 'border-gray-100'}`}>
             <label htmlFor="booking-date" className="flex items-center justify-center md:justify-start text-xs [@media(min-width:400px)]:text-sm font-semibold text-gray-800 mb-1 sm:mb-2">
               <div className="w-5 h-5 sm:w-6 sm:h-6 bg-primary/10 rounded-full flex items-center justify-center mr-1 sm:mr-2">
                 <Calendar className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-primary" />
@@ -566,14 +641,18 @@ Looking forward to confirmation. Thanks!`;
               id="booking-date"
               value={selectedDate}
               onChange={(e) => setSelectedDate(e.target.value)}
+              onBlur={() => handleBlur('date')}
               min={getLocalISODate()}
               className="w-full p-2 sm:p-2.5 border-0 bg-gray-50 rounded-md focus:ring-2 focus:ring-primary focus:bg-white transition-all text-gray-900 font-medium text-xs [@media(min-width:400px)]:text-sm"
               data-testid="input-booking-date"
             />
+            {showFieldError('date') && (
+              <p className="text-xs text-red-500 mt-1">{getFieldError('date')}</p>
+            )}
           </div>
 
           {/* Preferred Time */}
-          <div className="bg-white rounded-lg p-2 sm:p-3 shadow-sm border border-gray-100">
+          <div className={`bg-white rounded-lg p-2 sm:p-3 shadow-sm border ${showFieldError('time') ? 'border-red-500' : 'border-gray-100'}`}>
             <label htmlFor="preferred-time" className="flex items-center justify-center md:justify-start text-xs [@media(min-width:400px)]:text-sm font-semibold text-gray-800 mb-1 sm:mb-2">
               <div className="w-5 h-5 sm:w-6 sm:h-6 bg-primary/10 rounded-full flex items-center justify-center mr-1 sm:mr-2">
                 <Clock className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-primary" />
@@ -584,6 +663,7 @@ Looking forward to confirmation. Thanks!`;
               id="preferred-time"
               value={preferredTime}
               onChange={(e) => setPreferredTime(e.target.value)}
+              onBlur={() => handleBlur('time')}
               className="clean-select w-full p-2 sm:p-2.5 border-0 !bg-white rounded-md focus:outline-none text-gray-900 font-medium text-xs [@media(min-width:400px)]:text-sm"
               data-testid="select-preferred-time"
             >
@@ -592,10 +672,13 @@ Looking forward to confirmation. Thanks!`;
                 <option key={time} value={time}>{time}h</option>
               ))}
             </select>
+            {showFieldError('time') && (
+              <p className="text-xs text-red-500 mt-1">{getFieldError('time')}</p>
+            )}
           </div>
 
           {/* Boat Selection */}
-          <div className="col-span-2 bg-white rounded-lg p-2 sm:p-3 shadow-sm border border-gray-100">
+          <div className={`col-span-2 bg-white rounded-lg p-2 sm:p-3 shadow-sm border ${showFieldError('boat') ? 'border-red-500' : 'border-gray-100'}`}>
             <label htmlFor="boat-select" className="flex items-center justify-center md:justify-start text-xs [@media(min-width:400px)]:text-sm font-semibold text-gray-800 mb-1 sm:mb-2">
               <div className="w-5 h-5 sm:w-6 sm:h-6 bg-primary/10 rounded-full flex items-center justify-center mr-1 sm:mr-2">
                 <Anchor className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-primary" />
@@ -635,6 +718,7 @@ Looking forward to confirmation. Thanks!`;
                 id="boat-select"
                 value={selectedBoat}
                 onChange={(e) => setSelectedBoat(e.target.value)}
+                onBlur={() => handleBlur('boat')}
                 disabled={!!preSelectedBoatId}
                 className="clean-select w-full p-2 sm:p-2.5 border-0 !bg-white rounded-md focus:outline-none text-gray-900 font-medium text-xs [@media(min-width:400px)]:text-sm disabled:opacity-60"
                 data-testid="select-boat"
@@ -647,10 +731,13 @@ Looking forward to confirmation. Thanks!`;
                 ))}
               </select>
             </div>
+            {showFieldError('boat') && (
+              <p className="text-xs text-red-500 mt-1">{getFieldError('boat')}</p>
+            )}
           </div>
 
           {/* Duration */}
-          <div className="bg-white rounded-lg p-2 sm:p-3 shadow-sm border border-gray-100">
+          <div className={`bg-white rounded-lg p-2 sm:p-3 shadow-sm border ${showFieldError('duration') ? 'border-red-500' : 'border-gray-100'}`}>
             <label htmlFor="duration-select" className="flex items-center justify-center md:justify-start text-xs [@media(min-width:400px)]:text-sm font-semibold text-gray-800 mb-1 sm:mb-2">
               <div className="w-5 h-5 sm:w-6 sm:h-6 bg-primary/10 rounded-full flex items-center justify-center mr-1 sm:mr-2">
                 <Clock className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-primary" />
@@ -661,6 +748,7 @@ Looking forward to confirmation. Thanks!`;
               id="duration-select"
               value={selectedDuration}
               onChange={(e) => setSelectedDuration(e.target.value)}
+              onBlur={() => handleBlur('duration')}
               className="clean-select w-full p-2 sm:p-2.5 border-0 !bg-white rounded-md focus:outline-none text-gray-900 font-medium text-xs [@media(min-width:400px)]:text-sm"
               data-testid="select-duration"
             >
@@ -676,10 +764,13 @@ Looking forward to confirmation. Thanks!`;
                 {t.booking.pricesUpdateByDate}
               </p>
             )}
+            {showFieldError('duration') && (
+              <p className="text-xs text-red-500 mt-1">{getFieldError('duration')}</p>
+            )}
           </div>
 
           {/* Number of People */}
-          <div className="bg-white rounded-lg p-2 sm:p-3 shadow-sm border border-gray-100">
+          <div className={`bg-white rounded-lg p-2 sm:p-3 shadow-sm border ${showFieldError('people') ? 'border-red-500' : 'border-gray-100'}`}>
             <label htmlFor="number-of-people" className="flex items-center justify-center md:justify-start text-xs [@media(min-width:400px)]:text-sm font-semibold text-gray-800 mb-1 sm:mb-2">
               <div className="w-5 h-5 sm:w-6 sm:h-6 bg-primary/10 rounded-full flex items-center justify-center mr-1 sm:mr-2">
                 <Users className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-primary" />
@@ -697,6 +788,7 @@ Looking forward to confirmation. Thanks!`;
                   setNumberOfPeople(val);
                 }
               }}
+              onBlur={() => handleBlur('people')}
               min={1}
               max={getMaxCapacity()}
               placeholder={`1-${getMaxCapacity()}`}
@@ -707,6 +799,9 @@ Looking forward to confirmation. Thanks!`;
               <p className="text-[10px] text-gray-500 mt-1 text-center">
                 max {selectedBoatInfo.capacity}
               </p>
+            )}
+            {showFieldError('people') && (
+              <p className="text-xs text-red-500 mt-1">{getFieldError('people')}</p>
             )}
           </div>
         </div>

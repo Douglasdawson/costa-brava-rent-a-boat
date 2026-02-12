@@ -1,19 +1,18 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Menu, X, Anchor, UserCircle, Calendar } from "lucide-react";
 import { useLocation } from "wouter";
 import LanguageSelector from "./LanguageSelector";
 import { useTranslations } from "@/lib/translations";
 import { useAuth } from "@/hooks/useAuth";
-import BookingFormWidget from "./BookingFormWidget";
+import { useBookingModal } from "@/hooks/useBookingModal";
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
-  const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
   const [, setLocation] = useLocation();
   const t = useTranslations();
   const { isAuthenticated } = useAuth();
+  const { openBookingModal } = useBookingModal();
 
   const toggleMenu = () => setIsOpen(!isOpen);
   
@@ -29,7 +28,7 @@ export default function Navigation() {
 
   const handleMobileBooking = () => {
     setIsOpen(false); // Close mobile menu
-    setIsBookingModalOpen(true); // Open booking modal
+    openBookingModal(); // Open booking modal
   };
 
   const scrollToSection = (sectionId: string, maxAttempts = 10) => {
@@ -82,7 +81,7 @@ export default function Navigation() {
       }
     } else if (href === "#booking") {
       // Open booking modal
-      setIsBookingModalOpen(true);
+      openBookingModal();
     } else if (href === "/blog") {
       // Navigate to Blog page or scroll to top if already on Blog page
       const currentPath = window.location.pathname;
@@ -174,6 +173,14 @@ export default function Navigation() {
           {/* Right side buttons */}
           <div className="hidden md:flex items-center space-x-4 z-10">
             <LanguageSelector variant="minimal" />
+            <Button
+              onClick={() => handleNavigation("#booking", "Reservar")}
+              data-testid="desktop-button-book"
+              aria-label="Reservar barco ahora"
+            >
+              <Calendar className="w-4 h-4 mr-2" />
+              Reservar Ahora
+            </Button>
             {!isAuthenticated && (
               <Button 
                 variant="ghost" 
@@ -273,20 +280,6 @@ export default function Navigation() {
         )}
       </div>
 
-      {/* Booking Modal */}
-      <Dialog open={isBookingModalOpen} onOpenChange={setIsBookingModalOpen}>
-        <DialogContent className="!max-w-4xl !w-[95vw] !max-h-[85vh] overflow-y-auto p-3 sm:p-4 md:p-6 !left-1/2 !top-1/2 !-translate-x-1/2 !-translate-y-1/2">
-          <DialogHeader className="space-y-1 py-4 sm:py-3">
-            <DialogTitle className="text-xl sm:text-2xl font-bold text-center">
-              {t.booking.title}
-            </DialogTitle>
-            <DialogDescription className="text-sm sm:text-base text-gray-600 text-center">
-              {t.booking.modalSubtitle}
-            </DialogDescription>
-          </DialogHeader>
-          <BookingFormWidget hideHeader={true} />
-        </DialogContent>
-      </Dialog>
     </nav>
   );
 }

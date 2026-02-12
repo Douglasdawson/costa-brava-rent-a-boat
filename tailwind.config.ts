@@ -97,10 +97,18 @@ export default {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
+        "bounce-once": {
+          "0%, 100%": { transform: "translateY(0)" },
+          "20%": { transform: "translateY(-12px)" },
+          "40%": { transform: "translateY(0)" },
+          "60%": { transform: "translateY(-6px)" },
+          "80%": { transform: "translateY(0)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "bounce-once": "bounce-once 1.5s ease-in-out 1s 1",
       },
     },
   },

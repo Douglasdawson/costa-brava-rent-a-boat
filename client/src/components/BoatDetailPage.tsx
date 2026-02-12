@@ -2,9 +2,8 @@ import { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { useLocation } from "wouter";
-import BookingFormWidget from "./BookingFormWidget";
+import { useBookingModal } from "@/hooks/useBookingModal";
 import { useQuery } from "@tanstack/react-query";
 import { 
   ArrowLeft, 
@@ -59,9 +58,9 @@ interface BoatDetailPageProps {
 
 export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDetailPageProps) {
   const [selectedSeason, setSelectedSeason] = useState<"BAJA" | "MEDIA" | "ALTA">("BAJA");
-  const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [, setLocation] = useLocation();
+  const { openBookingModal } = useBookingModal();
   
   // Reset image index when boat changes
   useEffect(() => {
@@ -96,7 +95,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
   }
 
   const handleReservation = () => {
-    setIsBookingModalOpen(true);
+    openBookingModal(boatId);
   };
 
   const handleWhatsApp = () => {
@@ -663,23 +662,6 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
         </Card>
 
       </div>
-
-      {/* Booking Modal */}
-      <Dialog open={isBookingModalOpen} onOpenChange={setIsBookingModalOpen}>
-        <DialogContent className="
-          !left-1/2 !top-1/2 !-translate-x-1/2 !-translate-y-1/2
-          w-[95vw] sm:w-[90vw] md:w-full max-w-4xl 
-          max-h-[85vh]
-          overflow-y-auto 
-          p-3 sm:p-4 md:p-6
-          gap-0
-        ">
-          <BookingFormWidget 
-            preSelectedBoatId={boatId}
-            onClose={() => setIsBookingModalOpen(false)}
-          />
-        </DialogContent>
-      </Dialog>
 
       <Footer />
     </div>

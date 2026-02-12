@@ -1,20 +1,12 @@
-import { useState } from "react";
 import { Shield, Star, CheckCircle, Clock } from "lucide-react";
 import { SiWhatsapp } from "react-icons/si";
-import BookingFormWidget from "./BookingFormWidget";
 import { Button } from "./ui/button";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogDescription,
-} from "./ui/dialog";
 import { useTranslations } from "@/lib/translations";
+import { useBookingModal } from "@/hooks/useBookingModal";
 
 export default function Hero() {
-  const [isBookingOpen, setIsBookingOpen] = useState(false);
   const t = useTranslations();
+  const { openBookingModal } = useBookingModal();
 
   return (
     <div className="relative h-screen min-h-[600px] max-h-[900px]" id="home">
@@ -54,7 +46,7 @@ export default function Hero() {
             {/* CTA Buttons */}
             <div className="flex flex-wrap gap-4 mb-10">
               <Button
-                onClick={() => setIsBookingOpen(true)}
+                onClick={() => openBookingModal()}
                 size="lg"
                 className="bg-primary hover:bg-primary/90 text-white shadow-2xl px-8 py-6 text-lg rounded-lg"
                 data-testid="button-hero-cta"
@@ -112,20 +104,6 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Booking Modal */}
-      <Dialog open={isBookingOpen} onOpenChange={setIsBookingOpen}>
-        <DialogContent className="!max-w-4xl w-[95vw] max-h-[85vh] p-3 sm:p-4 md:p-6 !left-1/2 !top-1/2 !-translate-x-1/2 !-translate-y-1/2 overflow-y-auto">
-          <DialogHeader className="space-y-1 py-4 sm:py-3">
-            <DialogTitle className="text-xl sm:text-2xl font-bold text-center">
-              {t.booking.title}
-            </DialogTitle>
-            <DialogDescription className="text-sm sm:text-base text-gray-600 text-center">
-              {t.booking.modalSubtitle}
-            </DialogDescription>
-          </DialogHeader>
-          <BookingFormWidget hideHeader={true} />
-        </DialogContent>
-      </Dialog>
     </div>
   );
 }

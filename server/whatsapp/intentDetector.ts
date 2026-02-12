@@ -328,6 +328,62 @@ const INTENT_KEYWORDS: Record<SupportedLanguage, Record<Intent, string[]>> = {
     menu: ["menú", "menu", "inici", "començar", "principal", "opcions"],
     unknown: [],
   },
+
+  de: {
+    list_boats: ["boote", "boot", "flotte", "welche boote", "unsere boote", "schiffe", "schiff"],
+    check_availability: ["verfügbarkeit", "verfügbar", "frei", "kann ich buchen", "ist frei", "platz"],
+    prices: ["preis", "preise", "was kostet", "kosten", "tarife", "tarif", "wieviel"],
+    booking: ["buchen", "buchung", "reservieren", "reservierung", "mieten", "ich möchte buchen"],
+    agent: ["mitarbeiter", "mensch", "person", "sprechen", "hilfe", "problem", "anrufen", "telefon", "kontakt"],
+    greeting: ["hallo", "guten morgen", "guten tag", "guten abend", "hi", "hey", "moin", "servus"],
+    thanks: ["danke", "perfekt", "super", "ok", "einverstanden", "wunderbar", "ausgezeichnet", "toll"],
+    cancel: ["abbrechen", "zurück", "beenden", "aufhören", "nichts", "nein danke"],
+    confirm: ["ja", "bestätigen", "bestätige", "akzeptieren", "einverstanden", "klar"],
+    menu: ["menü", "menu", "start", "anfang", "hauptmenü", "optionen"],
+    unknown: [],
+  },
+
+  nl: {
+    list_boats: ["boten", "boot", "vloot", "welke boten", "onze boten", "vaartuigen"],
+    check_availability: ["beschikbaarheid", "beschikbaar", "vrij", "kan ik boeken", "is het vrij", "plek"],
+    prices: ["prijs", "prijzen", "hoeveel kost", "kosten", "tarieven", "tarief"],
+    booking: ["boeken", "boeking", "reserveren", "reservering", "huren", "ik wil boeken"],
+    agent: ["medewerker", "mens", "persoon", "praten", "hulp", "probleem", "bellen", "telefoon", "contact"],
+    greeting: ["hallo", "goedemorgen", "goedemiddag", "goedenavond", "hoi", "hey", "dag"],
+    thanks: ["bedankt", "dank je", "perfect", "geweldig", "ok", "akkoord", "uitstekend", "prima"],
+    cancel: ["annuleren", "terug", "stoppen", "niets", "nee bedankt", "laat maar"],
+    confirm: ["ja", "bevestigen", "bevestig", "akkoord", "oké", "zeker"],
+    menu: ["menu", "start", "begin", "hoofdmenu", "opties"],
+    unknown: [],
+  },
+
+  it: {
+    list_boats: ["barche", "barca", "flotta", "quali barche", "le vostre barche", "imbarcazioni"],
+    check_availability: ["disponibilità", "disponibile", "libero", "posso prenotare", "è libero", "posto"],
+    prices: ["prezzo", "prezzi", "quanto costa", "costi", "tariffe", "tariffa"],
+    booking: ["prenotare", "prenotazione", "noleggiare", "noleggio", "voglio prenotare"],
+    agent: ["operatore", "umano", "persona", "parlare", "aiuto", "problema", "chiamare", "telefono", "contatto"],
+    greeting: ["ciao", "buongiorno", "buonasera", "buonanotte", "salve", "hey"],
+    thanks: ["grazie", "perfetto", "ottimo", "ok", "d'accordo", "eccellente", "fantastico"],
+    cancel: ["annullare", "indietro", "uscire", "fermare", "niente", "lasciare"],
+    confirm: ["sì", "si", "confermare", "confermo", "accetto", "avanti", "certo"],
+    menu: ["menu", "menù", "inizio", "principale", "opzioni"],
+    unknown: [],
+  },
+
+  ru: {
+    list_boats: ["лодки", "лодка", "флот", "катера", "катер", "яхты", "яхта", "какие лодки"],
+    check_availability: ["доступность", "доступен", "свободен", "можно забронировать", "есть место"],
+    prices: ["цена", "цены", "сколько стоит", "стоимость", "тарифы", "тариф", "прайс"],
+    booking: ["забронировать", "бронь", "бронирование", "арендовать", "аренда", "хочу забронировать"],
+    agent: ["оператор", "человек", "менеджер", "поговорить", "помощь", "проблема", "позвонить", "телефон", "контакт"],
+    greeting: ["привет", "здравствуйте", "добрый день", "доброе утро", "добрый вечер", "хай"],
+    thanks: ["спасибо", "отлично", "супер", "ок", "хорошо", "замечательно", "прекрасно"],
+    cancel: ["отменить", "назад", "отмена", "выйти", "ничего", "не надо"],
+    confirm: ["да", "подтвердить", "подтверждаю", "согласен", "конечно"],
+    menu: ["меню", "начало", "старт", "главное меню", "опции"],
+    unknown: [],
+  },
 };
 
 // Menu option mappings (number -> intent)
@@ -431,6 +487,47 @@ export function detectLanguage(message: string): SupportedLanguage {
     normalizedMsg.includes("gràcies")
   ) {
     return "ca";
+  }
+
+  // German-specific patterns
+  if (
+    normalizedMsg.includes("hallo") ||
+    normalizedMsg.includes("guten morgen") ||
+    normalizedMsg.includes("guten tag") ||
+    normalizedMsg.includes("ich möchte") ||
+    normalizedMsg.includes("bitte") ||
+    normalizedMsg.includes("danke")
+  ) {
+    return "de";
+  }
+
+  // Dutch-specific patterns
+  if (
+    normalizedMsg.includes("goedemorgen") ||
+    normalizedMsg.includes("goedemiddag") ||
+    normalizedMsg.includes("ik wil") ||
+    normalizedMsg.includes("alstublieft") ||
+    normalizedMsg.includes("bedankt") ||
+    normalizedMsg.includes("dank je")
+  ) {
+    return "nl";
+  }
+
+  // Italian-specific patterns
+  if (
+    normalizedMsg.includes("ciao") ||
+    normalizedMsg.includes("buongiorno") ||
+    normalizedMsg.includes("buonasera") ||
+    normalizedMsg.includes("vorrei") ||
+    normalizedMsg.includes("per favore") ||
+    normalizedMsg.includes("grazie")
+  ) {
+    return "it";
+  }
+
+  // Russian-specific patterns (Cyrillic detection)
+  if (/[а-яА-ЯёЁ]/.test(normalizedMsg)) {
+    return "ru";
   }
 
   // Default to Spanish

@@ -20,7 +20,10 @@ import {
   handleBookingContactName,
   handleBookingContactEmail,
   handleBookingConfirm,
+  createBookingFromSession,
 } from "./flows/booking";
+import { sendWhatsAppMessage, isTwilioConfigured } from "./twilioClient";
+import { BOAT_DATA } from "@shared/boatData";
 import { handleMainMenu } from "./flows/mainMenu";
 
 /**
@@ -439,17 +442,61 @@ async function handleBookingConfirmState(
   const num = isNumberSelection(message);
 
   if (num === 1) {
-    // Confirm booking - create hold
-    // TODO: Create actual booking and return payment link
-    await updateState(session.phoneNumber, CHATBOT_STATES.BOOKING_PAYMENT);
-    return `${t.bookingCreated}\n\n${formatMessage(t.bookingPaymentLink, {
-      link: "https://costabravarentaboat.app/pagar/xxx",
-    })}`;
+    // Confirm booking - create the booking in the database
+    const result = await createBookingFromSession(session);
+
+    if (result.success && result.bookingId) {
+      // Build owner notification message with booking details
+      const boat = BOAT_DATA[session.selectedBoatId || ""];
+      const boatName = boat ? boat.name : session.selectedBoatId || "Unknown";
+      const date = session.selectedDate ? new Date(session.selectedDate) : new Date();
+      const dateStr = `${date.getDate().toString().padStart(2, "0")}/${(date.getMonth() + 1).toString().padStart(2, "0")}/${date.getFullYear()}`;
+      const startTime = session.selectedStartTime || "10:00";
+      const duration = session.selectedDuration || "2h";
+      const durationHours = parseInt(duration) || 2;
+      const [startHour, startMin] = startTime.split(":").map(Number);
+      const endHour = startHour + durationHours;
+      const endTime = `${endHour.toString().padStart(2, "0")}:${startMin.toString().padStart(2, "0")}`;
+
+      const ownerNotification =
+        `*Nueva reserva via WhatsApp*\n\n` +
+        `Booking ID: ${result.bookingId}\n` +
+        `Cliente: ${session.customerName || "N/A"}\n` +
+        `Telefono: ${session.phoneNumber}\n` +
+        `Barco: ${boatName}\n` +
+        `Fecha: ${dateStr}\n` +
+        `Hora: ${startTime} - ${endTime}\n` +
+        `Duracion: ${duration}\n` +
+        `Personas: ${session.numberOfPeople || 1}\n` +
+        `Extras: ${session.selectedExtras?.length ? session.selectedExtras.join(", ") : "Ninguno"}`;
+
+      // Send WhatsApp notification to Ivan (owner) - non-blocking
+      if (isTwilioConfigured()) {
+        try {
+          await sendWhatsAppMessage("+34611500372", ownerNotification);
+          console.log(`[Booking] Owner notified for booking ${result.bookingId}`);
+        } catch (error: unknown) {
+          const errorMessage = error instanceof Error ? error.message : String(error);
+          console.error(`[Booking] Failed to notify owner for booking ${result.bookingId}:`, errorMessage);
+        }
+      }
+
+      // Transition to main menu and respond with success
+      await clearBookingData(session.phoneNumber);
+      await updateState(session.phoneNumber, CHATBOT_STATES.MAIN_MENU);
+      return `${t.bookingCreated}\n\n${t.bookingNotification}\n\n${handleMainMenu(t)}`;
+    } else {
+      // Booking creation failed
+      await clearBookingData(session.phoneNumber);
+      await updateState(session.phoneNumber, CHATBOT_STATES.MAIN_MENU);
+      return `${t.bookingFailed}\n\n${handleMainMenu(t)}`;
+    }
   }
 
   if (num === 2) {
     // Cancel
     await clearBookingData(session.phoneNumber);
+    await updateState(session.phoneNumber, CHATBOT_STATES.MAIN_MENU);
     return `${t.goodbye}\n\n${handleMainMenu(t)}`;
   }
 

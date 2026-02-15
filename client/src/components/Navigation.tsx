@@ -160,7 +160,7 @@ export default function Navigation() {
           </button>
 
           {/* Desktop Navigation - Absolutely Centered */}
-          <div className="hidden md:flex items-center space-x-4 lg:space-x-6 absolute left-1/2 -translate-x-1/2">
+          <div className="hidden lg:flex items-center space-x-4 lg:space-x-6 absolute left-1/2 -translate-x-1/2">
             {navigationItems.map((item) => (
               <button
                 key={item.label}
@@ -175,7 +175,7 @@ export default function Navigation() {
           </div>
 
           {/* Right side buttons */}
-          <div className="hidden md:flex items-center space-x-4 z-10">
+          <div className="hidden lg:flex items-center space-x-4 z-10">
             <LanguageSelector variant="minimal" />
             <Button
               onClick={() => handleNavigation("#booking", "Reservar")}
@@ -209,8 +209,8 @@ export default function Navigation() {
             )}
           </div>
 
-          {/* Mobile menu button */}
-          <div className="md:hidden">
+          {/* Mobile/tablet menu button */}
+          <div className="lg:hidden">
             <Button
               variant="ghost"
               size="icon"
@@ -224,60 +224,58 @@ export default function Navigation() {
           </div>
         </div>
 
-        {/* Mobile Navigation */}
+        {/* Mobile/tablet Navigation */}
         {isOpen && (
-          <div className="md:hidden py-4 border-t border-gray-200 bg-white/95 backdrop-blur-md">
-            <div className="flex flex-col space-y-1">
+          <div className="lg:hidden py-3 border-t border-gray-200 bg-white/95 backdrop-blur-md">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
               {navigationItems.map((item) => (
                 <button
                   key={item.label}
                   onClick={() => handleNavigation(item.href, item.label)}
-                  className="px-4 py-3 text-gray-700 hover:text-primary hover:bg-gray-50 transition-colors w-full text-left bg-transparent border-none cursor-pointer font-medium"
+                  className="px-4 py-2.5 text-gray-700 hover:text-primary hover:bg-gray-50 transition-colors w-full text-left bg-transparent border-none cursor-pointer font-medium"
                   data-testid={`mobile-nav-${item.label.toLowerCase()}`}
                   aria-label={`Navegar a ${item.label}`}
                 >
                   {item.label}
                 </button>
               ))}
-              <div className="px-4 py-2 border-t border-gray-200 mt-2 pt-4">
-                <div className="flex flex-col space-y-3">
-                  <Button 
-                    className="justify-start h-12 px-4"
-                    onClick={handleMobileBooking}
-                    data-testid="mobile-button-book"
-                    aria-label="Reservar barco ahora"
+            </div>
+            <div className="px-4 py-2 border-t border-gray-200 mt-1 pt-3">
+              <div className="flex flex-wrap items-center gap-3">
+                <Button
+                  className="h-10 px-5"
+                  onClick={handleMobileBooking}
+                  data-testid="mobile-button-book"
+                  aria-label="Reservar barco ahora"
+                >
+                  <Calendar className="w-4 h-4 mr-2" />
+                  Reservar Ahora
+                </Button>
+                {!isAuthenticated && (
+                  <Button
+                    variant="ghost"
+                    className="h-10 px-4"
+                    onClick={handleLoginClick}
+                    data-testid="mobile-button-login"
+                    aria-label="Iniciar sesión en tu cuenta"
                   >
-                    <Calendar className="w-4 h-4 mr-3" />
-                    Reservar Ahora
+                    <UserCircle className="w-4 h-4 mr-2" />
+                    Login
                   </Button>
-                  {!isAuthenticated && (
-                    <Button 
-                      variant="ghost" 
-                      className="justify-start h-12 px-4"
-                      onClick={handleLoginClick}
-                      data-testid="mobile-button-login"
-                      aria-label="Iniciar sesión en tu cuenta"
-                    >
-                      <UserCircle className="w-4 h-4 mr-3" />
-                      Login
-                    </Button>
-                  )}
-                  {isAuthenticated && (
-                    <Button 
-                      variant="ghost" 
-                      className="justify-start h-12 px-4"
-                      onClick={handleMyAccountClick}
-                      data-testid="mobile-button-my-account"
-                      aria-label="Acceder a mi cuenta de cliente"
-                    >
-                      <UserCircle className="w-4 h-4 mr-3" />
-                      Mi Cuenta
-                    </Button>
-                  )}
-                  <div className="pt-2">
-                    <LanguageSelector variant="minimal" />
-                  </div>
-                </div>
+                )}
+                {isAuthenticated && (
+                  <Button
+                    variant="ghost"
+                    className="h-10 px-4"
+                    onClick={handleMyAccountClick}
+                    data-testid="mobile-button-my-account"
+                    aria-label="Acceder a mi cuenta de cliente"
+                  >
+                    <UserCircle className="w-4 h-4 mr-2" />
+                    Mi Cuenta
+                  </Button>
+                )}
+                <LanguageSelector variant="minimal" />
               </div>
             </div>
           </div>

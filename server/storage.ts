@@ -101,10 +101,49 @@ export interface IStorage {
     confirmedBookings: number;
     pendingBookings: number;
   }>;
-  
+
+  // Enhanced dashboard stats with previous period comparison
+  getDashboardStatsEnhanced(startDate: Date, endDate: Date): Promise<{
+    bookingsCount: number;
+    revenue: number;
+    confirmedBookings: number;
+    pendingBookings: number;
+    previousPeriodRevenue: number;
+    previousPeriodBookings: number;
+    averageTicket: number;
+    previousAverageTicket: number;
+  }>;
+
   getFleetAvailability(): Promise<{
     totalBoats: number;
     availableBoats: number;
+  }>;
+
+  // Revenue trend data for charts
+  getRevenueTrend(period: "30d" | "90d" | "365d"): Promise<Array<{
+    date: string;
+    revenue: number;
+    bookings: number;
+  }>>;
+
+  // Boats performance comparison
+  getBoatsPerformance(period: "month" | "season" | "year"): Promise<Array<{
+    boatId: string;
+    boatName: string;
+    revenue: number;
+    bookings: number;
+    hours: number;
+    utilization: number;
+  }>>;
+
+  // Booking status distribution
+  getStatusDistribution(startDate: Date, endDate: Date): Promise<{
+    confirmed: number;
+    pending_payment: number;
+    hold: number;
+    cancelled: number;
+    completed: number;
+    draft: number;
   }>;
 
   // Testimonial methods
@@ -683,6 +722,231 @@ export class DatabaseStorage implements IStorage {
       totalBoats: allBoats.length,
       availableBoats: availableBoats.length,
     };
+  }
+
+  // Enhanced dashboard stats with previous period comparison
+  async getDashboardStatsEnhanced(startDate: Date, endDate: Date): Promise<{
+    bookingsCount: number;
+    revenue: number;
+    confirmedBookings: number;
+    pendingBookings: number;
+    previousPeriodRevenue: number;
+    previousPeriodBookings: number;
+    averageTicket: number;
+    previousAverageTicket: number;
+  }> {
+    // Current period stats
+    const currentStats = await this.getDashboardStats(startDate, endDate);
+
+    // Calculate previous period (same duration, shifted back)
+    const periodMs = endDate.getTime() - startDate.getTime();
+    const prevStart = new Date(startDate.getTime() - periodMs);
+    const prevEnd = new Date(startDate.getTime() - 1); // 1ms before current start
+
+    const prevStats = await this.getDashboardStats(prevStart, prevEnd);
+
+    const averageTicket = currentStats.bookingsCount > 0
+      ? Math.round((currentStats.revenue / currentStats.bookingsCount) * 100) / 100
+      : 0;
+
+    const previousAverageTicket = prevStats.bookingsCount > 0
+      ? Math.round((prevStats.revenue / prevStats.bookingsCount) * 100) / 100
+      : 0;
+
+    return {
+      ...currentStats,
+      previousPeriodRevenue: prevStats.revenue,
+      previousPeriodBookings: prevStats.bookingsCount,
+      averageTicket,
+      previousAverageTicket,
+    };
+  }
+
+  // Revenue trend data for dashboard charts
+  async getRevenueTrend(period: "30d" | "90d" | "365d"): Promise<Array<{
+    date: string;
+    revenue: number;
+    bookings: number;
+  }>> {
+    const now = new Date();
+    let startDate: Date;
+    let groupByWeek = false;
+
+    switch (period) {
+      case "30d":
+        startDate = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000);
+        break;
+      case "90d":
+        startDate = new Date(now.getTime() - 90 * 24 * 60 * 60 * 1000);
+        groupByWeek = true;
+        break;
+      case "365d":
+        startDate = new Date(now.getTime() - 365 * 24 * 60 * 60 * 1000);
+        groupByWeek = true;
+        break;
+    }
+    startDate.setHours(0, 0, 0, 0);
+
+    const allBookings = await db
+      .select()
+      .from(bookings)
+      .where(
+        and(
+          gte(bookings.bookingDate, startDate),
+          lte(bookings.bookingDate, now),
+          inArray(bookings.bookingStatus, ["confirmed", "pending_payment"])
+        )
+      );
+
+    // Group by day or week
+    const grouped = new Map<string, { revenue: number; bookings: number }>();
+
+    if (groupByWeek) {
+      // Group by ISO week start (Monday)
+      for (const b of allBookings) {
+        const d = new Date(b.bookingDate);
+        const day = d.getDay();
+        const diff = d.getDate() - day + (day === 0 ? -6 : 1); // Adjust to Monday
+        const weekStart = new Date(d.setDate(diff));
+        const key = weekStart.toISOString().split("T")[0];
+        const entry = grouped.get(key) || { revenue: 0, bookings: 0 };
+        if (b.bookingStatus === "confirmed") {
+          entry.revenue += parseFloat(b.totalAmount);
+        }
+        entry.bookings += 1;
+        grouped.set(key, entry);
+      }
+    } else {
+      // Group by day
+      for (const b of allBookings) {
+        const key = new Date(b.bookingDate).toISOString().split("T")[0];
+        const entry = grouped.get(key) || { revenue: 0, bookings: 0 };
+        if (b.bookingStatus === "confirmed") {
+          entry.revenue += parseFloat(b.totalAmount);
+        }
+        entry.bookings += 1;
+        grouped.set(key, entry);
+      }
+    }
+
+    // Fill missing dates/weeks with zeros
+    const result: Array<{ date: string; revenue: number; bookings: number }> = [];
+    const cursor = new Date(startDate);
+    const stepDays = groupByWeek ? 7 : 1;
+
+    while (cursor <= now) {
+      const key = cursor.toISOString().split("T")[0];
+      const entry = grouped.get(key) || { revenue: 0, bookings: 0 };
+      result.push({
+        date: key,
+        revenue: Math.round(entry.revenue * 100) / 100,
+        bookings: entry.bookings,
+      });
+      cursor.setDate(cursor.getDate() + stepDays);
+    }
+
+    return result;
+  }
+
+  // Boats performance comparison
+  async getBoatsPerformance(period: "month" | "season" | "year"): Promise<Array<{
+    boatId: string;
+    boatName: string;
+    revenue: number;
+    bookings: number;
+    hours: number;
+    utilization: number;
+  }>> {
+    const now = new Date();
+    let startDate: Date;
+
+    switch (period) {
+      case "month":
+        startDate = new Date(now.getFullYear(), now.getMonth(), 1);
+        break;
+      case "season":
+        // Season is April - October of current year
+        startDate = new Date(now.getFullYear(), 3, 1); // April 1
+        break;
+      case "year":
+        startDate = new Date(now.getFullYear(), 0, 1);
+        break;
+    }
+
+    const allBoats = await db.select().from(boats).where(eq(boats.isActive, true));
+
+    const periodBookings = await db
+      .select()
+      .from(bookings)
+      .where(
+        and(
+          gte(bookings.bookingDate, startDate),
+          lte(bookings.bookingDate, now),
+          inArray(bookings.bookingStatus, ["confirmed", "pending_payment"])
+        )
+      );
+
+    // Calculate total available hours in period (assuming 10h operating day, April-October)
+    const totalDaysInPeriod = Math.ceil((now.getTime() - startDate.getTime()) / (24 * 60 * 60 * 1000));
+    const operatingHoursPerDay = 10; // ~9AM to 7PM
+    const totalAvailableHours = totalDaysInPeriod * operatingHoursPerDay;
+
+    return allBoats.map(boat => {
+      const boatBookings = periodBookings.filter(b => b.boatId === boat.id);
+      const confirmedBookings = boatBookings.filter(b => b.bookingStatus === "confirmed");
+      const revenue = confirmedBookings.reduce((sum, b) => sum + parseFloat(b.totalAmount), 0);
+      const totalHours = boatBookings.reduce((sum, b) => sum + (b.totalHours || 0), 0);
+      const utilization = totalAvailableHours > 0
+        ? Math.round((totalHours / totalAvailableHours) * 100)
+        : 0;
+
+      return {
+        boatId: boat.id,
+        boatName: boat.name,
+        revenue: Math.round(revenue * 100) / 100,
+        bookings: boatBookings.length,
+        hours: totalHours,
+        utilization: Math.min(utilization, 100), // Cap at 100%
+      };
+    }).sort((a, b) => b.revenue - a.revenue);
+  }
+
+  // Booking status distribution
+  async getStatusDistribution(startDate: Date, endDate: Date): Promise<{
+    confirmed: number;
+    pending_payment: number;
+    hold: number;
+    cancelled: number;
+    completed: number;
+    draft: number;
+  }> {
+    const allBookingsInRange = await db
+      .select()
+      .from(bookings)
+      .where(
+        and(
+          gte(bookings.bookingDate, startDate),
+          lte(bookings.bookingDate, endDate)
+        )
+      );
+
+    const distribution = {
+      confirmed: 0,
+      pending_payment: 0,
+      hold: 0,
+      cancelled: 0,
+      completed: 0,
+      draft: 0,
+    };
+
+    for (const b of allBookingsInRange) {
+      const status = b.bookingStatus as keyof typeof distribution;
+      if (status in distribution) {
+        distribution[status] += 1;
+      }
+    }
+
+    return distribution;
   }
 
   // Testimonial methods

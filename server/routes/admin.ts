@@ -17,7 +17,20 @@ const normalizeImageSchema = z.object({
 });
 
 const adminStatsQuerySchema = z.object({
-  period: z.enum(["today", "week", "month"]).optional().default("today"),
+  period: z.enum(["today", "week", "month", "season", "year"]).optional().default("today"),
+});
+
+const revenueTrendQuerySchema = z.object({
+  period: z.enum(["30d", "90d", "365d"]).optional().default("30d"),
+});
+
+const boatsPerformanceQuerySchema = z.object({
+  period: z.enum(["month", "season", "year"]).optional().default("month"),
+});
+
+const statusDistributionQuerySchema = z.object({
+  startDate: z.coerce.date().optional(),
+  endDate: z.coerce.date().optional(),
 });
 
 const calendarBookingsQuerySchema = z.object({
@@ -367,9 +380,18 @@ export function registerAdminRoutes(app: Express) {
         startDate.setDate(now.getDate() - 30);
         startDate.setHours(0, 0, 0, 0);
         endDate.setHours(23, 59, 59, 999);
+      } else if (period === "season") {
+        // Season: April 1 to October 31 of current year
+        startDate = new Date(now.getFullYear(), 3, 1);
+        startDate.setHours(0, 0, 0, 0);
+        endDate.setHours(23, 59, 59, 999);
+      } else if (period === "year") {
+        startDate = new Date(now.getFullYear(), 0, 1);
+        startDate.setHours(0, 0, 0, 0);
+        endDate.setHours(23, 59, 59, 999);
       }
 
-      const stats = await storage.getDashboardStats(startDate, endDate);
+      const stats = await storage.getDashboardStatsEnhanced(startDate, endDate);
       const fleet = await storage.getFleetAvailability();
 
       res.json({
@@ -379,6 +401,62 @@ export function registerAdminRoutes(app: Express) {
       });
     } catch (error: any) {
       res.status(500).json({ message: "Error fetching dashboard stats: " + error.message });
+    }
+  });
+
+  // Revenue trend for charts
+  app.get("/api/admin/stats/revenue-trend", requireAdminSession, async (req, res) => {
+    try {
+      const queryParsed = revenueTrendQuerySchema.safeParse(req.query);
+      if (!queryParsed.success) {
+        return res.status(400).json({
+          message: "Datos invalidos",
+          errors: queryParsed.error.flatten().fieldErrors,
+        });
+      }
+      const trend = await storage.getRevenueTrend(queryParsed.data.period);
+      res.json(trend);
+    } catch (error: any) {
+      res.status(500).json({ message: "Error fetching revenue trend: " + error.message });
+    }
+  });
+
+  // Boats performance comparison
+  app.get("/api/admin/stats/boats-performance", requireAdminSession, async (req, res) => {
+    try {
+      const queryParsed = boatsPerformanceQuerySchema.safeParse(req.query);
+      if (!queryParsed.success) {
+        return res.status(400).json({
+          message: "Datos invalidos",
+          errors: queryParsed.error.flatten().fieldErrors,
+        });
+      }
+      const performance = await storage.getBoatsPerformance(queryParsed.data.period);
+      res.json(performance);
+    } catch (error: any) {
+      res.status(500).json({ message: "Error fetching boats performance: " + error.message });
+    }
+  });
+
+  // Status distribution
+  app.get("/api/admin/stats/status-distribution", requireAdminSession, async (req, res) => {
+    try {
+      const queryParsed = statusDistributionQuerySchema.safeParse(req.query);
+      if (!queryParsed.success) {
+        return res.status(400).json({
+          message: "Datos invalidos",
+          errors: queryParsed.error.flatten().fieldErrors,
+        });
+      }
+
+      const now = new Date();
+      const startDate = queryParsed.data.startDate || new Date(now.getFullYear(), 0, 1);
+      const endDate = queryParsed.data.endDate || now;
+
+      const distribution = await storage.getStatusDistribution(startDate, endDate);
+      res.json(distribution);
+    } catch (error: any) {
+      res.status(500).json({ message: "Error fetching status distribution: " + error.message });
     }
   });
 

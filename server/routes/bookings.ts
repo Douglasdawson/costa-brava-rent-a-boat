@@ -1,9 +1,6 @@
 import type { Express } from "express";
 import { z } from "zod";
 import { storage } from "../storage";
-import { db } from "../db";
-import { bookings } from "@shared/schema";
-import { and, eq, lte } from "drizzle-orm";
 import { requireAdminSession } from "./auth";
 
 const quoteSchema = z.object({
@@ -187,32 +184,15 @@ export function registerBookingRoutes(app: Express) {
     }
   });
 
-  // Clean up expired holds (admin only)
+  // Clean up expired holds (admin only) - also runs automatically every 5 min via scheduler
   app.post("/api/cleanup-expired-holds", requireAdminSession, async (req, res) => {
     try {
-      const now = new Date();
-
-      const expiredHolds = await db
-        .select()
-        .from(bookings)
-        .where(and(eq(bookings.bookingStatus, "hold"), lte(bookings.expiresAt!, now)));
-
-      if (expiredHolds.length === 0) {
-        return res.json({
-          message: "No hay holds expirados para limpiar",
-          cleaned: 0,
-        });
-      }
-
-      const expiredIds = expiredHolds.map(hold => hold.id);
-      await db
-        .delete(bookings)
-        .where(and(eq(bookings.bookingStatus, "hold"), lte(bookings.expiresAt!, now)));
-
+      const cleaned = await storage.cleanupExpiredHolds();
       res.json({
-        message: `Se limpiaron ${expiredHolds.length} holds expirados`,
-        cleaned: expiredHolds.length,
-        expiredIds,
+        message: cleaned > 0
+          ? `Se limpiaron ${cleaned} holds expirados`
+          : "No hay holds expirados para limpiar",
+        cleaned,
       });
     } catch (error: any) {
       res.status(500).json({

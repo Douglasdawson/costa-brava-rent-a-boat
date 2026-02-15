@@ -20,6 +20,21 @@ const adminStatsQuerySchema = z.object({
   period: z.enum(["today", "week", "month"]).optional().default("today"),
 });
 
+const calendarBookingsQuerySchema = z.object({
+  startDate: z.coerce.date({ required_error: "startDate es requerido" }),
+  endDate: z.coerce.date({ required_error: "endDate es requerido" }),
+  boatId: z.string().optional(),
+});
+
+const paginatedBookingsQuerySchema = z.object({
+  page: z.coerce.number().int().min(1).optional().default(1),
+  limit: z.coerce.number().int().min(1).max(100).optional().default(25),
+  status: z.string().optional(),
+  search: z.string().optional(),
+  sortBy: z.enum(["startTime", "createdAt", "bookingDate"]).optional().default("startTime"),
+  sortOrder: z.enum(["asc", "desc"]).optional().default("desc"),
+});
+
 export function registerAdminRoutes(app: Express) {
   // ===== BOAT MANAGEMENT =====
 
@@ -176,12 +191,55 @@ export function registerAdminRoutes(app: Express) {
     }
   });
 
+  // Calendar bookings: all bookings in a date range (no pagination)
+  app.get("/api/admin/bookings/calendar", requireAdminSession, async (req, res) => {
+    try {
+      const queryParsed = calendarBookingsQuerySchema.safeParse(req.query);
+      if (!queryParsed.success) {
+        return res.status(400).json({
+          message: "Parametros invalidos",
+          errors: queryParsed.error.flatten().fieldErrors,
+        });
+      }
+
+      const { startDate, endDate, boatId } = queryParsed.data;
+
+      const calendarBookings = await storage.getBookingsForCalendar({
+        startDate,
+        endDate,
+        boatId,
+      });
+
+      res.json(calendarBookings);
+    } catch (error: any) {
+      res.status(500).json({ message: "Error fetching calendar bookings: " + error.message });
+    }
+  });
+
   app.get("/api/admin/bookings", requireAdminSession, async (req, res) => {
     try {
-      const bookings = await storage.getAllBookings();
-      res.json(bookings);
+      const queryParsed = paginatedBookingsQuerySchema.safeParse(req.query);
+      if (!queryParsed.success) {
+        return res.status(400).json({
+          message: "Parametros invalidos",
+          errors: queryParsed.error.flatten().fieldErrors,
+        });
+      }
+
+      const { page, limit, status, search, sortBy, sortOrder } = queryParsed.data;
+
+      const result = await storage.getPaginatedBookings({
+        page,
+        limit,
+        status,
+        search,
+        sortBy,
+        sortOrder,
+      });
+
+      res.json(result);
     } catch (error: any) {
-      res.status(500).json({ message: "Error fetching all bookings: " + error.message });
+      res.status(500).json({ message: "Error fetching bookings: " + error.message });
     }
   });
 

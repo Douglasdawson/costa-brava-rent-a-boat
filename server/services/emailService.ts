@@ -270,8 +270,9 @@ export async function sendBookingReminder(data: BookingEmailData): Promise<Email
 
 /**
  * Send thank-you email 24h after the rental with Google Review link and discount code.
+ * @param discountCode - The actual discount code stored in the database
  */
-export async function sendThankYouEmail(data: BookingEmailData): Promise<EmailResult> {
+export async function sendThankYouEmail(data: BookingEmailData, discountCode: string): Promise<EmailResult> {
   if (!initSendGrid()) {
     console.log("[Email] SendGrid not configured, skipping thank-you email");
     return { success: false, error: "SendGrid not configured" };
@@ -282,9 +283,6 @@ export async function sendThankYouEmail(data: BookingEmailData): Promise<EmailRe
   if (!booking.customerEmail) {
     return { success: false, error: "No customer email address" };
   }
-
-  // Generate repeat customer discount code from first 6 chars of booking ID
-  const discountCode = `REPEAT-${booking.id.substring(0, 6).toUpperCase()}`;
   const googleReviewUrl = "https://search.google.com/local/writereview?placeid=ChIJrTRWOdA0uxIR_vCCNfbFNpE";
 
   const content = `

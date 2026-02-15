@@ -15,8 +15,15 @@ const updateCustomerProfileSchema = z.object({
   preferredLanguage: z.string().max(10).optional(),
 });
 
-// JWT secret - must be set via environment variable in production
-const JWT_SECRET = process.env.JWT_SECRET || "cbrb-admin-secret-change-in-production";
+// JWT secret - MUST be set via environment variable. No fallback allowed.
+if (!process.env.JWT_SECRET) {
+  throw new Error(
+    "FATAL: JWT_SECRET environment variable is not set. " +
+    "The server cannot start without a secure JWT secret. " +
+    "Set JWT_SECRET in your environment variables before starting the server."
+  );
+}
+const JWT_SECRET: string = process.env.JWT_SECRET;
 
 // JWT payload interface
 interface JwtPayload {

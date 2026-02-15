@@ -161,19 +161,20 @@ async function processThankYou(): Promise<void> {
         const extras = await storage.getBookingExtras(booking.id);
         const emailData = { booking, boat, extras };
 
-        // Send thank-you email
-        const emailResult = await sendThankYouEmail(emailData);
+        // Generate the discount code in DB first, then pass to email
+        let discountCode = "REPEAT-GIFT";
+        try {
+          const codeRecord = await storage.generateRepeatCustomerCode(booking.customerEmail, booking.id);
+          discountCode = codeRecord.code;
+        } catch (discountError: unknown) {
+          const msg = discountError instanceof Error ? discountError.message : "Unknown error";
+          console.error(`[Scheduler] Error generating discount code for ${booking.customerEmail}:`, msg);
+        }
 
-        if (emailResult.success) {
-          // Also generate a proper discount code in the database for the repeat customer
-          try {
-            await storage.generateRepeatCustomerCode(booking.customerEmail, booking.id);
-          } catch (discountError: unknown) {
-            // Non-critical: the email already contains a code pattern, DB code is a bonus
-            const msg = discountError instanceof Error ? discountError.message : "Unknown error";
-            console.error(`[Scheduler] Error generating discount code for ${booking.customerEmail}:`, msg);
-          }
-        } else {
+        // Send thank-you email with the real discount code
+        const emailResult = await sendThankYouEmail(emailData, discountCode);
+
+        if (!emailResult.success) {
           console.error(`[Scheduler] Thank-you email failed for booking ${booking.id}: ${emailResult.error}`);
         }
 
@@ -216,5 +217,18 @@ export function startScheduler(): void {
     await processThankYou();
   });
 
-  console.log("[Scheduler] Scheduled services started: reminders (every hour at :00), thank-you (every hour at :30)");
+  // Cleanup expired holds every 5 minutes to free blocked availability
+  cron.schedule("*/5 * * * *", async () => {
+    try {
+      const cleaned = await storage.cleanupExpiredHolds();
+      if (cleaned > 0) {
+        console.log(`[Scheduler] Cleaned up ${cleaned} expired hold(s)`);
+      }
+    } catch (error: unknown) {
+      const msg = error instanceof Error ? error.message : "Unknown error";
+      console.error("[Scheduler] Error cleaning expired holds:", msg);
+    }
+  });
+
+  console.log("[Scheduler] Scheduled services started: reminders (:00), thank-you (:30), hold cleanup (every 5min)");
 }

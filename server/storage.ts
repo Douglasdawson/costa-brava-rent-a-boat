@@ -59,6 +59,28 @@ export interface IStorage {
   updateBookingWhatsAppStatus(id: string, confirmationSent?: boolean, reminderSent?: boolean): Promise<Booking | undefined>;
   getAllBookings(): Promise<Booking[]>;
 
+  // Paginated bookings for admin CRM
+  getPaginatedBookings(params: {
+    page: number;
+    limit: number;
+    status?: string;
+    search?: string;
+    sortBy?: string;
+    sortOrder?: "asc" | "desc";
+  }): Promise<{
+    data: Booking[];
+    total: number;
+    page: number;
+    totalPages: number;
+  }>;
+
+  // Calendar bookings (all bookings in date range, no pagination)
+  getBookingsForCalendar(params: {
+    startDate: Date;
+    endDate: Date;
+    boatId?: string;
+  }): Promise<Booking[]>;
+
   // Booking extras methods
   createBookingExtra(extra: InsertBookingExtra): Promise<BookingExtra>;
   getBookingExtras(bookingId: string): Promise<BookingExtra[]>;
@@ -397,6 +419,104 @@ export class DatabaseStorage implements IStorage {
     return await db.select().from(bookings);
   }
 
+  async getPaginatedBookings(params: {
+    page: number;
+    limit: number;
+    status?: string;
+    search?: string;
+    sortBy?: string;
+    sortOrder?: "asc" | "desc";
+  }): Promise<{
+    data: Booking[];
+    total: number;
+    page: number;
+    totalPages: number;
+  }> {
+    const { page, limit, status, search, sortBy = "startTime", sortOrder = "desc" } = params;
+    const offset = (page - 1) * limit;
+
+    // Build WHERE conditions
+    const conditions = [];
+
+    if (status && status !== "all") {
+      conditions.push(eq(bookings.bookingStatus, status));
+    }
+
+    if (search) {
+      const searchLower = `%${search.toLowerCase()}%`;
+      conditions.push(
+        or(
+          sql`LOWER(${bookings.customerName}) LIKE ${searchLower}`,
+          sql`LOWER(${bookings.customerSurname}) LIKE ${searchLower}`,
+          sql`LOWER(COALESCE(${bookings.customerEmail}, '')) LIKE ${searchLower}`,
+          sql`LOWER(${bookings.customerPhone}) LIKE ${searchLower}`,
+          sql`LOWER(${bookings.boatId}) LIKE ${searchLower}`
+        )
+      );
+    }
+
+    const whereClause = conditions.length > 0 ? and(...conditions) : undefined;
+
+    // Execute count query
+    const countResult = await db
+      .select({ count: sql<number>`COUNT(*)::int` })
+      .from(bookings)
+      .where(whereClause);
+
+    const total = countResult[0]?.count ?? 0;
+    const totalPages = Math.ceil(total / limit);
+
+    // Determine sort direction and column
+    const sortColumnSql =
+      sortBy === "createdAt" ? sql`${bookings.createdAt}`
+      : sortBy === "bookingDate" ? sql`${bookings.bookingDate}`
+      : sql`${bookings.startTime}`;
+
+    const orderSql = sortOrder === "asc"
+      ? sql`${sortColumnSql} ASC`
+      : sql`${sortColumnSql} DESC`;
+
+    // Execute paginated data query
+    const data = await db
+      .select()
+      .from(bookings)
+      .where(whereClause)
+      .orderBy(orderSql)
+      .limit(limit)
+      .offset(offset);
+
+    return {
+      data,
+      total,
+      page,
+      totalPages,
+    };
+  }
+
+  // Calendar bookings: all bookings in a date range (no pagination)
+  async getBookingsForCalendar(params: {
+    startDate: Date;
+    endDate: Date;
+    boatId?: string;
+  }): Promise<Booking[]> {
+    const { startDate, endDate, boatId } = params;
+
+    const conditions = [
+      // Overlap logic: booking starts before range ends AND booking ends after range starts
+      lte(bookings.startTime, endDate),
+      gte(bookings.endTime, startDate),
+    ];
+
+    if (boatId) {
+      conditions.push(eq(bookings.boatId, boatId));
+    }
+
+    return await db
+      .select()
+      .from(bookings)
+      .where(and(...conditions));
+  }
+
   // Booking extras methods
   async createBookingExtra(extra: InsertBookingExtra): Promise<BookingExtra> {
     const [newExtra] = await db
@@ -413,17 +533,28 @@ export class DatabaseStorage implements IStorage {
       .where(eq(bookingExtras.bookingId, bookingId));
   }
 
+  // Boats that share the same physical vessel
+  private readonly sharedBoatIds: Record<string, string[]> = {
+    "pacific-craft-625": ["pacific-craft-625", "excursion-privada"],
+    "excursion-privada": ["excursion-privada", "pacific-craft-625"],
+  };
+
+  private getBoatIdsToCheck(boatId: string): string[] {
+    return this.sharedBoatIds[boatId] || [boatId];
+  }
+
   // Monthly bookings for availability calendar
   async getMonthlyBookings(boatId: string, year: number, month: number): Promise<Booking[]> {
     const startDate = new Date(year, month - 1, 1);
     const endDate = new Date(year, month, 0, 23, 59, 59, 999);
+    const boatIds = this.getBoatIdsToCheck(boatId);
 
     return await db
       .select()
       .from(bookings)
       .where(
         and(
-          eq(bookings.boatId, boatId),
+          inArray(bookings.boatId, boatIds),
           gte(bookings.startTime, startDate),
           lte(bookings.endTime, endDate),
           inArray(bookings.bookingStatus, ["hold", "pending_payment", "confirmed"])
@@ -435,18 +566,19 @@ export class DatabaseStorage implements IStorage {
   async checkAvailability(boatId: string, startTime: Date, endTime: Date): Promise<boolean> {
     // In development mode, be more permissive to allow testing
     const isDevelopment = process.env.NODE_ENV === "development";
-    
+
     // Reduce buffer in development for easier testing
     const bufferMinutes = isDevelopment ? 5 : 20;
     const bufferStart = new Date(startTime.getTime() - bufferMinutes * 60 * 1000);
     const bufferEnd = new Date(endTime.getTime() + bufferMinutes * 60 * 1000);
+    const boatIds = this.getBoatIdsToCheck(boatId);
 
     const conflictingBookings = await db
       .select()
       .from(bookings)
       .where(
         and(
-          eq(bookings.boatId, boatId),
+          inArray(bookings.boatId, boatIds),
           // Check all active booking statuses: hold, pending_payment, confirmed
           inArray(bookings.bookingStatus, ["hold", "pending_payment", "confirmed"]),
           // Check for any overlap with buffer times
@@ -471,6 +603,23 @@ export class DatabaseStorage implements IStorage {
     }
 
     return conflictingBookings.length === 0;
+  }
+
+  // Clean up expired holds that block availability
+  async cleanupExpiredHolds(): Promise<number> {
+    const now = new Date();
+    const expiredHolds = await db
+      .select({ id: bookings.id })
+      .from(bookings)
+      .where(and(eq(bookings.bookingStatus, "hold"), lte(bookings.expiresAt!, now)));
+
+    if (expiredHolds.length === 0) return 0;
+
+    await db
+      .delete(bookings)
+      .where(and(eq(bookings.bookingStatus, "hold"), lte(bookings.expiresAt!, now)));
+
+    return expiredHolds.length;
   }
 
   // Admin dashboard statistics

@@ -8,6 +8,7 @@ import {
   insertBoatDocumentSchema, updateBoatDocumentSchema,
   insertInventoryItemSchema, updateInventoryItemSchema,
   insertInventoryMovementSchema,
+  insertTenantSchema, updateTenantSchema,
 } from "@shared/schema";
 import { requireAdminSession } from "./auth";
 import { ObjectStorageService, ObjectNotFoundError } from "../objectStorage";
@@ -980,6 +981,83 @@ export function registerAdminRoutes(app: Express) {
     } catch (error: any) {
       console.error("Error seeding blog posts:", error);
       res.status(500).json({ message: "Error seeding blog posts: " + error.message });
+    }
+  });
+
+  // ===== TENANT MANAGEMENT =====
+
+  // Seed default tenant and migrate existing data
+  app.post("/api/admin/seed-tenant", requireAdminSession, async (req, res) => {
+    try {
+      const tenant = await storage.seedDefaultTenant();
+      res.json({
+        success: true,
+        tenant,
+        message: "Tenant creado y datos migrados correctamente",
+      });
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : "Unknown error";
+      res.status(500).json({ message: "Error seeding tenant: " + message });
+    }
+  });
+
+  // Get all tenants
+  app.get("/api/admin/tenants", requireAdminSession, async (req, res) => {
+    try {
+      const allTenants = await storage.getAllTenants();
+      res.json(allTenants);
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : "Unknown error";
+      res.status(500).json({ message: "Error fetching tenants: " + message });
+    }
+  });
+
+  // Get tenant by ID
+  app.get("/api/admin/tenants/:id", requireAdminSession, async (req, res) => {
+    try {
+      const tenant = await storage.getTenant(req.params.id);
+      if (!tenant) return res.status(404).json({ message: "Tenant no encontrado" });
+      res.json(tenant);
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : "Unknown error";
+      res.status(500).json({ message: "Error fetching tenant: " + message });
+    }
+  });
+
+  // Create tenant
+  app.post("/api/admin/tenants", requireAdminSession, async (req, res) => {
+    try {
+      const parsed = insertTenantSchema.safeParse(req.body);
+      if (!parsed.success) {
+        return res.status(400).json({
+          message: "Datos invalidos",
+          errors: parsed.error.flatten().fieldErrors,
+        });
+      }
+      const tenant = await storage.createTenant(parsed.data);
+      res.status(201).json({ success: true, tenant, message: "Tenant creado" });
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : "Unknown error";
+      res.status(500).json({ message: "Error creating tenant: " + message });
+    }
+  });
+
+  // Update tenant
+  app.patch("/api/admin/tenants/:id", requireAdminSession, async (req, res) => {
+    try {
+      const parsed = updateTenantSchema.safeParse(req.body);
+      if (!parsed.success) {
+        return res.status(400).json({
+          message: "Datos invalidos",
+          errors: parsed.error.flatten().fieldErrors,
+        });
+      }
+      const updated = await storage.updateTenant(req.params.id, parsed.data);
+      if (!updated) return res.status(404).json({ message: "Tenant no encontrado" });
+      res.json({ success: true, tenant: updated, message: "Tenant actualizado" });
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : "Unknown error";
+      res.status(500).json({ message: "Error updating tenant: " + message });
     }
   });
 }

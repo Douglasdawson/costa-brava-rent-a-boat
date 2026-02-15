@@ -3,9 +3,124 @@ import { pgTable, text, varchar, integer, decimal, timestamp, boolean, json, jso
 import { createInsertSchema, createSelectSchema } from "drizzle-zod";
 import { z } from "zod";
 
+// ===== TENANTS (Multi-tenant SaaS) =====
+
+export const TENANT_PLANS = {
+  STARTER: 'starter',
+  PRO: 'pro',
+  ENTERPRISE: 'enterprise',
+} as const;
+
+export type TenantPlan = typeof TENANT_PLANS[keyof typeof TENANT_PLANS];
+
+export const TENANT_STATUSES = {
+  TRIAL: 'trial',
+  ACTIVE: 'active',
+  SUSPENDED: 'suspended',
+  CANCELLED: 'cancelled',
+} as const;
+
+export type TenantStatus = typeof TENANT_STATUSES[keyof typeof TENANT_STATUSES];
+
+export interface TenantSettings {
+  timezone: string;
+  currency: string;
+  languages: string[];
+  seasonDates?: {
+    low?: { start: string; end: string };
+    mid?: { start: string; end: string };
+    high?: { start: string; end: string };
+  };
+}
+
+export const tenants = pgTable("tenants", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  name: text("name").notNull(),
+  slug: varchar("slug", { length: 100 }).notNull().unique(),
+  domain: text("domain"),
+  logo: text("logo"),
+  primaryColor: varchar("primary_color", { length: 7 }).default("#0077B6"),
+  secondaryColor: varchar("secondary_color", { length: 7 }).default("#00B4D8"),
+  email: text("email"),
+  phone: text("phone"),
+  address: text("address"),
+  settings: jsonb("settings").$type<TenantSettings>().default({
+    timezone: "Europe/Madrid",
+    currency: "EUR",
+    languages: ["es", "en"],
+  }),
+  plan: text("plan").notNull().default("starter"), // 'starter' | 'pro' | 'enterprise'
+  stripeCustomerId: text("stripe_customer_id"),
+  stripeSubscriptionId: text("stripe_subscription_id"),
+  status: text("status").notNull().default("trial"), // 'trial' | 'active' | 'suspended' | 'cancelled'
+  trialEndsAt: timestamp("trial_ends_at", { withTimezone: true }),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().default(sql`now()`),
+  updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().default(sql`now()`),
+}, (table) => ({
+  slugIdx: index("tenants_slug_idx").on(table.slug),
+  statusIdx: index("tenants_status_idx").on(table.status),
+}));
+
+export const insertTenantSchema = z.object({
+  name: z.string().min(2, "El nombre debe tener al menos 2 caracteres"),
+  slug: z.string().min(2).max(100).regex(/^[a-z0-9-]+$/, "Solo letras minusculas, numeros y guiones"),
+  domain: z.string().optional().or(z.null()),
+  logo: z.string().optional().or(z.null()),
+  primaryColor: z.string().max(7).optional(),
+  secondaryColor: z.string().max(7).optional(),
+  email: z.string().email().optional().or(z.null()),
+  phone: z.string().optional().or(z.null()),
+  address: z.string().optional().or(z.null()),
+  settings: z.object({
+    timezone: z.string(),
+    currency: z.string(),
+    languages: z.array(z.string()),
+    seasonDates: z.object({
+      low: z.object({ start: z.string(), end: z.string() }).optional(),
+      mid: z.object({ start: z.string(), end: z.string() }).optional(),
+      high: z.object({ start: z.string(), end: z.string() }).optional(),
+    }).optional(),
+  }).optional(),
+  plan: z.enum(["starter", "pro", "enterprise"]).optional().default("starter"),
+  status: z.enum(["trial", "active", "suspended", "cancelled"]).optional().default("trial"),
+  trialEndsAt: z.coerce.date().optional().or(z.null()),
+});
+
+export const updateTenantSchema = z.object({
+  name: z.string().min(2).optional(),
+  slug: z.string().min(2).max(100).regex(/^[a-z0-9-]+$/).optional(),
+  domain: z.string().optional().or(z.null()),
+  logo: z.string().optional().or(z.null()),
+  primaryColor: z.string().max(7).optional(),
+  secondaryColor: z.string().max(7).optional(),
+  email: z.string().email().optional().or(z.null()),
+  phone: z.string().optional().or(z.null()),
+  address: z.string().optional().or(z.null()),
+  settings: z.object({
+    timezone: z.string(),
+    currency: z.string(),
+    languages: z.array(z.string()),
+    seasonDates: z.object({
+      low: z.object({ start: z.string(), end: z.string() }).optional(),
+      mid: z.object({ start: z.string(), end: z.string() }).optional(),
+      high: z.object({ start: z.string(), end: z.string() }).optional(),
+    }).optional(),
+  }).optional(),
+  plan: z.enum(["starter", "pro", "enterprise"]).optional(),
+  stripeCustomerId: z.string().optional().or(z.null()),
+  stripeSubscriptionId: z.string().optional().or(z.null()),
+  status: z.enum(["trial", "active", "suspended", "cancelled"]).optional(),
+  trialEndsAt: z.coerce.date().optional().or(z.null()),
+});
+
+export type Tenant = typeof tenants.$inferSelect;
+export type InsertTenant = z.infer<typeof insertTenantSchema>;
+export type UpdateTenant = z.infer<typeof updateTenantSchema>;
+
 // Admin users (existing system - for CRM access)
 export const adminUsers = pgTable("admin_users", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  tenantId: varchar("tenant_id"),
   username: text("username").notNull().unique(),
   passwordHash: text("password_hash").notNull(),
   role: text("role").notNull().default("employee"), // 'admin' | 'employee'
@@ -40,6 +155,7 @@ export const customerUsers = pgTable("customer_users", {
 // Customer profiles (extended info beyond Replit Auth)
 export const customers = pgTable("customers", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  tenantId: varchar("tenant_id"),
   userId: varchar("user_id").notNull().references(() => customerUsers.id).unique(),
   firstName: varchar("first_name").notNull(),
   lastName: varchar("last_name").notNull(),
@@ -55,6 +171,7 @@ export const customers = pgTable("customers", {
 
 export const boats = pgTable("boats", {
   id: varchar("id").primaryKey(),
+  tenantId: varchar("tenant_id"),
   name: text("name").notNull(),
   capacity: integer("capacity").notNull(),
   requiresLicense: boolean("requires_license").notNull(),
@@ -99,6 +216,7 @@ export const boats = pgTable("boats", {
 
 export const bookings = pgTable("bookings", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  tenantId: varchar("tenant_id"),
   customerId: varchar("customer_id").references(() => customers.id), // Optional link to customer profile
   boatId: varchar("boat_id").notNull().references(() => boats.id),
   bookingDate: timestamp("booking_date", { withTimezone: true }).notNull(),
@@ -154,6 +272,7 @@ export const bookings = pgTable("bookings", {
 
 export const bookingExtras = pgTable("booking_extras", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  tenantId: varchar("tenant_id"),
   bookingId: varchar("booking_id").notNull().references(() => bookings.id, { onDelete: "cascade" }),
   extraName: text("extra_name").notNull(),
   extraPrice: decimal("extra_price", { precision: 10, scale: 2 }).notNull(),
@@ -163,6 +282,7 @@ export const bookingExtras = pgTable("booking_extras", {
 // Page visits analytics
 export const pageVisits = pgTable("page_visits", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  tenantId: varchar("tenant_id"),
   pagePath: text("page_path").notNull(),
   ipAddress: text("ip_address"),
   userAgent: text("user_agent"),
@@ -318,6 +438,7 @@ export type BookingSource = typeof BOOKING_SOURCE[keyof typeof BOOKING_SOURCE];
 // Testimonials table for customer reviews
 export const testimonials = pgTable("testimonials", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  tenantId: varchar("tenant_id"),
   customerName: varchar("customer_name").notNull(),
   boatId: varchar("boat_id").references(() => boats.id),
   boatName: varchar("boat_name"), // Denormalized for display even if boat deleted
@@ -345,6 +466,7 @@ export type Testimonial = typeof testimonials.$inferSelect;
 // Blog Posts table for SEO content
 export const blogPosts = pgTable("blog_posts", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  tenantId: varchar("tenant_id"),
   title: varchar("title", { length: 255 }).notNull(),
   slug: varchar("slug", { length: 255 }).notNull().unique(),
   excerpt: text("excerpt"), // Short summary for cards
@@ -363,6 +485,7 @@ export const blogPosts = pgTable("blog_posts", {
 // Destinations landing pages for SEO
 export const destinations = pgTable("destinations", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  tenantId: varchar("tenant_id"),
   name: varchar("name", { length: 255 }).notNull(), // e.g., "Cala Bona"
   slug: varchar("slug", { length: 255 }).notNull().unique(), // e.g., "cala-bona"
   description: text("description").notNull(), // Short intro
@@ -413,6 +536,7 @@ export type InsertDestination = z.infer<typeof insertDestinationSchema>;
 // Client Photos (gallery)
 export const clientPhotos = pgTable("client_photos", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  tenantId: varchar("tenant_id"),
   imageUrl: text("image_url").notNull(),
   caption: text("caption"),
   customerName: varchar("customer_name", { length: 255 }).notNull(),
@@ -438,6 +562,7 @@ export type InsertClientPhoto = z.infer<typeof insertClientPhotoSchema>;
 
 export const giftCards = pgTable("gift_cards", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  tenantId: varchar("tenant_id"),
   code: varchar("code", { length: 20 }).notNull().unique(),
   amount: decimal("amount", { precision: 10, scale: 2 }).notNull(),
   remainingAmount: decimal("remaining_amount", { precision: 10, scale: 2 }).notNull(),
@@ -466,6 +591,7 @@ export type InsertGiftCard = z.infer<typeof insertGiftCardSchema>;
 
 export const discountCodes = pgTable("discount_codes", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  tenantId: varchar("tenant_id"),
   code: varchar("code", { length: 30 }).notNull().unique(),
   discountPercent: integer("discount_percent").notNull(), // e.g., 10 for 10%
   maxUses: integer("max_uses").notNull().default(1),
@@ -518,6 +644,7 @@ export type ChatbotState = typeof CHATBOT_STATES[keyof typeof CHATBOT_STATES];
 // WhatsApp Chatbot Conversations table
 export const chatbotConversations = pgTable("chatbot_conversations", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  tenantId: varchar("tenant_id"),
   phoneNumber: varchar("phone_number", { length: 20 }).notNull(),
   currentState: varchar("current_state", { length: 50 }).notNull().default('welcome'),
   language: varchar("language", { length: 5 }).notNull().default('es'),
@@ -570,6 +697,7 @@ export type UpdateChatbotConversation = z.infer<typeof updateChatbotConversation
 // AI Chat Sessions - Persistent conversation sessions
 export const aiChatSessions = pgTable("ai_chat_sessions", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  tenantId: varchar("tenant_id"),
   phoneNumber: varchar("phone_number", { length: 20 }).notNull(),
   language: varchar("language", { length: 5 }).notNull().default('es'),
   
@@ -599,6 +727,7 @@ export const aiChatSessions = pgTable("ai_chat_sessions", {
 // AI Chat Messages - Individual messages with metadata
 export const aiChatMessages = pgTable("ai_chat_messages", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  tenantId: varchar("tenant_id"),
   sessionId: varchar("session_id").notNull().references(() => aiChatSessions.id, { onDelete: "cascade" }),
   
   // Message content
@@ -624,7 +753,8 @@ export const aiChatMessages = pgTable("ai_chat_messages", {
 // Knowledge Base - For RAG with embeddings
 export const knowledgeBase = pgTable("knowledge_base", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
-  
+  tenantId: varchar("tenant_id"),
+
   // Content
   title: varchar("title", { length: 255 }).notNull(),
   content: text("content").notNull(),
@@ -688,6 +818,7 @@ export type CustomerSegment = typeof CUSTOMER_SEGMENTS[keyof typeof CUSTOMER_SEG
 
 export const crmCustomers = pgTable("crm_customers", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  tenantId: varchar("tenant_id"),
   name: text("name").notNull(),
   surname: text("surname").notNull(),
   email: text("email"),
@@ -758,6 +889,7 @@ export interface ChecklistItem {
 
 export const checkins = pgTable("checkins", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  tenantId: varchar("tenant_id"),
   bookingId: varchar("booking_id").notNull().references(() => bookings.id),
   boatId: varchar("boat_id").notNull().references(() => boats.id),
   type: text("type").notNull(), // 'checkin' | 'checkout'
@@ -817,6 +949,7 @@ export type MaintenanceStatus = typeof MAINTENANCE_STATUSES[keyof typeof MAINTEN
 
 export const maintenanceLogs = pgTable("maintenance_logs", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  tenantId: varchar("tenant_id"),
   boatId: varchar("boat_id").notNull().references(() => boats.id),
   type: text("type").notNull(), // 'preventive' | 'corrective' | 'inspection'
   description: text("description").notNull(),
@@ -874,6 +1007,7 @@ export type DocumentType = typeof DOCUMENT_TYPES[keyof typeof DOCUMENT_TYPES];
 
 export const boatDocuments = pgTable("boat_documents", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  tenantId: varchar("tenant_id"),
   boatId: varchar("boat_id").notNull().references(() => boats.id),
   type: text("type").notNull(), // 'registration' | 'insurance' | 'inspection' | 'license' | 'other'
   name: text("name").notNull(),
@@ -920,6 +1054,7 @@ export type InventoryStatus = typeof INVENTORY_STATUSES[keyof typeof INVENTORY_S
 
 export const inventoryItems = pgTable("inventory_items", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  tenantId: varchar("tenant_id"),
   name: text("name").notNull(),
   description: text("description"),
   category: text("category").notNull(), // e.g., 'water_sports', 'safety', 'comfort', 'navigation'
@@ -974,6 +1109,7 @@ export type MovementType = typeof MOVEMENT_TYPES[keyof typeof MOVEMENT_TYPES];
 
 export const inventoryMovements = pgTable("inventory_movements", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  tenantId: varchar("tenant_id"),
   itemId: varchar("item_id").notNull().references(() => inventoryItems.id),
   type: text("type").notNull(), // 'in' | 'out' | 'adjustment'
   quantity: integer("quantity").notNull(),

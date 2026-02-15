@@ -12,6 +12,9 @@ import {
   Camera,
   Gift,
   Percent,
+  Wrench,
+  Package,
+  BarChart3,
 } from "lucide-react";
 
 interface AdminLayoutProps {
@@ -34,6 +37,9 @@ const TAB_CONFIG = [
 const ADMIN_TABS = [
   { id: "customers", label: "Clientes", icon: Users },
   { id: "fleet", label: "Flota", icon: Anchor },
+  { id: "maintenance", label: "Mant.", icon: Wrench },
+  { id: "inventory", label: "Inventario", icon: Package },
+  { id: "reports", label: "Reportes", icon: BarChart3 },
   { id: "gallery", label: "Galeria", icon: Camera },
   { id: "giftcards", label: "Regalos", icon: Gift },
   { id: "discounts", label: "Descuentos", icon: Percent },

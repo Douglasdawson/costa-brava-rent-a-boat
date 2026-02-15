@@ -11,6 +11,9 @@ export { EmployeeManagement } from "./EmployeeManagement";
 export { GalleryManagement } from "./GalleryManagement";
 export { GiftCardManagement } from "./GiftCardManagement";
 export { DiscountManagement } from "./DiscountManagement";
+export { MaintenanceTab } from "./MaintenanceTab";
+export { InventoryTab } from "./InventoryTab";
+export { ReportsTab } from "./ReportsTab";
 
 // CRM Module exports - Modals
 export { BookingDetailsModal } from "./BookingDetailsModal";

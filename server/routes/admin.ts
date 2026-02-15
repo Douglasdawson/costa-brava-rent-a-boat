@@ -1,7 +1,14 @@
 import type { Express } from "express";
 import { z } from "zod";
 import { storage } from "../storage";
-import { updateBookingSchema, insertBookingSchema, insertBoatSchema, updateCrmCustomerSchema, insertCheckinSchema } from "@shared/schema";
+import {
+  updateBookingSchema, insertBookingSchema, insertBoatSchema,
+  updateCrmCustomerSchema, insertCheckinSchema,
+  insertMaintenanceLogSchema, updateMaintenanceLogSchema,
+  insertBoatDocumentSchema, updateBoatDocumentSchema,
+  insertInventoryItemSchema, updateInventoryItemSchema,
+  insertInventoryMovementSchema,
+} from "@shared/schema";
 import { requireAdminSession } from "./auth";
 import { ObjectStorageService, ObjectNotFoundError } from "../objectStorage";
 import { format } from "date-fns";
@@ -652,6 +659,310 @@ export function registerAdminRoutes(app: Express) {
     } catch (error: any) {
       console.error("Error normalizing image URL:", error);
       res.status(500).json({ error: "Failed to normalize image URL" });
+    }
+  });
+
+  // ===== MAINTENANCE LOGS =====
+
+  app.get("/api/admin/maintenance", requireAdminSession, async (req, res) => {
+    try {
+      const boatId = req.query.boatId as string | undefined;
+      const logs = await storage.getMaintenanceLogs(boatId);
+      res.json(logs);
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : "Unknown error";
+      res.status(500).json({ message: "Error fetching maintenance logs: " + message });
+    }
+  });
+
+  app.get("/api/admin/maintenance/upcoming", requireAdminSession, async (req, res) => {
+    try {
+      const upcoming = await storage.getUpcomingMaintenance();
+      res.json(upcoming);
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : "Unknown error";
+      res.status(500).json({ message: "Error fetching upcoming maintenance: " + message });
+    }
+  });
+
+  app.post("/api/admin/maintenance", requireAdminSession, async (req, res) => {
+    try {
+      const parsed = insertMaintenanceLogSchema.safeParse(req.body);
+      if (!parsed.success) {
+        return res.status(400).json({ message: "Datos invalidos", errors: parsed.error.flatten().fieldErrors });
+      }
+      const adminUser = (req as unknown as Record<string, unknown>).adminUser as { username: string } | undefined;
+      const log = await storage.createMaintenanceLog({
+        ...parsed.data,
+        createdBy: adminUser?.username || "admin",
+      });
+      res.status(201).json({ success: true, log, message: "Mantenimiento registrado" });
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : "Unknown error";
+      res.status(500).json({ message: "Error creating maintenance log: " + message });
+    }
+  });
+
+  app.patch("/api/admin/maintenance/:id", requireAdminSession, async (req, res) => {
+    try {
+      const parsed = updateMaintenanceLogSchema.safeParse(req.body);
+      if (!parsed.success) {
+        return res.status(400).json({ message: "Datos invalidos", errors: parsed.error.flatten().fieldErrors });
+      }
+      const updated = await storage.updateMaintenanceLog(req.params.id, parsed.data);
+      if (!updated) return res.status(404).json({ message: "Registro no encontrado" });
+      res.json({ success: true, log: updated, message: "Mantenimiento actualizado" });
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : "Unknown error";
+      res.status(500).json({ message: "Error updating maintenance log: " + message });
+    }
+  });
+
+  app.delete("/api/admin/maintenance/:id", requireAdminSession, async (req, res) => {
+    try {
+      const deleted = await storage.deleteMaintenanceLog(req.params.id);
+      if (!deleted) return res.status(404).json({ message: "Registro no encontrado" });
+      res.json({ success: true, message: "Mantenimiento eliminado" });
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : "Unknown error";
+      res.status(500).json({ message: "Error deleting maintenance log: " + message });
+    }
+  });
+
+  // ===== BOAT DOCUMENTS =====
+
+  app.get("/api/admin/documents", requireAdminSession, async (req, res) => {
+    try {
+      const boatId = req.query.boatId as string | undefined;
+      const docs = await storage.getBoatDocuments(boatId);
+      res.json(docs);
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : "Unknown error";
+      res.status(500).json({ message: "Error fetching documents: " + message });
+    }
+  });
+
+  app.get("/api/admin/documents/expiring", requireAdminSession, async (req, res) => {
+    try {
+      const days = parseInt(req.query.days as string) || 30;
+      const expiring = await storage.getExpiringDocuments(days);
+      res.json(expiring);
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : "Unknown error";
+      res.status(500).json({ message: "Error fetching expiring documents: " + message });
+    }
+  });
+
+  app.post("/api/admin/documents", requireAdminSession, async (req, res) => {
+    try {
+      const parsed = insertBoatDocumentSchema.safeParse(req.body);
+      if (!parsed.success) {
+        return res.status(400).json({ message: "Datos invalidos", errors: parsed.error.flatten().fieldErrors });
+      }
+      const doc = await storage.createBoatDocument(parsed.data);
+      res.status(201).json({ success: true, document: doc, message: "Documento registrado" });
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : "Unknown error";
+      res.status(500).json({ message: "Error creating document: " + message });
+    }
+  });
+
+  app.patch("/api/admin/documents/:id", requireAdminSession, async (req, res) => {
+    try {
+      const parsed = updateBoatDocumentSchema.safeParse(req.body);
+      if (!parsed.success) {
+        return res.status(400).json({ message: "Datos invalidos", errors: parsed.error.flatten().fieldErrors });
+      }
+      const updated = await storage.updateBoatDocument(req.params.id, parsed.data);
+      if (!updated) return res.status(404).json({ message: "Documento no encontrado" });
+      res.json({ success: true, document: updated, message: "Documento actualizado" });
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : "Unknown error";
+      res.status(500).json({ message: "Error updating document: " + message });
+    }
+  });
+
+  app.delete("/api/admin/documents/:id", requireAdminSession, async (req, res) => {
+    try {
+      const deleted = await storage.deleteBoatDocument(req.params.id);
+      if (!deleted) return res.status(404).json({ message: "Documento no encontrado" });
+      res.json({ success: true, message: "Documento eliminado" });
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : "Unknown error";
+      res.status(500).json({ message: "Error deleting document: " + message });
+    }
+  });
+
+  // ===== INVENTORY =====
+
+  app.get("/api/admin/inventory", requireAdminSession, async (req, res) => {
+    try {
+      const items = await storage.getInventoryItems();
+      res.json(items);
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : "Unknown error";
+      res.status(500).json({ message: "Error fetching inventory: " + message });
+    }
+  });
+
+  app.get("/api/admin/inventory/low-stock", requireAdminSession, async (req, res) => {
+    try {
+      const items = await storage.getLowStockItems();
+      res.json(items);
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : "Unknown error";
+      res.status(500).json({ message: "Error fetching low stock items: " + message });
+    }
+  });
+
+  app.get("/api/admin/inventory/:id", requireAdminSession, async (req, res) => {
+    try {
+      const item = await storage.getInventoryItem(req.params.id);
+      if (!item) return res.status(404).json({ message: "Item no encontrado" });
+      res.json(item);
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : "Unknown error";
+      res.status(500).json({ message: "Error fetching inventory item: " + message });
+    }
+  });
+
+  app.post("/api/admin/inventory", requireAdminSession, async (req, res) => {
+    try {
+      const parsed = insertInventoryItemSchema.safeParse(req.body);
+      if (!parsed.success) {
+        return res.status(400).json({ message: "Datos invalidos", errors: parsed.error.flatten().fieldErrors });
+      }
+      const item = await storage.createInventoryItem(parsed.data);
+      res.status(201).json({ success: true, item, message: "Item creado" });
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : "Unknown error";
+      res.status(500).json({ message: "Error creating inventory item: " + message });
+    }
+  });
+
+  app.patch("/api/admin/inventory/:id", requireAdminSession, async (req, res) => {
+    try {
+      const parsed = updateInventoryItemSchema.safeParse(req.body);
+      if (!parsed.success) {
+        return res.status(400).json({ message: "Datos invalidos", errors: parsed.error.flatten().fieldErrors });
+      }
+      const updated = await storage.updateInventoryItem(req.params.id, parsed.data);
+      if (!updated) return res.status(404).json({ message: "Item no encontrado" });
+      res.json({ success: true, item: updated, message: "Item actualizado" });
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : "Unknown error";
+      res.status(500).json({ message: "Error updating inventory item: " + message });
+    }
+  });
+
+  app.delete("/api/admin/inventory/:id", requireAdminSession, async (req, res) => {
+    try {
+      const deleted = await storage.deleteInventoryItem(req.params.id);
+      if (!deleted) return res.status(404).json({ message: "Item no encontrado" });
+      res.json({ success: true, message: "Item eliminado" });
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : "Unknown error";
+      res.status(500).json({ message: "Error deleting inventory item: " + message });
+    }
+  });
+
+  // Inventory movements
+  app.get("/api/admin/inventory/:id/movements", requireAdminSession, async (req, res) => {
+    try {
+      const movements = await storage.getInventoryMovements(req.params.id);
+      res.json(movements);
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : "Unknown error";
+      res.status(500).json({ message: "Error fetching movements: " + message });
+    }
+  });
+
+  app.post("/api/admin/inventory/:id/movements", requireAdminSession, async (req, res) => {
+    try {
+      const parsed = insertInventoryMovementSchema.safeParse({
+        ...req.body,
+        itemId: req.params.id,
+      });
+      if (!parsed.success) {
+        return res.status(400).json({ message: "Datos invalidos", errors: parsed.error.flatten().fieldErrors });
+      }
+      const adminUser = (req as unknown as Record<string, unknown>).adminUser as { username: string } | undefined;
+      const movement = await storage.createInventoryMovement({
+        ...parsed.data,
+        createdBy: adminUser?.username || "admin",
+      });
+      res.status(201).json({ success: true, movement, message: "Movimiento registrado" });
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : "Unknown error";
+      res.status(500).json({ message: "Error creating movement: " + message });
+    }
+  });
+
+  // ===== REPORTS =====
+
+  app.get("/api/admin/reports/fleet-utilization", requireAdminSession, async (req, res) => {
+    try {
+      const period = (req.query.period as string) || "season";
+      const performance = await storage.getBoatsPerformance(period as "month" | "season" | "year");
+      const maintenanceLogs = await storage.getMaintenanceLogs();
+      const maintenanceCosts = new Map<string, number>();
+      for (const log of maintenanceLogs) {
+        const cost = parseFloat(log.cost || "0");
+        maintenanceCosts.set(log.boatId, (maintenanceCosts.get(log.boatId) || 0) + cost);
+      }
+
+      const data = performance.map(boat => ({
+        ...boat,
+        maintenanceCost: Math.round((maintenanceCosts.get(boat.boatId) || 0) * 100) / 100,
+        netRevenue: Math.round((boat.revenue - (maintenanceCosts.get(boat.boatId) || 0)) * 100) / 100,
+      }));
+
+      res.json(data);
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : "Unknown error";
+      res.status(500).json({ message: "Error generating fleet report: " + message });
+    }
+  });
+
+  app.get("/api/admin/reports/maintenance-summary", requireAdminSession, async (req, res) => {
+    try {
+      const logs = await storage.getMaintenanceLogs();
+      const completed = logs.filter(l => l.status === "completed");
+      const scheduled = logs.filter(l => l.status === "scheduled");
+      const inProgress = logs.filter(l => l.status === "in_progress");
+      const totalCost = completed.reduce((sum, l) => sum + parseFloat(l.cost || "0"), 0);
+      const byType = {
+        preventive: logs.filter(l => l.type === "preventive").length,
+        corrective: logs.filter(l => l.type === "corrective").length,
+        inspection: logs.filter(l => l.type === "inspection").length,
+      };
+
+      res.json({
+        total: logs.length,
+        completed: completed.length,
+        scheduled: scheduled.length,
+        inProgress: inProgress.length,
+        totalCost: Math.round(totalCost * 100) / 100,
+        byType,
+      });
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : "Unknown error";
+      res.status(500).json({ message: "Error generating maintenance report: " + message });
+    }
+  });
+
+  app.get("/api/admin/reports/top-customers", requireAdminSession, async (req, res) => {
+    try {
+      const result = await storage.getPaginatedCrmCustomers({
+        page: 1,
+        limit: 20,
+        sortBy: "totalSpent",
+        sortOrder: "desc",
+      });
+      res.json(result.data);
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : "Unknown error";
+      res.status(500).json({ message: "Error fetching top customers: " + message });
     }
   });
 

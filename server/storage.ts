@@ -20,6 +20,14 @@ import {
   type CrmCustomer, type UpdateCrmCustomer,
   checkins,
   type Checkin, type InsertCheckin,
+  maintenanceLogs,
+  type MaintenanceLog, type InsertMaintenanceLog, type UpdateMaintenanceLog,
+  boatDocuments,
+  type BoatDocument, type InsertBoatDocument, type UpdateBoatDocument,
+  inventoryItems,
+  type InventoryItem, type InsertInventoryItem, type UpdateInventoryItem,
+  inventoryMovements,
+  type InventoryMovement, type InsertInventoryMovement,
 } from "@shared/schema";
 import { db } from "./db";
 import { eq, and, gte, lte, between, inArray, sql, or, isNull, desc, asc, ilike } from "drizzle-orm";
@@ -234,6 +242,32 @@ export interface IStorage {
   createCheckin(data: InsertCheckin): Promise<Checkin>;
   getCheckinsByBooking(bookingId: string): Promise<Checkin[]>;
   getLatestCheckin(bookingId: string, type: string): Promise<Checkin | undefined>;
+
+  // Maintenance methods
+  createMaintenanceLog(data: InsertMaintenanceLog): Promise<MaintenanceLog>;
+  getMaintenanceLogs(boatId?: string): Promise<MaintenanceLog[]>;
+  getMaintenanceLog(id: string): Promise<MaintenanceLog | undefined>;
+  updateMaintenanceLog(id: string, data: UpdateMaintenanceLog): Promise<MaintenanceLog | undefined>;
+  deleteMaintenanceLog(id: string): Promise<boolean>;
+  getUpcomingMaintenance(): Promise<MaintenanceLog[]>;
+
+  // Boat document methods
+  createBoatDocument(data: InsertBoatDocument): Promise<BoatDocument>;
+  getBoatDocuments(boatId?: string): Promise<BoatDocument[]>;
+  getBoatDocument(id: string): Promise<BoatDocument | undefined>;
+  updateBoatDocument(id: string, data: UpdateBoatDocument): Promise<BoatDocument | undefined>;
+  deleteBoatDocument(id: string): Promise<boolean>;
+  getExpiringDocuments(daysAhead: number): Promise<BoatDocument[]>;
+
+  // Inventory methods
+  createInventoryItem(data: InsertInventoryItem): Promise<InventoryItem>;
+  getInventoryItems(): Promise<InventoryItem[]>;
+  getInventoryItem(id: string): Promise<InventoryItem | undefined>;
+  updateInventoryItem(id: string, data: UpdateInventoryItem): Promise<InventoryItem | undefined>;
+  deleteInventoryItem(id: string): Promise<boolean>;
+  createInventoryMovement(data: InsertInventoryMovement): Promise<InventoryMovement>;
+  getInventoryMovements(itemId: string): Promise<InventoryMovement[]>;
+  getLowStockItems(): Promise<InventoryItem[]>;
 }
 
 // rewrite MemStorage to DatabaseStorage
@@ -1761,6 +1795,292 @@ export class DatabaseStorage implements IStorage {
       .orderBy(sql`${checkins.performedAt} DESC`)
       .limit(1);
     return result || undefined;
+  }
+
+  // ===== MAINTENANCE METHODS =====
+
+  async createMaintenanceLog(data: InsertMaintenanceLog): Promise<MaintenanceLog> {
+    const [log] = await db
+      .insert(maintenanceLogs)
+      .values({
+        boatId: data.boatId,
+        type: data.type,
+        description: data.description,
+        cost: data.cost || null,
+        date: data.date,
+        nextDueDate: data.nextDueDate || null,
+        status: data.status || "scheduled",
+        notes: data.notes || null,
+        createdBy: data.createdBy || null,
+      })
+      .returning();
+    return log;
+  }
+
+  async getMaintenanceLogs(boatId?: string): Promise<MaintenanceLog[]> {
+    const conditions = [];
+    if (boatId) {
+      conditions.push(eq(maintenanceLogs.boatId, boatId));
+    }
+    const whereClause = conditions.length > 0 ? and(...conditions) : undefined;
+
+    return await db
+      .select()
+      .from(maintenanceLogs)
+      .where(whereClause)
+      .orderBy(sql`${maintenanceLogs.date} DESC`);
+  }
+
+  async getMaintenanceLog(id: string): Promise<MaintenanceLog | undefined> {
+    const [log] = await db.select().from(maintenanceLogs).where(eq(maintenanceLogs.id, id));
+    return log || undefined;
+  }
+
+  async updateMaintenanceLog(id: string, data: UpdateMaintenanceLog): Promise<MaintenanceLog | undefined> {
+    const updateData: Record<string, unknown> = {};
+    if (data.type !== undefined) updateData.type = data.type;
+    if (data.description !== undefined) updateData.description = data.description;
+    if (data.cost !== undefined) updateData.cost = data.cost || null;
+    if (data.date !== undefined) updateData.date = data.date;
+    if (data.nextDueDate !== undefined) updateData.nextDueDate = data.nextDueDate || null;
+    if (data.status !== undefined) updateData.status = data.status;
+    if (data.notes !== undefined) updateData.notes = data.notes || null;
+
+    const [updated] = await db
+      .update(maintenanceLogs)
+      .set(updateData)
+      .where(eq(maintenanceLogs.id, id))
+      .returning();
+    return updated || undefined;
+  }
+
+  async deleteMaintenanceLog(id: string): Promise<boolean> {
+    const result = await db.delete(maintenanceLogs).where(eq(maintenanceLogs.id, id));
+    return result.rowCount !== null && result.rowCount > 0;
+  }
+
+  async getUpcomingMaintenance(): Promise<MaintenanceLog[]> {
+    const now = new Date();
+    const thirtyDaysFromNow = new Date(now.getTime() + 30 * 24 * 60 * 60 * 1000);
+
+    return await db
+      .select()
+      .from(maintenanceLogs)
+      .where(
+        and(
+          inArray(maintenanceLogs.status, ["scheduled", "in_progress"]),
+          lte(maintenanceLogs.date, thirtyDaysFromNow)
+        )
+      )
+      .orderBy(sql`${maintenanceLogs.date} ASC`);
+  }
+
+  // ===== BOAT DOCUMENT METHODS =====
+
+  async createBoatDocument(data: InsertBoatDocument): Promise<BoatDocument> {
+    const [doc] = await db
+      .insert(boatDocuments)
+      .values({
+        boatId: data.boatId,
+        type: data.type,
+        name: data.name,
+        fileUrl: data.fileUrl || null,
+        expiryDate: data.expiryDate || null,
+        notes: data.notes || null,
+      })
+      .returning();
+    return doc;
+  }
+
+  async getBoatDocuments(boatId?: string): Promise<BoatDocument[]> {
+    const conditions = [];
+    if (boatId) {
+      conditions.push(eq(boatDocuments.boatId, boatId));
+    }
+    const whereClause = conditions.length > 0 ? and(...conditions) : undefined;
+
+    return await db
+      .select()
+      .from(boatDocuments)
+      .where(whereClause)
+      .orderBy(sql`${boatDocuments.expiryDate} ASC NULLS LAST`);
+  }
+
+  async getBoatDocument(id: string): Promise<BoatDocument | undefined> {
+    const [doc] = await db.select().from(boatDocuments).where(eq(boatDocuments.id, id));
+    return doc || undefined;
+  }
+
+  async updateBoatDocument(id: string, data: UpdateBoatDocument): Promise<BoatDocument | undefined> {
+    const updateData: Record<string, unknown> = {};
+    if (data.type !== undefined) updateData.type = data.type;
+    if (data.name !== undefined) updateData.name = data.name;
+    if (data.fileUrl !== undefined) updateData.fileUrl = data.fileUrl || null;
+    if (data.expiryDate !== undefined) updateData.expiryDate = data.expiryDate || null;
+    if (data.notes !== undefined) updateData.notes = data.notes || null;
+
+    const [updated] = await db
+      .update(boatDocuments)
+      .set(updateData)
+      .where(eq(boatDocuments.id, id))
+      .returning();
+    return updated || undefined;
+  }
+
+  async deleteBoatDocument(id: string): Promise<boolean> {
+    const result = await db.delete(boatDocuments).where(eq(boatDocuments.id, id));
+    return result.rowCount !== null && result.rowCount > 0;
+  }
+
+  async getExpiringDocuments(daysAhead: number): Promise<BoatDocument[]> {
+    const now = new Date();
+    const futureDate = new Date(now.getTime() + daysAhead * 24 * 60 * 60 * 1000);
+
+    return await db
+      .select()
+      .from(boatDocuments)
+      .where(
+        and(
+          lte(boatDocuments.expiryDate!, futureDate),
+          gte(boatDocuments.expiryDate!, new Date(0)) // has expiry date
+        )
+      )
+      .orderBy(sql`${boatDocuments.expiryDate} ASC`);
+  }
+
+  // ===== INVENTORY METHODS =====
+
+  async createInventoryItem(data: InsertInventoryItem): Promise<InventoryItem> {
+    const status = this.calculateInventoryStatus(data.availableStock ?? 0, data.minStockAlert ?? 1);
+    const [item] = await db
+      .insert(inventoryItems)
+      .values({
+        name: data.name,
+        description: data.description || null,
+        category: data.category,
+        totalStock: data.totalStock ?? 0,
+        availableStock: data.availableStock ?? 0,
+        pricePerUnit: data.pricePerUnit || null,
+        status,
+        minStockAlert: data.minStockAlert ?? 1,
+        imageUrl: data.imageUrl || null,
+      })
+      .returning();
+    return item;
+  }
+
+  async getInventoryItems(): Promise<InventoryItem[]> {
+    return await db
+      .select()
+      .from(inventoryItems)
+      .orderBy(sql`${inventoryItems.category} ASC, ${inventoryItems.name} ASC`);
+  }
+
+  async getInventoryItem(id: string): Promise<InventoryItem | undefined> {
+    const [item] = await db.select().from(inventoryItems).where(eq(inventoryItems.id, id));
+    return item || undefined;
+  }
+
+  async updateInventoryItem(id: string, data: UpdateInventoryItem): Promise<InventoryItem | undefined> {
+    const updateData: Record<string, unknown> = { updatedAt: new Date() };
+    if (data.name !== undefined) updateData.name = data.name;
+    if (data.description !== undefined) updateData.description = data.description || null;
+    if (data.category !== undefined) updateData.category = data.category;
+    if (data.totalStock !== undefined) updateData.totalStock = data.totalStock;
+    if (data.availableStock !== undefined) updateData.availableStock = data.availableStock;
+    if (data.pricePerUnit !== undefined) updateData.pricePerUnit = data.pricePerUnit || null;
+    if (data.minStockAlert !== undefined) updateData.minStockAlert = data.minStockAlert;
+    if (data.imageUrl !== undefined) updateData.imageUrl = data.imageUrl || null;
+
+    // Recalculate status
+    const current = await this.getInventoryItem(id);
+    if (current) {
+      const available = (data.availableStock !== undefined ? data.availableStock : current.availableStock) as number;
+      const minAlert = (data.minStockAlert !== undefined ? data.minStockAlert : current.minStockAlert) as number;
+      updateData.status = this.calculateInventoryStatus(available, minAlert);
+    }
+
+    const [updated] = await db
+      .update(inventoryItems)
+      .set(updateData)
+      .where(eq(inventoryItems.id, id))
+      .returning();
+    return updated || undefined;
+  }
+
+  async deleteInventoryItem(id: string): Promise<boolean> {
+    // Delete movements first
+    await db.delete(inventoryMovements).where(eq(inventoryMovements.itemId, id));
+    const result = await db.delete(inventoryItems).where(eq(inventoryItems.id, id));
+    return result.rowCount !== null && result.rowCount > 0;
+  }
+
+  async createInventoryMovement(data: InsertInventoryMovement): Promise<InventoryMovement> {
+    const item = await this.getInventoryItem(data.itemId);
+    if (!item) throw new Error("Item de inventario no encontrado");
+
+    let newAvailable = item.availableStock;
+    let newTotal = item.totalStock;
+
+    if (data.type === "in") {
+      newAvailable += data.quantity;
+      newTotal += data.quantity;
+    } else if (data.type === "out") {
+      newAvailable -= data.quantity;
+      if (newAvailable < 0) newAvailable = 0;
+    } else {
+      // adjustment: set available to the quantity
+      newAvailable = data.quantity;
+      newTotal = data.quantity;
+    }
+
+    // Create movement record
+    const [movement] = await db
+      .insert(inventoryMovements)
+      .values({
+        itemId: data.itemId,
+        type: data.type,
+        quantity: data.quantity,
+        reason: data.reason || null,
+        bookingId: data.bookingId || null,
+        createdBy: data.createdBy || null,
+      })
+      .returning();
+
+    // Update item stock
+    const status = this.calculateInventoryStatus(newAvailable, item.minStockAlert);
+    await db
+      .update(inventoryItems)
+      .set({
+        availableStock: newAvailable,
+        totalStock: newTotal,
+        status,
+        updatedAt: new Date(),
+      })
+      .where(eq(inventoryItems.id, data.itemId));
+
+    return movement;
+  }
+
+  async getInventoryMovements(itemId: string): Promise<InventoryMovement[]> {
+    return await db
+      .select()
+      .from(inventoryMovements)
+      .where(eq(inventoryMovements.itemId, itemId))
+      .orderBy(sql`${inventoryMovements.createdAt} DESC`);
+  }
+
+  async getLowStockItems(): Promise<InventoryItem[]> {
+    return await db
+      .select()
+      .from(inventoryItems)
+      .where(inArray(inventoryItems.status, ["low_stock", "out_of_stock"]));
+  }
+
+  private calculateInventoryStatus(available: number, minAlert: number): string {
+    if (available <= 0) return "out_of_stock";
+    if (available <= minAlert) return "low_stock";
+    return "available";
   }
 }
 

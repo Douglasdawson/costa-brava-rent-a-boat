@@ -15,6 +15,9 @@ import {
   GalleryManagement,
   GiftCardManagement,
   DiscountManagement,
+  MaintenanceTab,
+  InventoryTab,
+  ReportsTab,
   BookingDetailsModal,
   getStatusLabel,
 } from "./crm";
@@ -282,6 +285,21 @@ export default function CRMDashboard({ adminToken }: CRMDashboardProps) {
         {/* Fleet Tab */}
         {selectedTab === "fleet" && (
           <FleetManagement adminToken={adminToken} />
+        )}
+
+        {/* Maintenance Tab */}
+        {selectedTab === "maintenance" && (
+          <MaintenanceTab adminToken={adminToken} />
+        )}
+
+        {/* Inventory Tab */}
+        {selectedTab === "inventory" && (
+          <InventoryTab adminToken={adminToken} />
+        )}
+
+        {/* Reports Tab */}
+        {selectedTab === "reports" && (
+          <ReportsTab adminToken={adminToken} />
         )}
 
         {/* Gallery Tab */}

@@ -797,5 +797,208 @@ export const insertCheckinSchema = z.object({
 export type Checkin = typeof checkins.$inferSelect;
 export type InsertCheckin = z.infer<typeof insertCheckinSchema>;
 
+// ===== MAINTENANCE LOGS =====
+
+export const MAINTENANCE_TYPES = {
+  PREVENTIVE: 'preventive',
+  CORRECTIVE: 'corrective',
+  INSPECTION: 'inspection',
+} as const;
+
+export type MaintenanceType = typeof MAINTENANCE_TYPES[keyof typeof MAINTENANCE_TYPES];
+
+export const MAINTENANCE_STATUSES = {
+  SCHEDULED: 'scheduled',
+  IN_PROGRESS: 'in_progress',
+  COMPLETED: 'completed',
+} as const;
+
+export type MaintenanceStatus = typeof MAINTENANCE_STATUSES[keyof typeof MAINTENANCE_STATUSES];
+
+export const maintenanceLogs = pgTable("maintenance_logs", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  boatId: varchar("boat_id").notNull().references(() => boats.id),
+  type: text("type").notNull(), // 'preventive' | 'corrective' | 'inspection'
+  description: text("description").notNull(),
+  cost: decimal("cost", { precision: 10, scale: 2 }),
+  date: timestamp("date", { withTimezone: true }).notNull(),
+  nextDueDate: timestamp("next_due_date", { withTimezone: true }),
+  status: text("status").notNull().default("scheduled"), // 'scheduled' | 'in_progress' | 'completed'
+  notes: text("notes"),
+  createdBy: text("created_by"),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().default(sql`now()`),
+}, (table) => ({
+  boatIdx: index("maintenance_boat_idx").on(table.boatId),
+  statusIdx: index("maintenance_status_idx").on(table.status),
+  dateIdx: index("maintenance_date_idx").on(table.date),
+  nextDueIdx: index("maintenance_next_due_idx").on(table.nextDueDate),
+}));
+
+export const insertMaintenanceLogSchema = z.object({
+  boatId: z.string().min(1, "Barco requerido"),
+  type: z.enum(["preventive", "corrective", "inspection"]),
+  description: z.string().min(3, "Descripcion requerida"),
+  cost: z.string().optional().or(z.null()),
+  date: z.coerce.date(),
+  nextDueDate: z.coerce.date().optional().or(z.null()),
+  status: z.enum(["scheduled", "in_progress", "completed"]).optional().default("scheduled"),
+  notes: z.string().optional().or(z.null()),
+  createdBy: z.string().optional().or(z.null()),
+});
+
+export const updateMaintenanceLogSchema = z.object({
+  type: z.enum(["preventive", "corrective", "inspection"]).optional(),
+  description: z.string().min(3).optional(),
+  cost: z.string().optional().or(z.null()),
+  date: z.coerce.date().optional(),
+  nextDueDate: z.coerce.date().optional().or(z.null()),
+  status: z.enum(["scheduled", "in_progress", "completed"]).optional(),
+  notes: z.string().optional().or(z.null()),
+});
+
+export type MaintenanceLog = typeof maintenanceLogs.$inferSelect;
+export type InsertMaintenanceLog = z.infer<typeof insertMaintenanceLogSchema>;
+export type UpdateMaintenanceLog = z.infer<typeof updateMaintenanceLogSchema>;
+
+// ===== BOAT DOCUMENTS =====
+
+export const DOCUMENT_TYPES = {
+  REGISTRATION: 'registration',
+  INSURANCE: 'insurance',
+  INSPECTION: 'inspection',
+  LICENSE: 'license',
+  OTHER: 'other',
+} as const;
+
+export type DocumentType = typeof DOCUMENT_TYPES[keyof typeof DOCUMENT_TYPES];
+
+export const boatDocuments = pgTable("boat_documents", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  boatId: varchar("boat_id").notNull().references(() => boats.id),
+  type: text("type").notNull(), // 'registration' | 'insurance' | 'inspection' | 'license' | 'other'
+  name: text("name").notNull(),
+  fileUrl: text("file_url"),
+  expiryDate: timestamp("expiry_date", { withTimezone: true }),
+  notes: text("notes"),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().default(sql`now()`),
+}, (table) => ({
+  boatIdx: index("boat_docs_boat_idx").on(table.boatId),
+  typeIdx: index("boat_docs_type_idx").on(table.type),
+  expiryIdx: index("boat_docs_expiry_idx").on(table.expiryDate),
+}));
+
+export const insertBoatDocumentSchema = z.object({
+  boatId: z.string().min(1, "Barco requerido"),
+  type: z.enum(["registration", "insurance", "inspection", "license", "other"]),
+  name: z.string().min(1, "Nombre requerido"),
+  fileUrl: z.string().optional().or(z.null()),
+  expiryDate: z.coerce.date().optional().or(z.null()),
+  notes: z.string().optional().or(z.null()),
+});
+
+export const updateBoatDocumentSchema = z.object({
+  type: z.enum(["registration", "insurance", "inspection", "license", "other"]).optional(),
+  name: z.string().min(1).optional(),
+  fileUrl: z.string().optional().or(z.null()),
+  expiryDate: z.coerce.date().optional().or(z.null()),
+  notes: z.string().optional().or(z.null()),
+});
+
+export type BoatDocument = typeof boatDocuments.$inferSelect;
+export type InsertBoatDocument = z.infer<typeof insertBoatDocumentSchema>;
+export type UpdateBoatDocument = z.infer<typeof updateBoatDocumentSchema>;
+
+// ===== INVENTORY =====
+
+export const INVENTORY_STATUSES = {
+  AVAILABLE: 'available',
+  LOW_STOCK: 'low_stock',
+  OUT_OF_STOCK: 'out_of_stock',
+} as const;
+
+export type InventoryStatus = typeof INVENTORY_STATUSES[keyof typeof INVENTORY_STATUSES];
+
+export const inventoryItems = pgTable("inventory_items", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  name: text("name").notNull(),
+  description: text("description"),
+  category: text("category").notNull(), // e.g., 'water_sports', 'safety', 'comfort', 'navigation'
+  totalStock: integer("total_stock").notNull().default(0),
+  availableStock: integer("available_stock").notNull().default(0),
+  pricePerUnit: decimal("price_per_unit", { precision: 10, scale: 2 }),
+  status: text("status").notNull().default("available"), // 'available' | 'low_stock' | 'out_of_stock'
+  minStockAlert: integer("min_stock_alert").notNull().default(1),
+  imageUrl: text("image_url"),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().default(sql`now()`),
+  updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().default(sql`now()`),
+}, (table) => ({
+  categoryIdx: index("inventory_category_idx").on(table.category),
+  statusIdx: index("inventory_status_idx").on(table.status),
+}));
+
+export const insertInventoryItemSchema = z.object({
+  name: z.string().min(1, "Nombre requerido"),
+  description: z.string().optional().or(z.null()),
+  category: z.string().min(1, "Categoria requerida"),
+  totalStock: z.coerce.number().int().min(0).optional().default(0),
+  availableStock: z.coerce.number().int().min(0).optional().default(0),
+  pricePerUnit: z.string().optional().or(z.null()),
+  minStockAlert: z.coerce.number().int().min(0).optional().default(1),
+  imageUrl: z.string().optional().or(z.null()),
+});
+
+export const updateInventoryItemSchema = z.object({
+  name: z.string().min(1).optional(),
+  description: z.string().optional().or(z.null()),
+  category: z.string().min(1).optional(),
+  totalStock: z.coerce.number().int().min(0).optional(),
+  availableStock: z.coerce.number().int().min(0).optional(),
+  pricePerUnit: z.string().optional().or(z.null()),
+  minStockAlert: z.coerce.number().int().min(0).optional(),
+  imageUrl: z.string().optional().or(z.null()),
+});
+
+export type InventoryItem = typeof inventoryItems.$inferSelect;
+export type InsertInventoryItem = z.infer<typeof insertInventoryItemSchema>;
+export type UpdateInventoryItem = z.infer<typeof updateInventoryItemSchema>;
+
+// ===== INVENTORY MOVEMENTS =====
+
+export const MOVEMENT_TYPES = {
+  IN: 'in',
+  OUT: 'out',
+  ADJUSTMENT: 'adjustment',
+} as const;
+
+export type MovementType = typeof MOVEMENT_TYPES[keyof typeof MOVEMENT_TYPES];
+
+export const inventoryMovements = pgTable("inventory_movements", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  itemId: varchar("item_id").notNull().references(() => inventoryItems.id),
+  type: text("type").notNull(), // 'in' | 'out' | 'adjustment'
+  quantity: integer("quantity").notNull(),
+  reason: text("reason"),
+  bookingId: varchar("booking_id").references(() => bookings.id),
+  createdBy: text("created_by"),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().default(sql`now()`),
+}, (table) => ({
+  itemIdx: index("movements_item_idx").on(table.itemId),
+  typeIdx: index("movements_type_idx").on(table.type),
+  bookingIdx: index("movements_booking_idx").on(table.bookingId),
+  createdIdx: index("movements_created_idx").on(table.createdAt),
+}));
+
+export const insertInventoryMovementSchema = z.object({
+  itemId: z.string().min(1, "Item requerido"),
+  type: z.enum(["in", "out", "adjustment"]),
+  quantity: z.coerce.number().int().min(1, "Cantidad minima 1"),
+  reason: z.string().optional().or(z.null()),
+  bookingId: z.string().optional().or(z.null()),
+  createdBy: z.string().optional().or(z.null()),
+});
+
+export type InventoryMovement = typeof inventoryMovements.$inferSelect;
+export type InsertInventoryMovement = z.infer<typeof insertInventoryMovementSchema>;
+
 // Re-export chat models for AI integrations
 export { conversations, messages } from "@shared/models/chat";

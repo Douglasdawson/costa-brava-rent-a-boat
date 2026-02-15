@@ -15,10 +15,14 @@ import {
   giftCards,
   type GiftCard, type InsertGiftCard,
   discountCodes,
-  type DiscountCode, type InsertDiscountCode
+  type DiscountCode, type InsertDiscountCode,
+  crmCustomers,
+  type CrmCustomer, type UpdateCrmCustomer,
+  checkins,
+  type Checkin, type InsertCheckin,
 } from "@shared/schema";
 import { db } from "./db";
-import { eq, and, gte, lte, between, inArray, sql, or, isNull } from "drizzle-orm";
+import { eq, and, gte, lte, between, inArray, sql, or, isNull, desc, asc, ilike } from "drizzle-orm";
 import memoize from "memoizee";
 
 // modify the interface with any CRUD methods
@@ -204,6 +208,32 @@ export interface IStorage {
   updateChatbotConversation(phoneNumber: string, updates: UpdateChatbotConversation): Promise<ChatbotConversation | undefined>;
   resetChatbotConversation(phoneNumber: string): Promise<ChatbotConversation | undefined>;
   getOrCreateChatbotConversation(phoneNumber: string, language?: string): Promise<ChatbotConversation>;
+
+  // CRM Customer methods
+  upsertCrmCustomer(booking: Booking): Promise<CrmCustomer>;
+  getPaginatedCrmCustomers(params: {
+    page: number;
+    limit: number;
+    search?: string;
+    segment?: string;
+    nationality?: string;
+    sortBy?: string;
+    sortOrder?: "asc" | "desc";
+  }): Promise<{
+    data: CrmCustomer[];
+    total: number;
+    page: number;
+    totalPages: number;
+  }>;
+  getCrmCustomerById(id: string): Promise<{ customer: CrmCustomer; bookings: Booking[] } | undefined>;
+  updateCrmCustomer(id: string, data: UpdateCrmCustomer): Promise<CrmCustomer | undefined>;
+  recalculateCustomerStats(customerId: string): Promise<CrmCustomer | undefined>;
+  syncAllCustomersFromBookings(): Promise<{ created: number; updated: number }>;
+
+  // Checkin methods
+  createCheckin(data: InsertCheckin): Promise<Checkin>;
+  getCheckinsByBooking(bookingId: string): Promise<Checkin[]>;
+  getLatestCheckin(bookingId: string, type: string): Promise<Checkin | undefined>;
 }
 
 // rewrite MemStorage to DatabaseStorage
@@ -1376,6 +1406,361 @@ export class DatabaseStorage implements IStorage {
     }
 
     return conversation;
+  }
+
+  // ===== CRM CUSTOMER METHODS =====
+
+  /**
+   * Upsert a CRM customer from a booking. Matches by phone or email.
+   * Creates new customer if not found, updates stats if found.
+   */
+  async upsertCrmCustomer(booking: Booking): Promise<CrmCustomer> {
+    // Try to find existing customer by phone or email
+    const conditions = [eq(crmCustomers.phone, booking.customerPhone)];
+    if (booking.customerEmail) {
+      conditions.push(eq(crmCustomers.email, booking.customerEmail));
+    }
+
+    const [existing] = await db
+      .select()
+      .from(crmCustomers)
+      .where(or(...conditions))
+      .limit(1);
+
+    if (existing) {
+      // Recalculate stats for this customer
+      return (await this.recalculateCustomerStats(existing.id)) || existing;
+    }
+
+    // Create new customer
+    const [newCustomer] = await db
+      .insert(crmCustomers)
+      .values({
+        name: booking.customerName,
+        surname: booking.customerSurname,
+        email: booking.customerEmail || null,
+        phone: booking.customerPhone,
+        nationality: booking.customerNationality,
+        segment: "new",
+        totalBookings: 1,
+        totalSpent: booking.totalAmount,
+        firstBookingDate: booking.startTime,
+        lastBookingDate: booking.startTime,
+      })
+      .returning();
+
+    return newCustomer;
+  }
+
+  async getPaginatedCrmCustomers(params: {
+    page: number;
+    limit: number;
+    search?: string;
+    segment?: string;
+    nationality?: string;
+    sortBy?: string;
+    sortOrder?: "asc" | "desc";
+  }): Promise<{
+    data: CrmCustomer[];
+    total: number;
+    page: number;
+    totalPages: number;
+  }> {
+    const { page, limit, search, segment, nationality, sortBy = "lastBookingDate", sortOrder = "desc" } = params;
+    const offset = (page - 1) * limit;
+
+    const conditions = [];
+
+    if (segment && segment !== "all") {
+      conditions.push(eq(crmCustomers.segment, segment));
+    }
+
+    if (nationality && nationality !== "all") {
+      conditions.push(eq(crmCustomers.nationality, nationality));
+    }
+
+    if (search) {
+      const searchPattern = `%${search.toLowerCase()}%`;
+      conditions.push(
+        or(
+          sql`LOWER(${crmCustomers.name}) LIKE ${searchPattern}`,
+          sql`LOWER(${crmCustomers.surname}) LIKE ${searchPattern}`,
+          sql`LOWER(COALESCE(${crmCustomers.email}, '')) LIKE ${searchPattern}`,
+          sql`LOWER(${crmCustomers.phone}) LIKE ${searchPattern}`
+        )
+      );
+    }
+
+    const whereClause = conditions.length > 0 ? and(...conditions) : undefined;
+
+    // Count query
+    const countResult = await db
+      .select({ count: sql<number>`COUNT(*)::int` })
+      .from(crmCustomers)
+      .where(whereClause);
+
+    const total = countResult[0]?.count ?? 0;
+    const totalPages = Math.ceil(total / limit);
+
+    // Sort column
+    const sortColumnMap: Record<string, ReturnType<typeof sql>> = {
+      name: sql`${crmCustomers.name}`,
+      totalBookings: sql`${crmCustomers.totalBookings}`,
+      totalSpent: sql`${crmCustomers.totalSpent}`,
+      lastBookingDate: sql`${crmCustomers.lastBookingDate}`,
+      createdAt: sql`${crmCustomers.createdAt}`,
+    };
+    const sortColumn = sortColumnMap[sortBy] || sql`${crmCustomers.lastBookingDate}`;
+    const orderSql = sortOrder === "asc"
+      ? sql`${sortColumn} ASC NULLS LAST`
+      : sql`${sortColumn} DESC NULLS LAST`;
+
+    const data = await db
+      .select()
+      .from(crmCustomers)
+      .where(whereClause)
+      .orderBy(orderSql)
+      .limit(limit)
+      .offset(offset);
+
+    return { data, total, page, totalPages };
+  }
+
+  async getCrmCustomerById(id: string): Promise<{ customer: CrmCustomer; bookings: Booking[] } | undefined> {
+    const [customer] = await db.select().from(crmCustomers).where(eq(crmCustomers.id, id));
+    if (!customer) return undefined;
+
+    // Find all bookings matching this customer by phone or email
+    const conditions = [
+      eq(bookings.customerPhone, customer.phone),
+    ];
+    if (customer.email) {
+      conditions.push(eq(bookings.customerEmail, customer.email));
+    }
+
+    const customerBookings = await db
+      .select()
+      .from(bookings)
+      .where(or(...conditions))
+      .orderBy(sql`${bookings.startTime} DESC`);
+
+    return { customer, bookings: customerBookings };
+  }
+
+  async updateCrmCustomer(id: string, data: UpdateCrmCustomer): Promise<CrmCustomer | undefined> {
+    const updateData: Record<string, unknown> = { updatedAt: new Date() };
+
+    if (data.name !== undefined) updateData.name = data.name;
+    if (data.surname !== undefined) updateData.surname = data.surname;
+    if (data.email !== undefined) updateData.email = data.email || null;
+    if (data.phone !== undefined) updateData.phone = data.phone;
+    if (data.nationality !== undefined) updateData.nationality = data.nationality || null;
+    if (data.documentId !== undefined) updateData.documentId = data.documentId || null;
+    if (data.notes !== undefined) updateData.notes = data.notes || null;
+    if (data.segment !== undefined) updateData.segment = data.segment;
+    if (data.tags !== undefined) updateData.tags = data.tags || null;
+
+    const [updated] = await db
+      .update(crmCustomers)
+      .set(updateData)
+      .where(eq(crmCustomers.id, id))
+      .returning();
+
+    return updated || undefined;
+  }
+
+  async recalculateCustomerStats(customerId: string): Promise<CrmCustomer | undefined> {
+    const [customer] = await db.select().from(crmCustomers).where(eq(crmCustomers.id, customerId));
+    if (!customer) return undefined;
+
+    // Find matching bookings
+    const conditions = [
+      eq(bookings.customerPhone, customer.phone),
+    ];
+    if (customer.email) {
+      conditions.push(eq(bookings.customerEmail, customer.email));
+    }
+
+    const customerBookings = await db
+      .select()
+      .from(bookings)
+      .where(
+        and(
+          or(...conditions),
+          inArray(bookings.bookingStatus, ["confirmed", "pending_payment"])
+        )
+      );
+
+    const totalBookings = customerBookings.length;
+    const totalSpent = customerBookings
+      .filter(b => b.bookingStatus === "confirmed")
+      .reduce((sum, b) => sum + parseFloat(b.totalAmount), 0);
+
+    const dates = customerBookings.map(b => new Date(b.startTime).getTime()).filter(Boolean);
+    const firstBookingDate = dates.length > 0 ? new Date(Math.min(...dates)) : null;
+    const lastBookingDate = dates.length > 0 ? new Date(Math.max(...dates)) : null;
+
+    // Auto-segment: 1 booking = new, 2-3 = returning, 4+ or >1000 spent = vip
+    let segment: string = customer.segment;
+    if (customer.segment !== "vip" || totalBookings === 0) {
+      if (totalBookings >= 4 || totalSpent >= 1000) {
+        segment = "vip";
+      } else if (totalBookings >= 2) {
+        segment = "returning";
+      } else {
+        segment = "new";
+      }
+    }
+
+    const [updated] = await db
+      .update(crmCustomers)
+      .set({
+        totalBookings,
+        totalSpent: totalSpent.toFixed(2),
+        firstBookingDate,
+        lastBookingDate,
+        segment,
+        updatedAt: new Date(),
+      })
+      .where(eq(crmCustomers.id, customerId))
+      .returning();
+
+    return updated || undefined;
+  }
+
+  async syncAllCustomersFromBookings(): Promise<{ created: number; updated: number }> {
+    // Get all confirmed/pending bookings
+    const allBookings = await db
+      .select()
+      .from(bookings)
+      .where(
+        inArray(bookings.bookingStatus, ["confirmed", "pending_payment"])
+      );
+
+    // Group bookings by unique customer (phone-based)
+    const customerMap = new Map<string, Booking[]>();
+    for (const booking of allBookings) {
+      const key = booking.customerPhone;
+      const existing = customerMap.get(key) || [];
+      existing.push(booking);
+      customerMap.set(key, existing);
+    }
+
+    let created = 0;
+    let updated = 0;
+
+    const entries = Array.from(customerMap.entries());
+    for (const [phone, custBookings] of entries) {
+      // Check if customer already exists
+      const [existing] = await db
+        .select()
+        .from(crmCustomers)
+        .where(eq(crmCustomers.phone, phone))
+        .limit(1);
+
+      // Use the most recent booking for name/nationality
+      const sorted = [...custBookings].sort(
+        (a: Booking, b: Booking) => new Date(b.startTime).getTime() - new Date(a.startTime).getTime()
+      );
+      const latest = sorted[0];
+
+      const totalBookings = custBookings.length;
+      const totalSpent = custBookings
+        .filter((b: Booking) => b.bookingStatus === "confirmed")
+        .reduce((sum: number, b: Booking) => sum + parseFloat(b.totalAmount), 0);
+      const dates = custBookings.map((b: Booking) => new Date(b.startTime).getTime());
+      const firstBookingDate = new Date(Math.min(...dates));
+      const lastBookingDate = new Date(Math.max(...dates));
+
+      let segment = "new";
+      if (totalBookings >= 4 || totalSpent >= 1000) {
+        segment = "vip";
+      } else if (totalBookings >= 2) {
+        segment = "returning";
+      }
+
+      if (existing) {
+        await db
+          .update(crmCustomers)
+          .set({
+            name: latest.customerName,
+            surname: latest.customerSurname,
+            email: latest.customerEmail || existing.email,
+            nationality: latest.customerNationality || existing.nationality,
+            totalBookings,
+            totalSpent: totalSpent.toFixed(2),
+            firstBookingDate,
+            lastBookingDate,
+            segment: existing.segment === "vip" ? "vip" : segment,
+            updatedAt: new Date(),
+          })
+          .where(eq(crmCustomers.id, existing.id));
+        updated++;
+      } else {
+        await db
+          .insert(crmCustomers)
+          .values({
+            name: latest.customerName,
+            surname: latest.customerSurname,
+            email: latest.customerEmail || null,
+            phone: latest.customerPhone,
+            nationality: latest.customerNationality,
+            segment,
+            totalBookings,
+            totalSpent: totalSpent.toFixed(2),
+            firstBookingDate,
+            lastBookingDate,
+          });
+        created++;
+      }
+    }
+
+    return { created, updated };
+  }
+
+  // ===== CHECKIN METHODS =====
+
+  async createCheckin(data: InsertCheckin): Promise<Checkin> {
+    const [newCheckin] = await db
+      .insert(checkins)
+      .values({
+        bookingId: data.bookingId,
+        boatId: data.boatId,
+        type: data.type,
+        performedBy: data.performedBy || null,
+        fuelLevel: data.fuelLevel,
+        condition: data.condition,
+        engineHours: data.engineHours || null,
+        notes: data.notes || null,
+        photos: data.photos || null,
+        signatureUrl: data.signatureUrl || null,
+        checklist: data.checklist || null,
+      })
+      .returning();
+    return newCheckin;
+  }
+
+  async getCheckinsByBooking(bookingId: string): Promise<Checkin[]> {
+    return await db
+      .select()
+      .from(checkins)
+      .where(eq(checkins.bookingId, bookingId))
+      .orderBy(sql`${checkins.performedAt} ASC`);
+  }
+
+  async getLatestCheckin(bookingId: string, type: string): Promise<Checkin | undefined> {
+    const [result] = await db
+      .select()
+      .from(checkins)
+      .where(
+        and(
+          eq(checkins.bookingId, bookingId),
+          eq(checkins.type, type)
+        )
+      )
+      .orderBy(sql`${checkins.performedAt} DESC`)
+      .limit(1);
+    return result || undefined;
   }
 }
 

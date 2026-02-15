@@ -96,7 +96,7 @@ export interface DashboardStats {
   totalBoats: number;
 }
 
-// Customer data type
+// Legacy customer data type (derived from bookings - no longer used for API)
 export interface CustomerData {
   customerName: string;
   customerSurname: string;
@@ -107,4 +107,49 @@ export interface CustomerData {
   totalSpent: number;
   lastBookingDate: string;
   bookingIds: string[];
+}
+
+// CRM Customer data type (from crm_customers table)
+export interface CrmCustomerData {
+  id: string;
+  name: string;
+  surname: string;
+  email: string | null;
+  phone: string;
+  nationality: string | null;
+  documentId: string | null;
+  notes: string | null;
+  segment: "new" | "returning" | "vip";
+  tags: string[] | null;
+  totalBookings: number;
+  totalSpent: string;
+  firstBookingDate: string | null;
+  lastBookingDate: string | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface PaginatedCrmCustomersResponse {
+  data: CrmCustomerData[];
+  total: number;
+  page: number;
+  totalPages: number;
+}
+
+// Checkin data type
+export interface CheckinData {
+  id: string;
+  bookingId: string;
+  boatId: string;
+  type: "checkin" | "checkout";
+  performedAt: string;
+  performedBy: string | null;
+  fuelLevel: string;
+  condition: string;
+  engineHours: string | null;
+  notes: string | null;
+  photos: string[] | null;
+  signatureUrl: string | null;
+  checklist: Array<{ item: string; checked: boolean }> | null;
+  createdAt: string;
 }

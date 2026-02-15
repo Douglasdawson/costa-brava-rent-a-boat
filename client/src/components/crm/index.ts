@@ -14,6 +14,9 @@ export { DiscountManagement } from "./DiscountManagement";
 
 // CRM Module exports - Modals
 export { BookingDetailsModal } from "./BookingDetailsModal";
+export { CustomerDetailModal } from "./CustomerDetailModal";
+export { CheckinForm } from "./CheckinForm";
+export { SignatureCanvas } from "./SignatureCanvas";
 
 // CRM Module exports - Types and constants
 export * from "./types";

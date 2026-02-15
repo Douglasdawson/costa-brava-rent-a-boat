@@ -676,5 +676,126 @@ export type InsertAiChatMessage = z.infer<typeof insertAiChatMessageSchema>;
 export type KnowledgeBaseEntry = typeof knowledgeBase.$inferSelect;
 export type InsertKnowledgeBaseEntry = z.infer<typeof insertKnowledgeBaseSchema>;
 
+// ===== CRM CUSTOMERS (derived from bookings, managed by admin) =====
+
+export const CUSTOMER_SEGMENTS = {
+  NEW: 'new',
+  RETURNING: 'returning',
+  VIP: 'vip',
+} as const;
+
+export type CustomerSegment = typeof CUSTOMER_SEGMENTS[keyof typeof CUSTOMER_SEGMENTS];
+
+export const crmCustomers = pgTable("crm_customers", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  name: text("name").notNull(),
+  surname: text("surname").notNull(),
+  email: text("email"),
+  phone: text("phone").notNull(),
+  nationality: text("nationality"),
+  documentId: text("document_id"),
+  notes: text("notes"),
+  segment: text("segment").notNull().default("new"), // 'new' | 'returning' | 'vip'
+  tags: text("tags").array(),
+  totalBookings: integer("total_bookings").notNull().default(0),
+  totalSpent: decimal("total_spent", { precision: 10, scale: 2 }).notNull().default("0"),
+  firstBookingDate: timestamp("first_booking_date", { withTimezone: true }),
+  lastBookingDate: timestamp("last_booking_date", { withTimezone: true }),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().default(sql`now()`),
+  updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().default(sql`now()`),
+}, (table) => ({
+  emailIdx: index("crm_customers_email_idx").on(table.email),
+  phoneIdx: index("crm_customers_phone_idx").on(table.phone),
+  segmentIdx: index("crm_customers_segment_idx").on(table.segment),
+  nameIdx: index("crm_customers_name_idx").on(table.name, table.surname),
+}));
+
+export const insertCrmCustomerSchema = createInsertSchema(crmCustomers).omit({
+  id: true,
+  createdAt: true,
+  updatedAt: true,
+  totalBookings: true,
+  totalSpent: true,
+  firstBookingDate: true,
+  lastBookingDate: true,
+});
+
+export const updateCrmCustomerSchema = z.object({
+  name: z.string().min(1).optional(),
+  surname: z.string().min(1).optional(),
+  email: z.string().email().optional().or(z.literal("")).or(z.null()),
+  phone: z.string().min(1).optional(),
+  nationality: z.string().optional().or(z.null()),
+  documentId: z.string().optional().or(z.null()),
+  notes: z.string().optional().or(z.null()),
+  segment: z.enum(["new", "returning", "vip"]).optional(),
+  tags: z.array(z.string()).optional().or(z.null()),
+});
+
+export type CrmCustomer = typeof crmCustomers.$inferSelect;
+export type InsertCrmCustomer = z.infer<typeof insertCrmCustomerSchema>;
+export type UpdateCrmCustomer = z.infer<typeof updateCrmCustomerSchema>;
+
+// ===== CHECK-IN / CHECK-OUT =====
+
+export const CHECKIN_TYPES = {
+  CHECKIN: 'checkin',
+  CHECKOUT: 'checkout',
+} as const;
+
+export type CheckinType = typeof CHECKIN_TYPES[keyof typeof CHECKIN_TYPES];
+
+export const FUEL_LEVELS = ['full', '3/4', '1/2', '1/4', 'empty'] as const;
+export type FuelLevel = typeof FUEL_LEVELS[number];
+
+export const CONDITION_LEVELS = ['excellent', 'good', 'fair', 'poor'] as const;
+export type ConditionLevel = typeof CONDITION_LEVELS[number];
+
+export interface ChecklistItem {
+  item: string;
+  checked: boolean;
+}
+
+export const checkins = pgTable("checkins", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  bookingId: varchar("booking_id").notNull().references(() => bookings.id),
+  boatId: varchar("boat_id").notNull().references(() => boats.id),
+  type: text("type").notNull(), // 'checkin' | 'checkout'
+  performedAt: timestamp("performed_at", { withTimezone: true }).notNull().default(sql`now()`),
+  performedBy: text("performed_by"), // admin user name or ID
+  fuelLevel: text("fuel_level").notNull(), // 'full' | '3/4' | '1/2' | '1/4' | 'empty'
+  condition: text("condition").notNull(), // 'excellent' | 'good' | 'fair' | 'poor'
+  engineHours: decimal("engine_hours", { precision: 10, scale: 1 }),
+  notes: text("notes"),
+  photos: text("photos").array(),
+  signatureUrl: text("signature_url"), // data URL of signature image
+  checklist: jsonb("checklist").$type<ChecklistItem[]>(),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().default(sql`now()`),
+}, (table) => ({
+  bookingIdx: index("checkins_booking_idx").on(table.bookingId),
+  boatIdx: index("checkins_boat_idx").on(table.boatId),
+  typeIdx: index("checkins_type_idx").on(table.type),
+}));
+
+export const insertCheckinSchema = z.object({
+  bookingId: z.string().min(1, "Reserva requerida"),
+  boatId: z.string().min(1, "Barco requerido"),
+  type: z.enum(["checkin", "checkout"]),
+  performedBy: z.string().optional(),
+  fuelLevel: z.enum(["full", "3/4", "1/2", "1/4", "empty"]),
+  condition: z.enum(["excellent", "good", "fair", "poor"]),
+  engineHours: z.string().optional().or(z.null()),
+  notes: z.string().optional().or(z.null()),
+  photos: z.array(z.string()).optional().or(z.null()),
+  signatureUrl: z.string().optional().or(z.null()),
+  checklist: z.array(z.object({
+    item: z.string(),
+    checked: z.boolean(),
+  })).optional().or(z.null()),
+});
+
+export type Checkin = typeof checkins.$inferSelect;
+export type InsertCheckin = z.infer<typeof insertCheckinSchema>;
+
 // Re-export chat models for AI integrations
 export { conversations, messages } from "@shared/models/chat";

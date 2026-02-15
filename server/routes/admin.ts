@@ -1,9 +1,10 @@
 import type { Express } from "express";
 import { z } from "zod";
 import { storage } from "../storage";
-import { updateBookingSchema, insertBookingSchema, insertBoatSchema } from "@shared/schema";
+import { updateBookingSchema, insertBookingSchema, insertBoatSchema, updateCrmCustomerSchema, insertCheckinSchema } from "@shared/schema";
 import { requireAdminSession } from "./auth";
 import { ObjectStorageService, ObjectNotFoundError } from "../objectStorage";
+import { format } from "date-fns";
 
 const boatReorderSchema = z.object({
   order: z.array(z.object({
@@ -45,6 +46,16 @@ const paginatedBookingsQuerySchema = z.object({
   status: z.string().optional(),
   search: z.string().optional(),
   sortBy: z.enum(["startTime", "createdAt", "bookingDate"]).optional().default("startTime"),
+  sortOrder: z.enum(["asc", "desc"]).optional().default("desc"),
+});
+
+const paginatedCustomersQuerySchema = z.object({
+  page: z.coerce.number().int().min(1).optional().default(1),
+  limit: z.coerce.number().int().min(1).max(100).optional().default(25),
+  search: z.string().optional(),
+  segment: z.string().optional(),
+  nationality: z.string().optional(),
+  sortBy: z.enum(["name", "totalBookings", "totalSpent", "lastBookingDate", "createdAt"]).optional().default("lastBookingDate"),
   sortOrder: z.enum(["asc", "desc"]).optional().default("desc"),
 });
 
@@ -309,45 +320,182 @@ export function registerAdminRoutes(app: Express) {
     }
   });
 
-  // ===== CUSTOMER MANAGEMENT =====
+  // ===== CRM CUSTOMER MANAGEMENT =====
 
+  // Paginated customers list with search and filters
   app.get("/api/admin/customers", requireAdminSession, async (req, res) => {
     try {
-      const allBookings = await storage.getAllBookings();
-      const customersMap = new Map();
+      const queryParsed = paginatedCustomersQuerySchema.safeParse(req.query);
+      if (!queryParsed.success) {
+        return res.status(400).json({
+          message: "Parametros invalidos",
+          errors: queryParsed.error.flatten().fieldErrors,
+        });
+      }
 
-      allBookings.forEach((booking: any) => {
-        const key = `${booking.customerEmail || booking.customerPhone}`;
+      const result = await storage.getPaginatedCrmCustomers(queryParsed.data);
+      res.json(result);
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : "Unknown error";
+      console.error("Error fetching customers:", message);
+      res.status(500).json({ message: "Error fetching customers: " + message });
+    }
+  });
 
-        if (!customersMap.has(key)) {
-          customersMap.set(key, {
-            customerName: booking.customerName,
-            customerSurname: booking.customerSurname,
-            customerPhone: booking.customerPhone,
-            customerEmail: booking.customerEmail,
-            customerNationality: booking.customerNationality,
-            bookingsCount: 0,
-            totalSpent: 0,
-            lastBookingDate: booking.startTime,
-            bookingIds: [],
-          });
-        }
+  // Get single customer profile with booking history
+  app.get("/api/admin/customers/:id", requireAdminSession, async (req, res) => {
+    try {
+      const result = await storage.getCrmCustomerById(req.params.id);
+      if (!result) {
+        return res.status(404).json({ message: "Cliente no encontrado" });
+      }
+      res.json(result);
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : "Unknown error";
+      res.status(500).json({ message: "Error fetching customer: " + message });
+    }
+  });
 
-        const customer = customersMap.get(key);
-        customer.bookingsCount += 1;
-        customer.totalSpent += parseFloat(booking.totalAmount);
-        customer.bookingIds.push(booking.id);
+  // Update customer (notes, tags, nationality, documentId, etc.)
+  app.patch("/api/admin/customers/:id", requireAdminSession, async (req, res) => {
+    try {
+      const parsed = updateCrmCustomerSchema.safeParse(req.body);
+      if (!parsed.success) {
+        return res.status(400).json({
+          message: "Datos invalidos",
+          errors: parsed.error.flatten().fieldErrors,
+        });
+      }
 
-        if (new Date(booking.startTime) > new Date(customer.lastBookingDate)) {
-          customer.lastBookingDate = booking.startTime;
-        }
+      const updated = await storage.updateCrmCustomer(req.params.id, parsed.data);
+      if (!updated) {
+        return res.status(404).json({ message: "Cliente no encontrado" });
+      }
+
+      res.json({ success: true, customer: updated, message: "Cliente actualizado" });
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : "Unknown error";
+      res.status(500).json({ message: "Error updating customer: " + message });
+    }
+  });
+
+  // Sync all customers from bookings data
+  app.post("/api/admin/customers/sync", requireAdminSession, async (req, res) => {
+    try {
+      const result = await storage.syncAllCustomersFromBookings();
+      res.json({
+        success: true,
+        message: `Sincronizacion completada: ${result.created} creados, ${result.updated} actualizados`,
+        ...result,
+      });
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : "Unknown error";
+      res.status(500).json({ message: "Error syncing customers: " + message });
+    }
+  });
+
+  // Export customers as CSV
+  app.get("/api/admin/customers/export", requireAdminSession, async (req, res) => {
+    try {
+      const result = await storage.getPaginatedCrmCustomers({
+        page: 1,
+        limit: 10000,
+        sortBy: "totalSpent",
+        sortOrder: "desc",
       });
 
-      const customers = Array.from(customersMap.values()).sort((a, b) => b.totalSpent - a.totalSpent);
-      res.json(customers);
-    } catch (error: any) {
-      console.error("Error fetching customers:", error);
-      res.status(500).json({ message: "Error fetching customers: " + error.message });
+      const headers = [
+        "Nombre", "Apellidos", "Email", "Telefono", "Nacionalidad",
+        "Documento", "Segmento", "Total Reservas", "Total Gastado",
+        "Primera Reserva", "Ultima Reserva", "Notas", "Tags"
+      ];
+
+      const rows = result.data.map((c) => [
+        c.name,
+        c.surname,
+        c.email || "",
+        c.phone,
+        c.nationality || "",
+        c.documentId || "",
+        c.segment,
+        String(c.totalBookings),
+        c.totalSpent,
+        c.firstBookingDate ? format(new Date(c.firstBookingDate), "dd/MM/yyyy") : "",
+        c.lastBookingDate ? format(new Date(c.lastBookingDate), "dd/MM/yyyy") : "",
+        (c.notes || "").replace(/"/g, '""'),
+        (c.tags || []).join(", "),
+      ]);
+
+      const csvContent = [
+        headers.join(","),
+        ...rows.map((row) => row.map((cell) => `"${cell}"`).join(","))
+      ].join("\n");
+
+      res.setHeader("Content-Type", "text/csv; charset=utf-8");
+      res.setHeader("Content-Disposition", `attachment; filename=clientes_${format(new Date(), "yyyy-MM-dd")}.csv`);
+      res.send("\uFEFF" + csvContent);
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : "Unknown error";
+      res.status(500).json({ message: "Error exporting customers: " + message });
+    }
+  });
+
+  // ===== CHECK-IN / CHECK-OUT =====
+
+  // Create check-in or check-out
+  app.post("/api/admin/checkins", requireAdminSession, async (req, res) => {
+    try {
+      const parsed = insertCheckinSchema.safeParse(req.body);
+      if (!parsed.success) {
+        return res.status(400).json({
+          message: "Datos invalidos",
+          errors: parsed.error.flatten().fieldErrors,
+        });
+      }
+
+      // Verify booking exists
+      const booking = await storage.getBooking(parsed.data.bookingId);
+      if (!booking) {
+        return res.status(404).json({ message: "Reserva no encontrada" });
+      }
+
+      // Check for duplicates
+      const existing = await storage.getLatestCheckin(parsed.data.bookingId, parsed.data.type);
+      if (existing) {
+        return res.status(409).json({
+          message: `Ya existe un ${parsed.data.type === "checkin" ? "check-in" : "check-out"} para esta reserva`,
+        });
+      }
+
+      // Set performedBy from JWT token
+      const adminUser = (req as unknown as Record<string, unknown>).adminUser as { username: string } | undefined;
+      const checkinData = {
+        ...parsed.data,
+        performedBy: adminUser?.username || "admin",
+      };
+
+      const newCheckin = await storage.createCheckin(checkinData);
+
+      res.status(201).json({
+        success: true,
+        checkin: newCheckin,
+        message: `${parsed.data.type === "checkin" ? "Check-in" : "Check-out"} registrado correctamente`,
+      });
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : "Unknown error";
+      console.error("Error creating checkin:", message);
+      res.status(500).json({ message: "Error creating checkin: " + message });
+    }
+  });
+
+  // Get check-ins for a booking
+  app.get("/api/admin/checkins/booking/:bookingId", requireAdminSession, async (req, res) => {
+    try {
+      const checkinsList = await storage.getCheckinsByBooking(req.params.bookingId);
+      res.json(checkinsList);
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : "Unknown error";
+      res.status(500).json({ message: "Error fetching checkins: " + message });
     }
   });
 

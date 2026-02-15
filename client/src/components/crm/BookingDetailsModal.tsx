@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
@@ -25,16 +26,20 @@ import {
   Check,
   Save,
   MessageCircle,
+  ClipboardCheck,
+  ClipboardList,
+  Loader2,
 } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { format } from "date-fns";
 import type { Booking } from "@shared/schema";
 import { queryClient } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
 import { getStatusColor, getStatusLabel } from "./constants";
-import { editBookingSchema, type EditBookingFormData } from "./types";
+import { editBookingSchema, type EditBookingFormData, type CheckinData } from "./types";
+import { CheckinForm } from "./CheckinForm";
 
 interface BookingDetailsModalProps {
   open: boolean;
@@ -60,6 +65,26 @@ export function BookingDetailsModal({
   onOpenWhatsApp,
 }: BookingDetailsModalProps) {
   const { toast } = useToast();
+  const [showCheckinForm, setShowCheckinForm] = useState(false);
+  const [checkinType, setCheckinType] = useState<"checkin" | "checkout">("checkin");
+
+  // Fetch check-ins for this booking
+  const { data: bookingCheckins, isLoading: checkinsLoading } = useQuery<CheckinData[]>({
+    queryKey: ["/api/admin/checkins/booking", booking?.id],
+    queryFn: async () => {
+      const response = await fetch(`/api/admin/checkins/booking/${booking!.id}`, {
+        headers: { Authorization: `Bearer ${adminToken}` },
+      });
+      if (!response.ok) throw new Error("Error fetching checkins");
+      return response.json();
+    },
+    enabled: !!booking && open && !isEditing && !isCreating,
+  });
+
+  const hasCheckin = bookingCheckins?.some((c) => c.type === "checkin") ?? false;
+  const hasCheckout = bookingCheckins?.some((c) => c.type === "checkout") ?? false;
+  const checkinRecord = bookingCheckins?.find((c) => c.type === "checkin");
+  const checkoutRecord = bookingCheckins?.find((c) => c.type === "checkout");
 
   const editForm = useForm<EditBookingFormData>({
     resolver: zodResolver(editBookingSchema),
@@ -379,6 +404,100 @@ export function BookingDetailsModal({
               </div>
             )}
 
+            {/* Check-in / Check-out Section */}
+            {(booking.bookingStatus === "confirmed") && (
+              <div className="border-t pt-4">
+                <h3 className="font-semibold text-lg mb-3">Check-in / Check-out</h3>
+                <div className="space-y-3">
+                  {/* Status indicators */}
+                  <div className="flex flex-wrap gap-3 text-sm">
+                    <div className="flex items-center gap-2">
+                      <ClipboardCheck className={`w-4 h-4 ${hasCheckin ? "text-green-600" : "text-gray-300"}`} />
+                      <span className={hasCheckin ? "text-green-700 font-medium" : "text-gray-400"}>
+                        {hasCheckin
+                          ? `Check-in: ${format(new Date(checkinRecord!.performedAt), "dd/MM/yy HH:mm")}`
+                          : "Sin check-in"}
+                      </span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <ClipboardList className={`w-4 h-4 ${hasCheckout ? "text-green-600" : "text-gray-300"}`} />
+                      <span className={hasCheckout ? "text-green-700 font-medium" : "text-gray-400"}>
+                        {hasCheckout
+                          ? `Check-out: ${format(new Date(checkoutRecord!.performedAt), "dd/MM/yy HH:mm")}`
+                          : "Sin check-out"}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Checkin details if exists */}
+                  {checkinRecord && (
+                    <div className="bg-green-50 rounded-lg p-3 text-xs space-y-1">
+                      <p><span className="font-medium">Combustible:</span> {checkinRecord.fuelLevel}</p>
+                      <p><span className="font-medium">Estado:</span> {checkinRecord.condition}</p>
+                      {checkinRecord.engineHours && (
+                        <p><span className="font-medium">Horas motor:</span> {checkinRecord.engineHours}</p>
+                      )}
+                      {checkinRecord.notes && (
+                        <p><span className="font-medium">Notas:</span> {checkinRecord.notes}</p>
+                      )}
+                      {checkinRecord.performedBy && (
+                        <p><span className="font-medium">Realizado por:</span> {checkinRecord.performedBy}</p>
+                      )}
+                    </div>
+                  )}
+
+                  {/* Checkout details if exists */}
+                  {checkoutRecord && (
+                    <div className="bg-blue-50 rounded-lg p-3 text-xs space-y-1">
+                      <p className="font-medium text-blue-700 mb-1">Check-out:</p>
+                      <p><span className="font-medium">Combustible:</span> {checkoutRecord.fuelLevel}</p>
+                      <p><span className="font-medium">Estado:</span> {checkoutRecord.condition}</p>
+                      {checkoutRecord.engineHours && (
+                        <p><span className="font-medium">Horas motor:</span> {checkoutRecord.engineHours}</p>
+                      )}
+                      {checkoutRecord.notes && (
+                        <p><span className="font-medium">Notas:</span> {checkoutRecord.notes}</p>
+                      )}
+                    </div>
+                  )}
+
+                  {/* Action buttons */}
+                  <div className="flex gap-2">
+                    {!hasCheckin && (
+                      <Button
+                        size="sm"
+                        onClick={() => {
+                          setCheckinType("checkin");
+                          setShowCheckinForm(true);
+                        }}
+                      >
+                        <ClipboardCheck className="w-4 h-4 mr-2" />
+                        Hacer Check-in
+                      </Button>
+                    )}
+                    {hasCheckin && !hasCheckout && (
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        onClick={() => {
+                          setCheckinType("checkout");
+                          setShowCheckinForm(true);
+                        }}
+                      >
+                        <ClipboardList className="w-4 h-4 mr-2" />
+                        Hacer Check-out
+                      </Button>
+                    )}
+                    {hasCheckin && hasCheckout && (
+                      <Badge className="bg-green-100 text-green-800 border-green-300">
+                        Proceso completado
+                      </Badge>
+                    )}
+                  </div>
+                </div>
+              </div>
+            )}
+
             {/* Actions */}
             <div className="border-t pt-4">
               <h3 className="font-semibold text-lg mb-3">Acciones</h3>
@@ -666,6 +785,23 @@ export function BookingDetailsModal({
           )}
         </DialogFooter>
       </DialogContent>
+
+      {/* Checkin Form Dialog */}
+      {booking && (
+        <CheckinForm
+          open={showCheckinForm}
+          onOpenChange={setShowCheckinForm}
+          bookingId={booking.id}
+          boatId={booking.boatId}
+          type={checkinType}
+          adminToken={adminToken}
+          onSuccess={() => {
+            queryClient.invalidateQueries({
+              queryKey: ["/api/admin/checkins/booking", booking.id],
+            });
+          }}
+        />
+      )}
     </Dialog>
   );
 }

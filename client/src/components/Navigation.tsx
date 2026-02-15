@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Anchor, UserCircle, Calendar } from "lucide-react";
+import { Menu, X, Anchor, UserCircle, Calendar, Gift } from "lucide-react";
 import { useLocation } from "wouter";
 import LanguageSelector from "./LanguageSelector";
 import { useTranslations } from "@/lib/translations";
@@ -135,6 +135,7 @@ export default function Navigation() {
     { label: t.nav.home, href: "/" },
     { label: t.nav.fleet, href: "#fleet" },
     { label: "Blog", href: "/blog" },
+    { label: t.nav.giftCards, href: "/tarjetas-regalo" },
     { label: t.nav.contact, href: "#contact" },
     { label: t.nav.faq, href: "#faq" },
   ];
@@ -159,7 +160,7 @@ export default function Navigation() {
           </button>
 
           {/* Desktop Navigation - Absolutely Centered */}
-          <div className="hidden md:flex items-center space-x-6 lg:space-x-8 absolute left-1/2 -translate-x-1/2">
+          <div className="hidden md:flex items-center space-x-4 lg:space-x-6 absolute left-1/2 -translate-x-1/2">
             {navigationItems.map((item) => (
               <button
                 key={item.label}

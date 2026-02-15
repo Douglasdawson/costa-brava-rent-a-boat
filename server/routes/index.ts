@@ -21,8 +21,10 @@ import { registerDiscountRoutes } from "./discounts";
 import { startScheduledServices } from "../services";
 
 export async function registerRoutes(app: Express): Promise<Server> {
-  // Setup Replit Auth (customer authentication)
-  await setupAuth(app);
+  // Setup Replit Auth (customer authentication) — skip in local development
+  if (process.env.REPLIT_DOMAINS) {
+    await setupAuth(app);
+  }
 
   // Register all route modules
   registerSitemapRoutes(app);

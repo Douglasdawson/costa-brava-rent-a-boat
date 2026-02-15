@@ -1,5 +1,5 @@
 // Pricing utility for Costa Brava Rent a Boat seasonal pricing system
-import { BOAT_DATA, type BoatData } from './boatData';
+import { BOAT_DATA, EXTRA_PACKS, type BoatData } from './boatData';
 
 export type Season = 'BAJA' | 'MEDIA' | 'ALTA';
 export type Duration = '1h' | '2h' | '3h' | '4h' | '6h' | '8h';
@@ -73,16 +73,35 @@ export function calculateBasePrice(boatId: string, date: Date, duration: Duratio
 }
 
 /**
- * Calculate total price for extras
+ * Calculate total price for extras, with optional pack support.
+ * When a pack is selected, its price is added and individual extras
+ * that are already included in the pack are NOT double-counted.
  */
-export function calculateExtrasPrice(boatId: string, selectedExtras: string[]): number {
+export function calculateExtrasPrice(
+  boatId: string,
+  selectedExtras: string[],
+  selectedPacks: string[] = []
+): number {
   const boat = BOAT_DATA[boatId];
   if (!boat) {
     throw new Error(`Boat with id "${boatId}" not found`);
   }
 
   let total = 0;
+
+  // Collect all extras already covered by selected packs
+  const extrasInPacks = new Set<string>();
+  for (const packId of selectedPacks) {
+    const pack = EXTRA_PACKS.find(p => p.id === packId);
+    if (pack) {
+      total += pack.price;
+      pack.extras.forEach(e => extrasInPacks.add(e));
+    }
+  }
+
+  // Add individual extras that are NOT covered by any pack
   selectedExtras.forEach(extraName => {
+    if (extrasInPacks.has(extraName)) return; // skip, already in a pack
     const extra = boat.extras.find(e => e.name === extraName);
     if (extra) {
       total += parseExtraPrice(extra.price);
@@ -90,6 +109,15 @@ export function calculateExtrasPrice(boatId: string, selectedExtras: string[]): 
   });
 
   return total;
+}
+
+/**
+ * Calculate savings for a given pack (originalPrice - price)
+ */
+export function calculatePackSavings(packId: string): number {
+  const pack = EXTRA_PACKS.find(p => p.id === packId);
+  if (!pack) return 0;
+  return pack.originalPrice - pack.price;
 }
 
 /**
@@ -115,6 +143,7 @@ export interface PricingBreakdown {
   season: Season;
   basePrice: number;
   selectedExtras: string[];
+  selectedPacks: string[];
   extrasPrice: number;
   deposit: number;
   subtotal: number; // basePrice + extrasPrice
@@ -125,7 +154,8 @@ export function calculatePricingBreakdown(
   boatId: string,
   date: Date,
   duration: Duration,
-  selectedExtras: string[] = []
+  selectedExtras: string[] = [],
+  selectedPacks: string[] = []
 ): PricingBreakdown {
   const boat = BOAT_DATA[boatId];
   if (!boat) {
@@ -134,7 +164,7 @@ export function calculatePricingBreakdown(
 
   const season = getSeason(date);
   const basePrice = calculateBasePrice(boatId, date, duration);
-  const extrasPrice = calculateExtrasPrice(boatId, selectedExtras);
+  const extrasPrice = calculateExtrasPrice(boatId, selectedExtras, selectedPacks);
   const deposit = getDepositAmount(boatId);
   const subtotal = basePrice + extrasPrice;
   const total = subtotal + deposit;
@@ -147,6 +177,7 @@ export function calculatePricingBreakdown(
     season,
     basePrice,
     selectedExtras,
+    selectedPacks,
     extrasPrice,
     deposit,
     subtotal,

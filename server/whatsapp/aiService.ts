@@ -15,9 +15,13 @@ import {
   detectBoatFromMessage 
 } from "./functionCallingService";
 
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-});
+let _openai: OpenAI | null = null;
+function getOpenAI(): OpenAI {
+  if (!_openai) {
+    _openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+  }
+  return _openai;
+}
 
 // Business context for the AI
 const BUSINESS_CONTEXT = `
@@ -247,7 +251,7 @@ IMPORTANTE: Tienes acceso a funciones para consultar disponibilidad y precios en
     ];
 
     // Call OpenAI with function calling
-    const completion = await openai.chat.completions.create({
+    const completion = await getOpenAI().chat.completions.create({
       model: "gpt-4o-mini",
       messages: messages,
       tools: AVAILABLE_FUNCTIONS,
@@ -283,7 +287,7 @@ IMPORTANTE: Tienes acceso a funciones para consultar disponibilidad y precios en
       }
 
       // Get final response with function results
-      const finalCompletion = await openai.chat.completions.create({
+      const finalCompletion = await getOpenAI().chat.completions.create({
         model: "gpt-4o-mini",
         messages: messages,
         max_tokens: 500,

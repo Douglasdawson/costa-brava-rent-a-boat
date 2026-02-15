@@ -9,7 +9,7 @@ import connectPg from "connect-pg-simple";
 import { storage } from "./storage";
 
 if (!process.env.REPLIT_DOMAINS) {
-  throw new Error("Environment variable REPLIT_DOMAINS not provided");
+  console.warn("REPLIT_DOMAINS not set — Replit Auth disabled (local development)");
 }
 
 const getOidcConfig = memoize(
@@ -128,9 +128,12 @@ export async function setupAuth(app: Express) {
 }
 
 export const isAuthenticated: RequestHandler = async (req, res, next) => {
-  const user = req.user as any;
+  if (typeof req.isAuthenticated !== 'function' || !req.isAuthenticated()) {
+    return res.status(401).json({ message: "Unauthorized" });
+  }
 
-  if (!req.isAuthenticated() || !user.expires_at) {
+  const user = req.user as any;
+  if (!user?.expires_at) {
     return res.status(401).json({ message: "Unauthorized" });
   }
 

@@ -1,7 +1,7 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useMemo } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Calendar, Anchor, Clock, User, Users, Mail, Phone as PhoneIcon, ChevronDown, Search } from "lucide-react";
+import { Calendar, Anchor, Clock, User, Users, Mail, Phone as PhoneIcon, ChevronDown, Search, Package, Crown, Zap, Snowflake, Eye, Waves, CircleParking, Beer, Check, ChevronUp, Gift, Tag, Loader2, X } from "lucide-react";
 import { SiWhatsapp } from "react-icons/si";
 import { openWhatsApp } from "@/utils/whatsapp";
 import { useToast } from "@/hooks/use-toast";
@@ -10,6 +10,8 @@ import { useQuery } from "@tanstack/react-query";
 import type { Boat } from "@shared/schema";
 import { getBoatImage } from "@/utils/boatImages";
 import { trackBookingStarted } from "@/utils/analytics";
+import { BOAT_DATA, EXTRA_PACKS } from "@shared/boatData";
+import { calculateExtrasPrice, calculatePackSavings } from "@shared/pricing";
 
 // Common phone prefixes (prioritized by Costa Brava tourism)
 const PHONE_PREFIXES = [
@@ -84,6 +86,18 @@ const TIME_SLOTS = [
   "15:00", "15:30", "16:00", "16:30", "17:00", "17:30", "18:00",
 ];
 
+// Map icon name strings from boatData to Lucide icon components
+const ICON_MAP: Record<string, React.ComponentType<{ className?: string }>> = {
+  Package,
+  Crown,
+  Zap,
+  Snowflake,
+  Eye,
+  Waves,
+  CircleParking,
+  Beer,
+};
+
 interface BookingFormWidgetProps {
   preSelectedBoatId?: string;
   onClose?: () => void;
@@ -113,6 +127,23 @@ export default function BookingFormWidget({ preSelectedBoatId, onClose, hideHead
   const [selectedBoat, setSelectedBoat] = useState<string>(preSelectedBoatId || "");
   const [selectedDate, setSelectedDate] = useState(() => getLocalISODate());
   const [selectedDuration, setSelectedDuration] = useState<string>("");
+
+  // Extras & Packs state
+  const [selectedExtras, setSelectedExtras] = useState<string[]>([]);
+  const [selectedPack, setSelectedPack] = useState<string | null>(null);
+  const [showExtras, setShowExtras] = useState(false);
+
+  // Gift card / discount code state
+  const [showCodeSection, setShowCodeSection] = useState(false);
+  const [codeInput, setCodeInput] = useState("");
+  const [isValidatingCode, setIsValidatingCode] = useState(false);
+  const [validatedCode, setValidatedCode] = useState<{
+    type: "gift_card" | "discount";
+    code: string;
+    value?: number;       // For gift cards: amount in EUR
+    percentage?: number;  // For discounts: percentage off
+  } | null>(null);
+  const [codeError, setCodeError] = useState("");
 
   // Track which fields the user has interacted with (blurred)
   const [touched, setTouched] = useState<Record<string, boolean>>({});
@@ -287,6 +318,62 @@ export default function BookingFormWidget({ preSelectedBoatId, onClose, hideHead
     return licenseFilter === "with" ? 8 : 7;
   };
 
+  // Reset extras when boat changes
+  useEffect(() => {
+    setSelectedExtras([]);
+    setSelectedPack(null);
+  }, [selectedBoat]);
+
+  // Get the extras for the currently selected boat from BOAT_DATA
+  const boatExtras = useMemo(() => {
+    if (!selectedBoat || !BOAT_DATA[selectedBoat]) return [];
+    return BOAT_DATA[selectedBoat].extras;
+  }, [selectedBoat]);
+
+  // Determine which extras are covered by the selected pack
+  const extrasInPack = useMemo(() => {
+    if (!selectedPack) return new Set<string>();
+    const pack = EXTRA_PACKS.find(p => p.id === selectedPack);
+    return new Set(pack?.extras || []);
+  }, [selectedPack]);
+
+  // Handle pack selection (radio-like behavior)
+  const handlePackSelect = (packId: string) => {
+    if (selectedPack === packId) {
+      // Deselect pack
+      setSelectedPack(null);
+      setSelectedExtras([]);
+    } else {
+      setSelectedPack(packId);
+      const pack = EXTRA_PACKS.find(p => p.id === packId);
+      if (pack) {
+        // Auto-select the extras included in this pack
+        // Keep any extras that are NOT in the pack but were individually selected
+        const nonPackExtras = selectedExtras.filter(e => !pack.extras.includes(e));
+        setSelectedExtras([...pack.extras, ...nonPackExtras]);
+      }
+    }
+  };
+
+  // Handle individual extra toggle
+  const handleExtraToggle = (extraName: string) => {
+    // If this extra is part of the selected pack, do not allow toggling it off
+    if (extrasInPack.has(extraName)) return;
+
+    setSelectedExtras(prev =>
+      prev.includes(extraName)
+        ? prev.filter(e => e !== extraName)
+        : [...prev, extraName]
+    );
+  };
+
+  // Calculate total extras price (packs + individual)
+  const totalExtrasPrice = useMemo(() => {
+    if (!selectedBoat || !BOAT_DATA[selectedBoat]) return 0;
+    const packs = selectedPack ? [selectedPack] : [];
+    return calculateExtrasPrice(selectedBoat, selectedExtras, packs);
+  }, [selectedBoat, selectedExtras, selectedPack]);
+
   // Inline validation: returns error message for a given field, or empty string if valid
   const getFieldError = (field: string): string => {
     switch (field) {
@@ -349,6 +436,27 @@ export default function BookingFormWidget({ preSelectedBoatId, onClose, hideHead
     return "Baja (Abr-Jun, Sep-Oct)";
   };
 
+  // Build extras text for WhatsApp message
+  const buildExtrasText = (isSpanish: boolean) => {
+    const parts: string[] = [];
+
+    if (selectedPack) {
+      const pack = EXTRA_PACKS.find(p => p.id === selectedPack);
+      if (pack) {
+        parts.push(`${isSpanish ? 'Pack' : 'Pack'}: ${isSpanish ? pack.name : pack.nameEN} (${pack.price}€)`);
+      }
+    }
+
+    // Individual extras not in the pack
+    const nonPackExtras = selectedExtras.filter(e => !extrasInPack.has(e));
+    if (nonPackExtras.length > 0) {
+      parts.push(`${isSpanish ? 'Extras' : 'Extras'}: ${nonPackExtras.join(', ')}`);
+    }
+
+    if (parts.length === 0) return '';
+    return parts.join('\n');
+  };
+
   // Create WhatsApp message with all booking details
   const createWhatsAppBookingMessage = () => {
     const isSpanish = phonePrefix === '+34';
@@ -362,6 +470,26 @@ export default function BookingFormWidget({ preSelectedBoatId, onClose, hideHead
 
     const durationOption = getDurationOptions().find(opt => opt.value === selectedDuration);
     const durationText = durationOption?.label.split(' - ')[0] || selectedDuration;
+
+    const extrasText = buildExtrasText(isSpanish);
+    const extrasBlock = extrasText ? `\n${extrasText}\n${isSpanish ? 'Total extras' : 'Extras total'}: ${totalExtrasPrice}€` : '';
+
+    const codeDiscount = getCodeDiscount();
+    const totalPrice = price ? price + totalExtrasPrice - codeDiscount : null;
+
+    // Build code info block
+    let codeBlock = '';
+    if (validatedCode) {
+      if (validatedCode.type === 'gift_card') {
+        codeBlock = isSpanish
+          ? `\n\n*TARJETA REGALO*\nCodigo: ${validatedCode.code}\nValor: -${codeDiscount}€`
+          : `\n\n*GIFT CARD*\nCode: ${validatedCode.code}\nValue: -${codeDiscount}€`;
+      } else if (validatedCode.type === 'discount') {
+        codeBlock = isSpanish
+          ? `\n\n*DESCUENTO*\nCodigo: ${validatedCode.code}\nDescuento: ${validatedCode.percentage}% (-${codeDiscount}€)`
+          : `\n\n*DISCOUNT*\nCode: ${validatedCode.code}\nDiscount: ${validatedCode.percentage}% (-${codeDiscount}€)`;
+      }
+    }
 
     if (isSpanish) {
       return `Hola! Me gustaría reservar un barco:
@@ -378,7 +506,8 @@ Hora inicio: ${preferredTime}h
 Duracion: ${durationText}
 Personas: ${numberOfPeople} de ${capacity} max
 Temporada: ${getSeasonLabel()}
-Precio: ${price ? price + '€' : 'Consultar'}
+Precio base: ${price ? price + '€' : 'Consultar'}${extrasBlock ? '\n\n*EXTRAS*' + extrasBlock : ''}${codeBlock}
+${totalPrice ? `\n*PRECIO TOTAL: ${totalPrice}€*` : ''}
 Fianza: ${deposit}
 
 Quedo a la espera de confirmacion. Gracias!`;
@@ -397,11 +526,90 @@ Start time: ${preferredTime}h
 Duration: ${durationText}
 People: ${numberOfPeople} of ${capacity} max
 Season: ${getSeasonLabel()}
-Price: ${price ? price + '€' : 'Ask'}
+Base price: ${price ? price + '€' : 'Ask'}${extrasBlock ? '\n\n*EXTRAS*' + extrasBlock : ''}${codeBlock}
+${totalPrice ? `\n*TOTAL PRICE: ${totalPrice}€*` : ''}
 Deposit: ${deposit}
 
 Looking forward to confirmation. Thanks!`;
     }
+  };
+
+  // Validate a gift card or discount code
+  const handleValidateCode = async () => {
+    const code = codeInput.trim().toUpperCase();
+    if (!code) return;
+
+    setIsValidatingCode(true);
+    setCodeError("");
+
+    try {
+      // Try gift card validation first
+      const giftCardRes = await fetch("/api/gift-cards/validate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ code }),
+      });
+
+      if (giftCardRes.ok) {
+        const data = await giftCardRes.json();
+        setValidatedCode({
+          type: "gift_card",
+          code,
+          value: data.remainingBalance || data.amount,
+        });
+        setIsValidatingCode(false);
+        return;
+      }
+
+      // If gift card didn't work, try discount code
+      const discountRes = await fetch("/api/discounts/validate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ code }),
+      });
+
+      if (discountRes.ok) {
+        const data = await discountRes.json();
+        setValidatedCode({
+          type: "discount",
+          code,
+          percentage: data.percentage || data.discount,
+        });
+        setIsValidatingCode(false);
+        return;
+      }
+
+      // Neither worked - invalid code
+      setCodeError(t.codeValidation.invalidCode);
+    } catch {
+      setCodeError(t.codeValidation.invalidCode);
+    } finally {
+      setIsValidatingCode(false);
+    }
+  };
+
+  // Remove validated code
+  const handleRemoveCode = () => {
+    setValidatedCode(null);
+    setCodeInput("");
+    setCodeError("");
+  };
+
+  // Calculate discount amount based on validated code
+  const getCodeDiscount = (): number => {
+    if (!validatedCode) return 0;
+    const basePrice = getBookingPrice() || 0;
+    const total = basePrice + totalExtrasPrice;
+
+    if (validatedCode.type === "gift_card" && validatedCode.value) {
+      // Gift card: apply up to the total amount
+      return Math.min(validatedCode.value, total);
+    }
+    if (validatedCode.type === "discount" && validatedCode.percentage) {
+      // Discount: percentage off the base price only
+      return Math.round((basePrice * validatedCode.percentage) / 100);
+    }
+    return 0;
   };
 
   const handleBookingSearch = () => {
@@ -809,6 +1017,256 @@ Looking forward to confirmation. Thanks!`;
             )}
           </div>
         </div>
+      </div>
+
+      {/* Extras & Packs Section - only show when a boat is selected */}
+      {selectedBoat && boatExtras.length > 0 && (
+        <div className="bg-gray-50/80 rounded-lg p-2 sm:p-3 mb-2 sm:mb-3">
+          {/* Collapsible header */}
+          <button
+            type="button"
+            onClick={() => setShowExtras(!showExtras)}
+            className="w-full flex items-center justify-between text-xs [@media(min-width:400px)]:text-sm font-semibold text-gray-800 mb-1"
+          >
+            <span className="flex items-center gap-1.5">
+              <Package className="w-3.5 h-3.5 text-primary" />
+              {t.booking.extrasSection?.title || 'Extras y Packs'}
+              {(selectedExtras.length > 0 || selectedPack) && (
+                <span className="bg-primary text-white text-[10px] px-1.5 py-0.5 rounded-full">
+                  {selectedPack ? '1 pack' : ''}{selectedExtras.filter(e => !extrasInPack.has(e)).length > 0 ? `${selectedPack ? ' + ' : ''}${selectedExtras.filter(e => !extrasInPack.has(e)).length}` : ''}
+                </span>
+              )}
+              {totalExtrasPrice > 0 && (
+                <span className="text-primary font-bold text-xs">+{totalExtrasPrice}€</span>
+              )}
+            </span>
+            {showExtras ? <ChevronUp className="w-4 h-4 text-gray-500" /> : <ChevronDown className="w-4 h-4 text-gray-500" />}
+          </button>
+
+          {showExtras && (
+            <div className="space-y-3 mt-2">
+              {/* Packs Section */}
+              <div>
+                <p className="text-[11px] [@media(min-width:400px)]:text-xs font-semibold text-gray-600 mb-1.5 uppercase tracking-wide">
+                  {t.booking.extrasSection?.packs || 'Packs con descuento'}
+                </p>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-1.5">
+                  {/* No pack option */}
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setSelectedPack(null);
+                      setSelectedExtras([]);
+                    }}
+                    className={`relative p-2 sm:p-2.5 rounded-lg border-2 transition-all text-left ${
+                      !selectedPack
+                        ? 'border-primary bg-primary/5'
+                        : 'border-gray-200 bg-white hover:border-gray-300'
+                    }`}
+                  >
+                    <div className="flex items-center gap-1.5">
+                      <div className={`w-3.5 h-3.5 rounded-full border-2 flex items-center justify-center ${!selectedPack ? 'border-primary bg-primary' : 'border-gray-300'}`}>
+                        {!selectedPack && <Check className="w-2 h-2 text-white" />}
+                      </div>
+                      <span className="text-xs font-medium text-gray-700">{t.booking.extrasSection?.noPack || 'Sin pack'}</span>
+                    </div>
+                  </button>
+
+                  {/* Pack cards */}
+                  {EXTRA_PACKS.map((pack) => {
+                    const isSelected = selectedPack === pack.id;
+                    const savings = calculatePackSavings(pack.id);
+                    const IconComp = ICON_MAP[pack.icon] || Package;
+                    return (
+                      <button
+                        key={pack.id}
+                        type="button"
+                        onClick={() => handlePackSelect(pack.id)}
+                        className={`relative p-2 sm:p-2.5 rounded-lg border-2 transition-all text-left ${
+                          isSelected
+                            ? 'border-primary bg-primary/5 shadow-sm'
+                            : 'border-gray-200 bg-white hover:border-gray-300'
+                        }`}
+                      >
+                        {/* Savings badge */}
+                        {savings > 0 && (
+                          <span className="absolute -top-1.5 -right-1.5 bg-green-500 text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full leading-none">
+                            -{savings.toFixed(2).replace('.00', '')}€
+                          </span>
+                        )}
+                        <div className="flex items-center gap-1.5 mb-1">
+                          <div className={`w-3.5 h-3.5 rounded-full border-2 flex items-center justify-center flex-shrink-0 ${isSelected ? 'border-primary bg-primary' : 'border-gray-300'}`}>
+                            {isSelected && <Check className="w-2 h-2 text-white" />}
+                          </div>
+                          <IconComp className="w-3.5 h-3.5 text-primary flex-shrink-0" />
+                          <span className="text-xs font-semibold text-gray-800 truncate">{pack.name}</span>
+                        </div>
+                        <div className="pl-5 space-y-0.5">
+                          <p className="text-[10px] text-gray-500">
+                            {t.booking.extrasSection?.included || 'Incluye'}: {pack.extras.join(', ')}
+                          </p>
+                          <div className="flex items-center gap-1.5">
+                            <span className="text-xs font-bold text-primary">{pack.price}€</span>
+                            <span className="text-[10px] text-gray-400 line-through">{pack.originalPrice}€</span>
+                            {savings > 0 && (
+                              <span className="text-[10px] text-green-600 font-medium">
+                                {t.booking.extrasSection?.savings || 'Ahorras'} {savings.toFixed(2).replace('.00', '')}€
+                              </span>
+                            )}
+                          </div>
+                        </div>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* Individual Extras Section */}
+              <div>
+                <p className="text-[11px] [@media(min-width:400px)]:text-xs font-semibold text-gray-600 mb-1.5 uppercase tracking-wide">
+                  {t.booking.extrasSection?.individual || 'Extras individuales'}
+                </p>
+                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-1.5">
+                  {boatExtras.map((extra) => {
+                    const isChecked = selectedExtras.includes(extra.name);
+                    const isInPack = extrasInPack.has(extra.name);
+                    const IconComp = ICON_MAP[extra.icon] || Package;
+                    return (
+                      <button
+                        key={extra.name}
+                        type="button"
+                        onClick={() => handleExtraToggle(extra.name)}
+                        disabled={isInPack}
+                        className={`flex items-center gap-1.5 p-2 rounded-lg border transition-all text-left ${
+                          isInPack
+                            ? 'border-primary/40 bg-primary/10 opacity-75 cursor-not-allowed'
+                            : isChecked
+                              ? 'border-primary bg-primary/5'
+                              : 'border-gray-200 bg-white hover:border-gray-300'
+                        }`}
+                      >
+                        <div className={`w-3.5 h-3.5 rounded border flex items-center justify-center flex-shrink-0 ${
+                          isChecked || isInPack ? 'border-primary bg-primary' : 'border-gray-300'
+                        }`}>
+                          {(isChecked || isInPack) && <Check className="w-2.5 h-2.5 text-white" />}
+                        </div>
+                        <IconComp className="w-3 h-3 text-gray-500 flex-shrink-0" />
+                        <div className="min-w-0">
+                          <p className="text-[11px] font-medium text-gray-800 truncate">{extra.name}</p>
+                          <p className="text-[10px] text-gray-500">{isInPack ? (t.booking.extrasSection?.packSelected || 'Pack') : extra.price}</p>
+                        </div>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* Gift Card / Discount Code Section */}
+      <div className="bg-gray-50/80 rounded-lg p-2 sm:p-3 mb-2 sm:mb-3">
+        <button
+          type="button"
+          onClick={() => setShowCodeSection(!showCodeSection)}
+          className="w-full flex items-center justify-between text-xs [@media(min-width:400px)]:text-sm font-semibold text-gray-800"
+        >
+          <span className="flex items-center gap-1.5">
+            <Tag className="w-3.5 h-3.5 text-primary" />
+            {t.codeValidation.haveCode}
+            {validatedCode && (
+              <span className="bg-green-500 text-white text-[10px] px-1.5 py-0.5 rounded-full">
+                {t.codeValidation.applied}
+              </span>
+            )}
+          </span>
+          {showCodeSection ? <ChevronUp className="w-4 h-4 text-gray-500" /> : <ChevronDown className="w-4 h-4 text-gray-500" />}
+        </button>
+
+        {showCodeSection && (
+          <div className="mt-2 space-y-2">
+            {!validatedCode ? (
+              <>
+                <div className="flex gap-2">
+                  <input
+                    type="text"
+                    value={codeInput}
+                    onChange={(e) => {
+                      setCodeInput(e.target.value.toUpperCase());
+                      setCodeError("");
+                    }}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter") {
+                        e.preventDefault();
+                        handleValidateCode();
+                      }
+                    }}
+                    placeholder={t.codeValidation.enterCode}
+                    className="flex-1 p-2 sm:p-2.5 border border-gray-200 bg-white rounded-md focus:ring-2 focus:ring-primary focus:border-primary transition-all text-gray-900 font-mono font-medium text-xs [@media(min-width:400px)]:text-sm uppercase tracking-wider"
+                    data-testid="input-coupon-code"
+                    disabled={isValidatingCode}
+                  />
+                  <Button
+                    type="button"
+                    size="sm"
+                    onClick={handleValidateCode}
+                    disabled={isValidatingCode || !codeInput.trim()}
+                    className="px-4 h-auto"
+                    data-testid="button-validate-code"
+                  >
+                    {isValidatingCode ? (
+                      <Loader2 className="w-4 h-4 animate-spin" />
+                    ) : (
+                      t.codeValidation.validate
+                    )}
+                  </Button>
+                </div>
+                {codeError && (
+                  <p className="text-xs text-red-500 flex items-center gap-1">
+                    <X className="w-3 h-3" />
+                    {codeError}
+                  </p>
+                )}
+              </>
+            ) : (
+              <div className="bg-white border border-green-200 rounded-lg p-3 flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
+                    {validatedCode.type === "gift_card" ? (
+                      <Gift className="w-4 h-4 text-green-600" />
+                    ) : (
+                      <Tag className="w-4 h-4 text-green-600" />
+                    )}
+                  </div>
+                  <div>
+                    <p className="text-xs font-semibold text-green-700">
+                      {validatedCode.type === "gift_card"
+                        ? t.codeValidation.validGiftCard
+                        : t.codeValidation.validDiscount}
+                    </p>
+                    <p className="text-[11px] text-gray-500 font-mono">{validatedCode.code}</p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="text-sm font-bold text-green-600">
+                    {validatedCode.type === "gift_card"
+                      ? `-${getCodeDiscount()}€`
+                      : `-${validatedCode.percentage}%`}
+                  </span>
+                  <button
+                    type="button"
+                    onClick={handleRemoveCode}
+                    className="text-gray-400 hover:text-gray-600 transition-colors p-1"
+                    aria-label="Remove code"
+                  >
+                    <X className="w-4 h-4" />
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
+        )}
       </div>
 
       {/* Submit Button */}

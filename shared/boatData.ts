@@ -605,3 +605,43 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
     ]
   }
 };
+
+export interface ExtraPack {
+  id: string;
+  name: string;
+  nameEN: string;
+  extras: string[]; // names of included extras
+  price: number; // pack price in EUR
+  originalPrice: number; // total if bought separately
+  icon: string; // lucide icon name
+}
+
+export const EXTRA_PACKS: ExtraPack[] = [
+  {
+    id: "pack-basic",
+    name: "Pack Basic",
+    nameEN: "Basic Pack",
+    extras: ["Nevera", "Snorkel"],
+    price: 10,
+    originalPrice: 12.5,
+    icon: "Package",
+  },
+  {
+    id: "pack-premium",
+    name: "Pack Premium",
+    nameEN: "Premium Pack",
+    extras: ["Nevera", "Snorkel", "Paddle Surf"],
+    price: 30,
+    originalPrice: 37.5,
+    icon: "Crown",
+  },
+  {
+    id: "pack-aventura",
+    name: "Pack Aventura",
+    nameEN: "Adventure Pack",
+    extras: ["Nevera", "Snorkel", "Paddle Surf", "Seascooter"],
+    price: 75,
+    originalPrice: 87.5,
+    icon: "Zap",
+  },
+];

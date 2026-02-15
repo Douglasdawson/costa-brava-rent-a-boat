@@ -8,6 +8,7 @@ export interface Translations {
     booking: string;
     contact: string;
     faq: string;
+    giftCards: string;
     viewComponents: string;
   };
   
@@ -221,8 +222,19 @@ export interface Translations {
     peopleRequiredDesc: string;
     timeRequired: string;
     timeRequiredDesc: string;
+    // Extras & Packs
+    extrasSection: {
+      title: string;
+      packs: string;
+      individual: string;
+      included: string;
+      savings: string;
+      noPack: string;
+      selected: string;
+      packSelected: string;
+    };
   };
-  
+
   // FAQ Page
   faq: {
     title: string;
@@ -363,6 +375,26 @@ export interface Translations {
     bookBoat: string;
   };
 
+  // Gift Card Banner (homepage)
+  giftCardBanner: {
+    title: string;
+    subtitle: string;
+    cta: string;
+  };
+
+  // Code Validation (booking form)
+  codeValidation: {
+    haveCode: string;
+    enterCode: string;
+    validate: string;
+    validGiftCard: string;
+    validDiscount: string;
+    invalidCode: string;
+    value: string;
+    discount: string;
+    applied: string;
+  };
+
   // Gift Cards
   giftCards: {
     title: string;
@@ -412,6 +444,7 @@ export const translations: Record<Language, Translations> = {
       booking: 'Reserva',
       contact: 'Contacto',
       faq: 'FAQ',
+      giftCards: 'Tarjetas Regalo',
       viewComponents: 'Ver Componentes',
     },
     hero: {
@@ -617,6 +650,16 @@ export const translations: Record<Language, Translations> = {
       peopleRequiredDesc: 'Por favor indica el número de personas',
       timeRequired: 'Campo requerido: Hora',
       timeRequiredDesc: 'Por favor selecciona una hora de inicio',
+      extrasSection: {
+        title: 'Extras y Packs',
+        packs: 'Packs con descuento',
+        individual: 'Extras individuales',
+        included: 'Incluye',
+        savings: 'Ahorras',
+        noPack: 'Sin pack',
+        selected: 'seleccionados',
+        packSelected: 'Pack seleccionado',
+      },
     },
     faq: {
       title: 'Preguntas Frecuentes',
@@ -739,6 +782,22 @@ export const translations: Record<Language, Translations> = {
       subtitle: 'Descubre las mejores rutas en barco desde el Puerto de Blanes',
       bookBoat: 'Reservar barco',
     },
+    giftCardBanner: {
+      title: 'Regala una experiencia unica en el mar',
+      subtitle: 'Tarjetas regalo desde 50EUR. El regalo perfecto para cualquier ocasion.',
+      cta: 'Comprar tarjeta regalo',
+    },
+    codeValidation: {
+      haveCode: 'Tienes un codigo de regalo o descuento?',
+      enterCode: 'Introduce tu codigo',
+      validate: 'Validar',
+      validGiftCard: 'Tarjeta regalo valida',
+      validDiscount: 'Codigo de descuento valido',
+      invalidCode: 'Codigo no valido o expirado',
+      value: 'Valor',
+      discount: 'Descuento',
+      applied: 'Aplicado',
+    },
     giftCards: {
       title: 'Tarjetas Regalo',
       subtitle: 'Regala una experiencia nautica inolvidable en la Costa Brava',
@@ -784,6 +843,7 @@ export const translations: Record<Language, Translations> = {
       booking: 'Reserva',
       contact: 'Contacte',
       faq: 'FAQ',
+      giftCards: 'Targetes Regal',
       viewComponents: 'Veure Components',
     },
     hero: {
@@ -927,6 +987,16 @@ export const translations: Record<Language, Translations> = {
       peopleRequiredDesc: 'Si us plau, indica el nombre de persones',
       timeRequired: 'Camp requerit: Hora',
       timeRequiredDesc: 'Si us plau, selecciona una hora d\'inici',
+      extrasSection: {
+        title: 'Extres i Packs',
+        packs: 'Packs amb descompte',
+        individual: 'Extres individuals',
+        included: 'Inclou',
+        savings: 'Estalvies',
+        noPack: 'Sense pack',
+        selected: 'seleccionats',
+        packSelected: 'Pack seleccionat',
+      },
     },
     faq: {
       title: 'Preguntes Freqüents',
@@ -1049,6 +1119,22 @@ export const translations: Record<Language, Translations> = {
       subtitle: 'Descobreix les millors rutes en barca des del Port de Blanes',
       bookBoat: 'Reservar barca',
     },
+    giftCardBanner: {
+      title: 'Regala una experiencia unica al mar',
+      subtitle: 'Targetes regal des de 50EUR. El regal perfecte per a qualsevol ocasio.',
+      cta: 'Comprar targeta regal',
+    },
+    codeValidation: {
+      haveCode: 'Tens un codi de regal o descompte?',
+      enterCode: 'Introdueix el teu codi',
+      validate: 'Validar',
+      validGiftCard: 'Targeta regal valida',
+      validDiscount: 'Codi de descompte valid',
+      invalidCode: 'Codi no valid o caducat',
+      value: 'Valor',
+      discount: 'Descompte',
+      applied: 'Aplicat',
+    },
     giftCards: {
       title: 'Targetes Regal',
       subtitle: 'Regala una experiencia nautica inoblidable a la Costa Brava',
@@ -1094,6 +1180,7 @@ export const translations: Record<Language, Translations> = {
       booking: 'Booking',
       contact: 'Contact',
       faq: 'FAQ',
+      giftCards: 'Gift Cards',
       viewComponents: 'View Components',
     },
     hero: {
@@ -1242,6 +1329,16 @@ export const translations: Record<Language, Translations> = {
       peopleRequiredDesc: 'Please indicate the number of people',
       timeRequired: 'Required: Time',
       timeRequiredDesc: 'Please select a start time',
+      extrasSection: {
+        title: 'Extras & Packs',
+        packs: 'Discounted Packs',
+        individual: 'Individual Extras',
+        included: 'Includes',
+        savings: 'You save',
+        noPack: 'No pack',
+        selected: 'selected',
+        packSelected: 'Pack selected',
+      },
     },
     faq: {
       title: 'Frequently Asked Questions',
@@ -1364,6 +1461,22 @@ export const translations: Record<Language, Translations> = {
       subtitle: 'Discover the best boat routes from Blanes Port',
       bookBoat: 'Book a boat',
     },
+    giftCardBanner: {
+      title: 'Give a unique experience on the sea',
+      subtitle: 'Gift cards from 50EUR. The perfect gift for any occasion.',
+      cta: 'Buy gift card',
+    },
+    codeValidation: {
+      haveCode: 'Have a gift card or discount code?',
+      enterCode: 'Enter your code',
+      validate: 'Validate',
+      validGiftCard: 'Valid gift card',
+      validDiscount: 'Valid discount code',
+      invalidCode: 'Invalid or expired code',
+      value: 'Value',
+      discount: 'Discount',
+      applied: 'Applied',
+    },
     giftCards: {
       title: 'Gift Cards',
       subtitle: 'Give an unforgettable nautical experience on the Costa Brava',
@@ -1409,6 +1522,7 @@ export const translations: Record<Language, Translations> = {
       booking: 'Réservation',
       contact: 'Contact',
       faq: 'FAQ',
+      giftCards: 'Cartes Cadeaux',
       viewComponents: 'Voir Composants',
     },
     hero: {
@@ -1534,6 +1648,16 @@ export const translations: Record<Language, Translations> = {
       peopleRequiredDesc: 'Veuillez indiquer le nombre de personnes',
       timeRequired: 'Champ requis: Heure',
       timeRequiredDesc: 'Veuillez sélectionner une heure de début',
+      extrasSection: {
+        title: 'Extras et Packs',
+        packs: 'Packs avec remise',
+        individual: 'Extras individuels',
+        included: 'Comprend',
+        savings: 'Vous economisez',
+        noPack: 'Sans pack',
+        selected: 'selectionnes',
+        packSelected: 'Pack selectionne',
+      },
     },
     faq: {
       title: 'Questions Fréquentes',
@@ -1656,6 +1780,22 @@ export const translations: Record<Language, Translations> = {
       subtitle: 'Decouvrez les meilleures routes en bateau depuis le port de Blanes',
       bookBoat: 'Reserver un bateau',
     },
+    giftCardBanner: {
+      title: 'Offrez une experience unique en mer',
+      subtitle: 'Cartes cadeaux a partir de 50EUR. Le cadeau parfait pour toute occasion.',
+      cta: 'Acheter une carte cadeau',
+    },
+    codeValidation: {
+      haveCode: 'Vous avez un code cadeau ou de reduction?',
+      enterCode: 'Entrez votre code',
+      validate: 'Valider',
+      validGiftCard: 'Carte cadeau valide',
+      validDiscount: 'Code de reduction valide',
+      invalidCode: 'Code invalide ou expire',
+      value: 'Valeur',
+      discount: 'Reduction',
+      applied: 'Applique',
+    },
     giftCards: {
       title: 'Cartes Cadeaux',
       subtitle: 'Offrez une experience nautique inoubliable sur la Costa Brava',
@@ -1701,6 +1841,7 @@ export const translations: Record<Language, Translations> = {
       booking: 'Buchung',
       contact: 'Kontakt',
       faq: 'FAQ',
+      giftCards: 'Geschenkkarten',
       viewComponents: 'Komponenten Anzeigen',
     },
     hero: {
@@ -1823,6 +1964,16 @@ export const translations: Record<Language, Translations> = {
       peopleRequiredDesc: 'Bitte geben Sie die Anzahl der Personen an',
       timeRequired: 'Pflichtfeld: Uhrzeit',
       timeRequiredDesc: 'Bitte wählen Sie eine Startzeit',
+      extrasSection: {
+        title: 'Extras & Pakete',
+        packs: 'Rabattierte Pakete',
+        individual: 'Einzelne Extras',
+        included: 'Enthalt',
+        savings: 'Sie sparen',
+        noPack: 'Kein Paket',
+        selected: 'ausgewahlt',
+        packSelected: 'Paket ausgewahlt',
+      },
     },
     faq: {
       title: 'Häufig Gestellte Fragen',
@@ -1945,6 +2096,22 @@ export const translations: Record<Language, Translations> = {
       subtitle: 'Entdecken Sie die besten Bootsrouten ab dem Hafen von Blanes',
       bookBoat: 'Boot buchen',
     },
+    giftCardBanner: {
+      title: 'Verschenken Sie ein einzigartiges Erlebnis auf dem Meer',
+      subtitle: 'Geschenkkarten ab 50EUR. Das perfekte Geschenk fur jeden Anlass.',
+      cta: 'Geschenkkarte kaufen',
+    },
+    codeValidation: {
+      haveCode: 'Haben Sie einen Geschenk- oder Rabattcode?',
+      enterCode: 'Code eingeben',
+      validate: 'Prufen',
+      validGiftCard: 'Gultige Geschenkkarte',
+      validDiscount: 'Gultiger Rabattcode',
+      invalidCode: 'Ungultiger oder abgelaufener Code',
+      value: 'Wert',
+      discount: 'Rabatt',
+      applied: 'Angewendet',
+    },
     giftCards: {
       title: 'Geschenkkarten',
       subtitle: 'Verschenken Sie ein unvergessliches Erlebnis auf dem Meer an der Costa Brava',
@@ -1990,6 +2157,7 @@ export const translations: Record<Language, Translations> = {
       booking: 'Boeking',
       contact: 'Contact',
       faq: 'FAQ',
+      giftCards: 'Cadeaukaarten',
       viewComponents: 'Componenten Bekijken',
     },
     hero: {
@@ -2112,6 +2280,16 @@ export const translations: Record<Language, Translations> = {
       peopleRequiredDesc: 'Geef het aantal personen aan',
       timeRequired: 'Verplicht: Tijd',
       timeRequiredDesc: 'Selecteer een starttijd',
+      extrasSection: {
+        title: 'Extra\'s & Pakketten',
+        packs: 'Pakketten met korting',
+        individual: 'Individuele extra\'s',
+        included: 'Bevat',
+        savings: 'U bespaart',
+        noPack: 'Geen pakket',
+        selected: 'geselecteerd',
+        packSelected: 'Pakket geselecteerd',
+      },
     },
     faq: {
       title: 'Veelgestelde Vragen',
@@ -2234,6 +2412,22 @@ export const translations: Record<Language, Translations> = {
       subtitle: 'Ontdek de beste bootroutes vanuit de haven van Blanes',
       bookBoat: 'Boot boeken',
     },
+    giftCardBanner: {
+      title: 'Geef een unieke ervaring op zee',
+      subtitle: 'Cadeaukaarten vanaf 50EUR. Het perfecte cadeau voor elke gelegenheid.',
+      cta: 'Cadeaukaart kopen',
+    },
+    codeValidation: {
+      haveCode: 'Heb je een cadeaukaart of kortingscode?',
+      enterCode: 'Voer je code in',
+      validate: 'Valideren',
+      validGiftCard: 'Geldige cadeaukaart',
+      validDiscount: 'Geldige kortingscode',
+      invalidCode: 'Ongeldige of verlopen code',
+      value: 'Waarde',
+      discount: 'Korting',
+      applied: 'Toegepast',
+    },
     giftCards: {
       title: 'Cadeaukaarten',
       subtitle: 'Geef een onvergetelijke nautische ervaring aan de Costa Brava',
@@ -2279,6 +2473,7 @@ export const translations: Record<Language, Translations> = {
       booking: 'Prenotazione',
       contact: 'Contatto',
       faq: 'FAQ',
+      giftCards: 'Carte Regalo',
       viewComponents: 'Visualizza Componenti',
     },
     hero: {
@@ -2401,6 +2596,16 @@ export const translations: Record<Language, Translations> = {
       peopleRequiredDesc: 'Indica il numero di persone',
       timeRequired: 'Campo obbligatorio: Ora',
       timeRequiredDesc: 'Seleziona un orario di inizio',
+      extrasSection: {
+        title: 'Extra e Pacchetti',
+        packs: 'Pacchetti scontati',
+        individual: 'Extra individuali',
+        included: 'Include',
+        savings: 'Risparmi',
+        noPack: 'Senza pacchetto',
+        selected: 'selezionati',
+        packSelected: 'Pacchetto selezionato',
+      },
     },
     faq: {
       title: 'Domande Frequenti',
@@ -2523,6 +2728,22 @@ export const translations: Record<Language, Translations> = {
       subtitle: 'Scopri i migliori percorsi in barca dal Porto di Blanes',
       bookBoat: 'Prenota barca',
     },
+    giftCardBanner: {
+      title: 'Regala un\'esperienza unica in mare',
+      subtitle: 'Carte regalo da 50EUR. Il regalo perfetto per ogni occasione.',
+      cta: 'Acquista carta regalo',
+    },
+    codeValidation: {
+      haveCode: 'Hai un codice regalo o sconto?',
+      enterCode: 'Inserisci il tuo codice',
+      validate: 'Validare',
+      validGiftCard: 'Carta regalo valida',
+      validDiscount: 'Codice sconto valido',
+      invalidCode: 'Codice non valido o scaduto',
+      value: 'Valore',
+      discount: 'Sconto',
+      applied: 'Applicato',
+    },
     giftCards: {
       title: 'Carte Regalo',
       subtitle: 'Regala un\'esperienza nautica indimenticabile sulla Costa Brava',
@@ -2568,6 +2789,7 @@ export const translations: Record<Language, Translations> = {
       booking: 'Бронирование',
       contact: 'Контакты',
       faq: 'Часто задаваемые вопросы',
+      giftCards: 'Подарочные карты',
       viewComponents: 'Просмотр компонентов',
     },
     hero: {
@@ -2690,6 +2912,16 @@ export const translations: Record<Language, Translations> = {
       peopleRequiredDesc: 'Пожалуйста, укажите количество человек',
       timeRequired: 'Обязательное поле: Время',
       timeRequiredDesc: 'Пожалуйста, выберите время начала',
+      extrasSection: {
+        title: 'Дополнения и Пакеты',
+        packs: 'Пакеты со скидкой',
+        individual: 'Отдельные дополнения',
+        included: 'Включает',
+        savings: 'Вы экономите',
+        noPack: 'Без пакета',
+        selected: 'выбрано',
+        packSelected: 'Пакет выбран',
+      },
     },
     faq: {
       title: 'Часто Задаваемые Вопросы',
@@ -2812,6 +3044,22 @@ export const translations: Record<Language, Translations> = {
       subtitle: 'Откройте лучшие лодочные маршруты из порта Бланес',
       bookBoat: 'Забронировать лодку',
     },
+    giftCardBanner: {
+      title: 'Подарите уникальный опыт на море',
+      subtitle: 'Подарочные карты от 50EUR. Идеальный подарок для любого случая.',
+      cta: 'Купить подарочную карту',
+    },
+    codeValidation: {
+      haveCode: 'Есть подарочная карта или код скидки?',
+      enterCode: 'Введите ваш код',
+      validate: 'Проверить',
+      validGiftCard: 'Действительная подарочная карта',
+      validDiscount: 'Действительный код скидки',
+      invalidCode: 'Недействительный или просроченный код',
+      value: 'Стоимость',
+      discount: 'Скидка',
+      applied: 'Применено',
+    },
     giftCards: {
       title: 'Подарочные карты',
       subtitle: 'Подарите незабываемый морской опыт на Коста-Браве',
@@ -2851,8 +3099,26 @@ export const translations: Record<Language, Translations> = {
   },
 };
 
-// Translation hook
-export function useTranslations() {
+// Deep merge helper: fills missing keys from fallback
+function deepMerge(target: Record<string, any>, fallback: Record<string, any>): Record<string, any> {
+  const result = { ...fallback, ...target };
+  for (const key of Object.keys(fallback)) {
+    if (
+      typeof fallback[key] === 'object' &&
+      fallback[key] !== null &&
+      !Array.isArray(fallback[key]) &&
+      typeof target[key] === 'object' &&
+      target[key] !== null
+    ) {
+      result[key] = deepMerge(target[key], fallback[key]);
+    }
+  }
+  return result;
+}
+
+// Translation hook — falls back to Spanish for missing keys
+export function useTranslations(): Translations {
   const { language } = useLanguage();
-  return translations[language];
+  if (language === 'es') return translations.es;
+  return deepMerge(translations[language] as Record<string, any>, translations.es as Record<string, any>) as Translations;
 }

@@ -1,0 +1,73 @@
+performance-optimizer(Full performance optimization audit)
+  ⎿  Done (262 tool uses · 135.7k tokens · 30m 17s)                                   
+                                                                                      
+⏺ Optimizacion completada                                                             
+                                                                                      
+  Cambios implementados (9 archivos)                                                  
+  #: 1                                                                                
+  Optimizacion: LanguageSelector sin Radix UI — reemplazado dropdown por CSS nativo   
+  con                                                                                 
+     misma accesibilidad                                                              
+  Impacto: -48KB gz critical path
+  Archivo: LanguageSelector.tsx                                                       
+  ────────────────────────────────────────                                            
+  #: 2                                                                                
+  Optimizacion: DeferredTooltipProvider — lazy load del TooltipProvider (solo se usa
+  en                                                                                  
+     admin)                                                                           
+  Impacto: Elimina Radix del critical path                                            
+  Archivo: App.tsx
+  ────────────────────────────────────────                                            
+  #: 3                                                                                
+  Optimizacion: Lazy load CookieBanner, Toaster, AdminLayout — no necesarios en render
+                                                                                      
+    inicial                                                                           
+  Impacto: -5.5KB gz main chunk (-14%)                                                
+  Archivo: App.tsx                                                                    
+  ────────────────────────────────────────                                            
+  #: 4                                                                                
+  Optimizacion: Separar RevealAnimations de PageTransition — evita que PageTransition
+    tire de framer-motion
+  Impacto: Mejor code splitting
+  Archivo: PageTransition.tsx, RevealAnimations.tsx
+  ────────────────────────────────────────
+  #: 5
+  Optimizacion: Vite chunks mejorados — vendor-schema separado, sessions chunk
+  reducido
+  Impacto: sessions -73% (12.8→3.4KB)
+  Archivo: vite.config.ts
+  ────────────────────────────────────────
+  #: 6
+  Optimizacion: Hero LCP — decoding="sync" + width/height explicitos
+  Impacto: Faster LCP, zero CLS
+  Archivo: Hero.tsx
+  ────────────────────────────────────────
+  #: 7
+  Optimizacion: HTML fonts/hints — eliminar font weight 500 no usado, defer GA,
+    font-display swap
+  Impacto: -1-2KB, faster font render
+  Archivo: index.html
+  ────────────────────────────────────────
+  #: 8
+  Optimizacion: Service Worker inteligente — 4 estrategias de cache (immutable,
+    network-first, stale-while-revalidate, cache-first)
+  Impacto: Instant subsequent loads
+  Archivo: sw.js
+  Before → After
+  ┌────────────────────────────┬─────────────┬─────────────────┬────────┐
+  │          Metrica           │    Antes    │     Despues     │ Cambio │
+  ├────────────────────────────┼─────────────┼─────────────────┼────────┤
+  │ Critical path JS           │ ~232 KB gz  │ ~178 KB gz      │ -23%   │
+  ├────────────────────────────┼─────────────┼─────────────────┼────────┤
+  │ Main index chunk           │ 40.05 KB gz │ 34.50 KB gz     │ -14%   │
+  ├────────────────────────────┼─────────────┼─────────────────┼────────┤
+  │ vendor-ui on critical path │ 47.90 KB gz │ 0 KB (deferred) │ -100%  │
+  ├────────────────────────────┼─────────────┼─────────────────┼────────┤
+  │ Sessions chunk             │ 12.79 KB gz │ 3.40 KB gz      │ -73%   │
+  └────────────────────────────┴─────────────┴─────────────────┴────────┘
+  Proximos pasos (futuro)
+
+  1. Reemplazar framer-motion en Header/Footer por CSS — potencial -43KB gz adicional
+  del critical path
+  2. Self-host Syne font — eliminar request externo a Google Fonts
+  3. SSR/SSG para paginas publicas — LCP dramaticamente mejor

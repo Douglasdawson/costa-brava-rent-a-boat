@@ -117,6 +117,86 @@ export type Tenant = typeof tenants.$inferSelect;
 export type InsertTenant = z.infer<typeof insertTenantSchema>;
 export type UpdateTenant = z.infer<typeof updateTenantSchema>;
 
+// ===== USERS (Multi-tenant auth) =====
+
+export const USER_ROLES = {
+  OWNER: 'owner',
+  ADMIN: 'admin',
+  EMPLOYEE: 'employee',
+} as const;
+
+export type UserRole = typeof USER_ROLES[keyof typeof USER_ROLES];
+
+export const users = pgTable("users", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  tenantId: varchar("tenant_id").notNull().references(() => tenants.id),
+  email: text("email").notNull(),
+  passwordHash: text("password_hash").notNull(),
+  role: text("role").notNull().default("employee"), // 'owner' | 'admin' | 'employee'
+  firstName: text("first_name"),
+  lastName: text("last_name"),
+  avatarUrl: text("avatar_url"),
+  isActive: boolean("is_active").notNull().default(true),
+  lastLoginAt: timestamp("last_login_at", { withTimezone: true }),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().default(sql`now()`),
+}, (table) => ({
+  emailTenantIdx: unique("users_email_tenant_idx").on(table.email, table.tenantId),
+  tenantIdx: index("users_tenant_idx").on(table.tenantId),
+}));
+
+export const insertUserSchema = z.object({
+  tenantId: z.string().min(1),
+  email: z.string().email("Email invalido"),
+  passwordHash: z.string().min(1),
+  role: z.enum(["owner", "admin", "employee"]).optional().default("employee"),
+  firstName: z.string().optional().or(z.null()),
+  lastName: z.string().optional().or(z.null()),
+  avatarUrl: z.string().optional().or(z.null()),
+});
+
+export const updateUserSchema = z.object({
+  firstName: z.string().optional().or(z.null()),
+  lastName: z.string().optional().or(z.null()),
+  avatarUrl: z.string().optional().or(z.null()),
+  role: z.enum(["owner", "admin", "employee"]).optional(),
+  isActive: z.boolean().optional(),
+});
+
+export type SaasUser = typeof users.$inferSelect;
+export type InsertUser = z.infer<typeof insertUserSchema>;
+export type UpdateUser = z.infer<typeof updateUserSchema>;
+
+// ===== REFRESH TOKENS =====
+
+export const refreshTokens = pgTable("refresh_tokens", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  userId: varchar("user_id").notNull().references(() => users.id, { onDelete: "cascade" }),
+  token: text("token").notNull().unique(),
+  expiresAt: timestamp("expires_at", { withTimezone: true }).notNull(),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().default(sql`now()`),
+}, (table) => ({
+  userIdx: index("refresh_tokens_user_idx").on(table.userId),
+  tokenIdx: index("refresh_tokens_token_idx").on(table.token),
+  expiresIdx: index("refresh_tokens_expires_idx").on(table.expiresAt),
+}));
+
+export type RefreshToken = typeof refreshTokens.$inferSelect;
+
+// ===== PASSWORD RESET TOKENS =====
+
+export const passwordResetTokens = pgTable("password_reset_tokens", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  userId: varchar("user_id").notNull().references(() => users.id, { onDelete: "cascade" }),
+  token: text("token").notNull().unique(),
+  expiresAt: timestamp("expires_at", { withTimezone: true }).notNull(),
+  usedAt: timestamp("used_at", { withTimezone: true }),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().default(sql`now()`),
+}, (table) => ({
+  tokenIdx: index("password_reset_token_idx").on(table.token),
+}));
+
+export type PasswordResetToken = typeof passwordResetTokens.$inferSelect;
+
 // Admin users (existing system - for CRM access)
 export const adminUsers = pgTable("admin_users", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),

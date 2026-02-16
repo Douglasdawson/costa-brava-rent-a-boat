@@ -168,6 +168,39 @@ function CRMDashboardPage() {
     }
   }, [setLocation]);
 
+  // Auto-refresh token if we have a refresh token
+  useEffect(() => {
+    if (!isAuthenticated) return;
+
+    const refreshInterval = setInterval(async () => {
+      const refreshToken = sessionStorage.getItem("refreshToken");
+      if (!refreshToken) return;
+
+      try {
+        const response = await fetch("/api/auth/refresh-token", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ refreshToken }),
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          sessionStorage.setItem("adminToken", data.accessToken);
+          sessionStorage.setItem("refreshToken", data.refreshToken);
+          setAdminToken(data.accessToken);
+        } else {
+          // Refresh failed - session expired
+          sessionStorage.clear();
+          setLocation("/login");
+        }
+      } catch {
+        // Silent failure on refresh
+      }
+    }, 50 * 60 * 1000); // Refresh every 50 minutes (token expires in 60)
+
+    return () => clearInterval(refreshInterval);
+  }, [isAuthenticated, setLocation]);
+
   if (!isAuthenticated) {
     return null; // Will redirect in useEffect
   }

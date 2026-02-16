@@ -1,6 +1,8 @@
 import {
   tenants,
   type Tenant, type InsertTenant, type UpdateTenant,
+  users, refreshTokens, passwordResetTokens,
+  type SaasUser, type InsertUser, type UpdateUser, type RefreshToken, type PasswordResetToken,
   adminUsers, customerUsers, customers, boats, bookings, bookingExtras, testimonials,
   blogPosts, destinations, chatbotConversations, clientPhotos,
   type AdminUser, type InsertAdminUser,
@@ -47,6 +49,28 @@ export interface IStorage {
   updateTenant(id: string, data: UpdateTenant): Promise<Tenant | undefined>;
   getAllTenants(): Promise<Tenant[]>;
   seedDefaultTenant(): Promise<Tenant>;
+
+  // SaaS User methods (multi-tenant auth)
+  getUserById(id: string): Promise<SaasUser | undefined>;
+  getUserByEmail(email: string, tenantId: string): Promise<SaasUser | undefined>;
+  getUsersByTenant(tenantId: string): Promise<SaasUser[]>;
+  createUser(data: InsertUser): Promise<SaasUser>;
+  updateUser(id: string, data: Partial<SaasUser>): Promise<SaasUser | undefined>;
+
+  // Refresh token methods
+  createRefreshToken(userId: string, token: string, expiresAt: Date): Promise<RefreshToken>;
+  getRefreshToken(token: string): Promise<RefreshToken | undefined>;
+  deleteRefreshToken(token: string): Promise<boolean>;
+  deleteUserRefreshTokens(userId: string): Promise<void>;
+  cleanupExpiredRefreshTokens(): Promise<number>;
+
+  // Password reset token methods
+  createPasswordResetToken(userId: string, token: string, expiresAt: Date): Promise<PasswordResetToken>;
+  getPasswordResetToken(token: string): Promise<PasswordResetToken | undefined>;
+  markPasswordResetTokenUsed(token: string): Promise<void>;
+
+  // Migration: admin_users -> users
+  migrateAdminUsersToUsers(tenantId: string): Promise<{ migrated: number; skipped: number }>;
 
   // Admin User methods (CRM access)
   getAdminUser(id: string): Promise<AdminUser | undefined>;
@@ -404,6 +428,115 @@ export class DatabaseStorage implements IStorage {
         sql`UPDATE ${sql.identifier(tableName)} SET tenant_id = ${tenantId} WHERE tenant_id IS NULL`
       );
     }
+  }
+
+  // ===== SAAS USER METHODS =====
+
+  async getUserById(id: string): Promise<SaasUser | undefined> {
+    const [user] = await db.select().from(users).where(eq(users.id, id));
+    return user || undefined;
+  }
+
+  async getUserByEmail(email: string, tenantId: string): Promise<SaasUser | undefined> {
+    const [user] = await db.select().from(users).where(
+      and(eq(users.email, email.toLowerCase().trim()), eq(users.tenantId, tenantId))
+    );
+    return user || undefined;
+  }
+
+  async getUsersByTenant(tenantId: string): Promise<SaasUser[]> {
+    return await db.select().from(users).where(eq(users.tenantId, tenantId));
+  }
+
+  async createUser(data: InsertUser): Promise<SaasUser> {
+    const [user] = await db.insert(users).values({
+      ...data,
+      email: data.email.toLowerCase().trim(),
+    }).returning();
+    return user;
+  }
+
+  async updateUser(id: string, data: Partial<SaasUser>): Promise<SaasUser | undefined> {
+    const [user] = await db.update(users).set(data).where(eq(users.id, id)).returning();
+    return user || undefined;
+  }
+
+  // ===== REFRESH TOKEN METHODS =====
+
+  async createRefreshToken(userId: string, token: string, expiresAt: Date): Promise<RefreshToken> {
+    const [rt] = await db.insert(refreshTokens).values({ userId, token, expiresAt }).returning();
+    return rt;
+  }
+
+  async getRefreshToken(token: string): Promise<RefreshToken | undefined> {
+    const [rt] = await db.select().from(refreshTokens).where(eq(refreshTokens.token, token));
+    return rt || undefined;
+  }
+
+  async deleteRefreshToken(token: string): Promise<boolean> {
+    const result = await db.delete(refreshTokens).where(eq(refreshTokens.token, token));
+    return result.rowCount !== null && result.rowCount > 0;
+  }
+
+  async deleteUserRefreshTokens(userId: string): Promise<void> {
+    await db.delete(refreshTokens).where(eq(refreshTokens.userId, userId));
+  }
+
+  async cleanupExpiredRefreshTokens(): Promise<number> {
+    const result = await db.delete(refreshTokens).where(lte(refreshTokens.expiresAt, new Date()));
+    return result.rowCount ?? 0;
+  }
+
+  // ===== PASSWORD RESET TOKEN METHODS =====
+
+  async createPasswordResetToken(userId: string, token: string, expiresAt: Date): Promise<PasswordResetToken> {
+    const [prt] = await db.insert(passwordResetTokens).values({ userId, token, expiresAt }).returning();
+    return prt;
+  }
+
+  async getPasswordResetToken(token: string): Promise<PasswordResetToken | undefined> {
+    const [prt] = await db.select().from(passwordResetTokens).where(
+      and(eq(passwordResetTokens.token, token), isNull(passwordResetTokens.usedAt))
+    );
+    return prt || undefined;
+  }
+
+  async markPasswordResetTokenUsed(token: string): Promise<void> {
+    await db.update(passwordResetTokens).set({ usedAt: new Date() }).where(eq(passwordResetTokens.token, token));
+  }
+
+  // ===== MIGRATION: admin_users -> users =====
+
+  async migrateAdminUsersToUsers(tenantId: string): Promise<{ migrated: number; skipped: number }> {
+    const admins = await db.select().from(adminUsers).where(eq(adminUsers.tenantId, tenantId));
+    let migrated = 0;
+    let skipped = 0;
+
+    for (const admin of admins) {
+      // Use username@tenant-slug as email if no email exists
+      const tenant = await this.getTenant(tenantId);
+      const email = `${admin.username}@${tenant?.slug || 'local'}.nauticflow.app`;
+
+      // Check if already migrated
+      const existing = await this.getUserByEmail(email, tenantId);
+      if (existing) {
+        skipped++;
+        continue;
+      }
+
+      await db.insert(users).values({
+        tenantId,
+        email,
+        passwordHash: admin.passwordHash,
+        role: admin.role === "admin" ? "owner" : "employee",
+        firstName: admin.displayName || admin.username,
+        isActive: admin.isActive,
+        lastLoginAt: admin.lastLoginAt,
+      });
+      migrated++;
+    }
+
+    return { migrated, skipped };
   }
 
   // Admin User methods (CRM access)

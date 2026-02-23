@@ -10,9 +10,14 @@ import { useTranslations } from "@/lib/translations";
 import BookingFormWidget from "@/components/BookingFormWidget";
 import { trackBookingFormOpen } from "@/utils/analytics";
 
+export interface BookingPrefillData {
+  date?: string;
+  time?: string;
+}
+
 interface BookingModalContextType {
   isOpen: boolean;
-  openBookingModal: (boatId?: string) => void;
+  openBookingModal: (boatId?: string, prefill?: BookingPrefillData) => void;
   closeBookingModal: () => void;
 }
 
@@ -21,17 +26,20 @@ const BookingModalContext = createContext<BookingModalContextType | null>(null);
 export function BookingModalProvider({ children }: { children: React.ReactNode }) {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedBoatId, setSelectedBoatId] = useState<string | undefined>(undefined);
+  const [prefillData, setPrefillData] = useState<BookingPrefillData | undefined>(undefined);
   const t = useTranslations();
 
-  const openBookingModal = useCallback((boatId?: string) => {
+  const openBookingModal = useCallback((boatId?: string, prefill?: BookingPrefillData) => {
     trackBookingFormOpen(boatId);
     setSelectedBoatId(boatId);
+    setPrefillData(prefill);
     setIsOpen(true);
   }, []);
 
   const closeBookingModal = useCallback(() => {
     setIsOpen(false);
     setSelectedBoatId(undefined);
+    setPrefillData(undefined);
   }, []);
 
   return (
@@ -55,6 +63,8 @@ export function BookingModalProvider({ children }: { children: React.ReactNode }
           <div className="flex-1 min-h-0 overflow-hidden">
             <BookingFormWidget
               preSelectedBoatId={selectedBoatId}
+              prefillDate={prefillData?.date}
+              prefillTime={prefillData?.time}
               onClose={closeBookingModal}
             />
           </div>

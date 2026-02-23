@@ -362,6 +362,7 @@ export interface Translations {
     slotsFor: string;
     noSlots: string;
     selectDay: string;
+    book: string;
   };
 
   // Gallery
@@ -867,6 +868,7 @@ export const translations: Record<Language, Translations> = {
       slotsFor: 'Horarios para',
       noSlots: 'No hay horarios disponibles para esta fecha',
       selectDay: 'Selecciona un día para ver los horarios disponibles',
+      book: 'Reservar',
     },
     gallery: {
       title: 'Galeria de Fotos',
@@ -1293,6 +1295,7 @@ export const translations: Record<Language, Translations> = {
       slotsFor: 'Horaris per',
       noSlots: 'No hi ha horaris disponibles per aquesta data',
       selectDay: 'Selecciona un dia per veure els horaris disponibles',
+      book: 'Reservar',
     },
     gallery: {
       title: 'Galeria de Fotos',
@@ -1724,6 +1727,7 @@ export const translations: Record<Language, Translations> = {
       slotsFor: 'Time slots for',
       noSlots: 'No time slots available for this date',
       selectDay: 'Select a day to see available time slots',
+      book: 'Book',
     },
     gallery: {
       title: 'Photo Gallery',
@@ -2132,6 +2136,7 @@ export const translations: Record<Language, Translations> = {
       slotsFor: 'Horaires pour le',
       noSlots: 'Aucun créneau disponible pour cette date',
       selectDay: 'Sélectionnez un jour pour voir les créneaux disponibles',
+      book: 'Réserver',
     },
     gallery: {
       title: 'Galerie Photos',
@@ -2540,6 +2545,7 @@ export const translations: Record<Language, Translations> = {
       slotsFor: 'Zeitfenster für',
       noSlots: 'Keine Zeitfenster für dieses Datum verfügbar',
       selectDay: 'Wählen Sie einen Tag, um verfügbare Zeitfenster zu sehen',
+      book: 'Buchen',
     },
     gallery: {
       title: 'Fotogalerie',
@@ -2948,6 +2954,7 @@ export const translations: Record<Language, Translations> = {
       slotsFor: 'Tijdsloten voor',
       noSlots: 'Geen tijdsloten beschikbaar voor deze datum',
       selectDay: 'Selecteer een dag om beschikbare tijdsloten te zien',
+      book: 'Boeken',
     },
     gallery: {
       title: 'Fotogalerij',
@@ -3356,6 +3363,7 @@ export const translations: Record<Language, Translations> = {
       slotsFor: 'Orari per il',
       noSlots: 'Nessun orario disponibile per questa data',
       selectDay: 'Seleziona un giorno per vedere gli orari disponibili',
+      book: 'Prenota',
     },
     gallery: {
       title: 'Galleria Fotografica',
@@ -3764,6 +3772,7 @@ export const translations: Record<Language, Translations> = {
       slotsFor: 'Время на',
       noSlots: 'Нет доступных временных слотов на эту дату',
       selectDay: 'Выберите день, чтобы увидеть доступные временные слоты',
+      book: 'Забронировать',
     },
     gallery: {
       title: 'Фотогалерея',

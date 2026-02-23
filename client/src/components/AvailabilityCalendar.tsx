@@ -17,9 +17,10 @@ interface AvailabilityData {
 
 interface AvailabilityCalendarProps {
   boatId: string;
+  onSlotSelect?: (date: string, time: string) => void;
 }
 
-export default function AvailabilityCalendar({ boatId }: AvailabilityCalendarProps) {
+export default function AvailabilityCalendar({ boatId, onSlotSelect }: AvailabilityCalendarProps) {
   const t = useTranslations();
   const [currentMonth, setCurrentMonth] = useState<Date>(new Date());
   const [selectedDate, setSelectedDate] = useState<Date | undefined>(undefined);
@@ -168,19 +169,33 @@ export default function AvailabilityCalendar({ boatId }: AvailabilityCalendarPro
                   {selectedDate.toLocaleDateString()}:
                 </h4>
                 <div className="grid grid-cols-3 sm:grid-cols-5 gap-2">
-                  {selectedSlots.map((slot) => (
-                    <Badge
-                      key={slot.time}
-                      variant={slot.available ? "outline" : "secondary"}
-                      className={`justify-center py-1.5 ${
-                        slot.available
-                          ? "bg-green-50 text-green-700 border-green-200 hover:bg-green-100"
-                          : "bg-red-50 text-red-500 border-red-200"
-                      }`}
-                    >
-                      {slot.time}
-                    </Badge>
-                  ))}
+                  {selectedSlots.map((slot) => {
+                    const dateStr = `${selectedDate!.getFullYear()}-${String(selectedDate!.getMonth() + 1).padStart(2, '0')}-${String(selectedDate!.getDate()).padStart(2, '0')}`;
+                    const isClickable = slot.available && !!onSlotSelect;
+                    return (
+                      <Badge
+                        key={slot.time}
+                        variant={slot.available ? "outline" : "secondary"}
+                        className={`justify-center py-1.5 flex-col gap-0.5 ${
+                          slot.available
+                            ? isClickable
+                              ? "bg-green-50 text-green-700 border-green-200 hover:bg-green-600 hover:text-white hover:border-green-600 cursor-pointer transition-colors"
+                              : "bg-green-50 text-green-700 border-green-200"
+                            : "bg-red-50 text-red-500 border-red-200 cursor-not-allowed"
+                        }`}
+                        onClick={() => {
+                          if (isClickable) onSlotSelect(dateStr, slot.time);
+                        }}
+                      >
+                        <span>{slot.time}</span>
+                        {isClickable && (
+                          <span className="text-[9px] font-semibold uppercase tracking-wide">
+                            {t.availability?.book || "Reservar"}
+                          </span>
+                        )}
+                      </Badge>
+                    );
+                  })}
                 </div>
               </div>
             )}

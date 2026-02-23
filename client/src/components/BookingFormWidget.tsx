@@ -94,11 +94,13 @@ const ICON_MAP: Record<string, React.ComponentType<{ className?: string }>> = {
 
 interface BookingFormWidgetProps {
   preSelectedBoatId?: string;
+  prefillDate?: string;
+  prefillTime?: string;
   onClose?: () => void;
   hideHeader?: boolean;
 }
 
-export default function BookingFormWidget({ preSelectedBoatId, onClose }: BookingFormWidgetProps) {
+export default function BookingFormWidget({ preSelectedBoatId, prefillDate, prefillTime, onClose }: BookingFormWidgetProps) {
   const getLocalISODate = () => {
     const d = new Date();
     const y = d.getFullYear();
@@ -114,12 +116,12 @@ export default function BookingFormWidget({ preSelectedBoatId, onClose }: Bookin
   const [phoneNumber, setPhoneNumber] = useState("");
   const [email, setEmail] = useState("");
   const [numberOfPeople, setNumberOfPeople] = useState("");
-  const [preferredTime, setPreferredTime] = useState("");
+  const [preferredTime, setPreferredTime] = useState(prefillTime || "");
   const [showPrefixDropdown, setShowPrefixDropdown] = useState(false);
   const [prefixSearch, setPrefixSearch] = useState("");
   const [licenseFilter, setLicenseFilter] = useState<"with" | "without">("without");
   const [selectedBoat, setSelectedBoat] = useState<string>(preSelectedBoatId || "");
-  const [selectedDate, setSelectedDate] = useState(() => getLocalISODate());
+  const [selectedDate, setSelectedDate] = useState(() => prefillDate || getLocalISODate());
   const [selectedDuration, setSelectedDuration] = useState<string>("");
 
   // Extras & Packs state

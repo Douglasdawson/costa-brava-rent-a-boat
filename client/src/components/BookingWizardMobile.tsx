@@ -273,6 +273,21 @@ function Step1Boat({
           {t.wizard.selectABoat}
         </label>
         <div role="radiogroup" aria-label={t.wizard.selectABoat} className="space-y-2">
+          {filteredBoats.length === 0 && (
+            // Skeleton loading while boats load
+            <>
+              {[1, 2, 3].map(i => (
+                <div key={i} className="w-full flex items-center gap-3 p-3 rounded-xl border-2 border-gray-100 animate-pulse">
+                  <div className="w-5 h-5 rounded-full bg-gray-200 flex-shrink-0" />
+                  <div className="flex-1">
+                    <div className="h-4 bg-gray-200 rounded w-3/4 mb-1.5" />
+                    <div className="h-3 bg-gray-200 rounded w-1/4" />
+                  </div>
+                  <div className="h-3 bg-gray-200 rounded w-12" />
+                </div>
+              ))}
+            </>
+          )}
           {filteredBoats.map((boat) => {
             const firstSeason = boat.pricing ? Object.values(boat.pricing)[0] : null;
             const minPrice = firstSeason?.prices
@@ -286,18 +301,19 @@ function Step1Boat({
                 aria-checked={selectedBoat === boat.id}
                 onClick={() => setSelectedBoat(boat.id)}
                 disabled={!!preSelectedBoatId && boat.id !== preSelectedBoatId}
-                className={`w-full flex items-center gap-3 p-3 rounded-xl border-2 text-left transition-all ${
+                className={`w-full flex items-center gap-3 p-3 rounded-xl border-2 text-left transition-all active:scale-[0.97] ${
                   selectedBoat === boat.id
                     ? "border-primary bg-primary/5"
                     : "border-gray-200 bg-white"
                 }`}
               >
-                <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0 ${
+                <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0 transition-colors ${
                   selectedBoat === boat.id ? "border-primary bg-primary" : "border-gray-300"
                 }`}>
-                  {selectedBoat === boat.id && (
-                    <div className="w-2 h-2 rounded-full bg-white" />
-                  )}
+                  {selectedBoat === boat.id
+                    ? <Check className="w-3 h-3 text-white" />
+                    : null
+                  }
                 </div>
                 <div className="flex-1 min-w-0">
                   <p className="font-semibold text-gray-900 text-sm">{boat.name}</p>

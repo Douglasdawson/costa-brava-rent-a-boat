@@ -31,7 +31,8 @@ import {
   Clock,
   Settings,
   ChevronLeft,
-  ChevronRight
+  ChevronRight,
+  X
 } from "lucide-react";
 import { openWhatsApp } from "@/utils/whatsapp";
 import { getBoatImage } from "@/utils/boatImages";
@@ -50,6 +51,8 @@ import type { Boat } from "@shared/schema";
 import { Breadcrumbs } from "./Breadcrumbs";
 import { useTranslations } from "@/lib/translations";
 import AvailabilityCalendar from "./AvailabilityCalendar";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
+import type { BookingPrefillData } from "@/hooks/useBookingModal";
 
 interface BoatDetailPageProps {
   boatId?: string;
@@ -59,6 +62,7 @@ interface BoatDetailPageProps {
 export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDetailPageProps) {
   const [selectedSeason, setSelectedSeason] = useState<"BAJA" | "MEDIA" | "ALTA">("BAJA");
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
   const [, setLocation] = useLocation();
   const { openBookingModal, isOpen: isBookingModalOpen } = useBookingModal();
   const [showStickyCTA, setShowStickyCTA] = useState(false);
@@ -119,8 +123,8 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
     );
   }
 
-  const handleReservation = () => {
-    openBookingModal(boatId);
+  const handleReservation = (prefill?: BookingPrefillData) => {
+    openBookingModal(boatId, prefill);
   };
 
   const handleWhatsApp = () => {
@@ -249,7 +253,23 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
           <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-gray-900 mb-1">
             {boatData.name}
           </h1>
-          <p className="text-base sm:text-lg md:text-xl text-gray-600 mb-2">{boatData.subtitle}</p>
+          <p className="text-base sm:text-lg md:text-xl text-gray-600 mb-3">{boatData.subtitle}</p>
+          {/* Price pill — visible above the fold on all screen sizes */}
+          {lowestPrice > 0 && (
+            <div className="inline-flex items-center gap-3 bg-white border border-gray-200 rounded-full px-5 py-2 shadow-sm">
+              <span className="text-sm text-gray-500">{t.boats.from}</span>
+              <span className="text-2xl font-bold text-primary">{lowestPrice}€</span>
+              <span className="text-xs text-gray-400 bg-gray-100 rounded-full px-2 py-0.5">{t.boatDetail.seasonLow}</span>
+              <Button
+                onClick={() => handleReservation()}
+                size="sm"
+                className="bg-primary text-white rounded-full px-4 py-1 h-auto text-xs font-semibold"
+                data-testid="button-price-pill-reserve"
+              >
+                {t.hero.bookNow}
+              </Button>
+            </div>
+          )}
         </div>
 
         {/* Image and Description Grid */}
@@ -269,10 +289,16 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
               <img
                 src={getBoatImage(displayImages[currentImageIndex])}
                 alt={`Alquiler barco ${boatData.name} ${boatData.subtitle?.includes("Sin Licencia") ? "sin licencia" : "con licencia"} en Blanes Costa Brava 2026 - Imagen ${currentImageIndex + 1}`}
-                className="w-full h-64 sm:h-80 md:h-96 object-cover"
+                className="w-full h-64 sm:h-80 md:h-96 object-cover cursor-zoom-in"
                 loading="lazy"
                 data-testid="img-boat-main"
+                onClick={() => setLightboxOpen(true)}
               />
+              {/* Zoom hint */}
+              <div className="absolute top-2 left-2 bg-black/50 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+                <Eye className="w-3 h-3 inline mr-1" />
+                {t.boatDetail.imageAria}
+              </div>
               
               {/* Navigation arrows - only show if more than one image */}
               {displayImages.length > 1 && (
@@ -381,8 +407,8 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
               <p className="text-gray-600">{t.boatDetail.bookNowCTA.replace('{boatName}', boatData.name)}</p>
               
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button 
-                  onClick={handleReservation}
+                <Button
+                  onClick={() => handleReservation()}
                   className="bg-primary hover:bg-primary/90 text-white px-8 py-3"
                   data-testid="button-make-reservation"
                 >
@@ -458,7 +484,10 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
 
         {/* Availability Calendar */}
         <div className="mb-6 sm:mb-8">
-          <AvailabilityCalendar boatId={boatId} />
+          <AvailabilityCalendar
+            boatId={boatId}
+            onSlotSelect={(date, time) => handleReservation({ date, time })}
+          />
         </div>
 
         {/* Key Features - Full Width */}
@@ -731,13 +760,86 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
       {showStickyCTA && !isBookingModalOpen && (
         <div className="fixed bottom-0 left-0 right-0 z-40 md:hidden">
           <button
-            onClick={handleReservation}
+            onClick={() => handleReservation()}
             className="w-full bg-primary text-white py-4 px-6 font-semibold shadow-lg"
           >
             {t.hero.bookNow}
           </button>
         </div>
       )}
+
+      {/* Sticky pricing sidebar for desktop */}
+      {showStickyCTA && !isBookingModalOpen && lowestPrice > 0 && (
+        <div className="hidden lg:block fixed right-6 top-24 w-64 z-30 transition-all duration-300">
+          <div className="bg-white rounded-xl shadow-xl border border-gray-100 p-4 space-y-3">
+            <p className="font-bold text-gray-900 truncate">{boatData.name}</p>
+            <div className="flex items-baseline gap-2">
+              <span className="text-sm text-gray-500">{t.boats.from}</span>
+              <span className="text-2xl font-bold text-primary">{lowestPrice}€</span>
+            </div>
+            <Button
+              onClick={() => handleReservation()}
+              className="w-full bg-primary text-white py-2 text-sm font-semibold"
+            >
+              <Calendar className="w-4 h-4 mr-1.5" />
+              {t.hero.bookNow}
+            </Button>
+            <button
+              onClick={handleWhatsApp}
+              className="w-full text-xs text-green-600 hover:text-green-700 flex items-center justify-center gap-1.5 py-1"
+            >
+              <MessageSquare className="w-3.5 h-3.5" />
+              {t.contact?.whatsapp || "Consultar por WhatsApp"}
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Lightbox for gallery images */}
+      <Dialog open={lightboxOpen} onOpenChange={setLightboxOpen}>
+        <DialogContent className="max-w-4xl w-[95vw] p-0 gap-0 bg-black/95 border-none [&>button]:hidden">
+          <div className="relative">
+            <Button
+              variant="ghost"
+              size="icon"
+              className="absolute top-2 right-2 z-10 text-white hover:bg-white/20"
+              onClick={() => setLightboxOpen(false)}
+            >
+              <X className="w-5 h-5" />
+            </Button>
+            <div className="flex items-center justify-center min-h-[50vh] max-h-[85vh]">
+              <img
+                src={getBoatImage(displayImages[currentImageIndex])}
+                alt={`${boatData.name} - imagen ${currentImageIndex + 1}`}
+                className="max-w-full max-h-[85vh] object-contain"
+              />
+            </div>
+            {displayImages.length > 1 && (
+              <>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="absolute left-2 top-1/2 -translate-y-1/2 text-white hover:bg-white/20"
+                  onClick={prevImage}
+                >
+                  <ChevronLeft className="w-8 h-8" />
+                </Button>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="absolute right-2 top-1/2 -translate-y-1/2 text-white hover:bg-white/20"
+                  onClick={nextImage}
+                >
+                  <ChevronRight className="w-8 h-8" />
+                </Button>
+              </>
+            )}
+            <div className="p-3 text-white/60 text-sm text-center">
+              {currentImageIndex + 1} / {displayImages.length}
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }

@@ -61,30 +61,35 @@ export default function FeaturesSection() {
     {
       name: "Snorkel",
       image: snorkelImage,
+      alt: "Equipo de snorkel incluido en alquiler de barcos en Blanes Costa Brava",
       price: "7,50€",
       description: "Equipo completo de snorkel para descubrir la vida marina"
     },
     {
       name: "Paddle Surf",
       image: paddleImage,
+      alt: "Paddle surf disponible como extra en alquiler barcos Blanes Costa Brava",
       price: "25€",
       description: "Tabla de paddle surf para explorar calas y costas"
     },
     {
       name: "Nevera con Bebidas",
       image: coolerImage,
+      alt: "Nevera con bebidas frías para excursión en barco Costa Brava Blanes",
       price: "10€",
       description: "Nevera con hielo y bebidas refrescantes para tu día en el mar"
     },
     {
       name: "Excursión Privada",
       image: privateTourImage,
+      alt: "Excursión privada con patrón en barco por Costa Brava desde Blanes",
       price: "Desde 180€",
       description: "Tour privado con patrón incluido para una experiencia exclusiva"
     },
     {
       name: "Parking",
       image: parkingImage,
+      alt: "Parking disponible cerca del puerto de Blanes para clientes",
       price: "10€/día",
       description: "Plaza de parking cerca del puerto para mayor comodidad"
     }
@@ -137,10 +142,11 @@ export default function FeaturesSection() {
               <Card key={index} className="overflow-hidden hover-elevate">
                 <div className="flex flex-col">
                   <div className="w-full aspect-square">
-                    <img 
-                      src={extra.image} 
-                      alt={extra.name}
+                    <img
+                      src={extra.image}
+                      alt={extra.alt}
                       className="w-full h-full object-cover"
+                      loading="lazy"
                     />
                   </div>
                   <div className="p-3 sm:p-4 md:p-6 flex flex-col justify-center">

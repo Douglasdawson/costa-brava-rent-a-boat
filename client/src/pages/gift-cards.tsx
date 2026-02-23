@@ -12,7 +12,7 @@ import { SEO } from "@/components/SEO";
 import { useToast } from "@/hooks/use-toast";
 import { useLanguage } from "@/hooks/use-language";
 import { useTranslations } from "@/lib/translations";
-import { getSEOConfig, generateCanonicalUrl } from "@/utils/seo-config";
+import { getSEOConfig, generateCanonicalUrl, generateHreflangLinks } from "@/utils/seo-config";
 
 const AMOUNTS = [50, 100, 150, 200, 300];
 
@@ -36,6 +36,7 @@ export default function GiftCardsPage() {
     description: "Regala una experiencia en barco por la Costa Brava. Tarjetas regalo desde 50EUR.",
   };
   const canonical = generateCanonicalUrl("giftCards", language);
+  const hreflangLinks = generateHreflangLinks("giftCards");
 
   const effectiveAmount = selectedAmount === -1 ? Number(customAmount) : selectedAmount;
 
@@ -96,7 +97,7 @@ export default function GiftCardsPage() {
   if (purchaseComplete) {
     return (
       <div className="min-h-screen bg-gray-50">
-        <SEO title={seoConfig.title} description={seoConfig.description} canonical={canonical} />
+        <SEO title={seoConfig.title} description={seoConfig.description} canonical={canonical} hreflang={hreflangLinks} />
         <Navigation />
         <div className="container mx-auto px-4 py-16">
           <Card className="max-w-md mx-auto">

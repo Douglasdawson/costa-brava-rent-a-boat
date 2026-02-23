@@ -52,22 +52,18 @@ export default function BoatCard({
   };
 
   const handleDetails = () => {
-    console.log(`View details for boat ${id}`);
-    if (id === "solar-450") {
-      window.location.href = "/barco/solar-450";
-    } else {
-      onDetails(id);
-    }
-    // Ensure scroll to top for consistent behavior
+    onDetails(id);
     setTimeout(() => window.scrollTo(0, 0), 50);
   };
 
   return (
     <Card className="hover-elevate overflow-hidden transition-all duration-300">
-      <div
-        className="relative cursor-pointer group bg-gray-200"
-        onClick={handleDetails}
+      <a
+        href={`/barco/${id}`}
+        onClick={(e) => { e.preventDefault(); handleDetails(); }}
+        className="relative block cursor-pointer group bg-gray-200"
         data-testid={`image-${id}`}
+        aria-label={`Ver detalles del barco ${name}`}
       >
         {imageError ? (
           <div className="w-full h-48 flex items-center justify-center">
@@ -108,7 +104,7 @@ export default function BoatCard({
             <span className="font-medium text-gray-800">{rating}</span>
           </div>
         </div>
-      </div>
+      </a>
       <CardContent className="p-3 sm:p-4">
         <div className="flex items-start justify-between mb-2">
           <h3 className="font-heading font-semibold text-base sm:text-lg text-gray-900 flex-1 mr-2">{name}</h3>
@@ -156,15 +152,20 @@ export default function BoatCard({
         </div>
       </CardContent>
       <CardFooter className="p-3 sm:p-4 pt-0 flex flex-row gap-2">
-        <Button 
-          variant="outline" 
-          size="sm"
-          className="flex-1 text-xs sm:text-sm h-10 sm:h-8"
-          onClick={handleDetails}
+        <a
+          href={`/barco/${id}`}
+          onClick={(e) => { e.preventDefault(); handleDetails(); }}
+          className="flex-1"
           data-testid={`button-details-${id}`}
         >
-          {t.boats.viewDetails}
-        </Button>
+          <Button
+            variant="outline"
+            size="sm"
+            className="w-full text-xs sm:text-sm h-10 sm:h-8"
+          >
+            {t.boats.viewDetails}
+          </Button>
+        </a>
         <Button 
           size="sm"
           className="flex-1 text-xs sm:text-sm h-10 sm:h-8"

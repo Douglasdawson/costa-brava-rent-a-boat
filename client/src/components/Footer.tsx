@@ -1,12 +1,10 @@
 import { Anchor, Phone, Mail, MapPin, Clock } from "lucide-react";
 import { SiWhatsapp, SiInstagram, SiFacebook, SiTiktok } from "react-icons/si";
 import { useTranslations } from "@/lib/translations";
-import { useLocation } from "wouter";
 
 export default function Footer() {
   const t = useTranslations();
   const currentYear = new Date().getFullYear();
-  const [, setLocation] = useLocation();
 
   // Detectar si estamos en temporada operativa (Abril - Octubre)
   const isOperatingSeason = () => {
@@ -20,11 +18,7 @@ export default function Footer() {
   };
 
   const handleLogoClick = () => {
-    setLocation("/");
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth"
-    });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (
@@ -33,9 +27,10 @@ export default function Footer() {
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 lg:gap-12">
           {/* Company Info */}
           <div>
-            <button 
-              onClick={handleLogoClick}
-              className="flex items-center space-x-2 mb-4 hover:opacity-80 transition-opacity cursor-pointer bg-transparent border-none p-0"
+            <a
+              href="/"
+              onClick={(e) => { e.preventDefault(); handleLogoClick(); }}
+              className="flex items-center space-x-2 mb-4 hover:opacity-80 transition-opacity"
               data-testid="footer-logo-button"
               aria-label="Ir a la página principal"
             >
@@ -43,7 +38,7 @@ export default function Footer() {
               <span className="font-heading font-bold text-white text-sm sm:text-base">
                 Costa Brava Rent a Boat
               </span>
-            </button>
+            </a>
             <p className="text-xs text-gray-400 mb-4">
               {t.footer.description}
             </p>
@@ -157,123 +152,74 @@ export default function Footer() {
             <h4 className="font-semibold text-white mb-3 text-sm">Información</h4>
             <ul className="space-y-2 text-xs">
               <li>
-                <button 
-                  onClick={() => {
-                    setLocation("/blog");
-                    window.scrollTo({
-                      top: 0,
-                      behavior: "smooth"
-                    });
-                  }} 
-                  className="hover:text-primary transition-colors cursor-pointer bg-transparent border-none p-0 text-left"
+                <a
+                  href="/blog"
+                  className="hover:text-primary transition-colors"
                   data-testid="footer-blog-link"
                   aria-label="Ver artículos del blog"
                 >
                   Blog
-                </button>
+                </a>
               </li>
               <li>
-                <button 
-                  onClick={() => {
-                    setLocation("/faq");
-                    window.scrollTo({
-                      top: 0,
-                      behavior: "smooth"
-                    });
-                  }} 
-                  className="hover:text-primary transition-colors cursor-pointer bg-transparent border-none p-0 text-left"
+                <a
+                  href="/faq"
+                  className="hover:text-primary transition-colors"
                   data-testid="footer-faq-link"
                   aria-label="Ver preguntas frecuentes"
                 >
                   Preguntas Frecuentes
-                </button>
+                </a>
               </li>
               <li>
-                <button 
-                  onClick={() => {
-                    setLocation("/testimonios");
-                    window.scrollTo({
-                      top: 0,
-                      behavior: "smooth"
-                    });
-                  }} 
-                  className="hover:text-primary transition-colors cursor-pointer bg-transparent border-none p-0 text-left"
+                <a
+                  href="/testimonios"
+                  className="hover:text-primary transition-colors"
                   data-testid="footer-testimonials-link"
                   aria-label="Ver opiniones de clientes"
                 >
                   Opiniones de Clientes
-                </button>
+                </a>
               </li>
               <li>
-                <button 
-                  onClick={() => {
-                    setLocation("/terms-conditions");
-                    setTimeout(() => {
-                      window.scrollTo({
-                        top: 0,
-                        behavior: "smooth"
-                      });
-                    }, 100);
-                  }} 
-                  className="hover:text-primary transition-colors cursor-pointer bg-transparent border-none p-0 text-left"
+                <a
+                  href="/terms-conditions"
+                  className="hover:text-primary transition-colors"
                   data-testid="footer-terms-link"
                   aria-label="Ver términos y condiciones del servicio"
                 >
                   {t.footer.terms}
-                </button>
+                </a>
               </li>
               <li>
-                <button 
-                  onClick={() => {
-                    setLocation("/terms-conditions");
-                    setTimeout(() => {
-                      const element = document.getElementById("cancelaciones-cambios");
-                      if (element) {
-                        element.scrollIntoView({
-                          behavior: "smooth",
-                          block: "start"
-                        });
-                      }
-                    }, 100);
-                  }} 
-                  className="hover:text-primary transition-colors cursor-pointer bg-transparent border-none p-0 text-left"
+                <a
+                  href="/terms-conditions#cancelaciones-cambios"
+                  className="hover:text-primary transition-colors"
                   data-testid="footer-cancellation-link"
                   aria-label="Ver política de cancelaciones y cambios"
                 >
                   {t.footer.cancelationPolicy}
-                </button>
+                </a>
               </li>
               <li>
-                <button 
-                  onClick={() => {
-                    setLocation("/privacy-policy");
-                    window.scrollTo({
-                      top: 0,
-                      behavior: "smooth"
-                    });
-                  }} 
-                  className="hover:text-primary transition-colors cursor-pointer bg-transparent border-none p-0 text-left"
+                <a
+                  href="/privacy-policy"
+                  className="hover:text-primary transition-colors"
                   data-testid="footer-privacy-link"
                   aria-label="Ver política de privacidad"
                 >
                   {t.footer.privacy}
-                </button>
+                </a>
               </li>
               <li>
-                <button 
-                  onClick={() => {
-                    setLocation("/cookies-policy");
-                    window.scrollTo({
-                      top: 0,
-                      behavior: "smooth"
-                    });
-                  }} 
-                  className="hover:text-primary transition-colors cursor-pointer bg-transparent border-none p-0 text-left"
+                <a
+                  href="/cookies-policy"
+                  className="hover:text-primary transition-colors"
                   data-testid="footer-cookies-link"
                   aria-label="Ver política de cookies"
                 >
                   Política de Cookies
-                </button>
+                </a>
               </li>
             </ul>
           </div>

@@ -47,8 +47,10 @@
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;500;600;700&display=swap"></noscript>
     
-    <!-- Preload critical assets for LCP optimization -->
-    <link rel="preload" as="image" href="/assets/Mediterranean_coastal_hero_scene_8df465c2.webp" fetchpriority="high">
+    <!-- Preload critical assets for LCP optimization (matches Hero.tsx <picture> sources) -->
+    <link rel="preload" as="image" href="/images/hero/hero-lloret-mobile.webp" media="(max-width: 767px)" fetchpriority="high">
+    <link rel="preload" as="image" href="/images/hero/hero-lloret-tablet.webp" media="(min-width: 768px) and (max-width: 1023px)" fetchpriority="high">
+    <link rel="preload" as="image" href="/images/hero/hero-lloret-desktop.webp" media="(min-width: 1024px)" fetchpriority="high">
     <link rel="modulepreload" href="/src/main.tsx">
     
     <!-- DNS Prefetch for external resources -->
@@ -84,7 +86,8 @@
       #root{min-height:100vh;display:flex;flex-direction:column;}
     </style>
     
-    <!-- JSON-LD Structured Data -->
+    <!-- JSON-LD Structured Data (static fallback for crawlers without JS) -->
+    <!-- Dynamic JSON-LD with offers/ratings is injected by React at runtime -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -122,79 +125,6 @@
         "https://www.instagram.com/costabravarentaboat/",
         "https://www.tiktok.com/@costabravarentaboat",
         "https://www.facebook.com/costabravarentaboat"
-      ],
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": "4.8",
-        "reviewCount": "307",
-        "bestRating": "5",
-        "worstRating": "1"
-      },
-      "offers": [
-        {
-          "@type": "Offer",
-          "name": "Alquiler Barco sin Licencia ASTEC 480",
-          "description": "Barco sin licencia para 5 personas. Gasolina incluida.",
-          "price": "80",
-          "priceCurrency": "EUR",
-          "availability": "https://schema.org/InStock"
-        },
-        {
-          "@type": "Offer",
-          "name": "Alquiler Barco sin Licencia SOLAR 450",
-          "description": "Barco sin licencia para 5 personas. Gasolina incluida.",
-          "price": "75",
-          "priceCurrency": "EUR",
-          "availability": "https://schema.org/InStock"
-        },
-        {
-          "@type": "Offer",
-          "name": "Alquiler Barco sin Licencia REMUS 450",
-          "description": "Barco sin licencia para 5 personas. Gasolina incluida.",
-          "price": "75",
-          "priceCurrency": "EUR",
-          "availability": "https://schema.org/InStock"
-        },
-        {
-          "@type": "Offer",
-          "name": "Alquiler Barco con Licencia PACIFIC CRAFT 625",
-          "description": "Barco premium para 7 personas. Requiere licencia básica.",
-          "price": "180",
-          "priceCurrency": "EUR",
-          "availability": "https://schema.org/InStock"
-        },
-        {
-          "@type": "Offer",
-          "name": "Alquiler Barco con Licencia MINGOLLA BRAVA 19",
-          "description": "Barco deportivo para 6 personas. Requiere licencia básica.",
-          "price": "150",
-          "priceCurrency": "EUR",
-          "availability": "https://schema.org/InStock"
-        },
-        {
-          "@type": "Offer",
-          "name": "Alquiler Barco con Licencia TRIMARCHI 57S",
-          "description": "Barco deportivo para 7 personas. Requiere licencia básica.",
-          "price": "160",
-          "priceCurrency": "EUR",
-          "availability": "https://schema.org/InStock"
-        },
-        {
-          "@type": "Offer",
-          "name": "Alquiler Barco sin Licencia REMUS 450 II",
-          "description": "Barco sin licencia para 5 personas. Gasolina incluida.",
-          "price": "75",
-          "priceCurrency": "EUR",
-          "availability": "https://schema.org/InStock"
-        },
-        {
-          "@type": "Offer",
-          "name": "Excursion Privada con Capitan",
-          "description": "Excursion privada con patron profesional para hasta 7 personas por la Costa Brava.",
-          "price": "240",
-          "priceCurrency": "EUR",
-          "availability": "https://schema.org/InStock"
-        }
       ]
     }
     </script>

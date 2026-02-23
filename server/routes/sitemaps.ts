@@ -125,6 +125,7 @@ export function registerSitemapRoutes(app: Express) {
       sitemap += generateUrlEntry(baseUrl, "/rutas", "0.7", now);
       sitemap += generateUrlEntry(baseUrl, "/tarjetas-regalo", "0.6", now);
       sitemap += generateUrlEntry(baseUrl, "/faq", "0.6", now);
+      sitemap += generateUrlEntry(baseUrl, "/testimonios", "0.6", now);
       sitemap += generateUrlEntry(baseUrl, "/barcos-sin-licencia", "0.7", now);
       sitemap += generateUrlEntry(baseUrl, "/barcos-con-licencia", "0.7", now);
       sitemap += generateUrlEntry(baseUrl, "/privacy-policy", "0.3", now, "monthly");

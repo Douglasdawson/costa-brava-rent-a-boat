@@ -1,10 +1,8 @@
 import { Gift, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useLocation } from "wouter";
 import { useTranslations } from "@/lib/translations";
 
 export default function GiftCardBanner() {
-  const [, setLocation] = useLocation();
   const t = useTranslations();
   const banner = t.giftCardBanner;
 
@@ -37,14 +35,15 @@ export default function GiftCardBanner() {
 
             {/* Right: CTA Button */}
             <div className="flex-shrink-0">
-              <Button
-                size="lg"
-                onClick={() => setLocation("/tarjetas-regalo")}
-                className="bg-white text-blue-600 hover:bg-blue-50 font-semibold text-base px-6 py-3 h-auto shadow-lg hover:shadow-xl transition-all"
-              >
-                {banner.cta}
-                <ArrowRight className="w-4 h-4 ml-2" />
-              </Button>
+              <a href="/tarjetas-regalo">
+                <Button
+                  size="lg"
+                  className="bg-white text-blue-600 hover:bg-blue-50 font-semibold text-base px-6 py-3 h-auto shadow-lg hover:shadow-xl transition-all"
+                >
+                  {banner.cta}
+                  <ArrowRight className="w-4 h-4 ml-2" />
+                </Button>
+              </a>
             </div>
           </div>
         </div>

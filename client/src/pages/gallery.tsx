@@ -9,7 +9,7 @@ import PhotoLightbox from "@/components/PhotoLightbox";
 import PhotoSubmissionForm from "@/components/PhotoSubmissionForm";
 import { useLanguage } from "@/hooks/use-language";
 import { useTranslations } from "@/lib/translations";
-import { getSEOConfig, generateCanonicalUrl } from "@/utils/seo-config";
+import { getSEOConfig, generateCanonicalUrl, generateHreflangLinks } from "@/utils/seo-config";
 import { queryClient } from "@/lib/queryClient";
 
 interface GalleryPhoto {
@@ -39,6 +39,7 @@ export default function GalleryPage() {
     description: "Fotos de nuestros clientes disfrutando en barco por la Costa Brava. Comparte tu experiencia.",
   };
   const canonical = generateCanonicalUrl("gallery", language);
+  const hreflangLinks = generateHreflangLinks("gallery");
 
   const openLightbox = (index: number) => {
     setLightboxIndex(index);
@@ -51,6 +52,7 @@ export default function GalleryPage() {
         title={seoConfig.title}
         description={seoConfig.description}
         canonical={canonical}
+        hreflang={hreflangLinks}
       />
       <Navigation />
 

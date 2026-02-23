@@ -10,7 +10,7 @@ import RouteMap from "@/components/RouteMap";
 import { boatRoutes } from "@shared/routesData";
 import { useLanguage } from "@/hooks/use-language";
 import { useTranslations } from "@/lib/translations";
-import { getSEOConfig, generateCanonicalUrl } from "@/utils/seo-config";
+import { getSEOConfig, generateCanonicalUrl, generateHreflangLinks } from "@/utils/seo-config";
 
 const difficultyColors: Record<string, string> = {
   easy: "bg-green-100 text-green-800",
@@ -34,6 +34,7 @@ export default function RoutesPage() {
     description: "Descubre las mejores rutas en barco desde Blanes. Desde Sa Palomera hasta Tossa de Mar.",
   };
   const canonical = generateCanonicalUrl("routes", language);
+  const hreflangLinks = generateHreflangLinks("routes");
 
   const handleRouteSelect = (id: string) => {
     setSelectedRouteId(selectedRouteId === id ? null : id);
@@ -41,7 +42,7 @@ export default function RoutesPage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <SEO title={seoConfig.title} description={seoConfig.description} canonical={canonical} />
+      <SEO title={seoConfig.title} description={seoConfig.description} canonical={canonical} hreflang={hreflangLinks} />
       <Navigation />
 
       <div className="container mx-auto px-4 py-8 sm:py-12">

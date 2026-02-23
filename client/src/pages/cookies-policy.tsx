@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useTranslations } from "@/lib/translations";
 import { SEO } from "@/components/SEO";
-import { getSEOConfig } from "@/utils/seo-config";
+import { getSEOConfig, generateCanonicalUrl, generateHreflangLinks } from "@/utils/seo-config";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { useLanguage } from "@/hooks/use-language";
 import Navigation from "@/components/Navigation";
@@ -11,6 +11,8 @@ export default function CookiesPolicy() {
   const t = useTranslations();
   const { language } = useLanguage();
   const seoConfig = getSEOConfig('cookiesPolicy', language);
+  const canonical = generateCanonicalUrl('cookiesPolicy', language);
+  const hreflangLinks = generateHreflangLinks('cookiesPolicy');
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -18,9 +20,11 @@ export default function CookiesPolicy() {
 
   return (
     <>
-      <SEO 
+      <SEO
         title={seoConfig.title}
         description={seoConfig.description}
+        canonical={canonical}
+        hreflang={hreflangLinks}
       />
       <Navigation />
       <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-800">

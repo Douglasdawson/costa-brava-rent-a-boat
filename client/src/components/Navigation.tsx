@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Anchor, UserCircle, Calendar, Gift } from "lucide-react";
-import { useLocation } from "wouter";
+import { useLocation, Link } from "wouter";
 import LanguageSelector from "./LanguageSelector";
 import { useTranslations } from "@/lib/translations";
 import { useAuth } from "@/hooks/useAuth";
@@ -153,9 +153,10 @@ export default function Navigation() {
       <div className="container mx-auto px-4">
         <div className="relative flex items-center justify-between h-16">
           {/* Logo - Left */}
-          <button 
-            onClick={handleLogoClick}
-            className="flex items-center space-x-2 hover:opacity-80 transition-opacity cursor-pointer bg-transparent border-none p-0 z-10"
+          <a
+            href="/"
+            onClick={(e) => { e.preventDefault(); handleLogoClick(); }}
+            className="flex items-center space-x-2 hover:opacity-80 transition-opacity cursor-pointer p-0 z-10"
             data-testid="brand-logo"
             aria-label="Ir a la página principal de Costa Brava Rent a Boat Blanes"
           >
@@ -165,25 +166,40 @@ export default function Navigation() {
               <span className="hidden md:inline xl:hidden">Costa Brava Rent a Boat</span>
               <span className="hidden xl:inline">Costa Brava Rent a Boat Blanes</span>
             </span>
-          </button>
+          </a>
 
           {/* Desktop Navigation - Absolutely Centered */}
           <div className="hidden lg:flex items-center space-x-4 lg:space-x-6 absolute left-1/2 -translate-x-1/2">
-            {navigationItems.map((item) => (
-              <button
-                key={item.label}
-                onClick={() => handleNavigation(item.href, item.label)}
-                className={`hover:text-primary transition-colors cursor-pointer bg-transparent border-none whitespace-nowrap ${
-                  isNavItemActive(item.href)
-                    ? "text-primary font-semibold"
-                    : "text-gray-700 font-medium"
-                }`}
-                data-testid={`nav-link-${item.label.toLowerCase()}`}
-                aria-label={`Navegar a ${item.label}`}
-              >
-                {item.label}
-              </button>
-            ))}
+            {navigationItems.map((item) => {
+              const activeClass = isNavItemActive(item.href) ? "text-primary font-semibold" : "text-gray-700 font-medium";
+              const baseClass = `hover:text-primary transition-colors whitespace-nowrap ${activeClass}`;
+              // Page routes: render as <a> so Googlebot can crawl them
+              if (!item.href.startsWith("#")) {
+                const href = item.href === "#faq" ? "/faq" : item.href;
+                return (
+                  <a
+                    key={item.label}
+                    href={href}
+                    onClick={(e) => { e.preventDefault(); handleNavigation(item.href, item.label); }}
+                    className={baseClass}
+                    data-testid={`nav-link-${item.label.toLowerCase()}`}
+                  >
+                    {item.label}
+                  </a>
+                );
+              }
+              // Anchor links: keep as button
+              return (
+                <button
+                  key={item.label}
+                  onClick={() => handleNavigation(item.href, item.label)}
+                  className={`cursor-pointer bg-transparent border-none ${baseClass}`}
+                  data-testid={`nav-link-${item.label.toLowerCase()}`}
+                >
+                  {item.label}
+                </button>
+              );
+            })}
           </div>
 
           {/* Right side buttons */}
@@ -240,17 +256,33 @@ export default function Navigation() {
         {isOpen && (
           <div className="lg:hidden py-3 border-t border-gray-200 bg-white/95 backdrop-blur-md">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
-              {navigationItems.map((item) => (
-                <button
-                  key={item.label}
-                  onClick={() => handleNavigation(item.href, item.label)}
-                  className="px-4 py-2.5 text-gray-700 hover:text-primary hover:bg-gray-50 transition-colors w-full text-left bg-transparent border-none cursor-pointer font-medium"
-                  data-testid={`mobile-nav-${item.label.toLowerCase()}`}
-                  aria-label={`Navegar a ${item.label}`}
-                >
-                  {item.label}
-                </button>
-              ))}
+              {navigationItems.map((item) => {
+                const baseClass = "px-4 py-2.5 text-gray-700 hover:text-primary hover:bg-gray-50 transition-colors w-full text-left font-medium block";
+                if (!item.href.startsWith("#")) {
+                  const href = item.href === "#faq" ? "/faq" : item.href;
+                  return (
+                    <a
+                      key={item.label}
+                      href={href}
+                      onClick={(e) => { e.preventDefault(); handleNavigation(item.href, item.label); }}
+                      className={baseClass}
+                      data-testid={`mobile-nav-${item.label.toLowerCase()}`}
+                    >
+                      {item.label}
+                    </a>
+                  );
+                }
+                return (
+                  <button
+                    key={item.label}
+                    onClick={() => handleNavigation(item.href, item.label)}
+                    className={`bg-transparent border-none cursor-pointer ${baseClass}`}
+                    data-testid={`mobile-nav-${item.label.toLowerCase()}`}
+                  >
+                    {item.label}
+                  </button>
+                );
+              })}
             </div>
             <div className="px-4 py-2 border-t border-gray-200 mt-1 pt-3">
               <div className="flex flex-wrap items-center gap-3">

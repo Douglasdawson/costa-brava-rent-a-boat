@@ -49,7 +49,7 @@ export default function Footer() {
             
             {/* Social Media */}
             <div>
-              <h3 className="font-semibold text-white mb-3 text-sm">Síguenos</h3>
+              <h3 className="font-semibold text-white mb-3 text-sm">{t.footer.followUs}</h3>
               <div className="flex items-center space-x-4">
                 <a
                   href="https://www.instagram.com/costabravarentaboat/"
@@ -149,7 +149,7 @@ export default function Footer() {
               </p>
             </div>
 
-            <h4 className="font-semibold text-white mb-3 text-sm">Información</h4>
+            <h4 className="font-semibold text-white mb-3 text-sm">{t.footer.information}</h4>
             <ul className="space-y-2 text-xs">
               <li>
                 <a
@@ -158,7 +158,7 @@ export default function Footer() {
                   data-testid="footer-blog-link"
                   aria-label="Ver artículos del blog"
                 >
-                  Blog
+                  {t.footer.blog}
                 </a>
               </li>
               <li>
@@ -168,7 +168,7 @@ export default function Footer() {
                   data-testid="footer-faq-link"
                   aria-label="Ver preguntas frecuentes"
                 >
-                  Preguntas Frecuentes
+                  {t.footer.faqLabel}
                 </a>
               </li>
               <li>
@@ -178,7 +178,7 @@ export default function Footer() {
                   data-testid="footer-testimonials-link"
                   aria-label="Ver opiniones de clientes"
                 >
-                  Opiniones de Clientes
+                  {t.footer.customerReviews}
                 </a>
               </li>
               <li>
@@ -218,7 +218,7 @@ export default function Footer() {
                   data-testid="footer-cookies-link"
                   aria-label="Ver política de cookies"
                 >
-                  Política de Cookies
+                  {t.footer.cookiesPolicy}
                 </a>
               </li>
             </ul>

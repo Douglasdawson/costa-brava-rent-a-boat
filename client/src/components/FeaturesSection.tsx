@@ -1,13 +1,12 @@
 import { Card, CardContent } from "@/components/ui/card";
-import { 
-  Shield, 
-  Fuel, 
-  Users, 
-  Clock, 
-  MapPin, 
+import {
+  Shield,
+  Fuel,
+  Users,
+  Clock,
+  MapPin,
   Headphones,
-  Star,
-  CheckCircle 
+  CheckCircle
 } from "lucide-react";
 import { useTranslations } from "@/lib/translations";
 import snorkelImage from "../assets/generated_images/Family_snorkeling_activity_scene_b0ab1783.webp";
@@ -27,71 +26,71 @@ export default function FeaturesSection() {
     },
     {
       icon: Fuel,
-      title: t.features.includes.title, 
+      title: t.features.includes.title,
       description: t.features.includes.description,
       color: "text-blue-600"
     },
     {
       icon: Users,
-      title: "Hasta 7 " + t.boats.people,
-      description: "Flota variada desde embarcaciones para 5 personas hasta barcos de lujo para 7.",
+      title: t.features.capacity.title,
+      description: t.features.capacity.description,
       color: "text-purple-600"
     },
     {
       icon: Clock,
-      title: "Horarios Flexibles",
-      description: "Alquiler desde 1 hora hasta jornadas completas de 8 horas. Tú decides.",
+      title: t.features.flexibleHours.title,
+      description: t.features.flexibleHours.description,
       color: "text-orange-600"
     },
     {
       icon: MapPin,
-      title: "Ubicación Privilegiada",
-      description: "Salida directa desde el puerto de Blanes, dónde empieza la Costa Brava.",
+      title: t.features.location.title,
+      description: t.features.location.description,
       color: "text-red-600"
     },
     {
       icon: Headphones,
-      title: "Atención Personalizada",
-      description: "Asesoramiento completo y soporte durante toda tu experiencia en el mar.",
+      title: t.features.personalAttention.title,
+      description: t.features.personalAttention.description,
       color: "text-primary"
     }
   ];
 
   const extras = [
     {
-      name: "Snorkel",
+      name: t.features.extras.snorkel.name,
       image: snorkelImage,
       alt: "Equipo de snorkel incluido en alquiler de barcos en Blanes Costa Brava",
       price: "7,50€",
-      description: "Equipo completo de snorkel para descubrir la vida marina"
+      description: t.features.extras.snorkel.description
     },
     {
-      name: "Paddle Surf",
+      name: t.features.extras.paddle.name,
       image: paddleImage,
       alt: "Paddle surf disponible como extra en alquiler barcos Blanes Costa Brava",
       price: "25€",
-      description: "Tabla de paddle surf para explorar calas y costas"
+      description: t.features.extras.paddle.description
     },
     {
-      name: "Nevera con Bebidas",
+      name: t.features.extras.cooler.name,
       image: coolerImage,
       alt: "Nevera con bebidas frías para excursión en barco Costa Brava Blanes",
       price: "10€",
-      description: "Nevera con hielo y bebidas refrescantes para tu día en el mar"
+      description: t.features.extras.cooler.description
     },
     {
-      name: "Excursión Privada",
+      name: t.features.extras.privateTour.name,
       image: privateTourImage,
       alt: "Excursión privada con patrón en barco por Costa Brava desde Blanes",
-      price: "Desde 180€",
-      description: "Tour privado con patrón incluido para una experiencia exclusiva"
+      price: t.features.extras.privateTour.price,
+      description: t.features.extras.privateTour.description
     },
     {
-      name: "Parking",
+      name: t.features.extras.parking.name,
       image: parkingImage,
       alt: "Parking disponible cerca del puerto de Blanes para clientes",
       price: "10€/día",
-      description: "Plaza de parking cerca del puerto para mayor comodidad"
+      description: t.features.extras.parking.description
     }
   ];
 
@@ -101,10 +100,10 @@ export default function FeaturesSection() {
         {/* Main Features */}
         <div className="text-center mb-8 sm:mb-10 lg:mb-12">
           <h2 className="font-heading text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-2 sm:mb-3 lg:mb-4">
-            ¿Por qué Costa Brava Rent a Boat Blanes?
+            {t.features.whyUs}
           </h2>
           <p className="text-sm sm:text-base lg:text-lg text-gray-600 max-w-xl sm:max-w-2xl mx-auto px-2">
-            La empresa con la mayor oferta de horas y mayor flexibilidad horaria contratables en la zona.
+            {t.features.whyUsSub}
           </p>
         </div>
 
@@ -130,10 +129,10 @@ export default function FeaturesSection() {
         <div className="bg-gray-50 rounded-xl sm:rounded-2xl p-4 sm:p-6 lg:p-8">
           <div className="text-center mb-4 sm:mb-6 lg:mb-8">
             <h3 className="font-heading text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-gray-900 mb-2 sm:mb-3 lg:mb-4">
-              Extras Disponibles
+              {t.features.extrasTitle}
             </h3>
             <p className="text-sm sm:text-base text-gray-600">
-              Completa tu experiencia con nuestros extras opcionales.
+              {t.features.extrasSub}
             </p>
           </div>
 

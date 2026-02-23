@@ -206,16 +206,16 @@ export default function Navigation() {
           <div className="hidden lg:flex items-center space-x-4 z-10">
             <LanguageSelector variant="minimal" />
             <Button
-              onClick={() => handleNavigation("#booking", "Reservar")}
+              onClick={() => handleNavigation("#booking", t.nav.bookNow)}
               data-testid="desktop-button-book"
               aria-label="Reservar barco ahora"
             >
               <Calendar className="w-4 h-4 mr-2" />
-              Reservar Ahora
+              {t.nav.bookNow}
             </Button>
             {!isAuthenticated && (
-              <Button 
-                variant="ghost" 
+              <Button
+                variant="ghost"
                 onClick={handleLoginClick}
                 data-testid="button-login"
                 aria-label="Iniciar sesión en tu cuenta"
@@ -225,14 +225,14 @@ export default function Navigation() {
               </Button>
             )}
             {isAuthenticated && (
-              <Button 
-                variant="ghost" 
+              <Button
+                variant="ghost"
                 onClick={handleMyAccountClick}
                 data-testid="button-my-account"
                 aria-label="Acceder a mi cuenta de cliente"
               >
                 <UserCircle className="w-4 h-4 mr-2" />
-                Mi Cuenta
+                {t.nav.myAccount}
               </Button>
             )}
           </div>
@@ -293,7 +293,7 @@ export default function Navigation() {
                   aria-label="Reservar barco ahora"
                 >
                   <Calendar className="w-4 h-4 mr-2" />
-                  Reservar Ahora
+                  {t.nav.bookNow}
                 </Button>
                 {!isAuthenticated && (
                   <Button
@@ -316,7 +316,7 @@ export default function Navigation() {
                     aria-label="Acceder a mi cuenta de cliente"
                   >
                     <UserCircle className="w-4 h-4 mr-2" />
-                    Mi Cuenta
+                    {t.nav.myAccount}
                   </Button>
                 )}
                 <LanguageSelector variant="minimal" />

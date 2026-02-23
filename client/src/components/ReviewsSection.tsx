@@ -3,8 +3,12 @@ import { Button } from "@/components/ui/button";
 import { Star, Quote, ChevronRight } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import type { Testimonial } from "@shared/schema";
+import { useTranslations } from "@/lib/translations";
+import { useLanguage } from "@/hooks/use-language";
 
 export default function ReviewsSection() {
+  const t = useTranslations();
+  const { language } = useLanguage();
   const { data: testimonials } = useQuery<Testimonial[]>({
     queryKey: ['/api/testimonials'],
   });
@@ -38,13 +42,13 @@ export default function ReviewsSection() {
           <div className="inline-flex items-center gap-2 bg-yellow-50 border border-yellow-200 rounded-full px-4 py-1.5 mb-4">
             <Star className="w-4 h-4 text-yellow-500 fill-yellow-500" />
             <span className="text-sm font-semibold text-yellow-800">{averageRating}/5</span>
-            <span className="text-sm text-yellow-700">({testimonials.length} opiniones)</span>
+            <span className="text-sm text-yellow-700">({testimonials.length} {t.reviews.opinions})</span>
           </div>
           <h2 className="text-2xl sm:text-3xl font-heading font-bold text-gray-900 mb-2">
-            Lo que dicen nuestros clientes
+            {t.reviews.title}
           </h2>
           <p className="text-gray-600 max-w-2xl mx-auto text-sm sm:text-base">
-            Experiencias reales de personas que han disfrutado navegando por la Costa Brava con nosotros
+            {t.reviews.subtitle}
           </p>
         </div>
 
@@ -63,7 +67,7 @@ export default function ReviewsSection() {
                 <div className="border-t pt-3">
                   <p className="font-semibold text-sm text-gray-900">{review.customerName}</p>
                   <p className="text-xs text-gray-500">
-                    {review.boatName} &middot; {new Date(review.date).toLocaleDateString('es-ES', { month: 'long', year: 'numeric' })}
+                    {review.boatName} &middot; {new Date(review.date).toLocaleDateString(language === 'ru' ? 'ru-RU' : language === 'de' ? 'de-DE' : language === 'fr' ? 'fr-FR' : language === 'nl' ? 'nl-NL' : language === 'it' ? 'it-IT' : language === 'ca' ? 'ca-ES' : language === 'en' ? 'en-GB' : 'es-ES', { month: 'long', year: 'numeric' })}
                   </p>
                 </div>
               </CardContent>
@@ -75,7 +79,7 @@ export default function ReviewsSection() {
         <div className="text-center">
           <a href="/testimonios">
             <Button variant="outline" size="default" className="gap-1 h-10 sm:h-9 px-4">
-              Ver todas las opiniones
+              {t.reviews.viewAll}
               <ChevronRight className="w-4 h-4" />
             </Button>
           </a>

@@ -1,5 +1,4 @@
-import { Shield, Star, CheckCircle, Clock } from "lucide-react";
-import { SiWhatsapp } from "react-icons/si";
+import { Shield, Star, CheckCircle, Clock, CalendarDays } from "lucide-react";
 import { Button } from "./ui/button";
 import { useTranslations } from "@/lib/translations";
 import { useBookingModal } from "@/hooks/useBookingModal";
@@ -51,7 +50,7 @@ export default function Hero() {
                 className="bg-primary hover:bg-primary/90 text-white shadow-2xl px-8 py-6 text-lg rounded-lg"
                 data-testid="button-hero-cta"
               >
-                <SiWhatsapp className="w-5 h-5 mr-2" />
+                <CalendarDays className="w-5 h-5 mr-2" />
                 {t.hero.bookNow}
               </Button>
               <a href="#fleet">

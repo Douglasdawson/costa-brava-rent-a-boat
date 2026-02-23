@@ -279,7 +279,7 @@ function Step1Boat({
           onChange={(e) => setSelectedDate(e.target.value)}
           onBlur={() => handleBlur('date')}
           min={getLocalISODate()}
-          className={`w-full p-3 border-2 rounded-xl text-gray-900 font-medium text-sm focus:ring-2 focus:ring-primary ${
+          className={`w-full p-3 border-2 rounded-xl bg-white text-gray-900 font-medium text-sm focus:ring-2 focus:ring-primary ${
             showFieldError('date') ? 'border-red-500' : 'border-gray-200'
           }`}
         />
@@ -377,7 +377,7 @@ function Step2Trip({
           min={1}
           max={maxCapacity}
           placeholder={`1 - ${maxCapacity}`}
-          className={`w-full p-3 border-2 rounded-xl text-gray-900 font-medium text-sm focus:ring-2 focus:ring-primary text-center ${
+          className={`w-full p-3 border-2 rounded-xl bg-white text-gray-900 font-medium text-sm focus:ring-2 focus:ring-primary text-center ${
             showFieldError('people') ? 'border-red-500' : 'border-gray-200'
           }`}
         />
@@ -420,7 +420,7 @@ function Step3PersonalData({
           onBlur={() => handleBlur('firstName')}
           placeholder="Juan"
           autoComplete="given-name"
-          className={`w-full p-3 border-2 rounded-xl text-gray-900 font-medium text-sm focus:ring-2 focus:ring-primary ${
+          className={`w-full p-3 border-2 rounded-xl bg-white text-gray-900 font-medium text-sm focus:ring-2 focus:ring-primary ${
             showFieldError('firstName') ? 'border-red-500' : 'border-gray-200'
           }`}
         />
@@ -440,7 +440,7 @@ function Step3PersonalData({
           onBlur={() => handleBlur('lastName')}
           placeholder="Garcia Lopez"
           autoComplete="family-name"
-          className={`w-full p-3 border-2 rounded-xl text-gray-900 font-medium text-sm focus:ring-2 focus:ring-primary ${
+          className={`w-full p-3 border-2 rounded-xl bg-white text-gray-900 font-medium text-sm focus:ring-2 focus:ring-primary ${
             showFieldError('lastName') ? 'border-red-500' : 'border-gray-200'
           }`}
         />
@@ -499,7 +499,7 @@ function Step3PersonalData({
             onBlur={() => handleBlur('phone')}
             placeholder="612345678"
             autoComplete="tel"
-            className={`flex-1 p-3 border-2 rounded-xl text-gray-900 font-medium text-sm focus:ring-2 focus:ring-primary ${
+            className={`flex-1 p-3 border-2 rounded-xl bg-white text-gray-900 font-medium text-sm focus:ring-2 focus:ring-primary ${
               showFieldError('phone') ? 'border-red-500' : 'border-gray-200'
             }`}
           />
@@ -520,7 +520,7 @@ function Step3PersonalData({
           onBlur={() => handleBlur('email')}
           placeholder="tu@email.com"
           autoComplete="email"
-          className={`w-full p-3 border-2 rounded-xl text-gray-900 font-medium text-sm focus:ring-2 focus:ring-primary ${
+          className={`w-full p-3 border-2 rounded-xl bg-white text-gray-900 font-medium text-sm focus:ring-2 focus:ring-primary ${
             showFieldError('email') ? 'border-red-500' : 'border-gray-200'
           }`}
         />

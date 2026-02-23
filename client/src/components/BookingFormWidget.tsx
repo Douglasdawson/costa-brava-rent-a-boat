@@ -1,7 +1,9 @@
 import { useState, useEffect, useRef, useMemo } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Calendar, Anchor, Clock, User, Users, Mail, Phone as PhoneIcon, ChevronDown, Search, Package, Crown, Zap, Snowflake, Eye, Waves, CircleParking, Beer, Check, ChevronUp, Gift, Tag, Loader2, X } from "lucide-react";
+import { CalendarIcon, Anchor, Clock, User, Users, Mail, Phone as PhoneIcon, ChevronDown, Search, Package, Crown, Zap, Snowflake, Eye, Waves, CircleParking, Beer, Check, ChevronUp, Gift, Tag, Loader2, X } from "lucide-react";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { Calendar } from "@/components/ui/calendar";
 import { SiWhatsapp } from "react-icons/si";
 import { openWhatsApp } from "@/utils/whatsapp";
 import { useToast } from "@/hooks/use-toast";
@@ -153,6 +155,7 @@ export default function BookingFormWidget({ preSelectedBoatId, onClose, hideHead
   // Mobile wizard navigation
   const isMobile = useIsMobile();
   const [currentStep, setCurrentStep] = useState(1);
+  const [showDatePicker, setShowDatePicker] = useState(false);
 
   const handleBlur = (field: string) => {
     setTouched(prev => ({ ...prev, [field]: true }));
@@ -957,22 +960,44 @@ Looking forward to confirmation. Thanks!`;
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-2">
           {/* Date */}
           <div className={`bg-white rounded-lg p-2 sm:p-3 shadow-sm border ${showFieldError('date') ? 'border-red-500' : 'border-gray-100'}`}>
-            <label htmlFor="booking-date" className="flex items-center justify-center md:justify-start text-xs [@media(min-width:400px)]:text-sm font-semibold text-gray-800 mb-1 sm:mb-2">
+            <label className="flex items-center justify-center md:justify-start text-xs [@media(min-width:400px)]:text-sm font-semibold text-gray-800 mb-1 sm:mb-2">
               <div className="w-5 h-5 sm:w-6 sm:h-6 bg-primary/10 rounded-full flex items-center justify-center mr-1 sm:mr-2">
-                <Calendar className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-primary" />
+                <CalendarIcon className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-primary" />
               </div>
               {t.booking.date}
             </label>
-            <input
-              type="date"
-              id="booking-date"
-              value={selectedDate}
-              onChange={(e) => setSelectedDate(e.target.value)}
-              onBlur={() => handleBlur('date')}
-              min={getLocalISODate()}
-              className="w-full p-2 sm:p-2.5 border-0 bg-gray-50 rounded-md focus:ring-2 focus:ring-primary focus:bg-white transition-all text-gray-900 font-medium text-xs [@media(min-width:400px)]:text-sm"
-              data-testid="input-booking-date"
-            />
+            <Popover open={showDatePicker} onOpenChange={setShowDatePicker}>
+              <PopoverTrigger asChild>
+                <button
+                  type="button"
+                  data-testid="input-booking-date"
+                  onBlur={() => handleBlur('date')}
+                  className="w-full p-2 sm:p-2.5 border-0 bg-gray-50 rounded-md text-left text-gray-900 font-medium text-xs [@media(min-width:400px)]:text-sm hover:bg-white transition-all focus:ring-2 focus:ring-primary focus:outline-none"
+                >
+                  {selectedDate
+                    ? new Date(selectedDate + 'T00:00:00').toLocaleDateString('es-ES', { day: '2-digit', month: 'short', year: 'numeric' })
+                    : <span className="text-gray-400">Seleccionar fecha</span>
+                  }
+                </button>
+              </PopoverTrigger>
+              <PopoverContent className="w-auto p-0" align="start">
+                <Calendar
+                  mode="single"
+                  selected={selectedDate ? new Date(selectedDate + 'T00:00:00') : undefined}
+                  onSelect={(date) => {
+                    if (date) {
+                      const y = date.getFullYear();
+                      const m = String(date.getMonth() + 1).padStart(2, '0');
+                      const d = String(date.getDate()).padStart(2, '0');
+                      setSelectedDate(`${y}-${m}-${d}`);
+                    }
+                    setShowDatePicker(false);
+                  }}
+                  disabled={(date) => date < new Date(getLocalISODate() + 'T00:00:00')}
+                  initialFocus
+                />
+              </PopoverContent>
+            </Popover>
             {showFieldError('date') && (
               <p className="text-xs text-red-500 mt-1">{getFieldError('date')}</p>
             )}

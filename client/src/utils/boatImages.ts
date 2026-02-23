@@ -26,12 +26,30 @@ export function getBoatImage(imagePath: string): string {
   if (BOAT_IMAGE_MAP[imagePath]) {
     return BOAT_IMAGE_MAP[imagePath];
   }
-  
+
   // If not in map and looks like a filename, construct Object Storage URL
   if (imagePath && !imagePath.startsWith('http') && !imagePath.startsWith('/')) {
     return `/objects/${imagePath}`;
   }
-  
+
   // Otherwise return as-is (could be full URL or path already)
   return imagePath;
+}
+
+const SRCSET_WIDTHS = [400, 800, 1200] as const;
+
+/**
+ * Generates a srcSet string for responsive images via the server resize endpoint.
+ * Only handles local static filenames (e.g. "SOLAR_450_boat_photo_b70eb7e1.png").
+ * Returns empty string for external URLs or object-storage paths.
+ */
+export function getBoatImageSrcSet(imagePath: string): string {
+  if (!imagePath || imagePath.startsWith("http") || imagePath.startsWith("/")) {
+    return "";
+  }
+  // Normalize extension to .webp (server files are .webp)
+  const filename = imagePath.replace(/\.[^.]+$/, ".webp");
+  return SRCSET_WIDTHS
+    .map((w) => `/img/resize?file=${encodeURIComponent(filename)}&w=${w} ${w}w`)
+    .join(", ");
 }

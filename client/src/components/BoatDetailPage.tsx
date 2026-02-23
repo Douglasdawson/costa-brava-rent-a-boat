@@ -35,7 +35,7 @@ import {
   X
 } from "lucide-react";
 import { openWhatsApp } from "@/utils/whatsapp";
-import { getBoatImage } from "@/utils/boatImages";
+import { getBoatImage, getBoatImageSrcSet } from "@/utils/boatImages";
 import Navigation from "./Navigation";
 import Footer from "./Footer";
 import { SEO } from "./SEO";
@@ -288,6 +288,8 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
             >
               <img
                 src={getBoatImage(displayImages[currentImageIndex])}
+                srcSet={getBoatImageSrcSet(displayImages[currentImageIndex]) || undefined}
+                sizes="(max-width: 767px) 100vw, 800px"
                 alt={`Alquiler barco ${boatData.name} ${boatData.subtitle?.includes("Sin Licencia") ? "sin licencia" : "con licencia"} en Blanes Costa Brava 2026 - Imagen ${currentImageIndex + 1}`}
                 className="w-full h-64 sm:h-80 md:h-96 object-cover cursor-zoom-in"
                 loading="lazy"

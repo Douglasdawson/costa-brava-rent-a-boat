@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import BoatCard from "./BoatCard";
 import { openWhatsApp } from "@/utils/whatsapp";
 import { useLocation } from "wouter";
-import { getBoatImage } from "@/utils/boatImages";
+import { getBoatImage, getBoatImageSrcSet } from "@/utils/boatImages";
 import { useTranslations } from "@/lib/translations";
 import type { Boat } from "@shared/schema";
 import { SiWhatsapp } from "react-icons/si";
@@ -48,6 +48,7 @@ export default function FleetSection() {
         id: boat.id,
         name: boat.name,
         image: boat.imageUrl ? getBoatImage(boat.imageUrl) : '/placeholder-boat.jpg',
+        imageSrcSet: boat.imageUrl ? getBoatImageSrcSet(boat.imageUrl) : '',
         imageAlt: `Alquiler barco ${boat.name} ${boat.requiresLicense ? "con licencia" : "sin licencia"} en Blanes Costa Brava 2026 - Capacidad ${boat.capacity} personas`,
         capacity: boat.capacity,
         requiresLicense: boat.requiresLicense,

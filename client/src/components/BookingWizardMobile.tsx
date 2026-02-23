@@ -3,6 +3,7 @@ import { Check, ChevronDown, ChevronLeft, ChevronUp, Gift, Loader2, Package, Tag
 import { SiWhatsapp } from "react-icons/si";
 import type { Boat } from "@shared/schema";
 import { EXTRA_PACKS } from "@shared/boatData";
+import type { Translations } from "@/lib/translations";
 
 interface PhonePrefix {
   code: string;
@@ -80,7 +81,7 @@ export interface BookingWizardMobileProps {
   getFieldError: (field: string) => string;
   handleBlur: (field: string) => void;
   // i18n
-  t: Record<string, Record<string, string>>;
+  t: Translations;
   // Icon map
   iconMap: Record<string, React.ComponentType<{ className?: string }>>;
   calculatePackSavings: (packId: string) => number;

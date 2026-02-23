@@ -13,6 +13,7 @@ import { trackBookingStarted } from "@/utils/analytics";
 import { BOAT_DATA, EXTRA_PACKS } from "@shared/boatData";
 import { calculateExtrasPrice, calculatePackSavings } from "@shared/pricing";
 import { useIsMobile } from "@/hooks/use-mobile";
+import BookingWizardMobile from "@/components/BookingWizardMobile";
 
 // Common phone prefixes (prioritized by Costa Brava tourism)
 const PHONE_PREFIXES = [
@@ -344,6 +345,11 @@ export default function BookingFormWidget({ preSelectedBoatId, onClose, hideHead
 
   // Handle pack selection (radio-like behavior)
   const handlePackSelect = (packId: string) => {
+    if (!packId) {
+      setSelectedPack(null);
+      setSelectedExtras([]);
+      return;
+    }
     if (selectedPack === packId) {
       // Deselect pack
       setSelectedPack(null);
@@ -729,6 +735,63 @@ Looking forward to confirmation. Thanks!`;
       onClose();
     }
   };
+
+  if (isMobile) {
+    return (
+      <BookingWizardMobile
+        currentStep={currentStep}
+        onNext={handleNextStep}
+        onBack={handlePrevStep}
+        firstName={firstName} setFirstName={setFirstName}
+        lastName={lastName} setLastName={setLastName}
+        phonePrefix={phonePrefix} setPhonePrefix={setPhonePrefix}
+        phoneNumber={phoneNumber} setPhoneNumber={setPhoneNumber}
+        email={email} setEmail={setEmail}
+        showPrefixDropdown={showPrefixDropdown} setShowPrefixDropdown={setShowPrefixDropdown}
+        prefixSearch={prefixSearch} setPrefixSearch={setPrefixSearch}
+        prefixDropdownRef={prefixDropdownRef}
+        filteredPrefixes={filteredPrefixes}
+        selectedPrefixInfo={selectedPrefixInfo}
+        licenseFilter={licenseFilter} setLicenseFilter={setLicenseFilter}
+        selectedBoat={selectedBoat} setSelectedBoat={setSelectedBoat}
+        selectedDate={selectedDate} setSelectedDate={setSelectedDate}
+        selectedDuration={selectedDuration} setSelectedDuration={setSelectedDuration}
+        preferredTime={preferredTime} setPreferredTime={setPreferredTime}
+        numberOfPeople={numberOfPeople} setNumberOfPeople={setNumberOfPeople}
+        filteredBoats={filteredBoats}
+        selectedBoatInfo={selectedBoatInfo}
+        getDurationOptions={getDurationOptions}
+        getMaxCapacity={getMaxCapacity}
+        getLocalISODate={getLocalISODate}
+        preSelectedBoatId={preSelectedBoatId}
+        timeSlots={TIME_SLOTS}
+        boatExtras={boatExtras}
+        selectedExtras={selectedExtras}
+        selectedPack={selectedPack}
+        showExtras={showExtras} setShowExtras={setShowExtras}
+        extrasInPack={extrasInPack}
+        totalExtrasPrice={totalExtrasPrice}
+        handlePackSelect={handlePackSelect}
+        handleExtraToggle={handleExtraToggle}
+        showCodeSection={showCodeSection} setShowCodeSection={setShowCodeSection}
+        codeInput={codeInput} setCodeInput={setCodeInput}
+        isValidatingCode={isValidatingCode}
+        validatedCode={validatedCode}
+        codeError={codeError}
+        handleValidateCode={handleValidateCode}
+        handleRemoveCode={handleRemoveCode}
+        getCodeDiscount={getCodeDiscount}
+        getBookingPrice={getBookingPrice}
+        handleBookingSearch={handleBookingSearch}
+        showFieldError={showFieldError}
+        getFieldError={getFieldError}
+        handleBlur={handleBlur}
+        t={t}
+        iconMap={ICON_MAP}
+        calculatePackSavings={calculatePackSavings}
+      />
+    );
+  }
 
   return (
     <Card id="booking-form" className="bg-white/75 backdrop-blur-md p-3 sm:p-4 w-full shadow-2xl border-0">

@@ -226,10 +226,11 @@ export default function BlogPage() {
                   <Card className="h-full hover:shadow-lg transition-shadow cursor-pointer" data-testid={`link-blog-card-${post.slug}`}>
                     {post.featuredImage && (
                       <div className="aspect-video bg-gray-200 rounded-t-lg overflow-hidden">
-                        <img 
-                          src={post.featuredImage} 
+                        <img
+                          src={post.featuredImage}
                           alt={post.title}
                           className="w-full h-full object-cover"
+                          loading="lazy"
                           data-testid={`img-blog-${post.slug}`}
                         />
                       </div>

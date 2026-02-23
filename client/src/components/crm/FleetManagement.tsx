@@ -675,17 +675,7 @@ export function FleetManagement({ adminToken }: FleetManagementProps) {
 
       {/* Add/Edit Boat Dialog - Mobile fullscreen */}
       <Dialog open={showBoatDialog} onOpenChange={setShowBoatDialog}>
-        <DialogContent
-          className="
-          w-full h-full
-          md:w-auto md:h-auto
-          md:max-w-4xl md:max-h-[90vh]
-          overflow-y-auto
-          p-4 sm:p-6
-          !left-0 !top-0 !translate-x-0 !translate-y-0
-          md:!left-1/2 md:!top-1/2 md:!-translate-x-1/2 md:!-translate-y-1/2
-        "
-        >
+        <DialogContent className="w-[95vw] max-w-4xl max-h-[90vh] overflow-y-auto p-4 sm:p-6">
           <DialogHeader>
             <DialogTitle>{editingBoat ? "Editar Barco" : "Agregar Barco"}</DialogTitle>
             <DialogDescription>Complete todos los campos del barco</DialogDescription>

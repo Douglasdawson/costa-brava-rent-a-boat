@@ -1,4 +1,10 @@
-export { sendBookingConfirmation, sendBookingReminder, sendThankYouEmail, sendPreSeasonEmail } from "./emailService";
+export {
+  sendBookingConfirmation,
+  sendBookingReminder,
+  sendThankYouEmail,
+  sendPreSeasonEmail,
+  sendPasswordResetEmail,
+} from "./emailService";
 import { startScheduler } from "./schedulerService";
 
 /**

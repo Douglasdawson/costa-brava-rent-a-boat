@@ -1,5 +1,8 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Check, ChevronDown, ChevronLeft, ChevronUp, Gift, Loader2, Package, Tag, X } from "lucide-react";
+import { CalendarIcon, Check, ChevronDown, ChevronLeft, ChevronUp, Gift, Loader2, Package, Tag, X } from "lucide-react";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { Calendar } from "@/components/ui/calendar";
 import { SiWhatsapp } from "react-icons/si";
 import type { Boat } from "@shared/schema";
 import { EXTRA_PACKS } from "@shared/boatData";
@@ -82,17 +85,17 @@ export interface BookingWizardMobileProps {
   handleBlur: (field: string) => void;
   // i18n
   t: Translations;
+  isSpanishLang: boolean;
   // Icon map
   iconMap: Record<string, React.ComponentType<{ className?: string }>>;
   calculatePackSavings: (packId: string) => number;
 }
 
-const STEP_LABELS = ["Barco", "Excursion", "Tus datos", "Confirmar"];
-
-function ProgressBar({ currentStep }: { currentStep: number }) {
+function ProgressBar({ currentStep, t }: { currentStep: number; t: Translations }) {
+  const stepLabels = [t.wizard.stepBoat, t.wizard.stepTrip, t.wizard.stepYourData, t.wizard.stepConfirm];
   return (
     <div className="flex items-center justify-between px-4 py-3 bg-white border-b border-gray-100">
-      {STEP_LABELS.map((label, idx) => {
+      {stepLabels.map((label, idx) => {
         const stepNum = idx + 1;
         const isCompleted = stepNum < currentStep;
         const isActive = stepNum === currentStep;
@@ -118,7 +121,7 @@ function ProgressBar({ currentStep }: { currentStep: number }) {
                 {label}
               </span>
             </div>
-            {idx < STEP_LABELS.length - 1 && (
+            {idx < stepLabels.length - 1 && (
               <div
                 className={`h-0.5 w-8 mx-1 mb-4 transition-colors ${
                   isCompleted ? "bg-primary" : "bg-gray-200"
@@ -137,7 +140,7 @@ export default function BookingWizardMobile(props: BookingWizardMobileProps) {
 
   return (
     <div className="flex flex-col h-full">
-      <ProgressBar currentStep={currentStep} />
+      <ProgressBar currentStep={currentStep} t={props.t} />
       <div className="flex-1 overflow-y-auto px-4 py-4">
         {currentStep === 1 && <Step1Boat {...props} />}
         {currentStep === 2 && <Step2Trip {...props} />}
@@ -153,7 +156,7 @@ export default function BookingWizardMobile(props: BookingWizardMobileProps) {
             className="flex-1 py-5 text-sm font-semibold"
           >
             <ChevronLeft className="w-4 h-4 mr-1" />
-            Atras
+            {props.t.booking.back}
           </Button>
         )}
         {currentStep < 4 ? (
@@ -162,7 +165,7 @@ export default function BookingWizardMobile(props: BookingWizardMobileProps) {
             onClick={onNext}
             className="flex-1 py-5 text-sm font-semibold"
           >
-            Siguiente
+            {props.t.booking.next}
           </Button>
         ) : (
           <Button
@@ -171,7 +174,7 @@ export default function BookingWizardMobile(props: BookingWizardMobileProps) {
             className="flex-1 py-5 text-sm font-semibold"
           >
             <SiWhatsapp className="w-4 h-4 mr-2" />
-            Reservar por WhatsApp
+            {props.t.booking.sendBookingRequest}
           </Button>
         )}
       </div>
@@ -187,12 +190,14 @@ function Step1Boat({
   preSelectedBoatId,
   getLocalISODate,
   showFieldError, getFieldError, handleBlur,
+  t,
 }: BookingWizardMobileProps) {
+  const [showDatePicker, setShowDatePicker] = useState(false);
   return (
     <div className="space-y-5">
       <div>
-        <h2 className="text-xl font-bold text-gray-900 mb-1">Elige tu barco</h2>
-        <p className="text-sm text-gray-500">Tienes licencia nautica?</p>
+        <h2 className="text-xl font-bold text-gray-900 mb-1">{t.wizard.chooseYourBoat}</h2>
+        <p className="text-sm text-gray-500">{t.wizard.haveNauticalLicense}</p>
       </div>
       {!preSelectedBoatId && (
         <div className="flex gap-2">
@@ -205,7 +210,7 @@ function Step1Boat({
                 : "border-gray-200 text-gray-600"
             }`}
           >
-            Sin licencia
+            {t.wizard.withoutLicense}
           </button>
           <button
             type="button"
@@ -216,13 +221,13 @@ function Step1Boat({
                 : "border-gray-200 text-gray-600"
             }`}
           >
-            Con licencia
+            {t.wizard.withLicense}
           </button>
         </div>
       )}
       <div>
         <label className="block text-sm font-semibold text-gray-700 mb-2">
-          Selecciona un barco
+          {t.wizard.selectABoat}
         </label>
         <div className="space-y-2">
           {filteredBoats.map((boat) => {
@@ -253,7 +258,7 @@ function Step1Boat({
                   <p className="font-semibold text-gray-900 text-sm">{boat.name}</p>
                   {minPrice !== null && (
                     <p className="text-xs text-primary font-medium">
-                      Desde {minPrice}EUR
+                      {t.boats.from} {minPrice}€
                     </p>
                   )}
                 </div>
@@ -269,20 +274,43 @@ function Step1Boat({
         )}
       </div>
       <div>
-        <label htmlFor="wizard-date" className="block text-sm font-semibold text-gray-700 mb-2">
-          Fecha
+        <label className="block text-sm font-semibold text-gray-700 mb-2">
+          {t.wizard.date}
         </label>
-        <input
-          type="date"
-          id="wizard-date"
-          value={selectedDate}
-          onChange={(e) => setSelectedDate(e.target.value)}
-          onBlur={() => handleBlur('date')}
-          min={getLocalISODate()}
-          className={`w-full p-3 border-2 rounded-xl bg-white text-gray-900 font-medium text-sm focus:ring-2 focus:ring-primary ${
-            showFieldError('date') ? 'border-red-500' : 'border-gray-200'
-          }`}
-        />
+        <Popover open={showDatePicker} onOpenChange={setShowDatePicker}>
+          <PopoverTrigger asChild>
+            <button
+              type="button"
+              onBlur={() => handleBlur('date')}
+              className={`w-full flex items-center gap-2 p-3 border-2 rounded-xl bg-white text-left font-medium text-sm transition-all focus:ring-2 focus:ring-primary focus:outline-none ${
+                showFieldError('date') ? 'border-red-500 text-red-500' : 'border-gray-200 text-gray-900'
+              }`}
+            >
+              <CalendarIcon className="w-4 h-4 text-primary flex-shrink-0" />
+              {selectedDate
+                ? new Date(selectedDate + 'T00:00:00').toLocaleDateString('es-ES', { day: '2-digit', month: 'short', year: 'numeric' })
+                : <span className="text-gray-400">{t.wizard.selectDate}</span>
+              }
+            </button>
+          </PopoverTrigger>
+          <PopoverContent className="w-auto p-0" align="start">
+            <Calendar
+              mode="single"
+              selected={selectedDate ? new Date(selectedDate + 'T00:00:00') : undefined}
+              onSelect={(date) => {
+                if (date) {
+                  const y = date.getFullYear();
+                  const m = String(date.getMonth() + 1).padStart(2, '0');
+                  const d = String(date.getDate()).padStart(2, '0');
+                  setSelectedDate(`${y}-${m}-${d}`);
+                }
+                setShowDatePicker(false);
+              }}
+              disabled={(date) => date < new Date(getLocalISODate() + 'T00:00:00')}
+              initialFocus
+            />
+          </PopoverContent>
+        </Popover>
         {showFieldError('date') && (
           <p className="text-xs text-red-500 mt-1">{getFieldError('date')}</p>
         )}
@@ -299,6 +327,7 @@ function Step2Trip({
   getDurationOptions, getMaxCapacity,
   timeSlots,
   showFieldError, getFieldError, handleBlur,
+  t,
 }: BookingWizardMobileProps) {
   const durationOptions = getDurationOptions();
   const maxCapacity = getMaxCapacity();
@@ -306,29 +335,36 @@ function Step2Trip({
   return (
     <div className="space-y-5">
       <div>
-        <h2 className="text-xl font-bold text-gray-900 mb-1">Tu excursion</h2>
-        <p className="text-sm text-gray-500">Cuanto tiempo y cuantos sois?</p>
+        <h2 className="text-xl font-bold text-gray-900 mb-1">{t.wizard.yourTrip}</h2>
+        <p className="text-sm text-gray-500">{t.wizard.howLongHowMany}</p>
       </div>
       <div>
-        <label className="block text-sm font-semibold text-gray-700 mb-2">Duracion</label>
+        <label className="block text-sm font-semibold text-gray-700 mb-2">{t.wizard.duration}</label>
         <div className="space-y-2">
-          {durationOptions.map((opt) => (
-            <button
-              key={opt.value}
-              type="button"
-              onClick={() => setSelectedDuration(opt.value)}
-              className={`w-full flex items-center justify-between p-3 rounded-xl border-2 text-left transition-all ${
-                selectedDuration === opt.value
-                  ? "border-primary bg-primary/5"
-                  : "border-gray-200 bg-white"
-              }`}
-            >
-              <span className="text-sm font-medium text-gray-900">{opt.label.split(' - ')[0]}</span>
-              {opt.label.includes(' - ') && (
-                <span className="text-xs font-bold text-primary">{opt.label.split(' - ')[1]}</span>
-              )}
-            </button>
-          ))}
+          {durationOptions.map((opt) => {
+            const parts = opt.label.split(' - ');
+            const lastPart = parts[parts.length - 1];
+            const hasPrice = parts.length > 1 && lastPart.includes('€');
+            const labelText = hasPrice ? parts.slice(0, -1).join(' · ') : opt.label;
+            const priceText = hasPrice ? lastPart : null;
+            return (
+              <button
+                key={opt.value}
+                type="button"
+                onClick={() => setSelectedDuration(opt.value)}
+                className={`w-full flex items-center justify-between p-3 rounded-xl border-2 text-left transition-all ${
+                  selectedDuration === opt.value
+                    ? "border-primary bg-primary/5"
+                    : "border-gray-200 bg-white"
+                }`}
+              >
+                <span className="text-sm font-medium text-gray-900">{labelText}</span>
+                {priceText && (
+                  <span className="text-xs font-bold text-primary">{priceText}</span>
+                )}
+              </button>
+            );
+          })}
         </div>
         {showFieldError('duration') && (
           <p className="text-xs text-red-500 mt-1">{getFieldError('duration')}</p>
@@ -336,7 +372,7 @@ function Step2Trip({
       </div>
       <div>
         <label htmlFor="wizard-time" className="block text-sm font-semibold text-gray-700 mb-2">
-          Hora de salida
+          {t.wizard.departureTime}
         </label>
         <select
           id="wizard-time"
@@ -347,7 +383,7 @@ function Step2Trip({
             showFieldError('time') ? 'border-red-500' : 'border-gray-200'
           }`}
         >
-          <option value="">Selecciona hora</option>
+          <option value="">{t.wizard.selectTime}</option>
           {timeSlots.map((time) => (
             <option key={time} value={time}>{time}h</option>
           ))}
@@ -358,7 +394,7 @@ function Step2Trip({
       </div>
       <div>
         <label htmlFor="wizard-people" className="block text-sm font-semibold text-gray-700 mb-2">
-          Numero de personas
+          {t.wizard.numberOfPeople}
           {selectedBoatInfo && (
             <span className="font-normal text-gray-400 ml-1">(max. {maxCapacity})</span>
           )}
@@ -367,21 +403,23 @@ function Step2Trip({
           type="number"
           id="wizard-people"
           value={numberOfPeople}
-          onChange={(e) => {
-            const val = e.target.value;
-            if (val === "" || (parseInt(val) >= 1 && parseInt(val) <= maxCapacity)) {
-              setNumberOfPeople(val);
-            }
-          }}
+          onChange={(e) => setNumberOfPeople(e.target.value)}
           onBlur={() => handleBlur('people')}
           min={1}
           max={maxCapacity}
           placeholder={`1 - ${maxCapacity}`}
           className={`w-full p-3 border-2 rounded-xl bg-white text-gray-900 font-medium text-sm focus:ring-2 focus:ring-primary text-center ${
-            showFieldError('people') ? 'border-red-500' : 'border-gray-200'
+            (showFieldError('people') || (!!numberOfPeople && parseInt(numberOfPeople) > maxCapacity))
+              ? 'border-red-500'
+              : 'border-gray-200'
           }`}
         />
-        {showFieldError('people') && (
+        {!!numberOfPeople && parseInt(numberOfPeople) > maxCapacity && (
+          <p className="text-xs text-red-500 mt-1">
+            {t.wizard.maxCapacityError.replace('{max}', String(maxCapacity))}
+          </p>
+        )}
+        {showFieldError('people') && parseInt(numberOfPeople || '0') <= maxCapacity && (
           <p className="text-xs text-red-500 mt-1">{getFieldError('people')}</p>
         )}
       </div>
@@ -401,16 +439,18 @@ function Step3PersonalData({
   filteredPrefixes,
   selectedPrefixInfo,
   showFieldError, getFieldError, handleBlur,
+  onNext,
+  t,
 }: BookingWizardMobileProps) {
   return (
     <div className="space-y-4">
       <div>
-        <h2 className="text-xl font-bold text-gray-900 mb-1">Tus datos</h2>
-        <p className="text-sm text-gray-500">Para confirmar tu reserva por WhatsApp</p>
+        <h2 className="text-xl font-bold text-gray-900 mb-1">{t.wizard.yourData}</h2>
+        <p className="text-sm text-gray-500">{t.wizard.confirmViaWhatsApp}</p>
       </div>
       <div>
         <label htmlFor="wizard-firstname" className="block text-sm font-semibold text-gray-700 mb-1">
-          Nombre
+          {t.wizard.firstName}
         </label>
         <input
           type="text"
@@ -430,7 +470,7 @@ function Step3PersonalData({
       </div>
       <div>
         <label htmlFor="wizard-lastname" className="block text-sm font-semibold text-gray-700 mb-1">
-          Apellidos
+          {t.wizard.lastName}
         </label>
         <input
           type="text"
@@ -450,7 +490,7 @@ function Step3PersonalData({
       </div>
       <div>
         <label htmlFor="wizard-phone" className="block text-sm font-semibold text-gray-700 mb-1">
-          Telefono
+          {t.wizard.phone}
         </label>
         <div className="flex gap-2">
           <div className="relative w-28 flex-shrink-0" ref={prefixDropdownRef}>
@@ -468,7 +508,7 @@ function Step3PersonalData({
                     type="text"
                     value={prefixSearch}
                     onChange={(e) => setPrefixSearch(e.target.value)}
-                    placeholder="Buscar pais..."
+                    placeholder={t.wizard.searchCountry}
                     className="w-full p-2 border border-gray-200 rounded-lg text-sm"
                   />
                 </div>
@@ -510,7 +550,7 @@ function Step3PersonalData({
       </div>
       <div>
         <label htmlFor="wizard-email" className="block text-sm font-semibold text-gray-700 mb-1">
-          Email
+          {t.wizard.email}
         </label>
         <input
           type="email"
@@ -518,6 +558,7 @@ function Step3PersonalData({
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           onBlur={() => handleBlur('email')}
+          onKeyDown={(e) => { if (e.key === 'Enter') onNext(); }}
           placeholder="tu@email.com"
           autoComplete="email"
           className={`w-full p-3 border-2 rounded-xl bg-white text-gray-900 font-medium text-sm focus:ring-2 focus:ring-primary ${
@@ -541,48 +582,52 @@ function Step4Confirm({
   isValidatingCode, validatedCode, codeError, handleValidateCode, handleRemoveCode,
   getCodeDiscount, getBookingPrice,
   calculatePackSavings, iconMap,
-  t,
+  t, isSpanishLang,
 }: BookingWizardMobileProps) {
   const basePrice = getBookingPrice();
   const discount = getCodeDiscount();
+  const boatExtraNames = new Set(boatExtras.map(e => e.name));
+  const availablePacks = EXTRA_PACKS.filter(pack =>
+    pack.extras.every(name => boatExtraNames.has(name))
+  );
   const total = basePrice !== null ? basePrice + totalExtrasPrice - discount : null;
 
   return (
     <div className="space-y-5 pb-2">
       <div>
-        <h2 className="text-xl font-bold text-gray-900 mb-1">Confirmar reserva</h2>
-        <p className="text-sm text-gray-500">Revisa los detalles y anade extras opcionales</p>
+        <h2 className="text-xl font-bold text-gray-900 mb-1">{t.booking.confirmTitle}</h2>
+        <p className="text-sm text-gray-500">{t.booking.confirmSubtitle}</p>
       </div>
       {/* Booking summary card */}
       <div className="bg-primary/5 border border-primary/20 rounded-xl p-4 space-y-2">
         <div className="flex justify-between text-sm">
-          <span className="text-gray-500">Barco</span>
+          <span className="text-gray-500">{t.booking.boat}</span>
           <span className="font-semibold text-gray-900">{selectedBoatInfo?.name || "--"}</span>
         </div>
         <div className="flex justify-between text-sm">
-          <span className="text-gray-500">Fecha</span>
+          <span className="text-gray-500">{t.booking.date}</span>
           <span className="font-semibold text-gray-900">{selectedDate}</span>
         </div>
         <div className="flex justify-between text-sm">
-          <span className="text-gray-500">Hora salida</span>
+          <span className="text-gray-500">{t.booking.preferredTime}</span>
           <span className="font-semibold text-gray-900">{preferredTime}h</span>
         </div>
         <div className="flex justify-between text-sm">
-          <span className="text-gray-500">Duracion</span>
+          <span className="text-gray-500">{t.booking.duration}</span>
           <span className="font-semibold text-gray-900">{selectedDuration}</span>
         </div>
         <div className="flex justify-between text-sm">
-          <span className="text-gray-500">Personas</span>
+          <span className="text-gray-500">{t.booking.people}</span>
           <span className="font-semibold text-gray-900">{numberOfPeople}</span>
         </div>
         <div className="flex justify-between text-sm">
-          <span className="text-gray-500">Cliente</span>
+          <span className="text-gray-500">{t.booking.summaryClient}</span>
           <span className="font-semibold text-gray-900">{firstName} {lastName}</span>
         </div>
         {basePrice !== null && (
           <div className="flex justify-between text-sm pt-2 border-t border-primary/20">
-            <span className="text-gray-500">Precio base</span>
-            <span className="font-bold text-primary text-base">{basePrice}EUR</span>
+            <span className="text-gray-500">{t.booking.summaryBasePrice.replace(':', '').trim()}</span>
+            <span className="font-bold text-primary text-base">{basePrice}€</span>
           </div>
         )}
       </div>
@@ -596,10 +641,10 @@ function Step4Confirm({
           >
             <span className="flex items-center gap-2">
               <Package className="w-4 h-4 text-primary" />
-              Extras y Packs
+              {t.booking.extrasSection.title}
               {(selectedExtras.length > 0 || selectedPack) && (
                 <span className="bg-primary text-white text-[10px] px-2 py-0.5 rounded-full">
-                  {totalExtrasPrice}EUR
+                  {totalExtrasPrice}€
                 </span>
               )}
             </span>
@@ -609,16 +654,16 @@ function Step4Confirm({
             <div className="p-4 space-y-4 bg-white">
               {/* Packs */}
               <div>
-                <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">Packs con descuento</p>
+                <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">{t.booking.extrasSection.packs}</p>
                 <div className="space-y-2">
                   <button
                     type="button"
                     onClick={() => handlePackSelect("")}
                     className={`w-full p-3 rounded-xl border-2 text-left text-sm transition-all ${!selectedPack ? 'border-primary bg-primary/5' : 'border-gray-200'}`}
                   >
-                    Sin pack
+                    {t.booking.extrasSection.noPack}
                   </button>
-                  {EXTRA_PACKS.map((pack) => {
+                  {availablePacks.map((pack) => {
                     const isSelected = selectedPack === pack.id;
                     const savings = calculatePackSavings(pack.id);
                     const IconComp = iconMap[pack.icon] || Package;
@@ -632,12 +677,12 @@ function Step4Confirm({
                         <div className="flex items-center justify-between">
                           <div className="flex items-center gap-2">
                             <IconComp className="w-4 h-4 text-primary" />
-                            <span className="text-sm font-semibold">{pack.name}</span>
+                            <span className="text-sm font-semibold">{isSpanishLang ? pack.name : pack.nameEN}</span>
                           </div>
                           <div className="text-right">
-                            <span className="text-sm font-bold text-primary">{pack.price}EUR</span>
+                            <span className="text-sm font-bold text-primary">{pack.price}€</span>
                             {savings > 0 && (
-                              <span className="block text-[10px] text-green-600">Ahorras {savings.toFixed(0)}EUR</span>
+                              <span className="block text-[10px] text-green-600">{t.booking.extrasSection.savings} {savings.toFixed(0)}€</span>
                             )}
                           </div>
                         </div>
@@ -648,7 +693,7 @@ function Step4Confirm({
               </div>
               {/* Individual extras */}
               <div>
-                <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">Extras individuales</p>
+                <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">{t.booking.extrasSection.individual}</p>
                 <div className="grid grid-cols-2 gap-2">
                   {boatExtras.map((extra) => {
                     const isChecked = selectedExtras.includes(extra.name);
@@ -671,7 +716,7 @@ function Step4Confirm({
                         </div>
                         <div className="min-w-0">
                           <p className="text-xs font-medium text-gray-800 truncate">{extra.name}</p>
-                          <p className="text-[10px] text-gray-500">{isInPack ? 'En pack' : extra.price}</p>
+                          <p className="text-[10px] text-gray-500">{isInPack ? t.booking.extrasSection.included : extra.price}</p>
                         </div>
                       </button>
                     );
@@ -693,7 +738,7 @@ function Step4Confirm({
             <Tag className="w-4 h-4 text-primary" />
             {t.codeValidation.haveCode}
             {validatedCode && (
-              <span className="bg-green-500 text-white text-[10px] px-2 py-0.5 rounded-full">Aplicado</span>
+              <span className="bg-green-500 text-white text-[10px] px-2 py-0.5 rounded-full">{t.codeValidation.applied}</span>
             )}
           </span>
           {showCodeSection ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
@@ -708,7 +753,7 @@ function Step4Confirm({
                     value={codeInput}
                     onChange={(e) => setCodeInput(e.target.value.toUpperCase())}
                     placeholder={t.codeValidation.enterCode}
-                    className="flex-1 p-3 border-2 border-gray-200 rounded-xl text-sm font-mono uppercase tracking-wider"
+                    className="flex-1 p-3 bg-white text-gray-900 border-2 border-gray-200 rounded-xl text-sm font-mono uppercase tracking-wider"
                     disabled={isValidatingCode}
                   />
                   <Button
@@ -718,7 +763,7 @@ function Step4Confirm({
                     disabled={isValidatingCode || !codeInput.trim()}
                     className="px-4 py-3 h-auto"
                   >
-                    {isValidatingCode ? <Loader2 className="w-4 h-4 animate-spin" /> : "Aplicar"}
+                    {isValidatingCode ? <Loader2 className="w-4 h-4 animate-spin" /> : t.codeValidation.apply}
                   </Button>
                 </div>
                 {codeError && <p className="text-xs text-red-500">{codeError}</p>}
@@ -738,7 +783,7 @@ function Step4Confirm({
                 </div>
                 <div className="flex items-center gap-2">
                   <span className="text-sm font-bold text-green-600">
-                    {validatedCode.type === "gift_card" ? `-${discount}EUR` : `-${validatedCode.percentage}%`}
+                    {validatedCode.type === "gift_card" ? `-${discount}€` : `-${validatedCode.percentage}%`}
                   </span>
                   <button type="button" onClick={handleRemoveCode} className="text-gray-400 p-1">
                     <X className="w-4 h-4" />
@@ -753,13 +798,13 @@ function Step4Confirm({
       {total !== null && (
         <div className="bg-primary rounded-xl p-4 text-white">
           <div className="flex justify-between items-center">
-            <span className="text-sm font-medium opacity-90">Total estimado</span>
-            <span className="text-2xl font-bold">{total}EUR</span>
+            <span className="text-sm font-medium opacity-90">{t.booking.estimatedTotal}</span>
+            <span className="text-2xl font-bold">{total}€</span>
           </div>
           {discount > 0 && (
-            <p className="text-xs opacity-75 mt-1">Descuento aplicado: -{discount}EUR</p>
+            <p className="text-xs opacity-75 mt-1">{t.booking.discountApplied}: -{discount}€</p>
           )}
-          <p className="text-xs opacity-60 mt-1">El precio final se confirma por WhatsApp</p>
+          <p className="text-xs opacity-60 mt-1">{t.booking.priceConfirmedWhatsApp}</p>
         </div>
       )}
     </div>

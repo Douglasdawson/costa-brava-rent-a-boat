@@ -2,9 +2,9 @@ import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
-import { Users, Clock, Star, Euro, CheckCircle, AlertCircle, Gauge } from "lucide-react";
+import { Users, Clock, Star, Euro, CheckCircle, AlertCircle, Gauge, Anchor } from "lucide-react";
 import { useTranslations } from "@/lib/translations";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 
 interface BoatCardProps {
   id: string;
@@ -40,6 +40,7 @@ export default function BoatCard({
   onDetails
 }: BoatCardProps) {
   const t = useTranslations();
+  const [imageError, setImageError] = useState(false);
 
   const tooltipText = useMemo(() => {
     return t.boats.hoursTooltip.replace('{boatName}', name);
@@ -63,17 +64,24 @@ export default function BoatCard({
 
   return (
     <Card className="hover-elevate overflow-hidden transition-all duration-300">
-      <div 
-        className="relative cursor-pointer group"
+      <div
+        className="relative cursor-pointer group bg-gray-200"
         onClick={handleDetails}
         data-testid={`image-${id}`}
       >
-        <img 
-          src={image} 
-          alt={imageAlt}
-          className="w-full h-48 object-cover transition-transform duration-200 group-hover:scale-105"
-          loading="lazy"
-        />
+        {imageError ? (
+          <div className="w-full h-48 flex items-center justify-center">
+            <Anchor className="w-12 h-12 text-gray-400" />
+          </div>
+        ) : (
+          <img
+            src={image}
+            alt={imageAlt}
+            className="w-full h-48 object-cover transition-transform duration-200 group-hover:scale-105"
+            loading="lazy"
+            onError={() => setImageError(true)}
+          />
+        )}
         {/* Hover overlay */}
         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-200 flex items-center justify-center">
           <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-sm font-medium text-gray-800">

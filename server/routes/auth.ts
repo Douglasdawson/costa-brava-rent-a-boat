@@ -5,7 +5,7 @@ import crypto from "crypto";
 import { z } from "zod";
 import { storage } from "../storage";
 import { isAuthenticated } from "../replitAuth";
-import { insertTenantSchema } from "@shared/schema";
+import { sendPasswordResetEmail } from "../services/emailService";
 
 const BCRYPT_ROUNDS = 10;
 
@@ -83,6 +83,7 @@ interface SaasJwtPayload {
 
 // Union type for any JWT payload
 type JwtPayload = AdminJwtPayload | SaasJwtPayload;
+type StoredSaasUser = NonNullable<Awaited<ReturnType<typeof storage.getUserById>>>;
 
 // Token metadata for session tracking (not used for auth verification)
 interface TokenMeta {
@@ -152,7 +153,7 @@ function generateAccessToken(userId: string, tenantId: string, role: string, ema
   return jwt.sign(
     { userId, tenantId, role, email } as SaasJwtPayload,
     JWT_SECRET,
-    { expiresIn: "1h" }
+    { expiresIn: "24h" }
   );
 }
 
@@ -176,6 +177,34 @@ function getTokenData(req: Request): JwtPayload | null {
   } catch {
     return null;
   }
+}
+
+async function validateSaasTokenData(
+  tokenData: JwtPayload | null,
+): Promise<{ token: SaasJwtPayload; user: StoredSaasUser } | null> {
+  if (!tokenData || !("tenantId" in tokenData)) {
+    return null;
+  }
+
+  const user = await storage.getUserById(tokenData.userId);
+  if (!user || !user.isActive) {
+    return null;
+  }
+
+  if (user.tenantId !== tokenData.tenantId) {
+    return null;
+  }
+
+  const freshTokenData: SaasJwtPayload = {
+    userId: user.id,
+    tenantId: user.tenantId,
+    role: user.role,
+    email: user.email,
+    iat: tokenData.iat,
+    exp: tokenData.exp,
+  };
+
+  return { token: freshTokenData, user };
 }
 
 // Detect tenant from request (subdomain or header)
@@ -212,7 +241,7 @@ async function resolveTenantFromRequest(req: Request): Promise<string | null> {
 // ===== Middleware =====
 
 // Admin session middleware - verifies JWT signature and expiry (supports both legacy and SaaS tokens)
-export const requireAdminSession = (req: Request, res: Response, next: NextFunction) => {
+export const requireAdminSession = async (req: Request, res: Response, next: NextFunction) => {
   const authHeader = req.headers.authorization;
 
   if (!authHeader || !authHeader.startsWith("Bearer ")) {
@@ -227,8 +256,25 @@ export const requireAdminSession = (req: Request, res: Response, next: NextFunct
 
   try {
     const decoded = jwt.verify(token, JWT_SECRET) as JwtPayload;
+
+    if ("tenantId" in decoded) {
+      const validated = await validateSaasTokenData(decoded);
+      if (!validated) {
+        return res.status(401).json({ message: "Token invalido o expirado" });
+      }
+
+      if (validated.user.role !== "owner" && validated.user.role !== "admin") {
+        return res.status(403).json({ message: "Se requiere rol de administrador" });
+      }
+
+      (req as any).tenantId = validated.user.tenantId;
+      (req as any).saasUser = validated.token;
+      (req as any).adminUser = validated.token;
+      return next();
+    }
+
     (req as any).adminUser = decoded;
-    next();
+    return next();
   } catch (error) {
     if (error instanceof jwt.TokenExpiredError) {
       activeSessions.delete(token);
@@ -239,12 +285,17 @@ export const requireAdminSession = (req: Request, res: Response, next: NextFunct
 };
 
 // SaaS auth middleware - requires SaaS JWT with tenantId
-export const requireSaasAuth = (req: Request, res: Response, next: NextFunction) => {
+export const requireSaasAuth = async (req: Request, res: Response, next: NextFunction) => {
   const tokenData = getTokenData(req);
-  if (!tokenData || !("tenantId" in tokenData)) {
+  const validated = await validateSaasTokenData(tokenData);
+
+  if (!validated) {
     return res.status(401).json({ message: "No autorizado" });
   }
-  (req as any).saasUser = tokenData;
+
+  (req as any).saasUser = validated.token;
+  (req as any).tenantId = validated.user.tenantId;
+  (req as any).authUser = validated.user;
   next();
 };
 
@@ -283,7 +334,14 @@ export const injectTenantId = async (req: Request, res: Response, next: NextFunc
   // First try from JWT
   const tokenData = getTokenData(req);
   if (tokenData && "tenantId" in tokenData) {
-    (req as any).tenantId = tokenData.tenantId;
+    const validated = await validateSaasTokenData(tokenData);
+    if (!validated) {
+      return res.status(401).json({ message: "Token invalido o expirado" });
+    }
+
+    (req as any).tenantId = validated.user.tenantId;
+    (req as any).saasUser = validated.token;
+    (req as any).authUser = validated.user;
     return next();
   }
 
@@ -457,14 +515,23 @@ export function registerAuthRoutes(app: Express) {
 
       if (!tenantId) {
         // If no tenant context, try to find user across all tenants
-        // (single-tenant mode or user accessing without subdomain)
+        // (single-tenant mode or user accessing without subdomain).
         const allTenants = await storage.getAllTenants();
+        const matchingTenants: string[] = [];
+
         for (const t of allTenants) {
           const found = await storage.getUserByEmail(normalizedEmail, t.id);
           if (found) {
-            tenantId = t.id;
-            break;
+            matchingTenants.push(t.id);
           }
+        }
+
+        if (matchingTenants.length === 1) {
+          tenantId = matchingTenants[0];
+        } else if (matchingTenants.length > 1) {
+          return res.status(400).json({
+            message: "Este email pertenece a varias empresas. Indica tenantSlug para iniciar sesion.",
+          });
         }
       }
 
@@ -715,8 +782,18 @@ export function registerAuthRoutes(app: Express) {
 
       await storage.createPasswordResetToken(foundUser.id, resetToken, expiresAt);
 
-      // TODO: Send email with reset link
-      // For now, log the token in development
+      const configuredResetUrl = process.env.AUTH_RESET_URL_BASE;
+      const defaultResetUrl = `${req.protocol}://${req.get("host")}/reset-password`;
+      const resetBaseUrl = (configuredResetUrl || defaultResetUrl).replace(/\/$/, "");
+      const joiner = resetBaseUrl.includes("?") ? "&" : "?";
+      const resetUrl = `${resetBaseUrl}${joiner}token=${encodeURIComponent(resetToken)}`;
+
+      await sendPasswordResetEmail(
+        normalizedEmail,
+        foundUser.firstName || "cliente",
+        resetUrl,
+      );
+
       if (process.env.NODE_ENV === "development") {
         console.log(`Password reset token for ${normalizedEmail}: ${resetToken}`);
       }
@@ -778,11 +855,7 @@ export function registerAuthRoutes(app: Express) {
     try {
       const { tenantId } = req.body;
       if (!tenantId) {
-        // Try to get default tenant
-        const defaultTenant = await storage.getTenantBySlug("costa-brava-rent-a-boat");
-        if (!defaultTenant) {
-          return res.status(400).json({ message: "tenantId requerido o seed-tenant primero" });
-        }
+        const defaultTenant = await storage.seedDefaultTenant();
         const result = await storage.migrateAdminUsersToUsers(defaultTenant.id);
         return res.json({ success: true, ...result, message: "Migracion completada" });
       }

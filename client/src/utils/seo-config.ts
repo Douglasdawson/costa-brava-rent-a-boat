@@ -20,7 +20,7 @@ export const BUSINESS_INFO = {
   legalName: "Costa Brava Rent a Boat - Blanes",
   description: "Alquiler de barcos sin licencia y con licencia en Blanes, Costa Brava. Desde Puerto de Blanes. 7 embarcaciones para 4-7 personas.",
   phone: "+34611500372",
-  email: "costabravarentboat@gmail.com",
+  email: "costabravarentaboat@gmail.com",
   url: getBaseUrl(),
   address: {
     streetAddress: "Puerto de Blanes",
@@ -30,8 +30,8 @@ export const BUSINESS_INFO = {
     addressCountry: "ES"
   },
   geo: {
-    latitude: 41.6667,
-    longitude: 2.7833
+    latitude: 41.6751,
+    longitude: 2.7934
   },
   openingHours: [
     "Mo-Su 09:00-20:00"  // April-October season

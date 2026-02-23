@@ -285,6 +285,66 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
     ]
   },
 
+  "astec-450": {
+    id: "astec-450",
+    name: "Astec 450",
+    image: "ASTEC_450_boat_photo_77fb7b13.png",
+    subtitle: "Sin licencia para alquilar en Blanes",
+    description: "Alquiler Astec 450 sin licencia en Blanes, Costa Brava. Barco ideal para hasta 5 personas con gasolina incluida. Perfecto para familias que buscan alquilar barco sin licencia en Puerto de Blanes. Equipado con toldo, gran solárium y escalera de baño. Ideal para explorar las calas de Blanes y Costa Brava Sur.",
+    specifications: {
+      model: "Astec 450",
+      length: "4,50m",
+      beam: "1,80m",
+      engine: "Mercury 20cv 4t",
+      fuel: "Gasolina 30L",
+      capacity: "5 Personas",
+      deposit: "300€"
+    },
+    equipment: [
+      "Toldo",
+      "Gran solárium",
+      "Escalera de baño",
+      "Equipo de seguridad y salvamento"
+    ],
+    included: [
+      "IVA",
+      "Carburante",
+      "Amarre",
+      "Limpieza",
+      "Seguro embarcación y ocupantes"
+    ],
+    features: [
+      "Sin licencia requerida",
+      "Hasta 5 personas",
+      "Gasolina incluida",
+      "Seguro incluido",
+      "Equipo de seguridad",
+      "Escalera de baño"
+    ],
+    pricing: {
+      BAJA: {
+        period: "Abril-Junio, Septiembre-Cierre",
+        prices: { "1h": 85, "2h": 130, "3h": 160, "4h": 180, "6h": 230, "8h": 270 }
+      },
+      MEDIA: {
+        period: "Julio",
+        prices: { "1h": 95, "2h": 140, "3h": 170, "4h": 195, "6h": 240, "8h": 290 }
+      },
+      ALTA: {
+        period: "Agosto",
+        prices: { "1h": 105, "2h": 150, "3h": 180, "4h": 210, "6h": 260, "8h": 310 }
+      }
+    },
+    extras: [
+      { name: "Parking", price: "10€", icon: "CircleParking" },
+      { name: "Nevera", price: "5€", icon: "Snowflake" },
+      { name: "Bebidas", price: "2,5€/ud", icon: "Beer" },
+      { name: "Snorkel", price: "7,5€", icon: "Eye" },
+      { name: "Paddle Surf", price: "25€", icon: "Waves" },
+      { name: "Seascooter", price: "50€", icon: "Zap" }
+    ]
+  },
+
   "astec-480": {
     id: "astec-480",
     name: "Astec 480",

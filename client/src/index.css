@@ -363,9 +363,6 @@
       -webkit-overflow-scrolling: touch;
       overscroll-behavior: contain;
       scroll-behavior: smooth;
-      transform: translateZ(0);
-      backface-visibility: hidden;
-      will-change: scroll-position;
     }
 
     /* Specific optimizations for commonly scrolled elements */
@@ -382,12 +379,8 @@
     }
 
     /* Optimize booking flow and modals for mobile */
-    .booking-content,
-    [role="dialog"],
-    [data-state="open"] {
+    .booking-content {
       -webkit-overflow-scrolling: touch;
-      transform: translateZ(0);
-      backface-visibility: hidden;
     }
   }
 

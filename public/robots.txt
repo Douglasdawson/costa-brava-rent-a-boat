@@ -30,12 +30,6 @@ Disallow: /api/*
 Disallow: /destino/*
 Disallow: /categoria/*
 
-# Block legal pages (low value for SEO)
-Disallow: /privacy-policy
-Disallow: /terms-conditions
-Disallow: /cookies-policy
-Disallow: /condiciones-generales
-
 # Allow search engines to access assets
 Allow: /assets/*
 Allow: /*.css

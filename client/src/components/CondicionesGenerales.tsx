@@ -201,7 +201,7 @@ export default function CondicionesGenerales() {
                   </a>
                   <a 
                     href="https://wa.me/34611500372"
-                    className="bg-green-700 hover:bg-green-800 text-white px-6 py-3 rounded-lg font-medium transition-colors"
+                    className="bg-[#25D366] hover:bg-[#128C7E] text-white px-6 py-3 rounded-lg font-medium transition-colors"
                   >
                     WhatsApp
                   </a>

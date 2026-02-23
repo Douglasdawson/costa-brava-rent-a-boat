@@ -60,12 +60,24 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
   const [selectedSeason, setSelectedSeason] = useState<"BAJA" | "MEDIA" | "ALTA">("BAJA");
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [, setLocation] = useLocation();
-  const { openBookingModal } = useBookingModal();
+  const { openBookingModal, isOpen: isBookingModalOpen } = useBookingModal();
+  const [showStickyCTA, setShowStickyCTA] = useState(false);
+  const { language } = useLanguage();
+  const t = useTranslations();
   
   // Reset image index when boat changes
   useEffect(() => {
     setCurrentImageIndex(0);
   }, [boatId]);
+
+  // Show/hide sticky CTA based on scroll position
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowStickyCTA(window.scrollY > 300);
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
   
   // Fetch boat data from API
   const { data: boats, isLoading, error } = useQuery<Boat[]>({
@@ -76,9 +88,12 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
   
   if (isLoading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <div className="text-lg">Cargando...</div>
+      <div className="min-h-screen bg-gray-50">
+        <Navigation />
+        <div className="space-y-4 p-4 max-w-7xl mx-auto pt-24">
+          <div className="h-64 bg-gray-200 animate-pulse rounded-lg" />
+          <div className="h-8 bg-gray-200 animate-pulse rounded w-1/2 mt-4" />
+          <div className="h-4 bg-gray-200 animate-pulse rounded w-1/3 mt-2" />
         </div>
       </div>
     );
@@ -86,9 +101,18 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
 
   if (error || !boatData) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <div className="text-lg">Barco no encontrado</div>
+      <div className="min-h-screen bg-gray-50">
+        <Navigation />
+        <div className="flex items-center justify-center min-h-[60vh]">
+          <div className="text-center">
+            <div className="text-lg mb-4">{t.boatDetail.notFound}</div>
+            <a href="/">
+              <Button variant="outline">
+                <ArrowLeft className="w-4 h-4 mr-2" />
+                {t.boatDetail.backToFleet}
+              </Button>
+            </a>
+          </div>
         </div>
       </div>
     );
@@ -117,8 +141,6 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
   };
 
   // SEO data for this boat
-  const { language } = useLanguage();
-  const t = useTranslations();
   const lowestPrice = boatData.pricing ? Math.min(...Object.values(boatData.pricing.BAJA.prices)) : 0;
   const requiresLicense = boatData.subtitle?.includes("Con Licencia") ?? boatData.requiresLicense;
   const capacity = boatData.specifications ? parseInt(boatData.specifications.capacity?.split(' ')[0] || String(boatData.capacity)) : boatData.capacity;
@@ -217,13 +239,13 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
             data-testid="button-back"
           >
             <ArrowLeft className="w-4 h-4 mr-2" />
-            Volver a la flota
+            {t.boatDetail.backToFleet}
           </Button>
         )}
 
         {/* Boat Title */}
         <div className="text-center mb-6 sm:mb-8 px-2">
-          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-1">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-gray-900 mb-1">
             {boatData.name}
           </h1>
           <p className="text-base sm:text-lg md:text-xl text-gray-600 mb-2">{boatData.subtitle}</p>
@@ -281,11 +303,12 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                   <button
                     key={index}
                     onClick={() => setCurrentImageIndex(index)}
-                    className={`w-2 h-2 rounded-full transition-all ${
-                      index === currentImageIndex 
-                        ? 'bg-primary w-8' 
+                    className={`w-3 h-3 rounded-full transition-all ${
+                      index === currentImageIndex
+                        ? 'bg-primary w-8 h-3'
                         : 'bg-gray-300 hover:bg-gray-400'
                     }`}
+                    aria-label={`${t.boatDetail.imageAria} ${index + 1}`}
                     data-testid={`button-thumbnail-${index}`}
                   />
                 ))}
@@ -296,7 +319,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
           {/* Right Column - Description */}
           <Card>
             <CardHeader>
-              <CardTitle>Descripción</CardTitle>
+              <CardTitle>{t.boatDetail.description}</CardTitle>
             </CardHeader>
             <CardContent>
               <p className="text-gray-700 leading-relaxed">
@@ -306,7 +329,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                 <div className="mt-4 p-4 bg-green-50 rounded-lg">
                   <p className="text-green-800 font-medium flex items-center gap-2">
                     <Fuel className="w-5 h-5" />
-                    ¡Gasolina incluida!
+                    {t.boatDetail.fuelIncluded}
                   </p>
                 </div>
               )}
@@ -318,8 +341,8 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
         <Card className="mb-6 sm:mb-8">
           <CardContent className="p-6">
             <div className="text-center space-y-4">
-              <h3 className="text-xl font-bold text-gray-900">¿Listo para tu aventura?</h3>
-              <p className="text-gray-600">Reserva ahora tu {boatData.name} y disfruta de las calas de la Costa Brava</p>
+              <h3 className="text-xl font-bold text-gray-900">{t.boatDetail.readyForAdventure}</h3>
+              <p className="text-gray-600">{t.boatDetail.bookNowCTA.replace('{boatName}', boatData.name)}</p>
               
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button 
@@ -328,7 +351,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                   data-testid="button-make-reservation"
                 >
                   <Calendar className="w-4 h-4 mr-2" />
-                  Solicita tu petición de reserva
+                  {t.hero.bookNow}
                 </Button>
               </div>
             </div>
@@ -340,7 +363,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
           <CardHeader>
             <CardTitle className="flex items-center md:justify-center">
               <Euro className="w-5 h-5 mr-2 text-green-600" />
-              Precios por Temporada
+              {t.boatDetail.pricesBySeason}
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -348,22 +371,25 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
             {boatData.pricing && (
               <>
                 <div className="flex flex-wrap gap-2 mb-6 justify-center">
-                  {Object.keys(boatData.pricing).map((season) => (
-                    <Button
-                      key={season}
-                      variant={selectedSeason === season ? "default" : "outline"}
-                      onClick={() => setSelectedSeason(season as "BAJA" | "MEDIA" | "ALTA")}
-                      className="text-sm"
-                      data-testid={`button-season-${season.toLowerCase()}`}
-                    >
-                      {season}
-                    </Button>
-                  ))}
+                  {Object.keys(boatData.pricing).map((season) => {
+                    const seasonNames: Record<string, string> = { BAJA: t.boatDetail.seasonLow, MEDIA: t.boatDetail.seasonMid, ALTA: t.boatDetail.seasonHigh };
+                    return (
+                      <Button
+                        key={season}
+                        variant={selectedSeason === season ? "default" : "outline"}
+                        onClick={() => setSelectedSeason(season as "BAJA" | "MEDIA" | "ALTA")}
+                        className="text-sm"
+                        data-testid={`button-season-${season.toLowerCase()}`}
+                      >
+                        {seasonNames[season] || season}
+                      </Button>
+                    );
+                  })}
                 </div>
 
                 {/* Selected Season Details */}
                 <div className="bg-gray-50 rounded-lg p-4 mb-4 text-center">
-                  <h4 className="font-medium mb-2">Temporada {selectedSeason}</h4>
+                  <h4 className="font-medium mb-2">{{ BAJA: t.boatDetail.seasonLow, MEDIA: t.boatDetail.seasonMid, ALTA: t.boatDetail.seasonHigh }[selectedSeason]}</h4>
                   <p className="text-sm text-gray-600 mb-4">{boatData.pricing[selectedSeason].period}</p>
                   
                   <div className="flex flex-wrap justify-center gap-4">
@@ -380,7 +406,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
 
             {boatData.included && boatData.included.length > 0 && (
               <div className="text-sm text-gray-600 text-left md:text-center">
-                <p className="mb-3"><strong>El precio incluye:</strong></p>
+                <p className="mb-3"><strong>{t.boatDetail.priceIncludes}</strong></p>
                 <div className="flex flex-wrap justify-start md:justify-center items-center gap-4">
                   {boatData.included.map((item, index) => (
                     <div key={index} className="flex items-center">
@@ -404,7 +430,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
           <CardHeader>
             <CardTitle className="flex items-center text-base sm:text-lg">
               <Star className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-yellow-500" />
-              Características Principales
+              {t.boatDetail.mainFeatures}
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -414,7 +440,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                   <CheckCircle className="w-4 h-4 text-green-600 mr-2" />
                   <span className="text-sm">{feature}</span>
                 </div>
-              )) || <span className="text-sm text-gray-500">No hay características disponibles</span>}
+              )) || <span className="text-sm text-gray-500">{t.boatDetail.noFeatures}</span>}
             </div>
           </CardContent>
         </Card>
@@ -426,7 +452,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
             <CardHeader>
               <CardTitle className="flex items-center text-base sm:text-lg">
                 <NavigationIcon className="w-5 h-5 mr-2" />
-                Especificaciones Técnicas
+                {t.boatDetail.technicalSpecs}
               </CardTitle>
             </CardHeader>
             <CardContent>
@@ -435,7 +461,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                   <div className="flex items-center justify-between text-sm">
                     <div className="flex items-center">
                       <Anchor className="w-4 h-4 mr-2 text-blue-600" />
-                      <span className="font-medium">Modelo:</span>
+                      <span className="font-medium">{t.boatDetail.specModel}</span>
                     </div>
                     <span>{boatData.specifications.model}</span>
                   </div>
@@ -444,7 +470,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                   <div className="flex items-center justify-between text-sm">
                     <div className="flex items-center">
                       <ArrowUpDown className="w-4 h-4 mr-2 text-blue-600" />
-                      <span className="font-medium">Eslora:</span>
+                      <span className="font-medium">{t.boatDetail.specLength}</span>
                     </div>
                     <span>{boatData.specifications.length}</span>
                   </div>
@@ -453,7 +479,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                   <div className="flex items-center justify-between text-sm">
                     <div className="flex items-center">
                       <ArrowLeftRight className="w-4 h-4 mr-2 text-blue-600" />
-                      <span className="font-medium">Manga:</span>
+                      <span className="font-medium">{t.boatDetail.specBeam}</span>
                     </div>
                     <span>{boatData.specifications.beam}</span>
                   </div>
@@ -462,7 +488,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                   <div className="flex items-center justify-between text-sm">
                     <div className="flex items-center">
                       <Zap className="w-4 h-4 mr-2 text-blue-600" />
-                      <span className="font-medium">Motor:</span>
+                      <span className="font-medium">{t.boatDetail.specEngine}</span>
                     </div>
                     <span>{boatData.specifications.engine}</span>
                   </div>
@@ -471,7 +497,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                   <div className="flex items-center justify-between text-sm">
                     <div className="flex items-center">
                       <Fuel className="w-4 h-4 mr-2 text-blue-600" />
-                      <span className="font-medium">Combustible:</span>
+                      <span className="font-medium">{t.boatDetail.specFuel}</span>
                     </div>
                     <span>{boatData.specifications.fuel}</span>
                   </div>
@@ -480,7 +506,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                   <div className="flex items-center justify-between text-sm">
                     <div className="flex items-center">
                       <Users className="w-4 h-4 mr-2 text-blue-600" />
-                      <span className="font-medium">Capacidad:</span>
+                      <span className="font-medium">{t.boatDetail.specCapacity}</span>
                     </div>
                     <span>{boatData.specifications.capacity}</span>
                   </div>
@@ -489,7 +515,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                   <div className="flex items-center justify-between text-sm">
                     <div className="flex items-center">
                       <Shield className="w-4 h-4 mr-2 text-blue-600" />
-                      <span className="font-medium">Fianza:</span>
+                      <span className="font-medium">{t.boatDetail.specDeposit}</span>
                     </div>
                     <span>{boatData.specifications.deposit}</span>
                   </div>
@@ -503,7 +529,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
             <CardHeader>
               <CardTitle className="text-base sm:text-lg flex items-center gap-2">
                 <Settings className="w-5 h-5 text-primary" />
-                Equipamiento Incluido
+                {t.boatDetail.equipmentIncluded}
               </CardTitle>
             </CardHeader>
             <CardContent>
@@ -513,7 +539,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                     <CheckCircle className="w-4 h-4 text-green-600 mr-2" />
                     <span>{item}</span>
                   </div>
-                )) || <span className="text-sm text-gray-500">No hay equipamiento disponible</span>}
+                )) || <span className="text-sm text-gray-500">{t.boatDetail.noEquipment}</span>}
               </div>
             </CardContent>
           </Card>
@@ -524,50 +550,50 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
               <CardHeader>
                 <CardTitle className="flex items-center text-base sm:text-lg">
                   <Heart className="w-5 h-5 mr-2 text-primary" />
-                  Ventajas de los Barcos Sin Licencia
+                  {t.boatDetail.licenseFreeAdvantages}
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
                   <div>
-                    <h4 className="font-semibold text-sm mb-2">Accesibilidad Total</h4>
+                    <h4 className="font-semibold text-sm mb-2">{t.boatDetail.totalAccessibility}</h4>
                     <div className="space-y-1">
                       <div className="flex items-center">
                         <Star className="w-3 h-3 text-green-600 mr-2" />
-                        <span className="text-sm">No necesitas licencia ni titulación</span>
+                        <span className="text-sm">{t.boatDetail.noLicenseNeeded}</span>
                       </div>
                       <div className="flex items-center">
                         <Star className="w-3 h-3 text-green-600 mr-2" />
-                        <span className="text-sm">Aprendizaje rápido (15 minutos)</span>
+                        <span className="text-sm">{t.boatDetail.quickLearning}</span>
                       </div>
                       <div className="flex items-center">
                         <Star className="w-3 h-3 text-green-600 mr-2" />
-                        <span className="text-sm">Menor coste de alquiler</span>
+                        <span className="text-sm">{t.boatDetail.lowerCost}</span>
                       </div>
                       <div className="flex items-center">
                         <Star className="w-3 h-3 text-green-600 mr-2" />
-                        <span className="text-sm">Perfecto para principiantes</span>
+                        <span className="text-sm">{t.boatDetail.perfectBeginners}</span>
                       </div>
                     </div>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-sm mb-2">Diversión Garantizada</h4>
+                    <h4 className="font-semibold text-sm mb-2">{t.boatDetail.guaranteedFun}</h4>
                     <div className="space-y-1">
                       <div className="flex items-center">
                         <Waves className="w-3 h-3 text-green-600 mr-2" />
-                        <span className="text-sm">Acceso a calas y playas desde el mar</span>
+                        <span className="text-sm">{t.boatDetail.accessCoves}</span>
                       </div>
                       <div className="flex items-center">
                         <Sun className="w-3 h-3 text-green-600 mr-2" />
-                        <span className="text-sm">Ideal para familias con niños</span>
+                        <span className="text-sm">{t.boatDetail.idealFamilies}</span>
                       </div>
                       <div className="flex items-center">
                         <NavigationIcon className="w-3 h-3 text-green-600 mr-2" />
-                        <span className="text-sm">Navegación en zona segura costera</span>
+                        <span className="text-sm">{t.boatDetail.safeCoastalNavigation}</span>
                       </div>
                       <div className="flex items-center">
                         <Clock className="w-3 h-3 text-green-600 mr-2" />
-                        <span className="text-sm">Disponibilidad inmediata</span>
+                        <span className="text-sm">{t.boatDetail.immediateAvailability}</span>
                       </div>
                     </div>
                   </div>
@@ -580,7 +606,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
         {/* Extras Section */}
         <Card className="mb-8">
           <CardHeader>
-            <CardTitle className="md:text-center">Extras Disponibles</CardTitle>
+            <CardTitle className="md:text-center">{t.boatDetail.availableExtras}</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
@@ -611,7 +637,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
               })}
             </div>
             <p className="text-sm text-gray-600 mt-4 text-left md:text-center">
-              Puedes añadir cualquiera de estos extras al completar tu reserva online o directamente en el puerto antes de zarpar.
+              {t.boatDetail.extrasNote}
             </p>
           </CardContent>
         </Card>
@@ -619,20 +645,20 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
         {/* Important Info */}
         <Card className="mb-8">
           <CardHeader>
-            <CardTitle>Información Importante</CardTitle>
+            <CardTitle>{t.boatDetail.importantInfo}</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="text-sm text-gray-700 space-y-2">
-              <p>• <strong>Imprescindible:</strong> Acudir con documento de identidad o pasaporte en vigor{requiresLicense ? " y licencia de navegacion original" : ""}</p>
-              <p>• {requiresLicense ? "Licencia náutica requerida" : "Sin necesidad de licencia náutica"}</p>
-              <p>• Ideal para familias y grupos de hasta {capacity} personas</p>
-              <p>• Perfecto para explorar las calas de la Costa Brava</p>
-              <p>• {requiresLicense ? "Combustible NO incluido, seguro y equipo de seguridad incluidos" : "Gasolina, seguro y equipo de seguridad incluidos"}</p>
-              {boatData.specifications?.deposit && <p>• Fianza: {boatData.specifications.deposit}</p>}
+              <p>• <strong>{t.boatDetail.essentialDoc}</strong>{requiresLicense ? t.boatDetail.essentialDocLicense : ""}</p>
+              <p>• {requiresLicense ? t.boatDetail.licenseRequired : t.boatDetail.noLicenseRequired}</p>
+              <p>• {t.boatDetail.idealForGroups.replace('{capacity}', String(capacity))}</p>
+              <p>• {t.boatDetail.perfectExplore}</p>
+              <p>• {requiresLicense ? t.boatDetail.fuelNotIncluded : t.boatDetail.fuelInsuranceIncluded}</p>
+              {boatData.specifications?.deposit && <p>• {t.boatDetail.specDeposit} {boatData.specifications.deposit}</p>}
             </div>
             <div className="mt-4 p-4 bg-blue-50 rounded-lg">
               <p className="text-blue-800 text-sm">
-                <strong>Condiciones:</strong> Revisa{" "}
+                <strong>{t.boatDetail.conditions}</strong>{" "}
                 <button
                   onClick={() => {
                     const targetSection = requiresLicense ? "embarcaciones-con-licencia" : "embarcaciones-sin-licencia";
@@ -641,8 +667,8 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                       const element = document.getElementById(targetSection);
                       if (element) {
                         const elementPosition = element.offsetTop;
-                        const offsetPosition = elementPosition - 100; // Subir 100px más
-                        
+                        const offsetPosition = elementPosition - 100;
+
                         window.scrollTo({
                           top: offsetPosition,
                           behavior: "smooth"
@@ -653,9 +679,9 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                   className="underline bg-transparent border-none p-0 text-blue-800 cursor-pointer hover:text-blue-600 transition-colors"
                   data-testid="link-terms-conditions"
                 >
-                  las condiciones generales del alquiler
+                  {t.boatDetail.rentalConditions}
                 </button>{" "}
-                antes de hacer tu reserva.
+                {t.boatDetail.beforeBooking}
               </p>
             </div>
           </CardContent>
@@ -664,6 +690,18 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
       </div>
 
       <Footer />
+
+      {/* Sticky CTA for mobile */}
+      {showStickyCTA && !isBookingModalOpen && (
+        <div className="fixed bottom-0 left-0 right-0 z-40 md:hidden">
+          <button
+            onClick={handleReservation}
+            className="w-full bg-primary text-white py-4 px-6 font-semibold shadow-lg"
+          >
+            {t.hero.bookNow}
+          </button>
+        </div>
+      )}
     </div>
   );
 }

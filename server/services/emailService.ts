@@ -395,3 +395,59 @@ export async function sendPreSeasonEmail(
     return { success: false, error: message };
   }
 }
+
+/**
+ * Send password reset email for SaaS authentication.
+ */
+export async function sendPasswordResetEmail(
+  email: string,
+  customerName: string,
+  resetUrl: string
+): Promise<EmailResult> {
+  if (!initSendGrid()) {
+    console.log("[Email] SendGrid not configured, skipping password reset email");
+    return { success: false, error: "SendGrid not configured" };
+  }
+
+  const safeName = customerName?.trim() || "cliente";
+
+  const content = `
+    <h2 style="margin:0 0 8px; color:#1e3a5f; font-size:20px;">Restablecer contrasena</h2>
+    <p style="margin:0 0 20px; color:#475569; font-size:15px; line-height:1.6;">
+      Hola ${safeName},<br>
+      Hemos recibido una solicitud para restablecer la contrasena de tu cuenta.
+    </p>
+
+    <div style="background-color:#eff6ff; border-left:4px solid #2563eb; border-radius:4px; padding:16px; margin:20px 0;">
+      <p style="margin:0 0 10px; color:#1e3a5f; font-size:14px; font-weight:600;">Accion requerida</p>
+      <p style="margin:0; color:#475569; font-size:14px; line-height:1.6;">
+        Haz clic en el siguiente boton para crear una nueva contrasena.
+        Este enlace caduca en <strong>1 hora</strong>.
+      </p>
+    </div>
+
+    <div style="text-align:center; margin:24px 0;">
+      <a href="${resetUrl}" target="_blank" style="display:inline-block; background-color:#2563eb; color:#ffffff; text-decoration:none; padding:12px 28px; border-radius:6px; font-size:15px; font-weight:600;">Restablecer contrasena</a>
+    </div>
+
+    <p style="margin:0; color:#64748b; font-size:13px; line-height:1.6;">
+      Si no solicitaste este cambio, puedes ignorar este email. Tu contrasena actual seguira siendo valida.
+    </p>
+  `;
+
+  try {
+    await sgMail.send({
+      to: email,
+      from: { email: getFromEmail(), name: "Costa Brava Rent a Boat" },
+      subject: "Restablece tu contrasena",
+      html: emailWrapper(content),
+    });
+
+    console.log(`[Email] Password reset email sent to ${email}`);
+    return { success: true };
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : "Unknown error";
+    console.error(`[Email] Error sending password reset email to ${email}:`, message);
+    return { success: false, error: message };
+  }
+}

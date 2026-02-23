@@ -1,4 +1,5 @@
-import { Shield, Star, CheckCircle, Clock, CalendarDays } from "lucide-react";
+import { useState, useEffect } from "react";
+import { Shield, Star, CheckCircle, Clock, CalendarDays, ChevronDown } from "lucide-react";
 import { Button } from "./ui/button";
 import { useTranslations } from "@/lib/translations";
 import { useBookingModal } from "@/hooks/useBookingModal";
@@ -6,6 +7,15 @@ import { useBookingModal } from "@/hooks/useBookingModal";
 export default function Hero() {
   const t = useTranslations();
   const { openBookingModal } = useBookingModal();
+  const [showScrollIndicator, setShowScrollIndicator] = useState(true);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowScrollIndicator(window.scrollY <= 100);
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <div className="relative h-screen min-h-[600px] max-h-[900px]" id="home">
@@ -103,6 +113,18 @@ export default function Hero() {
         </div>
       </div>
 
+      {/* Scroll down indicator */}
+      {showScrollIndicator && (
+        <button
+          onClick={() => {
+            document.getElementById("fleet")?.scrollIntoView({ behavior: "smooth" });
+          }}
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/70 transition-opacity"
+          aria-label="Scroll hacia la flota"
+        >
+          <ChevronDown className="w-8 h-8 animate-bounce" />
+        </button>
+      )}
     </div>
   );
 }

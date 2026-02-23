@@ -139,6 +139,7 @@ export const users = pgTable("users", {
   isActive: boolean("is_active").notNull().default(true),
   lastLoginAt: timestamp("last_login_at", { withTimezone: true }),
   createdAt: timestamp("created_at", { withTimezone: true }).notNull().default(sql`now()`),
+  updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().default(sql`now()`),
 }, (table) => ({
   emailTenantIdx: unique("users_email_tenant_idx").on(table.email, table.tenantId),
   tenantIdx: index("users_tenant_idx").on(table.tenantId),

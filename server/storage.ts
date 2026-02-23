@@ -457,7 +457,11 @@ export class DatabaseStorage implements IStorage {
   }
 
   async updateUser(id: string, data: Partial<SaasUser>): Promise<SaasUser | undefined> {
-    const [user] = await db.update(users).set(data).where(eq(users.id, id)).returning();
+    const [user] = await db
+      .update(users)
+      .set({ ...data, updatedAt: new Date() })
+      .where(eq(users.id, id))
+      .returning();
     return user || undefined;
   }
 
@@ -508,31 +512,66 @@ export class DatabaseStorage implements IStorage {
   // ===== MIGRATION: admin_users -> users =====
 
   async migrateAdminUsersToUsers(tenantId: string): Promise<{ migrated: number; skipped: number }> {
-    const admins = await db.select().from(adminUsers).where(eq(adminUsers.tenantId, tenantId));
+    const tenant = await this.getTenant(tenantId);
+    if (!tenant) {
+      throw new Error("Tenant no encontrado");
+    }
+
+    const admins = await db
+      .select()
+      .from(adminUsers)
+      .where(
+        or(
+          eq(adminUsers.tenantId, tenantId),
+          isNull(adminUsers.tenantId),
+        )
+      );
+
     let migrated = 0;
     let skipped = 0;
 
     for (const admin of admins) {
-      // Use username@tenant-slug as email if no email exists
-      const tenant = await this.getTenant(tenantId);
-      const email = `${admin.username}@${tenant?.slug || 'local'}.nauticflow.app`;
+      const email = `${admin.username}@${tenant.slug}.nauticflow.app`;
 
       // Check if already migrated
       const existing = await this.getUserByEmail(email, tenantId);
       if (existing) {
+        if (admin.tenantId !== tenantId) {
+          await db
+            .update(adminUsers)
+            .set({ tenantId })
+            .where(eq(adminUsers.id, admin.id));
+        }
         skipped++;
         continue;
       }
+
+      const displayName = (admin.displayName || admin.username).trim();
+      const [firstName, ...rest] = displayName.split(/\s+/);
+      const lastName = rest.length > 0 ? rest.join(" ") : null;
+      const normalizedUsername = admin.username.toLowerCase();
+      const role = admin.role === "admin"
+        ? (normalizedUsername === "ivan" ? "owner" : "admin")
+        : "employee";
 
       await db.insert(users).values({
         tenantId,
         email,
         passwordHash: admin.passwordHash,
-        role: admin.role === "admin" ? "owner" : "employee",
-        firstName: admin.displayName || admin.username,
+        role,
+        firstName,
+        lastName,
         isActive: admin.isActive,
         lastLoginAt: admin.lastLoginAt,
       });
+
+      if (admin.tenantId !== tenantId) {
+        await db
+          .update(adminUsers)
+          .set({ tenantId })
+          .where(eq(adminUsers.id, admin.id));
+      }
+
       migrated++;
     }
 

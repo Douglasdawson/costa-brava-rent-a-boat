@@ -10,7 +10,7 @@ import { trackBookingFormOpen } from "@/utils/analytics";
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
-  const [, setLocation] = useLocation();
+  const [currentLocation, setLocation] = useLocation();
   const t = useTranslations();
   const { isAuthenticated } = useAuth();
   const { openBookingModal } = useBookingModal();
@@ -140,6 +140,14 @@ export default function Navigation() {
     { label: t.nav.faq, href: "#faq" },
   ];
 
+  const isNavItemActive = (href: string): boolean => {
+    if (href === "/") return currentLocation === "/";
+    if (href === "/blog") return currentLocation === "/blog" || currentLocation.startsWith("/blog/");
+    if (href === "/tarjetas-regalo") return currentLocation === "/tarjetas-regalo";
+    if (href === "#faq") return currentLocation === "/faq";
+    return false;
+  };
+
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200 shadow-sm">
       <div className="container mx-auto px-4">
@@ -165,7 +173,11 @@ export default function Navigation() {
               <button
                 key={item.label}
                 onClick={() => handleNavigation(item.href, item.label)}
-                className="text-gray-700 hover:text-primary transition-colors font-medium cursor-pointer bg-transparent border-none whitespace-nowrap"
+                className={`hover:text-primary transition-colors cursor-pointer bg-transparent border-none whitespace-nowrap ${
+                  isNavItemActive(item.href)
+                    ? "text-primary font-semibold"
+                    : "text-gray-700 font-medium"
+                }`}
                 data-testid={`nav-link-${item.label.toLowerCase()}`}
                 aria-label={`Navegar a ${item.label}`}
               >

@@ -299,7 +299,7 @@ export default function Footer() {
           <div className="flex items-center space-x-4 mb-6">
             <button 
               onClick={handleWhatsApp}
-              className="bg-green-700 hover:bg-green-800 text-white px-4 py-2 rounded-lg text-xs font-medium flex items-center space-x-2 transition-colors"
+              className="bg-[#25D366] hover:bg-[#128C7E] text-white px-4 py-2 rounded-lg text-xs font-medium flex items-center space-x-2 transition-colors"
               data-testid="footer-whatsapp-button"
               aria-label="Abrir chat de WhatsApp para consultas"
             >

@@ -11,6 +11,7 @@ import BookingFormWidget from "@/components/BookingFormWidget";
 import { trackBookingFormOpen } from "@/utils/analytics";
 
 interface BookingModalContextType {
+  isOpen: boolean;
   openBookingModal: (boatId?: string) => void;
   closeBookingModal: () => void;
 }
@@ -34,7 +35,7 @@ export function BookingModalProvider({ children }: { children: React.ReactNode }
   }, []);
 
   return (
-    <BookingModalContext.Provider value={{ openBookingModal, closeBookingModal }}>
+    <BookingModalContext.Provider value={{ isOpen, openBookingModal, closeBookingModal }}>
       {children}
 
       <Dialog open={isOpen} onOpenChange={(open) => {
@@ -42,8 +43,8 @@ export function BookingModalProvider({ children }: { children: React.ReactNode }
           closeBookingModal();
         }
       }}>
-        <DialogContent className="!max-w-none md:!max-w-4xl !w-full md:!w-[95vw] !h-[100dvh] md:!h-auto md:!max-h-[85vh] !rounded-none md:!rounded-lg overflow-y-auto p-3 sm:p-4 md:p-6 !left-0 md:!left-1/2 !top-0 md:!top-1/2 !translate-x-0 md:!-translate-x-1/2 !translate-y-0 md:!-translate-y-1/2">
-          <DialogHeader className="space-y-1 py-4 sm:py-3">
+        <DialogContent className="!max-w-none md:!max-w-xl !w-full md:!w-[600px] !h-[100dvh] md:!h-[88vh] !rounded-none md:!rounded-xl !p-0 !flex !flex-col overflow-hidden !left-0 md:!left-1/2 !top-0 md:!top-1/2 !translate-x-0 md:!-translate-x-1/2 !translate-y-0 md:!-translate-y-1/2">
+          <DialogHeader className="space-y-1 py-4 px-4 sm:px-6 flex-shrink-0 border-b border-gray-100">
             <DialogTitle className="text-xl sm:text-2xl font-bold text-center">
               {t.booking.title}
             </DialogTitle>
@@ -51,11 +52,12 @@ export function BookingModalProvider({ children }: { children: React.ReactNode }
               {t.booking.modalSubtitle}
             </DialogDescription>
           </DialogHeader>
-          <BookingFormWidget
-            preSelectedBoatId={selectedBoatId}
-            onClose={closeBookingModal}
-            hideHeader={true}
-          />
+          <div className="flex-1 min-h-0 overflow-hidden">
+            <BookingFormWidget
+              preSelectedBoatId={selectedBoatId}
+              onClose={closeBookingModal}
+            />
+          </div>
         </DialogContent>
       </Dialog>
     </BookingModalContext.Provider>

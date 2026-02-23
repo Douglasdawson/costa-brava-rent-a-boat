@@ -199,10 +199,11 @@ export default function DestinationDetailPage() {
           {/* Featured Image */}
           {destination.featuredImage && (
             <div className="my-8">
-              <img 
-                src={destination.featuredImage} 
+              <img
+                src={destination.featuredImage}
                 alt={destination.name}
                 className="w-full h-auto rounded-lg"
+                loading="lazy"
                 data-testid={`img-featured-${destination.slug}`}
               />
             </div>
@@ -242,11 +243,12 @@ export default function DestinationDetailPage() {
               <h3 className="text-xl font-semibold mb-4">Galería</h3>
               <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                 {destination.imageGallery.map((image, index) => (
-                  <img 
+                  <img
                     key={index}
-                    src={image} 
+                    src={image}
                     alt={`${destination.name} - Imagen ${index + 1}`}
                     className="w-full h-32 sm:h-48 object-cover rounded-lg"
+                    loading="lazy"
                     data-testid={`img-gallery-${index}`}
                   />
                 ))}

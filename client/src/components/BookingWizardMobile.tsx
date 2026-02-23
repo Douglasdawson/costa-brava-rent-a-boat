@@ -52,6 +52,7 @@ export interface BookingWizardMobileProps {
   preferredTime: string; setPreferredTime: (v: string) => void;
   numberOfPeople: string; setNumberOfPeople: (v: string) => void;
   filteredBoats: Boat[];
+  isBoatsLoading: boolean;
   selectedBoatInfo: Boat | undefined;
   getDurationOptions: () => { value: string; label: string }[];
   getMaxCapacity: () => number;
@@ -144,6 +145,7 @@ function ProgressBar({ currentStep, t }: { currentStep: number; t: Translations 
 
 export default function BookingWizardMobile(props: BookingWizardMobileProps) {
   const { currentStep, onNext, onBack, handleBookingSearch } = props;
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [animating, setAnimating] = useState(false);
   const [displayStep, setDisplayStep] = useState(currentStep);
   const [direction, setDirection] = useState<"forward" | "back">("forward");
@@ -208,11 +210,20 @@ export default function BookingWizardMobile(props: BookingWizardMobileProps) {
         ) : (
           <Button
             type="button"
-            onClick={handleBookingSearch}
+            onClick={() => {
+              setIsSubmitting(true);
+              handleBookingSearch();
+              // Reset after WhatsApp opens (or validation fails)
+              setTimeout(() => setIsSubmitting(false), 1200);
+            }}
+            disabled={isSubmitting || props.isValidatingCode}
             aria-label="Enviar solicitud de reserva por WhatsApp"
             className="flex-1 py-5 text-sm font-semibold"
           >
-            <SiWhatsapp className="w-4 h-4 mr-2" aria-hidden="true" />
+            {isSubmitting || props.isValidatingCode
+              ? <Loader2 className="w-4 h-4 mr-2 animate-spin" aria-hidden="true" />
+              : <SiWhatsapp className="w-4 h-4 mr-2" aria-hidden="true" />
+            }
             {props.t.booking.sendBookingRequest}
           </Button>
         )}
@@ -226,6 +237,7 @@ function Step1Boat({
   selectedBoat, setSelectedBoat,
   selectedDate, setSelectedDate,
   filteredBoats,
+  isBoatsLoading,
   preSelectedBoatId,
   getLocalISODate,
   showFieldError, getFieldError, handleBlur,
@@ -273,8 +285,8 @@ function Step1Boat({
           {t.wizard.selectABoat}
         </label>
         <div role="radiogroup" aria-label={t.wizard.selectABoat} className="space-y-2">
-          {filteredBoats.length === 0 && (
-            // Skeleton loading while boats load
+          {isBoatsLoading && (
+            // Skeleton loading while boats load from API
             <>
               {[1, 2, 3].map(i => (
                 <div key={i} className="w-full flex items-center gap-3 p-3 rounded-xl border-2 border-gray-100 animate-pulse">

@@ -187,7 +187,7 @@ export default function BookingFormWidget({ preSelectedBoatId, prefillDate, pref
   const selectedPrefixInfo = PHONE_PREFIXES.find(p => p.code === phonePrefix);
 
   // Fetch all boats from API
-  const { data: allBoats = [] } = useQuery<Boat[]>({
+  const { data: allBoats = [], isLoading: isBoatsLoading } = useQuery<Boat[]>({
     queryKey: ["/api/boats"],
   });
 
@@ -734,6 +734,7 @@ Looking forward to confirmation. Thanks!`;
       preferredTime={preferredTime} setPreferredTime={setPreferredTime}
       numberOfPeople={numberOfPeople} setNumberOfPeople={setNumberOfPeople}
       filteredBoats={filteredBoats}
+      isBoatsLoading={isBoatsLoading}
       selectedBoatInfo={selectedBoatInfo}
       getDurationOptions={getDurationOptions}
       getMaxCapacity={getMaxCapacity}

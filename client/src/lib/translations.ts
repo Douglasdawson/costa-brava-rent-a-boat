@@ -21,6 +21,10 @@ export interface Translations {
     trustText: string;
     whatsappContact: string;
     location: string;
+    googleRating: string;
+    clients: string;
+    insured: string;
+    experience: string;
   };
   
   // Fleet Section
@@ -545,6 +549,10 @@ export const translations: Record<Language, Translations> = {
       trustText: 'Sin compromiso • Precios transparentes',
       whatsappContact: 'WhatsApp +34 611 500 372',
       location: 'Ubicación',
+      googleRating: '4.8/5 en Google',
+      clients: '+5000 clientes',
+      insured: 'Asegurado',
+      experience: '+5 años exp.',
     },
     
     fleet: {
@@ -1029,6 +1037,10 @@ export const translations: Record<Language, Translations> = {
       trustText: 'Sense comproms • Confirmació immediata • Preus transparents',
       whatsappContact: 'WhatsApp +34 611 500 372',
       location: 'Ubicació',
+      googleRating: '4.8/5 a Google',
+      clients: '+5000 clients',
+      insured: 'Assegurat',
+      experience: '+5 anys exp.',
     },
     
     fleet: {
@@ -1451,6 +1463,10 @@ export const translations: Record<Language, Translations> = {
       trustText: 'No commitment • Instant confirmation • Transparent prices',
       whatsappContact: 'WhatsApp +34 611 500 372',
       location: 'Location',
+      googleRating: '4.8/5 on Google',
+      clients: '+5000 clients',
+      insured: 'Fully insured',
+      experience: '+5 years exp.',
     },
     
     fleet: {
@@ -1878,6 +1894,10 @@ export const translations: Record<Language, Translations> = {
       trustText: 'Sans engagement • Confirmation immédiate • Prix transparents',
       whatsappContact: 'WhatsApp +34 611 500 372',
       location: 'Emplacement',
+      googleRating: '4.8/5 sur Google',
+      clients: '+5000 clients',
+      insured: 'Assuré',
+      experience: '+5 ans exp.',
     },
     
     fleet: {
@@ -2279,6 +2299,13 @@ export const translations: Record<Language, Translations> = {
       subtitle: 'Entdecken Sie die schönsten Buchten der Costa Brava mit unseren Booten mit und ohne Führerschein. Abfahrt vom Hafen Blanes.',
       bookNow: 'Jetzt Buchen',
       viewFleet: 'Flotte Anzeigen',
+      trustText: 'Ohne Verpflichtung • Transparente Preise',
+      whatsappContact: 'WhatsApp +34 611 500 372',
+      location: 'Standort',
+      googleRating: '4.8/5 auf Google',
+      clients: '+5000 Kunden',
+      insured: 'Versichert',
+      experience: '+5 Jahre Erfahrung',
     },
     
     fleet: {
@@ -2680,6 +2707,13 @@ export const translations: Record<Language, Translations> = {
       subtitle: 'Ontdek de mooiste baaien van Costa Brava met onze boten met en zonder vaarbewijs. Vertrek vanuit Haven van Blanes.',
       bookNow: 'Nu Boeken',
       viewFleet: 'Vloot Bekijken',
+      trustText: 'Geen verplichtingen • Transparante prijzen',
+      whatsappContact: 'WhatsApp +34 611 500 372',
+      location: 'Locatie',
+      googleRating: '4.8/5 op Google',
+      clients: '+5000 klanten',
+      insured: 'Verzekerd',
+      experience: '+5 jaar ervaring',
     },
     
     fleet: {
@@ -3081,6 +3115,13 @@ export const translations: Record<Language, Translations> = {
       subtitle: 'Scopri le più belle calette della Costa Brava con le nostre barche con e senza patente. Partenze dal Porto di Blanes.',
       bookNow: 'Prenota Ora',
       viewFleet: 'Visualizza Flotta',
+      trustText: 'Senza impegno • Prezzi trasparenti',
+      whatsappContact: 'WhatsApp +34 611 500 372',
+      location: 'Posizione',
+      googleRating: '4.8/5 su Google',
+      clients: '+5000 clienti',
+      insured: 'Assicurato',
+      experience: '+5 anni di esp.',
     },
     
     fleet: {
@@ -3482,6 +3523,13 @@ export const translations: Record<Language, Translations> = {
       subtitle: 'Откройте для себя лучшие бухты Коста Брава с нашими лодками с лицензией и без лицензии. Отправление из порта Бланес.',
       bookNow: 'Забронировать Сейчас',
       viewFleet: 'Посмотреть Флот',
+      trustText: 'Без обязательств • Прозрачные цены',
+      whatsappContact: 'WhatsApp +34 611 500 372',
+      location: 'Местоположение',
+      googleRating: '4.8/5 в Google',
+      clients: '+5000 клиентов',
+      insured: 'Застрахован',
+      experience: '+5 лет опыта',
     },
     
     fleet: {

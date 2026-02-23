@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -62,6 +62,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
   const [, setLocation] = useLocation();
   const { openBookingModal, isOpen: isBookingModalOpen } = useBookingModal();
   const [showStickyCTA, setShowStickyCTA] = useState(false);
+  const touchStartX = useRef<number | null>(null);
   const { language } = useLanguage();
   const t = useTranslations();
   
@@ -255,9 +256,18 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 mb-6 sm:mb-8">
           {/* Left Column - Image Gallery Carousel */}
           <div className="bg-white rounded-xl overflow-hidden shadow-lg">
-            <div className="relative group">
-              <img 
-                src={getBoatImage(displayImages[currentImageIndex])} 
+            <div
+              className="relative group"
+              onTouchStart={(e) => { touchStartX.current = e.touches[0].clientX; }}
+              onTouchEnd={(e) => {
+                if (touchStartX.current === null || displayImages.length <= 1) return;
+                const delta = touchStartX.current - e.changedTouches[0].clientX;
+                if (Math.abs(delta) > 50) { delta > 0 ? nextImage() : prevImage(); }
+                touchStartX.current = null;
+              }}
+            >
+              <img
+                src={getBoatImage(displayImages[currentImageIndex])}
                 alt={`Alquiler barco ${boatData.name} ${boatData.subtitle?.includes("Sin Licencia") ? "sin licencia" : "con licencia"} en Blanes Costa Brava 2026 - Imagen ${currentImageIndex + 1}`}
                 className="w-full h-64 sm:h-80 md:h-96 object-cover"
                 loading="lazy"

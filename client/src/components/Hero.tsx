@@ -85,7 +85,7 @@ export default function Hero() {
                   className="font-medium hover:text-white transition-colors"
                   data-testid="google-reviews-link"
                 >
-                  4.8/5 en Google
+                  {t.hero.googleRating}
                 </a>
               </div>
               <div className="flex items-center space-x-2">
@@ -97,16 +97,16 @@ export default function Hero() {
                   className="font-medium hover:text-white transition-colors"
                   data-testid="satisfied-clients-link"
                 >
-                  +5000 clientes
+                  {t.hero.clients}
                 </a>
               </div>
               <div className="flex items-center space-x-2">
                 <Shield className="w-4 h-4 text-blue-400 flex-shrink-0" />
-                <span className="font-medium">Asegurado</span>
+                <span className="font-medium">{t.hero.insured}</span>
               </div>
               <div className="flex items-center space-x-2">
                 <Clock className="w-4 h-4 text-purple-400 flex-shrink-0" />
-                <span className="font-medium">+5 años exp.</span>
+                <span className="font-medium">{t.hero.experience}</span>
               </div>
             </div>
           </div>

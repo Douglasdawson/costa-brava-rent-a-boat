@@ -763,6 +763,7 @@ Looking forward to confirmation. Thanks!`;
       iconMap={ICON_MAP}
       calculatePackSavings={calculatePackSavings}
       isSpanishLang={isSpanishLang}
+      language={language}
     />
   );
 }

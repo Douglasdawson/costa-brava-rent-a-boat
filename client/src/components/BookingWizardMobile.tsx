@@ -37,7 +37,7 @@ export interface BookingWizardMobileProps {
   email: string; setEmail: (v: string) => void;
   showPrefixDropdown: boolean; setShowPrefixDropdown: (v: boolean) => void;
   prefixSearch: string; setPrefixSearch: (v: string) => void;
-  prefixDropdownRef: React.RefObject<HTMLDivElement | null>;
+  prefixDropdownRef: React.RefObject<HTMLDivElement>;
   filteredPrefixes: PhonePrefix[];
   selectedPrefixInfo: PhonePrefix | undefined;
   // Boat & schedule (steps 1+2)
@@ -453,7 +453,7 @@ function Step3PersonalData({
           Telefono
         </label>
         <div className="flex gap-2">
-          <div className="relative w-28 flex-shrink-0" ref={prefixDropdownRef as React.LegacyRef<HTMLDivElement>}>
+          <div className="relative w-28 flex-shrink-0" ref={prefixDropdownRef}>
             <button
               type="button"
               onClick={() => setShowPrefixDropdown(!showPrefixDropdown)}
@@ -691,7 +691,7 @@ function Step4Confirm({
         >
           <span className="flex items-center gap-2">
             <Tag className="w-4 h-4 text-primary" />
-            {t.codeValidation?.haveCode ?? "Tienes un codigo?"}
+            {t.codeValidation.haveCode}
             {validatedCode && (
               <span className="bg-green-500 text-white text-[10px] px-2 py-0.5 rounded-full">Aplicado</span>
             )}
@@ -707,7 +707,7 @@ function Step4Confirm({
                     type="text"
                     value={codeInput}
                     onChange={(e) => setCodeInput(e.target.value.toUpperCase())}
-                    placeholder={t.codeValidation?.enterCode ?? "Introduce tu codigo"}
+                    placeholder={t.codeValidation.enterCode}
                     className="flex-1 p-3 border-2 border-gray-200 rounded-xl text-sm font-mono uppercase tracking-wider"
                     disabled={isValidatingCode}
                   />
@@ -730,8 +730,8 @@ function Step4Confirm({
                   <div>
                     <p className="text-xs font-semibold text-green-700">
                       {validatedCode.type === "gift_card"
-                        ? (t.codeValidation?.validGiftCard ?? "Tarjeta regalo valida")
-                        : (t.codeValidation?.validDiscount ?? "Descuento valido")}
+                        ? t.codeValidation.validGiftCard
+                        : t.codeValidation.validDiscount}
                     </p>
                     <p className="text-[11px] text-gray-500 font-mono">{validatedCode.code}</p>
                   </div>

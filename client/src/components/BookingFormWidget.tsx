@@ -12,6 +12,7 @@ import { getBoatImage } from "@/utils/boatImages";
 import { trackBookingStarted } from "@/utils/analytics";
 import { BOAT_DATA, EXTRA_PACKS } from "@shared/boatData";
 import { calculateExtrasPrice, calculatePackSavings } from "@shared/pricing";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 // Common phone prefixes (prioritized by Costa Brava tourism)
 const PHONE_PREFIXES = [
@@ -147,6 +148,10 @@ export default function BookingFormWidget({ preSelectedBoatId, onClose, hideHead
 
   // Track which fields the user has interacted with (blurred)
   const [touched, setTouched] = useState<Record<string, boolean>>({});
+
+  // Mobile wizard navigation
+  const isMobile = useIsMobile();
+  const [currentStep, setCurrentStep] = useState(1);
 
   const handleBlur = (field: string) => {
     setTouched(prev => ({ ...prev, [field]: true }));
@@ -413,6 +418,52 @@ export default function BookingFormWidget({ preSelectedBoatId, onClose, hideHead
     return !!touched[field] && !!getFieldError(field);
   };
 
+  // Step validation for mobile wizard
+  const canAdvanceFromStep1 = (): boolean => {
+    return !!selectedBoat && !!selectedDate && selectedDate >= getLocalISODate();
+  };
+
+  const canAdvanceFromStep2 = (): boolean => {
+    return !!selectedDuration && !!preferredTime && !!numberOfPeople && parseInt(numberOfPeople) >= 1;
+  };
+
+  const canAdvanceFromStep3 = (): boolean => {
+    return (
+      !!firstName.trim() &&
+      !!lastName.trim() &&
+      !!phoneNumber.trim() &&
+      /^\d+$/.test(phoneNumber.trim()) &&
+      !!email.trim() &&
+      /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
+    );
+  };
+
+  const handleNextStep = () => {
+    if (currentStep === 1) {
+      if (!canAdvanceFromStep1()) {
+        setTouched(prev => ({ ...prev, boat: true, date: true }));
+        return;
+      }
+    }
+    if (currentStep === 2) {
+      if (!canAdvanceFromStep2()) {
+        setTouched(prev => ({ ...prev, duration: true, time: true, people: true }));
+        return;
+      }
+    }
+    if (currentStep === 3) {
+      if (!canAdvanceFromStep3()) {
+        setTouched(prev => ({ ...prev, firstName: true, lastName: true, phone: true, email: true }));
+        return;
+      }
+    }
+    setCurrentStep(prev => Math.min(prev + 1, 4));
+  };
+
+  const handlePrevStep = () => {
+    setCurrentStep(prev => Math.max(prev - 1, 1));
+  };
+
   // Helper functions to format date
   const formatDateSpanish = (dateString: string) => {
     const date = new Date(dateString);
@@ -673,6 +724,7 @@ Looking forward to confirmation. Thanks!`;
     const message = createWhatsAppBookingMessage();
     openWhatsApp(message);
 
+    setCurrentStep(1);
     if (onClose) {
       onClose();
     }

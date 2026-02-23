@@ -38,18 +38,29 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Check for saved language preference
+    const SUPPORTED: Language[] = ['es', 'ca', 'fr', 'de', 'nl', 'it', 'ru', 'en'];
+
+    // 1. Check URL ?lang= param (highest priority — hreflang links use this)
+    const urlParams = new URLSearchParams(window.location.search);
+    const urlLang = urlParams.get('lang') as Language;
+    if (urlLang && SUPPORTED.includes(urlLang)) {
+      setLanguageState(urlLang);
+      localStorage.setItem('costa-brava-language', urlLang);
+      setIsLoading(false);
+      return;
+    }
+
+    // 2. Check for saved language preference
     const savedLanguage = localStorage.getItem('costa-brava-language') as Language;
-    
-    if (savedLanguage && ['es', 'ca', 'fr', 'de', 'nl', 'it', 'ru', 'en'].includes(savedLanguage)) {
+    if (savedLanguage && SUPPORTED.includes(savedLanguage)) {
       setLanguageState(savedLanguage);
     } else {
-      // Detect browser language and save it
+      // 3. Detect browser language and save it
       const detectedLanguage = detectBrowserLanguage();
       setLanguageState(detectedLanguage);
       localStorage.setItem('costa-brava-language', detectedLanguage);
     }
-    
+
     setIsLoading(false);
   }, []);
 

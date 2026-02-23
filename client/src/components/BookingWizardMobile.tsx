@@ -95,44 +95,50 @@ export interface BookingWizardMobileProps {
 function ProgressBar({ currentStep, t }: { currentStep: number; t: Translations }) {
   const stepLabels = [t.wizard.stepBoat, t.wizard.stepTrip, t.wizard.stepYourData, t.wizard.stepConfirm];
   return (
-    <div className="flex items-center justify-between px-4 py-3 bg-white border-b border-gray-100">
-      {stepLabels.map((label, idx) => {
-        const stepNum = idx + 1;
-        const isCompleted = stepNum < currentStep;
-        const isActive = stepNum === currentStep;
-        return (
-          <div key={label} className="flex items-center">
-            <div className="flex flex-col items-center">
-              <div
-                className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold transition-colors ${
-                  isCompleted
-                    ? "bg-primary text-white"
-                    : isActive
-                    ? "bg-primary text-white ring-4 ring-primary/20"
-                    : "bg-gray-200 text-gray-500"
-                }`}
-              >
-                {isCompleted ? <Check className="w-3.5 h-3.5" /> : stepNum}
+    <nav aria-label="Pasos del formulario de reserva">
+      <ol className="flex items-center justify-between px-4 py-3 bg-white border-b border-gray-100">
+        {stepLabels.map((label, idx) => {
+          const stepNum = idx + 1;
+          const isCompleted = stepNum < currentStep;
+          const isActive = stepNum === currentStep;
+          return (
+            <li key={label} className="flex items-center">
+              <div className="flex flex-col items-center">
+                <div
+                  className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold transition-colors ${
+                    isCompleted
+                      ? "bg-primary text-white"
+                      : isActive
+                      ? "bg-primary text-white ring-4 ring-primary/20"
+                      : "bg-gray-200 text-gray-500"
+                  }`}
+                  aria-label={`Paso ${stepNum}: ${label}${isCompleted ? " (completado)" : isActive ? " (actual)" : ""}`}
+                  aria-current={isActive ? "step" : undefined}
+                >
+                  {isCompleted ? <Check className="w-3.5 h-3.5" aria-hidden="true" /> : stepNum}
+                </div>
+                <span
+                  className={`text-[10px] mt-1 font-medium ${
+                    isActive ? "text-primary" : "text-gray-400"
+                  }`}
+                  aria-hidden="true"
+                >
+                  {label}
+                </span>
               </div>
-              <span
-                className={`text-[10px] mt-1 font-medium ${
-                  isActive ? "text-primary" : "text-gray-400"
-                }`}
-              >
-                {label}
-              </span>
-            </div>
-            {idx < stepLabels.length - 1 && (
-              <div
-                className={`h-0.5 w-8 mx-1 mb-4 transition-colors ${
-                  isCompleted ? "bg-primary" : "bg-gray-200"
-                }`}
-              />
-            )}
-          </div>
-        );
-      })}
-    </div>
+              {idx < stepLabels.length - 1 && (
+                <div
+                  className={`h-0.5 w-8 mx-1 mb-4 transition-colors ${
+                    isCompleted ? "bg-primary" : "bg-gray-200"
+                  }`}
+                  aria-hidden="true"
+                />
+              )}
+            </li>
+          );
+        })}
+      </ol>
+    </nav>
   );
 }
 
@@ -163,10 +169,14 @@ export default function BookingWizardMobile(props: BookingWizardMobileProps) {
     : "opacity-100 translate-x-0";
 
   return (
-    <div className="flex flex-col h-full">
+    <div className="flex flex-col h-full" role="form" aria-label="Formulario de reserva">
       <ProgressBar currentStep={currentStep} t={props.t} />
       <div className="flex-1 overflow-y-auto px-4 py-4">
-        <div className={`transition-all duration-150 ${animClass}`}>
+        <div
+          className={`transition-all duration-150 ${animClass}`}
+          aria-live="polite"
+          aria-atomic="true"
+        >
           {displayStep === 1 && <Step1Boat {...props} />}
           {displayStep === 2 && <Step2Trip {...props} />}
           {displayStep === 3 && <Step3PersonalData {...props} />}
@@ -179,9 +189,10 @@ export default function BookingWizardMobile(props: BookingWizardMobileProps) {
             type="button"
             variant="outline"
             onClick={onBack}
+            aria-label={`Volver al paso anterior (${currentStep - 1} de 4)`}
             className="flex-1 py-5 text-sm font-semibold active:scale-95 transition-transform"
           >
-            <ChevronLeft className="w-4 h-4 mr-1" />
+            <ChevronLeft className="w-4 h-4 mr-1" aria-hidden="true" />
             {props.t.booking.back}
           </Button>
         )}
@@ -189,6 +200,7 @@ export default function BookingWizardMobile(props: BookingWizardMobileProps) {
           <Button
             type="button"
             onClick={onNext}
+            aria-label={`Continuar al paso ${currentStep + 1} de 4`}
             className="flex-1 py-5 text-sm font-semibold active:scale-95 transition-transform"
           >
             {props.t.booking.next}
@@ -197,9 +209,10 @@ export default function BookingWizardMobile(props: BookingWizardMobileProps) {
           <Button
             type="button"
             onClick={handleBookingSearch}
+            aria-label="Enviar solicitud de reserva por WhatsApp"
             className="flex-1 py-5 text-sm font-semibold"
           >
-            <SiWhatsapp className="w-4 h-4 mr-2" />
+            <SiWhatsapp className="w-4 h-4 mr-2" aria-hidden="true" />
             {props.t.booking.sendBookingRequest}
           </Button>
         )}
@@ -226,9 +239,11 @@ function Step1Boat({
         <p className="text-sm text-gray-500">{t.wizard.haveNauticalLicense}</p>
       </div>
       {!preSelectedBoatId && (
-        <div className="flex gap-2">
+        <div role="group" aria-label="Filtrar por licencia náutica" className="flex gap-2">
           <button
             type="button"
+            role="radio"
+            aria-checked={licenseFilter === "without"}
             onClick={() => setLicenseFilter("without")}
             className={`flex-1 py-3 rounded-xl text-sm font-semibold border-2 transition-all ${
               licenseFilter === "without"
@@ -240,6 +255,8 @@ function Step1Boat({
           </button>
           <button
             type="button"
+            role="radio"
+            aria-checked={licenseFilter === "with"}
             onClick={() => setLicenseFilter("with")}
             className={`flex-1 py-3 rounded-xl text-sm font-semibold border-2 transition-all ${
               licenseFilter === "with"
@@ -255,7 +272,7 @@ function Step1Boat({
         <label className="block text-sm font-semibold text-gray-700 mb-2">
           {t.wizard.selectABoat}
         </label>
-        <div className="space-y-2">
+        <div role="radiogroup" aria-label={t.wizard.selectABoat} className="space-y-2">
           {filteredBoats.map((boat) => {
             const firstSeason = boat.pricing ? Object.values(boat.pricing)[0] : null;
             const minPrice = firstSeason?.prices
@@ -265,6 +282,8 @@ function Step1Boat({
               <button
                 key={boat.id}
                 type="button"
+                role="radio"
+                aria-checked={selectedBoat === boat.id}
                 onClick={() => setSelectedBoat(boat.id)}
                 disabled={!!preSelectedBoatId && boat.id !== preSelectedBoatId}
                 className={`w-full flex items-center gap-3 p-3 rounded-xl border-2 text-left transition-all ${

@@ -306,22 +306,48 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
               )}
             </div>
             
-            {/* Thumbnail dots - only show if more than one image */}
+            {/* Thumbnails: dots on mobile, image strip on desktop */}
             {displayImages.length > 1 && (
-              <div className="flex justify-center gap-2 p-4 bg-gray-50">
-                {displayImages.map((_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => setCurrentImageIndex(index)}
-                    className={`w-3 h-3 rounded-full transition-all ${
-                      index === currentImageIndex
-                        ? 'bg-primary w-8 h-3'
-                        : 'bg-gray-300 hover:bg-gray-400'
-                    }`}
-                    aria-label={`${t.boatDetail.imageAria} ${index + 1}`}
-                    data-testid={`button-thumbnail-${index}`}
-                  />
-                ))}
+              <div className="bg-gray-50 px-4 py-3">
+                {/* Mobile: dots */}
+                <div className="flex justify-center gap-2 md:hidden">
+                  {displayImages.map((_, index) => (
+                    <button
+                      key={index}
+                      onClick={() => setCurrentImageIndex(index)}
+                      className={`h-3 rounded-full transition-all ${
+                        index === currentImageIndex
+                          ? 'bg-primary w-8'
+                          : 'w-3 bg-gray-300 hover:bg-gray-400'
+                      }`}
+                      aria-label={`${t.boatDetail.imageAria} ${index + 1}`}
+                      data-testid={`button-thumbnail-${index}`}
+                    />
+                  ))}
+                </div>
+                {/* Desktop: image thumbnails */}
+                <div className="hidden md:flex gap-2 overflow-x-auto">
+                  {displayImages.map((image, index) => (
+                    <button
+                      key={index}
+                      onClick={() => setCurrentImageIndex(index)}
+                      className={`flex-shrink-0 w-20 h-14 rounded overflow-hidden border-2 transition-all ${
+                        index === currentImageIndex
+                          ? 'border-primary ring-2 ring-primary/30'
+                          : 'border-transparent hover:border-gray-300 opacity-70 hover:opacity-100'
+                      }`}
+                      aria-label={`${t.boatDetail.imageAria} ${index + 1}`}
+                      data-testid={`button-thumbnail-${index}`}
+                    >
+                      <img
+                        src={getBoatImage(image)}
+                        alt={`${boatData.name} - imagen ${index + 1}`}
+                        className="w-full h-full object-cover"
+                        loading="lazy"
+                      />
+                    </button>
+                  ))}
+                </div>
               </div>
             )}
           </div>

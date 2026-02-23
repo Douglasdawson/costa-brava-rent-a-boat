@@ -22,6 +22,21 @@ const formatSitemapDate = (date?: Date | string | null): string => {
   return d.toISOString().split("T")[0];
 };
 
+// Build xhtml:link alternate tags for all supported languages
+const buildHreflangLinks = (baseUrl: string, path: string): string => {
+  const canonicalPath = path === "/" ? "/" : path;
+  let links = "";
+  // x-default points to the Spanish (canonical) version
+  links += `    <xhtml:link rel="alternate" hreflang="x-default" href="${baseUrl}${canonicalPath}"/>\n`;
+  links += `    <xhtml:link rel="alternate" hreflang="es" href="${baseUrl}${canonicalPath}"/>\n`;
+  SUPPORTED_LANGUAGES.forEach(lang => {
+    if (lang !== "es") {
+      links += `    <xhtml:link rel="alternate" hreflang="${lang}" href="${baseUrl}${canonicalPath}?lang=${lang}"/>\n`;
+    }
+  });
+  return links;
+};
+
 const generateUrlEntry = (
   baseUrl: string,
   path: string,
@@ -29,41 +44,31 @@ const generateUrlEntry = (
   now: string,
   changeFreq: string = "weekly"
 ) => {
+  const hreflangLinks = buildHreflangLinks(baseUrl, path);
   let urls = "";
 
+  // Canonical (ES) entry with all hreflang alternates
   urls += `  <url>
     <loc>${baseUrl}${path}</loc>
     <lastmod>${now}</lastmod>
     <changefreq>${changeFreq}</changefreq>
     <priority>${priority}</priority>
-  </url>
+${hreflangLinks}  </url>
 `;
 
-  if (path !== "/") {
-    SUPPORTED_LANGUAGES.forEach(lang => {
-      if (lang !== "es") {
-        urls += `  <url>
-    <loc>${baseUrl}${path}?lang=${lang}</loc>
+  // One entry per non-ES language variant, each with hreflang links
+  SUPPORTED_LANGUAGES.forEach(lang => {
+    if (lang !== "es") {
+      const langPath = path === "/" ? `/?lang=${lang}` : `${path}?lang=${lang}`;
+      urls += `  <url>
+    <loc>${baseUrl}${langPath}</loc>
     <lastmod>${now}</lastmod>
     <changefreq>${changeFreq}</changefreq>
     <priority>${priority}</priority>
-  </url>
+${hreflangLinks}  </url>
 `;
-      }
-    });
-  } else {
-    SUPPORTED_LANGUAGES.forEach(lang => {
-      if (lang !== "es") {
-        urls += `  <url>
-    <loc>${baseUrl}/?lang=${lang}</loc>
-    <lastmod>${now}</lastmod>
-    <changefreq>${changeFreq}</changefreq>
-    <priority>${priority}</priority>
-  </url>
-`;
-      }
-    });
-  }
+    }
+  });
 
   return urls;
 };
@@ -111,7 +116,8 @@ export function registerSitemapRoutes(app: Express) {
       const now = formatSitemapDate(new Date());
 
       let sitemap = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
 `;
 
       sitemap += generateUrlEntry(baseUrl, "/", "1.0", now, "daily");
@@ -154,12 +160,16 @@ export function registerSitemapRoutes(app: Express) {
       const activeBoats = boats.filter(b => b.isActive);
 
       let sitemap = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
 `;
 
       activeBoats.forEach(boat => {
         const boatPath = `/barco/${boat.id}`;
         const boatLastmod = formatSitemapDate((boat as any).updatedAt || (boat as any).createdAt) || fallbackDate;
+
+        const boatHreflang = buildHreflangLinks(baseUrl, boatPath);
 
         sitemap += `  <url>
     <loc>${baseUrl}${boatPath}</loc>
@@ -181,7 +191,7 @@ export function registerSitemapRoutes(app: Express) {
         }
 
         sitemap += `
-  </url>
+${boatHreflang}  </url>
 `;
 
         SUPPORTED_LANGUAGES.forEach(lang => {
@@ -191,7 +201,7 @@ export function registerSitemapRoutes(app: Express) {
     <lastmod>${boatLastmod}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
-  </url>
+${boatHreflang}  </url>
 `;
           }
         });
@@ -218,7 +228,8 @@ export function registerSitemapRoutes(app: Express) {
       const publishedBlogPosts = blogPosts.filter(post => post.isPublished);
 
       let sitemap = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
 `;
 
       sitemap += generateUrlEntry(baseUrl, "/blog", "0.6", fallbackDate);
@@ -249,12 +260,16 @@ export function registerSitemapRoutes(app: Express) {
       const publishedDestinations = destinations.filter(dest => dest.isPublished);
 
       let sitemap = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
 `;
 
       publishedDestinations.forEach(destination => {
         const destPath = `/destinos/${destination.slug}`;
         const destLastmod = formatSitemapDate((destination as any).updatedAt || (destination as any).createdAt) || fallbackDate;
+
+        const destHreflang = buildHreflangLinks(baseUrl, destPath);
 
         sitemap += `  <url>
     <loc>${baseUrl}${destPath}</loc>
@@ -276,7 +291,7 @@ export function registerSitemapRoutes(app: Express) {
         }
 
         sitemap += `
-  </url>
+${destHreflang}  </url>
 `;
 
         SUPPORTED_LANGUAGES.forEach(lang => {
@@ -286,7 +301,7 @@ export function registerSitemapRoutes(app: Express) {
     <lastmod>${destLastmod}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
-  </url>
+${destHreflang}  </url>
 `;
           }
         });

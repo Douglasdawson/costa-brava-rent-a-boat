@@ -19,6 +19,7 @@ import { registerGalleryRoutes } from "./gallery";
 import { registerGiftCardRoutes } from "./giftcards";
 import { registerDiscountRoutes } from "./discounts";
 import { registerImageResizeRoutes } from "./imageResize";
+import { registerTenantRoutes } from "./tenant";
 import { startScheduledServices } from "../services";
 
 export async function registerRoutes(app: Express): Promise<Server> {
@@ -43,6 +44,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   registerGiftCardRoutes(app);
   registerDiscountRoutes(app);
   registerImageResizeRoutes(app);
+  registerTenantRoutes(app);
 
   // WhatsApp routes are async due to dynamic imports
   await registerWhatsAppRoutes(app);

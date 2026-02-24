@@ -65,11 +65,16 @@ Todas las mejoras del producto original completadas entre Ene-Feb 2026.
 - Datos filtrados por tenant via JWT tenantId ya implementado en servidor
 - Selector de tenant para super-admin: pendiente para Tarea 6 (requiere rol nuevo)
 
-### Tarea 5: Tenant Admin Panel - PENDIENTE
-- Gestion de usuarios del tenant (invitar, roles, desactivar)
-- Configuracion del tenant (branding, horarios, temporadas)
-- Gestion de flota propia
-- Configuracion de precios y extras
+### Tarea 5: Tenant Admin Panel - COMPLETADA
+- Tab "Config" en CRM (solo visible para propietario)
+- Seccion "Mi Empresa": editar nombre, email, telefono, direccion
+- Seccion "Branding": logo URL, color primario/secundario con color picker
+- Seccion "Usuarios": tabla de usuarios SaaS del tenant (nombre, email, rol, estado, ultimo acceso)
+- Crear nuevo usuario con email, contraseña, nombre y rol (admin/empleado)
+- Cambiar rol y activar/desactivar usuarios (no se puede modificar al owner)
+- Backend: 5 endpoints nuevos en /api/tenant/ (settings GET/PATCH, users GET/POST/PATCH)
+- Gestion de flota: ya existia en tab Flota
+- Gestion de precios: ya existia en tab Flota
 
 ### Tarea 6: Super Admin Panel - PENDIENTE
 - Panel para gestionar todos los tenants

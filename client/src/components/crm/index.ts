@@ -8,6 +8,7 @@ export { BookingsTab } from "./BookingsTab";
 export { CustomersTab } from "./CustomersTab";
 export { FleetManagement } from "./FleetManagement";
 export { EmployeeManagement } from "./EmployeeManagement";
+export { TenantAdminTab } from "./TenantAdminTab";
 export { GalleryManagement } from "./GalleryManagement";
 export { GiftCardManagement } from "./GiftCardManagement";
 export { DiscountManagement } from "./DiscountManagement";

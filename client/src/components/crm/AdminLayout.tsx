@@ -17,6 +17,7 @@ import {
   BarChart3,
   AlertCircle,
   Zap,
+  Settings,
 } from "lucide-react";
 
 interface AdminLayoutProps {
@@ -52,6 +53,7 @@ const ADMIN_TABS = [
 
 const OWNER_TABS = [
   { id: "employees", label: "Equipo", icon: Users },
+  { id: "config", label: "Config", icon: Settings },
 ];
 
 export function AdminLayout({

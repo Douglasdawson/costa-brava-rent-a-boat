@@ -281,6 +281,7 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
                     onBlur={() => handleBlur('firstName')}
                     placeholder={t.wizard.firstName}
                     autoComplete="given-name"
+                    maxLength={100}
                     className={`${inputBase} ${showFieldError('firstName') ? inputError : inputNormal}`}
                   />
                   {showFieldError('firstName') && <p className="text-xs text-red-500 mt-0.5">{getFieldError('firstName')}</p>}
@@ -293,6 +294,7 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
                     onBlur={() => handleBlur('lastName')}
                     placeholder={t.wizard.lastName}
                     autoComplete="family-name"
+                    maxLength={100}
                     className={`${inputBase} ${showFieldError('lastName') ? inputError : inputNormal}`}
                   />
                   {showFieldError('lastName') && <p className="text-xs text-red-500 mt-0.5">{getFieldError('lastName')}</p>}
@@ -341,6 +343,7 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
                     onBlur={() => handleBlur('phone')}
                     placeholder={t.wizard.phone}
                     autoComplete="tel"
+                    maxLength={15}
                     className={`${inputBase} ${showFieldError('phone') ? inputError : inputNormal}`}
                   />
                   {showFieldError('phone') && <p className="text-xs text-red-500 mt-0.5">{getFieldError('phone')}</p>}
@@ -354,6 +357,7 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
                   onBlur={() => handleBlur('email')}
                   placeholder={t.wizard.email}
                   autoComplete="email"
+                  maxLength={254}
                   className={`${inputBase} ${showFieldError('email') ? inputError : inputNormal}`}
                 />
                 {showFieldError('email') && <p className="text-xs text-red-500 mt-0.5">{getFieldError('email')}</p>}
@@ -374,10 +378,10 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
 
           <Button
             type="button"
-            onClick={() => {
+            onClick={async () => {
               setIsSubmitting(true);
-              handleBookingSearch();
-              setTimeout(() => setIsSubmitting(false), 1200);
+              await handleBookingSearch();
+              setIsSubmitting(false);
             }}
             disabled={isSubmitting}
             className="w-full py-5 text-sm font-semibold bg-[#25D366] hover:bg-[#1ebe5d] text-white border-0"

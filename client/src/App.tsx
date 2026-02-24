@@ -1,4 +1,4 @@
-import { useState, useEffect, lazy, Suspense } from "react";
+import { useState, useEffect, lazy, Suspense, Component } from "react";
 import { Switch, Route, useSearch, useLocation, useRoute, Redirect } from "wouter";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider, useQuery } from "@tanstack/react-query";
@@ -58,6 +58,36 @@ import {
 } from "@/utils/seo-config";
 import { generateItemListSchema } from "@/utils/seo-schemas";
 import type { Boat } from "@shared/schema";
+
+// Error Boundary — catches any unhandled render error and prevents a blank white screen
+class ErrorBoundary extends Component<{ children: React.ReactNode }, { hasError: boolean }> {
+  constructor(props: { children: React.ReactNode }) {
+    super(props);
+    this.state = { hasError: false };
+  }
+
+  static getDerivedStateFromError(): { hasError: boolean } {
+    return { hasError: true };
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return (
+        <div className="min-h-screen flex flex-col items-center justify-center gap-4 p-8 text-center">
+          <h1 className="text-2xl font-bold text-gray-900">Algo ha ido mal</h1>
+          <p className="text-gray-500">Ha ocurrido un error inesperado. Por favor recarga la página.</p>
+          <button
+            onClick={() => window.location.reload()}
+            className="px-6 py-2 bg-primary text-white rounded-lg font-medium hover:bg-primary/90 transition-colors"
+          >
+            Recargar página
+          </button>
+        </div>
+      );
+    }
+    return this.props.children;
+  }
+}
 
 // Main Home Page Component
 function HomePage() {
@@ -325,17 +355,19 @@ function Router() {
 
 function App() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <LanguageProvider>
-        <BookingModalProvider>
-          <TooltipProvider>
-            <Toaster />
-            <Router />
-            <WhatsAppFloatingButton />
-          </TooltipProvider>
-        </BookingModalProvider>
-      </LanguageProvider>
-    </QueryClientProvider>
+    <ErrorBoundary>
+      <QueryClientProvider client={queryClient}>
+        <LanguageProvider>
+          <BookingModalProvider>
+            <TooltipProvider>
+              <Toaster />
+              <Router />
+              <WhatsAppFloatingButton />
+            </TooltipProvider>
+          </BookingModalProvider>
+        </LanguageProvider>
+      </QueryClientProvider>
+    </ErrorBoundary>
   );
 }
 

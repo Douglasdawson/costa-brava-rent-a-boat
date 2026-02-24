@@ -397,6 +397,7 @@ export default function BookingFormWidget({ preSelectedBoatId, prefillDate, pref
       case 'phone':
         if (!phoneNumber.trim()) return t.validation.required;
         if (!/^\d+$/.test(phoneNumber.trim())) return t.validation.invalidPhone;
+        if (phoneNumber.trim().length < 6) return t.validation.invalidPhone;
         return '';
       case 'date':
         if (!selectedDate) return t.validation.required;
@@ -433,11 +434,13 @@ export default function BookingFormWidget({ preSelectedBoatId, prefillDate, pref
 
   const canAdvanceFromStep3 = (): boolean => {
     const emailValid = !email.trim() || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    const phone = phoneNumber.trim();
     return (
       !!firstName.trim() &&
       !!lastName.trim() &&
-      !!phoneNumber.trim() &&
-      /^\d+$/.test(phoneNumber.trim()) &&
+      !!phone &&
+      /^\d+$/.test(phone) &&
+      phone.length >= 6 &&
       emailValid
     );
   };
@@ -654,7 +657,7 @@ Looking forward to confirmation. Thanks!`;
     return 0;
   };
 
-  const handleBookingSearch = () => {
+  const handleBookingSearch = async (): Promise<void> => {
     setTouched({
       firstName: true,
       lastName: true,
@@ -704,10 +707,43 @@ Looking forward to confirmation. Thanks!`;
       return;
     }
 
+    // Soft availability check — warn if boat appears fully booked, but don't block
+    try {
+      const month = selectedDate.substring(0, 7);
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 3000);
+      const res = await fetch(`/api/boats/${selectedBoat}/availability?month=${month}`, {
+        signal: controller.signal,
+      });
+      clearTimeout(timeoutId);
+      if (res.ok) {
+        const data = await res.json();
+        const dayData = data.days?.[selectedDate];
+        if (dayData?.status === 'booked') {
+          toast({
+            title: isSpanishLang ? 'Posible conflicto de disponibilidad' : 'Possible availability conflict',
+            description: isSpanishLang
+              ? 'Ese día el barco puede estar ocupado. Lo confirmaremos por WhatsApp.'
+              : 'The boat may already be booked that day. We will confirm via WhatsApp.',
+            variant: 'destructive',
+          });
+        }
+      }
+    } catch {
+      // Network timeout or error — proceed anyway
+    }
+
     trackBookingStarted(selectedBoat, selectedBoatInfo?.name || selectedBoat);
 
     const message = createWhatsAppBookingMessage();
     openWhatsApp(message);
+
+    toast({
+      title: isSpanishLang ? 'Solicitud enviada por WhatsApp' : 'Request sent via WhatsApp',
+      description: isSpanishLang
+        ? 'Revisa WhatsApp para confirmar tu reserva con nosotros.'
+        : 'Check WhatsApp to confirm your booking with us.',
+    });
 
     setCurrentStep(1);
     if (onClose) {

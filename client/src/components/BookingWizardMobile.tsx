@@ -79,7 +79,7 @@ export interface BookingWizardMobileProps {
   getCodeDiscount: () => number;
   // Price & submit
   getBookingPrice: () => number | null;
-  handleBookingSearch: () => void;
+  handleBookingSearch: () => Promise<void>;
   // Validation
   showFieldError: (field: string) => boolean;
   getFieldError: (field: string) => string;
@@ -221,11 +221,10 @@ export default function BookingWizardMobile(props: BookingWizardMobileProps) {
         ) : (
           <Button
             type="button"
-            onClick={() => {
+            onClick={async () => {
               setIsSubmitting(true);
-              handleBookingSearch();
-              // Reset after WhatsApp opens (or validation fails)
-              setTimeout(() => setIsSubmitting(false), 1200);
+              await handleBookingSearch();
+              setIsSubmitting(false);
             }}
             disabled={isSubmitting || props.isValidatingCode}
             aria-label="Enviar solicitud de reserva por WhatsApp"
@@ -562,6 +561,7 @@ function Step3PersonalData({
           onBlur={() => handleBlur('firstName')}
           placeholder="Juan"
           autoComplete="given-name"
+          maxLength={100}
           className={`w-full p-3 border-2 rounded-xl bg-white text-gray-900 font-medium text-sm focus:ring-2 focus:ring-primary ${
             showFieldError('firstName') ? 'border-red-500' : 'border-gray-200'
           }`}
@@ -582,6 +582,7 @@ function Step3PersonalData({
           onBlur={() => handleBlur('lastName')}
           placeholder="Garcia Lopez"
           autoComplete="family-name"
+          maxLength={100}
           className={`w-full p-3 border-2 rounded-xl bg-white text-gray-900 font-medium text-sm focus:ring-2 focus:ring-primary ${
             showFieldError('lastName') ? 'border-red-500' : 'border-gray-200'
           }`}
@@ -641,6 +642,7 @@ function Step3PersonalData({
             onBlur={() => handleBlur('phone')}
             placeholder="612345678"
             autoComplete="tel"
+            maxLength={15}
             className={`flex-1 p-3 border-2 rounded-xl bg-white text-gray-900 font-medium text-sm focus:ring-2 focus:ring-primary ${
               showFieldError('phone') ? 'border-red-500' : 'border-gray-200'
             }`}
@@ -663,6 +665,7 @@ function Step3PersonalData({
           onKeyDown={(e) => { if (e.key === 'Enter') onNext(); }}
           placeholder="tu@email.com"
           autoComplete="email"
+          maxLength={254}
           className={`w-full p-3 border-2 rounded-xl bg-white text-gray-900 font-medium text-sm focus:ring-2 focus:ring-primary ${
             showFieldError('email') ? 'border-red-500' : 'border-gray-200'
           }`}

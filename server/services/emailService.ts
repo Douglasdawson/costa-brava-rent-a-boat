@@ -397,6 +397,63 @@ export async function sendPreSeasonEmail(
 }
 
 /**
+ * Send welcome email after new SaaS tenant registration.
+ */
+export async function sendWelcomeEmail(
+  email: string,
+  firstName: string,
+  companyName: string,
+  trialEndsAt: Date
+): Promise<EmailResult> {
+  if (!initSendGrid()) {
+    console.log("[Email] SendGrid not configured, skipping welcome email");
+    return { success: false, error: "SendGrid not configured" };
+  }
+
+  const trialEnd = trialEndsAt.toLocaleDateString("es-ES", { day: "numeric", month: "long", year: "numeric" });
+  const safeName = firstName?.trim() || "usuario";
+
+  const content = `
+    <h2 style="margin:0 0 8px; color:#1e3a5f; font-size:20px;">Bienvenido/a a NauticFlow</h2>
+    <p style="margin:0 0 20px; color:#475569; font-size:15px; line-height:1.6;">
+      Hola ${safeName},<br>
+      Tu cuenta para <strong>${companyName}</strong> ha sido creada correctamente. Empieza a gestionar tu flota desde el panel de administracion.
+    </p>
+
+    <div style="background-color:#eff6ff; border-left:4px solid #2563eb; border-radius:4px; padding:16px; margin:0 0 20px;">
+      <p style="margin:0 0 6px; color:#1e3a5f; font-size:14px; font-weight:600;">Periodo de prueba gratuito</p>
+      <p style="margin:0; color:#475569; font-size:14px; line-height:1.6;">
+        Tienes acceso completo hasta el <strong>${trialEnd}</strong>. Sin tarjeta de credito requerida.
+      </p>
+    </div>
+
+    <div style="text-align:center; margin:24px 0;">
+      <a href="https://costabravarentaboat.app/crm" target="_blank" style="display:inline-block; background-color:#2563eb; color:#ffffff; text-decoration:none; padding:12px 28px; border-radius:6px; font-size:15px; font-weight:600;">Ir a mi panel</a>
+    </div>
+
+    <p style="margin:0; color:#64748b; font-size:13px; line-height:1.6;">
+      Si tienes cualquier duda, respondenos a este email o contactanos por WhatsApp.
+    </p>
+  `;
+
+  try {
+    await sgMail.send({
+      to: email,
+      from: { email: getFromEmail(), name: "NauticFlow" },
+      subject: `Bienvenido/a a NauticFlow — Tu prueba gratuita ha comenzado`,
+      html: emailWrapper(content),
+    });
+
+    console.log(`[Email] Welcome email sent to ${email}`);
+    return { success: true };
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : "Unknown error";
+    console.error(`[Email] Error sending welcome email to ${email}:`, message);
+    return { success: false, error: message };
+  }
+}
+
+/**
  * Send password reset email for SaaS authentication.
  */
 export async function sendPasswordResetEmail(

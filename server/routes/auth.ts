@@ -5,7 +5,7 @@ import crypto from "crypto";
 import { z } from "zod";
 import { storage } from "../storage";
 import { isAuthenticated } from "../replitAuth";
-import { sendPasswordResetEmail } from "../services/emailService";
+import { sendPasswordResetEmail, sendWelcomeEmail } from "../services/emailService";
 
 const BCRYPT_ROUNDS = 10;
 
@@ -454,6 +454,11 @@ export function registerAuthRoutes(app: Express) {
       await storage.createRefreshToken(user.id, refreshTokenStr, refreshExpiresAt);
 
       loginAttempts.delete(clientIp);
+
+      // Send welcome email (non-blocking)
+      sendWelcomeEmail(email, firstName, companyName, trialEndsAt).catch((err) =>
+        console.error("[Auth] Failed to send welcome email:", err)
+      );
 
       res.status(201).json({
         success: true,

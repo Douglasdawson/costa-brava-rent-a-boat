@@ -44,6 +44,7 @@ const GalleryPage = lazy(() => import("@/pages/gallery"));
 const RoutesPage = lazy(() => import("@/pages/routes"));
 const GiftCardsPage = lazy(() => import("@/pages/gift-cards"));
 const NotFound = lazy(() => import("@/pages/not-found"));
+const OnboardingPage = lazy(() => import("@/pages/OnboardingPage"));
 import { useLanguage } from "@/hooks/use-language";
 import WhatsAppFloatingButton from "./components/WhatsAppFloatingButton";
 import { usePrefetchCriticalRoutes } from "@/hooks/usePrefetch";
@@ -289,6 +290,7 @@ function Router() {
       <Switch>
         <Route path="/" component={HomePage} />
         <Route path="/login" component={LoginPage} />
+        <Route path="/onboarding" component={OnboardingPage} />
         <Route path="/crm" component={CRMDashboardPage} />
         <Route path="/mi-cuenta" component={ClientDashboardPage} />
         <Route path="/client/dashboard" component={ClientDashboardPage} />

@@ -143,10 +143,10 @@ export default function LoginPage() {
 
       toast({
         title: "Cuenta creada",
-        description: `Bienvenido a NauticFlow, ${data.user.firstName}! Tu periodo de prueba de 14 dias ha comenzado.`,
+        description: `Bienvenido/a a NauticFlow, ${data.user.firstName}! Tu periodo de prueba de 14 días ha comenzado.`,
       });
 
-      setLocation("/crm");
+      setLocation("/onboarding");
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Error desconocido";
       toast({

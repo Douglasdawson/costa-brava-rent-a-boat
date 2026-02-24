@@ -51,11 +51,11 @@ Todas las mejoras del producto original completadas entre Ene-Feb 2026.
 - Compatibilidad total con sistema legacy
 - **Commit**: 29c989c
 
-### Tarea 3: Onboarding Wizard - PENDIENTE
+### Tarea 3: Onboarding Wizard - COMPLETADA
 - Registro en 4 pasos: datos empresa, configuracion, flota inicial, confirmacion
 - Trial de 14 dias automatico
-- Email de bienvenida con SendGrid
-- Wizard guiado post-registro
+- Email de bienvenida con SendGrid (sendWelcomeEmail)
+- Wizard guiado post-registro en /onboarding
 
 ### Tarea 4: Dashboard Multi-Tenant - PENDIENTE
 - Adaptar CRM Dashboard para mostrar datos filtrados por tenant

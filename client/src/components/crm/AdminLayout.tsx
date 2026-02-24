@@ -18,6 +18,7 @@ import {
   AlertCircle,
   Zap,
   Settings,
+  Globe,
 } from "lucide-react";
 
 interface AdminLayoutProps {
@@ -75,9 +76,13 @@ export function AdminLayout({
     : null;
   const showTrialBanner = tenantStatus === "trial" && trialDaysLeft !== null;
 
+  // Platform tab: only for legacy admin (no tenant = NauticFlow platform admin)
+  const isPlatformAdmin = !tenantName && adminRole === "admin";
+
   const secondaryTabs = [
     ...(adminRole === "admin" || adminRole === "owner" ? ADMIN_TABS : []),
     ...(adminRole === "owner" ? OWNER_TABS : []),
+    ...(isPlatformAdmin ? [{ id: "superadmin", label: "Platform", icon: Globe }] : []),
   ];
 
   return (
@@ -119,10 +124,10 @@ export function AdminLayout({
             <Anchor className="w-6 h-6 md:w-8 md:h-8 text-primary" />
             <div>
               <h1 className="text-lg md:text-2xl font-bold text-gray-900">
-                {tenantName || "NauticFlow CRM"}
+                {isPlatformAdmin ? "NauticFlow" : (tenantName || "NauticFlow CRM")}
               </h1>
               <p className="text-xs md:text-sm text-gray-600 hidden md:block">
-                {adminUsername} · {adminRole === "owner" ? "Propietario" : adminRole === "admin" ? "Administrador" : "Empleado"}
+                {adminUsername} · {isPlatformAdmin ? "Admin de Plataforma" : adminRole === "owner" ? "Propietario" : adminRole === "admin" ? "Administrador" : "Empleado"}
               </p>
             </div>
           </div>

@@ -13,6 +13,7 @@ import {
   FleetManagement,
   EmployeeManagement,
   TenantAdminTab,
+  SuperAdminTab,
   GalleryManagement,
   GiftCardManagement,
   DiscountManagement,
@@ -332,6 +333,11 @@ export default function CRMDashboard({ adminToken }: CRMDashboardProps) {
         {/* Tenant Config Tab */}
         {selectedTab === "config" && (
           <TenantAdminTab adminToken={adminToken} />
+        )}
+
+        {/* Super Admin / Platform Tab */}
+        {selectedTab === "superadmin" && (
+          <SuperAdminTab adminToken={adminToken} />
         )}
       </AdminLayout>
 

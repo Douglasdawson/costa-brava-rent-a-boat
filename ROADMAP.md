@@ -76,11 +76,16 @@ Todas las mejoras del producto original completadas entre Ene-Feb 2026.
 - Gestion de flota: ya existia en tab Flota
 - Gestion de precios: ya existia en tab Flota
 
-### Tarea 6: Super Admin Panel - PENDIENTE
-- Panel para gestionar todos los tenants
-- Metricas globales (tenants activos, ingresos, uso)
-- Suspension/activacion de tenants
-- Gestion de planes y limites
+### Tarea 6: Super Admin Panel - COMPLETADA
+- Tab "Platform" visible solo para admin legacy (Ivan via PIN, sin tenantId en JWT)
+- Header CRM muestra "NauticFlow" y "Admin de Plataforma" para el super admin
+- Stats globales: total tenants, por estado (trial/activo/suspendido), MRR estimado
+- Distribucion por plan (Starter/Pro/Enterprise con precios)
+- Tabla de todas las empresas: nombre, slug, plan, estado, dias de trial, usuarios, fecha registro
+- Filtro rapido por estado (Todos / Trial / Activo / Suspendido / Cancelado)
+- Dialog "Gestionar": cambiar estado (trial/active/suspended/cancelled) y plan
+- Backend: 3 endpoints en /api/superadmin/ protegidos por requireSuperAdmin (solo legacy JWT)
+- requireSuperAdmin middleware: rechaza tokens SaaS (con tenantId), acepta solo legacy admin
 
 ---
 

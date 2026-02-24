@@ -312,6 +312,23 @@ export const requireAdminRole = (req: Request, res: Response, next: NextFunction
   next();
 };
 
+// Super admin middleware - platform admin only (legacy tokens without tenantId)
+export const requireSuperAdmin = (req: Request, res: Response, next: NextFunction) => {
+  const tokenData = getTokenData(req);
+  if (!tokenData) {
+    return res.status(401).json({ message: "No autorizado" });
+  }
+  // SaaS users (with tenantId) are NOT super admins
+  if ("tenantId" in tokenData) {
+    return res.status(403).json({ message: "Acceso solo para administradores de plataforma" });
+  }
+  // Must have admin or owner role
+  if (tokenData.role !== "admin" && tokenData.role !== "owner") {
+    return res.status(403).json({ message: "Se requiere rol de administrador de plataforma" });
+  }
+  next();
+};
+
 // Owner middleware - PIN login (Ivan) or SaaS owner
 export const requireOwner = (req: Request, res: Response, next: NextFunction) => {
   const tokenData = getTokenData(req);

@@ -57,11 +57,13 @@ Todas las mejoras del producto original completadas entre Ene-Feb 2026.
 - Email de bienvenida con SendGrid (sendWelcomeEmail)
 - Wizard guiado post-registro en /onboarding
 
-### Tarea 4: Dashboard Multi-Tenant - PENDIENTE
-- Adaptar CRM Dashboard para mostrar datos filtrados por tenant
-- Selector de tenant para super-admin
-- Branding dinamico (logo, colores) por tenant
-- Menus y permisos basados en rol del usuario
+### Tarea 4: Dashboard Multi-Tenant - COMPLETADA
+- Nombre del tenant dinamico en header del CRM (reemplaza "CRM Costa Brava" hardcoded)
+- Banner de trial con dias restantes (ambar/rojo segun urgencia) + CTA "Activar plan"
+- Datos de tenant en sessionStorage: plan, status, trialEndsAt, logo
+- Menus por rol: employee (3 tabs), admin (11 tabs), owner (12 tabs con Equipo)
+- Datos filtrados por tenant via JWT tenantId ya implementado en servidor
+- Selector de tenant para super-admin: pendiente para Tarea 6 (requiere rol nuevo)
 
 ### Tarea 5: Tenant Admin Panel - PENDIENTE
 - Gestion de usuarios del tenant (invitar, roles, desactivar)

@@ -595,6 +595,7 @@ export function registerAuthRoutes(app: Express) {
           status: tenant.status,
           logo: tenant.logo,
           primaryColor: tenant.primaryColor,
+          trialEndsAt: tenant.trialEndsAt,
         } : null,
         message: "Login exitoso",
       });

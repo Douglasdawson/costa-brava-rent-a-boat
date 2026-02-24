@@ -15,6 +15,8 @@ import {
   Wrench,
   Package,
   BarChart3,
+  AlertCircle,
+  Zap,
 } from "lucide-react";
 
 interface AdminLayoutProps {
@@ -22,6 +24,9 @@ interface AdminLayoutProps {
   onTabChange: (tab: string) => void;
   adminRole: string;
   adminUsername: string;
+  tenantName?: string | null;
+  tenantStatus?: string | null;
+  trialEndsAt?: string | null;
   onLogout: () => void;
   onExportCSV: () => void;
   onNewBooking: () => void;
@@ -54,11 +59,20 @@ export function AdminLayout({
   onTabChange,
   adminRole,
   adminUsername,
+  tenantName,
+  tenantStatus,
+  trialEndsAt,
   onLogout,
   onExportCSV,
   onNewBooking,
   children,
 }: AdminLayoutProps) {
+  // Compute trial days remaining
+  const trialDaysLeft = trialEndsAt
+    ? Math.max(0, Math.ceil((new Date(trialEndsAt).getTime() - Date.now()) / (1000 * 60 * 60 * 24)))
+    : null;
+  const showTrialBanner = tenantStatus === "trial" && trialDaysLeft !== null;
+
   const secondaryTabs = [
     ...(adminRole === "admin" || adminRole === "owner" ? ADMIN_TABS : []),
     ...(adminRole === "owner" ? OWNER_TABS : []),
@@ -66,15 +80,47 @@ export function AdminLayout({
 
   return (
     <div className="min-h-screen bg-gray-50">
+      {/* Trial Banner */}
+      {showTrialBanner && (
+        <div className={`px-4 py-2 text-sm flex items-center justify-between ${
+          trialDaysLeft! <= 3
+            ? "bg-red-50 border-b border-red-200 text-red-800"
+            : "bg-amber-50 border-b border-amber-200 text-amber-800"
+        }`}>
+          <div className="flex items-center gap-2">
+            <AlertCircle className="w-4 h-4 flex-shrink-0" />
+            <span>
+              {trialDaysLeft === 0
+                ? "Tu periodo de prueba ha expirado"
+                : `Prueba gratuita: ${trialDaysLeft} ${trialDaysLeft === 1 ? "día" : "días"} restantes`}
+            </span>
+          </div>
+          <Button
+            variant="outline"
+            size="sm"
+            className={`h-7 text-xs ${
+              trialDaysLeft! <= 3
+                ? "border-red-400 text-red-700 hover:bg-red-100"
+                : "border-amber-400 text-amber-700 hover:bg-amber-100"
+            }`}
+          >
+            <Zap className="w-3 h-3 mr-1" />
+            Activar plan
+          </Button>
+        </div>
+      )}
+
       {/* Header */}
       <div className="bg-white border-b border-gray-200 px-4 md:px-6 py-3 md:py-4">
         <div className="flex items-center justify-between flex-wrap gap-3">
           <div className="flex items-center space-x-2 md:space-x-3">
             <Anchor className="w-6 h-6 md:w-8 md:h-8 text-primary" />
             <div>
-              <h1 className="text-lg md:text-2xl font-bold text-gray-900">CRM Costa Brava</h1>
+              <h1 className="text-lg md:text-2xl font-bold text-gray-900">
+                {tenantName || "NauticFlow CRM"}
+              </h1>
               <p className="text-xs md:text-sm text-gray-600 hidden md:block">
-                {adminUsername} ({adminRole === "owner" ? "Propietario" : adminRole === "admin" ? "Administrador" : "Empleado"})
+                {adminUsername} · {adminRole === "owner" ? "Propietario" : adminRole === "admin" ? "Administrador" : "Empleado"}
               </p>
             </div>
           </div>

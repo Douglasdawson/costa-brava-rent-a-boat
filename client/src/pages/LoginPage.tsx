@@ -67,6 +67,10 @@ export default function LoginPage() {
       if (data.tenant) {
         sessionStorage.setItem("tenantName", data.tenant.name);
         sessionStorage.setItem("tenantSlug", data.tenant.slug);
+        sessionStorage.setItem("tenantPlan", data.tenant.plan || "starter");
+        sessionStorage.setItem("tenantStatus", data.tenant.status || "active");
+        if (data.tenant.trialEndsAt) sessionStorage.setItem("tenantTrialEndsAt", data.tenant.trialEndsAt);
+        if (data.tenant.logo) sessionStorage.setItem("tenantLogo", data.tenant.logo);
       }
 
       toast({
@@ -139,6 +143,9 @@ export default function LoginPage() {
       if (data.tenant) {
         sessionStorage.setItem("tenantName", data.tenant.name);
         sessionStorage.setItem("tenantSlug", data.tenant.slug);
+        sessionStorage.setItem("tenantPlan", data.tenant.plan || "starter");
+        sessionStorage.setItem("tenantStatus", data.tenant.status || "trial");
+        if (data.tenant.trialEndsAt) sessionStorage.setItem("tenantTrialEndsAt", data.tenant.trialEndsAt);
       }
 
       toast({

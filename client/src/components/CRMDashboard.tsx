@@ -38,6 +38,9 @@ export default function CRMDashboard({ adminToken }: CRMDashboardProps) {
   const [selectedTimeRange, setSelectedTimeRange] = useState("today");
   const adminRole = sessionStorage.getItem("adminRole") || "admin";
   const adminUsername = sessionStorage.getItem("adminUsername") || "Admin";
+  const tenantName = sessionStorage.getItem("tenantName");
+  const tenantStatus = sessionStorage.getItem("tenantStatus");
+  const trialEndsAt = sessionStorage.getItem("tenantTrialEndsAt");
 
   // Booking details modal state
   const [selectedBooking, setSelectedBooking] = useState<Booking | null>(null);
@@ -239,6 +242,9 @@ export default function CRMDashboard({ adminToken }: CRMDashboardProps) {
         onTabChange={setSelectedTab}
         adminRole={adminRole}
         adminUsername={adminUsername}
+        tenantName={tenantName}
+        tenantStatus={tenantStatus}
+        trialEndsAt={trialEndsAt}
         onLogout={handleLogout}
         onExportCSV={handleExportCSV}
         onNewBooking={handleNewBooking}

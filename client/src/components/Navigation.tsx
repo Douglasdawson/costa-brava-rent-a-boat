@@ -320,10 +320,8 @@ export default function Navigation() {
                 <LanguageSelector variant="minimal" />
               </div>
             </div>
-          </div>
         </div>
       </div>
-
     </nav>
   );
 }

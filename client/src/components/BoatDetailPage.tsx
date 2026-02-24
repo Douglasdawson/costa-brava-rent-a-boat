@@ -1,7 +1,8 @@
-import { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { useLocation } from "wouter";
 import { useBookingModal } from "@/hooks/useBookingModal";
 import { useQuery } from "@tanstack/react-query";
@@ -15,8 +16,7 @@ import {
   CheckCircle,
   Star,
   Navigation as NavigationIcon,
-  Ruler,
-  ArrowUpDown,
+ArrowUpDown,
   ArrowLeftRight,
   Zap,
   Shield,
@@ -513,266 +513,189 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
           />
         </div>
 
-        {/* Key Features - Full Width */}
-        <Card className="mb-6 sm:mb-8">
-          <CardHeader>
-            <CardTitle className="flex items-center text-base sm:text-lg">
-              <Star className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-yellow-500" />
-              {t.boatDetail.mainFeatures}
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4">
-              {boatData.features?.map((feature, index) => (
-                <div key={index} className="flex items-center">
-                  <CheckCircle className="w-4 h-4 text-green-600 mr-2" />
-                  <span className="text-sm">{feature}</span>
-                </div>
-              )) || <span className="text-sm text-gray-500">{t.boatDetail.noFeatures}</span>}
+        {/* Tabbed detail sections */}
+        <Card className="mb-8">
+          <Tabs defaultValue="caracteristicas">
+            <div className="border-b border-gray-100 px-4 pt-4 overflow-x-auto">
+              <TabsList className="h-auto bg-transparent p-0 gap-1 w-max">
+                <TabsTrigger
+                  value="caracteristicas"
+                  className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:text-primary px-4 pb-3 text-sm font-medium"
+                >
+                  <Star className="w-4 h-4 mr-1.5" />
+                  {t.boatDetail.mainFeatures}
+                </TabsTrigger>
+                <TabsTrigger
+                  value="tecnico"
+                  className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:text-primary px-4 pb-3 text-sm font-medium"
+                >
+                  <NavigationIcon className="w-4 h-4 mr-1.5" />
+                  {t.boatDetail.technicalSpecs}
+                </TabsTrigger>
+                <TabsTrigger
+                  value="equipamiento"
+                  className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:text-primary px-4 pb-3 text-sm font-medium"
+                >
+                  <Settings className="w-4 h-4 mr-1.5" />
+                  {t.boatDetail.equipmentIncluded}
+                </TabsTrigger>
+                <TabsTrigger
+                  value="extras"
+                  className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:text-primary px-4 pb-3 text-sm font-medium"
+                >
+                  <Zap className="w-4 h-4 mr-1.5" />
+                  {t.boatDetail.availableExtras}
+                </TabsTrigger>
+                <TabsTrigger
+                  value="info"
+                  className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:text-primary px-4 pb-3 text-sm font-medium"
+                >
+                  <Shield className="w-4 h-4 mr-1.5" />
+                  {t.boatDetail.importantInfo}
+                </TabsTrigger>
+              </TabsList>
             </div>
-          </CardContent>
-        </Card>
 
-        {/* Technical Specifications, Equipment and Advantages */}
-        <div className={`grid grid-cols-1 ${!requiresLicense ? 'lg:grid-cols-3' : 'lg:grid-cols-2'} gap-6 sm:gap-8 mb-6 sm:mb-8`}>
-          {/* Technical Specifications */}
-          <Card>
-            <CardHeader>
-              <CardTitle className="flex items-center text-base sm:text-lg">
-                <NavigationIcon className="w-5 h-5 mr-2" />
-                {t.boatDetail.technicalSpecs}
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="grid grid-cols-1 gap-4">
-                {boatData.specifications?.model && (
-                  <div className="flex items-center justify-between text-sm">
-                    <div className="flex items-center">
-                      <Anchor className="w-4 h-4 mr-2 text-blue-600" />
-                      <span className="font-medium">{t.boatDetail.specModel}</span>
-                    </div>
-                    <span>{boatData.specifications.model}</span>
+            {/* Tab: Características */}
+            <TabsContent value="caracteristicas" className="mt-0 p-4 sm:p-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
+                {boatData.features?.map((feature, index) => (
+                  <div key={index} className="flex items-center">
+                    <CheckCircle className="w-4 h-4 text-green-600 mr-2 flex-shrink-0" />
+                    <span className="text-sm">{feature}</span>
                   </div>
-                )}
-                {boatData.specifications?.length && (
-                  <div className="flex items-center justify-between text-sm">
-                    <div className="flex items-center">
-                      <ArrowUpDown className="w-4 h-4 mr-2 text-blue-600" />
-                      <span className="font-medium">{t.boatDetail.specLength}</span>
-                    </div>
-                    <span>{boatData.specifications.length}</span>
-                  </div>
-                )}
-                {boatData.specifications?.beam && (
-                  <div className="flex items-center justify-between text-sm">
-                    <div className="flex items-center">
-                      <ArrowLeftRight className="w-4 h-4 mr-2 text-blue-600" />
-                      <span className="font-medium">{t.boatDetail.specBeam}</span>
-                    </div>
-                    <span>{boatData.specifications.beam}</span>
-                  </div>
-                )}
-                {boatData.specifications?.engine && (
-                  <div className="flex items-center justify-between text-sm">
-                    <div className="flex items-center">
-                      <Zap className="w-4 h-4 mr-2 text-blue-600" />
-                      <span className="font-medium">{t.boatDetail.specEngine}</span>
-                    </div>
-                    <span>{boatData.specifications.engine}</span>
-                  </div>
-                )}
-                {boatData.specifications?.fuel && (
-                  <div className="flex items-center justify-between text-sm">
-                    <div className="flex items-center">
-                      <Fuel className="w-4 h-4 mr-2 text-blue-600" />
-                      <span className="font-medium">{t.boatDetail.specFuel}</span>
-                    </div>
-                    <span>{boatData.specifications.fuel}</span>
-                  </div>
-                )}
-                {boatData.specifications?.capacity && (
-                  <div className="flex items-center justify-between text-sm">
-                    <div className="flex items-center">
-                      <Users className="w-4 h-4 mr-2 text-blue-600" />
-                      <span className="font-medium">{t.boatDetail.specCapacity}</span>
-                    </div>
-                    <span>{boatData.specifications.capacity}</span>
-                  </div>
-                )}
-                {boatData.specifications?.deposit && (
-                  <div className="flex items-center justify-between text-sm">
-                    <div className="flex items-center">
-                      <Shield className="w-4 h-4 mr-2 text-blue-600" />
-                      <span className="font-medium">{t.boatDetail.specDeposit}</span>
-                    </div>
-                    <span>{boatData.specifications.deposit}</span>
-                  </div>
-                )}
+                )) || <span className="text-sm text-gray-500">{t.boatDetail.noFeatures}</span>}
               </div>
-            </CardContent>
-          </Card>
+              {!requiresLicense && (
+                <div className="mt-6 pt-6 border-t border-gray-100">
+                  <h4 className="font-semibold text-sm text-gray-700 mb-4 flex items-center gap-2">
+                    <Heart className="w-4 h-4 text-primary" />
+                    {t.boatDetail.licenseFreeAdvantages}
+                  </h4>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                      <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">{t.boatDetail.totalAccessibility}</p>
+                      <div className="space-y-1.5">
+                        {[t.boatDetail.noLicenseNeeded, t.boatDetail.quickLearning, t.boatDetail.lowerCost, t.boatDetail.perfectBeginners].map((item, i) => (
+                          <div key={i} className="flex items-center">
+                            <Star className="w-3 h-3 text-green-600 mr-2 flex-shrink-0" />
+                            <span className="text-sm">{item}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                    <div>
+                      <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">{t.boatDetail.guaranteedFun}</p>
+                      <div className="space-y-1.5">
+                        {[
+                          { icon: Waves, label: t.boatDetail.accessCoves },
+                          { icon: Sun, label: t.boatDetail.idealFamilies },
+                          { icon: NavigationIcon, label: t.boatDetail.safeCoastalNavigation },
+                          { icon: Clock, label: t.boatDetail.immediateAvailability },
+                        ].map(({ icon: Icon, label }, i) => (
+                          <div key={i} className="flex items-center">
+                            <Icon className="w-3 h-3 text-green-600 mr-2 flex-shrink-0" />
+                            <span className="text-sm">{label}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </TabsContent>
 
-          {/* Equipment */}
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-base sm:text-lg flex items-center gap-2">
-                <Settings className="w-5 h-5 text-primary" />
-                {t.boatDetail.equipmentIncluded}
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="grid grid-cols-1 gap-2">
+            {/* Tab: Ficha Técnica */}
+            <TabsContent value="tecnico" className="mt-0 p-4 sm:p-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                {[
+                  { key: "model", icon: Anchor, label: t.boatDetail.specModel },
+                  { key: "length", icon: ArrowUpDown, label: t.boatDetail.specLength },
+                  { key: "beam", icon: ArrowLeftRight, label: t.boatDetail.specBeam },
+                  { key: "engine", icon: Zap, label: t.boatDetail.specEngine },
+                  { key: "fuel", icon: Fuel, label: t.boatDetail.specFuel },
+                  { key: "capacity", icon: Users, label: t.boatDetail.specCapacity },
+                  { key: "deposit", icon: Shield, label: t.boatDetail.specDeposit },
+                ].filter(({ key }) => boatData.specifications?.[key as keyof typeof boatData.specifications]).map(({ key, icon: Icon, label }) => (
+                  <div key={key} className="flex items-center justify-between text-sm py-2 border-b border-gray-50 last:border-0">
+                    <div className="flex items-center">
+                      <Icon className="w-4 h-4 mr-2 text-blue-600 flex-shrink-0" />
+                      <span className="font-medium text-gray-700">{label}</span>
+                    </div>
+                    <span className="text-gray-900 font-medium">{boatData.specifications![key as keyof typeof boatData.specifications]}</span>
+                  </div>
+                ))}
+              </div>
+            </TabsContent>
+
+            {/* Tab: Equipamiento */}
+            <TabsContent value="equipamiento" className="mt-0 p-4 sm:p-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                 {boatData.equipment?.map((item, index) => (
                   <div key={index} className="flex items-center">
-                    <CheckCircle className="w-4 h-4 text-green-600 mr-2" />
-                    <span>{item}</span>
+                    <CheckCircle className="w-4 h-4 text-green-600 mr-2 flex-shrink-0" />
+                    <span className="text-sm">{item}</span>
                   </div>
                 )) || <span className="text-sm text-gray-500">{t.boatDetail.noEquipment}</span>}
               </div>
-            </CardContent>
-          </Card>
+            </TabsContent>
 
-          {/* License-Free Advantages - Only for boats without license */}
-          {!requiresLicense && (
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center text-base sm:text-lg">
-                  <Heart className="w-5 h-5 mr-2 text-primary" />
-                  {t.boatDetail.licenseFreeAdvantages}
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-4">
-                  <div>
-                    <h4 className="font-semibold text-sm mb-2">{t.boatDetail.totalAccessibility}</h4>
-                    <div className="space-y-1">
-                      <div className="flex items-center">
-                        <Star className="w-3 h-3 text-green-600 mr-2" />
-                        <span className="text-sm">{t.boatDetail.noLicenseNeeded}</span>
-                      </div>
-                      <div className="flex items-center">
-                        <Star className="w-3 h-3 text-green-600 mr-2" />
-                        <span className="text-sm">{t.boatDetail.quickLearning}</span>
-                      </div>
-                      <div className="flex items-center">
-                        <Star className="w-3 h-3 text-green-600 mr-2" />
-                        <span className="text-sm">{t.boatDetail.lowerCost}</span>
-                      </div>
-                      <div className="flex items-center">
-                        <Star className="w-3 h-3 text-green-600 mr-2" />
-                        <span className="text-sm">{t.boatDetail.perfectBeginners}</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-sm mb-2">{t.boatDetail.guaranteedFun}</h4>
-                    <div className="space-y-1">
-                      <div className="flex items-center">
-                        <Waves className="w-3 h-3 text-green-600 mr-2" />
-                        <span className="text-sm">{t.boatDetail.accessCoves}</span>
-                      </div>
-                      <div className="flex items-center">
-                        <Sun className="w-3 h-3 text-green-600 mr-2" />
-                        <span className="text-sm">{t.boatDetail.idealFamilies}</span>
-                      </div>
-                      <div className="flex items-center">
-                        <NavigationIcon className="w-3 h-3 text-green-600 mr-2" />
-                        <span className="text-sm">{t.boatDetail.safeCoastalNavigation}</span>
-                      </div>
-                      <div className="flex items-center">
-                        <Clock className="w-3 h-3 text-green-600 mr-2" />
-                        <span className="text-sm">{t.boatDetail.immediateAvailability}</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          )}
-        </div>
-
-        {/* Extras Section */}
-        <Card className="mb-8">
-          <CardHeader>
-            <CardTitle className="md:text-center">{t.boatDetail.availableExtras}</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-              {boatData.extras?.map((extra, index) => {
-                const getIcon = (iconName: string) => {
-                  const iconMap: { [key: string]: any } = {
-                    CircleParking,
-                    Snowflake,
-                    Beer,
-                    Eye,
-                    Waves,
-                    Zap
+            {/* Tab: Extras */}
+            <TabsContent value="extras" className="mt-0 p-4 sm:p-6">
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
+                {boatData.extras?.map((extra, index) => {
+                  const iconMap: { [key: string]: React.ComponentType<{ className?: string }> } = {
+                    CircleParking, Snowflake, Beer, Eye, Waves, Zap
                   };
-                  return iconMap[iconName] || Star;
-                };
-                
-                const IconComponent = getIcon(extra.icon);
-                
-                return (
-                  <div key={index} className="text-left md:text-center p-4 border rounded-lg hover:bg-gray-50 transition-colors">
-                    <div className="flex justify-start md:justify-center mb-2">
-                      <IconComponent className="w-6 h-6 text-primary" />
+                  const IconComponent = iconMap[extra.icon] || Star;
+                  return (
+                    <div key={index} className="text-center p-4 border border-gray-100 rounded-xl hover:bg-gray-50 transition-colors">
+                      <div className="flex justify-center mb-2">
+                        <IconComponent className="w-6 h-6 text-primary" />
+                      </div>
+                      <div className="font-medium text-sm text-gray-800">{extra.name}</div>
+                      <div className="text-primary font-bold text-sm mt-0.5">{extra.price}</div>
                     </div>
-                    <div className="font-medium text-sm">{extra.name}</div>
-                    <div className="text-primary font-bold">{extra.price}</div>
-                  </div>
-                );
-              })}
-            </div>
-            <p className="text-sm text-gray-600 mt-4 text-left md:text-center">
-              {t.boatDetail.extrasNote}
-            </p>
-          </CardContent>
-        </Card>
+                  );
+                })}
+              </div>
+              <p className="text-xs text-gray-500 mt-4">{t.boatDetail.extrasNote}</p>
+            </TabsContent>
 
-        {/* Important Info */}
-        <Card className="mb-8">
-          <CardHeader>
-            <CardTitle>{t.boatDetail.importantInfo}</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="text-sm text-gray-700 space-y-2">
-              <p>• <strong>{t.boatDetail.essentialDoc}</strong>{requiresLicense ? t.boatDetail.essentialDocLicense : ""}</p>
-              <p>• {requiresLicense ? t.boatDetail.licenseRequired : t.boatDetail.noLicenseRequired}</p>
-              <p>• {t.boatDetail.idealForGroups.replace('{capacity}', String(capacity))}</p>
-              <p>• {t.boatDetail.perfectExplore}</p>
-              <p>• {requiresLicense ? t.boatDetail.fuelNotIncluded : t.boatDetail.fuelInsuranceIncluded}</p>
-              {boatData.specifications?.deposit && <p>• {t.boatDetail.specDeposit} {boatData.specifications.deposit}</p>}
-            </div>
-            <div className="mt-4 p-4 bg-blue-50 rounded-lg">
-              <p className="text-blue-800 text-sm">
-                <strong>{t.boatDetail.conditions}</strong>{" "}
-                <button
-                  onClick={() => {
-                    const targetSection = requiresLicense ? "embarcaciones-con-licencia" : "embarcaciones-sin-licencia";
-                    setLocation("/terms-conditions");
-                    setTimeout(() => {
-                      const element = document.getElementById(targetSection);
-                      if (element) {
-                        const elementPosition = element.offsetTop;
-                        const offsetPosition = elementPosition - 100;
-
-                        window.scrollTo({
-                          top: offsetPosition,
-                          behavior: "smooth"
-                        });
-                      }
-                    }, 100);
-                  }}
-                  className="underline bg-transparent border-none p-0 text-blue-800 cursor-pointer hover:text-blue-600 transition-colors"
-                  data-testid="link-terms-conditions"
-                >
-                  {t.boatDetail.rentalConditions}
-                </button>{" "}
-                {t.boatDetail.beforeBooking}
-              </p>
-            </div>
-          </CardContent>
+            {/* Tab: Información */}
+            <TabsContent value="info" className="mt-0 p-4 sm:p-6">
+              <div className="text-sm text-gray-700 space-y-2 mb-4">
+                <p>• <strong>{t.boatDetail.essentialDoc}</strong>{requiresLicense ? t.boatDetail.essentialDocLicense : ""}</p>
+                <p>• {requiresLicense ? t.boatDetail.licenseRequired : t.boatDetail.noLicenseRequired}</p>
+                <p>• {t.boatDetail.idealForGroups.replace('{capacity}', String(capacity))}</p>
+                <p>• {t.boatDetail.perfectExplore}</p>
+                <p>• {requiresLicense ? t.boatDetail.fuelNotIncluded : t.boatDetail.fuelInsuranceIncluded}</p>
+                {boatData.specifications?.deposit && <p>• {t.boatDetail.specDeposit} {boatData.specifications.deposit}</p>}
+              </div>
+              <div className="p-4 bg-blue-50 rounded-lg">
+                <p className="text-blue-800 text-sm">
+                  <strong>{t.boatDetail.conditions}</strong>{" "}
+                  <button
+                    onClick={() => {
+                      const targetSection = requiresLicense ? "embarcaciones-con-licencia" : "embarcaciones-sin-licencia";
+                      setLocation("/terms-conditions");
+                      setTimeout(() => {
+                        const element = document.getElementById(targetSection);
+                        if (element) {
+                          window.scrollTo({ top: element.offsetTop - 100, behavior: "smooth" });
+                        }
+                      }, 100);
+                    }}
+                    className="underline bg-transparent border-none p-0 text-blue-800 cursor-pointer hover:text-blue-600 transition-colors"
+                    data-testid="link-terms-conditions"
+                  >
+                    {t.boatDetail.rentalConditions}
+                  </button>{" "}
+                  {t.boatDetail.beforeBooking}
+                </p>
+              </div>
+            </TabsContent>
+          </Tabs>
         </Card>
 
       </div>

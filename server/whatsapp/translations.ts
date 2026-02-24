@@ -152,9 +152,8 @@ export const TRANSLATIONS: Record<SupportedLanguage, ChatbotTranslations> = {
     bookingConfirmPrompt:
       "\n¿Enviamos la solicitud de reserva al equipo?\n\n1️⃣ Sí, enviar solicitud\n2️⃣ No, cancelar",
     bookingCreated:
-      "✅ *¡Solicitud de reserva recibida!*\n\nIvan te enviará el enlace de pago a este WhatsApp en breve para completar la reserva.",
-    bookingNotification:
-      "Recibirás la confirmación definitiva una vez realizado el pago.",
+      "✅ *¡Solicitud de reserva recibida!*\n\nIvan verificará la disponibilidad y se pondrá en contacto contigo a la mayor brevedad para confirmar y enviarte el enlace de pago.",
+    bookingNotification: "",
     bookingFailed:
       "😔 Lo sentimos, no hemos podido crear tu reserva. Es posible que el horario ya no esté disponible. Por favor, inténtalo de nuevo o escribe *agente* para contactarnos.",
     invalidPeopleCount:

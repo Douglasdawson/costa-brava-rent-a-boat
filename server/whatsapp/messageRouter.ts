@@ -484,7 +484,8 @@ async function handleBookingConfirmState(
       // Transition to main menu and respond with success
       await clearBookingData(session.phoneNumber);
       await updateState(session.phoneNumber, CHATBOT_STATES.MAIN_MENU);
-      return `${t.bookingCreated}\n\n${t.bookingNotification}\n\n${handleMainMenu(t)}`;
+      const notif = t.bookingNotification ? `\n\n${t.bookingNotification}` : "";
+      return `${t.bookingCreated}${notif}\n\n${handleMainMenu(t)}`;
     } else {
       // Booking creation failed
       await clearBookingData(session.phoneNumber);

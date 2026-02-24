@@ -1364,7 +1364,7 @@ export default function BookingFlow({
                     </Button>
 
                     <p className="text-xs text-gray-500 text-center">
-                      Pago seguro procesado por Stripe. Simulación de pago para testing.
+                      Pago seguro procesado por Stripe.
                     </p>
                   </>
                 )}

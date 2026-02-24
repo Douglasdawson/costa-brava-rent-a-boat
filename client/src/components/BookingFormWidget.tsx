@@ -392,8 +392,7 @@ export default function BookingFormWidget({ preSelectedBoatId, prefillDate, pref
       case 'lastName':
         return !lastName.trim() ? t.validation.required : '';
       case 'email':
-        if (!email.trim()) return t.validation.required;
-        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return t.validation.invalidEmail;
+        if (email.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return t.validation.invalidEmail;
         return '';
       case 'phone':
         if (!phoneNumber.trim()) return t.validation.required;
@@ -433,13 +432,13 @@ export default function BookingFormWidget({ preSelectedBoatId, prefillDate, pref
   };
 
   const canAdvanceFromStep3 = (): boolean => {
+    const emailValid = !email.trim() || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
     return (
       !!firstName.trim() &&
       !!lastName.trim() &&
       !!phoneNumber.trim() &&
       /^\d+$/.test(phoneNumber.trim()) &&
-      !!email.trim() &&
-      /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
+      emailValid
     );
   };
 
@@ -680,11 +679,7 @@ Looking forward to confirmation. Thanks!`;
       toast({ title: t.booking.phoneRequired, description: t.booking.phoneRequiredDesc, variant: "destructive" });
       return;
     }
-    if (!email.trim()) {
-      toast({ title: t.booking.emailRequired, description: t.booking.emailRequiredDesc, variant: "destructive" });
-      return;
-    }
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    if (email.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       toast({ title: t.booking.emailInvalid, description: t.booking.emailInvalidDesc, variant: "destructive" });
       return;
     }

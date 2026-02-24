@@ -244,6 +244,13 @@ function Step1Boat({
   t,
 }: BookingWizardMobileProps) {
   const [showDatePicker, setShowDatePicker] = useState(false);
+  const dateRef = useRef<HTMLDivElement>(null);
+
+  function handleBoatSelect(boatId: string) {
+    setSelectedBoat(boatId);
+    setTimeout(() => dateRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 100);
+  }
+
   return (
     <div className="space-y-5">
       <div>
@@ -311,7 +318,7 @@ function Step1Boat({
                 type="button"
                 role="radio"
                 aria-checked={selectedBoat === boat.id}
-                onClick={() => setSelectedBoat(boat.id)}
+                onClick={() => handleBoatSelect(boat.id)}
                 disabled={!!preSelectedBoatId && boat.id !== preSelectedBoatId}
                 className={`w-full flex items-center gap-3 p-3 rounded-xl border-2 text-left transition-all active:scale-[0.97] ${
                   selectedBoat === boat.id
@@ -346,7 +353,7 @@ function Step1Boat({
           <p className="text-xs text-red-500 mt-1">{getFieldError('boat')}</p>
         )}
       </div>
-      <div>
+      <div ref={dateRef}>
         <label className="block text-sm font-semibold text-gray-700 mb-2">
           {t.wizard.date}
         </label>

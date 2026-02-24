@@ -89,7 +89,8 @@ export function registerDiscountRoutes(app: Express) {
       res.json(codes);
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Error desconocido";
-      res.status(500).json({ message: "Error al obtener codigos de descuento: " + message });
+      console.error("[Discounts] Error fetching discount codes:", message);
+      res.status(500).json({ message: "Error interno del servidor" });
     }
   });
 
@@ -262,7 +263,7 @@ export function registerDiscountRoutes(app: Express) {
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Error desconocido";
       console.error("Error in pre-season campaign:", message);
-      res.status(500).json({ message: "Error al generar la campana pre-temporada: " + message });
+      res.status(500).json({ message: "Error interno del servidor" });
     }
   });
 }

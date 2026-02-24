@@ -12,7 +12,8 @@ export function registerDestinationRoutes(app: Express) {
       const destinations = await storage.getPublishedDestinations();
       res.json(destinations);
     } catch (error: any) {
-      res.status(500).json({ message: "Error fetching destinations: " + error.message });
+      console.error("[Destinations] Error fetching destinations:", error.message);
+      res.status(500).json({ message: "Error interno del servidor" });
     }
   });
 
@@ -25,7 +26,8 @@ export function registerDestinationRoutes(app: Express) {
       }
       res.json(destination);
     } catch (error: any) {
-      res.status(500).json({ message: "Error fetching destination: " + error.message });
+      console.error("[Destinations] Error fetching destination:", error.message);
+      res.status(500).json({ message: "Error interno del servidor" });
     }
   });
 
@@ -37,7 +39,8 @@ export function registerDestinationRoutes(app: Express) {
       const destinations = await storage.getAllDestinations();
       res.json(destinations);
     } catch (error: any) {
-      res.status(500).json({ message: "Error fetching destinations: " + error.message });
+      console.error("[Destinations] Error fetching destinations:", error.message);
+      res.status(500).json({ message: "Error interno del servidor" });
     }
   });
 
@@ -54,7 +57,8 @@ export function registerDestinationRoutes(app: Express) {
       const destination = await storage.createDestination(parsed.data);
       res.status(201).json(destination);
     } catch (error: any) {
-      res.status(500).json({ message: "Error creating destination: " + error.message });
+      console.error("[Destinations] Error creating destination:", error.message);
+      res.status(500).json({ message: "Error interno del servidor" });
     }
   });
 
@@ -74,7 +78,8 @@ export function registerDestinationRoutes(app: Express) {
       }
       res.json(destination);
     } catch (error: any) {
-      res.status(500).json({ message: "Error updating destination: " + error.message });
+      console.error("[Destinations] Error updating destination:", error.message);
+      res.status(500).json({ message: "Error interno del servidor" });
     }
   });
 
@@ -87,7 +92,8 @@ export function registerDestinationRoutes(app: Express) {
       }
       res.json({ message: "Destination deleted successfully" });
     } catch (error: any) {
-      res.status(500).json({ message: "Error deleting destination: " + error.message });
+      console.error("[Destinations] Error deleting destination:", error.message);
+      res.status(500).json({ message: "Error interno del servidor" });
     }
   });
 }

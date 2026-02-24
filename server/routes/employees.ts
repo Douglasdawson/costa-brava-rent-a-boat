@@ -30,7 +30,8 @@ export function registerEmployeeRoutes(app: Express) {
       res.json(sanitized);
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Unknown error";
-      res.status(500).json({ message: "Error fetching employees: " + message });
+      console.error("[Employees] Error fetching employees:", message);
+      res.status(500).json({ message: "Error interno del servidor" });
     }
   });
 
@@ -65,7 +66,8 @@ export function registerEmployeeRoutes(app: Express) {
       res.status(201).json(sanitized);
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Unknown error";
-      res.status(500).json({ message: "Error creating employee: " + message });
+      console.error("[Employees] Error creating employee:", message);
+      res.status(500).json({ message: "Error interno del servidor" });
     }
   });
 
@@ -106,7 +108,8 @@ export function registerEmployeeRoutes(app: Express) {
       res.json(sanitized);
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Unknown error";
-      res.status(500).json({ message: "Error updating employee: " + message });
+      console.error("[Employees] Error updating employee:", message);
+      res.status(500).json({ message: "Error interno del servidor" });
     }
   });
 
@@ -124,7 +127,8 @@ export function registerEmployeeRoutes(app: Express) {
       res.json({ message: "Empleado desactivado correctamente" });
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Unknown error";
-      res.status(500).json({ message: "Error deactivating employee: " + message });
+      console.error("[Employees] Error deactivating employee:", message);
+      res.status(500).json({ message: "Error interno del servidor" });
     }
   });
 }

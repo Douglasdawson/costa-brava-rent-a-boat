@@ -20,7 +20,8 @@ export function registerBlogRoutes(app: Express) {
 
       res.json(posts);
     } catch (error: any) {
-      res.status(500).json({ message: "Error fetching blog posts: " + error.message });
+      console.error("[Blog] Error fetching blog posts:", error.message);
+      res.status(500).json({ message: "Error interno del servidor" });
     }
   });
 
@@ -33,7 +34,8 @@ export function registerBlogRoutes(app: Express) {
       }
       res.json(post);
     } catch (error: any) {
-      res.status(500).json({ message: "Error fetching blog post: " + error.message });
+      console.error("[Blog] Error fetching blog post:", error.message);
+      res.status(500).json({ message: "Error interno del servidor" });
     }
   });
 
@@ -45,7 +47,8 @@ export function registerBlogRoutes(app: Express) {
       const posts = await storage.getAllBlogPosts();
       res.json(posts);
     } catch (error: any) {
-      res.status(500).json({ message: "Error fetching blog posts: " + error.message });
+      console.error("[Blog] Error fetching blog posts:", error.message);
+      res.status(500).json({ message: "Error interno del servidor" });
     }
   });
 
@@ -62,7 +65,8 @@ export function registerBlogRoutes(app: Express) {
       const post = await storage.createBlogPost(parsed.data);
       res.status(201).json(post);
     } catch (error: any) {
-      res.status(500).json({ message: "Error creating blog post: " + error.message });
+      console.error("[Blog] Error creating blog post:", error.message);
+      res.status(500).json({ message: "Error interno del servidor" });
     }
   });
 
@@ -82,7 +86,8 @@ export function registerBlogRoutes(app: Express) {
       }
       res.json(post);
     } catch (error: any) {
-      res.status(500).json({ message: "Error updating blog post: " + error.message });
+      console.error("[Blog] Error updating blog post:", error.message);
+      res.status(500).json({ message: "Error interno del servidor" });
     }
   });
 
@@ -95,7 +100,8 @@ export function registerBlogRoutes(app: Express) {
       }
       res.json({ message: "Blog post deleted successfully" });
     } catch (error: any) {
-      res.status(500).json({ message: "Error deleting blog post: " + error.message });
+      console.error("[Blog] Error deleting blog post:", error.message);
+      res.status(500).json({ message: "Error interno del servidor" });
     }
   });
 }

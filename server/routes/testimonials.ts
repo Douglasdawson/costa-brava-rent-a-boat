@@ -17,7 +17,8 @@ export function registerTestimonialRoutes(app: Express) {
 
       res.json(testimonialsData);
     } catch (error: any) {
-      res.status(500).json({ message: "Error fetching testimonials: " + error.message });
+      console.error("[Testimonials] Error fetching testimonials:", error.message);
+      res.status(500).json({ message: "Error interno del servidor" });
     }
   });
 
@@ -35,7 +36,8 @@ export function registerTestimonialRoutes(app: Express) {
       const testimonial = await storage.createTestimonial(parsed.data);
       res.status(201).json(testimonial);
     } catch (error: any) {
-      res.status(500).json({ message: "Error creating testimonial: " + error.message });
+      console.error("[Testimonials] Error creating testimonial:", error.message);
+      res.status(500).json({ message: "Error interno del servidor" });
     }
   });
 }

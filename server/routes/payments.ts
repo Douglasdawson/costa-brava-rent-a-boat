@@ -92,8 +92,9 @@ export function registerPaymentRoutes(app: Express) {
       try {
         stripeInstance = getStripe();
       } catch (error: any) {
+        console.error("[Payments] Stripe not configured:", error.message);
         return res.status(503).json({
-          message: "Servicio de pagos no disponible: " + error.message,
+          message: "Servicio de pagos no disponible",
           success: false,
         });
       }
@@ -172,9 +173,9 @@ export function registerPaymentRoutes(app: Express) {
         currency: "eur",
       });
     } catch (error: any) {
-      console.error("Error creating payment intent:", error);
+      console.error("[Payments] Error creating payment intent:", error instanceof Error ? error.message : error);
       res.status(500).json({
-        message: "Error al crear el intent de pago: " + error.message,
+        message: "Error interno del servidor",
         success: false,
       });
     }
@@ -235,7 +236,8 @@ export function registerPaymentRoutes(app: Express) {
         url: session.url,
       });
     } catch (error: any) {
-      res.status(500).json({ message: "Error creating checkout session: " + error.message });
+      console.error("[Payments] Error creating checkout session:", error.message);
+      res.status(500).json({ message: "Error interno del servidor" });
     }
   });
 
@@ -295,8 +297,9 @@ export function registerPaymentRoutes(app: Express) {
         note: "This is a mock payment for testing. Use /api/simulate-payment-success to complete the payment.",
       });
     } catch (error: any) {
+      console.error("[Payments] Error creating mock payment intent:", error.message);
       res.status(500).json({
-        message: "Error al crear el intent de pago mock: " + error.message,
+        message: "Error interno del servidor",
         success: false,
       });
     }
@@ -362,8 +365,9 @@ export function registerPaymentRoutes(app: Express) {
         status: "confirmed",
       });
     } catch (error: any) {
+      console.error("[Payments] Error simulating payment:", error.message);
       res.status(500).json({
-        message: "Error al simular el pago: " + error.message,
+        message: "Error interno del servidor",
         success: false,
       });
     }
@@ -485,7 +489,8 @@ export function registerPaymentRoutes(app: Express) {
       try {
         stripeInstance = getStripe();
       } catch (error: any) {
-        return res.status(503).json({ message: "Servicio de pagos no disponible: " + error.message });
+        console.error("[Payments] Stripe not configured for refund:", error.message);
+        return res.status(503).json({ message: "Servicio de pagos no disponible" });
       }
 
       const refundSchema = z.object({
@@ -544,8 +549,8 @@ export function registerPaymentRoutes(app: Express) {
       });
     } catch (error: any) {
       await db.update(bookings).set({ refundStatus: "requested" }).where(eq(bookings.id, req.params.id)).catch(() => {});
-      console.error("[Payment] Refund error:", error.message);
-      res.status(500).json({ message: "Error al procesar el reembolso: " + error.message });
+      console.error("[Payments] Refund error:", error.message);
+      res.status(500).json({ message: "Error interno del servidor" });
     }
   });
 }

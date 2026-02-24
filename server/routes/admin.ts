@@ -82,7 +82,8 @@ export function registerAdminRoutes(app: Express) {
       const newBoat = await storage.createBoat(validationResult.data);
       res.status(201).json(newBoat);
     } catch (error: any) {
-      res.status(500).json({ message: "Error creating boat: " + error.message });
+      console.error("[Admin] Error creating boat:", error.message);
+      res.status(500).json({ message: "Error interno del servidor" });
     }
   });
 
@@ -102,7 +103,8 @@ export function registerAdminRoutes(app: Express) {
       const updatedBoat = await storage.updateBoat(req.params.id, parsed.data);
       res.json(updatedBoat);
     } catch (error: any) {
-      res.status(500).json({ message: "Error updating boat: " + error.message });
+      console.error("[Admin] Error updating boat:", error.message);
+      res.status(500).json({ message: "Error interno del servidor" });
     }
   });
 
@@ -115,7 +117,8 @@ export function registerAdminRoutes(app: Express) {
       await storage.updateBoat(req.params.id, { isActive: false });
       res.json({ message: "Barco desactivado correctamente" });
     } catch (error: any) {
-      res.status(500).json({ message: "Error deleting boat: " + error.message });
+      console.error("[Admin] Error deleting boat:", error.message);
+      res.status(500).json({ message: "Error interno del servidor" });
     }
   });
 
@@ -135,7 +138,8 @@ export function registerAdminRoutes(app: Express) {
       }
       res.json({ message: "Orden actualizado correctamente" });
     } catch (error: any) {
-      res.status(500).json({ message: "Error reordering boats: " + error.message });
+      console.error("[Admin] Error reordering boats:", error.message);
+      res.status(500).json({ message: "Error interno del servidor" });
     }
   });
 
@@ -188,7 +192,8 @@ export function registerAdminRoutes(app: Express) {
         total: boatsToCreate.length,
       });
     } catch (error: any) {
-      res.status(500).json({ message: "Error initializing boats: " + error.message });
+      console.error("[Admin] Error initializing boats:", error.message);
+      res.status(500).json({ message: "Error interno del servidor" });
     }
   });
 
@@ -218,8 +223,8 @@ export function registerAdminRoutes(app: Express) {
         message: "Reserva creada exitosamente",
       });
     } catch (error: any) {
-      console.error("Error creating booking:", error);
-      res.status(500).json({ message: "Error creando reserva: " + error.message });
+      console.error("[Admin] Error creating booking:", error instanceof Error ? error.message : error);
+      res.status(500).json({ message: "Error interno del servidor" });
     }
   });
 
@@ -244,7 +249,8 @@ export function registerAdminRoutes(app: Express) {
 
       res.json(calendarBookings);
     } catch (error: any) {
-      res.status(500).json({ message: "Error fetching calendar bookings: " + error.message });
+      console.error("[Admin] Error fetching calendar bookings:", error.message);
+      res.status(500).json({ message: "Error interno del servidor" });
     }
   });
 
@@ -271,7 +277,8 @@ export function registerAdminRoutes(app: Express) {
 
       res.json(result);
     } catch (error: any) {
-      res.status(500).json({ message: "Error fetching bookings: " + error.message });
+      console.error("[Admin] Error fetching bookings:", error.message);
+      res.status(500).json({ message: "Error interno del servidor" });
     }
   });
 
@@ -323,8 +330,8 @@ export function registerAdminRoutes(app: Express) {
         message: "Reserva actualizada exitosamente",
       });
     } catch (error: any) {
-      console.error("Error updating booking:", error);
-      res.status(500).json({ message: "Error actualizando reserva: " + error.message });
+      console.error("[Admin] Error updating booking:", error instanceof Error ? error.message : error);
+      res.status(500).json({ message: "Error interno del servidor" });
     }
   });
 
@@ -345,8 +352,8 @@ export function registerAdminRoutes(app: Express) {
       res.json(result);
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Unknown error";
-      console.error("Error fetching customers:", message);
-      res.status(500).json({ message: "Error fetching customers: " + message });
+      console.error("[Admin] Error fetching customers:", message);
+      res.status(500).json({ message: "Error interno del servidor" });
     }
   });
 
@@ -360,7 +367,8 @@ export function registerAdminRoutes(app: Express) {
       res.json(result);
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Unknown error";
-      res.status(500).json({ message: "Error fetching customer: " + message });
+      console.error("[Admin] Error fetching customer:", message);
+      res.status(500).json({ message: "Error interno del servidor" });
     }
   });
 
@@ -383,7 +391,8 @@ export function registerAdminRoutes(app: Express) {
       res.json({ success: true, customer: updated, message: "Cliente actualizado" });
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Unknown error";
-      res.status(500).json({ message: "Error updating customer: " + message });
+      console.error("[Admin] Error updating customer:", message);
+      res.status(500).json({ message: "Error interno del servidor" });
     }
   });
 
@@ -398,7 +407,8 @@ export function registerAdminRoutes(app: Express) {
       });
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Unknown error";
-      res.status(500).json({ message: "Error syncing customers: " + message });
+      console.error("[Admin] Error syncing customers:", message);
+      res.status(500).json({ message: "Error interno del servidor" });
     }
   });
 
@@ -444,7 +454,8 @@ export function registerAdminRoutes(app: Express) {
       res.send("\uFEFF" + csvContent);
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Unknown error";
-      res.status(500).json({ message: "Error exporting customers: " + message });
+      console.error("[Admin] Error exporting customers:", message);
+      res.status(500).json({ message: "Error interno del servidor" });
     }
   });
 
@@ -491,8 +502,8 @@ export function registerAdminRoutes(app: Express) {
       });
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Unknown error";
-      console.error("Error creating checkin:", message);
-      res.status(500).json({ message: "Error creating checkin: " + message });
+      console.error("[Admin] Error creating checkin:", message);
+      res.status(500).json({ message: "Error interno del servidor" });
     }
   });
 
@@ -503,7 +514,8 @@ export function registerAdminRoutes(app: Express) {
       res.json(checkinsList);
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Unknown error";
-      res.status(500).json({ message: "Error fetching checkins: " + message });
+      console.error("[Admin] Error fetching checkins:", message);
+      res.status(500).json({ message: "Error interno del servidor" });
     }
   });
 
@@ -556,7 +568,8 @@ export function registerAdminRoutes(app: Express) {
         period,
       });
     } catch (error: any) {
-      res.status(500).json({ message: "Error fetching dashboard stats: " + error.message });
+      console.error("[Admin] Error fetching dashboard stats:", error.message);
+      res.status(500).json({ message: "Error interno del servidor" });
     }
   });
 
@@ -573,7 +586,8 @@ export function registerAdminRoutes(app: Express) {
       const trend = await storage.getRevenueTrend(queryParsed.data.period);
       res.json(trend);
     } catch (error: any) {
-      res.status(500).json({ message: "Error fetching revenue trend: " + error.message });
+      console.error("[Admin] Error fetching revenue trend:", error.message);
+      res.status(500).json({ message: "Error interno del servidor" });
     }
   });
 
@@ -590,7 +604,8 @@ export function registerAdminRoutes(app: Express) {
       const performance = await storage.getBoatsPerformance(queryParsed.data.period);
       res.json(performance);
     } catch (error: any) {
-      res.status(500).json({ message: "Error fetching boats performance: " + error.message });
+      console.error("[Admin] Error fetching boats performance:", error.message);
+      res.status(500).json({ message: "Error interno del servidor" });
     }
   });
 
@@ -612,7 +627,8 @@ export function registerAdminRoutes(app: Express) {
       const distribution = await storage.getStatusDistribution(startDate, endDate);
       res.json(distribution);
     } catch (error: any) {
-      res.status(500).json({ message: "Error fetching status distribution: " + error.message });
+      console.error("[Admin] Error fetching status distribution:", error.message);
+      res.status(500).json({ message: "Error interno del servidor" });
     }
   });
 
@@ -672,7 +688,8 @@ export function registerAdminRoutes(app: Express) {
       res.json(logs);
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Unknown error";
-      res.status(500).json({ message: "Error fetching maintenance logs: " + message });
+      console.error("[Admin] Error fetching maintenance logs:", message);
+      res.status(500).json({ message: "Error interno del servidor" });
     }
   });
 
@@ -682,7 +699,8 @@ export function registerAdminRoutes(app: Express) {
       res.json(upcoming);
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Unknown error";
-      res.status(500).json({ message: "Error fetching upcoming maintenance: " + message });
+      console.error("[Admin] Error fetching upcoming maintenance:", message);
+      res.status(500).json({ message: "Error interno del servidor" });
     }
   });
 
@@ -700,7 +718,8 @@ export function registerAdminRoutes(app: Express) {
       res.status(201).json({ success: true, log, message: "Mantenimiento registrado" });
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Unknown error";
-      res.status(500).json({ message: "Error creating maintenance log: " + message });
+      console.error("[Admin] Error creating maintenance log:", message);
+      res.status(500).json({ message: "Error interno del servidor" });
     }
   });
 
@@ -715,7 +734,8 @@ export function registerAdminRoutes(app: Express) {
       res.json({ success: true, log: updated, message: "Mantenimiento actualizado" });
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Unknown error";
-      res.status(500).json({ message: "Error updating maintenance log: " + message });
+      console.error("[Admin] Error updating maintenance log:", message);
+      res.status(500).json({ message: "Error interno del servidor" });
     }
   });
 
@@ -726,7 +746,8 @@ export function registerAdminRoutes(app: Express) {
       res.json({ success: true, message: "Mantenimiento eliminado" });
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Unknown error";
-      res.status(500).json({ message: "Error deleting maintenance log: " + message });
+      console.error("[Admin] Error deleting maintenance log:", message);
+      res.status(500).json({ message: "Error interno del servidor" });
     }
   });
 
@@ -739,7 +760,8 @@ export function registerAdminRoutes(app: Express) {
       res.json(docs);
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Unknown error";
-      res.status(500).json({ message: "Error fetching documents: " + message });
+      console.error("[Admin] Error fetching documents:", message);
+      res.status(500).json({ message: "Error interno del servidor" });
     }
   });
 
@@ -750,7 +772,8 @@ export function registerAdminRoutes(app: Express) {
       res.json(expiring);
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Unknown error";
-      res.status(500).json({ message: "Error fetching expiring documents: " + message });
+      console.error("[Admin] Error fetching expiring documents:", message);
+      res.status(500).json({ message: "Error interno del servidor" });
     }
   });
 
@@ -764,7 +787,8 @@ export function registerAdminRoutes(app: Express) {
       res.status(201).json({ success: true, document: doc, message: "Documento registrado" });
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Unknown error";
-      res.status(500).json({ message: "Error creating document: " + message });
+      console.error("[Admin] Error creating document:", message);
+      res.status(500).json({ message: "Error interno del servidor" });
     }
   });
 
@@ -779,7 +803,8 @@ export function registerAdminRoutes(app: Express) {
       res.json({ success: true, document: updated, message: "Documento actualizado" });
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Unknown error";
-      res.status(500).json({ message: "Error updating document: " + message });
+      console.error("[Admin] Error updating document:", message);
+      res.status(500).json({ message: "Error interno del servidor" });
     }
   });
 
@@ -790,7 +815,8 @@ export function registerAdminRoutes(app: Express) {
       res.json({ success: true, message: "Documento eliminado" });
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Unknown error";
-      res.status(500).json({ message: "Error deleting document: " + message });
+      console.error("[Admin] Error deleting document:", message);
+      res.status(500).json({ message: "Error interno del servidor" });
     }
   });
 
@@ -802,7 +828,8 @@ export function registerAdminRoutes(app: Express) {
       res.json(items);
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Unknown error";
-      res.status(500).json({ message: "Error fetching inventory: " + message });
+      console.error("[Admin] Error fetching inventory:", message);
+      res.status(500).json({ message: "Error interno del servidor" });
     }
   });
 
@@ -812,7 +839,8 @@ export function registerAdminRoutes(app: Express) {
       res.json(items);
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Unknown error";
-      res.status(500).json({ message: "Error fetching low stock items: " + message });
+      console.error("[Admin] Error fetching low stock items:", message);
+      res.status(500).json({ message: "Error interno del servidor" });
     }
   });
 
@@ -823,7 +851,8 @@ export function registerAdminRoutes(app: Express) {
       res.json(item);
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Unknown error";
-      res.status(500).json({ message: "Error fetching inventory item: " + message });
+      console.error("[Admin] Error fetching inventory item:", message);
+      res.status(500).json({ message: "Error interno del servidor" });
     }
   });
 
@@ -837,7 +866,8 @@ export function registerAdminRoutes(app: Express) {
       res.status(201).json({ success: true, item, message: "Item creado" });
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Unknown error";
-      res.status(500).json({ message: "Error creating inventory item: " + message });
+      console.error("[Admin] Error creating inventory item:", message);
+      res.status(500).json({ message: "Error interno del servidor" });
     }
   });
 
@@ -852,7 +882,8 @@ export function registerAdminRoutes(app: Express) {
       res.json({ success: true, item: updated, message: "Item actualizado" });
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Unknown error";
-      res.status(500).json({ message: "Error updating inventory item: " + message });
+      console.error("[Admin] Error updating inventory item:", message);
+      res.status(500).json({ message: "Error interno del servidor" });
     }
   });
 
@@ -863,7 +894,8 @@ export function registerAdminRoutes(app: Express) {
       res.json({ success: true, message: "Item eliminado" });
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Unknown error";
-      res.status(500).json({ message: "Error deleting inventory item: " + message });
+      console.error("[Admin] Error deleting inventory item:", message);
+      res.status(500).json({ message: "Error interno del servidor" });
     }
   });
 
@@ -874,7 +906,8 @@ export function registerAdminRoutes(app: Express) {
       res.json(movements);
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Unknown error";
-      res.status(500).json({ message: "Error fetching movements: " + message });
+      console.error("[Admin] Error fetching movements:", message);
+      res.status(500).json({ message: "Error interno del servidor" });
     }
   });
 
@@ -895,7 +928,8 @@ export function registerAdminRoutes(app: Express) {
       res.status(201).json({ success: true, movement, message: "Movimiento registrado" });
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Unknown error";
-      res.status(500).json({ message: "Error creating movement: " + message });
+      console.error("[Admin] Error creating movement:", message);
+      res.status(500).json({ message: "Error interno del servidor" });
     }
   });
 
@@ -921,7 +955,8 @@ export function registerAdminRoutes(app: Express) {
       res.json(data);
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Unknown error";
-      res.status(500).json({ message: "Error generating fleet report: " + message });
+      console.error("[Admin] Error generating fleet report:", message);
+      res.status(500).json({ message: "Error interno del servidor" });
     }
   });
 
@@ -948,7 +983,8 @@ export function registerAdminRoutes(app: Express) {
       });
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Unknown error";
-      res.status(500).json({ message: "Error generating maintenance report: " + message });
+      console.error("[Admin] Error generating maintenance report:", message);
+      res.status(500).json({ message: "Error interno del servidor" });
     }
   });
 
@@ -963,7 +999,8 @@ export function registerAdminRoutes(app: Express) {
       res.json(result.data);
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Unknown error";
-      res.status(500).json({ message: "Error fetching top customers: " + message });
+      console.error("[Admin] Error fetching top customers:", message);
+      res.status(500).json({ message: "Error interno del servidor" });
     }
   });
 
@@ -979,8 +1016,8 @@ export function registerAdminRoutes(app: Express) {
         total: 6,
       });
     } catch (error: any) {
-      console.error("Error seeding blog posts:", error);
-      res.status(500).json({ message: "Error seeding blog posts: " + error.message });
+      console.error("[Admin] Error seeding blog posts:", error instanceof Error ? error.message : error);
+      res.status(500).json({ message: "Error interno del servidor" });
     }
   });
 
@@ -997,7 +1034,8 @@ export function registerAdminRoutes(app: Express) {
       });
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Unknown error";
-      res.status(500).json({ message: "Error seeding tenant: " + message });
+      console.error("[Admin] Error seeding tenant:", message);
+      res.status(500).json({ message: "Error interno del servidor" });
     }
   });
 
@@ -1008,7 +1046,8 @@ export function registerAdminRoutes(app: Express) {
       res.json(allTenants);
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Unknown error";
-      res.status(500).json({ message: "Error fetching tenants: " + message });
+      console.error("[Admin] Error fetching tenants:", message);
+      res.status(500).json({ message: "Error interno del servidor" });
     }
   });
 
@@ -1020,7 +1059,8 @@ export function registerAdminRoutes(app: Express) {
       res.json(tenant);
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Unknown error";
-      res.status(500).json({ message: "Error fetching tenant: " + message });
+      console.error("[Admin] Error fetching tenant:", message);
+      res.status(500).json({ message: "Error interno del servidor" });
     }
   });
 
@@ -1038,7 +1078,8 @@ export function registerAdminRoutes(app: Express) {
       res.status(201).json({ success: true, tenant, message: "Tenant creado" });
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Unknown error";
-      res.status(500).json({ message: "Error creating tenant: " + message });
+      console.error("[Admin] Error creating tenant:", message);
+      res.status(500).json({ message: "Error interno del servidor" });
     }
   });
 
@@ -1057,7 +1098,8 @@ export function registerAdminRoutes(app: Express) {
       res.json({ success: true, tenant: updated, message: "Tenant actualizado" });
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Unknown error";
-      res.status(500).json({ message: "Error updating tenant: " + message });
+      console.error("[Admin] Error updating tenant:", message);
+      res.status(500).json({ message: "Error interno del servidor" });
     }
   });
 }

@@ -44,7 +44,8 @@ export function registerSuperAdminRoutes(app: Express) {
       });
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Error desconocido";
-      res.status(500).json({ message });
+      console.error("[SuperAdmin] Error fetching stats:", message);
+      res.status(500).json({ message: "Error interno del servidor" });
     }
   });
 
@@ -79,7 +80,8 @@ export function registerSuperAdminRoutes(app: Express) {
       res.json(tenantsWithCounts);
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Error desconocido";
-      res.status(500).json({ message });
+      console.error("[SuperAdmin] Error fetching tenants:", message);
+      res.status(500).json({ message: "Error interno del servidor" });
     }
   });
 
@@ -109,7 +111,8 @@ export function registerSuperAdminRoutes(app: Express) {
       res.json({ tenant: updated, message: "Tenant actualizado" });
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Error desconocido";
-      res.status(500).json({ message });
+      console.error("[SuperAdmin] Error updating tenant:", message);
+      res.status(500).json({ message: "Error interno del servidor" });
     }
   });
 }

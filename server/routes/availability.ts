@@ -94,7 +94,8 @@ export function registerAvailabilityRoutes(app: Express) {
       });
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Unknown error";
-      res.status(500).json({ message: "Error fetching availability: " + message });
+      console.error("[Availability] Error fetching availability:", message);
+      res.status(500).json({ message: "Error interno del servidor" });
     }
   });
 
@@ -149,7 +150,8 @@ export function registerAvailabilityRoutes(app: Express) {
       res.send(ical);
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Unknown error";
-      res.status(500).json({ message: "Error generating iCal feed: " + message });
+      console.error("[Availability] Error generating iCal feed:", message);
+      res.status(500).json({ message: "Error interno del servidor" });
     }
   });
 }

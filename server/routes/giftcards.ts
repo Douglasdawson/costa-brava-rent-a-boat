@@ -166,7 +166,8 @@ export function registerGiftCardRoutes(app: Express) {
       res.json(cards);
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Error desconocido";
-      res.status(500).json({ message: "Error al obtener tarjetas regalo: " + message });
+      console.error("[GiftCards] Error fetching gift cards:", message);
+      res.status(500).json({ message: "Error interno del servidor" });
     }
   });
 
@@ -197,7 +198,8 @@ export function registerGiftCardRoutes(app: Express) {
       res.json(updated);
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Error desconocido";
-      res.status(500).json({ message: "Error al actualizar tarjeta regalo: " + message });
+      console.error("[GiftCards] Error updating gift card:", message);
+      res.status(500).json({ message: "Error interno del servidor" });
     }
   });
 }

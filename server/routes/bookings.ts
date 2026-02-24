@@ -33,6 +33,18 @@ function getMadridHour(date: Date): number {
 }
 
 export function registerBookingRoutes(app: Express) {
+  // Get bookings by date (admin only) — must be registered before :id to avoid "date" matching as an ID
+  app.get("/api/bookings/date/:date", requireAdminSession, async (req, res) => {
+    try {
+      const date = new Date(req.params.date);
+      const bookingsList = await storage.getBookingsByDate(date);
+      res.json(bookingsList);
+    } catch (error: any) {
+      console.error("[Bookings] Error fetching bookings by date:", error.message);
+      res.status(500).json({ message: "Error interno del servidor" });
+    }
+  });
+
   // Get booking by ID (admin only)
   app.get("/api/bookings/:id", requireAdminSession, async (req, res) => {
     try {
@@ -44,18 +56,6 @@ export function registerBookingRoutes(app: Express) {
       res.json({ ...booking, extras });
     } catch (error: any) {
       console.error("[Bookings] Error fetching booking:", error.message);
-      res.status(500).json({ message: "Error interno del servidor" });
-    }
-  });
-
-  // Get bookings by date (admin only)
-  app.get("/api/bookings/date/:date", requireAdminSession, async (req, res) => {
-    try {
-      const date = new Date(req.params.date);
-      const bookingsList = await storage.getBookingsByDate(date);
-      res.json(bookingsList);
-    } catch (error: any) {
-      console.error("[Bookings] Error fetching bookings by date:", error.message);
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });

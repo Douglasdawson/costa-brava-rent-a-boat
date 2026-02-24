@@ -500,7 +500,8 @@ export function registerAuthRoutes(app: Express) {
       });
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Unknown error";
-      res.status(500).json({ message: "Error al registrar: " + message });
+      console.error("[Auth] Error al registrar:", message);
+      res.status(500).json({ message: "Error interno del servidor" });
     }
   });
 
@@ -618,7 +619,8 @@ export function registerAuthRoutes(app: Express) {
       });
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Unknown error";
-      res.status(500).json({ message: "Error durante login: " + message });
+      console.error("[Auth] Error durante login:", message);
+      res.status(500).json({ message: "Error interno del servidor" });
     }
   });
 
@@ -642,7 +644,8 @@ export function registerAuthRoutes(app: Express) {
       res.json({ success: true, message: "Sesion cerrada correctamente" });
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Unknown error";
-      res.status(500).json({ message: "Error al cerrar sesion: " + message });
+      console.error("[Auth] Error al cerrar sesion:", message);
+      res.status(500).json({ message: "Error interno del servidor" });
     }
   });
 
@@ -686,7 +689,8 @@ export function registerAuthRoutes(app: Express) {
       });
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Unknown error";
-      res.status(500).json({ message: "Error al refrescar token: " + message });
+      console.error("[Auth] Error al refrescar token:", message);
+      res.status(500).json({ message: "Error interno del servidor" });
     }
   });
 
@@ -726,7 +730,8 @@ export function registerAuthRoutes(app: Express) {
       });
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Unknown error";
-      res.status(500).json({ message: "Error al obtener perfil: " + message });
+      console.error("[Auth] Error al obtener perfil:", message);
+      res.status(500).json({ message: "Error interno del servidor" });
     }
   });
 
@@ -761,7 +766,8 @@ export function registerAuthRoutes(app: Express) {
       });
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Unknown error";
-      res.status(500).json({ message: "Error al actualizar perfil: " + message });
+      console.error("[Auth] Error al actualizar perfil:", message);
+      res.status(500).json({ message: "Error interno del servidor" });
     }
   });
 
@@ -827,7 +833,8 @@ export function registerAuthRoutes(app: Express) {
       });
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Unknown error";
-      res.status(500).json({ message: "Error al solicitar restablecimiento: " + message });
+      console.error("[Auth] Error al solicitar restablecimiento:", message);
+      res.status(500).json({ message: "Error interno del servidor" });
     }
   });
 
@@ -869,7 +876,8 @@ export function registerAuthRoutes(app: Express) {
       });
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Unknown error";
-      res.status(500).json({ message: "Error al restablecer contraseña: " + message });
+      console.error("[Auth] Error al restablecer contrasena:", message);
+      res.status(500).json({ message: "Error interno del servidor" });
     }
   });
 
@@ -887,7 +895,8 @@ export function registerAuthRoutes(app: Express) {
       res.json({ success: true, ...result, message: "Migracion completada" });
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Unknown error";
-      res.status(500).json({ message: "Error al migrar usuarios: " + message });
+      console.error("[Auth] Error al migrar usuarios:", message);
+      res.status(500).json({ message: "Error interno del servidor" });
     }
   });
 
@@ -1045,7 +1054,8 @@ export function registerAuthRoutes(app: Express) {
       });
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Unknown error";
-      res.status(500).json({ message: "Error during login: " + message });
+      console.error("[Auth] Error during PIN login:", message);
+      res.status(500).json({ message: "Error interno del servidor" });
     }
   });
 
@@ -1089,7 +1099,8 @@ export function registerAuthRoutes(app: Express) {
       });
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Unknown error";
-      res.status(500).json({ message: "Error during login: " + message });
+      console.error("[Auth] Error during user login:", message);
+      res.status(500).json({ message: "Error interno del servidor" });
     }
   });
 }

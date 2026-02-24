@@ -46,7 +46,8 @@ export function registerTenantRoutes(app: Express) {
       res.json({ tenant });
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Error desconocido";
-      res.status(500).json({ message });
+      console.error("[Tenant] Error fetching tenant settings:", message);
+      res.status(500).json({ message: "Error interno del servidor" });
     }
   });
 
@@ -72,7 +73,8 @@ export function registerTenantRoutes(app: Express) {
       res.json({ tenant, message: "Configuracion actualizada" });
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Error desconocido";
-      res.status(500).json({ message });
+      console.error("[Tenant] Error updating tenant settings:", message);
+      res.status(500).json({ message: "Error interno del servidor" });
     }
   });
 
@@ -99,7 +101,8 @@ export function registerTenantRoutes(app: Express) {
       res.json(safeUsers);
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Error desconocido";
-      res.status(500).json({ message });
+      console.error("[Tenant] Error fetching tenant users:", message);
+      res.status(500).json({ message: "Error interno del servidor" });
     }
   });
 
@@ -150,7 +153,8 @@ export function registerTenantRoutes(app: Express) {
       });
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Error desconocido";
-      res.status(500).json({ message });
+      console.error("[Tenant] Error creating tenant user:", message);
+      res.status(500).json({ message: "Error interno del servidor" });
     }
   });
 
@@ -201,7 +205,8 @@ export function registerTenantRoutes(app: Express) {
       });
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Error desconocido";
-      res.status(500).json({ message });
+      console.error("[Tenant] Error updating tenant user:", message);
+      res.status(500).json({ message: "Error interno del servidor" });
     }
   });
 }

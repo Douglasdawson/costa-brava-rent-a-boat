@@ -19,8 +19,8 @@ export function registerBoatRoutes(app: Express) {
       console.log("API /api/boats - Retrieved boats count:", boats.length);
       res.json(boats);
     } catch (error: any) {
-      console.error("API /api/boats - Error:", error);
-      res.status(500).json({ message: "Error fetching boats: " + error.message });
+      console.error("[Boats] Error fetching boats:", error.message);
+      res.status(500).json({ message: "Error interno del servidor" });
     }
   });
 
@@ -33,7 +33,8 @@ export function registerBoatRoutes(app: Express) {
       }
       res.json(boat);
     } catch (error: any) {
-      res.status(500).json({ message: "Error fetching boat: " + error.message });
+      console.error("[Boats] Error fetching boat:", error.message);
+      res.status(500).json({ message: "Error interno del servidor" });
     }
   });
 
@@ -107,8 +108,9 @@ export function registerBoatRoutes(app: Express) {
         })),
       });
     } catch (error: any) {
+      console.error("[Boats] Error checking availability:", error.message);
       res.status(500).json({
-        message: "Error al verificar disponibilidad: " + error.message,
+        message: "Error interno del servidor",
         available: false,
         reason: "server_error",
         conflictingBookings: [],
@@ -183,8 +185,9 @@ export function registerBoatRoutes(app: Express) {
         })),
       });
     } catch (error: any) {
+      console.error("[Boats] Error checking availability:", error.message);
       res.status(500).json({
-        message: "Error al verificar disponibilidad: " + error.message,
+        message: "Error interno del servidor",
         available: false,
         reason: "server_error",
         conflictingBookings: [],

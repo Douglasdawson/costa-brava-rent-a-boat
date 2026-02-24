@@ -25,7 +25,8 @@ export function registerGalleryRoutes(app: Express) {
       res.json(photos);
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Unknown error";
-      res.status(500).json({ message: "Error fetching gallery: " + message });
+      console.error("[Gallery] Error fetching gallery:", message);
+      res.status(500).json({ message: "Error interno del servidor" });
     }
   });
 
@@ -78,7 +79,8 @@ export function registerGalleryRoutes(app: Express) {
       });
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Unknown error";
-      res.status(500).json({ message: "Error submitting photo: " + message });
+      console.error("[Gallery] Error submitting photo:", message);
+      res.status(500).json({ message: "Error interno del servidor" });
     }
   });
 
@@ -91,7 +93,8 @@ export function registerGalleryRoutes(app: Express) {
       res.json({ uploadURL });
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Unknown error";
-      res.status(500).json({ message: "Error generating upload URL: " + message });
+      console.error("[Gallery] Error generating upload URL:", message);
+      res.status(500).json({ message: "Error interno del servidor" });
     }
   });
 
@@ -102,7 +105,8 @@ export function registerGalleryRoutes(app: Express) {
       res.json(photos);
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Unknown error";
-      res.status(500).json({ message: "Error fetching gallery: " + message });
+      console.error("[Gallery] Error fetching gallery:", message);
+      res.status(500).json({ message: "Error interno del servidor" });
     }
   });
 
@@ -119,7 +123,8 @@ export function registerGalleryRoutes(app: Express) {
       res.json(updated);
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Unknown error";
-      res.status(500).json({ message: "Error approving photo: " + message });
+      console.error("[Gallery] Error approving photo:", message);
+      res.status(500).json({ message: "Error interno del servidor" });
     }
   });
 
@@ -136,7 +141,8 @@ export function registerGalleryRoutes(app: Express) {
       res.json(updated);
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Unknown error";
-      res.status(500).json({ message: "Error rejecting photo: " + message });
+      console.error("[Gallery] Error rejecting photo:", message);
+      res.status(500).json({ message: "Error interno del servidor" });
     }
   });
 
@@ -150,7 +156,8 @@ export function registerGalleryRoutes(app: Express) {
       res.json({ message: "Foto eliminada correctamente" });
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Unknown error";
-      res.status(500).json({ message: "Error deleting photo: " + message });
+      console.error("[Gallery] Error deleting photo:", message);
+      res.status(500).json({ message: "Error interno del servidor" });
     }
   });
 }

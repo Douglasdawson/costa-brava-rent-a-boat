@@ -10,6 +10,8 @@ import { trackBookingStarted } from "@/utils/analytics";
 import { BOAT_DATA, EXTRA_PACKS } from "@shared/boatData";
 import { calculateExtrasPrice, calculatePackSavings } from "@shared/pricing";
 import BookingWizardMobile from "@/components/BookingWizardMobile";
+import BookingFormDesktop from "@/components/BookingFormDesktop";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 // Common phone prefixes (prioritized by Costa Brava tourism)
 const PHONE_PREFIXES = [
@@ -155,6 +157,7 @@ export default function BookingFormWidget({ preSelectedBoatId, prefillDate, pref
   const { toast } = useToast();
   const t = useTranslations();
   const { language } = useLanguage();
+  const isMobile = useIsMobile();
   const isSpanishLang = language === 'es' || language === 'ca';
   const prefixDropdownRef = useRef<HTMLDivElement>(null);
 
@@ -717,61 +720,64 @@ Looking forward to confirmation. Thanks!`;
     }
   };
 
-  return (
-    <BookingWizardMobile
-      currentStep={currentStep}
-      onNext={handleNextStep}
-      onBack={handlePrevStep}
-      firstName={firstName} setFirstName={setFirstName}
-      lastName={lastName} setLastName={setLastName}
-      phonePrefix={phonePrefix} setPhonePrefix={setPhonePrefix}
-      phoneNumber={phoneNumber} setPhoneNumber={setPhoneNumber}
-      email={email} setEmail={setEmail}
-      showPrefixDropdown={showPrefixDropdown} setShowPrefixDropdown={setShowPrefixDropdown}
-      prefixSearch={prefixSearch} setPrefixSearch={setPrefixSearch}
-      prefixDropdownRef={prefixDropdownRef}
-      filteredPrefixes={filteredPrefixes}
-      selectedPrefixInfo={selectedPrefixInfo}
-      licenseFilter={licenseFilter} setLicenseFilter={setLicenseFilter}
-      selectedBoat={selectedBoat} setSelectedBoat={setSelectedBoat}
-      selectedDate={selectedDate} setSelectedDate={setSelectedDate}
-      selectedDuration={selectedDuration} setSelectedDuration={setSelectedDuration}
-      preferredTime={preferredTime} setPreferredTime={setPreferredTime}
-      numberOfPeople={numberOfPeople} setNumberOfPeople={setNumberOfPeople}
-      filteredBoats={filteredBoats}
-      isBoatsLoading={isBoatsLoading}
-      selectedBoatInfo={selectedBoatInfo}
-      getDurationOptions={getDurationOptions}
-      getMaxCapacity={getMaxCapacity}
-      getLocalISODate={getLocalISODate}
-      preSelectedBoatId={preSelectedBoatId}
-      timeSlots={TIME_SLOTS}
-      boatExtras={boatExtras}
-      selectedExtras={selectedExtras}
-      selectedPack={selectedPack}
-      showExtras={showExtras} setShowExtras={setShowExtras}
-      extrasInPack={extrasInPack}
-      totalExtrasPrice={totalExtrasPrice}
-      handlePackSelect={handlePackSelect}
-      handleExtraToggle={handleExtraToggle}
-      showCodeSection={showCodeSection} setShowCodeSection={setShowCodeSection}
-      codeInput={codeInput} setCodeInput={setCodeInput}
-      isValidatingCode={isValidatingCode}
-      validatedCode={validatedCode}
-      codeError={codeError}
-      handleValidateCode={handleValidateCode}
-      handleRemoveCode={handleRemoveCode}
-      getCodeDiscount={getCodeDiscount}
-      getBookingPrice={getBookingPrice}
-      handleBookingSearch={handleBookingSearch}
-      showFieldError={showFieldError}
-      getFieldError={getFieldError}
-      handleBlur={handleBlur}
-      t={t}
-      iconMap={ICON_MAP}
-      calculatePackSavings={calculatePackSavings}
-      isSpanishLang={isSpanishLang}
-      language={language}
-    />
-  );
+  const sharedProps = {
+    currentStep,
+    onNext: handleNextStep,
+    onBack: handlePrevStep,
+    firstName, setFirstName,
+    lastName, setLastName,
+    phonePrefix, setPhonePrefix,
+    phoneNumber, setPhoneNumber,
+    email, setEmail,
+    showPrefixDropdown, setShowPrefixDropdown,
+    prefixSearch, setPrefixSearch,
+    prefixDropdownRef,
+    filteredPrefixes,
+    selectedPrefixInfo,
+    licenseFilter, setLicenseFilter,
+    selectedBoat, setSelectedBoat,
+    selectedDate, setSelectedDate,
+    selectedDuration, setSelectedDuration,
+    preferredTime, setPreferredTime,
+    numberOfPeople, setNumberOfPeople,
+    filteredBoats,
+    isBoatsLoading,
+    selectedBoatInfo,
+    getDurationOptions,
+    getMaxCapacity,
+    getLocalISODate,
+    preSelectedBoatId,
+    timeSlots: TIME_SLOTS,
+    boatExtras,
+    selectedExtras,
+    selectedPack,
+    showExtras, setShowExtras,
+    extrasInPack,
+    totalExtrasPrice,
+    handlePackSelect,
+    handleExtraToggle,
+    showCodeSection, setShowCodeSection,
+    codeInput, setCodeInput,
+    isValidatingCode,
+    validatedCode,
+    codeError,
+    handleValidateCode,
+    handleRemoveCode,
+    getCodeDiscount,
+    getBookingPrice,
+    handleBookingSearch,
+    showFieldError,
+    getFieldError,
+    handleBlur,
+    t,
+    iconMap: ICON_MAP,
+    calculatePackSavings,
+    isSpanishLang,
+    language,
+  };
+
+  if (isMobile) {
+    return <BookingWizardMobile {...sharedProps} />;
+  }
+  return <BookingFormDesktop {...sharedProps} />;
 }

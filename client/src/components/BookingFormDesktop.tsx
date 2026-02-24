@@ -1,0 +1,398 @@
+import { useState } from "react";
+import { CalendarIcon, Check, Loader2 } from "lucide-react";
+import { SiWhatsapp } from "react-icons/si";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { Calendar } from "@/components/ui/calendar";
+import { Button } from "@/components/ui/button";
+import type { BookingWizardMobileProps } from "./BookingWizardMobile";
+
+export default function BookingFormDesktop(props: BookingWizardMobileProps) {
+  const {
+    licenseFilter, setLicenseFilter,
+    selectedBoat, setSelectedBoat,
+    selectedDate, setSelectedDate,
+    selectedDuration, setSelectedDuration,
+    preferredTime, setPreferredTime,
+    numberOfPeople, setNumberOfPeople,
+    firstName, setFirstName,
+    lastName, setLastName,
+    phonePrefix, setPhonePrefix,
+    phoneNumber, setPhoneNumber,
+    email, setEmail,
+    showPrefixDropdown, setShowPrefixDropdown,
+    prefixSearch, setPrefixSearch,
+    prefixDropdownRef,
+    filteredPrefixes,
+    selectedPrefixInfo,
+    filteredBoats,
+    isBoatsLoading,
+    selectedBoatInfo,
+    getDurationOptions,
+    getMaxCapacity,
+    getLocalISODate,
+    preSelectedBoatId,
+    timeSlots,
+    getBookingPrice,
+    handleBookingSearch,
+    showFieldError, getFieldError, handleBlur,
+    t,
+  } = props;
+
+  const [showDatePicker, setShowDatePicker] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const durationOptions = getDurationOptions();
+  const maxCapacity = getMaxCapacity();
+  const price = getBookingPrice();
+
+  const inputBase = "w-full p-2.5 border-2 rounded-lg bg-white text-gray-900 text-sm font-medium focus:ring-2 focus:ring-primary focus:outline-none";
+  const inputError = "border-red-400";
+  const inputNormal = "border-gray-200";
+
+  return (
+    <div className="flex flex-col h-full overflow-y-auto">
+      <div className="flex flex-1 min-h-0 overflow-hidden">
+
+        {/* ── Left column: boat selection ── */}
+        <div className="w-[45%] border-r border-gray-100 flex flex-col overflow-hidden">
+          {/* License filter */}
+          {!preSelectedBoatId && (
+            <div className="px-4 pt-4 pb-3 flex-shrink-0">
+              <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">
+                {t.wizard.haveNauticalLicense}
+              </p>
+              <div className="flex gap-2">
+                <button
+                  type="button"
+                  onClick={() => setLicenseFilter("without")}
+                  className={`flex-1 py-2 rounded-lg text-xs font-semibold border-2 transition-all ${
+                    licenseFilter === "without"
+                      ? "border-primary bg-primary text-white"
+                      : "border-gray-200 text-gray-600"
+                  }`}
+                >
+                  {t.wizard.withoutLicense}
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setLicenseFilter("with")}
+                  className={`flex-1 py-2 rounded-lg text-xs font-semibold border-2 transition-all ${
+                    licenseFilter === "with"
+                      ? "border-primary bg-primary text-white"
+                      : "border-gray-200 text-gray-600"
+                  }`}
+                >
+                  {t.wizard.withLicense}
+                </button>
+              </div>
+            </div>
+          )}
+
+          {/* Boats list */}
+          <div className="flex-1 overflow-y-auto px-4 pb-4 space-y-1.5">
+            <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2 sticky top-0 bg-white pt-1 pb-1">
+              {t.wizard.selectABoat}
+            </p>
+            {isBoatsLoading && (
+              <div className="space-y-1.5">
+                {[1, 2, 3].map(i => (
+                  <div key={i} className="animate-pulse flex items-center gap-2 p-2.5 rounded-lg border-2 border-gray-100">
+                    <div className="w-4 h-4 rounded-full bg-gray-200 flex-shrink-0" />
+                    <div className="flex-1 h-3 bg-gray-200 rounded w-3/4" />
+                  </div>
+                ))}
+              </div>
+            )}
+            {filteredBoats.map((boat) => {
+              const firstSeason = boat.pricing ? Object.values(boat.pricing)[0] : null;
+              const minPrice = firstSeason?.prices
+                ? Math.min(...(Object.values(firstSeason.prices) as number[]))
+                : null;
+              const isSelected = selectedBoat === boat.id;
+              return (
+                <button
+                  key={boat.id}
+                  type="button"
+                  onClick={() => setSelectedBoat(boat.id)}
+                  disabled={!!preSelectedBoatId && boat.id !== preSelectedBoatId}
+                  className={`w-full flex items-center gap-2.5 p-2.5 rounded-lg border-2 text-left transition-all ${
+                    isSelected ? "border-primary bg-primary/5" : "border-gray-200 bg-white"
+                  }`}
+                >
+                  <div className={`w-4 h-4 rounded-full border-2 flex items-center justify-center flex-shrink-0 ${
+                    isSelected ? "border-primary bg-primary" : "border-gray-300"
+                  }`}>
+                    {isSelected && <Check className="w-2.5 h-2.5 text-white" />}
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <p className="font-semibold text-gray-900 text-xs truncate">{boat.name}</p>
+                    {minPrice !== null && (
+                      <p className="text-[10px] text-primary font-medium">{t.boats.from} {minPrice}€</p>
+                    )}
+                  </div>
+                  <span className="text-[10px] text-gray-500 flex-shrink-0">{boat.capacity}p</span>
+                </button>
+              );
+            })}
+            {showFieldError('boat') && (
+              <p className="text-xs text-red-500">{getFieldError('boat')}</p>
+            )}
+          </div>
+        </div>
+
+        {/* ── Right column: details + personal data ── */}
+        <div className="flex-1 overflow-y-auto px-4 py-4 space-y-4">
+
+          {/* Date */}
+          <div>
+            <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1.5">
+              {t.wizard.date}
+            </label>
+            <Popover open={showDatePicker} onOpenChange={setShowDatePicker}>
+              <PopoverTrigger asChild>
+                <button
+                  type="button"
+                  onBlur={() => handleBlur('date')}
+                  className={`${inputBase} flex items-center gap-2 ${showFieldError('date') ? inputError : inputNormal}`}
+                >
+                  <CalendarIcon className="w-4 h-4 text-primary flex-shrink-0" />
+                  {selectedDate
+                    ? new Date(selectedDate + 'T00:00:00').toLocaleDateString('es-ES', { day: '2-digit', month: 'short', year: 'numeric' })
+                    : <span className="text-gray-400">{t.wizard.selectDate}</span>
+                  }
+                </button>
+              </PopoverTrigger>
+              <PopoverContent className="w-auto p-0" align="start">
+                <Calendar
+                  mode="single"
+                  selected={selectedDate ? new Date(selectedDate + 'T00:00:00') : undefined}
+                  onSelect={(date) => {
+                    if (date) {
+                      const y = date.getFullYear();
+                      const m = String(date.getMonth() + 1).padStart(2, '0');
+                      const d = String(date.getDate()).padStart(2, '0');
+                      setSelectedDate(`${y}-${m}-${d}`);
+                    }
+                    setShowDatePicker(false);
+                  }}
+                  disabled={(date) => date < new Date(getLocalISODate() + 'T00:00:00')}
+                  initialFocus
+                />
+              </PopoverContent>
+            </Popover>
+            {showFieldError('date') && <p className="text-xs text-red-500 mt-1">{getFieldError('date')}</p>}
+          </div>
+
+          {/* Duration */}
+          <div>
+            <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1.5">
+              {t.wizard.duration}
+            </label>
+            <div className="grid grid-cols-3 gap-1.5">
+              {durationOptions.map((opt) => {
+                const parts = opt.label.split(' - ');
+                const priceText = parts.length > 1 && parts[parts.length - 1].includes('€') ? parts[parts.length - 1] : null;
+                const labelText = priceText ? parts.slice(0, -1).join(' · ') : opt.label;
+                return (
+                  <button
+                    key={opt.value}
+                    type="button"
+                    onClick={() => setSelectedDuration(opt.value)}
+                    className={`py-2 px-1.5 rounded-lg border-2 text-center transition-all ${
+                      selectedDuration === opt.value ? "border-primary bg-primary/5" : "border-gray-200 bg-white"
+                    }`}
+                  >
+                    <p className="text-xs font-semibold text-gray-900">{labelText}</p>
+                    {priceText && <p className="text-[10px] font-bold text-primary">{priceText}</p>}
+                  </button>
+                );
+              })}
+            </div>
+            {showFieldError('duration') && <p className="text-xs text-red-500 mt-1">{getFieldError('duration')}</p>}
+          </div>
+
+          {/* Time + People */}
+          <div className="grid grid-cols-2 gap-3">
+            <div>
+              <label htmlFor="desktop-time" className="block text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1.5">
+                {t.wizard.departureTime}
+              </label>
+              <select
+                id="desktop-time"
+                value={preferredTime}
+                onChange={(e) => setPreferredTime(e.target.value)}
+                onBlur={() => handleBlur('time')}
+                className={`${inputBase} ${showFieldError('time') ? inputError : inputNormal}`}
+              >
+                <option value="">{t.wizard.selectTime}</option>
+                {timeSlots.map((time) => (
+                  <option key={time} value={time}>{time}h</option>
+                ))}
+              </select>
+              {showFieldError('time') && <p className="text-xs text-red-500 mt-1">{getFieldError('time')}</p>}
+            </div>
+            <div>
+              <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1.5">
+                {t.wizard.numberOfPeople}
+                {selectedBoatInfo && <span className="font-normal text-gray-400 ml-1">(max {maxCapacity})</span>}
+              </label>
+              <div className={`flex items-center justify-between border-2 rounded-lg bg-white px-3 py-1 ${
+                showFieldError('people') ? 'border-red-400' : 'border-gray-200'
+              }`}>
+                <button
+                  type="button"
+                  onClick={() => {
+                    const c = parseInt(numberOfPeople || '1');
+                    if (c > 1) { setNumberOfPeople(String(c - 1)); handleBlur('people'); }
+                  }}
+                  disabled={!numberOfPeople || parseInt(numberOfPeople) <= 1}
+                  className="w-8 h-8 rounded-full border-2 border-gray-200 flex items-center justify-center font-bold text-gray-600 disabled:opacity-30 hover:border-primary hover:text-primary transition-colors text-lg"
+                >−</button>
+                <span className="text-lg font-bold text-gray-900 min-w-[1.5rem] text-center">
+                  {numberOfPeople || '2'}
+                </span>
+                <button
+                  type="button"
+                  onClick={() => {
+                    const c = parseInt(numberOfPeople || '1');
+                    if (c < maxCapacity) { setNumberOfPeople(String(c + 1)); handleBlur('people'); }
+                  }}
+                  disabled={!!numberOfPeople && parseInt(numberOfPeople) >= maxCapacity}
+                  className="w-8 h-8 rounded-full border-2 border-gray-200 flex items-center justify-center font-bold text-gray-600 disabled:opacity-30 hover:border-primary hover:text-primary transition-colors text-lg"
+                >+</button>
+              </div>
+              {showFieldError('people') && <p className="text-xs text-red-500 mt-1">{getFieldError('people')}</p>}
+            </div>
+          </div>
+
+          {/* Divider */}
+          <div className="border-t border-gray-100" />
+
+          {/* Personal data */}
+          <div>
+            <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">{t.wizard.yourData}</p>
+            <div className="space-y-2.5">
+              <div className="grid grid-cols-2 gap-2">
+                <div>
+                  <input
+                    type="text"
+                    value={firstName}
+                    onChange={(e) => setFirstName(e.target.value)}
+                    onBlur={() => handleBlur('firstName')}
+                    placeholder={t.wizard.firstName}
+                    autoComplete="given-name"
+                    className={`${inputBase} ${showFieldError('firstName') ? inputError : inputNormal}`}
+                  />
+                  {showFieldError('firstName') && <p className="text-xs text-red-500 mt-0.5">{getFieldError('firstName')}</p>}
+                </div>
+                <div>
+                  <input
+                    type="text"
+                    value={lastName}
+                    onChange={(e) => setLastName(e.target.value)}
+                    onBlur={() => handleBlur('lastName')}
+                    placeholder={t.wizard.lastName}
+                    autoComplete="family-name"
+                    className={`${inputBase} ${showFieldError('lastName') ? inputError : inputNormal}`}
+                  />
+                  {showFieldError('lastName') && <p className="text-xs text-red-500 mt-0.5">{getFieldError('lastName')}</p>}
+                </div>
+              </div>
+              <div className="flex gap-2">
+                <div className="relative w-24 flex-shrink-0" ref={prefixDropdownRef}>
+                  <button
+                    type="button"
+                    onClick={() => setShowPrefixDropdown(!showPrefixDropdown)}
+                    className={`${inputBase} ${inputNormal} flex items-center gap-1`}
+                  >
+                    <span className="truncate text-xs">{selectedPrefixInfo?.flag} {phonePrefix}</span>
+                  </button>
+                  {showPrefixDropdown && (
+                    <div className="absolute top-full left-0 mt-1 w-64 bg-white border border-gray-200 rounded-xl shadow-lg z-50 max-h-48 overflow-y-auto">
+                      <div className="p-2 border-b sticky top-0 bg-white">
+                        <input
+                          type="text"
+                          value={prefixSearch}
+                          onChange={(e) => setPrefixSearch(e.target.value)}
+                          placeholder={t.wizard.searchCountry}
+                          className="w-full p-2 border border-gray-200 rounded-lg text-xs"
+                        />
+                      </div>
+                      {filteredPrefixes.map((prefix) => (
+                        <button
+                          key={`${prefix.code}-${prefix.country}`}
+                          type="button"
+                          onClick={() => { setPhonePrefix(prefix.code); setShowPrefixDropdown(false); setPrefixSearch(""); }}
+                          className="w-full p-2 hover:bg-gray-50 text-left flex items-center gap-2 text-xs"
+                        >
+                          <span>{prefix.flag}</span>
+                          <span className="font-medium">{prefix.code}</span>
+                          <span className="text-gray-500 truncate">{prefix.country}</span>
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </div>
+                <div className="flex-1">
+                  <input
+                    type="tel"
+                    value={phoneNumber}
+                    onChange={(e) => setPhoneNumber(e.target.value)}
+                    onBlur={() => handleBlur('phone')}
+                    placeholder={t.wizard.phone}
+                    autoComplete="tel"
+                    className={`${inputBase} ${showFieldError('phone') ? inputError : inputNormal}`}
+                  />
+                  {showFieldError('phone') && <p className="text-xs text-red-500 mt-0.5">{getFieldError('phone')}</p>}
+                </div>
+              </div>
+              <div>
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  onBlur={() => handleBlur('email')}
+                  placeholder={t.wizard.email}
+                  autoComplete="email"
+                  className={`${inputBase} ${showFieldError('email') ? inputError : inputNormal}`}
+                />
+                {showFieldError('email') && <p className="text-xs text-red-500 mt-0.5">{getFieldError('email')}</p>}
+              </div>
+            </div>
+          </div>
+
+          {/* Price summary + submit */}
+          {price !== null && (
+            <div className="bg-primary/5 border border-primary/20 rounded-xl p-3 flex items-center justify-between">
+              <div>
+                <p className="text-xs text-gray-500">{t.booking.estimatedTotal}</p>
+                <p className="text-xl font-bold text-primary">{price}€</p>
+              </div>
+              <p className="text-xs text-gray-400 max-w-[120px] text-right">{t.booking.priceConfirmedWhatsApp}</p>
+            </div>
+          )}
+
+          <Button
+            type="button"
+            onClick={() => {
+              setIsSubmitting(true);
+              handleBookingSearch();
+              setTimeout(() => setIsSubmitting(false), 1200);
+            }}
+            disabled={isSubmitting}
+            className="w-full py-5 text-sm font-semibold bg-[#25D366] hover:bg-[#1ebe5d] text-white border-0"
+          >
+            {isSubmitting
+              ? <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+              : <SiWhatsapp className="w-4 h-4 mr-2" />
+            }
+            {t.booking.sendBookingRequest}
+          </Button>
+
+          {/* Bottom padding for scroll */}
+          <div className="h-2" />
+        </div>
+      </div>
+    </div>
+  );
+}

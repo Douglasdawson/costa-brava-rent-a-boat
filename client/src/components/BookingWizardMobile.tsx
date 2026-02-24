@@ -185,6 +185,17 @@ export default function BookingWizardMobile(props: BookingWizardMobileProps) {
           {displayStep === 4 && <Step4Confirm {...props} />}
         </div>
       </div>
+      {/* Mini price summary — visible on steps 1-3 once boat + duration selected */}
+      {currentStep < 4 && (() => {
+        const price = props.getBookingPrice();
+        if (!price || !props.selectedBoatInfo || !props.selectedDuration) return null;
+        return (
+          <div className="border-t border-gray-100 bg-primary/5 px-4 py-2 flex items-center justify-between text-xs">
+            <span className="text-gray-600 truncate mr-2">{props.selectedBoatInfo.name} · {props.selectedDuration}</span>
+            <span className="font-bold text-primary flex-shrink-0">{price}€</span>
+          </div>
+        );
+      })()}
       <div className="border-t border-gray-100 bg-white px-4 py-3 flex gap-3">
         {currentStep > 1 && (
           <Button

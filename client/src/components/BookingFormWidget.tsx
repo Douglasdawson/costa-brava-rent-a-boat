@@ -115,7 +115,7 @@ export default function BookingFormWidget({ preSelectedBoatId, prefillDate, pref
   const [phonePrefix, setPhonePrefix] = useState("+34");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [email, setEmail] = useState("");
-  const [numberOfPeople, setNumberOfPeople] = useState("");
+  const [numberOfPeople, setNumberOfPeople] = useState("2");
   const [preferredTime, setPreferredTime] = useState(prefillTime || "");
   const [showPrefixDropdown, setShowPrefixDropdown] = useState(false);
   const [prefixSearch, setPrefixSearch] = useState("");
@@ -146,6 +146,7 @@ export default function BookingFormWidget({ preSelectedBoatId, prefillDate, pref
 
   // Wizard step navigation
   const [currentStep, setCurrentStep] = useState(1);
+  const prevSeasonRef = useRef<string>("");
 
   const handleBlur = (field: string) => {
     setTouched(prev => ({ ...prev, [field]: true }));
@@ -288,9 +289,13 @@ export default function BookingFormWidget({ preSelectedBoatId, prefillDate, pref
     }
   };
 
-  // Reset duration when date changes to ensure correct seasonal pricing
+  // Reset duration only when the season changes (not on every date change within the same season)
   useEffect(() => {
-    setSelectedDuration("");
+    const newSeason = getCurrentSeason();
+    if (prevSeasonRef.current && prevSeasonRef.current !== newSeason) {
+      setSelectedDuration("");
+    }
+    prevSeasonRef.current = newSeason;
   }, [selectedDate]);
 
   // Reset duration if it's no longer valid when boat or license changes

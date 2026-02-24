@@ -76,7 +76,7 @@ export default function BoatCard({
             srcSet={imageSrcSet || undefined}
             sizes="(max-width: 639px) calc(100vw - 32px), (max-width: 1279px) calc(50vw - 20px), calc(33vw - 24px)"
             alt={imageAlt}
-            className="w-full h-48 object-cover transition-transform duration-200 group-hover:scale-105"
+            className="w-full h-48 sm:h-52 lg:h-56 object-cover transition-transform duration-200 group-hover:scale-105"
             loading="lazy"
             onError={() => setImageError(true)}
           />

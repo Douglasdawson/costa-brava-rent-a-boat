@@ -106,7 +106,7 @@ function ProgressBar({ currentStep, t }: { currentStep: number; t: Translations 
             <li key={label} className="flex items-center">
               <div className="flex flex-col items-center">
                 <div
-                  className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold transition-colors ${
+                  className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold transition-colors ${
                     isCompleted
                       ? "bg-primary text-white"
                       : isActive
@@ -500,7 +500,7 @@ function Step2Trip({
               if (current > 1) { setNumberOfPeople(String(current - 1)); handleBlur('people'); }
             }}
             disabled={!numberOfPeople || parseInt(numberOfPeople) <= 1}
-            className="w-10 h-10 rounded-full border-2 border-gray-300 flex items-center justify-center text-xl font-bold text-gray-600 disabled:opacity-30 disabled:cursor-not-allowed hover:border-primary hover:text-primary transition-colors"
+            className="w-11 h-11 rounded-full border-2 border-gray-300 flex items-center justify-center text-xl font-bold text-gray-600 disabled:opacity-30 disabled:cursor-not-allowed hover:border-primary hover:text-primary transition-colors"
             aria-label="Reducir número de personas"
           >
             −
@@ -515,7 +515,7 @@ function Step2Trip({
               if (current < maxCapacity) { setNumberOfPeople(String(current + 1)); handleBlur('people'); }
             }}
             disabled={!!numberOfPeople && parseInt(numberOfPeople) >= maxCapacity}
-            className="w-10 h-10 rounded-full border-2 border-gray-300 flex items-center justify-center text-xl font-bold text-gray-600 disabled:opacity-30 disabled:cursor-not-allowed hover:border-primary hover:text-primary transition-colors"
+            className="w-11 h-11 rounded-full border-2 border-gray-300 flex items-center justify-center text-xl font-bold text-gray-600 disabled:opacity-30 disabled:cursor-not-allowed hover:border-primary hover:text-primary transition-colors"
             aria-label="Aumentar número de personas"
           >
             +
@@ -599,12 +599,12 @@ function Step3PersonalData({
             <button
               type="button"
               onClick={() => setShowPrefixDropdown(!showPrefixDropdown)}
-              className="w-full p-3 border-2 border-gray-200 bg-white rounded-xl text-gray-900 font-medium text-sm flex items-center gap-1"
+              className="w-full p-3 border-2 border-gray-200 bg-white rounded-xl text-gray-900 font-medium text-sm flex items-center gap-1 overflow-hidden"
             >
-              <span>{selectedPrefixInfo?.flag} {phonePrefix}</span>
+              <span className="truncate">{selectedPrefixInfo?.flag} {phonePrefix}</span>
             </button>
             {showPrefixDropdown && (
-              <div className="absolute top-full left-0 mt-1 w-64 bg-white border border-gray-200 rounded-xl shadow-lg z-50 max-h-60 overflow-y-auto">
+              <div className="absolute top-full left-0 mt-1 w-64 max-w-[calc(100vw-2rem)] bg-white border border-gray-200 rounded-xl shadow-lg z-50 max-h-60 overflow-y-auto">
                 <div className="p-2 border-b sticky top-0 bg-white">
                   <input
                     type="text"
@@ -812,7 +812,7 @@ function Step4Confirm({
               {/* Individual extras */}
               <div>
                 <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">{t.booking.extrasSection.individual}</p>
-                <div className="grid grid-cols-2 gap-2">
+                <div className="grid grid-cols-1 gap-2">
                   {boatExtras.map((extra) => {
                     const isChecked = selectedExtras.includes(extra.name);
                     const isInPack = extrasInPack.has(extra.name);

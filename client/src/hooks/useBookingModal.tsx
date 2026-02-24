@@ -60,7 +60,7 @@ export function BookingModalProvider({ children }: { children: React.ReactNode }
               {t.booking.modalSubtitle}
             </DialogDescription>
           </DialogHeader>
-          <div className="flex-1 min-h-0 overflow-hidden">
+          <div className="flex-1 min-h-0 overflow-y-auto">
             <BookingFormWidget
               preSelectedBoatId={selectedBoatId}
               prefillDate={prefillData?.date}

@@ -153,6 +153,16 @@ async function checkBoatAvailability(
   }
 
   const date = new Date(dateStr);
+
+  if (!isOperationalSeason(date)) {
+    return JSON.stringify({
+      available: false,
+      boat_name: boat.name,
+      date: dateStr,
+      error: "Esa fecha esta fuera de temporada. Operamos de abril a octubre.",
+    });
+  }
+
   const start = startTime || "10:00";
   const duration = durationHours || 4;
 
@@ -321,9 +331,9 @@ async function getBoatDetails(boatId: string): Promise<string> {
     included: boat.included,
     features: boat.features,
     pricing_summary: {
-      baja: pricing?.BAJA?.prices,
-      media: pricing?.MEDIA?.prices,
-      alta: pricing?.ALTA?.prices,
+      BAJA: pricing?.BAJA?.prices,
+      MEDIA: pricing?.MEDIA?.prices,
+      ALTA: pricing?.ALTA?.prices,
     },
     image_url: boat.imageUrl,
   });

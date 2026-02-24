@@ -23,6 +23,15 @@ const whatsappStatusSchema = z.object({
   reminderSent: z.boolean().optional(),
 });
 
+function getMadridHour(date: Date): number {
+  const parts = new Intl.DateTimeFormat("en-US", {
+    timeZone: "Europe/Madrid",
+    hour: "numeric",
+    hour12: false,
+  }).formatToParts(date);
+  return parseInt(parts.find((p) => p.type === "hour")!.value);
+}
+
 export function registerBookingRoutes(app: Express) {
   // Get booking by ID
   app.get("/api/bookings/:id", async (req, res) => {
@@ -75,12 +84,45 @@ export function registerBookingRoutes(app: Express) {
         });
       }
 
-      const { isOperationalSeason, calculatePricingBreakdown } = await import("@shared/pricing");
+      // Validate operating hours 09:00-20:00 Spain time
+      const startHour = getMadridHour(start);
+      const endHour = getMadridHour(end);
+      if (startHour < 9) {
+        return res.status(400).json({
+          message: "El horario de salida mínimo es las 09:00 (hora de España)",
+          available: false,
+          reason: "before_opening",
+        });
+      }
+      if (endHour > 20 || (endHour === 20 && end.getMinutes() > 0)) {
+        return res.status(400).json({
+          message: "El horario máximo de regreso es las 20:00 (hora de España)",
+          available: false,
+          reason: "after_closing",
+        });
+      }
+
+      const { isOperationalSeason, calculatePricingBreakdown, getMinimumDuration } = await import("@shared/pricing");
       if (!isOperationalSeason(start) || !isOperationalSeason(end)) {
         return res.status(400).json({
           available: false,
           reason: "out_of_season",
           message: "Las reservas solo están disponibles de abril a octubre",
+        });
+      }
+
+      // Validate minimum duration (2h in Temporada Alta and weekends)
+      const totalRequestedHours = (end.getTime() - start.getTime()) / (1000 * 60 * 60);
+      const minDuration = getMinimumDuration(start);
+      const minHours = parseInt(minDuration);
+      if (totalRequestedHours < minHours) {
+        const isAugust = start.getMonth() + 1 === 8;
+        const reason = isAugust ? "temporada alta" : "fines de semana";
+        return res.status(400).json({
+          available: false,
+          reason: "below_minimum_duration",
+          message: `La duración mínima en ${reason} es de ${minHours} horas`,
+          minimumDuration: minDuration,
         });
       }
 

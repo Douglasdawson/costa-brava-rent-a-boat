@@ -6,6 +6,46 @@ import { storage } from "../storage";
 import { db } from "../db";
 import { bookings, giftCards } from "@shared/schema";
 import { eq } from "drizzle-orm";
+import { sendBookingConfirmation } from "../services/emailService";
+import type { Booking, Boat } from "@shared/schema";
+import { requireAdminSession } from "./auth";
+
+async function trySendWhatsAppConfirmation(booking: Booking, boat: Boat): Promise<void> {
+  try {
+    const { isTwilioConfigured, sendWhatsAppMessage } = await import("../whatsapp/twilioClient");
+    if (!isTwilioConfigured() || !booking.customerPhone) return;
+
+    const date = booking.startTime.toLocaleDateString("es-ES", {
+      weekday: "long", day: "numeric", month: "long",
+      timeZone: "Europe/Madrid",
+    });
+    const time = booking.startTime.toLocaleTimeString("es-ES", {
+      hour: "2-digit", minute: "2-digit",
+      timeZone: "Europe/Madrid",
+    });
+
+    const message = [
+      `Hola ${booking.customerName}! Tu reserva ha sido confirmada.`,
+      ``,
+      `Barco: ${boat.name}`,
+      `Fecha: ${date}`,
+      `Hora de salida: ${time}`,
+      `Duracion: ${booking.totalHours}h`,
+      ``,
+      `Punto de encuentro: Puerto de Blanes.`,
+      `Llega 15 minutos antes de la hora de salida.`,
+      ``,
+      `Ante cualquier duda: +34 611 500 372`,
+      `Costa Brava Rent a Boat`,
+    ].join("\n");
+
+    await sendWhatsAppMessage(booking.customerPhone, message);
+    await storage.updateBookingWhatsAppStatus(booking.id, true, undefined);
+  } catch (err: unknown) {
+    const msg = err instanceof Error ? err.message : "Unknown error";
+    console.error(`[Payment] WhatsApp confirmation error for booking ${booking.id}:`, msg);
+  }
+}
 
 const createPaymentIntentSchema = z.object({
   holdId: z.string().optional(),
@@ -93,13 +133,16 @@ export function registerPaymentRoutes(app: Express) {
         });
       }
 
-      const amount = parseFloat(hold.totalAmount);
-      if (amount <= 0) {
+      // Charge only service amount (subtotal + extras) via Stripe.
+      // Deposit is collected in cash at the port — not charged online.
+      const depositAmount = parseFloat(hold.deposit || "0");
+      const serviceAmount = parseFloat(hold.totalAmount) - depositAmount;
+      if (serviceAmount <= 0) {
         return res.status(400).json({ message: "Invalid booking amount" });
       }
 
       const paymentIntent = await stripeInstance.paymentIntents.create({
-        amount: Math.round(amount * 100),
+        amount: Math.round(serviceAmount * 100),
         currency: "eur",
         metadata: {
           holdId: hold.id,
@@ -109,6 +152,8 @@ export function registerPaymentRoutes(app: Express) {
           startTime: hold.startTime.toISOString(),
           endTime: hold.endTime.toISOString(),
           numberOfPeople: hold.numberOfPeople.toString(),
+          depositAmount: depositAmount.toString(),
+          depositCollectionMethod: "cash_on_site",
         },
         description: `Reserva de barco ${hold.boatId} - ${hold.bookingDate.toISOString().split("T")[0]}`,
       });
@@ -123,7 +168,7 @@ export function registerPaymentRoutes(app: Express) {
         success: true,
         clientSecret: paymentIntent.client_secret,
         paymentIntentId: paymentIntent.id,
-        amount: amount,
+        amount: serviceAmount,
         currency: "eur",
       });
     } catch (error: any) {
@@ -155,8 +200,10 @@ export function registerPaymentRoutes(app: Express) {
         return res.status(404).json({ message: "Booking not found" });
       }
 
-      const amount = parseFloat(booking.totalAmount);
-      if (amount <= 0) {
+      // Deposit collected in cash on site — only charge service amount via Stripe
+      const depositAmt = parseFloat(booking.deposit || "0");
+      const serviceAmt = parseFloat(booking.totalAmount) - depositAmt;
+      if (serviceAmt <= 0) {
         return res.status(400).json({ message: "Invalid booking amount" });
       }
 
@@ -168,9 +215,9 @@ export function registerPaymentRoutes(app: Express) {
               currency: "eur",
               product_data: {
                 name: `Reserva de barco - ${booking.boatId}`,
-                description: `Reserva para ${booking.customerName} ${booking.customerSurname} el ${booking.bookingDate.toISOString().split("T")[0]}`,
+                description: `Reserva para ${booking.customerName} ${booking.customerSurname} el ${booking.bookingDate.toISOString().split("T")[0]}. Depósito ${depositAmt}€ a pagar en efectivo en el puerto.`,
               },
-              unit_amount: Math.round(amount * 100),
+              unit_amount: Math.round(serviceAmt * 100),
             },
             quantity: 1,
           },
@@ -289,10 +336,24 @@ export function registerPaymentRoutes(app: Express) {
         });
       }
 
-      await storage.updateBooking(booking[0].id, {
+      const confirmedBooking = await storage.updateBooking(booking[0].id, {
         bookingStatus: "confirmed",
         paymentStatus: "completed",
       });
+
+      // Send confirmation email + WhatsApp
+      if (confirmedBooking) {
+        const boat = await storage.getBoat(confirmedBooking.boatId);
+        if (boat) {
+          const extras = await storage.getBookingExtras(confirmedBooking.id);
+          if (confirmedBooking.customerEmail) {
+            sendBookingConfirmation({ booking: confirmedBooking, boat, extras }).catch(
+              (err: unknown) => console.error("[SimulatePayment] Error sending confirmation email:", err)
+            );
+          }
+          trySendWhatsAppConfirmation(confirmedBooking, boat).catch(() => {});
+        }
+      }
 
       res.json({
         success: true,
@@ -366,11 +427,25 @@ export function registerPaymentRoutes(app: Express) {
             .limit(1);
 
           if (booking.length > 0) {
-            await storage.updateBooking(booking[0].id, {
+            const confirmedBooking = await storage.updateBooking(booking[0].id, {
               bookingStatus: "confirmed",
               paymentStatus: "completed",
             });
             console.log(`Booking ${booking[0].id} confirmed after successful payment`);
+
+            // Send confirmation email + WhatsApp (fire-and-forget, never blocks webhook response)
+            if (confirmedBooking) {
+              const boat = await storage.getBoat(confirmedBooking.boatId);
+              if (boat) {
+                const extras = await storage.getBookingExtras(confirmedBooking.id);
+                if (confirmedBooking.customerEmail) {
+                  sendBookingConfirmation({ booking: confirmedBooking, boat, extras }).catch(
+                    (err: unknown) => console.error("[Payment] Error sending confirmation email:", err)
+                  );
+                }
+                trySendWhatsAppConfirmation(confirmedBooking, boat).catch(() => {});
+              }
+            }
           } else {
             console.warn(`No booking found for payment intent ${paymentIntent.id}`);
           }
@@ -404,6 +479,77 @@ export function registerPaymentRoutes(app: Express) {
     } catch (error: any) {
       console.error("Error processing webhook:", error);
       res.status(500).json({ error: "Webhook processing failed" });
+    }
+  });
+
+  // Issue a Stripe refund for a confirmed booking (admin only)
+  app.post("/api/admin/bookings/:id/refund", requireAdminSession, async (req, res) => {
+    try {
+      let stripeInstance: Stripe;
+      try {
+        stripeInstance = getStripe();
+      } catch (error: any) {
+        return res.status(503).json({ message: "Servicio de pagos no disponible: " + error.message });
+      }
+
+      const refundSchema = z.object({
+        amount: z.number().positive("El importe debe ser positivo"),
+        reason: z.enum(["duplicate", "fraudulent", "requested_by_customer"]).optional(),
+      });
+
+      const parsed = refundSchema.safeParse(req.body);
+      if (!parsed.success) {
+        return res.status(400).json({
+          message: "Datos invalidos",
+          errors: parsed.error.flatten().fieldErrors,
+        });
+      }
+
+      const booking = await storage.getBooking(req.params.id);
+      if (!booking) {
+        return res.status(404).json({ message: "Reserva no encontrada" });
+      }
+      if (!booking.stripePaymentIntentId) {
+        return res.status(400).json({ message: "Esta reserva no tiene pago Stripe asociado" });
+      }
+      if (booking.refundStatus === "completed") {
+        return res.status(409).json({ message: "Esta reserva ya ha sido reembolsada" });
+      }
+
+      const { amount, reason } = parsed.data;
+      const maxRefundable = parseFloat(booking.totalAmount) - parseFloat(booking.deposit || "0");
+      if (amount > maxRefundable) {
+        return res.status(400).json({
+          message: `El importe máximo reembolsable es ${maxRefundable}€ (sin depósito)`,
+        });
+      }
+
+      await db.update(bookings).set({ refundStatus: "processing" }).where(eq(bookings.id, booking.id));
+
+      const refund = await stripeInstance.refunds.create({
+        payment_intent: booking.stripePaymentIntentId,
+        amount: Math.round(amount * 100),
+        reason: reason || "requested_by_customer",
+      });
+
+      await db.update(bookings).set({
+        refundStatus: "completed",
+        refundAmount: amount.toString(),
+        paymentStatus: "refunded",
+        bookingStatus: "cancelled",
+      }).where(eq(bookings.id, booking.id));
+
+      console.log(`[Payment] Refund ${refund.id} of ${amount}€ issued for booking ${booking.id}`);
+      res.json({
+        success: true,
+        refundId: refund.id,
+        amount,
+        bookingId: booking.id,
+      });
+    } catch (error: any) {
+      await db.update(bookings).set({ refundStatus: "requested" }).where(eq(bookings.id, req.params.id)).catch(() => {});
+      console.error("[Payment] Refund error:", error.message);
+      res.status(500).json({ message: "Error al procesar el reembolso: " + error.message });
     }
   });
 }

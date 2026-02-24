@@ -146,7 +146,7 @@ export default function GiftCardsPage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <SEO title={seoConfig.title} description={seoConfig.description} canonical={canonical} />
+      <SEO title={seoConfig.title} description={seoConfig.description} canonical={canonical} hreflang={hreflangLinks} />
       <Navigation />
 
       <div className="container mx-auto px-4 py-8 sm:py-12">

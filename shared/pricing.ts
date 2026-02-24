@@ -4,6 +4,31 @@ import { BOAT_DATA, EXTRA_PACKS, type BoatData } from './boatData';
 export type Season = 'BAJA' | 'MEDIA' | 'ALTA';
 export type Duration = '1h' | '2h' | '3h' | '4h' | '6h' | '8h';
 
+/** Weekend surcharge factor: +15% on Saturdays and Sundays */
+export const WEEKEND_SURCHARGE_FACTOR = 1.15;
+
+/**
+ * Check if the given date falls on Saturday or Sunday (Spain timezone)
+ */
+export function isWeekend(date: Date): boolean {
+  const parts = new Intl.DateTimeFormat('en-US', {
+    timeZone: 'Europe/Madrid',
+    weekday: 'short',
+  }).formatToParts(date);
+  const weekday = parts.find((p) => p.type === 'weekday')?.value;
+  return weekday === 'Sat' || weekday === 'Sun';
+}
+
+/**
+ * Get the minimum allowed booking duration for a given date.
+ * Returns '2h' for Temporada Alta (August) and weekends; '1h' otherwise.
+ */
+export function getMinimumDuration(date: Date): Duration {
+  const month = date.getMonth() + 1;
+  if (month === 8 || isWeekend(date)) return '2h';
+  return '1h';
+}
+
 /**
  * Determine the season based on a given date
  * BAJA: April-June, September-October (operational season)
@@ -64,12 +89,13 @@ export function calculateBasePrice(boatId: string, date: Date, duration: Duratio
 
   const season = getSeason(date);
   const seasonPricing = boat.pricing[season];
-  
+
   if (!seasonPricing || !seasonPricing.prices[duration]) {
     throw new Error(`Price not found for boat ${boatId}, season ${season}, duration ${duration}`);
   }
 
-  return seasonPricing.prices[duration];
+  const basePrice = seasonPricing.prices[duration];
+  return isWeekend(date) ? Math.round(basePrice * WEEKEND_SURCHARGE_FACTOR) : basePrice;
 }
 
 /**
@@ -141,6 +167,7 @@ export interface PricingBreakdown {
   date: string;
   duration: Duration;
   season: Season;
+  weekendSurcharge: boolean;
   basePrice: number;
   selectedExtras: string[];
   selectedPacks: string[];
@@ -175,6 +202,7 @@ export function calculatePricingBreakdown(
     date: date.toISOString().split('T')[0], // YYYY-MM-DD format
     duration,
     season,
+    weekendSurcharge: isWeekend(date),
     basePrice,
     selectedExtras,
     selectedPacks,

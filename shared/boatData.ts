@@ -81,15 +81,15 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
     pricing: {
       BAJA: {
         period: "Abril-Junio, Septiembre-Cierre",
-        prices: { "1h": 75, "2h": 115, "3h": 130, "4h": 150, "6h": 190, "8h": 220 }
+        prices: { "1h": 75, "2h": 115, "3h": 130, "4h": 150, "6h": 215, "8h": 245 }
       },
       MEDIA: {
         period: "Julio",
-        prices: { "1h": 85, "2h": 130, "3h": 160, "4h": 180, "6h": 230, "8h": 270 }
+        prices: { "1h": 85, "2h": 130, "3h": 160, "4h": 180, "6h": 260, "8h": 300 }
       },
       ALTA: {
-        period: "Agosto", 
-        prices: { "1h": 95, "2h": 140, "3h": 170, "4h": 195, "6h": 240, "8h": 290 }
+        period: "Agosto",
+        prices: { "1h": 95, "2h": 140, "3h": 170, "4h": 195, "6h": 270, "8h": 325 }
       }
     },
     extras: [
@@ -101,7 +101,7 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
       { name: "Seascooter", price: "50€", icon: "Zap" }
     ]
   },
-  
+
   "remus-450": {
     id: "remus-450",
     name: "Remus 450",
@@ -119,7 +119,7 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
     },
     equipment: [
       "Toldo Bi Mini",
-      "Arranque eléctrico", 
+      "Arranque eléctrico",
       "Gran solárium de proa",
       "Escalera de baño",
       "Equipo de seguridad y salvamento"
@@ -127,14 +127,14 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
     included: [
       "IVA",
       "Carburante",
-      "Amarre", 
+      "Amarre",
       "Limpieza",
       "Seguro embarcación y ocupantes"
     ],
     features: [
       "Sin licencia requerida",
       "Hasta 5 personas",
-      "Gasolina incluida", 
+      "Gasolina incluida",
       "Seguro incluido",
       "Equipo de seguridad",
       "Escalera de baño"
@@ -142,15 +142,15 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
     pricing: {
       BAJA: {
         period: "Abril-Junio, Septiembre-Cierre",
-        prices: { "1h": 75, "2h": 115, "3h": 130, "4h": 150, "6h": 190, "8h": 220 }
+        prices: { "1h": 75, "2h": 115, "3h": 130, "4h": 150, "6h": 215, "8h": 245 }
       },
       MEDIA: {
         period: "Julio",
-        prices: { "1h": 85, "2h": 130, "3h": 160, "4h": 180, "6h": 230, "8h": 270 }
+        prices: { "1h": 85, "2h": 130, "3h": 160, "4h": 180, "6h": 260, "8h": 300 }
       },
       ALTA: {
-        period: "Agosto", 
-        prices: { "1h": 95, "2h": 140, "3h": 170, "4h": 195, "6h": 240, "8h": 290 }
+        period: "Agosto",
+        prices: { "1h": 95, "2h": 140, "3h": 170, "4h": 195, "6h": 270, "8h": 325 }
       }
     },
     extras: [
@@ -203,15 +203,15 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
     pricing: {
       BAJA: {
         period: "Abril-Junio, Septiembre-Cierre",
-        prices: { "1h": 75, "2h": 115, "3h": 130, "4h": 150, "6h": 190, "8h": 220 }
+        prices: { "1h": 75, "2h": 115, "3h": 130, "4h": 150, "6h": 215, "8h": 245 }
       },
       MEDIA: {
         period: "Julio",
-        prices: { "1h": 85, "2h": 130, "3h": 160, "4h": 180, "6h": 230, "8h": 270 }
+        prices: { "1h": 85, "2h": 130, "3h": 160, "4h": 180, "6h": 260, "8h": 300 }
       },
       ALTA: {
         period: "Agosto",
-        prices: { "1h": 95, "2h": 140, "3h": 170, "4h": 195, "6h": 240, "8h": 290 }
+        prices: { "1h": 95, "2h": 140, "3h": 170, "4h": 195, "6h": 270, "8h": 325 }
       }
     },
     extras: [
@@ -264,15 +264,15 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
     pricing: {
       BAJA: {
         period: "Abril-Junio, Septiembre-Cierre",
-        prices: { "1h": 70, "2h": 105, "3h": 120, "4h": 135, "6h": 170, "8h": 200 }
+        prices: { "1h": 70, "2h": 105, "3h": 120, "4h": 135, "6h": 190, "8h": 225 }
       },
       MEDIA: {
         period: "Julio",
-        prices: { "1h": 80, "2h": 120, "3h": 145, "4h": 165, "6h": 210, "8h": 250 }
+        prices: { "1h": 80, "2h": 120, "3h": 145, "4h": 165, "6h": 235, "8h": 280 }
       },
       ALTA: {
-        period: "Agosto", 
-        prices: { "1h": 90, "2h": 130, "3h": 155, "4h": 180, "6h": 220, "8h": 270 }
+        period: "Agosto",
+        prices: { "1h": 90, "2h": 130, "3h": 155, "4h": 180, "6h": 245, "8h": 300 }
       }
     },
     extras: [
@@ -324,15 +324,15 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
     pricing: {
       BAJA: {
         period: "Abril-Junio, Septiembre-Cierre",
-        prices: { "1h": 85, "2h": 130, "3h": 160, "4h": 180, "6h": 230, "8h": 270 }
+        prices: { "1h": 85, "2h": 130, "3h": 160, "4h": 180, "6h": 260, "8h": 300 }
       },
       MEDIA: {
         period: "Julio",
-        prices: { "1h": 95, "2h": 140, "3h": 170, "4h": 195, "6h": 240, "8h": 290 }
+        prices: { "1h": 95, "2h": 140, "3h": 170, "4h": 195, "6h": 270, "8h": 325 }
       },
       ALTA: {
         period: "Agosto",
-        prices: { "1h": 105, "2h": 150, "3h": 180, "4h": 210, "6h": 260, "8h": 310 }
+        prices: { "1h": 105, "2h": 150, "3h": 180, "4h": 210, "6h": 290, "8h": 350 }
       }
     },
     extras: [
@@ -386,15 +386,15 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
     pricing: {
       BAJA: {
         period: "Abril-Junio, Septiembre-Cierre",
-        prices: { "1h": 80, "2h": 130, "3h": 155, "4h": 180, "6h": 230, "8h": 270 }
+        prices: { "1h": 80, "2h": 130, "3h": 155, "4h": 180, "6h": 260, "8h": 300 }
       },
       MEDIA: {
         period: "Julio",
-        prices: { "1h": 90, "2h": 150, "3h": 190, "4h": 220, "6h": 270, "8h": 310 }
+        prices: { "1h": 90, "2h": 150, "3h": 190, "4h": 220, "6h": 300, "8h": 350 }
       },
       ALTA: {
-        period: "Agosto", 
-        prices: { "1h": 100, "2h": 170, "3h": 200, "4h": 230, "6h": 290, "8h": 340 }
+        period: "Agosto",
+        prices: { "1h": 100, "2h": 170, "3h": 200, "4h": 230, "6h": 325, "8h": 380 }
       }
     },
     extras: [
@@ -449,15 +449,15 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
     pricing: {
       BAJA: {
         period: "Abril-Junio, Septiembre-Cierre",
-        prices: { "2h": 150, "4h": 230, "8h": 280 }
+        prices: { "2h": 150, "4h": 230, "8h": 315 }
       },
       MEDIA: {
         period: "Julio",
-        prices: { "2h": 160, "4h": 240, "8h": 300 }
+        prices: { "2h": 160, "4h": 240, "8h": 335 }
       },
       ALTA: {
-        period: "Agosto", 
-        prices: { "2h": 180, "4h": 250, "8h": 390 }
+        period: "Agosto",
+        prices: { "2h": 180, "4h": 250, "8h": 435 }
       }
     },
     extras: [
@@ -512,15 +512,15 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
     pricing: {
       BAJA: {
         period: "Abril-Junio, Septiembre-Cierre",
-        prices: { "2h": 160, "4h": 240, "8h": 290 }
+        prices: { "2h": 160, "4h": 240, "8h": 325 }
       },
       MEDIA: {
         period: "Julio",
-        prices: { "2h": 180, "4h": 260, "8h": 340 }
+        prices: { "2h": 180, "4h": 260, "8h": 380 }
       },
       ALTA: {
-        period: "Agosto", 
-        prices: { "2h": 200, "4h": 280, "8h": 390 }
+        period: "Agosto",
+        prices: { "2h": 200, "4h": 280, "8h": 435 }
       }
     },
     extras: [
@@ -579,15 +579,15 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
     pricing: {
       BAJA: {
         period: "Abril-Junio, Septiembre-Cierre",
-        prices: { "2h": 180, "4h": 250, "8h": 300 }
+        prices: { "2h": 180, "4h": 250, "8h": 335 }
       },
       MEDIA: {
         period: "Julio",
-        prices: { "2h": 200, "4h": 280, "8h": 360 }
+        prices: { "2h": 200, "4h": 280, "8h": 400 }
       },
       ALTA: {
-        period: "Agosto", 
-        prices: { "2h": 220, "4h": 300, "8h": 420 }
+        period: "Agosto",
+        prices: { "2h": 220, "4h": 300, "8h": 470 }
       }
     },
     extras: [

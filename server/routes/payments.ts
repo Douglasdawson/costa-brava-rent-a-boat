@@ -381,25 +381,21 @@ export function registerPaymentRoutes(app: Express) {
       return res.status(503).json({ error: "Payment service not configured" });
     }
 
-    if (process.env.NODE_ENV === "production" && !process.env.STRIPE_WEBHOOK_SECRET) {
-      console.error("STRIPE_WEBHOOK_SECRET is required in production");
-      return res.status(503).json({ error: "Webhook not properly configured" });
+    if (!process.env.STRIPE_WEBHOOK_SECRET) {
+      console.error("[Webhook] STRIPE_WEBHOOK_SECRET not configured — rejecting webhook");
+      return res.status(503).json({ error: "Webhook not configured" });
     }
 
     let event: Stripe.Event;
     try {
-      if (process.env.STRIPE_WEBHOOK_SECRET) {
-        event = stripeInstance.webhooks.constructEvent(
-          req.body,
-          sig,
-          process.env.STRIPE_WEBHOOK_SECRET
-        );
-      } else {
-        event = JSON.parse(req.body.toString());
-      }
+      event = stripeInstance.webhooks.constructEvent(
+        req.body,
+        sig,
+        process.env.STRIPE_WEBHOOK_SECRET
+      );
     } catch (err: any) {
-      console.error("Webhook signature verification failed.", err.message);
-      return res.status(400).send(`Webhook Error: ${err.message}`);
+      console.error("[Webhook] Signature verification failed:", err.message);
+      return res.status(400).json({ error: "Invalid webhook signature" });
     }
 
     try {

@@ -46,6 +46,33 @@ const authLimiter = rateLimit({
 app.use("/api/", generalLimiter);
 app.use("/api/admin/login", authLimiter);
 app.use("/api/admin/login-user", authLimiter);
+app.use("/api/auth/login", authLimiter);
+app.use("/api/auth/register", authLimiter);
+app.use("/api/auth/forgot-password", authLimiter);
+
+// CORS — restrict API access to known origins
+const allowedOrigins = isDev
+  ? ['http://localhost:5000', 'http://localhost:3000', 'http://127.0.0.1:5000']
+  : ['https://costabravarentaboat.app'];
+
+app.use('/api/', (req: Request, res: Response, next: NextFunction) => {
+  const origin = req.headers.origin as string | undefined;
+  const isAllowed = !origin
+    || allowedOrigins.includes(origin)
+    || (!isDev && origin.endsWith('.costabravarentaboat.app'));
+
+  if (isAllowed && origin) {
+    res.setHeader('Access-Control-Allow-Origin', origin);
+  }
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PATCH, DELETE, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Tenant-Slug, X-Session-Id');
+  res.setHeader('Vary', 'Origin');
+
+  if (req.method === 'OPTIONS') {
+    return res.status(204).end();
+  }
+  next();
+});
 
 // Trust proxy for correct protocol detection behind reverse proxies
 app.set('trust proxy', 1);

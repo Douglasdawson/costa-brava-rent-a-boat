@@ -33,8 +33,8 @@ function getMadridHour(date: Date): number {
 }
 
 export function registerBookingRoutes(app: Express) {
-  // Get booking by ID
-  app.get("/api/bookings/:id", async (req, res) => {
+  // Get booking by ID (admin only)
+  app.get("/api/bookings/:id", requireAdminSession, async (req, res) => {
     try {
       const booking = await storage.getBooking(req.params.id);
       if (!booking) {
@@ -43,18 +43,20 @@ export function registerBookingRoutes(app: Express) {
       const extras = await storage.getBookingExtras(booking.id);
       res.json({ ...booking, extras });
     } catch (error: any) {
-      res.status(500).json({ message: "Error fetching booking: " + error.message });
+      console.error("[Bookings] Error fetching booking:", error.message);
+      res.status(500).json({ message: "Error interno del servidor" });
     }
   });
 
-  // Get bookings by date
-  app.get("/api/bookings/date/:date", async (req, res) => {
+  // Get bookings by date (admin only)
+  app.get("/api/bookings/date/:date", requireAdminSession, async (req, res) => {
     try {
       const date = new Date(req.params.date);
       const bookingsList = await storage.getBookingsByDate(date);
       res.json(bookingsList);
     } catch (error: any) {
-      res.status(500).json({ message: "Error fetching bookings: " + error.message });
+      console.error("[Bookings] Error fetching bookings by date:", error.message);
+      res.status(500).json({ message: "Error interno del servidor" });
     }
   });
 
@@ -218,8 +220,9 @@ export function registerBookingRoutes(app: Express) {
         },
       });
     } catch (error: any) {
+      console.error("[Bookings] Error generating quote:", error.message);
       res.status(500).json({
-        message: "Error al generar cotización: " + error.message,
+        message: "Error al generar cotización",
         available: false,
         reason: "server_error",
       });
@@ -237,9 +240,8 @@ export function registerBookingRoutes(app: Express) {
         cleaned,
       });
     } catch (error: any) {
-      res.status(500).json({
-        message: "Error al limpiar holds expirados: " + error.message,
-      });
+      console.error("[Bookings] Error cleaning expired holds:", error.message);
+      res.status(500).json({ message: "Error al limpiar holds expirados" });
     }
   });
 
@@ -268,7 +270,8 @@ export function registerBookingRoutes(app: Express) {
 
       res.json(updatedBooking);
     } catch (error: any) {
-      res.status(500).json({ message: "Error updating payment status: " + error.message });
+      console.error("[Bookings] Error updating payment status:", error.message);
+      res.status(500).json({ message: "Error interno del servidor" });
     }
   });
 
@@ -297,7 +300,8 @@ export function registerBookingRoutes(app: Express) {
 
       res.json(updatedBooking);
     } catch (error: any) {
-      res.status(500).json({ message: "Error updating WhatsApp status: " + error.message });
+      console.error("[Bookings] Error updating WhatsApp status:", error.message);
+      res.status(500).json({ message: "Error interno del servidor" });
     }
   });
 }

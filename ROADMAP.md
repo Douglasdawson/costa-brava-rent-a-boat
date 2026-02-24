@@ -1,16 +1,16 @@
-# NauticFlow - Roadmap de Desarrollo
+# Costa Brava Rent a Boat - Roadmap de Desarrollo
 
-Actualizado: 15 Feb 2026
+Actualizado: 24 Feb 2026
 
 ---
 
 ## Vision
 
-Transformar el sistema interno de Costa Brava Rent a Boat en **NauticFlow**, una plataforma SaaS multi-tenant para empresas de alquiler de embarcaciones.
+Sistema de gestion interno para Costa Brava Rent a Boat: reservas, flota, clientes, chatbot WhatsApp y CRM completo. Uso personal.
 
 ---
 
-## FASE 1: Producto Actual (Costa Brava Rent a Boat) - COMPLETADA
+## FASE 1: Producto Base - COMPLETADA
 
 Todas las mejoras del producto original completadas entre Ene-Feb 2026.
 
@@ -30,143 +30,51 @@ Todas las mejoras del producto original completadas entre Ene-Feb 2026.
 
 ---
 
-## FASE 2: Transformacion SaaS - EN PROGRESO
+## FASE 2: Arquitectura Multi-Tenant - COMPLETADA
+
+Infraestructura multi-tenant implementada (preparacion para uso futuro o expansion).
 
 ### Tarea 1: Arquitectura Multi-Tenant - COMPLETADA
-- Tabla `tenants` con planes (starter/pro/enterprise), estados (trial/active/suspended/cancelled)
+- Tabla `tenants` con planes y estados
 - `tenant_id` anadido a 22 tablas existentes
 - Indexes y foreign keys para aislamiento de datos
 - **Commit**: 93a92b3
 
 ### Tarea 2: Sistema de Autenticacion Multi-Tenant - COMPLETADA
-- Tabla `users` con roles (owner/admin/employee) y constraint unique(email, tenantId)
+- Tabla `users` con roles (owner/admin/employee)
 - Tabla `refresh_tokens` con token rotation y cleanup automatico
-- Tabla `password_reset_tokens` con expiracion 1h
 - JWT con `tenantId` en payload, access token 1h, refresh token 30d
-- Resolucion de tenant: subdominio, dominio custom, header X-Tenant-Slug
 - 8 endpoints nuevos: register, login, logout, refresh-token, me, profile, forgot-password, reset-password
-- Middleware: `requireSaasAuth`, `injectTenantId`, `requireOwner` actualizado
-- Frontend LoginPage con 4 tabs (Email SaaS + 3 legacy)
-- Auto-refresh de tokens cada 50 minutos
 - Compatibilidad total con sistema legacy
 - **Commit**: 29c989c
 
 ### Tarea 3: Onboarding Wizard - COMPLETADA
 - Registro en 4 pasos: datos empresa, configuracion, flota inicial, confirmacion
 - Trial de 14 dias automatico
-- Email de bienvenida con SendGrid (sendWelcomeEmail)
-- Wizard guiado post-registro en /onboarding
+- Email de bienvenida con SendGrid
 
 ### Tarea 4: Dashboard Multi-Tenant - COMPLETADA
-- Nombre del tenant dinamico en header del CRM (reemplaza "CRM Costa Brava" hardcoded)
-- Banner de trial con dias restantes (ambar/rojo segun urgencia) + CTA "Activar plan"
-- Datos de tenant en sessionStorage: plan, status, trialEndsAt, logo
-- Menus por rol: employee (3 tabs), admin (11 tabs), owner (12 tabs con Equipo)
-- Datos filtrados por tenant via JWT tenantId ya implementado en servidor
-- Selector de tenant para super-admin: pendiente para Tarea 6 (requiere rol nuevo)
+- Nombre del tenant dinamico en header del CRM
+- Banner de trial con dias restantes
+- Menus por rol: employee / admin / owner
 
 ### Tarea 5: Tenant Admin Panel - COMPLETADA
-- Tab "Config" en CRM (solo visible para propietario)
-- Seccion "Mi Empresa": editar nombre, email, telefono, direccion
-- Seccion "Branding": logo URL, color primario/secundario con color picker
-- Seccion "Usuarios": tabla de usuarios SaaS del tenant (nombre, email, rol, estado, ultimo acceso)
-- Crear nuevo usuario con email, contraseña, nombre y rol (admin/empleado)
-- Cambiar rol y activar/desactivar usuarios (no se puede modificar al owner)
-- Backend: 5 endpoints nuevos en /api/tenant/ (settings GET/PATCH, users GET/POST/PATCH)
-- Gestion de flota: ya existia en tab Flota
-- Gestion de precios: ya existia en tab Flota
+- Tab "Config": editar nombre, email, telefono, direccion, branding
+- Gestion de usuarios del tenant: crear, cambiar rol, activar/desactivar
+- Backend: 5 endpoints en /api/tenant/
 
 ### Tarea 6: Super Admin Panel - COMPLETADA
-- Tab "Platform" visible solo para admin legacy (Ivan via PIN, sin tenantId en JWT)
-- Header CRM muestra "NauticFlow" y "Admin de Plataforma" para el super admin
-- Stats globales: total tenants, por estado (trial/activo/suspendido), MRR estimado
-- Distribucion por plan (Starter/Pro/Enterprise con precios)
-- Tabla de todas las empresas: nombre, slug, plan, estado, dias de trial, usuarios, fecha registro
-- Filtro rapido por estado (Todos / Trial / Activo / Suspendido / Cancelado)
-- Dialog "Gestionar": cambiar estado (trial/active/suspended/cancelled) y plan
-- Backend: 3 endpoints en /api/superadmin/ protegidos por requireSuperAdmin (solo legacy JWT)
-- requireSuperAdmin middleware: rechaza tokens SaaS (con tenantId), acepta solo legacy admin
+- Tab "Platform" para admin legacy (Ivan via PIN)
+- Stats globales de tenants, tabla completa, gestion de estado/plan
+- Backend: 3 endpoints en /api/superadmin/
 
 ---
 
-## FASE 3: Monetizacion - PLANIFICADA
+## Proximas Mejoras - PENDIENTE
 
-### Tarea 1: Integracion Stripe Subscriptions
-- Plans: Starter (49 EUR/mes), Pro (99 EUR/mes), Enterprise (199 EUR/mes)
-- Billing portal con Stripe Customer Portal
-- Webhooks para activacion/suspension automatica
-- Upgrade/downgrade de planes
+Ideas para mejorar el producto existente:
 
-### Tarea 2: Feature Gating
-- Limites por plan: barcos, reservas/mes, usuarios
-- Features exclusivas por plan (chatbot IA, emails automaticos, reportes)
-- UI de upgrade cuando se alcanzan limites
-
-### Tarea 3: Trial Management
-- Dashboard de trial (dias restantes, uso)
-- Emails de conversion: dia 1, dia 7, dia 12, dia 14
-- Expiracion graceful (read-only, no data loss)
-
----
-
-## FASE 4: Escalabilidad - PLANIFICADA
-
-### Tarea 1: Multi-idioma Dinamico
-- Sistema de traducciones por tenant (no hardcoded)
-- Panel de traduccion en admin
-
-### Tarea 2: API Publica
-- REST API con API keys por tenant
-- Documentacion con OpenAPI/Swagger
-- Rate limiting por plan
-
-### Tarea 3: Integraciones
-- Calendarios externos (Google Calendar, iCal)
-- Pasarelas de pago adicionales
-- CRM externos (HubSpot, Mailchimp)
-
-### Tarea 4: Performance
-- Cache con Redis
-- CDN para assets
-- Optimizacion de queries (eliminar N+1)
-- Connection pooling
-
----
-
-## FASE 5: Go-to-Market - PLANIFICADA
-
-### Tarea 1: Landing Page SaaS
-- nauticflow.app con pricing, features, testimonios
-- Formulario de registro publico
-- Demo interactiva
-
-### Tarea 2: Documentacion
-- Centro de ayuda / Knowledge base
-- Video tutoriales onboarding
-- API docs
-
-### Tarea 3: Canales de Adquisicion
-- SEO para "software alquiler barcos", "boat rental software"
-- Google Ads en mercados clave (ES, FR, IT, GR, HR)
-- Partnerships con asociaciones nauticas
-
----
-
-## Metricas de Exito
-
-| Metrica | Objetivo 6 meses | Objetivo 12 meses |
-|---------|-------------------|---------------------|
-| Tenants registrados | 20 | 100 |
-| Tenants de pago | 5 | 30 |
-| MRR | 500 EUR | 3.000 EUR |
-| Churn mensual | < 5% | < 3% |
-| NPS | > 40 | > 50 |
-
----
-
-## Prioridades Inmediatas (Feb-Mar 2026)
-
-1. **Tarea 3 - Onboarding Wizard** - Siguiente en cola
-2. **Tarea 4 - Dashboard Multi-Tenant** - Adaptar CRM existente
-3. **Tarea 5 - Tenant Admin Panel** - Gestion de equipo y configuracion
-4. Desplegar en Replit y verificar Tarea 2 en produccion
+- Mejoras UX en formulario de reserva movil
+- Optimizacion de queries lentas
+- Mejoras en el chatbot WhatsApp
+- Cualquier bug o mejora que surja en uso real

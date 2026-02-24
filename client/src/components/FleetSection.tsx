@@ -19,18 +19,6 @@ export default function FleetSection() {
     queryKey: ['/api/boats'],
   });
 
-  // Default ratings for boats (can be moved to DB in future)
-  const defaultRatings: Record<string, number> = {
-    "astec-400": 4.7,
-    "remus-450": 4.7,
-    "solar-450": 4.6,
-    "astec-480": 4.8,
-    "remus-450-ii": 4.7,
-    "pacific-craft-625": 4.9,
-    "trimarchi-57s": 4.9,
-    "mingolla-brava-19": 4.8
-  };
-
   // Transform API data to BoatCard format
   const boats = (boatsData || [])
     .filter(boat => boat.isActive)
@@ -56,7 +44,7 @@ export default function FleetSection() {
           ? (boat.description.length > 150 ? boat.description.substring(0, 150) + "..." : boat.description)
           : '',
         basePrice,
-        rating: defaultRatings[boat.id] || 4.5,
+
         features: boat.equipment || [],
         available: true,
         enginePower: enginePower

@@ -2,7 +2,7 @@ import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
-import { Users, Clock, Star, Euro, CheckCircle, AlertCircle, Gauge, Anchor } from "lucide-react";
+import { Users, Clock, Euro, CheckCircle, AlertCircle, Gauge, Anchor } from "lucide-react";
 import { useTranslations } from "@/lib/translations";
 import { useMemo, useState } from "react";
 
@@ -16,7 +16,6 @@ interface BoatCardProps {
   requiresLicense: boolean;
   description: string;
   basePrice: number;
-  rating: number;
   features: string[];
   available: boolean;
   enginePower?: string;
@@ -34,7 +33,6 @@ export default function BoatCard({
   requiresLicense,
   description,
   basePrice,
-  rating,
   features,
   available,
   enginePower,
@@ -101,12 +99,6 @@ export default function BoatCard({
             )}
           </Badge>
         </div>
-        <div className="absolute bottom-3 right-3">
-          <div className="flex items-center bg-white/90 backdrop-blur px-2 py-1 rounded-full text-sm">
-            <Star className="w-3 h-3 text-yellow-500 mr-1 fill-current" />
-            <span className="font-medium text-gray-800">{rating}</span>
-          </div>
-        </div>
       </a>
       <CardContent className="p-3 sm:p-4">
         <div className="flex items-start justify-between mb-2">
@@ -164,14 +156,14 @@ export default function BoatCard({
           <Button
             variant="outline"
             size="sm"
-            className="w-full text-xs sm:text-sm h-10 sm:h-8"
+            className="w-full text-xs sm:text-sm h-10 sm:h-9"
           >
             {t.boats.viewDetails}
           </Button>
         </a>
         <Button 
           size="sm"
-          className="flex-1 text-xs sm:text-sm h-10 sm:h-8"
+          className="flex-1 text-xs sm:text-sm h-10 sm:h-9"
           onClick={handleBooking}
           disabled={!available}
           data-testid={`button-book-${id}`}

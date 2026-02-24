@@ -74,7 +74,7 @@ export default function Hero() {
                 <Button
                   size="lg"
                   variant="outline"
-                  className="bg-white/10 border-2 border-white/20 text-white hover:bg-white/20 hover:border-white/40 px-8 py-6 text-lg rounded-lg backdrop-blur-sm"
+                  className="bg-white/10 border border-white/20 text-white hover:bg-white/20 hover:border-white/40 px-6 py-5 text-base rounded-lg backdrop-blur-sm"
                 >
                   {t.hero.viewFleet}
                 </Button>

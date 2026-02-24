@@ -25,6 +25,7 @@ import {
 import { sendWhatsAppMessage, isTwilioConfigured } from "./twilioClient";
 import { BOAT_DATA } from "@shared/boatData";
 import { handleMainMenu } from "./flows/mainMenu";
+import { generateCheckoutUrl } from "../routes/payments";
 
 /**
  * Process a message based on current state and detected intent
@@ -481,9 +482,24 @@ async function handleBookingConfirmState(
         }
       }
 
-      // Transition to main menu and respond with success
+      // Generate Stripe payment link so the customer can pay directly
+      const appBaseUrl = process.env.APP_URL || "https://costabravarentaboat.app";
+      const paymentUrl = await generateCheckoutUrl(result.bookingId, appBaseUrl);
+
+      // Transition to main menu
       await clearBookingData(session.phoneNumber);
       await updateState(session.phoneNumber, CHATBOT_STATES.MAIN_MENU);
+
+      if (paymentUrl) {
+        const paymentMessage =
+          `✅ *¡Reserva confirmada!*\n\n` +
+          `Para completar tu reserva, realiza el pago aquí:\n\n` +
+          `💳 ${paymentUrl}\n\n` +
+          `⚠️ Este enlace expira en *30 minutos*.\n\n` +
+          `El depósito se abona en efectivo en el puerto el día de la excursión.`;
+        return `${paymentMessage}\n\n${handleMainMenu(t)}`;
+      }
+
       return `${t.bookingCreated}\n\n${t.bookingNotification}\n\n${handleMainMenu(t)}`;
     } else {
       // Booking creation failed

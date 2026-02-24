@@ -84,6 +84,50 @@ export const getStripe = () => {
   return stripe;
 };
 
+/**
+ * Generate a Stripe Checkout URL for a booking (usable outside HTTP context, e.g. WhatsApp flow).
+ * Returns null if Stripe is not configured or amount is invalid.
+ */
+export async function generateCheckoutUrl(
+  bookingId: string,
+  appBaseUrl: string
+): Promise<string | null> {
+  try {
+    const stripeInstance = getStripe();
+    const booking = await storage.getBooking(bookingId);
+    if (!booking) return null;
+
+    const depositAmt = parseFloat(booking.deposit || "0");
+    const serviceAmt = parseFloat(booking.totalAmount) - depositAmt;
+    if (serviceAmt <= 0) return null;
+
+    const session = await stripeInstance.checkout.sessions.create({
+      payment_method_types: ["card"],
+      line_items: [
+        {
+          price_data: {
+            currency: "eur",
+            product_data: {
+              name: `Reserva ${booking.boatId} - ${booking.bookingDate.toISOString().split("T")[0]}`,
+              description: `${booking.customerName} · Depósito ${depositAmt}€ a pagar en efectivo en el puerto.`,
+            },
+            unit_amount: Math.round(serviceAmt * 100),
+          },
+          quantity: 1,
+        },
+      ],
+      mode: "payment",
+      success_url: `${appBaseUrl}/booking/success?session_id={CHECKOUT_SESSION_ID}&booking_id=${bookingId}`,
+      cancel_url: `${appBaseUrl}`,
+      metadata: { bookingId },
+    });
+
+    return session.url;
+  } catch {
+    return null;
+  }
+}
+
 export function registerPaymentRoutes(app: Express) {
   // Create payment intent
   app.post("/api/create-payment-intent", async (req, res) => {

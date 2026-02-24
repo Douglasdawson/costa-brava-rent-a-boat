@@ -150,11 +150,11 @@ export const TRANSLATIONS: Record<SupportedLanguage, ChatbotTranslations> = {
     bookingConfirmDetails:
       "🚤 *Barco:* {boat}\n📅 *Fecha:* {date}\n⏰ *Hora:* {time} - {endTime}\n👥 *Personas:* {people}\n🎒 *Extras:* {extras}\n\n💰 *Total:* {total}€ _(+ {deposit}€ fianza)_",
     bookingConfirmPrompt:
-      "\n¿Enviamos la solicitud de reserva al equipo?\n\n1️⃣ Sí, enviar solicitud\n2️⃣ No, cancelar",
+      "\n¿Confirmamos la reserva y procedemos al pago?\n\n1️⃣ Sí, confirmar y pagar\n2️⃣ No, cancelar",
     bookingCreated:
-      "✅ *¡Solicitud de reserva recibida!*\n\nIvan verificará la disponibilidad y se pondrá en contacto contigo para confirmar tu reserva.",
+      "✅ *¡Reserva confirmada!*\n\nTe enviamos el enlace de pago a continuación.",
     bookingNotification:
-      "Recibirás la confirmación por WhatsApp una vez que tu reserva sea verificada.",
+      "Recibirás la confirmación por email y WhatsApp en cuanto el pago sea procesado.",
     bookingFailed:
       "😔 Lo sentimos, no hemos podido crear tu reserva. Es posible que el horario ya no esté disponible. Por favor, inténtalo de nuevo o escribe *agente* para contactarnos.",
     invalidPeopleCount:

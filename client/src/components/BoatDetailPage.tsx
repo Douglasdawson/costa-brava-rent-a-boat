@@ -763,9 +763,14 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
         <div className="fixed bottom-0 left-0 right-0 z-40 md:hidden">
           <button
             onClick={() => handleReservation()}
-            className="w-full bg-primary text-white py-4 px-6 font-semibold shadow-lg"
+            className="w-full bg-primary text-white py-4 px-6 font-semibold shadow-lg flex items-center justify-center gap-3"
           >
-            {t.hero.bookNow}
+            <span>{t.hero.bookNow}</span>
+            {lowestPrice > 0 && (
+              <span className="bg-white/20 rounded-full px-3 py-0.5 text-sm font-bold">
+                {t.boats.from} {lowestPrice}€
+              </span>
+            )}
           </button>
         </div>
       )}

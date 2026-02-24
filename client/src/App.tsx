@@ -111,8 +111,8 @@ function HomePage() {
       <Navigation />
       <Hero />
       <FleetSection />
-      <GiftCardBanner />
       <ReviewsSection />
+      <GiftCardBanner />
       <FeaturesSection />
       <ContactSection />
       <Footer />

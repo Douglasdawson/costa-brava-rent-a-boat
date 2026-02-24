@@ -119,8 +119,8 @@ function ProgressBar({ currentStep, t }: { currentStep: number; t: Translations 
                   {isCompleted ? <Check className="w-3.5 h-3.5" aria-hidden="true" /> : stepNum}
                 </div>
                 <span
-                  className={`text-[10px] mt-1 font-medium ${
-                    isActive ? "text-primary" : "text-gray-400"
+                  className={`text-[11px] mt-1 font-medium ${
+                    isActive ? "text-primary" : "text-gray-500"
                   }`}
                   aria-hidden="true"
                 >
@@ -218,7 +218,7 @@ export default function BookingWizardMobile(props: BookingWizardMobileProps) {
             }}
             disabled={isSubmitting || props.isValidatingCode}
             aria-label="Enviar solicitud de reserva por WhatsApp"
-            className="flex-1 py-5 text-sm font-semibold"
+            className="flex-1 py-5 text-sm font-semibold bg-[#25D366] hover:bg-[#1ebe5d] text-white border-0"
           >
             {isSubmitting || props.isValidatingCode
               ? <Loader2 className="w-4 h-4 mr-2 animate-spin" aria-hidden="true" />
@@ -342,7 +342,7 @@ function Step1Boat({
                     </p>
                   )}
                 </div>
-                <span className="text-xs text-gray-400 flex-shrink-0">
+                <span className="text-xs text-gray-500 flex-shrink-0">
                   {boat.capacity} pers.
                 </span>
               </button>
@@ -476,7 +476,7 @@ function Step2Trip({
         <label className="block text-sm font-semibold text-gray-700 mb-2">
           {t.wizard.numberOfPeople}
           {selectedBoatInfo && (
-            <span className="font-normal text-gray-400 ml-1">(max. {maxCapacity})</span>
+            <span className="font-normal text-gray-500 ml-1">(max. {maxCapacity})</span>
           )}
         </label>
         <div className={`flex items-center justify-between border-2 rounded-xl bg-white px-4 py-2 ${

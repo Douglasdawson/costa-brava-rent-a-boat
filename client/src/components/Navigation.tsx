@@ -63,7 +63,6 @@ export default function Navigation() {
   };
 
   const handleNavigation = (href: string, label: string) => {
-    console.log(`Navigating to: ${label} (${href})`);
     
     // Close mobile menu
     setIsOpen(false);

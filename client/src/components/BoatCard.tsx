@@ -49,7 +49,6 @@ export default function BoatCard({
   }, [t.boats.hoursTooltip, name]);
 
   const handleBooking = () => {
-    console.log(`Booking initiated for boat ${id}`);
     onBooking(id);
   };
 

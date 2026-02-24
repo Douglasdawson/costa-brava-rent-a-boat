@@ -52,6 +52,13 @@ export default function Hero() {
               {t.hero.subtitle}
             </p>
 
+            {/* Price badge */}
+            <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm rounded-full px-5 py-2 mb-6 text-white text-sm font-semibold">
+              <span className="text-yellow-300 font-bold">Desde 70€</span>
+              <span className="text-white/60">·</span>
+              <span>Gasolina incluida</span>
+            </div>
+
             {/* CTA Buttons */}
             <div className="flex flex-wrap gap-4 mb-10">
               <Button

@@ -17,6 +17,7 @@ import ReviewsSection from "./components/ReviewsSection";
 import GiftCardBanner from "./components/GiftCardBanner";
 import ContactSection from "./components/ContactSection";
 import Footer from "./components/Footer";
+import FAQPreview from "./components/FAQPreview";
 import { SEO } from "./components/SEO";
 
 // Lazy load non-critical components
@@ -114,6 +115,7 @@ function HomePage() {
       <ReviewsSection />
       <GiftCardBanner />
       <FeaturesSection />
+      <FAQPreview />
       <ContactSection />
       <Footer />
     </div>

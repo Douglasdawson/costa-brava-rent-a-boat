@@ -225,7 +225,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
       {/* Breadcrumbs */}
       <div className="bg-gray-50 border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
-          <Breadcrumbs 
+          <Breadcrumbs
             items={[
               { label: t.breadcrumbs.boats, href: '/#flota' },
               { label: boatData.name }
@@ -233,44 +233,65 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
           />
         </div>
       </div>
-      
-      <div className="container mx-auto px-4 pt-6 sm:pt-8 pb-6 sm:pb-8">
-        {/* Back Button */}
+
+      {/* Mini-hero */}
+      <div className="relative h-64 sm:h-80 overflow-hidden">
+        <img
+          src={getBoatImage(displayImages[0])}
+          alt={`Alquiler barco ${boatData.name} en Blanes Costa Brava`}
+          className="absolute inset-0 w-full h-full object-cover"
+          loading="eager"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-black/20" />
+
+        {/* Back button overlay */}
         {onBack && (
-          <Button
-            variant="ghost"
+          <button
             onClick={onBack}
-            className="mb-4 text-gray-600 hover:text-gray-900 text-sm sm:text-base"
+            className="absolute top-4 left-4 flex items-center gap-1.5 text-white/90 hover:text-white text-sm font-medium bg-black/30 hover:bg-black/50 rounded-full px-3 py-1.5 transition-colors"
             data-testid="button-back"
           >
-            <ArrowLeft className="w-4 h-4 mr-2" />
+            <ArrowLeft className="w-4 h-4" />
             {t.boatDetail.backToFleet}
-          </Button>
+          </button>
         )}
 
-        {/* Boat Title */}
-        <div className="text-center mb-6 sm:mb-8 px-2">
-          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-gray-900 mb-1">
+        {/* Hero content — bottom aligned */}
+        <div className="absolute bottom-0 left-0 right-0 px-4 sm:px-8 pb-5 sm:pb-7">
+          {/* License badge */}
+          <div className="mb-2">
+            <span className={`inline-block text-xs font-semibold px-3 py-1 rounded-full ${
+              requiresLicense
+                ? "bg-blue-500/90 text-white"
+                : "bg-green-500/90 text-white"
+            }`}>
+              {requiresLicense ? t.boats.withLicense : t.boats.withoutLicense}
+            </span>
+          </div>
+          <h1 className="font-heading font-bold text-white text-2xl sm:text-3xl md:text-4xl leading-tight mb-1">
             {boatData.name}
           </h1>
-          <p className="text-base sm:text-lg md:text-xl text-gray-600 mb-3">{boatData.subtitle}</p>
-          {/* Price pill — visible above the fold on all screen sizes */}
-          {lowestPrice > 0 && (
-            <div className="inline-flex items-center gap-3 bg-white border border-gray-200 rounded-full px-5 py-2 shadow-sm">
-              <span className="text-sm text-gray-500">{t.boats.from}</span>
-              <span className="text-2xl font-bold text-primary">{lowestPrice}€</span>
-              <span className="text-xs text-gray-400 bg-gray-100 rounded-full px-2 py-0.5">{t.boatDetail.seasonLow}</span>
-              <Button
-                onClick={() => handleReservation()}
-                size="sm"
-                className="bg-primary text-white rounded-full px-4 py-1 h-auto text-xs font-semibold"
-                data-testid="button-price-pill-reserve"
-              >
-                {t.hero.bookNow}
-              </Button>
-            </div>
-          )}
+          <div className="flex flex-wrap items-center gap-3 mt-2">
+            <p className="text-white/80 text-sm sm:text-base">{boatData.subtitle}</p>
+            {lowestPrice > 0 && (
+              <div className="flex items-center gap-2 bg-white/15 backdrop-blur-sm rounded-full px-4 py-1.5">
+                <span className="text-white/80 text-xs">{t.boats.from}</span>
+                <span className="text-white font-bold text-lg">{lowestPrice}€</span>
+              </div>
+            )}
+            <Button
+              onClick={() => handleReservation()}
+              size="sm"
+              className="bg-primary hover:bg-primary/90 text-white rounded-full px-5 h-8 text-xs font-semibold"
+              data-testid="button-price-pill-reserve"
+            >
+              {t.hero.bookNow}
+            </Button>
+          </div>
         </div>
+      </div>
+
+      <div className="container mx-auto px-4 pt-6 sm:pt-8 pb-6 sm:pb-8">
 
         {/* Image and Description Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 mb-6 sm:mb-8">

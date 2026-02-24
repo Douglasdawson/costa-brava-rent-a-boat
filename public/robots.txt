@@ -3,9 +3,9 @@
 
 User-agent: *
 
-# Allow public pages
+# Public pages - indexable
 Allow: /
-Allow: /barco/*
+Allow: /barco/
 Allow: /barcos-sin-licencia
 Allow: /barcos-con-licencia
 Allow: /alquiler-barcos-blanes
@@ -13,25 +13,34 @@ Allow: /alquiler-barcos-lloret-de-mar
 Allow: /alquiler-barcos-tossa-de-mar
 Allow: /faq
 Allow: /blog
-Allow: /blog/*
-Allow: /destinos/*
+Allow: /blog/
+Allow: /destinos/
 Allow: /testimonios
+Allow: /galeria
+Allow: /rutas
+Allow: /tarjetas-regalo
+Allow: /condiciones-generales
+Allow: /privacy-policy
+Allow: /terms-conditions
+Allow: /cookies-policy
 
-# Block admin and utility pages
-Disallow: /admin
-Disallow: /admin/*
+# Block admin and private areas
 Disallow: /crm
-Disallow: /crm/*
+Disallow: /crm/
 Disallow: /login
 Disallow: /mi-cuenta
-Disallow: /api/*
+Disallow: /client/
+Disallow: /booking/success
 
-# Block legacy duplicate routes
-Disallow: /destino/*
-Disallow: /categoria/*
+# Block API and utility endpoints
+Disallow: /api/
 
-# Allow search engines to access assets
-Allow: /assets/*
+# Block legacy redirect routes (canonical versions are allowed above)
+Disallow: /destino/
+Disallow: /categoria/
+
+# Allow static assets
+Allow: /assets/
 Allow: /*.css
 Allow: /*.js
 Allow: /*.jpg

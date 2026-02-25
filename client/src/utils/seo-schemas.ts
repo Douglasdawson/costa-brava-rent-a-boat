@@ -259,8 +259,9 @@ export function generateFAQPageSchema(faqs: FAQItem[]) {
   return {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    "mainEntity": faqs.map(faq => ({
+    "mainEntity": faqs.map((faq, index) => ({
       "@type": "Question",
+      "@id": `${BASE_DOMAIN}/faq#q${index + 1}`,
       "name": faq.question,
       "acceptedAnswer": {
         "@type": "Answer",
@@ -324,6 +325,7 @@ interface BlogArticle {
   dateModified?: string;
   image?: string;
   category?: string;
+  body?: string;
 }
 
 export function generateArticleSchema(article: BlogArticle) {
@@ -364,6 +366,11 @@ export function generateArticleSchema(article: BlogArticle) {
   // Add articleSection (category) if available
   if (article.category) {
     schema.articleSection = article.category;
+  }
+
+  // Add articleBody if available (improves rich result eligibility)
+  if (article.body) {
+    schema.articleBody = article.body;
   }
 
   return schema;

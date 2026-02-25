@@ -3,6 +3,18 @@ import { storage } from "../storage";
 
 const SUPPORTED_LANGUAGES = ["es", "en", "ca", "fr", "de", "nl", "it", "ru"];
 
+// RFC 5646 language tags with region codes (matches seo-config.ts HREFLANG_CODES)
+const HREFLANG_CODES: Record<string, string> = {
+  es: "es-ES",
+  en: "en-GB",
+  ca: "ca-ES",
+  fr: "fr-FR",
+  de: "de-DE",
+  nl: "nl-NL",
+  it: "it-IT",
+  ru: "ru-RU",
+};
+
 const getBaseUrl = (req?: any) => {
   if (req) {
     const protocol = req.protocol || "https";
@@ -28,10 +40,11 @@ const buildHreflangLinks = (baseUrl: string, path: string): string => {
   let links = "";
   // x-default points to the Spanish (canonical) version
   links += `    <xhtml:link rel="alternate" hreflang="x-default" href="${baseUrl}${canonicalPath}"/>\n`;
-  links += `    <xhtml:link rel="alternate" hreflang="es" href="${baseUrl}${canonicalPath}"/>\n`;
+  links += `    <xhtml:link rel="alternate" hreflang="${HREFLANG_CODES.es}" href="${baseUrl}${canonicalPath}"/>\n`;
   SUPPORTED_LANGUAGES.forEach(lang => {
     if (lang !== "es") {
-      links += `    <xhtml:link rel="alternate" hreflang="${lang}" href="${baseUrl}${canonicalPath}?lang=${lang}"/>\n`;
+      const hreflangCode = HREFLANG_CODES[lang] || lang;
+      links += `    <xhtml:link rel="alternate" hreflang="${hreflangCode}" href="${baseUrl}${canonicalPath}?lang=${lang}"/>\n`;
     }
   });
   return links;
@@ -234,9 +247,14 @@ ${boatHreflang}  </url>
 
       sitemap += generateUrlEntry(baseUrl, "/blog", "0.6", fallbackDate);
 
+      const now = Date.now();
       publishedBlogPosts.forEach(post => {
-        const postDate = formatSitemapDate((post as any).updatedAt || (post as any).publishedAt || (post as any).createdAt) || fallbackDate;
-        sitemap += generateUrlEntry(baseUrl, `/blog/${post.slug}`, "0.7", postDate);
+        const rawDate = (post as any).updatedAt || (post as any).publishedAt || (post as any).createdAt;
+        const postDate = formatSitemapDate(rawDate) || fallbackDate;
+        const ageMs = rawDate ? now - new Date(rawDate).getTime() : Infinity;
+        const ageDays = ageMs / (1000 * 60 * 60 * 24);
+        const priority = ageDays < 30 ? "0.9" : ageDays < 90 ? "0.8" : "0.7";
+        sitemap += generateUrlEntry(baseUrl, `/blog/${post.slug}`, priority, postDate);
       });
 
       sitemap += `</urlset>`;

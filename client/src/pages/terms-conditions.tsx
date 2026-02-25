@@ -291,6 +291,53 @@ export default function TermsConditionsPage() {
             </CardContent>
           </Card>
 
+          {/* Derecho de desistimiento */}
+          <Card className="mb-6 sm:mb-8">
+            <CardHeader>
+              <CardTitle className="text-xl flex items-center gap-3">
+                <ArrowLeftRight className="w-5 h-5 text-primary" />
+                Derecho de Desistimiento
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-3 text-sm text-gray-700">
+              <p>De conformidad con el artículo 16.l) de la Directiva 2011/83/UE y el Real Decreto Legislativo 1/2007, de 16 de noviembre, por el que se aprueba el Texto Refundido de la Ley General para la Defensa de los Consumidores y Usuarios (TRLGDCU), <strong>el derecho de desistimiento de 14 días no es aplicable</strong> a los contratos de servicios de alquiler de embarcaciones recreativas para una fecha o período concreto.</p>
+              <p>Esto se debe a que los servicios de alquiler náutico están vinculados a actividades de ocio en fechas específicas, excepción expresamente prevista en el art. 103.l) del TRLGDCU.</p>
+              <p>Para cancelaciones y cambios, consulta nuestra{" "}
+                <a href="/terms-conditions#cancelaciones-cambios" className="text-primary underline">
+                  Política de Cancelación
+                </a>.
+              </p>
+            </CardContent>
+          </Card>
+
+          {/* Resolución de disputas — ODR */}
+          <Card className="mb-6 sm:mb-8">
+            <CardHeader>
+              <CardTitle className="text-xl flex items-center gap-3">
+                <Scale className="w-5 h-5 text-primary" />
+                Resolución de Litigios en Línea (ODR)
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-3 text-sm text-gray-700">
+              <p>De conformidad con el Reglamento (UE) N.º 524/2013, si usted es consumidor residente en la Unión Europea y tiene una reclamación respecto a un servicio contratado a través de internet, puede utilizar la plataforma de Resolución de Litigios en Línea de la Comisión Europea:</p>
+              <p>
+                <a
+                  href="https://ec.europa.eu/consumers/odr"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-primary underline break-all"
+                >
+                  https://ec.europa.eu/consumers/odr
+                </a>
+              </p>
+              <p>Nuestro email de contacto para reclamaciones:{" "}
+                <a href="mailto:costabravarentboat@gmail.com" className="text-primary underline">
+                  costabravarentboat@gmail.com
+                </a>
+              </p>
+            </CardContent>
+          </Card>
+
           {/* Legislación */}
           <Card className="mb-6 sm:mb-8">
             <CardHeader>

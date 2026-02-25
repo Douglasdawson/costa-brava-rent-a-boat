@@ -80,6 +80,9 @@ export interface BookingWizardMobileProps {
   // Price & submit
   getBookingPrice: () => number | null;
   handleBookingSearch: () => Promise<void>;
+  // RGPD consent
+  privacyConsent: boolean;
+  setPrivacyConsent: (v: boolean) => void;
   // Validation
   showFieldError: (field: string) => boolean;
   getFieldError: (field: string) => string;
@@ -226,10 +229,10 @@ export default function BookingWizardMobile(props: BookingWizardMobileProps) {
               await handleBookingSearch();
               setIsSubmitting(false);
             }}
-            disabled={isSubmitting || props.isValidatingCode}
+            disabled={isSubmitting || props.isValidatingCode || !props.privacyConsent}
             aria-label="Enviar solicitud de reserva por WhatsApp"
             aria-busy={isSubmitting || props.isValidatingCode}
-            className="flex-1 py-5 text-sm font-semibold bg-[#25D366] hover:bg-[#1ebe5d] text-white border-0"
+            className="flex-1 py-5 text-sm font-semibold bg-[#25D366] hover:bg-[#1ebe5d] text-white border-0 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {isSubmitting || props.isValidatingCode
               ? <Loader2 className="w-4 h-4 mr-2 animate-spin" aria-hidden="true" />
@@ -726,6 +729,7 @@ function Step4Confirm({
   isValidatingCode, validatedCode, codeError, handleValidateCode, handleRemoveCode,
   getCodeDiscount, getBookingPrice,
   calculatePackSavings, iconMap,
+  privacyConsent, setPrivacyConsent,
   t, isSpanishLang, language,
 }: BookingWizardMobileProps) {
   const basePrice = getBookingPrice();
@@ -958,6 +962,28 @@ function Step4Confirm({
           <p className="text-xs opacity-60 mt-1">{t.booking.priceConfirmedWhatsApp}</p>
         </div>
       )}
+      {/* RGPD consent */}
+      <label className="flex items-start gap-3 cursor-pointer">
+        <input
+          type="checkbox"
+          checked={privacyConsent}
+          onChange={(e) => setPrivacyConsent(e.target.checked)}
+          className="mt-0.5 w-4 h-4 accent-primary flex-shrink-0"
+          aria-required="true"
+          id="wizard-privacy-consent"
+        />
+        <span className="text-xs text-gray-600" id="wizard-privacy-consent-label">
+          He leído y acepto la{" "}
+          <a href="/privacy-policy" target="_blank" rel="noopener noreferrer" className="text-primary underline">
+            Política de Privacidad
+          </a>{" "}
+          y los{" "}
+          <a href="/terms-conditions" target="_blank" rel="noopener noreferrer" className="text-primary underline">
+            Términos y Condiciones
+          </a>
+          . Consiento el tratamiento de mis datos para gestionar mi reserva (RGPD Art. 6.1.b).
+        </span>
+      </label>
     </div>
   );
 }

@@ -45,8 +45,10 @@ const RoutesPage = lazy(() => import("@/pages/routes"));
 const GiftCardsPage = lazy(() => import("@/pages/gift-cards"));
 const NotFound = lazy(() => import("@/pages/not-found"));
 const OnboardingPage = lazy(() => import("@/pages/OnboardingPage"));
+const AccessibilityDeclarationPage = lazy(() => import("@/pages/accessibility-declaration"));
 import { useLanguage } from "@/hooks/use-language";
 import WhatsAppFloatingButton from "./components/WhatsAppFloatingButton";
+import CookieBanner from "./components/CookieBanner";
 import { usePrefetchCriticalRoutes } from "@/hooks/usePrefetch";
 import { 
   getSEOConfig, 
@@ -332,6 +334,7 @@ function Router() {
         <Route path="/privacy-policy" component={PrivacyPolicyPageWrapper} />
         <Route path="/terms-conditions" component={TermsConditionsPageWrapper} />
         <Route path="/cookies-policy" component={CookiesPolicyPageWrapper} />
+        <Route path="/accesibilidad" component={AccessibilityDeclarationPage} />
         <Route path="/alquiler-barcos-blanes" component={LocationBlanesPageWrapper} />
         <Route path="/alquiler-barcos-lloret-de-mar" component={LocationLloretPageWrapper} />
         <Route path="/alquiler-barcos-tossa-de-mar" component={LocationTossaPageWrapper} />
@@ -365,6 +368,7 @@ function App() {
               <Toaster />
               <Router />
               <WhatsAppFloatingButton />
+              <CookieBanner />
             </TooltipProvider>
           </BookingModalProvider>
         </LanguageProvider>

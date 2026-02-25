@@ -221,6 +221,16 @@ export default function Footer() {
                   {t.footer.cookiesPolicy}
                 </a>
               </li>
+              <li>
+                <a
+                  href="/accesibilidad"
+                  className="block py-1 underline decoration-gray-500/50 hover:text-primary hover:decoration-primary transition-colors"
+                  data-testid="footer-accessibility-link"
+                  aria-label="Ver declaración de accesibilidad"
+                >
+                  Accesibilidad
+                </a>
+              </li>
             </ul>
           </div>
 
@@ -266,6 +276,13 @@ export default function Footer() {
           
           <p className="text-xs text-gray-400 text-center">
             © {currentYear} Costa Brava Rent a Boat Blanes. {t.footer.rights}
+          </p>
+          {/* AVISO: Sustituye XXXXXXXXX por tu NIF/NIE real antes de publicar */}
+          <p className="text-xs text-gray-600 text-center mt-1">
+            NIF: XXXXXXXXX · Puerto de Blanes, Girona, España ·{" "}
+            <a href="/privacy-policy" className="underline hover:text-gray-400 transition-colors">Privacidad</a>
+            {" · "}
+            <a href="/cookies-policy" className="underline hover:text-gray-400 transition-colors">Cookies</a>
           </p>
         </div>
       </div>

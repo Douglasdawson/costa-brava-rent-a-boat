@@ -1,4 +1,4 @@
-import { Shield } from "lucide-react";
+import { Shield, User, Database, Clock, Lock, Mail, Globe, FileText } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
@@ -15,7 +15,6 @@ export default function PrivacyPolicyPage() {
   const hreflangLinks = generateHreflangLinks('privacyPolicy');
   const canonical = generateCanonicalUrl('privacyPolicy', language);
 
-  // Generate breadcrumb schema with localized names
   const breadcrumbSchema = generateBreadcrumbSchema([
     { name: t.breadcrumbs.home, url: "/" },
     { name: t.breadcrumbs.privacyPolicy, url: "/privacy-policy" }
@@ -23,7 +22,7 @@ export default function PrivacyPolicyPage() {
 
   return (
     <div className="min-h-screen">
-      <SEO 
+      <SEO
         title={seoConfig.title}
         description={seoConfig.description}
         canonical={canonical}
@@ -31,11 +30,11 @@ export default function PrivacyPolicyPage() {
         jsonLd={breadcrumbSchema}
       />
       <Navigation />
-      
+
       {/* Breadcrumbs */}
       <div className="bg-gray-50 border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
-          <Breadcrumbs 
+          <Breadcrumbs
             items={[
               { label: 'breadcrumbs.home', href: '/' },
               { label: 'breadcrumbs.privacyPolicy' }
@@ -43,147 +42,239 @@ export default function PrivacyPolicyPage() {
           />
         </div>
       </div>
-      
+
       {/* Hero Section */}
       <div className="bg-gradient-to-br from-blue-50 to-teal-50 pt-20 sm:pt-24 pb-8">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="flex items-center justify-center mb-6">
-            <Shield className="w-8 h-8 text-primary mr-4" />
+          <div className="flex items-center justify-center mb-4">
+            <Shield className="w-8 h-8 text-primary mr-4" aria-hidden="true" />
             <h1 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold text-gray-900">
               Política de Privacidad
             </h1>
           </div>
+          <p className="text-sm text-gray-500">Última actualización: febrero de 2026</p>
         </div>
       </div>
 
       {/* Content */}
       <div className="pt-6 pb-10 sm:pt-8 sm:pb-16 bg-gray-50">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          
-          {/* Política de Cookies */}
-          <Card className="mb-6 sm:mb-8">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+
+          {/* 1. Responsable del tratamiento */}
+          <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-3 text-xl">
-                <Shield className="w-6 h-6 text-primary" />
-                Política de Cookies
+                <User className="w-5 h-5 text-primary" aria-hidden="true" />
+                1. Responsable del tratamiento
               </CardTitle>
             </CardHeader>
-            <CardContent className="space-y-6">
-              
-              <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-3">¿Qué son las cookies?</h3>
-                <div className="space-y-3 text-sm text-gray-700">
-                  <p>Las cookies son pequeños archivos de datos que se reciben en el terminal desde el sitio Web visitado y se usan para registrar ciertas interacciones de la navegación en un sitio Web almacenando datos que podrán ser actualizados y recuperados. Estos archivos se almacenan en el ordenador del usuario y contiene datos anónimos que no son perjudiciales para su equipo.</p>
-                  <p>Se utilizan para recordar las preferencias del usuario, como el idioma seleccionado, datos de acceso o personalización de la página. También pueden ser utilizadas para registrar información anónima acerca de cómo un visitante utiliza un sitio.</p>
-                </div>
-              </div>
-
-              <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-3">¿Por qué Costa Brava Rent a Boat utiliza cookies?</h3>
-                <div className="space-y-3 text-sm text-gray-700">
-                  <p>Costa Brava Rent a Boat - Blanes utiliza cookies estrictamente necesarias y esenciales para que usted utilice nuestro sitio Web y le permitan moverse libremente, utilizar áreas seguras, opciones personalizadas, etc.</p>
-                  <p>Además, utilizamos cookies que recogen datos relativos al análisis de uso de la Web para ayudar a mejorar el servicio al cliente, midiendo el uso y el rendimiento de la página, para optimizarla y personalizarla.</p>
-                  <p>Nuestro sitio también pueden tener enlaces de redes sociales (como Facebook o Twitter). Costa Brava Rent a Boat - Blanes no controla las cookies utilizadas por estas Web externas.</p>
-                </div>
-              </div>
-
+            <CardContent className="text-sm text-gray-700 space-y-2">
+              <p><strong>Identidad:</strong> Costa Brava Rent a Boat</p>
+              {/* AVISO: Sustituye XXXXXXXXX por tu NIF/NIE real */}
+              <p><strong>NIF:</strong> XXXXXXXXX</p>
+              <p><strong>Domicilio:</strong> Puerto de Blanes, Girona, España</p>
+              <p><strong>Teléfono:</strong> +34 611 500 372</p>
+              <p><strong>Email de contacto:</strong>{" "}
+                <a href="mailto:costabravarentboat@gmail.com" className="text-primary underline">
+                  costabravarentboat@gmail.com
+                </a>
+              </p>
+              <p className="text-xs text-gray-500 bg-yellow-50 border border-yellow-200 rounded p-2">
+                <strong>Nota:</strong> En cumplimiento del art. 10 LSSI-CE y art. 13 RGPD, el responsable del tratamiento es la persona física o jurídica titular del negocio. Sustituye «XXXXXXXXX» por el NIF/NIE correspondiente antes de publicar.
+              </p>
             </CardContent>
           </Card>
 
-          {/* Tipos de Cookies */}
-          <Card className="mb-6 sm:mb-8">
+          {/* 2. Datos que recopilamos */}
+          <Card>
             <CardHeader>
-              <CardTitle className="text-xl">
-                Tipos de Cookies que Utilizamos
+              <CardTitle className="flex items-center gap-3 text-xl">
+                <Database className="w-5 h-5 text-primary" aria-hidden="true" />
+                2. Datos personales que recopilamos
               </CardTitle>
             </CardHeader>
-            <CardContent className="space-y-6">
-              
+            <CardContent className="text-sm text-gray-700 space-y-4">
               <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-3">Según su finalidad:</h3>
-                <div className="space-y-4">
-                  <div>
-                    <h4 className="font-medium text-gray-900 mb-2">Cookies técnicas</h4>
-                    <p className="text-sm text-gray-700">Son aquellas imprescindibles y estrictamente necesarias para el correcto funcionamiento de un portal Web y la utilización de las diferentes opciones y servicios que ofrece. Por ejemplo, las que sirven para el mantenimiento de la sesión, la gestión del tiempo de respuesta, rendimiento o validación de opciones.</p>
-                  </div>
-                  <div>
-                    <h4 className="font-medium text-gray-900 mb-2">Cookies de personalización</h4>
-                    <p className="text-sm text-gray-700">Permiten al usuario especificar o personalizar algunas características de las opciones generales de la página Web. Por ejemplo, definir el idioma, configuración regional o tipo de navegador.</p>
-                  </div>
-                  <div>
-                    <h4 className="font-medium text-gray-900 mb-2">Cookies analíticas</h4>
-                    <p className="text-sm text-gray-700">Son utilizadas para elaborar perfiles de navegación y poder conocer las preferencias de los usuarios con el fin de mejorar la oferta de productos y servicios. Por ejemplo, controlar las áreas geográficas de mayor interés o el producto de más aceptación.</p>
-                  </div>
-                  <div>
-                    <h4 className="font-medium text-gray-900 mb-2">Cookies publicitarias</h4>
-                    <p className="text-sm text-gray-700">Permiten la gestión de los espacios publicitarios en base a criterios concretos. Las cookies de publicidad permiten almacenar información del comportamiento a través de la observación de hábitos, estudiando los accesos y formando un perfil de preferencias del usuario.</p>
-                  </div>
-                </div>
+                <h3 className="font-semibold mb-2">Datos facilitados por el usuario al realizar una reserva:</h3>
+                <ul className="list-disc pl-5 space-y-1">
+                  <li>Nombre y apellidos</li>
+                  <li>Número de teléfono</li>
+                  <li>Dirección de correo electrónico</li>
+                  <li>Fecha y hora de la reserva, embarcación seleccionada y número de personas</li>
+                </ul>
               </div>
-
               <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-3">Según plazo:</h3>
-                <div className="space-y-4">
-                  <div>
-                    <h4 className="font-medium text-gray-900 mb-2">Cookies de sesión</h4>
-                    <p className="text-sm text-gray-700">Son aquellas que duran el tiempo que el usuario está navegando por la página Web y se borran al término.</p>
-                  </div>
-                  <div>
-                    <h4 className="font-medium text-gray-900 mb-2">Cookies persistentes</h4>
-                    <p className="text-sm text-gray-700">Quedan almacenadas en el terminal del usuario por un tiempo más largo, facilitando así el control de las preferencias elegidas sin tener que repetir ciertos parámetros cada vez que se visite el sitio Web.</p>
-                  </div>
-                </div>
+                <h3 className="font-semibold mb-2">Datos recopilados automáticamente:</h3>
+                <ul className="list-disc pl-5 space-y-1">
+                  <li>Datos de navegación (dirección IP, tipo de navegador, páginas visitadas) mediante Google Analytics</li>
+                  <li>Cookies técnicas y de preferencia (idioma seleccionado)</li>
+                </ul>
               </div>
-
+              <p>No recopilamos datos de categorías especiales (salud, origen racial, opiniones políticas, etc.) ni datos de menores de 14 años.</p>
             </CardContent>
           </Card>
 
-          {/* Gestión de Cookies */}
-          <Card className="mb-6 sm:mb-8">
+          {/* 3. Finalidad y base jurídica */}
+          <Card>
             <CardHeader>
-              <CardTitle className="text-xl">
-                Gestión y Control de Cookies
+              <CardTitle className="flex items-center gap-3 text-xl">
+                <FileText className="w-5 h-5 text-primary" aria-hidden="true" />
+                3. Finalidad del tratamiento y base jurídica
               </CardTitle>
             </CardHeader>
-            <CardContent className="space-y-6">
-              
-              <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-3">¿Y si no quiero tener estas cookies?</h3>
-                <div className="space-y-3 text-sm text-gray-700">
-                  <p>Para cumplir con la legislación vigente, tenemos que pedir su permiso para gestionar cookies. Si decide no autorizar el tratamiento, sólo usaríamos las cookies técnicas, puesto que son imprescindibles para la navegación por nuestra Web.</p>
-                  <p>Tenga en cuenta que si rechaza o borra las cookies de navegación por la Web, no podremos mantener sus preferencias, algunas características de las páginas no estarán operativas, no podremos ofrecerle servicios personalizados y cada vez que vaya a navegar por nuestra Web tendremos que solicitarle de nuevo su autorización para el uso de cookies.</p>
-                </div>
+            <CardContent className="text-sm text-gray-700 space-y-4">
+              <div className="overflow-x-auto">
+                <table className="w-full text-xs border-collapse">
+                  <thead>
+                    <tr className="bg-gray-100">
+                      <th className="text-left p-2 border border-gray-200 font-semibold">Finalidad</th>
+                      <th className="text-left p-2 border border-gray-200 font-semibold">Base jurídica (RGPD)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td className="p-2 border border-gray-200">Gestión y confirmación de reservas de embarcaciones</td>
+                      <td className="p-2 border border-gray-200">Art. 6.1.b — ejecución de un contrato</td>
+                    </tr>
+                    <tr className="bg-gray-50">
+                      <td className="p-2 border border-gray-200">Envío de recordatorios y comunicaciones relativas a la reserva</td>
+                      <td className="p-2 border border-gray-200">Art. 6.1.b — ejecución de un contrato</td>
+                    </tr>
+                    <tr>
+                      <td className="p-2 border border-gray-200">Atención al cliente y resolución de incidencias</td>
+                      <td className="p-2 border border-gray-200">Art. 6.1.b — ejecución de un contrato / Art. 6.1.f — interés legítimo</td>
+                    </tr>
+                    <tr className="bg-gray-50">
+                      <td className="p-2 border border-gray-200">Análisis estadístico del tráfico web (Google Analytics)</td>
+                      <td className="p-2 border border-gray-200">Art. 6.1.a — consentimiento (banner de cookies)</td>
+                    </tr>
+                    <tr>
+                      <td className="p-2 border border-gray-200">Cumplimiento de obligaciones legales y fiscales</td>
+                      <td className="p-2 border border-gray-200">Art. 6.1.c — obligación legal</td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
-
-              <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-3">Cómo deshabilitar las cookies en los navegadores:</h3>
-                <div className="space-y-2">
-                  <ul className="list-disc pl-6 space-y-2 text-sm text-gray-700">
-                    <li><strong>Microsoft Internet Explorer:</strong> Herramientas → Opciones de Internet → Privacidad → Configuración</li>
-                    <li><strong>Firefox:</strong> Herramientas → Opciones → Privacidad → Cookies</li>
-                    <li><strong>Chrome:</strong> Configuración → Mostrar opciones avanzadas → Privacidad → Configuración de contenido</li>
-                    <li><strong>Safari:</strong> Preferencias → Seguridad</li>
-                  </ul>
-                  <p className="text-sm text-gray-600 mt-3">Para otros navegadores, consulte las instrucciones específicas del navegador en la sección de "Privacidad" o "Configuración".</p>
-                </div>
-              </div>
-
+              <p className="text-xs text-gray-500">No tomamos decisiones automatizadas ni elaboramos perfiles con fines de segmentación publicitaria a partir de tus datos de reserva.</p>
             </CardContent>
           </Card>
 
-          {/* Información Adicional */}
-          <Card className="mb-6 sm:mb-8">
+          {/* 4. Plazos de conservación */}
+          <Card>
             <CardHeader>
-              <CardTitle className="text-xl">
-                Compromiso con la Transparencia
+              <CardTitle className="flex items-center gap-3 text-xl">
+                <Clock className="w-5 h-5 text-primary" aria-hidden="true" />
+                4. Plazos de conservación
               </CardTitle>
             </CardHeader>
-            <CardContent>
-              <div className="space-y-3 text-sm text-gray-700">
-                <p>Si acepta nuestras cookies, nos permite la mejora de la Web de Costa Brava Rent a Boat - Blanes para ofrecerle un acceso óptimo y darle un servicio más eficaz y personalizado.</p>
-                <p>Además, usted puede configurar su navegador para establecer que sólo los sitios Web de confianza o las páginas por las que está navegando en este momento puedan gestionar cookies, lo que le permite seleccionar sus preferencias.</p>
-                <p>Proporcionando esta política, Costa Brava Rent a Boat - Blanes demuestra el compromiso adquirido con la legislación vigente sobre el uso de cookies, proporcionándole información para que usted pueda comprender qué tipo de cookies utilizamos y por qué lo hacemos.</p>
+            <CardContent className="text-sm text-gray-700 space-y-2">
+              <ul className="list-disc pl-5 space-y-2">
+                <li><strong>Datos de reserva:</strong> Se conservan durante 5 años desde la fecha del servicio, en cumplimiento de las obligaciones fiscales (RD 1619/2012, Ley 58/2003 General Tributaria).</li>
+                <li><strong>Comunicaciones por WhatsApp/email:</strong> 1 año desde la última comunicación, salvo reclamación en curso.</li>
+                <li><strong>Datos de análisis web (Google Analytics):</strong> Según la configuración de retención de Google Analytics (por defecto, 14 meses).</li>
+                <li><strong>Cookies de sesión:</strong> Se eliminan al cerrar el navegador.</li>
+              </ul>
+            </CardContent>
+          </Card>
+
+          {/* 5. Destinatarios */}
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-3 text-xl">
+                <Globe className="w-5 h-5 text-primary" aria-hidden="true" />
+                5. Destinatarios y transferencias internacionales
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="text-sm text-gray-700 space-y-4">
+              <p>Tus datos pueden ser comunicados a los siguientes terceros encargados del tratamiento:</p>
+              <ul className="list-disc pl-5 space-y-2">
+                <li><strong>SendGrid (Twilio Inc., EE. UU.):</strong> Servicio de envío de emails de confirmación y recordatorios de reserva. Transferencia internacional amparada en las Cláusulas Contractuales Tipo aprobadas por la Comisión Europea.</li>
+                <li><strong>Google LLC (EE. UU.):</strong> Google Analytics (análisis de tráfico web) y Google Tag Manager. Solo si el usuario ha dado su consentimiento a través del banner de cookies. Transferencia amparada en el Marco de Privacidad de Datos UE-EE. UU.</li>
+                <li><strong>Stripe Inc. (EE. UU.):</strong> Procesamiento de pagos con tarjeta, en su caso. No almacenamos datos de tarjeta; Stripe actúa como encargado independiente bajo PCI-DSS.</li>
+                <li><strong>WhatsApp (Meta Platforms Ireland Ltd.):</strong> Canal de comunicación para gestión de reservas. Las comunicaciones iniciadas por el usuario en WhatsApp están sujetas a la política de privacidad de WhatsApp.</li>
+              </ul>
+              <p>No vendemos ni cedemos tus datos a terceros con fines comerciales.</p>
+            </CardContent>
+          </Card>
+
+          {/* 6. Derechos */}
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-3 text-xl">
+                <Lock className="w-5 h-5 text-primary" aria-hidden="true" />
+                6. Tus derechos (ARCO+)
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="text-sm text-gray-700 space-y-4">
+              <p>En virtud de los artículos 15 a 22 del RGPD y la LOPD-GDD, tienes derecho a:</p>
+              <ul className="list-disc pl-5 space-y-2">
+                <li><strong>Acceso:</strong> Obtener confirmación sobre si tratamos tus datos y, en su caso, una copia.</li>
+                <li><strong>Rectificación:</strong> Solicitar la corrección de datos inexactos.</li>
+                <li><strong>Supresión («derecho al olvido»):</strong> Pedir la eliminación de tus datos cuando ya no sean necesarios para los fines para los que fueron recogidos, salvo obligación legal de conservación.</li>
+                <li><strong>Oposición:</strong> Oponerte al tratamiento basado en interés legítimo.</li>
+                <li><strong>Limitación del tratamiento:</strong> Solicitar que suspendamos el tratamiento mientras se resuelve una reclamación.</li>
+                <li><strong>Portabilidad:</strong> Recibir tus datos en formato estructurado y legible por máquina.</li>
+                <li><strong>Retirada del consentimiento:</strong> Puedes retirar en cualquier momento el consentimiento prestado (p. ej., para cookies analíticas) sin que ello afecte a la licitud del tratamiento previo.</li>
+              </ul>
+              <div className="bg-blue-50 border-l-4 border-primary rounded p-3">
+                <p><strong>Cómo ejercer tus derechos:</strong> Envía un email a{" "}
+                  <a href="mailto:costabravarentboat@gmail.com" className="text-primary underline">
+                    costabravarentboat@gmail.com
+                  </a>{" "}
+                  indicando el derecho que deseas ejercer y adjuntando copia de tu DNI u otro documento identificativo. Responderemos en el plazo máximo de 1 mes.
+                </p>
               </div>
+              <p>Si consideras que el tratamiento no es conforme al RGPD, tienes derecho a presentar una reclamación ante la <strong>Agencia Española de Protección de Datos (AEPD)</strong>:{" "}
+                <a href="https://www.aepd.es" target="_blank" rel="noopener noreferrer" className="text-primary underline">
+                  www.aepd.es
+                </a>
+              </p>
+            </CardContent>
+          </Card>
+
+          {/* 7. Medidas de seguridad */}
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-3 text-xl">
+                <Shield className="w-5 h-5 text-primary" aria-hidden="true" />
+                7. Medidas de seguridad
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="text-sm text-gray-700 space-y-2">
+              <p>Aplicamos medidas técnicas y organizativas adecuadas para proteger tus datos contra accesos no autorizados, pérdida o destrucción accidental, conforme al art. 32 RGPD:</p>
+              <ul className="list-disc pl-5 space-y-1">
+                <li>Transmisión cifrada mediante HTTPS (TLS 1.2+)</li>
+                <li>Acceso restringido a los datos mediante autenticación</li>
+                <li>Cabeceras de seguridad HTTP (Content-Security-Policy, X-Frame-Options, etc.)</li>
+                <li>Limitación de velocidad de peticiones (rate limiting) para prevenir ataques</li>
+              </ul>
+            </CardContent>
+          </Card>
+
+          {/* 8. Cookies */}
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-3 text-xl">
+                <Mail className="w-5 h-5 text-primary" aria-hidden="true" />
+                8. Cookies
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="text-sm text-gray-700">
+              <p>Para información detallada sobre las cookies que utilizamos, consulta nuestra{" "}
+                <a href="/cookies-policy" className="text-primary underline">
+                  Política de Cookies
+                </a>.
+              </p>
+            </CardContent>
+          </Card>
+
+          {/* 9. Cambios */}
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-xl">9. Cambios en esta política</CardTitle>
+            </CardHeader>
+            <CardContent className="text-sm text-gray-700">
+              <p>Podemos actualizar esta política de privacidad para reflejar cambios legales o en nuestros servicios. Te notificaremos los cambios relevantes mediante un aviso en la web. La fecha de última actualización siempre aparecerá al inicio de este documento.</p>
             </CardContent>
           </Card>
 

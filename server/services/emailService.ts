@@ -129,7 +129,15 @@ function bookingDetailsTable(data: BookingEmailData): string {
     </tr>
     ${extrasHtml}
     <tr>
-      <td style="padding:10px 12px; color:#1e3a5f; font-size:15px; font-weight:700; border-top:2px solid #2563eb;">Total</td>
+      <td style="padding:8px 12px; color:#475569; font-size:13px; border-bottom:1px solid #f1f5f9;">Base imponible (sin IVA)</td>
+      <td style="padding:8px 12px; color:#475569; font-size:13px; border-bottom:1px solid #f1f5f9; text-align:right;">${(parseFloat(booking.totalAmount) / 1.21).toFixed(2)} EUR</td>
+    </tr>
+    <tr>
+      <td style="padding:8px 12px; color:#475569; font-size:13px; border-bottom:1px solid #e2e8f0;">IVA (21%)</td>
+      <td style="padding:8px 12px; color:#475569; font-size:13px; border-bottom:1px solid #e2e8f0; text-align:right;">${(parseFloat(booking.totalAmount) - parseFloat(booking.totalAmount) / 1.21).toFixed(2)} EUR</td>
+    </tr>
+    <tr>
+      <td style="padding:10px 12px; color:#1e3a5f; font-size:15px; font-weight:700; border-top:2px solid #2563eb;">Total (IVA incluido)</td>
       <td style="padding:10px 12px; color:#1e3a5f; font-size:15px; font-weight:700; border-top:2px solid #2563eb; text-align:right;">${parseFloat(booking.totalAmount).toFixed(2)} EUR</td>
     </tr>
   </table>`;

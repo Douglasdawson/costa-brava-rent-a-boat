@@ -34,6 +34,7 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
     timeSlots,
     getBookingPrice,
     handleBookingSearch,
+    privacyConsent, setPrivacyConsent,
     showFieldError, getFieldError, handleBlur,
     t,
   } = props;
@@ -397,6 +398,28 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
             </div>
           )}
 
+          {/* RGPD consent */}
+          <label className="flex items-start gap-3 cursor-pointer">
+            <input
+              type="checkbox"
+              checked={privacyConsent}
+              onChange={(e) => setPrivacyConsent(e.target.checked)}
+              className="mt-0.5 w-4 h-4 accent-primary flex-shrink-0"
+              aria-required="true"
+              id="desktop-privacy-consent"
+            />
+            <span className="text-xs text-gray-600">
+              He leído y acepto la{" "}
+              <a href="/privacy-policy" target="_blank" rel="noopener noreferrer" className="text-primary underline">
+                Política de Privacidad
+              </a>{" "}
+              y los{" "}
+              <a href="/terms-conditions" target="_blank" rel="noopener noreferrer" className="text-primary underline">
+                Términos y Condiciones
+              </a>
+            </span>
+          </label>
+
           <Button
             type="button"
             onClick={async () => {
@@ -404,8 +427,8 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
               await handleBookingSearch();
               setIsSubmitting(false);
             }}
-            disabled={isSubmitting}
-            className="w-full py-5 text-sm font-semibold bg-[#25D366] hover:bg-[#1ebe5d] text-white border-0"
+            disabled={isSubmitting || !privacyConsent}
+            className="w-full py-5 text-sm font-semibold bg-[#25D366] hover:bg-[#1ebe5d] text-white border-0 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {isSubmitting
               ? <Loader2 className="w-4 h-4 mr-2 animate-spin" />

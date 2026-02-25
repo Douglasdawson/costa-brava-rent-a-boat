@@ -131,6 +131,9 @@ export default function BookingFormWidget({ preSelectedBoatId, prefillDate, pref
   const [selectedPack, setSelectedPack] = useState<string | null>(null);
   const [showExtras, setShowExtras] = useState(false);
 
+  // RGPD consent
+  const [privacyConsent, setPrivacyConsent] = useState(false);
+
   // Gift card / discount code state
   const [showCodeSection, setShowCodeSection] = useState(false);
   const [codeInput, setCodeInput] = useState("");
@@ -797,6 +800,7 @@ Looking forward to confirmation. Thanks!`;
     getCodeDiscount,
     getBookingPrice,
     handleBookingSearch,
+    privacyConsent, setPrivacyConsent,
     showFieldError,
     getFieldError,
     handleBlur,

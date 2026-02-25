@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import { useMemo } from "react";
 import BoatCard from "./BoatCard";
 import { openWhatsApp } from "@/utils/whatsapp";
 import { useLocation } from "wouter";
@@ -19,13 +20,13 @@ export default function FleetSection() {
     queryKey: ['/api/boats'],
   });
 
-  // Transform API data to BoatCard format
-  const boats = (boatsData || [])
+  // Transform API data to BoatCard format — memoized to avoid recalculation on every render
+  const boats = useMemo(() => (boatsData || [])
     .filter(boat => boat.isActive)
     .sort((a, b) => (a.displayOrder ?? 999) - (b.displayOrder ?? 999))
     .map(boat => {
       // Base price from BAJA season
-      const basePrice = boat.pricing?.BAJA?.prices 
+      const basePrice = boat.pricing?.BAJA?.prices
         ? Math.min(...Object.values(boat.pricing.BAJA.prices))
         : 0;
 
@@ -40,7 +41,7 @@ export default function FleetSection() {
         imageAlt: `Alquiler barco ${boat.name} ${boat.requiresLicense ? "con licencia" : "sin licencia"} en Blanes Costa Brava 2026 - Capacidad ${boat.capacity} personas`,
         capacity: boat.capacity,
         requiresLicense: boat.requiresLicense,
-        description: boat.description 
+        description: boat.description
           ? (boat.description.length > 150 ? boat.description.substring(0, 150) + "..." : boat.description)
           : '',
         basePrice,
@@ -49,7 +50,7 @@ export default function FleetSection() {
         available: true,
         enginePower: enginePower
       };
-    });
+    }), [boatsData]);
 
   const handleBooking = (boatId: string) => {
     openBookingModal(boatId);

@@ -1,4 +1,4 @@
-import { useState, useEffect, lazy, Suspense, Component } from "react";
+import { useState, useEffect, useRef, lazy, Suspense, Component } from "react";
 import { Switch, Route, useSearch, useLocation, useRoute, Redirect } from "wouter";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider, useQuery } from "@tanstack/react-query";
@@ -188,6 +188,8 @@ function CRMDashboardPage() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [adminToken, setAdminToken] = useState<string | null>(null);
   const [, setLocation] = useLocation();
+  const setLocationRef = useRef(setLocation);
+  useEffect(() => { setLocationRef.current = setLocation; });
 
   // Check for existing session on mount
   useEffect(() => {
@@ -224,7 +226,7 @@ function CRMDashboardPage() {
         } else {
           // Refresh failed - session expired
           sessionStorage.clear();
-          setLocation("/login");
+          setLocationRef.current("/login");
         }
       } catch {
         // Silent failure on refresh
@@ -232,7 +234,7 @@ function CRMDashboardPage() {
     }, 50 * 60 * 1000); // Refresh every 50 minutes (token expires in 60)
 
     return () => clearInterval(refreshInterval);
-  }, [isAuthenticated, setLocation]);
+  }, [isAuthenticated]); // setLocation is stable via ref — no interval thrashing
 
   if (!isAuthenticated) {
     return null; // Will redirect in useEffect

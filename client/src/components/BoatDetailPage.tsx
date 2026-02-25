@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useMemo } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -89,7 +89,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
     queryKey: ['/api/boats']
   });
 
-  const boatData = boats?.find(boat => boat.id === boatId);
+  const boatData = useMemo(() => boats?.find(boat => boat.id === boatId), [boats, boatId]);
   
   if (isLoading) {
     return (
@@ -241,6 +241,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
           alt={`Alquiler barco ${boatData.name} en Blanes Costa Brava`}
           className="absolute inset-0 w-full h-full object-cover"
           loading="eager"
+          fetchPriority="high"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-black/20" />
 

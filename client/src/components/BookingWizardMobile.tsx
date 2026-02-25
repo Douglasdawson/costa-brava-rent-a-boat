@@ -269,34 +269,37 @@ function Step1Boat({
         <p className="text-sm text-gray-500">{t.wizard.haveNauticalLicense}</p>
       </div>
       {!preSelectedBoatId && (
-        <div role="group" aria-label="Filtrar por licencia náutica" className="flex gap-2">
-          <button
-            type="button"
-            role="radio"
-            aria-checked={licenseFilter === "without"}
-            onClick={() => setLicenseFilter("without")}
-            className={`flex-1 py-3 rounded-xl text-sm font-semibold border-2 transition-all ${
-              licenseFilter === "without"
-                ? "border-primary bg-primary text-white"
-                : "border-gray-200 text-gray-600"
-            }`}
-          >
-            {t.wizard.withoutLicense}
-          </button>
-          <button
-            type="button"
-            role="radio"
-            aria-checked={licenseFilter === "with"}
-            onClick={() => setLicenseFilter("with")}
-            className={`flex-1 py-3 rounded-xl text-sm font-semibold border-2 transition-all ${
-              licenseFilter === "with"
-                ? "border-primary bg-primary text-white"
-                : "border-gray-200 text-gray-600"
-            }`}
-          >
-            {t.wizard.withLicense}
-          </button>
-        </div>
+        <fieldset className="border-0 p-0 m-0">
+          <legend className="sr-only">Filtrar por licencia náutica</legend>
+          <div role="radiogroup" aria-label="Filtrar por licencia náutica" className="flex gap-2">
+            <button
+              type="button"
+              role="radio"
+              aria-checked={licenseFilter === "without"}
+              onClick={() => setLicenseFilter("without")}
+              className={`flex-1 py-3 rounded-xl text-sm font-semibold border-2 transition-all ${
+                licenseFilter === "without"
+                  ? "border-primary bg-primary text-white"
+                  : "border-gray-200 text-gray-600"
+              }`}
+            >
+              {t.wizard.withoutLicense}
+            </button>
+            <button
+              type="button"
+              role="radio"
+              aria-checked={licenseFilter === "with"}
+              onClick={() => setLicenseFilter("with")}
+              className={`flex-1 py-3 rounded-xl text-sm font-semibold border-2 transition-all ${
+                licenseFilter === "with"
+                  ? "border-primary bg-primary text-white"
+                  : "border-gray-200 text-gray-600"
+              }`}
+            >
+              {t.wizard.withLicense}
+            </button>
+          </div>
+        </fieldset>
       )}
       <div>
         <label className="block text-sm font-semibold text-gray-700 mb-2">

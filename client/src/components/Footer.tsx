@@ -43,7 +43,7 @@ export default function Footer() {
               {t.footer.description}
             </p>
             <div className="flex items-center space-x-2 text-xs mb-6">
-              <div className={`w-2 h-2 rounded-full ${isOperatingSeason() ? 'bg-green-400' : 'bg-red-400'}`}></div>
+              <div className={`w-2 h-2 rounded-full ${isOperatingSeason() ? 'bg-green-400' : 'bg-red-400'}`} aria-hidden="true"></div>
               <span>{t.footer.operatingSeason}</span>
             </div>
             

@@ -127,8 +127,13 @@ export default function BoatCard({
           )}
           <Tooltip>
             <TooltipTrigger asChild>
-              <div className="flex items-center cursor-help">
-                <Clock className="w-3 h-3 sm:w-4 sm:h-4 mr-1" />
+              <div
+                className="flex items-center cursor-help"
+                tabIndex={0}
+                role="note"
+                aria-label={tooltipText}
+              >
+                <Clock className="w-3 h-3 sm:w-4 sm:h-4 mr-1" aria-hidden="true" />
                 <span>{requiresLicense ? t.boats.hoursWithLicense : t.boats.hours}</span>
               </div>
             </TooltipTrigger>

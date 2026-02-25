@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -147,28 +147,29 @@ function CompanySettingsSection({
   const [form, setForm] = useState<Partial<TenantData>>({});
   const [loaded, setLoaded] = useState(false);
 
-  const { isLoading } = useQuery<{ tenant: TenantData }>({
+  const { isLoading, data: tenantData } = useQuery<{ tenant: TenantData }>({
     queryKey: ["/api/tenant/settings"],
     queryFn: async () => {
       const res = await fetch("/api/tenant/settings", { headers });
       if (!res.ok) throw new Error("Error al cargar configuracion");
       return res.json();
     },
-    onSuccess: (data: { tenant: TenantData }) => {
-      if (!loaded) {
-        setForm({
-          name: data.tenant.name,
-          email: data.tenant.email,
-          phone: data.tenant.phone,
-          address: data.tenant.address,
-          logo: data.tenant.logo,
-          primaryColor: data.tenant.primaryColor || "#0077B6",
-          secondaryColor: data.tenant.secondaryColor || "#00B4D8",
-        });
-        setLoaded(true);
-      }
-    },
-  } as Parameters<typeof useQuery>[0]);
+  });
+
+  useEffect(() => {
+    if (tenantData && !loaded) {
+      setForm({
+        name: tenantData.tenant.name,
+        email: tenantData.tenant.email,
+        phone: tenantData.tenant.phone,
+        address: tenantData.tenant.address,
+        logo: tenantData.tenant.logo,
+        primaryColor: tenantData.tenant.primaryColor || "#0077B6",
+        secondaryColor: tenantData.tenant.secondaryColor || "#00B4D8",
+      });
+      setLoaded(true);
+    }
+  }, [tenantData, loaded]);
 
   const saveMutation = useMutation({
     mutationFn: async (data: Partial<TenantData>) => {

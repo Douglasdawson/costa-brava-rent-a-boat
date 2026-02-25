@@ -276,7 +276,7 @@ export function ReportsTab({ adminToken }: ReportsTabProps) {
                         <CartesianGrid strokeDasharray="3 3" />
                         <XAxis dataKey="name" fontSize={12} />
                         <YAxis fontSize={12} />
-                        <Tooltip formatter={(value: number) => `${value.toFixed(0)} EUR`} />
+                        <Tooltip formatter={(value: number | undefined) => value !== undefined ? `${value.toFixed(0)} EUR` : ""} />
                         <Bar dataKey="revenue" name="Ingresos" fill="#3b82f6" radius={[4, 4, 0, 0]} />
                         <Bar dataKey="maintenance" name="Mantenimiento" fill="#ef4444" radius={[4, 4, 0, 0]} />
                       </BarChart>

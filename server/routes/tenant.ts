@@ -18,7 +18,7 @@ const updateTenantSettingsSchema = z.object({
     timezone: z.string(),
     currency: z.string(),
     languages: z.array(z.string()),
-  }).partial().optional(),
+  }).optional(),
 });
 
 const inviteUserSchema = z.object({

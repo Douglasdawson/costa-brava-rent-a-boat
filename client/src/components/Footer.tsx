@@ -34,7 +34,7 @@ export default function Footer() {
               data-testid="footer-logo-button"
               aria-label="Ir a la página principal"
             >
-              <Anchor className="w-5 h-5 sm:w-6 sm:h-6 text-primary flex-shrink-0" />
+              <Anchor className="w-5 h-5 sm:w-6 sm:h-6 text-primary flex-shrink-0" aria-hidden="true" />
               <span className="font-heading font-bold text-white text-sm sm:text-base">
                 Costa Brava Rent a Boat
               </span>

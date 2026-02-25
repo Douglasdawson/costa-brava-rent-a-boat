@@ -280,13 +280,6 @@ export default function TestimoniosPage() {
                       </Badge>
                     </div>
 
-                    {/* Occasion */}
-                    <div className="flex items-center gap-2">
-                      <span className="text-xs font-medium text-gray-500">Ocasión:</span>
-                      <span className="text-xs bg-blue-50 text-blue-700 px-2 py-1 rounded">
-                        {testimonial.occasion}
-                      </span>
-                    </div>
 
                     {/* Comment */}
                     <div className="relative">
@@ -304,7 +297,7 @@ export default function TestimoniosPage() {
                       onClick={() => setLocation(`/barco/${testimonial.boatId}`)}
                       data-testid={`button-view-boat-${testimonial.id}`}
                     >
-                      Ver {testimonial.boat}
+                      Ver {testimonial.boatName ?? "barco"}
                     </Button>
                   </div>
                 </CardContent>

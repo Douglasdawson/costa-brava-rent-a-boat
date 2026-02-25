@@ -67,7 +67,7 @@ export default function Hero() {
                 className="bg-primary hover:bg-primary/90 text-white shadow-2xl px-8 py-6 text-lg rounded-lg"
                 data-testid="button-hero-cta"
               >
-                <CalendarDays className="w-5 h-5 mr-2" />
+                <CalendarDays className="w-5 h-5 mr-2" aria-hidden="true" />
                 {t.hero.bookNow}
               </Button>
               <a href="#fleet">
@@ -84,7 +84,7 @@ export default function Hero() {
             {/* Trust Indicators */}
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 text-white/90 text-xs sm:text-sm bg-white/10 backdrop-blur-sm rounded-lg p-3 sm:p-4">
               <div className="flex items-center space-x-2">
-                <Star className="w-4 h-4 text-yellow-400 fill-current flex-shrink-0" />
+                <Star className="w-4 h-4 text-yellow-400 fill-current flex-shrink-0" aria-hidden="true" />
                 <a
                   href="https://www.google.com/maps/place/Costa+Brava+Rent+a+Boat+-+Blanes+%7C+Alquiler+de+Barcos+Con+y+Sin+Licencia/@41.6722544,2.7952876,17z/data=!3m1!4b1!4m6!3m5!1s0x12bb172c94a8856f:0x9a2dfa936ef2e0a7!8m2!3d41.6722504!4d2.7978625!16s%2Fg%2F11q2xl6s9f?entry=ttu&g_ep=EgoyMDI1MDkxNy4wIKXMDSoASAFQAw%3D%3D"
                   target="_blank"
@@ -96,7 +96,7 @@ export default function Hero() {
                 </a>
               </div>
               <div className="flex items-center space-x-2">
-                <CheckCircle className="w-4 h-4 text-green-400 flex-shrink-0" />
+                <CheckCircle className="w-4 h-4 text-green-400 flex-shrink-0" aria-hidden="true" />
                 <a
                   href="https://www.google.com/maps/place/Costa+Brava+Rent+a+Boat+-+Blanes+%7C+Alquiler+de+Barcos+Con+y+Sin+Licencia/@41.6722544,2.7952876,17z/data=!3m1!4b1!4m6!3m5!1s0x12bb172c94a8856f:0x9a2dfa936ef2e0a7!8m2!3d41.6722504!4d2.7978625!16s%2Fg%2F11q2xl6s9f?entry=ttu&g_ep=EgoyMDI1MDkxNy4wIKXMDSoASAFQAw%3D%3D"
                   target="_blank"

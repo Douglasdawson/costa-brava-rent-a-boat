@@ -562,12 +562,14 @@ function Step3PersonalData({
           placeholder="Juan"
           autoComplete="given-name"
           maxLength={100}
+          aria-invalid={showFieldError('firstName') ? "true" : "false"}
+          aria-describedby={showFieldError('firstName') ? "error-wizard-firstname" : undefined}
           className={`w-full p-3 border-2 rounded-xl bg-white text-gray-900 font-medium text-sm focus:ring-2 focus:ring-primary ${
             showFieldError('firstName') ? 'border-red-500' : 'border-gray-200'
           }`}
         />
         {showFieldError('firstName') && (
-          <p className="text-xs text-red-500 mt-1">{getFieldError('firstName')}</p>
+          <p id="error-wizard-firstname" className="text-xs text-red-500 mt-1">{getFieldError('firstName')}</p>
         )}
       </div>
       <div>
@@ -583,12 +585,14 @@ function Step3PersonalData({
           placeholder="Garcia Lopez"
           autoComplete="family-name"
           maxLength={100}
+          aria-invalid={showFieldError('lastName') ? "true" : "false"}
+          aria-describedby={showFieldError('lastName') ? "error-wizard-lastname" : undefined}
           className={`w-full p-3 border-2 rounded-xl bg-white text-gray-900 font-medium text-sm focus:ring-2 focus:ring-primary ${
             showFieldError('lastName') ? 'border-red-500' : 'border-gray-200'
           }`}
         />
         {showFieldError('lastName') && (
-          <p className="text-xs text-red-500 mt-1">{getFieldError('lastName')}</p>
+          <p id="error-wizard-lastname" className="text-xs text-red-500 mt-1">{getFieldError('lastName')}</p>
         )}
       </div>
       <div>
@@ -643,13 +647,15 @@ function Step3PersonalData({
             placeholder="612345678"
             autoComplete="tel"
             maxLength={15}
+            aria-invalid={showFieldError('phone') ? "true" : "false"}
+            aria-describedby={showFieldError('phone') ? "error-wizard-phone" : undefined}
             className={`flex-1 p-3 border-2 rounded-xl bg-white text-gray-900 font-medium text-sm focus:ring-2 focus:ring-primary ${
               showFieldError('phone') ? 'border-red-500' : 'border-gray-200'
             }`}
           />
         </div>
         {showFieldError('phone') && (
-          <p className="text-xs text-red-500 mt-1">{getFieldError('phone')}</p>
+          <p id="error-wizard-phone" className="text-xs text-red-500 mt-1">{getFieldError('phone')}</p>
         )}
       </div>
       <div>
@@ -666,12 +672,14 @@ function Step3PersonalData({
           placeholder="tu@email.com"
           autoComplete="email"
           maxLength={254}
+          aria-invalid={showFieldError('email') ? "true" : "false"}
+          aria-describedby={showFieldError('email') ? "error-wizard-email" : undefined}
           className={`w-full p-3 border-2 rounded-xl bg-white text-gray-900 font-medium text-sm focus:ring-2 focus:ring-primary ${
             showFieldError('email') ? 'border-red-500' : 'border-gray-200'
           }`}
         />
         {showFieldError('email') && (
-          <p className="text-xs text-red-500 mt-1">{getFieldError('email')}</p>
+          <p id="error-wizard-email" className="text-xs text-red-500 mt-1">{getFieldError('email')}</p>
         )}
       </div>
     </div>

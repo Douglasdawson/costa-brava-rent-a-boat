@@ -282,9 +282,11 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
                     placeholder={t.wizard.firstName}
                     autoComplete="given-name"
                     maxLength={100}
+                    aria-invalid={showFieldError('firstName') ? "true" : "false"}
+                    aria-describedby={showFieldError('firstName') ? "error-firstName" : undefined}
                     className={`${inputBase} ${showFieldError('firstName') ? inputError : inputNormal}`}
                   />
-                  {showFieldError('firstName') && <p className="text-xs text-red-500 mt-0.5">{getFieldError('firstName')}</p>}
+                  {showFieldError('firstName') && <p id="error-firstName" className="text-xs text-red-500 mt-0.5">{getFieldError('firstName')}</p>}
                 </div>
                 <div>
                   <input
@@ -295,9 +297,11 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
                     placeholder={t.wizard.lastName}
                     autoComplete="family-name"
                     maxLength={100}
+                    aria-invalid={showFieldError('lastName') ? "true" : "false"}
+                    aria-describedby={showFieldError('lastName') ? "error-lastName" : undefined}
                     className={`${inputBase} ${showFieldError('lastName') ? inputError : inputNormal}`}
                   />
-                  {showFieldError('lastName') && <p className="text-xs text-red-500 mt-0.5">{getFieldError('lastName')}</p>}
+                  {showFieldError('lastName') && <p id="error-lastName" className="text-xs text-red-500 mt-0.5">{getFieldError('lastName')}</p>}
                 </div>
               </div>
               <div className="flex gap-2">
@@ -344,9 +348,11 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
                     placeholder={t.wizard.phone}
                     autoComplete="tel"
                     maxLength={15}
+                    aria-invalid={showFieldError('phone') ? "true" : "false"}
+                    aria-describedby={showFieldError('phone') ? "error-phone" : undefined}
                     className={`${inputBase} ${showFieldError('phone') ? inputError : inputNormal}`}
                   />
-                  {showFieldError('phone') && <p className="text-xs text-red-500 mt-0.5">{getFieldError('phone')}</p>}
+                  {showFieldError('phone') && <p id="error-phone" className="text-xs text-red-500 mt-0.5">{getFieldError('phone')}</p>}
                 </div>
               </div>
               <div>
@@ -358,9 +364,11 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
                   placeholder={t.wizard.email}
                   autoComplete="email"
                   maxLength={254}
+                  aria-invalid={showFieldError('email') ? "true" : "false"}
+                  aria-describedby={showFieldError('email') ? "error-email" : undefined}
                   className={`${inputBase} ${showFieldError('email') ? inputError : inputNormal}`}
                 />
-                {showFieldError('email') && <p className="text-xs text-red-500 mt-0.5">{getFieldError('email')}</p>}
+                {showFieldError('email') && <p id="error-email" className="text-xs text-red-500 mt-0.5">{getFieldError('email')}</p>}
               </div>
             </div>
           </div>

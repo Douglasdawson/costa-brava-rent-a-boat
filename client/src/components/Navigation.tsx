@@ -159,7 +159,7 @@ export default function Navigation() {
             data-testid="brand-logo"
             aria-label="Ir a la página principal de Costa Brava Rent a Boat Blanes"
           >
-            <Anchor className="w-6 h-6 sm:w-8 sm:h-8 text-primary" />
+            <Anchor className="w-6 h-6 sm:w-8 sm:h-8 text-primary" aria-hidden="true" />
             <span className="font-heading font-bold text-sm sm:text-lg lg:text-xl text-gray-900">
               <span className="md:hidden">Rent a Boat</span>
               <span className="hidden md:inline xl:hidden">Costa Brava Rent a Boat</span>

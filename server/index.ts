@@ -8,6 +8,21 @@ import { setupVite, serveStatic, log } from "./vite";
 const app = express();
 const isDev = process.env.NODE_ENV === "development";
 
+// Validate critical environment variables at startup
+const REQUIRED_ENV_VARS = ["DATABASE_URL", "JWT_SECRET", "ADMIN_PIN"] as const;
+for (const envVar of REQUIRED_ENV_VARS) {
+  if (!process.env[envVar]) {
+    console.error(`[Startup] FATAL: Missing required environment variable: ${envVar}`);
+    process.exit(1);
+  }
+}
+const OPTIONAL_ENV_VARS = ["STRIPE_SECRET_KEY", "SENDGRID_API_KEY", "OPENAI_API_KEY", "TWILIO_ACCOUNT_SID"];
+for (const envVar of OPTIONAL_ENV_VARS) {
+  if (!process.env[envVar]) {
+    console.warn(`[Startup] WARNING: Optional environment variable not set: ${envVar} — related features will be disabled`);
+  }
+}
+
 // Security headers (disabled in development — CSP blocks HTTP localhost)
 if (!isDev) {
   app.use(helmet({
@@ -23,6 +38,7 @@ if (!isDev) {
         frameSrc: ["'self'", "https://js.stripe.com", "https://www.googletagmanager.com"],
       }
     },
+    referrerPolicy: { policy: "strict-origin-when-cross-origin" },
     crossOriginEmbedderPolicy: false,
   }));
 }

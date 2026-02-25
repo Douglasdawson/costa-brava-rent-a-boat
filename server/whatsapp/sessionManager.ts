@@ -4,6 +4,11 @@ import { detectLanguage } from "./intentDetector";
 import { CHATBOT_STATES, type ChatbotState, type ChatbotConversation } from "@shared/schema";
 import type { SupportedLanguage } from "./translations";
 
+/** Returns a masked phone number for safe logging, e.g. "***1234" */
+function maskPhone(phone: string): string {
+  return phone.length > 4 ? `***${phone.slice(-4)}` : "***";
+}
+
 export interface SessionContext {
   lastIntent?: string;
   lastBoatViewed?: string;
@@ -35,9 +40,9 @@ export async function getSession(
       currentState: CHATBOT_STATES.WELCOME,
     });
 
-    console.log(`[Session] New conversation created for ${normalizedPhone}, language: ${language}`);
+    console.log(`[Session] New conversation created for ${maskPhone(normalizedPhone)}, language: ${language}`);
   } else {
-    console.log(`[Session] Existing conversation found for ${normalizedPhone}, state: ${conversation.currentState}`);
+    console.log(`[Session] Existing conversation found for ${maskPhone(normalizedPhone)}, state: ${conversation.currentState}`);
   }
 
   return conversation;
@@ -61,7 +66,7 @@ export async function updateState(
   const conversation = await storage.updateChatbotConversation(normalizedPhone, updates);
 
   if (conversation) {
-    console.log(`[Session] State updated for ${normalizedPhone}: ${newState}`);
+    console.log(`[Session] State updated for ${maskPhone(normalizedPhone)}: ${newState}`);
   }
 
   return conversation;
@@ -81,7 +86,7 @@ export async function updateSessionLanguage(
   });
   
   if (conversation) {
-    console.log(`[Session] Language updated for ${normalizedPhone}: ${language}`);
+    console.log(`[Session] Language updated for ${maskPhone(normalizedPhone)}: ${language}`);
   }
   
   return conversation;
@@ -132,7 +137,7 @@ export async function updateBookingData(
  */
 export async function resetSession(phoneNumber: string): Promise<ChatbotConversation | undefined> {
   const normalizedPhone = phoneNumber.replace("whatsapp:", "");
-  console.log(`[Session] Resetting conversation for ${normalizedPhone}`);
+  console.log(`[Session] Resetting conversation for ${maskPhone(normalizedPhone)}`);
   return await storage.resetChatbotConversation(normalizedPhone);
 }
 

@@ -16,7 +16,6 @@ export function registerBoatRoutes(app: Express) {
   app.get("/api/boats", async (req, res) => {
     try {
       const boats = await storage.getAllBoats();
-      console.log("API /api/boats - Retrieved boats count:", boats.length);
       res.setHeader('Cache-Control', 'public, max-age=60, s-maxage=300');
       res.json(boats);
     } catch (error: unknown) {

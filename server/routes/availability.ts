@@ -137,7 +137,7 @@ export function registerAvailabilityRoutes(app: Express) {
         ical += `DTEND:${end}\r\n`;
         ical += `DTSTAMP:${created}\r\n`;
         ical += `SUMMARY:${boatName} - ${booking.customerName} ${booking.customerSurname}\r\n`;
-        ical += `DESCRIPTION:Cliente: ${booking.customerName} ${booking.customerSurname}\\nTel: ${booking.customerPhone}\\nPersonas: ${booking.numberOfPeople}\\nTotal: ${booking.totalAmount}€\r\n`;
+        ical += `DESCRIPTION:Cliente: ${booking.customerName} ${booking.customerSurname}\\nPersonas: ${booking.numberOfPeople}\\nTotal: ${booking.totalAmount}€\r\n`;
         ical += `LOCATION:Puerto de Blanes\\, Girona\\, Spain\r\n`;
         ical += `STATUS:CONFIRMED\r\n`;
         ical += `END:VEVENT\r\n`;

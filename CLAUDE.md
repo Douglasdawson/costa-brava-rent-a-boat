@@ -149,7 +149,7 @@ const [updated] = await db
 - **Ubicación**: Puerto de Blanes, Girona, España
 - **Teléfono**: +34 611 500 372
 - **Email**: costabravarentboat@gmail.com
-- **PIN Admin CRM**: 0760
+- **PIN Admin CRM**: ver variable de entorno ADMIN_PIN en el servidor
 
 ## Preguntas Frecuentes del Desarrollo
 

@@ -23,7 +23,7 @@ Preferred communication style: Simple, everyday language.
 ### Backend
 - **Server**: Express.js with TypeScript on Node.js.
 - **API**: RESTful endpoints.
-- **Authentication**: PIN-protected CRM (PIN 0760) with token-based sessions and role-based access; Replit Auth (OIDC) for customer login.
+- **Authentication**: PIN-protected CRM (PIN: ver .env) with token-based sessions and role-based access; Replit Auth (OIDC) for customer login.
 
 ### Data Storage
 - **Database**: PostgreSQL via Neon serverless database.

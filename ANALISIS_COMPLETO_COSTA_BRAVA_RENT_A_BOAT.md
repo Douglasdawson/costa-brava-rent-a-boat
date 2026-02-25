@@ -51,7 +51,7 @@ Costa Brava Rent a Boat es una empresa de alquiler de embarcaciones en el Puerto
 
 **Fortalezas**: Plataforma tecnologica superior a competencia local (React+TypeScript+Stripe+OpenAI), SEO 8 idiomas con hreflang y JSON-LD, chatbot WhatsApp con IA y RAG, precios competitivos (desde 70 EUR, gasolina incluida), flexibilidad horaria (1-8h), sistema de reservas robusto con holds temporales, CRM completo.
 
-**Debilidades**: Chatbot no cierra ventas, autenticacion admin con PIN fijo (0760), archivos monoliticos (CRMDashboard 1534 lineas, BookingFlow 1401 lineas), sin tests automatizados, sin CI/CD, SendGrid sin integrar, temporada limitada a 7 meses.
+**Debilidades**: Chatbot no cierra ventas, autenticacion admin con PIN fijo (ver .env), archivos monoliticos (CRMDashboard 1534 lineas, BookingFlow 1401 lineas), sin tests automatizados, sin CI/CD, SendGrid sin integrar, temporada limitada a 7 meses.
 
 **Oportunidades**: Completar conversion WhatsApp-a-Reserva (+15-25% conversiones), mercado turistico internacional via SEO, landing pages locales existentes para optimizar, sistema de cupones (campo ya existe en DB), expansion blog, programa de fidelidad, GetYourGuide/Civitatis.
 

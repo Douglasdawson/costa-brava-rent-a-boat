@@ -16,7 +16,7 @@
 
 ### Seguridad
 - [ ] **Mejorar autenticación admin**
-  - Actualmente: PIN fijo (0760)
+  - Actualmente: PIN fijo (ver .env)
   - Implementar: JWT con refresh tokens o session-based auth
 
 ### Código

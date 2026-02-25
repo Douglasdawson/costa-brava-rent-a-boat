@@ -43,7 +43,7 @@ contact_messages, sessions, notification_settings, routes, route_waypoints, dest
 ### Sistema Actual (Dual)
 
 **Legacy (activo en produccion):**
-- PIN admin (0760) via `/api/admin/login`
+- PIN admin (ver .env) via `/api/admin/login`
 - Username/password via `/api/admin/login-user`
 - Replit Auth OIDC para clientes
 

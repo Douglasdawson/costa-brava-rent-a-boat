@@ -201,7 +201,7 @@ PATCH /api/customer/profile        # Actualizar perfil
 GET   /api/customer/bookings       # Mis reservas
 ```
 
-### 5.3 Admin (PIN: 0760)
+### 5.3 Admin (PIN: ver variable de entorno ADMIN_PIN)
 ```
 POST   /api/admin/login            # Login con PIN
 GET    /api/admin/bookings         # Todas las reservas
@@ -360,7 +360,7 @@ OPENAI_API_KEY=sk-...
 
 # Admin
 ADMIN_TOKEN=your-secure-token
-ADMIN_PIN=0760
+ADMIN_PIN=<tu-pin-seguro>
 
 # Replit Auth
 ISSUER_URL=https://replit.com/auth/oauth
@@ -421,7 +421,7 @@ npm run db:push
 - ⚠️ Sin tests automatizados
 - ⚠️ Sin ESLint/Prettier configurado
 - ⚠️ Archivos grandes: CRMDashboard.tsx (114KB), routes.ts (70KB)
-- ⚠️ PIN admin fijo (0760)
+- ⚠️ PIN admin fijo (configurar en variable de entorno ADMIN_PIN)
 - ⚠️ Booking desde WhatsApp no crea reserva real
 - ⚠️ Offer Schema SEO: rangos discontinuos se fusionan
 

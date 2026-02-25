@@ -154,7 +154,7 @@ export default function Footer() {
               <li>
                 <a
                   href="/blog"
-                  className="block py-1 hover:text-primary transition-colors"
+                  className="block py-1 underline decoration-gray-500/50 hover:text-primary hover:decoration-primary transition-colors"
                   data-testid="footer-blog-link"
                   aria-label="Ver artículos del blog"
                 >
@@ -164,7 +164,7 @@ export default function Footer() {
               <li>
                 <a
                   href="/faq"
-                  className="block py-1 hover:text-primary transition-colors"
+                  className="block py-1 underline decoration-gray-500/50 hover:text-primary hover:decoration-primary transition-colors"
                   data-testid="footer-faq-link"
                   aria-label="Ver preguntas frecuentes"
                 >
@@ -174,7 +174,7 @@ export default function Footer() {
               <li>
                 <a
                   href="/testimonios"
-                  className="block py-1 hover:text-primary transition-colors"
+                  className="block py-1 underline decoration-gray-500/50 hover:text-primary hover:decoration-primary transition-colors"
                   data-testid="footer-testimonials-link"
                   aria-label="Ver opiniones de clientes"
                 >
@@ -184,7 +184,7 @@ export default function Footer() {
               <li>
                 <a
                   href="/terms-conditions"
-                  className="block py-1 hover:text-primary transition-colors"
+                  className="block py-1 underline decoration-gray-500/50 hover:text-primary hover:decoration-primary transition-colors"
                   data-testid="footer-terms-link"
                   aria-label="Ver términos y condiciones del servicio"
                 >
@@ -194,7 +194,7 @@ export default function Footer() {
               <li>
                 <a
                   href="/terms-conditions#cancelaciones-cambios"
-                  className="block py-1 hover:text-primary transition-colors"
+                  className="block py-1 underline decoration-gray-500/50 hover:text-primary hover:decoration-primary transition-colors"
                   data-testid="footer-cancellation-link"
                   aria-label="Ver política de cancelaciones y cambios"
                 >
@@ -204,7 +204,7 @@ export default function Footer() {
               <li>
                 <a
                   href="/privacy-policy"
-                  className="block py-1 hover:text-primary transition-colors"
+                  className="block py-1 underline decoration-gray-500/50 hover:text-primary hover:decoration-primary transition-colors"
                   data-testid="footer-privacy-link"
                   aria-label="Ver política de privacidad"
                 >
@@ -214,7 +214,7 @@ export default function Footer() {
               <li>
                 <a
                   href="/cookies-policy"
-                  className="block py-1 hover:text-primary transition-colors"
+                  className="block py-1 underline decoration-gray-500/50 hover:text-primary hover:decoration-primary transition-colors"
                   data-testid="footer-cookies-link"
                   aria-label="Ver política de cookies"
                 >
@@ -228,13 +228,13 @@ export default function Footer() {
           <div>
             <h3 className="font-semibold text-white mb-4 text-sm">{t.footer.services}</h3>
             <ul className="space-y-2 text-xs">
-              <li><a href="/barcos-sin-licencia" className="block py-1 hover:text-primary transition-colors">{t.boats.withoutLicense}</a></li>
-              <li><a href="/barcos-con-licencia" className="block py-1 hover:text-primary transition-colors">{t.boats.withLicense}</a></li>
-              <li><a href="#fleet" className="block py-1 hover:text-primary transition-colors">{t.footer.extrasSnorkel}</a></li>
-              <li><a href="#fleet" className="block py-1 hover:text-primary transition-colors">{t.footer.extrasPaddle}</a></li>
-              <li><a href="#fleet" className="block py-1 hover:text-primary transition-colors">{t.footer.extrasSeascooter}</a></li>
-              <li><a href="#fleet" className="block py-1 hover:text-primary transition-colors">{t.footer.hourlyRental}</a></li>
-              <li><a href="#contact" className="block py-1 hover:text-primary transition-colors">{t.footer.portParking}</a></li>
+              <li><a href="/barcos-sin-licencia" className="block py-1 underline decoration-gray-500/50 hover:text-primary hover:decoration-primary transition-colors">{t.boats.withoutLicense}</a></li>
+              <li><a href="/barcos-con-licencia" className="block py-1 underline decoration-gray-500/50 hover:text-primary hover:decoration-primary transition-colors">{t.boats.withLicense}</a></li>
+              <li><a href="#fleet" className="block py-1 underline decoration-gray-500/50 hover:text-primary hover:decoration-primary transition-colors">{t.footer.extrasSnorkel}</a></li>
+              <li><a href="#fleet" className="block py-1 underline decoration-gray-500/50 hover:text-primary hover:decoration-primary transition-colors">{t.footer.extrasPaddle}</a></li>
+              <li><a href="#fleet" className="block py-1 underline decoration-gray-500/50 hover:text-primary hover:decoration-primary transition-colors">{t.footer.extrasSeascooter}</a></li>
+              <li><a href="#fleet" className="block py-1 underline decoration-gray-500/50 hover:text-primary hover:decoration-primary transition-colors">{t.footer.hourlyRental}</a></li>
+              <li><a href="#contact" className="block py-1 underline decoration-gray-500/50 hover:text-primary hover:decoration-primary transition-colors">{t.footer.portParking}</a></li>
             </ul>
           </div>
 

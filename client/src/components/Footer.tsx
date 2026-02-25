@@ -228,8 +228,8 @@ export default function Footer() {
           <div>
             <h3 className="font-semibold text-white mb-4 text-sm">{t.footer.services}</h3>
             <ul className="space-y-2 text-xs">
-              <li><a href="#fleet" className="block py-1 hover:text-primary transition-colors">{t.boats.withoutLicense}</a></li>
-              <li><a href="#fleet" className="block py-1 hover:text-primary transition-colors">{t.boats.withLicense}</a></li>
+              <li><a href="/barcos-sin-licencia" className="block py-1 hover:text-primary transition-colors">{t.boats.withoutLicense}</a></li>
+              <li><a href="/barcos-con-licencia" className="block py-1 hover:text-primary transition-colors">{t.boats.withLicense}</a></li>
               <li><a href="#fleet" className="block py-1 hover:text-primary transition-colors">{t.footer.extrasSnorkel}</a></li>
               <li><a href="#fleet" className="block py-1 hover:text-primary transition-colors">{t.footer.extrasPaddle}</a></li>
               <li><a href="#fleet" className="block py-1 hover:text-primary transition-colors">{t.footer.extrasSeascooter}</a></li>

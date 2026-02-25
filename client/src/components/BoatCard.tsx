@@ -66,7 +66,7 @@ export default function BoatCard({
       >
         {imageError ? (
           <div className="w-full h-48 flex items-center justify-center">
-            <Anchor className="w-12 h-12 text-gray-400" />
+            <Anchor className="w-12 h-12 text-gray-400" aria-hidden="true" />
           </div>
         ) : (
           <img

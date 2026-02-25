@@ -252,7 +252,11 @@ export default function Navigation() {
         </div>
 
         {/* Mobile/tablet Navigation */}
-        <div className={`lg:hidden border-t border-gray-200 bg-white/95 backdrop-blur-md overflow-hidden transition-all duration-200 ease-in-out ${isOpen ? "max-h-[600px] opacity-100 py-3" : "max-h-0 opacity-0 py-0"}`}>
+        <nav
+          aria-label="Menú de navegación móvil"
+          aria-hidden={!isOpen}
+          className={`lg:hidden border-t border-gray-200 bg-white/95 backdrop-blur-md overflow-hidden transition-all duration-200 ease-in-out ${isOpen ? "max-h-[600px] opacity-100 py-3" : "max-h-0 opacity-0 py-0"}`}
+        >
             <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
               {navigationItems.map((item) => {
                 const baseClass = "px-4 py-2.5 text-gray-700 hover:text-primary hover:bg-gray-50 transition-colors w-full text-left font-medium block";
@@ -320,7 +324,7 @@ export default function Navigation() {
                 <LanguageSelector variant="minimal" />
               </div>
             </div>
-        </div>
+        </nav>
       </div>
     </nav>
   );

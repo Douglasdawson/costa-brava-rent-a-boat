@@ -228,6 +228,7 @@ export default function BookingWizardMobile(props: BookingWizardMobileProps) {
             }}
             disabled={isSubmitting || props.isValidatingCode}
             aria-label="Enviar solicitud de reserva por WhatsApp"
+            aria-busy={isSubmitting || props.isValidatingCode}
             className="flex-1 py-5 text-sm font-semibold bg-[#25D366] hover:bg-[#1ebe5d] text-white border-0"
           >
             {isSubmitting || props.isValidatingCode
@@ -777,6 +778,8 @@ function Step4Confirm({
           <button
             type="button"
             onClick={() => setShowExtras(!showExtras)}
+            aria-expanded={showExtras}
+            aria-controls="extras-panel"
             className="w-full flex items-center justify-between p-4 text-sm font-semibold text-gray-800 bg-gray-50"
           >
             <span className="flex items-center gap-2">
@@ -791,7 +794,7 @@ function Step4Confirm({
             {showExtras ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
           </button>
           {showExtras && (
-            <div className="p-4 space-y-4 bg-white">
+            <div id="extras-panel" className="p-4 space-y-4 bg-white">
               {/* Packs */}
               <div>
                 <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">{t.booking.extrasSection.packs}</p>
@@ -799,6 +802,7 @@ function Step4Confirm({
                   <button
                     type="button"
                     onClick={() => handlePackSelect("")}
+                    aria-pressed={!selectedPack}
                     className={`w-full p-3 rounded-xl border-2 text-left text-sm transition-all ${!selectedPack ? 'border-primary bg-primary/5' : 'border-gray-200'}`}
                   >
                     {t.booking.extrasSection.noPack}
@@ -812,6 +816,7 @@ function Step4Confirm({
                         key={pack.id}
                         type="button"
                         onClick={() => handlePackSelect(pack.id)}
+                        aria-pressed={isSelected}
                         className={`w-full p-3 rounded-xl border-2 text-left transition-all ${isSelected ? 'border-primary bg-primary/5' : 'border-gray-200 bg-white'}`}
                       >
                         <div className="flex items-center justify-between">
@@ -845,6 +850,7 @@ function Step4Confirm({
                         type="button"
                         onClick={() => handleExtraToggle(extra.name)}
                         disabled={isInPack}
+                        aria-pressed={isChecked || isInPack}
                         className={`flex items-center gap-2 p-2.5 rounded-xl border-2 text-left transition-all ${
                           isInPack ? 'border-primary/40 bg-primary/10 opacity-75 cursor-not-allowed'
                           : isChecked ? 'border-primary bg-primary/5'
@@ -872,6 +878,8 @@ function Step4Confirm({
         <button
           type="button"
           onClick={() => setShowCodeSection(!showCodeSection)}
+          aria-expanded={showCodeSection}
+          aria-controls="code-panel"
           className="w-full flex items-center justify-between p-4 text-sm font-semibold text-gray-800 bg-gray-50"
         >
           <span className="flex items-center gap-2">
@@ -884,7 +892,7 @@ function Step4Confirm({
           {showCodeSection ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
         </button>
         {showCodeSection && (
-          <div className="p-4 bg-white">
+          <div id="code-panel" className="p-4 bg-white">
             {!validatedCode ? (
               <div className="space-y-2">
                 <div className="flex gap-2">

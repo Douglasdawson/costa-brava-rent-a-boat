@@ -52,7 +52,7 @@ export default function LanguageSelector({ variant = 'button', className = '' }:
           <Button
             variant="ghost"
             size="sm"
-            className={`w-10 h-10 p-0 hover-elevate ${className}`}
+            className={`w-11 h-11 p-0 hover-elevate ${className}`}
             data-testid="button-language-selector"
           >
             <Globe className="w-4 h-4" />

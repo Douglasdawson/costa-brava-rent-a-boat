@@ -158,7 +158,7 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
                   <CalendarIcon className="w-4 h-4 text-primary flex-shrink-0" />
                   {selectedDate
                     ? new Date(selectedDate + 'T00:00:00').toLocaleDateString('es-ES', { day: '2-digit', month: 'short', year: 'numeric' })
-                    : <span className="text-gray-400">{t.wizard.selectDate}</span>
+                    : <span className="text-gray-500">{t.wizard.selectDate}</span>
                   }
                 </button>
               </PopoverTrigger>
@@ -222,6 +222,9 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
                 value={preferredTime}
                 onChange={(e) => setPreferredTime(e.target.value)}
                 onBlur={() => handleBlur('time')}
+                aria-required="true"
+                aria-invalid={showFieldError('time') ? "true" : "false"}
+                aria-describedby={showFieldError('time') ? "error-desktop-time" : undefined}
                 className={`${inputBase} ${showFieldError('time') ? inputError : inputNormal}`}
               >
                 <option value="">{t.wizard.selectTime}</option>
@@ -229,7 +232,7 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
                   <option key={time} value={time}>{time}h</option>
                 ))}
               </select>
-              {showFieldError('time') && <p className="text-xs text-red-500 mt-1">{getFieldError('time')}</p>}
+              {showFieldError('time') && <p id="error-desktop-time" className="text-xs text-red-500 mt-1">{getFieldError('time')}</p>}
             </div>
             <div>
               <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1.5">
@@ -246,6 +249,7 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
                     if (c > 1) { setNumberOfPeople(String(c - 1)); handleBlur('people'); }
                   }}
                   disabled={!numberOfPeople || parseInt(numberOfPeople) <= 1}
+                  aria-label="Reducir número de personas"
                   className="w-8 h-8 rounded-full border-2 border-gray-200 flex items-center justify-center font-bold text-gray-600 disabled:opacity-30 hover:border-primary hover:text-primary transition-colors text-lg"
                 >−</button>
                 <span className="text-lg font-bold text-gray-900 min-w-[1.5rem] text-center">
@@ -258,6 +262,7 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
                     if (c < maxCapacity) { setNumberOfPeople(String(c + 1)); handleBlur('people'); }
                   }}
                   disabled={!!numberOfPeople && parseInt(numberOfPeople) >= maxCapacity}
+                  aria-label="Aumentar número de personas"
                   className="w-8 h-8 rounded-full border-2 border-gray-200 flex items-center justify-center font-bold text-gray-600 disabled:opacity-30 hover:border-primary hover:text-primary transition-colors text-lg"
                 >+</button>
               </div>
@@ -282,6 +287,7 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
                     placeholder={t.wizard.firstName}
                     autoComplete="given-name"
                     maxLength={100}
+                    aria-required="true"
                     aria-invalid={showFieldError('firstName') ? "true" : "false"}
                     aria-describedby={showFieldError('firstName') ? "error-firstName" : undefined}
                     className={`${inputBase} ${showFieldError('firstName') ? inputError : inputNormal}`}
@@ -297,6 +303,7 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
                     placeholder={t.wizard.lastName}
                     autoComplete="family-name"
                     maxLength={100}
+                    aria-required="true"
                     aria-invalid={showFieldError('lastName') ? "true" : "false"}
                     aria-describedby={showFieldError('lastName') ? "error-lastName" : undefined}
                     className={`${inputBase} ${showFieldError('lastName') ? inputError : inputNormal}`}
@@ -309,6 +316,10 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
                   <button
                     type="button"
                     onClick={() => setShowPrefixDropdown(!showPrefixDropdown)}
+                    onKeyDown={(e) => { if (e.key === 'Escape') setShowPrefixDropdown(false); }}
+                    aria-haspopup="listbox"
+                    aria-expanded={showPrefixDropdown}
+                    aria-label={`Prefijo de teléfono: ${phonePrefix}`}
                     className={`${inputBase} ${inputNormal} flex items-center gap-1`}
                   >
                     <span className="truncate text-xs">{selectedPrefixInfo?.flag} {phonePrefix}</span>
@@ -348,6 +359,7 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
                     placeholder={t.wizard.phone}
                     autoComplete="tel"
                     maxLength={15}
+                    aria-required="true"
                     aria-invalid={showFieldError('phone') ? "true" : "false"}
                     aria-describedby={showFieldError('phone') ? "error-phone" : undefined}
                     className={`${inputBase} ${showFieldError('phone') ? inputError : inputNormal}`}
@@ -364,6 +376,7 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
                   placeholder={t.wizard.email}
                   autoComplete="email"
                   maxLength={254}
+                  aria-required="true"
                   aria-invalid={showFieldError('email') ? "true" : "false"}
                   aria-describedby={showFieldError('email') ? "error-email" : undefined}
                   className={`${inputBase} ${showFieldError('email') ? inputError : inputNormal}`}

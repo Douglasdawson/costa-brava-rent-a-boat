@@ -379,7 +379,7 @@ function Step1Boat({
               <CalendarIcon className="w-4 h-4 text-primary flex-shrink-0" />
               {selectedDate
                 ? new Date(selectedDate + 'T00:00:00').toLocaleDateString('es-ES', { day: '2-digit', month: 'short', year: 'numeric' })
-                : <span className="text-gray-400">{t.wizard.selectDate}</span>
+                : <span className="text-gray-500">{t.wizard.selectDate}</span>
               }
             </button>
           </PopoverTrigger>
@@ -469,7 +469,10 @@ function Step2Trip({
           value={preferredTime}
           onChange={(e) => setPreferredTime(e.target.value)}
           onBlur={() => handleBlur('time')}
-          className={`w-full p-3 border-2 rounded-xl text-gray-900 font-medium text-sm focus:ring-2 focus:ring-primary bg-white ${
+          aria-required="true"
+          aria-invalid={showFieldError('time') ? "true" : "false"}
+          aria-describedby={showFieldError('time') ? "error-wizard-time" : undefined}
+          className={`w-full p-3 border-2 rounded-xl text-gray-900 font-medium text-sm focus:ring-2 focus:ring-primary focus:outline-none bg-white ${
             showFieldError('time') ? 'border-red-500' : 'border-gray-200'
           }`}
         >
@@ -479,7 +482,7 @@ function Step2Trip({
           ))}
         </select>
         {showFieldError('time') && (
-          <p className="text-xs text-red-500 mt-1">{getFieldError('time')}</p>
+          <p id="error-wizard-time" className="text-xs text-red-500 mt-1">{getFieldError('time')}</p>
         )}
       </div>
       <div>
@@ -562,6 +565,7 @@ function Step3PersonalData({
           placeholder="Juan"
           autoComplete="given-name"
           maxLength={100}
+          aria-required="true"
           aria-invalid={showFieldError('firstName') ? "true" : "false"}
           aria-describedby={showFieldError('firstName') ? "error-wizard-firstname" : undefined}
           className={`w-full p-3 border-2 rounded-xl bg-white text-gray-900 font-medium text-sm focus:ring-2 focus:ring-primary ${
@@ -585,6 +589,7 @@ function Step3PersonalData({
           placeholder="Garcia Lopez"
           autoComplete="family-name"
           maxLength={100}
+          aria-required="true"
           aria-invalid={showFieldError('lastName') ? "true" : "false"}
           aria-describedby={showFieldError('lastName') ? "error-wizard-lastname" : undefined}
           className={`w-full p-3 border-2 rounded-xl bg-white text-gray-900 font-medium text-sm focus:ring-2 focus:ring-primary ${
@@ -604,6 +609,10 @@ function Step3PersonalData({
             <button
               type="button"
               onClick={() => setShowPrefixDropdown(!showPrefixDropdown)}
+              onKeyDown={(e) => { if (e.key === 'Escape') setShowPrefixDropdown(false); }}
+              aria-haspopup="listbox"
+              aria-expanded={showPrefixDropdown}
+              aria-label={`Prefijo de teléfono: ${phonePrefix}`}
               className="w-full p-3 border-2 border-gray-200 bg-white rounded-xl text-gray-900 font-medium text-sm flex items-center gap-1 overflow-hidden"
             >
               <span className="truncate">{selectedPrefixInfo?.flag} {phonePrefix}</span>
@@ -647,6 +656,7 @@ function Step3PersonalData({
             placeholder="612345678"
             autoComplete="tel"
             maxLength={15}
+            aria-required="true"
             aria-invalid={showFieldError('phone') ? "true" : "false"}
             aria-describedby={showFieldError('phone') ? "error-wizard-phone" : undefined}
             className={`flex-1 p-3 border-2 rounded-xl bg-white text-gray-900 font-medium text-sm focus:ring-2 focus:ring-primary ${
@@ -672,6 +682,7 @@ function Step3PersonalData({
           placeholder="tu@email.com"
           autoComplete="email"
           maxLength={254}
+          aria-required="true"
           aria-invalid={showFieldError('email') ? "true" : "false"}
           aria-describedby={showFieldError('email') ? "error-wizard-email" : undefined}
           className={`w-full p-3 border-2 rounded-xl bg-white text-gray-900 font-medium text-sm focus:ring-2 focus:ring-primary ${

@@ -277,9 +277,8 @@ export default function Footer() {
           <p className="text-xs text-gray-400 text-center">
             © {currentYear} Costa Brava Rent a Boat Blanes. {t.footer.rights}
           </p>
-          {/* AVISO: Sustituye XXXXXXXXX por tu NIF/NIE real antes de publicar */}
           <p className="text-xs text-gray-600 text-center mt-1">
-            NIF: XXXXXXXXX · Puerto de Blanes, Girona, España ·{" "}
+            NIF: B22566327 · Puerto de Blanes, Girona, España ·{" "}
             <a href="/privacy-policy" className="underline hover:text-gray-400 transition-colors">Privacidad</a>
             {" · "}
             <a href="/cookies-policy" className="underline hover:text-gray-400 transition-colors">Cookies</a>

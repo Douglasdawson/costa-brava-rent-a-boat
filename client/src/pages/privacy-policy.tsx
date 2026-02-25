@@ -70,17 +70,13 @@ export default function PrivacyPolicyPage() {
             </CardHeader>
             <CardContent className="text-sm text-gray-700 space-y-2">
               <p><strong>Identidad:</strong> Costa Brava Rent a Boat</p>
-              {/* AVISO: Sustituye XXXXXXXXX por tu NIF/NIE real */}
-              <p><strong>NIF:</strong> XXXXXXXXX</p>
+              <p><strong>NIF:</strong> B22566327</p>
               <p><strong>Domicilio:</strong> Puerto de Blanes, Girona, España</p>
               <p><strong>Teléfono:</strong> +34 611 500 372</p>
               <p><strong>Email de contacto:</strong>{" "}
                 <a href="mailto:costabravarentboat@gmail.com" className="text-primary underline">
                   costabravarentboat@gmail.com
                 </a>
-              </p>
-              <p className="text-xs text-gray-500 bg-yellow-50 border border-yellow-200 rounded p-2">
-                <strong>Nota:</strong> En cumplimiento del art. 10 LSSI-CE y art. 13 RGPD, el responsable del tratamiento es la persona física o jurídica titular del negocio. Sustituye «XXXXXXXXX» por el NIF/NIE correspondiente antes de publicar.
               </p>
             </CardContent>
           </Card>

@@ -49,6 +49,8 @@ export default defineConfig({
           "vendor-charts": ["recharts"],
           "vendor-date": ["date-fns"],
           "vendor-stripe": ["@stripe/stripe-js"],
+          "vendor-motion": ["framer-motion"],
+          "vendor-form": ["react-hook-form", "@hookform/resolvers", "zod"],
         },
       },
     },

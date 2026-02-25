@@ -11,8 +11,8 @@ export function registerDestinationRoutes(app: Express) {
     try {
       const destinations = await storage.getPublishedDestinations();
       res.json(destinations);
-    } catch (error: any) {
-      console.error("[Destinations] Error fetching destinations:", error.message);
+    } catch (error: unknown) {
+      console.error("[Destinations] Error fetching destinations:", error instanceof Error ? error.message : String(error));
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });
@@ -25,8 +25,8 @@ export function registerDestinationRoutes(app: Express) {
         return res.status(404).json({ message: "Destination not found" });
       }
       res.json(destination);
-    } catch (error: any) {
-      console.error("[Destinations] Error fetching destination:", error.message);
+    } catch (error: unknown) {
+      console.error("[Destinations] Error fetching destination:", error instanceof Error ? error.message : String(error));
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });
@@ -38,8 +38,8 @@ export function registerDestinationRoutes(app: Express) {
     try {
       const destinations = await storage.getAllDestinations();
       res.json(destinations);
-    } catch (error: any) {
-      console.error("[Destinations] Error fetching destinations:", error.message);
+    } catch (error: unknown) {
+      console.error("[Destinations] Error fetching destinations:", error instanceof Error ? error.message : String(error));
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });
@@ -56,8 +56,8 @@ export function registerDestinationRoutes(app: Express) {
       }
       const destination = await storage.createDestination(parsed.data);
       res.status(201).json(destination);
-    } catch (error: any) {
-      console.error("[Destinations] Error creating destination:", error.message);
+    } catch (error: unknown) {
+      console.error("[Destinations] Error creating destination:", error instanceof Error ? error.message : String(error));
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });
@@ -77,8 +77,8 @@ export function registerDestinationRoutes(app: Express) {
         return res.status(404).json({ message: "Destination not found" });
       }
       res.json(destination);
-    } catch (error: any) {
-      console.error("[Destinations] Error updating destination:", error.message);
+    } catch (error: unknown) {
+      console.error("[Destinations] Error updating destination:", error instanceof Error ? error.message : String(error));
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });
@@ -91,8 +91,8 @@ export function registerDestinationRoutes(app: Express) {
         return res.status(404).json({ message: "Destination not found" });
       }
       res.json({ message: "Destination deleted successfully" });
-    } catch (error: any) {
-      console.error("[Destinations] Error deleting destination:", error.message);
+    } catch (error: unknown) {
+      console.error("[Destinations] Error deleting destination:", error instanceof Error ? error.message : String(error));
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });

@@ -81,8 +81,8 @@ export function registerAdminRoutes(app: Express) {
       }
       const newBoat = await storage.createBoat(validationResult.data);
       res.status(201).json(newBoat);
-    } catch (error: any) {
-      console.error("[Admin] Error creating boat:", error.message);
+    } catch (error: unknown) {
+      console.error("[Admin] Error creating boat:", error instanceof Error ? error.message : String(error));
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });
@@ -102,8 +102,8 @@ export function registerAdminRoutes(app: Express) {
       }
       const updatedBoat = await storage.updateBoat(req.params.id, parsed.data);
       res.json(updatedBoat);
-    } catch (error: any) {
-      console.error("[Admin] Error updating boat:", error.message);
+    } catch (error: unknown) {
+      console.error("[Admin] Error updating boat:", error instanceof Error ? error.message : String(error));
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });
@@ -116,8 +116,8 @@ export function registerAdminRoutes(app: Express) {
       }
       await storage.updateBoat(req.params.id, { isActive: false });
       res.json({ message: "Barco desactivado correctamente" });
-    } catch (error: any) {
-      console.error("[Admin] Error deleting boat:", error.message);
+    } catch (error: unknown) {
+      console.error("[Admin] Error deleting boat:", error instanceof Error ? error.message : String(error));
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });
@@ -137,8 +137,8 @@ export function registerAdminRoutes(app: Express) {
         await storage.updateBoat(item.id, { displayOrder: item.displayOrder });
       }
       res.json({ message: "Orden actualizado correctamente" });
-    } catch (error: any) {
-      console.error("[Admin] Error reordering boats:", error.message);
+    } catch (error: unknown) {
+      console.error("[Admin] Error reordering boats:", error instanceof Error ? error.message : String(error));
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });
@@ -181,8 +181,8 @@ export function registerAdminRoutes(app: Express) {
         try {
           const boat = await storage.createBoat(boatData);
           createdBoats.push(boat);
-        } catch (error: any) {
-          console.log(`Boat ${boatData.id} might already exist:`, error.message);
+        } catch (error: unknown) {
+          console.log(`Boat ${boatData.id} might already exist:`, error instanceof Error ? error.message : String(error));
         }
       }
 
@@ -191,8 +191,8 @@ export function registerAdminRoutes(app: Express) {
         created: createdBoats.length,
         total: boatsToCreate.length,
       });
-    } catch (error: any) {
-      console.error("[Admin] Error initializing boats:", error.message);
+    } catch (error: unknown) {
+      console.error("[Admin] Error initializing boats:", error instanceof Error ? error.message : String(error));
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });
@@ -222,7 +222,7 @@ export function registerAdminRoutes(app: Express) {
         booking: newBooking,
         message: "Reserva creada exitosamente",
       });
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error("[Admin] Error creating booking:", error instanceof Error ? error.message : error);
       res.status(500).json({ message: "Error interno del servidor" });
     }
@@ -248,8 +248,8 @@ export function registerAdminRoutes(app: Express) {
       });
 
       res.json(calendarBookings);
-    } catch (error: any) {
-      console.error("[Admin] Error fetching calendar bookings:", error.message);
+    } catch (error: unknown) {
+      console.error("[Admin] Error fetching calendar bookings:", error instanceof Error ? error.message : String(error));
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });
@@ -276,8 +276,8 @@ export function registerAdminRoutes(app: Express) {
       });
 
       res.json(result);
-    } catch (error: any) {
-      console.error("[Admin] Error fetching bookings:", error.message);
+    } catch (error: unknown) {
+      console.error("[Admin] Error fetching bookings:", error instanceof Error ? error.message : String(error));
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });
@@ -329,7 +329,7 @@ export function registerAdminRoutes(app: Express) {
         booking: updatedBooking,
         message: "Reserva actualizada exitosamente",
       });
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error("[Admin] Error updating booking:", error instanceof Error ? error.message : error);
       res.status(500).json({ message: "Error interno del servidor" });
     }
@@ -567,8 +567,8 @@ export function registerAdminRoutes(app: Express) {
         ...fleet,
         period,
       });
-    } catch (error: any) {
-      console.error("[Admin] Error fetching dashboard stats:", error.message);
+    } catch (error: unknown) {
+      console.error("[Admin] Error fetching dashboard stats:", error instanceof Error ? error.message : String(error));
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });
@@ -585,8 +585,8 @@ export function registerAdminRoutes(app: Express) {
       }
       const trend = await storage.getRevenueTrend(queryParsed.data.period);
       res.json(trend);
-    } catch (error: any) {
-      console.error("[Admin] Error fetching revenue trend:", error.message);
+    } catch (error: unknown) {
+      console.error("[Admin] Error fetching revenue trend:", error instanceof Error ? error.message : String(error));
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });
@@ -603,8 +603,8 @@ export function registerAdminRoutes(app: Express) {
       }
       const performance = await storage.getBoatsPerformance(queryParsed.data.period);
       res.json(performance);
-    } catch (error: any) {
-      console.error("[Admin] Error fetching boats performance:", error.message);
+    } catch (error: unknown) {
+      console.error("[Admin] Error fetching boats performance:", error instanceof Error ? error.message : String(error));
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });
@@ -626,8 +626,8 @@ export function registerAdminRoutes(app: Express) {
 
       const distribution = await storage.getStatusDistribution(startDate, endDate);
       res.json(distribution);
-    } catch (error: any) {
-      console.error("[Admin] Error fetching status distribution:", error.message);
+    } catch (error: unknown) {
+      console.error("[Admin] Error fetching status distribution:", error instanceof Error ? error.message : String(error));
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });
@@ -653,7 +653,7 @@ export function registerAdminRoutes(app: Express) {
       const objectStorageService = new ObjectStorageService();
       const uploadURL = await objectStorageService.getObjectEntityUploadURL();
       res.json({ uploadURL });
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error("Error generating upload URL:", error);
       res.status(500).json({ error: "Failed to generate upload URL" });
     }
@@ -673,7 +673,7 @@ export function registerAdminRoutes(app: Express) {
       const objectStorageService = new ObjectStorageService();
       const normalizedPath = objectStorageService.normalizeObjectEntityPath(imageUrl);
       res.json({ normalizedPath });
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error("Error normalizing image URL:", error);
       res.status(500).json({ error: "Failed to normalize image URL" });
     }
@@ -1015,7 +1015,7 @@ export function registerAdminRoutes(app: Express) {
         created,
         total: 6,
       });
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error("[Admin] Error seeding blog posts:", error instanceof Error ? error.message : error);
       res.status(500).json({ message: "Error interno del servidor" });
     }

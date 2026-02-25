@@ -16,8 +16,8 @@ export function registerTestimonialRoutes(app: Express) {
       }
 
       res.json(testimonialsData);
-    } catch (error: any) {
-      console.error("[Testimonials] Error fetching testimonials:", error.message);
+    } catch (error: unknown) {
+      console.error("[Testimonials] Error fetching testimonials:", error instanceof Error ? error.message : String(error));
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });
@@ -35,8 +35,8 @@ export function registerTestimonialRoutes(app: Express) {
       // isVerified defaults to false in database - only admins can verify
       const testimonial = await storage.createTestimonial(parsed.data);
       res.status(201).json(testimonial);
-    } catch (error: any) {
-      console.error("[Testimonials] Error creating testimonial:", error.message);
+    } catch (error: unknown) {
+      console.error("[Testimonials] Error creating testimonial:", error instanceof Error ? error.message : String(error));
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });

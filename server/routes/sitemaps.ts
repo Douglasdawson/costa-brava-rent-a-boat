@@ -116,7 +116,7 @@ export function registerSitemapRoutes(app: Express) {
       res.set("Content-Type", "application/xml");
       res.set("Cache-Control", "public, max-age=3600");
       res.send(sitemapIndex);
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error("Error generating sitemap index:", error);
       res.status(500).send('<?xml version="1.0" encoding="UTF-8"?><error>Sitemap temporarily unavailable</error>');
     }
@@ -157,7 +157,7 @@ export function registerSitemapRoutes(app: Express) {
       res.set("Content-Type", "application/xml");
       res.set("Cache-Control", "public, max-age=3600");
       res.send(sitemap);
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error("Error generating pages sitemap:", error);
       res.status(500).send('<?xml version="1.0" encoding="UTF-8"?><error>Sitemap temporarily unavailable</error>');
     }
@@ -225,7 +225,7 @@ ${boatHreflang}  </url>
       res.set("Content-Type", "application/xml");
       res.set("Cache-Control", "public, max-age=3600");
       res.send(sitemap);
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error("Error generating boats sitemap:", error);
       res.status(500).send('<?xml version="1.0" encoding="UTF-8"?><error>Sitemap temporarily unavailable</error>');
     }
@@ -262,7 +262,7 @@ ${boatHreflang}  </url>
       res.set("Content-Type", "application/xml");
       res.set("Cache-Control", "public, max-age=3600");
       res.send(sitemap);
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error("Error generating blog sitemap:", error);
       res.status(500).send('<?xml version="1.0" encoding="UTF-8"?><error>Sitemap temporarily unavailable</error>');
     }
@@ -330,7 +330,7 @@ ${destHreflang}  </url>
       res.set("Content-Type", "application/xml");
       res.set("Cache-Control", "public, max-age=3600");
       res.send(sitemap);
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error("Error generating destinations sitemap:", error);
       res.status(500).send('<?xml version="1.0" encoding="UTF-8"?><error>Sitemap temporarily unavailable</error>');
     }

@@ -3,12 +3,17 @@ import { z } from "zod";
 import { storage } from "../storage";
 import { requireAdminSession } from "./auth";
 
+const isoDateString = z
+  .string()
+  .min(1)
+  .refine((val) => !isNaN(Date.parse(val)), { message: "Fecha/hora inválida (formato ISO requerido)" });
+
 const quoteSchema = z.object({
-  boatId: z.string().min(1, "boatId es requerido"),
-  startTime: z.string().min(1, "startTime es requerido"),
-  endTime: z.string().min(1, "endTime es requerido"),
+  boatId: z.string().min(1, "boatId es requerido").max(64, "boatId demasiado largo"),
+  startTime: isoDateString,
+  endTime: isoDateString,
   numberOfPeople: z.number().int().min(1, "Minimo 1 persona").max(20, "Maximo 20 personas"),
-  extras: z.array(z.string()).optional(),
+  extras: z.array(z.string().max(64)).max(10).optional(),
 });
 
 const paymentStatusSchema = z.object({
@@ -39,8 +44,8 @@ export function registerBookingRoutes(app: Express) {
       const date = new Date(req.params.date);
       const bookingsList = await storage.getBookingsByDate(date);
       res.json(bookingsList);
-    } catch (error: any) {
-      console.error("[Bookings] Error fetching bookings by date:", error.message);
+    } catch (error: unknown) {
+      console.error("[Bookings] Error fetching bookings by date:", error instanceof Error ? error.message : String(error));
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });
@@ -54,8 +59,8 @@ export function registerBookingRoutes(app: Express) {
       }
       const extras = await storage.getBookingExtras(booking.id);
       res.json({ ...booking, extras });
-    } catch (error: any) {
-      console.error("[Bookings] Error fetching booking:", error.message);
+    } catch (error: unknown) {
+      console.error("[Bookings] Error fetching booking:", error instanceof Error ? error.message : String(error));
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });
@@ -219,8 +224,8 @@ export function registerBookingRoutes(app: Express) {
           expiresInMinutes: 30,
         },
       });
-    } catch (error: any) {
-      console.error("[Bookings] Error generating quote:", error.message);
+    } catch (error: unknown) {
+      console.error("[Bookings] Error generating quote:", error instanceof Error ? error.message : String(error));
       res.status(500).json({
         message: "Error al generar cotización",
         available: false,
@@ -239,8 +244,8 @@ export function registerBookingRoutes(app: Express) {
           : "No hay holds expirados para limpiar",
         cleaned,
       });
-    } catch (error: any) {
-      console.error("[Bookings] Error cleaning expired holds:", error.message);
+    } catch (error: unknown) {
+      console.error("[Bookings] Error cleaning expired holds:", error instanceof Error ? error.message : String(error));
       res.status(500).json({ message: "Error al limpiar holds expirados" });
     }
   });
@@ -269,8 +274,8 @@ export function registerBookingRoutes(app: Express) {
       }
 
       res.json(updatedBooking);
-    } catch (error: any) {
-      console.error("[Bookings] Error updating payment status:", error.message);
+    } catch (error: unknown) {
+      console.error("[Bookings] Error updating payment status:", error instanceof Error ? error.message : String(error));
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });
@@ -299,8 +304,8 @@ export function registerBookingRoutes(app: Express) {
       }
 
       res.json(updatedBooking);
-    } catch (error: any) {
-      console.error("[Bookings] Error updating WhatsApp status:", error.message);
+    } catch (error: unknown) {
+      console.error("[Bookings] Error updating WhatsApp status:", error instanceof Error ? error.message : String(error));
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });

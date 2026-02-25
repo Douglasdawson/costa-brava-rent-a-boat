@@ -44,12 +44,43 @@ const authLimiter = rateLimit({
   message: { message: "Demasiados intentos de login. Intenta de nuevo en 15 minutos." },
 });
 
+// Stricter limiter for admin panel (50 req / 15 min)
+const adminLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 50,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { message: "Demasiadas peticiones al panel de administración. Intenta de nuevo en unos minutos." },
+});
+
+// Quote endpoint: up to 20 quotes per minute
+const quoteLimiter = rateLimit({
+  windowMs: 60 * 1000,
+  max: 20,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { message: "Demasiadas solicitudes de cotización. Espera un momento antes de intentarlo de nuevo." },
+});
+
+// Payment endpoints: up to 10 per 15 min (prevent abuse)
+const paymentLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 10,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { message: "Demasiadas solicitudes de pago. Intenta de nuevo en unos minutos." },
+});
+
 app.use("/api/", generalLimiter);
+app.use("/api/admin/", adminLimiter);
 app.use("/api/admin/login", authLimiter);
 app.use("/api/admin/login-user", authLimiter);
 app.use("/api/auth/login", authLimiter);
 app.use("/api/auth/register", authLimiter);
 app.use("/api/auth/forgot-password", authLimiter);
+app.use("/api/quote", quoteLimiter);
+app.use("/api/create-payment-intent", paymentLimiter);
+app.use("/api/create-checkout-session", paymentLimiter);
 
 // CORS — restrict API access to known origins
 const allowedOrigins = isDev

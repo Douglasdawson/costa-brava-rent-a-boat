@@ -19,8 +19,8 @@ export function registerBoatRoutes(app: Express) {
       console.log("API /api/boats - Retrieved boats count:", boats.length);
       res.setHeader('Cache-Control', 'public, max-age=60, s-maxage=300');
       res.json(boats);
-    } catch (error: any) {
-      console.error("[Boats] Error fetching boats:", error.message);
+    } catch (error: unknown) {
+      console.error("[Boats] Error fetching boats:", error instanceof Error ? error.message : String(error));
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });
@@ -33,8 +33,8 @@ export function registerBoatRoutes(app: Express) {
         return res.status(404).json({ message: "Boat not found" });
       }
       res.json(boat);
-    } catch (error: any) {
-      console.error("[Boats] Error fetching boat:", error.message);
+    } catch (error: unknown) {
+      console.error("[Boats] Error fetching boat:", error instanceof Error ? error.message : String(error));
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });
@@ -108,8 +108,8 @@ export function registerBoatRoutes(app: Express) {
           customerName: `${booking.customerName} ${booking.customerSurname ? booking.customerSurname.charAt(0) : ""}.`,
         })),
       });
-    } catch (error: any) {
-      console.error("[Boats] Error checking availability:", error.message);
+    } catch (error: unknown) {
+      console.error("[Boats] Error checking availability:", error instanceof Error ? error.message : String(error));
       res.status(500).json({
         message: "Error interno del servidor",
         available: false,
@@ -185,8 +185,8 @@ export function registerBoatRoutes(app: Express) {
           customerName: `${booking.customerName} ${booking.customerSurname ? booking.customerSurname.charAt(0) : ""}.`,
         })),
       });
-    } catch (error: any) {
-      console.error("[Boats] Error checking availability:", error.message);
+    } catch (error: unknown) {
+      console.error("[Boats] Error checking availability:", error instanceof Error ? error.message : String(error));
       res.status(500).json({
         message: "Error interno del servidor",
         available: false,

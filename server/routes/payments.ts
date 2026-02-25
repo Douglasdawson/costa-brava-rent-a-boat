@@ -91,8 +91,8 @@ export function registerPaymentRoutes(app: Express) {
       let stripeInstance: Stripe;
       try {
         stripeInstance = getStripe();
-      } catch (error: any) {
-        console.error("[Payments] Stripe not configured:", error.message);
+      } catch (error: unknown) {
+        console.error("[Payments] Stripe not configured:", error instanceof Error ? error.message : String(error));
         return res.status(503).json({
           message: "Servicio de pagos no disponible",
           success: false,
@@ -172,7 +172,7 @@ export function registerPaymentRoutes(app: Express) {
         amount: serviceAmount,
         currency: "eur",
       });
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error("[Payments] Error creating payment intent:", error instanceof Error ? error.message : error);
       res.status(500).json({
         message: "Error interno del servidor",
@@ -235,8 +235,8 @@ export function registerPaymentRoutes(app: Express) {
         sessionId: session.id,
         url: session.url,
       });
-    } catch (error: any) {
-      console.error("[Payments] Error creating checkout session:", error.message);
+    } catch (error: unknown) {
+      console.error("[Payments] Error creating checkout session:", error instanceof Error ? error.message : String(error));
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });
@@ -296,8 +296,8 @@ export function registerPaymentRoutes(app: Express) {
         mockMode: true,
         note: "This is a mock payment for testing. Use /api/simulate-payment-success to complete the payment.",
       });
-    } catch (error: any) {
-      console.error("[Payments] Error creating mock payment intent:", error.message);
+    } catch (error: unknown) {
+      console.error("[Payments] Error creating mock payment intent:", error instanceof Error ? error.message : String(error));
       res.status(500).json({
         message: "Error interno del servidor",
         success: false,
@@ -364,8 +364,8 @@ export function registerPaymentRoutes(app: Express) {
         bookingId: booking[0].id,
         status: "confirmed",
       });
-    } catch (error: any) {
-      console.error("[Payments] Error simulating payment:", error.message);
+    } catch (error: unknown) {
+      console.error("[Payments] Error simulating payment:", error instanceof Error ? error.message : String(error));
       res.status(500).json({
         message: "Error interno del servidor",
         success: false,
@@ -380,8 +380,8 @@ export function registerPaymentRoutes(app: Express) {
     let stripeInstance: Stripe;
     try {
       stripeInstance = getStripe();
-    } catch (error: any) {
-      console.error("Stripe not configured for webhook:", error.message);
+    } catch (error: unknown) {
+      console.error("Stripe not configured for webhook:", error instanceof Error ? error.message : String(error));
       return res.status(503).json({ error: "Payment service not configured" });
     }
 
@@ -476,7 +476,7 @@ export function registerPaymentRoutes(app: Express) {
       }
 
       res.json({ received: true });
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error("Error processing webhook:", error);
       res.status(500).json({ error: "Webhook processing failed" });
     }
@@ -488,8 +488,8 @@ export function registerPaymentRoutes(app: Express) {
       let stripeInstance: Stripe;
       try {
         stripeInstance = getStripe();
-      } catch (error: any) {
-        console.error("[Payments] Stripe not configured for refund:", error.message);
+      } catch (error: unknown) {
+        console.error("[Payments] Stripe not configured for refund:", error instanceof Error ? error.message : String(error));
         return res.status(503).json({ message: "Servicio de pagos no disponible" });
       }
 
@@ -547,9 +547,9 @@ export function registerPaymentRoutes(app: Express) {
         amount,
         bookingId: booking.id,
       });
-    } catch (error: any) {
+    } catch (error: unknown) {
       await db.update(bookings).set({ refundStatus: "requested" }).where(eq(bookings.id, req.params.id)).catch(() => {});
-      console.error("[Payments] Refund error:", error.message);
+      console.error("[Payments] Refund error:", error instanceof Error ? error.message : String(error));
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });

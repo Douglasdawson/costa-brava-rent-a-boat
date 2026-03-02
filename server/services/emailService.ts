@@ -1,6 +1,265 @@
 import sgMail from "@sendgrid/mail";
 import type { Booking, Boat, BookingExtra } from "@shared/schema";
 
+type EmailLang = "es" | "en" | "fr" | "de" | "nl" | "it" | "ru";
+
+interface EmailStrings {
+  bookingConfirmed: string;
+  greeting: string;
+  bookingDetails: string;
+  meetingPoint: string;
+  meetingPointDesc: string;
+  arriveEarly: string;
+  contact: string;
+  thanks: string;
+  reminderTitle: string;
+  reminderSubtitle: string;
+  tipsTitle: string;
+  tips: string[];
+  emergency: string;
+  parking: string;
+  parkingDesc: string;
+  seeYouTomorrow: string;
+  thankYouTitle: string;
+  thankYouIntro: string;
+  reviewTitle: string;
+  reviewDesc: string;
+  reviewButton: string;
+  discountTitle: string;
+  discountDesc: string;
+  discountFooter: string;
+  bookAgain: string;
+  seeYouSoon: string;
+  colBoat: string; colDate: string; colSchedule: string; colDuration: string;
+  colPeople: string; colBase: string; colVat: string; colTotal: string;
+  colHour: string; colHours: string;
+}
+
+const EMAIL_STRINGS: Record<EmailLang, EmailStrings> = {
+  es: {
+    bookingConfirmed: "Reserva confirmada",
+    greeting: "Tu reserva ha sido confirmada. Aqui tienes los detalles:",
+    bookingDetails: "Detalles de tu reserva",
+    meetingPoint: "Punto de encuentro",
+    meetingPointDesc: "Puerto de Blanes, Costa Brava, Girona",
+    arriveEarly: "Presentate <strong>15 minutos antes</strong> de la hora de salida.",
+    contact: "Contacto",
+    thanks: "Gracias por confiar en nosotros. Nos vemos en el puerto.",
+    reminderTitle: "Recordatorio: tu reserva es manana",
+    reminderSubtitle: "Te recordamos que tu alquiler de barco es <strong>manana</strong>. Aqui tienes los detalles:",
+    tipsTitle: "Consejos para tu experiencia",
+    tips: ["Lleva proteccion solar y gafas de sol", "Viste ropa comoda y calzado que se pueda mojar", "Trae una toalla y ropa de repuesto", "Puedes traer comida y bebida a bordo", "Consulta la prevision meteorologica antes de salir"],
+    emergency: "Numero de emergencia",
+    parking: "Aparcamiento",
+    parkingDesc: "Hay aparcamiento disponible cerca del puerto de Blanes. En temporada alta, recomendamos llegar con tiempo para encontrar plaza.",
+    seeYouTomorrow: "Estamos deseando verte manana. Si tienes alguna pregunta, no dudes en contactarnos.",
+    thankYouTitle: "Gracias por navegar con nosotros",
+    thankYouIntro: "Esperamos que disfrutaras de tu experiencia a bordo",
+    reviewTitle: "Tu opinion nos importa",
+    reviewDesc: "Si disfrutaste de la experiencia, nos encantaria que compartieras tu opinion en Google.",
+    reviewButton: "Dejar una resena en Google",
+    discountTitle: "10% de descuento en tu proxima reserva",
+    discountDesc: "Regalo exclusivo para ti",
+    discountFooter: "Introduce este codigo al hacer tu proxima reserva en nuestra web.",
+    bookAgain: "Reservar de nuevo",
+    seeYouSoon: "Esperamos verte de nuevo pronto en la Costa Brava.",
+    colBoat: "Barco", colDate: "Fecha", colSchedule: "Horario", colDuration: "Duracion",
+    colPeople: "Personas", colBase: "Base imponible (sin IVA)", colVat: "IVA (21%)", colTotal: "Total (IVA incluido)",
+    colHour: "hora", colHours: "horas",
+  },
+  en: {
+    bookingConfirmed: "Booking confirmed",
+    greeting: "Your booking has been confirmed. Here are the details:",
+    bookingDetails: "Your booking details",
+    meetingPoint: "Meeting point",
+    meetingPointDesc: "Port of Blanes, Costa Brava, Girona",
+    arriveEarly: "Please arrive <strong>15 minutes before</strong> departure.",
+    contact: "Contact",
+    thanks: "Thank you for choosing us. See you at the port.",
+    reminderTitle: "Reminder: your booking is tomorrow",
+    reminderSubtitle: "Just a reminder that your boat rental is <strong>tomorrow</strong>. Here are the details:",
+    tipsTitle: "Tips for your experience",
+    tips: ["Bring sunscreen and sunglasses", "Wear comfortable clothes and shoes that can get wet", "Bring a towel and a change of clothes", "You can bring food and drinks on board", "Check the weather forecast before you go"],
+    emergency: "Emergency number",
+    parking: "Parking",
+    parkingDesc: "Parking is available near the port of Blanes. In high season we recommend arriving early to find a spot.",
+    seeYouTomorrow: "We look forward to seeing you tomorrow. If you have any questions, don't hesitate to contact us.",
+    thankYouTitle: "Thank you for sailing with us",
+    thankYouIntro: "We hope you enjoyed your time on board",
+    reviewTitle: "Your opinion matters to us",
+    reviewDesc: "If you enjoyed the experience, we would love for you to share your review on Google.",
+    reviewButton: "Leave a Google review",
+    discountTitle: "10% off your next booking",
+    discountDesc: "An exclusive gift for you",
+    discountFooter: "Enter this code when making your next booking on our website.",
+    bookAgain: "Book again",
+    seeYouSoon: "We hope to see you again soon on the Costa Brava.",
+    colBoat: "Boat", colDate: "Date", colSchedule: "Schedule", colDuration: "Duration",
+    colPeople: "People", colBase: "Subtotal (excl. VAT)", colVat: "VAT (21%)", colTotal: "Total (incl. VAT)",
+    colHour: "hour", colHours: "hours",
+  },
+  fr: {
+    bookingConfirmed: "Reservation confirmee",
+    greeting: "Votre reservation a ete confirmee. Voici les details :",
+    bookingDetails: "Details de votre reservation",
+    meetingPoint: "Point de rendez-vous",
+    meetingPointDesc: "Port de Blanes, Costa Brava, Gerone",
+    arriveEarly: "Veuillez arriver <strong>15 minutes avant</strong> le depart.",
+    contact: "Contact",
+    thanks: "Merci de nous faire confiance. A bientot au port.",
+    reminderTitle: "Rappel : votre reservation est demain",
+    reminderSubtitle: "Rappel : votre location de bateau est <strong>demain</strong>. Voici les details :",
+    tipsTitle: "Conseils pour votre experience",
+    tips: ["Apportez de la creme solaire et des lunettes de soleil", "Portez des vetements confortables et des chaussures pouvant etre mouillees", "Apportez une serviette et des vetements de rechange", "Vous pouvez apporter de la nourriture et des boissons a bord", "Consultez les previsions meteo avant de partir"],
+    emergency: "Numero d'urgence",
+    parking: "Stationnement",
+    parkingDesc: "Un parking est disponible pres du port de Blanes. En haute saison, nous recommandons d'arriver tot.",
+    seeYouTomorrow: "Nous avons hate de vous voir demain. N'hesitez pas a nous contacter.",
+    thankYouTitle: "Merci d'avoir navigue avec nous",
+    thankYouIntro: "Nous esperons que vous avez apprecie votre experience a bord",
+    reviewTitle: "Votre avis nous importe",
+    reviewDesc: "Si vous avez apprecie l'experience, nous serions ravis que vous partagiez votre avis sur Google.",
+    reviewButton: "Laisser un avis Google",
+    discountTitle: "10% de reduction sur votre prochaine reservation",
+    discountDesc: "Un cadeau exclusif pour vous",
+    discountFooter: "Entrez ce code lors de votre prochaine reservation sur notre site.",
+    bookAgain: "Reserver a nouveau",
+    seeYouSoon: "Nous esperons vous revoir bientot sur la Costa Brava.",
+    colBoat: "Bateau", colDate: "Date", colSchedule: "Horaire", colDuration: "Duree",
+    colPeople: "Personnes", colBase: "Base imposable (HT)", colVat: "TVA (21%)", colTotal: "Total (TTC)",
+    colHour: "heure", colHours: "heures",
+  },
+  de: {
+    bookingConfirmed: "Buchung bestatigt",
+    greeting: "Ihre Buchung wurde bestatigt. Hier sind die Details:",
+    bookingDetails: "Ihre Buchungsdetails",
+    meetingPoint: "Treffpunkt",
+    meetingPointDesc: "Hafen von Blanes, Costa Brava, Girona",
+    arriveEarly: "Bitte erscheinen Sie <strong>15 Minuten vor</strong> der Abfahrt.",
+    contact: "Kontakt",
+    thanks: "Vielen Dank fur Ihr Vertrauen. Wir sehen uns im Hafen.",
+    reminderTitle: "Erinnerung: Ihre Buchung ist morgen",
+    reminderSubtitle: "Erinnerung: Ihr Bootsverleih ist <strong>morgen</strong>. Hier sind die Details:",
+    tipsTitle: "Tipps fur Ihr Erlebnis",
+    tips: ["Sonnenschutz und Sonnenbrille mitbringen", "Bequeme Kleidung und Schuhe tragen, die nass werden konnen", "Handtuch und Wechselkleidung mitnehmen", "Essen und Getranke sind an Bord erlaubt", "Wettervorhersage vor der Abfahrt prufen"],
+    emergency: "Notfallnummer",
+    parking: "Parkmoglichkeiten",
+    parkingDesc: "Parkplatze sind in der Nahe des Hafens von Blanes verfugbar. In der Hochsaison empfehlen wir fruh anzukommen.",
+    seeYouTomorrow: "Wir freuen uns darauf, Sie morgen zu sehen. Kontaktieren Sie uns jederzeit.",
+    thankYouTitle: "Danke, dass Sie mit uns gefahren sind",
+    thankYouIntro: "Wir hoffen, dass Sie Ihre Zeit an Bord genossen haben",
+    reviewTitle: "Ihre Meinung ist uns wichtig",
+    reviewDesc: "Wenn Sie das Erlebnis genossen haben, wurden wir uns freuen, wenn Sie Ihre Bewertung auf Google teilen.",
+    reviewButton: "Google-Bewertung hinterlassen",
+    discountTitle: "10% Rabatt auf Ihre nachste Buchung",
+    discountDesc: "Ein exklusives Geschenk fur Sie",
+    discountFooter: "Geben Sie diesen Code bei Ihrer nachsten Buchung auf unserer Website ein.",
+    bookAgain: "Erneut buchen",
+    seeYouSoon: "Wir hoffen, Sie bald wieder an der Costa Brava zu sehen.",
+    colBoat: "Boot", colDate: "Datum", colSchedule: "Zeitplan", colDuration: "Dauer",
+    colPeople: "Personen", colBase: "Nettobetrag (ohne MwSt)", colVat: "MwSt (21%)", colTotal: "Gesamt (inkl. MwSt)",
+    colHour: "Stunde", colHours: "Stunden",
+  },
+  nl: {
+    bookingConfirmed: "Boeking bevestigd",
+    greeting: "Uw boeking is bevestigd. Hier zijn de details:",
+    bookingDetails: "Uw boekingsdetails",
+    meetingPoint: "Ontmoetingspunt",
+    meetingPointDesc: "Haven van Blanes, Costa Brava, Girona",
+    arriveEarly: "Kom <strong>15 minuten voor</strong> vertrek.",
+    contact: "Contact",
+    thanks: "Bedankt voor uw vertrouwen. Tot ziens in de haven.",
+    reminderTitle: "Herinnering: uw boeking is morgen",
+    reminderSubtitle: "Herinnering: uw boothuur is <strong>morgen</strong>.",
+    tipsTitle: "Tips voor uw ervaring",
+    tips: ["Neem zonnebrandcreme en een zonnebril mee", "Draag comfortabele kleding en schoenen die nat mogen worden", "Neem een handdoek en extra kleding mee", "Eten en drinken zijn aan boord toegestaan", "Controleer de weersvoorspelling voor vertrek"],
+    emergency: "Noodnummer",
+    parking: "Parkeren",
+    parkingDesc: "Er is parkeergelegenheid bij de haven van Blanes. In het hoogseizoen raden wij aan vroeg aan te komen.",
+    seeYouTomorrow: "We kijken ernaar uit u morgen te zien.",
+    thankYouTitle: "Bedankt voor het varen met ons",
+    thankYouIntro: "We hopen dat u heeft genoten van uw tijd aan boord",
+    reviewTitle: "Uw mening is belangrijk voor ons",
+    reviewDesc: "Als u de ervaring heeft genoten, zouden we het fijn vinden als u een review op Google achterlaat.",
+    reviewButton: "Google-review achterlaten",
+    discountTitle: "10% korting op uw volgende boeking",
+    discountDesc: "Een exclusief cadeau voor u",
+    discountFooter: "Voer deze code in bij uw volgende boeking op onze website.",
+    bookAgain: "Opnieuw boeken",
+    seeYouSoon: "We hopen u snel weer te zien aan de Costa Brava.",
+    colBoat: "Boot", colDate: "Datum", colSchedule: "Tijdschema", colDuration: "Duur",
+    colPeople: "Personen", colBase: "Subtotaal (excl. btw)", colVat: "btw (21%)", colTotal: "Totaal (incl. btw)",
+    colHour: "uur", colHours: "uur",
+  },
+  it: {
+    bookingConfirmed: "Prenotazione confermata",
+    greeting: "La sua prenotazione e stata confermata. Ecco i dettagli:",
+    bookingDetails: "Dettagli della sua prenotazione",
+    meetingPoint: "Punto di incontro",
+    meetingPointDesc: "Porto di Blanes, Costa Brava, Girona",
+    arriveEarly: "Si presenti <strong>15 minuti prima</strong> della partenza.",
+    contact: "Contatto",
+    thanks: "Grazie per la sua fiducia. A presto in porto.",
+    reminderTitle: "Promemoria: la sua prenotazione e domani",
+    reminderSubtitle: "Promemoria: il noleggio barca e <strong>domani</strong>.",
+    tipsTitle: "Consigli per la sua esperienza",
+    tips: ["Portare crema solare e occhiali da sole", "Indossare abiti comodi e scarpe che possono bagnarsi", "Portare un asciugamano e vestiti di ricambio", "E possibile portare cibo e bevande a bordo", "Controllare le previsioni meteo prima di partire"],
+    emergency: "Numero di emergenza",
+    parking: "Parcheggio",
+    parkingDesc: "Parcheggio disponibile vicino al porto di Blanes. In alta stagione si consiglia di arrivare presto.",
+    seeYouTomorrow: "Non vediamo l'ora di vederla domani.",
+    thankYouTitle: "Grazie per aver navigato con noi",
+    thankYouIntro: "Speriamo che abbia apprezzato la sua esperienza a bordo",
+    reviewTitle: "La sua opinione e importante per noi",
+    reviewDesc: "Se ha apprezzato l'esperienza, ci farebbe piacere se condividesse la sua recensione su Google.",
+    reviewButton: "Lascia una recensione su Google",
+    discountTitle: "10% di sconto sulla prossima prenotazione",
+    discountDesc: "Un regalo esclusivo per lei",
+    discountFooter: "Inserisca questo codice alla prossima prenotazione sul nostro sito.",
+    bookAgain: "Prenota di nuovo",
+    seeYouSoon: "Speriamo di rivederla presto in Costa Brava.",
+    colBoat: "Barca", colDate: "Data", colSchedule: "Orario", colDuration: "Durata",
+    colPeople: "Persone", colBase: "Imponibile (IVA esclusa)", colVat: "IVA (21%)", colTotal: "Totale (IVA inclusa)",
+    colHour: "ora", colHours: "ore",
+  },
+  ru: {
+    bookingConfirmed: "Bronirovanie podtverzhdeno",
+    greeting: "Vashe bronirovanie podtverzhdeno. Vot podrobnosti:",
+    bookingDetails: "Detali vashego bronirovaniya",
+    meetingPoint: "Mesto vstrechi",
+    meetingPointDesc: "Port Blanesa, Kosta-Brava, Zhirona",
+    arriveEarly: "Pozhaluysta, pribudte <strong>za 15 minut</strong> do otplytiya.",
+    contact: "Kontakty",
+    thanks: "Spasibo za doverie. Do vstrechi v portu.",
+    reminderTitle: "Napominanie: vashe bronirovanie zavtra",
+    reminderSubtitle: "Napominanie: vasha arenda lodki <strong>zavtra</strong>.",
+    tipsTitle: "Sovety dlya vashego otdykha",
+    tips: ["Vozmite solntsezashchitny krem i ochki", "Odente udobnuyu odezhdu i obuv, kotoraya mozhet namoknut", "Vozmite polotentse i smenu odezhdy", "Na bort mozhno brat edu i napitki", "Proverte prognoz pogody pered vyezdom"],
+    emergency: "Nomer ekstrennoy svyazi",
+    parking: "Parkovka",
+    parkingDesc: "Parkovka dostupna ryadom s portom Blanesa. V vysokiy sezon rekomenduem priezhat zaranee.",
+    seeYouTomorrow: "S neterpeniyem zhdem vstrechi zavtra.",
+    thankYouTitle: "Spasibo, chto puteshestvovali s nami",
+    thankYouIntro: "Nadeemsya, vam ponravilos na bortu",
+    reviewTitle: "Vashe mnenie vazhno dlya nas",
+    reviewDesc: "Yesli vam ponravilos, my budem rady otzuvu na Google.",
+    reviewButton: "Ostavit otzuv v Google",
+    discountTitle: "Skidka 10% na sleduyushchee bronirovanie",
+    discountDesc: "Eksklyuzivnyy podarok dlya vas",
+    discountFooter: "Vvedite etot kod pri sleduyushchem bronirovanii na nashem sayte.",
+    bookAgain: "Zabronirovat snova",
+    seeYouSoon: "Nadeemsya snova uvidet vas na Kosta-Brave.",
+    colBoat: "Lodka", colDate: "Data", colSchedule: "Raspisanie", colDuration: "Dlitelnost",
+    colPeople: "Chelovek", colBase: "Summa bez NDS", colVat: "NDS (21%)", colTotal: "Itogo (vklyuchaya NDS)",
+    colHour: "chas", colHours: "chasov",
+  },
+};
+
+function getEmailStrings(language?: string | null): EmailStrings {
+  const lang = (language || "es") as EmailLang;
+  return EMAIL_STRINGS[lang] || EMAIL_STRINGS.es;
+}
+
 // Lazy initialization for SendGrid
 let initialized = false;
 
@@ -96,7 +355,7 @@ function formatTime(date: Date): string {
   });
 }
 
-function bookingDetailsTable(data: BookingEmailData): string {
+function bookingDetailsTable(data: BookingEmailData, strings: EmailStrings): string {
   const { booking, boat, extras } = data;
 
   const extrasHtml = extras.length > 0
@@ -108,36 +367,36 @@ function bookingDetailsTable(data: BookingEmailData): string {
 
   return `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#f8fafc; border-radius:8px; overflow:hidden; margin:16px 0;">
     <tr>
-      <td style="padding:10px 12px; color:#1e3a5f; font-size:14px; font-weight:600; border-bottom:1px solid #e2e8f0; background-color:#eff6ff;">Barco</td>
+      <td style="padding:10px 12px; color:#1e3a5f; font-size:14px; font-weight:600; border-bottom:1px solid #e2e8f0; background-color:#eff6ff;">${strings.colBoat}</td>
       <td style="padding:10px 12px; color:#1e3a5f; font-size:14px; font-weight:600; border-bottom:1px solid #e2e8f0; background-color:#eff6ff; text-align:right;">${boat.name}</td>
     </tr>
     <tr>
-      <td style="padding:8px 12px; color:#475569; font-size:14px; border-bottom:1px solid #f1f5f9;">Fecha</td>
+      <td style="padding:8px 12px; color:#475569; font-size:14px; border-bottom:1px solid #f1f5f9;">${strings.colDate}</td>
       <td style="padding:8px 12px; color:#475569; font-size:14px; border-bottom:1px solid #f1f5f9; text-align:right;">${formatDate(booking.startTime)}</td>
     </tr>
     <tr>
-      <td style="padding:8px 12px; color:#475569; font-size:14px; border-bottom:1px solid #f1f5f9;">Horario</td>
+      <td style="padding:8px 12px; color:#475569; font-size:14px; border-bottom:1px solid #f1f5f9;">${strings.colSchedule}</td>
       <td style="padding:8px 12px; color:#475569; font-size:14px; border-bottom:1px solid #f1f5f9; text-align:right;">${formatTime(booking.startTime)} - ${formatTime(booking.endTime)}</td>
     </tr>
     <tr>
-      <td style="padding:8px 12px; color:#475569; font-size:14px; border-bottom:1px solid #f1f5f9;">Duracion</td>
-      <td style="padding:8px 12px; color:#475569; font-size:14px; border-bottom:1px solid #f1f5f9; text-align:right;">${booking.totalHours} hora${booking.totalHours > 1 ? "s" : ""}</td>
+      <td style="padding:8px 12px; color:#475569; font-size:14px; border-bottom:1px solid #f1f5f9;">${strings.colDuration}</td>
+      <td style="padding:8px 12px; color:#475569; font-size:14px; border-bottom:1px solid #f1f5f9; text-align:right;">${booking.totalHours} ${booking.totalHours > 1 ? strings.colHours : strings.colHour}</td>
     </tr>
     <tr>
-      <td style="padding:8px 12px; color:#475569; font-size:14px; border-bottom:1px solid #f1f5f9;">Personas</td>
+      <td style="padding:8px 12px; color:#475569; font-size:14px; border-bottom:1px solid #f1f5f9;">${strings.colPeople}</td>
       <td style="padding:8px 12px; color:#475569; font-size:14px; border-bottom:1px solid #f1f5f9; text-align:right;">${booking.numberOfPeople}</td>
     </tr>
     ${extrasHtml}
     <tr>
-      <td style="padding:8px 12px; color:#475569; font-size:13px; border-bottom:1px solid #f1f5f9;">Base imponible (sin IVA)</td>
+      <td style="padding:8px 12px; color:#475569; font-size:13px; border-bottom:1px solid #f1f5f9;">${strings.colBase}</td>
       <td style="padding:8px 12px; color:#475569; font-size:13px; border-bottom:1px solid #f1f5f9; text-align:right;">${(parseFloat(booking.totalAmount) / 1.21).toFixed(2)} EUR</td>
     </tr>
     <tr>
-      <td style="padding:8px 12px; color:#475569; font-size:13px; border-bottom:1px solid #e2e8f0;">IVA (21%)</td>
+      <td style="padding:8px 12px; color:#475569; font-size:13px; border-bottom:1px solid #e2e8f0;">${strings.colVat}</td>
       <td style="padding:8px 12px; color:#475569; font-size:13px; border-bottom:1px solid #e2e8f0; text-align:right;">${(parseFloat(booking.totalAmount) - parseFloat(booking.totalAmount) / 1.21).toFixed(2)} EUR</td>
     </tr>
     <tr>
-      <td style="padding:10px 12px; color:#1e3a5f; font-size:15px; font-weight:700; border-top:2px solid #2563eb;">Total (IVA incluido)</td>
+      <td style="padding:10px 12px; color:#1e3a5f; font-size:15px; font-weight:700; border-top:2px solid #2563eb;">${strings.colTotal}</td>
       <td style="padding:10px 12px; color:#1e3a5f; font-size:15px; font-weight:700; border-top:2px solid #2563eb; text-align:right;">${parseFloat(booking.totalAmount).toFixed(2)} EUR</td>
     </tr>
   </table>`;
@@ -160,29 +419,31 @@ export async function sendBookingConfirmation(data: BookingEmailData): Promise<E
     return { success: false, error: "No customer email address" };
   }
 
+  const strings = getEmailStrings(booking.language);
+
   const content = `
-    <h2 style="margin:0 0 8px; color:#1e3a5f; font-size:20px;">Reserva confirmada</h2>
+    <h2 style="margin:0 0 8px; color:#1e3a5f; font-size:20px;">${strings.bookingConfirmed}</h2>
     <p style="margin:0 0 20px; color:#475569; font-size:15px; line-height:1.6;">
-      Hola ${booking.customerName},<br>
-      Tu reserva ha sido confirmada. Aqui tienes los detalles:
+      ${booking.customerName},<br>
+      ${strings.greeting}
     </p>
 
-    ${bookingDetailsTable(data)}
+    ${bookingDetailsTable(data, strings)}
 
     <div style="background-color:#eff6ff; border-left:4px solid #2563eb; border-radius:4px; padding:16px; margin:20px 0;">
-      <p style="margin:0 0 6px; color:#1e3a5f; font-size:14px; font-weight:600;">Punto de encuentro</p>
-      <p style="margin:0; color:#475569; font-size:14px;">Puerto de Blanes, Costa Brava, Girona</p>
-      <p style="margin:8px 0 0; color:#475569; font-size:13px;">Presentate <strong>15 minutos antes</strong> de la hora de salida.</p>
+      <p style="margin:0 0 6px; color:#1e3a5f; font-size:14px; font-weight:600;">${strings.meetingPoint}</p>
+      <p style="margin:0; color:#475569; font-size:14px;">${strings.meetingPointDesc}</p>
+      <p style="margin:8px 0 0; color:#475569; font-size:13px;">${strings.arriveEarly}</p>
     </div>
 
     <div style="background-color:#f0fdf4; border-left:4px solid #22c55e; border-radius:4px; padding:16px; margin:20px 0;">
-      <p style="margin:0 0 6px; color:#166534; font-size:14px; font-weight:600;">Contacto</p>
+      <p style="margin:0 0 6px; color:#166534; font-size:14px; font-weight:600;">${strings.contact}</p>
       <p style="margin:0; color:#475569; font-size:14px;">Telefono: <a href="tel:+34611500372" style="color:#2563eb;">+34 611 500 372</a></p>
       <p style="margin:4px 0 0; color:#475569; font-size:14px;">Email: <a href="mailto:costabravarentboat@gmail.com" style="color:#2563eb;">costabravarentboat@gmail.com</a></p>
     </div>
 
     <p style="margin:20px 0 0; color:#475569; font-size:14px; line-height:1.5;">
-      Gracias por confiar en nosotros. Nos vemos en el puerto.
+      ${strings.thanks}
     </p>
   `;
 
@@ -190,7 +451,7 @@ export async function sendBookingConfirmation(data: BookingEmailData): Promise<E
     await sgMail.send({
       to: booking.customerEmail,
       from: { email: getFromEmail(), name: "Costa Brava Rent a Boat" },
-      subject: `Reserva confirmada - ${data.boat.name} - ${formatDate(booking.startTime)}`,
+      subject: `${strings.bookingConfirmed} - ${data.boat.name} - ${formatDate(booking.startTime)}`,
       html: emailWrapper(content),
     });
 
@@ -218,44 +479,42 @@ export async function sendBookingReminder(data: BookingEmailData): Promise<Email
     return { success: false, error: "No customer email address" };
   }
 
+  const strings = getEmailStrings(booking.language);
+
   const content = `
-    <h2 style="margin:0 0 8px; color:#1e3a5f; font-size:20px;">Recordatorio: tu reserva es manana</h2>
+    <h2 style="margin:0 0 8px; color:#1e3a5f; font-size:20px;">${strings.reminderTitle}</h2>
     <p style="margin:0 0 20px; color:#475569; font-size:15px; line-height:1.6;">
-      Hola ${booking.customerName},<br>
-      Te recordamos que tu alquiler de barco es <strong>manana</strong>. Aqui tienes los detalles:
+      ${booking.customerName},<br>
+      ${strings.reminderSubtitle}
     </p>
 
-    ${bookingDetailsTable(data)}
+    ${bookingDetailsTable(data, strings)}
 
     <div style="background-color:#eff6ff; border-left:4px solid #2563eb; border-radius:4px; padding:16px; margin:20px 0;">
-      <p style="margin:0 0 6px; color:#1e3a5f; font-size:14px; font-weight:600;">Punto de encuentro</p>
-      <p style="margin:0; color:#475569; font-size:14px;">Puerto de Blanes, Costa Brava, Girona</p>
-      <p style="margin:8px 0 0; color:#475569; font-size:13px;">Presentate <strong>15 minutos antes</strong> de la hora de salida.</p>
+      <p style="margin:0 0 6px; color:#1e3a5f; font-size:14px; font-weight:600;">${strings.meetingPoint}</p>
+      <p style="margin:0; color:#475569; font-size:14px;">${strings.meetingPointDesc}</p>
+      <p style="margin:8px 0 0; color:#475569; font-size:13px;">${strings.arriveEarly}</p>
     </div>
 
     <div style="background-color:#fefce8; border-left:4px solid #eab308; border-radius:4px; padding:16px; margin:20px 0;">
-      <p style="margin:0 0 8px; color:#854d0e; font-size:14px; font-weight:600;">Consejos para tu experiencia</p>
+      <p style="margin:0 0 8px; color:#854d0e; font-size:14px; font-weight:600;">${strings.tipsTitle}</p>
       <ul style="margin:0; padding:0 0 0 18px; color:#475569; font-size:14px; line-height:1.8;">
-        <li>Lleva proteccion solar y gafas de sol</li>
-        <li>Viste ropa comoda y calzado que se pueda mojar</li>
-        <li>Trae una toalla y ropa de repuesto</li>
-        <li>Puedes traer comida y bebida a bordo</li>
-        <li>Consulta la prevision meteorologica antes de salir</li>
+        ${strings.tips.map(tip => `<li>${tip}</li>`).join("")}
       </ul>
     </div>
 
     <div style="background-color:#fef2f2; border-left:4px solid #ef4444; border-radius:4px; padding:16px; margin:20px 0;">
-      <p style="margin:0 0 6px; color:#991b1b; font-size:14px; font-weight:600;">Numero de emergencia</p>
+      <p style="margin:0 0 6px; color:#991b1b; font-size:14px; font-weight:600;">${strings.emergency}</p>
       <p style="margin:0; color:#475569; font-size:14px;">En caso de cualquier incidencia, llamanos al: <a href="tel:+34611500372" style="color:#2563eb; font-weight:600;">+34 611 500 372</a></p>
     </div>
 
     <div style="background-color:#f0fdf4; border-left:4px solid #22c55e; border-radius:4px; padding:16px; margin:20px 0;">
-      <p style="margin:0 0 6px; color:#166534; font-size:14px; font-weight:600;">Aparcamiento</p>
-      <p style="margin:0; color:#475569; font-size:14px;">Hay aparcamiento disponible cerca del puerto de Blanes. En temporada alta, recomendamos llegar con tiempo para encontrar plaza.</p>
+      <p style="margin:0 0 6px; color:#166534; font-size:14px; font-weight:600;">${strings.parking}</p>
+      <p style="margin:0; color:#475569; font-size:14px;">${strings.parkingDesc}</p>
     </div>
 
     <p style="margin:20px 0 0; color:#475569; font-size:14px; line-height:1.5;">
-      Estamos deseando verte manana. Si tienes alguna pregunta, no dudes en contactarnos.
+      ${strings.seeYouTomorrow}
     </p>
   `;
 
@@ -263,7 +522,7 @@ export async function sendBookingReminder(data: BookingEmailData): Promise<Email
     await sgMail.send({
       to: booking.customerEmail,
       from: { email: getFromEmail(), name: "Costa Brava Rent a Boat" },
-      subject: `Recordatorio: tu alquiler de barco es manana - ${data.boat.name}`,
+      subject: `${strings.reminderTitle} - ${data.boat.name}`,
       html: emailWrapper(content),
     });
 
@@ -291,42 +550,42 @@ export async function sendThankYouEmail(data: BookingEmailData, discountCode: st
   if (!booking.customerEmail) {
     return { success: false, error: "No customer email address" };
   }
+
+  const strings = getEmailStrings(booking.language);
   const googleReviewUrl = "https://search.google.com/local/writereview?placeid=ChIJrTRWOdA0uxIR_vCCNfbFNpE";
 
   const content = `
-    <h2 style="margin:0 0 8px; color:#1e3a5f; font-size:20px;">Gracias por navegar con nosotros</h2>
+    <h2 style="margin:0 0 8px; color:#1e3a5f; font-size:20px;">${strings.thankYouTitle}</h2>
     <p style="margin:0 0 20px; color:#475569; font-size:15px; line-height:1.6;">
-      Hola ${booking.customerName},<br>
-      Esperamos que disfrutaras de tu experiencia a bordo del <strong>${data.boat.name}</strong>.
-      Para nosotros ha sido un placer tenerte como cliente.
+      ${booking.customerName},<br>
+      ${strings.thankYouIntro} <strong>${data.boat.name}</strong>.
     </p>
 
     <!-- Google Review CTA -->
     <div style="background-color:#eff6ff; border-radius:8px; padding:24px; margin:20px 0; text-align:center;">
-      <p style="margin:0 0 8px; color:#1e3a5f; font-size:16px; font-weight:600;">Tu opinion nos importa</p>
+      <p style="margin:0 0 8px; color:#1e3a5f; font-size:16px; font-weight:600;">${strings.reviewTitle}</p>
       <p style="margin:0 0 16px; color:#475569; font-size:14px; line-height:1.5;">
-        Si disfrutaste de la experiencia, nos encantaria que compartieras tu opinion en Google.
-        Nos ayuda mucho a seguir mejorando.
+        ${strings.reviewDesc}
       </p>
-      <a href="${googleReviewUrl}" target="_blank" style="display:inline-block; background-color:#2563eb; color:#ffffff; text-decoration:none; padding:12px 28px; border-radius:6px; font-size:15px; font-weight:600;">Dejar una resena en Google</a>
+      <a href="${googleReviewUrl}" target="_blank" style="display:inline-block; background-color:#2563eb; color:#ffffff; text-decoration:none; padding:12px 28px; border-radius:6px; font-size:15px; font-weight:600;">${strings.reviewButton}</a>
     </div>
 
     <!-- Discount Code -->
     <div style="background: linear-gradient(135deg, #1e3a5f 0%, #2563eb 100%); border-radius:8px; padding:24px; margin:20px 0; text-align:center;">
-      <p style="margin:0 0 4px; color:#93c5fd; font-size:13px; text-transform:uppercase; letter-spacing:1px;">Regalo exclusivo para ti</p>
-      <p style="margin:0 0 12px; color:#ffffff; font-size:18px; font-weight:700;">10% de descuento en tu proxima reserva</p>
+      <p style="margin:0 0 4px; color:#93c5fd; font-size:13px; text-transform:uppercase; letter-spacing:1px;">${strings.discountDesc}</p>
+      <p style="margin:0 0 12px; color:#ffffff; font-size:18px; font-weight:700;">${strings.discountTitle}</p>
       <div style="background-color:rgba(255,255,255,0.15); border:2px dashed rgba(255,255,255,0.4); border-radius:6px; padding:12px; display:inline-block;">
         <span style="color:#ffffff; font-size:20px; font-weight:700; letter-spacing:2px;">${discountCode}</span>
       </div>
-      <p style="margin:12px 0 0; color:#bfdbfe; font-size:12px;">Introduce este codigo al hacer tu proxima reserva en nuestra web.</p>
+      <p style="margin:12px 0 0; color:#bfdbfe; font-size:12px;">${strings.discountFooter}</p>
     </div>
 
     <div style="text-align:center; margin:24px 0;">
-      <a href="https://costabravarentaboat.app" target="_blank" style="display:inline-block; background-color:#2563eb; color:#ffffff; text-decoration:none; padding:12px 28px; border-radius:6px; font-size:15px; font-weight:600;">Reservar de nuevo</a>
+      <a href="https://costabravarentaboat.app" target="_blank" style="display:inline-block; background-color:#2563eb; color:#ffffff; text-decoration:none; padding:12px 28px; border-radius:6px; font-size:15px; font-weight:600;">${strings.bookAgain}</a>
     </div>
 
     <p style="margin:20px 0 0; color:#475569; font-size:14px; line-height:1.5; text-align:center;">
-      Esperamos verte de nuevo pronto en la Costa Brava.
+      ${strings.seeYouSoon}
     </p>
   `;
 
@@ -334,7 +593,7 @@ export async function sendThankYouEmail(data: BookingEmailData, discountCode: st
     await sgMail.send({
       to: booking.customerEmail,
       from: { email: getFromEmail(), name: "Costa Brava Rent a Boat" },
-      subject: `Gracias por navegar con nosotros, ${booking.customerName}!`,
+      subject: `${strings.thankYouTitle}, ${booking.customerName}!`,
       html: emailWrapper(content),
     });
 

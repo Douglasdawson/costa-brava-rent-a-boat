@@ -105,6 +105,8 @@ export interface IStorage {
   updateBookingPaymentStatus(id: string, status: string, stripePaymentIntentId?: string): Promise<Booking | undefined>;
   updateBookingWhatsAppStatus(id: string, confirmationSent?: boolean, reminderSent?: boolean): Promise<Booking | undefined>;
   getAllBookings(): Promise<Booking[]>;
+  getBookingByCancelationToken(token: string): Promise<Booking | undefined>;
+  cancelBookingByToken(token: string): Promise<{ booking: Booking; refundAmount: number; refundPercentage: number } | undefined>;
 
   // Paginated bookings for admin CRM
   getPaginatedBookings(params: {
@@ -689,9 +691,13 @@ export class DatabaseStorage implements IStorage {
 
   // Booking methods
   async createBooking(booking: InsertBooking): Promise<Booking> {
+    const { randomUUID } = await import('crypto');
     const [newBooking] = await db
       .insert(bookings)
-      .values(booking)
+      .values({
+        ...booking,
+        cancelationToken: booking.cancelationToken || randomUUID(),
+      })
       .returning();
     return newBooking;
   }
@@ -804,6 +810,47 @@ export class DatabaseStorage implements IStorage {
 
   async getAllBookings(): Promise<Booking[]> {
     return await db.select().from(bookings);
+  }
+
+  async getBookingByCancelationToken(token: string): Promise<Booking | undefined> {
+    const [booking] = await db
+      .select()
+      .from(bookings)
+      .where(eq(bookings.cancelationToken, token));
+    return booking || undefined;
+  }
+
+  async cancelBookingByToken(token: string): Promise<{ booking: Booking; refundAmount: number; refundPercentage: number } | undefined> {
+    const booking = await this.getBookingByCancelationToken(token);
+    if (!booking) return undefined;
+
+    // Only confirmed or pending_payment bookings can be cancelled
+    if (!['confirmed', 'pending_payment'].includes(booking.bookingStatus)) return undefined;
+
+    // Calculate refund based on cancellation policy
+    const hoursUntilStart = (new Date(booking.startTime).getTime() - Date.now()) / (1000 * 60 * 60);
+    const totalAmount = parseFloat(booking.totalAmount);
+    let refundPercentage = 0;
+    let refundAmount = 0;
+    if (hoursUntilStart >= 48) {
+      refundPercentage = 100;
+      refundAmount = totalAmount;
+    } else if (hoursUntilStart >= 24) {
+      refundPercentage = 50;
+      refundAmount = Math.round(totalAmount * 0.5 * 100) / 100;
+    }
+
+    const [updated] = await db
+      .update(bookings)
+      .set({
+        bookingStatus: 'cancelled',
+        refundAmount: refundAmount.toString(),
+        refundStatus: refundAmount > 0 ? 'requested' : null,
+      })
+      .where(eq(bookings.cancelationToken, token))
+      .returning();
+
+    return { booking: updated, refundAmount, refundPercentage };
   }
 
   async getPaginatedBookings(params: {

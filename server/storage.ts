@@ -34,6 +34,7 @@ import {
   type InventoryMovement, type InsertInventoryMovement,
   aiChatSessions, aiChatMessages, knowledgeBase, pageVisits,
 } from "@shared/schema";
+import { randomUUID } from "crypto";
 import { db } from "./db";
 import { eq, and, gte, lte, between, inArray, sql, or, isNull, desc, asc, ilike } from "drizzle-orm";
 import memoize from "memoizee";
@@ -691,12 +692,11 @@ export class DatabaseStorage implements IStorage {
 
   // Booking methods
   async createBooking(booking: InsertBooking): Promise<Booking> {
-    const { randomUUID } = await import('crypto');
     const [newBooking] = await db
       .insert(bookings)
       .values({
         ...booking,
-        cancelationToken: booking.cancelationToken || randomUUID(),
+        cancelationToken: booking.cancelationToken ?? randomUUID(),
       })
       .returning();
     return newBooking;
@@ -845,11 +845,17 @@ export class DatabaseStorage implements IStorage {
       .set({
         bookingStatus: 'cancelled',
         refundAmount: refundAmount.toString(),
-        refundStatus: refundAmount > 0 ? 'requested' : null,
+        refundStatus: refundAmount > 0 ? 'requested' : null, // null = no refund (schema allows null, 'requested', 'processing', 'completed')
       })
-      .where(eq(bookings.cancelationToken, token))
+      .where(
+        and(
+          eq(bookings.cancelationToken, token),
+          inArray(bookings.bookingStatus, ['confirmed', 'pending_payment'])
+        )
+      )
       .returning();
 
+    if (!updated) return undefined;
     return { booking: updated, refundAmount, refundPercentage };
   }
 

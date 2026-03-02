@@ -491,9 +491,9 @@ export default function BookingFormWidget({ preSelectedBoatId, prefillDate, pref
 
   const getSeasonLabel = () => {
     const season = getCurrentSeason();
-    if (season === "ALTA") return "Alta (Agosto)";
-    if (season === "MEDIA") return "Media (Julio)";
-    return "Baja (Abr-Jun, Sep-Oct)";
+    if (season === "ALTA") return t.boatDetail.seasonHigh;
+    if (season === "MEDIA") return t.boatDetail.seasonMid;
+    return t.boatDetail.seasonLow;
   };
 
   const buildExtrasText = (isSpanish: boolean) => {

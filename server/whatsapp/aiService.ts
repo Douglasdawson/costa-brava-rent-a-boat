@@ -333,6 +333,9 @@ IMPORTANTE: Tienes acceso a funciones para consultar disponibilidad y precios en
       ca: "Ho sento, estic tenint problemes tecnics. Si us plau, contacta directament per WhatsApp al +34 611 500 372 o visita costabravarentaboat.app",
       fr: "Desole, je rencontre des difficultes techniques. Veuillez nous contacter directement via WhatsApp au +34 611 500 372 ou visitez costabravarentaboat.app",
       de: "Entschuldigung, ich habe technische Schwierigkeiten. Bitte kontaktieren Sie uns direkt uber WhatsApp unter +34 611 500 372 oder besuchen Sie costabravarentaboat.app",
+      nl: "Sorry, ik heb technische problemen. Neem direct contact op via WhatsApp op +34 611 500 372 of bezoek costabravarentaboat.app",
+      it: "Mi dispiace, sto avendo difficolta tecniche. Vi preghiamo di contattarci direttamente tramite WhatsApp al +34 611 500 372 o visitate costabravarentaboat.app",
+      ru: "Izvinite, u menya tekhnicheskiye trudnosti. Svyazhites' s nami napryamuyu cherez WhatsApp po nomeru +34 611 500 372 ili posetite costabravarentaboat.app",
     };
 
     return { 

@@ -791,3 +791,82 @@ export async function sendPasswordResetEmail(
     return { success: false, error: message };
   }
 }
+
+// ===== CANCELATION EMAIL =====
+
+interface CancelationEmailData {
+  booking: Booking;
+  refundAmount: number;
+  refundPercentage: number;
+}
+
+/**
+ * Send cancelation confirmation email to customer and notification to owner.
+ */
+export async function sendCancelationEmail(data: CancelationEmailData): Promise<EmailResult> {
+  if (!data.booking.customerEmail) {
+    return { success: false, error: "No customer email" };
+  }
+
+  if (!initSendGrid()) {
+    console.log("[Email] SendGrid not configured, skipping cancelation email");
+    return { success: false, error: "SendGrid not configured" };
+  }
+
+  const { booking, refundAmount, refundPercentage } = data;
+  const appUrl = process.env.APP_URL || "https://costabravarentaboat.app";
+
+  const refundBlock = refundAmount > 0
+    ? `<p style="color:#16a34a; font-weight:bold;">Reembolso: ${refundAmount}EUR (${refundPercentage}%) — se procesara en los proximos dias habiles.</p>`
+    : `<p style="color:#dc2626;">Sin reembolso segun politica de cancelacion (menos de 24h de antelacion).</p>`;
+
+  const customerContent = `
+    <h2 style="margin:0 0 16px; color:#1e3a5f; font-size:22px;">Reserva cancelada</h2>
+    <p style="color:#475569; font-size:15px; margin:0 0 16px;">
+      Hola ${booking.customerName}, hemos procesado la cancelacion de tu reserva.
+    </p>
+    ${refundBlock}
+    <p style="color:#64748b; font-size:13px; margin-top:24px;">
+      Si tienes dudas, contactanos en <a href="mailto:costabravarentboat@gmail.com" style="color:#2563eb;">costabravarentboat@gmail.com</a> o al +34 611 500 372.
+    </p>
+    <p style="margin-top:16px;"><a href="${appUrl}" style="color:#2563eb; text-decoration:none;">Volver a costabravarentaboat.app</a></p>
+  `;
+
+  try {
+    await sgMail.send({
+      to: booking.customerEmail,
+      from: { email: getFromEmail(), name: "Costa Brava Rent a Boat" },
+      subject: `Cancelacion confirmada — ${booking.customerName}`,
+      html: emailWrapper(customerContent),
+    });
+
+    console.log(`[Email] Cancelation email sent to ${booking.customerEmail} for booking ${booking.id}`);
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : "Unknown error";
+    console.error(`[Email] Error sending cancelation email to ${booking.customerEmail}:`, message);
+    return { success: false, error: message };
+  }
+
+  // Owner notification (fire-and-forget)
+  const ownerEmail = process.env.OWNER_EMAIL || "costabravarentboat@gmail.com";
+  const ownerContent = `
+    <h2 style="color:#dc2626;">Cancelacion de reserva</h2>
+    <p>Cliente: <strong>${booking.customerName} ${booking.customerSurname}</strong></p>
+    <p>Email: ${booking.customerEmail}</p>
+    <p>Telefono: ${booking.customerPhone}</p>
+    <p>Fecha: ${new Date(booking.startTime).toLocaleDateString("es-ES")}</p>
+    <p>Total: ${booking.totalAmount}EUR</p>
+    ${refundAmount > 0 ? `<p style="color:#dc2626;">Reembolso a procesar: ${refundAmount}EUR (${refundPercentage}%)</p>` : "<p>Sin reembolso.</p>"}
+  `;
+
+  sgMail.send({
+    to: ownerEmail,
+    from: { email: getFromEmail(), name: "Costa Brava Rent a Boat" },
+    subject: `[CANCELACION] ${booking.customerName} — ${new Date(booking.startTime).toLocaleDateString("es-ES")}`,
+    html: emailWrapper(ownerContent),
+  }).catch((err: unknown) => {
+    console.error("[Email] Error sending cancelation owner notification:", err instanceof Error ? err.message : String(err));
+  });
+
+  return { success: true };
+}

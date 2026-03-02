@@ -5,6 +5,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { Calendar } from "@/components/ui/calendar";
 import { Button } from "@/components/ui/button";
 import type { BookingWizardMobileProps } from "./BookingWizardMobile";
+import { EXTRA_PACKS } from "@shared/boatData";
 
 export default function BookingFormDesktop(props: BookingWizardMobileProps) {
   const {
@@ -37,6 +38,17 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
     privacyConsent, setPrivacyConsent,
     showFieldError, getFieldError, handleBlur,
     t,
+    boatExtras,
+    selectedExtras,
+    selectedPack,
+    showExtras, setShowExtras,
+    extrasInPack,
+    totalExtrasPrice,
+    handlePackSelect,
+    handleExtraToggle,
+    iconMap,
+    calculatePackSavings,
+    isSpanishLang,
   } = props;
 
   const [showDatePicker, setShowDatePicker] = useState(false);
@@ -273,6 +285,94 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
 
           {/* Divider */}
           <div className="border-t border-gray-100" />
+
+          {/* Extras & Packs */}
+          {boatExtras.length > 0 && (
+            <div>
+              <button
+                type="button"
+                onClick={() => setShowExtras(!showExtras)}
+                className="flex items-center justify-between w-full mb-2"
+              >
+                <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide">
+                  {t.booking.extrasSection.title}
+                </p>
+                <span className="flex items-center gap-2 text-xs">
+                  {totalExtrasPrice > 0 && (
+                    <span className="text-primary font-bold">+{totalExtrasPrice}€</span>
+                  )}
+                  <span className="text-gray-400">{showExtras ? '\u25B2' : '\u25BC'}</span>
+                </span>
+              </button>
+
+              {showExtras && (
+                <div className="space-y-2">
+                  {EXTRA_PACKS.map((pack) => (
+                    <button
+                      key={pack.id}
+                      type="button"
+                      onClick={() => handlePackSelect(pack.id)}
+                      className={`w-full flex items-center justify-between p-2.5 rounded-lg border-2 text-left transition-all ${
+                        selectedPack === pack.id
+                          ? 'border-primary bg-primary/5'
+                          : 'border-gray-200 bg-white'
+                      }`}
+                    >
+                      <div className="min-w-0 flex-1">
+                        <p className="text-xs font-semibold text-gray-900">
+                          {isSpanishLang ? pack.name : pack.nameEN}
+                        </p>
+                        <p className="text-[10px] text-gray-500 truncate">
+                          {pack.extras.join(', ')}
+                        </p>
+                      </div>
+                      <div className="text-right flex-shrink-0 ml-3">
+                        <p className="text-xs font-bold text-primary">{pack.price}€</p>
+                        <p className="text-[10px] text-green-600">
+                          -{calculatePackSavings(pack.id)}€ {t.booking.extrasSection.savings.toLowerCase()}
+                        </p>
+                      </div>
+                    </button>
+                  ))}
+
+                  {boatExtras.map((extra) => {
+                    const Icon = iconMap[extra.icon] || iconMap['Package'];
+                    const inPack = extrasInPack.has(extra.name);
+                    const isSelected = selectedExtras.includes(extra.name);
+                    return (
+                      <button
+                        key={extra.name}
+                        type="button"
+                        onClick={() => handleExtraToggle(extra.name)}
+                        disabled={inPack}
+                        className={`w-full flex items-center gap-2.5 p-2 rounded-lg border-2 text-left transition-all ${
+                          inPack
+                            ? 'border-primary/30 bg-primary/5 opacity-70 cursor-default'
+                            : isSelected
+                            ? 'border-primary bg-primary/5'
+                            : 'border-gray-200 bg-white hover:border-gray-300'
+                        }`}
+                      >
+                        {Icon && <Icon className="w-4 h-4 text-primary flex-shrink-0" />}
+                        <span className="flex-1 text-xs font-medium text-gray-900">
+                          {extra.name}
+                        </span>
+                        {inPack ? (
+                          <span className="text-[10px] text-primary font-semibold flex-shrink-0">
+                            {t.booking.extrasSection.included.toLowerCase()}
+                          </span>
+                        ) : (
+                          <span className="text-xs font-bold text-primary flex-shrink-0">
+                            {extra.price}€
+                          </span>
+                        )}
+                      </button>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
+          )}
 
           {/* Personal data */}
           <div>

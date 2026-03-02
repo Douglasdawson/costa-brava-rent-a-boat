@@ -65,8 +65,10 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
   const durationOptions = getDurationOptions();
   const maxCapacity = getMaxCapacity();
   const price = getBookingPrice();
+  const discount = getCodeDiscount();
+  const boatExtraNames = new Set(boatExtras.map(e => e.name));
   const availablePacks = EXTRA_PACKS.filter(pack =>
-    pack.extras.every(name => boatExtras.some(e => e.name === name))
+    pack.extras.every(name => boatExtraNames.has(name))
   );
 
   const inputBase = "w-full p-2.5 border-2 rounded-lg bg-white text-gray-900 text-sm font-medium focus:ring-2 focus:ring-primary focus:outline-none";
@@ -519,8 +521,8 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
                       <p className="text-xs font-bold text-green-800">{validatedCode.code}</p>
                       <p className="text-[10px] text-green-600">
                         {validatedCode.type === 'gift_card'
-                          ? `-${getCodeDiscount()}\u20AC`
-                          : `-${validatedCode.percentage}% (-${getCodeDiscount()}\u20AC)`}
+                          ? `-${discount}\u20AC`
+                          : `-${validatedCode.percentage}% (-${discount}\u20AC)`}
                       </p>
                     </div>
                     <button
@@ -579,16 +581,16 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
                     <span className="font-medium">+{totalExtrasPrice}\u20AC</span>
                   </div>
                 )}
-                {getCodeDiscount() > 0 && validatedCode && (
+                {discount > 0 && validatedCode && (
                   <div className="flex justify-between text-xs text-green-700">
                     <span>{validatedCode.code}</span>
-                    <span>-{getCodeDiscount()}\u20AC</span>
+                    <span>-{discount}\u20AC</span>
                   </div>
                 )}
                 <div className="flex justify-between items-baseline border-t border-primary/20 pt-1.5 mt-1">
                   <span className="text-sm font-bold text-gray-900">Total</span>
                   <span className="text-xl font-bold text-primary">
-                    {price + totalExtrasPrice - getCodeDiscount()}\u20AC
+                    {price + totalExtrasPrice - discount}\u20AC
                   </span>
                 </div>
               </div>

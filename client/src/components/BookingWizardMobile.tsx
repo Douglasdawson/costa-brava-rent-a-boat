@@ -569,7 +569,7 @@ function Step3PersonalData({
           value={firstName}
           onChange={(e) => setFirstName(e.target.value)}
           onBlur={() => handleBlur('firstName')}
-          placeholder="Juan"
+          placeholder=""
           autoComplete="given-name"
           maxLength={100}
           aria-required="true"
@@ -593,7 +593,7 @@ function Step3PersonalData({
           value={lastName}
           onChange={(e) => setLastName(e.target.value)}
           onBlur={() => handleBlur('lastName')}
-          placeholder="Garcia Lopez"
+          placeholder=""
           autoComplete="family-name"
           maxLength={100}
           aria-required="true"
@@ -686,7 +686,7 @@ function Step3PersonalData({
           onChange={(e) => setEmail(e.target.value)}
           onBlur={() => handleBlur('email')}
           onKeyDown={(e) => { if (e.key === 'Enter') onNext(); }}
-          placeholder="tu@email.com"
+          placeholder="email@example.com"
           autoComplete="email"
           maxLength={254}
           aria-required="true"

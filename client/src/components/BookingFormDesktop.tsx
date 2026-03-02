@@ -570,12 +570,12 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
               </p>
               <div className="space-y-1">
                 <div className="flex justify-between text-xs">
-                  <span className="text-gray-600">{'Precio base'}</span>
+                  <span className="text-gray-600">{t.booking.basePrice}</span>
                   <span className="font-medium">{price}\u20AC</span>
                 </div>
                 {totalExtrasPrice > 0 && (
                   <div className="flex justify-between text-xs">
-                    <span className="text-gray-600">{t.booking.extrasSection?.title || 'Extras'}</span>
+                    <span className="text-gray-600">{t.booking.extrasSection.title}</span>
                     <span className="font-medium">+{totalExtrasPrice}\u20AC</span>
                   </div>
                 )}

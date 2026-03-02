@@ -224,8 +224,8 @@ export function registerPaymentRoutes(app: Express) {
           },
         ],
         mode: "payment",
-        success_url: `${req.headers.origin}/booking/success?session_id={CHECKOUT_SESSION_ID}&booking_id=${bookingId}`,
-        cancel_url: `${req.headers.origin}/booking?step=6&booking_id=${bookingId}`,
+        success_url: `${process.env.APP_URL || 'https://costabravarentaboat.app'}/booking/success?session_id={CHECKOUT_SESSION_ID}&booking_id=${bookingId}`,
+        cancel_url: `${process.env.APP_URL || 'https://costabravarentaboat.app'}/booking?step=6&booking_id=${bookingId}`,
         metadata: {
           bookingId: bookingId,
         },

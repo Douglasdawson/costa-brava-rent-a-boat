@@ -33,6 +33,8 @@ interface EmailStrings {
   colBoat: string; colDate: string; colSchedule: string; colDuration: string;
   colPeople: string; colBase: string; colVat: string; colTotal: string;
   colHour: string; colHours: string;
+  phone: string;
+  emergencyCall: string;
 }
 
 const EMAIL_STRINGS: Record<EmailLang, EmailStrings> = {
@@ -66,6 +68,8 @@ const EMAIL_STRINGS: Record<EmailLang, EmailStrings> = {
     colBoat: "Barco", colDate: "Fecha", colSchedule: "Horario", colDuration: "Duracion",
     colPeople: "Personas", colBase: "Base imponible (sin IVA)", colVat: "IVA (21%)", colTotal: "Total (IVA incluido)",
     colHour: "hora", colHours: "horas",
+    phone: "Teléfono",
+    emergencyCall: "En caso de incidencia, llámanos al",
   },
   en: {
     bookingConfirmed: "Booking confirmed",
@@ -97,6 +101,8 @@ const EMAIL_STRINGS: Record<EmailLang, EmailStrings> = {
     colBoat: "Boat", colDate: "Date", colSchedule: "Schedule", colDuration: "Duration",
     colPeople: "People", colBase: "Subtotal (excl. VAT)", colVat: "VAT (21%)", colTotal: "Total (incl. VAT)",
     colHour: "hour", colHours: "hours",
+    phone: "Phone",
+    emergencyCall: "In case of emergency, call us at",
   },
   fr: {
     bookingConfirmed: "Reservation confirmee",
@@ -128,6 +134,8 @@ const EMAIL_STRINGS: Record<EmailLang, EmailStrings> = {
     colBoat: "Bateau", colDate: "Date", colSchedule: "Horaire", colDuration: "Duree",
     colPeople: "Personnes", colBase: "Base imposable (HT)", colVat: "TVA (21%)", colTotal: "Total (TTC)",
     colHour: "heure", colHours: "heures",
+    phone: "Téléphone",
+    emergencyCall: "En cas d'incident, appelez-nous au",
   },
   de: {
     bookingConfirmed: "Buchung bestatigt",
@@ -159,6 +167,8 @@ const EMAIL_STRINGS: Record<EmailLang, EmailStrings> = {
     colBoat: "Boot", colDate: "Datum", colSchedule: "Zeitplan", colDuration: "Dauer",
     colPeople: "Personen", colBase: "Nettobetrag (ohne MwSt)", colVat: "MwSt (21%)", colTotal: "Gesamt (inkl. MwSt)",
     colHour: "Stunde", colHours: "Stunden",
+    phone: "Telefon",
+    emergencyCall: "Im Notfall rufen Sie uns an",
   },
   nl: {
     bookingConfirmed: "Boeking bevestigd",
@@ -190,6 +200,8 @@ const EMAIL_STRINGS: Record<EmailLang, EmailStrings> = {
     colBoat: "Boot", colDate: "Datum", colSchedule: "Tijdschema", colDuration: "Duur",
     colPeople: "Personen", colBase: "Subtotaal (excl. btw)", colVat: "btw (21%)", colTotal: "Totaal (incl. btw)",
     colHour: "uur", colHours: "uur",
+    phone: "Telefoon",
+    emergencyCall: "In geval van een incident, bel ons op",
   },
   it: {
     bookingConfirmed: "Prenotazione confermata",
@@ -221,6 +233,8 @@ const EMAIL_STRINGS: Record<EmailLang, EmailStrings> = {
     colBoat: "Barca", colDate: "Data", colSchedule: "Orario", colDuration: "Durata",
     colPeople: "Persone", colBase: "Imponibile (IVA esclusa)", colVat: "IVA (21%)", colTotal: "Totale (IVA inclusa)",
     colHour: "ora", colHours: "ore",
+    phone: "Telefono",
+    emergencyCall: "In caso di incidente, chiamateci al",
   },
   ru: {
     bookingConfirmed: "Bronirovanie podtverzhdeno",
@@ -252,6 +266,8 @@ const EMAIL_STRINGS: Record<EmailLang, EmailStrings> = {
     colBoat: "Lodka", colDate: "Data", colSchedule: "Raspisanie", colDuration: "Dlitelnost",
     colPeople: "Chelovek", colBase: "Summa bez NDS", colVat: "NDS (21%)", colTotal: "Itogo (vklyuchaya NDS)",
     colHour: "chas", colHours: "chasov",
+    phone: "Телефон",
+    emergencyCall: "В случае инцидента позвоните нам по номеру",
   },
 };
 
@@ -438,7 +454,7 @@ export async function sendBookingConfirmation(data: BookingEmailData): Promise<E
 
     <div style="background-color:#f0fdf4; border-left:4px solid #22c55e; border-radius:4px; padding:16px; margin:20px 0;">
       <p style="margin:0 0 6px; color:#166534; font-size:14px; font-weight:600;">${strings.contact}</p>
-      <p style="margin:0; color:#475569; font-size:14px;">Telefono: <a href="tel:+34611500372" style="color:#2563eb;">+34 611 500 372</a></p>
+      <p style="margin:0; color:#475569; font-size:14px;">${strings.phone}: <a href="tel:+34611500372" style="color:#2563eb;">+34 611 500 372</a></p>
       <p style="margin:4px 0 0; color:#475569; font-size:14px;">Email: <a href="mailto:costabravarentboat@gmail.com" style="color:#2563eb;">costabravarentboat@gmail.com</a></p>
     </div>
 
@@ -505,7 +521,7 @@ export async function sendBookingReminder(data: BookingEmailData): Promise<Email
 
     <div style="background-color:#fef2f2; border-left:4px solid #ef4444; border-radius:4px; padding:16px; margin:20px 0;">
       <p style="margin:0 0 6px; color:#991b1b; font-size:14px; font-weight:600;">${strings.emergency}</p>
-      <p style="margin:0; color:#475569; font-size:14px;">En caso de cualquier incidencia, llamanos al: <a href="tel:+34611500372" style="color:#2563eb; font-weight:600;">+34 611 500 372</a></p>
+      <p style="margin:0; color:#475569; font-size:14px;">${strings.emergencyCall}: <a href="tel:+34611500372" style="color:#2563eb; font-weight:600;">+34 611 500 372</a></p>
     </div>
 
     <div style="background-color:#f0fdf4; border-left:4px solid #22c55e; border-radius:4px; padding:16px; margin:20px 0;">

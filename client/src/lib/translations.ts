@@ -2667,7 +2667,7 @@ export const translations: Record<Language, Translations> = {
         packs: 'Packs avec remise',
         individual: 'Extras individuels',
         included: 'Comprend',
-        savings: 'Vous economisez',
+        savings: 'Vous économisez',
         noPack: 'Sans pack',
         selected: 'selectionnes',
         packSelected: 'Pack selectionne',
@@ -3245,7 +3245,7 @@ export const translations: Record<Language, Translations> = {
         title: 'Extras & Pakete',
         packs: 'Rabattierte Pakete',
         individual: 'Einzelne Extras',
-        included: 'Enthalt',
+        included: 'Enthält',
         savings: 'Sie sparen',
         noPack: 'Kein Paket',
         selected: 'ausgewahlt',
@@ -3286,7 +3286,7 @@ export const translations: Record<Language, Translations> = {
         },
       },
       includes: {
-        title: 'Was ist in der Miete Enthalten',
+        title: 'Was ist in der Miete enthalten',
         questions: {
           included: 'Was ist im Preis enthalten?',
           fuel: 'Muss ich extra Kraftstoff bezahlen?',

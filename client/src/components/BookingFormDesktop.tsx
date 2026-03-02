@@ -57,6 +57,10 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
   const durationOptions = getDurationOptions();
   const maxCapacity = getMaxCapacity();
   const price = getBookingPrice();
+  const displayTotal = price !== null ? price + totalExtrasPrice : null;
+  const availablePacks = EXTRA_PACKS.filter(pack =>
+    pack.extras.every(name => boatExtras.some(e => e.name === name))
+  );
 
   const inputBase = "w-full p-2.5 border-2 rounded-lg bg-white text-gray-900 text-sm font-medium focus:ring-2 focus:ring-primary focus:outline-none";
   const inputError = "border-red-400";
@@ -307,7 +311,7 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
 
               {showExtras && (
                 <div className="space-y-2">
-                  {EXTRA_PACKS.map((pack) => (
+                  {availablePacks.map((pack) => (
                     <button
                       key={pack.id}
                       type="button"
@@ -363,7 +367,7 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
                           </span>
                         ) : (
                           <span className="text-xs font-bold text-primary flex-shrink-0">
-                            {extra.price}€
+                            {extra.price}
                           </span>
                         )}
                       </button>
@@ -488,11 +492,11 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
           </div>
 
           {/* Price summary + submit */}
-          {price !== null && (
+          {displayTotal !== null && (
             <div className="bg-primary/5 border border-primary/20 rounded-xl p-3 flex items-center justify-between">
               <div>
                 <p className="text-xs text-gray-500">{t.booking.estimatedTotal}</p>
-                <p className="text-xl font-bold text-primary">{price}€</p>
+                <p className="text-xl font-bold text-primary">{displayTotal}€</p>
               </div>
               <p className="text-xs text-gray-400 max-w-[120px] text-right">{t.booking.priceConfirmedWhatsApp}</p>
             </div>

@@ -817,13 +817,13 @@ export async function sendCancelationEmail(data: CancelationEmailData): Promise<
   const appUrl = process.env.APP_URL || "https://costabravarentaboat.app";
 
   const refundBlock = refundAmount > 0
-    ? `<p style="color:#16a34a; font-weight:bold;">Reembolso: ${refundAmount}EUR (${refundPercentage}%) — se procesara en los proximos dias habiles.</p>`
-    : `<p style="color:#dc2626;">Sin reembolso segun politica de cancelacion (menos de 24h de antelacion).</p>`;
+    ? `<p style="color:#16a34a; font-weight:bold;">Reembolso: ${refundAmount}EUR (${refundPercentage}%) — se procesará en los próximos días hábiles.</p>`
+    : `<p style="color:#dc2626;">Sin reembolso según política de cancelación (menos de 24h de antelación).</p>`;
 
   const customerContent = `
     <h2 style="margin:0 0 16px; color:#1e3a5f; font-size:22px;">Reserva cancelada</h2>
     <p style="color:#475569; font-size:15px; margin:0 0 16px;">
-      Hola ${booking.customerName}, hemos procesado la cancelacion de tu reserva.
+      Hola ${booking.customerName}, hemos procesado la cancelación de tu reserva.
     </p>
     ${refundBlock}
     <p style="color:#64748b; font-size:13px; margin-top:24px;">
@@ -836,7 +836,7 @@ export async function sendCancelationEmail(data: CancelationEmailData): Promise<
     await sgMail.send({
       to: booking.customerEmail,
       from: { email: getFromEmail(), name: "Costa Brava Rent a Boat" },
-      subject: `Cancelacion confirmada — ${booking.customerName}`,
+      subject: `Cancelación confirmada — ${booking.customerName}`,
       html: emailWrapper(customerContent),
     });
 
@@ -850,10 +850,10 @@ export async function sendCancelationEmail(data: CancelationEmailData): Promise<
   // Owner notification (fire-and-forget)
   const ownerEmail = process.env.OWNER_EMAIL || "costabravarentboat@gmail.com";
   const ownerContent = `
-    <h2 style="color:#dc2626;">Cancelacion de reserva</h2>
+    <h2 style="color:#dc2626;">Cancelación de reserva</h2>
     <p>Cliente: <strong>${booking.customerName} ${booking.customerSurname}</strong></p>
     <p>Email: ${booking.customerEmail}</p>
-    <p>Telefono: ${booking.customerPhone}</p>
+    <p>Teléfono: ${booking.customerPhone}</p>
     <p>Fecha: ${new Date(booking.startTime).toLocaleDateString("es-ES")}</p>
     <p>Total: ${booking.totalAmount}EUR</p>
     ${refundAmount > 0 ? `<p style="color:#dc2626;">Reembolso a procesar: ${refundAmount}EUR (${refundPercentage}%)</p>` : "<p>Sin reembolso.</p>"}
@@ -862,7 +862,7 @@ export async function sendCancelationEmail(data: CancelationEmailData): Promise<
   sgMail.send({
     to: ownerEmail,
     from: { email: getFromEmail(), name: "Costa Brava Rent a Boat" },
-    subject: `[CANCELACION] ${booking.customerName} — ${new Date(booking.startTime).toLocaleDateString("es-ES")}`,
+    subject: `[CANCELACIÓN] ${booking.customerName} — ${new Date(booking.startTime).toLocaleDateString("es-ES")}`,
     html: emailWrapper(ownerContent),
   }).catch((err: unknown) => {
     console.error("[Email] Error sending cancelation owner notification:", err instanceof Error ? err.message : String(err));

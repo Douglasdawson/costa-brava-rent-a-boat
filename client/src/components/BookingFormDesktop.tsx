@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { CalendarIcon, Check, Loader2 } from "lucide-react";
+import { CalendarIcon, Check, Loader2, X } from "lucide-react";
 import { SiWhatsapp } from "react-icons/si";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Calendar } from "@/components/ui/calendar";
@@ -49,6 +49,14 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
     iconMap,
     calculatePackSavings,
     isSpanishLang,
+    showCodeSection, setShowCodeSection,
+    codeInput, setCodeInput,
+    isValidatingCode,
+    validatedCode,
+    codeError,
+    handleValidateCode,
+    handleRemoveCode,
+    getCodeDiscount,
   } = props;
 
   const [showDatePicker, setShowDatePicker] = useState(false);
@@ -57,7 +65,6 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
   const durationOptions = getDurationOptions();
   const maxCapacity = getMaxCapacity();
   const price = getBookingPrice();
-  const displayTotal = price !== null ? price + totalExtrasPrice : null;
   const availablePacks = EXTRA_PACKS.filter(pack =>
     pack.extras.every(name => boatExtras.some(e => e.name === name))
   );
@@ -491,14 +498,101 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
             </div>
           </div>
 
-          {/* Price summary + submit */}
-          {displayTotal !== null && (
-            <div className="bg-primary/5 border border-primary/20 rounded-xl p-3 flex items-center justify-between">
-              <div>
-                <p className="text-xs text-gray-500">{t.booking.estimatedTotal}</p>
-                <p className="text-xl font-bold text-primary">{displayTotal}€</p>
+          {/* Discount / Gift card code */}
+          <div>
+            <button
+              type="button"
+              onClick={() => setShowCodeSection(!showCodeSection)}
+              className="flex items-center justify-between w-full mb-2"
+            >
+              <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide">
+                {t.codeValidation.haveCode}
+              </p>
+              <span className="text-gray-400 text-xs">{showCodeSection ? '\u25B2' : '\u25BC'}</span>
+            </button>
+
+            {showCodeSection && (
+              <div className="space-y-2">
+                {validatedCode ? (
+                  <div className="flex items-center justify-between bg-green-50 border border-green-200 rounded-lg p-2.5">
+                    <div>
+                      <p className="text-xs font-bold text-green-800">{validatedCode.code}</p>
+                      <p className="text-[10px] text-green-600">
+                        {validatedCode.type === 'gift_card'
+                          ? `-${getCodeDiscount()}\u20AC`
+                          : `-${validatedCode.percentage}% (-${getCodeDiscount()}\u20AC)`}
+                      </p>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={handleRemoveCode}
+                      className="text-gray-400 hover:text-red-500 transition-colors"
+                      aria-label="Eliminar"
+                    >
+                      <X className="w-4 h-4" />
+                    </button>
+                  </div>
+                ) : (
+                  <div className="flex gap-2">
+                    <input
+                      type="text"
+                      value={codeInput}
+                      onChange={(e) => setCodeInput(e.target.value.toUpperCase())}
+                      placeholder={t.codeValidation.enterCode}
+                      className="flex-1 p-2.5 border-2 border-gray-200 rounded-lg bg-white text-gray-900 text-sm font-medium focus:ring-2 focus:ring-primary focus:outline-none uppercase"
+                      maxLength={32}
+                      onKeyDown={(e) => { if (e.key === 'Enter') { e.preventDefault(); handleValidateCode(); } }}
+                    />
+                    <button
+                      type="button"
+                      onClick={handleValidateCode}
+                      disabled={isValidatingCode || !codeInput.trim()}
+                      className="px-3 py-2.5 bg-primary text-white text-xs font-semibold rounded-lg disabled:opacity-50 hover:bg-primary/90 transition-colors flex-shrink-0"
+                    >
+                      {isValidatingCode
+                        ? <Loader2 className="w-4 h-4 animate-spin" />
+                        : t.codeValidation.validate}
+                    </button>
+                  </div>
+                )}
+                {codeError && (
+                  <p className="text-xs text-red-500">{codeError}</p>
+                )}
               </div>
-              <p className="text-xs text-gray-400 max-w-[120px] text-right">{t.booking.priceConfirmedWhatsApp}</p>
+            )}
+          </div>
+
+          {/* Price summary + submit */}
+          {price !== null && (
+            <div className="bg-primary/5 border border-primary/20 rounded-xl p-3">
+              <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">
+                {t.booking.estimatedTotal}
+              </p>
+              <div className="space-y-1">
+                <div className="flex justify-between text-xs">
+                  <span className="text-gray-600">{'Precio base'}</span>
+                  <span className="font-medium">{price}\u20AC</span>
+                </div>
+                {totalExtrasPrice > 0 && (
+                  <div className="flex justify-between text-xs">
+                    <span className="text-gray-600">{t.booking.extrasSection?.title || 'Extras'}</span>
+                    <span className="font-medium">+{totalExtrasPrice}\u20AC</span>
+                  </div>
+                )}
+                {getCodeDiscount() > 0 && validatedCode && (
+                  <div className="flex justify-between text-xs text-green-700">
+                    <span>{validatedCode.code}</span>
+                    <span>-{getCodeDiscount()}\u20AC</span>
+                  </div>
+                )}
+                <div className="flex justify-between items-baseline border-t border-primary/20 pt-1.5 mt-1">
+                  <span className="text-sm font-bold text-gray-900">Total</span>
+                  <span className="text-xl font-bold text-primary">
+                    {price + totalExtrasPrice - getCodeDiscount()}\u20AC
+                  </span>
+                </div>
+              </div>
+              <p className="text-xs text-gray-400 mt-2">{t.booking.priceConfirmedWhatsApp}</p>
             </div>
           )}
 

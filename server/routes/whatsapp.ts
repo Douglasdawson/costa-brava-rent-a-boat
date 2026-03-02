@@ -1,15 +1,48 @@
-import type { Express } from "express";
+import type { Express, Request, Response, NextFunction } from "express";
 import express from "express";
 import { requireAdminSession } from "./auth";
+import twilio from "twilio";
+
+function twilioSignatureMiddleware(req: Request, res: Response, next: NextFunction) {
+  const authToken = process.env.TWILIO_AUTH_TOKEN;
+  if (!authToken) {
+    // Twilio not configured — pass through (dev or disabled)
+    return next();
+  }
+
+  const twilioSignature = req.headers["x-twilio-signature"] as string;
+  if (!twilioSignature) {
+    console.warn("[Webhook] Missing X-Twilio-Signature header");
+    return res.status(403).send("Forbidden");
+  }
+
+  // Build the full URL that Twilio signed (must match exactly)
+  const url =
+    process.env.BASE_URL
+      ? `${process.env.BASE_URL}/api/whatsapp/webhook`
+      : `${req.protocol}://${req.get("host")}/api/whatsapp/webhook`;
+
+  const isValid = twilio.validateRequest(authToken, twilioSignature, url, req.body as Record<string, string>);
+  if (!isValid) {
+    console.warn("[Webhook] Invalid Twilio signature — request rejected");
+    return res.status(403).send("Forbidden");
+  }
+
+  next();
+}
 
 export async function registerWhatsAppRoutes(app: Express) {
-  // Import WhatsApp webhook handlers
   const { handleWhatsAppWebhook, handleWebhookValidation, handleStatusCallback } = await import(
     "../whatsapp/webhookHandler"
   );
 
-  // Main webhook endpoint for incoming WhatsApp messages
-  app.post("/api/whatsapp/webhook", express.urlencoded({ extended: false }), handleWhatsAppWebhook);
+  // Main webhook endpoint — HMAC validated
+  app.post(
+    "/api/whatsapp/webhook",
+    express.urlencoded({ extended: false }),
+    twilioSignatureMiddleware,
+    handleWhatsAppWebhook,
+  );
 
   // Webhook validation endpoint (GET request from Twilio)
   app.get("/api/whatsapp/webhook", handleWebhookValidation);

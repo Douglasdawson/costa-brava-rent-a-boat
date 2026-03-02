@@ -16,7 +16,7 @@ for (const envVar of REQUIRED_ENV_VARS) {
     process.exit(1);
   }
 }
-const OPTIONAL_ENV_VARS = ["STRIPE_SECRET_KEY", "SENDGRID_API_KEY", "OPENAI_API_KEY", "TWILIO_ACCOUNT_SID"];
+const OPTIONAL_ENV_VARS = ["STRIPE_SECRET_KEY", "SENDGRID_API_KEY", "OPENAI_API_KEY", "TWILIO_ACCOUNT_SID", "APP_URL"];
 for (const envVar of OPTIONAL_ENV_VARS) {
   if (!process.env[envVar]) {
     console.warn(`[Startup] WARNING: Optional environment variable not set: ${envVar} — related features will be disabled`);

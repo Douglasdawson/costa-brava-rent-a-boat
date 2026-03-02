@@ -2,6 +2,7 @@ import type { Express } from "express";
 import { z } from "zod";
 import { storage } from "../storage";
 import { requireAdminSession } from "./auth";
+import { sendCancelationEmail } from "../services";
 
 const isoDateString = z
   .string()
@@ -47,6 +48,94 @@ export function registerBookingRoutes(app: Express) {
     } catch (error: unknown) {
       console.error("[Bookings] Error fetching bookings by date:", error instanceof Error ? error.message : String(error));
       res.status(500).json({ message: "Error interno del servidor" });
+    }
+  });
+
+  // Public cancel info endpoint — no auth required, uses token
+  app.get("/api/bookings/cancel-info/:token", async (req, res) => {
+    try {
+      const { token } = req.params;
+      if (!token || token.length < 10) {
+        return res.status(400).json({ message: "Token invalido" });
+      }
+
+      const booking = await storage.getBookingByCancelationToken(token);
+      if (!booking) {
+        return res.status(404).json({ message: "Reserva no encontrada o token invalido" });
+      }
+
+      if (booking.bookingStatus === 'cancelled') {
+        return res.status(410).json({ message: "Esta reserva ya ha sido cancelada" });
+      }
+
+      if (!['confirmed', 'pending_payment'].includes(booking.bookingStatus)) {
+        return res.status(422).json({ message: "Esta reserva no puede cancelarse en su estado actual" });
+      }
+
+      const hoursUntilStart = (new Date(booking.startTime).getTime() - Date.now()) / (1000 * 60 * 60);
+      let refundPercentage = 0;
+      if (hoursUntilStart >= 48) refundPercentage = 100;
+      else if (hoursUntilStart >= 24) refundPercentage = 50;
+
+      const boat = await storage.getBoat(booking.boatId);
+
+      res.json({
+        booking: {
+          id: booking.id,
+          customerName: booking.customerName,
+          customerSurname: booking.customerSurname,
+          startTime: booking.startTime,
+          endTime: booking.endTime,
+          totalAmount: booking.totalAmount,
+          bookingStatus: booking.bookingStatus,
+          boatName: boat?.name || booking.boatId,
+          language: booking.language,
+        },
+        refundPolicy: {
+          hoursUntilStart: Math.max(0, hoursUntilStart),
+          refundPercentage,
+          refundAmount: refundPercentage > 0
+            ? (parseFloat(booking.totalAmount) * refundPercentage / 100).toFixed(2)
+            : '0',
+        },
+      });
+    } catch (error: unknown) {
+      console.error("[Bookings] Error fetching cancel info:", error instanceof Error ? error.message : String(error));
+      res.status(500).json({ message: "Error interno del servidor" });
+    }
+  });
+
+  // Public cancel endpoint — no auth required, uses token
+  app.post("/api/bookings/cancel/:token", async (req, res) => {
+    try {
+      const { token } = req.params;
+      if (!token || token.length < 10) {
+        return res.status(400).json({ message: "Token invalido" });
+      }
+
+      const result = await storage.cancelBookingByToken(token);
+      if (!result) {
+        return res.status(404).json({ message: "Reserva no encontrada, ya cancelada, o no cancelable" });
+      }
+
+      const { booking, refundAmount, refundPercentage } = result;
+
+      // Fire-and-forget email (don't block response)
+      sendCancelationEmail({ booking, refundAmount, refundPercentage }).catch((err: unknown) => {
+        console.error("[Bookings] Error sending cancelation email:", err instanceof Error ? err.message : String(err));
+      });
+
+      res.json({
+        success: true,
+        refundAmount,
+        refundPercentage,
+        message: refundAmount > 0
+          ? `Reserva cancelada. Reembolso de ${refundAmount.toFixed(2)}EUR (${refundPercentage}%) en proceso.`
+          : "Reserva cancelada. No aplica reembolso segun la politica de cancelacion.",
+      });
+    } catch (error: unknown) {
+      console.error("[Bookings] Error cancelling booking:", error instanceof Error ? error.message : String(error));
+      res.status(500).json({ message: "Error al cancelar la reserva" });
     }
   });
 

@@ -109,8 +109,9 @@ async function processIncomingMessage(
       'speak to agent', 'speak to human', 'speak to person', 'talk to agent', 'talk to human',
       'parler avec un agent', 'parler avec quelqu',
       'mit einem mitarbeiter', 'mit jemandem sprechen',
-      'parlare con', 'persona real', 'real person', 'personne réelle',
-      'quiero un humano', 'quiero hablar', 'necesito ayuda de una persona',
+      'parlare con un agente', 'parlare con una persona', 'parlare con qualcuno',
+      'persona real', 'real person', 'personne réelle',
+      'quiero un humano', 'necesito ayuda de una persona',
     ];
     const isAgentHandoff = agentHandoffTriggers.some(trigger =>
       messageBody.toLowerCase().includes(trigger)
@@ -132,14 +133,14 @@ async function processIncomingMessage(
 
       // Acknowledge to customer
       const ackMessages: Record<string, string> = {
-        es: 'He notificado a nuestro equipo. Un agente se pondra en contacto contigo en breve por WhatsApp. Gracias por tu paciencia.',
+        es: 'He notificado a nuestro equipo. Un agente se pondrá en contacto contigo en breve por WhatsApp. Gracias por tu paciencia.',
         en: 'I have notified our team. An agent will contact you shortly via WhatsApp. Thank you for your patience.',
-        fr: "J'ai notifie notre equipe. Un agent vous contactera sous peu par WhatsApp. Merci de votre patience.",
-        de: 'Ich habe unser Team benachrichtigt. Ein Mitarbeiter wird sich in Kuerze per WhatsApp bei Ihnen melden. Danke fuer Ihre Geduld.',
+        fr: "J'ai notifié notre équipe. Un agent vous contactera sous peu par WhatsApp. Merci de votre patience.",
+        de: 'Ich habe unser Team benachrichtigt. Ein Mitarbeiter wird sich in Kürze per WhatsApp bei Ihnen melden. Danke für Ihre Geduld.',
         nl: 'Ik heb ons team op de hoogte gesteld. Een medewerker neemt binnenkort contact met u op via WhatsApp. Bedankt voor uw geduld.',
-        it: 'Ho notificato il nostro team. Un agente vi contattera a breve via WhatsApp. Grazie per la vostra pazienza.',
+        it: 'Ho notificato il nostro team. Un agente vi contatterà a breve via WhatsApp. Grazie per la vostra pazienza.',
         ru: 'Я уведомил нашу команду. Агент свяжется с вами в ближайшее время через WhatsApp. Спасибо за терпение.',
-        ca: 'He notificat el nostre equip. Un agent es posara en contacte amb tu en breu per WhatsApp. Gracies per la teva paciencia.',
+        ca: 'He notificat el nostre equip. Un agent es posarà en contacte amb tu en breu per WhatsApp. Gràcies per la teva paciència.',
       };
       const ack = ackMessages[finalLang] || ackMessages.es;
       await sendWhatsAppMessage(from, ack);

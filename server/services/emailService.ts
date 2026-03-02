@@ -834,7 +834,7 @@ export async function sendCancelationEmail(data: CancelationEmailData): Promise<
 
   try {
     await sgMail.send({
-      to: booking.customerEmail,
+      to: booking.customerEmail!,
       from: { email: getFromEmail(), name: "Costa Brava Rent a Boat" },
       subject: `Cancelación confirmada — ${booking.customerName}`,
       html: emailWrapper(customerContent),

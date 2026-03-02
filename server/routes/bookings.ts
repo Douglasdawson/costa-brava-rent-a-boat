@@ -55,13 +55,14 @@ export function registerBookingRoutes(app: Express) {
   app.get("/api/bookings/cancel-info/:token", async (req, res) => {
     try {
       const { token } = req.params;
-      if (!token || token.length < 10) {
-        return res.status(400).json({ message: "Token invalido" });
+      const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+      if (!token || !uuidRegex.test(token)) {
+        return res.status(400).json({ message: "Token inválido" });
       }
 
       const booking = await storage.getBookingByCancelationToken(token);
       if (!booking) {
-        return res.status(404).json({ message: "Reserva no encontrada o token invalido" });
+        return res.status(404).json({ message: "Reserva no encontrada o token inválido" });
       }
 
       if (booking.bookingStatus === 'cancelled') {
@@ -77,6 +78,11 @@ export function registerBookingRoutes(app: Express) {
       if (hoursUntilStart >= 48) refundPercentage = 100;
       else if (hoursUntilStart >= 24) refundPercentage = 50;
 
+      const totalAmount = parseFloat(booking.totalAmount);
+      let refundAmount = 0;
+      if (refundPercentage === 100) refundAmount = totalAmount;
+      else if (refundPercentage === 50) refundAmount = Math.round(totalAmount * 0.5 * 100) / 100;
+
       const boat = await storage.getBoat(booking.boatId);
 
       res.json({
@@ -88,15 +94,13 @@ export function registerBookingRoutes(app: Express) {
           endTime: booking.endTime,
           totalAmount: booking.totalAmount,
           bookingStatus: booking.bookingStatus,
-          boatName: boat?.name || booking.boatId,
+          boatName: boat?.name ?? "Embarcación desconocida",
           language: booking.language,
         },
         refundPolicy: {
           hoursUntilStart: Math.max(0, hoursUntilStart),
           refundPercentage,
-          refundAmount: refundPercentage > 0
-            ? (parseFloat(booking.totalAmount) * refundPercentage / 100).toFixed(2)
-            : '0',
+          refundAmount,
         },
       });
     } catch (error: unknown) {
@@ -109,8 +113,9 @@ export function registerBookingRoutes(app: Express) {
   app.post("/api/bookings/cancel/:token", async (req, res) => {
     try {
       const { token } = req.params;
-      if (!token || token.length < 10) {
-        return res.status(400).json({ message: "Token invalido" });
+      const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+      if (!token || !uuidRegex.test(token)) {
+        return res.status(400).json({ message: "Token inválido" });
       }
 
       const result = await storage.cancelBookingByToken(token);
@@ -131,7 +136,7 @@ export function registerBookingRoutes(app: Express) {
         refundPercentage,
         message: refundAmount > 0
           ? `Reserva cancelada. Reembolso de ${refundAmount.toFixed(2)}EUR (${refundPercentage}%) en proceso.`
-          : "Reserva cancelada. No aplica reembolso segun la politica de cancelacion.",
+          : "Reserva cancelada. No aplica reembolso según la política de cancelación.",
       });
     } catch (error: unknown) {
       console.error("[Bookings] Error cancelling booking:", error instanceof Error ? error.message : String(error));

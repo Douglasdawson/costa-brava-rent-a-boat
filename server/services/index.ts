@@ -4,6 +4,7 @@ export {
   sendThankYouEmail,
   sendPreSeasonEmail,
   sendPasswordResetEmail,
+  sendCancelationEmail,
 } from "./emailService";
 import { startScheduler } from "./schedulerService";
 

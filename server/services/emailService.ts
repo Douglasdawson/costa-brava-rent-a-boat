@@ -817,7 +817,7 @@ export async function sendCancelationEmail(data: CancelationEmailData): Promise<
   const appUrl = process.env.APP_URL || "https://costabravarentaboat.app";
 
   const refundBlock = refundAmount > 0
-    ? `<p style="color:#16a34a; font-weight:bold;">Reembolso: ${refundAmount}EUR (${refundPercentage}%) — se procesará en los próximos días hábiles.</p>`
+    ? `<p style="color:#16a34a; font-weight:bold;">Reembolso: ${refundAmount.toFixed(2)} EUR (${refundPercentage}%) — se procesará en los próximos días hábiles.</p>`
     : `<p style="color:#dc2626;">Sin reembolso según política de cancelación (menos de 24h de antelación).</p>`;
 
   const customerContent = `
@@ -855,8 +855,8 @@ export async function sendCancelationEmail(data: CancelationEmailData): Promise<
     <p>Email: ${booking.customerEmail}</p>
     <p>Teléfono: ${booking.customerPhone}</p>
     <p>Fecha: ${new Date(booking.startTime).toLocaleDateString("es-ES")}</p>
-    <p>Total: ${booking.totalAmount}EUR</p>
-    ${refundAmount > 0 ? `<p style="color:#dc2626;">Reembolso a procesar: ${refundAmount}EUR (${refundPercentage}%)</p>` : "<p>Sin reembolso.</p>"}
+    <p>Total: ${booking.totalAmount} EUR</p>
+    ${refundAmount > 0 ? `<p style="color:#dc2626;">Reembolso a procesar: ${refundAmount.toFixed(2)} EUR (${refundPercentage}%)</p>` : "<p>Sin reembolso.</p>"}
   `;
 
   sgMail.send({

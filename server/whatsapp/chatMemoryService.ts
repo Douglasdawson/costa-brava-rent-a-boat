@@ -22,7 +22,7 @@ export async function getOrCreateSession(
   phoneNumber: string,
   profileName?: string,
   language: string = 'es'
-): Promise<{ id: string; isNew: boolean; history: Array<{ role: string; content: string }> }> {
+): Promise<{ id: string; isNew: boolean; history: Array<{ role: string; content: string }>; intentScore: number }> {
   try {
     // Look for existing session
     const [existingSession] = await db.select()
@@ -45,7 +45,7 @@ export async function getOrCreateSession(
         content: m.content,
       }));
 
-      return { id: existingSession.id, isNew: false, history };
+      return { id: existingSession.id, isNew: false, history, intentScore: existingSession.intentScore ?? 0 };
     }
 
     // Create new session
@@ -58,7 +58,7 @@ export async function getOrCreateSession(
       isLead: false,
     }).returning();
 
-    return { id: newSession.id, isNew: true, history: [] };
+    return { id: newSession.id, isNew: true, history: [], intentScore: 0 };
   } catch (error: any) {
     console.error("[Memory] Error getting/creating session:", error.message);
     throw error;

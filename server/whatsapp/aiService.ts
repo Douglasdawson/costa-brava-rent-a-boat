@@ -313,7 +313,7 @@ IMPORTANTE: Tienes acceso a funciones para consultar disponibilidad y precios en
     });
 
     // Update lead scoring
-    const currentScore = 0; // Would need to fetch from session
+    const currentScore = session.intentScore;
     const newScore = calculateIntentScore(currentScore, detectedIntent);
     await updateLeadScore(session.id, newScore, detectedBoatId || undefined, detectedIntent);
 

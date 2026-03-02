@@ -328,6 +328,7 @@ export const bookings = pgTable("bookings", {
   emailReminderSent: boolean("email_reminder_sent").notNull().default(false),
   emailThankYouSent: boolean("email_thank_you_sent").notNull().default(false),
   notes: text("notes"),
+  language: text("language").default("es"), // ISO 639-1: es, en, fr, de, nl, it, ru, ca
   createdAt: timestamp("created_at", { withTimezone: true }).notNull().default(sql`now()`),
 }, (table) => ({
   // Performance indexes
@@ -428,6 +429,7 @@ export const insertBookingSchema = createInsertSchema(bookings).omit({
   paymentStatus: z.enum(['pending', 'completed', 'failed', 'refunded']),
   bookingStatus: z.enum(['draft', 'hold', 'pending_payment', 'confirmed', 'cancelled']),
   source: z.enum(['web', 'admin']),
+  language: z.string().max(5).optional(),
 }).refine((data) => data.startTime < data.endTime, {
   message: "La hora de fin debe ser posterior a la hora de inicio",
   path: ["endTime"],

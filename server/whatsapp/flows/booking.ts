@@ -263,6 +263,7 @@ export async function createBookingFromSession(
       paymentStatus: "pending",
       bookingStatus: "hold",
       source: "whatsapp" as any, // Need to add 'whatsapp' to source type
+      language: session.language || "es",
       expiresAt: new Date(Date.now() + 30 * 60 * 1000), // 30 minutes
     });
 

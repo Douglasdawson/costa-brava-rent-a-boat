@@ -316,6 +316,9 @@ export interface Translations {
     estimatedTotal: string;
     discountApplied: string;
     priceConfirmedWhatsApp: string;
+    gdprConsent: string;
+    gdprPrivacyLink: string;
+    gdprTermsLink: string;
   };
 
   // FAQ Page
@@ -938,6 +941,9 @@ export const translations: Record<Language, Translations> = {
       estimatedTotal: 'Total estimado',
       discountApplied: 'Descuento aplicado',
       priceConfirmedWhatsApp: 'El precio final se confirma por WhatsApp',
+      gdprConsent: 'He leído y acepto la {privacyPolicy} y los {termsAndConditions}. Consiento el tratamiento de mis datos para gestionar mi reserva (RGPD Art. 6.1.b).',
+      gdprPrivacyLink: 'Política de Privacidad',
+      gdprTermsLink: 'Términos y Condiciones',
     },
     faq: {
       title: 'Preguntas Frecuentes',
@@ -1514,6 +1520,9 @@ export const translations: Record<Language, Translations> = {
       estimatedTotal: 'Total estimat',
       discountApplied: 'Descompte aplicat',
       priceConfirmedWhatsApp: 'El preu final es confirma per WhatsApp',
+      gdprConsent: 'He llegit i accepto la {privacyPolicy} i els {termsAndConditions}. Consento el tractament de les meves dades per gestionar la meva reserva (RGPD Art. 6.1.b).',
+      gdprPrivacyLink: 'Política de Privacitat',
+      gdprTermsLink: 'Termes i Condicions',
     },
     faq: {
       title: 'Preguntes Freqüents',
@@ -2090,6 +2099,9 @@ export const translations: Record<Language, Translations> = {
       estimatedTotal: 'Estimated total',
       discountApplied: 'Discount applied',
       priceConfirmedWhatsApp: 'Final price confirmed by WhatsApp',
+      gdprConsent: 'I have read and accept the {privacyPolicy} and the {termsAndConditions}. I consent to the processing of my data to manage my booking (GDPR Art. 6.1.b).',
+      gdprPrivacyLink: 'Privacy Policy',
+      gdprTermsLink: 'Terms and Conditions',
     },
     faq: {
       title: 'Frequently Asked Questions',
@@ -2666,6 +2678,9 @@ export const translations: Record<Language, Translations> = {
       estimatedTotal: 'Total estimé',
       discountApplied: 'Réduction appliquée',
       priceConfirmedWhatsApp: 'Le prix final est confirmé par WhatsApp',
+      gdprConsent: "J'ai lu et j'accepte la {privacyPolicy} et les {termsAndConditions}. Je consens au traitement de mes données pour gérer ma réservation (RGPD Art. 6.1.b).",
+      gdprPrivacyLink: 'Politique de Confidentialité',
+      gdprTermsLink: 'Conditions Générales',
     },
     faq: {
       title: 'Questions Fréquentes',
@@ -3242,6 +3257,9 @@ export const translations: Record<Language, Translations> = {
       estimatedTotal: 'Geschätzter Gesamtbetrag',
       discountApplied: 'Rabatt angewendet',
       priceConfirmedWhatsApp: 'Der endgültige Preis wird per WhatsApp bestätigt',
+      gdprConsent: 'Ich habe die {privacyPolicy} und die {termsAndConditions} gelesen und akzeptiere sie. Ich stimme der Verarbeitung meiner Daten zur Verwaltung meiner Buchung zu (DSGVO Art. 6.1.b).',
+      gdprPrivacyLink: 'Datenschutzrichtlinie',
+      gdprTermsLink: 'Allgemeine Geschäftsbedingungen',
     },
     faq: {
       title: 'Häufig Gestellte Fragen',
@@ -3818,6 +3836,9 @@ export const translations: Record<Language, Translations> = {
       estimatedTotal: 'Geschat totaal',
       discountApplied: 'Korting toegepast',
       priceConfirmedWhatsApp: 'De definitieve prijs wordt bevestigd via WhatsApp',
+      gdprConsent: 'Ik heb het {privacyPolicy} en de {termsAndConditions} gelezen en ga ermee akkoord. Ik stem in met de verwerking van mijn gegevens voor het beheer van mijn boeking (AVG Art. 6.1.b).',
+      gdprPrivacyLink: 'Privacybeleid',
+      gdprTermsLink: 'Algemene Voorwaarden',
     },
     faq: {
       title: 'Veelgestelde Vragen',
@@ -4394,6 +4415,9 @@ export const translations: Record<Language, Translations> = {
       estimatedTotal: 'Totale stimato',
       discountApplied: 'Sconto applicato',
       priceConfirmedWhatsApp: 'Il prezzo finale è confermato via WhatsApp',
+      gdprConsent: "Ho letto e accetto la {privacyPolicy} e i {termsAndConditions}. Acconsento al trattamento dei miei dati per gestire la mia prenotazione (GDPR Art. 6.1.b).",
+      gdprPrivacyLink: 'Informativa sulla Privacy',
+      gdprTermsLink: 'Termini e Condizioni',
     },
     faq: {
       title: 'Domande Frequenti',
@@ -4970,6 +4994,9 @@ export const translations: Record<Language, Translations> = {
       estimatedTotal: 'Примерная сумма',
       discountApplied: 'Скидка применена',
       priceConfirmedWhatsApp: 'Окончательная цена подтверждается в WhatsApp',
+      gdprConsent: 'Я прочитал и принимаю {privacyPolicy} и {termsAndConditions}. Я согласен на обработку моих данных для управления бронированием (GDPR ст. 6.1.b).',
+      gdprPrivacyLink: 'Политику конфиденциальности',
+      gdprTermsLink: 'Условия использования',
     },
     faq: {
       title: 'Часто Задаваемые Вопросы',

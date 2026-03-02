@@ -973,15 +973,15 @@ function Step4Confirm({
           id="wizard-privacy-consent"
         />
         <span className="text-xs text-gray-600" id="wizard-privacy-consent-label">
-          He leído y acepto la{" "}
-          <a href="/privacy-policy" target="_blank" rel="noopener noreferrer" className="text-primary underline">
-            Política de Privacidad
-          </a>{" "}
-          y los{" "}
-          <a href="/terms-conditions" target="_blank" rel="noopener noreferrer" className="text-primary underline">
-            Términos y Condiciones
+          {t.booking.gdprConsent.split('{privacyPolicy}')[0]}
+          <a href="/privacy-policy" target="_blank" rel="noopener noreferrer" className="underline hover:text-blue-600 transition-colors">
+            {t.booking.gdprPrivacyLink}
           </a>
-          . Consiento el tratamiento de mis datos para gestionar mi reserva (RGPD Art. 6.1.b).
+          {t.booking.gdprConsent.split('{privacyPolicy}')[1].split('{termsAndConditions}')[0]}
+          <a href="/terms-conditions" target="_blank" rel="noopener noreferrer" className="underline hover:text-blue-600 transition-colors">
+            {t.booking.gdprTermsLink}
+          </a>
+          {t.booking.gdprConsent.split('{termsAndConditions}')[1]}
         </span>
       </label>
     </div>

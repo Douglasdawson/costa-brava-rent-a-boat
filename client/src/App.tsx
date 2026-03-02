@@ -43,6 +43,7 @@ const LoginPage = lazy(() => import("@/pages/LoginPage"));
 const GalleryPage = lazy(() => import("@/pages/gallery"));
 const RoutesPage = lazy(() => import("@/pages/routes"));
 const GiftCardsPage = lazy(() => import("@/pages/gift-cards"));
+const CancelBookingPage = lazy(() => import("@/pages/CancelBookingPage"));
 const NotFound = lazy(() => import("@/pages/not-found"));
 const OnboardingPage = lazy(() => import("@/pages/OnboardingPage"));
 const AccessibilityDeclarationPage = lazy(() => import("@/pages/accessibility-declaration"));
@@ -352,6 +353,7 @@ function Router() {
         <Route path="/blog/:slug" component={BlogDetailPageWrapper} />
         <Route path="/blog" component={BlogPageWrapper} />
         <Route path="/destinos/:slug" component={DestinationDetailPageWrapper} />
+        <Route path="/cancel/:token" component={CancelBookingPage} />
         <Route component={NotFound} />
       </Switch>
     </Suspense>

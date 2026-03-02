@@ -47,8 +47,8 @@ export async function registerWhatsAppRoutes(app: Express) {
   // Webhook validation endpoint (GET request from Twilio)
   app.get("/api/whatsapp/webhook", handleWebhookValidation);
 
-  // Status callback for message delivery status
-  app.post("/api/whatsapp/status", express.urlencoded({ extended: false }), handleStatusCallback);
+  // Status callback for message delivery status (HMAC validated)
+  app.post("/api/whatsapp/status", express.urlencoded({ extended: false }), twilioSignatureMiddleware, handleStatusCallback);
 
   // Health check for WhatsApp integration (admin only, sanitized)
   app.get("/api/whatsapp/health", requireAdminSession, async (req, res) => {

@@ -10,32 +10,57 @@ import { sendBookingConfirmation } from "../services/emailService";
 import type { Booking, Boat } from "@shared/schema";
 import { requireAdminSession } from "./auth";
 
+type WaLang = "es" | "en" | "fr" | "de" | "nl" | "it" | "ru";
+
+const WA_CONFIRMATION: Record<WaLang, {
+  greeting: string; confirmed: string; boat: string; date: string;
+  time: string; duration: string; meetingPoint: string; arrive: string;
+  questions: string;
+}> = {
+  es: { greeting: "Hola", confirmed: "Tu reserva ha sido confirmada.", boat: "Barco", date: "Fecha", time: "Hora de salida", duration: "Duracion", meetingPoint: "Punto de encuentro: Puerto de Blanes.", arrive: "Llega 15 minutos antes de la hora de salida.", questions: "Ante cualquier duda" },
+  en: { greeting: "Hello", confirmed: "Your booking has been confirmed.", boat: "Boat", date: "Date", time: "Departure time", duration: "Duration", meetingPoint: "Meeting point: Port of Blanes.", arrive: "Please arrive 15 minutes before departure.", questions: "For any questions" },
+  fr: { greeting: "Bonjour", confirmed: "Votre reservation a ete confirmee.", boat: "Bateau", date: "Date", time: "Heure de depart", duration: "Duree", meetingPoint: "Point de rendez-vous : Port de Blanes.", arrive: "Veuillez arriver 15 minutes avant le depart.", questions: "Pour toute question" },
+  de: { greeting: "Hallo", confirmed: "Ihre Buchung wurde bestatigt.", boat: "Boot", date: "Datum", time: "Abfahrtszeit", duration: "Dauer", meetingPoint: "Treffpunkt: Hafen von Blanes.", arrive: "Bitte erscheinen Sie 15 Minuten vor der Abfahrt.", questions: "Bei Fragen" },
+  nl: { greeting: "Hallo", confirmed: "Uw boeking is bevestigd.", boat: "Boot", date: "Datum", time: "Vertrektijd", duration: "Duur", meetingPoint: "Ontmoetingspunt: Haven van Blanes.", arrive: "Kom 15 minuten voor vertrek.", questions: "Voor vragen" },
+  it: { greeting: "Ciao", confirmed: "La sua prenotazione e stata confermata.", boat: "Barca", date: "Data", time: "Ora di partenza", duration: "Durata", meetingPoint: "Punto di incontro: Porto di Blanes.", arrive: "Si presenti 15 minuti prima della partenza.", questions: "Per qualsiasi domanda" },
+  ru: { greeting: "Zdravstvuyte", confirmed: "Vashe bronirovanie podtverzhdeno.", boat: "Lodka", date: "Data", time: "Vremya otpravleniya", duration: "Dlitelnost", meetingPoint: "Mesto vstrechi: port Blanesa.", arrive: "Pribudte za 15 minut do otpravleniya.", questions: "Po voprosam" },
+};
+
 async function trySendWhatsAppConfirmation(booking: Booking, boat: Boat): Promise<void> {
   try {
     const { isTwilioConfigured, sendWhatsAppMessage } = await import("../whatsapp/twilioClient");
     if (!isTwilioConfigured() || !booking.customerPhone) return;
 
-    const date = booking.startTime.toLocaleDateString("es-ES", {
+    const lang = (booking.language || "es") as WaLang;
+    const wa = WA_CONFIRMATION[lang] || WA_CONFIRMATION.es;
+
+    const localeMap: Record<WaLang, string> = {
+      es: "es-ES", en: "en-GB", fr: "fr-FR", de: "de-DE",
+      nl: "nl-NL", it: "it-IT", ru: "ru-RU",
+    };
+    const locale = localeMap[lang] || "es-ES";
+
+    const date = booking.startTime.toLocaleDateString(locale, {
       weekday: "long", day: "numeric", month: "long",
       timeZone: "Europe/Madrid",
     });
-    const time = booking.startTime.toLocaleTimeString("es-ES", {
+    const time = booking.startTime.toLocaleTimeString(locale, {
       hour: "2-digit", minute: "2-digit",
       timeZone: "Europe/Madrid",
     });
 
     const message = [
-      `Hola ${booking.customerName}! Tu reserva ha sido confirmada.`,
+      `${wa.greeting} ${booking.customerName}! ${wa.confirmed}`,
       ``,
-      `Barco: ${boat.name}`,
-      `Fecha: ${date}`,
-      `Hora de salida: ${time}`,
-      `Duracion: ${booking.totalHours}h`,
+      `${wa.boat}: ${boat.name}`,
+      `${wa.date}: ${date}`,
+      `${wa.time}: ${time}`,
+      `${wa.duration}: ${booking.totalHours}h`,
       ``,
-      `Punto de encuentro: Puerto de Blanes.`,
-      `Llega 15 minutos antes de la hora de salida.`,
+      wa.meetingPoint,
+      wa.arrive,
       ``,
-      `Ante cualquier duda: +34 611 500 372`,
+      `${wa.questions}: +34 611 500 372`,
       `Costa Brava Rent a Boat`,
     ].join("\n");
 

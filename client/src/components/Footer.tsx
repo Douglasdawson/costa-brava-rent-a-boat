@@ -280,7 +280,11 @@ export default function Footer() {
                 <p className="text-xs text-green-400">{t.locationPages.newsletter.success}</p>
               ) : (
                 <form onSubmit={handleNewsletterSubmit} className="flex flex-col gap-2">
+                  <label htmlFor="footer-newsletter-email" className="sr-only">
+                    {t.locationPages.newsletter.placeholder}
+                  </label>
                   <input
+                    id="footer-newsletter-email"
                     type="email"
                     value={newsletterEmail}
                     onChange={(e) => setNewsletterEmail(e.target.value)}

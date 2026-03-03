@@ -193,7 +193,7 @@ export default function BookingWizardMobile(props: BookingWizardMobileProps) {
         const price = props.getBookingPrice();
         if (!price || !props.selectedBoatInfo || !props.selectedDuration) return null;
         return (
-          <div className="border-t border-gray-100 bg-primary/5 px-4 py-2 flex items-center justify-between text-xs">
+          <div className="border-t border-gray-100 bg-primary/5 px-4 py-2.5 flex items-center justify-between text-sm">
             <span className="text-gray-600 truncate mr-2">{props.selectedBoatInfo.name} · {props.selectedDuration}</span>
             <span className="font-bold text-primary flex-shrink-0">{price}€</span>
           </div>
@@ -625,7 +625,7 @@ function Step3PersonalData({
               <span className="truncate">{selectedPrefixInfo?.flag} {phonePrefix}</span>
             </button>
             {showPrefixDropdown && (
-              <div className="absolute top-full left-0 mt-1 w-64 max-w-[calc(100vw-2rem)] bg-white border border-gray-200 rounded-xl shadow-lg z-50 max-h-60 overflow-y-auto">
+              <div className="absolute top-full left-0 mt-1 w-72 max-w-[calc(100vw-2rem)] bg-white border border-gray-200 rounded-xl shadow-lg z-50 max-h-80 overflow-y-auto">
                 <div className="p-2 border-b sticky top-0 bg-white">
                   <input
                     type="text"
@@ -804,7 +804,7 @@ function Step4Confirm({
             <div id="extras-panel" className="p-4 space-y-4 bg-white">
               {/* Packs */}
               <div>
-                <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">{t.booking.extrasSection.packs}</p>
+                <p className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-2">{t.booking.extrasSection.packs}</p>
                 <div className="space-y-2">
                   <button
                     type="button"
@@ -845,7 +845,7 @@ function Step4Confirm({
               </div>
               {/* Individual extras */}
               <div>
-                <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">{t.booking.extrasSection.individual}</p>
+                <p className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-2">{t.booking.extrasSection.individual}</p>
                 <div className="grid grid-cols-1 gap-2">
                   {boatExtras.map((extra) => {
                     const isChecked = selectedExtras.includes(extra.name);
@@ -868,7 +868,7 @@ function Step4Confirm({
                           {(isChecked || isInPack) && <Check className="w-2.5 h-2.5 text-white" />}
                         </div>
                         <div className="min-w-0">
-                          <p className="text-xs font-medium text-gray-800 truncate">{extra.name}</p>
+                          <p className="text-sm font-medium text-gray-800 truncate">{extra.name}</p>
                           <p className="text-[10px] text-gray-500">{isInPack ? t.booking.extrasSection.included : extra.price}</p>
                         </div>
                       </button>
@@ -957,9 +957,9 @@ function Step4Confirm({
             <span className="text-2xl font-bold">{total}€</span>
           </div>
           {discount > 0 && (
-            <p className="text-xs opacity-75 mt-1">{t.booking.discountApplied}: -{discount}€</p>
+            <p className="text-sm opacity-75 mt-1">{t.booking.discountApplied}: -{discount}€</p>
           )}
-          <p className="text-xs opacity-60 mt-1">{t.booking.priceConfirmedWhatsApp}</p>
+          <p className="text-sm opacity-60 mt-1">{t.booking.priceConfirmedWhatsApp}</p>
         </div>
       )}
       {/* RGPD consent */}
@@ -972,7 +972,7 @@ function Step4Confirm({
           aria-required="true"
           id="wizard-privacy-consent"
         />
-        <span className="text-xs text-gray-600" id="wizard-privacy-consent-label">
+        <span className="text-sm text-gray-600" id="wizard-privacy-consent-label">
           {t.booking.gdprConsent.split('{privacyPolicy}')[0]}
           <a href="/privacy-policy" target="_blank" rel="noopener noreferrer" className="text-primary underline">
             {t.booking.gdprPrivacyLink}

@@ -22,7 +22,7 @@ export default function WhatsAppFloatingButton() {
       aria-label="Contactar por WhatsApp"
       onClick={() => trackWhatsAppClick("floating_button")}
       className={`fixed right-4 z-50 items-center justify-center w-14 h-14 md:w-16 md:h-16 rounded-full shadow-lg transition-all hover:scale-110 animate-bounce-once ${
-        isBoatDetailPage ? "hidden md:flex md:bottom-6" : "flex bottom-6"
+        isBoatDetailPage ? "hidden md:flex md:bottom-6" : "flex bottom-8 mb-safe"
       }`}
       style={{ backgroundColor: "#25D366" }}
     >

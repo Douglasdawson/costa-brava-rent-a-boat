@@ -705,7 +705,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
 
       {/* Sticky CTA for mobile */}
       {showStickyCTA && !isBookingModalOpen && (
-        <div className="fixed bottom-0 left-0 right-0 z-40 md:hidden">
+        <div className="fixed bottom-0 left-0 right-0 z-40 md:hidden pb-safe">
           <button
             onClick={() => handleReservation()}
             className="w-full bg-primary text-white py-4 px-6 font-semibold shadow-lg flex items-center justify-center gap-3"

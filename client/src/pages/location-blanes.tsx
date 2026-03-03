@@ -109,25 +109,24 @@ export default function LocationBlanesPage() {
             <div className="flex items-center justify-center mb-6">
               <MapPin className="w-8 h-8 text-primary mr-4" />
               <h1 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold text-gray-900">
-                Alquiler de Barcos en Blanes
+                {t.locationPages.blanes.hero.title}
               </h1>
             </div>
             <p className="text-lg text-gray-600 mb-6 max-w-4xl mx-auto">
-              Descubre las calas más hermosas de la Costa Brava desde el Puerto de Blanes. 
-              Embarcaciones sin licencia y con licencia para toda la familia.
+              {t.locationPages.blanes.hero.subtitle}
             </p>
             <div className="flex flex-wrap gap-3 justify-center">
               <Badge variant="outline" className="text-primary border-primary">
                 <Anchor className="w-4 h-4 mr-2" />
-                Puerto de Blanes
+                {t.locationPages.blanes.hero.badgePort}
               </Badge>
               <Badge variant="outline" className="text-primary border-primary">
                 <Users className="w-4 h-4 mr-2" />
-                4-7 personas
+                {t.locationPages.blanes.hero.badgeCapacity}
               </Badge>
               <Badge variant="outline" className="text-primary border-primary">
                 <Clock className="w-4 h-4 mr-2" />
-                1h-8h duración
+                {t.locationPages.blanes.hero.badgeDuration}
               </Badge>
             </div>
           </div>

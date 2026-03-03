@@ -118,25 +118,24 @@ export default function LocationTossaPage() {
             <div className="flex items-center justify-center mb-6">
               <Castle className="w-8 h-8 text-primary mr-4" />
               <h1 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold text-gray-900">
-                Excursiones en Barco a Tossa de Mar
+                {t.locationPages.tossa.hero.title}
               </h1>
             </div>
             <p className="text-lg text-gray-600 mb-6 max-w-4xl mx-auto">
-              Descubre el pueblo medieval más bonito de la Costa Brava navegando desde el Puerto de Blanes. 
-              1 hora de navegación hasta la famosa Vila Vella de Tossa de Mar.
+              {t.locationPages.tossa.hero.subtitle}
             </p>
             <div className="flex flex-wrap gap-3 justify-center">
               <Badge variant="outline" className="text-primary border-primary">
                 <Anchor className="w-4 h-4 mr-2" />
-                Desde Puerto de Blanes
+                {t.locationPages.tossa.hero.badgeFrom}
               </Badge>
               <Badge variant="outline" className="text-primary border-primary">
                 <Clock className="w-4 h-4 mr-2" />
-                1 hora navegando
+                {t.locationPages.tossa.hero.badgeTime}
               </Badge>
               <Badge variant="outline" className="text-primary border-primary">
                 <Users className="w-4 h-4 mr-2" />
-                4-7 personas
+                {t.locationPages.tossa.hero.badgeCapacity}
               </Badge>
             </div>
           </div>

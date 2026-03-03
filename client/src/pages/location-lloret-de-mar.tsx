@@ -118,25 +118,24 @@ export default function LocationLloretPage() {
             <div className="flex items-center justify-center mb-6">
               <MapPin className="w-8 h-8 text-primary mr-4" />
               <h1 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold text-gray-900">
-                Excursiones en Barco a Lloret de Mar
+                {t.locationPages.lloret.hero.title}
               </h1>
             </div>
             <p className="text-lg text-gray-600 mb-6 max-w-4xl mx-auto">
-              Descubre las famosas playas de Lloret de Mar navegando desde el Puerto de Blanes. 
-              25 minutos de navegación hasta uno de los destinos más populares de la Costa Brava.
+              {t.locationPages.lloret.hero.subtitle}
             </p>
             <div className="flex flex-wrap gap-3 justify-center">
               <Badge variant="outline" className="text-primary border-primary">
                 <Anchor className="w-4 h-4 mr-2" />
-                Desde Puerto de Blanes
+                {t.locationPages.lloret.hero.badgeFrom}
               </Badge>
               <Badge variant="outline" className="text-primary border-primary">
                 <Clock className="w-4 h-4 mr-2" />
-                25 min navegando
+                {t.locationPages.lloret.hero.badgeTime}
               </Badge>
               <Badge variant="outline" className="text-primary border-primary">
                 <Users className="w-4 h-4 mr-2" />
-                4-7 personas
+                {t.locationPages.lloret.hero.badgeCapacity}
               </Badge>
             </div>
           </div>

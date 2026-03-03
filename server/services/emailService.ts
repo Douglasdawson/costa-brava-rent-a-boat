@@ -72,7 +72,7 @@ const EMAIL_STRINGS: Record<EmailLang, EmailStrings> = {
     colHour: "hora", colHours: "horas",
     phone: "Teléfono",
     emergencyCall: "En caso de incidencia, llámanos al",
-    cancelTitle: "Politica de cancelacion: reembolso completo con mas de 48h de antelacion.",
+    cancelTitle: "Política de cancelación: reembolso completo con más de 48h de antelación.",
     cancelLink: "Cancelar mi reserva",
   },
   en: {
@@ -476,7 +476,7 @@ export async function sendBookingConfirmation(data: BookingEmailData): Promise<E
 
   const cancelBlock = cancelUrl ? `
     <div style="margin-top:24px; padding:16px; background-color:#f8fafc; border-radius:8px; border:1px solid #e2e8f0; text-align:center;">
-      <p style="margin:0 0 8px; color:#64748b; font-size:13px;">${strings.cancelTitle || "Politica de cancelacion: reembolso completo con mas de 48h de antelacion."}</p>
+      <p style="margin:0 0 8px; color:#64748b; font-size:13px;">${strings.cancelTitle || "Política de cancelación: reembolso completo con más de 48h de antelación."}</p>
       <a href="${cancelUrl}" style="color:#dc2626; font-size:13px; text-decoration:underline;">${strings.cancelLink || "Cancelar mi reserva"}</a>
     </div>
   ` : "";

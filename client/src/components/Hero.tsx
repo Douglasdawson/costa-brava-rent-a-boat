@@ -37,12 +37,12 @@ export default function Hero() {
             <h1 className="font-heading text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-light text-white tracking-tight mb-6 leading-tight">
               {t.hero.title}
             </h1>
-            <p className="text-lg sm:text-xl text-white/70 font-light mb-8 leading-relaxed">
+            <p className="text-lg sm:text-xl text-white/90 font-light mb-8 leading-relaxed">
               {t.hero.subtitle}
             </p>
 
             {/* Price as discrete text */}
-            <p className="text-white/60 text-sm font-light mb-6">
+            <p className="text-white/80 text-base font-light mb-6">
               Desde 70€ · Gasolina incluida
             </p>
 
@@ -59,7 +59,7 @@ export default function Hero() {
             </div>
 
             {/* Minimal trust line */}
-            <div className="flex items-center gap-6 text-white/60 text-sm font-light">
+            <div className="flex items-center justify-center flex-wrap gap-3 sm:gap-6 text-white/80 text-sm font-light">
               <a
                 href="https://www.google.com/maps/place/Costa+Brava+Rent+a+Boat+-+Blanes+%7C+Alquiler+de+Barcos+Con+y+Sin+Licencia/@41.6722544,2.7952876,17z/data=!3m1!4b1!4m6!3m5!1s0x12bb172c94a8856f:0x9a2dfa936ef2e0a7!8m2!3d41.6722504!4d2.7978625!16s%2Fg%2F11q2xl6s9f?entry=ttu&g_ep=EgoyMDI1MDkxNy4wIKXMDSoASAFQAw%3D%3D"
                 target="_blank"

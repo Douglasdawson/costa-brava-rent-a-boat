@@ -4,9 +4,19 @@ import helmet from "helmet";
 import rateLimit from "express-rate-limit";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
+import * as Sentry from "@sentry/node";
 
 const app = express();
 const isDev = process.env.NODE_ENV === "development";
+
+// Sentry error monitoring — only active when SENTRY_DSN is set
+if (process.env.SENTRY_DSN) {
+  Sentry.init({
+    dsn: process.env.SENTRY_DSN,
+    environment: isDev ? "development" : "production",
+    tracesSampleRate: isDev ? 1.0 : 0.2,
+  });
+}
 
 // Validate critical environment variables at startup
 const REQUIRED_ENV_VARS = ["DATABASE_URL", "JWT_SECRET", "ADMIN_PIN"] as const;
@@ -209,6 +219,9 @@ app.use((req, res, next) => {
 
   app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
     const status = err.status || err.statusCode || 500;
+    if (status >= 500) {
+      Sentry.captureException(err);
+    }
     console.error("[Server] Unhandled error:", err.message || err);
     res.status(status).json({ message: "Error interno del servidor" });
   });

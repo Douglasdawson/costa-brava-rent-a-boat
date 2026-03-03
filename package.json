@@ -54,6 +54,7 @@
     "@radix-ui/react-tooltip": "^1.2.0",
     "@remotion/cli": "^4.0.429",
     "@sendgrid/mail": "^8.1.6",
+    "@sentry/node": "^10.41.0",
     "@stripe/react-stripe-js": "^4.0.2",
     "@stripe/stripe-js": "^7.9.0",
     "@tanstack/react-query": "^5.60.5",

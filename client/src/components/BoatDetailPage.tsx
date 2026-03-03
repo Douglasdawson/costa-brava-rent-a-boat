@@ -98,12 +98,12 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
   
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-background">
         <Navigation />
         <div className="space-y-4 p-4 max-w-7xl mx-auto pt-24">
-          <div className="h-64 bg-gray-200 animate-pulse rounded-lg" />
-          <div className="h-8 bg-gray-200 animate-pulse rounded w-1/2 mt-4" />
-          <div className="h-4 bg-gray-200 animate-pulse rounded w-1/3 mt-2" />
+          <div className="h-64 bg-muted animate-pulse rounded-lg" />
+          <div className="h-8 bg-muted animate-pulse rounded w-1/2 mt-4" />
+          <div className="h-4 bg-muted animate-pulse rounded w-1/3 mt-2" />
         </div>
       </div>
     );
@@ -111,7 +111,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
 
   if (error || !boatData) {
     return (
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-background">
         <Navigation />
         <div className="flex items-center justify-center min-h-[60vh]">
           <div className="text-center">
@@ -210,7 +210,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-background">
       <SEO 
         title={seoConfig.title}
         description={seoConfig.description}
@@ -223,7 +223,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
       <Navigation />
       
       {/* Breadcrumbs */}
-      <div className="bg-gray-50 border-b border-gray-200">
+      <div className="bg-background border-b border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
           <Breadcrumbs
             items={[
@@ -263,8 +263,8 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
           <div className="mb-2">
             <span className={`inline-block text-xs font-semibold px-3 py-1 rounded-full ${
               requiresLicense
-                ? "bg-blue-500/90 text-white"
-                : "bg-green-500/90 text-white"
+                ? "bg-primary/90 text-white"
+                : "bg-primary/80 text-white"
             }`}>
               {requiresLicense ? t.boats.withLicense : t.boats.withoutLicense}
             </span>
@@ -358,7 +358,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
             
             {/* Thumbnails: dots on mobile, image strip on desktop */}
             {displayImages.length > 1 && (
-              <div className="bg-gray-50 px-4 py-3">
+              <div className="bg-muted px-4 py-3">
                 {/* Mobile: dots */}
                 <div className="flex justify-center gap-2 md:hidden">
                   {displayImages.map((_, index) => (
@@ -368,7 +368,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                       className={`h-3 rounded-full transition-all ${
                         index === currentImageIndex
                           ? 'bg-primary w-8'
-                          : 'w-3 bg-gray-300 hover:bg-gray-400'
+                          : 'w-3 bg-muted-foreground/30 hover:bg-muted-foreground/50'
                       }`}
                       aria-label={`${t.boatDetail.imageAria} ${index + 1}`}
                       data-testid={`button-thumbnail-${index}`}
@@ -384,7 +384,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                       className={`flex-shrink-0 w-20 h-14 rounded overflow-hidden border-2 transition-all ${
                         index === currentImageIndex
                           ? 'border-primary ring-2 ring-primary/30'
-                          : 'border-transparent hover:border-gray-300 opacity-70 hover:opacity-100'
+                          : 'border-transparent hover:border-muted-foreground/30 opacity-70 hover:opacity-100'
                       }`}
                       aria-label={`${t.boatDetail.imageAria} ${index + 1}`}
                       data-testid={`button-thumbnail-${index}`}
@@ -408,12 +408,12 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
               <CardTitle>{t.boatDetail.description}</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-gray-700 leading-relaxed">
+              <p className="text-foreground/80 leading-relaxed">
                 {boatData.description}
               </p>
               {!requiresLicense && (
-                <div className="mt-4 p-4 bg-green-50 rounded-lg">
-                  <p className="text-green-800 font-medium flex items-center gap-2">
+                <div className="mt-4 p-4 bg-primary/5 rounded-lg">
+                  <p className="text-foreground font-medium flex items-center gap-2">
                     <Fuel className="w-5 h-5" />
                     {t.boatDetail.fuelIncluded}
                   </p>
@@ -427,8 +427,8 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
         <Card className="mb-6 sm:mb-8">
           <CardContent className="p-6">
             <div className="text-center space-y-4">
-              <h3 className="text-xl font-bold text-gray-900">{t.boatDetail.readyForAdventure}</h3>
-              <p className="text-gray-600">{t.boatDetail.bookNowCTA.replace('{boatName}', boatData.name)}</p>
+              <h3 className="text-xl font-bold text-foreground">{t.boatDetail.readyForAdventure}</h3>
+              <p className="text-muted-foreground">{t.boatDetail.bookNowCTA.replace('{boatName}', boatData.name)}</p>
               
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button
@@ -448,7 +448,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
         <Card className="mb-8">
           <CardHeader>
             <CardTitle className="flex items-center md:justify-center">
-              <Euro className="w-5 h-5 mr-2 text-green-600" />
+              <Euro className="w-5 h-5 mr-2 text-primary" />
               {t.boatDetail.pricesBySeason}
             </CardTitle>
           </CardHeader>
@@ -474,15 +474,15 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                 </div>
 
                 {/* Selected Season Details */}
-                <div className="bg-gray-50 rounded-lg p-4 mb-4 text-center">
+                <div className="bg-muted rounded-lg p-4 mb-4 text-center">
                   <h4 className="font-medium mb-2">{{ BAJA: t.boatDetail.seasonLow, MEDIA: t.boatDetail.seasonMid, ALTA: t.boatDetail.seasonHigh }[selectedSeason]}</h4>
-                  <p className="text-sm text-gray-600 mb-4">{seasonPeriods[selectedSeason]}</p>
+                  <p className="text-sm text-muted-foreground mb-4">{seasonPeriods[selectedSeason]}</p>
                   
                   <div className="flex flex-wrap justify-center gap-4">
                     {Object.entries(boatData.pricing[selectedSeason].prices).map(([duration, price]) => (
-                      <div key={duration} className="text-center p-3 bg-white rounded-lg border min-w-[120px] hover:bg-blue-50 transition-colors cursor-pointer">
+                      <div key={duration} className="text-center p-3 bg-white rounded-lg border min-w-[120px] hover:bg-primary/5 transition-colors cursor-pointer">
                         <div className="font-bold text-lg text-primary">{price}€</div>
-                        <div className="text-sm text-gray-600">{duration}</div>
+                        <div className="text-sm text-muted-foreground">{duration}</div>
                       </div>
                     ))}
                   </div>
@@ -491,12 +491,12 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
             )}
 
             {boatData.included && boatData.included.length > 0 && (
-              <div className="text-sm text-gray-600 text-left md:text-center">
+              <div className="text-sm text-muted-foreground text-left md:text-center">
                 <p className="mb-3"><strong>{t.boatDetail.priceIncludes}</strong></p>
                 <div className="flex flex-wrap justify-start md:justify-center items-center gap-4">
                   {boatData.included.map((item, index) => (
                     <div key={index} className="flex items-center">
-                      <CheckCircle className="w-3 h-3 text-green-600 mr-1" />
+                      <CheckCircle className="w-3 h-3 text-primary mr-1" />
                       <span className="text-xs">{item}</span>
                     </div>
                   ))}
@@ -517,7 +517,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
         {/* Tabbed detail sections */}
         <Card className="mb-8">
           <Tabs defaultValue="caracteristicas">
-            <div className="border-b border-gray-100 px-4 pt-4 overflow-x-auto">
+            <div className="border-b border-border px-4 pt-4 overflow-x-auto">
               <TabsList className="h-auto bg-transparent p-0 gap-1 w-max">
                 <TabsTrigger
                   value="caracteristicas"
@@ -562,31 +562,31 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
                 {boatData.features?.map((feature, index) => (
                   <div key={index} className="flex items-center">
-                    <CheckCircle className="w-4 h-4 text-green-600 mr-2 flex-shrink-0" />
+                    <CheckCircle className="w-4 h-4 text-primary mr-2 flex-shrink-0" />
                     <span className="text-sm">{feature}</span>
                   </div>
-                )) || <span className="text-sm text-gray-500">{t.boatDetail.noFeatures}</span>}
+                )) || <span className="text-sm text-muted-foreground">{t.boatDetail.noFeatures}</span>}
               </div>
               {!requiresLicense && (
-                <div className="mt-6 pt-6 border-t border-gray-100">
-                  <h4 className="font-semibold text-sm text-gray-700 mb-4 flex items-center gap-2">
+                <div className="mt-6 pt-6 border-t border-border">
+                  <h4 className="font-semibold text-sm text-foreground/80 mb-4 flex items-center gap-2">
                     <Heart className="w-4 h-4 text-primary" />
                     {t.boatDetail.licenseFreeAdvantages}
                   </h4>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div>
-                      <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">{t.boatDetail.totalAccessibility}</p>
+                      <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-2">{t.boatDetail.totalAccessibility}</p>
                       <div className="space-y-1.5">
                         {[t.boatDetail.noLicenseNeeded, t.boatDetail.quickLearning, t.boatDetail.lowerCost, t.boatDetail.perfectBeginners].map((item, i) => (
                           <div key={i} className="flex items-center">
-                            <Star className="w-3 h-3 text-green-600 mr-2 flex-shrink-0" />
+                            <Star className="w-3 h-3 text-primary mr-2 flex-shrink-0" />
                             <span className="text-sm">{item}</span>
                           </div>
                         ))}
                       </div>
                     </div>
                     <div>
-                      <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">{t.boatDetail.guaranteedFun}</p>
+                      <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-2">{t.boatDetail.guaranteedFun}</p>
                       <div className="space-y-1.5">
                         {[
                           { icon: Waves, label: t.boatDetail.accessCoves },
@@ -595,7 +595,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                           { icon: Clock, label: t.boatDetail.immediateAvailability },
                         ].map(({ icon: Icon, label }, i) => (
                           <div key={i} className="flex items-center">
-                            <Icon className="w-3 h-3 text-green-600 mr-2 flex-shrink-0" />
+                            <Icon className="w-3 h-3 text-primary mr-2 flex-shrink-0" />
                             <span className="text-sm">{label}</span>
                           </div>
                         ))}
@@ -618,12 +618,12 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                   { key: "capacity", icon: Users, label: t.boatDetail.specCapacity },
                   { key: "deposit", icon: Shield, label: t.boatDetail.specDeposit },
                 ].filter(({ key }) => boatData.specifications?.[key as keyof typeof boatData.specifications]).map(({ key, icon: Icon, label }) => (
-                  <div key={key} className="flex items-center justify-between text-sm py-2 border-b border-gray-50 last:border-0">
+                  <div key={key} className="flex items-center justify-between text-sm py-2 border-b border-border/50 last:border-0">
                     <div className="flex items-center">
-                      <Icon className="w-4 h-4 mr-2 text-blue-600 flex-shrink-0" />
-                      <span className="font-medium text-gray-700">{label}</span>
+                      <Icon className="w-4 h-4 mr-2 text-primary flex-shrink-0" />
+                      <span className="font-medium text-foreground/80">{label}</span>
                     </div>
-                    <span className="text-gray-900 font-medium">{boatData.specifications![key as keyof typeof boatData.specifications]}</span>
+                    <span className="text-foreground font-medium">{boatData.specifications![key as keyof typeof boatData.specifications]}</span>
                   </div>
                 ))}
               </div>
@@ -634,10 +634,10 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                 {boatData.equipment?.map((item, index) => (
                   <div key={index} className="flex items-center">
-                    <CheckCircle className="w-4 h-4 text-green-600 mr-2 flex-shrink-0" />
+                    <CheckCircle className="w-4 h-4 text-primary mr-2 flex-shrink-0" />
                     <span className="text-sm">{item}</span>
                   </div>
-                )) || <span className="text-sm text-gray-500">{t.boatDetail.noEquipment}</span>}
+                )) || <span className="text-sm text-muted-foreground">{t.boatDetail.noEquipment}</span>}
               </div>
             </TabsContent>
 
@@ -650,22 +650,22 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                   };
                   const IconComponent = iconMap[extra.icon] || Star;
                   return (
-                    <div key={index} className="text-center p-4 border border-gray-100 rounded-xl hover:bg-gray-50 transition-colors">
+                    <div key={index} className="text-center p-4 border border-border rounded-xl hover:bg-muted transition-colors">
                       <div className="flex justify-center mb-2">
                         <IconComponent className="w-6 h-6 text-primary" />
                       </div>
-                      <div className="font-medium text-sm text-gray-800">{extra.name}</div>
+                      <div className="font-medium text-sm text-foreground">{extra.name}</div>
                       <div className="text-primary font-bold text-sm mt-0.5">{extra.price}</div>
                     </div>
                   );
                 })}
               </div>
-              <p className="text-xs text-gray-500 mt-4">{t.boatDetail.extrasNote}</p>
+              <p className="text-xs text-muted-foreground mt-4">{t.boatDetail.extrasNote}</p>
             </TabsContent>
 
             {/* Tab: Información */}
             <TabsContent value="info" className="mt-0 p-4 sm:p-6">
-              <div className="text-sm text-gray-700 space-y-2 mb-4">
+              <div className="text-sm text-foreground/80 space-y-2 mb-4">
                 <p>• <strong>{t.boatDetail.essentialDoc}</strong>{requiresLicense ? t.boatDetail.essentialDocLicense : ""}</p>
                 <p>• {requiresLicense ? t.boatDetail.licenseRequired : t.boatDetail.noLicenseRequired}</p>
                 <p>• {t.boatDetail.idealForGroups.replace('{capacity}', String(capacity))}</p>
@@ -673,8 +673,8 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                 <p>• {requiresLicense ? t.boatDetail.fuelNotIncluded : t.boatDetail.fuelInsuranceIncluded}</p>
                 {boatData.specifications?.deposit && <p>• {t.boatDetail.specDeposit} {boatData.specifications.deposit}</p>}
               </div>
-              <div className="p-4 bg-blue-50 rounded-lg">
-                <p className="text-blue-800 text-sm">
+              <div className="p-4 bg-primary/5 rounded-lg">
+                <p className="text-foreground text-sm">
                   <strong>{t.boatDetail.conditions}</strong>{" "}
                   <button
                     onClick={() => {
@@ -687,7 +687,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                         }
                       }, 100);
                     }}
-                    className="underline bg-transparent border-none p-0 text-blue-800 cursor-pointer hover:text-blue-600 transition-colors"
+                    className="underline bg-transparent border-none p-0 text-foreground cursor-pointer hover:text-primary transition-colors"
                     data-testid="link-terms-conditions"
                   >
                     {t.boatDetail.rentalConditions}
@@ -723,10 +723,10 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
       {/* Sticky pricing sidebar for desktop */}
       {showStickyCTA && !isBookingModalOpen && lowestPrice > 0 && (
         <div className="hidden lg:block fixed right-6 top-24 w-64 z-30 transition-all duration-300">
-          <div className="bg-white rounded-xl shadow-xl border border-gray-100 p-4 space-y-3">
-            <p className="font-bold text-gray-900 truncate">{boatData.name}</p>
+          <div className="bg-white rounded-xl shadow-xl border border-border p-4 space-y-3">
+            <p className="font-bold text-foreground truncate">{boatData.name}</p>
             <div className="flex items-baseline gap-2">
-              <span className="text-sm text-gray-500">{t.boats.from}</span>
+              <span className="text-sm text-muted-foreground">{t.boats.from}</span>
               <span className="text-2xl font-bold text-primary">{lowestPrice}€</span>
             </div>
             <Button
@@ -738,7 +738,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
             </Button>
             <button
               onClick={handleWhatsApp}
-              className="w-full text-xs text-green-600 hover:text-green-700 flex items-center justify-center gap-1.5 py-1"
+              className="w-full text-xs text-primary hover:text-primary/80 flex items-center justify-center gap-1.5 py-1"
             >
               <MessageSquare className="w-3.5 h-3.5" />
               {t.contact?.whatsapp || "Consultar por WhatsApp"}

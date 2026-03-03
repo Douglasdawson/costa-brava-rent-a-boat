@@ -78,13 +78,13 @@ export default function AvailabilityCalendar({ boatId, onSlotSelect }: Availabil
 
   const modifiersStyles = {
     available: {
-      backgroundColor: "rgb(220, 252, 231)",
-      color: "rgb(22, 101, 52)",
+      backgroundColor: "hsl(var(--primary) / 0.1)",
+      color: "hsl(var(--primary))",
       borderRadius: "6px",
     },
     partial: {
-      backgroundColor: "rgb(254, 249, 195)",
-      color: "rgb(133, 77, 14)",
+      backgroundColor: "hsl(var(--cta) / 0.1)",
+      color: "hsl(var(--cta))",
       borderRadius: "6px",
     },
     booked: {
@@ -144,11 +144,11 @@ export default function AvailabilityCalendar({ boatId, onSlotSelect }: Availabil
             {/* Legend */}
             <div className="flex flex-wrap gap-3 text-sm">
               <div className="flex items-center gap-1.5">
-                <div className="w-3 h-3 rounded-sm bg-green-100 border border-green-300" />
+                <div className="w-3 h-3 rounded-sm bg-primary/10 border border-primary/30" />
                 <span>{t.availability?.available || "Disponible"}</span>
               </div>
               <div className="flex items-center gap-1.5">
-                <div className="w-3 h-3 rounded-sm bg-yellow-100 border border-yellow-300" />
+                <div className="w-3 h-3 rounded-sm bg-cta/10 border border-cta/30" />
                 <span>{t.availability?.partial || "Parcial"}</span>
               </div>
               <div className="flex items-center gap-1.5">
@@ -156,7 +156,7 @@ export default function AvailabilityCalendar({ boatId, onSlotSelect }: Availabil
                 <span>{t.availability?.booked || "Ocupado"}</span>
               </div>
               <div className="flex items-center gap-1.5">
-                <div className="w-3 h-3 rounded-sm bg-gray-100 border border-gray-300" />
+                <div className="w-3 h-3 rounded-sm bg-muted border border-muted-foreground/30" />
                 <span>{t.availability?.offSeason || "Fuera de temporada"}</span>
               </div>
             </div>
@@ -179,8 +179,8 @@ export default function AvailabilityCalendar({ boatId, onSlotSelect }: Availabil
                         className={`justify-center py-1.5 flex-col gap-0.5 ${
                           slot.available
                             ? isClickable
-                              ? "bg-green-50 text-green-700 border-green-200 hover:bg-green-600 hover:text-white hover:border-green-600 cursor-pointer transition-colors"
-                              : "bg-green-50 text-green-700 border-green-200"
+                              ? "bg-primary/5 text-primary border-primary/20 hover:bg-primary hover:text-white hover:border-primary cursor-pointer transition-colors"
+                              : "bg-primary/5 text-primary border-primary/20"
                             : "bg-red-50 text-red-500 border-red-200 cursor-not-allowed"
                         }`}
                         onClick={() => {
@@ -201,13 +201,13 @@ export default function AvailabilityCalendar({ boatId, onSlotSelect }: Availabil
             )}
 
             {selectedDate && selectedSlots.length === 0 && (
-              <p className="text-sm text-gray-500">
+              <p className="text-sm text-muted-foreground">
                 {t.availability?.noSlots || "No hay horarios disponibles para esta fecha"}
               </p>
             )}
 
             {!selectedDate && (
-              <p className="text-sm text-gray-500">
+              <p className="text-sm text-muted-foreground">
                 {t.availability?.selectDay || "Selecciona un día para ver los horarios disponibles"}
               </p>
             )}

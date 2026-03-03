@@ -49,13 +49,13 @@ export default function BoatCard({
       <a
         href={`/barco/${id}`}
         onClick={(e) => { e.preventDefault(); handleDetails(); }}
-        className="relative block cursor-pointer group bg-gray-200"
+        className="relative block cursor-pointer group bg-muted"
         data-testid={`image-${id}`}
         aria-label={`Ver detalles del barco ${name}`}
       >
         {imageError ? (
           <div className="w-full h-44 sm:h-52 lg:h-64 flex items-center justify-center">
-            <Anchor className="w-12 h-12 text-gray-400" aria-hidden="true" />
+            <Anchor className="w-12 h-12 text-muted-foreground/50" aria-hidden="true" />
           </div>
         ) : (
           <img
@@ -74,7 +74,7 @@ export default function BoatCard({
           </span>
         </div>
         <div className="absolute top-3 right-3">
-          <span className={`inline-block w-2.5 h-2.5 rounded-full ${available ? 'bg-green-500' : 'bg-gray-300'}`} />
+          <span className={`inline-block w-2.5 h-2.5 rounded-full ${available ? 'bg-primary' : 'bg-muted-foreground/30'}`} />
         </div>
       </a>
       <CardContent className="p-3 sm:p-4">

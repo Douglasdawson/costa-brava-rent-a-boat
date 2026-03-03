@@ -35,6 +35,8 @@ interface EmailStrings {
   colHour: string; colHours: string;
   phone: string;
   emergencyCall: string;
+  cancelTitle?: string;
+  cancelLink?: string;
 }
 
 const EMAIL_STRINGS: Record<EmailLang, EmailStrings> = {
@@ -70,6 +72,8 @@ const EMAIL_STRINGS: Record<EmailLang, EmailStrings> = {
     colHour: "hora", colHours: "horas",
     phone: "Teléfono",
     emergencyCall: "En caso de incidencia, llámanos al",
+    cancelTitle: "Politica de cancelacion: reembolso completo con mas de 48h de antelacion.",
+    cancelLink: "Cancelar mi reserva",
   },
   en: {
     bookingConfirmed: "Booking confirmed",
@@ -103,6 +107,8 @@ const EMAIL_STRINGS: Record<EmailLang, EmailStrings> = {
     colHour: "hour", colHours: "hours",
     phone: "Phone",
     emergencyCall: "In case of emergency, call us at",
+    cancelTitle: "Cancellation policy: full refund with more than 48h notice.",
+    cancelLink: "Cancel my booking",
   },
   fr: {
     bookingConfirmed: "Reservation confirmee",
@@ -463,12 +469,24 @@ export async function sendBookingConfirmation(data: BookingEmailData): Promise<E
     </p>
   `;
 
+  const appUrl = process.env.APP_URL || "https://costabravarentaboat.app";
+  const cancelUrl = booking.cancelationToken
+    ? `${appUrl}/cancel/${booking.cancelationToken}`
+    : null;
+
+  const cancelBlock = cancelUrl ? `
+    <div style="margin-top:24px; padding:16px; background-color:#f8fafc; border-radius:8px; border:1px solid #e2e8f0; text-align:center;">
+      <p style="margin:0 0 8px; color:#64748b; font-size:13px;">${strings.cancelTitle || "Politica de cancelacion: reembolso completo con mas de 48h de antelacion."}</p>
+      <a href="${cancelUrl}" style="color:#dc2626; font-size:13px; text-decoration:underline;">${strings.cancelLink || "Cancelar mi reserva"}</a>
+    </div>
+  ` : "";
+
   try {
     await sgMail.send({
       to: booking.customerEmail,
       from: { email: getFromEmail(), name: "Costa Brava Rent a Boat" },
       subject: `${strings.bookingConfirmed} - ${data.boat.name} - ${formatDate(booking.startTime)}`,
-      html: emailWrapper(content),
+      html: emailWrapper(content + cancelBlock),
     });
 
     console.log(`[Email] Booking confirmation sent to ${booking.customerEmail} for booking ${booking.id}`);

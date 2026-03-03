@@ -41,10 +41,10 @@ export default function FAQPreview() {
           <div className="inline-flex items-center justify-center w-12 h-12 bg-primary/10 rounded-full mb-4">
             <HelpCircle className="w-6 h-6 text-primary" />
           </div>
-          <h2 id="faq-preview-title" className="font-heading text-2xl sm:text-3xl font-bold text-gray-900 mb-3">
+          <h2 id="faq-preview-title" className="font-heading text-2xl sm:text-3xl font-bold text-foreground mb-3">
             Preguntas frecuentes
           </h2>
-          <p className="text-gray-500 text-base sm:text-lg">
+          <p className="text-muted-foreground text-base sm:text-lg">
             Todo lo que necesitas saber antes de salir a navegar
           </p>
         </div>
@@ -55,12 +55,12 @@ export default function FAQPreview() {
             <AccordionItem
               key={item.id}
               value={item.id}
-              className="border border-gray-200 rounded-xl px-5 data-[state=open]:border-primary/40 data-[state=open]:bg-primary/5 transition-colors"
+              className="border border-border rounded-xl px-5 data-[state=open]:border-primary/40 data-[state=open]:bg-primary/5 transition-colors"
             >
-              <AccordionTrigger className="text-left font-semibold text-gray-900 text-sm sm:text-base py-4 hover:no-underline">
+              <AccordionTrigger className="text-left font-semibold text-foreground text-sm sm:text-base py-4 hover:no-underline">
                 {item.question}
               </AccordionTrigger>
-              <AccordionContent className="text-gray-600 text-sm sm:text-base pb-4 leading-relaxed">
+              <AccordionContent className="text-muted-foreground text-sm sm:text-base pb-4 leading-relaxed">
                 {item.answer}
               </AccordionContent>
             </AccordionItem>

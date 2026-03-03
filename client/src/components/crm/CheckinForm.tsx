@@ -219,7 +219,7 @@ export function CheckinForm({
                 Marcar todos
               </Button>
             </div>
-            <div className="space-y-2 bg-gray-50 rounded-lg p-3">
+            <div className="space-y-2 bg-muted rounded-lg p-3">
               {checklist.map((item, index) => (
                 <div key={item.item} className="flex items-center space-x-3">
                   <Checkbox
@@ -230,7 +230,7 @@ export function CheckinForm({
                   <label
                     htmlFor={`checklist-${index}`}
                     className={`text-sm cursor-pointer select-none ${
-                      item.checked ? "text-green-700 line-through" : "text-gray-700"
+                      item.checked ? "text-primary line-through" : "text-foreground"
                     }`}
                   >
                     {item.item}

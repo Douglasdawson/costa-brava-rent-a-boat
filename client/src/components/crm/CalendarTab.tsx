@@ -77,45 +77,45 @@ const STATUS_COLORS: Record<
   { bg: string; border: string; text: string; opacity?: string }
 > = {
   confirmed: {
-    bg: "bg-green-100",
-    border: "border-green-500",
-    text: "text-green-800",
+    bg: "bg-primary/10",
+    border: "border-primary",
+    text: "text-primary",
   },
   hold: {
-    bg: "bg-blue-100",
-    border: "border-blue-400",
-    text: "text-blue-800",
+    bg: "bg-primary/5",
+    border: "border-primary/40",
+    text: "text-primary",
   },
   pending_payment: {
-    bg: "bg-yellow-100",
-    border: "border-yellow-500",
-    text: "text-yellow-800",
+    bg: "bg-cta/10",
+    border: "border-cta",
+    text: "text-cta",
   },
   draft: {
-    bg: "bg-gray-100",
-    border: "border-gray-400",
-    text: "text-gray-700",
+    bg: "bg-muted",
+    border: "border-border",
+    text: "text-muted-foreground",
   },
   cancelled: {
-    bg: "bg-red-100",
+    bg: "bg-red-50",
     border: "border-red-400",
     text: "text-red-700",
     opacity: "opacity-50",
   },
   completed: {
-    bg: "bg-slate-100",
-    border: "border-slate-400",
-    text: "text-slate-700",
+    bg: "bg-muted",
+    border: "border-border",
+    text: "text-muted-foreground",
   },
 };
 
 const STATUS_DOT_COLORS: Record<string, string> = {
-  confirmed: "bg-green-500",
-  hold: "bg-blue-400",
-  pending_payment: "bg-yellow-500",
-  draft: "bg-gray-400",
+  confirmed: "bg-primary",
+  hold: "bg-primary/60",
+  pending_payment: "bg-cta",
+  draft: "bg-muted-foreground/40",
   cancelled: "bg-red-400",
-  completed: "bg-slate-400",
+  completed: "bg-muted-foreground/40",
 };
 
 const ALL_STATUSES = [
@@ -414,15 +414,15 @@ export function CalendarTab({
                 <div className="flex flex-wrap gap-1.5">
                   {ALL_STATUSES.map((status) => {
                     const isActive = visibleStatuses.has(status);
-                    const dotColor = STATUS_DOT_COLORS[status] || "bg-gray-400";
+                    const dotColor = STATUS_DOT_COLORS[status] || "bg-muted-foreground/40";
                     return (
                       <button
                         key={status}
                         onClick={() => toggleStatus(status)}
                         className={`flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium border transition-colors ${
                           isActive
-                            ? "bg-white border-gray-300 text-gray-700"
-                            : "bg-gray-50 border-gray-200 text-gray-400 line-through"
+                            ? "bg-white border-border text-foreground"
+                            : "bg-muted border-border text-muted-foreground line-through"
                         }`}
                       >
                         <span
@@ -546,7 +546,7 @@ function BookingTooltipContent({ booking }: { booking: Booking }) {
       <p className="text-muted-foreground">Barco: {booking.boatId}</p>
       <div className="flex items-center gap-1.5 pt-0.5">
         <span
-          className={`w-2 h-2 rounded-full ${STATUS_DOT_COLORS[booking.bookingStatus] || "bg-gray-400"}`}
+          className={`w-2 h-2 rounded-full ${STATUS_DOT_COLORS[booking.bookingStatus] || "bg-muted-foreground/40"}`}
         />
         <span>{getStatusLabel(booking.bookingStatus)}</span>
       </div>
@@ -644,7 +644,7 @@ function DayView({
   if (boats.length === 0) {
     return (
       <Card>
-        <CardContent className="py-12 text-center text-gray-500">
+        <CardContent className="py-12 text-center text-muted-foreground">
           No hay barcos para mostrar
         </CardContent>
       </Card>
@@ -654,7 +654,7 @@ function DayView({
   return (
     <Card className="overflow-hidden">
       {/* Mobile boat selector */}
-      <div className="sm:hidden flex items-center justify-between px-4 py-3 border-b bg-gray-50">
+      <div className="sm:hidden flex items-center justify-between px-4 py-3 border-b bg-muted">
         <Button
           variant="outline"
           size="icon"
@@ -687,25 +687,25 @@ function DayView({
           <div className="min-w-[600px]">
             {/* Header row with boat names */}
             <div className="flex sticky top-0 z-20 bg-white border-b">
-              <div className="w-16 sm:w-20 flex-shrink-0 border-r bg-gray-50" />
+              <div className="w-16 sm:w-20 flex-shrink-0 border-r bg-muted" />
               {/* Desktop: show all boats */}
               <div className="hidden sm:contents">
                 {boats.map((boat) => (
                   <div
                     key={boat.id}
-                    className="flex-1 min-w-[140px] text-center py-2 px-1 border-r bg-gray-50"
+                    className="flex-1 min-w-[140px] text-center py-2 px-1 border-r bg-muted"
                   >
                     <p className="text-xs sm:text-sm font-semibold truncate">
                       {boat.name}
                     </p>
-                    <p className="text-[10px] text-gray-500">
+                    <p className="text-[10px] text-muted-foreground">
                       Cap: {boat.capacity}
                     </p>
                   </div>
                 ))}
               </div>
               {/* Mobile: show selected boat */}
-              <div className="sm:hidden flex-1 text-center py-2 px-1 bg-gray-50">
+              <div className="sm:hidden flex-1 text-center py-2 px-1 bg-muted">
                 <p className="text-sm font-semibold">
                   {currentMobileBoat?.name}
                 </p>
@@ -719,7 +719,7 @@ function DayView({
                 {slots.map((slot) => (
                   <div
                     key={slot}
-                    className="border-b border-gray-100 text-right pr-2 text-[10px] sm:text-xs text-gray-500 flex items-start justify-end"
+                    className="border-b border-border/50 text-right pr-2 text-[10px] sm:text-xs text-muted-foreground flex items-start justify-end"
                     style={{ height: SLOT_HEIGHT_PX }}
                   >
                     <span className="-mt-1.5">{slot}</span>
@@ -806,7 +806,7 @@ function BoatColumn({
       {slots.map((slot) => (
         <div
           key={slot}
-          className="border-b border-gray-100 cursor-pointer hover:bg-blue-50/30 transition-colors"
+          className="border-b border-border/50 cursor-pointer hover:bg-primary/5 transition-colors"
           style={{ height: SLOT_HEIGHT_PX }}
           onClick={() => onEmptySlotClick(boat.id, slot)}
         />
@@ -826,6 +826,7 @@ function BoatColumn({
               <TooltipTrigger asChild>
                 <button
                   className={`absolute left-1 right-1 rounded-md border-l-[3px] px-1.5 py-0.5 overflow-hidden pointer-events-auto cursor-pointer transition-shadow hover:shadow-md ${colors.bg} ${colors.border} ${colors.text} ${colors.opacity || ""}`}
+
                   style={{
                     top: `${topPercent}%`,
                     height: `${heightPercent}%`,
@@ -838,7 +839,7 @@ function BoatColumn({
                       {booking.customerName} {booking.customerSurname?.charAt(0)}.
                     </p>
                     {heightPercent > 6 && (
-                      <p className="text-[9px] sm:text-[10px] text-gray-600 truncate leading-tight">
+                      <p className="text-[9px] sm:text-[10px] text-muted-foreground truncate leading-tight">
                         {format(new Date(booking.startTime), "HH:mm")} -{" "}
                         {format(new Date(booking.endTime), "HH:mm")}
                       </p>
@@ -916,7 +917,7 @@ function WeekView({
   if (boats.length === 0) {
     return (
       <Card>
-        <CardContent className="py-12 text-center text-gray-500">
+        <CardContent className="py-12 text-center text-muted-foreground">
           No hay barcos para mostrar
         </CardContent>
       </Card>
@@ -930,8 +931,8 @@ function WeekView({
           <div className="min-w-[700px]">
             {/* Header: weekday names */}
             <div className="flex sticky top-0 z-10 bg-white border-b">
-              <div className="w-32 sm:w-40 flex-shrink-0 border-r bg-gray-50 py-2 px-2">
-                <span className="text-xs font-semibold text-gray-500">
+              <div className="w-32 sm:w-40 flex-shrink-0 border-r bg-muted py-2 px-2">
+                <span className="text-xs font-semibold text-muted-foreground">
                   Barco
                 </span>
               </div>
@@ -940,12 +941,12 @@ function WeekView({
                 return (
                   <div
                     key={day.toISOString()}
-                    className={`flex-1 min-w-[80px] text-center py-2 border-r cursor-pointer hover:bg-blue-50 transition-colors ${
-                      today ? "bg-blue-50" : "bg-gray-50"
+                    className={`flex-1 min-w-[80px] text-center py-2 border-r cursor-pointer hover:bg-primary/5 transition-colors ${
+                      today ? "bg-primary/5" : "bg-muted"
                     }`}
                     onClick={() => onDayClick(day)}
                   >
-                    <p className="text-[10px] sm:text-xs text-gray-500 uppercase">
+                    <p className="text-[10px] sm:text-xs text-muted-foreground uppercase">
                       {format(day, "EEE", { locale: es })}
                     </p>
                     <p
@@ -968,12 +969,12 @@ function WeekView({
 
               return (
                 <div key={boat.id} className="flex border-b">
-                  <div className="w-32 sm:w-40 flex-shrink-0 border-r bg-gray-50 py-2 px-2 flex items-center">
+                  <div className="w-32 sm:w-40 flex-shrink-0 border-r bg-muted py-2 px-2 flex items-center">
                     <div>
                       <p className="text-xs sm:text-sm font-semibold truncate">
                         {boat.name}
                       </p>
-                      <p className="text-[10px] text-gray-500">
+                      <p className="text-[10px] text-muted-foreground">
                         Cap: {boat.capacity}
                       </p>
                     </div>
@@ -987,8 +988,8 @@ function WeekView({
                     return (
                       <div
                         key={dayKey}
-                        className={`flex-1 min-w-[80px] border-r p-1 min-h-[60px] cursor-pointer hover:bg-blue-50/50 transition-colors ${
-                          today ? "bg-blue-50/30" : ""
+                        className={`flex-1 min-w-[80px] border-r p-1 min-h-[60px] cursor-pointer hover:bg-primary/5 transition-colors ${
+                          today ? "bg-primary/5" : ""
                         }`}
                         onClick={() => onDayClick(day)}
                       >
@@ -1026,7 +1027,7 @@ function WeekView({
                             );
                           })}
                           {dayBookings.length > 4 && (
-                            <p className="text-[9px] text-gray-500 pl-1">
+                            <p className="text-[9px] text-muted-foreground pl-1">
                               +{dayBookings.length - 4} mas
                             </p>
                           )}
@@ -1103,15 +1104,15 @@ function MonthView({ date, bookings, onDayClick }: MonthViewProps) {
   // Determine occupancy level for background color
   const getOccupancyColor = (count: number): string => {
     if (count === 0) return "";
-    if (count <= 2) return "bg-green-50";
-    if (count <= 5) return "bg-yellow-50";
+    if (count <= 2) return "bg-primary/5";
+    if (count <= 5) return "bg-cta/5";
     return "bg-red-50";
   };
 
   const getOccupancyBorder = (count: number): string => {
     if (count === 0) return "";
-    if (count <= 2) return "border-green-200";
-    if (count <= 5) return "border-yellow-200";
+    if (count <= 2) return "border-primary/20";
+    if (count <= 5) return "border-cta/20";
     return "border-red-200";
   };
 
@@ -1123,7 +1124,7 @@ function MonthView({ date, bookings, onDayClick }: MonthViewProps) {
           {weekdayLabels.map((label) => (
             <div
               key={label}
-              className="text-center text-[10px] sm:text-xs font-semibold text-gray-500 uppercase py-1"
+              className="text-center text-[10px] sm:text-xs font-semibold text-muted-foreground uppercase py-1"
             >
               {label}
             </div>
@@ -1149,8 +1150,8 @@ function MonthView({ date, bookings, onDayClick }: MonthViewProps) {
                 key={dayKey}
                 onClick={() => onDayClick(day)}
                 className={`relative p-1 sm:p-2 rounded-lg border text-left transition-colors hover:ring-2 hover:ring-primary/30 min-h-[52px] sm:min-h-[80px] ${
-                  inMonth ? "bg-white" : "bg-gray-50/50"
-                } ${today ? "ring-2 ring-primary border-primary" : "border-gray-200"} ${
+                  inMonth ? "bg-white" : "bg-muted/50"
+                } ${today ? "ring-2 ring-primary border-primary" : "border-border"} ${
                   count > 0 ? getOccupancyColor(count) : ""
                 } ${count > 0 ? getOccupancyBorder(count) : ""}`}
               >
@@ -1158,10 +1159,10 @@ function MonthView({ date, bookings, onDayClick }: MonthViewProps) {
                 <span
                   className={`text-xs sm:text-sm font-medium ${
                     !inMonth
-                      ? "text-gray-300"
+                      ? "text-muted-foreground/40"
                       : today
                         ? "text-primary font-bold"
-                        : "text-gray-700"
+                        : "text-foreground"
                   }`}
                 >
                   {format(day, "d")}
@@ -1173,9 +1174,9 @@ function MonthView({ date, bookings, onDayClick }: MonthViewProps) {
                     <span
                       className={`inline-block text-[9px] sm:text-[10px] font-bold px-1.5 py-0.5 rounded-full ${
                         count <= 2
-                          ? "bg-green-200 text-green-800"
+                          ? "bg-primary/20 text-primary"
                           : count <= 5
-                            ? "bg-yellow-200 text-yellow-800"
+                            ? "bg-cta/20 text-cta"
                             : "bg-red-200 text-red-800"
                       }`}
                     >
@@ -1188,7 +1189,7 @@ function MonthView({ date, bookings, onDayClick }: MonthViewProps) {
                         <Tooltip key={status}>
                           <TooltipTrigger asChild>
                             <span
-                              className={`w-2 h-2 rounded-full ${STATUS_DOT_COLORS[status] || "bg-gray-400"}`}
+                              className={`w-2 h-2 rounded-full ${STATUS_DOT_COLORS[status] || "bg-muted-foreground/40"}`}
                             />
                           </TooltipTrigger>
                           <TooltipContent side="top" className="text-xs">
@@ -1205,14 +1206,14 @@ function MonthView({ date, bookings, onDayClick }: MonthViewProps) {
         </div>
 
         {/* Legend */}
-        <div className="flex flex-wrap items-center gap-3 mt-3 pt-3 border-t text-[10px] sm:text-xs text-gray-500">
-          <span className="font-medium text-gray-600">Ocupacion:</span>
+        <div className="flex flex-wrap items-center gap-3 mt-3 pt-3 border-t text-[10px] sm:text-xs text-muted-foreground">
+          <span className="font-medium text-foreground">Ocupacion:</span>
           <span className="flex items-center gap-1">
-            <span className="w-3 h-3 rounded bg-green-50 border border-green-200" />
+            <span className="w-3 h-3 rounded bg-primary/5 border border-primary/20" />
             Baja (1-2)
           </span>
           <span className="flex items-center gap-1">
-            <span className="w-3 h-3 rounded bg-yellow-50 border border-yellow-200" />
+            <span className="w-3 h-3 rounded bg-cta/5 border border-cta/20" />
             Media (3-5)
           </span>
           <span className="flex items-center gap-1">

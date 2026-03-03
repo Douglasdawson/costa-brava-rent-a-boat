@@ -41,12 +41,12 @@ export default function CookieBanner() {
       role="dialog"
       aria-modal="true"
       aria-label="Aviso de cookies"
-      className="fixed bottom-0 left-0 right-0 z-[100] bg-white border-t border-gray-200 shadow-lg"
+      className="fixed bottom-0 left-0 right-0 z-[100] bg-white border-t border-border shadow-lg"
     >
       <div className="container mx-auto px-4 py-4 max-w-6xl">
         <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
           <Cookie className="w-6 h-6 text-primary flex-shrink-0 mt-0.5 sm:mt-0" aria-hidden="true" />
-          <div className="flex-1 text-sm text-gray-700">
+          <div className="flex-1 text-sm text-foreground">
             <p>
               Utilizamos cookies propias y de terceros (Google Analytics) para mejorar tu experiencia y analizar el tráfico web. Puedes aceptar todas las cookies o solo las esenciales.{" "}
               <a

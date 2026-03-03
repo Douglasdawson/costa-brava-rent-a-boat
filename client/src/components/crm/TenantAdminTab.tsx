@@ -98,13 +98,13 @@ export function TenantAdminTab({ adminToken }: TenantAdminTabProps) {
           <Settings className="w-5 h-5" />
           Configuracion del Panel
         </h2>
-        <div className="flex gap-1 bg-gray-100 rounded-lg p-1">
+        <div className="flex gap-1 bg-muted rounded-lg p-1">
           <button
             onClick={() => setSubTab("empresa")}
             className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-sm font-medium transition-colors ${
               subTab === "empresa"
-                ? "bg-white text-gray-900 shadow-sm"
-                : "text-gray-600 hover:text-gray-900"
+                ? "bg-white text-foreground shadow-sm"
+                : "text-muted-foreground hover:text-foreground"
             }`}
           >
             <Building2 className="w-4 h-4" />
@@ -114,8 +114,8 @@ export function TenantAdminTab({ adminToken }: TenantAdminTabProps) {
             onClick={() => setSubTab("usuarios")}
             className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-sm font-medium transition-colors ${
               subTab === "usuarios"
-                ? "bg-white text-gray-900 shadow-sm"
-                : "text-gray-600 hover:text-gray-900"
+                ? "bg-white text-foreground shadow-sm"
+                : "text-muted-foreground hover:text-foreground"
             }`}
           >
             <Users className="w-4 h-4" />
@@ -208,7 +208,7 @@ function CompanySettingsSection({
   };
 
   if (isLoading) {
-    return <div className="py-12 text-center text-gray-500">Cargando...</div>;
+    return <div className="py-12 text-center text-muted-foreground">Cargando...</div>;
   }
 
   return (
@@ -300,7 +300,7 @@ function CompanySettingsSection({
               <img
                 src={form.logo}
                 alt="Logo preview"
-                className="h-12 mt-2 object-contain rounded border border-gray-200 p-1"
+                className="h-12 mt-2 object-contain rounded border border-border p-1"
                 onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }}
               />
             )}
@@ -314,7 +314,7 @@ function CompanySettingsSection({
                   id="t-primary-picker"
                   value={form.primaryColor || "#0077B6"}
                   onChange={(e) => setForm((f) => ({ ...f, primaryColor: e.target.value }))}
-                  className="w-10 h-9 rounded border border-gray-300 cursor-pointer p-0.5"
+                  className="w-10 h-9 rounded border border-border cursor-pointer p-0.5"
                 />
                 <Input
                   id="t-primary"
@@ -334,7 +334,7 @@ function CompanySettingsSection({
                   id="t-secondary-picker"
                   value={form.secondaryColor || "#00B4D8"}
                   onChange={(e) => setForm((f) => ({ ...f, secondaryColor: e.target.value }))}
-                  className="w-10 h-9 rounded border border-gray-300 cursor-pointer p-0.5"
+                  className="w-10 h-9 rounded border border-border cursor-pointer p-0.5"
                 />
                 <Input
                   id="t-secondary"
@@ -512,7 +512,7 @@ function TeamMembersSection({
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-between">
-        <p className="text-sm text-gray-500">
+        <p className="text-sm text-muted-foreground">
           Gestiona los usuarios que tienen acceso al panel de tu empresa.
         </p>
         <Button onClick={handleCreate} size="sm">
@@ -524,7 +524,7 @@ function TeamMembersSection({
       <Card>
         <CardContent className="p-0 overflow-x-auto">
           {isLoading ? (
-            <div className="p-8 text-center text-gray-500">Cargando...</div>
+            <div className="p-8 text-center text-muted-foreground">Cargando...</div>
           ) : (
             <Table>
               <TableHeader>
@@ -543,7 +543,7 @@ function TeamMembersSection({
                     <TableCell className="font-medium">
                       {[member.firstName, member.lastName].filter(Boolean).join(" ") || "-"}
                     </TableCell>
-                    <TableCell className="text-sm text-gray-600">{member.email}</TableCell>
+                    <TableCell className="text-sm text-muted-foreground">{member.email}</TableCell>
                     <TableCell>
                       <Badge variant={roleBadgeVariant(member.role)}>
                         {roleLabel(member.role)}
@@ -554,7 +554,7 @@ function TeamMembersSection({
                         {member.isActive ? "Activo" : "Inactivo"}
                       </Badge>
                     </TableCell>
-                    <TableCell className="text-sm text-gray-500">
+                    <TableCell className="text-sm text-muted-foreground">
                       {member.lastLoginAt
                         ? new Date(member.lastLoginAt).toLocaleDateString("es-ES", {
                             day: "2-digit",
@@ -588,7 +588,7 @@ function TeamMembersSection({
                             {member.isActive ? (
                               <UserX className="w-4 h-4 text-red-500" />
                             ) : (
-                              <UserCheck className="w-4 h-4 text-green-500" />
+                              <UserCheck className="w-4 h-4 text-primary" />
                             )}
                           </Button>
                         </div>
@@ -598,7 +598,7 @@ function TeamMembersSection({
                 ))}
                 {members.length === 0 && (
                   <TableRow>
-                    <TableCell colSpan={6} className="text-center py-10 text-gray-500">
+                    <TableCell colSpan={6} className="text-center py-10 text-muted-foreground">
                       Solo hay un usuario registrado. Añade miembros de tu equipo.
                     </TableCell>
                   </TableRow>

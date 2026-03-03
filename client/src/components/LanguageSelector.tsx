@@ -40,7 +40,7 @@ export default function LanguageSelector({ variant = 'button', className = '' }:
   if (isLoading) {
     return (
       <div className={`animate-pulse ${className}`}>
-        <div className="w-8 h-8 bg-gray-200 rounded"></div>
+        <div className="w-8 h-8 bg-muted rounded"></div>
       </div>
     );
   }
@@ -97,7 +97,7 @@ export default function LanguageSelector({ variant = 'button', className = '' }:
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-48">
         <div className="p-2 border-b">
-          <div className="flex items-center gap-2 text-sm text-gray-600">
+          <div className="flex items-center gap-2 text-sm text-muted-foreground">
             <Globe className="w-4 h-4" />
             <span>Idioma / Language</span>
           </div>

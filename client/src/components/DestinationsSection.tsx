@@ -21,10 +21,10 @@ export default function DestinationsSection() {
         {/* Destinations */}
         <div className="mb-16">
           <div className="text-center mb-12">
-            <h2 className="font-heading text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
+            <h2 className="font-heading text-3xl lg:text-4xl font-bold text-foreground mb-4">
               {t.destinations.fromBlanes}
             </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               {t.destinations.fromBlanesSub}
             </p>
           </div>
@@ -33,8 +33,8 @@ export default function DestinationsSection() {
             <Link href="/alquiler-barcos-tossa-de-mar" asChild>
               <Card className="hover:shadow-lg transition-shadow cursor-pointer group">
                 <CardHeader>
-                  <div className="w-16 h-16 bg-purple-50 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
-                    <Compass className="w-8 h-8 text-purple-600" />
+                  <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                    <Compass className="w-8 h-8 text-primary" />
                   </div>
                   <CardTitle className="text-xl text-center">{t.destinations.tossaName}</CardTitle>
                 </CardHeader>
@@ -45,13 +45,13 @@ export default function DestinationsSection() {
                       {t.destinations.tossaDuration}
                     </Badge>
                   </div>
-                  <p className="text-gray-600 mb-4 leading-relaxed">
+                  <p className="text-muted-foreground mb-4 leading-relaxed">
                     {t.destinations.tossaDesc}
                   </p>
                   <div className="flex flex-wrap gap-2 justify-center mb-4">
-                    <span className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded">{t.destinations.tossaH1}</span>
-                    <span className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded">{t.destinations.tossaH2}</span>
-                    <span className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded">{t.destinations.tossaH3}</span>
+                    <span className="text-xs bg-muted text-foreground px-2 py-1 rounded">{t.destinations.tossaH1}</span>
+                    <span className="text-xs bg-muted text-foreground px-2 py-1 rounded">{t.destinations.tossaH2}</span>
+                    <span className="text-xs bg-muted text-foreground px-2 py-1 rounded">{t.destinations.tossaH3}</span>
                   </div>
                   <Button
                     variant="outline"
@@ -71,10 +71,10 @@ export default function DestinationsSection() {
         {/* Categories */}
         <div>
           <div className="text-center mb-12">
-            <h2 className="font-heading text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
+            <h2 className="font-heading text-3xl lg:text-4xl font-bold text-foreground mb-4">
               {t.destinations.boatTypes}
             </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               {t.destinations.boatTypesSub}
             </p>
           </div>
@@ -83,19 +83,19 @@ export default function DestinationsSection() {
             <Link href="/barcos-sin-licencia" asChild>
               <Card className="hover:shadow-lg transition-shadow cursor-pointer group">
                 <CardHeader>
-                  <div className="w-16 h-16 bg-emerald-50 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
-                    <Heart className="w-8 h-8 text-emerald-600" />
+                  <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                    <Heart className="w-8 h-8 text-primary" />
                   </div>
                   <CardTitle className="text-xl text-center">{t.destinations.licenseFree}</CardTitle>
                 </CardHeader>
                 <CardContent className="text-center">
-                  <p className="text-gray-600 mb-4 leading-relaxed">
+                  <p className="text-muted-foreground mb-4 leading-relaxed">
                     {t.destinations.licenseFreeDesc}
                   </p>
                   <div className="flex flex-wrap gap-2 justify-center mb-4">
-                    <span className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded">{t.destinations.licenseFreeFeat1}</span>
-                    <span className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded">{t.destinations.licenseFreeFeat2}</span>
-                    <span className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded">{t.destinations.licenseFreeFeat3}</span>
+                    <span className="text-xs bg-muted text-foreground px-2 py-1 rounded">{t.destinations.licenseFreeFeat1}</span>
+                    <span className="text-xs bg-muted text-foreground px-2 py-1 rounded">{t.destinations.licenseFreeFeat2}</span>
+                    <span className="text-xs bg-muted text-foreground px-2 py-1 rounded">{t.destinations.licenseFreeFeat3}</span>
                   </div>
                   <Button
                     variant="outline"

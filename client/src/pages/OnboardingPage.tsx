@@ -109,15 +109,15 @@ export default function OnboardingPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-br from-primary/5 to-primary/10 flex items-center justify-center p-4">
       <div className="w-full max-w-lg">
         {/* Header */}
         <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-blue-600 mb-4 shadow-lg">
+          <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-primary mb-4 shadow-lg">
             <Ship className="w-8 h-8 text-white" />
           </div>
-          <h1 className="text-2xl font-bold text-gray-900">Configura tu cuenta</h1>
-          <p className="text-gray-500 mt-1 text-sm">Solo te llevará 2 minutos</p>
+          <h1 className="text-2xl font-bold text-foreground">Configura tu cuenta</h1>
+          <p className="text-muted-foreground mt-1 text-sm">Solo te llevará 2 minutos</p>
         </div>
 
         {/* Progress */}
@@ -129,19 +129,19 @@ export default function OnboardingPage() {
               <div key={id} className="flex items-center">
                 <div className="flex flex-col items-center">
                   <div className={`w-9 h-9 rounded-full flex items-center justify-center transition-all ${
-                    done ? "bg-green-500 shadow-sm" : active ? "bg-blue-600 ring-4 ring-blue-100 shadow-sm" : "bg-gray-200"
+                    done ? "bg-primary shadow-sm" : active ? "bg-primary ring-4 ring-primary/20 shadow-sm" : "bg-muted"
                   }`}>
                     {done
                       ? <CheckCircle className="w-5 h-5 text-white" />
-                      : <Icon className={`w-4 h-4 ${active ? "text-white" : "text-gray-400"}`} />
+                      : <Icon className={`w-4 h-4 ${active ? "text-white" : "text-muted-foreground"}`} />
                     }
                   </div>
-                  <span className={`text-[10px] mt-1 font-medium ${active ? "text-blue-600" : done ? "text-green-600" : "text-gray-400"}`}>
+                  <span className={`text-[10px] mt-1 font-medium ${active ? "text-primary" : done ? "text-primary" : "text-muted-foreground"}`}>
                     {label}
                   </span>
                 </div>
                 {idx < STEPS.length - 1 && (
-                  <div className={`h-0.5 w-10 mx-1 mb-4 transition-colors ${done ? "bg-green-400" : "bg-gray-200"}`} />
+                  <div className={`h-0.5 w-10 mx-1 mb-4 transition-colors ${done ? "bg-primary/60" : "bg-muted"}`} />
                 )}
               </div>
             );
@@ -155,8 +155,8 @@ export default function OnboardingPage() {
           {step === 1 && (
             <div className="space-y-5">
               <div>
-                <h2 className="text-lg font-bold text-gray-900">Hola, {firstName}</h2>
-                <p className="text-sm text-gray-500 mt-1">Cuéntanos un poco sobre <strong>{companyName}</strong></p>
+                <h2 className="text-lg font-bold text-foreground">Hola, {firstName}</h2>
+                <p className="text-sm text-muted-foreground mt-1">Cuéntanos un poco sobre <strong>{companyName}</strong></p>
               </div>
               <div>
                 <Label htmlFor="ob-phone" className="text-sm font-medium">Teléfono de contacto</Label>
@@ -180,7 +180,7 @@ export default function OnboardingPage() {
                 />
               </div>
               <div>
-                <Label htmlFor="ob-desc" className="text-sm font-medium">Descripción breve <span className="text-gray-400 font-normal">(opcional)</span></Label>
+                <Label htmlFor="ob-desc" className="text-sm font-medium">Descripción breve <span className="text-muted-foreground font-normal">(opcional)</span></Label>
                 <textarea
                   id="ob-desc"
                   placeholder="Empresa de alquiler de barcos en la Costa Brava..."
@@ -201,8 +201,8 @@ export default function OnboardingPage() {
           {step === 2 && (
             <div className="space-y-5">
               <div>
-                <h2 className="text-lg font-bold text-gray-900">Configuración básica</h2>
-                <p className="text-sm text-gray-500 mt-1">Puedes ajustar esto más tarde desde el panel</p>
+                <h2 className="text-lg font-bold text-foreground">Configuración básica</h2>
+                <p className="text-sm text-muted-foreground mt-1">Puedes ajustar esto más tarde desde el panel</p>
               </div>
               <div>
                 <Label className="text-sm font-medium">Idioma principal</Label>
@@ -219,8 +219,8 @@ export default function OnboardingPage() {
                       onClick={() => setTenantData((d) => ({ ...d, language: value }))}
                       className={`py-2.5 rounded-lg border-2 text-sm font-medium transition-all ${
                         tenantData.language === value
-                          ? "border-blue-500 bg-blue-50 text-blue-700"
-                          : "border-gray-200 text-gray-600 hover:border-gray-300"
+                          ? "border-primary bg-primary/5 text-primary"
+                          : "border-border text-muted-foreground hover:border-border"
                       }`}
                     >
                       {label}
@@ -230,11 +230,11 @@ export default function OnboardingPage() {
               </div>
               <div>
                 <Label className="text-sm font-medium mb-2 block">Temporada de operación</Label>
-                <div className="bg-blue-50 rounded-lg p-4 text-sm text-blue-800">
+                <div className="bg-primary/5 rounded-lg p-4 text-sm text-primary">
                   <p className="font-medium mb-1">Temporada estándar Costa Brava</p>
-                  <p className="text-blue-600 text-xs">Baja: Abr–Jun, Sep–Oct · Media: Jul · Alta: Ago</p>
+                  <p className="text-primary text-xs">Baja: Abr–Jun, Sep–Oct · Media: Jul · Alta: Ago</p>
                 </div>
-                <p className="text-xs text-gray-400 mt-2">Personaliza las temporadas y precios desde el CRM una vez configurado.</p>
+                <p className="text-xs text-muted-foreground mt-2">Personaliza las temporadas y precios desde el CRM una vez configurado.</p>
               </div>
               <Button onClick={goToNext} className="w-full">
                 Continuar
@@ -247,8 +247,8 @@ export default function OnboardingPage() {
           {step === 3 && (
             <div className="space-y-5">
               <div>
-                <h2 className="text-lg font-bold text-gray-900">Añade tu primer barco</h2>
-                <p className="text-sm text-gray-500 mt-1">Opcional — puedes añadirlos desde el CRM</p>
+                <h2 className="text-lg font-bold text-foreground">Añade tu primer barco</h2>
+                <p className="text-sm text-muted-foreground mt-1">Opcional — puedes añadirlos desde el CRM</p>
               </div>
 
               {!skipBoat ? (
@@ -301,8 +301,8 @@ export default function OnboardingPage() {
                           onClick={() => setBoatData((d) => ({ ...d, requiresLicense: value }))}
                           className={`flex-1 py-2.5 rounded-lg border-2 text-sm font-medium transition-all ${
                             boatData.requiresLicense === value
-                              ? "border-blue-500 bg-blue-50 text-blue-700"
-                              : "border-gray-200 text-gray-600"
+                              ? "border-primary bg-primary/5 text-primary"
+                              : "border-border text-muted-foreground"
                           }`}
                         >
                           {label}
@@ -319,7 +319,7 @@ export default function OnboardingPage() {
                   <button
                     type="button"
                     onClick={() => { setSkipBoat(true); goToNext(); }}
-                    className="w-full text-sm text-gray-400 hover:text-gray-600 py-1 transition-colors"
+                    className="w-full text-sm text-muted-foreground hover:text-muted-foreground py-1 transition-colors"
                   >
                     Saltar por ahora →
                   </button>
@@ -332,18 +332,18 @@ export default function OnboardingPage() {
           {step === 4 && (
             <div className="text-center space-y-5 py-2">
               <div className="flex justify-center">
-                <div className="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center">
-                  <CheckCircle className="w-10 h-10 text-green-500" />
+                <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center">
+                  <CheckCircle className="w-10 h-10 text-primary" />
                 </div>
               </div>
               <div>
-                <h2 className="text-xl font-bold text-gray-900">¡Todo listo!</h2>
-                <p className="text-gray-500 mt-2 text-sm leading-relaxed">
+                <h2 className="text-xl font-bold text-foreground">¡Todo listo!</h2>
+                <p className="text-muted-foreground mt-2 text-sm leading-relaxed">
                   Tu cuenta de <strong>{companyName}</strong> está configurada.<br />
                   Tienes <strong>14 días de prueba gratuita</strong> con acceso completo.
                 </p>
               </div>
-              <div className="bg-gray-50 rounded-xl p-4 text-left space-y-2">
+              <div className="bg-muted rounded-xl p-4 text-left space-y-2">
                 {[
                   "Gestión de flota y reservas",
                   "Calendario de disponibilidad",
@@ -351,8 +351,8 @@ export default function OnboardingPage() {
                   "Emails automáticos",
                   "Chatbot WhatsApp con IA",
                 ].map((feat) => (
-                  <div key={feat} className="flex items-center gap-2 text-sm text-gray-700">
-                    <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0" />
+                  <div key={feat} className="flex items-center gap-2 text-sm text-foreground">
+                    <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
                     {feat}
                   </div>
                 ))}
@@ -368,7 +368,7 @@ export default function OnboardingPage() {
           )}
         </div>
 
-        <p className="text-center text-xs text-gray-400 mt-4">
+        <p className="text-center text-xs text-muted-foreground mt-4">
           NauticFlow · Plataforma de gestión náutica
         </p>
       </div>

@@ -161,12 +161,12 @@ export function SuperAdminTab({ adminToken }: SuperAdminTabProps) {
     <div className="space-y-6">
       {/* Header */}
       <div className="flex items-center gap-3">
-        <div className="w-10 h-10 rounded-xl bg-indigo-100 flex items-center justify-center">
-          <Globe className="w-5 h-5 text-indigo-600" />
+        <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
+          <Globe className="w-5 h-5 text-primary" />
         </div>
         <div>
-          <h2 className="text-xl font-bold text-gray-900">NauticFlow — Panel de Plataforma</h2>
-          <p className="text-sm text-gray-500">Administracion global de todas las empresas</p>
+          <h2 className="text-xl font-bold text-foreground">NauticFlow — Panel de Plataforma</h2>
+          <p className="text-sm text-muted-foreground">Administracion global de todas las empresas</p>
         </div>
       </div>
 
@@ -176,51 +176,51 @@ export function SuperAdminTab({ adminToken }: SuperAdminTabProps) {
           <Card>
             <CardContent className="p-4">
               <div className="flex items-center gap-2 mb-1">
-                <Building2 className="w-4 h-4 text-gray-400" />
-                <span className="text-xs text-gray-500 font-medium">Total</span>
+                <Building2 className="w-4 h-4 text-muted-foreground" />
+                <span className="text-xs text-muted-foreground font-medium">Total</span>
               </div>
-              <p className="text-2xl font-bold text-gray-900">{stats.totalTenants}</p>
-              <p className="text-xs text-gray-400 mt-0.5">empresas</p>
+              <p className="text-2xl font-bold text-foreground">{stats.totalTenants}</p>
+              <p className="text-xs text-muted-foreground mt-0.5">empresas</p>
             </CardContent>
           </Card>
           <Card>
             <CardContent className="p-4">
               <div className="flex items-center gap-2 mb-1">
-                <AlertCircle className="w-4 h-4 text-amber-400" />
-                <span className="text-xs text-gray-500 font-medium">Trial</span>
+                <AlertCircle className="w-4 h-4 text-cta" />
+                <span className="text-xs text-muted-foreground font-medium">Trial</span>
               </div>
-              <p className="text-2xl font-bold text-amber-600">{stats.byStatus.trial}</p>
-              <p className="text-xs text-gray-400 mt-0.5">en prueba</p>
+              <p className="text-2xl font-bold text-cta">{stats.byStatus.trial}</p>
+              <p className="text-xs text-muted-foreground mt-0.5">en prueba</p>
             </CardContent>
           </Card>
           <Card>
             <CardContent className="p-4">
               <div className="flex items-center gap-2 mb-1">
-                <CheckCircle2 className="w-4 h-4 text-green-400" />
-                <span className="text-xs text-gray-500 font-medium">Activos</span>
+                <CheckCircle2 className="w-4 h-4 text-primary" />
+                <span className="text-xs text-muted-foreground font-medium">Activos</span>
               </div>
-              <p className="text-2xl font-bold text-green-600">{stats.byStatus.active}</p>
-              <p className="text-xs text-gray-400 mt-0.5">de pago</p>
+              <p className="text-2xl font-bold text-primary">{stats.byStatus.active}</p>
+              <p className="text-xs text-muted-foreground mt-0.5">de pago</p>
             </CardContent>
           </Card>
           <Card>
             <CardContent className="p-4">
               <div className="flex items-center gap-2 mb-1">
                 <PauseCircle className="w-4 h-4 text-red-400" />
-                <span className="text-xs text-gray-500 font-medium">Suspendidos</span>
+                <span className="text-xs text-muted-foreground font-medium">Suspendidos</span>
               </div>
               <p className="text-2xl font-bold text-red-600">{stats.byStatus.suspended}</p>
-              <p className="text-xs text-gray-400 mt-0.5">bloqueados</p>
+              <p className="text-xs text-muted-foreground mt-0.5">bloqueados</p>
             </CardContent>
           </Card>
           <Card className="md:col-span-1 col-span-2">
             <CardContent className="p-4">
               <div className="flex items-center gap-2 mb-1">
-                <Euro className="w-4 h-4 text-indigo-400" />
-                <span className="text-xs text-gray-500 font-medium">MRR estimado</span>
+                <Euro className="w-4 h-4 text-primary" />
+                <span className="text-xs text-muted-foreground font-medium">MRR estimado</span>
               </div>
-              <p className="text-2xl font-bold text-indigo-600">{stats.mrrEstimate.toLocaleString("es-ES")} €</p>
-              <p className="text-xs text-gray-400 mt-0.5">por mes</p>
+              <p className="text-2xl font-bold text-primary">{stats.mrrEstimate.toLocaleString("es-ES")} €</p>
+              <p className="text-xs text-muted-foreground mt-0.5">por mes</p>
             </CardContent>
           </Card>
         </div>
@@ -230,7 +230,7 @@ export function SuperAdminTab({ adminToken }: SuperAdminTabProps) {
       {stats && (
         <Card>
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium text-gray-500 flex items-center gap-2">
+            <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
               <TrendingUp className="w-4 h-4" />
               Distribución por plan
             </CardTitle>
@@ -242,8 +242,8 @@ export function SuperAdminTab({ adminToken }: SuperAdminTabProps) {
                   <Badge variant="outline" className="font-mono text-xs">
                     {PLAN_CONFIG[plan]?.label || plan}
                   </Badge>
-                  <span className="text-lg font-bold text-gray-900">{count}</span>
-                  <span className="text-xs text-gray-400">× {PLAN_CONFIG[plan]?.price}€</span>
+                  <span className="text-lg font-bold text-foreground">{count}</span>
+                  <span className="text-xs text-muted-foreground">× {PLAN_CONFIG[plan]?.price}€</span>
                 </div>
               ))}
             </div>
@@ -259,7 +259,7 @@ export function SuperAdminTab({ adminToken }: SuperAdminTabProps) {
               <Building2 className="w-4 h-4" />
               Empresas registradas
               {filteredTenants.length !== tenants.length && (
-                <span className="text-sm font-normal text-gray-500">
+                <span className="text-sm font-normal text-muted-foreground">
                   ({filteredTenants.length} de {tenants.length})
                 </span>
               )}
@@ -272,8 +272,8 @@ export function SuperAdminTab({ adminToken }: SuperAdminTabProps) {
                   onClick={() => setStatusFilter(f)}
                   className={`px-2.5 py-1 rounded-md text-xs font-medium transition-colors ${
                     statusFilter === f
-                      ? "bg-gray-900 text-white"
-                      : "text-gray-500 hover:bg-gray-100"
+                      ? "bg-primary text-white"
+                      : "text-muted-foreground hover:bg-muted"
                   }`}
                 >
                   {f === "all" ? "Todos" : STATUS_CONFIG[f]?.label || f}
@@ -284,7 +284,7 @@ export function SuperAdminTab({ adminToken }: SuperAdminTabProps) {
         </CardHeader>
         <CardContent className="p-0">
           {isLoading ? (
-            <div className="p-8 text-center text-gray-500">Cargando...</div>
+            <div className="p-8 text-center text-muted-foreground">Cargando...</div>
           ) : (
             <div className="overflow-x-auto">
               <Table>
@@ -314,11 +314,11 @@ export function SuperAdminTab({ adminToken }: SuperAdminTabProps) {
                           <div>
                             <p className="font-medium text-sm">{tenant.name}</p>
                             {tenant.email && (
-                              <p className="text-xs text-gray-400">{tenant.email}</p>
+                              <p className="text-xs text-muted-foreground">{tenant.email}</p>
                             )}
                           </div>
                         </TableCell>
-                        <TableCell className="font-mono text-xs text-gray-500">
+                        <TableCell className="font-mono text-xs text-muted-foreground">
                           {tenant.slug}
                         </TableCell>
                         <TableCell>
@@ -334,21 +334,21 @@ export function SuperAdminTab({ adminToken }: SuperAdminTabProps) {
                         </TableCell>
                         <TableCell className="text-sm">
                           {tenant.status === "trial" && days !== null ? (
-                            <span className={days <= 3 ? "text-red-600 font-medium" : "text-amber-600"}>
+                            <span className={days <= 3 ? "text-red-600 font-medium" : "text-cta"}>
                               {days === 0 ? "Expirado" : `${days}d`}
                             </span>
                           ) : tenant.trialEndsAt ? (
-                            <span className="text-gray-400 text-xs">
+                            <span className="text-muted-foreground text-xs">
                               {new Date(tenant.trialEndsAt).toLocaleDateString("es-ES")}
                             </span>
                           ) : (
-                            <span className="text-gray-300">—</span>
+                            <span className="text-muted-foreground">—</span>
                           )}
                         </TableCell>
                         <TableCell className="text-sm font-medium">
                           {tenant.usersCount}
                         </TableCell>
-                        <TableCell className="text-xs text-gray-400">
+                        <TableCell className="text-xs text-muted-foreground">
                           {new Date(tenant.createdAt).toLocaleDateString("es-ES", {
                             day: "2-digit",
                             month: "2-digit",
@@ -371,7 +371,7 @@ export function SuperAdminTab({ adminToken }: SuperAdminTabProps) {
                   })}
                   {filteredTenants.length === 0 && (
                     <TableRow>
-                      <TableCell colSpan={8} className="text-center py-10 text-gray-500">
+                      <TableCell colSpan={8} className="text-center py-10 text-muted-foreground">
                         No hay empresas con este filtro.
                       </TableCell>
                     </TableRow>
@@ -395,11 +395,11 @@ export function SuperAdminTab({ adminToken }: SuperAdminTabProps) {
 
           {managingTenant && (
             <div className="space-y-4 py-2">
-              <div className="bg-gray-50 rounded-lg p-3 text-sm space-y-1">
-                <p className="text-gray-500">Slug: <span className="font-mono text-gray-700">{managingTenant.slug}</span></p>
-                <p className="text-gray-500">Email: <span className="text-gray-700">{managingTenant.email || "—"}</span></p>
-                <p className="text-gray-500">Usuarios: <span className="text-gray-700">{managingTenant.usersCount}</span></p>
-                <p className="text-gray-500">Registrado: <span className="text-gray-700">
+              <div className="bg-muted rounded-lg p-3 text-sm space-y-1">
+                <p className="text-muted-foreground">Slug: <span className="font-mono text-foreground">{managingTenant.slug}</span></p>
+                <p className="text-muted-foreground">Email: <span className="text-foreground">{managingTenant.email || "—"}</span></p>
+                <p className="text-muted-foreground">Usuarios: <span className="text-foreground">{managingTenant.usersCount}</span></p>
+                <p className="text-muted-foreground">Registrado: <span className="text-foreground">
                   {new Date(managingTenant.createdAt).toLocaleDateString("es-ES")}
                 </span></p>
               </div>
@@ -439,7 +439,7 @@ export function SuperAdminTab({ adminToken }: SuperAdminTabProps) {
                 </div>
               )}
               {newStatus === "active" && managingTenant.status !== "active" && (
-                <div className="bg-green-50 border border-green-200 rounded-lg p-3 text-sm text-green-800">
+                <div className="bg-primary/5 border border-primary/20 rounded-lg p-3 text-sm text-primary">
                   La empresa pasara a estado activo con suscripcion de pago.
                 </div>
               )}

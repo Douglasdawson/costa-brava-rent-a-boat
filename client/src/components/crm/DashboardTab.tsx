@@ -133,7 +133,7 @@ function ChangeIndicator({ change }: { change: number | null }) {
   return (
     <span
       className={`inline-flex items-center gap-0.5 text-xs font-medium ${
-        isPositive ? "text-emerald-600" : "text-red-600"
+        isPositive ? "text-primary" : "text-red-600"
       }`}
     >
       {isPositive ? (
@@ -177,12 +177,12 @@ function ChartSkeleton({ height = "h-[300px]" }: { height?: string }) {
 
 // --- Status color map for pie chart ---
 const STATUS_COLORS: Record<string, string> = {
-  confirmed: "#22c55e",    // green-500
-  pending_payment: "#eab308", // yellow-500
-  hold: "#3b82f6",         // blue-500
-  cancelled: "#ef4444",    // red-500
-  completed: "#64748b",    // slate-500
-  draft: "#a1a1aa",        // zinc-400
+  confirmed: "hsl(var(--primary))",
+  pending_payment: "hsl(var(--cta))",
+  hold: "hsl(var(--primary) / 0.6)",
+  cancelled: "#ef4444",
+  completed: "hsl(var(--muted-foreground))",
+  draft: "hsl(var(--muted-foreground) / 0.5)",
 };
 
 const STATUS_LABELS: Record<string, string> = {
@@ -210,13 +210,13 @@ const BOAT_COLORS = [
 function getActivityIcon(status: string) {
   switch (status) {
     case "confirmed":
-      return <CheckCircle2 className="h-4 w-4 text-emerald-500" />;
+      return <CheckCircle2 className="h-4 w-4 text-primary" />;
     case "cancelled":
       return <XCircle className="h-4 w-4 text-red-500" />;
     case "pending_payment":
-      return <AlertCircle className="h-4 w-4 text-yellow-500" />;
+      return <AlertCircle className="h-4 w-4 text-cta" />;
     default:
-      return <Plus className="h-4 w-4 text-blue-500" />;
+      return <Plus className="h-4 w-4 text-primary" />;
   }
 }
 
@@ -239,15 +239,15 @@ function RevenueTooltip({ active, payload, label }: {
   const dateStr = label ? format(new Date(label + "T00:00:00"), "d MMM yyyy", { locale: es }) : "";
   return (
     <div className="rounded-lg border bg-white px-3 py-2 shadow-md">
-      <p className="text-xs font-medium text-gray-500 mb-1">{dateStr}</p>
+      <p className="text-xs font-medium text-muted-foreground mb-1">{dateStr}</p>
       {payload.map((entry, idx) => (
         <p key={idx} className="text-sm">
           {entry.dataKey === "revenue" ? (
-            <span className="font-semibold text-gray-900">
+            <span className="font-semibold text-foreground">
               {"\u20AC"}{entry.value.toLocaleString("es-ES", { minimumFractionDigits: 2 })}
             </span>
           ) : (
-            <span className="text-gray-600">{entry.value} reservas</span>
+            <span className="text-muted-foreground">{entry.value} reservas</span>
           )}
         </p>
       ))}
@@ -264,10 +264,10 @@ function BoatTooltip({ active, payload }: {
   const data = payload[0].payload;
   return (
     <div className="rounded-lg border bg-white px-3 py-2 shadow-md">
-      <p className="text-sm font-semibold text-gray-900 mb-1">{data.boatName}</p>
-      <p className="text-xs text-gray-600">{data.bookings} reservas</p>
-      <p className="text-xs text-gray-600">{data.hours}h navegadas</p>
-      <p className="text-xs font-medium text-gray-900">
+      <p className="text-sm font-semibold text-foreground mb-1">{data.boatName}</p>
+      <p className="text-xs text-muted-foreground">{data.bookings} reservas</p>
+      <p className="text-xs text-muted-foreground">{data.hours}h navegadas</p>
+      <p className="text-xs font-medium text-foreground">
         {"\u20AC"}{data.revenue.toLocaleString("es-ES", { minimumFractionDigits: 2 })}
       </p>
     </div>
@@ -402,7 +402,7 @@ export function DashboardTab({
     <div className="space-y-6">
       {/* Period Selector */}
       <div className="flex flex-wrap items-center gap-2">
-        <span className="text-sm font-medium text-gray-500 mr-1">Periodo:</span>
+        <span className="text-sm font-medium text-muted-foreground mr-1">Periodo:</span>
         {PERIOD_OPTIONS.map((opt) => (
           <Button
             key={opt.value}
@@ -412,7 +412,7 @@ export function DashboardTab({
             className={
               selectedTimeRange === opt.value
                 ? ""
-                : "text-gray-600 hover:text-gray-900"
+                : "text-muted-foreground hover:text-foreground"
             }
           >
             {opt.label}
@@ -434,15 +434,15 @@ export function DashboardTab({
             {/* Revenue */}
             <Card>
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium text-gray-500">
+                <CardTitle className="text-sm font-medium text-muted-foreground">
                   Ingresos
                 </CardTitle>
-                <div className="rounded-md bg-emerald-50 p-1.5">
-                  <Euro className="h-4 w-4 text-emerald-600" />
+                <div className="rounded-md bg-primary/10 p-1.5">
+                  <Euro className="h-4 w-4 text-primary" />
                 </div>
               </CardHeader>
               <CardContent>
-                <div className="text-2xl font-bold text-gray-900">
+                <div className="text-2xl font-bold text-foreground">
                   {"\u20AC"}
                   {(stats?.revenue ?? 0).toLocaleString("es-ES", {
                     minimumFractionDigits: 2,
@@ -451,7 +451,7 @@ export function DashboardTab({
                 </div>
                 <div className="flex items-center gap-2 mt-1">
                   <ChangeIndicator change={revenueChange} />
-                  <span className="text-xs text-gray-400">
+                  <span className="text-xs text-muted-foreground">
                     vs periodo anterior
                   </span>
                 </div>
@@ -461,20 +461,20 @@ export function DashboardTab({
             {/* Bookings */}
             <Card>
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium text-gray-500">
+                <CardTitle className="text-sm font-medium text-muted-foreground">
                   Reservas
                 </CardTitle>
-                <div className="rounded-md bg-blue-50 p-1.5">
-                  <Calendar className="h-4 w-4 text-blue-600" />
+                <div className="rounded-md bg-primary/10 p-1.5">
+                  <Calendar className="h-4 w-4 text-primary" />
                 </div>
               </CardHeader>
               <CardContent>
-                <div className="text-2xl font-bold text-gray-900">
+                <div className="text-2xl font-bold text-foreground">
                   {stats?.bookingsCount ?? 0}
                 </div>
                 <div className="flex items-center gap-2 mt-1">
                   <ChangeIndicator change={bookingsChange} />
-                  <span className="text-xs text-gray-400">
+                  <span className="text-xs text-muted-foreground">
                     vs periodo anterior
                   </span>
                 </div>
@@ -484,15 +484,15 @@ export function DashboardTab({
             {/* Average Ticket */}
             <Card>
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium text-gray-500">
+                <CardTitle className="text-sm font-medium text-muted-foreground">
                   Ticket Medio
                 </CardTitle>
-                <div className="rounded-md bg-violet-50 p-1.5">
-                  <Receipt className="h-4 w-4 text-violet-600" />
+                <div className="rounded-md bg-cta/10 p-1.5">
+                  <Receipt className="h-4 w-4 text-cta" />
                 </div>
               </CardHeader>
               <CardContent>
-                <div className="text-2xl font-bold text-gray-900">
+                <div className="text-2xl font-bold text-foreground">
                   {"\u20AC"}
                   {(stats?.averageTicket ?? 0).toLocaleString("es-ES", {
                     minimumFractionDigits: 2,
@@ -501,7 +501,7 @@ export function DashboardTab({
                 </div>
                 <div className="flex items-center gap-2 mt-1">
                   <ChangeIndicator change={ticketChange} />
-                  <span className="text-xs text-gray-400">
+                  <span className="text-xs text-muted-foreground">
                     vs periodo anterior
                   </span>
                 </div>
@@ -511,18 +511,18 @@ export function DashboardTab({
             {/* Occupancy */}
             <Card>
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium text-gray-500">
+                <CardTitle className="text-sm font-medium text-muted-foreground">
                   Ocupacion
                 </CardTitle>
-                <div className="rounded-md bg-orange-50 p-1.5">
-                  <Percent className="h-4 w-4 text-orange-600" />
+                <div className="rounded-md bg-cta/10 p-1.5">
+                  <Percent className="h-4 w-4 text-cta" />
                 </div>
               </CardHeader>
               <CardContent>
-                <div className="text-2xl font-bold text-gray-900">
+                <div className="text-2xl font-bold text-foreground">
                   {occupancy}%
                 </div>
-                <p className="text-xs text-gray-400 mt-1">
+                <p className="text-xs text-muted-foreground mt-1">
                   {stats?.availableBoats ?? 0}/{stats?.totalBoats ?? 0} barcos libres ahora
                 </p>
               </CardContent>
@@ -539,7 +539,7 @@ export function DashboardTab({
         ) : (
           <Card>
             <CardHeader className="pb-2">
-              <CardTitle className="text-base font-semibold text-gray-800">
+              <CardTitle className="text-base font-semibold text-foreground">
                 Ingresos ultimos 30 dias
               </CardTitle>
             </CardHeader>
@@ -599,7 +599,7 @@ export function DashboardTab({
         ) : (
           <Card>
             <CardHeader className="pb-2">
-              <CardTitle className="text-base font-semibold text-gray-800">
+              <CardTitle className="text-base font-semibold text-foreground">
                 Reservas por barco
               </CardTitle>
             </CardHeader>
@@ -650,14 +650,14 @@ export function DashboardTab({
         ) : (
           <Card>
             <CardHeader className="pb-2">
-              <CardTitle className="text-base font-semibold text-gray-800">
+              <CardTitle className="text-base font-semibold text-foreground">
                 Estado de reservas
               </CardTitle>
             </CardHeader>
             <CardContent>
               <div className="h-[300px] w-full">
                 {pieData.length === 0 ? (
-                  <div className="flex items-center justify-center h-full text-gray-400 text-sm">
+                  <div className="flex items-center justify-center h-full text-muted-foreground text-sm">
                     Sin datos de reservas
                   </div>
                 ) : (
@@ -685,8 +685,8 @@ export function DashboardTab({
                           const name = entry.name as string;
                           return (
                             <div className="rounded-lg border bg-white px-3 py-2 shadow-md">
-                              <p className="text-sm font-medium text-gray-900">{name}</p>
-                              <p className="text-xs text-gray-600">
+                              <p className="text-sm font-medium text-foreground">{name}</p>
+                              <p className="text-xs text-muted-foreground">
                                 {v} reservas ({totalStatusBookings > 0 ? Math.round((v / totalStatusBookings) * 100) : 0}%)
                               </p>
                             </div>
@@ -697,7 +697,7 @@ export function DashboardTab({
                         verticalAlign="bottom"
                         height={36}
                         formatter={(value: string) => (
-                          <span className="text-xs text-gray-600">{value}</span>
+                          <span className="text-xs text-muted-foreground">{value}</span>
                         )}
                       />
                     </PieChart>
@@ -711,13 +711,13 @@ export function DashboardTab({
         {/* Upcoming Bookings Mini Table */}
         <Card>
           <CardHeader className="pb-2 flex flex-row items-center justify-between">
-            <CardTitle className="text-base font-semibold text-gray-800">
+            <CardTitle className="text-base font-semibold text-foreground">
               Proximas reservas
             </CardTitle>
             <Button
               variant="ghost"
               size="sm"
-              className="text-xs text-gray-500 hover:text-gray-900"
+              className="text-xs text-muted-foreground hover:text-foreground"
               onClick={() => onTimeRangeChange("week")}
             >
               Ver todas
@@ -739,7 +739,7 @@ export function DashboardTab({
                 ))}
               </div>
             ) : upcomingBookings.length === 0 ? (
-              <div className="flex flex-col items-center justify-center py-8 text-gray-400">
+              <div className="flex flex-col items-center justify-center py-8 text-muted-foreground">
                 <Anchor className="h-8 w-8 mb-2 opacity-50" />
                 <p className="text-sm">No hay reservas proximas</p>
               </div>
@@ -748,24 +748,24 @@ export function DashboardTab({
                 {upcomingBookings.map((booking: Booking) => (
                   <div
                     key={booking.id}
-                    className="flex items-center gap-3 p-2.5 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer group"
+                    className="flex items-center gap-3 p-2.5 rounded-lg hover:bg-muted transition-colors cursor-pointer group"
                     onClick={() => onViewBooking(booking.id)}
                   >
-                    <div className="flex-shrink-0 w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center">
-                      <Clock className="h-4 w-4 text-blue-600" />
+                    <div className="flex-shrink-0 w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+                      <Clock className="h-4 w-4 text-primary" />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <p className="text-sm font-medium text-gray-900 truncate">
+                      <p className="text-sm font-medium text-foreground truncate">
                         {booking.customerName} {booking.customerSurname}
                       </p>
-                      <p className="text-xs text-gray-500">
+                      <p className="text-xs text-muted-foreground">
                         {format(new Date(booking.startTime), "d MMM, HH:mm", { locale: es })}
                         {" - "}
                         {booking.totalHours}h
                       </p>
                     </div>
                     <div className="flex items-center gap-2">
-                      <span className="text-sm font-semibold text-gray-700">
+                      <span className="text-sm font-semibold text-foreground">
                         {"\u20AC"}{parseFloat(booking.totalAmount).toLocaleString("es-ES", { minimumFractionDigits: 0 })}
                       </span>
                       <Badge
@@ -803,7 +803,7 @@ export function DashboardTab({
       {/* Recent Activity Section */}
       <Card>
         <CardHeader className="pb-2">
-          <CardTitle className="text-base font-semibold text-gray-800">
+          <CardTitle className="text-base font-semibold text-foreground">
             Actividad reciente
           </CardTitle>
         </CardHeader>
@@ -822,7 +822,7 @@ export function DashboardTab({
               ))}
             </div>
           ) : recentBookings.length === 0 ? (
-            <div className="text-center py-6 text-gray-400 text-sm">
+            <div className="text-center py-6 text-muted-foreground text-sm">
               No hay actividad reciente
             </div>
           ) : (
@@ -840,25 +840,25 @@ export function DashboardTab({
                 return (
                   <div
                     key={booking.id}
-                    className="flex items-center gap-3 py-2.5 px-2 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer"
+                    className="flex items-center gap-3 py-2.5 px-2 rounded-lg hover:bg-muted transition-colors cursor-pointer"
                     onClick={() => onViewBooking(booking.id)}
                   >
-                    <div className="flex-shrink-0 w-8 h-8 rounded-full bg-gray-50 flex items-center justify-center">
+                    <div className="flex-shrink-0 w-8 h-8 rounded-full bg-muted flex items-center justify-center">
                       {getActivityIcon(booking.bookingStatus)}
                     </div>
                     <div className="flex-1 min-w-0">
-                      <p className="text-sm text-gray-700">
-                        <span className="font-medium text-gray-900">
+                      <p className="text-sm text-foreground">
+                        <span className="font-medium text-foreground">
                           {booking.customerName} {booking.customerSurname}
                         </span>
                         {" -- "}
                         {activityText}
                       </p>
-                      <p className="text-xs text-gray-400">
+                      <p className="text-xs text-muted-foreground">
                         {booking.boatId} -- {"\u20AC"}{booking.totalAmount}
                       </p>
                     </div>
-                    <span className="text-xs text-gray-400 whitespace-nowrap flex-shrink-0">
+                    <span className="text-xs text-muted-foreground whitespace-nowrap flex-shrink-0">
                       {formatDistanceToNow(new Date(booking.createdAt), {
                         addSuffix: true,
                         locale: es,

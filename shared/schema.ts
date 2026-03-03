@@ -409,6 +409,7 @@ export const insertBookingSchema = createInsertSchema(bookings).omit({
   whatsappReminderSent: true,
   emailReminderSent: true,
   emailThankYouSent: true,
+  whatsappThankYouSent: true,
   refundStatus: true,
   refundAmount: true,
 }).extend({

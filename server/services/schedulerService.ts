@@ -184,9 +184,17 @@ async function processThankYou(): Promise<void> {
 
     for (const booking of completedBookings) {
       try {
-        // Skip if no email
+        // Attempt WhatsApp thank-you regardless of email availability
+        let waThankYouSentThisRun = false;
+        if (!booking.whatsappThankYouSent) {
+          waThankYouSentThisRun = await trySendWhatsAppThankYou(booking);
+          if (waThankYouSentThisRun) {
+            await storage.updateBookingWhatsAppThankYouStatus(booking.id, true);
+          }
+        }
+
+        // Skip email if no address, but WhatsApp was already attempted above
         if (!booking.customerEmail) {
-          // Mark as sent to avoid retrying
           await storage.updateBookingEmailStatus(booking.id, undefined, true);
           continue;
         }
@@ -218,20 +226,11 @@ async function processThankYou(): Promise<void> {
           console.error(`[Scheduler] Thank-you email failed for booking ${booking.id}: ${emailResult.error}`);
         }
 
-        // Send WhatsApp thank-you (fire-and-forget, doesn't block email result)
-        let whatsappThankYouSent = false;
-        if (!booking.whatsappThankYouSent) {
-          whatsappThankYouSent = await trySendWhatsAppThankYou(booking);
-          if (whatsappThankYouSent) {
-            await storage.updateBookingWhatsAppThankYouStatus(booking.id, true);
-          }
-        }
-
         // Mark email as sent regardless to prevent retries
         await storage.updateBookingEmailStatus(booking.id, undefined, true);
 
         console.log(
-          `[Scheduler] Thank-you processed for booking ${booking.id}: email=${emailResult.success}, whatsapp=${whatsappThankYouSent}`
+          `[Scheduler] Thank-you processed for booking ${booking.id}: email=${emailResult.success}, whatsapp=${waThankYouSentThisRun}`
         );
       } catch (error: unknown) {
         const msg = error instanceof Error ? error.message : "Unknown error";

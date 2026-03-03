@@ -415,4 +415,21 @@
     background-size: 1.5em 1.5em;
     padding-right: 2.5rem;
   }
+
+  /* Safe area utilities for iOS notch / home indicator */
+  .pb-safe {
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  .pt-safe {
+    padding-top: env(safe-area-inset-top, 0px);
+  }
+  .mb-safe {
+    margin-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  .mt-safe {
+    margin-top: env(safe-area-inset-top, 0px);
+  }
+  .bottom-safe {
+    bottom: env(safe-area-inset-bottom, 0px);
+  }
 }

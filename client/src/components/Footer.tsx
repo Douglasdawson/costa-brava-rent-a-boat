@@ -60,7 +60,7 @@ export default function Footer() {
             <p className="text-sm text-white/50 mb-4 leading-relaxed">
               {t.footer.description}
             </p>
-            <div className="flex items-center space-x-2 text-xs mb-6">
+            <div className="flex items-center space-x-2 text-sm mb-6">
               <div className={`w-2 h-2 rounded-full ${isOperatingSeason() ? 'bg-green-400' : 'bg-red-400'}`} aria-hidden="true"></div>
               <span>{t.footer.operatingSeason}</span>
             </div>
@@ -102,7 +102,7 @@ export default function Footer() {
             {/* Newsletter */}
             <div className="mt-8">
               <h3 className="font-medium text-white mb-2 text-sm">{t.locationPages.newsletter.title}</h3>
-              <p className="text-xs text-white/40 mb-3">{t.locationPages.newsletter.subtitle}</p>
+              <p className="text-sm text-white/50 mb-3">{t.locationPages.newsletter.subtitle}</p>
               {newsletterState === 'success' ? (
                 <p className="text-xs text-green-400">{t.locationPages.newsletter.success}</p>
               ) : (
@@ -117,12 +117,12 @@ export default function Footer() {
                     onChange={(e) => setNewsletterEmail(e.target.value)}
                     placeholder={t.locationPages.newsletter.placeholder}
                     required
-                    className="bg-white/10 border border-white/20 rounded-full px-4 py-2.5 text-xs text-white placeholder:text-white/40 focus:outline-none focus:border-white/40 flex-1 min-w-0"
+                    className="bg-white/10 border border-white/20 rounded-full px-4 py-3 text-sm text-white placeholder:text-white/50 focus:outline-none focus:border-white/40 flex-1 min-w-0"
                   />
                   <button
                     type="submit"
                     disabled={newsletterState === 'loading'}
-                    className="bg-cta hover:bg-cta/90 text-white rounded-full px-6 py-2.5 text-xs font-medium transition-colors disabled:opacity-50 whitespace-nowrap"
+                    className="bg-cta hover:bg-cta/90 text-white rounded-full px-6 py-3 text-sm font-medium transition-colors disabled:opacity-50 whitespace-nowrap"
                   >
                     {newsletterState === 'loading' ? '...' : t.locationPages.newsletter.button}
                   </button>
@@ -137,37 +137,37 @@ export default function Footer() {
           {/* Column 2: Navigation */}
           <div>
             <h3 className="font-medium text-white mb-4 text-sm">{t.footer.information}</h3>
-            <ul className="space-y-2.5 text-sm">
+            <ul className="space-y-1 text-sm">
               <li>
-                <a href="#fleet" className="hover:text-white transition-colors">{t.nav.fleet}</a>
+                <a href="#fleet" className="hover:text-white transition-colors py-1.5 block">{t.nav.fleet}</a>
               </li>
               <li>
-                <a href="/rutas" className="hover:text-white transition-colors">Destinos</a>
+                <a href="/rutas" className="hover:text-white transition-colors py-1.5 block">Destinos</a>
               </li>
               <li>
-                <a href="/blog" className="hover:text-white transition-colors" data-testid="footer-blog-link">{t.footer.blog}</a>
+                <a href="/blog" className="hover:text-white transition-colors py-1.5 block" data-testid="footer-blog-link">{t.footer.blog}</a>
               </li>
               <li>
-                <a href="/faq" className="hover:text-white transition-colors" data-testid="footer-faq-link">{t.footer.faqLabel}</a>
+                <a href="/faq" className="hover:text-white transition-colors py-1.5 block" data-testid="footer-faq-link">{t.footer.faqLabel}</a>
               </li>
               <li>
-                <a href="/tarjetas-regalo" className="hover:text-white transition-colors">{t.nav.giftCards}</a>
+                <a href="/tarjetas-regalo" className="hover:text-white transition-colors py-1.5 block">{t.nav.giftCards}</a>
               </li>
               <li>
-                <a href="#contact" className="hover:text-white transition-colors">{t.nav.contact}</a>
+                <a href="#contact" className="hover:text-white transition-colors py-1.5 block">{t.nav.contact}</a>
               </li>
               <li>
-                <a href="/testimonios" className="hover:text-white transition-colors" data-testid="footer-testimonials-link">{t.footer.customerReviews}</a>
+                <a href="/testimonios" className="hover:text-white transition-colors py-1.5 block" data-testid="footer-testimonials-link">{t.footer.customerReviews}</a>
               </li>
               <li>
-                <a href="/galeria" className="hover:text-white transition-colors">Galeria</a>
+                <a href="/galeria" className="hover:text-white transition-colors py-1.5 block">Galeria</a>
               </li>
             </ul>
 
             <h3 className="font-medium text-white mb-4 text-sm mt-8">{t.footer.services}</h3>
-            <ul className="space-y-2.5 text-sm">
-              <li><a href="/barcos-sin-licencia" className="hover:text-white transition-colors">{t.boats.withoutLicense}</a></li>
-              <li><a href="/barcos-con-licencia" className="hover:text-white transition-colors">{t.boats.withLicense}</a></li>
+            <ul className="space-y-1 text-sm">
+              <li><a href="/barcos-sin-licencia" className="hover:text-white transition-colors py-1.5 block">{t.boats.withoutLicense}</a></li>
+              <li><a href="/barcos-con-licencia" className="hover:text-white transition-colors py-1.5 block">{t.boats.withLicense}</a></li>
             </ul>
           </div>
 
@@ -184,7 +184,7 @@ export default function Footer() {
                     data-testid="phone-call-link"
                     aria-label="Llamar al telefono +34 611 500 372"
                   >+34 611 500 372</a>
-                  <p className="text-xs text-white/40 mt-0.5">{t.footer.callsAndWhatsapp}</p>
+                  <p className="text-xs text-white/50 mt-0.5">{t.footer.callsAndWhatsapp}</p>
                 </div>
               </div>
 
@@ -199,7 +199,7 @@ export default function Footer() {
                   >
                     costabravarentaboat@gmail.com
                   </a>
-                  <p className="text-xs text-white/40 mt-0.5">{t.footer.responseTime}</p>
+                  <p className="text-xs text-white/50 mt-0.5">{t.footer.responseTime}</p>
                 </div>
               </div>
 
@@ -216,7 +216,7 @@ export default function Footer() {
                   >
                     {t.footer.location}
                   </a>
-                  <p className="text-xs text-white/40 mt-0.5">{t.footer.region}</p>
+                  <p className="text-xs text-white/50 mt-0.5">{t.footer.region}</p>
                 </div>
               </div>
 
@@ -224,7 +224,7 @@ export default function Footer() {
                 <Clock className="w-4 h-4 text-white/40 flex-shrink-0 mt-0.5" />
                 <div>
                   <p className="text-sm">{t.footer.businessHours}</p>
-                  <p className="text-xs text-white/40 mt-0.5">{t.footer.flexibleHours}</p>
+                  <p className="text-xs text-white/50 mt-0.5">{t.footer.flexibleHours}</p>
                 </div>
               </div>
             </div>
@@ -235,7 +235,7 @@ export default function Footer() {
         {/* Bottom Section */}
         <div className="border-t border-white/10 mt-12 pt-8">
           <div className="flex flex-col items-center gap-3">
-            <div className="text-white/40 text-xs flex flex-wrap gap-4 justify-center">
+            <div className="text-white/60 text-sm flex flex-wrap gap-2 sm:gap-4 justify-center">
               <a href="/terms-conditions" className="hover:text-white/60 transition-colors" data-testid="footer-terms-link">{t.footer.terms}</a>
               <a href="/privacy-policy" className="hover:text-white/60 transition-colors" data-testid="footer-privacy-link">{t.footer.privacy}</a>
               <a href="/cookies-policy" className="hover:text-white/60 transition-colors" data-testid="footer-cookies-link">{t.footer.cookiesPolicy}</a>

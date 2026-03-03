@@ -5,7 +5,7 @@ import { storage } from "../storage";
 const subscribeSchema = z.object({
   email: z.string().email({ message: "Email inválido" }),
   language: z.string().min(2).max(5).default("es"),
-  source: z.string().max(32).default("footer"),
+  source: z.enum(["footer", "popup"]).default("footer"),
 });
 
 export function registerNewsletterRoutes(app: Express) {

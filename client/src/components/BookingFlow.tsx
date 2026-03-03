@@ -719,14 +719,14 @@ export default function BookingFlow({
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 py-4 sm:py-8">
+    <div className="min-h-screen bg-primary/5 py-4 sm:py-8">
       <div className="container mx-auto px-4 max-w-2xl">
         {/* Back to home button */}
         <div className="mb-4">
           <Button 
             variant="ghost" 
             onClick={() => setLocation("/")}
-            className="flex items-center text-gray-600 hover:text-gray-900"
+            className="flex items-center text-muted-foreground hover:text-foreground"
             data-testid="button-back-home"
           >
             <ArrowLeft className="w-4 h-4 mr-2" />
@@ -742,7 +742,7 @@ export default function BookingFlow({
                 className={`w-6 h-6 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-xs sm:text-sm font-medium flex-shrink-0 ${
                   stepNumber <= step 
                     ? 'bg-primary text-white' 
-                    : 'bg-gray-200 text-gray-600'
+                    : 'bg-primary/10 text-muted-foreground'
                 }`}
               >
                 {stepNumber}
@@ -750,7 +750,7 @@ export default function BookingFlow({
               {stepNumber < 6 && (
                 <div 
                   className={`w-8 sm:w-12 h-1 ${
-                    stepNumber < step ? 'bg-primary' : 'bg-gray-200'
+                    stepNumber < step ? 'bg-primary' : 'bg-primary/10'
                   }`}
                 />
               )}
@@ -773,7 +773,7 @@ export default function BookingFlow({
                 value={selectedDate}
                 onChange={(e) => setSelectedDate(e.target.value)}
                 min={new Date().toISOString().split('T')[0]}
-                className="w-full p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary text-lg text-left text-gray-900"
+                className="w-full p-4 border border-primary/20 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary text-lg text-left text-foreground"
                 data-testid="input-booking-date"
               />
               <div className="mt-6">
@@ -802,7 +802,7 @@ export default function BookingFlow({
             <CardContent>
               {/* License Filter */}
               <div className="mb-6">
-                <h3 className="font-medium text-gray-900 mb-3 text-base">Tipo de embarcación</h3>
+                <h3 className="font-medium text-foreground mb-3 text-base">Tipo de embarcación</h3>
                 <div className="flex gap-2">
                   <Button
                     variant={licenseFilter === "all" ? "default" : "outline"}
@@ -848,7 +848,7 @@ export default function BookingFlow({
                       className={`p-4 border rounded-lg cursor-pointer hover-elevate ${
                         isSelected 
                           ? 'border-primary bg-primary/10' 
-                          : 'border-gray-200 hover:border-gray-300'
+                          : 'border-primary/20 hover:border-primary/20'
                       }`}
                       data-testid={`boat-option-${boat.id}`}
                     >
@@ -859,13 +859,13 @@ export default function BookingFlow({
                           className="w-16 h-16 object-cover rounded-lg mr-3"
                         />
                         <div>
-                          <h3 className="font-semibold text-gray-900">{boatName}</h3>
-                          <p className="text-sm text-gray-600">
+                          <h3 className="font-semibold text-foreground">{boatName}</h3>
+                          <p className="text-sm text-muted-foreground">
                             {requiresLicense ? "Con Licencia" : "Sin Licencia"}
                           </p>
                         </div>
                       </div>
-                      <div className="grid grid-cols-2 gap-2 text-xs text-gray-600">
+                      <div className="grid grid-cols-2 gap-2 text-xs text-muted-foreground">
                         <div>👥 {boatCapacity} personas</div>
                         <div>📏 {boat.specifications?.length || "4-6m"}</div>
                         <div className="flex items-center"><Gauge className="w-3 h-3 mr-1" />{boat.specifications?.engine || boat.specifications?.model || "Motor"}</div>
@@ -900,7 +900,7 @@ export default function BookingFlow({
             </CardHeader>
             <CardContent>
               <div className="mb-6">
-                <h3 className="font-medium text-gray-900 mb-3 text-base">Horario de inicio</h3>
+                <h3 className="font-medium text-foreground mb-3 text-base">Horario de inicio</h3>
                 <div className="space-y-2">
                   {timeSlots.map((slot) => (
                     <button
@@ -921,8 +921,8 @@ export default function BookingFlow({
                         selectedTime === slot.id
                           ? 'border-primary bg-primary/10 text-primary'
                           : !slot.available 
-                            ? 'border-gray-200 bg-gray-50 text-gray-400 cursor-not-allowed' 
-                            : 'border-gray-200 hover:border-primary hover:bg-primary/5'
+                            ? 'border-primary/20 bg-primary/5 text-muted-foreground/70 cursor-not-allowed' 
+                            : 'border-primary/20 hover:border-primary hover:bg-primary/5'
                       }`}
                       data-testid={`button-timeslot-${slot.id}`}
                     >
@@ -939,7 +939,7 @@ export default function BookingFlow({
 
               {selectedTime && (
                 <div className="mb-6">
-                  <h3 className="font-medium text-gray-900 mb-3 text-base">Duración</h3>
+                  <h3 className="font-medium text-foreground mb-3 text-base">Duración</h3>
                   <div className="grid grid-cols-2 gap-3">
                     {getAvailableDurations(selectedTime).map((dur) => (
                       <button
@@ -948,12 +948,12 @@ export default function BookingFlow({
                         className={`p-3 border rounded-lg text-center hover-elevate ${
                           duration === dur.id 
                             ? 'border-primary bg-primary/10 text-primary' 
-                            : 'border-gray-200 hover:border-gray-300'
+                            : 'border-primary/20 hover:border-primary/20'
                         }`}
                         data-testid={`button-duration-${dur.id}`}
                       >
                         <div className="font-medium">{dur.label}</div>
-                        <div className="text-sm text-gray-600">{dur.price}€</div>
+                        <div className="text-sm text-muted-foreground">{dur.price}€</div>
                       </button>
                     ))}
                   </div>
@@ -984,10 +984,10 @@ export default function BookingFlow({
             <CardContent>
               <div className="space-y-4 mb-6">
                 {availableExtras.map((extra) => (
-                  <div key={extra.id} className="flex flex-col sm:flex-row sm:items-center justify-between p-4 border border-gray-200 rounded-lg gap-3">
+                  <div key={extra.id} className="flex flex-col sm:flex-row sm:items-center justify-between p-4 border border-primary/20 rounded-lg gap-3">
                     <div className="flex-1">
-                      <h4 className="font-medium text-gray-900">{extra.name}</h4>
-                      <p className="text-sm text-gray-600">{extra.description}</p>
+                      <h4 className="font-medium text-foreground">{extra.name}</h4>
+                      <p className="text-sm text-muted-foreground">{extra.description}</p>
                       <p className="text-sm font-medium text-primary">{extra.price}€</p>
                     </div>
                     <div className="flex items-center space-x-3">
@@ -1039,47 +1039,47 @@ export default function BookingFlow({
               <div className="space-y-4 mb-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-base font-medium text-gray-700 mb-2">
+                    <label className="block text-base font-medium text-foreground mb-2">
                       Nombre *
                     </label>
                     <input
                       type="text"
                       value={customerData.customerName}
                       onChange={(e) => setCustomerData(prev => ({...prev, customerName: e.target.value}))}
-                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary text-gray-900"
+                      className="w-full p-3 border border-primary/20 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary text-foreground"
                       placeholder="Ana"
                       data-testid="input-customer-name"
                     />
                   </div>
                   <div>
-                    <label className="block text-base font-medium text-gray-700 mb-2">
+                    <label className="block text-base font-medium text-foreground mb-2">
                       Apellidos *
                     </label>
                     <input
                       type="text"
                       value={customerData.customerSurname}
                       onChange={(e) => setCustomerData(prev => ({...prev, customerSurname: e.target.value}))}
-                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary text-gray-900"
+                      className="w-full p-3 border border-primary/20 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary text-foreground"
                       placeholder="García López"
                       data-testid="input-customer-surname"
                     />
                   </div>
                 </div>
                 <div>
-                  <label className="block text-base font-medium text-gray-700 mb-2">
+                  <label className="block text-base font-medium text-foreground mb-2">
                     Email *
                   </label>
                   <input
                     type="email"
                     value={customerData.customerEmail}
                     onChange={(e) => setCustomerData(prev => ({...prev, customerEmail: e.target.value}))}
-                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary text-gray-900"
+                    className="w-full p-3 border border-primary/20 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary text-foreground"
                     placeholder="ana@ejemplo.com (opcional)"
                     data-testid="input-customer-email"
                   />
                 </div>
                 <div>
-                  <label className="block text-base font-medium text-gray-700 mb-2">
+                  <label className="block text-base font-medium text-foreground mb-2">
                     Teléfono *
                   </label>
                   <div className="flex gap-2">
@@ -1096,11 +1096,11 @@ export default function BookingFlow({
                           setTimeout(() => setShowPhonePrefixDropdown(false), 200);
                         }}
                         placeholder="+34"
-                        className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary text-sm text-gray-900"
+                        className="w-full p-3 border border-primary/20 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary text-sm text-foreground"
                         data-testid="input-phone-prefix-search"
                       />
                       {showPhonePrefixDropdown && filteredPhoneCountries.length > 0 && (
-                        <div className="absolute z-10 left-0 w-full max-w-xs max-h-48 overflow-y-auto bg-white border border-gray-300 rounded-lg shadow-lg mt-1">
+                        <div className="absolute z-10 left-0 w-full max-w-xs max-h-48 overflow-y-auto bg-white border border-primary/20 rounded-lg shadow-lg mt-1">
                           {filteredPhoneCountries.slice(0, 8).map((country) => (
                             <button
                               key={country.code}
@@ -1110,7 +1110,7 @@ export default function BookingFlow({
                                 setPhonePrefixSearch("");
                                 setShowPhonePrefixDropdown(false);
                               }}
-                              className="w-full text-left px-3 py-2 hover:bg-gray-50 focus:bg-gray-50 text-sm border-b last:border-b-0 text-gray-900"
+                              className="w-full text-left px-3 py-2 hover:bg-primary/5 focus:bg-primary/5 text-sm border-b last:border-b-0 text-foreground"
                               data-testid={`option-prefix-${country.code}`}
                             >
                               <span className="font-mono">{country.code}</span> {country.country}
@@ -1124,7 +1124,7 @@ export default function BookingFlow({
                         type="tel"
                         value={customerData.customerPhone}
                         onChange={(e) => setCustomerData(prev => ({...prev, customerPhone: e.target.value}))}
-                        className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary text-gray-900"
+                        className="w-full p-3 border border-primary/20 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary text-foreground"
                         placeholder="600 000 000"
                         data-testid="input-customer-phone"
                       />
@@ -1133,7 +1133,7 @@ export default function BookingFlow({
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-sm font-medium text-foreground mb-2">
                       Nacionalidad *
                     </label>
                     <div className="relative">
@@ -1158,11 +1158,11 @@ export default function BookingFlow({
                         }}
                         onFocus={() => setShowNationalityDropdown(true)}
                         placeholder="Buscar nacionalidad"
-                        className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary text-gray-900"
+                        className="w-full p-3 border border-primary/20 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary text-foreground"
                         data-testid="input-nationality-search"
                       />
                       {showNationalityDropdown && filteredNationalities.length > 0 && (
-                        <div className="absolute z-10 w-full max-h-48 overflow-y-auto bg-white border border-gray-300 rounded-lg shadow-lg mt-1">
+                        <div className="absolute z-10 w-full max-h-48 overflow-y-auto bg-white border border-primary/20 rounded-lg shadow-lg mt-1">
                           {filteredNationalities.slice(0, 10).map((nationality) => (
                             <button
                               key={nationality}
@@ -1173,7 +1173,7 @@ export default function BookingFlow({
                                 setNationalitySearch("");
                                 setShowNationalityDropdown(false);
                               }}
-                              className="w-full text-left px-3 py-2 hover:bg-gray-50 focus:bg-gray-50 border-b last:border-b-0 text-gray-900"
+                              className="w-full text-left px-3 py-2 hover:bg-primary/5 focus:bg-primary/5 border-b last:border-b-0 text-foreground"
                               data-testid={`option-nationality-${nationality.toLowerCase()}`}
                             >
                               {nationality}
@@ -1184,7 +1184,7 @@ export default function BookingFlow({
                     </div>
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-sm font-medium text-foreground mb-2">
                       Número de personas *
                     </label>
                     <Select value={customerData.numberOfPeople.toString()} onValueChange={(value) => setCustomerData(prev => ({...prev, numberOfPeople: parseInt(value)}))}>
@@ -1225,8 +1225,8 @@ export default function BookingFlow({
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="bg-gray-50 p-4 rounded-lg mb-6">
-                <h3 className="font-medium text-gray-900 mb-3">{t.booking.summaryTitle}</h3>
+              <div className="bg-primary/5 p-4 rounded-lg mb-6">
+                <h3 className="font-medium text-foreground mb-3">{t.booking.summaryTitle}</h3>
                 <div className="space-y-2 text-sm">
                   <div className="flex justify-between">
                     <span>{t.booking.summaryDate}</span>
@@ -1271,7 +1271,7 @@ export default function BookingFlow({
                         </span>
                       </div>
                       {quote.season && (
-                        <p className="text-xs text-gray-500 mt-2">
+                        <p className="text-xs text-muted-foreground mt-2">
                           Temporada {quote.season} • {quote.duration} • {quote.numberOfPeople} personas
                         </p>
                       )}
@@ -1301,7 +1301,7 @@ export default function BookingFlow({
                           {calculateTotal()}
                         </span>
                       </div>
-                      <p className="text-xs text-gray-500 mt-2">
+                      <p className="text-xs text-muted-foreground mt-2">
                         *Precio estimado. El precio final se calculará con las tarifas de temporada.
                       </p>
                     </>
@@ -1326,15 +1326,15 @@ export default function BookingFlow({
                       )}
                       {isLoading ? "Creando cotización..." : "Obtener Cotización"}
                     </Button>
-                    <p className="text-xs text-gray-500 text-center">
+                    <p className="text-xs text-muted-foreground text-center">
                       Obtén el precio final con tarifas de temporada y crea una reserva temporal de 30 minutos.
                     </p>
                   </>
                 ) : (
                   // Show payment options when quote exists
                   <>
-                    <div className="bg-green-50 p-3 rounded-lg">
-                      <p className="text-sm text-green-800">
+                    <div className="bg-primary/5 p-3 rounded-lg">
+                      <p className="text-sm text-primary">
                         ✓ Cotización creada. Tienes <strong>30 minutos</strong> para completar el pago.
                         {holdId && (
                           <span className="block text-xs mt-1">Hold ID: {holdId}</span>
@@ -1342,7 +1342,7 @@ export default function BookingFlow({
                       </p>
                     </div>
 
-                    <div className="flex items-center space-x-2 text-sm text-gray-600">
+                    <div className="flex items-center space-x-2 text-sm text-muted-foreground">
                       <input type="checkbox" id="terms" className="rounded" />
                       <label htmlFor="terms">
                         Acepto los <a href="#" className="text-primary hover:underline">{t.booking.termsAndConditions}</a> y la <a href="#" className="text-primary hover:underline">{t.booking.privacyPolicy}</a>
@@ -1363,7 +1363,7 @@ export default function BookingFlow({
                       {isLoading ? "Procesando pago..." : `${t.booking.pay || 'Pagar'} ${calculateTotal()}€`}
                     </Button>
 
-                    <p className="text-xs text-gray-500 text-center">
+                    <p className="text-xs text-muted-foreground text-center">
                       Pago seguro procesado por Stripe.
                     </p>
                   </>

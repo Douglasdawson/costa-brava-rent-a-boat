@@ -71,20 +71,20 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
     pack.extras.every(name => boatExtraNames.has(name))
   );
 
-  const inputBase = "w-full p-3 border-2 rounded-lg bg-white text-gray-900 text-sm font-medium focus:ring-2 focus:ring-primary focus:outline-none min-h-[44px]";
+  const inputBase = "w-full p-3 border-2 rounded-lg bg-white text-foreground text-sm font-medium focus:ring-2 focus:ring-primary focus:outline-none min-h-[44px]";
   const inputError = "border-red-400";
-  const inputNormal = "border-gray-200";
+  const inputNormal = "border-primary/20";
 
   return (
     <div className="flex flex-col h-full overflow-y-auto">
       <div className="flex flex-1 min-h-0 overflow-hidden">
 
         {/* ── Left column: boat selection ── */}
-        <div className="w-[45%] border-r border-gray-100 flex flex-col overflow-hidden">
+        <div className="w-[45%] border-r border-primary/10 flex flex-col overflow-hidden">
           {/* License filter */}
           {!preSelectedBoatId && (
             <div className="px-4 pt-4 pb-3 flex-shrink-0">
-              <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">
+              <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-2">
                 {t.wizard.haveNauticalLicense}
               </p>
               <div className="flex gap-2">
@@ -94,7 +94,7 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
                   className={`flex-1 py-2 rounded-lg text-xs font-semibold border-2 transition-all ${
                     licenseFilter === "without"
                       ? "border-primary bg-primary text-white"
-                      : "border-gray-200 text-gray-600"
+                      : "border-primary/20 text-muted-foreground"
                   }`}
                 >
                   {t.wizard.withoutLicense}
@@ -105,7 +105,7 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
                   className={`flex-1 py-2 rounded-lg text-xs font-semibold border-2 transition-all ${
                     licenseFilter === "with"
                       ? "border-primary bg-primary text-white"
-                      : "border-gray-200 text-gray-600"
+                      : "border-primary/20 text-muted-foreground"
                   }`}
                 >
                   {t.wizard.withLicense}
@@ -116,15 +116,15 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
 
           {/* Boats list */}
           <div className="flex-1 overflow-y-auto px-4 pb-4 space-y-1.5">
-            <p className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-2 sticky top-0 bg-white pt-1.5 pb-1.5">
+            <p className="text-sm font-semibold text-muted-foreground uppercase tracking-wide mb-2 sticky top-0 bg-white pt-1.5 pb-1.5">
               {t.wizard.selectABoat}
             </p>
             {isBoatsLoading && (
               <div className="space-y-1.5">
                 {[1, 2, 3].map(i => (
-                  <div key={i} className="animate-pulse flex items-center gap-2 p-2.5 rounded-lg border-2 border-gray-100">
-                    <div className="w-4 h-4 rounded-full bg-gray-200 flex-shrink-0" />
-                    <div className="flex-1 h-3 bg-gray-200 rounded w-3/4" />
+                  <div key={i} className="animate-pulse flex items-center gap-2 p-2.5 rounded-lg border-2 border-primary/10">
+                    <div className="w-4 h-4 rounded-full bg-primary/10 flex-shrink-0" />
+                    <div className="flex-1 h-3 bg-primary/10 rounded w-3/4" />
                   </div>
                 ))}
               </div>
@@ -142,21 +142,21 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
                   onClick={() => setSelectedBoat(boat.id)}
                   disabled={!!preSelectedBoatId && boat.id !== preSelectedBoatId}
                   className={`w-full flex items-center gap-2.5 p-2.5 rounded-lg border-2 text-left transition-all ${
-                    isSelected ? "border-primary bg-primary/5" : "border-gray-200 bg-white"
+                    isSelected ? "border-primary bg-primary/5" : "border-primary/20 bg-white"
                   }`}
                 >
                   <div className={`w-4 h-4 rounded-full border-2 flex items-center justify-center flex-shrink-0 ${
-                    isSelected ? "border-primary bg-primary" : "border-gray-300"
+                    isSelected ? "border-primary bg-primary" : "border-muted-foreground/30"
                   }`}>
                     {isSelected && <Check className="w-2.5 h-2.5 text-white" />}
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className="font-semibold text-gray-900 text-xs truncate">{boat.name}</p>
+                    <p className="font-semibold text-foreground text-xs truncate">{boat.name}</p>
                     {minPrice !== null && (
                       <p className="text-[10px] text-primary font-medium">{t.boats.from} {minPrice}€</p>
                     )}
                   </div>
-                  <span className="text-[10px] text-gray-500 flex-shrink-0">{boat.capacity}p</span>
+                  <span className="text-[10px] text-muted-foreground flex-shrink-0">{boat.capacity}p</span>
                 </button>
               );
             })}
@@ -171,7 +171,7 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
 
           {/* Date */}
           <div>
-            <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1.5">
+            <label className="block text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-1.5">
               {t.wizard.date}
             </label>
             <Popover open={showDatePicker} onOpenChange={setShowDatePicker}>
@@ -184,7 +184,7 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
                   <CalendarIcon className="w-4 h-4 text-primary flex-shrink-0" />
                   {selectedDate
                     ? new Date(selectedDate + 'T00:00:00').toLocaleDateString('es-ES', { day: '2-digit', month: 'short', year: 'numeric' })
-                    : <span className="text-gray-500">{t.wizard.selectDate}</span>
+                    : <span className="text-muted-foreground">{t.wizard.selectDate}</span>
                   }
                 </button>
               </PopoverTrigger>
@@ -211,7 +211,7 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
 
           {/* Duration */}
           <div>
-            <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1.5">
+            <label className="block text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-1.5">
               {t.wizard.duration}
             </label>
             <div className="grid grid-cols-3 gap-1.5">
@@ -225,10 +225,10 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
                     type="button"
                     onClick={() => setSelectedDuration(opt.value)}
                     className={`py-2 px-1.5 rounded-lg border-2 text-center transition-all ${
-                      selectedDuration === opt.value ? "border-primary bg-primary/5" : "border-gray-200 bg-white"
+                      selectedDuration === opt.value ? "border-primary bg-primary/5" : "border-primary/20 bg-white"
                     }`}
                   >
-                    <p className="text-xs font-semibold text-gray-900">{labelText}</p>
+                    <p className="text-xs font-semibold text-foreground">{labelText}</p>
                     {priceText && <p className="text-[10px] font-bold text-primary">{priceText}</p>}
                   </button>
                 );
@@ -240,7 +240,7 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
           {/* Time + People */}
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label htmlFor="desktop-time" className="block text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1.5">
+              <label htmlFor="desktop-time" className="block text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-1.5">
                 {t.wizard.departureTime}
               </label>
               <select
@@ -261,12 +261,12 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
               {showFieldError('time') && <p id="error-desktop-time" className="text-xs text-red-500 mt-1">{getFieldError('time')}</p>}
             </div>
             <div>
-              <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1.5">
+              <label className="block text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-1.5">
                 {t.wizard.numberOfPeople}
-                {selectedBoatInfo && <span className="font-normal text-gray-400 ml-1">(max {maxCapacity})</span>}
+                {selectedBoatInfo && <span className="font-normal text-muted-foreground/70 ml-1">(max {maxCapacity})</span>}
               </label>
               <div className={`flex items-center justify-between border-2 rounded-lg bg-white px-3 py-1 ${
-                showFieldError('people') ? 'border-red-400' : 'border-gray-200'
+                showFieldError('people') ? 'border-red-400' : 'border-primary/20'
               }`}>
                 <button
                   type="button"
@@ -276,9 +276,9 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
                   }}
                   disabled={!numberOfPeople || parseInt(numberOfPeople) <= 1}
                   aria-label="Reducir número de personas"
-                  className="w-8 h-8 rounded-full border-2 border-gray-200 flex items-center justify-center font-bold text-gray-600 disabled:opacity-30 hover:border-primary hover:text-primary transition-colors text-lg"
+                  className="w-8 h-8 rounded-full border-2 border-primary/20 flex items-center justify-center font-bold text-muted-foreground disabled:opacity-30 hover:border-primary hover:text-primary transition-colors text-lg"
                 >−</button>
-                <span className="text-lg font-bold text-gray-900 min-w-[1.5rem] text-center">
+                <span className="text-lg font-bold text-foreground min-w-[1.5rem] text-center">
                   {numberOfPeople || '2'}
                 </span>
                 <button
@@ -289,7 +289,7 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
                   }}
                   disabled={!!numberOfPeople && parseInt(numberOfPeople) >= maxCapacity}
                   aria-label="Aumentar número de personas"
-                  className="w-8 h-8 rounded-full border-2 border-gray-200 flex items-center justify-center font-bold text-gray-600 disabled:opacity-30 hover:border-primary hover:text-primary transition-colors text-lg"
+                  className="w-8 h-8 rounded-full border-2 border-primary/20 flex items-center justify-center font-bold text-muted-foreground disabled:opacity-30 hover:border-primary hover:text-primary transition-colors text-lg"
                 >+</button>
               </div>
               {showFieldError('people') && <p className="text-xs text-red-500 mt-1">{getFieldError('people')}</p>}
@@ -297,7 +297,7 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
           </div>
 
           {/* Divider */}
-          <div className="border-t border-gray-100" />
+          <div className="border-t border-primary/10" />
 
           {/* Extras & Packs */}
           {boatExtras.length > 0 && (
@@ -307,14 +307,14 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
                 onClick={() => setShowExtras(!showExtras)}
                 className="flex items-center justify-between w-full mb-2"
               >
-                <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide">
+                <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">
                   {t.booking.extrasSection.title}
                 </p>
                 <span className="flex items-center gap-2 text-xs">
                   {totalExtrasPrice > 0 && (
                     <span className="text-primary font-bold">+{totalExtrasPrice}€</span>
                   )}
-                  <span className="text-gray-400">{showExtras ? '\u25B2' : '\u25BC'}</span>
+                  <span className="text-muted-foreground/70">{showExtras ? '\u25B2' : '\u25BC'}</span>
                 </span>
               </button>
 
@@ -328,20 +328,20 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
                       className={`w-full flex items-center justify-between p-2.5 rounded-lg border-2 text-left transition-all ${
                         selectedPack === pack.id
                           ? 'border-primary bg-primary/5'
-                          : 'border-gray-200 bg-white'
+                          : 'border-primary/20 bg-white'
                       }`}
                     >
                       <div className="min-w-0 flex-1">
-                        <p className="text-xs font-semibold text-gray-900">
+                        <p className="text-xs font-semibold text-foreground">
                           {isSpanishLang ? pack.name : pack.nameEN}
                         </p>
-                        <p className="text-[10px] text-gray-500 truncate">
+                        <p className="text-[10px] text-muted-foreground truncate">
                           {pack.extras.join(', ')}
                         </p>
                       </div>
                       <div className="text-right flex-shrink-0 ml-3">
                         <p className="text-xs font-bold text-primary">{pack.price}€</p>
-                        <p className="text-[10px] text-green-600">
+                        <p className="text-[10px] text-primary">
                           -{calculatePackSavings(pack.id)}€ {t.booking.extrasSection.savings.toLowerCase()}
                         </p>
                       </div>
@@ -363,11 +363,11 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
                             ? 'border-primary/30 bg-primary/5 opacity-70 cursor-default'
                             : isSelected
                             ? 'border-primary bg-primary/5'
-                            : 'border-gray-200 bg-white hover:border-gray-300'
+                            : 'border-primary/20 bg-white hover:border-primary/30'
                         }`}
                       >
                         {Icon && <Icon className="w-4 h-4 text-primary flex-shrink-0" />}
-                        <span className="flex-1 text-xs font-medium text-gray-900">
+                        <span className="flex-1 text-xs font-medium text-foreground">
                           {extra.name}
                         </span>
                         {inPack ? (
@@ -389,7 +389,7 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
 
           {/* Personal data */}
           <div>
-            <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">{t.wizard.yourData}</p>
+            <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-2">{t.wizard.yourData}</p>
             <div className="space-y-2.5">
               <div className="grid grid-cols-2 gap-2">
                 <div>
@@ -439,14 +439,14 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
                     <span className="truncate text-xs">{selectedPrefixInfo?.flag} {phonePrefix}</span>
                   </button>
                   {showPrefixDropdown && (
-                    <div className="absolute top-full left-0 mt-1 w-64 bg-white border border-gray-200 rounded-xl shadow-lg z-50 max-h-48 overflow-y-auto">
+                    <div className="absolute top-full left-0 mt-1 w-64 bg-white border border-primary/20 rounded-xl shadow-lg z-50 max-h-48 overflow-y-auto">
                       <div className="p-2 border-b sticky top-0 bg-white">
                         <input
                           type="text"
                           value={prefixSearch}
                           onChange={(e) => setPrefixSearch(e.target.value)}
                           placeholder={t.wizard.searchCountry}
-                          className="w-full p-2 border border-gray-200 rounded-lg text-xs"
+                          className="w-full p-2 border border-primary/20 rounded-lg text-xs"
                         />
                       </div>
                       {filteredPrefixes.map((prefix) => (
@@ -454,11 +454,11 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
                           key={`${prefix.code}-${prefix.country}`}
                           type="button"
                           onClick={() => { setPhonePrefix(prefix.code); setShowPrefixDropdown(false); setPrefixSearch(""); }}
-                          className="w-full p-2 hover:bg-gray-50 text-left flex items-center gap-2 text-xs"
+                          className="w-full p-2 hover:bg-primary/5 text-left flex items-center gap-2 text-xs"
                         >
                           <span>{prefix.flag}</span>
                           <span className="font-medium">{prefix.code}</span>
-                          <span className="text-gray-500 truncate">{prefix.country}</span>
+                          <span className="text-muted-foreground truncate">{prefix.country}</span>
                         </button>
                       ))}
                     </div>
@@ -507,19 +507,19 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
               onClick={() => setShowCodeSection(!showCodeSection)}
               className="flex items-center justify-between w-full mb-2"
             >
-              <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide">
+              <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">
                 {t.codeValidation.haveCode}
               </p>
-              <span className="text-gray-400 text-xs">{showCodeSection ? '\u25B2' : '\u25BC'}</span>
+              <span className="text-muted-foreground/70 text-xs">{showCodeSection ? '\u25B2' : '\u25BC'}</span>
             </button>
 
             {showCodeSection && (
               <div className="space-y-2">
                 {validatedCode ? (
-                  <div className="flex items-center justify-between bg-green-50 border border-green-200 rounded-lg p-2.5">
+                  <div className="flex items-center justify-between bg-primary/5 border border-primary/20 rounded-lg p-2.5">
                     <div>
-                      <p className="text-xs font-bold text-green-800">{validatedCode.code}</p>
-                      <p className="text-[10px] text-green-600">
+                      <p className="text-xs font-bold text-primary">{validatedCode.code}</p>
+                      <p className="text-[10px] text-primary">
                         {validatedCode.type === 'gift_card'
                           ? `-${discount}\u20AC`
                           : `-${validatedCode.percentage}% (-${discount}\u20AC)`}
@@ -528,7 +528,7 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
                     <button
                       type="button"
                       onClick={handleRemoveCode}
-                      className="text-gray-400 hover:text-red-500 transition-colors"
+                      className="text-muted-foreground/70 hover:text-red-500 transition-colors"
                       aria-label="Eliminar"
                     >
                       <X className="w-4 h-4" />
@@ -541,7 +541,7 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
                       value={codeInput}
                       onChange={(e) => setCodeInput(e.target.value.toUpperCase())}
                       placeholder={t.codeValidation.enterCode}
-                      className="flex-1 p-2.5 border-2 border-gray-200 rounded-lg bg-white text-gray-900 text-sm font-medium focus:ring-2 focus:ring-primary focus:outline-none uppercase"
+                      className="flex-1 p-2.5 border-2 border-primary/20 rounded-lg bg-white text-foreground text-sm font-medium focus:ring-2 focus:ring-primary focus:outline-none uppercase"
                       maxLength={32}
                       onKeyDown={(e) => { if (e.key === 'Enter') { e.preventDefault(); handleValidateCode(); } }}
                     />
@@ -567,34 +567,34 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
           {/* Price summary + submit */}
           {price !== null && (
             <div className="bg-primary/5 border border-primary/20 rounded-xl p-3">
-              <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">
+              <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-2">
                 {t.booking.estimatedTotal}
               </p>
               <div className="space-y-1">
                 <div className="flex justify-between text-xs">
-                  <span className="text-gray-600">{t.booking.basePrice}</span>
+                  <span className="text-muted-foreground">{t.booking.basePrice}</span>
                   <span className="font-medium">{price}\u20AC</span>
                 </div>
                 {totalExtrasPrice > 0 && (
                   <div className="flex justify-between text-xs">
-                    <span className="text-gray-600">{t.booking.extrasSection.title}</span>
+                    <span className="text-muted-foreground">{t.booking.extrasSection.title}</span>
                     <span className="font-medium">+{totalExtrasPrice}\u20AC</span>
                   </div>
                 )}
                 {discount > 0 && validatedCode && (
-                  <div className="flex justify-between text-xs text-green-700">
+                  <div className="flex justify-between text-xs text-primary">
                     <span>{validatedCode.code}</span>
                     <span>-{discount}\u20AC</span>
                   </div>
                 )}
                 <div className="flex justify-between items-baseline border-t border-primary/20 pt-1.5 mt-1">
-                  <span className="text-sm font-bold text-gray-900">Total</span>
+                  <span className="text-sm font-bold text-foreground">Total</span>
                   <span className="text-xl font-bold text-primary">
                     {price + totalExtrasPrice - discount}\u20AC
                   </span>
                 </div>
               </div>
-              <p className="text-xs text-gray-400 mt-2">{t.booking.priceConfirmedWhatsApp}</p>
+              <p className="text-xs text-muted-foreground/70 mt-2">{t.booking.priceConfirmedWhatsApp}</p>
             </div>
           )}
 
@@ -608,7 +608,7 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
               aria-required="true"
               id="desktop-privacy-consent"
             />
-            <span className="text-xs text-gray-600">
+            <span className="text-xs text-muted-foreground">
               {t.booking.gdprConsent.split('{privacyPolicy}')[0]}
               <a href="/privacy-policy" target="_blank" rel="noopener noreferrer" className="text-primary underline">
                 {t.booking.gdprPrivacyLink}

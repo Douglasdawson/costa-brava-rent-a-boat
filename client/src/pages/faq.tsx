@@ -158,7 +158,7 @@ export default function FAQPage() {
       <Navigation />
       
       {/* Breadcrumbs */}
-      <div className="bg-gray-50 border-b border-gray-200">
+      <div className="bg-primary/5 border-b border-primary/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
           <Breadcrumbs 
             items={[
@@ -170,15 +170,15 @@ export default function FAQPage() {
       </div>
       
       {/* Hero Section */}
-      <div className="bg-gradient-to-br from-blue-50 to-teal-50 pt-20 sm:pt-24 pb-8">
+      <div className="bg-gradient-to-br from-primary/5 to-primary/10 pt-20 sm:pt-24 pb-8">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="flex items-center justify-center mb-6">
             <Anchor className="w-8 h-8 text-primary mr-4" />
-            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold text-gray-900">
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold text-foreground">
               Preguntas Frecuentes
             </h1>
           </div>
-          <p className="text-base sm:text-lg text-gray-600 mb-4 sm:mb-8 max-w-4xl mx-auto">
+          <p className="text-base sm:text-lg text-muted-foreground mb-4 sm:mb-8 max-w-4xl mx-auto">
             Encuentra respuestas a todas tus dudas sobre el alquiler de barcos en Blanes, Costa Brava.
             <br />
             Si no encuentras lo que buscas, ¡contáctanos directamente!
@@ -188,12 +188,12 @@ export default function FAQPage() {
 
 
       {/* FAQ Sections */}
-      <div className="pt-6 pb-10 sm:pt-8 sm:pb-16 bg-gray-50">
+      <div className="pt-6 pb-10 sm:pt-8 sm:pb-16 bg-primary/5">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           
           {/* Category Filter */}
           <div className="mb-6 sm:mb-8">
-            <h2 className="text-lg font-semibold mb-4 text-gray-900">Filtrar por categoría</h2>
+            <h2 className="text-lg font-semibold mb-4 text-foreground">Filtrar por categoría</h2>
             <div className="flex flex-wrap gap-2">
               {categories.map((category) => {
                 const Icon = category.icon;
@@ -234,7 +234,7 @@ export default function FAQPage() {
                           <li><strong>Barcos sin licencia:</strong> Desde 70€. Con gasolina incluida y posibilidad de alquilar 1h, 2h, 3h, 4h, 6h, o 8h</li>
                           <li><strong>Barcos con licencia:</strong> Desde 150€. Sin gasolina incluida y posibilidad de alquilar 2h, 4h y 8h.</li>
                         </ul>
-                        <p className="text-sm text-gray-600">*Precios orientativos. Consulta disponibilidad y precios exactos para tu fecha.</p>
+                        <p className="text-sm text-muted-foreground">*Precios orientativos. Consulta disponibilidad y precios exactos para tu fecha.</p>
                       </div>
                     </AccordionContent>
                   </AccordionItem>
@@ -272,7 +272,7 @@ export default function FAQPage() {
                           <li>Efectivo (solo en puerto, antes de salir)</li>
                           <li>Bizum (para clientes españoles)</li>
                         </ul>
-                        <p className="text-sm text-gray-600">Se requiere una paga y señal de 50€ para confirmar la reserva.</p>
+                        <p className="text-sm text-muted-foreground">Se requiere una paga y señal de 50€ para confirmar la reserva.</p>
                       </div>
                     </AccordionContent>
                   </AccordionItem>
@@ -288,7 +288,7 @@ export default function FAQPage() {
                           <li><strong>Menos de 24h:</strong> Sin reembolso</li>
                           <li><strong>Mal tiempo:</strong> Reprogramación gratuita o reembolso del 100%</li>
                         </ul>
-                        <p className="text-sm text-gray-600">En caso de condiciones meteorológicas adversas, siempre priorizamos la seguridad.</p>
+                        <p className="text-sm text-muted-foreground">En caso de condiciones meteorológicas adversas, siempre priorizamos la seguridad.</p>
                       </div>
                     </AccordionContent>
                   </AccordionItem>
@@ -321,8 +321,8 @@ export default function FAQPage() {
                           <li>Briefing completo antes de salir</li>
                           <li>Zona de navegación delimitada y segura</li>
                         </ul>
-                        <div className="flex items-center gap-2 mt-3 p-3 bg-blue-50 rounded-lg">
-                          <CheckCircle className="w-5 h-5 text-green-600" />
+                        <div className="flex items-center gap-2 mt-3 p-3 bg-primary/5 rounded-lg">
+                          <CheckCircle className="w-5 h-5 text-primary" />
                           <span className="text-sm font-medium">Solo necesitas ser mayor de 18 años</span>
                         </div>
                       </div>
@@ -360,7 +360,7 @@ export default function FAQPage() {
                           <li><strong>Menores de 12 años:</strong> Chaleco salvavidas obligatorio</li>
                           <li><strong>Grupos de menores:</strong> Siempre con adulto responsable</li>
                         </ul>
-                        <p className="text-sm text-gray-600">El patrón debe presentar DNI o pasaporte válido.</p>
+                        <p className="text-sm text-muted-foreground">El patrón debe presentar DNI o pasaporte válido.</p>
                       </div>
                     </AccordionContent>
                   </AccordionItem>
@@ -378,8 +378,8 @@ export default function FAQPage() {
                           <li>Contacto directo para emergencias</li>
                           <li>Embarcaciones fáciles de manejar</li>
                         </ul>
-                        <div className="flex items-center gap-2 mt-3 p-3 bg-green-50 rounded-lg">
-                          <CheckCircle className="w-5 h-5 text-green-600" />
+                        <div className="flex items-center gap-2 mt-3 p-3 bg-primary/5 rounded-lg">
+                          <CheckCircle className="w-5 h-5 text-primary" />
                           <span className="text-sm">Perfectas para primerizos y familias</span>
                         </div>
                       </div>
@@ -438,19 +438,19 @@ export default function FAQPage() {
                       <div className="space-y-3">
                         <p><strong>Extras disponibles:</strong></p>
                         <div className="grid gap-3">
-                          <div className="flex justify-between items-center p-2 bg-gray-50 rounded">
+                          <div className="flex justify-between items-center p-2 bg-primary/5 rounded">
                             <span>Paddle Surf</span>
                             <Badge variant="outline">+25€</Badge>
                           </div>
-                          <div className="flex justify-between items-center p-2 bg-gray-50 rounded">
+                          <div className="flex justify-between items-center p-2 bg-primary/5 rounded">
                             <span>Gafas de snorkel</span>
                             <Badge variant="outline">+5€</Badge>
                           </div>
-                          <div className="flex justify-between items-center p-2 bg-gray-50 rounded">
+                          <div className="flex justify-between items-center p-2 bg-primary/5 rounded">
                             <span>Cámara acuática GoPro</span>
                             <Badge variant="outline">+30€</Badge>
                           </div>
-                          <div className="flex justify-between items-center p-2 bg-gray-50 rounded">
+                          <div className="flex justify-between items-center p-2 bg-primary/5 rounded">
                             <span>Patrón profesional</span>
                             <Badge variant="outline">+100€</Badge>
                           </div>
@@ -516,8 +516,8 @@ export default function FAQPage() {
                           <li><strong>Distancia:</strong> Máximo 2 millas de la costa</li>
                           <li><strong>Calas recomendadas:</strong> Cala Brava, Cala Sant Francesc, Playa de Lloret</li>
                         </ul>
-                        <div className="flex items-center gap-2 mt-3 p-3 bg-blue-50 rounded-lg">
-                          <MapPin className="w-5 h-5 text-blue-600" />
+                        <div className="flex items-center gap-2 mt-3 p-3 bg-primary/5 rounded-lg">
+                          <MapPin className="w-5 h-5 text-primary" />
                           <span className="text-sm">Durante el Check-In te proporcionamos las mejores ubicaciones detalladas</span>
                         </div>
                       </div>
@@ -552,8 +552,8 @@ export default function FAQPage() {
                           <li><strong>Tormenta:</strong> Suspensión automática</li>
                           <li><strong>Cambio durante navegación:</strong> Regreso guiado al puerto</li>
                         </ul>
-                        <div className="flex items-center gap-2 mt-3 p-3 bg-green-50 rounded-lg">
-                          <Umbrella className="w-5 h-5 text-green-600" />
+                        <div className="flex items-center gap-2 mt-3 p-3 bg-primary/5 rounded-lg">
+                          <Umbrella className="w-5 h-5 text-primary" />
                           <span className="text-sm">Siempre priorizamos la seguridad. Reprogramación gratuita o reembolso del 100%</span>
                         </div>
                       </div>
@@ -599,24 +599,24 @@ export default function FAQPage() {
                       <div className="space-y-3">
                         <p><strong>Horarios de alquiler:</strong></p>
                         <div className="grid gap-3">
-                          <div className="flex justify-between items-center p-2 bg-gray-50 rounded">
+                          <div className="flex justify-between items-center p-2 bg-primary/5 rounded">
                             <span>Media mañana</span>
                             <Badge variant="outline">09:00 - 13:00</Badge>
                           </div>
-                          <div className="flex justify-between items-center p-2 bg-gray-50 rounded">
+                          <div className="flex justify-between items-center p-2 bg-primary/5 rounded">
                             <span>Tarde</span>
                             <Badge variant="outline">14:00 - 18:00</Badge>
                           </div>
-                          <div className="flex justify-between items-center p-2 bg-gray-50 rounded">
+                          <div className="flex justify-between items-center p-2 bg-primary/5 rounded">
                             <span>Día completo</span>
                             <Badge variant="outline">09:00 - 17:00</Badge>
                           </div>
-                          <div className="flex justify-between items-center p-2 bg-gray-50 rounded">
+                          <div className="flex justify-between items-center p-2 bg-primary/5 rounded">
                             <span>Atardecer</span>
                             <Badge variant="outline">18:00 - 21:00</Badge>
                           </div>
                         </div>
-                        <p className="text-sm text-gray-600">*Horarios pueden variar según temporada y disponibilidad</p>
+                        <p className="text-sm text-muted-foreground">*Horarios pueden variar según temporada y disponibilidad</p>
                       </div>
                     </AccordionContent>
                   </AccordionItem>
@@ -633,8 +633,8 @@ export default function FAQPage() {
                           <li>Entrega de material y mapa</li>
                           <li>Resolver dudas de última hora</li>
                         </ul>
-                        <div className="flex items-center gap-2 mt-3 p-3 bg-blue-50 rounded-lg">
-                          <Clock className="w-5 h-5 text-blue-600" />
+                        <div className="flex items-center gap-2 mt-3 p-3 bg-primary/5 rounded-lg">
+                          <Clock className="w-5 h-5 text-primary" />
                           <span className="text-sm">Te enviaremos la ubicación exacta y teléfono de contacto por WhatsApp</span>
                         </div>
                       </div>
@@ -652,7 +652,7 @@ export default function FAQPage() {
                           <li><strong>Parking gratuito:</strong> 20/30 min andando</li>
                           <li><strong>Temporada alta:</strong> Recomendamos reservar plaza</li>
                         </ul>
-                        <p className="text-sm text-gray-600">Te enviaremos la ubicación exacta con la confirmación de la reserva.</p>
+                        <p className="text-sm text-muted-foreground">Te enviaremos la ubicación exacta con la confirmación de la reserva.</p>
                       </div>
                     </AccordionContent>
                   </AccordionItem>
@@ -668,8 +668,8 @@ export default function FAQPage() {
                           <li><strong>Hotel/apartamento:</strong> Recomendamos dejar equipaje grande</li>
                           <li><strong>Parking personal:</strong> Bajo tu responsabilidad</li>
                         </ul>
-                        <div className="flex items-center gap-2 mt-3 p-3 bg-yellow-50 rounded-lg">
-                          <AlertCircle className="w-5 h-5 text-yellow-600" />
+                        <div className="flex items-center gap-2 mt-3 p-3 bg-cta/10 rounded-lg">
+                          <AlertCircle className="w-5 h-5 text-cta" />
                           <span className="text-sm">Evita llevar objetos de valor. No nos responsabilizamos por pérdidas</span>
                         </div>
                       </div>
@@ -702,8 +702,8 @@ export default function FAQPage() {
                           <li><strong>Cerrado:</strong> Noviembre - Marzo</li>
                           <li><strong>Días especiales:</strong> Consultar disponibilidad</li>
                         </ul>
-                        <div className="flex items-center gap-2 mt-3 p-3 bg-green-50 rounded-lg">
-                          <Sun className="w-5 h-5 text-green-600" />
+                        <div className="flex items-center gap-2 mt-3 p-3 bg-primary/5 rounded-lg">
+                          <Sun className="w-5 h-5 text-primary" />
                           <span className="text-sm">La mejor época es mayo-junio y septiembre (menos masificado, buen tiempo)</span>
                         </div>
                       </div>
@@ -763,7 +763,7 @@ export default function FAQPage() {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-gray-600 mb-6">
+              <p className="text-muted-foreground mb-6">
                 Si no has encontrado la respuesta que buscabas, estamos aquí para ayudarte. 
                 Nuestro equipo responde rápidamente y estará encantado de resolver cualquier duda.
               </p>
@@ -795,21 +795,21 @@ export default function FAQPage() {
               <CardContent className="p-6">
                 <MapPin className="w-8 h-8 text-primary mx-auto mb-3" />
                 <h3 className="font-semibold text-lg mb-2">Puerto de Blanes</h3>
-                <p className="text-gray-600 text-sm">Salida desde Puerto de Blanes, Costa Brava. Fácil acceso y parking disponible.</p>
+                <p className="text-muted-foreground text-sm">Salida desde Puerto de Blanes, Costa Brava. Fácil acceso y parking disponible.</p>
               </CardContent>
             </Card>
             <Card className="text-center hover-elevate">
               <CardContent className="p-6">
                 <Calendar className="w-8 h-8 text-primary mx-auto mb-3" />
                 <h3 className="font-semibold text-lg mb-2">Temporada</h3>
-                <p className="text-gray-600 text-sm">Abril - Octubre. Reservas flexibles con duración de 1-8 horas.</p>
+                <p className="text-muted-foreground text-sm">Abril - Octubre. Reservas flexibles con duración de 1-8 horas.</p>
               </CardContent>
             </Card>
             <Card className="text-center hover-elevate">
               <CardContent className="p-6">
                 <Ship className="w-8 h-8 text-primary mx-auto mb-3" />
                 <h3 className="font-semibold text-lg mb-2">7 Embarcaciones</h3>
-                <p className="text-gray-600 text-sm">Flota para desde 4-7 personas. Con y sin licencia náutica.</p>
+                <p className="text-muted-foreground text-sm">Flota para desde 4-7 personas. Con y sin licencia náutica.</p>
               </CardContent>
             </Card>
           </div>

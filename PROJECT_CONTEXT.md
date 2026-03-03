@@ -1,7 +1,7 @@
 # Costa Brava Rent a Boat - Contexto del Proyecto
 
-> **Última actualización**: Febrero 2026
-> **Versión**: 1.0.0
+> **Última actualización**: Marzo 2026
+> **Versión**: 1.1.0
 > **Dominio**: https://costabravarentaboat.app
 
 ---
@@ -41,7 +41,8 @@ React 18.3 + TypeScript 5.6 + Vite 5.4
 ├── UI: TailwindCSS 3.4 + Radix UI + shadcn/ui
 ├── Formularios: React Hook Form 7.55 + Zod
 ├── Animaciones: Framer Motion 11.13
-└── SEO: React Helmet Async
+├── SEO: React Helmet Async
+└── Accesibilidad: WCAG 2.1 AA (44px touch targets, safe areas iOS)
 ```
 
 ### 2.2 Backend
@@ -416,18 +417,24 @@ npm run db:push
 
 ---
 
-## 13. Limitaciones Conocidas
+## 13. Mejoras Recientes (Marzo 2026)
 
-- ⚠️ Sin tests automatizados
-- ⚠️ Sin ESLint/Prettier configurado
-- ⚠️ Archivos grandes: CRMDashboard.tsx (114KB), routes.ts (70KB)
-- ⚠️ PIN admin fijo (configurar en variable de entorno ADMIN_PIN)
-- ⚠️ Booking desde WhatsApp no crea reserva real
-- ⚠️ Offer Schema SEO: rangos discontinuos se fusionan
+- Mobile-First WCAG 2.1 AA: 44px touch targets en todos los botones/inputs, safe areas iOS, viewport-fit=cover, contraste mejorado
+- Color Harmonization: eliminación de todos los colores hardcoded (blue-*, green-*, purple-*, yellow-*, amber-*, indigo-*, slate-*), reemplazo con design system navy+coral
+- Corrección NAP: email unificado a costabravarentaboat@gmail.com en todos los archivos
+
+## 14. Limitaciones Conocidas
+
+- Sin tests automatizados
+- Sin ESLint/Prettier configurado
+- Archivos grandes: CRMDashboard.tsx (114KB), routes.ts (70KB)
+- PIN admin fijo (configurar en variable de entorno ADMIN_PIN)
+- Booking desde WhatsApp no crea reserva real
+- Offer Schema SEO: rangos discontinuos se fusionan
 
 ---
 
-## 14. Archivos Clave para Modificaciones
+## 15. Archivos Clave para Modificaciones
 
 | Área | Archivo |
 |------|---------|
@@ -443,11 +450,12 @@ npm run db:push
 
 ---
 
-## 15. Contacto y Recursos
+## 16. Contacto y Recursos
 
 - **Dominio**: https://costabravarentaboat.app
 - **Repositorio**: costa-brava-rent-a-boat
 - **Documentación adicional**:
   - `replit.md` - Arquitectura sistema
-  - `design_guidelines.md` - Guías diseño
+  - `design_guidelines.md` - Guías diseño (colores, tipografía, WCAG, tokens CSS)
   - `AUDITORIA_SEO_COSTA_BRAVA_2025.md` - SEO detallado
+  - `docs/plans/` - Planes de implementación (mobile-first, color harmonization)

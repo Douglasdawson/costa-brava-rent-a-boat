@@ -32,7 +32,7 @@ CREATE INDEX IF NOT EXISTS tenants_status_idx ON tenants(status);
 
 -- Ensure a default tenant exists for migrated legacy data.
 INSERT INTO tenants (name, slug, email, plan, status)
-SELECT 'Costa Brava Rent a Boat', 'costa-brava-rent-a-boat', 'costabravarentboat@gmail.com', 'enterprise', 'active'
+SELECT 'Costa Brava Rent a Boat', 'costa-brava-rent-a-boat', 'costabravarentaboat@gmail.com', 'enterprise', 'active'
 WHERE NOT EXISTS (
   SELECT 1 FROM tenants WHERE slug = 'costa-brava-rent-a-boat'
 );

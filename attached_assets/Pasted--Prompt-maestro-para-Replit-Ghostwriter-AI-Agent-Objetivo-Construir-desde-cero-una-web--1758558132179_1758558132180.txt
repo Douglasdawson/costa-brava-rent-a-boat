@@ -41,7 +41,7 @@ Actúa como *senior full‑stack engineer* y *product designer*. Entrega código
 
   * **Sin licencia (5 pax)**: Astec 400, Remus 450, Solar 450, Astec 480
   * **Con licencia**: Trimarchi 57S (7 pax), Mingolla Brava 19 (6 pax), Pacificadnos Craft 625 (7 pax)
-* Contacto: **Tel/WhatsApp +34611500372** · **Email [costabravarentboat@gmail.com](mailto:costabravarentboat@gmail.com)**.
+* Contacto: **Tel/WhatsApp +34611500372** · **Email [costabravarentaboat@gmail.com](mailto:costabravarentaboat@gmail.com)**.
 * Idiomas: **ES (por defecto)**, **CA**, **FR**, **DE**, **NL**, **IT**, **RU**. Zona horaria: **Europe/Madrid**. Moneda: **EUR**.
 
 ---
@@ -163,7 +163,7 @@ Define Prisma schema aproximado con migraciones iniciales y seeds.
 
 ## 🔔 Notificaciones
 
-* Email al cliente (confirmación con ics adjunto) y a `costabravarentboat@gmail.com`.
+* Email al cliente (confirmación con ics adjunto) y a `costabravarentaboat@gmail.com`.
 * Enlace directo **WhatsApp** pre-relleno con datos de la reserva para comunicación rápida (sin API, por ahora).
 
 ---

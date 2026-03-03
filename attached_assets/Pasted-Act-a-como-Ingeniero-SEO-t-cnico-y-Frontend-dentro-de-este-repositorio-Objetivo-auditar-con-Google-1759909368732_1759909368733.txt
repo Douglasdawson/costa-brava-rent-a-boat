@@ -16,7 +16,7 @@ Aplicación de mejoras (realiza los cambios directamente en el código, sin romp
 • Etiquetas canonical y, cuando proceda, hreflang para español (es-ES) y catalán (ca-ES); define la canónica por idioma y evita duplicidades.
 • Metadatos sociales (Open Graph y Twitter) con imágenes representativas del alquiler de barcos en la Costa Brava.
 • robots.txt y sitemap.xml accesibles públicamente.
-• Datos estructurados JSON-LD adecuados: LocalBusiness para “Costa Brava Rent a Boat Blanes” (URL, teléfono +34 683 172 154, correo costabravarentboat@gmail.com, dirección en Blanes, horario y temporada principal abril–octubre, perfiles sociales). Si procede, añade marcado adicional de Product/Service para la embarcación ASTEC 450 (sin licencia, hasta 5 personas, gasolina incluida, solárium, toldo, escalera; extras: snorkel, paddle surf, nevera, seascooter).
+• Datos estructurados JSON-LD adecuados: LocalBusiness para “Costa Brava Rent a Boat Blanes” (URL, teléfono +34 683 172 154, correo costabravarentaboat@gmail.com, dirección en Blanes, horario y temporada principal abril–octubre, perfiles sociales). Si procede, añade marcado adicional de Product/Service para la embarcación ASTEC 450 (sin licencia, hasta 5 personas, gasolina incluida, solárium, toldo, escalera; extras: snorkel, paddle surf, nevera, seascooter).
 • Imágenes con atributos alt descriptivos y dimensiones definidas; carga diferida y decodificación no bloqueante; evita imágenes excesivas en above the fold.
 • Fuentes críticas pre-cargadas cuando beneficie; minimizar CSS/JS bloqueante (defer/async, división de bundles, eliminación de CSS no usado si es seguro).
 • Enlaces rastreables con destino válido; elimina “#” sin propósito; corrige enlaces sin href.

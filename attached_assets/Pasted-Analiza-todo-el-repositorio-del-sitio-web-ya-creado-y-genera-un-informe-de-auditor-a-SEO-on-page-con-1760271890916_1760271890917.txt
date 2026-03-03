@@ -6,7 +6,7 @@ Contexto del negocio (para metadatos y schema)
 Marca: Costa Brava Rent a Boat Blanes
 Ubicación: Blanes (Girona, Costa Brava), España
 Teléfono/WhatsApp: +34 611 500 372
-Email: costabravarentboat@gmail.com
+Email: costabravarentaboat@gmail.com
 Temporada: abril–octubre
 No hay producto destacado (si hay fichas de embarcaciones, tratarlas de forma equilibrada).
 Qué debes entregar (formato del informe)
@@ -52,7 +52,7 @@ Canónica absoluta al dominio final en cada página.
 WebSite + SearchAction apuntando a /buscar?q={search_term_string} (o ruta equivalente).
 BreadcrumbList en todas las internas.
 LocalBusiness con:
-addressLocality:"Blanes", addressRegion:"Girona", areaServed:"Costa Brava", telephone:"+34611500372", email:"costabravarentboat@gmail.com".
+addressLocality:"Blanes", addressRegion:"Girona", areaServed:"Costa Brava", telephone:"+34611500372", email:"costabravarentaboat@gmail.com".
 FAQPage en /faq.
 robots.txt con Allow: / y Sitemap: correcto.
 sitemap.xml con al menos: /, /embarcaciones/, /precios/, /rutas/, /faq/, /contacto/ (añadir fichas si existen).

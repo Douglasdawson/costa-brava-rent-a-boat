@@ -4,7 +4,7 @@ Contexto
 - Dominio principal: costabravarentaboat.com
 - Dominio secundario a consolidar por 301: costabravarentaboat.app
 - Idiomas: es-ES (principal), ca-ES, en-GB
-- Negocio local en Blanes (Girona). Tel: +34 611 500 372. Email: costabravarentboat@gmail.com
+- Negocio local en Blanes (Girona). Tel: +34 611 500 372. Email: costabravarentaboat@gmail.com
 - Oferta clave: alquiler de barcos sin licencia, gasolina incluida, hasta 5 personas, salidas desde Puerto de Blanes. Embarcación destacada: ASTEC 450
 
 Objetivo
@@ -92,7 +92,7 @@ Plan de trabajo — ejecutar en orden
     "name": "Costa Brava Rent a Boat Blanes",
     "url": "https://costabravarentaboat.com/",
     "telephone": "+34 611 500 372",
-    "email": "costabravarentboat@gmail.com",
+    "email": "costabravarentaboat@gmail.com",
     "areaServed": ["Blanes","Lloret de Mar"],
     "address": {
       "@type": "PostalAddress",

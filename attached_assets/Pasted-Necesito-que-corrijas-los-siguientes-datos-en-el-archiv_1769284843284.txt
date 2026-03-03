@@ -4,13 +4,13 @@ CAMBIOS A REALIZAR:
 
 1. CORRECCIÓN DE EMAIL EN JSON-LD SCHEMA
 En la línea 117 aproximadamente, dentro del JSON-LD Schema, cambia:
-"email": "costabravarentboat@gmail.com"
+"email": "costabravarentaboat@gmail.com"
 POR:
 "email": "costabravarentaboat@gmail.com"
 
 2. CORRECCIÓN DE EMAIL EN NOSCRIPT
 En la sección <noscript>, cambia:
-<a href="mailto:costabravarentboat@gmail.com">costabravarentboat@gmail.com</a>
+<a href="mailto:costabravarentaboat@gmail.com">costabravarentaboat@gmail.com</a>
 POR:
 <a href="mailto:costabravarentaboat@gmail.com">costabravarentaboat@gmail.com</a>
 

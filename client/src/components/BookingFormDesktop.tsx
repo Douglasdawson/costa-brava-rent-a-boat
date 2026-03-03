@@ -71,7 +71,7 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
     pack.extras.every(name => boatExtraNames.has(name))
   );
 
-  const inputBase = "w-full p-2.5 border-2 rounded-lg bg-white text-gray-900 text-sm font-medium focus:ring-2 focus:ring-primary focus:outline-none";
+  const inputBase = "w-full p-3 border-2 rounded-lg bg-white text-gray-900 text-sm font-medium focus:ring-2 focus:ring-primary focus:outline-none min-h-[44px]";
   const inputError = "border-red-400";
   const inputNormal = "border-gray-200";
 
@@ -116,7 +116,7 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
 
           {/* Boats list */}
           <div className="flex-1 overflow-y-auto px-4 pb-4 space-y-1.5">
-            <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2 sticky top-0 bg-white pt-1 pb-1">
+            <p className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-2 sticky top-0 bg-white pt-1.5 pb-1.5">
               {t.wizard.selectABoat}
             </p>
             {isBoatsLoading && (

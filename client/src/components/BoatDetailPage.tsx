@@ -69,7 +69,12 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
   const touchStartX = useRef<number | null>(null);
   const { language } = useLanguage();
   const t = useTranslations();
-  
+  const seasonPeriods: Record<string, string> = {
+    BAJA: t.boatDetail.periodLow,
+    MEDIA: t.boatDetail.periodMid,
+    ALTA: t.boatDetail.periodHigh,
+  };
+
   // Reset image index when boat changes
   useEffect(() => {
     setCurrentImageIndex(0);
@@ -476,7 +481,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                 {/* Selected Season Details */}
                 <div className="bg-gray-50 rounded-lg p-4 mb-4 text-center">
                   <h4 className="font-medium mb-2">{{ BAJA: t.boatDetail.seasonLow, MEDIA: t.boatDetail.seasonMid, ALTA: t.boatDetail.seasonHigh }[selectedSeason]}</h4>
-                  <p className="text-sm text-gray-600 mb-4">{boatData.pricing[selectedSeason].period}</p>
+                  <p className="text-sm text-gray-600 mb-4">{seasonPeriods[selectedSeason]}</p>
                   
                   <div className="flex flex-wrap justify-center gap-4">
                     {Object.entries(boatData.pricing[selectedSeason].prices).map(([duration, price]) => (

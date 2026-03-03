@@ -527,6 +527,9 @@ export interface Translations {
     seasonLow: string;
     seasonMid: string;
     seasonHigh: string;
+    periodLow: string;
+    periodMid: string;
+    periodHigh: string;
     priceIncludes: string;
     mainFeatures: string;
     noFeatures: string;
@@ -1164,6 +1167,9 @@ export const translations: Record<Language, Translations> = {
       seasonLow: 'Temporada BAJA',
       seasonMid: 'Temporada MEDIA',
       seasonHigh: 'Temporada ALTA',
+      periodLow: 'Abril-Junio, Septiembre-Octubre',
+      periodMid: 'Julio',
+      periodHigh: 'Agosto',
       priceIncludes: 'El precio incluye:',
       mainFeatures: 'Caracteristicas Principales',
       noFeatures: 'No hay caracteristicas disponibles',
@@ -1781,6 +1787,9 @@ export const translations: Record<Language, Translations> = {
       seasonLow: 'Temporada BAIXA',
       seasonMid: 'Temporada MITJA',
       seasonHigh: 'Temporada ALTA',
+      periodLow: 'Abril-Juny, Setembre-Octubre',
+      periodMid: 'Juliol',
+      periodHigh: 'Agost',
       priceIncludes: 'El preu inclou:',
       mainFeatures: 'Caracteristiques Principals',
       noFeatures: 'No hi ha caracteristiques disponibles',
@@ -2398,6 +2407,9 @@ export const translations: Record<Language, Translations> = {
       seasonLow: 'LOW Season',
       seasonMid: 'MID Season',
       seasonHigh: 'HIGH Season',
+      periodLow: 'April-June, September-October',
+      periodMid: 'July',
+      periodHigh: 'August',
       priceIncludes: 'Price includes:',
       mainFeatures: 'Main Features',
       noFeatures: 'No features available',
@@ -3015,6 +3027,9 @@ export const translations: Record<Language, Translations> = {
       seasonLow: 'Saison BASSE',
       seasonMid: 'Saison MOYENNE',
       seasonHigh: 'Saison HAUTE',
+      periodLow: 'Avril-Juin, Septembre-Octobre',
+      periodMid: 'Juillet',
+      periodHigh: 'Août',
       priceIncludes: 'Le prix comprend :',
       mainFeatures: 'Caracteristiques Principales',
       noFeatures: 'Aucune caracteristique disponible',
@@ -3632,6 +3647,9 @@ export const translations: Record<Language, Translations> = {
       seasonLow: 'NIEDRIG-Saison',
       seasonMid: 'MITTEL-Saison',
       seasonHigh: 'HOCH-Saison',
+      periodLow: 'April-Juni, September-Oktober',
+      periodMid: 'Juli',
+      periodHigh: 'August',
       priceIncludes: 'Im Preis enthalten:',
       mainFeatures: 'Hauptmerkmale',
       noFeatures: 'Keine Merkmale verfugbar',
@@ -4249,6 +4267,9 @@ export const translations: Record<Language, Translations> = {
       seasonLow: 'LAAG Seizoen',
       seasonMid: 'MID Seizoen',
       seasonHigh: 'HOOG Seizoen',
+      periodLow: 'April-Juni, September-Oktober',
+      periodMid: 'Juli',
+      periodHigh: 'Augustus',
       priceIncludes: 'Prijs is inclusief:',
       mainFeatures: 'Belangrijkste Kenmerken',
       noFeatures: 'Geen kenmerken beschikbaar',
@@ -4866,6 +4887,9 @@ export const translations: Record<Language, Translations> = {
       seasonLow: 'Stagione BASSA',
       seasonMid: 'Stagione MEDIA',
       seasonHigh: 'Stagione ALTA',
+      periodLow: 'Aprile-Giugno, Settembre-Ottobre',
+      periodMid: 'Luglio',
+      periodHigh: 'Agosto',
       priceIncludes: 'Il prezzo include:',
       mainFeatures: 'Caratteristiche Principali',
       noFeatures: 'Nessuna caratteristica disponibile',
@@ -5483,6 +5507,9 @@ export const translations: Record<Language, Translations> = {
       seasonLow: 'НИЗКИЙ сезон',
       seasonMid: 'СРЕДНИЙ сезон',
       seasonHigh: 'ВЫСОКИЙ сезон',
+      periodLow: 'Апрель-Июнь, Сентябрь-Октябрь',
+      periodMid: 'Июль',
+      periodHigh: 'Август',
       priceIncludes: 'В стоимость входит:',
       mainFeatures: 'Основные характеристики',
       noFeatures: 'Характеристики недоступны',

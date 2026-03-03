@@ -40,7 +40,7 @@ import {
 } from "@shared/schema";
 import { randomUUID } from "crypto";
 import { db } from "./db";
-import { eq, and, gte, lte, between, inArray, sql, or, isNull, desc, asc, ilike } from "drizzle-orm";
+import { eq, and, gte, lte, lt, between, inArray, sql, or, isNull, desc, asc, ilike } from "drizzle-orm";
 import memoize from "memoizee";
 
 // modify the interface with any CRUD methods
@@ -256,6 +256,7 @@ export interface IStorage {
   // Email/scheduler methods
   getUpcomingBookingsForReminder(hoursAhead: number): Promise<Booking[]>;
   getCompletedBookingsForThankYou(hoursAfter: number): Promise<Booking[]>;
+  autoCompleteBookings(): Promise<number>;
   isRepeatCustomer(email: string): Promise<boolean>;
   updateBookingEmailStatus(id: string, reminderSent?: boolean, thankYouSent?: boolean): Promise<Booking | undefined>;
 
@@ -322,6 +323,7 @@ export interface IStorage {
   createNewsletterSubscriber(email: string, language: string, source: string): Promise<NewsletterSubscriber>;
 
   updateBookingWhatsAppThankYouStatus(id: string, sent: boolean): Promise<void>;
+  decrementExtrasStock(bookingId: string): Promise<void>;
 }
 
 // rewrite MemStorage to DatabaseStorage
@@ -1023,6 +1025,19 @@ export class DatabaseStorage implements IStorage {
     // In development mode, be more permissive to allow testing
     const isDevelopment = process.env.NODE_ENV === "development";
 
+    // Check that the boat is active before anything else
+    const [boat] = await db
+      .select({ isActive: boats.isActive })
+      .from(boats)
+      .where(eq(boats.id, boatId));
+
+    if (!boat || !boat.isActive) {
+      if (isDevelopment) {
+        console.log(`Availability check for boat ${boatId}: boat is inactive or not found`);
+      }
+      return false;
+    }
+
     // Reduce buffer in development for easier testing
     const bufferMinutes = isDevelopment ? 5 : 20;
     const bufferStart = new Date(startTime.getTime() - bufferMinutes * 60 * 1000);
@@ -1058,7 +1073,47 @@ export class DatabaseStorage implements IStorage {
       }
     }
 
-    return conflictingBookings.length === 0;
+    if (conflictingBookings.length > 0) {
+      return false;
+    }
+
+    // Check for active maintenance logs that overlap with the requested period.
+    // A log with nextDueDate set blocks the range [date, nextDueDate].
+    // A log with nextDueDate null blocks only the single day stored in `date`.
+    const maintenanceConflicts = await db
+      .select()
+      .from(maintenanceLogs)
+      .where(
+        and(
+          eq(maintenanceLogs.boatId, boatId),
+          inArray(maintenanceLogs.status, ["scheduled", "in_progress"]),
+          or(
+            // Range maintenance: date <= endTime AND nextDueDate >= startTime
+            and(
+              lte(maintenanceLogs.date, endTime),
+              gte(maintenanceLogs.nextDueDate, startTime)
+            ),
+            // Single-day maintenance (no nextDueDate): date falls within the booking window
+            and(
+              isNull(maintenanceLogs.nextDueDate),
+              gte(maintenanceLogs.date, startTime),
+              lte(maintenanceLogs.date, endTime)
+            )
+          )
+        )
+      );
+
+    if (isDevelopment) {
+      console.log(`- Conflicting maintenance logs found: ${maintenanceConflicts.length}`);
+      if (maintenanceConflicts.length > 0) {
+        maintenanceConflicts.forEach((log, i) => {
+          const nextDue = log.nextDueDate ? log.nextDueDate.toISOString() : "null";
+          console.log(`  ${i+1}. ${log.date.toISOString()} to ${nextDue} (${log.status})`);
+        });
+      }
+    }
+
+    return maintenanceConflicts.length === 0;
   }
 
   // Clean up expired holds that block availability
@@ -1681,6 +1736,25 @@ export class DatabaseStorage implements IStorage {
           lte(bookings.endTime, windowEnd)
         )
       );
+  }
+
+  /**
+   * Transition all confirmed bookings whose end time has already passed to "completed".
+   * Returns the number of bookings updated.
+   */
+  async autoCompleteBookings(): Promise<number> {
+    const now = new Date();
+    const result = await db
+      .update(bookings)
+      .set({ bookingStatus: "completed" })
+      .where(
+        and(
+          eq(bookings.bookingStatus, "confirmed"),
+          lt(bookings.endTime, now)
+        )
+      )
+      .returning({ id: bookings.id });
+    return result.length;
   }
 
   /**
@@ -2435,6 +2509,47 @@ export class DatabaseStorage implements IStorage {
       .select()
       .from(inventoryItems)
       .where(inArray(inventoryItems.status, ["low_stock", "out_of_stock"]));
+  }
+
+  async decrementExtrasStock(bookingId: string): Promise<void> {
+    const extras = await db
+      .select()
+      .from(bookingExtras)
+      .where(eq(bookingExtras.bookingId, bookingId));
+
+    for (const extra of extras) {
+      // Find matching inventory item by name
+      const [item] = await db
+        .select()
+        .from(inventoryItems)
+        .where(eq(inventoryItems.name, extra.extraName))
+        .limit(1);
+
+      if (!item) continue; // Extra not tracked in inventory
+
+      const qty = extra.quantity || 1;
+
+      // Decrement available stock, preventing it from going below zero
+      await db
+        .update(inventoryItems)
+        .set({
+          availableStock: sql`GREATEST(${inventoryItems.availableStock} - ${qty}, 0)`,
+          status: sql`CASE
+            WHEN ${inventoryItems.availableStock} - ${qty} <= 0 THEN 'out_of_stock'
+            WHEN ${inventoryItems.availableStock} - ${qty} <= ${inventoryItems.minStockAlert} THEN 'low_stock'
+            ELSE 'available'
+          END`,
+        })
+        .where(eq(inventoryItems.id, item.id));
+
+      // Record the outbound movement for audit trail
+      await db.insert(inventoryMovements).values({
+        itemId: item.id,
+        type: "OUT",
+        quantity: qty,
+        reason: `booking:${bookingId}`,
+      });
+    }
   }
 
   private calculateInventoryStatus(available: number, minAlert: number): string {

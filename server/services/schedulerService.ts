@@ -278,5 +278,19 @@ export function startScheduler(): void {
     }
   });
 
-  console.log("[Scheduler] Scheduled services started: reminders (:00), thank-you (:30), hold cleanup (every 5min)");
+  // Auto-complete confirmed bookings whose end time has passed (every hour at :45)
+  // Runs after the thank-you job (:30) so thank-you emails are sent before status changes
+  cron.schedule("45 * * * *", async () => {
+    try {
+      const count = await storage.autoCompleteBookings();
+      if (count > 0) {
+        console.log(`[Scheduler] Auto-completed ${count} bookings`);
+      }
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : "Unknown error";
+      console.error("[Scheduler] Auto-complete error:", message);
+    }
+  });
+
+  console.log("[Scheduler] Scheduled services started: reminders (:00), thank-you (:30), hold cleanup (every 5min), auto-complete (:45)");
 }

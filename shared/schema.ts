@@ -1223,3 +1223,16 @@ export type InsertInventoryMovement = z.infer<typeof insertInventoryMovementSche
 
 // Re-export chat models for AI integrations
 export { conversations, messages } from "@shared/models/chat";
+
+// Newsletter subscribers
+export const newsletterSubscribers = pgTable("newsletter_subscribers", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  email: text("email").notNull().unique(),
+  language: text("language").default("es"),
+  source: text("source").default("footer"), // 'footer' | 'popup'
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().default(sql`now()`),
+  isActive: boolean("is_active").notNull().default(true),
+});
+
+export type NewsletterSubscriber = typeof newsletterSubscribers.$inferSelect;
+export type InsertNewsletterSubscriber = typeof newsletterSubscribers.$inferInsert;

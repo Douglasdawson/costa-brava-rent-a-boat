@@ -33,6 +33,8 @@ import {
   inventoryMovements,
   type InventoryMovement, type InsertInventoryMovement,
   aiChatSessions, aiChatMessages, knowledgeBase, pageVisits,
+  newsletterSubscribers,
+  type NewsletterSubscriber,
 } from "@shared/schema";
 import { randomUUID } from "crypto";
 import { db } from "./db";
@@ -306,6 +308,9 @@ export interface IStorage {
   createInventoryMovement(data: InsertInventoryMovement): Promise<InventoryMovement>;
   getInventoryMovements(itemId: string): Promise<InventoryMovement[]>;
   getLowStockItems(): Promise<InventoryItem[]>;
+
+  // Newsletter subscriber methods
+  createNewsletterSubscriber(email: string, language: string, source: string): Promise<NewsletterSubscriber>;
 }
 
 // rewrite MemStorage to DatabaseStorage
@@ -2418,6 +2423,14 @@ export class DatabaseStorage implements IStorage {
     if (available <= 0) return "out_of_stock";
     if (available <= minAlert) return "low_stock";
     return "available";
+  }
+
+  async createNewsletterSubscriber(email: string, language: string, source: string): Promise<NewsletterSubscriber> {
+    const [subscriber] = await db
+      .insert(newsletterSubscribers)
+      .values({ email: email.toLowerCase().trim(), language, source })
+      .returning();
+    return subscriber;
   }
 }
 

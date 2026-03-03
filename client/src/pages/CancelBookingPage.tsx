@@ -35,7 +35,7 @@ export default function CancelBookingPage() {
 
   useEffect(() => {
     if (!token) {
-      setError("Token de cancelacion no encontrado.");
+      setError("Token de cancelación no encontrado.");
       setLoading(false);
       return;
     }
@@ -108,14 +108,14 @@ export default function CancelBookingPage() {
           <h1 className="text-2xl font-bold text-gray-900 mb-2">Reserva cancelada</h1>
           {cancelResult.refundAmount > 0 ? (
             <p className="text-gray-600">
-              Se procesara un reembolso de <strong>{cancelResult.refundAmount.toFixed(2)}EUR</strong> ({cancelResult.refundPercentage}%) en los proximos dias habiles.
+              Se procesará un reembolso de <strong>{cancelResult.refundAmount.toFixed(2)} EUR</strong> ({cancelResult.refundPercentage}%) en los próximos días hábiles.
             </p>
           ) : (
             <p className="text-gray-600">
-              La cancelacion se ha procesado. Segun nuestra politica, la cancelacion con menos de 24h de antelacion no genera reembolso.
+              La cancelación se ha procesado. Según nuestra política, la cancelación con menos de 24h de antelación no genera reembolso.
             </p>
           )}
-          <p className="text-sm text-gray-400 mt-4">Recibiras un email de confirmacion.</p>
+          <p className="text-sm text-gray-400 mt-4">Recibirás un email de confirmación.</p>
           <a href="/" className="mt-6 inline-block text-primary underline">Volver al inicio</a>
         </div>
       </div>
@@ -136,7 +136,7 @@ export default function CancelBookingPage() {
           <p><span className="text-gray-500">Barco:</span> <strong>{booking.boatName}</strong></p>
           <p><span className="text-gray-500">Fecha:</span> <strong>{formatDate(booking.startTime)}</strong></p>
           <p><span className="text-gray-500">Cliente:</span> <strong>{booking.customerName} {booking.customerSurname}</strong></p>
-          <p><span className="text-gray-500">Total pagado:</span> <strong>{booking.totalAmount}EUR</strong></p>
+          <p><span className="text-gray-500">Total pagado:</span> <strong>{parseFloat(booking.totalAmount).toFixed(2)} EUR</strong></p>
         </div>
 
         {/* Refund policy */}
@@ -147,15 +147,15 @@ export default function CancelBookingPage() {
             ? 'bg-yellow-50 border-yellow-200'
             : 'bg-red-50 border-red-200'
         }`}>
-          <p className="font-semibold mb-1">Politica de cancelacion</p>
+          <p className="font-semibold mb-1">Política de cancelación</p>
           {refundPolicy.refundPercentage === 100 && (
-            <p className="text-green-800">Cancelacion con mas de 48h de antelacion: <strong>reembolso completo ({refundPolicy.refundAmount.toFixed(2)}EUR)</strong>.</p>
+            <p className="text-green-800">Cancelación con más de 48h de antelación: <strong>reembolso completo ({refundPolicy.refundAmount.toFixed(2)} EUR)</strong>.</p>
           )}
           {refundPolicy.refundPercentage === 50 && (
-            <p className="text-yellow-800">Cancelacion entre 24-48h: <strong>reembolso del 50% ({refundPolicy.refundAmount.toFixed(2)}EUR)</strong>.</p>
+            <p className="text-yellow-800">Cancelación entre 24-48h: <strong>reembolso del 50% ({refundPolicy.refundAmount.toFixed(2)} EUR)</strong>.</p>
           )}
           {refundPolicy.refundPercentage === 0 && (
-            <p className="text-red-800">Cancelacion con menos de 24h de antelacion: <strong>sin reembolso</strong>.</p>
+            <p className="text-red-800">Cancelación con menos de 24h de antelación: <strong>sin reembolso</strong>.</p>
           )}
         </div>
 
@@ -168,7 +168,7 @@ export default function CancelBookingPage() {
             className="w-full py-3 bg-red-600 hover:bg-red-700 text-white font-semibold"
           >
             {cancelling ? <Loader2 className="w-4 h-4 animate-spin mr-2" /> : null}
-            Confirmar cancelacion
+            Confirmar cancelación
           </Button>
           <a
             href="/"

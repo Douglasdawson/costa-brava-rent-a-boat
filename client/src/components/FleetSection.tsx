@@ -101,10 +101,10 @@ export default function FleetSection() {
         </div>
 
         <div className="text-center px-2 sm:px-4">
-          <p className="text-xs sm:text-sm lg:text-base text-gray-600 mb-3 sm:mb-4 lg:mb-6">{t.fleet.helpText}</p>
+          <p className="text-sm lg:text-base text-gray-600 mb-3 sm:mb-4 lg:mb-6">{t.fleet.helpText}</p>
           <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 lg:gap-4 justify-center max-w-sm sm:max-w-lg mx-auto">
             <button
-              className="border border-border text-foreground hover:border-foreground/30 px-6 py-3 rounded-full font-medium flex items-center justify-center transition-colors text-xs sm:text-sm lg:text-base"
+              className="border border-border text-foreground hover:border-foreground/30 px-5 py-3 rounded-full font-medium flex items-center justify-center transition-colors text-sm lg:text-base min-h-11"
               onClick={() => openWhatsApp("Hola! Necesito ayuda para elegir el mejor barco para alquilar en Blanes. ¿Podrían asesorarme sobre precios y disponibilidad?")}
               data-testid="button-whatsapp-help"
               aria-label="Consultar por WhatsApp para elegir barco"
@@ -113,7 +113,7 @@ export default function FleetSection() {
               <span className="ml-1 sm:ml-2">{t.contact.whatsapp}</span>
             </button>
             <button
-              className="border border-border text-foreground hover:border-foreground/30 px-6 py-3 rounded-full font-medium flex items-center justify-center transition-colors text-xs sm:text-sm lg:text-base"
+              className="border border-border text-foreground hover:border-foreground/30 px-5 py-3 rounded-full font-medium flex items-center justify-center transition-colors text-sm lg:text-base min-h-11"
               data-testid="button-call-help"
               aria-label="Llamar para ayuda en la elección de barco"
               onClick={() => window.open("tel:+34611500372", "_self")}

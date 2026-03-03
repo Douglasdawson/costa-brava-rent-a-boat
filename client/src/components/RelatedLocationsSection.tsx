@@ -39,8 +39,8 @@ export default function RelatedLocationsSection({ currentLocation }: RelatedLoca
       duration: "Base principal",
       highlights: ["Puerto seguro", "Parking gratuito", "Restaurantes"],
       icon: MapPin,
-      color: "text-blue-600",
-      bgColor: "bg-blue-50"
+      color: "text-primary",
+      bgColor: "bg-primary/5"
     },
     {
       id: "lloret",
@@ -50,8 +50,8 @@ export default function RelatedLocationsSection({ currentLocation }: RelatedLoca
       duration: "25 min desde Blanes",
       highlights: ["Playas famosas", "Calas vírgenes", "Vida nocturna"],
       icon: Camera,
-      color: "text-green-600", 
-      bgColor: "bg-green-50"
+      color: "text-primary",
+      bgColor: "bg-primary/5"
     },
     {
       id: "tossa",
@@ -61,8 +61,8 @@ export default function RelatedLocationsSection({ currentLocation }: RelatedLoca
       duration: "1h desde Blanes",
       highlights: ["Vila Vella", "Historia medieval", "Aguas cristalinas"],
       icon: Compass,
-      color: "text-purple-600",
-      bgColor: "bg-purple-50"
+      color: "text-primary",
+      bgColor: "bg-primary/5"
     }
   ];
 
@@ -74,18 +74,18 @@ export default function RelatedLocationsSection({ currentLocation }: RelatedLoca
       description: "Embarcaciones hasta 15 CV perfectas para principiantes y familias.",
       features: ["Hasta 15 CV", "4-7 personas", "Fácil manejo"],
       icon: Waves,
-      color: "text-emerald-600",
-      bgColor: "bg-emerald-50"
+      color: "text-primary",
+      bgColor: "bg-primary/5"
     },
     {
       id: "licensed",
-      name: "Barcos Con Licencia", 
+      name: "Barcos Con Licencia",
       url: "/barcos-con-licencia",
       description: "Embarcaciones potentes para navegación avanzada con titulación.",
       features: ["40-115 CV", "Mayor velocidad", "Sin límite distancia"],
       icon: Star,
-      color: "text-blue-600",
-      bgColor: "bg-blue-50"
+      color: "text-primary",
+      bgColor: "bg-primary/5"
     }
   ];
 
@@ -101,17 +101,17 @@ export default function RelatedLocationsSection({ currentLocation }: RelatedLoca
 
 
   return (
-    <section className="py-12 bg-gray-50">
+    <section className="py-12 bg-muted">
       <div className="container mx-auto px-4">
         
         {/* Related Locations */}
         {relatedLocations.length > 0 && (
           <div className="mb-12">
             <div className="text-center mb-8">
-              <h2 className="font-heading text-2xl lg:text-3xl font-bold text-gray-900 mb-4">
+              <h2 className="font-heading text-2xl lg:text-3xl font-bold text-foreground mb-4">
                 Otros Destinos Costa Brava
               </h2>
-              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
                 Descubre más ubicaciones espectaculares de la Costa Brava
               </p>
             </div>
@@ -135,12 +135,12 @@ export default function RelatedLocationsSection({ currentLocation }: RelatedLoca
                             {location.duration}
                           </Badge>
                         </div>
-                        <p className="text-gray-600 mb-3 text-sm leading-relaxed">
+                        <p className="text-muted-foreground mb-3 text-sm leading-relaxed">
                           {location.description}
                         </p>
                         <div className="flex flex-wrap gap-1 justify-center mb-3">
                           {location.highlights.map((highlight, idx) => (
-                            <span key={idx} className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded">
+                            <span key={idx} className="text-xs bg-muted text-foreground px-2 py-1 rounded">
                               {highlight}
                             </span>
                           ))}
@@ -166,10 +166,10 @@ export default function RelatedLocationsSection({ currentLocation }: RelatedLoca
         {/* Categories */}
         <div>
           <div className="text-center mb-8">
-            <h2 className="font-heading text-2xl lg:text-3xl font-bold text-gray-900 mb-4">
+            <h2 className="font-heading text-2xl lg:text-3xl font-bold text-foreground mb-4">
               Tipos de Embarcación
             </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               Encuentra el barco perfecto según tu experiencia
             </p>
           </div>
@@ -187,12 +187,12 @@ export default function RelatedLocationsSection({ currentLocation }: RelatedLoca
                       <CardTitle className="text-lg text-center">{category.name}</CardTitle>
                     </CardHeader>
                     <CardContent className="text-center">
-                      <p className="text-gray-600 mb-3 text-sm leading-relaxed">
+                      <p className="text-muted-foreground mb-3 text-sm leading-relaxed">
                         {category.description}
                       </p>
                       <div className="flex flex-wrap gap-1 justify-center mb-3">
                         {category.features.map((feature, idx) => (
-                          <span key={idx} className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded">
+                          <span key={idx} className="text-xs bg-muted text-foreground px-2 py-1 rounded">
                             {feature}
                           </span>
                         ))}

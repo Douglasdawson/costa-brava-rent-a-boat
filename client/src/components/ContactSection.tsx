@@ -15,10 +15,10 @@ export default function ContactSection() {
     <section ref={revealRef} className={`py-8 sm:py-12 lg:py-16 bg-white transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`} id="contact">
       <div className="container mx-auto px-3 sm:px-4">
         <div className="text-center mb-6 sm:mb-8 lg:mb-12">
-          <h2 className="font-heading text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-2 sm:mb-3 lg:mb-4 text-[#143352]">
+          <h2 className="font-heading text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-2 sm:mb-3 lg:mb-4 text-foreground">
             {t.contact.title}
           </h2>
-          <p className="text-sm sm:text-base lg:text-lg text-gray-600 max-w-xl sm:max-w-2xl mx-auto px-2">
+          <p className="text-sm sm:text-base lg:text-lg text-muted-foreground max-w-xl sm:max-w-2xl mx-auto px-2">
             {t.contact.subtitle}
           </p>
         </div>
@@ -34,10 +34,10 @@ export default function ContactSection() {
                   <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-3">
                     <Phone className="w-6 h-6 text-primary" />
                   </div>
-                  <h3 className="font-medium text-gray-900 mb-2 text-sm">{t.contact.phone} & {t.contact.whatsapp}</h3>
+                  <h3 className="font-medium text-foreground mb-2 text-sm">{t.contact.phone} & {t.contact.whatsapp}</h3>
                   <a
                     href="tel:+34611500372"
-                    className="text-gray-600 hover:text-primary transition-colors cursor-pointer block mb-1 text-sm"
+                    className="text-muted-foreground hover:text-primary transition-colors cursor-pointer block mb-1 text-sm"
                     data-testid="phone-link"
                     aria-label="Llamar al teléfono +34 611 500 372"
                   >
@@ -50,16 +50,16 @@ export default function ContactSection() {
                   <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-3">
                     <Mail className="w-6 h-6 text-primary" />
                   </div>
-                  <h3 className="font-medium text-gray-900 mb-2 text-sm">{t.contact.emailLabel}</h3>
+                  <h3 className="font-medium text-foreground mb-2 text-sm">{t.contact.emailLabel}</h3>
                   <a
                     href="mailto:costabravarentaboat@gmail.com"
-                    className="text-gray-600 hover:text-primary transition-colors cursor-pointer block mb-1 text-xs sm:text-sm break-all"
+                    className="text-muted-foreground hover:text-primary transition-colors cursor-pointer block mb-1 text-xs sm:text-sm break-all"
                     data-testid="email-link"
                     aria-label="Enviar email a costabravarentaboat@gmail.com"
                   >
                     costabravarentaboat@gmail.com
                   </a>
-                  <p className="text-xs text-gray-600">{t.contact.emailResponse}</p>
+                  <p className="text-xs text-muted-foreground">{t.contact.emailResponse}</p>
                 </div>
 
                 {/* Location */}
@@ -67,17 +67,17 @@ export default function ContactSection() {
                   <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-3">
                     <MapPin className="w-6 h-6 text-primary" />
                   </div>
-                  <h3 className="font-medium text-gray-900 mb-2 text-sm">{t.contact.locationLabel}</h3>
+                  <h3 className="font-medium text-foreground mb-2 text-sm">{t.contact.locationLabel}</h3>
                   <a
                     href="https://www.google.com/maps/place/Costa+Brava+Rent+a+Boat+-+Blanes+%7C+Alquiler+de+Barcos+Con+y+Sin+Licencia/@41.6722544,2.7952876,17z/data=!3m1!4b1!4m6!3m5!1s0x12bb172c94a8856f:0x9a2dfa936ef2e0a7!8m2!3d41.6722504!4d2.7978625!16s%2Fg%2F11q2xl6s9f?entry=ttu&g_ep=EgoyMDI1MDkxNy4wIKXMDSoASAFQAw%3D%3D"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-gray-600 hover:text-primary transition-colors cursor-pointer"
+                    className="text-muted-foreground hover:text-primary transition-colors cursor-pointer"
                     data-testid="location-link"
                     aria-label="Ver ubicación en Google Maps: Puerto de Blanes"
                   >
                     <span className="block mb-1 text-sm">Puerto de Blanes</span>
-                    <span className="block text-xs text-gray-600 hover:text-primary/80">{t.contact.locationCity}</span>
+                    <span className="block text-xs text-muted-foreground hover:text-primary/80">{t.contact.locationCity}</span>
                   </a>
                 </div>
 
@@ -86,14 +86,14 @@ export default function ContactSection() {
                   <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-3">
                     <Clock className="w-6 h-6 text-primary" />
                   </div>
-                  <h3 className="font-medium text-gray-900 mb-2 text-sm">{t.contact.seasonLabel}</h3>
-                  <p className="text-gray-600 mb-1 text-sm">{t.contact.seasonMonths}</p>
-                  <p className="text-xs text-gray-600">{t.contact.flexibleHours}</p>
+                  <h3 className="font-medium text-foreground mb-2 text-sm">{t.contact.seasonLabel}</h3>
+                  <p className="text-muted-foreground mb-1 text-sm">{t.contact.seasonMonths}</p>
+                  <p className="text-xs text-muted-foreground">{t.contact.flexibleHours}</p>
                 </div>
               </div>
 
               {/* WhatsApp Button */}
-              <div className="pt-6 border-t border-gray-200">
+              <div className="pt-6 border-t border-border">
                 <Button
                   onClick={() => window.open("https://wa.me/34611500372", "_blank")}
                   className="w-full bg-[#25D366] hover:bg-[#128C7E] text-white px-6 py-3 h-12 text-base"
@@ -111,10 +111,10 @@ export default function ContactSection() {
         {/* Navigation Boxes */}
         <div className="mt-12 mb-8">
           <div className="text-center mb-8">
-            <h2 className="font-heading text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 mb-2 sm:mb-4">
+            <h2 className="font-heading text-xl sm:text-2xl lg:text-3xl font-bold text-foreground mb-2 sm:mb-4">
               {t.contact.discoverMore}
             </h2>
-            <p className="text-sm sm:text-base lg:text-lg text-gray-600 max-w-2xl mx-auto">
+            <p className="text-sm sm:text-base lg:text-lg text-muted-foreground max-w-2xl mx-auto">
               {t.contact.discoverMoreSub}
             </p>
           </div>
@@ -124,8 +124,8 @@ export default function ContactSection() {
             <Link href="/alquiler-barcos-blanes" asChild>
               <Card className="hover:shadow-lg transition-shadow cursor-pointer group h-full flex flex-col">
                 <CardHeader>
-                  <div className="w-12 h-12 bg-blue-50 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
-                    <MapPin className="w-6 h-6 text-blue-600" />
+                  <div className="w-12 h-12 bg-primary/5 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
+                    <MapPin className="w-6 h-6 text-primary" />
                   </div>
                   <CardTitle className="text-sm sm:text-base lg:text-lg text-center">{t.contact.navBlanesTitle}</CardTitle>
                 </CardHeader>
@@ -136,13 +136,13 @@ export default function ContactSection() {
                       {t.contact.navBlanesBadge}
                     </Badge>
                   </div>
-                  <p className="text-gray-600 mb-3 text-xs sm:text-sm leading-relaxed">
+                  <p className="text-muted-foreground mb-3 text-xs sm:text-sm leading-relaxed">
                     {t.contact.navBlanesDesc}
                   </p>
                   <div className="flex flex-wrap gap-1 justify-center mb-3">
-                    <span className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded">{t.contact.navBlanesTag1}</span>
-                    <span className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded">{t.contact.navBlanesTag2}</span>
-                    <span className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded">{t.contact.navBlanesTag3}</span>
+                    <span className="text-xs bg-muted text-foreground px-2 py-1 rounded">{t.contact.navBlanesTag1}</span>
+                    <span className="text-xs bg-muted text-foreground px-2 py-1 rounded">{t.contact.navBlanesTag2}</span>
+                    <span className="text-xs bg-muted text-foreground px-2 py-1 rounded">{t.contact.navBlanesTag3}</span>
                   </div>
                   <div className="mt-auto">
                     <Button
@@ -163,8 +163,8 @@ export default function ContactSection() {
             <Link href="/alquiler-barcos-lloret-de-mar" asChild>
               <Card className="hover:shadow-lg transition-shadow cursor-pointer group h-full flex flex-col">
                 <CardHeader>
-                  <div className="w-12 h-12 bg-green-50 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
-                    <Camera className="w-6 h-6 text-green-600" />
+                  <div className="w-12 h-12 bg-primary/5 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
+                    <Camera className="w-6 h-6 text-primary" />
                   </div>
                   <CardTitle className="text-sm sm:text-base lg:text-lg text-center">{t.contact.navLloretTitle}</CardTitle>
                 </CardHeader>
@@ -175,13 +175,13 @@ export default function ContactSection() {
                       {t.contact.navLloretBadge}
                     </Badge>
                   </div>
-                  <p className="text-gray-600 mb-3 text-sm leading-relaxed">
+                  <p className="text-muted-foreground mb-3 text-sm leading-relaxed">
                     {t.contact.navLloretDesc}
                   </p>
                   <div className="flex flex-wrap gap-1 justify-center mb-3">
-                    <span className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded">{t.contact.navLloretTag1}</span>
-                    <span className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded">{t.contact.navLloretTag2}</span>
-                    <span className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded">{t.contact.navLloretTag3}</span>
+                    <span className="text-xs bg-muted text-foreground px-2 py-1 rounded">{t.contact.navLloretTag1}</span>
+                    <span className="text-xs bg-muted text-foreground px-2 py-1 rounded">{t.contact.navLloretTag2}</span>
+                    <span className="text-xs bg-muted text-foreground px-2 py-1 rounded">{t.contact.navLloretTag3}</span>
                   </div>
                   <div className="mt-auto">
                     <Button
@@ -202,8 +202,8 @@ export default function ContactSection() {
             <Link href="/alquiler-barcos-tossa-de-mar" asChild>
               <Card className="hover:shadow-lg transition-shadow cursor-pointer group h-full flex flex-col">
                 <CardHeader>
-                  <div className="w-12 h-12 bg-purple-50 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
-                    <Camera className="w-6 h-6 text-purple-600" />
+                  <div className="w-12 h-12 bg-primary/5 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
+                    <Camera className="w-6 h-6 text-primary" />
                   </div>
                   <CardTitle className="text-sm sm:text-base lg:text-lg text-center">{t.contact.navTossaTitle}</CardTitle>
                 </CardHeader>
@@ -214,13 +214,13 @@ export default function ContactSection() {
                       {t.contact.navTossaBadge}
                     </Badge>
                   </div>
-                  <p className="text-gray-600 mb-3 text-sm leading-relaxed">
+                  <p className="text-muted-foreground mb-3 text-sm leading-relaxed">
                     {t.contact.navTossaDesc}
                   </p>
                   <div className="flex flex-wrap gap-1 justify-center mb-3">
-                    <span className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded">{t.contact.navTossaTag1}</span>
-                    <span className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded">{t.contact.navTossaTag2}</span>
-                    <span className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded">{t.contact.navTossaTag3}</span>
+                    <span className="text-xs bg-muted text-foreground px-2 py-1 rounded">{t.contact.navTossaTag1}</span>
+                    <span className="text-xs bg-muted text-foreground px-2 py-1 rounded">{t.contact.navTossaTag2}</span>
+                    <span className="text-xs bg-muted text-foreground px-2 py-1 rounded">{t.contact.navTossaTag3}</span>
                   </div>
                   <div className="mt-auto">
                     <Button
@@ -241,19 +241,19 @@ export default function ContactSection() {
             <Link href="/barcos-con-licencia" asChild>
               <Card className="hover:shadow-lg transition-shadow cursor-pointer group h-full flex flex-col">
                 <CardHeader>
-                  <div className="w-12 h-12 bg-blue-50 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
-                    <Star className="w-6 h-6 text-blue-600" />
+                  <div className="w-12 h-12 bg-primary/5 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
+                    <Star className="w-6 h-6 text-primary" />
                   </div>
                   <CardTitle className="text-sm sm:text-base lg:text-lg text-center">{t.contact.navLicensedTitle}</CardTitle>
                 </CardHeader>
                 <CardContent className="text-center flex-1 flex flex-col">
-                  <p className="text-gray-600 mb-3 text-sm leading-relaxed">
+                  <p className="text-muted-foreground mb-3 text-sm leading-relaxed">
                     {t.contact.navLicensedDesc}
                   </p>
                   <div className="flex flex-wrap gap-1 justify-center mb-3">
-                    <span className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded">{t.contact.navLicensedTag1}</span>
-                    <span className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded">{t.contact.navLicensedTag2}</span>
-                    <span className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded">{t.contact.navLicensedTag3}</span>
+                    <span className="text-xs bg-muted text-foreground px-2 py-1 rounded">{t.contact.navLicensedTag1}</span>
+                    <span className="text-xs bg-muted text-foreground px-2 py-1 rounded">{t.contact.navLicensedTag2}</span>
+                    <span className="text-xs bg-muted text-foreground px-2 py-1 rounded">{t.contact.navLicensedTag3}</span>
                   </div>
                   <div className="mt-auto">
                     <Button

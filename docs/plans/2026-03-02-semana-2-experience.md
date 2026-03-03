@@ -1070,7 +1070,7 @@ export async function sendCancelationEmail(data: CancelationEmailData): Promise<
     </p>
     ${refundBlock}
     <p style="color:#64748b; font-size:13px; margin-top:24px;">
-      Si tienes dudas, contáctanos en <a href="mailto:costabravarentboat@gmail.com" style="color:#2563eb;">costabravarentboat@gmail.com</a> o al +34 611 500 372.
+      Si tienes dudas, contáctanos en <a href="mailto:costabravarentaboat@gmail.com" style="color:#2563eb;">costabravarentaboat@gmail.com</a> o al +34 611 500 372.
     </p>
     <p style="margin-top:16px;"><a href="${appUrl}" style="color:#2563eb; text-decoration:none;">Volver a costabravarentaboat.app</a></p>
   `);
@@ -1090,7 +1090,7 @@ export async function sendCancelationEmail(data: CancelationEmailData): Promise<
   }
 
   // Owner notification (fire-and-forget)
-  const ownerEmail = process.env.OWNER_EMAIL || 'costabravarentboat@gmail.com';
+  const ownerEmail = process.env.OWNER_EMAIL || 'costabravarentaboat@gmail.com';
   const ownerHtml = emailWrapper(`
     <h2 style="color:#dc2626;">Cancelación de reserva</h2>
     <p>Cliente: <strong>${booking.customerName} ${booking.customerSurname}</strong></p>

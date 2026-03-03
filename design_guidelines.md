@@ -1,78 +1,83 @@
 # Costa Brava Rent a Boat - Design Guidelines
 
 ## Design Approach
-**Reference-Based Approach**: Drawing inspiration from Airbnb and Booking.com for their mastery of vacation rental experiences, combined with marine/coastal aesthetics. The design emphasizes trust, premium quality, and Mediterranean coastal elegance.
+**Editorial Nautico**: Premium, clean aesthetic inspired by Nautal and Click&Boat. The design emphasizes trust, generous whitespace, and a single coral accent color against a neutral navy/white palette. No gradients, no decorative animations, no shadows on cards.
 
 ## Core Design Elements
 
 ### A. Color Palette
 **Primary Colors:**
-- Deep Ocean Blue: 210 85% 25% (primary brand color)
-- Mediterranean Turquoise: 185 75% 45% (secondary)
-- Coastal White: 200 20% 98% (light backgrounds)
+- Navy: #1A2B4A / 215 45% 20% (primary text and foreground)
+- Pure White: #FFFFFF / 0 0% 100% (page background)
+- Subtle Gray: #F5F7FA / 210 20% 97% (card backgrounds)
 
-**Dark Mode:**
-- Deep Navy: 215 50% 12% (backgrounds)
-- Ocean Blue: 210 70% 35% (primary in dark)
-- Soft Turquoise: 185 60% 55% (accents)
+**Accent (single):**
+- Coral CTA: 15 80% 60% (primary actions only - book buttons, CTAs)
+- Coral hover: 15 80% 50%
 
-**Accent Colors (minimal use):**
-- Sunset Coral: 15 80% 65% (CTAs and success states)
-- Golden Sand: 45 60% 75% (premium highlights)
+**Neutral:**
+- Muted text: #6B7C93 / 215 20% 46%
+- Border: #E8ECF1 / 210 14% 91%
+- Success (availability): #34D399
 
 ### B. Typography
-- **Primary**: Inter (Google Fonts) - clean, modern readability
-- **Headings**: Outfit (Google Fonts) - friendly, approachable for hero sections
-- **Scale**: text-sm, text-base, text-lg, text-xl, text-2xl, text-3xl, text-4xl
+- **Headings**: Outfit - used in `font-light` for large titles (5xl-8xl), `font-medium` for section titles (3xl-4xl)
+- **Body**: Inter - clean, readable sans-serif
+- **Key principle**: Large titles use `font-light` + `tracking-tight` for editorial elegance. Never bold for main headings.
 
 ### C. Layout System
-**Tailwind Spacing**: Consistently use 2, 4, 6, 8, 12, 16, 24 units
-- Tight spacing: p-2, m-2, gap-2
-- Standard spacing: p-4, m-4, gap-4, p-6, m-6
-- Generous spacing: p-8, m-8, gap-8, p-12, m-12
+**Spacing between sections**: `py-24 md:py-32` (96-128px) - generous breathing room
+- Internal padding: p-6 for cards, p-8 for feature items
+- Grid gaps: gap-4 sm:gap-6 lg:gap-8
 
-### D. Component Library
+### D. Component Styles
 
-**Navigation**: Fixed header with transparent-to-solid transition on scroll, mobile hamburger menu
+**Buttons**: Pill-shaped (`rounded-full`), no shadows, no elevate effects
+- Primary CTA: coral background, white text, px-8 py-3
+- Secondary: outline with border, rounded-full
+- Ghost: no border, hover:underline
 
-**Hero Section**: Full-viewport height with Mediterranean coastal imagery, centered booking widget overlay with blurred background
+**Cards**: `rounded-2xl`, border only (`border-border`), no shadow (`shadow-none`)
+- Hover: border-color transitions to coral/50
+- Internal padding: p-6
 
-**Boat Cards**: Clean cards with high-quality boat images, key specs, pricing, and availability indicators
+**Badges**: Pill-shaped (`rounded-full`), neutral gray (`bg-foreground/10 text-foreground`), `font-medium`
 
-**Booking Flow**: Multi-step wizard with progress indicator, calendar selection, extras, and payment
+**Navigation**: Fixed header, 3 links (Flota, Destinos, Blog) + coral pill CTA
+- Transparent on hero, white with border-b on scroll
+- No backdrop-blur, no shadow
 
-**CRM Dashboard**: Clean data tables, status badges, action buttons, and modal overlays for detailed views
+**Hero**: Full-viewport, reduced overlay (35-40%), centered content
+- Title: XXL (5xl-8xl), font-light, tracking-tight, white
+- Single coral pill CTA
+- Trust indicators: inline text line, no colored icons
 
-**Forms**: Consistent styling with floating labels, validation states, and Mediterranean color accents
+**Boat Cards**: Large image (55-60%), specs as inline text ("6 personas | 40 CV"), single text-link CTA
+- Availability: small colored dot, not large badge
+- License badge: neutral pill on image
+
+**Footer**: Navy (#1A2B4A) background, 3 columns, monochrome social icons
 
 ## Visual Treatment
 
-### Gradients
-- Hero overlays: Deep blue to transparent (210 85% 25% to transparent)
-- Button gradients: Ocean blue to turquoise (210 75% 35% to 185 70% 45%)
-- Card hover effects: Subtle turquoise glow
+### What We Use
+- Subtle borders for card separation
+- Generous whitespace for visual hierarchy
+- Real photography (no AI-generated images)
+- Linear stroke icons (not filled, not colored circles)
 
-### Background Treatments
-- Light mode: Coastal whites with subtle blue undertones
-- Dark mode: Deep navy with ocean blue accents
-- Section dividers: Gentle wave-inspired curves
-
-## Images
-**Required Images:**
-- **Large Hero Image**: Mediterranean coastal scene with boats at anchor, crystal clear water
-- **Boat Fleet Gallery**: High-quality photos of each boat from multiple angles
-- **Activity Images**: Snorkeling, paddle surfing, coastal exploration scenes
-- **Background Textures**: Subtle water ripples, coastal sand textures for section backgrounds
-
-**Image Placement:**
-- Hero: Full-viewport background with booking widget overlay
-- Boat pages: Large gallery with thumbnail navigation
-- Feature sections: Split layouts with images and text
-- CRM: Small thumbnails for boat identification
+### What We Do NOT Use
+- Gradients (no blue-to-turquoise, no hero gradients beyond overlay)
+- Wave dividers or decorative SVG separators
+- Bounce or decorative animations
+- Shadow-based elevation (no shadow-sm, shadow-lg on cards)
+- Colored icon circles (no bg-green-100 rounded-full)
+- Multiple CTA colors (coral is the only accent)
 
 ## Key Design Principles
-1. **Trust & Professionalism**: Clean layouts, clear pricing, secure payment indicators
-2. **Mediterranean Elegance**: Coastal color palette, flowing layouts, premium imagery
-3. **Mobile-First Booking**: Streamlined mobile experience for on-the-go reservations
-4. **Visual Hierarchy**: Clear distinction between public booking and internal CRM interfaces
-5. **Accessibility**: High contrast ratios, readable fonts, clear navigation patterns
+1. **Editorial Clarity**: Clean layouts, dramatic typography, generous spacing
+2. **Single Accent**: Coral for CTAs only - everything else is navy/white/gray
+3. **Trust Through Simplicity**: Less decoration = more professional
+4. **Mobile-First**: All components responsive, pill buttons easy to tap
+5. **Real Photography**: Genuine boat and customer photos, never AI-generated
+6. **YAGNI**: No decorative elements that don't serve conversion

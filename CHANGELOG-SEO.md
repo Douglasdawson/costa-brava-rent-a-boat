@@ -209,7 +209,7 @@ const canonical = generateCanonicalUrl('pageName', language);
 1. **LocalBusiness JSON-LD**
    - ✅ Archivo: `client/src/utils/seo-config.ts`, `client/src/App.tsx`
    - ✅ Información completa del negocio Costa Brava Rent a Boat
-   - ✅ Datos de contacto: +34 611 500 372, costabravarentboat@gmail.com
+   - ✅ Datos de contacto: +34 611 500 372, costabravarentaboat@gmail.com
    - ✅ Ubicación precisa: Puerto de Blanes (41.6751, 2.7991)
    - ✅ Horarios estacionales (Abril-Octubre)
    - ✅ Rango de precios €70-€300

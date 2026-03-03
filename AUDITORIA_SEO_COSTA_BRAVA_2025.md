@@ -207,7 +207,7 @@ El sitio web cuenta con una **infraestructura SEO sólida** implementada:
   "description": "Alquiler de barcos sin licencia y con licencia...",
   "url": "https://costa-brava-rent-a-boat-web-ivanrd9.replit.app/",
   "telephone": "+34683172154",
-  "email": "costabravarentboat@gmail.com",
+  "email": "costabravarentaboat@gmail.com",
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "Puerto de Blanes",
@@ -1284,7 +1284,7 @@ es: {
   "description": "Alquiler de barcos sin licencia y con licencia...",
   "url": "https://costa-brava-rent-a-boat-web-ivanrd9.replit.app/",
   "telephone": "+34683172154",
-  "email": "costabravarentboat@gmail.com",
+  "email": "costabravarentaboat@gmail.com",
   // ...
   "sameAs": [
     "https://wa.me/34683172154"
@@ -1302,7 +1302,7 @@ es: {
   "description": "Alquiler de barcos sin licencia y con licencia en Blanes, Costa Brava. Embarcaciones para 4-7 personas.",
   "url": "https://costa-brava-rent-a-boat-web-ivanrd9.replit.app/",
   "telephone": "+34683172154",
-  "email": "costabravarentboat@gmail.com",
+  "email": "costabravarentaboat@gmail.com",
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "Puerto de Blanes",

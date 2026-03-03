@@ -634,6 +634,44 @@ export interface Translations {
     licenseFreeFeat2: string;
     licenseFreeFeat3: string;
   };
+
+  locationPages: {
+    blanes: {
+      hero: {
+        title: string;
+        subtitle: string;
+        badgePort: string;
+        badgeCapacity: string;
+        badgeDuration: string;
+      };
+    };
+    lloret: {
+      hero: {
+        title: string;
+        subtitle: string;
+        badgeFrom: string;
+        badgeTime: string;
+        badgeCapacity: string;
+      };
+    };
+    tossa: {
+      hero: {
+        title: string;
+        subtitle: string;
+        badgeFrom: string;
+        badgeTime: string;
+        badgeCapacity: string;
+      };
+    };
+    newsletter: {
+      title: string;
+      subtitle: string;
+      placeholder: string;
+      button: string;
+      success: string;
+      error: string;
+    };
+  };
 }
 
 export const translations: Record<Language, Translations> = {
@@ -1225,6 +1263,43 @@ export const translations: Record<Language, Translations> = {
       licenseFreeFeat2: '4-7 personas',
       licenseFreeFeat3: 'Fácil manejo',
     },
+    locationPages: {
+      blanes: {
+        hero: {
+          title: 'Alquiler de Barcos en Blanes',
+          subtitle: 'Descubre las calas más hermosas de la Costa Brava desde el Puerto de Blanes. Embarcaciones sin licencia y con licencia para toda la familia.',
+          badgePort: 'Puerto de Blanes',
+          badgeCapacity: '4-7 personas',
+          badgeDuration: '1h-8h duración',
+        },
+      },
+      lloret: {
+        hero: {
+          title: 'Excursiones en Barco a Lloret de Mar',
+          subtitle: 'Descubre las famosas playas de Lloret de Mar navegando desde el Puerto de Blanes. 25 minutos de navegación hasta uno de los destinos más populares de la Costa Brava.',
+          badgeFrom: 'Desde Puerto de Blanes',
+          badgeTime: '25 min navegando',
+          badgeCapacity: '4-7 personas',
+        },
+      },
+      tossa: {
+        hero: {
+          title: 'Excursiones en Barco a Tossa de Mar',
+          subtitle: 'Descubre el pueblo medieval más bonito de la Costa Brava navegando desde el Puerto de Blanes. 1 hora de navegación hasta la famosa Vila Vella de Tossa de Mar.',
+          badgeFrom: 'Desde Puerto de Blanes',
+          badgeTime: '1 hora navegando',
+          badgeCapacity: '4-7 personas',
+        },
+      },
+      newsletter: {
+        title: 'Recibe ofertas de temporada',
+        subtitle: 'Sé el primero en conocer nuestra disponibilidad y ofertas especiales',
+        placeholder: 'Tu email',
+        button: 'Suscribirse',
+        success: '¡Gracias! Te avisaremos con las mejores ofertas.',
+        error: 'Error al suscribirse. Inténtalo de nuevo.',
+      },
+    },
   },
 
   ca: {
@@ -1804,6 +1879,43 @@ export const translations: Record<Language, Translations> = {
       licenseFreeFeat1: 'Fins a 15 CV',
       licenseFreeFeat2: '4-7 persones',
       licenseFreeFeat3: 'Fàcil maneig',
+    },
+    locationPages: {
+      blanes: {
+        hero: {
+          title: 'Lloguer de Barques a Blanes',
+          subtitle: 'Descobreix les cales més boniques de la Costa Brava des del Port de Blanes. Embarcacions sense llicència i amb llicència per a tota la família.',
+          badgePort: 'Port de Blanes',
+          badgeCapacity: '4-7 persones',
+          badgeDuration: '1h-8h durada',
+        },
+      },
+      lloret: {
+        hero: {
+          title: 'Excursions en Barco a Lloret de Mar',
+          subtitle: 'Descobreix les famoses platges de Lloret de Mar navegant des del Port de Blanes. 25 minuts de navegació fins a un dels destins més populars de la Costa Brava.',
+          badgeFrom: 'Des del Port de Blanes',
+          badgeTime: '25 min navegant',
+          badgeCapacity: '4-7 persones',
+        },
+      },
+      tossa: {
+        hero: {
+          title: 'Excursions en Barco a Tossa de Mar',
+          subtitle: 'Descobreix el poble medieval més bonic de la Costa Brava navegant des del Port de Blanes. 1 hora de navegació fins a la famosa Vila Vella de Tossa de Mar.',
+          badgeFrom: 'Des del Port de Blanes',
+          badgeTime: '1 hora navegant',
+          badgeCapacity: '4-7 persones',
+        },
+      },
+      newsletter: {
+        title: 'Rep ofertes de temporada',
+        subtitle: 'Sigues el primer en conèixer la nostra disponibilitat i ofertes especials',
+        placeholder: 'El teu email',
+        button: 'Subscriu-te',
+        success: "Gràcies! T'avisarem amb les millors ofertes.",
+        error: "Error en subscriure's. Torna-ho a intentar.",
+      },
     },
   },
 
@@ -2385,6 +2497,43 @@ export const translations: Record<Language, Translations> = {
       licenseFreeFeat2: '4-7 people',
       licenseFreeFeat3: 'Easy handling',
     },
+    locationPages: {
+      blanes: {
+        hero: {
+          title: 'Boat Rentals in Blanes',
+          subtitle: 'Discover the most beautiful coves of the Costa Brava from Blanes Harbour. Boats with and without licence for the whole family.',
+          badgePort: 'Blanes Harbour',
+          badgeCapacity: '4-7 people',
+          badgeDuration: '1h-8h duration',
+        },
+      },
+      lloret: {
+        hero: {
+          title: 'Boat Trips to Lloret de Mar',
+          subtitle: 'Discover the famous beaches of Lloret de Mar sailing from Blanes Harbour. 25 minutes by sea to one of the most popular destinations on the Costa Brava.',
+          badgeFrom: 'From Blanes Harbour',
+          badgeTime: '25 min sailing',
+          badgeCapacity: '4-7 people',
+        },
+      },
+      tossa: {
+        hero: {
+          title: 'Boat Trips to Tossa de Mar',
+          subtitle: 'Discover the most beautiful medieval village on the Costa Brava sailing from Blanes Harbour. 1 hour by sea to the famous Vila Vella of Tossa de Mar.',
+          badgeFrom: 'From Blanes Harbour',
+          badgeTime: '1 hour sailing',
+          badgeCapacity: '4-7 people',
+        },
+      },
+      newsletter: {
+        title: 'Get seasonal offers',
+        subtitle: 'Be the first to know about our availability and special offers',
+        placeholder: 'Your email',
+        button: 'Subscribe',
+        success: "Thank you! We'll let you know about our best offers.",
+        error: 'Subscription failed. Please try again.',
+      },
+    },
   },
 
   fr: {
@@ -2964,6 +3113,43 @@ export const translations: Record<Language, Translations> = {
       licenseFreeFeat1: 'Jusqu\'à 15 CV',
       licenseFreeFeat2: '4-7 personnes',
       licenseFreeFeat3: 'Maniement facile',
+    },
+    locationPages: {
+      blanes: {
+        hero: {
+          title: 'Location de Bateaux à Blanes',
+          subtitle: 'Découvrez les plus belles criques de la Costa Brava depuis le Port de Blanes. Bateaux avec et sans permis pour toute la famille.',
+          badgePort: 'Port de Blanes',
+          badgeCapacity: '4-7 personnes',
+          badgeDuration: '1h-8h durée',
+        },
+      },
+      lloret: {
+        hero: {
+          title: 'Excursions en Bateau à Lloret de Mar',
+          subtitle: "Découvrez les célèbres plages de Lloret de Mar depuis le Port de Blanes. 25 minutes de navigation jusqu'à l'une des destinations les plus populaires de la Costa Brava.",
+          badgeFrom: 'Depuis le Port de Blanes',
+          badgeTime: '25 min de navigation',
+          badgeCapacity: '4-7 personnes',
+        },
+      },
+      tossa: {
+        hero: {
+          title: 'Excursions en Bateau à Tossa de Mar',
+          subtitle: "Découvrez le plus beau village médiéval de la Costa Brava depuis le Port de Blanes. 1 heure de navigation jusqu'à la célèbre Vila Vella de Tossa de Mar.",
+          badgeFrom: 'Depuis le Port de Blanes',
+          badgeTime: '1 heure de navigation',
+          badgeCapacity: '4-7 personnes',
+        },
+      },
+      newsletter: {
+        title: 'Recevez nos offres de saison',
+        subtitle: 'Soyez le premier à connaître nos disponibilités et offres spéciales',
+        placeholder: 'Votre email',
+        button: "S'abonner",
+        success: 'Merci\u00a0! Nous vous informerons de nos meilleures offres.',
+        error: "Erreur d'abonnement. Veuillez réessayer.",
+      },
     },
   },
 
@@ -3545,6 +3731,43 @@ export const translations: Record<Language, Translations> = {
       licenseFreeFeat2: '4-7 Personen',
       licenseFreeFeat3: 'Einfache Handhabung',
     },
+    locationPages: {
+      blanes: {
+        hero: {
+          title: 'Bootsverleih in Blanes',
+          subtitle: 'Entdecken Sie die schönsten Buchten der Costa Brava vom Hafen Blanes aus. Boote mit und ohne Führerschein für die ganze Familie.',
+          badgePort: 'Hafen Blanes',
+          badgeCapacity: '4-7 Personen',
+          badgeDuration: '1-8 Std.',
+        },
+      },
+      lloret: {
+        hero: {
+          title: 'Bootsausflüge nach Lloret de Mar',
+          subtitle: 'Entdecken Sie die berühmten Strände von Lloret de Mar vom Hafen Blanes aus. 25 Minuten Fahrt zu einem der beliebtesten Reiseziele der Costa Brava.',
+          badgeFrom: 'Ab Hafen Blanes',
+          badgeTime: '25 Min. Fahrt',
+          badgeCapacity: '4-7 Personen',
+        },
+      },
+      tossa: {
+        hero: {
+          title: 'Bootsausflüge nach Tossa de Mar',
+          subtitle: 'Entdecken Sie das schönste Mittelalter-Dorf der Costa Brava vom Hafen Blanes aus. 1 Stunde Fahrt bis zur berühmten Vila Vella von Tossa de Mar.',
+          badgeFrom: 'Ab Hafen Blanes',
+          badgeTime: '1 Std. Fahrt',
+          badgeCapacity: '4-7 Personen',
+        },
+      },
+      newsletter: {
+        title: 'Saisonangebote erhalten',
+        subtitle: 'Erfahren Sie als Erster von unserer Verfügbarkeit und Sonderangeboten',
+        placeholder: 'Ihre E-Mail',
+        button: 'Abonnieren',
+        success: 'Danke! Wir informieren Sie über unsere besten Angebote.',
+        error: 'Fehler beim Abonnieren. Bitte erneut versuchen.',
+      },
+    },
   },
 
   nl: {
@@ -4124,6 +4347,43 @@ export const translations: Record<Language, Translations> = {
       licenseFreeFeat1: 'Tot 15 PK',
       licenseFreeFeat2: '4-7 personen',
       licenseFreeFeat3: 'Eenvoudig te besturen',
+    },
+    locationPages: {
+      blanes: {
+        hero: {
+          title: 'Bootsverhuur in Blanes',
+          subtitle: 'Ontdek de mooiste kreken van de Costa Brava vanuit de haven van Blanes. Boten met en zonder rijbewijs voor het hele gezin.',
+          badgePort: 'Haven van Blanes',
+          badgeCapacity: '4-7 personen',
+          badgeDuration: '1u-8u',
+        },
+      },
+      lloret: {
+        hero: {
+          title: 'Boottochten naar Lloret de Mar',
+          subtitle: 'Ontdek de beroemde stranden van Lloret de Mar vanuit de haven van Blanes. 25 minuten varen naar een van de populairste bestemmingen van de Costa Brava.',
+          badgeFrom: 'Vanuit haven Blanes',
+          badgeTime: '25 min varen',
+          badgeCapacity: '4-7 personen',
+        },
+      },
+      tossa: {
+        hero: {
+          title: 'Boottochten naar Tossa de Mar',
+          subtitle: 'Ontdek het mooiste middeleeuwse dorp van de Costa Brava vanuit de haven van Blanes. 1 uur varen naar de beroemde Vila Vella van Tossa de Mar.',
+          badgeFrom: 'Vanuit haven Blanes',
+          badgeTime: '1 uur varen',
+          badgeCapacity: '4-7 personen',
+        },
+      },
+      newsletter: {
+        title: 'Ontvang seizoensaanbiedingen',
+        subtitle: 'Wees de eerste die onze beschikbaarheid en speciale aanbiedingen kent',
+        placeholder: 'Uw e-mail',
+        button: 'Abonneren',
+        success: 'Bedankt! We laten u weten over onze beste aanbiedingen.',
+        error: 'Abonneren mislukt. Probeer opnieuw.',
+      },
     },
   },
 
@@ -4705,6 +4965,43 @@ export const translations: Record<Language, Translations> = {
       licenseFreeFeat2: '4-7 persone',
       licenseFreeFeat3: 'Facile da manovrare',
     },
+    locationPages: {
+      blanes: {
+        hero: {
+          title: 'Noleggio Barche a Blanes',
+          subtitle: 'Scopri le insenature più belle della Costa Brava dal Porto di Blanes. Barche con e senza patente per tutta la famiglia.',
+          badgePort: 'Porto di Blanes',
+          badgeCapacity: '4-7 persone',
+          badgeDuration: '1h-8h',
+        },
+      },
+      lloret: {
+        hero: {
+          title: 'Escursioni in Barca a Lloret de Mar',
+          subtitle: 'Scopri le famose spiagge di Lloret de Mar navigando dal Porto di Blanes. 25 minuti di navigazione verso una delle destinazioni più popolari della Costa Brava.',
+          badgeFrom: 'Dal Porto di Blanes',
+          badgeTime: '25 min di navigazione',
+          badgeCapacity: '4-7 persone',
+        },
+      },
+      tossa: {
+        hero: {
+          title: 'Escursioni in Barca a Tossa de Mar',
+          subtitle: 'Scopri il più bello villaggio medievale della Costa Brava navigando dal Porto di Blanes. 1 ora di navigazione fino alla famosa Vila Vella di Tossa de Mar.',
+          badgeFrom: 'Dal Porto di Blanes',
+          badgeTime: '1 ora di navigazione',
+          badgeCapacity: '4-7 persone',
+        },
+      },
+      newsletter: {
+        title: 'Ricevi offerte stagionali',
+        subtitle: 'Sii il primo a conoscere la nostra disponibilità e offerte speciali',
+        placeholder: 'La tua email',
+        button: 'Iscriviti',
+        success: 'Grazie! Ti avviseremo delle nostre migliori offerte.',
+        error: 'Errore di iscrizione. Riprova.',
+      },
+    },
   },
 
   ru: {
@@ -5284,6 +5581,43 @@ export const translations: Record<Language, Translations> = {
       licenseFreeFeat1: 'До 15 л.с.',
       licenseFreeFeat2: '4-7 человек',
       licenseFreeFeat3: 'Простое управление',
+    },
+    locationPages: {
+      blanes: {
+        hero: {
+          title: 'Аренда лодок в Бланесе',
+          subtitle: 'Откройте для себя самые красивые бухты Коста-Бравы из порта Бланес. Лодки с правами и без для всей семьи.',
+          badgePort: 'Порт Бланес',
+          badgeCapacity: '4-7 человек',
+          badgeDuration: '1-8 ч',
+        },
+      },
+      lloret: {
+        hero: {
+          title: 'Морские прогулки в Льорет-де-Мар',
+          subtitle: 'Откройте для себя знаменитые пляжи Льорет-де-Мар с отплытием из порта Бланес. 25 минут морского пути до одного из самых популярных курортов Коста-Бравы.',
+          badgeFrom: 'Из порта Бланес',
+          badgeTime: '25 мин плавания',
+          badgeCapacity: '4-7 человек',
+        },
+      },
+      tossa: {
+        hero: {
+          title: 'Морские прогулки в Тосса-де-Мар',
+          subtitle: 'Откройте для себя красивейший средневековый город Коста-Бравы с отплытием из порта Бланес. 1 час морского пути до знаменитой Вила Велья в Тосса-де-Мар.',
+          badgeFrom: 'Из порта Бланес',
+          badgeTime: '1 час плавания',
+          badgeCapacity: '4-7 человек',
+        },
+      },
+      newsletter: {
+        title: 'Получайте сезонные предложения',
+        subtitle: 'Первыми узнавайте о нашей доступности и специальных предложениях',
+        placeholder: 'Ваш email',
+        button: 'Подписаться',
+        success: 'Спасибо! Мы сообщим вам о лучших предложениях.',
+        error: 'Ошибка подписки. Попробуйте ещё раз.',
+      },
     },
   },
 };

@@ -404,7 +404,7 @@ export class DatabaseStorage implements IStorage {
       .values({
         name: "Costa Brava Rent a Boat",
         slug,
-        email: "costabravarentboat@gmail.com",
+        email: "costabravarentaboat@gmail.com",
         phone: "+34 611 500 372",
         address: "Puerto de Blanes, Girona, España",
         primaryColor: "#0077B6",

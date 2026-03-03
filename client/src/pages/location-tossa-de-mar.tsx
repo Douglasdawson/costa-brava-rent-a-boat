@@ -1,4 +1,4 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -36,6 +36,8 @@ export default function LocationTossaPage() {
   const seoConfig = getSEOConfig('locationTossa', language);
   const hreflangLinks = generateHreflangLinks('locationTossa');
   const canonical = generateCanonicalUrl('locationTossa', language);
+
+  const s = t.locationPages.tossa.sections!;
 
   const handleBookingWhatsApp = () => {
     const message = createBookingMessage();
@@ -148,42 +150,26 @@ export default function LocationTossaPage() {
           {/* Why Visit Tossa de Mar by Boat */}
           <Card className="mb-8">
             <CardHeader>
-              <CardTitle className="flex items-center gap-3 text-2xl">
+              <h2 className="flex items-center gap-3 text-2xl font-semibold leading-none tracking-tight">
                 <Crown className="w-6 h-6 text-yellow-500" />
-                ¿Por qué visitar Tossa de Mar en barco?
-              </CardTitle>
+                {s.whyTossaTitle}
+              </h2>
             </CardHeader>
             <CardContent>
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
-                  <h3 className="font-semibold text-lg mb-3">La Joya de la Costa Brava</h3>
-                  <p className="text-gray-700 mb-4">
-                    Tossa de Mar es considerado uno de los pueblos más bonitos de España. 
-                    Su famosa Vila Vella (ciudad vieja) fortificada del siglo XII es única 
-                    en toda la Costa Brava y ofrece unas vistas espectaculares desde el mar.
-                  </p>
-                  
-                  <h3 className="font-semibold text-lg mb-3">Patrimonio Histórico</h3>
-                  <p className="text-gray-700">
-                    Las murallas medievales que rodean la Vila Vella son Monumento Histórico-Artístico Nacional. 
-                    Desde el mar tendrás la mejor perspectiva de esta fortaleza del siglo XIII 
-                    que protegía la costa de piratas y invasores.
-                  </p>
+                  <h3 className="font-semibold text-lg mb-3">{s.jewelCostaBrava}</h3>
+                  <p className="text-gray-700 mb-4">{s.jewelCostaBravaDesc}</p>
+
+                  <h3 className="font-semibold text-lg mb-3">{s.historicHeritage}</h3>
+                  <p className="text-gray-700">{s.historicHeritageDesc}</p>
                 </div>
                 <div>
-                  <h3 className="font-semibold text-lg mb-3">Calas Paradisíacas</h3>
-                  <p className="text-gray-700 mb-4">
-                    Tossa cuenta con algunas de las calas más vírgenes y cristalinas de la Costa Brava: 
-                    Cala Pola, Cala Bona, Cala d'es Codolar. Muchas solo accesibles desde el mar, 
-                    perfectas para fondear y disfrutar en privado.
-                  </p>
-                  
-                  <h3 className="font-semibold text-lg mb-3">Navegación Panorámica</h3>
-                  <p className="text-gray-700">
-                    1 hora navegando por la costa te permitirá ver acantilados, calas secretas, 
-                    y la silueta de Tossa creciendo en el horizonte hasta revelar toda su majestuosidad. 
-                    Una experiencia inolvidable.
-                  </p>
+                  <h3 className="font-semibold text-lg mb-3">{s.paradisiacalCoves}</h3>
+                  <p className="text-gray-700 mb-4">{s.paradisiacalCovesDesc}</p>
+
+                  <h3 className="font-semibold text-lg mb-3">{s.panoramicNavigation}</h3>
+                  <p className="text-gray-700">{s.panoramicNavigationDesc}</p>
                 </div>
               </div>
             </CardContent>
@@ -192,10 +178,10 @@ export default function LocationTossaPage() {
           {/* Main Beaches and Historic Sites */}
           <Card className="mb-8">
             <CardHeader>
-              <CardTitle className="flex items-center gap-3 text-2xl">
+              <h2 className="flex items-center gap-3 text-2xl font-semibold leading-none tracking-tight">
                 <Shield className="w-6 h-6 text-primary" />
-                Principales Atractivos de Tossa de Mar
-              </CardTitle>
+                {s.attractionsTitle}
+              </h2>
             </CardHeader>
             <CardContent>
               <div className="grid md:grid-cols-3 gap-6">
@@ -203,27 +189,27 @@ export default function LocationTossaPage() {
                   <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
                     <Castle className="w-8 h-8 text-purple-600" />
                   </div>
-                  <h3 className="font-semibold text-lg mb-2">Vila Vella</h3>
-                  <p className="text-gray-600 text-sm mb-2">Siglo XII - Patrimonio Nacional</p>
-                  <p className="text-gray-700">Ciudad medieval fortificada con murallas, torres y calles empedradas. Vista espectacular desde el mar.</p>
+                  <h3 className="font-semibold text-lg mb-2">{s.vilaVella}</h3>
+                  <p className="text-gray-600 text-sm mb-2">{s.vilaVellaSub}</p>
+                  <p className="text-gray-700">{s.vilaVellaDesc}</p>
                 </div>
-                
+
                 <div className="text-center">
                   <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
                     <Waves className="w-8 h-8 text-blue-600" />
                   </div>
-                  <h3 className="font-semibold text-lg mb-2">Playa Grande</h3>
-                  <p className="text-gray-600 text-sm mb-2">Playa principal</p>
-                  <p className="text-gray-700">Amplia playa de arena dorada protegida por las murallas medievales. Perfecta para fondear cerca.</p>
+                  <h3 className="font-semibold text-lg mb-2">{s.playaGrande}</h3>
+                  <p className="text-gray-600 text-sm mb-2">{s.playaGrandeSub}</p>
+                  <p className="text-gray-700">{s.playaGrandeDesc}</p>
                 </div>
-                
+
                 <div className="text-center">
                   <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
                     <Sun className="w-8 h-8 text-green-600" />
                   </div>
-                  <h3 className="font-semibold text-lg mb-2">Calas Vírgenes</h3>
-                  <p className="text-gray-600 text-sm mb-2">Solo accesibles por mar</p>
-                  <p className="text-gray-700">Cala Pola, Cala Bona, Es Codolar. Aguas cristalinas y tranquilidad absoluta.</p>
+                  <h3 className="font-semibold text-lg mb-2">{s.virginCoves}</h3>
+                  <p className="text-gray-600 text-sm mb-2">{s.virginCovesSub}</p>
+                  <p className="text-gray-700">{s.virginCovesDesc}</p>
                 </div>
               </div>
             </CardContent>
@@ -232,52 +218,52 @@ export default function LocationTossaPage() {
           {/* What to Do in Tossa */}
           <Card className="mb-8">
             <CardHeader>
-              <CardTitle className="flex items-center gap-3 text-2xl">
+              <h2 className="flex items-center gap-3 text-2xl font-semibold leading-none tracking-tight">
                 <Heart className="w-6 h-6 text-primary" />
-                Qué Hacer en Tossa de Mar
-              </CardTitle>
+                {s.whatToDoTitle}
+              </h2>
             </CardHeader>
             <CardContent>
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
-                  <h3 className="font-semibold text-lg mb-3">Cultura e Historia</h3>
+                  <h3 className="font-semibold text-lg mb-3">{s.cultureHistory}</h3>
                   <ul className="space-y-2">
                     <li className="flex items-center">
                       <Castle className="w-4 h-4 text-green-600 mr-2" />
-                      <span>Recorrer la Vila Vella medieval</span>
+                      <span>{s.exploreVilaVella}</span>
                     </li>
                     <li className="flex items-center">
                       <Shield className="w-4 h-4 text-green-600 mr-2" />
-                      <span>Subir a las murallas y torres</span>
+                      <span>{s.climbWalls}</span>
                     </li>
                     <li className="flex items-center">
                       <Camera className="w-4 h-4 text-green-600 mr-2" />
-                      <span>Museo Municipal</span>
+                      <span>{s.municipalMuseum}</span>
                     </li>
                     <li className="flex items-center">
                       <Star className="w-4 h-4 text-green-600 mr-2" />
-                      <span>Faro de Tossa</span>
+                      <span>{s.tossaLighthouse}</span>
                     </li>
                   </ul>
                 </div>
                 <div>
-                  <h3 className="font-semibold text-lg mb-3">Naturaleza y Relax</h3>
+                  <h3 className="font-semibold text-lg mb-3">{s.natureRelax}</h3>
                   <ul className="space-y-2">
                     <li className="flex items-center">
                       <Waves className="w-4 h-4 text-green-600 mr-2" />
-                      <span>Bucear en aguas cristalinas</span>
+                      <span>{s.diveCrystalWaters}</span>
                     </li>
                     <li className="flex items-center">
                       <Sun className="w-4 h-4 text-green-600 mr-2" />
-                      <span>Fondear en calas secretas</span>
+                      <span>{s.anchorSecretCoves}</span>
                     </li>
                     <li className="flex items-center">
                       <NavigationIcon className="w-4 h-4 text-green-600 mr-2" />
-                      <span>Caminos de ronda costeros</span>
+                      <span>{s.coastalPaths}</span>
                     </li>
                     <li className="flex items-center">
                       <Camera className="w-4 h-4 text-green-600 mr-2" />
-                      <span>Atardeceres desde el mar</span>
+                      <span>{s.sunsetFromSea}</span>
                     </li>
                   </ul>
                 </div>
@@ -288,41 +274,26 @@ export default function LocationTossaPage() {
           {/* Navigation Tips */}
           <Card className="mb-8">
             <CardHeader>
-              <CardTitle className="flex items-center gap-3 text-2xl">
+              <h2 className="flex items-center gap-3 text-2xl font-semibold leading-none tracking-tight">
                 <NavigationIcon className="w-6 h-6 text-primary" />
-                Consejos de Navegación a Tossa
-              </CardTitle>
+                {s.navigationTipsTitle}
+              </h2>
             </CardHeader>
             <CardContent>
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
-                  <h3 className="font-semibold text-lg mb-3">Ruta Recomendada</h3>
-                  <p className="text-gray-700 mb-4">
-                    Desde Puerto de Blanes, navega hacia el norte pasando por Lloret de Mar. 
-                    Continúa bordeando la costa hasta avistar las torres medievales de Tossa. 
-                    La silueta de la Vila Vella es inconfundible desde lejos.
-                  </p>
-                  
-                  <h3 className="font-semibold text-lg mb-3">Mejor Época</h3>
-                  <p className="text-gray-700">
-                    Mayo a octubre. Los meses de junio y septiembre ofrecen el mejor equilibrio: 
-                    buen tiempo, mar en calma y menos aglomeraciones. Evita agosto si buscas tranquilidad.
-                  </p>
+                  <h3 className="font-semibold text-lg mb-3">{s.recommendedRoute}</h3>
+                  <p className="text-gray-700 mb-4">{s.recommendedRouteDesc}</p>
+
+                  <h3 className="font-semibold text-lg mb-3">{s.bestSeason}</h3>
+                  <p className="text-gray-700">{s.bestSeasonDesc}</p>
                 </div>
                 <div>
-                  <h3 className="font-semibold text-lg mb-3">Zonas de Fondeo</h3>
-                  <p className="text-gray-700 mb-4">
-                    Playa Grande: zona habilitada para embarcaciones recreativas.
-                    Cala Pola: fondeo libre en aguas cristalinas.
-                    Es Codolar: cala virgen ideal para pasar el día.
-                    Mantén distancia de las zonas de baño señalizadas.
-                  </p>
-                  
-                  <h3 className="font-semibold text-lg mb-3">Navegación Segura</h3>
-                  <p className="text-gray-700">
-                    1 hora de navegación requiere planificación. Consulta el tiempo, lleva suficiente combustible 
-                    y agua. Respeta las velocidades en zonas costeras y mantén la costa siempre a la vista.
-                  </p>
+                  <h3 className="font-semibold text-lg mb-3">{s.anchoringZones}</h3>
+                  <p className="text-gray-700 mb-4">{s.anchoringZonesDesc}</p>
+
+                  <h3 className="font-semibold text-lg mb-3">{s.safeNavigation}</h3>
+                  <p className="text-gray-700">{s.safeNavigationDesc}</p>
                 </div>
               </div>
             </CardContent>
@@ -332,20 +303,19 @@ export default function LocationTossaPage() {
           <Card className="bg-primary text-white">
             <CardContent className="py-8 text-center">
               <h2 className="text-2xl font-bold mb-4">
-                ¿Listo para Descubrir Tossa de Mar?
+                {s.ctaTitle}
               </h2>
               <p className="text-lg mb-6 max-w-2xl mx-auto">
-                Reserva tu barco desde Puerto de Blanes y vive la experiencia única 
-                de llegar por mar al pueblo medieval más bonito de la Costa Brava.
+                {s.ctaDescription}
               </p>
-              <Button 
+              <Button
                 onClick={handleBookingWhatsApp}
                 size="lg"
                 variant="secondary"
                 className="text-primary hover:text-primary"
                 data-testid="button-whatsapp-tossa"
               >
-                Reservar Excursión a Tossa
+                {s.ctaButton}
               </Button>
             </CardContent>
           </Card>

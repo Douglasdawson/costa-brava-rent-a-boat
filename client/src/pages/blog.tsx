@@ -11,6 +11,7 @@ import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Calendar, User, Tag, ChevronLeft, ChevronRight } from "lucide-react";
 import { useLanguage } from "@/hooks/use-language";
+import { useTranslations } from "@/lib/translations";
 import { getSEOConfig, generateHreflangLinks, generateCanonicalUrl, generateBreadcrumbSchema } from "@/utils/seo-config";
 import type { BlogPost } from "@shared/schema";
 
@@ -20,6 +21,8 @@ export default function BlogPage() {
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const [currentPage, setCurrentPage] = useState(1);
   const { language } = useLanguage();
+  const t = useTranslations();
+  const bp = t.blogPage!;
 
   // SEO Configuration
   const seoConfig = getSEOConfig('blog', language);
@@ -28,8 +31,8 @@ export default function BlogPage() {
   
   // Generate breadcrumb schema
   const breadcrumbSchema = generateBreadcrumbSchema([
-    { name: "Inicio", url: "/" },
-    { name: "Blog", url: "/blog" }
+    { name: bp.breadcrumbHome, url: "/" },
+    { name: bp.breadcrumbBlog, url: "/blog" }
   ]);
 
   // Fetch all published blog posts
@@ -140,16 +143,16 @@ export default function BlogPage() {
         <Navigation />
         <div className="flex flex-col items-center justify-center min-h-[60vh] px-4">
           <div className="text-center max-w-md">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">Error al cargar artículos</h2>
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">{bp.errorTitle}</h2>
             <p className="text-gray-600 mb-6">
-              No pudimos cargar los artículos del blog en este momento. Por favor, intenta de nuevo más tarde.
+              {bp.errorDescription}
             </p>
             <Button
               onClick={() => window.location.reload()}
               size="lg"
               data-testid="button-reload"
             >
-              Reintentar
+              {bp.retry}
             </Button>
           </div>
         </div>
@@ -172,18 +175,18 @@ export default function BlogPage() {
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-primary via-primary/90 to-primary/80 text-white py-12 md:py-16">
         <div className="container mx-auto px-4">
-          <Breadcrumbs 
+          <Breadcrumbs
             items={[
-              { label: 'Inicio', href: '/' },
-              { label: 'Blog', href: '/blog' }
+              { label: bp.breadcrumbHome, href: '/' },
+              { label: bp.breadcrumbBlog, href: '/blog' }
             ]}
           />
-          
+
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
-            Blog de Navegación
+            {bp.title}
           </h1>
           <p className="text-lg md:text-xl text-white/90 max-w-2xl">
-            Guías, consejos y destinos para disfrutar al máximo de tu experiencia en barco por la Costa Brava
+            {bp.subtitle}
           </p>
         </div>
       </section>
@@ -193,18 +196,18 @@ export default function BlogPage() {
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
           <div>
             <p className="text-gray-600" data-testid="text-posts-count">
-              {filteredPosts.length} {filteredPosts.length === 1 ? 'artículo' : 'artículos'}
-              {selectedCategory !== 'all' && ` en ${selectedCategory}`}
+              {filteredPosts.length} {filteredPosts.length === 1 ? bp.article : bp.articles}
+              {selectedCategory !== 'all' && ` ${bp.inCategory} ${selectedCategory}`}
             </p>
           </div>
           
           <div className="w-full sm:w-auto">
             <Select value={selectedCategory} onValueChange={setSelectedCategory}>
               <SelectTrigger className="w-full sm:w-[200px]" data-testid="select-category-filter">
-                <SelectValue placeholder="Filtrar por categoría" />
+                <SelectValue placeholder={bp.filterPlaceholder} />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="all">Todas las categorías</SelectItem>
+                <SelectItem value="all">{bp.allCategories}</SelectItem>
                 {categories.map(cat => (
                   <SelectItem key={cat} value={cat}>{cat}</SelectItem>
                 ))}
@@ -216,7 +219,7 @@ export default function BlogPage() {
         {/* Blog Posts Grid */}
         {paginatedPosts.length === 0 ? (
           <div className="text-center py-12">
-            <p className="text-gray-500">No hay artículos en esta categoría</p>
+            <p className="text-gray-500">{bp.noArticles}</p>
           </div>
         ) : (
           <>
@@ -289,7 +292,7 @@ export default function BlogPage() {
                   onClick={goToPrevious}
                   disabled={currentPage === 1}
                   data-testid="button-pagination-prev"
-                  aria-label="Página anterior"
+                  aria-label={bp.prevPage}
                 >
                   <ChevronLeft className="w-4 h-4" />
                 </Button>
@@ -305,7 +308,7 @@ export default function BlogPage() {
                       variant={currentPage === page ? "default" : "outline"}
                       onClick={() => goToPage(page as number)}
                       data-testid={`button-pagination-${page}`}
-                      aria-label={`Ir a página ${page}`}
+                      aria-label={`${bp.goToPage} ${page}`}
                       aria-current={currentPage === page ? "page" : undefined}
                     >
                       {page}
@@ -319,7 +322,7 @@ export default function BlogPage() {
                   onClick={goToNext}
                   disabled={currentPage === totalPages}
                   data-testid="button-pagination-next"
-                  aria-label="Página siguiente"
+                  aria-label={bp.nextPage}
                 >
                   <ChevronRight className="w-4 h-4" />
                 </Button>

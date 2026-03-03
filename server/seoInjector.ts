@@ -280,6 +280,18 @@ function injectMeta(html: string, meta: SEOMeta, canonicalUrl: string, extraJson
     result = result.replace("</head>", `${jsonLdTag}\n</head>`);
   }
 
+  // Inject hreflang tags for all supported languages + x-default
+  const HREFLANG_LANGUAGES = ["es", "en", "fr", "de", "nl", "it", "ca", "ru"];
+  const hreflangTags = HREFLANG_LANGUAGES.map(lang => {
+    const href = lang === "es"
+      ? `${BASE_URL}${canonicalUrl}`
+      : `${BASE_URL}${canonicalUrl}?lang=${lang}`;
+    return `  <link rel="alternate" hreflang="${lang}" href="${esc(href)}" />`;
+  });
+  // x-default points to the base URL without ?lang= (same as es)
+  hreflangTags.push(`  <link rel="alternate" hreflang="x-default" href="${esc(BASE_URL + canonicalUrl)}" />`);
+  result = result.replace("</head>", `${hreflangTags.join("\n")}\n</head>`);
+
   return result;
 }
 
@@ -390,7 +402,10 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
         aggregateRating,
         image: `${BASE_URL}/og-image.webp`,
         sameAs: [
-          "https://www.google.com/maps/place/Costa+Brava+Rent+a+Boat",
+          "https://maps.app.goo.gl/NHV4PcaFPmwBYqCt5",
+          "https://www.instagram.com/costabravarentaboat/",
+          "https://www.facebook.com/costabravarentaboat",
+          "https://www.tiktok.com/@costabravarentaboat",
         ],
       };
       return { meta, jsonLd };
@@ -482,9 +497,9 @@ export async function serveWithSEO(
     const langParam = parsedUrl.searchParams.get("lang");
     const lang: LangCode = (["es", "ca", "en", "fr", "de", "nl", "it", "ru"].includes(langParam || "") ? langParam : "es") as LangCode;
 
-    // The canonical URL for this page (strip trailing slash, keep query for lang variants)
+    // The canonical URL for this page (strip trailing slash, no query params — languages handled via hreflang)
     const canonicalPath = pathname === "/" ? "/" : pathname.replace(/\/$/, "");
-    const canonicalUrl = lang !== "es" ? `${canonicalPath}?lang=${lang}` : canonicalPath;
+    const canonicalUrl = canonicalPath;
 
     const resolved = await resolveMeta(canonicalPath, lang);
     if (resolved) {

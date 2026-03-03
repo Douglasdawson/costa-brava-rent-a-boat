@@ -217,6 +217,20 @@ app.use((req, res, next) => {
 (async () => {
   const server = await registerRoutes(app);
 
+  // 301 redirects for legacy routes (SEO)
+  const legacyRedirects: Record<string, string> = {
+    "/destino/blanes": "/alquiler-barcos-blanes",
+    "/destino/lloret-de-mar": "/alquiler-barcos-lloret-de-mar",
+    "/destino/tossa-de-mar": "/alquiler-barcos-tossa-de-mar",
+    "/categoria/sin-licencia": "/alquiler-barcos-sin-licencia",
+    "/categoria/con-licencia": "/alquiler-barcos-con-licencia",
+  };
+  for (const [from, to] of Object.entries(legacyRedirects)) {
+    app.get(from, (_req: Request, res: Response) => {
+      res.redirect(301, to);
+    });
+  }
+
   // 404 handler for unknown API routes
   app.all("/api/*", (_req: Request, res: Response) => {
     res.status(404).json({ message: "Endpoint no encontrado" });

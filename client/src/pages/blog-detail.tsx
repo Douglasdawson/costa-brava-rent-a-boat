@@ -11,6 +11,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Calendar, User, Tag, ArrowLeft } from "lucide-react";
 import { useLanguage } from "@/hooks/use-language";
+import { useTranslations } from "@/lib/translations";
 import { generateHreflangLinks, generateCanonicalUrl, generateBreadcrumbSchema } from "@/utils/seo-config";
 import { generateArticleSchema } from "@/utils/seo-schemas";
 import type { BlogPost } from "@shared/schema";
@@ -18,6 +19,8 @@ import type { BlogPost } from "@shared/schema";
 export default function BlogDetailPage() {
   const { slug } = useParams<{ slug: string }>();
   const { language } = useLanguage();
+  const t = useTranslations();
+  const bd = t.blogDetail!;
 
   // Fetch the blog post
   const { data: post, isLoading, isError } = useQuery<BlogPost>({
@@ -55,8 +58,8 @@ export default function BlogDetailPage() {
 
   // Generate breadcrumb schema
   const breadcrumbSchema = post ? generateBreadcrumbSchema([
-    { name: "Inicio", url: "/" },
-    { name: "Blog", url: "/blog" },
+    { name: bd.breadcrumbHome, url: "/" },
+    { name: bd.breadcrumbBlog, url: "/blog" },
     { name: post.title, url: `/blog/${post.slug}` }
   ]) : null;
 
@@ -117,14 +120,14 @@ export default function BlogDetailPage() {
         <main className="flex-1 container mx-auto px-4 py-8 max-w-6xl">
           <Card>
             <CardContent className="pt-6">
-              <h2 className="text-2xl font-bold mb-4">Artículo no encontrado</h2>
+              <h2 className="text-2xl font-bold mb-4">{bd.notFoundTitle}</h2>
               <p className="text-muted-foreground mb-6">
-                El artículo que buscas no existe o ha sido eliminado.
+                {bd.notFoundDescription}
               </p>
               <Button asChild data-testid="button-back-blog">
                 <Link href="/blog">
                   <ArrowLeft className="h-4 w-4 mr-2" />
-                  Volver al Blog
+                  {bd.backToBlog}
                 </Link>
               </Button>
             </CardContent>
@@ -153,12 +156,12 @@ export default function BlogDetailPage() {
       
       <main className="flex-1 container mx-auto px-4 py-8 max-w-4xl">
         {/* Breadcrumbs */}
-        <Breadcrumbs 
+        <Breadcrumbs
           items={[
-            { label: "Inicio", href: "/" },
-            { label: "Blog", href: "/blog" },
+            { label: bd.breadcrumbHome, href: "/" },
+            { label: bd.breadcrumbBlog, href: "/blog" },
             { label: post.title }
-          ]} 
+          ]}
         />
 
         {/* Back to Blog */}
@@ -170,7 +173,7 @@ export default function BlogDetailPage() {
         >
           <Link href="/blog">
             <ArrowLeft className="h-4 w-4 mr-3" />
-            Volver al Blog
+            {bd.backToBlog}
           </Link>
         </Button>
 
@@ -258,7 +261,7 @@ export default function BlogDetailPage() {
         {relatedPosts.length > 0 && (
           <section className="mt-16 pt-8 border-t">
             <h2 className="text-2xl font-bold mb-6" data-testid="text-related-posts-title">
-              Artículos Relacionados
+              {bd.relatedArticles}
             </h2>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {relatedPosts.map((relatedPost) => (
@@ -296,7 +299,7 @@ export default function BlogDetailPage() {
                       data-testid={`button-read-${relatedPost.slug}`}
                     >
                       <Link href={`/blog/${relatedPost.slug}`}>
-                        Leer más
+                        {bd.readMore}
                       </Link>
                     </Button>
                   </CardContent>

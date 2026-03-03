@@ -294,7 +294,7 @@ function initSendGrid(): boolean {
 }
 
 function getFromEmail(): string {
-  return process.env.SENDGRID_FROM_EMAIL || "costabravarentboat@gmail.com";
+  return process.env.SENDGRID_FROM_EMAIL || "costabravarentaboat@gmail.com";
 }
 
 interface EmailResult {
@@ -345,7 +345,7 @@ function emailWrapper(content: string): string {
                     <p style="margin:0 0 8px; color:#475569; font-size:14px; font-weight:600;">Costa Brava Rent a Boat</p>
                     <p style="margin:0 0 4px; color:#64748b; font-size:13px;">Puerto de Blanes, Girona, Costa Brava</p>
                     <p style="margin:0 0 4px; color:#64748b; font-size:13px;">Tel: <a href="tel:+34611500372" style="color:#2563eb; text-decoration:none;">+34 611 500 372</a></p>
-                    <p style="margin:0 0 12px; color:#64748b; font-size:13px;">Email: <a href="mailto:costabravarentboat@gmail.com" style="color:#2563eb; text-decoration:none;">costabravarentboat@gmail.com</a></p>
+                    <p style="margin:0 0 12px; color:#64748b; font-size:13px;">Email: <a href="mailto:costabravarentaboat@gmail.com" style="color:#2563eb; text-decoration:none;">costabravarentaboat@gmail.com</a></p>
                     <p style="margin:0; color:#94a3b8; font-size:11px;">www.costabravarentaboat.app</p>
                   </td>
                 </tr>
@@ -461,7 +461,7 @@ export async function sendBookingConfirmation(data: BookingEmailData): Promise<E
     <div style="background-color:#f0fdf4; border-left:4px solid #22c55e; border-radius:4px; padding:16px; margin:20px 0;">
       <p style="margin:0 0 6px; color:#166534; font-size:14px; font-weight:600;">${strings.contact}</p>
       <p style="margin:0; color:#475569; font-size:14px;">${strings.phone}: <a href="tel:+34611500372" style="color:#2563eb;">+34 611 500 372</a></p>
-      <p style="margin:4px 0 0; color:#475569; font-size:14px;">Email: <a href="mailto:costabravarentboat@gmail.com" style="color:#2563eb;">costabravarentboat@gmail.com</a></p>
+      <p style="margin:4px 0 0; color:#475569; font-size:14px;">Email: <a href="mailto:costabravarentaboat@gmail.com" style="color:#2563eb;">costabravarentaboat@gmail.com</a></p>
     </div>
 
     <p style="margin:20px 0 0; color:#475569; font-size:14px; line-height:1.5;">
@@ -845,7 +845,7 @@ export async function sendCancelationEmail(data: CancelationEmailData): Promise<
     </p>
     ${refundBlock}
     <p style="color:#64748b; font-size:13px; margin-top:24px;">
-      Si tienes dudas, contactanos en <a href="mailto:costabravarentboat@gmail.com" style="color:#2563eb;">costabravarentboat@gmail.com</a> o al +34 611 500 372.
+      Si tienes dudas, contactanos en <a href="mailto:costabravarentaboat@gmail.com" style="color:#2563eb;">costabravarentaboat@gmail.com</a> o al +34 611 500 372.
     </p>
     <p style="margin-top:16px;"><a href="${appUrl}" style="color:#2563eb; text-decoration:none;">Volver a costabravarentaboat.app</a></p>
   `;
@@ -866,7 +866,7 @@ export async function sendCancelationEmail(data: CancelationEmailData): Promise<
   }
 
   // Owner notification (fire-and-forget)
-  const ownerEmail = process.env.OWNER_EMAIL || "costabravarentboat@gmail.com";
+  const ownerEmail = process.env.OWNER_EMAIL || "costabravarentaboat@gmail.com";
   const ownerContent = `
     <h2 style="color:#dc2626;">Cancelación de reserva</h2>
     <p>Cliente: <strong>${booking.customerName} ${booking.customerSurname}</strong></p>

@@ -935,7 +935,13 @@ export function generateLocalBusinessSchema(language: Language = 'es', rating?: 
     },
     "serviceType": ["Boat Rental", "Maritime Tourism", "Water Sports"],
     "knowsAbout": ["Costa Brava", "Blanes", "Boat Navigation", "Maritime Safety"],
-    "slogan": "Explora la Costa Brava desde el agua"
+    "slogan": "Explora la Costa Brava desde el agua",
+    "sameAs": [
+      "https://maps.app.goo.gl/NHV4PcaFPmwBYqCt5",
+      "https://www.instagram.com/costabravarentaboat/",
+      "https://www.facebook.com/costabravarentaboat",
+      "https://www.tiktok.com/@costabravarentaboat",
+    ]
   };
 
   // Add aggregate rating if provided

@@ -235,7 +235,7 @@ export default function TermsConditionsPage() {
                 <div className="space-y-3 text-sm text-gray-700">
                   <p>Costa Brava Rent a Boat acepta el cambio de una reserva únicamente con una comunicación previa por escrito a:</p>
                   <ul className="list-disc pl-6 space-y-1">
-                    <li>Email: costabravarentboat@gmail.com</li>
+                    <li>Email: costabravarentaboat@gmail.com</li>
                     <li>WhatsApp: +34 611 500 372</li>
                   </ul>
                   <p><strong>Requisito:</strong> Mínimo de 7 días de antelación al día del alquiler.</p>
@@ -331,8 +331,8 @@ export default function TermsConditionsPage() {
                 </a>
               </p>
               <p>Nuestro email de contacto para reclamaciones:{" "}
-                <a href="mailto:costabravarentboat@gmail.com" className="text-primary underline">
-                  costabravarentboat@gmail.com
+                <a href="mailto:costabravarentaboat@gmail.com" className="text-primary underline">
+                  costabravarentaboat@gmail.com
                 </a>
               </p>
             </CardContent>

@@ -1,4 +1,4 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { 
@@ -37,6 +37,8 @@ export default function LocationLloretPage() {
   const seoConfig = getSEOConfig('locationLloret', language);
   const hreflangLinks = generateHreflangLinks('locationLloret');
   const canonical = generateCanonicalUrl('locationLloret', language);
+
+  const s = t.locationPages.lloret.sections!;
 
   const handleBookingWhatsApp = () => {
     const message = createBookingMessage();
@@ -149,42 +151,26 @@ export default function LocationLloretPage() {
           {/* Why Visit Lloret de Mar by Boat */}
           <Card className="mb-8">
             <CardHeader>
-              <CardTitle className="flex items-center gap-3 text-2xl">
+              <h2 className="flex items-center gap-3 text-2xl font-semibold leading-none tracking-tight">
                 <Star className="w-6 h-6 text-yellow-500" />
-                ¿Por qué visitar Lloret de Mar en barco?
-              </CardTitle>
+                {s.whyLloretTitle}
+              </h2>
             </CardHeader>
             <CardContent>
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
-                  <h3 className="font-semibold text-lg mb-3">Perspectiva Única</h3>
-                  <p className="text-gray-700 mb-4">
-                    Ver Lloret de Mar desde el mar te ofrece una perspectiva completamente diferente. 
-                    Contempla sus icónicos acantilados, calas escondidas y la famosa escultura de 
-                    "La Mujer Marinera" desde el agua.
-                  </p>
-                  
-                  <h3 className="font-semibold text-lg mb-3">Playas Espectaculares</h3>
-                  <p className="text-gray-700">
-                    Lloret cuenta con algunas de las mejores playas de la Costa Brava: 
-                    Playa de Lloret, Cala Boadella, Santa Cristina y Cala Treumal. 
-                    Cada una con su encanto especial.
-                  </p>
+                  <h3 className="font-semibold text-lg mb-3">{s.uniquePerspective}</h3>
+                  <p className="text-gray-700 mb-4">{s.uniquePerspectiveDesc}</p>
+
+                  <h3 className="font-semibold text-lg mb-3">{s.spectacularBeaches}</h3>
+                  <p className="text-gray-700">{s.spectacularBeachesDesc}</p>
                 </div>
                 <div>
-                  <h3 className="font-semibold text-lg mb-3">Ambiente Vibrante</h3>
-                  <p className="text-gray-700 mb-4">
-                    Lloret de Mar es famoso por su ambiente animado, chiringuitos en la playa, 
-                    restaurantes con vistas al mar y una amplia oferta de entretenimiento. 
-                    Perfecto para diferentes tipos de visitantes.
-                  </p>
-                  
-                  <h3 className="font-semibold text-lg mb-3">Fácil Acceso en Barco</h3>
-                  <p className="text-gray-700">
-                    Solo 25 minutos navegando desde Blanes hasta Lloret. Puedes fondear 
-                    cerca de las playas principales o explorar las calas más apartadas 
-                    antes de llegar al centro.
-                  </p>
+                  <h3 className="font-semibold text-lg mb-3">{s.vibrantAtmosphere}</h3>
+                  <p className="text-gray-700 mb-4">{s.vibrantAtmosphereDesc}</p>
+
+                  <h3 className="font-semibold text-lg mb-3">{s.easyAccess}</h3>
+                  <p className="text-gray-700">{s.easyAccessDesc}</p>
                 </div>
               </div>
             </CardContent>
@@ -193,10 +179,10 @@ export default function LocationLloretPage() {
           {/* Main Beaches and Spots in Lloret */}
           <Card className="mb-8">
             <CardHeader>
-              <CardTitle className="flex items-center gap-3 text-2xl">
+              <h2 className="flex items-center gap-3 text-2xl font-semibold leading-none tracking-tight">
                 <Waves className="w-6 h-6 text-primary" />
-                Principales Playas y Calas de Lloret de Mar
-              </CardTitle>
+                {s.beachesTitle}
+              </h2>
             </CardHeader>
             <CardContent>
               <div className="grid md:grid-cols-3 gap-6">
@@ -204,27 +190,27 @@ export default function LocationLloretPage() {
                   <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
                     <Users className="w-8 h-8 text-blue-600" />
                   </div>
-                  <h3 className="font-semibold text-lg mb-2">Playa de Lloret</h3>
-                  <p className="text-gray-600 text-sm mb-2">Playa principal - 1,5 km</p>
-                  <p className="text-gray-700">La playa principal de Lloret con todos los servicios, restaurantes y ambiente animado.</p>
+                  <h3 className="font-semibold text-lg mb-2">{s.playaLloret}</h3>
+                  <p className="text-gray-600 text-sm mb-2">{s.playaLloretSub}</p>
+                  <p className="text-gray-700">{s.playaLloretDesc}</p>
                 </div>
-                
+
                 <div className="text-center">
                   <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
                     <Sun className="w-8 h-8 text-green-600" />
                   </div>
-                  <h3 className="font-semibold text-lg mb-2">Cala Boadella</h3>
-                  <p className="text-gray-600 text-sm mb-2">Cala naturista</p>
-                  <p className="text-gray-700">Cala tranquila y naturista al sur de Lloret, ideal para quienes buscan tranquilidad.</p>
+                  <h3 className="font-semibold text-lg mb-2">{s.calaBoadella}</h3>
+                  <p className="text-gray-600 text-sm mb-2">{s.calaBoadellaSub}</p>
+                  <p className="text-gray-700">{s.calaBoadellaDesc}</p>
                 </div>
-                
+
                 <div className="text-center">
                   <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
                     <Camera className="w-8 h-8 text-orange-600" />
                   </div>
-                  <h3 className="font-semibold text-lg mb-2">Santa Cristina</h3>
-                  <p className="text-gray-600 text-sm mb-2">Playa familiar</p>
-                  <p className="text-gray-700">Hermosa playa familiar con hermitas y excelentes vistas. Menos masificada que la principal.</p>
+                  <h3 className="font-semibold text-lg mb-2">{s.santaCristina}</h3>
+                  <p className="text-gray-600 text-sm mb-2">{s.santaCristinaSub}</p>
+                  <p className="text-gray-700">{s.santaCristinaDesc}</p>
                 </div>
               </div>
             </CardContent>
@@ -233,52 +219,52 @@ export default function LocationLloretPage() {
           {/* What to Do in Lloret */}
           <Card className="mb-8">
             <CardHeader>
-              <CardTitle className="flex items-center gap-3 text-2xl">
+              <h2 className="flex items-center gap-3 text-2xl font-semibold leading-none tracking-tight">
                 <Music className="w-6 h-6 text-primary" />
-                Qué Hacer en Lloret de Mar
-              </CardTitle>
+                {s.whatToDoTitle}
+              </h2>
             </CardHeader>
             <CardContent>
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
-                  <h3 className="font-semibold text-lg mb-3">Entretenimiento y Ocio</h3>
+                  <h3 className="font-semibold text-lg mb-3">{s.entertainment}</h3>
                   <ul className="space-y-2">
                     <li className="flex items-center">
                       <Music className="w-4 h-4 text-green-600 mr-2" />
-                      <span>Discotecas y vida nocturna</span>
+                      <span>{s.nightlife}</span>
                     </li>
                     <li className="flex items-center">
                       <Utensils className="w-4 h-4 text-green-600 mr-2" />
-                      <span>Restaurantes frente al mar</span>
+                      <span>{s.restaurantsSea}</span>
                     </li>
                     <li className="flex items-center">
                       <Waves className="w-4 h-4 text-green-600 mr-2" />
-                      <span>Deportes acuáticos</span>
+                      <span>{s.waterSports}</span>
                     </li>
                     <li className="flex items-center">
                       <Camera className="w-4 h-4 text-green-600 mr-2" />
-                      <span>Mirador de Santa Clotilde</span>
+                      <span>{s.santaClotildeMirador}</span>
                     </li>
                   </ul>
                 </div>
                 <div>
-                  <h3 className="font-semibold text-lg mb-3">Puntos de Interés</h3>
+                  <h3 className="font-semibold text-lg mb-3">{s.pointsOfInterest}</h3>
                   <ul className="space-y-2">
                     <li className="flex items-center">
                       <Star className="w-4 h-4 text-green-600 mr-2" />
-                      <span>Escultura "La Mujer Marinera"</span>
+                      <span>{s.mujerMarinera}</span>
                     </li>
                     <li className="flex items-center">
                       <NavigationIcon className="w-4 h-4 text-green-600 mr-2" />
-                      <span>Castillo de Sant Joan</span>
+                      <span>{s.castilloSantJoan}</span>
                     </li>
                     <li className="flex items-center">
                       <Car className="w-4 h-4 text-green-600 mr-2" />
-                      <span>Jardines de Santa Clotilde</span>
+                      <span>{s.jardinesSantaClotilde}</span>
                     </li>
                     <li className="flex items-center">
                       <Ship className="w-4 h-4 text-green-600 mr-2" />
-                      <span>Puerto deportivo</span>
+                      <span>{s.sportsMarina}</span>
                     </li>
                   </ul>
                 </div>
@@ -289,41 +275,26 @@ export default function LocationLloretPage() {
           {/* Navigation Tips */}
           <Card className="mb-8">
             <CardHeader>
-              <CardTitle className="flex items-center gap-3 text-2xl">
+              <h2 className="flex items-center gap-3 text-2xl font-semibold leading-none tracking-tight">
                 <NavigationIcon className="w-6 h-6 text-primary" />
-                Consejos de Navegación a Lloret
-              </CardTitle>
+                {s.navigationTipsTitle}
+              </h2>
             </CardHeader>
             <CardContent>
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
-                  <h3 className="font-semibold text-lg mb-3">Ruta Recomendada</h3>
-                  <p className="text-gray-700 mb-4">
-                    Desde Puerto de Blanes, dirígete hacia el norte siguiendo la costa. 
-                    Pasarás por Cala Sant Francesc y S'Abanell antes de llegar a Lloret. 
-                    Mantente siempre a la vista de la costa.
-                  </p>
-                  
-                  <h3 className="font-semibold text-lg mb-3">Mejores Horarios</h3>
-                  <p className="text-gray-700">
-                    Por la mañana (9:00-12:00) para evitar multitudes. 
-                    Por la tarde (16:00-19:00) para disfrutar del ambiente más animado. 
-                    Evita los fines de semana en temporada alta si buscas tranquilidad.
-                  </p>
+                  <h3 className="font-semibold text-lg mb-3">{s.recommendedRoute}</h3>
+                  <p className="text-gray-700 mb-4">{s.recommendedRouteDesc}</p>
+
+                  <h3 className="font-semibold text-lg mb-3">{s.bestTimes}</h3>
+                  <p className="text-gray-700">{s.bestTimesDesc}</p>
                 </div>
                 <div>
-                  <h3 className="font-semibold text-lg mb-3">Dónde Fondear</h3>
-                  <p className="text-gray-700 mb-4">
-                    Playa de Lloret: zona habilitada para embarcaciones recreativas (señalizada).
-                    Cala Boadella: fondeo libre pero respetando a los bañistas.
-                    Santa Cristina: fondeo en la zona sur de la playa.
-                  </p>
-                  
-                  <h3 className="font-semibold text-lg mb-3">Seguridad</h3>
-                  <p className="text-gray-700">
-                    Lloret puede tener más tráfico marítimo. Mantén distancia de seguridad 
-                    con otras embarcaciones. Respeta las zonas de baño y las boyas de señalización.
-                  </p>
+                  <h3 className="font-semibold text-lg mb-3">{s.whereToAnchor}</h3>
+                  <p className="text-gray-700 mb-4">{s.whereToAnchorDesc}</p>
+
+                  <h3 className="font-semibold text-lg mb-3">{s.safety}</h3>
+                  <p className="text-gray-700">{s.safetyDesc}</p>
                 </div>
               </div>
             </CardContent>
@@ -333,20 +304,19 @@ export default function LocationLloretPage() {
           <Card className="bg-primary text-white">
             <CardContent className="py-8 text-center">
               <h2 className="text-2xl font-bold mb-4">
-                ¿Listo para tu Excursión a Lloret de Mar?
+                {s.ctaTitle}
               </h2>
               <p className="text-lg mb-6 max-w-2xl mx-auto">
-                Reserva tu barco desde Puerto de Blanes y descubre las mejores playas 
-                de Lloret de Mar con total libertad y comodidad.
+                {s.ctaDescription}
               </p>
-              <Button 
+              <Button
                 onClick={handleBookingWhatsApp}
                 size="lg"
                 variant="secondary"
                 className="text-primary hover:text-primary"
                 data-testid="button-whatsapp-lloret"
               >
-                Reservar Excursión a Lloret
+                {s.ctaButton}
               </Button>
             </CardContent>
           </Card>

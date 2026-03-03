@@ -31,6 +31,8 @@ Disallow: /login
 Disallow: /mi-cuenta
 Disallow: /client/
 Disallow: /booking/success
+Disallow: /onboarding
+Disallow: /cancel/
 
 # Block API and utility endpoints
 Disallow: /api/

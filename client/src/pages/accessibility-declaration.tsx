@@ -124,8 +124,8 @@ export default function AccessibilityDeclarationPage() {
               <ul className="list-disc pl-5 space-y-1">
                 <li>
                   <strong>Email:</strong>{" "}
-                  <a href="mailto:costabravarentboat@gmail.com" className="text-primary underline">
-                    costabravarentboat@gmail.com
+                  <a href="mailto:costabravarentaboat@gmail.com" className="text-primary underline">
+                    costabravarentaboat@gmail.com
                   </a>
                 </li>
                 <li>

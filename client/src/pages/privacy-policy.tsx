@@ -74,8 +74,8 @@ export default function PrivacyPolicyPage() {
               <p><strong>Domicilio:</strong> Puerto de Blanes, Girona, España</p>
               <p><strong>Teléfono:</strong> +34 611 500 372</p>
               <p><strong>Email de contacto:</strong>{" "}
-                <a href="mailto:costabravarentboat@gmail.com" className="text-primary underline">
-                  costabravarentboat@gmail.com
+                <a href="mailto:costabravarentaboat@gmail.com" className="text-primary underline">
+                  costabravarentaboat@gmail.com
                 </a>
               </p>
             </CardContent>
@@ -214,8 +214,8 @@ export default function PrivacyPolicyPage() {
               </ul>
               <div className="bg-blue-50 border-l-4 border-primary rounded p-3">
                 <p><strong>Cómo ejercer tus derechos:</strong> Envía un email a{" "}
-                  <a href="mailto:costabravarentboat@gmail.com" className="text-primary underline">
-                    costabravarentboat@gmail.com
+                  <a href="mailto:costabravarentaboat@gmail.com" className="text-primary underline">
+                    costabravarentaboat@gmail.com
                   </a>{" "}
                   indicando el derecho que deseas ejercer y adjuntando copia de tu DNI u otro documento identificativo. Responderemos en el plazo máximo de 1 mes.
                 </p>

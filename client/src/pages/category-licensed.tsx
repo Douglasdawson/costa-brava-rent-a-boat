@@ -1,4 +1,4 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { 
@@ -117,9 +117,11 @@ export default function CategoryLicensedPage() {
     }
   ];
 
+  const cl = t.categoryLicensed!;
+
   return (
     <div className="min-h-screen">
-      <SEO 
+      <SEO
         title={seoConfig.title}
         description={seoConfig.description}
         ogTitle={seoConfig.ogTitle}
@@ -129,11 +131,11 @@ export default function CategoryLicensedPage() {
         jsonLd={combinedJsonLd}
       />
       <Navigation />
-      
+
       {/* Breadcrumbs */}
       <div className="bg-gray-50 border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
-          <Breadcrumbs 
+          <Breadcrumbs
             items={[
               { label: 'breadcrumbs.home', href: '/' },
               { label: 'breadcrumbs.categoryLicensed' }
@@ -141,7 +143,7 @@ export default function CategoryLicensedPage() {
           />
         </div>
       </div>
-      
+
       {/* Hero Section */}
       <div className="bg-gradient-to-br from-blue-50 to-indigo-50 pt-24 pb-12">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -149,25 +151,24 @@ export default function CategoryLicensedPage() {
             <div className="flex items-center justify-center mb-6">
               <Award className="w-8 h-8 text-primary mr-4" />
               <h1 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold text-gray-900">
-                Barcos Con Licencia en Blanes
+                {cl.heroTitle}
               </h1>
             </div>
             <p className="text-lg text-gray-600 mb-6 max-w-4xl mx-auto">
-              Alquila embarcaciones potentes con licencia en Puerto de Blanes, Costa Brava. 
-              Máxima libertad para navegación avanzada. Requiere titulación náutica PER, PNB o superior.
+              {cl.heroDescription}
             </p>
             <div className="flex flex-wrap gap-3 justify-center">
               <Badge variant="outline" className="text-blue-600 border-blue-600">
                 <Award className="w-4 h-4 mr-2" />
-                Requiere Licencia
+                {cl.badgeLicense}
               </Badge>
               <Badge variant="outline" className="text-primary border-primary">
                 <Gauge className="w-4 h-4 mr-2" />
-                40-115 CV
+                {cl.badgePower}
               </Badge>
               <Badge variant="outline" className="text-primary border-primary">
                 <Users className="w-4 h-4 mr-2" />
-                6-7 personas
+                {cl.badgeCapacity}
               </Badge>
             </div>
           </div>
@@ -177,46 +178,30 @@ export default function CategoryLicensedPage() {
       {/* Main Content */}
       <div className="py-12 bg-gray-50">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          
+
           {/* What are Licensed Boats */}
           <Card className="mb-8">
             <CardHeader>
-              <CardTitle className="flex items-center gap-3 text-2xl">
+              <h2 className="flex items-center gap-3 text-2xl font-semibold leading-none tracking-tight">
                 <Award className="w-6 h-6 text-blue-500" />
-                ¿Qué son los Barcos Con Licencia?
-              </CardTitle>
+                {cl.whatAreTitle}
+              </h2>
             </CardHeader>
             <CardContent>
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
-                  <h3 className="font-semibold text-lg mb-3">Navegación Avanzada</h3>
-                  <p className="text-gray-700 mb-4">
-                    Los barcos con licencia son embarcaciones de más de 15 CV de potencia 
-                    que requieren titulación náutica oficial (PER, PNB o superior) para su manejo. 
-                    Ofrecen mayor potencia, velocidad y capacidad de navegación.
-                  </p>
-                  
-                  <h3 className="font-semibold text-lg mb-3">Mayor Libertad</h3>
-                  <p className="text-gray-700">
-                    Con estas embarcaciones puedes navegar sin limitación de distancia de la costa 
-                    (según tu titulación), acceder a calas más lejanas y disfrutar de una 
-                    experiencia de navegación más deportiva y emocionante.
-                  </p>
+                  <h3 className="font-semibold text-lg mb-3">{cl.advancedNavigation}</h3>
+                  <p className="text-gray-700 mb-4">{cl.advancedNavigationDesc}</p>
+
+                  <h3 className="font-semibold text-lg mb-3">{cl.greaterFreedom}</h3>
+                  <p className="text-gray-700">{cl.greaterFreedomDesc}</p>
                 </div>
                 <div>
-                  <h3 className="font-semibold text-lg mb-3">Equipamiento Profesional</h3>
-                  <p className="text-gray-700 mb-4">
-                    Nuestros barcos con licencia incluyen equipamiento avanzado: GPS, 
-                    sonda, radio VHF, mayor capacidad de combustible, 
-                    mejores asientos y sistemas de navegación profesional.
-                  </p>
-                  
-                  <h3 className="font-semibold text-lg mb-3">Rendimiento Superior</h3>
-                  <p className="text-gray-700">
-                    Mayor velocidad de crucero, mejor estabilidad en mar abierto, 
-                    capacidad para transportar más personas cómodamente y 
-                    autonomía para excursiones de día completo.
-                  </p>
+                  <h3 className="font-semibold text-lg mb-3">{cl.professionalEquipment}</h3>
+                  <p className="text-gray-700 mb-4">{cl.professionalEquipmentDesc}</p>
+
+                  <h3 className="font-semibold text-lg mb-3">{cl.superiorPerformance}</h3>
+                  <p className="text-gray-700">{cl.superiorPerformanceDesc}</p>
                 </div>
               </div>
             </CardContent>
@@ -225,10 +210,10 @@ export default function CategoryLicensedPage() {
           {/* Our Licensed Fleet */}
           <Card className="mb-8">
             <CardHeader>
-              <CardTitle className="flex items-center gap-3 text-2xl">
+              <h2 className="flex items-center gap-3 text-2xl font-semibold leading-none tracking-tight">
                 <Anchor className="w-6 h-6 text-primary" />
-                Nuestra Flota Con Licencia
-              </CardTitle>
+                {cl.fleetTitle}
+              </h2>
             </CardHeader>
             <CardContent>
               <div className="grid md:grid-cols-3 gap-6">
@@ -269,52 +254,52 @@ export default function CategoryLicensedPage() {
           {/* Advantages */}
           <Card className="mb-8">
             <CardHeader>
-              <CardTitle className="flex items-center gap-3 text-2xl">
+              <h2 className="flex items-center gap-3 text-2xl font-semibold leading-none tracking-tight">
                 <Heart className="w-6 h-6 text-primary" />
-                Ventajas de los Barcos Con Licencia
-              </CardTitle>
+                {cl.advantagesTitle}
+              </h2>
             </CardHeader>
             <CardContent>
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
-                  <h3 className="font-semibold text-lg mb-3">Rendimiento Superior</h3>
+                  <h3 className="font-semibold text-lg mb-3">{cl.superiorPerformanceAdv}</h3>
                   <ul className="space-y-2">
                     <li className="flex items-center">
                       <Zap className="w-4 h-4 text-blue-600 mr-2" />
-                      <span>Mayor velocidad y potencia</span>
+                      <span>{cl.greaterSpeedPower}</span>
                     </li>
                     <li className="flex items-center">
                       <Compass className="w-4 h-4 text-blue-600 mr-2" />
-                      <span>Navegación sin límite de distancia</span>
+                      <span>{cl.unlimitedDistance}</span>
                     </li>
                     <li className="flex items-center">
                       <Target className="w-4 h-4 text-blue-600 mr-2" />
-                      <span>Acceso a calas más remotas</span>
+                      <span>{cl.remoteCoves}</span>
                     </li>
                     <li className="flex items-center">
                       <Waves className="w-4 h-4 text-blue-600 mr-2" />
-                      <span>Mejor comportamiento en mar abierto</span>
+                      <span>{cl.betterOpenSea}</span>
                     </li>
                   </ul>
                 </div>
                 <div>
-                  <h3 className="font-semibold text-lg mb-3">Experiencia Premium</h3>
+                  <h3 className="font-semibold text-lg mb-3">{cl.premiumExperience}</h3>
                   <ul className="space-y-2">
                     <li className="flex items-center">
                       <NavigationIcon className="w-4 h-4 text-blue-600 mr-2" />
-                      <span>Equipamiento de navegación avanzado</span>
+                      <span>{cl.advancedNavEquipment}</span>
                     </li>
                     <li className="flex items-center">
                       <Star className="w-4 h-4 text-blue-600 mr-2" />
-                      <span>Mayor comodidad y espacio</span>
+                      <span>{cl.greaterComfort}</span>
                     </li>
                     <li className="flex items-center">
                       <Clock className="w-4 h-4 text-blue-600 mr-2" />
-                      <span>Mayor autonomía de combustible</span>
+                      <span>{cl.greaterFuelAutonomy}</span>
                     </li>
                     <li className="flex items-center">
                       <Award className="w-4 h-4 text-blue-600 mr-2" />
-                      <span>Experiencia de navegación deportiva</span>
+                      <span>{cl.sportNavigation}</span>
                     </li>
                   </ul>
                 </div>
@@ -325,60 +310,60 @@ export default function CategoryLicensedPage() {
           {/* Requirements and Documentation */}
           <Card className="mb-8">
             <CardHeader>
-              <CardTitle className="flex items-center gap-3 text-2xl">
+              <h2 className="flex items-center gap-3 text-2xl font-semibold leading-none tracking-tight">
                 <Award className="w-6 h-6 text-primary" />
-                Requisitos y Titulaciones
-              </CardTitle>
+                {cl.requirementsTitle}
+              </h2>
             </CardHeader>
             <CardContent>
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
-                  <h3 className="font-semibold text-lg mb-3">Titulaciones Aceptadas</h3>
+                  <h3 className="font-semibold text-lg mb-3">{cl.acceptedLicenses}</h3>
                   <ul className="space-y-2">
                     <li className="flex items-center">
                       <CheckCircle className="w-4 h-4 text-green-600 mr-2" />
-                      <span>PER (Patrón de Embarcaciones de Recreo)</span>
+                      <span>{cl.per}</span>
                     </li>
                     <li className="flex items-center">
                       <CheckCircle className="w-4 h-4 text-green-600 mr-2" />
-                      <span>PNB (Patrón de Navegación Básica)</span>
+                      <span>{cl.pnb}</span>
                     </li>
                     <li className="flex items-center">
                       <CheckCircle className="w-4 h-4 text-green-600 mr-2" />
-                      <span>Capitán de Yate</span>
+                      <span>{cl.yachtCaptain}</span>
                     </li>
                     <li className="flex items-center">
                       <CheckCircle className="w-4 h-4 text-green-600 mr-2" />
-                      <span>ICC (Certificado Internacional)</span>
+                      <span>{cl.icc}</span>
                     </li>
                     <li className="flex items-center">
                       <CheckCircle className="w-4 h-4 text-green-600 mr-2" />
-                      <span>Licencias equivalentes UE</span>
+                      <span>{cl.euEquivalent}</span>
                     </li>
                   </ul>
                 </div>
                 <div>
-                  <h3 className="font-semibold text-lg mb-3">Requisitos Adicionales</h3>
+                  <h3 className="font-semibold text-lg mb-3">{cl.additionalRequirements}</h3>
                   <ul className="space-y-2">
                     <li className="flex items-center">
                       <CheckCircle className="w-4 h-4 text-green-600 mr-2" />
-                      <span>Edad mínima: 18 años</span>
+                      <span>{cl.minAge}</span>
                     </li>
                     <li className="flex items-center">
                       <CheckCircle className="w-4 h-4 text-green-600 mr-2" />
-                      <span>Documento de identidad válido</span>
+                      <span>{cl.validId}</span>
                     </li>
                     <li className="flex items-center">
                       <CheckCircle className="w-4 h-4 text-green-600 mr-2" />
-                      <span>Titulación náutica en vigor</span>
+                      <span>{cl.validLicense}</span>
                     </li>
                     <li className="flex items-center">
                       <CheckCircle className="w-4 h-4 text-green-600 mr-2" />
-                      <span>Fianza: 500€ (se devuelve)</span>
+                      <span>{cl.deposit}</span>
                     </li>
                     <li className="flex items-center">
                       <CheckCircle className="w-4 h-4 text-green-600 mr-2" />
-                      <span>Briefing técnico incluido</span>
+                      <span>{cl.technicalBriefing}</span>
                     </li>
                   </ul>
                 </div>
@@ -389,52 +374,52 @@ export default function CategoryLicensedPage() {
           {/* What You Can Do */}
           <Card className="mb-8">
             <CardHeader>
-              <CardTitle className="flex items-center gap-3 text-2xl">
+              <h2 className="flex items-center gap-3 text-2xl font-semibold leading-none tracking-tight">
                 <Compass className="w-6 h-6 text-primary" />
-                Qué Puedes Hacer con Licencia
-              </CardTitle>
+                {cl.whatCanDoTitle}
+              </h2>
             </CardHeader>
             <CardContent>
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
-                  <h3 className="font-semibold text-lg mb-3">Destinos Ampliados</h3>
+                  <h3 className="font-semibold text-lg mb-3">{cl.expandedDestinations}</h3>
                   <ul className="space-y-2">
                     <li className="flex items-center">
                       <Target className="w-4 h-4 text-blue-600 mr-2" />
-                      <span>Islas Medas (navegación avanzada)</span>
+                      <span>{cl.islasMedas}</span>
                     </li>
                     <li className="flex items-center">
                       <Target className="w-4 h-4 text-blue-600 mr-2" />
-                      <span>Calas remotas de Begur</span>
+                      <span>{cl.begurCoves}</span>
                     </li>
                     <li className="flex items-center">
                       <Target className="w-4 h-4 text-blue-600 mr-2" />
-                      <span>Cadaqués y Cap de Creus</span>
+                      <span>{cl.cadaques}</span>
                     </li>
                     <li className="flex items-center">
                       <Target className="w-4 h-4 text-blue-600 mr-2" />
-                      <span>Navegación nocturna (con PER)</span>
+                      <span>{cl.nightNavigation}</span>
                     </li>
                   </ul>
                 </div>
                 <div>
-                  <h3 className="font-semibold text-lg mb-3">Actividades Especiales</h3>
+                  <h3 className="font-semibold text-lg mb-3">{cl.specialActivities}</h3>
                   <ul className="space-y-2">
                     <li className="flex items-center">
                       <Waves className="w-4 h-4 text-blue-600 mr-2" />
-                      <span>Pesca deportiva en mar abierto</span>
+                      <span>{cl.sportFishing}</span>
                     </li>
                     <li className="flex items-center">
                       <NavigationIcon className="w-4 h-4 text-blue-600 mr-2" />
-                      <span>Excursiones de día completo</span>
+                      <span>{cl.fullDayTrips}</span>
                     </li>
                     <li className="flex items-center">
                       <Star className="w-4 h-4 text-blue-600 mr-2" />
-                      <span>Navegación deportiva</span>
+                      <span>{cl.sportNav}</span>
                     </li>
                     <li className="flex items-center">
                       <Compass className="w-4 h-4 text-blue-600 mr-2" />
-                      <span>Travesías entre puertos</span>
+                      <span>{cl.portToPort}</span>
                     </li>
                   </ul>
                 </div>
@@ -446,20 +431,19 @@ export default function CategoryLicensedPage() {
           <Card className="bg-primary text-white">
             <CardContent className="py-8 text-center">
               <h2 className="text-2xl font-bold mb-4">
-                ¿Tienes Licencia y Buscas Aventura?
+                {cl.ctaTitle}
               </h2>
               <p className="text-lg mb-6 max-w-2xl mx-auto">
-                Alquila un barco con licencia y experimenta la verdadera libertad de navegación. 
-                Potencia, velocidad y acceso ilimitado a toda la Costa Brava.
+                {cl.ctaDescription}
               </p>
-              <Button 
+              <Button
                 onClick={handleBookingWhatsApp}
                 size="lg"
                 variant="secondary"
                 className="text-primary hover:text-primary"
                 data-testid="button-whatsapp-licensed"
               >
-                Reservar Barco Con Licencia
+                {cl.ctaButton}
               </Button>
             </CardContent>
           </Card>

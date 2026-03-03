@@ -52,12 +52,12 @@ export default function ContactSection() {
                   </div>
                   <h3 className="font-medium text-gray-900 mb-2 text-sm">{t.contact.emailLabel}</h3>
                   <a
-                    href="mailto:costabravarentboat@gmail.com"
+                    href="mailto:costabravarentaboat@gmail.com"
                     className="text-gray-600 hover:text-primary transition-colors cursor-pointer block mb-1 text-xs sm:text-sm break-all"
                     data-testid="email-link"
-                    aria-label="Enviar email a costabravarentboat@gmail.com"
+                    aria-label="Enviar email a costabravarentaboat@gmail.com"
                   >
-                    costabravarentboat@gmail.com
+                    costabravarentaboat@gmail.com
                   </a>
                   <p className="text-xs text-gray-600">{t.contact.emailResponse}</p>
                 </div>

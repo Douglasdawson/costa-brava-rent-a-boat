@@ -148,7 +148,7 @@ const [updated] = await db
 - **Temporada**: Abril - Octubre (fuera de temporada no se aceptan reservas)
 - **Ubicación**: Puerto de Blanes, Girona, España
 - **Teléfono**: +34 611 500 372
-- **Email**: costabravarentboat@gmail.com
+- **Email**: costabravarentaboat@gmail.com
 - **PIN Admin CRM**: ver variable de entorno ADMIN_PIN en el servidor
 
 ## Preguntas Frecuentes del Desarrollo

@@ -1,4 +1,4 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { 
@@ -112,9 +112,11 @@ export default function CategoryLicenseFreePage() {
     }
   ];
 
+  const clf = t.categoryLicenseFree!;
+
   return (
     <div className="min-h-screen">
-      <SEO 
+      <SEO
         title={seoConfig.title}
         description={seoConfig.description}
         ogTitle={seoConfig.ogTitle}
@@ -124,11 +126,11 @@ export default function CategoryLicenseFreePage() {
         jsonLd={combinedJsonLd}
       />
       <Navigation />
-      
+
       {/* Breadcrumbs */}
       <div className="bg-gray-50 border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
-          <Breadcrumbs 
+          <Breadcrumbs
             items={[
               { label: 'breadcrumbs.home', href: '/' },
               { label: 'breadcrumbs.categoryLicenseFree' }
@@ -136,7 +138,7 @@ export default function CategoryLicenseFreePage() {
           />
         </div>
       </div>
-      
+
       {/* Hero Section */}
       <div className="bg-gradient-to-br from-green-50 to-emerald-50 pt-24 pb-12">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -144,25 +146,24 @@ export default function CategoryLicenseFreePage() {
             <div className="flex items-center justify-center mb-6">
               <Zap className="w-8 h-8 text-primary mr-4" />
               <h1 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold text-gray-900">
-                Barcos Sin Licencia en Blanes
+                {clf.heroTitle}
               </h1>
             </div>
             <p className="text-lg text-gray-600 mb-6 max-w-4xl mx-auto">
-              Alquila embarcaciones sin licencia en Puerto de Blanes, Costa Brava. 
-              Barcos hasta 15 CV que no requieren titulación náutica. ¡Navegación segura y fácil para todos!
+              {clf.heroDescription}
             </p>
             <div className="flex flex-wrap gap-3 justify-center">
               <Badge variant="outline" className="text-green-600 border-green-600">
                 <CheckCircle className="w-4 h-4 mr-2" />
-                Sin Licencia Necesaria
+                {clf.badgeNoLicense}
               </Badge>
               <Badge variant="outline" className="text-primary border-primary">
                 <Gauge className="w-4 h-4 mr-2" />
-                Hasta 15 CV
+                {clf.badgePower}
               </Badge>
               <Badge variant="outline" className="text-primary border-primary">
                 <Users className="w-4 h-4 mr-2" />
-                4-7 personas
+                {clf.badgeCapacity}
               </Badge>
             </div>
           </div>
@@ -172,45 +173,37 @@ export default function CategoryLicenseFreePage() {
       {/* Main Content */}
       <div className="py-12 bg-gray-50">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          
+
           {/* What are License-Free Boats */}
           <Card className="mb-8">
             <CardHeader>
-              <CardTitle className="flex items-center gap-3 text-2xl">
+              <h2 className="flex items-center gap-3 text-2xl font-semibold leading-none tracking-tight">
                 <Shield className="w-6 h-6 text-green-500" />
-                ¿Qué son los Barcos Sin Licencia?
-              </CardTitle>
+                {clf.whatAreTitle}
+              </h2>
             </CardHeader>
             <CardContent>
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
-                  <h3 className="font-semibold text-lg mb-3">Navegación Libre</h3>
+                  <h3 className="font-semibold text-lg mb-3">{clf.freeNavigation}</h3>
                   <p className="text-gray-700 mb-4">
-                    Los barcos sin licencia son embarcaciones de hasta 15 CV (11 kW) de potencia 
-                    que pueden ser navegados sin necesidad de titulación náutica oficial. 
-                    Son perfectos para quienes quieren disfrutar del mar sin complicaciones.
+                    {clf.freeNavigationDesc}
                   </p>
-                  
-                  <h3 className="font-semibold text-lg mb-3">Fácil de Manejar</h3>
+
+                  <h3 className="font-semibold text-lg mb-3">{clf.easyToHandle}</h3>
                   <p className="text-gray-700">
-                    Estas embarcaciones están diseñadas para ser intuitivas y seguras. 
-                    Con controles simples y estabilidad garantizada, cualquier persona 
-                    puede aprender a manejarlas en pocos minutos.
+                    {clf.easyToHandleDesc}
                   </p>
                 </div>
                 <div>
-                  <h3 className="font-semibold text-lg mb-3">Limitaciones Seguras</h3>
+                  <h3 className="font-semibold text-lg mb-3">{clf.safeLimits}</h3>
                   <p className="text-gray-700 mb-4">
-                    Por ley, solo pueden navegar hasta 2 millas náuticas de la costa 
-                    y en aguas protegidas. Esto garantiza que siempre estarás en zona segura 
-                    y con posibilidad de volver a puerto fácilmente.
+                    {clf.safeLimitsDesc}
                   </p>
-                  
-                  <h3 className="font-semibold text-lg mb-3">Equipamiento Completo</h3>
+
+                  <h3 className="font-semibold text-lg mb-3">{clf.completeEquipment}</h3>
                   <p className="text-gray-700">
-                    Todos nuestros barcos incluyen equipo de seguridad reglamentario, 
-                    chalecos salvavidas, extintor, y extras como nevera, toldo solar, 
-                    equipo de snorkel y radio.
+                    {clf.completeEquipmentDesc}
                   </p>
                 </div>
               </div>
@@ -220,10 +213,10 @@ export default function CategoryLicenseFreePage() {
           {/* Our License-Free Fleet */}
           <Card className="mb-8">
             <CardHeader>
-              <CardTitle className="flex items-center gap-3 text-2xl">
+              <h2 className="flex items-center gap-3 text-2xl font-semibold leading-none tracking-tight">
                 <Anchor className="w-6 h-6 text-primary" />
-                Nuestra Flota Sin Licencia
-              </CardTitle>
+                {clf.fleetTitle}
+              </h2>
             </CardHeader>
             <CardContent>
               <div className="grid md:grid-cols-3 gap-6">
@@ -260,52 +253,52 @@ export default function CategoryLicenseFreePage() {
           {/* Advantages */}
           <Card className="mb-8">
             <CardHeader>
-              <CardTitle className="flex items-center gap-3 text-2xl">
+              <h2 className="flex items-center gap-3 text-2xl font-semibold leading-none tracking-tight">
                 <Heart className="w-6 h-6 text-primary" />
-                Ventajas de los Barcos Sin Licencia
-              </CardTitle>
+                {clf.advantagesTitle}
+              </h2>
             </CardHeader>
             <CardContent>
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
-                  <h3 className="font-semibold text-lg mb-3">Accesibilidad Total</h3>
+                  <h3 className="font-semibold text-lg mb-3">{clf.totalAccessibility}</h3>
                   <ul className="space-y-2">
                     <li className="flex items-center">
                       <Star className="w-4 h-4 text-green-600 mr-2" />
-                      <span>No necesitas licencia ni titulación</span>
+                      <span>{clf.noLicenseNeeded}</span>
                     </li>
                     <li className="flex items-center">
                       <Star className="w-4 h-4 text-green-600 mr-2" />
-                      <span>Aprendizaje rápido (15 minutos)</span>
+                      <span>{clf.quickLearning}</span>
                     </li>
                     <li className="flex items-center">
                       <Star className="w-4 h-4 text-green-600 mr-2" />
-                      <span>Menor coste de alquiler</span>
+                      <span>{clf.lowerCost}</span>
                     </li>
                     <li className="flex items-center">
                       <Star className="w-4 h-4 text-green-600 mr-2" />
-                      <span>Perfecto para principiantes</span>
+                      <span>{clf.perfectBeginners}</span>
                     </li>
                   </ul>
                 </div>
                 <div>
-                  <h3 className="font-semibold text-lg mb-3">Diversión Garantizada</h3>
+                  <h3 className="font-semibold text-lg mb-3">{clf.guaranteedFun}</h3>
                   <ul className="space-y-2">
                     <li className="flex items-center">
                       <Waves className="w-4 h-4 text-green-600 mr-2" />
-                      <span>Acceso a calas y playas desde el mar</span>
+                      <span>{clf.accessCoves}</span>
                     </li>
                     <li className="flex items-center">
                       <Sun className="w-4 h-4 text-green-600 mr-2" />
-                      <span>Ideal para familias con niños</span>
+                      <span>{clf.idealFamilies}</span>
                     </li>
                     <li className="flex items-center">
                       <NavigationIcon className="w-4 h-4 text-green-600 mr-2" />
-                      <span>Navegación en zona segura costera</span>
+                      <span>{clf.safeCoastalNavigation}</span>
                     </li>
                     <li className="flex items-center">
                       <Clock className="w-4 h-4 text-green-600 mr-2" />
-                      <span>Disponibilidad inmediata</span>
+                      <span>{clf.immediateAvailability}</span>
                     </li>
                   </ul>
                 </div>
@@ -316,52 +309,52 @@ export default function CategoryLicenseFreePage() {
           {/* Safety and Requirements */}
           <Card className="mb-8">
             <CardHeader>
-              <CardTitle className="flex items-center gap-3 text-2xl">
+              <h2 className="flex items-center gap-3 text-2xl font-semibold leading-none tracking-tight">
                 <Shield className="w-6 h-6 text-primary" />
-                Seguridad y Requisitos
-              </CardTitle>
+                {clf.safetyTitle}
+              </h2>
             </CardHeader>
             <CardContent>
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
-                  <h3 className="font-semibold text-lg mb-3">Requisitos Mínimos</h3>
+                  <h3 className="font-semibold text-lg mb-3">{clf.minRequirements}</h3>
                   <ul className="space-y-2">
                     <li className="flex items-center">
                       <CheckCircle className="w-4 h-4 text-green-600 mr-2" />
-                      <span>Edad mínima: 18 años (conductor)</span>
+                      <span>{clf.minAge}</span>
                     </li>
                     <li className="flex items-center">
                       <CheckCircle className="w-4 h-4 text-green-600 mr-2" />
-                      <span>Documento de identidad válido</span>
+                      <span>{clf.validId}</span>
                     </li>
                     <li className="flex items-center">
                       <CheckCircle className="w-4 h-4 text-green-600 mr-2" />
-                      <span>Fianza: 300€ (se devuelve)</span>
+                      <span>{clf.deposit}</span>
                     </li>
                     <li className="flex items-center">
                       <CheckCircle className="w-4 h-4 text-green-600 mr-2" />
-                      <span>Briefing de seguridad (15 min)</span>
+                      <span>{clf.safetyBriefing}</span>
                     </li>
                   </ul>
                 </div>
                 <div>
-                  <h3 className="font-semibold text-lg mb-3">Seguridad Incluida</h3>
+                  <h3 className="font-semibold text-lg mb-3">{clf.safetyIncluded}</h3>
                   <ul className="space-y-2">
                     <li className="flex items-center">
                       <Shield className="w-4 h-4 text-green-600 mr-2" />
-                      <span>Chalecos salvavidas para todos</span>
+                      <span>{clf.lifeJackets}</span>
                     </li>
                     <li className="flex items-center">
                       <Shield className="w-4 h-4 text-green-600 mr-2" />
-                      <span>Extintor y equipo de emergencia</span>
+                      <span>{clf.fireExtinguisher}</span>
                     </li>
                     <li className="flex items-center">
                       <Shield className="w-4 h-4 text-green-600 mr-2" />
-                      <span>Radio VHF para comunicación</span>
+                      <span>{clf.vhfRadio}</span>
                     </li>
                     <li className="flex items-center">
                       <Shield className="w-4 h-4 text-green-600 mr-2" />
-                      <span>Seguro de responsabilidad civil</span>
+                      <span>{clf.civilLiability}</span>
                     </li>
                   </ul>
                 </div>
@@ -373,20 +366,19 @@ export default function CategoryLicenseFreePage() {
           <Card className="bg-primary text-white">
             <CardContent className="py-8 text-center">
               <h2 className="text-2xl font-bold mb-4">
-                ¿Listo para tu Primera Aventura Sin Licencia?
+                {clf.ctaTitle}
               </h2>
               <p className="text-lg mb-6 max-w-2xl mx-auto">
-                Alquila un barco sin licencia y descubre la libertad de navegar 
-                por la Costa Brava sin complicaciones. ¡Ideal para principiantes y familias!
+                {clf.ctaDescription}
               </p>
-              <Button 
+              <Button
                 onClick={handleBookingWhatsApp}
                 size="lg"
                 variant="secondary"
                 className="text-primary hover:text-primary"
                 data-testid="button-whatsapp-license-free"
               >
-                Reservar Barco Sin Licencia
+                {clf.ctaButton}
               </Button>
             </CardContent>
           </Card>

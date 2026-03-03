@@ -12,7 +12,7 @@ NauticFlow es una plataforma SaaS multi-tenant para empresas de alquiler de emba
 | Ubicacion | Puerto de Blanes, Girona, Espana |
 | Temporada | Abril - Octubre |
 | Telefono | +34 611 500 372 |
-| Email | costabravarentboat@gmail.com |
+| Email | costabravarentaboat@gmail.com |
 | Flota | 7 barcos (4 sin licencia, 3 con licencia) |
 | Modelo | Reservas via WhatsApp + web (sin pagos online obligatorios) |
 

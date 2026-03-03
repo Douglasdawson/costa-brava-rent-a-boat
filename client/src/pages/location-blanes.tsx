@@ -1,4 +1,4 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { 
@@ -30,6 +30,8 @@ export default function LocationBlanesPage() {
   const seoConfig = getSEOConfig('locationBlanes', language);
   const hreflangLinks = generateHreflangLinks('locationBlanes');
   const canonical = generateCanonicalUrl('locationBlanes', language);
+
+  const s = t.locationPages.blanes.sections!;
 
   const handleBookingWhatsApp = () => {
     const message = createBookingMessage();
@@ -140,39 +142,26 @@ export default function LocationBlanesPage() {
           {/* Why Choose Blanes */}
           <Card className="mb-8">
             <CardHeader>
-              <CardTitle className="flex items-center gap-3 text-2xl">
+              <h2 className="flex items-center gap-3 text-2xl font-semibold leading-none tracking-tight">
                 <Star className="w-6 h-6 text-yellow-500" />
-                ¿Por qué elegir Blanes para tu alquiler de barco?
-              </CardTitle>
+                {s.whyBlanesTitle}
+              </h2>
             </CardHeader>
             <CardContent>
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
-                  <h3 className="font-semibold text-lg mb-3">Ubicación Estratégica</h3>
-                  <p className="text-gray-700 mb-4">
-                    Blanes es la puerta sur de la Costa Brava, con acceso directo a las calas más espectaculares. 
-                    Desde el Puerto de Blanes puedes navegar hacia el norte hasta Lloret de Mar o hacia el sur 
-                    explorando la costa hasta Malgrat de Mar.
-                  </p>
-                  
-                  <h3 className="font-semibold text-lg mb-3">Puerto Seguro y Completo</h3>
-                  <p className="text-gray-700">
-                    El Puerto de Blanes ofrece todas las comodidades: parking, restaurantes, tiendas náuticas, 
-                    combustible y servicios. Un punto de partida perfecto para tu aventura marítima.
-                  </p>
+                  <h3 className="font-semibold text-lg mb-3">{s.strategicLocation}</h3>
+                  <p className="text-gray-700 mb-4">{s.strategicLocationDesc}</p>
+
+                  <h3 className="font-semibold text-lg mb-3">{s.safePorts}</h3>
+                  <p className="text-gray-700">{s.safePortsDesc}</p>
                 </div>
                 <div>
-                  <h3 className="font-semibold text-lg mb-3">Calas Accesibles</h3>
-                  <p className="text-gray-700 mb-4">
-                    Desde Blanes tienes acceso fácil a Cala Brava, Cala Sant Francesc, las playas de Lloret 
-                    y muchas calas vírgenes. Distancias cortas, más tiempo para disfrutar.
-                  </p>
-                  
-                  <h3 className="font-semibold text-lg mb-3">Para Todos los Niveles</h3>
-                  <p className="text-gray-700">
-                    Tanto si es tu primera vez como si eres un navegante experimentado, 
-                    Blanes ofrece aguas tranquilas para principiantes y rutas emocionantes para aventureros.
-                  </p>
+                  <h3 className="font-semibold text-lg mb-3">{s.accessibleCoves}</h3>
+                  <p className="text-gray-700 mb-4">{s.accessibleCovesDesc}</p>
+
+                  <h3 className="font-semibold text-lg mb-3">{s.allLevels}</h3>
+                  <p className="text-gray-700">{s.allLevelsDesc}</p>
                 </div>
               </div>
             </CardContent>
@@ -181,10 +170,10 @@ export default function LocationBlanesPage() {
           {/* Key Destinations from Blanes */}
           <Card className="mb-8">
             <CardHeader>
-              <CardTitle className="flex items-center gap-3 text-2xl">
+              <h2 className="flex items-center gap-3 text-2xl font-semibold leading-none tracking-tight">
                 <NavigationIcon className="w-6 h-6 text-primary" />
-                Destinos Principales desde Blanes
-              </CardTitle>
+                {s.destinationsTitle}
+              </h2>
             </CardHeader>
             <CardContent>
               <div className="grid md:grid-cols-3 gap-6">
@@ -192,27 +181,27 @@ export default function LocationBlanesPage() {
                   <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
                     <Waves className="w-8 h-8 text-blue-600" />
                   </div>
-                  <h3 className="font-semibold text-lg mb-2">Cala Brava</h3>
-                  <p className="text-gray-600 text-sm mb-2">15 minutos navegando</p>
-                  <p className="text-gray-700">Cala virgen con aguas cristalinas. Perfecta para snorkel y relax.</p>
+                  <h3 className="font-semibold text-lg mb-2">{s.calaBrava}</h3>
+                  <p className="text-gray-600 text-sm mb-2">{s.calaBravaTime}</p>
+                  <p className="text-gray-700">{s.calaBravaDesc}</p>
                 </div>
-                
+
                 <div className="text-center">
                   <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
                     <Camera className="w-8 h-8 text-green-600" />
                   </div>
-                  <h3 className="font-semibold text-lg mb-2">Lloret de Mar</h3>
-                  <p className="text-gray-600 text-sm mb-2">25 minutos navegando</p>
-                  <p className="text-gray-700">Playas animadas con chiringuitos y actividades acuáticas.</p>
+                  <h3 className="font-semibold text-lg mb-2">{s.lloretDeMar}</h3>
+                  <p className="text-gray-600 text-sm mb-2">{s.lloretTime}</p>
+                  <p className="text-gray-700">{s.lloretDesc}</p>
                 </div>
-                
+
                 <div className="text-center">
                   <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
                     <Sun className="w-8 h-8 text-orange-600" />
                   </div>
-                  <h3 className="font-semibold text-lg mb-2">Cala Sant Francesc</h3>
-                  <p className="text-gray-600 text-sm mb-2">10 minutos navegando</p>
-                  <p className="text-gray-700">Cala protegida ideal para familias con niños pequeños.</p>
+                  <h3 className="font-semibold text-lg mb-2">{s.calaSantFrancesc}</h3>
+                  <p className="text-gray-600 text-sm mb-2">{s.calaSantFrancescTime}</p>
+                  <p className="text-gray-700">{s.calaSantFrancescDesc}</p>
                 </div>
               </div>
             </CardContent>
@@ -221,41 +210,41 @@ export default function LocationBlanesPage() {
           {/* Local Services */}
           <Card className="mb-8">
             <CardHeader>
-              <CardTitle className="flex items-center gap-3 text-2xl">
+              <h2 className="flex items-center gap-3 text-2xl font-semibold leading-none tracking-tight">
                 <Car className="w-6 h-6 text-primary" />
-                Servicios en Puerto de Blanes
-              </CardTitle>
+                {s.servicesTitle}
+              </h2>
             </CardHeader>
             <CardContent>
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
-                  <h3 className="font-semibold text-lg mb-3">Comodidades del Puerto</h3>
+                  <h3 className="font-semibold text-lg mb-3">{s.portAmenities}</h3>
                   <ul className="space-y-2">
                     <li className="flex items-center">
                       <Car className="w-4 h-4 text-green-600 mr-2" />
-                      <span>Parking gratuito disponible</span>
+                      <span>{s.freeParking}</span>
                     </li>
                     <li className="flex items-center">
                       <Ship className="w-4 h-4 text-green-600 mr-2" />
-                      <span>Estación de combustible marina</span>
+                      <span>{s.fuelStation}</span>
                     </li>
                     <li className="flex items-center">
                       <Star className="w-4 h-4 text-green-600 mr-2" />
-                      <span>Restaurantes y cafeterías</span>
+                      <span>{s.restaurants}</span>
                     </li>
                     <li className="flex items-center">
                       <Anchor className="w-4 h-4 text-green-600 mr-2" />
-                      <span>Tiendas náuticas</span>
+                      <span>{s.nauticalShops}</span>
                     </li>
                   </ul>
                 </div>
                 <div>
-                  <h3 className="font-semibold text-lg mb-3">Cómo Llegar</h3>
+                  <h3 className="font-semibold text-lg mb-3">{s.howToGet}</h3>
                   <ul className="space-y-2 text-gray-700">
-                    <li><strong>Desde Barcelona:</strong> AP-7 dirección Girona, salida Blanes (60 min)</li>
-                    <li><strong>Desde Girona:</strong> N-II dirección Blanes (45 min)</li>
-                    <li><strong>Desde Francia:</strong> AP-7 dirección Barcelona, salida Blanes</li>
-                    <li><strong>Transporte público:</strong> Tren RENFE línea R1 hasta Blanes</li>
+                    <li>{s.fromBarcelona}</li>
+                    <li>{s.fromGirona}</li>
+                    <li>{s.fromFrance}</li>
+                    <li>{s.publicTransport}</li>
                   </ul>
                 </div>
               </div>
@@ -265,9 +254,9 @@ export default function LocationBlanesPage() {
           {/* CTA Section */}
           <Card className="bg-primary text-white">
             <CardContent className="p-8 text-center">
-              <h2 className="text-2xl font-bold mb-4">¿Listo para explorar desde Blanes?</h2>
+              <h2 className="text-2xl font-bold mb-4">{s.ctaTitle}</h2>
               <p className="text-lg mb-6 opacity-90">
-                Reserva tu barco y descubre las calas más hermosas de la Costa Brava
+                {s.ctaDescription}
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button 
@@ -277,7 +266,7 @@ export default function LocationBlanesPage() {
                   data-testid="button-book-blanes"
                 >
                   <Anchor className="w-5 h-5 mr-2" />
-                  Reservar desde Blanes
+                  {s.ctaButton}
                 </Button>
               </div>
             </CardContent>
@@ -286,7 +275,7 @@ export default function LocationBlanesPage() {
           {/* Location Map */}
           <Card className="mt-8">
             <CardHeader>
-              <CardTitle>Ubicación - Puerto de Blanes</CardTitle>
+              <h2 className="text-2xl font-semibold leading-none tracking-tight">{s.mapTitle}</h2>
             </CardHeader>
             <CardContent>
               <div className="w-full h-64 md:h-80 rounded-lg overflow-hidden border">

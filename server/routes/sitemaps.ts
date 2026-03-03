@@ -151,6 +151,7 @@ export function registerSitemapRoutes(app: Express) {
       sitemap += generateUrlEntry(baseUrl, "/terms-conditions", "0.3", now, "monthly");
       sitemap += generateUrlEntry(baseUrl, "/condiciones-generales", "0.3", now, "monthly");
       sitemap += generateUrlEntry(baseUrl, "/cookies-policy", "0.3", now, "monthly");
+      sitemap += generateUrlEntry(baseUrl, "/accesibilidad", "0.3", now, "monthly");
 
       sitemap += `</urlset>`;
 

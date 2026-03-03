@@ -23,5 +23,5 @@ export function getCanonicalUrl(path: string): string {
 // Default Open Graph image
 export function getDefaultOgImage(): string {
   const baseUrl = getBaseUrl();
-  return `${baseUrl}/assets/Mediterranean_coastal_hero_scene_8df465c2.png`;
+  return `${baseUrl}/assets/og-image.png`;
 }

@@ -187,15 +187,10 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
 
   const baseProductSchema = generateEnhancedProductSchema(adaptedBoatData, language);
   
-  // Add image and aggregate rating to enhanced schema
+  // Add image to enhanced schema (aggregateRating handled server-side by seoInjector)
   const enhancedProductSchema = {
     ...baseProductSchema,
     image: absoluteImage,
-    aggregateRating: {
-      "@type": "AggregateRating",
-      "ratingValue": "4.8",
-      "reviewCount": "127"
-    }
   };
 
   // Generate breadcrumb schema with localized names

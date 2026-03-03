@@ -129,12 +129,12 @@ export default function Footer() {
                 <Mail className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
                 <div className="flex-1">
                   <a 
-                    href="mailto:costabravarentboat@gmail.com"
+                    href="mailto:costabravarentaboat@gmail.com"
                     className="text-xs hover:text-primary transition-colors block mb-1 break-all"
                     data-testid="email-link"
-                    aria-label="Enviar email a costabravarentboat@gmail.com"
+                    aria-label="Enviar email a costabravarentaboat@gmail.com"
                   >
-                    costabravarentboat@gmail.com
+                    costabravarentaboat@gmail.com
                   </a>
                   <p className="text-xs text-gray-400">{t.footer.responseTime}</p>
                 </div>
@@ -268,6 +268,8 @@ export default function Footer() {
               <li><a href="#fleet" className="block py-1 underline decoration-gray-500/50 hover:text-primary hover:decoration-primary transition-colors">{t.footer.extrasSeascooter}</a></li>
               <li><a href="#fleet" className="block py-1 underline decoration-gray-500/50 hover:text-primary hover:decoration-primary transition-colors">{t.footer.hourlyRental}</a></li>
               <li><a href="#contact" className="block py-1 underline decoration-gray-500/50 hover:text-primary hover:decoration-primary transition-colors">{t.footer.portParking}</a></li>
+              <li><a href="/galeria" className="block py-1 underline decoration-gray-500/50 hover:text-primary hover:decoration-primary transition-colors">Galeria</a></li>
+              <li><a href="/rutas" className="block py-1 underline decoration-gray-500/50 hover:text-primary hover:decoration-primary transition-colors">Rutas</a></li>
             </ul>
 
             {/* Newsletter */}

@@ -1,5 +1,18 @@
 import { useEffect } from "react";
 import { getCanonicalUrl, getDefaultOgImage } from "@/lib/domain";
+import { useLanguage } from "@/hooks/use-language";
+
+// OG locale codes for each supported language
+const OG_LOCALE_MAP: Record<string, string> = {
+  es: "es_ES",
+  en: "en_GB",
+  fr: "fr_FR",
+  de: "de_DE",
+  nl: "nl_NL",
+  it: "it_IT",
+  ca: "ca_ES",
+  ru: "ru_RU",
+};
 
 interface SEOProps {
   title: string;
@@ -16,9 +29,9 @@ interface SEOProps {
   }>;
 }
 
-export function SEO({ 
-  title, 
-  description, 
+export function SEO({
+  title,
+  description,
   canonical = getCanonicalUrl('/'),
   ogImage = getDefaultOgImage(),
   ogType = "website",
@@ -27,8 +40,9 @@ export function SEO({
   jsonLd,
   hreflang
 }: SEOProps) {
+  const { language } = useLanguage();
   // Ensure absolute URLs for images
-  const absoluteOgImage = ogImage.startsWith('http') ? ogImage : 
+  const absoluteOgImage = ogImage.startsWith('http') ? ogImage :
     ogImage.startsWith('/') ? `${window.location.origin}${ogImage}` :
     `${window.location.origin}/${ogImage}`;
   useEffect(() => {
@@ -97,6 +111,24 @@ export function SEO({
     updateTwitterTag('image', absoluteOgImage);
     updateTwitterTag('url', canonical);
 
+    // Set og:locale for current language and og:locale:alternate for other languages
+    const currentLocale = OG_LOCALE_MAP[language] || "es_ES";
+    updateOGTag('og:locale', currentLocale);
+
+    // Remove existing og:locale:alternate tags
+    const existingLocaleAlts = document.querySelectorAll('meta[property="og:locale:alternate"]');
+    existingLocaleAlts.forEach(tag => tag.remove());
+
+    // Add og:locale:alternate for all languages except current
+    Object.entries(OG_LOCALE_MAP).forEach(([lang, locale]) => {
+      if (lang !== language) {
+        const altTag = document.createElement('meta');
+        altTag.setAttribute('property', 'og:locale:alternate');
+        altTag.setAttribute('content', locale);
+        document.head.appendChild(altTag);
+      }
+    });
+
     // Add hreflang tags if provided
     if (hreflang && hreflang.length > 0) {
       // Remove existing hreflang tags
@@ -135,7 +167,7 @@ export function SEO({
         document.head.removeChild(jsonLdScript);
       }
     };
-  }, [title, description, canonical, ogImage, ogType, ogTitle, ogDescription, jsonLd, hreflang]);
+  }, [title, description, canonical, ogImage, ogType, ogTitle, ogDescription, jsonLd, hreflang, language]);
 
   return null;
 }

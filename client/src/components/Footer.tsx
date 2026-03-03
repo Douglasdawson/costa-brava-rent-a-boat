@@ -23,7 +23,7 @@ export default function Footer() {
         body: JSON.stringify({ email: newsletterEmail.trim(), language, source: 'footer' }),
       });
       if (res.ok || res.status === 409) {
-        setNewsletterState('success'); // 409 = already subscribed, show success anyway
+        setNewsletterState('success');
       } else {
         setNewsletterState('error');
       }
@@ -32,15 +32,9 @@ export default function Footer() {
     }
   };
 
-  // Detectar si estamos en temporada operativa (Abril - Octubre)
   const isOperatingSeason = () => {
-    const currentMonth = new Date().getMonth(); // 0-11 (Enero = 0)
-    return currentMonth >= 3 && currentMonth <= 9; // Abril (3) - Octubre (9)
-  };
-
-  const handleWhatsApp = () => {
-    const message = encodeURIComponent(t.footer.whatsappMessage);
-    window.open(`https://wa.me/34611500372?text=${message}`, "_blank");
+    const currentMonth = new Date().getMonth();
+    return currentMonth >= 3 && currentMonth <= 9;
   };
 
   const handleLogoClick = () => {
@@ -48,238 +42,71 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-gray-900 text-gray-300">
-      <div className="container mx-auto px-4 py-8 sm:py-12 lg:px-8">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 lg:gap-12">
-          {/* Company Info */}
+    <footer className="bg-[#1A2B4A] text-white/70">
+      <div className="container mx-auto px-4 py-16 sm:py-20 lg:px-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-12">
+
+          {/* Column 1: Company */}
           <div>
             <a
               href="/"
               onClick={(e) => { e.preventDefault(); handleLogoClick(); }}
               className="flex items-center space-x-2 mb-4 hover:opacity-80 transition-opacity"
               data-testid="footer-logo-button"
-              aria-label="Ir a la página principal"
+              aria-label="Ir a la pagina principal"
             >
               <img src={logoHorizontal} alt="Costa Brava Rent a Boat" className="h-8 brightness-0 invert" />
             </a>
-            <p className="text-xs text-gray-400 mb-4">
+            <p className="text-sm text-white/50 mb-4 leading-relaxed">
               {t.footer.description}
             </p>
             <div className="flex items-center space-x-2 text-xs mb-6">
               <div className={`w-2 h-2 rounded-full ${isOperatingSeason() ? 'bg-green-400' : 'bg-red-400'}`} aria-hidden="true"></div>
               <span>{t.footer.operatingSeason}</span>
             </div>
-            
+
             {/* Social Media */}
-            <div>
-              <h3 className="font-semibold text-white mb-3 text-sm">{t.footer.followUs}</h3>
-              <div className="flex items-center space-x-4">
-                <a
-                  href="https://www.instagram.com/costabravarentaboat/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-gray-400 hover:text-pink-500 transition-colors"
-                  data-testid="social-instagram"
-                  aria-label="Síguenos en Instagram"
-                >
-                  <SiInstagram className="w-7 h-7" />
-                </a>
-                <a
-                  href="https://www.facebook.com/costabravarentaboat"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-gray-400 hover:text-blue-500 transition-colors"
-                  data-testid="social-facebook"
-                  aria-label="Síguenos en Facebook"
-                >
-                  <SiFacebook className="w-7 h-7" />
-                </a>
-                <a
-                  href="https://www.tiktok.com/@costabravarentaboat"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-gray-400 hover:text-white transition-colors"
-                  data-testid="social-tiktok"
-                  aria-label="Síguenos en TikTok"
-                >
-                  <SiTiktok className="w-7 h-7" />
-                </a>
-              </div>
+            <div className="flex items-center space-x-4">
+              <a
+                href="https://www.instagram.com/costabravarentaboat/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white/50 hover:text-white transition-colors"
+                data-testid="social-instagram"
+                aria-label="Siguenos en Instagram"
+              >
+                <SiInstagram className="w-5 h-5" />
+              </a>
+              <a
+                href="https://www.facebook.com/costabravarentaboat"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white/50 hover:text-white transition-colors"
+                data-testid="social-facebook"
+                aria-label="Siguenos en Facebook"
+              >
+                <SiFacebook className="w-5 h-5" />
+              </a>
+              <a
+                href="https://www.tiktok.com/@costabravarentaboat"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white/50 hover:text-white transition-colors"
+                data-testid="social-tiktok"
+                aria-label="Siguenos en TikTok"
+              >
+                <SiTiktok className="w-5 h-5" />
+              </a>
             </div>
-          </div>
-
-          {/* Contact Info */}
-          <div>
-            <h3 className="font-semibold text-white mb-4 text-sm">{t.footer.contact}</h3>
-            <div className="space-y-3">
-              <div className="flex items-start space-x-3">
-                <Phone className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
-                <div className="flex-1">
-                  <a 
-                    href="tel:+34611500372"
-                    className="text-xs hover:text-primary transition-colors block mb-1"
-                    data-testid="phone-call-link"
-                    aria-label="Llamar al teléfono +34 611 500 372"
-                  >+34 611 500 372</a>
-                  <p className="text-xs text-gray-400">{t.footer.callsAndWhatsapp}</p>
-                </div>
-              </div>
-              
-              <div className="flex items-start space-x-3">
-                <Mail className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
-                <div className="flex-1">
-                  <a 
-                    href="mailto:costabravarentaboat@gmail.com"
-                    className="text-xs hover:text-primary transition-colors block mb-1 break-all"
-                    data-testid="email-link"
-                    aria-label="Enviar email a costabravarentaboat@gmail.com"
-                  >
-                    costabravarentaboat@gmail.com
-                  </a>
-                  <p className="text-xs text-gray-400">{t.footer.responseTime}</p>
-                </div>
-              </div>
-              
-              <div className="flex items-start space-x-3">
-                <MapPin className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
-                <div className="flex-1">
-                  <a 
-                    href="https://maps.app.goo.gl/NHV4PcaFPmwBYqCt5"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-xs hover:text-primary transition-colors block mb-1"
-                    data-testid="maps-link"
-                    aria-label="Ver ubicación en Google Maps: Puerto de Blanes"
-                  >
-                    {t.footer.location}
-                  </a>
-                  <p className="text-xs text-gray-400">{t.footer.region}</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Hours & Legal */}
-          <div>
-            <h3 className="font-semibold text-white mb-4 text-sm">{t.footer.hours}</h3>
-            <div className="space-y-2 text-xs mb-6">
-              <div className="flex items-center space-x-2">
-                <Clock className="w-4 h-4 text-primary flex-shrink-0" />
-                <span>{t.footer.businessHours}</span>
-              </div>
-              <p className="text-xs text-gray-400">
-                {t.footer.flexibleHours}
-              </p>
-            </div>
-
-            <h4 className="font-semibold text-white mb-3 text-sm">{t.footer.information}</h4>
-            <ul className="space-y-2 text-xs">
-              <li>
-                <a
-                  href="/blog"
-                  className="block py-1 underline decoration-gray-500/50 hover:text-primary hover:decoration-primary transition-colors"
-                  data-testid="footer-blog-link"
-                  aria-label="Ver artículos del blog"
-                >
-                  {t.footer.blog}
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/faq"
-                  className="block py-1 underline decoration-gray-500/50 hover:text-primary hover:decoration-primary transition-colors"
-                  data-testid="footer-faq-link"
-                  aria-label="Ver preguntas frecuentes"
-                >
-                  {t.footer.faqLabel}
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/testimonios"
-                  className="block py-1 underline decoration-gray-500/50 hover:text-primary hover:decoration-primary transition-colors"
-                  data-testid="footer-testimonials-link"
-                  aria-label="Ver opiniones de clientes"
-                >
-                  {t.footer.customerReviews}
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/terms-conditions"
-                  className="block py-1 underline decoration-gray-500/50 hover:text-primary hover:decoration-primary transition-colors"
-                  data-testid="footer-terms-link"
-                  aria-label="Ver términos y condiciones del servicio"
-                >
-                  {t.footer.terms}
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/terms-conditions#cancelaciones-cambios"
-                  className="block py-1 underline decoration-gray-500/50 hover:text-primary hover:decoration-primary transition-colors"
-                  data-testid="footer-cancellation-link"
-                  aria-label="Ver política de cancelaciones y cambios"
-                >
-                  {t.footer.cancelationPolicy}
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/privacy-policy"
-                  className="block py-1 underline decoration-gray-500/50 hover:text-primary hover:decoration-primary transition-colors"
-                  data-testid="footer-privacy-link"
-                  aria-label="Ver política de privacidad"
-                >
-                  {t.footer.privacy}
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/cookies-policy"
-                  className="block py-1 underline decoration-gray-500/50 hover:text-primary hover:decoration-primary transition-colors"
-                  data-testid="footer-cookies-link"
-                  aria-label="Ver política de cookies"
-                >
-                  {t.footer.cookiesPolicy}
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/accesibilidad"
-                  className="block py-1 underline decoration-gray-500/50 hover:text-primary hover:decoration-primary transition-colors"
-                  data-testid="footer-accessibility-link"
-                  aria-label="Ver declaración de accesibilidad"
-                >
-                  Accesibilidad
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          {/* Services */}
-          <div>
-            <h3 className="font-semibold text-white mb-4 text-sm">{t.footer.services}</h3>
-            <ul className="space-y-2 text-xs">
-              <li><a href="/barcos-sin-licencia" className="block py-1 underline decoration-gray-500/50 hover:text-primary hover:decoration-primary transition-colors">{t.boats.withoutLicense}</a></li>
-              <li><a href="/barcos-con-licencia" className="block py-1 underline decoration-gray-500/50 hover:text-primary hover:decoration-primary transition-colors">{t.boats.withLicense}</a></li>
-              <li><a href="#fleet" className="block py-1 underline decoration-gray-500/50 hover:text-primary hover:decoration-primary transition-colors">{t.footer.extrasSnorkel}</a></li>
-              <li><a href="#fleet" className="block py-1 underline decoration-gray-500/50 hover:text-primary hover:decoration-primary transition-colors">{t.footer.extrasPaddle}</a></li>
-              <li><a href="#fleet" className="block py-1 underline decoration-gray-500/50 hover:text-primary hover:decoration-primary transition-colors">{t.footer.extrasSeascooter}</a></li>
-              <li><a href="#fleet" className="block py-1 underline decoration-gray-500/50 hover:text-primary hover:decoration-primary transition-colors">{t.footer.hourlyRental}</a></li>
-              <li><a href="#contact" className="block py-1 underline decoration-gray-500/50 hover:text-primary hover:decoration-primary transition-colors">{t.footer.portParking}</a></li>
-              <li><a href="/galeria" className="block py-1 underline decoration-gray-500/50 hover:text-primary hover:decoration-primary transition-colors">Galeria</a></li>
-              <li><a href="/rutas" className="block py-1 underline decoration-gray-500/50 hover:text-primary hover:decoration-primary transition-colors">Rutas</a></li>
-            </ul>
 
             {/* Newsletter */}
-            <div className="mt-6">
-              <h3 className="font-semibold text-white mb-2 text-sm">{t.locationPages.newsletter.title}</h3>
-              <p className="text-xs text-gray-400 mb-3">{t.locationPages.newsletter.subtitle}</p>
+            <div className="mt-8">
+              <h3 className="font-medium text-white mb-2 text-sm">{t.locationPages.newsletter.title}</h3>
+              <p className="text-xs text-white/40 mb-3">{t.locationPages.newsletter.subtitle}</p>
               {newsletterState === 'success' ? (
                 <p className="text-xs text-green-400">{t.locationPages.newsletter.success}</p>
               ) : (
-                <form onSubmit={handleNewsletterSubmit} className="flex flex-col gap-2">
+                <form onSubmit={handleNewsletterSubmit} className="flex gap-2">
                   <label htmlFor="footer-newsletter-email" className="sr-only">
                     {t.locationPages.newsletter.placeholder}
                   </label>
@@ -290,61 +117,137 @@ export default function Footer() {
                     onChange={(e) => setNewsletterEmail(e.target.value)}
                     placeholder={t.locationPages.newsletter.placeholder}
                     required
-                    className="bg-gray-800 border border-gray-700 rounded px-3 py-2 text-xs text-white placeholder-gray-500 focus:outline-none focus:border-primary"
+                    className="bg-white/10 border border-white/20 rounded-full px-4 py-2.5 text-xs text-white placeholder:text-white/40 focus:outline-none focus:border-white/40 flex-1 min-w-0"
                   />
                   <button
                     type="submit"
                     disabled={newsletterState === 'loading'}
-                    className="bg-primary hover:bg-primary/90 text-white text-xs font-medium py-2 px-3 rounded transition-colors disabled:opacity-50"
+                    className="bg-cta hover:bg-cta/90 text-white rounded-full px-6 py-2.5 text-xs font-medium transition-colors disabled:opacity-50 whitespace-nowrap"
                   >
                     {newsletterState === 'loading' ? '...' : t.locationPages.newsletter.button}
                   </button>
-                  {newsletterState === 'error' && (
-                    <p className="text-xs text-red-400">{t.locationPages.newsletter.error}</p>
-                  )}
-                  <p className="text-xs text-gray-600">
-                    <a href="/privacy-policy" className="underline hover:text-gray-400">{t.footer.privacy}</a>
-                  </p>
                 </form>
               )}
+              {newsletterState === 'error' && (
+                <p className="text-xs text-red-400 mt-1">{t.locationPages.newsletter.error}</p>
+              )}
+            </div>
+          </div>
+
+          {/* Column 2: Navigation */}
+          <div>
+            <h3 className="font-medium text-white mb-4 text-sm">{t.footer.information}</h3>
+            <ul className="space-y-2.5 text-sm">
+              <li>
+                <a href="#fleet" className="hover:text-white transition-colors">{t.nav.fleet}</a>
+              </li>
+              <li>
+                <a href="/rutas" className="hover:text-white transition-colors">Destinos</a>
+              </li>
+              <li>
+                <a href="/blog" className="hover:text-white transition-colors" data-testid="footer-blog-link">{t.footer.blog}</a>
+              </li>
+              <li>
+                <a href="/faq" className="hover:text-white transition-colors" data-testid="footer-faq-link">{t.footer.faqLabel}</a>
+              </li>
+              <li>
+                <a href="/tarjetas-regalo" className="hover:text-white transition-colors">{t.nav.giftCards}</a>
+              </li>
+              <li>
+                <a href="#contact" className="hover:text-white transition-colors">{t.nav.contact}</a>
+              </li>
+              <li>
+                <a href="/testimonios" className="hover:text-white transition-colors" data-testid="footer-testimonials-link">{t.footer.customerReviews}</a>
+              </li>
+              <li>
+                <a href="/galeria" className="hover:text-white transition-colors">Galeria</a>
+              </li>
+            </ul>
+
+            <h3 className="font-medium text-white mb-4 text-sm mt-8">{t.footer.services}</h3>
+            <ul className="space-y-2.5 text-sm">
+              <li><a href="/barcos-sin-licencia" className="hover:text-white transition-colors">{t.boats.withoutLicense}</a></li>
+              <li><a href="/barcos-con-licencia" className="hover:text-white transition-colors">{t.boats.withLicense}</a></li>
+            </ul>
+          </div>
+
+          {/* Column 3: Contact */}
+          <div>
+            <h3 className="font-medium text-white mb-4 text-sm">{t.footer.contact}</h3>
+            <div className="space-y-4">
+              <div className="flex items-start space-x-3">
+                <Phone className="w-4 h-4 text-white/40 flex-shrink-0 mt-0.5" />
+                <div>
+                  <a
+                    href="tel:+34611500372"
+                    className="text-sm hover:text-white transition-colors block"
+                    data-testid="phone-call-link"
+                    aria-label="Llamar al telefono +34 611 500 372"
+                  >+34 611 500 372</a>
+                  <p className="text-xs text-white/40 mt-0.5">{t.footer.callsAndWhatsapp}</p>
+                </div>
+              </div>
+
+              <div className="flex items-start space-x-3">
+                <Mail className="w-4 h-4 text-white/40 flex-shrink-0 mt-0.5" />
+                <div>
+                  <a
+                    href="mailto:costabravarentaboat@gmail.com"
+                    className="text-sm hover:text-white transition-colors block break-all"
+                    data-testid="email-link"
+                    aria-label="Enviar email a costabravarentaboat@gmail.com"
+                  >
+                    costabravarentaboat@gmail.com
+                  </a>
+                  <p className="text-xs text-white/40 mt-0.5">{t.footer.responseTime}</p>
+                </div>
+              </div>
+
+              <div className="flex items-start space-x-3">
+                <MapPin className="w-4 h-4 text-white/40 flex-shrink-0 mt-0.5" />
+                <div>
+                  <a
+                    href="https://maps.app.goo.gl/NHV4PcaFPmwBYqCt5"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm hover:text-white transition-colors block"
+                    data-testid="maps-link"
+                    aria-label="Ver ubicacion en Google Maps: Puerto de Blanes"
+                  >
+                    {t.footer.location}
+                  </a>
+                  <p className="text-xs text-white/40 mt-0.5">{t.footer.region}</p>
+                </div>
+              </div>
+
+              <div className="flex items-start space-x-3">
+                <Clock className="w-4 h-4 text-white/40 flex-shrink-0 mt-0.5" />
+                <div>
+                  <p className="text-sm">{t.footer.businessHours}</p>
+                  <p className="text-xs text-white/40 mt-0.5">{t.footer.flexibleHours}</p>
+                </div>
+              </div>
             </div>
           </div>
 
         </div>
 
         {/* Bottom Section */}
-        <div className="border-t border-gray-800 mt-8 pt-8 flex flex-col items-center">
-          <div className="flex items-center space-x-4 mb-6">
-            <button 
-              onClick={handleWhatsApp}
-              className="bg-[#25D366] hover:bg-[#128C7E] text-white px-4 py-2 rounded-lg text-xs font-medium flex items-center space-x-2 transition-colors"
-              data-testid="footer-whatsapp-button"
-              aria-label="Abrir chat de WhatsApp para consultas"
-            >
-              <SiWhatsapp className="w-4 h-4" />
-              <span>WhatsApp</span>
-            </button>
-            
-            <a 
-              href="tel:+34611500372"
-              className="border border-gray-600 hover:border-gray-500 text-gray-300 hover:text-white px-4 py-2 rounded-lg text-xs font-medium flex items-center space-x-2 transition-colors"
-              data-testid="footer-call-button"
-              aria-label="Llamar al teléfono de Costa Brava Rent a Boat"
-            >
-              <Phone className="w-4 h-4" />
-              <span>{t.footer.call}</span>
-            </a>
+        <div className="border-t border-white/10 mt-12 pt-8">
+          <div className="flex flex-col items-center gap-3">
+            <div className="text-white/40 text-xs flex flex-wrap gap-4 justify-center">
+              <a href="/terms-conditions" className="hover:text-white/60 transition-colors" data-testid="footer-terms-link">{t.footer.terms}</a>
+              <a href="/privacy-policy" className="hover:text-white/60 transition-colors" data-testid="footer-privacy-link">{t.footer.privacy}</a>
+              <a href="/cookies-policy" className="hover:text-white/60 transition-colors" data-testid="footer-cookies-link">{t.footer.cookiesPolicy}</a>
+              <a href="/accesibilidad" className="hover:text-white/60 transition-colors" data-testid="footer-accessibility-link">Accesibilidad</a>
+            </div>
+            <p className="text-white/40 text-xs text-center">
+              {currentYear} Costa Brava Rent a Boat Blanes. {t.footer.rights}
+            </p>
+            <p className="text-white/30 text-xs text-center">
+              NIF: B22566327
+            </p>
           </div>
-          
-          <p className="text-xs text-gray-400 text-center">
-            © {currentYear} Costa Brava Rent a Boat Blanes. {t.footer.rights}
-          </p>
-          <p className="text-xs text-gray-600 text-center mt-1">
-            NIF: B22566327 · Puerto de Blanes, Girona, España ·{" "}
-            <a href="/privacy-policy" className="underline hover:text-gray-400 transition-colors">Privacidad</a>
-            {" · "}
-            <a href="/cookies-policy" className="underline hover:text-gray-400 transition-colors">Cookies</a>
-          </p>
         </div>
       </div>
     </footer>

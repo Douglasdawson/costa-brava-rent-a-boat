@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Menu, X, UserCircle, Calendar, Gift } from "lucide-react";
+import { Menu, X, UserCircle, Calendar } from "lucide-react";
 import logoHorizontal from "@/assets/real-photos/logo-horizontal.png";
 import logoIcon from "@/assets/real-photos/logo-icon.png";
 import { useLocation, Link } from "wouter";
@@ -141,29 +141,24 @@ export default function Navigation() {
   };
 
   const navigationItems = [
-    { label: t.nav.home, href: "/" },
     { label: t.nav.fleet, href: "#fleet" },
+    { label: "Destinos", href: "/rutas" },
     { label: "Blog", href: "/blog" },
-    { label: t.nav.giftCards, href: "/tarjetas-regalo" },
-    { label: t.nav.contact, href: "#contact" },
-    { label: t.nav.faq, href: "#faq" },
   ];
 
   const isTransparent = currentLocation === "/" && !scrolled;
 
   const isNavItemActive = (href: string): boolean => {
-    if (href === "/") return currentLocation === "/";
     if (href === "/blog") return currentLocation === "/blog" || currentLocation.startsWith("/blog/");
-    if (href === "/tarjetas-regalo") return currentLocation === "/tarjetas-regalo";
-    if (href === "#faq") return currentLocation === "/faq";
+    if (href === "/rutas") return currentLocation === "/rutas" || currentLocation.startsWith("/destinos/");
     return false;
   };
 
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
       currentLocation === "/" && !scrolled
-        ? "bg-black/20 backdrop-blur-sm border-b border-white/10"
-        : "bg-white/95 backdrop-blur-md border-b border-gray-200 shadow-sm"
+        ? "bg-transparent"
+        : "bg-white border-b border-border"
     }`}>
       <div className="container mx-auto px-4">
         <div className="relative flex items-center justify-between h-16">
@@ -222,8 +217,8 @@ export default function Navigation() {
               onClick={() => handleNavigation("#booking", t.nav.bookNow)}
               data-testid="desktop-button-book"
               aria-label="Reservar barco ahora"
+              className="bg-cta hover:bg-cta/90 text-white rounded-full px-6 py-2 text-sm font-medium shadow-none"
             >
-              <Calendar className="w-4 h-4 mr-2" />
               {t.nav.bookNow}
             </Button>
             {!isAuthenticated && (
@@ -269,7 +264,7 @@ export default function Navigation() {
         <nav
           aria-label="Menú de navegación móvil"
           aria-hidden={!isOpen}
-          className={`lg:hidden border-t border-gray-200 bg-white/95 backdrop-blur-md overflow-hidden transition-all duration-200 ease-in-out ${isOpen ? "max-h-[600px] opacity-100 py-3" : "max-h-0 opacity-0 py-0"}`}
+          className={`lg:hidden border-t border-border bg-white overflow-hidden transition-all duration-200 ease-in-out ${isOpen ? "max-h-[600px] opacity-100 py-3" : "max-h-0 opacity-0 py-0"}`}
         >
             <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
               {navigationItems.map((item) => {
@@ -300,15 +295,14 @@ export default function Navigation() {
                 );
               })}
             </div>
-            <div className="px-4 py-2 border-t border-gray-200 mt-1 pt-3">
+            <div className="px-4 py-2 border-t border-border mt-1 pt-3">
               <div className="flex flex-wrap items-center gap-3">
                 <Button
-                  className="h-10 px-5"
+                  className="bg-cta hover:bg-cta/90 text-white rounded-full px-6 py-2 text-sm font-medium shadow-none h-10"
                   onClick={handleMobileBooking}
                   data-testid="mobile-button-book"
                   aria-label="Reservar barco ahora"
                 >
-                  <Calendar className="w-4 h-4 mr-2" />
                   {t.nav.bookNow}
                 </Button>
                 {!isAuthenticated && (

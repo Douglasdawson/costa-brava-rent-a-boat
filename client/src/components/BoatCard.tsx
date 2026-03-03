@@ -54,7 +54,7 @@ export default function BoatCard({
         aria-label={`Ver detalles del barco ${name}`}
       >
         {imageError ? (
-          <div className="w-full h-52 sm:h-56 lg:h-64 flex items-center justify-center">
+          <div className="w-full h-44 sm:h-52 lg:h-64 flex items-center justify-center">
             <Anchor className="w-12 h-12 text-gray-400" aria-hidden="true" />
           </div>
         ) : (
@@ -63,13 +63,13 @@ export default function BoatCard({
             srcSet={imageSrcSet || undefined}
             sizes="(max-width: 639px) calc(100vw - 32px), (max-width: 1279px) calc(50vw - 20px), calc(33vw - 24px)"
             alt={imageAlt}
-            className="w-full h-52 sm:h-56 lg:h-64 object-cover transition-transform duration-200 group-hover:scale-[1.03]"
+            className="w-full h-44 sm:h-52 lg:h-64 object-cover transition-transform duration-200 group-hover:scale-[1.03]"
             loading="lazy"
             onError={() => setImageError(true)}
           />
         )}
         <div className="absolute top-3 left-3">
-          <span className="bg-white/90 backdrop-blur-sm text-foreground text-xs font-medium rounded-full px-3 py-1">
+          <span className="bg-white/90 backdrop-blur-sm text-foreground text-sm font-medium rounded-full px-3 py-1">
             {requiresLicense ? t.boats.withLicense : t.boats.withoutLicense}
           </span>
         </div>
@@ -81,7 +81,7 @@ export default function BoatCard({
         <div className="flex items-start justify-between mb-2">
           <h3 className="font-heading font-medium text-lg text-foreground flex-1 mr-2">{name}</h3>
           <div className="text-right flex-shrink-0">
-            <div className="text-xs text-muted-foreground">{t.boats.from}</div>
+            <div className="text-sm text-muted-foreground">{t.boats.from}</div>
             <div className="text-cta font-medium text-lg">
               {basePrice}&euro;
             </div>
@@ -98,10 +98,10 @@ export default function BoatCard({
         <a
           href={`/barco/${id}`}
           onClick={(e) => { e.preventDefault(); handleDetails(); }}
-          className="text-sm font-medium text-foreground hover:text-cta inline-flex items-center gap-1 transition-colors"
+          className="text-sm font-medium text-foreground hover:text-cta inline-flex items-center gap-1.5 transition-colors py-2 -my-1"
           data-testid={`button-details-${id}`}
         >
-          {t.boats.viewDetails} <ArrowRight className="w-3.5 h-3.5" />
+          {t.boats.viewDetails} <ArrowRight className="w-4 h-4" />
         </a>
       </div>
     </Card>

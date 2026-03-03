@@ -327,6 +327,7 @@ export const bookings = pgTable("bookings", {
   whatsappReminderSent: boolean("whatsapp_reminder_sent").notNull().default(false),
   emailReminderSent: boolean("email_reminder_sent").notNull().default(false),
   emailThankYouSent: boolean("email_thank_you_sent").notNull().default(false),
+  whatsappThankYouSent: boolean("whatsapp_thank_you_sent").notNull().default(false),
   notes: text("notes"),
   cancelationToken: text("cancelation_token").unique(), // UUID for cancel-without-login flow
   language: text("language").default("es"), // ISO 639-1: es, en, fr, de, nl, it, ru, ca

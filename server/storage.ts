@@ -311,6 +311,8 @@ export interface IStorage {
 
   // Newsletter subscriber methods
   createNewsletterSubscriber(email: string, language: string, source: string): Promise<NewsletterSubscriber>;
+
+  updateBookingWhatsAppThankYouStatus(id: string, sent: boolean): Promise<void>;
 }
 
 // rewrite MemStorage to DatabaseStorage
@@ -1708,6 +1710,13 @@ export class DatabaseStorage implements IStorage {
       .where(eq(bookings.id, id))
       .returning();
     return updatedBooking || undefined;
+  }
+
+  async updateBookingWhatsAppThankYouStatus(id: string, sent: boolean): Promise<void> {
+    await db
+      .update(bookings)
+      .set({ whatsappThankYouSent: sent })
+      .where(eq(bookings.id, id));
   }
 
   // ===== CHATBOT CONVERSATION METHODS =====

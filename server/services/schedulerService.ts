@@ -64,6 +64,46 @@ async function trySendWhatsAppReminder(booking: Booking, boat: Boat): Promise<bo
 }
 
 /**
+ * Try to send a WhatsApp thank-you message 24h after the trip.
+ * Returns true if sent, false if Twilio is not configured or if sending fails. Never throws.
+ */
+async function trySendWhatsAppThankYou(booking: Booking): Promise<boolean> {
+  try {
+    const { isTwilioConfigured, sendWhatsAppMessage } = await import("../whatsapp/twilioClient");
+
+    if (!isTwilioConfigured()) {
+      console.log("[Scheduler] Twilio not configured, skipping WhatsApp thank-you");
+      return false;
+    }
+
+    if (!booking.customerPhone) {
+      console.log(`[Scheduler] No phone number for booking ${booking.id}, skipping WhatsApp thank-you`);
+      return false;
+    }
+
+    const message = [
+      `Hola ${booking.customerName}!`,
+      ``,
+      `Esperamos que tu salida de ayer haya sido increible.`,
+      ``,
+      `Si lo disfrutaste, te agradeceriamos mucho que nos dejaras una resena en Google:`,
+      `https://g.page/r/costabravarentaboat/review`,
+      ``,
+      `Como cliente especial, tienes un descuento exclusivo para tu proxima reserva. Solo preguntanos!`,
+      ``,
+      `Un abrazo, Costa Brava Rent a Boat`,
+    ].join("\n");
+
+    await sendWhatsAppMessage(booking.customerPhone, message);
+    return true;
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : "Unknown error";
+    console.error(`[Scheduler] WhatsApp thank-you error for booking ${booking.id}:`, message);
+    return false;
+  }
+}
+
+/**
  * Process upcoming bookings and send reminder emails + WhatsApp messages.
  * Runs every hour, targets bookings starting in ~24 hours (22-26h window).
  */
@@ -178,11 +218,20 @@ async function processThankYou(): Promise<void> {
           console.error(`[Scheduler] Thank-you email failed for booking ${booking.id}: ${emailResult.error}`);
         }
 
-        // Mark as sent regardless to prevent retries
+        // Send WhatsApp thank-you (fire-and-forget, doesn't block email result)
+        let whatsappThankYouSent = false;
+        if (!booking.whatsappThankYouSent) {
+          whatsappThankYouSent = await trySendWhatsAppThankYou(booking);
+          if (whatsappThankYouSent) {
+            await storage.updateBookingWhatsAppThankYouStatus(booking.id, true);
+          }
+        }
+
+        // Mark email as sent regardless to prevent retries
         await storage.updateBookingEmailStatus(booking.id, undefined, true);
 
         console.log(
-          `[Scheduler] Thank-you processed for booking ${booking.id}: email=${emailResult.success}`
+          `[Scheduler] Thank-you processed for booking ${booking.id}: email=${emailResult.success}, whatsapp=${whatsappThankYouSent}`
         );
       } catch (error: unknown) {
         const msg = error instanceof Error ? error.message : "Unknown error";

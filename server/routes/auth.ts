@@ -6,6 +6,7 @@ import { z } from "zod";
 import { storage } from "../storage";
 import { isAuthenticated } from "../replitAuth";
 import { sendPasswordResetEmail, sendWelcomeEmail } from "../services/emailService";
+import type { AuthenticatedRequest, AdminJwtPayload, SaasJwtPayload, JwtPayload } from "../types";
 
 const BCRYPT_ROUNDS = 10;
 
@@ -62,27 +63,7 @@ const JWT_SECRET: string = process.env.JWT_SECRET;
 
 // ===== JWT Payload Interfaces =====
 
-// Legacy admin JWT payload (backward compat)
-interface AdminJwtPayload {
-  userId: string;
-  role: string;
-  username: string;
-  iat?: number;
-  exp?: number;
-}
-
-// New SaaS JWT payload with tenantId
-interface SaasJwtPayload {
-  userId: string;
-  tenantId: string;
-  role: string;
-  email: string;
-  iat?: number;
-  exp?: number;
-}
-
-// Union type for any JWT payload
-type JwtPayload = AdminJwtPayload | SaasJwtPayload;
+// AdminJwtPayload, SaasJwtPayload, and JwtPayload are imported from ../types
 type StoredSaasUser = NonNullable<Awaited<ReturnType<typeof storage.getUserById>>>;
 
 // Token metadata for session tracking (not used for auth verification)
@@ -267,13 +248,14 @@ export const requireAdminSession = async (req: Request, res: Response, next: Nex
         return res.status(403).json({ message: "Se requiere rol de administrador" });
       }
 
-      (req as any).tenantId = validated.user.tenantId;
-      (req as any).saasUser = validated.token;
-      (req as any).adminUser = validated.token;
+      const authReq = req as AuthenticatedRequest;
+      authReq.tenantId = validated.user.tenantId;
+      authReq.saasUser = validated.token;
+      authReq.adminUser = validated.token;
       return next();
     }
 
-    (req as any).adminUser = decoded;
+    (req as AuthenticatedRequest).adminUser = decoded;
     return next();
   } catch (error) {
     if (error instanceof jwt.TokenExpiredError) {
@@ -293,9 +275,10 @@ export const requireSaasAuth = async (req: Request, res: Response, next: NextFun
     return res.status(401).json({ message: "No autorizado" });
   }
 
-  (req as any).saasUser = validated.token;
-  (req as any).tenantId = validated.user.tenantId;
-  (req as any).authUser = validated.user;
+  const authReq = req as AuthenticatedRequest;
+  authReq.saasUser = validated.token;
+  authReq.tenantId = validated.user.tenantId;
+  authReq.authUser = validated.user;
   next();
 };
 
@@ -356,16 +339,17 @@ export const injectTenantId = async (req: Request, res: Response, next: NextFunc
       return res.status(401).json({ message: "Token invalido o expirado" });
     }
 
-    (req as any).tenantId = validated.user.tenantId;
-    (req as any).saasUser = validated.token;
-    (req as any).authUser = validated.user;
+    const authReq = req as AuthenticatedRequest;
+    authReq.tenantId = validated.user.tenantId;
+    authReq.saasUser = validated.token;
+    authReq.authUser = validated.user;
     return next();
   }
 
   // Then try from subdomain/header
   const tenantId = await resolveTenantFromRequest(req);
   if (tenantId) {
-    (req as any).tenantId = tenantId;
+    (req as AuthenticatedRequest).tenantId = tenantId;
     return next();
   }
 
@@ -697,7 +681,7 @@ export function registerAuthRoutes(app: Express) {
   // GET /api/auth/me - Current user with tenant info
   app.get("/api/auth/me", requireSaasAuth, async (req, res) => {
     try {
-      const saasUser = (req as any).saasUser as SaasJwtPayload;
+      const saasUser = (req as AuthenticatedRequest).saasUser as SaasJwtPayload;
       const user = await storage.getUserById(saasUser.userId);
       if (!user) {
         return res.status(404).json({ message: "Usuario no encontrado" });
@@ -738,7 +722,7 @@ export function registerAuthRoutes(app: Express) {
   // PATCH /api/auth/profile - Update user profile
   app.patch("/api/auth/profile", requireSaasAuth, async (req, res) => {
     try {
-      const saasUser = (req as any).saasUser as SaasJwtPayload;
+      const saasUser = (req as AuthenticatedRequest).saasUser as SaasJwtPayload;
       const parsed = updateProfileSchema.safeParse(req.body);
       if (!parsed.success) {
         return res.status(400).json({

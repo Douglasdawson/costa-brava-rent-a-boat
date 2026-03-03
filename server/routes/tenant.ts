@@ -3,6 +3,7 @@ import bcrypt from "bcrypt";
 import { z } from "zod";
 import { storage } from "../storage";
 import { requireSaasAuth } from "./auth";
+import type { AuthenticatedRequest } from "../types";
 
 const BCRYPT_ROUNDS = 10;
 
@@ -40,7 +41,7 @@ export function registerTenantRoutes(app: Express) {
   // GET /api/tenant/settings - Get own tenant info
   app.get("/api/tenant/settings", requireSaasAuth, async (req: Request, res: Response) => {
     try {
-      const saasUser = (req as any).saasUser;
+      const saasUser = (req as AuthenticatedRequest).saasUser;
       const tenant = await storage.getTenant(saasUser.tenantId);
       if (!tenant) return res.status(404).json({ message: "Tenant no encontrado" });
       res.json({ tenant });
@@ -54,7 +55,7 @@ export function registerTenantRoutes(app: Express) {
   // PATCH /api/tenant/settings - Update tenant settings (owner only)
   app.patch("/api/tenant/settings", requireSaasAuth, async (req: Request, res: Response) => {
     try {
-      const saasUser = (req as any).saasUser;
+      const saasUser = (req as AuthenticatedRequest).saasUser;
       if (saasUser.role !== "owner") {
         return res.status(403).json({ message: "Solo el propietario puede modificar la configuracion" });
       }
@@ -81,7 +82,7 @@ export function registerTenantRoutes(app: Express) {
   // GET /api/tenant/users - List users of the tenant (owner or admin)
   app.get("/api/tenant/users", requireSaasAuth, async (req: Request, res: Response) => {
     try {
-      const saasUser = (req as any).saasUser;
+      const saasUser = (req as AuthenticatedRequest).saasUser;
       if (saasUser.role !== "owner" && saasUser.role !== "admin") {
         return res.status(403).json({ message: "Sin permisos" });
       }
@@ -109,7 +110,7 @@ export function registerTenantRoutes(app: Express) {
   // POST /api/tenant/users - Create new team member (owner only)
   app.post("/api/tenant/users", requireSaasAuth, async (req: Request, res: Response) => {
     try {
-      const saasUser = (req as any).saasUser;
+      const saasUser = (req as AuthenticatedRequest).saasUser;
       if (saasUser.role !== "owner") {
         return res.status(403).json({ message: "Solo el propietario puede invitar usuarios" });
       }
@@ -161,7 +162,7 @@ export function registerTenantRoutes(app: Express) {
   // PATCH /api/tenant/users/:id - Update team member role / status (owner only)
   app.patch("/api/tenant/users/:id", requireSaasAuth, async (req: Request, res: Response) => {
     try {
-      const saasUser = (req as any).saasUser;
+      const saasUser = (req as AuthenticatedRequest).saasUser;
       if (saasUser.role !== "owner") {
         return res.status(403).json({ message: "Solo el propietario puede modificar usuarios" });
       }

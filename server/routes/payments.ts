@@ -381,6 +381,11 @@ export function registerPaymentRoutes(app: Express) {
           }
           trySendWhatsAppConfirmation(confirmedBooking, boat).catch(() => {});
         }
+
+        // Decrement extras inventory stock (fire-and-forget)
+        storage.decrementExtrasStock(confirmedBooking.id).catch((err: unknown) => {
+          console.error(`[Payments] Failed to decrement extras stock for booking ${confirmedBooking.id}:`, err);
+        });
       }
 
       res.json({
@@ -470,6 +475,11 @@ export function registerPaymentRoutes(app: Express) {
                 }
                 trySendWhatsAppConfirmation(confirmedBooking, boat).catch(() => {});
               }
+
+              // Decrement extras inventory stock (fire-and-forget)
+              storage.decrementExtrasStock(confirmedBooking.id).catch((err: unknown) => {
+                console.error(`[Payments] Failed to decrement extras stock for booking ${confirmedBooking.id}:`, err);
+              });
             }
           } else {
             console.warn(`No booking found for payment intent ${paymentIntent.id}`);

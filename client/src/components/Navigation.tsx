@@ -266,9 +266,9 @@ export default function Navigation() {
           aria-hidden={!isOpen}
           className={`lg:hidden border-t border-border bg-white overflow-hidden transition-all duration-200 ease-in-out ${isOpen ? "max-h-[600px] opacity-100 py-3" : "max-h-0 opacity-0 py-0"}`}
         >
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
+            <div className="grid grid-cols-1 gap-0">
               {navigationItems.map((item) => {
-                const baseClass = "px-4 py-2.5 text-gray-700 hover:text-primary hover:bg-gray-50 transition-colors w-full text-left font-medium block";
+                const baseClass = "px-4 py-3.5 text-gray-700 hover:text-primary hover:bg-gray-50 transition-colors w-full text-left font-medium block text-base";
                 if (!item.href.startsWith("#")) {
                   const href = item.href === "#faq" ? "/faq" : item.href;
                   return (
@@ -298,7 +298,7 @@ export default function Navigation() {
             <div className="px-4 py-2 border-t border-border mt-1 pt-3">
               <div className="flex flex-wrap items-center gap-3">
                 <Button
-                  className="bg-cta hover:bg-cta/90 text-white rounded-full px-6 py-2 text-sm font-medium shadow-none h-10"
+                  className="bg-cta hover:bg-cta/90 text-white rounded-full px-6 py-3 text-sm font-medium shadow-none min-h-11"
                   onClick={handleMobileBooking}
                   data-testid="mobile-button-book"
                   aria-label="Reservar barco ahora"
@@ -308,7 +308,7 @@ export default function Navigation() {
                 {!isAuthenticated && (
                   <Button
                     variant="ghost"
-                    className="h-10 px-4"
+                    className="min-h-11 px-4"
                     onClick={handleLoginClick}
                     data-testid="mobile-button-login"
                     aria-label="Iniciar sesión en tu cuenta"
@@ -320,7 +320,7 @@ export default function Navigation() {
                 {isAuthenticated && (
                   <Button
                     variant="ghost"
-                    className="h-10 px-4"
+                    className="min-h-11 px-4"
                     onClick={handleMyAccountClick}
                     data-testid="mobile-button-my-account"
                     aria-label="Acceder a mi cuenta de cliente"

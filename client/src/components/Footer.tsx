@@ -1,10 +1,35 @@
+import { useState } from "react";
 import { Anchor, Phone, Mail, MapPin, Clock } from "lucide-react";
 import { SiWhatsapp, SiInstagram, SiFacebook, SiTiktok } from "react-icons/si";
 import { useTranslations } from "@/lib/translations";
+import { useLanguage } from "@/hooks/use-language";
 
 export default function Footer() {
   const t = useTranslations();
   const currentYear = new Date().getFullYear();
+  const { language } = useLanguage();
+  const [newsletterEmail, setNewsletterEmail] = useState('');
+  const [newsletterState, setNewsletterState] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+
+  const handleNewsletterSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!newsletterEmail.trim()) return;
+    setNewsletterState('loading');
+    try {
+      const res = await fetch('/api/newsletter/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: newsletterEmail.trim(), language, source: 'footer' }),
+      });
+      if (res.ok || res.status === 409) {
+        setNewsletterState('success'); // 409 = already subscribed, show success anyway
+      } else {
+        setNewsletterState('error');
+      }
+    } catch {
+      setNewsletterState('error');
+    }
+  };
 
   // Detectar si estamos en temporada operativa (Abril - Octubre)
   const isOperatingSeason = () => {
@@ -246,6 +271,39 @@ export default function Footer() {
               <li><a href="#fleet" className="block py-1 underline decoration-gray-500/50 hover:text-primary hover:decoration-primary transition-colors">{t.footer.hourlyRental}</a></li>
               <li><a href="#contact" className="block py-1 underline decoration-gray-500/50 hover:text-primary hover:decoration-primary transition-colors">{t.footer.portParking}</a></li>
             </ul>
+
+            {/* Newsletter */}
+            <div className="mt-6">
+              <h3 className="font-semibold text-white mb-2 text-sm">{t.locationPages.newsletter.title}</h3>
+              <p className="text-xs text-gray-400 mb-3">{t.locationPages.newsletter.subtitle}</p>
+              {newsletterState === 'success' ? (
+                <p className="text-xs text-green-400">{t.locationPages.newsletter.success}</p>
+              ) : (
+                <form onSubmit={handleNewsletterSubmit} className="flex flex-col gap-2">
+                  <input
+                    type="email"
+                    value={newsletterEmail}
+                    onChange={(e) => setNewsletterEmail(e.target.value)}
+                    placeholder={t.locationPages.newsletter.placeholder}
+                    required
+                    className="bg-gray-800 border border-gray-700 rounded px-3 py-2 text-xs text-white placeholder-gray-500 focus:outline-none focus:border-primary"
+                  />
+                  <button
+                    type="submit"
+                    disabled={newsletterState === 'loading'}
+                    className="bg-primary hover:bg-primary/90 text-white text-xs font-medium py-2 px-3 rounded transition-colors disabled:opacity-50"
+                  >
+                    {newsletterState === 'loading' ? '...' : t.locationPages.newsletter.button}
+                  </button>
+                  {newsletterState === 'error' && (
+                    <p className="text-xs text-red-400">{t.locationPages.newsletter.error}</p>
+                  )}
+                  <p className="text-xs text-gray-600">
+                    <a href="/privacy-policy" className="underline hover:text-gray-400">{t.footer.privacy}</a>
+                  </p>
+                </form>
+              )}
+            </div>
           </div>
 
         </div>

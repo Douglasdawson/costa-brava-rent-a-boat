@@ -6,9 +6,9 @@ export default {
   theme: {
     extend: {
       borderRadius: {
-        lg: ".5625rem", /* 9px */
-        md: ".375rem", /* 6px */
-        sm: ".1875rem", /* 3px */
+        lg: "0.75rem", /* 12px */
+        md: "0.5rem", /* 8px */
+        sm: "0.25rem", /* 4px */
       },
       colors: {
         // Flat / base colors (regular buttons)
@@ -101,18 +101,10 @@ export default {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
-        "bounce-once": {
-          "0%, 100%": { transform: "translateY(0)" },
-          "20%": { transform: "translateY(-12px)" },
-          "40%": { transform: "translateY(0)" },
-          "60%": { transform: "translateY(-6px)" },
-          "80%": { transform: "translateY(0)" },
-        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        "bounce-once": "bounce-once 1.5s ease-in-out 1s 1",
       },
     },
   },

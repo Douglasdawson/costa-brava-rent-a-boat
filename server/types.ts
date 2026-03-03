@@ -32,8 +32,8 @@ export interface AuthenticatedRequest extends Request {
     tenantId: string;
     email: string;
     role: string;
-    firstName: string;
-    lastName: string;
+    firstName: string | null;
+    lastName: string | null;
     isActive: boolean;
   };
 }

@@ -254,62 +254,6 @@ function BoatPage() {
   return <BoatDetailPage boatId={boatId} />;
 }
 
-function CondicionesGeneralesPage() {
-  return <CondicionesGenerales />;
-}
-
-function FAQPageWrapper() {
-  return <FAQPage />;
-}
-
-function PrivacyPolicyPageWrapper() {
-  return <PrivacyPolicyPage />;
-}
-
-function TermsConditionsPageWrapper() {
-  return <TermsConditionsPage />;
-}
-
-function CookiesPolicyPageWrapper() {
-  return <CookiesPolicyPage />;
-}
-
-function LocationBlanesPageWrapper() {
-  return <LocationBlanesPage />;
-}
-
-function LocationLloretPageWrapper() {
-  return <LocationLloretPage />;
-}
-
-function LocationTossaPageWrapper() {
-  return <LocationTossaPage />;
-}
-
-function CategoryLicenseFreePageWrapper() {
-  return <CategoryLicenseFreePage />;
-}
-
-function CategoryLicensedPageWrapper() {
-  return <CategoryLicensedPage />;
-}
-
-function TestimoniosPageWrapper() {
-  return <TestimoniosPage />;
-}
-
-function BlogPageWrapper() {
-  return <BlogPage />;
-}
-
-function BlogDetailPageWrapper() {
-  return <BlogDetailPage />;
-}
-
-function DestinationDetailPageWrapper() {
-  return <DestinationDetailPage />;
-}
-
 // Loading fallback component
 function LoadingFallback() {
   return (
@@ -332,29 +276,29 @@ function Router() {
         <Route path="/mi-cuenta" component={ClientDashboardPage} />
         <Route path="/client/dashboard" component={ClientDashboardPage} />
         <Route path="/barco/:id" component={BoatPage} />
-        <Route path="/condiciones-generales" component={CondicionesGeneralesPage} />
-        <Route path="/faq" component={FAQPageWrapper} />
-        <Route path="/privacy-policy" component={PrivacyPolicyPageWrapper} />
-        <Route path="/terms-conditions" component={TermsConditionsPageWrapper} />
-        <Route path="/cookies-policy" component={CookiesPolicyPageWrapper} />
+        <Route path="/condiciones-generales" component={CondicionesGenerales} />
+        <Route path="/faq" component={FAQPage} />
+        <Route path="/privacy-policy" component={PrivacyPolicyPage} />
+        <Route path="/terms-conditions" component={TermsConditionsPage} />
+        <Route path="/cookies-policy" component={CookiesPolicyPage} />
         <Route path="/accesibilidad" component={AccessibilityDeclarationPage} />
-        <Route path="/alquiler-barcos-blanes" component={LocationBlanesPageWrapper} />
-        <Route path="/alquiler-barcos-lloret-de-mar" component={LocationLloretPageWrapper} />
-        <Route path="/alquiler-barcos-tossa-de-mar" component={LocationTossaPageWrapper} />
+        <Route path="/alquiler-barcos-blanes" component={LocationBlanesPage} />
+        <Route path="/alquiler-barcos-lloret-de-mar" component={LocationLloretPage} />
+        <Route path="/alquiler-barcos-tossa-de-mar" component={LocationTossaPage} />
         <Route path="/destino/blanes">{() => <Redirect to="/alquiler-barcos-blanes" />}</Route>
         <Route path="/destino/lloret-de-mar">{() => <Redirect to="/alquiler-barcos-lloret-de-mar" />}</Route>
         <Route path="/destino/tossa-de-mar">{() => <Redirect to="/alquiler-barcos-tossa-de-mar" />}</Route>
-        <Route path="/barcos-sin-licencia" component={CategoryLicenseFreePageWrapper} />
-        <Route path="/barcos-con-licencia" component={CategoryLicensedPageWrapper} />
+        <Route path="/barcos-sin-licencia" component={CategoryLicenseFreePage} />
+        <Route path="/barcos-con-licencia" component={CategoryLicensedPage} />
         <Route path="/categoria/sin-licencia">{() => <Redirect to="/barcos-sin-licencia" />}</Route>
         <Route path="/categoria/con-licencia">{() => <Redirect to="/barcos-con-licencia" />}</Route>
         <Route path="/galeria" component={GalleryPage} />
         <Route path="/rutas" component={RoutesPage} />
         <Route path="/tarjetas-regalo" component={GiftCardsPage} />
-        <Route path="/testimonios" component={TestimoniosPageWrapper} />
-        <Route path="/blog/:slug" component={BlogDetailPageWrapper} />
-        <Route path="/blog" component={BlogPageWrapper} />
-        <Route path="/destinos/:slug" component={DestinationDetailPageWrapper} />
+        <Route path="/testimonios" component={TestimoniosPage} />
+        <Route path="/blog/:slug" component={BlogDetailPage} />
+        <Route path="/blog" component={BlogPage} />
+        <Route path="/destinos/:slug" component={DestinationDetailPage} />
         <Route path="/cancel/:token" component={CancelBookingPage} />
         <Route component={NotFound} />
       </Switch>

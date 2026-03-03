@@ -1,10 +1,7 @@
-import { Card, CardContent, CardFooter } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
-import { Users, Clock, Euro, CheckCircle, AlertCircle, Gauge, Anchor } from "lucide-react";
+import { Card, CardContent } from "@/components/ui/card";
+import { Anchor, ArrowRight } from "lucide-react";
 import { useTranslations } from "@/lib/translations";
-import { useMemo, useState } from "react";
+import { useState } from "react";
 
 interface BoatCardProps {
   id: string;
@@ -36,19 +33,11 @@ export default function BoatCard({
   features,
   available,
   enginePower,
-  onBooking,
+  onBooking: _onBooking,
   onDetails
 }: BoatCardProps) {
   const t = useTranslations();
   const [imageError, setImageError] = useState(false);
-
-  const tooltipText = useMemo(() => {
-    return t.boats.hoursTooltip.replace('{boatName}', name);
-  }, [t.boats.hoursTooltip, name]);
-
-  const handleBooking = () => {
-    onBooking(id);
-  };
 
   const handleDetails = () => {
     onDetails(id);
@@ -56,7 +45,7 @@ export default function BoatCard({
   };
 
   return (
-    <Card className="hover-elevate overflow-hidden transition-all duration-300">
+    <Card className="overflow-hidden hover:border-cta/50 transition-colors duration-200">
       <a
         href={`/barco/${id}`}
         onClick={(e) => { e.preventDefault(); handleDetails(); }}
@@ -65,7 +54,7 @@ export default function BoatCard({
         aria-label={`Ver detalles del barco ${name}`}
       >
         {imageError ? (
-          <div className="w-full h-48 flex items-center justify-center">
+          <div className="w-full h-52 sm:h-56 lg:h-64 flex items-center justify-center">
             <Anchor className="w-12 h-12 text-gray-400" aria-hidden="true" />
           </div>
         ) : (
@@ -74,108 +63,47 @@ export default function BoatCard({
             srcSet={imageSrcSet || undefined}
             sizes="(max-width: 639px) calc(100vw - 32px), (max-width: 1279px) calc(50vw - 20px), calc(33vw - 24px)"
             alt={imageAlt}
-            className="w-full h-48 sm:h-52 lg:h-56 object-cover transition-transform duration-200 group-hover:scale-105"
+            className="w-full h-52 sm:h-56 lg:h-64 object-cover transition-transform duration-200 group-hover:scale-[1.03]"
             loading="lazy"
             onError={() => setImageError(true)}
           />
         )}
-        {/* Hover overlay */}
-        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-200 flex items-center justify-center">
-          <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-sm font-medium text-gray-800">
-            {t.boats.viewDetails}
-          </div>
-        </div>
         <div className="absolute top-3 left-3">
-          <Badge variant={requiresLicense ? "default" : "secondary"}>
+          <span className="bg-white/90 backdrop-blur-sm text-foreground text-xs font-medium rounded-full px-3 py-1">
             {requiresLicense ? t.boats.withLicense : t.boats.withoutLicense}
-          </Badge>
+          </span>
         </div>
         <div className="absolute top-3 right-3">
-          <Badge variant={available ? "default" : "secondary"} className="bg-white/90 text-gray-800">
-            {available ? (
-              <><CheckCircle className="w-3 h-3 mr-1 text-green-600" /> {t.boats.available}</>
-            ) : (
-              <><AlertCircle className="w-3 h-3 mr-1 text-orange-600" /> {t.boats.occupied}</>
-            )}
-          </Badge>
+          <span className={`inline-block w-2.5 h-2.5 rounded-full ${available ? 'bg-green-500' : 'bg-gray-300'}`} />
         </div>
       </a>
       <CardContent className="p-3 sm:p-4">
         <div className="flex items-start justify-between mb-2">
-          <h3 className="font-heading font-semibold text-base sm:text-lg text-gray-900 flex-1 mr-2">{name}</h3>
+          <h3 className="font-heading font-medium text-lg text-foreground flex-1 mr-2">{name}</h3>
           <div className="text-right flex-shrink-0">
-            <div className="text-xs sm:text-sm text-gray-500">{t.boats.from}</div>
-            <div className="font-bold text-primary flex items-center text-[20px]">
-              <Euro className="w-3 h-3 sm:w-4 sm:h-4 mr-1" />
-              {basePrice}
+            <div className="text-xs text-muted-foreground">{t.boats.from}</div>
+            <div className="text-cta font-medium text-lg">
+              {basePrice}&euro;
             </div>
           </div>
         </div>
 
-        <p className="text-gray-600 sm:text-sm mb-3 line-clamp-2 text-[13px]">{description}</p>
+        <p className="text-muted-foreground text-sm mb-3 line-clamp-2">{description}</p>
 
-        <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 mb-3 text-xs sm:text-sm text-gray-600">
-          <div className="flex items-center">
-            <Users className="w-3 h-3 sm:w-4 sm:h-4 mr-1" />
-            <span>{t.boats.upTo} {capacity} {t.boats.people}</span>
-          </div>
-          {enginePower && (
-            <div className="flex items-center">
-              <Gauge className="w-3 h-3 sm:w-4 sm:h-4 mr-1" />
-              <span>{enginePower}</span>
-            </div>
-          )}
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <div
-                className="flex items-center cursor-help"
-                tabIndex={0}
-                role="note"
-                aria-label={tooltipText}
-              >
-                <Clock className="w-3 h-3 sm:w-4 sm:h-4 mr-1" aria-hidden="true" />
-                <span>{requiresLicense ? t.boats.hoursWithLicense : t.boats.hours}</span>
-              </div>
-            </TooltipTrigger>
-            <TooltipContent>
-              <p>{tooltipText}</p>
-            </TooltipContent>
-          </Tooltip>
-        </div>
-
-        <div className="flex flex-wrap gap-1 mb-3">
-          {features.map((feature, index) => (
-            <Badge key={index} variant="outline" className="text-xs">
-              {feature}
-            </Badge>
-          ))}
-        </div>
+        <p className="text-sm text-muted-foreground mb-3">
+          {capacity} {t.boats.people}{enginePower ? ` | ${enginePower}` : ''}{` | ${requiresLicense ? t.boats.withLicense : t.boats.withoutLicense}`}
+        </p>
       </CardContent>
-      <CardFooter className="p-3 sm:p-4 pt-0 flex flex-row gap-2">
+      <div className="px-3 sm:px-4 pb-3 sm:pb-4">
         <a
           href={`/barco/${id}`}
           onClick={(e) => { e.preventDefault(); handleDetails(); }}
-          className="flex-1"
+          className="text-sm font-medium text-foreground hover:text-cta inline-flex items-center gap-1 transition-colors"
           data-testid={`button-details-${id}`}
         >
-          <Button
-            variant="outline"
-            size="sm"
-            className="w-full text-xs sm:text-sm h-10 sm:h-9"
-          >
-            {t.boats.viewDetails}
-          </Button>
+          {t.boats.viewDetails} <ArrowRight className="w-3.5 h-3.5" />
         </a>
-        <Button 
-          size="sm"
-          className="flex-1 text-xs sm:text-sm h-10 sm:h-9"
-          onClick={handleBooking}
-          disabled={!available}
-          data-testid={`button-book-${id}`}
-        >
-          {available ? t.boats.book : t.boats.notAvailable}
-        </Button>
-      </CardFooter>
+      </div>
     </Card>
   );
 }

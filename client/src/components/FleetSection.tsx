@@ -66,18 +66,18 @@ export default function FleetSection() {
   };
 
   return (
-    <section ref={revealRef} className={`py-8 sm:py-12 lg:py-16 bg-gray-50 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`} id="fleet">
+    <section ref={revealRef} className={`py-16 sm:py-24 lg:py-32 bg-white transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`} id="fleet">
       <div className="container mx-auto px-3 sm:px-4">
-        <div className="text-center mb-6 sm:mb-8 lg:mb-12">
-          <h2 className="font-heading text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-2 sm:mb-3 lg:mb-4 px-2">
+        <div className="text-center mb-8 sm:mb-12 lg:mb-16">
+          <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl font-light text-foreground tracking-tight mb-2 sm:mb-3 lg:mb-4 px-2">
             {t.fleet.title}
           </h2>
-          <p className="text-sm sm:text-base lg:text-lg text-gray-600 max-w-xl sm:max-w-2xl lg:max-w-4xl mx-auto px-2 sm:px-4">
+          <p className="text-base text-muted-foreground font-light mt-3 max-w-xl sm:max-w-2xl lg:max-w-4xl mx-auto px-2 sm:px-4">
             {t.fleet.subtitle}
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-3 sm:gap-4 lg:gap-6 mb-6 sm:mb-8 lg:mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 mb-6 sm:mb-8 lg:mb-12">
           {isLoading ? (
             // Loading skeleton
             Array.from({ length: 6 }).map((_, i) => (
@@ -103,17 +103,17 @@ export default function FleetSection() {
         <div className="text-center px-2 sm:px-4">
           <p className="text-xs sm:text-sm lg:text-base text-gray-600 mb-3 sm:mb-4 lg:mb-6">{t.fleet.helpText}</p>
           <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 lg:gap-4 justify-center max-w-sm sm:max-w-lg mx-auto">
-            <button 
-              className="bg-[#25D366] hover:bg-[#128C7E] text-white px-3 sm:px-4 lg:px-6 py-2.5 sm:py-3 rounded-lg font-medium flex items-center justify-center transition-colors text-xs sm:text-sm lg:text-base"
+            <button
+              className="border border-border text-foreground hover:border-foreground/30 px-6 py-3 rounded-full font-medium flex items-center justify-center transition-colors text-xs sm:text-sm lg:text-base"
               onClick={() => openWhatsApp("Hola! Necesito ayuda para elegir el mejor barco para alquilar en Blanes. ¿Podrían asesorarme sobre precios y disponibilidad?")}
               data-testid="button-whatsapp-help"
               aria-label="Consultar por WhatsApp para elegir barco"
             >
-              <SiWhatsapp className="w-4 h-4 sm:w-5 sm:h-5" aria-hidden="true" />
+              <SiWhatsapp className="w-4 h-4 sm:w-5 sm:h-5 text-[#25D366]" aria-hidden="true" />
               <span className="ml-1 sm:ml-2">{t.contact.whatsapp}</span>
             </button>
-            <button 
-              className="border border-gray-300 hover:border-gray-400 text-gray-700 px-3 sm:px-4 lg:px-6 py-2.5 sm:py-3 rounded-lg font-medium flex items-center justify-center transition-colors text-xs sm:text-sm lg:text-base"
+            <button
+              className="border border-border text-foreground hover:border-foreground/30 px-6 py-3 rounded-full font-medium flex items-center justify-center transition-colors text-xs sm:text-sm lg:text-base"
               data-testid="button-call-help"
               aria-label="Llamar para ayuda en la elección de barco"
               onClick={() => window.open("tel:+34611500372", "_self")}

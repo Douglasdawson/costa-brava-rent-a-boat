@@ -7,6 +7,7 @@ import { useLanguage } from "@/hooks/use-language";
 import { useQuery } from "@tanstack/react-query";
 import type { Boat } from "@shared/schema";
 import { trackBookingStarted } from "@/utils/analytics";
+import { getStoredUtm } from "@/hooks/useUtmCapture";
 import { BOAT_DATA, EXTRA_PACKS } from "@shared/boatData";
 import { calculateExtrasPrice, calculatePackSavings } from "@shared/pricing";
 import BookingWizardMobile from "@/components/BookingWizardMobile";
@@ -736,7 +737,7 @@ Looking forward to confirmation. Thanks!`;
       // Network timeout or error — proceed anyway
     }
 
-    trackBookingStarted(selectedBoat, selectedBoatInfo?.name || selectedBoat);
+    trackBookingStarted(selectedBoat, selectedBoatInfo?.name || selectedBoat, getStoredUtm());
 
     const message = createWhatsAppBookingMessage();
     openWhatsApp(message);

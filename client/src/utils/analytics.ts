@@ -1,4 +1,5 @@
 // Analytics event tracking utilities for Google Tag Manager
+import type { UtmParams } from '@/hooks/useUtmCapture';
 
 declare global {
   interface Window {
@@ -17,8 +18,14 @@ export function trackEvent(eventName: string, params?: Record<string, string | n
 }
 
 // Specific conversion events
-export function trackBookingStarted(boatId: string, boatName: string) {
-  trackEvent("booking_started", { boat_id: boatId, boat_name: boatName });
+export function trackBookingStarted(boatId: string, boatName: string, utm?: UtmParams) {
+  trackEvent("booking_started", {
+    boat_id: boatId,
+    boat_name: boatName,
+    ...(utm?.utm_source && { utm_source: utm.utm_source }),
+    ...(utm?.utm_medium && { utm_medium: utm.utm_medium }),
+    ...(utm?.utm_campaign && { utm_campaign: utm.utm_campaign }),
+  });
 }
 
 export function trackBookingCompleted(bookingId: string, amount: number, boatId: string) {

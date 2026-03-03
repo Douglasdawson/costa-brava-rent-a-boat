@@ -7,6 +7,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { Button } from "@/components/ui/button";
 import { LanguageProvider } from "@/hooks/use-language";
 import { BookingModalProvider } from "@/hooks/useBookingModal";
+import { useUtmCapture } from "@/hooks/useUtmCapture";
 
 // Import critical components (above the fold)
 import Navigation from "./components/Navigation";
@@ -320,6 +321,7 @@ function LoadingFallback() {
 
 // Router Component
 function Router() {
+  useUtmCapture();
   return (
     <Suspense fallback={<LoadingFallback />}>
       <Switch>

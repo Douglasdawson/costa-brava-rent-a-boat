@@ -35,6 +35,8 @@ import {
   aiChatSessions, aiChatMessages, knowledgeBase, pageVisits,
   newsletterSubscribers,
   type NewsletterSubscriber,
+  adminSessions,
+  tokenBlacklist,
 } from "@shared/schema";
 import { randomUUID } from "crypto";
 import { db } from "./db";
@@ -74,6 +76,13 @@ export interface IStorage {
 
   // Migration: admin_users -> users
   migrateAdminUsersToUsers(tenantId: string): Promise<{ migrated: number; skipped: number }>;
+
+  // Admin session persistence
+  createAdminSession(token: string, userId: string, role: string, username: string, expiresAt: Date): Promise<void>;
+  deleteAdminSession(token: string): Promise<void>;
+  isTokenBlacklisted(token: string): Promise<boolean>;
+  blacklistToken(token: string, expiresAt: Date): Promise<void>;
+  cleanupExpiredSessions(): Promise<void>;
 
   // Admin User methods (CRM access)
   getAdminUser(id: string): Promise<AdminUser | undefined>;
@@ -2440,6 +2449,29 @@ export class DatabaseStorage implements IStorage {
       .values({ email: email.toLowerCase().trim(), language, source })
       .returning();
     return subscriber;
+  }
+
+  async createAdminSession(token: string, userId: string, role: string, username: string, expiresAt: Date): Promise<void> {
+    await db.insert(adminSessions).values({ token, userId, role, username, expiresAt }).onConflictDoNothing();
+  }
+
+  async deleteAdminSession(token: string): Promise<void> {
+    await db.delete(adminSessions).where(eq(adminSessions.token, token));
+  }
+
+  async isTokenBlacklisted(token: string): Promise<boolean> {
+    const [result] = await db.select().from(tokenBlacklist).where(eq(tokenBlacklist.token, token)).limit(1);
+    return !!result;
+  }
+
+  async blacklistToken(token: string, expiresAt: Date): Promise<void> {
+    await db.insert(tokenBlacklist).values({ token, expiresAt }).onConflictDoNothing();
+  }
+
+  async cleanupExpiredSessions(): Promise<void> {
+    const now = new Date();
+    await db.delete(adminSessions).where(sql`${adminSessions.expiresAt} < ${now}`);
+    await db.delete(tokenBlacklist).where(sql`${tokenBlacklist.expiresAt} < ${now}`);
   }
 }
 

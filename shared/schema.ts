@@ -1238,3 +1238,20 @@ export const newsletterSubscribers = pgTable("newsletter_subscribers", {
 
 export type NewsletterSubscriber = typeof newsletterSubscribers.$inferSelect;
 export type InsertNewsletterSubscriber = typeof newsletterSubscribers.$inferInsert;
+
+// Admin sessions (persisted across server restarts)
+export const adminSessions = pgTable("admin_sessions", {
+  token: text("token").primaryKey(),
+  userId: text("user_id").notNull(),
+  role: text("role").notNull(),
+  username: text("username").notNull(),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().default(sql`now()`),
+  expiresAt: timestamp("expires_at", { withTimezone: true }).notNull(),
+});
+
+// Token blacklist (logged out before expiry)
+export const tokenBlacklist = pgTable("token_blacklist", {
+  token: text("token").primaryKey(),
+  blacklistedAt: timestamp("blacklisted_at", { withTimezone: true }).notNull().default(sql`now()`),
+  expiresAt: timestamp("expires_at", { withTimezone: true }).notNull(),
+});

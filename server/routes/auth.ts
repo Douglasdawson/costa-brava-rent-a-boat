@@ -66,37 +66,12 @@ const JWT_SECRET: string = process.env.JWT_SECRET;
 // AdminJwtPayload, SaasJwtPayload, and JwtPayload are imported from ../types
 type StoredSaasUser = NonNullable<Awaited<ReturnType<typeof storage.getUserById>>>;
 
-// Token metadata for session tracking (not used for auth verification)
-interface TokenMeta {
-  createdAt: number;
-  role: string;
-  username: string;
-  userId: string;
-}
-
-// In-memory store for active session tracking
-const activeSessions = new Map<string, TokenMeta>();
-
-// Blacklisted tokens (logged out before expiry)
-const blacklistedTokens = new Set<string>();
-
-// Clean expired sessions and blacklisted tokens periodically
-setInterval(() => {
-  const sessionEntries = Array.from(activeSessions.entries());
-  for (const [token] of sessionEntries) {
-    try {
-      jwt.verify(token, JWT_SECRET);
-    } catch {
-      activeSessions.delete(token);
-    }
-  }
-  const blacklistEntries = Array.from(blacklistedTokens);
-  for (const token of blacklistEntries) {
-    try {
-      jwt.verify(token, JWT_SECRET);
-    } catch {
-      blacklistedTokens.delete(token);
-    }
+// Clean expired sessions and blacklisted tokens every hour
+setInterval(async () => {
+  try {
+    await storage.cleanupExpiredSessions();
+  } catch {
+    // Silent cleanup failure
   }
 }, 60 * 60 * 1000);
 
@@ -119,12 +94,8 @@ export function generateAdminToken(role: string = "admin", username: string = "a
     { expiresIn: "24h" }
   );
 
-  activeSessions.set(token, {
-    createdAt: Date.now(),
-    role,
-    username,
-    userId,
-  });
+  const expiresAt = new Date(Date.now() + 24 * 60 * 60 * 1000); // 24h
+  storage.createAdminSession(token, userId, role, username, expiresAt).catch(() => {});
 
   return token;
 }
@@ -145,12 +116,12 @@ function generateRefreshTokenString(): string {
 
 // ===== Helpers =====
 
-function getTokenData(req: Request): JwtPayload | null {
+async function getTokenData(req: Request): Promise<JwtPayload | null> {
   const authHeader = req.headers.authorization;
   if (!authHeader || !authHeader.startsWith("Bearer ")) return null;
 
   const token = authHeader.substring(7);
-  if (blacklistedTokens.has(token)) return null;
+  if (await storage.isTokenBlacklisted(token)) return null;
 
   try {
     const decoded = jwt.verify(token, JWT_SECRET) as JwtPayload;
@@ -231,7 +202,7 @@ export const requireAdminSession = async (req: Request, res: Response, next: Nex
 
   const token = authHeader.substring(7);
 
-  if (blacklistedTokens.has(token)) {
+  if (await storage.isTokenBlacklisted(token)) {
     return res.status(401).json({ message: "Token invalido o expirado" });
   }
 
@@ -259,7 +230,7 @@ export const requireAdminSession = async (req: Request, res: Response, next: Nex
     return next();
   } catch (error) {
     if (error instanceof jwt.TokenExpiredError) {
-      activeSessions.delete(token);
+      storage.deleteAdminSession(token).catch(() => {});
       return res.status(401).json({ message: "Token expirado" });
     }
     return res.status(401).json({ message: "Token invalido o expirado" });
@@ -268,7 +239,7 @@ export const requireAdminSession = async (req: Request, res: Response, next: Nex
 
 // SaaS auth middleware - requires SaaS JWT with tenantId
 export const requireSaasAuth = async (req: Request, res: Response, next: NextFunction) => {
-  const tokenData = getTokenData(req);
+  const tokenData = await getTokenData(req);
   const validated = await validateSaasTokenData(tokenData);
 
   if (!validated) {
@@ -283,8 +254,8 @@ export const requireSaasAuth = async (req: Request, res: Response, next: NextFun
 };
 
 // Admin role middleware
-export const requireAdminRole = (req: Request, res: Response, next: NextFunction) => {
-  const tokenData = getTokenData(req);
+export const requireAdminRole = async (req: Request, res: Response, next: NextFunction) => {
+  const tokenData = await getTokenData(req);
   if (!tokenData) {
     return res.status(401).json({ message: "No autorizado" });
   }
@@ -296,8 +267,8 @@ export const requireAdminRole = (req: Request, res: Response, next: NextFunction
 };
 
 // Super admin middleware - platform admin only (legacy tokens without tenantId)
-export const requireSuperAdmin = (req: Request, res: Response, next: NextFunction) => {
-  const tokenData = getTokenData(req);
+export const requireSuperAdmin = async (req: Request, res: Response, next: NextFunction) => {
+  const tokenData = await getTokenData(req);
   if (!tokenData) {
     return res.status(401).json({ message: "No autorizado" });
   }
@@ -313,8 +284,8 @@ export const requireSuperAdmin = (req: Request, res: Response, next: NextFunctio
 };
 
 // Owner middleware - PIN login (Ivan) or SaaS owner
-export const requireOwner = (req: Request, res: Response, next: NextFunction) => {
-  const tokenData = getTokenData(req);
+export const requireOwner = async (req: Request, res: Response, next: NextFunction) => {
+  const tokenData = await getTokenData(req);
   if (!tokenData) {
     return res.status(401).json({ message: "No autorizado" });
   }
@@ -332,7 +303,7 @@ export const requireOwner = (req: Request, res: Response, next: NextFunction) =>
 // Tenant middleware - injects tenantId from JWT or subdomain
 export const injectTenantId = async (req: Request, res: Response, next: NextFunction) => {
   // First try from JWT
-  const tokenData = getTokenData(req);
+  const tokenData = await getTokenData(req);
   if (tokenData && "tenantId" in tokenData) {
     const validated = await validateSaasTokenData(tokenData);
     if (!validated) {
@@ -615,8 +586,10 @@ export function registerAuthRoutes(app: Express) {
       const authHeader = req.headers.authorization;
       if (authHeader && authHeader.startsWith("Bearer ")) {
         const token = authHeader.substring(7);
-        blacklistedTokens.add(token);
-        activeSessions.delete(token);
+        const decoded = jwt.decode(token) as JwtPayload | null;
+        const expiresAt = decoded?.exp ? new Date(decoded.exp * 1000) : new Date(Date.now() + 24 * 60 * 60 * 1000);
+        await storage.blacklistToken(token, expiresAt);
+        await storage.deleteAdminSession(token);
       }
 
       // Delete refresh token
@@ -970,7 +943,7 @@ export function registerAuthRoutes(app: Express) {
 
   // Get current admin user info (legacy)
   app.get("/api/admin/me", requireAdminSession, async (req, res) => {
-    const tokenData = getTokenData(req);
+    const tokenData = await getTokenData(req);
     if (!tokenData) {
       return res.status(401).json({ message: "No autorizado" });
     }
@@ -997,12 +970,14 @@ export function registerAuthRoutes(app: Express) {
   });
 
   // Admin logout - blacklist the JWT token (legacy)
-  app.post("/api/admin/logout", requireAdminSession, (req, res) => {
+  app.post("/api/admin/logout", requireAdminSession, async (req, res) => {
     const authHeader = req.headers.authorization;
     if (authHeader && authHeader.startsWith("Bearer ")) {
       const token = authHeader.substring(7);
-      blacklistedTokens.add(token);
-      activeSessions.delete(token);
+      const decoded = jwt.decode(token) as JwtPayload | null;
+      const expiresAt = decoded?.exp ? new Date(decoded.exp * 1000) : new Date(Date.now() + 24 * 60 * 60 * 1000);
+      await storage.blacklistToken(token, expiresAt);
+      await storage.deleteAdminSession(token);
     }
     res.json({ success: true, message: "Sesion cerrada correctamente" });
   });

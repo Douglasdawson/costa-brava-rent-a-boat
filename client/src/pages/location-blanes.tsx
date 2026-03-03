@@ -143,7 +143,7 @@ export default function LocationBlanesPage() {
           <Card className="mb-8">
             <CardHeader>
               <h2 className="flex items-center gap-3 text-2xl font-semibold leading-none tracking-tight">
-                <Star className="w-6 h-6 text-yellow-500" />
+                <Star className="w-6 h-6 text-cta" />
                 {s.whyBlanesTitle}
               </h2>
             </CardHeader>
@@ -178,8 +178,8 @@ export default function LocationBlanesPage() {
             <CardContent>
               <div className="grid md:grid-cols-3 gap-6">
                 <div className="text-center">
-                  <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Waves className="w-8 h-8 text-blue-600" />
+                  <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Waves className="w-8 h-8 text-primary" />
                   </div>
                   <h3 className="font-semibold text-lg mb-2">{s.calaBrava}</h3>
                   <p className="text-gray-600 text-sm mb-2">{s.calaBravaTime}</p>
@@ -187,8 +187,8 @@ export default function LocationBlanesPage() {
                 </div>
 
                 <div className="text-center">
-                  <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Camera className="w-8 h-8 text-green-600" />
+                  <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Camera className="w-8 h-8 text-primary" />
                   </div>
                   <h3 className="font-semibold text-lg mb-2">{s.lloretDeMar}</h3>
                   <p className="text-gray-600 text-sm mb-2">{s.lloretTime}</p>
@@ -221,19 +221,19 @@ export default function LocationBlanesPage() {
                   <h3 className="font-semibold text-lg mb-3">{s.portAmenities}</h3>
                   <ul className="space-y-2">
                     <li className="flex items-center">
-                      <Car className="w-4 h-4 text-green-600 mr-2" />
+                      <Car className="w-4 h-4 text-primary mr-2" />
                       <span>{s.freeParking}</span>
                     </li>
                     <li className="flex items-center">
-                      <Ship className="w-4 h-4 text-green-600 mr-2" />
+                      <Ship className="w-4 h-4 text-primary mr-2" />
                       <span>{s.fuelStation}</span>
                     </li>
                     <li className="flex items-center">
-                      <Star className="w-4 h-4 text-green-600 mr-2" />
+                      <Star className="w-4 h-4 text-primary mr-2" />
                       <span>{s.restaurants}</span>
                     </li>
                     <li className="flex items-center">
-                      <Anchor className="w-4 h-4 text-green-600 mr-2" />
+                      <Anchor className="w-4 h-4 text-primary mr-2" />
                       <span>{s.nauticalShops}</span>
                     </li>
                   </ul>

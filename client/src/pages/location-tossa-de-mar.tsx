@@ -151,7 +151,7 @@ export default function LocationTossaPage() {
           <Card className="mb-8">
             <CardHeader>
               <h2 className="flex items-center gap-3 text-2xl font-semibold leading-none tracking-tight">
-                <Crown className="w-6 h-6 text-yellow-500" />
+                <Crown className="w-6 h-6 text-cta" />
                 {s.whyTossaTitle}
               </h2>
             </CardHeader>
@@ -195,8 +195,8 @@ export default function LocationTossaPage() {
                 </div>
 
                 <div className="text-center">
-                  <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Waves className="w-8 h-8 text-blue-600" />
+                  <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Waves className="w-8 h-8 text-primary" />
                   </div>
                   <h3 className="font-semibold text-lg mb-2">{s.playaGrande}</h3>
                   <p className="text-gray-600 text-sm mb-2">{s.playaGrandeSub}</p>
@@ -204,8 +204,8 @@ export default function LocationTossaPage() {
                 </div>
 
                 <div className="text-center">
-                  <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Sun className="w-8 h-8 text-green-600" />
+                  <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Sun className="w-8 h-8 text-primary" />
                   </div>
                   <h3 className="font-semibold text-lg mb-2">{s.virginCoves}</h3>
                   <p className="text-gray-600 text-sm mb-2">{s.virginCovesSub}</p>
@@ -229,19 +229,19 @@ export default function LocationTossaPage() {
                   <h3 className="font-semibold text-lg mb-3">{s.cultureHistory}</h3>
                   <ul className="space-y-2">
                     <li className="flex items-center">
-                      <Castle className="w-4 h-4 text-green-600 mr-2" />
+                      <Castle className="w-4 h-4 text-primary mr-2" />
                       <span>{s.exploreVilaVella}</span>
                     </li>
                     <li className="flex items-center">
-                      <Shield className="w-4 h-4 text-green-600 mr-2" />
+                      <Shield className="w-4 h-4 text-primary mr-2" />
                       <span>{s.climbWalls}</span>
                     </li>
                     <li className="flex items-center">
-                      <Camera className="w-4 h-4 text-green-600 mr-2" />
+                      <Camera className="w-4 h-4 text-primary mr-2" />
                       <span>{s.municipalMuseum}</span>
                     </li>
                     <li className="flex items-center">
-                      <Star className="w-4 h-4 text-green-600 mr-2" />
+                      <Star className="w-4 h-4 text-primary mr-2" />
                       <span>{s.tossaLighthouse}</span>
                     </li>
                   </ul>
@@ -250,19 +250,19 @@ export default function LocationTossaPage() {
                   <h3 className="font-semibold text-lg mb-3">{s.natureRelax}</h3>
                   <ul className="space-y-2">
                     <li className="flex items-center">
-                      <Waves className="w-4 h-4 text-green-600 mr-2" />
+                      <Waves className="w-4 h-4 text-primary mr-2" />
                       <span>{s.diveCrystalWaters}</span>
                     </li>
                     <li className="flex items-center">
-                      <Sun className="w-4 h-4 text-green-600 mr-2" />
+                      <Sun className="w-4 h-4 text-primary mr-2" />
                       <span>{s.anchorSecretCoves}</span>
                     </li>
                     <li className="flex items-center">
-                      <NavigationIcon className="w-4 h-4 text-green-600 mr-2" />
+                      <NavigationIcon className="w-4 h-4 text-primary mr-2" />
                       <span>{s.coastalPaths}</span>
                     </li>
                     <li className="flex items-center">
-                      <Camera className="w-4 h-4 text-green-600 mr-2" />
+                      <Camera className="w-4 h-4 text-primary mr-2" />
                       <span>{s.sunsetFromSea}</span>
                     </li>
                   </ul>

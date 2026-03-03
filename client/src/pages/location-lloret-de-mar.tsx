@@ -152,7 +152,7 @@ export default function LocationLloretPage() {
           <Card className="mb-8">
             <CardHeader>
               <h2 className="flex items-center gap-3 text-2xl font-semibold leading-none tracking-tight">
-                <Star className="w-6 h-6 text-yellow-500" />
+                <Star className="w-6 h-6 text-cta" />
                 {s.whyLloretTitle}
               </h2>
             </CardHeader>
@@ -187,8 +187,8 @@ export default function LocationLloretPage() {
             <CardContent>
               <div className="grid md:grid-cols-3 gap-6">
                 <div className="text-center">
-                  <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Users className="w-8 h-8 text-blue-600" />
+                  <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Users className="w-8 h-8 text-primary" />
                   </div>
                   <h3 className="font-semibold text-lg mb-2">{s.playaLloret}</h3>
                   <p className="text-gray-600 text-sm mb-2">{s.playaLloretSub}</p>
@@ -196,8 +196,8 @@ export default function LocationLloretPage() {
                 </div>
 
                 <div className="text-center">
-                  <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Sun className="w-8 h-8 text-green-600" />
+                  <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Sun className="w-8 h-8 text-primary" />
                   </div>
                   <h3 className="font-semibold text-lg mb-2">{s.calaBoadella}</h3>
                   <p className="text-gray-600 text-sm mb-2">{s.calaBoadellaSub}</p>
@@ -230,19 +230,19 @@ export default function LocationLloretPage() {
                   <h3 className="font-semibold text-lg mb-3">{s.entertainment}</h3>
                   <ul className="space-y-2">
                     <li className="flex items-center">
-                      <Music className="w-4 h-4 text-green-600 mr-2" />
+                      <Music className="w-4 h-4 text-primary mr-2" />
                       <span>{s.nightlife}</span>
                     </li>
                     <li className="flex items-center">
-                      <Utensils className="w-4 h-4 text-green-600 mr-2" />
+                      <Utensils className="w-4 h-4 text-primary mr-2" />
                       <span>{s.restaurantsSea}</span>
                     </li>
                     <li className="flex items-center">
-                      <Waves className="w-4 h-4 text-green-600 mr-2" />
+                      <Waves className="w-4 h-4 text-primary mr-2" />
                       <span>{s.waterSports}</span>
                     </li>
                     <li className="flex items-center">
-                      <Camera className="w-4 h-4 text-green-600 mr-2" />
+                      <Camera className="w-4 h-4 text-primary mr-2" />
                       <span>{s.santaClotildeMirador}</span>
                     </li>
                   </ul>
@@ -251,19 +251,19 @@ export default function LocationLloretPage() {
                   <h3 className="font-semibold text-lg mb-3">{s.pointsOfInterest}</h3>
                   <ul className="space-y-2">
                     <li className="flex items-center">
-                      <Star className="w-4 h-4 text-green-600 mr-2" />
+                      <Star className="w-4 h-4 text-primary mr-2" />
                       <span>{s.mujerMarinera}</span>
                     </li>
                     <li className="flex items-center">
-                      <NavigationIcon className="w-4 h-4 text-green-600 mr-2" />
+                      <NavigationIcon className="w-4 h-4 text-primary mr-2" />
                       <span>{s.castilloSantJoan}</span>
                     </li>
                     <li className="flex items-center">
-                      <Car className="w-4 h-4 text-green-600 mr-2" />
+                      <Car className="w-4 h-4 text-primary mr-2" />
                       <span>{s.jardinesSantaClotilde}</span>
                     </li>
                     <li className="flex items-center">
-                      <Ship className="w-4 h-4 text-green-600 mr-2" />
+                      <Ship className="w-4 h-4 text-primary mr-2" />
                       <span>{s.sportsMarina}</span>
                     </li>
                   </ul>

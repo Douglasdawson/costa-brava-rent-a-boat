@@ -153,7 +153,7 @@ export default function CategoryLicenseFreePage() {
               {clf.heroDescription}
             </p>
             <div className="flex flex-wrap gap-3 justify-center">
-              <Badge variant="outline" className="text-green-600 border-green-600">
+              <Badge variant="outline" className="text-primary border-primary">
                 <CheckCircle className="w-4 h-4 mr-2" />
                 {clf.badgeNoLicense}
               </Badge>
@@ -178,7 +178,7 @@ export default function CategoryLicenseFreePage() {
           <Card className="mb-8">
             <CardHeader>
               <h2 className="flex items-center gap-3 text-2xl font-semibold leading-none tracking-tight">
-                <Shield className="w-6 h-6 text-green-500" />
+                <Shield className="w-6 h-6 text-primary" />
                 {clf.whatAreTitle}
               </h2>
             </CardHeader>
@@ -235,7 +235,7 @@ export default function CategoryLicenseFreePage() {
                       <div className="space-y-1">
                         {boat.features.map((feature, idx) => (
                           <div key={idx} className="flex items-center text-gray-600">
-                            <CheckCircle className="w-4 h-4 mr-2 text-green-500" />
+                            <CheckCircle className="w-4 h-4 mr-2 text-primary" />
                             <span className="text-sm">{feature}</span>
                           </div>
                         ))}
@@ -264,19 +264,19 @@ export default function CategoryLicenseFreePage() {
                   <h3 className="font-semibold text-lg mb-3">{clf.totalAccessibility}</h3>
                   <ul className="space-y-2">
                     <li className="flex items-center">
-                      <Star className="w-4 h-4 text-green-600 mr-2" />
+                      <Star className="w-4 h-4 text-primary mr-2" />
                       <span>{clf.noLicenseNeeded}</span>
                     </li>
                     <li className="flex items-center">
-                      <Star className="w-4 h-4 text-green-600 mr-2" />
+                      <Star className="w-4 h-4 text-primary mr-2" />
                       <span>{clf.quickLearning}</span>
                     </li>
                     <li className="flex items-center">
-                      <Star className="w-4 h-4 text-green-600 mr-2" />
+                      <Star className="w-4 h-4 text-primary mr-2" />
                       <span>{clf.lowerCost}</span>
                     </li>
                     <li className="flex items-center">
-                      <Star className="w-4 h-4 text-green-600 mr-2" />
+                      <Star className="w-4 h-4 text-primary mr-2" />
                       <span>{clf.perfectBeginners}</span>
                     </li>
                   </ul>
@@ -285,19 +285,19 @@ export default function CategoryLicenseFreePage() {
                   <h3 className="font-semibold text-lg mb-3">{clf.guaranteedFun}</h3>
                   <ul className="space-y-2">
                     <li className="flex items-center">
-                      <Waves className="w-4 h-4 text-green-600 mr-2" />
+                      <Waves className="w-4 h-4 text-primary mr-2" />
                       <span>{clf.accessCoves}</span>
                     </li>
                     <li className="flex items-center">
-                      <Sun className="w-4 h-4 text-green-600 mr-2" />
+                      <Sun className="w-4 h-4 text-primary mr-2" />
                       <span>{clf.idealFamilies}</span>
                     </li>
                     <li className="flex items-center">
-                      <NavigationIcon className="w-4 h-4 text-green-600 mr-2" />
+                      <NavigationIcon className="w-4 h-4 text-primary mr-2" />
                       <span>{clf.safeCoastalNavigation}</span>
                     </li>
                     <li className="flex items-center">
-                      <Clock className="w-4 h-4 text-green-600 mr-2" />
+                      <Clock className="w-4 h-4 text-primary mr-2" />
                       <span>{clf.immediateAvailability}</span>
                     </li>
                   </ul>
@@ -320,19 +320,19 @@ export default function CategoryLicenseFreePage() {
                   <h3 className="font-semibold text-lg mb-3">{clf.minRequirements}</h3>
                   <ul className="space-y-2">
                     <li className="flex items-center">
-                      <CheckCircle className="w-4 h-4 text-green-600 mr-2" />
+                      <CheckCircle className="w-4 h-4 text-primary mr-2" />
                       <span>{clf.minAge}</span>
                     </li>
                     <li className="flex items-center">
-                      <CheckCircle className="w-4 h-4 text-green-600 mr-2" />
+                      <CheckCircle className="w-4 h-4 text-primary mr-2" />
                       <span>{clf.validId}</span>
                     </li>
                     <li className="flex items-center">
-                      <CheckCircle className="w-4 h-4 text-green-600 mr-2" />
+                      <CheckCircle className="w-4 h-4 text-primary mr-2" />
                       <span>{clf.deposit}</span>
                     </li>
                     <li className="flex items-center">
-                      <CheckCircle className="w-4 h-4 text-green-600 mr-2" />
+                      <CheckCircle className="w-4 h-4 text-primary mr-2" />
                       <span>{clf.safetyBriefing}</span>
                     </li>
                   </ul>
@@ -341,19 +341,19 @@ export default function CategoryLicenseFreePage() {
                   <h3 className="font-semibold text-lg mb-3">{clf.safetyIncluded}</h3>
                   <ul className="space-y-2">
                     <li className="flex items-center">
-                      <Shield className="w-4 h-4 text-green-600 mr-2" />
+                      <Shield className="w-4 h-4 text-primary mr-2" />
                       <span>{clf.lifeJackets}</span>
                     </li>
                     <li className="flex items-center">
-                      <Shield className="w-4 h-4 text-green-600 mr-2" />
+                      <Shield className="w-4 h-4 text-primary mr-2" />
                       <span>{clf.fireExtinguisher}</span>
                     </li>
                     <li className="flex items-center">
-                      <Shield className="w-4 h-4 text-green-600 mr-2" />
+                      <Shield className="w-4 h-4 text-primary mr-2" />
                       <span>{clf.vhfRadio}</span>
                     </li>
                     <li className="flex items-center">
-                      <Shield className="w-4 h-4 text-green-600 mr-2" />
+                      <Shield className="w-4 h-4 text-primary mr-2" />
                       <span>{clf.civilLiability}</span>
                     </li>
                   </ul>

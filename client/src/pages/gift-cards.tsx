@@ -102,8 +102,8 @@ export default function GiftCardsPage() {
         <div className="container mx-auto px-4 py-16">
           <Card className="max-w-md mx-auto">
             <CardContent className="p-8 text-center">
-              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Check className="w-8 h-8 text-green-600" />
+              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Check className="w-8 h-8 text-primary" />
               </div>
               <h2 className="text-2xl font-bold mb-2">
                 {t.giftCards?.purchaseSuccess || "Tarjeta regalo creada"}

@@ -158,7 +158,7 @@ export default function CategoryLicensedPage() {
               {cl.heroDescription}
             </p>
             <div className="flex flex-wrap gap-3 justify-center">
-              <Badge variant="outline" className="text-blue-600 border-blue-600">
+              <Badge variant="outline" className="text-primary border-primary">
                 <Award className="w-4 h-4 mr-2" />
                 {cl.badgeLicense}
               </Badge>
@@ -183,7 +183,7 @@ export default function CategoryLicensedPage() {
           <Card className="mb-8">
             <CardHeader>
               <h2 className="flex items-center gap-3 text-2xl font-semibold leading-none tracking-tight">
-                <Award className="w-6 h-6 text-blue-500" />
+                <Award className="w-6 h-6 text-primary" />
                 {cl.whatAreTitle}
               </h2>
             </CardHeader>
@@ -229,14 +229,14 @@ export default function CategoryLicensedPage() {
                         <Gauge className="w-4 h-4 mr-2" />
                         <span>{boat.engine}</span>
                       </div>
-                      <div className="flex items-center text-blue-600">
+                      <div className="flex items-center text-primary">
                         <TrendingUp className="w-4 h-4 mr-2" />
                         <span className="text-sm font-medium">{boat.range}</span>
                       </div>
                       <div className="space-y-1">
                         {boat.features.map((feature, idx) => (
                           <div key={idx} className="flex items-center text-gray-600">
-                            <CheckCircle className="w-4 h-4 mr-2 text-green-500" />
+                            <CheckCircle className="w-4 h-4 mr-2 text-primary" />
                             <span className="text-sm">{feature}</span>
                           </div>
                         ))}
@@ -265,19 +265,19 @@ export default function CategoryLicensedPage() {
                   <h3 className="font-semibold text-lg mb-3">{cl.superiorPerformanceAdv}</h3>
                   <ul className="space-y-2">
                     <li className="flex items-center">
-                      <Zap className="w-4 h-4 text-blue-600 mr-2" />
+                      <Zap className="w-4 h-4 text-primary mr-2" />
                       <span>{cl.greaterSpeedPower}</span>
                     </li>
                     <li className="flex items-center">
-                      <Compass className="w-4 h-4 text-blue-600 mr-2" />
+                      <Compass className="w-4 h-4 text-primary mr-2" />
                       <span>{cl.unlimitedDistance}</span>
                     </li>
                     <li className="flex items-center">
-                      <Target className="w-4 h-4 text-blue-600 mr-2" />
+                      <Target className="w-4 h-4 text-primary mr-2" />
                       <span>{cl.remoteCoves}</span>
                     </li>
                     <li className="flex items-center">
-                      <Waves className="w-4 h-4 text-blue-600 mr-2" />
+                      <Waves className="w-4 h-4 text-primary mr-2" />
                       <span>{cl.betterOpenSea}</span>
                     </li>
                   </ul>
@@ -286,19 +286,19 @@ export default function CategoryLicensedPage() {
                   <h3 className="font-semibold text-lg mb-3">{cl.premiumExperience}</h3>
                   <ul className="space-y-2">
                     <li className="flex items-center">
-                      <NavigationIcon className="w-4 h-4 text-blue-600 mr-2" />
+                      <NavigationIcon className="w-4 h-4 text-primary mr-2" />
                       <span>{cl.advancedNavEquipment}</span>
                     </li>
                     <li className="flex items-center">
-                      <Star className="w-4 h-4 text-blue-600 mr-2" />
+                      <Star className="w-4 h-4 text-primary mr-2" />
                       <span>{cl.greaterComfort}</span>
                     </li>
                     <li className="flex items-center">
-                      <Clock className="w-4 h-4 text-blue-600 mr-2" />
+                      <Clock className="w-4 h-4 text-primary mr-2" />
                       <span>{cl.greaterFuelAutonomy}</span>
                     </li>
                     <li className="flex items-center">
-                      <Award className="w-4 h-4 text-blue-600 mr-2" />
+                      <Award className="w-4 h-4 text-primary mr-2" />
                       <span>{cl.sportNavigation}</span>
                     </li>
                   </ul>
@@ -321,23 +321,23 @@ export default function CategoryLicensedPage() {
                   <h3 className="font-semibold text-lg mb-3">{cl.acceptedLicenses}</h3>
                   <ul className="space-y-2">
                     <li className="flex items-center">
-                      <CheckCircle className="w-4 h-4 text-green-600 mr-2" />
+                      <CheckCircle className="w-4 h-4 text-primary mr-2" />
                       <span>{cl.per}</span>
                     </li>
                     <li className="flex items-center">
-                      <CheckCircle className="w-4 h-4 text-green-600 mr-2" />
+                      <CheckCircle className="w-4 h-4 text-primary mr-2" />
                       <span>{cl.pnb}</span>
                     </li>
                     <li className="flex items-center">
-                      <CheckCircle className="w-4 h-4 text-green-600 mr-2" />
+                      <CheckCircle className="w-4 h-4 text-primary mr-2" />
                       <span>{cl.yachtCaptain}</span>
                     </li>
                     <li className="flex items-center">
-                      <CheckCircle className="w-4 h-4 text-green-600 mr-2" />
+                      <CheckCircle className="w-4 h-4 text-primary mr-2" />
                       <span>{cl.icc}</span>
                     </li>
                     <li className="flex items-center">
-                      <CheckCircle className="w-4 h-4 text-green-600 mr-2" />
+                      <CheckCircle className="w-4 h-4 text-primary mr-2" />
                       <span>{cl.euEquivalent}</span>
                     </li>
                   </ul>
@@ -346,23 +346,23 @@ export default function CategoryLicensedPage() {
                   <h3 className="font-semibold text-lg mb-3">{cl.additionalRequirements}</h3>
                   <ul className="space-y-2">
                     <li className="flex items-center">
-                      <CheckCircle className="w-4 h-4 text-green-600 mr-2" />
+                      <CheckCircle className="w-4 h-4 text-primary mr-2" />
                       <span>{cl.minAge}</span>
                     </li>
                     <li className="flex items-center">
-                      <CheckCircle className="w-4 h-4 text-green-600 mr-2" />
+                      <CheckCircle className="w-4 h-4 text-primary mr-2" />
                       <span>{cl.validId}</span>
                     </li>
                     <li className="flex items-center">
-                      <CheckCircle className="w-4 h-4 text-green-600 mr-2" />
+                      <CheckCircle className="w-4 h-4 text-primary mr-2" />
                       <span>{cl.validLicense}</span>
                     </li>
                     <li className="flex items-center">
-                      <CheckCircle className="w-4 h-4 text-green-600 mr-2" />
+                      <CheckCircle className="w-4 h-4 text-primary mr-2" />
                       <span>{cl.deposit}</span>
                     </li>
                     <li className="flex items-center">
-                      <CheckCircle className="w-4 h-4 text-green-600 mr-2" />
+                      <CheckCircle className="w-4 h-4 text-primary mr-2" />
                       <span>{cl.technicalBriefing}</span>
                     </li>
                   </ul>
@@ -385,19 +385,19 @@ export default function CategoryLicensedPage() {
                   <h3 className="font-semibold text-lg mb-3">{cl.expandedDestinations}</h3>
                   <ul className="space-y-2">
                     <li className="flex items-center">
-                      <Target className="w-4 h-4 text-blue-600 mr-2" />
+                      <Target className="w-4 h-4 text-primary mr-2" />
                       <span>{cl.islasMedas}</span>
                     </li>
                     <li className="flex items-center">
-                      <Target className="w-4 h-4 text-blue-600 mr-2" />
+                      <Target className="w-4 h-4 text-primary mr-2" />
                       <span>{cl.begurCoves}</span>
                     </li>
                     <li className="flex items-center">
-                      <Target className="w-4 h-4 text-blue-600 mr-2" />
+                      <Target className="w-4 h-4 text-primary mr-2" />
                       <span>{cl.cadaques}</span>
                     </li>
                     <li className="flex items-center">
-                      <Target className="w-4 h-4 text-blue-600 mr-2" />
+                      <Target className="w-4 h-4 text-primary mr-2" />
                       <span>{cl.nightNavigation}</span>
                     </li>
                   </ul>
@@ -406,19 +406,19 @@ export default function CategoryLicensedPage() {
                   <h3 className="font-semibold text-lg mb-3">{cl.specialActivities}</h3>
                   <ul className="space-y-2">
                     <li className="flex items-center">
-                      <Waves className="w-4 h-4 text-blue-600 mr-2" />
+                      <Waves className="w-4 h-4 text-primary mr-2" />
                       <span>{cl.sportFishing}</span>
                     </li>
                     <li className="flex items-center">
-                      <NavigationIcon className="w-4 h-4 text-blue-600 mr-2" />
+                      <NavigationIcon className="w-4 h-4 text-primary mr-2" />
                       <span>{cl.fullDayTrips}</span>
                     </li>
                     <li className="flex items-center">
-                      <Star className="w-4 h-4 text-blue-600 mr-2" />
+                      <Star className="w-4 h-4 text-primary mr-2" />
                       <span>{cl.sportNav}</span>
                     </li>
                     <li className="flex items-center">
-                      <Compass className="w-4 h-4 text-blue-600 mr-2" />
+                      <Compass className="w-4 h-4 text-primary mr-2" />
                       <span>{cl.portToPort}</span>
                     </li>
                   </ul>

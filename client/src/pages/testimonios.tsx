@@ -105,7 +105,7 @@ export default function TestimoniosPage() {
         key={index}
         className={`w-4 h-4 ${
           index < rating
-            ? 'text-yellow-500 fill-yellow-500'
+            ? 'text-cta fill-cta'
             : 'text-gray-300'
         }`}
       />

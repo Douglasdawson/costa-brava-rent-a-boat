@@ -13,8 +13,8 @@ import { useTranslations } from "@/lib/translations";
 import { getSEOConfig, generateCanonicalUrl, generateHreflangLinks } from "@/utils/seo-config";
 
 const difficultyColors: Record<string, string> = {
-  easy: "bg-green-100 text-green-800",
-  moderate: "bg-yellow-100 text-yellow-800",
+  easy: "bg-primary/10 text-primary",
+  moderate: "bg-cta/10 text-cta",
   advanced: "bg-red-100 text-red-800",
 };
 

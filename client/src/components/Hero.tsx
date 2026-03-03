@@ -64,7 +64,7 @@ export default function Hero() {
               <Button
                 onClick={() => openBookingModal()}
                 size="lg"
-                className="bg-primary hover:bg-primary/90 text-white shadow-2xl px-8 py-6 text-lg rounded-lg"
+                className="bg-cta hover:bg-cta/90 text-white shadow-2xl px-8 py-6 text-lg rounded-lg"
                 data-testid="button-hero-cta"
               >
                 <CalendarDays className="w-5 h-5 mr-2" aria-hidden="true" />

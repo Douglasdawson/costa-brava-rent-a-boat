@@ -5,10 +5,12 @@ import { useQuery } from "@tanstack/react-query";
 import type { Testimonial } from "@shared/schema";
 import { useTranslations } from "@/lib/translations";
 import { useLanguage } from "@/hooks/use-language";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 export default function ReviewsSection() {
   const t = useTranslations();
   const { language } = useLanguage();
+  const { ref: revealRef, isVisible } = useScrollReveal();
   const { data: testimonials } = useQuery<Testimonial[]>({
     queryKey: ['/api/testimonials'],
   });
@@ -35,7 +37,7 @@ export default function ReviewsSection() {
   );
 
   return (
-    <section id="reviews" className="py-12 sm:py-16 bg-gray-50">
+    <section ref={revealRef} id="reviews" className={`py-12 sm:py-16 bg-gray-50 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-8 sm:mb-10">

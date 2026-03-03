@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Anchor, Phone, Mail, MapPin, Clock } from "lucide-react";
+import { Phone, Mail, MapPin, Clock } from "lucide-react";
+import logoHorizontal from "@/assets/real-photos/logo-horizontal.png";
 import { SiWhatsapp, SiInstagram, SiFacebook, SiTiktok } from "react-icons/si";
 import { useTranslations } from "@/lib/translations";
 import { useLanguage } from "@/hooks/use-language";
@@ -59,10 +60,7 @@ export default function Footer() {
               data-testid="footer-logo-button"
               aria-label="Ir a la página principal"
             >
-              <Anchor className="w-5 h-5 sm:w-6 sm:h-6 text-primary flex-shrink-0" aria-hidden="true" />
-              <span className="font-heading font-bold text-white text-sm sm:text-base">
-                Costa Brava Rent a Boat
-              </span>
+              <img src={logoHorizontal} alt="Costa Brava Rent a Boat" className="h-8 brightness-0 invert" />
             </a>
             <p className="text-xs text-gray-400 mb-4">
               {t.footer.description}

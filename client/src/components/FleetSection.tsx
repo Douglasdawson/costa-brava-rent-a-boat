@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { useMemo } from "react";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 import BoatCard from "./BoatCard";
 import { openWhatsApp } from "@/utils/whatsapp";
 import { useLocation } from "wouter";
@@ -14,6 +15,7 @@ export default function FleetSection() {
   const t = useTranslations();
   const [, setLocation] = useLocation();
   const { openBookingModal } = useBookingModal();
+  const { ref: revealRef, isVisible } = useScrollReveal();
 
   // Fetch boats from API
   const { data: boatsData, isLoading } = useQuery<Boat[]>({
@@ -64,7 +66,7 @@ export default function FleetSection() {
   };
 
   return (
-    <section className="py-8 sm:py-12 lg:py-16 bg-gray-50" id="fleet">
+    <section ref={revealRef} className={`py-8 sm:py-12 lg:py-16 bg-gray-50 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`} id="fleet">
       <div className="container mx-auto px-3 sm:px-4">
         <div className="text-center mb-6 sm:mb-8 lg:mb-12">
           <h2 className="font-heading text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-2 sm:mb-3 lg:mb-4 px-2">

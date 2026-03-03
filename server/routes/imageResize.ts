@@ -3,7 +3,10 @@ import sharp from "sharp";
 import path from "path";
 import fs from "fs";
 
-const IMAGES_DIR = path.resolve(process.cwd(), "client/src/assets/generated_images");
+const IMAGES_DIRS = [
+  path.resolve(process.cwd(), "client/src/assets/real-photos"),
+  path.resolve(process.cwd(), "client/src/assets/generated_images"),
+];
 
 // Simple in-memory LRU-like cache
 const cache = new Map<string, Buffer>();
@@ -36,9 +39,17 @@ export function registerImageResizeRoutes(app: Express) {
       return res.send(cached);
     }
 
-    const filePath = path.join(IMAGES_DIR, filename);
+    // Search in both real-photos and generated_images directories
+    let filePath = "";
+    for (const dir of IMAGES_DIRS) {
+      const candidate = path.join(dir, filename);
+      if (fs.existsSync(candidate)) {
+        filePath = candidate;
+        break;
+      }
+    }
 
-    if (!fs.existsSync(filePath)) {
+    if (!filePath) {
       return res.status(404).json({ error: "Image not found" });
     }
 

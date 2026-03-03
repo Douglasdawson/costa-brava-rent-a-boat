@@ -19,6 +19,7 @@ import GiftCardBanner from "./components/GiftCardBanner";
 import ContactSection from "./components/ContactSection";
 import Footer from "./components/Footer";
 import FAQPreview from "./components/FAQPreview";
+import WaveDivider from "./components/WaveDivider";
 import { SEO } from "./components/SEO";
 
 // Lazy load non-critical components
@@ -146,8 +147,10 @@ function HomePage() {
       />
       <Navigation />
       <Hero />
+      <WaveDivider fill="#f9fafb" />
       <FleetSection />
       <ReviewsSection />
+      <WaveDivider fill="#ffffff" />
       <GiftCardBanner />
       <FeaturesSection />
       <FAQPreview />

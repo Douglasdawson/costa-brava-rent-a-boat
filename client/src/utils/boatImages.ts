@@ -1,13 +1,13 @@
 // Client-side image mapping for boat data
-// This file handles WebP imports which are not available on server-side builds
+// Uses real photos from real-photos directory
 
-import solar450Image from "../assets/generated_images/SOLAR_450_boat_photo_b70eb7e1.webp";
-import remus450Image from "../assets/generated_images/REMUS_450_boat_photo_ec8b926c.webp";
-import astec400Image from "../assets/generated_images/ASTEC_400_boat_photo_9dde16a8.webp";
-import astec450Image from "../assets/generated_images/ASTEC_450_speedboat_photo_fc9de4ed.webp";
-import mingollaImage from "../assets/generated_images/MINGOLLA_BRAVA_19_boat_c0e4a5b5.webp";
-import trimarchiImage from "../assets/generated_images/Trimarchi_57S_luxury_boat_0ef0159a.webp";
-import pacificCraftImage from "../assets/generated_images/PACIFIC_CRAFT_625_boat_fbe4f4d0.webp";
+import solar450Image from "../assets/real-photos/solar-450.jpg";
+import remus450Image from "../assets/real-photos/remus-450.jpg";
+import astec400Image from "../assets/real-photos/astec-400.jpg";
+import astec450Image from "../assets/real-photos/astec-450.jpg";
+import mingollaImage from "../assets/real-photos/mingolla.jpg";
+import trimarchiImage from "../assets/real-photos/trimarchi.jpg";
+import pacificCraftImage from "../assets/real-photos/pacific-craft.jpg";
 
 // Map string paths to imported images
 export const BOAT_IMAGE_MAP: { [key: string]: string } = {
@@ -22,7 +22,7 @@ export const BOAT_IMAGE_MAP: { [key: string]: string } = {
 
 // Helper function to resolve boat image path to actual imported image
 export function getBoatImage(imagePath: string): string {
-  // First, check if it's in the static WebP map
+  // First, check if it's in the static map
   if (BOAT_IMAGE_MAP[imagePath]) {
     return BOAT_IMAGE_MAP[imagePath];
   }
@@ -47,8 +47,8 @@ export function getBoatImageSrcSet(imagePath: string): string {
   if (!imagePath || imagePath.startsWith("http") || imagePath.startsWith("/")) {
     return "";
   }
-  // Normalize extension to .webp (server files are .webp)
-  const filename = imagePath.replace(/\.[^.]+$/, ".webp");
+  // Normalize extension to .jpg (server files are now .jpg)
+  const filename = imagePath.replace(/\.[^.]+$/, ".jpg");
   return SRCSET_WIDTHS
     .map((w) => `/img/resize?file=${encodeURIComponent(filename)}&w=${w} ${w}w`)
     .join(", ");

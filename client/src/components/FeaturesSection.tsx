@@ -9,14 +9,16 @@ import {
   CheckCircle
 } from "lucide-react";
 import { useTranslations } from "@/lib/translations";
-import snorkelImage from "../assets/generated_images/Family_snorkeling_activity_scene_b0ab1783.webp";
-import paddleImage from "../assets/generated_images/Paddle_surfing_couple_scene_cc635043.webp";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
+import snorkelImage from "@/assets/real-photos/icons/snorkel.png";
+import paddleImage from "@/assets/real-photos/icons/paddle-surf.png";
 import coolerImage from "@assets/stock_images/cooler_with_ice_and__e74f58f1.jpg";
 import privateTourImage from "@assets/stock_images/private_boat_tour_wi_507c646c.jpg";
 import parkingImage from "@assets/stock_images/empty_parking_space__d7110dae.jpg";
 
 export default function FeaturesSection() {
   const t = useTranslations();
+  const { ref: revealRef, isVisible } = useScrollReveal();
   const features = [
     {
       icon: Shield,
@@ -95,7 +97,7 @@ export default function FeaturesSection() {
   ];
 
   return (
-    <section className="py-8 sm:py-12 lg:py-16 bg-white">
+    <section ref={revealRef} className={`py-8 sm:py-12 lg:py-16 bg-white transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
       <div className="container mx-auto px-3 sm:px-4">
         {/* Main Features */}
         <div className="text-center mb-8 sm:mb-10 lg:mb-12">

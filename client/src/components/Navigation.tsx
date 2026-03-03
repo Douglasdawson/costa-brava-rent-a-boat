@@ -1,6 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Anchor, UserCircle, Calendar, Gift } from "lucide-react";
+import { Menu, X, UserCircle, Calendar, Gift } from "lucide-react";
+import logoHorizontal from "@/assets/real-photos/logo-horizontal.png";
+import logoIcon from "@/assets/real-photos/logo-icon.png";
 import { useLocation, Link } from "wouter";
 import LanguageSelector from "./LanguageSelector";
 import { useTranslations } from "@/lib/translations";
@@ -10,7 +12,15 @@ import { trackBookingFormOpen } from "@/utils/analytics";
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const [currentLocation, setLocation] = useLocation();
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 50);
+    handleScroll(); // Check initial state
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
   const t = useTranslations();
   const { isAuthenticated } = useAuth();
   const { openBookingModal } = useBookingModal();
@@ -139,6 +149,8 @@ export default function Navigation() {
     { label: t.nav.faq, href: "#faq" },
   ];
 
+  const isTransparent = currentLocation === "/" && !scrolled;
+
   const isNavItemActive = (href: string): boolean => {
     if (href === "/") return currentLocation === "/";
     if (href === "/blog") return currentLocation === "/blog" || currentLocation.startsWith("/blog/");
@@ -148,7 +160,11 @@ export default function Navigation() {
   };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200 shadow-sm">
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      currentLocation === "/" && !scrolled
+        ? "bg-black/20 backdrop-blur-sm border-b border-white/10"
+        : "bg-white/95 backdrop-blur-md border-b border-gray-200 shadow-sm"
+    }`}>
       <div className="container mx-auto px-4">
         <div className="relative flex items-center justify-between h-16">
           {/* Logo - Left */}
@@ -159,19 +175,17 @@ export default function Navigation() {
             data-testid="brand-logo"
             aria-label="Ir a la página principal de Costa Brava Rent a Boat Blanes"
           >
-            <Anchor className="w-6 h-6 sm:w-8 sm:h-8 text-primary" aria-hidden="true" />
-            <span className="font-heading font-bold text-sm sm:text-lg lg:text-xl text-gray-900">
-              <span className="md:hidden">Rent a Boat</span>
-              <span className="hidden md:inline xl:hidden">Costa Brava Rent a Boat</span>
-              <span className="hidden xl:inline">Costa Brava Rent a Boat Blanes</span>
-            </span>
+            <img src={logoIcon} alt="Costa Brava Rent a Boat" className={`h-8 sm:hidden transition-all duration-300 ${isTransparent ? "brightness-0 invert" : ""}`} />
+            <img src={logoHorizontal} alt="Costa Brava Rent a Boat Blanes" className={`hidden sm:block h-8 lg:h-10 transition-all duration-300 ${isTransparent ? "brightness-0 invert" : ""}`} />
           </a>
 
           {/* Desktop Navigation - Absolutely Centered */}
           <div className="hidden lg:flex items-center space-x-4 lg:space-x-6 absolute left-1/2 -translate-x-1/2">
             {navigationItems.map((item) => {
-              const activeClass = isNavItemActive(item.href) ? "text-primary font-semibold" : "text-gray-700 font-medium";
-              const baseClass = `hover:text-primary transition-colors whitespace-nowrap ${activeClass}`;
+              const activeClass = isNavItemActive(item.href)
+                ? (isTransparent ? "text-white font-semibold" : "text-primary font-semibold")
+                : (isTransparent ? "text-white/90 font-medium" : "text-gray-700 font-medium");
+              const baseClass = `${isTransparent ? "hover:text-white" : "hover:text-primary"} transition-colors whitespace-nowrap ${activeClass}`;
               // Page routes: render as <a> so Googlebot can crawl them
               if (!item.href.startsWith("#")) {
                 const href = item.href === "#faq" ? "/faq" : item.href;
@@ -246,7 +260,7 @@ export default function Navigation() {
               aria-label={isOpen ? "Cerrar menú de navegación" : "Abrir menú de navegación"}
               aria-expanded={isOpen}
             >
-              {isOpen ? <X className="w-7 h-7" /> : <Menu className="w-7 h-7" />}
+              {isOpen ? <X className={`w-7 h-7 ${isTransparent ? "text-white" : ""}`} /> : <Menu className={`w-7 h-7 ${isTransparent ? "text-white" : ""}`} />}
             </Button>
           </div>
         </div>

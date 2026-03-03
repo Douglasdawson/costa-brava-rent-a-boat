@@ -1,4 +1,5 @@
 import { useTranslations } from "@/lib/translations";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -8,9 +9,10 @@ import { Link } from "wouter";
 
 export default function ContactSection() {
   const t = useTranslations();
+  const { ref: revealRef, isVisible } = useScrollReveal();
 
   return (
-    <section className="py-8 sm:py-12 lg:py-16 bg-white" id="contact">
+    <section ref={revealRef} className={`py-8 sm:py-12 lg:py-16 bg-white transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`} id="contact">
       <div className="container mx-auto px-3 sm:px-4">
         <div className="text-center mb-6 sm:mb-8 lg:mb-12">
           <h2 className="font-heading text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-2 sm:mb-3 lg:mb-4 text-[#143352]">

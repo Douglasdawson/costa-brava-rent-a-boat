@@ -1,5 +1,6 @@
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { HelpCircle, ArrowRight } from "lucide-react";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 const FAQ_ITEMS = [
   {
@@ -30,8 +31,10 @@ const FAQ_ITEMS = [
 ];
 
 export default function FAQPreview() {
+  const { ref: revealRef, isVisible } = useScrollReveal();
+
   return (
-    <section className="py-16 sm:py-20 bg-white" aria-labelledby="faq-preview-title">
+    <section ref={revealRef} className={`py-16 sm:py-20 bg-white transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`} aria-labelledby="faq-preview-title">
       <div className="container mx-auto px-4 sm:px-6 max-w-3xl">
         {/* Header */}
         <div className="text-center mb-10">

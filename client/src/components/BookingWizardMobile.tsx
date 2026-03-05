@@ -632,7 +632,7 @@ function Step3PersonalData({
                     value={prefixSearch}
                     onChange={(e) => setPrefixSearch(e.target.value)}
                     placeholder={t.wizard.searchCountry}
-                    className="w-full p-2 border border-gray-200 rounded-lg text-sm"
+                    className="w-full p-2 border border-gray-200 rounded-lg text-sm bg-white text-foreground"
                   />
                 </div>
                 {filteredPrefixes.map((prefix) => (

@@ -1,13 +1,14 @@
 import { Button } from "./ui/button";
 import { useTranslations } from "@/lib/translations";
 import { useBookingModal } from "@/hooks/useBookingModal";
+import CurvedLoop from "./CurvedLoop";
 
 export default function Hero() {
   const t = useTranslations();
   const { openBookingModal } = useBookingModal();
 
   return (
-    <div className="relative h-screen min-h-[600px] max-h-[900px]" id="home">
+    <div className="relative h-screen min-h-[600px] max-h-[1000px]" id="home">
       {/* Background Image - Responsive <picture> */}
       <picture>
         <source
@@ -27,65 +28,58 @@ export default function Hero() {
         />
       </picture>
 
-      {/* Overlay - lighter editorial gradient */}
+      {/* Overlay */}
       <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-black/30 to-black/10" />
 
-      {/* Content - centered */}
+      {/* Content */}
       <div className="relative z-10 h-full flex flex-col justify-center">
-        <div className="container mx-auto px-4 sm:px-6">
-          <div className="max-w-3xl mx-auto text-center flex flex-col items-center">
-            <h1 className="font-heading text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-light text-white tracking-tight mb-6 leading-tight">
-              {t.hero.title}
+        <div className="px-4 sm:px-6 lg:px-12">
+          <div className="text-center flex flex-col items-center">
+            <h1 className="font-heading font-bold text-white tracking-tight mb-6 leading-[1.15]" style={{ fontSize: '5.5vw' }}>
+              Alquiler de Barcos en Blanes,<br />
+              Costa Brava
             </h1>
-            <p className="text-lg sm:text-xl text-white/90 font-light mb-8 leading-relaxed">
-              {t.hero.subtitle}
+            <div className="w-16 h-px bg-white/40 mb-5" />
+            <p className="text-xl sm:text-2xl lg:text-3xl text-white font-medium mb-8 leading-relaxed tracking-wide">
+              {t.hero.subtitle.split('. ').map((sentence, i, arr) => (
+                <span key={i} className="block">{sentence}{i < arr.length - 1 ? '.' : ''}</span>
+              ))}
             </p>
 
-            {/* Price as discrete text */}
-            <p className="text-white/80 text-base font-light mb-6">
-              Desde 70€ · Gasolina incluida
-            </p>
+            {/* Price badges */}
+            <div className="flex items-center gap-3 mb-6">
+              <span className="w-44 py-2 rounded-full bg-[#A8C4DD]/50 backdrop-blur-sm border border-white/25 text-white text-sm font-medium tracking-wide text-center">
+                Desde 70€
+              </span>
+              <span className="w-44 py-2 rounded-full bg-[#A8C4DD]/50 backdrop-blur-sm border border-white/25 text-white text-sm font-medium tracking-wide text-center">
+                Gasolina incluida
+              </span>
+            </div>
 
-            {/* Single CTA */}
-            <div className="mb-10">
+            {/* CTA */}
+            <div>
               <Button
                 onClick={() => openBookingModal()}
                 size="lg"
-                className="bg-cta hover:bg-cta/90 text-white px-10 py-4 text-lg rounded-full shadow-lg font-medium"
+                className="bg-cta hover:bg-cta/90 text-white px-10 py-4 text-lg rounded-full font-medium btn-elevated"
                 data-testid="button-hero-cta"
               >
                 {t.hero.bookNow}
               </Button>
             </div>
-
-            {/* Minimal trust line */}
-            <div className="flex items-center justify-center flex-wrap gap-3 sm:gap-6 text-white/80 text-sm font-light">
-              <a
-                href="https://www.google.com/maps/place/Costa+Brava+Rent+a+Boat+-+Blanes+%7C+Alquiler+de+Barcos+Con+y+Sin+Licencia/@41.6722544,2.7952876,17z/data=!3m1!4b1!4m6!3m5!1s0x12bb172c94a8856f:0x9a2dfa936ef2e0a7!8m2!3d41.6722504!4d2.7978625!16s%2Fg%2F11q2xl6s9f?entry=ttu&g_ep=EgoyMDI1MDkxNy4wIKXMDSoASAFQAw%3D%3D"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={`${t.hero.googleRating} (abre en Google Maps, nueva pestaña)`}
-                className="hover:text-white/80 transition-colors"
-                data-testid="google-reviews-link"
-              >
-                4.8 Google
-              </a>
-              <span className="text-white/30">|</span>
-              <a
-                href="https://www.google.com/maps/place/Costa+Brava+Rent+a+Boat+-+Blanes+%7C+Alquiler+de+Barcos+Con+y+Sin+Licencia/@41.6722544,2.7952876,17z/data=!3m1!4b1!4m6!3m5!1s0x12bb172c94a8856f:0x9a2dfa936ef2e0a7!8m2!3d41.6722504!4d2.7978625!16s%2Fg%2F11q2xl6s9f?entry=ttu&g_ep=EgoyMDI1MDkxNy4wIKXMDSoASAFQAw%3D%3D"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={`${t.hero.clients} (abre en Google Maps, nueva pestaña)`}
-                className="hover:text-white/80 transition-colors"
-                data-testid="satisfied-clients-link"
-              >
-                +2000 clientes
-              </a>
-              <span className="text-white/30">|</span>
-              <span>100% asegurado</span>
-            </div>
           </div>
         </div>
+      </div>
+
+      {/* Curved loop marquee — overlaid at bottom of hero */}
+      <div className="absolute bottom-0 left-0 right-0 z-10 overflow-hidden opacity-50">
+        <CurvedLoop
+          marqueeText="Alquiler de Barcos ✦ Con Licencia y sin Licencia ✦ En la Costa Brava ✦ Blanes ✦ Desde 70€ ✦ 4.8 Google ✦ Más de 2000 Clientes ✦ Desde 2020 ✦ "
+          speed={1.5}
+          curveAmount={60}
+          direction="left"
+          className="fill-white text-[2rem] font-display tracking-wider"
+        />
       </div>
     </div>
   );

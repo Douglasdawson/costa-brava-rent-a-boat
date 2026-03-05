@@ -122,7 +122,7 @@ export default function Footer() {
                   <button
                     type="submit"
                     disabled={newsletterState === 'loading'}
-                    className="bg-cta hover:bg-cta/90 text-white rounded-full px-6 py-3 text-sm font-medium transition-colors disabled:opacity-50 whitespace-nowrap"
+                    className="bg-cta hover:bg-cta/90 text-white rounded-full px-6 py-3 text-sm font-medium btn-elevated disabled:opacity-50 whitespace-nowrap"
                   >
                     {newsletterState === 'loading' ? '...' : t.locationPages.newsletter.button}
                   </button>

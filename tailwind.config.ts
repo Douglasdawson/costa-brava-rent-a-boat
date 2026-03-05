@@ -4,6 +4,16 @@ export default {
   darkMode: ["class"],
   content: ["./client/index.html", "./client/src/**/*.{js,jsx,ts,tsx}"],
   theme: {
+    container: {
+      center: true,
+      padding: {
+        DEFAULT: '1rem',
+        sm: '1.5rem',
+        lg: '2rem',
+        xl: '3rem',
+        '2xl': '4rem',
+      },
+    },
     extend: {
       borderRadius: {
         lg: "0.75rem", /* 12px */
@@ -87,10 +97,11 @@ export default {
         },
       },
       fontFamily: {
-        sans: ["Inter", "var(--font-sans)"],
+        sans: ["'Archivo'", "Inter", "var(--font-sans)"],
+        display: ["'Clash Display'", "'Archivo'", "sans-serif"],
         serif: ["var(--font-serif)"],
         mono: ["var(--font-mono)"],
-        heading: ["Outfit", "Inter", "sans-serif"],
+        heading: ["'Clash Display'", "Inter", "sans-serif"],
       },
       keyframes: {
         "accordion-down": {

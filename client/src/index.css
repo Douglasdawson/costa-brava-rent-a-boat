@@ -1,3 +1,30 @@
+@font-face {
+  font-family: 'Clash Display';
+  src: url('/fonts/ClashDisplay-Variable.woff2') format('woff2'),
+       url('/fonts/ClashDisplay-Variable.woff') format('woff');
+  font-weight: 200 700;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Archivo';
+  src: url('/fonts/Archivo-Variable.woff2') format('woff2'),
+       url('/fonts/Archivo-Variable.woff') format('woff');
+  font-weight: 100 900;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Archivo';
+  src: url('/fonts/Archivo-VariableItalic.woff2') format('woff2'),
+       url('/fonts/Archivo-VariableItalic.woff') format('woff');
+  font-weight: 100 900;
+  font-display: swap;
+  font-style: italic;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -76,10 +103,11 @@
   --chart-4: 45 60% 65%;
   --chart-5: 270 60% 55%;
 
-  --cta: 15 80% 60%;
+  --cta: 240 53% 11%;
   --cta-foreground: 0 0% 100%;
 
-  --font-sans: Inter, sans-serif;
+  --font-sans: 'Archivo', Inter, sans-serif;
+  --font-display: 'Clash Display', 'Archivo', sans-serif;
   --font-serif: Georgia, serif;
   --font-mono: Menlo, monospace;
   --radius: .5rem; /* 8px */
@@ -417,6 +445,27 @@
   }
 
   /* Safe area utilities for iOS notch / home indicator */
+  .btn-elevated {
+    box-shadow: 0 4px 14px rgba(13, 13, 43, 0.35);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .btn-elevated:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(13, 13, 43, 0.45);
+  }
+  .btn-elevated:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(13, 13, 43, 0.3);
+  }
+
+  @keyframes savings-pulse {
+    0%, 100% { background-color: #0D0D2B; }
+    50% { background-color: #A8C4DD; }
+  }
+  .animate-savings-pulse {
+    animation: savings-pulse 2s ease-in-out infinite;
+  }
+
   .pb-safe {
     padding-bottom: env(safe-area-inset-bottom, 0px);
   }

@@ -48,6 +48,7 @@ const CancelBookingPage = lazy(() => import("@/pages/CancelBookingPage"));
 const NotFound = lazy(() => import("@/pages/not-found"));
 const OnboardingPage = lazy(() => import("@/pages/OnboardingPage"));
 const AccessibilityDeclarationPage = lazy(() => import("@/pages/accessibility-declaration"));
+const StepperDemo = lazy(() => import("@/pages/stepper-demo"));
 import { useLanguage } from "@/hooks/use-language";
 import WhatsAppFloatingButton from "./components/WhatsAppFloatingButton";
 import CookieBanner from "./components/CookieBanner";
@@ -300,6 +301,7 @@ function Router() {
         <Route path="/blog" component={BlogPage} />
         <Route path="/destinos/:slug" component={DestinationDetailPage} />
         <Route path="/cancel/:token" component={CancelBookingPage} />
+        <Route path="/stepper-demo" component={StepperDemo} />
         <Route component={NotFound} />
       </Switch>
     </Suspense>

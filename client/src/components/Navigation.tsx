@@ -141,6 +141,7 @@ export default function Navigation() {
   };
 
   const navigationItems = [
+    { label: t.nav.home, href: "/" },
     { label: t.nav.fleet, href: "#fleet" },
     { label: "Destinos", href: "/rutas" },
     { label: "Blog", href: "/blog" },
@@ -155,12 +156,8 @@ export default function Navigation() {
   };
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-      currentLocation === "/" && !scrolled
-        ? "bg-transparent"
-        : "bg-white border-b border-border"
-    }`}>
-      <div className="container mx-auto px-4">
+    <nav className="absolute top-3 left-4 right-4 lg:left-6 lg:right-6 z-50 rounded-2xl bg-white/20 backdrop-blur-xl border border-white/40 shadow-[0_8px_32px_rgba(13,13,43,0.12)]">
+      <div className="px-4 lg:px-6">
         <div className="relative flex items-center justify-between h-16">
           {/* Logo - Left */}
           <a
@@ -170,17 +167,17 @@ export default function Navigation() {
             data-testid="brand-logo"
             aria-label="Ir a la página principal de Costa Brava Rent a Boat Blanes"
           >
-            <img src={logoIcon} alt="Costa Brava Rent a Boat" className={`h-8 sm:hidden transition-all duration-300 ${isTransparent ? "brightness-0 invert" : ""}`} />
-            <img src={logoHorizontal} alt="Costa Brava Rent a Boat Blanes" className={`hidden sm:block h-8 lg:h-10 transition-all duration-300 ${isTransparent ? "brightness-0 invert" : ""}`} />
+            <img src={logoIcon} alt="Costa Brava Rent a Boat" className="h-8 sm:hidden brightness-0 invert" />
+            <img src={logoHorizontal} alt="Costa Brava Rent a Boat Blanes" className="hidden sm:block h-8 lg:h-10 brightness-0 invert" />
           </a>
 
           {/* Desktop Navigation - Absolutely Centered */}
           <div className="hidden lg:flex items-center space-x-4 lg:space-x-6 absolute left-1/2 -translate-x-1/2">
             {navigationItems.map((item) => {
               const activeClass = isNavItemActive(item.href)
-                ? (isTransparent ? "text-white font-semibold" : "text-primary font-semibold")
-                : (isTransparent ? "text-white/90 font-medium" : "text-gray-700 font-medium");
-              const baseClass = `${isTransparent ? "hover:text-white" : "hover:text-primary"} transition-colors whitespace-nowrap ${activeClass}`;
+                ? "text-white font-semibold"
+                : "text-white/90 font-medium";
+              const baseClass = `hover:text-white transition-colors whitespace-nowrap ${activeClass}`;
               // Page routes: render as <a> so Googlebot can crawl them
               if (!item.href.startsWith("#")) {
                 const href = item.href === "#faq" ? "/faq" : item.href;
@@ -212,12 +209,12 @@ export default function Navigation() {
 
           {/* Right side buttons */}
           <div className="hidden lg:flex items-center space-x-4 z-10">
-            <LanguageSelector variant="minimal" />
+            <LanguageSelector variant="minimal" className="text-white hover:text-white hover:bg-white/10" />
             <Button
               onClick={() => handleNavigation("#booking", t.nav.bookNow)}
               data-testid="desktop-button-book"
               aria-label="Reservar barco ahora"
-              className="bg-cta hover:bg-cta/90 text-white rounded-full px-6 py-2 text-sm font-medium shadow-none"
+              className="bg-cta hover:bg-cta/90 text-white rounded-full px-6 py-2 text-sm font-medium btn-elevated"
             >
               {t.nav.bookNow}
             </Button>
@@ -227,6 +224,7 @@ export default function Navigation() {
                 onClick={handleLoginClick}
                 data-testid="button-login"
                 aria-label="Iniciar sesión en tu cuenta"
+                className="text-white hover:text-white hover:bg-white/10"
               >
                 <UserCircle className="w-4 h-4 mr-2" />
                 Login
@@ -238,6 +236,7 @@ export default function Navigation() {
                 onClick={handleMyAccountClick}
                 data-testid="button-my-account"
                 aria-label="Acceder a mi cuenta de cliente"
+                className="text-white hover:text-white hover:bg-white/10"
               >
                 <UserCircle className="w-4 h-4 mr-2" />
                 {t.nav.myAccount}
@@ -298,7 +297,7 @@ export default function Navigation() {
             <div className="px-4 py-2 border-t border-border mt-1 pt-3">
               <div className="flex flex-wrap items-center gap-3">
                 <Button
-                  className="bg-cta hover:bg-cta/90 text-white rounded-full px-6 py-3 text-sm font-medium shadow-none min-h-11"
+                  className="bg-cta hover:bg-cta/90 text-white rounded-full px-6 py-3 text-sm font-medium btn-elevated min-h-11"
                   onClick={handleMobileBooking}
                   data-testid="mobile-button-book"
                   aria-label="Reservar barco ahora"

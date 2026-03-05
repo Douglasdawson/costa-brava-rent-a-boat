@@ -676,10 +676,10 @@ Responde UNICAMENTE con un objeto JSON (sin markdown, sin backticks):
     const [updatedPost] = await db
       .update(schema.blogPosts)
       .set({
-        title: finalArticle.title,
+        title: finalArticle.title.slice(0, 255),
         content: finalArticle.content,
         excerpt: finalArticle.excerpt,
-        metaDescription: finalArticle.metaDescription,
+        metaDescription: finalArticle.metaDescription?.slice(0, 160) || null,
         tags: finalArticle.tags,
         featuredImage,
         titleByLang: translations.titleByLang,
@@ -900,11 +900,11 @@ export async function runAutopilotPipeline(
     const [newPost] = await db
       .insert(schema.blogPosts)
       .values({
-        title: finalArticle.title,
-        slug: finalArticle.slug,
+        title: finalArticle.title.slice(0, 255),
+        slug: finalArticle.slug.slice(0, 255),
         content: finalArticle.content,
         excerpt: finalArticle.excerpt,
-        metaDescription: finalArticle.metaDescription,
+        metaDescription: finalArticle.metaDescription?.slice(0, 160) || null,
         category: finalArticle.category,
         tags: finalArticle.tags,
         author: "Costa Brava Rent a Boat",

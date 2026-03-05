@@ -16,6 +16,11 @@ import { generateHreflangLinks, generateCanonicalUrl, generateBreadcrumbSchema }
 import { generateArticleSchema } from "@/utils/seo-schemas";
 import type { BlogPost } from "@shared/schema";
 
+function localized(byLang: Record<string, string> | null | undefined, fallback: string | null | undefined, lang: string): string {
+  if (byLang && byLang[lang]) return byLang[lang];
+  return fallback || "";
+}
+
 export default function BlogDetailPage() {
   const { slug } = useParams<{ slug: string }>();
   const { language } = useLanguage();
@@ -43,10 +48,10 @@ export default function BlogDetailPage() {
   // SEO Configuration
   const seoConfig = post ? {
     title: `${post.title} | Costa Brava Rent a Boat`,
-    description: post.metaDescription || post.excerpt || '',
+    description: localized(post.metaDescByLang as Record<string, string> | null, post.metaDescription, language) || localized(post.excerptByLang as Record<string, string> | null, post.excerpt, language) || '',
     keywords: post.tags?.join(', ') || '',
     ogTitle: post.title,
-    ogDescription: post.metaDescription || post.excerpt || ''
+    ogDescription: localized(post.metaDescByLang as Record<string, string> | null, post.metaDescription, language) || localized(post.excerptByLang as Record<string, string> | null, post.excerpt, language) || ''
   } : {
     title: 'Blog | Costa Brava Rent a Boat',
     description: '',
@@ -189,11 +194,11 @@ export default function BlogDetailPage() {
               {post.category}
             </Badge>
 
-            <h1 
+            <h1
               className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight"
               data-testid={`text-title-${post.slug}`}
             >
-              {post.title}
+              {localized(post.titleByLang as Record<string, string> | null, post.title, language)}
             </h1>
 
             <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
@@ -207,12 +212,12 @@ export default function BlogDetailPage() {
               </div>
             </div>
 
-            {post.excerpt && (
-              <p 
+            {(post.excerpt || post.excerptByLang) && (
+              <p
                 className="text-xl text-muted-foreground"
                 data-testid={`text-excerpt-${post.slug}`}
               >
-                {post.excerpt}
+                {localized(post.excerptByLang as Record<string, string> | null, post.excerpt, language)}
               </p>
             )}
           </header>
@@ -235,7 +240,7 @@ export default function BlogDetailPage() {
             data-testid={`content-article-${post.slug}`}
           >
             <ReactMarkdown remarkPlugins={[remarkGfm]}>
-              {post.content}
+              {localized(post.contentByLang as Record<string, string> | null, post.content, language)}
             </ReactMarkdown>
           </div>
 

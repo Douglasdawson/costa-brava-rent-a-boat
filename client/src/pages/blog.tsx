@@ -17,6 +17,11 @@ import type { BlogPost } from "@shared/schema";
 
 const POSTS_PER_PAGE = 9;
 
+function localized(byLang: Record<string, string> | null | undefined, fallback: string | null | undefined, lang: string): string {
+  if (byLang && byLang[lang]) return byLang[lang];
+  return fallback || "";
+}
+
 export default function BlogPage() {
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const [currentPage, setCurrentPage] = useState(1);
@@ -244,11 +249,11 @@ export default function BlogPage() {
                         <Badge variant="secondary" data-testid={`badge-category-${post.slug}`}>{post.category}</Badge>
                       </div>
                       <CardTitle className="text-xl hover:text-primary transition-colors" data-testid={`text-title-${post.slug}`}>
-                        {post.title}
+                        {localized(post.titleByLang as Record<string, string> | null, post.title, language)}
                       </CardTitle>
-                      {post.excerpt && (
+                      {(post.excerpt || post.excerptByLang) && (
                         <CardDescription className="line-clamp-2" data-testid={`text-excerpt-${post.slug}`}>
-                          {post.excerpt}
+                          {localized(post.excerptByLang as Record<string, string> | null, post.excerpt, language)}
                         </CardDescription>
                       )}
                     </CardHeader>

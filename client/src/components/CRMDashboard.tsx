@@ -10,6 +10,7 @@ import {
   CalendarTab,
   BookingsTab,
   CustomersTab,
+  InquiriesTab,
   FleetManagement,
   EmployeeManagement,
   TenantAdminTab,
@@ -286,6 +287,14 @@ export default function CRMDashboard({ adminToken }: CRMDashboardProps) {
           <CustomersTab
             adminToken={adminToken}
             onViewCustomerBookings={handleViewCustomerBookings}
+            onOpenWhatsApp={openWhatsApp}
+          />
+        )}
+
+        {/* Inquiries Tab */}
+        {selectedTab === "inquiries" && (
+          <InquiriesTab
+            adminToken={adminToken}
             onOpenWhatsApp={openWhatsApp}
           />
         )}

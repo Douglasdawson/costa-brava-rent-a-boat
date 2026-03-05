@@ -35,6 +35,8 @@ import {
   aiChatSessions, aiChatMessages, knowledgeBase, pageVisits,
   newsletterSubscribers,
   type NewsletterSubscriber,
+  whatsappInquiries,
+  type WhatsappInquiry, type InsertWhatsappInquiry, type UpdateWhatsappInquiry,
   adminSessions,
   tokenBlacklist,
 } from "@shared/schema";
@@ -324,6 +326,17 @@ export interface IStorage {
 
   updateBookingWhatsAppThankYouStatus(id: string, sent: boolean): Promise<void>;
   decrementExtrasStock(bookingId: string): Promise<void>;
+
+  // WhatsApp inquiry methods
+  getWhatsappInquiry(id: string): Promise<WhatsappInquiry | undefined>;
+  createWhatsappInquiry(data: InsertWhatsappInquiry): Promise<WhatsappInquiry>;
+  getPaginatedInquiries(params: {
+    page: number;
+    limit: number;
+    status?: string;
+    search?: string;
+  }): Promise<{ data: WhatsappInquiry[]; total: number; page: number; totalPages: number }>;
+  updateWhatsappInquiry(id: string, data: UpdateWhatsappInquiry): Promise<WhatsappInquiry | undefined>;
 }
 
 // rewrite MemStorage to DatabaseStorage
@@ -2587,6 +2600,74 @@ export class DatabaseStorage implements IStorage {
     const now = new Date();
     await db.delete(adminSessions).where(sql`${adminSessions.expiresAt} < ${now}`);
     await db.delete(tokenBlacklist).where(sql`${tokenBlacklist.expiresAt} < ${now}`);
+  }
+
+  // ===== WhatsApp Inquiries =====
+
+  async getWhatsappInquiry(id: string): Promise<WhatsappInquiry | undefined> {
+    const [inquiry] = await db.select().from(whatsappInquiries).where(eq(whatsappInquiries.id, id));
+    return inquiry;
+  }
+
+  async createWhatsappInquiry(data: InsertWhatsappInquiry): Promise<WhatsappInquiry> {
+    const [inquiry] = await db.insert(whatsappInquiries).values(data).returning();
+    return inquiry;
+  }
+
+  async getPaginatedInquiries(params: {
+    page: number;
+    limit: number;
+    status?: string;
+    search?: string;
+  }): Promise<{ data: WhatsappInquiry[]; total: number; page: number; totalPages: number }> {
+    const { page, limit, status, search } = params;
+    const offset = (page - 1) * limit;
+
+    const conditions = [];
+    if (status && status !== "all") {
+      conditions.push(eq(whatsappInquiries.status, status));
+    }
+    if (search) {
+      const searchLower = `%${search.toLowerCase()}%`;
+      conditions.push(
+        or(
+          sql`LOWER(${whatsappInquiries.firstName}) LIKE ${searchLower}`,
+          sql`LOWER(${whatsappInquiries.lastName}) LIKE ${searchLower}`,
+          sql`LOWER(COALESCE(${whatsappInquiries.email}, '')) LIKE ${searchLower}`,
+          sql`LOWER(${whatsappInquiries.phoneNumber}) LIKE ${searchLower}`,
+          sql`LOWER(${whatsappInquiries.boatName}) LIKE ${searchLower}`
+        )
+      );
+    }
+
+    const whereClause = conditions.length > 0 ? and(...conditions) : undefined;
+
+    const countResult = await db
+      .select({ count: sql<number>`COUNT(*)::int` })
+      .from(whatsappInquiries)
+      .where(whereClause);
+
+    const total = countResult[0]?.count ?? 0;
+    const totalPages = Math.ceil(total / limit);
+
+    const data = await db
+      .select()
+      .from(whatsappInquiries)
+      .where(whereClause)
+      .orderBy(sql`${whatsappInquiries.createdAt} DESC`)
+      .limit(limit)
+      .offset(offset);
+
+    return { data, total, page, totalPages };
+  }
+
+  async updateWhatsappInquiry(id: string, data: UpdateWhatsappInquiry): Promise<WhatsappInquiry | undefined> {
+    const [updated] = await db
+      .update(whatsappInquiries)
+      .set(data)
+      .where(eq(whatsappInquiries.id, id))
+      .returning();
+    return updated;
   }
 }
 

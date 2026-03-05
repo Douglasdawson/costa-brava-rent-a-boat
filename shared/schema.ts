@@ -1320,6 +1320,61 @@ export const newsletterSubscribers = pgTable("newsletter_subscribers", {
 export type NewsletterSubscriber = typeof newsletterSubscribers.$inferSelect;
 export type InsertNewsletterSubscriber = typeof newsletterSubscribers.$inferInsert;
 
+// ===== WHATSAPP BOOKING INQUIRIES =====
+
+export const INQUIRY_STATUSES = {
+  PENDING: 'pending',
+  CONTACTED: 'contacted',
+  CONVERTED: 'converted',
+  LOST: 'lost',
+} as const;
+
+export type InquiryStatus = typeof INQUIRY_STATUSES[keyof typeof INQUIRY_STATUSES];
+
+export const whatsappInquiries = pgTable("whatsapp_inquiries", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  tenantId: varchar("tenant_id"),
+  boatId: varchar("boat_id").notNull(),
+  boatName: text("boat_name").notNull(),
+  bookingDate: text("booking_date").notNull(),
+  preferredTime: text("preferred_time"),
+  duration: text("duration").notNull(),
+  numberOfPeople: integer("number_of_people").notNull(),
+  firstName: text("first_name").notNull(),
+  lastName: text("last_name").notNull(),
+  phonePrefix: text("phone_prefix").notNull(),
+  phoneNumber: text("phone_number").notNull(),
+  email: text("email"),
+  extras: jsonb("extras").$type<string[]>().default([]),
+  packId: text("pack_id"),
+  couponCode: text("coupon_code"),
+  estimatedTotal: decimal("estimated_total", { precision: 10, scale: 2 }),
+  language: text("language").default("es"),
+  source: text("source").default("desktop"),
+  status: text("status").notNull().default("pending"),
+  notes: text("notes"),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().default(sql`now()`),
+}, (table) => ({
+  statusIdx: index("inquiry_status_idx").on(table.status),
+  createdAtIdx: index("inquiry_created_at_idx").on(table.createdAt),
+  phoneIdx: index("inquiry_phone_idx").on(table.phoneNumber),
+  emailIdx: index("inquiry_email_idx").on(table.email),
+}));
+
+export const insertWhatsappInquirySchema = createInsertSchema(whatsappInquiries).omit({
+  id: true,
+  createdAt: true,
+});
+
+export const updateWhatsappInquirySchema = z.object({
+  status: z.enum(["pending", "contacted", "converted", "lost"]).optional(),
+  notes: z.string().optional().or(z.null()),
+});
+
+export type WhatsappInquiry = typeof whatsappInquiries.$inferSelect;
+export type InsertWhatsappInquiry = z.infer<typeof insertWhatsappInquirySchema>;
+export type UpdateWhatsappInquiry = z.infer<typeof updateWhatsappInquirySchema>;
+
 // Admin sessions (persisted across server restarts)
 export const adminSessions = pgTable("admin_sessions", {
   token: text("token").primaryKey(),

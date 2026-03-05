@@ -19,6 +19,7 @@ import {
   Zap,
   Settings,
   Globe,
+  MessageSquare,
 } from "lucide-react";
 
 interface AdminLayoutProps {
@@ -43,6 +44,7 @@ const TAB_CONFIG = [
 
 const ADMIN_TABS = [
   { id: "customers", label: "Clientes", icon: Users },
+  { id: "inquiries", label: "Peticiones", icon: MessageSquare },
   { id: "fleet", label: "Flota", icon: Anchor },
   { id: "maintenance", label: "Mant.", icon: Wrench },
   { id: "inventory", label: "Inventario", icon: Package },

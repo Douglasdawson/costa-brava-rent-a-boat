@@ -919,6 +919,9 @@ export interface Translations {
     prevPage: string;
     nextPage: string;
     goToPage: string;
+    featuredArticle: string;
+    readMore: string;
+    minRead: string;
   };
 
   // Blog Detail Page
@@ -1240,7 +1243,7 @@ export const translations: Record<Language, Translations> = {
       basePrice: 'Precio base',
       discountApplied: 'Descuento aplicado',
       priceConfirmedWhatsApp: 'El precio final se confirma por WhatsApp',
-      gdprConsent: 'He leído y acepto la {privacyPolicy} y los {termsAndConditions}. Consiento el tratamiento de mis datos para gestionar mi reserva (RGPD Art. 6.1.b).',
+      gdprConsent: 'Al enviar esta solicitud de reserva, aceptas la {privacyPolicy} y los {termsAndConditions}. Tus datos serán tratados para gestionar tu reserva (RGPD Art. 6.1.b).',
       gdprPrivacyLink: 'Política de Privacidad',
       gdprTermsLink: 'Términos y Condiciones',
     },
@@ -1479,8 +1482,8 @@ export const translations: Record<Language, Translations> = {
       selectDate: 'Seleccionar fecha',
       yourTrip: 'Tu excursion',
       howLongHowMany: 'Cuanto tiempo y cuantos sois?',
-      duration: 'Duracion',
-      departureTime: 'Hora de salida',
+      duration: 'Duración',
+      departureTime: 'Hora de salida deseada',
       selectTime: 'Selecciona hora',
       numberOfPeople: 'Numero de personas',
       maxCapacityError: 'Este barco tiene capacidad para {max} personas como maximo',
@@ -1488,7 +1491,7 @@ export const translations: Record<Language, Translations> = {
       confirmViaWhatsApp: 'Para confirmar tu reserva por WhatsApp',
       firstName: 'Nombre',
       lastName: 'Apellidos',
-      phone: 'Telefono',
+      phone: 'Teléfono',
       searchCountry: 'Buscar pais...',
       email: 'Email',
       date: 'Fecha',
@@ -1800,6 +1803,9 @@ export const translations: Record<Language, Translations> = {
       prevPage: 'Página anterior',
       nextPage: 'Página siguiente',
       goToPage: 'Ir a página',
+      featuredArticle: 'Destacado',
+      readMore: 'Leer artículo',
+      minRead: 'min de lectura',
     },
     blogDetail: {
       breadcrumbHome: 'Inicio',
@@ -2108,7 +2114,7 @@ export const translations: Record<Language, Translations> = {
       basePrice: 'Preu base',
       discountApplied: 'Descompte aplicat',
       priceConfirmedWhatsApp: 'El preu final es confirma per WhatsApp',
-      gdprConsent: 'He llegit i accepto la {privacyPolicy} i els {termsAndConditions}. Consento el tractament de les meves dades per gestionar la meva reserva (RGPD Art. 6.1.b).',
+      gdprConsent: 'En enviar aquesta sol·licitud de reserva, acceptes la {privacyPolicy} i els {termsAndConditions}. Les teves dades seran tractades per gestionar la teva reserva (RGPD Art. 6.1.b).',
       gdprPrivacyLink: 'Política de Privacitat',
       gdprTermsLink: 'Termes i Condicions',
     },
@@ -2668,6 +2674,9 @@ export const translations: Record<Language, Translations> = {
       prevPage: 'Pagina anterior',
       nextPage: 'Pagina seguent',
       goToPage: 'Anar a pagina',
+      featuredArticle: 'Destacat',
+      readMore: 'Llegir article',
+      minRead: 'min de lectura',
     },
     blogDetail: {
       breadcrumbHome: 'Inici',
@@ -2976,7 +2985,7 @@ export const translations: Record<Language, Translations> = {
       basePrice: 'Base price',
       discountApplied: 'Discount applied',
       priceConfirmedWhatsApp: 'Final price confirmed by WhatsApp',
-      gdprConsent: 'I have read and accept the {privacyPolicy} and the {termsAndConditions}. I consent to the processing of my data to manage my booking (GDPR Art. 6.1.b).',
+      gdprConsent: 'By submitting this booking request, you accept the {privacyPolicy} and the {termsAndConditions}. Your data will be processed to manage your booking (GDPR Art. 6.1.b).',
       gdprPrivacyLink: 'Privacy Policy',
       gdprTermsLink: 'Terms and Conditions',
     },
@@ -3536,6 +3545,9 @@ export const translations: Record<Language, Translations> = {
       prevPage: 'Previous page',
       nextPage: 'Next page',
       goToPage: 'Go to page',
+      featuredArticle: 'Featured',
+      readMore: 'Read article',
+      minRead: 'min read',
     },
     blogDetail: {
       breadcrumbHome: 'Home',
@@ -3844,7 +3856,7 @@ export const translations: Record<Language, Translations> = {
       basePrice: 'Prix de base',
       discountApplied: 'Réduction appliquée',
       priceConfirmedWhatsApp: 'Le prix final est confirmé par WhatsApp',
-      gdprConsent: "J'ai lu et j'accepte la {privacyPolicy} et les {termsAndConditions}. Je consens au traitement de mes données pour gérer ma réservation (RGPD Art. 6.1.b).",
+      gdprConsent: "En soumettant cette demande de réservation, vous acceptez la {privacyPolicy} et les {termsAndConditions}. Vos données seront traitées pour gérer votre réservation (RGPD Art. 6.1.b).",
       gdprPrivacyLink: 'Politique de Confidentialité',
       gdprTermsLink: 'Conditions Générales',
     },
@@ -4404,6 +4416,9 @@ export const translations: Record<Language, Translations> = {
       prevPage: 'Page précédente',
       nextPage: 'Page suivante',
       goToPage: 'Aller à la page',
+      featuredArticle: 'A la une',
+      readMore: 'Lire l\'article',
+      minRead: 'min de lecture',
     },
     blogDetail: {
       breadcrumbHome: 'Accueil',
@@ -4712,7 +4727,7 @@ export const translations: Record<Language, Translations> = {
       basePrice: 'Grundpreis',
       discountApplied: 'Rabatt angewendet',
       priceConfirmedWhatsApp: 'Der endgültige Preis wird per WhatsApp bestätigt',
-      gdprConsent: 'Ich habe die {privacyPolicy} und die {termsAndConditions} gelesen und akzeptiere sie. Ich stimme der Verarbeitung meiner Daten zur Verwaltung meiner Buchung zu (DSGVO Art. 6.1.b).',
+      gdprConsent: 'Mit dem Absenden dieser Buchungsanfrage akzeptierst du die {privacyPolicy} und die {termsAndConditions}. Deine Daten werden zur Verwaltung deiner Buchung verarbeitet (DSGVO Art. 6.1.b).',
       gdprPrivacyLink: 'Datenschutzrichtlinie',
       gdprTermsLink: 'Allgemeine Geschäftsbedingungen',
     },
@@ -5272,6 +5287,9 @@ export const translations: Record<Language, Translations> = {
       prevPage: 'Vorherige Seite',
       nextPage: 'Nächste Seite',
       goToPage: 'Zur Seite',
+      featuredArticle: 'Empfohlen',
+      readMore: 'Artikel lesen',
+      minRead: 'Min. Lesezeit',
     },
     blogDetail: {
       breadcrumbHome: 'Startseite',
@@ -5580,7 +5598,7 @@ export const translations: Record<Language, Translations> = {
       basePrice: 'Basisprijs',
       discountApplied: 'Korting toegepast',
       priceConfirmedWhatsApp: 'De definitieve prijs wordt bevestigd via WhatsApp',
-      gdprConsent: 'Ik heb het {privacyPolicy} en de {termsAndConditions} gelezen en ga ermee akkoord. Ik stem in met de verwerking van mijn gegevens voor het beheer van mijn boeking (AVG Art. 6.1.b).',
+      gdprConsent: 'Door deze boekingsaanvraag te verzenden, accepteer je het {privacyPolicy} en de {termsAndConditions}. Je gegevens worden verwerkt om je boeking te beheren (AVG Art. 6.1.b).',
       gdprPrivacyLink: 'Privacybeleid',
       gdprTermsLink: 'Algemene Voorwaarden',
     },
@@ -6140,6 +6158,9 @@ export const translations: Record<Language, Translations> = {
       prevPage: 'Vorige pagina',
       nextPage: 'Volgende pagina',
       goToPage: 'Ga naar pagina',
+      featuredArticle: 'Uitgelicht',
+      readMore: 'Lees artikel',
+      minRead: 'min leestijd',
     },
     blogDetail: {
       breadcrumbHome: 'Home',
@@ -6448,7 +6469,7 @@ export const translations: Record<Language, Translations> = {
       basePrice: 'Prezzo base',
       discountApplied: 'Sconto applicato',
       priceConfirmedWhatsApp: 'Il prezzo finale è confermato via WhatsApp',
-      gdprConsent: "Ho letto e accetto la {privacyPolicy} e i {termsAndConditions}. Acconsento al trattamento dei miei dati per gestire la mia prenotazione (GDPR Art. 6.1.b).",
+      gdprConsent: "Inviando questa richiesta di prenotazione, accetti la {privacyPolicy} e i {termsAndConditions}. I tuoi dati saranno trattati per gestire la tua prenotazione (GDPR Art. 6.1.b).",
       gdprPrivacyLink: 'Informativa sulla Privacy',
       gdprTermsLink: 'Termini e Condizioni',
     },
@@ -7008,6 +7029,9 @@ export const translations: Record<Language, Translations> = {
       prevPage: 'Pagina precedente',
       nextPage: 'Pagina successiva',
       goToPage: 'Vai a pagina',
+      featuredArticle: 'In evidenza',
+      readMore: 'Leggi articolo',
+      minRead: 'min di lettura',
     },
     blogDetail: {
       breadcrumbHome: 'Home',
@@ -7316,7 +7340,7 @@ export const translations: Record<Language, Translations> = {
       basePrice: 'Базовая цена',
       discountApplied: 'Скидка применена',
       priceConfirmedWhatsApp: 'Окончательная цена подтверждается в WhatsApp',
-      gdprConsent: 'Я прочитал и принимаю {privacyPolicy} и {termsAndConditions}. Я согласен на обработку моих данных для управления бронированием (GDPR ст. 6.1.b).',
+      gdprConsent: 'Отправляя этот запрос на бронирование, вы принимаете {privacyPolicy} и {termsAndConditions}. Ваши данные будут обработаны для управления вашим бронированием (GDPR ст. 6.1.b).',
       gdprPrivacyLink: 'Политику конфиденциальности',
       gdprTermsLink: 'Условия использования',
     },
@@ -7876,6 +7900,9 @@ export const translations: Record<Language, Translations> = {
       prevPage: 'Предыдущая страница',
       nextPage: 'Следующая страница',
       goToPage: 'Перейти на страницу',
+      featuredArticle: 'Рекомендуемое',
+      readMore: 'Читать статью',
+      minRead: 'мин чтения',
     },
     blogDetail: {
       breadcrumbHome: 'Главная',

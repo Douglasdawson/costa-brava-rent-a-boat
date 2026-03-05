@@ -20,6 +20,7 @@
     "remotion": "remotion studio client/src/remotion/index.tsx"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.78.0",
     "@dnd-kit/core": "^6.3.1",
     "@dnd-kit/sortable": "^10.0.0",
     "@dnd-kit/utilities": "^3.2.2",
@@ -118,6 +119,7 @@
     "tailwindcss-animate": "^1.0.7",
     "tw-animate-css": "^1.2.5",
     "twilio": "^5.12.0",
+    "unsplash-js": "^7.0.20",
     "vaul": "^1.1.2",
     "vite-imagetools": "^9.0.0",
     "vite-plugin-pwa": "^1.1.0",

@@ -4,6 +4,7 @@ import {
   sendBookingReminder,
   sendThankYouEmail,
 } from "./emailService";
+import { runAutopilotPipeline, publishMatureDrafts, getConfig } from "./blogAutopilot.js";
 import type { Booking, Boat } from "@shared/schema";
 
 /**
@@ -292,5 +293,46 @@ export function startScheduler(): void {
     }
   });
 
-  console.log("[Scheduler] Scheduled services started: reminders (:00), thank-you (:30), hold cleanup (every 5min), auto-complete (:45)");
+  // Blog autopilot: generate new posts (schedule from config, default: Mon/Wed/Fri 9am)
+  (async () => {
+    try {
+      if (!process.env.ANTHROPIC_API_KEY) {
+        console.log("[Scheduler] ANTHROPIC_API_KEY not set, blog autopilot disabled");
+        return;
+      }
+      const config = await getConfig();
+      if (!config.isEnabled) {
+        console.log("[Scheduler] Blog autopilot is disabled in config");
+        return;
+      }
+      cron.schedule(config.cronSchedule, async () => {
+        console.log("[Scheduler] Running blog autopilot...");
+        const result = await runAutopilotPipeline();
+        if (result.success) {
+          console.log(`[Scheduler] Blog autopilot success: "${result.topic}" (score: ${result.seoScore})`);
+        } else {
+          console.log(`[Scheduler] Blog autopilot skipped/failed: ${result.error}`);
+        }
+      });
+      console.log(`[Scheduler] Blog autopilot scheduled: ${config.cronSchedule}`);
+    } catch (error) {
+      console.error("[Scheduler] Failed to initialize blog autopilot:", error);
+    }
+  })();
+
+  // Blog autopilot: auto-publish mature drafts (every hour at :15)
+  if (process.env.ANTHROPIC_API_KEY) {
+    cron.schedule("15 * * * *", async () => {
+      try {
+        const published = await publishMatureDrafts();
+        if (published > 0) {
+          console.log(`[Scheduler] Auto-published ${published} blog draft(s)`);
+        }
+      } catch (error) {
+        console.error("[Scheduler] Auto-publish error:", error);
+      }
+    });
+  }
+
+  console.log("[Scheduler] Scheduled services started: reminders (:00), thank-you (:30), hold cleanup (every 5min), auto-complete (:45), blog autopilot (config), auto-publish (:15)");
 }

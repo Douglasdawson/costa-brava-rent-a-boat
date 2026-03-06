@@ -1,5 +1,5 @@
 import { sql } from "drizzle-orm";
-import { pgTable, text, varchar, integer, decimal, timestamp, boolean, json, jsonb, index, unique } from "drizzle-orm/pg-core";
+import { pgTable, text, varchar, integer, decimal, timestamp, boolean, json, jsonb, index, unique, uniqueIndex } from "drizzle-orm/pg-core";
 import { createInsertSchema, createSelectSchema } from "drizzle-zod";
 import { z } from "zod";
 
@@ -201,7 +201,7 @@ export type PasswordResetToken = typeof passwordResetTokens.$inferSelect;
 // Admin users (existing system - for CRM access)
 export const adminUsers = pgTable("admin_users", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
-  tenantId: varchar("tenant_id"),
+  tenantId: varchar("tenant_id").references(() => tenants.id),
   username: text("username").notNull().unique(),
   passwordHash: text("password_hash").notNull(),
   role: text("role").notNull().default("employee"), // 'admin' | 'employee'
@@ -236,7 +236,7 @@ export const customerUsers = pgTable("customer_users", {
 // Customer profiles (extended info beyond Replit Auth)
 export const customers = pgTable("customers", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
-  tenantId: varchar("tenant_id"),
+  tenantId: varchar("tenant_id").references(() => tenants.id),
   userId: varchar("user_id").notNull().references(() => customerUsers.id).unique(),
   firstName: varchar("first_name").notNull(),
   lastName: varchar("last_name").notNull(),
@@ -252,7 +252,7 @@ export const customers = pgTable("customers", {
 
 export const boats = pgTable("boats", {
   id: varchar("id").primaryKey(),
-  tenantId: varchar("tenant_id"),
+  tenantId: varchar("tenant_id").references(() => tenants.id),
   name: text("name").notNull(),
   capacity: integer("capacity").notNull(),
   requiresLicense: boolean("requires_license").notNull(),
@@ -297,7 +297,7 @@ export const boats = pgTable("boats", {
 
 export const bookings = pgTable("bookings", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
-  tenantId: varchar("tenant_id"),
+  tenantId: varchar("tenant_id").references(() => tenants.id),
   customerId: varchar("customer_id").references(() => customers.id), // Optional link to customer profile
   boatId: varchar("boat_id").notNull().references(() => boats.id),
   bookingDate: timestamp("booking_date", { withTimezone: true }).notNull(),
@@ -356,7 +356,7 @@ export const bookings = pgTable("bookings", {
 
 export const bookingExtras = pgTable("booking_extras", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
-  tenantId: varchar("tenant_id"),
+  tenantId: varchar("tenant_id").references(() => tenants.id),
   bookingId: varchar("booking_id").notNull().references(() => bookings.id, { onDelete: "cascade" }),
   extraName: text("extra_name").notNull(),
   extraPrice: decimal("extra_price", { precision: 10, scale: 2 }).notNull(),
@@ -368,7 +368,7 @@ export const bookingExtras = pgTable("booking_extras", {
 // Page visits analytics
 export const pageVisits = pgTable("page_visits", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
-  tenantId: varchar("tenant_id"),
+  tenantId: varchar("tenant_id").references(() => tenants.id),
   pagePath: text("page_path").notNull(),
   ipAddress: text("ip_address"),
   userAgent: text("user_agent"),
@@ -528,7 +528,7 @@ export type BookingSource = typeof BOOKING_SOURCE[keyof typeof BOOKING_SOURCE];
 // Testimonials table for customer reviews
 export const testimonials = pgTable("testimonials", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
-  tenantId: varchar("tenant_id"),
+  tenantId: varchar("tenant_id").references(() => tenants.id),
   customerName: varchar("customer_name").notNull(),
   boatId: varchar("boat_id").references(() => boats.id),
   boatName: varchar("boat_name"), // Denormalized for display even if boat deleted
@@ -556,7 +556,7 @@ export type Testimonial = typeof testimonials.$inferSelect;
 // Blog Posts table for SEO content
 export const blogPosts = pgTable("blog_posts", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
-  tenantId: varchar("tenant_id"),
+  tenantId: varchar("tenant_id").references(() => tenants.id),
   title: varchar("title", { length: 255 }).notNull(),
   slug: varchar("slug", { length: 255 }).notNull().unique(),
   excerpt: text("excerpt"), // Short summary for cards
@@ -586,7 +586,7 @@ export const blogPosts = pgTable("blog_posts", {
 // Destinations landing pages for SEO
 export const destinations = pgTable("destinations", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
-  tenantId: varchar("tenant_id"),
+  tenantId: varchar("tenant_id").references(() => tenants.id),
   name: varchar("name", { length: 255 }).notNull(), // e.g., "Cala Bona"
   slug: varchar("slug", { length: 255 }).notNull().unique(), // e.g., "cala-bona"
   description: text("description").notNull(), // Short intro
@@ -637,7 +637,7 @@ export type InsertDestination = z.infer<typeof insertDestinationSchema>;
 // Client Photos (gallery)
 export const clientPhotos = pgTable("client_photos", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
-  tenantId: varchar("tenant_id"),
+  tenantId: varchar("tenant_id").references(() => tenants.id),
   imageUrl: text("image_url").notNull(),
   caption: text("caption"),
   customerName: varchar("customer_name", { length: 255 }).notNull(),
@@ -663,7 +663,7 @@ export type InsertClientPhoto = z.infer<typeof insertClientPhotoSchema>;
 
 export const giftCards = pgTable("gift_cards", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
-  tenantId: varchar("tenant_id"),
+  tenantId: varchar("tenant_id").references(() => tenants.id),
   code: varchar("code", { length: 20 }).notNull().unique(),
   amount: decimal("amount", { precision: 10, scale: 2 }).notNull(),
   remainingAmount: decimal("remaining_amount", { precision: 10, scale: 2 }).notNull(),
@@ -692,7 +692,7 @@ export type InsertGiftCard = z.infer<typeof insertGiftCardSchema>;
 
 export const discountCodes = pgTable("discount_codes", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
-  tenantId: varchar("tenant_id"),
+  tenantId: varchar("tenant_id").references(() => tenants.id),
   code: varchar("code", { length: 30 }).notNull().unique(),
   discountPercent: integer("discount_percent").notNull(), // e.g., 10 for 10%
   maxUses: integer("max_uses").notNull().default(1),
@@ -745,7 +745,7 @@ export type ChatbotState = typeof CHATBOT_STATES[keyof typeof CHATBOT_STATES];
 // WhatsApp Chatbot Conversations table
 export const chatbotConversations = pgTable("chatbot_conversations", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
-  tenantId: varchar("tenant_id"),
+  tenantId: varchar("tenant_id").references(() => tenants.id),
   phoneNumber: varchar("phone_number", { length: 20 }).notNull(),
   currentState: varchar("current_state", { length: 50 }).notNull().default('welcome'),
   language: varchar("language", { length: 5 }).notNull().default('es'),
@@ -798,7 +798,7 @@ export type UpdateChatbotConversation = z.infer<typeof updateChatbotConversation
 // AI Chat Sessions - Persistent conversation sessions
 export const aiChatSessions = pgTable("ai_chat_sessions", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
-  tenantId: varchar("tenant_id"),
+  tenantId: varchar("tenant_id").references(() => tenants.id),
   phoneNumber: varchar("phone_number", { length: 20 }).notNull(),
   language: varchar("language", { length: 5 }).notNull().default('es'),
   
@@ -828,7 +828,7 @@ export const aiChatSessions = pgTable("ai_chat_sessions", {
 // AI Chat Messages - Individual messages with metadata
 export const aiChatMessages = pgTable("ai_chat_messages", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
-  tenantId: varchar("tenant_id"),
+  tenantId: varchar("tenant_id").references(() => tenants.id),
   sessionId: varchar("session_id").notNull().references(() => aiChatSessions.id, { onDelete: "cascade" }),
   
   // Message content
@@ -854,7 +854,7 @@ export const aiChatMessages = pgTable("ai_chat_messages", {
 // Knowledge Base - For RAG with embeddings
 export const knowledgeBase = pgTable("knowledge_base", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
-  tenantId: varchar("tenant_id"),
+  tenantId: varchar("tenant_id").references(() => tenants.id),
 
   // Content
   title: varchar("title", { length: 255 }).notNull(),
@@ -919,7 +919,7 @@ export type CustomerSegment = typeof CUSTOMER_SEGMENTS[keyof typeof CUSTOMER_SEG
 
 export const crmCustomers = pgTable("crm_customers", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
-  tenantId: varchar("tenant_id"),
+  tenantId: varchar("tenant_id").references(() => tenants.id),
   name: text("name").notNull(),
   surname: text("surname").notNull(),
   email: text("email"),
@@ -940,6 +940,7 @@ export const crmCustomers = pgTable("crm_customers", {
   phoneIdx: index("crm_customers_phone_idx").on(table.phone),
   segmentIdx: index("crm_customers_segment_idx").on(table.segment),
   nameIdx: index("crm_customers_name_idx").on(table.name, table.surname),
+  tenantPhoneIdx: uniqueIndex("crm_customer_tenant_phone_idx").on(table.tenantId, table.phone),
 }));
 
 export const insertCrmCustomerSchema = createInsertSchema(crmCustomers).omit({
@@ -990,7 +991,7 @@ export interface ChecklistItem {
 
 export const checkins = pgTable("checkins", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
-  tenantId: varchar("tenant_id"),
+  tenantId: varchar("tenant_id").references(() => tenants.id),
   bookingId: varchar("booking_id").notNull().references(() => bookings.id),
   boatId: varchar("boat_id").notNull().references(() => boats.id),
   type: text("type").notNull(), // 'checkin' | 'checkout'
@@ -1050,7 +1051,7 @@ export type MaintenanceStatus = typeof MAINTENANCE_STATUSES[keyof typeof MAINTEN
 
 export const maintenanceLogs = pgTable("maintenance_logs", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
-  tenantId: varchar("tenant_id"),
+  tenantId: varchar("tenant_id").references(() => tenants.id),
   boatId: varchar("boat_id").notNull().references(() => boats.id),
   type: text("type").notNull(), // 'preventive' | 'corrective' | 'inspection'
   description: text("description").notNull(),
@@ -1108,7 +1109,7 @@ export type DocumentType = typeof DOCUMENT_TYPES[keyof typeof DOCUMENT_TYPES];
 
 export const boatDocuments = pgTable("boat_documents", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
-  tenantId: varchar("tenant_id"),
+  tenantId: varchar("tenant_id").references(() => tenants.id),
   boatId: varchar("boat_id").notNull().references(() => boats.id),
   type: text("type").notNull(), // 'registration' | 'insurance' | 'inspection' | 'license' | 'other'
   name: text("name").notNull(),
@@ -1155,7 +1156,7 @@ export type InventoryStatus = typeof INVENTORY_STATUSES[keyof typeof INVENTORY_S
 
 export const inventoryItems = pgTable("inventory_items", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
-  tenantId: varchar("tenant_id"),
+  tenantId: varchar("tenant_id").references(() => tenants.id),
   name: text("name").notNull(),
   description: text("description"),
   category: text("category").notNull(), // e.g., 'water_sports', 'safety', 'comfort', 'navigation'
@@ -1211,7 +1212,7 @@ export type MovementType = typeof MOVEMENT_TYPES[keyof typeof MOVEMENT_TYPES];
 
 export const inventoryMovements = pgTable("inventory_movements", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
-  tenantId: varchar("tenant_id"),
+  tenantId: varchar("tenant_id").references(() => tenants.id),
   itemId: varchar("item_id").notNull().references(() => inventoryItems.id),
   type: text("type").notNull(), // 'in' | 'out' | 'adjustment'
   quantity: integer("quantity").notNull(),
@@ -1338,7 +1339,7 @@ export type InquiryStatus = typeof INQUIRY_STATUSES[keyof typeof INQUIRY_STATUSE
 
 export const whatsappInquiries = pgTable("whatsapp_inquiries", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
-  tenantId: varchar("tenant_id"),
+  tenantId: varchar("tenant_id").references(() => tenants.id),
   boatId: varchar("boat_id").notNull(),
   boatName: text("boat_name").notNull(),
   bookingDate: text("booking_date").notNull(),

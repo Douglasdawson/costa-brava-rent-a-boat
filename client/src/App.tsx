@@ -145,13 +145,15 @@ function HomePage() {
         jsonLd={combinedJsonLd}
       />
       <Navigation />
-      <Hero />
-      <FleetSection />
-      <ReviewsSection />
-      <GiftCardBanner />
-      <FeaturesSection />
-      <FAQPreview />
-      <ContactSection />
+      <main id="main-content">
+        <Hero />
+        <FleetSection />
+        <ReviewsSection />
+        <GiftCardBanner />
+        <FeaturesSection />
+        <FAQPreview />
+        <ContactSection />
+      </main>
       <Footer />
     </div>
   );

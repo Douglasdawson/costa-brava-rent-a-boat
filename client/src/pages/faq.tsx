@@ -57,13 +57,14 @@ export default function FAQPage() {
     openWhatsApp(message);
   };
 
-  // FAQ Schema for structured data
+  // FAQ Schema for structured data — includes ALL questions displayed on the page
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
     "name": "Preguntas Frecuentes - Alquiler de Barcos en Blanes",
     "description": "Resuelve todas tus dudas sobre el alquiler de barcos en Blanes, Costa Brava",
     "mainEntity": [
+      // Reservas y Precios
       {
         "@type": "Question",
         "name": "¿Cuáles son los precios del alquiler?",
@@ -73,7 +74,7 @@ export default function FAQPage() {
         }
       },
       {
-        "@type": "Question", 
+        "@type": "Question",
         "name": "¿Cómo puedo hacer una reserva?",
         "acceptedAnswer": {
           "@type": "Answer",
@@ -82,18 +83,10 @@ export default function FAQPage() {
       },
       {
         "@type": "Question",
-        "name": "¿Puedo alquilar sin tener licencia náutica?",
-        "acceptedAnswer": {
-          "@type": "Answer", 
-          "text": "¡Sí! Tenemos barcos perfectos sin licencia. Son de hasta 15 CV, máximo 4-5 personas, fáciles de manejar con briefing completo. Solo necesitas ser mayor de 18 años."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "¿Qué está incluido en el precio?",
+        "name": "¿Qué formas de pago aceptan?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Incluido: embarcación equipada, combustible (en barcos sin licencia), chalecos salvavidas, kit de seguridad, ancla, escalera de baño, instrucciones, seguro básico y soporte telefónico."
+          "text": "Aceptamos tarjeta de crédito/débito (Visa, Mastercard), transferencia bancaria, efectivo (solo en puerto, antes de salir) y Bizum (para clientes españoles). Se requiere una paga y señal de 50€ para confirmar la reserva."
         }
       },
       {
@@ -104,12 +97,161 @@ export default function FAQPage() {
           "text": "Política flexible: Más de 48h antes = 100% reembolso, 24-48h antes = 50% reembolso, menos de 24h = sin reembolso. Mal tiempo = reprogramación gratuita o 100% reembolso."
         }
       },
+      // Licencias y Requisitos
+      {
+        "@type": "Question",
+        "name": "¿Puedo alquilar sin tener licencia náutica?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "¡Sí! Tenemos barcos perfectos sin licencia. Son de hasta 15 CV, máximo 4-5 personas, fáciles de manejar con briefing completo. Solo necesitas ser mayor de 18 años."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué licencias aceptan para barcos grandes?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Para barcos con licencia aceptamos: PER (Patrón de Embarcaciones de Recreo), PNB (Patrón de Navegación Básica), Capitán de Yate, licencias europeas equivalentes y licencias internacionales homologadas. Debes presentar la licencia original el día del alquiler."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Cuál es la edad mínima para alquilar?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "El patrón debe tener mínimo 18 años. Los pasajeros no tienen límite de edad (con adulto responsable). Menores de 12 años deben llevar chaleco salvavidas obligatorio. El patrón debe presentar DNI o pasaporte válido."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Necesito experiencia previa navegando?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No es necesaria experiencia previa. Proporcionamos explicación completa del funcionamiento, mapa de la zona autorizada, consejos de seguridad, contacto directo para emergencias y embarcaciones fáciles de manejar."
+        }
+      },
+      // Qué Incluye
+      {
+        "@type": "Question",
+        "name": "¿Qué está incluido en el precio?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Incluido: embarcación equipada, combustible (en barcos sin licencia), chalecos salvavidas, kit de seguridad, ancla y cabo, escalera de baño, instrucciones y mapa, seguro básico y soporte telefónico."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Tengo que pagar combustible?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "El combustible está incluido en las embarcaciones sin licencia. En las embarcaciones con licencia, se entregan con el depósito lleno y al finalizar el alquiler nuestro equipo te acompaña a la gasolinera para llenar de nuevo el depósito."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué extras puedo añadir?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Extras disponibles: Paddle Surf (+25€), Gafas de snorkel (+5€), Cámara acuática GoPro (+30€) y Patrón profesional (+100€)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué debo llevar yo?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Imprescindible: DNI o pasaporte, licencia náutica (si aplica), protector solar, gorra/sombrero y toallas. Recomendado: comida y bebidas, gafas de sol, calzado antideslizante, ropa de cambio y cámara/móvil en bolsa estanca."
+        }
+      },
+      // Navegación y Seguridad
       {
         "@type": "Question",
         "name": "¿Por dónde puedo navegar?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Zona autorizada: Norte hasta Playa de Fenals (sin licencia) o Sant Feliu de Guíxols (con licencia). Sur hasta final playa de Blanes (sin licencia) o sin límite (con licencia). Máximo 2 millas de la costa."
+          "text": "Zona autorizada: Norte hasta Playa de Fenals (sin licencia) o Sant Feliu de Guíxols (con licencia). Sur hasta final playa de Blanes (sin licencia) o sin límite (con licencia). Máximo 2 millas de la costa. Calas recomendadas: Cala Brava, Cala Sant Francesc, Playa de Lloret."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué medidas de seguridad tienen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Chalecos salvavidas homologados para todos, kit de seguridad reglamentario, GPS y plotter en barcos grandes, señalización marítima completa, contacto 24h para emergencias y revisiones diarias de embarcaciones."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué pasa si hace mal tiempo?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Viento fuerte: no salimos con viento superior a fuerza 4. Lluvia intensa: reprogramamos sin coste. Tormenta: suspensión automática. Cambio durante navegación: regreso guiado al puerto. Siempre priorizamos la seguridad con reprogramación gratuita o reembolso del 100%."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué hago en caso de emergencia?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Procedimiento de emergencia: 1) Mantén la calma, 2) Llámanos inmediatamente al +34 611 500 372, 3) Encontraremos tu posición gracias a los GPS instalados en nuestros barcos. Números de emergencia incluidos en el briefing."
+        }
+      },
+      // Información Práctica
+      {
+        "@type": "Question",
+        "name": "¿Cuáles son los horarios disponibles?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Horarios de alquiler: Media mañana (09:00 - 13:00), Tarde (14:00 - 18:00), Día completo (09:00 - 17:00), Atardecer (18:00 - 21:00). Los horarios pueden variar según temporada y disponibilidad."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Cuándo debo llegar al puerto?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Recomendamos llegar 30 minutos antes de la hora de salida para check-in y verificación de documentos, briefing de seguridad completo, explicación del funcionamiento, entrega de material y mapa, y resolver dudas de última hora."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Hay parking disponible?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Opciones de aparcamiento: Parking Puerto 10€/alquiler (dentro del puerto y delante del barco), Zona azul 1,5€/hora (10 min andando), Parking gratuito (20/30 min andando). En temporada alta recomendamos reservar plaza."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Puedo dejar equipaje en el puerto?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Opciones para equipaje: en la embarcación (espacio limitado pero seguro), consignas puerto (5€/día por maleta), hotel/apartamento (recomendamos dejar equipaje grande). Evita llevar objetos de valor."
+        }
+      },
+      // Temporada y Disponibilidad
+      {
+        "@type": "Question",
+        "name": "¿Cuándo está abierta la temporada?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Temporada alta: Junio - Septiembre. Temporada media: Abril-Mayo y Octubre. Cerrado: Noviembre - Marzo. La mejor época es mayo-junio y septiembre (menos masificado, buen tiempo)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Cómo puedo consultar disponibilidad?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Puedes consultar disponibilidad a través de nuestra web (calendario en tiempo real), WhatsApp (respuesta inmediata), teléfono (llamada directa) o email (consultas detalladas)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Con qué antelación debo reservar?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Recomendaciones: Temporada alta 1-2 semanas mínimo, fines de semana 3-5 días, entre semana posible reserva del día, grupos grandes máximo antelación posible. En julio-agosto reservar con al menos 2 semanas de antelación."
         }
       }
     ]
@@ -146,7 +288,7 @@ export default function FAQPage() {
 
   return (
     <div className="min-h-screen">
-      <SEO 
+      <SEO
         title={seoConfig.title}
         description={seoConfig.description}
         ogTitle={seoConfig.ogTitle}
@@ -156,7 +298,8 @@ export default function FAQPage() {
         jsonLd={combinedJsonLd}
       />
       <Navigation />
-      
+
+      <main id="main-content">
       {/* Breadcrumbs */}
       <div className="bg-primary/5 border-b border-primary/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
@@ -815,6 +958,7 @@ export default function FAQPage() {
           </div>
         </div>
       </div>
+      </main>
 
       <Footer />
     </div>

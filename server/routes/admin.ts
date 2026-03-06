@@ -1,4 +1,4 @@
-import type { Express } from "express";
+import type { Express, Request } from "express";
 import { z } from "zod";
 import { storage } from "../storage";
 import {
@@ -13,6 +13,15 @@ import {
 import { requireAdminSession } from "./auth";
 import { ObjectStorageService, ObjectNotFoundError } from "../objectStorage";
 import { format } from "date-fns";
+
+// Extend Express Request to include adminUser from auth middleware
+interface AuthenticatedRequest extends Request {
+  adminUser?: {
+    username: string;
+    role?: string;
+    tenantId?: string;
+  };
+}
 
 const boatReorderSchema = z.object({
   order: z.array(z.object({
@@ -487,7 +496,7 @@ export function registerAdminRoutes(app: Express) {
       }
 
       // Set performedBy from JWT token
-      const adminUser = (req as unknown as Record<string, unknown>).adminUser as { username: string } | undefined;
+      const adminUser = (req as AuthenticatedRequest).adminUser;
       const checkinData = {
         ...parsed.data,
         performedBy: adminUser?.username || "admin",
@@ -716,7 +725,7 @@ export function registerAdminRoutes(app: Express) {
       if (!parsed.success) {
         return res.status(400).json({ message: "Datos invalidos", errors: parsed.error.flatten().fieldErrors });
       }
-      const adminUser = (req as unknown as Record<string, unknown>).adminUser as { username: string } | undefined;
+      const adminUser = (req as AuthenticatedRequest).adminUser;
       const log = await storage.createMaintenanceLog({
         ...parsed.data,
         createdBy: adminUser?.username || "admin",
@@ -926,7 +935,7 @@ export function registerAdminRoutes(app: Express) {
       if (!parsed.success) {
         return res.status(400).json({ message: "Datos invalidos", errors: parsed.error.flatten().fieldErrors });
       }
-      const adminUser = (req as unknown as Record<string, unknown>).adminUser as { username: string } | undefined;
+      const adminUser = (req as AuthenticatedRequest).adminUser;
       const movement = await storage.createInventoryMovement({
         ...parsed.data,
         createdBy: adminUser?.username || "admin",

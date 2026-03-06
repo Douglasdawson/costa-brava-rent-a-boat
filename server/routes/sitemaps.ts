@@ -181,7 +181,7 @@ export function registerSitemapRoutes(app: Express) {
 
       activeBoats.forEach(boat => {
         const boatPath = `/barco/${boat.id}`;
-        const boatLastmod = formatSitemapDate((boat as any).updatedAt || (boat as any).createdAt) || fallbackDate;
+        const boatLastmod = formatSitemapDate((boat as Record<string, any>).updatedAt || (boat as Record<string, any>).createdAt) || fallbackDate;
 
         const boatHreflang = buildHreflangLinks(baseUrl, boatPath);
 
@@ -250,9 +250,9 @@ ${boatHreflang}  </url>
 
       const now = Date.now();
       publishedBlogPosts.forEach(post => {
-        const rawDate = (post as any).updatedAt || (post as any).publishedAt || (post as any).createdAt;
+        const rawDate = (post as Record<string, any>).updatedAt || (post as Record<string, any>).publishedAt || (post as Record<string, any>).createdAt;
         const postDate = formatSitemapDate(rawDate) || fallbackDate;
-        const ageMs = rawDate ? now - new Date(rawDate).getTime() : Infinity;
+        const ageMs = rawDate ? now - new Date(rawDate as string).getTime() : Infinity;
         const ageDays = ageMs / (1000 * 60 * 60 * 24);
         const priority = ageDays < 30 ? "0.9" : ageDays < 90 ? "0.8" : "0.7";
         sitemap += generateUrlEntry(baseUrl, `/blog/${post.slug}`, priority, postDate);
@@ -286,7 +286,7 @@ ${boatHreflang}  </url>
 
       publishedDestinations.forEach(destination => {
         const destPath = `/destinos/${destination.slug}`;
-        const destLastmod = formatSitemapDate((destination as any).updatedAt || (destination as any).createdAt) || fallbackDate;
+        const destLastmod = formatSitemapDate((destination as Record<string, any>).updatedAt || (destination as Record<string, any>).createdAt) || fallbackDate;
 
         const destHreflang = buildHreflangLinks(baseUrl, destPath);
 

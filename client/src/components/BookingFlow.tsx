@@ -907,8 +907,7 @@ export default function BookingFlow({
                       key={slot.id}
                       onClick={() => {
                         setSelectedTime(slot.id);
-                        console.log("Time selected:", slot.id);
-                        
+
                         // Reset duration if it's not available for the new time
                         const availableDurations = getAvailableDurations(slot.id);
                         const isDurationStillAvailable = availableDurations.some(d => d.id === duration);

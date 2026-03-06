@@ -65,7 +65,7 @@ export default function DestinationDetailPage() {
     return (
       <div className="min-h-screen flex flex-col">
         <Navigation />
-        <main className="flex-1 container mx-auto px-4 py-8 max-w-6xl">
+        <main id="main-content" className="flex-1 container mx-auto px-4 py-8 max-w-6xl">
           <div className="animate-pulse space-y-4">
             <div className="h-8 bg-muted rounded w-3/4"></div>
             <div className="h-64 bg-muted rounded"></div>
@@ -82,7 +82,7 @@ export default function DestinationDetailPage() {
     return (
       <div className="min-h-screen flex flex-col">
         <Navigation />
-        <main className="flex-1 container mx-auto px-4 py-8 max-w-6xl">
+        <main id="main-content" className="flex-1 container mx-auto px-4 py-8 max-w-6xl">
           <Card>
             <CardContent className="pt-6">
               <h2 className="text-2xl font-bold mb-4">Destino no encontrado</h2>
@@ -119,7 +119,7 @@ export default function DestinationDetailPage() {
       
       <Navigation />
       
-      <main className="flex-1 container mx-auto px-4 py-8 max-w-4xl">
+      <main id="main-content" className="flex-1 container mx-auto px-4 py-8 max-w-4xl">
         {/* Breadcrumbs */}
         <Breadcrumbs 
           items={[

@@ -20,10 +20,6 @@ import {
   MessageCircle,
   Download,
   RefreshCw,
-  ChevronLeft,
-  ChevronRight,
-  ChevronsLeft,
-  ChevronsRight,
   ArrowUpDown,
   ArrowUp,
   ArrowDown,
@@ -491,29 +487,11 @@ export function CustomersTab({
 
             {/* Pagination Controls - Mobile */}
             {totalPages > 1 && (
-              <div className="flex items-center justify-between pt-2">
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
-                  disabled={currentPage <= 1}
-                >
-                  <ChevronLeft className="w-4 h-4 mr-1" />
-                  Anterior
-                </Button>
-                <span className="text-sm text-muted-foreground">
-                  {currentPage} / {totalPages}
-                </span>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
-                  disabled={currentPage >= totalPages}
-                >
-                  Siguiente
-                  <ChevronRight className="w-4 h-4 ml-1" />
-                </Button>
-              </div>
+              <PaginationControls
+                currentPage={currentPage}
+                totalPages={totalPages}
+                onPageChange={setCurrentPage}
+              />
             )}
           </>
         )}

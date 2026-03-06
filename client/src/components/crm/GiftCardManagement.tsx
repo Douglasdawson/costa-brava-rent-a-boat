@@ -10,6 +10,7 @@ import { useToast } from "@/hooks/use-toast";
 import { queryClient } from "@/lib/queryClient";
 import { format } from "date-fns";
 import { PaginationControls } from "./shared/PaginationControls";
+import { getPaymentStatusColor, getPaymentStatusLabel } from "./constants";
 
 interface GiftCard {
   id: string;
@@ -48,11 +49,7 @@ const statusLabels: Record<string, string> = {
   cancelled: "Cancelada",
 };
 
-const paymentLabels: Record<string, string> = {
-  pending: "Pendiente",
-  completed: "Pagado",
-  failed: "Fallido",
-};
+
 
 export function GiftCardManagement({ adminToken }: GiftCardManagementProps) {
   const [filter, setFilter] = useState<string>("all");
@@ -218,8 +215,8 @@ export function GiftCardManagement({ adminToken }: GiftCardManagementProps) {
                           </Badge>
                         </TableCell>
                         <TableCell>
-                          <Badge className={card.paymentStatus === "completed" ? "bg-emerald-100 text-emerald-800" : card.paymentStatus === "failed" ? "bg-red-100 text-red-800" : "bg-amber-100 text-amber-800"}>
-                            {paymentLabels[card.paymentStatus] || card.paymentStatus}
+                          <Badge className={getPaymentStatusColor(card.paymentStatus)}>
+                            {getPaymentStatusLabel(card.paymentStatus)}
                           </Badge>
                         </TableCell>
                         <TableCell className="text-sm">

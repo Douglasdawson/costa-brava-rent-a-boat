@@ -285,8 +285,8 @@ export function ReportsTab({ adminToken }: ReportsTabProps) {
                 </Card>
               )}
 
-              {/* Table */}
-              <Card>
+              {/* Desktop table */}
+              <Card className="hidden md:block">
                 <CardContent className="p-0">
                   <div className="overflow-x-auto">
                     <Table>
@@ -337,6 +337,70 @@ export function ReportsTab({ adminToken }: ReportsTabProps) {
                   </div>
                 </CardContent>
               </Card>
+
+              {/* Mobile card view - fleet */}
+              <div className="block md:hidden space-y-3">
+                {fleetData.map(boat => (
+                  <Card key={boat.boatId}>
+                    <CardContent className="p-4 space-y-2">
+                      <div className="flex items-center justify-between">
+                        <p className="font-medium text-sm">{boat.boatName}</p>
+                        <Badge className={
+                          boat.utilization >= 50 ? "bg-emerald-100 text-emerald-800" :
+                          boat.utilization >= 20 ? "bg-amber-100 text-amber-800" :
+                          "bg-red-100 text-red-800"
+                        }>
+                          {boat.utilization}%
+                        </Badge>
+                      </div>
+                      <div className="grid grid-cols-3 gap-2 text-xs">
+                        <div>
+                          <p className="text-muted-foreground">Reservas</p>
+                          <p className="font-medium">{boat.bookings}</p>
+                        </div>
+                        <div>
+                          <p className="text-muted-foreground">Horas</p>
+                          <p className="font-medium">{boat.hours}h</p>
+                        </div>
+                        <div>
+                          <p className="text-muted-foreground">Ingresos</p>
+                          <p className="font-medium">{"\u20AC"}{boat.revenue.toFixed(2)}</p>
+                        </div>
+                      </div>
+                      <div className="grid grid-cols-2 gap-2 text-xs pt-1 border-t">
+                        <div>
+                          <p className="text-muted-foreground">Mantenimiento</p>
+                          <p className="font-medium text-red-600">{"\u20AC"}{boat.maintenanceCost.toFixed(2)}</p>
+                        </div>
+                        <div>
+                          <p className="text-muted-foreground">Neto</p>
+                          <p className="font-bold">{"\u20AC"}{boat.netRevenue.toFixed(2)}</p>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
+                {fleetData.length > 0 && (
+                  <Card className="bg-muted">
+                    <CardContent className="p-4">
+                      <div className="grid grid-cols-3 gap-2 text-xs">
+                        <div>
+                          <p className="text-muted-foreground">Reservas</p>
+                          <p className="font-bold">{fleetData.reduce((s, b) => s + b.bookings, 0)}</p>
+                        </div>
+                        <div>
+                          <p className="text-muted-foreground">Ingresos</p>
+                          <p className="font-bold">{"\u20AC"}{fleetData.reduce((s, b) => s + b.revenue, 0).toFixed(2)}</p>
+                        </div>
+                        <div>
+                          <p className="text-muted-foreground">Neto</p>
+                          <p className="font-bold">{"\u20AC"}{fleetData.reduce((s, b) => s + b.netRevenue, 0).toFixed(2)}</p>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                )}
+              </div>
             </>
           )}
         </div>
@@ -355,7 +419,8 @@ export function ReportsTab({ adminToken }: ReportsTabProps) {
           {loadingCustomers ? (
             <Card><CardContent className="py-8 text-center"><Loader2 className="w-6 h-6 animate-spin mx-auto" /></CardContent></Card>
           ) : (
-            <Card>
+            {/* Desktop table */}
+            <Card className="hidden md:block">
               <CardHeader>
                 <CardTitle className="text-base font-heading">Top 20 Clientes por Valor</CardTitle>
               </CardHeader>
@@ -395,6 +460,37 @@ export function ReportsTab({ adminToken }: ReportsTabProps) {
                 </div>
               </CardContent>
             </Card>
+
+            {/* Mobile card view - customers */}
+            <div className="block md:hidden space-y-3">
+              <Card>
+                <CardHeader className="pb-2">
+                  <CardTitle className="text-base font-heading">Top 20 Clientes por Valor</CardTitle>
+                </CardHeader>
+              </Card>
+              {topCustomers.map((customer, index) => (
+                <Card key={customer.id}>
+                  <CardContent className="p-4">
+                    <div className="flex items-start justify-between gap-2">
+                      <div className="min-w-0">
+                        <div className="flex items-center gap-2">
+                          <span className="text-xs font-bold text-muted-foreground">#{index + 1}</span>
+                          <p className="font-medium text-sm truncate">{customer.name} {customer.surname}</p>
+                        </div>
+                        <p className="text-xs text-muted-foreground mt-0.5">{customer.phone}</p>
+                      </div>
+                      <Badge className={SEGMENT_COLORS[customer.segment] || ""}>
+                        {customer.segment.toUpperCase()}
+                      </Badge>
+                    </div>
+                    <div className="flex items-center gap-4 mt-2 text-xs">
+                      <span className="text-muted-foreground">Reservas: <span className="font-medium text-foreground">{customer.totalBookings}</span></span>
+                      <span className="text-muted-foreground">Total: <span className="font-bold text-foreground">{"\u20AC"}{parseFloat(customer.totalSpent).toFixed(2)}</span></span>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
           )}
         </div>
       )}

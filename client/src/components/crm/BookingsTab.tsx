@@ -16,10 +16,6 @@ import {
   Search,
   Eye,
   MessageCircle,
-  ChevronLeft,
-  ChevronRight,
-  ChevronsLeft,
-  ChevronsRight,
   Calendar,
   ArrowUpDown,
   ArrowUp,
@@ -28,7 +24,7 @@ import {
 import { useQuery } from "@tanstack/react-query";
 import { format } from "date-fns";
 import type { Booking, Boat } from "@shared/schema";
-import { getStatusColor, getStatusLabel } from "./constants";
+import { getStatusColor, getStatusLabel, getPaymentStatusColor, getPaymentStatusLabel } from "./constants";
 import { PaginationControls } from "./shared/PaginationControls";
 
 interface PaginatedBookingsResponse {
@@ -288,10 +284,8 @@ export function BookingsTab({
                         </Badge>
                       </TableCell>
                       <TableCell>
-                        <Badge className={booking.paymentStatus === 'completed' ? 'bg-emerald-100 text-emerald-800' : booking.paymentStatus === 'failed' ? 'bg-red-100 text-red-800' : 'bg-amber-100 text-amber-800'}>
-                          {booking.paymentStatus === 'completed' ? 'Pagado' :
-                           booking.paymentStatus === 'pending' ? 'Pendiente' :
-                           booking.paymentStatus === 'failed' ? 'Fallido' : 'Reembolsado'}
+                        <Badge className={getPaymentStatusColor(booking.paymentStatus)}>
+                          {getPaymentStatusLabel(booking.paymentStatus)}
                         </Badge>
                       </TableCell>
                       <TableCell className="text-right">
@@ -381,10 +375,8 @@ export function BookingsTab({
                         <Badge className={`text-xs ${getStatusColor(booking.bookingStatus)}`}>
                           {getStatusLabel(booking.bookingStatus)}
                         </Badge>
-                        <Badge className={`text-xs ${booking.paymentStatus === 'completed' ? 'bg-emerald-100 text-emerald-800' : booking.paymentStatus === 'failed' ? 'bg-red-100 text-red-800' : 'bg-amber-100 text-amber-800'}`}>
-                          {booking.paymentStatus === 'completed' ? 'Pagado' :
-                           booking.paymentStatus === 'pending' ? 'Pendiente' :
-                           booking.paymentStatus === 'failed' ? 'Fallido' : 'Reembolsado'}
+                        <Badge className={`text-xs ${getPaymentStatusColor(booking.paymentStatus)}`}>
+                          {getPaymentStatusLabel(booking.paymentStatus)}
                         </Badge>
                       </div>
                     </div>
@@ -421,29 +413,11 @@ export function BookingsTab({
 
             {/* Pagination Controls - Mobile */}
             {totalPages > 1 && (
-              <div className="flex items-center justify-between pt-2">
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
-                  disabled={currentPage <= 1}
-                >
-                  <ChevronLeft className="w-4 h-4 mr-1" />
-                  Anterior
-                </Button>
-                <span className="text-sm text-muted-foreground">
-                  {currentPage} / {totalPages}
-                </span>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
-                  disabled={currentPage >= totalPages}
-                >
-                  Siguiente
-                  <ChevronRight className="w-4 h-4 ml-1" />
-                </Button>
-              </div>
+              <PaginationControls
+                currentPage={currentPage}
+                totalPages={totalPages}
+                onPageChange={setCurrentPage}
+              />
             )}
           </>
         )}

@@ -47,7 +47,7 @@ import { format } from "date-fns";
 import type { Booking, Boat } from "@shared/schema";
 import { queryClient } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
-import { getStatusColor, getStatusLabel } from "./constants";
+import { getStatusColor, getStatusLabel, getPaymentStatusColor, getPaymentStatusLabel } from "./constants";
 import { editBookingSchema, type EditBookingFormData, type CheckinData } from "./types";
 import { CheckinForm } from "./CheckinForm";
 
@@ -390,10 +390,8 @@ export function BookingDetailsModal({
                 </div>
                 <div>
                   <p className="text-muted-foreground">Estado de Pago</p>
-                  <Badge className={booking.paymentStatus === 'completed' ? 'bg-emerald-100 text-emerald-800' : booking.paymentStatus === 'failed' ? 'bg-red-100 text-red-800' : 'bg-amber-100 text-amber-800'}>
-                    {booking.paymentStatus === 'completed' ? 'Pagado' :
-                     booking.paymentStatus === 'pending' ? 'Pendiente' :
-                     booking.paymentStatus === 'failed' ? 'Fallido' : 'Reembolsado'}
+                  <Badge className={getPaymentStatusColor(booking.paymentStatus)}>
+                    {getPaymentStatusLabel(booking.paymentStatus)}
                   </Badge>
                 </div>
               </div>

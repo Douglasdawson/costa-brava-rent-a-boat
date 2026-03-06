@@ -255,7 +255,7 @@ export function SuperAdminTab({ adminToken }: SuperAdminTabProps) {
       {/* Tenants table */}
       <Card>
         <CardHeader className="pb-3">
-          <div className="flex items-center justify-between">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
             <CardTitle className="text-base flex items-center gap-2 font-heading">
               <Building2 className="w-4 h-4" />
               Empresas registradas
@@ -266,7 +266,7 @@ export function SuperAdminTab({ adminToken }: SuperAdminTabProps) {
               )}
             </CardTitle>
             {/* Status filter */}
-            <div className="flex gap-1">
+            <div className="flex flex-wrap gap-1">
               {["all", "trial", "active", "suspended", "cancelled"].map((f) => (
                 <button
                   key={f}
@@ -293,99 +293,159 @@ export function SuperAdminTab({ adminToken }: SuperAdminTabProps) {
               <Skeleton className="h-10 w-full" />
             </div>
           ) : (
-            <div className="overflow-x-auto">
-              <Table>
-                <TableHeader>
-                  <TableRow>
-                    <TableHead>Empresa</TableHead>
-                    <TableHead>Slug</TableHead>
-                    <TableHead>Plan</TableHead>
-                    <TableHead>Estado</TableHead>
-                    <TableHead>Trial / Expira</TableHead>
-                    <TableHead>
-                      <Users className="w-4 h-4" />
-                    </TableHead>
-                    <TableHead>Registro</TableHead>
-                    <TableHead className="text-right">Accion</TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  {filteredTenants.map((tenant) => {
-                    const statusCfg = STATUS_CONFIG[tenant.status];
-                    const StatusIcon = statusCfg?.icon;
-                    const days = trialDaysLeft(tenant.trialEndsAt);
+            <>
+              {/* Desktop table */}
+              <div className="hidden md:block overflow-x-auto">
+                <Table>
+                  <TableHeader>
+                    <TableRow>
+                      <TableHead>Empresa</TableHead>
+                      <TableHead>Slug</TableHead>
+                      <TableHead>Plan</TableHead>
+                      <TableHead>Estado</TableHead>
+                      <TableHead>Trial / Expira</TableHead>
+                      <TableHead>
+                        <Users className="w-4 h-4" />
+                      </TableHead>
+                      <TableHead>Registro</TableHead>
+                      <TableHead className="text-right">Accion</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    {filteredTenants.map((tenant) => {
+                      const statusCfg = STATUS_CONFIG[tenant.status];
+                      const StatusIcon = statusCfg?.icon;
+                      const days = trialDaysLeft(tenant.trialEndsAt);
 
-                    return (
-                      <TableRow key={tenant.id}>
-                        <TableCell>
-                          <div>
-                            <p className="font-medium text-sm">{tenant.name}</p>
-                            {tenant.email && (
-                              <p className="text-xs text-muted-foreground">{tenant.email}</p>
+                      return (
+                        <TableRow key={tenant.id}>
+                          <TableCell>
+                            <div>
+                              <p className="font-medium text-sm">{tenant.name}</p>
+                              {tenant.email && (
+                                <p className="text-xs text-muted-foreground">{tenant.email}</p>
+                              )}
+                            </div>
+                          </TableCell>
+                          <TableCell className="font-mono text-xs text-muted-foreground">
+                            {tenant.slug}
+                          </TableCell>
+                          <TableCell>
+                            <Badge variant="outline" className="text-xs">
+                              {PLAN_CONFIG[tenant.plan]?.label || tenant.plan}
+                            </Badge>
+                          </TableCell>
+                          <TableCell>
+                            <Badge className={`text-xs flex items-center gap-1 w-fit ${statusCfg?.colorClass || "bg-muted text-muted-foreground"}`}>
+                              {StatusIcon && <StatusIcon className="w-3 h-3" />}
+                              {statusCfg?.label || tenant.status}
+                            </Badge>
+                          </TableCell>
+                          <TableCell className="text-sm">
+                            {tenant.status === "trial" && days !== null ? (
+                              <span className={days <= 3 ? "text-red-600 font-medium" : "text-cta"}>
+                                {days === 0 ? "Expirado" : `${days}d`}
+                              </span>
+                            ) : tenant.trialEndsAt ? (
+                              <span className="text-muted-foreground text-xs">
+                                {new Date(tenant.trialEndsAt).toLocaleDateString("es-ES")}
+                              </span>
+                            ) : (
+                              <span className="text-muted-foreground">---</span>
                             )}
-                          </div>
+                          </TableCell>
+                          <TableCell className="text-sm font-medium">
+                            {tenant.usersCount}
+                          </TableCell>
+                          <TableCell className="text-xs text-muted-foreground">
+                            {new Date(tenant.createdAt).toLocaleDateString("es-ES", {
+                              day: "2-digit",
+                              month: "2-digit",
+                              year: "2-digit",
+                            })}
+                          </TableCell>
+                          <TableCell className="text-right">
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              onClick={() => handleOpenManage(tenant)}
+                              className="h-7 text-xs"
+                            >
+                              <Settings2 className="w-3.5 h-3.5 mr-1" />
+                              Gestionar
+                            </Button>
+                          </TableCell>
+                        </TableRow>
+                      );
+                    })}
+                    {filteredTenants.length === 0 && (
+                      <TableRow>
+                        <TableCell colSpan={8} className="text-center py-10 text-muted-foreground">
+                          No hay empresas con este filtro.
                         </TableCell>
-                        <TableCell className="font-mono text-xs text-muted-foreground">
-                          {tenant.slug}
-                        </TableCell>
-                        <TableCell>
-                          <Badge variant="outline" className="text-xs">
-                            {PLAN_CONFIG[tenant.plan]?.label || tenant.plan}
-                          </Badge>
-                        </TableCell>
-                        <TableCell>
-                          <Badge className={`text-xs flex items-center gap-1 w-fit ${statusCfg?.colorClass || "bg-muted text-muted-foreground"}`}>
-                            {StatusIcon && <StatusIcon className="w-3 h-3" />}
-                            {statusCfg?.label || tenant.status}
-                          </Badge>
-                        </TableCell>
-                        <TableCell className="text-sm">
-                          {tenant.status === "trial" && days !== null ? (
-                            <span className={days <= 3 ? "text-red-600 font-medium" : "text-cta"}>
-                              {days === 0 ? "Expirado" : `${days}d`}
-                            </span>
-                          ) : tenant.trialEndsAt ? (
-                            <span className="text-muted-foreground text-xs">
-                              {new Date(tenant.trialEndsAt).toLocaleDateString("es-ES")}
-                            </span>
-                          ) : (
-                            <span className="text-muted-foreground">—</span>
+                      </TableRow>
+                    )}
+                  </TableBody>
+                </Table>
+              </div>
+
+              {/* Mobile card view */}
+              <div className="block md:hidden divide-y">
+                {filteredTenants.map((tenant) => {
+                  const statusCfg = STATUS_CONFIG[tenant.status];
+                  const StatusIcon = statusCfg?.icon;
+
+                  return (
+                    <div key={tenant.id} className="p-4 space-y-3">
+                      <div className="flex items-start justify-between gap-2">
+                        <div className="min-w-0">
+                          <p className="font-medium text-sm truncate">{tenant.name}</p>
+                          {tenant.email && (
+                            <p className="text-xs text-muted-foreground truncate">{tenant.email}</p>
                           )}
-                        </TableCell>
-                        <TableCell className="text-sm font-medium">
-                          {tenant.usersCount}
-                        </TableCell>
-                        <TableCell className="text-xs text-muted-foreground">
-                          {new Date(tenant.createdAt).toLocaleDateString("es-ES", {
+                        </div>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => handleOpenManage(tenant)}
+                          className="h-7 text-xs flex-shrink-0"
+                        >
+                          <Settings2 className="w-3.5 h-3.5 mr-1" />
+                          Gestionar
+                        </Button>
+                      </div>
+                      <div className="flex flex-wrap items-center gap-2">
+                        <Badge variant="outline" className="text-xs">
+                          {PLAN_CONFIG[tenant.plan]?.label || tenant.plan}
+                        </Badge>
+                        <Badge className={`text-xs flex items-center gap-1 w-fit ${statusCfg?.colorClass || "bg-muted text-muted-foreground"}`}>
+                          {StatusIcon && <StatusIcon className="w-3 h-3" />}
+                          {statusCfg?.label || tenant.status}
+                        </Badge>
+                      </div>
+                      <div className="flex items-center gap-4 text-xs text-muted-foreground">
+                        <span>
+                          Registro: {new Date(tenant.createdAt).toLocaleDateString("es-ES", {
                             day: "2-digit",
                             month: "2-digit",
                             year: "2-digit",
                           })}
-                        </TableCell>
-                        <TableCell className="text-right">
-                          <Button
-                            variant="ghost"
-                            size="sm"
-                            onClick={() => handleOpenManage(tenant)}
-                            className="h-7 text-xs"
-                          >
-                            <Settings2 className="w-3.5 h-3.5 mr-1" />
-                            Gestionar
-                          </Button>
-                        </TableCell>
-                      </TableRow>
-                    );
-                  })}
-                  {filteredTenants.length === 0 && (
-                    <TableRow>
-                      <TableCell colSpan={8} className="text-center py-10 text-muted-foreground">
-                        No hay empresas con este filtro.
-                      </TableCell>
-                    </TableRow>
-                  )}
-                </TableBody>
-              </Table>
-            </div>
+                        </span>
+                        <span className="flex items-center gap-1">
+                          <Users className="w-3 h-3" />
+                          {tenant.usersCount}
+                        </span>
+                      </div>
+                    </div>
+                  );
+                })}
+                {filteredTenants.length === 0 && (
+                  <div className="text-center py-10 text-muted-foreground">
+                    No hay empresas con este filtro.
+                  </div>
+                )}
+              </div>
+            </>
           )}
         </CardContent>
       </Card>

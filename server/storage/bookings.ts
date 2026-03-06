@@ -5,6 +5,7 @@ import {
   type BookingExtra, type InsertBookingExtra,
 } from "./base";
 import { randomUUID } from "crypto";
+import { logger } from "../lib/logger";
 
 // Boats that share the same physical vessel
 const sharedBoatIds: Record<string, string[]> = {
@@ -28,11 +29,6 @@ export async function createBooking(booking: InsertBooking): Promise<Booking> {
 }
 
 export async function getBooking(id: string): Promise<Booking | undefined> {
-  const [booking] = await db.select().from(bookings).where(eq(bookings.id, id));
-  return booking || undefined;
-}
-
-export async function getBookingById(id: string): Promise<Booking | undefined> {
   const [booking] = await db.select().from(bookings).where(eq(bookings.id, id));
   return booking || undefined;
 }
@@ -98,7 +94,7 @@ export async function updateBooking(id: string, updates: Partial<InsertBooking>)
 }
 
 export async function updateBookingPaymentStatus(id: string, status: string, stripePaymentIntentId?: string): Promise<Booking | undefined> {
-  const updateData: any = { paymentStatus: status };
+  const updateData: Record<string, unknown> = { paymentStatus: status };
   if (stripePaymentIntentId) {
     updateData.stripePaymentIntentId = stripePaymentIntentId;
   }
@@ -112,7 +108,7 @@ export async function updateBookingPaymentStatus(id: string, status: string, str
 }
 
 export async function updateBookingWhatsAppStatus(id: string, confirmationSent?: boolean, reminderSent?: boolean): Promise<Booking | undefined> {
-  const updateData: any = {};
+  const updateData: Record<string, unknown> = {};
   if (confirmationSent !== undefined) {
     updateData.whatsappConfirmationSent = confirmationSent;
   }
@@ -130,6 +126,37 @@ export async function updateBookingWhatsAppStatus(id: string, confirmationSent?:
 
 export async function getAllBookings(): Promise<Booking[]> {
   return await db.select().from(bookings);
+}
+
+export async function getConfirmedBookings(): Promise<Booking[]> {
+  return await db
+    .select()
+    .from(bookings)
+    .where(eq(bookings.bookingStatus, "confirmed"));
+}
+
+export async function getConfirmedBookingsWithEmail(): Promise<Booking[]> {
+  return await db
+    .select()
+    .from(bookings)
+    .where(
+      and(
+        eq(bookings.bookingStatus, "confirmed"),
+        sql`${bookings.customerEmail} IS NOT NULL AND ${bookings.customerEmail} != ''`
+      )
+    );
+}
+
+export async function getBookingsByCustomer(customerId: string, email: string | null, phone: string | null): Promise<Booking[]> {
+  const conditions = [eq(bookings.customerId, customerId)];
+  if (email) conditions.push(eq(bookings.customerEmail, email));
+  if (phone) conditions.push(eq(bookings.customerPhone, phone));
+
+  return await db
+    .select()
+    .from(bookings)
+    .where(or(...conditions))
+    .orderBy(sql`${bookings.startTime} DESC`);
 }
 
 export async function getBookingByCancelationToken(token: string): Promise<Booking | undefined> {
@@ -312,7 +339,7 @@ export async function checkAvailability(boatId: string, startTime: Date, endTime
 
   if (!boat || !boat.isActive) {
     if (isDevelopment) {
-      console.log(`Availability check for boat ${boatId}: boat is inactive or not found`);
+      logger.debug("Availability check: boat is inactive or not found", { boatId });
     }
     return false;
   }
@@ -337,15 +364,18 @@ export async function checkAvailability(boatId: string, startTime: Date, endTime
     );
 
   if (isDevelopment) {
-    console.log(`Availability check for boat ${boatId}:`);
-    console.log(`- Requested: ${startTime.toISOString()} to ${endTime.toISOString()}`);
-    console.log(`- Buffer (${bufferMinutes}min): ${bufferStart.toISOString()} to ${bufferEnd.toISOString()}`);
-    console.log(`- Conflicting bookings found: ${conflictingBookings.length}`);
-    if (conflictingBookings.length > 0) {
-      conflictingBookings.forEach((booking, i) => {
-        console.log(`  ${i+1}. ${booking.startTime.toISOString()} to ${booking.endTime.toISOString()} (${booking.bookingStatus})`);
-      });
-    }
+    logger.debug("Availability check for boat", {
+      boatId,
+      requested: `${startTime.toISOString()} to ${endTime.toISOString()}`,
+      buffer: `${bufferMinutes}min: ${bufferStart.toISOString()} to ${bufferEnd.toISOString()}`,
+      conflictingBookings: conflictingBookings.length,
+      conflicts: conflictingBookings.map((booking, i) => ({
+        index: i + 1,
+        startTime: booking.startTime.toISOString(),
+        endTime: booking.endTime.toISOString(),
+        status: booking.bookingStatus,
+      })),
+    });
   }
 
   if (conflictingBookings.length > 0) {
@@ -374,16 +404,96 @@ export async function checkAvailability(boatId: string, startTime: Date, endTime
     );
 
   if (isDevelopment) {
-    console.log(`- Conflicting maintenance logs found: ${maintenanceConflicts.length}`);
-    if (maintenanceConflicts.length > 0) {
-      maintenanceConflicts.forEach((log, i) => {
-        const nextDue = log.nextDueDate ? log.nextDueDate.toISOString() : "null";
-        console.log(`  ${i+1}. ${log.date.toISOString()} to ${nextDue} (${log.status})`);
-      });
-    }
+    logger.debug("Availability check maintenance conflicts", {
+      boatId,
+      maintenanceConflicts: maintenanceConflicts.length,
+      conflicts: maintenanceConflicts.map((log, i) => ({
+        index: i + 1,
+        date: log.date.toISOString(),
+        nextDueDate: log.nextDueDate ? log.nextDueDate.toISOString() : null,
+        status: log.status,
+      })),
+    });
   }
 
   return maintenanceConflicts.length === 0;
+}
+
+/**
+ * Atomically check availability and create a hold booking.
+ * Uses a serializable transaction to prevent TOCTOU race conditions
+ * where two concurrent requests both pass availability check.
+ */
+export async function checkAvailabilityAndCreateBooking(
+  boatId: string,
+  startTime: Date,
+  endTime: Date,
+  bookingData: InsertBooking
+): Promise<{ available: true; booking: Booking } | { available: false; booking: null }> {
+  const isDevelopment = process.env.NODE_ENV === "development";
+  const bufferMinutes = isDevelopment ? 5 : 20;
+  const bufferStart = new Date(startTime.getTime() - bufferMinutes * 60 * 1000);
+  const bufferEnd = new Date(endTime.getTime() + bufferMinutes * 60 * 1000);
+  const boatIds = getBoatIdsToCheck(boatId);
+
+  return await db.transaction(async (tx) => {
+    // Lock: SELECT FOR UPDATE on conflicting bookings to serialize concurrent requests
+    const conflictingBookings = await tx
+      .select({ id: bookings.id })
+      .from(bookings)
+      .where(
+        and(
+          inArray(bookings.boatId, boatIds),
+          inArray(bookings.bookingStatus, ["hold", "pending_payment", "confirmed"]),
+          and(
+            lte(bookings.startTime, bufferEnd),
+            gte(bookings.endTime, bufferStart)
+          )
+        )
+      )
+      .for("update");
+
+    if (conflictingBookings.length > 0) {
+      return { available: false as const, booking: null };
+    }
+
+    // Check maintenance conflicts
+    const maintenanceConflicts = await tx
+      .select({ id: maintenanceLogs.id })
+      .from(maintenanceLogs)
+      .where(
+        and(
+          eq(maintenanceLogs.boatId, boatId),
+          inArray(maintenanceLogs.status, ["scheduled", "in_progress"]),
+          or(
+            and(
+              lte(maintenanceLogs.date, endTime),
+              gte(maintenanceLogs.nextDueDate, startTime)
+            ),
+            and(
+              isNull(maintenanceLogs.nextDueDate),
+              gte(maintenanceLogs.date, startTime),
+              lte(maintenanceLogs.date, endTime)
+            )
+          )
+        )
+      );
+
+    if (maintenanceConflicts.length > 0) {
+      return { available: false as const, booking: null };
+    }
+
+    // Create the booking within the same transaction
+    const [newBooking] = await tx
+      .insert(bookings)
+      .values({
+        ...bookingData,
+        cancelationToken: bookingData.cancelationToken ?? randomUUID(),
+      })
+      .returning();
+
+    return { available: true as const, booking: newBooking };
+  });
 }
 
 export async function cleanupExpiredHolds(): Promise<number> {

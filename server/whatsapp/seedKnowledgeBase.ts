@@ -1,5 +1,6 @@
 // Seed Knowledge Base with FAQs, Policies, and Routes
 import { addKnowledgeEntry } from "./ragService";
+import { logger } from "../lib/logger";
 
 // FAQ entries in Spanish
 const FAQS_ES = [
@@ -939,7 +940,7 @@ const GENERAL_RU = [
 
 // Seed function
 export async function seedKnowledgeBase(): Promise<void> {
-  console.log("[Knowledge] Starting to seed knowledge base...");
+  logger.info("Starting to seed knowledge base");
 
   const entriesByLanguage: Record<string, typeof FAQS_ES> = {
     es: [...FAQS_ES, ...ROUTES_ES, ...GENERAL_ES],
@@ -970,7 +971,7 @@ export async function seedKnowledgeBase(): Promise<void> {
     }
   }
 
-  console.log(`[Knowledge] Seeding complete: ${added} added, ${failed} failed (8 languages)`);
+  logger.info("Knowledge base seeding complete", { added, failed, languages: 8 });
 }
 
 // Check if already seeded

@@ -3,6 +3,7 @@ import OpenAI from "openai";
 import { db } from "../db";
 import { knowledgeBase } from "@shared/schema";
 import { eq, and, sql } from "drizzle-orm";
+import { logger } from "../lib/logger";
 
 let _openai: OpenAI | null = null;
 function getOpenAI(): OpenAI {
@@ -21,8 +22,9 @@ export async function generateEmbedding(text: string): Promise<number[]> {
       dimensions: 1536,
     });
     return response.data[0]?.embedding || [];
-  } catch (error: any) {
-    console.error("[RAG] Error generating embedding:", error.message);
+  } catch (error: unknown) {
+    const errorMsg = error instanceof Error ? error.message : String(error);
+    console.error("[RAG] Error generating embedding:", errorMsg);
     return [];
   }
 }
@@ -85,8 +87,9 @@ export async function searchKnowledgeBase(
       .slice(0, limit);
 
     return results;
-  } catch (error: any) {
-    console.error("[RAG] Error searching knowledge base:", error.message);
+  } catch (error: unknown) {
+    const errorMsg = error instanceof Error ? error.message : String(error);
+    console.error("[RAG] Error searching knowledge base:", errorMsg);
     return [];
   }
 }
@@ -121,10 +124,11 @@ export async function addKnowledgeEntry(
       isActive: true,
     });
 
-    console.log(`[RAG] Added knowledge entry: ${title}`);
+    logger.info("RAG knowledge entry added", { title });
     return true;
-  } catch (error: any) {
-    console.error("[RAG] Error adding knowledge entry:", error.message);
+  } catch (error: unknown) {
+    const errorMsg = error instanceof Error ? error.message : String(error);
+    console.error("[RAG] Error adding knowledge entry:", errorMsg);
     return false;
   }
 }

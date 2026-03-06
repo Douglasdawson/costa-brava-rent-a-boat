@@ -1,4 +1,4 @@
-type LogLevel = "info" | "warn" | "error";
+type LogLevel = "info" | "warn" | "error" | "debug";
 
 interface LogEntry {
   timestamp: string;
@@ -30,4 +30,5 @@ export const logger = {
   info: (message: string, context?: Record<string, unknown>) => emit("info", message, context),
   warn: (message: string, context?: Record<string, unknown>) => emit("warn", message, context),
   error: (message: string, context?: Record<string, unknown>) => emit("error", message, context),
+  debug: (message: string, context?: Record<string, unknown>) => emit("debug", message, context),
 };

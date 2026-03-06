@@ -19,9 +19,10 @@ export function registerChatbotAnalyticsRoutes(app: Express): void {
           frequentIntents,
         },
       });
-    } catch (error: any) {
-      console.error("[Analytics] Error getting analytics:", error.message);
-      res.status(500).json({ success: false, error: error.message });
+    } catch (error: unknown) {
+      const errorMsg = error instanceof Error ? error.message : String(error);
+      console.error("[Analytics] Error getting analytics:", errorMsg);
+      res.status(500).json({ success: false, error: errorMsg });
     }
   });
 
@@ -53,9 +54,10 @@ export function registerChatbotAnalyticsRoutes(app: Express): void {
           firstMessageAt: lead.firstMessageAt,
         })),
       });
-    } catch (error: any) {
-      console.error("[Analytics] Error getting leads:", error.message);
-      res.status(500).json({ success: false, error: error.message });
+    } catch (error: unknown) {
+      const errorMsg = error instanceof Error ? error.message : String(error);
+      console.error("[Analytics] Error getting leads:", errorMsg);
+      res.status(500).json({ success: false, error: errorMsg });
     }
   });
 
@@ -109,9 +111,10 @@ export function registerChatbotAnalyticsRoutes(app: Express): void {
           })),
         },
       });
-    } catch (error: any) {
-      console.error("[Analytics] Error getting conversation:", error.message);
-      res.status(500).json({ success: false, error: error.message });
+    } catch (error: unknown) {
+      const errorMsg = error instanceof Error ? error.message : String(error);
+      console.error("[Analytics] Error getting conversation:", errorMsg);
+      res.status(500).json({ success: false, error: errorMsg });
     }
   });
 
@@ -146,9 +149,10 @@ export function registerChatbotAnalyticsRoutes(app: Express): void {
         success: true,
         data: filtered,
       });
-    } catch (error: any) {
-      console.error("[Analytics] Error getting knowledge base:", error.message);
-      res.status(500).json({ success: false, error: error.message });
+    } catch (error: unknown) {
+      const errorMsg = error instanceof Error ? error.message : String(error);
+      console.error("[Analytics] Error getting knowledge base:", errorMsg);
+      res.status(500).json({ success: false, error: errorMsg });
     }
   });
 
@@ -177,9 +181,10 @@ export function registerChatbotAnalyticsRoutes(app: Express): void {
           firstMessageAt: s.firstMessageAt,
         })),
       });
-    } catch (error: any) {
-      console.error("[Analytics] Error getting conversations:", error.message);
-      res.status(500).json({ success: false, error: error.message });
+    } catch (error: unknown) {
+      const errorMsg = error instanceof Error ? error.message : String(error);
+      console.error("[Analytics] Error getting conversations:", errorMsg);
+      res.status(500).json({ success: false, error: errorMsg });
     }
   });
 }

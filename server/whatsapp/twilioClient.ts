@@ -1,5 +1,6 @@
 // Twilio WhatsApp Client Configuration
 import Twilio from "twilio";
+import { logger } from "../lib/logger";
 
 // Lazy initialization to avoid errors when credentials are not set
 let twilioClient: Twilio.Twilio | null = null;
@@ -57,10 +58,11 @@ export async function sendWhatsAppMessage(
       body,
     });
 
-    console.log(`[WhatsApp] Message sent to ${to}: ${message.sid}`);
+    logger.info("WhatsApp message sent", { to, messageSid: message.sid });
     return message.sid;
-  } catch (error: any) {
-    console.error(`[WhatsApp] Error sending message to ${to}:`, error.message);
+  } catch (error: unknown) {
+    const errorMsg = error instanceof Error ? error.message : String(error);
+    console.error(`[WhatsApp] Error sending message to ${to}:`, errorMsg);
     throw error;
   }
 }
@@ -86,10 +88,11 @@ export async function sendWhatsAppMessageWithMedia(
       mediaUrl: [mediaUrl],
     });
 
-    console.log(`[WhatsApp] Media message sent to ${to}: ${message.sid}`);
+    logger.info("WhatsApp media message sent", { to, messageSid: message.sid });
     return message.sid;
-  } catch (error: any) {
-    console.error(`[WhatsApp] Error sending media message to ${to}:`, error.message);
+  } catch (error: unknown) {
+    const errorMsg = error instanceof Error ? error.message : String(error);
+    console.error(`[WhatsApp] Error sending media message to ${to}:`, errorMsg);
     throw error;
   }
 }

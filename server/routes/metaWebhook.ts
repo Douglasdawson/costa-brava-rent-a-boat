@@ -21,7 +21,7 @@ export function registerMetaWebhookRoutes(app: Express) {
     }
 
     if (mode === "subscribe" && token === verifyToken) {
-      console.log("[Meta Webhook] Verification successful");
+      logger.info("Meta Webhook verification successful");
       return res.status(200).send(challenge);
     }
 
@@ -73,7 +73,7 @@ async function handleIncomingMessage(
 ) {
   const phone = message.from; // e.g. "34611500372"
   const name = contact?.profile?.name || "Unknown";
-  console.log(`[Meta Webhook] Incoming from ${phone} (${name}): ${message.text?.body?.substring(0, 50) || message.type}`);
+  logger.info("Meta Webhook incoming message", { phone, name, messagePreview: message.text?.body?.substring(0, 50) || message.type });
 
   // Mark as read
   if (message.id) {
@@ -90,7 +90,7 @@ async function handleIncomingMessage(
 async function handleStatusUpdate(
   status: { id: string; status: string; recipient_id: string; timestamp: string }
 ) {
-  console.log(`[Meta Webhook] Status ${status.status} for message to ${status.recipient_id}`);
+  logger.debug("Meta Webhook status update", { status: status.status, recipientId: status.recipient_id });
 
   // When message is delivered or read, mark inquiry as contacted
   if (status.status === "delivered" || status.status === "read") {
@@ -120,7 +120,7 @@ async function updateInquiryByPhone(phone: string) {
       const inquiryPhone = `${inquiry.phonePrefix}${inquiry.phoneNumber}`.replace(/[^0-9]/g, "");
       if (inquiryPhone === cleanPhone || cleanPhone.endsWith(inquiry.phoneNumber.replace(/[^0-9]/g, ""))) {
         await storage.updateWhatsappInquiry(inquiry.id, { status: "contacted" });
-        console.log(`[Meta Webhook] Auto-updated inquiry ${inquiry.id} (${inquiry.firstName} ${inquiry.lastName}) to "contacted"`);
+        logger.info("Meta Webhook auto-updated inquiry to contacted", { inquiryId: inquiry.id, name: `${inquiry.firstName} ${inquiry.lastName}` });
       }
     }
   } catch (error: unknown) {

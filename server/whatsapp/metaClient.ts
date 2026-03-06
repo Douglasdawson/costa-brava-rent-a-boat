@@ -1,4 +1,5 @@
 // Meta WhatsApp Cloud API Client
+import { logger } from "../lib/logger";
 
 const GRAPH_API_VERSION = "v25.0";
 const GRAPH_API_BASE = `https://graph.facebook.com/${GRAPH_API_VERSION}`;
@@ -56,7 +57,7 @@ export async function sendMetaWhatsAppMessage(
 
   const data = await res.json();
   const messageId = data.messages?.[0]?.id || "";
-  console.log(`[Meta WhatsApp] Message sent to ${toNumber}: ${messageId}`);
+  logger.info("Meta WhatsApp message sent", { toNumber, messageId });
   return { messageId };
 }
 
@@ -96,7 +97,7 @@ export async function sendMetaTemplateMessage(
 
   const data = await res.json();
   const messageId = data.messages?.[0]?.id || "";
-  console.log(`[Meta WhatsApp] Template '${templateName}' sent to ${toNumber}: ${messageId}`);
+  logger.info("Meta WhatsApp template sent", { templateName, toNumber, messageId });
   return { messageId };
 }
 

@@ -1,5 +1,6 @@
 import fs from "fs";
 import path from "path";
+import type { Request, Response } from "express";
 import { storage } from "./storage";
 
 const BASE_URL = process.env.BASE_URL || "https://costabravarentaboat.app";
@@ -303,7 +304,7 @@ async function buildAggregateRating(): Promise<object> {
     const testimonialsData = await storage.getTestimonials();
     if (testimonialsData && testimonialsData.length > 0) {
       const dbCount = testimonialsData.length;
-      const dbAvg = testimonialsData.reduce((sum: number, t: any) => sum + (t.rating || 5), 0) / dbCount;
+      const dbAvg = testimonialsData.reduce((sum: number, t: { rating?: number | null }) => sum + (t.rating || 5), 0) / dbCount;
       // Blend Google Maps (307 reviews, 4.8) with DB reviews for a realistic aggregate
       const totalCount = reviewCount + dbCount;
       ratingValue = Math.round(((ratingValue * reviewCount + dbAvg * dbCount) / totalCount) * 10) / 10;
@@ -322,9 +323,27 @@ async function buildAggregateRating(): Promise<object> {
 }
 
 // Build Product JSON-LD for a boat detail page
-function buildBoatProductSchema(boat: any, fromPrice: number | null): object {
+function buildBoatProductSchema(boat: { id: string; name: string; requiresLicense: boolean; capacity: number; deposit: string; imageUrl: string | null }, fromPrice: number | null): object {
   const licenseText = boat.requiresLicense ? "con licencia náutica" : "sin licencia náutica";
-  const schema: any = {
+  const offers: Record<string, unknown> = {
+    "@type": "Offer",
+    priceCurrency: "EUR",
+    availability: "https://schema.org/InStock",
+    seller: {
+      "@type": "LocalBusiness",
+      name: "Costa Brava Rent a Boat",
+    },
+  };
+  if (fromPrice) {
+    offers.price = String(fromPrice);
+    offers.priceSpecification = {
+      "@type": "UnitPriceSpecification",
+      price: fromPrice,
+      priceCurrency: "EUR",
+      unitText: "hour",
+    };
+  }
+  const schema: Record<string, unknown> = {
     "@context": "https://schema.org",
     "@type": "Product",
     name: `${boat.name} - Alquiler en Blanes Costa Brava`,
@@ -334,25 +353,8 @@ function buildBoatProductSchema(boat: any, fromPrice: number | null): object {
       "@type": "Brand",
       name: "Costa Brava Rent a Boat",
     },
-    offers: {
-      "@type": "Offer",
-      priceCurrency: "EUR",
-      availability: "https://schema.org/InStock",
-      seller: {
-        "@type": "LocalBusiness",
-        name: "Costa Brava Rent a Boat",
-      },
-    },
+    offers,
   };
-  if (fromPrice) {
-    schema.offers.price = String(fromPrice);
-    schema.offers.priceSpecification = {
-      "@type": "UnitPriceSpecification",
-      price: fromPrice,
-      priceCurrency: "EUR",
-      unitText: "hour",
-    };
-  }
   if (boat.imageUrl) {
     const imgUrl = boat.imageUrl.startsWith("http") ? boat.imageUrl : `${BASE_URL}/object-storage/${boat.imageUrl}`;
     schema.image = imgUrl;
@@ -427,8 +429,8 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
           : (lang === "en" ? "without license" : "sin licencia");
         const fromPrice = (() => {
           if (!boat.pricing) return null;
-          const seasons = Object.values(boat.pricing) as any[];
-          const prices = seasons.flatMap(s => s?.prices ? Object.values(s.prices) as number[] : []);
+          const seasons = Object.values(boat.pricing) as Array<{ prices?: Record<string, number> }>;
+          const prices = seasons.flatMap(s => s?.prices ? Object.values(s.prices) : []);
           return prices.length > 0 ? Math.min(...prices) : null;
         })();
         const priceStr = fromPrice ? ` | Desde ${fromPrice}€` : "";
@@ -455,20 +457,20 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
     const slug = blogMatch[1];
     try {
       const posts = await storage.getAllBlogPosts();
-      const post = posts.find((p: any) => p.slug === slug && p.isPublished);
+      const post = posts.find(p => p.slug === slug && p.isPublished);
       if (post) {
         const meta = {
-          title: `${(post as any).title} | Costa Brava Rent a Boat`,
-          description: (post as any).excerpt || (post as any).metaDescription || (post as any).title,
+          title: `${post.title} | Costa Brava Rent a Boat`,
+          description: post.excerpt || post.metaDescription || post.title,
         };
         const jsonLd = {
           "@context": "https://schema.org",
           "@type": "BlogPosting",
-          headline: (post as any).title,
+          headline: post.title,
           description: meta.description,
           url: `${BASE_URL}/blog/${slug}`,
-          datePublished: (post as any).publishedAt || (post as any).createdAt,
-          dateModified: (post as any).updatedAt || (post as any).publishedAt,
+          datePublished: post.publishedAt || post.createdAt,
+          dateModified: post.updatedAt || post.publishedAt,
           author: { "@type": "Organization", name: "Costa Brava Rent a Boat" },
           publisher: {
             "@type": "Organization",
@@ -487,8 +489,8 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
 }
 
 export async function serveWithSEO(
-  req: any,
-  res: any,
+  req: Request,
+  res: Response,
   distPath: string
 ): Promise<void> {
   try {

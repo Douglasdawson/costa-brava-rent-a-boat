@@ -177,11 +177,8 @@ export function registerDiscountRoutes(app: Express) {
   // Pre-season campaign: generate codes for all past customers
   app.post("/api/admin/discounts/pre-season-campaign", requireAdminSession, async (_req, res) => {
     try {
-      // Get all bookings with confirmed status
-      const allBookings = await storage.getAllBookings();
-      const confirmedBookings = allBookings.filter(
-        (b) => b.bookingStatus === "confirmed" && b.customerEmail
-      );
+      // Get confirmed bookings that have an email address
+      const confirmedBookings = await storage.getConfirmedBookingsWithEmail();
 
       // Extract unique customer emails with their names
       const customerMap = new Map<string, { email: string; name: string }>();

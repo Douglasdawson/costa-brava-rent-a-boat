@@ -115,28 +115,29 @@ export const AVAILABLE_FUNCTIONS: OpenAI.Chat.Completions.ChatCompletionTool[] =
 // Execute a function call
 export async function executeFunction(
   name: string,
-  args: Record<string, any>
+  args: Record<string, unknown>
 ): Promise<string> {
   try {
     switch (name) {
       case "get_boat_availability":
-        return await checkBoatAvailability(args.boat_id, args.date, args.start_time, args.duration_hours);
+        return await checkBoatAvailability(args.boat_id as string, args.date as string, args.start_time as string | undefined, args.duration_hours as number | undefined);
       
       case "get_price_for_date":
-        return await getPriceForDate(args.boat_id, args.date, args.duration_hours);
+        return await getPriceForDate(args.boat_id as string, args.date as string, args.duration_hours as number);
       
       case "list_available_boats":
-        return await listAvailableBoats(args.date, args.capacity_min, args.requires_license);
+        return await listAvailableBoats(args.date as string, args.capacity_min as number | undefined, args.requires_license as boolean | undefined);
       
       case "get_boat_details":
-        return await getBoatDetails(args.boat_id);
+        return await getBoatDetails(args.boat_id as string);
       
       default:
         return JSON.stringify({ error: "Unknown function" });
     }
-  } catch (error: any) {
-    console.error(`[Functions] Error executing ${name}:`, error.message);
-    return JSON.stringify({ error: error.message });
+  } catch (error: unknown) {
+    const errorMsg = error instanceof Error ? error.message : String(error);
+    console.error(`[Functions] Error executing ${name}:`, errorMsg);
+    return JSON.stringify({ error: errorMsg });
   }
 }
 
@@ -210,7 +211,7 @@ async function getPriceForDate(
   }
 
   const season = getSeason(date);
-  const pricing = boat.pricing as any;
+  const pricing = boat.pricing as Record<string, { prices?: Record<string, number> }> | null;
 
   if (!pricing || !pricing[season]) {
     return JSON.stringify({
@@ -291,7 +292,7 @@ async function listAvailableBoats(
   for (const boat of filteredBoats) {
     const isAvailable = await storage.checkAvailability(boat.id, startDate, endDate);
     if (isAvailable) {
-      const pricing = boat.pricing as any;
+      const pricing = boat.pricing as Record<string, { prices?: Record<string, number> }> | null;
       const price4h = pricing?.[season]?.prices?.['4h'];
       availableBoats.push({
         id: boat.id,
@@ -322,8 +323,8 @@ async function getBoatDetails(boatId: string): Promise<string> {
     return JSON.stringify({ error: "Barco no encontrado" });
   }
 
-  const specs = boat.specifications as any;
-  const pricing = boat.pricing as any;
+  const specs = boat.specifications as Record<string, unknown> | null;
+  const pricing = boat.pricing as Record<string, { prices?: Record<string, number> }> | null;
 
   return JSON.stringify({
     id: boat.id,

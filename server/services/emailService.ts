@@ -432,7 +432,7 @@ function bookingDetailsTable(data: BookingEmailData, strings: EmailStrings): str
  */
 export async function sendBookingConfirmation(data: BookingEmailData): Promise<EmailResult> {
   if (!initSendGrid()) {
-    console.log("[Email] SendGrid not configured, skipping booking confirmation email");
+    logger.info("SendGrid not configured, skipping booking confirmation email");
     return { success: false, error: "SendGrid not configured" };
   }
 
@@ -490,7 +490,7 @@ export async function sendBookingConfirmation(data: BookingEmailData): Promise<E
       html: emailWrapper(content + cancelBlock),
     });
 
-    console.log(`[Email] Booking confirmation sent to ${booking.customerEmail} for booking ${booking.id}`);
+    logger.info("Booking confirmation sent", { to: booking.customerEmail, bookingId: booking.id });
     return { success: true };
   } catch (error: unknown) {
     const message = error instanceof Error ? error.message : "Unknown error";
@@ -504,7 +504,7 @@ export async function sendBookingConfirmation(data: BookingEmailData): Promise<E
  */
 export async function sendBookingReminder(data: BookingEmailData): Promise<EmailResult> {
   if (!initSendGrid()) {
-    console.log("[Email] SendGrid not configured, skipping booking reminder email");
+    logger.info("SendGrid not configured, skipping booking reminder email");
     return { success: false, error: "SendGrid not configured" };
   }
 
@@ -561,7 +561,7 @@ export async function sendBookingReminder(data: BookingEmailData): Promise<Email
       html: emailWrapper(content),
     });
 
-    console.log(`[Email] Booking reminder sent to ${booking.customerEmail} for booking ${booking.id}`);
+    logger.info("Booking reminder sent", { to: booking.customerEmail, bookingId: booking.id });
     return { success: true };
   } catch (error: unknown) {
     const message = error instanceof Error ? error.message : "Unknown error";
@@ -576,7 +576,7 @@ export async function sendBookingReminder(data: BookingEmailData): Promise<Email
  */
 export async function sendThankYouEmail(data: BookingEmailData, discountCode: string): Promise<EmailResult> {
   if (!initSendGrid()) {
-    console.log("[Email] SendGrid not configured, skipping thank-you email");
+    logger.info("SendGrid not configured, skipping thank-you email");
     return { success: false, error: "SendGrid not configured" };
   }
 
@@ -632,7 +632,7 @@ export async function sendThankYouEmail(data: BookingEmailData, discountCode: st
       html: emailWrapper(content),
     });
 
-    console.log(`[Email] Thank-you email sent to ${booking.customerEmail} for booking ${booking.id} (discount: ${discountCode})`);
+    logger.info("Thank-you email sent", { to: booking.customerEmail, bookingId: booking.id, discountCode });
     return { success: true };
   } catch (error: unknown) {
     const message = error instanceof Error ? error.message : "Unknown error";
@@ -650,7 +650,7 @@ export async function sendPreSeasonEmail(
   discountCode: string
 ): Promise<EmailResult> {
   if (!initSendGrid()) {
-    console.log("[Email] SendGrid not configured, skipping pre-season email");
+    logger.info("SendGrid not configured, skipping pre-season email");
     return { success: false, error: "SendGrid not configured" };
   }
 
@@ -689,7 +689,7 @@ export async function sendPreSeasonEmail(
       html: emailWrapper(content),
     });
 
-    console.log(`[Email] Pre-season email sent to ${customerEmail}`);
+    logger.info("Pre-season email sent", { to: customerEmail });
     return { success: true };
   } catch (error: unknown) {
     const message = error instanceof Error ? error.message : "Unknown error";
@@ -708,7 +708,7 @@ export async function sendWelcomeEmail(
   trialEndsAt: Date
 ): Promise<EmailResult> {
   if (!initSendGrid()) {
-    console.log("[Email] SendGrid not configured, skipping welcome email");
+    logger.info("SendGrid not configured, skipping welcome email");
     return { success: false, error: "SendGrid not configured" };
   }
 
@@ -746,7 +746,7 @@ export async function sendWelcomeEmail(
       html: emailWrapper(content),
     });
 
-    console.log(`[Email] Welcome email sent to ${email}`);
+    logger.info("Welcome email sent", { to: email });
     return { success: true };
   } catch (error: unknown) {
     const message = error instanceof Error ? error.message : "Unknown error";
@@ -764,7 +764,7 @@ export async function sendPasswordResetEmail(
   resetUrl: string
 ): Promise<EmailResult> {
   if (!initSendGrid()) {
-    console.log("[Email] SendGrid not configured, skipping password reset email");
+    logger.info("SendGrid not configured, skipping password reset email");
     return { success: false, error: "SendGrid not configured" };
   }
 
@@ -802,7 +802,7 @@ export async function sendPasswordResetEmail(
       html: emailWrapper(content),
     });
 
-    console.log(`[Email] Password reset email sent to ${email}`);
+    logger.info("Password reset email sent", { to: email });
     return { success: true };
   } catch (error: unknown) {
     const message = error instanceof Error ? error.message : "Unknown error";
@@ -828,7 +828,7 @@ export async function sendCancelationEmail(data: CancelationEmailData): Promise<
   }
 
   if (!initSendGrid()) {
-    console.log("[Email] SendGrid not configured, skipping cancelation email");
+    logger.info("SendGrid not configured, skipping cancelation email");
     return { success: false, error: "SendGrid not configured" };
   }
 
@@ -859,7 +859,7 @@ export async function sendCancelationEmail(data: CancelationEmailData): Promise<
       html: emailWrapper(customerContent),
     });
 
-    console.log(`[Email] Cancelation email sent to ${booking.customerEmail} for booking ${booking.id}`);
+    logger.info("Cancelation email sent", { to: booking.customerEmail, bookingId: booking.id });
   } catch (error: unknown) {
     const message = error instanceof Error ? error.message : "Unknown error";
     logger.error(`[Email] Error sending cancelation email to ${booking.customerEmail}`, { error: message });

@@ -1,10 +1,11 @@
 // Message Router - Routes messages to appropriate flow handlers
 import type { ChatbotConversation, ChatbotState } from "@shared/schema";
 import { CHATBOT_STATES } from "@shared/schema";
-import { getTranslation, formatMessage, type SupportedLanguage } from "./translations";
+import { getTranslation, formatMessage, type SupportedLanguage, type ChatbotTranslations } from "./translations";
 import { updateState, updateBookingData, clearBookingData } from "./sessionManager";
 import { isNumberSelection, parseDate, parseEmail, parseNumber, parseMultipleSelections } from "./intentDetector";
 import type { Intent } from "./intentDetector";
+import { logger } from "../lib/logger";
 
 // Import flow handlers
 import { handleListBoats, handleBoatDetail, handleShowPrices } from "./flows/boatInfo";
@@ -37,7 +38,7 @@ export async function processMessage(
   const t = getTranslation(session.language as SupportedLanguage);
   const state = session.currentState as ChatbotState;
 
-  console.log(`[Router] Processing: state=${state}, intent=${intent}, message="${message.substring(0, 50)}..."`);
+  logger.debug("Router processing message", { state, intent, messagePreview: message.substring(0, 50) });
 
   // Handle based on current state
   switch (state) {
@@ -107,7 +108,7 @@ async function handleMainMenuState(
   session: ChatbotConversation,
   message: string,
   intent: Intent,
-  t: any
+  t: ChatbotTranslations
 ): Promise<string> {
   const num = isNumberSelection(message);
 
@@ -170,7 +171,7 @@ async function handleMainMenuState(
 async function handleListBoatsState(
   session: ChatbotConversation,
   message: string,
-  t: any
+  t: ChatbotTranslations
 ): Promise<string> {
   const num = isNumberSelection(message);
 
@@ -188,7 +189,7 @@ async function handleBoatDetailState(
   session: ChatbotConversation,
   message: string,
   intent: Intent,
-  t: any
+  t: ChatbotTranslations
 ): Promise<string> {
   const num = isNumberSelection(message);
 
@@ -217,7 +218,7 @@ async function handleShowPricesState(
   session: ChatbotConversation,
   message: string,
   intent: Intent,
-  t: any
+  t: ChatbotTranslations
 ): Promise<string> {
   const num = isNumberSelection(message);
 
@@ -243,7 +244,7 @@ async function handleShowPricesState(
 async function handleCheckAvailabilityState(
   session: ChatbotConversation,
   message: string,
-  t: any
+  t: ChatbotTranslations
 ): Promise<string> {
   const date = parseDate(message);
 
@@ -260,10 +261,10 @@ async function handleCheckAvailabilityState(
 async function handleSelectBoatForCheckState(
   session: ChatbotConversation,
   message: string,
-  t: any
+  t: ChatbotTranslations
 ): Promise<string> {
   const num = isNumberSelection(message);
-  const context = session.context as any;
+  const context = session.context as { availabilityDate?: string } | null;
   const date = context?.availabilityDate ? new Date(context.availabilityDate) : null;
 
   if (num !== null && num >= 1 && num <= 7 && date) {
@@ -280,7 +281,7 @@ async function handleShowAvailabilityState(
   session: ChatbotConversation,
   message: string,
   intent: Intent,
-  t: any
+  t: ChatbotTranslations
 ): Promise<string> {
   if (intent === "booking" || isNumberSelection(message) === 1) {
     // Start booking with pre-selected boat and date
@@ -295,7 +296,7 @@ async function handleShowAvailabilityState(
 async function handleBookingDateState(
   session: ChatbotConversation,
   message: string,
-  t: any
+  t: ChatbotTranslations
 ): Promise<string> {
   const date = parseDate(message);
 
@@ -311,7 +312,7 @@ async function handleBookingDateState(
 async function handleBookingBoatState(
   session: ChatbotConversation,
   message: string,
-  t: any
+  t: ChatbotTranslations
 ): Promise<string> {
   const num = isNumberSelection(message);
 
@@ -328,7 +329,7 @@ async function handleBookingBoatState(
 async function handleBookingTimeState(
   session: ChatbotConversation,
   message: string,
-  t: any
+  t: ChatbotTranslations
 ): Promise<string> {
   const num = isNumberSelection(message);
   const times = ["10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00"];
@@ -346,7 +347,7 @@ async function handleBookingTimeState(
 async function handleBookingDurationState(
   session: ChatbotConversation,
   message: string,
-  t: any
+  t: ChatbotTranslations
 ): Promise<string> {
   const num = isNumberSelection(message);
   const durations = ["1h", "2h", "3h", "4h", "6h", "8h"];
@@ -364,7 +365,7 @@ async function handleBookingDurationState(
 async function handleBookingPeopleState(
   session: ChatbotConversation,
   message: string,
-  t: any
+  t: ChatbotTranslations
 ): Promise<string> {
   const num = parseNumber(message);
 
@@ -381,7 +382,7 @@ async function handleBookingPeopleState(
 async function handleBookingExtrasState(
   session: ChatbotConversation,
   message: string,
-  t: any
+  t: ChatbotTranslations
 ): Promise<string> {
   const selections = parseMultipleSelections(message);
   const extraNames = ["Parking", "Nevera", "Snorkel", "Paddle Surf", "Seascooter"];
@@ -403,7 +404,7 @@ async function handleBookingExtrasState(
 async function handleBookingContactNameState(
   session: ChatbotConversation,
   message: string,
-  t: any
+  t: ChatbotTranslations
 ): Promise<string> {
   const name = message.trim();
 
@@ -419,7 +420,7 @@ async function handleBookingContactNameState(
 async function handleBookingContactEmailState(
   session: ChatbotConversation,
   message: string,
-  t: any
+  t: ChatbotTranslations
 ): Promise<string> {
   const email = parseEmail(message);
 
@@ -437,7 +438,7 @@ async function handleBookingContactEmailState(
 async function handleBookingConfirmState(
   session: ChatbotConversation,
   message: string,
-  t: any
+  t: ChatbotTranslations
 ): Promise<string> {
   const num = isNumberSelection(message);
 
@@ -474,7 +475,7 @@ async function handleBookingConfirmState(
       if (isTwilioConfigured()) {
         try {
           await sendWhatsAppMessage("+34611500372", ownerNotification);
-          console.log(`[Booking] Owner notified for booking ${result.bookingId}`);
+          logger.info("Owner notified for booking", { bookingId: result.bookingId });
         } catch (error: unknown) {
           const errorMessage = error instanceof Error ? error.message : String(error);
           console.error(`[Booking] Failed to notify owner for booking ${result.bookingId}:`, errorMessage);
@@ -507,7 +508,7 @@ async function handleBookingConfirmState(
 async function handleAgentHandoffState(
   session: ChatbotConversation,
   message: string,
-  t: any
+  t: ChatbotTranslations
 ): Promise<string> {
   // In agent handoff state, messages are forwarded to admin
   // For now, just acknowledge

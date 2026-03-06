@@ -781,7 +781,7 @@ export function registerAuthRoutes(app: Express) {
       );
 
       if (process.env.NODE_ENV === "development") {
-        console.log(`Password reset token for ${normalizedEmail}: ${resetToken}`);
+        logger.debug("Password reset token generated", { email: normalizedEmail, resetToken });
       }
 
       res.json({
@@ -926,12 +926,13 @@ export function registerAuthRoutes(app: Express) {
         return res.json([]);
       }
 
-      const allBookings = await storage.getAllBookings();
-      const customerBookings = allBookings.filter(
-        booking =>
-          booking.customerId === customer.id ||
-          booking.customerEmail === customer.email ||
-          booking.customerPhone === `${customer.phonePrefix}${customer.phoneNumber}`
+      const phone = customer.phonePrefix && customer.phoneNumber
+        ? `${customer.phonePrefix}${customer.phoneNumber}`
+        : null;
+      const customerBookings = await storage.getBookingsByCustomer(
+        customer.id,
+        customer.email ?? null,
+        phone
       );
 
       res.json(customerBookings);

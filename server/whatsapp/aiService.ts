@@ -14,6 +14,7 @@ import {
   executeFunction, 
   detectBoatFromMessage 
 } from "./functionCallingService";
+import { logger } from "../lib/logger";
 
 let _openai: OpenAI | null = null;
 function getOpenAI(): OpenAI {
@@ -272,10 +273,10 @@ IMPORTANTE: Tienes acceso a funciones para consultar disponibilidad y precios en
       // Execute each function call
       for (const toolCall of toolCalls) {
         if (toolCall.type !== 'function') continue;
-        const functionName = (toolCall as any).function.name;
-        const functionArgs = JSON.parse((toolCall as any).function.arguments);
+        const functionName = toolCall.function.name;
+        const functionArgs = JSON.parse(toolCall.function.arguments);
         
-        console.log(`[AI Service] Executing function: ${functionName}`, functionArgs);
+        logger.debug("AI Service executing function", { functionName, functionArgs });
         
         const functionResult = await executeFunction(functionName, functionArgs);
         
@@ -323,8 +324,9 @@ IMPORTANTE: Tienes acceso a funciones para consultar disponibilidad y precios en
       detectedIntent,
       detectedBoatId: detectedBoatId || undefined,
     };
-  } catch (error: any) {
-    console.error("[AI Service] Error getting AI response:", error.message);
+  } catch (error: unknown) {
+    const errorMsg = error instanceof Error ? error.message : String(error);
+    console.error("[AI Service] Error getting AI response:", errorMsg);
     
     // Fallback response based on language
     const fallbackResponses: Record<string, string> = {

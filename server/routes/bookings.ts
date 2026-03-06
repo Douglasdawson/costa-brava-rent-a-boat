@@ -245,23 +245,6 @@ export function registerBookingRoutes(app: Express) {
         });
       }
 
-      const isAvailable = await storage.checkAvailability(boatId, start, end);
-      if (!isAvailable) {
-        const conflictingBookings = await storage.getOverlappingBookingsWithBuffer(boatId, start, end);
-        return res.status(409).json({
-          message: "El barco no está disponible en el horario seleccionado",
-          available: false,
-          reason: "booking_conflict",
-          conflictingBookings: conflictingBookings.map(booking => ({
-            id: booking.id,
-            startTime: booking.startTime,
-            endTime: booking.endTime,
-            status: booking.bookingStatus,
-            customerName: `${booking.customerName} ${booking.customerSurname ? booking.customerSurname.charAt(0) : ""}.`,
-          })),
-        });
-      }
-
       const totalHours = Math.ceil((end.getTime() - start.getTime()) / (1000 * 60 * 60));
 
       let duration: "1h" | "2h" | "3h" | "4h" | "6h" | "8h";
@@ -279,7 +262,8 @@ export function registerBookingRoutes(app: Express) {
         (req.headers["x-session-id"] as string) ||
         `quote-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
 
-      const holdBooking = await storage.createBooking({
+      // Atomic check + create to prevent TOCTOU race condition
+      const result = await storage.checkAvailabilityAndCreateBooking(boatId, start, end, {
         boatId,
         bookingDate: new Date(start.getFullYear(), start.getMonth(), start.getDate()),
         startTime: start,
@@ -301,6 +285,24 @@ export function registerBookingRoutes(app: Express) {
         source: "web",
         notes: `Hold temporal para cotización. Expira: ${expiresAt.toISOString()}`,
       });
+
+      if (!result.available) {
+        const conflictingBookings = await storage.getOverlappingBookingsWithBuffer(boatId, start, end);
+        return res.status(409).json({
+          message: "El barco no está disponible en el horario seleccionado",
+          available: false,
+          reason: "booking_conflict",
+          conflictingBookings: conflictingBookings.map(booking => ({
+            id: booking.id,
+            startTime: booking.startTime,
+            endTime: booking.endTime,
+            status: booking.bookingStatus,
+            customerName: `${booking.customerName} ${booking.customerSurname ? booking.customerSurname.charAt(0) : ""}.`,
+          })),
+        });
+      }
+
+      const holdBooking = result.booking;
 
       res.status(201).json({
         success: true,

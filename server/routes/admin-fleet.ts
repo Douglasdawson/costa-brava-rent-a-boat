@@ -132,7 +132,7 @@ export function registerAdminFleetRoutes(app: Express) {
           const boat = await storage.createBoat(boatData);
           createdBoats.push(boat);
         } catch (error: unknown) {
-          console.log(`Boat ${boatData.id} might already exist:`, error instanceof Error ? error.message : String(error));
+          logger.warn("Boat might already exist", { boatId: boatData.id, error: error instanceof Error ? error.message : String(error) });
         }
       }
 

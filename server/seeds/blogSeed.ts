@@ -1,5 +1,6 @@
 import type { IStorage } from "../storage";
 import type { InsertBlogPost } from "@shared/schema";
+import { logger } from "../lib/logger";
 
 interface BlogPostSeed extends InsertBlogPost {
   /** Override publishedAt after creation */
@@ -854,7 +855,7 @@ export async function seedBlogPosts(storageInstance: IStorage): Promise<number> 
       // Check if post with this slug already exists
       const existing = await storageInstance.getBlogPostBySlug(postData.slug);
       if (existing) {
-        console.log(`Blog post "${postData.slug}" already exists, skipping.`);
+        logger.debug("Blog post already exists, skipping", { slug: postData.slug });
         continue;
       }
 
@@ -870,13 +871,13 @@ export async function seedBlogPosts(storageInstance: IStorage): Promise<number> 
       } as any);
 
       created++;
-      console.log(`Created blog post: "${postData.title}" (${postData.slug})`);
+      logger.info("Created blog post", { title: postData.title, slug: postData.slug });
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : String(error);
       console.error(`Failed to create blog post "${postData.slug}": ${message}`);
     }
   }
 
-  console.log(`Blog seed complete: ${created}/${blogPostsData.length} posts created.`);
+  logger.info("Blog seed complete", { created, total: blogPostsData.length });
   return created;
 }

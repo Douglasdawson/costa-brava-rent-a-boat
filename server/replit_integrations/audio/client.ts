@@ -13,6 +13,16 @@ export const openai = new OpenAI({
 
 export type AudioFormat = "wav" | "mp3" | "webm" | "mp4" | "ogg" | "unknown";
 
+// OpenAI audio API response types (not fully typed in SDK)
+export interface AudioMessagePart {
+  audio?: { transcript?: string; data?: string };
+  content?: string;
+}
+
+export interface AudioDeltaPart {
+  audio?: { transcript?: string; data?: string };
+}
+
 /**
  * Detect audio format from buffer magic bytes.
  * Supports: WAV, MP3, WebM (Chrome/Firefox), MP4/M4A/MOV (Safari/iOS), OGG
@@ -128,7 +138,7 @@ export async function voiceChat(
       ],
     }],
   });
-  const message = response.choices[0]?.message as any;
+  const message = response.choices[0]?.message as unknown as AudioMessagePart;
   const transcript = message?.audio?.transcript || message?.content || "";
   const audioData = message?.audio?.data ?? "";
   return {
@@ -168,7 +178,7 @@ export async function voiceChatStream(
 
   return (async function* () {
     for await (const chunk of stream) {
-      const delta = chunk.choices?.[0]?.delta as any;
+      const delta = chunk.choices?.[0]?.delta as unknown as AudioDeltaPart;
       if (!delta) continue;
       if (delta?.audio?.transcript) {
         yield { type: "transcript", data: delta.audio.transcript };
@@ -198,7 +208,7 @@ export async function textToSpeech(
       { role: "user", content: `Repeat the following text verbatim: ${text}` },
     ],
   });
-  const audioData = (response.choices[0]?.message as any)?.audio?.data ?? "";
+  const audioData = (response.choices[0]?.message as unknown as AudioMessagePart)?.audio?.data ?? "";
   return Buffer.from(audioData, "base64");
 }
 
@@ -224,7 +234,7 @@ export async function textToSpeechStream(
 
   return (async function* () {
     for await (const chunk of stream) {
-      const delta = chunk.choices?.[0]?.delta as any;
+      const delta = chunk.choices?.[0]?.delta as unknown as AudioDeltaPart;
       if (!delta) continue;
       if (delta?.audio?.data) {
         yield delta.audio.data;

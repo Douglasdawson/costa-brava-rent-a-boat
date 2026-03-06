@@ -3,6 +3,7 @@ import { storage } from "../storage";
 import { detectLanguage } from "./intentDetector";
 import { CHATBOT_STATES, type ChatbotState, type ChatbotConversation } from "@shared/schema";
 import type { SupportedLanguage } from "./translations";
+import { logger } from "../lib/logger";
 
 /** Returns a masked phone number for safe logging, e.g. "***1234" */
 function maskPhone(phone: string): string {
@@ -40,9 +41,9 @@ export async function getSession(
       currentState: CHATBOT_STATES.WELCOME,
     });
 
-    console.log(`[Session] New conversation created for ${maskPhone(normalizedPhone)}, language: ${language}`);
+    logger.info("New conversation created", { phone: maskPhone(normalizedPhone), language });
   } else {
-    console.log(`[Session] Existing conversation found for ${maskPhone(normalizedPhone)}, state: ${conversation.currentState}`);
+    logger.debug("Existing conversation found", { phone: maskPhone(normalizedPhone), state: conversation.currentState });
   }
 
   return conversation;
@@ -66,7 +67,7 @@ export async function updateState(
   const conversation = await storage.updateChatbotConversation(normalizedPhone, updates);
 
   if (conversation) {
-    console.log(`[Session] State updated for ${maskPhone(normalizedPhone)}: ${newState}`);
+    logger.debug("Session state updated", { phone: maskPhone(normalizedPhone), newState });
   }
 
   return conversation;
@@ -86,7 +87,7 @@ export async function updateSessionLanguage(
   });
   
   if (conversation) {
-    console.log(`[Session] Language updated for ${maskPhone(normalizedPhone)}: ${language}`);
+    logger.debug("Session language updated", { phone: maskPhone(normalizedPhone), language });
   }
   
   return conversation;
@@ -137,7 +138,7 @@ export async function updateBookingData(
  */
 export async function resetSession(phoneNumber: string): Promise<ChatbotConversation | undefined> {
   const normalizedPhone = phoneNumber.replace("whatsapp:", "");
-  console.log(`[Session] Resetting conversation for ${maskPhone(normalizedPhone)}`);
+  logger.info("Resetting conversation", { phone: maskPhone(normalizedPhone) });
   return await storage.resetChatbotConversation(normalizedPhone);
 }
 

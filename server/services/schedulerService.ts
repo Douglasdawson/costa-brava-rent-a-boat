@@ -18,12 +18,12 @@ async function trySendWhatsAppReminder(booking: Booking, boat: Boat): Promise<bo
     const { isTwilioConfigured, sendWhatsAppMessage } = await import("../whatsapp/twilioClient");
 
     if (!isTwilioConfigured()) {
-      console.log("[Scheduler] Twilio not configured, skipping WhatsApp reminder");
+      logger.info("Twilio not configured, skipping WhatsApp reminder");
       return false;
     }
 
     if (!booking.customerPhone) {
-      console.log(`[Scheduler] No phone number for booking ${booking.id}, skipping WhatsApp`);
+      logger.info("No phone number for booking, skipping WhatsApp", { bookingId: booking.id });
       return false;
     }
 
@@ -74,12 +74,12 @@ async function trySendWhatsAppThankYou(booking: Booking): Promise<boolean> {
     const { isTwilioConfigured, sendWhatsAppMessage } = await import("../whatsapp/twilioClient");
 
     if (!isTwilioConfigured()) {
-      console.log("[Scheduler] Twilio not configured, skipping WhatsApp thank-you");
+      logger.info("Twilio not configured, skipping WhatsApp thank-you");
       return false;
     }
 
     if (!booking.customerPhone) {
-      console.log(`[Scheduler] No phone number for booking ${booking.id}, skipping WhatsApp thank-you`);
+      logger.info("No phone number for booking, skipping WhatsApp thank-you", { bookingId: booking.id });
       return false;
     }
 
@@ -117,7 +117,7 @@ async function processReminders(): Promise<void> {
       return;
     }
 
-    console.log(`[Scheduler] Found ${upcomingBookings.length} bookings needing reminders`);
+    logger.info("Found bookings needing reminders", { count: upcomingBookings.length });
 
     for (const booking of upcomingBookings) {
       try {
@@ -155,9 +155,7 @@ async function processReminders(): Promise<void> {
           await storage.updateBookingWhatsAppStatus(booking.id, undefined, true);
         }
 
-        console.log(
-          `[Scheduler] Reminder processed for booking ${booking.id}: email=${emailSent}, whatsapp=${whatsappSent}`
-        );
+        logger.info("Reminder processed for booking", { bookingId: booking.id, emailSent, whatsappSent });
       } catch (error: unknown) {
         const msg = error instanceof Error ? error.message : "Unknown error";
         logger.error(`[Scheduler] Error processing reminder for booking ${booking.id}`, { error: msg });
@@ -182,7 +180,7 @@ async function processThankYou(): Promise<void> {
       return;
     }
 
-    console.log(`[Scheduler] Found ${completedBookings.length} bookings needing thank-you emails`);
+    logger.info("Found bookings needing thank-you emails", { count: completedBookings.length });
 
     for (const booking of completedBookings) {
       try {
@@ -231,9 +229,7 @@ async function processThankYou(): Promise<void> {
         // Mark email as sent regardless to prevent retries
         await storage.updateBookingEmailStatus(booking.id, undefined, true);
 
-        console.log(
-          `[Scheduler] Thank-you processed for booking ${booking.id}: email=${emailResult.success}, whatsapp=${waThankYouSentThisRun}`
-        );
+        logger.info("Thank-you processed for booking", { bookingId: booking.id, emailSent: emailResult.success, whatsappSent: waThankYouSentThisRun });
       } catch (error: unknown) {
         const msg = error instanceof Error ? error.message : "Unknown error";
         logger.error(`[Scheduler] Error processing thank-you for booking ${booking.id}`, { error: msg });
@@ -251,19 +247,19 @@ async function processThankYou(): Promise<void> {
  * Call this once during server startup.
  */
 export function startScheduler(): void {
-  console.log("[Scheduler] Starting scheduled services...");
+  logger.info("Starting scheduled services");
 
   // Reminder job: run every hour at minute 0
   // Checks for confirmed bookings starting in 22-26 hours
   cron.schedule("0 * * * *", async () => {
-    console.log("[Scheduler] Running reminder job...");
+    logger.info("Running reminder job");
     await processReminders();
   });
 
   // Thank-you job: run every hour at minute 30
   // Checks for confirmed bookings that ended 22-26 hours ago
   cron.schedule("30 * * * *", async () => {
-    console.log("[Scheduler] Running thank-you job...");
+    logger.info("Running thank-you job");
     await processThankYou();
   });
 
@@ -272,7 +268,7 @@ export function startScheduler(): void {
     try {
       const cleaned = await storage.cleanupExpiredHolds();
       if (cleaned > 0) {
-        console.log(`[Scheduler] Cleaned up ${cleaned} expired hold(s)`);
+        logger.info("Cleaned up expired holds", { count: cleaned });
       }
     } catch (error: unknown) {
       const msg = error instanceof Error ? error.message : "Unknown error";
@@ -286,7 +282,7 @@ export function startScheduler(): void {
     try {
       const count = await storage.autoCompleteBookings();
       if (count > 0) {
-        console.log(`[Scheduler] Auto-completed ${count} bookings`);
+        logger.info("Auto-completed bookings", { count });
       }
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Unknown error";
@@ -298,24 +294,24 @@ export function startScheduler(): void {
   (async () => {
     try {
       if (!process.env.ANTHROPIC_API_KEY) {
-        console.log("[Scheduler] ANTHROPIC_API_KEY not set, blog autopilot disabled");
+        logger.info("ANTHROPIC_API_KEY not set, blog autopilot disabled");
         return;
       }
       const config = await getConfig();
       if (!config.isEnabled) {
-        console.log("[Scheduler] Blog autopilot is disabled in config");
+        logger.info("Blog autopilot is disabled in config");
         return;
       }
       cron.schedule(config.cronSchedule, async () => {
-        console.log("[Scheduler] Running blog autopilot...");
+        logger.info("Running blog autopilot");
         const result = await runAutopilotPipeline();
         if (result.success) {
-          console.log(`[Scheduler] Blog autopilot success: "${result.topic}" (score: ${result.seoScore})`);
+          logger.info("Blog autopilot success", { topic: result.topic, seoScore: result.seoScore });
         } else {
-          console.log(`[Scheduler] Blog autopilot skipped/failed: ${result.error}`);
+          logger.info("Blog autopilot skipped/failed", { error: result.error });
         }
       });
-      console.log(`[Scheduler] Blog autopilot scheduled: ${config.cronSchedule}`);
+      logger.info("Blog autopilot scheduled", { cronSchedule: config.cronSchedule });
     } catch (error) {
       logger.error("[Scheduler] Failed to initialize blog autopilot", { error: error instanceof Error ? error.message : String(error) });
     }
@@ -327,7 +323,7 @@ export function startScheduler(): void {
       try {
         const published = await publishMatureDrafts();
         if (published > 0) {
-          console.log(`[Scheduler] Auto-published ${published} blog draft(s)`);
+          logger.info("Auto-published blog drafts", { count: published });
         }
       } catch (error) {
         logger.error("[Scheduler] Auto-publish error", { error: error instanceof Error ? error.message : String(error) });
@@ -335,5 +331,5 @@ export function startScheduler(): void {
     });
   }
 
-  console.log("[Scheduler] Scheduled services started: reminders (:00), thank-you (:30), hold cleanup (every 5min), auto-complete (:45), blog autopilot (config), auto-publish (:15)");
+  logger.info("Scheduled services started: reminders (:00), thank-you (:30), hold cleanup (every 5min), auto-complete (:45), blog autopilot (config), auto-publish (:15)");
 }

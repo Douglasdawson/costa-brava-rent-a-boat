@@ -428,8 +428,9 @@ export function registerPaymentRoutes(app: Express) {
         sig,
         process.env.STRIPE_WEBHOOK_SECRET
       );
-    } catch (err: any) {
-      logger.error("[Webhook] Signature verification failed", { error: err.message });
+    } catch (err: unknown) {
+      const errMsg = err instanceof Error ? err.message : String(err);
+      logger.error("[Webhook] Signature verification failed", { error: errMsg });
       return res.status(400).json({ error: "Invalid webhook signature" });
     }
 
@@ -437,7 +438,7 @@ export function registerPaymentRoutes(app: Express) {
       switch (event.type) {
         case "payment_intent.succeeded": {
           const paymentIntent = event.data.object as Stripe.PaymentIntent;
-          console.log("Payment succeeded:", paymentIntent.id);
+          logger.info("Payment succeeded", { paymentIntentId: paymentIntent.id });
 
           // Check if this is a gift card payment
           if (paymentIntent.metadata?.type === "gift_card" && paymentIntent.metadata?.giftCardId) {
@@ -446,7 +447,7 @@ export function registerPaymentRoutes(app: Express) {
               paymentStatus: "completed",
               status: "active",
             });
-            console.log(`Gift card ${giftCardId} activated after successful payment`);
+            logger.info("Gift card activated after successful payment", { giftCardId });
             break;
           }
 
@@ -462,7 +463,7 @@ export function registerPaymentRoutes(app: Express) {
               bookingStatus: "confirmed",
               paymentStatus: "completed",
             });
-            console.log(`Booking ${booking[0].id} confirmed after successful payment`);
+            logger.info("Booking confirmed after successful payment", { bookingId: booking[0].id });
 
             // Send confirmation email + WhatsApp (fire-and-forget, never blocks webhook response)
             if (confirmedBooking) {
@@ -490,7 +491,7 @@ export function registerPaymentRoutes(app: Express) {
 
         case "payment_intent.payment_failed": {
           const failedPayment = event.data.object as Stripe.PaymentIntent;
-          console.log("Payment failed:", failedPayment.id);
+          logger.warn("Payment failed", { paymentIntentId: failedPayment.id });
 
           const failedBooking = await db
             .select()
@@ -502,13 +503,13 @@ export function registerPaymentRoutes(app: Express) {
             await storage.updateBooking(failedBooking[0].id, {
               paymentStatus: "failed",
             });
-            console.log(`Payment failed for booking ${failedBooking[0].id}`);
+            logger.warn("Payment failed for booking", { bookingId: failedBooking[0].id });
           }
           break;
         }
 
         default:
-          console.log(`Unhandled event type ${event.type}`);
+          logger.debug("Unhandled webhook event type", { eventType: event.type });
       }
 
       res.json({ received: true });
@@ -576,7 +577,7 @@ export function registerPaymentRoutes(app: Express) {
         bookingStatus: "cancelled",
       }).where(eq(bookings.id, booking.id));
 
-      console.log(`[Payment] Refund ${refund.id} of ${amount}€ issued for booking ${booking.id}`);
+      logger.info("Refund issued for booking", { refundId: refund.id, amount, bookingId: booking.id });
       res.json({
         success: true,
         refundId: refund.id,

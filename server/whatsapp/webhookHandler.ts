@@ -4,11 +4,12 @@ import { sendWhatsAppMessage, isTwilioConfigured } from "./twilioClient";
 import { getSession, updateState, resetSession, isSessionStale, updateSessionLanguage } from "./sessionManager";
 import { detectIntent, detectLanguage } from "./intentDetector";
 import { processMessage } from "./messageRouter";
-import { getTranslation } from "./translations";
+import { getTranslation, type ChatbotTranslations } from "./translations";
 import { CHATBOT_STATES } from "@shared/schema";
 import { getAIResponseEnhanced, isAIConfigured, getBoatImageUrl } from "./aiService";
 import { sendWhatsAppMessageWithMedia } from "./twilioClient";
 import { detectLanguageFromPhone, getWelcomeMessage, isGreeting } from "./languageDetector";
+import { logger } from "../lib/logger";
 
 /**
  * Twilio WhatsApp Webhook Request Body
@@ -40,7 +41,7 @@ export async function handleWhatsAppWebhook(req: Request, res: Response) {
       return;
     }
 
-    console.log(`[Webhook] Message from ${from} (${profileName || "Unknown"}): ${messageBody}`);
+    logger.info("Webhook message received", { from, profileName: profileName || "Unknown", messageBody });
 
     // Check if Twilio is configured
     if (!isTwilioConfigured()) {
@@ -50,8 +51,9 @@ export async function handleWhatsAppWebhook(req: Request, res: Response) {
 
     // Process the message asynchronously
     await processIncomingMessage(from, messageBody, profileName);
-  } catch (error: any) {
-    console.error("[Webhook] Error processing message:", error.message);
+  } catch (error: unknown) {
+    const errorMsg = error instanceof Error ? error.message : String(error);
+    console.error("[Webhook] Error processing message:", errorMsg);
   }
 }
 
@@ -73,12 +75,12 @@ async function processIncomingMessage(
     const messageLanguage = detectLanguage(messageBody);
     const finalLang = messageLanguage || phoneLanguage || session.language || "es";
     
-    console.log(`[Webhook] Language detection - Phone: ${phoneLanguage}, Message: ${messageLanguage}, Final: ${finalLang}`);
+    logger.debug("Webhook language detection", { phoneLanguage, messageLanguage, finalLang });
 
     // Check if session is stale (>24h) and reset
     const wasStale = isSessionStale(session);
     if (wasStale) {
-      console.log(`[Webhook] Session stale for ${from}, resetting`);
+      logger.info("Webhook session stale, resetting", { from });
       await resetSession(from);
     }
     
@@ -93,7 +95,7 @@ async function processIncomingMessage(
       await updateSessionLanguage(from, finalLang);
       
       const welcomeMessage = getWelcomeMessage(finalLang);
-      console.log(`[Webhook] Sending welcome message in ${finalLang}`);
+      logger.info("Webhook sending welcome message", { language: finalLang });
       await sendWhatsAppMessage(from, welcomeMessage);
       
       // If it's just a greeting, wait for their next message
@@ -126,9 +128,10 @@ async function processIncomingMessage(
       const ownerMessage = `[HANDOFF] Cliente solicita hablar con agente humano.\nCliente: ${clientName}\nTelefono: ${clientNumber}\nIdioma: ${finalLang}\nUltimo mensaje: "${messageBody}"`;
       try {
         await sendWhatsAppMessage(ownerNumber, ownerMessage);
-        console.log(`[Webhook] Agent handoff notification sent to owner for ${from}`);
-      } catch (handoffError: any) {
-        console.error(`[Webhook] Could not notify owner for agent handoff: ${handoffError.message}`);
+        logger.info("Webhook agent handoff notification sent to owner", { from });
+      } catch (handoffError: unknown) {
+        const handoffMsg = handoffError instanceof Error ? handoffError.message : String(handoffError);
+        console.error(`[Webhook] Could not notify owner for agent handoff: ${handoffMsg}`);
       }
 
       // Acknowledge to customer
@@ -173,7 +176,7 @@ async function processIncomingMessage(
     }
 
     // AI-powered response with RAG, Memory, and Function Calling
-    console.log(`[Webhook] Using enhanced AI for response (lang: ${finalLang})`);
+    logger.info("Webhook using enhanced AI for response", { language: finalLang });
 
     // Get enhanced AI response (handles memory persistence internally)
     const result = await getAIResponseEnhanced(from, messageBody, finalLang, profileName);
@@ -187,14 +190,16 @@ async function processIncomingMessage(
       if (imageUrl) {
         try {
           await sendWhatsAppMessageWithMedia(from, "", imageUrl);
-        } catch (imgError: any) {
-          console.warn(`[Webhook] Could not send boat image: ${imgError.message}`);
+        } catch (imgError: unknown) {
+          const imgMsg = imgError instanceof Error ? imgError.message : String(imgError);
+          console.warn(`[Webhook] Could not send boat image: ${imgMsg}`);
         }
       }
     }
 
-  } catch (error: any) {
-    console.error(`[Webhook] Error processing message from ${from}:`, error.message);
+  } catch (error: unknown) {
+    const errorMsg = error instanceof Error ? error.message : String(error);
+    console.error(`[Webhook] Error processing message from ${from}:`, errorMsg);
 
     // Send error message to user
     try {
@@ -212,8 +217,8 @@ async function processIncomingMessage(
  */
 async function sendWelcomeMessage(
   to: string,
-  session: any,
-  t: any,
+  session: { messagesCount: number },
+  t: ChatbotTranslations,
   profileName?: string
 ): Promise<void> {
   // Update state to main menu
@@ -228,7 +233,7 @@ async function sendWelcomeMessage(
 /**
  * Send main menu
  */
-async function sendMainMenu(to: string, t: any): Promise<void> {
+async function sendMainMenu(to: string, t: ChatbotTranslations): Promise<void> {
   await updateState(to, CHATBOT_STATES.MAIN_MENU);
 
   const menu = `${t.mainMenuTitle}\n\n${t.mainMenuOptions.join("\n")}`;
@@ -253,12 +258,13 @@ export async function handleStatusCallback(req: Request, res: Response) {
   try {
     const { MessageSid, MessageStatus, To, ErrorCode, ErrorMessage } = req.body;
 
-    console.log(`[Status] Message ${MessageSid} to ${To}: ${MessageStatus}`);
+    logger.info("Message status update", { messageSid: MessageSid, to: To, status: MessageStatus });
 
     if (ErrorCode) {
       console.error(`[Status] Error ${ErrorCode}: ${ErrorMessage}`);
     }
-  } catch (error: any) {
-    console.error("[Status] Error processing status callback:", error.message);
+  } catch (error: unknown) {
+    const errorMsg = error instanceof Error ? error.message : String(error);
+    console.error("[Status] Error processing status callback:", errorMsg);
   }
 }

@@ -1,6 +1,6 @@
 // Chat Memory Service - Persistent conversation storage
 import { db } from "../db";
-import { aiChatSessions, aiChatMessages } from "@shared/schema";
+import { aiChatSessions, aiChatMessages, type AiChatSession } from "@shared/schema";
 import { eq, desc, and, sql } from "drizzle-orm";
 
 // Intent types for classification
@@ -59,8 +59,9 @@ export async function getOrCreateSession(
     }).returning();
 
     return { id: newSession.id, isNew: true, history: [], intentScore: 0 };
-  } catch (error: any) {
-    console.error("[Memory] Error getting/creating session:", error.message);
+  } catch (error: unknown) {
+    const errorMsg = error instanceof Error ? error.message : String(error);
+    console.error("[Memory] Error getting/creating session:", errorMsg);
     throw error;
   }
 }
@@ -95,8 +96,9 @@ export async function saveMessage(
         totalMessages: sql`${aiChatSessions.totalMessages} + 1`,
       })
       .where(eq(aiChatSessions.id, sessionId));
-  } catch (error: any) {
-    console.error("[Memory] Error saving message:", error.message);
+  } catch (error: unknown) {
+    const errorMsg = error instanceof Error ? error.message : String(error);
+    console.error("[Memory] Error saving message:", errorMsg);
   }
 }
 
@@ -108,7 +110,7 @@ export async function updateLeadScore(
   topic?: string
 ): Promise<void> {
   try {
-    const updates: any = {
+    const updates: Record<string, unknown> = {
       intentScore,
       isLead: intentScore >= 50,
       leadQuality: intentScore >= 80 ? 'hot' : intentScore >= 50 ? 'warm' : 'cold',
@@ -127,8 +129,9 @@ export async function updateLeadScore(
     await db.update(aiChatSessions)
       .set(updates)
       .where(eq(aiChatSessions.id, sessionId));
-  } catch (error: any) {
-    console.error("[Memory] Error updating lead score:", error.message);
+  } catch (error: unknown) {
+    const errorMsg = error instanceof Error ? error.message : String(error);
+    console.error("[Memory] Error updating lead score:", errorMsg);
   }
 }
 
@@ -150,7 +153,7 @@ export function calculateIntentScore(currentScore: number, intent: string): numb
 }
 
 // Get hot leads for the CRM
-export async function getHotLeads(limit: number = 20): Promise<any[]> {
+export async function getHotLeads(limit: number = 20): Promise<AiChatSession[]> {
   try {
     return await db.select()
       .from(aiChatSessions)
@@ -160,8 +163,9 @@ export async function getHotLeads(limit: number = 20): Promise<any[]> {
       ))
       .orderBy(desc(aiChatSessions.intentScore), desc(aiChatSessions.lastMessageAt))
       .limit(limit);
-  } catch (error: any) {
-    console.error("[Memory] Error getting hot leads:", error.message);
+  } catch (error: unknown) {
+    const errorMsg = error instanceof Error ? error.message : String(error);
+    console.error("[Memory] Error getting hot leads:", errorMsg);
     return [];
   }
 }
@@ -190,8 +194,9 @@ export async function getChatAnalytics(): Promise<{
       warmLeads: Number(stats[0]?.warmLeads) || 0,
       avgIntentScore: Math.round(Number(stats[0]?.avgIntentScore) || 0),
     };
-  } catch (error: any) {
-    console.error("[Memory] Error getting analytics:", error.message);
+  } catch (error: unknown) {
+    const errorMsg = error instanceof Error ? error.message : String(error);
+    console.error("[Memory] Error getting analytics:", errorMsg);
     return { totalSessions: 0, totalMessages: 0, hotLeads: 0, warmLeads: 0, avgIntentScore: 0 };
   }
 }
@@ -213,8 +218,9 @@ export async function getFrequentIntents(limit: number = 10): Promise<Array<{ in
       intent: r.intent || 'unknown',
       count: Number(r.count),
     }));
-  } catch (error: any) {
-    console.error("[Memory] Error getting frequent intents:", error.message);
+  } catch (error: unknown) {
+    const errorMsg = error instanceof Error ? error.message : String(error);
+    console.error("[Memory] Error getting frequent intents:", errorMsg);
     return [];
   }
 }

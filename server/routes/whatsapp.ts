@@ -82,10 +82,10 @@ export async function registerWhatsAppRoutes(app: Express) {
   const { isKnowledgeBaseSeeded, seedKnowledgeBase } = await import("../whatsapp/seedKnowledgeBase");
   isKnowledgeBaseSeeded().then(seeded => {
     if (!seeded) {
-      console.log("[Startup] Knowledge base empty, seeding with default content...");
+      logger.info("Knowledge base empty, seeding with default content");
       seedKnowledgeBase().catch(err => logger.error("[Startup] Error seeding knowledge base", { error: err instanceof Error ? err.message : String(err) }));
     } else {
-      console.log("[Startup] Knowledge base already seeded");
+      logger.info("Knowledge base already seeded");
     }
   });
 }

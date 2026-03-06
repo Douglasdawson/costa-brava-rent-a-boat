@@ -16,6 +16,7 @@ import {
   generateTopicQueue,
   SUPPORTED_LANGUAGES,
 } from "./blogTopicEngine.js";
+import { logger } from "../lib/logger";
 
 // ---------------------------------------------------------------------------
 // Types
@@ -566,7 +567,7 @@ async function fetchUnsplashImage(keywords: string[]): Promise<string | null> {
 
     return null;
   } catch (error) {
-    console.log("[BlogAutopilot] Unsplash fetch error:", error);
+    logger.warn("BlogAutopilot Unsplash fetch error", { error: error instanceof Error ? error.message : String(error) });
     return null;
   }
 }
@@ -836,10 +837,11 @@ export async function runAutopilotPipeline(
 
     // Step 6: If SEO score too low, retry generation once
     if (seoResult.score < config.minSeoScore) {
-      console.log(
-        `[BlogAutopilot] SEO score ${seoResult.score} below minimum ${config.minSeoScore}, retrying...`
-      );
-      console.log(`[BlogAutopilot] Issues: ${seoResult.issues.join(", ")}`);
+      logger.info("BlogAutopilot SEO score below minimum, retrying", {
+        score: seoResult.score,
+        minScore: config.minSeoScore,
+        issues: seoResult.issues,
+      });
 
       const retryResult = await generateArticle(
         client,
@@ -1013,6 +1015,6 @@ export async function publishMatureDrafts(): Promise<number> {
       .where(eq(schema.blogPosts.id, draftId));
   }
 
-  console.log(`[BlogAutopilot] Published ${draftIds.length} mature draft(s)`);
+  logger.info("BlogAutopilot published mature drafts", { count: draftIds.length });
   return draftIds.length;
 }

@@ -95,6 +95,9 @@ export interface IStorage {
   updateBookingPaymentStatus(id: string, status: string, stripePaymentIntentId?: string): Promise<Booking | undefined>;
   updateBookingWhatsAppStatus(id: string, confirmationSent?: boolean, reminderSent?: boolean): Promise<Booking | undefined>;
   getAllBookings(): Promise<Booking[]>;
+  getConfirmedBookings(): Promise<Booking[]>;
+  getConfirmedBookingsWithEmail(): Promise<Booking[]>;
+  getBookingsByCustomer(customerId: string, email: string | null, phone: string | null): Promise<Booking[]>;
   getBookingByCancelationToken(token: string): Promise<Booking | undefined>;
   cancelBookingByToken(token: string): Promise<{ booking: Booking; refundAmount: number; refundPercentage: number } | undefined>;
   getPaginatedBookings(params: {
@@ -110,6 +113,7 @@ export interface IStorage {
   getBookingExtras(bookingId: string): Promise<BookingExtra[]>;
   getMonthlyBookings(boatId: string, year: number, month: number): Promise<Booking[]>;
   checkAvailability(boatId: string, startTime: Date, endTime: Date): Promise<boolean>;
+  checkAvailabilityAndCreateBooking(boatId: string, startTime: Date, endTime: Date, bookingData: InsertBooking): Promise<{ available: true; booking: Booking } | { available: false; booking: null }>;
   cleanupExpiredHolds(): Promise<number>;
   getOverlappingBookingsWithBuffer(boatId: string, startTime: Date, endTime: Date): Promise<Booking[]>;
 

@@ -129,9 +129,19 @@ app.set('trust proxy', 1);
 // Enable ETag for better caching (default is weak ETag)
 app.set('etag', 'strong');
 
-// Optimize JSON parsing
-app.use(express.json({ limit: '1mb' }));
-app.use(express.urlencoded({ extended: false, limit: '1mb' }));
+// Optimize JSON parsing — skip for Stripe webhook (needs raw body for signature verification)
+app.use((req: Request, res: Response, next: NextFunction) => {
+  if (req.path === '/api/stripe-webhook') {
+    return next();
+  }
+  express.json({ limit: '1mb' })(req, res, next);
+});
+app.use((req: Request, res: Response, next: NextFunction) => {
+  if (req.path === '/api/stripe-webhook') {
+    return next();
+  }
+  express.urlencoded({ extended: false, limit: '1mb' })(req, res, next);
+});
 
 app.use(compression({
   filter: (req: Request, res: Response) => {

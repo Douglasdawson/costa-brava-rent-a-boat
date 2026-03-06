@@ -73,7 +73,7 @@ export async function createBlogPost(insertPost: InsertBlogPost): Promise<BlogPo
 }
 
 export async function updateBlogPost(id: string, updates: Partial<InsertBlogPost>): Promise<BlogPost | undefined> {
-  const updateData: any = { ...updates, updatedAt: new Date() };
+  const updateData: Record<string, unknown> = { ...updates, updatedAt: new Date() };
 
   if (updates.isPublished === true) {
     const existing = await getBlogPost(id);

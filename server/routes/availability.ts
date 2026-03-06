@@ -114,10 +114,7 @@ export function registerAvailabilityRoutes(app: Express) {
         return res.status(401).json({ message: "Token inválido" });
       }
 
-      const allBookings = await storage.getAllBookings();
-      const confirmedBookings = allBookings.filter(
-        (b) => b.bookingStatus === "confirmed"
-      );
+      const confirmedBookings = await storage.getConfirmedBookings();
 
       const boats = await storage.getAllBoats();
       const boatMap = new Map(boats.map((b) => [b.id, b.name]));

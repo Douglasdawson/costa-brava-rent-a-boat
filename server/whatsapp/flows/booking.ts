@@ -283,9 +283,10 @@ export async function createBookingFromSession(
     }
 
     return { success: true, bookingId: booking.id };
-  } catch (error: any) {
-    console.error("[Booking] Error creating booking:", error.message);
-    return { success: false, error: error.message };
+  } catch (error: unknown) {
+    const errorMsg = error instanceof Error ? error.message : String(error);
+    console.error("[Booking] Error creating booking:", errorMsg);
+    return { success: false, error: errorMsg };
   }
 }
 

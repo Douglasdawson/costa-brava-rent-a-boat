@@ -10,6 +10,7 @@ import Anthropic from "@anthropic-ai/sdk";
 import { desc, sql, count, eq, gte, and } from "drizzle-orm";
 import { db } from "../mcp/shared/db.js";
 import * as schema from "../../shared/schema.js";
+import { logger } from "../lib/logger";
 
 // ---------------------------------------------------------------------------
 // Constants
@@ -568,7 +569,7 @@ export async function findPostToRefresh(): Promise<{
 
     return postsWithVisits[0] ?? null;
   } catch (error) {
-    console.log("[BlogTopicEngine] findPostToRefresh error:", error);
+    logger.warn("BlogTopicEngine findPostToRefresh error", { error: error instanceof Error ? error.message : String(error) });
     return null;
   }
 }

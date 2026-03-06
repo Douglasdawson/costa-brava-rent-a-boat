@@ -276,7 +276,7 @@ export function ReportsTab({ adminToken }: ReportsTabProps) {
                         <CartesianGrid strokeDasharray="3 3" />
                         <XAxis dataKey="name" fontSize={12} />
                         <YAxis fontSize={12} />
-                        <Tooltip formatter={(value: number | undefined) => value !== undefined ? `${value.toFixed(0)} EUR` : ""} />
+                        <Tooltip formatter={(value: number | undefined) => value !== undefined ? `\u20AC${value.toFixed(2)}` : ""} />
                         <Bar dataKey="revenue" name="Ingresos" fill="hsl(var(--chart-1))" radius={[4, 4, 0, 0]} />
                         <Bar dataKey="maintenance" name="Mantenimiento" fill="hsl(var(--chart-2))" radius={[4, 4, 0, 0]} />
                       </BarChart>
@@ -316,9 +316,9 @@ export function ReportsTab({ adminToken }: ReportsTabProps) {
                                 {boat.utilization}%
                               </Badge>
                             </TableCell>
-                            <TableCell className="text-right">{boat.revenue.toFixed(0)} EUR</TableCell>
-                            <TableCell className="text-right text-red-600">{boat.maintenanceCost.toFixed(0)} EUR</TableCell>
-                            <TableCell className="text-right font-medium">{boat.netRevenue.toFixed(0)} EUR</TableCell>
+                            <TableCell className="text-right">{"\u20AC"}{boat.revenue.toFixed(2)}</TableCell>
+                            <TableCell className="text-right text-red-600">{"\u20AC"}{boat.maintenanceCost.toFixed(2)}</TableCell>
+                            <TableCell className="text-right font-medium">{"\u20AC"}{boat.netRevenue.toFixed(2)}</TableCell>
                           </TableRow>
                         ))}
                         {fleetData.length > 0 && (
@@ -327,9 +327,9 @@ export function ReportsTab({ adminToken }: ReportsTabProps) {
                             <TableCell className="text-right">{fleetData.reduce((s, b) => s + b.bookings, 0)}</TableCell>
                             <TableCell className="text-right">{fleetData.reduce((s, b) => s + b.hours, 0)}h</TableCell>
                             <TableCell className="text-right">-</TableCell>
-                            <TableCell className="text-right">{fleetData.reduce((s, b) => s + b.revenue, 0).toFixed(0)} EUR</TableCell>
-                            <TableCell className="text-right text-red-600">{fleetData.reduce((s, b) => s + b.maintenanceCost, 0).toFixed(0)} EUR</TableCell>
-                            <TableCell className="text-right">{fleetData.reduce((s, b) => s + b.netRevenue, 0).toFixed(0)} EUR</TableCell>
+                            <TableCell className="text-right">{"\u20AC"}{fleetData.reduce((s, b) => s + b.revenue, 0).toFixed(2)}</TableCell>
+                            <TableCell className="text-right text-red-600">{"\u20AC"}{fleetData.reduce((s, b) => s + b.maintenanceCost, 0).toFixed(2)}</TableCell>
+                            <TableCell className="text-right">{"\u20AC"}{fleetData.reduce((s, b) => s + b.netRevenue, 0).toFixed(2)}</TableCell>
                           </TableRow>
                         )}
                       </TableBody>
@@ -387,7 +387,7 @@ export function ReportsTab({ adminToken }: ReportsTabProps) {
                             </Badge>
                           </TableCell>
                           <TableCell className="text-right">{customer.totalBookings}</TableCell>
-                          <TableCell className="text-right font-medium">{parseFloat(customer.totalSpent).toFixed(0)} EUR</TableCell>
+                          <TableCell className="text-right font-medium">{"\u20AC"}{parseFloat(customer.totalSpent).toFixed(2)}</TableCell>
                         </TableRow>
                       ))}
                     </TableBody>
@@ -429,7 +429,7 @@ export function ReportsTab({ adminToken }: ReportsTabProps) {
                 <Card>
                   <CardContent className="p-4 text-center">
                     <p className="text-sm text-muted-foreground">Coste Total</p>
-                    <p className="text-2xl font-bold">{maintSummary.totalCost.toFixed(0)} EUR</p>
+                    <p className="text-2xl font-bold">{"\u20AC"}{maintSummary.totalCost.toFixed(2)}</p>
                   </CardContent>
                 </Card>
               </div>

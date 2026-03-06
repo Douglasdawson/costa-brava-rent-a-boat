@@ -34,7 +34,7 @@ import { queryClient } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
 import { format } from "date-fns";
 import type { CrmCustomerData } from "./types";
-import type { Booking } from "@shared/schema";
+import type { Booking, Boat } from "@shared/schema";
 import { getStatusColor, getStatusLabel } from "./constants";
 
 interface CustomerDetailResponse {
@@ -70,6 +70,9 @@ export function CustomerDetailModal({
   onOpenWhatsApp,
 }: CustomerDetailModalProps) {
   const { toast } = useToast();
+  const { data: boats = [] } = useQuery<Boat[]>({ queryKey: ["/api/boats"] });
+  const boatName = (id: string) => boats.find(b => b.id === id)?.name || id;
+
   const [editNotes, setEditNotes] = useState("");
   const [editDocumentId, setEditDocumentId] = useState("");
   const [editSegment, setEditSegment] = useState("");
@@ -375,7 +378,7 @@ export function CustomerDetailModal({
                           <TableCell className="text-xs">
                             {format(new Date(booking.startTime), "dd/MM/yy")}
                           </TableCell>
-                          <TableCell className="text-xs">{booking.boatId}</TableCell>
+                          <TableCell className="text-xs">{boatName(booking.boatId)}</TableCell>
                           <TableCell className="text-xs">{booking.totalHours}h</TableCell>
                           <TableCell className="text-xs font-medium">
                             {"\u20AC"}{parseFloat(booking.totalAmount).toFixed(2)}

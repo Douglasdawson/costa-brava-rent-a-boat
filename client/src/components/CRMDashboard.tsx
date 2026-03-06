@@ -61,6 +61,12 @@ export default function CRMDashboard({ adminToken }: CRMDashboardProps) {
   const [showBookingDetails, setShowBookingDetails] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [isCreatingBooking, setIsCreatingBooking] = useState(false);
+  const [bookingPrefillData, setBookingPrefillData] = useState<{
+    boatId: string;
+    startTime: string;
+    endTime: string;
+    totalHours: number;
+  } | null>(null);
 
   const { toast } = useToast();
 
@@ -80,19 +86,28 @@ export default function CRMDashboard({ adminToken }: CRMDashboardProps) {
   // Handle new booking button
   const handleNewBooking = useCallback(() => {
     setSelectedBooking(null);
+    setBookingPrefillData(null);
     setIsCreatingBooking(true);
     setIsEditing(true);
     setShowBookingDetails(true);
   }, []);
 
   // Handle new booking with pre-filled data from calendar slot click
-  const handleNewBookingWithData = useCallback((_data: {
+  const handleNewBookingWithData = useCallback((data: {
     boatId: string;
     startTime: string;
     endTime: string;
   }) => {
-    // Open create booking modal - data is for future form pre-fill support
+    const start = new Date(data.startTime);
+    const end = new Date(data.endTime);
+    const totalHours = Math.round((end.getTime() - start.getTime()) / (1000 * 60 * 60));
     setSelectedBooking(null);
+    setBookingPrefillData({
+      boatId: data.boatId,
+      startTime: data.startTime,
+      endTime: data.endTime,
+      totalHours: Math.max(1, totalHours),
+    });
     setIsCreatingBooking(true);
     setIsEditing(true);
     setShowBookingDetails(true);
@@ -368,11 +383,13 @@ export default function CRMDashboard({ adminToken }: CRMDashboardProps) {
         booking={selectedBooking}
         isEditing={isEditing}
         isCreating={isCreatingBooking}
+        prefillData={bookingPrefillData}
         adminToken={adminToken}
         onEditStart={() => setIsEditing(true)}
         onEditCancel={() => {
           setIsEditing(false);
           setIsCreatingBooking(false);
+          setBookingPrefillData(null);
         }}
         onOpenWhatsApp={openWhatsApp}
       />

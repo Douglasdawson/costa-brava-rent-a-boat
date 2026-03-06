@@ -35,6 +35,16 @@ import {
   TabsTrigger,
 } from "@/components/ui/tabs";
 import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
+import {
   Wrench,
   FileText,
   Plus,
@@ -130,6 +140,8 @@ export function MaintenanceTab({ adminToken }: MaintenanceTabProps) {
   const { toast } = useToast();
   const [activeSubTab, setActiveSubTab] = useState("maintenance");
   const [filterBoat, setFilterBoat] = useState<string>("all");
+  const [deleteMaintTarget, setDeleteMaintTarget] = useState<string | null>(null);
+  const [deleteDocTarget, setDeleteDocTarget] = useState<string | null>(null);
 
   // Maintenance dialog
   const [showMaintenanceDialog, setShowMaintenanceDialog] = useState(false);
@@ -496,7 +508,7 @@ export function MaintenanceTab({ adminToken }: MaintenanceTabProps) {
                           <TableCell>{TYPE_LABELS[log.type] || log.type}</TableCell>
                           <TableCell className="max-w-[200px] truncate">{log.description}</TableCell>
                           <TableCell>{format(new Date(log.date), "dd/MM/yyyy")}</TableCell>
-                          <TableCell>{log.cost ? `${log.cost} EUR` : "-"}</TableCell>
+                          <TableCell>{log.cost ? `\u20AC${parseFloat(log.cost).toFixed(2)}` : "-"}</TableCell>
                           <TableCell>
                             <Badge className={STATUS_COLORS[log.status] || ""}>
                               {STATUS_LABELS[log.status] || log.status}
@@ -511,7 +523,7 @@ export function MaintenanceTab({ adminToken }: MaintenanceTabProps) {
                                 size="icon"
                                 variant="ghost"
                                 onClick={() => {
-                                  if (confirm("Eliminar este registro?")) deleteMaintMutation.mutate(log.id);
+                                  setDeleteMaintTarget(log.id);
                                 }}
                               >
                                 <Trash2 className="w-4 h-4" />
@@ -542,7 +554,7 @@ export function MaintenanceTab({ adminToken }: MaintenanceTabProps) {
                       <p className="text-sm mb-2">{log.description}</p>
                       <div className="flex justify-between items-center text-sm text-muted-foreground">
                         <span>{format(new Date(log.date), "dd/MM/yyyy")}</span>
-                        <span>{log.cost ? `${log.cost} EUR` : ""}</span>
+                        <span>{log.cost ? `\u20AC${parseFloat(log.cost).toFixed(2)}` : ""}</span>
                       </div>
                       <div className="flex justify-end gap-1 mt-2">
                         <Button size="sm" variant="ghost" onClick={() => openEditMaintenance(log)}>
@@ -552,7 +564,7 @@ export function MaintenanceTab({ adminToken }: MaintenanceTabProps) {
                           size="sm"
                           variant="ghost"
                           onClick={() => {
-                            if (confirm("Eliminar?")) deleteMaintMutation.mutate(log.id);
+                            setDeleteMaintTarget(log.id);
                           }}
                         >
                           <Trash2 className="w-4 h-4" />
@@ -624,7 +636,7 @@ export function MaintenanceTab({ adminToken }: MaintenanceTabProps) {
                                 size="icon"
                                 variant="ghost"
                                 onClick={() => {
-                                  if (confirm("Eliminar este documento?")) deleteDocMutation.mutate(doc.id);
+                                  setDeleteDocTarget(doc.id);
                                 }}
                               >
                                 <Trash2 className="w-4 h-4" />
@@ -663,7 +675,7 @@ export function MaintenanceTab({ adminToken }: MaintenanceTabProps) {
                           size="sm"
                           variant="ghost"
                           onClick={() => {
-                            if (confirm("Eliminar?")) deleteDocMutation.mutate(doc.id);
+                            setDeleteDocTarget(doc.id);
                           }}
                         >
                           <Trash2 className="w-4 h-4" />
@@ -738,7 +750,7 @@ export function MaintenanceTab({ adminToken }: MaintenanceTabProps) {
                 />
               </div>
               <div>
-                <Label>Coste (EUR)</Label>
+                <Label>Coste ({"\u20AC"})</Label>
                 <Input
                   type="number"
                   step="0.01"
@@ -863,6 +875,40 @@ export function MaintenanceTab({ adminToken }: MaintenanceTabProps) {
           </DialogFooter>
         </DialogContent>
       </Dialog>
+
+      <AlertDialog open={!!deleteMaintTarget} onOpenChange={(open) => !open && setDeleteMaintTarget(null)}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Eliminar registro de mantenimiento</AlertDialogTitle>
+            <AlertDialogDescription>
+              Estas seguro de eliminar este registro? Esta accion no se puede deshacer.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Cancelar</AlertDialogCancel>
+            <AlertDialogAction onClick={() => { deleteMaintMutation.mutate(deleteMaintTarget!); setDeleteMaintTarget(null); }}>
+              Eliminar
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+
+      <AlertDialog open={!!deleteDocTarget} onOpenChange={(open) => !open && setDeleteDocTarget(null)}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Eliminar documento</AlertDialogTitle>
+            <AlertDialogDescription>
+              Estas seguro de eliminar este documento? Esta accion no se puede deshacer.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Cancelar</AlertDialogCancel>
+            <AlertDialogAction onClick={() => { deleteDocMutation.mutate(deleteDocTarget!); setDeleteDocTarget(null); }}>
+              Eliminar
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 }

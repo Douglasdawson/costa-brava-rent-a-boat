@@ -1,6 +1,16 @@
 import { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
 import { Badge } from "@/components/ui/badge";
 import {
   Plus,
@@ -95,7 +105,7 @@ function SortableBoatRow({
           {boat.requiresLicense ? "Requerida" : "No requerida"}
         </Badge>
       </TableCell>
-      <TableCell>€{boat.deposit}</TableCell>
+      <TableCell>{"\u20AC"}{boat.deposit}</TableCell>
       <TableCell>
         <Badge variant={boat.isActive ? "default" : "secondary"}>
           {boat.isActive ? "Activo" : "Inactivo"}
@@ -115,11 +125,7 @@ function SortableBoatRow({
             <Button
               size="icon"
               variant="ghost"
-              onClick={() => {
-                if (confirm(`¿Estás seguro de desactivar ${boat.name}?`)) {
-                  onDelete(boat.id);
-                }
-              }}
+              onClick={() => onDelete(boat.id)}
               data-testid={`button-delete-boat-${boat.id}`}
             >
               <Trash2 className="w-4 h-4" />
@@ -174,11 +180,7 @@ function SortableBoatCard({
                   <Button
                     size="icon"
                     variant="ghost"
-                    onClick={() => {
-                      if (confirm(`¿Estás seguro de desactivar ${boat.name}?`)) {
-                        onDelete(boat.id);
-                      }
-                    }}
+                    onClick={() => onDelete(boat.id)}
                     data-testid={`button-delete-boat-${boat.id}`}
                   >
                     <Trash2 className="w-4 h-4" />
@@ -201,7 +203,7 @@ function SortableBoatCard({
               </div>
               <div>
                 <span className="text-muted-foreground">Depósito:</span>
-                <span className="ml-1 font-medium">€{boat.deposit}</span>
+                <span className="ml-1 font-medium">{"\u20AC"}{boat.deposit}</span>
               </div>
             </div>
           </div>
@@ -215,6 +217,7 @@ export function FleetManagement({ adminToken }: FleetManagementProps) {
   const [showBoatDialog, setShowBoatDialog] = useState(false);
   const [editingBoat, setEditingBoat] = useState<any | null>(null);
   const [featuresText, setFeaturesText] = useState("");
+  const [deactivateTarget, setDeactivateTarget] = useState<{ id: string; name: string } | null>(null);
   const [selectedEquipment, setSelectedEquipment] = useState<string[]>([]);
   const [selectedIncluded, setSelectedIncluded] = useState<string[]>([]);
   const [orderedBoats, setOrderedBoats] = useState<any[]>([]);
@@ -635,7 +638,10 @@ export function FleetManagement({ adminToken }: FleetManagementProps) {
                           key={boat.id}
                           boat={boat}
                           onEdit={handleEditBoat}
-                          onDelete={id => deleteBoatMutation.mutate(id)}
+                          onDelete={id => {
+                            const target = orderedBoats.find(b => b.id === id);
+                            setDeactivateTarget({ id, name: target?.name || id });
+                          }}
                         />
                       ))}
                     </SortableContext>
@@ -664,7 +670,10 @@ export function FleetManagement({ adminToken }: FleetManagementProps) {
                     key={boat.id}
                     boat={boat}
                     onEdit={handleEditBoat}
-                    onDelete={id => deleteBoatMutation.mutate(id)}
+                    onDelete={id => {
+                      const target = orderedBoats.find(b => b.id === id);
+                      setDeactivateTarget({ id, name: target?.name || id });
+                    }}
                   />
                 ))}
               </SortableContext>
@@ -788,7 +797,7 @@ export function FleetManagement({ adminToken }: FleetManagementProps) {
                   />
                 </div>
                 <div>
-                  <Label htmlFor="deposit">Depósito (€) *</Label>
+                  <Label htmlFor="deposit">Depósito ({"\u20AC"}) *</Label>
                   <Input
                     id="deposit"
                     {...boatForm.register("deposit")}
@@ -890,7 +899,7 @@ export function FleetManagement({ adminToken }: FleetManagementProps) {
                 <div>
                   <Label>Fianza</Label>
                   <Input
-                    placeholder="300€"
+                    placeholder="300"
                     {...boatForm.register("specifications.deposit")}
                     data-testid="input-spec-fianza"
                   />
@@ -1415,6 +1424,23 @@ export function FleetManagement({ adminToken }: FleetManagementProps) {
           </form>
         </DialogContent>
       </Dialog>
+
+      <AlertDialog open={!!deactivateTarget} onOpenChange={(open) => !open && setDeactivateTarget(null)}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Confirmar desactivacion</AlertDialogTitle>
+            <AlertDialogDescription>
+              Estas seguro de desactivar {deactivateTarget?.name}? El barco dejara de estar disponible para reservas.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Cancelar</AlertDialogCancel>
+            <AlertDialogAction onClick={() => { deleteBoatMutation.mutate(deactivateTarget!.id); setDeactivateTarget(null); }}>
+              Desactivar
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 }

@@ -13,6 +13,16 @@ import {
   DialogDescription,
   DialogFooter,
 } from "@/components/ui/dialog";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
 import { Percent, Plus, X, Megaphone, Loader2 } from "lucide-react";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { useToast } from "@/hooks/use-toast";
@@ -50,6 +60,8 @@ interface DiscountManagementProps {
 export function DiscountManagement({ adminToken }: DiscountManagementProps) {
   const [showCreateDialog, setShowCreateDialog] = useState(false);
   const [showCampaignResults, setShowCampaignResults] = useState(false);
+  const [showCampaignConfirm, setShowCampaignConfirm] = useState(false);
+  const [deactivateCodeId, setDeactivateCodeId] = useState<string | null>(null);
   const [campaignData, setCampaignData] = useState<CampaignResult | null>(null);
   const [filter, setFilter] = useState<string>("all");
   const { toast } = useToast();
@@ -175,9 +187,7 @@ export function DiscountManagement({ adminToken }: DiscountManagementProps) {
   };
 
   const handleLaunchCampaign = () => {
-    if (confirm("Esto generara codigos de descuento del 10% para todos los clientes con reservas confirmadas. Continuar?")) {
-      campaignMutation.mutate();
-    }
+    setShowCampaignConfirm(true);
   };
 
   // Filter codes
@@ -334,11 +344,7 @@ export function DiscountManagement({ adminToken }: DiscountManagementProps) {
                               size="sm"
                               variant="ghost"
                               className="text-red-500"
-                              onClick={() => {
-                                if (confirm("Desactivar este codigo de descuento?")) {
-                                  deactivateMutation.mutate(code.id);
-                                }
-                              }}
+                              onClick={() => setDeactivateCodeId(code.id)}
                               disabled={deactivateMutation.isPending}
                             >
                               <X className="w-3 h-3" />
@@ -484,6 +490,40 @@ export function DiscountManagement({ adminToken }: DiscountManagementProps) {
           </DialogFooter>
         </DialogContent>
       </Dialog>
+
+      <AlertDialog open={showCampaignConfirm} onOpenChange={setShowCampaignConfirm}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Lanzar campana pre-temporada</AlertDialogTitle>
+            <AlertDialogDescription>
+              Esto generara codigos de descuento del 10% para todos los clientes con reservas confirmadas. Esta accion no se puede deshacer.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Cancelar</AlertDialogCancel>
+            <AlertDialogAction onClick={() => { campaignMutation.mutate(); setShowCampaignConfirm(false); }}>
+              Continuar
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+
+      <AlertDialog open={!!deactivateCodeId} onOpenChange={(open) => !open && setDeactivateCodeId(null)}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Desactivar codigo de descuento</AlertDialogTitle>
+            <AlertDialogDescription>
+              El codigo dejara de ser valido para futuras reservas. Esta accion no se puede deshacer.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Cancelar</AlertDialogCancel>
+            <AlertDialogAction onClick={() => { deactivateMutation.mutate(deactivateCodeId!); setDeactivateCodeId(null); }}>
+              Desactivar
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 }

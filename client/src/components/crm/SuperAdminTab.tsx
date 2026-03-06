@@ -219,7 +219,7 @@ export function SuperAdminTab({ adminToken }: SuperAdminTabProps) {
                 <Euro className="w-4 h-4 text-primary" />
                 <span className="text-xs text-muted-foreground font-medium">MRR estimado</span>
               </div>
-              <p className="text-2xl font-bold text-primary">{stats.mrrEstimate.toLocaleString("es-ES")} €</p>
+              <p className="text-2xl font-bold text-primary">{"\u20AC"}{stats.mrrEstimate.toLocaleString("es-ES")}</p>
               <p className="text-xs text-muted-foreground mt-0.5">por mes</p>
             </CardContent>
           </Card>
@@ -243,7 +243,7 @@ export function SuperAdminTab({ adminToken }: SuperAdminTabProps) {
                     {PLAN_CONFIG[plan]?.label || plan}
                   </Badge>
                   <span className="text-lg font-bold text-foreground">{count}</span>
-                  <span className="text-xs text-muted-foreground">× {PLAN_CONFIG[plan]?.price}€</span>
+                  <span className="text-xs text-muted-foreground">{"× "}{"\u20AC"}{PLAN_CONFIG[plan]?.price}</span>
                 </div>
               ))}
             </div>

@@ -23,7 +23,7 @@ import {
 import { useQuery } from "@tanstack/react-query";
 import { format, formatDistanceToNow } from "date-fns";
 import { es } from "date-fns/locale";
-import type { Booking } from "@shared/schema";
+import type { Booking, Boat } from "@shared/schema";
 import { getStatusColor, getStatusLabel } from "./constants";
 import {
   AreaChart,
@@ -283,6 +283,9 @@ export function DashboardTab({
   onViewBooking,
   onEditBooking,
 }: DashboardTabProps) {
+  const { data: boats = [] } = useQuery<Boat[]>({ queryKey: ["/api/boats"] });
+  const boatName = (id: string) => boats.find(b => b.id === id)?.name || id;
+
   const fetcher = buildFetcher<DashboardStats>(adminToken);
   const arrayFetcher = buildFetcher<RevenueTrendPoint[]>(adminToken);
   const boatsFetcher = buildFetcher<BoatPerformance[]>(adminToken);
@@ -855,7 +858,7 @@ export function DashboardTab({
                         {activityText}
                       </p>
                       <p className="text-xs text-muted-foreground">
-                        {booking.boatId} -- {"\u20AC"}{booking.totalAmount}
+                        {boatName(booking.boatId)} -- {"\u20AC"}{booking.totalAmount}
                       </p>
                     </div>
                     <span className="text-xs text-muted-foreground whitespace-nowrap flex-shrink-0">

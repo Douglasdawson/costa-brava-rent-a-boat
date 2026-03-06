@@ -527,7 +527,12 @@ function CalendarSkeleton({ view }: { view: CalendarView }) {
 
 // ---- Booking Tooltip Content ----
 
+function bookingBoatName(booking: Booking, boats: Boat[]): string {
+  return boats.find(b => b.id === booking.boatId)?.name || booking.boatId;
+}
+
 function BookingTooltipContent({ booking }: { booking: Booking }) {
+  const { data: boats = [] } = useQuery<Boat[]>({ queryKey: ["/api/boats"] });
   const start = new Date(booking.startTime);
   const end = new Date(booking.endTime);
   const durationMinutes = differenceInMinutes(end, start);
@@ -543,7 +548,7 @@ function BookingTooltipContent({ booking }: { booking: Booking }) {
       <p className="text-muted-foreground">
         {format(start, "HH:mm")} - {format(end, "HH:mm")} ({durationStr})
       </p>
-      <p className="text-muted-foreground">Barco: {booking.boatId}</p>
+      <p className="text-muted-foreground">Barco: {bookingBoatName(booking, boats)}</p>
       <div className="flex items-center gap-1.5 pt-0.5">
         <span
           className={`w-2 h-2 rounded-full ${STATUS_DOT_COLORS[booking.bookingStatus] || "bg-muted-foreground/40"}`}

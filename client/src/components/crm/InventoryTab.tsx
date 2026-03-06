@@ -35,6 +35,16 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
+import {
   Package,
   Plus,
   Edit,
@@ -105,6 +115,7 @@ const MOVEMENT_LABELS: Record<string, { label: string; icon: typeof ArrowUpCircl
 export function InventoryTab({ adminToken }: InventoryTabProps) {
   const { toast } = useToast();
   const [filterCategory, setFilterCategory] = useState<string>("all");
+  const [deleteTarget, setDeleteTarget] = useState<{ id: string; name: string } | null>(null);
 
   // Item dialog
   const [showItemDialog, setShowItemDialog] = useState(false);
@@ -402,7 +413,7 @@ export function InventoryTab({ adminToken }: InventoryTabProps) {
                   </div>
 
                   {item.pricePerUnit && (
-                    <p className="text-sm text-muted-foreground mb-3">Precio: {item.pricePerUnit} EUR/ud</p>
+                    <p className="text-sm text-muted-foreground mb-3">Precio: {"\u20AC"}{parseFloat(item.pricePerUnit).toFixed(2)}/ud</p>
                   )}
 
                   <div className="flex gap-1">
@@ -419,9 +430,7 @@ export function InventoryTab({ adminToken }: InventoryTabProps) {
                     <Button
                       size="sm"
                       variant="ghost"
-                      onClick={() => {
-                        if (confirm(`Eliminar ${item.name}?`)) deleteItemMutation.mutate(item.id);
-                      }}
+                      onClick={() => setDeleteTarget({ id: item.id, name: item.name })}
                     >
                       <Trash2 className="w-4 h-4" />
                     </Button>
@@ -471,7 +480,7 @@ export function InventoryTab({ adminToken }: InventoryTabProps) {
                 </Select>
               </div>
               <div>
-                <Label>Precio/ud (EUR)</Label>
+                <Label>Precio/ud ({"\u20AC"})</Label>
                 <Input
                   type="number"
                   step="0.01"
@@ -636,6 +645,23 @@ export function InventoryTab({ adminToken }: InventoryTabProps) {
           )}
         </SheetContent>
       </Sheet>
+
+      <AlertDialog open={!!deleteTarget} onOpenChange={(open) => !open && setDeleteTarget(null)}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Eliminar item del inventario</AlertDialogTitle>
+            <AlertDialogDescription>
+              Estas seguro de eliminar {deleteTarget?.name}? Esta accion no se puede deshacer.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Cancelar</AlertDialogCancel>
+            <AlertDialogAction onClick={() => { deleteItemMutation.mutate(deleteTarget!.id); setDeleteTarget(null); }}>
+              Eliminar
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 }

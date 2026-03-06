@@ -137,7 +137,7 @@ export function GiftCardManagement({ adminToken }: GiftCardManagementProps) {
         <Card>
           <CardContent className="p-4">
             <p className="text-sm text-muted-foreground">Ingresos Totales</p>
-            <p className="text-2xl font-bold">{totalRevenue.toFixed(2)}EUR</p>
+            <p className="text-2xl font-bold">{"\u20AC"}{totalRevenue.toFixed(2)}</p>
           </CardContent>
         </Card>
       </div>
@@ -171,10 +171,10 @@ export function GiftCardManagement({ adminToken }: GiftCardManagementProps) {
                       <TableCell className="font-mono font-bold">{card.code}</TableCell>
                       <TableCell>
                         <div>
-                          <span className="font-semibold">{parseFloat(card.amount).toFixed(0)}EUR</span>
+                          <span className="font-semibold">{"\u20AC"}{parseFloat(card.amount).toFixed(2)}</span>
                           {card.remainingAmount !== card.amount && (
                             <span className="text-xs text-muted-foreground block">
-                              Restante: {parseFloat(card.remainingAmount).toFixed(0)}EUR
+                              Restante: {"\u20AC"}{parseFloat(card.remainingAmount).toFixed(2)}
                             </span>
                           )}
                         </div>

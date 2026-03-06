@@ -22,7 +22,7 @@ import {
 } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { format } from "date-fns";
-import type { Booking } from "@shared/schema";
+import type { Booking, Boat } from "@shared/schema";
 import { getStatusColor, getStatusLabel } from "./constants";
 
 interface PaginatedBookingsResponse {
@@ -45,6 +45,9 @@ export function BookingsTab({
   onViewBooking,
   onOpenWhatsApp,
 }: BookingsTabProps) {
+  const { data: boats = [] } = useQuery<Boat[]>({ queryKey: ["/api/boats"] });
+  const boatName = (id: string) => boats.find(b => b.id === id)?.name || id;
+
   const [searchQuery, setSearchQuery] = useState("");
   const [debouncedSearch, setDebouncedSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState<string>("all");
@@ -199,7 +202,7 @@ export function BookingsTab({
                           <div className="text-xs">{booking.customerEmail}</div>
                         )}
                       </TableCell>
-                      <TableCell>{booking.boatId}</TableCell>
+                      <TableCell>{boatName(booking.boatId)}</TableCell>
                       <TableCell>{booking.totalHours}h</TableCell>
                       <TableCell className="font-semibold">
                         {"\u20AC"}{parseFloat(booking.totalAmount).toFixed(2)}
@@ -318,7 +321,7 @@ export function BookingsTab({
                   <div className="grid grid-cols-2 gap-2 text-sm border-t pt-3 mt-3">
                     <div>
                       <span className="text-muted-foreground">Barco:</span>
-                      <span className="ml-1 font-medium">{booking.boatId}</span>
+                      <span className="ml-1 font-medium">{boatName(booking.boatId)}</span>
                     </div>
                     <div className="text-right">
                       <span className="text-muted-foreground">Total:</span>

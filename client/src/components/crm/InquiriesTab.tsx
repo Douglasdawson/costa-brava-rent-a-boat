@@ -17,6 +17,16 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Textarea } from "@/components/ui/textarea";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import {
   Search,
@@ -83,6 +93,7 @@ export function InquiriesTab({ adminToken, onOpenWhatsApp }: InquiriesTabProps) 
   const [whatsAppMessage, setWhatsAppMessage] = useState("");
   const [sendingInProgress, setSendingInProgress] = useState(false);
   const [sendResult, setSendResult] = useState<{ type: "success" | "error"; message: string } | null>(null);
+  const [deleteInquiryId, setDeleteInquiryId] = useState<string | null>(null);
 
   const searchTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const queryClient = useQueryClient();
@@ -166,8 +177,7 @@ export function InquiriesTab({ adminToken, onOpenWhatsApp }: InquiriesTabProps) 
     }
   }, [sendingWhatsApp, whatsAppMessage, adminToken, queryClient]);
 
-  const deleteInquiry = useCallback(async (id: string) => {
-    if (!confirm("¿Eliminar esta petición? Esta acción no se puede deshacer.")) return;
+  const executeDeleteInquiry = useCallback(async (id: string) => {
     try {
       const res = await fetch(`/api/admin/booking-inquiries/${id}`, {
         method: 'DELETE',
@@ -307,7 +317,7 @@ export function InquiriesTab({ adminToken, onOpenWhatsApp }: InquiriesTabProps) 
                         </div>
                       </TableCell>
                       <TableCell className="font-medium text-sm">
-                        {inq.estimatedTotal ? `${inq.estimatedTotal}€` : '-'}
+                        {inq.estimatedTotal ? `\u20AC${inq.estimatedTotal}` : '-'}
                       </TableCell>
                       <TableCell>
                         <Select
@@ -373,7 +383,7 @@ export function InquiriesTab({ adminToken, onOpenWhatsApp }: InquiriesTabProps) 
                             variant="ghost"
                             size="sm"
                             className="h-7 w-7 p-0"
-                            onClick={() => deleteInquiry(inq.id)}
+                            onClick={() => setDeleteInquiryId(inq.id)}
                             title="Eliminar"
                           >
                             <Trash2 className="w-4 h-4 text-red-500" />
@@ -440,7 +450,7 @@ export function InquiriesTab({ adminToken, onOpenWhatsApp }: InquiriesTabProps) 
                     {inq.email && <a href={`mailto:${inq.email}`} className="block hover:text-blue-600 transition-colors"><Mail className="w-3 h-3 inline mr-1" />{inq.email}</a>}
                   </div>
                   {inq.estimatedTotal && (
-                    <div className="text-sm font-semibold">{inq.estimatedTotal}€</div>
+                    <div className="text-sm font-semibold">{"\u20AC"}{inq.estimatedTotal}</div>
                   )}
                   <div className="flex items-center gap-2">
                     <Select value={inq.status} onValueChange={(v) => updateInquiry(inq.id, { status: v })}>
@@ -543,7 +553,7 @@ export function InquiriesTab({ adminToken, onOpenWhatsApp }: InquiriesTabProps) 
                   <div className="bg-muted rounded-lg p-4 space-y-2">
                     <h4 className="font-heading font-semibold text-sm text-foreground/80 uppercase tracking-wide">Precio</h4>
                     <div className="grid grid-cols-2 gap-2 text-sm">
-                      <div className="text-lg font-bold">{inq.estimatedTotal ? `${inq.estimatedTotal}€` : 'No calculado'}</div>
+                      <div className="text-lg font-bold">{inq.estimatedTotal ? `\u20AC${inq.estimatedTotal}` : 'No calculado'}</div>
                       {inq.couponCode && (
                         <div className="flex items-center gap-1"><Tag className="w-3 h-3 text-muted-foreground/70" />Codigo: {inq.couponCode}</div>
                       )}
@@ -700,6 +710,23 @@ export function InquiriesTab({ adminToken, onOpenWhatsApp }: InquiriesTabProps) 
           </div>
         </div>
       )}
+
+      <AlertDialog open={!!deleteInquiryId} onOpenChange={(open) => !open && setDeleteInquiryId(null)}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Eliminar peticion</AlertDialogTitle>
+            <AlertDialogDescription>
+              Estas seguro de eliminar esta peticion? Esta accion no se puede deshacer.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Cancelar</AlertDialogCancel>
+            <AlertDialogAction onClick={() => { executeDeleteInquiry(deleteInquiryId!); setDeleteInquiryId(null); }}>
+              Eliminar
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 }

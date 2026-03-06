@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
@@ -20,6 +20,16 @@ import {
   DialogFooter,
 } from "@/components/ui/dialog";
 import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
+import {
   Eye,
   Edit,
   X,
@@ -34,12 +44,19 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { format } from "date-fns";
-import type { Booking } from "@shared/schema";
+import type { Booking, Boat } from "@shared/schema";
 import { queryClient } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
 import { getStatusColor, getStatusLabel } from "./constants";
 import { editBookingSchema, type EditBookingFormData, type CheckinData } from "./types";
 import { CheckinForm } from "./CheckinForm";
+
+interface BookingPrefillData {
+  boatId: string;
+  startTime: string;
+  endTime: string;
+  totalHours: number;
+}
 
 interface BookingDetailsModalProps {
   open: boolean;
@@ -47,6 +64,7 @@ interface BookingDetailsModalProps {
   booking: Booking | null;
   isEditing: boolean;
   isCreating: boolean;
+  prefillData?: BookingPrefillData | null;
   adminToken: string;
   onEditStart: () => void;
   onEditCancel: () => void;
@@ -59,14 +77,19 @@ export function BookingDetailsModal({
   booking,
   isEditing,
   isCreating,
+  prefillData,
   adminToken,
   onEditStart,
   onEditCancel,
   onOpenWhatsApp,
 }: BookingDetailsModalProps) {
   const { toast } = useToast();
+  const { data: boats = [] } = useQuery<Boat[]>({ queryKey: ["/api/boats"] });
+  const boatName = (id: string) => boats.find(b => b.id === id)?.name || id;
+
   const [showCheckinForm, setShowCheckinForm] = useState(false);
   const [checkinType, setCheckinType] = useState<"checkin" | "checkout">("checkin");
+  const [showCancelConfirm, setShowCancelConfirm] = useState(false);
 
   // Fetch check-ins for this booking
   const { data: bookingCheckins, isLoading: checkinsLoading } = useQuery<CheckinData[]>({
@@ -89,6 +112,33 @@ export function BookingDetailsModal({
   const editForm = useForm<EditBookingFormData>({
     resolver: zodResolver(editBookingSchema),
   });
+
+  // Pre-fill form when creating a booking from calendar slot click
+  useEffect(() => {
+    if (isCreating && open && prefillData) {
+      const startDate = new Date(prefillData.startTime);
+      const endDate = new Date(prefillData.endTime);
+      editForm.reset({
+        boatId: prefillData.boatId,
+        startTime: format(startDate, "yyyy-MM-dd'T'HH:mm"),
+        endTime: format(endDate, "yyyy-MM-dd'T'HH:mm"),
+        totalHours: prefillData.totalHours,
+        customerName: "",
+        customerSurname: "",
+        customerPhone: "",
+        customerEmail: "",
+        customerNationality: "",
+        numberOfPeople: 1,
+        subtotal: "0",
+        extrasTotal: "0",
+        deposit: "0",
+        totalAmount: "0",
+        bookingStatus: "confirmed",
+        paymentStatus: "pending",
+        notes: "",
+      });
+    }
+  }, [isCreating, open, prefillData, editForm]);
 
   // Populate form when entering edit mode
   const populateForm = (b: Booking) => {
@@ -251,12 +301,7 @@ export function BookingDetailsModal({
   };
 
   const handleCancel = () => {
-    if (booking && confirm("Estas seguro de que quieres cancelar esta reserva?")) {
-      updateBookingMutation.mutate({
-        bookingId: booking.id,
-        updates: { bookingStatus: "cancelled" }
-      });
-    }
+    setShowCancelConfirm(true);
   };
 
   const handleEditClick = () => {
@@ -323,7 +368,7 @@ export function BookingDetailsModal({
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
                 <div>
                   <p className="text-muted-foreground">Barco</p>
-                  <p className="font-medium">{booking.boatId}</p>
+                  <p className="font-medium">{boatName(booking.boatId)}</p>
                 </div>
                 <div>
                   <p className="text-muted-foreground">Fecha de Inicio</p>
@@ -628,11 +673,16 @@ export function BookingDetailsModal({
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <Label htmlFor="boatId">Barco</Label>
-                  <Input
-                    id="boatId"
-                    {...editForm.register("boatId")}
-                    data-testid="input-boat-id"
-                  />
+                  <Select value={editForm.watch("boatId")} onValueChange={(val) => editForm.setValue("boatId", val)}>
+                    <SelectTrigger data-testid="input-boat-id">
+                      <SelectValue placeholder="Seleccionar barco" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {boats.filter(b => b.isActive).map(b => (
+                        <SelectItem key={b.id} value={b.id}>{b.name}</SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
                 </div>
                 <div>
                   <Label htmlFor="totalHours">Horas Totales</Label>
@@ -802,6 +852,31 @@ export function BookingDetailsModal({
           }}
         />
       )}
+
+      <AlertDialog open={showCancelConfirm} onOpenChange={setShowCancelConfirm}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Cancelar reserva</AlertDialogTitle>
+            <AlertDialogDescription>
+              Estas seguro de que quieres cancelar esta reserva? Esta accion no se puede deshacer.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Volver</AlertDialogCancel>
+            <AlertDialogAction onClick={() => {
+              if (booking) {
+                updateBookingMutation.mutate({
+                  bookingId: booking.id,
+                  updates: { bookingStatus: "cancelled" }
+                });
+              }
+              setShowCancelConfirm(false);
+            }}>
+              Cancelar reserva
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </Dialog>
   );
 }

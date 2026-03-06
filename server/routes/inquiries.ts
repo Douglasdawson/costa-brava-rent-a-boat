@@ -1,9 +1,18 @@
 import type { Express } from "express";
+import rateLimit from "express-rate-limit";
 import { z } from "zod";
 import { storage } from "../storage";
 import { insertWhatsappInquirySchema, updateWhatsappInquirySchema } from "@shared/schema";
 import { requireAdminSession } from "./auth";
 import { sendMetaWhatsAppMessage, isMetaWhatsAppConfigured } from "../whatsapp/metaClient";
+
+const submitLimiter = rateLimit({
+  windowMs: 60 * 60 * 1000, // 1 hour
+  max: 5, // 5 submissions per hour per IP
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { message: "Demasiadas solicitudes. Intenta de nuevo mas tarde." },
+});
 
 const paginatedInquiriesQuerySchema = z.object({
   page: z.coerce.number().int().min(1).default(1),
@@ -14,7 +23,7 @@ const paginatedInquiriesQuerySchema = z.object({
 
 export function registerInquiryRoutes(app: Express) {
   // Public: save inquiry when user submits booking form
-  app.post("/api/booking-inquiries", async (req, res) => {
+  app.post("/api/booking-inquiries", submitLimiter, async (req, res) => {
     try {
       const parsed = insertWhatsappInquirySchema.safeParse(req.body);
       if (!parsed.success) {

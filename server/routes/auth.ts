@@ -52,11 +52,10 @@ const resetPasswordSchema = z.object({
 });
 
 // JWT secret - MUST be set via environment variable. No fallback allowed.
-if (!process.env.JWT_SECRET) {
+if (!process.env.JWT_SECRET || process.env.JWT_SECRET.length < 32) {
   throw new Error(
-    "FATAL: JWT_SECRET environment variable is not set. " +
-    "The server cannot start without a secure JWT secret. " +
-    "Set JWT_SECRET in your environment variables before starting the server."
+    "FATAL: JWT_SECRET must be set and at least 32 characters long. " +
+    "Generate with: node -e \"console.log(require('crypto').randomBytes(32).toString('hex'))\""
   );
 }
 const JWT_SECRET: string = process.env.JWT_SECRET;
@@ -995,7 +994,9 @@ export function registerAuthRoutes(app: Express) {
         return res.status(503).json({ message: "Admin access not configured" });
       }
 
-      if (pin !== adminPin) {
+      const pinBuffer = Buffer.from(String(pin || '').padEnd(64, '\0'));
+      const adminPinBuffer = Buffer.from(String(adminPin).padEnd(64, '\0'));
+      if (!crypto.timingSafeEqual(pinBuffer, adminPinBuffer)) {
         trackFailedAttempt(clientIp);
         return res.status(401).json({ message: "PIN incorrecto" });
       }

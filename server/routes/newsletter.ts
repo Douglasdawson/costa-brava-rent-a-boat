@@ -1,6 +1,15 @@
 import type { Express } from "express";
+import rateLimit from "express-rate-limit";
 import { z } from "zod";
 import { storage } from "../storage";
+
+const submitLimiter = rateLimit({
+  windowMs: 60 * 60 * 1000, // 1 hour
+  max: 5, // 5 submissions per hour per IP
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { message: "Demasiadas solicitudes. Intenta de nuevo mas tarde." },
+});
 
 const subscribeSchema = z.object({
   email: z.string().email({ message: "Email inválido" }),
@@ -9,7 +18,7 @@ const subscribeSchema = z.object({
 });
 
 export function registerNewsletterRoutes(app: Express) {
-  app.post("/api/newsletter/subscribe", async (req, res) => {
+  app.post("/api/newsletter/subscribe", submitLimiter, async (req, res) => {
     try {
       const parsed = subscribeSchema.safeParse(req.body);
       if (!parsed.success) {

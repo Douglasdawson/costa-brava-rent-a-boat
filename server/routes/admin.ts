@@ -634,7 +634,13 @@ export function registerAdminRoutes(app: Express) {
 
   // ===== IMAGE UPLOAD =====
 
-  app.get("/objects/:objectPath(*)", async (req, res) => {
+  app.get("/objects/:objectPath(*)", requireAdminSession, async (req, res) => {
+    const objectPath = req.params.objectPath;
+    // Reject path traversal attempts
+    if (objectPath.includes('..') || objectPath.includes('\0')) {
+      return res.status(400).json({ message: "Ruta no valida" });
+    }
+
     const objectStorageService = new ObjectStorageService();
     try {
       const objectFile = await objectStorageService.getObjectEntityFile(req.path);

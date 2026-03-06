@@ -236,13 +236,23 @@ app.use((req, res, next) => {
     res.status(404).json({ message: "Endpoint no encontrado" });
   });
 
+  // Global error handler
   app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
-    const status = err.status || err.statusCode || 500;
-    if (status >= 500) {
+    const statusCode = err.statusCode || err.status || 500;
+
+    if (statusCode >= 500) {
       Sentry.captureException(err);
     }
-    console.error("[Server] Unhandled error:", err.message || err);
-    res.status(status).json({ message: "Error interno del servidor" });
+
+    // Always log full error server-side
+    console.error("[Unhandled Error]", err.stack || err);
+
+    // Never expose internal details to client
+    const message = process.env.NODE_ENV === "development"
+      ? err.message || "Error interno del servidor"
+      : "Error interno del servidor";
+
+    res.status(statusCode).json({ message });
   });
 
   // importantly only setup vite in development and after

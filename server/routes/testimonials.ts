@@ -1,6 +1,15 @@
 import type { Express } from "express";
+import rateLimit from "express-rate-limit";
 import { storage } from "../storage";
 import { insertTestimonialSchema } from "@shared/schema";
+
+const submitLimiter = rateLimit({
+  windowMs: 60 * 60 * 1000, // 1 hour
+  max: 5, // 5 submissions per hour per IP
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { message: "Demasiadas solicitudes. Intenta de nuevo mas tarde." },
+});
 
 export function registerTestimonialRoutes(app: Express) {
   // Get all verified testimonials (public)
@@ -23,7 +32,7 @@ export function registerTestimonialRoutes(app: Express) {
   });
 
   // Create a new testimonial (public - will be unverified by default)
-  app.post("/api/testimonials", async (req, res) => {
+  app.post("/api/testimonials", submitLimiter, async (req, res) => {
     try {
       const parsed = insertTestimonialSchema.safeParse(req.body);
       if (!parsed.success) {

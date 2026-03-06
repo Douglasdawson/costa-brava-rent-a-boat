@@ -97,13 +97,13 @@ export function AdminLayout({
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-background">
       {/* Trial Banner */}
       {showTrialBanner && (
         <div className={`px-4 py-2 text-sm flex items-center justify-between ${
           trialDaysLeft! <= 3
-            ? "bg-red-50 border-b border-red-200 text-red-800"
-            : "bg-amber-50 border-b border-amber-200 text-amber-800"
+            ? "bg-destructive/10 border-b border-destructive/20 text-destructive"
+            : "bg-accent border-b border-accent-foreground/20 text-accent-foreground"
         }`}>
           <div className="flex items-center gap-2">
             <AlertCircle className="w-4 h-4 flex-shrink-0" />
@@ -118,8 +118,8 @@ export function AdminLayout({
             size="sm"
             className={`h-7 text-xs ${
               trialDaysLeft! <= 3
-                ? "border-red-400 text-red-700 hover:bg-red-100"
-                : "border-amber-400 text-amber-700 hover:bg-amber-100"
+                ? "border-destructive/40 text-destructive hover:bg-destructive/10"
+                : "border-accent-foreground/40 text-accent-foreground hover:bg-accent"
             }`}
           >
             <Zap className="w-3 h-3 mr-1" />
@@ -129,15 +129,15 @@ export function AdminLayout({
       )}
 
       {/* Header */}
-      <div className="bg-white border-b border-gray-200 px-4 md:px-6 py-3 md:py-4">
+      <div className="bg-card border-b border-border px-4 md:px-6 py-3 md:py-4">
         <div className="flex items-center justify-between flex-wrap gap-3">
           <div className="flex items-center space-x-2 md:space-x-3">
             <Anchor className="w-6 h-6 md:w-8 md:h-8 text-primary" />
             <div>
-              <h1 className="text-lg md:text-2xl font-bold text-gray-900">
+              <h1 className="text-lg md:text-2xl font-bold font-heading text-foreground">
                 {isPlatformAdmin ? "NauticFlow" : (tenantName || "NauticFlow CRM")}
               </h1>
-              <p className="text-xs md:text-sm text-gray-600 hidden md:block">
+              <p className="text-xs md:text-sm text-muted-foreground hidden md:block">
                 {adminUsername} · {isPlatformAdmin ? "Admin de Plataforma" : adminRole === "owner" ? "Propietario" : adminRole === "admin" ? "Administrador" : "Empleado"}
               </p>
             </div>
@@ -168,7 +168,7 @@ export function AdminLayout({
               className={`flex items-center justify-center gap-1.5 px-3 md:px-4 py-2 md:py-2.5 font-medium rounded-lg transition-colors whitespace-nowrap flex-shrink-0 min-w-[44px] ${
                 selectedTab === tab.id
                   ? 'bg-primary text-white'
-                  : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
+                  : 'text-muted-foreground hover:text-foreground hover:bg-muted'
               }`}
               data-testid={`tab-${tab.id}`}
             >
@@ -187,7 +187,7 @@ export function AdminLayout({
                   className={`flex items-center justify-center gap-1 px-3 py-2 font-medium rounded-lg transition-colors whitespace-nowrap flex-shrink-0 min-w-[44px] ${
                     selectedTab === tab.id
                       ? 'bg-primary text-white'
-                      : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
+                      : 'text-muted-foreground hover:text-foreground hover:bg-muted'
                   }`}
                   data-testid={`tab-${tab.id}`}
                 >
@@ -208,7 +208,7 @@ export function AdminLayout({
                 className={`flex items-center justify-center gap-1.5 px-3 py-1.5 font-medium rounded-lg transition-colors whitespace-nowrap flex-shrink-0 min-w-[44px] ${
                   selectedTab === tab.id
                     ? 'bg-primary text-white'
-                    : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
+                    : 'text-muted-foreground hover:text-foreground hover:bg-muted'
                 }`}
                 data-testid={`tab-${tab.id}`}
               >

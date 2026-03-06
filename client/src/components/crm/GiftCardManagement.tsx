@@ -102,7 +102,7 @@ export function GiftCardManagement({ adminToken }: GiftCardManagementProps) {
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between flex-wrap gap-3">
-        <h2 className="text-xl font-bold flex items-center gap-2">
+        <h2 className="text-xl font-bold font-heading flex items-center gap-2">
           <Gift className="w-5 h-5" />
           Tarjetas Regalo
         </h2>
@@ -124,19 +124,19 @@ export function GiftCardManagement({ adminToken }: GiftCardManagementProps) {
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         <Card>
           <CardContent className="p-4">
-            <p className="text-sm text-gray-500">Total Tarjetas</p>
+            <p className="text-sm text-muted-foreground">Total Tarjetas</p>
             <p className="text-2xl font-bold">{giftCards.length}</p>
           </CardContent>
         </Card>
         <Card>
           <CardContent className="p-4">
-            <p className="text-sm text-gray-500">Activas</p>
+            <p className="text-sm text-muted-foreground">Activas</p>
             <p className="text-2xl font-bold text-green-600">{totalActive}</p>
           </CardContent>
         </Card>
         <Card>
           <CardContent className="p-4">
-            <p className="text-sm text-gray-500">Ingresos Totales</p>
+            <p className="text-sm text-muted-foreground">Ingresos Totales</p>
             <p className="text-2xl font-bold">{totalRevenue.toFixed(2)}EUR</p>
           </CardContent>
         </Card>
@@ -145,7 +145,7 @@ export function GiftCardManagement({ adminToken }: GiftCardManagementProps) {
       {isLoading ? (
         <div className="text-center py-8">Cargando...</div>
       ) : filteredCards.length === 0 ? (
-        <div className="text-center py-12 text-gray-500">
+        <div className="text-center py-12 text-muted-foreground">
           No hay tarjetas regalo {filter !== "all" ? statusLabels[filter]?.toLowerCase() || "" : ""}
         </div>
       ) : (
@@ -173,7 +173,7 @@ export function GiftCardManagement({ adminToken }: GiftCardManagementProps) {
                         <div>
                           <span className="font-semibold">{parseFloat(card.amount).toFixed(0)}EUR</span>
                           {card.remainingAmount !== card.amount && (
-                            <span className="text-xs text-gray-500 block">
+                            <span className="text-xs text-muted-foreground block">
                               Restante: {parseFloat(card.remainingAmount).toFixed(0)}EUR
                             </span>
                           )}
@@ -182,13 +182,13 @@ export function GiftCardManagement({ adminToken }: GiftCardManagementProps) {
                       <TableCell>
                         <div className="text-sm">
                           <p>{card.purchaserName}</p>
-                          <p className="text-xs text-gray-500">{card.purchaserEmail}</p>
+                          <p className="text-xs text-muted-foreground">{card.purchaserEmail}</p>
                         </div>
                       </TableCell>
                       <TableCell>
                         <div className="text-sm">
                           <p>{card.recipientName}</p>
-                          <p className="text-xs text-gray-500">{card.recipientEmail}</p>
+                          <p className="text-xs text-muted-foreground">{card.recipientEmail}</p>
                         </div>
                       </TableCell>
                       <TableCell>

@@ -167,7 +167,7 @@ export function CustomerDetailModal({
 
         {isLoading && (
           <div className="flex items-center justify-center py-12">
-            <Loader2 className="w-8 h-8 animate-spin text-gray-400" />
+            <Loader2 className="w-8 h-8 animate-spin text-muted-foreground/70" />
           </div>
         )}
 
@@ -179,24 +179,24 @@ export function CustomerDetailModal({
           <div className="space-y-6 mt-6">
             {/* Contact Info */}
             <div>
-              <h3 className="font-semibold text-sm text-gray-500 uppercase tracking-wide mb-3">
+              <h3 className="font-heading font-semibold text-sm text-muted-foreground uppercase tracking-wide mb-3">
                 Datos de Contacto
               </h3>
               <div className="grid grid-cols-2 gap-3 text-sm">
                 <div>
-                  <p className="text-gray-500">Email</p>
+                  <p className="text-muted-foreground">Email</p>
                   <p className="font-medium">{customer.email || "Sin email"}</p>
                 </div>
                 <div>
-                  <p className="text-gray-500">Telefono</p>
+                  <p className="text-muted-foreground">Telefono</p>
                   <p className="font-medium">{customer.phone}</p>
                 </div>
                 <div>
-                  <p className="text-gray-500">Nacionalidad</p>
+                  <p className="text-muted-foreground">Nacionalidad</p>
                   <p className="font-medium">{customer.nationality || "Sin especificar"}</p>
                 </div>
                 <div>
-                  <p className="text-gray-500">Documento</p>
+                  <p className="text-muted-foreground">Documento</p>
                   <p className="font-medium">{customer.documentId || "Sin documento"}</p>
                 </div>
               </div>
@@ -215,16 +215,16 @@ export function CustomerDetailModal({
 
             {/* Stats Cards */}
             <div>
-              <h3 className="font-semibold text-sm text-gray-500 uppercase tracking-wide mb-3">
+              <h3 className="font-heading font-semibold text-sm text-muted-foreground uppercase tracking-wide mb-3">
                 Estadisticas
               </h3>
               <div className="grid grid-cols-2 gap-3">
                 <Card>
                   <CardContent className="p-3">
                     <div className="flex items-center gap-2">
-                      <Euro className="w-4 h-4 text-gray-400" />
+                      <Euro className="w-4 h-4 text-muted-foreground/70" />
                       <div>
-                        <p className="text-xs text-gray-500">Total Gastado</p>
+                        <p className="text-xs text-muted-foreground">Total Gastado</p>
                         <p className="font-bold">{"\u20AC"}{totalSpent.toFixed(2)}</p>
                       </div>
                     </div>
@@ -233,9 +233,9 @@ export function CustomerDetailModal({
                 <Card>
                   <CardContent className="p-3">
                     <div className="flex items-center gap-2">
-                      <Calendar className="w-4 h-4 text-gray-400" />
+                      <Calendar className="w-4 h-4 text-muted-foreground/70" />
                       <div>
-                        <p className="text-xs text-gray-500">Total Reservas</p>
+                        <p className="text-xs text-muted-foreground">Total Reservas</p>
                         <p className="font-bold">{customer.totalBookings}</p>
                       </div>
                     </div>
@@ -244,9 +244,9 @@ export function CustomerDetailModal({
                 <Card>
                   <CardContent className="p-3">
                     <div className="flex items-center gap-2">
-                      <TrendingUp className="w-4 h-4 text-gray-400" />
+                      <TrendingUp className="w-4 h-4 text-muted-foreground/70" />
                       <div>
-                        <p className="text-xs text-gray-500">Ticket Medio</p>
+                        <p className="text-xs text-muted-foreground">Ticket Medio</p>
                         <p className="font-bold">{"\u20AC"}{averageTicket.toFixed(2)}</p>
                       </div>
                     </div>
@@ -255,9 +255,9 @@ export function CustomerDetailModal({
                 <Card>
                   <CardContent className="p-3">
                     <div className="flex items-center gap-2">
-                      <Clock className="w-4 h-4 text-gray-400" />
+                      <Clock className="w-4 h-4 text-muted-foreground/70" />
                       <div>
-                        <p className="text-xs text-gray-500">Primera Visita</p>
+                        <p className="text-xs text-muted-foreground">Primera Visita</p>
                         <p className="font-bold text-xs">
                           {customer.firstBookingDate
                             ? format(new Date(customer.firstBookingDate), "dd/MM/yyyy")
@@ -273,7 +273,7 @@ export function CustomerDetailModal({
             {/* Notes & Document Edit Section */}
             <div>
               <div className="flex items-center justify-between mb-3">
-                <h3 className="font-semibold text-sm text-gray-500 uppercase tracking-wide">
+                <h3 className="font-heading font-semibold text-sm text-muted-foreground uppercase tracking-wide">
                   Notas y Segmento
                 </h3>
                 {!isEditing && (
@@ -342,9 +342,9 @@ export function CustomerDetailModal({
               ) : (
                 <div className="text-sm">
                   {customer.notes ? (
-                    <p className="whitespace-pre-wrap bg-gray-50 rounded p-3">{customer.notes}</p>
+                    <p className="whitespace-pre-wrap bg-muted rounded p-3">{customer.notes}</p>
                   ) : (
-                    <p className="text-gray-400 italic">Sin notas</p>
+                    <p className="text-muted-foreground/70 italic">Sin notas</p>
                   )}
                 </div>
               )}
@@ -352,11 +352,11 @@ export function CustomerDetailModal({
 
             {/* Booking History */}
             <div>
-              <h3 className="font-semibold text-sm text-gray-500 uppercase tracking-wide mb-3">
+              <h3 className="font-heading font-semibold text-sm text-muted-foreground uppercase tracking-wide mb-3">
                 Historial de Reservas ({customerBookings.length})
               </h3>
               {customerBookings.length === 0 ? (
-                <p className="text-sm text-gray-400 italic">Sin reservas registradas</p>
+                <p className="text-sm text-muted-foreground/70 italic">Sin reservas registradas</p>
               ) : (
                 <div className="overflow-x-auto">
                   <Table>
@@ -403,7 +403,7 @@ export function CustomerDetailModal({
             </div>
 
             {/* Meta info */}
-            <div className="text-xs text-gray-400 border-t pt-3">
+            <div className="text-xs text-muted-foreground/70 border-t border-border pt-3">
               <p>Creado: {format(new Date(customer.createdAt), "dd/MM/yyyy HH:mm")}</p>
               <p>Actualizado: {format(new Date(customer.updatedAt), "dd/MM/yyyy HH:mm")}</p>
               <p>ID: {customer.id}</p>

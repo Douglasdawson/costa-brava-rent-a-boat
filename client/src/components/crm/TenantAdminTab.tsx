@@ -94,7 +94,7 @@ export function TenantAdminTab({ adminToken }: TenantAdminTabProps) {
     <div className="space-y-6">
       {/* Sub-tab header */}
       <div className="flex items-center justify-between">
-        <h2 className="text-xl font-bold flex items-center gap-2">
+        <h2 className="text-xl font-bold font-heading flex items-center gap-2">
           <Settings className="w-5 h-5" />
           Configuracion del Panel
         </h2>
@@ -103,7 +103,7 @@ export function TenantAdminTab({ adminToken }: TenantAdminTabProps) {
             onClick={() => setSubTab("empresa")}
             className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-sm font-medium transition-colors ${
               subTab === "empresa"
-                ? "bg-white text-foreground shadow-sm"
+                ? "bg-card text-foreground shadow-sm"
                 : "text-muted-foreground hover:text-foreground"
             }`}
           >
@@ -114,7 +114,7 @@ export function TenantAdminTab({ adminToken }: TenantAdminTabProps) {
             onClick={() => setSubTab("usuarios")}
             className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-sm font-medium transition-colors ${
               subTab === "usuarios"
-                ? "bg-white text-foreground shadow-sm"
+                ? "bg-card text-foreground shadow-sm"
                 : "text-muted-foreground hover:text-foreground"
             }`}
           >
@@ -216,7 +216,7 @@ function CompanySettingsSection({
       {/* Company Info */}
       <Card>
         <CardHeader>
-          <CardTitle className="text-base flex items-center gap-2">
+          <CardTitle className="text-base font-heading flex items-center gap-2">
             <Building2 className="w-4 h-4" />
             Informacion de la empresa
           </CardTitle>
@@ -279,7 +279,7 @@ function CompanySettingsSection({
       {/* Branding */}
       <Card>
         <CardHeader>
-          <CardTitle className="text-base flex items-center gap-2">
+          <CardTitle className="text-base font-heading flex items-center gap-2">
             <Palette className="w-4 h-4" />
             Branding
           </CardTitle>

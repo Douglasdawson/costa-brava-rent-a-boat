@@ -353,7 +353,7 @@ export function CalendarTab({
                   <Button variant="outline" size="icon" onClick={goNext}>
                     <ChevronRight className="w-4 h-4" />
                   </Button>
-                  <h2 className="text-sm sm:text-lg font-semibold capitalize ml-2 whitespace-nowrap">
+                  <h2 className="text-sm sm:text-lg font-heading font-semibold capitalize ml-2 whitespace-nowrap">
                     {viewTitle}
                   </h2>
                 </div>
@@ -421,7 +421,7 @@ export function CalendarTab({
                         onClick={() => toggleStatus(status)}
                         className={`flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium border transition-colors ${
                           isActive
-                            ? "bg-white border-border text-foreground"
+                            ? "bg-card border-border text-foreground"
                             : "bg-muted border-border text-muted-foreground line-through"
                         }`}
                       >
@@ -686,7 +686,7 @@ function DayView({
         >
           <div className="min-w-[600px]">
             {/* Header row with boat names */}
-            <div className="flex sticky top-0 z-20 bg-white border-b">
+            <div className="flex sticky top-0 z-20 bg-card border-b">
               <div className="w-16 sm:w-20 flex-shrink-0 border-r bg-muted" />
               {/* Desktop: show all boats */}
               <div className="hidden sm:contents">
@@ -695,7 +695,7 @@ function DayView({
                     key={boat.id}
                     className="flex-1 min-w-[140px] text-center py-2 px-1 border-r bg-muted"
                   >
-                    <p className="text-xs sm:text-sm font-semibold truncate">
+                    <p className="text-xs sm:text-sm font-heading font-semibold truncate">
                       {boat.name}
                     </p>
                     <p className="text-[10px] text-muted-foreground">
@@ -706,7 +706,7 @@ function DayView({
               </div>
               {/* Mobile: show selected boat */}
               <div className="sm:hidden flex-1 text-center py-2 px-1 bg-muted">
-                <p className="text-sm font-semibold">
+                <p className="text-sm font-heading font-semibold">
                   {currentMobileBoat?.name}
                 </p>
               </div>
@@ -930,9 +930,9 @@ function WeekView({
         <div className="overflow-x-auto">
           <div className="min-w-[700px]">
             {/* Header: weekday names */}
-            <div className="flex sticky top-0 z-10 bg-white border-b">
+            <div className="flex sticky top-0 z-10 bg-card border-b">
               <div className="w-32 sm:w-40 flex-shrink-0 border-r bg-muted py-2 px-2">
-                <span className="text-xs font-semibold text-muted-foreground">
+                <span className="text-xs font-heading font-semibold text-muted-foreground">
                   Barco
                 </span>
               </div>
@@ -971,7 +971,7 @@ function WeekView({
                 <div key={boat.id} className="flex border-b">
                   <div className="w-32 sm:w-40 flex-shrink-0 border-r bg-muted py-2 px-2 flex items-center">
                     <div>
-                      <p className="text-xs sm:text-sm font-semibold truncate">
+                      <p className="text-xs sm:text-sm font-heading font-semibold truncate">
                         {boat.name}
                       </p>
                       <p className="text-[10px] text-muted-foreground">
@@ -1150,7 +1150,7 @@ function MonthView({ date, bookings, onDayClick }: MonthViewProps) {
                 key={dayKey}
                 onClick={() => onDayClick(day)}
                 className={`relative p-1 sm:p-2 rounded-lg border text-left transition-colors hover:ring-2 hover:ring-primary/30 min-h-[52px] sm:min-h-[80px] ${
-                  inMonth ? "bg-white" : "bg-muted/50"
+                  inMonth ? "bg-card" : "bg-muted/50"
                 } ${today ? "ring-2 ring-primary border-primary" : "border-border"} ${
                   count > 0 ? getOccupancyColor(count) : ""
                 } ${count > 0 ? getOccupancyBorder(count) : ""}`}

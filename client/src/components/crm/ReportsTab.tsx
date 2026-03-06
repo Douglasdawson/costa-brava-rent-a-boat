@@ -96,7 +96,7 @@ const SEGMENT_COLORS: Record<string, string> = {
   new: "bg-blue-100 text-blue-800",
 };
 
-const PIE_COLORS = ["#3b82f6", "#ef4444", "#22c55e", "#f59e0b", "#8b5cf6"];
+const PIE_COLORS = ["hsl(var(--chart-1))", "hsl(var(--chart-2))", "hsl(var(--chart-3))", "hsl(var(--chart-4))", "hsl(var(--chart-5))"];
 
 export function ReportsTab({ adminToken }: ReportsTabProps) {
   const { toast } = useToast();
@@ -221,7 +221,7 @@ export function ReportsTab({ adminToken }: ReportsTabProps) {
   return (
     <div className="space-y-4 sm:space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-        <h2 className="text-xl sm:text-2xl font-bold">Reportes Operativos</h2>
+        <h2 className="text-xl sm:text-2xl font-bold font-heading">Reportes Operativos</h2>
       </div>
 
       {/* Report selector */}
@@ -268,7 +268,7 @@ export function ReportsTab({ adminToken }: ReportsTabProps) {
               {fleetChartData.length > 0 && (
                 <Card>
                   <CardHeader>
-                    <CardTitle className="text-base">Ingresos vs Mantenimiento por Barco</CardTitle>
+                    <CardTitle className="text-base font-heading">Ingresos vs Mantenimiento por Barco</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <ResponsiveContainer width="100%" height={300}>
@@ -277,8 +277,8 @@ export function ReportsTab({ adminToken }: ReportsTabProps) {
                         <XAxis dataKey="name" fontSize={12} />
                         <YAxis fontSize={12} />
                         <Tooltip formatter={(value: number | undefined) => value !== undefined ? `${value.toFixed(0)} EUR` : ""} />
-                        <Bar dataKey="revenue" name="Ingresos" fill="#3b82f6" radius={[4, 4, 0, 0]} />
-                        <Bar dataKey="maintenance" name="Mantenimiento" fill="#ef4444" radius={[4, 4, 0, 0]} />
+                        <Bar dataKey="revenue" name="Ingresos" fill="hsl(var(--chart-1))" radius={[4, 4, 0, 0]} />
+                        <Bar dataKey="maintenance" name="Mantenimiento" fill="hsl(var(--chart-2))" radius={[4, 4, 0, 0]} />
                       </BarChart>
                     </ResponsiveContainer>
                   </CardContent>
@@ -322,7 +322,7 @@ export function ReportsTab({ adminToken }: ReportsTabProps) {
                           </TableRow>
                         ))}
                         {fleetData.length > 0 && (
-                          <TableRow className="font-bold bg-gray-50">
+                          <TableRow className="font-bold bg-muted">
                             <TableCell>TOTAL</TableCell>
                             <TableCell className="text-right">{fleetData.reduce((s, b) => s + b.bookings, 0)}</TableCell>
                             <TableCell className="text-right">{fleetData.reduce((s, b) => s + b.hours, 0)}h</TableCell>
@@ -357,7 +357,7 @@ export function ReportsTab({ adminToken }: ReportsTabProps) {
           ) : (
             <Card>
               <CardHeader>
-                <CardTitle className="text-base">Top 20 Clientes por Valor</CardTitle>
+                <CardTitle className="text-base font-heading">Top 20 Clientes por Valor</CardTitle>
               </CardHeader>
               <CardContent className="p-0">
                 <div className="overflow-x-auto">
@@ -378,7 +378,7 @@ export function ReportsTab({ adminToken }: ReportsTabProps) {
                           <TableCell>
                             <div>
                               <p className="font-medium">{customer.name} {customer.surname}</p>
-                              <p className="text-xs text-gray-500">{customer.phone}</p>
+                              <p className="text-xs text-muted-foreground">{customer.phone}</p>
                             </div>
                           </TableCell>
                           <TableCell>
@@ -410,25 +410,25 @@ export function ReportsTab({ adminToken }: ReportsTabProps) {
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                 <Card>
                   <CardContent className="p-4 text-center">
-                    <p className="text-sm text-gray-500">Total</p>
+                    <p className="text-sm text-muted-foreground">Total</p>
                     <p className="text-2xl font-bold">{maintSummary.total}</p>
                   </CardContent>
                 </Card>
                 <Card>
                   <CardContent className="p-4 text-center">
-                    <p className="text-sm text-gray-500">Completados</p>
+                    <p className="text-sm text-muted-foreground">Completados</p>
                     <p className="text-2xl font-bold text-green-600">{maintSummary.completed}</p>
                   </CardContent>
                 </Card>
                 <Card>
                   <CardContent className="p-4 text-center">
-                    <p className="text-sm text-gray-500">Pendientes</p>
+                    <p className="text-sm text-muted-foreground">Pendientes</p>
                     <p className="text-2xl font-bold text-yellow-600">{maintSummary.scheduled + maintSummary.inProgress}</p>
                   </CardContent>
                 </Card>
                 <Card>
                   <CardContent className="p-4 text-center">
-                    <p className="text-sm text-gray-500">Coste Total</p>
+                    <p className="text-sm text-muted-foreground">Coste Total</p>
                     <p className="text-2xl font-bold">{maintSummary.totalCost.toFixed(0)} EUR</p>
                   </CardContent>
                 </Card>
@@ -438,7 +438,7 @@ export function ReportsTab({ adminToken }: ReportsTabProps) {
               {maintPieData.length > 0 && (
                 <Card>
                   <CardHeader>
-                    <CardTitle className="text-base">Distribucion por Tipo</CardTitle>
+                    <CardTitle className="text-base font-heading">Distribucion por Tipo</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <ResponsiveContainer width="100%" height={250}>
@@ -464,7 +464,7 @@ export function ReportsTab({ adminToken }: ReportsTabProps) {
             </>
           ) : (
             <Card>
-              <CardContent className="py-8 text-center text-gray-500">
+              <CardContent className="py-8 text-center text-muted-foreground">
                 No hay datos de mantenimiento
               </CardContent>
             </Card>
@@ -479,7 +479,7 @@ export function ReportsTab({ adminToken }: ReportsTabProps) {
             <Card><CardContent className="py-8 text-center"><Loader2 className="w-6 h-6 animate-spin mx-auto" /></CardContent></Card>
           ) : inventoryItems.length === 0 ? (
             <Card>
-              <CardContent className="py-8 text-center text-gray-500">
+              <CardContent className="py-8 text-center text-muted-foreground">
                 No hay items en el inventario
               </CardContent>
             </Card>
@@ -489,13 +489,13 @@ export function ReportsTab({ adminToken }: ReportsTabProps) {
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                 <Card>
                   <CardContent className="p-4 text-center">
-                    <p className="text-sm text-gray-500">Items</p>
+                    <p className="text-sm text-muted-foreground">Items</p>
                     <p className="text-2xl font-bold">{inventoryItems.length}</p>
                   </CardContent>
                 </Card>
                 <Card>
                   <CardContent className="p-4 text-center">
-                    <p className="text-sm text-gray-500">Disponibles</p>
+                    <p className="text-sm text-muted-foreground">Disponibles</p>
                     <p className="text-2xl font-bold text-green-600">
                       {inventoryItems.filter(i => i.status === "available").length}
                     </p>
@@ -503,7 +503,7 @@ export function ReportsTab({ adminToken }: ReportsTabProps) {
                 </Card>
                 <Card>
                   <CardContent className="p-4 text-center">
-                    <p className="text-sm text-gray-500">Stock Bajo</p>
+                    <p className="text-sm text-muted-foreground">Stock Bajo</p>
                     <p className="text-2xl font-bold text-yellow-600">
                       {inventoryItems.filter(i => i.status === "low_stock").length}
                     </p>
@@ -511,7 +511,7 @@ export function ReportsTab({ adminToken }: ReportsTabProps) {
                 </Card>
                 <Card>
                   <CardContent className="p-4 text-center">
-                    <p className="text-sm text-gray-500">Sin Stock</p>
+                    <p className="text-sm text-muted-foreground">Sin Stock</p>
                     <p className="text-2xl font-bold text-red-600">
                       {inventoryItems.filter(i => i.status === "out_of_stock").length}
                     </p>
@@ -537,7 +537,7 @@ export function ReportsTab({ adminToken }: ReportsTabProps) {
                         {inventoryItems.map(item => (
                           <TableRow key={item.id}>
                             <TableCell className="font-medium">{item.name}</TableCell>
-                            <TableCell className="text-sm text-gray-500">{item.category}</TableCell>
+                            <TableCell className="text-sm text-muted-foreground">{item.category}</TableCell>
                             <TableCell className="text-right">{item.availableStock}</TableCell>
                             <TableCell className="text-right">{item.totalStock}</TableCell>
                             <TableCell>

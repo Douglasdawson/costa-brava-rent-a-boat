@@ -121,7 +121,7 @@ export function SignatureCanvas({
 
   return (
     <div className="space-y-2">
-      <div className="relative border-2 border-dashed border-gray-300 rounded-lg bg-white">
+      <div className="relative border-2 border-dashed border-border rounded-lg bg-card">
         <canvas
           ref={canvasRef}
           className="w-full touch-none cursor-crosshair"
@@ -136,7 +136,7 @@ export function SignatureCanvas({
         />
         {!hasSignature && (
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-            <p className="text-gray-300 text-lg select-none">Firme aqui</p>
+            <p className="text-muted-foreground/70 text-lg select-none">Firme aqui</p>
           </div>
         )}
       </div>

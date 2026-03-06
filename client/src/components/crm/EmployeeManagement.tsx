@@ -165,7 +165,7 @@ export function EmployeeManagement({ adminToken }: EmployeeManagementProps) {
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
-        <h2 className="text-xl font-bold flex items-center gap-2">
+        <h2 className="text-xl font-bold font-heading flex items-center gap-2">
           <Users className="w-5 h-5" />
           Gestion de Empleados
         </h2>
@@ -206,7 +206,7 @@ export function EmployeeManagement({ adminToken }: EmployeeManagementProps) {
                         {employee.isActive ? "Activo" : "Inactivo"}
                       </Badge>
                     </TableCell>
-                    <TableCell className="text-sm text-gray-500">
+                    <TableCell className="text-sm text-muted-foreground">
                       {employee.lastLoginAt
                         ? new Date(employee.lastLoginAt).toLocaleDateString("es-ES", {
                             day: "2-digit",
@@ -244,7 +244,7 @@ export function EmployeeManagement({ adminToken }: EmployeeManagementProps) {
                 ))}
                 {employees.length === 0 && (
                   <TableRow>
-                    <TableCell colSpan={6} className="text-center py-8 text-gray-500">
+                    <TableCell colSpan={6} className="text-center py-8 text-muted-foreground">
                       No hay empleados registrados
                     </TableCell>
                   </TableRow>

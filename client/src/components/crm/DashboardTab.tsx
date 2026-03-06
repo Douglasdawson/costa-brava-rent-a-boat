@@ -180,7 +180,7 @@ const STATUS_COLORS: Record<string, string> = {
   confirmed: "hsl(var(--primary))",
   pending_payment: "hsl(var(--cta))",
   hold: "hsl(var(--primary) / 0.6)",
-  cancelled: "#ef4444",
+  cancelled: "hsl(var(--destructive))",
   completed: "hsl(var(--muted-foreground))",
   draft: "hsl(var(--muted-foreground) / 0.5)",
 };
@@ -196,14 +196,14 @@ const STATUS_LABELS: Record<string, string> = {
 
 // Boat colors for bar chart
 const BOAT_COLORS = [
-  "#0ea5e9", // sky-500
-  "#8b5cf6", // violet-500
-  "#f97316", // orange-500
-  "#06b6d4", // cyan-500
-  "#ec4899", // pink-500
-  "#10b981", // emerald-500
-  "#f59e0b", // amber-500
-  "#6366f1", // indigo-500
+  "hsl(var(--chart-1))",
+  "hsl(var(--chart-2))",
+  "hsl(var(--chart-3))",
+  "hsl(var(--chart-4))",
+  "hsl(var(--chart-5))",
+  "hsl(var(--primary))",
+  "hsl(var(--cta))",
+  "hsl(var(--chart-1) / 0.7)",
 ];
 
 // Activity icon based on booking status
@@ -238,7 +238,7 @@ function RevenueTooltip({ active, payload, label }: {
   if (!active || !payload || !payload.length) return null;
   const dateStr = label ? format(new Date(label + "T00:00:00"), "d MMM yyyy", { locale: es }) : "";
   return (
-    <div className="rounded-lg border bg-white px-3 py-2 shadow-md">
+    <div className="rounded-lg border bg-card px-3 py-2 shadow-md">
       <p className="text-xs font-medium text-muted-foreground mb-1">{dateStr}</p>
       {payload.map((entry, idx) => (
         <p key={idx} className="text-sm">
@@ -263,8 +263,8 @@ function BoatTooltip({ active, payload }: {
   if (!active || !payload || !payload.length) return null;
   const data = payload[0].payload;
   return (
-    <div className="rounded-lg border bg-white px-3 py-2 shadow-md">
-      <p className="text-sm font-semibold text-foreground mb-1">{data.boatName}</p>
+    <div className="rounded-lg border bg-card px-3 py-2 shadow-md">
+      <p className="text-sm font-semibold font-heading text-foreground mb-1">{data.boatName}</p>
       <p className="text-xs text-muted-foreground">{data.bookings} reservas</p>
       <p className="text-xs text-muted-foreground">{data.hours}h navegadas</p>
       <p className="text-xs font-medium text-foreground">
@@ -378,7 +378,7 @@ export function DashboardTab({
         .map(([status, count]) => ({
           name: STATUS_LABELS[status] || status,
           value: count,
-          color: STATUS_COLORS[status] || "#94a3b8",
+          color: STATUS_COLORS[status] || "hsl(var(--muted-foreground))",
         }))
     : [];
 
@@ -442,7 +442,7 @@ export function DashboardTab({
                 </div>
               </CardHeader>
               <CardContent>
-                <div className="text-2xl font-bold text-foreground">
+                <div className="text-2xl font-bold font-heading text-foreground">
                   {"\u20AC"}
                   {(stats?.revenue ?? 0).toLocaleString("es-ES", {
                     minimumFractionDigits: 2,
@@ -469,7 +469,7 @@ export function DashboardTab({
                 </div>
               </CardHeader>
               <CardContent>
-                <div className="text-2xl font-bold text-foreground">
+                <div className="text-2xl font-bold font-heading text-foreground">
                   {stats?.bookingsCount ?? 0}
                 </div>
                 <div className="flex items-center gap-2 mt-1">
@@ -492,7 +492,7 @@ export function DashboardTab({
                 </div>
               </CardHeader>
               <CardContent>
-                <div className="text-2xl font-bold text-foreground">
+                <div className="text-2xl font-bold font-heading text-foreground">
                   {"\u20AC"}
                   {(stats?.averageTicket ?? 0).toLocaleString("es-ES", {
                     minimumFractionDigits: 2,
@@ -519,7 +519,7 @@ export function DashboardTab({
                 </div>
               </CardHeader>
               <CardContent>
-                <div className="text-2xl font-bold text-foreground">
+                <div className="text-2xl font-bold font-heading text-foreground">
                   {occupancy}%
                 </div>
                 <p className="text-xs text-muted-foreground mt-1">
@@ -539,7 +539,7 @@ export function DashboardTab({
         ) : (
           <Card>
             <CardHeader className="pb-2">
-              <CardTitle className="text-base font-semibold text-foreground">
+              <CardTitle className="text-base font-semibold font-heading text-foreground">
                 Ingresos ultimos 30 dias
               </CardTitle>
             </CardHeader>
@@ -552,26 +552,26 @@ export function DashboardTab({
                   >
                     <defs>
                       <linearGradient id="revenueGradient" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="5%" stopColor="#0ea5e9" stopOpacity={0.3} />
-                        <stop offset="95%" stopColor="#0ea5e9" stopOpacity={0} />
+                        <stop offset="5%" stopColor="hsl(var(--chart-1))" stopOpacity={0.3} />
+                        <stop offset="95%" stopColor="hsl(var(--chart-1))" stopOpacity={0} />
                       </linearGradient>
                     </defs>
-                    <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" />
+                    <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
                     <XAxis
                       dataKey="date"
                       tickFormatter={(d: string) => {
                         const date = new Date(d + "T00:00:00");
                         return format(date, "d MMM", { locale: es });
                       }}
-                      tick={{ fontSize: 11, fill: "#94a3b8" }}
+                      tick={{ fontSize: 11, fill: "hsl(var(--muted-foreground))" }}
                       tickLine={false}
-                      axisLine={{ stroke: "#e2e8f0" }}
+                      axisLine={{ stroke: "hsl(var(--border))" }}
                       interval="preserveStartEnd"
                       minTickGap={40}
                     />
                     <YAxis
                       tickFormatter={(v: number) => `${v >= 1000 ? `${(v / 1000).toFixed(0)}k` : v}`}
-                      tick={{ fontSize: 11, fill: "#94a3b8" }}
+                      tick={{ fontSize: 11, fill: "hsl(var(--muted-foreground))" }}
                       tickLine={false}
                       axisLine={false}
                       width={45}
@@ -580,11 +580,11 @@ export function DashboardTab({
                     <Area
                       type="monotone"
                       dataKey="revenue"
-                      stroke="#0ea5e9"
+                      stroke="hsl(var(--chart-1))"
                       strokeWidth={2}
                       fill="url(#revenueGradient)"
                       dot={false}
-                      activeDot={{ r: 4, strokeWidth: 0, fill: "#0ea5e9" }}
+                      activeDot={{ r: 4, strokeWidth: 0, fill: "hsl(var(--chart-1))" }}
                     />
                   </AreaChart>
                 </ResponsiveContainer>
@@ -599,7 +599,7 @@ export function DashboardTab({
         ) : (
           <Card>
             <CardHeader className="pb-2">
-              <CardTitle className="text-base font-semibold text-foreground">
+              <CardTitle className="text-base font-semibold font-heading text-foreground">
                 Reservas por barco
               </CardTitle>
             </CardHeader>
@@ -610,19 +610,19 @@ export function DashboardTab({
                     data={boatsPerformance || []}
                     margin={{ top: 5, right: 10, left: 0, bottom: 30 }}
                   >
-                    <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" vertical={false} />
+                    <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" vertical={false} />
                     <XAxis
                       dataKey="boatName"
                       tickFormatter={shortBoatName}
-                      tick={{ fontSize: 10, fill: "#94a3b8" }}
+                      tick={{ fontSize: 10, fill: "hsl(var(--muted-foreground))" }}
                       tickLine={false}
-                      axisLine={{ stroke: "#e2e8f0" }}
+                      axisLine={{ stroke: "hsl(var(--border))" }}
                       angle={-20}
                       textAnchor="end"
                       interval={0}
                     />
                     <YAxis
-                      tick={{ fontSize: 11, fill: "#94a3b8" }}
+                      tick={{ fontSize: 11, fill: "hsl(var(--muted-foreground))" }}
                       tickLine={false}
                       axisLine={false}
                       width={35}
@@ -650,7 +650,7 @@ export function DashboardTab({
         ) : (
           <Card>
             <CardHeader className="pb-2">
-              <CardTitle className="text-base font-semibold text-foreground">
+              <CardTitle className="text-base font-semibold font-heading text-foreground">
                 Estado de reservas
               </CardTitle>
             </CardHeader>
@@ -684,7 +684,7 @@ export function DashboardTab({
                           const v = (entry.value as number) ?? 0;
                           const name = entry.name as string;
                           return (
-                            <div className="rounded-lg border bg-white px-3 py-2 shadow-md">
+                            <div className="rounded-lg border bg-card px-3 py-2 shadow-md">
                               <p className="text-sm font-medium text-foreground">{name}</p>
                               <p className="text-xs text-muted-foreground">
                                 {v} reservas ({totalStatusBookings > 0 ? Math.round((v / totalStatusBookings) * 100) : 0}%)
@@ -711,7 +711,7 @@ export function DashboardTab({
         {/* Upcoming Bookings Mini Table */}
         <Card>
           <CardHeader className="pb-2 flex flex-row items-center justify-between">
-            <CardTitle className="text-base font-semibold text-foreground">
+            <CardTitle className="text-base font-semibold font-heading text-foreground">
               Proximas reservas
             </CardTitle>
             <Button
@@ -803,7 +803,7 @@ export function DashboardTab({
       {/* Recent Activity Section */}
       <Card>
         <CardHeader className="pb-2">
-          <CardTitle className="text-base font-semibold text-foreground">
+          <CardTitle className="text-base font-semibold font-heading text-foreground">
             Actividad reciente
           </CardTitle>
         </CardHeader>

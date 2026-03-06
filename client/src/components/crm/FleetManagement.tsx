@@ -82,10 +82,10 @@ function SortableBoatRow({
   };
 
   return (
-    <TableRow ref={setNodeRef} style={style} className={isDragging ? "bg-gray-50" : ""}>
+    <TableRow ref={setNodeRef} style={style} className={isDragging ? "bg-muted" : ""}>
       <TableCell>
         <div {...attributes} {...listeners} className="cursor-grab active:cursor-grabbing">
-          <GripVertical className="w-4 h-4 text-gray-400" />
+          <GripVertical className="w-4 h-4 text-muted-foreground/70" />
         </div>
       </TableCell>
       <TableCell className="font-medium">{boat.name}</TableCell>
@@ -156,11 +156,11 @@ function SortableBoatCard({
       <CardContent className="p-4">
         <div className="flex items-start gap-3 mb-3">
           <div {...attributes} {...listeners} className="cursor-grab active:cursor-grabbing mt-1">
-            <GripVertical className="w-5 h-5 text-gray-400" />
+            <GripVertical className="w-5 h-5 text-muted-foreground/70" />
           </div>
           <div className="flex-1">
             <div className="flex justify-between items-start mb-2">
-              <h3 className="font-semibold text-lg">{boat.name}</h3>
+              <h3 className="font-semibold font-heading text-lg">{boat.name}</h3>
               <div className="flex gap-1">
                 <Button
                   size="icon"
@@ -196,11 +196,11 @@ function SortableBoatCard({
             </div>
             <div className="grid grid-cols-2 gap-2 text-sm">
               <div>
-                <span className="text-gray-600">Capacidad:</span>
+                <span className="text-muted-foreground">Capacidad:</span>
                 <span className="ml-1 font-medium">{boat.capacity} personas</span>
               </div>
               <div>
-                <span className="text-gray-600">Depósito:</span>
+                <span className="text-muted-foreground">Depósito:</span>
                 <span className="ml-1 font-medium">€{boat.deposit}</span>
               </div>
             </div>
@@ -550,7 +550,7 @@ export function FleetManagement({ adminToken }: FleetManagementProps) {
   return (
     <div className="space-y-4 sm:space-y-6">
       <div className="flex items-center justify-between">
-        <h2 className="text-xl sm:text-2xl font-bold">Gestión de Flota</h2>
+        <h2 className="text-xl sm:text-2xl font-bold font-heading">Gestión de Flota</h2>
         <Button
           onClick={() => {
             resetDialog();
@@ -569,15 +569,15 @@ export function FleetManagement({ adminToken }: FleetManagementProps) {
       {boatsLoading ? (
         <Card>
           <CardContent className="py-12 text-center">
-            <p className="text-gray-600">Cargando flota...</p>
+            <p className="text-muted-foreground">Cargando flota...</p>
           </CardContent>
         </Card>
       ) : !boats || boats.length === 0 ? (
         <Card>
           <CardContent className="py-12 text-center">
-            <Anchor className="w-12 h-12 mx-auto mb-4 text-gray-400" />
-            <h3 className="text-lg font-semibold mb-2">No hay barcos registrados</h3>
-            <p className="text-gray-600 mb-4">
+            <Anchor className="w-12 h-12 mx-auto mb-4 text-muted-foreground/70" />
+            <h3 className="text-lg font-semibold font-heading mb-2">No hay barcos registrados</h3>
+            <p className="text-muted-foreground mb-4">
               Importa los 7 barcos de la flota o agrega uno manualmente
             </p>
             <div className="flex justify-center gap-4">
@@ -647,7 +647,7 @@ export function FleetManagement({ adminToken }: FleetManagementProps) {
 
           {/* Mobile Card View */}
           <div className="md:hidden space-y-3">
-            <div className="text-sm font-medium text-gray-600 px-1">
+            <div className="text-sm font-medium text-muted-foreground px-1">
               Barcos ({orderedBoats.length})
             </div>
             <DndContext
@@ -683,7 +683,7 @@ export function FleetManagement({ adminToken }: FleetManagementProps) {
           <form onSubmit={boatForm.handleSubmit(handleSubmit)} className="space-y-6">
             {/* Información Básica */}
             <div className="space-y-4">
-              <h3 className="text-lg font-semibold">Información Básica</h3>
+              <h3 className="text-lg font-semibold font-heading">Información Básica</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <Label htmlFor="id">ID del Barco *</Label>
@@ -736,7 +736,7 @@ export function FleetManagement({ adminToken }: FleetManagementProps) {
 
             {/* Imágenes */}
             <div className="space-y-4">
-              <h3 className="text-lg font-semibold">Imágenes</h3>
+              <h3 className="text-lg font-semibold font-heading">Imágenes</h3>
               <div>
                 <Label htmlFor="imageUrl">URL Imagen Principal (auto-sincronizada)</Label>
                 <Input
@@ -775,7 +775,7 @@ export function FleetManagement({ adminToken }: FleetManagementProps) {
 
             {/* Características Principales */}
             <div className="space-y-4">
-              <h3 className="text-lg font-semibold">Características Principales</h3>
+              <h3 className="text-lg font-semibold font-heading">Características Principales</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <Label htmlFor="capacity">Capacidad (personas) *</Label>
@@ -837,7 +837,7 @@ export function FleetManagement({ adminToken }: FleetManagementProps) {
 
             {/* Especificaciones Técnicas */}
             <div className="space-y-4">
-              <h3 className="text-lg font-semibold">Especificaciones Técnicas</h3>
+              <h3 className="text-lg font-semibold font-heading">Especificaciones Técnicas</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <Label>Modelo</Label>
@@ -900,7 +900,7 @@ export function FleetManagement({ adminToken }: FleetManagementProps) {
 
             {/* Equipamiento */}
             <div className="space-y-4">
-              <h3 className="text-lg font-semibold">Equipamiento e Incluido</h3>
+              <h3 className="text-lg font-semibold font-heading">Equipamiento e Incluido</h3>
               <div>
                 <Label>Equipamiento</Label>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-2">
@@ -912,7 +912,7 @@ export function FleetManagement({ adminToken }: FleetManagementProps) {
                       <div
                         key={equipment.id}
                         className={`flex items-center gap-3 p-3 border rounded-lg cursor-pointer transition-colors ${
-                          isSelected ? "bg-primary/10 border-primary" : "hover:bg-gray-50"
+                          isSelected ? "bg-primary/10 border-primary" : "hover:bg-muted"
                         }`}
                         onClick={() => {
                           const newEquipment = isSelected
@@ -925,13 +925,13 @@ export function FleetManagement({ adminToken }: FleetManagementProps) {
                       >
                         <div
                           className={`w-5 h-5 flex items-center justify-center border rounded ${
-                            isSelected ? "bg-primary border-primary" : "border-gray-300"
+                            isSelected ? "bg-primary border-primary" : "border-border"
                           }`}
                         >
                           {isSelected && <Check className="w-3 h-3 text-white" />}
                         </div>
                         <Icon
-                          className={`w-5 h-5 ${isSelected ? "text-primary" : "text-gray-600"}`}
+                          className={`w-5 h-5 ${isSelected ? "text-primary" : "text-muted-foreground"}`}
                         />
                         <span className={`text-sm ${isSelected ? "font-medium" : ""}`}>
                           {equipment.label}
@@ -952,7 +952,7 @@ export function FleetManagement({ adminToken }: FleetManagementProps) {
                       <div
                         key={item.id}
                         className={`flex items-center gap-3 p-3 border rounded-lg cursor-pointer transition-colors ${
-                          isSelected ? "bg-primary/10 border-primary" : "hover:bg-gray-50"
+                          isSelected ? "bg-primary/10 border-primary" : "hover:bg-muted"
                         }`}
                         onClick={() => {
                           const newIncluded = isSelected
@@ -965,13 +965,13 @@ export function FleetManagement({ adminToken }: FleetManagementProps) {
                       >
                         <div
                           className={`w-5 h-5 flex items-center justify-center border rounded ${
-                            isSelected ? "bg-primary border-primary" : "border-gray-300"
+                            isSelected ? "bg-primary border-primary" : "border-border"
                           }`}
                         >
                           {isSelected && <Check className="w-3 h-3 text-white" />}
                         </div>
                         <Icon
-                          className={`w-5 h-5 ${isSelected ? "text-primary" : "text-gray-600"}`}
+                          className={`w-5 h-5 ${isSelected ? "text-primary" : "text-muted-foreground"}`}
                         />
                         <span className={`text-sm ${isSelected ? "font-medium" : ""}`}>
                           {item.label}
@@ -985,7 +985,7 @@ export function FleetManagement({ adminToken }: FleetManagementProps) {
 
             {/* Precios por Temporada */}
             <div className="space-y-4">
-              <h3 className="text-lg font-semibold">Precios por Temporada</h3>
+              <h3 className="text-lg font-semibold font-heading">Precios por Temporada</h3>
 
               {/* Temporada BAJA */}
               <div className="border rounded-lg p-4 space-y-3">

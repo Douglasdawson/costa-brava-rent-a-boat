@@ -694,12 +694,12 @@ export default function BookingFormWidget({ preSelectedBoatId, prefillDate, pref
     if (isSpanish) {
       return `Hola! Me gustaría reservar un barco:
 
-*DATOS DEL CLIENTE*
+*MIS DATOS*
 Nombre: ${fullName}
 Tel: ${phone}
 Email: ${email.trim()}
 
-*DETALLES DE LA RESERVA*
+*MI PETICIÓN DE RESERVA*
 Barco: ${boatName}
 Fecha: ${formattedDate}
 Hora inicio: ${preferredTime}h
@@ -854,40 +854,18 @@ Looking forward to confirmation. Thanks!`;
       return;
     }
 
-    // Soft availability check — warn if boat appears fully booked, but don't block
-    try {
-      const month = selectedDate.substring(0, 7);
-      const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 3000);
-      const res = await fetch(`/api/boats/${selectedBoat}/availability?month=${month}`, {
-        signal: controller.signal,
-      });
-      clearTimeout(timeoutId);
-      if (res.ok) {
-        const data = await res.json();
-        const dayData = data.days?.[selectedDate];
-        if (dayData?.status === 'booked') {
-          toast({
-            title: isSpanishLang ? 'Posible conflicto de disponibilidad' : 'Possible availability conflict',
-            description: isSpanishLang
-              ? 'Ese día el barco puede estar ocupado. Lo confirmaremos por WhatsApp.'
-              : 'The boat may already be booked that day. We will confirm via WhatsApp.',
-            variant: 'destructive',
-          });
-        }
-      }
-    } catch {
-      // Network timeout or error — proceed anyway
-    }
-
     trackBookingStarted(selectedBoat, selectedBoatInfo?.name || selectedBoat, getStoredUtm());
 
-    // Save inquiry to database before opening WhatsApp
+    // Open WhatsApp immediately (must be synchronous with user click to avoid popup blocker)
+    const message = createWhatsAppBookingMessage();
+    openWhatsApp(message);
+
+    // Save inquiry to database after opening WhatsApp (fire-and-forget to avoid popup blocker)
     try {
       const price = getBookingPrice();
       const codeDiscount = getCodeDiscount();
       const total = price ? price + totalExtrasPrice - codeDiscount : null;
-      await fetch('/api/booking-inquiries', {
+      fetch('/api/booking-inquiries', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -909,13 +887,10 @@ Looking forward to confirmation. Thanks!`;
           language,
           source: isMobile ? 'mobile' : 'desktop',
         }),
-      });
+      }).catch(() => {});
     } catch {
-      // Don't block WhatsApp send if inquiry save fails
+      // Silent fail
     }
-
-    const message = createWhatsAppBookingMessage();
-    openWhatsApp(message);
 
     toast({
       title: isSpanishLang ? 'Solicitud enviada por WhatsApp' : 'Request sent via WhatsApp',

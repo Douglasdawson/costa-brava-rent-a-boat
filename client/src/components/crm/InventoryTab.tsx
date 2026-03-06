@@ -311,7 +311,7 @@ export function InventoryTab({ adminToken }: InventoryTabProps) {
   return (
     <div className="space-y-4 sm:space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-        <h2 className="text-xl sm:text-2xl font-bold">Inventario de Extras</h2>
+        <h2 className="text-xl sm:text-2xl font-bold font-heading">Inventario de Extras</h2>
         <div className="flex gap-2">
           <Select value={filterCategory} onValueChange={setFilterCategory}>
             <SelectTrigger className="w-[160px]">
@@ -365,8 +365,8 @@ export function InventoryTab({ adminToken }: InventoryTabProps) {
       ) : filteredItems.length === 0 ? (
         <Card>
           <CardContent className="py-8 text-center">
-            <Package className="w-12 h-12 mx-auto mb-4 text-gray-400" />
-            <p className="text-gray-500">No hay items en el inventario</p>
+            <Package className="w-12 h-12 mx-auto mb-4 text-muted-foreground/70" />
+            <p className="text-muted-foreground">No hay items en el inventario</p>
           </CardContent>
         </Card>
       ) : (
@@ -378,31 +378,31 @@ export function InventoryTab({ adminToken }: InventoryTabProps) {
                 <CardContent className="p-4">
                   <div className="flex justify-between items-start mb-3">
                     <div className="flex-1">
-                      <h3 className="font-semibold text-lg">{item.name}</h3>
-                      <p className="text-sm text-gray-500">{CATEGORY_LABELS[item.category] || item.category}</p>
+                      <h3 className="font-semibold text-lg font-heading">{item.name}</h3>
+                      <p className="text-sm text-muted-foreground">{CATEGORY_LABELS[item.category] || item.category}</p>
                     </div>
                     <Badge className={statusConfig.color}>{statusConfig.label}</Badge>
                   </div>
 
                   {item.description && (
-                    <p className="text-sm text-gray-600 mb-3 line-clamp-2">{item.description}</p>
+                    <p className="text-sm text-muted-foreground mb-3 line-clamp-2">{item.description}</p>
                   )}
 
                   <div className="grid grid-cols-2 gap-2 text-sm mb-3">
-                    <div className="bg-gray-50 rounded p-2 text-center">
-                      <p className="text-gray-500">Disponible</p>
+                    <div className="bg-muted rounded p-2 text-center">
+                      <p className="text-muted-foreground">Disponible</p>
                       <p className={`text-lg font-bold ${item.availableStock <= item.minStockAlert ? "text-red-600" : "text-green-600"}`}>
                         {item.availableStock}
                       </p>
                     </div>
-                    <div className="bg-gray-50 rounded p-2 text-center">
-                      <p className="text-gray-500">Total</p>
+                    <div className="bg-muted rounded p-2 text-center">
+                      <p className="text-muted-foreground">Total</p>
                       <p className="text-lg font-bold">{item.totalStock}</p>
                     </div>
                   </div>
 
                   {item.pricePerUnit && (
-                    <p className="text-sm text-gray-600 mb-3">Precio: {item.pricePerUnit} EUR/ud</p>
+                    <p className="text-sm text-muted-foreground mb-3">Precio: {item.pricePerUnit} EUR/ud</p>
                   )}
 
                   <div className="flex gap-1">
@@ -583,12 +583,12 @@ export function InventoryTab({ adminToken }: InventoryTabProps) {
           {selectedItem && (
             <div className="mt-4 space-y-4">
               <div className="grid grid-cols-2 gap-3">
-                <div className="bg-gray-50 rounded p-3 text-center">
-                  <p className="text-sm text-gray-500">Disponible</p>
+                <div className="bg-muted rounded p-3 text-center">
+                  <p className="text-sm text-muted-foreground">Disponible</p>
                   <p className="text-2xl font-bold">{selectedItem.availableStock}</p>
                 </div>
-                <div className="bg-gray-50 rounded p-3 text-center">
-                  <p className="text-sm text-gray-500">Total</p>
+                <div className="bg-muted rounded p-3 text-center">
+                  <p className="text-sm text-muted-foreground">Total</p>
                   <p className="text-2xl font-bold">{selectedItem.totalStock}</p>
                 </div>
               </div>
@@ -605,9 +605,9 @@ export function InventoryTab({ adminToken }: InventoryTabProps) {
               </Button>
 
               <div>
-                <h4 className="font-medium mb-2">Movimientos recientes</h4>
+                <h4 className="font-medium mb-2 font-heading">Movimientos recientes</h4>
                 {movements.length === 0 ? (
-                  <p className="text-sm text-gray-500">Sin movimientos registrados</p>
+                  <p className="text-sm text-muted-foreground">Sin movimientos registrados</p>
                 ) : (
                   <div className="space-y-2">
                     {movements.map(mov => {
@@ -619,12 +619,12 @@ export function InventoryTab({ adminToken }: InventoryTabProps) {
                           <div className="flex-1">
                             <div className="flex justify-between">
                               <span className="font-medium text-sm">{config.label}: {mov.quantity} ud.</span>
-                              <span className="text-xs text-gray-500">
+                              <span className="text-xs text-muted-foreground">
                                 {format(new Date(mov.createdAt), "dd/MM HH:mm")}
                               </span>
                             </div>
-                            {mov.reason && <p className="text-xs text-gray-500">{mov.reason}</p>}
-                            {mov.createdBy && <p className="text-xs text-gray-400">Por: {mov.createdBy}</p>}
+                            {mov.reason && <p className="text-xs text-muted-foreground">{mov.reason}</p>}
+                            {mov.createdBy && <p className="text-xs text-muted-foreground/70">Por: {mov.createdBy}</p>}
                           </div>
                         </div>
                       );

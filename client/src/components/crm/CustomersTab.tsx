@@ -193,7 +193,7 @@ export function CustomersTab({
           <div className="flex flex-col gap-4">
             <div className="flex flex-col md:flex-row gap-4">
               <div className="flex-1 relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground/70 w-4 h-4" />
                 <Input
                   placeholder="Buscar por nombre, email, telefono..."
                   value={searchQuery}
@@ -251,17 +251,17 @@ export function CustomersTab({
       <Card className="hidden md:block">
         <CardHeader className="flex flex-row items-center justify-between">
           <CardTitle>Clientes CRM</CardTitle>
-          <span className="text-sm text-gray-500">
+          <span className="text-sm text-muted-foreground">
             {total} cliente{total !== 1 ? "s" : ""} encontrado{total !== 1 ? "s" : ""}
           </span>
         </CardHeader>
         <CardContent>
           {isLoading ? (
-            <div className="text-center py-12 text-gray-500">Cargando clientes...</div>
+            <div className="text-center py-12 text-muted-foreground">Cargando clientes...</div>
           ) : error ? (
             <div className="text-center py-12 text-red-500">Error cargando clientes</div>
           ) : !customersData || customersData.length === 0 ? (
-            <div className="text-center py-8 text-gray-500">
+            <div className="text-center py-8 text-muted-foreground">
               {total === 0 && !debouncedSearch && segmentFilter === "all"
                 ? 'No hay clientes. Usa "Sincronizar desde Reservas" para importar.'
                 : "No se encontraron clientes con los filtros seleccionados"}
@@ -306,16 +306,16 @@ export function CustomersTab({
                   {customersData.map((customer) => (
                     <TableRow
                       key={customer.id}
-                      className="cursor-pointer hover:bg-gray-50"
+                      className="cursor-pointer hover:bg-muted"
                       onClick={() => handleCustomerClick(customer.id)}
                     >
                       <TableCell className="font-medium">
                         {customer.name} {customer.surname}
                       </TableCell>
-                      <TableCell className="text-sm text-gray-600">
+                      <TableCell className="text-sm text-muted-foreground">
                         {customer.email || "-"}
                       </TableCell>
-                      <TableCell className="text-sm text-gray-600">
+                      <TableCell className="text-sm text-muted-foreground">
                         {customer.phone}
                       </TableCell>
                       <TableCell>{customer.nationality || "-"}</TableCell>
@@ -368,14 +368,14 @@ export function CustomersTab({
       {/* Mobile Card View */}
       <div className="md:hidden space-y-3">
         <div className="flex items-center justify-between px-1">
-          <div className="text-sm font-medium text-gray-600">Clientes CRM</div>
-          <span className="text-xs text-gray-500">
+          <div className="text-sm font-medium font-heading text-muted-foreground">Clientes CRM</div>
+          <span className="text-xs text-muted-foreground">
             {total} resultado{total !== 1 ? "s" : ""}
           </span>
         </div>
         {isLoading ? (
           <Card>
-            <CardContent className="py-12 text-center text-gray-500">
+            <CardContent className="py-12 text-center text-muted-foreground">
               Cargando clientes...
             </CardContent>
           </Card>
@@ -387,7 +387,7 @@ export function CustomersTab({
           </Card>
         ) : !customersData || customersData.length === 0 ? (
           <Card>
-            <CardContent className="py-12 text-center text-gray-500">
+            <CardContent className="py-12 text-center text-muted-foreground">
               No hay clientes registrados
             </CardContent>
           </Card>
@@ -402,10 +402,10 @@ export function CustomersTab({
                 <CardContent className="p-4">
                   <div className="flex justify-between items-start mb-3">
                     <div className="flex-1">
-                      <h3 className="font-semibold text-base">
+                      <h3 className="font-semibold font-heading text-base">
                         {customer.name} {customer.surname}
                       </h3>
-                      <p className="text-sm text-gray-600 mt-1">
+                      <p className="text-sm text-muted-foreground mt-1">
                         {customer.nationality || "Sin nacionalidad"}
                       </p>
                       <div className="flex gap-2 mt-2 flex-wrap">
@@ -430,13 +430,13 @@ export function CustomersTab({
                   </div>
                   <div className="grid grid-cols-2 gap-2 text-sm border-t pt-3 mt-3">
                     <div>
-                      <span className="text-gray-600">Gasto Total:</span>
+                      <span className="text-muted-foreground">Gasto Total:</span>
                       <span className="ml-1 font-semibold">
                         {"\u20AC"}{parseFloat(customer.totalSpent).toFixed(2)}
                       </span>
                     </div>
                     <div className="text-right">
-                      <span className="text-gray-600">Ultima:</span>
+                      <span className="text-muted-foreground">Ultima:</span>
                       <span className="ml-1 font-medium text-xs">
                         {customer.lastBookingDate
                           ? format(new Date(customer.lastBookingDate), "dd/MM/yy")
@@ -444,9 +444,9 @@ export function CustomersTab({
                       </span>
                     </div>
                     <div className="col-span-2">
-                      <span className="text-gray-600 text-xs">{customer.phone}</span>
+                      <span className="text-muted-foreground text-xs">{customer.phone}</span>
                       {customer.email && (
-                        <span className="text-gray-600 text-xs ml-2">{customer.email}</span>
+                        <span className="text-muted-foreground text-xs ml-2">{customer.email}</span>
                       )}
                     </div>
                   </div>
@@ -466,7 +466,7 @@ export function CustomersTab({
                   <ChevronLeft className="w-4 h-4 mr-1" />
                   Anterior
                 </Button>
-                <span className="text-sm text-gray-600">
+                <span className="text-sm text-muted-foreground">
                   {currentPage} / {totalPages}
                 </span>
                 <Button
@@ -582,7 +582,7 @@ function PaginationControls({
 
   return (
     <div className="flex items-center justify-between mt-6 pt-4 border-t">
-      <div className="text-sm text-gray-600">
+      <div className="text-sm text-muted-foreground">
         Pagina {currentPage} de {totalPages}
       </div>
       <div className="flex items-center gap-1">

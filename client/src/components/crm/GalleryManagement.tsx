@@ -91,7 +91,7 @@ export function GalleryManagement({ adminToken }: GalleryManagementProps) {
   return (
     <div className="space-y-6">
       <div className="flex flex-wrap items-center justify-between gap-3">
-        <h2 className="text-xl font-bold flex items-center gap-2">
+        <h2 className="text-xl font-bold font-heading flex items-center gap-2">
           <Camera className="w-5 h-5" />
           Galeria de Fotos
         </h2>
@@ -117,7 +117,7 @@ export function GalleryManagement({ adminToken }: GalleryManagementProps) {
       {isLoading ? (
         <div className="text-center py-8">Cargando...</div>
       ) : filteredPhotos.length === 0 ? (
-        <div className="text-center py-12 text-gray-500">
+        <div className="text-center py-12 text-muted-foreground">
           No hay fotos {filter === "pending" ? "pendientes" : filter === "approved" ? "aprobadas" : ""}
         </div>
       ) : (
@@ -140,12 +140,12 @@ export function GalleryManagement({ adminToken }: GalleryManagementProps) {
               <CardContent className="p-3">
                 <p className="font-medium text-sm">{photo.customerName}</p>
                 {photo.boatName && (
-                  <p className="text-xs text-gray-500">{photo.boatName}</p>
+                  <p className="text-xs text-muted-foreground">{photo.boatName}</p>
                 )}
                 {photo.caption && (
-                  <p className="text-xs text-gray-600 mt-1 line-clamp-2">{photo.caption}</p>
+                  <p className="text-xs text-muted-foreground mt-1 line-clamp-2">{photo.caption}</p>
                 )}
-                <p className="text-xs text-gray-400 mt-1">
+                <p className="text-xs text-muted-foreground/70 mt-1">
                   {new Date(photo.createdAt).toLocaleDateString("es-ES")}
                 </p>
                 <div className="flex gap-2 mt-3">

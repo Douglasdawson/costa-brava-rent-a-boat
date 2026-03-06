@@ -125,7 +125,7 @@ export function BookingsTab({
         <CardContent className="pt-6">
           <div className="flex flex-col md:flex-row gap-4">
             <div className="flex-1 relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground/70 w-4 h-4" />
               <Input
                 placeholder="Buscar por nombre, email, telefono..."
                 value={searchQuery}
@@ -155,17 +155,17 @@ export function BookingsTab({
       <Card className="hidden md:block">
         <CardHeader className="flex flex-row items-center justify-between">
           <CardTitle>Todas las Reservas</CardTitle>
-          <span className="text-sm text-gray-500">
+          <span className="text-sm text-muted-foreground">
             {total} reserva{total !== 1 ? 's' : ''} encontrada{total !== 1 ? 's' : ''}
           </span>
         </CardHeader>
         <CardContent>
           {isLoading ? (
-            <div className="text-center py-12 text-gray-500">Cargando reservas...</div>
+            <div className="text-center py-12 text-muted-foreground">Cargando reservas...</div>
           ) : error ? (
             <div className="text-center py-12 text-red-500">Error cargando reservas</div>
           ) : !bookingsData || bookingsData.length === 0 ? (
-            <div className="text-center py-8 text-gray-500">
+            <div className="text-center py-8 text-muted-foreground">
               No se encontraron reservas con los filtros seleccionados
             </div>
           ) : (
@@ -193,7 +193,7 @@ export function BookingsTab({
                       <TableCell>
                         {booking.customerName} {booking.customerSurname}
                       </TableCell>
-                      <TableCell className="text-sm text-gray-600">
+                      <TableCell className="text-sm text-muted-foreground">
                         <div>{booking.customerPhone}</div>
                         {booking.customerEmail && (
                           <div className="text-xs">{booking.customerEmail}</div>
@@ -257,16 +257,16 @@ export function BookingsTab({
       {/* Mobile Card View */}
       <div className="md:hidden space-y-3">
         <div className="flex items-center justify-between px-1">
-          <div className="text-sm font-medium text-gray-600">
+          <div className="text-sm font-medium font-heading text-muted-foreground">
             Todas las Reservas
           </div>
-          <span className="text-xs text-gray-500">
+          <span className="text-xs text-muted-foreground">
             {total} resultado{total !== 1 ? 's' : ''}
           </span>
         </div>
         {isLoading ? (
           <Card>
-            <CardContent className="py-12 text-center text-gray-500">
+            <CardContent className="py-12 text-center text-muted-foreground">
               Cargando reservas...
             </CardContent>
           </Card>
@@ -278,7 +278,7 @@ export function BookingsTab({
           </Card>
         ) : !bookingsData || bookingsData.length === 0 ? (
           <Card>
-            <CardContent className="py-12 text-center text-gray-500">
+            <CardContent className="py-12 text-center text-muted-foreground">
               No se encontraron reservas
             </CardContent>
           </Card>
@@ -289,10 +289,10 @@ export function BookingsTab({
                 <CardContent className="p-4">
                   <div className="flex justify-between items-start mb-3">
                     <div className="flex-1">
-                      <h3 className="font-semibold text-base">
+                      <h3 className="font-semibold font-heading text-base">
                         {booking.customerName} {booking.customerSurname}
                       </h3>
-                      <p className="text-sm text-gray-600 mt-1">
+                      <p className="text-sm text-muted-foreground mt-1">
                         {format(new Date(booking.startTime), 'dd/MM/yy HH:mm')} - {booking.totalHours}h
                       </p>
                       <div className="flex gap-2 mt-2 flex-wrap">
@@ -317,19 +317,19 @@ export function BookingsTab({
                   </div>
                   <div className="grid grid-cols-2 gap-2 text-sm border-t pt-3 mt-3">
                     <div>
-                      <span className="text-gray-600">Barco:</span>
+                      <span className="text-muted-foreground">Barco:</span>
                       <span className="ml-1 font-medium">{booking.boatId}</span>
                     </div>
                     <div className="text-right">
-                      <span className="text-gray-600">Total:</span>
+                      <span className="text-muted-foreground">Total:</span>
                       <span className="ml-1 font-semibold text-base">
                         {"\u20AC"}{parseFloat(booking.totalAmount).toFixed(2)}
                       </span>
                     </div>
                     <div className="col-span-2">
-                      <span className="text-gray-600 text-xs">{booking.customerPhone}</span>
+                      <span className="text-muted-foreground text-xs">{booking.customerPhone}</span>
                       {booking.customerEmail && (
-                        <span className="text-gray-600 text-xs ml-2">{booking.customerEmail}</span>
+                        <span className="text-muted-foreground text-xs ml-2">{booking.customerEmail}</span>
                       )}
                     </div>
                   </div>
@@ -349,7 +349,7 @@ export function BookingsTab({
                   <ChevronLeft className="w-4 h-4 mr-1" />
                   Anterior
                 </Button>
-                <span className="text-sm text-gray-600">
+                <span className="text-sm text-muted-foreground">
                   {currentPage} / {totalPages}
                 </span>
                 <Button
@@ -393,7 +393,7 @@ function PaginationControls({
 
   return (
     <div className="flex items-center justify-between mt-6 pt-4 border-t">
-      <div className="text-sm text-gray-600">
+      <div className="text-sm text-muted-foreground">
         Pagina {currentPage} de {totalPages}
       </div>
       <div className="flex items-center gap-1">

@@ -383,7 +383,7 @@ export function MaintenanceTab({ adminToken }: MaintenanceTabProps) {
   return (
     <div className="space-y-4 sm:space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-        <h2 className="text-xl sm:text-2xl font-bold">Mantenimiento y Documentos</h2>
+        <h2 className="text-xl sm:text-2xl font-bold font-heading">Mantenimiento y Documentos</h2>
         <Select value={filterBoat} onValueChange={setFilterBoat}>
           <SelectTrigger className="w-full sm:w-[200px]">
             <SelectValue placeholder="Filtrar por barco" />
@@ -468,7 +468,7 @@ export function MaintenanceTab({ adminToken }: MaintenanceTabProps) {
             <Card><CardContent className="py-8 text-center"><Loader2 className="w-6 h-6 animate-spin mx-auto" /></CardContent></Card>
           ) : maintenanceLogs.length === 0 ? (
             <Card>
-              <CardContent className="py-8 text-center text-gray-500">
+              <CardContent className="py-8 text-center text-muted-foreground">
                 No hay registros de mantenimiento
               </CardContent>
             </Card>
@@ -533,14 +533,14 @@ export function MaintenanceTab({ adminToken }: MaintenanceTabProps) {
                       <div className="flex justify-between items-start mb-2">
                         <div>
                           <p className="font-medium">{boatName(log.boatId)}</p>
-                          <p className="text-sm text-gray-600">{TYPE_LABELS[log.type]}</p>
+                          <p className="text-sm text-muted-foreground">{TYPE_LABELS[log.type]}</p>
                         </div>
                         <Badge className={STATUS_COLORS[log.status] || ""}>
                           {STATUS_LABELS[log.status]}
                         </Badge>
                       </div>
                       <p className="text-sm mb-2">{log.description}</p>
-                      <div className="flex justify-between items-center text-sm text-gray-500">
+                      <div className="flex justify-between items-center text-sm text-muted-foreground">
                         <span>{format(new Date(log.date), "dd/MM/yyyy")}</span>
                         <span>{log.cost ? `${log.cost} EUR` : ""}</span>
                       </div>
@@ -585,7 +585,7 @@ export function MaintenanceTab({ adminToken }: MaintenanceTabProps) {
             <Card><CardContent className="py-8 text-center"><Loader2 className="w-6 h-6 animate-spin mx-auto" /></CardContent></Card>
           ) : documents.length === 0 ? (
             <Card>
-              <CardContent className="py-8 text-center text-gray-500">
+              <CardContent className="py-8 text-center text-muted-foreground">
                 No hay documentos registrados
               </CardContent>
             </Card>
@@ -646,12 +646,12 @@ export function MaintenanceTab({ adminToken }: MaintenanceTabProps) {
                       <div className="flex justify-between items-start mb-2">
                         <div>
                           <p className="font-medium">{doc.name}</p>
-                          <p className="text-sm text-gray-600">{boatName(doc.boatId)} - {DOC_TYPE_LABELS[doc.type]}</p>
+                          <p className="text-sm text-muted-foreground">{boatName(doc.boatId)} - {DOC_TYPE_LABELS[doc.type]}</p>
                         </div>
                         {getExpiryBadge(doc.expiryDate)}
                       </div>
                       {doc.expiryDate && (
-                        <p className="text-sm text-gray-500">
+                        <p className="text-sm text-muted-foreground">
                           Vence: {format(new Date(doc.expiryDate), "dd/MM/yyyy")}
                         </p>
                       )}
@@ -682,7 +682,7 @@ export function MaintenanceTab({ adminToken }: MaintenanceTabProps) {
       <Dialog open={showMaintenanceDialog} onOpenChange={setShowMaintenanceDialog}>
         <DialogContent className="max-w-lg max-h-[95vh] overflow-y-auto">
           <DialogHeader>
-            <DialogTitle>{editingMaintenance ? "Editar Mantenimiento" : "Registrar Mantenimiento"}</DialogTitle>
+            <DialogTitle className="font-heading">{editingMaintenance ? "Editar Mantenimiento" : "Registrar Mantenimiento"}</DialogTitle>
             <DialogDescription>Completa los datos del mantenimiento</DialogDescription>
           </DialogHeader>
           <div className="space-y-4">
@@ -786,7 +786,7 @@ export function MaintenanceTab({ adminToken }: MaintenanceTabProps) {
       <Dialog open={showDocDialog} onOpenChange={setShowDocDialog}>
         <DialogContent className="max-w-lg max-h-[95vh] overflow-y-auto">
           <DialogHeader>
-            <DialogTitle>{editingDoc ? "Editar Documento" : "Agregar Documento"}</DialogTitle>
+            <DialogTitle className="font-heading">{editingDoc ? "Editar Documento" : "Agregar Documento"}</DialogTitle>
             <DialogDescription>Registra un documento del barco</DialogDescription>
           </DialogHeader>
           <div className="space-y-4">

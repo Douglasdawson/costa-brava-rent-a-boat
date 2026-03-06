@@ -41,6 +41,7 @@ import {
   Send,
   AlertCircle,
   CheckCircle2,
+  Trash2,
 } from "lucide-react";
 import { SiWhatsapp } from "react-icons/si";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
@@ -165,6 +166,21 @@ export function InquiriesTab({ adminToken, onOpenWhatsApp }: InquiriesTabProps) 
     }
   }, [sendingWhatsApp, whatsAppMessage, adminToken, queryClient]);
 
+  const deleteInquiry = useCallback(async (id: string) => {
+    if (!confirm("¿Eliminar esta petición? Esta acción no se puede deshacer.")) return;
+    try {
+      const res = await fetch(`/api/admin/booking-inquiries/${id}`, {
+        method: 'DELETE',
+        headers: { 'Authorization': `Bearer ${adminToken}` },
+      });
+      if (res.ok) {
+        queryClient.invalidateQueries({ queryKey: ['/api/admin/booking-inquiries'] });
+      }
+    } catch {
+      // Silent fail
+    }
+  }, [adminToken, queryClient]);
+
   const inquiries = response?.data || [];
   const totalPages = response?.totalPages || 1;
   const total = response?.total || 0;
@@ -191,8 +207,8 @@ export function InquiriesTab({ adminToken, onOpenWhatsApp }: InquiriesTabProps) 
       {/* Header with stats */}
       <div className="flex items-center justify-between">
         <div>
-          <h2 className="text-xl font-bold text-gray-900">Peticiones de WhatsApp</h2>
-          <p className="text-sm text-gray-500">{total} peticiones en total</p>
+          <h2 className="text-xl font-heading font-bold text-foreground">Peticiones de WhatsApp</h2>
+          <p className="text-sm text-muted-foreground">{total} peticiones en total</p>
         </div>
       </div>
 
@@ -201,7 +217,7 @@ export function InquiriesTab({ adminToken, onOpenWhatsApp }: InquiriesTabProps) 
         <CardContent className="pt-4 pb-4">
           <div className="flex flex-col md:flex-row md:items-center gap-3">
             <div className="relative flex-1">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground/70" />
               <Input
                 placeholder="Buscar por nombre, email, telefono, barco..."
                 value={searchQuery}
@@ -227,7 +243,7 @@ export function InquiriesTab({ adminToken, onOpenWhatsApp }: InquiriesTabProps) 
 
       {/* Loading / Error / Empty */}
       {isLoading && (
-        <Card><CardContent className="py-12 text-center text-gray-500">
+        <Card><CardContent className="py-12 text-center text-muted-foreground">
           <Loader2 className="w-6 h-6 animate-spin mx-auto mb-2" />
           Cargando peticiones...
         </CardContent></Card>
@@ -240,7 +256,7 @@ export function InquiriesTab({ adminToken, onOpenWhatsApp }: InquiriesTabProps) 
       )}
 
       {!isLoading && !error && inquiries.length === 0 && (
-        <Card><CardContent className="py-12 text-center text-gray-500">
+        <Card><CardContent className="py-12 text-center text-muted-foreground">
           No se encontraron peticiones
         </CardContent></Card>
       )}
@@ -267,26 +283,26 @@ export function InquiriesTab({ adminToken, onOpenWhatsApp }: InquiriesTabProps) 
                   const statusConf = STATUS_CONFIG[inq.status] || STATUS_CONFIG.pending;
                   return (
                     <TableRow key={inq.id}>
-                      <TableCell className="text-xs text-gray-600 whitespace-nowrap">
+                      <TableCell className="text-xs text-muted-foreground whitespace-nowrap">
                         {formatDate(inq.createdAt)}
                       </TableCell>
                       <TableCell>
                         <div className="font-medium text-sm">{inq.firstName} {inq.lastName}</div>
-                        {inq.language && <span className="text-xs text-gray-400 uppercase">{inq.language}</span>}
+                        {inq.language && <span className="text-xs text-muted-foreground/70 uppercase">{inq.language}</span>}
                       </TableCell>
                       <TableCell className="text-xs">
                         <a href={`tel:${inq.phonePrefix}${inq.phoneNumber}`} className="flex items-center gap-1 hover:text-blue-600 transition-colors"><Phone className="w-3 h-3" />{inq.phonePrefix} {inq.phoneNumber}</a>
-                        {inq.email && <a href={`mailto:${inq.email}`} className="flex items-center gap-1 text-gray-500 hover:text-blue-600 transition-colors"><Mail className="w-3 h-3" />{inq.email}</a>}
+                        {inq.email && <a href={`mailto:${inq.email}`} className="flex items-center gap-1 text-muted-foreground hover:text-blue-600 transition-colors"><Mail className="w-3 h-3" />{inq.email}</a>}
                       </TableCell>
                       <TableCell>
                         <div className="flex items-center gap-1 text-sm"><Ship className="w-3 h-3" />{inq.boatName}</div>
                       </TableCell>
                       <TableCell className="text-xs">
                         <div>{formatBookingDate(inq.bookingDate)}</div>
-                        <div className="text-gray-500 flex items-center gap-1">
+                        <div className="text-muted-foreground flex items-center gap-1">
                           <Clock className="w-3 h-3" />{inq.preferredTime || '-'} · {inq.duration}
                         </div>
-                        <div className="text-gray-500 flex items-center gap-1">
+                        <div className="text-muted-foreground flex items-center gap-1">
                           <Users className="w-3 h-3" />{inq.numberOfPeople} pers.
                         </div>
                       </TableCell>
@@ -351,7 +367,16 @@ export function InquiriesTab({ adminToken, onOpenWhatsApp }: InquiriesTabProps) 
                             }}
                             title="Notas"
                           >
-                            <StickyNote className="w-4 h-4 text-gray-500" />
+                            <StickyNote className="w-4 h-4 text-muted-foreground" />
+                          </Button>
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            className="h-7 w-7 p-0"
+                            onClick={() => deleteInquiry(inq.id)}
+                            title="Eliminar"
+                          >
+                            <Trash2 className="w-4 h-4 text-red-500" />
                           </Button>
                         </div>
                         {editingNotes === inq.id && (
@@ -373,7 +398,7 @@ export function InquiriesTab({ adminToken, onOpenWhatsApp }: InquiriesTabProps) 
                           </div>
                         )}
                         {!editingNotes && inq.notes && (
-                          <div className="text-xs text-gray-400 mt-1 max-w-[150px] truncate" title={inq.notes}>
+                          <div className="text-xs text-muted-foreground/70 mt-1 max-w-[150px] truncate" title={inq.notes}>
                             {inq.notes}
                           </div>
                         )}
@@ -398,7 +423,7 @@ export function InquiriesTab({ adminToken, onOpenWhatsApp }: InquiriesTabProps) 
                   <div className="flex items-start justify-between">
                     <div>
                       <div className="font-medium">{inq.firstName} {inq.lastName}</div>
-                      <div className="text-xs text-gray-500">{formatDate(inq.createdAt)}</div>
+                      <div className="text-xs text-muted-foreground">{formatDate(inq.createdAt)}</div>
                     </div>
                     <Badge className={`${statusConf.color} text-xs border-0`}>
                       {statusConf.label}
@@ -410,7 +435,7 @@ export function InquiriesTab({ adminToken, onOpenWhatsApp }: InquiriesTabProps) 
                     <div>{formatBookingDate(inq.bookingDate)}</div>
                     <div><Users className="w-3 h-3 inline mr-1" />{inq.numberOfPeople} pers.</div>
                   </div>
-                  <div className="text-xs text-gray-600">
+                  <div className="text-xs text-muted-foreground">
                     <a href={`tel:${inq.phonePrefix}${inq.phoneNumber}`} className="block hover:text-blue-600 transition-colors"><Phone className="w-3 h-3 inline mr-1" />{inq.phonePrefix} {inq.phoneNumber}</a>
                     {inq.email && <a href={`mailto:${inq.email}`} className="block hover:text-blue-600 transition-colors"><Mail className="w-3 h-3 inline mr-1" />{inq.email}</a>}
                   </div>
@@ -450,7 +475,7 @@ export function InquiriesTab({ adminToken, onOpenWhatsApp }: InquiriesTabProps) 
                       <SiWhatsapp className="w-4 h-4 text-green-600" />
                     </Button>
                   </div>
-                  {inq.notes && <div className="text-xs text-gray-400">{inq.notes}</div>}
+                  {inq.notes && <div className="text-xs text-muted-foreground/70">{inq.notes}</div>}
                 </CardContent>
               </Card>
             );
@@ -474,35 +499,35 @@ export function InquiriesTab({ adminToken, onOpenWhatsApp }: InquiriesTabProps) 
                 </DialogHeader>
                 <div className="space-y-4">
                   {/* Cliente */}
-                  <div className="bg-gray-50 rounded-lg p-4 space-y-2">
-                    <h4 className="font-semibold text-sm text-gray-700 uppercase tracking-wide">Cliente</h4>
+                  <div className="bg-muted rounded-lg p-4 space-y-2">
+                    <h4 className="font-heading font-semibold text-sm text-foreground/80 uppercase tracking-wide">Cliente</h4>
                     <div className="grid grid-cols-2 gap-2 text-sm">
-                      <div><span className="text-gray-500">Nombre:</span> {inq.firstName} {inq.lastName}</div>
-                      <div className="flex items-center gap-1"><Globe className="w-3 h-3 text-gray-400" />{inq.language?.toUpperCase()}</div>
-                      <a href={`tel:${inq.phonePrefix}${inq.phoneNumber}`} className="flex items-center gap-1 hover:text-blue-600 transition-colors"><Phone className="w-3 h-3 text-gray-400" />{inq.phonePrefix} {inq.phoneNumber}</a>
-                      {inq.email ? <a href={`mailto:${inq.email}`} className="flex items-center gap-1 hover:text-blue-600 transition-colors"><Mail className="w-3 h-3 text-gray-400" />{inq.email}</a> : <div className="flex items-center gap-1"><Mail className="w-3 h-3 text-gray-400" />-</div>}
+                      <div><span className="text-muted-foreground">Nombre:</span> {inq.firstName} {inq.lastName}</div>
+                      <div className="flex items-center gap-1"><Globe className="w-3 h-3 text-muted-foreground/70" />{inq.language?.toUpperCase()}</div>
+                      <a href={`tel:${inq.phonePrefix}${inq.phoneNumber}`} className="flex items-center gap-1 hover:text-blue-600 transition-colors"><Phone className="w-3 h-3 text-muted-foreground/70" />{inq.phonePrefix} {inq.phoneNumber}</a>
+                      {inq.email ? <a href={`mailto:${inq.email}`} className="flex items-center gap-1 hover:text-blue-600 transition-colors"><Mail className="w-3 h-3 text-muted-foreground/70" />{inq.email}</a> : <div className="flex items-center gap-1"><Mail className="w-3 h-3 text-muted-foreground/70" />-</div>}
                     </div>
                   </div>
 
                   {/* Reserva */}
-                  <div className="bg-gray-50 rounded-lg p-4 space-y-2">
-                    <h4 className="font-semibold text-sm text-gray-700 uppercase tracking-wide">Reserva</h4>
+                  <div className="bg-muted rounded-lg p-4 space-y-2">
+                    <h4 className="font-heading font-semibold text-sm text-foreground/80 uppercase tracking-wide">Reserva</h4>
                     <div className="grid grid-cols-2 gap-2 text-sm">
-                      <div className="flex items-center gap-1"><Ship className="w-3 h-3 text-gray-400" />{inq.boatName}</div>
-                      <div className="flex items-center gap-1"><CalendarDays className="w-3 h-3 text-gray-400" />{formatBookingDate(inq.bookingDate)}</div>
-                      <div className="flex items-center gap-1"><Clock className="w-3 h-3 text-gray-400" />{inq.preferredTime || '-'}</div>
-                      <div className="flex items-center gap-1"><Timer className="w-3 h-3 text-gray-400" />{inq.duration}</div>
-                      <div className="flex items-center gap-1"><Users className="w-3 h-3 text-gray-400" />{inq.numberOfPeople} personas</div>
-                      <div className="flex items-center gap-1"><Monitor className="w-3 h-3 text-gray-400" />{inq.source}</div>
+                      <div className="flex items-center gap-1"><Ship className="w-3 h-3 text-muted-foreground/70" />{inq.boatName}</div>
+                      <div className="flex items-center gap-1"><CalendarDays className="w-3 h-3 text-muted-foreground/70" />{formatBookingDate(inq.bookingDate)}</div>
+                      <div className="flex items-center gap-1"><Clock className="w-3 h-3 text-muted-foreground/70" />{inq.preferredTime || '-'}</div>
+                      <div className="flex items-center gap-1"><Timer className="w-3 h-3 text-muted-foreground/70" />{inq.duration}</div>
+                      <div className="flex items-center gap-1"><Users className="w-3 h-3 text-muted-foreground/70" />{inq.numberOfPeople} personas</div>
+                      <div className="flex items-center gap-1"><Monitor className="w-3 h-3 text-muted-foreground/70" />{inq.source}</div>
                     </div>
                   </div>
 
                   {/* Extras & Pack */}
                   {((inq.extras && (inq.extras as string[]).length > 0) || inq.packId) && (
-                    <div className="bg-gray-50 rounded-lg p-4 space-y-2">
-                      <h4 className="font-semibold text-sm text-gray-700 uppercase tracking-wide">Extras y Packs</h4>
+                    <div className="bg-muted rounded-lg p-4 space-y-2">
+                      <h4 className="font-heading font-semibold text-sm text-foreground/80 uppercase tracking-wide">Extras y Packs</h4>
                       {inq.packId && (
-                        <div className="flex items-center gap-1 text-sm"><Gift className="w-3 h-3 text-gray-400" />Pack: {inq.packId}</div>
+                        <div className="flex items-center gap-1 text-sm"><Gift className="w-3 h-3 text-muted-foreground/70" />Pack: {inq.packId}</div>
                       )}
                       {inq.extras && (inq.extras as string[]).length > 0 && (
                         <div className="flex flex-wrap gap-1">
@@ -515,26 +540,26 @@ export function InquiriesTab({ adminToken, onOpenWhatsApp }: InquiriesTabProps) 
                   )}
 
                   {/* Precio y Codigo */}
-                  <div className="bg-gray-50 rounded-lg p-4 space-y-2">
-                    <h4 className="font-semibold text-sm text-gray-700 uppercase tracking-wide">Precio</h4>
+                  <div className="bg-muted rounded-lg p-4 space-y-2">
+                    <h4 className="font-heading font-semibold text-sm text-foreground/80 uppercase tracking-wide">Precio</h4>
                     <div className="grid grid-cols-2 gap-2 text-sm">
                       <div className="text-lg font-bold">{inq.estimatedTotal ? `${inq.estimatedTotal}€` : 'No calculado'}</div>
                       {inq.couponCode && (
-                        <div className="flex items-center gap-1"><Tag className="w-3 h-3 text-gray-400" />Codigo: {inq.couponCode}</div>
+                        <div className="flex items-center gap-1"><Tag className="w-3 h-3 text-muted-foreground/70" />Codigo: {inq.couponCode}</div>
                       )}
                     </div>
                   </div>
 
                   {/* Notas */}
                   {inq.notes && (
-                    <div className="bg-amber-50 rounded-lg p-4 space-y-1">
-                      <h4 className="font-semibold text-sm text-amber-700 uppercase tracking-wide">Notas</h4>
+                    <div className="bg-accent rounded-lg p-4 space-y-1">
+                      <h4 className="font-heading font-semibold text-sm text-accent-foreground uppercase tracking-wide">Notas</h4>
                       <p className="text-sm">{inq.notes}</p>
                     </div>
                   )}
 
                   {/* Fecha de creacion */}
-                  <div className="text-xs text-gray-400 text-right">
+                  <div className="text-xs text-muted-foreground/70 text-right">
                     Recibido: {formatDate(inq.createdAt)}
                   </div>
 
@@ -590,13 +615,13 @@ export function InquiriesTab({ adminToken, onOpenWhatsApp }: InquiriesTabProps) 
                 </DialogTitle>
               </DialogHeader>
               <div className="space-y-4">
-                <div className="bg-gray-50 rounded-lg p-3 text-sm space-y-1">
+                <div className="bg-muted rounded-lg p-3 text-sm space-y-1">
                   <div className="font-medium">{sendingWhatsApp.firstName} {sendingWhatsApp.lastName}</div>
-                  <div className="text-gray-500 flex items-center gap-1">
+                  <div className="text-muted-foreground flex items-center gap-1">
                     <Phone className="w-3 h-3" />
                     {sendingWhatsApp.phonePrefix} {sendingWhatsApp.phoneNumber}
                   </div>
-                  <div className="text-gray-500 flex items-center gap-1">
+                  <div className="text-muted-foreground flex items-center gap-1">
                     <Ship className="w-3 h-3" />
                     {sendingWhatsApp.boatName} · {formatBookingDate(sendingWhatsApp.bookingDate)}
                   </div>
@@ -615,7 +640,7 @@ export function InquiriesTab({ adminToken, onOpenWhatsApp }: InquiriesTabProps) 
 
                 {sendResult && (
                   <div className={`flex items-center gap-2 text-sm p-2 rounded ${
-                    sendResult.type === "success" ? "bg-green-50 text-green-700" : "bg-red-50 text-red-700"
+                    sendResult.type === "success" ? "bg-green-50 text-green-700" : "bg-destructive/10 text-destructive"
                   }`}>
                     {sendResult.type === "success" ? (
                       <CheckCircle2 className="w-4 h-4" />
@@ -656,7 +681,7 @@ export function InquiriesTab({ adminToken, onOpenWhatsApp }: InquiriesTabProps) 
       {/* Pagination */}
       {!isLoading && totalPages > 1 && (
         <div className="flex items-center justify-between px-2">
-          <span className="text-sm text-gray-600">
+          <span className="text-sm text-muted-foreground">
             Pagina {currentPage} de {totalPages}
           </span>
           <div className="flex items-center gap-1">

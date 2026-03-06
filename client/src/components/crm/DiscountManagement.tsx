@@ -201,7 +201,7 @@ export function DiscountManagement({ adminToken }: DiscountManagementProps) {
     <div className="space-y-6">
       {/* Header */}
       <div className="flex items-center justify-between flex-wrap gap-3">
-        <h2 className="text-xl font-bold flex items-center gap-2">
+        <h2 className="text-xl font-bold font-heading flex items-center gap-2">
           <Percent className="w-5 h-5" />
           Codigos de Descuento
         </h2>
@@ -249,19 +249,19 @@ export function DiscountManagement({ adminToken }: DiscountManagementProps) {
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         <Card>
           <CardContent className="p-4">
-            <p className="text-sm text-gray-500">Total Codigos</p>
+            <p className="text-sm text-muted-foreground">Total Codigos</p>
             <p className="text-2xl font-bold">{discountCodes.length}</p>
           </CardContent>
         </Card>
         <Card>
           <CardContent className="p-4">
-            <p className="text-sm text-gray-500">Activos</p>
+            <p className="text-sm text-muted-foreground">Activos</p>
             <p className="text-2xl font-bold text-green-600">{totalActive}</p>
           </CardContent>
         </Card>
         <Card>
           <CardContent className="p-4">
-            <p className="text-sm text-gray-500">Usados</p>
+            <p className="text-sm text-muted-foreground">Usados</p>
             <p className="text-2xl font-bold text-blue-600">{totalUsed}</p>
           </CardContent>
         </Card>
@@ -271,7 +271,7 @@ export function DiscountManagement({ adminToken }: DiscountManagementProps) {
       {isLoading ? (
         <div className="text-center py-8">Cargando...</div>
       ) : filteredCodes.length === 0 ? (
-        <div className="text-center py-12 text-gray-500">
+        <div className="text-center py-12 text-muted-foreground">
           No hay codigos de descuento{filter !== "all" ? " con este filtro" : ""}
         </div>
       ) : (
@@ -306,7 +306,7 @@ export function DiscountManagement({ adminToken }: DiscountManagementProps) {
                         <TableCell>
                           {code.currentUses}/{code.maxUses}
                         </TableCell>
-                        <TableCell className="text-sm text-gray-600">
+                        <TableCell className="text-sm text-muted-foreground">
                           {code.customerEmail || "Universal"}
                         </TableCell>
                         <TableCell>
@@ -359,7 +359,7 @@ export function DiscountManagement({ adminToken }: DiscountManagementProps) {
       <Dialog open={showCreateDialog} onOpenChange={setShowCreateDialog}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Crear Codigo de Descuento</DialogTitle>
+            <DialogTitle className="font-heading">Crear Codigo de Descuento</DialogTitle>
             <DialogDescription>
               Introduce los datos del nuevo codigo de descuento
             </DialogDescription>
@@ -374,7 +374,7 @@ export function DiscountManagement({ adminToken }: DiscountManagementProps) {
                 placeholder="VERANO-2026"
                 maxLength={30}
               />
-              <p className="text-xs text-gray-500 mt-1">
+              <p className="text-xs text-muted-foreground mt-1">
                 Solo letras mayusculas, numeros y guiones
               </p>
             </div>
@@ -440,7 +440,7 @@ export function DiscountManagement({ adminToken }: DiscountManagementProps) {
       <Dialog open={showCampaignResults} onOpenChange={setShowCampaignResults}>
         <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
           <DialogHeader>
-            <DialogTitle>Resultados de la Campana Pre-temporada</DialogTitle>
+            <DialogTitle className="font-heading">Resultados de la Campana Pre-temporada</DialogTitle>
             <DialogDescription>
               {campaignData
                 ? `${campaignData.codesGenerated} codigos generados para ${campaignData.customersFound} clientes`
@@ -462,7 +462,7 @@ export function DiscountManagement({ adminToken }: DiscountManagementProps) {
                   {campaignData.codes.map((item, index) => (
                     <TableRow key={index}>
                       <TableCell className="font-medium">{item.name}</TableCell>
-                      <TableCell className="text-sm text-gray-600">{item.email}</TableCell>
+                      <TableCell className="text-sm text-muted-foreground">{item.email}</TableCell>
                       <TableCell className="font-mono font-bold">{item.code}</TableCell>
                       <TableCell>
                         <Badge variant="secondary">{item.discountPercent}%</Badge>
@@ -473,7 +473,7 @@ export function DiscountManagement({ adminToken }: DiscountManagementProps) {
               </Table>
             </div>
           ) : (
-            <div className="text-center py-8 text-gray-500">
+            <div className="text-center py-8 text-muted-foreground">
               No se encontraron clientes con reservas confirmadas
             </div>
           )}

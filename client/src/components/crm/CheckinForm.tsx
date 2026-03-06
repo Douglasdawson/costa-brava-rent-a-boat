@@ -152,7 +152,7 @@ export function CheckinForm({
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="max-w-lg max-h-[95vh] overflow-y-auto">
         <DialogHeader>
-          <DialogTitle>Registrar {title}</DialogTitle>
+          <DialogTitle className="font-heading">Registrar {title}</DialogTitle>
           <DialogDescription>
             Completa el formulario de {title.toLowerCase()} para esta reserva
           </DialogDescription>
@@ -257,7 +257,7 @@ export function CheckinForm({
             <Label>Firma del Cliente</Label>
             {signatureUrl ? (
               <div className="space-y-2">
-                <div className="border rounded-lg p-2 bg-white">
+                <div className="border rounded-lg p-2 bg-card">
                   <img
                     src={signatureUrl}
                     alt="Firma"

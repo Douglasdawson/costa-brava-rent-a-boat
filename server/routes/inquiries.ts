@@ -70,6 +70,20 @@ export function registerInquiryRoutes(app: Express) {
     }
   });
 
+  // Admin: delete inquiry
+  app.delete("/api/admin/booking-inquiries/:id", requireAdminSession, async (req, res) => {
+    try {
+      const deleted = await storage.deleteWhatsappInquiry(req.params.id);
+      if (!deleted) {
+        return res.status(404).json({ message: "Peticion no encontrada" });
+      }
+      res.json({ success: true });
+    } catch (error: unknown) {
+      console.error("[Admin] Error deleting inquiry:", error instanceof Error ? error.message : String(error));
+      res.status(500).json({ message: "Error interno del servidor" });
+    }
+  });
+
   // Admin: send WhatsApp message to inquiry customer via Meta API
   app.post("/api/admin/booking-inquiries/:id/send-whatsapp", requireAdminSession, async (req, res) => {
     try {

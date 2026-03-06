@@ -290,28 +290,28 @@ export function BookingDetailsModal({
           <div className="space-y-6">
             {/* Customer Info */}
             <div>
-              <h3 className="font-semibold text-lg mb-3">Informacion del Cliente</h3>
+              <h3 className="font-heading font-semibold text-lg mb-3">Informacion del Cliente</h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
                 <div>
-                  <p className="text-gray-600">Nombre Completo</p>
+                  <p className="text-muted-foreground">Nombre Completo</p>
                   <p className="font-medium">{booking.customerName} {booking.customerSurname}</p>
                 </div>
                 <div>
-                  <p className="text-gray-600">Telefono</p>
+                  <p className="text-muted-foreground">Telefono</p>
                   <p className="font-medium">{booking.customerPhone}</p>
                 </div>
                 {booking.customerEmail && (
                   <div>
-                    <p className="text-gray-600">Email</p>
+                    <p className="text-muted-foreground">Email</p>
                     <p className="font-medium">{booking.customerEmail}</p>
                   </div>
                 )}
                 <div>
-                  <p className="text-gray-600">Nacionalidad</p>
+                  <p className="text-muted-foreground">Nacionalidad</p>
                   <p className="font-medium">{booking.customerNationality}</p>
                 </div>
                 <div>
-                  <p className="text-gray-600">Numero de Personas</p>
+                  <p className="text-muted-foreground">Numero de Personas</p>
                   <p className="font-medium">{booking.numberOfPeople}</p>
                 </div>
               </div>
@@ -319,32 +319,32 @@ export function BookingDetailsModal({
 
             {/* Booking Info */}
             <div>
-              <h3 className="font-semibold text-lg mb-3">Detalles de la Reserva</h3>
+              <h3 className="font-heading font-semibold text-lg mb-3">Detalles de la Reserva</h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
                 <div>
-                  <p className="text-gray-600">Barco</p>
+                  <p className="text-muted-foreground">Barco</p>
                   <p className="font-medium">{booking.boatId}</p>
                 </div>
                 <div>
-                  <p className="text-gray-600">Fecha de Inicio</p>
+                  <p className="text-muted-foreground">Fecha de Inicio</p>
                   <p className="font-medium">{format(new Date(booking.startTime), 'dd/MM/yyyy HH:mm')}</p>
                 </div>
                 <div>
-                  <p className="text-gray-600">Fecha de Fin</p>
+                  <p className="text-muted-foreground">Fecha de Fin</p>
                   <p className="font-medium">{format(new Date(booking.endTime), 'dd/MM/yyyy HH:mm')}</p>
                 </div>
                 <div>
-                  <p className="text-gray-600">Duracion</p>
+                  <p className="text-muted-foreground">Duracion</p>
                   <p className="font-medium">{booking.totalHours} horas</p>
                 </div>
                 <div>
-                  <p className="text-gray-600">Estado de Reserva</p>
+                  <p className="text-muted-foreground">Estado de Reserva</p>
                   <Badge variant={getStatusColor(booking.bookingStatus) as "default" | "secondary" | "outline" | "destructive"}>
                     {getStatusLabel(booking.bookingStatus)}
                   </Badge>
                 </div>
                 <div>
-                  <p className="text-gray-600">Estado de Pago</p>
+                  <p className="text-muted-foreground">Estado de Pago</p>
                   <Badge variant={booking.paymentStatus === 'completed' ? 'default' : 'outline'}>
                     {booking.paymentStatus === 'completed' ? 'Pagado' :
                      booking.paymentStatus === 'pending' ? 'Pendiente' :
@@ -356,27 +356,27 @@ export function BookingDetailsModal({
 
             {/* Payment Info */}
             <div>
-              <h3 className="font-semibold text-lg mb-3">Informacion de Pago</h3>
+              <h3 className="font-heading font-semibold text-lg mb-3">Informacion de Pago</h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
                 <div>
-                  <p className="text-gray-600">Subtotal</p>
+                  <p className="text-muted-foreground">Subtotal</p>
                   <p className="font-medium">{"\u20AC"}{parseFloat(booking.subtotal).toFixed(2)}</p>
                 </div>
                 <div>
-                  <p className="text-gray-600">Extras</p>
+                  <p className="text-muted-foreground">Extras</p>
                   <p className="font-medium">{"\u20AC"}{parseFloat(booking.extrasTotal).toFixed(2)}</p>
                 </div>
                 <div>
-                  <p className="text-gray-600">Deposito</p>
+                  <p className="text-muted-foreground">Deposito</p>
                   <p className="font-medium">{"\u20AC"}{parseFloat(booking.deposit).toFixed(2)}</p>
                 </div>
                 <div>
-                  <p className="text-gray-600">Total</p>
+                  <p className="text-muted-foreground">Total</p>
                   <p className="font-semibold text-lg">{"\u20AC"}{parseFloat(booking.totalAmount).toFixed(2)}</p>
                 </div>
                 {booking.stripePaymentIntentId && (
                   <div className="col-span-2">
-                    <p className="text-gray-600">Stripe Payment Intent</p>
+                    <p className="text-muted-foreground">Stripe Payment Intent</p>
                     <p className="font-mono text-xs">{booking.stripePaymentIntentId}</p>
                   </div>
                 )}
@@ -386,17 +386,17 @@ export function BookingDetailsModal({
             {/* Additional Info */}
             {(booking.notes || booking.couponCode) && (
               <div>
-                <h3 className="font-semibold text-lg mb-3">Informacion Adicional</h3>
+                <h3 className="font-heading font-semibold text-lg mb-3">Informacion Adicional</h3>
                 <div className="space-y-2 text-sm">
                   {booking.couponCode && (
                     <div>
-                      <p className="text-gray-600">Codigo de Descuento</p>
+                      <p className="text-muted-foreground">Codigo de Descuento</p>
                       <p className="font-medium">{booking.couponCode}</p>
                     </div>
                   )}
                   {booking.notes && (
                     <div>
-                      <p className="text-gray-600">Notas</p>
+                      <p className="text-muted-foreground">Notas</p>
                       <p className="font-medium">{booking.notes}</p>
                     </div>
                   )}
@@ -406,22 +406,22 @@ export function BookingDetailsModal({
 
             {/* Check-in / Check-out Section */}
             {(booking.bookingStatus === "confirmed") && (
-              <div className="border-t pt-4">
-                <h3 className="font-semibold text-lg mb-3">Check-in / Check-out</h3>
+              <div className="border-t border-border pt-4">
+                <h3 className="font-heading font-semibold text-lg mb-3">Check-in / Check-out</h3>
                 <div className="space-y-3">
                   {/* Status indicators */}
                   <div className="flex flex-wrap gap-3 text-sm">
                     <div className="flex items-center gap-2">
-                      <ClipboardCheck className={`w-4 h-4 ${hasCheckin ? "text-green-600" : "text-gray-300"}`} />
-                      <span className={hasCheckin ? "text-green-700 font-medium" : "text-gray-400"}>
+                      <ClipboardCheck className={`w-4 h-4 ${hasCheckin ? "text-green-600" : "text-muted-foreground/70"}`} />
+                      <span className={hasCheckin ? "text-green-700 font-medium" : "text-muted-foreground/70"}>
                         {hasCheckin
                           ? `Check-in: ${format(new Date(checkinRecord!.performedAt), "dd/MM/yy HH:mm")}`
                           : "Sin check-in"}
                       </span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <ClipboardList className={`w-4 h-4 ${hasCheckout ? "text-green-600" : "text-gray-300"}`} />
-                      <span className={hasCheckout ? "text-green-700 font-medium" : "text-gray-400"}>
+                      <ClipboardList className={`w-4 h-4 ${hasCheckout ? "text-green-600" : "text-muted-foreground/70"}`} />
+                      <span className={hasCheckout ? "text-green-700 font-medium" : "text-muted-foreground/70"}>
                         {hasCheckout
                           ? `Check-out: ${format(new Date(checkoutRecord!.performedAt), "dd/MM/yy HH:mm")}`
                           : "Sin check-out"}
@@ -431,7 +431,7 @@ export function BookingDetailsModal({
 
                   {/* Checkin details if exists */}
                   {checkinRecord && (
-                    <div className="bg-green-50 rounded-lg p-3 text-xs space-y-1">
+                    <div className="bg-muted rounded-lg p-3 text-xs space-y-1">
                       <p><span className="font-medium">Combustible:</span> {checkinRecord.fuelLevel}</p>
                       <p><span className="font-medium">Estado:</span> {checkinRecord.condition}</p>
                       {checkinRecord.engineHours && (
@@ -448,8 +448,8 @@ export function BookingDetailsModal({
 
                   {/* Checkout details if exists */}
                   {checkoutRecord && (
-                    <div className="bg-blue-50 rounded-lg p-3 text-xs space-y-1">
-                      <p className="font-medium text-blue-700 mb-1">Check-out:</p>
+                    <div className="bg-muted rounded-lg p-3 text-xs space-y-1">
+                      <p className="font-medium text-foreground mb-1">Check-out:</p>
                       <p><span className="font-medium">Combustible:</span> {checkoutRecord.fuelLevel}</p>
                       <p><span className="font-medium">Estado:</span> {checkoutRecord.condition}</p>
                       {checkoutRecord.engineHours && (
@@ -489,7 +489,7 @@ export function BookingDetailsModal({
                       </Button>
                     )}
                     {hasCheckin && hasCheckout && (
-                      <Badge className="bg-green-100 text-green-800 border-green-300">
+                      <Badge className="bg-muted text-foreground border-border">
                         Proceso completado
                       </Badge>
                     )}
@@ -499,12 +499,12 @@ export function BookingDetailsModal({
             )}
 
             {/* Actions */}
-            <div className="border-t pt-4">
-              <h3 className="font-semibold text-lg mb-3">Acciones</h3>
+            <div className="border-t border-border pt-4">
+              <h3 className="font-heading font-semibold text-lg mb-3">Acciones</h3>
               <div className="flex flex-wrap gap-2">
                 <Button
                   variant="outline"
-                  className="bg-green-50 border-green-300 text-green-700 hover:bg-green-100"
+                  className="bg-muted border-border text-foreground hover:bg-muted"
                   onClick={() => onOpenWhatsApp(booking.customerPhone, booking.customerName)}
                   data-testid="button-whatsapp-booking"
                 >
@@ -542,7 +542,7 @@ export function BookingDetailsModal({
               </div>
             </div>
 
-            <div className="text-xs text-gray-500 border-t pt-4">
+            <div className="text-xs text-muted-foreground border-t border-border pt-4">
               <p>Creada: {format(new Date(booking.createdAt), 'dd/MM/yyyy HH:mm')}</p>
               <p>Fuente: {booking.source === 'web' ? 'Web' : 'Admin'}</p>
             </div>
@@ -554,7 +554,7 @@ export function BookingDetailsModal({
           <form onSubmit={editForm.handleSubmit(isCreating ? handleCreateSubmit : handleEditSubmit)} className="space-y-6">
             {/* Customer Info */}
             <div>
-              <h3 className="font-semibold text-lg mb-3">Informacion del Cliente</h3>
+              <h3 className="font-heading font-semibold text-lg mb-3">Informacion del Cliente</h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <Label htmlFor="customerName">Nombre</Label>
@@ -624,7 +624,7 @@ export function BookingDetailsModal({
 
             {/* Booking Info */}
             <div>
-              <h3 className="font-semibold text-lg mb-3">Detalles de la Reserva</h3>
+              <h3 className="font-heading font-semibold text-lg mb-3">Detalles de la Reserva</h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <Label htmlFor="boatId">Barco</Label>
@@ -701,7 +701,7 @@ export function BookingDetailsModal({
 
             {/* Payment Info */}
             <div>
-              <h3 className="font-semibold text-lg mb-3">Informacion de Pago</h3>
+              <h3 className="font-heading font-semibold text-lg mb-3">Informacion de Pago</h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <Label htmlFor="subtotal">Subtotal ({"\u20AC"})</Label>

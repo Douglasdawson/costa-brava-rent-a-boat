@@ -165,7 +165,7 @@ export function SuperAdminTab({ adminToken }: SuperAdminTabProps) {
           <Globe className="w-5 h-5 text-primary" />
         </div>
         <div>
-          <h2 className="text-xl font-bold text-foreground">NauticFlow — Panel de Plataforma</h2>
+          <h2 className="text-xl font-bold text-foreground font-heading">NauticFlow — Panel de Plataforma</h2>
           <p className="text-sm text-muted-foreground">Administracion global de todas las empresas</p>
         </div>
       </div>
@@ -230,7 +230,7 @@ export function SuperAdminTab({ adminToken }: SuperAdminTabProps) {
       {stats && (
         <Card>
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
+            <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2 font-heading">
               <TrendingUp className="w-4 h-4" />
               Distribución por plan
             </CardTitle>
@@ -255,7 +255,7 @@ export function SuperAdminTab({ adminToken }: SuperAdminTabProps) {
       <Card>
         <CardHeader className="pb-3">
           <div className="flex items-center justify-between">
-            <CardTitle className="text-base flex items-center gap-2">
+            <CardTitle className="text-base flex items-center gap-2 font-heading">
               <Building2 className="w-4 h-4" />
               Empresas registradas
               {filteredTenants.length !== tenants.length && (
@@ -387,7 +387,7 @@ export function SuperAdminTab({ adminToken }: SuperAdminTabProps) {
       <Dialog open={!!managingTenant} onOpenChange={(open) => !open && setManagingTenant(null)}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle className="flex items-center gap-2">
+            <DialogTitle className="flex items-center gap-2 font-heading">
               <Building2 className="w-4 h-4" />
               {managingTenant?.name}
             </DialogTitle>

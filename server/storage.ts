@@ -153,6 +153,7 @@ export interface IStorage {
 
   // Availability check
   checkAvailability(boatId: string, startTime: Date, endTime: Date): Promise<boolean>;
+  cleanupExpiredHolds(): Promise<number>;
   
   // Get overlapping bookings with buffer
   getOverlappingBookingsWithBuffer(boatId: string, startTime: Date, endTime: Date): Promise<Booking[]>;
@@ -337,6 +338,7 @@ export interface IStorage {
     search?: string;
   }): Promise<{ data: WhatsappInquiry[]; total: number; page: number; totalPages: number }>;
   updateWhatsappInquiry(id: string, data: UpdateWhatsappInquiry): Promise<WhatsappInquiry | undefined>;
+  deleteWhatsappInquiry(id: string): Promise<boolean>;
 }
 
 // rewrite MemStorage to DatabaseStorage
@@ -2668,6 +2670,14 @@ export class DatabaseStorage implements IStorage {
       .where(eq(whatsappInquiries.id, id))
       .returning();
     return updated;
+  }
+
+  async deleteWhatsappInquiry(id: string): Promise<boolean> {
+    const [deleted] = await db
+      .delete(whatsappInquiries)
+      .where(eq(whatsappInquiries.id, id))
+      .returning();
+    return !!deleted;
   }
 }
 

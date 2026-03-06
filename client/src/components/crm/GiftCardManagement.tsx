@@ -9,6 +9,7 @@ import { useQuery, useMutation } from "@tanstack/react-query";
 import { useToast } from "@/hooks/use-toast";
 import { queryClient } from "@/lib/queryClient";
 import { format } from "date-fns";
+import { PaginationControls } from "./shared/PaginationControls";
 
 interface GiftCard {
   id: string;
@@ -55,6 +56,8 @@ const paymentLabels: Record<string, string> = {
 
 export function GiftCardManagement({ adminToken }: GiftCardManagementProps) {
   const [filter, setFilter] = useState<string>("all");
+  const [currentPage, setCurrentPage] = useState(1);
+  const PAGE_SIZE = 10;
   const { toast } = useToast();
 
   const headers = {
@@ -95,6 +98,11 @@ export function GiftCardManagement({ adminToken }: GiftCardManagementProps) {
     return card.status === filter;
   });
 
+  // Pagination
+  const totalPages = Math.max(1, Math.ceil(filteredCards.length / PAGE_SIZE));
+  const safePage = Math.min(currentPage, totalPages);
+  const paginatedCards = filteredCards.slice((safePage - 1) * PAGE_SIZE, safePage * PAGE_SIZE);
+
   const totalActive = giftCards.filter((c) => c.status === "active").length;
   const totalRevenue = giftCards
     .filter((c) => c.paymentStatus === "completed")
@@ -113,7 +121,7 @@ export function GiftCardManagement({ adminToken }: GiftCardManagementProps) {
               key={f}
               variant={filter === f ? "default" : "outline"}
               size="sm"
-              onClick={() => setFilter(f)}
+              onClick={() => { setFilter(f); setCurrentPage(1); }}
             >
               {f === "all" ? "Todas" : statusLabels[f] || f}
             </Button>
@@ -160,105 +168,182 @@ export function GiftCardManagement({ adminToken }: GiftCardManagementProps) {
           </p>
         </div>
       ) : (
-        <Card>
-          <CardContent className="p-0">
-            <div className="overflow-x-auto">
-              <Table>
-                <TableHeader>
-                  <TableRow>
-                    <TableHead>Codigo</TableHead>
-                    <TableHead>Importe</TableHead>
-                    <TableHead>Comprador</TableHead>
-                    <TableHead>Destinatario</TableHead>
-                    <TableHead>Estado</TableHead>
-                    <TableHead>Pago</TableHead>
-                    <TableHead>Expira</TableHead>
-                    <TableHead>Acciones</TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  {filteredCards.map((card) => (
-                    <TableRow key={card.id}>
-                      <TableCell className="font-mono font-bold">{card.code}</TableCell>
-                      <TableCell>
-                        <div>
-                          <span className="font-semibold">{"\u20AC"}{parseFloat(card.amount).toFixed(2)}</span>
-                          {card.remainingAmount !== card.amount && (
-                            <span className="text-xs text-muted-foreground block">
-                              Restante: {"\u20AC"}{parseFloat(card.remainingAmount).toFixed(2)}
-                            </span>
-                          )}
-                        </div>
-                      </TableCell>
-                      <TableCell>
-                        <div className="text-sm">
-                          <p>{card.purchaserName}</p>
-                          <p className="text-xs text-muted-foreground">{card.purchaserEmail}</p>
-                        </div>
-                      </TableCell>
-                      <TableCell>
-                        <div className="text-sm">
-                          <p>{card.recipientName}</p>
-                          <p className="text-xs text-muted-foreground">{card.recipientEmail}</p>
-                        </div>
-                      </TableCell>
-                      <TableCell>
-                        <Badge className={statusColors[card.status] || "bg-gray-100 text-gray-800"}>
-                          {statusLabels[card.status] || card.status}
-                        </Badge>
-                      </TableCell>
-                      <TableCell>
-                        <Badge className={card.paymentStatus === "completed" ? "bg-emerald-100 text-emerald-800" : card.paymentStatus === "failed" ? "bg-red-100 text-red-800" : "bg-amber-100 text-amber-800"}>
-                          {paymentLabels[card.paymentStatus] || card.paymentStatus}
-                        </Badge>
-                      </TableCell>
-                      <TableCell className="text-sm">
-                        {format(new Date(card.expiresAt), "dd/MM/yyyy")}
-                      </TableCell>
-                      <TableCell>
-                        <div className="flex gap-1">
-                          {card.status === "pending" && card.paymentStatus !== "completed" && (
-                            <Button
-                              size="sm"
-                              variant="outline"
-                              className="text-green-600"
-                              onClick={() =>
-                                updateMutation.mutate({
-                                  id: card.id,
-                                  updates: { status: "active", paymentStatus: "completed" },
-                                })
-                              }
-                              disabled={updateMutation.isPending}
-                            >
-                              <Check className="w-3 h-3 mr-1" />
-                              Activar
-                            </Button>
-                          )}
-                          {(card.status === "active" || card.status === "pending") && (
-                            <Button
-                              size="sm"
-                              variant="ghost"
-                              className="text-red-500"
-                              onClick={() =>
-                                updateMutation.mutate({
-                                  id: card.id,
-                                  updates: { status: "cancelled" },
-                                })
-                              }
-                              disabled={updateMutation.isPending}
-                            >
-                              <X className="w-3 h-3" />
-                            </Button>
-                          )}
-                        </div>
-                      </TableCell>
+        <>
+          {/* Desktop table */}
+          <Card className="hidden md:block">
+            <CardContent className="p-0">
+              <div className="overflow-x-auto">
+                <Table>
+                  <TableHeader>
+                    <TableRow>
+                      <TableHead>Codigo</TableHead>
+                      <TableHead>Importe</TableHead>
+                      <TableHead>Comprador</TableHead>
+                      <TableHead>Destinatario</TableHead>
+                      <TableHead>Estado</TableHead>
+                      <TableHead>Pago</TableHead>
+                      <TableHead>Expira</TableHead>
+                      <TableHead>Acciones</TableHead>
                     </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </div>
-          </CardContent>
-        </Card>
+                  </TableHeader>
+                  <TableBody>
+                    {paginatedCards.map((card) => (
+                      <TableRow key={card.id}>
+                        <TableCell className="font-mono font-bold">{card.code}</TableCell>
+                        <TableCell>
+                          <div>
+                            <span className="font-semibold">{"\u20AC"}{parseFloat(card.amount).toFixed(2)}</span>
+                            {card.remainingAmount !== card.amount && (
+                              <span className="text-xs text-muted-foreground block">
+                                Restante: {"\u20AC"}{parseFloat(card.remainingAmount).toFixed(2)}
+                              </span>
+                            )}
+                          </div>
+                        </TableCell>
+                        <TableCell>
+                          <div className="text-sm">
+                            <p>{card.purchaserName}</p>
+                            <p className="text-xs text-muted-foreground">{card.purchaserEmail}</p>
+                          </div>
+                        </TableCell>
+                        <TableCell>
+                          <div className="text-sm">
+                            <p>{card.recipientName}</p>
+                            <p className="text-xs text-muted-foreground">{card.recipientEmail}</p>
+                          </div>
+                        </TableCell>
+                        <TableCell>
+                          <Badge className={statusColors[card.status] || "bg-gray-100 text-gray-800"}>
+                            {statusLabels[card.status] || card.status}
+                          </Badge>
+                        </TableCell>
+                        <TableCell>
+                          <Badge className={card.paymentStatus === "completed" ? "bg-emerald-100 text-emerald-800" : card.paymentStatus === "failed" ? "bg-red-100 text-red-800" : "bg-amber-100 text-amber-800"}>
+                            {paymentLabels[card.paymentStatus] || card.paymentStatus}
+                          </Badge>
+                        </TableCell>
+                        <TableCell className="text-sm">
+                          {format(new Date(card.expiresAt), "dd/MM/yyyy")}
+                        </TableCell>
+                        <TableCell>
+                          <div className="flex gap-1">
+                            {card.status === "pending" && card.paymentStatus !== "completed" && (
+                              <Button
+                                size="sm"
+                                variant="outline"
+                                className="text-green-600"
+                                onClick={() =>
+                                  updateMutation.mutate({
+                                    id: card.id,
+                                    updates: { status: "active", paymentStatus: "completed" },
+                                  })
+                                }
+                                disabled={updateMutation.isPending}
+                              >
+                                <Check className="w-3 h-3 mr-1" />
+                                Activar
+                              </Button>
+                            )}
+                            {(card.status === "active" || card.status === "pending") && (
+                              <Button
+                                size="sm"
+                                variant="ghost"
+                                className="text-red-500"
+                                onClick={() =>
+                                  updateMutation.mutate({
+                                    id: card.id,
+                                    updates: { status: "cancelled" },
+                                  })
+                                }
+                                disabled={updateMutation.isPending}
+                              >
+                                <X className="w-3 h-3" />
+                              </Button>
+                            )}
+                          </div>
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Mobile cards */}
+          <div className="block md:hidden space-y-3">
+            {paginatedCards.map((card) => (
+              <div key={card.id} className="bg-card border border-border rounded-lg p-4 space-y-2">
+                <div className="flex items-center justify-between">
+                  <span className="font-heading font-semibold font-mono text-foreground">{card.code}</span>
+                  <Badge className={statusColors[card.status] || "bg-gray-100 text-gray-800"}>
+                    {statusLabels[card.status] || card.status}
+                  </Badge>
+                </div>
+                <div className="flex items-center gap-3 text-sm">
+                  <span className="font-semibold">{"\u20AC"}{parseFloat(card.amount).toFixed(2)}</span>
+                  {card.remainingAmount !== card.amount && (
+                    <span className="text-muted-foreground">
+                      Restante: {"\u20AC"}{parseFloat(card.remainingAmount).toFixed(2)}
+                    </span>
+                  )}
+                </div>
+                <div className="text-sm text-muted-foreground">
+                  <p>{card.purchaserName} - {card.purchaserEmail}</p>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-sm text-muted-foreground">
+                    Expira: {format(new Date(card.expiresAt), "dd/MM/yyyy")}
+                  </span>
+                  <div className="flex gap-1">
+                    {card.status === "pending" && card.paymentStatus !== "completed" && (
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        className="text-green-600"
+                        onClick={() =>
+                          updateMutation.mutate({
+                            id: card.id,
+                            updates: { status: "active", paymentStatus: "completed" },
+                          })
+                        }
+                        disabled={updateMutation.isPending}
+                      >
+                        <Check className="w-3 h-3 mr-1" />
+                        Activar
+                      </Button>
+                    )}
+                    {(card.status === "active" || card.status === "pending") && (
+                      <Button
+                        size="sm"
+                        variant="ghost"
+                        className="text-red-500"
+                        onClick={() =>
+                          updateMutation.mutate({
+                            id: card.id,
+                            updates: { status: "cancelled" },
+                          })
+                        }
+                        disabled={updateMutation.isPending}
+                      >
+                        <X className="w-3 h-3" />
+                      </Button>
+                    )}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Pagination */}
+          {totalPages > 1 && (
+            <PaginationControls
+              currentPage={safePage}
+              totalPages={totalPages}
+              onPageChange={setCurrentPage}
+            />
+          )}
+        </>
       )}
     </div>
   );

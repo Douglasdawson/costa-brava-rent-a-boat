@@ -1,5 +1,10 @@
-import { ReactNode, useEffect } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
+import {
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+} from "@/components/ui/popover";
 import {
   Calendar,
   CalendarDays,
@@ -20,6 +25,7 @@ import {
   Settings,
   Globe,
   MessageSquare,
+  MoreHorizontal,
 } from "lucide-react";
 
 interface AdminLayoutProps {
@@ -96,6 +102,53 @@ export function AdminLayout({
     ...(isPlatformAdmin ? [{ id: "superadmin", label: "Platform", icon: Globe }] : []),
   ];
 
+  // Build grouped secondary tabs for the new layout
+  const secondaryGroups: { label: string; tabs: typeof ADMIN_TABS }[] = [];
+  if (adminRole === "admin" || adminRole === "owner") {
+    secondaryGroups.push({
+      label: "CRM",
+      tabs: [
+        { id: "customers", label: "Clientes", icon: Users },
+        { id: "inquiries", label: "Peticiones", icon: MessageSquare },
+      ],
+    });
+    secondaryGroups.push({
+      label: "Flota",
+      tabs: [
+        { id: "fleet", label: "Flota", icon: Anchor },
+        { id: "maintenance", label: "Mant.", icon: Wrench },
+        { id: "inventory", label: "Inventario", icon: Package },
+      ],
+    });
+    secondaryGroups.push({
+      label: "Negocio",
+      tabs: [
+        { id: "reports", label: "Reportes", icon: BarChart3 },
+        { id: "gallery", label: "Galeria", icon: Camera },
+        { id: "giftcards", label: "Regalos", icon: Gift },
+        { id: "discounts", label: "Descuentos", icon: Percent },
+      ],
+    });
+  }
+  if (adminRole === "owner") {
+    const ajustesTabs: typeof ADMIN_TABS = [
+      { id: "employees", label: "Equipo", icon: Users },
+      { id: "config", label: "Config", icon: Settings },
+    ];
+    if (isPlatformAdmin) {
+      ajustesTabs.push({ id: "superadmin", label: "Platform", icon: Globe });
+    }
+    secondaryGroups.push({ label: "Ajustes", tabs: ajustesTabs });
+  } else if (isPlatformAdmin) {
+    secondaryGroups.push({
+      label: "Ajustes",
+      tabs: [{ id: "superadmin", label: "Platform", icon: Globe }],
+    });
+  }
+
+  // State for mobile popover
+  const [moreOpen, setMoreOpen] = useState(false);
+
   return (
     <div className="min-h-screen bg-background">
       {/* Trial Banner */}
@@ -143,6 +196,15 @@ export function AdminLayout({
             </div>
           </div>
           <div className="flex items-center gap-2 md:gap-3">
+            <kbd
+              className="hidden md:inline-flex items-center gap-1 px-2 py-1 text-xs text-muted-foreground bg-muted rounded border border-border cursor-pointer select-none hover:bg-muted/80 transition-colors"
+              onClick={() => {
+                document.dispatchEvent(new KeyboardEvent("keydown", { key: "k", metaKey: true }));
+              }}
+              title="Buscar (Cmd+K)"
+            >
+              <span className="text-xs">&#8984;</span>K
+            </kbd>
             <Button variant="outline" onClick={onLogout} data-testid="button-logout" size="sm" className="md:h-10">
               <LogOut className="w-4 h-4 md:mr-2" />
               <span className="hidden md:inline">Cerrar Sesion</span>
@@ -177,44 +239,83 @@ export function AdminLayout({
             </button>
           ))}
 
-          {/* On mobile: show secondary tabs inline (scroll) */}
+          {/* Mobile: "Mas" popover for secondary tabs */}
           {secondaryTabs.length > 0 && (
-            <div className="flex md:hidden gap-1 flex-shrink-0">
-              {secondaryTabs.map((tab) => (
-                <button
-                  key={tab.id}
-                  onClick={() => onTabChange(tab.id)}
-                  className={`flex items-center justify-center gap-1 px-3 py-2 font-medium rounded-lg transition-colors whitespace-nowrap flex-shrink-0 min-w-[44px] ${
-                    selectedTab === tab.id
-                      ? 'bg-primary text-white'
-                      : 'text-muted-foreground hover:text-foreground hover:bg-muted'
-                  }`}
-                  data-testid={`tab-${tab.id}`}
-                >
-                  <tab.icon className="w-4 h-4" />
-                </button>
-              ))}
+            <div className="flex md:hidden flex-shrink-0">
+              <Popover open={moreOpen} onOpenChange={setMoreOpen}>
+                <PopoverTrigger asChild>
+                  <button
+                    className={`flex items-center justify-center gap-1 px-3 py-2 font-medium rounded-lg transition-colors whitespace-nowrap flex-shrink-0 min-w-[44px] ${
+                      !TAB_CONFIG.some((t) => t.id === selectedTab)
+                        ? 'bg-primary/20 text-primary'
+                        : 'text-muted-foreground hover:text-foreground hover:bg-muted'
+                    }`}
+                    data-testid="tab-more"
+                  >
+                    <MoreHorizontal className="w-4 h-4" />
+                    <span className="text-xs">Mas</span>
+                  </button>
+                </PopoverTrigger>
+                <PopoverContent className="w-64 p-2" align="end">
+                  {secondaryGroups.map((group) => (
+                    <div key={group.label} className="mb-2 last:mb-0">
+                      <span className="text-[10px] uppercase tracking-wider text-muted-foreground/60 px-2 font-medium">
+                        {group.label}
+                      </span>
+                      <div className="flex flex-col gap-0.5 mt-0.5">
+                        {group.tabs.map((tab) => (
+                          <button
+                            key={tab.id}
+                            onClick={() => {
+                              onTabChange(tab.id);
+                              setMoreOpen(false);
+                            }}
+                            className={`flex items-center gap-2 px-2 py-1.5 text-sm rounded-md transition-colors w-full text-left ${
+                              selectedTab === tab.id
+                                ? 'bg-primary text-white'
+                                : 'text-muted-foreground hover:text-foreground hover:bg-muted'
+                            }`}
+                            data-testid={`tab-${tab.id}`}
+                          >
+                            <tab.icon className="w-4 h-4 flex-shrink-0" />
+                            <span>{tab.label}</span>
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </PopoverContent>
+              </Popover>
             </div>
           )}
         </div>
 
-        {/* Secondary tabs row — tablet/desktop only, wraps on tablet */}
-        {secondaryTabs.length > 0 && (
-          <div className="hidden md:flex flex-wrap gap-1 md:gap-2 mt-2">
-            {secondaryTabs.map((tab) => (
-              <button
-                key={tab.id}
-                onClick={() => onTabChange(tab.id)}
-                className={`flex items-center justify-center gap-1.5 px-3 py-1.5 font-medium rounded-lg transition-colors whitespace-nowrap flex-shrink-0 min-w-[44px] ${
-                  selectedTab === tab.id
-                    ? 'bg-primary text-white'
-                    : 'text-muted-foreground hover:text-foreground hover:bg-muted'
-                }`}
-                data-testid={`tab-${tab.id}`}
-              >
-                <tab.icon className="w-4 h-4" />
-                <span className="text-xs md:text-sm">{tab.label}</span>
-              </button>
+        {/* Secondary tabs — desktop grouped layout */}
+        {secondaryGroups.length > 0 && (
+          <div className="hidden md:flex flex-wrap items-end gap-x-4 gap-y-1 mt-2">
+            {secondaryGroups.map((group) => (
+              <div key={group.label} className="flex flex-col gap-0.5">
+                <span className="text-[10px] uppercase tracking-wider text-muted-foreground/60 px-3 font-medium">
+                  {group.label}
+                </span>
+                <div className="flex gap-1">
+                  {group.tabs.map((tab) => (
+                    <button
+                      key={tab.id}
+                      onClick={() => onTabChange(tab.id)}
+                      className={`flex items-center justify-center gap-1.5 px-3 py-1.5 font-medium rounded-lg transition-colors whitespace-nowrap flex-shrink-0 min-w-[44px] ${
+                        selectedTab === tab.id
+                          ? 'bg-primary text-white'
+                          : 'text-muted-foreground hover:text-foreground hover:bg-muted'
+                      }`}
+                      data-testid={`tab-${tab.id}`}
+                    >
+                      <tab.icon className="w-4 h-4" />
+                      <span className="text-xs md:text-sm">{tab.label}</span>
+                    </button>
+                  ))}
+                </div>
+              </div>
             ))}
           </div>
         )}

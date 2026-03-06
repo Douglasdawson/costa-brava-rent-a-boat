@@ -1,5 +1,6 @@
 // CRM Module exports - Layout
 export { AdminLayout } from "./AdminLayout";
+export { CommandPalette } from "./CommandPalette";
 
 // CRM Module exports - Tab components
 export { DashboardTab } from "./DashboardTab";

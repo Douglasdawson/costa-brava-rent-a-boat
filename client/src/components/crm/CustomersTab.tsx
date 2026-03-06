@@ -24,6 +24,9 @@ import {
   ChevronRight,
   ChevronsLeft,
   ChevronsRight,
+  ArrowUpDown,
+  ArrowUp,
+  ArrowDown,
 } from "lucide-react";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { queryClient } from "@/lib/queryClient";
@@ -182,9 +185,13 @@ export function CustomersTab({
     setCurrentPage(1);
   }, [sortBy]);
 
-  const getSortIndicator = (column: string) => {
-    if (sortBy !== column) return "";
-    return sortOrder === "asc" ? " ^" : " v";
+  const renderSortIcon = (column: string) => {
+    if (sortBy === column) {
+      return sortOrder === "asc"
+        ? <ArrowUp className="w-3 h-3" />
+        : <ArrowDown className="w-3 h-3" />;
+    }
+    return <ArrowUpDown className="w-3 h-3 text-muted-foreground/50" />;
   };
 
   return (
@@ -284,32 +291,44 @@ export function CustomersTab({
                 <TableHeader>
                   <TableRow>
                     <TableHead
-                      className="cursor-pointer hover:text-primary"
+                      className="cursor-pointer select-none hover:bg-muted/50"
                       onClick={() => handleSort("name")}
                     >
-                      Nombre{getSortIndicator("name")}
+                      <div className="flex items-center gap-1">
+                        Nombre
+                        {renderSortIcon("name")}
+                      </div>
                     </TableHead>
                     <TableHead>Email</TableHead>
                     <TableHead>Telefono</TableHead>
                     <TableHead>Nacionalidad</TableHead>
                     <TableHead
-                      className="cursor-pointer hover:text-primary text-center"
+                      className="cursor-pointer select-none hover:bg-muted/50 text-center"
                       onClick={() => handleSort("totalBookings")}
                     >
-                      Reservas{getSortIndicator("totalBookings")}
+                      <div className="flex items-center justify-center gap-1">
+                        Reservas
+                        {renderSortIcon("totalBookings")}
+                      </div>
                     </TableHead>
                     <TableHead
-                      className="cursor-pointer hover:text-primary"
+                      className="cursor-pointer select-none hover:bg-muted/50"
                       onClick={() => handleSort("totalSpent")}
                     >
-                      Total Gastado{getSortIndicator("totalSpent")}
+                      <div className="flex items-center gap-1">
+                        Total Gastado
+                        {renderSortIcon("totalSpent")}
+                      </div>
                     </TableHead>
                     <TableHead>Segmento</TableHead>
                     <TableHead
-                      className="cursor-pointer hover:text-primary"
+                      className="cursor-pointer select-none hover:bg-muted/50"
                       onClick={() => handleSort("lastBookingDate")}
                     >
-                      Ultima Reserva{getSortIndicator("lastBookingDate")}
+                      <div className="flex items-center gap-1">
+                        Ultima Reserva
+                        {renderSortIcon("lastBookingDate")}
+                      </div>
                     </TableHead>
                     <TableHead className="text-right">Acciones</TableHead>
                   </TableRow>

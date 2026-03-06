@@ -60,6 +60,7 @@ import { queryClient } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
 import { format } from "date-fns";
 import { es } from "date-fns/locale";
+import { PaginationControls } from "./shared/PaginationControls";
 
 interface MaintenanceTabProps {
   adminToken: string;
@@ -142,6 +143,9 @@ export function MaintenanceTab({ adminToken }: MaintenanceTabProps) {
   const [filterBoat, setFilterBoat] = useState<string>("all");
   const [deleteMaintTarget, setDeleteMaintTarget] = useState<string | null>(null);
   const [deleteDocTarget, setDeleteDocTarget] = useState<string | null>(null);
+  const [maintPage, setMaintPage] = useState(1);
+  const [docPage, setDocPage] = useState(1);
+  const PAGE_SIZE = 10;
 
   // Maintenance dialog
   const [showMaintenanceDialog, setShowMaintenanceDialog] = useState(false);
@@ -392,11 +396,21 @@ export function MaintenanceTab({ adminToken }: MaintenanceTabProps) {
   });
   const pendingMaint = maintenanceLogs.filter(l => l.status !== "completed");
 
+  // Pagination for maintenance
+  const maintTotalPages = Math.max(1, Math.ceil(maintenanceLogs.length / PAGE_SIZE));
+  const maintSafePage = Math.min(maintPage, maintTotalPages);
+  const paginatedMaint = maintenanceLogs.slice((maintSafePage - 1) * PAGE_SIZE, maintSafePage * PAGE_SIZE);
+
+  // Pagination for documents
+  const docTotalPages = Math.max(1, Math.ceil(documents.length / PAGE_SIZE));
+  const docSafePage = Math.min(docPage, docTotalPages);
+  const paginatedDocs = documents.slice((docSafePage - 1) * PAGE_SIZE, docSafePage * PAGE_SIZE);
+
   return (
     <div className="space-y-4 sm:space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <h2 className="text-xl sm:text-2xl font-bold font-heading">Mantenimiento y Documentos</h2>
-        <Select value={filterBoat} onValueChange={setFilterBoat}>
+        <Select value={filterBoat} onValueChange={(v) => { setFilterBoat(v); setMaintPage(1); setDocPage(1); }}>
           <SelectTrigger className="w-full sm:w-[200px]">
             <SelectValue placeholder="Filtrar por barco" />
           </SelectTrigger>
@@ -504,7 +518,7 @@ export function MaintenanceTab({ adminToken }: MaintenanceTabProps) {
                       </TableRow>
                     </TableHeader>
                     <TableBody>
-                      {maintenanceLogs.map(log => (
+                      {paginatedMaint.map(log => (
                         <TableRow key={log.id}>
                           <TableCell className="font-medium">{boatName(log.boatId)}</TableCell>
                           <TableCell>{TYPE_LABELS[log.type] || log.type}</TableCell>
@@ -541,7 +555,7 @@ export function MaintenanceTab({ adminToken }: MaintenanceTabProps) {
 
               {/* Mobile cards */}
               <div className="md:hidden space-y-3">
-                {maintenanceLogs.map(log => (
+                {paginatedMaint.map(log => (
                   <Card key={log.id}>
                     <CardContent className="p-4">
                       <div className="flex justify-between items-start mb-2">
@@ -576,6 +590,15 @@ export function MaintenanceTab({ adminToken }: MaintenanceTabProps) {
                   </Card>
                 ))}
               </div>
+
+              {/* Maintenance Pagination */}
+              {maintTotalPages > 1 && (
+                <PaginationControls
+                  currentPage={maintSafePage}
+                  totalPages={maintTotalPages}
+                  onPageChange={setMaintPage}
+                />
+              )}
             </>
           )}
         </TabsContent>
@@ -622,7 +645,7 @@ export function MaintenanceTab({ adminToken }: MaintenanceTabProps) {
                       </TableRow>
                     </TableHeader>
                     <TableBody>
-                      {documents.map(doc => (
+                      {paginatedDocs.map(doc => (
                         <TableRow key={doc.id}>
                           <TableCell className="font-medium">{boatName(doc.boatId)}</TableCell>
                           <TableCell>{DOC_TYPE_LABELS[doc.type] || doc.type}</TableCell>
@@ -656,7 +679,7 @@ export function MaintenanceTab({ adminToken }: MaintenanceTabProps) {
 
               {/* Mobile cards */}
               <div className="md:hidden space-y-3">
-                {documents.map(doc => (
+                {paginatedDocs.map(doc => (
                   <Card key={doc.id}>
                     <CardContent className="p-4">
                       <div className="flex justify-between items-start mb-2">
@@ -689,6 +712,15 @@ export function MaintenanceTab({ adminToken }: MaintenanceTabProps) {
                   </Card>
                 ))}
               </div>
+
+              {/* Documents Pagination */}
+              {docTotalPages > 1 && (
+                <PaginationControls
+                  currentPage={docSafePage}
+                  totalPages={docTotalPages}
+                  onPageChange={setDocPage}
+                />
+              )}
             </>
           )}
         </TabsContent>

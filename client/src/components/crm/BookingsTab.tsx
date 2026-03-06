@@ -21,6 +21,9 @@ import {
   ChevronsLeft,
   ChevronsRight,
   Calendar,
+  ArrowUpDown,
+  ArrowUp,
+  ArrowDown,
 } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { format } from "date-fns";
@@ -55,6 +58,8 @@ export function BookingsTab({
   const [debouncedSearch, setDebouncedSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState<string>("all");
   const [currentPage, setCurrentPage] = useState(1);
+  const [sortBy, setSortBy] = useState<string>("startTime");
+  const [sortOrder, setSortOrder] = useState<"asc" | "desc">("desc");
 
   // Debounce search
   const searchTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -76,13 +81,13 @@ export function BookingsTab({
 
   // Fetch paginated bookings
   const { data: bookingsResponse, isLoading, error } = useQuery<PaginatedBookingsResponse>({
-    queryKey: ['/api/admin/bookings', currentPage, debouncedSearch, statusFilter],
+    queryKey: ['/api/admin/bookings', currentPage, debouncedSearch, statusFilter, sortBy, sortOrder],
     queryFn: async () => {
       const params = new URLSearchParams({
         page: String(currentPage),
         limit: String(BOOKINGS_PER_PAGE),
-        sortBy: 'startTime',
-        sortOrder: 'desc',
+        sortBy,
+        sortOrder,
       });
       if (statusFilter && statusFilter !== 'all') {
         params.set('status', statusFilter);
@@ -123,6 +128,25 @@ export function BookingsTab({
     setDebouncedSearch(query);
     setCurrentPage(1);
   }, []);
+
+  const handleSort = useCallback((column: string) => {
+    if (sortBy === column) {
+      setSortOrder((prev) => (prev === "asc" ? "desc" : "asc"));
+    } else {
+      setSortBy(column);
+      setSortOrder("desc");
+    }
+    setCurrentPage(1);
+  }, [sortBy]);
+
+  const renderSortIcon = (column: string) => {
+    if (sortBy === column) {
+      return sortOrder === "asc"
+        ? <ArrowUp className="w-3 h-3" />
+        : <ArrowDown className="w-3 h-3" />;
+    }
+    return <ArrowUpDown className="w-3 h-3 text-muted-foreground/50" />;
+  };
 
   return (
     <div className="space-y-6">
@@ -187,13 +211,53 @@ export function BookingsTab({
               <Table>
                 <TableHeader>
                   <TableRow>
-                    <TableHead>Fecha</TableHead>
-                    <TableHead>Cliente</TableHead>
+                    <TableHead
+                      className="cursor-pointer select-none hover:bg-muted/50"
+                      onClick={() => handleSort("startTime")}
+                    >
+                      <div className="flex items-center gap-1">
+                        Fecha
+                        {renderSortIcon("startTime")}
+                      </div>
+                    </TableHead>
+                    <TableHead
+                      className="cursor-pointer select-none hover:bg-muted/50"
+                      onClick={() => handleSort("customerName")}
+                    >
+                      <div className="flex items-center gap-1">
+                        Cliente
+                        {renderSortIcon("customerName")}
+                      </div>
+                    </TableHead>
                     <TableHead>Contacto</TableHead>
-                    <TableHead>Barco</TableHead>
+                    <TableHead
+                      className="cursor-pointer select-none hover:bg-muted/50"
+                      onClick={() => handleSort("boatId")}
+                    >
+                      <div className="flex items-center gap-1">
+                        Barco
+                        {renderSortIcon("boatId")}
+                      </div>
+                    </TableHead>
                     <TableHead>Horas</TableHead>
-                    <TableHead>Total</TableHead>
-                    <TableHead>Estado</TableHead>
+                    <TableHead
+                      className="cursor-pointer select-none hover:bg-muted/50"
+                      onClick={() => handleSort("totalAmount")}
+                    >
+                      <div className="flex items-center gap-1">
+                        Total
+                        {renderSortIcon("totalAmount")}
+                      </div>
+                    </TableHead>
+                    <TableHead
+                      className="cursor-pointer select-none hover:bg-muted/50"
+                      onClick={() => handleSort("bookingStatus")}
+                    >
+                      <div className="flex items-center gap-1">
+                        Estado
+                        {renderSortIcon("bookingStatus")}
+                      </div>
+                    </TableHead>
                     <TableHead>Pago</TableHead>
                     <TableHead className="text-right">Acciones</TableHead>
                   </TableRow>

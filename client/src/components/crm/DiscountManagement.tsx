@@ -29,6 +29,7 @@ import { useQuery, useMutation } from "@tanstack/react-query";
 import { useToast } from "@/hooks/use-toast";
 import { queryClient } from "@/lib/queryClient";
 import { format } from "date-fns";
+import { PaginationControls } from "./shared/PaginationControls";
 
 interface DiscountCode {
   id: string;
@@ -65,6 +66,8 @@ export function DiscountManagement({ adminToken }: DiscountManagementProps) {
   const [deactivateCodeId, setDeactivateCodeId] = useState<string | null>(null);
   const [campaignData, setCampaignData] = useState<CampaignResult | null>(null);
   const [filter, setFilter] = useState<string>("all");
+  const [currentPage, setCurrentPage] = useState(1);
+  const PAGE_SIZE = 10;
   const { toast } = useToast();
 
   // Form state for creating a discount code
@@ -200,6 +203,11 @@ export function DiscountManagement({ adminToken }: DiscountManagementProps) {
     return true;
   });
 
+  // Pagination
+  const totalPages = Math.max(1, Math.ceil(filteredCodes.length / PAGE_SIZE));
+  const safePage = Math.min(currentPage, totalPages);
+  const paginatedCodes = filteredCodes.slice((safePage - 1) * PAGE_SIZE, safePage * PAGE_SIZE);
+
   // Stats
   const totalActive = discountCodes.filter(
     (c) => c.isActive && c.currentUses < c.maxUses
@@ -249,7 +257,7 @@ export function DiscountManagement({ adminToken }: DiscountManagementProps) {
             key={f.key}
             variant={filter === f.key ? "default" : "outline"}
             size="sm"
-            onClick={() => setFilter(f.key)}
+            onClick={() => { setFilter(f.key); setCurrentPage(1); }}
           >
             {f.label}
           </Button>
@@ -302,80 +310,143 @@ export function DiscountManagement({ adminToken }: DiscountManagementProps) {
           )}
         </div>
       ) : (
-        <Card>
-          <CardContent className="p-0">
-            <div className="overflow-x-auto">
-              <Table>
-                <TableHeader>
-                  <TableRow>
-                    <TableHead>Codigo</TableHead>
-                    <TableHead>Descuento</TableHead>
-                    <TableHead>Usos</TableHead>
-                    <TableHead>Email cliente</TableHead>
-                    <TableHead>Estado</TableHead>
-                    <TableHead>Expira</TableHead>
-                    <TableHead>Creado</TableHead>
-                    <TableHead>Acciones</TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  {filteredCodes.map((code) => {
-                    const isExpired = code.expiresAt && new Date(code.expiresAt) < new Date();
-                    const isFullyUsed = code.currentUses >= code.maxUses;
-                    const isEffectivelyActive = code.isActive && !isExpired && !isFullyUsed;
+        <>
+          {/* Desktop table */}
+          <Card className="hidden md:block">
+            <CardContent className="p-0">
+              <div className="overflow-x-auto">
+                <Table>
+                  <TableHeader>
+                    <TableRow>
+                      <TableHead>Codigo</TableHead>
+                      <TableHead>Descuento</TableHead>
+                      <TableHead>Usos</TableHead>
+                      <TableHead>Email cliente</TableHead>
+                      <TableHead>Estado</TableHead>
+                      <TableHead>Expira</TableHead>
+                      <TableHead>Creado</TableHead>
+                      <TableHead>Acciones</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    {paginatedCodes.map((code) => {
+                      const isExpired = code.expiresAt && new Date(code.expiresAt) < new Date();
+                      const isFullyUsed = code.currentUses >= code.maxUses;
+                      const isEffectivelyActive = code.isActive && !isExpired && !isFullyUsed;
 
-                    return (
-                      <TableRow key={code.id}>
-                        <TableCell className="font-mono font-bold">{code.code}</TableCell>
-                        <TableCell>
-                          <Badge className="bg-blue-100 text-blue-800">{code.discountPercent}%</Badge>
-                        </TableCell>
-                        <TableCell>
-                          {code.currentUses}/{code.maxUses}
-                        </TableCell>
-                        <TableCell className="text-sm text-muted-foreground">
-                          {code.customerEmail || "Universal"}
-                        </TableCell>
-                        <TableCell>
-                          {isEffectivelyActive ? (
-                            <Badge className="bg-emerald-100 text-emerald-800">Activo</Badge>
-                          ) : isExpired ? (
-                            <Badge className="bg-red-100 text-red-800">Expirado</Badge>
-                          ) : isFullyUsed ? (
-                            <Badge className="bg-gray-100 text-gray-800">Agotado</Badge>
-                          ) : (
-                            <Badge className="bg-red-100 text-red-800">Inactivo</Badge>
-                          )}
-                        </TableCell>
-                        <TableCell className="text-sm">
-                          {code.expiresAt
-                            ? format(new Date(code.expiresAt), "dd/MM/yyyy")
-                            : "Sin expiracion"}
-                        </TableCell>
-                        <TableCell className="text-sm">
-                          {format(new Date(code.createdAt), "dd/MM/yyyy")}
-                        </TableCell>
-                        <TableCell>
-                          {code.isActive && (
-                            <Button
-                              size="sm"
-                              variant="ghost"
-                              className="text-red-500"
-                              onClick={() => setDeactivateCodeId(code.id)}
-                              disabled={deactivateMutation.isPending}
-                            >
-                              <X className="w-3 h-3" />
-                            </Button>
-                          )}
-                        </TableCell>
-                      </TableRow>
-                    );
-                  })}
-                </TableBody>
-              </Table>
-            </div>
-          </CardContent>
-        </Card>
+                      return (
+                        <TableRow key={code.id}>
+                          <TableCell className="font-mono font-bold">{code.code}</TableCell>
+                          <TableCell>
+                            <Badge className="bg-blue-100 text-blue-800">{code.discountPercent}%</Badge>
+                          </TableCell>
+                          <TableCell>
+                            {code.currentUses}/{code.maxUses}
+                          </TableCell>
+                          <TableCell className="text-sm text-muted-foreground">
+                            {code.customerEmail || "Universal"}
+                          </TableCell>
+                          <TableCell>
+                            {isEffectivelyActive ? (
+                              <Badge className="bg-emerald-100 text-emerald-800">Activo</Badge>
+                            ) : isExpired ? (
+                              <Badge className="bg-red-100 text-red-800">Expirado</Badge>
+                            ) : isFullyUsed ? (
+                              <Badge className="bg-gray-100 text-gray-800">Agotado</Badge>
+                            ) : (
+                              <Badge className="bg-red-100 text-red-800">Inactivo</Badge>
+                            )}
+                          </TableCell>
+                          <TableCell className="text-sm">
+                            {code.expiresAt
+                              ? format(new Date(code.expiresAt), "dd/MM/yyyy")
+                              : "Sin expiracion"}
+                          </TableCell>
+                          <TableCell className="text-sm">
+                            {format(new Date(code.createdAt), "dd/MM/yyyy")}
+                          </TableCell>
+                          <TableCell>
+                            {code.isActive && (
+                              <Button
+                                size="sm"
+                                variant="ghost"
+                                className="text-red-500"
+                                onClick={() => setDeactivateCodeId(code.id)}
+                                disabled={deactivateMutation.isPending}
+                              >
+                                <X className="w-3 h-3" />
+                              </Button>
+                            )}
+                          </TableCell>
+                        </TableRow>
+                      );
+                    })}
+                  </TableBody>
+                </Table>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Mobile cards */}
+          <div className="block md:hidden space-y-3">
+            {paginatedCodes.map((code) => {
+              const isExpired = code.expiresAt && new Date(code.expiresAt) < new Date();
+              const isFullyUsed = code.currentUses >= code.maxUses;
+              const isEffectivelyActive = code.isActive && !isExpired && !isFullyUsed;
+
+              return (
+                <div key={code.id} className="bg-card border border-border rounded-lg p-4 space-y-2">
+                  <div className="flex items-center justify-between">
+                    <span className="font-heading font-semibold font-mono text-foreground">{code.code}</span>
+                    {isEffectivelyActive ? (
+                      <Badge className="bg-emerald-100 text-emerald-800">Activo</Badge>
+                    ) : isExpired ? (
+                      <Badge className="bg-red-100 text-red-800">Expirado</Badge>
+                    ) : isFullyUsed ? (
+                      <Badge className="bg-gray-100 text-gray-800">Agotado</Badge>
+                    ) : (
+                      <Badge className="bg-red-100 text-red-800">Inactivo</Badge>
+                    )}
+                  </div>
+                  <div className="flex items-center gap-3 text-sm text-muted-foreground">
+                    <Badge className="bg-blue-100 text-blue-800">{code.discountPercent}%</Badge>
+                    <span>Usos: {code.currentUses}/{code.maxUses}</span>
+                  </div>
+                  <div className="text-sm text-muted-foreground">
+                    {code.customerEmail || "Universal"}
+                  </div>
+                  <div className="flex items-center justify-between text-sm text-muted-foreground">
+                    <span>
+                      {code.expiresAt
+                        ? `Expira: ${format(new Date(code.expiresAt), "dd/MM/yyyy")}`
+                        : "Sin expiracion"}
+                    </span>
+                    {code.isActive && (
+                      <Button
+                        size="sm"
+                        variant="ghost"
+                        className="text-red-500"
+                        onClick={() => setDeactivateCodeId(code.id)}
+                        disabled={deactivateMutation.isPending}
+                      >
+                        <X className="w-3 h-3" />
+                      </Button>
+                    )}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Pagination */}
+          {totalPages > 1 && (
+            <PaginationControls
+              currentPage={safePage}
+              totalPages={totalPages}
+              onPageChange={setCurrentPage}
+            />
+          )}
+        </>
       )}
 
       {/* Create Discount Code Dialog */}

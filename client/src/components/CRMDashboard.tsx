@@ -7,6 +7,7 @@ import type { Booking } from "@shared/schema";
 // Import modularized CRM components
 import {
   AdminLayout,
+  CommandPalette,
   DashboardTab,
   CalendarTab,
   BookingsTab,
@@ -399,6 +400,14 @@ export default function CRMDashboard({ adminToken }: CRMDashboardProps) {
           <SuperAdminTab adminToken={adminToken} />
         )}
       </AdminLayout>
+
+      {/* Command Palette (Cmd+K / Ctrl+K) */}
+      <CommandPalette
+        onNavigate={setSelectedTab}
+        onNewBooking={handleNewBooking}
+        onExportCSV={handleExportCSV}
+        onLogout={handleLogout}
+      />
 
       {/* Booking Details Modal */}
       <BookingDetailsModal

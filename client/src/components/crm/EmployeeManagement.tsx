@@ -24,6 +24,7 @@ import { Plus, Edit, UserX, UserCheck, Users } from "lucide-react";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { useToast } from "@/hooks/use-toast";
 import { queryClient } from "@/lib/queryClient";
+import { PaginationControls } from "./shared/PaginationControls";
 
 interface Employee {
   id: string;
@@ -40,6 +41,8 @@ interface EmployeeManagementProps {
 }
 
 export function EmployeeManagement({ adminToken }: EmployeeManagementProps) {
+  const [currentPage, setCurrentPage] = useState(1);
+  const PAGE_SIZE = 10;
   const [showDialog, setShowDialog] = useState(false);
   const [editingEmployee, setEditingEmployee] = useState<Employee | null>(null);
   const [formData, setFormData] = useState({
@@ -63,6 +66,11 @@ export function EmployeeManagement({ adminToken }: EmployeeManagementProps) {
       return res.json();
     },
   });
+
+  // Pagination
+  const totalPages = Math.max(1, Math.ceil(employees.length / PAGE_SIZE));
+  const safePage = Math.min(currentPage, totalPages);
+  const paginatedEmployees = employees.slice((safePage - 1) * PAGE_SIZE, safePage * PAGE_SIZE);
 
   const createMutation = useMutation({
     mutationFn: async (data: typeof formData) => {
@@ -176,95 +184,164 @@ export function EmployeeManagement({ adminToken }: EmployeeManagementProps) {
         </Button>
       </div>
 
-      <Card>
-        <CardContent className="p-0 overflow-x-auto">
-          {isLoading ? (
-            <div className="p-4 space-y-3">
-              <Skeleton className="h-10 w-full" />
-              <Skeleton className="h-10 w-full" />
-              <Skeleton className="h-10 w-full" />
-              <Skeleton className="h-10 w-full" />
-              <Skeleton className="h-10 w-full" />
+      {isLoading ? (
+        <Card>
+          <CardContent className="p-4 space-y-3">
+            <Skeleton className="h-10 w-full" />
+            <Skeleton className="h-10 w-full" />
+            <Skeleton className="h-10 w-full" />
+            <Skeleton className="h-10 w-full" />
+            <Skeleton className="h-10 w-full" />
+          </CardContent>
+        </Card>
+      ) : employees.length === 0 ? (
+        <Card>
+          <CardContent>
+            <div className="flex flex-col items-center justify-center py-12 text-center">
+              <Users className="w-12 h-12 text-muted-foreground/50 mb-4" />
+              <p className="text-lg font-heading font-medium text-foreground mb-1">No hay empleados registrados</p>
+              <p className="text-sm text-muted-foreground">Agrega empleados para gestionar el acceso al CRM</p>
             </div>
-          ) : (
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead>Usuario</TableHead>
-                  <TableHead>Nombre</TableHead>
-                  <TableHead>Rol</TableHead>
-                  <TableHead>Estado</TableHead>
-                  <TableHead>Ultimo Acceso</TableHead>
-                  <TableHead className="text-right">Acciones</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {employees.map((employee) => (
-                  <TableRow key={employee.id}>
-                    <TableCell className="font-medium">{employee.username}</TableCell>
-                    <TableCell>{employee.displayName || "-"}</TableCell>
-                    <TableCell>
-                      <Badge variant={employee.role === "admin" ? "default" : "secondary"}>
-                        {employee.role === "admin" ? "Admin" : "Empleado"}
-                      </Badge>
-                    </TableCell>
-                    <TableCell>
-                      <Badge className={employee.isActive ? "bg-emerald-100 text-emerald-800" : "bg-red-100 text-red-800"}>
-                        {employee.isActive ? "Activo" : "Inactivo"}
-                      </Badge>
-                    </TableCell>
-                    <TableCell className="text-sm text-muted-foreground">
-                      {employee.lastLoginAt
-                        ? new Date(employee.lastLoginAt).toLocaleDateString("es-ES", {
-                            day: "2-digit",
-                            month: "2-digit",
-                            year: "numeric",
-                            hour: "2-digit",
-                            minute: "2-digit",
-                          })
-                        : "Nunca"}
-                    </TableCell>
-                    <TableCell className="text-right">
-                      <div className="flex justify-end gap-2">
-                        <Button variant="ghost" size="sm" onClick={() => handleEdit(employee)}>
-                          <Edit className="w-4 h-4" />
-                        </Button>
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          onClick={() =>
-                            toggleActiveMutation.mutate({
-                              id: employee.id,
-                              isActive: !employee.isActive,
-                            })
-                          }
-                        >
-                          {employee.isActive ? (
-                            <UserX className="w-4 h-4 text-red-500" />
-                          ) : (
-                            <UserCheck className="w-4 h-4 text-green-500" />
-                          )}
-                        </Button>
-                      </div>
-                    </TableCell>
-                  </TableRow>
-                ))}
-                {employees.length === 0 && (
+          </CardContent>
+        </Card>
+      ) : (
+        <>
+          {/* Desktop table */}
+          <Card className="hidden md:block">
+            <CardContent className="p-0 overflow-x-auto">
+              <Table>
+                <TableHeader>
                   <TableRow>
-                    <TableCell colSpan={6}>
-                      <div className="flex flex-col items-center justify-center py-12 text-center">
-                        <Users className="w-12 h-12 text-muted-foreground/50 mb-4" />
-                        <p className="text-lg font-heading font-medium text-foreground mb-1">No hay empleados registrados</p>
-                        <p className="text-sm text-muted-foreground">Agrega empleados para gestionar el acceso al CRM</p>
-                      </div>
-                    </TableCell>
+                    <TableHead>Usuario</TableHead>
+                    <TableHead>Nombre</TableHead>
+                    <TableHead>Rol</TableHead>
+                    <TableHead>Estado</TableHead>
+                    <TableHead>Ultimo Acceso</TableHead>
+                    <TableHead className="text-right">Acciones</TableHead>
                   </TableRow>
-                )}
-              </TableBody>
-            </Table>
+                </TableHeader>
+                <TableBody>
+                  {paginatedEmployees.map((employee) => (
+                    <TableRow key={employee.id}>
+                      <TableCell className="font-medium">{employee.username}</TableCell>
+                      <TableCell>{employee.displayName || "-"}</TableCell>
+                      <TableCell>
+                        <Badge variant={employee.role === "admin" ? "default" : "secondary"}>
+                          {employee.role === "admin" ? "Admin" : "Empleado"}
+                        </Badge>
+                      </TableCell>
+                      <TableCell>
+                        <Badge className={employee.isActive ? "bg-emerald-100 text-emerald-800" : "bg-red-100 text-red-800"}>
+                          {employee.isActive ? "Activo" : "Inactivo"}
+                        </Badge>
+                      </TableCell>
+                      <TableCell className="text-sm text-muted-foreground">
+                        {employee.lastLoginAt
+                          ? new Date(employee.lastLoginAt).toLocaleDateString("es-ES", {
+                              day: "2-digit",
+                              month: "2-digit",
+                              year: "numeric",
+                              hour: "2-digit",
+                              minute: "2-digit",
+                            })
+                          : "Nunca"}
+                      </TableCell>
+                      <TableCell className="text-right">
+                        <div className="flex justify-end gap-2">
+                          <Button variant="ghost" size="sm" onClick={() => handleEdit(employee)}>
+                            <Edit className="w-4 h-4" />
+                          </Button>
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            onClick={() =>
+                              toggleActiveMutation.mutate({
+                                id: employee.id,
+                                isActive: !employee.isActive,
+                              })
+                            }
+                          >
+                            {employee.isActive ? (
+                              <UserX className="w-4 h-4 text-red-500" />
+                            ) : (
+                              <UserCheck className="w-4 h-4 text-green-500" />
+                            )}
+                          </Button>
+                        </div>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </CardContent>
+          </Card>
+
+          {/* Mobile cards */}
+          <div className="block md:hidden space-y-3">
+            {paginatedEmployees.map((employee) => (
+              <div key={employee.id} className="bg-card border border-border rounded-lg p-4 space-y-2">
+                <div className="flex items-center justify-between">
+                  <span className="font-heading font-semibold text-foreground">
+                    {employee.displayName || employee.username}
+                  </span>
+                  <Badge className={employee.isActive ? "bg-emerald-100 text-emerald-800" : "bg-red-100 text-red-800"}>
+                    {employee.isActive ? "Activo" : "Inactivo"}
+                  </Badge>
+                </div>
+                <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                  <span>{employee.username}</span>
+                  <Badge variant={employee.role === "admin" ? "default" : "secondary"}>
+                    {employee.role === "admin" ? "Admin" : "Empleado"}
+                  </Badge>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-sm text-muted-foreground">
+                    {employee.lastLoginAt
+                      ? new Date(employee.lastLoginAt).toLocaleDateString("es-ES", {
+                          day: "2-digit",
+                          month: "2-digit",
+                          year: "numeric",
+                          hour: "2-digit",
+                          minute: "2-digit",
+                        })
+                      : "Nunca"}
+                  </span>
+                  <div className="flex gap-1">
+                    <Button variant="ghost" size="sm" onClick={() => handleEdit(employee)}>
+                      <Edit className="w-4 h-4" />
+                    </Button>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={() =>
+                        toggleActiveMutation.mutate({
+                          id: employee.id,
+                          isActive: !employee.isActive,
+                        })
+                      }
+                    >
+                      {employee.isActive ? (
+                        <UserX className="w-4 h-4 text-red-500" />
+                      ) : (
+                        <UserCheck className="w-4 h-4 text-green-500" />
+                      )}
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Pagination */}
+          {totalPages > 1 && (
+            <PaginationControls
+              currentPage={safePage}
+              totalPages={totalPages}
+              onPageChange={setCurrentPage}
+            />
           )}
-        </CardContent>
-      </Card>
+        </>
+      )}
 
       {/* Create/Edit Dialog */}
       <Dialog open={showDialog} onOpenChange={setShowDialog}>

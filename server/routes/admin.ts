@@ -53,7 +53,7 @@ const paginatedBookingsQuerySchema = z.object({
   limit: z.coerce.number().int().min(1).max(100).optional().default(25),
   status: z.string().optional(),
   search: z.string().optional(),
-  sortBy: z.enum(["startTime", "createdAt", "bookingDate"]).optional().default("startTime"),
+  sortBy: z.enum(["startTime", "createdAt", "bookingDate", "customerName", "boatId", "totalAmount", "bookingStatus"]).optional().default("startTime"),
   sortOrder: z.enum(["asc", "desc"]).optional().default("desc"),
 });
 

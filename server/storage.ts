@@ -943,6 +943,10 @@ export class DatabaseStorage implements IStorage {
     const sortColumnSql =
       sortBy === "createdAt" ? sql`${bookings.createdAt}`
       : sortBy === "bookingDate" ? sql`${bookings.bookingDate}`
+      : sortBy === "customerName" ? sql`${bookings.customerName}`
+      : sortBy === "boatId" ? sql`${bookings.boatId}`
+      : sortBy === "totalAmount" ? sql`CAST(${bookings.totalAmount} AS NUMERIC)`
+      : sortBy === "bookingStatus" ? sql`${bookings.bookingStatus}`
       : sql`${bookings.startTime}`;
 
     const orderSql = sortOrder === "asc"

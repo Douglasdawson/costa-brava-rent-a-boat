@@ -1,4 +1,5 @@
 import { useState, useCallback } from "react";
+import { useLocation, useRoute } from "wouter";
 import { useToast } from "@/hooks/use-toast";
 import { format } from "date-fns";
 import type { Booking } from "@shared/schema";
@@ -36,8 +37,18 @@ interface CRMDashboardProps {
   adminToken: string;
 }
 
+const VALID_TABS = [
+  "dashboard", "calendar", "bookings", "customers", "inquiries",
+  "fleet", "maintenance", "inventory", "reports", "gallery",
+  "giftcards", "discounts", "employees", "config", "superadmin",
+];
+
 export default function CRMDashboard({ adminToken }: CRMDashboardProps) {
-  const [selectedTab, setSelectedTab] = useState("dashboard");
+  const [, params] = useRoute("/crm/:tab");
+  const [, setLocation] = useLocation();
+  const rawTab = params?.tab || "dashboard";
+  const selectedTab = VALID_TABS.includes(rawTab) ? rawTab : "dashboard";
+  const setSelectedTab = useCallback((tab: string) => setLocation(`/crm/${tab}`), [setLocation]);
   const [selectedTimeRange, setSelectedTimeRange] = useState("today");
   const adminRole = sessionStorage.getItem("adminRole") || "admin";
   const adminUsername = sessionStorage.getItem("adminUsername") || "Admin";
@@ -149,7 +160,7 @@ export default function CRMDashboard({ adminToken }: CRMDashboardProps) {
     setSelectedTab("bookings");
     // The BookingsTab manages its own search state internally,
     // so we switch tab and let the user search manually
-  }, []);
+  }, [setSelectedTab]);
 
   // Export bookings to CSV (fetches ALL matching bookings)
   const handleExportCSV = useCallback(async () => {

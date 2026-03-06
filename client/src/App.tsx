@@ -272,7 +272,7 @@ function Router() {
         <Route path="/" component={HomePage} />
         <Route path="/login" component={LoginPage} />
         <Route path="/onboarding" component={OnboardingPage} />
-        <Route path="/crm" component={CRMDashboardPage} />
+        <Route path="/crm/:tab?" component={CRMDashboardPage} />
         <Route path="/mi-cuenta" component={ClientDashboardPage} />
         <Route path="/client/dashboard" component={ClientDashboardPage} />
         <Route path="/barco/:id" component={BoatPage} />

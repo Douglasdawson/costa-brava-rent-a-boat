@@ -13,7 +13,8 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
-import { Check, X, Trash2, Camera, Eye } from "lucide-react";
+import { Tooltip, TooltipTrigger, TooltipContent } from "@/components/ui/tooltip";
+import { Check, X, Trash2, Camera, Eye, Loader2 } from "lucide-react";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { useToast } from "@/hooks/use-toast";
 import { queryClient } from "@/lib/queryClient";
@@ -156,7 +157,7 @@ export function GalleryManagement({ adminToken }: GalleryManagementProps) {
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
           {paginatedPhotos.map((photo) => (
-            <Card key={photo.id} className="overflow-hidden">
+            <Card key={photo.id} className="overflow-hidden group">
               <div className="relative">
                 <img
                   src={photo.imageUrl}
@@ -164,11 +165,60 @@ export function GalleryManagement({ adminToken }: GalleryManagementProps) {
                   className="w-full h-48 object-cover"
                 />
                 <Badge
-                  className="absolute top-2 right-2"
+                  className="absolute top-2 right-2 z-10"
                   variant={photo.isApproved ? "default" : "secondary"}
                 >
                   {photo.isApproved ? "Aprobada" : "Pendiente"}
                 </Badge>
+                {/* Hover overlay with action buttons */}
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-all duration-200 flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100">
+                  {!photo.isApproved && (
+                    <Button
+                      size="sm"
+                      variant="secondary"
+                      className="bg-white text-green-700 hover:bg-green-50 border border-white/80 shadow-sm"
+                      onClick={() => approveMutation.mutate(photo.id)}
+                      disabled={approveMutation.isPending || rejectMutation.isPending || deleteMutation.isPending}
+                    >
+                      {approveMutation.isPending ? (
+                        <Loader2 className="w-4 h-4 mr-1 animate-spin" />
+                      ) : (
+                        <Check className="w-4 h-4 mr-1" />
+                      )}
+                      Aprobar
+                    </Button>
+                  )}
+                  {photo.isApproved && (
+                    <Button
+                      size="sm"
+                      variant="secondary"
+                      className="bg-white text-foreground hover:bg-gray-50 border border-white/80 shadow-sm"
+                      onClick={() => rejectMutation.mutate(photo.id)}
+                      disabled={approveMutation.isPending || rejectMutation.isPending || deleteMutation.isPending}
+                    >
+                      {rejectMutation.isPending ? (
+                        <Loader2 className="w-4 h-4 mr-1 animate-spin" />
+                      ) : (
+                        <X className="w-4 h-4 mr-1" />
+                      )}
+                      Rechazar
+                    </Button>
+                  )}
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <Button
+                        size="sm"
+                        variant="secondary"
+                        className="bg-white text-red-600 hover:bg-red-50 border border-white/80 shadow-sm"
+                        onClick={() => setDeletePhotoId(photo.id)}
+                        disabled={approveMutation.isPending || rejectMutation.isPending || deleteMutation.isPending}
+                      >
+                        <Trash2 className="w-4 h-4" />
+                      </Button>
+                    </TooltipTrigger>
+                    <TooltipContent>Eliminar</TooltipContent>
+                  </Tooltip>
+                </div>
               </div>
               <CardContent className="p-3">
                 <p className="font-medium text-sm">{photo.customerName}</p>
@@ -181,41 +231,6 @@ export function GalleryManagement({ adminToken }: GalleryManagementProps) {
                 <p className="text-xs text-muted-foreground/70 mt-1">
                   {new Date(photo.createdAt).toLocaleDateString("es-ES")}
                 </p>
-                <div className="flex gap-2 mt-3">
-                  {!photo.isApproved && (
-                    <Button
-                      size="sm"
-                      variant="outline"
-                      className="flex-1 text-green-600"
-                      onClick={() => approveMutation.mutate(photo.id)}
-                      disabled={approveMutation.isPending}
-                    >
-                      <Check className="w-4 h-4 mr-1" />
-                      Aprobar
-                    </Button>
-                  )}
-                  {photo.isApproved && (
-                    <Button
-                      size="sm"
-                      variant="outline"
-                      className="flex-1"
-                      onClick={() => rejectMutation.mutate(photo.id)}
-                      disabled={rejectMutation.isPending}
-                    >
-                      <X className="w-4 h-4 mr-1" />
-                      Rechazar
-                    </Button>
-                  )}
-                  <Button
-                    size="sm"
-                    variant="ghost"
-                    className="text-red-500"
-                    onClick={() => setDeletePhotoId(photo.id)}
-                    disabled={deleteMutation.isPending}
-                  >
-                    <Trash2 className="w-4 h-4" />
-                  </Button>
-                </div>
               </CardContent>
             </Card>
           ))}

@@ -4,7 +4,8 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { Gift, Check, X, Clock } from "lucide-react";
+import { Tooltip, TooltipTrigger, TooltipContent } from "@/components/ui/tooltip";
+import { Gift, Check, X, Clock, Loader2 } from "lucide-react";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { useToast } from "@/hooks/use-toast";
 import { queryClient } from "@/lib/queryClient";
@@ -237,25 +238,38 @@ export function GiftCardManagement({ adminToken }: GiftCardManagementProps) {
                                 }
                                 disabled={updateMutation.isPending}
                               >
-                                <Check className="w-3 h-3 mr-1" />
+                                {updateMutation.isPending ? (
+                                  <Loader2 className="w-3 h-3 mr-1 animate-spin" />
+                                ) : (
+                                  <Check className="w-3 h-3 mr-1" />
+                                )}
                                 Activar
                               </Button>
                             )}
                             {(card.status === "active" || card.status === "pending") && (
-                              <Button
-                                size="sm"
-                                variant="ghost"
-                                className="text-red-500"
-                                onClick={() =>
-                                  updateMutation.mutate({
-                                    id: card.id,
-                                    updates: { status: "cancelled" },
-                                  })
-                                }
-                                disabled={updateMutation.isPending}
-                              >
-                                <X className="w-3 h-3" />
-                              </Button>
+                              <Tooltip>
+                                <TooltipTrigger asChild>
+                                  <Button
+                                    size="sm"
+                                    variant="ghost"
+                                    className="text-red-500"
+                                    onClick={() =>
+                                      updateMutation.mutate({
+                                        id: card.id,
+                                        updates: { status: "cancelled" },
+                                      })
+                                    }
+                                    disabled={updateMutation.isPending}
+                                  >
+                                    {updateMutation.isPending ? (
+                                      <Loader2 className="w-3 h-3 animate-spin" />
+                                    ) : (
+                                      <X className="w-3 h-3" />
+                                    )}
+                                  </Button>
+                                </TooltipTrigger>
+                                <TooltipContent>Cancelar</TooltipContent>
+                              </Tooltip>
                             )}
                           </div>
                         </TableCell>
@@ -306,25 +320,38 @@ export function GiftCardManagement({ adminToken }: GiftCardManagementProps) {
                         }
                         disabled={updateMutation.isPending}
                       >
-                        <Check className="w-3 h-3 mr-1" />
+                        {updateMutation.isPending ? (
+                          <Loader2 className="w-3 h-3 mr-1 animate-spin" />
+                        ) : (
+                          <Check className="w-3 h-3 mr-1" />
+                        )}
                         Activar
                       </Button>
                     )}
                     {(card.status === "active" || card.status === "pending") && (
-                      <Button
-                        size="sm"
-                        variant="ghost"
-                        className="text-red-500"
-                        onClick={() =>
-                          updateMutation.mutate({
-                            id: card.id,
-                            updates: { status: "cancelled" },
-                          })
-                        }
-                        disabled={updateMutation.isPending}
-                      >
-                        <X className="w-3 h-3" />
-                      </Button>
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <Button
+                            size="sm"
+                            variant="ghost"
+                            className="text-red-500"
+                            onClick={() =>
+                              updateMutation.mutate({
+                                id: card.id,
+                                updates: { status: "cancelled" },
+                              })
+                            }
+                            disabled={updateMutation.isPending}
+                          >
+                            {updateMutation.isPending ? (
+                              <Loader2 className="w-3 h-3 animate-spin" />
+                            ) : (
+                              <X className="w-3 h-3" />
+                            )}
+                          </Button>
+                        </TooltipTrigger>
+                        <TooltipContent>Cancelar</TooltipContent>
+                      </Tooltip>
                     )}
                   </div>
                 </div>

@@ -20,6 +20,7 @@ import {
 } from "@/components/ui/select";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Skeleton } from "@/components/ui/skeleton";
+import { Tooltip, TooltipTrigger, TooltipContent } from "@/components/ui/tooltip";
 import {
   Building2,
   Users,
@@ -602,31 +603,39 @@ function TeamMembersSection({
                         <TableCell className="text-right">
                           {member.role !== "owner" && (
                             <div className="flex justify-end gap-1">
-                              <Button
-                                variant="ghost"
-                                size="sm"
-                                onClick={() => handleEdit(member)}
-                                title="Editar"
-                              >
-                                <Edit className="w-4 h-4" />
-                              </Button>
-                              <Button
-                                variant="ghost"
-                                size="sm"
-                                onClick={() =>
-                                  toggleActiveMutation.mutate({
-                                    id: member.id,
-                                    isActive: !member.isActive,
-                                  })
-                                }
-                                title={member.isActive ? "Desactivar" : "Activar"}
-                              >
-                                {member.isActive ? (
-                                  <UserX className="w-4 h-4 text-red-500" />
-                                ) : (
-                                  <UserCheck className="w-4 h-4 text-primary" />
-                                )}
-                              </Button>
+                              <Tooltip>
+                                <TooltipTrigger asChild>
+                                  <Button
+                                    variant="ghost"
+                                    size="sm"
+                                    onClick={() => handleEdit(member)}
+                                  >
+                                    <Edit className="w-4 h-4" />
+                                  </Button>
+                                </TooltipTrigger>
+                                <TooltipContent>Editar</TooltipContent>
+                              </Tooltip>
+                              <Tooltip>
+                                <TooltipTrigger asChild>
+                                  <Button
+                                    variant="ghost"
+                                    size="sm"
+                                    onClick={() =>
+                                      toggleActiveMutation.mutate({
+                                        id: member.id,
+                                        isActive: !member.isActive,
+                                      })
+                                    }
+                                  >
+                                    {member.isActive ? (
+                                      <UserX className="w-4 h-4 text-red-500" />
+                                    ) : (
+                                      <UserCheck className="w-4 h-4 text-primary" />
+                                    )}
+                                  </Button>
+                                </TooltipTrigger>
+                                <TooltipContent>{member.isActive ? "Desactivar" : "Activar"}</TooltipContent>
+                              </Tooltip>
                             </div>
                           )}
                         </TableCell>
@@ -661,31 +670,39 @@ function TeamMembersSection({
                         </div>
                         {member.role !== "owner" && (
                           <div className="flex gap-1">
-                            <Button
-                              variant="ghost"
-                              size="sm"
-                              onClick={() => handleEdit(member)}
-                              title="Editar"
-                            >
-                              <Edit className="w-4 h-4" />
-                            </Button>
-                            <Button
-                              variant="ghost"
-                              size="sm"
-                              onClick={() =>
-                                toggleActiveMutation.mutate({
-                                  id: member.id,
-                                  isActive: !member.isActive,
-                                })
-                              }
-                              title={member.isActive ? "Desactivar" : "Activar"}
-                            >
-                              {member.isActive ? (
-                                <UserX className="w-4 h-4 text-red-500" />
-                              ) : (
-                                <UserCheck className="w-4 h-4 text-primary" />
-                              )}
-                            </Button>
+                            <Tooltip>
+                              <TooltipTrigger asChild>
+                                <Button
+                                  variant="ghost"
+                                  size="sm"
+                                  onClick={() => handleEdit(member)}
+                                >
+                                  <Edit className="w-4 h-4" />
+                                </Button>
+                              </TooltipTrigger>
+                              <TooltipContent>Editar</TooltipContent>
+                            </Tooltip>
+                            <Tooltip>
+                              <TooltipTrigger asChild>
+                                <Button
+                                  variant="ghost"
+                                  size="sm"
+                                  onClick={() =>
+                                    toggleActiveMutation.mutate({
+                                      id: member.id,
+                                      isActive: !member.isActive,
+                                    })
+                                  }
+                                >
+                                  {member.isActive ? (
+                                    <UserX className="w-4 h-4 text-red-500" />
+                                  ) : (
+                                    <UserCheck className="w-4 h-4 text-primary" />
+                                  )}
+                                </Button>
+                              </TooltipTrigger>
+                              <TooltipContent>{member.isActive ? "Desactivar" : "Activar"}</TooltipContent>
+                            </Tooltip>
                           </div>
                         )}
                       </div>

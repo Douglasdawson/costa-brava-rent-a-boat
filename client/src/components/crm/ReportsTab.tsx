@@ -419,6 +419,7 @@ export function ReportsTab({ adminToken }: ReportsTabProps) {
           {loadingCustomers ? (
             <Card><CardContent className="py-8 text-center"><Loader2 className="w-6 h-6 animate-spin mx-auto" /></CardContent></Card>
           ) : (
+            <>
             {/* Desktop table */}
             <Card className="hidden md:block">
               <CardHeader>
@@ -491,6 +492,7 @@ export function ReportsTab({ adminToken }: ReportsTabProps) {
                 </Card>
               ))}
             </div>
+            </>
           )}
         </div>
       )}

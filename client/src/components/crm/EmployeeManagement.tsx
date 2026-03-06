@@ -21,6 +21,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { Tooltip, TooltipTrigger, TooltipContent } from "@/components/ui/tooltip";
 import { Plus, Edit, UserX, UserCheck, Users } from "lucide-react";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { useToast } from "@/hooks/use-toast";
@@ -249,25 +250,35 @@ export function EmployeeManagement({ adminToken }: EmployeeManagementProps) {
                       </TableCell>
                       <TableCell className="text-right">
                         <div className="flex justify-end gap-2">
-                          <Button variant="ghost" size="sm" onClick={() => handleEdit(employee)}>
-                            <Edit className="w-4 h-4" />
-                          </Button>
-                          <Button
-                            variant="ghost"
-                            size="sm"
-                            onClick={() =>
-                              toggleActiveMutation.mutate({
-                                id: employee.id,
-                                isActive: !employee.isActive,
-                              })
-                            }
-                          >
-                            {employee.isActive ? (
-                              <UserX className="w-4 h-4 text-red-500" />
-                            ) : (
-                              <UserCheck className="w-4 h-4 text-green-500" />
-                            )}
-                          </Button>
+                          <Tooltip>
+                            <TooltipTrigger asChild>
+                              <Button variant="ghost" size="sm" onClick={() => handleEdit(employee)}>
+                                <Edit className="w-4 h-4" />
+                              </Button>
+                            </TooltipTrigger>
+                            <TooltipContent>Editar</TooltipContent>
+                          </Tooltip>
+                          <Tooltip>
+                            <TooltipTrigger asChild>
+                              <Button
+                                variant="ghost"
+                                size="sm"
+                                onClick={() =>
+                                  toggleActiveMutation.mutate({
+                                    id: employee.id,
+                                    isActive: !employee.isActive,
+                                  })
+                                }
+                              >
+                                {employee.isActive ? (
+                                  <UserX className="w-4 h-4 text-red-500" />
+                                ) : (
+                                  <UserCheck className="w-4 h-4 text-green-500" />
+                                )}
+                              </Button>
+                            </TooltipTrigger>
+                            <TooltipContent>{employee.isActive ? "Desactivar" : "Activar"}</TooltipContent>
+                          </Tooltip>
                         </div>
                       </TableCell>
                     </TableRow>
@@ -308,25 +319,35 @@ export function EmployeeManagement({ adminToken }: EmployeeManagementProps) {
                       : "Nunca"}
                   </span>
                   <div className="flex gap-1">
-                    <Button variant="ghost" size="sm" onClick={() => handleEdit(employee)}>
-                      <Edit className="w-4 h-4" />
-                    </Button>
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      onClick={() =>
-                        toggleActiveMutation.mutate({
-                          id: employee.id,
-                          isActive: !employee.isActive,
-                        })
-                      }
-                    >
-                      {employee.isActive ? (
-                        <UserX className="w-4 h-4 text-red-500" />
-                      ) : (
-                        <UserCheck className="w-4 h-4 text-green-500" />
-                      )}
-                    </Button>
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <Button variant="ghost" size="sm" onClick={() => handleEdit(employee)}>
+                          <Edit className="w-4 h-4" />
+                        </Button>
+                      </TooltipTrigger>
+                      <TooltipContent>Editar</TooltipContent>
+                    </Tooltip>
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() =>
+                            toggleActiveMutation.mutate({
+                              id: employee.id,
+                              isActive: !employee.isActive,
+                            })
+                          }
+                        >
+                          {employee.isActive ? (
+                            <UserX className="w-4 h-4 text-red-500" />
+                          ) : (
+                            <UserCheck className="w-4 h-4 text-green-500" />
+                          )}
+                        </Button>
+                      </TooltipTrigger>
+                      <TooltipContent>{employee.isActive ? "Desactivar" : "Activar"}</TooltipContent>
+                    </Tooltip>
                   </div>
                 </div>
               </div>

@@ -21,6 +21,7 @@ import {
   Check,
   Anchor,
   GripVertical,
+  Loader2,
 } from "lucide-react";
 import {
   DndContext,
@@ -593,7 +594,11 @@ export function FleetManagement({ adminToken }: FleetManagementProps) {
                 disabled={importBoatsMutation.isPending}
                 data-testid="button-import-boats"
               >
-                <Download className="w-4 h-4 mr-2" />
+                {importBoatsMutation.isPending ? (
+                  <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                ) : (
+                  <Download className="w-4 h-4 mr-2" />
+                )}
                 {importBoatsMutation.isPending ? "Importando..." : "Importar Flota (7 barcos)"}
               </Button>
               <Button
@@ -1420,9 +1425,11 @@ export function FleetManagement({ adminToken }: FleetManagementProps) {
                 disabled={createBoatMutation.isPending || updateBoatMutation.isPending}
                 data-testid="button-save-boat"
               >
-                {createBoatMutation.isPending || updateBoatMutation.isPending
-                  ? "Guardando..."
-                  : "Guardar"}
+                {createBoatMutation.isPending || updateBoatMutation.isPending ? (
+                  <><Loader2 className="w-4 h-4 mr-2 animate-spin" />Guardando...</>
+                ) : (
+                  "Guardar"
+                )}
               </Button>
             </DialogFooter>
           </form>

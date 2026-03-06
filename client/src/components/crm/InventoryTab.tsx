@@ -101,8 +101,8 @@ const CATEGORY_LABELS: Record<string, string> = {
 };
 
 const STATUS_CONFIG: Record<string, { label: string; color: string }> = {
-  available: { label: "Disponible", color: "bg-green-100 text-green-800" },
-  low_stock: { label: "Stock Bajo", color: "bg-yellow-100 text-yellow-800" },
+  available: { label: "Disponible", color: "bg-emerald-100 text-emerald-800" },
+  low_stock: { label: "Stock Bajo", color: "bg-amber-100 text-amber-800" },
   out_of_stock: { label: "Sin Stock", color: "bg-red-100 text-red-800" },
 };
 
@@ -360,7 +360,7 @@ export function InventoryTab({ adminToken }: InventoryTabProps) {
               {lowStockItems.map(item => (
                 <Badge
                   key={item.id}
-                  className={item.status === "out_of_stock" ? "bg-red-100 text-red-800" : "bg-yellow-100 text-yellow-800"}
+                  className={item.status === "out_of_stock" ? "bg-red-100 text-red-800" : "bg-amber-100 text-amber-800"}
                 >
                   {item.name}: {item.availableStock} ud.
                 </Badge>
@@ -375,9 +375,10 @@ export function InventoryTab({ adminToken }: InventoryTabProps) {
         <Card><CardContent className="py-8 text-center"><Loader2 className="w-6 h-6 animate-spin mx-auto" /></CardContent></Card>
       ) : filteredItems.length === 0 ? (
         <Card>
-          <CardContent className="py-8 text-center">
-            <Package className="w-12 h-12 mx-auto mb-4 text-muted-foreground/70" />
-            <p className="text-muted-foreground">No hay items en el inventario</p>
+          <CardContent className="flex flex-col items-center justify-center py-12 text-center">
+            <Package className="w-12 h-12 text-muted-foreground/50 mb-4" />
+            <p className="text-lg font-heading font-medium text-foreground mb-1">No hay items en el inventario</p>
+            <p className="text-sm text-muted-foreground">Agrega extras y equipamiento para gestionar el stock</p>
           </CardContent>
         </Card>
       ) : (

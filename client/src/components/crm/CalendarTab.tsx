@@ -77,45 +77,45 @@ const STATUS_COLORS: Record<
   { bg: string; border: string; text: string; opacity?: string }
 > = {
   confirmed: {
-    bg: "bg-primary/10",
-    border: "border-primary",
-    text: "text-primary",
+    bg: "bg-emerald-100",
+    border: "border-emerald-400",
+    text: "text-emerald-800",
   },
   hold: {
-    bg: "bg-primary/5",
-    border: "border-primary/40",
-    text: "text-primary",
+    bg: "bg-amber-100",
+    border: "border-amber-400",
+    text: "text-amber-800",
   },
   pending_payment: {
-    bg: "bg-cta/10",
-    border: "border-cta",
-    text: "text-cta",
+    bg: "bg-amber-100",
+    border: "border-amber-400",
+    text: "text-amber-800",
   },
   draft: {
-    bg: "bg-muted",
-    border: "border-border",
-    text: "text-muted-foreground",
+    bg: "bg-gray-100",
+    border: "border-gray-400",
+    text: "text-gray-800",
   },
   cancelled: {
-    bg: "bg-red-50",
+    bg: "bg-red-100",
     border: "border-red-400",
-    text: "text-red-700",
+    text: "text-red-800",
     opacity: "opacity-50",
   },
   completed: {
-    bg: "bg-muted",
-    border: "border-border",
-    text: "text-muted-foreground",
+    bg: "bg-blue-100",
+    border: "border-blue-400",
+    text: "text-blue-800",
   },
 };
 
 const STATUS_DOT_COLORS: Record<string, string> = {
-  confirmed: "bg-primary",
-  hold: "bg-primary/60",
-  pending_payment: "bg-cta",
-  draft: "bg-muted-foreground/40",
+  confirmed: "bg-emerald-500",
+  hold: "bg-amber-500",
+  pending_payment: "bg-amber-500",
+  draft: "bg-gray-400",
   cancelled: "bg-red-400",
-  completed: "bg-muted-foreground/40",
+  completed: "bg-blue-500",
 };
 
 const ALL_STATUSES = [

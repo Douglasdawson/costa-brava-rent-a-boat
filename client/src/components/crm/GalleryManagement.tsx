@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Skeleton } from "@/components/ui/skeleton";
 import { Check, X, Trash2, Camera, Eye } from "lucide-react";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { useToast } from "@/hooks/use-toast";
@@ -115,10 +116,21 @@ export function GalleryManagement({ adminToken }: GalleryManagementProps) {
       </div>
 
       {isLoading ? (
-        <div className="text-center py-8">Cargando...</div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <Skeleton className="h-48 w-full rounded-lg" />
+          <Skeleton className="h-48 w-full rounded-lg" />
+          <Skeleton className="h-48 w-full rounded-lg" />
+          <Skeleton className="h-48 w-full rounded-lg" />
+          <Skeleton className="h-48 w-full rounded-lg" />
+          <Skeleton className="h-48 w-full rounded-lg" />
+        </div>
       ) : filteredPhotos.length === 0 ? (
-        <div className="text-center py-12 text-muted-foreground">
-          No hay fotos {filter === "pending" ? "pendientes" : filter === "approved" ? "aprobadas" : ""}
+        <div className="flex flex-col items-center justify-center py-12 text-center">
+          <Camera className="w-12 h-12 text-muted-foreground/50 mb-4" />
+          <p className="text-lg font-heading font-medium text-foreground mb-1">No hay fotos en la galeria</p>
+          <p className="text-sm text-muted-foreground">
+            {filter === "pending" ? "No hay fotos pendientes de aprobacion" : filter === "approved" ? "No hay fotos aprobadas" : "Las fotos de clientes apareceran aqui"}
+          </p>
         </div>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">

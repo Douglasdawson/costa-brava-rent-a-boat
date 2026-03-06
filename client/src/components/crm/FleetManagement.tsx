@@ -107,7 +107,7 @@ function SortableBoatRow({
       </TableCell>
       <TableCell>{"\u20AC"}{boat.deposit}</TableCell>
       <TableCell>
-        <Badge variant={boat.isActive ? "default" : "secondary"}>
+        <Badge className={boat.isActive ? "bg-emerald-100 text-emerald-800" : "bg-gray-100 text-gray-800"}>
           {boat.isActive ? "Activo" : "Inactivo"}
         </Badge>
       </TableCell>
@@ -192,7 +192,7 @@ function SortableBoatCard({
               <Badge variant={boat.requiresLicense ? "default" : "secondary"} className="text-xs">
                 {boat.requiresLicense ? "Licencia" : "Sin licencia"}
               </Badge>
-              <Badge variant={boat.isActive ? "default" : "secondary"} className="text-xs">
+              <Badge className={`text-xs ${boat.isActive ? "bg-emerald-100 text-emerald-800" : "bg-gray-100 text-gray-800"}`}>
                 {boat.isActive ? "Activo" : "Inactivo"}
               </Badge>
             </div>

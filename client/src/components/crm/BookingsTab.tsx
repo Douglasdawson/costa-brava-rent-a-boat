@@ -2,6 +2,7 @@ import { useState, useCallback, useRef, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Skeleton } from "@/components/ui/skeleton";
 import { Input } from "@/components/ui/input";
 import {
   Select,
@@ -19,11 +20,13 @@ import {
   ChevronRight,
   ChevronsLeft,
   ChevronsRight,
+  Calendar,
 } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { format } from "date-fns";
 import type { Booking, Boat } from "@shared/schema";
 import { getStatusColor, getStatusLabel } from "./constants";
+import { PaginationControls } from "./shared/PaginationControls";
 
 interface PaginatedBookingsResponse {
   data: Booking[];
@@ -164,12 +167,20 @@ export function BookingsTab({
         </CardHeader>
         <CardContent>
           {isLoading ? (
-            <div className="text-center py-12 text-muted-foreground">Cargando reservas...</div>
+            <div className="space-y-3">
+              <Skeleton className="h-10 w-full" />
+              <Skeleton className="h-10 w-full" />
+              <Skeleton className="h-10 w-full" />
+              <Skeleton className="h-10 w-full" />
+              <Skeleton className="h-10 w-full" />
+            </div>
           ) : error ? (
             <div className="text-center py-12 text-red-500">Error cargando reservas</div>
           ) : !bookingsData || bookingsData.length === 0 ? (
-            <div className="text-center py-8 text-muted-foreground">
-              No se encontraron reservas con los filtros seleccionados
+            <div className="flex flex-col items-center justify-center py-12 text-center">
+              <Calendar className="w-12 h-12 text-muted-foreground/50 mb-4" />
+              <p className="text-lg font-heading font-medium text-foreground mb-1">No se encontraron reservas</p>
+              <p className="text-sm text-muted-foreground">Prueba a ajustar los filtros o crear una nueva reserva</p>
             </div>
           ) : (
             <div className="overflow-x-auto">
@@ -208,12 +219,12 @@ export function BookingsTab({
                         {"\u20AC"}{parseFloat(booking.totalAmount).toFixed(2)}
                       </TableCell>
                       <TableCell>
-                        <Badge variant={getStatusColor(booking.bookingStatus) as "default" | "secondary" | "outline" | "destructive"}>
+                        <Badge className={getStatusColor(booking.bookingStatus)}>
                           {getStatusLabel(booking.bookingStatus)}
                         </Badge>
                       </TableCell>
                       <TableCell>
-                        <Badge variant={booking.paymentStatus === 'completed' ? 'default' : 'outline'}>
+                        <Badge className={booking.paymentStatus === 'completed' ? 'bg-emerald-100 text-emerald-800' : booking.paymentStatus === 'failed' ? 'bg-red-100 text-red-800' : 'bg-amber-100 text-amber-800'}>
                           {booking.paymentStatus === 'completed' ? 'Pagado' :
                            booking.paymentStatus === 'pending' ? 'Pendiente' :
                            booking.paymentStatus === 'failed' ? 'Fallido' : 'Reembolsado'}
@@ -268,11 +279,13 @@ export function BookingsTab({
           </span>
         </div>
         {isLoading ? (
-          <Card>
-            <CardContent className="py-12 text-center text-muted-foreground">
-              Cargando reservas...
-            </CardContent>
-          </Card>
+          <div className="space-y-3">
+            <Skeleton className="h-10 w-full" />
+            <Skeleton className="h-10 w-full" />
+            <Skeleton className="h-10 w-full" />
+            <Skeleton className="h-10 w-full" />
+            <Skeleton className="h-10 w-full" />
+          </div>
         ) : error ? (
           <Card>
             <CardContent className="py-12 text-center text-red-500">
@@ -281,8 +294,10 @@ export function BookingsTab({
           </Card>
         ) : !bookingsData || bookingsData.length === 0 ? (
           <Card>
-            <CardContent className="py-12 text-center text-muted-foreground">
-              No se encontraron reservas
+            <CardContent className="flex flex-col items-center justify-center py-12 text-center">
+              <Calendar className="w-12 h-12 text-muted-foreground/50 mb-4" />
+              <p className="text-lg font-heading font-medium text-foreground mb-1">No se encontraron reservas</p>
+              <p className="text-sm text-muted-foreground">Prueba a ajustar los filtros o crear una nueva reserva</p>
             </CardContent>
           </Card>
         ) : (
@@ -299,10 +314,10 @@ export function BookingsTab({
                         {format(new Date(booking.startTime), 'dd/MM/yy HH:mm')} - {booking.totalHours}h
                       </p>
                       <div className="flex gap-2 mt-2 flex-wrap">
-                        <Badge variant={getStatusColor(booking.bookingStatus) as "default" | "secondary" | "outline" | "destructive"} className="text-xs">
+                        <Badge className={`text-xs ${getStatusColor(booking.bookingStatus)}`}>
                           {getStatusLabel(booking.bookingStatus)}
                         </Badge>
-                        <Badge variant={booking.paymentStatus === 'completed' ? 'default' : 'outline'} className="text-xs">
+                        <Badge className={`text-xs ${booking.paymentStatus === 'completed' ? 'bg-emerald-100 text-emerald-800' : booking.paymentStatus === 'failed' ? 'bg-red-100 text-red-800' : 'bg-amber-100 text-amber-800'}`}>
                           {booking.paymentStatus === 'completed' ? 'Pagado' :
                            booking.paymentStatus === 'pending' ? 'Pendiente' :
                            booking.paymentStatus === 'failed' ? 'Fallido' : 'Reembolsado'}
@@ -373,83 +388,3 @@ export function BookingsTab({
   );
 }
 
-// Reusable pagination controls component
-function PaginationControls({
-  currentPage,
-  totalPages,
-  onPageChange,
-}: {
-  currentPage: number;
-  totalPages: number;
-  onPageChange: (page: number) => void;
-}) {
-  const pages: number[] = [];
-  const maxVisible = 5;
-  let startPage = Math.max(1, currentPage - Math.floor(maxVisible / 2));
-  const endPage = Math.min(totalPages, startPage + maxVisible - 1);
-  if (endPage - startPage + 1 < maxVisible) {
-    startPage = Math.max(1, endPage - maxVisible + 1);
-  }
-  for (let i = startPage; i <= endPage; i++) {
-    pages.push(i);
-  }
-
-  return (
-    <div className="flex items-center justify-between mt-6 pt-4 border-t">
-      <div className="text-sm text-muted-foreground">
-        Pagina {currentPage} de {totalPages}
-      </div>
-      <div className="flex items-center gap-1">
-        <Button
-          variant="outline"
-          size="sm"
-          onClick={() => onPageChange(1)}
-          disabled={currentPage <= 1}
-          title="Primera pagina"
-        >
-          <ChevronsLeft className="w-4 h-4" />
-        </Button>
-        <Button
-          variant="outline"
-          size="sm"
-          onClick={() => onPageChange(Math.max(1, currentPage - 1))}
-          disabled={currentPage <= 1}
-          title="Pagina anterior"
-        >
-          <ChevronLeft className="w-4 h-4" />
-        </Button>
-
-        {pages.map((pageNum) => (
-          <Button
-            key={pageNum}
-            variant={pageNum === currentPage ? "default" : "outline"}
-            size="sm"
-            onClick={() => onPageChange(pageNum)}
-            className="min-w-[36px]"
-          >
-            {pageNum}
-          </Button>
-        ))}
-
-        <Button
-          variant="outline"
-          size="sm"
-          onClick={() => onPageChange(Math.min(totalPages, currentPage + 1))}
-          disabled={currentPage >= totalPages}
-          title="Pagina siguiente"
-        >
-          <ChevronRight className="w-4 h-4" />
-        </Button>
-        <Button
-          variant="outline"
-          size="sm"
-          onClick={() => onPageChange(totalPages)}
-          disabled={currentPage >= totalPages}
-          title="Ultima pagina"
-        >
-          <ChevronsRight className="w-4 h-4" />
-        </Button>
-      </div>
-    </div>
-  );
-}

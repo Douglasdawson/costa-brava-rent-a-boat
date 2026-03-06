@@ -24,6 +24,9 @@ export { CustomerDetailModal } from "./CustomerDetailModal";
 export { CheckinForm } from "./CheckinForm";
 export { SignatureCanvas } from "./SignatureCanvas";
 
+// CRM Module exports - Shared components
+export { PaginationControls } from "./shared/PaginationControls";
+
 // CRM Module exports - Types and constants
 export * from "./types";
 export * from "./constants";

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Skeleton } from "@/components/ui/skeleton";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Gift, Check, X, Clock } from "lucide-react";
 import { useQuery, useMutation } from "@tanstack/react-query";
@@ -30,12 +31,12 @@ interface GiftCardManagementProps {
   adminToken: string;
 }
 
-const statusColors: Record<string, "default" | "secondary" | "destructive" | "outline"> = {
-  active: "default",
-  pending: "secondary",
-  used: "outline",
-  expired: "destructive",
-  cancelled: "destructive",
+const statusColors: Record<string, string> = {
+  active: "bg-emerald-100 text-emerald-800",
+  pending: "bg-amber-100 text-amber-800",
+  used: "bg-gray-100 text-gray-800",
+  expired: "bg-red-100 text-red-800",
+  cancelled: "bg-red-100 text-red-800",
 };
 
 const statusLabels: Record<string, string> = {
@@ -143,10 +144,20 @@ export function GiftCardManagement({ adminToken }: GiftCardManagementProps) {
       </div>
 
       {isLoading ? (
-        <div className="text-center py-8">Cargando...</div>
+        <div className="space-y-3">
+          <Skeleton className="h-10 w-full" />
+          <Skeleton className="h-10 w-full" />
+          <Skeleton className="h-10 w-full" />
+          <Skeleton className="h-10 w-full" />
+          <Skeleton className="h-10 w-full" />
+        </div>
       ) : filteredCards.length === 0 ? (
-        <div className="text-center py-12 text-muted-foreground">
-          No hay tarjetas regalo {filter !== "all" ? statusLabels[filter]?.toLowerCase() || "" : ""}
+        <div className="flex flex-col items-center justify-center py-12 text-center">
+          <Gift className="w-12 h-12 text-muted-foreground/50 mb-4" />
+          <p className="text-lg font-heading font-medium text-foreground mb-1">No hay tarjetas regalo</p>
+          <p className="text-sm text-muted-foreground">
+            {filter !== "all" ? `No hay tarjetas ${statusLabels[filter]?.toLowerCase() || ""}` : "Las tarjetas regalo apareceran aqui cuando se creen"}
+          </p>
         </div>
       ) : (
         <Card>
@@ -192,12 +203,12 @@ export function GiftCardManagement({ adminToken }: GiftCardManagementProps) {
                         </div>
                       </TableCell>
                       <TableCell>
-                        <Badge variant={statusColors[card.status] || "secondary"}>
+                        <Badge className={statusColors[card.status] || "bg-gray-100 text-gray-800"}>
                           {statusLabels[card.status] || card.status}
                         </Badge>
                       </TableCell>
                       <TableCell>
-                        <Badge variant={card.paymentStatus === "completed" ? "default" : "outline"}>
+                        <Badge className={card.paymentStatus === "completed" ? "bg-emerald-100 text-emerald-800" : card.paymentStatus === "failed" ? "bg-red-100 text-red-800" : "bg-amber-100 text-amber-800"}>
                           {paymentLabels[card.paymentStatus] || card.paymentStatus}
                         </Badge>
                       </TableCell>

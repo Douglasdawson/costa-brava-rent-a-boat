@@ -772,14 +772,7 @@ export function DashboardTab({
                         {"\u20AC"}{parseFloat(booking.totalAmount).toLocaleString("es-ES", { minimumFractionDigits: 0 })}
                       </span>
                       <Badge
-                        variant={
-                          getStatusColor(booking.bookingStatus) as
-                            | "default"
-                            | "secondary"
-                            | "outline"
-                            | "destructive"
-                        }
-                        className="text-[10px]"
+                        className={`text-[10px] ${getStatusColor(booking.bookingStatus)}`}
                       >
                         {getStatusLabel(booking.bookingStatus)}
                       </Badge>

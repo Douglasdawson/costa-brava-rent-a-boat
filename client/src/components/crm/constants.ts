@@ -35,19 +35,23 @@ export const INCLUDED_OPTIONS = [
   { id: "patron", label: "Patrón", icon: Users },
 ];
 
-// Status colors for badges
+// Status colors for badges - unified semantic color system
 export const getStatusColor = (status: string) => {
   switch (status) {
     case "confirmed":
-      return "default";
+      return "bg-emerald-100 text-emerald-800";
     case "pending_payment":
-      return "secondary";
+      return "bg-amber-100 text-amber-800";
     case "hold":
-      return "outline";
+      return "bg-amber-100 text-amber-800";
     case "cancelled":
-      return "destructive";
+      return "bg-red-100 text-red-800";
+    case "draft":
+      return "bg-gray-100 text-gray-800";
+    case "completed":
+      return "bg-blue-100 text-blue-800";
     default:
-      return "secondary";
+      return "bg-gray-100 text-gray-800";
   }
 };
 

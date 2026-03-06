@@ -109,8 +109,8 @@ const STATUS_LABELS: Record<string, string> = {
 
 const STATUS_COLORS: Record<string, string> = {
   scheduled: "bg-blue-100 text-blue-800",
-  in_progress: "bg-yellow-100 text-yellow-800",
-  completed: "bg-green-100 text-green-800",
+  in_progress: "bg-amber-100 text-amber-800",
+  completed: "bg-emerald-100 text-emerald-800",
 };
 
 const DOC_TYPE_LABELS: Record<string, string> = {
@@ -128,12 +128,12 @@ function getExpiryBadge(expiryDate: string | null) {
   const daysUntil = Math.ceil((expiry.getTime() - now.getTime()) / (1000 * 60 * 60 * 24));
 
   if (daysUntil < 0) {
-    return <Badge variant="destructive">Expirado</Badge>;
+    return <Badge className="bg-red-100 text-red-800">Expirado</Badge>;
   }
   if (daysUntil <= 30) {
-    return <Badge className="bg-yellow-100 text-yellow-800">Expira en {daysUntil}d</Badge>;
+    return <Badge className="bg-amber-100 text-amber-800">Expira en {daysUntil}d</Badge>;
   }
-  return <Badge className="bg-green-100 text-green-800">Vigente</Badge>;
+  return <Badge className="bg-emerald-100 text-emerald-800">Vigente</Badge>;
 }
 
 export function MaintenanceTab({ adminToken }: MaintenanceTabProps) {
@@ -480,8 +480,10 @@ export function MaintenanceTab({ adminToken }: MaintenanceTabProps) {
             <Card><CardContent className="py-8 text-center"><Loader2 className="w-6 h-6 animate-spin mx-auto" /></CardContent></Card>
           ) : maintenanceLogs.length === 0 ? (
             <Card>
-              <CardContent className="py-8 text-center text-muted-foreground">
-                No hay registros de mantenimiento
+              <CardContent className="flex flex-col items-center justify-center py-12 text-center">
+                <Wrench className="w-12 h-12 text-muted-foreground/50 mb-4" />
+                <p className="text-lg font-heading font-medium text-foreground mb-1">No hay registros de mantenimiento</p>
+                <p className="text-sm text-muted-foreground">Registra el mantenimiento de tus barcos para llevar un control</p>
               </CardContent>
             </Card>
           ) : (
@@ -597,8 +599,10 @@ export function MaintenanceTab({ adminToken }: MaintenanceTabProps) {
             <Card><CardContent className="py-8 text-center"><Loader2 className="w-6 h-6 animate-spin mx-auto" /></CardContent></Card>
           ) : documents.length === 0 ? (
             <Card>
-              <CardContent className="py-8 text-center text-muted-foreground">
-                No hay documentos registrados
+              <CardContent className="flex flex-col items-center justify-center py-12 text-center">
+                <FileText className="w-12 h-12 text-muted-foreground/50 mb-4" />
+                <p className="text-lg font-heading font-medium text-foreground mb-1">No hay documentos registrados</p>
+                <p className="text-sm text-muted-foreground">Agrega documentos como seguros, matriculas e ITVs</p>
               </CardContent>
             </Card>
           ) : (

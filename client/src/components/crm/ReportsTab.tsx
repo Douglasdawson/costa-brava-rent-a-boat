@@ -91,9 +91,9 @@ interface InventoryItem {
 }
 
 const SEGMENT_COLORS: Record<string, string> = {
-  vip: "bg-amber-100 text-amber-800",
-  returning: "bg-green-100 text-green-800",
-  new: "bg-blue-100 text-blue-800",
+  vip: "bg-emerald-100 text-emerald-800",
+  returning: "bg-blue-100 text-blue-800",
+  new: "bg-amber-100 text-amber-800",
 };
 
 const PIE_COLORS = ["hsl(var(--chart-1))", "hsl(var(--chart-2))", "hsl(var(--chart-3))", "hsl(var(--chart-4))", "hsl(var(--chart-5))"];
@@ -309,8 +309,8 @@ export function ReportsTab({ adminToken }: ReportsTabProps) {
                             <TableCell className="text-right">{boat.hours}h</TableCell>
                             <TableCell className="text-right">
                               <Badge className={
-                                boat.utilization >= 50 ? "bg-green-100 text-green-800" :
-                                boat.utilization >= 20 ? "bg-yellow-100 text-yellow-800" :
+                                boat.utilization >= 50 ? "bg-emerald-100 text-emerald-800" :
+                                boat.utilization >= 20 ? "bg-amber-100 text-amber-800" :
                                 "bg-red-100 text-red-800"
                               }>
                                 {boat.utilization}%
@@ -542,8 +542,8 @@ export function ReportsTab({ adminToken }: ReportsTabProps) {
                             <TableCell className="text-right">{item.totalStock}</TableCell>
                             <TableCell>
                               <Badge className={
-                                item.status === "available" ? "bg-green-100 text-green-800" :
-                                item.status === "low_stock" ? "bg-yellow-100 text-yellow-800" :
+                                item.status === "available" ? "bg-emerald-100 text-emerald-800" :
+                                item.status === "low_stock" ? "bg-amber-100 text-amber-800" :
                                 "bg-red-100 text-red-800"
                               }>
                                 {item.status === "available" ? "OK" :

@@ -2,6 +2,7 @@ import { useState, useCallback, useRef, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Skeleton } from "@/components/ui/skeleton";
 import { Input } from "@/components/ui/input";
 import {
   Select,
@@ -30,6 +31,7 @@ import { useToast } from "@/hooks/use-toast";
 import { format } from "date-fns";
 import type { CrmCustomerData, PaginatedCrmCustomersResponse } from "./types";
 import { CustomerDetailModal } from "./CustomerDetailModal";
+import { PaginationControls } from "./shared/PaginationControls";
 
 const CUSTOMERS_PER_PAGE = 25;
 
@@ -42,12 +44,12 @@ interface CustomersTabProps {
 function getSegmentBadge(segment: string) {
   switch (segment) {
     case "vip":
-      return <Badge className="bg-amber-100 text-amber-800 border-amber-300">VIP</Badge>;
+      return <Badge className="bg-emerald-100 text-emerald-800 border-emerald-300">VIP</Badge>;
     case "returning":
-      return <Badge className="bg-green-100 text-green-800 border-green-300">Recurrente</Badge>;
+      return <Badge className="bg-blue-100 text-blue-800 border-blue-300">Recurrente</Badge>;
     case "new":
     default:
-      return <Badge className="bg-blue-100 text-blue-800 border-blue-300">Nuevo</Badge>;
+      return <Badge className="bg-amber-100 text-amber-800 border-amber-300">Nuevo</Badge>;
   }
 }
 
@@ -257,14 +259,24 @@ export function CustomersTab({
         </CardHeader>
         <CardContent>
           {isLoading ? (
-            <div className="text-center py-12 text-muted-foreground">Cargando clientes...</div>
+            <div className="space-y-3">
+              <Skeleton className="h-10 w-full" />
+              <Skeleton className="h-10 w-full" />
+              <Skeleton className="h-10 w-full" />
+              <Skeleton className="h-10 w-full" />
+              <Skeleton className="h-10 w-full" />
+            </div>
           ) : error ? (
             <div className="text-center py-12 text-red-500">Error cargando clientes</div>
           ) : !customersData || customersData.length === 0 ? (
-            <div className="text-center py-8 text-muted-foreground">
-              {total === 0 && !debouncedSearch && segmentFilter === "all"
-                ? 'No hay clientes. Usa "Sincronizar desde Reservas" para importar.'
-                : "No se encontraron clientes con los filtros seleccionados"}
+            <div className="flex flex-col items-center justify-center py-12 text-center">
+              <Users className="w-12 h-12 text-muted-foreground/50 mb-4" />
+              <p className="text-lg font-heading font-medium text-foreground mb-1">No se encontraron clientes</p>
+              <p className="text-sm text-muted-foreground">
+                {total === 0 && !debouncedSearch && segmentFilter === "all"
+                  ? 'Usa "Sincronizar desde Reservas" para importar clientes'
+                  : "Prueba a ajustar los filtros de busqueda"}
+              </p>
             </div>
           ) : (
             <div className="overflow-x-auto">
@@ -374,11 +386,13 @@ export function CustomersTab({
           </span>
         </div>
         {isLoading ? (
-          <Card>
-            <CardContent className="py-12 text-center text-muted-foreground">
-              Cargando clientes...
-            </CardContent>
-          </Card>
+          <div className="space-y-3">
+            <Skeleton className="h-10 w-full" />
+            <Skeleton className="h-10 w-full" />
+            <Skeleton className="h-10 w-full" />
+            <Skeleton className="h-10 w-full" />
+            <Skeleton className="h-10 w-full" />
+          </div>
         ) : error ? (
           <Card>
             <CardContent className="py-12 text-center text-red-500">
@@ -387,8 +401,10 @@ export function CustomersTab({
           </Card>
         ) : !customersData || customersData.length === 0 ? (
           <Card>
-            <CardContent className="py-12 text-center text-muted-foreground">
-              No hay clientes registrados
+            <CardContent className="flex flex-col items-center justify-center py-12 text-center">
+              <Users className="w-12 h-12 text-muted-foreground/50 mb-4" />
+              <p className="text-lg font-heading font-medium text-foreground mb-1">No se encontraron clientes</p>
+              <p className="text-sm text-muted-foreground">Usa "Sincronizar desde Reservas" para importar clientes</p>
             </CardContent>
           </Card>
         ) : (
@@ -559,83 +575,3 @@ export function CustomersTab({
   );
 }
 
-// Pagination component (reused from BookingsTab pattern)
-function PaginationControls({
-  currentPage,
-  totalPages,
-  onPageChange,
-}: {
-  currentPage: number;
-  totalPages: number;
-  onPageChange: (page: number) => void;
-}) {
-  const pages: number[] = [];
-  const maxVisible = 5;
-  let startPage = Math.max(1, currentPage - Math.floor(maxVisible / 2));
-  const endPage = Math.min(totalPages, startPage + maxVisible - 1);
-  if (endPage - startPage + 1 < maxVisible) {
-    startPage = Math.max(1, endPage - maxVisible + 1);
-  }
-  for (let i = startPage; i <= endPage; i++) {
-    pages.push(i);
-  }
-
-  return (
-    <div className="flex items-center justify-between mt-6 pt-4 border-t">
-      <div className="text-sm text-muted-foreground">
-        Pagina {currentPage} de {totalPages}
-      </div>
-      <div className="flex items-center gap-1">
-        <Button
-          variant="outline"
-          size="sm"
-          onClick={() => onPageChange(1)}
-          disabled={currentPage <= 1}
-          title="Primera pagina"
-        >
-          <ChevronsLeft className="w-4 h-4" />
-        </Button>
-        <Button
-          variant="outline"
-          size="sm"
-          onClick={() => onPageChange(Math.max(1, currentPage - 1))}
-          disabled={currentPage <= 1}
-          title="Pagina anterior"
-        >
-          <ChevronLeft className="w-4 h-4" />
-        </Button>
-
-        {pages.map((pageNum) => (
-          <Button
-            key={pageNum}
-            variant={pageNum === currentPage ? "default" : "outline"}
-            size="sm"
-            onClick={() => onPageChange(pageNum)}
-            className="min-w-[36px]"
-          >
-            {pageNum}
-          </Button>
-        ))}
-
-        <Button
-          variant="outline"
-          size="sm"
-          onClick={() => onPageChange(Math.min(totalPages, currentPage + 1))}
-          disabled={currentPage >= totalPages}
-          title="Pagina siguiente"
-        >
-          <ChevronRight className="w-4 h-4" />
-        </Button>
-        <Button
-          variant="outline"
-          size="sm"
-          onClick={() => onPageChange(totalPages)}
-          disabled={currentPage >= totalPages}
-          title="Ultima pagina"
-        >
-          <ChevronsRight className="w-4 h-4" />
-        </Button>
-      </div>
-    </div>
-  );
-}

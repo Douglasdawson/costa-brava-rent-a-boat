@@ -384,13 +384,13 @@ export function BookingDetailsModal({
                 </div>
                 <div>
                   <p className="text-muted-foreground">Estado de Reserva</p>
-                  <Badge variant={getStatusColor(booking.bookingStatus) as "default" | "secondary" | "outline" | "destructive"}>
+                  <Badge className={getStatusColor(booking.bookingStatus)}>
                     {getStatusLabel(booking.bookingStatus)}
                   </Badge>
                 </div>
                 <div>
                   <p className="text-muted-foreground">Estado de Pago</p>
-                  <Badge variant={booking.paymentStatus === 'completed' ? 'default' : 'outline'}>
+                  <Badge className={booking.paymentStatus === 'completed' ? 'bg-emerald-100 text-emerald-800' : booking.paymentStatus === 'failed' ? 'bg-red-100 text-red-800' : 'bg-amber-100 text-amber-800'}>
                     {booking.paymentStatus === 'completed' ? 'Pagado' :
                      booking.paymentStatus === 'pending' ? 'Pendiente' :
                      booking.paymentStatus === 'failed' ? 'Fallido' : 'Reembolsado'}

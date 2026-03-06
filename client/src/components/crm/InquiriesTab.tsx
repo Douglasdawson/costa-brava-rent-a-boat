@@ -31,10 +31,6 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import {
   Search,
   Eye,
-  ChevronLeft,
-  ChevronRight,
-  ChevronsLeft,
-  ChevronsRight,
   Phone,
   Mail,
   Clock,
@@ -52,12 +48,14 @@ import {
   AlertCircle,
   CheckCircle2,
   Trash2,
+  MessageSquare,
 } from "lucide-react";
 import { SiWhatsapp } from "react-icons/si";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { format } from "date-fns";
 import { es } from "date-fns/locale";
 import type { WhatsappInquiry } from "@shared/schema";
+import { PaginationControls } from "./shared/PaginationControls";
 
 interface PaginatedInquiriesResponse {
   data: WhatsappInquiry[];
@@ -71,7 +69,7 @@ const ITEMS_PER_PAGE = 25;
 const STATUS_CONFIG: Record<string, { label: string; color: string }> = {
   pending: { label: "Pendiente", color: "bg-amber-100 text-amber-800" },
   contacted: { label: "Contactado", color: "bg-blue-100 text-blue-800" },
-  converted: { label: "Convertido", color: "bg-green-100 text-green-800" },
+  converted: { label: "Convertido", color: "bg-emerald-100 text-emerald-800" },
   lost: { label: "Perdido", color: "bg-red-100 text-red-800" },
 };
 
@@ -266,8 +264,10 @@ export function InquiriesTab({ adminToken, onOpenWhatsApp }: InquiriesTabProps) 
       )}
 
       {!isLoading && !error && inquiries.length === 0 && (
-        <Card><CardContent className="py-12 text-center text-muted-foreground">
-          No se encontraron peticiones
+        <Card><CardContent className="flex flex-col items-center justify-center py-12 text-center">
+          <MessageSquare className="w-12 h-12 text-muted-foreground/50 mb-4" />
+          <p className="text-lg font-heading font-medium text-foreground mb-1">No hay peticiones</p>
+          <p className="text-sm text-muted-foreground">Las peticiones de WhatsApp apareceran aqui</p>
         </CardContent></Card>
       )}
 
@@ -690,25 +690,11 @@ export function InquiriesTab({ adminToken, onOpenWhatsApp }: InquiriesTabProps) 
 
       {/* Pagination */}
       {!isLoading && totalPages > 1 && (
-        <div className="flex items-center justify-between px-2">
-          <span className="text-sm text-muted-foreground">
-            Pagina {currentPage} de {totalPages}
-          </span>
-          <div className="flex items-center gap-1">
-            <Button variant="outline" size="sm" disabled={currentPage <= 1} onClick={() => setCurrentPage(1)}>
-              <ChevronsLeft className="w-4 h-4" />
-            </Button>
-            <Button variant="outline" size="sm" disabled={currentPage <= 1} onClick={() => setCurrentPage(p => p - 1)}>
-              <ChevronLeft className="w-4 h-4" />
-            </Button>
-            <Button variant="outline" size="sm" disabled={currentPage >= totalPages} onClick={() => setCurrentPage(p => p + 1)}>
-              <ChevronRight className="w-4 h-4" />
-            </Button>
-            <Button variant="outline" size="sm" disabled={currentPage >= totalPages} onClick={() => setCurrentPage(totalPages)}>
-              <ChevronsRight className="w-4 h-4" />
-            </Button>
-          </div>
-        </div>
+        <PaginationControls
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={setCurrentPage}
+        />
       )}
 
       <AlertDialog open={!!deleteInquiryId} onOpenChange={(open) => !open && setDeleteInquiryId(null)}>

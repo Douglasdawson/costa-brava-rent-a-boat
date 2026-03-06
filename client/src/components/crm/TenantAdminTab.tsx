@@ -550,7 +550,7 @@ function TeamMembersSection({
                       </Badge>
                     </TableCell>
                     <TableCell>
-                      <Badge variant={member.isActive ? "outline" : "destructive"}>
+                      <Badge className={member.isActive ? "bg-emerald-100 text-emerald-800" : "bg-red-100 text-red-800"}>
                         {member.isActive ? "Activo" : "Inactivo"}
                       </Badge>
                     </TableCell>

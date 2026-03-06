@@ -61,11 +61,11 @@ interface SuperAdminTabProps {
 
 // ===== Helpers =====
 
-const STATUS_CONFIG: Record<string, { label: string; variant: "default" | "secondary" | "destructive" | "outline"; icon: React.ComponentType<{ className?: string }> }> = {
-  trial:     { label: "Trial",      variant: "secondary",   icon: AlertCircle },
-  active:    { label: "Activo",     variant: "default",     icon: CheckCircle2 },
-  suspended: { label: "Suspendido", variant: "destructive", icon: PauseCircle },
-  cancelled: { label: "Cancelado",  variant: "outline",     icon: XCircle },
+const STATUS_CONFIG: Record<string, { label: string; colorClass: string; icon: React.ComponentType<{ className?: string }> }> = {
+  trial:     { label: "Trial",      colorClass: "bg-amber-100 text-amber-800",   icon: AlertCircle },
+  active:    { label: "Activo",     colorClass: "bg-emerald-100 text-emerald-800", icon: CheckCircle2 },
+  suspended: { label: "Suspendido", colorClass: "bg-red-100 text-red-800",        icon: PauseCircle },
+  cancelled: { label: "Cancelado",  colorClass: "bg-gray-100 text-gray-800",      icon: XCircle },
 };
 
 const PLAN_CONFIG: Record<string, { label: string; price: number }> = {
@@ -327,7 +327,7 @@ export function SuperAdminTab({ adminToken }: SuperAdminTabProps) {
                           </Badge>
                         </TableCell>
                         <TableCell>
-                          <Badge variant={statusCfg?.variant || "outline"} className="text-xs flex items-center gap-1 w-fit">
+                          <Badge className={`text-xs flex items-center gap-1 w-fit ${statusCfg?.colorClass || "bg-gray-100 text-gray-800"}`}>
                             {StatusIcon && <StatusIcon className="w-3 h-3" />}
                             {statusCfg?.label || tenant.status}
                           </Badge>

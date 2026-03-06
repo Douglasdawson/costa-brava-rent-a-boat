@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
+import { Skeleton } from "@/components/ui/skeleton";
 import {
   Dialog,
   DialogContent,
@@ -178,7 +179,13 @@ export function EmployeeManagement({ adminToken }: EmployeeManagementProps) {
       <Card>
         <CardContent className="p-0 overflow-x-auto">
           {isLoading ? (
-            <div className="p-8 text-center">Cargando...</div>
+            <div className="p-4 space-y-3">
+              <Skeleton className="h-10 w-full" />
+              <Skeleton className="h-10 w-full" />
+              <Skeleton className="h-10 w-full" />
+              <Skeleton className="h-10 w-full" />
+              <Skeleton className="h-10 w-full" />
+            </div>
           ) : (
             <Table>
               <TableHeader>
@@ -202,7 +209,7 @@ export function EmployeeManagement({ adminToken }: EmployeeManagementProps) {
                       </Badge>
                     </TableCell>
                     <TableCell>
-                      <Badge variant={employee.isActive ? "outline" : "destructive"}>
+                      <Badge className={employee.isActive ? "bg-emerald-100 text-emerald-800" : "bg-red-100 text-red-800"}>
                         {employee.isActive ? "Activo" : "Inactivo"}
                       </Badge>
                     </TableCell>
@@ -244,8 +251,12 @@ export function EmployeeManagement({ adminToken }: EmployeeManagementProps) {
                 ))}
                 {employees.length === 0 && (
                   <TableRow>
-                    <TableCell colSpan={6} className="text-center py-8 text-muted-foreground">
-                      No hay empleados registrados
+                    <TableCell colSpan={6}>
+                      <div className="flex flex-col items-center justify-center py-12 text-center">
+                        <Users className="w-12 h-12 text-muted-foreground/50 mb-4" />
+                        <p className="text-lg font-heading font-medium text-foreground mb-1">No hay empleados registrados</p>
+                        <p className="text-sm text-muted-foreground">Agrega empleados para gestionar el acceso al CRM</p>
+                      </div>
                     </TableCell>
                   </TableRow>
                 )}

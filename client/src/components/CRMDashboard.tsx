@@ -1,4 +1,4 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { useLocation, useRoute } from "wouter";
 import { useToast } from "@/hooks/use-toast";
 import { format } from "date-fns";
@@ -69,6 +69,30 @@ export default function CRMDashboard({ adminToken }: CRMDashboardProps) {
   } | null>(null);
 
   const { toast } = useToast();
+
+  // Dynamic document.title per tab
+  useEffect(() => {
+    const titles: Record<string, string> = {
+      dashboard: "Dashboard",
+      calendar: "Calendario",
+      bookings: "Reservas",
+      customers: "Clientes",
+      inquiries: "Peticiones",
+      fleet: "Flota",
+      maintenance: "Mantenimiento",
+      inventory: "Inventario",
+      reports: "Reportes",
+      gallery: "Galeria",
+      giftcards: "Tarjetas Regalo",
+      discounts: "Descuentos",
+      employees: "Equipo",
+      config: "Configuracion",
+      superadmin: "Plataforma",
+    };
+    const prev = document.title;
+    document.title = `${titles[selectedTab] || "Dashboard"} — NauticFlow CRM`;
+    return () => { document.title = prev; };
+  }, [selectedTab]);
 
   // Logout handler
   const handleLogout = useCallback(() => {

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Skeleton } from "@/components/ui/skeleton";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -279,10 +280,26 @@ export function DiscountManagement({ adminToken }: DiscountManagementProps) {
 
       {/* Table */}
       {isLoading ? (
-        <div className="text-center py-8">Cargando...</div>
+        <div className="space-y-3">
+          <Skeleton className="h-10 w-full" />
+          <Skeleton className="h-10 w-full" />
+          <Skeleton className="h-10 w-full" />
+          <Skeleton className="h-10 w-full" />
+          <Skeleton className="h-10 w-full" />
+        </div>
       ) : filteredCodes.length === 0 ? (
-        <div className="text-center py-12 text-muted-foreground">
-          No hay codigos de descuento{filter !== "all" ? " con este filtro" : ""}
+        <div className="flex flex-col items-center justify-center py-12 text-center">
+          <Percent className="w-12 h-12 text-muted-foreground/50 mb-4" />
+          <p className="text-lg font-heading font-medium text-foreground mb-1">No hay codigos de descuento</p>
+          <p className="text-sm text-muted-foreground mb-4">
+            {filter !== "all" ? "No hay codigos con este filtro" : "Crea tu primer codigo de descuento"}
+          </p>
+          {filter === "all" && (
+            <Button size="sm" onClick={() => setShowCreateDialog(true)}>
+              <Plus className="w-4 h-4 mr-2" />
+              Crear primer codigo
+            </Button>
+          )}
         </div>
       ) : (
         <Card>
@@ -311,7 +328,7 @@ export function DiscountManagement({ adminToken }: DiscountManagementProps) {
                       <TableRow key={code.id}>
                         <TableCell className="font-mono font-bold">{code.code}</TableCell>
                         <TableCell>
-                          <Badge variant="secondary">{code.discountPercent}%</Badge>
+                          <Badge className="bg-blue-100 text-blue-800">{code.discountPercent}%</Badge>
                         </TableCell>
                         <TableCell>
                           {code.currentUses}/{code.maxUses}
@@ -321,13 +338,13 @@ export function DiscountManagement({ adminToken }: DiscountManagementProps) {
                         </TableCell>
                         <TableCell>
                           {isEffectivelyActive ? (
-                            <Badge variant="default">Activo</Badge>
+                            <Badge className="bg-emerald-100 text-emerald-800">Activo</Badge>
                           ) : isExpired ? (
-                            <Badge variant="destructive">Expirado</Badge>
+                            <Badge className="bg-red-100 text-red-800">Expirado</Badge>
                           ) : isFullyUsed ? (
-                            <Badge variant="outline">Agotado</Badge>
+                            <Badge className="bg-gray-100 text-gray-800">Agotado</Badge>
                           ) : (
-                            <Badge variant="destructive">Inactivo</Badge>
+                            <Badge className="bg-red-100 text-red-800">Inactivo</Badge>
                           )}
                         </TableCell>
                         <TableCell className="text-sm">
@@ -471,7 +488,7 @@ export function DiscountManagement({ adminToken }: DiscountManagementProps) {
                       <TableCell className="text-sm text-muted-foreground">{item.email}</TableCell>
                       <TableCell className="font-mono font-bold">{item.code}</TableCell>
                       <TableCell>
-                        <Badge variant="secondary">{item.discountPercent}%</Badge>
+                        <Badge className="bg-blue-100 text-blue-800">{item.discountPercent}%</Badge>
                       </TableCell>
                     </TableRow>
                   ))}

@@ -2,6 +2,7 @@ import type { Express } from "express";
 import rateLimit from "express-rate-limit";
 import { z } from "zod";
 import { storage } from "../storage";
+import { logger } from "../lib/logger";
 
 const submitLimiter = rateLimit({
   windowMs: 60 * 60 * 1000, // 1 hour
@@ -34,7 +35,7 @@ export function registerNewsletterRoutes(app: Express) {
       if (msg.includes("unique") || msg.includes("duplicate") || msg.includes("23505")) {
         return res.status(409).json({ message: "Este email ya está suscrito" });
       }
-      console.error("[Newsletter] Error subscribing:", msg);
+      logger.error("[Newsletter] Error subscribing", { error: msg });
       res.status(500).json({ message: "Error al procesar la suscripción" });
     }
   });

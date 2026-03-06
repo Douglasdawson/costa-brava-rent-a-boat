@@ -4,6 +4,7 @@ import { storage } from "../storage";
 import { insertBoatSchema } from "@shared/schema";
 import { requireAdminSession } from "./auth";
 import { ObjectStorageService } from "../objectStorage";
+import { logger } from "../lib/logger";
 
 const boatReorderSchema = z.object({
   order: z.array(z.object({
@@ -31,7 +32,7 @@ export function registerAdminFleetRoutes(app: Express) {
       const newBoat = await storage.createBoat(validationResult.data);
       res.status(201).json(newBoat);
     } catch (error: unknown) {
-      console.error("[Admin] Error creating boat:", error instanceof Error ? error.message : String(error));
+      logger.error("[Admin] Error creating boat", { error: error instanceof Error ? error.message : String(error) });
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });
@@ -52,7 +53,7 @@ export function registerAdminFleetRoutes(app: Express) {
       const updatedBoat = await storage.updateBoat(req.params.id, parsed.data);
       res.json(updatedBoat);
     } catch (error: unknown) {
-      console.error("[Admin] Error updating boat:", error instanceof Error ? error.message : String(error));
+      logger.error("[Admin] Error updating boat", { error: error instanceof Error ? error.message : String(error) });
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });
@@ -66,7 +67,7 @@ export function registerAdminFleetRoutes(app: Express) {
       await storage.updateBoat(req.params.id, { isActive: false });
       res.json({ message: "Barco desactivado correctamente" });
     } catch (error: unknown) {
-      console.error("[Admin] Error deleting boat:", error instanceof Error ? error.message : String(error));
+      logger.error("[Admin] Error deleting boat", { error: error instanceof Error ? error.message : String(error) });
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });
@@ -87,7 +88,7 @@ export function registerAdminFleetRoutes(app: Express) {
       }
       res.json({ message: "Orden actualizado correctamente" });
     } catch (error: unknown) {
-      console.error("[Admin] Error reordering boats:", error instanceof Error ? error.message : String(error));
+      logger.error("[Admin] Error reordering boats", { error: error instanceof Error ? error.message : String(error) });
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });
@@ -141,7 +142,7 @@ export function registerAdminFleetRoutes(app: Express) {
         total: boatsToCreate.length,
       });
     } catch (error: unknown) {
-      console.error("[Admin] Error initializing boats:", error instanceof Error ? error.message : String(error));
+      logger.error("[Admin] Error initializing boats", { error: error instanceof Error ? error.message : String(error) });
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });
@@ -154,7 +155,7 @@ export function registerAdminFleetRoutes(app: Express) {
       const uploadURL = await objectStorageService.getObjectEntityUploadURL();
       res.json({ uploadURL });
     } catch (error: unknown) {
-      console.error("Error generating upload URL:", error);
+      logger.error("Error generating upload URL", { error: error instanceof Error ? error.message : String(error) });
       res.status(500).json({ error: "Failed to generate upload URL" });
     }
   });
@@ -174,7 +175,7 @@ export function registerAdminFleetRoutes(app: Express) {
       const normalizedPath = objectStorageService.normalizeObjectEntityPath(imageUrl);
       res.json({ normalizedPath });
     } catch (error: unknown) {
-      console.error("Error normalizing image URL:", error);
+      logger.error("Error normalizing image URL", { error: error instanceof Error ? error.message : String(error) });
       res.status(500).json({ error: "Failed to normalize image URL" });
     }
   });

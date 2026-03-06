@@ -2,6 +2,7 @@ import type { Express, Request, Response } from "express";
 import { z } from "zod";
 import { storage } from "../storage";
 import { requireSuperAdmin } from "./auth";
+import { logger } from "../lib/logger";
 
 const PLAN_PRICES: Record<string, number> = {
   starter: 49,
@@ -44,7 +45,7 @@ export function registerSuperAdminRoutes(app: Express) {
       });
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Error desconocido";
-      console.error("[SuperAdmin] Error fetching stats:", message);
+      logger.error("[SuperAdmin] Error fetching stats", { error: message });
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });
@@ -80,7 +81,7 @@ export function registerSuperAdminRoutes(app: Express) {
       res.json(tenantsWithCounts);
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Error desconocido";
-      console.error("[SuperAdmin] Error fetching tenants:", message);
+      logger.error("[SuperAdmin] Error fetching tenants", { error: message });
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });
@@ -111,7 +112,7 @@ export function registerSuperAdminRoutes(app: Express) {
       res.json({ tenant: updated, message: "Tenant actualizado" });
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Error desconocido";
-      console.error("[SuperAdmin] Error updating tenant:", message);
+      logger.error("[SuperAdmin] Error updating tenant", { error: message });
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });

@@ -3,6 +3,7 @@ import { z } from "zod";
 import { storage } from "../storage";
 import { requireAdminSession } from "./auth";
 import { sendCancelationEmail } from "../services";
+import { logger } from "../lib/logger";
 
 const isoDateString = z
   .string()
@@ -46,7 +47,7 @@ export function registerBookingRoutes(app: Express) {
       const bookingsList = await storage.getBookingsByDate(date);
       res.json(bookingsList);
     } catch (error: unknown) {
-      console.error("[Bookings] Error fetching bookings by date:", error instanceof Error ? error.message : String(error));
+      logger.error("[Bookings] Error fetching bookings by date", { error: error instanceof Error ? error.message : String(error) });
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });
@@ -104,7 +105,7 @@ export function registerBookingRoutes(app: Express) {
         },
       });
     } catch (error: unknown) {
-      console.error("[Bookings] Error fetching cancel info:", error instanceof Error ? error.message : String(error));
+      logger.error("[Bookings] Error fetching cancel info", { error: error instanceof Error ? error.message : String(error) });
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });
@@ -127,7 +128,7 @@ export function registerBookingRoutes(app: Express) {
 
       // Fire-and-forget email (don't block response)
       sendCancelationEmail({ booking, refundAmount, refundPercentage }).catch((err: unknown) => {
-        console.error("[Bookings] Error sending cancelation email:", err instanceof Error ? err.message : String(err));
+        logger.error("[Bookings] Error sending cancelation email", { error: err instanceof Error ? err.message : String(err) });
       });
 
       res.json({
@@ -139,7 +140,7 @@ export function registerBookingRoutes(app: Express) {
           : "Reserva cancelada. No aplica reembolso según la política de cancelación.",
       });
     } catch (error: unknown) {
-      console.error("[Bookings] Error cancelling booking:", error instanceof Error ? error.message : String(error));
+      logger.error("[Bookings] Error cancelling booking", { error: error instanceof Error ? error.message : String(error) });
       res.status(500).json({ message: "Error al cancelar la reserva" });
     }
   });
@@ -154,7 +155,7 @@ export function registerBookingRoutes(app: Express) {
       const extras = await storage.getBookingExtras(booking.id);
       res.json({ ...booking, extras });
     } catch (error: unknown) {
-      console.error("[Bookings] Error fetching booking:", error instanceof Error ? error.message : String(error));
+      logger.error("[Bookings] Error fetching booking", { error: error instanceof Error ? error.message : String(error) });
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });
@@ -319,7 +320,7 @@ export function registerBookingRoutes(app: Express) {
         },
       });
     } catch (error: unknown) {
-      console.error("[Bookings] Error generating quote:", error instanceof Error ? error.message : String(error));
+      logger.error("[Bookings] Error generating quote", { error: error instanceof Error ? error.message : String(error) });
       res.status(500).json({
         message: "Error al generar cotización",
         available: false,
@@ -339,7 +340,7 @@ export function registerBookingRoutes(app: Express) {
         cleaned,
       });
     } catch (error: unknown) {
-      console.error("[Bookings] Error cleaning expired holds:", error instanceof Error ? error.message : String(error));
+      logger.error("[Bookings] Error cleaning expired holds", { error: error instanceof Error ? error.message : String(error) });
       res.status(500).json({ message: "Error al limpiar holds expirados" });
     }
   });
@@ -369,7 +370,7 @@ export function registerBookingRoutes(app: Express) {
 
       res.json(updatedBooking);
     } catch (error: unknown) {
-      console.error("[Bookings] Error updating payment status:", error instanceof Error ? error.message : String(error));
+      logger.error("[Bookings] Error updating payment status", { error: error instanceof Error ? error.message : String(error) });
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });
@@ -399,7 +400,7 @@ export function registerBookingRoutes(app: Express) {
 
       res.json(updatedBooking);
     } catch (error: unknown) {
-      console.error("[Bookings] Error updating WhatsApp status:", error instanceof Error ? error.message : String(error));
+      logger.error("[Bookings] Error updating WhatsApp status", { error: error instanceof Error ? error.message : String(error) });
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });

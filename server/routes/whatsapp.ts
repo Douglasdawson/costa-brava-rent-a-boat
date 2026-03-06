@@ -2,6 +2,7 @@ import type { Express, Request, Response, NextFunction } from "express";
 import express from "express";
 import { requireAdminSession } from "./auth";
 import twilio from "twilio";
+import { logger } from "../lib/logger";
 
 function twilioSignatureMiddleware(req: Request, res: Response, next: NextFunction) {
   const authToken = process.env.TWILIO_AUTH_TOKEN;
@@ -12,7 +13,7 @@ function twilioSignatureMiddleware(req: Request, res: Response, next: NextFuncti
 
   const twilioSignature = req.headers["x-twilio-signature"] as string;
   if (!twilioSignature) {
-    console.warn("[Webhook] Missing X-Twilio-Signature header");
+    logger.warn("[Webhook] Missing X-Twilio-Signature header");
     return res.status(403).send("Forbidden");
   }
 
@@ -24,7 +25,7 @@ function twilioSignatureMiddleware(req: Request, res: Response, next: NextFuncti
 
   const isValid = twilio.validateRequest(authToken, twilioSignature, url, req.body as Record<string, string>);
   if (!isValid) {
-    console.warn("[Webhook] Invalid Twilio signature — request rejected");
+    logger.warn("[Webhook] Invalid Twilio signature — request rejected");
     return res.status(403).send("Forbidden");
   }
 
@@ -82,7 +83,7 @@ export async function registerWhatsAppRoutes(app: Express) {
   isKnowledgeBaseSeeded().then(seeded => {
     if (!seeded) {
       console.log("[Startup] Knowledge base empty, seeding with default content...");
-      seedKnowledgeBase().catch(err => console.error("[Startup] Error seeding knowledge base:", err));
+      seedKnowledgeBase().catch(err => logger.error("[Startup] Error seeding knowledge base", { error: err instanceof Error ? err.message : String(err) }));
     } else {
       console.log("[Startup] Knowledge base already seeded");
     }

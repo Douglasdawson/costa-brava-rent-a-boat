@@ -3,6 +3,7 @@ import bcrypt from "bcrypt";
 import { z } from "zod";
 import { storage } from "../storage";
 import { requireAdminSession, requireOwner } from "./auth";
+import { logger } from "../lib/logger";
 
 const BCRYPT_ROUNDS = 10;
 
@@ -30,7 +31,7 @@ export function registerEmployeeRoutes(app: Express) {
       res.json(sanitized);
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Unknown error";
-      console.error("[Employees] Error fetching employees:", message);
+      logger.error("[Employees] Error fetching employees", { error: message });
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });
@@ -66,7 +67,7 @@ export function registerEmployeeRoutes(app: Express) {
       res.status(201).json(sanitized);
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Unknown error";
-      console.error("[Employees] Error creating employee:", message);
+      logger.error("[Employees] Error creating employee", { error: message });
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });
@@ -108,7 +109,7 @@ export function registerEmployeeRoutes(app: Express) {
       res.json(sanitized);
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Unknown error";
-      console.error("[Employees] Error updating employee:", message);
+      logger.error("[Employees] Error updating employee", { error: message });
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });
@@ -127,7 +128,7 @@ export function registerEmployeeRoutes(app: Express) {
       res.json({ message: "Empleado desactivado correctamente" });
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Unknown error";
-      console.error("[Employees] Error deactivating employee:", message);
+      logger.error("[Employees] Error deactivating employee", { error: message });
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });

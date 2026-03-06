@@ -2,6 +2,7 @@ import type { Express } from "express";
 import { storage } from "../storage";
 import { insertBlogPostSchema } from "@shared/schema";
 import { requireAdminSession } from "./auth";
+import { logger } from "../lib/logger";
 
 export function registerBlogRoutes(app: Express) {
   // ===== PUBLIC ROUTES =====
@@ -20,7 +21,7 @@ export function registerBlogRoutes(app: Express) {
 
       res.json(posts);
     } catch (error: unknown) {
-      console.error("[Blog] Error fetching blog posts:", error instanceof Error ? error.message : String(error));
+      logger.error("[Blog] Error fetching blog posts", { error: error instanceof Error ? error.message : String(error) });
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });
@@ -34,7 +35,7 @@ export function registerBlogRoutes(app: Express) {
       }
       res.json(post);
     } catch (error: unknown) {
-      console.error("[Blog] Error fetching blog post:", error instanceof Error ? error.message : String(error));
+      logger.error("[Blog] Error fetching blog post", { error: error instanceof Error ? error.message : String(error) });
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });
@@ -47,7 +48,7 @@ export function registerBlogRoutes(app: Express) {
       const posts = await storage.getAllBlogPosts();
       res.json(posts);
     } catch (error: unknown) {
-      console.error("[Blog] Error fetching blog posts:", error instanceof Error ? error.message : String(error));
+      logger.error("[Blog] Error fetching blog posts", { error: error instanceof Error ? error.message : String(error) });
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });
@@ -65,7 +66,7 @@ export function registerBlogRoutes(app: Express) {
       const post = await storage.createBlogPost(parsed.data);
       res.status(201).json(post);
     } catch (error: unknown) {
-      console.error("[Blog] Error creating blog post:", error instanceof Error ? error.message : String(error));
+      logger.error("[Blog] Error creating blog post", { error: error instanceof Error ? error.message : String(error) });
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });
@@ -86,7 +87,7 @@ export function registerBlogRoutes(app: Express) {
       }
       res.json(post);
     } catch (error: unknown) {
-      console.error("[Blog] Error updating blog post:", error instanceof Error ? error.message : String(error));
+      logger.error("[Blog] Error updating blog post", { error: error instanceof Error ? error.message : String(error) });
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });
@@ -100,7 +101,7 @@ export function registerBlogRoutes(app: Express) {
       }
       res.json({ message: "Blog post deleted successfully" });
     } catch (error: unknown) {
-      console.error("[Blog] Error deleting blog post:", error instanceof Error ? error.message : String(error));
+      logger.error("[Blog] Error deleting blog post", { error: error instanceof Error ? error.message : String(error) });
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });

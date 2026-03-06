@@ -2,6 +2,7 @@ import type { Express } from "express";
 import rateLimit from "express-rate-limit";
 import { storage } from "../storage";
 import { insertTestimonialSchema } from "@shared/schema";
+import { logger } from "../lib/logger";
 
 const submitLimiter = rateLimit({
   windowMs: 60 * 60 * 1000, // 1 hour
@@ -26,7 +27,7 @@ export function registerTestimonialRoutes(app: Express) {
 
       res.json(testimonialsData);
     } catch (error: unknown) {
-      console.error("[Testimonials] Error fetching testimonials:", error instanceof Error ? error.message : String(error));
+      logger.error("[Testimonials] Error fetching testimonials", { error: error instanceof Error ? error.message : String(error) });
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });
@@ -45,7 +46,7 @@ export function registerTestimonialRoutes(app: Express) {
       const testimonial = await storage.createTestimonial(parsed.data);
       res.status(201).json(testimonial);
     } catch (error: unknown) {
-      console.error("[Testimonials] Error creating testimonial:", error instanceof Error ? error.message : String(error));
+      logger.error("[Testimonials] Error creating testimonial", { error: error instanceof Error ? error.message : String(error) });
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });

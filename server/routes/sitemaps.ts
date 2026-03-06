@@ -1,5 +1,6 @@
 import type { Express } from "express";
 import { storage } from "../storage";
+import { logger } from "../lib/logger";
 
 const SUPPORTED_LANGUAGES = ["es", "en", "ca", "fr", "de", "nl", "it", "ru"];
 
@@ -117,7 +118,7 @@ export function registerSitemapRoutes(app: Express) {
       res.set("Cache-Control", "public, max-age=3600");
       res.send(sitemapIndex);
     } catch (error: unknown) {
-      console.error("Error generating sitemap index:", error);
+      logger.error("Error generating sitemap index", { error: error instanceof Error ? error.message : String(error) });
       res.status(500).send('<?xml version="1.0" encoding="UTF-8"?><error>Sitemap temporarily unavailable</error>');
     }
   });
@@ -159,7 +160,7 @@ export function registerSitemapRoutes(app: Express) {
       res.set("Cache-Control", "public, max-age=3600");
       res.send(sitemap);
     } catch (error: unknown) {
-      console.error("Error generating pages sitemap:", error);
+      logger.error("Error generating pages sitemap", { error: error instanceof Error ? error.message : String(error) });
       res.status(500).send('<?xml version="1.0" encoding="UTF-8"?><error>Sitemap temporarily unavailable</error>');
     }
   });
@@ -227,7 +228,7 @@ ${boatHreflang}  </url>
       res.set("Cache-Control", "public, max-age=3600");
       res.send(sitemap);
     } catch (error: unknown) {
-      console.error("Error generating boats sitemap:", error);
+      logger.error("Error generating boats sitemap", { error: error instanceof Error ? error.message : String(error) });
       res.status(500).send('<?xml version="1.0" encoding="UTF-8"?><error>Sitemap temporarily unavailable</error>');
     }
   });
@@ -264,7 +265,7 @@ ${boatHreflang}  </url>
       res.set("Cache-Control", "public, max-age=3600");
       res.send(sitemap);
     } catch (error: unknown) {
-      console.error("Error generating blog sitemap:", error);
+      logger.error("Error generating blog sitemap", { error: error instanceof Error ? error.message : String(error) });
       res.status(500).send('<?xml version="1.0" encoding="UTF-8"?><error>Sitemap temporarily unavailable</error>');
     }
   });
@@ -332,7 +333,7 @@ ${destHreflang}  </url>
       res.set("Cache-Control", "public, max-age=3600");
       res.send(sitemap);
     } catch (error: unknown) {
-      console.error("Error generating destinations sitemap:", error);
+      logger.error("Error generating destinations sitemap", { error: error instanceof Error ? error.message : String(error) });
       res.status(500).send('<?xml version="1.0" encoding="UTF-8"?><error>Sitemap temporarily unavailable</error>');
     }
   });

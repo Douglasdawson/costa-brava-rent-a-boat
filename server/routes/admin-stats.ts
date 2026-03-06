@@ -2,6 +2,7 @@ import type { Express } from "express";
 import { z } from "zod";
 import { storage } from "../storage";
 import { requireAdminSession } from "./auth";
+import { logger } from "../lib/logger";
 
 const adminStatsQuerySchema = z.object({
   period: z.enum(["today", "week", "month", "season", "year"]).optional().default("today"),
@@ -70,7 +71,7 @@ export function registerAdminStatsRoutes(app: Express) {
         period,
       });
     } catch (error: unknown) {
-      console.error("[Admin] Error fetching dashboard stats:", error instanceof Error ? error.message : String(error));
+      logger.error("[Admin] Error fetching dashboard stats", { error: error instanceof Error ? error.message : String(error) });
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });
@@ -88,7 +89,7 @@ export function registerAdminStatsRoutes(app: Express) {
       const trend = await storage.getRevenueTrend(queryParsed.data.period);
       res.json(trend);
     } catch (error: unknown) {
-      console.error("[Admin] Error fetching revenue trend:", error instanceof Error ? error.message : String(error));
+      logger.error("[Admin] Error fetching revenue trend", { error: error instanceof Error ? error.message : String(error) });
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });
@@ -106,7 +107,7 @@ export function registerAdminStatsRoutes(app: Express) {
       const performance = await storage.getBoatsPerformance(queryParsed.data.period);
       res.json(performance);
     } catch (error: unknown) {
-      console.error("[Admin] Error fetching boats performance:", error instanceof Error ? error.message : String(error));
+      logger.error("[Admin] Error fetching boats performance", { error: error instanceof Error ? error.message : String(error) });
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });
@@ -129,7 +130,7 @@ export function registerAdminStatsRoutes(app: Express) {
       const distribution = await storage.getStatusDistribution(startDate, endDate);
       res.json(distribution);
     } catch (error: unknown) {
-      console.error("[Admin] Error fetching status distribution:", error instanceof Error ? error.message : String(error));
+      logger.error("[Admin] Error fetching status distribution", { error: error instanceof Error ? error.message : String(error) });
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });
@@ -156,7 +157,7 @@ export function registerAdminStatsRoutes(app: Express) {
       res.json(data);
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Unknown error";
-      console.error("[Admin] Error generating fleet report:", message);
+      logger.error("[Admin] Error generating fleet report", { error: message });
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });
@@ -184,7 +185,7 @@ export function registerAdminStatsRoutes(app: Express) {
       });
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Unknown error";
-      console.error("[Admin] Error generating maintenance report:", message);
+      logger.error("[Admin] Error generating maintenance report", { error: message });
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });
@@ -200,7 +201,7 @@ export function registerAdminStatsRoutes(app: Express) {
       res.json(result.data);
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Unknown error";
-      console.error("[Admin] Error fetching top customers:", message);
+      logger.error("[Admin] Error fetching top customers", { error: message });
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });

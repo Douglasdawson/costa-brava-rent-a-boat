@@ -1,4 +1,5 @@
 import type { Request, Response, NextFunction } from "express";
+import { logger } from "../lib/logger";
 
 export class AppError extends Error {
   constructor(
@@ -47,7 +48,7 @@ export class ConflictError extends AppError {
  */
 export function errorHandler(err: Error, _req: Request, res: Response, _next: NextFunction) {
   // Log full error server-side
-  console.error(`[Error] ${err.name}: ${err.message}`, err instanceof AppError ? "" : err.stack);
+  logger.error(`[Error] ${err.name}: ${err.message}`, { stack: err instanceof AppError ? undefined : err.stack });
 
   if (err instanceof AppError) {
     const body: Record<string, unknown> = { message: err.message };

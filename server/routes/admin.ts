@@ -8,6 +8,7 @@ import { registerAdminBookingRoutes } from "./admin-bookings";
 import { registerAdminCustomerRoutes } from "./admin-customers";
 import { registerAdminStatsRoutes } from "./admin-stats";
 import { registerAdminOperationsRoutes } from "./admin-operations";
+import { logger } from "../lib/logger";
 
 export function registerAdminRoutes(app: Express) {
   // Delegate to domain-specific route modules
@@ -31,7 +32,7 @@ export function registerAdminRoutes(app: Express) {
       const objectFile = await objectStorageService.getObjectEntityFile(req.path);
       objectStorageService.downloadObject(objectFile, res);
     } catch (error) {
-      console.error("Error serving object:", error);
+      logger.error("Error serving object", { error: error instanceof Error ? error.message : String(error) });
       if (error instanceof ObjectNotFoundError) {
         return res.sendStatus(404);
       }
@@ -51,7 +52,7 @@ export function registerAdminRoutes(app: Express) {
         total: 6,
       });
     } catch (error: unknown) {
-      console.error("[Admin] Error seeding blog posts:", error instanceof Error ? error.message : error);
+      logger.error("[Admin] Error seeding blog posts", { error: error instanceof Error ? error.message : error });
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });
@@ -69,7 +70,7 @@ export function registerAdminRoutes(app: Express) {
       });
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Unknown error";
-      console.error("[Admin] Error seeding tenant:", message);
+      logger.error("[Admin] Error seeding tenant", { error: message });
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });
@@ -81,7 +82,7 @@ export function registerAdminRoutes(app: Express) {
       res.json(allTenants);
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Unknown error";
-      console.error("[Admin] Error fetching tenants:", message);
+      logger.error("[Admin] Error fetching tenants", { error: message });
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });
@@ -94,7 +95,7 @@ export function registerAdminRoutes(app: Express) {
       res.json(tenant);
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Unknown error";
-      console.error("[Admin] Error fetching tenant:", message);
+      logger.error("[Admin] Error fetching tenant", { error: message });
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });
@@ -113,7 +114,7 @@ export function registerAdminRoutes(app: Express) {
       res.status(201).json({ success: true, tenant, message: "Tenant creado" });
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Unknown error";
-      console.error("[Admin] Error creating tenant:", message);
+      logger.error("[Admin] Error creating tenant", { error: message });
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });
@@ -133,7 +134,7 @@ export function registerAdminRoutes(app: Express) {
       res.json({ success: true, tenant: updated, message: "Tenant actualizado" });
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Unknown error";
-      console.error("[Admin] Error updating tenant:", message);
+      logger.error("[Admin] Error updating tenant", { error: message });
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });

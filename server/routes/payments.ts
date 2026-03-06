@@ -9,6 +9,7 @@ import { eq } from "drizzle-orm";
 import { sendBookingConfirmation } from "../services/emailService";
 import type { Booking, Boat } from "@shared/schema";
 import { requireAdminSession } from "./auth";
+import { logger } from "../lib/logger";
 
 type WaLang = "es" | "en" | "fr" | "de" | "nl" | "it" | "ru";
 
@@ -68,7 +69,7 @@ async function trySendWhatsAppConfirmation(booking: Booking, boat: Boat): Promis
     await storage.updateBookingWhatsAppStatus(booking.id, true, undefined);
   } catch (err: unknown) {
     const msg = err instanceof Error ? err.message : "Unknown error";
-    console.error(`[Payment] WhatsApp confirmation error for booking ${booking.id}:`, msg);
+    logger.error(`[Payment] WhatsApp confirmation error for booking ${booking.id}`, { error: msg });
   }
 }
 
@@ -117,7 +118,7 @@ export function registerPaymentRoutes(app: Express) {
       try {
         stripeInstance = getStripe();
       } catch (error: unknown) {
-        console.error("[Payments] Stripe not configured:", error instanceof Error ? error.message : String(error));
+        logger.error("[Payments] Stripe not configured", { error: error instanceof Error ? error.message : String(error) });
         return res.status(503).json({
           message: "Servicio de pagos no disponible",
           success: false,
@@ -198,7 +199,7 @@ export function registerPaymentRoutes(app: Express) {
         currency: "eur",
       });
     } catch (error: unknown) {
-      console.error("[Payments] Error creating payment intent:", error instanceof Error ? error.message : error);
+      logger.error("[Payments] Error creating payment intent", { error: error instanceof Error ? error.message : error });
       res.status(500).json({
         message: "Error interno del servidor",
         success: false,
@@ -261,7 +262,7 @@ export function registerPaymentRoutes(app: Express) {
         url: session.url,
       });
     } catch (error: unknown) {
-      console.error("[Payments] Error creating checkout session:", error instanceof Error ? error.message : String(error));
+      logger.error("[Payments] Error creating checkout session", { error: error instanceof Error ? error.message : String(error) });
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });
@@ -322,7 +323,7 @@ export function registerPaymentRoutes(app: Express) {
         note: "This is a mock payment for testing. Use /api/simulate-payment-success to complete the payment.",
       });
     } catch (error: unknown) {
-      console.error("[Payments] Error creating mock payment intent:", error instanceof Error ? error.message : String(error));
+      logger.error("[Payments] Error creating mock payment intent", { error: error instanceof Error ? error.message : String(error) });
       res.status(500).json({
         message: "Error interno del servidor",
         success: false,
@@ -376,7 +377,7 @@ export function registerPaymentRoutes(app: Express) {
           const extras = await storage.getBookingExtras(confirmedBooking.id);
           if (confirmedBooking.customerEmail) {
             sendBookingConfirmation({ booking: confirmedBooking, boat, extras }).catch(
-              (err: unknown) => console.error("[SimulatePayment] Error sending confirmation email:", err)
+              (err: unknown) => logger.error("[SimulatePayment] Error sending confirmation email", { error: err instanceof Error ? err.message : String(err) })
             );
           }
           trySendWhatsAppConfirmation(confirmedBooking, boat).catch(() => {});
@@ -384,7 +385,7 @@ export function registerPaymentRoutes(app: Express) {
 
         // Decrement extras inventory stock (fire-and-forget)
         storage.decrementExtrasStock(confirmedBooking.id).catch((err: unknown) => {
-          console.error(`[Payments] Failed to decrement extras stock for booking ${confirmedBooking.id}:`, err);
+          logger.error(`[Payments] Failed to decrement extras stock for booking ${confirmedBooking.id}`, { error: err instanceof Error ? err.message : String(err) });
         });
       }
 
@@ -395,7 +396,7 @@ export function registerPaymentRoutes(app: Express) {
         status: "confirmed",
       });
     } catch (error: unknown) {
-      console.error("[Payments] Error simulating payment:", error instanceof Error ? error.message : String(error));
+      logger.error("[Payments] Error simulating payment", { error: error instanceof Error ? error.message : String(error) });
       res.status(500).json({
         message: "Error interno del servidor",
         success: false,
@@ -411,12 +412,12 @@ export function registerPaymentRoutes(app: Express) {
     try {
       stripeInstance = getStripe();
     } catch (error: unknown) {
-      console.error("Stripe not configured for webhook:", error instanceof Error ? error.message : String(error));
+      logger.error("Stripe not configured for webhook", { error: error instanceof Error ? error.message : String(error) });
       return res.status(503).json({ error: "Payment service not configured" });
     }
 
     if (!process.env.STRIPE_WEBHOOK_SECRET) {
-      console.error("[Webhook] STRIPE_WEBHOOK_SECRET not configured — rejecting webhook");
+      logger.error("[Webhook] STRIPE_WEBHOOK_SECRET not configured — rejecting webhook");
       return res.status(503).json({ error: "Webhook not configured" });
     }
 
@@ -428,7 +429,7 @@ export function registerPaymentRoutes(app: Express) {
         process.env.STRIPE_WEBHOOK_SECRET
       );
     } catch (err: any) {
-      console.error("[Webhook] Signature verification failed:", err.message);
+      logger.error("[Webhook] Signature verification failed", { error: err.message });
       return res.status(400).json({ error: "Invalid webhook signature" });
     }
 
@@ -470,7 +471,7 @@ export function registerPaymentRoutes(app: Express) {
                 const extras = await storage.getBookingExtras(confirmedBooking.id);
                 if (confirmedBooking.customerEmail) {
                   sendBookingConfirmation({ booking: confirmedBooking, boat, extras }).catch(
-                    (err: unknown) => console.error("[Payment] Error sending confirmation email:", err)
+                    (err: unknown) => logger.error("[Payment] Error sending confirmation email", { error: err instanceof Error ? err.message : String(err) })
                   );
                 }
                 trySendWhatsAppConfirmation(confirmedBooking, boat).catch(() => {});
@@ -478,11 +479,11 @@ export function registerPaymentRoutes(app: Express) {
 
               // Decrement extras inventory stock (fire-and-forget)
               storage.decrementExtrasStock(confirmedBooking.id).catch((err: unknown) => {
-                console.error(`[Payments] Failed to decrement extras stock for booking ${confirmedBooking.id}:`, err);
+                logger.error(`[Payments] Failed to decrement extras stock for booking ${confirmedBooking.id}`, { error: err instanceof Error ? err.message : String(err) });
               });
             }
           } else {
-            console.warn(`No booking found for payment intent ${paymentIntent.id}`);
+            logger.warn(`No booking found for payment intent ${paymentIntent.id}`);
           }
           break;
         }
@@ -512,7 +513,7 @@ export function registerPaymentRoutes(app: Express) {
 
       res.json({ received: true });
     } catch (error: unknown) {
-      console.error("Error processing webhook:", error);
+      logger.error("Error processing webhook", { error: error instanceof Error ? error.message : String(error) });
       res.status(500).json({ error: "Webhook processing failed" });
     }
   });
@@ -524,7 +525,7 @@ export function registerPaymentRoutes(app: Express) {
       try {
         stripeInstance = getStripe();
       } catch (error: unknown) {
-        console.error("[Payments] Stripe not configured for refund:", error instanceof Error ? error.message : String(error));
+        logger.error("[Payments] Stripe not configured for refund", { error: error instanceof Error ? error.message : String(error) });
         return res.status(503).json({ message: "Servicio de pagos no disponible" });
       }
 
@@ -584,7 +585,7 @@ export function registerPaymentRoutes(app: Express) {
       });
     } catch (error: unknown) {
       await db.update(bookings).set({ refundStatus: "requested" }).where(eq(bookings.id, req.params.id)).catch(() => {});
-      console.error("[Payments] Refund error:", error instanceof Error ? error.message : String(error));
+      logger.error("[Payments] Refund error", { error: error instanceof Error ? error.message : String(error) });
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });

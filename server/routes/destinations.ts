@@ -2,6 +2,7 @@ import type { Express } from "express";
 import { storage } from "../storage";
 import { insertDestinationSchema } from "@shared/schema";
 import { requireAdminSession } from "./auth";
+import { logger } from "../lib/logger";
 
 export function registerDestinationRoutes(app: Express) {
   // ===== PUBLIC ROUTES =====
@@ -12,7 +13,7 @@ export function registerDestinationRoutes(app: Express) {
       const destinations = await storage.getPublishedDestinations();
       res.json(destinations);
     } catch (error: unknown) {
-      console.error("[Destinations] Error fetching destinations:", error instanceof Error ? error.message : String(error));
+      logger.error("[Destinations] Error fetching destinations", { error: error instanceof Error ? error.message : String(error) });
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });
@@ -26,7 +27,7 @@ export function registerDestinationRoutes(app: Express) {
       }
       res.json(destination);
     } catch (error: unknown) {
-      console.error("[Destinations] Error fetching destination:", error instanceof Error ? error.message : String(error));
+      logger.error("[Destinations] Error fetching destination", { error: error instanceof Error ? error.message : String(error) });
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });
@@ -39,7 +40,7 @@ export function registerDestinationRoutes(app: Express) {
       const destinations = await storage.getAllDestinations();
       res.json(destinations);
     } catch (error: unknown) {
-      console.error("[Destinations] Error fetching destinations:", error instanceof Error ? error.message : String(error));
+      logger.error("[Destinations] Error fetching destinations", { error: error instanceof Error ? error.message : String(error) });
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });
@@ -57,7 +58,7 @@ export function registerDestinationRoutes(app: Express) {
       const destination = await storage.createDestination(parsed.data);
       res.status(201).json(destination);
     } catch (error: unknown) {
-      console.error("[Destinations] Error creating destination:", error instanceof Error ? error.message : String(error));
+      logger.error("[Destinations] Error creating destination", { error: error instanceof Error ? error.message : String(error) });
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });
@@ -78,7 +79,7 @@ export function registerDestinationRoutes(app: Express) {
       }
       res.json(destination);
     } catch (error: unknown) {
-      console.error("[Destinations] Error updating destination:", error instanceof Error ? error.message : String(error));
+      logger.error("[Destinations] Error updating destination", { error: error instanceof Error ? error.message : String(error) });
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });
@@ -92,7 +93,7 @@ export function registerDestinationRoutes(app: Express) {
       }
       res.json({ message: "Destination deleted successfully" });
     } catch (error: unknown) {
-      console.error("[Destinations] Error deleting destination:", error instanceof Error ? error.message : String(error));
+      logger.error("[Destinations] Error deleting destination", { error: error instanceof Error ? error.message : String(error) });
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });

@@ -7,6 +7,7 @@ import { storage } from "../storage";
 import { isAuthenticated } from "../replitAuth";
 import { sendPasswordResetEmail, sendWelcomeEmail } from "../services/emailService";
 import type { AuthenticatedRequest, AdminJwtPayload, SaasJwtPayload, JwtPayload } from "../types";
+import { logger } from "../lib/logger";
 
 const BCRYPT_ROUNDS = 10;
 
@@ -428,7 +429,7 @@ export function registerAuthRoutes(app: Express) {
 
       // Send welcome email (non-blocking)
       sendWelcomeEmail(email, firstName, companyName, trialEndsAt).catch((err) =>
-        console.error("[Auth] Failed to send welcome email:", err)
+        logger.error("[Auth] Failed to send welcome email", { error: err instanceof Error ? err.message : String(err) })
       );
 
       res.status(201).json({
@@ -454,7 +455,7 @@ export function registerAuthRoutes(app: Express) {
       });
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Unknown error";
-      console.error("[Auth] Error al registrar:", message);
+      logger.error("[Auth] Error al registrar", { error: message });
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });
@@ -573,7 +574,7 @@ export function registerAuthRoutes(app: Express) {
       });
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Unknown error";
-      console.error("[Auth] Error durante login:", message);
+      logger.error("[Auth] Error durante login", { error: message });
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });
@@ -600,7 +601,7 @@ export function registerAuthRoutes(app: Express) {
       res.json({ success: true, message: "Sesion cerrada correctamente" });
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Unknown error";
-      console.error("[Auth] Error al cerrar sesion:", message);
+      logger.error("[Auth] Error al cerrar sesion", { error: message });
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });
@@ -645,7 +646,7 @@ export function registerAuthRoutes(app: Express) {
       });
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Unknown error";
-      console.error("[Auth] Error al refrescar token:", message);
+      logger.error("[Auth] Error al refrescar token", { error: message });
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });
@@ -686,7 +687,7 @@ export function registerAuthRoutes(app: Express) {
       });
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Unknown error";
-      console.error("[Auth] Error al obtener perfil:", message);
+      logger.error("[Auth] Error al obtener perfil", { error: message });
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });
@@ -722,7 +723,7 @@ export function registerAuthRoutes(app: Express) {
       });
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Unknown error";
-      console.error("[Auth] Error al actualizar perfil:", message);
+      logger.error("[Auth] Error al actualizar perfil", { error: message });
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });
@@ -789,7 +790,7 @@ export function registerAuthRoutes(app: Express) {
       });
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Unknown error";
-      console.error("[Auth] Error al solicitar restablecimiento:", message);
+      logger.error("[Auth] Error al solicitar restablecimiento", { error: message });
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });
@@ -832,7 +833,7 @@ export function registerAuthRoutes(app: Express) {
       });
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Unknown error";
-      console.error("[Auth] Error al restablecer contrasena:", message);
+      logger.error("[Auth] Error al restablecer contrasena", { error: message });
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });
@@ -851,7 +852,7 @@ export function registerAuthRoutes(app: Express) {
       res.json({ success: true, ...result, message: "Migracion completada" });
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Unknown error";
-      console.error("[Auth] Error al migrar usuarios:", message);
+      logger.error("[Auth] Error al migrar usuarios", { error: message });
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });
@@ -867,7 +868,7 @@ export function registerAuthRoutes(app: Express) {
       const user = await storage.getCustomerUser(userId);
       res.json(user);
     } catch (error) {
-      console.error("Error fetching user:", error);
+      logger.error("Error fetching user", { error: error instanceof Error ? error.message : String(error) });
       res.status(500).json({ message: "Failed to fetch user" });
     }
   });
@@ -884,7 +885,7 @@ export function registerAuthRoutes(app: Express) {
 
       res.json(customer);
     } catch (error: unknown) {
-      console.error("Error fetching customer profile:", error);
+      logger.error("Error fetching customer profile", { error: error instanceof Error ? error.message : String(error) });
       res.status(500).json({ message: "Failed to fetch customer profile" });
     }
   });
@@ -910,7 +911,7 @@ export function registerAuthRoutes(app: Express) {
       const updatedCustomer = await storage.updateCustomer(customer.id, parsed.data);
       res.json(updatedCustomer);
     } catch (error: unknown) {
-      console.error("Error updating customer profile:", error);
+      logger.error("Error updating customer profile", { error: error instanceof Error ? error.message : String(error) });
       res.status(500).json({ message: "Failed to update customer profile" });
     }
   });
@@ -935,7 +936,7 @@ export function registerAuthRoutes(app: Express) {
 
       res.json(customerBookings);
     } catch (error: unknown) {
-      console.error("Error fetching customer bookings:", error);
+      logger.error("Error fetching customer bookings", { error: error instanceof Error ? error.message : String(error) });
       res.status(500).json({ message: "Failed to fetch bookings" });
     }
   });
@@ -1014,7 +1015,7 @@ export function registerAuthRoutes(app: Express) {
       });
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Unknown error";
-      console.error("[Auth] Error during PIN login:", message);
+      logger.error("[Auth] Error during PIN login", { error: message });
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });
@@ -1059,7 +1060,7 @@ export function registerAuthRoutes(app: Express) {
       });
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Unknown error";
-      console.error("[Auth] Error during user login:", message);
+      logger.error("[Auth] Error during user login", { error: message });
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });

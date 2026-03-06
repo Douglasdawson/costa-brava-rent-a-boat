@@ -1,5 +1,6 @@
 import sgMail from "@sendgrid/mail";
 import type { Booking, Boat, BookingExtra } from "@shared/schema";
+import { logger } from "../lib/logger";
 
 type EmailLang = "es" | "en" | "fr" | "de" | "nl" | "it" | "ru";
 
@@ -493,7 +494,7 @@ export async function sendBookingConfirmation(data: BookingEmailData): Promise<E
     return { success: true };
   } catch (error: unknown) {
     const message = error instanceof Error ? error.message : "Unknown error";
-    console.error(`[Email] Error sending booking confirmation to ${booking.customerEmail}:`, message);
+    logger.error(`[Email] Error sending booking confirmation to ${booking.customerEmail}`, { error: message });
     return { success: false, error: message };
   }
 }
@@ -564,7 +565,7 @@ export async function sendBookingReminder(data: BookingEmailData): Promise<Email
     return { success: true };
   } catch (error: unknown) {
     const message = error instanceof Error ? error.message : "Unknown error";
-    console.error(`[Email] Error sending booking reminder to ${booking.customerEmail}:`, message);
+    logger.error(`[Email] Error sending booking reminder to ${booking.customerEmail}`, { error: message });
     return { success: false, error: message };
   }
 }
@@ -635,7 +636,7 @@ export async function sendThankYouEmail(data: BookingEmailData, discountCode: st
     return { success: true };
   } catch (error: unknown) {
     const message = error instanceof Error ? error.message : "Unknown error";
-    console.error(`[Email] Error sending thank-you email to ${booking.customerEmail}:`, message);
+    logger.error(`[Email] Error sending thank-you email to ${booking.customerEmail}`, { error: message });
     return { success: false, error: message };
   }
 }
@@ -692,7 +693,7 @@ export async function sendPreSeasonEmail(
     return { success: true };
   } catch (error: unknown) {
     const message = error instanceof Error ? error.message : "Unknown error";
-    console.error(`[Email] Error sending pre-season email to ${customerEmail}:`, message);
+    logger.error(`[Email] Error sending pre-season email to ${customerEmail}`, { error: message });
     return { success: false, error: message };
   }
 }
@@ -749,7 +750,7 @@ export async function sendWelcomeEmail(
     return { success: true };
   } catch (error: unknown) {
     const message = error instanceof Error ? error.message : "Unknown error";
-    console.error(`[Email] Error sending welcome email to ${email}:`, message);
+    logger.error(`[Email] Error sending welcome email to ${email}`, { error: message });
     return { success: false, error: message };
   }
 }
@@ -805,7 +806,7 @@ export async function sendPasswordResetEmail(
     return { success: true };
   } catch (error: unknown) {
     const message = error instanceof Error ? error.message : "Unknown error";
-    console.error(`[Email] Error sending password reset email to ${email}:`, message);
+    logger.error(`[Email] Error sending password reset email to ${email}`, { error: message });
     return { success: false, error: message };
   }
 }
@@ -861,7 +862,7 @@ export async function sendCancelationEmail(data: CancelationEmailData): Promise<
     console.log(`[Email] Cancelation email sent to ${booking.customerEmail} for booking ${booking.id}`);
   } catch (error: unknown) {
     const message = error instanceof Error ? error.message : "Unknown error";
-    console.error(`[Email] Error sending cancelation email to ${booking.customerEmail}:`, message);
+    logger.error(`[Email] Error sending cancelation email to ${booking.customerEmail}`, { error: message });
     return { success: false, error: message };
   }
 
@@ -883,7 +884,7 @@ export async function sendCancelationEmail(data: CancelationEmailData): Promise<
     subject: `[CANCELACIÓN] ${booking.customerName} — ${new Date(booking.startTime).toLocaleDateString("es-ES")}`,
     html: emailWrapper(ownerContent),
   }).catch((err: unknown) => {
-    console.error("[Email] Error sending cancelation owner notification:", err instanceof Error ? err.message : String(err));
+    logger.error("[Email] Error sending cancelation owner notification", { error: err instanceof Error ? err.message : String(err) });
   });
 
   return { success: true };

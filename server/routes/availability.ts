@@ -1,5 +1,6 @@
 import type { Express } from "express";
 import { storage } from "../storage";
+import { logger } from "../lib/logger";
 
 export function registerAvailabilityRoutes(app: Express) {
   // Get monthly availability for a specific boat
@@ -94,7 +95,7 @@ export function registerAvailabilityRoutes(app: Express) {
       });
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Unknown error";
-      console.error("[Availability] Error fetching availability:", message);
+      logger.error("[Availability] Error fetching availability", { error: message });
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });
@@ -150,7 +151,7 @@ export function registerAvailabilityRoutes(app: Express) {
       res.send(ical);
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Unknown error";
-      console.error("[Availability] Error generating iCal feed:", message);
+      logger.error("[Availability] Error generating iCal feed", { error: message });
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });

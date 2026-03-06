@@ -1,6 +1,7 @@
 import type { Express } from "express";
 import { z } from "zod";
 import { storage } from "../storage";
+import { logger } from "../lib/logger";
 
 const checkAvailabilitySchema = z.object({
   startTime: z.string().min(1, "La hora de inicio es requerida"),
@@ -19,7 +20,7 @@ export function registerBoatRoutes(app: Express) {
       res.setHeader('Cache-Control', 'public, max-age=60, s-maxage=300');
       res.json(boats);
     } catch (error: unknown) {
-      console.error("[Boats] Error fetching boats:", error instanceof Error ? error.message : String(error));
+      logger.error("[Boats] Error fetching boats", { error: error instanceof Error ? error.message : String(error) });
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });
@@ -33,7 +34,7 @@ export function registerBoatRoutes(app: Express) {
       }
       res.json(boat);
     } catch (error: unknown) {
-      console.error("[Boats] Error fetching boat:", error instanceof Error ? error.message : String(error));
+      logger.error("[Boats] Error fetching boat", { error: error instanceof Error ? error.message : String(error) });
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });
@@ -108,7 +109,7 @@ export function registerBoatRoutes(app: Express) {
         })),
       });
     } catch (error: unknown) {
-      console.error("[Boats] Error checking availability:", error instanceof Error ? error.message : String(error));
+      logger.error("[Boats] Error checking availability", { error: error instanceof Error ? error.message : String(error) });
       res.status(500).json({
         message: "Error interno del servidor",
         available: false,
@@ -185,7 +186,7 @@ export function registerBoatRoutes(app: Express) {
         })),
       });
     } catch (error: unknown) {
-      console.error("[Boats] Error checking availability:", error instanceof Error ? error.message : String(error));
+      logger.error("[Boats] Error checking availability", { error: error instanceof Error ? error.message : String(error) });
       res.status(500).json({
         message: "Error interno del servidor",
         available: false,

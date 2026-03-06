@@ -6,6 +6,7 @@ import {
 } from "./emailService";
 import { runAutopilotPipeline, publishMatureDrafts, getConfig } from "./blogAutopilot.js";
 import type { Booking, Boat } from "@shared/schema";
+import { logger } from "../lib/logger";
 
 /**
  * Try to send a WhatsApp message. Returns true if sent, false if Twilio is not configured
@@ -59,7 +60,7 @@ async function trySendWhatsAppReminder(booking: Booking, boat: Boat): Promise<bo
     return true;
   } catch (error: unknown) {
     const message = error instanceof Error ? error.message : "Unknown error";
-    console.error(`[Scheduler] WhatsApp reminder error for booking ${booking.id}:`, message);
+    logger.error(`[Scheduler] WhatsApp reminder error for booking ${booking.id}`, { error: message });
     return false;
   }
 }
@@ -99,7 +100,7 @@ async function trySendWhatsAppThankYou(booking: Booking): Promise<boolean> {
     return true;
   } catch (error: unknown) {
     const message = error instanceof Error ? error.message : "Unknown error";
-    console.error(`[Scheduler] WhatsApp thank-you error for booking ${booking.id}:`, message);
+    logger.error(`[Scheduler] WhatsApp thank-you error for booking ${booking.id}`, { error: message });
     return false;
   }
 }
@@ -123,7 +124,7 @@ async function processReminders(): Promise<void> {
         // Fetch boat details and extras for the email template
         const boat = await storage.getBoat(booking.boatId);
         if (!boat) {
-          console.error(`[Scheduler] Boat ${booking.boatId} not found for booking ${booking.id}`);
+          logger.error(`[Scheduler] Boat ${booking.boatId} not found for booking ${booking.id}`);
           continue;
         }
 
@@ -136,7 +137,7 @@ async function processReminders(): Promise<void> {
           const emailResult = await sendBookingReminder(emailData);
           emailSent = emailResult.success;
           if (!emailResult.success) {
-            console.error(`[Scheduler] Email reminder failed for booking ${booking.id}: ${emailResult.error}`);
+            logger.error(`[Scheduler] Email reminder failed for booking ${booking.id}`, { error: emailResult.error ?? "unknown" });
           }
         }
 
@@ -159,13 +160,13 @@ async function processReminders(): Promise<void> {
         );
       } catch (error: unknown) {
         const msg = error instanceof Error ? error.message : "Unknown error";
-        console.error(`[Scheduler] Error processing reminder for booking ${booking.id}:`, msg);
+        logger.error(`[Scheduler] Error processing reminder for booking ${booking.id}`, { error: msg });
         // Continue with next booking
       }
     }
   } catch (error: unknown) {
     const msg = error instanceof Error ? error.message : "Unknown error";
-    console.error("[Scheduler] Error in processReminders:", msg);
+    logger.error("[Scheduler] Error in processReminders", { error: msg });
   }
 }
 
@@ -203,7 +204,7 @@ async function processThankYou(): Promise<void> {
         // Fetch boat details and extras for the email template
         const boat = await storage.getBoat(booking.boatId);
         if (!boat) {
-          console.error(`[Scheduler] Boat ${booking.boatId} not found for booking ${booking.id}`);
+          logger.error(`[Scheduler] Boat ${booking.boatId} not found for booking ${booking.id}`);
           continue;
         }
 
@@ -217,14 +218,14 @@ async function processThankYou(): Promise<void> {
           discountCode = codeRecord.code;
         } catch (discountError: unknown) {
           const msg = discountError instanceof Error ? discountError.message : "Unknown error";
-          console.error(`[Scheduler] Error generating discount code for ${booking.customerEmail}:`, msg);
+          logger.error(`[Scheduler] Error generating discount code for ${booking.customerEmail}`, { error: msg });
         }
 
         // Send thank-you email with the real discount code
         const emailResult = await sendThankYouEmail(emailData, discountCode);
 
         if (!emailResult.success) {
-          console.error(`[Scheduler] Thank-you email failed for booking ${booking.id}: ${emailResult.error}`);
+          logger.error(`[Scheduler] Thank-you email failed for booking ${booking.id}`, { error: emailResult.error ?? "unknown" });
         }
 
         // Mark email as sent regardless to prevent retries
@@ -235,13 +236,13 @@ async function processThankYou(): Promise<void> {
         );
       } catch (error: unknown) {
         const msg = error instanceof Error ? error.message : "Unknown error";
-        console.error(`[Scheduler] Error processing thank-you for booking ${booking.id}:`, msg);
+        logger.error(`[Scheduler] Error processing thank-you for booking ${booking.id}`, { error: msg });
         // Continue with next booking
       }
     }
   } catch (error: unknown) {
     const msg = error instanceof Error ? error.message : "Unknown error";
-    console.error("[Scheduler] Error in processThankYou:", msg);
+    logger.error("[Scheduler] Error in processThankYou", { error: msg });
   }
 }
 
@@ -275,7 +276,7 @@ export function startScheduler(): void {
       }
     } catch (error: unknown) {
       const msg = error instanceof Error ? error.message : "Unknown error";
-      console.error("[Scheduler] Error cleaning expired holds:", msg);
+      logger.error("[Scheduler] Error cleaning expired holds", { error: msg });
     }
   });
 
@@ -289,7 +290,7 @@ export function startScheduler(): void {
       }
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Unknown error";
-      console.error("[Scheduler] Auto-complete error:", message);
+      logger.error("[Scheduler] Auto-complete error", { error: message });
     }
   });
 
@@ -316,7 +317,7 @@ export function startScheduler(): void {
       });
       console.log(`[Scheduler] Blog autopilot scheduled: ${config.cronSchedule}`);
     } catch (error) {
-      console.error("[Scheduler] Failed to initialize blog autopilot:", error);
+      logger.error("[Scheduler] Failed to initialize blog autopilot", { error: error instanceof Error ? error.message : String(error) });
     }
   })();
 
@@ -329,7 +330,7 @@ export function startScheduler(): void {
           console.log(`[Scheduler] Auto-published ${published} blog draft(s)`);
         }
       } catch (error) {
-        console.error("[Scheduler] Auto-publish error:", error);
+        logger.error("[Scheduler] Auto-publish error", { error: error instanceof Error ? error.message : String(error) });
       }
     });
   }

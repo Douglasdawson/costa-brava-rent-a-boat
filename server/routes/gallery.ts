@@ -2,6 +2,7 @@ import type { Express } from "express";
 import { z } from "zod";
 import { storage } from "../storage";
 import { requireAdminSession, requireAdminRole } from "./auth";
+import { logger } from "../lib/logger";
 
 const gallerySubmitSchema = z.object({
   imageUrl: z.string().url("URL de imagen invalida"),
@@ -25,7 +26,7 @@ export function registerGalleryRoutes(app: Express) {
       res.json(photos);
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Unknown error";
-      console.error("[Gallery] Error fetching gallery:", message);
+      logger.error("[Gallery] Error fetching gallery", { error: message });
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });
@@ -79,7 +80,7 @@ export function registerGalleryRoutes(app: Express) {
       });
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Unknown error";
-      console.error("[Gallery] Error submitting photo:", message);
+      logger.error("[Gallery] Error submitting photo", { error: message });
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });
@@ -93,7 +94,7 @@ export function registerGalleryRoutes(app: Express) {
       res.json({ uploadURL });
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Unknown error";
-      console.error("[Gallery] Error generating upload URL:", message);
+      logger.error("[Gallery] Error generating upload URL", { error: message });
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });
@@ -105,7 +106,7 @@ export function registerGalleryRoutes(app: Express) {
       res.json(photos);
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Unknown error";
-      console.error("[Gallery] Error fetching gallery:", message);
+      logger.error("[Gallery] Error fetching gallery", { error: message });
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });
@@ -123,7 +124,7 @@ export function registerGalleryRoutes(app: Express) {
       res.json(updated);
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Unknown error";
-      console.error("[Gallery] Error approving photo:", message);
+      logger.error("[Gallery] Error approving photo", { error: message });
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });
@@ -141,7 +142,7 @@ export function registerGalleryRoutes(app: Express) {
       res.json(updated);
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Unknown error";
-      console.error("[Gallery] Error rejecting photo:", message);
+      logger.error("[Gallery] Error rejecting photo", { error: message });
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });
@@ -156,7 +157,7 @@ export function registerGalleryRoutes(app: Express) {
       res.json({ message: "Foto eliminada correctamente" });
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Unknown error";
-      console.error("[Gallery] Error deleting photo:", message);
+      logger.error("[Gallery] Error deleting photo", { error: message });
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });

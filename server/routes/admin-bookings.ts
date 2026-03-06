@@ -3,6 +3,7 @@ import { z } from "zod";
 import { storage } from "../storage";
 import { updateBookingSchema, insertBookingSchema } from "@shared/schema";
 import { requireAdminSession } from "./auth";
+import { logger } from "../lib/logger";
 
 const calendarBookingsQuerySchema = z.object({
   startDate: z.coerce.date({ required_error: "startDate es requerido" }),
@@ -46,7 +47,7 @@ export function registerAdminBookingRoutes(app: Express) {
         message: "Reserva creada exitosamente",
       });
     } catch (error: unknown) {
-      console.error("[Admin] Error creating booking:", error instanceof Error ? error.message : error);
+      logger.error("[Admin] Error creating booking", { error: error instanceof Error ? error.message : error });
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });
@@ -72,7 +73,7 @@ export function registerAdminBookingRoutes(app: Express) {
 
       res.json(calendarBookings);
     } catch (error: unknown) {
-      console.error("[Admin] Error fetching calendar bookings:", error instanceof Error ? error.message : String(error));
+      logger.error("[Admin] Error fetching calendar bookings", { error: error instanceof Error ? error.message : String(error) });
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });
@@ -100,7 +101,7 @@ export function registerAdminBookingRoutes(app: Express) {
 
       res.json(result);
     } catch (error: unknown) {
-      console.error("[Admin] Error fetching bookings:", error instanceof Error ? error.message : String(error));
+      logger.error("[Admin] Error fetching bookings", { error: error instanceof Error ? error.message : String(error) });
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });
@@ -153,7 +154,7 @@ export function registerAdminBookingRoutes(app: Express) {
         message: "Reserva actualizada exitosamente",
       });
     } catch (error: unknown) {
-      console.error("[Admin] Error updating booking:", error instanceof Error ? error.message : error);
+      logger.error("[Admin] Error updating booking", { error: error instanceof Error ? error.message : error });
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });

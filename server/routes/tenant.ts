@@ -4,6 +4,7 @@ import { z } from "zod";
 import { storage } from "../storage";
 import { requireSaasAuth } from "./auth";
 import type { AuthenticatedRequest } from "../types";
+import { logger } from "../lib/logger";
 
 const BCRYPT_ROUNDS = 10;
 
@@ -47,7 +48,7 @@ export function registerTenantRoutes(app: Express) {
       res.json({ tenant });
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Error desconocido";
-      console.error("[Tenant] Error fetching tenant settings:", message);
+      logger.error("[Tenant] Error fetching tenant settings", { error: message });
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });
@@ -74,7 +75,7 @@ export function registerTenantRoutes(app: Express) {
       res.json({ tenant, message: "Configuracion actualizada" });
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Error desconocido";
-      console.error("[Tenant] Error updating tenant settings:", message);
+      logger.error("[Tenant] Error updating tenant settings", { error: message });
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });
@@ -102,7 +103,7 @@ export function registerTenantRoutes(app: Express) {
       res.json(safeUsers);
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Error desconocido";
-      console.error("[Tenant] Error fetching tenant users:", message);
+      logger.error("[Tenant] Error fetching tenant users", { error: message });
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });
@@ -154,7 +155,7 @@ export function registerTenantRoutes(app: Express) {
       });
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Error desconocido";
-      console.error("[Tenant] Error creating tenant user:", message);
+      logger.error("[Tenant] Error creating tenant user", { error: message });
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });
@@ -206,7 +207,7 @@ export function registerTenantRoutes(app: Express) {
       });
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Error desconocido";
-      console.error("[Tenant] Error updating tenant user:", message);
+      logger.error("[Tenant] Error updating tenant user", { error: message });
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });

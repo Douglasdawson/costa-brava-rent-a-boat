@@ -4,6 +4,7 @@ import { storage } from "../storage";
 import { updateCrmCustomerSchema, insertCheckinSchema } from "@shared/schema";
 import { requireAdminSession } from "./auth";
 import { format } from "date-fns";
+import { logger } from "../lib/logger";
 
 interface AuthenticatedRequest extends Request {
   adminUser?: {
@@ -41,7 +42,7 @@ export function registerAdminCustomerRoutes(app: Express) {
       res.json(result);
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Unknown error";
-      console.error("[Admin] Error fetching customers:", message);
+      logger.error("[Admin] Error fetching customers", { error: message });
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });
@@ -56,7 +57,7 @@ export function registerAdminCustomerRoutes(app: Express) {
       res.json(result);
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Unknown error";
-      console.error("[Admin] Error fetching customer:", message);
+      logger.error("[Admin] Error fetching customer", { error: message });
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });
@@ -80,7 +81,7 @@ export function registerAdminCustomerRoutes(app: Express) {
       res.json({ success: true, customer: updated, message: "Cliente actualizado" });
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Unknown error";
-      console.error("[Admin] Error updating customer:", message);
+      logger.error("[Admin] Error updating customer", { error: message });
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });
@@ -96,7 +97,7 @@ export function registerAdminCustomerRoutes(app: Express) {
       });
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Unknown error";
-      console.error("[Admin] Error syncing customers:", message);
+      logger.error("[Admin] Error syncing customers", { error: message });
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });
@@ -143,7 +144,7 @@ export function registerAdminCustomerRoutes(app: Express) {
       res.send("\uFEFF" + csvContent);
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Unknown error";
-      console.error("[Admin] Error exporting customers:", message);
+      logger.error("[Admin] Error exporting customers", { error: message });
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });
@@ -191,7 +192,7 @@ export function registerAdminCustomerRoutes(app: Express) {
       });
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Unknown error";
-      console.error("[Admin] Error creating checkin:", message);
+      logger.error("[Admin] Error creating checkin", { error: message });
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });
@@ -203,7 +204,7 @@ export function registerAdminCustomerRoutes(app: Express) {
       res.json(checkinsList);
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Unknown error";
-      console.error("[Admin] Error fetching checkins:", message);
+      logger.error("[Admin] Error fetching checkins", { error: message });
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });

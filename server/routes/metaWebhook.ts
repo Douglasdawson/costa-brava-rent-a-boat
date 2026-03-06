@@ -1,6 +1,7 @@
 import type { Express, Request, Response } from "express";
 import { storage } from "../storage";
 import { markMessageAsRead } from "../whatsapp/metaClient";
+import { logger } from "../lib/logger";
 
 /**
  * Meta WhatsApp Cloud API Webhook
@@ -15,7 +16,7 @@ export function registerMetaWebhookRoutes(app: Express) {
 
     const verifyToken = process.env.META_WHATSAPP_VERIFY_TOKEN;
     if (!verifyToken) {
-      console.error("[Meta Webhook] META_WHATSAPP_VERIFY_TOKEN not set");
+      logger.error("[Meta Webhook] META_WHATSAPP_VERIFY_TOKEN not set");
       return res.sendStatus(403);
     }
 
@@ -24,7 +25,7 @@ export function registerMetaWebhookRoutes(app: Express) {
       return res.status(200).send(challenge);
     }
 
-    console.error("[Meta Webhook] Verification failed");
+    logger.error("[Meta Webhook] Verification failed");
     res.sendStatus(403);
   });
 
@@ -58,7 +59,7 @@ export function registerMetaWebhookRoutes(app: Express) {
         }
       }
     } catch (error: unknown) {
-      console.error("[Meta Webhook] Error processing:", error instanceof Error ? error.message : String(error));
+      logger.error("[Meta Webhook] Error processing", { error: error instanceof Error ? error.message : String(error) });
     }
   });
 }
@@ -123,6 +124,6 @@ async function updateInquiryByPhone(phone: string) {
       }
     }
   } catch (error: unknown) {
-    console.error("[Meta Webhook] Error updating inquiry:", error instanceof Error ? error.message : String(error));
+    logger.error("[Meta Webhook] Error updating inquiry", { error: error instanceof Error ? error.message : String(error) });
   }
 }

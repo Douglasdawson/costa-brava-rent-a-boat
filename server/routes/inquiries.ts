@@ -5,6 +5,7 @@ import { storage } from "../storage";
 import { insertWhatsappInquirySchema, updateWhatsappInquirySchema } from "@shared/schema";
 import { requireAdminSession } from "./auth";
 import { sendMetaWhatsAppMessage, isMetaWhatsAppConfigured } from "../whatsapp/metaClient";
+import { logger } from "../lib/logger";
 
 const submitLimiter = rateLimit({
   windowMs: 60 * 60 * 1000, // 1 hour
@@ -35,7 +36,7 @@ export function registerInquiryRoutes(app: Express) {
       const inquiry = await storage.createWhatsappInquiry(parsed.data);
       res.status(201).json({ success: true, id: inquiry.id });
     } catch (error: unknown) {
-      console.error("[Inquiries] Error creating inquiry:", error instanceof Error ? error.message : String(error));
+      logger.error("[Inquiries] Error creating inquiry", { error: error instanceof Error ? error.message : String(error) });
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });
@@ -53,7 +54,7 @@ export function registerInquiryRoutes(app: Express) {
       const result = await storage.getPaginatedInquiries(queryParsed.data);
       res.json(result);
     } catch (error: unknown) {
-      console.error("[Admin] Error fetching inquiries:", error instanceof Error ? error.message : String(error));
+      logger.error("[Admin] Error fetching inquiries", { error: error instanceof Error ? error.message : String(error) });
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });
@@ -74,7 +75,7 @@ export function registerInquiryRoutes(app: Express) {
       }
       res.json({ success: true, inquiry: updated });
     } catch (error: unknown) {
-      console.error("[Admin] Error updating inquiry:", error instanceof Error ? error.message : String(error));
+      logger.error("[Admin] Error updating inquiry", { error: error instanceof Error ? error.message : String(error) });
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });
@@ -88,7 +89,7 @@ export function registerInquiryRoutes(app: Express) {
       }
       res.json({ success: true });
     } catch (error: unknown) {
-      console.error("[Admin] Error deleting inquiry:", error instanceof Error ? error.message : String(error));
+      logger.error("[Admin] Error deleting inquiry", { error: error instanceof Error ? error.message : String(error) });
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });
@@ -120,7 +121,7 @@ export function registerInquiryRoutes(app: Express) {
 
       res.json({ success: true, messageId: result.messageId });
     } catch (error: unknown) {
-      console.error("[Admin] Error sending WhatsApp:", error instanceof Error ? error.message : String(error));
+      logger.error("[Admin] Error sending WhatsApp", { error: error instanceof Error ? error.message : String(error) });
       res.status(500).json({ message: "Error al enviar mensaje de WhatsApp" });
     }
   });

@@ -3,6 +3,7 @@ import { storage } from "../storage";
 import { requireAdminSession } from "./auth";
 import { z } from "zod";
 import crypto from "crypto";
+import { logger } from "../lib/logger";
 
 // Validation schemas
 const validateCodeSchema = z.object({
@@ -72,7 +73,7 @@ export function registerDiscountRoutes(app: Express) {
       });
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Error desconocido";
-      console.error("Error validating discount code:", message);
+      logger.error("Error validating discount code", { error: message });
       res.status(500).json({
         valid: false,
         error: "Error al validar el codigo de descuento",
@@ -89,7 +90,7 @@ export function registerDiscountRoutes(app: Express) {
       res.json(codes);
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Error desconocido";
-      console.error("[Discounts] Error fetching discount codes:", message);
+      logger.error("[Discounts] Error fetching discount codes", { error: message });
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });
@@ -128,7 +129,7 @@ export function registerDiscountRoutes(app: Express) {
       });
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Error desconocido";
-      console.error("Error creating discount code:", message);
+      logger.error("Error creating discount code", { error: message });
       res.status(500).json({ message: "Error al crear el codigo de descuento" });
     }
   });
@@ -168,7 +169,7 @@ export function registerDiscountRoutes(app: Express) {
       });
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Error desconocido";
-      console.error("Error deactivating discount code:", message);
+      logger.error("Error deactivating discount code", { error: message });
       res.status(500).json({ message: "Error al desactivar el codigo de descuento" });
     }
   });
@@ -250,7 +251,7 @@ export function registerDiscountRoutes(app: Express) {
         } catch (codeError: unknown) {
           // Skip this customer if there was a unique constraint violation
           const msg = codeError instanceof Error ? codeError.message : "";
-          console.error(`Error generating code for ${customer.email}: ${msg}`);
+          logger.error(`Error generating code for ${customer.email}`, { error: msg });
         }
       }
 
@@ -262,7 +263,7 @@ export function registerDiscountRoutes(app: Express) {
       });
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Error desconocido";
-      console.error("Error in pre-season campaign:", message);
+      logger.error("Error in pre-season campaign", { error: message });
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });

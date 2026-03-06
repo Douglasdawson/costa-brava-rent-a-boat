@@ -3,6 +3,7 @@ import { storage } from "../storage";
 import { requireAdminSession, requireAdminRole } from "./auth";
 import { getStripe } from "./payments";
 import { z } from "zod";
+import { logger } from "../lib/logger";
 
 function generateGiftCardCode(): string {
   const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
@@ -103,7 +104,7 @@ export function registerGiftCardRoutes(app: Express) {
       } catch (stripeError: unknown) {
         // If Stripe fails, still return the gift card for manual payment
         const message = stripeError instanceof Error ? stripeError.message : "Error desconocido";
-        console.error("Stripe error for gift card:", message);
+        logger.error("Stripe error for gift card", { error: message });
         res.status(503).json({
           message: "Servicio de pagos no disponible. Contacta por WhatsApp para comprar tu tarjeta regalo.",
           giftCardId: giftCard.id,
@@ -111,7 +112,7 @@ export function registerGiftCardRoutes(app: Express) {
       }
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Error desconocido";
-      console.error("Error purchasing gift card:", message);
+      logger.error("Error purchasing gift card", { error: message });
       res.status(500).json({ message: "Error al crear la tarjeta regalo" });
     }
   });
@@ -154,7 +155,7 @@ export function registerGiftCardRoutes(app: Express) {
       });
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Error desconocido";
-      console.error("Error validating gift card:", message);
+      logger.error("Error validating gift card", { error: message });
       res.status(500).json({ message: "Error al validar la tarjeta regalo" });
     }
   });
@@ -166,7 +167,7 @@ export function registerGiftCardRoutes(app: Express) {
       res.json(cards);
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Error desconocido";
-      console.error("[GiftCards] Error fetching gift cards:", message);
+      logger.error("[GiftCards] Error fetching gift cards", { error: message });
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });
@@ -198,7 +199,7 @@ export function registerGiftCardRoutes(app: Express) {
       res.json(updated);
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Error desconocido";
-      console.error("[GiftCards] Error updating gift card:", message);
+      logger.error("[GiftCards] Error updating gift card", { error: message });
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });

@@ -7,6 +7,7 @@ import { setupVite, serveStatic, log } from "./vite";
 import * as Sentry from "@sentry/node";
 import { config, isDev } from "./config";
 import { errorHandler, AppError } from "./middleware/errorHandler";
+import { csrfProtection } from "./middleware/csrf";
 
 const app = express();
 
@@ -152,6 +153,9 @@ app.use(compression({
   },
   level: 6,
 }));
+
+// CSRF protection — validates Origin/Referer for cookie-based auth (state-changing requests)
+app.use(csrfProtection);
 
 // Canonical domain redirection middleware (SEO)
 // Force all traffic to HTTPS costabravarentaboat.app

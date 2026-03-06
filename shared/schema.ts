@@ -370,7 +370,6 @@ export const pageVisits = pgTable("page_visits", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
   tenantId: varchar("tenant_id").references(() => tenants.id),
   pagePath: text("page_path").notNull(),
-  ipAddress: text("ip_address"),
   userAgent: text("user_agent"),
   deviceType: text("device_type"), // mobile, tablet, desktop
   browserName: text("browser_name"),

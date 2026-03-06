@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import {
   AlertDialog,
@@ -11,227 +10,32 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
-import { Badge } from "@/components/ui/badge";
-import { Skeleton } from "@/components/ui/skeleton";
-import {
-  Plus,
-  Download,
-  Edit,
-  Trash2,
-  Check,
-  Anchor,
-  GripVertical,
-  Loader2,
-} from "lucide-react";
-import {
-  DndContext,
-  closestCenter,
-  KeyboardSensor,
-  PointerSensor,
-  useSensor,
-  useSensors,
-  DragEndEvent,
-} from "@dnd-kit/core";
-import {
-  arrayMove,
-  SortableContext,
-  sortableKeyboardCoordinates,
-  verticalListSortingStrategy,
-  useSortable,
-} from "@dnd-kit/sortable";
-import { CSS } from "@dnd-kit/utilities";
+import { Plus } from "lucide-react";
+import { arrayMove } from "@dnd-kit/sortable";
+import { DragEndEvent } from "@dnd-kit/core";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { useToast } from "@/hooks/use-toast";
-import { Input } from "@/components/ui/input";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogDescription,
-  DialogFooter,
-} from "@/components/ui/dialog";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { queryClient } from "@/lib/queryClient";
-import { ImageGalleryUploader } from "@/components/ImageGalleryUploader";
 
 import { boatSchema, type BoatFormData } from "./types";
-import { EQUIPMENT_OPTIONS, INCLUDED_OPTIONS } from "./constants";
+import { BoatFormDialog } from "./fleet/BoatFormDialog";
+import { BoatListTable, type BoatListItem } from "./fleet/BoatListTable";
 
 interface FleetManagementProps {
   adminToken: string;
 }
 
-// Sortable row component for drag and drop
-function SortableBoatRow({
-  boat,
-  onEdit,
-  onDelete,
-}: {
-  boat: any;
-  onEdit: (boat: any) => void;
-  onDelete: (id: string) => void;
-}) {
-  const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({
-    id: boat.id,
-  });
-
-  const style = {
-    transform: CSS.Transform.toString(transform),
-    transition,
-    opacity: isDragging ? 0.5 : 1,
-  };
-
-  return (
-    <TableRow ref={setNodeRef} style={style} className={isDragging ? "bg-muted" : ""}>
-      <TableCell>
-        <div {...attributes} {...listeners} className="cursor-grab active:cursor-grabbing">
-          <GripVertical className="w-4 h-4 text-muted-foreground/70" />
-        </div>
-      </TableCell>
-      <TableCell className="font-medium">{boat.name}</TableCell>
-      <TableCell>{boat.capacity} personas</TableCell>
-      <TableCell>
-        <Badge variant={boat.requiresLicense ? "default" : "secondary"}>
-          {boat.requiresLicense ? "Requerida" : "No requerida"}
-        </Badge>
-      </TableCell>
-      <TableCell>{"\u20AC"}{boat.deposit}</TableCell>
-      <TableCell>
-        <Badge className={boat.isActive ? "bg-emerald-100 text-emerald-800" : "bg-muted text-muted-foreground"}>
-          {boat.isActive ? "Activo" : "Inactivo"}
-        </Badge>
-      </TableCell>
-      <TableCell className="text-right">
-        <div className="flex justify-end space-x-2">
-          <Button
-            size="icon"
-            variant="ghost"
-            onClick={() => onEdit(boat)}
-            data-testid={`button-edit-boat-${boat.id}`}
-          >
-            <Edit className="w-4 h-4" />
-          </Button>
-          {boat.isActive && (
-            <Button
-              size="icon"
-              variant="ghost"
-              onClick={() => onDelete(boat.id)}
-              data-testid={`button-delete-boat-${boat.id}`}
-            >
-              <Trash2 className="w-4 h-4" />
-            </Button>
-          )}
-        </div>
-      </TableCell>
-    </TableRow>
-  );
-}
-
-// Sortable boat card for mobile
-function SortableBoatCard({
-  boat,
-  onEdit,
-  onDelete,
-}: {
-  boat: any;
-  onEdit: (boat: any) => void;
-  onDelete: (id: string) => void;
-}) {
-  const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({
-    id: boat.id,
-  });
-
-  const style = {
-    transform: CSS.Transform.toString(transform),
-    transition,
-    opacity: isDragging ? 0.5 : 1,
-  };
-
-  return (
-    <Card ref={setNodeRef} style={style}>
-      <CardContent className="p-4">
-        <div className="flex items-start gap-3 mb-3">
-          <div {...attributes} {...listeners} className="cursor-grab active:cursor-grabbing mt-1">
-            <GripVertical className="w-5 h-5 text-muted-foreground/70" />
-          </div>
-          <div className="flex-1">
-            <div className="flex justify-between items-start mb-2">
-              <h3 className="font-semibold font-heading text-lg">{boat.name}</h3>
-              <div className="flex gap-1">
-                <Button
-                  size="icon"
-                  variant="ghost"
-                  onClick={() => onEdit(boat)}
-                  data-testid={`button-edit-boat-${boat.id}`}
-                >
-                  <Edit className="w-4 h-4" />
-                </Button>
-                {boat.isActive && (
-                  <Button
-                    size="icon"
-                    variant="ghost"
-                    onClick={() => onDelete(boat.id)}
-                    data-testid={`button-delete-boat-${boat.id}`}
-                  >
-                    <Trash2 className="w-4 h-4" />
-                  </Button>
-                )}
-              </div>
-            </div>
-            <div className="flex gap-2 mb-3">
-              <Badge variant={boat.requiresLicense ? "default" : "secondary"} className="text-xs">
-                {boat.requiresLicense ? "Licencia" : "Sin licencia"}
-              </Badge>
-              <Badge className={`text-xs ${boat.isActive ? "bg-emerald-100 text-emerald-800" : "bg-muted text-muted-foreground"}`}>
-                {boat.isActive ? "Activo" : "Inactivo"}
-              </Badge>
-            </div>
-            <div className="grid grid-cols-2 gap-2 text-sm">
-              <div>
-                <span className="text-muted-foreground">Capacidad:</span>
-                <span className="ml-1 font-medium">{boat.capacity} personas</span>
-              </div>
-              <div>
-                <span className="text-muted-foreground">Depósito:</span>
-                <span className="ml-1 font-medium">{"\u20AC"}{boat.deposit}</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </CardContent>
-    </Card>
-  );
-}
-
 export function FleetManagement({ adminToken }: FleetManagementProps) {
   const [showBoatDialog, setShowBoatDialog] = useState(false);
-  const [editingBoat, setEditingBoat] = useState<any | null>(null);
+  const [editingBoat, setEditingBoat] = useState<BoatListItem | null>(null);
   const [featuresText, setFeaturesText] = useState("");
   const [deactivateTarget, setDeactivateTarget] = useState<{ id: string; name: string } | null>(null);
   const [selectedEquipment, setSelectedEquipment] = useState<string[]>([]);
   const [selectedIncluded, setSelectedIncluded] = useState<string[]>([]);
-  const [orderedBoats, setOrderedBoats] = useState<any[]>([]);
+  const [orderedBoats, setOrderedBoats] = useState<BoatListItem[]>([]);
   const { toast } = useToast();
-
-  // Drag and drop sensors
-  const sensors = useSensors(
-    useSensor(PointerSensor),
-    useSensor(KeyboardSensor, {
-      coordinateGetter: sortableKeyboardCoordinates,
-    })
-  );
 
   const boatForm = useForm<BoatFormData>({
     resolver: zodResolver(boatSchema),
@@ -268,7 +72,7 @@ export function FleetManagement({ adminToken }: FleetManagementProps) {
   });
 
   // Fetch all boats (including inactive)
-  const { data: boats, isLoading: boatsLoading } = useQuery<any[]>({
+  const { data: boats, isLoading: boatsLoading } = useQuery<BoatListItem[]>({
     queryKey: ["/api/boats"],
   });
 
@@ -282,7 +86,7 @@ export function FleetManagement({ adminToken }: FleetManagementProps) {
 
   // Reorder boats mutation
   const reorderBoatsMutation = useMutation({
-    mutationFn: async (newOrder: any[]) => {
+    mutationFn: async (newOrder: BoatListItem[]) => {
       const response = await fetch("/api/admin/boats/reorder", {
         method: "POST",
         headers: {
@@ -470,26 +274,26 @@ export function FleetManagement({ adminToken }: FleetManagementProps) {
     },
   });
 
-  const handleEditBoat = (boat: any) => {
+  const handleEditBoat = (boat: BoatListItem) => {
     setEditingBoat(boat);
 
     // Set textarea states for editing
-    setFeaturesText(boat.features?.join("\n") || "");
-    setSelectedEquipment(boat.equipment || []);
-    setSelectedIncluded(boat.included || []);
+    setFeaturesText((boat.features as string[])?.join("\n") || "");
+    setSelectedEquipment((boat.equipment as string[]) || []);
+    setSelectedIncluded((boat.included as string[]) || []);
 
     boatForm.reset({
-      id: boat.id,
-      name: boat.name,
-      capacity: boat.capacity,
-      requiresLicense: boat.requiresLicense,
-      deposit: boat.deposit,
-      isActive: boat.isActive,
-      imageUrl: boat.imageUrl || "",
-      imageGallery: boat.imageGallery || [],
-      subtitle: boat.subtitle || "",
-      description: boat.description || "",
-      specifications: boat.specifications || {
+      id: boat.id as string,
+      name: boat.name as string,
+      capacity: boat.capacity as number,
+      requiresLicense: boat.requiresLicense as boolean,
+      deposit: boat.deposit as string,
+      isActive: boat.isActive as boolean,
+      imageUrl: (boat.imageUrl as string) || "",
+      imageGallery: (boat.imageGallery as string[]) || [],
+      subtitle: (boat.subtitle as string) || "",
+      description: (boat.description as string) || "",
+      specifications: (boat.specifications as BoatFormData["specifications"]) || {
         model: "",
         length: "",
         beam: "",
@@ -498,15 +302,15 @@ export function FleetManagement({ adminToken }: FleetManagementProps) {
         capacity: "",
         deposit: "",
       },
-      equipment: boat.equipment || [],
-      included: boat.included || [],
-      features: boat.features || [],
-      pricing: boat.pricing || {
+      equipment: (boat.equipment as string[]) || [],
+      included: (boat.included as string[]) || [],
+      features: (boat.features as string[]) || [],
+      pricing: (boat.pricing as BoatFormData["pricing"]) || {
         BAJA: { period: "", prices: {} },
         MEDIA: { period: "", prices: {} },
         ALTA: { period: "", prices: {} },
       },
-      extras: boat.extras || [],
+      extras: (boat.extras as BoatFormData["extras"]) || [],
     });
     setShowBoatDialog(true);
   };
@@ -555,7 +359,7 @@ export function FleetManagement({ adminToken }: FleetManagementProps) {
   return (
     <div className="space-y-4 sm:space-y-6">
       <div className="flex items-center justify-between">
-        <h2 className="text-xl sm:text-2xl font-bold font-heading">Gestión de Flota</h2>
+        <h2 className="text-xl sm:text-2xl font-bold font-heading">Gestion de Flota</h2>
         <Button
           onClick={() => {
             resetDialog();
@@ -571,870 +375,33 @@ export function FleetManagement({ adminToken }: FleetManagementProps) {
         </Button>
       </div>
 
-      {boatsLoading ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          <Skeleton className="h-48 w-full rounded-lg" />
-          <Skeleton className="h-48 w-full rounded-lg" />
-          <Skeleton className="h-48 w-full rounded-lg" />
-          <Skeleton className="h-48 w-full rounded-lg" />
-          <Skeleton className="h-48 w-full rounded-lg" />
-          <Skeleton className="h-48 w-full rounded-lg" />
-        </div>
-      ) : !boats || boats.length === 0 ? (
-        <Card>
-          <CardContent className="py-12 text-center">
-            <Anchor className="w-12 h-12 mx-auto mb-4 text-muted-foreground/70" />
-            <h3 className="text-lg font-semibold font-heading mb-2">No hay barcos registrados</h3>
-            <p className="text-muted-foreground mb-4">
-              Importa los 7 barcos de la flota o agrega uno manualmente
-            </p>
-            <div className="flex justify-center gap-4">
-              <Button
-                onClick={() => importBoatsMutation.mutate()}
-                disabled={importBoatsMutation.isPending}
-                data-testid="button-import-boats"
-              >
-                {importBoatsMutation.isPending ? (
-                  <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                ) : (
-                  <Download className="w-4 h-4 mr-2" />
-                )}
-                {importBoatsMutation.isPending ? "Importando..." : "Importar Flota (7 barcos)"}
-              </Button>
-              <Button
-                variant="outline"
-                onClick={() => setShowBoatDialog(true)}
-                data-testid="button-add-first-boat"
-              >
-                <Plus className="w-4 h-4 mr-2" />
-                Agregar Manualmente
-              </Button>
-            </div>
-          </CardContent>
-        </Card>
-      ) : (
-        <>
-          {/* Desktop Table View */}
-          <Card className="hidden md:block">
-            <CardHeader>
-              <CardTitle>Barcos ({orderedBoats.length})</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <DndContext
-                sensors={sensors}
-                collisionDetection={closestCenter}
-                onDragEnd={handleDragEnd}
-              >
-                <Table>
-                  <TableHeader>
-                    <TableRow>
-                      <TableHead className="w-12"></TableHead>
-                      <TableHead>Nombre</TableHead>
-                      <TableHead>Capacidad</TableHead>
-                      <TableHead>Licencia</TableHead>
-                      <TableHead>Depósito</TableHead>
-                      <TableHead>Estado</TableHead>
-                      <TableHead className="text-right">Acciones</TableHead>
-                    </TableRow>
-                  </TableHeader>
-                  <TableBody>
-                    <SortableContext
-                      items={orderedBoats.map(b => b.id)}
-                      strategy={verticalListSortingStrategy}
-                    >
-                      {orderedBoats.map((boat: any) => (
-                        <SortableBoatRow
-                          key={boat.id}
-                          boat={boat}
-                          onEdit={handleEditBoat}
-                          onDelete={id => {
-                            const target = orderedBoats.find(b => b.id === id);
-                            setDeactivateTarget({ id, name: target?.name || id });
-                          }}
-                        />
-                      ))}
-                    </SortableContext>
-                  </TableBody>
-                </Table>
-              </DndContext>
-            </CardContent>
-          </Card>
+      <BoatListTable
+        boats={boats}
+        orderedBoats={orderedBoats}
+        loading={boatsLoading}
+        onEdit={handleEditBoat}
+        onDeactivate={(id, name) => setDeactivateTarget({ id, name })}
+        onDragEnd={handleDragEnd}
+        onImport={() => importBoatsMutation.mutate()}
+        onAdd={() => setShowBoatDialog(true)}
+        isImporting={importBoatsMutation.isPending}
+      />
 
-          {/* Mobile Card View */}
-          <div className="md:hidden space-y-3">
-            <div className="text-sm font-medium text-muted-foreground px-1">
-              Barcos ({orderedBoats.length})
-            </div>
-            <DndContext
-              sensors={sensors}
-              collisionDetection={closestCenter}
-              onDragEnd={handleDragEnd}
-            >
-              <SortableContext
-                items={orderedBoats.map(b => b.id)}
-                strategy={verticalListSortingStrategy}
-              >
-                {orderedBoats.map((boat: any) => (
-                  <SortableBoatCard
-                    key={boat.id}
-                    boat={boat}
-                    onEdit={handleEditBoat}
-                    onDelete={id => {
-                      const target = orderedBoats.find(b => b.id === id);
-                      setDeactivateTarget({ id, name: target?.name || id });
-                    }}
-                  />
-                ))}
-              </SortableContext>
-            </DndContext>
-          </div>
-        </>
-      )}
-
-      {/* Add/Edit Boat Dialog - Mobile fullscreen */}
-      <Dialog open={showBoatDialog} onOpenChange={setShowBoatDialog}>
-        <DialogContent className="w-[95vw] max-w-4xl max-h-[90vh] overflow-y-auto p-4 sm:p-6">
-          <DialogHeader>
-            <DialogTitle>{editingBoat ? "Editar Barco" : "Agregar Barco"}</DialogTitle>
-            <DialogDescription>Complete todos los campos del barco</DialogDescription>
-          </DialogHeader>
-          <form onSubmit={boatForm.handleSubmit(handleSubmit)} className="space-y-6">
-            {/* Información Básica */}
-            <div className="space-y-4">
-              <h3 className="text-lg font-semibold font-heading">Información Básica</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                  <Label htmlFor="id">ID del Barco *</Label>
-                  <Input
-                    id="id"
-                    {...boatForm.register("id")}
-                    placeholder="solar-450"
-                    disabled={!!editingBoat}
-                    data-testid="input-boat-id"
-                  />
-                  {boatForm.formState.errors.id && (
-                    <p className="text-sm text-red-500">{boatForm.formState.errors.id.message}</p>
-                  )}
-                </div>
-                <div>
-                  <Label htmlFor="name">Nombre *</Label>
-                  <Input
-                    id="name"
-                    {...boatForm.register("name")}
-                    placeholder="Solar 450"
-                    data-testid="input-boat-name"
-                  />
-                  {boatForm.formState.errors.name && (
-                    <p className="text-sm text-red-500">{boatForm.formState.errors.name.message}</p>
-                  )}
-                </div>
-              </div>
-
-              <div>
-                <Label htmlFor="subtitle">Subtítulo</Label>
-                <Input
-                  id="subtitle"
-                  {...boatForm.register("subtitle")}
-                  placeholder="¡Barco sin licencia para alquilar en Blanes!"
-                  data-testid="input-boat-subtitle"
-                />
-              </div>
-
-              <div>
-                <Label htmlFor="description">Descripción</Label>
-                <Textarea
-                  id="description"
-                  {...boatForm.register("description")}
-                  placeholder="Descripción detallada del barco..."
-                  rows={4}
-                  data-testid="input-boat-description"
-                />
-              </div>
-            </div>
-
-            {/* Imágenes */}
-            <div className="space-y-4">
-              <h3 className="text-lg font-semibold font-heading">Imágenes</h3>
-              <div>
-                <Label htmlFor="imageUrl">URL Imagen Principal (auto-sincronizada)</Label>
-                <Input
-                  id="imageUrl"
-                  value={boatForm.watch("imageUrl") || ""}
-                  placeholder="Se sincroniza automáticamente con la primera imagen de la galería"
-                  data-testid="input-boat-image-url"
-                  readOnly
-                  className="bg-muted cursor-not-allowed"
-                />
-                <p className="text-xs text-muted-foreground mt-1">
-                  La primera imagen de la galería se usa como imagen principal en el grid de inicio
-                </p>
-              </div>
-              <div>
-                <Label>Galería de Imágenes</Label>
-                <ImageGalleryUploader
-                  images={boatForm.watch("imageGallery") || []}
-                  onImagesChange={images => {
-                    boatForm.setValue("imageGallery", images);
-                    // Sync imageUrl with first image
-                    if (images.length > 0) {
-                      boatForm.setValue("imageUrl", images[0]);
-                    } else {
-                      boatForm.setValue("imageUrl", "");
-                    }
-                  }}
-                  onMainImageChange={mainImageUrl => {
-                    // Update imageUrl when main image changes
-                    boatForm.setValue("imageUrl", mainImageUrl || "");
-                  }}
-                  maxImages={10}
-                />
-              </div>
-            </div>
-
-            {/* Características Principales */}
-            <div className="space-y-4">
-              <h3 className="text-lg font-semibold font-heading">Características Principales</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                  <Label htmlFor="capacity">Capacidad (personas) *</Label>
-                  <Input
-                    id="capacity"
-                    type="number"
-                    {...boatForm.register("capacity")}
-                    placeholder="6"
-                    data-testid="input-boat-capacity"
-                  />
-                </div>
-                <div>
-                  <Label htmlFor="deposit">Depósito ({"\u20AC"}) *</Label>
-                  <Input
-                    id="deposit"
-                    {...boatForm.register("deposit")}
-                    placeholder="300.00"
-                    data-testid="input-main-deposit"
-                  />
-                </div>
-              </div>
-              <div className="flex flex-col sm:flex-row gap-4 sm:gap-6">
-                <div className="flex items-center space-x-2">
-                  <input
-                    id="requiresLicense"
-                    type="checkbox"
-                    {...boatForm.register("requiresLicense")}
-                    className="w-4 h-4"
-                    data-testid="checkbox-requires-license"
-                  />
-                  <Label htmlFor="requiresLicense">Requiere licencia náutica</Label>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <input
-                    id="isActive"
-                    type="checkbox"
-                    {...boatForm.register("isActive")}
-                    className="w-4 h-4"
-                    data-testid="checkbox-is-active"
-                  />
-                  <Label htmlFor="isActive">Barco activo</Label>
-                </div>
-              </div>
-              <div>
-                <Label>Características (una por línea)</Label>
-                <Textarea
-                  placeholder="Sin licencia requerida&#10;Hasta 5 personas&#10;Gasolina incluida"
-                  rows={4}
-                  value={featuresText}
-                  onChange={e => {
-                    setFeaturesText(e.target.value);
-                    const features = e.target.value.split("\n").filter(f => f.trim());
-                    boatForm.setValue("features", features);
-                  }}
-                  data-testid="input-boat-features"
-                />
-              </div>
-            </div>
-
-            {/* Especificaciones Técnicas */}
-            <div className="space-y-4">
-              <h3 className="text-lg font-semibold font-heading">Especificaciones Técnicas</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                  <Label>Modelo</Label>
-                  <Input
-                    placeholder="Solar 450"
-                    {...boatForm.register("specifications.model")}
-                    data-testid="input-boat-model"
-                  />
-                </div>
-                <div>
-                  <Label>Eslora</Label>
-                  <Input
-                    placeholder="4,50m"
-                    {...boatForm.register("specifications.length")}
-                    data-testid="input-boat-length"
-                  />
-                </div>
-                <div>
-                  <Label>Manga</Label>
-                  <Input
-                    placeholder="1,50m"
-                    {...boatForm.register("specifications.beam")}
-                    data-testid="input-boat-beam"
-                  />
-                </div>
-                <div>
-                  <Label>Motor</Label>
-                  <Input
-                    placeholder="Mercury 15cv 4t"
-                    {...boatForm.register("specifications.engine")}
-                    data-testid="input-boat-engine"
-                  />
-                </div>
-                <div>
-                  <Label>Combustible</Label>
-                  <Input
-                    placeholder="Gasolina 30L"
-                    {...boatForm.register("specifications.fuel")}
-                    data-testid="input-boat-fuel"
-                  />
-                </div>
-                <div>
-                  <Label>Capacidad</Label>
-                  <Input
-                    placeholder="5 Personas"
-                    {...boatForm.register("specifications.capacity")}
-                    data-testid="input-boat-capacity"
-                  />
-                </div>
-                <div>
-                  <Label>Fianza</Label>
-                  <Input
-                    placeholder="300"
-                    {...boatForm.register("specifications.deposit")}
-                    data-testid="input-spec-fianza"
-                  />
-                </div>
-              </div>
-            </div>
-
-            {/* Equipamiento */}
-            <div className="space-y-4">
-              <h3 className="text-lg font-semibold font-heading">Equipamiento e Incluido</h3>
-              <div>
-                <Label>Equipamiento</Label>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-2">
-                  {EQUIPMENT_OPTIONS.map(equipment => {
-                    const Icon = equipment.icon;
-                    const isSelected = selectedEquipment.includes(equipment.label);
-
-                    return (
-                      <div
-                        key={equipment.id}
-                        className={`flex items-center gap-3 p-3 border rounded-lg cursor-pointer transition-colors ${
-                          isSelected ? "bg-primary/10 border-primary" : "hover:bg-muted"
-                        }`}
-                        onClick={() => {
-                          const newEquipment = isSelected
-                            ? selectedEquipment.filter(e => e !== equipment.label)
-                            : [...selectedEquipment, equipment.label];
-                          setSelectedEquipment(newEquipment);
-                          boatForm.setValue("equipment", newEquipment);
-                        }}
-                        data-testid={`checkbox-equipment-${equipment.id}`}
-                      >
-                        <div
-                          className={`w-5 h-5 flex items-center justify-center border rounded ${
-                            isSelected ? "bg-primary border-primary" : "border-border"
-                          }`}
-                        >
-                          {isSelected && <Check className="w-3 h-3 text-white" />}
-                        </div>
-                        <Icon
-                          className={`w-5 h-5 ${isSelected ? "text-primary" : "text-muted-foreground"}`}
-                        />
-                        <span className={`text-sm ${isSelected ? "font-medium" : ""}`}>
-                          {equipment.label}
-                        </span>
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-              <div>
-                <Label>Incluido en el precio</Label>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-2">
-                  {INCLUDED_OPTIONS.map(item => {
-                    const Icon = item.icon;
-                    const isSelected = selectedIncluded.includes(item.label);
-
-                    return (
-                      <div
-                        key={item.id}
-                        className={`flex items-center gap-3 p-3 border rounded-lg cursor-pointer transition-colors ${
-                          isSelected ? "bg-primary/10 border-primary" : "hover:bg-muted"
-                        }`}
-                        onClick={() => {
-                          const newIncluded = isSelected
-                            ? selectedIncluded.filter(i => i !== item.label)
-                            : [...selectedIncluded, item.label];
-                          setSelectedIncluded(newIncluded);
-                          boatForm.setValue("included", newIncluded);
-                        }}
-                        data-testid={`checkbox-included-${item.id}`}
-                      >
-                        <div
-                          className={`w-5 h-5 flex items-center justify-center border rounded ${
-                            isSelected ? "bg-primary border-primary" : "border-border"
-                          }`}
-                        >
-                          {isSelected && <Check className="w-3 h-3 text-white" />}
-                        </div>
-                        <Icon
-                          className={`w-5 h-5 ${isSelected ? "text-primary" : "text-muted-foreground"}`}
-                        />
-                        <span className={`text-sm ${isSelected ? "font-medium" : ""}`}>
-                          {item.label}
-                        </span>
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-            </div>
-
-            {/* Precios por Temporada */}
-            <div className="space-y-4">
-              <h3 className="text-lg font-semibold font-heading">Precios por Temporada</h3>
-
-              {/* Temporada BAJA */}
-              <div className="border rounded-lg p-4 space-y-3">
-                <h4 className="font-medium">Temporada BAJA</h4>
-                <Input
-                  placeholder="Periodo (ej: Abril-Junio, Septiembre-Cierre)"
-                  onChange={e => boatForm.setValue("pricing.BAJA.period", e.target.value)}
-                />
-                <div className="grid grid-cols-3 gap-2">
-                  {boatForm.watch("requiresLicense") ? (
-                    <>
-                      <div>
-                        <Label className="text-xs">2h</Label>
-                        <Input
-                          type="number"
-                          placeholder="0"
-                          onChange={e =>
-                            boatForm.setValue(
-                              "pricing.BAJA.prices.2h",
-                              parseFloat(e.target.value) || 0
-                            )
-                          }
-                        />
-                      </div>
-                      <div>
-                        <Label className="text-xs">4h</Label>
-                        <Input
-                          type="number"
-                          placeholder="0"
-                          onChange={e =>
-                            boatForm.setValue(
-                              "pricing.BAJA.prices.4h",
-                              parseFloat(e.target.value) || 0
-                            )
-                          }
-                        />
-                      </div>
-                      <div>
-                        <Label className="text-xs">8h</Label>
-                        <Input
-                          type="number"
-                          placeholder="0"
-                          onChange={e =>
-                            boatForm.setValue(
-                              "pricing.BAJA.prices.8h",
-                              parseFloat(e.target.value) || 0
-                            )
-                          }
-                        />
-                      </div>
-                    </>
-                  ) : (
-                    <>
-                      <div>
-                        <Label className="text-xs">1h</Label>
-                        <Input
-                          type="number"
-                          placeholder="0"
-                          onChange={e =>
-                            boatForm.setValue(
-                              "pricing.BAJA.prices.1h",
-                              parseFloat(e.target.value) || 0
-                            )
-                          }
-                        />
-                      </div>
-                      <div>
-                        <Label className="text-xs">2h</Label>
-                        <Input
-                          type="number"
-                          placeholder="0"
-                          onChange={e =>
-                            boatForm.setValue(
-                              "pricing.BAJA.prices.2h",
-                              parseFloat(e.target.value) || 0
-                            )
-                          }
-                        />
-                      </div>
-                      <div>
-                        <Label className="text-xs">3h</Label>
-                        <Input
-                          type="number"
-                          placeholder="0"
-                          onChange={e =>
-                            boatForm.setValue(
-                              "pricing.BAJA.prices.3h",
-                              parseFloat(e.target.value) || 0
-                            )
-                          }
-                        />
-                      </div>
-                      <div>
-                        <Label className="text-xs">4h</Label>
-                        <Input
-                          type="number"
-                          placeholder="0"
-                          onChange={e =>
-                            boatForm.setValue(
-                              "pricing.BAJA.prices.4h",
-                              parseFloat(e.target.value) || 0
-                            )
-                          }
-                        />
-                      </div>
-                      <div>
-                        <Label className="text-xs">6h</Label>
-                        <Input
-                          type="number"
-                          placeholder="0"
-                          onChange={e =>
-                            boatForm.setValue(
-                              "pricing.BAJA.prices.6h",
-                              parseFloat(e.target.value) || 0
-                            )
-                          }
-                        />
-                      </div>
-                      <div>
-                        <Label className="text-xs">8h</Label>
-                        <Input
-                          type="number"
-                          placeholder="0"
-                          onChange={e =>
-                            boatForm.setValue(
-                              "pricing.BAJA.prices.8h",
-                              parseFloat(e.target.value) || 0
-                            )
-                          }
-                        />
-                      </div>
-                    </>
-                  )}
-                </div>
-              </div>
-
-              {/* Temporada MEDIA */}
-              <div className="border rounded-lg p-4 space-y-3">
-                <h4 className="font-medium">Temporada MEDIA</h4>
-                <Input
-                  placeholder="Periodo (ej: Julio)"
-                  onChange={e => boatForm.setValue("pricing.MEDIA.period", e.target.value)}
-                />
-                <div className="grid grid-cols-3 gap-2">
-                  {boatForm.watch("requiresLicense") ? (
-                    <>
-                      <div>
-                        <Label className="text-xs">2h</Label>
-                        <Input
-                          type="number"
-                          placeholder="0"
-                          onChange={e =>
-                            boatForm.setValue(
-                              "pricing.MEDIA.prices.2h",
-                              parseFloat(e.target.value) || 0
-                            )
-                          }
-                        />
-                      </div>
-                      <div>
-                        <Label className="text-xs">4h</Label>
-                        <Input
-                          type="number"
-                          placeholder="0"
-                          onChange={e =>
-                            boatForm.setValue(
-                              "pricing.MEDIA.prices.4h",
-                              parseFloat(e.target.value) || 0
-                            )
-                          }
-                        />
-                      </div>
-                      <div>
-                        <Label className="text-xs">8h</Label>
-                        <Input
-                          type="number"
-                          placeholder="0"
-                          onChange={e =>
-                            boatForm.setValue(
-                              "pricing.MEDIA.prices.8h",
-                              parseFloat(e.target.value) || 0
-                            )
-                          }
-                        />
-                      </div>
-                    </>
-                  ) : (
-                    <>
-                      <div>
-                        <Label className="text-xs">1h</Label>
-                        <Input
-                          type="number"
-                          placeholder="0"
-                          onChange={e =>
-                            boatForm.setValue(
-                              "pricing.MEDIA.prices.1h",
-                              parseFloat(e.target.value) || 0
-                            )
-                          }
-                        />
-                      </div>
-                      <div>
-                        <Label className="text-xs">2h</Label>
-                        <Input
-                          type="number"
-                          placeholder="0"
-                          onChange={e =>
-                            boatForm.setValue(
-                              "pricing.MEDIA.prices.2h",
-                              parseFloat(e.target.value) || 0
-                            )
-                          }
-                        />
-                      </div>
-                      <div>
-                        <Label className="text-xs">3h</Label>
-                        <Input
-                          type="number"
-                          placeholder="0"
-                          onChange={e =>
-                            boatForm.setValue(
-                              "pricing.MEDIA.prices.3h",
-                              parseFloat(e.target.value) || 0
-                            )
-                          }
-                        />
-                      </div>
-                      <div>
-                        <Label className="text-xs">4h</Label>
-                        <Input
-                          type="number"
-                          placeholder="0"
-                          onChange={e =>
-                            boatForm.setValue(
-                              "pricing.MEDIA.prices.4h",
-                              parseFloat(e.target.value) || 0
-                            )
-                          }
-                        />
-                      </div>
-                      <div>
-                        <Label className="text-xs">6h</Label>
-                        <Input
-                          type="number"
-                          placeholder="0"
-                          onChange={e =>
-                            boatForm.setValue(
-                              "pricing.MEDIA.prices.6h",
-                              parseFloat(e.target.value) || 0
-                            )
-                          }
-                        />
-                      </div>
-                      <div>
-                        <Label className="text-xs">8h</Label>
-                        <Input
-                          type="number"
-                          placeholder="0"
-                          onChange={e =>
-                            boatForm.setValue(
-                              "pricing.MEDIA.prices.8h",
-                              parseFloat(e.target.value) || 0
-                            )
-                          }
-                        />
-                      </div>
-                    </>
-                  )}
-                </div>
-              </div>
-
-              {/* Temporada ALTA */}
-              <div className="border rounded-lg p-4 space-y-3">
-                <h4 className="font-medium">Temporada ALTA</h4>
-                <Input
-                  placeholder="Periodo (ej: Agosto)"
-                  onChange={e => boatForm.setValue("pricing.ALTA.period", e.target.value)}
-                />
-                <div className="grid grid-cols-3 gap-2">
-                  {boatForm.watch("requiresLicense") ? (
-                    <>
-                      <div>
-                        <Label className="text-xs">2h</Label>
-                        <Input
-                          type="number"
-                          placeholder="0"
-                          onChange={e =>
-                            boatForm.setValue(
-                              "pricing.ALTA.prices.2h",
-                              parseFloat(e.target.value) || 0
-                            )
-                          }
-                        />
-                      </div>
-                      <div>
-                        <Label className="text-xs">4h</Label>
-                        <Input
-                          type="number"
-                          placeholder="0"
-                          onChange={e =>
-                            boatForm.setValue(
-                              "pricing.ALTA.prices.4h",
-                              parseFloat(e.target.value) || 0
-                            )
-                          }
-                        />
-                      </div>
-                      <div>
-                        <Label className="text-xs">8h</Label>
-                        <Input
-                          type="number"
-                          placeholder="0"
-                          onChange={e =>
-                            boatForm.setValue(
-                              "pricing.ALTA.prices.8h",
-                              parseFloat(e.target.value) || 0
-                            )
-                          }
-                        />
-                      </div>
-                    </>
-                  ) : (
-                    <>
-                      <div>
-                        <Label className="text-xs">1h</Label>
-                        <Input
-                          type="number"
-                          placeholder="0"
-                          onChange={e =>
-                            boatForm.setValue(
-                              "pricing.ALTA.prices.1h",
-                              parseFloat(e.target.value) || 0
-                            )
-                          }
-                        />
-                      </div>
-                      <div>
-                        <Label className="text-xs">2h</Label>
-                        <Input
-                          type="number"
-                          placeholder="0"
-                          onChange={e =>
-                            boatForm.setValue(
-                              "pricing.ALTA.prices.2h",
-                              parseFloat(e.target.value) || 0
-                            )
-                          }
-                        />
-                      </div>
-                      <div>
-                        <Label className="text-xs">3h</Label>
-                        <Input
-                          type="number"
-                          placeholder="0"
-                          onChange={e =>
-                            boatForm.setValue(
-                              "pricing.ALTA.prices.3h",
-                              parseFloat(e.target.value) || 0
-                            )
-                          }
-                        />
-                      </div>
-                      <div>
-                        <Label className="text-xs">4h</Label>
-                        <Input
-                          type="number"
-                          placeholder="0"
-                          onChange={e =>
-                            boatForm.setValue(
-                              "pricing.ALTA.prices.4h",
-                              parseFloat(e.target.value) || 0
-                            )
-                          }
-                        />
-                      </div>
-                      <div>
-                        <Label className="text-xs">6h</Label>
-                        <Input
-                          type="number"
-                          placeholder="0"
-                          onChange={e =>
-                            boatForm.setValue(
-                              "pricing.ALTA.prices.6h",
-                              parseFloat(e.target.value) || 0
-                            )
-                          }
-                        />
-                      </div>
-                      <div>
-                        <Label className="text-xs">8h</Label>
-                        <Input
-                          type="number"
-                          placeholder="0"
-                          onChange={e =>
-                            boatForm.setValue(
-                              "pricing.ALTA.prices.8h",
-                              parseFloat(e.target.value) || 0
-                            )
-                          }
-                        />
-                      </div>
-                    </>
-                  )}
-                </div>
-              </div>
-            </div>
-
-            <DialogFooter>
-              <Button
-                type="button"
-                variant="outline"
-                onClick={resetDialog}
-                data-testid="button-cancel-boat"
-              >
-                Cancelar
-              </Button>
-              <Button
-                type="submit"
-                disabled={createBoatMutation.isPending || updateBoatMutation.isPending}
-                data-testid="button-save-boat"
-              >
-                {createBoatMutation.isPending || updateBoatMutation.isPending ? (
-                  <><Loader2 className="w-4 h-4 mr-2 animate-spin" />Guardando...</>
-                ) : (
-                  "Guardar"
-                )}
-              </Button>
-            </DialogFooter>
-          </form>
-        </DialogContent>
-      </Dialog>
+      <BoatFormDialog
+        open={showBoatDialog}
+        onOpenChange={setShowBoatDialog}
+        editingBoat={editingBoat}
+        form={boatForm}
+        featuresText={featuresText}
+        onFeaturesTextChange={setFeaturesText}
+        selectedEquipment={selectedEquipment}
+        onSelectedEquipmentChange={setSelectedEquipment}
+        selectedIncluded={selectedIncluded}
+        onSelectedIncludedChange={setSelectedIncluded}
+        onSubmit={handleSubmit}
+        onCancel={resetDialog}
+        isSaving={createBoatMutation.isPending || updateBoatMutation.isPending}
+      />
 
       <AlertDialog open={!!deactivateTarget} onOpenChange={(open) => !open && setDeactivateTarget(null)}>
         <AlertDialogContent>

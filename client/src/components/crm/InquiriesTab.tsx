@@ -1,4 +1,5 @@
 import { useState, useCallback, useRef, useEffect } from "react";
+import { ErrorState } from "./shared/ErrorState";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -264,9 +265,7 @@ export function InquiriesTab({ adminToken, onOpenWhatsApp }: InquiriesTabProps) 
       )}
 
       {error && (
-        <Card><CardContent className="py-12 text-center text-red-500">
-          Error al cargar las peticiones
-        </CardContent></Card>
+        <ErrorState message="Error al cargar peticiones" />
       )}
 
       {!isLoading && !error && inquiries.length === 0 && (

@@ -1,4 +1,5 @@
 import { useState, useCallback, useRef, useEffect } from "react";
+import { ErrorState } from "./shared/ErrorState";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -195,7 +196,7 @@ export function BookingsTab({
               <Skeleton className="h-10 w-full" />
             </div>
           ) : error ? (
-            <div className="text-center py-12 text-red-500">Error cargando reservas</div>
+            <ErrorState message="Error al cargar reservas" />
           ) : !bookingsData || bookingsData.length === 0 ? (
             <div className="flex flex-col items-center justify-center py-12 text-center">
               <Calendar className="w-12 h-12 text-muted-foreground/50 mb-4" />
@@ -345,11 +346,7 @@ export function BookingsTab({
             <Skeleton className="h-10 w-full" />
           </div>
         ) : error ? (
-          <Card>
-            <CardContent className="py-12 text-center text-red-500">
-              Error cargando reservas
-            </CardContent>
-          </Card>
+          <ErrorState message="Error al cargar reservas" />
         ) : !bookingsData || bookingsData.length === 0 ? (
           <Card>
             <CardContent className="flex flex-col items-center justify-center py-12 text-center">

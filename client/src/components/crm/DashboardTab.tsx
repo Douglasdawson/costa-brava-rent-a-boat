@@ -133,7 +133,7 @@ function ChangeIndicator({ change }: { change: number | null }) {
   return (
     <span
       className={`inline-flex items-center gap-0.5 text-xs font-medium ${
-        isPositive ? "text-primary" : "text-red-600"
+        isPositive ? "text-primary" : "text-destructive"
       }`}
     >
       {isPositive ? (

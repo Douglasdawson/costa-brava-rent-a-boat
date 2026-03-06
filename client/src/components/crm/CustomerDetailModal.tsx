@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { ErrorState } from "./shared/ErrorState";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Textarea } from "@/components/ui/textarea";
@@ -175,7 +176,7 @@ export function CustomerDetailModal({
         )}
 
         {error && (
-          <div className="text-center py-12 text-red-500">Error cargando datos del cliente</div>
+          <ErrorState message="Error al cargar datos del cliente" />
         )}
 
         {customer && (

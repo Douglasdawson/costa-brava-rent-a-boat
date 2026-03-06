@@ -1,4 +1,5 @@
 import { useState, useCallback, useRef, useEffect } from "react";
+import { ErrorState } from "./shared/ErrorState";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -270,7 +271,7 @@ export function CustomersTab({
               <Skeleton className="h-10 w-full" />
             </div>
           ) : error ? (
-            <div className="text-center py-12 text-red-500">Error cargando clientes</div>
+            <ErrorState message="Error al cargar clientes" />
           ) : !customersData || customersData.length === 0 ? (
             <div className="flex flex-col items-center justify-center py-12 text-center">
               <Users className="w-12 h-12 text-muted-foreground/50 mb-4" />
@@ -409,11 +410,7 @@ export function CustomersTab({
             <Skeleton className="h-10 w-full" />
           </div>
         ) : error ? (
-          <Card>
-            <CardContent className="py-12 text-center text-red-500">
-              Error cargando clientes
-            </CardContent>
-          </Card>
+          <ErrorState message="Error al cargar clientes" />
         ) : !customersData || customersData.length === 0 ? (
           <Card>
             <CardContent className="flex flex-col items-center justify-center py-12 text-center">
@@ -501,7 +498,7 @@ export function CustomersTab({
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Total Clientes</CardTitle>
+            <CardTitle className="text-sm font-medium font-heading">Total Clientes</CardTitle>
             <Users className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
@@ -514,7 +511,7 @@ export function CustomersTab({
 
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Mejor Cliente</CardTitle>
+            <CardTitle className="text-sm font-medium font-heading">Mejor Cliente</CardTitle>
             <TrendingUp className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
@@ -537,7 +534,7 @@ export function CustomersTab({
 
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Promedio por Cliente</CardTitle>
+            <CardTitle className="text-sm font-medium font-heading">Promedio por Cliente</CardTitle>
             <Euro className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>

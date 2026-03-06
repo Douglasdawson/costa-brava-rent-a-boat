@@ -1,4 +1,5 @@
 import { useState, useCallback, useMemo, useEffect, useRef } from "react";
+import { ErrorState } from "./shared/ErrorState";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import {
@@ -442,11 +443,7 @@ export function CalendarTab({
         {isLoading ? (
           <CalendarSkeleton view={view} />
         ) : error ? (
-          <Card>
-            <CardContent className="py-12 text-center text-red-500">
-              Error cargando datos del calendario
-            </CardContent>
-          </Card>
+          <ErrorState message="Error al cargar el calendario" />
         ) : (
           <>
             {view === "day" && (

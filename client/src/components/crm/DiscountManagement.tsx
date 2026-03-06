@@ -275,7 +275,7 @@ export function DiscountManagement({ adminToken }: DiscountManagementProps) {
         <Card>
           <CardContent className="p-4">
             <p className="text-sm text-muted-foreground">Activos</p>
-            <p className="text-2xl font-bold text-green-600">{totalActive}</p>
+            <p className="text-2xl font-bold text-emerald-600">{totalActive}</p>
           </CardContent>
         </Card>
         <Card>

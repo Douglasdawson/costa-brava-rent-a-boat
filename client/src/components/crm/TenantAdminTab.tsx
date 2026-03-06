@@ -559,85 +559,158 @@ function TeamMembersSection({
               <Skeleton className="h-10 w-full" />
             </div>
           ) : (
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead>Nombre</TableHead>
-                  <TableHead>Email</TableHead>
-                  <TableHead>Rol</TableHead>
-                  <TableHead>Estado</TableHead>
-                  <TableHead>Ultimo acceso</TableHead>
-                  <TableHead className="text-right">Acciones</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {members.map((member) => (
-                  <TableRow key={member.id}>
-                    <TableCell className="font-medium">
-                      {[member.firstName, member.lastName].filter(Boolean).join(" ") || "-"}
-                    </TableCell>
-                    <TableCell className="text-sm text-muted-foreground">{member.email}</TableCell>
-                    <TableCell>
-                      <Badge variant={roleBadgeVariant(member.role)}>
-                        {roleLabel(member.role)}
-                      </Badge>
-                    </TableCell>
-                    <TableCell>
-                      <Badge className={member.isActive ? "bg-emerald-100 text-emerald-800" : "bg-red-100 text-red-800"}>
-                        {member.isActive ? "Activo" : "Inactivo"}
-                      </Badge>
-                    </TableCell>
-                    <TableCell className="text-sm text-muted-foreground">
-                      {member.lastLoginAt
-                        ? new Date(member.lastLoginAt).toLocaleDateString("es-ES", {
-                            day: "2-digit",
-                            month: "2-digit",
-                            year: "numeric",
-                          })
-                        : "Nunca"}
-                    </TableCell>
-                    <TableCell className="text-right">
-                      {member.role !== "owner" && (
-                        <div className="flex justify-end gap-1">
-                          <Button
-                            variant="ghost"
-                            size="sm"
-                            onClick={() => handleEdit(member)}
-                            title="Editar"
-                          >
-                            <Edit className="w-4 h-4" />
-                          </Button>
-                          <Button
-                            variant="ghost"
-                            size="sm"
-                            onClick={() =>
-                              toggleActiveMutation.mutate({
-                                id: member.id,
-                                isActive: !member.isActive,
+            <>
+              {/* Desktop table */}
+              <div className="hidden md:block">
+                <Table>
+                  <TableHeader>
+                    <TableRow>
+                      <TableHead>Nombre</TableHead>
+                      <TableHead>Email</TableHead>
+                      <TableHead>Rol</TableHead>
+                      <TableHead>Estado</TableHead>
+                      <TableHead>Ultimo acceso</TableHead>
+                      <TableHead className="text-right">Acciones</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    {members.map((member) => (
+                      <TableRow key={member.id}>
+                        <TableCell className="font-medium">
+                          {[member.firstName, member.lastName].filter(Boolean).join(" ") || "-"}
+                        </TableCell>
+                        <TableCell className="text-sm text-muted-foreground">{member.email}</TableCell>
+                        <TableCell>
+                          <Badge variant={roleBadgeVariant(member.role)}>
+                            {roleLabel(member.role)}
+                          </Badge>
+                        </TableCell>
+                        <TableCell>
+                          <Badge className={member.isActive ? "bg-emerald-100 text-emerald-800" : "bg-red-100 text-red-800"}>
+                            {member.isActive ? "Activo" : "Inactivo"}
+                          </Badge>
+                        </TableCell>
+                        <TableCell className="text-sm text-muted-foreground">
+                          {member.lastLoginAt
+                            ? new Date(member.lastLoginAt).toLocaleDateString("es-ES", {
+                                day: "2-digit",
+                                month: "2-digit",
+                                year: "numeric",
                               })
-                            }
-                            title={member.isActive ? "Desactivar" : "Activar"}
-                          >
-                            {member.isActive ? (
-                              <UserX className="w-4 h-4 text-red-500" />
-                            ) : (
-                              <UserCheck className="w-4 h-4 text-primary" />
-                            )}
-                          </Button>
+                            : "Nunca"}
+                        </TableCell>
+                        <TableCell className="text-right">
+                          {member.role !== "owner" && (
+                            <div className="flex justify-end gap-1">
+                              <Button
+                                variant="ghost"
+                                size="sm"
+                                onClick={() => handleEdit(member)}
+                                title="Editar"
+                              >
+                                <Edit className="w-4 h-4" />
+                              </Button>
+                              <Button
+                                variant="ghost"
+                                size="sm"
+                                onClick={() =>
+                                  toggleActiveMutation.mutate({
+                                    id: member.id,
+                                    isActive: !member.isActive,
+                                  })
+                                }
+                                title={member.isActive ? "Desactivar" : "Activar"}
+                              >
+                                {member.isActive ? (
+                                  <UserX className="w-4 h-4 text-red-500" />
+                                ) : (
+                                  <UserCheck className="w-4 h-4 text-primary" />
+                                )}
+                              </Button>
+                            </div>
+                          )}
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                    {members.length === 0 && (
+                      <TableRow>
+                        <TableCell colSpan={6} className="text-center py-10 text-muted-foreground">
+                          Solo hay un usuario registrado. Añade miembros de tu equipo.
+                        </TableCell>
+                      </TableRow>
+                    )}
+                  </TableBody>
+                </Table>
+              </div>
+
+              {/* Mobile card view */}
+              <div className="block md:hidden divide-y divide-border">
+                {members.length === 0 ? (
+                  <div className="text-center py-10 text-muted-foreground">
+                    Solo hay un usuario registrado. Añade miembros de tu equipo.
+                  </div>
+                ) : (
+                  members.map((member) => (
+                    <div key={member.id} className="p-4 space-y-3">
+                      <div className="flex items-start justify-between">
+                        <div>
+                          <p className="font-medium text-sm">
+                            {[member.firstName, member.lastName].filter(Boolean).join(" ") || "-"}
+                          </p>
+                          <p className="text-xs text-muted-foreground mt-0.5">{member.email}</p>
                         </div>
-                      )}
-                    </TableCell>
-                  </TableRow>
-                ))}
-                {members.length === 0 && (
-                  <TableRow>
-                    <TableCell colSpan={6} className="text-center py-10 text-muted-foreground">
-                      Solo hay un usuario registrado. Añade miembros de tu equipo.
-                    </TableCell>
-                  </TableRow>
+                        {member.role !== "owner" && (
+                          <div className="flex gap-1">
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              onClick={() => handleEdit(member)}
+                              title="Editar"
+                            >
+                              <Edit className="w-4 h-4" />
+                            </Button>
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              onClick={() =>
+                                toggleActiveMutation.mutate({
+                                  id: member.id,
+                                  isActive: !member.isActive,
+                                })
+                              }
+                              title={member.isActive ? "Desactivar" : "Activar"}
+                            >
+                              {member.isActive ? (
+                                <UserX className="w-4 h-4 text-red-500" />
+                              ) : (
+                                <UserCheck className="w-4 h-4 text-primary" />
+                              )}
+                            </Button>
+                          </div>
+                        )}
+                      </div>
+                      <div className="flex items-center gap-2 flex-wrap">
+                        <Badge variant={roleBadgeVariant(member.role)}>
+                          {roleLabel(member.role)}
+                        </Badge>
+                        <Badge className={member.isActive ? "bg-emerald-100 text-emerald-800" : "bg-red-100 text-red-800"}>
+                          {member.isActive ? "Activo" : "Inactivo"}
+                        </Badge>
+                        <span className="text-xs text-muted-foreground ml-auto">
+                          {member.lastLoginAt
+                            ? new Date(member.lastLoginAt).toLocaleDateString("es-ES", {
+                                day: "2-digit",
+                                month: "2-digit",
+                                year: "numeric",
+                              })
+                            : "Nunca"}
+                        </span>
+                      </div>
+                    </div>
+                  ))
                 )}
-              </TableBody>
-            </Table>
+              </div>
+            </>
           )}
         </CardContent>
       </Card>

@@ -137,7 +137,7 @@ export function GiftCardManagement({ adminToken }: GiftCardManagementProps) {
         <Card>
           <CardContent className="p-4">
             <p className="text-sm text-muted-foreground">Activas</p>
-            <p className="text-2xl font-bold text-green-600">{totalActive}</p>
+            <p className="text-2xl font-bold text-emerald-600">{totalActive}</p>
           </CardContent>
         </Card>
         <Card>

@@ -513,13 +513,13 @@ export function ReportsTab({ adminToken }: ReportsTabProps) {
                 <Card>
                   <CardContent className="p-4 text-center">
                     <p className="text-sm text-muted-foreground">Completados</p>
-                    <p className="text-2xl font-bold text-green-600">{maintSummary.completed}</p>
+                    <p className="text-2xl font-bold text-emerald-600">{maintSummary.completed}</p>
                   </CardContent>
                 </Card>
                 <Card>
                   <CardContent className="p-4 text-center">
                     <p className="text-sm text-muted-foreground">Pendientes</p>
-                    <p className="text-2xl font-bold text-yellow-600">{maintSummary.scheduled + maintSummary.inProgress}</p>
+                    <p className="text-2xl font-bold text-amber-600">{maintSummary.scheduled + maintSummary.inProgress}</p>
                   </CardContent>
                 </Card>
                 <Card>
@@ -592,7 +592,7 @@ export function ReportsTab({ adminToken }: ReportsTabProps) {
                 <Card>
                   <CardContent className="p-4 text-center">
                     <p className="text-sm text-muted-foreground">Disponibles</p>
-                    <p className="text-2xl font-bold text-green-600">
+                    <p className="text-2xl font-bold text-emerald-600">
                       {inventoryItems.filter(i => i.status === "available").length}
                     </p>
                   </CardContent>
@@ -600,7 +600,7 @@ export function ReportsTab({ adminToken }: ReportsTabProps) {
                 <Card>
                   <CardContent className="p-4 text-center">
                     <p className="text-sm text-muted-foreground">Stock Bajo</p>
-                    <p className="text-2xl font-bold text-yellow-600">
+                    <p className="text-2xl font-bold text-amber-600">
                       {inventoryItems.filter(i => i.status === "low_stock").length}
                     </p>
                   </CardContent>
@@ -608,7 +608,7 @@ export function ReportsTab({ adminToken }: ReportsTabProps) {
                 <Card>
                   <CardContent className="p-4 text-center">
                     <p className="text-sm text-muted-foreground">Sin Stock</p>
-                    <p className="text-2xl font-bold text-red-600">
+                    <p className="text-2xl font-bold text-destructive">
                       {inventoryItems.filter(i => i.status === "out_of_stock").length}
                     </p>
                   </CardContent>

@@ -17,6 +17,7 @@ import { Check, X, Trash2, Camera, Eye } from "lucide-react";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { useToast } from "@/hooks/use-toast";
 import { queryClient } from "@/lib/queryClient";
+import { PaginationControls } from "./shared/PaginationControls";
 
 interface GalleryPhoto {
   id: string;
@@ -36,6 +37,8 @@ interface GalleryManagementProps {
 export function GalleryManagement({ adminToken }: GalleryManagementProps) {
   const [filter, setFilter] = useState<"all" | "pending" | "approved">("pending");
   const [deletePhotoId, setDeletePhotoId] = useState<string | null>(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const PAGE_SIZE = 12;
   const { toast } = useToast();
 
   const headers = {
@@ -100,6 +103,13 @@ export function GalleryManagement({ adminToken }: GalleryManagementProps) {
     return true;
   });
 
+  const totalPages = Math.max(1, Math.ceil(filteredPhotos.length / PAGE_SIZE));
+  const safePage = Math.min(currentPage, totalPages);
+  const paginatedPhotos = filteredPhotos.slice(
+    (safePage - 1) * PAGE_SIZE,
+    safePage * PAGE_SIZE
+  );
+
   return (
     <div className="space-y-6">
       <div className="flex flex-wrap items-center justify-between gap-3">
@@ -113,7 +123,7 @@ export function GalleryManagement({ adminToken }: GalleryManagementProps) {
               key={f}
               variant={filter === f ? "default" : "outline"}
               size="sm"
-              onClick={() => setFilter(f)}
+              onClick={() => { setFilter(f); setCurrentPage(1); }}
             >
               {f === "pending" ? "Pendientes" : f === "approved" ? "Aprobadas" : "Todas"}
               {f === "pending" && (
@@ -145,7 +155,7 @@ export function GalleryManagement({ adminToken }: GalleryManagementProps) {
         </div>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-          {filteredPhotos.map((photo) => (
+          {paginatedPhotos.map((photo) => (
             <Card key={photo.id} className="overflow-hidden">
               <div className="relative">
                 <img
@@ -210,6 +220,14 @@ export function GalleryManagement({ adminToken }: GalleryManagementProps) {
             </Card>
           ))}
         </div>
+      )}
+
+      {filteredPhotos.length > PAGE_SIZE && (
+        <PaginationControls
+          currentPage={safePage}
+          totalPages={totalPages}
+          onPageChange={setCurrentPage}
+        />
       )}
 
       <AlertDialog open={!!deletePhotoId} onOpenChange={(open) => !open && setDeletePhotoId(null)}>

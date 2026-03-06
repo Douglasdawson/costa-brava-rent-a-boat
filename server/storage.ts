@@ -1396,8 +1396,15 @@ export class DatabaseStorage implements IStorage {
     const operatingHoursPerDay = 10; // ~9AM to 7PM
     const totalAvailableHours = totalDaysInPeriod * operatingHoursPerDay;
 
+    // Build lookup map ONCE instead of filtering per boat (O(n) vs O(n*m))
+    const bookingsByBoat = new Map<string, typeof periodBookings>();
+    for (const b of periodBookings) {
+      if (!bookingsByBoat.has(b.boatId)) bookingsByBoat.set(b.boatId, []);
+      bookingsByBoat.get(b.boatId)!.push(b);
+    }
+
     return allBoats.map(boat => {
-      const boatBookings = periodBookings.filter(b => b.boatId === boat.id);
+      const boatBookings = bookingsByBoat.get(boat.id) || [];
       const confirmedBookings = boatBookings.filter(b => b.bookingStatus === "confirmed");
       const revenue = confirmedBookings.reduce((sum, b) => sum + parseFloat(b.totalAmount), 0);
       const totalHours = boatBookings.reduce((sum, b) => sum + (b.totalHours || 0), 0);
@@ -2190,70 +2197,76 @@ export class DatabaseStorage implements IStorage {
     let updated = 0;
 
     const entries = Array.from(customerMap.entries());
-    for (const [phone, custBookings] of entries) {
-      // Check if customer already exists
-      const [existing] = await db
-        .select()
-        .from(crmCustomers)
-        .where(eq(crmCustomers.phone, phone))
-        .limit(1);
+    const phones = entries.map(([phone]) => phone);
+    if (phones.length === 0) return { created: 0, updated: 0 };
 
-      // Use the most recent booking for name/nationality
-      const sorted = [...custBookings].sort(
-        (a: Booking, b: Booking) => new Date(b.startTime).getTime() - new Date(a.startTime).getTime()
-      );
-      const latest = sorted[0];
+    // Batch fetch ALL existing CRM customers
+    const existingCustomers = await db.select().from(crmCustomers)
+      .where(inArray(crmCustomers.phone, phones));
+    const existingMap = new Map(existingCustomers.map(c => [c.phone, c]));
 
-      const totalBookings = custBookings.length;
-      const totalSpent = custBookings
-        .filter((b: Booking) => b.bookingStatus === "confirmed")
-        .reduce((sum: number, b: Booking) => sum + parseFloat(b.totalAmount), 0);
-      const dates = custBookings.map((b: Booking) => new Date(b.startTime).getTime());
-      const firstBookingDate = new Date(Math.min(...dates));
-      const lastBookingDate = new Date(Math.max(...dates));
+    // Wrap insert/update loop in a transaction
+    await db.transaction(async (tx) => {
+      for (const [phone, custBookings] of entries) {
+        const existing = existingMap.get(phone);
 
-      let segment = "new";
-      if (totalBookings >= 4 || totalSpent >= 1000) {
-        segment = "vip";
-      } else if (totalBookings >= 2) {
-        segment = "returning";
+        // Use the most recent booking for name/nationality
+        const sorted = [...custBookings].sort(
+          (a: Booking, b: Booking) => new Date(b.startTime).getTime() - new Date(a.startTime).getTime()
+        );
+        const latest = sorted[0];
+
+        const totalBookings = custBookings.length;
+        const totalSpent = custBookings
+          .filter((b: Booking) => b.bookingStatus === "confirmed")
+          .reduce((sum: number, b: Booking) => sum + parseFloat(b.totalAmount), 0);
+        const dates = custBookings.map((b: Booking) => new Date(b.startTime).getTime());
+        const firstBookingDate = new Date(Math.min(...dates));
+        const lastBookingDate = new Date(Math.max(...dates));
+
+        let segment = "new";
+        if (totalBookings >= 4 || totalSpent >= 1000) {
+          segment = "vip";
+        } else if (totalBookings >= 2) {
+          segment = "returning";
+        }
+
+        if (existing) {
+          await tx
+            .update(crmCustomers)
+            .set({
+              name: latest.customerName,
+              surname: latest.customerSurname,
+              email: latest.customerEmail || existing.email,
+              nationality: latest.customerNationality || existing.nationality,
+              totalBookings,
+              totalSpent: totalSpent.toFixed(2),
+              firstBookingDate,
+              lastBookingDate,
+              segment: existing.segment === "vip" ? "vip" : segment,
+              updatedAt: new Date(),
+            })
+            .where(eq(crmCustomers.id, existing.id));
+          updated++;
+        } else {
+          await tx
+            .insert(crmCustomers)
+            .values({
+              name: latest.customerName,
+              surname: latest.customerSurname,
+              email: latest.customerEmail || null,
+              phone: latest.customerPhone,
+              nationality: latest.customerNationality,
+              segment,
+              totalBookings,
+              totalSpent: totalSpent.toFixed(2),
+              firstBookingDate,
+              lastBookingDate,
+            });
+          created++;
+        }
       }
-
-      if (existing) {
-        await db
-          .update(crmCustomers)
-          .set({
-            name: latest.customerName,
-            surname: latest.customerSurname,
-            email: latest.customerEmail || existing.email,
-            nationality: latest.customerNationality || existing.nationality,
-            totalBookings,
-            totalSpent: totalSpent.toFixed(2),
-            firstBookingDate,
-            lastBookingDate,
-            segment: existing.segment === "vip" ? "vip" : segment,
-            updatedAt: new Date(),
-          })
-          .where(eq(crmCustomers.id, existing.id));
-        updated++;
-      } else {
-        await db
-          .insert(crmCustomers)
-          .values({
-            name: latest.customerName,
-            surname: latest.customerSurname,
-            email: latest.customerEmail || null,
-            phone: latest.customerPhone,
-            nationality: latest.customerNationality,
-            segment,
-            totalBookings,
-            totalSpent: totalSpent.toFixed(2),
-            firstBookingDate,
-            lastBookingDate,
-          });
-        created++;
-      }
-    }
+    });
 
     return { created, updated };
   }
@@ -2589,39 +2602,44 @@ export class DatabaseStorage implements IStorage {
       .from(bookingExtras)
       .where(eq(bookingExtras.bookingId, bookingId));
 
-    for (const extra of extras) {
-      // Find matching inventory item by name
-      const [item] = await db
-        .select()
-        .from(inventoryItems)
-        .where(eq(inventoryItems.name, extra.extraName))
-        .limit(1);
+    if (extras.length === 0) return;
 
-      if (!item) continue; // Extra not tracked in inventory
+    // Batch lookup ALL inventory items matching extra names
+    const extraNames = extras.map(e => e.extraName);
+    const items = await db.select().from(inventoryItems)
+      .where(inArray(inventoryItems.name, extraNames));
+    const itemMap = new Map(items.map(i => [i.name, i]));
 
-      const qty = extra.quantity || 1;
+    // Wrap updates in a transaction for atomicity
+    await db.transaction(async (tx) => {
+      for (const extra of extras) {
+        const item = itemMap.get(extra.extraName);
+        if (!item) continue; // Extra not tracked in inventory
 
-      // Decrement available stock, preventing it from going below zero
-      await db
-        .update(inventoryItems)
-        .set({
-          availableStock: sql`GREATEST(${inventoryItems.availableStock} - ${qty}, 0)`,
-          status: sql`CASE
-            WHEN ${inventoryItems.availableStock} - ${qty} <= 0 THEN 'out_of_stock'
-            WHEN ${inventoryItems.availableStock} - ${qty} <= ${inventoryItems.minStockAlert} THEN 'low_stock'
-            ELSE 'available'
-          END`,
-        })
-        .where(eq(inventoryItems.id, item.id));
+        const qty = extra.quantity || 1;
 
-      // Record the outbound movement for audit trail
-      await db.insert(inventoryMovements).values({
-        itemId: item.id,
-        type: "OUT",
-        quantity: qty,
-        reason: `booking:${bookingId}`,
-      });
-    }
+        // Decrement available stock, preventing it from going below zero
+        await tx
+          .update(inventoryItems)
+          .set({
+            availableStock: sql`GREATEST(${inventoryItems.availableStock} - ${qty}, 0)`,
+            status: sql`CASE
+              WHEN ${inventoryItems.availableStock} - ${qty} <= 0 THEN 'out_of_stock'
+              WHEN ${inventoryItems.availableStock} - ${qty} <= ${inventoryItems.minStockAlert} THEN 'low_stock'
+              ELSE 'available'
+            END`,
+          })
+          .where(eq(inventoryItems.id, item.id));
+
+        // Record the outbound movement for audit trail
+        await tx.insert(inventoryMovements).values({
+          itemId: item.id,
+          type: "OUT",
+          quantity: qty,
+          reason: `booking:${bookingId}`,
+        });
+      }
+    });
   }
 
   private calculateInventoryStatus(available: number, minAlert: number): string {

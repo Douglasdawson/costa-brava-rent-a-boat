@@ -3,6 +3,16 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
 import { Check, X, Trash2, Camera, Eye } from "lucide-react";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { useToast } from "@/hooks/use-toast";
@@ -25,6 +35,7 @@ interface GalleryManagementProps {
 
 export function GalleryManagement({ adminToken }: GalleryManagementProps) {
   const [filter, setFilter] = useState<"all" | "pending" | "approved">("pending");
+  const [deletePhotoId, setDeletePhotoId] = useState<string | null>(null);
   const { toast } = useToast();
 
   const headers = {
@@ -189,7 +200,7 @@ export function GalleryManagement({ adminToken }: GalleryManagementProps) {
                     size="sm"
                     variant="ghost"
                     className="text-red-500"
-                    onClick={() => deleteMutation.mutate(photo.id)}
+                    onClick={() => setDeletePhotoId(photo.id)}
                     disabled={deleteMutation.isPending}
                   >
                     <Trash2 className="w-4 h-4" />
@@ -200,6 +211,23 @@ export function GalleryManagement({ adminToken }: GalleryManagementProps) {
           ))}
         </div>
       )}
+
+      <AlertDialog open={!!deletePhotoId} onOpenChange={(open) => !open && setDeletePhotoId(null)}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Eliminar foto</AlertDialogTitle>
+            <AlertDialogDescription>
+              Estas seguro de eliminar esta foto? Esta accion no se puede deshacer.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Cancelar</AlertDialogCancel>
+            <AlertDialogAction onClick={() => { deleteMutation.mutate(deletePhotoId!); setDeletePhotoId(null); }}>
+              Eliminar
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 }

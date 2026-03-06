@@ -92,9 +92,9 @@ const STATUS_COLORS: Record<
     text: "text-amber-800",
   },
   draft: {
-    bg: "bg-gray-100",
-    border: "border-gray-400",
-    text: "text-gray-800",
+    bg: "bg-muted",
+    border: "border-muted-foreground/40",
+    text: "text-muted-foreground",
   },
   cancelled: {
     bg: "bg-red-100",
@@ -113,7 +113,7 @@ const STATUS_DOT_COLORS: Record<string, string> = {
   confirmed: "bg-emerald-500",
   hold: "bg-amber-500",
   pending_payment: "bg-amber-500",
-  draft: "bg-gray-400",
+  draft: "bg-muted-foreground",
   cancelled: "bg-red-400",
   completed: "bg-blue-500",
 };

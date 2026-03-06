@@ -134,6 +134,10 @@ export interface PaginatedCrmCustomersResponse {
   total: number;
   page: number;
   totalPages: number;
+  bestCustomerName: string | null;
+  bestCustomerSpent: string | null;
+  totalSpentAll: string;
+  totalCustomersAll: number;
 }
 
 // Checkin data type

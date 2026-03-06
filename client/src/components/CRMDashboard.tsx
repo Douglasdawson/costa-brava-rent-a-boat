@@ -212,9 +212,17 @@ export default function CRMDashboard({ adminToken }: CRMDashboardProps) {
         sortOrder: 'desc',
       });
 
-      const response = await fetch(`/api/admin/bookings?${params.toString()}`, {
-        headers: { 'Authorization': `Bearer ${adminToken}` }
-      });
+      // Fetch bookings and boats in parallel
+      const [response, boatsResponse] = await Promise.all([
+        fetch(`/api/admin/bookings?${params.toString()}`, {
+          headers: { 'Authorization': `Bearer ${adminToken}` }
+        }),
+        fetch('/api/boats'),
+      ]);
+
+      const boatsList = boatsResponse.ok ? await boatsResponse.json() : [];
+      const boatName = (id: string) =>
+        boatsList.find((bt: { id: string; name: string }) => bt.id === id)?.name || id;
 
       if (!response.ok) {
         throw new Error('Error al obtener reservas para exportar');
@@ -250,7 +258,7 @@ export default function CRMDashboard({ adminToken }: CRMDashboardProps) {
         b.customerEmail || "",
         b.customerNationality,
         b.numberOfPeople,
-        b.boatId,
+        boatName(b.boatId),
         b.totalHours,
         b.subtotal,
         b.extrasTotal,

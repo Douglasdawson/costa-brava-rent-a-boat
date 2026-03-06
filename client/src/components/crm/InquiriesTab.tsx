@@ -27,6 +27,7 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
+import { Skeleton } from "@/components/ui/skeleton";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import {
   Search,
@@ -251,9 +252,14 @@ export function InquiriesTab({ adminToken, onOpenWhatsApp }: InquiriesTabProps) 
 
       {/* Loading / Error / Empty */}
       {isLoading && (
-        <Card><CardContent className="py-12 text-center text-muted-foreground">
-          <Loader2 className="w-6 h-6 animate-spin mx-auto mb-2" />
-          Cargando peticiones...
+        <Card><CardContent className="p-4">
+          <div className="space-y-3">
+            <Skeleton className="h-10 w-full" />
+            <Skeleton className="h-10 w-full" />
+            <Skeleton className="h-10 w-full" />
+            <Skeleton className="h-10 w-full" />
+            <Skeleton className="h-10 w-full" />
+          </div>
         </CardContent></Card>
       )}
 

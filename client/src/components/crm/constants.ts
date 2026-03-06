@@ -47,11 +47,11 @@ export const getStatusColor = (status: string) => {
     case "cancelled":
       return "bg-red-100 text-red-800";
     case "draft":
-      return "bg-gray-100 text-gray-800";
+      return "bg-muted text-muted-foreground";
     case "completed":
       return "bg-blue-100 text-blue-800";
     default:
-      return "bg-gray-100 text-gray-800";
+      return "bg-muted text-muted-foreground";
   }
 };
 

@@ -8,6 +8,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import {
   Dialog,
   DialogContent,
+  DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogFooter,
@@ -350,6 +351,7 @@ export function EmployeeManagement({ adminToken }: EmployeeManagementProps) {
             <DialogTitle>
               {editingEmployee ? "Editar Empleado" : "Nuevo Empleado"}
             </DialogTitle>
+            <DialogDescription>Crea o edita un empleado del sistema</DialogDescription>
           </DialogHeader>
           <div className="space-y-4 py-4">
             <div className="space-y-2">

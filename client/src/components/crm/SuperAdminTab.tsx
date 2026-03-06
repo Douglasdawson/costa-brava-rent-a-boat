@@ -18,6 +18,7 @@ import {
 } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { Skeleton } from "@/components/ui/skeleton";
 import {
   Globe,
   Building2,
@@ -65,7 +66,7 @@ const STATUS_CONFIG: Record<string, { label: string; colorClass: string; icon: R
   trial:     { label: "Trial",      colorClass: "bg-amber-100 text-amber-800",   icon: AlertCircle },
   active:    { label: "Activo",     colorClass: "bg-emerald-100 text-emerald-800", icon: CheckCircle2 },
   suspended: { label: "Suspendido", colorClass: "bg-red-100 text-red-800",        icon: PauseCircle },
-  cancelled: { label: "Cancelado",  colorClass: "bg-gray-100 text-gray-800",      icon: XCircle },
+  cancelled: { label: "Cancelado",  colorClass: "bg-muted text-muted-foreground",  icon: XCircle },
 };
 
 const PLAN_CONFIG: Record<string, { label: string; price: number }> = {
@@ -284,7 +285,13 @@ export function SuperAdminTab({ adminToken }: SuperAdminTabProps) {
         </CardHeader>
         <CardContent className="p-0">
           {isLoading ? (
-            <div className="p-8 text-center text-muted-foreground">Cargando...</div>
+            <div className="space-y-3 p-4">
+              <Skeleton className="h-10 w-full" />
+              <Skeleton className="h-10 w-full" />
+              <Skeleton className="h-10 w-full" />
+              <Skeleton className="h-10 w-full" />
+              <Skeleton className="h-10 w-full" />
+            </div>
           ) : (
             <div className="overflow-x-auto">
               <Table>
@@ -327,7 +334,7 @@ export function SuperAdminTab({ adminToken }: SuperAdminTabProps) {
                           </Badge>
                         </TableCell>
                         <TableCell>
-                          <Badge className={`text-xs flex items-center gap-1 w-fit ${statusCfg?.colorClass || "bg-gray-100 text-gray-800"}`}>
+                          <Badge className={`text-xs flex items-center gap-1 w-fit ${statusCfg?.colorClass || "bg-muted text-muted-foreground"}`}>
                             {StatusIcon && <StatusIcon className="w-3 h-3" />}
                             {statusCfg?.label || tenant.status}
                           </Badge>

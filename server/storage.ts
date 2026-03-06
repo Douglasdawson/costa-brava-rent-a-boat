@@ -285,6 +285,10 @@ export interface IStorage {
     total: number;
     page: number;
     totalPages: number;
+    bestCustomerName: string | null;
+    bestCustomerSpent: string | null;
+    totalSpentAll: string;
+    totalCustomersAll: number;
   }>;
   getCrmCustomerById(id: string): Promise<{ customer: CrmCustomer; bookings: Booking[] } | undefined>;
   updateCrmCustomer(id: string, data: UpdateCrmCustomer): Promise<CrmCustomer | undefined>;
@@ -1159,20 +1163,24 @@ export class DatabaseStorage implements IStorage {
     confirmedBookings: number;
     pendingBookings: number;
   }> {
+    // Ensure date parameters are proper Date objects (may arrive as strings)
+    const start = startDate instanceof Date ? startDate : new Date(startDate);
+    const end = endDate instanceof Date ? endDate : new Date(endDate);
+
     const bookingsInRange = await db
       .select()
       .from(bookings)
       .where(
         and(
-          gte(bookings.bookingDate, startDate),
-          lte(bookings.bookingDate, endDate),
+          gte(bookings.bookingDate, start),
+          lte(bookings.bookingDate, end),
           inArray(bookings.bookingStatus, ["confirmed", "pending_payment"])
         )
       );
 
     const confirmedBookings = bookingsInRange.filter(b => b.bookingStatus === "confirmed");
     const pendingBookings = bookingsInRange.filter(b => b.bookingStatus === "pending_payment");
-    
+
     const revenue = confirmedBookings.reduce((sum, booking) => {
       return sum + parseFloat(booking.totalAmount);
     }, 0);
@@ -1226,13 +1234,17 @@ export class DatabaseStorage implements IStorage {
     averageTicket: number;
     previousAverageTicket: number;
   }> {
+    // Ensure date parameters are proper Date objects (may arrive as strings)
+    const start = startDate instanceof Date ? startDate : new Date(startDate);
+    const end = endDate instanceof Date ? endDate : new Date(endDate);
+
     // Current period stats
-    const currentStats = await this.getDashboardStats(startDate, endDate);
+    const currentStats = await this.getDashboardStats(start, end);
 
     // Calculate previous period (same duration, shifted back)
-    const periodMs = endDate.getTime() - startDate.getTime();
-    const prevStart = new Date(startDate.getTime() - periodMs);
-    const prevEnd = new Date(startDate.getTime() - 1); // 1ms before current start
+    const periodMs = end.getTime() - start.getTime();
+    const prevStart = new Date(start.getTime() - periodMs);
+    const prevEnd = new Date(start.getTime() - 1); // 1ms before current start
 
     const prevStats = await this.getDashboardStats(prevStart, prevEnd);
 
@@ -1264,9 +1276,6 @@ export class DatabaseStorage implements IStorage {
     let groupByWeek = false;
 
     switch (period) {
-      case "30d":
-        startDate = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000);
-        break;
       case "90d":
         startDate = new Date(now.getTime() - 90 * 24 * 60 * 60 * 1000);
         groupByWeek = true;
@@ -1274,6 +1283,10 @@ export class DatabaseStorage implements IStorage {
       case "365d":
         startDate = new Date(now.getTime() - 365 * 24 * 60 * 60 * 1000);
         groupByWeek = true;
+        break;
+      case "30d":
+      default:
+        startDate = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000);
         break;
     }
     startDate.setHours(0, 0, 0, 0);
@@ -1352,15 +1365,16 @@ export class DatabaseStorage implements IStorage {
     let startDate: Date;
 
     switch (period) {
-      case "month":
-        startDate = new Date(now.getFullYear(), now.getMonth(), 1);
-        break;
       case "season":
         // Season is April - October of current year
         startDate = new Date(now.getFullYear(), 3, 1); // April 1
         break;
       case "year":
         startDate = new Date(now.getFullYear(), 0, 1);
+        break;
+      case "month":
+      default:
+        startDate = new Date(now.getFullYear(), now.getMonth(), 1);
         break;
     }
 
@@ -1411,13 +1425,17 @@ export class DatabaseStorage implements IStorage {
     completed: number;
     draft: number;
   }> {
+    // Ensure date parameters are proper Date objects (may arrive as strings)
+    const start = startDate instanceof Date ? startDate : new Date(startDate);
+    const end = endDate instanceof Date ? endDate : new Date(endDate);
+
     const allBookingsInRange = await db
       .select()
       .from(bookings)
       .where(
         and(
-          gte(bookings.bookingDate, startDate),
-          lte(bookings.bookingDate, endDate)
+          gte(bookings.bookingDate, start),
+          lte(bookings.bookingDate, end)
         )
       );
 
@@ -1952,6 +1970,10 @@ export class DatabaseStorage implements IStorage {
     total: number;
     page: number;
     totalPages: number;
+    bestCustomerName: string | null;
+    bestCustomerSpent: string | null;
+    totalSpentAll: string;
+    totalCustomersAll: number;
   }> {
     const { page, limit, search, segment, nationality, sortBy = "lastBookingDate", sortOrder = "desc" } = params;
     const offset = (page - 1) * limit;
@@ -2010,7 +2032,38 @@ export class DatabaseStorage implements IStorage {
       .limit(limit)
       .offset(offset);
 
-    return { data, total, page, totalPages };
+    // Aggregate stats (unfiltered, across all customers)
+    const statsResult = await db
+      .select({
+        totalSpentAll: sql<string>`COALESCE(SUM(${crmCustomers.totalSpent}), 0)::text`,
+        totalCustomers: sql<number>`COUNT(*)::int`,
+      })
+      .from(crmCustomers);
+
+    const bestCustomerResult = await db
+      .select({
+        name: sql<string>`CONCAT(${crmCustomers.name}, ' ', ${crmCustomers.surname})`,
+        totalSpent: sql<string>`${crmCustomers.totalSpent}::text`,
+      })
+      .from(crmCustomers)
+      .orderBy(sql`${crmCustomers.totalSpent} DESC NULLS LAST`)
+      .limit(1);
+
+    const totalSpentAll = statsResult[0]?.totalSpentAll ?? "0";
+    const totalCustomersAll = statsResult[0]?.totalCustomers ?? 0;
+    const bestCustomerName = bestCustomerResult[0]?.name ?? null;
+    const bestCustomerSpent = bestCustomerResult[0]?.totalSpent ?? null;
+
+    return {
+      data,
+      total,
+      page,
+      totalPages,
+      bestCustomerName,
+      bestCustomerSpent,
+      totalSpentAll,
+      totalCustomersAll,
+    };
   }
 
   async getCrmCustomerById(id: string): Promise<{ customer: CrmCustomer; bookings: Booking[] } | undefined> {

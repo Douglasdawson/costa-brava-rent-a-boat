@@ -35,7 +35,7 @@ interface GiftCardManagementProps {
 const statusColors: Record<string, string> = {
   active: "bg-emerald-100 text-emerald-800",
   pending: "bg-amber-100 text-amber-800",
-  used: "bg-gray-100 text-gray-800",
+  used: "bg-muted text-muted-foreground",
   expired: "bg-red-100 text-red-800",
   cancelled: "bg-red-100 text-red-800",
 };
@@ -213,7 +213,7 @@ export function GiftCardManagement({ adminToken }: GiftCardManagementProps) {
                           </div>
                         </TableCell>
                         <TableCell>
-                          <Badge className={statusColors[card.status] || "bg-gray-100 text-gray-800"}>
+                          <Badge className={statusColors[card.status] || "bg-muted text-muted-foreground"}>
                             {statusLabels[card.status] || card.status}
                           </Badge>
                         </TableCell>
@@ -276,7 +276,7 @@ export function GiftCardManagement({ adminToken }: GiftCardManagementProps) {
               <div key={card.id} className="bg-card border border-border rounded-lg p-4 space-y-2">
                 <div className="flex items-center justify-between">
                   <span className="font-heading font-semibold font-mono text-foreground">{card.code}</span>
-                  <Badge className={statusColors[card.status] || "bg-gray-100 text-gray-800"}>
+                  <Badge className={statusColors[card.status] || "bg-muted text-muted-foreground"}>
                     {statusLabels[card.status] || card.status}
                   </Badge>
                 </div>

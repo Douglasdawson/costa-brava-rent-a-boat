@@ -545,13 +545,13 @@ export function CustomersTab({
                 ? "..."
                 : error
                   ? "Error"
-                  : customersData && customersData.length > 0
-                    ? `${customersData[0].name} ${customersData[0].surname}`
+                  : customersResponse?.bestCustomerName
+                    ? customersResponse.bestCustomerName
                     : "N/A"}
             </div>
             <p className="text-xs text-muted-foreground">
-              {customersData && customersData.length > 0
-                ? `${"\u20AC"}${parseFloat(customersData[0].totalSpent).toFixed(2)} gastados`
+              {customersResponse?.bestCustomerSpent
+                ? `${"\u20AC"}${parseFloat(customersResponse.bestCustomerSpent).toFixed(2)} gastados`
                 : "Sin datos"}
             </p>
           </CardContent>
@@ -568,13 +568,8 @@ export function CustomersTab({
                 ? "..."
                 : error
                   ? "Error"
-                  : customersData && customersData.length > 0
-                    ? `${"\u20AC"}${(
-                        customersData.reduce(
-                          (sum, c) => sum + parseFloat(c.totalSpent),
-                          0
-                        ) / customersData.length
-                      ).toFixed(2)}`
+                  : customersResponse && customersResponse.totalCustomersAll > 0
+                    ? `${"\u20AC"}${(parseFloat(customersResponse.totalSpentAll) / customersResponse.totalCustomersAll).toFixed(2)}`
                     : `${"\u20AC"}0.00`}
             </div>
             <p className="text-xs text-muted-foreground">Gasto promedio por cliente</p>

@@ -12,6 +12,7 @@ import {
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
 import { Badge } from "@/components/ui/badge";
+import { Skeleton } from "@/components/ui/skeleton";
 import {
   Plus,
   Download,
@@ -107,7 +108,7 @@ function SortableBoatRow({
       </TableCell>
       <TableCell>{"\u20AC"}{boat.deposit}</TableCell>
       <TableCell>
-        <Badge className={boat.isActive ? "bg-emerald-100 text-emerald-800" : "bg-gray-100 text-gray-800"}>
+        <Badge className={boat.isActive ? "bg-emerald-100 text-emerald-800" : "bg-muted text-muted-foreground"}>
           {boat.isActive ? "Activo" : "Inactivo"}
         </Badge>
       </TableCell>
@@ -192,7 +193,7 @@ function SortableBoatCard({
               <Badge variant={boat.requiresLicense ? "default" : "secondary"} className="text-xs">
                 {boat.requiresLicense ? "Licencia" : "Sin licencia"}
               </Badge>
-              <Badge className={`text-xs ${boat.isActive ? "bg-emerald-100 text-emerald-800" : "bg-gray-100 text-gray-800"}`}>
+              <Badge className={`text-xs ${boat.isActive ? "bg-emerald-100 text-emerald-800" : "bg-muted text-muted-foreground"}`}>
                 {boat.isActive ? "Activo" : "Inactivo"}
               </Badge>
             </div>
@@ -570,11 +571,14 @@ export function FleetManagement({ adminToken }: FleetManagementProps) {
       </div>
 
       {boatsLoading ? (
-        <Card>
-          <CardContent className="py-12 text-center">
-            <p className="text-muted-foreground">Cargando flota...</p>
-          </CardContent>
-        </Card>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <Skeleton className="h-48 w-full rounded-lg" />
+          <Skeleton className="h-48 w-full rounded-lg" />
+          <Skeleton className="h-48 w-full rounded-lg" />
+          <Skeleton className="h-48 w-full rounded-lg" />
+          <Skeleton className="h-48 w-full rounded-lg" />
+          <Skeleton className="h-48 w-full rounded-lg" />
+        </div>
       ) : !boats || boats.length === 0 ? (
         <Card>
           <CardContent className="py-12 text-center">

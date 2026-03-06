@@ -352,7 +352,7 @@ export function DiscountManagement({ adminToken }: DiscountManagementProps) {
                             ) : isExpired ? (
                               <Badge className="bg-red-100 text-red-800">Expirado</Badge>
                             ) : isFullyUsed ? (
-                              <Badge className="bg-gray-100 text-gray-800">Agotado</Badge>
+                              <Badge className="bg-muted text-muted-foreground">Agotado</Badge>
                             ) : (
                               <Badge className="bg-red-100 text-red-800">Inactivo</Badge>
                             )}
@@ -403,7 +403,7 @@ export function DiscountManagement({ adminToken }: DiscountManagementProps) {
                     ) : isExpired ? (
                       <Badge className="bg-red-100 text-red-800">Expirado</Badge>
                     ) : isFullyUsed ? (
-                      <Badge className="bg-gray-100 text-gray-800">Agotado</Badge>
+                      <Badge className="bg-muted text-muted-foreground">Agotado</Badge>
                     ) : (
                       <Badge className="bg-red-100 text-red-800">Inactivo</Badge>
                     )}

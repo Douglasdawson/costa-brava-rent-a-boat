@@ -1,5 +1,8 @@
-import { useState, useCallback, useRef, useEffect } from "react";
+import { useState, useEffect } from "react";
+import { EmptyState } from "./shared/EmptyState";
 import { ErrorState } from "./shared/ErrorState";
+import { useDebounceSearch } from "@/hooks/useDebounceSearch";
+import { useSortableTable } from "@/hooks/useSortableTable";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -27,13 +30,9 @@ import { format } from "date-fns";
 import type { Booking, Boat } from "@shared/schema";
 import { getStatusColor, getStatusLabel, getPaymentStatusColor, getPaymentStatusLabel } from "./constants";
 import { PaginationControls } from "./shared/PaginationControls";
+import type { PaginatedResponse } from "./types";
 
-interface PaginatedBookingsResponse {
-  data: Booking[];
-  total: number;
-  page: number;
-  totalPages: number;
-}
+type PaginatedBookingsResponse = PaginatedResponse<Booking>;
 
 const BOOKINGS_PER_PAGE = 25;
 
@@ -51,30 +50,14 @@ export function BookingsTab({
   const { data: boats = [] } = useQuery<Boat[]>({ queryKey: ["/api/boats"] });
   const boatName = (id: string) => boats.find(b => b.id === id)?.name || id;
 
-  const [searchQuery, setSearchQuery] = useState("");
-  const [debouncedSearch, setDebouncedSearch] = useState("");
+  const { searchQuery, debouncedSearch, handleSearchChange } = useDebounceSearch();
+  const { currentPage, setCurrentPage, sortBy, sortOrder, handleSort } = useSortableTable("startTime", "desc");
   const [statusFilter, setStatusFilter] = useState<string>("all");
-  const [currentPage, setCurrentPage] = useState(1);
-  const [sortBy, setSortBy] = useState<string>("startTime");
-  const [sortOrder, setSortOrder] = useState<"asc" | "desc">("desc");
 
-  // Debounce search
-  const searchTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const handleSearchChange = useCallback((value: string) => {
-    setSearchQuery(value);
-    if (searchTimerRef.current) {
-      clearTimeout(searchTimerRef.current);
-    }
-    searchTimerRef.current = setTimeout(() => {
-      setDebouncedSearch(value);
-      setCurrentPage(1);
-    }, 300);
-  }, []);
-
-  // Reset page on filter change
+  // Reset page on search or filter change
   useEffect(() => {
     setCurrentPage(1);
-  }, [statusFilter]);
+  }, [debouncedSearch, statusFilter, setCurrentPage]);
 
   // Fetch paginated bookings
   const { data: bookingsResponse, isLoading, error } = useQuery<PaginatedBookingsResponse>({
@@ -119,22 +102,6 @@ export function BookingsTab({
   const totalPages = bookingsResponse?.totalPages ?? 1;
   const total = bookingsResponse?.total ?? 0;
 
-  // Allow parent to set search (e.g., from customers tab)
-  const setSearch = useCallback((query: string) => {
-    setSearchQuery(query);
-    setDebouncedSearch(query);
-    setCurrentPage(1);
-  }, []);
-
-  const handleSort = useCallback((column: string) => {
-    if (sortBy === column) {
-      setSortOrder((prev) => (prev === "asc" ? "desc" : "asc"));
-    } else {
-      setSortBy(column);
-      setSortOrder("desc");
-    }
-    setCurrentPage(1);
-  }, [sortBy]);
 
   const renderSortIcon = (column: string) => {
     if (sortBy === column) {
@@ -198,11 +165,11 @@ export function BookingsTab({
           ) : error ? (
             <ErrorState message="Error al cargar reservas" />
           ) : !bookingsData || bookingsData.length === 0 ? (
-            <div className="flex flex-col items-center justify-center py-12 text-center">
-              <Calendar className="w-12 h-12 text-muted-foreground/50 mb-4" />
-              <p className="text-lg font-heading font-medium text-foreground mb-1">No se encontraron reservas</p>
-              <p className="text-sm text-muted-foreground">Prueba a ajustar los filtros o crear una nueva reserva</p>
-            </div>
+            <EmptyState
+              icon={Calendar}
+              title="No se encontraron reservas"
+              description="Prueba a ajustar los filtros o crear una nueva reserva"
+            />
           ) : (
             <div className="overflow-x-auto">
               <Table>
@@ -349,10 +316,12 @@ export function BookingsTab({
           <ErrorState message="Error al cargar reservas" />
         ) : !bookingsData || bookingsData.length === 0 ? (
           <Card>
-            <CardContent className="flex flex-col items-center justify-center py-12 text-center">
-              <Calendar className="w-12 h-12 text-muted-foreground/50 mb-4" />
-              <p className="text-lg font-heading font-medium text-foreground mb-1">No se encontraron reservas</p>
-              <p className="text-sm text-muted-foreground">Prueba a ajustar los filtros o crear una nueva reserva</p>
+            <CardContent>
+              <EmptyState
+                icon={Calendar}
+                title="No se encontraron reservas"
+                description="Prueba a ajustar los filtros o crear una nueva reserva"
+              />
             </CardContent>
           </Card>
         ) : (

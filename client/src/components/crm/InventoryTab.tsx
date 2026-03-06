@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { EmptyState } from "./shared/EmptyState";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -375,10 +376,12 @@ export function InventoryTab({ adminToken }: InventoryTabProps) {
         <Card><CardContent className="py-8 text-center"><Loader2 className="w-6 h-6 animate-spin mx-auto" /></CardContent></Card>
       ) : filteredItems.length === 0 ? (
         <Card>
-          <CardContent className="flex flex-col items-center justify-center py-12 text-center">
-            <Package className="w-12 h-12 text-muted-foreground/50 mb-4" />
-            <p className="text-lg font-heading font-medium text-foreground mb-1">No hay items en el inventario</p>
-            <p className="text-sm text-muted-foreground">Agrega extras y equipamiento para gestionar el stock</p>
+          <CardContent>
+            <EmptyState
+              icon={Package}
+              title="No hay items en el inventario"
+              description="Agrega extras y equipamiento para gestionar el stock"
+            />
           </CardContent>
         </Card>
       ) : (

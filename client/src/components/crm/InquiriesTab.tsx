@@ -1,5 +1,7 @@
-import { useState, useCallback, useRef, useEffect } from "react";
+import { useState, useCallback, useEffect } from "react";
+import { EmptyState } from "./shared/EmptyState";
 import { ErrorState } from "./shared/ErrorState";
+import { useDebounceSearch } from "@/hooks/useDebounceSearch";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -58,13 +60,9 @@ import { format } from "date-fns";
 import { es } from "date-fns/locale";
 import type { WhatsappInquiry } from "@shared/schema";
 import { PaginationControls } from "./shared/PaginationControls";
+import type { PaginatedResponse } from "./types";
 
-interface PaginatedInquiriesResponse {
-  data: WhatsappInquiry[];
-  total: number;
-  page: number;
-  totalPages: number;
-}
+type PaginatedInquiriesResponse = PaginatedResponse<WhatsappInquiry>;
 
 const ITEMS_PER_PAGE = 25;
 
@@ -81,8 +79,7 @@ interface InquiriesTabProps {
 }
 
 export function InquiriesTab({ adminToken, onOpenWhatsApp }: InquiriesTabProps) {
-  const [searchQuery, setSearchQuery] = useState("");
-  const [debouncedSearch, setDebouncedSearch] = useState("");
+  const { searchQuery, debouncedSearch, handleSearchChange } = useDebounceSearch(400);
   const [statusFilter, setStatusFilter] = useState<string>("all");
   const [currentPage, setCurrentPage] = useState(1);
   const [editingNotes, setEditingNotes] = useState<string | null>(null);
@@ -95,18 +92,12 @@ export function InquiriesTab({ adminToken, onOpenWhatsApp }: InquiriesTabProps) 
   const [sendResult, setSendResult] = useState<{ type: "success" | "error"; message: string } | null>(null);
   const [deleteInquiryId, setDeleteInquiryId] = useState<string | null>(null);
 
-  const searchTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const queryClient = useQueryClient();
 
-  // Debounce search
+  // Reset page on search or filter change
   useEffect(() => {
-    if (searchTimerRef.current) clearTimeout(searchTimerRef.current);
-    searchTimerRef.current = setTimeout(() => {
-      setDebouncedSearch(searchQuery);
-      setCurrentPage(1);
-    }, 400);
-    return () => { if (searchTimerRef.current) clearTimeout(searchTimerRef.current); };
-  }, [searchQuery]);
+    setCurrentPage(1);
+  }, [debouncedSearch]);
 
   const { data: response, isLoading, error } = useQuery<PaginatedInquiriesResponse>({
     queryKey: ['/api/admin/booking-inquiries', currentPage, debouncedSearch, statusFilter],
@@ -231,7 +222,7 @@ export function InquiriesTab({ adminToken, onOpenWhatsApp }: InquiriesTabProps) 
               <Input
                 placeholder="Buscar por nombre, email, telefono, barco..."
                 value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
+                onChange={(e) => handleSearchChange(e.target.value)}
                 className="pl-9 h-10"
               />
             </div>
@@ -269,10 +260,12 @@ export function InquiriesTab({ adminToken, onOpenWhatsApp }: InquiriesTabProps) 
       )}
 
       {!isLoading && !error && inquiries.length === 0 && (
-        <Card><CardContent className="flex flex-col items-center justify-center py-12 text-center">
-          <MessageSquare className="w-12 h-12 text-muted-foreground/50 mb-4" />
-          <p className="text-lg font-heading font-medium text-foreground mb-1">No hay peticiones</p>
-          <p className="text-sm text-muted-foreground">Las peticiones de WhatsApp apareceran aqui</p>
+        <Card><CardContent>
+          <EmptyState
+            icon={MessageSquare}
+            title="No hay peticiones"
+            description="Las peticiones de WhatsApp apareceran aqui"
+          />
         </CardContent></Card>
       )}
 

@@ -40,29 +40,11 @@ import {
   ResponsiveContainer,
   Legend,
 } from "recharts";
+import type { PaginatedResponse, DashboardStats } from "./types";
 
 // --- Types ---
 
-interface PaginatedBookingsResponse {
-  data: Booking[];
-  total: number;
-  page: number;
-  totalPages: number;
-}
-
-interface DashboardStats {
-  bookingsCount: number;
-  revenue: number;
-  confirmedBookings: number;
-  pendingBookings: number;
-  previousPeriodRevenue: number;
-  previousPeriodBookings: number;
-  averageTicket: number;
-  previousAverageTicket: number;
-  totalBoats: number;
-  availableBoats: number;
-  period: string;
-}
+type PaginatedBookingsResponse = PaginatedResponse<Booking>;
 
 interface RevenueTrendPoint {
   date: string;

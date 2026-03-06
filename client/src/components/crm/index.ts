@@ -26,8 +26,10 @@ export { CheckinForm } from "./CheckinForm";
 export { SignatureCanvas } from "./SignatureCanvas";
 
 // CRM Module exports - Shared components
+export { EmptyState } from "./shared/EmptyState";
 export { ErrorState } from "./shared/ErrorState";
 export { PaginationControls } from "./shared/PaginationControls";
+export { StatCard } from "./shared/StatCard";
 
 // CRM Module exports - Types and constants
 export * from "./types";

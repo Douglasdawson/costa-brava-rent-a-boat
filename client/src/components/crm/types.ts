@@ -85,15 +85,27 @@ export const boatSchema = z.object({
 
 export type BoatFormData = z.infer<typeof boatSchema>;
 
-// Stats data type
+// Generic paginated response
+export interface PaginatedResponse<T> {
+  data: T[];
+  total: number;
+  page: number;
+  totalPages: number;
+}
+
+// Dashboard stats from /api/admin/stats/dashboard
 export interface DashboardStats {
-  totalBookings: number;
+  bookingsCount: number;
+  revenue: number;
   confirmedBookings: number;
-  totalRevenue: number;
-  averageRating: number;
-  fleetAvailability: number;
-  boatsAvailable: number;
+  pendingBookings: number;
+  previousPeriodRevenue: number;
+  previousPeriodBookings: number;
+  averageTicket: number;
+  previousAverageTicket: number;
   totalBoats: number;
+  availableBoats: number;
+  period: string;
 }
 
 // Legacy customer data type (derived from bookings - no longer used for API)
@@ -129,11 +141,7 @@ export interface CrmCustomerData {
   updatedAt: string;
 }
 
-export interface PaginatedCrmCustomersResponse {
-  data: CrmCustomerData[];
-  total: number;
-  page: number;
-  totalPages: number;
+export interface PaginatedCrmCustomersResponse extends PaginatedResponse<CrmCustomerData> {
   bestCustomerName: string | null;
   bestCustomerSpent: string | null;
   totalSpentAll: string;

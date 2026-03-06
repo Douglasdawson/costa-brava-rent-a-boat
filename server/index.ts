@@ -5,32 +5,18 @@ import rateLimit from "express-rate-limit";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
 import * as Sentry from "@sentry/node";
+import { config, isDev } from "./config";
+import { errorHandler, AppError } from "./middleware/errorHandler";
 
 const app = express();
-const isDev = process.env.NODE_ENV === "development";
 
 // Sentry error monitoring — only active when SENTRY_DSN is set
-if (process.env.SENTRY_DSN) {
+if (config.SENTRY_DSN) {
   Sentry.init({
-    dsn: process.env.SENTRY_DSN,
+    dsn: config.SENTRY_DSN,
     environment: isDev ? "development" : "production",
     tracesSampleRate: isDev ? 1.0 : 0.2,
   });
-}
-
-// Validate critical environment variables at startup
-const REQUIRED_ENV_VARS = ["DATABASE_URL", "JWT_SECRET", "ADMIN_PIN"] as const;
-for (const envVar of REQUIRED_ENV_VARS) {
-  if (!process.env[envVar]) {
-    console.error(`[Startup] FATAL: Missing required environment variable: ${envVar}`);
-    process.exit(1);
-  }
-}
-const OPTIONAL_ENV_VARS = ["STRIPE_SECRET_KEY", "SENDGRID_API_KEY", "OPENAI_API_KEY", "TWILIO_ACCOUNT_SID", "TWILIO_AUTH_TOKEN", "APP_URL"];
-for (const envVar of OPTIONAL_ENV_VARS) {
-  if (!process.env[envVar]) {
-    console.warn(`[Startup] WARNING: Optional environment variable not set: ${envVar} — related features will be disabled`);
-  }
 }
 
 // Security headers (disabled in development — CSP blocks HTTP localhost)
@@ -236,24 +222,16 @@ app.use((req, res, next) => {
     res.status(404).json({ message: "Endpoint no encontrado" });
   });
 
-  // Global error handler
-  app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
-    const statusCode = err.statusCode || err.status || 500;
-
-    if (statusCode >= 500) {
+  // Global error handler (centralized in middleware/errorHandler.ts)
+  // Sentry capture for 5xx errors before passing to errorHandler
+  app.use((err: Error, _req: Request, res: Response, next: NextFunction) => {
+    const statusCode = err instanceof AppError ? err.statusCode : 500;
+    if (statusCode >= 500 && config.SENTRY_DSN) {
       Sentry.captureException(err);
     }
-
-    // Always log full error server-side
-    console.error("[Unhandled Error]", err.stack || err);
-
-    // Never expose internal details to client
-    const message = process.env.NODE_ENV === "development"
-      ? err.message || "Error interno del servidor"
-      : "Error interno del servidor";
-
-    res.status(statusCode).json({ message });
+    next(err);
   });
+  app.use(errorHandler);
 
   // importantly only setup vite in development and after
   // setting up all the other routes so the catch-all route
@@ -284,7 +262,7 @@ app.use((req, res, next) => {
   // Other ports are firewalled. Default to 5000 if not specified.
   // this serves both the API and the client.
   // It is the only port that is not firewalled.
-  const port = parseInt(process.env.PORT || '5000', 10);
+  const port = config.PORT;
   server.listen({
     port,
     host: "0.0.0.0",

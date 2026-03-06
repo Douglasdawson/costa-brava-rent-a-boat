@@ -1,5 +1,8 @@
-import { useState, useCallback, useRef, useEffect } from "react";
+import { useState, useCallback, useEffect } from "react";
+import { EmptyState } from "./shared/EmptyState";
 import { ErrorState } from "./shared/ErrorState";
+import { useDebounceSearch } from "@/hooks/useDebounceSearch";
+import { useSortableTable } from "@/hooks/useSortableTable";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -59,33 +62,17 @@ export function CustomersTab({
   onOpenWhatsApp,
 }: CustomersTabProps) {
   const { toast } = useToast();
-  const [searchQuery, setSearchQuery] = useState("");
-  const [debouncedSearch, setDebouncedSearch] = useState("");
+  const { searchQuery, debouncedSearch, handleSearchChange } = useDebounceSearch();
+  const { currentPage, setCurrentPage, sortBy, sortOrder, handleSort } = useSortableTable("lastBookingDate", "desc");
   const [segmentFilter, setSegmentFilter] = useState("all");
   const [nationalityFilter, setNationalityFilter] = useState("all");
-  const [currentPage, setCurrentPage] = useState(1);
-  const [sortBy, setSortBy] = useState<string>("lastBookingDate");
-  const [sortOrder, setSortOrder] = useState<"asc" | "desc">("desc");
   const [selectedCustomerId, setSelectedCustomerId] = useState<string | null>(null);
   const [showCustomerDetail, setShowCustomerDetail] = useState(false);
 
-  // Debounce search
-  const searchTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const handleSearchChange = useCallback((value: string) => {
-    setSearchQuery(value);
-    if (searchTimerRef.current) {
-      clearTimeout(searchTimerRef.current);
-    }
-    searchTimerRef.current = setTimeout(() => {
-      setDebouncedSearch(value);
-      setCurrentPage(1);
-    }, 300);
-  }, []);
-
-  // Reset page on filter change
+  // Reset page on search or filter change
   useEffect(() => {
     setCurrentPage(1);
-  }, [segmentFilter, nationalityFilter]);
+  }, [debouncedSearch, segmentFilter, nationalityFilter, setCurrentPage]);
 
   // Fetch paginated customers
   const { data: customersResponse, isLoading, error } = useQuery<PaginatedCrmCustomersResponse>({
@@ -172,15 +159,6 @@ export function CustomersTab({
     setShowCustomerDetail(true);
   }, []);
 
-  const handleSort = useCallback((column: string) => {
-    if (sortBy === column) {
-      setSortOrder((prev) => (prev === "asc" ? "desc" : "asc"));
-    } else {
-      setSortBy(column);
-      setSortOrder("desc");
-    }
-    setCurrentPage(1);
-  }, [sortBy]);
 
   const renderSortIcon = (column: string) => {
     if (sortBy === column) {
@@ -273,15 +251,15 @@ export function CustomersTab({
           ) : error ? (
             <ErrorState message="Error al cargar clientes" />
           ) : !customersData || customersData.length === 0 ? (
-            <div className="flex flex-col items-center justify-center py-12 text-center">
-              <Users className="w-12 h-12 text-muted-foreground/50 mb-4" />
-              <p className="text-lg font-heading font-medium text-foreground mb-1">No se encontraron clientes</p>
-              <p className="text-sm text-muted-foreground">
-                {total === 0 && !debouncedSearch && segmentFilter === "all"
+            <EmptyState
+              icon={Users}
+              title="No se encontraron clientes"
+              description={
+                total === 0 && !debouncedSearch && segmentFilter === "all"
                   ? 'Usa "Sincronizar desde Reservas" para importar clientes'
-                  : "Prueba a ajustar los filtros de busqueda"}
-              </p>
-            </div>
+                  : "Prueba a ajustar los filtros de busqueda"
+              }
+            />
           ) : (
             <div className="overflow-x-auto">
               <Table>
@@ -413,10 +391,12 @@ export function CustomersTab({
           <ErrorState message="Error al cargar clientes" />
         ) : !customersData || customersData.length === 0 ? (
           <Card>
-            <CardContent className="flex flex-col items-center justify-center py-12 text-center">
-              <Users className="w-12 h-12 text-muted-foreground/50 mb-4" />
-              <p className="text-lg font-heading font-medium text-foreground mb-1">No se encontraron clientes</p>
-              <p className="text-sm text-muted-foreground">Usa "Sincronizar desde Reservas" para importar clientes</p>
+            <CardContent>
+              <EmptyState
+                icon={Users}
+                title="No se encontraron clientes"
+                description='Usa "Sincronizar desde Reservas" para importar clientes'
+              />
             </CardContent>
           </Card>
         ) : (

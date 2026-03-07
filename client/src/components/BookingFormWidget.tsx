@@ -38,11 +38,12 @@ interface BookingFormWidgetProps {
   preSelectedBoatId?: string;
   prefillDate?: string;
   prefillTime?: string;
+  prefillCoupon?: string;
   onClose?: () => void;
   hideHeader?: boolean;
 }
 
-export default function BookingFormWidget({ preSelectedBoatId, prefillDate, prefillTime, onClose }: BookingFormWidgetProps) {
+export default function BookingFormWidget({ preSelectedBoatId, prefillDate, prefillTime, prefillCoupon, onClose }: BookingFormWidgetProps) {
   // Form state
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -102,6 +103,35 @@ export default function BookingFormWidget({ preSelectedBoatId, prefillDate, pref
       setSelectedBoat(preSelectedBoatId);
     }
   }, [preSelectedBoatId]);
+
+  // Auto-apply prefilled coupon code (from exit intent modal)
+  useEffect(() => {
+    if (prefillCoupon && !validatedCode) {
+      setCodeInput(prefillCoupon);
+      setShowCodeSection(true);
+      // Auto-validate after a short delay to let the form render
+      const timer = setTimeout(() => {
+        const code = prefillCoupon.trim().toUpperCase();
+        fetch("/api/discounts/validate", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ code }),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.valid) {
+              setValidatedCode({
+                type: "discount",
+                code,
+                percentage: data.discountPercent,
+              });
+            }
+          })
+          .catch(() => {});
+      }, 300);
+      return () => clearTimeout(timer);
+    }
+  }, [prefillCoupon]);
 
   // Close prefix dropdown on outside click
   useEffect(() => {
@@ -551,13 +581,15 @@ Looking forward to confirmation. Thanks!`;
 
       if (discountRes.ok) {
         const data = await discountRes.json();
-        setValidatedCode({
-          type: "discount",
-          code,
-          percentage: data.percentage || data.discount,
-        });
-        setIsValidatingCode(false);
-        return;
+        if (data.valid) {
+          setValidatedCode({
+            type: "discount",
+            code,
+            percentage: data.discountPercent,
+          });
+          setIsValidatingCode(false);
+          return;
+        }
       }
 
       setCodeError(t.codeValidation.invalidCode);

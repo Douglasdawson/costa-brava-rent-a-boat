@@ -41,7 +41,7 @@ export function ExitIntentModal() {
   const handleBookNow = () => {
     setShow(false);
     setDismissed(true);
-    openBookingModal();
+    openBookingModal(undefined, { coupon: "BIENVENIDO10" });
   };
 
   if (!show) return null;

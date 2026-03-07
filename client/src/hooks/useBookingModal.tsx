@@ -13,6 +13,7 @@ import { trackBookingFormOpen } from "@/utils/analytics";
 export interface BookingPrefillData {
   date?: string;
   time?: string;
+  coupon?: string;
 }
 
 interface BookingModalContextType {
@@ -65,6 +66,7 @@ export function BookingModalProvider({ children }: { children: React.ReactNode }
               preSelectedBoatId={selectedBoatId}
               prefillDate={prefillData?.date}
               prefillTime={prefillData?.time}
+              prefillCoupon={prefillData?.coupon}
               onClose={closeBookingModal}
             />
           </div>

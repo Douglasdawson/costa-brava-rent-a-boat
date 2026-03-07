@@ -19,6 +19,8 @@ import GiftCardBanner from "./components/GiftCardBanner";
 import ContactSection from "./components/ContactSection";
 import Footer from "./components/Footer";
 import FAQPreview from "./components/FAQPreview";
+import { SocialProofStrip } from "./components/SocialProofStrip";
+import { LicenseComparisonSection } from "./components/LicenseComparisonSection";
 import { SEO } from "./components/SEO";
 
 // Lazy load non-critical components
@@ -51,6 +53,7 @@ const AccessibilityDeclarationPage = lazy(() => import("@/pages/accessibility-de
 import { useLanguage } from "@/hooks/use-language";
 import WhatsAppFloatingButton from "./components/WhatsAppFloatingButton";
 import CookieBanner from "./components/CookieBanner";
+import { ExitIntentModal } from "./components/ExitIntentModal";
 import { usePrefetchCriticalRoutes } from "@/hooks/usePrefetch";
 import { 
   getSEOConfig, 
@@ -147,7 +150,9 @@ function HomePage() {
       <Navigation />
       <main id="main-content">
         <Hero />
+        <SocialProofStrip />
         <FleetSection />
+        <LicenseComparisonSection />
         <ReviewsSection />
         <GiftCardBanner />
         <FeaturesSection />
@@ -319,6 +324,7 @@ function App() {
               <Router />
               <WhatsAppFloatingButton />
               <CookieBanner />
+              <ExitIntentModal />
             </TooltipProvider>
           </BookingModalProvider>
         </LanguageProvider>

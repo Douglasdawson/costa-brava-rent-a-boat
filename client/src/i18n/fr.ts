@@ -24,6 +24,8 @@ export const fr: Translations = {
     clients: '+5000 clients',
     insured: 'Assuré',
     experience: '+5 ans exp.',
+    freeCancellation: 'Annulation gratuite 48h',
+    instantConfirmation: 'Confirmation immédiate',
   },
   
   fleet: {
@@ -47,6 +49,8 @@ export const fr: Translations = {
     available: 'Disponible',
     occupied: 'Occupé',
     more: 'plus',
+    mostPopular: 'Le plus populaire',
+    perPerson: 'personne',
   },
   features: {
     title: 'Pourquoi Choisir Costa Brava Rent a Boat',
@@ -734,8 +738,8 @@ export const fr: Translations = {
       },
     },
     newsletter: {
-      title: 'Recevez nos offres de saison',
-      subtitle: 'Soyez le premier à connaître nos disponibilités et offres spéciales',
+      title: '5\u20AC de r\u00e9duction sur votre premi\u00e8re r\u00e9servation',
+      subtitle: 'Inscrivez-vous et recevez un code de r\u00e9duction de 5\u20AC pour votre premi\u00e8re r\u00e9servation',
       placeholder: 'Votre email',
       button: "S'abonner",
       success: 'Merci\u00a0! Nous vous informerons de nos meilleures offres.',
@@ -867,6 +871,41 @@ export const fr: Translations = {
     relatedArticles: 'Articles Associés',
     readMore: 'Lire la suite',
     notFoundTitle: 'Article non trouvé',
-    notFoundDescription: 'L\'article que vous recherchez n\'existe pas ou a été supprimé.',
+    notFoundDescription: 'L\'article que vous recherchez n\'existe pas ou a \u00e9t\u00e9 supprim\u00e9.',
+  },
+  exitIntent: {
+    title: 'Attendez ! Nous avons quelque chose pour vous',
+    subtitle: 'R\u00e9servez maintenant et obtenez 10% de r\u00e9duction sur votre premi\u00e8re exp\u00e9rience nautique sur la Costa Brava',
+    useCode: 'Utilisez le code',
+    validFirstBooking: 'Valable pour votre premi\u00e8re r\u00e9servation',
+    bookNow: 'R\u00e9server avec r\u00e9duction',
+    noThanks: 'Non, merci',
+  },
+
+  socialProof: {
+    googleReviews: 'sur Google',
+    happyCustomers: 'clients satisfaits',
+    since2020: 'Depuis 2020 a Blanes',
+    freeCancellation: 'Annulation gratuite 48h',
+  },
+
+  comparison: {
+    title: 'Avec ou sans permis ?',
+    subtitle: 'Choisissez l\'experience qui vous convient le mieux',
+    withoutLicense: 'Sans permis',
+    withLicense: 'Avec permis',
+    withoutLicenseDesc: 'Ideal pour les familles et groupes qui veulent profiter sans complications',
+    withLicenseDesc: 'Pour les plus aventuriers qui recherchent puissance et autonomie',
+    noLicenseNeeded: 'Aucun permis necessaire',
+    licenseRequired: 'Permis bateau requis',
+    noLicenseFeature1: 'Bateaux jusqu\'a 15CV, faciles a manoeuvrer',
+    noLicenseFeature2: 'Parfaits pour les criques et plages proches',
+    noLicenseFeature3: 'Essence incluse dans le prix',
+    noLicenseFeature4: 'Briefing de securite inclus',
+    licenseFeature1: 'Bateaux puissants jusqu\'a 150CV',
+    licenseFeature2: 'Plus grande autonomie et rayon de navigation',
+    licenseFeature3: 'Acces aux criques isolees de la Costa Brava',
+    licenseFeature4: 'Essence incluse dans le prix',
+    fromPrice: 'A partir de',
   },
 };

@@ -1,4 +1,5 @@
 import { Button } from "./ui/button";
+import { ShieldCheck, Shield, CheckCircle } from "lucide-react";
 import { useTranslations } from "@/lib/translations";
 import { useBookingModal } from "@/hooks/useBookingModal";
 import CurvedLoop from "./CurvedLoop";
@@ -61,11 +62,27 @@ export default function Hero() {
               <Button
                 onClick={() => openBookingModal()}
                 size="lg"
-                className="bg-cta hover:bg-cta/90 text-white px-10 py-4 text-lg rounded-full font-medium btn-elevated"
+                className="bg-cta hover:bg-cta/90 text-white px-10 py-4 text-lg rounded-full font-medium btn-elevated cta-pulse"
                 data-testid="button-hero-cta"
               >
                 {t.hero.bookNow}
               </Button>
+            </div>
+
+            {/* Trust badges */}
+            <div className="flex flex-wrap items-center justify-center gap-3 mt-4">
+              <span className="inline-flex items-center gap-1.5 bg-white/15 backdrop-blur-sm text-white/90 text-xs sm:text-sm px-3 py-1.5 rounded-full">
+                <ShieldCheck className="w-3.5 h-3.5" />
+                {t.hero.freeCancellation}
+              </span>
+              <span className="inline-flex items-center gap-1.5 bg-white/15 backdrop-blur-sm text-white/90 text-xs sm:text-sm px-3 py-1.5 rounded-full">
+                <Shield className="w-3.5 h-3.5" />
+                {t.hero.insured}
+              </span>
+              <span className="inline-flex items-center gap-1.5 bg-white/15 backdrop-blur-sm text-white/90 text-xs sm:text-sm px-3 py-1.5 rounded-full">
+                <CheckCircle className="w-3.5 h-3.5" />
+                {t.hero.instantConfirmation}
+              </span>
             </div>
           </div>
         </div>

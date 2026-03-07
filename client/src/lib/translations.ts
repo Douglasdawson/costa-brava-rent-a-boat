@@ -35,6 +35,8 @@ export interface Translations {
     clients: string;
     insured: string;
     experience: string;
+    freeCancellation: string;
+    instantConfirmation: string;
   };
   
   // Fleet Section
@@ -61,6 +63,8 @@ export interface Translations {
     available: string;
     occupied: string;
     more: string;
+    mostPopular: string;
+    perPerson: string;
   };
   
   // Features Section
@@ -941,6 +945,45 @@ export interface Translations {
     readMore: string;
     notFoundTitle: string;
     notFoundDescription: string;
+  };
+
+  // Social Proof Strip (homepage)
+  socialProof: {
+    googleReviews: string;
+    happyCustomers: string;
+    since2020: string;
+    freeCancellation: string;
+  };
+
+  // License Comparison Section (homepage)
+  comparison: {
+    title: string;
+    subtitle: string;
+    withoutLicense: string;
+    withLicense: string;
+    withoutLicenseDesc: string;
+    withLicenseDesc: string;
+    noLicenseNeeded: string;
+    licenseRequired: string;
+    noLicenseFeature1: string;
+    noLicenseFeature2: string;
+    noLicenseFeature3: string;
+    noLicenseFeature4: string;
+    licenseFeature1: string;
+    licenseFeature2: string;
+    licenseFeature3: string;
+    licenseFeature4: string;
+    fromPrice: string;
+  };
+
+  // Exit Intent Modal
+  exitIntent?: {
+    title: string;
+    subtitle: string;
+    useCode: string;
+    validFirstBooking: string;
+    bookNow: string;
+    noThanks: string;
   };
 }
 export const translations: Record<Language, Translations> = { es, ca, en, fr, de, nl, it, ru };

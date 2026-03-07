@@ -24,6 +24,8 @@ export const de: Translations = {
     clients: '+5000 Kunden',
     insured: 'Versichert',
     experience: '+5 Jahre Erfahrung',
+    freeCancellation: 'Kostenlose Stornierung 48h',
+    instantConfirmation: 'Sofortige Bestätigung',
   },
   
   fleet: {
@@ -47,6 +49,8 @@ export const de: Translations = {
     available: 'Verfügbar',
     occupied: 'Besetzt',
     more: 'mehr',
+    mostPopular: 'Am beliebtesten',
+    perPerson: 'Person',
   },
   features: {
     title: 'Warum Costa Brava Rent a Boat Wählen',
@@ -734,8 +738,8 @@ export const de: Translations = {
       },
     },
     newsletter: {
-      title: 'Saisonangebote erhalten',
-      subtitle: 'Erfahren Sie als Erster von unserer Verfügbarkeit und Sonderangeboten',
+      title: '5\u20AC Rabatt auf Ihre erste Buchung',
+      subtitle: 'Abonnieren Sie und erhalten Sie einen 5\u20AC Rabattcode f\u00fcr Ihre erste Buchung',
       placeholder: 'Ihre E-Mail',
       button: 'Abonnieren',
       success: 'Danke! Wir informieren Sie über unsere besten Angebote.',
@@ -868,5 +872,40 @@ export const de: Translations = {
     readMore: 'Weiterlesen',
     notFoundTitle: 'Artikel nicht gefunden',
     notFoundDescription: 'Der gesuchte Artikel existiert nicht oder wurde entfernt.',
+  },
+  exitIntent: {
+    title: 'Warten Sie! Wir haben etwas f\u00fcr Sie',
+    subtitle: 'Buchen Sie jetzt und erhalten Sie 10% Rabatt auf Ihr erstes nautisches Erlebnis an der Costa Brava',
+    useCode: 'Code verwenden',
+    validFirstBooking: 'G\u00fcltig f\u00fcr Ihre erste Buchung',
+    bookNow: 'Mit Rabatt buchen',
+    noThanks: 'Nein, danke',
+  },
+
+  socialProof: {
+    googleReviews: 'auf Google',
+    happyCustomers: 'zufriedene Kunden',
+    since2020: 'Seit 2020 in Blanes',
+    freeCancellation: 'Kostenlose Stornierung 48h',
+  },
+
+  comparison: {
+    title: 'Mit oder ohne Bootsschein?',
+    subtitle: 'Wahlen Sie das Erlebnis, das am besten zu Ihnen passt',
+    withoutLicense: 'Ohne Bootsschein',
+    withLicense: 'Mit Bootsschein',
+    withoutLicenseDesc: 'Ideal fur Familien und Gruppen, die unkompliziert geniessen mochten',
+    withLicenseDesc: 'Fur Abenteuerlustige, die Leistung und Autonomie suchen',
+    noLicenseNeeded: 'Kein Bootsschein erforderlich',
+    licenseRequired: 'Bootsschein erforderlich',
+    noLicenseFeature1: 'Boote bis 15PS, leicht zu steuern',
+    noLicenseFeature2: 'Perfekt fur nahegelegene Buchten und Strande',
+    noLicenseFeature3: 'Benzin im Preis inbegriffen',
+    noLicenseFeature4: 'Sicherheitsbriefing inklusive',
+    licenseFeature1: 'Leistungsstarke Boote bis 150PS',
+    licenseFeature2: 'Grossere Autonomie und Navigationsreichweite',
+    licenseFeature3: 'Zugang zu abgelegenen Buchten der Costa Brava',
+    licenseFeature4: 'Benzin im Preis inbegriffen',
+    fromPrice: 'Ab',
   },
 };

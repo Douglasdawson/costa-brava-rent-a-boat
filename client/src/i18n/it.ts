@@ -24,6 +24,8 @@ export const it: Translations = {
     clients: '+5000 clienti',
     insured: 'Assicurato',
     experience: '+5 anni di esp.',
+    freeCancellation: 'Cancellazione gratuita 48h',
+    instantConfirmation: 'Conferma immediata',
   },
   
   fleet: {
@@ -47,6 +49,8 @@ export const it: Translations = {
     available: 'Disponibile',
     occupied: 'Occupato',
     more: 'altro',
+    mostPopular: 'Più popolare',
+    perPerson: 'persona',
   },
   features: {
     title: 'Perché Scegliere Costa Brava Rent a Boat',
@@ -734,8 +738,8 @@ export const it: Translations = {
       },
     },
     newsletter: {
-      title: 'Ricevi offerte stagionali',
-      subtitle: 'Sii il primo a conoscere la nostra disponibilità e offerte speciali',
+      title: '5\u20AC di sconto sulla tua prima prenotazione',
+      subtitle: 'Iscriviti e ricevi un codice sconto di 5\u20AC per la tua prima prenotazione',
       placeholder: 'La tua email',
       button: 'Iscriviti',
       success: 'Grazie! Ti avviseremo delle nostre migliori offerte.',
@@ -867,6 +871,41 @@ export const it: Translations = {
     relatedArticles: 'Articoli Correlati',
     readMore: 'Leggi di più',
     notFoundTitle: 'Articolo non trovato',
-    notFoundDescription: 'L\'articolo che cerchi non esiste o è stato rimosso.',
+    notFoundDescription: 'L\'articolo che cerchi non esiste o \u00e8 stato rimosso.',
+  },
+  exitIntent: {
+    title: 'Aspetta! Abbiamo qualcosa per te',
+    subtitle: 'Prenota ora e ottieni il 10% di sconto sulla tua prima esperienza nautica sulla Costa Brava',
+    useCode: 'Usa il codice',
+    validFirstBooking: 'Valido per la tua prima prenotazione',
+    bookNow: 'Prenota con sconto',
+    noThanks: 'No, grazie',
+  },
+
+  socialProof: {
+    googleReviews: 'su Google',
+    happyCustomers: 'clienti soddisfatti',
+    since2020: 'Dal 2020 a Blanes',
+    freeCancellation: 'Cancellazione gratuita 48h',
+  },
+
+  comparison: {
+    title: 'Con o senza patente?',
+    subtitle: 'Scegli l\'esperienza piu adatta a te',
+    withoutLicense: 'Senza patente',
+    withLicense: 'Con patente',
+    withoutLicenseDesc: 'Ideale per famiglie e gruppi che vogliono divertirsi senza complicazioni',
+    withLicenseDesc: 'Per i piu avventurosi che cercano potenza e autonomia',
+    noLicenseNeeded: 'Nessuna patente necessaria',
+    licenseRequired: 'Patente nautica richiesta',
+    noLicenseFeature1: 'Barche fino a 15CV, facili da guidare',
+    noLicenseFeature2: 'Perfette per calette e spiagge vicine',
+    noLicenseFeature3: 'Benzina inclusa nel prezzo',
+    noLicenseFeature4: 'Briefing di sicurezza incluso',
+    licenseFeature1: 'Barche potenti fino a 150CV',
+    licenseFeature2: 'Maggiore autonomia e raggio di navigazione',
+    licenseFeature3: 'Accesso a calette remote della Costa Brava',
+    licenseFeature4: 'Benzina inclusa nel prezzo',
+    fromPrice: 'Da',
   },
 };

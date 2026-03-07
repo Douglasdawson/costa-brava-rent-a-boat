@@ -1,5 +1,5 @@
 import { Card, CardContent } from "@/components/ui/card";
-import { Anchor, ArrowRight } from "lucide-react";
+import { Anchor, ArrowRight, Star } from "lucide-react";
 import { useTranslations } from "@/lib/translations";
 import { useState } from "react";
 
@@ -16,6 +16,7 @@ interface BoatCardProps {
   features: string[];
   available: boolean;
   enginePower?: string;
+  isPopular?: boolean;
   onBooking: (boatId: string) => void;
   onDetails: (boatId: string) => void;
 }
@@ -33,6 +34,7 @@ export default function BoatCard({
   features,
   available,
   enginePower,
+  isPopular,
   onBooking: _onBooking,
   onDetails
 }: BoatCardProps) {
@@ -68,14 +70,27 @@ export default function BoatCard({
             onError={() => setImageError(true)}
           />
         )}
-        <div className="absolute top-3 left-3">
+        {isPopular && (
+          <div className="absolute top-3 left-3 z-10 inline-flex items-center gap-1 bg-amber-500 text-white text-xs font-bold px-2.5 py-1 rounded-full shadow-md">
+            <Star className="w-3 h-3 fill-white" />
+            {t.boats.mostPopular}
+          </div>
+        )}
+        <div className={`absolute ${isPopular ? 'top-11' : 'top-3'} left-3`}>
           <span className="bg-white/90 backdrop-blur-sm text-foreground text-sm font-medium rounded-full px-3 py-1">
             {requiresLicense ? t.boats.withLicense : t.boats.withoutLicense}
           </span>
         </div>
-        <div className="absolute top-3 right-3">
-          <span className={`inline-block w-2.5 h-2.5 rounded-full ${available ? 'bg-primary' : 'bg-muted-foreground/30'}`} />
-        </div>
+        {available ? (
+          <div className="absolute top-3 right-3 inline-flex items-center gap-1.5 bg-green-500/90 backdrop-blur-sm text-white text-xs font-medium px-2.5 py-1 rounded-full">
+            <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
+            {t.boats.available}
+          </div>
+        ) : (
+          <div className="absolute top-3 right-3 inline-flex items-center gap-1.5 bg-red-500/80 backdrop-blur-sm text-white text-xs font-medium px-2.5 py-1 rounded-full">
+            {t.boats.occupied}
+          </div>
+        )}
       </a>
       <CardContent className="p-3 sm:p-4">
         <div className="flex items-start justify-between mb-2">
@@ -84,6 +99,9 @@ export default function BoatCard({
             <div className="text-sm text-muted-foreground">{t.boats.from}</div>
             <div className="text-cta font-medium text-lg">
               {basePrice}&euro;
+            </div>
+            <div className="text-xs text-muted-foreground">
+              {Math.ceil(basePrice / capacity)}&euro;/{t.boats.perPerson}
             </div>
           </div>
         </div>

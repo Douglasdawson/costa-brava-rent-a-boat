@@ -24,6 +24,8 @@ export const nl: Translations = {
     clients: '+5000 klanten',
     insured: 'Verzekerd',
     experience: '+5 jaar ervaring',
+    freeCancellation: 'Gratis annulering 48h',
+    instantConfirmation: 'Directe bevestiging',
   },
   
   fleet: {
@@ -47,6 +49,8 @@ export const nl: Translations = {
     available: 'Beschikbaar',
     occupied: 'Bezet',
     more: 'meer',
+    mostPopular: 'Meest populair',
+    perPerson: 'persoon',
   },
   features: {
     title: 'Waarom Kiezen voor Costa Brava Rent a Boat',
@@ -734,8 +738,8 @@ export const nl: Translations = {
       },
     },
     newsletter: {
-      title: 'Ontvang seizoensaanbiedingen',
-      subtitle: 'Wees de eerste die onze beschikbaarheid en speciale aanbiedingen kent',
+      title: '\u20AC5 korting op je eerste boeking',
+      subtitle: 'Schrijf je in en ontvang een kortingscode van \u20AC5 voor je eerste boeking',
       placeholder: 'Uw e-mail',
       button: 'Abonneren',
       success: 'Bedankt! We laten u weten over onze beste aanbiedingen.',
@@ -868,5 +872,40 @@ export const nl: Translations = {
     readMore: 'Lees meer',
     notFoundTitle: 'Artikel niet gevonden',
     notFoundDescription: 'Het artikel dat je zoekt bestaat niet of is verwijderd.',
+  },
+  exitIntent: {
+    title: 'Wacht! We hebben iets voor je',
+    subtitle: 'Boek nu en krijg 10% korting op je eerste nautische ervaring aan de Costa Brava',
+    useCode: 'Gebruik code',
+    validFirstBooking: 'Geldig voor je eerste boeking',
+    bookNow: 'Boek met korting',
+    noThanks: 'Nee, bedankt',
+  },
+
+  socialProof: {
+    googleReviews: 'op Google',
+    happyCustomers: 'tevreden klanten',
+    since2020: 'Sinds 2020 in Blanes',
+    freeCancellation: 'Gratis annulering 48u',
+  },
+
+  comparison: {
+    title: 'Met of zonder vaarbewijs?',
+    subtitle: 'Kies de ervaring die het beste bij je past',
+    withoutLicense: 'Zonder vaarbewijs',
+    withLicense: 'Met vaarbewijs',
+    withoutLicenseDesc: 'Ideaal voor families en groepen die ongecompliceerd willen genieten',
+    withLicenseDesc: 'Voor de avonturiers die kracht en autonomie zoeken',
+    noLicenseNeeded: 'Geen vaarbewijs nodig',
+    licenseRequired: 'Vaarbewijs vereist',
+    noLicenseFeature1: 'Boten tot 15PK, makkelijk te besturen',
+    noLicenseFeature2: 'Perfect voor nabijgelegen baaien en stranden',
+    noLicenseFeature3: 'Brandstof inbegrepen in de prijs',
+    noLicenseFeature4: 'Veiligheidsbriefing inbegrepen',
+    licenseFeature1: 'Krachtige boten tot 150PK',
+    licenseFeature2: 'Grotere autonomie en vaarbereik',
+    licenseFeature3: 'Toegang tot afgelegen baaien van de Costa Brava',
+    licenseFeature4: 'Brandstof inbegrepen in de prijs',
+    fromPrice: 'Vanaf',
   },
 };

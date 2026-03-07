@@ -22,6 +22,14 @@ export default function FleetSection() {
     queryKey: ['/api/boats'],
   });
 
+  // Determine the most popular boat: the first active boat by display order
+  const popularBoatId = useMemo(() => {
+    const sorted = (boatsData || [])
+      .filter(boat => boat.isActive)
+      .sort((a, b) => (a.displayOrder ?? 999) - (b.displayOrder ?? 999));
+    return sorted[0]?.id ?? null;
+  }, [boatsData]);
+
   // Transform API data to BoatCard format — memoized to avoid recalculation on every render
   const boats = useMemo(() => (boatsData || [])
     .filter(boat => boat.isActive)
@@ -93,6 +101,7 @@ export default function FleetSection() {
               <BoatCard
                 key={boat.id}
                 {...boat}
+                isPopular={boat.id === popularBoatId}
                 onBooking={handleBooking}
                 onDetails={handleDetails}
               />

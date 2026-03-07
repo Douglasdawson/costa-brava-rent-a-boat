@@ -220,7 +220,7 @@ export default function Navigation() {
               onClick={() => handleNavigation("#booking", t.nav.bookNow)}
               data-testid="desktop-button-book"
               aria-label="Reservar barco ahora"
-              className="bg-cta hover:bg-cta/90 text-white rounded-full px-6 py-2 text-sm font-medium btn-elevated"
+              className="bg-cta hover:bg-cta/90 text-white rounded-full px-6 py-2 text-sm font-medium btn-elevated cta-pulse"
             >
               {t.nav.bookNow}
             </Button>
@@ -303,7 +303,7 @@ export default function Navigation() {
             <div className="px-4 py-2 border-t border-border mt-1 pt-3">
               <div className="flex flex-wrap items-center gap-3">
                 <Button
-                  className="bg-cta hover:bg-cta/90 text-white rounded-full px-6 py-3 text-sm font-medium btn-elevated min-h-11"
+                  className="bg-cta hover:bg-cta/90 text-white rounded-full px-6 py-3 text-sm font-medium btn-elevated cta-pulse min-h-11"
                   onClick={handleMobileBooking}
                   data-testid="mobile-button-book"
                   aria-label="Reservar barco ahora"

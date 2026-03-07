@@ -22,8 +22,10 @@ export const ru: Translations = {
     location: 'Местоположение',
     googleRating: '4.8/5 в Google',
     clients: '+5000 клиентов',
-    insured: 'Застрахован',
+    insured: 'Застраховано',
     experience: '+5 лет опыта',
+    freeCancellation: 'Бесплатная отмена 48ч',
+    instantConfirmation: 'Мгновенное подтверждение',
   },
   
   fleet: {
@@ -47,6 +49,8 @@ export const ru: Translations = {
     available: 'Доступно',
     occupied: 'Занято',
     more: 'еще',
+    mostPopular: 'Самый популярный',
+    perPerson: 'человек',
   },
   features: {
     title: 'Почему Выбрать Costa Brava Rent a Boat',
@@ -734,8 +738,8 @@ export const ru: Translations = {
       },
     },
     newsletter: {
-      title: 'Получайте сезонные предложения',
-      subtitle: 'Первыми узнавайте о нашей доступности и специальных предложениях',
+      title: 'Скидка 5\u20AC на первое бронирование',
+      subtitle: 'Подпишитесь и получите скидку 5\u20AC на первое бронирование',
       placeholder: 'Ваш email',
       button: 'Подписаться',
       success: 'Спасибо! Мы сообщим вам о лучших предложениях.',
@@ -868,5 +872,40 @@ export const ru: Translations = {
     readMore: 'Читать далее',
     notFoundTitle: 'Статья не найдена',
     notFoundDescription: 'Статья, которую вы ищете, не существует или была удалена.',
+  },
+  exitIntent: {
+    title: 'Подождите! У нас есть кое-что для вас',
+    subtitle: 'Забронируйте сейчас и получите скидку 10% на ваш первый морской опыт на Коста Брава',
+    useCode: 'Используйте код',
+    validFirstBooking: 'Действителен для первого бронирования',
+    bookNow: 'Забронировать со скидкой',
+    noThanks: 'Нет, спасибо',
+  },
+
+  socialProof: {
+    googleReviews: 'в Google',
+    happyCustomers: 'довольных клиентов',
+    since2020: 'С 2020 года в Бланесе',
+    freeCancellation: 'Бесплатная отмена 48ч',
+  },
+
+  comparison: {
+    title: 'С лицензией или без?',
+    subtitle: 'Выберите подходящий вам вариант',
+    withoutLicense: 'Без лицензии',
+    withLicense: 'С лицензией',
+    withoutLicenseDesc: 'Идеально для семей и групп, которые хотят отдыхать без сложностей',
+    withLicenseDesc: 'Для искателей приключений, которым нужна мощность и автономность',
+    noLicenseNeeded: 'Лицензия не требуется',
+    licenseRequired: 'Требуется лицензия на управление',
+    noLicenseFeature1: 'Лодки до 15 л.с., легкие в управлении',
+    noLicenseFeature2: 'Идеальны для ближайших бухт и пляжей',
+    noLicenseFeature3: 'Бензин включен в стоимость',
+    noLicenseFeature4: 'Инструктаж по безопасности включен',
+    licenseFeature1: 'Мощные лодки до 150 л.с.',
+    licenseFeature2: 'Большая автономность и дальность плавания',
+    licenseFeature3: 'Доступ к удаленным бухтам Коста Бравы',
+    licenseFeature4: 'Бензин включен в стоимость',
+    fromPrice: 'От',
   },
 };

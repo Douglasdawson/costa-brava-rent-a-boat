@@ -96,7 +96,7 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
       { name: "Parking", price: "10€", icon: "CircleParking" },
       { name: "Nevera", price: "5€", icon: "Snowflake" },
       { name: "Bebidas", price: "2,5€/ud", icon: "Beer" },
-      { name: "Snorkel", price: "7,5€", icon: "Eye" },
+      { name: "Snorkel", price: "7,5€", icon: "Snorkel" },
       { name: "Paddle Surf", price: "25€", icon: "Waves" },
       { name: "Seascooter", price: "50€", icon: "Zap" }
     ]
@@ -157,7 +157,7 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
       { name: "Parking", price: "10€", icon: "CircleParking" },
       { name: "Nevera", price: "5€", icon: "Snowflake" },
       { name: "Bebidas", price: "2,5€/ud", icon: "Beer" },
-      { name: "Snorkel", price: "7,5€", icon: "Eye" },
+      { name: "Snorkel", price: "7,5€", icon: "Snorkel" },
       { name: "Paddle Surf", price: "25€", icon: "Waves" },
       { name: "Seascooter", price: "50€", icon: "Zap" }
     ]
@@ -218,7 +218,7 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
       { name: "Parking", price: "10€", icon: "CircleParking" },
       { name: "Nevera", price: "5€", icon: "Snowflake" },
       { name: "Bebidas", price: "2,5€/ud", icon: "Beer" },
-      { name: "Snorkel", price: "7,5€", icon: "Eye" },
+      { name: "Snorkel", price: "7,5€", icon: "Snorkel" },
       { name: "Paddle Surf", price: "25€", icon: "Waves" },
       { name: "Seascooter", price: "50€", icon: "Zap" }
     ]
@@ -279,7 +279,7 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
       { name: "Parking", price: "10€", icon: "CircleParking" },
       { name: "Nevera", price: "5€", icon: "Snowflake" },
       { name: "Bebidas", price: "2,5€/ud", icon: "Beer" },
-      { name: "Snorkel", price: "7,5€", icon: "Eye" },
+      { name: "Snorkel", price: "7,5€", icon: "Snorkel" },
       { name: "Paddle Surf", price: "25€", icon: "Waves" },
       { name: "Seascooter", price: "50€", icon: "Zap" }
     ]
@@ -339,7 +339,7 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
       { name: "Parking", price: "10€", icon: "CircleParking" },
       { name: "Nevera", price: "5€", icon: "Snowflake" },
       { name: "Bebidas", price: "2,5€/ud", icon: "Beer" },
-      { name: "Snorkel", price: "7,5€", icon: "Eye" },
+      { name: "Snorkel", price: "7,5€", icon: "Snorkel" },
       { name: "Paddle Surf", price: "25€", icon: "Waves" },
       { name: "Seascooter", price: "50€", icon: "Zap" }
     ]
@@ -401,7 +401,7 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
       { name: "Parking", price: "10€", icon: "CircleParking" },
       { name: "Nevera", price: "5€", icon: "Snowflake" },
       { name: "Bebidas", price: "2,5€/ud", icon: "Beer" },
-      { name: "Snorkel", price: "7,5€", icon: "Eye" },
+      { name: "Snorkel", price: "7,5€", icon: "Snorkel" },
       { name: "Paddle Surf", price: "25€", icon: "Waves" },
       { name: "Seascooter", price: "50€", icon: "Zap" }
     ]
@@ -464,7 +464,7 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
       { name: "Parking", price: "10€", icon: "CircleParking" },
       { name: "Nevera", price: "5€", icon: "Snowflake" },
       { name: "Bebidas", price: "2,5€/ud", icon: "Beer" },
-      { name: "Snorkel", price: "7,5€", icon: "Eye" },
+      { name: "Snorkel", price: "7,5€", icon: "Snorkel" },
       { name: "Paddle Surf", price: "25€", icon: "Waves" },
       { name: "Seascooter", price: "50€", icon: "Zap" }
     ]
@@ -527,7 +527,7 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
       { name: "Parking", price: "10€", icon: "CircleParking" },
       { name: "Nevera", price: "5€", icon: "Snowflake" },
       { name: "Bebidas", price: "2,5€/ud", icon: "Beer" },
-      { name: "Snorkel", price: "7,5€", icon: "Eye" },
+      { name: "Snorkel", price: "7,5€", icon: "Snorkel" },
       { name: "Paddle Surf", price: "25€", icon: "Waves" },
       { name: "Seascooter", price: "50€", icon: "Zap" }
     ]
@@ -594,7 +594,7 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
       { name: "Parking", price: "10€", icon: "CircleParking" },
       { name: "Nevera", price: "5€", icon: "Snowflake" },
       { name: "Bebidas", price: "2,5€/ud", icon: "Beer" },
-      { name: "Snorkel", price: "7,5€", icon: "Eye" },
+      { name: "Snorkel", price: "7,5€", icon: "Snorkel" },
       { name: "Paddle Surf", price: "25€", icon: "Waves" },
       { name: "Seascooter", price: "50€", icon: "Zap" }
     ]
@@ -659,7 +659,7 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
       { name: "Parking", price: "10€", icon: "CircleParking" },
       { name: "Nevera", price: "5€", icon: "Snowflake" },
       { name: "Agua y refrescos", price: "2€/ud", icon: "Beer" },
-      { name: "Snorkel", price: "7,5€", icon: "Eye" },
+      { name: "Snorkel", price: "7,5€", icon: "Snorkel" },
       { name: "Paddle Surf", price: "25€", icon: "Waves" },
       { name: "Seascooter", price: "60€", icon: "Zap" }
     ]

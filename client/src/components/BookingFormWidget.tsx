@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef, useMemo, useCallback } from "react";
-import { Package, Crown, Zap, Snowflake, Eye, Waves, CircleParking, Beer } from "lucide-react";
+import { Package, Crown, Zap, Snowflake, Waves, CircleParking, Beer } from "lucide-react";
+import SnorkelIcon from "@/components/icons/SnorkelIcon";
 import { openWhatsApp } from "@/utils/whatsapp";
 import { useToast } from "@/hooks/use-toast";
 import { useTranslations } from "@/lib/translations";
@@ -35,7 +36,8 @@ const ICON_MAP: Record<string, React.ComponentType<{ className?: string }>> = {
   Crown,
   Zap,
   Snowflake,
-  Eye,
+  Snorkel: SnorkelIcon,
+  Eye: SnorkelIcon,
   Waves,
   CircleParking,
   Beer,

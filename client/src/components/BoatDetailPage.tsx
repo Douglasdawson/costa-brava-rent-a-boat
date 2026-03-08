@@ -23,7 +23,6 @@ ArrowUpDown,
   CircleParking,
   Snowflake,
   Beer,
-  Eye,
   Waves,
   MessageSquare,
   Heart,
@@ -34,6 +33,7 @@ ArrowUpDown,
   ChevronRight,
   X
 } from "lucide-react";
+import SnorkelIcon from "@/components/icons/SnorkelIcon";
 import { openWhatsApp } from "@/utils/whatsapp";
 import { getBoatImage, getBoatImageSrcSet } from "@/utils/boatImages";
 import Navigation from "./Navigation";
@@ -657,7 +657,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
               <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
                 {boatData.extras?.map((extra, index) => {
                   const iconMap: { [key: string]: React.ComponentType<{ className?: string }> } = {
-                    CircleParking, Snowflake, Beer, Eye, Waves, Zap
+                    CircleParking, Snowflake, Beer, Snorkel: SnorkelIcon, Eye: SnorkelIcon, Waves, Zap
                   };
                   const IconComponent = iconMap[extra.icon] || Star;
                   return (

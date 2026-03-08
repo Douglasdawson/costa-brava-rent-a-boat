@@ -16,7 +16,7 @@ export const es: Translations = {
     title: 'Alquiler de Barcos en Blanes, Costa Brava',
     subtitle: 'Descubre las mejores calas de la Costa Brava con nuestros barcos con y sin licencia. Salidas desde Puerto de Blanes.',
     bookNow: 'Reservar Ahora',
-    viewFleet: 'Ver Flota',
+    viewFleet: 'Explorar Flota',
     trustText: 'Sin compromiso • Precios transparentes',
     whatsappContact: 'WhatsApp +34 611 500 372',
     location: 'Ubicación',
@@ -277,6 +277,7 @@ export const es: Translations = {
     select: 'Seleccionar...',
     pricesUpdateByDate: 'Los precios se actualizan según la fecha',
     sendBookingRequest: 'ENVIAR PETICIÓN DE RESERVA',
+    needHelp: '¿Necesitas ayuda?',
     people: 'personas',
     // BookingFormWidget validation
     firstNameRequired: 'Campo requerido: Nombre',
@@ -395,6 +396,7 @@ export const es: Translations = {
   breadcrumbs: {
     home: 'Inicio',
     boats: 'Barcos',
+    fleet: 'Flota',
     locations: 'Ubicaciones',
     categories: 'Categorías',
     legal: 'Legal',
@@ -406,6 +408,11 @@ export const es: Translations = {
     locationTossa: 'Tossa de Mar',
     privacyPolicy: 'Política de Privacidad',
     termsConditions: 'Términos y Condiciones',
+  },
+  relatedBoats: {
+    title: 'También te puede interesar',
+    viewDetails: 'Ver detalles',
+    from: 'desde',
   },
   availability: {
     title: 'Disponibilidad',
@@ -943,6 +950,14 @@ export const es: Translations = {
     payAtPort: 'Se paga y devuelve en el puerto',
   },
 
+  priceSummary: {
+    base: 'Base',
+    extras: 'Extras',
+    discount: 'Descuento',
+    total: 'Total',
+    seeDetails: 'Ver detalle',
+  },
+
   recommendation: {
     howManyPeople: 'Cuantas personas sois?',
     people: 'personas',
@@ -965,6 +980,80 @@ export const es: Translations = {
     yourExperience: 'Tu experiencia',
     confirmStep: 'Confirmar',
     yourBoat: 'Tu {boat}',
+  },
+
+  bookingTrust: {
+    customers: '2000+ clientes',
+    rating: '4.8 Google',
+    confirmation: 'Confirmacion en 2h',
+  },
+
+  faqPreview: {
+    title: 'Preguntas frecuentes',
+    subtitle: 'Todo lo que necesitas saber antes de salir a navegar',
+    viewAll: 'Ver todas las preguntas frecuentes',
+    items: [
+      {
+        id: 'precios',
+        question: '¿Cuáles son los precios del alquiler?',
+        answer: 'Barcos sin licencia desde 70€ con gasolina incluida (1h, 2h, 3h, 4h, 6h o día completo). Barcos con licencia desde 150€ sin gasolina incluida (2h, 4h, 8h). Los precios varían según temporada (julio/agosto) y embarcación.',
+      },
+      {
+        id: 'sin-licencia',
+        question: '¿Puedo alquilar un barco sin tener licencia náutica?',
+        answer: '¡Sí! Tenemos varios barcos perfectos sin licencia de hasta 15 CV. Solo necesitas ser mayor de 18 años. Antes de salir te damos un briefing completo para que navegues con total seguridad.',
+      },
+      {
+        id: 'incluye',
+        question: '¿Qué está incluido en el precio?',
+        answer: 'Incluido en todos los alquileres: embarcación equipada, gasolina (en barcos sin licencia), chalecos salvavidas, kit de seguridad, ancla, escalera de baño, instrucciones de uso y seguro básico.',
+      },
+      {
+        id: 'cancelacion',
+        question: '¿Cuál es la política de cancelación?',
+        answer: 'Cancelación flexible: más de 48h antes = reembolso completo. Entre 24-48h = 50% de reembolso. Menos de 24h = sin reembolso. En caso de mal tiempo, reprogramación gratuita o reembolso total.',
+      },
+      {
+        id: 'donde-navegar',
+        question: '¿Por dónde puedo navegar?',
+        answer: 'Barcos sin licencia: desde Blanes hasta Playa de Fenals al norte y el final de la playa de Blanes al sur, siempre a menos de 2 millas de la costa. Barcos con licencia: mayor radio de navegación, hasta Sant Feliu de Guíxols y más allá.',
+      },
+      {
+        id: 'mal-tiempo',
+        question: '¿Qué pasa si hace mal tiempo?',
+        answer: 'Si las condiciones meteorológicas no son seguras, te ofrecemos cambio de fecha gratuito o reembolso completo. Consultamos la previsión 24h antes y te avisamos.',
+      },
+      {
+        id: 'experiencia',
+        question: '¿Necesito experiencia previa?',
+        answer: 'No, ninguna. Antes de zarpar te damos una explicación completa del barco (10-15 min). Nuestros barcos sin licencia son muy fáciles de manejar.',
+      },
+      {
+        id: 'comida-bebida',
+        question: '¿Puedo llevar comida y bebida?',
+        answer: '¡Por supuesto! Puedes traer tu propia comida, bebidas y snacks. Tenemos nevera a bordo. Solo pedimos que no se use cristal por seguridad.',
+      },
+      {
+        id: 'fianza',
+        question: '¿Qué es la fianza y cuándo se devuelve?',
+        answer: 'La fianza es un depósito de seguridad (200-500€ según el barco) que se paga en el puerto antes de salir y se devuelve íntegramente al regresar si el barco está en buen estado.',
+      },
+      {
+        id: 'equipamiento-seguridad',
+        question: '¿Qué equipamiento de seguridad incluye?',
+        answer: 'Todos nuestros barcos incluyen chalecos salvavidas para todos los pasajeros, botiquín de primeros auxilios, extintor, ancla, y kit de señalización según normativa.',
+      },
+      {
+        id: 'descuentos',
+        question: '¿Hay descuentos para grupos o reservas anticipadas?',
+        answer: 'Sí, ofrecemos el código BIENVENIDO10 para un 10% de descuento en tu primera reserva. También tenemos tarifas especiales para reservas de día completo.',
+      },
+      {
+        id: 'hasta-donde',
+        question: '¿Hasta dónde puedo navegar?',
+        answer: 'Puedes explorar toda la costa entre Blanes y Tossa de Mar. Te recomendamos las calas de Sa Forcanera, Cala Bona y Cala Sant Francesc, accesibles solo por mar.',
+      },
+    ],
   },
 
   holdCountdown: {

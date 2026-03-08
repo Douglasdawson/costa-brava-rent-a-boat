@@ -294,6 +294,7 @@ export interface Translations {
     select: string;
     pricesUpdateByDate: string;
     sendBookingRequest: string;
+    needHelp: string;
     people: string;
     // BookingFormWidget validation
     firstNameRequired: string;
@@ -427,6 +428,7 @@ export interface Translations {
   breadcrumbs: {
     home: string;
     boats: string;
+    fleet: string;
     locations: string;
     categories: string;
     legal: string;
@@ -438,6 +440,13 @@ export interface Translations {
     locationTossa: string;
     privacyPolicy: string;
     termsConditions: string;
+  };
+
+  // Related Boats
+  relatedBoats: {
+    title: string;
+    viewDetails: string;
+    from: string;
   };
 
   // Availability Calendar
@@ -1005,6 +1014,15 @@ export interface Translations {
     payAtPort: string;
   };
 
+  // Price Summary (persistent during booking flow)
+  priceSummary?: {
+    base: string;
+    extras: string;
+    discount: string;
+    total: string;
+    seeDetails: string;
+  };
+
   // Boat Recommendation
   recommendation?: {
     howManyPeople: string;
@@ -1057,6 +1075,25 @@ export interface Translations {
     freeGuideSubtitle: string;
     sendFreeGuide: string;
     freeGuideSent: string;
+  };
+
+  // FAQ Preview (homepage accordion — 12 items)
+  faqPreview?: {
+    title: string;
+    subtitle: string;
+    viewAll: string;
+    items: Array<{
+      id: string;
+      question: string;
+      answer: string;
+    }>;
+  };
+
+  // Booking Trust Strip (inside booking modal)
+  bookingTrust?: {
+    customers: string;
+    rating: string;
+    confirmation: string;
   };
 
   // Hold Countdown (booking form urgency timer)

@@ -16,7 +16,7 @@ export const en: Translations = {
     title: 'Boat Rental in Blanes, Costa Brava',
     subtitle: 'Discover the best coves of Costa Brava with our licensed and license-free boats. Departures from Blanes Port.',
     bookNow: 'Book Now',
-    viewFleet: 'View Fleet',
+    viewFleet: 'Explore Fleet',
     trustText: 'No commitment • Instant confirmation • Transparent prices',
     whatsappContact: 'WhatsApp +34 611 500 372',
     location: 'Location',
@@ -241,6 +241,7 @@ export const en: Translations = {
     select: 'Select...',
     pricesUpdateByDate: 'Prices update based on the selected date',
     sendBookingRequest: 'SEND BOOKING REQUEST',
+    needHelp: 'Need help?',
     people: 'people',
     firstNameRequired: 'Required: First Name',
     firstNameRequiredDesc: 'Please enter your first name',
@@ -385,6 +386,7 @@ export const en: Translations = {
   breadcrumbs: {
     home: 'Home',
     boats: 'Boats',
+    fleet: 'Fleet',
     locations: 'Locations',
     categories: 'Categories',
     legal: 'Legal',
@@ -396,6 +398,11 @@ export const en: Translations = {
     locationTossa: 'Tossa de Mar',
     privacyPolicy: 'Privacy Policy',
     termsConditions: 'Terms and Conditions',
+  },
+  relatedBoats: {
+    title: 'You might also like',
+    viewDetails: 'View details',
+    from: 'from',
   },
   availability: {
     title: 'Availability',
@@ -933,6 +940,14 @@ export const en: Translations = {
     payAtPort: 'Paid and returned at the port',
   },
 
+  priceSummary: {
+    base: 'Base',
+    extras: 'Extras',
+    discount: 'Discount',
+    total: 'Total',
+    seeDetails: 'See details',
+  },
+
   recommendation: {
     howManyPeople: 'How many people are you?',
     people: 'people',
@@ -955,6 +970,80 @@ export const en: Translations = {
     yourExperience: 'Your experience',
     confirmStep: 'Confirm',
     yourBoat: 'Your {boat}',
+  },
+
+  bookingTrust: {
+    customers: '2000+ customers',
+    rating: '4.8 Google',
+    confirmation: 'Confirmed in 2h',
+  },
+
+  faqPreview: {
+    title: 'Frequently asked questions',
+    subtitle: 'Everything you need to know before setting sail',
+    viewAll: 'View all frequently asked questions',
+    items: [
+      {
+        id: 'precios',
+        question: 'What are the rental prices?',
+        answer: 'License-free boats from 70€ with fuel included (1h, 2h, 3h, 4h, 6h or full day). Licensed boats from 150€ without fuel (2h, 4h, 8h). Prices vary by season (July/August) and boat.',
+      },
+      {
+        id: 'sin-licencia',
+        question: 'Can I rent a boat without a boating license?',
+        answer: 'Yes! We have several perfect license-free boats up to 15 HP. You only need to be over 18. Before departure we give you a full briefing so you can navigate safely.',
+      },
+      {
+        id: 'incluye',
+        question: 'What is included in the price?',
+        answer: 'All rentals include: fully equipped boat, fuel (on license-free boats), life jackets, safety kit, anchor, swim ladder, usage instructions and basic insurance.',
+      },
+      {
+        id: 'cancelacion',
+        question: 'What is the cancellation policy?',
+        answer: 'Flexible cancellation: more than 48h before = full refund. 24-48h = 50% refund. Less than 24h = no refund. In case of bad weather, free rescheduling or full refund.',
+      },
+      {
+        id: 'donde-navegar',
+        question: 'Where can I navigate?',
+        answer: 'License-free boats: from Blanes to Fenals Beach northward and the end of Blanes beach southward, always within 2 miles of the coast. Licensed boats: wider range, up to Sant Feliu de Guíxols and beyond.',
+      },
+      {
+        id: 'mal-tiempo',
+        question: 'What happens if the weather is bad?',
+        answer: 'If weather conditions are unsafe, we offer a free date change or full refund. We check the forecast 24h in advance and notify you.',
+      },
+      {
+        id: 'experiencia',
+        question: 'Do I need previous experience?',
+        answer: 'No, none at all. Before setting sail we give you a complete explanation of the boat (10-15 min). Our license-free boats are very easy to handle.',
+      },
+      {
+        id: 'comida-bebida',
+        question: 'Can I bring food and drinks?',
+        answer: 'Of course! You can bring your own food, drinks and snacks. We have a cooler on board. We only ask that you avoid glass for safety reasons.',
+      },
+      {
+        id: 'fianza',
+        question: 'What is the deposit and when is it returned?',
+        answer: 'The deposit is a security bond (200-500€ depending on the boat) paid at the port before departure and fully returned when you come back if the boat is in good condition.',
+      },
+      {
+        id: 'equipamiento-seguridad',
+        question: 'What safety equipment is included?',
+        answer: 'All our boats include life jackets for all passengers, first aid kit, fire extinguisher, anchor, and signalling kit as required by regulations.',
+      },
+      {
+        id: 'descuentos',
+        question: 'Are there discounts for groups or early bookings?',
+        answer: 'Yes, we offer the code BIENVENIDO10 for a 10% discount on your first booking. We also have special rates for full-day rentals.',
+      },
+      {
+        id: 'hasta-donde',
+        question: 'How far can I navigate?',
+        answer: 'You can explore the entire coast between Blanes and Tossa de Mar. We recommend the coves of Sa Forcanera, Cala Bona and Cala Sant Francesc, accessible only by sea.',
+      },
+    ],
   },
 
   holdCountdown: {

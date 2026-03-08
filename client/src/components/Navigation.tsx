@@ -156,7 +156,7 @@ export default function Navigation() {
   };
 
   return (
-    <nav className="absolute top-3 left-4 right-4 lg:left-6 lg:right-6 z-50 rounded-2xl bg-white/20 backdrop-blur-xl border border-white/40 shadow-[0_8px_32px_rgba(13,13,43,0.12)] pt-safe">
+    <nav className="fixed top-3 left-4 right-4 lg:left-6 lg:right-6 z-50 rounded-2xl bg-white/20 backdrop-blur-xl border border-white/40 shadow-[0_8px_32px_rgba(13,13,43,0.12)] pt-safe">
       <a
         href="#main-content"
         className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-primary focus:text-white focus:rounded-lg focus:outline-none"

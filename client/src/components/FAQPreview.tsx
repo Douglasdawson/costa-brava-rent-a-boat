@@ -1,8 +1,10 @@
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { HelpCircle, ArrowRight } from "lucide-react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
+import { useTranslations } from "@/lib/translations";
 
-const FAQ_ITEMS = [
+/** Fallback items (Spanish) used when faqPreview translations are not loaded */
+const FALLBACK_ITEMS = [
   {
     id: "precios",
     question: "¿Cuáles son los precios del alquiler?",
@@ -28,10 +30,55 @@ const FAQ_ITEMS = [
     question: "¿Por dónde puedo navegar?",
     answer: "Barcos sin licencia: desde Blanes hasta Playa de Fenals al norte y el final de la playa de Blanes al sur, siempre a menos de 2 millas de la costa. Barcos con licencia: mayor radio de navegación, hasta Sant Feliu de Guíxols y más allá.",
   },
+  {
+    id: "mal-tiempo",
+    question: "¿Qué pasa si hace mal tiempo?",
+    answer: "Si las condiciones meteorológicas no son seguras, te ofrecemos cambio de fecha gratuito o reembolso completo. Consultamos la previsión 24h antes y te avisamos.",
+  },
+  {
+    id: "experiencia",
+    question: "¿Necesito experiencia previa?",
+    answer: "No, ninguna. Antes de zarpar te damos una explicación completa del barco (10-15 min). Nuestros barcos sin licencia son muy fáciles de manejar.",
+  },
+  {
+    id: "comida-bebida",
+    question: "¿Puedo llevar comida y bebida?",
+    answer: "¡Por supuesto! Puedes traer tu propia comida, bebidas y snacks. Tenemos nevera a bordo. Solo pedimos que no se use cristal por seguridad.",
+  },
+  {
+    id: "fianza",
+    question: "¿Qué es la fianza y cuándo se devuelve?",
+    answer: "La fianza es un depósito de seguridad (200-500€ según el barco) que se paga en el puerto antes de salir y se devuelve íntegramente al regresar si el barco está en buen estado.",
+  },
+  {
+    id: "equipamiento-seguridad",
+    question: "¿Qué equipamiento de seguridad incluye?",
+    answer: "Todos nuestros barcos incluyen chalecos salvavidas para todos los pasajeros, botiquín de primeros auxilios, extintor, ancla, y kit de señalización según normativa.",
+  },
+  {
+    id: "descuentos",
+    question: "¿Hay descuentos para grupos o reservas anticipadas?",
+    answer: "Sí, ofrecemos el código BIENVENIDO10 para un 10% de descuento en tu primera reserva. También tenemos tarifas especiales para reservas de día completo.",
+  },
+  {
+    id: "hasta-donde",
+    question: "¿Hasta dónde puedo navegar?",
+    answer: "Puedes explorar toda la costa entre Blanes y Tossa de Mar. Te recomendamos las calas de Sa Forcanera, Cala Bona y Cala Sant Francesc, accesibles solo por mar.",
+  },
 ];
+
+/** Number of items shown on the homepage preview */
+const PREVIEW_COUNT = 8;
 
 export default function FAQPreview() {
   const { ref: revealRef, isVisible } = useScrollReveal();
+  const t = useTranslations();
+
+  const items = t.faqPreview?.items?.length ? t.faqPreview.items : FALLBACK_ITEMS;
+  const previewItems = items.slice(0, PREVIEW_COUNT);
+  const title = t.faqPreview?.title ?? "Preguntas frecuentes";
+  const subtitle = t.faqPreview?.subtitle ?? "Todo lo que necesitas saber antes de salir a navegar";
+  const viewAll = t.faqPreview?.viewAll ?? "Ver todas las preguntas frecuentes";
 
   return (
     <section ref={revealRef} className={`py-16 sm:py-20 bg-white transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`} aria-labelledby="faq-preview-title">
@@ -42,16 +89,16 @@ export default function FAQPreview() {
             <HelpCircle className="w-6 h-6 text-primary" />
           </div>
           <h2 id="faq-preview-title" className="font-heading text-2xl sm:text-3xl font-bold text-foreground mb-3">
-            Preguntas frecuentes
+            {title}
           </h2>
           <p className="text-muted-foreground text-base sm:text-lg">
-            Todo lo que necesitas saber antes de salir a navegar
+            {subtitle}
           </p>
         </div>
 
         {/* Accordion */}
         <Accordion type="single" collapsible className="space-y-2">
-          {FAQ_ITEMS.map((item) => (
+          {previewItems.map((item) => (
             <AccordionItem
               key={item.id}
               value={item.id}
@@ -73,7 +120,7 @@ export default function FAQPreview() {
             href="/faq"
             className="inline-flex items-center gap-2 text-primary font-semibold text-sm hover:underline"
           >
-            Ver todas las preguntas frecuentes
+            {viewAll}
             <ArrowRight className="w-4 h-4" />
           </a>
         </div>

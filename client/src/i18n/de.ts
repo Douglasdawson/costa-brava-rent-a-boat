@@ -16,7 +16,7 @@ export const de: Translations = {
     title: 'Bootsverleih in Blanes, Costa Brava',
     subtitle: 'Entdecken Sie die schönsten Buchten der Costa Brava mit unseren Booten mit und ohne Führerschein. Abfahrt vom Hafen Blanes.',
     bookNow: 'Jetzt Buchen',
-    viewFleet: 'Flotte Anzeigen',
+    viewFleet: 'Flotte Entdecken',
     trustText: 'Ohne Verpflichtung • Transparente Preise',
     whatsappContact: 'WhatsApp +34 611 500 372',
     location: 'Standort',
@@ -241,6 +241,7 @@ export const de: Translations = {
     select: 'Auswählen...',
     pricesUpdateByDate: 'Die Preise werden je nach Datum aktualisiert',
     sendBookingRequest: 'BUCHUNGSANFRAGE SENDEN',
+    needHelp: 'Brauchen Sie Hilfe?',
     people: 'Personen',
     firstNameRequired: 'Pflichtfeld: Vorname',
     firstNameRequiredDesc: 'Bitte geben Sie Ihren Vornamen ein',
@@ -385,6 +386,7 @@ export const de: Translations = {
   breadcrumbs: {
     home: 'Startseite',
     boats: 'Boote',
+    fleet: 'Flotte',
     locations: 'Standorte',
     categories: 'Kategorien',
     legal: 'Rechtliches',
@@ -396,6 +398,11 @@ export const de: Translations = {
     locationTossa: 'Tossa de Mar',
     privacyPolicy: 'Datenschutz',
     termsConditions: 'Geschäftsbedingungen',
+  },
+  relatedBoats: {
+    title: 'Das könnte Ihnen auch gefallen',
+    viewDetails: 'Details anzeigen',
+    from: 'ab',
   },
   availability: {
     title: 'Verfügbarkeit',
@@ -933,6 +940,14 @@ export const de: Translations = {
     payAtPort: 'Wird im Hafen bezahlt und erstattet',
   },
 
+  priceSummary: {
+    base: 'Basis',
+    extras: 'Extras',
+    discount: 'Rabatt',
+    total: 'Gesamt',
+    seeDetails: 'Details anzeigen',
+  },
+
   recommendation: {
     howManyPeople: 'Wie viele Personen seid ihr?',
     people: 'Personen',
@@ -955,6 +970,80 @@ export const de: Translations = {
     yourExperience: 'Ihr Erlebnis',
     confirmStep: 'Bestatigen',
     yourBoat: 'Ihr {boat}',
+  },
+
+  bookingTrust: {
+    customers: '2000+ Kunden',
+    rating: '4.8 Google',
+    confirmation: 'Bestatigung in 2h',
+  },
+
+  faqPreview: {
+    title: 'Haufig gestellte Fragen',
+    subtitle: 'Alles, was Sie vor der Abfahrt wissen mussen',
+    viewAll: 'Alle haufig gestellten Fragen ansehen',
+    items: [
+      {
+        id: 'precios',
+        question: 'Wie hoch sind die Mietpreise?',
+        answer: 'Boote ohne Fuhrerschein ab 70€ mit Treibstoff inklusive (1h, 2h, 3h, 4h, 6h oder ganzer Tag). Boote mit Fuhrerschein ab 150€ ohne Treibstoff (2h, 4h, 8h). Die Preise variieren je nach Saison (Juli/August) und Boot.',
+      },
+      {
+        id: 'sin-licencia',
+        question: 'Kann ich ein Boot ohne Bootsfuhrerschein mieten?',
+        answer: 'Ja! Wir haben mehrere perfekte fuhrerscheinfreie Boote bis 15 PS. Sie mussen nur uber 18 Jahre alt sein. Vor der Abfahrt geben wir Ihnen ein vollstandiges Briefing fur sicheres Navigieren.',
+      },
+      {
+        id: 'incluye',
+        question: 'Was ist im Preis inbegriffen?',
+        answer: 'Alle Vermietungen beinhalten: voll ausgestattetes Boot, Treibstoff (bei fuhrerscheinfreien Booten), Schwimmwesten, Sicherheitskit, Anker, Badeleiter, Bedienungsanleitung und Grundversicherung.',
+      },
+      {
+        id: 'cancelacion',
+        question: 'Wie lautet die Stornierungsrichtlinie?',
+        answer: 'Flexible Stornierung: mehr als 48h vorher = volle Ruckerstattung. 24-48h = 50% Ruckerstattung. Weniger als 24h = keine Ruckerstattung. Bei schlechtem Wetter kostenlose Umbuchung oder volle Ruckerstattung.',
+      },
+      {
+        id: 'donde-navegar',
+        question: 'Wo kann ich navigieren?',
+        answer: 'Boote ohne Fuhrerschein: von Blanes bis zum Strand von Fenals im Norden und dem Ende des Strandes von Blanes im Suden, immer innerhalb von 2 Meilen zur Kuste. Boote mit Fuhrerschein: grosserer Radius, bis Sant Feliu de Guixols und daruber hinaus.',
+      },
+      {
+        id: 'mal-tiempo',
+        question: 'Was passiert bei schlechtem Wetter?',
+        answer: 'Wenn die Wetterbedingungen unsicher sind, bieten wir Ihnen eine kostenlose Terminanderung oder eine vollstandige Ruckerstattung an. Wir prufen die Vorhersage 24h vorher und informieren Sie.',
+      },
+      {
+        id: 'experiencia',
+        question: 'Brauche ich Vorerfahrung?',
+        answer: 'Nein, uberhaupt keine. Vor der Abfahrt geben wir Ihnen eine vollstandige Erklarung des Bootes (10-15 Min). Unsere fuhrerscheinfreien Boote sind sehr einfach zu steuern.',
+      },
+      {
+        id: 'comida-bebida',
+        question: 'Darf ich Essen und Getranke mitbringen?',
+        answer: 'Naturlich! Sie konnen Ihr eigenes Essen, Getranke und Snacks mitbringen. Wir haben eine Kuhlbox an Bord. Wir bitten nur darum, aus Sicherheitsgrunden kein Glas mitzubringen.',
+      },
+      {
+        id: 'fianza',
+        question: 'Was ist die Kaution und wann wird sie zuruckgegeben?',
+        answer: 'Die Kaution ist eine Sicherheitsleistung (200-500€ je nach Boot), die im Hafen vor der Abfahrt gezahlt und bei Ruckgabe vollstandig erstattet wird, wenn das Boot in gutem Zustand ist.',
+      },
+      {
+        id: 'equipamiento-seguridad',
+        question: 'Welche Sicherheitsausrustung ist inklusive?',
+        answer: 'Alle unsere Boote verfugen uber Schwimmwesten fur alle Passagiere, Erste-Hilfe-Kasten, Feuerloscher, Anker und Signalisierungsset gemas den Vorschriften.',
+      },
+      {
+        id: 'descuentos',
+        question: 'Gibt es Rabatte fur Gruppen oder Fruhbucher?',
+        answer: 'Ja, wir bieten den Code BIENVENIDO10 fur 10% Rabatt auf Ihre erste Buchung an. Wir haben auch Sondertarife fur Ganztagesmieten.',
+      },
+      {
+        id: 'hasta-donde',
+        question: 'Wie weit kann ich navigieren?',
+        answer: 'Sie konnen die gesamte Kuste zwischen Blanes und Tossa de Mar erkunden. Wir empfehlen die Buchten von Sa Forcanera, Cala Bona und Cala Sant Francesc, die nur vom Meer aus erreichbar sind.',
+      },
+    ],
   },
 
   holdCountdown: {

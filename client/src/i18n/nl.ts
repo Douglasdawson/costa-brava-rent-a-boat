@@ -16,7 +16,7 @@ export const nl: Translations = {
     title: 'Bootverhuur in Blanes, Costa Brava',
     subtitle: 'Ontdek de mooiste baaien van Costa Brava met onze boten met en zonder vaarbewijs. Vertrek vanuit Haven van Blanes.',
     bookNow: 'Nu Boeken',
-    viewFleet: 'Vloot Bekijken',
+    viewFleet: 'Vloot Ontdekken',
     trustText: 'Geen verplichtingen • Transparante prijzen',
     whatsappContact: 'WhatsApp +34 611 500 372',
     location: 'Locatie',
@@ -241,6 +241,7 @@ export const nl: Translations = {
     select: 'Selecteren...',
     pricesUpdateByDate: 'Prijzen worden bijgewerkt op basis van de datum',
     sendBookingRequest: 'BOEKINGSVERZOEK VERZENDEN',
+    needHelp: 'Hulp nodig?',
     people: 'personen',
     firstNameRequired: 'Verplicht: Voornaam',
     firstNameRequiredDesc: 'Voer uw voornaam in',
@@ -385,6 +386,7 @@ export const nl: Translations = {
   breadcrumbs: {
     home: 'Home',
     boats: 'Boten',
+    fleet: 'Vloot',
     locations: 'Locaties',
     categories: 'Categorieën',
     legal: 'Juridisch',
@@ -396,6 +398,11 @@ export const nl: Translations = {
     locationTossa: 'Tossa de Mar',
     privacyPolicy: 'Privacybeleid',
     termsConditions: 'Algemene Voorwaarden',
+  },
+  relatedBoats: {
+    title: 'Misschien vind je dit ook leuk',
+    viewDetails: 'Details bekijken',
+    from: 'vanaf',
   },
   availability: {
     title: 'Beschikbaarheid',
@@ -933,6 +940,14 @@ export const nl: Translations = {
     payAtPort: 'Wordt in de haven betaald en terugbetaald',
   },
 
+  priceSummary: {
+    base: 'Basis',
+    extras: 'Extra\'s',
+    discount: 'Korting',
+    total: 'Totaal',
+    seeDetails: 'Details bekijken',
+  },
+
   recommendation: {
     howManyPeople: 'Hoeveel personen zijn jullie?',
     people: 'personen',
@@ -955,6 +970,79 @@ export const nl: Translations = {
     yourExperience: 'Jouw ervaring',
     confirmStep: 'Bevestigen',
     yourBoat: 'Jouw {boat}',
+  },
+
+  bookingTrust: {
+    customers: '2000+ klanten',
+    rating: '4.8 Google',
+    confirmation: 'Bevestiging in 2u',
+  },
+  faqPreview: {
+    title: 'Veelgestelde vragen',
+    subtitle: 'Alles wat je moet weten voordat je gaat varen',
+    viewAll: 'Alle veelgestelde vragen bekijken',
+    items: [
+      {
+        id: 'precios',
+        question: 'Wat zijn de huurprijzen?',
+        answer: 'Boten zonder vaarbewijs vanaf 70€ met brandstof inbegrepen (1u, 2u, 3u, 4u, 6u of hele dag). Boten met vaarbewijs vanaf 150€ zonder brandstof (2u, 4u, 8u). Prijzen varieren per seizoen (juli/augustus) en boot.',
+      },
+      {
+        id: 'sin-licencia',
+        question: 'Kan ik een boot huren zonder vaarbewijs?',
+        answer: 'Ja! We hebben meerdere perfecte boten zonder vaarbewijs tot 15 pk. Je hoeft alleen maar ouder dan 18 te zijn. Voor vertrek geven we je een volledige briefing zodat je veilig kunt varen.',
+      },
+      {
+        id: 'incluye',
+        question: 'Wat is inbegrepen in de prijs?',
+        answer: 'Alle verhuur omvat: volledig uitgeruste boot, brandstof (bij boten zonder vaarbewijs), zwemvesten, veiligheidskit, anker, zwemtrap, gebruiksinstructies en basisverzekering.',
+      },
+      {
+        id: 'cancelacion',
+        question: 'Wat is het annuleringsbeleid?',
+        answer: 'Flexibele annulering: meer dan 48u van tevoren = volledige terugbetaling. 24-48u = 50% terugbetaling. Minder dan 24u = geen terugbetaling. Bij slecht weer gratis omboeken of volledige terugbetaling.',
+      },
+      {
+        id: 'donde-navegar',
+        question: 'Waar kan ik varen?',
+        answer: 'Boten zonder vaarbewijs: van Blanes tot het strand van Fenals in het noorden en het einde van het strand van Blanes in het zuiden, altijd binnen 2 mijl van de kust. Boten met vaarbewijs: groter bereik, tot Sant Feliu de Guixols en verder.',
+      },
+      {
+        id: 'mal-tiempo',
+        question: 'Wat gebeurt er bij slecht weer?',
+        answer: 'Als de weersomstandigheden onveilig zijn, bieden we een gratis datumwijziging of volledige terugbetaling. We raadplegen de voorspelling 24u van tevoren en laten het je weten.',
+      },
+      {
+        id: 'experiencia',
+        question: 'Heb ik eerdere ervaring nodig?',
+        answer: 'Nee, helemaal niet. Voor vertrek geven we een volledige uitleg over de boot (10-15 min). Onze boten zonder vaarbewijs zijn heel gemakkelijk te besturen.',
+      },
+      {
+        id: 'comida-bebida',
+        question: 'Mag ik eten en drinken meenemen?',
+        answer: 'Natuurlijk! Je kunt je eigen eten, drinken en snacks meenemen. We hebben een koelbox aan boord. We vragen alleen om geen glas mee te nemen voor de veiligheid.',
+      },
+      {
+        id: 'fianza',
+        question: 'Wat is de borg en wanneer wordt deze terugbetaald?',
+        answer: 'De borg is een waarborgsom (200-500€ afhankelijk van de boot) die in de haven voor vertrek wordt betaald en volledig wordt terugbetaald bij terugkeer als de boot in goede staat is.',
+      },
+      {
+        id: 'equipamiento-seguridad',
+        question: 'Welke veiligheidsuitrusting is inbegrepen?',
+        answer: 'Al onze boten beschikken over zwemvesten voor alle passagiers, EHBO-kit, brandblusser, anker en signaliseringsset volgens de voorschriften.',
+      },
+      {
+        id: 'descuentos',
+        question: 'Zijn er kortingen voor groepen of vroegboeken?',
+        answer: 'Ja, we bieden de code BIENVENIDO10 voor 10% korting op je eerste boeking. We hebben ook speciale tarieven voor daghuur.',
+      },
+      {
+        id: 'hasta-donde',
+        question: 'Hoe ver kan ik varen?',
+        answer: 'Je kunt de hele kust tussen Blanes en Tossa de Mar verkennen. We raden de baaien van Sa Forcanera, Cala Bona en Cala Sant Francesc aan, alleen bereikbaar vanaf zee.',
+      },
+    ],
   },
 
   holdCountdown: {

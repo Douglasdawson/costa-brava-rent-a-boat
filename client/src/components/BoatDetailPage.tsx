@@ -95,6 +95,17 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
   });
 
   const boatData = useMemo(() => boats?.find(boat => boat.id === boatId), [boats, boatId]);
+
+  // Related boats: same license type OR similar capacity (+-2), excluding current boat
+  const relatedBoats = useMemo(() => {
+    if (!boats || !boatData) return [];
+    const currentCapacity = boatData.capacity;
+    const currentRequiresLicense = boatData.requiresLicense;
+    return boats
+      .filter(b => b.id !== boatId)
+      .filter(b => b.requiresLicense === currentRequiresLicense || Math.abs(b.capacity - currentCapacity) <= 2)
+      .slice(0, 3);
+  }, [boats, boatData, boatId]);
   
   if (isLoading) {
     return (
@@ -196,7 +207,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
   // Generate breadcrumb schema with localized names
   const breadcrumbSchema = generateBreadcrumbSchema([
     { name: t.breadcrumbs.home, url: "/" },
-    { name: t.breadcrumbs.boats, url: "/#flota" },
+    { name: t.breadcrumbs.fleet, url: "/#fleet" },
     { name: boatData.name, url: `/barco/${boatId}` }
   ]);
 
@@ -223,11 +234,11 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
       <Navigation />
       
       {/* Breadcrumbs */}
-      <div className="bg-background border-b border-border">
+      <div className="bg-background border-b border-border pt-20 sm:pt-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
           <Breadcrumbs
             items={[
-              { label: t.breadcrumbs.boats, href: '/#flota' },
+              { label: t.breadcrumbs.fleet, href: '/#fleet' },
               { label: boatData.name }
             ]}
           />
@@ -700,6 +711,68 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
         </Card>
 
       </div>
+
+      {/* Related Boats Section */}
+      {relatedBoats.length > 0 && (
+        <section className="bg-muted py-12">
+          <div className="max-w-7xl mx-auto px-4">
+            <h2 className="font-heading font-bold text-xl sm:text-2xl text-foreground mb-6">
+              {t.relatedBoats.title}
+            </h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {relatedBoats.map((relBoat) => {
+                const relPrice = relBoat.pricing ? Math.min(...Object.values(relBoat.pricing.BAJA.prices)) : 0;
+                const relCapacity = relBoat.specifications
+                  ? parseInt(relBoat.specifications.capacity?.split(' ')[0] || String(relBoat.capacity))
+                  : relBoat.capacity;
+                return (
+                  <a
+                    key={relBoat.id}
+                    href={`/barco/${relBoat.id}`}
+                    className="group bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow border border-border"
+                  >
+                    <div className="relative h-40 overflow-hidden">
+                      <img
+                        src={getBoatImage(relBoat.imageUrl || '')}
+                        alt={relBoat.name}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        loading="lazy"
+                      />
+                    </div>
+                    <div className="p-4">
+                      <h3 className="font-heading font-semibold text-foreground mb-1">{relBoat.name}</h3>
+                      <div className="flex items-center gap-3 text-sm text-muted-foreground mb-3">
+                        <span className="flex items-center gap-1">
+                          <Users className="w-3.5 h-3.5" />
+                          {relCapacity} pax
+                        </span>
+                        <span className={`text-xs font-medium px-2 py-0.5 rounded-full ${
+                          relBoat.requiresLicense
+                            ? 'bg-primary/10 text-primary'
+                            : 'bg-primary/10 text-primary'
+                        }`}>
+                          {relBoat.requiresLicense ? t.boats.withLicense : t.boats.withoutLicense}
+                        </span>
+                      </div>
+                      <div className="flex items-center justify-between">
+                        {relPrice > 0 && (
+                          <div className="text-sm">
+                            <span className="text-muted-foreground">{t.relatedBoats.from} </span>
+                            <span className="font-bold text-primary">{relPrice}€</span>
+                          </div>
+                        )}
+                        <span className="text-sm font-medium text-primary group-hover:underline">
+                          {t.relatedBoats.viewDetails}
+                        </span>
+                      </div>
+                    </div>
+                  </a>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+      )}
 
       <Footer />
 

@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
-import { CalendarIcon, Check, ChevronDown, ChevronLeft, ChevronUp, Gift, Loader2, Package, Tag, X } from "lucide-react";
+import { CalendarIcon, Check, ChevronDown, ChevronLeft, ChevronUp, Clock, Gift, Loader2, Package, Star, Tag, Users, X } from "lucide-react";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Calendar } from "@/components/ui/calendar";
 import { SiWhatsapp } from "react-icons/si";
@@ -10,6 +10,7 @@ import { EXTRA_PACKS } from "@shared/boatData";
 import type { Translations } from "@/lib/translations";
 import BookingProgressBar from "@/components/BookingProgressBar";
 import HoldCountdown from "@/components/HoldCountdown";
+import PriceSummaryBar from "@/components/PriceSummaryBar";
 
 interface PhonePrefix {
   code: string;
@@ -155,6 +156,12 @@ export default function BookingWizardMobile(props: BookingWizardMobileProps) {
           estimatedTime={props.t.wizard.estimatedTime}
         />
       </div>
+      {/* Trust strip */}
+      <div className="flex items-center justify-center gap-3 text-xs text-muted-foreground py-1.5 border-b border-gray-100">
+        <span className="inline-flex items-center gap-1"><Users className="w-3 h-3" />{props.t.bookingTrust?.customers}</span>
+        <span className="inline-flex items-center gap-1"><Star className="w-3 h-3" />{props.t.bookingTrust?.rating}</span>
+        <span className="inline-flex items-center gap-1"><Clock className="w-3 h-3" />{props.t.bookingTrust?.confirmation}</span>
+      </div>
       {/* Hold countdown timer — only visible on final step */}
       {props.holdExpiresAt && currentStep === 4 && (
         <div className="px-4 pt-2">
@@ -178,59 +185,77 @@ export default function BookingWizardMobile(props: BookingWizardMobileProps) {
           {displayStep === 4 && <Step4Confirm {...props} />}
         </div>
       </div>
-      {/* Mini price summary — visible on steps 1-3 once boat + duration selected */}
-      {currentStep < 4 && (() => {
+      {/* Price summary bar — visible on steps 2-3 once boat + duration selected */}
+      {currentStep >= 2 && currentStep <= 3 && (() => {
         const price = props.getBookingPrice();
         if (!price || !props.selectedBoatInfo || !props.selectedDuration) return null;
+        const discount = props.getCodeDiscount();
         return (
-          <div className="border-t border-gray-100 bg-primary/5 px-4 py-2.5 flex items-center justify-between text-sm">
-            <span className="text-gray-600 truncate mr-2">{(props.t.endowment?.yourBoat || 'Tu {boat}').replace('{boat}', props.selectedBoatInfo.name)} · {props.selectedDuration}</span>
-            <span className="font-bold text-primary flex-shrink-0">{price}€</span>
-          </div>
+          <PriceSummaryBar
+            boatName={props.selectedBoatInfo.name}
+            duration={props.selectedDuration}
+            basePrice={price}
+            extrasPrice={props.totalExtrasPrice}
+            discount={discount}
+            discountLabel={props.validatedCode?.percentage ? `${props.validatedCode.code} (${props.validatedCode.percentage}%)` : undefined}
+            t={props.t}
+            variant="mobile"
+          />
         );
       })()}
-      <div className="border-t border-gray-100 bg-white px-4 py-3 flex gap-3">
-        {currentStep > 1 && (
-          <Button
-            type="button"
-            variant="outline"
-            onClick={onBack}
-            aria-label={`Volver al paso anterior (${currentStep - 1} de 4)`}
-            className="flex-1 py-5 text-sm font-semibold active:scale-95 transition-transform"
-          >
-            <ChevronLeft className="w-4 h-4 mr-1" aria-hidden="true" />
-            {props.t.booking.back}
-          </Button>
-        )}
-        {currentStep < 4 ? (
-          <Button
-            type="button"
-            onClick={onNext}
-            aria-label={`Continuar al paso ${currentStep + 1} de 4`}
-            className="flex-1 py-5 text-sm font-semibold active:scale-95 transition-transform"
-          >
-            {props.t.booking.next}
-          </Button>
-        ) : (
-          <Button
-            type="button"
-            onClick={async () => {
-              setIsSubmitting(true);
-              await handleBookingSearch();
-              setIsSubmitting(false);
-            }}
-            disabled={isSubmitting || props.isValidatingCode || !props.privacyConsent}
-            aria-label="Enviar solicitud de reserva por WhatsApp"
-            aria-busy={isSubmitting || props.isValidatingCode}
-            className="flex-1 py-5 text-sm font-semibold bg-[#25D366] hover:bg-[#1ebe5d] text-white border-0 disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            {isSubmitting || props.isValidatingCode
-              ? <Loader2 className="w-4 h-4 mr-2 animate-spin" aria-hidden="true" />
-              : <SiWhatsapp className="w-4 h-4 mr-2" aria-hidden="true" />
-            }
-            {props.t.booking.sendBookingRequest}
-          </Button>
-        )}
+      <div className="border-t border-gray-100 bg-white px-4 py-3">
+        <div className="flex gap-3">
+          {currentStep > 1 && (
+            <Button
+              type="button"
+              variant="outline"
+              onClick={onBack}
+              aria-label={`Volver al paso anterior (${currentStep - 1} de 4)`}
+              className="flex-1 py-5 text-sm font-semibold active:scale-95 transition-transform"
+            >
+              <ChevronLeft className="w-4 h-4 mr-1" aria-hidden="true" />
+              {props.t.booking.back}
+            </Button>
+          )}
+          {currentStep < 4 ? (
+            <Button
+              type="button"
+              onClick={onNext}
+              aria-label={`Continuar al paso ${currentStep + 1} de 4`}
+              className="flex-1 py-5 text-sm font-semibold active:scale-95 transition-transform"
+            >
+              {props.t.booking.next}
+            </Button>
+          ) : (
+            <Button
+              type="button"
+              onClick={async () => {
+                setIsSubmitting(true);
+                await handleBookingSearch();
+                setIsSubmitting(false);
+              }}
+              disabled={isSubmitting || props.isValidatingCode || !props.privacyConsent}
+              aria-label="Enviar solicitud de reserva por WhatsApp"
+              aria-busy={isSubmitting || props.isValidatingCode}
+              className="flex-1 py-5 text-sm font-semibold bg-[#25D366] hover:bg-[#1ebe5d] text-white border-0 disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              {isSubmitting || props.isValidatingCode
+                ? <Loader2 className="w-4 h-4 mr-2 animate-spin" aria-hidden="true" />
+                : <SiWhatsapp className="w-4 h-4 mr-2" aria-hidden="true" />
+              }
+              {props.t.booking.sendBookingRequest}
+            </Button>
+          )}
+        </div>
+        <a
+          href="https://wa.me/34611500372"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center justify-center gap-1 text-xs text-gray-400 hover:text-gray-600 transition-colors mt-2"
+        >
+          <SiWhatsapp className="w-3 h-3" aria-hidden="true" />
+          {props.t.booking.needHelp}
+        </a>
       </div>
     </div>
   );

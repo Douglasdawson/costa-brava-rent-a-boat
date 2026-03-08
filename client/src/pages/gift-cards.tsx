@@ -149,7 +149,7 @@ export default function GiftCardsPage() {
       <SEO title={seoConfig.title} description={seoConfig.description} canonical={canonical} hreflang={hreflangLinks} />
       <Navigation />
 
-      <div className="container mx-auto px-4 py-8 sm:py-12">
+      <div className="container mx-auto px-4 pt-20 sm:pt-24 pb-8 sm:pb-12">
         <div className="text-center mb-8">
           <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-3">
             {t.giftCards?.title || "Tarjetas Regalo"}

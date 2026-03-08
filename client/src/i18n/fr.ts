@@ -16,7 +16,7 @@ export const fr: Translations = {
     title: 'Location de Bateaux à Blanes, Costa Brava',
     subtitle: 'Découvrez les plus belles criques de la Costa Brava avec nos bateaux avec et sans permis. Départ du Port de Blanes.',
     bookNow: 'Réserver Maintenant',
-    viewFleet: 'Voir la Flotte',
+    viewFleet: 'Explorer la Flotte',
     trustText: 'Sans engagement • Confirmation immédiate • Prix transparents',
     whatsappContact: 'WhatsApp +34 611 500 372',
     location: 'Emplacement',
@@ -241,6 +241,7 @@ export const fr: Translations = {
     select: 'Sélectionner...',
     pricesUpdateByDate: 'Les prix sont mis à jour selon la date',
     sendBookingRequest: 'ENVOYER DEMANDE DE RÉSERVATION',
+    needHelp: 'Besoin d\'aide ?',
     people: 'personnes',
     firstNameRequired: 'Champ requis: Prénom',
     firstNameRequiredDesc: 'Veuillez entrer votre prénom',
@@ -385,6 +386,7 @@ export const fr: Translations = {
   breadcrumbs: {
     home: 'Accueil',
     boats: 'Bateaux',
+    fleet: 'Flotte',
     locations: 'Emplacements',
     categories: 'Catégories',
     legal: 'Légal',
@@ -396,6 +398,11 @@ export const fr: Translations = {
     locationTossa: 'Tossa de Mar',
     privacyPolicy: 'Politique de Confidentialité',
     termsConditions: 'Conditions Générales',
+  },
+  relatedBoats: {
+    title: 'Vous pourriez aussi aimer',
+    viewDetails: 'Voir détails',
+    from: 'à partir de',
   },
   availability: {
     title: 'Disponibilité',
@@ -933,6 +940,14 @@ export const fr: Translations = {
     payAtPort: 'Payee et rendue au port',
   },
 
+  priceSummary: {
+    base: 'Base',
+    extras: 'Extras',
+    discount: 'Remise',
+    total: 'Total',
+    seeDetails: 'Voir detail',
+  },
+
   recommendation: {
     howManyPeople: 'Combien de personnes etes-vous?',
     people: 'personnes',
@@ -955,6 +970,80 @@ export const fr: Translations = {
     yourExperience: 'Votre experience',
     confirmStep: 'Confirmer',
     yourBoat: 'Votre {boat}',
+  },
+
+  bookingTrust: {
+    customers: '2000+ clients',
+    rating: '4.8 Google',
+    confirmation: 'Confirmation en 2h',
+  },
+
+  faqPreview: {
+    title: 'Questions frequentes',
+    subtitle: 'Tout ce que vous devez savoir avant de prendre la mer',
+    viewAll: 'Voir toutes les questions frequentes',
+    items: [
+      {
+        id: 'precios',
+        question: 'Quels sont les tarifs de location ?',
+        answer: 'Bateaux sans permis a partir de 70€ carburant inclus (1h, 2h, 3h, 4h, 6h ou journee complete). Bateaux avec permis a partir de 150€ sans carburant (2h, 4h, 8h). Les prix varient selon la saison (juillet/aout) et le bateau.',
+      },
+      {
+        id: 'sin-licencia',
+        question: 'Puis-je louer un bateau sans permis bateau ?',
+        answer: 'Oui ! Nous avons plusieurs bateaux parfaits sans permis jusqu\'a 15 CV. Il suffit d\'avoir plus de 18 ans. Avant le depart, nous vous donnons un briefing complet pour naviguer en toute securite.',
+      },
+      {
+        id: 'incluye',
+        question: 'Qu\'est-ce qui est inclus dans le prix ?',
+        answer: 'Toutes les locations incluent : bateau entierement equipe, carburant (bateaux sans permis), gilets de sauvetage, kit de securite, ancre, echelle de bain, instructions et assurance de base.',
+      },
+      {
+        id: 'cancelacion',
+        question: 'Quelle est la politique d\'annulation ?',
+        answer: 'Annulation flexible : plus de 48h avant = remboursement total. 24-48h = remboursement de 50%. Moins de 24h = pas de remboursement. En cas de mauvais temps, report gratuit ou remboursement integral.',
+      },
+      {
+        id: 'donde-navegar',
+        question: 'Ou puis-je naviguer ?',
+        answer: 'Bateaux sans permis : de Blanes a la plage de Fenals au nord et la fin de la plage de Blanes au sud, toujours a moins de 2 milles de la cote. Bateaux avec permis : rayon plus large, jusqu\'a Sant Feliu de Guixols et au-dela.',
+      },
+      {
+        id: 'mal-tiempo',
+        question: 'Que se passe-t-il en cas de mauvais temps ?',
+        answer: 'Si les conditions meteo ne sont pas sures, nous vous offrons un changement de date gratuit ou un remboursement complet. Nous consultons les previsions 24h avant et vous prevenons.',
+      },
+      {
+        id: 'experiencia',
+        question: 'Ai-je besoin d\'experience prealable ?',
+        answer: 'Non, aucune. Avant de partir, nous vous donnons une explication complete du bateau (10-15 min). Nos bateaux sans permis sont tres faciles a manoeuvrer.',
+      },
+      {
+        id: 'comida-bebida',
+        question: 'Puis-je apporter de la nourriture et des boissons ?',
+        answer: 'Bien sur ! Vous pouvez apporter votre propre nourriture, boissons et en-cas. Nous avons une glaciere a bord. Nous demandons simplement de ne pas utiliser de verre pour des raisons de securite.',
+      },
+      {
+        id: 'fianza',
+        question: 'Qu\'est-ce que la caution et quand est-elle rendue ?',
+        answer: 'La caution est un depot de garantie (200-500€ selon le bateau) paye au port avant le depart et integralement restitue au retour si le bateau est en bon etat.',
+      },
+      {
+        id: 'equipamiento-seguridad',
+        question: 'Quel equipement de securite est inclus ?',
+        answer: 'Tous nos bateaux comprennent des gilets de sauvetage pour tous les passagers, une trousse de premiers secours, un extincteur, une ancre et un kit de signalisation conforme a la reglementation.',
+      },
+      {
+        id: 'descuentos',
+        question: 'Y a-t-il des reductions pour les groupes ou les reservations anticipees ?',
+        answer: 'Oui, nous offrons le code BIENVENIDO10 pour 10% de reduction sur votre premiere reservation. Nous avons aussi des tarifs speciaux pour les locations a la journee.',
+      },
+      {
+        id: 'hasta-donde',
+        question: 'Jusqu\'ou puis-je naviguer ?',
+        answer: 'Vous pouvez explorer toute la cote entre Blanes et Tossa de Mar. Nous vous recommandons les criques de Sa Forcanera, Cala Bona et Cala Sant Francesc, accessibles uniquement par la mer.',
+      },
+    ],
   },
 
   holdCountdown: {

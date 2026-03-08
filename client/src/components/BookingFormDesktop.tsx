@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { CalendarIcon, Check, ClipboardList, Loader2, X } from "lucide-react";
+import { CalendarIcon, Check, ClipboardList, Clock, Loader2, Star, Users, X } from "lucide-react";
 import { Checkbox } from "@/components/ui/checkbox";
 import { SiWhatsapp } from "react-icons/si";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
@@ -10,6 +10,7 @@ import type { BookingWizardMobileProps } from "./BookingWizardMobile";
 import { EXTRA_PACKS } from "@shared/boatData";
 import BookingProgressBar from "@/components/BookingProgressBar";
 import HoldCountdown from "@/components/HoldCountdown";
+import PriceSummaryBar from "@/components/PriceSummaryBar";
 
 // Slide animation variants
 const slideVariants = {
@@ -137,6 +138,13 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
         />
       </div>
 
+      {/* Trust strip */}
+      <div className="flex-shrink-0 flex items-center justify-center gap-4 text-xs text-muted-foreground py-1.5 border-b border-[#A8C4DD]/10">
+        <span className="inline-flex items-center gap-1"><Users className="w-3 h-3" />{t.bookingTrust?.customers}</span>
+        <span className="inline-flex items-center gap-1"><Star className="w-3 h-3" />{t.bookingTrust?.rating}</span>
+        <span className="inline-flex items-center gap-1"><Clock className="w-3 h-3" />{t.bookingTrust?.confirmation}</span>
+      </div>
+
       {/* Hold countdown timer — only visible on final step */}
       {holdExpiresAt && currentStep === 4 && (
         <div className="flex-shrink-0 px-6 pt-3">
@@ -232,6 +240,22 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
         </AnimatePresence>
       </div>
 
+      {/* Price summary — visible from step 2 onwards when boat + duration selected */}
+      {currentStep >= 2 && currentStep <= 3 && price !== null && selectedBoatInfo && selectedDuration && (
+        <div className="flex-shrink-0 px-6 pb-1">
+          <PriceSummaryBar
+            boatName={selectedBoatInfo.name}
+            duration={selectedDuration}
+            basePrice={price}
+            extrasPrice={totalExtrasPrice}
+            discount={discount}
+            discountLabel={validatedCode?.percentage ? `${validatedCode.code} (${validatedCode.percentage}%)` : undefined}
+            t={t}
+            variant="desktop"
+          />
+        </div>
+      )}
+
       {/* Navigation footer */}
       <div className="flex-shrink-0 border-t border-[#A8C4DD]/20 px-6 py-3">
         <div className={`flex items-center ${currentStep > 1 ? "justify-between" : "justify-end"}`}>
@@ -269,6 +293,15 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
             </Button>
           )}
         </div>
+        <a
+          href="https://wa.me/34611500372"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-1 text-xs text-muted-foreground/60 hover:text-muted-foreground transition-colors mt-1"
+        >
+          <SiWhatsapp className="w-3 h-3" />
+          {t.booking.needHelp}
+        </a>
       </div>
     </div>
   );

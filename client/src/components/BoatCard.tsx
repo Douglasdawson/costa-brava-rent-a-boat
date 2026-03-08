@@ -41,7 +41,7 @@ export default function BoatCard({
   isPopular,
   isRecommended,
   scarcityData,
-  onBooking: _onBooking,
+  onBooking,
   onDetails
 }: BoatCardProps) {
   const t = useTranslations();
@@ -178,7 +178,7 @@ export default function BoatCard({
           </div>
         )}
       </CardContent>
-      <div className="px-3 sm:px-4 pb-3 sm:pb-4">
+      <div className="px-3 sm:px-4 pb-3 sm:pb-4 flex items-center justify-between gap-2">
         <a
           href={`/barco/${id}`}
           onClick={(e) => { e.preventDefault(); handleDetails(); }}
@@ -187,6 +187,13 @@ export default function BoatCard({
         >
           {t.boats.viewDetails} <ArrowRight className="w-4 h-4" />
         </a>
+        <button
+          onClick={() => onBooking(id)}
+          className="bg-cta hover:bg-cta/90 text-white text-sm font-medium px-4 py-1.5 rounded-full transition-colors focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2 focus-visible:outline-none"
+          data-testid={`button-book-${id}`}
+        >
+          {t.boats.book}
+        </button>
       </div>
     </Card>
   );

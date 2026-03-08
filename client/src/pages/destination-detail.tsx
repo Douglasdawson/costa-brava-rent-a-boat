@@ -119,7 +119,7 @@ export default function DestinationDetailPage() {
       
       <Navigation />
       
-      <main id="main-content" className="flex-1 container mx-auto px-4 py-8 max-w-4xl">
+      <main id="main-content" className="flex-1 container mx-auto px-4 pt-20 sm:pt-24 pb-8 max-w-4xl">
         {/* Breadcrumbs */}
         <Breadcrumbs 
           items={[

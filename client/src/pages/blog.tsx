@@ -161,7 +161,7 @@ export default function BlogPage() {
       <Navigation />
 
       {/* Breadcrumbs */}
-      <div className="container mx-auto px-4 pt-4 pb-2">
+      <div className="container mx-auto px-4 pt-20 sm:pt-24 pb-2">
         <Breadcrumbs
           items={[
             { label: bp.breadcrumbHome, href: '/' },

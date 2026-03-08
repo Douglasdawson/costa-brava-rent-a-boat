@@ -16,7 +16,7 @@ export const it: Translations = {
     title: 'Noleggio Barche a Blanes, Costa Brava',
     subtitle: 'Scopri le più belle calette della Costa Brava con le nostre barche con e senza patente. Partenze dal Porto di Blanes.',
     bookNow: 'Prenota Ora',
-    viewFleet: 'Visualizza Flotta',
+    viewFleet: 'Esplora la Flotta',
     trustText: 'Senza impegno • Prezzi trasparenti',
     whatsappContact: 'WhatsApp +34 611 500 372',
     location: 'Posizione',
@@ -241,6 +241,7 @@ export const it: Translations = {
     select: 'Selezionare...',
     pricesUpdateByDate: 'I prezzi si aggiornano in base alla data',
     sendBookingRequest: 'INVIA RICHIESTA DI PRENOTAZIONE',
+    needHelp: 'Hai bisogno di aiuto?',
     people: 'persone',
     firstNameRequired: 'Campo obbligatorio: Nome',
     firstNameRequiredDesc: 'Inserisci il tuo nome',
@@ -385,6 +386,7 @@ export const it: Translations = {
   breadcrumbs: {
     home: 'Home',
     boats: 'Barche',
+    fleet: 'Flotta',
     locations: 'Posizioni',
     categories: 'Categorie',
     legal: 'Legale',
@@ -396,6 +398,11 @@ export const it: Translations = {
     locationTossa: 'Tossa de Mar',
     privacyPolicy: 'Privacy Policy',
     termsConditions: 'Termini e Condizioni',
+  },
+  relatedBoats: {
+    title: 'Potrebbe interessarti anche',
+    viewDetails: 'Vedi dettagli',
+    from: 'da',
   },
   availability: {
     title: 'Disponibilità',
@@ -933,6 +940,14 @@ export const it: Translations = {
     payAtPort: 'Si paga e restituisce al porto',
   },
 
+  priceSummary: {
+    base: 'Base',
+    extras: 'Extra',
+    discount: 'Sconto',
+    total: 'Totale',
+    seeDetails: 'Vedi dettaglio',
+  },
+
   recommendation: {
     howManyPeople: 'Quante persone siete?',
     people: 'persone',
@@ -955,6 +970,80 @@ export const it: Translations = {
     yourExperience: 'La tua esperienza',
     confirmStep: 'Confermare',
     yourBoat: 'La tua {boat}',
+  },
+
+  bookingTrust: {
+    customers: '2000+ clienti',
+    rating: '4.8 Google',
+    confirmation: 'Conferma in 2h',
+  },
+
+  faqPreview: {
+    title: 'Domande frequenti',
+    subtitle: 'Tutto quello che devi sapere prima di salpare',
+    viewAll: 'Vedi tutte le domande frequenti',
+    items: [
+      {
+        id: 'precios',
+        question: 'Quali sono i prezzi del noleggio?',
+        answer: 'Barche senza patente da 70€ con carburante incluso (1h, 2h, 3h, 4h, 6h o giornata intera). Barche con patente da 150€ senza carburante (2h, 4h, 8h). I prezzi variano in base alla stagione (luglio/agosto) e alla barca.',
+      },
+      {
+        id: 'sin-licencia',
+        question: 'Posso noleggiare una barca senza patente nautica?',
+        answer: 'Si! Abbiamo diverse barche perfette senza patente fino a 15 CV. Basta avere piu di 18 anni. Prima della partenza ti diamo un briefing completo per navigare in totale sicurezza.',
+      },
+      {
+        id: 'incluye',
+        question: 'Cosa e incluso nel prezzo?',
+        answer: 'Tutti i noleggi includono: barca completamente attrezzata, carburante (barche senza patente), giubbotti salvagente, kit di sicurezza, ancora, scaletta da bagno, istruzioni d\'uso e assicurazione base.',
+      },
+      {
+        id: 'cancelacion',
+        question: 'Qual e la politica di cancellazione?',
+        answer: 'Cancellazione flessibile: piu di 48h prima = rimborso completo. 24-48h = rimborso del 50%. Meno di 24h = nessun rimborso. In caso di maltempo, riprogrammazione gratuita o rimborso totale.',
+      },
+      {
+        id: 'donde-navegar',
+        question: 'Dove posso navigare?',
+        answer: 'Barche senza patente: da Blanes alla spiaggia di Fenals a nord e la fine della spiaggia di Blanes a sud, sempre entro 2 miglia dalla costa. Barche con patente: raggio piu ampio, fino a Sant Feliu de Guixols e oltre.',
+      },
+      {
+        id: 'mal-tiempo',
+        question: 'Cosa succede se c\'e brutto tempo?',
+        answer: 'Se le condizioni meteo non sono sicure, offriamo cambio data gratuito o rimborso completo. Controlliamo le previsioni 24h prima e ti avvisiamo.',
+      },
+      {
+        id: 'experiencia',
+        question: 'Serve esperienza precedente?',
+        answer: 'No, nessuna. Prima di salpare ti diamo una spiegazione completa della barca (10-15 min). Le nostre barche senza patente sono molto facili da manovrare.',
+      },
+      {
+        id: 'comida-bebida',
+        question: 'Posso portare cibo e bevande?',
+        answer: 'Certo! Puoi portare il tuo cibo, bevande e snack. Abbiamo un frigorifero a bordo. Chiediamo solo di non usare vetro per sicurezza.',
+      },
+      {
+        id: 'fianza',
+        question: 'Cos\'e la cauzione e quando viene restituita?',
+        answer: 'La cauzione e un deposito di sicurezza (200-500€ a seconda della barca) che si paga al porto prima della partenza e viene restituito integralmente al rientro se la barca e in buone condizioni.',
+      },
+      {
+        id: 'equipamiento-seguridad',
+        question: 'Quale equipaggiamento di sicurezza e incluso?',
+        answer: 'Tutte le nostre barche includono giubbotti salvagente per tutti i passeggeri, kit di pronto soccorso, estintore, ancora e kit di segnalazione secondo normativa.',
+      },
+      {
+        id: 'descuentos',
+        question: 'Ci sono sconti per gruppi o prenotazioni anticipate?',
+        answer: 'Si, offriamo il codice BIENVENIDO10 per uno sconto del 10% sulla prima prenotazione. Abbiamo anche tariffe speciali per i noleggi di giornata intera.',
+      },
+      {
+        id: 'hasta-donde',
+        question: 'Fino a dove posso navigare?',
+        answer: 'Puoi esplorare tutta la costa tra Blanes e Tossa de Mar. Ti consigliamo le calette di Sa Forcanera, Cala Bona e Cala Sant Francesc, accessibili solo via mare.',
+      },
+    ],
   },
 
   holdCountdown: {

@@ -30,7 +30,7 @@ export default function Hero() {
       </picture>
 
       {/* Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-black/30 to-black/10" />
+      <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-black/20 to-black/5" />
 
       {/* Content */}
       <div className="relative z-10 h-full flex flex-col justify-center">
@@ -58,7 +58,7 @@ export default function Hero() {
             </div>
 
             {/* CTA */}
-            <div>
+            <div className="flex flex-col items-center gap-3">
               <Button
                 onClick={() => openBookingModal()}
                 size="lg"
@@ -66,6 +66,18 @@ export default function Hero() {
                 data-testid="button-hero-cta"
               >
                 {t.hero.bookNow}
+              </Button>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => {
+                  const fleet = document.getElementById('fleet');
+                  if (fleet) fleet.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }}
+                className="bg-transparent border-white/60 text-white hover:bg-white/10 hover:text-white rounded-full px-6 py-2 text-sm font-medium"
+                data-testid="button-hero-explore"
+              >
+                {t.hero.viewFleet}
               </Button>
             </div>
 

@@ -16,7 +16,7 @@ export const ca: Translations = {
     title: 'Lloguer de Barques a Blanes, Costa Brava',
     subtitle: 'Descobreix les millors cales de la Costa Brava amb les nostres barques amb i sense llicència. Sortides des del Port de Blanes.',
     bookNow: 'Reservar Ara',
-    viewFleet: 'Veure Flota',
+    viewFleet: 'Explorar Flota',
     trustText: 'Sense comproms • Confirmació immediata • Preus transparents',
     whatsappContact: 'WhatsApp +34 611 500 372',
     location: 'Ubicació',
@@ -241,6 +241,7 @@ export const ca: Translations = {
     select: 'Seleccionar...',
     pricesUpdateByDate: 'Els preus s\'actualitzen segons la data',
     sendBookingRequest: 'ENVIAR PETICIÓ DE RESERVA',
+    needHelp: 'Necessites ajuda?',
     people: 'persones',
     firstNameRequired: 'Camp requerit: Nom',
     firstNameRequiredDesc: 'Si us plau, introdueix el teu nom',
@@ -385,6 +386,7 @@ export const ca: Translations = {
   breadcrumbs: {
     home: 'Inici',
     boats: 'Barques',
+    fleet: 'Flota',
     locations: 'Ubicacions',
     categories: 'Categories',
     legal: 'Legal',
@@ -396,6 +398,11 @@ export const ca: Translations = {
     locationTossa: 'Tossa de Mar',
     privacyPolicy: 'Política de Privacitat',
     termsConditions: 'Termes i Condicions',
+  },
+  relatedBoats: {
+    title: 'També et pot interessar',
+    viewDetails: 'Veure detalls',
+    from: 'des de',
   },
   availability: {
     title: 'Disponibilitat',
@@ -933,6 +940,14 @@ export const ca: Translations = {
     payAtPort: 'Es paga i retorna al port',
   },
 
+  priceSummary: {
+    base: 'Base',
+    extras: 'Extres',
+    discount: 'Descompte',
+    total: 'Total',
+    seeDetails: 'Veure detall',
+  },
+
   recommendation: {
     howManyPeople: 'Quantes persones sou?',
     people: 'persones',
@@ -955,6 +970,79 @@ export const ca: Translations = {
     yourExperience: 'La teva experiencia',
     confirmStep: 'Confirmar',
     yourBoat: 'El teu {boat}',
+  },
+
+  bookingTrust: {
+    customers: '2000+ clients',
+    rating: '4.8 Google',
+    confirmation: 'Confirmacio en 2h',
+  },
+  faqPreview: {
+    title: 'Preguntes frequents',
+    subtitle: 'Tot el que necessites saber abans de sortir a navegar',
+    viewAll: 'Veure totes les preguntes frequents',
+    items: [
+      {
+        id: 'precios',
+        question: 'Quins son els preus del lloguer?',
+        answer: 'Vaixells sense llicencia des de 70€ amb gasolina inclosa (1h, 2h, 3h, 4h, 6h o dia complet). Vaixells amb llicencia des de 150€ sense gasolina (2h, 4h, 8h). Els preus varien segons la temporada (juliol/agost) i l\'embarcacio.',
+      },
+      {
+        id: 'sin-licencia',
+        question: 'Puc llogar un vaixell sense llicencia nautica?',
+        answer: 'Si! Tenim diversos vaixells perfectes sense llicencia de fins a 15 CV. Nomes cal ser major de 18 anys. Abans de sortir et donem un briefing complet perque naveguis amb total seguretat.',
+      },
+      {
+        id: 'incluye',
+        question: 'Que esta inclos en el preu?',
+        answer: 'Inclos en tots els lloguers: embarcacio equipada, gasolina (en vaixells sense llicencia), armilles salvavides, kit de seguretat, ancora, escala de bany, instruccions d\'us i asseguranca basica.',
+      },
+      {
+        id: 'cancelacion',
+        question: 'Quina es la politica de cancel·lacio?',
+        answer: 'Cancel·lacio flexible: mes de 48h abans = reemborsament complet. 24-48h = 50% de reemborsament. Menys de 24h = sense reemborsament. En cas de mal temps, reprogramacio gratuita o reemborsament total.',
+      },
+      {
+        id: 'donde-navegar',
+        question: 'Per on puc navegar?',
+        answer: 'Vaixells sense llicencia: des de Blanes fins a la Platja de Fenals al nord i el final de la platja de Blanes al sud, sempre a menys de 2 milles de la costa. Vaixells amb llicencia: radi mes ampli, fins a Sant Feliu de Guixols i mes enlla.',
+      },
+      {
+        id: 'mal-tiempo',
+        question: 'Que passa si fa mal temps?',
+        answer: 'Si les condicions meteorologiques no son segures, t\'oferim canvi de data gratuit o reemborsament complet. Consultem la previsio 24h abans i t\'avisem.',
+      },
+      {
+        id: 'experiencia',
+        question: 'Necessito experiencia previa?',
+        answer: 'No, cap. Abans de sortir et donem una explicacio completa del vaixell (10-15 min). Els nostres vaixells sense llicencia son molt facils de manejar.',
+      },
+      {
+        id: 'comida-bebida',
+        question: 'Puc portar menjar i beguda?',
+        answer: 'Es clar! Pots portar el teu propi menjar, begudes i snacks. Tenim nevera a bord. Nomes demanem que no es faci servir vidre per seguretat.',
+      },
+      {
+        id: 'fianza',
+        question: 'Que es la fianca i quan es retorna?',
+        answer: 'La fianca es un diposit de seguretat (200-500€ segons el vaixell) que es paga al port abans de sortir i es retorna integrament en tornar si el vaixell esta en bon estat.',
+      },
+      {
+        id: 'equipamiento-seguridad',
+        question: 'Quin equipament de seguretat inclou?',
+        answer: 'Tots els nostres vaixells inclouen armilles salvavides per a tots els passatgers, farmaciola de primers auxilis, extintor, ancora i kit de senyalitzacio segons la normativa.',
+      },
+      {
+        id: 'descuentos',
+        question: 'Hi ha descomptes per a grups o reserves anticipades?',
+        answer: 'Si, oferim el codi BIENVENIDO10 per a un 10% de descompte en la teva primera reserva. Tambe tenim tarifes especials per a lloguers de dia complet.',
+      },
+      {
+        id: 'hasta-donde',
+        question: 'Fins on puc navegar?',
+        answer: 'Pots explorar tota la costa entre Blanes i Tossa de Mar. Et recomanem les cales de Sa Forcanera, Cala Bona i Cala Sant Francesc, accessibles nomes per mar.',
+      },
+    ],
   },
 
   holdCountdown: {

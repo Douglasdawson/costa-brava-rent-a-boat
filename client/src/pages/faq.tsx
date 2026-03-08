@@ -253,6 +253,63 @@ export default function FAQPage() {
           "@type": "Answer",
           "text": "Recomendaciones: Temporada alta 1-2 semanas mínimo, fines de semana 3-5 días, entre semana posible reserva del día, grupos grandes máximo antelación posible. En julio-agosto reservar con al menos 2 semanas de antelación."
         }
+      },
+      // New questions — common customer concerns
+      {
+        "@type": "Question",
+        "name": "¿Puedo llevar comida y bebida a bordo?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "¡Por supuesto! Puedes traer tu propia comida, bebidas y snacks. Tenemos nevera a bordo. Solo pedimos que no se use cristal por seguridad."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué es la fianza y cuándo se devuelve?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "La fianza es un depósito de seguridad (200-500€ según el barco) que se paga en el puerto antes de salir y se devuelve íntegramente al regresar si el barco está en buen estado."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué equipamiento de seguridad incluye el barco?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Todos nuestros barcos incluyen chalecos salvavidas para todos los pasajeros, botiquín de primeros auxilios, extintor, ancla, y kit de señalización según normativa."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Hay descuentos para grupos o reservas anticipadas?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sí, ofrecemos el código BIENVENIDO10 para un 10% de descuento en tu primera reserva. También tenemos tarifas especiales para reservas de día completo."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Hasta dónde puedo navegar desde Blanes?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Puedes explorar toda la costa entre Blanes y Tossa de Mar. Te recomendamos las calas de Sa Forcanera, Cala Bona y Cala Sant Francesc, accesibles solo por mar."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Puedo llevar mascotas a bordo?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sí, las mascotas son bienvenidas en nuestros barcos. Recomendamos traer agua fresca y una toalla para tu mascota. El animal debe llevar chaleco salvavidas si está disponible."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Se puede pescar desde el barco?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sí, puedes pescar desde nuestros barcos. Necesitarás tu propia licencia de pesca recreativa. No proporcionamos equipos de pesca, pero puedes traer los tuyos."
+        }
       }
     ]
   };
@@ -432,6 +489,23 @@ export default function FAQPage() {
                           <li><strong>Mal tiempo:</strong> Reprogramación gratuita o reembolso del 100%</li>
                         </ul>
                         <p className="text-sm text-muted-foreground">En caso de condiciones meteorológicas adversas, siempre priorizamos la seguridad.</p>
+                      </div>
+                    </AccordionContent>
+                  </AccordionItem>
+
+                  <AccordionItem value="descuentos" data-testid="faq-descuentos">
+                    <AccordionTrigger>¿Hay descuentos para grupos o reservas anticipadas?</AccordionTrigger>
+                    <AccordionContent>
+                      <div className="space-y-3">
+                        <p><strong>Descuentos disponibles:</strong></p>
+                        <ul className="list-disc pl-6 space-y-1">
+                          <li><strong>Primera reserva:</strong> Usa el código BIENVENIDO10 para un 10% de descuento</li>
+                          <li><strong>Día completo:</strong> Tarifas especiales para alquileres de jornada completa</li>
+                        </ul>
+                        <div className="flex items-center gap-2 mt-3 p-3 bg-primary/5 rounded-lg">
+                          <CheckCircle className="w-5 h-5 text-primary" />
+                          <span className="text-sm font-medium">Código: BIENVENIDO10 — 10% en tu primera reserva</span>
+                        </div>
                       </div>
                     </AccordionContent>
                   </AccordionItem>
@@ -632,6 +706,20 @@ export default function FAQPage() {
                       </div>
                     </AccordionContent>
                   </AccordionItem>
+
+                  <AccordionItem value="comida-bebida" data-testid="faq-comida-bebida">
+                    <AccordionTrigger>¿Puedo llevar comida y bebida a bordo?</AccordionTrigger>
+                    <AccordionContent>
+                      <div className="space-y-3">
+                        <p><strong>¡Por supuesto!</strong> Puedes traer tu propia comida, bebidas y snacks.</p>
+                        <ul className="list-disc pl-6 space-y-1">
+                          <li>Nevera disponible a bordo para mantener las bebidas frescas</li>
+                          <li>No se permite cristal por seguridad (usa envases de plástico o aluminio)</li>
+                          <li>Recomendamos fruta, bocadillos y agua en abundancia</li>
+                        </ul>
+                      </div>
+                    </AccordionContent>
+                  </AccordionItem>
                 </Accordion>
               </CardContent>
             </Card>
@@ -716,6 +804,59 @@ export default function FAQPage() {
                         <div className="flex items-center gap-2 mt-3 p-3 bg-red-50 rounded-lg">
                           <AlertCircle className="w-5 h-5 text-red-600" />
                           <span className="text-sm font-medium">Números de emergencia incluidos en el briefing</span>
+                        </div>
+                      </div>
+                    </AccordionContent>
+                  </AccordionItem>
+
+                  <AccordionItem value="fianza" data-testid="faq-fianza">
+                    <AccordionTrigger>¿Qué es la fianza y cuándo se devuelve?</AccordionTrigger>
+                    <AccordionContent>
+                      <div className="space-y-3">
+                        <p><strong>Depósito de seguridad:</strong></p>
+                        <ul className="list-disc pl-6 space-y-1">
+                          <li><strong>Importe:</strong> 200-500€ según la embarcación</li>
+                          <li><strong>Pago:</strong> En el puerto antes de salir (efectivo o tarjeta)</li>
+                          <li><strong>Devolución:</strong> Íntegra al regresar si el barco está en buen estado</li>
+                        </ul>
+                        <div className="flex items-center gap-2 mt-3 p-3 bg-primary/5 rounded-lg">
+                          <CheckCircle className="w-5 h-5 text-primary" />
+                          <span className="text-sm">La fianza se devuelve en el acto, sin demoras</span>
+                        </div>
+                      </div>
+                    </AccordionContent>
+                  </AccordionItem>
+
+                  <AccordionItem value="equipamiento-seguridad" data-testid="faq-equipamiento-seguridad">
+                    <AccordionTrigger>¿Qué equipamiento de seguridad incluye el barco?</AccordionTrigger>
+                    <AccordionContent>
+                      <div className="space-y-3">
+                        <p><strong>Todos nuestros barcos incluyen:</strong></p>
+                        <ul className="list-disc pl-6 space-y-1">
+                          <li>Chalecos salvavidas homologados para todos los pasajeros</li>
+                          <li>Botiquín de primeros auxilios</li>
+                          <li>Extintor</li>
+                          <li>Ancla y cabo</li>
+                          <li>Kit de señalización según normativa vigente</li>
+                        </ul>
+                      </div>
+                    </AccordionContent>
+                  </AccordionItem>
+
+                  <AccordionItem value="hasta-donde" data-testid="faq-hasta-donde">
+                    <AccordionTrigger>¿Hasta dónde puedo navegar desde Blanes?</AccordionTrigger>
+                    <AccordionContent>
+                      <div className="space-y-3">
+                        <p>Puedes explorar toda la costa entre Blanes y Tossa de Mar.</p>
+                        <p><strong>Calas recomendadas (accesibles solo por mar):</strong></p>
+                        <ul className="list-disc pl-6 space-y-1">
+                          <li><strong>Sa Forcanera:</strong> Cala virgen de aguas cristalinas</li>
+                          <li><strong>Cala Bona:</strong> Perfecta para fondear y hacer snorkel</li>
+                          <li><strong>Cala Sant Francesc:</strong> Una de las más bonitas de la Costa Brava</li>
+                        </ul>
+                        <div className="flex items-center gap-2 mt-3 p-3 bg-primary/5 rounded-lg">
+                          <MapPin className="w-5 h-5 text-primary" />
+                          <span className="text-sm">Te damos un mapa con las mejores rutas durante el briefing</span>
                         </div>
                       </div>
                     </AccordionContent>

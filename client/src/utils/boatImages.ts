@@ -1,12 +1,12 @@
 // Client-side image mapping for boat data
 // Uses AI-generated images with consistent Mediterranean perspective
 
-import solar450Image from "../assets/generated_images/SOLAR_450_boat_photo_b70eb7e1.webp";
-import remus450Image from "../assets/generated_images/REMUS_450_boat_photo_ec8b926c.webp";
+const solar450Image = "/images/boats/solar-450/solar-450-1.webp";
+const remus450Image = "/images/boats/remus-450/remus-450-1.webp";
 const astec400Image = "/images/boats/astec-400/astec-400-2.webp";
-import astec450Image from "../assets/generated_images/ASTEC_450_speedboat_photo_fc9de4ed.webp";
+const astec450Image = "/images/boats/astec-450/astec-450-1.webp";
 const mingollaImage = "/images/boats/mingolla/mingolla-1.webp";
-import trimarchiImage from "../assets/generated_images/Trimarchi_57S_luxury_boat_0ef0159a.webp";
+const trimarchiImage = "/images/boats/trimarchi/trimarchi-1.webp";
 const pacificCraftImage = "/images/boats/pacific-craft/pacific-craft-1.webp";
 
 // Map by boat identifier prefix (case-insensitive) to handle any hash suffix

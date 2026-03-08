@@ -1,13 +1,13 @@
 // Client-side image mapping for boat data
-// Uses real photos from real-photos directory
+// Uses AI-generated images with consistent Mediterranean perspective
 
-import solar450Image from "../assets/real-photos/solar-450.jpg";
-import remus450Image from "../assets/real-photos/remus-450.jpg";
-import astec400Image from "../assets/real-photos/astec-400.jpg";
-import astec450Image from "../assets/real-photos/astec-450.jpg";
-import mingollaImage from "../assets/real-photos/mingolla.jpg";
-import trimarchiImage from "../assets/real-photos/trimarchi.jpg";
-import pacificCraftImage from "../assets/real-photos/pacific-craft.jpg";
+import solar450Image from "../assets/generated_images/SOLAR_450_boat_photo_b70eb7e1.webp";
+import remus450Image from "../assets/generated_images/REMUS_450_boat_photo_ec8b926c.webp";
+import astec400Image from "../assets/generated_images/ASTEC_400_boat_photo_9dde16a8.webp";
+import astec450Image from "../assets/generated_images/ASTEC_450_speedboat_photo_fc9de4ed.webp";
+import mingollaImage from "../assets/generated_images/MINGOLLA_BRAVA_19_boat_c0e4a5b5.webp";
+import trimarchiImage from "../assets/generated_images/Trimarchi_57S_luxury_boat_0ef0159a.webp";
+import pacificCraftImage from "../assets/generated_images/PACIFIC_CRAFT_625_boat_fbe4f4d0.webp";
 
 // Map by boat identifier prefix (case-insensitive) to handle any hash suffix
 // This is resilient to image re-uploads from the admin panel
@@ -42,15 +42,15 @@ export function getBoatImage(imagePath: string): string {
   return imagePath;
 }
 
-// Map used by the server-side resize endpoint (needs exact filenames)
+// Map used by the server-side resize endpoint (needs actual filenames)
 const IMAGE_PREFIX_TO_FILE: Record<string, string> = {
-  SOLAR_450: "solar-450.jpg",
-  REMUS_450: "remus-450.jpg",
-  ASTEC_400: "astec-400.jpg",
-  ASTEC_450: "astec-450.jpg",
-  MINGOLLA: "mingolla.jpg",
-  TRIMARCHI: "trimarchi.jpg",
-  PACIFIC_CRAFT: "pacific-craft.jpg",
+  SOLAR_450: "SOLAR_450_boat_photo_b70eb7e1.webp",
+  REMUS_450: "REMUS_450_boat_photo_ec8b926c.webp",
+  ASTEC_400: "ASTEC_400_boat_photo_9dde16a8.webp",
+  ASTEC_450: "ASTEC_450_speedboat_photo_fc9de4ed.webp",
+  MINGOLLA: "MINGOLLA_BRAVA_19_boat_c0e4a5b5.webp",
+  TRIMARCHI: "Trimarchi_57S_luxury_boat_0ef0159a.webp",
+  PACIFIC_CRAFT: "PACIFIC_CRAFT_625_boat_fbe4f4d0.webp",
 };
 
 const SRCSET_WIDTHS = [400, 800, 1200] as const;

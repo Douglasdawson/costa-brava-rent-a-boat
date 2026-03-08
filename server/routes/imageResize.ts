@@ -10,13 +10,13 @@ const IMAGES_DIRS = [
 
 // Map boat name prefixes to actual photo filenames (resilient to hash changes)
 const PREFIX_TO_FILE: Array<[string, string]> = [
-  ["SOLAR_450", "solar-450.jpg"],
-  ["REMUS_450", "remus-450.jpg"],
-  ["ASTEC_400", "astec-400.jpg"],
-  ["ASTEC_450", "astec-450.jpg"],
-  ["MINGOLLA", "mingolla.jpg"],
-  ["TRIMARCHI", "trimarchi.jpg"],
-  ["PACIFIC_CRAFT", "pacific-craft.jpg"],
+  ["SOLAR_450", "SOLAR_450_boat_photo_b70eb7e1.webp"],
+  ["REMUS_450", "REMUS_450_boat_photo_ec8b926c.webp"],
+  ["ASTEC_400", "ASTEC_400_boat_photo_9dde16a8.webp"],
+  ["ASTEC_450", "ASTEC_450_speedboat_photo_fc9de4ed.webp"],
+  ["MINGOLLA", "MINGOLLA_BRAVA_19_boat_c0e4a5b5.webp"],
+  ["TRIMARCHI", "Trimarchi_57S_luxury_boat_0ef0159a.webp"],
+  ["PACIFIC_CRAFT", "PACIFIC_CRAFT_625_boat_fbe4f4d0.webp"],
 ];
 
 function resolveFilename(filename: string): string {

@@ -136,7 +136,7 @@ export function SeasonBanner() {
 
   return (
     <div
-      className={`w-full bg-gradient-to-r ${gradientClass} text-white relative z-40`}
+      className={`w-full bg-gradient-to-r ${gradientClass} text-white fixed bottom-0 left-0 right-0 z-40 lg:sticky lg:top-0 lg:bottom-auto`}
       role="banner"
       aria-label="Season information"
     >

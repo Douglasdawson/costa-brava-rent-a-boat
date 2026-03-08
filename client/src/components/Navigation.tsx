@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Menu, X, UserCircle, Calendar } from "lucide-react";
 import logoHorizontal from "@/assets/real-photos/logo-horizontal.png";
 import logoIcon from "@/assets/real-photos/logo-icon.png";
+import LogoCostaBravaSVG from "@/components/icons/LogoCostavaBravaSVG";
 import { useLocation, Link } from "wouter";
 import LanguageSelector from "./LanguageSelector";
 import { useTranslations } from "@/lib/translations";
@@ -156,7 +157,7 @@ export default function Navigation() {
   };
 
   return (
-    <nav className="fixed top-3 left-4 right-4 lg:left-6 lg:right-6 z-50 rounded-2xl bg-white/20 backdrop-blur-xl border border-white/40 shadow-[0_8px_32px_rgba(13,13,43,0.12)] pt-safe">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/20 backdrop-blur-xl border-b border-white/20 lg:top-3 lg:left-6 lg:right-6 lg:rounded-2xl lg:border lg:border-white/40 lg:shadow-[0_8px_32px_rgba(13,13,43,0.12)] pt-safe">
       <a
         href="#main-content"
         className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-primary focus:text-white focus:rounded-lg focus:outline-none"
@@ -164,7 +165,7 @@ export default function Navigation() {
         Saltar al contenido
       </a>
       <div className="px-4 lg:px-6">
-        <div className="relative flex items-center justify-between h-16">
+        <div className="relative flex items-center justify-between h-12 lg:h-16">
           {/* Logo - Left */}
           <a
             href="/"
@@ -173,7 +174,7 @@ export default function Navigation() {
             data-testid="brand-logo"
             aria-label="Ir a la página principal de Costa Brava Rent a Boat Blanes"
           >
-            <img src={logoIcon} alt="Costa Brava Rent a Boat" className="h-8 sm:hidden brightness-0 invert" />
+            <LogoCostaBravaSVG className="h-8 sm:hidden" />
             <img src={logoHorizontal} alt="Costa Brava Rent a Boat Blanes" className="hidden sm:block h-8 lg:h-10 brightness-0 invert" />
           </a>
 

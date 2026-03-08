@@ -915,7 +915,7 @@ export const nl: Translations = {
     noLicenseFeature2: 'Perfect voor nabijgelegen baaien en stranden',
     noLicenseFeature3: 'Brandstof inbegrepen in de prijs',
     noLicenseFeature4: 'Veiligheidsbriefing inbegrepen',
-    licenseFeature1: 'Krachtige boten tot 150PK',
+    licenseFeature1: 'Krachtige boten tot {maxHP}PK',
     licenseFeature2: 'Grotere autonomie en vaarbereik',
     licenseFeature3: 'Toegang tot afgelegen baaien van de Costa Brava',
     licenseFeature4: 'Brandstof inbegrepen in de prijs',

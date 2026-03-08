@@ -915,7 +915,7 @@ export const en: Translations = {
     noLicenseFeature2: 'Perfect for nearby coves and beaches',
     noLicenseFeature3: 'Fuel included in the price',
     noLicenseFeature4: 'Safety briefing included',
-    licenseFeature1: 'Powerful boats up to 150HP',
+    licenseFeature1: 'Powerful boats up to {maxHP}HP',
     licenseFeature2: 'Greater autonomy and navigation range',
     licenseFeature3: 'Access to remote Costa Brava coves',
     licenseFeature4: 'Fuel included in the price',

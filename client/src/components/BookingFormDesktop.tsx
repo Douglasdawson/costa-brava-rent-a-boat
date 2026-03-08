@@ -733,7 +733,7 @@ function Step3Extras({
                   : 'border-[#A8C4DD]/40 bg-white hover:border-[#A8C4DD]'
               }`}
             >
-              {Icon && <Icon className="w-5 h-5 text-[#0D0D2B]" />}
+              {Icon && <Icon className="w-7 h-7 text-[#0D0D2B]" />}
               <span className="text-xs font-medium text-foreground leading-tight">
                 {extra.name}
               </span>

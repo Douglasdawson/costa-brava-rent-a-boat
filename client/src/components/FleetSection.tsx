@@ -11,13 +11,18 @@ import { SiWhatsapp } from "react-icons/si";
 import { Phone, Users, CheckCircle, ChevronDown } from "lucide-react";
 import { useBookingModal } from "@/hooks/useBookingModal";
 
-/** Group size filter options for the recommendation system */
-const GROUP_SIZE_OPTIONS = [
+/** All possible group size filter buckets */
+const ALL_GROUP_SIZE_OPTIONS = [
   { label: '1-3', min: 1, max: 3 },
   { label: '4-5', min: 4, max: 5 },
   { label: '6-7', min: 6, max: 7 },
   { label: '8+', min: 8, max: 99 },
-] as const;
+];
+
+/** Build filter options dynamically based on max boat capacity */
+function getGroupSizeOptions(maxCapacity: number) {
+  return ALL_GROUP_SIZE_OPTIONS.filter(o => o.min <= maxCapacity);
+}
 
 /**
  * Determine current season from today's date (Spain timezone).
@@ -93,8 +98,8 @@ export default function FleetSection() {
       return {
         id: boat.id,
         name: boat.name,
-        image: boat.imageUrl ? getBoatImage(boat.imageUrl) : '/placeholder-boat.jpg',
-        imageSrcSet: boat.imageUrl ? getBoatImageSrcSet(boat.imageUrl) : '',
+        image: boat.imageGallery?.[0] || (boat.imageUrl ? getBoatImage(boat.imageUrl) : '/placeholder-boat.jpg'),
+        imageSrcSet: boat.imageGallery?.[0] ? '' : (boat.imageUrl ? getBoatImageSrcSet(boat.imageUrl) : ''),
         imageAlt: `Alquiler barco ${boat.name} ${boat.requiresLicense ? "con licencia" : "sin licencia"} en Blanes Costa Brava 2026 - Capacidad ${boat.capacity} personas`,
         capacity: boat.capacity,
         requiresLicense: boat.requiresLicense,
@@ -110,10 +115,16 @@ export default function FleetSection() {
       };
     }), [boatsData, currentSeason]);
 
+  // Dynamic group size options based on max boat capacity
+  const groupSizeOptions = useMemo(() => {
+    const maxCapacity = boats.reduce((max, b) => Math.max(max, b.capacity), 0);
+    return getGroupSizeOptions(maxCapacity);
+  }, [boats]);
+
   // Sort boats: recommended ones first when a group size is selected
   const sortedBoats = useMemo(() => {
     if (selectedGroupSize === null) return boats;
-    const option = GROUP_SIZE_OPTIONS.find(
+    const option = groupSizeOptions.find(
       o => selectedGroupSize >= o.min && selectedGroupSize <= o.max
     );
     if (!option) return boats;
@@ -145,7 +156,7 @@ export default function FleetSection() {
     <section ref={revealRef} className={`py-16 sm:py-24 lg:py-32 bg-white transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`} id="fleet">
       <div className="container mx-auto px-3 sm:px-4 max-w-7xl">
         <div className="text-center mb-8 sm:mb-12 lg:mb-16">
-          <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl font-light text-foreground tracking-tight mb-2 sm:mb-3 lg:mb-4 px-2">
+          <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl font-medium text-foreground tracking-tight mb-2 sm:mb-3 lg:mb-4 px-2 text-balance">
             {t.fleet.title}
           </h2>
           <p className="text-base text-muted-foreground font-light mt-3 max-w-xl sm:max-w-2xl lg:max-w-4xl mx-auto px-2 sm:px-4">
@@ -170,7 +181,7 @@ export default function FleetSection() {
             >
               {t.recommendation?.all}
             </button>
-            {GROUP_SIZE_OPTIONS.map((option) => (
+            {groupSizeOptions.map((option) => (
               <button
                 key={option.label}
                 onClick={() => setSelectedGroupSize(option.min)}

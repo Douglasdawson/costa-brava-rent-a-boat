@@ -915,7 +915,7 @@ export const it: Translations = {
     noLicenseFeature2: 'Perfette per calette e spiagge vicine',
     noLicenseFeature3: 'Benzina inclusa nel prezzo',
     noLicenseFeature4: 'Briefing di sicurezza incluso',
-    licenseFeature1: 'Barche potenti fino a 150CV',
+    licenseFeature1: 'Barche potenti fino a {maxHP}CV',
     licenseFeature2: 'Maggiore autonomia e raggio di navigazione',
     licenseFeature3: 'Accesso a calette remote della Costa Brava',
     licenseFeature4: 'Benzina inclusa nel prezzo',

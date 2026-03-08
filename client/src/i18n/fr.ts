@@ -915,7 +915,7 @@ export const fr: Translations = {
     noLicenseFeature2: 'Parfaits pour les criques et plages proches',
     noLicenseFeature3: 'Essence incluse dans le prix',
     noLicenseFeature4: 'Briefing de securite inclus',
-    licenseFeature1: 'Bateaux puissants jusqu\'a 150CV',
+    licenseFeature1: 'Bateaux puissants jusqu\'à {maxHP}CV',
     licenseFeature2: 'Plus grande autonomie et rayon de navigation',
     licenseFeature3: 'Acces aux criques isolees de la Costa Brava',
     licenseFeature4: 'Essence incluse dans le prix',

@@ -14,14 +14,14 @@ export default function Hero() {
       <picture>
         <source
           media="(min-width: 1024px)"
-          srcSet="/images/hero/hero-lloret-desktop.webp"
+          srcSet="/images/hero/hero-dive-desktop.webp"
         />
         <source
           media="(min-width: 768px)"
-          srcSet="/images/hero/hero-lloret-tablet.webp"
+          srcSet="/images/hero/hero-dive-tablet.webp"
         />
         <img
-          src="/images/hero/hero-lloret-mobile.webp"
+          src="/images/hero/hero-dive-mobile.webp"
           alt="Costa Brava Rent a Boat - Alquiler de barcos en Blanes con vistas al Mediterráneo"
           className="absolute inset-0 w-full h-full object-cover"
           loading="eager"
@@ -33,7 +33,7 @@ export default function Hero() {
       <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-black/20 to-black/5" />
 
       {/* Content */}
-      <div className="relative z-10 h-full flex flex-col justify-center">
+      <div className="relative z-10 h-full flex flex-col justify-center pt-14 lg:pt-20">
         <div className="px-4 sm:px-6 lg:px-12">
           <div className="text-center flex flex-col items-center">
             <h1 className="font-heading font-bold text-white tracking-tight mb-6 leading-[1.15]" style={{ fontSize: 'clamp(1.5rem, 5.5vw, 3.5rem)' }}>
@@ -81,8 +81,8 @@ export default function Hero() {
               </Button>
             </div>
 
-            {/* Trust badges */}
-            <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mt-4">
+            {/* Trust badges — hidden on mobile (marquee covers similar info) */}
+            <div className="hidden sm:flex flex-wrap items-center justify-center gap-2 sm:gap-3 mt-4">
               <span className="inline-flex items-center gap-1.5 bg-white/15 backdrop-blur-sm text-white/90 text-xs sm:text-sm px-3 py-1.5 rounded-full">
                 <Award className="w-3.5 h-3.5" />
                 {t.authority?.yearsExperience || '6+ anos de experiencia'}
@@ -115,7 +115,7 @@ export default function Hero() {
           speed={1.5}
           curveAmount={60}
           direction="left"
-          className="fill-white text-[2rem] font-display tracking-wider"
+          className="fill-white text-[5rem] font-display tracking-wider"
         />
       </div>
     </div>

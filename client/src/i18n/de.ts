@@ -915,7 +915,7 @@ export const de: Translations = {
     noLicenseFeature2: 'Perfekt fur nahegelegene Buchten und Strande',
     noLicenseFeature3: 'Benzin im Preis inbegriffen',
     noLicenseFeature4: 'Sicherheitsbriefing inklusive',
-    licenseFeature1: 'Leistungsstarke Boote bis 150PS',
+    licenseFeature1: 'Leistungsstarke Boote bis {maxHP}PS',
     licenseFeature2: 'Grossere Autonomie und Navigationsreichweite',
     licenseFeature3: 'Zugang zu abgelegenen Buchten der Costa Brava',
     licenseFeature4: 'Benzin im Preis inbegriffen',

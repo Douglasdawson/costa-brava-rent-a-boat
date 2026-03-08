@@ -147,7 +147,7 @@ export function BookingConfirmation({
             {price !== null && (
               <div>
                 <span className="text-gray-500">Precio:</span>
-                <p className="font-bold text-[hsl(215,45%,20%)]">{price}EUR</p>
+                <p className="font-bold text-[hsl(215,45%,20%)]">{price}€</p>
               </div>
             )}
           </div>

@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useCallback } from "react";
+import { createContext, useContext, useState, useCallback, lazy, Suspense } from "react";
 import {
   Dialog,
   DialogContent,
@@ -7,8 +7,9 @@ import {
   DialogDescription,
 } from "@/components/ui/dialog";
 import { useTranslations } from "@/lib/translations";
-import BookingFormWidget from "@/components/BookingFormWidget";
 import { trackBookingFormOpen } from "@/utils/analytics";
+
+const BookingFormWidget = lazy(() => import("@/components/BookingFormWidget"));
 
 export interface BookingPrefillData {
   date?: string;
@@ -62,13 +63,15 @@ export function BookingModalProvider({ children }: { children: React.ReactNode }
             </DialogDescription>
           </DialogHeader>
           <div className="flex-1 min-h-0 overflow-y-auto">
-            <BookingFormWidget
-              preSelectedBoatId={selectedBoatId}
-              prefillDate={prefillData?.date}
-              prefillTime={prefillData?.time}
-              prefillCoupon={prefillData?.coupon}
-              onClose={closeBookingModal}
-            />
+            <Suspense fallback={<div className="flex items-center justify-center p-8"><div className="animate-spin w-6 h-6 border-2 border-primary border-t-transparent rounded-full" /></div>}>
+              <BookingFormWidget
+                preSelectedBoatId={selectedBoatId}
+                prefillDate={prefillData?.date}
+                prefillTime={prefillData?.time}
+                prefillCoupon={prefillData?.coupon}
+                onClose={closeBookingModal}
+              />
+            </Suspense>
           </div>
         </DialogContent>
       </Dialog>

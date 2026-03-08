@@ -1,6 +1,11 @@
 import { useState, useEffect, useRef, useMemo, useCallback } from "react";
-import { Package, Crown, Zap, Snowflake, Waves, CircleParking, Beer } from "lucide-react";
+import { Package, Crown } from "lucide-react";
 import SnorkelIcon from "@/components/icons/SnorkelIcon";
+import SeascooterIcon from "@/components/icons/SeascooterIcon";
+import ParkingIcon from "@/components/icons/ParkingIcon";
+import PaddleSurfIcon from "@/components/icons/PaddleSurfIcon";
+import NeveraIcon from "@/components/icons/NeveraIcon";
+import BebidasIcon from "@/components/icons/BebidasIcon";
 import { openWhatsApp } from "@/utils/whatsapp";
 import { useToast } from "@/hooks/use-toast";
 import { useTranslations } from "@/lib/translations";
@@ -34,13 +39,18 @@ export interface SlotAvailability {
 const ICON_MAP: Record<string, React.ComponentType<{ className?: string }>> = {
   Package,
   Crown,
-  Zap,
-  Snowflake,
+  Nevera: NeveraIcon,
+  Snowflake: NeveraIcon,
   Snorkel: SnorkelIcon,
   Eye: SnorkelIcon,
-  Waves,
-  CircleParking,
-  Beer,
+  Seascooter: SeascooterIcon,
+  Zap: SeascooterIcon,
+  Parking: ParkingIcon,
+  CircleParking: ParkingIcon,
+  PaddleSurf: PaddleSurfIcon,
+  Waves: PaddleSurfIcon,
+  Bebidas: BebidasIcon,
+  Beer: BebidasIcon,
 };
 
 interface BookingFormWidgetProps {

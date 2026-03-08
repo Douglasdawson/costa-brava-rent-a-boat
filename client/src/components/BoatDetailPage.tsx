@@ -20,9 +20,6 @@ ArrowUpDown,
   ArrowLeftRight,
   Zap,
   Shield,
-  CircleParking,
-  Snowflake,
-  Beer,
   Eye,
   Waves,
   MessageSquare,
@@ -35,6 +32,11 @@ ArrowUpDown,
   X
 } from "lucide-react";
 import SnorkelIcon from "@/components/icons/SnorkelIcon";
+import SeascooterIcon from "@/components/icons/SeascooterIcon";
+import ParkingIcon from "@/components/icons/ParkingIcon";
+import PaddleSurfIcon from "@/components/icons/PaddleSurfIcon";
+import NeveraIcon from "@/components/icons/NeveraIcon";
+import BebidasIcon from "@/components/icons/BebidasIcon";
 import { openWhatsApp } from "@/utils/whatsapp";
 import { getBoatImage, getBoatImageSrcSet } from "@/utils/boatImages";
 import Navigation from "./Navigation";
@@ -325,7 +327,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                 srcSet={getBoatImageSrcSet(displayImages[currentImageIndex]) || undefined}
                 sizes="(max-width: 767px) 100vw, 800px"
                 alt={`Alquiler barco ${boatData.name} ${boatData.subtitle?.includes("Sin Licencia") ? "sin licencia" : "con licencia"} en Blanes Costa Brava 2026 - Imagen ${currentImageIndex + 1}`}
-                className="w-full h-64 sm:h-80 md:h-96 object-cover cursor-zoom-in"
+                className="w-full aspect-[3/4] sm:h-80 sm:aspect-auto md:h-96 object-cover cursor-zoom-in"
                 loading="lazy"
                 data-testid="img-boat-main"
                 onClick={() => setLightboxOpen(true)}
@@ -470,7 +472,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
               <>
                 <div className="flex flex-wrap gap-2 mb-6 justify-center">
                   {Object.keys(boatData.pricing).map((season) => {
-                    const seasonNames: Record<string, string> = { BAJA: t.boatDetail.seasonLow, MEDIA: t.boatDetail.seasonMid, ALTA: t.boatDetail.seasonHigh };
+                    const seasonNames: Record<string, string> = { BAJA: 'BAJA', MEDIA: 'MEDIA', ALTA: 'ALTA' };
                     return (
                       <Button
                         key={season}
@@ -658,13 +660,13 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
               <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
                 {boatData.extras?.map((extra, index) => {
                   const iconMap: { [key: string]: React.ComponentType<{ className?: string }> } = {
-                    CircleParking, Snowflake, Beer, Snorkel: SnorkelIcon, Eye: SnorkelIcon, Waves, Zap
+                    Parking: ParkingIcon, CircleParking: ParkingIcon, PaddleSurf: PaddleSurfIcon, Waves: PaddleSurfIcon, Nevera: NeveraIcon, Snowflake: NeveraIcon, Bebidas: BebidasIcon, Beer: BebidasIcon, Snorkel: SnorkelIcon, Eye: SnorkelIcon, Seascooter: SeascooterIcon, Zap: SeascooterIcon
                   };
                   const IconComponent = iconMap[extra.icon] || Star;
                   return (
                     <div key={index} className="text-center p-4 border border-border rounded-xl hover:bg-muted transition-colors">
                       <div className="flex justify-center mb-2">
-                        <IconComponent className="w-6 h-6 text-primary" />
+                        <IconComponent className="w-8 h-8 text-primary" />
                       </div>
                       <div className="font-medium text-sm text-foreground">{extra.name}</div>
                       <div className="text-primary font-bold text-sm mt-0.5">{extra.price}</div>

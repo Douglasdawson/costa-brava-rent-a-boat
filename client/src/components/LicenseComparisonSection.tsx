@@ -1,8 +1,37 @@
 import { Check, Anchor, Ship, Lightbulb } from "lucide-react";
 import { useTranslations } from "@/lib/translations";
+import { useQuery } from "@tanstack/react-query";
+import type { Boat } from "@shared/schema";
 
 export function LicenseComparisonSection() {
   const t = useTranslations();
+
+  const { data: boats } = useQuery<Boat[]>({ queryKey: ['/api/boats'] });
+
+  const noLicenseMinPrice = boats
+    ?.filter(b => !b.requiresLicense && b.pricing)
+    .reduce((min, b) => {
+      const prices = Object.values(b.pricing!.BAJA.prices);
+      const boatMin = Math.min(...prices);
+      return boatMin < min ? boatMin : min;
+    }, Infinity) || 70;
+
+  const withLicenseMinPrice = boats
+    ?.filter(b => b.requiresLicense && b.pricing)
+    .reduce((min, b) => {
+      const prices = Object.values(b.pricing!.BAJA.prices);
+      const boatMin = Math.min(...prices);
+      return boatMin < min ? boatMin : min;
+    }, Infinity) || 150;
+
+  // Extract max engine HP from licensed boats
+  const maxEngineHP = boats
+    ?.filter(b => b.requiresLicense && b.specifications?.engine)
+    .reduce((max, b) => {
+      const match = b.specifications!.engine.match(/(\d+)\s*(?:cv|hp|CV|HP)/i);
+      const hp = match ? parseInt(match[1]) : 0;
+      return hp > max ? hp : max;
+    }, 0) || 150;
 
   return (
     <section className="py-12 sm:py-16 lg:py-20 bg-muted/30">
@@ -40,7 +69,7 @@ export function LicenseComparisonSection() {
             </ul>
             <div className="mt-6 pt-4 border-t border-border">
               <span className="text-xs text-muted-foreground">{t.comparison.fromPrice}</span>
-              <span className="text-xl font-heading font-medium text-foreground ml-1">70</span>
+              <span className="text-xl font-heading font-medium text-foreground ml-1">{noLicenseMinPrice}€</span>
             </div>
           </div>
 
@@ -56,20 +85,20 @@ export function LicenseComparisonSection() {
             <p className="text-sm text-muted-foreground mb-6">{t.comparison.withLicenseDesc}</p>
             <ul className="space-y-3">
               {[
-                t.comparison.licenseFeature1,
+                t.comparison.licenseFeature1.replace('{maxHP}', String(maxEngineHP)),
                 t.comparison.licenseFeature2,
                 t.comparison.licenseFeature3,
                 t.comparison.licenseFeature4,
               ].map((feature, i) => (
                 <li key={i} className="flex items-center gap-2 text-sm">
-                  <Check className="w-4 h-4 text-green-500 flex-shrink-0" />
+                  <Check className={`w-4 h-4 flex-shrink-0 ${i === 3 ? 'text-amber-500' : 'text-green-500'}`} />
                   {feature}
                 </li>
               ))}
             </ul>
             <div className="mt-6 pt-4 border-t border-border">
               <span className="text-xs text-muted-foreground">{t.comparison.fromPrice}</span>
-              <span className="text-xl font-heading font-medium text-foreground ml-1">150</span>
+              <span className="text-xl font-heading font-medium text-foreground ml-1">{withLicenseMinPrice}€</span>
             </div>
           </div>
         </div>

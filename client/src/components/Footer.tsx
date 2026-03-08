@@ -1,9 +1,13 @@
 import { useState } from "react";
 import { Phone, Mail, MapPin, Clock, Shield, ShieldCheck, FileCheck, Map } from "lucide-react";
 import logoHorizontal from "@/assets/real-photos/logo-horizontal.png";
+import LogoCostaBravaFooter from "@/components/icons/LogoCostaBravaFooter";
 import { SiWhatsapp, SiInstagram, SiFacebook, SiTiktok } from "react-icons/si";
 import { useTranslations } from "@/lib/translations";
 import { useLanguage } from "@/hooks/use-language";
+import CentresNLCatalunyaLogo from "@/components/icons/CentresNLCatalunyaLogo";
+import ClusterNauticLogo from "@/components/icons/ClusterNauticLogo";
+import DonQualitaLogo from "@/components/icons/DonQualitaLogo";
 
 export default function Footer() {
   const t = useTranslations();
@@ -55,7 +59,7 @@ export default function Footer() {
               data-testid="footer-logo-button"
               aria-label="Ir a la pagina principal"
             >
-              <img src={logoHorizontal} alt="Costa Brava Rent a Boat" className="h-8 brightness-0 invert" />
+              <LogoCostaBravaFooter className="h-10" />
             </a>
             <p className="text-sm text-white/50 mb-4 leading-relaxed">
               {t.footer.description}
@@ -259,12 +263,18 @@ export default function Footer() {
               <a href="/cookies-policy" className="hover:text-white/60 transition-colors rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none" data-testid="footer-cookies-link">{t.footer.cookiesPolicy}</a>
               <a href="/accesibilidad" className="hover:text-white/60 transition-colors rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none" data-testid="footer-accessibility-link">Accesibilidad</a>
             </div>
-            <p className="text-white/40 text-xs text-center">
+            <p className="text-white/40 text-xs text-center text-balance">
               {currentYear} Costa Brava Rent a Boat Blanes. {t.footer.rights}
             </p>
             <p className="text-white/30 text-xs text-center">
               NIF: B22566327
             </p>
+            {/* Institutional logos */}
+            <div className="flex items-center justify-center gap-6 mt-4">
+              <CentresNLCatalunyaLogo className="h-10" />
+              <ClusterNauticLogo className="h-10" />
+              <DonQualitaLogo className="h-8" />
+            </div>
           </div>
         </div>
       </div>

@@ -915,7 +915,7 @@ export const ru: Translations = {
     noLicenseFeature2: 'Идеальны для ближайших бухт и пляжей',
     noLicenseFeature3: 'Бензин включен в стоимость',
     noLicenseFeature4: 'Инструктаж по безопасности включен',
-    licenseFeature1: 'Мощные лодки до 150 л.с.',
+    licenseFeature1: 'Мощные лодки до {maxHP} л.с.',
     licenseFeature2: 'Большая автономность и дальность плавания',
     licenseFeature3: 'Доступ к удаленным бухтам Коста Бравы',
     licenseFeature4: 'Бензин включен в стоимость',

@@ -3,11 +3,11 @@
 
 import solar450Image from "../assets/generated_images/SOLAR_450_boat_photo_b70eb7e1.webp";
 import remus450Image from "../assets/generated_images/REMUS_450_boat_photo_ec8b926c.webp";
-import astec400Image from "../assets/generated_images/ASTEC_400_boat_photo_9dde16a8.webp";
+const astec400Image = "/images/boats/astec-400/astec-400-2.webp";
 import astec450Image from "../assets/generated_images/ASTEC_450_speedboat_photo_fc9de4ed.webp";
-import mingollaImage from "../assets/generated_images/MINGOLLA_BRAVA_19_boat_c0e4a5b5.webp";
+const mingollaImage = "/images/boats/mingolla/mingolla-1.webp";
 import trimarchiImage from "../assets/generated_images/Trimarchi_57S_luxury_boat_0ef0159a.webp";
-import pacificCraftImage from "../assets/generated_images/PACIFIC_CRAFT_625_boat_fbe4f4d0.webp";
+const pacificCraftImage = "/images/boats/pacific-craft/pacific-craft-1.webp";
 
 // Map by boat identifier prefix (case-insensitive) to handle any hash suffix
 // This is resilient to image re-uploads from the admin panel

@@ -9,27 +9,32 @@ import mingollaImage from "../assets/real-photos/mingolla.jpg";
 import trimarchiImage from "../assets/real-photos/trimarchi.jpg";
 import pacificCraftImage from "../assets/real-photos/pacific-craft.jpg";
 
-// Map string paths to imported images
-export const BOAT_IMAGE_MAP: { [key: string]: string } = {
-  "SOLAR_450_boat_photo_b70eb7e1.png": solar450Image,
-  "REMUS_450_boat_photo_ec8b926c.png": remus450Image,
-  "ASTEC_400_boat_photo_9dde16a8.png": astec400Image,
-  "ASTEC_450_boat_photo_77fb7b13.png": astec450Image,
-  "ASTEC_450_speedboat_photo_fc9de4ed.png": astec450Image,
-  "MINGOLLA_BRAVA_19_boat_c0e4a5b5.png": mingollaImage,
-  "Trimarchi_57S_luxury_boat_0ef0159a.png": trimarchiImage,
-  "PACIFIC_CRAFT_625_boat_fbe4f4d0.png": pacificCraftImage,
-};
+// Map by boat identifier prefix (case-insensitive) to handle any hash suffix
+// This is resilient to image re-uploads from the admin panel
+const BOAT_IMAGE_BY_PREFIX: Array<{ pattern: string; image: string }> = [
+  { pattern: "SOLAR_450", image: solar450Image },
+  { pattern: "REMUS_450", image: remus450Image },
+  { pattern: "ASTEC_400", image: astec400Image },
+  { pattern: "ASTEC_450", image: astec450Image },
+  { pattern: "MINGOLLA", image: mingollaImage },
+  { pattern: "TRIMARCHI", image: trimarchiImage },
+  { pattern: "PACIFIC_CRAFT", image: pacificCraftImage },
+];
 
 // Helper function to resolve boat image path to actual imported image
 export function getBoatImage(imagePath: string): string {
-  // First, check if it's in the static map
-  if (BOAT_IMAGE_MAP[imagePath]) {
-    return BOAT_IMAGE_MAP[imagePath];
+  if (!imagePath) return "/placeholder-boat.jpg";
+
+  // Match by prefix (case-insensitive) — handles any hash suffix
+  const upper = imagePath.toUpperCase();
+  for (const entry of BOAT_IMAGE_BY_PREFIX) {
+    if (upper.startsWith(entry.pattern)) {
+      return entry.image;
+    }
   }
 
-  // If not in map and looks like a filename, construct Object Storage URL
-  if (imagePath && !imagePath.startsWith('http') && !imagePath.startsWith('/')) {
+  // If not matched and looks like a filename, construct Object Storage URL
+  if (!imagePath.startsWith("http") && !imagePath.startsWith("/")) {
     return `/objects/${imagePath}`;
   }
 
@@ -37,19 +42,41 @@ export function getBoatImage(imagePath: string): string {
   return imagePath;
 }
 
+// Map used by the server-side resize endpoint (needs exact filenames)
+const IMAGE_PREFIX_TO_FILE: Record<string, string> = {
+  SOLAR_450: "solar-450.jpg",
+  REMUS_450: "remus-450.jpg",
+  ASTEC_400: "astec-400.jpg",
+  ASTEC_450: "astec-450.jpg",
+  MINGOLLA: "mingolla.jpg",
+  TRIMARCHI: "trimarchi.jpg",
+  PACIFIC_CRAFT: "pacific-craft.jpg",
+};
+
 const SRCSET_WIDTHS = [400, 800, 1200] as const;
 
 /**
  * Generates a srcSet string for responsive images via the server resize endpoint.
- * Only handles local static filenames (e.g. "SOLAR_450_boat_photo_b70eb7e1.png").
+ * Resolves DB filenames (with hashes) to actual photo filenames for the resize endpoint.
  * Returns empty string for external URLs or object-storage paths.
  */
 export function getBoatImageSrcSet(imagePath: string): string {
   if (!imagePath || imagePath.startsWith("http") || imagePath.startsWith("/")) {
     return "";
   }
-  // Normalize extension to .jpg (server files are now .jpg)
-  const filename = imagePath.replace(/\.[^.]+$/, ".jpg");
+
+  // Find the actual file by prefix match
+  const upper = imagePath.toUpperCase();
+  let filename = "";
+  for (const [prefix, file] of Object.entries(IMAGE_PREFIX_TO_FILE)) {
+    if (upper.startsWith(prefix)) {
+      filename = file;
+      break;
+    }
+  }
+
+  if (!filename) return "";
+
   return SRCSET_WIDTHS
     .map((w) => `/img/resize?file=${encodeURIComponent(filename)}&w=${w} ${w}w`)
     .join(", ");

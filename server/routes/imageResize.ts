@@ -8,17 +8,24 @@ const IMAGES_DIRS = [
   path.resolve(process.cwd(), "client/src/assets/generated_images"),
 ];
 
-// Map legacy DB filenames (with hashes) to actual photo filenames
-const FILENAME_ALIASES: Record<string, string> = {
-  "SOLAR_450_boat_photo_b70eb7e1.jpg": "solar-450.jpg",
-  "REMUS_450_boat_photo_ec8b926c.jpg": "remus-450.jpg",
-  "ASTEC_400_boat_photo_9dde16a8.jpg": "astec-400.jpg",
-  "ASTEC_450_boat_photo_77fb7b13.jpg": "astec-450.jpg",
-  "ASTEC_450_speedboat_photo_fc9de4ed.jpg": "astec-450.jpg",
-  "MINGOLLA_BRAVA_19_boat_c0e4a5b5.jpg": "mingolla.jpg",
-  "Trimarchi_57S_luxury_boat_0ef0159a.jpg": "trimarchi.jpg",
-  "PACIFIC_CRAFT_625_boat_fbe4f4d0.jpg": "pacific-craft.jpg",
-};
+// Map boat name prefixes to actual photo filenames (resilient to hash changes)
+const PREFIX_TO_FILE: Array<[string, string]> = [
+  ["SOLAR_450", "solar-450.jpg"],
+  ["REMUS_450", "remus-450.jpg"],
+  ["ASTEC_400", "astec-400.jpg"],
+  ["ASTEC_450", "astec-450.jpg"],
+  ["MINGOLLA", "mingolla.jpg"],
+  ["TRIMARCHI", "trimarchi.jpg"],
+  ["PACIFIC_CRAFT", "pacific-craft.jpg"],
+];
+
+function resolveFilename(filename: string): string {
+  const upper = filename.toUpperCase();
+  for (const [prefix, file] of PREFIX_TO_FILE) {
+    if (upper.startsWith(prefix)) return file;
+  }
+  return filename;
+}
 
 // Simple in-memory LRU-like cache
 const cache = new Map<string, Buffer>();
@@ -51,8 +58,8 @@ export function registerImageResizeRoutes(app: Express) {
       return res.send(cached);
     }
 
-    // Resolve alias if the filename matches a legacy DB name
-    const resolvedFilename = FILENAME_ALIASES[filename] || filename;
+    // Resolve DB filename (with hash) to actual photo filename
+    const resolvedFilename = resolveFilename(filename);
 
     // Search in both real-photos and generated_images directories
     let filePath = "";

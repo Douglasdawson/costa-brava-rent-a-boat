@@ -556,6 +556,8 @@ export const fr: Translations = {
     date: 'Date',
     durationMinPeakSeason: 'Min. {duration} en aout (haute saison)',
     durationMinWeekend: 'Min. {duration} le week-end',
+    mostPopular: 'Le plus populaire',
+    suggestedDate: 'Prochain samedi disponible',
   },
   validation: {
     required: 'Ce champ est obligatoire',
@@ -742,12 +744,12 @@ export const fr: Translations = {
       },
     },
     newsletter: {
-      title: '5\u20AC de r\u00e9duction sur votre premi\u00e8re r\u00e9servation',
-      subtitle: 'Inscrivez-vous et recevez un code de r\u00e9duction de 5\u20AC pour votre premi\u00e8re r\u00e9servation',
+      title: 'Guide gratuit des criques secretes',
+      subtitle: 'Recevez notre guide des 10 meilleures criques de la Costa Brava accessibles uniquement en bateau',
       placeholder: 'Votre email',
-      button: "S'abonner",
-      success: 'Merci\u00a0! Nous vous informerons de nos meilleures offres.',
-      error: "Erreur d'abonnement. Veuillez réessayer.",
+      button: 'Envoyer le guide gratuit',
+      success: 'Guide envoye ! Verifiez votre email.',
+      error: "Echec de l'envoi. Veuillez reessayer.",
     },
   },
   categoryLicenseFree: {
@@ -944,6 +946,17 @@ export const fr: Translations = {
     modify: 'Modifier',
   },
 
+  endowment: {
+    yourTripIn: 'Votre voyage en {boat}',
+    customizeExperience: 'Personnalisez votre experience',
+    confirmYourBooking: 'Confirmez votre reservation',
+    yourPrice: 'Votre prix',
+    yourTrip: 'Votre voyage',
+    yourExperience: 'Votre experience',
+    confirmStep: 'Confirmer',
+    yourBoat: 'Votre {boat}',
+  },
+
   holdCountdown: {
     reserved: 'Votre bateau est reserve pendant',
     expired: 'Votre reservation a expire',
@@ -951,6 +964,12 @@ export const fr: Translations = {
     hurry: 'Depechez-vous',
     expiredSoft: 'Votre selection a peut-etre change. Vous pouvez continuer, mais nous vous recommandons de verifier la disponibilite.',
     verifyButton: 'Verifier',
+  },
+
+  scarcity: {
+    soldOutSaturday: 'Complet pour samedi',
+    onlyXSlots: 'Seulement {count} creneaux samedi',
+    availableSaturday: 'Disponible samedi',
   },
 
   seasonBanner: {
@@ -989,5 +1008,31 @@ export const fr: Translations = {
     discountCode: 'Utilisez le code',
     linkCopied: 'Lien copie',
     close: 'Fermer',
+  },
+  authority: {
+    yearsExperience: '6+ ans d\'experience',
+    fullInsurance: 'Assurance tous risques',
+    happyCustomers: '2000+ clients satisfaits',
+    fleetInsured: 'Flotte assuree a 100%',
+    zeroIncidents: '0 incidents de securite',
+    certifiedCaptains: 'Capitaines certifies',
+    officialPort: 'Port officiel de Blanes',
+    registeredBusiness: 'Entreprise enregistree en Espagne',
+    maritimeInsurance: 'Assurance maritime complete',
+    gdprCompliant: 'Conforme au RGPD',
+  },
+  reciprocity: {
+    captainTip: 'Conseil du capitaine',
+    captainTipText: 'Si c\'est votre premiere fois, choisissez un bateau sans permis pour 4h le matin. La mer est plus calme et vous aurez largement le temps d\'explorer 2-3 criques.',
+    whatToBring: 'Quoi apporter a bord',
+    sunscreen: 'Creme solaire biodegradable (protegez la mer)',
+    towels: 'Serviettes et maillot de bain',
+    waterSnacks: 'Eau et en-cas',
+    sunglasses: 'Lunettes de soleil avec cordon',
+    camera: 'Camera etanche (GoPro)',
+    freeGuideTitle: 'Guide gratuit des criques secretes',
+    freeGuideSubtitle: 'Recevez notre guide des 10 meilleures criques de la Costa Brava accessibles uniquement en bateau',
+    sendFreeGuide: 'Envoyer le guide gratuit',
+    freeGuideSent: 'Guide envoye ! Verifiez votre email.',
   },
 };

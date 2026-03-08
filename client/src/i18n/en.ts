@@ -556,6 +556,8 @@ export const en: Translations = {
     date: 'Date',
     durationMinPeakSeason: 'Min. {duration} in August (peak season)',
     durationMinWeekend: 'Min. {duration} on weekends',
+    mostPopular: 'Most popular',
+    suggestedDate: 'Next available Saturday',
   },
   validation: {
     required: 'This field is required',
@@ -742,12 +744,12 @@ export const en: Translations = {
       },
     },
     newsletter: {
-      title: '\u20AC5 off your first booking',
-      subtitle: 'Subscribe and receive a \u20AC5 discount code for your first booking',
+      title: 'Free guide to secret coves',
+      subtitle: 'Get our guide with the 10 best coves on the Costa Brava accessible only by boat',
       placeholder: 'Your email',
-      button: 'Subscribe',
-      success: "Thank you! We'll let you know about our best offers.",
-      error: 'Subscription failed. Please try again.',
+      button: 'Send free guide',
+      success: 'Guide sent! Check your email.',
+      error: 'Failed to send. Please try again.',
     },
   },
   categoryLicenseFree: {
@@ -944,6 +946,17 @@ export const en: Translations = {
     modify: 'Modify',
   },
 
+  endowment: {
+    yourTripIn: 'Your trip on {boat}',
+    customizeExperience: 'Customize your experience',
+    confirmYourBooking: 'Confirm your booking',
+    yourPrice: 'Your price',
+    yourTrip: 'Your trip',
+    yourExperience: 'Your experience',
+    confirmStep: 'Confirm',
+    yourBoat: 'Your {boat}',
+  },
+
   holdCountdown: {
     reserved: 'Your boat is reserved for',
     expired: 'Your reservation has expired',
@@ -951,6 +964,12 @@ export const en: Translations = {
     hurry: 'Hurry up',
     expiredSoft: 'Your selection may have changed. You can continue, but we recommend verifying availability.',
     verifyButton: 'Verify',
+  },
+
+  scarcity: {
+    soldOutSaturday: 'Sold out for Saturday',
+    onlyXSlots: 'Only {count} slots Saturday',
+    availableSaturday: 'Available Saturday',
   },
 
   seasonBanner: {
@@ -989,5 +1008,31 @@ export const en: Translations = {
     discountCode: 'Use code',
     linkCopied: 'Link copied',
     close: 'Close',
+  },
+  authority: {
+    yearsExperience: '6+ years of experience',
+    fullInsurance: 'Fully insured',
+    happyCustomers: '2000+ happy customers',
+    fleetInsured: 'Fleet 100% insured',
+    zeroIncidents: '0 safety incidents',
+    certifiedCaptains: 'Certified captains',
+    officialPort: 'Official Blanes port',
+    registeredBusiness: 'Registered business in Spain',
+    maritimeInsurance: 'Full maritime insurance',
+    gdprCompliant: 'GDPR compliant',
+  },
+  reciprocity: {
+    captainTip: "Captain's tip",
+    captainTipText: 'If it is your first time, choose a license-free boat for 4h in the morning. The sea is calmer and you will have plenty of time to explore 2-3 coves.',
+    whatToBring: 'What to bring on board',
+    sunscreen: 'Biodegradable sunscreen (protect the sea)',
+    towels: 'Towels and swimwear',
+    waterSnacks: 'Water and snacks',
+    sunglasses: 'Sunglasses with strap',
+    camera: 'Waterproof camera (GoPro)',
+    freeGuideTitle: 'Free guide to secret coves',
+    freeGuideSubtitle: 'Get our guide with the 10 best coves on the Costa Brava accessible only by boat',
+    sendFreeGuide: 'Send free guide',
+    freeGuideSent: 'Guide sent! Check your email.',
   },
 };

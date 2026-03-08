@@ -8,7 +8,7 @@ import { getBoatImage, getBoatImageSrcSet } from "@/utils/boatImages";
 import { useTranslations } from "@/lib/translations";
 import type { Boat } from "@shared/schema";
 import { SiWhatsapp } from "react-icons/si";
-import { Phone, Users } from "lucide-react";
+import { Phone, Users, CheckCircle, ChevronDown } from "lucide-react";
 import { useBookingModal } from "@/hooks/useBookingModal";
 
 /** Group size filter options for the recommendation system */
@@ -43,10 +43,20 @@ export default function FleetSection() {
   const { openBookingModal } = useBookingModal();
   const { ref: revealRef, isVisible } = useScrollReveal();
   const [selectedGroupSize, setSelectedGroupSize] = useState<number | null>(null);
+  const [checklistOpen, setChecklistOpen] = useState(false);
 
   // Fetch boats from API
   const { data: boatsData, isLoading } = useQuery<Boat[]>({
     queryKey: ['/api/boats'],
+  });
+
+  // Fetch fleet-wide scarcity data for the next Saturday
+  const { data: fleetAvailability } = useQuery<{
+    date: string;
+    boats: Record<string, { availableSlots: number; totalSlots: number }>;
+  }>({
+    queryKey: ['/api/fleet-availability'],
+    staleTime: 5 * 60 * 1000, // match server cache: 5 minutes
   });
 
   const currentSeason = useMemo(() => getCurrentSeason(), []);
@@ -201,6 +211,7 @@ export default function FleetSection() {
                   {...boat}
                   isPopular={boat.id === popularBoatId}
                   isRecommended={isBoatRecommended(boat.capacity)}
+                  scarcityData={fleetAvailability?.boats[boat.id]}
                   onBooking={handleBooking}
                   onDetails={handleDetails}
                 />
@@ -231,6 +242,34 @@ export default function FleetSection() {
               <span className="ml-1">{t.fleet.callButton}</span>
             </button>
           </div>
+        </div>
+
+        {/* "What to bring" collapsible checklist — free value (reciprocity) */}
+        <div className="mt-8 sm:mt-10 max-w-md mx-auto">
+          <button
+            onClick={() => setChecklistOpen(prev => !prev)}
+            className="w-full flex items-center justify-between gap-2 text-sm font-medium text-foreground bg-muted/50 hover:bg-muted/80 rounded-xl px-4 py-3 transition-colors"
+            aria-expanded={checklistOpen}
+          >
+            <span>{t.reciprocity?.whatToBring}</span>
+            <ChevronDown className={`w-4 h-4 text-muted-foreground transition-transform duration-200 ${checklistOpen ? 'rotate-180' : ''}`} />
+          </button>
+          {checklistOpen && (
+            <ul className="mt-2 space-y-2 px-4 pb-2">
+              {[
+                t.reciprocity?.sunscreen,
+                t.reciprocity?.towels,
+                t.reciprocity?.waterSnacks,
+                t.reciprocity?.sunglasses,
+                t.reciprocity?.camera,
+              ].map((item, i) => (
+                <li key={i} className="flex items-center gap-2 text-sm text-muted-foreground">
+                  <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0" />
+                  {item}
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
       </div>
 

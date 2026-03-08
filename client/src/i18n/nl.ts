@@ -556,6 +556,8 @@ export const nl: Translations = {
     date: 'Datum',
     durationMinPeakSeason: 'Min. {duration} in augustus (hoogseizoen)',
     durationMinWeekend: 'Min. {duration} in het weekend',
+    mostPopular: 'Meest populair',
+    suggestedDate: 'Eerstvolgende beschikbare zaterdag',
   },
   validation: {
     required: 'Dit veld is verplicht',
@@ -742,12 +744,12 @@ export const nl: Translations = {
       },
     },
     newsletter: {
-      title: '\u20AC5 korting op je eerste boeking',
-      subtitle: 'Schrijf je in en ontvang een kortingscode van \u20AC5 voor je eerste boeking',
+      title: 'Gratis gids voor geheime baaien',
+      subtitle: 'Ontvang onze gids met de 10 beste baaien van de Costa Brava die alleen per boot bereikbaar zijn',
       placeholder: 'Uw e-mail',
-      button: 'Abonneren',
-      success: 'Bedankt! We laten u weten over onze beste aanbiedingen.',
-      error: 'Abonneren mislukt. Probeer opnieuw.',
+      button: 'Gratis gids versturen',
+      success: 'Gids verzonden! Controleer uw e-mail.',
+      error: 'Verzenden mislukt. Probeer opnieuw.',
     },
   },
   categoryLicenseFree: {
@@ -944,6 +946,17 @@ export const nl: Translations = {
     modify: 'Wijzigen',
   },
 
+  endowment: {
+    yourTripIn: 'Jouw tocht met {boat}',
+    customizeExperience: 'Personaliseer jouw ervaring',
+    confirmYourBooking: 'Bevestig jouw boeking',
+    yourPrice: 'Jouw prijs',
+    yourTrip: 'Jouw tocht',
+    yourExperience: 'Jouw ervaring',
+    confirmStep: 'Bevestigen',
+    yourBoat: 'Jouw {boat}',
+  },
+
   holdCountdown: {
     reserved: 'Uw boot is gereserveerd voor',
     expired: 'Uw reservering is verlopen',
@@ -951,6 +964,12 @@ export const nl: Translations = {
     hurry: 'Schiet op',
     expiredSoft: 'Uw selectie is mogelijk gewijzigd. U kunt doorgaan, maar we raden aan de beschikbaarheid te controleren.',
     verifyButton: 'Controleren',
+  },
+
+  scarcity: {
+    soldOutSaturday: 'Uitverkocht voor zaterdag',
+    onlyXSlots: 'Nog {count} plaatsen zaterdag',
+    availableSaturday: 'Beschikbaar zaterdag',
   },
 
   seasonBanner: {
@@ -989,5 +1008,31 @@ export const nl: Translations = {
     discountCode: 'Gebruik code',
     linkCopied: 'Link gekopieerd',
     close: 'Sluiten',
+  },
+  authority: {
+    yearsExperience: '6+ jaar ervaring',
+    fullInsurance: 'Volledig verzekerd',
+    happyCustomers: '2000+ tevreden klanten',
+    fleetInsured: 'Vloot 100% verzekerd',
+    zeroIncidents: '0 veiligheidsincidenten',
+    certifiedCaptains: 'Gecertificeerde kapiteins',
+    officialPort: 'Officiele haven van Blanes',
+    registeredBusiness: 'Geregistreerd bedrijf in Spanje',
+    maritimeInsurance: 'Volledige maritieme verzekering',
+    gdprCompliant: 'AVG-conform',
+  },
+  reciprocity: {
+    captainTip: 'Tip van de kapitein',
+    captainTipText: 'Als het uw eerste keer is, kies dan een boot zonder vaarbewijs voor 4 uur in de ochtend. De zee is kalmer en u heeft ruim de tijd om 2-3 baaien te verkennen.',
+    whatToBring: 'Wat mee te nemen aan boord',
+    sunscreen: 'Biologisch afbreekbare zonnebrand (bescherm de zee)',
+    towels: 'Handdoeken en zwemkleding',
+    waterSnacks: 'Water en snacks',
+    sunglasses: 'Zonnebril met koord',
+    camera: 'Waterdichte camera (GoPro)',
+    freeGuideTitle: 'Gratis gids voor geheime baaien',
+    freeGuideSubtitle: 'Ontvang onze gids met de 10 beste baaien van de Costa Brava die alleen per boot bereikbaar zijn',
+    sendFreeGuide: 'Gratis gids versturen',
+    freeGuideSent: 'Gids verzonden! Controleer uw e-mail.',
   },
 };

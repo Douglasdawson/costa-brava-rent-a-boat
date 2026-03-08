@@ -616,6 +616,10 @@ export interface Translations {
     durationMinPeakSeason: string;
     /** Tooltip: "Min. {duration} on weekends" */
     durationMinWeekend: string;
+    /** Badge on 4h duration: "Most popular" */
+    mostPopular: string;
+    /** Suggestion text near calendar: "Next available Saturday" */
+    suggestedDate: string;
   };
 
   // Inline validation messages
@@ -1027,6 +1031,34 @@ export interface Translations {
     modify: string;
   };
 
+  // Endowment Effect (possessive language after boat selection)
+  endowment?: {
+    yourTripIn: string;        // "Tu viaje en {boat}" — step 2 header with boat name
+    customizeExperience: string; // "Personaliza tu experiencia" — step 3 header
+    confirmYourBooking: string;  // "Confirma tu reserva" — step 4 header
+    yourPrice: string;          // "Tu precio" — price summary label
+    yourTrip: string;           // "Tu viaje" — progress bar step 2 label
+    yourExperience: string;     // "Tu experiencia" — progress bar step 3 label
+    confirmStep: string;        // "Confirmar" — progress bar step 4 label
+    yourBoat: string;           // "Tu {boat}" — review summary boat name
+  };
+
+  // Reciprocity — free value before asking for booking
+  reciprocity?: {
+    captainTip: string;
+    captainTipText: string;
+    whatToBring: string;
+    sunscreen: string;
+    towels: string;
+    waterSnacks: string;
+    sunglasses: string;
+    camera: string;
+    freeGuideTitle: string;
+    freeGuideSubtitle: string;
+    sendFreeGuide: string;
+    freeGuideSent: string;
+  };
+
   // Hold Countdown (booking form urgency timer)
   holdCountdown?: {
     reserved: string;
@@ -1035,6 +1067,13 @@ export interface Translations {
     hurry: string;
     expiredSoft: string;
     verifyButton: string;
+  };
+
+  // Fleet Scarcity Badges
+  scarcity?: {
+    soldOutSaturday: string;
+    onlyXSlots: string;
+    availableSaturday: string;
   };
 
   // Season Urgency Banner
@@ -1047,6 +1086,20 @@ export interface Translations {
     dontMissIt: string;
     viewBoats: string;
     bookNow: string;
+  };
+
+  // Authority Badges & Trust Credentials
+  authority?: {
+    yearsExperience: string;
+    fullInsurance: string;
+    happyCustomers: string;
+    fleetInsured: string;
+    zeroIncidents: string;
+    certifiedCaptains: string;
+    officialPort: string;
+    registeredBusiness: string;
+    maritimeInsurance: string;
+    gdprCompliant: string;
   };
 
   // Booking Confirmation (post-booking peak-end experience)

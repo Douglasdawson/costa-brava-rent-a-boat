@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Phone, Mail, MapPin, Clock } from "lucide-react";
+import { Phone, Mail, MapPin, Clock, Shield, ShieldCheck, FileCheck, Map } from "lucide-react";
 import logoHorizontal from "@/assets/real-photos/logo-horizontal.png";
 import { SiWhatsapp, SiInstagram, SiFacebook, SiTiktok } from "react-icons/si";
 import { useTranslations } from "@/lib/translations";
@@ -101,7 +101,10 @@ export default function Footer() {
 
             {/* Newsletter */}
             <div className="mt-8">
-              <h3 className="font-medium text-white mb-2 text-sm">{t.locationPages.newsletter.title}</h3>
+              <h3 className="font-medium text-white mb-2 text-sm flex items-center gap-1.5">
+                <Map className="w-4 h-4 text-cta" />
+                {t.locationPages.newsletter.title}
+              </h3>
               <p className="text-sm text-white/50 mb-3">{t.locationPages.newsletter.subtitle}</p>
               {newsletterState === 'success' ? (
                 <p className="text-xs text-green-400">{t.locationPages.newsletter.success}</p>
@@ -235,6 +238,21 @@ export default function Footer() {
         {/* Bottom Section */}
         <div className="border-t border-white/10 mt-12 pt-8">
           <div className="flex flex-col items-center gap-3">
+            {/* Trust credentials row */}
+            <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 mb-2">
+              <span className="inline-flex items-center gap-1.5 text-white/40 text-xs">
+                <FileCheck className="w-3 h-3" />
+                {t.authority?.registeredBusiness || 'Empresa registrada en Espana'}
+              </span>
+              <span className="inline-flex items-center gap-1.5 text-white/40 text-xs">
+                <Shield className="w-3 h-3" />
+                {t.authority?.maritimeInsurance || 'Seguro maritimo completo'}
+              </span>
+              <span className="inline-flex items-center gap-1.5 text-white/40 text-xs">
+                <ShieldCheck className="w-3 h-3" />
+                {t.authority?.gdprCompliant || 'Cumplimiento RGPD'}
+              </span>
+            </div>
             <div className="text-white/60 text-sm flex flex-wrap gap-2 sm:gap-4 justify-center">
               <a href="/terms-conditions" className="hover:text-white/60 transition-colors rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none" data-testid="footer-terms-link">{t.footer.terms}</a>
               <a href="/privacy-policy" className="hover:text-white/60 transition-colors rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none" data-testid="footer-privacy-link">{t.footer.privacy}</a>

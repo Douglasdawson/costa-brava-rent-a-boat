@@ -1,4 +1,4 @@
-import { Check, Anchor, Ship } from "lucide-react";
+import { Check, Anchor, Ship, Lightbulb } from "lucide-react";
 import { useTranslations } from "@/lib/translations";
 
 export function LicenseComparisonSection() {
@@ -71,6 +71,15 @@ export function LicenseComparisonSection() {
               <span className="text-xs text-muted-foreground">{t.comparison.fromPrice}</span>
               <span className="text-xl font-heading font-medium text-foreground ml-1">150</span>
             </div>
+          </div>
+        </div>
+
+        {/* Captain's Pro Tip — free expert advice (reciprocity) */}
+        <div className="mt-8 bg-amber-50/70 border-l-4 border-amber-400 rounded-r-xl p-4 sm:p-5 flex gap-3 items-start">
+          <Lightbulb className="w-5 h-5 text-amber-500 flex-shrink-0 mt-0.5" />
+          <div>
+            <span className="font-medium text-foreground text-sm">{t.reciprocity?.captainTip}</span>
+            <p className="text-sm text-muted-foreground mt-1 leading-relaxed">{t.reciprocity?.captainTipText}</p>
           </div>
         </div>
       </div>

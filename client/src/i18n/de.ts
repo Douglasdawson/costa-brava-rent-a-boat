@@ -556,6 +556,8 @@ export const de: Translations = {
     date: 'Datum',
     durationMinPeakSeason: 'Min. {duration} im August (Hochsaison)',
     durationMinWeekend: 'Min. {duration} am Wochenende',
+    mostPopular: 'Am beliebtesten',
+    suggestedDate: 'Nachster verfugbarer Samstag',
   },
   validation: {
     required: 'Dieses Feld ist erforderlich',
@@ -742,12 +744,12 @@ export const de: Translations = {
       },
     },
     newsletter: {
-      title: '5\u20AC Rabatt auf Ihre erste Buchung',
-      subtitle: 'Abonnieren Sie und erhalten Sie einen 5\u20AC Rabattcode f\u00fcr Ihre erste Buchung',
+      title: 'Kostenloser Fuhrer zu geheimen Buchten',
+      subtitle: 'Erhalten Sie unseren Fuhrer mit den 10 besten Buchten der Costa Brava, die nur per Boot erreichbar sind',
       placeholder: 'Ihre E-Mail',
-      button: 'Abonnieren',
-      success: 'Danke! Wir informieren Sie über unsere besten Angebote.',
-      error: 'Fehler beim Abonnieren. Bitte erneut versuchen.',
+      button: 'Kostenlosen Fuhrer senden',
+      success: 'Fuhrer gesendet! Prufen Sie Ihre E-Mail.',
+      error: 'Fehler beim Senden. Bitte erneut versuchen.',
     },
   },
   categoryLicenseFree: {
@@ -944,6 +946,17 @@ export const de: Translations = {
     modify: 'Andern',
   },
 
+  endowment: {
+    yourTripIn: 'Ihr Ausflug mit {boat}',
+    customizeExperience: 'Gestalten Sie Ihr Erlebnis',
+    confirmYourBooking: 'Bestatigen Sie Ihre Buchung',
+    yourPrice: 'Ihr Preis',
+    yourTrip: 'Ihr Ausflug',
+    yourExperience: 'Ihr Erlebnis',
+    confirmStep: 'Bestatigen',
+    yourBoat: 'Ihr {boat}',
+  },
+
   holdCountdown: {
     reserved: 'Ihr Boot ist reserviert fur',
     expired: 'Ihre Reservierung ist abgelaufen',
@@ -951,6 +964,12 @@ export const de: Translations = {
     hurry: 'Beeilen Sie sich',
     expiredSoft: 'Ihre Auswahl hat sich moglicherweise geandert. Sie konnen fortfahren, aber wir empfehlen, die Verfugbarkeit zu uberprufen.',
     verifyButton: 'Uberprufen',
+  },
+
+  scarcity: {
+    soldOutSaturday: 'Ausgebucht fur Samstag',
+    onlyXSlots: 'Nur {count} Platze am Samstag',
+    availableSaturday: 'Verfugbar am Samstag',
   },
 
   seasonBanner: {
@@ -989,5 +1008,31 @@ export const de: Translations = {
     discountCode: 'Verwenden Sie den Code',
     linkCopied: 'Link kopiert',
     close: 'Schliessen',
+  },
+  authority: {
+    yearsExperience: '6+ Jahre Erfahrung',
+    fullInsurance: 'Vollversichert',
+    happyCustomers: '2000+ zufriedene Kunden',
+    fleetInsured: 'Flotte 100% versichert',
+    zeroIncidents: '0 Sicherheitsvorfalle',
+    certifiedCaptains: 'Zertifizierte Kapitane',
+    officialPort: 'Offizieller Hafen von Blanes',
+    registeredBusiness: 'Registriertes Unternehmen in Spanien',
+    maritimeInsurance: 'Vollstandige Seeversicherung',
+    gdprCompliant: 'DSGVO-konform',
+  },
+  reciprocity: {
+    captainTip: 'Tipp vom Kapitan',
+    captainTipText: 'Wenn es Ihr erstes Mal ist, wahlen Sie ein Boot ohne Fuhrerschein fur 4h am Morgen. Das Meer ist ruhiger und Sie haben genug Zeit, 2-3 Buchten zu erkunden.',
+    whatToBring: 'Was Sie an Bord mitnehmen sollten',
+    sunscreen: 'Biologisch abbaubare Sonnencreme (schutzt das Meer)',
+    towels: 'Handtucher und Badebekleidung',
+    waterSnacks: 'Wasser und Snacks',
+    sunglasses: 'Sonnenbrille mit Band',
+    camera: 'Wasserdichte Kamera (GoPro)',
+    freeGuideTitle: 'Kostenloser Fuhrer zu geheimen Buchten',
+    freeGuideSubtitle: 'Erhalten Sie unseren Fuhrer mit den 10 besten Buchten der Costa Brava, die nur per Boot erreichbar sind',
+    sendFreeGuide: 'Kostenlosen Fuhrer senden',
+    freeGuideSent: 'Fuhrer gesendet! Prufen Sie Ihre E-Mail.',
   },
 };

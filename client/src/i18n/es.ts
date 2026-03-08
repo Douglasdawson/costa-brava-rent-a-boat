@@ -566,6 +566,8 @@ export const es: Translations = {
     date: 'Fecha',
     durationMinPeakSeason: 'Min. {duration} en agosto (temporada alta)',
     durationMinWeekend: 'Min. {duration} en fines de semana',
+    mostPopular: 'Mas popular',
+    suggestedDate: 'Proximo sabado disponible',
   },
   validation: {
     required: 'Este campo es obligatorio',
@@ -752,12 +754,12 @@ export const es: Translations = {
       },
     },
     newsletter: {
-      title: '5\u20AC de descuento en tu primera reserva',
-      subtitle: 'Suscr\u00edbete y recibe un c\u00f3digo de 5\u20AC de descuento para tu primera reserva',
+      title: 'Guia gratuita de calas secretas',
+      subtitle: 'Recibe nuestra guia con las 10 mejores calas de la Costa Brava accesibles solo en barco',
       placeholder: 'Tu email',
-      button: 'Suscribirse',
-      success: '¡Gracias! Te avisaremos con las mejores ofertas.',
-      error: 'Error al suscribirse. Inténtalo de nuevo.',
+      button: 'Enviar guia gratis',
+      success: 'Guia enviada. Revisa tu email.',
+      error: 'Error al enviar. Intentalo de nuevo.',
     },
   },
   categoryLicenseFree: {
@@ -954,6 +956,17 @@ export const es: Translations = {
     modify: 'Modificar',
   },
 
+  endowment: {
+    yourTripIn: 'Tu viaje en {boat}',
+    customizeExperience: 'Personaliza tu experiencia',
+    confirmYourBooking: 'Confirma tu reserva',
+    yourPrice: 'Tu precio',
+    yourTrip: 'Tu viaje',
+    yourExperience: 'Tu experiencia',
+    confirmStep: 'Confirmar',
+    yourBoat: 'Tu {boat}',
+  },
+
   holdCountdown: {
     reserved: 'Tu barco esta reservado durante',
     expired: 'Tu reserva ha expirado',
@@ -961,6 +974,12 @@ export const es: Translations = {
     hurry: 'Date prisa',
     expiredSoft: 'Tu seleccion puede haber cambiado. Puedes continuar, pero te recomendamos verificar la disponibilidad.',
     verifyButton: 'Verificar',
+  },
+
+  scarcity: {
+    soldOutSaturday: 'Agotado para el sabado',
+    onlyXSlots: 'Solo {count} huecos el sabado',
+    availableSaturday: 'Disponible el sabado',
   },
 
   seasonBanner: {
@@ -999,5 +1018,31 @@ export const es: Translations = {
     discountCode: 'Usa el codigo',
     linkCopied: 'Enlace copiado',
     close: 'Cerrar',
+  },
+  reciprocity: {
+    captainTip: 'Consejo del capitan',
+    captainTipText: 'Si es tu primera vez, elige un barco sin licencia de 4h por la manana. El mar esta mas calmado y tendras tiempo de sobra para explorar 2-3 calas.',
+    whatToBring: 'Que llevar a bordo',
+    sunscreen: 'Crema solar biodegradable (protege el mar)',
+    towels: 'Toallas y ropa de bano',
+    waterSnacks: 'Agua y snacks',
+    sunglasses: 'Gafas de sol con correa',
+    camera: 'Camara sumergible (GoPro)',
+    freeGuideTitle: 'Guia gratuita de calas secretas',
+    freeGuideSubtitle: 'Recibe nuestra guia con las 10 mejores calas de la Costa Brava accesibles solo en barco',
+    sendFreeGuide: 'Enviar guia gratis',
+    freeGuideSent: 'Guia enviada. Revisa tu email.',
+  },
+  authority: {
+    yearsExperience: '6+ anos de experiencia',
+    fullInsurance: 'Seguro a todo riesgo',
+    happyCustomers: '2000+ clientes satisfechos',
+    fleetInsured: 'Flota asegurada al 100%',
+    zeroIncidents: '0 incidentes de seguridad',
+    certifiedCaptains: 'Capitanes certificados',
+    officialPort: 'Puerto oficial de Blanes',
+    registeredBusiness: 'Empresa registrada en Espana',
+    maritimeInsurance: 'Seguro maritimo completo',
+    gdprCompliant: 'Cumplimiento RGPD',
   },
 };

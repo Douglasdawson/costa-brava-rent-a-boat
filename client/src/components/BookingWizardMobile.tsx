@@ -108,6 +108,8 @@ export interface BookingWizardMobileProps {
   // Icon map
   iconMap: Record<string, React.ComponentType<{ className?: string }>>;
   calculatePackSavings: (packId: string) => number;
+  // Smart defaults
+  nextSaturdayISO: string;
 }
 
 
@@ -144,7 +146,12 @@ export default function BookingWizardMobile(props: BookingWizardMobileProps) {
         <BookingProgressBar
           currentStep={currentStep}
           totalSteps={4}
-          stepLabels={[props.t.wizard.stepBoat, props.t.wizard.stepTrip, props.t.wizard.stepYourData, props.t.wizard.stepConfirm]}
+          stepLabels={[
+            props.t.wizard.stepBoat,
+            props.selectedBoatInfo ? (props.t.endowment?.yourTrip || props.t.wizard.stepTrip) : props.t.wizard.stepTrip,
+            props.selectedBoatInfo ? (props.t.endowment?.confirmStep || props.t.wizard.stepYourData) : props.t.wizard.stepYourData,
+            props.selectedBoatInfo ? (props.t.endowment?.confirmStep || props.t.wizard.stepConfirm) : props.t.wizard.stepConfirm,
+          ]}
           estimatedTime={props.t.wizard.estimatedTime}
         />
       </div>
@@ -177,7 +184,7 @@ export default function BookingWizardMobile(props: BookingWizardMobileProps) {
         if (!price || !props.selectedBoatInfo || !props.selectedDuration) return null;
         return (
           <div className="border-t border-gray-100 bg-primary/5 px-4 py-2.5 flex items-center justify-between text-sm">
-            <span className="text-gray-600 truncate mr-2">{props.selectedBoatInfo.name} · {props.selectedDuration}</span>
+            <span className="text-gray-600 truncate mr-2">{(props.t.endowment?.yourBoat || 'Tu {boat}').replace('{boat}', props.selectedBoatInfo.name)} · {props.selectedDuration}</span>
             <span className="font-bold text-primary flex-shrink-0">{price}€</span>
           </div>
         );
@@ -239,6 +246,8 @@ function Step1Boat({
   getLocalISODate,
   showFieldError, getFieldError, handleBlur,
   t,
+  nextSaturdayISO,
+  language,
 }: BookingWizardMobileProps) {
   const [showDatePicker, setShowDatePicker] = useState(false);
   const dateRef = useRef<HTMLDivElement>(null);
@@ -394,6 +403,11 @@ function Step1Boat({
         {showFieldError('date') && (
           <p className="text-xs text-red-500 mt-1">{getFieldError('date')}</p>
         )}
+        {!selectedDate && nextSaturdayISO && (
+          <p className="text-xs text-gray-400 mt-1.5">
+            {t.wizard.suggestedDate}: {new Date(nextSaturdayISO + 'T12:00:00').toLocaleDateString(language === 'en' ? 'en-GB' : 'es-ES', { weekday: 'long', day: 'numeric', month: 'long' })}
+          </p>
+        )}
       </div>
     </div>
   );
@@ -417,7 +431,11 @@ function Step2Trip({
   return (
     <div className="space-y-5">
       <div>
-        <h2 className="text-xl font-bold text-gray-900 mb-1">{t.wizard.yourTrip}</h2>
+        <h2 className="text-xl font-bold text-gray-900 mb-1">
+          {selectedBoatInfo
+            ? (t.endowment?.yourTripIn || 'Tu viaje en {boat}').replace('{boat}', selectedBoatInfo.name)
+            : t.wizard.yourTrip}
+        </h2>
         <p className="text-sm text-gray-500">{t.wizard.howLongHowMany}</p>
       </div>
       {/* Time — shown before duration so maxDuration can filter durations */}
@@ -479,7 +497,12 @@ function Step2Trip({
                     : "border-gray-200 bg-white"
                 }`}
               >
-                <span className={`text-sm font-medium ${isDisabled ? "text-gray-400 line-through" : "text-gray-900"}`}>{labelText}</span>
+                <span className="flex items-center gap-2">
+                  <span className={`text-sm font-medium ${isDisabled ? "text-gray-400 line-through" : "text-gray-900"}`}>{labelText}</span>
+                  {opt.value === "4h" && !isDisabled && (
+                    <span className="text-[10px] font-medium text-gray-400 uppercase tracking-wide">{t.wizard.mostPopular}</span>
+                  )}
+                </span>
                 {isDisabled ? (
                   <span className="text-xs text-amber-600 font-medium">{opt.disabledReason || t.boats.notAvailable}</span>
                 ) : priceText ? (
@@ -557,7 +580,7 @@ function Step3PersonalData({
   return (
     <div className="space-y-4">
       <div>
-        <h2 className="text-xl font-bold text-gray-900 mb-1">{t.wizard.yourData}</h2>
+        <h2 className="text-xl font-bold text-gray-900 mb-1">{t.endowment?.confirmYourBooking || t.wizard.yourData}</h2>
         <p className="text-sm text-gray-500">{t.wizard.confirmViaWhatsApp}</p>
       </div>
       <div>
@@ -744,7 +767,11 @@ function Step4Confirm({
   return (
     <div className="space-y-5 pb-2">
       <div>
-        <h2 className="text-xl font-bold text-gray-900 mb-1">{t.booking.confirmTitle}</h2>
+        <h2 className="text-xl font-bold text-gray-900 mb-1">
+          {selectedBoatInfo
+            ? (t.endowment?.customizeExperience || t.booking.confirmTitle)
+            : t.booking.confirmTitle}
+        </h2>
         <p className="text-sm text-gray-500">{t.booking.confirmSubtitle}</p>
       </div>
       {/* Booking summary card */}
@@ -763,7 +790,11 @@ function Step4Confirm({
         </div>
         <div className="flex justify-between text-sm">
           <span className="text-gray-500">{t.booking.boat}</span>
-          <span className="font-semibold text-gray-900">{selectedBoatInfo?.name || "--"}</span>
+          <span className="font-semibold text-gray-900">
+            {selectedBoatInfo?.name
+              ? (t.endowment?.yourBoat || 'Tu {boat}').replace('{boat}', selectedBoatInfo.name)
+              : "--"}
+          </span>
         </div>
         <div className="flex justify-between text-sm">
           <span className="text-gray-500">{t.booking.date}</span>
@@ -804,7 +835,7 @@ function Step4Confirm({
           >
             <span className="flex items-center gap-2">
               <Package className="w-4 h-4 text-primary" />
-              {t.booking.extrasSection.title}
+              {t.endowment?.customizeExperience || t.booking.extrasSection.title}
               {(selectedExtras.length > 0 || selectedPack) && (
                 <span className="bg-primary text-white text-xs px-2 py-0.5 rounded-full">
                   {totalExtrasPrice}€
@@ -969,7 +1000,7 @@ function Step4Confirm({
         return (
           <div className="bg-primary rounded-xl p-4 text-white">
             <div className="flex justify-between items-center">
-              <span className="text-sm font-medium opacity-90">{t.booking.estimatedTotal}</span>
+              <span className="text-sm font-medium opacity-90">{t.endowment?.yourPrice || t.booking.estimatedTotal}</span>
               <span className="text-2xl font-bold">{total}€</span>
             </div>
             {discount > 0 && (

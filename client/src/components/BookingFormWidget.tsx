@@ -57,8 +57,8 @@ export default function BookingFormWidget({ preSelectedBoatId, prefillDate, pref
   const [phonePrefix, setPhonePrefix] = useState("+34");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [email, setEmail] = useState("");
-  const [numberOfPeople, setNumberOfPeople] = useState("0");
-  const [preferredTime, setPreferredTime] = useState(prefillTime || "");
+  const [numberOfPeople, setNumberOfPeople] = useState("4");
+  const [preferredTime, setPreferredTime] = useState(prefillTime || "10:00");
   const [showPrefixDropdown, setShowPrefixDropdown] = useState(false);
   const [prefixSearch, setPrefixSearch] = useState("");
   const [licenseFilter, setLicenseFilter] = useState<"with" | "without">("without");
@@ -512,11 +512,48 @@ export default function BookingFormWidget({ preSelectedBoatId, prefillDate, pref
     return licenseFilter === "with" ? 8 : 7;
   };
 
+  // Smart default: auto-select 4h duration (most popular) when boat changes
+  // Only applies when duration is not already set by user or session restore
+  useEffect(() => {
+    if (!selectedBoat) return;
+    // Don't override if user already has a valid duration selected
+    if (selectedDuration) {
+      const options = getDurationOptions();
+      const currentValid = options.find(opt => opt.value === selectedDuration && !opt.disabled);
+      if (currentValid) return;
+    }
+    const options = getDurationOptions();
+    // Prefer 4h if available, otherwise pick the middle available option
+    const fourHour = options.find(opt => opt.value === "4h" && !opt.disabled);
+    if (fourHour) {
+      setSelectedDuration("4h");
+    } else {
+      const available = options.filter(opt => !opt.disabled);
+      if (available.length > 0) {
+        const middleIdx = Math.floor(available.length / 2);
+        setSelectedDuration(available[middleIdx].value);
+      }
+    }
+  }, [selectedBoat]);
+
   // Reset extras when boat changes
   useEffect(() => {
     setSelectedExtras([]);
     setSelectedPack(null);
   }, [selectedBoat]);
+
+  // Compute next available Saturday for suggestion text near calendar
+  const nextSaturdayISO = useMemo(() => {
+    const today = new Date();
+    const dayOfWeek = today.getDay(); // 0=Sun, 6=Sat
+    const daysUntilSat = dayOfWeek === 6 ? 7 : (6 - dayOfWeek);
+    const nextSat = new Date(today);
+    nextSat.setDate(today.getDate() + daysUntilSat);
+    const y = nextSat.getFullYear();
+    const m = String(nextSat.getMonth() + 1).padStart(2, '0');
+    const d = String(nextSat.getDate()).padStart(2, '0');
+    return `${y}-${m}-${d}`;
+  }, []);
 
   // Get the extras for the currently selected boat from BOAT_DATA
   const boatExtras = useMemo(() => {
@@ -1039,6 +1076,7 @@ Looking forward to confirmation. Thanks!`;
     calculatePackSavings,
     isSpanishLang,
     language,
+    nextSaturdayISO,
   };
 
   const handleCloseConfirmation = () => {

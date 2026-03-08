@@ -556,6 +556,8 @@ export const it: Translations = {
     date: 'Data',
     durationMinPeakSeason: 'Min. {duration} ad agosto (alta stagione)',
     durationMinWeekend: 'Min. {duration} nei fine settimana',
+    mostPopular: 'Piu popolare',
+    suggestedDate: 'Prossimo sabato disponibile',
   },
   validation: {
     required: 'Questo campo e obbligatorio',
@@ -742,12 +744,12 @@ export const it: Translations = {
       },
     },
     newsletter: {
-      title: '5\u20AC di sconto sulla tua prima prenotazione',
-      subtitle: 'Iscriviti e ricevi un codice sconto di 5\u20AC per la tua prima prenotazione',
+      title: 'Guida gratuita alle calette segrete',
+      subtitle: 'Ricevi la nostra guida con le 10 migliori calette della Costa Brava accessibili solo in barca',
       placeholder: 'La tua email',
-      button: 'Iscriviti',
-      success: 'Grazie! Ti avviseremo delle nostre migliori offerte.',
-      error: 'Errore di iscrizione. Riprova.',
+      button: 'Invia guida gratuita',
+      success: 'Guida inviata! Controlla la tua email.',
+      error: 'Errore di invio. Riprova.',
     },
   },
   categoryLicenseFree: {
@@ -944,6 +946,17 @@ export const it: Translations = {
     modify: 'Modifica',
   },
 
+  endowment: {
+    yourTripIn: 'Il tuo viaggio su {boat}',
+    customizeExperience: 'Personalizza la tua esperienza',
+    confirmYourBooking: 'Conferma la tua prenotazione',
+    yourPrice: 'Il tuo prezzo',
+    yourTrip: 'Il tuo viaggio',
+    yourExperience: 'La tua esperienza',
+    confirmStep: 'Confermare',
+    yourBoat: 'La tua {boat}',
+  },
+
   holdCountdown: {
     reserved: 'La tua barca e riservata per',
     expired: 'La tua prenotazione e scaduta',
@@ -951,6 +964,12 @@ export const it: Translations = {
     hurry: 'Affrettati',
     expiredSoft: 'La tua selezione potrebbe essere cambiata. Puoi continuare, ma ti consigliamo di verificare la disponibilita.',
     verifyButton: 'Verificare',
+  },
+
+  scarcity: {
+    soldOutSaturday: 'Esaurito per sabato',
+    onlyXSlots: 'Solo {count} posti sabato',
+    availableSaturday: 'Disponibile sabato',
   },
 
   seasonBanner: {
@@ -989,5 +1008,31 @@ export const it: Translations = {
     discountCode: 'Usa il codice',
     linkCopied: 'Link copiato',
     close: 'Chiudi',
+  },
+  authority: {
+    yearsExperience: '6+ anni di esperienza',
+    fullInsurance: 'Completamente assicurato',
+    happyCustomers: '2000+ clienti soddisfatti',
+    fleetInsured: 'Flotta assicurata al 100%',
+    zeroIncidents: '0 incidenti di sicurezza',
+    certifiedCaptains: 'Capitani certificati',
+    officialPort: 'Porto ufficiale di Blanes',
+    registeredBusiness: 'Azienda registrata in Spagna',
+    maritimeInsurance: 'Assicurazione marittima completa',
+    gdprCompliant: 'Conforme al GDPR',
+  },
+  reciprocity: {
+    captainTip: 'Consiglio del capitano',
+    captainTipText: 'Se e la tua prima volta, scegli una barca senza patente per 4h al mattino. Il mare e piu calmo e avrai tempo a sufficienza per esplorare 2-3 calette.',
+    whatToBring: 'Cosa portare a bordo',
+    sunscreen: 'Crema solare biodegradabile (proteggi il mare)',
+    towels: 'Asciugamani e costume da bagno',
+    waterSnacks: 'Acqua e snack',
+    sunglasses: 'Occhiali da sole con laccetto',
+    camera: 'Fotocamera subacquea (GoPro)',
+    freeGuideTitle: 'Guida gratuita alle calette segrete',
+    freeGuideSubtitle: 'Ricevi la nostra guida con le 10 migliori calette della Costa Brava accessibili solo in barca',
+    sendFreeGuide: 'Invia guida gratuita',
+    freeGuideSent: 'Guida inviata! Controlla la tua email.',
   },
 };

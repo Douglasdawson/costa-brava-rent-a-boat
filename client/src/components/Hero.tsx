@@ -1,5 +1,5 @@
 import { Button } from "./ui/button";
-import { ShieldCheck, Shield, CheckCircle } from "lucide-react";
+import { ShieldCheck, Shield, CheckCircle, Award, Users } from "lucide-react";
 import { useTranslations } from "@/lib/translations";
 import { useBookingModal } from "@/hooks/useBookingModal";
 import CurvedLoop from "./CurvedLoop";
@@ -70,14 +70,22 @@ export default function Hero() {
             </div>
 
             {/* Trust badges */}
-            <div className="flex flex-wrap items-center justify-center gap-3 mt-4">
+            <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mt-4">
               <span className="inline-flex items-center gap-1.5 bg-white/15 backdrop-blur-sm text-white/90 text-xs sm:text-sm px-3 py-1.5 rounded-full">
-                <ShieldCheck className="w-3.5 h-3.5" />
-                {t.hero.freeCancellation}
+                <Award className="w-3.5 h-3.5" />
+                {t.authority?.yearsExperience || '6+ anos de experiencia'}
               </span>
               <span className="inline-flex items-center gap-1.5 bg-white/15 backdrop-blur-sm text-white/90 text-xs sm:text-sm px-3 py-1.5 rounded-full">
                 <Shield className="w-3.5 h-3.5" />
-                {t.hero.insured}
+                {t.authority?.fullInsurance || 'Seguro a todo riesgo'}
+              </span>
+              <span className="inline-flex items-center gap-1.5 bg-white/15 backdrop-blur-sm text-white/90 text-xs sm:text-sm px-3 py-1.5 rounded-full">
+                <Users className="w-3.5 h-3.5" />
+                {t.authority?.happyCustomers || '2000+ clientes satisfechos'}
+              </span>
+              <span className="inline-flex items-center gap-1.5 bg-white/15 backdrop-blur-sm text-white/90 text-xs sm:text-sm px-3 py-1.5 rounded-full">
+                <ShieldCheck className="w-3.5 h-3.5" />
+                {t.hero.freeCancellation}
               </span>
               <span className="inline-flex items-center gap-1.5 bg-white/15 backdrop-blur-sm text-white/90 text-xs sm:text-sm px-3 py-1.5 rounded-full">
                 <CheckCircle className="w-3.5 h-3.5" />

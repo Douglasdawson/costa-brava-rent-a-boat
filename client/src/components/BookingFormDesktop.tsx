@@ -86,6 +86,8 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
     handleValidateCode,
     handleRemoveCode,
     getCodeDiscount,
+    nextSaturdayISO,
+    language,
   } = props;
 
   const [showDatePicker, setShowDatePicker] = useState(false);
@@ -114,11 +116,13 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
   const inputError = "border-red-400";
   const inputNormal = "border-[#A8C4DD]/40";
 
+  // Endowment Effect: once a boat is selected, shift to possessive language
+  const boatSelected = !!selectedBoatInfo;
   const stepLabels = [
     t.wizard.stepBoat,
-    t.wizard.stepTrip,
-    t.wizard.stepExtras,
-    t.wizard.stepYourData,
+    boatSelected ? (t.endowment?.yourTrip || t.wizard.stepTrip) : t.wizard.stepTrip,
+    boatSelected ? (t.endowment?.yourExperience || t.wizard.stepExtras) : t.wizard.stepExtras,
+    boatSelected ? (t.endowment?.confirmStep || t.wizard.stepYourData) : t.wizard.stepYourData,
   ];
 
   return (
@@ -169,6 +173,7 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
                 showDatePicker={showDatePicker} setShowDatePicker={setShowDatePicker}
                 showFieldError={showFieldError} getFieldError={getFieldError} handleBlur={handleBlur}
                 t={t} inputBase={inputBase} inputError={inputError} inputNormal={inputNormal}
+                nextSaturdayISO={nextSaturdayISO} language={language}
               />
             )}
             {currentStep === 2 && (
@@ -293,6 +298,8 @@ interface Step1Props {
   inputBase: string;
   inputError: string;
   inputNormal: string;
+  nextSaturdayISO: string;
+  language: string;
 }
 
 function Step1BoatDate({
@@ -305,6 +312,7 @@ function Step1BoatDate({
   showDatePicker, setShowDatePicker,
   showFieldError, getFieldError, handleBlur,
   t, inputBase, inputError, inputNormal,
+  nextSaturdayISO, language,
 }: Step1Props) {
   return (
     <div className="space-y-5">
@@ -435,6 +443,11 @@ function Step1BoatDate({
           </PopoverContent>
         </Popover>
         {showFieldError('date') && <p className="text-xs text-red-500 mt-1">{getFieldError('date')}</p>}
+        {!selectedDate && nextSaturdayISO && (
+          <p className="text-xs text-muted-foreground/60 mt-1.5">
+            {t.wizard.suggestedDate}: {new Date(nextSaturdayISO + 'T12:00:00').toLocaleDateString(language === 'en' ? 'en-GB' : 'es-ES', { weekday: 'long', day: 'numeric', month: 'long' })}
+          </p>
+        )}
       </div>
     </div>
   );
@@ -534,6 +547,9 @@ function Step2Details({
                     : "border-[#A8C4DD]/40 bg-white hover:border-[#A8C4DD]"
                 }`}
               >
+                {opt.value === "4h" && !isDisabled && (
+                  <p className="text-[9px] font-medium text-gray-400 uppercase tracking-wider mb-0.5">{t.wizard.mostPopular}</p>
+                )}
                 <p className={`text-sm font-semibold ${isDisabled ? "text-gray-400 line-through" : "text-foreground"}`}>{labelText}</p>
                 {isDisabled ? (
                   <p className="text-xs text-amber-600 font-medium">{opt.disabledReason || t.boats.notAvailable}</p>
@@ -628,7 +644,7 @@ function Step3Extras({
     <div className="space-y-3">
       <div className="flex items-center justify-between mb-1">
         <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">
-          {t.booking.extrasSection.title}
+          {t.endowment?.customizeExperience || t.booking.extrasSection.title}
         </p>
         {totalExtrasPrice > 0 && (
           <span className="text-sm text-[#0D0D2B] font-bold">+{totalExtrasPrice}€</span>
@@ -806,7 +822,11 @@ function Step4Contact({
         <div className="grid grid-cols-2 gap-x-4 gap-y-1.5 text-sm">
           <div className="flex justify-between col-span-2">
             <span className="text-muted-foreground">{t.booking.boat}</span>
-            <span className="font-medium text-foreground">{selectedBoatInfo?.name || '--'}</span>
+            <span className="font-medium text-foreground">
+              {selectedBoatInfo?.name
+                ? (t.endowment?.yourBoat || 'Tu {boat}').replace('{boat}', selectedBoatInfo.name)
+                : '--'}
+            </span>
           </div>
           <div className="flex justify-between col-span-2">
             <span className="text-muted-foreground">{t.booking.date}</span>
@@ -835,7 +855,7 @@ function Step4Contact({
 
       {/* Personal data */}
       <div>
-        <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-2">{t.wizard.yourData}</p>
+        <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-2">{t.endowment?.confirmYourBooking || t.wizard.yourData}</p>
         <div className="space-y-2.5">
           <div className="grid grid-cols-2 gap-2">
             <div>
@@ -997,7 +1017,7 @@ function Step4Contact({
       {price !== null && (
         <div className="bg-[#A8C4DD]/10 border border-[#A8C4DD]/30 rounded-xl p-4">
           <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-2">
-            {t.booking.estimatedTotal}
+            {t.endowment?.yourPrice || t.booking.estimatedTotal}
           </p>
           <div className="space-y-1">
             <div className="flex justify-between text-sm">
@@ -1017,7 +1037,7 @@ function Step4Contact({
               </div>
             )}
             <div className="flex justify-between items-baseline border-t border-[#A8C4DD]/30 pt-2 mt-2">
-              <span className="text-sm font-bold text-foreground">Total</span>
+              <span className="text-sm font-bold text-foreground">{t.endowment?.yourPrice || 'Total'}</span>
               <span className="text-xl font-bold text-[#0D0D2B]">
                 {price + totalExtrasPrice - discount}€
               </span>

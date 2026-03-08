@@ -19,6 +19,7 @@ interface BoatCardProps {
   enginePower?: string;
   isPopular?: boolean;
   isRecommended?: boolean;
+  scarcityData?: { availableSlots: number; totalSlots: number };
   onBooking: (boatId: string) => void;
   onDetails: (boatId: string) => void;
 }
@@ -39,6 +40,7 @@ export default function BoatCard({
   enginePower,
   isPopular,
   isRecommended,
+  scarcityData,
   onBooking: _onBooking,
   onDetails
 }: BoatCardProps) {
@@ -152,6 +154,29 @@ export default function BoatCard({
         <p className="text-xs xs:text-sm text-muted-foreground mb-3">
           {capacity} {t.boats.people}{enginePower ? ` | ${enginePower}` : ''}{` | ${requiresLicense ? t.boats.withLicense : t.boats.withoutLicense}`}
         </p>
+
+        {scarcityData && (
+          <div className="flex items-center gap-1.5 text-xs font-medium">
+            {scarcityData.availableSlots === 0 ? (
+              <>
+                <span className="w-1.5 h-1.5 rounded-full bg-red-500 flex-shrink-0" />
+                <span className="text-red-600">{t.scarcity?.soldOutSaturday}</span>
+              </>
+            ) : scarcityData.availableSlots <= 3 ? (
+              <>
+                <span className="w-1.5 h-1.5 rounded-full bg-amber-500 flex-shrink-0" />
+                <span className="text-amber-600">
+                  {t.scarcity?.onlyXSlots?.replace('{count}', String(scarcityData.availableSlots))}
+                </span>
+              </>
+            ) : (
+              <>
+                <span className="w-1.5 h-1.5 rounded-full bg-green-500 flex-shrink-0" />
+                <span className="text-green-600">{t.scarcity?.availableSaturday}</span>
+              </>
+            )}
+          </div>
+        )}
       </CardContent>
       <div className="px-3 sm:px-4 pb-3 sm:pb-4">
         <a

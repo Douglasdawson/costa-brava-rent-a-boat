@@ -1,7 +1,10 @@
 import {
   Shield,
+  ShieldCheck,
   Fuel,
   MapPin,
+  Award,
+  Anchor,
 } from "lucide-react";
 import { useTranslations } from "@/lib/translations";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
@@ -60,6 +63,28 @@ export default function FeaturesSection() {
               </p>
             </div>
           ))}
+        </div>
+
+        {/* Authority Trust Strip */}
+        <div className="bg-muted/50 rounded-lg py-5 px-4 mb-8 sm:mb-12 lg:mb-16">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6">
+            <div className="flex items-center justify-center gap-2 text-muted-foreground">
+              <Shield className="w-4 h-4 flex-shrink-0 text-foreground/60" />
+              <span className="text-xs sm:text-sm font-medium">{t.authority?.fleetInsured || 'Flota asegurada al 100%'}</span>
+            </div>
+            <div className="flex items-center justify-center gap-2 text-muted-foreground">
+              <ShieldCheck className="w-4 h-4 flex-shrink-0 text-foreground/60" />
+              <span className="text-xs sm:text-sm font-medium">{t.authority?.zeroIncidents || '0 incidentes de seguridad'}</span>
+            </div>
+            <div className="flex items-center justify-center gap-2 text-muted-foreground">
+              <Award className="w-4 h-4 flex-shrink-0 text-foreground/60" />
+              <span className="text-xs sm:text-sm font-medium">{t.authority?.certifiedCaptains || 'Capitanes certificados'}</span>
+            </div>
+            <div className="flex items-center justify-center gap-2 text-muted-foreground">
+              <Anchor className="w-4 h-4 flex-shrink-0 text-foreground/60" />
+              <span className="text-xs sm:text-sm font-medium">{t.authority?.officialPort || 'Puerto oficial de Blanes'}</span>
+            </div>
+          </div>
         </div>
 
         {/* Extras Section */}

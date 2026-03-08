@@ -200,6 +200,84 @@ export function registerAvailabilityRoutes(app: Express) {
     }
   });
 
+  // Fleet-wide scarcity data for the next Saturday (used by boat cards)
+  app.get("/api/fleet-availability", async (req, res) => {
+    try {
+      // Find next Saturday (in Spain timezone)
+      const now = new Date();
+      const madridDate = new Date(
+        now.toLocaleString("en-US", { timeZone: "Europe/Madrid" })
+      );
+      const dayOfWeek = madridDate.getDay(); // 0=Sun, 6=Sat
+      const daysUntilSaturday = dayOfWeek === 6 ? 7 : (6 - dayOfWeek);
+      const nextSaturday = new Date(madridDate);
+      nextSaturday.setDate(madridDate.getDate() + daysUntilSaturday);
+      nextSaturday.setHours(0, 0, 0, 0);
+
+      const dateStr = `${nextSaturday.getFullYear()}-${String(nextSaturday.getMonth() + 1).padStart(2, "0")}-${String(nextSaturday.getDate()).padStart(2, "0")}`;
+
+      // Off-season check (April-October)
+      const month = nextSaturday.getMonth() + 1;
+      if (month < 4 || month > 10) {
+        return res.json({ date: dateStr, boats: {} });
+      }
+
+      // Get all active boats
+      const allBoats = await storage.getAllBoats();
+      const activeBoats = allBoats.filter((b) => b.isActive);
+
+      const boatsAvailability: Record<string, { availableSlots: number; totalSlots: number }> = {};
+
+      for (const boat of activeBoats) {
+        const dayBookings = await storage.getDailyBookings(boat.id, nextSaturday);
+
+        // Build booked intervals
+        const bookedIntervals = dayBookings.map((b) => {
+          const bStart = new Date(b.startTime);
+          const bEnd = new Date(b.endTime);
+          return {
+            start: bStart.getHours() + bStart.getMinutes() / 60,
+            end: bEnd.getHours() + bEnd.getMinutes() / 60,
+          };
+        });
+
+        // Count available start slots (reuse same logic as /api/availability)
+        let availableCount = 0;
+        for (const slot of ALL_START_SLOTS) {
+          const slotHour = slotToHours(slot);
+          const isBooked = bookedIntervals.some(
+            (interval) => slotHour >= interval.start && slotHour < interval.end
+          );
+          if (!isBooked) {
+            // Check there's at least 1 hour of availability
+            let maxEnd = OPERATING_END;
+            for (const interval of bookedIntervals) {
+              if (interval.start > slotHour && interval.start < maxEnd) {
+                maxEnd = interval.start;
+              }
+            }
+            if (Math.floor(maxEnd - slotHour) >= 1) {
+              availableCount++;
+            }
+          }
+        }
+
+        boatsAvailability[boat.id] = {
+          availableSlots: availableCount,
+          totalSlots: ALL_START_SLOTS.length,
+        };
+      }
+
+      // Cache for 5 minutes
+      res.set("Cache-Control", "public, max-age=300");
+      res.json({ date: dateStr, boats: boatsAvailability });
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : "Unknown error";
+      logger.error("[Availability] Error fetching fleet availability", { error: message });
+      res.status(500).json({ message: "Error interno del servidor" });
+    }
+  });
+
   // iCal feed for confirmed bookings (protected by token)
   app.get("/api/calendar/feed.ics", async (req, res) => {
     try {

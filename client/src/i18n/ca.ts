@@ -556,6 +556,8 @@ export const ca: Translations = {
     date: 'Data',
     durationMinPeakSeason: "Min. {duration} a l'agost (temporada alta)",
     durationMinWeekend: 'Min. {duration} els caps de setmana',
+    mostPopular: 'Mes popular',
+    suggestedDate: 'Proper dissabte disponible',
   },
   validation: {
     required: 'Aquest camp es obligatori',
@@ -742,12 +744,12 @@ export const ca: Translations = {
       },
     },
     newsletter: {
-      title: '5\u20AC de descompte en la teva primera reserva',
-      subtitle: 'Subscriu-te i rep un codi de descompte de 5\u20AC per a la teva primera reserva',
+      title: 'Guia gratuita de cales secretes',
+      subtitle: 'Rep la nostra guia amb les 10 millors cales de la Costa Brava accessibles nomes en vaixell',
       placeholder: 'El teu email',
-      button: 'Subscriu-te',
-      success: "Gràcies! T'avisarem amb les millors ofertes.",
-      error: "Error en subscriure's. Torna-ho a intentar.",
+      button: 'Enviar guia gratis',
+      success: 'Guia enviada. Revisa el teu email.',
+      error: 'Error en enviar. Torna-ho a intentar.',
     },
   },
   categoryLicenseFree: {
@@ -944,6 +946,17 @@ export const ca: Translations = {
     modify: 'Modificar',
   },
 
+  endowment: {
+    yourTripIn: 'El teu viatge en {boat}',
+    customizeExperience: 'Personalitza la teva experiencia',
+    confirmYourBooking: 'Confirma la teva reserva',
+    yourPrice: 'El teu preu',
+    yourTrip: 'El teu viatge',
+    yourExperience: 'La teva experiencia',
+    confirmStep: 'Confirmar',
+    yourBoat: 'El teu {boat}',
+  },
+
   holdCountdown: {
     reserved: 'El teu vaixell esta reservat durant',
     expired: 'La teva reserva ha caducat',
@@ -951,6 +964,12 @@ export const ca: Translations = {
     hurry: 'Afanya\'t',
     expiredSoft: 'La teva seleccio pot haver canviat. Pots continuar, pero et recomanem verificar la disponibilitat.',
     verifyButton: 'Verificar',
+  },
+
+  scarcity: {
+    soldOutSaturday: 'Esgotat per al dissabte',
+    onlyXSlots: 'Nomes {count} llocs el dissabte',
+    availableSaturday: 'Disponible el dissabte',
   },
 
   seasonBanner: {
@@ -989,5 +1008,31 @@ export const ca: Translations = {
     discountCode: 'Usa el codi',
     linkCopied: 'Enllac copiat',
     close: 'Tancar',
+  },
+  authority: {
+    yearsExperience: '6+ anys d\'experiencia',
+    fullInsurance: 'Asseguranca a tot risc',
+    happyCustomers: '2000+ clients satisfets',
+    fleetInsured: 'Flota assegurada al 100%',
+    zeroIncidents: '0 incidents de seguretat',
+    certifiedCaptains: 'Capitans certificats',
+    officialPort: 'Port oficial de Blanes',
+    registeredBusiness: 'Empresa registrada a Espanya',
+    maritimeInsurance: 'Asseguranca maritima completa',
+    gdprCompliant: 'Compliment RGPD',
+  },
+  reciprocity: {
+    captainTip: 'Consell del capita',
+    captainTipText: 'Si es la teva primera vegada, tria un vaixell sense llicencia de 4h al mati. El mar esta mes calmat i tindras temps de sobra per explorar 2-3 cales.',
+    whatToBring: 'Que portar a bord',
+    sunscreen: 'Crema solar biodegradable (protegeix el mar)',
+    towels: 'Tovalloles i roba de bany',
+    waterSnacks: 'Aigua i snacks',
+    sunglasses: 'Ulleres de sol amb corretja',
+    camera: 'Camera submergible (GoPro)',
+    freeGuideTitle: 'Guia gratuita de cales secretes',
+    freeGuideSubtitle: 'Rep la nostra guia amb les 10 millors cales de la Costa Brava accessibles nomes en vaixell',
+    sendFreeGuide: 'Enviar guia gratis',
+    freeGuideSent: 'Guia enviada. Revisa el teu email.',
   },
 };

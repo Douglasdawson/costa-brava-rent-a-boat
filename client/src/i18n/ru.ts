@@ -556,6 +556,8 @@ export const ru: Translations = {
     date: 'Дата',
     durationMinPeakSeason: 'Мин. {duration} в августе (высокий сезон)',
     durationMinWeekend: 'Мин. {duration} по выходным',
+    mostPopular: 'Самый популярный',
+    suggestedDate: 'Ближайшая доступная суббота',
   },
   validation: {
     required: 'Это поле обязательно',
@@ -742,12 +744,12 @@ export const ru: Translations = {
       },
     },
     newsletter: {
-      title: 'Скидка 5\u20AC на первое бронирование',
-      subtitle: 'Подпишитесь и получите скидку 5\u20AC на первое бронирование',
+      title: 'Бесплатный гид по секретным бухтам',
+      subtitle: 'Получите наш гид с 10 лучшими бухтами Коста-Бравы, доступными только на лодке',
       placeholder: 'Ваш email',
-      button: 'Подписаться',
-      success: 'Спасибо! Мы сообщим вам о лучших предложениях.',
-      error: 'Ошибка подписки. Попробуйте ещё раз.',
+      button: 'Отправить бесплатный гид',
+      success: 'Гид отправлен! Проверьте вашу почту.',
+      error: 'Ошибка отправки. Попробуйте ещё раз.',
     },
   },
   categoryLicenseFree: {
@@ -944,6 +946,17 @@ export const ru: Translations = {
     modify: 'Изменить',
   },
 
+  endowment: {
+    yourTripIn: 'Ваша поездка на {boat}',
+    customizeExperience: 'Настройте ваш опыт',
+    confirmYourBooking: 'Подтвердите ваше бронирование',
+    yourPrice: 'Ваша цена',
+    yourTrip: 'Ваша поездка',
+    yourExperience: 'Ваш опыт',
+    confirmStep: 'Подтвердить',
+    yourBoat: 'Ваш {boat}',
+  },
+
   holdCountdown: {
     reserved: 'Ваша лодка забронирована на',
     expired: 'Ваша бронь истекла',
@@ -951,6 +964,12 @@ export const ru: Translations = {
     hurry: 'Поторопитесь',
     expiredSoft: 'Ваш выбор мог измениться. Вы можете продолжить, но мы рекомендуем проверить доступность.',
     verifyButton: 'Проверить',
+  },
+
+  scarcity: {
+    soldOutSaturday: 'Распродано на субботу',
+    onlyXSlots: 'Только {count} мест в субботу',
+    availableSaturday: 'Доступно в субботу',
   },
 
   seasonBanner: {
@@ -989,5 +1008,31 @@ export const ru: Translations = {
     discountCode: 'Используйте код',
     linkCopied: 'Ссылка скопирована',
     close: 'Закрыть',
+  },
+  authority: {
+    yearsExperience: '6+ лет опыта',
+    fullInsurance: 'Полная страховка',
+    happyCustomers: '2000+ довольных клиентов',
+    fleetInsured: 'Флот застрахован на 100%',
+    zeroIncidents: '0 инцидентов безопасности',
+    certifiedCaptains: 'Сертифицированные капитаны',
+    officialPort: 'Официальный порт Бланес',
+    registeredBusiness: 'Зарегистрированная компания в Испании',
+    maritimeInsurance: 'Полное морское страхование',
+    gdprCompliant: 'Соответствие GDPR',
+  },
+  reciprocity: {
+    captainTip: 'Совет капитана',
+    captainTipText: 'Если вы в первый раз, выберите лодку без лицензии на 4 часа утром. Море спокойнее, и у вас будет достаточно времени, чтобы исследовать 2-3 бухты.',
+    whatToBring: 'Что взять на борт',
+    sunscreen: 'Биоразлагаемый солнцезащитный крем (защитите море)',
+    towels: 'Полотенца и купальники',
+    waterSnacks: 'Вода и закуски',
+    sunglasses: 'Солнцезащитные очки с ремешком',
+    camera: 'Водонепроницаемая камера (GoPro)',
+    freeGuideTitle: 'Бесплатный гид по секретным бухтам',
+    freeGuideSubtitle: 'Получите наш гид с 10 лучшими бухтами Коста-Бравы, доступными только на лодке',
+    sendFreeGuide: 'Отправить бесплатный гид',
+    freeGuideSent: 'Гид отправлен! Проверьте вашу почту.',
   },
 };

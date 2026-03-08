@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, Fragment } from "react";
+import { useState, useEffect, useRef } from "react";
 import { CalendarIcon, Check, Loader2, X } from "lucide-react";
 import { SiWhatsapp } from "react-icons/si";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
@@ -7,72 +7,8 @@ import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "motion/react";
 import type { BookingWizardMobileProps } from "./BookingWizardMobile";
 import { EXTRA_PACKS } from "@shared/boatData";
-
-// Step indicator with corporate colors
-function StepIndicators({ currentStep, steps }: { currentStep: number; steps: string[] }) {
-  return (
-    <div className="flex items-center w-full">
-      {steps.map((label, index) => {
-        const stepNum = index + 1;
-        const isComplete = currentStep > stepNum;
-        const isActive = currentStep === stepNum;
-
-        return (
-          <Fragment key={stepNum}>
-            <div className="flex flex-col items-center gap-1">
-              <motion.div
-                animate={isActive ? "active" : isComplete ? "complete" : "inactive"}
-                initial={false}
-                variants={{
-                  inactive: { scale: 1, backgroundColor: "#A8C4DD", color: "#0D0D2B" },
-                  active: { scale: 1, backgroundColor: "#0D0D2B", color: "#0D0D2B" },
-                  complete: { scale: 1, backgroundColor: "#0D0D2B", color: "#A8C4DD" },
-                }}
-                transition={{ duration: 0.3 }}
-                className="w-8 h-8 rounded-full flex items-center justify-center font-semibold text-sm"
-              >
-                {isComplete ? (
-                  <CheckAnimated />
-                ) : isActive ? (
-                  <div className="w-3 h-3 rounded-full bg-white" />
-                ) : (
-                  <span className="text-sm">{stepNum}</span>
-                )}
-              </motion.div>
-              <span className="text-[10px] font-medium text-muted-foreground whitespace-nowrap">{label}</span>
-            </div>
-            {index < steps.length - 1 && (
-              <div className="flex-1 h-0.5 mx-2 mb-5 bg-[#A8C4DD] relative overflow-hidden rounded">
-                <motion.div
-                  className="absolute left-0 top-0 h-full bg-[#0D0D2B]"
-                  initial={false}
-                  animate={{ width: isComplete ? "100%" : "0%" }}
-                  transition={{ duration: 0.4 }}
-                />
-              </div>
-            )}
-          </Fragment>
-        );
-      })}
-    </div>
-  );
-}
-
-function CheckAnimated() {
-  return (
-    <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-      <motion.path
-        initial={{ pathLength: 0 }}
-        animate={{ pathLength: 1 }}
-        transition={{ delay: 0.1, type: "tween", ease: "easeOut", duration: 0.3 }}
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M5 13l4 4L19 7"
-        className="text-white"
-      />
-    </svg>
-  );
-}
+import BookingProgressBar from "@/components/BookingProgressBar";
+import HoldCountdown from "@/components/HoldCountdown";
 
 // Slide animation variants
 const slideVariants = {
@@ -84,6 +20,7 @@ const slideVariants = {
 export default function BookingFormDesktop(props: BookingWizardMobileProps) {
   const {
     currentStep, onNext, onBack,
+    holdExpiresAt, holdExpired, onHoldExpired,
     licenseFilter, setLicenseFilter,
     selectedBoat, setSelectedBoat,
     selectedDate, setSelectedDate,
@@ -163,16 +100,28 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
   const stepLabels = [
     t.wizard.stepBoat,
     t.wizard.stepTrip,
-    "Extras",
+    t.wizard.stepExtras,
     t.wizard.stepYourData,
   ];
 
   return (
     <div className="flex flex-col h-full">
-      {/* Step indicators */}
+      {/* Step progress bar */}
       <div className="flex-shrink-0 px-8 pt-4 pb-3 border-b border-[#A8C4DD]/20">
-        <StepIndicators currentStep={currentStep} steps={stepLabels} />
+        <BookingProgressBar
+          currentStep={currentStep}
+          totalSteps={4}
+          stepLabels={stepLabels}
+          estimatedTime={t.wizard.estimatedTime}
+        />
       </div>
+
+      {/* Hold countdown timer */}
+      {holdExpiresAt && currentStep >= 3 && (
+        <div className="flex-shrink-0 px-6 pt-3">
+          <HoldCountdown expiresAt={holdExpiresAt} onExpired={onHoldExpired} />
+        </div>
+      )}
 
       {/* Step content — scrollable */}
       <div className="flex-1 min-h-0 overflow-y-auto">

@@ -529,8 +529,10 @@ export const fr: Translations = {
   wizard: {
     stepBoat: 'Bateau',
     stepTrip: 'Excursion',
+    stepExtras: 'Extras',
     stepYourData: 'Vos donnees',
     stepConfirm: 'Confirmer',
+    estimatedTime: '~2 min',
     chooseYourBoat: 'Choisissez votre bateau',
     haveNauticalLicense: 'Avez-vous un permis nautique ?',
     withoutLicense: 'Sans permis',
@@ -917,5 +919,63 @@ export const fr: Translations = {
     hoursAgo: 'Il y a {n}h',
     daysAgo: 'Il y a {n} jours',
     recently: 'Recemment',
+  },
+
+  pricing: {
+    save: 'Economisez',
+    highSeason: 'Haute saison',
+  },
+
+  recommendation: {
+    howManyPeople: 'Combien de personnes etes-vous?',
+    people: 'personnes',
+    recommendedForYou: 'Recommande pour vous',
+    bestFor: 'Ideal pour {n} personnes',
+    all: 'Tous',
+  },
+
+  holdCountdown: {
+    reserved: 'Votre bateau est reserve pendant',
+    expired: 'Votre reservation a expire',
+    selectAnother: 'Veuillez selectionner un autre horaire',
+    hurry: 'Depechez-vous',
+  },
+
+  seasonBanner: {
+    earlyBird: 'La saison {year} ouvre dans {days} jours - Reservez tot pour les meilleurs prix',
+    springPrices: 'Prix de printemps disponibles - Reservez avant le 1er juin',
+    bookBefore: 'Reservez avant le {date}',
+    daysLeft: 'Plus que {n} jours de saison - Les dates populaires partent vite',
+    lastDays: 'Derniers jours de la saison',
+    dontMissIt: 'Ne manquez pas',
+    viewBoats: 'Voir les bateaux',
+    bookNow: 'Reserver',
+  },
+
+  confirmation: {
+    title: 'Demande de reservation envoyee avec succes',
+    summary: 'Resume de votre reservation',
+    checklist: 'Quoi apporter',
+    checklistItems: [
+      'Creme solaire et casquette',
+      'Serviette',
+      'Eau et en-cas',
+      'Camera etanche ou pochette telephone',
+      'Vetements chauds (il peut faire frais en mer)',
+    ],
+    whatsNext: 'Prochaines etapes',
+    whatsNextSteps: [
+      'Vous recevrez une confirmation par WhatsApp en quelques minutes',
+      '24h avant : rappel avec instructions',
+      'Jour de la location : presentez-vous au Puerto de Blanes',
+    ],
+    shareTitle: 'Partagez votre aventure',
+    shareWhatsApp: 'Partager sur WhatsApp',
+    copyLink: 'Copier le lien',
+    repeatBooking: 'Envie de revenir ?',
+    saveDiscount: 'Economisez 10% sur votre prochaine reservation',
+    discountCode: 'Utilisez le code',
+    linkCopied: 'Lien copie',
+    close: 'Fermer',
   },
 };

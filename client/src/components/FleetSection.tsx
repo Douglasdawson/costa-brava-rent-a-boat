@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import BoatCard from "./BoatCard";
 import { openWhatsApp } from "@/utils/whatsapp";
@@ -8,19 +8,48 @@ import { getBoatImage, getBoatImageSrcSet } from "@/utils/boatImages";
 import { useTranslations } from "@/lib/translations";
 import type { Boat } from "@shared/schema";
 import { SiWhatsapp } from "react-icons/si";
-import { Phone } from "lucide-react";
+import { Phone, Users } from "lucide-react";
 import { useBookingModal } from "@/hooks/useBookingModal";
+
+/** Group size filter options for the recommendation system */
+const GROUP_SIZE_OPTIONS = [
+  { label: '1-3', min: 1, max: 3 },
+  { label: '4-5', min: 4, max: 5 },
+  { label: '6-7', min: 6, max: 7 },
+  { label: '8+', min: 8, max: 99 },
+] as const;
+
+/**
+ * Determine current season from today's date (Spain timezone).
+ * Returns null if outside operational season (Nov-March).
+ */
+function getCurrentSeason(): 'BAJA' | 'MEDIA' | 'ALTA' | null {
+  const now = new Date();
+  const parts = new Intl.DateTimeFormat('en-US', {
+    timeZone: 'Europe/Madrid',
+    month: 'numeric',
+  }).formatToParts(now);
+  const month = parseInt(parts.find(p => p.type === 'month')?.value || '0');
+
+  if (month === 7) return 'MEDIA';
+  if (month === 8) return 'ALTA';
+  if ((month >= 4 && month <= 6) || (month >= 9 && month <= 10)) return 'BAJA';
+  return null;
+}
 
 export default function FleetSection() {
   const t = useTranslations();
   const [, setLocation] = useLocation();
   const { openBookingModal } = useBookingModal();
   const { ref: revealRef, isVisible } = useScrollReveal();
+  const [selectedGroupSize, setSelectedGroupSize] = useState<number | null>(null);
 
   // Fetch boats from API
   const { data: boatsData, isLoading } = useQuery<Boat[]>({
     queryKey: ['/api/boats'],
   });
+
+  const currentSeason = useMemo(() => getCurrentSeason(), []);
 
   // Determine the most popular boat: the first active boat by display order
   const popularBoatId = useMemo(() => {
@@ -35,9 +64,17 @@ export default function FleetSection() {
     .filter(boat => boat.isActive)
     .sort((a, b) => (a.displayOrder ?? 999) - (b.displayOrder ?? 999))
     .map(boat => {
-      // Base price from BAJA season
-      const basePrice = boat.pricing?.BAJA?.prices
-        ? Math.min(...Object.values(boat.pricing.BAJA.prices))
+      // Current season base price (minimum duration price), fallback to BAJA
+      const season = currentSeason || 'BAJA';
+      const seasonPricing = boat.pricing?.[season]?.prices;
+      const basePrice = seasonPricing
+        ? Math.min(...Object.values(seasonPricing))
+        : 0;
+
+      // High season minimum price for price anchoring
+      const highSeasonPrices = boat.pricing?.ALTA?.prices;
+      const highSeasonPrice = highSeasonPrices
+        ? Math.min(...Object.values(highSeasonPrices))
         : 0;
 
       // Extract engine power from specifications
@@ -55,21 +92,42 @@ export default function FleetSection() {
           ? (boat.description.length > 150 ? boat.description.substring(0, 150) + "..." : boat.description)
           : '',
         basePrice,
-
+        // Only pass high season price when we're NOT in high season
+        highSeasonPrice: currentSeason !== 'ALTA' ? highSeasonPrice : undefined,
         features: boat.equipment || [],
         available: true,
         enginePower: enginePower
       };
-    }), [boatsData]);
+    }), [boatsData, currentSeason]);
+
+  // Sort boats: recommended ones first when a group size is selected
+  const sortedBoats = useMemo(() => {
+    if (selectedGroupSize === null) return boats;
+    const option = GROUP_SIZE_OPTIONS.find(
+      o => selectedGroupSize >= o.min && selectedGroupSize <= o.max
+    );
+    if (!option) return boats;
+
+    return [...boats].sort((a, b) => {
+      const aMatch = a.capacity >= option.min && a.capacity >= selectedGroupSize;
+      const bMatch = b.capacity >= option.min && b.capacity >= selectedGroupSize;
+      if (aMatch && !bMatch) return -1;
+      if (!aMatch && bMatch) return 1;
+      return 0;
+    });
+  }, [boats, selectedGroupSize]);
+
+  const isBoatRecommended = (capacity: number): boolean => {
+    if (selectedGroupSize === null) return false;
+    return capacity >= selectedGroupSize;
+  };
 
   const handleBooking = (boatId: string) => {
     openBookingModal(boatId);
   };
 
   const handleDetails = (boatId: string) => {
-    // Navigate to boat detail page - works for all boats from API
     setLocation(`/barco/${boatId}`);
-    // Scroll to top when navigating to boat details
     window.scrollTo(0, 0);
   };
 
@@ -85,6 +143,39 @@ export default function FleetSection() {
           </p>
         </div>
 
+        {/* Group size recommendation selector */}
+        <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-6 sm:mb-8">
+          <span className="inline-flex items-center gap-1.5 text-sm text-muted-foreground font-medium">
+            <Users className="w-4 h-4" />
+            {t.recommendation?.howManyPeople}
+          </span>
+          <div className="flex flex-wrap gap-1.5 sm:gap-2">
+            <button
+              onClick={() => setSelectedGroupSize(null)}
+              className={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors ${
+                selectedGroupSize === null
+                  ? 'bg-foreground text-white'
+                  : 'bg-muted text-muted-foreground hover:bg-muted-foreground/10'
+              }`}
+            >
+              {t.recommendation?.all}
+            </button>
+            {GROUP_SIZE_OPTIONS.map((option) => (
+              <button
+                key={option.label}
+                onClick={() => setSelectedGroupSize(option.min)}
+                className={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors ${
+                  selectedGroupSize !== null && selectedGroupSize >= option.min && selectedGroupSize <= option.max
+                    ? 'bg-foreground text-white'
+                    : 'bg-muted text-muted-foreground hover:bg-muted-foreground/10'
+                }`}
+              >
+                {option.label}
+              </button>
+            ))}
+          </div>
+        </div>
+
         <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 mb-6 sm:mb-8 lg:mb-12">
           {isLoading ? (
             // Loading skeleton
@@ -97,14 +188,23 @@ export default function FleetSection() {
               </div>
             ))
           ) : (
-            boats.map((boat) => (
-              <BoatCard
+            sortedBoats.map((boat) => (
+              <div
                 key={boat.id}
-                {...boat}
-                isPopular={boat.id === popularBoatId}
-                onBooking={handleBooking}
-                onDetails={handleDetails}
-              />
+                className={`transition-opacity duration-300 ${
+                  selectedGroupSize !== null && !isBoatRecommended(boat.capacity)
+                    ? 'opacity-50'
+                    : 'opacity-100'
+                }`}
+              >
+                <BoatCard
+                  {...boat}
+                  isPopular={boat.id === popularBoatId}
+                  isRecommended={isBoatRecommended(boat.capacity)}
+                  onBooking={handleBooking}
+                  onDetails={handleDetails}
+                />
+              </div>
             ))
           )}
         </div>

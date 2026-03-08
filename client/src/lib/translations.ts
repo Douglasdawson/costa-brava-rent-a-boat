@@ -587,8 +587,10 @@ export interface Translations {
   wizard: {
     stepBoat: string;
     stepTrip: string;
+    stepExtras: string;
     stepYourData: string;
     stepConfirm: string;
+    estimatedTime: string;
     chooseYourBoat: string;
     haveNauticalLicense: string;
     withoutLicense: string;
@@ -986,6 +988,21 @@ export interface Translations {
     noThanks: string;
   };
 
+  // Price Anchoring
+  pricing?: {
+    save: string;
+    highSeason: string;
+  };
+
+  // Boat Recommendation
+  recommendation?: {
+    howManyPeople: string;
+    people: string;
+    recommendedForYou: string;
+    bestFor: string;
+    all: string;
+  };
+
   // Social Proof Toast (FOMO notification)
   socialProofToast?: {
     booked: string;
@@ -995,6 +1012,44 @@ export interface Translations {
     hoursAgo: string;
     daysAgo: string;
     recently: string;
+  };
+
+  // Hold Countdown (booking form urgency timer)
+  holdCountdown?: {
+    reserved: string;
+    expired: string;
+    selectAnother: string;
+    hurry: string;
+  };
+
+  // Season Urgency Banner
+  seasonBanner?: {
+    earlyBird: string;
+    springPrices: string;
+    bookBefore: string;
+    daysLeft: string;
+    lastDays: string;
+    dontMissIt: string;
+    viewBoats: string;
+    bookNow: string;
+  };
+
+  // Booking Confirmation (post-booking peak-end experience)
+  confirmation?: {
+    title: string;
+    summary: string;
+    checklist: string;
+    checklistItems: string[];
+    whatsNext: string;
+    whatsNextSteps: string[];
+    shareTitle: string;
+    shareWhatsApp: string;
+    copyLink: string;
+    repeatBooking: string;
+    saveDiscount: string;
+    discountCode: string;
+    linkCopied: string;
+    close: string;
   };
 }
 export const translations: Record<Language, Translations> = { es, ca, en, fr, de, nl, it, ru };

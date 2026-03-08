@@ -1,5 +1,5 @@
 import { Card, CardContent } from "@/components/ui/card";
-import { Anchor, ArrowRight, Star } from "lucide-react";
+import { Anchor, ArrowRight, Star, ThumbsUp } from "lucide-react";
 import { useTranslations } from "@/lib/translations";
 import { useState } from "react";
 
@@ -13,10 +13,12 @@ interface BoatCardProps {
   requiresLicense: boolean;
   description: string;
   basePrice: number;
+  highSeasonPrice?: number;
   features: string[];
   available: boolean;
   enginePower?: string;
   isPopular?: boolean;
+  isRecommended?: boolean;
   onBooking: (boatId: string) => void;
   onDetails: (boatId: string) => void;
 }
@@ -31,10 +33,12 @@ export default function BoatCard({
   requiresLicense,
   description,
   basePrice,
+  highSeasonPrice,
   features,
   available,
   enginePower,
   isPopular,
+  isRecommended,
   onBooking: _onBooking,
   onDetails
 }: BoatCardProps) {
@@ -46,8 +50,19 @@ export default function BoatCard({
     setTimeout(() => window.scrollTo(0, 0), 50);
   };
 
+  // Calculate savings percentage for price anchoring
+  // Only show when high season price is >15% more expensive than current base price
+  const savingsPercent = highSeasonPrice && highSeasonPrice > basePrice
+    ? Math.round(((highSeasonPrice - basePrice) / highSeasonPrice) * 100)
+    : 0;
+  const showPriceAnchoring = savingsPercent > 15;
+
   return (
-    <Card className="overflow-hidden hover:border-cta/50 transition-colors duration-200">
+    <Card className={`overflow-hidden transition-all duration-200 ${
+      isRecommended
+        ? 'border-cta ring-1 ring-cta/30 shadow-md'
+        : 'hover:border-cta/50'
+    }`}>
       <a
         href={`/barco/${id}`}
         onClick={(e) => { e.preventDefault(); handleDetails(); }}
@@ -76,7 +91,19 @@ export default function BoatCard({
             {t.boats.mostPopular}
           </div>
         )}
-        <div className={`absolute ${isPopular ? 'top-11' : 'top-3'} left-3`}>
+        {isRecommended && !isPopular && (
+          <div className="absolute top-3 left-3 z-10 inline-flex items-center gap-1 bg-cta text-white text-xs font-bold px-2.5 py-1 rounded-full shadow-md">
+            <ThumbsUp className="w-3 h-3" />
+            {t.recommendation?.recommendedForYou}
+          </div>
+        )}
+        {isRecommended && isPopular && (
+          <div className="absolute top-11 left-3 z-10 inline-flex items-center gap-1 bg-cta text-white text-xs font-bold px-2.5 py-1 rounded-full shadow-md">
+            <ThumbsUp className="w-3 h-3" />
+            {t.recommendation?.recommendedForYou}
+          </div>
+        )}
+        <div className={`absolute ${isPopular && isRecommended ? 'top-[76px]' : isPopular || isRecommended ? 'top-11' : 'top-3'} left-3`}>
           <span className="bg-white/90 backdrop-blur-sm text-foreground text-sm font-medium rounded-full px-3 py-1">
             {requiresLicense ? t.boats.withLicense : t.boats.withoutLicense}
           </span>
@@ -97,11 +124,25 @@ export default function BoatCard({
           <h3 className="font-heading font-medium text-lg text-foreground flex-1 mr-2">{name}</h3>
           <div className="text-right flex-shrink-0">
             <div className="text-sm text-muted-foreground">{t.boats.from}</div>
-            <div className="text-cta font-medium text-lg">
-              {basePrice}&euro;
+            <div className="flex items-baseline gap-1.5 justify-end">
+              {showPriceAnchoring && (
+                <span className="text-sm text-muted-foreground/70 line-through">
+                  {highSeasonPrice}&euro;
+                </span>
+              )}
+              <span className="text-cta font-medium text-lg">
+                {basePrice}&euro;
+              </span>
             </div>
-            <div className="text-xs text-muted-foreground">
-              {Math.ceil(basePrice / capacity)}&euro;/{t.boats.perPerson}
+            <div className="flex items-center gap-1.5 justify-end">
+              {showPriceAnchoring && (
+                <span className="inline-flex items-center bg-green-100 text-green-700 text-[10px] font-semibold px-1.5 py-0.5 rounded-full">
+                  -{savingsPercent}%
+                </span>
+              )}
+              <span className="text-xs text-muted-foreground">
+                {Math.ceil(basePrice / capacity)}&euro;/{t.boats.perPerson}
+              </span>
             </div>
           </div>
         </div>

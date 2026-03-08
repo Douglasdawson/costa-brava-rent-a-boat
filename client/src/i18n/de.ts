@@ -529,8 +529,10 @@ export const de: Translations = {
   wizard: {
     stepBoat: 'Boot',
     stepTrip: 'Ausflug',
+    stepExtras: 'Extras',
     stepYourData: 'Ihre Daten',
     stepConfirm: 'Bestatigen',
+    estimatedTime: '~2 Min',
     chooseYourBoat: 'Wahle dein Boot',
     haveNauticalLicense: 'Haben Sie einen Bootsfuhrerschein?',
     withoutLicense: 'Ohne Fuhrerschein',
@@ -917,5 +919,63 @@ export const de: Translations = {
     hoursAgo: 'Vor {n}h',
     daysAgo: 'Vor {n} Tagen',
     recently: 'Kurzlich',
+  },
+
+  pricing: {
+    save: 'Sparen',
+    highSeason: 'Hochsaison',
+  },
+
+  recommendation: {
+    howManyPeople: 'Wie viele Personen seid ihr?',
+    people: 'Personen',
+    recommendedForYou: 'Empfohlen fur Sie',
+    bestFor: 'Ideal fur {n} Personen',
+    all: 'Alle',
+  },
+
+  holdCountdown: {
+    reserved: 'Ihr Boot ist reserviert fur',
+    expired: 'Ihre Reservierung ist abgelaufen',
+    selectAnother: 'Bitte wahlen Sie ein anderes Zeitfenster',
+    hurry: 'Beeilen Sie sich',
+  },
+
+  seasonBanner: {
+    earlyBird: 'Saison {year} startet in {days} Tagen - Fruhbucher erhalten die besten Preise',
+    springPrices: 'Fruhlingspreise verfugbar - Buchen Sie vor dem 1. Juni',
+    bookBefore: 'Buchen Sie vor dem {date}',
+    daysLeft: 'Nur noch {n} Tage in dieser Saison - Beliebte Termine sind schnell vergriffen',
+    lastDays: 'Letzte Tage der Saison',
+    dontMissIt: 'Nicht verpassen',
+    viewBoats: 'Boote ansehen',
+    bookNow: 'Jetzt buchen',
+  },
+
+  confirmation: {
+    title: 'Buchungsanfrage erfolgreich gesendet',
+    summary: 'Ihre Buchungsubersicht',
+    checklist: 'Was mitnehmen',
+    checklistItems: [
+      'Sonnenschutz und Mutze',
+      'Handtuch',
+      'Wasser und Snacks',
+      'Wasserdichte Kamera oder Handyhulle',
+      'Warme Kleidung (auf See kann es kuhl werden)',
+    ],
+    whatsNext: 'Nachste Schritte',
+    whatsNextSteps: [
+      'Sie erhalten eine Bestatigung per WhatsApp innerhalb von Minuten',
+      '24h vorher: Erinnerung mit Anweisungen',
+      'Am Miettag: Erscheinen Sie am Puerto de Blanes',
+    ],
+    shareTitle: 'Teilen Sie Ihr Abenteuer',
+    shareWhatsApp: 'Auf WhatsApp teilen',
+    copyLink: 'Link kopieren',
+    repeatBooking: 'Mochten Sie wiederkommen?',
+    saveDiscount: 'Sparen Sie 10% bei Ihrer nachsten Buchung',
+    discountCode: 'Verwenden Sie den Code',
+    linkCopied: 'Link kopiert',
+    close: 'Schliessen',
   },
 };

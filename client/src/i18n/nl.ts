@@ -529,8 +529,10 @@ export const nl: Translations = {
   wizard: {
     stepBoat: 'Boot',
     stepTrip: 'Uitstap',
+    stepExtras: 'Extra\'s',
     stepYourData: 'Uw gegevens',
     stepConfirm: 'Bevestigen',
+    estimatedTime: '~2 min',
     chooseYourBoat: 'Kies je boot',
     haveNauticalLicense: 'Heeft u een vaarbewijs?',
     withoutLicense: 'Zonder licentie',
@@ -917,5 +919,63 @@ export const nl: Translations = {
     hoursAgo: '{n}u geleden',
     daysAgo: '{n} dagen geleden',
     recently: 'Onlangs',
+  },
+
+  pricing: {
+    save: 'Bespaar',
+    highSeason: 'Hoogseizoen',
+  },
+
+  recommendation: {
+    howManyPeople: 'Hoeveel personen zijn jullie?',
+    people: 'personen',
+    recommendedForYou: 'Aanbevolen voor u',
+    bestFor: 'Ideaal voor {n} personen',
+    all: 'Alle',
+  },
+
+  holdCountdown: {
+    reserved: 'Uw boot is gereserveerd voor',
+    expired: 'Uw reservering is verlopen',
+    selectAnother: 'Selecteer een ander tijdslot',
+    hurry: 'Schiet op',
+  },
+
+  seasonBanner: {
+    earlyBird: 'Seizoen {year} opent over {days} dagen - Boek vroeg voor de beste prijzen',
+    springPrices: 'Lenteprijzen beschikbaar - Boek voor 1 juni',
+    bookBefore: 'Boek voor {date}',
+    daysLeft: 'Nog maar {n} dagen dit seizoen - Populaire data zijn snel volgeboekt',
+    lastDays: 'Laatste dagen van het seizoen',
+    dontMissIt: 'Mis het niet',
+    viewBoats: 'Boten bekijken',
+    bookNow: 'Nu boeken',
+  },
+
+  confirmation: {
+    title: 'Boekingsverzoek succesvol verzonden',
+    summary: 'Uw boekingsoverzicht',
+    checklist: 'Wat meenemen',
+    checklistItems: [
+      'Zonnebrandcreme en pet',
+      'Handdoek',
+      'Water en snacks',
+      'Waterdichte camera of telefoonhoes',
+      'Warme kleding (het kan fris zijn op zee)',
+    ],
+    whatsNext: 'Volgende stappen',
+    whatsNextSteps: [
+      'U ontvangt binnen enkele minuten een bevestiging via WhatsApp',
+      '24u van tevoren: herinnering met instructies',
+      'Dag van verhuur: meld u bij Puerto de Blanes',
+    ],
+    shareTitle: 'Deel uw avontuur',
+    shareWhatsApp: 'Delen via WhatsApp',
+    copyLink: 'Link kopieren',
+    repeatBooking: 'Wilt u terugkomen?',
+    saveDiscount: 'Bespaar 10% op uw volgende boeking',
+    discountCode: 'Gebruik code',
+    linkCopied: 'Link gekopieerd',
+    close: 'Sluiten',
   },
 };

@@ -529,8 +529,10 @@ export const en: Translations = {
   wizard: {
     stepBoat: 'Boat',
     stepTrip: 'Trip',
+    stepExtras: 'Extras',
     stepYourData: 'Your info',
     stepConfirm: 'Confirm',
+    estimatedTime: '~2 min',
     chooseYourBoat: 'Choose your boat',
     haveNauticalLicense: 'Do you have a nautical license?',
     withoutLicense: 'Without license',
@@ -917,5 +919,63 @@ export const en: Translations = {
     hoursAgo: '{n}h ago',
     daysAgo: '{n} days ago',
     recently: 'Recently',
+  },
+
+  pricing: {
+    save: 'Save',
+    highSeason: 'High season',
+  },
+
+  recommendation: {
+    howManyPeople: 'How many people are you?',
+    people: 'people',
+    recommendedForYou: 'Recommended for you',
+    bestFor: 'Ideal for {n} people',
+    all: 'All',
+  },
+
+  holdCountdown: {
+    reserved: 'Your boat is reserved for',
+    expired: 'Your reservation has expired',
+    selectAnother: 'Please select another time slot',
+    hurry: 'Hurry up',
+  },
+
+  seasonBanner: {
+    earlyBird: '{year} season opens in {days} days - Book early for the best prices',
+    springPrices: 'Spring prices available - Book before June 1st',
+    bookBefore: 'Book before {date}',
+    daysLeft: 'Only {n} days left this season - Popular dates sell out fast',
+    lastDays: 'Last days of the season',
+    dontMissIt: 'Don\'t miss out',
+    viewBoats: 'View boats',
+    bookNow: 'Book now',
+  },
+
+  confirmation: {
+    title: 'Booking request sent successfully',
+    summary: 'Your booking summary',
+    checklist: 'What to bring',
+    checklistItems: [
+      'Sunscreen and a hat',
+      'Towel',
+      'Water and snacks',
+      'Waterproof camera or phone case',
+      'Warm clothing (it can get cool at sea)',
+    ],
+    whatsNext: 'Next steps',
+    whatsNextSteps: [
+      'You will receive confirmation via WhatsApp within minutes',
+      '24h before: reminder with instructions',
+      'Day of rental: arrive at Puerto de Blanes',
+    ],
+    shareTitle: 'Share your adventure',
+    shareWhatsApp: 'Share on WhatsApp',
+    copyLink: 'Copy link',
+    repeatBooking: 'Want to come back?',
+    saveDiscount: 'Save 10% on your next booking',
+    discountCode: 'Use code',
+    linkCopied: 'Link copied',
+    close: 'Close',
   },
 };

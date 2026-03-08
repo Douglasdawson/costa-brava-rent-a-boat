@@ -529,8 +529,10 @@ export const ru: Translations = {
   wizard: {
     stepBoat: 'Лодка',
     stepTrip: 'Экскурсия',
+    stepExtras: 'Доп. услуги',
     stepYourData: 'Ваши данные',
     stepConfirm: 'Подтвердить',
+    estimatedTime: '~2 мин',
     chooseYourBoat: 'Выберите лодку',
     haveNauticalLicense: 'Есть ли у вас права?',
     withoutLicense: 'Без прав',
@@ -917,5 +919,63 @@ export const ru: Translations = {
     hoursAgo: '{n}ч назад',
     daysAgo: '{n} дн. назад',
     recently: 'Недавно',
+  },
+
+  pricing: {
+    save: 'Экономия',
+    highSeason: 'Высокий сезон',
+  },
+
+  recommendation: {
+    howManyPeople: 'Сколько вас человек?',
+    people: 'человек',
+    recommendedForYou: 'Рекомендовано для вас',
+    bestFor: 'Идеально для {n} человек',
+    all: 'Все',
+  },
+
+  holdCountdown: {
+    reserved: 'Ваша лодка забронирована на',
+    expired: 'Ваша бронь истекла',
+    selectAnother: 'Пожалуйста, выберите другое время',
+    hurry: 'Поторопитесь',
+  },
+
+  seasonBanner: {
+    earlyBird: 'Сезон {year} открывается через {days} дней - Бронируйте заранее по лучшим ценам',
+    springPrices: 'Весенние цены доступны - Бронируйте до 1 июня',
+    bookBefore: 'Бронируйте до {date}',
+    daysLeft: 'Осталось всего {n} дней сезона - Популярные даты быстро заканчиваются',
+    lastDays: 'Последние дни сезона',
+    dontMissIt: 'Не пропустите',
+    viewBoats: 'Смотреть лодки',
+    bookNow: 'Забронировать',
+  },
+
+  confirmation: {
+    title: 'Запрос на бронирование успешно отправлен',
+    summary: 'Сводка бронирования',
+    checklist: 'Что взять с собой',
+    checklistItems: [
+      'Солнцезащитный крем и кепку',
+      'Полотенце',
+      'Воду и закуски',
+      'Водонепроницаемую камеру или чехол для телефона',
+      'Теплую одежду (в море может быть прохладно)',
+    ],
+    whatsNext: 'Следующие шаги',
+    whatsNextSteps: [
+      'Вы получите подтверждение через WhatsApp в течение нескольких минут',
+      'За 24 часа: напоминание с инструкциями',
+      'В день аренды: прибудьте в Puerto de Blanes',
+    ],
+    shareTitle: 'Поделитесь своим приключением',
+    shareWhatsApp: 'Поделиться в WhatsApp',
+    copyLink: 'Копировать ссылку',
+    repeatBooking: 'Хотите повторить?',
+    saveDiscount: 'Сэкономьте 10% на следующем бронировании',
+    discountCode: 'Используйте код',
+    linkCopied: 'Ссылка скопирована',
+    close: 'Закрыть',
   },
 };

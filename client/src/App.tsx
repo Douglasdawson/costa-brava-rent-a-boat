@@ -56,6 +56,7 @@ import { ScrollToTop } from "./components/ScrollToTop";
 import CookieBanner from "./components/CookieBanner";
 import { ExitIntentModal } from "./components/ExitIntentModal";
 import { SocialProofToast } from "./components/SocialProofToast";
+import { SeasonBanner } from "./components/SeasonBanner";
 import { usePrefetchCriticalRoutes } from "@/hooks/usePrefetch";
 import { 
   getSEOConfig, 
@@ -323,6 +324,7 @@ function App() {
           <BookingModalProvider>
             <TooltipProvider>
               <Toaster />
+              <SeasonBanner />
               <Router />
               <WhatsAppFloatingButton />
               <ScrollToTop />

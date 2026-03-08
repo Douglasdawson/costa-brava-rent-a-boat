@@ -12,6 +12,7 @@ import { BOAT_DATA, EXTRA_PACKS } from "@shared/boatData";
 import { calculateExtrasPrice, calculatePackSavings } from "@shared/pricing";
 import BookingWizardMobile from "@/components/BookingWizardMobile";
 import BookingFormDesktop from "@/components/BookingFormDesktop";
+import { BookingConfirmation } from "@/components/BookingConfirmation";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { PHONE_PREFIXES, filterPhonePrefixes, findPrefixByCode } from "@/utils/phone-prefixes";
 import { validateEmail, isValidEmail, validatePhone, validateRequired, validateBookingDate, getLocalISODate } from "@/utils/booking-validation";
@@ -85,6 +86,21 @@ export default function BookingFormWidget({ preSelectedBoatId, prefillDate, pref
   // Wizard step navigation
   const [currentStep, setCurrentStep] = useState(1);
   const prevSeasonRef = useRef<string>("");
+
+  // Hold countdown: starts when user reaches step 3 (Extras)
+  const [holdExpiresAt, setHoldExpiresAt] = useState<string | null>(null);
+  const [holdExpired, setHoldExpired] = useState(false);
+
+  // Booking confirmation overlay
+  const [showConfirmation, setShowConfirmation] = useState(false);
+  const [confirmationData, setConfirmationData] = useState<{
+    boatName: string;
+    date: string;
+    time: string;
+    duration: string;
+    people: number;
+    price: number | null;
+  } | null>(null);
 
   const handleBlur = (field: string) => {
     setTouched(prev => ({ ...prev, [field]: true }));
@@ -418,6 +434,12 @@ export default function BookingFormWidget({ preSelectedBoatId, prefillDate, pref
         return;
       }
     }
+    // Start hold countdown when advancing to step 3 for the first time
+    if (currentStep === 2 && !holdExpiresAt) {
+      const expiresAt = new Date(Date.now() + 15 * 60 * 1000).toISOString();
+      setHoldExpiresAt(expiresAt);
+      setHoldExpired(false);
+    }
     // Step 3 (Extras) has no validation — always allow advancing
     if (currentStep === 4) {
       if (!canAdvanceFromStep3()) {
@@ -715,16 +737,34 @@ Looking forward to confirmation. Thanks!`;
         : 'Check WhatsApp to confirm your booking with us.',
     });
 
+    // Show the enhanced confirmation overlay (peak-end rule)
+    const bookingPrice = getBookingPrice();
+    const discount = getCodeDiscount();
+    const finalPrice = bookingPrice ? bookingPrice + totalExtrasPrice - discount : null;
+    setConfirmationData({
+      boatName: selectedBoatInfo?.name || selectedBoat,
+      date: selectedDate,
+      time: preferredTime,
+      duration: selectedDuration,
+      people: parseInt(numberOfPeople) || 0,
+      price: finalPrice,
+    });
+    setShowConfirmation(true);
+
     setCurrentStep(1);
-    if (onClose) {
-      onClose();
-    }
+  };
+
+  const handleHoldExpired = () => {
+    setHoldExpired(true);
   };
 
   const sharedProps = {
     currentStep,
     onNext: handleNextStep,
     onBack: handlePrevStep,
+    holdExpiresAt,
+    holdExpired,
+    onHoldExpired: handleHoldExpired,
     firstName, setFirstName,
     lastName, setLastName,
     phonePrefix, setPhonePrefix,
@@ -778,8 +818,32 @@ Looking forward to confirmation. Thanks!`;
     language,
   };
 
-  if (isMobile) {
-    return <BookingWizardMobile {...sharedProps} />;
-  }
-  return <BookingFormDesktop {...sharedProps} />;
+  const handleCloseConfirmation = () => {
+    setShowConfirmation(false);
+    setConfirmationData(null);
+    if (onClose) {
+      onClose();
+    }
+  };
+
+  return (
+    <>
+      {isMobile ? (
+        <BookingWizardMobile {...sharedProps} />
+      ) : (
+        <BookingFormDesktop {...sharedProps} />
+      )}
+      {showConfirmation && confirmationData && (
+        <BookingConfirmation
+          boatName={confirmationData.boatName}
+          date={confirmationData.date}
+          time={confirmationData.time}
+          duration={confirmationData.duration}
+          people={confirmationData.people}
+          price={confirmationData.price}
+          onClose={handleCloseConfirmation}
+        />
+      )}
+    </>
+  );
 }

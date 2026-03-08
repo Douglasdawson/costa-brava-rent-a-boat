@@ -529,8 +529,10 @@ export const ca: Translations = {
   wizard: {
     stepBoat: 'Vaixell',
     stepTrip: 'Excursio',
+    stepExtras: 'Extras',
     stepYourData: 'Les teves dades',
     stepConfirm: 'Confirmar',
+    estimatedTime: '~2 min',
     chooseYourBoat: 'Tria el teu vaixell',
     haveNauticalLicense: 'Tens llicencia nautica?',
     withoutLicense: 'Sense llicencia',
@@ -917,5 +919,63 @@ export const ca: Translations = {
     hoursAgo: 'Fa {n}h',
     daysAgo: 'Fa {n} dies',
     recently: 'Recentment',
+  },
+
+  pricing: {
+    save: 'Estalvia',
+    highSeason: 'Temp. alta',
+  },
+
+  recommendation: {
+    howManyPeople: 'Quantes persones sou?',
+    people: 'persones',
+    recommendedForYou: 'Recomanat per a tu',
+    bestFor: 'Ideal per a {n} persones',
+    all: 'Tots',
+  },
+
+  holdCountdown: {
+    reserved: 'El teu vaixell esta reservat durant',
+    expired: 'La teva reserva ha caducat',
+    selectAnother: 'Selecciona un altre horari',
+    hurry: 'Afanya\'t',
+  },
+
+  seasonBanner: {
+    earlyBird: 'Temporada {year} obre en {days} dies - Reserva anticipada amb els millors preus',
+    springPrices: 'Preus de primavera disponibles - Reserva abans de l\'1 de juny',
+    bookBefore: 'Reserva abans del {date}',
+    daysLeft: 'Nomes queden {n} dies de temporada - Les dates mes populars s\'esgoten rapid',
+    lastDays: 'Ultims dies de temporada',
+    dontMissIt: 'No t\'ho perdis',
+    viewBoats: 'Veure vaixells',
+    bookNow: 'Reservar',
+  },
+
+  confirmation: {
+    title: 'Reserva enviada amb exit',
+    summary: 'Resum de la teva reserva',
+    checklist: 'Que portar',
+    checklistItems: [
+      'Protector solar i gorra',
+      'Tovallola',
+      'Aigua i snacks',
+      'Camera aquatica o funda mobil',
+      'Roba d\'abric (pot refrescar al mar)',
+    ],
+    whatsNext: 'Propers passos',
+    whatsNextSteps: [
+      'Rebras confirmacio per WhatsApp en minuts',
+      '24h abans: recordatori amb instruccions',
+      'Dia del lloguer: presenta\'t al Puerto de Blanes',
+    ],
+    shareTitle: 'Comparteix la teva aventura',
+    shareWhatsApp: 'Compartir per WhatsApp',
+    copyLink: 'Copiar enllac',
+    repeatBooking: 'Vols repetir?',
+    saveDiscount: 'Estalvia 10% a la teva proxima reserva',
+    discountCode: 'Usa el codi',
+    linkCopied: 'Enllac copiat',
+    close: 'Tancar',
   },
 };

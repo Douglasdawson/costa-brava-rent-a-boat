@@ -7,6 +7,8 @@ import { SiWhatsapp } from "react-icons/si";
 import type { Boat } from "@shared/schema";
 import { EXTRA_PACKS } from "@shared/boatData";
 import type { Translations } from "@/lib/translations";
+import BookingProgressBar from "@/components/BookingProgressBar";
+import HoldCountdown from "@/components/HoldCountdown";
 
 interface PhonePrefix {
   code: string;
@@ -32,6 +34,10 @@ export interface BookingWizardMobileProps {
   currentStep: number;
   onNext: () => void;
   onBack: () => void;
+  // Hold countdown
+  holdExpiresAt: string | null;
+  holdExpired: boolean;
+  onHoldExpired: () => void;
   // Personal data (step 3)
   firstName: string; setFirstName: (v: string) => void;
   lastName: string; setLastName: (v: string) => void;
@@ -96,55 +102,6 @@ export interface BookingWizardMobileProps {
   calculatePackSavings: (packId: string) => number;
 }
 
-function ProgressBar({ currentStep, t }: { currentStep: number; t: Translations }) {
-  const stepLabels = [t.wizard.stepBoat, t.wizard.stepTrip, t.wizard.stepYourData, t.wizard.stepConfirm];
-  return (
-    <nav aria-label="Pasos del formulario de reserva">
-      <ol className="flex items-center justify-between px-4 py-3 bg-white border-b border-gray-100">
-        {stepLabels.map((label, idx) => {
-          const stepNum = idx + 1;
-          const isCompleted = stepNum < currentStep;
-          const isActive = stepNum === currentStep;
-          return (
-            <li key={label} className="flex items-center">
-              <div className="flex flex-col items-center">
-                <div
-                  className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold transition-colors ${
-                    isCompleted
-                      ? "bg-primary text-white"
-                      : isActive
-                      ? "bg-primary text-white ring-4 ring-primary/20"
-                      : "bg-gray-200 text-gray-500"
-                  }`}
-                  aria-label={`Paso ${stepNum}: ${label}${isCompleted ? " (completado)" : isActive ? " (actual)" : ""}`}
-                  aria-current={isActive ? "step" : undefined}
-                >
-                  {isCompleted ? <Check className="w-3.5 h-3.5" aria-hidden="true" /> : stepNum}
-                </div>
-                <span
-                  className={`text-[11px] mt-1 font-medium ${
-                    isActive ? "text-primary" : "text-gray-500"
-                  }`}
-                  aria-hidden="true"
-                >
-                  {label}
-                </span>
-              </div>
-              {idx < stepLabels.length - 1 && (
-                <div
-                  className={`h-0.5 w-8 mx-1 mb-4 transition-colors ${
-                    isCompleted ? "bg-primary" : "bg-gray-200"
-                  }`}
-                  aria-hidden="true"
-                />
-              )}
-            </li>
-          );
-        })}
-      </ol>
-    </nav>
-  );
-}
 
 export default function BookingWizardMobile(props: BookingWizardMobileProps) {
   const { currentStep, onNext, onBack, handleBookingSearch } = props;
@@ -175,7 +132,20 @@ export default function BookingWizardMobile(props: BookingWizardMobileProps) {
 
   return (
     <div className="flex flex-col h-full" role="form" aria-label="Formulario de reserva">
-      <ProgressBar currentStep={currentStep} t={props.t} />
+      <div className="sticky top-0 z-10 bg-white px-4 py-3 border-b border-gray-100">
+        <BookingProgressBar
+          currentStep={currentStep}
+          totalSteps={4}
+          stepLabels={[props.t.wizard.stepBoat, props.t.wizard.stepTrip, props.t.wizard.stepYourData, props.t.wizard.stepConfirm]}
+          estimatedTime={props.t.wizard.estimatedTime}
+        />
+      </div>
+      {/* Hold countdown timer */}
+      {props.holdExpiresAt && currentStep >= 3 && (
+        <div className="px-4 pt-2">
+          <HoldCountdown expiresAt={props.holdExpiresAt} onExpired={props.onHoldExpired} />
+        </div>
+      )}
       <div className="flex-1 overflow-y-auto px-4 py-4">
         <div
           className={`transition-all duration-150 ${animClass}`}

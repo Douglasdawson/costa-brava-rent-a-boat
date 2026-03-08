@@ -539,8 +539,10 @@ export const es: Translations = {
   wizard: {
     stepBoat: 'Barco',
     stepTrip: 'Excursion',
+    stepExtras: 'Extras',
     stepYourData: 'Tus datos',
     stepConfirm: 'Confirmar',
+    estimatedTime: '~2 min',
     chooseYourBoat: 'Elige tu barco',
     haveNauticalLicense: 'Tienes licencia nautica?',
     withoutLicense: 'Sin licencia',
@@ -927,5 +929,63 @@ export const es: Translations = {
     hoursAgo: 'Hace {n}h',
     daysAgo: 'Hace {n} dias',
     recently: 'Recientemente',
+  },
+
+  pricing: {
+    save: 'Ahorra',
+    highSeason: 'Temp. alta',
+  },
+
+  recommendation: {
+    howManyPeople: 'Cuantas personas sois?',
+    people: 'personas',
+    recommendedForYou: 'Recomendado para ti',
+    bestFor: 'Ideal para {n} personas',
+    all: 'Todos',
+  },
+
+  holdCountdown: {
+    reserved: 'Tu barco esta reservado durante',
+    expired: 'Tu reserva ha expirado',
+    selectAnother: 'Selecciona otro horario',
+    hurry: 'Date prisa',
+  },
+
+  seasonBanner: {
+    earlyBird: 'Temporada {year} abre en {days} dias - Reserva anticipada con los mejores precios',
+    springPrices: 'Precios de primavera disponibles - Reserva antes del 1 de junio',
+    bookBefore: 'Reserva antes del {date}',
+    daysLeft: 'Solo quedan {n} dias de temporada - Las fechas mas populares se agotan rapido',
+    lastDays: 'Ultimos dias de temporada',
+    dontMissIt: 'No te lo pierdas',
+    viewBoats: 'Ver barcos',
+    bookNow: 'Reservar',
+  },
+
+  confirmation: {
+    title: 'Reserva enviada con exito',
+    summary: 'Resumen de tu reserva',
+    checklist: 'Que llevar',
+    checklistItems: [
+      'Protector solar y gorra',
+      'Toalla',
+      'Agua y snacks',
+      'Camara acuatica o funda movil',
+      'Ropa de abrigo (puede refrescar en el mar)',
+    ],
+    whatsNext: 'Proximos pasos',
+    whatsNextSteps: [
+      'Recibiras confirmacion por WhatsApp en minutos',
+      '24h antes: recordatorio con instrucciones',
+      'Dia del alquiler: presentate en Puerto de Blanes',
+    ],
+    shareTitle: 'Comparte tu aventura',
+    shareWhatsApp: 'Compartir por WhatsApp',
+    copyLink: 'Copiar enlace',
+    repeatBooking: 'Quieres repetir?',
+    saveDiscount: 'Ahorra 10% en tu proxima reserva',
+    discountCode: 'Usa el codigo',
+    linkCopied: 'Enlace copiado',
+    close: 'Cerrar',
   },
 };

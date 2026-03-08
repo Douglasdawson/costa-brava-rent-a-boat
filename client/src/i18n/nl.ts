@@ -15,6 +15,8 @@ export const nl: Translations = {
   hero: {
     title: 'Bootverhuur in Blanes, Costa Brava',
     subtitle: 'Ontdek de mooiste baaien van Costa Brava met onze boten met en zonder vaarbewijs. Vertrek vanuit Haven van Blanes.',
+    subtitleLine1: 'Ontdek de mooiste baaien van de Costa Brava met onze boten met en zonder vaarbewijs.',
+    subtitleLine2: 'Vertrek vanuit de haven van Blanes.',
     bookNow: 'Nu Boeken',
     viewFleet: 'Vloot Ontdekken',
     trustText: 'Geen verplichtingen • Transparante prijzen',
@@ -302,6 +304,7 @@ export const nl: Translations = {
     discountApplied: 'Korting toegepast',
     priceConfirmedWhatsApp: 'De definitieve prijs wordt bevestigd via WhatsApp',
     gdprConsent: 'Ik heb het {privacyPolicy} en de {termsAndConditions} gelezen en accepteer deze. Mijn gegevens worden verwerkt om mijn boeking te beheren (AVG Art. 6.1.b).',
+    gdprPassive: 'Door dit verzoek te verzenden, accepteert u ons {privacyPolicy} en de {termsAndConditions}.',
     gdprPrivacyLink: 'Privacybeleid',
     gdprTermsLink: 'Algemene Voorwaarden',
   },
@@ -973,7 +976,7 @@ export const nl: Translations = {
   },
 
   bookingTrust: {
-    customers: '2000+ klanten',
+    customers: '5000+ klanten',
     rating: '4.8 Google',
     confirmation: 'Bevestiging in 2u',
   },
@@ -1100,7 +1103,7 @@ export const nl: Translations = {
   authority: {
     yearsExperience: '6+ jaar ervaring',
     fullInsurance: 'Volledig verzekerd',
-    happyCustomers: '2000+ tevreden klanten',
+    happyCustomers: '5000+ tevreden klanten',
     fleetInsured: 'Vloot 100% verzekerd',
     zeroIncidents: '0 veiligheidsincidenten',
     certifiedCaptains: 'Gecertificeerde kapiteins',

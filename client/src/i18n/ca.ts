@@ -15,6 +15,8 @@ export const ca: Translations = {
   hero: {
     title: 'Lloguer de Barques a Blanes, Costa Brava',
     subtitle: 'Descobreix les millors cales de la Costa Brava amb les nostres barques amb i sense llicència. Sortides des del Port de Blanes.',
+    subtitleLine1: 'Descobreix les millors cales de la Costa Brava amb els nostres vaixells amb i sense llicència.',
+    subtitleLine2: 'Sortides des del Port de Blanes.',
     bookNow: 'Reservar Ara',
     viewFleet: 'Explorar Flota',
     trustText: 'Sense comproms • Confirmació immediata • Preus transparents',
@@ -302,6 +304,7 @@ export const ca: Translations = {
     discountApplied: 'Descompte aplicat',
     priceConfirmedWhatsApp: 'El preu final es confirma per WhatsApp',
     gdprConsent: 'He llegit i accepto la {privacyPolicy} i les {termsAndConditions}. Les meves dades seran tractades per gestionar la meva reserva (RGPD Art. 6.1.b).',
+    gdprPassive: 'En enviar aquesta sol·licitud, acceptes la nostra {privacyPolicy} i les {termsAndConditions}.',
     gdprPrivacyLink: 'Política de Privacitat',
     gdprTermsLink: 'Condicions Generals',
   },
@@ -973,7 +976,7 @@ export const ca: Translations = {
   },
 
   bookingTrust: {
-    customers: '2000+ clients',
+    customers: '5000+ clients',
     rating: '4.8 Google',
     confirmation: 'Confirmacio en 2h',
   },
@@ -1100,7 +1103,7 @@ export const ca: Translations = {
   authority: {
     yearsExperience: '6+ anys d\'experiencia',
     fullInsurance: 'Asseguranca a tot risc',
-    happyCustomers: '2000+ clients satisfets',
+    happyCustomers: '5000+ clients satisfets',
     fleetInsured: 'Flota assegurada al 100%',
     zeroIncidents: '0 incidents de seguretat',
     certifiedCaptains: 'Capitans certificats',

@@ -856,9 +856,7 @@ function Step4Contact({
           <div className="flex justify-between col-span-2">
             <span className="text-muted-foreground">{t.booking.boat}</span>
             <span className="font-medium text-foreground">
-              {selectedBoatInfo?.name
-                ? (t.endowment?.yourBoat || 'Tu {boat}').replace('{boat}', selectedBoatInfo.name)
-                : '--'}
+              {selectedBoatInfo?.name || '--'}
             </span>
           </div>
           <div className="flex justify-between col-span-2">

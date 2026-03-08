@@ -15,6 +15,8 @@ export const it: Translations = {
   hero: {
     title: 'Noleggio Barche a Blanes, Costa Brava',
     subtitle: 'Scopri le più belle calette della Costa Brava con le nostre barche con e senza patente. Partenze dal Porto di Blanes.',
+    subtitleLine1: 'Scopri le migliori calette della Costa Brava con le nostre barche con e senza patente.',
+    subtitleLine2: 'Partenze dal Porto di Blanes.',
     bookNow: 'Prenota Ora',
     viewFleet: 'Esplora la Flotta',
     trustText: 'Senza impegno • Prezzi trasparenti',
@@ -302,6 +304,7 @@ export const it: Translations = {
     discountApplied: 'Sconto applicato',
     priceConfirmedWhatsApp: 'Il prezzo finale è confermato via WhatsApp',
     gdprConsent: "Ho letto e accetto la {privacyPolicy} e le {termsAndConditions}. I miei dati saranno trattati per gestire la mia prenotazione (GDPR Art. 6.1.b).",
+    gdprPassive: 'Inviando questa richiesta, accetti la nostra {privacyPolicy} e le {termsAndConditions}.',
     gdprPrivacyLink: 'Informativa sulla Privacy',
     gdprTermsLink: 'Condizioni Generali',
   },
@@ -973,7 +976,7 @@ export const it: Translations = {
   },
 
   bookingTrust: {
-    customers: '2000+ clienti',
+    customers: '5000+ clienti',
     rating: '4.8 Google',
     confirmation: 'Conferma in 2h',
   },
@@ -1101,7 +1104,7 @@ export const it: Translations = {
   authority: {
     yearsExperience: '6+ anni di esperienza',
     fullInsurance: 'Completamente assicurato',
-    happyCustomers: '2000+ clienti soddisfatti',
+    happyCustomers: '5000+ clienti soddisfatti',
     fleetInsured: 'Flotta assicurata al 100%',
     zeroIncidents: '0 incidenti di sicurezza',
     certifiedCaptains: 'Capitani certificati',

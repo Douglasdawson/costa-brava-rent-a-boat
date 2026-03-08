@@ -236,17 +236,8 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
       />
       <Navigation />
       
-      {/* Breadcrumbs */}
-      <div className="bg-background border-b border-border pt-20 sm:pt-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
-          <Breadcrumbs
-            items={[
-              { label: t.breadcrumbs.fleet, href: '/#fleet' },
-              { label: boatData.name }
-            ]}
-          />
-        </div>
-      </div>
+      {/* Spacer for fixed navbar */}
+      <div className="pt-20 sm:pt-24" />
 
       {/* Mini-hero */}
       <div className="relative h-64 sm:h-80 overflow-hidden">

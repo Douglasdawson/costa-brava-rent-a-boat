@@ -157,7 +157,7 @@ export default function Navigation() {
   };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/20 backdrop-blur-xl border-b border-white/20 lg:top-3 lg:left-6 lg:right-6 lg:rounded-2xl lg:border lg:border-white/40 lg:shadow-[0_8px_32px_rgba(13,13,43,0.12)] pt-safe">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-xl border-b border-gray-200 shadow-sm lg:top-3 lg:left-6 lg:right-6 lg:rounded-2xl lg:border lg:border-gray-200 lg:shadow-[0_4px_16px_rgba(0,0,0,0.08)] pt-safe">
       <a
         href="#main-content"
         className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-primary focus:text-white focus:rounded-lg focus:outline-none"
@@ -174,17 +174,16 @@ export default function Navigation() {
             data-testid="brand-logo"
             aria-label="Ir a la página principal de Costa Brava Rent a Boat Blanes"
           >
-            <LogoCostaBravaSVG className="h-8 sm:hidden" />
-            <img src={logoHorizontal} alt="Costa Brava Rent a Boat Blanes" className="hidden sm:block h-8 lg:h-10 brightness-0 invert" />
+            <LogoCostaBravaSVG className="h-8 lg:h-10" />
           </a>
 
           {/* Desktop Navigation - Absolutely Centered */}
           <div className="hidden lg:flex items-center space-x-4 lg:space-x-6 absolute left-1/2 -translate-x-1/2">
             {navigationItems.map((item) => {
               const activeClass = isNavItemActive(item.href)
-                ? "text-white font-semibold"
-                : "text-white/90 font-medium";
-              const baseClass = `hover:text-white transition-colors whitespace-nowrap rounded focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent focus-visible:outline-none ${activeClass}`;
+                ? "text-foreground font-semibold"
+                : "text-foreground/70 font-medium";
+              const baseClass = `hover:text-foreground transition-colors whitespace-nowrap rounded focus-visible:ring-2 focus-visible:ring-foreground/20 focus-visible:ring-offset-2 focus-visible:outline-none ${activeClass}`;
               // Page routes: render as <a> so Googlebot can crawl them
               if (!item.href.startsWith("#")) {
                 const href = item.href === "#faq" ? "/faq" : item.href;
@@ -216,7 +215,7 @@ export default function Navigation() {
 
           {/* Right side buttons */}
           <div className="hidden lg:flex items-center space-x-4 z-10">
-            <LanguageSelector variant="minimal" className="text-white hover:text-white hover:bg-white/10" />
+            <LanguageSelector variant="minimal" className="text-foreground/70 hover:text-foreground hover:bg-gray-100" />
             <Button
               onClick={() => handleNavigation("#booking", t.nav.bookNow)}
               data-testid="desktop-button-book"
@@ -225,25 +224,13 @@ export default function Navigation() {
             >
               {t.nav.bookNow}
             </Button>
-            {!isAuthenticated && (
-              <Button
-                variant="ghost"
-                onClick={handleLoginClick}
-                data-testid="button-login"
-                aria-label="Iniciar sesión en tu cuenta"
-                className="text-white hover:text-white hover:bg-white/10"
-              >
-                <UserCircle className="w-4 h-4 mr-2" />
-                Login
-              </Button>
-            )}
             {isAuthenticated && (
               <Button
                 variant="ghost"
                 onClick={handleMyAccountClick}
                 data-testid="button-my-account"
                 aria-label="Acceder a mi cuenta de cliente"
-                className="text-white hover:text-white hover:bg-white/10"
+                className="text-foreground/70 hover:text-foreground hover:bg-gray-100"
               >
                 <UserCircle className="w-4 h-4 mr-2" />
                 {t.nav.myAccount}
@@ -262,7 +249,7 @@ export default function Navigation() {
               aria-expanded={isOpen}
               className="focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent focus-visible:outline-none"
             >
-              {isOpen ? <X className={`w-7 h-7 ${isTransparent ? "text-white" : ""}`} /> : <Menu className={`w-7 h-7 ${isTransparent ? "text-white" : ""}`} />}
+              {isOpen ? <X className="w-7 h-7" /> : <Menu className="w-7 h-7" />}
             </Button>
           </div>
         </div>
@@ -312,18 +299,6 @@ export default function Navigation() {
                 >
                   {t.nav.bookNow}
                 </Button>
-                {!isAuthenticated && (
-                  <Button
-                    variant="ghost"
-                    className="min-h-11 px-4"
-                    onClick={handleLoginClick}
-                    data-testid="mobile-button-login"
-                    aria-label="Iniciar sesión en tu cuenta"
-                  >
-                    <UserCircle className="w-4 h-4 mr-2" />
-                    Login
-                  </Button>
-                )}
                 {isAuthenticated && (
                   <Button
                     variant="ghost"

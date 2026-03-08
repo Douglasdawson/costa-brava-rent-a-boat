@@ -15,6 +15,8 @@ export const ru: Translations = {
   hero: {
     title: 'Аренда Лодок в Бланесе, Коста Брава',
     subtitle: 'Откройте для себя лучшие бухты Коста Брава с нашими лодками с лицензией и без лицензии. Отправление из порта Бланес.',
+    subtitleLine1: 'Откройте лучшие бухты Коста Бравы на наших лодках с лицензией и без.',
+    subtitleLine2: 'Отправление из порта Бланес.',
     bookNow: 'Забронировать Сейчас',
     viewFleet: 'Исследовать Флот',
     trustText: 'Без обязательств • Прозрачные цены',
@@ -302,6 +304,7 @@ export const ru: Translations = {
     discountApplied: 'Скидка применена',
     priceConfirmedWhatsApp: 'Окончательная цена подтверждается в WhatsApp',
     gdprConsent: 'Я прочитал(а) и принимаю {privacyPolicy} и {termsAndConditions}. Мои данные будут обработаны для управления моим бронированием (GDPR ст. 6.1.b).',
+    gdprPassive: 'Отправляя этот запрос, вы принимаете нашу {privacyPolicy} и {termsAndConditions}.',
     gdprPrivacyLink: 'Политику конфиденциальности',
     gdprTermsLink: 'Общие условия',
   },
@@ -973,7 +976,7 @@ export const ru: Translations = {
   },
 
   bookingTrust: {
-    customers: '2000+ клиентов',
+    customers: '5000+ клиентов',
     rating: '4.8 Google',
     confirmation: 'Подтверждение за 2ч',
   },
@@ -1100,7 +1103,7 @@ export const ru: Translations = {
   authority: {
     yearsExperience: '6+ лет опыта',
     fullInsurance: 'Полная страховка',
-    happyCustomers: '2000+ довольных клиентов',
+    happyCustomers: '5000+ довольных клиентов',
     fleetInsured: 'Флот застрахован на 100%',
     zeroIncidents: '0 инцидентов безопасности',
     certifiedCaptains: 'Сертифицированные капитаны',

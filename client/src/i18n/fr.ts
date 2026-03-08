@@ -15,6 +15,8 @@ export const fr: Translations = {
   hero: {
     title: 'Location de Bateaux à Blanes, Costa Brava',
     subtitle: 'Découvrez les plus belles criques de la Costa Brava avec nos bateaux avec et sans permis. Départ du Port de Blanes.',
+    subtitleLine1: 'Découvrez les plus belles criques de la Costa Brava avec nos bateaux avec et sans permis.',
+    subtitleLine2: 'Départs depuis le Port de Blanes.',
     bookNow: 'Réserver Maintenant',
     viewFleet: 'Explorer la Flotte',
     trustText: 'Sans engagement • Confirmation immédiate • Prix transparents',
@@ -302,6 +304,7 @@ export const fr: Translations = {
     discountApplied: 'Réduction appliquée',
     priceConfirmedWhatsApp: 'Le prix final est confirmé par WhatsApp',
     gdprConsent: "J'ai lu et j'accepte la {privacyPolicy} et les {termsAndConditions}. Mes données seront traitées pour gérer ma réservation (RGPD Art. 6.1.b).",
+    gdprPassive: 'En envoyant cette demande, vous acceptez notre {privacyPolicy} et les {termsAndConditions}.',
     gdprPrivacyLink: 'Politique de Confidentialité',
     gdprTermsLink: 'Conditions Générales',
   },
@@ -973,7 +976,7 @@ export const fr: Translations = {
   },
 
   bookingTrust: {
-    customers: '2000+ clients',
+    customers: '5000+ clients',
     rating: '4.8 Google',
     confirmation: 'Confirmation en 2h',
   },
@@ -1101,7 +1104,7 @@ export const fr: Translations = {
   authority: {
     yearsExperience: '6+ ans d\'experience',
     fullInsurance: 'Assurance tous risques',
-    happyCustomers: '2000+ clients satisfaits',
+    happyCustomers: '5000+ clients satisfaits',
     fleetInsured: 'Flotte assuree a 100%',
     zeroIncidents: '0 incidents de securite',
     certifiedCaptains: 'Capitaines certifies',

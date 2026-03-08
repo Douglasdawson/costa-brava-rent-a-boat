@@ -15,6 +15,8 @@ export const de: Translations = {
   hero: {
     title: 'Bootsverleih in Blanes, Costa Brava',
     subtitle: 'Entdecken Sie die schönsten Buchten der Costa Brava mit unseren Booten mit und ohne Führerschein. Abfahrt vom Hafen Blanes.',
+    subtitleLine1: 'Entdecken Sie die schönsten Buchten der Costa Brava mit unseren Booten mit und ohne Lizenz.',
+    subtitleLine2: 'Abfahrten vom Hafen Blanes.',
     bookNow: 'Jetzt Buchen',
     viewFleet: 'Flotte Entdecken',
     trustText: 'Ohne Verpflichtung • Transparente Preise',
@@ -302,6 +304,7 @@ export const de: Translations = {
     discountApplied: 'Rabatt angewendet',
     priceConfirmedWhatsApp: 'Der endgültige Preis wird per WhatsApp bestätigt',
     gdprConsent: 'Ich habe die {privacyPolicy} und die {termsAndConditions} gelesen und akzeptiere sie. Meine Daten werden zur Verwaltung meiner Buchung verarbeitet (DSGVO Art. 6.1.b).',
+    gdprPassive: 'Mit dem Absenden dieser Anfrage akzeptieren Sie unsere {privacyPolicy} und die {termsAndConditions}.',
     gdprPrivacyLink: 'Datenschutzrichtlinie',
     gdprTermsLink: 'Allgemeine Geschäftsbedingungen',
   },
@@ -973,7 +976,7 @@ export const de: Translations = {
   },
 
   bookingTrust: {
-    customers: '2000+ Kunden',
+    customers: '5000+ Kunden',
     rating: '4.8 Google',
     confirmation: 'Bestatigung in 2h',
   },
@@ -1101,7 +1104,7 @@ export const de: Translations = {
   authority: {
     yearsExperience: '6+ Jahre Erfahrung',
     fullInsurance: 'Vollversichert',
-    happyCustomers: '2000+ zufriedene Kunden',
+    happyCustomers: '5000+ zufriedene Kunden',
     fleetInsured: 'Flotte 100% versichert',
     zeroIncidents: '0 Sicherheitsvorfalle',
     certifiedCaptains: 'Zertifizierte Kapitane',

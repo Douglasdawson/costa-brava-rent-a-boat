@@ -15,6 +15,8 @@ export const es: Translations = {
   hero: {
     title: 'Alquiler de Barcos en Blanes, Costa Brava',
     subtitle: 'Descubre las mejores calas de la Costa Brava con nuestros barcos con y sin licencia. Salidas desde Puerto de Blanes.',
+    subtitleLine1: 'Descubre las mejores calas de la Costa Brava con nuestros barcos con y sin licencia.',
+    subtitleLine2: 'Salidas desde Puerto de Blanes.',
     bookNow: 'Reservar Ahora',
     viewFleet: 'Explorar Flota',
     trustText: 'Sin compromiso • Precios transparentes',
@@ -276,7 +278,7 @@ export const es: Translations = {
     withoutLicense: 'Sin Licencia',
     select: 'Seleccionar...',
     pricesUpdateByDate: 'Los precios se actualizan según la fecha',
-    sendBookingRequest: 'ENVIAR PETICIÓN DE RESERVA',
+    sendBookingRequest: 'ENVIAR PETICIÓN',
     needHelp: '¿Necesitas ayuda?',
     people: 'personas',
     // BookingFormWidget validation
@@ -312,6 +314,7 @@ export const es: Translations = {
     discountApplied: 'Descuento aplicado',
     priceConfirmedWhatsApp: 'El precio final se confirma por WhatsApp',
     gdprConsent: 'He leído y acepto la {privacyPolicy} y las {termsAndConditions}. Mis datos serán tratados para gestionar mi reserva (RGPD Art. 6.1.b).',
+    gdprPassive: 'Al enviar esta solicitud, aceptas nuestra {privacyPolicy} y las {termsAndConditions}.',
     gdprPrivacyLink: 'Política de Privacidad',
     gdprTermsLink: 'Condiciones Generales',
   },
@@ -983,7 +986,7 @@ export const es: Translations = {
   },
 
   bookingTrust: {
-    customers: '2000+ clientes',
+    customers: '5000+ clientes',
     rating: '4.8 Google',
     confirmation: 'Confirmacion en 2h',
   },
@@ -1125,7 +1128,7 @@ export const es: Translations = {
   authority: {
     yearsExperience: '6+ anos de experiencia',
     fullInsurance: 'Seguro a todo riesgo',
-    happyCustomers: '2000+ clientes satisfechos',
+    happyCustomers: '5000+ clientes satisfechos',
     fleetInsured: 'Flota asegurada al 100%',
     zeroIncidents: '0 incidentes de seguridad',
     certifiedCaptains: 'Capitanes certificados',

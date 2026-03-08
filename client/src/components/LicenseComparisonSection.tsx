@@ -36,7 +36,7 @@ export function LicenseComparisonSection() {
   return (
     <section className="py-12 sm:py-16 lg:py-20 bg-muted/30">
       <div className="container mx-auto px-4 max-w-4xl">
-        <h2 className="font-heading text-2xl sm:text-3xl font-light text-foreground text-center tracking-tight mb-3">
+        <h2 className="font-heading text-2xl sm:text-3xl font-semibold text-foreground text-center tracking-tight mb-3">
           {t.comparison.title}
         </h2>
         <p className="text-muted-foreground text-center mb-10 max-w-2xl mx-auto">

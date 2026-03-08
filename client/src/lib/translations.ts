@@ -26,6 +26,8 @@ export interface Translations {
   hero: {
     title: string;
     subtitle: string;
+    subtitleLine1: string;
+    subtitleLine2: string;
     bookNow: string;
     viewFleet: string;
     trustText: string;

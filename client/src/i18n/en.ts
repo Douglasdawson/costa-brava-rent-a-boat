@@ -15,6 +15,8 @@ export const en: Translations = {
   hero: {
     title: 'Boat Rental in Blanes, Costa Brava',
     subtitle: 'Discover the best coves of Costa Brava with our licensed and license-free boats. Departures from Blanes Port.',
+    subtitleLine1: 'Discover the best coves of the Costa Brava with our boats with and without license.',
+    subtitleLine2: 'Departures from Blanes Port.',
     bookNow: 'Book Now',
     viewFleet: 'Explore Fleet',
     trustText: 'No commitment • Instant confirmation • Transparent prices',
@@ -302,6 +304,7 @@ export const en: Translations = {
     discountApplied: 'Discount applied',
     priceConfirmedWhatsApp: 'Final price confirmed by WhatsApp',
     gdprConsent: 'I have read and accept the {privacyPolicy} and the {termsAndConditions}. My data will be processed to manage my booking (GDPR Art. 6.1.b).',
+    gdprPassive: 'By sending this request, you accept our {privacyPolicy} and {termsAndConditions}.',
     gdprPrivacyLink: 'Privacy Policy',
     gdprTermsLink: 'General Conditions',
   },
@@ -973,7 +976,7 @@ export const en: Translations = {
   },
 
   bookingTrust: {
-    customers: '2000+ customers',
+    customers: '5000+ customers',
     rating: '4.8 Google',
     confirmation: 'Confirmed in 2h',
   },
@@ -1101,7 +1104,7 @@ export const en: Translations = {
   authority: {
     yearsExperience: '6+ years of experience',
     fullInsurance: 'Fully insured',
-    happyCustomers: '2000+ happy customers',
+    happyCustomers: '5000+ happy customers',
     fleetInsured: 'Fleet 100% insured',
     zeroIncidents: '0 safety incidents',
     certifiedCaptains: 'Certified captains',

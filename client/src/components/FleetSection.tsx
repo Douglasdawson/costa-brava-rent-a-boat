@@ -13,7 +13,7 @@ import { useBookingModal } from "@/hooks/useBookingModal";
 
 /** All possible group size filter buckets */
 const ALL_GROUP_SIZE_OPTIONS = [
-  { label: '1-3', min: 1, max: 3 },
+  { label: '1-4', min: 1, max: 4 },
   { label: '4-5', min: 4, max: 5 },
   { label: '6-7', min: 6, max: 7 },
   { label: '8+', min: 8, max: 99 },
@@ -98,7 +98,7 @@ export default function FleetSection() {
       return {
         id: boat.id,
         name: boat.name,
-        image: boat.imageGallery?.[0] || (boat.imageUrl ? getBoatImage(boat.imageUrl) : '/placeholder-boat.jpg'),
+        image: boat.imageGallery?.find(img => !img.includes('portrait')) || boat.imageGallery?.[0] || (boat.imageUrl ? getBoatImage(boat.imageUrl) : '/placeholder-boat.jpg'),
         imageSrcSet: boat.imageGallery?.[0] ? '' : (boat.imageUrl ? getBoatImageSrcSet(boat.imageUrl) : ''),
         imageAlt: `Alquiler barco ${boat.name} ${boat.requiresLicense ? "con licencia" : "sin licencia"} en Blanes Costa Brava 2026 - Capacidad ${boat.capacity} personas`,
         capacity: boat.capacity,

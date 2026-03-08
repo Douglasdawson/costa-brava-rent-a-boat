@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Phone, Mail, MapPin, Clock, Shield, ShieldCheck, FileCheck, Map } from "lucide-react";
+import { Phone, Mail, MapPin, Clock, Shield, ShieldCheck, FileCheck, Map, Lock } from "lucide-react";
 import logoHorizontal from "@/assets/real-photos/logo-horizontal.png";
 import LogoCostaBravaFooter from "@/components/icons/LogoCostaBravaFooter";
 import { SiWhatsapp, SiInstagram, SiFacebook, SiTiktok } from "react-icons/si";
@@ -142,7 +142,7 @@ export default function Footer() {
           </div>
 
           {/* Column 2: Navigation */}
-          <div>
+          <div className="lg:pl-[20%]">
             <h3 className="font-medium text-white mb-4 text-sm">{t.footer.information}</h3>
             <ul className="space-y-1 text-sm">
               <li>
@@ -242,21 +242,6 @@ export default function Footer() {
         {/* Bottom Section */}
         <div className="border-t border-white/10 mt-12 pt-8">
           <div className="flex flex-col items-center gap-3">
-            {/* Trust credentials row */}
-            <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 mb-2">
-              <span className="inline-flex items-center gap-1.5 text-white/40 text-xs">
-                <FileCheck className="w-3 h-3" />
-                {t.authority?.registeredBusiness || 'Empresa registrada en Espana'}
-              </span>
-              <span className="inline-flex items-center gap-1.5 text-white/40 text-xs">
-                <Shield className="w-3 h-3" />
-                {t.authority?.maritimeInsurance || 'Seguro maritimo completo'}
-              </span>
-              <span className="inline-flex items-center gap-1.5 text-white/40 text-xs">
-                <ShieldCheck className="w-3 h-3" />
-                {t.authority?.gdprCompliant || 'Cumplimiento RGPD'}
-              </span>
-            </div>
             <div className="text-white/60 text-sm flex flex-wrap gap-2 sm:gap-4 justify-center">
               <a href="/terms-conditions" className="hover:text-white/60 transition-colors rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none" data-testid="footer-terms-link">{t.footer.terms}</a>
               <a href="/privacy-policy" className="hover:text-white/60 transition-colors rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none" data-testid="footer-privacy-link">{t.footer.privacy}</a>
@@ -266,9 +251,12 @@ export default function Footer() {
             <p className="text-white/40 text-xs text-center text-balance">
               {currentYear} Costa Brava Rent a Boat Blanes. {t.footer.rights}
             </p>
-            <p className="text-white/30 text-xs text-center">
-              NIF: B22566327
-            </p>
+            <div className="flex items-center justify-center gap-3 text-white/30 text-xs">
+              <span>NIF: B22566327</span>
+              <a href="/login" className="inline-flex items-center gap-1 hover:text-white/50 transition-colors" aria-label="Acceso administración">
+                <Lock className="w-3 h-3" />
+              </a>
+            </div>
             {/* Institutional logos */}
             <div className="flex items-center justify-center gap-6 mt-4">
               <CentresNLCatalunyaLogo className="h-10" />

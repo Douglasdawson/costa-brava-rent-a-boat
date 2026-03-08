@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
-import { Checkbox } from "@/components/ui/checkbox";
 import { CalendarIcon, Check, ChevronDown, ChevronLeft, ChevronUp, Clock, Gift, Loader2, Package, Star, Tag, Users, X } from "lucide-react";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Calendar } from "@/components/ui/calendar";
@@ -121,11 +120,14 @@ export default function BookingWizardMobile(props: BookingWizardMobileProps) {
   const [displayStep, setDisplayStep] = useState(currentStep);
   const [direction, setDirection] = useState<"forward" | "back">("forward");
   const prevStepRef = useRef(currentStep);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (currentStep !== prevStepRef.current) {
       setDirection(currentStep > prevStepRef.current ? "forward" : "back");
       setAnimating(true);
+      // Scroll to top of the step content
+      scrollContainerRef.current?.scrollTo({ top: 0, behavior: 'smooth' });
       const timer = setTimeout(() => {
         setDisplayStep(currentStep);
         setAnimating(false);
@@ -142,7 +144,7 @@ export default function BookingWizardMobile(props: BookingWizardMobileProps) {
     : "opacity-100 translate-x-0";
 
   return (
-    <div className="flex flex-col h-full" role="form" aria-label="Formulario de reserva">
+    <div className="flex flex-col h-full overflow-x-hidden" role="form" aria-label="Formulario de reserva">
       <div className="sticky top-0 z-10 bg-white px-4 py-3 border-b border-gray-100">
         <BookingProgressBar
           currentStep={currentStep}
@@ -153,7 +155,7 @@ export default function BookingWizardMobile(props: BookingWizardMobileProps) {
             props.selectedBoatInfo ? (props.t.endowment?.confirmStep || props.t.wizard.stepYourData) : props.t.wizard.stepYourData,
             props.selectedBoatInfo ? (props.t.endowment?.confirmStep || props.t.wizard.stepConfirm) : props.t.wizard.stepConfirm,
           ]}
-          estimatedTime={props.t.wizard.estimatedTime}
+          estimatedTime={undefined}
         />
       </div>
       {/* Trust strip */}
@@ -173,7 +175,7 @@ export default function BookingWizardMobile(props: BookingWizardMobileProps) {
           />
         </div>
       )}
-      <div className="flex-1 overflow-y-auto px-4 py-4">
+      <div ref={scrollContainerRef} className="flex-1 overflow-y-auto overflow-x-hidden px-4 py-4">
         <div
           className={`transition-all duration-150 ${animClass}`}
           aria-live="polite"
@@ -234,7 +236,7 @@ export default function BookingWizardMobile(props: BookingWizardMobileProps) {
                 await handleBookingSearch();
                 setIsSubmitting(false);
               }}
-              disabled={isSubmitting || props.isValidatingCode || !props.privacyConsent}
+              disabled={isSubmitting || props.isValidatingCode}
               aria-label="Enviar solicitud de reserva por WhatsApp"
               aria-busy={isSubmitting || props.isValidatingCode}
               className="flex-1 py-5 text-sm font-semibold bg-[#25D366] hover:bg-[#1ebe5d] text-white border-0 disabled:opacity-50 disabled:cursor-not-allowed"
@@ -279,7 +281,13 @@ function Step1Boat({
 
   function handleBoatSelect(boatId: string) {
     setSelectedBoat(boatId);
-    setTimeout(() => dateRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 100);
+    setTimeout(() => {
+      dateRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      // Auto-open date picker if no date selected yet
+      if (!selectedDate) {
+        setTimeout(() => setShowDatePicker(true), 350);
+      }
+    }, 100);
   }
 
   return (
@@ -816,9 +824,7 @@ function Step4Confirm({
         <div className="flex justify-between text-sm">
           <span className="text-gray-500">{t.booking.boat}</span>
           <span className="font-semibold text-gray-900">
-            {selectedBoatInfo?.name
-              ? (t.endowment?.yourBoat || 'Tu {boat}').replace('{boat}', selectedBoatInfo.name)
-              : "--"}
+            {selectedBoatInfo?.name || "--"}
           </span>
         </div>
         <div className="flex justify-between text-sm">
@@ -1040,40 +1046,21 @@ function Step4Confirm({
               </div>
             )}
             <p className="text-sm opacity-60 mt-2">{t.booking.priceConfirmedWhatsApp}</p>
-            {depositAmount && (
-              <p className="text-xs opacity-40 mt-0.5">
-                {t.pricing?.payAtPort || 'Se paga y devuelve en el puerto'}
-              </p>
-            )}
           </div>
         );
       })()}
-      {/* RGPD consent checkbox */}
-      <div className="flex items-start gap-3">
-        <div className="flex items-center justify-center w-11 h-11 flex-shrink-0 -m-3.5 mt-[-0.625rem]">
-          <Checkbox
-            id="wizard-privacy-consent"
-            checked={privacyConsent}
-            onCheckedChange={(checked) => setPrivacyConsent(checked === true)}
-            aria-required="true"
-            className="h-5 w-5"
-          />
-        </div>
-        <label
-          htmlFor="wizard-privacy-consent"
-          className="text-base text-gray-600 leading-relaxed cursor-pointer select-none"
-        >
-          {t.booking.gdprConsent.split('{privacyPolicy}')[0]}
-          <a href="/privacy-policy" target="_blank" rel="noopener noreferrer" className="text-primary underline" onClick={(e) => e.stopPropagation()}>
-            {t.booking.gdprPrivacyLink}
-          </a>
-          {(t.booking.gdprConsent.split('{privacyPolicy}')[1] || '').split('{termsAndConditions}')[0]}
-          <a href="/condiciones-generales" target="_blank" rel="noopener noreferrer" className="text-primary underline" onClick={(e) => e.stopPropagation()}>
-            {t.booking.gdprTermsLink}
-          </a>
-          {(t.booking.gdprConsent.split('{privacyPolicy}')[1] || '').split('{termsAndConditions}')[1] || ''}
-        </label>
-      </div>
+      {/* RGPD passive consent notice */}
+      <p className="text-xs text-gray-400 leading-relaxed text-center">
+        {t.booking.gdprPassive?.split('{privacyPolicy}')[0] || 'Al enviar esta solicitud, aceptas nuestra '}
+        <a href="/privacy-policy" target="_blank" rel="noopener noreferrer" className="text-primary underline">
+          {t.booking.gdprPrivacyLink}
+        </a>
+        {(t.booking.gdprPassive?.split('{privacyPolicy}')[1] || ' y ').split('{termsAndConditions}')[0]}
+        <a href="/condiciones-generales" target="_blank" rel="noopener noreferrer" className="text-primary underline">
+          {t.booking.gdprTermsLink}
+        </a>
+        {(t.booking.gdprPassive?.split('{privacyPolicy}')[1] || '').split('{termsAndConditions}')[1] || '.'}
+      </p>
     </div>
   );
 }

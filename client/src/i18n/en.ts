@@ -908,4 +908,14 @@ export const en: Translations = {
     licenseFeature4: 'Fuel included in the price',
     fromPrice: 'From',
   },
+
+  socialProofToast: {
+    booked: 'Booked',
+    forPeople: 'for {n} people',
+    from: 'from',
+    minutesAgo: '{n} min ago',
+    hoursAgo: '{n}h ago',
+    daysAgo: '{n} days ago',
+    recently: 'Recently',
+  },
 };

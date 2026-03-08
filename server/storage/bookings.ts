@@ -1,9 +1,21 @@
 import {
-  db, eq, and, or, gte, lte, lt, inArray, sql, isNull,
+  db, eq, and, or, gte, lte, lt, inArray, sql, isNull, desc,
   boats, bookings, bookingExtras, maintenanceLogs,
   type Boat, type Booking, type InsertBooking,
   type BookingExtra, type InsertBookingExtra,
 } from "./base";
+
+/** Lightweight type for social proof notifications — no sensitive data */
+export interface SocialProofBooking {
+  customerName: string;
+  customerNationality: string;
+  bookingDate: Date;
+  startTime: Date;
+  numberOfPeople: number;
+  totalHours: number;
+  boatId: string;
+  createdAt: Date;
+}
 import { randomUUID } from "crypto";
 import { logger } from "../lib/logger";
 
@@ -602,4 +614,32 @@ export async function updateBookingWhatsAppThankYouStatus(id: string, sent: bool
     .update(bookings)
     .set({ whatsappThankYouSent: sent })
     .where(eq(bookings.id, id));
+}
+
+// ===== SOCIAL PROOF =====
+
+export async function getRecentSocialProofBookings(): Promise<SocialProofBooking[]> {
+  const now = new Date();
+  const rows = await db
+    .select({
+      customerName: bookings.customerName,
+      customerNationality: bookings.customerNationality,
+      bookingDate: bookings.bookingDate,
+      startTime: bookings.startTime,
+      numberOfPeople: bookings.numberOfPeople,
+      totalHours: bookings.totalHours,
+      boatId: bookings.boatId,
+      createdAt: bookings.createdAt,
+    })
+    .from(bookings)
+    .where(
+      and(
+        eq(bookings.bookingStatus, "confirmed"),
+        gte(bookings.bookingDate, now)
+      )
+    )
+    .orderBy(desc(bookings.createdAt))
+    .limit(20);
+
+  return rows;
 }

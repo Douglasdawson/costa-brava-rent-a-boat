@@ -908,4 +908,14 @@ export const fr: Translations = {
     licenseFeature4: 'Essence incluse dans le prix',
     fromPrice: 'A partir de',
   },
+
+  socialProofToast: {
+    booked: 'A reserve',
+    forPeople: 'pour {n} personnes',
+    from: 'de',
+    minutesAgo: 'Il y a {n} min',
+    hoursAgo: 'Il y a {n}h',
+    daysAgo: 'Il y a {n} jours',
+    recently: 'Recemment',
+  },
 };

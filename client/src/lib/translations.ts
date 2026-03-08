@@ -985,6 +985,17 @@ export interface Translations {
     bookNow: string;
     noThanks: string;
   };
+
+  // Social Proof Toast (FOMO notification)
+  socialProofToast?: {
+    booked: string;
+    forPeople: string;
+    from: string;
+    minutesAgo: string;
+    hoursAgo: string;
+    daysAgo: string;
+    recently: string;
+  };
 }
 export const translations: Record<Language, Translations> = { es, ca, en, fr, de, nl, it, ru };
 

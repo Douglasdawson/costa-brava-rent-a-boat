@@ -908,4 +908,14 @@ export const nl: Translations = {
     licenseFeature4: 'Brandstof inbegrepen in de prijs',
     fromPrice: 'Vanaf',
   },
+
+  socialProofToast: {
+    booked: 'Heeft geboekt',
+    forPeople: 'voor {n} personen',
+    from: 'uit',
+    minutesAgo: '{n} min geleden',
+    hoursAgo: '{n}u geleden',
+    daysAgo: '{n} dagen geleden',
+    recently: 'Onlangs',
+  },
 };

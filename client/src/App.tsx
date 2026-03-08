@@ -55,6 +55,7 @@ import WhatsAppFloatingButton from "./components/WhatsAppFloatingButton";
 import { ScrollToTop } from "./components/ScrollToTop";
 import CookieBanner from "./components/CookieBanner";
 import { ExitIntentModal } from "./components/ExitIntentModal";
+import { SocialProofToast } from "./components/SocialProofToast";
 import { usePrefetchCriticalRoutes } from "@/hooks/usePrefetch";
 import { 
   getSEOConfig, 
@@ -327,6 +328,7 @@ function App() {
               <ScrollToTop />
               <CookieBanner />
               <ExitIntentModal />
+              <SocialProofToast />
             </TooltipProvider>
           </BookingModalProvider>
         </LanguageProvider>

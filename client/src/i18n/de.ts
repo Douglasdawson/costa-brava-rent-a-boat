@@ -908,4 +908,14 @@ export const de: Translations = {
     licenseFeature4: 'Benzin im Preis inbegriffen',
     fromPrice: 'Ab',
   },
+
+  socialProofToast: {
+    booked: 'Hat gebucht',
+    forPeople: 'fur {n} Personen',
+    from: 'aus',
+    minutesAgo: 'Vor {n} Min.',
+    hoursAgo: 'Vor {n}h',
+    daysAgo: 'Vor {n} Tagen',
+    recently: 'Kurzlich',
+  },
 };

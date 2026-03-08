@@ -918,4 +918,14 @@ export const es: Translations = {
     licenseFeature4: 'Gasolina incluida en el precio',
     fromPrice: 'Desde',
   },
+
+  socialProofToast: {
+    booked: 'Reservo',
+    forPeople: 'para {n} personas',
+    from: 'de',
+    minutesAgo: 'Hace {n} min',
+    hoursAgo: 'Hace {n}h',
+    daysAgo: 'Hace {n} dias',
+    recently: 'Recientemente',
+  },
 };

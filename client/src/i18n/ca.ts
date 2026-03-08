@@ -908,4 +908,14 @@ export const ca: Translations = {
     licenseFeature4: 'Gasolina inclosa en el preu',
     fromPrice: 'Des de',
   },
+
+  socialProofToast: {
+    booked: 'Va reservar',
+    forPeople: 'per a {n} persones',
+    from: 'de',
+    minutesAgo: 'Fa {n} min',
+    hoursAgo: 'Fa {n}h',
+    daysAgo: 'Fa {n} dies',
+    recently: 'Recentment',
+  },
 };

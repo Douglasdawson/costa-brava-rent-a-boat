@@ -23,6 +23,7 @@ import type {
   NewsletterSubscriber,
   WhatsappInquiry, InsertWhatsappInquiry, UpdateWhatsappInquiry,
 } from "@shared/schema";
+import type { SocialProofBooking } from "./bookings";
 
 export interface IStorage {
   // Tenant methods
@@ -178,6 +179,9 @@ export interface IStorage {
   isRepeatCustomer(email: string): Promise<boolean>;
   updateBookingEmailStatus(id: string, reminderSent?: boolean, thankYouSent?: boolean): Promise<Booking | undefined>;
   updateBookingWhatsAppThankYouStatus(id: string, sent: boolean): Promise<void>;
+
+  // Social proof
+  getRecentSocialProofBookings(): Promise<SocialProofBooking[]>;
 
   // Chatbot
   getChatbotConversation(phoneNumber: string): Promise<ChatbotConversation | undefined>;

@@ -1,6 +1,7 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { setupAuth } from "../replitAuth";
+import { storage } from "../storage";
 
 // Import route modules
 import { registerBoatRoutes } from "./boats";
@@ -58,6 +59,35 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   // WhatsApp routes are async due to dynamic imports
   await registerWhatsAppRoutes(app);
+
+  // Social proof / FOMO notifications (lightweight, public, cached)
+  app.get("/api/social-proof", async (_req, res) => {
+    try {
+      const [recentBookings, allBoats] = await Promise.all([
+        storage.getRecentSocialProofBookings(),
+        storage.getAllBoats(),
+      ]);
+
+      const boatNameMap = new Map(allBoats.map((b) => [b.id, b.name]));
+      const now = Date.now();
+
+      const activities = recentBookings.map((b) => ({
+        name: b.customerName.split(" ")[0],
+        nationality: b.customerNationality,
+        boatName: boatNameMap.get(b.boatId) ?? b.boatId,
+        people: b.numberOfPeople,
+        hours: b.totalHours,
+        date: b.bookingDate.toISOString().split("T")[0],
+        minutesAgo: Math.floor((now - b.createdAt.getTime()) / 60000),
+      }));
+
+      res.set("Cache-Control", "public, max-age=300");
+      res.json({ activities });
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : "Unknown error";
+      res.status(500).json({ message: "Error fetching social proof: " + message });
+    }
+  });
 
   // Start background scheduled services (email reminders, thank-you emails)
   startScheduledServices();

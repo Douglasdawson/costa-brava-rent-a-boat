@@ -103,6 +103,7 @@ export const storage = {
   isRepeatCustomer: bookingRepo.isRepeatCustomer,
   updateBookingEmailStatus: bookingRepo.updateBookingEmailStatus,
   updateBookingWhatsAppThankYouStatus: bookingRepo.updateBookingWhatsAppThankYouStatus,
+  getRecentSocialProofBookings: bookingRepo.getRecentSocialProofBookings,
 
   // ===== Analytics =====
   getDashboardStats: analyticsRepo.getDashboardStats,

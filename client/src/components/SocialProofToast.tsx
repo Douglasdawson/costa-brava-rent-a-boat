@@ -1,0 +1,258 @@
+import { useState, useEffect, useCallback, useRef } from "react";
+import { useLocation } from "wouter";
+import { X } from "lucide-react";
+import { useTranslations } from "@/lib/translations";
+
+interface SocialProofActivity {
+  name: string;
+  nationality: string;
+  boatName: string;
+  people: number;
+  hours: number;
+  minutesAgo: number;
+}
+
+const FLAGS: Record<string, string> = {
+  ES: "\u{1F1EA}\u{1F1F8}", FR: "\u{1F1EB}\u{1F1F7}", DE: "\u{1F1E9}\u{1F1EA}", GB: "\u{1F1EC}\u{1F1E7}",
+  NL: "\u{1F1F3}\u{1F1F1}", IT: "\u{1F1EE}\u{1F1F9}", PT: "\u{1F1F5}\u{1F1F9}", BE: "\u{1F1E7}\u{1F1EA}",
+  CH: "\u{1F1E8}\u{1F1ED}", AT: "\u{1F1E6}\u{1F1F9}", US: "\u{1F1FA}\u{1F1F8}", RU: "\u{1F1F7}\u{1F1FA}",
+  SE: "\u{1F1F8}\u{1F1EA}", NO: "\u{1F1F3}\u{1F1F4}", DK: "\u{1F1E9}\u{1F1F0}", PL: "\u{1F1F5}\u{1F1F1}",
+  CZ: "\u{1F1E8}\u{1F1FF}", IE: "\u{1F1EE}\u{1F1EA}",
+};
+
+const COUNTRY_NAMES: Record<string, string> = {
+  ES: "Espana", FR: "Francia", DE: "Alemania", GB: "Reino Unido",
+  NL: "Paises Bajos", IT: "Italia", PT: "Portugal", BE: "Belgica",
+  CH: "Suiza", AT: "Austria", US: "EE.UU.", RU: "Rusia",
+  SE: "Suecia", NO: "Noruega", DK: "Dinamarca", PL: "Polonia",
+  CZ: "Chequia", IE: "Irlanda",
+};
+
+const FALLBACK_ACTIVITIES: SocialProofActivity[] = [
+  { name: "Maria", nationality: "ES", boatName: "ASTEC 480", people: 4, hours: 4, minutesAgo: 23 },
+  { name: "Thomas", nationality: "DE", boatName: "SOLAR 450", people: 3, hours: 3, minutesAgo: 87 },
+  { name: "Sophie", nationality: "FR", boatName: "REMUS 450", people: 5, hours: 6, minutesAgo: 156 },
+  { name: "James", nationality: "GB", boatName: "PACIFIC CRAFT 625", people: 6, hours: 8, minutesAgo: 312 },
+];
+
+const HIDDEN_PATHS = ["/admin", "/crm", "/reservar"];
+
+const SESSION_KEY = "socialProofCount";
+const MAX_TOASTS_PER_SESSION = 4;
+const INITIAL_DELAY_MS = 20_000;
+const AUTO_DISMISS_MS = 5_000;
+const MIN_INTERVAL_MS = 35_000;
+const MAX_INTERVAL_MS = 50_000;
+
+function getRandomInterval(): number {
+  return MIN_INTERVAL_MS + Math.random() * (MAX_INTERVAL_MS - MIN_INTERVAL_MS);
+}
+
+function formatTimeAgo(minutesAgo: number, t: ReturnType<typeof useTranslations>): string {
+  const toast = t.socialProofToast;
+  if (!toast) return "";
+
+  if (minutesAgo < 60) {
+    return toast.minutesAgo.replace("{n}", String(minutesAgo));
+  }
+  const hours = Math.floor(minutesAgo / 60);
+  if (hours < 24) {
+    return toast.hoursAgo.replace("{n}", String(hours));
+  }
+  const days = Math.floor(hours / 24);
+  if (days <= 7) {
+    return toast.daysAgo.replace("{n}", String(days));
+  }
+  return toast.recently;
+}
+
+export function SocialProofToast() {
+  const [location] = useLocation();
+  const t = useTranslations();
+  const [activities, setActivities] = useState<SocialProofActivity[]>([]);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [visible, setVisible] = useState(false);
+  const [animState, setAnimState] = useState<"entering" | "visible" | "exiting">("entering");
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const dismissRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  // Check if we should show on this path
+  const shouldShow = !HIDDEN_PATHS.some((p) => location.startsWith(p));
+
+  // Fetch activities on mount
+  useEffect(() => {
+    let cancelled = false;
+    async function fetchActivities() {
+      try {
+        const res = await fetch("/api/social-proof");
+        if (res.ok) {
+          const data = await res.json();
+          if (!cancelled && Array.isArray(data) && data.length > 0) {
+            setActivities(data);
+            return;
+          }
+        }
+      } catch {
+        // Silently fall back
+      }
+      if (!cancelled) {
+        setActivities(FALLBACK_ACTIVITIES);
+      }
+    }
+    fetchActivities();
+    return () => { cancelled = true; };
+  }, []);
+
+  const getSessionCount = useCallback((): number => {
+    try {
+      return parseInt(sessionStorage.getItem(SESSION_KEY) || "0", 10);
+    } catch {
+      return 0;
+    }
+  }, []);
+
+  const incrementSessionCount = useCallback(() => {
+    try {
+      const current = getSessionCount();
+      sessionStorage.setItem(SESSION_KEY, String(current + 1));
+    } catch {
+      // sessionStorage not available
+    }
+  }, [getSessionCount]);
+
+  const dismissToast = useCallback(() => {
+    setAnimState("exiting");
+    setTimeout(() => {
+      setVisible(false);
+      setAnimState("entering");
+    }, 300);
+  }, []);
+
+  const showNextToast = useCallback(() => {
+    if (getSessionCount() >= MAX_TOASTS_PER_SESSION) return;
+    if (activities.length === 0) return;
+
+    setCurrentIndex((prev) => {
+      const next = prev >= activities.length - 1 ? 0 : prev + 1;
+      return next;
+    });
+
+    setVisible(true);
+    setAnimState("entering");
+
+    // Trigger enter animation
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        setAnimState("visible");
+      });
+    });
+
+    incrementSessionCount();
+
+    // Auto-dismiss after 5 seconds
+    if (dismissRef.current) clearTimeout(dismissRef.current);
+    dismissRef.current = setTimeout(() => {
+      dismissToast();
+    }, AUTO_DISMISS_MS);
+  }, [activities, getSessionCount, incrementSessionCount, dismissToast]);
+
+  // Schedule toasts
+  useEffect(() => {
+    if (!shouldShow || activities.length === 0) return;
+    if (getSessionCount() >= MAX_TOASTS_PER_SESSION) return;
+
+    // Initial delay for the first toast
+    timerRef.current = setTimeout(() => {
+      showNextToast();
+
+      // Schedule subsequent toasts
+      function scheduleNext() {
+        if (getSessionCount() >= MAX_TOASTS_PER_SESSION) return;
+        timerRef.current = setTimeout(() => {
+          showNextToast();
+          scheduleNext();
+        }, getRandomInterval());
+      }
+      scheduleNext();
+    }, INITIAL_DELAY_MS);
+
+    return () => {
+      if (timerRef.current) clearTimeout(timerRef.current);
+      if (dismissRef.current) clearTimeout(dismissRef.current);
+    };
+  }, [shouldShow, activities, showNextToast, getSessionCount]);
+
+  if (!shouldShow || !visible || activities.length === 0) return null;
+
+  const activity = activities[currentIndex];
+  const flag = FLAGS[activity.nationality] || "";
+  const countryName = COUNTRY_NAMES[activity.nationality] || activity.nationality;
+  const toast = t.socialProofToast;
+  const bookedText = toast?.booked || "Reservo";
+  const forPeopleText = toast?.forPeople?.replace("{n}", String(activity.people)) || `para ${activity.people} personas`;
+  const fromText = toast?.from || "de";
+  const timeAgoText = formatTimeAgo(activity.minutesAgo, t);
+
+  // Animation styles
+  const baseStyle: React.CSSProperties = {
+    transition: "transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.4s cubic-bezier(0.22, 1, 0.36, 1)",
+  };
+
+  const animStyles: Record<string, React.CSSProperties> = {
+    entering: {
+      ...baseStyle,
+      transform: "translateX(-100%)",
+      opacity: 0,
+    },
+    visible: {
+      ...baseStyle,
+      transform: "translateX(0)",
+      opacity: 1,
+    },
+    exiting: {
+      ...baseStyle,
+      transform: "translateY(10px)",
+      opacity: 0,
+    },
+  };
+
+  return (
+    <div
+      className="fixed bottom-20 left-4 right-4 md:bottom-4 md:left-4 md:right-auto z-50 max-w-sm"
+      style={animStyles[animState]}
+      role="status"
+      aria-live="polite"
+    >
+      <div className="bg-background border border-border/50 rounded-xl shadow-lg p-3 pr-8 relative">
+        {/* Close button */}
+        <button
+          onClick={dismissToast}
+          className="absolute top-2 right-2 text-muted-foreground hover:text-foreground transition-colors p-0.5 rounded-md hover:bg-muted/50"
+          aria-label="Close"
+        >
+          <X className="h-3.5 w-3.5" />
+        </button>
+
+        <div className="flex items-start gap-3">
+          {/* Flag */}
+          <span className="text-2xl leading-none mt-0.5 flex-shrink-0" aria-hidden="true">
+            {flag}
+          </span>
+
+          {/* Content */}
+          <div className="min-w-0">
+            <p className="text-sm font-medium text-foreground leading-tight">
+              {activity.name} {fromText} {countryName}
+            </p>
+            <p className="text-sm text-muted-foreground leading-tight mt-0.5">
+              {bookedText} <span className="font-medium text-foreground">{activity.boatName}</span> {forPeopleText}
+            </p>
+            <p className="text-xs text-muted-foreground/70 mt-1">
+              {timeAgoText}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}

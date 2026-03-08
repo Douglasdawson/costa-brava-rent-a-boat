@@ -908,4 +908,14 @@ export const ru: Translations = {
     licenseFeature4: 'Бензин включен в стоимость',
     fromPrice: 'От',
   },
+
+  socialProofToast: {
+    booked: 'Забронировал(а)',
+    forPeople: 'для {n} человек',
+    from: 'из',
+    minutesAgo: '{n} мин. назад',
+    hoursAgo: '{n}ч назад',
+    daysAgo: '{n} дн. назад',
+    recently: 'Недавно',
+  },
 };

@@ -52,6 +52,7 @@ const OnboardingPage = lazy(() => import("@/pages/OnboardingPage"));
 const AccessibilityDeclarationPage = lazy(() => import("@/pages/accessibility-declaration"));
 import { useLanguage } from "@/hooks/use-language";
 import WhatsAppFloatingButton from "./components/WhatsAppFloatingButton";
+import { ScrollToTop } from "./components/ScrollToTop";
 import CookieBanner from "./components/CookieBanner";
 import { ExitIntentModal } from "./components/ExitIntentModal";
 import { usePrefetchCriticalRoutes } from "@/hooks/usePrefetch";
@@ -323,6 +324,7 @@ function App() {
               <Toaster />
               <Router />
               <WhatsAppFloatingButton />
+              <ScrollToTop />
               <CookieBanner />
               <ExitIntentModal />
             </TooltipProvider>

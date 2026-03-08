@@ -156,7 +156,7 @@ export default function Navigation() {
   };
 
   return (
-    <nav className="absolute top-3 left-4 right-4 lg:left-6 lg:right-6 z-50 rounded-2xl bg-white/20 backdrop-blur-xl border border-white/40 shadow-[0_8px_32px_rgba(13,13,43,0.12)]">
+    <nav className="absolute top-3 left-4 right-4 lg:left-6 lg:right-6 z-50 rounded-2xl bg-white/20 backdrop-blur-xl border border-white/40 shadow-[0_8px_32px_rgba(13,13,43,0.12)] pt-safe">
       <a
         href="#main-content"
         className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-primary focus:text-white focus:rounded-lg focus:outline-none"
@@ -183,7 +183,7 @@ export default function Navigation() {
               const activeClass = isNavItemActive(item.href)
                 ? "text-white font-semibold"
                 : "text-white/90 font-medium";
-              const baseClass = `hover:text-white transition-colors whitespace-nowrap ${activeClass}`;
+              const baseClass = `hover:text-white transition-colors whitespace-nowrap rounded focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent focus-visible:outline-none ${activeClass}`;
               // Page routes: render as <a> so Googlebot can crawl them
               if (!item.href.startsWith("#")) {
                 const href = item.href === "#faq" ? "/faq" : item.href;
@@ -220,7 +220,7 @@ export default function Navigation() {
               onClick={() => handleNavigation("#booking", t.nav.bookNow)}
               data-testid="desktop-button-book"
               aria-label="Reservar barco ahora"
-              className="bg-cta hover:bg-cta/90 text-white rounded-full px-6 py-2 text-sm font-medium btn-elevated cta-pulse"
+              className="bg-cta hover:bg-cta/90 text-white rounded-full px-6 py-2 text-sm font-medium btn-elevated cta-pulse focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none"
             >
               {t.nav.bookNow}
             </Button>
@@ -259,6 +259,7 @@ export default function Navigation() {
               data-testid="button-mobile-menu"
               aria-label={isOpen ? "Cerrar menú de navegación" : "Abrir menú de navegación"}
               aria-expanded={isOpen}
+              className="focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent focus-visible:outline-none"
             >
               {isOpen ? <X className={`w-7 h-7 ${isTransparent ? "text-white" : ""}`} /> : <Menu className={`w-7 h-7 ${isTransparent ? "text-white" : ""}`} />}
             </Button>
@@ -273,7 +274,7 @@ export default function Navigation() {
         >
             <div className="grid grid-cols-1 gap-0">
               {navigationItems.map((item) => {
-                const baseClass = "px-4 py-3.5 text-gray-700 hover:text-primary hover:bg-gray-50 transition-colors w-full text-left font-medium block text-base";
+                const baseClass = "px-4 py-3.5 text-gray-700 hover:text-primary hover:bg-gray-50 transition-colors w-full text-left font-medium block text-base rounded focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent focus-visible:outline-none";
                 if (!item.href.startsWith("#")) {
                   const href = item.href === "#faq" ? "/faq" : item.href;
                   return (
@@ -303,7 +304,7 @@ export default function Navigation() {
             <div className="px-4 py-2 border-t border-border mt-1 pt-3">
               <div className="flex flex-wrap items-center gap-3">
                 <Button
-                  className="bg-cta hover:bg-cta/90 text-white rounded-full px-6 py-3 text-sm font-medium btn-elevated cta-pulse min-h-11"
+                  className="bg-cta hover:bg-cta/90 text-white rounded-full px-6 py-3 text-sm font-medium btn-elevated cta-pulse min-h-11 focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none"
                   onClick={handleMobileBooking}
                   data-testid="mobile-button-book"
                   aria-label="Reservar barco ahora"

@@ -7,7 +7,7 @@ export function SocialProofStrip() {
   return (
     <div className="bg-background border-y border-border/50">
       <div className="container mx-auto px-4 py-4 sm:py-5">
-        <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-sm text-muted-foreground">
+        <div className="flex flex-wrap items-center justify-center gap-x-4 xs:gap-x-6 sm:gap-x-8 gap-y-2 xs:gap-y-3 text-xs xs:text-sm text-muted-foreground">
           {/* Google Rating */}
           <div className="flex items-center gap-2">
             <div className="flex items-center gap-0.5">

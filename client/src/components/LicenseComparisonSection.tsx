@@ -16,7 +16,7 @@ export function LicenseComparisonSection() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Without License Card */}
-          <div className="bg-white rounded-2xl border border-border p-6 sm:p-8 relative overflow-hidden">
+          <div className="bg-white rounded-2xl border border-border p-4 xs:p-6 sm:p-8 relative overflow-hidden">
             <div className="inline-flex items-center gap-2 bg-green-50 text-green-700 text-xs font-medium px-3 py-1 rounded-full mb-4">
               {t.comparison.noLicenseNeeded}
             </div>
@@ -45,7 +45,7 @@ export function LicenseComparisonSection() {
           </div>
 
           {/* With License Card */}
-          <div className="bg-white rounded-2xl border border-border p-6 sm:p-8 relative overflow-hidden">
+          <div className="bg-white rounded-2xl border border-border p-4 xs:p-6 sm:p-8 relative overflow-hidden">
             <div className="inline-flex items-center gap-2 bg-blue-50 text-blue-700 text-xs font-medium px-3 py-1 rounded-full mb-4">
               {t.comparison.licenseRequired}
             </div>

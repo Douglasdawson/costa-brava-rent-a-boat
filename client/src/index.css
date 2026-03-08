@@ -85,7 +85,7 @@
 
   --muted: 210 15% 93%;
 
-  --muted-foreground: 215 20% 46%;
+  --muted-foreground: 215 25% 38%;
 
   --accent: 185 20% 92%;
 
@@ -247,6 +247,17 @@
   body {
     @apply font-sans antialiased bg-background text-foreground;
   }
+
+  /* Global focus-visible fallback for accessibility */
+  a:focus-visible,
+  button:focus-visible,
+  [role="button"]:focus-visible,
+  input:focus-visible,
+  select:focus-visible,
+  textarea:focus-visible {
+    outline: 2px solid hsl(var(--cta));
+    outline-offset: 2px;
+  }
 }
 
 /**
@@ -270,6 +281,12 @@
  * need to be distinguished from eachother visually.
  */
 @layer utilities {
+
+  /* Dynamic viewport height for iOS Safari (avoids toolbar overlap) */
+  .h-dvh {
+    height: 100vh; /* fallback */
+    height: 100dvh;
+  }
 
   /* Hide ugly search cancel button in Chrome until we can style it properly */
   input[type="search"]::-webkit-search-cancel-button {
@@ -376,9 +393,11 @@
     text-align: left !important;
   }
 
-  /* Smooth scrolling optimizations for mobile */
-  * {
+  /* Smooth scrolling - on html only (not * which interferes with JS animations) */
+  html {
     scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
   }
 
   /* Mobile scrolling enhancements */

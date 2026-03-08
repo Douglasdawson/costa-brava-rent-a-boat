@@ -51,7 +51,7 @@ export default function BoatCard({
       <a
         href={`/barco/${id}`}
         onClick={(e) => { e.preventDefault(); handleDetails(); }}
-        className="relative block cursor-pointer group bg-muted"
+        className="relative block cursor-pointer group bg-muted focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2 focus-visible:outline-none"
         data-testid={`image-${id}`}
         aria-label={`Ver detalles del barco ${name}`}
       >
@@ -108,7 +108,7 @@ export default function BoatCard({
 
         <p className="text-muted-foreground text-sm mb-3 line-clamp-2">{description}</p>
 
-        <p className="text-sm text-muted-foreground mb-3">
+        <p className="text-xs xs:text-sm text-muted-foreground mb-3">
           {capacity} {t.boats.people}{enginePower ? ` | ${enginePower}` : ''}{` | ${requiresLicense ? t.boats.withLicense : t.boats.withoutLicense}`}
         </p>
       </CardContent>
@@ -116,7 +116,7 @@ export default function BoatCard({
         <a
           href={`/barco/${id}`}
           onClick={(e) => { e.preventDefault(); handleDetails(); }}
-          className="text-sm font-medium text-foreground hover:text-cta inline-flex items-center gap-1.5 transition-colors py-2 -my-1"
+          className="text-sm font-medium text-foreground hover:text-cta inline-flex items-center gap-1.5 transition-colors py-2 -my-1 focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2 focus-visible:outline-none rounded"
           data-testid={`button-details-${id}`}
         >
           {t.boats.viewDetails} <ArrowRight className="w-4 h-4" />

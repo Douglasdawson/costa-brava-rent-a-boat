@@ -479,7 +479,7 @@ function Step2Trip({
           aria-required="true"
           aria-invalid={showFieldError('time') ? "true" : "false"}
           aria-describedby={showFieldError('time') ? "error-wizard-time" : undefined}
-          className={`w-full p-3 border-2 rounded-xl text-gray-900 font-medium text-sm focus:ring-2 focus:ring-primary focus:outline-none bg-white ${
+          className={`w-full p-3 border-2 rounded-xl text-gray-900 font-medium text-base focus:ring-2 focus:ring-primary focus:outline-none bg-white ${
             showFieldError('time') ? 'border-red-500' : 'border-gray-200'
           }`}
         >
@@ -575,7 +575,7 @@ function Step3PersonalData({
           aria-required="true"
           aria-invalid={showFieldError('firstName') ? "true" : "false"}
           aria-describedby={showFieldError('firstName') ? "error-wizard-firstname" : undefined}
-          className={`w-full p-3 border-2 rounded-xl bg-white text-gray-900 font-medium text-sm focus:ring-2 focus:ring-primary ${
+          className={`w-full p-3 border-2 rounded-xl bg-white text-gray-900 font-medium text-base focus:ring-2 focus:ring-primary ${
             showFieldError('firstName') ? 'border-red-500' : 'border-gray-200'
           }`}
         />
@@ -599,7 +599,7 @@ function Step3PersonalData({
           aria-required="true"
           aria-invalid={showFieldError('lastName') ? "true" : "false"}
           aria-describedby={showFieldError('lastName') ? "error-wizard-lastname" : undefined}
-          className={`w-full p-3 border-2 rounded-xl bg-white text-gray-900 font-medium text-sm focus:ring-2 focus:ring-primary ${
+          className={`w-full p-3 border-2 rounded-xl bg-white text-gray-900 font-medium text-base focus:ring-2 focus:ring-primary ${
             showFieldError('lastName') ? 'border-red-500' : 'border-gray-200'
           }`}
         />
@@ -620,7 +620,7 @@ function Step3PersonalData({
               aria-haspopup="listbox"
               aria-expanded={showPrefixDropdown}
               aria-label={`Prefijo de teléfono: ${phonePrefix}`}
-              className="w-full p-3 border-2 border-gray-200 bg-white rounded-xl text-gray-900 font-medium text-sm flex items-center gap-1 overflow-hidden"
+              className="w-full p-3 border-2 border-gray-200 bg-white rounded-xl text-gray-900 font-medium text-base flex items-center gap-1 overflow-hidden"
             >
               <span className="truncate">{selectedPrefixInfo?.flag} {phonePrefix}</span>
             </button>
@@ -632,7 +632,7 @@ function Step3PersonalData({
                     value={prefixSearch}
                     onChange={(e) => setPrefixSearch(e.target.value)}
                     placeholder={t.wizard.searchCountry}
-                    className="w-full p-2 border border-gray-200 rounded-lg text-sm bg-white text-foreground"
+                    className="w-full p-2 border border-gray-200 rounded-lg text-base bg-white text-foreground"
                   />
                 </div>
                 {filteredPrefixes.map((prefix) => (
@@ -666,7 +666,7 @@ function Step3PersonalData({
             aria-required="true"
             aria-invalid={showFieldError('phone') ? "true" : "false"}
             aria-describedby={showFieldError('phone') ? "error-wizard-phone" : undefined}
-            className={`flex-1 p-3 border-2 rounded-xl bg-white text-gray-900 font-medium text-sm focus:ring-2 focus:ring-primary ${
+            className={`flex-1 p-3 border-2 rounded-xl bg-white text-gray-900 font-medium text-base focus:ring-2 focus:ring-primary ${
               showFieldError('phone') ? 'border-red-500' : 'border-gray-200'
             }`}
           />
@@ -692,7 +692,7 @@ function Step3PersonalData({
           aria-required="true"
           aria-invalid={showFieldError('email') ? "true" : "false"}
           aria-describedby={showFieldError('email') ? "error-wizard-email" : undefined}
-          className={`w-full p-3 border-2 rounded-xl bg-white text-gray-900 font-medium text-sm focus:ring-2 focus:ring-primary ${
+          className={`w-full p-3 border-2 rounded-xl bg-white text-gray-900 font-medium text-base focus:ring-2 focus:ring-primary ${
             showFieldError('email') ? 'border-red-500' : 'border-gray-200'
           }`}
         />
@@ -908,7 +908,7 @@ function Step4Confirm({
                     value={codeInput}
                     onChange={(e) => setCodeInput(e.target.value.toUpperCase())}
                     placeholder={t.codeValidation.enterCode}
-                    className="flex-1 p-3 bg-white text-gray-900 border-2 border-gray-200 rounded-xl text-sm font-mono uppercase tracking-wider"
+                    className="flex-1 p-3 bg-white text-gray-900 border-2 border-gray-200 rounded-xl text-base font-mono uppercase tracking-wider"
                     disabled={isValidatingCode}
                   />
                   <Button

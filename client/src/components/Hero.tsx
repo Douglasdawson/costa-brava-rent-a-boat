@@ -9,7 +9,7 @@ export default function Hero() {
   const { openBookingModal } = useBookingModal();
 
   return (
-    <div className="relative h-screen min-h-[600px] max-h-[1000px]" id="home">
+    <div className="relative h-dvh min-h-[600px] max-h-[1000px]" id="home">
       {/* Background Image - Responsive <picture> */}
       <picture>
         <source
@@ -36,7 +36,7 @@ export default function Hero() {
       <div className="relative z-10 h-full flex flex-col justify-center">
         <div className="px-4 sm:px-6 lg:px-12">
           <div className="text-center flex flex-col items-center">
-            <h1 className="font-heading font-bold text-white tracking-tight mb-6 leading-[1.15]" style={{ fontSize: '5.5vw' }}>
+            <h1 className="font-heading font-bold text-white tracking-tight mb-6 leading-[1.15]" style={{ fontSize: 'clamp(1.5rem, 5.5vw, 3.5rem)' }}>
               Alquiler de Barcos en Blanes,<br />
               Costa Brava
             </h1>
@@ -48,11 +48,11 @@ export default function Hero() {
             </p>
 
             {/* Price badges */}
-            <div className="flex items-center gap-3 mb-6">
-              <span className="w-44 py-2 rounded-full bg-[#A8C4DD]/50 backdrop-blur-sm border border-white/25 text-white text-sm font-medium tracking-wide text-center">
+            <div className="flex items-center gap-2 xs:gap-3 mb-6">
+              <span className="w-36 xs:w-44 py-2 rounded-full bg-[#A8C4DD]/50 backdrop-blur-sm border border-white/25 text-white text-xs xs:text-sm font-medium tracking-wide text-center">
                 Desde 70€
               </span>
-              <span className="w-44 py-2 rounded-full bg-[#A8C4DD]/50 backdrop-blur-sm border border-white/25 text-white text-sm font-medium tracking-wide text-center">
+              <span className="w-36 xs:w-44 py-2 rounded-full bg-[#A8C4DD]/50 backdrop-blur-sm border border-white/25 text-white text-xs xs:text-sm font-medium tracking-wide text-center">
                 Gasolina incluida
               </span>
             </div>

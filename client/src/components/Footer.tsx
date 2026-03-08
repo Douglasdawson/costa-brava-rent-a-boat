@@ -51,7 +51,7 @@ export default function Footer() {
             <a
               href="/"
               onClick={(e) => { e.preventDefault(); handleLogoClick(); }}
-              className="flex items-center space-x-2 mb-4 hover:opacity-80 transition-opacity"
+              className="flex items-center space-x-2 mb-4 hover:opacity-80 transition-opacity rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2 focus-visible:outline-none"
               data-testid="footer-logo-button"
               aria-label="Ir a la pagina principal"
             >
@@ -71,7 +71,7 @@ export default function Footer() {
                 href="https://www.instagram.com/costabravarentaboat/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-white/50 hover:text-white transition-colors"
+                className="text-white/50 hover:text-white transition-colors rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2 focus-visible:outline-none"
                 data-testid="social-instagram"
                 aria-label="Siguenos en Instagram"
               >
@@ -81,7 +81,7 @@ export default function Footer() {
                 href="https://www.facebook.com/costabravarentaboat"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-white/50 hover:text-white transition-colors"
+                className="text-white/50 hover:text-white transition-colors rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2 focus-visible:outline-none"
                 data-testid="social-facebook"
                 aria-label="Siguenos en Facebook"
               >
@@ -91,7 +91,7 @@ export default function Footer() {
                 href="https://www.tiktok.com/@costabravarentaboat"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-white/50 hover:text-white transition-colors"
+                className="text-white/50 hover:text-white transition-colors rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2 focus-visible:outline-none"
                 data-testid="social-tiktok"
                 aria-label="Siguenos en TikTok"
               >
@@ -117,12 +117,12 @@ export default function Footer() {
                     onChange={(e) => setNewsletterEmail(e.target.value)}
                     placeholder={t.locationPages.newsletter.placeholder}
                     required
-                    className="bg-white/10 border border-white/20 rounded-full px-4 py-3 text-sm text-white placeholder:text-white/50 focus:outline-none focus:border-white/40 flex-1 min-w-0"
+                    className="bg-white/10 border border-white/20 rounded-full px-4 py-3 text-base md:text-sm text-white placeholder:text-white/50 focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none focus:border-white/40 flex-1 min-w-0"
                   />
                   <button
                     type="submit"
                     disabled={newsletterState === 'loading'}
-                    className="bg-cta hover:bg-cta/90 text-white rounded-full px-6 py-3 text-sm font-medium btn-elevated disabled:opacity-50 whitespace-nowrap"
+                    className="bg-cta hover:bg-cta/90 text-white rounded-full px-6 py-3 text-sm font-medium btn-elevated disabled:opacity-50 whitespace-nowrap focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none"
                   >
                     {newsletterState === 'loading' ? '...' : t.locationPages.newsletter.button}
                   </button>
@@ -139,35 +139,35 @@ export default function Footer() {
             <h3 className="font-medium text-white mb-4 text-sm">{t.footer.information}</h3>
             <ul className="space-y-1 text-sm">
               <li>
-                <a href="#fleet" className="hover:text-white transition-colors py-1.5 block">{t.nav.fleet}</a>
+                <a href="#fleet" className="hover:text-white transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none">{t.nav.fleet}</a>
               </li>
               <li>
-                <a href="/rutas" className="hover:text-white transition-colors py-1.5 block">Destinos</a>
+                <a href="/rutas" className="hover:text-white transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none">Destinos</a>
               </li>
               <li>
-                <a href="/blog" className="hover:text-white transition-colors py-1.5 block" data-testid="footer-blog-link">{t.footer.blog}</a>
+                <a href="/blog" className="hover:text-white transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none" data-testid="footer-blog-link">{t.footer.blog}</a>
               </li>
               <li>
-                <a href="/faq" className="hover:text-white transition-colors py-1.5 block" data-testid="footer-faq-link">{t.footer.faqLabel}</a>
+                <a href="/faq" className="hover:text-white transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none" data-testid="footer-faq-link">{t.footer.faqLabel}</a>
               </li>
               <li>
-                <a href="/tarjetas-regalo" className="hover:text-white transition-colors py-1.5 block">{t.nav.giftCards}</a>
+                <a href="/tarjetas-regalo" className="hover:text-white transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none">{t.nav.giftCards}</a>
               </li>
               <li>
-                <a href="#contact" className="hover:text-white transition-colors py-1.5 block">{t.nav.contact}</a>
+                <a href="#contact" className="hover:text-white transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none">{t.nav.contact}</a>
               </li>
               <li>
-                <a href="/testimonios" className="hover:text-white transition-colors py-1.5 block" data-testid="footer-testimonials-link">{t.footer.customerReviews}</a>
+                <a href="/testimonios" className="hover:text-white transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none" data-testid="footer-testimonials-link">{t.footer.customerReviews}</a>
               </li>
               <li>
-                <a href="/galeria" className="hover:text-white transition-colors py-1.5 block">Galeria</a>
+                <a href="/galeria" className="hover:text-white transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none">Galeria</a>
               </li>
             </ul>
 
             <h3 className="font-medium text-white mb-4 text-sm mt-8">{t.footer.services}</h3>
             <ul className="space-y-1 text-sm">
-              <li><a href="/barcos-sin-licencia" className="hover:text-white transition-colors py-1.5 block">{t.boats.withoutLicense}</a></li>
-              <li><a href="/barcos-con-licencia" className="hover:text-white transition-colors py-1.5 block">{t.boats.withLicense}</a></li>
+              <li><a href="/barcos-sin-licencia" className="hover:text-white transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none">{t.boats.withoutLicense}</a></li>
+              <li><a href="/barcos-con-licencia" className="hover:text-white transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none">{t.boats.withLicense}</a></li>
             </ul>
           </div>
 
@@ -236,10 +236,10 @@ export default function Footer() {
         <div className="border-t border-white/10 mt-12 pt-8">
           <div className="flex flex-col items-center gap-3">
             <div className="text-white/60 text-sm flex flex-wrap gap-2 sm:gap-4 justify-center">
-              <a href="/terms-conditions" className="hover:text-white/60 transition-colors" data-testid="footer-terms-link">{t.footer.terms}</a>
-              <a href="/privacy-policy" className="hover:text-white/60 transition-colors" data-testid="footer-privacy-link">{t.footer.privacy}</a>
-              <a href="/cookies-policy" className="hover:text-white/60 transition-colors" data-testid="footer-cookies-link">{t.footer.cookiesPolicy}</a>
-              <a href="/accesibilidad" className="hover:text-white/60 transition-colors" data-testid="footer-accessibility-link">Accesibilidad</a>
+              <a href="/terms-conditions" className="hover:text-white/60 transition-colors rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none" data-testid="footer-terms-link">{t.footer.terms}</a>
+              <a href="/privacy-policy" className="hover:text-white/60 transition-colors rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none" data-testid="footer-privacy-link">{t.footer.privacy}</a>
+              <a href="/cookies-policy" className="hover:text-white/60 transition-colors rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none" data-testid="footer-cookies-link">{t.footer.cookiesPolicy}</a>
+              <a href="/accesibilidad" className="hover:text-white/60 transition-colors rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none" data-testid="footer-accessibility-link">Accesibilidad</a>
             </div>
             <p className="text-white/40 text-xs text-center">
               {currentYear} Costa Brava Rent a Boat Blanes. {t.footer.rights}

@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
-import { CalendarIcon, Check, Loader2, X } from "lucide-react";
+import { CalendarIcon, Check, ClipboardList, Loader2, X } from "lucide-react";
+import { Checkbox } from "@/components/ui/checkbox";
 import { SiWhatsapp } from "react-icons/si";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Calendar } from "@/components/ui/calendar";
@@ -17,10 +18,26 @@ const slideVariants = {
   exit: (dir: number) => ({ x: dir > 0 ? -80 : 80, opacity: 0 }),
 };
 
+const LOCALE_MAP_DESKTOP: Record<string, string> = {
+  es: 'es-ES', ca: 'ca-ES', en: 'en-GB', fr: 'fr-FR',
+  de: 'de-DE', nl: 'nl-NL', it: 'it-IT', ru: 'ru-RU',
+};
+
+function formatBookingDateDesktop(dateStr: string, language: string): string {
+  if (!dateStr) return '--';
+  try {
+    const date = new Date(dateStr + 'T12:00:00');
+    const locale = LOCALE_MAP_DESKTOP[language] || 'es-ES';
+    return date.toLocaleDateString(locale, { day: 'numeric', month: 'long', year: 'numeric' });
+  } catch {
+    return dateStr;
+  }
+}
+
 export default function BookingFormDesktop(props: BookingWizardMobileProps) {
   const {
-    currentStep, onNext, onBack,
-    holdExpiresAt, holdExpired, onHoldExpired,
+    currentStep, onNext, onBack, onGoToStep,
+    holdExpiresAt, holdExpired, onHoldExpired, onHoldVerify,
     licenseFilter, setLicenseFilter,
     selectedBoat, setSelectedBoat,
     selectedDate, setSelectedDate,
@@ -116,10 +133,15 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
         />
       </div>
 
-      {/* Hold countdown timer */}
-      {holdExpiresAt && currentStep >= 3 && (
+      {/* Hold countdown timer — only visible on final step */}
+      {holdExpiresAt && currentStep === 4 && (
         <div className="flex-shrink-0 px-6 pt-3">
-          <HoldCountdown expiresAt={holdExpiresAt} onExpired={onHoldExpired} />
+          <HoldCountdown
+            expiresAt={holdExpiresAt}
+            onExpired={onHoldExpired}
+            softExpiry
+            onVerify={onHoldVerify}
+          />
         </div>
       )}
 
@@ -156,6 +178,8 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
                 numberOfPeople={numberOfPeople} setNumberOfPeople={setNumberOfPeople}
                 durationOptions={durationOptions} maxCapacity={maxCapacity}
                 selectedBoatInfo={selectedBoatInfo} timeSlots={timeSlots}
+                unavailableTimeSlots={props.unavailableTimeSlots}
+                selectedTimeMaxDuration={props.selectedTimeMaxDuration}
                 showFieldError={showFieldError} getFieldError={getFieldError} handleBlur={handleBlur}
                 t={t} inputBase={inputBase} inputError={inputError} inputNormal={inputNormal}
               />
@@ -188,6 +212,12 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
                 codeError={codeError} handleValidateCode={handleValidateCode}
                 handleRemoveCode={handleRemoveCode}
                 price={price} totalExtrasPrice={totalExtrasPrice} discount={discount}
+                selectedBoatInfo={selectedBoatInfo}
+                selectedDate={selectedDate} selectedDuration={selectedDuration}
+                preferredTime={preferredTime} numberOfPeople={numberOfPeople}
+                selectedExtras={selectedExtras} selectedPack={selectedPack}
+                extrasInPack={extrasInPack} language={props.language}
+                onGoToStep={onGoToStep}
                 privacyConsent={privacyConsent} setPrivacyConsent={setPrivacyConsent}
                 showFieldError={showFieldError} getFieldError={getFieldError} handleBlur={handleBlur}
                 t={t} inputBase={inputBase} inputError={inputError} inputNormal={inputNormal}
@@ -223,7 +253,7 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
                 await handleBookingSearch();
                 setIsSubmitting(false);
               }}
-              disabled={isSubmitting}
+              disabled={isSubmitting || !privacyConsent}
               className="bg-[#25D366] hover:bg-[#1ebe5d] text-white rounded-full px-8 py-2.5 font-medium text-sm border-0 disabled:opacity-50 disabled:cursor-not-allowed btn-elevated"
             >
               {isSubmitting
@@ -421,10 +451,12 @@ interface Step2Props {
   setPreferredTime: (v: string) => void;
   numberOfPeople: string;
   setNumberOfPeople: (v: string) => void;
-  durationOptions: { value: string; label: string }[];
+  durationOptions: { value: string; label: string; disabled?: boolean; disabledReason?: string }[];
   maxCapacity: number;
   selectedBoatInfo: BookingWizardMobileProps["selectedBoatInfo"];
   timeSlots: string[];
+  unavailableTimeSlots: Set<string>;
+  selectedTimeMaxDuration: number | null;
   showFieldError: (f: string) => boolean;
   getFieldError: (f: string) => string;
   handleBlur: (f: string) => void;
@@ -440,40 +472,13 @@ function Step2Details({
   numberOfPeople, setNumberOfPeople,
   durationOptions, maxCapacity,
   selectedBoatInfo, timeSlots,
+  unavailableTimeSlots, selectedTimeMaxDuration,
   showFieldError, getFieldError, handleBlur,
   t, inputBase, inputError, inputNormal,
 }: Step2Props) {
   return (
     <div className="space-y-5">
-      {/* Duration */}
-      <div>
-        <label className="block text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-2">
-          {t.wizard.duration}
-        </label>
-        <div className="grid grid-cols-3 gap-2">
-          {durationOptions.map((opt) => {
-            const parts = opt.label.split(' - ');
-            const priceText = parts.length > 1 && parts[parts.length - 1].includes('€') ? parts[parts.length - 1] : null;
-            const labelText = priceText ? parts.slice(0, -1).join(' · ') : opt.label;
-            return (
-              <button
-                key={opt.value}
-                type="button"
-                onClick={() => setSelectedDuration(opt.value)}
-                className={`py-3 px-2 rounded-lg border-2 text-center transition-all ${
-                  selectedDuration === opt.value ? "border-[#0D0D2B] bg-[#0D0D2B]/5" : "border-[#A8C4DD]/40 bg-white hover:border-[#A8C4DD]"
-                }`}
-              >
-                <p className="text-sm font-semibold text-foreground">{labelText}</p>
-                {priceText && <p className="text-xs font-bold text-[#0D0D2B]">{priceText}</p>}
-              </button>
-            );
-          })}
-        </div>
-        {showFieldError('duration') && <p className="text-xs text-red-500 mt-1">{getFieldError('duration')}</p>}
-      </div>
-
-      {/* Time */}
+      {/* Time — shown before duration so maxDuration can filter durations */}
       <div>
         <label htmlFor="desktop-time" className="block text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-2">
           {t.wizard.departureTime}
@@ -488,11 +493,58 @@ function Step2Details({
           className={`${inputBase} ${showFieldError('time') ? inputError : inputNormal}`}
         >
           <option value="">{t.wizard.selectTime}</option>
-          {timeSlots.map((time) => (
-            <option key={time} value={time}>{time}h</option>
-          ))}
+          {timeSlots.map((time) => {
+            const isUnavailable = unavailableTimeSlots.has(time);
+            return (
+              <option key={time} value={time} disabled={isUnavailable}>
+                {time}h{isUnavailable ? " - Reservado" : ""}
+              </option>
+            );
+          })}
         </select>
         {showFieldError('time') && <p className="text-xs text-red-500 mt-1">{getFieldError('time')}</p>}
+      </div>
+
+      {/* Duration */}
+      <div>
+        <label className="block text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-2">
+          {t.wizard.duration}
+        </label>
+        <div className="grid grid-cols-3 gap-2">
+          {durationOptions.map((opt) => {
+            const durationHours = parseInt(opt.value.replace("h", ""));
+            const exceedsMax = selectedTimeMaxDuration !== null && durationHours > selectedTimeMaxDuration;
+            const isSeasonRestricted = !!opt.disabled;
+            const isDisabled = exceedsMax || isSeasonRestricted;
+            const parts = opt.label.split(' - ');
+            const priceText = parts.length > 1 && parts[parts.length - 1].includes('€') ? parts[parts.length - 1] : null;
+            const labelText = priceText ? parts.slice(0, -1).join(' · ') : opt.label;
+            return (
+              <button
+                key={opt.value}
+                type="button"
+                disabled={isDisabled}
+                onClick={() => !isDisabled && setSelectedDuration(opt.value)}
+                title={isSeasonRestricted ? opt.disabledReason : undefined}
+                className={`py-3 px-2 rounded-lg border-2 text-center transition-all ${
+                  isDisabled
+                    ? "border-gray-100 bg-gray-50 opacity-50 cursor-not-allowed"
+                    : selectedDuration === opt.value
+                    ? "border-[#0D0D2B] bg-[#0D0D2B]/5"
+                    : "border-[#A8C4DD]/40 bg-white hover:border-[#A8C4DD]"
+                }`}
+              >
+                <p className={`text-sm font-semibold ${isDisabled ? "text-gray-400 line-through" : "text-foreground"}`}>{labelText}</p>
+                {isDisabled ? (
+                  <p className="text-xs text-amber-600 font-medium">{opt.disabledReason || t.boats.notAvailable}</p>
+                ) : priceText ? (
+                  <p className="text-xs font-bold text-[#0D0D2B]">{priceText}</p>
+                ) : null}
+              </button>
+            );
+          })}
+        </div>
+        {showFieldError('duration') && <p className="text-xs text-red-500 mt-1">{getFieldError('duration')}</p>}
       </div>
 
       {/* People */}
@@ -512,7 +564,7 @@ function Step2Details({
             }}
             disabled={!numberOfPeople || parseInt(numberOfPeople) <= 0}
             aria-label="Reducir número de personas"
-            className="w-9 h-9 rounded-full border-2 border-[#A8C4DD]/40 flex items-center justify-center font-bold text-muted-foreground disabled:opacity-30 hover:border-[#0D0D2B] hover:text-[#0D0D2B] transition-colors text-lg"
+            className="w-11 h-11 rounded-full border-2 border-[#A8C4DD]/40 flex items-center justify-center font-bold text-muted-foreground disabled:opacity-30 hover:border-[#0D0D2B] hover:text-[#0D0D2B] transition-colors text-lg"
           >−</button>
           <span className="text-2xl font-bold text-foreground min-w-[2rem] text-center">
             {numberOfPeople || '0'}
@@ -525,7 +577,7 @@ function Step2Details({
             }}
             disabled={!!numberOfPeople && parseInt(numberOfPeople) >= maxCapacity}
             aria-label="Aumentar número de personas"
-            className="w-9 h-9 rounded-full border-2 border-[#A8C4DD]/40 flex items-center justify-center font-bold text-muted-foreground disabled:opacity-30 hover:border-[#0D0D2B] hover:text-[#0D0D2B] transition-colors text-lg"
+            className="w-11 h-11 rounded-full border-2 border-[#A8C4DD]/40 flex items-center justify-center font-bold text-muted-foreground disabled:opacity-30 hover:border-[#0D0D2B] hover:text-[#0D0D2B] transition-colors text-lg"
           >+</button>
         </div>
         {showFieldError('people') && <p className="text-xs text-red-500 mt-1">{getFieldError('people')}</p>}
@@ -637,7 +689,7 @@ function Step3Extras({
                 {extra.name}
               </span>
               {inPack ? (
-                <span className="text-[10px] text-[#0D0D2B] font-semibold">
+                <span className="text-xs text-[#0D0D2B] font-semibold">
                   {t.booking.extrasSection.included.toLowerCase()}
                 </span>
               ) : (
@@ -678,6 +730,16 @@ interface Step4Props {
   price: number | null;
   totalExtrasPrice: number;
   discount: number;
+  selectedBoatInfo: BookingWizardMobileProps["selectedBoatInfo"];
+  selectedDate: string;
+  selectedDuration: string;
+  preferredTime: string;
+  numberOfPeople: string;
+  selectedExtras: string[];
+  selectedPack: string | null;
+  extrasInPack: Set<string>;
+  language: string;
+  onGoToStep: (step: number) => void;
   privacyConsent: boolean; setPrivacyConsent: (v: boolean) => void;
   showFieldError: (f: string) => boolean;
   getFieldError: (f: string) => string;
@@ -699,12 +761,78 @@ function Step4Contact({
   codeInput, setCodeInput, isValidatingCode,
   validatedCode, codeError, handleValidateCode, handleRemoveCode,
   price, totalExtrasPrice, discount,
+  selectedBoatInfo,
+  selectedDate, selectedDuration, preferredTime, numberOfPeople,
+  selectedExtras, selectedPack, extrasInPack,
+  language, onGoToStep,
   privacyConsent, setPrivacyConsent,
   showFieldError, getFieldError, handleBlur,
   t, inputBase, inputError, inputNormal,
 }: Step4Props) {
+  const depositStr = selectedBoatInfo?.specifications?.deposit;
+  const depositAmount = depositStr ? parseInt(depositStr.replace(/[^0-9]/g, '')) : null;
+
+  // Build extras display text for review card
+  const extrasDisplay = (() => {
+    const parts: string[] = [];
+    if (selectedPack) {
+      const pack = EXTRA_PACKS.find(p => p.id === selectedPack);
+      if (pack) parts.push(pack.name);
+    }
+    const nonPackExtras = selectedExtras.filter(e => !extrasInPack.has(e));
+    parts.push(...nonPackExtras);
+    return parts;
+  })();
+
   return (
     <div className="space-y-4">
+      {/* Review summary card */}
+      <div className="bg-[#A8C4DD]/10 border border-[#A8C4DD]/30 rounded-xl p-4">
+        <div className="flex items-center justify-between mb-3">
+          <div className="flex items-center gap-2">
+            <ClipboardList className="w-4 h-4 text-[#0D0D2B]/70" />
+            <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">
+              {t.reviewSummary?.title || 'Resumen de tu reserva'}
+            </p>
+          </div>
+          <button
+            type="button"
+            onClick={() => onGoToStep(1)}
+            className="text-xs font-medium text-[#0D0D2B]/70 hover:text-[#0D0D2B] transition-colors underline underline-offset-2"
+          >
+            {t.reviewSummary?.modify || 'Modificar'}
+          </button>
+        </div>
+        <div className="grid grid-cols-2 gap-x-4 gap-y-1.5 text-sm">
+          <div className="flex justify-between col-span-2">
+            <span className="text-muted-foreground">{t.booking.boat}</span>
+            <span className="font-medium text-foreground">{selectedBoatInfo?.name || '--'}</span>
+          </div>
+          <div className="flex justify-between col-span-2">
+            <span className="text-muted-foreground">{t.booking.date}</span>
+            <span className="font-medium text-foreground">{formatBookingDateDesktop(selectedDate, language)}</span>
+          </div>
+          <div className="flex justify-between">
+            <span className="text-muted-foreground">{t.booking.preferredTime}</span>
+            <span className="font-medium text-foreground">{preferredTime}h</span>
+          </div>
+          <div className="flex justify-between">
+            <span className="text-muted-foreground">{t.booking.duration}</span>
+            <span className="font-medium text-foreground">{selectedDuration}</span>
+          </div>
+          <div className="flex justify-between col-span-2">
+            <span className="text-muted-foreground">{t.booking.people}</span>
+            <span className="font-medium text-foreground">{numberOfPeople}</span>
+          </div>
+          {extrasDisplay.length > 0 && (
+            <div className="flex justify-between col-span-2">
+              <span className="text-muted-foreground">{t.booking.extras}</span>
+              <span className="font-medium text-foreground text-right">{extrasDisplay.join(', ')}</span>
+            </div>
+          )}
+        </div>
+      </div>
+
       {/* Personal data */}
       <div>
         <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-2">{t.wizard.yourData}</p>
@@ -825,7 +953,7 @@ function Step4Contact({
               <div className="flex items-center justify-between bg-[#0D0D2B]/5 border border-[#0D0D2B]/20 rounded-lg p-2.5">
                 <div>
                   <p className="text-xs font-bold text-[#0D0D2B]">{validatedCode.code}</p>
-                  <p className="text-[10px] text-[#0D0D2B]">
+                  <p className="text-xs text-[#0D0D2B]">
                     {validatedCode.type === 'gift_card'
                       ? `-${discount}\u20AC`
                       : `-${validatedCode.percentage}% (-${discount}\u20AC)`}
@@ -833,7 +961,7 @@ function Step4Contact({
                 </div>
                 <button
                   type="button" onClick={handleRemoveCode}
-                  className="text-muted-foreground/70 hover:text-red-500 transition-colors"
+                  className="text-muted-foreground/70 hover:text-red-500 transition-colors p-2 -m-1 min-w-[44px] min-h-[44px] flex items-center justify-center"
                   aria-label="Eliminar"
                 >
                   <X className="w-4 h-4" />
@@ -894,23 +1022,48 @@ function Step4Contact({
                 {price + totalExtrasPrice - discount}€
               </span>
             </div>
+            {depositAmount && (
+              <div className="flex justify-between text-sm mt-2 pt-2 border-t border-[#A8C4DD]/20 border-dashed">
+                <span className="text-muted-foreground/70">
+                  {t.pricing?.depositLabel || 'Fianza'} ({t.pricing?.depositRefundable || 'reembolsable'})
+                </span>
+                <span className="font-medium text-muted-foreground">{depositAmount}€</span>
+              </div>
+            )}
           </div>
           <p className="text-xs text-muted-foreground/70 mt-2">{t.booking.priceConfirmedWhatsApp}</p>
+          {depositAmount && (
+            <p className="text-xs text-muted-foreground/50 mt-0.5">
+              {t.pricing?.payAtPort || 'Se paga y devuelve en el puerto'}
+            </p>
+          )}
         </div>
       )}
 
-      {/* RGPD implicit consent notice */}
-      <p className="text-xs text-muted-foreground">
-        {t.booking.gdprConsent.split('{privacyPolicy}')[0]}
-        <a href="/privacy-policy" target="_blank" rel="noopener noreferrer" className="text-[#0D0D2B] underline">
-          {t.booking.gdprPrivacyLink}
-        </a>
-        {(t.booking.gdprConsent.split('{privacyPolicy}')[1] || '').split('{termsAndConditions}')[0]}
-        <a href="/terms-conditions" target="_blank" rel="noopener noreferrer" className="text-[#0D0D2B] underline">
-          {t.booking.gdprTermsLink}
-        </a>
-        {(t.booking.gdprConsent.split('{privacyPolicy}')[1] || '').split('{termsAndConditions}')[1] || ''}
-      </p>
+      {/* RGPD consent checkbox */}
+      <div className="flex items-start gap-3">
+        <Checkbox
+          id="desktop-privacy-consent"
+          checked={privacyConsent}
+          onCheckedChange={(checked) => setPrivacyConsent(checked === true)}
+          aria-required="true"
+          className="mt-0.5 h-4 w-4 flex-shrink-0"
+        />
+        <label
+          htmlFor="desktop-privacy-consent"
+          className="text-sm text-muted-foreground leading-relaxed cursor-pointer select-none"
+        >
+          {t.booking.gdprConsent.split('{privacyPolicy}')[0]}
+          <a href="/privacy-policy" target="_blank" rel="noopener noreferrer" className="text-[#0D0D2B] underline hover:text-[#0D0D2B]/80" onClick={(e) => e.stopPropagation()}>
+            {t.booking.gdprPrivacyLink}
+          </a>
+          {(t.booking.gdprConsent.split('{privacyPolicy}')[1] || '').split('{termsAndConditions}')[0]}
+          <a href="/condiciones-generales" target="_blank" rel="noopener noreferrer" className="text-[#0D0D2B] underline hover:text-[#0D0D2B]/80" onClick={(e) => e.stopPropagation()}>
+            {t.booking.gdprTermsLink}
+          </a>
+          {(t.booking.gdprConsent.split('{privacyPolicy}')[1] || '').split('{termsAndConditions}')[1] || ''}
+        </label>
+      </div>
     </div>
   );
 }

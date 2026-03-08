@@ -112,6 +112,7 @@ export interface IStorage {
   getBookingsForCalendar(params: { startDate: Date; endDate: Date; boatId?: string }): Promise<Booking[]>;
   createBookingExtra(extra: InsertBookingExtra): Promise<BookingExtra>;
   getBookingExtras(bookingId: string): Promise<BookingExtra[]>;
+  getDailyBookings(boatId: string, date: Date): Promise<Booking[]>;
   getMonthlyBookings(boatId: string, year: number, month: number): Promise<Booking[]>;
   checkAvailability(boatId: string, startTime: Date, endTime: Date): Promise<boolean>;
   checkAvailabilityAndCreateBooking(boatId: string, startTime: Date, endTime: Date, bookingData: InsertBooking): Promise<{ available: true; booking: Booking } | { available: false; booking: null }>;

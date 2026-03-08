@@ -300,9 +300,9 @@ export const it: Translations = {
     basePrice: 'Prezzo base',
     discountApplied: 'Sconto applicato',
     priceConfirmedWhatsApp: 'Il prezzo finale è confermato via WhatsApp',
-    gdprConsent: "Inviando questa richiesta di prenotazione, accetti la {privacyPolicy} e i {termsAndConditions}. I tuoi dati saranno trattati per gestire la tua prenotazione (GDPR Art. 6.1.b).",
+    gdprConsent: "Ho letto e accetto la {privacyPolicy} e le {termsAndConditions}. I miei dati saranno trattati per gestire la mia prenotazione (GDPR Art. 6.1.b).",
     gdprPrivacyLink: 'Informativa sulla Privacy',
-    gdprTermsLink: 'Termini e Condizioni',
+    gdprTermsLink: 'Condizioni Generali',
   },
   faq: {
     title: 'Domande Frequenti',
@@ -554,6 +554,8 @@ export const it: Translations = {
     searchCountry: 'Cerca paese...',
     email: 'Email',
     date: 'Data',
+    durationMinPeakSeason: 'Min. {duration} ad agosto (alta stagione)',
+    durationMinWeekend: 'Min. {duration} nei fine settimana',
   },
   validation: {
     required: 'Questo campo e obbligatorio',
@@ -924,6 +926,9 @@ export const it: Translations = {
   pricing: {
     save: 'Risparmia',
     highSeason: 'Alta stagione',
+    depositLabel: 'Cauzione',
+    depositRefundable: 'rimborsabile',
+    payAtPort: 'Si paga e restituisce al porto',
   },
 
   recommendation: {
@@ -934,11 +939,18 @@ export const it: Translations = {
     all: 'Tutti',
   },
 
+  reviewSummary: {
+    title: 'Riepilogo della prenotazione',
+    modify: 'Modifica',
+  },
+
   holdCountdown: {
     reserved: 'La tua barca e riservata per',
     expired: 'La tua prenotazione e scaduta',
     selectAnother: 'Seleziona un altro orario',
     hurry: 'Affrettati',
+    expiredSoft: 'La tua selezione potrebbe essere cambiata. Puoi continuare, ma ti consigliamo di verificare la disponibilita.',
+    verifyButton: 'Verificare',
   },
 
   seasonBanner: {

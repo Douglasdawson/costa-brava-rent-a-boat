@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useMemo } from "react";
+import { useState, useEffect, useRef, useMemo, useCallback } from "react";
 import { Package, Crown, Zap, Snowflake, Eye, Waves, CircleParking, Beer } from "lucide-react";
 import { openWhatsApp } from "@/utils/whatsapp";
 import { useToast } from "@/hooks/use-toast";
@@ -9,7 +9,7 @@ import type { Boat } from "@shared/schema";
 import { trackBookingStarted } from "@/utils/analytics";
 import { getStoredUtm } from "@/hooks/useUtmCapture";
 import { BOAT_DATA, EXTRA_PACKS } from "@shared/boatData";
-import { calculateExtrasPrice, calculatePackSavings } from "@shared/pricing";
+import { calculateExtrasPrice, calculatePackSavings, getAvailableDurationsForDate, type DurationOption } from "@shared/pricing";
 import BookingWizardMobile from "@/components/BookingWizardMobile";
 import BookingFormDesktop from "@/components/BookingFormDesktop";
 import { BookingConfirmation } from "@/components/BookingConfirmation";
@@ -22,6 +22,12 @@ const TIME_SLOTS = [
   "11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00", "14:30",
   "15:00", "15:30", "16:00", "16:30", "17:00", "17:30", "18:00",
 ];
+
+/** Availability data returned by GET /api/availability */
+export interface SlotAvailability {
+  availableSlots: { time: string; maxDuration: number }[];
+  unavailableSlots: string[];
+}
 
 // Map icon name strings from boatData to Lucide icon components
 const ICON_MAP: Record<string, React.ComponentType<{ className?: string }>> = {
@@ -87,7 +93,7 @@ export default function BookingFormWidget({ preSelectedBoatId, prefillDate, pref
   const [currentStep, setCurrentStep] = useState(1);
   const prevSeasonRef = useRef<string>("");
 
-  // Hold countdown: starts when user reaches step 3 (Extras)
+  // Hold countdown: starts when user reaches step 4 (final step)
   const [holdExpiresAt, setHoldExpiresAt] = useState<string | null>(null);
   const [holdExpired, setHoldExpired] = useState(false);
 
@@ -105,6 +111,99 @@ export default function BookingFormWidget({ preSelectedBoatId, prefillDate, pref
   const handleBlur = (field: string) => {
     setTouched(prev => ({ ...prev, [field]: true }));
   };
+
+  // --- H2: sessionStorage persistence ---
+  const STORAGE_KEY = "bookingFormState";
+  const STORAGE_MAX_AGE_MS = 30 * 60 * 1000; // 30 minutes
+  const hasRestoredRef = useRef(false);
+
+  // Restore saved state on mount (only if < 30 minutes old)
+  useEffect(() => {
+    if (hasRestoredRef.current) return;
+    hasRestoredRef.current = true;
+    try {
+      const raw = sessionStorage.getItem(STORAGE_KEY);
+      if (!raw) return;
+      const saved = JSON.parse(raw) as {
+        timestamp: number;
+        selectedBoat: string;
+        selectedDate: string;
+        preferredTime: string;
+        selectedDuration: string;
+        currentStep: number;
+        selectedExtras: string[];
+        selectedPack: string | null;
+        firstName: string;
+        lastName: string;
+        phonePrefix: string;
+        phoneNumber: string;
+        email: string;
+        numberOfPeople: string;
+        licenseFilter: "with" | "without";
+      };
+      // Discard if too old
+      if (Date.now() - saved.timestamp > STORAGE_MAX_AGE_MS) {
+        sessionStorage.removeItem(STORAGE_KEY);
+        return;
+      }
+      // Only restore if there's no pre-selected boat overriding, and the saved state has meaningful data
+      if (saved.selectedBoat && !preSelectedBoatId) setSelectedBoat(saved.selectedBoat);
+      if (saved.selectedDate && !prefillDate) setSelectedDate(saved.selectedDate);
+      if (saved.preferredTime && !prefillTime) setPreferredTime(saved.preferredTime);
+      if (saved.selectedDuration) setSelectedDuration(saved.selectedDuration);
+      if (saved.selectedExtras?.length) setSelectedExtras(saved.selectedExtras);
+      if (saved.selectedPack) setSelectedPack(saved.selectedPack);
+      if (saved.firstName) setFirstName(saved.firstName);
+      if (saved.lastName) setLastName(saved.lastName);
+      if (saved.phonePrefix) setPhonePrefix(saved.phonePrefix);
+      if (saved.phoneNumber) setPhoneNumber(saved.phoneNumber);
+      if (saved.email) setEmail(saved.email);
+      if (saved.numberOfPeople && saved.numberOfPeople !== "0") setNumberOfPeople(saved.numberOfPeople);
+      if (saved.licenseFilter) setLicenseFilter(saved.licenseFilter);
+      // Restore step, but cap at 1 less than saved so user re-confirms
+      if (saved.currentStep > 1) setCurrentStep(Math.min(saved.currentStep, 4));
+    } catch {
+      // Silently ignore corrupted storage
+      sessionStorage.removeItem(STORAGE_KEY);
+    }
+  }, []);
+
+  // Save form state to sessionStorage whenever key fields change
+  useEffect(() => {
+    // Don't save until restoration has happened
+    if (!hasRestoredRef.current) return;
+    try {
+      const stateToSave = {
+        timestamp: Date.now(),
+        selectedBoat,
+        selectedDate,
+        preferredTime,
+        selectedDuration,
+        currentStep,
+        selectedExtras,
+        selectedPack,
+        firstName,
+        lastName,
+        phonePrefix,
+        phoneNumber,
+        email,
+        numberOfPeople,
+        licenseFilter,
+      };
+      sessionStorage.setItem(STORAGE_KEY, JSON.stringify(stateToSave));
+    } catch {
+      // Silently ignore (e.g. storage full)
+    }
+  }, [
+    selectedBoat, selectedDate, preferredTime, selectedDuration, currentStep,
+    selectedExtras, selectedPack, firstName, lastName, phonePrefix, phoneNumber,
+    email, numberOfPeople, licenseFilter,
+  ]);
+
+  // Clear sessionStorage on successful booking completion
+  const clearBookingStorage = useCallback(() => {
+    try { sessionStorage.removeItem(STORAGE_KEY); } catch { /* ignore */ }
+  }, []);
 
   const { toast } = useToast();
   const t = useTranslations();
@@ -173,6 +272,59 @@ export default function BookingFormWidget({ preSelectedBoatId, prefillDate, pref
     queryKey: ["/api/boats"],
   });
 
+  // Fetch real-time slot availability when boat + date are selected
+  const { data: slotAvailability, isLoading: isAvailabilityLoading } = useQuery<SlotAvailability>({
+    queryKey: ["/api/availability", selectedBoat, selectedDate],
+    queryFn: async () => {
+      const res = await fetch(`/api/availability?boatId=${encodeURIComponent(selectedBoat)}&date=${encodeURIComponent(selectedDate)}`);
+      if (!res.ok) throw new Error("Failed to fetch availability");
+      return res.json();
+    },
+    enabled: !!selectedBoat && !!selectedDate,
+    staleTime: 60_000, // matches server Cache-Control
+    refetchOnWindowFocus: true,
+  });
+
+  // Build a set of unavailable time slots for quick lookup
+  const unavailableTimeSlots = useMemo(() => {
+    if (!slotAvailability) return new Set<string>();
+    return new Set(slotAvailability.unavailableSlots);
+  }, [slotAvailability]);
+
+  // Build a map of time -> maxDuration for available slots
+  const slotMaxDuration = useMemo(() => {
+    const map = new Map<string, number>();
+    if (slotAvailability) {
+      for (const slot of slotAvailability.availableSlots) {
+        map.set(slot.time, slot.maxDuration);
+      }
+    }
+    return map;
+  }, [slotAvailability]);
+
+  // Get max duration for the currently selected time slot
+  const selectedTimeMaxDuration = useMemo(() => {
+    if (!preferredTime || !slotMaxDuration.has(preferredTime)) return null;
+    return slotMaxDuration.get(preferredTime) ?? null;
+  }, [preferredTime, slotMaxDuration]);
+
+  // Reset time if it becomes unavailable
+  useEffect(() => {
+    if (preferredTime && unavailableTimeSlots.has(preferredTime)) {
+      setPreferredTime("");
+    }
+  }, [unavailableTimeSlots, preferredTime]);
+
+  // Reset duration if it exceeds maxDuration for the selected time slot
+  useEffect(() => {
+    if (selectedDuration && selectedTimeMaxDuration !== null) {
+      const durationHours = parseInt(selectedDuration.replace("h", ""));
+      if (durationHours > selectedTimeMaxDuration) {
+        setSelectedDuration("");
+      }
+    }
+  }, [selectedTimeMaxDuration, selectedDuration]);
+
   // Filter boats based on license selection
   const filteredBoats = allBoats.filter(boat => {
     if (licenseFilter === "with") return !!boat.requiresLicense;
@@ -210,8 +362,28 @@ export default function BookingFormWidget({ preSelectedBoatId, prefillDate, pref
     return "BAJA";
   };
 
-  // Duration options based on license requirement
-  const getDurationOptions = () => {
+  // Map duration keys to i18n labels
+  const durationLabelMap: Record<string, string> = {
+    "1h": t.booking.oneHour || "1 hora",
+    "2h": t.booking.twoHours || "2 horas",
+    "3h": t.booking.threeHours || "3 horas",
+    "4h": t.booking.fourHours || "4 horas - Medio dia",
+    "6h": t.booking.sixHours || "6 horas",
+    "8h": t.booking.eightHours || "8 horas - Dia completo",
+  };
+
+  // Build the restriction tooltip for a disabled duration option
+  const getRestrictionTooltip = (opt: DurationOption): string => {
+    if (!opt.restrictionReason || !opt.minimumRequired) return '';
+    const minLabel = durationLabelMap[opt.minimumRequired] || opt.minimumRequired;
+    if (opt.restrictionReason === 'peakSeasonMinimum') {
+      return t.wizard.durationMinPeakSeason.replace('{duration}', opt.minimumRequired);
+    }
+    return t.wizard.durationMinWeekend.replace('{duration}', opt.minimumRequired);
+  };
+
+  // Duration options based on boat, license, date, and season restrictions
+  const getDurationOptions = (): { value: string; label: string; disabled?: boolean; disabledReason?: string }[] => {
     const getPriceForDuration = (durationKey: string) => {
       if (!selectedBoatInfo || !selectedBoatInfo.pricing) return null;
 
@@ -225,67 +397,102 @@ export default function BookingFormWidget({ preSelectedBoatId, prefillDate, pref
       return price ? `${baseLabel} - ${price}€` : baseLabel;
     };
 
+    // When we have both a boat and a date, use the shared date-aware filter
+    if (selectedBoatInfo && selectedDate) {
+      const date = new Date(selectedDate + 'T12:00:00');
+      let durationAvailability: DurationOption[];
+      try {
+        durationAvailability = getAvailableDurationsForDate(selectedBoatInfo.id, date);
+      } catch {
+        // Outside operational season — fall back to showing all boat durations without restriction
+        durationAvailability = [];
+      }
+
+      if (durationAvailability.length > 0) {
+        return durationAvailability.map((opt) => {
+          const baseLabel = durationLabelMap[opt.duration] || opt.duration;
+          const label = formatLabel(opt.duration, baseLabel);
+          if (!opt.available) {
+            return {
+              value: opt.duration,
+              label: baseLabel,
+              disabled: true,
+              disabledReason: getRestrictionTooltip(opt),
+            };
+          }
+          return { value: opt.duration, label };
+        });
+      }
+    }
+
+    // Fallback: no boat selected yet, or date not set — show generic options by license type
     if (!selectedBoatInfo) {
       if (licenseFilter === "with") {
         return [
           { value: "2h", label: t.booking.twoHours || "2 horas" },
-          { value: "4h", label: t.booking.fourHours || "4 horas - Medio día" },
-          { value: "8h", label: t.booking.eightHours || "8 horas - Día completo" },
-        ];
-      } else if (licenseFilter === "without") {
-        return [
-          { value: "1h", label: t.booking.oneHour || "1 hora" },
-          { value: "2h", label: t.booking.twoHours || "2 horas" },
-          { value: "3h", label: t.booking.threeHours || "3 horas" },
-          { value: "4h", label: t.booking.fourHours || "4 horas - Medio día" },
-          { value: "6h", label: t.booking.sixHours || "6 horas" },
-          { value: "8h", label: t.booking.eightHours || "8 horas - Día completo" },
+          { value: "4h", label: t.booking.fourHours || "4 horas - Medio dia" },
+          { value: "8h", label: t.booking.eightHours || "8 horas - Dia completo" },
         ];
       }
       return [
         { value: "1h", label: t.booking.oneHour || "1 hora" },
         { value: "2h", label: t.booking.twoHours || "2 horas" },
         { value: "3h", label: t.booking.threeHours || "3 horas" },
-        { value: "4h", label: t.booking.fourHours || "4 horas - Medio día" },
+        { value: "4h", label: t.booking.fourHours || "4 horas - Medio dia" },
         { value: "6h", label: t.booking.sixHours || "6 horas" },
-        { value: "8h", label: t.booking.eightHours || "8 horas - Día completo" },
+        { value: "8h", label: t.booking.eightHours || "8 horas - Dia completo" },
       ];
     }
 
+    // Boat selected but no date — show boat-specific durations without restrictions
     if (selectedBoatInfo.requiresLicense) {
       return [
         { value: "2h", label: formatLabel("2h", t.booking.twoHours || "2 horas") },
-        { value: "4h", label: formatLabel("4h", t.booking.fourHours || "4 horas - Medio día") },
-        { value: "8h", label: formatLabel("8h", t.booking.eightHours || "8 horas - Día completo") },
-      ];
-    } else {
-      return [
-        { value: "1h", label: formatLabel("1h", t.booking.oneHour || "1 hora") },
-        { value: "2h", label: formatLabel("2h", t.booking.twoHours || "2 horas") },
-        { value: "3h", label: formatLabel("3h", t.booking.threeHours || "3 horas") },
-        { value: "4h", label: formatLabel("4h", t.booking.fourHours || "4 horas - Medio día") },
-        { value: "6h", label: formatLabel("6h", t.booking.sixHours || "6 horas") },
-        { value: "8h", label: formatLabel("8h", t.booking.eightHours || "8 horas - Día completo") },
+        { value: "4h", label: formatLabel("4h", t.booking.fourHours || "4 horas - Medio dia") },
+        { value: "8h", label: formatLabel("8h", t.booking.eightHours || "8 horas - Dia completo") },
       ];
     }
+    return [
+      { value: "1h", label: formatLabel("1h", t.booking.oneHour || "1 hora") },
+      { value: "2h", label: formatLabel("2h", t.booking.twoHours || "2 horas") },
+      { value: "3h", label: formatLabel("3h", t.booking.threeHours || "3 horas") },
+      { value: "4h", label: formatLabel("4h", t.booking.fourHours || "4 horas - Medio dia") },
+      { value: "6h", label: formatLabel("6h", t.booking.sixHours || "6 horas") },
+      { value: "8h", label: formatLabel("8h", t.booking.eightHours || "8 horas - Dia completo") },
+    ];
   };
 
-  // Reset duration only when the season changes (not on every date change within the same season)
+  // Reset duration when the season changes OR when selected duration becomes disabled due to date change
   useEffect(() => {
     const newSeason = getCurrentSeason();
     if (prevSeasonRef.current && prevSeasonRef.current !== newSeason) {
-      setSelectedDuration("");
+      // Season changed — reset and auto-select first available
+      const options = getDurationOptions();
+      const firstAvailable = options.find(opt => !opt.disabled);
+      setSelectedDuration(firstAvailable?.value || "");
+    } else if (selectedDuration) {
+      // Same season but date may have changed (e.g., weekday -> weekend)
+      const options = getDurationOptions();
+      const currentOpt = options.find(opt => opt.value === selectedDuration);
+      if (currentOpt?.disabled) {
+        // Auto-select the nearest available duration (prefer next higher)
+        const currentIdx = options.findIndex(opt => opt.value === selectedDuration);
+        const nextAvailable = options.slice(currentIdx + 1).find(opt => !opt.disabled)
+          || options.find(opt => !opt.disabled);
+        setSelectedDuration(nextAvailable?.value || "");
+      }
     }
     prevSeasonRef.current = newSeason;
   }, [selectedDate]);
 
-  // Reset duration if it's no longer valid when boat or license changes
+  // Reset duration if it's no longer valid or disabled when boat or license changes
   useEffect(() => {
     if (selectedDuration) {
       const validOptions = getDurationOptions();
-      const isValid = validOptions.some(opt => opt.value === selectedDuration);
-      if (!isValid) {
-        setSelectedDuration("");
+      const currentOpt = validOptions.find(opt => opt.value === selectedDuration);
+      if (!currentOpt || currentOpt.disabled) {
+        const firstAvailable = validOptions.find(opt => !opt.disabled);
+        setSelectedDuration(firstAvailable?.value || "");
       }
     }
   }, [selectedBoat, selectedBoatInfo, licenseFilter]);
@@ -434,13 +641,13 @@ export default function BookingFormWidget({ preSelectedBoatId, prefillDate, pref
         return;
       }
     }
-    // Start hold countdown when advancing to step 3 for the first time
-    if (currentStep === 2 && !holdExpiresAt) {
+    // Step 3 (Extras) has no validation — always allow advancing
+    // Start hold countdown when advancing to step 4 for the first time
+    if (currentStep === 3 && !holdExpiresAt) {
       const expiresAt = new Date(Date.now() + 15 * 60 * 1000).toISOString();
       setHoldExpiresAt(expiresAt);
       setHoldExpired(false);
     }
-    // Step 3 (Extras) has no validation — always allow advancing
     if (currentStep === 4) {
       if (!canAdvanceFromStep3()) {
         setTouched(prev => ({ ...prev, firstName: true, lastName: true, phone: true, email: true }));
@@ -751,6 +958,9 @@ Looking forward to confirmation. Thanks!`;
     });
     setShowConfirmation(true);
 
+    // Clear persisted form state on successful booking
+    clearBookingStorage();
+
     setCurrentStep(1);
   };
 
@@ -758,13 +968,22 @@ Looking forward to confirmation. Thanks!`;
     setHoldExpired(true);
   };
 
+  // Soft recovery: go back to step 1 and reset the hold timer so user can re-verify
+  const handleHoldVerify = () => {
+    setCurrentStep(1);
+    setHoldExpiresAt(null);
+    setHoldExpired(false);
+  };
+
   const sharedProps = {
     currentStep,
     onNext: handleNextStep,
     onBack: handlePrevStep,
+    onGoToStep: setCurrentStep,
     holdExpiresAt,
     holdExpired,
     onHoldExpired: handleHoldExpired,
+    onHoldVerify: handleHoldVerify,
     firstName, setFirstName,
     lastName, setLastName,
     phonePrefix, setPhonePrefix,
@@ -789,6 +1008,10 @@ Looking forward to confirmation. Thanks!`;
     getLocalISODate,
     preSelectedBoatId,
     timeSlots: TIME_SLOTS,
+    unavailableTimeSlots,
+    slotMaxDuration,
+    selectedTimeMaxDuration,
+    isAvailabilityLoading,
     boatExtras,
     selectedExtras,
     selectedPack,

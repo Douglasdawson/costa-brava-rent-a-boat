@@ -214,7 +214,7 @@ export function calculatePricingBreakdown(
 }
 
 /**
- * Get available durations for a boat
+ * Get available durations for a boat (without date filtering)
  */
 export function getAvailableDurations(boatId: string): Duration[] {
   const boat = BOAT_DATA[boatId];
@@ -224,6 +224,59 @@ export function getAvailableDurations(boatId: string): Duration[] {
 
   // Get durations from BAJA season as reference (all boats should have same duration options)
   return Object.keys(boat.pricing.BAJA.prices) as Duration[];
+}
+
+/**
+ * Duration option with availability info for UI rendering
+ */
+export interface DurationOption {
+  duration: Duration;
+  available: boolean;
+  /** Reason string key when not available (e.g., 'peakSeasonMinimum' or 'weekendMinimum') */
+  restrictionReason?: 'peakSeasonMinimum' | 'weekendMinimum';
+  /** The minimum duration that applies */
+  minimumRequired?: Duration;
+}
+
+/** Parse duration string to hours (e.g., '2h' -> 2) */
+function durationToHours(d: Duration): number {
+  return parseInt(d);
+}
+
+/**
+ * Get available durations for a boat on a specific date, with restriction info.
+ * Combines per-boat duration catalog with date-based minimum duration rules.
+ *
+ * Business rules (from getMinimumDuration):
+ * - August (Temporada Alta): minimum 2h
+ * - Weekends (Sat/Sun): minimum 2h
+ * - All other dates: minimum 1h
+ */
+export function getAvailableDurationsForDate(boatId: string, date: Date): DurationOption[] {
+  const boat = BOAT_DATA[boatId];
+  if (!boat) {
+    throw new Error(`Boat with id "${boatId}" not found`);
+  }
+
+  const season = getSeason(date);
+  const boatDurations = Object.keys(boat.pricing[season].prices) as Duration[];
+  const minDuration = getMinimumDuration(date);
+  const minHours = durationToHours(minDuration);
+
+  const month = date.getMonth() + 1;
+
+  return boatDurations.map((d) => {
+    const hours = durationToHours(d);
+    if (hours < minHours) {
+      return {
+        duration: d,
+        available: false,
+        restrictionReason: month === 8 ? 'peakSeasonMinimum' : 'weekendMinimum',
+        minimumRequired: minDuration,
+      };
+    }
+    return { duration: d, available: true };
+  });
 }
 
 /**

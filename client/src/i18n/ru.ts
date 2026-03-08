@@ -300,9 +300,9 @@ export const ru: Translations = {
     basePrice: 'Базовая цена',
     discountApplied: 'Скидка применена',
     priceConfirmedWhatsApp: 'Окончательная цена подтверждается в WhatsApp',
-    gdprConsent: 'Отправляя этот запрос на бронирование, вы принимаете {privacyPolicy} и {termsAndConditions}. Ваши данные будут обработаны для управления вашим бронированием (GDPR ст. 6.1.b).',
+    gdprConsent: 'Я прочитал(а) и принимаю {privacyPolicy} и {termsAndConditions}. Мои данные будут обработаны для управления моим бронированием (GDPR ст. 6.1.b).',
     gdprPrivacyLink: 'Политику конфиденциальности',
-    gdprTermsLink: 'Условия использования',
+    gdprTermsLink: 'Общие условия',
   },
   faq: {
     title: 'Часто Задаваемые Вопросы',
@@ -554,6 +554,8 @@ export const ru: Translations = {
     searchCountry: 'Поиск страны...',
     email: 'Email',
     date: 'Дата',
+    durationMinPeakSeason: 'Мин. {duration} в августе (высокий сезон)',
+    durationMinWeekend: 'Мин. {duration} по выходным',
   },
   validation: {
     required: 'Это поле обязательно',
@@ -924,6 +926,9 @@ export const ru: Translations = {
   pricing: {
     save: 'Экономия',
     highSeason: 'Высокий сезон',
+    depositLabel: 'Залог',
+    depositRefundable: 'возвращаемый',
+    payAtPort: 'Оплачивается и возвращается в порту',
   },
 
   recommendation: {
@@ -934,11 +939,18 @@ export const ru: Translations = {
     all: 'Все',
   },
 
+  reviewSummary: {
+    title: 'Сводка бронирования',
+    modify: 'Изменить',
+  },
+
   holdCountdown: {
     reserved: 'Ваша лодка забронирована на',
     expired: 'Ваша бронь истекла',
     selectAnother: 'Пожалуйста, выберите другое время',
     hurry: 'Поторопитесь',
+    expiredSoft: 'Ваш выбор мог измениться. Вы можете продолжить, но мы рекомендуем проверить доступность.',
+    verifyButton: 'Проверить',
   },
 
   seasonBanner: {

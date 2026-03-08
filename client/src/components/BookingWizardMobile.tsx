@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
 import { CalendarIcon, Check, ChevronDown, ChevronLeft, ChevronUp, Gift, Loader2, Package, Tag, X } from "lucide-react";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Calendar } from "@/components/ui/calendar";
@@ -34,10 +35,12 @@ export interface BookingWizardMobileProps {
   currentStep: number;
   onNext: () => void;
   onBack: () => void;
+  onGoToStep: (step: number) => void;
   // Hold countdown
   holdExpiresAt: string | null;
   holdExpired: boolean;
   onHoldExpired: () => void;
+  onHoldVerify: () => void;
   // Personal data (step 3)
   firstName: string; setFirstName: (v: string) => void;
   lastName: string; setLastName: (v: string) => void;
@@ -60,11 +63,16 @@ export interface BookingWizardMobileProps {
   filteredBoats: Boat[];
   isBoatsLoading: boolean;
   selectedBoatInfo: Boat | undefined;
-  getDurationOptions: () => { value: string; label: string }[];
+  getDurationOptions: () => { value: string; label: string; disabled?: boolean; disabledReason?: string }[];
   getMaxCapacity: () => number;
   getLocalISODate: () => string;
   preSelectedBoatId?: string;
   timeSlots: string[];
+  // Availability (real-time slot data)
+  unavailableTimeSlots: Set<string>;
+  slotMaxDuration: Map<string, number>;
+  selectedTimeMaxDuration: number | null;
+  isAvailabilityLoading: boolean;
   // Extras (step 4)
   boatExtras: ExtraItem[];
   selectedExtras: string[];
@@ -140,10 +148,15 @@ export default function BookingWizardMobile(props: BookingWizardMobileProps) {
           estimatedTime={props.t.wizard.estimatedTime}
         />
       </div>
-      {/* Hold countdown timer */}
-      {props.holdExpiresAt && currentStep >= 3 && (
+      {/* Hold countdown timer — only visible on final step */}
+      {props.holdExpiresAt && currentStep === 4 && (
         <div className="px-4 pt-2">
-          <HoldCountdown expiresAt={props.holdExpiresAt} onExpired={props.onHoldExpired} />
+          <HoldCountdown
+            expiresAt={props.holdExpiresAt}
+            onExpired={props.onHoldExpired}
+            softExpiry
+            onVerify={props.onHoldVerify}
+          />
         </div>
       )}
       <div className="flex-1 overflow-y-auto px-4 py-4">
@@ -393,6 +406,8 @@ function Step2Trip({
   selectedBoatInfo,
   getDurationOptions, getMaxCapacity,
   timeSlots,
+  unavailableTimeSlots,
+  selectedTimeMaxDuration,
   showFieldError, getFieldError, handleBlur,
   t,
 }: BookingWizardMobileProps) {
@@ -405,38 +420,7 @@ function Step2Trip({
         <h2 className="text-xl font-bold text-gray-900 mb-1">{t.wizard.yourTrip}</h2>
         <p className="text-sm text-gray-500">{t.wizard.howLongHowMany}</p>
       </div>
-      <div>
-        <label className="block text-sm font-semibold text-gray-700 mb-2">{t.wizard.duration}</label>
-        <div className="space-y-2">
-          {durationOptions.map((opt) => {
-            const parts = opt.label.split(' - ');
-            const lastPart = parts[parts.length - 1];
-            const hasPrice = parts.length > 1 && lastPart.includes('€');
-            const labelText = hasPrice ? parts.slice(0, -1).join(' · ') : opt.label;
-            const priceText = hasPrice ? lastPart : null;
-            return (
-              <button
-                key={opt.value}
-                type="button"
-                onClick={() => setSelectedDuration(opt.value)}
-                className={`w-full flex items-center justify-between p-3 rounded-xl border-2 text-left transition-all ${
-                  selectedDuration === opt.value
-                    ? "border-primary bg-primary/5"
-                    : "border-gray-200 bg-white"
-                }`}
-              >
-                <span className="text-sm font-medium text-gray-900">{labelText}</span>
-                {priceText && (
-                  <span className="text-xs font-bold text-primary">{priceText}</span>
-                )}
-              </button>
-            );
-          })}
-        </div>
-        {showFieldError('duration') && (
-          <p className="text-xs text-red-500 mt-1">{getFieldError('duration')}</p>
-        )}
-      </div>
+      {/* Time — shown before duration so maxDuration can filter durations */}
       <div>
         <label htmlFor="wizard-time" className="block text-sm font-semibold text-gray-700 mb-2">
           {t.wizard.departureTime}
@@ -454,12 +438,59 @@ function Step2Trip({
           }`}
         >
           <option value="">{t.wizard.selectTime}</option>
-          {timeSlots.map((time) => (
-            <option key={time} value={time}>{time}h</option>
-          ))}
+          {timeSlots.map((time) => {
+            const isUnavailable = unavailableTimeSlots.has(time);
+            return (
+              <option key={time} value={time} disabled={isUnavailable}>
+                {time}h{isUnavailable ? " - Reservado" : ""}
+              </option>
+            );
+          })}
         </select>
         {showFieldError('time') && (
           <p id="error-wizard-time" className="text-xs text-red-500 mt-1">{getFieldError('time')}</p>
+        )}
+      </div>
+      <div>
+        <label className="block text-sm font-semibold text-gray-700 mb-2">{t.wizard.duration}</label>
+        <div className="space-y-2">
+          {durationOptions.map((opt) => {
+            const durationHours = parseInt(opt.value.replace("h", ""));
+            const exceedsMax = selectedTimeMaxDuration !== null && durationHours > selectedTimeMaxDuration;
+            const isSeasonRestricted = !!opt.disabled;
+            const isDisabled = exceedsMax || isSeasonRestricted;
+            const parts = opt.label.split(' - ');
+            const lastPart = parts[parts.length - 1];
+            const hasPrice = parts.length > 1 && lastPart.includes('€');
+            const labelText = hasPrice ? parts.slice(0, -1).join(' · ') : opt.label;
+            const priceText = hasPrice ? lastPart : null;
+            return (
+              <button
+                key={opt.value}
+                type="button"
+                disabled={isDisabled}
+                onClick={() => !isDisabled && setSelectedDuration(opt.value)}
+                title={isSeasonRestricted ? opt.disabledReason : undefined}
+                className={`w-full flex items-center justify-between p-3 rounded-xl border-2 text-left transition-all ${
+                  isDisabled
+                    ? "border-gray-100 bg-gray-50 opacity-50 cursor-not-allowed"
+                    : selectedDuration === opt.value
+                    ? "border-primary bg-primary/5"
+                    : "border-gray-200 bg-white"
+                }`}
+              >
+                <span className={`text-sm font-medium ${isDisabled ? "text-gray-400 line-through" : "text-gray-900"}`}>{labelText}</span>
+                {isDisabled ? (
+                  <span className="text-xs text-amber-600 font-medium">{opt.disabledReason || t.boats.notAvailable}</span>
+                ) : priceText ? (
+                  <span className="text-xs font-bold text-primary">{priceText}</span>
+                ) : null}
+              </button>
+            );
+          })}
+        </div>
+        {showFieldError('duration') && (
+          <p className="text-xs text-red-500 mt-1">{getFieldError('duration')}</p>
         )}
       </div>
       <div>
@@ -582,7 +613,7 @@ function Step3PersonalData({
           {t.wizard.phone}
         </label>
         <div className="flex gap-2">
-          <div className="relative w-28 flex-shrink-0" ref={prefixDropdownRef}>
+          <div className="relative w-24 flex-shrink-0" ref={prefixDropdownRef}>
             <button
               type="button"
               onClick={() => setShowPrefixDropdown(!showPrefixDropdown)}
@@ -692,7 +723,7 @@ function formatBookingDate(dateStr: string, language: string): string {
 
 function Step4Confirm({
   selectedBoatInfo, selectedDate, selectedDuration, preferredTime, numberOfPeople,
-  firstName, lastName,
+  firstName, lastName, onGoToStep,
   boatExtras, selectedExtras, selectedPack, showExtras, setShowExtras,
   extrasInPack, totalExtrasPrice, handlePackSelect, handleExtraToggle,
   showCodeSection, setShowCodeSection, codeInput, setCodeInput,
@@ -718,6 +749,18 @@ function Step4Confirm({
       </div>
       {/* Booking summary card */}
       <div className="bg-primary/5 border border-primary/20 rounded-xl p-4 space-y-2">
+        <div className="flex items-center justify-between mb-1">
+          <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide">
+            {t.reviewSummary?.title || 'Resumen de tu reserva'}
+          </p>
+          <button
+            type="button"
+            onClick={() => onGoToStep(1)}
+            className="text-xs font-medium text-primary/70 hover:text-primary transition-colors underline underline-offset-2"
+          >
+            {t.reviewSummary?.modify || 'Modificar'}
+          </button>
+        </div>
         <div className="flex justify-between text-sm">
           <span className="text-gray-500">{t.booking.boat}</span>
           <span className="font-semibold text-gray-900">{selectedBoatInfo?.name || "--"}</span>
@@ -763,7 +806,7 @@ function Step4Confirm({
               <Package className="w-4 h-4 text-primary" />
               {t.booking.extrasSection.title}
               {(selectedExtras.length > 0 || selectedPack) && (
-                <span className="bg-primary text-white text-[10px] px-2 py-0.5 rounded-full">
+                <span className="bg-primary text-white text-xs px-2 py-0.5 rounded-full">
                   {totalExtrasPrice}€
                 </span>
               )}
@@ -804,7 +847,7 @@ function Step4Confirm({
                           <div className="text-right">
                             <span className="text-sm font-bold text-primary">{pack.price}€</span>
                             {savings > 0 && (
-                              <span className="block text-[10px] text-green-600">{t.booking.extrasSection.savings} {savings.toFixed(0)}€</span>
+                              <span className="block text-xs text-green-600">{t.booking.extrasSection.savings} {savings.toFixed(0)}€</span>
                             )}
                           </div>
                         </div>
@@ -839,7 +882,7 @@ function Step4Confirm({
                         </div>
                         <div className="min-w-0">
                           <p className="text-sm font-medium text-gray-800 truncate">{extra.name}</p>
-                          <p className="text-[10px] text-gray-500">{isInPack ? t.booking.extrasSection.included : extra.price}</p>
+                          <p className="text-xs text-gray-500">{isInPack ? t.booking.extrasSection.included : extra.price}</p>
                         </div>
                       </button>
                     );
@@ -863,7 +906,7 @@ function Step4Confirm({
             <Tag className="w-4 h-4 text-primary" />
             {t.codeValidation.haveCode}
             {validatedCode && (
-              <span className="bg-green-500 text-white text-[10px] px-2 py-0.5 rounded-full">{t.codeValidation.applied}</span>
+              <span className="bg-green-500 text-white text-xs px-2 py-0.5 rounded-full">{t.codeValidation.applied}</span>
             )}
           </span>
           {showCodeSection ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
@@ -903,14 +946,14 @@ function Step4Confirm({
                         ? t.codeValidation.validGiftCard
                         : t.codeValidation.validDiscount}
                     </p>
-                    <p className="text-[11px] text-gray-500 font-mono">{validatedCode.code}</p>
+                    <p className="text-xs text-gray-500 font-mono">{validatedCode.code}</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-2">
                   <span className="text-sm font-bold text-green-600">
                     {validatedCode.type === "gift_card" ? `-${discount}€` : `-${validatedCode.percentage}%`}
                   </span>
-                  <button type="button" onClick={handleRemoveCode} className="text-gray-400 p-1">
+                  <button type="button" onClick={handleRemoveCode} className="text-gray-400 p-2 -m-1 min-w-[44px] min-h-[44px] flex items-center justify-center">
                     <X className="w-4 h-4" />
                   </button>
                 </div>
@@ -920,40 +963,61 @@ function Step4Confirm({
         )}
       </div>
       {/* Total price card */}
-      {total !== null && (
-        <div className="bg-primary rounded-xl p-4 text-white">
-          <div className="flex justify-between items-center">
-            <span className="text-sm font-medium opacity-90">{t.booking.estimatedTotal}</span>
-            <span className="text-2xl font-bold">{total}€</span>
+      {total !== null && (() => {
+        const depositStr = selectedBoatInfo?.specifications?.deposit;
+        const depositAmount = depositStr ? parseInt(depositStr.replace(/[^0-9]/g, '')) : null;
+        return (
+          <div className="bg-primary rounded-xl p-4 text-white">
+            <div className="flex justify-between items-center">
+              <span className="text-sm font-medium opacity-90">{t.booking.estimatedTotal}</span>
+              <span className="text-2xl font-bold">{total}€</span>
+            </div>
+            {discount > 0 && (
+              <p className="text-sm opacity-75 mt-1">{t.booking.discountApplied}: -{discount}€</p>
+            )}
+            {depositAmount && (
+              <div className="flex justify-between items-center mt-2 pt-2 border-t border-white/20">
+                <span className="text-sm opacity-70">
+                  {t.pricing?.depositLabel || 'Fianza'} ({t.pricing?.depositRefundable || 'reembolsable'})
+                </span>
+                <span className="text-sm font-semibold opacity-80">{depositAmount}€</span>
+              </div>
+            )}
+            <p className="text-sm opacity-60 mt-2">{t.booking.priceConfirmedWhatsApp}</p>
+            {depositAmount && (
+              <p className="text-xs opacity-40 mt-0.5">
+                {t.pricing?.payAtPort || 'Se paga y devuelve en el puerto'}
+              </p>
+            )}
           </div>
-          {discount > 0 && (
-            <p className="text-sm opacity-75 mt-1">{t.booking.discountApplied}: -{discount}€</p>
-          )}
-          <p className="text-sm opacity-60 mt-1">{t.booking.priceConfirmedWhatsApp}</p>
+        );
+      })()}
+      {/* RGPD consent checkbox */}
+      <div className="flex items-start gap-3">
+        <div className="flex items-center justify-center w-11 h-11 flex-shrink-0 -m-3.5 mt-[-0.625rem]">
+          <Checkbox
+            id="wizard-privacy-consent"
+            checked={privacyConsent}
+            onCheckedChange={(checked) => setPrivacyConsent(checked === true)}
+            aria-required="true"
+            className="h-5 w-5"
+          />
         </div>
-      )}
-      {/* RGPD consent */}
-      <label className="flex items-start gap-3 cursor-pointer">
-        <input
-          type="checkbox"
-          checked={privacyConsent}
-          onChange={(e) => setPrivacyConsent(e.target.checked)}
-          className="mt-0.5 w-4 h-4 accent-primary flex-shrink-0"
-          aria-required="true"
-          id="wizard-privacy-consent"
-        />
-        <span className="text-sm text-gray-600" id="wizard-privacy-consent-label">
+        <label
+          htmlFor="wizard-privacy-consent"
+          className="text-base text-gray-600 leading-relaxed cursor-pointer select-none"
+        >
           {t.booking.gdprConsent.split('{privacyPolicy}')[0]}
-          <a href="/privacy-policy" target="_blank" rel="noopener noreferrer" className="text-primary underline">
+          <a href="/privacy-policy" target="_blank" rel="noopener noreferrer" className="text-primary underline" onClick={(e) => e.stopPropagation()}>
             {t.booking.gdprPrivacyLink}
           </a>
           {(t.booking.gdprConsent.split('{privacyPolicy}')[1] || '').split('{termsAndConditions}')[0]}
-          <a href="/terms-conditions" target="_blank" rel="noopener noreferrer" className="text-primary underline">
+          <a href="/condiciones-generales" target="_blank" rel="noopener noreferrer" className="text-primary underline" onClick={(e) => e.stopPropagation()}>
             {t.booking.gdprTermsLink}
           </a>
           {(t.booking.gdprConsent.split('{privacyPolicy}')[1] || '').split('{termsAndConditions}')[1] || ''}
-        </span>
-      </label>
+        </label>
+      </div>
     </div>
   );
 }

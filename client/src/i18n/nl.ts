@@ -300,7 +300,7 @@ export const nl: Translations = {
     basePrice: 'Basisprijs',
     discountApplied: 'Korting toegepast',
     priceConfirmedWhatsApp: 'De definitieve prijs wordt bevestigd via WhatsApp',
-    gdprConsent: 'Door deze boekingsaanvraag te verzenden, accepteer je het {privacyPolicy} en de {termsAndConditions}. Je gegevens worden verwerkt om je boeking te beheren (AVG Art. 6.1.b).',
+    gdprConsent: 'Ik heb het {privacyPolicy} en de {termsAndConditions} gelezen en accepteer deze. Mijn gegevens worden verwerkt om mijn boeking te beheren (AVG Art. 6.1.b).',
     gdprPrivacyLink: 'Privacybeleid',
     gdprTermsLink: 'Algemene Voorwaarden',
   },
@@ -554,6 +554,8 @@ export const nl: Translations = {
     searchCountry: 'Zoek land...',
     email: 'E-mail',
     date: 'Datum',
+    durationMinPeakSeason: 'Min. {duration} in augustus (hoogseizoen)',
+    durationMinWeekend: 'Min. {duration} in het weekend',
   },
   validation: {
     required: 'Dit veld is verplicht',
@@ -924,6 +926,9 @@ export const nl: Translations = {
   pricing: {
     save: 'Bespaar',
     highSeason: 'Hoogseizoen',
+    depositLabel: 'Borg',
+    depositRefundable: 'restitueerbaar',
+    payAtPort: 'Wordt in de haven betaald en terugbetaald',
   },
 
   recommendation: {
@@ -934,11 +939,18 @@ export const nl: Translations = {
     all: 'Alle',
   },
 
+  reviewSummary: {
+    title: 'Samenvatting van uw boeking',
+    modify: 'Wijzigen',
+  },
+
   holdCountdown: {
     reserved: 'Uw boot is gereserveerd voor',
     expired: 'Uw reservering is verlopen',
     selectAnother: 'Selecteer een ander tijdslot',
     hurry: 'Schiet op',
+    expiredSoft: 'Uw selectie is mogelijk gewijzigd. U kunt doorgaan, maar we raden aan de beschikbaarheid te controleren.',
+    verifyButton: 'Controleren',
   },
 
   seasonBanner: {

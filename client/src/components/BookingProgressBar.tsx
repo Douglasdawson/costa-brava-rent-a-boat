@@ -50,7 +50,7 @@ export default function BookingProgressBar({
                   {/* Label below circle - hidden on very small screens */}
                   <span
                     className={`
-                      hidden xs:block text-[10px] font-medium whitespace-nowrap
+                      hidden xs:block text-xs font-medium whitespace-nowrap
                       transition-colors duration-300
                       ${isActive
                         ? "text-foreground font-semibold"
@@ -85,7 +85,7 @@ export default function BookingProgressBar({
         {estimatedTime && (
           <div className="flex items-center gap-1 ml-3 mb-5 flex-shrink-0">
             <Clock className="w-3 h-3 text-muted-foreground" aria-hidden="true" />
-            <span className="text-[10px] text-muted-foreground font-medium whitespace-nowrap">
+            <span className="text-xs text-muted-foreground font-medium whitespace-nowrap">
               {estimatedTime}
             </span>
           </div>

@@ -136,7 +136,7 @@ export default function BoatCard({
             </div>
             <div className="flex items-center gap-1.5 justify-end">
               {showPriceAnchoring && (
-                <span className="inline-flex items-center bg-green-100 text-green-700 text-[10px] font-semibold px-1.5 py-0.5 rounded-full">
+                <span className="inline-flex items-center bg-green-100 text-green-700 text-xs font-semibold px-1.5 py-0.5 rounded-full">
                   -{savingsPercent}%
                 </span>
               )}

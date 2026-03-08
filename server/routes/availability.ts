@@ -1,8 +1,108 @@
 import type { Express } from "express";
+import { z } from "zod";
 import { storage } from "../storage";
 import { logger } from "../lib/logger";
 
+// Operating hours: boats depart from 08:00, must return by 19:00
+const OPERATING_START = 8;
+const OPERATING_END = 19;
+
+// All possible half-hour start slots (matching the frontend TIME_SLOTS)
+const ALL_START_SLOTS: string[] = [];
+for (let h = OPERATING_START; h <= 18; h++) {
+  ALL_START_SLOTS.push(`${String(h).padStart(2, "0")}:00`);
+  if (h < 18) ALL_START_SLOTS.push(`${String(h).padStart(2, "0")}:30`);
+}
+
+/** Parse "HH:MM" to fractional hours from midnight (e.g. "09:30" -> 9.5) */
+function slotToHours(slot: string): number {
+  const [h, m] = slot.split(":").map(Number);
+  return h + m / 60;
+}
+
 export function registerAvailabilityRoutes(app: Express) {
+  // Real-time slot availability for booking form
+  app.get("/api/availability", async (req, res) => {
+    try {
+      const schema = z.object({
+        boatId: z.string().min(1),
+        date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "Formato de fecha: YYYY-MM-DD"),
+      });
+      const parsed = schema.safeParse(req.query);
+      if (!parsed.success) {
+        return res.status(400).json({ message: parsed.error.issues[0].message });
+      }
+
+      const { boatId, date: dateStr } = parsed.data;
+      const [y, m, d] = dateStr.split("-").map(Number);
+      const requestDate = new Date(y, m - 1, d);
+
+      // Validate boat exists
+      const boat = await storage.getBoat(boatId);
+      if (!boat) {
+        return res.status(404).json({ message: "Barco no encontrado" });
+      }
+
+      // Off-season check (April-October)
+      if (m < 4 || m > 10) {
+        return res.json({ availableSlots: [], unavailableSlots: ALL_START_SLOTS.slice() });
+      }
+
+      // Fetch active bookings for this boat+date
+      const dayBookings = await storage.getDailyBookings(boatId, requestDate);
+
+      // Build list of booked intervals as fractional hours [start, end)
+      const bookedIntervals = dayBookings.map((b) => {
+        const bStart = new Date(b.startTime);
+        const bEnd = new Date(b.endTime);
+        return {
+          start: bStart.getHours() + bStart.getMinutes() / 60,
+          end: bEnd.getHours() + bEnd.getMinutes() / 60,
+        };
+      });
+
+      const availableSlots: { time: string; maxDuration: number }[] = [];
+      const unavailableSlots: string[] = [];
+
+      for (const slot of ALL_START_SLOTS) {
+        const slotHour = slotToHours(slot);
+
+        // Check if this slot overlaps with any existing booking
+        const isBooked = bookedIntervals.some(
+          (interval) => slotHour >= interval.start && slotHour < interval.end
+        );
+
+        if (isBooked) {
+          unavailableSlots.push(slot);
+          continue;
+        }
+
+        // Calculate max duration: time until operating end or next booking, whichever is sooner
+        let maxEnd = OPERATING_END;
+        for (const interval of bookedIntervals) {
+          if (interval.start > slotHour && interval.start < maxEnd) {
+            maxEnd = interval.start;
+          }
+        }
+
+        const maxDuration = Math.floor(maxEnd - slotHour);
+        if (maxDuration < 1) {
+          unavailableSlots.push(slot);
+        } else {
+          availableSlots.push({ time: slot, maxDuration });
+        }
+      }
+
+      // Cache for 60 seconds to reduce DB load
+      res.set("Cache-Control", "public, max-age=60");
+      res.json({ availableSlots, unavailableSlots });
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : "Unknown error";
+      logger.error("[Availability] Error fetching slot availability", { error: message });
+      res.status(500).json({ message: "Error interno del servidor" });
+    }
+  });
+
   // Get monthly availability for a specific boat
   app.get("/api/boats/:id/availability", async (req, res) => {
     try {

@@ -612,6 +612,10 @@ export interface Translations {
     searchCountry: string;
     email: string;
     date: string;
+    /** Tooltip: "Min. {duration} in August (peak season)" */
+    durationMinPeakSeason: string;
+    /** Tooltip: "Min. {duration} on weekends" */
+    durationMinWeekend: string;
   };
 
   // Inline validation messages
@@ -992,6 +996,9 @@ export interface Translations {
   pricing?: {
     save: string;
     highSeason: string;
+    depositLabel: string;
+    depositRefundable: string;
+    payAtPort: string;
   };
 
   // Boat Recommendation
@@ -1014,12 +1021,20 @@ export interface Translations {
     recently: string;
   };
 
+  // Review Summary (step 4 booking review card)
+  reviewSummary?: {
+    title: string;
+    modify: string;
+  };
+
   // Hold Countdown (booking form urgency timer)
   holdCountdown?: {
     reserved: string;
     expired: string;
     selectAnother: string;
     hurry: string;
+    expiredSoft: string;
+    verifyButton: string;
   };
 
   // Season Urgency Banner

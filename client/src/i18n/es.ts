@@ -310,9 +310,9 @@ export const es: Translations = {
     basePrice: 'Precio base',
     discountApplied: 'Descuento aplicado',
     priceConfirmedWhatsApp: 'El precio final se confirma por WhatsApp',
-    gdprConsent: 'Al enviar esta solicitud de reserva, aceptas la {privacyPolicy} y los {termsAndConditions}. Tus datos serán tratados para gestionar tu reserva (RGPD Art. 6.1.b).',
+    gdprConsent: 'He leído y acepto la {privacyPolicy} y las {termsAndConditions}. Mis datos serán tratados para gestionar mi reserva (RGPD Art. 6.1.b).',
     gdprPrivacyLink: 'Política de Privacidad',
-    gdprTermsLink: 'Términos y Condiciones',
+    gdprTermsLink: 'Condiciones Generales',
   },
   faq: {
     title: 'Preguntas Frecuentes',
@@ -564,6 +564,8 @@ export const es: Translations = {
     searchCountry: 'Buscar pais...',
     email: 'Email',
     date: 'Fecha',
+    durationMinPeakSeason: 'Min. {duration} en agosto (temporada alta)',
+    durationMinWeekend: 'Min. {duration} en fines de semana',
   },
   validation: {
     required: 'Este campo es obligatorio',
@@ -934,6 +936,9 @@ export const es: Translations = {
   pricing: {
     save: 'Ahorra',
     highSeason: 'Temp. alta',
+    depositLabel: 'Fianza',
+    depositRefundable: 'reembolsable',
+    payAtPort: 'Se paga y devuelve en el puerto',
   },
 
   recommendation: {
@@ -944,11 +949,18 @@ export const es: Translations = {
     all: 'Todos',
   },
 
+  reviewSummary: {
+    title: 'Resumen de tu reserva',
+    modify: 'Modificar',
+  },
+
   holdCountdown: {
     reserved: 'Tu barco esta reservado durante',
     expired: 'Tu reserva ha expirado',
     selectAnother: 'Selecciona otro horario',
     hurry: 'Date prisa',
+    expiredSoft: 'Tu seleccion puede haber cambiado. Puedes continuar, pero te recomendamos verificar la disponibilidad.',
+    verifyButton: 'Verificar',
   },
 
   seasonBanner: {

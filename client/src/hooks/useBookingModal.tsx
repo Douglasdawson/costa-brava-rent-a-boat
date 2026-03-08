@@ -52,7 +52,7 @@ export function BookingModalProvider({ children }: { children: React.ReactNode }
           closeBookingModal();
         }
       }}>
-        <DialogContent className="!max-w-none md:!max-w-2xl lg:!max-w-3xl !w-full md:!w-[720px] lg:!w-[860px] !h-[100dvh] md:!h-[88vh] !rounded-none md:!rounded-xl !p-0 !flex !flex-col overflow-hidden !left-0 md:!left-1/2 !top-0 md:!top-1/2 !translate-x-0 md:!-translate-x-1/2 !translate-y-0 md:!-translate-y-1/2 pt-safe pb-safe">
+        <DialogContent className="!max-w-none md:!max-w-2xl lg:!max-w-3xl !w-full md:!w-[calc(100vw-40px)] lg:!w-[720px] xl:!w-[860px] !h-[100dvh] md:!h-[88vh] !rounded-none md:!rounded-xl !p-0 !flex !flex-col overflow-hidden !left-0 md:!left-1/2 !top-0 md:!top-1/2 !translate-x-0 md:!-translate-x-1/2 !translate-y-0 md:!-translate-y-1/2 pt-safe pb-safe">
           <DialogHeader className="space-y-1 py-4 px-4 sm:px-6 flex-shrink-0 border-b border-gray-100">
             <DialogTitle className="text-xl sm:text-2xl font-bold text-center">
               {t.booking.title}

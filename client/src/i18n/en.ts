@@ -300,9 +300,9 @@ export const en: Translations = {
     basePrice: 'Base price',
     discountApplied: 'Discount applied',
     priceConfirmedWhatsApp: 'Final price confirmed by WhatsApp',
-    gdprConsent: 'By submitting this booking request, you accept the {privacyPolicy} and the {termsAndConditions}. Your data will be processed to manage your booking (GDPR Art. 6.1.b).',
+    gdprConsent: 'I have read and accept the {privacyPolicy} and the {termsAndConditions}. My data will be processed to manage my booking (GDPR Art. 6.1.b).',
     gdprPrivacyLink: 'Privacy Policy',
-    gdprTermsLink: 'Terms and Conditions',
+    gdprTermsLink: 'General Conditions',
   },
   faq: {
     title: 'Frequently Asked Questions',
@@ -554,6 +554,8 @@ export const en: Translations = {
     searchCountry: 'Search country...',
     email: 'Email',
     date: 'Date',
+    durationMinPeakSeason: 'Min. {duration} in August (peak season)',
+    durationMinWeekend: 'Min. {duration} on weekends',
   },
   validation: {
     required: 'This field is required',
@@ -924,6 +926,9 @@ export const en: Translations = {
   pricing: {
     save: 'Save',
     highSeason: 'High season',
+    depositLabel: 'Security deposit',
+    depositRefundable: 'refundable',
+    payAtPort: 'Paid and returned at the port',
   },
 
   recommendation: {
@@ -934,11 +939,18 @@ export const en: Translations = {
     all: 'All',
   },
 
+  reviewSummary: {
+    title: 'Your booking summary',
+    modify: 'Modify',
+  },
+
   holdCountdown: {
     reserved: 'Your boat is reserved for',
     expired: 'Your reservation has expired',
     selectAnother: 'Please select another time slot',
     hurry: 'Hurry up',
+    expiredSoft: 'Your selection may have changed. You can continue, but we recommend verifying availability.',
+    verifyButton: 'Verify',
   },
 
   seasonBanner: {

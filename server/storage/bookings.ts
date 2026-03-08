@@ -323,6 +323,26 @@ export async function getBookingExtras(bookingId: string): Promise<BookingExtra[
     .where(eq(bookingExtras.bookingId, bookingId));
 }
 
+export async function getDailyBookings(boatId: string, date: Date): Promise<Booking[]> {
+  const startOfDay = new Date(date);
+  startOfDay.setHours(0, 0, 0, 0);
+  const endOfDay = new Date(date);
+  endOfDay.setHours(23, 59, 59, 999);
+  const boatIds = getBoatIdsToCheck(boatId);
+
+  return await db
+    .select()
+    .from(bookings)
+    .where(
+      and(
+        inArray(bookings.boatId, boatIds),
+        lte(bookings.startTime, endOfDay),
+        gte(bookings.endTime, startOfDay),
+        inArray(bookings.bookingStatus, ["hold", "pending_payment", "confirmed"])
+      )
+    );
+}
+
 export async function getMonthlyBookings(boatId: string, year: number, month: number): Promise<Booking[]> {
   const startDate = new Date(year, month - 1, 1);
   const endDate = new Date(year, month, 0, 23, 59, 59, 999);

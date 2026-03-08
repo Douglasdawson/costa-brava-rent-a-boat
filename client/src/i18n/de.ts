@@ -300,7 +300,7 @@ export const de: Translations = {
     basePrice: 'Grundpreis',
     discountApplied: 'Rabatt angewendet',
     priceConfirmedWhatsApp: 'Der endgültige Preis wird per WhatsApp bestätigt',
-    gdprConsent: 'Mit dem Absenden dieser Buchungsanfrage akzeptierst du die {privacyPolicy} und die {termsAndConditions}. Deine Daten werden zur Verwaltung deiner Buchung verarbeitet (DSGVO Art. 6.1.b).',
+    gdprConsent: 'Ich habe die {privacyPolicy} und die {termsAndConditions} gelesen und akzeptiere sie. Meine Daten werden zur Verwaltung meiner Buchung verarbeitet (DSGVO Art. 6.1.b).',
     gdprPrivacyLink: 'Datenschutzrichtlinie',
     gdprTermsLink: 'Allgemeine Geschäftsbedingungen',
   },
@@ -554,6 +554,8 @@ export const de: Translations = {
     searchCountry: 'Land suchen...',
     email: 'E-Mail',
     date: 'Datum',
+    durationMinPeakSeason: 'Min. {duration} im August (Hochsaison)',
+    durationMinWeekend: 'Min. {duration} am Wochenende',
   },
   validation: {
     required: 'Dieses Feld ist erforderlich',
@@ -924,6 +926,9 @@ export const de: Translations = {
   pricing: {
     save: 'Sparen',
     highSeason: 'Hochsaison',
+    depositLabel: 'Kaution',
+    depositRefundable: 'erstattbar',
+    payAtPort: 'Wird im Hafen bezahlt und erstattet',
   },
 
   recommendation: {
@@ -934,11 +939,18 @@ export const de: Translations = {
     all: 'Alle',
   },
 
+  reviewSummary: {
+    title: 'Zusammenfassung Ihrer Buchung',
+    modify: 'Andern',
+  },
+
   holdCountdown: {
     reserved: 'Ihr Boot ist reserviert fur',
     expired: 'Ihre Reservierung ist abgelaufen',
     selectAnother: 'Bitte wahlen Sie ein anderes Zeitfenster',
     hurry: 'Beeilen Sie sich',
+    expiredSoft: 'Ihre Auswahl hat sich moglicherweise geandert. Sie konnen fortfahren, aber wir empfehlen, die Verfugbarkeit zu uberprufen.',
+    verifyButton: 'Uberprufen',
   },
 
   seasonBanner: {

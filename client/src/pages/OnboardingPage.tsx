@@ -136,7 +136,7 @@ export default function OnboardingPage() {
                       : <Icon className={`w-4 h-4 ${active ? "text-white" : "text-muted-foreground"}`} />
                     }
                   </div>
-                  <span className={`text-[10px] mt-1 font-medium ${active ? "text-primary" : done ? "text-primary" : "text-muted-foreground"}`}>
+                  <span className={`text-xs mt-1 font-medium ${active ? "text-primary" : done ? "text-primary" : "text-muted-foreground"}`}>
                     {label}
                   </span>
                 </div>

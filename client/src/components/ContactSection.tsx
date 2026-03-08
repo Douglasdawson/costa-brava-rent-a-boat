@@ -13,7 +13,7 @@ export default function ContactSection() {
 
   return (
     <section ref={revealRef} className={`py-8 sm:py-12 lg:py-16 bg-white transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`} id="contact">
-      <div className="container mx-auto px-3 sm:px-4">
+      <div className="container mx-auto px-3 sm:px-4 max-w-7xl">
         <div className="text-center mb-6 sm:mb-8 lg:mb-12">
           <h2 className="font-heading text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-2 sm:mb-3 lg:mb-4 text-foreground">
             {t.contact.title}

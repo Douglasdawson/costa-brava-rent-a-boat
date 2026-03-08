@@ -93,6 +93,7 @@ export const storage = {
   getBookingsForCalendar: bookingRepo.getBookingsForCalendar,
   createBookingExtra: bookingRepo.createBookingExtra,
   getBookingExtras: bookingRepo.getBookingExtras,
+  getDailyBookings: bookingRepo.getDailyBookings,
   getMonthlyBookings: bookingRepo.getMonthlyBookings,
   checkAvailability: bookingRepo.checkAvailability,
   checkAvailabilityAndCreateBooking: bookingRepo.checkAvailabilityAndCreateBooking,

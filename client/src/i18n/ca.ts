@@ -300,9 +300,9 @@ export const ca: Translations = {
     basePrice: 'Preu base',
     discountApplied: 'Descompte aplicat',
     priceConfirmedWhatsApp: 'El preu final es confirma per WhatsApp',
-    gdprConsent: 'En enviar aquesta sol·licitud de reserva, acceptes la {privacyPolicy} i els {termsAndConditions}. Les teves dades seran tractades per gestionar la teva reserva (RGPD Art. 6.1.b).',
+    gdprConsent: 'He llegit i accepto la {privacyPolicy} i les {termsAndConditions}. Les meves dades seran tractades per gestionar la meva reserva (RGPD Art. 6.1.b).',
     gdprPrivacyLink: 'Política de Privacitat',
-    gdprTermsLink: 'Termes i Condicions',
+    gdprTermsLink: 'Condicions Generals',
   },
   faq: {
     title: 'Preguntes Freqüents',
@@ -554,6 +554,8 @@ export const ca: Translations = {
     searchCountry: 'Cercar pais...',
     email: 'Email',
     date: 'Data',
+    durationMinPeakSeason: "Min. {duration} a l'agost (temporada alta)",
+    durationMinWeekend: 'Min. {duration} els caps de setmana',
   },
   validation: {
     required: 'Aquest camp es obligatori',
@@ -924,6 +926,9 @@ export const ca: Translations = {
   pricing: {
     save: 'Estalvia',
     highSeason: 'Temp. alta',
+    depositLabel: 'Fianca',
+    depositRefundable: 'reemborsable',
+    payAtPort: 'Es paga i retorna al port',
   },
 
   recommendation: {
@@ -934,11 +939,18 @@ export const ca: Translations = {
     all: 'Tots',
   },
 
+  reviewSummary: {
+    title: 'Resum de la teva reserva',
+    modify: 'Modificar',
+  },
+
   holdCountdown: {
     reserved: 'El teu vaixell esta reservat durant',
     expired: 'La teva reserva ha caducat',
     selectAnother: 'Selecciona un altre horari',
     hurry: 'Afanya\'t',
+    expiredSoft: 'La teva seleccio pot haver canviat. Pots continuar, pero et recomanem verificar la disponibilitat.',
+    verifyButton: 'Verificar',
   },
 
   seasonBanner: {

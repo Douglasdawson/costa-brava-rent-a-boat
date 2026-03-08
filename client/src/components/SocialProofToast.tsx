@@ -218,7 +218,7 @@ export function SocialProofToast() {
 
   return (
     <div
-      className="fixed bottom-20 left-4 right-4 md:bottom-4 md:left-4 md:right-auto z-50 max-w-sm"
+      className="fixed bottom-20 left-4 right-4 md:bottom-4 md:left-4 md:right-auto z-50 max-w-sm mb-safe"
       style={animStyles[animState]}
       role="status"
       aria-live="polite"

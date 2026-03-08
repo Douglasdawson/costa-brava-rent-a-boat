@@ -283,7 +283,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
             <Button
               onClick={() => handleReservation()}
               size="sm"
-              className="bg-primary hover:bg-primary/90 text-white rounded-full px-5 h-8 text-xs font-semibold"
+              className="bg-primary hover:bg-primary/90 text-white rounded-full px-5 h-11 text-xs font-semibold"
               data-testid="button-price-pill-reserve"
             >
               {t.hero.bookNow}

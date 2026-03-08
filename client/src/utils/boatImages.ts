@@ -14,6 +14,7 @@ export const BOAT_IMAGE_MAP: { [key: string]: string } = {
   "SOLAR_450_boat_photo_b70eb7e1.png": solar450Image,
   "REMUS_450_boat_photo_ec8b926c.png": remus450Image,
   "ASTEC_400_boat_photo_9dde16a8.png": astec400Image,
+  "ASTEC_450_boat_photo_77fb7b13.png": astec450Image,
   "ASTEC_450_speedboat_photo_fc9de4ed.png": astec450Image,
   "MINGOLLA_BRAVA_19_boat_c0e4a5b5.png": mingollaImage,
   "Trimarchi_57S_luxury_boat_0ef0159a.png": trimarchiImage,

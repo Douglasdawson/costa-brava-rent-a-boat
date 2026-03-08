@@ -403,6 +403,42 @@ export const insertCustomerSchema = createInsertSchema(customers).omit({
 
 export const insertBoatSchema = createInsertSchema(boats);
 
+// Update boat schema for PATCH requests with proper JSON validation
+export const updateBoatSchema = z.object({
+  name: z.string().min(1).optional(),
+  capacity: z.coerce.number().min(1).optional(),
+  requiresLicense: z.boolean().optional(),
+  deposit: z.string().optional(),
+  displayOrder: z.number().nullable().optional(),
+  isActive: z.boolean().optional(),
+  imageUrl: z.string().nullable().optional(),
+  imageGallery: z.array(z.string()).nullable().optional(),
+  subtitle: z.string().nullable().optional(),
+  description: z.string().nullable().optional(),
+  specifications: z.object({
+    model: z.string().default(""),
+    length: z.string().default(""),
+    beam: z.string().default(""),
+    engine: z.string().default(""),
+    fuel: z.string().default(""),
+    capacity: z.string().default(""),
+    deposit: z.string().default(""),
+  }).nullable().optional(),
+  equipment: z.array(z.string()).nullable().optional(),
+  included: z.array(z.string()).nullable().optional(),
+  features: z.array(z.string()).nullable().optional(),
+  pricing: z.object({
+    BAJA: z.object({ period: z.string(), prices: z.record(z.number()) }),
+    MEDIA: z.object({ period: z.string(), prices: z.record(z.number()) }),
+    ALTA: z.object({ period: z.string(), prices: z.record(z.number()) }),
+  }).nullable().optional(),
+  extras: z.array(z.object({
+    name: z.string(),
+    price: z.string(),
+    icon: z.string().default(""),
+  })).nullable().optional(),
+});
+
 export const insertBookingSchema = createInsertSchema(bookings).omit({
   id: true,
   createdAt: true,
@@ -490,6 +526,7 @@ export type InsertCustomer = z.infer<typeof insertCustomerSchema>;
 export type Customer = typeof customers.$inferSelect;
 
 export type InsertBoat = z.infer<typeof insertBoatSchema>;
+export type UpdateBoat = z.infer<typeof updateBoatSchema>;
 export type Boat = typeof boats.$inferSelect;
 
 export type InsertBooking = z.infer<typeof insertBookingSchema>;

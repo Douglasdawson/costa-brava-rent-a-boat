@@ -164,6 +164,9 @@ export function BoatFormDialog({
                   placeholder="6"
                   data-testid="input-boat-capacity"
                 />
+                {form.formState.errors.capacity && (
+                  <p className="text-sm text-red-500">{form.formState.errors.capacity.message}</p>
+                )}
               </div>
               <div>
                 <Label htmlFor="deposit">Deposito ({"\u20AC"}) *</Label>
@@ -173,6 +176,9 @@ export function BoatFormDialog({
                   placeholder="300.00"
                   data-testid="input-main-deposit"
                 />
+                {form.formState.errors.deposit && (
+                  <p className="text-sm text-red-500">{form.formState.errors.deposit.message}</p>
+                )}
               </div>
             </div>
             <div className="flex flex-col sm:flex-row gap-4 sm:gap-6">
@@ -386,6 +392,17 @@ export function BoatFormDialog({
               form={form}
             />
           </div>
+
+          {Object.keys(form.formState.errors).length > 0 && (
+            <div className="bg-red-50 border border-red-200 rounded-lg p-3 text-sm text-red-700">
+              <p className="font-medium">Corrige los siguientes errores:</p>
+              <ul className="list-disc list-inside mt-1">
+                {Object.entries(form.formState.errors).map(([field, error]) => (
+                  <li key={field}>{field}: {(error as Record<string, unknown>)?.message as string || 'Campo invalido'}</li>
+                ))}
+              </ul>
+            </div>
+          )}
 
           <DialogFooter>
             <Button

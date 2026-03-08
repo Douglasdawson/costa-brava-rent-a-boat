@@ -1,10 +1,11 @@
 import type { Express } from "express";
 import { z } from "zod";
 import { storage } from "../storage";
-import { insertBoatSchema } from "@shared/schema";
+import { insertBoatSchema, updateBoatSchema, boats } from "@shared/schema";
 import { requireAdminSession } from "./auth";
 import { ObjectStorageService } from "../objectStorage";
 import { logger } from "../lib/logger";
+import { db } from "../db";
 
 const boatReorderSchema = z.object({
   order: z.array(z.object({
@@ -19,6 +20,17 @@ const normalizeImageSchema = z.object({
 
 export function registerAdminFleetRoutes(app: Express) {
   // ===== BOAT MANAGEMENT =====
+
+  // Get ALL boats (including inactive) for CRM
+  app.get("/api/admin/boats", requireAdminSession, async (req, res) => {
+    try {
+      const allBoats = await db.select().from(boats).orderBy(boats.displayOrder);
+      res.json(allBoats);
+    } catch (error: unknown) {
+      logger.error("[Admin] Error fetching all boats", { error: error instanceof Error ? error.message : String(error) });
+      res.status(500).json({ message: "Error interno del servidor" });
+    }
+  });
 
   app.post("/api/admin/boats", requireAdminSession, async (req, res) => {
     try {
@@ -43,7 +55,7 @@ export function registerAdminFleetRoutes(app: Express) {
       if (!existingBoat) {
         return res.status(404).json({ message: "Barco no encontrado" });
       }
-      const parsed = insertBoatSchema.partial().safeParse(req.body);
+      const parsed = updateBoatSchema.safeParse(req.body);
       if (!parsed.success) {
         return res.status(400).json({
           message: "Datos invalidos",

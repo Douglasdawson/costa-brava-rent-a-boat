@@ -28,6 +28,7 @@ export function PricingSeasonSection({
       <h4 className="font-medium">Temporada {seasonLabel}</h4>
       <Input
         placeholder={periodPlaceholder}
+        value={form.watch(`pricing.${seasonKey}.period`) || ""}
         onChange={e => form.setValue(`pricing.${seasonKey}.period`, e.target.value)}
       />
       <div className="grid grid-cols-3 gap-2">
@@ -37,6 +38,7 @@ export function PricingSeasonSection({
             <Input
               type="number"
               placeholder="0"
+              value={String(form.watch(`pricing.${seasonKey}.prices.${duration}`) ?? "")}
               onChange={e =>
                 form.setValue(
                   `pricing.${seasonKey}.prices.${duration}`,

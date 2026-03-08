@@ -20,7 +20,7 @@ export const editBookingSchema = z.object({
   extrasTotal: z.string(),
   deposit: z.string(),
   totalAmount: z.string(),
-  bookingStatus: z.enum(["draft", "hold", "pending_payment", "confirmed", "cancelled"]),
+  bookingStatus: z.enum(["draft", "hold", "pending_payment", "confirmed", "cancelled", "completed"]),
   paymentStatus: z.enum(["pending", "completed", "failed", "refunded"]),
   notes: z.string().optional(),
 });
@@ -35,7 +35,7 @@ export const boatSchema = z.object({
   requiresLicense: z.boolean(),
   deposit: z.string().min(1, "El depósito es requerido"),
   isActive: z.boolean(),
-  displayOrder: z.number().optional(),
+  displayOrder: z.number().nullable().optional(),
 
   // Extended fields
   imageUrl: z.string().optional(),
@@ -44,13 +44,13 @@ export const boatSchema = z.object({
   description: z.string().optional(),
   specifications: z
     .object({
-      model: z.string(),
-      length: z.string(),
-      beam: z.string(),
-      engine: z.string(),
-      fuel: z.string(),
-      capacity: z.string(),
-      deposit: z.string(),
+      model: z.string().default(""),
+      length: z.string().default(""),
+      beam: z.string().default(""),
+      engine: z.string().default(""),
+      fuel: z.string().default(""),
+      capacity: z.string().default(""),
+      deposit: z.string().default(""),
     })
     .optional(),
   equipment: z.array(z.string()).optional(),

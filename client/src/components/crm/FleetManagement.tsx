@@ -73,7 +73,7 @@ export function FleetManagement({ adminToken }: FleetManagementProps) {
 
   // Fetch all boats (including inactive)
   const { data: boats, isLoading: boatsLoading } = useQuery<BoatListItem[]>({
-    queryKey: ["/api/boats"],
+    queryKey: ["/api/admin/boats"],
   });
 
   // Initialize ordered boats when boats data changes
@@ -107,6 +107,7 @@ export function FleetManagement({ adminToken }: FleetManagementProps) {
       return response.json();
     },
     onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["/api/admin/boats"] });
       queryClient.invalidateQueries({ queryKey: ["/api/boats"] });
       toast({
         title: "Orden actualizado",
@@ -159,6 +160,7 @@ export function FleetManagement({ adminToken }: FleetManagementProps) {
       return response.json();
     },
     onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["/api/admin/boats"] });
       queryClient.invalidateQueries({ queryKey: ["/api/boats"] });
       toast({
         title: "Barco creado",
@@ -194,6 +196,7 @@ export function FleetManagement({ adminToken }: FleetManagementProps) {
       return response.json();
     },
     onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["/api/admin/boats"] });
       queryClient.invalidateQueries({ queryKey: ["/api/boats"] });
       toast({
         title: "Barco actualizado",
@@ -228,6 +231,7 @@ export function FleetManagement({ adminToken }: FleetManagementProps) {
       return response.json();
     },
     onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["/api/admin/boats"] });
       queryClient.invalidateQueries({ queryKey: ["/api/boats"] });
       toast({
         title: "Barco desactivado",
@@ -259,6 +263,7 @@ export function FleetManagement({ adminToken }: FleetManagementProps) {
       return response.json();
     },
     onSuccess: data => {
+      queryClient.invalidateQueries({ queryKey: ["/api/admin/boats"] });
       queryClient.invalidateQueries({ queryKey: ["/api/boats"] });
       toast({
         title: "Barcos importados",

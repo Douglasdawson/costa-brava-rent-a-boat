@@ -17,7 +17,7 @@ export function registerBoatRoutes(app: Express) {
   app.get("/api/boats", async (req, res) => {
     try {
       const boats = await storage.getAllBoats();
-      res.setHeader('Cache-Control', 'public, max-age=60, s-maxage=300');
+      res.setHeader('Cache-Control', 'public, max-age=60, s-maxage=60');
       res.json(boats);
     } catch (error: unknown) {
       logger.error("[Boats] Error fetching boats", { error: error instanceof Error ? error.message : String(error) });

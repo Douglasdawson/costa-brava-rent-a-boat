@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-import { X, Anchor, ChevronRight, Users } from "lucide-react";
+import { X, Anchor, ChevronRight, Users, Copy, Check } from "lucide-react";
 import { useLocation } from "wouter";
 import { useTranslations } from "@/lib/translations";
 import { useBookingModal } from "@/hooks/useBookingModal";
@@ -53,6 +53,7 @@ export function SeasonBanner() {
   const [visible, setVisible] = useState(false);
   const [animateIn, setAnimateIn] = useState(false);
   const [countdown, setCountdown] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+  const [copied, setCopied] = useState(false);
   const t = useTranslations();
   const { openBookingModal } = useBookingModal();
 
@@ -265,9 +266,29 @@ export function SeasonBanner() {
             </div>
 
             {/* Price anchor */}
-            <p className="text-white/50 text-xs mb-7">
+            <p className="text-white/50 text-xs mb-4">
               {priceAnchor} · Gasolina incluida
             </p>
+
+            {/* Discount code */}
+            <div className="mb-6">
+              <p className="text-white/50 text-[11px] mb-2 tracking-wide">10% de descuento con el codigo:</p>
+              <button
+                onClick={() => {
+                  navigator.clipboard.writeText("BIENVENIDO10");
+                  setCopied(true);
+                  setTimeout(() => setCopied(false), 2000);
+                }}
+                className="inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-lg px-4 py-2 hover:bg-white/15 transition-colors group"
+              >
+                <span className="font-mono text-sm font-bold text-white tracking-widest">BIENVENIDO10</span>
+                {copied ? (
+                  <Check className="w-3.5 h-3.5 text-green-400" />
+                ) : (
+                  <Copy className="w-3.5 h-3.5 text-white/40 group-hover:text-white/70 transition-colors" />
+                )}
+              </button>
+            </div>
 
             {/* CTA Button with pulse glow + shimmer */}
             <button

@@ -74,6 +74,13 @@ export function FleetManagement({ adminToken }: FleetManagementProps) {
   // Fetch all boats (including inactive)
   const { data: boats, isLoading: boatsLoading } = useQuery<BoatListItem[]>({
     queryKey: ["/api/admin/boats"],
+    queryFn: async () => {
+      const res = await fetch("/api/admin/boats", {
+        headers: { Authorization: `Bearer ${adminToken}` },
+      });
+      if (!res.ok) throw new Error("Error al cargar la flota");
+      return res.json();
+    },
   });
 
   // Initialize ordered boats when boats data changes

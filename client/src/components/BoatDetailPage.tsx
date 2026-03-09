@@ -462,7 +462,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
             {boatData.pricing && (
               <>
                 <div className="flex flex-wrap gap-2 mb-6 justify-center">
-                  {Object.keys(boatData.pricing).map((season) => {
+                  {(["BAJA", "MEDIA", "ALTA"] as const).filter(s => s in boatData.pricing!).map((season) => {
                     const seasonNames: Record<string, string> = { BAJA: 'BAJA', MEDIA: 'MEDIA', ALTA: 'ALTA' };
                     return (
                       <Button
@@ -484,12 +484,22 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                   <p className="text-sm text-muted-foreground mb-4">{seasonPeriods[selectedSeason]}</p>
                   
                   <div className="flex flex-wrap justify-center gap-4">
-                    {Object.entries(boatData.pricing[selectedSeason].prices).map(([duration, price]) => (
-                      <div key={duration} className="text-center p-3 bg-white rounded-lg border min-w-[120px] hover:bg-primary/5 transition-colors cursor-pointer">
-                        <div className="font-bold text-lg text-primary">{price}€</div>
-                        <div className="text-sm text-muted-foreground">{duration}</div>
-                      </div>
-                    ))}
+                    {Object.entries(boatData.pricing[selectedSeason].prices).sort((a, b) => parseInt(a[0]) - parseInt(b[0])).map(([duration, price]) => {
+                      const isRecommended = !requiresLicense && duration === "4h";
+                      return (
+                        <div key={duration} className={`relative text-center p-3 rounded-lg min-w-[120px] transition-all cursor-pointer ${isRecommended ? "bg-white border-2 border-primary shadow-md scale-105 hover:shadow-lg" : "bg-white border hover:bg-primary/5"}`}
+                          style={isRecommended ? { boxShadow: "0 0 12px 2px rgba(168, 196, 221, 0.35)" } : undefined}
+                        >
+                          {isRecommended && (
+                            <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-white text-[10px] font-bold px-3 py-0.5 rounded-full whitespace-nowrap tracking-wide shadow-sm">
+                              Recomendado
+                            </span>
+                          )}
+                          <div className={`font-bold ${isRecommended ? "text-xl text-primary" : "text-lg text-primary"}`}>{price}€</div>
+                          <div className="text-sm text-muted-foreground">{duration}</div>
+                        </div>
+                      );
+                    })}
                   </div>
                 </div>
               </>

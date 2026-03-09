@@ -154,15 +154,10 @@ async function getBusinessContext(): Promise<{
   destinationsInfo: string;
   existingPostsInfo: string;
 }> {
-  const [boatsList, destinationsList, posts] = await Promise.all([
-    db
-      .select({
-        id: schema.boats.id,
-        name: schema.boats.name,
-        capacity: schema.boats.capacity,
-        requiresLicense: schema.boats.requiresLicense,
-      })
-      .from(schema.boats),
+  // Import real boat data from boatData.ts (source of truth)
+  const { BOAT_DATA } = await import("../../shared/boatData.js");
+
+  const [destinationsList, posts] = await Promise.all([
     db
       .select({
         name: schema.destinations.name,
@@ -182,11 +177,18 @@ async function getBusinessContext(): Promise<{
       .limit(30),
   ]);
 
-  const boatsInfo = boatsList
-    .map(
-      (b) =>
-        `- ${b.name} (capacidad: ${b.capacity}, licencia: ${b.requiresLicense ? "necesaria" : "no necesaria"}, URL: /barcos/${b.id})`
-    )
+  // Build detailed boat info from boatData.ts (source of truth for all boat details)
+  const boatsInfo = Object.values(BOAT_DATA)
+    .map((b) => {
+      const licencia = b.features.some(f => f.toLowerCase().includes("sin licencia"))
+        ? "NO necesaria"
+        : "necesaria (PER/PNB)";
+      const gasolina = b.included.some(i => i.toLowerCase().includes("carburante"))
+        ? "incluida"
+        : "NO incluida";
+      const lowestPrice = Math.min(...Object.values(b.pricing.BAJA.prices));
+      return `- ${b.name}: ${b.specifications.capacity}, eslora ${b.specifications.length}, motor ${b.specifications.engine}, licencia ${licencia}, gasolina ${gasolina}, deposito ${b.specifications.deposit}, desde ${lowestPrice}EUR (temp. baja). Incluye: ${b.included.join(", ")}. URL: /barco/${b.id}`;
+    })
     .join("\n");
 
   const destinationsInfo = destinationsList
@@ -215,17 +217,23 @@ async function generateArticle(
 ): Promise<ArticleGenerationResult> {
   const prompt = `Eres un redactor experto en SEO para un negocio de alquiler de barcos en Blanes, Costa Brava, Espana.
 
-INFORMACION DEL NEGOCIO:
+INFORMACION DEL NEGOCIO (DATOS REALES - usar siempre estos datos, no inventar):
 - Ubicacion: Puerto de Blanes, Costa Brava, Girona, Espana
-- Barcos sin licencia: para mayores de 18 anos, sin necesidad de titulacion nautica
-- Barcos con licencia: para personas con titulacion nautica vigente
-- Duraciones de alquiler: 2, 4, 6 u 8 horas
-- 3 temporadas: baja, media y alta (precios varian)
-- Briefing de seguridad incluido en todos los alquileres
-- Equipamiento incluido: toldo, escalera de bano, ancla, chaleco salvavidas
-- Deposito: entre 200 y 500 EUR segun barco
+- Telefono/WhatsApp: +34 611 500 372
+- Email: costabravarentaboat@gmail.com
+- Barcos sin licencia: para mayores de 18 anos, sin titulacion nautica, briefing de 15 min incluido
+- Barcos con licencia: requieren PER o PNB vigente
+- Duraciones de alquiler SIN licencia: 1h, 2h, 3h, 4h, 6h, 8h
+- Duraciones de alquiler CON licencia: 2h, 4h, 8h
+- 3 temporadas: baja (abril-junio, septiembre), media (julio), alta (agosto)
+- Barcos SIN licencia incluyen: IVA, gasolina, amarre, limpieza, seguro embarcacion y ocupantes
+- Barcos CON licencia incluyen: IVA, amarre, limpieza, seguro (gasolina NO incluida)
+- Deposito: entre 200 y 500 EUR segun barco (se devuelve integro)
 - Temporada: abril a octubre
-- Web: costabravarentaboat.app
+- Extras: snorkel (7,50EUR), paddle surf (25EUR), nevera (5EUR), bebidas (2,50EUR/ud), seascooter (50EUR), parking (10EUR)
+- Packs: Basic (nevera+snorkel 10EUR), Premium (+paddle 30EUR), Aventura (+seascooter 75EUR)
+
+REGLA CRITICA: Usa SOLO los barcos listados abajo. NO inventes nombres de barcos. Las URLs de barcos son /barco/{id} (ej: /barco/solar-450).
 
 BARCOS DISPONIBLES (para enlaces internos):
 ${businessCtx.boatsInfo || "No hay barcos en la base de datos"}

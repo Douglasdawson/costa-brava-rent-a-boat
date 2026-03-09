@@ -404,7 +404,7 @@ function Step1BoatDate({
         ) : (
           <div className="grid grid-cols-2 gap-2">
             {filteredBoats.map((boat) => {
-              const firstSeason = boat.pricing ? Object.values(boat.pricing)[0] : null;
+              const firstSeason = boat.pricing?.BAJA ?? (boat.pricing ? Object.values(boat.pricing)[0] : null);
               const minPrice = firstSeason?.prices
                 ? Math.min(...(Object.values(firstSeason.prices) as number[]))
                 : null;

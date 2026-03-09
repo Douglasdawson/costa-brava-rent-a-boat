@@ -160,18 +160,8 @@ export default function BlogPage() {
       <SEO title={seoConfig.title} description={seoConfig.description} canonical={canonical} hreflang={hreflangLinks} jsonLd={breadcrumbSchema} />
       <Navigation />
 
-      {/* Breadcrumbs */}
-      <div className="container mx-auto px-4 pt-20 sm:pt-24 pb-2">
-        <Breadcrumbs
-          items={[
-            { label: bp.breadcrumbHome, href: '/' },
-            { label: bp.breadcrumbBlog, href: '/blog' }
-          ]}
-        />
-      </div>
-
       {/* Header — editorial style, no gradient hero */}
-      <header className="container mx-auto px-4 pt-4 pb-8 md:pb-12">
+      <header className="container mx-auto px-4 pt-20 sm:pt-24 pb-8 md:pb-12">
         <div className="max-w-3xl">
           <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-foreground leading-[1.1]">
             {bp.title}

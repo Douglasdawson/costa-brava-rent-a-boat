@@ -24,16 +24,26 @@ self.addEventListener('activate', (event) => {
 // Fetch event - network first for API, cache first for assets
 self.addEventListener('fetch', (event) => {
   const { request } = event;
-  
+
   // Only cache GET requests to avoid errors with POST/PATCH/DELETE
   if (request.method !== 'GET') {
     return;
   }
-  
+
   const url = new URL(request.url);
 
   // Skip cross-origin requests
   if (url.origin !== location.origin) {
+    return;
+  }
+
+  // Skip Vite dev server requests (HMR, source files)
+  if (
+    url.pathname.startsWith('/@') ||
+    url.pathname.startsWith('/src/') ||
+    url.pathname.startsWith('/node_modules/') ||
+    url.search.includes('t=')
+  ) {
     return;
   }
 
@@ -52,26 +62,23 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // Static assets - cache first with network fallback
-  if (
-    url.pathname.startsWith('/assets') ||
-    url.pathname.match(/\.(js|css|png|jpg|jpeg|webp|svg|woff|woff2)$/)
-  ) {
+  // Static assets - cache first with network fallback (only production hashed assets)
+  if (url.pathname.startsWith('/assets/')) {
     event.respondWith(
       caches.match(request)
         .then(cached => {
           if (cached) return cached;
-          
+
           return fetch(request)
             .then(response => {
               if (!response || response.status !== 200) {
                 return response;
               }
-              
+
               const responseClone = response.clone();
               caches.open(RUNTIME_CACHE)
                 .then(cache => cache.put(request, responseClone));
-              
+
               return response;
             });
         })
@@ -79,15 +86,18 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // HTML - network first with cache fallback
-  event.respondWith(
-    fetch(request)
-      .then(response => {
-        const responseClone = response.clone();
-        caches.open(RUNTIME_CACHE)
-          .then(cache => cache.put(request, responseClone));
-        return response;
-      })
-      .catch(() => caches.match(request))
-  );
+  // HTML navigation - network first with cache fallback
+  if (request.mode === 'navigate') {
+    event.respondWith(
+      fetch(request)
+        .then(response => {
+          const responseClone = response.clone();
+          caches.open(RUNTIME_CACHE)
+            .then(cache => cache.put(request, responseClone));
+          return response;
+        })
+        .catch(() => caches.match(request))
+    );
+    return;
+  }
 });

@@ -33,21 +33,26 @@ export default function Hero() {
       <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-black/20 to-black/5" />
 
       {/* Content */}
-      <div className="relative z-10 h-full flex flex-col justify-center pt-14 lg:pt-20">
+      <div className="relative z-10 h-full flex flex-col justify-start pt-24 sm:justify-center sm:pt-20 lg:pt-20">
         <div className="px-4 sm:px-6 lg:px-16 xl:px-24 max-w-screen-2xl mx-auto">
           <div className="text-center lg:text-left flex flex-col items-center lg:items-start lg:max-w-3xl">
-            <h1 className="font-heading font-bold text-white tracking-tight mb-6 leading-[1.08] uppercase" style={{ fontSize: 'clamp(2rem, 6vw, 4.5rem)' }}>
+            {/* Mobile: minimal, photo-first. Desktop: full layout */}
+            <h1 className="font-heading font-bold text-white tracking-tight mb-4 sm:mb-6 leading-[1.08] uppercase" style={{ fontSize: 'clamp(1.75rem, 6vw, 4.5rem)' }}>
               Alquiler de Barcos en Blanes,{' '}
-              <span className="text-[#A8C4DD]">Costa Brava</span>
+              <span className="text-[hsl(215,45%,20%)]">Costa Brava</span>
             </h1>
-            <div className="w-16 h-px bg-white/40 mb-5 lg:w-24" />
-            <p className="text-lg sm:text-xl lg:text-2xl text-white/85 font-light mb-8 leading-relaxed max-w-xl lg:max-w-2xl">
-              {t.hero.subtitleLine1}<br />
-              {t.hero.subtitleLine2}
+
+            {/* Separator - desktop only */}
+            <div className="hidden sm:block w-16 h-px bg-white/40 mb-5 lg:w-24" />
+
+            {/* Subtitle - single line on mobile, full on desktop */}
+            <p className="text-base sm:text-xl lg:text-2xl text-white/85 font-light mb-6 sm:mb-8 leading-relaxed max-w-xl lg:max-w-2xl">
+              <span className="sm:hidden">Desde 70€ · Gasolina incluida</span>
+              <span className="hidden sm:inline">{t.hero.subtitleLine1}<br />{t.hero.subtitleLine2}</span>
             </p>
 
-            {/* Price badges */}
-            <div className="flex items-center gap-2 xs:gap-3 mb-8">
+            {/* Price badges - desktop/tablet only */}
+            <div className="hidden sm:flex items-center gap-2 xs:gap-3 mb-8">
               <span className="w-36 xs:w-44 py-2 rounded-full bg-[#A8C4DD]/50 backdrop-blur-sm border border-white/25 text-white text-xs xs:text-sm font-medium tracking-wide text-center">
                 Desde 70€
               </span>
@@ -56,7 +61,7 @@ export default function Hero() {
               </span>
             </div>
 
-            {/* CTA */}
+            {/* CTA - single button on mobile */}
             <div className="flex flex-col sm:flex-row items-center lg:items-start gap-3">
               <Button
                 onClick={() => openBookingModal()}
@@ -73,7 +78,7 @@ export default function Hero() {
                   const fleet = document.getElementById('fleet');
                   if (fleet) fleet.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }}
-                className="bg-transparent border-white/60 text-white hover:bg-white/10 hover:text-white rounded-full px-6 py-2 text-sm font-medium"
+                className="hidden sm:inline-flex bg-transparent border-white/60 text-white hover:bg-white/10 hover:text-white rounded-full px-6 py-2 text-sm font-medium"
                 data-testid="button-hero-explore"
               >
                 {t.hero.viewFleet}
@@ -113,7 +118,7 @@ export default function Hero() {
           speed={1.5}
           curveAmount={60}
           direction="left"
-          className="fill-white text-[5rem] lg:text-[3rem] font-display tracking-wider lg:lowercase"
+          className="fill-white text-[3rem] lg:text-[3rem] font-display tracking-wider lg:lowercase"
         />
       </div>
     </div>

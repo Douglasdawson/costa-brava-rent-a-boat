@@ -266,28 +266,14 @@ export default function BookingWizardMobile(props: BookingWizardMobileProps) {
 function Step1Boat({
   licenseFilter, setLicenseFilter,
   selectedBoat, setSelectedBoat,
-  selectedDate, setSelectedDate,
   filteredBoats,
   isBoatsLoading,
   preSelectedBoatId,
-  getLocalISODate,
-  showFieldError, getFieldError, handleBlur,
+  showFieldError, getFieldError,
   t,
-  nextSaturdayISO,
-  language,
 }: BookingWizardMobileProps) {
-  const [showDatePicker, setShowDatePicker] = useState(false);
-  const dateRef = useRef<HTMLDivElement>(null);
-
   function handleBoatSelect(boatId: string) {
     setSelectedBoat(boatId);
-    setTimeout(() => {
-      dateRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      // Auto-open date picker if no date selected yet
-      if (!selectedDate) {
-        setTimeout(() => setShowDatePicker(true), 350);
-      }
-    }, 100);
   }
 
   return (
@@ -395,7 +381,42 @@ function Step1Boat({
           <p className="text-xs text-red-500 mt-1">{getFieldError('boat')}</p>
         )}
       </div>
-      <div ref={dateRef}>
+    </div>
+  );
+}
+
+function Step2Trip({
+  selectedDate, setSelectedDate,
+  selectedDuration, setSelectedDuration,
+  preferredTime, setPreferredTime,
+  numberOfPeople, setNumberOfPeople,
+  selectedBoatInfo,
+  getDurationOptions, getMaxCapacity,
+  getLocalISODate,
+  timeSlots,
+  unavailableTimeSlots,
+  selectedTimeMaxDuration,
+  showFieldError, getFieldError, handleBlur,
+  t,
+  nextSaturdayISO,
+  language,
+}: BookingWizardMobileProps) {
+  const [showDatePicker, setShowDatePicker] = useState(false);
+  const durationOptions = getDurationOptions();
+  const maxCapacity = getMaxCapacity();
+
+  return (
+    <div className="space-y-5">
+      <div>
+        <h2 className="text-xl font-bold text-gray-900 mb-1">
+          {selectedBoatInfo
+            ? (t.endowment?.yourTripIn || 'Tu viaje en {boat}').replace('{boat}', selectedBoatInfo.name)
+            : t.wizard.yourTrip}
+        </h2>
+        <p className="text-sm text-gray-500">{t.wizard.howLongHowMany}</p>
+      </div>
+      {/* Date picker — moved from step 1 */}
+      <div>
         <label className="block text-sm font-semibold text-gray-700 mb-2">
           {t.wizard.date}
         </label>
@@ -441,35 +462,6 @@ function Step1Boat({
             {t.wizard.suggestedDate}: {new Date(nextSaturdayISO + 'T12:00:00').toLocaleDateString(language === 'en' ? 'en-GB' : 'es-ES', { weekday: 'long', day: 'numeric', month: 'long' })}
           </p>
         )}
-      </div>
-    </div>
-  );
-}
-
-function Step2Trip({
-  selectedDuration, setSelectedDuration,
-  preferredTime, setPreferredTime,
-  numberOfPeople, setNumberOfPeople,
-  selectedBoatInfo,
-  getDurationOptions, getMaxCapacity,
-  timeSlots,
-  unavailableTimeSlots,
-  selectedTimeMaxDuration,
-  showFieldError, getFieldError, handleBlur,
-  t,
-}: BookingWizardMobileProps) {
-  const durationOptions = getDurationOptions();
-  const maxCapacity = getMaxCapacity();
-
-  return (
-    <div className="space-y-5">
-      <div>
-        <h2 className="text-xl font-bold text-gray-900 mb-1">
-          {selectedBoatInfo
-            ? (t.endowment?.yourTripIn || 'Tu viaje en {boat}').replace('{boat}', selectedBoatInfo.name)
-            : t.wizard.yourTrip}
-        </h2>
-        <p className="text-sm text-gray-500">{t.wizard.howLongHowMany}</p>
       </div>
       {/* Time — shown before duration so maxDuration can filter durations */}
       <div>

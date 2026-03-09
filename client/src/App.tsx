@@ -154,7 +154,6 @@ function HomePage() {
       <Navigation />
       <main id="main-content">
         <Hero />
-        <SocialProofStrip />
         <FleetSection />
         <LicenseComparisonSection />
         <ReviewsSection />

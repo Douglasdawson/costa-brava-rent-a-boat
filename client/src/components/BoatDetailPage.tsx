@@ -735,10 +735,10 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                     href={`/barco/${relBoat.id}`}
                     className="group bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow border border-border"
                   >
-                    <div className="relative h-40 overflow-hidden">
+                    <div className="relative overflow-hidden" style={{ aspectRatio: '4/3' }}>
                       <img
-                        src={getBoatImage(relBoat.imageUrl || '')}
-                        alt={relBoat.name}
+                        src={relBoat.imageGallery?.find((img: string) => !img.includes('portrait')) || relBoat.imageGallery?.[0] || getBoatImage(relBoat.imageUrl || '')}
+                        alt={`Alquiler barco ${relBoat.name} en Blanes Costa Brava`}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                         loading="lazy"
                       />

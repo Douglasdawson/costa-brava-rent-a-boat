@@ -660,12 +660,12 @@ export default function BookingFormWidget({ preSelectedBoatId, prefillDate, pref
 
   // Step validation
   const canAdvanceFromStep1 = (): boolean => {
-    return !!selectedBoat && !!selectedDate && selectedDate >= getLocalISODate();
+    return !!selectedBoat;
   };
 
   const canAdvanceFromStep2 = (): boolean => {
     const n = parseInt(numberOfPeople);
-    return !!selectedDuration && !!preferredTime && !!numberOfPeople && n >= 1 && n <= getMaxCapacity();
+    return !!selectedDate && selectedDate >= getLocalISODate() && !!selectedDuration && !!preferredTime && !!numberOfPeople && n >= 1 && n <= getMaxCapacity();
   };
 
   const canAdvanceFromStep3 = (): boolean => {
@@ -680,13 +680,13 @@ export default function BookingFormWidget({ preSelectedBoatId, prefillDate, pref
   const handleNextStep = () => {
     if (currentStep === 1) {
       if (!canAdvanceFromStep1()) {
-        setTouched(prev => ({ ...prev, boat: true, date: true }));
+        setTouched(prev => ({ ...prev, boat: true }));
         return;
       }
     }
     if (currentStep === 2) {
       if (!canAdvanceFromStep2()) {
-        setTouched(prev => ({ ...prev, duration: true, time: true, people: true }));
+        setTouched(prev => ({ ...prev, date: true, duration: true, time: true, people: true }));
         return;
       }
     }

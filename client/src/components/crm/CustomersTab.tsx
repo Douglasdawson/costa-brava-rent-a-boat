@@ -275,7 +275,7 @@ export function CustomersTab({
                       </div>
                     </TableHead>
                     <TableHead>Email</TableHead>
-                    <TableHead>Telefono</TableHead>
+                    <TableHead>Teléfono</TableHead>
                     <TableHead>Nacionalidad</TableHead>
                     <TableHead
                       className="cursor-pointer select-none hover:bg-muted/50 text-center"

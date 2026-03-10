@@ -174,7 +174,7 @@ export function GiftCardManagement({ adminToken }: GiftCardManagementProps) {
                 <Table>
                   <TableHeader>
                     <TableRow>
-                      <TableHead>Codigo</TableHead>
+                      <TableHead>Código</TableHead>
                       <TableHead>Importe</TableHead>
                       <TableHead>Comprador</TableHead>
                       <TableHead>Destinatario</TableHead>

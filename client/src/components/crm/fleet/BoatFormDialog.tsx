@@ -59,9 +59,9 @@ export function BoatFormDialog({
           <DialogDescription>Complete todos los campos del barco</DialogDescription>
         </DialogHeader>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-          {/* Informacion Basica */}
+          {/* Información Básica */}
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold font-heading">Informacion Basica</h3>
+            <h3 className="text-lg font-semibold font-heading">Información Básica</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <Label htmlFor="id">ID del Barco *</Label>
@@ -169,7 +169,7 @@ export function BoatFormDialog({
                 )}
               </div>
               <div>
-                <Label htmlFor="deposit">Deposito ({"\u20AC"}) *</Label>
+                <Label htmlFor="deposit">Depósito ({"\u20AC"}) *</Label>
                 <Input
                   id="deposit"
                   {...form.register("deposit")}

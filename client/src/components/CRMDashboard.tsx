@@ -242,8 +242,8 @@ export default function CRMDashboard({ adminToken }: CRMDashboardProps) {
 
       const headers = [
         "ID", "Fecha", "Hora Inicio", "Hora Fin", "Cliente", "Apellidos",
-        "Telefono", "Email", "Nacionalidad", "Personas", "Barco",
-        "Horas", "Subtotal", "Extras", "Deposito", "Total",
+        "Teléfono", "Email", "Nacionalidad", "Personas", "Barco",
+        "Horas", "Subtotal", "Extras", "Depósito", "Total",
         "Estado Reserva", "Estado Pago", "Fuente", "Notas"
       ];
 

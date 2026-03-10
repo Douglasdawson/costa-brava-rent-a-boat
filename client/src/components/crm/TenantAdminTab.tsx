@@ -246,7 +246,7 @@ function CompanySettingsSection({
         <CardHeader>
           <CardTitle className="text-base font-heading flex items-center gap-2">
             <Building2 className="w-4 h-4" />
-            Informacion de la empresa
+            Información de la empresa
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
@@ -257,7 +257,7 @@ function CompanySettingsSection({
                 id="t-name"
                 value={form.name || ""}
                 onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))}
-                placeholder="Mi Empresa Nautica"
+                placeholder="Mi Empresa Náutica"
               />
             </div>
             <div className="space-y-1">
@@ -278,7 +278,7 @@ function CompanySettingsSection({
             <div className="space-y-1">
               <Label htmlFor="t-phone">
                 <Phone className="w-3.5 h-3.5 inline mr-1" />
-                Telefono
+                Teléfono
               </Label>
               <Input
                 id="t-phone"
@@ -291,7 +291,7 @@ function CompanySettingsSection({
             <div className="space-y-1">
               <Label htmlFor="t-address">
                 <MapPin className="w-3.5 h-3.5 inline mr-1" />
-                Direccion / Puerto
+                Dirección / Puerto
               </Label>
               <Input
                 id="t-address"

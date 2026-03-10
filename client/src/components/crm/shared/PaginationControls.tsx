@@ -6,17 +6,17 @@ import {
   ChevronsRight,
 } from "lucide-react";
 
-interface PaginationControlsProps {
+interface PáginationControlsProps {
   currentPage: number;
   totalPages: number;
   onPageChange: (page: number) => void;
 }
 
-export function PaginationControls({
+export function PáginationControls({
   currentPage,
   totalPages,
   onPageChange,
-}: PaginationControlsProps) {
+}: PáginationControlsProps) {
   const pages: number[] = [];
   const maxVisible = 5;
   let startPage = Math.max(1, currentPage - Math.floor(maxVisible / 2));
@@ -31,7 +31,7 @@ export function PaginationControls({
   return (
     <div className="flex items-center justify-between mt-6 pt-4 border-t">
       <div className="text-sm text-muted-foreground">
-        Pagina {currentPage} de {totalPages}
+        Página {currentPage} de {totalPages}
       </div>
       <div className="flex items-center gap-1">
         <Button
@@ -48,7 +48,7 @@ export function PaginationControls({
           size="sm"
           onClick={() => onPageChange(Math.max(1, currentPage - 1))}
           disabled={currentPage <= 1}
-          title="Pagina anterior"
+          title="Página anterior"
         >
           <ChevronLeft className="w-4 h-4" />
         </Button>
@@ -70,7 +70,7 @@ export function PaginationControls({
           size="sm"
           onClick={() => onPageChange(Math.min(totalPages, currentPage + 1))}
           disabled={currentPage >= totalPages}
-          title="Pagina siguiente"
+          title="Página siguiente"
         >
           <ChevronRight className="w-4 h-4" />
         </Button>

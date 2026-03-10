@@ -94,10 +94,10 @@ interface InventoryMovement {
 }
 
 const CATEGORY_LABELS: Record<string, string> = {
-  water_sports: "Deportes Acuaticos",
+  water_sports: "Deportes Acuáticos",
   safety: "Seguridad",
   comfort: "Comodidad",
-  navigation: "Navegacion",
+  navigation: "Navegación",
   other: "Otros",
 };
 

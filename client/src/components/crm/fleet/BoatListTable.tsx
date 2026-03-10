@@ -179,7 +179,7 @@ function SortableBoatCard({
                 <span className="ml-1 font-medium">{boat.capacity} personas</span>
               </div>
               <div>
-                <span className="text-muted-foreground">Deposito:</span>
+                <span className="text-muted-foreground">Depósito:</span>
                 <span className="ml-1 font-medium">{"\u20AC"}{boat.deposit}</span>
               </div>
             </div>
@@ -294,7 +294,7 @@ export function BoatListTable({
                   <TableHead>Nombre</TableHead>
                   <TableHead>Capacidad</TableHead>
                   <TableHead>Licencia</TableHead>
-                  <TableHead>Deposito</TableHead>
+                  <TableHead>Depósito</TableHead>
                   <TableHead>Estado</TableHead>
                   <TableHead className="text-right">Acciones</TableHead>
                 </TableRow>

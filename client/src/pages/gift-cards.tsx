@@ -109,10 +109,10 @@ export default function GiftCardsPage() {
                 {t.giftCards?.purchaseSuccess || "Tarjeta regalo creada"}
               </h2>
               <p className="text-gray-600 mb-4">
-                {t.giftCards?.purchaseSuccessDesc || "Se enviara por email una vez confirmado el pago."}
+                {t.giftCards?.purchaseSuccessDesc || "Se enviará por email una vez confirmado el pago."}
               </p>
               <div className="bg-gray-100 rounded-lg p-4 mb-4">
-                <p className="text-sm text-gray-500 mb-1">{t.giftCards?.code || "Codigo"}</p>
+                <p className="text-sm text-gray-500 mb-1">{t.giftCards?.code || "Código"}</p>
                 <p className="text-2xl font-mono font-bold tracking-wider">{giftCardCode}</p>
               </div>
               <p className="text-sm text-gray-500 mb-6">

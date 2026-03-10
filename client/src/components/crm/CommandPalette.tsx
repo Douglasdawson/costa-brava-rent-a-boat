@@ -76,7 +76,7 @@ export function CommandPalette({ onNavigate, onNewBooking, onExportCSV, onLogout
       <CommandList>
         <CommandEmpty>No se encontraron resultados.</CommandEmpty>
 
-        <CommandGroup heading="Navegacion">
+        <CommandGroup heading="Navegación">
           {NAVIGATION_ITEMS.map((item) => (
             <CommandItem
               key={item.id}

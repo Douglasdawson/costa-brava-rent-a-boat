@@ -21,15 +21,15 @@ const FLAGS: Record<string, string> = {
 };
 
 const COUNTRY_NAMES: Record<string, string> = {
-  ES: "Espana", FR: "Francia", DE: "Alemania", GB: "Reino Unido",
-  NL: "Paises Bajos", IT: "Italia", PT: "Portugal", BE: "Belgica",
+  ES: "España", FR: "Francia", DE: "Alemania", GB: "Reino Unido",
+  NL: "Países Bajos", IT: "Italia", PT: "Portugal", BE: "Bélgica",
   CH: "Suiza", AT: "Austria", US: "EE.UU.", RU: "Rusia",
   SE: "Suecia", NO: "Noruega", DK: "Dinamarca", PL: "Polonia",
   CZ: "Chequia", IE: "Irlanda",
 };
 
 const FALLBACK_ACTIVITIES: SocialProofActivity[] = [
-  { name: "Maria", nationality: "ES", boatName: "ASTEC 480", people: 4, hours: 4, minutesAgo: 23 },
+  { name: "María", nationality: "ES", boatName: "ASTEC 480", people: 4, hours: 4, minutesAgo: 23 },
   { name: "Thomas", nationality: "DE", boatName: "SOLAR 450", people: 3, hours: 3, minutesAgo: 87 },
   { name: "Sophie", nationality: "FR", boatName: "REMUS 450", people: 5, hours: 6, minutesAgo: 156 },
   { name: "James", nationality: "GB", boatName: "PACIFIC CRAFT 625", people: 6, hours: 8, minutesAgo: 312 },

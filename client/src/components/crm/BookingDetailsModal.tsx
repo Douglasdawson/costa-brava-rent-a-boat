@@ -335,14 +335,14 @@ export function BookingDetailsModal({
           <div className="space-y-6">
             {/* Customer Info */}
             <div>
-              <h3 className="font-heading font-semibold text-lg mb-3">Informacion del Cliente</h3>
+              <h3 className="font-heading font-semibold text-lg mb-3">Información del Cliente</h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
                 <div>
                   <p className="text-muted-foreground">Nombre Completo</p>
                   <p className="font-medium">{booking.customerName} {booking.customerSurname}</p>
                 </div>
                 <div>
-                  <p className="text-muted-foreground">Telefono</p>
+                  <p className="text-muted-foreground">Teléfono</p>
                   <p className="font-medium">{booking.customerPhone}</p>
                 </div>
                 {booking.customerEmail && (
@@ -399,7 +399,7 @@ export function BookingDetailsModal({
 
             {/* Payment Info */}
             <div>
-              <h3 className="font-heading font-semibold text-lg mb-3">Informacion de Pago</h3>
+              <h3 className="font-heading font-semibold text-lg mb-3">Información de Pago</h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
                 <div>
                   <p className="text-muted-foreground">Subtotal</p>
@@ -410,7 +410,7 @@ export function BookingDetailsModal({
                   <p className="font-medium">{"\u20AC"}{parseFloat(booking.extrasTotal).toFixed(2)}</p>
                 </div>
                 <div>
-                  <p className="text-muted-foreground">Deposito</p>
+                  <p className="text-muted-foreground">Depósito</p>
                   <p className="font-medium">{"\u20AC"}{parseFloat(booking.deposit).toFixed(2)}</p>
                 </div>
                 <div>
@@ -429,11 +429,11 @@ export function BookingDetailsModal({
             {/* Additional Info */}
             {(booking.notes || booking.couponCode) && (
               <div>
-                <h3 className="font-heading font-semibold text-lg mb-3">Informacion Adicional</h3>
+                <h3 className="font-heading font-semibold text-lg mb-3">Información Adicional</h3>
                 <div className="space-y-2 text-sm">
                   {booking.couponCode && (
                     <div>
-                      <p className="text-muted-foreground">Codigo de Descuento</p>
+                      <p className="text-muted-foreground">Código de Descuento</p>
                       <p className="font-medium">{booking.couponCode}</p>
                     </div>
                   )}
@@ -597,7 +597,7 @@ export function BookingDetailsModal({
           <form onSubmit={editForm.handleSubmit(isCreating ? handleCreateSubmit : handleEditSubmit)} className="space-y-6">
             {/* Customer Info */}
             <div>
-              <h3 className="font-heading font-semibold text-lg mb-3">Informacion del Cliente</h3>
+              <h3 className="font-heading font-semibold text-lg mb-3">Información del Cliente</h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <Label htmlFor="customerName">Nombre</Label>
@@ -624,7 +624,7 @@ export function BookingDetailsModal({
                   )}
                 </div>
                 <div>
-                  <Label htmlFor="customerPhone">Telefono</Label>
+                  <Label htmlFor="customerPhone">Teléfono</Label>
                   <Input
                     id="customerPhone"
                     autoComplete="tel"
@@ -749,7 +749,7 @@ export function BookingDetailsModal({
 
             {/* Payment Info */}
             <div>
-              <h3 className="font-heading font-semibold text-lg mb-3">Informacion de Pago</h3>
+              <h3 className="font-heading font-semibold text-lg mb-3">Información de Pago</h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <Label htmlFor="subtotal">Subtotal ({"\u20AC"})</Label>
@@ -768,7 +768,7 @@ export function BookingDetailsModal({
                   />
                 </div>
                 <div>
-                  <Label htmlFor="deposit">Deposito ({"\u20AC"})</Label>
+                  <Label htmlFor="deposit">Depósito ({"\u20AC"})</Label>
                   <Input
                     id="deposit"
                     {...editForm.register("deposit")}

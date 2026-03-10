@@ -192,7 +192,7 @@ export function CustomerDetailModal({
                   <p className="font-medium">{customer.email || "Sin email"}</p>
                 </div>
                 <div>
-                  <p className="text-muted-foreground">Telefono</p>
+                  <p className="text-muted-foreground">Teléfono</p>
                   <p className="font-medium">{customer.phone}</p>
                 </div>
                 <div>

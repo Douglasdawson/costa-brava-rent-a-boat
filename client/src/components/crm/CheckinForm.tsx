@@ -40,11 +40,11 @@ const CHECKIN_ITEMS = [
   "Botiquin",
   "Ancla y cadena",
   "Defensas",
-  "Escalera de bano",
+  "Escalera de baño",
   "Toldo/bimini",
   "Motor OK",
-  "Direccion OK",
-  "Electronica OK",
+  "Dirección OK",
+  "Electrónica OK",
 ];
 
 const CHECKOUT_ITEMS = [

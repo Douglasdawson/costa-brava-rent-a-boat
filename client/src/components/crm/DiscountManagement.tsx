@@ -114,7 +114,7 @@ export function DiscountManagement({ adminToken }: DiscountManagementProps) {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/admin/discounts"] });
-      toast({ title: "Codigo de descuento creado correctamente" });
+      toast({ title: "Código de descuento creado correctamente" });
       setShowCreateDialog(false);
       resetForm();
     },
@@ -138,7 +138,7 @@ export function DiscountManagement({ adminToken }: DiscountManagementProps) {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/admin/discounts"] });
-      toast({ title: "Codigo de descuento desactivado" });
+      toast({ title: "Código de descuento desactivado" });
     },
     onError: (error: Error) => {
       toast({ variant: "destructive", title: "Error", description: error.message });
@@ -222,7 +222,7 @@ export function DiscountManagement({ adminToken }: DiscountManagementProps) {
       <div className="flex items-center justify-between flex-wrap gap-3">
         <h2 className="text-xl font-bold font-heading flex items-center gap-2">
           <Percent className="w-5 h-5" />
-          Codigos de Descuento
+          Códigos de Descuento
         </h2>
         <div className="flex gap-2 flex-wrap">
           <Button
@@ -268,7 +268,7 @@ export function DiscountManagement({ adminToken }: DiscountManagementProps) {
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         <Card>
           <CardContent className="p-4">
-            <p className="text-sm text-muted-foreground">Total Codigos</p>
+            <p className="text-sm text-muted-foreground">Total Códigos</p>
             <p className="text-2xl font-bold">{discountCodes.length}</p>
           </CardContent>
         </Card>
@@ -318,7 +318,7 @@ export function DiscountManagement({ adminToken }: DiscountManagementProps) {
                 <Table>
                   <TableHeader>
                     <TableRow>
-                      <TableHead>Codigo</TableHead>
+                      <TableHead>Código</TableHead>
                       <TableHead>Descuento</TableHead>
                       <TableHead>Usos</TableHead>
                       <TableHead>Email cliente</TableHead>
@@ -453,14 +453,14 @@ export function DiscountManagement({ adminToken }: DiscountManagementProps) {
       <Dialog open={showCreateDialog} onOpenChange={setShowCreateDialog}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle className="font-heading">Crear Codigo de Descuento</DialogTitle>
+            <DialogTitle className="font-heading">Crear Código de Descuento</DialogTitle>
             <DialogDescription>
               Introduce los datos del nuevo codigo de descuento
             </DialogDescription>
           </DialogHeader>
           <div className="space-y-4">
             <div>
-              <Label htmlFor="discount-code">Codigo</Label>
+              <Label htmlFor="discount-code">Código</Label>
               <Input
                 id="discount-code"
                 value={newCode}
@@ -548,7 +548,7 @@ export function DiscountManagement({ adminToken }: DiscountManagementProps) {
                   <TableRow>
                     <TableHead>Cliente</TableHead>
                     <TableHead>Email</TableHead>
-                    <TableHead>Codigo</TableHead>
+                    <TableHead>Código</TableHead>
                     <TableHead>Descuento</TableHead>
                   </TableRow>
                 </TableHeader>

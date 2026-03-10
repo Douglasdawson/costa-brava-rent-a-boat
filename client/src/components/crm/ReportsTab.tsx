@@ -189,7 +189,7 @@ export function ReportsTab({ adminToken }: ReportsTabProps) {
       {
         name: "Nombre",
         surname: "Apellidos",
-        phone: "Telefono",
+        phone: "Teléfono",
         segment: "Segmento",
         totalBookings: "Reservas",
         totalSpent: "Total Gastado",

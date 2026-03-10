@@ -18,6 +18,7 @@ export { DiscountManagement } from "./DiscountManagement";
 export { MaintenanceTab } from "./MaintenanceTab";
 export { InventoryTab } from "./InventoryTab";
 export { ReportsTab } from "./ReportsTab";
+export { BlogManagement } from "./BlogManagement";
 
 // CRM Module exports - Modals
 export { BookingDetailsModal } from "./BookingDetailsModal";

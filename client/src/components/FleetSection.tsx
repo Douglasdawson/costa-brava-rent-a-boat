@@ -98,7 +98,7 @@ export default function FleetSection() {
       return {
         id: boat.id,
         name: boat.name,
-        image: boat.imageGallery?.find(img => !img.includes('portrait')) || boat.imageGallery?.[0] || (boat.imageUrl ? getBoatImage(boat.imageUrl) : '/placeholder-boat.jpg'),
+        image: boat.imageGallery?.[0] || (boat.imageUrl ? getBoatImage(boat.imageUrl) : '/placeholder-boat.jpg'),
         imageSrcSet: boat.imageGallery?.[0] ? '' : (boat.imageUrl ? getBoatImageSrcSet(boat.imageUrl) : ''),
         imageAlt: `Alquiler barco ${boat.name} ${boat.requiresLicense ? "con licencia" : "sin licencia"} en Blanes Costa Brava 2026 - Capacidad ${boat.capacity} personas`,
         capacity: boat.capacity,

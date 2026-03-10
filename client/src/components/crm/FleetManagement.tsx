@@ -241,8 +241,8 @@ export function FleetManagement({ adminToken }: FleetManagementProps) {
       queryClient.invalidateQueries({ queryKey: ["/api/admin/boats"] });
       queryClient.invalidateQueries({ queryKey: ["/api/boats"] });
       toast({
-        title: "Barco desactivado",
-        description: "El barco ha sido desactivado correctamente",
+        title: "Barco eliminado",
+        description: "El barco ha sido eliminado correctamente",
       });
     },
     onError: (error: Error) => {
@@ -418,15 +418,15 @@ export function FleetManagement({ adminToken }: FleetManagementProps) {
       <AlertDialog open={!!deactivateTarget} onOpenChange={(open) => !open && setDeactivateTarget(null)}>
         <AlertDialogContent>
           <AlertDialogHeader>
-            <AlertDialogTitle>Confirmar desactivacion</AlertDialogTitle>
+            <AlertDialogTitle>Eliminar embarcacion</AlertDialogTitle>
             <AlertDialogDescription>
-              Estas seguro de desactivar {deactivateTarget?.name}? El barco dejara de estar disponible para reservas.
+              Estas seguro de eliminar {deactivateTarget?.name}? Esta accion es permanente y no se puede deshacer.
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
             <AlertDialogCancel>Cancelar</AlertDialogCancel>
-            <AlertDialogAction onClick={() => { deleteBoatMutation.mutate(deactivateTarget!.id); setDeactivateTarget(null); }}>
-              Desactivar
+            <AlertDialogAction onClick={() => { deleteBoatMutation.mutate(deactivateTarget!.id); setDeactivateTarget(null); }} className="bg-destructive text-destructive-foreground hover:bg-destructive/90">
+              Eliminar
             </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>

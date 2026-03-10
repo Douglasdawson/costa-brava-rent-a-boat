@@ -15,11 +15,11 @@ export default function LoginPage() {
   const handleAdminPinSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!pin || pin.length < 4) {
+    if (!pin || pin.length !== 6) {
       toast({
         variant: "destructive",
         title: "PIN invalido",
-        description: "Por favor ingresa un PIN valido de 4-6 digitos",
+        description: "Por favor ingresa un PIN de 6 digitos",
       });
       return;
     }
@@ -98,7 +98,7 @@ export default function LoginPage() {
                 type="password"
                 placeholder="Ingresa tu PIN"
                 value={pin}
-                onChange={(e) => setPin(e.target.value)}
+                onChange={(e) => setPin(e.target.value.replace(/\D/g, ''))}
                 maxLength={6}
                 disabled={isLoading}
                 data-testid="input-admin-pin"

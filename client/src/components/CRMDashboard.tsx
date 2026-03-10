@@ -14,6 +14,7 @@ import {
   CustomersTab,
   InquiriesTab,
   FleetManagement,
+  BlogManagement,
   EmployeeManagement,
   TenantAdminTab,
   SuperAdminTab,
@@ -41,7 +42,7 @@ interface CRMDashboardProps {
 const VALID_TABS = [
   "dashboard", "calendar", "bookings", "customers", "inquiries",
   "fleet", "maintenance", "inventory", "reports", "gallery",
-  "giftcards", "discounts", "employees", "config", "superadmin",
+  "giftcards", "discounts", "blog", "employees", "config", "superadmin",
 ];
 
 export default function CRMDashboard({ adminToken }: CRMDashboardProps) {
@@ -86,12 +87,13 @@ export default function CRMDashboard({ adminToken }: CRMDashboardProps) {
       gallery: "Galeria",
       giftcards: "Tarjetas Regalo",
       discounts: "Descuentos",
+      blog: "Blog",
       employees: "Equipo",
       config: "Configuracion",
       superadmin: "Plataforma",
     };
     const prev = document.title;
-    document.title = `${titles[selectedTab] || "Dashboard"} — NauticFlow CRM`;
+    document.title = `${titles[selectedTab] || "Dashboard"} — Costa Brava Rent a Boat`;
     return () => { document.title = prev; };
   }, [selectedTab]);
 
@@ -391,6 +393,11 @@ export default function CRMDashboard({ adminToken }: CRMDashboardProps) {
         {/* Discounts Tab */}
         {selectedTab === "discounts" && (
           <DiscountManagement adminToken={adminToken} />
+        )}
+
+        {/* Blog Tab */}
+        {selectedTab === "blog" && (
+          <BlogManagement adminToken={adminToken} />
         )}
 
         {/* Employees Tab */}

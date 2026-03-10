@@ -67,39 +67,37 @@ function SortableImage({ id, imageUrl, index, onRemove }: SortableImageProps) {
             alt={`Gallery image ${index + 1}`}
             className="w-full h-full object-cover"
           />
-          
+
           {/* Cover badge for first image */}
           {index === 0 && (
             <div className="absolute top-2 left-2 bg-primary text-primary-foreground text-xs px-2 py-1 rounded-md font-medium">
               Portada
             </div>
           )}
+        </div>
 
-          {/* Drag handle */}
-          <div
-            {...attributes}
-            {...listeners}
-            className="absolute top-2 right-2 p-1.5 bg-background/80 hover-elevate active-elevate-2 rounded-md cursor-grab active:cursor-grabbing transition-all"
-            data-testid={`drag-handle-${index}`}
-          >
-            <GripVertical className="w-4 h-4" />
+        {/* Controls bar */}
+        <div className="flex items-center justify-between px-2 py-1.5">
+          <div className="flex items-center gap-2">
+            <div
+              {...attributes}
+              {...listeners}
+              className="p-1 rounded cursor-grab active:cursor-grabbing hover:bg-muted transition-colors"
+              data-testid={`drag-handle-${index}`}
+            >
+              <GripVertical className="w-4 h-4 text-muted-foreground" />
+            </div>
+            <span className="text-xs text-muted-foreground">Imagen {index + 1}</span>
           </div>
-
-          {/* Remove button */}
           <Button
             size="icon"
             variant="ghost"
-            className="absolute bottom-2 right-2 h-8 w-8 bg-background/80 hover-elevate"
+            className="h-7 w-7 text-muted-foreground hover:text-destructive"
             onClick={() => onRemove(index)}
             data-testid={`button-remove-image-${index}`}
           >
             <X className="w-4 h-4" />
           </Button>
-        </div>
-
-        {/* Image info */}
-        <div className="p-2 text-xs text-muted-foreground">
-          Imagen {index + 1}
         </div>
       </Card>
     </div>

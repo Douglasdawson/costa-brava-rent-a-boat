@@ -369,7 +369,7 @@ export default function OnboardingPage() {
         </div>
 
         <p className="text-center text-xs text-muted-foreground mt-4">
-          NauticFlow · Plataforma de gestión náutica
+          Costa Brava Rent a Boat · Panel de administracion
         </p>
       </div>
     </div>

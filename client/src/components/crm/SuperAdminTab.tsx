@@ -166,7 +166,7 @@ export function SuperAdminTab({ adminToken }: SuperAdminTabProps) {
           <Globe className="w-5 h-5 text-primary" />
         </div>
         <div>
-          <h2 className="text-xl font-bold text-foreground font-heading">NauticFlow — Panel de Plataforma</h2>
+          <h2 className="text-xl font-bold text-foreground font-heading">Costa Brava Rent a Boat — Panel de Plataforma</h2>
           <p className="text-sm text-muted-foreground">Administracion global de todas las empresas</p>
         </div>
       </div>

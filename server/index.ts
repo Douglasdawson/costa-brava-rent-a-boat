@@ -62,10 +62,10 @@ const authLimiter = rateLimit({
   message: { message: "Demasiados intentos de login. Intenta de nuevo en 15 minutos." },
 });
 
-// Stricter limiter for admin panel (50 req / 15 min)
+// Admin panel limiter (300 req / 15 min)
 const adminLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
-  max: 50,
+  max: 300,
   standardHeaders: true,
   legacyHeaders: false,
   message: { message: "Demasiadas peticiones al panel de administración. Intenta de nuevo en unos minutos." },

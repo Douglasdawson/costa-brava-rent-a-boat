@@ -25,6 +25,7 @@ import {
   Settings,
   Globe,
   MessageSquare,
+  FileText,
   MoreHorizontal,
 } from "lucide-react";
 
@@ -56,6 +57,7 @@ const ADMIN_TABS = [
   { id: "inventory", label: "Inventario", icon: Package },
   { id: "reports", label: "Reportes", icon: BarChart3 },
   { id: "gallery", label: "Galeria", icon: Camera },
+  { id: "blog", label: "Blog", icon: FileText },
   { id: "giftcards", label: "Regalos", icon: Gift },
   { id: "discounts", label: "Descuentos", icon: Percent },
 ];
@@ -125,6 +127,7 @@ export function AdminLayout({
       tabs: [
         { id: "reports", label: "Reportes", icon: BarChart3 },
         { id: "gallery", label: "Galeria", icon: Camera },
+        { id: "blog", label: "Blog", icon: FileText },
         { id: "giftcards", label: "Regalos", icon: Gift },
         { id: "discounts", label: "Descuentos", icon: Percent },
       ],
@@ -188,7 +191,7 @@ export function AdminLayout({
             <Anchor className="w-6 h-6 md:w-8 md:h-8 text-primary" />
             <div>
               <h1 className="text-lg md:text-2xl font-bold font-heading text-foreground">
-                {isPlatformAdmin ? "NauticFlow" : (tenantName || "NauticFlow CRM")}
+                {tenantName || "Costa Brava Rent a Boat"}
               </h1>
               <p className="text-xs md:text-sm text-muted-foreground hidden md:block">
                 {adminUsername} · {isPlatformAdmin ? "Admin de Plataforma" : adminRole === "owner" ? "Propietario" : adminRole === "admin" ? "Administrador" : "Empleado"}

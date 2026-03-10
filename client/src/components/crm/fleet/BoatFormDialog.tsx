@@ -11,7 +11,7 @@ import {
   DialogDescription,
   DialogFooter,
 } from "@/components/ui/dialog";
-import { Check, Loader2 } from "lucide-react";
+import { Check, Download, Loader2 } from "lucide-react";
 import { ImageGalleryUploader } from "@/components/ImageGalleryUploader";
 import { EQUIPMENT_OPTIONS, INCLUDED_OPTIONS } from "../constants";
 import type { BoatFormData } from "../types";
@@ -114,7 +114,32 @@ export function BoatFormDialog({
 
           {/* Imagenes */}
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold font-heading">Imagenes</h3>
+            <div className="flex items-center justify-between">
+              <h3 className="text-lg font-semibold font-heading">Imagenes</h3>
+              {(form.watch("imageGallery") || []).length > 0 && (
+                <Button
+                  type="button"
+                  variant="outline"
+                  size="sm"
+                  onClick={() => {
+                    const images = form.watch("imageGallery") || [];
+                    const boatName = form.watch("name") || form.watch("id") || "barco";
+                    images.forEach((url, i) => {
+                      const link = document.createElement("a");
+                      link.href = url;
+                      link.download = `${boatName.replace(/\s+/g, "-").toLowerCase()}-${i + 1}`;
+                      link.target = "_blank";
+                      document.body.appendChild(link);
+                      link.click();
+                      document.body.removeChild(link);
+                    });
+                  }}
+                >
+                  <Download className="w-4 h-4 mr-1" />
+                  Descargar ({(form.watch("imageGallery") || []).length})
+                </Button>
+              )}
+            </div>
             <div>
               <Label htmlFor="imageUrl">URL Imagen Principal (auto-sincronizada)</Label>
               <Input

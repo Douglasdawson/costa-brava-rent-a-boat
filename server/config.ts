@@ -5,7 +5,7 @@ const envSchema = z.object({
   NODE_ENV: z.enum(["development", "production", "test"]).default("development"),
   DATABASE_URL: z.string().min(1, "DATABASE_URL is required"),
   JWT_SECRET: z.string().min(32, "JWT_SECRET must be at least 32 characters"),
-  ADMIN_PIN: z.string().min(4, "ADMIN_PIN must be at least 4 characters"),
+  ADMIN_PIN: z.string().length(6, "ADMIN_PIN must be exactly 6 digits"),
   PORT: z.coerce.number().default(5000),
   SENTRY_DSN: z.string().optional(),
   STRIPE_SECRET_KEY: z.string().optional(),

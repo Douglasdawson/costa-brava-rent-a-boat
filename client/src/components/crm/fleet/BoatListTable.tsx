@@ -98,8 +98,7 @@ function SortableBoatRow({
           >
             <Edit className="w-4 h-4" />
           </Button>
-          {boat.isActive && (
-            <Button
+          <Button
               size="icon"
               variant="ghost"
               onClick={() => onDelete(boat.id)}
@@ -107,7 +106,6 @@ function SortableBoatRow({
             >
               <Trash2 className="w-4 h-4" />
             </Button>
-          )}
         </div>
       </TableCell>
     </TableRow>

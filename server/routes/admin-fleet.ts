@@ -1,5 +1,6 @@
 import type { Express } from "express";
 import { z } from "zod";
+import { eq } from "drizzle-orm";
 import { storage } from "../storage";
 import { insertBoatSchema, updateBoatSchema, boats } from "@shared/schema";
 import { requireAdminSession } from "./auth";
@@ -76,8 +77,8 @@ export function registerAdminFleetRoutes(app: Express) {
       if (!existingBoat) {
         return res.status(404).json({ message: "Barco no encontrado" });
       }
-      await storage.updateBoat(req.params.id, { isActive: false });
-      res.json({ message: "Barco desactivado correctamente" });
+      await db.delete(boats).where(eq(boats.id, req.params.id));
+      res.json({ message: "Barco eliminado correctamente" });
     } catch (error: unknown) {
       logger.error("[Admin] Error deleting boat", { error: error instanceof Error ? error.message : String(error) });
       res.status(500).json({ message: "Error interno del servidor" });

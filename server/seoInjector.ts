@@ -5,6 +5,26 @@ import { storage } from "./storage";
 
 const BASE_URL = process.env.BASE_URL || "https://costabravarentaboat.com";
 
+// AI crawler user-agent patterns for enhanced content delivery
+const AI_BOT_PATTERNS = [
+  /GPTBot/i,
+  /ChatGPT-User/i,
+  /PerplexityBot/i,
+  /ClaudeBot/i,
+  /Claude-Web/i,
+  /Anthropic/i,
+  /Google-Extended/i,
+  /Applebot-Extended/i,
+  /Bytespider/i,
+  /CCBot/i,
+  /cohere-ai/i,
+];
+
+export function isAICrawler(userAgent: string | undefined): boolean {
+  if (!userAgent) return false;
+  return AI_BOT_PATTERNS.some(pattern => pattern.test(userAgent));
+}
+
 interface SEOMeta {
   title: string;
   description: string;
@@ -374,14 +394,15 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
     const meta = pageMeta[lang] || pageMeta["es"];
     if (!meta) return null;
 
-    // For home page: add LocalBusiness JSON-LD with real AggregateRating
+    // For home page: add rich JSON-LD graph with all schemas
     if (pathname === "/") {
       const aggregateRating = await buildAggregateRating();
-      const jsonLd = {
-        "@context": "https://schema.org",
+      const localBusiness = {
         "@type": "LocalBusiness",
-        name: "Costa Brava Rent a Boat",
-        description: "Alquiler de barcos sin licencia y con licencia en Blanes, Costa Brava. Puerto de Blanes.",
+        "@id": `${BASE_URL}/#organization`,
+        name: "Costa Brava Rent a Boat Blanes",
+        legalName: "Costa Brava Rent a Boat - Blanes",
+        description: "Alquiler de barcos sin licencia y con licencia en Blanes, Costa Brava. Puerto de Blanes. 7 embarcaciones para 4-7 personas.",
         url: BASE_URL,
         telephone: "+34611500372",
         email: "costabravarentaboat@gmail.com",
@@ -399,16 +420,102 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
           dayOfWeek: ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
           opens: "09:00",
           closes: "20:00",
+          validFrom: "2026-04-01",
+          validThrough: "2026-10-31",
         }],
         priceRange: "€€",
         aggregateRating,
         image: `${BASE_URL}/og-image.webp`,
+        knowsAbout: [
+          "Costa Brava", "Blanes", "Boat Rental", "Boat Navigation",
+          "Maritime Safety", "License-Free Boating", "Lloret de Mar",
+          "Tossa de Mar", "Mediterranean Sea", "Nautical Tourism",
+          "Costa Brava Coves", "Water Sports"
+        ],
         sameAs: [
           "https://maps.app.goo.gl/NHV4PcaFPmwBYqCt5",
           "https://www.instagram.com/costabravarentaboat/",
           "https://www.facebook.com/costabravarentaboat",
           "https://www.tiktok.com/@costabravarentaboat",
         ],
+        speakable: {
+          "@type": "SpeakableSpecification",
+          cssSelector: ["h1", ".hero-description"]
+        }
+      };
+      const webSite = {
+        "@type": "WebSite",
+        "@id": `${BASE_URL}/#website`,
+        name: "Costa Brava Rent a Boat Blanes",
+        url: BASE_URL,
+        inLanguage: ["es-ES","en-GB","ca-ES","fr-FR","de-DE","nl-NL","it-IT","ru-RU"],
+        publisher: { "@type": "LocalBusiness", "@id": `${BASE_URL}/#organization` },
+        potentialAction: {
+          "@type": "SearchAction",
+          target: { "@type": "EntryPoint", urlTemplate: `${BASE_URL}/?q={search_term_string}` },
+          "query-input": "required name=search_term_string"
+        }
+      };
+      const howTo = {
+        "@type": "HowTo",
+        name: lang === "en" ? "How to Rent a Boat in Blanes, Costa Brava" : "Como alquilar un barco en Blanes, Costa Brava",
+        description: lang === "en"
+          ? "Step-by-step guide to renting a boat in Blanes without a license."
+          : "Guia paso a paso para alquilar un barco en Blanes sin licencia.",
+        totalTime: "PT5M",
+        estimatedCost: { "@type": "MonetaryAmount", currency: "EUR", value: "70" },
+        step: lang === "en" ? [
+          { "@type": "HowToStep", position: 1, name: "Choose your boat", text: "Select from license-free boats (from 70 EUR/hour) or licensed boats (from 150 EUR/2 hours)." },
+          { "@type": "HowToStep", position: 2, name: "Select date and time", text: "Choose date, start time, and duration. Available April to October, 09:00-20:00." },
+          { "@type": "HowToStep", position: 3, name: "Confirm booking", text: "Book via WhatsApp (+34 611 500 372) or website. No deposit for license-free boats." },
+          { "@type": "HowToStep", position: 4, name: "Receive briefing", text: "15-minute training on boat handling and safety at Puerto de Blanes." },
+          { "@type": "HowToStep", position: 5, name: "Explore Costa Brava", text: "Discover coves and beaches. Fuel, insurance and safety equipment included." },
+        ] : [
+          { "@type": "HowToStep", position: 1, name: "Elige tu barco", text: "Selecciona entre barcos sin licencia (desde 70 EUR/hora) o con licencia (desde 150 EUR/2 horas)." },
+          { "@type": "HowToStep", position: 2, name: "Selecciona fecha y horario", text: "Elige fecha, hora de inicio y duracion. Disponible de abril a octubre, 09:00-20:00." },
+          { "@type": "HowToStep", position: 3, name: "Confirma tu reserva", text: "Reserva por WhatsApp (+34 611 500 372) o web. No se requiere deposito para barcos sin licencia." },
+          { "@type": "HowToStep", position: 4, name: "Recibe tu briefing", text: "Formacion de 15 minutos sobre manejo del barco y seguridad en Puerto de Blanes." },
+          { "@type": "HowToStep", position: 5, name: "Navega por la Costa Brava", text: "Explora calas y playas. Combustible, seguro y equipo de seguridad incluidos." },
+        ]
+      };
+      const faq = {
+        "@type": "FAQPage",
+        mainEntity: [
+          {
+            "@type": "Question",
+            name: lang === "en" ? "Do I need a license to rent a boat in Blanes?" : "Necesito licencia para alquilar un barco en Blanes?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: lang === "en"
+                ? "No. We have 5 license-free boats for up to 5 people. You only need to be 18+. We provide a 15-minute training."
+                : "No. Tenemos 5 barcos sin licencia para hasta 5 personas. Solo necesitas ser mayor de 18. Te damos formacion de 15 minutos."
+            }
+          },
+          {
+            "@type": "Question",
+            name: lang === "en" ? "How much does it cost to rent a boat in Blanes?" : "Cuanto cuesta alquilar un barco en Blanes?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: lang === "en"
+                ? "License-free boats from 70 EUR/hour (low season) to 95 EUR/hour (high season). Price includes fuel, insurance and safety equipment."
+                : "Barcos sin licencia desde 70 EUR/hora (temporada baja) hasta 95 EUR/hora (temporada alta). Precio incluye combustible, seguro y equipo de seguridad."
+            }
+          },
+          {
+            "@type": "Question",
+            name: lang === "en" ? "What is included in the boat rental price?" : "Que incluye el precio del alquiler?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: lang === "en"
+                ? "Fuel, insurance, safety equipment (life jackets, fire extinguisher, anchor), and a 15-minute safety briefing."
+                : "Combustible, seguro, equipo de seguridad (chalecos, extintor, ancla) y formacion de seguridad de 15 minutos."
+            }
+          },
+        ]
+      };
+      const jsonLd = {
+        "@context": "https://schema.org",
+        "@graph": [localBusiness, webSite, howTo, faq]
       };
       return { meta, jsonLd };
     }

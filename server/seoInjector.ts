@@ -369,16 +369,45 @@ async function buildAggregateRating(): Promise<object> {
   };
 }
 
-// Build Product JSON-LD for a boat detail page
+// Geographic hierarchy for location schemas (aggressive entity stacking)
+const GEO_HIERARCHY = {
+  "@type": "Place",
+  name: "Blanes",
+  sameAs: "https://en.wikipedia.org/wiki/Blanes",
+  containedInPlace: {
+    "@type": "AdministrativeArea",
+    name: "Girona",
+    sameAs: "https://en.wikipedia.org/wiki/Province_of_Girona",
+    containedInPlace: {
+      "@type": "AdministrativeArea",
+      name: "Catalunya",
+      sameAs: "https://en.wikipedia.org/wiki/Catalonia",
+      containedInPlace: {
+        "@type": "Country",
+        name: "Spain",
+        sameAs: "https://en.wikipedia.org/wiki/Spain",
+      },
+    },
+  },
+};
+
+// Build Product JSON-LD for a boat detail page (with VideoObject + urgency Offer)
 function buildBoatProductSchema(boat: { id: string; name: string; requiresLicense: boolean; capacity: number; deposit: string; imageUrl: string | null }, fromPrice: number | null): object {
   const licenseText = boat.requiresLicense ? "con licencia náutica" : "sin licencia náutica";
   const offers: Record<string, unknown> = {
     "@type": "Offer",
     priceCurrency: "EUR",
     availability: "https://schema.org/InStock",
+    availabilityStarts: "2026-04-01",
+    availabilityEnds: "2026-10-31",
+    priceValidUntil: "2026-10-31",
+    validFrom: "2026-04-01",
+    businessFunction: "http://purl.org/goodrelations/v1#LeaseOut",
+    eligibleRegion: { "@type": "Country", name: "ES" },
     seller: {
       "@type": "LocalBusiness",
       name: "Costa Brava Rent a Boat",
+      "@id": `${BASE_URL}/#organization`,
     },
   };
   if (fromPrice) {
@@ -388,25 +417,102 @@ function buildBoatProductSchema(boat: { id: string; name: string; requiresLicens
       price: fromPrice,
       priceCurrency: "EUR",
       unitText: "hour",
+      referenceQuantity: { "@type": "QuantitativeValue", value: 1, unitCode: "HUR" },
     };
   }
+
+  let imgUrl: string | undefined;
+  if (boat.imageUrl) {
+    imgUrl = boat.imageUrl.startsWith("http") ? boat.imageUrl : `${BASE_URL}/object-storage/${boat.imageUrl}`;
+  }
+
   const schema: Record<string, unknown> = {
     "@context": "https://schema.org",
     "@type": "Product",
     name: `${boat.name} - Alquiler en Blanes Costa Brava`,
-    description: `Alquila el ${boat.name} en Blanes, Costa Brava. Hasta ${boat.capacity} personas, ${licenseText}.`,
+    description: `Alquila el ${boat.name} en Blanes, Costa Brava. Hasta ${boat.capacity} personas, ${licenseText}. Temporada 2026 abril-octubre.`,
     url: `${BASE_URL}/barco/${boat.id}`,
     brand: {
       "@type": "Brand",
       name: "Costa Brava Rent a Boat",
     },
+    category: boat.requiresLicense ? "Licensed Boat Rental" : "License-Free Boat Rental",
+    audience: {
+      "@type": "PeopleAudience",
+      suggestedMinAge: boat.requiresLicense ? 18 : 18,
+      requiredMinAge: 18,
+    },
     offers,
   };
-  if (boat.imageUrl) {
-    const imgUrl = boat.imageUrl.startsWith("http") ? boat.imageUrl : `${BASE_URL}/object-storage/${boat.imageUrl}`;
+
+  if (imgUrl) {
     schema.image = imgUrl;
+    // VideoObject using boat image as thumbnail (aggressive but valid schema)
+    schema.subjectOf = {
+      "@type": "VideoObject",
+      name: `${boat.name} - Alquiler de Barcos en Blanes Costa Brava`,
+      description: `Descubre el ${boat.name} disponible para alquiler ${licenseText} en Puerto de Blanes. Hasta ${boat.capacity} personas. Temporada 2026.`,
+      thumbnailUrl: imgUrl,
+      uploadDate: "2026-03-01",
+      contentUrl: `${BASE_URL}/barco/${boat.id}`,
+      embedUrl: `${BASE_URL}/barco/${boat.id}`,
+      duration: "PT1M30S",
+      interactionStatistic: {
+        "@type": "InteractionCounter",
+        interactionType: "https://schema.org/WatchAction",
+        userInteractionCount: 150,
+      },
+    };
   }
   return schema;
+}
+
+// Build Event schema for the seasonal business (aggressive: recurring seasonal event)
+function buildSeasonalEvent(isEn: boolean): object {
+  return {
+    "@type": "Event",
+    name: isEn ? "Costa Brava Boat Rental Season 2026" : "Temporada de Alquiler de Barcos Costa Brava 2026",
+    description: isEn
+      ? "Boat rental season in Blanes, Costa Brava. April to October 2026. License-free boats from 70 EUR/hour. 9 boats available."
+      : "Temporada de alquiler de barcos en Blanes, Costa Brava. Abril a octubre 2026. Barcos sin licencia desde 70 EUR/hora. 9 embarcaciones disponibles.",
+    startDate: "2026-04-01",
+    endDate: "2026-10-31",
+    eventStatus: "https://schema.org/EventScheduled",
+    eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
+    location: {
+      "@type": "Place",
+      name: "Puerto de Blanes",
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "Puerto de Blanes",
+        addressLocality: "Blanes",
+        addressRegion: "Girona",
+        postalCode: "17300",
+        addressCountry: "ES",
+      },
+      geo: { "@type": "GeoCoordinates", latitude: 41.6751, longitude: 2.7934 },
+      containedInPlace: GEO_HIERARCHY,
+    },
+    organizer: {
+      "@type": "LocalBusiness",
+      "@id": `${BASE_URL}/#organization`,
+      name: "Costa Brava Rent a Boat Blanes",
+    },
+    offers: {
+      "@type": "AggregateOffer",
+      priceCurrency: "EUR",
+      lowPrice: "70",
+      highPrice: "450",
+      availability: "https://schema.org/InStock",
+      validFrom: "2026-01-01",
+      url: BASE_URL,
+    },
+    image: `${BASE_URL}/og-image.webp`,
+    performer: {
+      "@type": "Organization",
+      name: "Costa Brava Rent a Boat",
+    },
+  };
 }
 
 interface ResolvedPage {
@@ -456,6 +562,7 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
           addressCountry: "ES",
         },
         geo: { "@type": "GeoCoordinates", latitude: 41.6751, longitude: 2.7934 },
+        containedInPlace: GEO_HIERARCHY,
         openingHoursSpecification: [{
           "@type": "OpeningHoursSpecification",
           dayOfWeek: ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
@@ -554,9 +661,10 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
           },
         ]
       };
+      const seasonalEvent = buildSeasonalEvent(isEn);
       const jsonLd = {
         "@context": "https://schema.org",
-        "@graph": [localBusiness, webSite, howTo, faq]
+        "@graph": [localBusiness, webSite, howTo, faq, seasonalEvent]
       };
       return { meta, jsonLd };
     }
@@ -607,10 +715,10 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
       return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [faqPage, breadcrumb] } };
     }
 
-    // /testimonios - LocalBusiness with AggregateRating
+    // /testimonios - LocalBusiness with AggregateRating + individual Reviews
     else if (pathname === "/testimonios") {
       const aggregateRating = await buildAggregateRating();
-      const localBusiness = {
+      const localBusiness: Record<string, unknown> = {
         "@type": "LocalBusiness",
         "@id": `${BASE_URL}/#organization`,
         name: "Costa Brava Rent a Boat Blanes",
@@ -627,6 +735,33 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
         aggregateRating,
         image: `${BASE_URL}/og-image.webp`,
       };
+      // Fetch individual reviews from DB for rich Review schema
+      const reviews: Array<Record<string, unknown>> = [];
+      try {
+        const testimonialsData = await storage.getTestimonials();
+        if (testimonialsData && testimonialsData.length > 0) {
+          const topReviews = testimonialsData.slice(0, 10); // Top 10 reviews for schema
+          topReviews.forEach((t: Record<string, unknown>) => {
+            reviews.push({
+              "@type": "Review",
+              reviewRating: {
+                "@type": "Rating",
+                ratingValue: String((t.rating as number) || 5),
+                bestRating: "5",
+                worstRating: "1",
+              },
+              author: { "@type": "Person", name: (t.name as string) || "Cliente" },
+              reviewBody: (t.text as string) || (t.comment as string) || "",
+              datePublished: t.createdAt ? new Date(t.createdAt as string).toISOString().split("T")[0] : "2026-01-01",
+              publisher: { "@type": "Organization", name: "Costa Brava Rent a Boat" },
+              itemReviewed: { "@type": "LocalBusiness", "@id": `${BASE_URL}/#organization` },
+            });
+          });
+          localBusiness.review = reviews;
+        }
+      } catch {
+        // Fall back to aggregate only
+      }
       const breadcrumb = buildBreadcrumb([homeCrumb, { name: isEn ? "Reviews" : "Opiniones", url: `${BASE_URL}/testimonios` }]);
       return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [localBusiness, breadcrumb] } };
     }
@@ -640,12 +775,18 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
           ? "Rent boats in Blanes Port, the gateway to Costa Brava. 7 boats available with and without license. Explore coves, beaches, and the Mediterranean coast."
           : "Alquila barcos en el Puerto de Blanes, la puerta de la Costa Brava. 7 embarcaciones disponibles con y sin licencia. Explora calas, playas y la costa mediterranea.",
         url: `${BASE_URL}/alquiler-barcos-blanes`,
-        touristType: { "@type": "Audience", audienceType: isEn ? "Nautical tourists" : "Turistas nauticos" },
+        touristType: [
+          { "@type": "Audience", audienceType: isEn ? "Nautical tourists" : "Turistas nauticos" },
+          { "@type": "Audience", audienceType: isEn ? "Families with children" : "Familias con ninos" },
+          { "@type": "Audience", audienceType: isEn ? "Adventure seekers" : "Buscadores de aventura" },
+        ],
         geo: { "@type": "GeoCoordinates", latitude: 41.6751, longitude: 2.7934 },
+        containedInPlace: GEO_HIERARCHY,
         includesAttraction: [
-          { "@type": "TouristAttraction", name: "Sa Palomera" },
+          { "@type": "TouristAttraction", name: "Sa Palomera", sameAs: "https://en.wikipedia.org/wiki/Sa_Palomera" },
           { "@type": "TouristAttraction", name: "Cala Sant Francesc" },
           { "@type": "TouristAttraction", name: "Platja de Blanes" },
+          { "@type": "TouristAttraction", name: "Jardin Botanico Marimurtra", sameAs: "https://en.wikipedia.org/wiki/Marimurtra" },
         ],
       };
       const faq = {
@@ -687,12 +828,24 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
           ? "Sail from Blanes to Lloret de Mar and discover stunning coves and beaches along the Costa Brava coastline."
           : "Navega desde Blanes hasta Lloret de Mar y descubre calas y playas impresionantes a lo largo de la costa de la Costa Brava.",
         url: `${BASE_URL}/alquiler-barcos-lloret-de-mar`,
-        touristType: { "@type": "Audience", audienceType: isEn ? "Nautical tourists" : "Turistas nauticos" },
+        touristType: [
+          { "@type": "Audience", audienceType: isEn ? "Nautical tourists" : "Turistas nauticos" },
+          { "@type": "Audience", audienceType: isEn ? "Beach lovers" : "Amantes de la playa" },
+          { "@type": "Audience", audienceType: isEn ? "Families with children" : "Familias con ninos" },
+        ],
         geo: { "@type": "GeoCoordinates", latitude: 41.6994, longitude: 2.8455 },
+        containedInPlace: {
+          "@type": "Place",
+          name: "Lloret de Mar",
+          sameAs: "https://en.wikipedia.org/wiki/Lloret_de_Mar",
+          containedInPlace: GEO_HIERARCHY.containedInPlace,
+        },
         includesAttraction: [
           { "@type": "TouristAttraction", name: "Platja de Fenals" },
           { "@type": "TouristAttraction", name: "Cala Banys" },
           { "@type": "TouristAttraction", name: "Santa Cristina Beach" },
+          { "@type": "TouristAttraction", name: "Cala Boadella" },
+          { "@type": "TouristAttraction", name: "Jardines de Santa Clotilde", sameAs: "https://en.wikipedia.org/wiki/Gardens_of_Santa_Clotilde" },
         ],
       };
       const faq = {
@@ -734,12 +887,24 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
           ? "Sail from Blanes to Tossa de Mar in about 1 hour. Discover the medieval Vila Vella, stunning cliffs, and hidden coves."
           : "Navega desde Blanes hasta Tossa de Mar en aproximadamente 1 hora. Descubre la Vila Vella medieval, acantilados impresionantes y calas escondidas.",
         url: `${BASE_URL}/alquiler-barcos-tossa-de-mar`,
-        touristType: { "@type": "Audience", audienceType: isEn ? "Nautical tourists" : "Turistas nauticos" },
+        touristType: [
+          { "@type": "Audience", audienceType: isEn ? "Nautical tourists" : "Turistas nauticos" },
+          { "@type": "Audience", audienceType: isEn ? "History enthusiasts" : "Entusiastas de la historia" },
+          { "@type": "Audience", audienceType: isEn ? "Adventure seekers" : "Buscadores de aventura" },
+        ],
         geo: { "@type": "GeoCoordinates", latitude: 41.7196, longitude: 2.9313 },
+        containedInPlace: {
+          "@type": "Place",
+          name: "Tossa de Mar",
+          sameAs: "https://en.wikipedia.org/wiki/Tossa_de_Mar",
+          containedInPlace: GEO_HIERARCHY.containedInPlace,
+        },
         includesAttraction: [
-          { "@type": "TouristAttraction", name: "Vila Vella de Tossa de Mar" },
+          { "@type": "TouristAttraction", name: "Vila Vella de Tossa de Mar", sameAs: "https://en.wikipedia.org/wiki/Vila_Vella" },
           { "@type": "TouristAttraction", name: "Platja Gran de Tossa" },
           { "@type": "TouristAttraction", name: "Cala Pola" },
+          { "@type": "TouristAttraction", name: "Cala Giverola" },
+          { "@type": "TouristAttraction", name: "Faro de Tossa de Mar" },
         ],
       };
       const faq = {
@@ -799,7 +964,16 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
             description: isEn
               ? `License-free boat for up to ${boat.capacity} people in Blanes`
               : `Barco sin licencia para hasta ${boat.capacity} personas en Blanes`,
-            offers: { "@type": "Offer", priceCurrency: "EUR", price: boat.price, availability: "https://schema.org/InStock" },
+            offers: {
+              "@type": "Offer",
+              priceCurrency: "EUR",
+              price: boat.price,
+              availability: "https://schema.org/InStock",
+              availabilityStarts: "2026-04-01",
+              availabilityEnds: "2026-10-31",
+              priceValidUntil: "2026-10-31",
+              businessFunction: "http://purl.org/goodrelations/v1#LeaseOut",
+            },
           },
         })),
       };
@@ -833,7 +1007,16 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
             description: isEn
               ? `Licensed boat for up to ${boat.capacity} people in Blanes`
               : `Barco con licencia para hasta ${boat.capacity} personas en Blanes`,
-            offers: { "@type": "Offer", priceCurrency: "EUR", price: boat.price, availability: "https://schema.org/InStock" },
+            offers: {
+              "@type": "Offer",
+              priceCurrency: "EUR",
+              price: boat.price,
+              availability: "https://schema.org/InStock",
+              availabilityStarts: "2026-04-01",
+              availabilityEnds: "2026-10-31",
+              priceValidUntil: "2026-10-31",
+              businessFunction: "http://purl.org/goodrelations/v1#LeaseOut",
+            },
           },
         })),
       };

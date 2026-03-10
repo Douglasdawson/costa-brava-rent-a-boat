@@ -924,16 +924,42 @@ export function generateLocalBusinessSchema(language: Language = 'es', rating?: 
         }
       ]
     },
-    "areaServed": {
-      "@type": "GeoCircle",
-      "geoMidpoint": {
-        "@type": "GeoCoordinates",
-        "latitude": BUSINESS_INFO.geo.latitude,
-        "longitude": BUSINESS_INFO.geo.longitude
+    "areaServed": [
+      {
+        "@type": "City",
+        "name": "Blanes",
+        "sameAs": "https://en.wikipedia.org/wiki/Blanes"
       },
-      "geoRadius": "50000"
-    },
-    "serviceType": ["Boat Rental", "Maritime Tourism", "Water Sports"],
+      {
+        "@type": "City",
+        "name": "Lloret de Mar",
+        "sameAs": "https://en.wikipedia.org/wiki/Lloret_de_Mar"
+      },
+      {
+        "@type": "City",
+        "name": "Tossa de Mar",
+        "sameAs": "https://en.wikipedia.org/wiki/Tossa_de_Mar"
+      },
+      {
+        "@type": "AdministrativeArea",
+        "name": "Costa Brava",
+        "sameAs": "https://en.wikipedia.org/wiki/Costa_Brava"
+      },
+      {
+        "@type": "GeoCircle",
+        "geoMidpoint": {
+          "@type": "GeoCoordinates",
+          "latitude": BUSINESS_INFO.geo.latitude,
+          "longitude": BUSINESS_INFO.geo.longitude
+        },
+        "geoRadius": "50000"
+      }
+    ],
+    "serviceType": ["Boat Rental", "Maritime Tourism", "Water Sports", "Boat Excursions", "Snorkeling"],
+    "additionalType": [
+      "https://schema.org/TouristInformationCenter",
+      "https://schema.org/SportsActivityLocation"
+    ],
     "knowsAbout": [
       "Costa Brava",
       "Blanes",
@@ -946,9 +972,27 @@ export function generateLocalBusinessSchema(language: Language = 'es', rating?: 
       "Mediterranean Sea",
       "Nautical Tourism",
       "Costa Brava Coves",
-      "Water Sports"
+      "Water Sports",
+      "Snorkeling Costa Brava",
+      "Boat Rental Without License Spain",
+      "Puerto de Blanes",
+      "Cala Brava",
+      "Cala Sant Francesc",
+      "Vila Vella Tossa",
+      "Girona Province Tourism",
+      "Catalan Coast"
     ],
+    "knowsLanguage": ["es", "en", "ca", "fr", "de", "nl", "it", "ru"],
+    "numberOfEmployees": {
+      "@type": "QuantitativeValue",
+      "value": 6
+    },
+    "foundingDate": "2019",
+    "currenciesAccepted": "EUR",
+    "paymentAccepted": "Cash, Credit Card, Bizum, Bank Transfer",
     "slogan": "Explora la Costa Brava desde el agua",
+    "award": "4.8 stars on Google Maps - 300+ reviews",
+    "hasMap": "https://maps.app.goo.gl/NHV4PcaFPmwBYqCt5",
     "sameAs": [
       "https://maps.app.goo.gl/NHV4PcaFPmwBYqCt5",
       "https://www.instagram.com/costabravarentaboat/",

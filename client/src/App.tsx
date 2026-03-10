@@ -117,8 +117,8 @@ function HomePage() {
   });
 
   // Generate combined JSON-LD schemas for homepage
-  // Note: AggregateRating omitted until real review data is available
-  const localBusinessSchema = generateLocalBusinessSchema(language);
+  // AggregateRating: Google Maps baseline (4.8, 307 reviews) — server-side injection enriches with DB data
+  const localBusinessSchema = generateLocalBusinessSchema(language, 4.8, 307);
   const serviceSchema = generateServiceSchema(language);
   const breadcrumbSchema = generateBreadcrumbSchema([
     { name: "Inicio", url: "/" }

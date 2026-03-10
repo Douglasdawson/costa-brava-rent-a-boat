@@ -265,6 +265,33 @@ const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
       description: "Information about cookie usage on Costa Brava Rent a Boat.",
     },
   },
+  "/accesibilidad": {
+    es: {
+      title: "Declaración de Accesibilidad | Costa Brava Rent a Boat",
+      description: "Declaración de accesibilidad web de Costa Brava Rent a Boat. Cumplimiento WCAG 2.1.",
+    },
+  },
+  // Long-tail: these map to existing SPA routes but give AI crawlers ultra-specific meta
+  "/destinos": {
+    es: {
+      title: "Destinos en Barco desde Blanes | Calas y Playas Costa Brava",
+      description: "Descubre todos los destinos accesibles en barco desde Puerto de Blanes: Cala Brava, Lloret de Mar, Tossa de Mar, Sant Francesc y mas. Rutas con tiempos y distancias.",
+      ogTitle: "Destinos en Barco desde Blanes | Costa Brava 2026",
+      ogDescription: "Explora calas secretas y playas desde Puerto de Blanes. 5 destinos a menos de 45 minutos.",
+    },
+    en: {
+      title: "Boat Destinations from Blanes | Coves & Beaches Costa Brava",
+      description: "Discover all destinations accessible by boat from Blanes Port: Cala Brava, Lloret de Mar, Tossa de Mar, Sant Francesc and more.",
+    },
+    fr: {
+      title: "Destinations en Bateau depuis Blanes | Criques Costa Brava",
+      description: "Decouvrez toutes les destinations accessibles en bateau depuis le Port de Blanes. Criques secretes et plages paradisiaques.",
+    },
+    de: {
+      title: "Bootsziele ab Blanes | Buchten & Strände Costa Brava",
+      description: "Entdecken Sie alle Bootsziele ab Blanes Hafen: Cala Brava, Lloret de Mar, Tossa de Mar und mehr.",
+    },
+  },
 };
 
 // Cached base HTML to avoid re-reading from disk on every request
@@ -394,6 +421,20 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
     const meta = pageMeta[lang] || pageMeta["es"];
     if (!meta) return null;
 
+    // Helper: build a BreadcrumbList schema for any page
+    const buildBreadcrumb = (items: Array<{ name: string; url: string }>) => ({
+      "@type": "BreadcrumbList",
+      itemListElement: items.map((item, i) => ({
+        "@type": "ListItem",
+        position: i + 1,
+        name: item.name,
+        item: item.url,
+      })),
+    });
+
+    const isEn = lang === "en";
+    const homeCrumb = { name: isEn ? "Home" : "Inicio", url: BASE_URL };
+
     // For home page: add rich JSON-LD graph with all schemas
     if (pathname === "/") {
       const aggregateRating = await buildAggregateRating();
@@ -518,6 +559,352 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
         "@graph": [localBusiness, webSite, howTo, faq]
       };
       return { meta, jsonLd };
+    }
+
+    // /faq - FAQPage schema (critical for AI search extraction)
+    else if (pathname === "/faq") {
+      const faqPage = {
+        "@type": "FAQPage",
+        mainEntity: [
+          {
+            "@type": "Question",
+            name: isEn ? "Do I need a license to rent a boat in Blanes?" : "Necesito licencia para alquilar un barco en Blanes?",
+            acceptedAnswer: { "@type": "Answer", text: isEn
+              ? "No. We have 5 license-free boats (up to 15 HP) for up to 5 people. You only need to be 18+. We provide a 15-minute safety briefing."
+              : "No. Tenemos 5 barcos sin licencia (hasta 15 CV) para hasta 5 personas. Solo necesitas ser mayor de 18 anos. Te damos una formacion de seguridad de 15 minutos." },
+          },
+          {
+            "@type": "Question",
+            name: isEn ? "How much does it cost to rent a boat in Blanes?" : "Cuanto cuesta alquilar un barco en Blanes?",
+            acceptedAnswer: { "@type": "Answer", text: isEn
+              ? "License-free boats from 70 EUR/hour (low season) to 95 EUR/hour (high season). Licensed boats from 150 EUR/2 hours. Fuel, insurance and safety equipment are always included."
+              : "Barcos sin licencia desde 70 EUR/hora (temporada baja) hasta 95 EUR/hora (temporada alta). Barcos con licencia desde 150 EUR/2 horas. Combustible, seguro y equipo de seguridad siempre incluidos." },
+          },
+          {
+            "@type": "Question",
+            name: isEn ? "What is included in the boat rental price?" : "Que incluye el precio del alquiler del barco?",
+            acceptedAnswer: { "@type": "Answer", text: isEn
+              ? "All rentals include fuel, civil liability insurance, safety equipment (life jackets, fire extinguisher, anchor, paddle), mooring, cleaning, and a 15-minute safety briefing."
+              : "Todos los alquileres incluyen combustible, seguro de responsabilidad civil, equipo de seguridad (chalecos salvavidas, extintor, ancla, remo), amarre, limpieza y formacion de seguridad de 15 minutos." },
+          },
+          {
+            "@type": "Question",
+            name: isEn ? "What is the cancellation policy?" : "Cual es la politica de cancelacion?",
+            acceptedAnswer: { "@type": "Answer", text: isEn
+              ? "Free cancellation up to 24 hours before departure. Same-day cancellations may be rescheduled depending on availability. In case of bad weather, we offer full rescheduling."
+              : "Cancelacion gratuita hasta 24 horas antes de la salida. Cancelaciones del mismo dia pueden reprogramarse segun disponibilidad. En caso de mal tiempo, ofrecemos reprogramacion completa." },
+          },
+          {
+            "@type": "Question",
+            name: isEn ? "Where can I navigate with the rental boats?" : "Donde puedo navegar con los barcos de alquiler?",
+            acceptedAnswer: { "@type": "Answer", text: isEn
+              ? "License-free boats can navigate up to 2 nautical miles from the coast. You can explore from Sa Palomera to Lloret de Mar. Licensed boats can reach Tossa de Mar and beyond."
+              : "Los barcos sin licencia pueden navegar hasta 2 millas nauticas de la costa. Puedes explorar desde Sa Palomera hasta Lloret de Mar. Los barcos con licencia pueden llegar hasta Tossa de Mar y mas alla." },
+          },
+        ],
+      };
+      const breadcrumb = buildBreadcrumb([homeCrumb, { name: "FAQ", url: `${BASE_URL}/faq` }]);
+      return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [faqPage, breadcrumb] } };
+    }
+
+    // /testimonios - LocalBusiness with AggregateRating
+    else if (pathname === "/testimonios") {
+      const aggregateRating = await buildAggregateRating();
+      const localBusiness = {
+        "@type": "LocalBusiness",
+        "@id": `${BASE_URL}/#organization`,
+        name: "Costa Brava Rent a Boat Blanes",
+        url: BASE_URL,
+        telephone: "+34611500372",
+        address: {
+          "@type": "PostalAddress",
+          streetAddress: "Puerto de Blanes",
+          addressLocality: "Blanes",
+          addressRegion: "Girona",
+          postalCode: "17300",
+          addressCountry: "ES",
+        },
+        aggregateRating,
+        image: `${BASE_URL}/og-image.webp`,
+      };
+      const breadcrumb = buildBreadcrumb([homeCrumb, { name: isEn ? "Reviews" : "Opiniones", url: `${BASE_URL}/testimonios` }]);
+      return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [localBusiness, breadcrumb] } };
+    }
+
+    // /alquiler-barcos-blanes - TouristDestination + FAQPage for Blanes
+    else if (pathname === "/alquiler-barcos-blanes") {
+      const destination = {
+        "@type": "TouristDestination",
+        name: isEn ? "Blanes Port - Boat Rental" : "Puerto de Blanes - Alquiler de Barcos",
+        description: isEn
+          ? "Rent boats in Blanes Port, the gateway to Costa Brava. 7 boats available with and without license. Explore coves, beaches, and the Mediterranean coast."
+          : "Alquila barcos en el Puerto de Blanes, la puerta de la Costa Brava. 7 embarcaciones disponibles con y sin licencia. Explora calas, playas y la costa mediterranea.",
+        url: `${BASE_URL}/alquiler-barcos-blanes`,
+        touristType: { "@type": "Audience", audienceType: isEn ? "Nautical tourists" : "Turistas nauticos" },
+        geo: { "@type": "GeoCoordinates", latitude: 41.6751, longitude: 2.7934 },
+        includesAttraction: [
+          { "@type": "TouristAttraction", name: "Sa Palomera" },
+          { "@type": "TouristAttraction", name: "Cala Sant Francesc" },
+          { "@type": "TouristAttraction", name: "Platja de Blanes" },
+        ],
+      };
+      const faq = {
+        "@type": "FAQPage",
+        mainEntity: [
+          {
+            "@type": "Question",
+            name: isEn ? "Where is the boat rental point in Blanes?" : "Donde esta el punto de alquiler de barcos en Blanes?",
+            acceptedAnswer: { "@type": "Answer", text: isEn
+              ? "Our boats depart from Puerto de Blanes (Blanes Port), located at the end of the promenade near Sa Palomera rock."
+              : "Nuestros barcos salen del Puerto de Blanes, ubicado al final del paseo maritimo junto a la roca de Sa Palomera." },
+          },
+          {
+            "@type": "Question",
+            name: isEn ? "What can I see by boat from Blanes?" : "Que puedo ver en barco desde Blanes?",
+            acceptedAnswer: { "@type": "Answer", text: isEn
+              ? "From Blanes you can explore Sa Palomera, Cala Sant Francesc, Fenals Beach, Lloret de Mar coves, and even reach Tossa de Mar with a licensed boat."
+              : "Desde Blanes puedes explorar Sa Palomera, Cala Sant Francesc, Playa de Fenals, las calas de Lloret de Mar, e incluso llegar a Tossa de Mar con barco con licencia." },
+          },
+          {
+            "@type": "Question",
+            name: isEn ? "Is Blanes a good place to rent a boat?" : "Es Blanes un buen lugar para alquilar un barco?",
+            acceptedAnswer: { "@type": "Answer", text: isEn
+              ? "Yes! Blanes is the gateway to Costa Brava, with calm waters, sheltered port, and proximity to the best coves. Perfect for beginners and experienced sailors."
+              : "Si! Blanes es la puerta de la Costa Brava, con aguas tranquilas, puerto abrigado y proximidad a las mejores calas. Perfecto para principiantes y navegantes experimentados." },
+          },
+        ],
+      };
+      const breadcrumb = buildBreadcrumb([homeCrumb, { name: isEn ? "Boat Rental in Blanes" : "Alquiler Barcos Blanes", url: `${BASE_URL}/alquiler-barcos-blanes` }]);
+      return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [destination, faq, breadcrumb] } };
+    }
+
+    // /alquiler-barcos-lloret-de-mar - TouristDestination + FAQPage for Lloret
+    else if (pathname === "/alquiler-barcos-lloret-de-mar") {
+      const destination = {
+        "@type": "TouristDestination",
+        name: isEn ? "Boat Trip to Lloret de Mar from Blanes" : "Excursion en Barco a Lloret de Mar desde Blanes",
+        description: isEn
+          ? "Sail from Blanes to Lloret de Mar and discover stunning coves and beaches along the Costa Brava coastline."
+          : "Navega desde Blanes hasta Lloret de Mar y descubre calas y playas impresionantes a lo largo de la costa de la Costa Brava.",
+        url: `${BASE_URL}/alquiler-barcos-lloret-de-mar`,
+        touristType: { "@type": "Audience", audienceType: isEn ? "Nautical tourists" : "Turistas nauticos" },
+        geo: { "@type": "GeoCoordinates", latitude: 41.6994, longitude: 2.8455 },
+        includesAttraction: [
+          { "@type": "TouristAttraction", name: "Platja de Fenals" },
+          { "@type": "TouristAttraction", name: "Cala Banys" },
+          { "@type": "TouristAttraction", name: "Santa Cristina Beach" },
+        ],
+      };
+      const faq = {
+        "@type": "FAQPage",
+        mainEntity: [
+          {
+            "@type": "Question",
+            name: isEn ? "How long does it take to reach Lloret de Mar by boat from Blanes?" : "Cuanto se tarda en llegar a Lloret de Mar en barco desde Blanes?",
+            acceptedAnswer: { "@type": "Answer", text: isEn
+              ? "About 30-40 minutes from Blanes Port, depending on the boat and sea conditions. It's one of our most popular routes."
+              : "Aproximadamente 30-40 minutos desde el Puerto de Blanes, dependiendo del barco y las condiciones del mar. Es una de nuestras rutas mas populares." },
+          },
+          {
+            "@type": "Question",
+            name: isEn ? "Can I reach Lloret de Mar with a license-free boat?" : "Puedo llegar a Lloret de Mar con un barco sin licencia?",
+            acceptedAnswer: { "@type": "Answer", text: isEn
+              ? "Yes! Lloret de Mar is within the 2-mile navigation zone for license-free boats. You can explore Fenals Beach, Cala Banys, and Santa Cristina Beach."
+              : "Si! Lloret de Mar esta dentro de la zona de 2 millas para barcos sin licencia. Puedes explorar Playa de Fenals, Cala Banys y Playa de Santa Cristina." },
+          },
+          {
+            "@type": "Question",
+            name: isEn ? "What are the best coves between Blanes and Lloret de Mar?" : "Cuales son las mejores calas entre Blanes y Lloret de Mar?",
+            acceptedAnswer: { "@type": "Answer", text: isEn
+              ? "The highlights are Cala Sant Francesc, Sa Forcanera, Cala Boadella, and Fenals Beach - all accessible by our boats."
+              : "Las mejores son Cala Sant Francesc, Sa Forcanera, Cala Boadella y Playa de Fenals - todas accesibles con nuestros barcos." },
+          },
+        ],
+      };
+      const breadcrumb = buildBreadcrumb([homeCrumb, { name: isEn ? "Lloret de Mar by Boat" : "Lloret de Mar en Barco", url: `${BASE_URL}/alquiler-barcos-lloret-de-mar` }]);
+      return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [destination, faq, breadcrumb] } };
+    }
+
+    // /alquiler-barcos-tossa-de-mar - TouristDestination + FAQPage for Tossa
+    else if (pathname === "/alquiler-barcos-tossa-de-mar") {
+      const destination = {
+        "@type": "TouristDestination",
+        name: isEn ? "Boat Trip to Tossa de Mar from Blanes" : "Excursion en Barco a Tossa de Mar desde Blanes",
+        description: isEn
+          ? "Sail from Blanes to Tossa de Mar in about 1 hour. Discover the medieval Vila Vella, stunning cliffs, and hidden coves."
+          : "Navega desde Blanes hasta Tossa de Mar en aproximadamente 1 hora. Descubre la Vila Vella medieval, acantilados impresionantes y calas escondidas.",
+        url: `${BASE_URL}/alquiler-barcos-tossa-de-mar`,
+        touristType: { "@type": "Audience", audienceType: isEn ? "Nautical tourists" : "Turistas nauticos" },
+        geo: { "@type": "GeoCoordinates", latitude: 41.7196, longitude: 2.9313 },
+        includesAttraction: [
+          { "@type": "TouristAttraction", name: "Vila Vella de Tossa de Mar" },
+          { "@type": "TouristAttraction", name: "Platja Gran de Tossa" },
+          { "@type": "TouristAttraction", name: "Cala Pola" },
+        ],
+      };
+      const faq = {
+        "@type": "FAQPage",
+        mainEntity: [
+          {
+            "@type": "Question",
+            name: isEn ? "How long does it take to reach Tossa de Mar by boat from Blanes?" : "Cuanto se tarda en llegar a Tossa de Mar en barco desde Blanes?",
+            acceptedAnswer: { "@type": "Answer", text: isEn
+              ? "About 1 hour from Blanes Port with a licensed boat. The route passes spectacular cliffs and hidden coves."
+              : "Aproximadamente 1 hora desde el Puerto de Blanes con barco con licencia. La ruta pasa por acantilados espectaculares y calas escondidas." },
+          },
+          {
+            "@type": "Question",
+            name: isEn ? "Do I need a license to reach Tossa de Mar by boat?" : "Necesito licencia para llegar a Tossa de Mar en barco?",
+            acceptedAnswer: { "@type": "Answer", text: isEn
+              ? "Yes, Tossa de Mar is beyond the 2-mile zone for license-free boats. You need a licensed boat (PER/ICC) or our private excursion with captain."
+              : "Si, Tossa de Mar esta mas alla de la zona de 2 millas para barcos sin licencia. Necesitas un barco con licencia (PER) o nuestra excursion privada con patron." },
+          },
+          {
+            "@type": "Question",
+            name: isEn ? "What can I see on the boat trip to Tossa de Mar?" : "Que puedo ver en la excursion en barco a Tossa de Mar?",
+            acceptedAnswer: { "@type": "Answer", text: isEn
+              ? "You'll see dramatic cliffs, hidden coves like Cala Pola, the iconic Vila Vella medieval fortress, and crystal-clear Mediterranean waters."
+              : "Veras acantilados dramaticos, calas escondidas como Cala Pola, la iconica fortaleza medieval de la Vila Vella y aguas cristalinas del Mediterraneo." },
+          },
+        ],
+      };
+      const breadcrumb = buildBreadcrumb([homeCrumb, { name: isEn ? "Tossa de Mar by Boat" : "Tossa de Mar en Barco", url: `${BASE_URL}/alquiler-barcos-tossa-de-mar` }]);
+      return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [destination, faq, breadcrumb] } };
+    }
+
+    // /barcos-sin-licencia - ItemList of 5 license-free boats
+    else if (pathname === "/barcos-sin-licencia") {
+      const noLicenseBoats = [
+        { id: "solar-450", name: "Solar 450", capacity: 5, price: "75" },
+        { id: "remus-450", name: "Remus 450", capacity: 5, price: "75" },
+        { id: "remus-450-ii", name: "Remus 450 II", capacity: 5, price: "75" },
+        { id: "astec-400", name: "Astec 400", capacity: 4, price: "70" },
+        { id: "astec-480", name: "Astec 480", capacity: 5, price: "80" },
+      ];
+      const itemList = {
+        "@type": "ItemList",
+        name: isEn ? "License-Free Boats in Blanes" : "Barcos Sin Licencia en Blanes",
+        description: isEn
+          ? "5 license-free boats available for rent in Blanes, Costa Brava. No qualification needed, up to 15 HP."
+          : "5 barcos sin licencia disponibles para alquilar en Blanes, Costa Brava. No se necesita titulacion, hasta 15 CV.",
+        numberOfItems: 5,
+        itemListElement: noLicenseBoats.map((boat, i) => ({
+          "@type": "ListItem",
+          position: i + 1,
+          name: boat.name,
+          url: `${BASE_URL}/barco/${boat.id}`,
+          item: {
+            "@type": "Product",
+            name: boat.name,
+            description: isEn
+              ? `License-free boat for up to ${boat.capacity} people in Blanes`
+              : `Barco sin licencia para hasta ${boat.capacity} personas en Blanes`,
+            offers: { "@type": "Offer", priceCurrency: "EUR", price: boat.price, availability: "https://schema.org/InStock" },
+          },
+        })),
+      };
+      const breadcrumb = buildBreadcrumb([homeCrumb, { name: isEn ? "No License Boats" : "Barcos Sin Licencia", url: `${BASE_URL}/barcos-sin-licencia` }]);
+      return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [itemList, breadcrumb] } };
+    }
+
+    // /barcos-con-licencia - ItemList of 4 licensed boats
+    else if (pathname === "/barcos-con-licencia") {
+      const licensedBoats = [
+        { id: "mingolla-brava-19", name: "Mingolla Brava 19", capacity: 6, price: "150" },
+        { id: "trimarchi-57s", name: "Trimarchi 57S", capacity: 7, price: "200" },
+        { id: "pacific-craft-625", name: "Pacific Craft 625", capacity: 7, price: "250" },
+        { id: "excursion-privada", name: "Excursion Privada con Capitan", capacity: 7, price: "300" },
+      ];
+      const itemList = {
+        "@type": "ItemList",
+        name: isEn ? "Licensed Boats in Blanes" : "Barcos Con Licencia en Blanes",
+        description: isEn
+          ? "4 licensed boats available for rent in Blanes, Costa Brava. Powerful engines for longer routes to Tossa de Mar."
+          : "4 barcos con licencia disponibles para alquilar en Blanes, Costa Brava. Motores potentes para rutas mas largas hasta Tossa de Mar.",
+        numberOfItems: 4,
+        itemListElement: licensedBoats.map((boat, i) => ({
+          "@type": "ListItem",
+          position: i + 1,
+          name: boat.name,
+          url: `${BASE_URL}/barco/${boat.id}`,
+          item: {
+            "@type": "Product",
+            name: boat.name,
+            description: isEn
+              ? `Licensed boat for up to ${boat.capacity} people in Blanes`
+              : `Barco con licencia para hasta ${boat.capacity} personas en Blanes`,
+            offers: { "@type": "Offer", priceCurrency: "EUR", price: boat.price, availability: "https://schema.org/InStock" },
+          },
+        })),
+      };
+      const breadcrumb = buildBreadcrumb([homeCrumb, { name: isEn ? "Licensed Boats" : "Barcos Con Licencia", url: `${BASE_URL}/barcos-con-licencia` }]);
+      return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [itemList, breadcrumb] } };
+    }
+
+    // /rutas - ItemList of routes
+    else if (pathname === "/rutas") {
+      const itemList = {
+        "@type": "ItemList",
+        name: isEn ? "Boat Routes from Blanes" : "Rutas en Barco desde Blanes",
+        description: isEn
+          ? "Discover the best boat routes from Blanes along the Costa Brava coastline."
+          : "Descubre las mejores rutas en barco desde Blanes a lo largo de la costa de la Costa Brava.",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: isEn ? "Sa Palomera - Short Route" : "Sa Palomera - Ruta Corta", description: isEn ? "1-hour route exploring Sa Palomera and nearby coves" : "Ruta de 1 hora explorando Sa Palomera y calas cercanas" },
+          { "@type": "ListItem", position: 2, name: isEn ? "Cala Sant Francesc Route" : "Ruta Cala Sant Francesc", description: isEn ? "2-hour route to the beautiful Cala Sant Francesc" : "Ruta de 2 horas a la preciosa Cala Sant Francesc" },
+          { "@type": "ListItem", position: 3, name: isEn ? "Blanes to Lloret de Mar" : "Blanes a Lloret de Mar", description: isEn ? "3-hour route along the coast to Lloret de Mar" : "Ruta de 3 horas por la costa hasta Lloret de Mar" },
+          { "@type": "ListItem", position: 4, name: isEn ? "Blanes to Tossa de Mar" : "Blanes a Tossa de Mar", description: isEn ? "Full-day route to the medieval town of Tossa de Mar" : "Ruta de dia completo al pueblo medieval de Tossa de Mar" },
+          { "@type": "ListItem", position: 5, name: isEn ? "Costa Brava Coves Explorer" : "Explorador de Calas Costa Brava", description: isEn ? "Discover hidden coves along the Costa Brava" : "Descubre calas escondidas a lo largo de la Costa Brava" },
+        ],
+      };
+      const breadcrumb = buildBreadcrumb([homeCrumb, { name: isEn ? "Routes" : "Rutas", url: `${BASE_URL}/rutas` }]);
+      return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [itemList, breadcrumb] } };
+    }
+
+    // /galeria - BreadcrumbList only
+    else if (pathname === "/galeria") {
+      const breadcrumb = buildBreadcrumb([homeCrumb, { name: isEn ? "Gallery" : "Galeria", url: `${BASE_URL}/galeria` }]);
+      return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [breadcrumb] } };
+    }
+
+    // /tarjetas-regalo - Product schema for gift cards
+    else if (pathname === "/tarjetas-regalo") {
+      const product = {
+        "@type": "Product",
+        name: isEn ? "Gift Card - Boat Rental Costa Brava" : "Tarjeta Regalo - Alquiler de Barcos Costa Brava",
+        description: isEn
+          ? "Give the gift of a nautical experience on Costa Brava. Gift cards from 50 EUR, valid for 1 year. Redeemable on all boats in Blanes."
+          : "Regala una experiencia nautica en la Costa Brava. Tarjetas regalo desde 50 EUR, validas durante 1 ano. Canjeables en todos nuestros barcos en Blanes.",
+        url: `${BASE_URL}/tarjetas-regalo`,
+        brand: { "@type": "Brand", name: "Costa Brava Rent a Boat" },
+        offers: {
+          "@type": "AggregateOffer",
+          priceCurrency: "EUR",
+          lowPrice: "50",
+          highPrice: "500",
+          availability: "https://schema.org/InStock",
+          seller: { "@type": "LocalBusiness", name: "Costa Brava Rent a Boat" },
+        },
+        image: `${BASE_URL}/og-image.webp`,
+      };
+      const breadcrumb = buildBreadcrumb([homeCrumb, { name: isEn ? "Gift Cards" : "Tarjetas Regalo", url: `${BASE_URL}/tarjetas-regalo` }]);
+      return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [product, breadcrumb] } };
+    }
+
+    // /blog - CollectionPage schema
+    else if (pathname === "/blog") {
+      const collectionPage = {
+        "@type": "CollectionPage",
+        name: isEn ? "Boat Navigation Blog - Costa Brava" : "Blog de Navegacion y Destinos - Costa Brava",
+        description: isEn
+          ? "Guides, tips and destinations for boat rental in Blanes and Costa Brava."
+          : "Guias, consejos y destinos para alquilar barcos en Blanes y la Costa Brava.",
+        url: `${BASE_URL}/blog`,
+        isPartOf: { "@type": "WebSite", "@id": `${BASE_URL}/#website` },
+        publisher: { "@type": "Organization", name: "Costa Brava Rent a Boat" },
+      };
+      const breadcrumb = buildBreadcrumb([homeCrumb, { name: "Blog", url: `${BASE_URL}/blog` }]);
+      return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [collectionPage, breadcrumb] } };
     }
 
     return { meta };

@@ -13,10 +13,34 @@ Disallow: /api/
 Disallow: /cancel/
 
 Sitemap: https://costabravarentaboat.com/sitemap.xml
+Sitemap: https://costabravarentaboat.com/sitemap-pages.xml
 Sitemap: https://costabravarentaboat.com/sitemap-boats.xml
 Sitemap: https://costabravarentaboat.com/sitemap-blog.xml
+Sitemap: https://costabravarentaboat.com/sitemap-destinations.xml
 
 # AI Search Optimization
 # LLMs.txt - structured info for AI crawlers
 # https://llmstxt.org/
 Allow: /llms.txt
+
+# Explicit AI crawler permissions - maximize indexing
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /

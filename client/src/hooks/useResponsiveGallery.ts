@@ -10,7 +10,7 @@ interface BoatGalleryData {
   imageUrl?: string | null;
 }
 
-export function useResponsiveGallery(boat: BoatGalleryData): string[] {
+export function useResponsiveGallery(boat: BoatGalleryData | undefined | null): string[] {
   const [isMobile, setIsMobile] = useState(() =>
     typeof window !== "undefined" ? window.matchMedia(MOBILE_QUERY).matches : false
   );
@@ -33,6 +33,8 @@ export function useResponsiveGallery(boat: BoatGalleryData): string[] {
       tabletQuery.removeEventListener("change", handleTablet);
     };
   }, []);
+
+  if (!boat) return [];
 
   const desktop = boat.imageGallery?.length ? boat.imageGallery : (boat.imageUrl ? [boat.imageUrl] : []);
   const tablet = boat.imageGalleryTablet?.length ? boat.imageGalleryTablet : desktop;

@@ -64,7 +64,6 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
     timeSlots,
     getBookingPrice,
     handleBookingSearch,
-    privacyConsent, setPrivacyConsent,
     showFieldError, getFieldError, handleBlur,
     t,
     boatExtras,

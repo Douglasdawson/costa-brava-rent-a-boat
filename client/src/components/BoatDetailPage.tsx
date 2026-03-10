@@ -102,6 +102,9 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
 
   const boatData = useMemo(() => boats?.find(boat => boat.id === boatId), [boats, boatId]);
 
+  // Image gallery handling - uses responsive gallery with fallback chain (must be before early returns)
+  const displayImages = useResponsiveGallery(boatData);
+
   // Related boats: same license type OR similar capacity (+-2), excluding current boat
   const relatedBoats = useMemo(() => {
     if (!boats || !boatData) return [];
@@ -153,9 +156,6 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
     const message = `Hola, me interesa el ${boatData.name}. ¿Podrían darme más información?`;
     openWhatsApp(message);
   };
-
-  // Image gallery handling - uses responsive gallery with fallback chain
-  const displayImages = useResponsiveGallery(boatData);
 
   const nextImage = () => {
     setCurrentImageIndex((prev) => (prev + 1) % displayImages.length);

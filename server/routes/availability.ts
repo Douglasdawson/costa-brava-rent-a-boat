@@ -305,7 +305,7 @@ export function registerAvailabilityRoutes(app: Express) {
         const start = formatICalDate(new Date(booking.startTime));
         const end = formatICalDate(new Date(booking.endTime));
         const created = formatICalDate(new Date(booking.createdAt));
-        const uid = `booking-${booking.id}@costabravarentaboat.app`;
+        const uid = `booking-${booking.id}@costabravarentaboat.com`;
 
         ical += `BEGIN:VEVENT\r\n`;
         ical += `UID:${uid}\r\n`;

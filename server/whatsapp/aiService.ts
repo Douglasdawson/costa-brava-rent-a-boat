@@ -32,7 +32,7 @@ INFORMACION DEL NEGOCIO:
 - Ubicacion: Puerto de Blanes, Costa Brava, Espana
 - Telefono: +34 611 500 372
 - Email: costabravarentaboat@gmail.com
-- Web: costabravarentaboat.app
+- Web: costabravarentaboat.com
 - Temporada: Abril a Octubre
 
 SERVICIOS:
@@ -330,14 +330,14 @@ IMPORTANTE: Tienes acceso a funciones para consultar disponibilidad y precios en
     
     // Fallback response based on language
     const fallbackResponses: Record<string, string> = {
-      es: "Lo siento, estoy teniendo problemas tecnicos. Por favor, contacta directamente por WhatsApp al +34 611 500 372 o visita costabravarentaboat.app",
-      en: "Sorry, I'm having technical difficulties. Please contact us directly via WhatsApp at +34 611 500 372 or visit costabravarentaboat.app",
-      ca: "Ho sento, estic tenint problemes tecnics. Si us plau, contacta directament per WhatsApp al +34 611 500 372 o visita costabravarentaboat.app",
-      fr: "Desole, je rencontre des difficultes techniques. Veuillez nous contacter directement via WhatsApp au +34 611 500 372 ou visitez costabravarentaboat.app",
-      de: "Entschuldigung, ich habe technische Schwierigkeiten. Bitte kontaktieren Sie uns direkt uber WhatsApp unter +34 611 500 372 oder besuchen Sie costabravarentaboat.app",
-      nl: "Sorry, ik heb technische problemen. Neem direct contact op via WhatsApp op +34 611 500 372 of bezoek costabravarentaboat.app",
-      it: "Mi dispiace, sto avendo difficolta tecniche. Vi preghiamo di contattarci direttamente tramite WhatsApp al +34 611 500 372 o visitate costabravarentaboat.app",
-      ru: "Izvinite, u menya tekhnicheskiye trudnosti. Svyazhites' s nami napryamuyu cherez WhatsApp po nomeru +34 611 500 372 ili posetite costabravarentaboat.app",
+      es: "Lo siento, estoy teniendo problemas tecnicos. Por favor, contacta directamente por WhatsApp al +34 611 500 372 o visita costabravarentaboat.com",
+      en: "Sorry, I'm having technical difficulties. Please contact us directly via WhatsApp at +34 611 500 372 or visit costabravarentaboat.com",
+      ca: "Ho sento, estic tenint problemes tecnics. Si us plau, contacta directament per WhatsApp al +34 611 500 372 o visita costabravarentaboat.com",
+      fr: "Desole, je rencontre des difficultes techniques. Veuillez nous contacter directement via WhatsApp au +34 611 500 372 ou visitez costabravarentaboat.com",
+      de: "Entschuldigung, ich habe technische Schwierigkeiten. Bitte kontaktieren Sie uns direkt uber WhatsApp unter +34 611 500 372 oder besuchen Sie costabravarentaboat.com",
+      nl: "Sorry, ik heb technische problemen. Neem direct contact op via WhatsApp op +34 611 500 372 of bezoek costabravarentaboat.com",
+      it: "Mi dispiace, sto avendo difficolta tecniche. Vi preghiamo di contattarci direttamente tramite WhatsApp al +34 611 500 372 o visitate costabravarentaboat.com",
+      ru: "Izvinite, u menya tekhnicheskiye trudnosti. Svyazhites' s nami napryamuyu cherez WhatsApp po nomeru +34 611 500 372 ili posetite costabravarentaboat.com",
     };
 
     return { 

@@ -24,7 +24,7 @@ const getBaseUrl = (req?: any) => {
       return `${protocol}://${host}`;
     }
   }
-  return process.env.BASE_URL || "https://costabravarentaboat.app";
+  return process.env.BASE_URL || "https://costabravarentaboat.com";
 };
 
 // Helper to format a date or timestamp as YYYY-MM-DD for sitemaps

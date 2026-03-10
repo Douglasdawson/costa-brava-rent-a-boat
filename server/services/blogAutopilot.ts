@@ -257,7 +257,7 @@ REQUISITOS:
 2. Formato Markdown
 3. Incluye al menos 2 enlaces internos a barcos, destinos u otros posts (formato: [texto](/ruta))
 4. Incluye al menos 2 subtitulos H2 y algun H3 si corresponde
-5. Incluye un CTA natural invitando a reservar en costabravarentaboat.app
+5. Incluye un CTA natural invitando a reservar en costabravarentaboat.com
 6. Tono informativo, cercano pero profesional
 7. NO uses emojis
 8. El contenido debe ser original, util y orientado a SEO

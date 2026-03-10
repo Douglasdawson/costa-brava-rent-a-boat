@@ -6,7 +6,7 @@ import { logger } from "../lib/logger";
 const FAQS_ES = [
   {
     title: "Como reservar un barco",
-    content: "Para reservar un barco, puedes contactarnos directamente por WhatsApp al +34 611 500 372, a traves de nuestra web costabravarentaboat.app, o enviarnos un email a costabravarentaboat@gmail.com. Necesitaremos saber la fecha deseada, duracion del alquiler, numero de personas y el barco que te interesa.",
+    content: "Para reservar un barco, puedes contactarnos directamente por WhatsApp al +34 611 500 372, a traves de nuestra web costabravarentaboat.com, o enviarnos un email a costabravarentaboat@gmail.com. Necesitaremos saber la fecha deseada, duracion del alquiler, numero de personas y el barco que te interesa.",
     category: "faq",
     keywords: ["reservar", "alquilar", "booking", "como"],
     priority: 10,
@@ -123,7 +123,7 @@ const GENERAL_ES = [
 const FAQS_CA = [
   {
     title: "Com reservar un vaixell",
-    content: "Per reservar un vaixell, pots contactar-nos directament per WhatsApp al +34 611 500 372, a traves del nostre web costabravarentaboat.app, o enviar-nos un email a costabravarentaboat@gmail.com. Necessitarem saber la data desitjada, la duracio del lloguer, el nombre de persones i el vaixell que t'interessa.",
+    content: "Per reservar un vaixell, pots contactar-nos directament per WhatsApp al +34 611 500 372, a traves del nostre web costabravarentaboat.com, o enviar-nos un email a costabravarentaboat@gmail.com. Necessitarem saber la data desitjada, la duracio del lloguer, el nombre de persones i el vaixell que t'interessa.",
     category: "faq",
     keywords: ["reservar", "llogar", "reserva", "com"],
     priority: 10,
@@ -240,7 +240,7 @@ const GENERAL_CA = [
 const FAQS_EN = [
   {
     title: "How to book a boat",
-    content: "To book a boat, you can contact us directly via WhatsApp at +34 611 500 372, through our website costabravarentaboat.app, or send us an email at costabravarentaboat@gmail.com. We will need to know your preferred date, rental duration, number of people, and which boat you are interested in.",
+    content: "To book a boat, you can contact us directly via WhatsApp at +34 611 500 372, through our website costabravarentaboat.com, or send us an email at costabravarentaboat@gmail.com. We will need to know your preferred date, rental duration, number of people, and which boat you are interested in.",
     category: "faq",
     keywords: ["book", "hire", "reserve", "how to"],
     priority: 10,
@@ -357,7 +357,7 @@ const GENERAL_EN = [
 const FAQS_FR = [
   {
     title: "Comment reserver un bateau",
-    content: "Pour reserver un bateau, vous pouvez nous contacter directement par WhatsApp au +34 611 500 372, via notre site web costabravarentaboat.app, ou nous envoyer un email a costabravarentaboat@gmail.com. Nous aurons besoin de connaitre la date souhaitee, la duree de la location, le nombre de personnes et le bateau qui vous interesse.",
+    content: "Pour reserver un bateau, vous pouvez nous contacter directement par WhatsApp au +34 611 500 372, via notre site web costabravarentaboat.com, ou nous envoyer un email a costabravarentaboat@gmail.com. Nous aurons besoin de connaitre la date souhaitee, la duree de la location, le nombre de personnes et le bateau qui vous interesse.",
     category: "faq",
     keywords: ["reserver", "louer", "reservation", "comment"],
     priority: 10,
@@ -474,7 +474,7 @@ const GENERAL_FR = [
 const FAQS_DE = [
   {
     title: "Wie man ein Boot bucht",
-    content: "Um ein Boot zu buchen, konnen Sie uns direkt per WhatsApp unter +34 611 500 372 kontaktieren, uber unsere Website costabravarentaboat.app oder uns eine E-Mail an costabravarentaboat@gmail.com senden. Wir benotigen das gewunschte Datum, die Mietdauer, die Personenzahl und das gewunschte Boot.",
+    content: "Um ein Boot zu buchen, konnen Sie uns direkt per WhatsApp unter +34 611 500 372 kontaktieren, uber unsere Website costabravarentaboat.com oder uns eine E-Mail an costabravarentaboat@gmail.com senden. Wir benotigen das gewunschte Datum, die Mietdauer, die Personenzahl und das gewunschte Boot.",
     category: "faq",
     keywords: ["buchen", "mieten", "reservieren", "wie"],
     priority: 10,
@@ -591,7 +591,7 @@ const GENERAL_DE = [
 const FAQS_NL = [
   {
     title: "Hoe een boot reserveren",
-    content: "Om een boot te reserveren, kunt u ons rechtstreeks contacteren via WhatsApp op +34 611 500 372, via onze website costabravarentaboat.app, of ons een e-mail sturen naar costabravarentaboat@gmail.com. We hebben de gewenste datum, de huurduur, het aantal personen en de gewenste boot nodig.",
+    content: "Om een boot te reserveren, kunt u ons rechtstreeks contacteren via WhatsApp op +34 611 500 372, via onze website costabravarentaboat.com, of ons een e-mail sturen naar costabravarentaboat@gmail.com. We hebben de gewenste datum, de huurduur, het aantal personen en de gewenste boot nodig.",
     category: "faq",
     keywords: ["reserveren", "huren", "boeken", "hoe"],
     priority: 10,
@@ -708,7 +708,7 @@ const GENERAL_NL = [
 const FAQS_IT = [
   {
     title: "Come prenotare una barca",
-    content: "Per prenotare una barca, puoi contattarci direttamente via WhatsApp al +34 611 500 372, tramite il nostro sito web costabravarentaboat.app, o inviarci un'email a costabravarentaboat@gmail.com. Avremo bisogno di conoscere la data desiderata, la durata del noleggio, il numero di persone e la barca che ti interessa.",
+    content: "Per prenotare una barca, puoi contattarci direttamente via WhatsApp al +34 611 500 372, tramite il nostro sito web costabravarentaboat.com, o inviarci un'email a costabravarentaboat@gmail.com. Avremo bisogno di conoscere la data desiderata, la durata del noleggio, il numero di persone e la barca che ti interessa.",
     category: "faq",
     keywords: ["prenotare", "noleggiare", "prenotazione", "come"],
     priority: 10,
@@ -825,7 +825,7 @@ const GENERAL_IT = [
 const FAQS_RU = [
   {
     title: "Kak zabronirovat lodku",
-    content: "Chtoby zabronirovat lodku, vy mozhete svyazatsya s nami cherez WhatsApp po nomeru +34 611 500 372, cherez nash sayt costabravarentaboat.app ili otpravit nam pismo na costabravarentaboat@gmail.com. Nam nuzhno znat zhelaemую datu, prodolzhitelnost arendy, kolichestvo chelovek i interesuyushuyu vas lodku.",
+    content: "Chtoby zabronirovat lodku, vy mozhete svyazatsya s nami cherez WhatsApp po nomeru +34 611 500 372, cherez nash sayt costabravarentaboat.com ili otpravit nam pismo na costabravarentaboat@gmail.com. Nam nuzhno znat zhelaemую datu, prodolzhitelnost arendy, kolichestvo chelovek i interesuyushuyu vas lodku.",
     category: "faq",
     keywords: ["забронировать", "арендовать", "бронирование", "как"],
     priority: 10,

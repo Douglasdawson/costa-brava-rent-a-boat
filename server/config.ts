@@ -19,7 +19,7 @@ const envSchema = z.object({
   TWILIO_WHATSAPP_FROM: z.string().optional(),
   GCS_BUCKET_NAME: z.string().optional(),
   ANTHROPIC_API_KEY: z.string().optional(),
-  BASE_URL: z.string().default("https://costabravarentaboat.app"),
+  BASE_URL: z.string().default("https://costabravarentaboat.com"),
 });
 
 export type EnvConfig = z.infer<typeof envSchema>;

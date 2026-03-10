@@ -52,7 +52,7 @@ export default function CategoryLicensedPage() {
       "@type": "LocalBusiness",
       "name": "Costa Brava Rent a Boat Blanes",
       "telephone": "+34611500372",
-      "url": "https://costabravarentaboat.app/",
+      "url": "https://costabravarentaboat.com/",
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "Puerto de Blanes",

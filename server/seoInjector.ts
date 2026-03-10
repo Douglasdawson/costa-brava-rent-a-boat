@@ -3,7 +3,7 @@ import path from "path";
 import type { Request, Response } from "express";
 import { storage } from "./storage";
 
-const BASE_URL = process.env.BASE_URL || "https://costabravarentaboat.app";
+const BASE_URL = process.env.BASE_URL || "https://costabravarentaboat.com";
 
 interface SEOMeta {
   title: string;

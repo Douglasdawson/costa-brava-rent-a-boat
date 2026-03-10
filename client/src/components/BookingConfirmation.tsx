@@ -69,13 +69,13 @@ export function BookingConfirmation({
   };
 
   const handleShareWhatsApp = () => {
-    const shareText = `Voy a alquilar un barco (${boatName}) en Blanes, Costa Brava! costabravarentaboat.app`;
+    const shareText = `Voy a alquilar un barco (${boatName}) en Blanes, Costa Brava! costabravarentaboat.com`;
     const url = `https://wa.me/?text=${encodeURIComponent(shareText)}`;
     window.open(url, "_blank");
   };
 
   const handleCopyLink = () => {
-    navigator.clipboard.writeText("https://costabravarentaboat.app").then(() => {
+    navigator.clipboard.writeText("https://costabravarentaboat.com").then(() => {
       toast({
         title: ct.linkCopied,
       });

@@ -68,7 +68,7 @@ export default function LocationTossaPage() {
       "@type": "LocalBusiness",
       "name": "Costa Brava Rent a Boat Blanes",
       "telephone": "+34611500372",
-      "url": "https://costabravarentaboat.app/"
+      "url": "https://costabravarentaboat.com/"
     }
   };
 

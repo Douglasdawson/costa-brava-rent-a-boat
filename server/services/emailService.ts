@@ -347,7 +347,7 @@ function emailWrapper(content: string): string {
                     <p style="margin:0 0 4px; color:#64748b; font-size:13px;">Puerto de Blanes, Girona, Costa Brava</p>
                     <p style="margin:0 0 4px; color:#64748b; font-size:13px;">Tel: <a href="tel:+34611500372" style="color:#2563eb; text-decoration:none;">+34 611 500 372</a></p>
                     <p style="margin:0 0 12px; color:#64748b; font-size:13px;">Email: <a href="mailto:costabravarentaboat@gmail.com" style="color:#2563eb; text-decoration:none;">costabravarentaboat@gmail.com</a></p>
-                    <p style="margin:0; color:#94a3b8; font-size:11px;">www.costabravarentaboat.app</p>
+                    <p style="margin:0; color:#94a3b8; font-size:11px;">www.costabravarentaboat.com</p>
                   </td>
                 </tr>
               </table>
@@ -470,7 +470,7 @@ export async function sendBookingConfirmation(data: BookingEmailData): Promise<E
     </p>
   `;
 
-  const appUrl = process.env.APP_URL || "https://costabravarentaboat.app";
+  const appUrl = process.env.APP_URL || "https://costabravarentaboat.com";
   const cancelUrl = booking.cancelationToken
     ? `${appUrl}/cancel/${booking.cancelationToken}`
     : null;
@@ -616,7 +616,7 @@ export async function sendThankYouEmail(data: BookingEmailData, discountCode: st
     </div>
 
     <div style="text-align:center; margin:24px 0;">
-      <a href="https://costabravarentaboat.app" target="_blank" style="display:inline-block; background-color:#2563eb; color:#ffffff; text-decoration:none; padding:12px 28px; border-radius:6px; font-size:15px; font-weight:600;">${strings.bookAgain}</a>
+      <a href="https://costabravarentaboat.com" target="_blank" style="display:inline-block; background-color:#2563eb; color:#ffffff; text-decoration:none; padding:12px 28px; border-radius:6px; font-size:15px; font-weight:600;">${strings.bookAgain}</a>
     </div>
 
     <p style="margin:20px 0 0; color:#475569; font-size:14px; line-height:1.5; text-align:center;">
@@ -673,7 +673,7 @@ export async function sendPreSeasonEmail(
     </div>
 
     <div style="text-align:center; margin:24px 0;">
-      <a href="https://costabravarentaboat.app" target="_blank" style="display:inline-block; background-color:#2563eb; color:#ffffff; text-decoration:none; padding:14px 32px; border-radius:6px; font-size:16px; font-weight:600;">Reservar ahora</a>
+      <a href="https://costabravarentaboat.com" target="_blank" style="display:inline-block; background-color:#2563eb; color:#ffffff; text-decoration:none; padding:14px 32px; border-radius:6px; font-size:16px; font-weight:600;">Reservar ahora</a>
     </div>
 
     <p style="margin:20px 0 0; color:#475569; font-size:14px; line-height:1.5; text-align:center;">
@@ -730,7 +730,7 @@ export async function sendWelcomeEmail(
     </div>
 
     <div style="text-align:center; margin:24px 0;">
-      <a href="https://costabravarentaboat.app/crm" target="_blank" style="display:inline-block; background-color:#2563eb; color:#ffffff; text-decoration:none; padding:12px 28px; border-radius:6px; font-size:15px; font-weight:600;">Ir a mi panel</a>
+      <a href="https://costabravarentaboat.com/crm" target="_blank" style="display:inline-block; background-color:#2563eb; color:#ffffff; text-decoration:none; padding:12px 28px; border-radius:6px; font-size:15px; font-weight:600;">Ir a mi panel</a>
     </div>
 
     <p style="margin:0; color:#64748b; font-size:13px; line-height:1.6;">
@@ -833,7 +833,7 @@ export async function sendCancelationEmail(data: CancelationEmailData): Promise<
   }
 
   const { booking, refundAmount, refundPercentage } = data;
-  const appUrl = process.env.APP_URL || "https://costabravarentaboat.app";
+  const appUrl = process.env.APP_URL || "https://costabravarentaboat.com";
 
   const refundBlock = refundAmount > 0
     ? `<p style="color:#16a34a; font-weight:bold;">Reembolso: ${refundAmount.toFixed(2)} EUR (${refundPercentage}%) — se procesará en los próximos días hábiles.</p>`
@@ -848,7 +848,7 @@ export async function sendCancelationEmail(data: CancelationEmailData): Promise<
     <p style="color:#64748b; font-size:13px; margin-top:24px;">
       Si tienes dudas, contactanos en <a href="mailto:costabravarentaboat@gmail.com" style="color:#2563eb;">costabravarentaboat@gmail.com</a> o al +34 611 500 372.
     </p>
-    <p style="margin-top:16px;"><a href="${appUrl}" style="color:#2563eb; text-decoration:none;">Volver a costabravarentaboat.app</a></p>
+    <p style="margin-top:16px;"><a href="${appUrl}" style="color:#2563eb; text-decoration:none;">Volver a costabravarentaboat.com</a></p>
   `;
 
   try {

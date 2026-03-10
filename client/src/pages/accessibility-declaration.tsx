@@ -9,8 +9,8 @@ export default function AccessibilityDeclarationPage() {
     <div className="min-h-screen">
       <SEO
         title="Declaración de Accesibilidad | Costa Brava Rent a Boat"
-        description="Declaración de accesibilidad de costabravarentaboat.app conforme al Real Decreto 1112/2018."
-        canonical="https://costabravarentaboat.app/accesibilidad"
+        description="Declaración de accesibilidad de costabravarentaboat.com conforme al Real Decreto 1112/2018."
+        canonical="https://costabravarentaboat.com/accesibilidad"
       />
       <Navigation />
 
@@ -41,7 +41,7 @@ export default function AccessibilityDeclarationPage() {
             <CardContent className="text-sm text-gray-700 space-y-3">
               <p>
                 <strong>Costa Brava Rent a Boat</strong> se compromete a hacer accesible su sitio web{" "}
-                <strong>costabravarentaboat.app</strong> de conformidad con el Real Decreto 1112/2018, de 7 de
+                <strong>costabravarentaboat.com</strong> de conformidad con el Real Decreto 1112/2018, de 7 de
                 septiembre, sobre accesibilidad de los sitios web y aplicaciones para dispositivos móviles del
                 sector público, y teniendo en cuenta las Directrices de Accesibilidad para el Contenido Web
                 (WCAG) 2.1, nivel AA.

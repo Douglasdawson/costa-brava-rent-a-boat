@@ -103,12 +103,13 @@ app.use("/api/create-checkout-session", paymentLimiter);
 // CORS — restrict API access to known origins
 const allowedOrigins = isDev
   ? ['http://localhost:5000', 'http://localhost:3000', 'http://127.0.0.1:5000']
-  : ['https://costabravarentaboat.app'];
+  : ['https://costabravarentaboat.com', 'https://www.costabravarentaboat.com', 'https://costabravarentaboat.app'];
 
 app.use('/api/', (req: Request, res: Response, next: NextFunction) => {
   const origin = req.headers.origin as string | undefined;
   const isAllowed = !origin
     || allowedOrigins.includes(origin)
+    || (!isDev && origin.endsWith('.costabravarentaboat.com'))
     || (!isDev && origin.endsWith('.costabravarentaboat.app'));
 
   if (isAllowed && origin) {
@@ -158,11 +159,11 @@ app.use(compression({
 app.use(csrfProtection);
 
 // Canonical domain redirection middleware (SEO)
-// Force all traffic to HTTPS costabravarentaboat.app
-// while allowing tenant subdomains (e.g. acme.costabravarentaboat.app).
+// Force all traffic to HTTPS costabravarentaboat.com
+// Redirects .app domain and www to the canonical .com domain.
 app.use((req: Request, res: Response, next: NextFunction) => {
   const host = req.hostname;
-  const canonicalDomain = 'costabravarentaboat.app';
+  const canonicalDomain = 'costabravarentaboat.com';
   
   // Skip in development (localhost)
   if (host === 'localhost' || host === '127.0.0.1' || host.includes('.replit.dev')) {
@@ -172,11 +173,11 @@ app.use((req: Request, res: Response, next: NextFunction) => {
   // Check if request is secure (handles trust proxy and X-Forwarded-Proto)
   const isSecure = req.secure || req.headers['x-forwarded-proto'] === 'https';
   
-  const isCanonicalHost = host === canonicalDomain || host.endsWith(`.${canonicalDomain}`);
-  const targetHost = isCanonicalHost ? host : canonicalDomain;
+  const isCanonicalHost = host === canonicalDomain;
+  const targetHost = canonicalDomain;
 
-  // Redirect if host is not allowed OR not HTTPS
-  if (host !== targetHost || !isSecure) {
+  // Redirect if host is not canonical OR not HTTPS
+  if (!isCanonicalHost || !isSecure) {
     const canonicalUrl = `https://${targetHost}${req.originalUrl}`;
     return res.redirect(301, canonicalUrl);
   }

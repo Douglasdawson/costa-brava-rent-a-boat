@@ -1,0 +1,17 @@
+User-agent: *
+Allow: /
+
+Disallow: /crm
+Disallow: /crm/
+Disallow: /admin
+Disallow: /admin/
+Disallow: /login
+Disallow: /onboarding
+Disallow: /client/dashboard
+Disallow: /mi-cuenta
+Disallow: /api/
+Disallow: /cancel/
+
+Sitemap: https://costabravarentaboat.com/sitemap.xml
+Sitemap: https://costabravarentaboat.com/sitemap-boats.xml
+Sitemap: https://costabravarentaboat.com/sitemap-blog.xml

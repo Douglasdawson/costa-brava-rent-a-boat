@@ -13,12 +13,8 @@ export default function Hero() {
       {/* Background Image - Responsive <picture> */}
       <picture>
         <source
-          media="(min-width: 1024px)"
-          srcSet="/images/hero/hero-dive-desktop.webp"
-        />
-        <source
           media="(min-width: 768px)"
-          srcSet="/images/hero/hero-dive-tablet.webp"
+          srcSet="/images/hero/hero-dive-desktop.webp"
         />
         <img
           src="/images/hero/hero-dive-mobile.webp"

@@ -934,7 +934,20 @@ export function generateLocalBusinessSchema(language: Language = 'es', rating?: 
       "geoRadius": "50000"
     },
     "serviceType": ["Boat Rental", "Maritime Tourism", "Water Sports"],
-    "knowsAbout": ["Costa Brava", "Blanes", "Boat Navigation", "Maritime Safety"],
+    "knowsAbout": [
+      "Costa Brava",
+      "Blanes",
+      "Boat Rental",
+      "Boat Navigation",
+      "Maritime Safety",
+      "License-Free Boating",
+      "Lloret de Mar",
+      "Tossa de Mar",
+      "Mediterranean Sea",
+      "Nautical Tourism",
+      "Costa Brava Coves",
+      "Water Sports"
+    ],
     "slogan": "Explora la Costa Brava desde el agua",
     "sameAs": [
       "https://maps.app.goo.gl/NHV4PcaFPmwBYqCt5",
@@ -1256,4 +1269,84 @@ export function generateEnhancedProductSchema(boatData: any, language: Language 
   }
 
   return baseSchema;
+}
+
+// Generate WebSite + SearchAction schema for sitelinks search box in AI results
+export function generateWebSiteSchema() {
+  const baseUrl = typeof window !== 'undefined' ? window.location.origin : BUSINESS_INFO.url;
+
+  return {
+    "@type": "WebSite",
+    "@id": `${baseUrl}/#website`,
+    "name": BUSINESS_INFO.name,
+    "url": baseUrl,
+    "inLanguage": ["es-ES", "en-GB", "ca-ES", "fr-FR", "de-DE", "nl-NL", "it-IT", "ru-RU"],
+    "publisher": {
+      "@type": "LocalBusiness",
+      "@id": `${baseUrl}/#organization`
+    },
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": `${baseUrl}/?q={search_term_string}`
+      },
+      "query-input": "required name=search_term_string"
+    }
+  };
+}
+
+// Generate Speakable schema for AI voice assistants and AI Overviews
+export function generateSpeakableSchema(cssSelectors: string[]) {
+  return {
+    "@type": "SpeakableSpecification",
+    "cssSelector": cssSelectors
+  };
+}
+
+// Generate HowTo schema for booking process (AI-extractable step-by-step)
+export function generateHowToBookingSchema(language: Language = 'es') {
+  const baseUrl = typeof window !== 'undefined' ? window.location.origin : BUSINESS_INFO.url;
+
+  const steps: Record<string, Array<{ name: string; text: string }>> = {
+    es: [
+      { name: "Elige tu barco", text: "Selecciona entre nuestras embarcaciones sin licencia (desde 70 EUR/hora) o con licencia (desde 150 EUR/2 horas) en nuestra web o por WhatsApp." },
+      { name: "Selecciona fecha y horario", text: "Elige la fecha, hora de inicio y duracion del alquiler. Disponible de abril a octubre, de 09:00 a 20:00." },
+      { name: "Confirma tu reserva", text: "Reserva por WhatsApp (+34 611 500 372) o a traves de la web. No se requiere deposito para barcos sin licencia." },
+      { name: "Recibe tu briefing", text: "Al llegar al Puerto de Blanes, nuestro equipo te dara una formacion de 15 minutos sobre el manejo del barco y las normas de seguridad." },
+      { name: "Navega por la Costa Brava", text: "Explora calas, playas y destinos como Lloret de Mar y Tossa de Mar. Combustible, seguro y equipo de seguridad incluidos." }
+    ],
+    en: [
+      { name: "Choose your boat", text: "Select from our license-free boats (from 70 EUR/hour) or licensed boats (from 150 EUR/2 hours) on our website or via WhatsApp." },
+      { name: "Select date and time", text: "Choose your date, start time, and rental duration. Available April to October, 09:00 to 20:00." },
+      { name: "Confirm your booking", text: "Book via WhatsApp (+34 611 500 372) or through the website. No deposit required for license-free boats." },
+      { name: "Receive your briefing", text: "Upon arrival at Puerto de Blanes, our team will give you a 15-minute training on boat handling and safety rules." },
+      { name: "Explore the Costa Brava", text: "Discover coves, beaches, and destinations like Lloret de Mar and Tossa de Mar. Fuel, insurance, and safety equipment included." }
+    ]
+  };
+
+  const langSteps = steps[language] || steps.es;
+
+  return {
+    "@type": "HowTo",
+    "name": language === 'en' ? "How to Rent a Boat in Blanes, Costa Brava" : "Como alquilar un barco en Blanes, Costa Brava",
+    "description": language === 'en'
+      ? "Step-by-step guide to renting a boat in Blanes without a license. Book in 5 minutes."
+      : "Guia paso a paso para alquilar un barco en Blanes sin licencia. Reserva en 5 minutos.",
+    "totalTime": "PT5M",
+    "estimatedCost": {
+      "@type": "MonetaryAmount",
+      "currency": "EUR",
+      "value": "70"
+    },
+    "supply": [],
+    "tool": [],
+    "step": langSteps.map((step, index) => ({
+      "@type": "HowToStep",
+      "position": index + 1,
+      "name": step.name,
+      "text": step.text,
+      "url": `${baseUrl}/#step-${index + 1}`
+    }))
+  };
 }

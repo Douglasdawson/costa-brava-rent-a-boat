@@ -78,18 +78,50 @@ export default function LocationTossaPage() {
     { name: t.breadcrumbs.locationTossa, url: "/alquiler-barcos-tossa-de-mar" }
   ]);
 
+  // FAQ schema for AI search extraction - Tossa specific
+  const faqSchema = {
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Se puede ir en barco de alquiler desde Blanes a Tossa de Mar?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Si, pero solo con barcos con licencia debido a la distancia. Tossa de Mar esta a unos 45 minutos desde el Puerto de Blanes. Tambien ofrecemos excursiones privadas con capitan."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Cuanto cuesta una excursion en barco a Tossa de Mar desde Blanes?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Los barcos con licencia para ir a Tossa cuestan desde 150 EUR por 2 horas. Para una excursion privada con capitan, desde 240 EUR por 2 horas para hasta 7 personas."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Que se puede ver en Tossa de Mar desde el barco?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Desde el mar tienes vistas espectaculares de la Vila Vella (recinto amurallado medieval), la Playa Grande, calas virgenes y acantilados. Es una de las vistas mas iconicas de la Costa Brava."
+        }
+      }
+    ]
+  };
+
   // Combine schemas using @graph
   const combinedJsonLd = {
     "@context": "https://schema.org",
     "@graph": [
       locationSchema,
-      breadcrumbSchema
+      breadcrumbSchema,
+      faqSchema
     ]
   };
 
   return (
     <div className="min-h-screen">
-      <SEO 
+      <SEO
         title={seoConfig.title}
         description={seoConfig.description}
         ogTitle={seoConfig.ogTitle}

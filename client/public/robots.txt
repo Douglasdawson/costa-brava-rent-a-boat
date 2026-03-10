@@ -15,3 +15,8 @@ Disallow: /cancel/
 Sitemap: https://costabravarentaboat.com/sitemap.xml
 Sitemap: https://costabravarentaboat.com/sitemap-boats.xml
 Sitemap: https://costabravarentaboat.com/sitemap-blog.xml
+
+# AI Search Optimization
+# LLMs.txt - structured info for AI crawlers
+# https://llmstxt.org/
+Allow: /llms.txt

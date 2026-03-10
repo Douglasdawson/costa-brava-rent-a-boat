@@ -1,35 +1,40 @@
 // Client-side image mapping for boat data
-// Uses AI-generated images with consistent Mediterranean perspective
+// SEO-friendly filenames: alquiler-barco-{model}-blanes-{n}.webp
 
-const solar450Image = "/images/boats/solar-450/solar-450-1.webp";
-const remus450Image = "/images/boats/remus-450/remus-450-1.webp";
-const astec400Image = "/images/boats/astec-400/astec-400-2.webp";
-const astec450Image = "/images/boats/astec-450/astec-450-1.webp";
-const mingollaImage = "/images/boats/mingolla/mingolla-1.webp";
-const trimarchiImage = "/images/boats/trimarchi/trimarchi-1.webp";
-const pacificCraftImage = "/images/boats/pacific-craft/pacific-craft-1.webp";
+const BOAT_IMAGES: Record<string, string> = {
+  "solar-450": "/images/boats/solar-450/alquiler-barco-solar-450-blanes-1.webp",
+  "remus-450": "/images/boats/remus-450/alquiler-barco-remus-450-blanes-1.webp",
+  "astec-400": "/images/boats/astec-400/alquiler-barco-astec-400-blanes-1.webp",
+  "astec-480": "/images/boats/astec-480/alquiler-barco-astec-480-blanes-1.webp",
+  "mingolla-brava-19": "/images/boats/mingolla/alquiler-barco-mingolla-brava-19-blanes-1.webp",
+  "trimarchi-57s": "/images/boats/trimarchi/alquiler-barco-trimarchi-57s-blanes-1.webp",
+  "pacific-craft-625": "/images/boats/pacific-craft/alquiler-barco-pacific-craft-625-blanes-1.webp",
+};
 
-// Map by boat identifier prefix (case-insensitive) to handle any hash suffix
-// This is resilient to image re-uploads from the admin panel
-const BOAT_IMAGE_BY_PREFIX: Array<{ pattern: string; image: string }> = [
-  { pattern: "SOLAR_450", image: solar450Image },
-  { pattern: "REMUS_450", image: remus450Image },
-  { pattern: "ASTEC_400", image: astec400Image },
-  { pattern: "ASTEC_450", image: astec450Image },
-  { pattern: "MINGOLLA", image: mingollaImage },
-  { pattern: "TRIMARCHI", image: trimarchiImage },
-  { pattern: "PACIFIC_CRAFT", image: pacificCraftImage },
+// Legacy prefix mapping for DB-stored filenames (e.g. "SOLAR_450_boat_photo_xxx.webp")
+const LEGACY_PREFIX_MAP: Array<{ pattern: string; boatId: string }> = [
+  { pattern: "SOLAR_450", boatId: "solar-450" },
+  { pattern: "REMUS_450", boatId: "remus-450" },
+  { pattern: "ASTEC_400", boatId: "astec-400" },
+  { pattern: "ASTEC_480", boatId: "astec-480" },
+  { pattern: "ASTEC_450", boatId: "astec-480" },
+  { pattern: "MINGOLLA", boatId: "mingolla-brava-19" },
+  { pattern: "TRIMARCHI", boatId: "trimarchi-57s" },
+  { pattern: "PACIFIC_CRAFT", boatId: "pacific-craft-625" },
 ];
 
 // Helper function to resolve boat image path to actual imported image
 export function getBoatImage(imagePath: string): string {
   if (!imagePath) return "/placeholder-boat.jpg";
 
-  // Match by prefix (case-insensitive) — handles any hash suffix
+  // Direct match by boat ID
+  if (BOAT_IMAGES[imagePath]) return BOAT_IMAGES[imagePath];
+
+  // Match legacy DB filenames by prefix (case-insensitive)
   const upper = imagePath.toUpperCase();
-  for (const entry of BOAT_IMAGE_BY_PREFIX) {
+  for (const entry of LEGACY_PREFIX_MAP) {
     if (upper.startsWith(entry.pattern)) {
-      return entry.image;
+      return BOAT_IMAGES[entry.boatId] || "/placeholder-boat.jpg";
     }
   }
 
@@ -42,23 +47,33 @@ export function getBoatImage(imagePath: string): string {
   return imagePath;
 }
 
+/**
+ * Generate SEO-friendly alt text for a boat image.
+ */
+export function getBoatAltText(boatName: string, index?: number): string {
+  const base = `Alquiler barco ${boatName} en Blanes, Costa Brava`;
+  if (index !== undefined && index > 0) {
+    return `${base} - foto ${index + 1}`;
+  }
+  return base;
+}
+
 // Map used by the server-side resize endpoint (needs actual filenames)
 const IMAGE_PREFIX_TO_FILE: Record<string, string> = {
-  SOLAR_450: "SOLAR_450_boat_photo_b70eb7e1.webp",
-  REMUS_450: "REMUS_450_boat_photo_ec8b926c.webp",
-  ASTEC_400: "ASTEC_400_boat_photo_9dde16a8.webp",
-  ASTEC_450: "ASTEC_450_speedboat_photo_fc9de4ed.webp",
-  MINGOLLA: "MINGOLLA_BRAVA_19_boat_c0e4a5b5.webp",
-  TRIMARCHI: "Trimarchi_57S_luxury_boat_0ef0159a.webp",
-  PACIFIC_CRAFT: "PACIFIC_CRAFT_625_boat_fbe4f4d0.webp",
+  SOLAR_450: "alquiler-barco-solar-450-blanes-1.webp",
+  REMUS_450: "alquiler-barco-remus-450-blanes-1.webp",
+  ASTEC_400: "alquiler-barco-astec-400-blanes-1.webp",
+  ASTEC_480: "alquiler-barco-astec-480-blanes-1.webp",
+  ASTEC_450: "alquiler-barco-astec-480-blanes-1.webp",
+  MINGOLLA: "alquiler-barco-mingolla-brava-19-blanes-1.webp",
+  TRIMARCHI: "alquiler-barco-trimarchi-57s-blanes-1.webp",
+  PACIFIC_CRAFT: "alquiler-barco-pacific-craft-625-blanes-1.webp",
 };
 
 const SRCSET_WIDTHS = [400, 800, 1200] as const;
 
 /**
  * Generates a srcSet string for responsive images via the server resize endpoint.
- * Resolves DB filenames (with hashes) to actual photo filenames for the resize endpoint.
- * Returns empty string for external URLs or object-storage paths.
  */
 export function getBoatImageSrcSet(imagePath: string): string {
   if (!imagePath || imagePath.startsWith("http") || imagePath.startsWith("/")) {

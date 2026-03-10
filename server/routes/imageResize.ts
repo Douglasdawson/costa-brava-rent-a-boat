@@ -4,25 +4,31 @@ import path from "path";
 import fs from "fs";
 
 const IMAGES_DIRS = [
+  path.resolve(process.cwd(), "client/public/images/boats"),
   path.resolve(process.cwd(), "client/src/assets/real-photos"),
   path.resolve(process.cwd(), "client/src/assets/generated_images"),
 ];
 
-// Map boat name prefixes to actual photo filenames (resilient to hash changes)
+// Map legacy DB filenames to SEO-friendly filenames in public/images/boats/
 const PREFIX_TO_FILE: Array<[string, string]> = [
-  ["SOLAR_450", "SOLAR_450_boat_photo_b70eb7e1.webp"],
-  ["REMUS_450", "REMUS_450_boat_photo_ec8b926c.webp"],
-  ["ASTEC_400", "ASTEC_400_boat_photo_9dde16a8.webp"],
-  ["ASTEC_450", "ASTEC_450_speedboat_photo_fc9de4ed.webp"],
-  ["MINGOLLA", "MINGOLLA_BRAVA_19_boat_c0e4a5b5.webp"],
-  ["TRIMARCHI", "Trimarchi_57S_luxury_boat_0ef0159a.webp"],
-  ["PACIFIC_CRAFT", "PACIFIC_CRAFT_625_boat_fbe4f4d0.webp"],
+  ["SOLAR_450", "solar-450/alquiler-barco-solar-450-blanes-1.webp"],
+  ["REMUS_450", "remus-450/alquiler-barco-remus-450-blanes-1.webp"],
+  ["ASTEC_400", "astec-400/alquiler-barco-astec-400-blanes-1.webp"],
+  ["ASTEC_480", "astec-480/alquiler-barco-astec-480-blanes-1.webp"],
+  ["ASTEC_450", "astec-480/alquiler-barco-astec-480-blanes-1.webp"],
+  ["MINGOLLA", "mingolla/alquiler-barco-mingolla-brava-19-blanes-1.webp"],
+  ["TRIMARCHI", "trimarchi/alquiler-barco-trimarchi-57s-blanes-1.webp"],
+  ["PACIFIC_CRAFT", "pacific-craft/alquiler-barco-pacific-craft-625-blanes-1.webp"],
+  // SEO filenames map to themselves
+  ["alquiler-barco-", ""],
 ];
 
 function resolveFilename(filename: string): string {
   const upper = filename.toUpperCase();
   for (const [prefix, file] of PREFIX_TO_FILE) {
-    if (upper.startsWith(prefix)) return file;
+    if (upper.startsWith(prefix.toUpperCase())) {
+      return file || filename; // empty = already SEO name, use as-is
+    }
   }
   return filename;
 }
@@ -40,16 +46,16 @@ export function registerImageResizeRoutes(app: Express) {
       return res.status(400).json({ error: "Missing file param" });
     }
 
-    // Sanitize: reject path traversal, allow only plain filenames
-    const filename = path.basename(file);
-    if (!filename || filename !== file || filename.startsWith(".")) {
+    // Sanitize: reject path traversal
+    const sanitized = file.replace(/\.\./g, "");
+    if (!sanitized || sanitized.startsWith(".") || sanitized.startsWith("/")) {
       return res.status(400).json({ error: "Invalid filename" });
     }
 
     const width = Math.min(Math.max(parseInt(w as string) || 800, 100), 2000);
     const quality = Math.min(Math.max(parseInt(q as string) || 80, 10), 100);
 
-    const cacheKey = `${filename}:${width}:${quality}`;
+    const cacheKey = `${sanitized}:${width}:${quality}`;
 
     const cached = cache.get(cacheKey);
     if (cached) {
@@ -59,9 +65,9 @@ export function registerImageResizeRoutes(app: Express) {
     }
 
     // Resolve DB filename (with hash) to actual photo filename
-    const resolvedFilename = resolveFilename(filename);
+    const resolvedFilename = resolveFilename(sanitized);
 
-    // Search in both real-photos and generated_images directories
+    // Search in image directories
     let filePath = "";
     for (const dir of IMAGES_DIRS) {
       const candidate = path.join(dir, resolvedFilename);

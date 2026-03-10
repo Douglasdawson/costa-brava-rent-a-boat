@@ -9,6 +9,9 @@ interface PriceSummaryBarProps {
   extrasPrice: number;
   discount: number;
   discountLabel?: string;
+  /** Auto-discount (early-bird / flash deal) */
+  autoDiscountAmount?: number;
+  autoDiscountLabel?: string;
   t: Translations;
   /** "desktop" renders a card; "mobile" renders a compact sticky bar */
   variant: "desktop" | "mobile";
@@ -26,18 +29,22 @@ export default function PriceSummaryBar({
   extrasPrice,
   discount,
   discountLabel,
+  autoDiscountAmount = 0,
+  autoDiscountLabel,
   t,
   variant,
 }: PriceSummaryBarProps) {
   const [expanded, setExpanded] = useState(false);
 
-  const total = basePrice + extrasPrice - discount;
+  const total = basePrice + extrasPrice - discount - autoDiscountAmount;
   const ps = t.priceSummary;
   const baseLabel = ps?.base || "Base";
   const extrasLabel = ps?.extras || "Extras";
   const discountText = ps?.discount || "Discount";
   const totalLabel = ps?.total || "Total";
   const seeDetailsLabel = ps?.seeDetails || "See details";
+
+  const hasBreakdown = extrasPrice > 0 || discount > 0 || autoDiscountAmount > 0;
 
   // --- DESKTOP: compact card with breakdown ---
   if (variant === "desktop") {
@@ -60,6 +67,12 @@ export default function PriceSummaryBar({
               <span className="text-foreground">+{extrasPrice}€</span>
             </div>
           )}
+          {autoDiscountAmount > 0 && autoDiscountLabel && (
+            <div className="flex justify-between text-sm">
+              <span className="text-green-600 font-medium">{autoDiscountLabel}</span>
+              <span className="text-green-600 font-medium">-{autoDiscountAmount}€</span>
+            </div>
+          )}
           {discount > 0 && (
             <div className="flex justify-between text-sm">
               <span className="text-muted-foreground">
@@ -68,7 +81,7 @@ export default function PriceSummaryBar({
               <span className="text-green-600 font-medium">-{discount}€</span>
             </div>
           )}
-          {(extrasPrice > 0 || discount > 0) && (
+          {hasBreakdown && (
             <>
               <div className="border-t border-[#A8C4DD]/30 my-1" />
               <div className="flex justify-between text-sm font-bold">
@@ -97,14 +110,14 @@ export default function PriceSummaryBar({
         </span>
         <span className="flex items-center gap-1 flex-shrink-0">
           <span className="font-bold">{totalLabel}: {total}€</span>
-          {(extrasPrice > 0 || discount > 0) && (
+          {hasBreakdown && (
             expanded
               ? <ChevronUp className="w-3.5 h-3.5 opacity-60" />
               : <ChevronDown className="w-3.5 h-3.5 opacity-60" />
           )}
         </span>
       </button>
-      {expanded && (extrasPrice > 0 || discount > 0) && (
+      {expanded && hasBreakdown && (
         <div className="px-4 pb-2 space-y-0.5 text-sm border-t border-white/10">
           <div className="flex justify-between pt-1.5">
             <span className="opacity-70">{baseLabel}</span>
@@ -114,6 +127,12 @@ export default function PriceSummaryBar({
             <div className="flex justify-between">
               <span className="opacity-70">{extrasLabel}</span>
               <span>+{extrasPrice}€</span>
+            </div>
+          )}
+          {autoDiscountAmount > 0 && autoDiscountLabel && (
+            <div className="flex justify-between">
+              <span className="text-green-400">{autoDiscountLabel}</span>
+              <span className="text-green-400">-{autoDiscountAmount}€</span>
             </div>
           )}
           {discount > 0 && (

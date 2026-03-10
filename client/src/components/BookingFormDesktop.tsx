@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef } from "react";
 import { CalendarIcon, Check, ClipboardList, Clock, Loader2, Star, Users, X } from "lucide-react";
-import { Checkbox } from "@/components/ui/checkbox";
 import { SiWhatsapp } from "react-icons/si";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Calendar } from "@/components/ui/calendar";
@@ -87,6 +86,7 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
     handleValidateCode,
     handleRemoveCode,
     getCodeDiscount,
+    autoDiscount,
     nextSaturdayISO,
     language,
   } = props;
@@ -97,9 +97,11 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
   // Direction tracking for slide animation
   const [direction, setDirection] = useState(0);
   const prevStepRef = useRef(currentStep);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     if (currentStep !== prevStepRef.current) {
       setDirection(currentStep > prevStepRef.current ? 1 : -1);
+      scrollContainerRef.current?.scrollTo({ top: 0, behavior: 'smooth' });
       prevStepRef.current = currentStep;
     }
   }, [currentStep]);
@@ -108,6 +110,7 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
   const maxCapacity = getMaxCapacity();
   const price = getBookingPrice();
   const discount = getCodeDiscount();
+  const autoDiscountAmount = autoDiscount?.type ? autoDiscount.amount : 0;
   const boatExtraNames = new Set(boatExtras.map(e => e.name));
   const availablePacks = EXTRA_PACKS.filter(pack =>
     pack.extras.every(name => boatExtraNames.has(name))
@@ -129,20 +132,13 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
   return (
     <div className="flex flex-col h-full">
       {/* Step progress bar */}
-      <div className="flex-shrink-0 px-8 pt-4 pb-3 border-b border-[#A8C4DD]/20">
+      <div className="flex-shrink-0 px-8 pt-3 pb-2 border-b border-[#A8C4DD]/20">
         <BookingProgressBar
           currentStep={currentStep}
           totalSteps={4}
           stepLabels={stepLabels}
           estimatedTime={t.wizard.estimatedTime}
         />
-      </div>
-
-      {/* Trust strip */}
-      <div className="flex-shrink-0 flex items-center justify-center gap-4 text-xs text-muted-foreground py-1.5 border-b border-[#A8C4DD]/10">
-        <span className="inline-flex items-center gap-1"><Users className="w-3 h-3" />{t.bookingTrust?.customers}</span>
-        <span className="inline-flex items-center gap-1"><Star className="w-3 h-3" />{t.bookingTrust?.rating}</span>
-        <span className="inline-flex items-center gap-1"><Clock className="w-3 h-3" />{t.bookingTrust?.confirmation}</span>
       </div>
 
       {/* Hold countdown timer — only visible on final step */}
@@ -158,7 +154,7 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
       )}
 
       {/* Step content — scrollable */}
-      <div className="flex-1 min-h-0 overflow-y-auto">
+      <div ref={scrollContainerRef} className="flex-1 min-h-0 overflow-y-auto">
         <AnimatePresence mode="wait" custom={direction}>
           <motion.div
             key={currentStep}
@@ -174,18 +170,18 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
               <Step1BoatDate
                 licenseFilter={licenseFilter} setLicenseFilter={setLicenseFilter}
                 selectedBoat={selectedBoat} setSelectedBoat={setSelectedBoat}
-                selectedDate={selectedDate} setSelectedDate={setSelectedDate}
                 filteredBoats={filteredBoats} isBoatsLoading={isBoatsLoading}
                 preSelectedBoatId={preSelectedBoatId}
-                getLocalISODate={getLocalISODate}
-                showDatePicker={showDatePicker} setShowDatePicker={setShowDatePicker}
-                showFieldError={showFieldError} getFieldError={getFieldError} handleBlur={handleBlur}
-                t={t} inputBase={inputBase} inputError={inputError} inputNormal={inputNormal}
-                nextSaturdayISO={nextSaturdayISO} language={language}
+                showFieldError={showFieldError} getFieldError={getFieldError}
+                t={t}
               />
             )}
             {currentStep === 2 && (
               <Step2Details
+                selectedDate={selectedDate} setSelectedDate={setSelectedDate}
+                getLocalISODate={getLocalISODate}
+                showDatePicker={showDatePicker} setShowDatePicker={setShowDatePicker}
+                nextSaturdayISO={nextSaturdayISO} language={language}
                 selectedDuration={selectedDuration} setSelectedDuration={setSelectedDuration}
                 preferredTime={preferredTime} setPreferredTime={setPreferredTime}
                 numberOfPeople={numberOfPeople} setNumberOfPeople={setNumberOfPeople}
@@ -224,14 +220,13 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
                 isValidatingCode={isValidatingCode} validatedCode={validatedCode}
                 codeError={codeError} handleValidateCode={handleValidateCode}
                 handleRemoveCode={handleRemoveCode}
-                price={price} totalExtrasPrice={totalExtrasPrice} discount={discount}
+                price={price} totalExtrasPrice={totalExtrasPrice} discount={discount} autoDiscount={autoDiscount}
                 selectedBoatInfo={selectedBoatInfo}
                 selectedDate={selectedDate} selectedDuration={selectedDuration}
                 preferredTime={preferredTime} numberOfPeople={numberOfPeople}
                 selectedExtras={selectedExtras} selectedPack={selectedPack}
                 extrasInPack={extrasInPack} language={props.language}
                 onGoToStep={onGoToStep}
-                privacyConsent={privacyConsent} setPrivacyConsent={setPrivacyConsent}
                 showFieldError={showFieldError} getFieldError={getFieldError} handleBlur={handleBlur}
                 t={t} inputBase={inputBase} inputError={inputError} inputNormal={inputNormal}
               />
@@ -250,6 +245,8 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
             extrasPrice={totalExtrasPrice}
             discount={discount}
             discountLabel={validatedCode?.percentage ? `${validatedCode.code} (${validatedCode.percentage}%)` : undefined}
+            autoDiscountAmount={props.autoDiscount?.type ? props.autoDiscount.amount : 0}
+            autoDiscountLabel={props.autoDiscount?.type === 'early-bird' ? t.booking.earlyBirdDiscount : props.autoDiscount?.type === 'flash-deal' ? t.booking.flashDealDiscount : undefined}
             t={t}
             variant="desktop"
           />
@@ -282,7 +279,7 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
                 await handleBookingSearch();
                 setIsSubmitting(false);
               }}
-              disabled={isSubmitting || !privacyConsent}
+              disabled={isSubmitting}
               className="bg-[#25D366] hover:bg-[#1ebe5d] text-white rounded-full px-8 py-2.5 font-medium text-sm border-0 disabled:opacity-50 disabled:cursor-not-allowed btn-elevated"
             >
               {isSubmitting
@@ -316,36 +313,21 @@ interface Step1Props {
   setLicenseFilter: (v: "with" | "without") => void;
   selectedBoat: string;
   setSelectedBoat: (v: string) => void;
-  selectedDate: string;
-  setSelectedDate: (v: string) => void;
   filteredBoats: BookingWizardMobileProps["filteredBoats"];
   isBoatsLoading: boolean;
   preSelectedBoatId?: string;
-  getLocalISODate: () => string;
-  showDatePicker: boolean;
-  setShowDatePicker: (v: boolean) => void;
   showFieldError: (f: string) => boolean;
   getFieldError: (f: string) => string;
-  handleBlur: (f: string) => void;
   t: BookingWizardMobileProps["t"];
-  inputBase: string;
-  inputError: string;
-  inputNormal: string;
-  nextSaturdayISO: string;
-  language: string;
 }
 
 function Step1BoatDate({
   licenseFilter, setLicenseFilter,
   selectedBoat, setSelectedBoat,
-  selectedDate, setSelectedDate,
   filteredBoats, isBoatsLoading,
   preSelectedBoatId,
-  getLocalISODate,
-  showDatePicker, setShowDatePicker,
-  showFieldError, getFieldError, handleBlur,
-  t, inputBase, inputError, inputNormal,
-  nextSaturdayISO, language,
+  showFieldError, getFieldError,
+  t,
 }: Step1Props) {
   return (
     <div className="space-y-5">
@@ -438,6 +420,58 @@ function Step1BoatDate({
         )}
       </div>
 
+    </div>
+  );
+}
+
+/* ═══════════════════════════════════════════
+   STEP 2: Duration, Time & People
+   ═══════════════════════════════════════════ */
+
+interface Step2Props {
+  selectedDate: string;
+  setSelectedDate: (v: string) => void;
+  getLocalISODate: () => string;
+  showDatePicker: boolean;
+  setShowDatePicker: (v: boolean) => void;
+  nextSaturdayISO: string;
+  language: string;
+  selectedDuration: string;
+  setSelectedDuration: (v: string) => void;
+  preferredTime: string;
+  setPreferredTime: (v: string) => void;
+  numberOfPeople: string;
+  setNumberOfPeople: (v: string) => void;
+  durationOptions: { value: string; label: string; disabled?: boolean; disabledReason?: string }[];
+  maxCapacity: number;
+  selectedBoatInfo: BookingWizardMobileProps["selectedBoatInfo"];
+  timeSlots: string[];
+  unavailableTimeSlots: Set<string>;
+  selectedTimeMaxDuration: number | null;
+  showFieldError: (f: string) => boolean;
+  getFieldError: (f: string) => string;
+  handleBlur: (f: string) => void;
+  t: BookingWizardMobileProps["t"];
+  inputBase: string;
+  inputError: string;
+  inputNormal: string;
+}
+
+function Step2Details({
+  selectedDate, setSelectedDate,
+  getLocalISODate, showDatePicker, setShowDatePicker,
+  nextSaturdayISO, language,
+  selectedDuration, setSelectedDuration,
+  preferredTime, setPreferredTime,
+  numberOfPeople, setNumberOfPeople,
+  durationOptions, maxCapacity,
+  selectedBoatInfo, timeSlots,
+  unavailableTimeSlots, selectedTimeMaxDuration,
+  showFieldError, getFieldError, handleBlur,
+  t, inputBase, inputError, inputNormal,
+}: Step2Props) {
+  return (
+    <div className="space-y-5">
       {/* Date */}
       <div>
         <label className="block text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-2">
@@ -482,48 +516,7 @@ function Step1BoatDate({
           </p>
         )}
       </div>
-    </div>
-  );
-}
 
-/* ═══════════════════════════════════════════
-   STEP 2: Duration, Time & People
-   ═══════════════════════════════════════════ */
-
-interface Step2Props {
-  selectedDuration: string;
-  setSelectedDuration: (v: string) => void;
-  preferredTime: string;
-  setPreferredTime: (v: string) => void;
-  numberOfPeople: string;
-  setNumberOfPeople: (v: string) => void;
-  durationOptions: { value: string; label: string; disabled?: boolean; disabledReason?: string }[];
-  maxCapacity: number;
-  selectedBoatInfo: BookingWizardMobileProps["selectedBoatInfo"];
-  timeSlots: string[];
-  unavailableTimeSlots: Set<string>;
-  selectedTimeMaxDuration: number | null;
-  showFieldError: (f: string) => boolean;
-  getFieldError: (f: string) => string;
-  handleBlur: (f: string) => void;
-  t: BookingWizardMobileProps["t"];
-  inputBase: string;
-  inputError: string;
-  inputNormal: string;
-}
-
-function Step2Details({
-  selectedDuration, setSelectedDuration,
-  preferredTime, setPreferredTime,
-  numberOfPeople, setNumberOfPeople,
-  durationOptions, maxCapacity,
-  selectedBoatInfo, timeSlots,
-  unavailableTimeSlots, selectedTimeMaxDuration,
-  showFieldError, getFieldError, handleBlur,
-  t, inputBase, inputError, inputNormal,
-}: Step2Props) {
-  return (
-    <div className="space-y-5">
       {/* Time — shown before duration so maxDuration can filter durations */}
       <div>
         <label htmlFor="desktop-time" className="block text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-2">
@@ -779,6 +772,7 @@ interface Step4Props {
   price: number | null;
   totalExtrasPrice: number;
   discount: number;
+  autoDiscount: { type: 'early-bird' | 'flash-deal' | null; percentage: number; amount: number } | null;
   selectedBoatInfo: BookingWizardMobileProps["selectedBoatInfo"];
   selectedDate: string;
   selectedDuration: string;
@@ -789,7 +783,6 @@ interface Step4Props {
   extrasInPack: Set<string>;
   language: string;
   onGoToStep: (step: number) => void;
-  privacyConsent: boolean; setPrivacyConsent: (v: boolean) => void;
   showFieldError: (f: string) => boolean;
   getFieldError: (f: string) => string;
   handleBlur: (f: string) => void;
@@ -809,17 +802,17 @@ function Step4Contact({
   showCodeSection, setShowCodeSection,
   codeInput, setCodeInput, isValidatingCode,
   validatedCode, codeError, handleValidateCode, handleRemoveCode,
-  price, totalExtrasPrice, discount,
+  price, totalExtrasPrice, discount, autoDiscount,
   selectedBoatInfo,
   selectedDate, selectedDuration, preferredTime, numberOfPeople,
   selectedExtras, selectedPack, extrasInPack,
   language, onGoToStep,
-  privacyConsent, setPrivacyConsent,
   showFieldError, getFieldError, handleBlur,
   t, inputBase, inputError, inputNormal,
 }: Step4Props) {
   const depositStr = selectedBoatInfo?.specifications?.deposit;
   const depositAmount = depositStr ? parseInt(depositStr.replace(/[^0-9]/g, '')) : null;
+  const autoDiscountAmount = autoDiscount?.type ? autoDiscount.amount : 0;
 
   // Build extras display text for review card
   const extrasDisplay = (() => {
@@ -1061,6 +1054,18 @@ function Step4Contact({
                 <span className="font-medium">+{totalExtrasPrice}€</span>
               </div>
             )}
+            {autoDiscountAmount > 0 && autoDiscount?.type && (
+              <div className="flex justify-between text-sm">
+                <span className={`text-xs font-semibold px-2 py-0.5 rounded-full ${
+                  autoDiscount.type === 'early-bird'
+                    ? 'bg-green-100 text-green-700'
+                    : 'bg-orange-100 text-orange-700'
+                }`}>
+                  {autoDiscount.type === 'early-bird' ? t.booking.earlyBirdDiscount : t.booking.flashDealDiscount}
+                </span>
+                <span className="font-medium text-green-600">-{autoDiscountAmount}€</span>
+              </div>
+            )}
             {discount > 0 && validatedCode && (
               <div className="flex justify-between text-sm text-[#0D0D2B]">
                 <span>{validatedCode.code}</span>
@@ -1070,7 +1075,7 @@ function Step4Contact({
             <div className="flex justify-between items-baseline border-t border-[#A8C4DD]/30 pt-2 mt-2">
               <span className="text-sm font-bold text-foreground">{t.endowment?.yourPrice || 'Total'}</span>
               <span className="text-xl font-bold text-[#0D0D2B]">
-                {price + totalExtrasPrice - discount}€
+                {price + totalExtrasPrice - discount - autoDiscountAmount}€
               </span>
             </div>
             {depositAmount && (
@@ -1091,30 +1096,18 @@ function Step4Contact({
         </div>
       )}
 
-      {/* RGPD consent checkbox */}
-      <div className="flex items-start gap-3">
-        <Checkbox
-          id="desktop-privacy-consent"
-          checked={privacyConsent}
-          onCheckedChange={(checked) => setPrivacyConsent(checked === true)}
-          aria-required="true"
-          className="mt-0.5 h-4 w-4 flex-shrink-0"
-        />
-        <label
-          htmlFor="desktop-privacy-consent"
-          className="text-sm text-muted-foreground leading-relaxed cursor-pointer select-none"
-        >
-          {t.booking.gdprConsent.split('{privacyPolicy}')[0]}
-          <a href="/privacy-policy" target="_blank" rel="noopener noreferrer" className="text-[#0D0D2B] underline hover:text-[#0D0D2B]/80" onClick={(e) => e.stopPropagation()}>
-            {t.booking.gdprPrivacyLink}
-          </a>
-          {(t.booking.gdprConsent.split('{privacyPolicy}')[1] || '').split('{termsAndConditions}')[0]}
-          <a href="/condiciones-generales" target="_blank" rel="noopener noreferrer" className="text-[#0D0D2B] underline hover:text-[#0D0D2B]/80" onClick={(e) => e.stopPropagation()}>
-            {t.booking.gdprTermsLink}
-          </a>
-          {(t.booking.gdprConsent.split('{privacyPolicy}')[1] || '').split('{termsAndConditions}')[1] || ''}
-        </label>
-      </div>
+      {/* RGPD passive consent notice */}
+      <p className="text-xs text-muted-foreground leading-relaxed text-center">
+        {t.booking.gdprPassive?.split('{privacyPolicy}')[0] || 'Al enviar esta solicitud, aceptas nuestra '}
+        <a href="/privacy-policy" target="_blank" rel="noopener noreferrer" className="text-[#0D0D2B] underline hover:text-[#0D0D2B]/80">
+          {t.booking.gdprPrivacyLink}
+        </a>
+        {(t.booking.gdprPassive?.split('{privacyPolicy}')[1] || ' y ').split('{termsAndConditions}')[0]}
+        <a href="/condiciones-generales" target="_blank" rel="noopener noreferrer" className="text-[#0D0D2B] underline hover:text-[#0D0D2B]/80">
+          {t.booking.gdprTermsLink}
+        </a>
+        {(t.booking.gdprPassive?.split('{privacyPolicy}')[1] || '').split('{termsAndConditions}')[1] || '.'}
+      </p>
     </div>
   );
 }

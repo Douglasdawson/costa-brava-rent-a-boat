@@ -2,6 +2,9 @@ import type { Express } from "express";
 import { z } from "zod";
 import { storage } from "../storage";
 import { logger } from "../lib/logger";
+import { db } from "../db";
+import { bookings } from "@shared/schema";
+import { gte, sql, and, inArray } from "drizzle-orm";
 
 const checkAvailabilitySchema = z.object({
   startTime: z.string().min(1, "La hora de inicio es requerida"),
@@ -13,6 +16,39 @@ const checkAvailabilityWithBoatSchema = checkAvailabilitySchema.extend({
 });
 
 export function registerBoatRoutes(app: Express) {
+  // Weekly bookings count per boat (social proof)
+  app.get("/api/boats/weekly-bookings", async (req, res) => {
+    try {
+      const sevenDaysAgo = new Date();
+      sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
+
+      const rows = await db
+        .select({
+          boatId: bookings.boatId,
+          count: sql<number>`count(*)::int`,
+        })
+        .from(bookings)
+        .where(
+          and(
+            gte(bookings.createdAt, sevenDaysAgo),
+            inArray(bookings.bookingStatus, ['confirmed', 'completed', 'pending_payment'])
+          )
+        )
+        .groupBy(bookings.boatId);
+
+      const result: Record<string, number> = {};
+      for (const row of rows) {
+        result[row.boatId] = row.count;
+      }
+
+      res.setHeader('Cache-Control', 'public, max-age=300, s-maxage=300');
+      res.json(result);
+    } catch (error: unknown) {
+      logger.error("[Boats] Error fetching weekly bookings", { error: error instanceof Error ? error.message : String(error) });
+      res.status(500).json({ message: "Error interno del servidor" });
+    }
+  });
+
   // Get all active boats
   app.get("/api/boats", async (req, res) => {
     try {

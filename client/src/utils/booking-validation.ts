@@ -7,10 +7,10 @@ const MIN_PHONE_LENGTH = 6;
 
 /**
  * Validates an email address. Returns null if valid, error key if invalid.
- * Empty emails are considered valid (email is optional in booking forms).
+ * Email is required for booking confirmation delivery.
  */
-export function validateEmail(email: string): "invalid" | null {
-  if (!email.trim()) return null;
+export function validateEmail(email: string): "required" | "invalid" | null {
+  if (!email.trim()) return "required";
   if (!EMAIL_REGEX.test(email)) return "invalid";
   return null;
 }

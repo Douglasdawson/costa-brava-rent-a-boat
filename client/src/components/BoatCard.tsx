@@ -1,5 +1,5 @@
 import { Card, CardContent } from "@/components/ui/card";
-import { Anchor, ArrowRight, Fuel, Star, ThumbsUp } from "lucide-react";
+import { Anchor, ArrowRight, Clock, Fuel, Star, ThumbsUp } from "lucide-react";
 import { useTranslations } from "@/lib/translations";
 import { useMemo, useState } from "react";
 import { getBoatAverageRating } from "@/data/boatReviews";
@@ -23,6 +23,7 @@ interface BoatCardProps {
   isPopular?: boolean;
   isRecommended?: boolean;
   scarcityData?: { availableSlots: number; totalSlots: number };
+  weeklyBookings?: number;
   onBooking: (boatId: string) => void;
   onDetails: (boatId: string) => void;
 }
@@ -46,12 +47,22 @@ export default function BoatCard({
   isPopular,
   isRecommended,
   scarcityData,
+  weeklyBookings,
   onBooking,
   onDetails
 }: BoatCardProps) {
   const t = useTranslations();
   const [imageError, setImageError] = useState(false);
   const ratingData = useMemo(() => getBoatAverageRating(id), [id]);
+
+  const currentSeason = useMemo(() => {
+    const parts = new Intl.DateTimeFormat('en-US', { timeZone: 'Europe/Madrid', month: 'numeric' }).formatToParts(new Date());
+    const month = parseInt(parts.find(p => p.type === 'month')?.value || '0');
+    if (month === 7) return 'MEDIA';
+    if (month === 8) return 'ALTA';
+    if ((month >= 4 && month <= 6) || (month >= 9 && month <= 10)) return 'BAJA';
+    return null;
+  }, []);
 
   const handleDetails = () => {
     onDetails(id);
@@ -181,9 +192,28 @@ export default function BoatCard({
 
         <p className="text-muted-foreground text-sm mb-3 line-clamp-2">{description}</p>
 
-        <p className="text-xs xs:text-sm text-muted-foreground mb-3">
+        <p className="text-xs xs:text-sm text-muted-foreground mb-2">
           {capacity} {t.boats.people}{enginePower ? ` | ${enginePower}` : ''}{` | ${requiresLicense ? t.boats.withLicense : t.boats.withoutLicense}`}
         </p>
+
+        <div className="flex flex-wrap gap-1.5 mb-3">
+          {!requiresLicense && (
+            <span className="inline-flex items-center gap-1 text-xs text-muted-foreground bg-muted px-2 py-0.5 rounded-full">
+              <Clock className="w-3 h-3" />
+              {t.boats.popularDuration}
+            </span>
+          )}
+          {currentSeason === 'BAJA' && (
+            <span className="inline-flex items-center text-xs text-green-700 bg-green-50 px-2 py-0.5 rounded-full font-medium">
+              {t.boats.seasonPriceLow}
+            </span>
+          )}
+          {currentSeason === 'MEDIA' && (
+            <span className="inline-flex items-center text-xs text-amber-700 bg-amber-50 px-2 py-0.5 rounded-full font-medium">
+              {t.boats.seasonPriceMid}
+            </span>
+          )}
+        </div>
 
         {scarcityData && (
           <div className="flex items-center gap-1.5 text-xs font-medium">
@@ -206,6 +236,12 @@ export default function BoatCard({
               </>
             )}
           </div>
+        )}
+
+        {weeklyBookings !== undefined && weeklyBookings >= 2 && (
+          <p className="text-xs text-orange-600 font-medium mt-1">
+            {t.boats.weeklyBookings?.replace('{count}', String(weeklyBookings))}
+          </p>
         )}
       </CardContent>
       <div className="px-3 sm:px-4 pb-3 sm:pb-4 flex items-center justify-between gap-2">

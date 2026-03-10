@@ -18,7 +18,7 @@ export default function Hero() {
         />
         <img
           src="/images/hero/hero-dive-mobile.webp"
-          alt="Costa Brava Rent a Boat - Alquiler de barcos en Blanes con vistas al Mediterráneo"
+          alt="Barco de alquiler sin licencia navegando por aguas turquesa cerca de las calas de Blanes, Costa Brava"
           className="absolute inset-0 w-full h-full object-cover brightness-110 saturate-[1.05]"
           loading="eager"
           fetchPriority="high"
@@ -29,20 +29,19 @@ export default function Hero() {
       <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-black/20 to-black/5" />
 
       {/* Content */}
-      <div className="relative z-10 h-full flex flex-col sm:justify-start sm:pt-28 lg:pt-32">
+      <div className="relative z-10 h-full flex flex-col sm:justify-start sm:pt-36 lg:pt-40">
         <div className="px-4 sm:px-6 lg:px-16 xl:px-24 max-w-screen-2xl mx-auto w-full h-full sm:h-auto flex flex-col sm:block">
           <div className="text-center flex flex-col items-center">
             {/* H1 - top on mobile, flows naturally on desktop */}
-            <div className="pt-20 sm:pt-0">
-              <h1 className="font-heading font-bold text-white tracking-tight mb-4 sm:mb-6 leading-[1.08] uppercase" style={{ fontSize: 'clamp(2.25rem, 7vw, 4.5rem)' }}>
-                <span className="inline sm:block">Alquiler de Barcos en</span>{' '}
-                <span className="inline sm:block">Blanes, <span className="text-[hsl(215,45%,20%)]">Costa Brava</span></span>
+            <div className="pt-32 sm:pt-0">
+              <h1 className="font-heading font-bold text-white tracking-tight mb-4 sm:mb-6 leading-[1.08] uppercase drop-shadow-[0_2px_8px_rgba(0,0,0,0.4)]" style={{ fontSize: 'clamp(2.7rem, 8.4vw, 4.5rem)' }}>
+                {t.hero.title}
               </h1>
             </div>
 
             {/* Subtitle - single line on mobile, full on desktop */}
-            <p className="text-sm sm:text-xl lg:text-2xl text-white/85 font-light mb-0 sm:mb-8 leading-relaxed max-w-xl lg:max-w-2xl">
-              <span className="sm:hidden">Desde 70€ · Gasolina incluida</span>
+            <p className="text-[0.925rem] sm:text-[1.3rem] lg:text-[1.575rem] text-white/85 font-medium mb-0 sm:mb-8 leading-relaxed max-w-2xl lg:max-w-3xl drop-shadow-[0_1px_4px_rgba(0,0,0,0.35)]">
+              <span className="sm:hidden">{t.hero.subtitleMobile}</span>
               <span className="hidden sm:inline">{t.hero.subtitleLine1}<br />{t.hero.subtitleLine2}</span>
             </p>
 
@@ -52,10 +51,10 @@ export default function Hero() {
             {/* Price badges - desktop/tablet only */}
             <div className="hidden sm:flex items-center gap-2 xs:gap-3 mb-8">
               <span className="w-36 xs:w-44 py-2 rounded-full bg-[#A8C4DD]/50 backdrop-blur-sm border border-white/25 text-white text-xs xs:text-sm font-medium tracking-wide text-center">
-                Desde 70€
+                {t.hero.priceBadge}
               </span>
               <span className="w-36 xs:w-44 py-2 rounded-full bg-[#A8C4DD]/50 backdrop-blur-sm border border-white/25 text-white text-xs xs:text-sm font-medium tracking-wide text-center">
-                Gasolina incluida
+                {t.hero.fuelBadge}
               </span>
             </div>
 

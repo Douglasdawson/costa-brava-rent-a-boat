@@ -49,11 +49,11 @@ export const BASE_DOMAIN = getBaseUrl();
 export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
   es: {
     home: {
-      title: "Alquiler Barcos Blanes y Lloret | Costa Brava",
-      description: "Descubre la Costa Brava desde el mar con nuestros barcos en Blanes. Alquiler con o sin licencia. ¡Fácil, rápido y seguro!",
-      keywords: "alquiler barcos blanes, barcos sin licencia costa brava, alquiler embarcaciones blanes, costa brava rent boat, puerto blanes",
-      ogTitle: "Alquiler de Barcos en Blanes y Lloret | Costa Brava 2026",
-      ogDescription: "Descubre la Costa Brava desde el mar. 7 barcos con y sin licencia. Explora calas paradisíacas. ¡Reserva tu aventura hoy!"
+      title: "Alquiler Barcos sin Licencia en Blanes | Costa Brava",
+      description: "Alquila un barco sin licencia en Blanes desde 70€. Gasolina incluida, 15 min de formación y navega por calas secretas de la Costa Brava. Reserva online.",
+      keywords: "alquiler barcos blanes, barcos sin licencia costa brava, alquiler barcos sin licencia blanes, alquiler embarcaciones blanes, puerto blanes",
+      ogTitle: "Alquiler Barcos sin Licencia en Blanes | Costa Brava 2026",
+      ogDescription: "Navega por calas secretas de la Costa Brava sin licencia ni experiencia. Desde 70€ con gasolina incluida. 15 min de formación. ¡Reserva ya!"
     },
     booking: {
       title: "Solicitar Reserva de Barco en Blanes | Costa Brava",

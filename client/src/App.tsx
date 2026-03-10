@@ -14,6 +14,7 @@ import Navigation from "./components/Navigation";
 import Hero from "./components/Hero";
 import FeaturesSection from "./components/FeaturesSection";
 import FleetSection from "./components/FleetSection";
+import NeverSailedSection from "./components/NeverSailedSection";
 import ReviewsSection from "./components/ReviewsSection";
 import GiftCardBanner from "./components/GiftCardBanner";
 import ContactSection from "./components/ContactSection";
@@ -172,6 +173,7 @@ function HomePage() {
       <main id="main-content">
         <Hero />
         <FleetSection />
+        <NeverSailedSection />
         <LicenseComparisonSection />
         <ReviewsSection />
         <GiftCardBanner />

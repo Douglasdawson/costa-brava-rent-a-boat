@@ -28,6 +28,9 @@ export interface Translations {
     subtitle: string;
     subtitleLine1: string;
     subtitleLine2: string;
+    subtitleMobile: string;
+    priceBadge: string;
+    fuelBadge: string;
     bookNow: string;
     viewFleet: string;
     trustText: string;
@@ -67,8 +70,12 @@ export interface Translations {
     more: string;
     mostPopular: string;
     perPerson: string;
+    popularDuration: string;
+    seasonPriceLow: string;
+    seasonPriceMid: string;
+    weeklyBookings: string;
   };
-  
+
   // Features Section
   features: {
     title: string;
@@ -116,6 +123,19 @@ export interface Translations {
       privateTour: { name: string; description: string; price: string };
       parking: { name: string; description: string };
     };
+  };
+
+  // Never Sailed Section
+  neverSailed: {
+    title: string;
+    subtitle: string;
+    step1Title: string;
+    step1Desc: string;
+    step2Title: string;
+    step2Desc: string;
+    step3Title: string;
+    step3Desc: string;
+    cta: string;
   };
 
   // Contact Section
@@ -334,6 +354,8 @@ export interface Translations {
     estimatedTotal: string;
     basePrice: string;
     discountApplied: string;
+    earlyBirdDiscount: string;
+    flashDealDiscount: string;
     priceConfirmedWhatsApp: string;
     gdprConsent: string;
     gdprPrivacyLink: string;
@@ -1004,6 +1026,18 @@ export interface Translations {
     licenseFeature3: string;
     licenseFeature4: string;
     fromPrice: string;
+    // Fleet comparison table
+    compare: string;
+    tableCapacity: string;
+    tableLicense: string;
+    tableEngine: string;
+    tableDuration: string;
+    tablePriceFrom: string;
+    tablePricePerPerson: string;
+    tableRating: string;
+    tableFuelIncluded: string;
+    tableYes: string;
+    tableNo: string;
   };
 
   // Exit Intent Modal

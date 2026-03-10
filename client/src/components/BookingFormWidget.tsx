@@ -16,6 +16,7 @@ import { trackBookingStarted } from "@/utils/analytics";
 import { getStoredUtm } from "@/hooks/useUtmCapture";
 import { BOAT_DATA, EXTRA_PACKS } from "@shared/boatData";
 import { calculateExtrasPrice, calculatePackSavings, getAvailableDurationsForDate, type DurationOption } from "@shared/pricing";
+import type { AutoDiscountResult } from "@shared/discounts";
 import BookingWizardMobile from "@/components/BookingWizardMobile";
 import BookingFormDesktop from "@/components/BookingFormDesktop";
 import { BookingConfirmation } from "@/components/BookingConfirmation";
@@ -69,13 +70,24 @@ export default function BookingFormWidget({ preSelectedBoatId, prefillDate, pref
   const [phonePrefix, setPhonePrefix] = useState("+34");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [email, setEmail] = useState("");
-  const [numberOfPeople, setNumberOfPeople] = useState("4");
+  const [numberOfPeople, setNumberOfPeople] = useState("");
   const [preferredTime, setPreferredTime] = useState(prefillTime || "10:00");
   const [showPrefixDropdown, setShowPrefixDropdown] = useState(false);
   const [prefixSearch, setPrefixSearch] = useState("");
   const [licenseFilter, setLicenseFilter] = useState<"with" | "without">("without");
   const [selectedBoat, setSelectedBoat] = useState<string>(preSelectedBoatId || "");
-  const [selectedDate, setSelectedDate] = useState(prefillDate || "");
+  const [selectedDate, setSelectedDate] = useState(() => {
+    if (prefillDate) return prefillDate;
+    const today = new Date();
+    const dayOfWeek = today.getDay();
+    const daysUntilSat = dayOfWeek === 6 ? 7 : (6 - dayOfWeek);
+    const nextSat = new Date(today);
+    nextSat.setDate(today.getDate() + daysUntilSat);
+    const y = nextSat.getFullYear();
+    const m = String(nextSat.getMonth() + 1).padStart(2, '0');
+    const d = String(nextSat.getDate()).padStart(2, '0');
+    return `${y}-${m}-${d}`;
+  });
   const [selectedDuration, setSelectedDuration] = useState<string>("");
 
   // Extras & Packs state
@@ -374,6 +386,30 @@ export default function BookingFormWidget({ preSelectedBoatId, prefillDate, pref
     return "BAJA";
   };
 
+  // Compute base price for auto-discount query (derived from state)
+  const currentBasePrice = useMemo(() => {
+    if (!selectedBoatInfo || !selectedDuration || !selectedBoatInfo.pricing) return null;
+    const date = selectedDate ? new Date(selectedDate) : new Date();
+    const month = date.getMonth() + 1;
+    const season = month === 8 ? "ALTA" : month === 7 ? "MEDIA" : "BAJA";
+    const seasonPricing = selectedBoatInfo.pricing[season];
+    return seasonPricing?.prices[selectedDuration] || null;
+  }, [selectedBoatInfo, selectedDuration, selectedDate]);
+
+  // Fetch auto-discount (early-bird / flash deal) when boat, date, and price are known
+  const { data: autoDiscount } = useQuery<AutoDiscountResult>({
+    queryKey: ["/api/auto-discount/check", selectedBoat, selectedDate, currentBasePrice],
+    queryFn: async () => {
+      const res = await fetch(
+        `/api/auto-discount/check?boatId=${encodeURIComponent(selectedBoat)}&date=${encodeURIComponent(selectedDate)}&price=${currentBasePrice}`
+      );
+      if (!res.ok) return { type: null, percentage: 0, amount: 0 };
+      return res.json();
+    },
+    enabled: !!selectedBoat && !!selectedDate && currentBasePrice !== null && currentBasePrice > 0,
+    staleTime: 30_000,
+  });
+
   // Map duration keys to i18n labels
   const durationLabelMap: Record<string, string> = {
     "1h": t.booking.oneHour || "1 hora",
@@ -498,11 +534,21 @@ export default function BookingFormWidget({ preSelectedBoatId, prefillDate, pref
   }, [selectedDate]);
 
   // Reset duration if it's no longer valid or disabled when boat or license changes
+  // Also set smart default when no duration is selected: 4h for no-licence, 8h for licence
   useEffect(() => {
+    const validOptions = getDurationOptions();
     if (selectedDuration) {
-      const validOptions = getDurationOptions();
       const currentOpt = validOptions.find(opt => opt.value === selectedDuration);
       if (!currentOpt || currentOpt.disabled) {
+        const firstAvailable = validOptions.find(opt => !opt.disabled);
+        setSelectedDuration(firstAvailable?.value || "");
+      }
+    } else if (selectedBoatInfo) {
+      const defaultDuration = selectedBoatInfo.requiresLicense ? "8h" : "4h";
+      const defaultOpt = validOptions.find(opt => opt.value === defaultDuration && !opt.disabled);
+      if (defaultOpt) {
+        setSelectedDuration(defaultOpt.value);
+      } else {
         const firstAvailable = validOptions.find(opt => !opt.disabled);
         setSelectedDuration(firstAvailable?.value || "");
       }
@@ -625,8 +671,12 @@ export default function BookingFormWidget({ preSelectedBoatId, prefillDate, pref
         return validateRequired(firstName) ? t.validation.required : '';
       case 'lastName':
         return validateRequired(lastName) ? t.validation.required : '';
-      case 'email':
-        return validateEmail(email) ? t.validation.invalidEmail : '';
+      case 'email': {
+        const emailErr = validateEmail(email);
+        if (emailErr === 'required') return t.validation.required;
+        if (emailErr === 'invalid') return t.validation.invalidEmail;
+        return '';
+      }
       case 'phone': {
         const phoneErr = validatePhone(phoneNumber);
         if (phoneErr === 'required') return t.validation.required;
@@ -691,8 +741,8 @@ export default function BookingFormWidget({ preSelectedBoatId, prefillDate, pref
       }
     }
     // Step 3 (Extras) has no validation — always allow advancing
-    // Start hold countdown when advancing to step 4 for the first time
-    if (currentStep === 3 && !holdExpiresAt) {
+    // Start hold countdown when advancing to step 4 — only for licensed boats
+    if (currentStep === 3 && !holdExpiresAt && selectedBoatInfo?.requiresLicense) {
       const expiresAt = new Date(Date.now() + 15 * 60 * 1000).toISOString();
       setHoldExpiresAt(expiresAt);
       setHoldExpired(false);
@@ -768,7 +818,18 @@ export default function BookingFormWidget({ preSelectedBoatId, prefillDate, pref
     const extrasBlock = extrasText ? `\n${extrasText}\n${isSpanish ? 'Total extras' : 'Extras total'}: ${totalExtrasPrice}€` : '';
 
     const codeDiscount = getCodeDiscount();
-    const totalPrice = price ? price + totalExtrasPrice - codeDiscount : null;
+    const autoDiscountAmount = autoDiscount?.type ? autoDiscount.amount : 0;
+    const totalPrice = price ? price + totalExtrasPrice - codeDiscount - autoDiscountAmount : null;
+
+    let autoDiscountBlock = '';
+    if (autoDiscount?.type) {
+      const label = autoDiscount.type === 'early-bird'
+        ? (isSpanish ? 'Descuento early-bird' : 'Early-bird discount')
+        : (isSpanish ? 'Oferta flash' : 'Flash deal');
+      autoDiscountBlock = isSpanish
+        ? `\n\n*DESCUENTO AUTOMATICO*\n${label}: -${autoDiscountAmount}€ (-10%)`
+        : `\n\n*AUTOMATIC DISCOUNT*\n${label}: -${autoDiscountAmount}€ (-10%)`;
+    }
 
     let codeBlock = '';
     if (validatedCode) {
@@ -798,7 +859,7 @@ Hora inicio: ${preferredTime}h
 Duracion: ${durationText}
 Personas: ${numberOfPeople} de ${capacity} max
 Temporada: ${getSeasonLabel()}
-Precio base: ${price ? price + '€' : 'Consultar'}${extrasBlock ? '\n\n*EXTRAS*' + extrasBlock : ''}${codeBlock}
+Precio base: ${price ? price + '€' : 'Consultar'}${extrasBlock ? '\n\n*EXTRAS*' + extrasBlock : ''}${autoDiscountBlock}${codeBlock}
 ${totalPrice ? `\n*PRECIO TOTAL: ${totalPrice}€*` : ''}
 Fianza: ${deposit}
 
@@ -818,7 +879,7 @@ Start time: ${preferredTime}h
 Duration: ${durationText}
 People: ${numberOfPeople} of ${capacity} max
 Season: ${getSeasonLabel()}
-Base price: ${price ? price + '€' : 'Ask'}${extrasBlock ? '\n\n*EXTRAS*' + extrasBlock : ''}${codeBlock}
+Base price: ${price ? price + '€' : 'Ask'}${extrasBlock ? '\n\n*EXTRAS*' + extrasBlock : ''}${autoDiscountBlock}${codeBlock}
 ${totalPrice ? `\n*TOTAL PRICE: ${totalPrice}€*` : ''}
 Deposit: ${deposit}
 
@@ -958,7 +1019,8 @@ Looking forward to confirmation. Thanks!`;
     try {
       const price = getBookingPrice();
       const codeDiscount = getCodeDiscount();
-      const total = price ? price + totalExtrasPrice - codeDiscount : null;
+      const autoDiscAmt = autoDiscount?.type ? autoDiscount.amount : 0;
+      const total = price ? price + totalExtrasPrice - codeDiscount - autoDiscAmt : null;
       fetch('/api/booking-inquiries', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -996,7 +1058,8 @@ Looking forward to confirmation. Thanks!`;
     // Show the enhanced confirmation overlay (peak-end rule)
     const bookingPrice = getBookingPrice();
     const discount = getCodeDiscount();
-    const finalPrice = bookingPrice ? bookingPrice + totalExtrasPrice - discount : null;
+    const autoDiscFinal = autoDiscount?.type ? autoDiscount.amount : 0;
+    const finalPrice = bookingPrice ? bookingPrice + totalExtrasPrice - discount - autoDiscFinal : null;
     setConfirmationData({
       boatName: selectedBoatInfo?.name || selectedBoat,
       date: selectedDate,
@@ -1078,6 +1141,7 @@ Looking forward to confirmation. Thanks!`;
     handleRemoveCode,
     getCodeDiscount,
     getBookingPrice,
+    autoDiscount: autoDiscount || null,
     handleBookingSearch,
     privacyConsent, setPrivacyConsent,
     showFieldError,

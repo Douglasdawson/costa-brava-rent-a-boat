@@ -8,8 +8,17 @@ import { getBoatImage, getBoatImageSrcSet } from "@/utils/boatImages";
 import { useTranslations } from "@/lib/translations";
 import type { Boat } from "@shared/schema";
 import { SiWhatsapp } from "react-icons/si";
-import { Phone, Users, CheckCircle, ChevronDown, Anchor } from "lucide-react";
+import { Phone, Users, CheckCircle, ChevronDown, Anchor, LayoutGrid, TableProperties, Star } from "lucide-react";
 import { useBookingModal } from "@/hooks/useBookingModal";
+import { getBoatAverageRating } from "@/data/boatReviews";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 
 /** All possible group size filter buckets */
 const ALL_GROUP_SIZE_OPTIONS = [
@@ -50,10 +59,17 @@ export default function FleetSection() {
   const [selectedGroupSize, setSelectedGroupSize] = useState<number | null>(null);
   const [licenseFilter, setLicenseFilter] = useState<'all' | 'no' | 'yes'>('all');
   const [checklistOpen, setChecklistOpen] = useState(false);
+  const [viewMode, setViewMode] = useState<'grid' | 'table'>('grid');
 
   // Fetch boats from API
   const { data: boatsData, isLoading } = useQuery<Boat[]>({
     queryKey: ['/api/boats'],
+  });
+
+  // Fetch weekly bookings count per boat (social proof)
+  const { data: weeklyBookings } = useQuery<Record<string, number>>({
+    queryKey: ['/api/boats/weekly-bookings'],
+    staleTime: 5 * 60 * 1000,
   });
 
   // Fetch fleet-wide scarcity data for the next Saturday
@@ -67,13 +83,7 @@ export default function FleetSection() {
 
   const currentSeason = useMemo(() => getCurrentSeason(), []);
 
-  // Determine the most popular boat: the first active boat by display order
-  const popularBoatId = useMemo(() => {
-    const sorted = (boatsData || [])
-      .filter(boat => boat.isActive)
-      .sort((a, b) => (a.displayOrder ?? 999) - (b.displayOrder ?? 999));
-    return sorted[0]?.id ?? null;
-  }, [boatsData]);
+  const popularBoatId = "solar-450";
 
   // Transform API data to BoatCard format — memoized to avoid recalculation on every render
   const boats = useMemo(() => (boatsData || [])
@@ -176,7 +186,7 @@ export default function FleetSection() {
           </p>
         </div>
 
-        {/* Filters: license type + group size */}
+        {/* Filters: license type + group size + view mode toggle */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-6 mb-6 sm:mb-8">
           {/* License filter */}
           <div className="flex items-center gap-2">
@@ -237,41 +247,220 @@ export default function FleetSection() {
               ))}
             </div>
           </div>
+
+          {/* View mode toggle: grid / table */}
+          <div className="flex items-center gap-1.5">
+            <button
+              onClick={() => setViewMode('grid')}
+              className={`p-2 rounded-full transition-colors ${
+                viewMode === 'grid'
+                  ? 'bg-foreground text-white'
+                  : 'bg-muted text-muted-foreground hover:bg-muted-foreground/10'
+              }`}
+              aria-label="Grid view"
+            >
+              <LayoutGrid className="w-4 h-4" />
+            </button>
+            <button
+              onClick={() => setViewMode('table')}
+              className={`p-2 rounded-full transition-colors ${
+                viewMode === 'table'
+                  ? 'bg-foreground text-white'
+                  : 'bg-muted text-muted-foreground hover:bg-muted-foreground/10'
+              }`}
+              aria-label={t.comparison.compare}
+            >
+              <TableProperties className="w-4 h-4" />
+            </button>
+          </div>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 mb-6 sm:mb-8 lg:mb-12">
-          {isLoading ? (
-            // Loading skeleton
-            Array.from({ length: 6 }).map((_, i) => (
-              <div key={i} className="bg-white rounded-lg p-4 animate-pulse">
-                <div className="bg-gray-200 h-48 rounded mb-4"></div>
-                <div className="bg-gray-200 h-6 rounded mb-2"></div>
-                <div className="bg-gray-200 h-4 rounded mb-4"></div>
-                <div className="bg-gray-200 h-10 rounded"></div>
-              </div>
-            ))
-          ) : (
-            sortedBoats.map((boat) => (
-              <div
-                key={boat.id}
-                className={`transition-opacity duration-300 ${
-                  selectedGroupSize !== null && !isBoatRecommended(boat.capacity)
-                    ? 'opacity-50'
-                    : 'opacity-100'
-                }`}
-              >
-                <BoatCard
-                  {...boat}
-                  isPopular={boat.id === popularBoatId}
-                  isRecommended={isBoatRecommended(boat.capacity)}
-                  scarcityData={fleetAvailability?.boats[boat.id]}
-                  onBooking={handleBooking}
-                  onDetails={handleDetails}
-                />
-              </div>
-            ))
-          )}
-        </div>
+        {/* Grid view */}
+        {viewMode === 'grid' && (
+          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 mb-6 sm:mb-8 lg:mb-12">
+            {isLoading ? (
+              Array.from({ length: 6 }).map((_, i) => (
+                <div key={i} className="bg-white rounded-lg p-4 animate-pulse">
+                  <div className="bg-gray-200 h-48 rounded mb-4"></div>
+                  <div className="bg-gray-200 h-6 rounded mb-2"></div>
+                  <div className="bg-gray-200 h-4 rounded mb-4"></div>
+                  <div className="bg-gray-200 h-10 rounded"></div>
+                </div>
+              ))
+            ) : (
+              sortedBoats.map((boat) => (
+                <div
+                  key={boat.id}
+                  className={`transition-opacity duration-300 ${
+                    selectedGroupSize !== null && !isBoatRecommended(boat.capacity)
+                      ? 'opacity-50'
+                      : 'opacity-100'
+                  }`}
+                >
+                  <BoatCard
+                    {...boat}
+                    isPopular={boat.id === popularBoatId}
+                    isRecommended={isBoatRecommended(boat.capacity)}
+                    scarcityData={fleetAvailability?.boats[boat.id]}
+                    weeklyBookings={weeklyBookings?.[boat.id]}
+                    onBooking={handleBooking}
+                    onDetails={handleDetails}
+                  />
+                </div>
+              ))
+            )}
+          </div>
+        )}
+
+        {/* Comparison table view */}
+        {viewMode === 'table' && !isLoading && (
+          <div className="mb-6 sm:mb-8 lg:mb-12 overflow-x-auto -mx-3 sm:-mx-4 px-3 sm:px-4">
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead className="min-w-[100px] sticky left-0 bg-white z-10">{t.comparison.compare}</TableHead>
+                  {sortedBoats.map((boat) => (
+                    <TableHead key={boat.id} className="min-w-[160px] text-center">{boat.name}</TableHead>
+                  ))}
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {/* Photo thumbnail */}
+                <TableRow>
+                  <TableCell className="font-medium sticky left-0 bg-white z-10">{''}</TableCell>
+                  {sortedBoats.map((boat) => (
+                    <TableCell key={boat.id} className="text-center">
+                      <img
+                        src={boat.image}
+                        alt={boat.name}
+                        className="w-32 h-20 object-cover rounded-lg mx-auto"
+                        loading="lazy"
+                      />
+                    </TableCell>
+                  ))}
+                </TableRow>
+                {/* Capacity */}
+                <TableRow>
+                  <TableCell className="font-medium sticky left-0 bg-white z-10">{t.comparison.tableCapacity}</TableCell>
+                  {sortedBoats.map((boat) => (
+                    <TableCell key={boat.id} className="text-center">
+                      <span className="inline-flex items-center gap-1">
+                        <Users className="w-4 h-4 text-muted-foreground" />
+                        {boat.capacity}
+                      </span>
+                    </TableCell>
+                  ))}
+                </TableRow>
+                {/* License */}
+                <TableRow>
+                  <TableCell className="font-medium sticky left-0 bg-white z-10">{t.comparison.tableLicense}</TableCell>
+                  {sortedBoats.map((boat) => (
+                    <TableCell key={boat.id} className="text-center">
+                      {boat.requiresLicense ? (
+                        <span className="text-amber-600 font-medium">{t.comparison.tableYes}</span>
+                      ) : (
+                        <span className="text-green-600 font-medium">{t.comparison.tableNo}</span>
+                      )}
+                    </TableCell>
+                  ))}
+                </TableRow>
+                {/* Engine */}
+                <TableRow>
+                  <TableCell className="font-medium sticky left-0 bg-white z-10">{t.comparison.tableEngine}</TableCell>
+                  {sortedBoats.map((boat) => (
+                    <TableCell key={boat.id} className="text-center text-sm">
+                      {boat.enginePower || '-'}
+                    </TableCell>
+                  ))}
+                </TableRow>
+                {/* Duration options */}
+                <TableRow>
+                  <TableCell className="font-medium sticky left-0 bg-white z-10">{t.comparison.tableDuration}</TableCell>
+                  {sortedBoats.map((boat) => {
+                    const rawBoat = boatsData?.find(b => b.id === boat.id);
+                    const season = currentSeason || 'BAJA';
+                    const durations = rawBoat?.pricing?.[season]?.prices
+                      ? Object.keys(rawBoat.pricing[season].prices).sort((a, b) => parseFloat(a) - parseFloat(b))
+                      : [];
+                    return (
+                      <TableCell key={boat.id} className="text-center text-sm">
+                        {durations.length > 0 ? durations.map(d => `${d}h`).join(', ') : '-'}
+                      </TableCell>
+                    );
+                  })}
+                </TableRow>
+                {/* Price from */}
+                <TableRow>
+                  <TableCell className="font-medium sticky left-0 bg-white z-10">{t.comparison.tablePriceFrom}</TableCell>
+                  {sortedBoats.map((boat) => (
+                    <TableCell key={boat.id} className="text-center">
+                      <span className="font-semibold text-foreground">{boat.basePrice > 0 ? `${boat.basePrice}\u20AC` : '-'}</span>
+                    </TableCell>
+                  ))}
+                </TableRow>
+                {/* Price per person */}
+                <TableRow>
+                  <TableCell className="font-medium sticky left-0 bg-white z-10">{t.comparison.tablePricePerPerson}</TableCell>
+                  {sortedBoats.map((boat) => {
+                    const perPerson = boat.basePrice > 0 && boat.capacity > 0
+                      ? Math.ceil(boat.basePrice / boat.capacity)
+                      : 0;
+                    return (
+                      <TableCell key={boat.id} className="text-center text-sm">
+                        {perPerson > 0 ? `${perPerson}\u20AC` : '-'}
+                      </TableCell>
+                    );
+                  })}
+                </TableRow>
+                {/* Rating */}
+                <TableRow>
+                  <TableCell className="font-medium sticky left-0 bg-white z-10">{t.comparison.tableRating}</TableCell>
+                  {sortedBoats.map((boat) => {
+                    const ratingData = getBoatAverageRating(boat.id);
+                    return (
+                      <TableCell key={boat.id} className="text-center">
+                        {ratingData.count > 0 ? (
+                          <span className="inline-flex items-center gap-1 text-sm">
+                            <Star className="w-4 h-4 fill-amber-400 text-amber-400" />
+                            {ratingData.average.toFixed(1)}
+                            <span className="text-muted-foreground">({ratingData.count})</span>
+                          </span>
+                        ) : '-'}
+                      </TableCell>
+                    );
+                  })}
+                </TableRow>
+                {/* Fuel included */}
+                <TableRow>
+                  <TableCell className="font-medium sticky left-0 bg-white z-10">{t.comparison.tableFuelIncluded}</TableCell>
+                  {sortedBoats.map((boat) => (
+                    <TableCell key={boat.id} className="text-center">
+                      {!boat.requiresLicense ? (
+                        <span className="text-green-600 font-medium">{t.comparison.tableYes}</span>
+                      ) : (
+                        <span className="text-muted-foreground">{t.comparison.tableNo}</span>
+                      )}
+                    </TableCell>
+                  ))}
+                </TableRow>
+                {/* CTA button */}
+                <TableRow>
+                  <TableCell className="sticky left-0 bg-white z-10">{''}</TableCell>
+                  {sortedBoats.map((boat) => (
+                    <TableCell key={boat.id} className="text-center">
+                      <button
+                        onClick={() => handleBooking(boat.id)}
+                        className="bg-[hsl(210,35%,76%)] hover:bg-[hsl(210,35%,68%)] text-foreground px-4 py-2 rounded-full text-sm font-medium transition-colors"
+                      >
+                        {t.boats.book}
+                      </button>
+                    </TableCell>
+                  ))}
+                </TableRow>
+              </TableBody>
+            </Table>
+          </div>
+        )}
 
         <div className="text-center px-2 sm:px-4">
           <p className="text-sm lg:text-base text-gray-600 mb-3 sm:mb-4 lg:mb-6">{t.fleet.helpText}</p>

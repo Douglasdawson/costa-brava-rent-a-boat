@@ -56,7 +56,12 @@ export function registerBlogRoutes(app: Express) {
   // Create a new blog post (admin only)
   app.post("/api/admin/blog", requireAdminSession, async (req, res) => {
     try {
-      const parsed = insertBlogPostSchema.safeParse(req.body);
+      // Coerce publishedAt from string to Date if needed
+      const body = { ...req.body };
+      if (typeof body.publishedAt === "string") {
+        body.publishedAt = new Date(body.publishedAt);
+      }
+      const parsed = insertBlogPostSchema.safeParse(body);
       if (!parsed.success) {
         return res.status(400).json({
           message: "Datos invalidos",
@@ -74,7 +79,12 @@ export function registerBlogRoutes(app: Express) {
   // Update a blog post (admin only)
   app.put("/api/admin/blog/:id", requireAdminSession, async (req, res) => {
     try {
-      const parsed = insertBlogPostSchema.partial().safeParse(req.body);
+      // Coerce publishedAt from string to Date if needed
+      const body = { ...req.body };
+      if (typeof body.publishedAt === "string") {
+        body.publishedAt = new Date(body.publishedAt);
+      }
+      const parsed = insertBlogPostSchema.partial().safeParse(body);
       if (!parsed.success) {
         return res.status(400).json({
           message: "Datos invalidos",

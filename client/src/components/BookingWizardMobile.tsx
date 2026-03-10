@@ -93,6 +93,7 @@ export interface BookingWizardMobileProps {
   getCodeDiscount: () => number;
   // Price & submit
   getBookingPrice: () => number | null;
+  autoDiscount: { type: 'early-bird' | 'flash-deal' | null; percentage: number; amount: number } | null;
   handleBookingSearch: () => Promise<void>;
   // RGPD consent
   privacyConsent: boolean;
@@ -158,12 +159,6 @@ export default function BookingWizardMobile(props: BookingWizardMobileProps) {
           estimatedTime={undefined}
         />
       </div>
-      {/* Trust strip */}
-      <div className="flex items-center justify-center gap-3 text-xs text-muted-foreground py-1.5 border-b border-gray-100">
-        <span className="inline-flex items-center gap-1"><Users className="w-3 h-3" />{props.t.bookingTrust?.customers}</span>
-        <span className="inline-flex items-center gap-1"><Star className="w-3 h-3" />{props.t.bookingTrust?.rating}</span>
-        <span className="inline-flex items-center gap-1"><Clock className="w-3 h-3" />{props.t.bookingTrust?.confirmation}</span>
-      </div>
       {/* Hold countdown timer — only visible on final step */}
       {props.holdExpiresAt && currentStep === 4 && (
         <div className="px-4 pt-2">
@@ -200,6 +195,8 @@ export default function BookingWizardMobile(props: BookingWizardMobileProps) {
             extrasPrice={props.totalExtrasPrice}
             discount={discount}
             discountLabel={props.validatedCode?.percentage ? `${props.validatedCode.code} (${props.validatedCode.percentage}%)` : undefined}
+            autoDiscountAmount={props.autoDiscount?.type ? props.autoDiscount.amount : 0}
+            autoDiscountLabel={props.autoDiscount?.type === 'early-bird' ? props.t.booking.earlyBirdDiscount : props.autoDiscount?.type === 'flash-deal' ? props.t.booking.flashDealDiscount : undefined}
             t={props.t}
             variant="mobile"
           />
@@ -776,18 +773,19 @@ function Step4Confirm({
   extrasInPack, totalExtrasPrice, handlePackSelect, handleExtraToggle,
   showCodeSection, setShowCodeSection, codeInput, setCodeInput,
   isValidatingCode, validatedCode, codeError, handleValidateCode, handleRemoveCode,
-  getCodeDiscount, getBookingPrice,
+  getCodeDiscount, getBookingPrice, autoDiscount,
   calculatePackSavings, iconMap,
   privacyConsent, setPrivacyConsent,
   t, isSpanishLang, language,
 }: BookingWizardMobileProps) {
   const basePrice = getBookingPrice();
   const discount = getCodeDiscount();
+  const autoDiscountAmount = autoDiscount?.type ? autoDiscount.amount : 0;
   const boatExtraNames = new Set(boatExtras.map(e => e.name));
   const availablePacks = EXTRA_PACKS.filter(pack =>
     pack.extras.every(name => boatExtraNames.has(name))
   );
-  const total = basePrice !== null ? basePrice + totalExtrasPrice - discount : null;
+  const total = basePrice !== null ? basePrice + totalExtrasPrice - discount - autoDiscountAmount : null;
 
   return (
     <div className="space-y-5 pb-2">
@@ -843,6 +841,18 @@ function Step4Confirm({
           <div className="flex justify-between text-sm pt-2 border-t border-primary/20">
             <span className="text-gray-500">{t.booking.summaryBasePrice.replace(':', '').trim()}</span>
             <span className="font-bold text-primary text-base">{basePrice}€</span>
+          </div>
+        )}
+        {autoDiscount?.type && autoDiscountAmount > 0 && (
+          <div className="flex justify-between items-center text-sm">
+            <span className={`text-xs font-semibold px-2 py-0.5 rounded-full ${
+              autoDiscount.type === 'early-bird'
+                ? 'bg-green-100 text-green-700'
+                : 'bg-orange-100 text-orange-700'
+            }`}>
+              {autoDiscount.type === 'early-bird' ? t.booking.earlyBirdDiscount : t.booking.flashDealDiscount}
+            </span>
+            <span className="font-semibold text-green-600">-{autoDiscountAmount}€</span>
           </div>
         )}
       </div>
@@ -1026,6 +1036,11 @@ function Step4Confirm({
               <span className="text-sm font-medium opacity-90">{t.endowment?.yourPrice || t.booking.estimatedTotal}</span>
               <span className="text-2xl font-bold">{total}€</span>
             </div>
+            {autoDiscountAmount > 0 && autoDiscount?.type && (
+              <p className="text-sm opacity-75 mt-1">
+                {autoDiscount.type === 'early-bird' ? t.booking.earlyBirdDiscount : t.booking.flashDealDiscount}: -{autoDiscountAmount}€
+              </p>
+            )}
             {discount > 0 && (
               <p className="text-sm opacity-75 mt-1">{t.booking.discountApplied}: -{discount}€</p>
             )}

@@ -38,7 +38,7 @@ import PaddleSurfIcon from "@/components/icons/PaddleSurfIcon";
 import NeveraIcon from "@/components/icons/NeveraIcon";
 import BebidasIcon from "@/components/icons/BebidasIcon";
 import { openWhatsApp } from "@/utils/whatsapp";
-import { getBoatImage, getBoatImageSrcSet } from "@/utils/boatImages";
+import { getBoatImage, getBoatImageSrcSet, getBoatAltText } from "@/utils/boatImages";
 import Navigation from "./Navigation";
 import Footer from "./Footer";
 import { SEO } from "./SEO";
@@ -181,17 +181,21 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
   const canonical = generateCanonicalUrl('boatDetail', language, boatId);
   
   // Enhanced Product JSON-LD schema with breadcrumbs
-  const resolvedImage = getBoatImage(boatData.imageUrl || '');
-  const absoluteImage = resolvedImage.startsWith('http') ? resolvedImage : 
-    resolvedImage.startsWith('/') ? `${window.location.origin}${resolvedImage}` :
-    `${window.location.origin}/${resolvedImage}`;
+  const makeAbsoluteUrl = (url: string): string => {
+    const resolved = getBoatImage(url);
+    if (resolved.startsWith('http')) return resolved;
+    if (resolved.startsWith('/')) return `${window.location.origin}${resolved}`;
+    return `${window.location.origin}/${resolved}`;
+  };
+
+  const absoluteImages = displayImages.map(makeAbsoluteUrl);
 
   // Adapt boat data for enhanced schema
   const adaptedBoatData = {
     id: boatId,
     name: boatData.name,
     description: boatData.description,
-    image: absoluteImage,
+    image: absoluteImages[0],
     brand: "Costa Brava Rent a Boat",
     power: parseInt(boatData.specifications?.engine?.match(/\d+/)?.[0] || "15"),
     capacity: capacity,
@@ -200,11 +204,11 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
   };
 
   const baseProductSchema = generateEnhancedProductSchema(adaptedBoatData, language);
-  
-  // Add image to enhanced schema (aggregateRating handled server-side by seoInjector)
+
+  // Add all gallery images to enhanced schema (aggregateRating handled server-side by seoInjector)
   const enhancedProductSchema = {
     ...baseProductSchema,
-    image: absoluteImage,
+    image: absoluteImages,
   };
 
   // Generate breadcrumb schema with localized names
@@ -243,8 +247,10 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
       <div className="relative h-64 sm:h-80 overflow-hidden">
         <img
           src={getBoatImage(displayImages[0])}
-          alt={`Alquiler barco ${boatData.name} en Blanes Costa Brava`}
+          alt={getBoatAltText(boatData.name)}
           className="absolute inset-0 w-full h-full object-cover"
+          width={1200}
+          height={800}
           loading="eager"
           fetchPriority="high"
         />
@@ -317,8 +323,10 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                 src={getBoatImage(displayImages[currentImageIndex])}
                 srcSet={getBoatImageSrcSet(displayImages[currentImageIndex]) || undefined}
                 sizes="(max-width: 767px) 100vw, 800px"
-                alt={`Alquiler barco ${boatData.name} ${boatData.subtitle?.includes("Sin Licencia") ? "sin licencia" : "con licencia"} en Blanes Costa Brava 2026 - Imagen ${currentImageIndex + 1}`}
+                alt={getBoatAltText(boatData.name, currentImageIndex)}
                 className="w-full aspect-[3/4] sm:h-80 sm:aspect-auto md:h-96 object-cover cursor-zoom-in"
+                width={800}
+                height={600}
                 loading="lazy"
                 data-testid="img-boat-main"
                 onClick={() => setLightboxOpen(true)}
@@ -396,8 +404,10 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                     >
                       <img
                         src={getBoatImage(image)}
-                        alt={`${boatData.name} - imagen ${index + 1}`}
+                        alt={getBoatAltText(boatData.name, index)}
                         className="w-full h-full object-cover"
+                        width={200}
+                        height={150}
                         loading="lazy"
                       />
                     </button>
@@ -738,8 +748,10 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                     <div className="relative overflow-hidden" style={{ aspectRatio: '4/3' }}>
                       <img
                         src={relBoat.imageGallery?.find((img: string) => !img.includes('portrait')) || relBoat.imageGallery?.[0] || getBoatImage(relBoat.imageUrl || '')}
-                        alt={`Alquiler barco ${relBoat.name} en Blanes Costa Brava`}
+                        alt={getBoatAltText(relBoat.name)}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        width={400}
+                        height={300}
                         loading="lazy"
                       />
                     </div>
@@ -839,7 +851,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
             <div className="flex items-center justify-center min-h-[50vh] max-h-[85vh]">
               <img
                 src={getBoatImage(displayImages[currentImageIndex])}
-                alt={`${boatData.name} - imagen ${currentImageIndex + 1}`}
+                alt={getBoatAltText(boatData.name, currentImageIndex)}
                 className="max-w-full max-h-[85vh] object-contain"
               />
             </div>

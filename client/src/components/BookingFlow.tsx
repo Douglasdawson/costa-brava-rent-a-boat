@@ -6,7 +6,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Calendar, Clock, Users, Plus, Minus, Euro, CreditCard, Anchor, Gauge, ArrowLeft } from "lucide-react";
 import { useLocation } from "wouter";
 import { getSeason } from "@shared/pricing";
-import { getBoatImage } from "@/utils/boatImages";
+import { getBoatImage, getBoatAltText } from "@/utils/boatImages";
 import { useQuery } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
@@ -647,7 +647,7 @@ export default function BookingFlow({
                       <div className="flex items-center mb-3">
                         <img 
                           src={boatImage} 
-                          alt={boatName}
+                          alt={getBoatAltText(boatName)}
                           className="w-16 h-16 object-cover rounded-lg mr-3"
                         />
                         <div>

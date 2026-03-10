@@ -225,6 +225,21 @@ export function registerSitemapRoutes(app: Express) {
     </image:image>`;
         }
 
+        if (boat.imageGallery && Array.isArray(boat.imageGallery)) {
+          boat.imageGallery.forEach((galleryImg, index) => {
+            const galleryUrl = galleryImg.startsWith("http")
+              ? galleryImg
+              : `${baseUrl}/object-storage/${galleryImg}`;
+
+            sitemap += `
+    <image:image>
+      <image:loc>${galleryUrl}</image:loc>
+      <image:caption>${boat.name} - Foto ${index + 1} - Alquiler barco en Blanes Costa Brava</image:caption>
+      <image:title>${boat.name} - Galeria ${index + 1} - Costa Brava Rent a Boat</image:title>
+    </image:image>`;
+          });
+        }
+
         sitemap += `
 ${boatHreflang}  </url>
 `;
@@ -264,6 +279,7 @@ ${boatHreflang}  </url>
 
       let sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
 `;
 
@@ -276,7 +292,28 @@ ${boatHreflang}  </url>
         const ageMs = rawDate ? now - new Date(rawDate as string).getTime() : Infinity;
         const ageDays = ageMs / (1000 * 60 * 60 * 24);
         const priority = ageDays < 30 ? "0.9" : ageDays < 90 ? "0.8" : "0.7";
-        sitemap += generateUrlEntry(baseUrl, `/blog/${post.slug}`, priority, postDate);
+
+        // Use generateUrlEntry for hreflang links, then inject image tag if featured image exists
+        const postEntry = generateUrlEntry(baseUrl, `/blog/${post.slug}`, priority, postDate);
+
+        if ((post as Record<string, any>).featuredImage) {
+          const featuredImg = (post as Record<string, any>).featuredImage as string;
+          const imageUrl = featuredImg.startsWith("http")
+            ? featuredImg
+            : `${baseUrl}/object-storage/${featuredImg}`;
+
+          const imageTag = `
+    <image:image>
+      <image:loc>${imageUrl}</image:loc>
+      <image:caption>${post.title} - Blog Costa Brava Rent a Boat</image:caption>
+      <image:title>${post.title}</image:title>
+    </image:image>`;
+
+          // Insert image tag after the first <priority> closing tag in the canonical URL entry
+          sitemap += postEntry.replace(/<\/priority>/, `</priority>${imageTag}`);
+        } else {
+          sitemap += postEntry;
+        }
       });
 
       sitemap += `</urlset>`;

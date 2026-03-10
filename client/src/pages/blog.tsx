@@ -224,6 +224,9 @@ export default function BlogPage() {
                         alt={localized(featuredPost.titleByLang as Record<string, string> | null, featuredPost.title, language)}
                         className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                         loading="eager"
+                        fetchPriority="high"
+                        width={1200}
+                        height={630}
                         data-testid={`img-blog-${featuredPost.slug}`}
                       />
                     ) : (
@@ -315,6 +318,8 @@ export default function BlogPage() {
                               alt={localized(post.titleByLang as Record<string, string> | null, post.title, language)}
                               className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
                               loading="lazy"
+                              width={800}
+                              height={450}
                               data-testid={`img-blog-${post.slug}`}
                             />
                             {/* Subtle bottom gradient for depth */}

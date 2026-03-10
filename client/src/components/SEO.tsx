@@ -87,6 +87,9 @@ export function SEO({
     updateOGTag('og:title', ogTitle || title);
     updateOGTag('og:description', ogDescription || description);
     updateOGTag('og:image', absoluteOgImage);
+    updateOGTag('og:image:width', '1200');
+    updateOGTag('og:image:height', '630');
+    updateOGTag('og:image:type', 'image/webp');
     updateOGTag('og:type', ogType);
     updateOGTag('og:url', canonical);
     updateOGTag('og:site_name', 'Costa Brava Rent a Boat Blanes');

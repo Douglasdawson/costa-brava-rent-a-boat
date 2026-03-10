@@ -204,10 +204,13 @@ export default function BlogDetailPage() {
           {/* Featured Image */}
           {post.featuredImage && (
             <div className="my-8">
-              <img 
-                src={post.featuredImage} 
+              <img
+                src={post.featuredImage}
                 alt={post.title}
                 className="w-full h-auto rounded-lg"
+                loading="lazy"
+                width={1200}
+                height={630}
                 data-testid={`img-featured-${post.slug}`}
               />
             </div>

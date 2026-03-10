@@ -11,14 +11,14 @@ const IMAGES_DIRS = [
 
 // Map legacy DB filenames to SEO-friendly filenames in public/images/boats/
 const PREFIX_TO_FILE: Array<[string, string]> = [
-  ["SOLAR_450", "solar-450/alquiler-barco-solar-450-blanes-1.webp"],
-  ["REMUS_450", "remus-450/alquiler-barco-remus-450-blanes-1.webp"],
-  ["ASTEC_400", "astec-400/alquiler-barco-astec-400-blanes-1.webp"],
-  ["ASTEC_480", "astec-480/alquiler-barco-astec-480-blanes-1.webp"],
-  ["ASTEC_450", "astec-480/alquiler-barco-astec-480-blanes-1.webp"],
-  ["MINGOLLA", "mingolla/alquiler-barco-mingolla-brava-19-blanes-1.webp"],
-  ["TRIMARCHI", "trimarchi/alquiler-barco-trimarchi-57s-blanes-1.webp"],
-  ["PACIFIC_CRAFT", "pacific-craft/alquiler-barco-pacific-craft-625-blanes-1.webp"],
+  ["SOLAR_450", "solar-450/alquiler-barco-solar-450-rent-a-boat-costa-brava-blanes-exterior-puerto.webp"],
+  ["REMUS_450", "remus-450/alquiler-barco-remus-450-rent-a-boat-costa-brava-blanes-exterior-puerto.webp"],
+  ["ASTEC_400", "astec-400/alquiler-barco-astec-400-rent-a-boat-costa-brava-blanes-exterior-puerto.webp"],
+  ["ASTEC_480", "astec-480/alquiler-barco-astec-480-rent-a-boat-costa-brava-blanes-exterior-puerto.webp"],
+  ["ASTEC_450", "astec-480/alquiler-barco-astec-480-rent-a-boat-costa-brava-blanes-exterior-puerto.webp"],
+  ["MINGOLLA", "mingolla/alquiler-barco-mingolla-brava-19-rent-a-boat-costa-brava-blanes-exterior-puerto.webp"],
+  ["TRIMARCHI", "trimarchi/alquiler-barco-trimarchi-57s-rent-a-boat-costa-brava-blanes-exterior-puerto.webp"],
+  ["PACIFIC_CRAFT", "pacific-craft/alquiler-barco-pacific-craft-625-rent-a-boat-costa-brava-blanes-exterior-puerto.webp"],
   // SEO filenames map to themselves
   ["alquiler-barco-", ""],
 ];

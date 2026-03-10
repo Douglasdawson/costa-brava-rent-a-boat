@@ -392,7 +392,7 @@ const GEO_HIERARCHY = {
 };
 
 // Build Product JSON-LD for a boat detail page (with VideoObject + urgency Offer)
-function buildBoatProductSchema(boat: { id: string; name: string; requiresLicense: boolean; capacity: number; deposit: string; imageUrl: string | null }, fromPrice: number | null): object {
+function buildBoatProductSchema(boat: { id: string; name: string; requiresLicense: boolean; capacity: number; deposit: string; imageUrl: string | null; imageGallery: string[] | null }, fromPrice: number | null): object {
   const licenseText = boat.requiresLicense ? "con licencia náutica" : "sin licencia náutica";
   const offers: Record<string, unknown> = {
     "@type": "Offer",
@@ -446,7 +446,14 @@ function buildBoatProductSchema(boat: { id: string; name: string; requiresLicens
   };
 
   if (imgUrl) {
-    schema.image = imgUrl;
+    const allImages = [imgUrl];
+    if (boat.imageGallery?.length) {
+      for (const img of boat.imageGallery) {
+        const fullUrl = img.startsWith("http") ? img : `${BASE_URL}/object-storage/${img}`;
+        allImages.push(fullUrl);
+      }
+    }
+    schema.image = allImages;
     // VideoObject using boat image as thumbnail (aggressive but valid schema)
     schema.subjectOf = {
       "@type": "VideoObject",

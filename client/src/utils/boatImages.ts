@@ -1,14 +1,14 @@
 // Client-side image mapping for boat data
-// SEO-friendly filenames: alquiler-barco-{model}-blanes-{n}.webp
+// SEO-friendly filenames: alquiler-barco-{model}-rent-a-boat-costa-brava-blanes-{description}.webp
 
 const BOAT_IMAGES: Record<string, string> = {
-  "solar-450": "/images/boats/solar-450/alquiler-barco-solar-450-blanes-1.webp",
-  "remus-450": "/images/boats/remus-450/alquiler-barco-remus-450-blanes-1.webp",
-  "astec-400": "/images/boats/astec-400/alquiler-barco-astec-400-blanes-1.webp",
-  "astec-480": "/images/boats/astec-480/alquiler-barco-astec-480-blanes-1.webp",
-  "mingolla-brava-19": "/images/boats/mingolla/alquiler-barco-mingolla-brava-19-blanes-1.webp",
-  "trimarchi-57s": "/images/boats/trimarchi/alquiler-barco-trimarchi-57s-blanes-1.webp",
-  "pacific-craft-625": "/images/boats/pacific-craft/alquiler-barco-pacific-craft-625-blanes-1.webp",
+  "solar-450": "/images/boats/solar-450/alquiler-barco-solar-450-rent-a-boat-costa-brava-blanes-exterior-puerto.webp",
+  "remus-450": "/images/boats/remus-450/alquiler-barco-remus-450-rent-a-boat-costa-brava-blanes-exterior-puerto.webp",
+  "astec-400": "/images/boats/astec-400/alquiler-barco-astec-400-rent-a-boat-costa-brava-blanes-exterior-puerto.webp",
+  "astec-480": "/images/boats/astec-480/alquiler-barco-astec-480-rent-a-boat-costa-brava-blanes-exterior-puerto.webp",
+  "mingolla-brava-19": "/images/boats/mingolla/alquiler-barco-mingolla-brava-19-rent-a-boat-costa-brava-blanes-exterior-puerto.webp",
+  "trimarchi-57s": "/images/boats/trimarchi/alquiler-barco-trimarchi-57s-rent-a-boat-costa-brava-blanes-exterior-puerto.webp",
+  "pacific-craft-625": "/images/boats/pacific-craft/alquiler-barco-pacific-craft-625-rent-a-boat-costa-brava-blanes-exterior-puerto.webp",
 };
 
 // Legacy prefix mapping for DB-stored filenames (e.g. "SOLAR_450_boat_photo_xxx.webp")
@@ -51,7 +51,7 @@ export function getBoatImage(imagePath: string): string {
  * Generate SEO-friendly alt text for a boat image.
  */
 export function getBoatAltText(boatName: string, index?: number): string {
-  const base = `Alquiler barco ${boatName} en Blanes, Costa Brava`;
+  const base = `Alquiler barco ${boatName} en Blanes, Costa Brava - Rent a Boat`;
   if (index !== undefined && index > 0) {
     return `${base} - foto ${index + 1}`;
   }
@@ -60,14 +60,14 @@ export function getBoatAltText(boatName: string, index?: number): string {
 
 // Map used by the server-side resize endpoint (needs actual filenames)
 const IMAGE_PREFIX_TO_FILE: Record<string, string> = {
-  SOLAR_450: "alquiler-barco-solar-450-blanes-1.webp",
-  REMUS_450: "alquiler-barco-remus-450-blanes-1.webp",
-  ASTEC_400: "alquiler-barco-astec-400-blanes-1.webp",
-  ASTEC_480: "alquiler-barco-astec-480-blanes-1.webp",
-  ASTEC_450: "alquiler-barco-astec-480-blanes-1.webp",
-  MINGOLLA: "alquiler-barco-mingolla-brava-19-blanes-1.webp",
-  TRIMARCHI: "alquiler-barco-trimarchi-57s-blanes-1.webp",
-  PACIFIC_CRAFT: "alquiler-barco-pacific-craft-625-blanes-1.webp",
+  SOLAR_450: "alquiler-barco-solar-450-rent-a-boat-costa-brava-blanes-exterior-puerto.webp",
+  REMUS_450: "alquiler-barco-remus-450-rent-a-boat-costa-brava-blanes-exterior-puerto.webp",
+  ASTEC_400: "alquiler-barco-astec-400-rent-a-boat-costa-brava-blanes-exterior-puerto.webp",
+  ASTEC_480: "alquiler-barco-astec-480-rent-a-boat-costa-brava-blanes-exterior-puerto.webp",
+  ASTEC_450: "alquiler-barco-astec-480-rent-a-boat-costa-brava-blanes-exterior-puerto.webp",
+  MINGOLLA: "alquiler-barco-mingolla-brava-19-rent-a-boat-costa-brava-blanes-exterior-puerto.webp",
+  TRIMARCHI: "alquiler-barco-trimarchi-57s-rent-a-boat-costa-brava-blanes-exterior-puerto.webp",
+  PACIFIC_CRAFT: "alquiler-barco-pacific-craft-625-rent-a-boat-costa-brava-blanes-exterior-puerto.webp",
 };
 
 const SRCSET_WIDTHS = [400, 800, 1200] as const;

@@ -1,7 +1,8 @@
 import { Card, CardContent } from "@/components/ui/card";
-import { Anchor, ArrowRight, Star, ThumbsUp } from "lucide-react";
+import { Anchor, ArrowRight, Fuel, Star, ThumbsUp } from "lucide-react";
 import { useTranslations } from "@/lib/translations";
-import { useState } from "react";
+import { useMemo, useState } from "react";
+import { getBoatAverageRating } from "@/data/boatReviews";
 
 interface BoatCardProps {
   id: string;
@@ -50,6 +51,7 @@ export default function BoatCard({
 }: BoatCardProps) {
   const t = useTranslations();
   const [imageError, setImageError] = useState(false);
+  const ratingData = useMemo(() => getBoatAverageRating(id), [id]);
 
   const handleDetails = () => {
     onDetails(id);
@@ -122,20 +124,36 @@ export default function BoatCard({
             {requiresLicense ? t.boats.withLicense : t.boats.withoutLicense}
           </span>
         </div>
-        {available ? (
-          <div className="absolute top-3 right-3 inline-flex items-center gap-1.5 bg-green-500/90 backdrop-blur-sm text-white text-xs font-medium px-2.5 py-1 rounded-full">
-            <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
-            {t.boats.available}
-          </div>
-        ) : (
-          <div className="absolute top-3 right-3 inline-flex items-center gap-1.5 bg-red-500/80 backdrop-blur-sm text-white text-xs font-medium px-2.5 py-1 rounded-full">
-            {t.boats.occupied}
+        {!requiresLicense && (
+          <div className="absolute top-3 right-3 inline-flex items-center gap-1.5 bg-green-600/90 backdrop-blur-sm text-white text-xs font-semibold px-2.5 py-1 rounded-full">
+            <Fuel className="w-3 h-3" />
+            {t.boatDetail.fuelIncluded}
           </div>
         )}
       </a>
       <CardContent className="p-3 sm:p-4">
         <div className="flex items-start justify-between mb-2">
-          <h3 className="font-heading font-medium text-lg text-foreground flex-1 mr-2">{name}</h3>
+          <div className="flex-1 mr-2">
+            <h3 className="font-heading font-medium text-lg text-foreground">{name}</h3>
+            {ratingData.count > 0 && (
+              <div className="flex items-center gap-1 mt-0.5">
+                <div className="flex">
+                  {Array.from({ length: 5 }).map((_, i) => (
+                    <Star
+                      key={i}
+                      className={`w-3 h-3 ${
+                        i < Math.round(ratingData.average)
+                          ? "text-yellow-400 fill-yellow-400"
+                          : "text-muted-foreground/30"
+                      }`}
+                    />
+                  ))}
+                </div>
+                <span className="text-xs font-medium text-foreground">{ratingData.average}</span>
+                <span className="text-xs text-muted-foreground">({ratingData.count})</span>
+              </div>
+            )}
+          </div>
           <div className="text-right flex-shrink-0">
             <div className="text-sm text-muted-foreground">{t.boats.from}</div>
             <div className="flex items-baseline gap-1.5 justify-end">

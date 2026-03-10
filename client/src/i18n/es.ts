@@ -185,6 +185,9 @@ export const es: Translations = {
     faqLabel: 'Preguntas Frecuentes',
     customerReviews: 'Opiniones de Clientes',
     cookiesPolicy: 'Política de Cookies',
+    destinations: 'Destinos',
+    gallery: 'Galería',
+    accessibility: 'Accesibilidad',
   },
   booking: {
     title: 'RESERVA TU BARCO',
@@ -544,6 +547,16 @@ export const es: Translations = {
     conditions: 'Condiciones:',
     rentalConditions: 'las condiciones generales del alquiler',
     beforeBooking: 'antes de hacer tu reserva.',
+    whatToBringTitle: 'Que llevar a bordo en tu alquiler de barco en Blanes',
+    whatToBringItems: [
+      'Proteccion solar resistente al agua (SPF 50+ recomendado)',
+      'Gafas de sol con cordon de sujecion',
+      'Ropa comoda y calzado antideslizante (suela blanca)',
+      'Toalla y banador',
+      'Agua y snacks ligeros para la travesia',
+      'Gorra o sombrero para protegerse del sol',
+    ],
+    whatToBringTip: 'Llega al Puerto de Blanes 15 minutos antes de la hora de salida para el briefing de seguridad.',
     imageAria: 'Imagen',
   },
   wizard: {
@@ -591,6 +604,8 @@ export const es: Translations = {
     title: 'Miles de familias ya lo han vivido',
     subtitle: 'Experiencias reales de clientes que repiten cada verano',
     viewAll: 'Ver todas las opiniones',
+    boatReviewsTitle: 'Opiniones de clientes',
+    reviewCount: 'opiniones',
   },
   destinations: {
     fromBlanes: 'Destinos desde Blanes',
@@ -967,6 +982,9 @@ export const es: Translations = {
     recommendedForYou: 'Recomendado para ti',
     bestFor: 'Ideal para {n} personas',
     all: 'Todos',
+    licenseFilter: 'Tipo',
+    withoutLicense: 'Sin licencia',
+    withLicense: 'Con licencia',
   },
 
   reviewSummary: {

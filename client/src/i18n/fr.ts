@@ -185,6 +185,9 @@ export const fr: Translations = {
     faqLabel: 'Questions Fréquentes',
     customerReviews: 'Avis Clients',
     cookiesPolicy: 'Politique de Cookies',
+    destinations: 'Destinations',
+    gallery: 'Galerie',
+    accessibility: 'Accessibilité',
   },
   booking: {
     title: 'RÉSERVEZ VOTRE BATEAU',
@@ -534,6 +537,16 @@ export const fr: Translations = {
     conditions: 'Conditions :',
     rentalConditions: 'les conditions generales de location',
     beforeBooking: 'avant de faire votre reservation.',
+    whatToBringTitle: 'Que prendre pour votre location de bateau sur la Costa Brava',
+    whatToBringItems: [
+      'Creme solaire waterproof (SPF 50+ recommande)',
+      'Lunettes de soleil avec cordon de maintien',
+      'Vetements confortables et chaussures antiderapantes (semelle blanche)',
+      'Serviette et maillot de bain',
+      'Eau et collations legeres pour la traversee',
+      'Casquette ou chapeau pour la protection solaire',
+    ],
+    whatToBringTip: 'Arrivez au Port de Blanes 15 minutes avant le depart pour le briefing de securite.',
     imageAria: 'Image',
   },
   wizard: {
@@ -581,6 +594,8 @@ export const fr: Translations = {
     title: 'Des milliers de familles l\'ont déjà vécu',
     subtitle: 'Expériences réelles de clients qui reviennent chaque été',
     viewAll: 'Voir tous les avis',
+    boatReviewsTitle: 'Avis des clients',
+    reviewCount: 'avis',
   },
   destinations: {
     fromBlanes: 'Destinations depuis Blanes',
@@ -957,6 +972,9 @@ export const fr: Translations = {
     recommendedForYou: 'Recommande pour vous',
     bestFor: 'Ideal pour {n} personnes',
     all: 'Tous',
+    licenseFilter: 'Type',
+    withoutLicense: 'Sans permis',
+    withLicense: 'Avec permis',
   },
 
   reviewSummary: {

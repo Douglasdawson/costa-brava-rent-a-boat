@@ -185,6 +185,9 @@ export const nl: Translations = {
     faqLabel: 'Veelgestelde Vragen',
     customerReviews: 'Klantbeoordelingen',
     cookiesPolicy: 'Cookiebeleid',
+    destinations: 'Bestemmingen',
+    gallery: 'Galerij',
+    accessibility: 'Toegankelijkheid',
   },
   booking: {
     title: 'BOEK JE BOOT',
@@ -534,6 +537,16 @@ export const nl: Translations = {
     conditions: 'Voorwaarden:',
     rentalConditions: 'de algemene huurvoorwaarden',
     beforeBooking: 'voor het maken van uw boeking.',
+    whatToBringTitle: 'Wat mee te nemen voor uw bootverhuur aan de Costa Brava',
+    whatToBringItems: [
+      'Waterbestendige zonnebrandcreme (SPF 50+ aanbevolen)',
+      'Zonnebril met nekkoord',
+      'Comfortabele kleding en antislipschoenen (witte zool)',
+      'Handdoek en zwemkleding',
+      'Water en lichte snacks voor de tocht',
+      'Pet of hoed tegen de zon',
+    ],
+    whatToBringTip: 'Kom 15 minuten voor vertrek naar de haven van Blanes voor de veiligheidsbriefing.',
     imageAria: 'Afbeelding',
   },
   wizard: {
@@ -581,6 +594,8 @@ export const nl: Translations = {
     title: 'Duizenden families hebben het al beleefd',
     subtitle: 'Echte ervaringen van klanten die elke zomer terugkomen',
     viewAll: 'Alle beoordelingen bekijken',
+    boatReviewsTitle: 'Klantbeoordelingen',
+    reviewCount: 'beoordelingen',
   },
   destinations: {
     fromBlanes: 'Bestemmingen vanuit Blanes',
@@ -957,6 +972,9 @@ export const nl: Translations = {
     recommendedForYou: 'Aanbevolen voor u',
     bestFor: 'Ideaal voor {n} personen',
     all: 'Alle',
+    licenseFilter: 'Type',
+    withoutLicense: 'Zonder vaarbewijs',
+    withLicense: 'Met vaarbewijs',
   },
 
   reviewSummary: {

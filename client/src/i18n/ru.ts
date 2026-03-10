@@ -185,6 +185,9 @@ export const ru: Translations = {
     faqLabel: 'Часто Задаваемые Вопросы',
     customerReviews: 'Отзывы Клиентов',
     cookiesPolicy: 'Политика Cookies',
+    destinations: 'Направления',
+    gallery: 'Галерея',
+    accessibility: 'Доступность',
   },
   booking: {
     title: 'ЗАБРОНИРУЙТЕ ЛОДКУ',
@@ -534,6 +537,16 @@ export const ru: Translations = {
     conditions: 'Условия:',
     rentalConditions: 'общие условия аренды',
     beforeBooking: 'перед бронированием.',
+    whatToBringTitle: 'Что взять с собой при аренде лодки на Коста Браве',
+    whatToBringItems: [
+      'Водостойкий солнцезащитный крем (SPF 50+ рекомендуется)',
+      'Солнцезащитные очки с ремешком',
+      'Удобная одежда и нескользящая обувь (белая подошва)',
+      'Полотенце и купальник',
+      'Вода и легкие закуски на время поездки',
+      'Кепка или шляпа для защиты от солнца',
+    ],
+    whatToBringTip: 'Прибудьте в порт Бланес за 15 минут до отплытия для инструктажа по безопасности.',
     imageAria: 'Изображение',
   },
   wizard: {
@@ -581,6 +594,8 @@ export const ru: Translations = {
     title: 'Тысячи семей уже это пережили',
     subtitle: 'Реальный опыт клиентов, которые возвращаются каждое лето',
     viewAll: 'Посмотреть все отзывы',
+    boatReviewsTitle: 'Отзывы клиентов',
+    reviewCount: 'отзывов',
   },
   destinations: {
     fromBlanes: 'Направления из Бланес',
@@ -957,6 +972,9 @@ export const ru: Translations = {
     recommendedForYou: 'Рекомендовано для вас',
     bestFor: 'Идеально для {n} человек',
     all: 'Все',
+    licenseFilter: 'Тип',
+    withoutLicense: 'Без лицензии',
+    withLicense: 'С лицензией',
   },
 
   reviewSummary: {

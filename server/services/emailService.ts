@@ -43,32 +43,32 @@ interface EmailStrings {
 const EMAIL_STRINGS: Record<EmailLang, EmailStrings> = {
   es: {
     bookingConfirmed: "Reserva confirmada",
-    greeting: "Tu reserva ha sido confirmada. Aqui tienes los detalles:",
+    greeting: "Tu reserva ha sido confirmada. Aquí tienes los detalles:",
     bookingDetails: "Detalles de tu reserva",
     meetingPoint: "Punto de encuentro",
     meetingPointDesc: "Puerto de Blanes, Costa Brava, Girona",
-    arriveEarly: "Presentate <strong>15 minutos antes</strong> de la hora de salida.",
+    arriveEarly: "Preséntate <strong>15 minutos antes</strong> de la hora de salida.",
     contact: "Contacto",
     thanks: "Gracias por confiar en nosotros. Nos vemos en el puerto.",
-    reminderTitle: "Recordatorio: tu reserva es manana",
-    reminderSubtitle: "Te recordamos que tu alquiler de barco es <strong>manana</strong>. Aqui tienes los detalles:",
+    reminderTitle: "Recordatorio: tu reserva es mañana",
+    reminderSubtitle: "Te recordamos que tu alquiler de barco es <strong>mañana</strong>. Aquí tienes los detalles:",
     tipsTitle: "Consejos para tu experiencia",
-    tips: ["Lleva proteccion solar y gafas de sol", "Viste ropa comoda y calzado que se pueda mojar", "Trae una toalla y ropa de repuesto", "Puedes traer comida y bebida a bordo", "Consulta la prevision meteorologica antes de salir"],
-    emergency: "Numero de emergencia",
+    tips: ["Lleva protección solar y gafas de sol", "Viste ropa cómoda y calzado que se pueda mojar", "Trae una toalla y ropa de repuesto", "Puedes traer comida y bebida a bordo", "Consulta la previsión meteorológica antes de salir"],
+    emergency: "Número de emergencia",
     parking: "Aparcamiento",
     parkingDesc: "Hay aparcamiento disponible cerca del puerto de Blanes. En temporada alta, recomendamos llegar con tiempo para encontrar plaza.",
-    seeYouTomorrow: "Estamos deseando verte manana. Si tienes alguna pregunta, no dudes en contactarnos.",
+    seeYouTomorrow: "Estamos deseando verte mañana. Si tienes alguna pregunta, no dudes en contactarnos.",
     thankYouTitle: "Gracias por navegar con nosotros",
     thankYouIntro: "Esperamos que disfrutaras de tu experiencia a bordo",
-    reviewTitle: "Tu opinion nos importa",
-    reviewDesc: "Si disfrutaste de la experiencia, nos encantaria que compartieras tu opinion en Google.",
-    reviewButton: "Dejar una resena en Google",
-    discountTitle: "10% de descuento en tu proxima reserva",
+    reviewTitle: "Tu opinión nos importa",
+    reviewDesc: "Si disfrutaste de la experiencia, nos encantaría que compartieras tu opinión en Google.",
+    reviewButton: "Dejar una reseña en Google",
+    discountTitle: "10% de descuento en tu próxima reserva",
     discountDesc: "Regalo exclusivo para ti",
-    discountFooter: "Introduce este codigo al hacer tu proxima reserva en nuestra web.",
+    discountFooter: "Introduce este código al hacer tu próxima reserva en nuestra web.",
     bookAgain: "Reservar de nuevo",
     seeYouSoon: "Esperamos verte de nuevo pronto en la Costa Brava.",
-    colBoat: "Barco", colDate: "Fecha", colSchedule: "Horario", colDuration: "Duracion",
+    colBoat: "Barco", colDate: "Fecha", colSchedule: "Horario", colDuration: "Duración",
     colPeople: "Personas", colBase: "Base imponible (sin IVA)", colVat: "IVA (21%)", colTotal: "Total (IVA incluido)",
     colHour: "hora", colHours: "horas",
     phone: "Teléfono",
@@ -678,7 +678,7 @@ export async function sendPreSeasonEmail(
     <div style="background-color:#eff6ff; border-radius:8px; padding:24px; margin:20px 0; text-align:center;">
       <p style="margin:0 0 12px; color:#1e3a5f; font-size:16px; font-weight:600;">Reserva con descuento exclusivo</p>
       <p style="margin:0 0 16px; color:#475569; font-size:14px; line-height:1.5;">
-        Como cliente habitual, tienes un <strong>10% de descuento</strong> en tu proxima reserva.
+        Como cliente habitual, tienes un <strong>10% de descuento</strong> en tu próxima reserva.
       </p>
       <div style="background: linear-gradient(135deg, #1e3a5f 0%, #2563eb 100%); border-radius:6px; padding:16px; display:inline-block;">
         <span style="color:#ffffff; font-size:20px; font-weight:700; letter-spacing:2px;">${discountCode}</span>
@@ -844,9 +844,9 @@ const NEWSLETTER_STRINGS: Record<string, {
   es: {
     subject: "Novedades de Costa Brava Rent a Boat",
     greeting: "Hola",
-    intro: "Estas son las ultimas novedades de nuestro blog. Descubre consejos, destinos y todo lo que necesitas para tu proxima aventura en barco por la Costa Brava.",
-    readMore: "Leer articulo",
-    unsubscribe: "Cancelar suscripcion",
+    intro: "Estas son las últimas novedades de nuestro blog. Descubre consejos, destinos y todo lo que necesitas para tu próxima aventura en barco por la Costa Brava.",
+    readMore: "Leer artículo",
+    unsubscribe: "Cancelar suscripción",
     bookNow: "Reservar ahora",
   },
   en: {

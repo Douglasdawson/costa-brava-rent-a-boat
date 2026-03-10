@@ -8,7 +8,7 @@ import { getBoatImage, getBoatImageSrcSet } from "@/utils/boatImages";
 import { useTranslations } from "@/lib/translations";
 import type { Boat } from "@shared/schema";
 import { SiWhatsapp } from "react-icons/si";
-import { Phone, Users, CheckCircle, ChevronDown } from "lucide-react";
+import { Phone, Users, CheckCircle, ChevronDown, Anchor } from "lucide-react";
 import { useBookingModal } from "@/hooks/useBookingModal";
 
 /** All possible group size filter buckets */
@@ -48,6 +48,7 @@ export default function FleetSection() {
   const { openBookingModal } = useBookingModal();
   const { ref: revealRef, isVisible } = useScrollReveal();
   const [selectedGroupSize, setSelectedGroupSize] = useState<number | null>(null);
+  const [licenseFilter, setLicenseFilter] = useState<'all' | 'no' | 'yes'>('all');
   const [checklistOpen, setChecklistOpen] = useState(false);
 
   // Fetch boats from API
@@ -123,22 +124,31 @@ export default function FleetSection() {
     return getGroupSizeOptions(maxCapacity);
   }, [boats]);
 
-  // Sort boats: recommended ones first when a group size is selected
+  // Filter by license and sort: recommended ones first when a group size is selected
   const sortedBoats = useMemo(() => {
-    if (selectedGroupSize === null) return boats;
+    let filtered = boats;
+
+    // Apply license filter
+    if (licenseFilter === 'no') {
+      filtered = filtered.filter(b => !b.requiresLicense);
+    } else if (licenseFilter === 'yes') {
+      filtered = filtered.filter(b => b.requiresLicense);
+    }
+
+    if (selectedGroupSize === null) return filtered;
     const option = groupSizeOptions.find(
       o => selectedGroupSize >= o.min && selectedGroupSize <= o.max
     );
-    if (!option) return boats;
+    if (!option) return filtered;
 
-    return [...boats].sort((a, b) => {
+    return [...filtered].sort((a, b) => {
       const aMatch = a.capacity >= option.min && a.capacity >= selectedGroupSize;
       const bMatch = b.capacity >= option.min && b.capacity >= selectedGroupSize;
       if (aMatch && !bMatch) return -1;
       if (!aMatch && bMatch) return 1;
       return 0;
     });
-  }, [boats, selectedGroupSize]);
+  }, [boats, selectedGroupSize, licenseFilter]);
 
   const isBoatRecommended = (capacity: number): boolean => {
     if (selectedGroupSize === null) return false;
@@ -166,36 +176,66 @@ export default function FleetSection() {
           </p>
         </div>
 
-        {/* Group size recommendation selector */}
-        <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-6 sm:mb-8">
-          <span className="inline-flex items-center gap-1.5 text-sm text-muted-foreground font-medium">
-            <Users className="w-4 h-4" />
-            {t.recommendation?.howManyPeople}
-          </span>
-          <div className="flex flex-wrap gap-1.5 sm:gap-2">
-            <button
-              onClick={() => setSelectedGroupSize(null)}
-              className={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors ${
-                selectedGroupSize === null
-                  ? 'bg-foreground text-white'
-                  : 'bg-muted text-muted-foreground hover:bg-muted-foreground/10'
-              }`}
-            >
-              {t.recommendation?.all}
-            </button>
-            {groupSizeOptions.map((option) => (
+        {/* Filters: license type + group size */}
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-6 mb-6 sm:mb-8">
+          {/* License filter */}
+          <div className="flex items-center gap-2">
+            <span className="inline-flex items-center gap-1.5 text-sm text-muted-foreground font-medium">
+              <Anchor className="w-4 h-4" />
+              {t.recommendation?.licenseFilter}
+            </span>
+            <div className="flex gap-1.5">
+              {([
+                { value: 'all' as const, label: t.recommendation?.all },
+                { value: 'no' as const, label: t.recommendation?.withoutLicense },
+                { value: 'yes' as const, label: t.recommendation?.withLicense },
+              ]).map((opt) => (
+                <button
+                  key={opt.value}
+                  onClick={() => setLicenseFilter(opt.value)}
+                  className={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors ${
+                    licenseFilter === opt.value
+                      ? 'bg-foreground text-white'
+                      : 'bg-muted text-muted-foreground hover:bg-muted-foreground/10'
+                  }`}
+                >
+                  {opt.label}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Group size selector */}
+          <div className="flex items-center gap-2">
+            <span className="inline-flex items-center gap-1.5 text-sm text-muted-foreground font-medium">
+              <Users className="w-4 h-4" />
+              {t.recommendation?.howManyPeople}
+            </span>
+            <div className="flex flex-wrap gap-1.5">
               <button
-                key={option.label}
-                onClick={() => setSelectedGroupSize(option.min)}
+                onClick={() => setSelectedGroupSize(null)}
                 className={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors ${
-                  selectedGroupSize !== null && selectedGroupSize >= option.min && selectedGroupSize <= option.max
+                  selectedGroupSize === null
                     ? 'bg-foreground text-white'
                     : 'bg-muted text-muted-foreground hover:bg-muted-foreground/10'
                 }`}
               >
-                {option.label}
+                {t.recommendation?.all}
               </button>
-            ))}
+              {groupSizeOptions.map((option) => (
+                <button
+                  key={option.label}
+                  onClick={() => setSelectedGroupSize(option.min)}
+                  className={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors ${
+                    selectedGroupSize !== null && selectedGroupSize >= option.min && selectedGroupSize <= option.max
+                      ? 'bg-foreground text-white'
+                      : 'bg-muted text-muted-foreground hover:bg-muted-foreground/10'
+                  }`}
+                >
+                  {option.label}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
 

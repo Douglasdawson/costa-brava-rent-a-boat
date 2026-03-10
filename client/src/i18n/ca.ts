@@ -185,6 +185,9 @@ export const ca: Translations = {
     faqLabel: 'Preguntes Freqüents',
     customerReviews: 'Opinions de Clients',
     cookiesPolicy: 'Política de Cookies',
+    destinations: 'Destinacions',
+    gallery: 'Galeria',
+    accessibility: 'Accessibilitat',
   },
   booking: {
     title: 'RESERVA EL TEU VAIXELL',
@@ -534,6 +537,16 @@ export const ca: Translations = {
     conditions: 'Condicions:',
     rentalConditions: 'les condicions generals del lloguer',
     beforeBooking: 'abans de fer la teva reserva.',
+    whatToBringTitle: 'Que portar a bord al teu lloguer de vaixell a Blanes',
+    whatToBringItems: [
+      'Proteccio solar resistent a l\'aigua (SPF 50+ recomanat)',
+      'Ulleres de sol amb corda de subjecio',
+      'Roba comoda i calcat antilliscant (sola blanca)',
+      'Tovallola i banyador',
+      'Aigua i aperitius lleugers per a la travessia',
+      'Gorra o barret per protegir-se del sol',
+    ],
+    whatToBringTip: 'Arriba al Port de Blanes 15 minuts abans de l\'hora de sortida per al briefing de seguretat.',
     imageAria: 'Imatge',
   },
   wizard: {
@@ -581,6 +594,8 @@ export const ca: Translations = {
     title: 'Milers de famílies ja ho han viscut',
     subtitle: 'Experiències reals de clients que repeteixen cada estiu',
     viewAll: 'Veure totes les opinions',
+    boatReviewsTitle: 'Opinions dels clients',
+    reviewCount: 'opinions',
   },
   destinations: {
     fromBlanes: 'Destins des de Blanes',
@@ -957,6 +972,9 @@ export const ca: Translations = {
     recommendedForYou: 'Recomanat per a tu',
     bestFor: 'Ideal per a {n} persones',
     all: 'Tots',
+    licenseFilter: 'Tipus',
+    withoutLicense: 'Sense llicencia',
+    withLicense: 'Amb llicencia',
   },
 
   reviewSummary: {

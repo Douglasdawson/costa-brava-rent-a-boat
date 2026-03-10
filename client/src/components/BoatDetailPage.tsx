@@ -55,6 +55,8 @@ import type { Boat } from "@shared/schema";
 import { Breadcrumbs } from "./Breadcrumbs";
 import { useTranslations } from "@/lib/translations";
 import AvailabilityCalendar from "./AvailabilityCalendar";
+import BoatReviewCarousel from "./BoatReviewCarousel";
+import { getBoatReviews, getBoatAverageRating } from "@/data/boatReviews";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import type { BookingPrefillData } from "@/hooks/useBookingModal";
 
@@ -204,11 +206,36 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
 
   const baseProductSchema = generateEnhancedProductSchema(adaptedBoatData, language);
 
-  // Add all gallery images to enhanced schema (aggregateRating handled server-side by seoInjector)
-  const enhancedProductSchema = {
+  // Add all gallery images and review data to enhanced schema
+  const reviewData = getBoatReviews(boatId);
+  const ratingData = getBoatAverageRating(boatId);
+
+  const enhancedProductSchema: Record<string, unknown> = {
     ...baseProductSchema,
     image: absoluteImages,
   };
+
+  if (ratingData.count > 0) {
+    enhancedProductSchema.aggregateRating = {
+      "@type": "AggregateRating",
+      ratingValue: ratingData.average,
+      reviewCount: ratingData.count,
+      bestRating: 5,
+      worstRating: 1,
+    };
+    enhancedProductSchema.review = reviewData.map((r) => ({
+      "@type": "Review",
+      author: { "@type": "Person", name: r.name },
+      datePublished: `${r.date}-01`,
+      reviewRating: {
+        "@type": "Rating",
+        ratingValue: r.rating,
+        bestRating: 5,
+        worstRating: 1,
+      },
+      reviewBody: r.text,
+    }));
+  }
 
   // Generate breadcrumb schema with localized names
   const breadcrumbSchema = generateBreadcrumbSchema([
@@ -530,6 +557,9 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
           </CardContent>
         </Card>
 
+        {/* Customer Reviews Carousel */}
+        <BoatReviewCarousel boatId={boatId} />
+
         {/* Availability Calendar */}
         <div className="mb-6 sm:mb-8">
           <AvailabilityCalendar
@@ -697,7 +727,27 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                 <p>• {requiresLicense ? t.boatDetail.fuelNotIncluded : t.boatDetail.fuelInsuranceIncluded}</p>
                 {boatData.specifications?.deposit && <p>• {t.boatDetail.specDeposit} {boatData.specifications.deposit}</p>}
               </div>
-              <div className="p-4 bg-primary/5 rounded-lg">
+              {/* What to bring section */}
+              <div className="mt-4 pt-4 border-t border-border">
+                <h4 className="font-semibold text-sm text-foreground/80 mb-3 flex items-center gap-2">
+                  <Sun className="w-4 h-4 text-primary" />
+                  {t.boatDetail.whatToBringTitle}
+                </h4>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-3">
+                  {t.boatDetail.whatToBringItems.map((item, i) => (
+                    <div key={i} className="flex items-start">
+                      <CheckCircle className="w-3.5 h-3.5 text-primary mr-2 mt-0.5 flex-shrink-0" />
+                      <span className="text-sm text-foreground/80">{item}</span>
+                    </div>
+                  ))}
+                </div>
+                <p className="text-xs text-primary font-medium bg-primary/5 rounded-lg p-3 flex items-start gap-2">
+                  <Clock className="w-3.5 h-3.5 mt-0.5 flex-shrink-0" />
+                  {t.boatDetail.whatToBringTip}
+                </p>
+              </div>
+
+              <div className="mt-4 p-4 bg-primary/5 rounded-lg">
                 <p className="text-foreground text-sm">
                   <strong>{t.boatDetail.conditions}</strong>{" "}
                   <button

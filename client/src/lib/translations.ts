@@ -205,6 +205,9 @@ export interface Translations {
     faqLabel: string;
     customerReviews: string;
     cookiesPolicy: string;
+    destinations: string;
+    gallery: string;
+    accessibility: string;
   };
   
   // Booking Flow
@@ -592,6 +595,9 @@ export interface Translations {
     conditions: string;
     rentalConditions: string;
     beforeBooking: string;
+    whatToBringTitle: string;
+    whatToBringItems: string[];
+    whatToBringTip: string;
     imageAria: string;
   };
 
@@ -649,6 +655,8 @@ export interface Translations {
     title: string;
     subtitle: string;
     viewAll: string;
+    boatReviewsTitle: string;
+    reviewCount: string;
   };
 
   // Destinations Section
@@ -1033,6 +1041,9 @@ export interface Translations {
     recommendedForYou: string;
     bestFor: string;
     all: string;
+    licenseFilter: string;
+    withoutLicense: string;
+    withLicense: string;
   };
 
   // Social Proof Toast (FOMO notification)

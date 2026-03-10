@@ -149,7 +149,7 @@ export default function Footer() {
                 <a href="#fleet" className="hover:text-white transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none">{t.nav.fleet}</a>
               </li>
               <li>
-                <a href="/rutas" className="hover:text-white transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none">Destinos</a>
+                <a href="/rutas" className="hover:text-white transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none">{t.footer.destinations}</a>
               </li>
               <li>
                 <a href="/blog" className="hover:text-white transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none" data-testid="footer-blog-link">{t.footer.blog}</a>
@@ -167,7 +167,7 @@ export default function Footer() {
                 <a href="/testimonios" className="hover:text-white transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none" data-testid="footer-testimonials-link">{t.footer.customerReviews}</a>
               </li>
               <li>
-                <a href="/galeria" className="hover:text-white transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none">Galeria</a>
+                <a href="/galeria" className="hover:text-white transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none">{t.footer.gallery}</a>
               </li>
             </ul>
 
@@ -246,7 +246,7 @@ export default function Footer() {
               <a href="/terms-conditions" className="hover:text-white/60 transition-colors rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none" data-testid="footer-terms-link">{t.footer.terms}</a>
               <a href="/privacy-policy" className="hover:text-white/60 transition-colors rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none" data-testid="footer-privacy-link">{t.footer.privacy}</a>
               <a href="/cookies-policy" className="hover:text-white/60 transition-colors rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none" data-testid="footer-cookies-link">{t.footer.cookiesPolicy}</a>
-              <a href="/accesibilidad" className="hover:text-white/60 transition-colors rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none" data-testid="footer-accessibility-link">Accesibilidad</a>
+              <a href="/accesibilidad" className="hover:text-white/60 transition-colors rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none" data-testid="footer-accessibility-link">{t.footer.accessibility}</a>
             </div>
             <p className="text-white/40 text-xs text-center text-balance">
               {currentYear} Costa Brava Rent a Boat Blanes. {t.footer.rights}

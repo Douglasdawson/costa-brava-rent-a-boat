@@ -335,6 +335,7 @@ export interface Translations {
     gdprConsent: string;
     gdprPrivacyLink: string;
     gdprTermsLink: string;
+    gdprPassive: string;
   };
 
   // FAQ Page

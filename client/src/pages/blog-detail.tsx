@@ -5,14 +5,13 @@ import remarkGfm from "remark-gfm";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { SEO } from "@/components/SEO";
-import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Calendar, User, Tag, ArrowLeft } from "lucide-react";
 import { useLanguage } from "@/hooks/use-language";
 import { useTranslations } from "@/lib/translations";
-import { generateHreflangLinks, generateCanonicalUrl, generateBreadcrumbSchema } from "@/utils/seo-config";
+import { generateHreflangLinks, generateCanonicalUrl } from "@/utils/seo-config";
 import { generateArticleSchema } from "@/utils/seo-schemas";
 import type { BlogPost } from "@shared/schema";
 
@@ -61,13 +60,6 @@ export default function BlogDetailPage() {
   const hreflangLinks = generateHreflangLinks('blogDetail', slug);
   const canonical = generateCanonicalUrl('blogDetail', language, slug);
 
-  // Generate breadcrumb schema
-  const breadcrumbSchema = post ? generateBreadcrumbSchema([
-    { name: bd.breadcrumbHome, url: "/" },
-    { name: bd.breadcrumbBlog, url: "/blog" },
-    { name: post.title, url: `/blog/${post.slug}` }
-  ]) : null;
-
   // Generate Article schema
   const articleSchema = post ? generateArticleSchema({
     headline: post.title,
@@ -84,11 +76,7 @@ export default function BlogDetailPage() {
     category: post.category
   }) : null;
 
-  // Combine schemas using @graph pattern
-  const combinedJsonLd = (breadcrumbSchema && articleSchema) ? {
-    "@context": "https://schema.org",
-    "@graph": [breadcrumbSchema, articleSchema]
-  } : breadcrumbSchema;
+  const combinedJsonLd = articleSchema || undefined;
 
   // Format date
   const formatDate = (date: Date | string | null) => {
@@ -160,15 +148,6 @@ export default function BlogDetailPage() {
       <Navigation />
       
       <main id="main-content" className="flex-1 container mx-auto px-4 pt-20 sm:pt-24 pb-8 max-w-4xl">
-        {/* Breadcrumbs */}
-        <Breadcrumbs
-          items={[
-            { label: bd.breadcrumbHome, href: "/" },
-            { label: bd.breadcrumbBlog, href: "/blog" },
-            { label: post.title }
-          ]}
-        />
-
         {/* Back to Blog */}
         <Button 
           variant="ghost" 

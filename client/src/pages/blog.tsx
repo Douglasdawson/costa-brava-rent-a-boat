@@ -4,13 +4,12 @@ import { Link } from "wouter";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { SEO } from "@/components/SEO";
-import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Calendar, User, ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
 import { useLanguage } from "@/hooks/use-language";
 import { useTranslations } from "@/lib/translations";
-import { getSEOConfig, generateHreflangLinks, generateCanonicalUrl, generateBreadcrumbSchema } from "@/utils/seo-config";
+import { getSEOConfig, generateHreflangLinks, generateCanonicalUrl } from "@/utils/seo-config";
 import type { BlogPost } from "@shared/schema";
 
 const POSTS_PER_PAGE = 8;
@@ -55,11 +54,6 @@ export default function BlogPage() {
   const seoConfig = getSEOConfig('blog', language);
   const hreflangLinks = generateHreflangLinks('blog');
   const canonical = generateCanonicalUrl('blog', language);
-
-  const breadcrumbSchema = generateBreadcrumbSchema([
-    { name: bp.breadcrumbHome, url: "/" },
-    { name: bp.breadcrumbBlog, url: "/blog" }
-  ]);
 
   // Fetch all published blog posts
   const { data: posts, isLoading, isError } = useQuery<BlogPost[]>({
@@ -125,7 +119,7 @@ export default function BlogPage() {
   if (isLoading) {
     return (
       <div className="min-h-screen bg-white">
-        <SEO title={seoConfig.title} description={seoConfig.description} canonical={canonical} hreflang={hreflangLinks} jsonLd={breadcrumbSchema} />
+        <SEO title={seoConfig.title} description={seoConfig.description} canonical={canonical} hreflang={hreflangLinks} />
         <Navigation />
         <div className="flex items-center justify-center min-h-[60vh]">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
@@ -139,7 +133,7 @@ export default function BlogPage() {
   if (isError) {
     return (
       <div className="min-h-screen bg-white">
-        <SEO title={seoConfig.title} description={seoConfig.description} canonical={canonical} hreflang={hreflangLinks} jsonLd={breadcrumbSchema} />
+        <SEO title={seoConfig.title} description={seoConfig.description} canonical={canonical} hreflang={hreflangLinks} />
         <Navigation />
         <div className="flex flex-col items-center justify-center min-h-[60vh] px-4">
           <div className="text-center max-w-md">
@@ -157,7 +151,7 @@ export default function BlogPage() {
 
   return (
     <div className="min-h-screen bg-[#faf9f7]">
-      <SEO title={seoConfig.title} description={seoConfig.description} canonical={canonical} hreflang={hreflangLinks} jsonLd={breadcrumbSchema} />
+      <SEO title={seoConfig.title} description={seoConfig.description} canonical={canonical} hreflang={hreflangLinks} />
       <Navigation />
 
       {/* Header — editorial style, no gradient hero */}

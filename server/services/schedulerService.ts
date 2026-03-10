@@ -4,7 +4,7 @@ import {
   sendBookingReminder,
   sendThankYouEmail,
 } from "./emailService";
-import { runAutopilotPipeline, publishMatureDrafts, getConfig } from "./blogAutopilot.js";
+import { runAutopilotPipeline, publishNextDraft, getConfig } from "./blogAutopilot.js";
 import type { Booking, Boat } from "@shared/schema";
 import { logger } from "../lib/logger";
 
@@ -317,19 +317,17 @@ export function startScheduler(): void {
     }
   })();
 
-  // Blog autopilot: auto-publish mature drafts (every hour at :15)
-  if (process.env.ANTHROPIC_API_KEY) {
-    cron.schedule("15 * * * *", async () => {
-      try {
-        const published = await publishMatureDrafts();
-        if (published > 0) {
-          logger.info("Auto-published blog drafts", { count: published });
-        }
-      } catch (error) {
-        logger.error("[Scheduler] Auto-publish error", { error: error instanceof Error ? error.message : String(error) });
+  // Blog: publish 1 draft every Monday at 9am
+  cron.schedule("0 9 * * 1", async () => {
+    try {
+      const published = await publishNextDraft();
+      if (published > 0) {
+        logger.info("Weekly blog draft published");
       }
-    });
-  }
+    } catch (error) {
+      logger.error("[Scheduler] Blog publish error", { error: error instanceof Error ? error.message : String(error) });
+    }
+  });
 
-  logger.info("Scheduled services started: reminders (:00), thank-you (:30), hold cleanup (every 5min), auto-complete (:45), blog autopilot (config), auto-publish (:15)");
+  logger.info("Scheduled services started: reminders (:00), thank-you (:30), hold cleanup (every 5min), auto-complete (:45), blog autopilot (config), blog publish (Mon 9am)");
 }

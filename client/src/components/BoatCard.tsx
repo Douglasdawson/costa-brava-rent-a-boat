@@ -8,6 +8,8 @@ interface BoatCardProps {
   name: string;
   image: string;
   imageSrcSet?: string;
+  imageTablet?: string;
+  imageMobile?: string;
   imageAlt: string;
   capacity: number;
   requiresLicense: boolean;
@@ -29,6 +31,8 @@ export default function BoatCard({
   name,
   image,
   imageSrcSet,
+  imageTablet,
+  imageMobile,
   imageAlt,
   capacity,
   requiresLicense,
@@ -77,15 +81,23 @@ export default function BoatCard({
             <Anchor className="w-12 h-12 text-muted-foreground/50" aria-hidden="true" />
           </div>
         ) : (
-          <img
-            src={image}
-            srcSet={imageSrcSet || undefined}
-            sizes="(max-width: 639px) calc(100vw - 32px), (max-width: 1279px) calc(50vw - 20px), calc(33vw - 24px)"
-            alt={imageAlt}
-            className="w-full aspect-[4/3] object-cover transition-transform duration-200 group-hover:scale-[1.03]"
-            loading="lazy"
-            onError={() => setImageError(true)}
-          />
+          <picture>
+            {imageMobile && (
+              <source media="(max-width: 767px)" srcSet={imageMobile} type="image/webp" />
+            )}
+            {imageTablet && (
+              <source media="(max-width: 1024px)" srcSet={imageTablet} type="image/webp" />
+            )}
+            <img
+              src={image}
+              srcSet={imageSrcSet || undefined}
+              sizes="(max-width: 639px) calc(100vw - 32px), (max-width: 1279px) calc(50vw - 20px), calc(33vw - 24px)"
+              alt={imageAlt}
+              className="w-full aspect-[4/3] object-cover transition-transform duration-200 group-hover:scale-[1.03]"
+              loading="lazy"
+              onError={() => setImageError(true)}
+            />
+          </picture>
         )}
         {isPopular && (
           <div className="absolute top-3 left-3 z-10 inline-flex items-center gap-1 bg-amber-500 text-white text-xs font-bold px-2.5 py-1 rounded-full shadow-md">

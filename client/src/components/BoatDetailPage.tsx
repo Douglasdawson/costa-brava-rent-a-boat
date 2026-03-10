@@ -39,6 +39,7 @@ import NeveraIcon from "@/components/icons/NeveraIcon";
 import BebidasIcon from "@/components/icons/BebidasIcon";
 import { openWhatsApp } from "@/utils/whatsapp";
 import { getBoatImage, getBoatImageSrcSet, getBoatAltText } from "@/utils/boatImages";
+import { useResponsiveGallery } from "@/hooks/useResponsiveGallery";
 import Navigation from "./Navigation";
 import Footer from "./Footer";
 import { SEO } from "./SEO";
@@ -151,10 +152,8 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
     openWhatsApp(message);
   };
 
-  // Image gallery handling
-  const displayImages = boatData.imageGallery && boatData.imageGallery.length > 0 
-    ? boatData.imageGallery 
-    : [boatData.imageUrl || ''];
+  // Image gallery handling - uses responsive gallery with fallback chain
+  const displayImages = useResponsiveGallery(boatData);
 
   const nextImage = () => {
     setCurrentImageIndex((prev) => (prev + 1) % displayImages.length);

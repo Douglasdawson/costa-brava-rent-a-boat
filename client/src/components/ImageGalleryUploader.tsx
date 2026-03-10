@@ -17,9 +17,10 @@ import {
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
-import { Upload, X, GripVertical, ImageIcon } from "lucide-react";
+import { Upload, X, GripVertical, ImageIcon, Monitor, Tablet, Smartphone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { cn } from "@/lib/utils";
 
 interface ImageGalleryUploaderProps {
@@ -27,6 +28,10 @@ interface ImageGalleryUploaderProps {
   onImagesChange: (images: string[]) => void;
   onMainImageChange?: (mainImageUrl: string | null) => void;
   maxImages?: number;
+  imagesTablet?: string[];
+  onImagesTabletChange?: (images: string[]) => void;
+  imagesMobile?: string[];
+  onImagesMobileChange?: (images: string[]) => void;
 }
 
 interface SortableImageProps {
@@ -34,9 +39,10 @@ interface SortableImageProps {
   imageUrl: string;
   index: number;
   onRemove: (index: number) => void;
+  showCoverBadge: boolean;
 }
 
-function SortableImage({ id, imageUrl, index, onRemove }: SortableImageProps) {
+function SortableImage({ id, imageUrl, index, onRemove, showCoverBadge }: SortableImageProps) {
   const {
     attributes,
     listeners,
@@ -69,7 +75,7 @@ function SortableImage({ id, imageUrl, index, onRemove }: SortableImageProps) {
           />
 
           {/* Cover badge for first image */}
-          {index === 0 && (
+          {showCoverBadge && index === 0 && (
             <div className="absolute top-2 left-2 bg-primary text-primary-foreground text-xs px-2 py-1 rounded-md font-medium">
               Portada
             </div>
@@ -104,12 +110,21 @@ function SortableImage({ id, imageUrl, index, onRemove }: SortableImageProps) {
   );
 }
 
-export function ImageGalleryUploader({
+interface GalleryTabProps {
+  images: string[];
+  onImagesChange: (images: string[]) => void;
+  maxImages: number;
+  showCoverBadge: boolean;
+  onMainImageChange?: (url: string | null) => void;
+}
+
+function GalleryTab({
   images,
   onImagesChange,
+  maxImages,
+  showCoverBadge,
   onMainImageChange,
-  maxImages = 10,
-}: ImageGalleryUploaderProps) {
+}: GalleryTabProps) {
   const [uploading, setUploading] = useState(false);
 
   const sensors = useSensors(
@@ -122,7 +137,7 @@ export function ImageGalleryUploader({
   const onDrop = useCallback(
     async (acceptedFiles: File[]) => {
       if (images.length >= maxImages) {
-        alert(`Máximo ${maxImages} imágenes permitidas`);
+        alert(`Maximo ${maxImages} imagenes permitidas`);
         return;
       }
 
@@ -131,7 +146,7 @@ export function ImageGalleryUploader({
 
       if (filesToUpload.length < acceptedFiles.length) {
         alert(
-          `Solo se subirán ${filesToUpload.length} de ${acceptedFiles.length} archivos (límite: ${maxImages} imágenes)`
+          `Solo se subiran ${filesToUpload.length} de ${acceptedFiles.length} archivos (limite: ${maxImages} imagenes)`
         );
       }
 
@@ -199,19 +214,19 @@ export function ImageGalleryUploader({
         const uploadedPaths = await Promise.all(uploadPromises);
         const newImages = [...images, ...uploadedPaths];
         onImagesChange(newImages);
-        
+
         // Notify main image change if callback provided
         if (onMainImageChange && newImages.length > 0) {
           onMainImageChange(newImages[0]);
         }
       } catch (error) {
         console.error("Error uploading images:", error);
-        alert("Error al subir las imágenes. Por favor, intenta de nuevo.");
+        alert("Error al subir las imagenes. Por favor, intenta de nuevo.");
       } finally {
         setUploading(false);
       }
     },
-    [images, maxImages, onImagesChange]
+    [images, maxImages, onImagesChange, onMainImageChange]
   );
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
@@ -233,7 +248,7 @@ export function ImageGalleryUploader({
       if (oldIndex !== -1 && newIndex !== -1) {
         const newImages = arrayMove(images, oldIndex, newIndex);
         onImagesChange(newImages);
-        
+
         // Notify main image change if first position changed
         if (onMainImageChange && (oldIndex === 0 || newIndex === 0)) {
           onMainImageChange(newImages[0]);
@@ -245,7 +260,7 @@ export function ImageGalleryUploader({
   const handleRemove = (index: number) => {
     const newImages = images.filter((_, i) => i !== index);
     onImagesChange(newImages);
-    
+
     // Notify main image change if first image was removed or if no images left
     if (onMainImageChange && index === 0) {
       onMainImageChange(newImages.length > 0 ? newImages[0] : null);
@@ -270,13 +285,13 @@ export function ImageGalleryUploader({
           {uploading ? (
             <>
               <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary" />
-              <p className="text-sm text-muted-foreground">Subiendo imágenes...</p>
+              <p className="text-sm text-muted-foreground">Subiendo imagenes...</p>
             </>
           ) : images.length >= maxImages ? (
             <>
               <ImageIcon className="w-8 h-8 text-muted-foreground" />
               <p className="text-sm text-muted-foreground">
-                Límite de {maxImages} imágenes alcanzado
+                Limite de {maxImages} imagenes alcanzado
               </p>
             </>
           ) : (
@@ -284,15 +299,15 @@ export function ImageGalleryUploader({
               <Upload className="w-8 h-8 text-muted-foreground" />
               <p className="text-sm font-medium">
                 {isDragActive
-                  ? "Suelta las imágenes aquí"
-                  : "Arrastra imágenes o haz clic para seleccionar"}
+                  ? "Suelta las imagenes aqui"
+                  : "Arrastra imagenes o haz clic para seleccionar"}
               </p>
               <p className="text-xs text-muted-foreground">
-                PNG, JPG, JPEG o WebP (máx. {maxImages} imágenes)
+                PNG, JPG, JPEG o WebP (max. {maxImages} imagenes)
               </p>
               <p className="text-xs text-muted-foreground">
                 {images.length > 0 &&
-                  `${images.length} de ${maxImages} imágenes subidas`}
+                  `${images.length} de ${maxImages} imagenes subidas`}
               </p>
             </>
           )}
@@ -304,10 +319,10 @@ export function ImageGalleryUploader({
         <div className="space-y-3">
           <div className="flex items-center justify-between">
             <p className="text-sm font-medium">
-              Galería de Imágenes ({images.length})
+              Galeria de Imagenes ({images.length})
             </p>
             <p className="text-xs text-muted-foreground">
-              Arrastra para reordenar • La primera es la portada
+              Arrastra para reordenar{showCoverBadge ? " - La primera es la portada" : ""}
             </p>
           </div>
 
@@ -328,6 +343,7 @@ export function ImageGalleryUploader({
                     imageUrl={imageUrl}
                     index={index}
                     onRemove={handleRemove}
+                    showCoverBadge={showCoverBadge}
                   />
                 ))}
               </div>
@@ -336,5 +352,78 @@ export function ImageGalleryUploader({
         </div>
       )}
     </div>
+  );
+}
+
+export function ImageGalleryUploader({
+  images,
+  onImagesChange,
+  onMainImageChange,
+  maxImages = 10,
+  imagesTablet,
+  onImagesTabletChange,
+  imagesMobile,
+  onImagesMobileChange,
+}: ImageGalleryUploaderProps) {
+  const hasResponsiveTabs = onImagesTabletChange || onImagesMobileChange;
+
+  // Backward compatible: no tabs, render single gallery directly
+  if (!hasResponsiveTabs) {
+    return (
+      <GalleryTab
+        images={images}
+        onImagesChange={onImagesChange}
+        maxImages={maxImages}
+        showCoverBadge={true}
+        onMainImageChange={onMainImageChange}
+      />
+    );
+  }
+
+  return (
+    <Tabs defaultValue="desktop" className="w-full">
+      <TabsList className="grid grid-cols-3">
+        <TabsTrigger value="desktop" className="flex items-center gap-2">
+          <Monitor className="w-4 h-4" />
+          <span className="hidden sm:inline">Desktop</span>
+        </TabsTrigger>
+        <TabsTrigger value="tablet" className="flex items-center gap-2">
+          <Tablet className="w-4 h-4" />
+          <span className="hidden sm:inline">Tablet</span>
+        </TabsTrigger>
+        <TabsTrigger value="mobile" className="flex items-center gap-2">
+          <Smartphone className="w-4 h-4" />
+          <span className="hidden sm:inline">Movil</span>
+        </TabsTrigger>
+      </TabsList>
+
+      <TabsContent value="desktop">
+        <GalleryTab
+          images={images}
+          onImagesChange={onImagesChange}
+          maxImages={maxImages}
+          showCoverBadge={true}
+          onMainImageChange={onMainImageChange}
+        />
+      </TabsContent>
+
+      <TabsContent value="tablet">
+        <GalleryTab
+          images={imagesTablet ?? []}
+          onImagesChange={onImagesTabletChange ?? (() => {})}
+          maxImages={maxImages}
+          showCoverBadge={false}
+        />
+      </TabsContent>
+
+      <TabsContent value="mobile">
+        <GalleryTab
+          images={imagesMobile ?? []}
+          onImagesChange={onImagesMobileChange ?? (() => {})}
+          maxImages={maxImages}
+          showCoverBadge={false}
+        />
+      </TabsContent>
+    </Tabs>
   );
 }

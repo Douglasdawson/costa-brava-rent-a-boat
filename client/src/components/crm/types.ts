@@ -40,6 +40,8 @@ export const boatSchema = z.object({
   // Extended fields
   imageUrl: z.string().optional(),
   imageGallery: z.array(z.string()).optional(),
+  imageGalleryTablet: z.array(z.string()).optional(),
+  imageGalleryMobile: z.array(z.string()).optional(),
   subtitle: z.string().optional(),
   description: z.string().optional(),
   specifications: z

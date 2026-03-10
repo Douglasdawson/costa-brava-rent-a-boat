@@ -263,6 +263,8 @@ export const boats = pgTable("boats", {
   // Extended boat information
   imageUrl: text("image_url"), // Main boat image
   imageGallery: text("image_gallery").array(), // Additional images
+  imageGalleryTablet: text("image_gallery_tablet").array(), // Tablet-optimized images
+  imageGalleryMobile: text("image_gallery_mobile").array(), // Mobile-optimized images
   subtitle: text("subtitle"), // e.g., "¡Barco sin licencia para alquilar en Blanes!"
   description: text("description"), // Full boat description
   
@@ -413,6 +415,8 @@ export const updateBoatSchema = z.object({
   isActive: z.coerce.boolean().optional(),
   imageUrl: z.string().nullable().optional(),
   imageGallery: z.array(z.string()).nullable().optional(),
+  imageGalleryTablet: z.array(z.string()).nullable().optional(),
+  imageGalleryMobile: z.array(z.string()).nullable().optional(),
   subtitle: z.string().nullable().optional(),
   description: z.string().nullable().optional(),
   specifications: z.object({

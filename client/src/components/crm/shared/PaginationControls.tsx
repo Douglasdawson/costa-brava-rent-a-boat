@@ -6,17 +6,17 @@ import {
   ChevronsRight,
 } from "lucide-react";
 
-interface PáginationControlsProps {
+interface PaginationControlsProps {
   currentPage: number;
   totalPages: number;
   onPageChange: (page: number) => void;
 }
 
-export function PáginationControls({
+export function PaginationControls({
   currentPage,
   totalPages,
   onPageChange,
-}: PáginationControlsProps) {
+}: PaginationControlsProps) {
   const pages: number[] = [];
   const maxVisible = 5;
   let startPage = Math.max(1, currentPage - Math.floor(maxVisible / 2));

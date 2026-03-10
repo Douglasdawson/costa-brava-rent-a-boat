@@ -113,7 +113,7 @@ export function registerAdminFleetRoutes(app: Express) {
         const capacityMatch = boat.specifications.capacity.match(/(\d+)/);
         const capacity = capacityMatch ? parseInt(capacityMatch[1]) : 5;
         const depositMatch = boat.specifications.deposit.match(/(\d+)/);
-        const deposit = depositMatch ? depositMatch[1] : "0";
+        const deposit = depositMatch ? `${depositMatch[1]}.00` : "0.00";
         const requiresLicense = ["pacific-craft-625", "trimarchi-57s", "mingolla-brava-19"].includes(
           boat.id
         );

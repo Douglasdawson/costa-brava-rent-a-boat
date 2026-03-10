@@ -166,7 +166,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
 
   // SEO data for this boat
   const lowestPrice = boatData.pricing ? Math.min(...Object.values(boatData.pricing.BAJA.prices)) : 0;
-  const requiresLicense = boatData.subtitle?.includes("Con Licencia") ?? boatData.requiresLicense;
+  const requiresLicense = boatData.subtitle?.toLowerCase().includes("con licencia") ?? boatData.requiresLicense;
   const capacity = boatData.specifications ? parseInt(boatData.specifications.capacity?.split(' ')[0] || String(boatData.capacity)) : boatData.capacity;
   
   const dynamicSEOData = {

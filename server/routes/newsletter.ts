@@ -39,4 +39,28 @@ export function registerNewsletterRoutes(app: Express) {
       res.status(500).json({ message: "Error al procesar la suscripción" });
     }
   });
+
+  // Unsubscribe via link in newsletter emails
+  app.get("/api/newsletter/unsubscribe", async (req, res) => {
+    try {
+      const email = req.query.email as string;
+      if (!email) {
+        return res.status(400).send("Email requerido");
+      }
+      await storage.unsubscribeNewsletter(email);
+      res.send(`
+        <!DOCTYPE html>
+        <html><head><meta charset="UTF-8"><title>Unsubscribed</title></head>
+        <body style="font-family:Arial,sans-serif; text-align:center; padding:60px 20px;">
+          <h2 style="color:#1e3a5f;">Has cancelado tu suscripcion</h2>
+          <p style="color:#475569;">Ya no recibiras nuestro newsletter. Si cambias de opinion, puedes volver a suscribirte en nuestra web.</p>
+          <a href="https://costabravarentaboat.com" style="color:#2563eb;">Volver a costabravarentaboat.com</a>
+        </body></html>
+      `);
+    } catch (error: unknown) {
+      const msg = error instanceof Error ? error.message : String(error);
+      logger.error("[Newsletter] Unsubscribe error", { error: msg });
+      res.status(500).send("Error al procesar la solicitud");
+    }
+  });
 }

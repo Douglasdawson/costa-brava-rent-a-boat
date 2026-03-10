@@ -3,9 +3,10 @@ import { storage } from "../storage";
 import {
   sendBookingReminder,
   sendThankYouEmail,
+  sendNewsletterEmail,
 } from "./emailService";
 import { runAutopilotPipeline, publishNextDraft, getConfig } from "./blogAutopilot.js";
-import type { Booking, Boat } from "@shared/schema";
+import type { Booking, Boat, BlogPost } from "@shared/schema";
 import { logger } from "../lib/logger";
 
 /**
@@ -329,5 +330,75 @@ export function startScheduler(): void {
     }
   });
 
-  logger.info("Scheduled services started: reminders (:00), thank-you (:30), hold cleanup (every 5min), auto-complete (:45), blog autopilot (config), blog publish (Mon 9am)");
+  // Newsletter: send monthly digest on 1st of each month at 10am
+  cron.schedule("0 10 1 * *", async () => {
+    try {
+      logger.info("Running monthly newsletter job");
+      await processNewsletter();
+    } catch (error: unknown) {
+      const msg = error instanceof Error ? error.message : "Unknown error";
+      logger.error("[Scheduler] Newsletter error", { error: msg });
+    }
+  });
+
+  logger.info("Scheduled services started: reminders (:00), thank-you (:30), hold cleanup (every 5min), auto-complete (:45), blog autopilot (config), blog publish (Mon 9am), newsletter (1st of month 10am)");
+}
+
+/**
+ * Send monthly newsletter with recent blog posts to all active subscribers.
+ * Groups subscribers by language and sends localized content.
+ */
+async function processNewsletter(): Promise<void> {
+  const subscribers = await storage.getActiveNewsletterSubscribers();
+  if (subscribers.length === 0) {
+    logger.info("[Newsletter] No active subscribers, skipping");
+    return;
+  }
+
+  // Get posts published in the last 30 days
+  const since = new Date();
+  since.setDate(since.getDate() - 30);
+  const recentPosts = await storage.getRecentPublishedBlogPosts(since);
+
+  if (recentPosts.length === 0) {
+    logger.info("[Newsletter] No recent posts to send");
+    return;
+  }
+
+  // Group subscribers by language
+  const byLang = new Map<string, string[]>();
+  for (const sub of subscribers) {
+    const lang = sub.language || "es";
+    const list = byLang.get(lang) || [];
+    list.push(sub.email);
+    byLang.set(lang, list);
+  }
+
+  let totalSent = 0;
+  let totalFailed = 0;
+
+  for (const [lang, emails] of Array.from(byLang.entries())) {
+    // Build localized post list (max 5 posts)
+    const localizedPosts = recentPosts.slice(0, 5).map((post: BlogPost) => {
+      const titleByLang = post.titleByLang as Record<string, string> | null;
+      const excerptByLang = post.excerptByLang as Record<string, string> | null;
+      return {
+        title: titleByLang?.[lang] || post.title,
+        excerpt: excerptByLang?.[lang] || post.excerpt || "",
+        slug: post.slug,
+        featuredImage: post.featuredImage,
+      };
+    });
+
+    for (const email of emails) {
+      const result = await sendNewsletterEmail(email, lang, localizedPosts);
+      if (result.success) {
+        totalSent++;
+      } else {
+        totalFailed++;
+      }
+    }
+  }
+
+  logger.info("[Newsletter] Monthly digest sent", { totalSent, totalFailed, subscriberCount: subscribers.length, postsIncluded: Math.min(recentPosts.length, 5) });
 }

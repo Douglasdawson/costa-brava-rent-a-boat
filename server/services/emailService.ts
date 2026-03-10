@@ -596,13 +596,26 @@ export async function sendThankYouEmail(data: BookingEmailData, discountCode: st
       ${strings.thankYouIntro} <strong>${data.boat.name}</strong>.
     </p>
 
-    <!-- Google Review CTA -->
+    <!-- Google Review CTA (primary) -->
     <div style="background-color:#eff6ff; border-radius:8px; padding:24px; margin:20px 0; text-align:center;">
       <p style="margin:0 0 8px; color:#1e3a5f; font-size:16px; font-weight:600;">${strings.reviewTitle}</p>
       <p style="margin:0 0 16px; color:#475569; font-size:14px; line-height:1.5;">
         ${strings.reviewDesc}
       </p>
-      <a href="${googleReviewUrl}" target="_blank" style="display:inline-block; background-color:#2563eb; color:#ffffff; text-decoration:none; padding:12px 28px; border-radius:6px; font-size:15px; font-weight:600;">${strings.reviewButton}</a>
+      <a href="${googleReviewUrl}" target="_blank" style="display:inline-block; background-color:#2563eb; color:#ffffff; text-decoration:none; padding:14px 32px; border-radius:6px; font-size:16px; font-weight:700;">${strings.reviewButton}</a>
+    </div>
+
+    <!-- TripAdvisor Review CTA (secondary) -->
+    <div style="background-color:#f0fdf4; border-radius:8px; padding:16px; margin:0 0 20px; text-align:center;">
+      <p style="margin:0 0 10px; color:#166534; font-size:14px; font-weight:600;">TripAdvisor</p>
+      <a href="https://www.tripadvisor.com/UserReviewEdit-g187498-e-Blanes_Province_of_Girona_Catalonia.html" target="_blank" style="display:inline-block; background-color:#34e0a1; color:#1a1a1a; text-decoration:none; padding:10px 24px; border-radius:6px; font-size:14px; font-weight:600;">${strings.reviewButton}</a>
+    </div>
+
+    <!-- Social sharing -->
+    <div style="text-align:center; margin:0 0 20px; padding:12px; background-color:#fafafa; border-radius:6px;">
+      <p style="margin:0 0 8px; color:#64748b; font-size:12px; text-transform:uppercase; letter-spacing:1px;">Share your experience</p>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=https://costabravarentaboat.com" target="_blank" style="display:inline-block; margin:0 4px; padding:8px 14px; background-color:#1877f2; color:#fff; border-radius:4px; font-size:12px; font-weight:600; text-decoration:none;">Facebook</a>
+      <a href="https://www.instagram.com/costabravarentaboat/" target="_blank" style="display:inline-block; margin:0 4px; padding:8px 14px; background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888); color:#fff; border-radius:4px; font-size:12px; font-weight:600; text-decoration:none;">Instagram</a>
     </div>
 
     <!-- Discount Code -->
@@ -807,6 +820,126 @@ export async function sendPasswordResetEmail(
   } catch (error: unknown) {
     const message = error instanceof Error ? error.message : "Unknown error";
     logger.error(`[Email] Error sending password reset email to ${email}`, { error: message });
+    return { success: false, error: message };
+  }
+}
+
+// ===== NEWSLETTER EMAIL =====
+
+interface NewsletterPost {
+  title: string;
+  excerpt: string;
+  slug: string;
+  featuredImage: string | null;
+}
+
+const NEWSLETTER_STRINGS: Record<string, {
+  subject: string;
+  greeting: string;
+  intro: string;
+  readMore: string;
+  unsubscribe: string;
+  bookNow: string;
+}> = {
+  es: {
+    subject: "Novedades de Costa Brava Rent a Boat",
+    greeting: "Hola",
+    intro: "Estas son las ultimas novedades de nuestro blog. Descubre consejos, destinos y todo lo que necesitas para tu proxima aventura en barco por la Costa Brava.",
+    readMore: "Leer articulo",
+    unsubscribe: "Cancelar suscripcion",
+    bookNow: "Reservar ahora",
+  },
+  en: {
+    subject: "News from Costa Brava Rent a Boat",
+    greeting: "Hello",
+    intro: "Here are the latest posts from our blog. Discover tips, destinations and everything you need for your next boat adventure on the Costa Brava.",
+    readMore: "Read article",
+    unsubscribe: "Unsubscribe",
+    bookNow: "Book now",
+  },
+  fr: {
+    subject: "Nouvelles de Costa Brava Rent a Boat",
+    greeting: "Bonjour",
+    intro: "Voici les derniers articles de notre blog. Decouvrez des conseils, des destinations et tout ce dont vous avez besoin pour votre prochaine aventure en bateau sur la Costa Brava.",
+    readMore: "Lire l'article",
+    unsubscribe: "Se desabonner",
+    bookNow: "Reserver maintenant",
+  },
+  de: {
+    subject: "Neuigkeiten von Costa Brava Rent a Boat",
+    greeting: "Hallo",
+    intro: "Hier sind die neuesten Beitrage aus unserem Blog. Entdecken Sie Tipps, Reiseziele und alles, was Sie fur Ihr nachstes Bootsabenteuer an der Costa Brava brauchen.",
+    readMore: "Artikel lesen",
+    unsubscribe: "Abmelden",
+    bookNow: "Jetzt buchen",
+  },
+};
+
+function getNewsletterStrings(lang: string) {
+  return NEWSLETTER_STRINGS[lang] || NEWSLETTER_STRINGS.es;
+}
+
+/**
+ * Send monthly newsletter with recent blog posts to a subscriber.
+ */
+export async function sendNewsletterEmail(
+  email: string,
+  language: string,
+  posts: NewsletterPost[],
+): Promise<EmailResult> {
+  if (!initSendGrid()) {
+    return { success: false, error: "SendGrid not configured" };
+  }
+
+  const strings = getNewsletterStrings(language);
+  const appUrl = process.env.APP_URL || "https://costabravarentaboat.com";
+  const unsubUrl = `${appUrl}/api/newsletter/unsubscribe?email=${encodeURIComponent(email)}`;
+
+  const postsHtml = posts.map(post => {
+    const imgBlock = post.featuredImage
+      ? `<img src="${post.featuredImage}" alt="${post.title}" style="width:100%; max-height:180px; object-fit:cover; border-radius:6px 6px 0 0;">`
+      : "";
+    return `
+      <div style="background:#f8fafc; border-radius:6px; overflow:hidden; margin:0 0 16px;">
+        ${imgBlock}
+        <div style="padding:16px;">
+          <h3 style="margin:0 0 8px; color:#1e3a5f; font-size:16px;">${post.title}</h3>
+          <p style="margin:0 0 12px; color:#475569; font-size:13px; line-height:1.5;">${post.excerpt}</p>
+          <a href="${appUrl}/blog/${post.slug}" target="_blank" style="color:#2563eb; font-size:13px; font-weight:600; text-decoration:none;">${strings.readMore} &rarr;</a>
+        </div>
+      </div>
+    `;
+  }).join("");
+
+  const content = `
+    <h2 style="margin:0 0 8px; color:#1e3a5f; font-size:20px;">${strings.subject}</h2>
+    <p style="margin:0 0 24px; color:#475569; font-size:15px; line-height:1.6;">
+      ${strings.greeting},<br>
+      ${strings.intro}
+    </p>
+
+    ${postsHtml}
+
+    <div style="text-align:center; margin:28px 0 16px;">
+      <a href="${appUrl}" target="_blank" style="display:inline-block; background-color:#2563eb; color:#ffffff; text-decoration:none; padding:14px 32px; border-radius:6px; font-size:16px; font-weight:700;">${strings.bookNow}</a>
+    </div>
+
+    <p style="margin:24px 0 0; text-align:center;">
+      <a href="${unsubUrl}" style="color:#94a3b8; font-size:11px; text-decoration:underline;">${strings.unsubscribe}</a>
+    </p>
+  `;
+
+  try {
+    await sgMail.send({
+      to: email,
+      from: { email: getFromEmail(), name: "Costa Brava Rent a Boat" },
+      subject: strings.subject,
+      html: emailWrapper(content),
+    });
+    return { success: true };
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : "Unknown error";
+    logger.error(`[Email] Newsletter send error to ${email}`, { error: message });
     return { success: false, error: message };
   }
 }

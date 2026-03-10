@@ -106,6 +106,29 @@ export function registerAdminFleetRoutes(app: Express) {
     }
   });
 
+  // Rename boat ID (primary key migration)
+  app.post("/api/admin/boats/:id/rename", requireAdminSession, async (req, res) => {
+    try {
+      const { newId } = req.body;
+      if (!newId || typeof newId !== "string") {
+        return res.status(400).json({ message: "newId is required" });
+      }
+      const existing = await storage.getBoat(req.params.id);
+      if (!existing) {
+        return res.status(404).json({ message: "Barco no encontrado" });
+      }
+      // Insert new row with new ID, copy all fields
+      const { id: _oldId, ...rest } = existing;
+      await db.insert(boats).values({ ...rest, id: newId });
+      // Delete old row
+      await db.delete(boats).where(eq(boats.id, req.params.id));
+      res.json({ message: `Boat ID renamed from ${req.params.id} to ${newId}` });
+    } catch (error: unknown) {
+      logger.error("[Admin] Error renaming boat", { error: error instanceof Error ? error.message : String(error) });
+      res.status(500).json({ message: "Error interno del servidor" });
+    }
+  });
+
   app.post("/api/admin/init-boats", requireAdminSession, async (req, res) => {
     try {
       const { BOAT_DATA } = await import("@shared/boatData");

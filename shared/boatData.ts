@@ -285,65 +285,6 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
     ]
   },
 
-  "astec-450": {
-    id: "astec-450",
-    name: "Astec 450",
-    image: "ASTEC_450_boat_photo_77fb7b13.png",
-    subtitle: "Sin licencia · 5 personas · Gasolina incluida",
-    description: "Motor Mercury 20cv: más potencia que los barcos de 15cv, pero igualmente sin necesidad de licencia. Navega más rápido y llega antes a las mejores calas. Con manga de 1,80m es una de las embarcaciones sin licencia más anchas y estables de la flota. Gasolina, seguro y equipo de seguridad incluidos.",
-    specifications: {
-      model: "Astec 450",
-      length: "4,50m",
-      beam: "1,80m",
-      engine: "Mercury 20cv 4t",
-      fuel: "Gasolina 30L",
-      capacity: "5 Personas",
-      deposit: "300€"
-    },
-    equipment: [
-      "Toldo",
-      "Gran solárium",
-      "Escalera de baño",
-      "Equipo de seguridad y salvamento"
-    ],
-    included: [
-      "IVA",
-      "Carburante",
-      "Amarre",
-      "Limpieza",
-      "Seguro embarcación y ocupantes"
-    ],
-    features: [
-      "Sin licencia requerida",
-      "Hasta 5 personas",
-      "Gasolina incluida",
-      "Seguro incluido",
-      "Equipo de seguridad",
-      "Escalera de baño"
-    ],
-    pricing: {
-      BAJA: {
-        period: "Abril-Junio, Septiembre-Cierre",
-        prices: { "1h": 80, "2h": 130, "3h": 155, "4h": 180, "6h": 230, "8h": 270 }
-      },
-      MEDIA: {
-        period: "Julio",
-        prices: { "1h": 90, "2h": 150, "3h": 190, "4h": 220, "6h": 270, "8h": 310 }
-      },
-      ALTA: {
-        period: "Agosto",
-        prices: { "1h": 100, "2h": 170, "3h": 200, "4h": 230, "6h": 290, "8h": 340 }
-      }
-    },
-    extras: [
-      { name: "Parking", price: "10€", icon: "Parking" },
-      { name: "Nevera", price: "5€", icon: "Nevera" },
-      { name: "Bebidas", price: "2,5€/ud", icon: "Bebidas" },
-      { name: "Snorkel", price: "7,5€", icon: "Snorkel" },
-      { name: "Paddle Surf", price: "25€", icon: "PaddleSurf" },
-      { name: "Seascooter", price: "50€", icon: "Seascooter" }
-    ]
-  },
 
   "astec-480": {
     id: "astec-480",

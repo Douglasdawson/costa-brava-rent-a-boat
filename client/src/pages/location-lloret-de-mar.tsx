@@ -79,18 +79,50 @@ export default function LocationLloretPage() {
     { name: t.breadcrumbs.locationLloret, url: "/alquiler-barcos-lloret-de-mar" }
   ]);
 
+  // FAQ schema for AI search extraction - Lloret specific
+  const faqSchema = {
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Se puede ir en barco de alquiler desde Blanes a Lloret de Mar?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Si. Lloret de Mar esta a solo 30 minutos en barco desde el Puerto de Blanes. Puedes ir con barcos sin licencia o con licencia. Es una de las rutas mas populares."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Cuanto tiempo se tarda en llegar a Lloret de Mar en barco desde Blanes?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Aproximadamente 30 minutos navegando desde el Puerto de Blanes. Por el camino puedes parar en calas como Cala Brava y Cala Sant Francesc."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Donde puedo fondear en Lloret de Mar?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Puedes fondear frente a la Playa de Lloret, en Cala Boadella o en Santa Cristina. Recuerda respetar las zonas de banistas y fondear a distancia adecuada de la playa."
+        }
+      }
+    ]
+  };
+
   // Combine schemas using @graph
   const combinedJsonLd = {
     "@context": "https://schema.org",
     "@graph": [
       locationSchema,
-      breadcrumbSchema
+      breadcrumbSchema,
+      faqSchema
     ]
   };
 
   return (
     <div className="min-h-screen">
-      <SEO 
+      <SEO
         title={seoConfig.title}
         description={seoConfig.description}
         ogTitle={seoConfig.ogTitle}

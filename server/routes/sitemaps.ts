@@ -1,4 +1,6 @@
 import type { Express } from "express";
+import fs from "fs";
+import path from "path";
 import { storage } from "../storage";
 import { logger } from "../lib/logger";
 
@@ -88,6 +90,24 @@ ${hreflangLinks}  </url>
 };
 
 export function registerSitemapRoutes(app: Express) {
+  // Serve llms.txt with proper text/plain content-type for AI crawlers
+  app.get("/llms.txt", (_req, res) => {
+    // Try client/public first (dev), then dist/public (prod)
+    const candidates = [
+      path.resolve(process.cwd(), "client/public/llms.txt"),
+      path.resolve(process.cwd(), "dist/public/llms.txt"),
+    ];
+    for (const filePath of candidates) {
+      if (fs.existsSync(filePath)) {
+        res.set("Content-Type", "text/plain; charset=utf-8");
+        res.set("Cache-Control", "public, max-age=86400");
+        res.sendFile(filePath);
+        return;
+      }
+    }
+    res.status(404).send("llms.txt not found");
+  });
+
   // Sitemap Index - Main entry point
   app.get("/sitemap.xml", async (req, res) => {
     try {

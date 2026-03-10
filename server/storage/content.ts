@@ -1,5 +1,5 @@
 import {
-  db, eq, and,
+  db, eq, and, gte,
   testimonials, blogPosts, destinations, newsletterSubscribers,
   type Testimonial, type InsertTestimonial,
   type BlogPost, type InsertBlogPost,
@@ -147,4 +147,36 @@ export async function createNewsletterSubscriber(email: string, language: string
     .values({ email: email.toLowerCase().trim(), language, source })
     .returning();
   return subscriber;
+}
+
+export async function getActiveNewsletterSubscribers(): Promise<NewsletterSubscriber[]> {
+  return await db.select()
+    .from(newsletterSubscribers)
+    .where(eq(newsletterSubscribers.isActive, true));
+}
+
+export async function getActiveSubscribersByLanguage(language: string): Promise<NewsletterSubscriber[]> {
+  return await db.select()
+    .from(newsletterSubscribers)
+    .where(and(
+      eq(newsletterSubscribers.isActive, true),
+      eq(newsletterSubscribers.language, language)
+    ));
+}
+
+export async function unsubscribeNewsletter(email: string): Promise<boolean> {
+  const result = await db
+    .update(newsletterSubscribers)
+    .set({ isActive: false })
+    .where(eq(newsletterSubscribers.email, email.toLowerCase().trim()));
+  return result.rowCount !== null && result.rowCount > 0;
+}
+
+export async function getRecentPublishedBlogPosts(since: Date): Promise<BlogPost[]> {
+  return await db.select()
+    .from(blogPosts)
+    .where(and(
+      eq(blogPosts.isPublished, true),
+      gte(blogPosts.publishedAt, since)
+    ));
 }

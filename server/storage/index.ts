@@ -134,6 +134,10 @@ export const storage = {
   updateDestination: contentRepo.updateDestination,
   deleteDestination: contentRepo.deleteDestination,
   createNewsletterSubscriber: contentRepo.createNewsletterSubscriber,
+  getActiveNewsletterSubscribers: contentRepo.getActiveNewsletterSubscribers,
+  getActiveSubscribersByLanguage: contentRepo.getActiveSubscribersByLanguage,
+  unsubscribeNewsletter: contentRepo.unsubscribeNewsletter,
+  getRecentPublishedBlogPosts: contentRepo.getRecentPublishedBlogPosts,
 
   // ===== Gallery =====
   getApprovedPhotos: galleryRepo.getApprovedPhotos,

@@ -73,15 +73,54 @@ export default function LocationBlanesPage() {
     { name: t.breadcrumbs.locationBlanes, url: "/alquiler-barcos-blanes" }
   ]);
 
+  // FAQ schema for AI search extraction - Blanes specific
+  const faqSchema = {
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Necesito licencia para alquilar un barco en Blanes?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. Tenemos 5 barcos sin licencia para hasta 5 personas. Solo necesitas ser mayor de 18 anos. Te damos una formacion de 15 minutos antes de salir."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Cuanto cuesta alquilar un barco en el Puerto de Blanes?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Los barcos sin licencia cuestan desde 70 EUR/hora en temporada baja (abril-junio, septiembre-octubre). En temporada alta (agosto) desde 90 EUR/hora. El precio incluye combustible, seguro y equipo de seguridad."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "A donde puedo ir en barco desde Blanes?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Desde el Puerto de Blanes puedes visitar Cala Brava (15 min), Cala Sant Francesc (20 min), Lloret de Mar (30 min) y Tossa de Mar (45 min). Los barcos con licencia tienen mayor autonomia para destinos mas lejanos."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Hay aparcamiento cerca del Puerto de Blanes?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Si. Hay aparcamiento gratuito junto al Puerto de Blanes. Tambien hay restaurantes, tiendas nauticas y gasolinera en la zona portuaria."
+        }
+      }
+    ]
+  };
+
   // Combine schemas
   const combinedJsonLd = {
     "@context": "https://schema.org",
-    "@graph": [locationSchema, breadcrumbSchema]
+    "@graph": [locationSchema, breadcrumbSchema, faqSchema]
   };
 
   return (
     <div className="min-h-screen">
-      <SEO 
+      <SEO
         title={seoConfig.title}
         description={seoConfig.description}
         ogTitle={seoConfig.ogTitle}

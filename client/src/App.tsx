@@ -65,7 +65,10 @@ import {
   generateCanonicalUrl,
   generateLocalBusinessSchema,
   generateServiceSchema,
-  generateBreadcrumbSchema
+  generateBreadcrumbSchema,
+  generateWebSiteSchema,
+  generateHowToBookingSchema,
+  generateSpeakableSchema
 } from "@/utils/seo-config";
 import { generateItemListSchema } from "@/utils/seo-schemas";
 import type { Boat } from "@shared/schema";
@@ -114,8 +117,8 @@ function HomePage() {
   });
 
   // Generate combined JSON-LD schemas for homepage
-  // Note: AggregateRating omitted until real review data is available
-  const localBusinessSchema = generateLocalBusinessSchema(language);
+  // AggregateRating: Google Maps baseline (4.8, 307 reviews) — server-side injection enriches with DB data
+  const localBusinessSchema = generateLocalBusinessSchema(language, 4.8, 307);
   const serviceSchema = generateServiceSchema(language);
   const breadcrumbSchema = generateBreadcrumbSchema([
     { name: "Inicio", url: "/" }
@@ -129,6 +132,18 @@ function HomePage() {
   }));
   const itemListSchema = generateItemListSchema(fleetItems);
 
+  // AI Search optimization schemas
+  const webSiteSchema = generateWebSiteSchema();
+  const howToSchema = generateHowToBookingSchema(language);
+
+  // Speakable: mark key content sections for AI voice extraction
+  const speakableSpec = generateSpeakableSchema([
+    "h1", ".hero-description", ".fleet-section h2", ".faq-answer"
+  ]);
+
+  // Attach speakable to LocalBusiness
+  localBusinessSchema.speakable = speakableSpec;
+
   // Combine multiple schemas using @graph
   const combinedJsonLd = {
     "@context": "https://schema.org",
@@ -136,7 +151,9 @@ function HomePage() {
       localBusinessSchema,
       serviceSchema,
       breadcrumbSchema,
-      itemListSchema
+      itemListSchema,
+      webSiteSchema,
+      howToSchema
     ]
   };
 

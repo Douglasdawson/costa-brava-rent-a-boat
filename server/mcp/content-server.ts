@@ -4,7 +4,7 @@ import { z } from "zod";
 import { eq, and, desc, sql, count, gte, ilike } from "drizzle-orm";
 import { db } from "./shared/db.js";
 import * as schema from "../../shared/schema.js";
-import { runAutopilotPipeline, publishMatureDrafts, getConfig } from "../services/blogAutopilot.js";
+import { runAutopilotPipeline, publishNextDraft, getConfig } from "../services/blogAutopilot.js";
 import { generateTopicQueue } from "../services/blogTopicEngine.js";
 
 const server = new McpServer({

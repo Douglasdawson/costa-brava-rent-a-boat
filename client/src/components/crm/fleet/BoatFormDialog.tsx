@@ -167,14 +167,6 @@ export function BoatFormDialog({
                     form.setValue("imageUrl", "");
                   }
                 }}
-                imagesTablet={form.watch("imageGalleryTablet") || []}
-                onImagesTabletChange={images => {
-                  form.setValue("imageGalleryTablet", images);
-                }}
-                imagesMobile={form.watch("imageGalleryMobile") || []}
-                onImagesMobileChange={images => {
-                  form.setValue("imageGalleryMobile", images);
-                }}
                 onMainImageChange={mainImageUrl => {
                   // Update imageUrl when main image changes
                   form.setValue("imageUrl", mainImageUrl || "");

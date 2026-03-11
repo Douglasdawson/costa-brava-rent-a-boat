@@ -9,7 +9,7 @@ export default function Hero() {
   const { openBookingModal } = useBookingModal();
 
   return (
-    <div className="relative h-dvh min-h-[600px] max-h-[900px] overflow-hidden" id="home">
+    <div className="relative h-dvh min-h-[600px] overflow-hidden" id="home">
       {/* Background Image - Responsive <picture> */}
       <picture>
         <source

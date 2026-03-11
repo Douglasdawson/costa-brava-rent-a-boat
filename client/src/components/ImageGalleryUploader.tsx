@@ -17,10 +17,9 @@ import {
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
-import { Upload, X, GripVertical, ImageIcon, Monitor, Tablet, Smartphone } from "lucide-react";
+import { Upload, X, GripVertical, ImageIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { cn } from "@/lib/utils";
 import ImageCropDialog from "./ImageCropDialog";
 
@@ -29,10 +28,6 @@ interface ImageGalleryUploaderProps {
   onImagesChange: (images: string[]) => void;
   onMainImageChange?: (mainImageUrl: string | null) => void;
   maxImages?: number;
-  imagesTablet?: string[];
-  onImagesTabletChange?: (images: string[]) => void;
-  imagesMobile?: string[];
-  onImagesMobileChange?: (images: string[]) => void;
 }
 
 interface SortableImageProps {
@@ -362,70 +357,14 @@ export function ImageGalleryUploader({
   onImagesChange,
   onMainImageChange,
   maxImages = 10,
-  imagesTablet,
-  onImagesTabletChange,
-  imagesMobile,
-  onImagesMobileChange,
 }: ImageGalleryUploaderProps) {
-  const hasResponsiveTabs = onImagesTabletChange || onImagesMobileChange;
-
-  // Backward compatible: no tabs, render single gallery directly
-  if (!hasResponsiveTabs) {
-    return (
-      <GalleryTab
-        images={images}
-        onImagesChange={onImagesChange}
-        maxImages={maxImages}
-        showCoverBadge={true}
-        onMainImageChange={onMainImageChange}
-      />
-    );
-  }
-
   return (
-    <Tabs defaultValue="desktop" className="w-full">
-      <TabsList className="grid grid-cols-3">
-        <TabsTrigger value="desktop" className="flex items-center gap-2">
-          <Monitor className="w-4 h-4" />
-          <span className="hidden sm:inline">Desktop</span>
-        </TabsTrigger>
-        <TabsTrigger value="tablet" className="flex items-center gap-2">
-          <Tablet className="w-4 h-4" />
-          <span className="hidden sm:inline">Tablet</span>
-        </TabsTrigger>
-        <TabsTrigger value="mobile" className="flex items-center gap-2">
-          <Smartphone className="w-4 h-4" />
-          <span className="hidden sm:inline">Movil</span>
-        </TabsTrigger>
-      </TabsList>
-
-      <TabsContent value="desktop">
-        <GalleryTab
-          images={images}
-          onImagesChange={onImagesChange}
-          maxImages={maxImages}
-          showCoverBadge={true}
-          onMainImageChange={onMainImageChange}
-        />
-      </TabsContent>
-
-      <TabsContent value="tablet">
-        <GalleryTab
-          images={imagesTablet ?? []}
-          onImagesChange={onImagesTabletChange ?? (() => {})}
-          maxImages={maxImages}
-          showCoverBadge={false}
-        />
-      </TabsContent>
-
-      <TabsContent value="mobile">
-        <GalleryTab
-          images={imagesMobile ?? []}
-          onImagesChange={onImagesMobileChange ?? (() => {})}
-          maxImages={maxImages}
-          showCoverBadge={false}
-        />
-      </TabsContent>
-    </Tabs>
+    <GalleryTab
+      images={images}
+      onImagesChange={onImagesChange}
+      maxImages={maxImages}
+      showCoverBadge={true}
+      onMainImageChange={onMainImageChange}
+    />
   );
 }

@@ -87,13 +87,11 @@ export function SEO({
     updateOGTag('og:title', ogTitle || title);
     updateOGTag('og:description', ogDescription || description);
     updateOGTag('og:image', absoluteOgImage);
-    updateOGTag('og:image:width', '1200');
-    updateOGTag('og:image:height', '630');
-    updateOGTag('og:image:type', 'image/webp');
+    updateOGTag('og:image:type', absoluteOgImage.endsWith('.webp') ? 'image/webp' : 'image/png');
+    updateOGTag('og:image:alt', ogTitle || title);
     updateOGTag('og:type', ogType);
     updateOGTag('og:url', canonical);
     updateOGTag('og:site_name', 'Costa Brava Rent a Boat Blanes');
-    updateOGTag('og:image:alt', ogTitle || title);
 
     // Update Twitter tags (using name attribute, not property)
     const updateTwitterTag = (name: string, content: string) => {
@@ -109,9 +107,11 @@ export function SEO({
     };
 
     updateTwitterTag('card', 'summary_large_image');
+    updateTwitterTag('site', '@costabravarentaboat');
     updateTwitterTag('title', ogTitle || title);
     updateTwitterTag('description', ogDescription || description);
     updateTwitterTag('image', absoluteOgImage);
+    updateTwitterTag('image:alt', ogTitle || title);
     updateTwitterTag('url', canonical);
 
     // Set og:locale for current language and og:locale:alternate for other languages

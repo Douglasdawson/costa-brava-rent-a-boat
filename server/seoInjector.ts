@@ -30,6 +30,14 @@ interface SEOMeta {
   description: string;
   ogTitle?: string;
   ogDescription?: string;
+  ogImage?: string;
+  ogType?: string;
+  articleMeta?: {
+    publishedTime?: string;
+    modifiedTime?: string;
+    author?: string;
+    section?: string;
+  };
 }
 
 type LangCode = "es" | "ca" | "en" | "fr" | "de" | "nl" | "it" | "ru";
@@ -321,6 +329,38 @@ function injectMeta(html: string, meta: SEOMeta, canonicalUrl: string, extraJson
   result = result.replace(/<meta property="og:description" content="[^"]*">/, `<meta property="og:description" content="${ogDesc}">`);
   result = result.replace(/<meta property="og:url" content="[^"]*">/, `<meta property="og:url" content="${esc(BASE_URL + canonicalUrl)}">`);
   result = result.replace(/<link rel="canonical" href="[^"]*">/, `<link rel="canonical" href="${canonical}">`);
+
+  // Replace og:image if a page-specific image is provided
+  if (meta.ogImage) {
+    const absImage = meta.ogImage.startsWith("http") ? meta.ogImage : `${BASE_URL}${meta.ogImage}`;
+    result = result.replace(/<meta property="og:image" content="[^"]*">/, `<meta property="og:image" content="${esc(absImage)}">`);
+    result = result.replace(/<meta name="twitter:image" content="[^"]*">/, `<meta name="twitter:image" content="${esc(absImage)}">`);
+  }
+
+  // Replace og:type if specified (e.g. "product" for boats, "article" for blog)
+  if (meta.ogType) {
+    result = result.replace(/<meta property="og:type" content="[^"]*">/, `<meta property="og:type" content="${esc(meta.ogType)}">`);
+  }
+
+  // Inject article:* meta tags for blog posts
+  if (meta.articleMeta) {
+    const articleTags: string[] = [];
+    if (meta.articleMeta.publishedTime) {
+      articleTags.push(`  <meta property="article:published_time" content="${esc(meta.articleMeta.publishedTime)}" />`);
+    }
+    if (meta.articleMeta.modifiedTime) {
+      articleTags.push(`  <meta property="article:modified_time" content="${esc(meta.articleMeta.modifiedTime)}" />`);
+    }
+    if (meta.articleMeta.author) {
+      articleTags.push(`  <meta property="article:author" content="${esc(meta.articleMeta.author)}" />`);
+    }
+    if (meta.articleMeta.section) {
+      articleTags.push(`  <meta property="article:section" content="${esc(meta.articleMeta.section)}" />`);
+    }
+    if (articleTags.length > 0) {
+      result = result.replace("</head>", `${articleTags.join("\n")}\n</head>`);
+    }
+  }
 
   // Inject extra JSON-LD before </head>
   if (extraJsonLd) {
@@ -1118,14 +1158,24 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
           return prices.length > 0 ? Math.min(...prices) : null;
         })();
         const priceStr = fromPrice ? ` | Desde ${fromPrice}€` : "";
-        const meta = lang === "en"
+        // Build boat-specific og:image URL
+        const boatOgImage = boat.imageUrl
+          ? (boat.imageUrl.startsWith("http") ? boat.imageUrl
+            : boat.imageUrl.startsWith("/") ? boat.imageUrl
+            : `/object-storage/${boat.imageUrl}`)
+          : undefined;
+        const meta: SEOMeta = lang === "en"
           ? {
               title: `Rent ${boat.name} in Blanes (${licenseText}) | Costa Brava${priceStr}`,
               description: `Book the ${boat.name} in Blanes, Costa Brava. Up to ${boat.capacity} people, ${licenseText}. Reserve via WhatsApp.`,
+              ogImage: boatOgImage,
+              ogType: "product",
             }
           : {
               title: `Alquiler ${boat.name} en Blanes (${licenseText}) | Costa Brava${priceStr}`,
               description: `Alquila el ${boat.name} en Blanes, Costa Brava. Hasta ${boat.capacity} personas, ${licenseText}. Reserva por WhatsApp.`,
+              ogImage: boatOgImage,
+              ogType: "product",
             };
         const jsonLd = buildBoatProductSchema(boat, fromPrice);
         return { meta, jsonLd };
@@ -1143,11 +1193,27 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
       const posts = await storage.getAllBlogPosts();
       const post = posts.find(p => p.slug === slug && p.isPublished);
       if (post) {
-        const meta = {
+        // Build blog-specific og:image URL
+        const postOgImage = post.featuredImage
+          ? (post.featuredImage.startsWith("http") ? post.featuredImage
+            : post.featuredImage.startsWith("/") ? post.featuredImage
+            : `/object-storage/${post.featuredImage}`)
+          : undefined;
+        const publishedTime = post.publishedAt ? new Date(post.publishedAt).toISOString() : undefined;
+        const modifiedTime = post.updatedAt ? new Date(post.updatedAt).toISOString() : publishedTime;
+        const meta: SEOMeta = {
           title: `${post.title} | Costa Brava Rent a Boat`,
           description: post.excerpt || post.metaDescription || post.title,
+          ogImage: postOgImage,
+          ogType: "article",
+          articleMeta: {
+            publishedTime,
+            modifiedTime,
+            author: "Costa Brava Rent a Boat",
+            section: (post.category as string) || "Navegacion",
+          },
         };
-        const jsonLd = {
+        const jsonLd: Record<string, unknown> = {
           "@context": "https://schema.org",
           "@type": "BlogPosting",
           headline: post.title,
@@ -1159,9 +1225,13 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
           publisher: {
             "@type": "Organization",
             name: "Costa Brava Rent a Boat",
-            logo: { "@type": "ImageObject", url: `${BASE_URL}/og-image.webp` },
+            logo: { "@type": "ImageObject", url: `${BASE_URL}/assets/og-image.png` },
           },
         };
+        if (postOgImage) {
+          const absImage = postOgImage.startsWith("http") ? postOgImage : `${BASE_URL}${postOgImage}`;
+          jsonLd.image = absImage;
+        }
         return { meta, jsonLd };
       }
     } catch {

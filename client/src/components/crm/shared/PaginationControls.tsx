@@ -39,7 +39,7 @@ export function PaginationControls({
           size="sm"
           onClick={() => onPageChange(1)}
           disabled={currentPage <= 1}
-          title="Primera pagina"
+          title="Primera página"
         >
           <ChevronsLeft className="w-4 h-4" />
         </Button>
@@ -79,7 +79,7 @@ export function PaginationControls({
           size="sm"
           onClick={() => onPageChange(totalPages)}
           disabled={currentPage >= totalPages}
-          title="Ultima pagina"
+          title="Última página"
         >
           <ChevronsRight className="w-4 h-4" />
         </Button>

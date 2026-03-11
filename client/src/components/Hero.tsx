@@ -1,7 +1,7 @@
 import { Button } from "./ui/button";
-import { ShieldCheck, Shield, CheckCircle, Award, Users, Star } from "lucide-react";
+import { ShieldCheck, Shield, CheckCircle, Award, Users, Star, ChevronDown } from "lucide-react";
 import { useTranslations } from "@/lib/translations";
-import { useBookingModal } from "@/hooks/useBookingModal";
+import { useBookingModal } from "@/hooks/bookingModalContext";
 import CurvedLoop from "./CurvedLoop";
 
 export default function Hero() {
@@ -96,6 +96,20 @@ export default function Hero() {
             {t.hero.googleRating}
           </span>
         </div>
+      </div>
+
+      {/* Scroll indicator — animated chevron between CTAs and trust strip (desktop only) */}
+      <div className="hidden sm:flex absolute bottom-[46px] left-0 right-0 z-20 justify-center pointer-events-none">
+        <button
+          onClick={() => {
+            const fleet = document.getElementById('fleet');
+            if (fleet) fleet.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }}
+          className="pointer-events-auto animate-bounce text-white/60 hover:text-white transition-colors"
+          aria-label="Scroll down"
+        >
+          <ChevronDown className="w-5 h-5" />
+        </button>
       </div>
 
       {/* Curved loop marquee — overlaid at bottom of hero */}

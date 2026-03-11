@@ -327,7 +327,7 @@ export function InventoryTab({ adminToken }: InventoryTabProps) {
         <div className="flex gap-2">
           <Select value={filterCategory} onValueChange={setFilterCategory}>
             <SelectTrigger className="w-[160px]">
-              <SelectValue placeholder="Categoria" />
+              <SelectValue placeholder="Categoría" />
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="all">Todas</SelectItem>
@@ -463,17 +463,17 @@ export function InventoryTab({ adminToken }: InventoryTabProps) {
               />
             </div>
             <div>
-              <Label>Descripcion</Label>
+              <Label>Descripción</Label>
               <Textarea
                 value={itemForm.description}
                 onChange={e => setItemForm(p => ({ ...p, description: e.target.value }))}
-                placeholder="Descripcion del item..."
+                placeholder="Descripción del item..."
                 rows={2}
               />
             </div>
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <Label>Categoria *</Label>
+                <Label>Categoría *</Label>
                 <Select value={itemForm.category} onValueChange={v => setItemForm(p => ({ ...p, category: v }))}>
                   <SelectTrigger><SelectValue /></SelectTrigger>
                   <SelectContent>
@@ -512,7 +512,7 @@ export function InventoryTab({ adminToken }: InventoryTabProps) {
                 />
               </div>
               <div>
-                <Label>Alerta min.</Label>
+                <Label>Alerta mín.</Label>
                 <Input
                   type="number"
                   value={itemForm.minStockAlert}
@@ -570,7 +570,7 @@ export function InventoryTab({ adminToken }: InventoryTabProps) {
               <Input
                 value={movementForm.reason}
                 onChange={e => setMovementForm(p => ({ ...p, reason: e.target.value }))}
-                placeholder="Ej: Reposicion de stock"
+                placeholder="Ej: Reposición de stock"
               />
             </div>
           </div>
@@ -655,7 +655,7 @@ export function InventoryTab({ adminToken }: InventoryTabProps) {
           <AlertDialogHeader>
             <AlertDialogTitle>Eliminar item del inventario</AlertDialogTitle>
             <AlertDialogDescription>
-              Estas seguro de eliminar {deleteTarget?.name}? Esta accion no se puede deshacer.
+              ¿Estás seguro de eliminar {deleteTarget?.name}? Esta acción no se puede deshacer.
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>

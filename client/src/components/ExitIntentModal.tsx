@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { X, Gift } from "lucide-react";
 import { useTranslations } from "@/lib/translations";
-import { useBookingModal } from "@/hooks/useBookingModal";
+import { useBookingModal } from "@/hooks/bookingModalContext";
 
 export function ExitIntentModal() {
   const t = useTranslations();

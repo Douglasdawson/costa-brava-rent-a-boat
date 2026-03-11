@@ -123,8 +123,8 @@ export default function ContactSection() {
                 title="Ubicación de Costa Brava Rent a Boat en Puerto de Blanes"
               />
 
-              {/* Overlay oscuro para mejor legibilidad */}
-              <div className="absolute inset-0 bg-black/40 pointer-events-none"></div>
+              {/* Overlay sutil para legibilidad del texto */}
+              <div className="absolute inset-0 bg-black/20 pointer-events-none"></div>
 
               {/* Contenido */}
               <div className="relative z-10 p-4 sm:p-6 lg:p-8 flex flex-col items-center justify-center min-h-[300px] sm:min-h-[400px] lg:min-h-[450px] pointer-events-none">

@@ -98,7 +98,7 @@ export function SuperAdminTab({ adminToken }: SuperAdminTabProps) {
     queryKey: ["/api/superadmin/stats"],
     queryFn: async () => {
       const res = await fetch("/api/superadmin/stats", { headers });
-      if (!res.ok) throw new Error("Error al cargar estadisticas");
+      if (!res.ok) throw new Error("Error al cargar estadísticas");
       return res.json();
     },
   });
@@ -167,7 +167,7 @@ export function SuperAdminTab({ adminToken }: SuperAdminTabProps) {
         </div>
         <div>
           <h2 className="text-xl font-bold text-foreground font-heading">Costa Brava Rent a Boat — Panel de Plataforma</h2>
-          <p className="text-sm text-muted-foreground">Administracion global de todas las empresas</p>
+          <p className="text-sm text-muted-foreground">Administración global de todas las empresas</p>
         </div>
       </div>
 
@@ -308,7 +308,7 @@ export function SuperAdminTab({ adminToken }: SuperAdminTabProps) {
                         <Users className="w-4 h-4" />
                       </TableHead>
                       <TableHead>Registro</TableHead>
-                      <TableHead className="text-right">Accion</TableHead>
+                      <TableHead className="text-right">Acción</TableHead>
                     </TableRow>
                   </TableHeader>
                   <TableBody>
@@ -478,8 +478,8 @@ export function SuperAdminTab({ adminToken }: SuperAdminTabProps) {
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="trial">Trial — periodo de prueba activo</SelectItem>
-                    <SelectItem value="active">Activo — suscripcion de pago</SelectItem>
+                    <SelectItem value="trial">Trial — período de prueba activo</SelectItem>
+                    <SelectItem value="active">Activo — suscripción de pago</SelectItem>
                     <SelectItem value="suspended">Suspendido — acceso bloqueado</SelectItem>
                     <SelectItem value="cancelled">Cancelado — cuenta cerrada</SelectItem>
                   </SelectContent>
@@ -507,7 +507,7 @@ export function SuperAdminTab({ adminToken }: SuperAdminTabProps) {
               )}
               {newStatus === "active" && managingTenant.status !== "active" && (
                 <div className="bg-primary/5 border border-primary/20 rounded-lg p-3 text-sm text-primary">
-                  La empresa pasara a estado activo con suscripcion de pago.
+                  La empresa pasará a estado activo con suscripción de pago.
                 </div>
               )}
             </div>

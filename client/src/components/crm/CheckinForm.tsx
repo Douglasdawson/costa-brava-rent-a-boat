@@ -37,7 +37,7 @@ interface CheckinFormProps {
 const CHECKIN_ITEMS = [
   "Chalecos salvavidas",
   "Extintor",
-  "Botiquin",
+  "Botiquín",
   "Ancla y cadena",
   "Defensas",
   "Escalera de baño",
@@ -171,7 +171,7 @@ export function CheckinForm({
                 <SelectItem value="3/4">3/4</SelectItem>
                 <SelectItem value="1/2">1/2</SelectItem>
                 <SelectItem value="1/4">1/4</SelectItem>
-                <SelectItem value="empty">Vacio</SelectItem>
+                <SelectItem value="empty">Vacío</SelectItem>
               </SelectContent>
             </Select>
           </div>
@@ -208,7 +208,7 @@ export function CheckinForm({
           {/* Checklist */}
           <div>
             <div className="flex items-center justify-between mb-2">
-              <Label>Lista de Verificacion</Label>
+              <Label>Lista de Verificación</Label>
               <Button
                 type="button"
                 variant="ghost"

@@ -56,7 +56,7 @@ const ADMIN_TABS = [
   { id: "maintenance", label: "Mant.", icon: Wrench },
   { id: "inventory", label: "Inventario", icon: Package },
   { id: "reports", label: "Reportes", icon: BarChart3 },
-  { id: "gallery", label: "Galeria", icon: Camera },
+  { id: "gallery", label: "Galería", icon: Camera },
   { id: "blog", label: "Blog", icon: FileText },
   { id: "giftcards", label: "Regalos", icon: Gift },
   { id: "discounts", label: "Descuentos", icon: Percent },
@@ -210,7 +210,7 @@ export function AdminLayout({
             </kbd>
             <Button variant="outline" onClick={onLogout} data-testid="button-logout" size="sm" className="md:h-10">
               <LogOut className="w-4 h-4 md:mr-2" />
-              <span className="hidden md:inline">Cerrar Sesion</span>
+              <span className="hidden md:inline">Cerrar Sesión</span>
             </Button>
             <Button variant="outline" onClick={onExportCSV} data-testid="button-export-data" size="sm" className="hidden md:flex md:h-10">
               <Download className="w-4 h-4 mr-2" />
@@ -256,7 +256,7 @@ export function AdminLayout({
                     data-testid="tab-more"
                   >
                     <MoreHorizontal className="w-4 h-4" />
-                    <span className="text-xs">Mas</span>
+                    <span className="text-xs">Más</span>
                   </button>
                 </PopoverTrigger>
                 <PopoverContent className="w-[min(256px,calc(100vw-2rem))] p-2" align="end">

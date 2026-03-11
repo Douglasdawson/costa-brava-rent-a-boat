@@ -136,7 +136,7 @@ export function SignatureCanvas({
         />
         {!hasSignature && (
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-            <p className="text-muted-foreground/70 text-lg select-none">Firme aqui</p>
+            <p className="text-muted-foreground/70 text-lg select-none">Firme aquí</p>
           </div>
         )}
       </div>

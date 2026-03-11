@@ -121,7 +121,7 @@ export function BookingsTab({
             <div className="flex-1 relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground/70 w-4 h-4" />
               <Input
-                placeholder="Buscar por nombre, email, telefono..."
+                placeholder="Buscar por nombre, email, teléfono..."
                 value={searchQuery}
                 onChange={(e) => handleSearchChange(e.target.value)}
                 className="pl-10"

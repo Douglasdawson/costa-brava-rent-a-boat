@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { useLocation } from "wouter";
-import { useBookingModal } from "@/hooks/useBookingModal";
+import { useBookingModal } from "@/hooks/bookingModalContext";
 import { useQuery } from "@tanstack/react-query";
 import { 
   ArrowLeft, 
@@ -58,7 +58,7 @@ import AvailabilityCalendar from "./AvailabilityCalendar";
 import BoatReviewCarousel from "./BoatReviewCarousel";
 import { getBoatReviews, getBoatAverageRating } from "@/data/boatReviews";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
-import type { BookingPrefillData } from "@/hooks/useBookingModal";
+import type { BookingPrefillData } from "@/hooks/bookingModalContext";
 
 interface BoatDetailPageProps {
   boatId?: string;

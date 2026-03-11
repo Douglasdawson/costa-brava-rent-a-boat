@@ -116,7 +116,7 @@ export function GalleryManagement({ adminToken }: GalleryManagementProps) {
       <div className="flex flex-wrap items-center justify-between gap-3">
         <h2 className="text-xl font-bold font-heading flex items-center gap-2">
           <Camera className="w-5 h-5" />
-          Galeria de Fotos
+          Galería de Fotos
         </h2>
         <div className="flex gap-2">
           {(["pending", "approved", "all"] as const).map((f) => (
@@ -149,9 +149,9 @@ export function GalleryManagement({ adminToken }: GalleryManagementProps) {
       ) : filteredPhotos.length === 0 ? (
         <div className="flex flex-col items-center justify-center py-12 text-center">
           <Camera className="w-12 h-12 text-muted-foreground/50 mb-4" />
-          <p className="text-lg font-heading font-medium text-foreground mb-1">No hay fotos en la galeria</p>
+          <p className="text-lg font-heading font-medium text-foreground mb-1">No hay fotos en la galería</p>
           <p className="text-sm text-muted-foreground">
-            {filter === "pending" ? "No hay fotos pendientes de aprobacion" : filter === "approved" ? "No hay fotos aprobadas" : "Las fotos de clientes apareceran aqui"}
+            {filter === "pending" ? "No hay fotos pendientes de aprobación" : filter === "approved" ? "No hay fotos aprobadas" : "Las fotos de clientes aparecerán aquí"}
           </p>
         </div>
       ) : (
@@ -250,7 +250,7 @@ export function GalleryManagement({ adminToken }: GalleryManagementProps) {
           <AlertDialogHeader>
             <AlertDialogTitle>Eliminar foto</AlertDialogTitle>
             <AlertDialogDescription>
-              Estas seguro de eliminar esta foto? Esta accion no se puede deshacer.
+              ¿Estás seguro de eliminar esta foto? Esta acción no se puede deshacer.
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>

@@ -84,12 +84,12 @@ export default function CRMDashboard({ adminToken }: CRMDashboardProps) {
       maintenance: "Mantenimiento",
       inventory: "Inventario",
       reports: "Reportes",
-      gallery: "Galeria",
+      gallery: "Galería",
       giftcards: "Tarjetas Regalo",
       discounts: "Descuentos",
       blog: "Blog",
       employees: "Equipo",
-      config: "Configuracion",
+      config: "Configuración",
       superadmin: "Plataforma",
     };
     const prev = document.title;
@@ -286,7 +286,7 @@ export default function CRMDashboard({ adminToken }: CRMDashboardProps) {
       URL.revokeObjectURL(url);
 
       toast({
-        title: "Exportacion completada",
+        title: "Exportación completada",
         description: `${dataToExport.length} reservas exportadas a CSV`,
       });
     } catch (error: unknown) {

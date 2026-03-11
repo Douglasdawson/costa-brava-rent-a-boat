@@ -44,10 +44,10 @@ const NAVIGATION_ITEMS = [
   { id: "maintenance", label: "Mantenimiento", icon: Wrench, keywords: ["reparacion", "revision"] },
   { id: "inventory", label: "Inventario", icon: Package, keywords: ["stock", "material", "equipo"] },
   { id: "reports", label: "Reportes", icon: BarChart3, keywords: ["informe", "estadistica", "analytics"] },
-  { id: "gallery", label: "Galeria", icon: Camera, keywords: ["foto", "imagen", "photo"] },
+  { id: "gallery", label: "Galería", icon: Camera, keywords: ["foto", "imagen", "photo"] },
   { id: "giftcards", label: "Tarjetas Regalo", icon: Gift, keywords: ["regalo", "gift", "voucher"] },
   { id: "discounts", label: "Descuentos", icon: Percent, keywords: ["descuento", "cupon", "oferta", "promocion"] },
-  { id: "config", label: "Configuracion", icon: Settings, keywords: ["ajustes", "settings", "preferencias"] },
+  { id: "config", label: "Configuración", icon: Settings, keywords: ["ajustes", "settings", "preferencias"] },
 ];
 
 export function CommandPalette({ onNavigate, onNewBooking, onExportCSV, onLogout }: CommandPaletteProps) {
@@ -72,7 +72,7 @@ export function CommandPalette({ onNavigate, onNewBooking, onExportCSV, onLogout
 
   return (
     <CommandDialog open={open} onOpenChange={setOpen}>
-      <CommandInput placeholder="Buscar pagina o accion..." />
+      <CommandInput placeholder="Buscar página o acción..." />
       <CommandList>
         <CommandEmpty>No se encontraron resultados.</CommandEmpty>
 
@@ -107,11 +107,11 @@ export function CommandPalette({ onNavigate, onNewBooking, onExportCSV, onLogout
             Exportar CSV
           </CommandItem>
           <CommandItem
-            value="Cerrar Sesion logout salir"
+            value="Cerrar Sesión logout salir"
             onSelect={() => handleSelect(onLogout)}
           >
             <LogOut className="mr-2 h-4 w-4" />
-            Cerrar Sesion
+            Cerrar Sesión
           </CommandItem>
         </CommandGroup>
       </CommandList>

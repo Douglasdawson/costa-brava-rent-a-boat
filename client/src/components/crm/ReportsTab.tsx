@@ -163,7 +163,7 @@ export function ReportsTab({ adminToken }: ReportsTabProps) {
     link.click();
     URL.revokeObjectURL(url);
 
-    toast({ title: "Exportacion completada", description: `${data.length} registros exportados` });
+    toast({ title: "Exportación completada", description: `${data.length} registros exportados` });
   };
 
   const exportFleetCSV = () => {
@@ -174,7 +174,7 @@ export function ReportsTab({ adminToken }: ReportsTabProps) {
         boatName: "Barco",
         bookings: "Reservas",
         hours: "Horas",
-        utilization: "Utilizacion %",
+        utilization: "Utilización %",
         revenue: "Ingresos",
         maintenanceCost: "Coste Mant.",
         netRevenue: "Ingreso Neto",
@@ -208,7 +208,7 @@ export function ReportsTab({ adminToken }: ReportsTabProps) {
   const maintPieData = maintSummary ? [
     { name: "Preventivo", value: maintSummary.byType.preventive },
     { name: "Correctivo", value: maintSummary.byType.corrective },
-    { name: "Inspeccion", value: maintSummary.byType.inspection },
+    { name: "Inspección", value: maintSummary.byType.inspection },
   ].filter(d => d.value > 0) : [];
 
   const REPORT_TABS = [
@@ -251,7 +251,7 @@ export function ReportsTab({ adminToken }: ReportsTabProps) {
               <SelectContent>
                 <SelectItem value="month">Este Mes</SelectItem>
                 <SelectItem value="season">Temporada</SelectItem>
-                <SelectItem value="year">Este Ano</SelectItem>
+                <SelectItem value="year">Este Año</SelectItem>
               </SelectContent>
             </Select>
             <Button variant="outline" size="sm" onClick={exportFleetCSV} disabled={fleetData.length === 0}>
@@ -297,7 +297,7 @@ export function ReportsTab({ adminToken }: ReportsTabProps) {
                           <TableHead>Barco</TableHead>
                           <TableHead className="text-right">Reservas</TableHead>
                           <TableHead className="text-right">Horas</TableHead>
-                          <TableHead className="text-right">Utilizacion</TableHead>
+                          <TableHead className="text-right">Utilización</TableHead>
                           <TableHead className="text-right">Ingresos</TableHead>
                           <TableHead className="text-right">Mant.</TableHead>
                           <TableHead className="text-right">Neto</TableHead>
@@ -538,7 +538,7 @@ export function ReportsTab({ adminToken }: ReportsTabProps) {
               {maintPieData.length > 0 && (
                 <Card>
                   <CardHeader>
-                    <CardTitle className="text-base font-heading">Distribucion por Tipo</CardTitle>
+                    <CardTitle className="text-base font-heading">Distribución por Tipo</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <ResponsiveContainer width="100%" height={250}>
@@ -627,7 +627,7 @@ export function ReportsTab({ adminToken }: ReportsTabProps) {
                       <TableHeader>
                         <TableRow>
                           <TableHead>Item</TableHead>
-                          <TableHead>Categoria</TableHead>
+                          <TableHead>Categoría</TableHead>
                           <TableHead className="text-right">Disponible</TableHead>
                           <TableHead className="text-right">Total</TableHead>
                           <TableHead>Estado</TableHead>

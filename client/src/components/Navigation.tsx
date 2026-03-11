@@ -8,7 +8,7 @@ import { useLocation, Link } from "wouter";
 import LanguageSelector from "./LanguageSelector";
 import { useTranslations } from "@/lib/translations";
 import { useAuth } from "@/hooks/useAuth";
-import { useBookingModal } from "@/hooks/useBookingModal";
+import { useBookingModal } from "@/hooks/bookingModalContext";
 import { trackBookingFormOpen } from "@/utils/analytics";
 
 export default function Navigation() {

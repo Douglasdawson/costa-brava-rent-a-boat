@@ -91,7 +91,7 @@ export function BoatFormDialog({
             </div>
 
             <div>
-              <Label htmlFor="subtitle">Subtitulo</Label>
+              <Label htmlFor="subtitle">Subtítulo</Label>
               <Input
                 id="subtitle"
                 {...form.register("subtitle")}
@@ -101,21 +101,21 @@ export function BoatFormDialog({
             </div>
 
             <div>
-              <Label htmlFor="description">Descripcion</Label>
+              <Label htmlFor="description">Descripción</Label>
               <Textarea
                 id="description"
                 {...form.register("description")}
-                placeholder="Descripcion detallada del barco..."
+                placeholder="Descripción detallada del barco..."
                 rows={4}
                 data-testid="input-boat-description"
               />
             </div>
           </div>
 
-          {/* Imagenes */}
+          {/* Imágenes */}
           <div className="space-y-4">
             <div className="flex items-center justify-between">
-              <h3 className="text-lg font-semibold font-heading">Imagenes</h3>
+              <h3 className="text-lg font-semibold font-heading">Imágenes</h3>
               {(form.watch("imageGallery") || []).length > 0 && (
                 <Button
                   type="button"
@@ -145,17 +145,17 @@ export function BoatFormDialog({
               <Input
                 id="imageUrl"
                 value={form.watch("imageUrl") || ""}
-                placeholder="Se sincroniza automaticamente con la primera imagen de la galeria"
+                placeholder="Se sincroniza automáticamente con la primera imagen de la galería"
                 data-testid="input-boat-image-url"
                 readOnly
                 className="bg-muted cursor-not-allowed"
               />
               <p className="text-xs text-muted-foreground mt-1">
-                La primera imagen de la galeria se usa como imagen principal en el grid de inicio
+                La primera imagen de la galería se usa como imagen principal en el grid de inicio
               </p>
             </div>
             <div>
-              <Label>Galeria de Imagenes</Label>
+              <Label>Galería de Imágenes</Label>
               <ImageGalleryUploader
                 images={form.watch("imageGallery") || []}
                 onImagesChange={images => {
@@ -176,9 +176,9 @@ export function BoatFormDialog({
             </div>
           </div>
 
-          {/* Caracteristicas Principales */}
+          {/* Características Principales */}
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold font-heading">Caracteristicas Principales</h3>
+            <h3 className="text-lg font-semibold font-heading">Características Principales</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <Label htmlFor="capacity">Capacidad (personas) *</Label>
@@ -216,7 +216,7 @@ export function BoatFormDialog({
                     className="w-4 h-4"
                     data-testid="checkbox-requires-license"
                   />
-                  <Label htmlFor="requiresLicense">Requiere licencia nautica</Label>
+                  <Label htmlFor="requiresLicense">Requiere licencia náutica</Label>
                 </div>
               </div>
               <div className="p-2 -m-2 rounded">
@@ -233,7 +233,7 @@ export function BoatFormDialog({
               </div>
             </div>
             <div>
-              <Label>Caracteristicas (una por linea)</Label>
+              <Label>Características (una por línea)</Label>
               <Textarea
                 placeholder={"Sin licencia requerida\nHasta 5 personas\nGasolina incluida"}
                 rows={4}
@@ -248,9 +248,9 @@ export function BoatFormDialog({
             </div>
           </div>
 
-          {/* Especificaciones Tecnicas */}
+          {/* Especificaciones Técnicas */}
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold font-heading">Especificaciones Tecnicas</h3>
+            <h3 className="text-lg font-semibold font-heading">Especificaciones Técnicas</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <Label>Modelo</Label>
@@ -427,7 +427,7 @@ export function BoatFormDialog({
               <p className="font-medium">Corrige los siguientes errores:</p>
               <ul className="list-disc list-inside mt-1">
                 {Object.entries(form.formState.errors).map(([field, error]) => (
-                  <li key={field}>{field}: {(error as Record<string, unknown>)?.message as string || 'Campo invalido'}</li>
+                  <li key={field}>{field}: {(error as Record<string, unknown>)?.message as string || 'Campo inválido'}</li>
                 ))}
               </ul>
             </div>

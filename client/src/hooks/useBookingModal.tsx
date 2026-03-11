@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useCallback, lazy, Suspense } from "react";
+import { useState, useCallback, lazy, Suspense } from "react";
 import {
   Dialog,
   DialogContent,
@@ -8,22 +8,14 @@ import {
 } from "@/components/ui/dialog";
 import { useTranslations } from "@/lib/translations";
 import { trackBookingFormOpen } from "@/utils/analytics";
+import { BookingModalContext } from "./bookingModalContext";
+import type { BookingPrefillData } from "./bookingModalContext";
+
+// Re-export for backwards compatibility
+export { useBookingModal } from "./bookingModalContext";
+export type { BookingPrefillData } from "./bookingModalContext";
 
 const BookingFormWidget = lazy(() => import("@/components/BookingFormWidget"));
-
-export interface BookingPrefillData {
-  date?: string;
-  time?: string;
-  coupon?: string;
-}
-
-interface BookingModalContextType {
-  isOpen: boolean;
-  openBookingModal: (boatId?: string, prefill?: BookingPrefillData) => void;
-  closeBookingModal: () => void;
-}
-
-const BookingModalContext = createContext<BookingModalContextType | null>(null);
 
 export function BookingModalProvider({ children }: { children: React.ReactNode }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -77,12 +69,4 @@ export function BookingModalProvider({ children }: { children: React.ReactNode }
       </Dialog>
     </BookingModalContext.Provider>
   );
-}
-
-export function useBookingModal(): BookingModalContextType {
-  const context = useContext(BookingModalContext);
-  if (!context) {
-    throw new Error("useBookingModal must be used within a BookingModalProvider");
-  }
-  return context;
 }

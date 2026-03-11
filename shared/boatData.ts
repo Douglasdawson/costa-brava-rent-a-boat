@@ -45,8 +45,8 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
     id: "solar-450",
     name: "Solar 450",
     image: "SOLAR_450_boat_photo_b70eb7e1.png",
-    subtitle: "Sin licencia · 5 personas · Gasolina incluida",
-    description: "Amplio solárium acolchado para tomar el sol entre cala y cala. La Solar 450 es perfecta para familias o grupos de amigos que quieren un día relajado en el mar sin complicaciones. Sin carnet, te enseñamos en 15 minutos. Gasolina, seguro y equipo de seguridad incluidos.",
+    subtitle: "Sin licencia · 5 personas · Para disfrutar del sol",
+    description: "El barco pensado para quienes quieren tomar el sol en el mar. Su solárium acolchado es el más amplio de toda la flota sin licencia: fondea en una cala de agua turquesa cerca de Blanes y relájate como en ningún otro sitio. Sin carnet necesario, te enseñamos a manejarla en 15 minutos. Gasolina, seguro y equipo de seguridad incluidos.",
     specifications: {
       model: "Solar 450",
       length: "4,50m",
@@ -81,15 +81,15 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
     pricing: {
       BAJA: {
         period: "Abril-Junio, Septiembre-Cierre",
-        prices: { "1h": 75, "2h": 115, "3h": 130, "4h": 150, "6h": 190, "8h": 220 }
+        prices: { "1h": 75, "2h": 135, "3h": 155, "4h": 180, "6h": 225, "8h": 270 }
       },
       MEDIA: {
         period: "Julio",
-        prices: { "1h": 85, "2h": 130, "3h": 160, "4h": 180, "6h": 230, "8h": 270 }
+        prices: { "1h": 80, "2h": 140, "3h": 165, "4h": 190, "6h": 235, "8h": 280 }
       },
       ALTA: {
         period: "Agosto",
-        prices: { "1h": 95, "2h": 140, "3h": 170, "4h": 195, "6h": 240, "8h": 290 }
+        prices: { "1h": 85, "2h": 150, "3h": 175, "4h": 200, "6h": 250, "8h": 295 }
       }
     },
     extras: [
@@ -106,8 +106,8 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
     id: "remus-450",
     name: "Remus 450",
     image: "REMUS_450_boat_photo_ec8b926c.png",
-    subtitle: "Sin licencia · 5 personas · Gasolina incluida",
-    description: "Nuestro barco más popular entre familias. Estable, fácil de manejar y con toldo Bi Mini que protege del sol todo el día. Ideal si es tu primera vez: en 15 minutos estarás navegando hacia calas de agua cristalina. Gasolina, seguro y equipo de seguridad incluidos.",
+    subtitle: "Sin licencia · 5 personas · El favorito de parejas y familias",
+    description: "El barco más alquilado de Blanes y la primera elección de parejas y familias con niños. Su toldo Bi Mini cubre toda la embarcación para proteger a los peques del sol, y su estabilidad la hace ideal si es vuestra primera vez en el mar. Perfecto para 2-5 personas que buscan una jornada tranquila en calas de agua cristalina. Te enseñamos a manejarlo en 15 minutos. Gasolina, seguro y equipo de seguridad incluidos.",
     specifications: {
       model: "Remus 450",
       length: "4,5m",
@@ -142,15 +142,15 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
     pricing: {
       BAJA: {
         period: "Abril-Junio, Septiembre-Cierre",
-        prices: { "1h": 75, "2h": 115, "3h": 130, "4h": 150, "6h": 190, "8h": 220 }
+        prices: { "1h": 75, "2h": 135, "3h": 155, "4h": 180, "6h": 225, "8h": 270 }
       },
       MEDIA: {
         period: "Julio",
-        prices: { "1h": 85, "2h": 130, "3h": 160, "4h": 180, "6h": 230, "8h": 270 }
+        prices: { "1h": 80, "2h": 140, "3h": 165, "4h": 190, "6h": 235, "8h": 280 }
       },
       ALTA: {
         period: "Agosto",
-        prices: { "1h": 95, "2h": 140, "3h": 170, "4h": 195, "6h": 240, "8h": 290 }
+        prices: { "1h": 85, "2h": 150, "3h": 175, "4h": 200, "6h": 250, "8h": 295 }
       }
     },
     extras: [
@@ -167,8 +167,8 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
     id: "remus-450-ii",
     name: "Remus 450 II",
     image: "REMUS_450_boat_photo_ec8b926c.png",
-    subtitle: "Sin licencia · 5 personas · Gasolina incluida",
-    description: "Misma confianza que la Remus 450, con disponibilidad extra para los días más demandados. Perfecta si la Remus 450 ya está reservada y no quieres cambiar de modelo. Mismo confort, misma estabilidad, misma facilidad de manejo. Gasolina, seguro y equipo de seguridad incluidos.",
+    subtitle: "Sin licencia · 5 personas · Disponibilidad extra",
+    description: "Mismo modelo que nuestro barco más popular, con disponibilidad garantizada incluso en pleno agosto. Ideal si la Remus 450 ya está reservada: disfrutas del mismo confort, la misma estabilidad y el toldo Bi Mini que tanto valoran las familias en la Costa Brava. Gasolina, seguro y equipo de seguridad incluidos.",
     specifications: {
       model: "Remus 450",
       length: "4,5m",
@@ -203,15 +203,15 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
     pricing: {
       BAJA: {
         period: "Abril-Junio, Septiembre-Cierre",
-        prices: { "1h": 75, "2h": 115, "3h": 130, "4h": 150, "6h": 190, "8h": 220 }
+        prices: { "1h": 75, "2h": 135, "3h": 155, "4h": 180, "6h": 225, "8h": 270 }
       },
       MEDIA: {
         period: "Julio",
-        prices: { "1h": 85, "2h": 130, "3h": 160, "4h": 180, "6h": 230, "8h": 270 }
+        prices: { "1h": 80, "2h": 140, "3h": 165, "4h": 190, "6h": 235, "8h": 280 }
       },
       ALTA: {
         period: "Agosto",
-        prices: { "1h": 95, "2h": 140, "3h": 170, "4h": 195, "6h": 240, "8h": 290 }
+        prices: { "1h": 85, "2h": 150, "3h": 175, "4h": 200, "6h": 250, "8h": 295 }
       }
     },
     extras: [
@@ -228,8 +228,8 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
     id: "astec-400",
     name: "Astec 400",
     image: "ASTEC_400_boat_photo_9dde16a8.png",
-    subtitle: "Sin licencia · 4 personas · Gasolina incluida",
-    description: "La opción más económica y perfecta para parejas o familias pequeñas. Compacta pero cómoda, con solárium acolchado y toldo para disfrutar sin prisas. Si sois 2-4 personas y queréis explorar calas cercanas, esta es vuestra mejor opción. Gasolina, seguro y equipo de seguridad incluidos.",
+    subtitle: "Sin licencia · 4 personas · El mejor precio por persona",
+    description: "La opción más económica para parejas y familias que quieren disfrutar del mar sin gastar de más. Al ser 2-4 personas, el precio por persona es el más bajo de toda la flota. Estable, fácil de manejar y con toldo Bi Mini para proteger a los peques del sol. Fondea en calas tranquilas cerca de Blanes sin necesidad de carnet náutico. Gasolina, seguro y equipo de seguridad incluidos.",
     specifications: {
       model: "Astec 400",
       length: "4m",
@@ -264,15 +264,15 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
     pricing: {
       BAJA: {
         period: "Abril-Junio, Septiembre-Cierre",
-        prices: { "1h": 70, "2h": 105, "3h": 120, "4h": 135, "6h": 190, "8h": 225 }
+        prices: { "1h": 70, "2h": 125, "3h": 145, "4h": 165, "6h": 210, "8h": 250 }
       },
       MEDIA: {
         period: "Julio",
-        prices: { "1h": 80, "2h": 120, "3h": 145, "4h": 165, "6h": 235, "8h": 280 }
+        prices: { "1h": 75, "2h": 130, "3h": 155, "4h": 175, "6h": 220, "8h": 260 }
       },
       ALTA: {
         period: "Agosto",
-        prices: { "1h": 90, "2h": 130, "3h": 155, "4h": 180, "6h": 245, "8h": 300 }
+        prices: { "1h": 80, "2h": 140, "3h": 165, "4h": 185, "6h": 235, "8h": 275 }
       }
     },
     extras: [
@@ -290,8 +290,8 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
     id: "astec-480",
     name: "Astec 480",
     image: "ASTEC_400_boat_photo_9dde16a8.png",
-    subtitle: "Sin licencia · 5 personas · Gasolina incluida",
-    description: "La embarcación sin licencia más equipada de nuestra flota. Con equipo de música bluetooth, solárium acolchado y 4,80m de eslora, es la opción premium para quienes quieren máximo confort sin necesidad de carnet. Perfecta para un día completo en el mar. Gasolina, seguro y equipo de seguridad incluidos.",
+    subtitle: "Sin licencia · 5 personas · Premium con bluetooth",
+    description: "La experiencia premium sin necesidad de carnet náutico. Con 4,80m de eslora, equipo de música bluetooth, solárium acolchado y el doble de depósito de combustible, es la embarcación sin licencia más completa de Blanes. Navega con tu música favorita hacia las calas más bonitas de la Costa Brava. Gasolina, seguro y equipo de seguridad incluidos.",
     specifications: {
       model: "Fibra Astec 480",
       length: "4,80m",
@@ -327,15 +327,15 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
     pricing: {
       BAJA: {
         period: "Abril-Junio, Septiembre-Cierre",
-        prices: { "1h": 80, "2h": 130, "3h": 155, "4h": 180, "6h": 260, "8h": 300 }
+        prices: { "1h": 90, "2h": 160, "3h": 190, "4h": 220, "6h": 280, "8h": 340 }
       },
       MEDIA: {
         period: "Julio",
-        prices: { "1h": 90, "2h": 150, "3h": 190, "4h": 220, "6h": 300, "8h": 350 }
+        prices: { "1h": 95, "2h": 165, "3h": 200, "4h": 230, "6h": 290, "8h": 350 }
       },
       ALTA: {
         period: "Agosto",
-        prices: { "1h": 100, "2h": 170, "3h": 200, "4h": 230, "6h": 325, "8h": 380 }
+        prices: { "1h": 100, "2h": 175, "3h": 210, "4h": 240, "6h": 300, "8h": 360 }
       }
     },
     extras: [
@@ -352,8 +352,8 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
     id: "mingolla-brava-19",
     name: "Mingolla Brava 19",
     image: "MINGOLLA_BRAVA_19_boat_c0e4a5b5.png",
-    subtitle: "Con licencia · 6 personas · 80cv",
-    description: "Diseño deportivo italiano con 80cv que te permiten llegar a Lloret en 15 minutos o Tossa en 30. Equipada con GPS, sonda, ducha de agua dulce y bluetooth. La favorita de quienes buscan velocidad sin renunciar a la elegancia. Requiere licencia náutica (PER/PNB).",
+    subtitle: "Con licencia · 6 personas · Lloret en 15 min, Tossa en 30",
+    description: "La lancha ideal para explorar toda la costa: Lloret de Mar en 15 minutos, Tossa de Mar en media hora. Con 80cv, GPS y sonda náutica, llegas a calas que otros barcos no alcanzan. Ducha de agua dulce, bluetooth y arco inox para deportes acuáticos. Todo el equipamiento para recorrer la Costa Brava con total autonomía. Requiere licencia náutica (PER/PNB).",
     specifications: {
       model: "Brava 19",
       length: "5,99m",
@@ -415,8 +415,8 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
     id: "trimarchi-57s",
     name: "Trimarchi 57S",
     image: "Trimarchi_57S_luxury_boat_0ef0159a.png",
-    subtitle: "Con licencia · 7 personas · 110cv",
-    description: "110cv de potencia pura. La Trimarchi 57S es para quienes quieren sentir la velocidad sobre el agua. Con solárium en proa y popa, mesa central para comer en una cala, y espacio para 7 personas. La combinación perfecta de adrenalina y relax. Requiere licencia náutica (PER/PNB).",
+    subtitle: "Con licencia · 7 personas · Adrenalina para grupos",
+    description: "110cv de diseño italiano para grupos de hasta 7 personas que quieren adrenalina y confort a partes iguales. Solárium doble en proa y popa para tomar el sol, mesa central para comer fondeados en una cala y la potencia para llegar a cualquier rincón entre Blanes y Tossa de Mar en minutos. La embarcación que elige quien quiere sentir la velocidad sin renunciar a nada. Requiere licencia náutica (PER/PNB).",
     specifications: {
       model: "Trimarchi 57S",
       length: "5,7m",
@@ -478,8 +478,8 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
     id: "pacific-craft-625",
     name: "Pacific Craft 625",
     image: "PACIFIC_CRAFT_625_boat_fbe4f4d0.png",
-    subtitle: "Con licencia · 7 personas · 115cv",
-    description: "Nuestra embarcación estrella. 6,24m de eslora, motor Yamaha 115cv y espacio de sobra para 7 personas con total comodidad. Mesa para comer en una cala, solárium en proa y popa, ducha de agua dulce. Si buscas la mejor experiencia náutica en la Costa Brava, esta es tu barco. Requiere licencia náutica (PER/PNB).",
+    subtitle: "Con licencia · 7 personas · La experiencia de lujo",
+    description: "Lo mejor que puedes alquilar en Blanes. 6,24 metros de eslora, motor Yamaha 115cv y espacio de lujo para 7 personas. Solárium doble, mesa para comer fondeados frente a una cala, ducha de agua dulce y mando electrónico. Para quienes no quieren compromisos y buscan la experiencia náutica más completa de la Costa Brava. Requiere licencia náutica (PER/PNB).",
     specifications: {
       model: "Pacific Craft 625 Open",
       length: "6,24m",
@@ -545,8 +545,8 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
     id: "excursion-privada",
     name: "Excursion Privada con Capitan",
     image: "PACIFIC_CRAFT_625_boat_fbe4f4d0.png",
-    subtitle: "Con patrón · 7 personas · Sin licencia necesaria",
-    description: "Tú solo disfrutas. Nuestro patrón profesional te lleva a las mejores calas, cuevas y rincones secretos de la costa entre Blanes y Tossa de Mar. Fondearéis en la cala perfecta del día, elegida según las condiciones del mar. Ideal para celebraciones, parejas o familias que quieren una experiencia exclusiva sin preocuparse de nada.",
+    subtitle: "Con patrón · 7 personas · Experiencia VIP",
+    description: "Tú solo disfrutas: nuestro patrón profesional te lleva a calas secretas, cuevas marinas y rincones inaccesibles a pie entre Blanes y Tossa de Mar. Fondearéis en la cala perfecta del día, elegida según viento y corrientes. Ideal para celebraciones, aniversarios o familias que quieren una excursión privada exclusiva por la Costa Brava sin preocuparse de nada.",
     specifications: {
       model: "Pacific Craft 625 Open",
       length: "6,24m",

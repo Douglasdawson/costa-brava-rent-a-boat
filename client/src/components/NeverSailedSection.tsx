@@ -1,6 +1,7 @@
 import { MapPin, GraduationCap, Compass } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTranslations } from "@/lib/translations";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 const steps = [
   { icon: MapPin, titleKey: "step1Title", descKey: "step1Desc" },
@@ -10,6 +11,7 @@ const steps = [
 
 export default function NeverSailedSection() {
   const t = useTranslations();
+  const { ref: revealRef, isVisible } = useScrollReveal();
 
   const handleCTA = () => {
     const fleet = document.getElementById("fleet");
@@ -19,7 +21,7 @@ export default function NeverSailedSection() {
   };
 
   return (
-    <section className="py-16 md:py-24 bg-white">
+    <section ref={revealRef} className={`py-16 md:py-24 bg-white transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
       <div className="container mx-auto px-4 max-w-4xl text-center">
         {/* Header */}
         <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-3">

@@ -126,7 +126,7 @@ export function CustomersTab({
       return response.json();
     },
     onSuccess: (data: { message: string }) => {
-      toast({ title: "Sincronizacion completada", description: data.message });
+      toast({ title: "Sincronización completada", description: data.message });
       queryClient.invalidateQueries({ queryKey: ["/api/admin/customers"] });
     },
     onError: (err: Error) => {
@@ -148,7 +148,7 @@ export function CustomersTab({
       link.download = `clientes_${format(new Date(), "yyyy-MM-dd")}.csv`;
       link.click();
       URL.revokeObjectURL(url);
-      toast({ title: "Exportacion completada", description: "Archivo CSV descargado" });
+      toast({ title: "Exportación completada", description: "Archivo CSV descargado" });
     } catch {
       toast({ variant: "destructive", title: "Error", description: "No se pudo exportar" });
     }
@@ -179,7 +179,7 @@ export function CustomersTab({
               <div className="flex-1 relative">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground/70 w-4 h-4" />
                 <Input
-                  placeholder="Buscar por nombre, email, telefono..."
+                  placeholder="Buscar por nombre, email, teléfono..."
                   value={searchQuery}
                   onChange={(e) => handleSearchChange(e.target.value)}
                   className="pl-10"
@@ -202,9 +202,9 @@ export function CustomersTab({
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="all">Todas</SelectItem>
-                  <SelectItem value="Espanola">Espanola</SelectItem>
+                  <SelectItem value="Espanola">Española</SelectItem>
                   <SelectItem value="Francesa">Francesa</SelectItem>
-                  <SelectItem value="Britanica">Britanica</SelectItem>
+                  <SelectItem value="Britanica">Británica</SelectItem>
                   <SelectItem value="Alemana">Alemana</SelectItem>
                   <SelectItem value="Holandesa">Holandesa</SelectItem>
                   <SelectItem value="Belga">Belga</SelectItem>
@@ -257,7 +257,7 @@ export function CustomersTab({
               description={
                 total === 0 && !debouncedSearch && segmentFilter === "all"
                   ? 'Usa "Sincronizar desde Reservas" para importar clientes'
-                  : "Prueba a ajustar los filtros de busqueda"
+                  : "Prueba a ajustar los filtros de búsqueda"
               }
             />
           ) : (
@@ -301,7 +301,7 @@ export function CustomersTab({
                       onClick={() => handleSort("lastBookingDate")}
                     >
                       <div className="flex items-center gap-1">
-                        Ultima Reserva
+                        Última Reserva
                         {renderSortIcon("lastBookingDate")}
                       </div>
                     </TableHead>
@@ -444,7 +444,7 @@ export function CustomersTab({
                       </span>
                     </div>
                     <div className="text-right">
-                      <span className="text-muted-foreground">Ultima:</span>
+                      <span className="text-muted-foreground">Última:</span>
                       <span className="ml-1 font-medium text-xs">
                         {customer.lastBookingDate
                           ? format(new Date(customer.lastBookingDate), "dd/MM/yy")
@@ -485,7 +485,7 @@ export function CustomersTab({
             <div className="text-2xl font-bold">
               {isLoading ? "..." : error ? "Error" : total}
             </div>
-            <p className="text-xs text-muted-foreground">Clientes unicos en CRM</p>
+            <p className="text-xs text-muted-foreground">Clientes únicos en CRM</p>
           </CardContent>
         </Card>
 

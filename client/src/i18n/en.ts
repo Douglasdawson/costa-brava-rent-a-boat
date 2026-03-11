@@ -49,8 +49,8 @@ export const en: Translations = {
     hours: '1-8 hours',
     hoursWithLicense: '2-8h',
     hoursTooltip: 'Choose between 2h, 4h, or 8h to rent our {boatName}',
-    withLicense: 'With license',
-    withoutLicense: 'Without license',
+    withLicense: 'With licence',
+    withoutLicense: 'Without licence',
     available: 'Available',
     occupied: 'Occupied',
     more: 'more',
@@ -65,8 +65,8 @@ export const en: Translations = {
     title: 'Why Choose Costa Brava Rent a Boat',
     subtitle: 'Everything you need for a perfect sea experience',
     withoutLicense: {
-      title: 'No License, No Problem',
-      description: 'Reach hidden coves with no boating license. We teach you in 15 minutes.',
+      title: 'No Licence, No Problem',
+      description: 'Reach hidden coves with no boating licence. We teach you in 15 minutes.',
     },
     withLicense: {
       title: 'Licensed Boats',
@@ -74,7 +74,7 @@ export const en: Translations = {
     },
     includes: {
       title: 'No Price Surprises',
-      description: 'Fuel included on license-free boats. The price you see is the price you pay.',
+      description: 'Fuel included on licence-free boats. The price you see is the price you pay.',
     },
     security: {
       title: 'Maximum Safety',
@@ -117,7 +117,7 @@ export const en: Translations = {
     step2Desc: 'We teach you everything you need to sail safely.',
     step3Title: 'Enjoy the coves',
     step3Desc: 'Sail freely through the best coves of the Costa Brava.',
-    cta: 'See License-Free Boats',
+    cta: 'See Licence-Free Boats',
   },
   contact: {
     title: 'Got Questions?',
@@ -172,7 +172,7 @@ export const en: Translations = {
   },
   footer: {
     company: 'Costa Brava Rent a Boat - Blanes',
-    description: 'Licensed and license-free boat rental in Blanes, Costa Brava.',
+    description: 'Licensed and licence-free boat rental in Blanes, Costa Brava.',
     quickLinks: 'Quick Links',
     contact: 'Contact',
     followUs: 'Follow Us',
@@ -259,8 +259,8 @@ export const en: Translations = {
     preferredTime: 'Start Time',
     selectTime: 'Select...',
     boat: 'Boat',
-    withLicense: 'With License',
-    withoutLicense: 'Without License',
+    withLicense: 'With Licence',
+    withoutLicense: 'Without Licence',
     select: 'Select...',
     pricesUpdateByDate: 'Prices update based on the selected date',
     sendBookingRequest: 'SEND BOOKING REQUEST',
@@ -347,10 +347,10 @@ export const en: Translations = {
       },
     },
     licenses: {
-      title: 'Licenses and Requirements',
+      title: 'Licences and Requirements',
       questions: {
-        withoutLicense: 'Can I rent without a boating license?',
-        withLicense: 'What licenses do you accept for large boats?',
+        withoutLicense: 'Can I rent without a boating licence?',
+        withLicense: 'What licences do you accept for large boats?',
         minAge: 'What is the minimum age to rent?',
         experience: 'Do I need previous sailing experience?',
       },
@@ -359,7 +359,7 @@ export const en: Translations = {
       title: 'What\'s Included in the Rental',
       questions: {
         included: 'What is included in the price?',
-        fuel: 'Do I have to pay extra fuel?',
+        fuel: 'Do I have to pay for extra fuel?',
         extras: 'What extras can I add?',
         bring: 'What should I bring?',
       },
@@ -417,7 +417,7 @@ export const en: Translations = {
     categories: 'Categories',
     legal: 'Legal',
     faq: 'FAQ',
-    categoryLicenseFree: 'License-Free Boats',
+    categoryLicenseFree: 'Licence-Free Boats',
     categoryLicensed: 'Licensed Boats',
     locationBlanes: 'Blanes',
     locationLloret: 'Lloret de Mar',
@@ -461,7 +461,7 @@ export const en: Translations = {
   },
   giftCardBanner: {
     title: 'Give a unique experience on the sea',
-    subtitle: 'Gift cards from 50EUR. The perfect gift for any occasion.',
+    subtitle: 'Gift cards from €50. The perfect gift for any occasion.',
     cta: 'Buy gift card',
   },
   codeValidation: {
@@ -532,9 +532,9 @@ export const en: Translations = {
     specDeposit: 'Deposit:',
     equipmentIncluded: 'Equipment Included',
     noEquipment: 'No equipment available',
-    licenseFreeAdvantages: 'License-Free Boat Advantages',
+    licenseFreeAdvantages: 'Licence-Free Boat Advantages',
     totalAccessibility: 'Total Accessibility',
-    noLicenseNeeded: 'No license or qualification needed',
+    noLicenseNeeded: 'No licence or qualification needed',
     quickLearning: 'Quick learning (15 minutes)',
     lowerCost: 'Lower rental cost',
     perfectBeginners: 'Perfect for beginners',
@@ -547,9 +547,9 @@ export const en: Translations = {
     extrasNote: 'You can add any of these extras when completing your online booking or directly at the port before departure.',
     importantInfo: 'Important Information',
     essentialDoc: 'Essential: Bring a valid ID or passport',
-    essentialDocLicense: ' and original navigation license',
-    licenseRequired: 'Nautical license required',
-    noLicenseRequired: 'No nautical license needed',
+    essentialDocLicense: ' and original navigation licence',
+    licenseRequired: 'Nautical licence required',
+    noLicenseRequired: 'No nautical licence needed',
     idealForGroups: 'Ideal for families and groups of up to {capacity} people',
     perfectExplore: 'Perfect for exploring the coves of Costa Brava',
     fuelInsuranceIncluded: 'Fuel, insurance and safety equipment included',
@@ -577,9 +577,9 @@ export const en: Translations = {
     stepConfirm: 'Confirm',
     estimatedTime: '~2 min',
     chooseYourBoat: 'Which boat suits you?',
-    haveNauticalLicense: 'Do you have a nautical license?',
-    withoutLicense: 'Without license',
-    withLicense: 'With license',
+    haveNauticalLicense: 'Do you have a nautical licence?',
+    withoutLicense: 'Without licence',
+    withLicense: 'With licence',
     selectABoat: 'Select a boat',
     selectDate: 'Select date',
     yourTrip: 'Your trip',
@@ -942,7 +942,7 @@ export const en: Translations = {
 
   comparison: {
     title: 'With or without a licence?',
-    subtitle: 'You don\'t need a license to enjoy the sea. But if you have one, we have more powerful boats.',
+    subtitle: 'You don\'t need a licence to enjoy the sea. But if you have one, we have more powerful boats.',
     withoutLicense: 'Without licence',
     withLicense: 'With licence',
     withoutLicenseDesc: 'We teach you in 15 minutes. Fuel included. Perfect for families.',
@@ -1038,17 +1038,17 @@ export const en: Translations = {
       {
         id: 'precios',
         question: 'What are the rental prices?',
-        answer: 'License-free boats from 70€ with fuel included (1h, 2h, 3h, 4h, 6h or full day). Licensed boats from 150€ without fuel (2h, 4h, 8h). Prices vary by season (July/August) and boat.',
+        answer: 'Licence-free boats from 70€ with fuel included (1h, 2h, 3h, 4h, 6h or full day). Licensed boats from 150€ without fuel (2h, 4h, 8h). Prices vary by season (July/August) and boat.',
       },
       {
         id: 'sin-licencia',
-        question: 'Can I rent a boat without a boating license?',
-        answer: 'Yes! We have several perfect license-free boats up to 15 HP. You only need to be over 18. Before departure we give you a full briefing so you can navigate safely.',
+        question: 'Can I rent a boat without a boating licence?',
+        answer: 'Yes! We have several perfect licence-free boats up to 15 HP. You only need to be over 18. Before departure we give you a full briefing so you can navigate safely.',
       },
       {
         id: 'incluye',
         question: 'What is included in the price?',
-        answer: 'All rentals include: fully equipped boat, fuel (on license-free boats), life jackets, safety kit, anchor, swim ladder, usage instructions and basic insurance.',
+        answer: 'All rentals include: fully equipped boat, fuel (on licence-free boats), life jackets, safety kit, anchor, swim ladder, usage instructions and basic insurance.',
       },
       {
         id: 'cancelacion',
@@ -1058,7 +1058,7 @@ export const en: Translations = {
       {
         id: 'donde-navegar',
         question: 'Where can I navigate?',
-        answer: 'License-free boats: from Blanes to Fenals Beach northward and the end of Blanes beach southward, always within 2 miles of the coast. Licensed boats: wider range, up to Sant Feliu de Guíxols and beyond.',
+        answer: 'Licence-free boats: from Blanes to Fenals Beach northward and the end of Blanes beach southward, always within 2 miles of the coast. Licensed boats: wider range, up to Sant Feliu de Guíxols and beyond.',
       },
       {
         id: 'mal-tiempo',
@@ -1068,7 +1068,7 @@ export const en: Translations = {
       {
         id: 'experiencia',
         question: 'Do I need previous experience?',
-        answer: 'No, none at all. Before setting sail we give you a complete explanation of the boat (10-15 min). Our license-free boats are very easy to handle.',
+        answer: 'No, none at all. Before setting sail we give you a complete explanation of the boat (10-15 min). Our licence-free boats are very easy to handle.',
       },
       {
         id: 'comida-bebida',
@@ -1164,7 +1164,7 @@ export const en: Translations = {
   },
   reciprocity: {
     captainTip: "Captain's tip",
-    captainTipText: 'If it is your first time, choose a license-free boat for 4h in the morning. The sea is calmer and you will have plenty of time to explore 2-3 coves.',
+    captainTipText: 'If it is your first time, choose a licence-free boat for 4h in the morning. The sea is calmer and you will have plenty of time to explore 2-3 coves.',
     whatToBring: 'What to bring on board',
     sunscreen: 'Biodegradable sunscreen (protect the sea)',
     towels: 'Towels and swimwear',

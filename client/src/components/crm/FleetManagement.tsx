@@ -371,7 +371,7 @@ export function FleetManagement({ adminToken }: FleetManagementProps) {
   return (
     <div className="space-y-4 sm:space-y-6">
       <div className="flex items-center justify-between">
-        <h2 className="text-xl sm:text-2xl font-bold font-heading">Gestion de Flota</h2>
+        <h2 className="text-xl sm:text-2xl font-bold font-heading">Gestión de Flota</h2>
         <Button
           onClick={() => {
             resetDialog();
@@ -418,9 +418,9 @@ export function FleetManagement({ adminToken }: FleetManagementProps) {
       <AlertDialog open={!!deactivateTarget} onOpenChange={(open) => !open && setDeactivateTarget(null)}>
         <AlertDialogContent>
           <AlertDialogHeader>
-            <AlertDialogTitle>Eliminar embarcacion</AlertDialogTitle>
+            <AlertDialogTitle>Eliminar embarcación</AlertDialogTitle>
             <AlertDialogDescription>
-              Estas seguro de eliminar {deactivateTarget?.name}? Esta accion es permanente y no se puede deshacer.
+              ¿Estás seguro de eliminar {deactivateTarget?.name}? Esta acción es permanente y no se puede deshacer.
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>

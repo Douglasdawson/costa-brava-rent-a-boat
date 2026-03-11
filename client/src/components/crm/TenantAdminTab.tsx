@@ -98,7 +98,7 @@ export function TenantAdminTab({ adminToken }: TenantAdminTabProps) {
       <div className="flex items-center justify-between">
         <h2 className="text-xl font-bold font-heading flex items-center gap-2">
           <Settings className="w-5 h-5" />
-          Configuracion del Panel
+          Configuración del Panel
         </h2>
         <div className="flex gap-1 bg-muted rounded-lg p-1">
           <button
@@ -153,7 +153,7 @@ function CompanySettingsSection({
     queryKey: ["/api/tenant/settings"],
     queryFn: async () => {
       const res = await fetch("/api/tenant/settings", { headers });
-      if (!res.ok) throw new Error("Error al cargar configuracion");
+      if (!res.ok) throw new Error("Error al cargar configuración");
       return res.json();
     },
   });
@@ -190,7 +190,7 @@ function CompanySettingsSection({
       queryClient.setQueryData(["/api/tenant/settings"], data);
       // Update sessionStorage with new name
       sessionStorage.setItem("tenantName", data.tenant.name);
-      toast({ title: "Configuracion guardada correctamente" });
+      toast({ title: "Configuración guardada correctamente" });
     },
     onError: (error: Error) => {
       toast({ variant: "destructive", title: "Error", description: error.message });
@@ -545,7 +545,7 @@ function TeamMembersSection({
         </p>
         <Button onClick={handleCreate} size="sm">
           <Plus className="w-4 h-4 mr-2" />
-          Anadir usuario
+          Añadir usuario
         </Button>
       </div>
 
@@ -570,7 +570,7 @@ function TeamMembersSection({
                       <TableHead>Email</TableHead>
                       <TableHead>Rol</TableHead>
                       <TableHead>Estado</TableHead>
-                      <TableHead>Ultimo acceso</TableHead>
+                      <TableHead>Último acceso</TableHead>
                       <TableHead className="text-right">Acciones</TableHead>
                     </TableRow>
                   </TableHeader>
@@ -737,7 +737,7 @@ function TeamMembersSection({
         <DialogContent>
           <DialogHeader>
             <DialogTitle>
-              {editingMember ? "Editar usuario" : "Anadir usuario"}
+              {editingMember ? "Editar usuario" : "Añadir usuario"}
             </DialogTitle>
           </DialogHeader>
           <div className="space-y-4 py-2">
@@ -757,7 +757,7 @@ function TeamMembersSection({
                   id="m-last"
                   value={formData.lastName}
                   onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
-                  placeholder="Garcia"
+                  placeholder="García"
                 />
               </div>
             </div>

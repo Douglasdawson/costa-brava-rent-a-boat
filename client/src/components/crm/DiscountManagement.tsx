@@ -87,7 +87,7 @@ export function DiscountManagement({ adminToken }: DiscountManagementProps) {
     queryKey: ["/api/admin/discounts"],
     queryFn: async () => {
       const res = await fetch("/api/admin/discounts", { headers });
-      if (!res.ok) throw new Error("Error al cargar codigos de descuento");
+      if (!res.ok) throw new Error("Error al cargar códigos de descuento");
       return res.json();
     },
   });
@@ -108,7 +108,7 @@ export function DiscountManagement({ adminToken }: DiscountManagementProps) {
       });
       if (!res.ok) {
         const error = await res.json();
-        throw new Error(error.message || "Error al crear el codigo");
+        throw new Error(error.message || "Error al crear el código");
       }
       return res.json();
     },
@@ -132,7 +132,7 @@ export function DiscountManagement({ adminToken }: DiscountManagementProps) {
       });
       if (!res.ok) {
         const error = await res.json();
-        throw new Error(error.message || "Error al desactivar el codigo");
+        throw new Error(error.message || "Error al desactivar el código");
       }
       return res.json();
     },
@@ -154,7 +154,7 @@ export function DiscountManagement({ adminToken }: DiscountManagementProps) {
       });
       if (!res.ok) {
         const error = await res.json();
-        throw new Error(error.message || "Error al lanzar la campana");
+        throw new Error(error.message || "Error al lanzar la campaña");
       }
       return res.json() as Promise<CampaignResult>;
     },
@@ -163,8 +163,8 @@ export function DiscountManagement({ adminToken }: DiscountManagementProps) {
       setCampaignData(data);
       setShowCampaignResults(true);
       toast({
-        title: "Campana pre-temporada completada",
-        description: `${data.codesGenerated} codigos generados para ${data.customersFound} clientes`,
+        title: "Campaña pre-temporada completada",
+        description: `${data.codesGenerated} códigos generados para ${data.customersFound} clientes`,
       });
     },
     onError: (error: Error) => {
@@ -236,11 +236,11 @@ export function DiscountManagement({ adminToken }: DiscountManagementProps) {
             ) : (
               <Megaphone className="w-4 h-4 mr-2" />
             )}
-            Lanzar campana pre-temporada
+            Lanzar campaña pre-temporada
           </Button>
           <Button size="sm" onClick={() => setShowCreateDialog(true)}>
             <Plus className="w-4 h-4 mr-2" />
-            Nuevo codigo
+            Nuevo código
           </Button>
         </div>
       </div>
@@ -298,14 +298,14 @@ export function DiscountManagement({ adminToken }: DiscountManagementProps) {
       ) : filteredCodes.length === 0 ? (
         <div className="flex flex-col items-center justify-center py-12 text-center">
           <Percent className="w-12 h-12 text-muted-foreground/50 mb-4" />
-          <p className="text-lg font-heading font-medium text-foreground mb-1">No hay codigos de descuento</p>
+          <p className="text-lg font-heading font-medium text-foreground mb-1">No hay códigos de descuento</p>
           <p className="text-sm text-muted-foreground mb-4">
-            {filter !== "all" ? "No hay codigos con este filtro" : "Crea tu primer codigo de descuento"}
+            {filter !== "all" ? "No hay códigos con este filtro" : "Crea tu primer código de descuento"}
           </p>
           {filter === "all" && (
             <Button size="sm" onClick={() => setShowCreateDialog(true)}>
               <Plus className="w-4 h-4 mr-2" />
-              Crear primer codigo
+              Crear primer código
             </Button>
           )}
         </div>
@@ -360,7 +360,7 @@ export function DiscountManagement({ adminToken }: DiscountManagementProps) {
                           <TableCell className="text-sm">
                             {code.expiresAt
                               ? format(new Date(code.expiresAt), "dd/MM/yyyy")
-                              : "Sin expiracion"}
+                              : "Sin expiración"}
                           </TableCell>
                           <TableCell className="text-sm">
                             {format(new Date(code.createdAt), "dd/MM/yyyy")}
@@ -419,7 +419,7 @@ export function DiscountManagement({ adminToken }: DiscountManagementProps) {
                     <span>
                       {code.expiresAt
                         ? `Expira: ${format(new Date(code.expiresAt), "dd/MM/yyyy")}`
-                        : "Sin expiracion"}
+                        : "Sin expiración"}
                     </span>
                     {code.isActive && (
                       <Button
@@ -455,7 +455,7 @@ export function DiscountManagement({ adminToken }: DiscountManagementProps) {
           <DialogHeader>
             <DialogTitle className="font-heading">Crear Código de Descuento</DialogTitle>
             <DialogDescription>
-              Introduce los datos del nuevo codigo de descuento
+              Introduce los datos del nuevo código de descuento
             </DialogDescription>
           </DialogHeader>
           <div className="space-y-4">
@@ -469,7 +469,7 @@ export function DiscountManagement({ adminToken }: DiscountManagementProps) {
                 maxLength={30}
               />
               <p className="text-xs text-muted-foreground mt-1">
-                Solo letras mayusculas, numeros y guiones
+                Solo letras mayúsculas, números y guiones
               </p>
             </div>
             <div>
@@ -484,7 +484,7 @@ export function DiscountManagement({ adminToken }: DiscountManagementProps) {
               />
             </div>
             <div>
-              <Label htmlFor="discount-max-uses">Usos maximos</Label>
+              <Label htmlFor="discount-max-uses">Usos máximos</Label>
               <Input
                 id="discount-max-uses"
                 type="number"
@@ -500,11 +500,11 @@ export function DiscountManagement({ adminToken }: DiscountManagementProps) {
                 type="email"
                 value={newCustomerEmail}
                 onChange={(e) => setNewCustomerEmail(e.target.value)}
-                placeholder="Dejar vacio para codigo universal"
+                placeholder="Dejar vacío para código universal"
               />
             </div>
             <div>
-              <Label htmlFor="discount-expires">Fecha de expiracion (opcional)</Label>
+              <Label htmlFor="discount-expires">Fecha de expiración (opcional)</Label>
               <Input
                 id="discount-expires"
                 type="date"
@@ -524,7 +524,7 @@ export function DiscountManagement({ adminToken }: DiscountManagementProps) {
               {createMutation.isPending ? (
                 <Loader2 className="w-4 h-4 mr-2 animate-spin" />
               ) : null}
-              Crear codigo
+              Crear código
             </Button>
           </DialogFooter>
         </DialogContent>
@@ -534,10 +534,10 @@ export function DiscountManagement({ adminToken }: DiscountManagementProps) {
       <Dialog open={showCampaignResults} onOpenChange={setShowCampaignResults}>
         <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
           <DialogHeader>
-            <DialogTitle className="font-heading">Resultados de la Campana Pre-temporada</DialogTitle>
+            <DialogTitle className="font-heading">Resultados de la Campaña Pre-temporada</DialogTitle>
             <DialogDescription>
               {campaignData
-                ? `${campaignData.codesGenerated} codigos generados para ${campaignData.customersFound} clientes`
+                ? `${campaignData.codesGenerated} códigos generados para ${campaignData.customersFound} clientes`
                 : ""}
             </DialogDescription>
           </DialogHeader>
@@ -582,9 +582,9 @@ export function DiscountManagement({ adminToken }: DiscountManagementProps) {
       <AlertDialog open={showCampaignConfirm} onOpenChange={setShowCampaignConfirm}>
         <AlertDialogContent>
           <AlertDialogHeader>
-            <AlertDialogTitle>Lanzar campana pre-temporada</AlertDialogTitle>
+            <AlertDialogTitle>Lanzar campaña pre-temporada</AlertDialogTitle>
             <AlertDialogDescription>
-              Esto generara codigos de descuento del 10% para todos los clientes con reservas confirmadas. Esta accion no se puede deshacer.
+              Esto generará códigos de descuento del 10% para todos los clientes con reservas confirmadas. Esta acción no se puede deshacer.
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
@@ -599,9 +599,9 @@ export function DiscountManagement({ adminToken }: DiscountManagementProps) {
       <AlertDialog open={!!deactivateCodeId} onOpenChange={(open) => !open && setDeactivateCodeId(null)}>
         <AlertDialogContent>
           <AlertDialogHeader>
-            <AlertDialogTitle>Desactivar codigo de descuento</AlertDialogTitle>
+            <AlertDialogTitle>Desactivar código de descuento</AlertDialogTitle>
             <AlertDialogDescription>
-              El codigo dejara de ser valido para futuras reservas. Esta accion no se puede deshacer.
+              El código dejará de ser válido para futuras reservas. Esta acción no se puede deshacer.
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>

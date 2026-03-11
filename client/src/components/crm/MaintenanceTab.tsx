@@ -100,7 +100,7 @@ interface Boat {
 const TYPE_LABELS: Record<string, string> = {
   preventive: "Preventivo",
   corrective: "Correctivo",
-  inspection: "Inspeccion",
+  inspection: "Inspección",
 };
 
 const STATUS_LABELS: Record<string, string> = {
@@ -116,7 +116,7 @@ const STATUS_COLORS: Record<string, string> = {
 };
 
 const DOC_TYPE_LABELS: Record<string, string> = {
-  registration: "Matricula",
+  registration: "Matrícula",
   insurance: "Seguro",
   inspection: "ITV",
   license: "Licencia",
@@ -433,7 +433,7 @@ export function MaintenanceTab({ adminToken }: MaintenanceTabProps) {
                 <AlertTriangle className="w-5 h-5 text-red-600" />
                 <div>
                   <p className="font-medium text-red-800">{expiredDocs.length} doc. expirados</p>
-                  <p className="text-xs text-red-600">Requieren atencion inmediata</p>
+                  <p className="text-xs text-red-600">Requieren atención inmediata</p>
                 </div>
               </CardContent>
             </Card>
@@ -444,7 +444,7 @@ export function MaintenanceTab({ adminToken }: MaintenanceTabProps) {
                 <Clock className="w-5 h-5 text-yellow-600" />
                 <div>
                   <p className="font-medium text-yellow-800">{expiringDocs.length} doc. por expirar</p>
-                  <p className="text-xs text-yellow-600">Proximos 30 dias</p>
+                  <p className="text-xs text-yellow-600">Próximos 30 días</p>
                 </div>
               </CardContent>
             </Card>
@@ -511,7 +511,7 @@ export function MaintenanceTab({ adminToken }: MaintenanceTabProps) {
                       <TableRow>
                         <TableHead>Barco</TableHead>
                         <TableHead>Tipo</TableHead>
-                        <TableHead>Descripcion</TableHead>
+                        <TableHead>Descripción</TableHead>
                         <TableHead>Fecha</TableHead>
                         <TableHead>Coste</TableHead>
                         <TableHead>Estado</TableHead>
@@ -646,7 +646,7 @@ export function MaintenanceTab({ adminToken }: MaintenanceTabProps) {
               <CardContent className="flex flex-col items-center justify-center py-12 text-center">
                 <FileText className="w-12 h-12 text-muted-foreground/50 mb-4" />
                 <p className="text-lg font-heading font-medium text-foreground mb-1">No hay documentos registrados</p>
-                <p className="text-sm text-muted-foreground">Agrega documentos como seguros, matriculas e ITVs</p>
+                <p className="text-sm text-muted-foreground">Agrega documentos como seguros, matrículas e ITVs</p>
               </CardContent>
             </Card>
           ) : (
@@ -792,7 +792,7 @@ export function MaintenanceTab({ adminToken }: MaintenanceTabProps) {
                   <SelectContent>
                     <SelectItem value="preventive">Preventivo</SelectItem>
                     <SelectItem value="corrective">Correctivo</SelectItem>
-                    <SelectItem value="inspection">Inspeccion</SelectItem>
+                    <SelectItem value="inspection">Inspección</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
@@ -809,11 +809,11 @@ export function MaintenanceTab({ adminToken }: MaintenanceTabProps) {
               </div>
             </div>
             <div>
-              <Label>Descripcion *</Label>
+              <Label>Descripción *</Label>
               <Textarea
                 value={mForm.description}
                 onChange={e => setMForm(p => ({ ...p, description: e.target.value }))}
-                placeholder="Descripcion del mantenimiento..."
+                placeholder="Descripción del mantenimiento..."
                 rows={3}
               />
             </div>
@@ -838,7 +838,7 @@ export function MaintenanceTab({ adminToken }: MaintenanceTabProps) {
               </div>
             </div>
             <div>
-              <Label>Proxima revision</Label>
+              <Label>Próxima revisión</Label>
               <Input
                 type="date"
                 value={mForm.nextDueDate}
@@ -894,7 +894,7 @@ export function MaintenanceTab({ adminToken }: MaintenanceTabProps) {
                 <Select value={dForm.type} onValueChange={v => setDForm(p => ({ ...p, type: v }))}>
                   <SelectTrigger><SelectValue /></SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="registration">Matricula</SelectItem>
+                    <SelectItem value="registration">Matrícula</SelectItem>
                     <SelectItem value="insurance">Seguro</SelectItem>
                     <SelectItem value="inspection">ITV</SelectItem>
                     <SelectItem value="license">Licencia</SelectItem>
@@ -958,7 +958,7 @@ export function MaintenanceTab({ adminToken }: MaintenanceTabProps) {
           <AlertDialogHeader>
             <AlertDialogTitle>Eliminar registro de mantenimiento</AlertDialogTitle>
             <AlertDialogDescription>
-              Estas seguro de eliminar este registro? Esta accion no se puede deshacer.
+              ¿Estás seguro de eliminar este registro? Esta acción no se puede deshacer.
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
@@ -975,7 +975,7 @@ export function MaintenanceTab({ adminToken }: MaintenanceTabProps) {
           <AlertDialogHeader>
             <AlertDialogTitle>Eliminar documento</AlertDialogTitle>
             <AlertDialogDescription>
-              Estas seguro de eliminar este documento? Esta accion no se puede deshacer.
+              ¿Estás seguro de eliminar este documento? Esta acción no se puede deshacer.
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>

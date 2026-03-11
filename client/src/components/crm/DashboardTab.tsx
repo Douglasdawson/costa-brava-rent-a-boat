@@ -208,7 +208,7 @@ const PERIOD_OPTIONS = [
   { value: "week", label: "Semana" },
   { value: "month", label: "Mes" },
   { value: "season", label: "Temporada" },
-  { value: "year", label: "Anio" },
+  { value: "year", label: "Año" },
 ];
 
 // Custom tooltip for revenue chart
@@ -497,7 +497,7 @@ export function DashboardTab({
             <Card className="hover:shadow-md transition-shadow">
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <CardTitle className="text-sm font-medium text-muted-foreground">
-                  Ocupacion
+                  Ocupación
                 </CardTitle>
                 <div className="rounded-md bg-cta/10 p-1.5">
                   <Percent className="h-4 w-4 text-cta" />
@@ -525,7 +525,7 @@ export function DashboardTab({
           <Card>
             <CardHeader className="pb-2">
               <CardTitle className="text-base font-semibold font-heading text-foreground">
-                Ingresos ultimos 30 dias
+                Ingresos últimos 30 días
               </CardTitle>
             </CardHeader>
             <CardContent>
@@ -697,7 +697,7 @@ export function DashboardTab({
         <Card>
           <CardHeader className="pb-2 flex flex-row items-center justify-between">
             <CardTitle className="text-base font-semibold font-heading text-foreground">
-              Proximas reservas
+              Próximas reservas
             </CardTitle>
             <Button
               variant="ghost"
@@ -726,7 +726,7 @@ export function DashboardTab({
             ) : upcomingBookings.length === 0 ? (
               <div className="flex flex-col items-center justify-center py-8 text-muted-foreground">
                 <Anchor className="h-8 w-8 mb-2 opacity-50" />
-                <p className="text-sm">No hay reservas proximas</p>
+                <p className="text-sm">No hay reservas próximas</p>
               </div>
             ) : (
               <div className="space-y-2">

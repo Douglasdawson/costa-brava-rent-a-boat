@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback } from "react";
 import { X, Anchor, ChevronRight, Users, Copy, Check } from "lucide-react";
 import { useLocation } from "wouter";
 import { useTranslations } from "@/lib/translations";
-import { useBookingModal } from "@/hooks/useBookingModal";
+import { useBookingModal } from "@/hooks/bookingModalContext";
 
 const SEASON_START_MONTH = 4;
 const SEASON_END_MONTH = 10;

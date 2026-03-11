@@ -162,7 +162,7 @@ export function GiftCardManagement({ adminToken }: GiftCardManagementProps) {
           <Gift className="w-12 h-12 text-muted-foreground/50 mb-4" />
           <p className="text-lg font-heading font-medium text-foreground mb-1">No hay tarjetas regalo</p>
           <p className="text-sm text-muted-foreground">
-            {filter !== "all" ? `No hay tarjetas ${statusLabels[filter]?.toLowerCase() || ""}` : "Las tarjetas regalo apareceran aqui cuando se creen"}
+            {filter !== "all" ? `No hay tarjetas ${statusLabels[filter]?.toLowerCase() || ""}` : "Las tarjetas regalo aparecerán aquí cuando se creen"}
           </p>
         </div>
       ) : (

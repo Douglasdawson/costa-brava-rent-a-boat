@@ -1,10 +1,13 @@
 import { Check, Anchor, Ship, Lightbulb } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import { useTranslations } from "@/lib/translations";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { useQuery } from "@tanstack/react-query";
 import type { Boat } from "@shared/schema";
 
 export function LicenseComparisonSection() {
   const t = useTranslations();
+  const { ref: revealRef, isVisible } = useScrollReveal();
 
   const { data: boats } = useQuery<Boat[]>({ queryKey: ['/api/boats'] });
 
@@ -33,8 +36,17 @@ export function LicenseComparisonSection() {
       return hp > max ? hp : max;
     }, 0) || 150;
 
+  const scrollToFleetWithFilter = (license: 'no' | 'yes') => {
+    const fleet = document.getElementById('fleet');
+    if (fleet) {
+      fleet.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      // Dispatch custom event so FleetSection can pick up the filter
+      window.dispatchEvent(new CustomEvent('fleet-filter', { detail: { license } }));
+    }
+  };
+
   return (
-    <section className="py-12 sm:py-16 lg:py-20 bg-muted/30">
+    <section ref={revealRef} className={`py-12 sm:py-16 lg:py-20 bg-muted/30 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
       <div className="container mx-auto px-4 max-w-4xl">
         <h2 className="font-heading text-2xl sm:text-3xl font-semibold text-foreground text-center tracking-tight mb-3">
           {t.comparison.title}
@@ -67,9 +79,19 @@ export function LicenseComparisonSection() {
                 </li>
               ))}
             </ul>
-            <div className="mt-6 pt-4 border-t border-border">
-              <span className="text-xs text-muted-foreground">{t.comparison.fromPrice}</span>
-              <span className="text-xl font-heading font-medium text-foreground ml-1">{noLicenseMinPrice}€</span>
+            <div className="mt-6 pt-4 border-t border-border flex items-center justify-between">
+              <div>
+                <span className="text-xs text-muted-foreground">{t.comparison.fromPrice}</span>
+                <span className="text-xl font-heading font-medium text-foreground ml-1">{noLicenseMinPrice}€</span>
+              </div>
+              <Button
+                size="sm"
+                variant="outline"
+                onClick={() => scrollToFleetWithFilter('no')}
+                className="rounded-full text-xs"
+              >
+                {'Ver barcos'}
+              </Button>
             </div>
           </div>
 
@@ -96,9 +118,19 @@ export function LicenseComparisonSection() {
                 </li>
               ))}
             </ul>
-            <div className="mt-6 pt-4 border-t border-border">
-              <span className="text-xs text-muted-foreground">{t.comparison.fromPrice}</span>
-              <span className="text-xl font-heading font-medium text-foreground ml-1">{withLicenseMinPrice}€</span>
+            <div className="mt-6 pt-4 border-t border-border flex items-center justify-between">
+              <div>
+                <span className="text-xs text-muted-foreground">{t.comparison.fromPrice}</span>
+                <span className="text-xl font-heading font-medium text-foreground ml-1">{withLicenseMinPrice}€</span>
+              </div>
+              <Button
+                size="sm"
+                variant="outline"
+                onClick={() => scrollToFleetWithFilter('yes')}
+                className="rounded-full text-xs"
+              >
+                {'Ver barcos'}
+              </Button>
             </div>
           </div>
         </div>

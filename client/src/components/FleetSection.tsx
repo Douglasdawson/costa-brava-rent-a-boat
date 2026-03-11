@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import BoatCard from "./BoatCard";
 import { openWhatsApp } from "@/utils/whatsapp";
@@ -9,7 +9,7 @@ import { useTranslations } from "@/lib/translations";
 import type { Boat } from "@shared/schema";
 import { SiWhatsapp } from "react-icons/si";
 import { Phone, Users, CheckCircle, ChevronDown, Anchor, LayoutGrid, TableProperties, Star } from "lucide-react";
-import { useBookingModal } from "@/hooks/useBookingModal";
+import { useBookingModal } from "@/hooks/bookingModalContext";
 import { getBoatAverageRating } from "@/data/boatReviews";
 import {
   Table,
@@ -60,6 +60,18 @@ export default function FleetSection() {
   const [licenseFilter, setLicenseFilter] = useState<'all' | 'no' | 'yes'>('all');
   const [checklistOpen, setChecklistOpen] = useState(false);
   const [viewMode, setViewMode] = useState<'grid' | 'table'>('grid');
+
+  // Listen for license filter events from LicenseComparisonSection
+  useEffect(() => {
+    const handler = (e: Event) => {
+      const detail = (e as CustomEvent).detail;
+      if (detail?.license) {
+        setLicenseFilter(detail.license === 'no' ? 'no' : 'yes');
+      }
+    };
+    window.addEventListener('fleet-filter', handler);
+    return () => window.removeEventListener('fleet-filter', handler);
+  }, []);
 
   // Fetch boats from API
   const { data: boatsData, isLoading } = useQuery<Boat[]>({

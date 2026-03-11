@@ -323,7 +323,7 @@ export function BlogManagement({ adminToken }: BlogManagementProps) {
           <div className="relative flex-1">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
             <Input
-              placeholder="Buscar por titulo..."
+              placeholder="Buscar por título..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="pl-9"
@@ -331,10 +331,10 @@ export function BlogManagement({ adminToken }: BlogManagementProps) {
           </div>
           <Select value={categoryFilter} onValueChange={setCategoryFilter}>
             <SelectTrigger className="w-full sm:w-[180px]">
-              <SelectValue placeholder="Categoria" />
+              <SelectValue placeholder="Categoría" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="all">Todas las categorias</SelectItem>
+              <SelectItem value="all">Todas las categorías</SelectItem>
               {categories.map((cat) => (
                 <SelectItem key={cat} value={cat}>
                   {cat}
@@ -361,8 +361,8 @@ export function BlogManagement({ adminToken }: BlogManagementProps) {
             <Table>
               <TableHeader>
                 <TableRow>
-                  <TableHead>Titulo</TableHead>
-                  <TableHead className="hidden md:table-cell">Categoria</TableHead>
+                  <TableHead>Título</TableHead>
+                  <TableHead className="hidden md:table-cell">Categoría</TableHead>
                   <TableHead>Estado</TableHead>
                   <TableHead className="hidden lg:table-cell">Fecha</TableHead>
                   <TableHead className="text-right">Acciones</TableHead>
@@ -452,7 +452,7 @@ export function BlogManagement({ adminToken }: BlogManagementProps) {
             <AlertDialogHeader>
               <AlertDialogTitle>Eliminar entrada</AlertDialogTitle>
               <AlertDialogDescription>
-                Vas a eliminar "{deleteTarget?.title}". Esta accion no se puede deshacer.
+                Vas a eliminar "{deleteTarget?.title}". Esta acción no se puede deshacer.
               </AlertDialogDescription>
             </AlertDialogHeader>
             <AlertDialogFooter>
@@ -485,12 +485,12 @@ export function BlogManagement({ adminToken }: BlogManagementProps) {
       <div className="grid gap-4">
         {/* Title */}
         <div className="space-y-1.5">
-          <Label htmlFor="title">Titulo *</Label>
+          <Label htmlFor="title">Título *</Label>
           <Input
             id="title"
             value={form.title}
             onChange={(e) => handleTitleChange(e.target.value)}
-            placeholder="Titulo del articulo (min. 10 caracteres)"
+            placeholder="Título del artículo (min. 10 caracteres)"
           />
         </div>
 
@@ -512,7 +512,7 @@ export function BlogManagement({ adminToken }: BlogManagementProps) {
         {/* Category + Author */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div className="space-y-1.5">
-            <Label htmlFor="category">Categoria *</Label>
+            <Label htmlFor="category">Categoría *</Label>
             <Select
               value={form.category}
               onValueChange={(val) => {
@@ -521,7 +521,7 @@ export function BlogManagement({ adminToken }: BlogManagementProps) {
               }}
             >
               <SelectTrigger>
-                <SelectValue placeholder="Seleccionar categoria" />
+                <SelectValue placeholder="Seleccionar categoría" />
               </SelectTrigger>
               <SelectContent>
                 {categories.map((cat) => (
@@ -532,7 +532,7 @@ export function BlogManagement({ adminToken }: BlogManagementProps) {
               </SelectContent>
             </Select>
             <Input
-              placeholder="O escribe una nueva categoria..."
+              placeholder="O escribe una nueva categoría..."
               value={!categories.includes(form.category) ? form.category : ""}
               onChange={(e) => setForm((prev) => ({ ...prev, category: e.target.value }))}
               className="mt-1"
@@ -555,7 +555,7 @@ export function BlogManagement({ adminToken }: BlogManagementProps) {
             id="excerpt"
             value={form.excerpt}
             onChange={(e) => setForm((prev) => ({ ...prev, excerpt: e.target.value }))}
-            placeholder="Breve descripcion para las tarjetas de preview"
+            placeholder="Breve descripción para las tarjetas de preview"
             rows={2}
           />
         </div>
@@ -567,12 +567,12 @@ export function BlogManagement({ adminToken }: BlogManagementProps) {
             id="content"
             value={form.content}
             onChange={(e) => setForm((prev) => ({ ...prev, content: e.target.value }))}
-            placeholder="Escribe el contenido del articulo en Markdown..."
+            placeholder="Escribe el contenido del artículo en Markdown..."
             rows={16}
             className="font-mono text-sm"
           />
           <p className="text-xs text-muted-foreground">
-            Soporta Markdown: **negrita**, *cursiva*, ## titulos, [enlaces](url), ![imagenes](url)
+            Soporta Markdown: **negrita**, *cursiva*, ## títulos, [enlaces](url), ![imágenes](url)
           </p>
         </div>
 
@@ -594,7 +594,7 @@ export function BlogManagement({ adminToken }: BlogManagementProps) {
             id="metaDescription"
             value={form.metaDescription}
             onChange={(e) => setForm((prev) => ({ ...prev, metaDescription: e.target.value }))}
-            placeholder="Descripcion para motores de busqueda"
+            placeholder="Descripción para motores de búsqueda"
             maxLength={160}
           />
           <p className="text-xs text-muted-foreground text-right">

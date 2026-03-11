@@ -162,7 +162,7 @@ export function InquiriesTab({ adminToken, onOpenWhatsApp }: InquiriesTabProps) 
         setSendResult({ type: "error", message: data.message || "Error al enviar" });
       }
     } catch {
-      setSendResult({ type: "error", message: "Error de conexion" });
+      setSendResult({ type: "error", message: "Error de conexión" });
     } finally {
       setSendingInProgress(false);
     }
@@ -220,7 +220,7 @@ export function InquiriesTab({ adminToken, onOpenWhatsApp }: InquiriesTabProps) 
             <div className="relative flex-1">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground/70" />
               <Input
-                placeholder="Buscar por nombre, email, telefono, barco..."
+                placeholder="Buscar por nombre, email, teléfono, barco..."
                 value={searchQuery}
                 onChange={(e) => handleSearchChange(e.target.value)}
                 className="pl-9 h-10"
@@ -264,7 +264,7 @@ export function InquiriesTab({ adminToken, onOpenWhatsApp }: InquiriesTabProps) 
           <EmptyState
             icon={MessageSquare}
             title="No hay peticiones"
-            description="Las peticiones de WhatsApp apareceran aqui"
+            description="Las peticiones de WhatsApp aparecerán aquí"
           />
         </CardContent></Card>
       )}
@@ -501,7 +501,7 @@ export function InquiriesTab({ adminToken, onOpenWhatsApp }: InquiriesTabProps) 
               <>
                 <DialogHeader>
                   <DialogTitle className="flex items-center justify-between pr-6">
-                    <span>Detalle de Peticion</span>
+                    <span>Detalle de Petición</span>
                     <Badge className={`${statusConf.color} text-xs border-0`}>{statusConf.label}</Badge>
                   </DialogTitle>
                 </DialogHeader>
@@ -566,7 +566,7 @@ export function InquiriesTab({ adminToken, onOpenWhatsApp }: InquiriesTabProps) 
                     </div>
                   )}
 
-                  {/* Fecha de creacion */}
+                  {/* Fecha de creación */}
                   <div className="text-xs text-muted-foreground/70 text-right">
                     Recibido: {formatDate(inq.createdAt)}
                   </div>
@@ -698,9 +698,9 @@ export function InquiriesTab({ adminToken, onOpenWhatsApp }: InquiriesTabProps) 
       <AlertDialog open={!!deleteInquiryId} onOpenChange={(open) => !open && setDeleteInquiryId(null)}>
         <AlertDialogContent>
           <AlertDialogHeader>
-            <AlertDialogTitle>Eliminar peticion</AlertDialogTitle>
+            <AlertDialogTitle>Eliminar petición</AlertDialogTitle>
             <AlertDialogDescription>
-              Estas seguro de eliminar esta peticion? Esta accion no se puede deshacer.
+              ¿Estás seguro de eliminar esta petición? Esta acción no se puede deshacer.
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>

@@ -368,7 +368,7 @@ export function CalendarTab({
                     className="text-xs px-3"
                   >
                     <Clock className="w-3.5 h-3.5 mr-1" />
-                    Dia
+                    Día
                   </Button>
                   <Button
                     variant={view === "week" ? "default" : "ghost"}
@@ -1030,7 +1030,7 @@ function WeekView({
                           })}
                           {dayBookings.length > 4 && (
                             <p className="text-[9px] text-muted-foreground pl-1">
-                              +{dayBookings.length - 4} mas
+                              +{dayBookings.length - 4} más
                             </p>
                           )}
                         </div>
@@ -1209,7 +1209,7 @@ function MonthView({ date, bookings, onDayClick }: MonthViewProps) {
 
         {/* Legend */}
         <div className="flex flex-wrap items-center gap-3 mt-3 pt-3 border-t text-[10px] sm:text-xs text-muted-foreground">
-          <span className="font-medium text-foreground">Ocupacion:</span>
+          <span className="font-medium text-foreground">Ocupación:</span>
           <span className="flex items-center gap-1">
             <span className="w-3 h-3 rounded bg-primary/5 border border-primary/20" />
             Baja (1-2)

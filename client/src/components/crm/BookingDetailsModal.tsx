@@ -182,7 +182,7 @@ export function BookingDetailsModal({
     },
     onSuccess: (data) => {
       toast({
-        title: "Exito",
+        title: "Éxito",
         description: data.message || "Reserva actualizada correctamente",
       });
       queryClient.invalidateQueries({ queryKey: ['/api/admin/bookings'] });
@@ -356,7 +356,7 @@ export function BookingDetailsModal({
                   <p className="font-medium">{booking.customerNationality}</p>
                 </div>
                 <div>
-                  <p className="text-muted-foreground">Numero de Personas</p>
+                  <p className="text-muted-foreground">Número de Personas</p>
                   <p className="font-medium">{booking.numberOfPeople}</p>
                 </div>
               </div>
@@ -379,7 +379,7 @@ export function BookingDetailsModal({
                   <p className="font-medium">{format(new Date(booking.endTime), 'dd/MM/yyyy HH:mm')}</p>
                 </div>
                 <div>
-                  <p className="text-muted-foreground">Duracion</p>
+                  <p className="text-muted-foreground">Duración</p>
                   <p className="font-medium">{booking.totalHours} horas</p>
                 </div>
                 <div>
@@ -654,7 +654,7 @@ export function BookingDetailsModal({
                   />
                 </div>
                 <div>
-                  <Label htmlFor="numberOfPeople">Numero de Personas</Label>
+                  <Label htmlFor="numberOfPeople">Número de Personas</Label>
                   <Input
                     id="numberOfPeople"
                     type="number"
@@ -856,7 +856,7 @@ export function BookingDetailsModal({
           <AlertDialogHeader>
             <AlertDialogTitle>Cancelar reserva</AlertDialogTitle>
             <AlertDialogDescription>
-              Estas seguro de que quieres cancelar esta reserva? Esta accion no se puede deshacer.
+              ¿Estás seguro de que quieres cancelar esta reserva? Esta acción no se puede deshacer.
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>

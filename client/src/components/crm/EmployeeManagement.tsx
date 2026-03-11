@@ -178,7 +178,7 @@ export function EmployeeManagement({ adminToken }: EmployeeManagementProps) {
       <div className="flex items-center justify-between">
         <h2 className="text-xl font-bold font-heading flex items-center gap-2">
           <Users className="w-5 h-5" />
-          Gestion de Empleados
+          Gestión de Empleados
         </h2>
         <Button onClick={handleCreate}>
           <Plus className="w-4 h-4 mr-2" />
@@ -218,7 +218,7 @@ export function EmployeeManagement({ adminToken }: EmployeeManagementProps) {
                     <TableHead>Nombre</TableHead>
                     <TableHead>Rol</TableHead>
                     <TableHead>Estado</TableHead>
-                    <TableHead>Ultimo Acceso</TableHead>
+                    <TableHead>Último Acceso</TableHead>
                     <TableHead className="text-right">Acciones</TableHead>
                   </TableRow>
                 </TableHeader>
@@ -391,7 +391,7 @@ export function EmployeeManagement({ adminToken }: EmployeeManagementProps) {
                 id="emp-displayname"
                 value={formData.displayName}
                 onChange={(e) => setFormData({ ...formData, displayName: e.target.value })}
-                placeholder="Juan Garcia"
+                placeholder="Juan García"
               />
             </div>
             <div className="space-y-2">

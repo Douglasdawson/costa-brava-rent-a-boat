@@ -445,7 +445,7 @@ export const nl: Translations = {
     title: 'Fotogalerij',
     subtitle: "Foto's van onze klanten die genieten van de Costa Brava",
     sharePhoto: 'Deel je foto',
-    noPhotos: 'Nog geen fotos. Wees de eerste om te delen!',
+    noPhotos: 'Nog geen foto\'s. Wees de eerste om te delen!',
     submitTitle: 'Deel je foto',
     photo: 'Foto',
     yourName: 'Je naam',
@@ -559,7 +559,7 @@ export const nl: Translations = {
     beforeBooking: 'voor het maken van uw boeking.',
     whatToBringTitle: 'Wat mee te nemen voor uw bootverhuur aan de Costa Brava',
     whatToBringItems: [
-      'Waterbestendige zonnebrandcreme (SPF 50+ aanbevolen)',
+      'Waterbestendige zonnebrandcrème (SPF 50+ aanbevolen)',
       'Zonnebril met nekkoord',
       'Comfortabele kleding en antislipschoenen (witte zool)',
       'Handdoek en zwemkleding',
@@ -639,14 +639,14 @@ export const nl: Translations = {
   locationPages: {
     blanes: {
       hero: {
-        title: 'Bootsverhuur in Blanes',
-        subtitle: 'Ontdek de mooiste kreken van de Costa Brava vanuit de haven van Blanes. Boten met en zonder rijbewijs voor het hele gezin.',
+        title: 'Bootverhuur in Blanes',
+        subtitle: 'Ontdek de mooiste kreken van de Costa Brava vanuit de haven van Blanes. Boten met en zonder vaarbewijs voor het hele gezin.',
         badgePort: 'Haven van Blanes',
         badgeCapacity: '4-7 personen',
         badgeDuration: '1u-8u',
       },
       sections: {
-        whyBlanesTitle: 'Waarom kiezen voor Blanes voor je boothuur?',
+        whyBlanesTitle: 'Waarom kiezen voor Blanes voor je bootverhuur?',
         strategicLocation: 'Strategische Ligging',
         strategicLocationDesc: 'Blanes is de zuidelijke poort van de Costa Brava, met directe toegang tot de meest spectaculaire baaien. Vanuit de haven van Blanes kun je noordwaarts varen naar Lloret de Mar of zuidwaarts de kust verkennen richting Malgrat de Mar.',
         safePorts: 'Veilige en Complete Haven',
@@ -669,7 +669,7 @@ export const nl: Translations = {
         portAmenities: 'Havenfaciliteiten',
         freeParking: 'Gratis parkeren beschikbaar',
         fuelStation: 'Maritiem tankstation',
-        restaurants: 'Restaurants en cafes',
+        restaurants: 'Restaurants en cafés',
         nauticalShops: 'Nautische winkels',
         howToGet: 'Hoe te Bereiken',
         fromBarcelona: 'Vanuit Barcelona: AP-7 richting Girona, afslag Blanes (60 min)',
@@ -1037,7 +1037,7 @@ export const nl: Translations = {
       {
         id: 'precios',
         question: 'Wat zijn de huurprijzen?',
-        answer: 'Boten zonder vaarbewijs vanaf 70€ met brandstof inbegrepen (1u, 2u, 3u, 4u, 6u of hele dag). Boten met vaarbewijs vanaf 150€ zonder brandstof (2u, 4u, 8u). Prijzen varieren per seizoen (juli/augustus) en boot.',
+        answer: 'Boten zonder vaarbewijs vanaf 70€ met brandstof inbegrepen (1u, 2u, 3u, 4u, 6u of hele dag). Boten met vaarbewijs vanaf 150€ zonder brandstof (2u, 4u, 8u). Prijzen variëren per seizoen (juli/augustus) en boot.',
       },
       {
         id: 'sin-licencia',
@@ -1082,7 +1082,7 @@ export const nl: Translations = {
       {
         id: 'equipamiento-seguridad',
         question: 'Welke veiligheidsuitrusting is inbegrepen?',
-        answer: 'Al onze boten beschikken over zwemvesten voor alle passagiers, EHBO-kit, brandblusser, anker en signaliseringsset volgens de voorschriften.',
+        answer: 'Al onze boten beschikken over zwemvesten voor alle passagiers, EHBO-kit, brandblusser, anker en signaleringsset volgens de voorschriften.',
       },
       {
         id: 'descuentos',
@@ -1128,7 +1128,7 @@ export const nl: Translations = {
     summary: 'Uw boekingsoverzicht',
     checklist: 'Wat meenemen',
     checklistItems: [
-      'Zonnebrandcreme en pet',
+      'Zonnebrandcrème en pet',
       'Handdoek',
       'Water en snacks',
       'Waterdichte camera of telefoonhoes',
@@ -1142,7 +1142,7 @@ export const nl: Translations = {
     ],
     shareTitle: 'Deel uw avontuur',
     shareWhatsApp: 'Delen via WhatsApp',
-    copyLink: 'Link kopieren',
+    copyLink: 'Link kopiëren',
     repeatBooking: 'Wilt u terugkomen?',
     saveDiscount: 'Bespaar 10% op uw volgende boeking',
     discountCode: 'Gebruik code',
@@ -1156,7 +1156,7 @@ export const nl: Translations = {
     fleetInsured: 'Vloot 100% verzekerd',
     zeroIncidents: '0 veiligheidsincidenten',
     certifiedCaptains: 'Gecertificeerde kapiteins',
-    officialPort: 'Officiele haven van Blanes',
+    officialPort: 'Officiële haven van Blanes',
     registeredBusiness: 'Geregistreerd bedrijf in Spanje',
     maritimeInsurance: 'Volledige maritieme verzekering',
     gdprCompliant: 'AVG-conform',

@@ -169,7 +169,7 @@ describe("getMinimumDuration", () => {
 describe("calculateBasePrice", () => {
   it("returns correct price for solar-450 in BAJA 2h on weekday", () => {
     const price = calculateBasePrice("solar-450", new Date("2026-04-06T12:00:00"), "2h");
-    expect(price).toBe(115);
+    expect(price).toBe(135); // BAJA 2h = 135 per boatData.ts
   });
 
   it("returns correct price for solar-450 in BAJA 1h on weekday", () => {
@@ -179,12 +179,12 @@ describe("calculateBasePrice", () => {
 
   it("returns correct price for solar-450 in MEDIA 2h on weekday", () => {
     const price = calculateBasePrice("solar-450", new Date("2026-07-06T12:00:00"), "2h");
-    expect(price).toBe(130);
+    expect(price).toBe(140); // MEDIA 2h = 140 per boatData.ts
   });
 
   it("returns correct price for solar-450 in ALTA 2h on weekday", () => {
     const price = calculateBasePrice("solar-450", new Date("2026-08-06T12:00:00"), "2h");
-    expect(price).toBe(140);
+    expect(price).toBe(150); // ALTA 2h = 150 per boatData.ts
   });
 
   it("applies weekend surcharge correctly", () => {
@@ -192,7 +192,7 @@ describe("calculateBasePrice", () => {
     const weekendPrice = calculateBasePrice("solar-450", new Date("2026-04-04T12:00:00"), "2h");
     const weekdayPrice = calculateBasePrice("solar-450", new Date("2026-04-06T12:00:00"), "2h");
     expect(weekendPrice).toBe(Math.round(weekdayPrice * WEEKEND_SURCHARGE_FACTOR));
-    expect(weekendPrice).toBe(132); // 115 * 1.15 = 132.25 -> 132
+    expect(weekendPrice).toBe(155); // 135 * 1.15 = 155.25 -> 155
   });
 
   it("throws for unknown boat", () => {
@@ -260,19 +260,19 @@ describe("calculatePricingBreakdown", () => {
     expect(breakdown.duration).toBe("4h");
     expect(breakdown.season).toBe("BAJA");
     expect(breakdown.weekendSurcharge).toBe(false);
-    expect(breakdown.basePrice).toBe(150);
+    expect(breakdown.basePrice).toBe(180); // BAJA 4h = 180 per boatData.ts
     expect(breakdown.selectedExtras).toEqual([]);
     expect(breakdown.selectedPacks).toEqual([]);
     expect(breakdown.extrasPrice).toBe(0);
     expect(breakdown.deposit).toBe(250);
-    expect(breakdown.subtotal).toBe(150);
-    expect(breakdown.total).toBe(400);
+    expect(breakdown.subtotal).toBe(180);
+    expect(breakdown.total).toBe(430);
   });
 
   it("includes weekend surcharge in breakdown", () => {
     const breakdown = calculatePricingBreakdown("solar-450", new Date("2026-04-04T12:00:00"), "2h");
     expect(breakdown.weekendSurcharge).toBe(true);
-    expect(breakdown.basePrice).toBe(132); // 115 * 1.15
+    expect(breakdown.basePrice).toBe(155); // 135 * 1.15 = 155.25 -> 155
   });
 
   it("calculates subtotal correctly (basePrice + extrasPrice)", () => {
@@ -284,7 +284,7 @@ describe("calculatePricingBreakdown", () => {
     );
     expect(breakdown.extrasPrice).toBe(17.5);
     expect(breakdown.subtotal).toBe(breakdown.basePrice + breakdown.extrasPrice);
-    expect(breakdown.subtotal).toBe(115 + 17.5);
+    expect(breakdown.subtotal).toBe(135 + 17.5);
   });
 
   it("calculates total correctly (subtotal + deposit)", () => {
@@ -295,7 +295,7 @@ describe("calculatePricingBreakdown", () => {
       ["Parking"]
     );
     expect(breakdown.total).toBe(breakdown.subtotal + breakdown.deposit);
-    expect(breakdown.total).toBe(115 + 10 + 250);
+    expect(breakdown.total).toBe(135 + 10 + 250);
   });
 
   it("throws for unknown boat", () => {
@@ -438,7 +438,7 @@ describe("priceFor (alias for calculateBasePrice)", () => {
 
   it("calculates correct price via priceFor alias", () => {
     const price = priceFor("solar-450", new Date("2026-04-06T12:00:00"), "2h");
-    expect(price).toBe(115);
+    expect(price).toBe(135); // BAJA 2h = 135 per boatData.ts
   });
 });
 
@@ -484,11 +484,11 @@ describe("Integration: Full booking flow", () => {
     expect(breakdown.boatId).toBe("solar-450");
     expect(breakdown.season).toBe("BAJA");
     expect(breakdown.weekendSurcharge).toBe(false);
-    expect(breakdown.basePrice).toBe(150); // BAJA 4h for solar-450
+    expect(breakdown.basePrice).toBe(180); // BAJA 4h = 180 per boatData.ts
     expect(breakdown.extrasPrice).toBe(17.5); // Parking 10 + Snorkel 7.5
     expect(breakdown.deposit).toBe(250);
-    expect(breakdown.subtotal).toBe(167.5);
-    expect(breakdown.total).toBe(417.5);
+    expect(breakdown.subtotal).toBe(197.5);
+    expect(breakdown.total).toBe(447.5);
   });
 
   it("calculates pricing correctly for weekend booking in August", () => {
@@ -498,10 +498,10 @@ describe("Integration: Full booking flow", () => {
 
     expect(breakdown.season).toBe("ALTA");
     expect(breakdown.weekendSurcharge).toBe(true);
-    // ALTA 2h = 140, with weekend surcharge = 140 * 1.15 = 161
-    expect(breakdown.basePrice).toBe(161);
+    // ALTA 2h = 150, with weekend surcharge = 150 * 1.15 = 172.5 -> 173
+    expect(breakdown.basePrice).toBe(173);
     expect(breakdown.extrasPrice).toBe(10);
-    expect(breakdown.subtotal).toBe(171);
-    expect(breakdown.total).toBe(421);
+    expect(breakdown.subtotal).toBe(183);
+    expect(breakdown.total).toBe(433);
   });
 });

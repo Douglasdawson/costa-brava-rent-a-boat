@@ -94,7 +94,7 @@ export function requireTabAccess(tabName: string) {
       return res.status(401).json({ message: "No autorizado" });
     }
     // Owner (legacy PIN login) always has full access
-    if ("username" in tokenData && tokenData.username === "ivan") {
+    if ("role" in tokenData && tokenData.role === "owner") {
       return next();
     }
     // SaaS owner always has full access

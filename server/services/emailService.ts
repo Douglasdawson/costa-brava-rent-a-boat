@@ -485,7 +485,7 @@ export async function sendBookingConfirmation(data: BookingEmailData): Promise<E
 
   try {
     await sendgridBreaker.call(() => sgMail.send({
-      to: booking.customerEmail,
+      to: booking.customerEmail!,
       from: { email: getFromEmail(), name: "Costa Brava Rent a Boat" },
       subject: `${strings.bookingConfirmed} - ${data.boat.name} - ${formatDate(booking.startTime)}`,
       html: emailWrapper(content + cancelBlock),
@@ -556,7 +556,7 @@ export async function sendBookingReminder(data: BookingEmailData): Promise<Email
 
   try {
     await sendgridBreaker.call(() => sgMail.send({
-      to: booking.customerEmail,
+      to: booking.customerEmail!,
       from: { email: getFromEmail(), name: "Costa Brava Rent a Boat" },
       subject: `${strings.reminderTitle} - ${data.boat.name}`,
       html: emailWrapper(content),
@@ -640,7 +640,7 @@ export async function sendThankYouEmail(data: BookingEmailData, discountCode: st
 
   try {
     await sendgridBreaker.call(() => sgMail.send({
-      to: booking.customerEmail,
+      to: booking.customerEmail!,
       from: { email: getFromEmail(), name: "Costa Brava Rent a Boat" },
       subject: `${strings.thankYouTitle}, ${booking.customerName}!`,
       html: emailWrapper(content),

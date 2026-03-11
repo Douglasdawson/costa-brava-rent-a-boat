@@ -1,4 +1,5 @@
 import { useState, useRef, useCallback } from "react";
+import { createPortal } from "react-dom";
 import ReactCrop, { type Crop, centerCrop, makeAspectCrop } from "react-image-crop";
 import "react-image-crop/dist/ReactCrop.css";
 import { Button } from "@/components/ui/button";
@@ -99,8 +100,8 @@ export default function ImageCropDialog({
     );
   };
 
-  return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/70 p-2 sm:p-4">
+  return createPortal(
+    <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/70 p-2 sm:p-4">
       <div className="bg-white rounded-xl shadow-2xl max-w-2xl w-full max-h-[95vh] sm:max-h-[90vh] flex flex-col overflow-hidden">
         <div className="flex items-center justify-between px-4 py-3 border-b">
           <h3 className="font-semibold text-sm">Recortar imagen (4:3)</h3>
@@ -147,6 +148,7 @@ export default function ImageCropDialog({
           </Button>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body,
   );
 }

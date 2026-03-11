@@ -606,7 +606,7 @@ function Step2Details({
               if (c > 0) { setNumberOfPeople(String(c - 1)); handleBlur('people'); }
             }}
             disabled={!numberOfPeople || parseInt(numberOfPeople) <= 0}
-            aria-label="Reducir número de personas"
+            aria-label={t.a11y.decreasePeople}
             className="w-11 h-11 rounded-full border-2 border-[#A8C4DD]/40 flex items-center justify-center font-bold text-muted-foreground disabled:opacity-30 hover:border-[#0D0D2B] hover:text-[#0D0D2B] transition-colors text-lg"
           >−</button>
           <span className="text-2xl font-bold text-foreground min-w-[2rem] text-center">
@@ -619,7 +619,7 @@ function Step2Details({
               if (c < maxCapacity) { setNumberOfPeople(String(c + 1)); handleBlur('people'); }
             }}
             disabled={!!numberOfPeople && parseInt(numberOfPeople) >= maxCapacity}
-            aria-label="Aumentar número de personas"
+            aria-label={t.a11y.increasePeople}
             className="w-11 h-11 rounded-full border-2 border-[#A8C4DD]/40 flex items-center justify-center font-bold text-muted-foreground disabled:opacity-30 hover:border-[#0D0D2B] hover:text-[#0D0D2B] transition-colors text-lg"
           >+</button>
         </div>
@@ -922,7 +922,7 @@ function Step4Contact({
                 }}
                 aria-haspopup="listbox"
                 aria-expanded={showPrefixDropdown}
-                aria-label={`Prefijo de teléfono: ${phonePrefix}`}
+                aria-label={`${t.a11y.phonePrefix}: ${phonePrefix}`}
                 className={`${inputBase} ${inputNormal} flex items-center justify-center gap-2`}
               >
                 <span className="text-sm">{selectedPrefixInfo?.flag}</span>
@@ -1011,7 +1011,7 @@ function Step4Contact({
                 <button
                   type="button" onClick={handleRemoveCode}
                   className="text-muted-foreground/70 hover:text-red-500 transition-colors p-2 -m-1 min-w-[44px] min-h-[44px] flex items-center justify-center"
-                  aria-label="Eliminar"
+                  aria-label={t.a11y.remove}
                 >
                   <X className="w-4 h-4" />
                 </button>

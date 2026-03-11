@@ -145,7 +145,7 @@ export default function BookingWizardMobile(props: BookingWizardMobileProps) {
     : "opacity-100 translate-x-0";
 
   return (
-    <div className="flex flex-col h-full overflow-x-hidden" role="form" aria-label="Formulario de reserva">
+    <div className="flex flex-col h-full overflow-x-hidden" role="form" aria-label={props.t.a11y.bookingForm}>
       <div className="sticky top-0 z-10 bg-white px-4 py-3 border-b border-gray-100">
         <BookingProgressBar
           currentStep={currentStep}
@@ -209,7 +209,7 @@ export default function BookingWizardMobile(props: BookingWizardMobileProps) {
               type="button"
               variant="outline"
               onClick={onBack}
-              aria-label={`Volver al paso anterior (${currentStep - 1} de 4)`}
+              aria-label={`${props.t.a11y.goBackToStep} (${currentStep - 1} ${props.t.a11y.stepOf} 4)`}
               className="flex-1 py-5 text-sm font-semibold active:scale-95 transition-transform"
             >
               <ChevronLeft className="w-4 h-4 mr-1" aria-hidden="true" />
@@ -220,7 +220,7 @@ export default function BookingWizardMobile(props: BookingWizardMobileProps) {
             <Button
               type="button"
               onClick={onNext}
-              aria-label={`Continuar al paso ${currentStep + 1} de 4`}
+              aria-label={`${props.t.a11y.continueToStep} (${currentStep + 1} ${props.t.a11y.stepOf} 4)`}
               className="flex-1 py-5 text-sm font-semibold active:scale-95 transition-transform"
             >
               {props.t.booking.next}
@@ -234,7 +234,7 @@ export default function BookingWizardMobile(props: BookingWizardMobileProps) {
                 setIsSubmitting(false);
               }}
               disabled={isSubmitting || props.isValidatingCode}
-              aria-label="Enviar solicitud de reserva por WhatsApp"
+              aria-label={props.t.a11y.submitBookingWhatsApp}
               aria-busy={isSubmitting || props.isValidatingCode}
               className="flex-1 py-5 text-sm font-semibold bg-[#25D366] hover:bg-[#1ebe5d] text-white border-0 disabled:opacity-50 disabled:cursor-not-allowed"
             >
@@ -281,8 +281,8 @@ function Step1Boat({
       </div>
       {!preSelectedBoatId && (
         <fieldset className="border-0 p-0 m-0">
-          <legend className="sr-only">Filtrar por licencia náutica</legend>
-          <div role="radiogroup" aria-label="Filtrar por licencia náutica" className="flex gap-2">
+          <legend className="sr-only">{t.a11y.filterByLicense}</legend>
+          <div role="radiogroup" aria-label={t.a11y.filterByLicense} className="flex gap-2">
             <button
               type="button"
               role="radio"
@@ -556,7 +556,7 @@ function Step2Trip({
             }}
             disabled={!numberOfPeople || parseInt(numberOfPeople) <= 1}
             className="w-11 h-11 rounded-full border-2 border-gray-300 flex items-center justify-center text-xl font-bold text-gray-600 disabled:opacity-30 disabled:cursor-not-allowed hover:border-primary hover:text-primary transition-colors"
-            aria-label="Reducir número de personas"
+            aria-label={t.a11y.decreasePeople}
           >
             −
           </button>
@@ -571,7 +571,7 @@ function Step2Trip({
             }}
             disabled={!!numberOfPeople && parseInt(numberOfPeople) >= maxCapacity}
             className="w-11 h-11 rounded-full border-2 border-gray-300 flex items-center justify-center text-xl font-bold text-gray-600 disabled:opacity-30 disabled:cursor-not-allowed hover:border-primary hover:text-primary transition-colors"
-            aria-label="Aumentar número de personas"
+            aria-label={t.a11y.increasePeople}
           >
             +
           </button>
@@ -665,7 +665,7 @@ function Step3PersonalData({
               onKeyDown={(e) => { if (e.key === 'Escape') setShowPrefixDropdown(false); }}
               aria-haspopup="listbox"
               aria-expanded={showPrefixDropdown}
-              aria-label={`Prefijo de teléfono: ${phonePrefix}`}
+              aria-label={`${t.a11y.phonePrefix}: ${phonePrefix}`}
               className="w-full p-3 border-2 border-gray-200 bg-white rounded-xl text-gray-900 font-medium text-base flex items-center gap-1 overflow-hidden"
             >
               <span className="truncate">{selectedPrefixInfo?.flag} {phonePrefix}</span>

@@ -57,7 +57,7 @@ export default function Footer() {
               onClick={(e) => { e.preventDefault(); handleLogoClick(); }}
               className="flex items-center space-x-2 mb-4 hover:opacity-80 transition-opacity rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2 focus-visible:outline-none"
               data-testid="footer-logo-button"
-              aria-label="Ir a la página principal"
+              aria-label={t.a11y.goToHomePage}
             >
               <LogoCostaBravaFooter className="h-10" />
             </a>
@@ -77,7 +77,7 @@ export default function Footer() {
                 rel="noopener noreferrer"
                 className="text-white/50 hover:text-white transition-colors rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2 focus-visible:outline-none"
                 data-testid="social-instagram"
-                aria-label="Síguenos en Instagram"
+                aria-label="Instagram"
               >
                 <SiInstagram className="w-5 h-5" />
               </a>
@@ -87,7 +87,7 @@ export default function Footer() {
                 rel="noopener noreferrer"
                 className="text-white/50 hover:text-white transition-colors rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2 focus-visible:outline-none"
                 data-testid="social-facebook"
-                aria-label="Síguenos en Facebook"
+                aria-label="Facebook"
               >
                 <SiFacebook className="w-5 h-5" />
               </a>
@@ -97,7 +97,7 @@ export default function Footer() {
                 rel="noopener noreferrer"
                 className="text-white/50 hover:text-white transition-colors rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2 focus-visible:outline-none"
                 data-testid="social-tiktok"
-                aria-label="Síguenos en TikTok"
+                aria-label="TikTok"
               >
                 <SiTiktok className="w-5 h-5" />
               </a>
@@ -189,7 +189,7 @@ export default function Footer() {
                     href="tel:+34611500372"
                     className="text-sm hover:text-white transition-colors block"
                     data-testid="phone-call-link"
-                    aria-label="Llamar al teléfono +34 611 500 372"
+                    aria-label={`${t.a11y.callPhone} +34 611 500 372`}
                   >+34 611 500 372</a>
                   <p className="text-xs text-white/50 mt-0.5">{t.footer.callsAndWhatsapp}</p>
                 </div>
@@ -202,7 +202,7 @@ export default function Footer() {
                     href="mailto:costabravarentaboat@gmail.com"
                     className="text-sm hover:text-white transition-colors block break-all"
                     data-testid="email-link"
-                    aria-label="Enviar email a costabravarentaboat@gmail.com"
+                    aria-label={`${t.a11y.sendEmail} costabravarentaboat@gmail.com`}
                   >
                     costabravarentaboat@gmail.com
                   </a>
@@ -219,7 +219,7 @@ export default function Footer() {
                     rel="noopener noreferrer"
                     className="text-sm hover:text-white transition-colors block"
                     data-testid="maps-link"
-                    aria-label="Ver ubicación en Google Maps: Puerto de Blanes"
+                    aria-label={`${t.a11y.viewOnMap}: Puerto de Blanes`}
                   >
                     {t.footer.location}
                   </a>

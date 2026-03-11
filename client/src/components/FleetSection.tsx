@@ -382,6 +382,7 @@ export default function FleetSection() {
                         alt={boat.name}
                         className="w-32 h-20 object-cover rounded-lg mx-auto"
                         loading="lazy"
+                        decoding="async"
                       />
                     </TableCell>
                   ))}
@@ -516,7 +517,7 @@ export default function FleetSection() {
               className="border border-border text-foreground hover:border-foreground/30 px-5 py-3 rounded-full font-medium flex items-center justify-center transition-colors text-sm lg:text-base min-h-11"
               onClick={() => openWhatsApp("Hola! Necesito ayuda para elegir el mejor barco para alquilar en Blanes. ¿Podrían asesorarme sobre precios y disponibilidad?")}
               data-testid="button-whatsapp-help"
-              aria-label="Consultar por WhatsApp para elegir barco"
+              aria-label={t.a11y.checkWhatsApp}
             >
               <SiWhatsapp className="w-4 h-4 sm:w-5 sm:h-5 text-[#25D366]" aria-hidden="true" />
               <span className="ml-1 sm:ml-2">{t.contact.whatsapp}</span>
@@ -524,7 +525,7 @@ export default function FleetSection() {
             <button
               className="border border-border text-foreground hover:border-foreground/30 px-5 py-3 rounded-full font-medium flex items-center justify-center transition-colors text-sm lg:text-base min-h-11"
               data-testid="button-call-help"
-              aria-label="Llamar para ayuda en la elección de barco"
+              aria-label={`${t.a11y.callPhone} +34 611 500 372`}
               onClick={() => window.open("tel:+34611500372", "_self")}
             >
               <Phone className="w-4 h-4 sm:w-5 sm:h-5" />

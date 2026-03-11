@@ -193,24 +193,18 @@ export function SocialProofToast() {
   const fromText = toast?.from || "de";
   const timeAgoText = formatTimeAgo(activity.minutesAgo, t);
 
-  // Animation styles
-  const baseStyle: React.CSSProperties = {
-    transition: "transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.4s cubic-bezier(0.22, 1, 0.36, 1)",
-  };
-
+  // Animation styles (transition is handled by .social-proof-transition CSS class
+  // so that @media (prefers-reduced-motion: reduce) can override it)
   const animStyles: Record<string, React.CSSProperties> = {
     entering: {
-      ...baseStyle,
       transform: "translateX(-100%)",
       opacity: 0,
     },
     visible: {
-      ...baseStyle,
       transform: "translateX(0)",
       opacity: 1,
     },
     exiting: {
-      ...baseStyle,
       transform: "translateY(10px)",
       opacity: 0,
     },
@@ -218,7 +212,7 @@ export function SocialProofToast() {
 
   return (
     <div
-      className="fixed bottom-20 left-4 right-4 md:bottom-4 md:left-4 md:right-auto z-50 max-w-sm mb-safe"
+      className="fixed bottom-20 left-4 right-4 md:bottom-4 md:left-4 md:right-auto z-50 max-w-sm mb-safe social-proof-transition"
       style={animStyles[animState]}
       role="status"
       aria-live="polite"

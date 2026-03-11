@@ -221,7 +221,7 @@ export function SeasonBanner() {
           <button
             onClick={handleDismiss}
             className="absolute top-4 right-4 z-10 text-white/40 hover:text-white transition-colors"
-            aria-label="Cerrar"
+            aria-label={t.a11y.close}
           >
             <X className="w-5 h-5" />
           </button>

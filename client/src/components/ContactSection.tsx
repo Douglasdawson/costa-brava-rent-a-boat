@@ -39,7 +39,7 @@ export default function ContactSection() {
                     href="tel:+34611500372"
                     className="text-muted-foreground hover:text-primary transition-colors cursor-pointer block mb-1 text-sm"
                     data-testid="phone-link"
-                    aria-label="Llamar al teléfono +34 611 500 372"
+                    aria-label={`${t.a11y.callPhone} +34 611 500 372`}
                   >
                     +34 611 500 372
                   </a>
@@ -55,7 +55,7 @@ export default function ContactSection() {
                     href="mailto:costabravarentaboat@gmail.com"
                     className="text-muted-foreground hover:text-primary transition-colors cursor-pointer block mb-1 text-xs sm:text-sm break-all"
                     data-testid="email-link"
-                    aria-label="Enviar email a costabravarentaboat@gmail.com"
+                    aria-label={`${t.a11y.sendEmail} costabravarentaboat@gmail.com`}
                   >
                     costabravarentaboat@gmail.com
                   </a>
@@ -74,7 +74,7 @@ export default function ContactSection() {
                     rel="noopener noreferrer"
                     className="text-muted-foreground hover:text-primary transition-colors cursor-pointer"
                     data-testid="location-link"
-                    aria-label="Ver ubicación en Google Maps: Puerto de Blanes"
+                    aria-label={`${t.a11y.viewOnMap}: Puerto de Blanes`}
                   >
                     <span className="block mb-1 text-sm">Puerto de Blanes</span>
                     <span className="block text-xs text-muted-foreground hover:text-primary/80">{t.contact.locationCity}</span>
@@ -98,7 +98,7 @@ export default function ContactSection() {
                   onClick={() => window.open("https://wa.me/34611500372", "_blank")}
                   className="w-full bg-[#25D366] hover:bg-[#128C7E] text-white px-6 py-3 h-12 text-base"
                   data-testid="button-whatsapp-quick"
-                  aria-label="Consultar disponibilidad por WhatsApp"
+                  aria-label={t.a11y.checkWhatsApp}
                 >
                   <SiWhatsapp className="w-5 h-5 mr-2" />
                   {t.contact.consultWhatsApp}
@@ -142,7 +142,7 @@ export default function ContactSection() {
                       onClick={() => window.open("https://maps.app.goo.gl/VrSkZNG7289VVdJD9", "_blank")}
                       className="bg-white/90 backdrop-blur hover:bg-white"
                       data-testid="button-view-map"
-                      aria-label="Ver ubicación completa en Google Maps"
+                      aria-label={t.a11y.viewOnMap}
                     >
                       {t.contact.viewMap}
                     </Button>

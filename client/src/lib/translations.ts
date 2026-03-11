@@ -1224,6 +1224,35 @@ export interface Translations {
   cancelBooking?: {
     tokenNotFound: string;
   };
+
+  // Accessibility aria-labels
+  a11y: {
+    goToHomePage: string;
+    bookBoatNow: string;
+    accessMyAccount: string;
+    openNavMenu: string;
+    closeNavMenu: string;
+    mobileNavMenu: string;
+    switchToLightMode: string;
+    switchToDarkMode: string;
+    decreasePeople: string;
+    increasePeople: string;
+    remove: string;
+    bookingForm: string;
+    goBackToStep: string;
+    continueToStep: string;
+    submitBookingWhatsApp: string;
+    filterByLicense: string;
+    phonePrefix: string;
+    scrollToTop: string;
+    close: string;
+    callPhone: string;
+    sendEmail: string;
+    viewOnMap: string;
+    checkWhatsApp: string;
+    viewBoatDetails: string;
+    stepOf: string;
+  };
 }
 export const translations: Record<Language, Translations> = { es, ca, en, fr, de, nl, it, ru };
 

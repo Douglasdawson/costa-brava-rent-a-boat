@@ -174,7 +174,7 @@ export default function Navigation() {
             onClick={(e) => { e.preventDefault(); handleLogoClick(); }}
             className="flex items-center space-x-2 hover:opacity-80 transition-opacity cursor-pointer p-0 z-10"
             data-testid="brand-logo"
-            aria-label="Ir a la página principal de Costa Brava Rent a Boat Blanes"
+            aria-label={t.a11y.goToHomePage}
           >
             <LogoCostaBravaSVG className="h-8 lg:h-10" />
           </a>
@@ -221,7 +221,7 @@ export default function Navigation() {
               variant="ghost"
               size="icon"
               onClick={toggleTheme}
-              aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+              aria-label={theme === 'dark' ? t.a11y.switchToLightMode : t.a11y.switchToDarkMode}
               className="text-foreground/70 hover:text-foreground hover:bg-gray-100"
             >
               {theme === 'dark' ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
@@ -230,7 +230,7 @@ export default function Navigation() {
             <Button
               onClick={() => handleNavigation("#booking", t.nav.bookNow)}
               data-testid="desktop-button-book"
-              aria-label="Reservar barco ahora"
+              aria-label={t.a11y.bookBoatNow}
               className="bg-cta hover:bg-cta/90 text-white rounded-full px-6 py-2 text-sm font-medium btn-elevated cta-pulse focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none"
             >
               {t.nav.bookNow}
@@ -240,7 +240,7 @@ export default function Navigation() {
                 variant="ghost"
                 onClick={handleMyAccountClick}
                 data-testid="button-my-account"
-                aria-label="Acceder a mi cuenta de cliente"
+                aria-label={t.a11y.accessMyAccount}
                 className="text-foreground/70 hover:text-foreground hover:bg-gray-100"
               >
                 <UserCircle className="w-4 h-4 mr-2" />
@@ -256,7 +256,7 @@ export default function Navigation() {
               size="icon"
               onClick={toggleMenu}
               data-testid="button-mobile-menu"
-              aria-label={isOpen ? "Cerrar menú de navegación" : "Abrir menú de navegación"}
+              aria-label={isOpen ? t.a11y.closeNavMenu : t.a11y.openNavMenu}
               aria-expanded={isOpen}
               className="focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent focus-visible:outline-none"
             >
@@ -267,7 +267,7 @@ export default function Navigation() {
 
         {/* Mobile/tablet Navigation */}
         <nav
-          aria-label="Menú de navegación móvil"
+          aria-label={t.a11y.mobileNavMenu}
           aria-hidden={!isOpen}
           className={`lg:hidden border-t border-border bg-white overflow-hidden transition-all duration-200 ease-in-out ${isOpen ? "max-h-[600px] opacity-100 py-3" : "max-h-0 opacity-0 py-0"}`}
         >
@@ -306,7 +306,7 @@ export default function Navigation() {
                   className="bg-cta hover:bg-cta/90 text-white rounded-full px-6 py-3 text-sm font-medium btn-elevated cta-pulse min-h-11 focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none"
                   onClick={handleMobileBooking}
                   data-testid="mobile-button-book"
-                  aria-label="Reservar barco ahora"
+                  aria-label={t.a11y.bookBoatNow}
                 >
                   {t.nav.bookNow}
                 </Button>
@@ -316,7 +316,7 @@ export default function Navigation() {
                     className="min-h-11 px-4"
                     onClick={handleMyAccountClick}
                     data-testid="mobile-button-my-account"
-                    aria-label="Acceder a mi cuenta de cliente"
+                    aria-label={t.a11y.accessMyAccount}
                   >
                     <UserCircle className="w-4 h-4 mr-2" />
                     {t.nav.myAccount}
@@ -326,7 +326,7 @@ export default function Navigation() {
                   variant="ghost"
                   size="icon"
                   onClick={toggleTheme}
-                  aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+                  aria-label={theme === 'dark' ? t.a11y.switchToLightMode : t.a11y.switchToDarkMode}
                 >
                   {theme === 'dark' ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
                 </Button>

@@ -87,7 +87,7 @@ export default function BoatCard({
         onClick={(e) => { e.preventDefault(); handleDetails(); }}
         className="relative block cursor-pointer group bg-muted focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2 focus-visible:outline-none"
         data-testid={`image-${id}`}
-        aria-label={`Ver detalles del barco ${name}`}
+        aria-label={`${t.a11y.viewBoatDetails} ${name}`}
       >
         {imageError ? (
           <div className="w-full aspect-[4/3] flex items-center justify-center">
@@ -108,6 +108,7 @@ export default function BoatCard({
               alt={imageAlt}
               className="w-full aspect-[4/3] object-cover transition-transform duration-200 group-hover:scale-[1.03]"
               loading="lazy"
+              decoding="async"
               onError={() => setImageError(true)}
             />
           </picture>

@@ -171,12 +171,12 @@ export function registerLegacyAuthRoutes(app: Express) {
       const adminPinBuffer = Buffer.from(String(adminPin).padEnd(64, '\0'));
       if (crypto.timingSafeEqual(pinBuffer, adminPinBuffer)) {
         loginAttempts.delete(clientIp);
-        const token = generateAdminToken("admin", "ivan", "owner");
+        const token = generateAdminToken("owner", "ivan", "owner");
 
         return res.json({
           success: true,
           token,
-          role: "admin",
+          role: "owner",
           username: "ivan",
           displayName: "Ivan",
           allowedTabs: null, // null = full access (owner)

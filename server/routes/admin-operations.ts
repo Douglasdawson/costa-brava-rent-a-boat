@@ -6,7 +6,7 @@ import {
   insertInventoryItemSchema, updateInventoryItemSchema,
   insertInventoryMovementSchema,
 } from "@shared/schema";
-import { requireAdminSession } from "./auth";
+import { requireAdminSession, requireTabAccess } from "./auth";
 import { logger } from "../lib/logger";
 
 interface AuthenticatedRequest extends Request {
@@ -20,7 +20,7 @@ interface AuthenticatedRequest extends Request {
 export function registerAdminOperationsRoutes(app: Express) {
   // ===== MAINTENANCE LOGS =====
 
-  app.get("/api/admin/maintenance", requireAdminSession, async (req, res) => {
+  app.get("/api/admin/maintenance", requireAdminSession, requireTabAccess("maintenance"), async (req, res) => {
     try {
       const boatId = req.query.boatId as string | undefined;
       const logs = await storage.getMaintenanceLogs(boatId);
@@ -32,7 +32,7 @@ export function registerAdminOperationsRoutes(app: Express) {
     }
   });
 
-  app.get("/api/admin/maintenance/upcoming", requireAdminSession, async (req, res) => {
+  app.get("/api/admin/maintenance/upcoming", requireAdminSession, requireTabAccess("maintenance"), async (req, res) => {
     try {
       const upcoming = await storage.getUpcomingMaintenance();
       res.json(upcoming);
@@ -43,7 +43,7 @@ export function registerAdminOperationsRoutes(app: Express) {
     }
   });
 
-  app.post("/api/admin/maintenance", requireAdminSession, async (req, res) => {
+  app.post("/api/admin/maintenance", requireAdminSession, requireTabAccess("maintenance"), async (req, res) => {
     try {
       const parsed = insertMaintenanceLogSchema.safeParse(req.body);
       if (!parsed.success) {
@@ -62,7 +62,7 @@ export function registerAdminOperationsRoutes(app: Express) {
     }
   });
 
-  app.patch("/api/admin/maintenance/:id", requireAdminSession, async (req, res) => {
+  app.patch("/api/admin/maintenance/:id", requireAdminSession, requireTabAccess("maintenance"), async (req, res) => {
     try {
       const parsed = updateMaintenanceLogSchema.safeParse(req.body);
       if (!parsed.success) {
@@ -78,7 +78,7 @@ export function registerAdminOperationsRoutes(app: Express) {
     }
   });
 
-  app.delete("/api/admin/maintenance/:id", requireAdminSession, async (req, res) => {
+  app.delete("/api/admin/maintenance/:id", requireAdminSession, requireTabAccess("maintenance"), async (req, res) => {
     try {
       const deleted = await storage.deleteMaintenanceLog(req.params.id);
       if (!deleted) return res.status(404).json({ message: "Registro no encontrado" });
@@ -92,7 +92,7 @@ export function registerAdminOperationsRoutes(app: Express) {
 
   // ===== BOAT DOCUMENTS =====
 
-  app.get("/api/admin/documents", requireAdminSession, async (req, res) => {
+  app.get("/api/admin/documents", requireAdminSession, requireTabAccess("maintenance"), async (req, res) => {
     try {
       const boatId = req.query.boatId as string | undefined;
       const docs = await storage.getBoatDocuments(boatId);
@@ -104,7 +104,7 @@ export function registerAdminOperationsRoutes(app: Express) {
     }
   });
 
-  app.get("/api/admin/documents/expiring", requireAdminSession, async (req, res) => {
+  app.get("/api/admin/documents/expiring", requireAdminSession, requireTabAccess("maintenance"), async (req, res) => {
     try {
       const days = parseInt(req.query.days as string) || 30;
       const expiring = await storage.getExpiringDocuments(days);
@@ -116,7 +116,7 @@ export function registerAdminOperationsRoutes(app: Express) {
     }
   });
 
-  app.post("/api/admin/documents", requireAdminSession, async (req, res) => {
+  app.post("/api/admin/documents", requireAdminSession, requireTabAccess("maintenance"), async (req, res) => {
     try {
       const parsed = insertBoatDocumentSchema.safeParse(req.body);
       if (!parsed.success) {
@@ -131,7 +131,7 @@ export function registerAdminOperationsRoutes(app: Express) {
     }
   });
 
-  app.patch("/api/admin/documents/:id", requireAdminSession, async (req, res) => {
+  app.patch("/api/admin/documents/:id", requireAdminSession, requireTabAccess("maintenance"), async (req, res) => {
     try {
       const parsed = updateBoatDocumentSchema.safeParse(req.body);
       if (!parsed.success) {
@@ -147,7 +147,7 @@ export function registerAdminOperationsRoutes(app: Express) {
     }
   });
 
-  app.delete("/api/admin/documents/:id", requireAdminSession, async (req, res) => {
+  app.delete("/api/admin/documents/:id", requireAdminSession, requireTabAccess("maintenance"), async (req, res) => {
     try {
       const deleted = await storage.deleteBoatDocument(req.params.id);
       if (!deleted) return res.status(404).json({ message: "Documento no encontrado" });
@@ -161,7 +161,7 @@ export function registerAdminOperationsRoutes(app: Express) {
 
   // ===== INVENTORY =====
 
-  app.get("/api/admin/inventory", requireAdminSession, async (req, res) => {
+  app.get("/api/admin/inventory", requireAdminSession, requireTabAccess("inventory"), async (req, res) => {
     try {
       const items = await storage.getInventoryItems();
       res.json(items);
@@ -172,7 +172,7 @@ export function registerAdminOperationsRoutes(app: Express) {
     }
   });
 
-  app.get("/api/admin/inventory/low-stock", requireAdminSession, async (req, res) => {
+  app.get("/api/admin/inventory/low-stock", requireAdminSession, requireTabAccess("inventory"), async (req, res) => {
     try {
       const items = await storage.getLowStockItems();
       res.json(items);
@@ -183,7 +183,7 @@ export function registerAdminOperationsRoutes(app: Express) {
     }
   });
 
-  app.get("/api/admin/inventory/:id", requireAdminSession, async (req, res) => {
+  app.get("/api/admin/inventory/:id", requireAdminSession, requireTabAccess("inventory"), async (req, res) => {
     try {
       const item = await storage.getInventoryItem(req.params.id);
       if (!item) return res.status(404).json({ message: "Item no encontrado" });
@@ -195,7 +195,7 @@ export function registerAdminOperationsRoutes(app: Express) {
     }
   });
 
-  app.post("/api/admin/inventory", requireAdminSession, async (req, res) => {
+  app.post("/api/admin/inventory", requireAdminSession, requireTabAccess("inventory"), async (req, res) => {
     try {
       const parsed = insertInventoryItemSchema.safeParse(req.body);
       if (!parsed.success) {
@@ -210,7 +210,7 @@ export function registerAdminOperationsRoutes(app: Express) {
     }
   });
 
-  app.patch("/api/admin/inventory/:id", requireAdminSession, async (req, res) => {
+  app.patch("/api/admin/inventory/:id", requireAdminSession, requireTabAccess("inventory"), async (req, res) => {
     try {
       const parsed = updateInventoryItemSchema.safeParse(req.body);
       if (!parsed.success) {
@@ -226,7 +226,7 @@ export function registerAdminOperationsRoutes(app: Express) {
     }
   });
 
-  app.delete("/api/admin/inventory/:id", requireAdminSession, async (req, res) => {
+  app.delete("/api/admin/inventory/:id", requireAdminSession, requireTabAccess("inventory"), async (req, res) => {
     try {
       const deleted = await storage.deleteInventoryItem(req.params.id);
       if (!deleted) return res.status(404).json({ message: "Item no encontrado" });
@@ -239,7 +239,7 @@ export function registerAdminOperationsRoutes(app: Express) {
   });
 
   // Inventory movements
-  app.get("/api/admin/inventory/:id/movements", requireAdminSession, async (req, res) => {
+  app.get("/api/admin/inventory/:id/movements", requireAdminSession, requireTabAccess("inventory"), async (req, res) => {
     try {
       const movements = await storage.getInventoryMovements(req.params.id);
       res.json(movements);
@@ -250,7 +250,7 @@ export function registerAdminOperationsRoutes(app: Express) {
     }
   });
 
-  app.post("/api/admin/inventory/:id/movements", requireAdminSession, async (req, res) => {
+  app.post("/api/admin/inventory/:id/movements", requireAdminSession, requireTabAccess("inventory"), async (req, res) => {
     try {
       const parsed = insertInventoryMovementSchema.safeParse({
         ...req.body,

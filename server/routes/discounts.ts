@@ -1,6 +1,6 @@
 import type { Express } from "express";
 import { storage } from "../storage";
-import { requireAdminSession } from "./auth";
+import { requireAdminSession, requireTabAccess } from "./auth";
 import { z } from "zod";
 import crypto from "crypto";
 import { logger } from "../lib/logger";
@@ -84,7 +84,7 @@ export function registerDiscountRoutes(app: Express) {
   // ===== ADMIN ENDPOINTS =====
 
   // List all discount codes
-  app.get("/api/admin/discounts", requireAdminSession, async (_req, res) => {
+  app.get("/api/admin/discounts", requireAdminSession, requireTabAccess("discounts"), async (_req, res) => {
     try {
       const codes = await storage.getDiscountCodes();
       res.json(codes);
@@ -96,7 +96,7 @@ export function registerDiscountRoutes(app: Express) {
   });
 
   // Create a new discount code
-  app.post("/api/admin/discounts", requireAdminSession, async (req, res) => {
+  app.post("/api/admin/discounts", requireAdminSession, requireTabAccess("discounts"), async (req, res) => {
     try {
       const parsed = createDiscountSchema.safeParse(req.body);
       if (!parsed.success) {
@@ -135,7 +135,7 @@ export function registerDiscountRoutes(app: Express) {
   });
 
   // Deactivate a discount code
-  app.delete("/api/admin/discounts/:id", requireAdminSession, async (req, res) => {
+  app.delete("/api/admin/discounts/:id", requireAdminSession, requireTabAccess("discounts"), async (req, res) => {
     try {
       const { id } = req.params;
 
@@ -175,7 +175,7 @@ export function registerDiscountRoutes(app: Express) {
   });
 
   // Pre-season campaign: generate codes for all past customers
-  app.post("/api/admin/discounts/pre-season-campaign", requireAdminSession, async (_req, res) => {
+  app.post("/api/admin/discounts/pre-season-campaign", requireAdminSession, requireTabAccess("discounts"), async (_req, res) => {
     try {
       // Get confirmed bookings that have an email address
       const confirmedBookings = await storage.getConfirmedBookingsWithEmail();

@@ -93,8 +93,19 @@ const paymentLimiter = rateLimit({
   message: { message: "Demasiadas solicitudes de pago. Intenta de nuevo en unos minutos." },
 });
 
+// Data export/bulk endpoints — stricter rate limit (30 req / 15 min)
+const dataExportLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 30,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { message: "Demasiadas solicitudes de datos. Intenta de nuevo en unos minutos." },
+});
+
 app.use("/api/", generalLimiter);
 app.use("/api/admin/", adminLimiter);
+app.use("/api/admin/customers", dataExportLimiter);
+app.use("/api/admin/customers/export", dataExportLimiter);
 app.use("/api/admin/login", authLimiter);
 app.use("/api/admin/login-user", authLimiter);
 app.use("/api/auth/login", authLimiter);
@@ -133,14 +144,16 @@ app.use('/api/', (req: Request, res: Response, next: NextFunction) => {
 app.set('etag', 'strong');
 
 // Optimize JSON parsing — skip for Stripe webhook (needs raw body for signature verification)
+// Meta WhatsApp webhook also needs raw body for X-Hub-Signature-256 verification
+const rawBodyPaths = ['/api/stripe-webhook', '/api/meta-whatsapp/webhook'];
 app.use((req: Request, res: Response, next: NextFunction) => {
-  if (req.path === '/api/stripe-webhook') {
+  if (rawBodyPaths.includes(req.path)) {
     return next();
   }
   express.json({ limit: '1mb' })(req, res, next);
 });
 app.use((req: Request, res: Response, next: NextFunction) => {
-  if (req.path === '/api/stripe-webhook') {
+  if (rawBodyPaths.includes(req.path)) {
     return next();
   }
   express.urlencoded({ extended: false, limit: '1mb' })(req, res, next);
@@ -186,10 +199,27 @@ app.use((req: Request, res: Response, next: NextFunction) => {
   next();
 });
 
+// Sensitive field names to redact from API response logs
+const SENSITIVE_FIELDS = new Set(["email", "phone", "phoneNumber", "phonePrefix", "pin", "password", "passwordHash", "token", "refreshToken", "accessToken", "secret"]);
+
+function redactSensitive(obj: Record<string, unknown>): Record<string, unknown> {
+  const redacted: Record<string, unknown> = {};
+  for (const [key, value] of Object.entries(obj)) {
+    if (SENSITIVE_FIELDS.has(key)) {
+      redacted[key] = "[REDACTED]";
+    } else if (value && typeof value === "object" && !Array.isArray(value)) {
+      redacted[key] = redactSensitive(value as Record<string, unknown>);
+    } else {
+      redacted[key] = value;
+    }
+  }
+  return redacted;
+}
+
 app.use((req, res, next) => {
   const start = Date.now();
   const path = req.path;
-  let capturedJsonResponse: Record<string, any> | undefined = undefined;
+  let capturedJsonResponse: Record<string, unknown> | undefined = undefined;
 
   const originalResJson = res.json;
   res.json = function (bodyJson, ...args) {
@@ -202,7 +232,10 @@ app.use((req, res, next) => {
     if (path.startsWith("/api")) {
       let logLine = `${req.method} ${path} ${res.statusCode} in ${duration}ms`;
       if (capturedJsonResponse) {
-        logLine += ` :: ${JSON.stringify(capturedJsonResponse)}`;
+        const safe = typeof capturedJsonResponse === "object" && capturedJsonResponse !== null
+          ? redactSensitive(capturedJsonResponse as Record<string, unknown>)
+          : capturedJsonResponse;
+        logLine += ` :: ${JSON.stringify(safe)}`;
       }
 
       if (logLine.length > 80) {

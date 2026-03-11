@@ -3,7 +3,7 @@ import rateLimit from "express-rate-limit";
 import { z } from "zod";
 import { storage } from "../storage";
 import { insertWhatsappInquirySchema, updateWhatsappInquirySchema } from "@shared/schema";
-import { requireAdminSession } from "./auth";
+import { requireAdminSession, requireTabAccess } from "./auth";
 import { sendMetaWhatsAppMessage, isMetaWhatsAppConfigured } from "../whatsapp/metaClient";
 import { logger } from "../lib/logger";
 
@@ -42,7 +42,7 @@ export function registerInquiryRoutes(app: Express) {
   });
 
   // Admin: list inquiries (paginated)
-  app.get("/api/admin/booking-inquiries", requireAdminSession, async (req, res) => {
+  app.get("/api/admin/booking-inquiries", requireAdminSession, requireTabAccess("inquiries"), async (req, res) => {
     try {
       const queryParsed = paginatedInquiriesQuerySchema.safeParse(req.query);
       if (!queryParsed.success) {
@@ -60,7 +60,7 @@ export function registerInquiryRoutes(app: Express) {
   });
 
   // Admin: update inquiry (status, notes)
-  app.patch("/api/admin/booking-inquiries/:id", requireAdminSession, async (req, res) => {
+  app.patch("/api/admin/booking-inquiries/:id", requireAdminSession, requireTabAccess("inquiries"), async (req, res) => {
     try {
       const parsed = updateWhatsappInquirySchema.safeParse(req.body);
       if (!parsed.success) {
@@ -81,7 +81,7 @@ export function registerInquiryRoutes(app: Express) {
   });
 
   // Admin: delete inquiry
-  app.delete("/api/admin/booking-inquiries/:id", requireAdminSession, async (req, res) => {
+  app.delete("/api/admin/booking-inquiries/:id", requireAdminSession, requireTabAccess("inquiries"), async (req, res) => {
     try {
       const deleted = await storage.deleteWhatsappInquiry(req.params.id);
       if (!deleted) {
@@ -95,7 +95,7 @@ export function registerInquiryRoutes(app: Express) {
   });
 
   // Admin: send WhatsApp message to inquiry customer via Meta API
-  app.post("/api/admin/booking-inquiries/:id/send-whatsapp", requireAdminSession, async (req, res) => {
+  app.post("/api/admin/booking-inquiries/:id/send-whatsapp", requireAdminSession, requireTabAccess("inquiries"), async (req, res) => {
     try {
       const { message } = req.body;
       if (!message || typeof message !== "string") {

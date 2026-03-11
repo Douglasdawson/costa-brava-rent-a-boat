@@ -1,7 +1,7 @@
 import type { Express } from "express";
 import { z } from "zod";
 import { storage } from "../storage";
-import { requireAdminSession, requireAdminRole } from "./auth";
+import { requireAdminSession, requireAdminRole, requireTabAccess } from "./auth";
 import { logger } from "../lib/logger";
 
 const gallerySubmitSchema = z.object({
@@ -100,7 +100,7 @@ export function registerGalleryRoutes(app: Express) {
   });
 
   // Admin: get all photos (including unapproved)
-  app.get("/api/admin/gallery", requireAdminSession, async (_req, res) => {
+  app.get("/api/admin/gallery", requireAdminSession, requireTabAccess("gallery"), async (_req, res) => {
     try {
       const photos = await storage.getAllPhotos();
       res.json(photos);
@@ -112,7 +112,7 @@ export function registerGalleryRoutes(app: Express) {
   });
 
   // Admin: approve photo
-  app.patch("/api/admin/gallery/:id/approve", requireAdminSession, async (req, res) => {
+  app.patch("/api/admin/gallery/:id/approve", requireAdminSession, requireTabAccess("gallery"), async (req, res) => {
     try {
       const updated = await storage.updateClientPhoto(req.params.id, {
         isApproved: true,
@@ -130,7 +130,7 @@ export function registerGalleryRoutes(app: Express) {
   });
 
   // Admin: reject photo (set as not approved)
-  app.patch("/api/admin/gallery/:id/reject", requireAdminSession, async (req, res) => {
+  app.patch("/api/admin/gallery/:id/reject", requireAdminSession, requireTabAccess("gallery"), async (req, res) => {
     try {
       const updated = await storage.updateClientPhoto(req.params.id, {
         isApproved: false,
@@ -148,7 +148,7 @@ export function registerGalleryRoutes(app: Express) {
   });
 
   // Admin: delete photo
-  app.delete("/api/admin/gallery/:id", requireAdminSession, requireAdminRole, async (req, res) => {
+  app.delete("/api/admin/gallery/:id", requireAdminSession, requireTabAccess("gallery"), requireAdminRole, async (req, res) => {
     try {
       const deleted = await storage.deleteClientPhoto(req.params.id);
       if (!deleted) {

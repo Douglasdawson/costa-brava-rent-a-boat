@@ -1,7 +1,27 @@
+import express from "express";
+import crypto from "crypto";
 import type { Express, Request, Response } from "express";
 import { storage } from "../storage";
 import { markMessageAsRead } from "../whatsapp/metaClient";
 import { logger } from "../lib/logger";
+
+/**
+ * Verify Meta X-Hub-Signature-256 header against the raw request body.
+ * Returns true if valid, false otherwise.
+ */
+function verifyMetaSignature(rawBody: Buffer, signature: string | undefined): boolean {
+  const appSecret = process.env.META_WHATSAPP_APP_SECRET;
+  if (!appSecret) {
+    logger.error("[Meta Webhook] META_WHATSAPP_APP_SECRET not set — cannot verify signature");
+    return false;
+  }
+  if (!signature) {
+    logger.warn("[Meta Webhook] Missing X-Hub-Signature-256 header");
+    return false;
+  }
+  const expectedSig = "sha256=" + crypto.createHmac("sha256", appSecret).update(rawBody).digest("hex");
+  return crypto.timingSafeEqual(Buffer.from(signature), Buffer.from(expectedSig));
+}
 
 /**
  * Meta WhatsApp Cloud API Webhook
@@ -30,30 +50,50 @@ export function registerMetaWebhookRoutes(app: Express) {
   });
 
   // Webhook receiver (incoming messages + status updates)
-  app.post("/api/meta-whatsapp/webhook", async (req: Request, res: Response) => {
+  // Uses express.raw() to get raw body for HMAC signature verification
+  app.post("/api/meta-whatsapp/webhook", express.raw({ type: "application/json" }), async (req: Request, res: Response) => {
+    // Verify X-Hub-Signature-256 from Meta
+    const signature = req.headers["x-hub-signature-256"] as string | undefined;
+    if (!verifyMetaSignature(req.body as Buffer, signature)) {
+      logger.warn("[Meta Webhook] Invalid signature — rejecting request");
+      return res.sendStatus(403);
+    }
+
+    // Parse the raw body now that signature is verified
+    let body: Record<string, unknown>;
+    try {
+      body = JSON.parse((req.body as Buffer).toString("utf8"));
+    } catch {
+      return res.sendStatus(400);
+    }
+
     // Always return 200 immediately to avoid Meta retries
     res.sendStatus(200);
 
     try {
-      const body = req.body;
       if (body.object !== "whatsapp_business_account") return;
 
-      for (const entry of body.entry || []) {
-        for (const change of entry.changes || []) {
+      for (const entry of (body.entry as Array<Record<string, unknown>>) || []) {
+        for (const change of (entry.changes as Array<Record<string, unknown>>) || []) {
           if (change.field !== "messages") continue;
-          const value = change.value;
+          const value = change.value as Record<string, unknown>;
 
           // Handle incoming messages from customers
           if (value.messages) {
-            for (const message of value.messages) {
-              await handleIncomingMessage(message, value.contacts?.[0]);
+            for (const message of value.messages as Array<Record<string, unknown>>) {
+              await handleIncomingMessage(
+                message as { from: string; id: string; type: string; text?: { body: string } },
+                ((value.contacts as Array<Record<string, unknown>>) || [])[0] as { profile?: { name: string } } | undefined,
+              );
             }
           }
 
           // Handle message status updates (sent, delivered, read)
           if (value.statuses) {
-            for (const status of value.statuses) {
-              await handleStatusUpdate(status);
+            for (const status of value.statuses as Array<Record<string, unknown>>) {
+              await handleStatusUpdate(
+                status as { id: string; status: string; recipient_id: string; timestamp: string },
+              );
             }
           }
         }

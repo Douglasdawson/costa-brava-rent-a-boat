@@ -1,6 +1,6 @@
 import type { Express } from "express";
 import { storage } from "../storage";
-import { requireAdminSession, requireAdminRole } from "./auth";
+import { requireAdminSession, requireAdminRole, requireTabAccess } from "./auth";
 import { getStripe } from "./payments";
 import { z } from "zod";
 import { logger } from "../lib/logger";
@@ -161,7 +161,7 @@ export function registerGiftCardRoutes(app: Express) {
   });
 
   // Admin: List all gift cards
-  app.get("/api/admin/gift-cards", requireAdminSession, async (_req, res) => {
+  app.get("/api/admin/gift-cards", requireAdminSession, requireTabAccess("giftcards"), async (_req, res) => {
     try {
       const cards = await storage.getAllGiftCards();
       res.json(cards);
@@ -173,7 +173,7 @@ export function registerGiftCardRoutes(app: Express) {
   });
 
   // Admin: Update gift card status
-  app.patch("/api/admin/gift-cards/:id", requireAdminSession, requireAdminRole, async (req, res) => {
+  app.patch("/api/admin/gift-cards/:id", requireAdminSession, requireTabAccess("giftcards"), requireAdminRole, async (req, res) => {
     try {
       const { id } = req.params;
 

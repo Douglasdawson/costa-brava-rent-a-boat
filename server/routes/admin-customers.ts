@@ -2,7 +2,7 @@ import type { Express, Request } from "express";
 import { z } from "zod";
 import { storage } from "../storage";
 import { updateCrmCustomerSchema, insertCheckinSchema } from "@shared/schema";
-import { requireAdminSession } from "./auth";
+import { requireAdminSession, requireTabAccess } from "./auth";
 import { format } from "date-fns";
 import { logger } from "../lib/logger";
 
@@ -28,7 +28,7 @@ export function registerAdminCustomerRoutes(app: Express) {
   // ===== CRM CUSTOMER MANAGEMENT =====
 
   // Paginated customers list with search and filters
-  app.get("/api/admin/customers", requireAdminSession, async (req, res) => {
+  app.get("/api/admin/customers", requireAdminSession, requireTabAccess("customers"), async (req, res) => {
     try {
       const queryParsed = paginatedCustomersQuerySchema.safeParse(req.query);
       if (!queryParsed.success) {
@@ -48,7 +48,7 @@ export function registerAdminCustomerRoutes(app: Express) {
   });
 
   // Get single customer profile with booking history
-  app.get("/api/admin/customers/:id", requireAdminSession, async (req, res) => {
+  app.get("/api/admin/customers/:id", requireAdminSession, requireTabAccess("customers"), async (req, res) => {
     try {
       const result = await storage.getCrmCustomerById(req.params.id);
       if (!result) {
@@ -63,7 +63,7 @@ export function registerAdminCustomerRoutes(app: Express) {
   });
 
   // Update customer (notes, tags, nationality, documentId, etc.)
-  app.patch("/api/admin/customers/:id", requireAdminSession, async (req, res) => {
+  app.patch("/api/admin/customers/:id", requireAdminSession, requireTabAccess("customers"), async (req, res) => {
     try {
       const parsed = updateCrmCustomerSchema.safeParse(req.body);
       if (!parsed.success) {
@@ -87,7 +87,7 @@ export function registerAdminCustomerRoutes(app: Express) {
   });
 
   // Sync all customers from bookings data
-  app.post("/api/admin/customers/sync", requireAdminSession, async (req, res) => {
+  app.post("/api/admin/customers/sync", requireAdminSession, requireTabAccess("customers"), async (req, res) => {
     try {
       const result = await storage.syncAllCustomersFromBookings();
       res.json({
@@ -103,7 +103,7 @@ export function registerAdminCustomerRoutes(app: Express) {
   });
 
   // Export customers as CSV
-  app.get("/api/admin/customers/export", requireAdminSession, async (req, res) => {
+  app.get("/api/admin/customers/export", requireAdminSession, requireTabAccess("customers"), async (req, res) => {
     try {
       const result = await storage.getPaginatedCrmCustomers({
         page: 1,
@@ -152,7 +152,7 @@ export function registerAdminCustomerRoutes(app: Express) {
   // ===== CHECK-IN / CHECK-OUT =====
 
   // Create check-in or check-out
-  app.post("/api/admin/checkins", requireAdminSession, async (req, res) => {
+  app.post("/api/admin/checkins", requireAdminSession, requireTabAccess("customers"), async (req, res) => {
     try {
       const parsed = insertCheckinSchema.safeParse(req.body);
       if (!parsed.success) {
@@ -198,7 +198,7 @@ export function registerAdminCustomerRoutes(app: Express) {
   });
 
   // Get check-ins for a booking
-  app.get("/api/admin/checkins/booking/:bookingId", requireAdminSession, async (req, res) => {
+  app.get("/api/admin/checkins/booking/:bookingId", requireAdminSession, requireTabAccess("customers"), async (req, res) => {
     try {
       const checkinsList = await storage.getCheckinsByBooking(req.params.bookingId);
       res.json(checkinsList);

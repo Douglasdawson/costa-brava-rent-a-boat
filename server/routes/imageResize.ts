@@ -46,8 +46,14 @@ export function registerImageResizeRoutes(app: Express) {
       return res.status(400).json({ error: "Missing file param" });
     }
 
-    // Sanitize: reject path traversal
-    const sanitized = file.replace(/\.\./g, "");
+    // Sanitize: decode and reject any path traversal attempts
+    let decoded: string;
+    try {
+      decoded = decodeURIComponent(file);
+    } catch {
+      return res.status(400).json({ error: "Invalid filename" });
+    }
+    const sanitized = decoded.replace(/\.\./g, "").replace(/\\/g, "/");
     if (!sanitized || sanitized.startsWith(".") || sanitized.startsWith("/")) {
       return res.status(400).json({ error: "Invalid filename" });
     }
@@ -67,10 +73,14 @@ export function registerImageResizeRoutes(app: Express) {
     // Resolve DB filename (with hash) to actual photo filename
     const resolvedFilename = resolveFilename(sanitized);
 
-    // Search in image directories
+    // Search in image directories — verify resolved path stays within allowed dirs
     let filePath = "";
     for (const dir of IMAGES_DIRS) {
-      const candidate = path.join(dir, resolvedFilename);
+      const candidate = path.resolve(dir, resolvedFilename);
+      // Prevent path traversal: resolved path must be inside the allowed directory
+      if (!candidate.startsWith(path.resolve(dir) + path.sep) && candidate !== path.resolve(dir)) {
+        continue;
+      }
       if (fs.existsSync(candidate)) {
         filePath = candidate;
         break;

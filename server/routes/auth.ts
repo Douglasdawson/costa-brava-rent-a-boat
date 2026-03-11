@@ -8,6 +8,7 @@ export {
   requireSaasAuth,
   requireAdminRole,
   requireOwner,
+  requireTabAccess,
   injectTenantId,
   generateAdminToken,
 } from "./auth-middleware";

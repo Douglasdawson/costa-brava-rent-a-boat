@@ -1,3 +1,4 @@
+import crypto from "crypto";
 import {
   db, eq, and, or, sql, isNull, lte,
   users, refreshTokens, passwordResetTokens,
@@ -10,6 +11,11 @@ import {
   type Customer, type InsertCustomer,
 } from "./base";
 import { getTenant } from "./tenants";
+
+/** Hash a refresh token with SHA-256 before storing/looking up in DB */
+function hashToken(token: string): string {
+  return crypto.createHash("sha256").update(token).digest("hex");
+}
 
 // ===== SAAS USER METHODS =====
 
@@ -49,17 +55,20 @@ export async function updateUser(id: string, data: Partial<SaasUser>): Promise<S
 // ===== REFRESH TOKEN METHODS =====
 
 export async function createRefreshToken(userId: string, token: string, expiresAt: Date): Promise<RefreshToken> {
-  const [rt] = await db.insert(refreshTokens).values({ userId, token, expiresAt }).returning();
+  const hashed = hashToken(token);
+  const [rt] = await db.insert(refreshTokens).values({ userId, token: hashed, expiresAt }).returning();
   return rt;
 }
 
 export async function getRefreshToken(token: string): Promise<RefreshToken | undefined> {
-  const [rt] = await db.select().from(refreshTokens).where(eq(refreshTokens.token, token));
+  const hashed = hashToken(token);
+  const [rt] = await db.select().from(refreshTokens).where(eq(refreshTokens.token, hashed));
   return rt || undefined;
 }
 
 export async function deleteRefreshToken(token: string): Promise<boolean> {
-  const result = await db.delete(refreshTokens).where(eq(refreshTokens.token, token));
+  const hashed = hashToken(token);
+  const result = await db.delete(refreshTokens).where(eq(refreshTokens.token, hashed));
   return result.rowCount !== null && result.rowCount > 0;
 }
 

@@ -1,7 +1,7 @@
 import type { Express } from "express";
 import { storage } from "../storage";
 import { insertBlogPostSchema } from "@shared/schema";
-import { requireAdminSession } from "./auth";
+import { requireAdminSession, requireTabAccess } from "./auth";
 import { logger } from "../lib/logger";
 
 export function registerBlogRoutes(app: Express) {
@@ -43,7 +43,7 @@ export function registerBlogRoutes(app: Express) {
   // ===== ADMIN ROUTES =====
 
   // Get all blog posts (admin only)
-  app.get("/api/admin/blog", requireAdminSession, async (req, res) => {
+  app.get("/api/admin/blog", requireAdminSession, requireTabAccess("blog"), async (req, res) => {
     try {
       const posts = await storage.getAllBlogPosts();
       res.json(posts);
@@ -54,7 +54,7 @@ export function registerBlogRoutes(app: Express) {
   });
 
   // Create a new blog post (admin only)
-  app.post("/api/admin/blog", requireAdminSession, async (req, res) => {
+  app.post("/api/admin/blog", requireAdminSession, requireTabAccess("blog"), async (req, res) => {
     try {
       // Coerce publishedAt from string to Date if needed
       const body = { ...req.body };
@@ -77,7 +77,7 @@ export function registerBlogRoutes(app: Express) {
   });
 
   // Update a blog post (admin only)
-  app.put("/api/admin/blog/:id", requireAdminSession, async (req, res) => {
+  app.put("/api/admin/blog/:id", requireAdminSession, requireTabAccess("blog"), async (req, res) => {
     try {
       // Coerce publishedAt from string to Date if needed
       const body = { ...req.body };
@@ -103,7 +103,7 @@ export function registerBlogRoutes(app: Express) {
   });
 
   // Delete a blog post (admin only)
-  app.delete("/api/admin/blog/:id", requireAdminSession, async (req, res) => {
+  app.delete("/api/admin/blog/:id", requireAdminSession, requireTabAccess("blog"), async (req, res) => {
     try {
       const success = await storage.deleteBlogPost(req.params.id);
       if (!success) {

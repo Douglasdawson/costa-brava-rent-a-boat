@@ -2,7 +2,7 @@ import type { Express } from "express";
 import { z } from "zod";
 import { storage } from "../storage";
 import { updateBookingSchema, insertBookingSchema } from "@shared/schema";
-import { requireAdminSession } from "./auth";
+import { requireAdminSession, requireTabAccess } from "./auth";
 import { logger } from "../lib/logger";
 
 const calendarBookingsQuerySchema = z.object({
@@ -24,7 +24,7 @@ export function registerAdminBookingRoutes(app: Express) {
   // ===== BOOKING MANAGEMENT =====
 
   // Create a new booking manually (from CRM)
-  app.post("/api/admin/bookings", requireAdminSession, async (req, res) => {
+  app.post("/api/admin/bookings", requireAdminSession, requireTabAccess("bookings"), async (req, res) => {
     try {
       const bookingData = {
         ...req.body,
@@ -53,7 +53,7 @@ export function registerAdminBookingRoutes(app: Express) {
   });
 
   // Calendar bookings: all bookings in a date range (no pagination)
-  app.get("/api/admin/bookings/calendar", requireAdminSession, async (req, res) => {
+  app.get("/api/admin/bookings/calendar", requireAdminSession, requireTabAccess("bookings"), async (req, res) => {
     try {
       const queryParsed = calendarBookingsQuerySchema.safeParse(req.query);
       if (!queryParsed.success) {
@@ -78,7 +78,7 @@ export function registerAdminBookingRoutes(app: Express) {
     }
   });
 
-  app.get("/api/admin/bookings", requireAdminSession, async (req, res) => {
+  app.get("/api/admin/bookings", requireAdminSession, requireTabAccess("bookings"), async (req, res) => {
     try {
       const queryParsed = paginatedBookingsQuerySchema.safeParse(req.query);
       if (!queryParsed.success) {
@@ -106,7 +106,7 @@ export function registerAdminBookingRoutes(app: Express) {
     }
   });
 
-  app.patch("/api/admin/bookings/:id", requireAdminSession, async (req, res) => {
+  app.patch("/api/admin/bookings/:id", requireAdminSession, requireTabAccess("bookings"), async (req, res) => {
     try {
       const existingBooking = await storage.getBooking(req.params.id);
       if (!existingBooking) {

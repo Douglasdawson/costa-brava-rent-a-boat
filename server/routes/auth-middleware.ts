@@ -6,7 +6,7 @@ import type { AuthenticatedRequest, AdminJwtPayload, SaasJwtPayload, JwtPayload 
 
 // ===== Constants =====
 
-export const BCRYPT_ROUNDS = 10;
+export const BCRYPT_ROUNDS = 12;
 
 // JWT secret - MUST be set via environment variable. No fallback allowed.
 if (!process.env.JWT_SECRET || process.env.JWT_SECRET.length < 32) {

@@ -1,7 +1,7 @@
 import type { Express } from "express";
 import { z } from "zod";
 import { storage } from "../storage";
-import { requireAdminSession } from "./auth";
+import { requireAdminSession, requireTabAccess } from "./auth";
 import { logger } from "../lib/logger";
 
 const adminStatsQuerySchema = z.object({
@@ -24,7 +24,7 @@ const statusDistributionQuerySchema = z.object({
 export function registerAdminStatsRoutes(app: Express) {
   // ===== DASHBOARD STATS =====
 
-  app.get("/api/admin/stats", requireAdminSession, async (req, res) => {
+  app.get("/api/admin/stats", requireAdminSession, requireTabAccess("reports"), async (req, res) => {
     try {
       const queryParsed = adminStatsQuerySchema.safeParse(req.query);
       if (!queryParsed.success) {
@@ -77,7 +77,7 @@ export function registerAdminStatsRoutes(app: Express) {
   });
 
   // Revenue trend for charts
-  app.get("/api/admin/stats/revenue-trend", requireAdminSession, async (req, res) => {
+  app.get("/api/admin/stats/revenue-trend", requireAdminSession, requireTabAccess("reports"), async (req, res) => {
     try {
       const queryParsed = revenueTrendQuerySchema.safeParse(req.query);
       if (!queryParsed.success) {
@@ -95,7 +95,7 @@ export function registerAdminStatsRoutes(app: Express) {
   });
 
   // Boats performance comparison
-  app.get("/api/admin/stats/boats-performance", requireAdminSession, async (req, res) => {
+  app.get("/api/admin/stats/boats-performance", requireAdminSession, requireTabAccess("reports"), async (req, res) => {
     try {
       const queryParsed = boatsPerformanceQuerySchema.safeParse(req.query);
       if (!queryParsed.success) {
@@ -113,7 +113,7 @@ export function registerAdminStatsRoutes(app: Express) {
   });
 
   // Status distribution
-  app.get("/api/admin/stats/status-distribution", requireAdminSession, async (req, res) => {
+  app.get("/api/admin/stats/status-distribution", requireAdminSession, requireTabAccess("reports"), async (req, res) => {
     try {
       const queryParsed = statusDistributionQuerySchema.safeParse(req.query);
       if (!queryParsed.success) {
@@ -137,7 +137,7 @@ export function registerAdminStatsRoutes(app: Express) {
 
   // ===== REPORTS =====
 
-  app.get("/api/admin/reports/fleet-utilization", requireAdminSession, async (req, res) => {
+  app.get("/api/admin/reports/fleet-utilization", requireAdminSession, requireTabAccess("reports"), async (req, res) => {
     try {
       const period = (req.query.period as string) || "season";
       const performance = await storage.getBoatsPerformance(period as "month" | "season" | "year");
@@ -162,7 +162,7 @@ export function registerAdminStatsRoutes(app: Express) {
     }
   });
 
-  app.get("/api/admin/reports/maintenance-summary", requireAdminSession, async (req, res) => {
+  app.get("/api/admin/reports/maintenance-summary", requireAdminSession, requireTabAccess("reports"), async (req, res) => {
     try {
       const logs = await storage.getMaintenanceLogs();
       const completed = logs.filter(l => l.status === "completed");
@@ -190,7 +190,7 @@ export function registerAdminStatsRoutes(app: Express) {
     }
   });
 
-  app.get("/api/admin/reports/top-customers", requireAdminSession, async (req, res) => {
+  app.get("/api/admin/reports/top-customers", requireAdminSession, requireTabAccess("reports"), async (req, res) => {
     try {
       const result = await storage.getPaginatedCrmCustomers({
         page: 1,

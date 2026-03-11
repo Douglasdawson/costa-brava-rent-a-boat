@@ -3,7 +3,7 @@ import { z } from "zod";
 import { eq } from "drizzle-orm";
 import { storage } from "../storage";
 import { insertBoatSchema, updateBoatSchema, boats } from "@shared/schema";
-import { requireAdminSession } from "./auth";
+import { requireAdminSession, requireTabAccess } from "./auth";
 import { ObjectStorageService } from "../objectStorage";
 import { logger } from "../lib/logger";
 import { db } from "../db";
@@ -23,7 +23,7 @@ export function registerAdminFleetRoutes(app: Express) {
   // ===== BOAT MANAGEMENT =====
 
   // Get ALL boats (including inactive) for CRM
-  app.get("/api/admin/boats", requireAdminSession, async (req, res) => {
+  app.get("/api/admin/boats", requireAdminSession, requireTabAccess("fleet"), async (req, res) => {
     try {
       const allBoats = await db.select().from(boats).orderBy(boats.displayOrder);
       res.json(allBoats);
@@ -33,7 +33,7 @@ export function registerAdminFleetRoutes(app: Express) {
     }
   });
 
-  app.post("/api/admin/boats", requireAdminSession, async (req, res) => {
+  app.post("/api/admin/boats", requireAdminSession, requireTabAccess("fleet"), async (req, res) => {
     try {
       const validationResult = insertBoatSchema.safeParse(req.body);
       if (!validationResult.success) {
@@ -50,7 +50,7 @@ export function registerAdminFleetRoutes(app: Express) {
     }
   });
 
-  app.patch("/api/admin/boats/:id", requireAdminSession, async (req, res) => {
+  app.patch("/api/admin/boats/:id", requireAdminSession, requireTabAccess("fleet"), async (req, res) => {
     try {
       const existingBoat = await storage.getBoat(req.params.id);
       if (!existingBoat) {
@@ -71,7 +71,7 @@ export function registerAdminFleetRoutes(app: Express) {
     }
   });
 
-  app.delete("/api/admin/boats/:id", requireAdminSession, async (req, res) => {
+  app.delete("/api/admin/boats/:id", requireAdminSession, requireTabAccess("fleet"), async (req, res) => {
     try {
       const existingBoat = await storage.getBoat(req.params.id);
       if (!existingBoat) {
@@ -85,7 +85,7 @@ export function registerAdminFleetRoutes(app: Express) {
     }
   });
 
-  app.post("/api/admin/boats/reorder", requireAdminSession, async (req, res) => {
+  app.post("/api/admin/boats/reorder", requireAdminSession, requireTabAccess("fleet"), async (req, res) => {
     try {
       const parsed = boatReorderSchema.safeParse(req.body);
       if (!parsed.success) {
@@ -107,7 +107,7 @@ export function registerAdminFleetRoutes(app: Express) {
   });
 
   // Rename boat ID (primary key migration)
-  app.post("/api/admin/boats/:id/rename", requireAdminSession, async (req, res) => {
+  app.post("/api/admin/boats/:id/rename", requireAdminSession, requireTabAccess("fleet"), async (req, res) => {
     try {
       const { newId } = req.body;
       if (!newId || typeof newId !== "string") {
@@ -129,7 +129,7 @@ export function registerAdminFleetRoutes(app: Express) {
     }
   });
 
-  app.post("/api/admin/init-boats", requireAdminSession, async (req, res) => {
+  app.post("/api/admin/init-boats", requireAdminSession, requireTabAccess("fleet"), async (req, res) => {
     try {
       const { BOAT_DATA } = await import("@shared/boatData");
 
@@ -185,7 +185,7 @@ export function registerAdminFleetRoutes(app: Express) {
 
   // ===== IMAGE UPLOAD =====
 
-  app.post("/api/admin/boat-images/upload", requireAdminSession, async (req, res) => {
+  app.post("/api/admin/boat-images/upload", requireAdminSession, requireTabAccess("fleet"), async (req, res) => {
     try {
       const objectStorageService = new ObjectStorageService();
       const uploadURL = await objectStorageService.getObjectEntityUploadURL();
@@ -196,7 +196,7 @@ export function registerAdminFleetRoutes(app: Express) {
     }
   });
 
-  app.post("/api/admin/boat-images/normalize", requireAdminSession, async (req, res) => {
+  app.post("/api/admin/boat-images/normalize", requireAdminSession, requireTabAccess("fleet"), async (req, res) => {
     try {
       const parsed = normalizeImageSchema.safeParse(req.body);
       if (!parsed.success) {

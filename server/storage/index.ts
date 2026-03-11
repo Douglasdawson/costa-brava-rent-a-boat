@@ -18,6 +18,8 @@ import * as customerRepo from "./customers";
 import * as chatbotRepo from "./chatbot";
 import * as inventoryRepo from "./inventory";
 import * as inquiryRepo from "./inquiries";
+import * as companyRepo from "./company";
+import * as auditRepo from "./audit";
 
 // Re-export the IStorage interface for consumers that import it
 export type { IStorage } from "./types";
@@ -207,4 +209,12 @@ export const storage = {
   getPaginatedInquiries: inquiryRepo.getPaginatedInquiries,
   updateWhatsappInquiry: inquiryRepo.updateWhatsappInquiry,
   deleteWhatsappInquiry: inquiryRepo.deleteWhatsappInquiry,
+
+  // ===== Company Config =====
+  getCompanyConfig: companyRepo.getCompanyConfig,
+  updateCompanyConfig: companyRepo.updateCompanyConfig,
+
+  // ===== Audit Log =====
+  createAuditLog: auditRepo.createAuditLog,
+  getRecentAuditLogs: auditRepo.getRecentAuditLogs,
 };

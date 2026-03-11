@@ -1443,9 +1443,44 @@ export const adminSessions = pgTable("admin_sessions", {
   expiresAt: timestamp("expires_at", { withTimezone: true }).notNull(),
 });
 
+// Company configuration (single-row, replaces SaaS tenant settings for legacy admin)
+export const companyConfig = pgTable("company_config", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  name: text("name").notNull(),
+  email: text("email"),
+  phone: text("phone"),
+  address: text("address"),
+  logo: text("logo"),
+  primaryColor: varchar("primary_color", { length: 7 }).default("#2B3E50"),
+  secondaryColor: varchar("secondary_color", { length: 7 }).default("#A8C4DD"),
+  updatedAt: timestamp("updated_at", { withTimezone: true }).default(sql`now()`),
+});
+
+export type CompanyConfig = typeof companyConfig.$inferSelect;
+
 // Token blacklist (logged out before expiry)
 export const tokenBlacklist = pgTable("token_blacklist", {
   token: text("token").primaryKey(),
   blacklistedAt: timestamp("blacklisted_at", { withTimezone: true }).notNull().default(sql`now()`),
   expiresAt: timestamp("expires_at", { withTimezone: true }).notNull(),
 });
+
+// ===== AUDIT LOG =====
+export const auditLogs = pgTable("audit_logs", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  userId: varchar("user_id"),
+  username: varchar("username"),
+  action: varchar("action", { length: 100 }).notNull(),
+  resource: varchar("resource", { length: 100 }).notNull(),
+  resourceId: varchar("resource_id"),
+  details: jsonb("details"),
+  ipAddress: varchar("ip_address", { length: 45 }),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().default(sql`now()`),
+}, (table) => [
+  index("audit_logs_user_id_idx").on(table.userId),
+  index("audit_logs_action_idx").on(table.action),
+  index("audit_logs_created_at_idx").on(table.createdAt),
+]);
+
+export type AuditLog = typeof auditLogs.$inferSelect;
+export type InsertAuditLog = typeof auditLogs.$inferInsert;

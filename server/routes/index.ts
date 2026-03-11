@@ -26,6 +26,7 @@ import { registerInquiryRoutes } from "./inquiries";
 import { registerMetaWebhookRoutes } from "./metaWebhook";
 import { registerHealthRoutes } from "./health";
 import { registerAutoDiscountRoutes } from "./auto-discounts";
+import { registerCompanyRoutes } from "./company";
 import { startScheduledServices } from "../services";
 
 export async function registerRoutes(app: Express): Promise<Server> {
@@ -56,6 +57,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   registerMetaWebhookRoutes(app);
   registerHealthRoutes(app);
   registerAutoDiscountRoutes(app);
+  registerCompanyRoutes(app);
 
   // WhatsApp routes are async due to dynamic imports
   await registerWhatsAppRoutes(app);
@@ -63,18 +65,13 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Social proof / FOMO notifications (lightweight, public, cached)
   app.get("/api/social-proof", async (_req, res) => {
     try {
-      const [recentBookings, allBoats] = await Promise.all([
-        storage.getRecentSocialProofBookings(),
-        storage.getAllBoats(),
-      ]);
-
-      const boatNameMap = new Map(allBoats.map((b) => [b.id, b.name]));
+      const recentBookings = await storage.getRecentSocialProofBookings();
       const now = Date.now();
 
       const activities = recentBookings.map((b) => ({
         name: b.customerName.split(" ")[0],
         nationality: b.customerNationality,
-        boatName: boatNameMap.get(b.boatId) ?? b.boatId,
+        boatName: b.boatName ?? b.boatId,
         people: b.numberOfPeople,
         hours: b.totalHours,
         date: b.bookingDate.toISOString().split("T")[0],

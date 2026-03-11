@@ -3,6 +3,7 @@ import OpenAI from "openai";
 import { storage } from "../storage";
 import type { Boat } from "@shared/schema";
 import { getSeason, isOperationalSeason, getSeasonDisplayName, type Season } from "@shared/pricing";
+import { logger } from "../lib/logger";
 
 let _openai: OpenAI | null = null;
 function getOpenAI(): OpenAI {
@@ -136,7 +137,7 @@ export async function executeFunction(
     }
   } catch (error: unknown) {
     const errorMsg = error instanceof Error ? error.message : String(error);
-    console.error(`[Functions] Error executing ${name}:`, errorMsg);
+    logger.error("Error executing function", { name, error: errorMsg });
     return JSON.stringify({ error: errorMsg });
   }
 }

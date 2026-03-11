@@ -24,7 +24,7 @@ export async function generateEmbedding(text: string): Promise<number[]> {
     return response.data[0]?.embedding || [];
   } catch (error: unknown) {
     const errorMsg = error instanceof Error ? error.message : String(error);
-    console.error("[RAG] Error generating embedding:", errorMsg);
+    logger.error("Error generating embedding", { error: errorMsg });
     return [];
   }
 }
@@ -89,7 +89,7 @@ export async function searchKnowledgeBase(
     return results;
   } catch (error: unknown) {
     const errorMsg = error instanceof Error ? error.message : String(error);
-    console.error("[RAG] Error searching knowledge base:", errorMsg);
+    logger.error("Error searching knowledge base", { error: errorMsg });
     return [];
   }
 }
@@ -109,7 +109,7 @@ export async function addKnowledgeEntry(
     const embedding = await generateEmbedding(textToEmbed);
     
     if (embedding.length === 0) {
-      console.error("[RAG] Failed to generate embedding for entry:", title);
+      logger.error("Failed to generate embedding for entry", { title });
       return false;
     }
 
@@ -128,7 +128,7 @@ export async function addKnowledgeEntry(
     return true;
   } catch (error: unknown) {
     const errorMsg = error instanceof Error ? error.message : String(error);
-    console.error("[RAG] Error adding knowledge entry:", errorMsg);
+    logger.error("Error adding knowledge entry", { error: errorMsg });
     return false;
   }
 }

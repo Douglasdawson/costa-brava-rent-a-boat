@@ -874,7 +874,7 @@ export async function seedBlogPosts(storageInstance: IStorage): Promise<number> 
       logger.info("Created blog post", { title: postData.title, slug: postData.slug });
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : String(error);
-      console.error(`Failed to create blog post "${postData.slug}": ${message}`);
+      logger.error("Failed to create blog post", { slug: postData.slug, error: message });
     }
   }
 

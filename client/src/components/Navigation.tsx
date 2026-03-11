@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Menu, X, UserCircle, Calendar } from "lucide-react";
+import { Menu, X, UserCircle, Calendar, Sun, Moon } from "lucide-react";
 import logoHorizontal from "@/assets/real-photos/logo-horizontal.png";
 import logoIcon from "@/assets/real-photos/logo-icon.png";
 import LogoCostaBravaSVG from "@/components/icons/LogoCostavaBravaSVG";
@@ -10,6 +10,7 @@ import { useTranslations } from "@/lib/translations";
 import { useAuth } from "@/hooks/useAuth";
 import { useBookingModal } from "@/hooks/bookingModalContext";
 import { trackBookingFormOpen } from "@/utils/analytics";
+import { useTheme } from "@/hooks/use-theme";
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
@@ -25,6 +26,7 @@ export default function Navigation() {
   const t = useTranslations();
   const { isAuthenticated } = useAuth();
   const { openBookingModal } = useBookingModal();
+  const { theme, toggleTheme } = useTheme();
 
   const toggleMenu = () => setIsOpen(!isOpen);
   
@@ -215,6 +217,15 @@ export default function Navigation() {
 
           {/* Right side buttons */}
           <div className="hidden lg:flex items-center space-x-4 z-10">
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={toggleTheme}
+              aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+              className="text-foreground/70 hover:text-foreground hover:bg-gray-100"
+            >
+              {theme === 'dark' ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+            </Button>
             <LanguageSelector variant="minimal" className="text-foreground/70 hover:text-foreground hover:bg-gray-100" />
             <Button
               onClick={() => handleNavigation("#booking", t.nav.bookNow)}
@@ -311,6 +322,14 @@ export default function Navigation() {
                     {t.nav.myAccount}
                   </Button>
                 )}
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={toggleTheme}
+                  aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+                >
+                  {theme === 'dark' ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+                </Button>
                 <LanguageSelector variant="minimal" />
               </div>
             </div>

@@ -92,6 +92,15 @@ const simulatePaymentSchema = z.object({
   paymentIntentId: z.string().min(1, "PaymentIntent ID requerido"),
 });
 
+// Deduplicate webhook events — track processed event IDs for 24h
+const processedEvents = new Map<string, number>();
+setInterval(() => {
+  const cutoff = Date.now() - 24 * 60 * 60 * 1000;
+  processedEvents.forEach((ts, id) => {
+    if (ts < cutoff) processedEvents.delete(id);
+  });
+}, 60 * 60 * 1000);
+
 // Initialize Stripe lazily
 let stripe: Stripe | null = null;
 export const getStripe = () => {
@@ -433,6 +442,12 @@ export function registerPaymentRoutes(app: Express) {
       logger.error("[Webhook] Signature verification failed", { error: errMsg });
       return res.status(400).json({ error: "Invalid webhook signature" });
     }
+
+    // Idempotency: skip already-processed events
+    if (processedEvents.has(event.id)) {
+      return res.json({ received: true });
+    }
+    processedEvents.set(event.id, Date.now());
 
     try {
       switch (event.type) {

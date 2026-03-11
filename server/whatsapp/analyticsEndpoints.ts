@@ -4,6 +4,7 @@ import { getChatAnalytics, getFrequentIntents, getHotLeads } from "./chatMemoryS
 import { db } from "../db";
 import { aiChatSessions, aiChatMessages, knowledgeBase } from "@shared/schema";
 import { desc, sql, eq } from "drizzle-orm";
+import { logger } from "../lib/logger";
 
 export function registerChatbotAnalyticsRoutes(app: Express): void {
   // Get chatbot analytics summary
@@ -21,7 +22,7 @@ export function registerChatbotAnalyticsRoutes(app: Express): void {
       });
     } catch (error: unknown) {
       const errorMsg = error instanceof Error ? error.message : String(error);
-      console.error("[Analytics] Error getting analytics:", errorMsg);
+      logger.error("Error getting analytics", { error: errorMsg });
       res.status(500).json({ success: false, error: errorMsg });
     }
   });
@@ -56,7 +57,7 @@ export function registerChatbotAnalyticsRoutes(app: Express): void {
       });
     } catch (error: unknown) {
       const errorMsg = error instanceof Error ? error.message : String(error);
-      console.error("[Analytics] Error getting leads:", errorMsg);
+      logger.error("Error getting leads", { error: errorMsg });
       res.status(500).json({ success: false, error: errorMsg });
     }
   });
@@ -113,7 +114,7 @@ export function registerChatbotAnalyticsRoutes(app: Express): void {
       });
     } catch (error: unknown) {
       const errorMsg = error instanceof Error ? error.message : String(error);
-      console.error("[Analytics] Error getting conversation:", errorMsg);
+      logger.error("Error getting conversation", { error: errorMsg });
       res.status(500).json({ success: false, error: errorMsg });
     }
   });
@@ -151,7 +152,7 @@ export function registerChatbotAnalyticsRoutes(app: Express): void {
       });
     } catch (error: unknown) {
       const errorMsg = error instanceof Error ? error.message : String(error);
-      console.error("[Analytics] Error getting knowledge base:", errorMsg);
+      logger.error("Error getting knowledge base", { error: errorMsg });
       res.status(500).json({ success: false, error: errorMsg });
     }
   });
@@ -183,7 +184,7 @@ export function registerChatbotAnalyticsRoutes(app: Express): void {
       });
     } catch (error: unknown) {
       const errorMsg = error instanceof Error ? error.message : String(error);
-      console.error("[Analytics] Error getting conversations:", errorMsg);
+      logger.error("Error getting conversations", { error: errorMsg });
       res.status(500).json({ success: false, error: errorMsg });
     }
   });

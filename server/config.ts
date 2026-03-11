@@ -1,5 +1,6 @@
 import "dotenv/config";
 import { z } from "zod";
+import { logger } from "./lib/logger";
 
 const envSchema = z.object({
   NODE_ENV: z.enum(["development", "production", "test"]).default("development"),
@@ -28,7 +29,7 @@ export type EnvConfig = z.infer<typeof envSchema>;
 function validateEnv(): EnvConfig {
   const result = envSchema.safeParse(process.env);
   if (!result.success) {
-    console.error("Invalid environment variables:", result.error.flatten().fieldErrors);
+    logger.error("Invalid environment variables", { errors: result.error.flatten().fieldErrors });
     throw new Error("Invalid environment configuration. Check the errors above.");
   }
   return result.data;

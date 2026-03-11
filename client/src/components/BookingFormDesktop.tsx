@@ -481,6 +481,7 @@ function Step2Details({
             <button
               type="button"
               onBlur={() => handleBlur('date')}
+              aria-describedby={showFieldError('date') ? "error-desktop-date" : undefined}
               className={`${inputBase} flex items-center gap-2 ${showFieldError('date') ? inputError : inputNormal}`}
             >
               <CalendarIcon className="w-4 h-4 text-[#0D0D2B] flex-shrink-0" />
@@ -508,7 +509,7 @@ function Step2Details({
             />
           </PopoverContent>
         </Popover>
-        {showFieldError('date') && <p className="text-xs text-red-500 mt-1">{getFieldError('date')}</p>}
+        {showFieldError('date') && <p id="error-desktop-date" className="text-xs text-red-500 mt-1">{getFieldError('date')}</p>}
         {!selectedDate && nextSaturdayISO && (
           <p className="text-xs text-muted-foreground/60 mt-1.5">
             {t.wizard.suggestedDate}: {new Date(nextSaturdayISO + 'T12:00:00').toLocaleDateString(language === 'en' ? 'en-GB' : 'es-ES', { weekday: 'long', day: 'numeric', month: 'long' })}
@@ -528,6 +529,7 @@ function Step2Details({
           onBlur={() => handleBlur('time')}
           aria-required="true"
           aria-invalid={showFieldError('time') ? "true" : "false"}
+          aria-describedby={showFieldError('time') ? "error-desktop-time" : undefined}
           className={`${inputBase} ${showFieldError('time') ? inputError : inputNormal}`}
         >
           <option value="">{t.wizard.selectTime}</option>
@@ -540,7 +542,7 @@ function Step2Details({
             );
           })}
         </select>
-        {showFieldError('time') && <p className="text-xs text-red-500 mt-1">{getFieldError('time')}</p>}
+        {showFieldError('time') && <p id="error-desktop-time" className="text-xs text-red-500 mt-1">{getFieldError('time')}</p>}
       </div>
 
       {/* Duration */}
@@ -585,7 +587,7 @@ function Step2Details({
             );
           })}
         </div>
-        {showFieldError('duration') && <p className="text-xs text-red-500 mt-1">{getFieldError('duration')}</p>}
+        {showFieldError('duration') && <p id="error-desktop-duration" className="text-xs text-red-500 mt-1">{getFieldError('duration')}</p>}
       </div>
 
       {/* People */}
@@ -621,7 +623,7 @@ function Step2Details({
             className="w-11 h-11 rounded-full border-2 border-[#A8C4DD]/40 flex items-center justify-center font-bold text-muted-foreground disabled:opacity-30 hover:border-[#0D0D2B] hover:text-[#0D0D2B] transition-colors text-lg"
           >+</button>
         </div>
-        {showFieldError('people') && <p className="text-xs text-red-500 mt-1">{getFieldError('people')}</p>}
+        {showFieldError('people') && <p id="error-desktop-people" className="text-xs text-red-500 mt-1">{getFieldError('people')}</p>}
       </div>
     </div>
   );
@@ -889,9 +891,10 @@ function Step4Contact({
                 placeholder={t.wizard.firstName}
                 autoComplete="given-name" maxLength={100}
                 aria-required="true"
+                aria-describedby={showFieldError('firstName') ? "error-desktop-firstname" : undefined}
                 className={`${inputBase} ${showFieldError('firstName') ? inputError : inputNormal}`}
               />
-              {showFieldError('firstName') && <p className="text-xs text-red-500 mt-0.5">{getFieldError('firstName')}</p>}
+              {showFieldError('firstName') && <p id="error-desktop-firstname" className="text-xs text-red-500 mt-0.5">{getFieldError('firstName')}</p>}
             </div>
             <div>
               <input
@@ -901,9 +904,10 @@ function Step4Contact({
                 placeholder={t.wizard.lastName}
                 autoComplete="family-name" maxLength={100}
                 aria-required="true"
+                aria-describedby={showFieldError('lastName') ? "error-desktop-lastname" : undefined}
                 className={`${inputBase} ${showFieldError('lastName') ? inputError : inputNormal}`}
               />
-              {showFieldError('lastName') && <p className="text-xs text-red-500 mt-0.5">{getFieldError('lastName')}</p>}
+              {showFieldError('lastName') && <p id="error-desktop-lastname" className="text-xs text-red-500 mt-0.5">{getFieldError('lastName')}</p>}
             </div>
           </div>
           <div className="flex gap-2">
@@ -957,9 +961,10 @@ function Step4Contact({
                 placeholder={t.wizard.phone}
                 autoComplete="tel" maxLength={15}
                 aria-required="true"
+                aria-describedby={showFieldError('phone') ? "error-desktop-phone" : undefined}
                 className={`${inputBase} ${showFieldError('phone') ? inputError : inputNormal}`}
               />
-              {showFieldError('phone') && <p className="text-xs text-red-500 mt-0.5">{getFieldError('phone')}</p>}
+              {showFieldError('phone') && <p id="error-desktop-phone" className="text-xs text-red-500 mt-0.5">{getFieldError('phone')}</p>}
             </div>
           </div>
           <div>
@@ -970,9 +975,10 @@ function Step4Contact({
               placeholder={t.wizard.email}
               autoComplete="email" maxLength={254}
               aria-required="true"
+              aria-describedby={showFieldError('email') ? "error-desktop-email" : undefined}
               className={`${inputBase} ${showFieldError('email') ? inputError : inputNormal}`}
             />
-            {showFieldError('email') && <p className="text-xs text-red-500 mt-0.5">{getFieldError('email')}</p>}
+            {showFieldError('email') && <p id="error-desktop-email" className="text-xs text-red-500 mt-0.5">{getFieldError('email')}</p>}
           </div>
         </div>
       </div>

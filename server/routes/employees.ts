@@ -4,6 +4,7 @@ import { z } from "zod";
 import { storage } from "../storage";
 import { requireAdminSession, requireOwner } from "./auth";
 import { logger } from "../lib/logger";
+import { audit } from "../lib/audit";
 import { ASSIGNABLE_TABS } from "@shared/schema";
 
 const BCRYPT_ROUNDS = 10;
@@ -175,6 +176,10 @@ export function registerEmployeeRoutes(app: Express) {
         return res.status(500).json({ message: "Error actualizando empleado" });
       }
 
+      if (role !== undefined && role !== existing.role) {
+        audit(req, "role_change", "employee", id, { oldRole: existing.role, newRole: role });
+      }
+
       const { passwordHash: _, pin: _pin, ...sanitized } = updated;
       res.json({ ...sanitized, hasPin: !!updated.pin });
     } catch (error: unknown) {
@@ -195,6 +200,7 @@ export function registerEmployeeRoutes(app: Express) {
       }
 
       await storage.updateAdminUser(id, { isActive: false });
+      audit(req, "deactivate", "employee", id, { username: existing.username });
       res.json({ message: "Empleado desactivado correctamente" });
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Unknown error";

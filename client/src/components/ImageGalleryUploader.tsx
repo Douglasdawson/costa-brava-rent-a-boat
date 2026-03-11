@@ -97,6 +97,7 @@ function SortableImage({ id, imageUrl, index, onRemove, showCoverBadge }: Sortab
             className="h-9 w-9 sm:h-7 sm:w-7 text-muted-foreground hover:text-destructive"
             onClick={() => onRemove(index)}
             data-testid={`button-remove-image-${index}`}
+            aria-label={`Remove image ${index + 1}`}
           >
             <X className="w-4 h-4" />
           </Button>

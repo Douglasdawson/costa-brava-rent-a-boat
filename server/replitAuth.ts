@@ -7,9 +7,10 @@ import type { Express, RequestHandler } from "express";
 import memoize from "memoizee";
 import connectPg from "connect-pg-simple";
 import { storage } from "./storage";
+import { logger } from "./lib/logger";
 
 if (!process.env.REPLIT_DOMAINS) {
-  console.warn("REPLIT_DOMAINS not set — Replit Auth disabled (local development)");
+  logger.warn("REPLIT_DOMAINS not set — Replit Auth disabled (local development)");
 }
 
 const getOidcConfig = memoize(

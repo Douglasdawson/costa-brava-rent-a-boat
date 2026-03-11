@@ -5,11 +5,30 @@ import rateLimit from "express-rate-limit";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
 import * as Sentry from "@sentry/node";
+import { randomUUID } from "crypto";
 import { config, isDev } from "./config";
 import { errorHandler, AppError } from "./middleware/errorHandler";
 import { csrfProtection } from "./middleware/csrf";
+import { stopScheduler } from "./services/schedulerService";
+import { pool } from "./db";
+
+// Extend Express Request with requestId
+declare global {
+  namespace Express {
+    interface Request {
+      requestId: string;
+    }
+  }
+}
 
 const app = express();
+
+// Request ID tracking — assigns a unique ID to each request
+app.use((req: Request, _res: Response, next: NextFunction) => {
+  req.requestId = (req.headers["x-request-id"] as string) || randomUUID();
+  _res.setHeader("X-Request-Id", req.requestId);
+  next();
+});
 
 // Trust first proxy (Render/Nginx/etc.) so Express uses real client IP from X-Forwarded-For
 // This must be set before any rate-limiting middleware
@@ -230,7 +249,7 @@ app.use((req, res, next) => {
   res.on("finish", () => {
     const duration = Date.now() - start;
     if (path.startsWith("/api")) {
-      let logLine = `${req.method} ${path} ${res.statusCode} in ${duration}ms`;
+      let logLine = `[${req.requestId?.slice(0, 8)}] ${req.method} ${path} ${res.statusCode} in ${duration}ms`;
       if (capturedJsonResponse) {
         const safe = typeof capturedJsonResponse === "object" && capturedJsonResponse !== null
           ? redactSensitive(capturedJsonResponse as Record<string, unknown>)
@@ -246,6 +265,22 @@ app.use((req, res, next) => {
     }
   });
 
+  next();
+});
+
+// Request timeout — prevent long-running requests from hanging
+app.use((req: Request, res: Response, next: NextFunction) => {
+  const isUpload = req.path.startsWith('/api/admin/gallery');
+  const isWebhook = req.path === '/api/stripe-webhook' || req.path === '/api/meta-whatsapp/webhook';
+  if (isWebhook) return next();
+  const timeout = isUpload ? 60000 : 30000;
+  req.setTimeout(timeout);
+  const timer = setTimeout(() => {
+    if (!res.headersSent) {
+      res.status(408).json({ message: "Request timeout" });
+    }
+  }, timeout);
+  res.on('finish', () => clearTimeout(timer));
   next();
 });
 
@@ -318,4 +353,16 @@ app.use((req, res, next) => {
   }, () => {
     log(`serving on port ${port}`);
   });
+
+  // Graceful shutdown
+  const shutdown = () => {
+    log("Shutting down gracefully...");
+    server.close(() => {
+      stopScheduler();
+      pool.end().then(() => process.exit(0));
+    });
+    setTimeout(() => process.exit(1), 10000);
+  };
+  process.on("SIGTERM", shutdown);
+  process.on("SIGINT", shutdown);
 })();

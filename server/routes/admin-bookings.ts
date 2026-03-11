@@ -4,6 +4,7 @@ import { storage } from "../storage";
 import { updateBookingSchema, insertBookingSchema } from "@shared/schema";
 import { requireAdminSession, requireTabAccess } from "./auth";
 import { logger } from "../lib/logger";
+import { audit } from "../lib/audit";
 
 const calendarBookingsQuerySchema = z.object({
   startDate: z.coerce.date({ required_error: "startDate es requerido" }),
@@ -146,6 +147,10 @@ export function registerAdminBookingRoutes(app: Express) {
 
       if (!updatedBooking) {
         return res.status(500).json({ message: "Error actualizando la reserva" });
+      }
+
+      if (validatedUpdates.bookingStatus === "cancelled") {
+        audit(req, "cancel", "booking", req.params.id, { previousStatus: existingBooking.bookingStatus });
       }
 
       res.json({

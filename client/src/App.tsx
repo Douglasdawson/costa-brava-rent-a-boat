@@ -71,7 +71,7 @@ import {
   generateHowToBookingSchema,
   generateSpeakableSchema
 } from "@/utils/seo-config";
-import { generateItemListSchema } from "@/utils/seo-schemas";
+import { generateItemListSchema, generateSeasonalEventSchema } from "@/utils/seo-schemas";
 import type { Boat } from "@shared/schema";
 
 // Error Boundary — catches any unhandled render error and prevents a blank white screen
@@ -136,6 +136,7 @@ function HomePage() {
   // AI Search optimization schemas
   const webSiteSchema = generateWebSiteSchema();
   const howToSchema = generateHowToBookingSchema(language);
+  const seasonalEventSchema = generateSeasonalEventSchema();
 
   // Speakable: mark key content sections for AI voice extraction
   const speakableSpec = generateSpeakableSchema([
@@ -154,7 +155,8 @@ function HomePage() {
       breadcrumbSchema,
       itemListSchema,
       webSiteSchema,
-      howToSchema
+      howToSchema,
+      seasonalEventSchema
     ]
   };
 

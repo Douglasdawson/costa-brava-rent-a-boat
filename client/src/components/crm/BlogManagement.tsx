@@ -415,6 +415,7 @@ export function BlogManagement({ adminToken }: BlogManagementProps) {
                             className="h-8 w-8"
                             onClick={() => window.open(`/blog/${post.slug}`, "_blank")}
                             title="Ver en web"
+                            aria-label="View on website"
                           >
                             <ExternalLink className="w-4 h-4" />
                           </Button>
@@ -425,6 +426,7 @@ export function BlogManagement({ adminToken }: BlogManagementProps) {
                           className="h-8 w-8"
                           onClick={() => openEditForm(post)}
                           title="Editar"
+                          aria-label="Edit post"
                         >
                           <Pencil className="w-4 h-4" />
                         </Button>
@@ -434,6 +436,7 @@ export function BlogManagement({ adminToken }: BlogManagementProps) {
                           className="h-8 w-8 text-destructive hover:text-destructive"
                           onClick={() => setDeleteTarget({ id: post.id, title: post.title })}
                           title="Eliminar"
+                          aria-label="Delete post"
                         >
                           <Trash2 className="w-4 h-4" />
                         </Button>
@@ -474,7 +477,7 @@ export function BlogManagement({ adminToken }: BlogManagementProps) {
   return (
     <div className="space-y-4 max-w-4xl">
       <div className="flex items-center gap-3">
-        <Button variant="ghost" size="icon" onClick={resetAndGoToList}>
+        <Button variant="ghost" size="icon" onClick={resetAndGoToList} aria-label="Back to list">
           <ArrowLeft className="w-4 h-4" />
         </Button>
         <h2 className="text-xl font-bold font-heading">

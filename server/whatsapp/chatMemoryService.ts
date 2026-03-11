@@ -2,6 +2,7 @@
 import { db } from "../db";
 import { aiChatSessions, aiChatMessages, type AiChatSession } from "@shared/schema";
 import { eq, desc, and, sql } from "drizzle-orm";
+import { logger } from "../lib/logger";
 
 // Intent types for classification
 export const INTENT_TYPES = {
@@ -61,7 +62,7 @@ export async function getOrCreateSession(
     return { id: newSession.id, isNew: true, history: [], intentScore: 0 };
   } catch (error: unknown) {
     const errorMsg = error instanceof Error ? error.message : String(error);
-    console.error("[Memory] Error getting/creating session:", errorMsg);
+    logger.error("Error getting/creating session", { error: errorMsg });
     throw error;
   }
 }
@@ -98,7 +99,7 @@ export async function saveMessage(
       .where(eq(aiChatSessions.id, sessionId));
   } catch (error: unknown) {
     const errorMsg = error instanceof Error ? error.message : String(error);
-    console.error("[Memory] Error saving message:", errorMsg);
+    logger.error("Error saving message", { error: errorMsg });
   }
 }
 
@@ -131,7 +132,7 @@ export async function updateLeadScore(
       .where(eq(aiChatSessions.id, sessionId));
   } catch (error: unknown) {
     const errorMsg = error instanceof Error ? error.message : String(error);
-    console.error("[Memory] Error updating lead score:", errorMsg);
+    logger.error("Error updating lead score", { error: errorMsg });
   }
 }
 
@@ -165,7 +166,7 @@ export async function getHotLeads(limit: number = 20): Promise<AiChatSession[]> 
       .limit(limit);
   } catch (error: unknown) {
     const errorMsg = error instanceof Error ? error.message : String(error);
-    console.error("[Memory] Error getting hot leads:", errorMsg);
+    logger.error("Error getting hot leads", { error: errorMsg });
     return [];
   }
 }
@@ -196,7 +197,7 @@ export async function getChatAnalytics(): Promise<{
     };
   } catch (error: unknown) {
     const errorMsg = error instanceof Error ? error.message : String(error);
-    console.error("[Memory] Error getting analytics:", errorMsg);
+    logger.error("Error getting analytics", { error: errorMsg });
     return { totalSessions: 0, totalMessages: 0, hotLeads: 0, warmLeads: 0, avgIntentScore: 0 };
   }
 }
@@ -220,7 +221,7 @@ export async function getFrequentIntents(limit: number = 10): Promise<Array<{ in
     }));
   } catch (error: unknown) {
     const errorMsg = error instanceof Error ? error.message : String(error);
-    console.error("[Memory] Error getting frequent intents:", errorMsg);
+    logger.error("Error getting frequent intents", { error: errorMsg });
     return [];
   }
 }

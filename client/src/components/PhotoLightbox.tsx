@@ -43,6 +43,7 @@ export default function PhotoLightbox({ photos, initialIndex, open, onOpenChange
             size="icon"
             className="absolute top-2 right-2 z-10 text-white hover:bg-white/20"
             onClick={() => onOpenChange(false)}
+            aria-label="Close lightbox"
           >
             <X className="w-5 h-5" />
           </Button>
@@ -64,6 +65,7 @@ export default function PhotoLightbox({ photos, initialIndex, open, onOpenChange
                 size="icon"
                 className="absolute left-1 sm:left-2 top-1/2 -translate-y-1/2 text-white hover:bg-white/20 active:bg-white/20"
                 onClick={goPrev}
+                aria-label="Previous photo"
               >
                 <ChevronLeft className="w-6 h-6 sm:w-8 sm:h-8" />
               </Button>
@@ -72,6 +74,7 @@ export default function PhotoLightbox({ photos, initialIndex, open, onOpenChange
                 size="icon"
                 className="absolute right-1 sm:right-2 top-1/2 -translate-y-1/2 text-white hover:bg-white/20 active:bg-white/20"
                 onClick={goNext}
+                aria-label="Next photo"
               >
                 <ChevronRight className="w-6 h-6 sm:w-8 sm:h-8" />
               </Button>

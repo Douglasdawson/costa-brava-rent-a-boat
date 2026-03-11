@@ -369,8 +369,15 @@ async function handleBookingPeopleState(
 ): Promise<string> {
   const num = parseNumber(message);
 
-  if (num !== null && num >= 1 && num <= 10) {
-    // TODO: Validate against boat capacity
+  if (num !== null && num >= 1) {
+    const boatId = session.selectedBoatId || "";
+    const boat = BOAT_DATA[boatId];
+    const maxCapacity = boat ? parseInt(boat.specifications.capacity) || 7 : 7;
+
+    if (num > maxCapacity) {
+      return formatMessage(t.capacityExceeded, { people: num, max: maxCapacity });
+    }
+
     await updateBookingData(session.phoneNumber, { numberOfPeople: num });
     await updateState(session.phoneNumber, CHATBOT_STATES.BOOKING_EXTRAS);
     return handleBookingExtras(t);
@@ -478,7 +485,7 @@ async function handleBookingConfirmState(
           logger.info("Owner notified for booking", { bookingId: result.bookingId });
         } catch (error: unknown) {
           const errorMessage = error instanceof Error ? error.message : String(error);
-          console.error(`[Booking] Failed to notify owner for booking ${result.bookingId}:`, errorMessage);
+          logger.error("Failed to notify owner for booking", { bookingId: result.bookingId, error: errorMessage });
         }
       }
 

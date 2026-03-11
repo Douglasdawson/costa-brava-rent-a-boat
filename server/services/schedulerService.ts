@@ -1,4 +1,4 @@
-import cron from "node-cron";
+import cron, { type ScheduledTask } from "node-cron";
 import { storage } from "../storage";
 import {
   sendBookingReminder,
@@ -8,6 +8,8 @@ import {
 import { runAutopilotPipeline, publishNextDraft, getConfig } from "./blogAutopilot.js";
 import type { Booking, Boat, BlogPost } from "@shared/schema";
 import { logger } from "../lib/logger";
+
+const scheduledTasks: ScheduledTask[] = [];
 
 /**
  * Try to send a WhatsApp message. Returns true if sent, false if Twilio is not configured
@@ -252,20 +254,20 @@ export function startScheduler(): void {
 
   // Reminder job: run every hour at minute 0
   // Checks for confirmed bookings starting in 22-26 hours
-  cron.schedule("0 * * * *", async () => {
+  scheduledTasks.push(cron.schedule("0 * * * *", async () => {
     logger.info("Running reminder job");
     await processReminders();
-  });
+  }));
 
   // Thank-you job: run every hour at minute 30
   // Checks for confirmed bookings that ended 22-26 hours ago
-  cron.schedule("30 * * * *", async () => {
+  scheduledTasks.push(cron.schedule("30 * * * *", async () => {
     logger.info("Running thank-you job");
     await processThankYou();
-  });
+  }));
 
   // Cleanup expired holds every 5 minutes to free blocked availability
-  cron.schedule("*/5 * * * *", async () => {
+  scheduledTasks.push(cron.schedule("*/5 * * * *", async () => {
     try {
       const cleaned = await storage.cleanupExpiredHolds();
       if (cleaned > 0) {
@@ -275,11 +277,11 @@ export function startScheduler(): void {
       const msg = error instanceof Error ? error.message : "Unknown error";
       logger.error("[Scheduler] Error cleaning expired holds", { error: msg });
     }
-  });
+  }));
 
   // Auto-complete confirmed bookings whose end time has passed (every hour at :45)
   // Runs after the thank-you job (:30) so thank-you emails are sent before status changes
-  cron.schedule("45 * * * *", async () => {
+  scheduledTasks.push(cron.schedule("45 * * * *", async () => {
     try {
       const count = await storage.autoCompleteBookings();
       if (count > 0) {
@@ -289,7 +291,7 @@ export function startScheduler(): void {
       const message = error instanceof Error ? error.message : "Unknown error";
       logger.error("[Scheduler] Auto-complete error", { error: message });
     }
-  });
+  }));
 
   // Blog autopilot: generate new posts (schedule from config, default: Mon/Wed/Fri 9am)
   (async () => {
@@ -303,7 +305,7 @@ export function startScheduler(): void {
         logger.info("Blog autopilot is disabled in config");
         return;
       }
-      cron.schedule(config.cronSchedule, async () => {
+      scheduledTasks.push(cron.schedule(config.cronSchedule, async () => {
         logger.info("Running blog autopilot");
         const result = await runAutopilotPipeline();
         if (result.success) {
@@ -311,7 +313,7 @@ export function startScheduler(): void {
         } else {
           logger.info("Blog autopilot skipped/failed", { error: result.error });
         }
-      });
+      }));
       logger.info("Blog autopilot scheduled", { cronSchedule: config.cronSchedule });
     } catch (error) {
       logger.error("[Scheduler] Failed to initialize blog autopilot", { error: error instanceof Error ? error.message : String(error) });
@@ -319,7 +321,7 @@ export function startScheduler(): void {
   })();
 
   // Blog: publish 1 draft every Monday at 9am
-  cron.schedule("0 9 * * 1", async () => {
+  scheduledTasks.push(cron.schedule("0 9 * * 1", async () => {
     try {
       const published = await publishNextDraft();
       if (published > 0) {
@@ -328,10 +330,10 @@ export function startScheduler(): void {
     } catch (error) {
       logger.error("[Scheduler] Blog publish error", { error: error instanceof Error ? error.message : String(error) });
     }
-  });
+  }));
 
   // Newsletter: send monthly digest on 1st of each month at 10am
-  cron.schedule("0 10 1 * *", async () => {
+  scheduledTasks.push(cron.schedule("0 10 1 * *", async () => {
     try {
       logger.info("Running monthly newsletter job");
       await processNewsletter();
@@ -339,9 +341,20 @@ export function startScheduler(): void {
       const msg = error instanceof Error ? error.message : "Unknown error";
       logger.error("[Scheduler] Newsletter error", { error: msg });
     }
-  });
+  }));
 
   logger.info("Scheduled services started: reminders (:00), thank-you (:30), hold cleanup (every 5min), auto-complete (:45), blog autopilot (config), blog publish (Mon 9am), newsletter (1st of month 10am)");
+}
+
+/**
+ * Stop all scheduled cron jobs. Called during graceful shutdown.
+ */
+export function stopScheduler(): void {
+  for (const task of scheduledTasks) {
+    task.stop();
+  }
+  scheduledTasks.length = 0;
+  logger.info("All scheduled tasks stopped");
 }
 
 /**

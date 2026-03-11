@@ -17,7 +17,8 @@
     "test:watch": "vitest",
     "check:all": "npm run check && npm run lint && npm run format:check && npm run test",
     "clean": "rm -rf dist node_modules/.vite",
-    "remotion": "remotion studio client/src/remotion/index.tsx"
+    "remotion": "remotion studio client/src/remotion/index.tsx",
+    "i18n:validate": "tsx scripts/validate-translations.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.78.0",

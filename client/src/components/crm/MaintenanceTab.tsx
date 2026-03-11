@@ -535,7 +535,7 @@ export function MaintenanceTab({ adminToken }: MaintenanceTabProps) {
                             <div className="flex justify-end gap-1">
                               <Tooltip>
                                 <TooltipTrigger asChild>
-                                  <Button size="icon" variant="ghost" onClick={() => openEditMaintenance(log)}>
+                                  <Button size="icon" variant="ghost" onClick={() => openEditMaintenance(log)} aria-label="Edit maintenance record">
                                     <Edit className="w-4 h-4" />
                                   </Button>
                                 </TooltipTrigger>
@@ -546,6 +546,7 @@ export function MaintenanceTab({ adminToken }: MaintenanceTabProps) {
                                   <Button
                                     size="icon"
                                     variant="ghost"
+                                    aria-label="Delete maintenance record"
                                     onClick={() => {
                                       setDeleteMaintTarget(log.id);
                                     }}
@@ -679,7 +680,7 @@ export function MaintenanceTab({ adminToken }: MaintenanceTabProps) {
                             <div className="flex justify-end gap-1">
                               <Tooltip>
                                 <TooltipTrigger asChild>
-                                  <Button size="icon" variant="ghost" onClick={() => openEditDoc(doc)}>
+                                  <Button size="icon" variant="ghost" onClick={() => openEditDoc(doc)} aria-label="Edit document">
                                     <Edit className="w-4 h-4" />
                                   </Button>
                                 </TooltipTrigger>
@@ -690,6 +691,7 @@ export function MaintenanceTab({ adminToken }: MaintenanceTabProps) {
                                   <Button
                                     size="icon"
                                     variant="ghost"
+                                    aria-label="Delete document"
                                     onClick={() => {
                                       setDeleteDocTarget(doc.id);
                                     }}

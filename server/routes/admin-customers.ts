@@ -5,6 +5,7 @@ import { updateCrmCustomerSchema, insertCheckinSchema } from "@shared/schema";
 import { requireAdminSession, requireTabAccess } from "./auth";
 import { format } from "date-fns";
 import { logger } from "../lib/logger";
+import { audit } from "../lib/audit";
 
 interface AuthenticatedRequest extends Request {
   adminUser?: {
@@ -78,6 +79,7 @@ export function registerAdminCustomerRoutes(app: Express) {
         return res.status(404).json({ message: "Cliente no encontrado" });
       }
 
+      audit(req, "update", "customer", req.params.id, { fields: Object.keys(parsed.data) });
       res.json({ success: true, customer: updated, message: "Cliente actualizado" });
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Unknown error";

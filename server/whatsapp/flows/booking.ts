@@ -5,6 +5,7 @@ import { storage } from "../../storage";
 import type { ChatbotTranslations } from "../translations";
 import { formatMessage } from "../translations";
 import type { ChatbotConversation } from "@shared/schema";
+import { logger } from "../../lib/logger";
 
 const BOATS = Object.values(BOAT_DATA);
 
@@ -285,7 +286,7 @@ export async function createBookingFromSession(
     return { success: true, bookingId: booking.id };
   } catch (error: unknown) {
     const errorMsg = error instanceof Error ? error.message : String(error);
-    console.error("[Booking] Error creating booking:", errorMsg);
+    logger.error("Error creating booking", { error: errorMsg });
     return { success: false, error: errorMsg };
   }
 }

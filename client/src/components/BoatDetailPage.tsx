@@ -354,6 +354,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                 width={800}
                 height={600}
                 loading="lazy"
+                decoding="async"
                 data-testid="img-boat-main"
                 onClick={() => setLightboxOpen(true)}
               />
@@ -372,6 +373,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                     onClick={prevImage}
                     className="absolute left-2 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white/90 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity"
                     data-testid="button-prev-image"
+                    aria-label="Previous image"
                   >
                     <ChevronLeft className="w-6 h-6" />
                   </Button>
@@ -381,6 +383,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                     onClick={nextImage}
                     className="absolute right-2 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white/90 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity"
                     data-testid="button-next-image"
+                    aria-label="Next image"
                   >
                     <ChevronRight className="w-6 h-6" />
                   </Button>
@@ -435,6 +438,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                         width={200}
                         height={150}
                         loading="lazy"
+                        decoding="async"
                       />
                     </button>
                   ))}
@@ -802,6 +806,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                         width={400}
                         height={300}
                         loading="lazy"
+                        decoding="async"
                       />
                     </div>
                     <div className="p-4">
@@ -894,6 +899,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
               size="icon"
               className="absolute top-2 right-2 z-10 text-white hover:bg-white/20"
               onClick={() => setLightboxOpen(false)}
+              aria-label="Close lightbox"
             >
               <X className="w-5 h-5" />
             </Button>
@@ -911,6 +917,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                   size="icon"
                   className="absolute left-2 top-1/2 -translate-y-1/2 text-white hover:bg-white/20"
                   onClick={prevImage}
+                  aria-label="Previous image"
                 >
                   <ChevronLeft className="w-8 h-8" />
                 </Button>
@@ -919,6 +926,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                   size="icon"
                   className="absolute right-2 top-1/2 -translate-y-1/2 text-white hover:bg-white/20"
                   onClick={nextImage}
+                  aria-label="Next image"
                 >
                   <ChevronRight className="w-8 h-8" />
                 </Button>

@@ -348,10 +348,10 @@ export function CalendarTab({
                   >
                     Hoy
                   </Button>
-                  <Button variant="outline" size="icon" onClick={goPrev}>
+                  <Button variant="outline" size="icon" onClick={goPrev} aria-label="Previous period">
                     <ChevronLeft className="w-4 h-4" />
                   </Button>
-                  <Button variant="outline" size="icon" onClick={goNext}>
+                  <Button variant="outline" size="icon" onClick={goNext} aria-label="Next period">
                     <ChevronRight className="w-4 h-4" />
                   </Button>
                   <h2 className="text-sm sm:text-lg font-heading font-semibold capitalize ml-2 whitespace-nowrap">
@@ -662,6 +662,7 @@ function DayView({
           size="icon"
           onClick={() => onMobileBoatChange(Math.max(0, mobileBoatIndex - 1))}
           disabled={mobileBoatIndex <= 0}
+          aria-label="Previous boat"
         >
           <ChevronLeft className="w-4 h-4" />
         </Button>
@@ -675,6 +676,7 @@ function DayView({
             onMobileBoatChange(Math.min(boats.length - 1, mobileBoatIndex + 1))
           }
           disabled={mobileBoatIndex >= boats.length - 1}
+          aria-label="Next boat"
         >
           <ChevronRight className="w-4 h-4" />
         </Button>

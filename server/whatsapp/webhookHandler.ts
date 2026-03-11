@@ -37,7 +37,7 @@ export async function handleWhatsAppWebhook(req: Request, res: Response) {
     const { From: from, Body: messageBody, ProfileName: profileName } = body;
 
     if (!from || !messageBody) {
-      console.error("[Webhook] Missing required fields:", { from, messageBody });
+      logger.error("Webhook missing required fields", { from, messageBody });
       return;
     }
 
@@ -45,7 +45,7 @@ export async function handleWhatsAppWebhook(req: Request, res: Response) {
 
     // Check if Twilio is configured
     if (!isTwilioConfigured()) {
-      console.error("[Webhook] Twilio not configured - cannot respond");
+      logger.error("Twilio not configured - cannot respond");
       return;
     }
 
@@ -53,7 +53,7 @@ export async function handleWhatsAppWebhook(req: Request, res: Response) {
     await processIncomingMessage(from, messageBody, profileName);
   } catch (error: unknown) {
     const errorMsg = error instanceof Error ? error.message : String(error);
-    console.error("[Webhook] Error processing message:", errorMsg);
+    logger.error("Error processing webhook message", { error: errorMsg });
   }
 }
 
@@ -131,7 +131,7 @@ async function processIncomingMessage(
         logger.info("Webhook agent handoff notification sent to owner", { from });
       } catch (handoffError: unknown) {
         const handoffMsg = handoffError instanceof Error ? handoffError.message : String(handoffError);
-        console.error(`[Webhook] Could not notify owner for agent handoff: ${handoffMsg}`);
+        logger.error("Could not notify owner for agent handoff", { error: handoffMsg });
       }
 
       // Acknowledge to customer
@@ -166,7 +166,7 @@ async function processIncomingMessage(
 
     // Check if AI is configured
     if (!isAIConfigured()) {
-      console.warn("[Webhook] OpenAI not configured, falling back to menu-based flow");
+      logger.warn("OpenAI not configured, falling back to menu-based flow");
       // Fall back to traditional menu-based flow
       const response = await processMessage(session, messageBody, intent);
       if (response) {
@@ -192,14 +192,14 @@ async function processIncomingMessage(
           await sendWhatsAppMessageWithMedia(from, "", imageUrl);
         } catch (imgError: unknown) {
           const imgMsg = imgError instanceof Error ? imgError.message : String(imgError);
-          console.warn(`[Webhook] Could not send boat image: ${imgMsg}`);
+          logger.warn("Could not send boat image", { error: imgMsg });
         }
       }
     }
 
   } catch (error: unknown) {
     const errorMsg = error instanceof Error ? error.message : String(error);
-    console.error(`[Webhook] Error processing message from ${from}:`, errorMsg);
+    logger.error("Error processing message", { from, error: errorMsg });
 
     // Send error message to user
     try {
@@ -207,7 +207,7 @@ async function processIncomingMessage(
       const t = getTranslation(session.language as any);
       await sendWhatsAppMessage(from, t.error);
     } catch {
-      console.error("[Webhook] Failed to send error message");
+      logger.error("Failed to send error message");
     }
   }
 }
@@ -261,10 +261,10 @@ export async function handleStatusCallback(req: Request, res: Response) {
     logger.info("Message status update", { messageSid: MessageSid, to: To, status: MessageStatus });
 
     if (ErrorCode) {
-      console.error(`[Status] Error ${ErrorCode}: ${ErrorMessage}`);
+      logger.error("WhatsApp status error", { errorCode: ErrorCode, errorMessage: ErrorMessage });
     }
   } catch (error: unknown) {
     const errorMsg = error instanceof Error ? error.message : String(error);
-    console.error("[Status] Error processing status callback:", errorMsg);
+    logger.error("Error processing status callback", { error: errorMsg });
   }
 }

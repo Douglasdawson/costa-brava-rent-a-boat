@@ -15,6 +15,7 @@ import {
   detectBoatFromMessage 
 } from "./functionCallingService";
 import { logger } from "../lib/logger";
+import { openaiBreaker } from "../lib/circuitBreaker";
 
 let _openai: OpenAI | null = null;
 function getOpenAI(): OpenAI {
@@ -133,7 +134,7 @@ async function getBoatsContext(): Promise<string> {
     const boatsInfo = boats.map(formatBoatForAI).join("\n---\n");
     return `FLOTA DISPONIBLE (${boats.length} barcos):\n${boatsInfo}`;
   } catch (error) {
-    console.error("[AI Service] Error fetching boats:", error);
+    logger.error("Error fetching boats for AI context", { error: error instanceof Error ? error.message : String(error) });
     return "Error al obtener informacion de barcos.";
   }
 }
@@ -252,14 +253,14 @@ IMPORTANTE: Tienes acceso a funciones para consultar disponibilidad y precios en
     ];
 
     // Call OpenAI with function calling
-    const completion = await getOpenAI().chat.completions.create({
+    const completion = await openaiBreaker.call(() => getOpenAI().chat.completions.create({
       model: "gpt-4o-mini",
       messages: messages,
       tools: AVAILABLE_FUNCTIONS,
       tool_choice: "auto",
       max_tokens: 500,
       temperature: 0.7,
-    });
+    }));
 
     let response = completion.choices[0]?.message?.content || "";
     let tokensUsed = completion.usage?.total_tokens;
@@ -288,12 +289,12 @@ IMPORTANTE: Tienes acceso a funciones para consultar disponibilidad y precios en
       }
 
       // Get final response with function results
-      const finalCompletion = await getOpenAI().chat.completions.create({
+      const finalCompletion = await openaiBreaker.call(() => getOpenAI().chat.completions.create({
         model: "gpt-4o-mini",
         messages: messages,
         max_tokens: 500,
         temperature: 0.7,
-      });
+      }));
 
       response = finalCompletion.choices[0]?.message?.content || response;
       tokensUsed = (tokensUsed || 0) + (finalCompletion.usage?.total_tokens || 0);
@@ -326,7 +327,7 @@ IMPORTANTE: Tienes acceso a funciones para consultar disponibilidad y precios en
     };
   } catch (error: unknown) {
     const errorMsg = error instanceof Error ? error.message : String(error);
-    console.error("[AI Service] Error getting AI response:", errorMsg);
+    logger.error("Error getting AI response", { error: errorMsg });
     
     // Fallback response based on language
     const fallbackResponses: Record<string, string> = {

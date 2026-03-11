@@ -8,6 +8,7 @@ import {
 } from "@shared/schema";
 import { requireAdminSession, requireTabAccess } from "./auth";
 import { logger } from "../lib/logger";
+import { audit } from "../lib/audit";
 
 interface AuthenticatedRequest extends Request {
   adminUser?: {
@@ -82,6 +83,7 @@ export function registerAdminOperationsRoutes(app: Express) {
     try {
       const deleted = await storage.deleteMaintenanceLog(req.params.id);
       if (!deleted) return res.status(404).json({ message: "Registro no encontrado" });
+      audit(req, "delete", "maintenance_log", req.params.id);
       res.json({ success: true, message: "Mantenimiento eliminado" });
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Unknown error";
@@ -151,6 +153,7 @@ export function registerAdminOperationsRoutes(app: Express) {
     try {
       const deleted = await storage.deleteBoatDocument(req.params.id);
       if (!deleted) return res.status(404).json({ message: "Documento no encontrado" });
+      audit(req, "delete", "boat_document", req.params.id);
       res.json({ success: true, message: "Documento eliminado" });
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Unknown error";
@@ -230,6 +233,7 @@ export function registerAdminOperationsRoutes(app: Express) {
     try {
       const deleted = await storage.deleteInventoryItem(req.params.id);
       if (!deleted) return res.status(404).json({ message: "Item no encontrado" });
+      audit(req, "delete", "inventory_item", req.params.id);
       res.json({ success: true, message: "Item eliminado" });
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Unknown error";

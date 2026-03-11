@@ -3,6 +3,7 @@ import jwt from "jsonwebtoken";
 import crypto from "crypto";
 import { storage } from "../storage";
 import type { AuthenticatedRequest, AdminJwtPayload, SaasJwtPayload, JwtPayload } from "../types";
+import { logger } from "../lib/logger";
 
 // ===== Constants =====
 
@@ -58,7 +59,7 @@ setInterval(async () => {
   try {
     await storage.cleanupExpiredSessions();
   } catch (error) {
-    console.warn("Session cleanup failed:", error instanceof Error ? error.message : String(error));
+    logger.warn("Session cleanup failed", { error: error instanceof Error ? error.message : String(error) });
   }
 }, 60 * 60 * 1000);
 
@@ -67,7 +68,7 @@ setInterval(async () => {
   try {
     await storage.cleanupExpiredRefreshTokens();
   } catch (error) {
-    console.warn("Refresh token cleanup failed:", error instanceof Error ? error.message : String(error));
+    logger.warn("Refresh token cleanup failed", { error: error instanceof Error ? error.message : String(error) });
   }
 }, 6 * 60 * 60 * 1000);
 

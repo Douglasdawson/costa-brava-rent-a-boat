@@ -1,6 +1,7 @@
 import sgMail from "@sendgrid/mail";
 import type { Booking, Boat, BookingExtra } from "@shared/schema";
 import { logger } from "../lib/logger";
+import { sendgridBreaker } from "../lib/circuitBreaker";
 
 type EmailLang = "es" | "en" | "fr" | "de" | "nl" | "it" | "ru";
 
@@ -483,12 +484,12 @@ export async function sendBookingConfirmation(data: BookingEmailData): Promise<E
   ` : "";
 
   try {
-    await sgMail.send({
+    await sendgridBreaker.call(() => sgMail.send({
       to: booking.customerEmail,
       from: { email: getFromEmail(), name: "Costa Brava Rent a Boat" },
       subject: `${strings.bookingConfirmed} - ${data.boat.name} - ${formatDate(booking.startTime)}`,
       html: emailWrapper(content + cancelBlock),
-    });
+    }));
 
     logger.info("Booking confirmation sent", { to: booking.customerEmail, bookingId: booking.id });
     return { success: true };
@@ -554,12 +555,12 @@ export async function sendBookingReminder(data: BookingEmailData): Promise<Email
   `;
 
   try {
-    await sgMail.send({
+    await sendgridBreaker.call(() => sgMail.send({
       to: booking.customerEmail,
       from: { email: getFromEmail(), name: "Costa Brava Rent a Boat" },
       subject: `${strings.reminderTitle} - ${data.boat.name}`,
       html: emailWrapper(content),
-    });
+    }));
 
     logger.info("Booking reminder sent", { to: booking.customerEmail, bookingId: booking.id });
     return { success: true };
@@ -638,12 +639,12 @@ export async function sendThankYouEmail(data: BookingEmailData, discountCode: st
   `;
 
   try {
-    await sgMail.send({
+    await sendgridBreaker.call(() => sgMail.send({
       to: booking.customerEmail,
       from: { email: getFromEmail(), name: "Costa Brava Rent a Boat" },
       subject: `${strings.thankYouTitle}, ${booking.customerName}!`,
       html: emailWrapper(content),
-    });
+    }));
 
     logger.info("Thank-you email sent", { to: booking.customerEmail, bookingId: booking.id, discountCode });
     return { success: true };
@@ -695,12 +696,12 @@ export async function sendPreSeasonEmail(
   `;
 
   try {
-    await sgMail.send({
+    await sendgridBreaker.call(() => sgMail.send({
       to: customerEmail,
       from: { email: getFromEmail(), name: "Costa Brava Rent a Boat" },
       subject: "La temporada empieza pronto - 10% descuento para ti",
       html: emailWrapper(content),
-    });
+    }));
 
     logger.info("Pre-season email sent", { to: customerEmail });
     return { success: true };
@@ -752,12 +753,12 @@ export async function sendWelcomeEmail(
   `;
 
   try {
-    await sgMail.send({
+    await sendgridBreaker.call(() => sgMail.send({
       to: email,
       from: { email: getFromEmail(), name: "NauticFlow" },
       subject: `Bienvenido/a a NauticFlow — Tu prueba gratuita ha comenzado`,
       html: emailWrapper(content),
-    });
+    }));
 
     logger.info("Welcome email sent", { to: email });
     return { success: true };
@@ -808,12 +809,12 @@ export async function sendPasswordResetEmail(
   `;
 
   try {
-    await sgMail.send({
+    await sendgridBreaker.call(() => sgMail.send({
       to: email,
       from: { email: getFromEmail(), name: "Costa Brava Rent a Boat" },
       subject: "Restablece tu contrasena",
       html: emailWrapper(content),
-    });
+    }));
 
     logger.info("Password reset email sent", { to: email });
     return { success: true };
@@ -930,12 +931,12 @@ export async function sendNewsletterEmail(
   `;
 
   try {
-    await sgMail.send({
+    await sendgridBreaker.call(() => sgMail.send({
       to: email,
       from: { email: getFromEmail(), name: "Costa Brava Rent a Boat" },
       subject: strings.subject,
       html: emailWrapper(content),
-    });
+    }));
     return { success: true };
   } catch (error: unknown) {
     const message = error instanceof Error ? error.message : "Unknown error";
@@ -985,12 +986,12 @@ export async function sendCancelationEmail(data: CancelationEmailData): Promise<
   `;
 
   try {
-    await sgMail.send({
+    await sendgridBreaker.call(() => sgMail.send({
       to: booking.customerEmail!,
       from: { email: getFromEmail(), name: "Costa Brava Rent a Boat" },
       subject: `Cancelación confirmada — ${booking.customerName}`,
       html: emailWrapper(customerContent),
-    });
+    }));
 
     logger.info("Cancelation email sent", { to: booking.customerEmail, bookingId: booking.id });
   } catch (error: unknown) {
@@ -1011,12 +1012,12 @@ export async function sendCancelationEmail(data: CancelationEmailData): Promise<
     ${refundAmount > 0 ? `<p style="color:#dc2626;">Reembolso a procesar: ${refundAmount.toFixed(2)} EUR (${refundPercentage}%)</p>` : "<p>Sin reembolso.</p>"}
   `;
 
-  sgMail.send({
+  sendgridBreaker.call(() => sgMail.send({
     to: ownerEmail,
     from: { email: getFromEmail(), name: "Costa Brava Rent a Boat" },
     subject: `[CANCELACIÓN] ${booking.customerName} — ${new Date(booking.startTime).toLocaleDateString("es-ES")}`,
     html: emailWrapper(ownerContent),
-  }).catch((err: unknown) => {
+  })).catch((err: unknown) => {
     logger.error("[Email] Error sending cancelation owner notification", { error: err instanceof Error ? err.message : String(err) });
   });
 

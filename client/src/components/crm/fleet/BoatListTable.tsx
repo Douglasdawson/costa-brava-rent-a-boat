@@ -95,6 +95,7 @@ function SortableBoatRow({
             variant="ghost"
             onClick={() => onEdit(boat)}
             data-testid={`button-edit-boat-${boat.id}`}
+            aria-label={`Edit ${boat.name}`}
           >
             <Edit className="w-4 h-4" />
           </Button>
@@ -103,6 +104,7 @@ function SortableBoatRow({
               variant="ghost"
               onClick={() => onDelete(boat.id)}
               data-testid={`button-delete-boat-${boat.id}`}
+              aria-label={`Delete ${boat.name}`}
             >
               <Trash2 className="w-4 h-4" />
             </Button>
@@ -149,6 +151,7 @@ function SortableBoatCard({
                   className="h-10 w-10"
                   onClick={() => onEdit(boat)}
                   data-testid={`button-edit-boat-${boat.id}`}
+                  aria-label={`Edit ${boat.name}`}
                 >
                   <Edit className="w-4 h-4" />
                 </Button>
@@ -159,6 +162,7 @@ function SortableBoatCard({
                     className="h-10 w-10"
                     onClick={() => onDelete(boat.id)}
                     data-testid={`button-delete-boat-${boat.id}`}
+                    aria-label={`Delete ${boat.name}`}
                   >
                     <Trash2 className="w-4 h-4" />
                   </Button>

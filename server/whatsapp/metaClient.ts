@@ -1,5 +1,6 @@
 // Meta WhatsApp Cloud API Client
 import { logger } from "../lib/logger";
+import { metaBreaker } from "../lib/circuitBreaker";
 
 const GRAPH_API_VERSION = "v25.0";
 const GRAPH_API_BASE = `https://graph.facebook.com/${GRAPH_API_VERSION}`;
@@ -35,28 +36,31 @@ export async function sendMetaWhatsAppMessage(
   const { token, phoneId } = getConfig();
   const toNumber = normalizePhone(to);
 
-  const res = await fetch(`${GRAPH_API_BASE}/${phoneId}/messages`, {
-    method: "POST",
-    headers: {
-      "Authorization": `Bearer ${token}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      messaging_product: "whatsapp",
-      to: toNumber,
-      type: "text",
-      text: { body },
-    }),
+  const result = await metaBreaker.call(async () => {
+    const res = await fetch(`${GRAPH_API_BASE}/${phoneId}/messages`, {
+      method: "POST",
+      headers: {
+        "Authorization": `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        messaging_product: "whatsapp",
+        to: toNumber,
+        type: "text",
+        text: { body },
+      }),
+    });
+
+    if (!res.ok) {
+      const error = await res.json().catch(() => ({}));
+      logger.error("Meta WhatsApp send error", { toNumber, error });
+      throw new Error(`Meta WhatsApp API error: ${res.status}`);
+    }
+
+    return res.json();
   });
 
-  if (!res.ok) {
-    const error = await res.json().catch(() => ({}));
-    console.error(`[Meta WhatsApp] Error sending to ${toNumber}:`, JSON.stringify(error));
-    throw new Error(`Meta WhatsApp API error: ${res.status}`);
-  }
-
-  const data = await res.json();
-  const messageId = data.messages?.[0]?.id || "";
+  const messageId = result.messages?.[0]?.id || "";
   logger.info("Meta WhatsApp message sent", { toNumber, messageId });
   return { messageId };
 }
@@ -72,31 +76,34 @@ export async function sendMetaTemplateMessage(
   const { token, phoneId } = getConfig();
   const toNumber = normalizePhone(to);
 
-  const res = await fetch(`${GRAPH_API_BASE}/${phoneId}/messages`, {
-    method: "POST",
-    headers: {
-      "Authorization": `Bearer ${token}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      messaging_product: "whatsapp",
-      to: toNumber,
-      type: "template",
-      template: {
-        name: templateName,
-        language: { code: languageCode },
+  const result = await metaBreaker.call(async () => {
+    const res = await fetch(`${GRAPH_API_BASE}/${phoneId}/messages`, {
+      method: "POST",
+      headers: {
+        "Authorization": `Bearer ${token}`,
+        "Content-Type": "application/json",
       },
-    }),
+      body: JSON.stringify({
+        messaging_product: "whatsapp",
+        to: toNumber,
+        type: "template",
+        template: {
+          name: templateName,
+          language: { code: languageCode },
+        },
+      }),
+    });
+
+    if (!res.ok) {
+      const error = await res.json().catch(() => ({}));
+      logger.error("Meta WhatsApp template send error", { toNumber, templateName, error });
+      throw new Error(`Meta WhatsApp API error: ${res.status}`);
+    }
+
+    return res.json();
   });
 
-  if (!res.ok) {
-    const error = await res.json().catch(() => ({}));
-    console.error(`[Meta WhatsApp] Error sending template to ${toNumber}:`, JSON.stringify(error));
-    throw new Error(`Meta WhatsApp API error: ${res.status}`);
-  }
-
-  const data = await res.json();
-  const messageId = data.messages?.[0]?.id || "";
+  const messageId = result.messages?.[0]?.id || "";
   logger.info("Meta WhatsApp template sent", { templateName, toNumber, messageId });
   return { messageId };
 }
@@ -119,6 +126,6 @@ export async function markMessageAsRead(messageId: string): Promise<void> {
       message_id: messageId,
     }),
   }).catch((err) => {
-    console.error(`[Meta WhatsApp] Error marking read:`, err.message);
+    logger.error("Meta WhatsApp error marking read", { error: err.message });
   });
 }

@@ -78,6 +78,43 @@ export function generateArticleSchema(article: BlogArticle) {
   return schema;
 }
 
+export function generateSeasonalEventSchema() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Event",
+    name: "Temporada 2026 — Alquiler de Barcos en Costa Brava",
+    startDate: "2026-04-01",
+    endDate: "2026-10-31",
+    eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
+    eventStatus: "https://schema.org/EventScheduled",
+    location: {
+      "@type": "Place",
+      name: "Puerto de Blanes",
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "Puerto Deportivo de Blanes",
+        addressLocality: "Blanes",
+        addressRegion: "Girona",
+        postalCode: "17300",
+        addressCountry: "ES",
+      },
+    },
+    organizer: {
+      "@type": "Organization",
+      name: "Costa Brava Rent a Boat",
+      url: "https://costabravarentaboat.com",
+    },
+    offers: {
+      "@type": "AggregateOffer",
+      lowPrice: "80",
+      highPrice: "450",
+      priceCurrency: "EUR",
+      availability: "https://schema.org/InStock",
+    },
+    description: "Alquila barcos sin licencia en Blanes, Costa Brava. Temporada de abril a octubre.",
+  };
+}
+
 interface PlaceDestination {
   name: string;
   slug: string;

@@ -1,6 +1,7 @@
 // Twilio WhatsApp Client Configuration
 import Twilio from "twilio";
 import { logger } from "../lib/logger";
+import { twilioBreaker } from "../lib/circuitBreaker";
 
 // Lazy initialization to avoid errors when credentials are not set
 let twilioClient: Twilio.Twilio | null = null;
@@ -52,17 +53,17 @@ export async function sendWhatsAppMessage(
   const toNumber = to.startsWith("whatsapp:") ? to : `whatsapp:${to}`;
 
   try {
-    const message = await client.messages.create({
+    const message = await twilioBreaker.call(() => client.messages.create({
       from,
       to: toNumber,
       body,
-    });
+    }));
 
     logger.info("WhatsApp message sent", { to, messageSid: message.sid });
     return message.sid;
   } catch (error: unknown) {
     const errorMsg = error instanceof Error ? error.message : String(error);
-    console.error(`[WhatsApp] Error sending message to ${to}:`, errorMsg);
+    logger.error("Error sending WhatsApp message", { to, error: errorMsg });
     throw error;
   }
 }
@@ -81,18 +82,18 @@ export async function sendWhatsAppMessageWithMedia(
   const toNumber = to.startsWith("whatsapp:") ? to : `whatsapp:${to}`;
 
   try {
-    const message = await client.messages.create({
+    const message = await twilioBreaker.call(() => client.messages.create({
       from,
       to: toNumber,
       body,
       mediaUrl: [mediaUrl],
-    });
+    }));
 
     logger.info("WhatsApp media message sent", { to, messageSid: message.sid });
     return message.sid;
   } catch (error: unknown) {
     const errorMsg = error instanceof Error ? error.message : String(error);
-    console.error(`[WhatsApp] Error sending media message to ${to}:`, errorMsg);
+    logger.error("Error sending WhatsApp media message", { to, error: errorMsg });
     throw error;
   }
 }

@@ -3,6 +3,7 @@ import { drizzle } from 'drizzle-orm/neon-serverless';
 import ws from "ws";
 import * as schema from "@shared/schema";
 import { config } from "./config";
+import { logger } from "./lib/logger";
 
 neonConfig.webSocketConstructor = ws;
 
@@ -11,11 +12,12 @@ export const pool = new Pool({
   max: 10,
   idleTimeoutMillis: 30000,
   connectionTimeoutMillis: 10000,
+  options: '-c statement_timeout=15000',
 });
 
 // Handle pool errors gracefully (Neon can terminate connections during sleep/maintenance)
 pool.on('error', (err) => {
-  console.error('[DB] Pool connection error (will reconnect on next query):', err.message);
+  logger.error("Pool connection error (will reconnect on next query)", { error: err.message });
 });
 
 export const db = drizzle({ client: pool, schema });

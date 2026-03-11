@@ -6,6 +6,7 @@ import { insertBoatSchema, updateBoatSchema, boats } from "@shared/schema";
 import { requireAdminSession, requireTabAccess } from "./auth";
 import { ObjectStorageService } from "../objectStorage";
 import { logger } from "../lib/logger";
+import { audit } from "../lib/audit";
 import { db } from "../db";
 
 const boatReorderSchema = z.object({
@@ -78,6 +79,7 @@ export function registerAdminFleetRoutes(app: Express) {
         return res.status(404).json({ message: "Barco no encontrado" });
       }
       await db.delete(boats).where(eq(boats.id, req.params.id));
+      audit(req, "delete", "boat", req.params.id, { name: existingBoat.name });
       res.json({ message: "Barco eliminado correctamente" });
     } catch (error: unknown) {
       logger.error("[Admin] Error deleting boat", { error: error instanceof Error ? error.message : String(error) });

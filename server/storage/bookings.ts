@@ -14,6 +14,7 @@ export interface SocialProofBooking {
   numberOfPeople: number;
   totalHours: number;
   boatId: string;
+  boatName: string;
   createdAt: Date;
 }
 import { randomUUID } from "crypto";
@@ -649,9 +650,11 @@ export async function getRecentSocialProofBookings(): Promise<SocialProofBooking
       numberOfPeople: bookings.numberOfPeople,
       totalHours: bookings.totalHours,
       boatId: bookings.boatId,
+      boatName: boats.name,
       createdAt: bookings.createdAt,
     })
     .from(bookings)
+    .innerJoin(boats, eq(bookings.boatId, boats.id))
     .where(
       and(
         eq(bookings.bookingStatus, "confirmed"),

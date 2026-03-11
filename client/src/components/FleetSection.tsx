@@ -188,8 +188,8 @@ export default function FleetSection() {
 
         {/* Filters — native selects on mobile, pill buttons on desktop */}
 
-        {/* Mobile: native OS selects */}
-        <div className="flex sm:hidden items-center justify-center gap-3 mb-6">
+        {/* Mobile + Tablet: native OS selects */}
+        <div className="flex lg:hidden items-center justify-center gap-3 mb-6">
           <div className="relative">
             <Anchor className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground pointer-events-none" />
             <select
@@ -222,7 +222,7 @@ export default function FleetSection() {
         </div>
 
         {/* Desktop: pill buttons */}
-        <div className="hidden sm:flex flex-row items-center justify-center gap-6 mb-8">
+        <div className="hidden lg:flex flex-row items-center justify-center gap-6 mb-8">
           {/* License filter */}
           <div className="flex items-center gap-2">
             <span className="inline-flex items-center gap-1.5 text-sm text-muted-foreground font-medium">
@@ -419,7 +419,7 @@ export default function FleetSection() {
                       : [];
                     return (
                       <TableCell key={boat.id} className="text-center text-sm">
-                        {durations.length > 0 ? durations.map(d => `${d}h`).join(', ') : '-'}
+                        {durations.length > 0 ? durations.map(d => String(d).endsWith('h') ? d : `${d}h`).join(', ') : '-'}
                       </TableCell>
                     );
                   })}

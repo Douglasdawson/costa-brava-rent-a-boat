@@ -40,30 +40,21 @@ export default function Hero() {
             </div>
 
             {/* Subtitle - single line on mobile, full on desktop */}
-            <p className="text-[0.925rem] sm:text-[1.3rem] lg:text-[1.575rem] text-white/85 font-medium mb-0 sm:mb-8 leading-relaxed max-w-2xl lg:max-w-3xl drop-shadow-[0_1px_4px_rgba(0,0,0,0.35)]">
-              <span className="sm:hidden">{t.hero.subtitleMobile}</span>
+            <p className="text-[0.925rem] sm:text-[1.3rem] lg:text-[1.575rem] text-white/85 font-medium mb-0 sm:mb-8 leading-relaxed max-w-2xl lg:max-w-4xl drop-shadow-[0_1px_4px_rgba(0,0,0,0.35)]">
+              <span className="sm:hidden">Calas secretas de la Costa Brava.<br />Sin experiencia necesaria.</span>
               <span className="hidden sm:inline">{t.hero.subtitleLine1}<br />{t.hero.subtitleLine2}</span>
             </p>
 
             {/* Separator - desktop only */}
             <div className="hidden sm:block w-16 h-px bg-white/40 mb-5 lg:w-24" />
 
-            {/* Price badges - desktop/tablet only */}
-            <div className="hidden sm:flex items-center gap-2 xs:gap-3 mb-8">
-              <span className="w-36 xs:w-44 py-2 rounded-full bg-[#A8C4DD]/50 backdrop-blur-sm border border-white/25 text-white text-xs xs:text-sm font-medium tracking-wide text-center">
-                {t.hero.priceBadge}
-              </span>
-              <span className="w-36 xs:w-44 py-2 rounded-full bg-[#A8C4DD]/50 backdrop-blur-sm border border-white/25 text-white text-xs xs:text-sm font-medium tracking-wide text-center">
-                {t.hero.fuelBadge}
-              </span>
-            </div>
 
           </div>
         </div>
       </div>
 
       {/* CTA - fixed at bottom center of hero */}
-      <div className="absolute bottom-14 sm:bottom-16 left-0 right-0 z-20 flex flex-col items-center gap-3">
+      <div className="absolute bottom-14 sm:bottom-16 left-0 right-0 z-20 flex flex-row items-center justify-center gap-3">
         <Button
           onClick={() => openBookingModal()}
           size="lg"
@@ -73,13 +64,12 @@ export default function Hero() {
           {t.hero.bookNow}
         </Button>
         <Button
-          variant="outline"
-          size="sm"
+          size="lg"
           onClick={() => {
             const fleet = document.getElementById('fleet');
             if (fleet) fleet.scrollIntoView({ behavior: 'smooth', block: 'start' });
           }}
-          className="hidden sm:inline-flex bg-transparent border-white/60 text-white hover:bg-white/10 hover:text-white rounded-full px-6 py-2 text-sm font-medium"
+          className="bg-[#A8C4DD] hover:bg-[#A8C4DD]/85 text-white px-6 py-3 text-base lg:px-10 lg:py-4 lg:text-lg rounded-full font-medium btn-elevated"
           data-testid="button-hero-explore"
         >
           {t.hero.viewFleet}

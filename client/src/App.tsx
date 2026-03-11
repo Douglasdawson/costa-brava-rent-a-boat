@@ -323,6 +323,12 @@ function Router() {
         <Route path="/barcos-con-licencia" component={CategoryLicensedPage} />
         <Route path="/categoria/sin-licencia">{() => <Redirect to="/barcos-sin-licencia" />}</Route>
         <Route path="/categoria/con-licencia">{() => <Redirect to="/barcos-con-licencia" />}</Route>
+        <Route path="/barcos">
+          {() => {
+            window.location.href = "/#fleet";
+            return null;
+          }}
+        </Route>
         <Route path="/galeria" component={GalleryPage} />
         <Route path="/rutas" component={RoutesPage} />
         <Route path="/tarjetas-regalo" component={GiftCardsPage} />

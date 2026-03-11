@@ -109,6 +109,7 @@ export default function Navigation() {
       } else {
         // Navigate to Blog page
         setLocation("/blog");
+        window.scrollTo({ top: 0 });
       }
     } else if (href === "#faq") {
       // Navigate to FAQ page or scroll to top if already on FAQ page

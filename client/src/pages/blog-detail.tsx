@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { Link, useParams } from "wouter";
+import { Link, useParams, useLocation } from "wouter";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import Navigation from "@/components/Navigation";
@@ -25,6 +25,37 @@ export default function BlogDetailPage() {
   const { language } = useLanguage();
   const t = useTranslations();
   const bd = t.blogDetail!;
+  const [, setLocation] = useLocation();
+
+  const markdownComponents = {
+    a: ({ href, children, ...props }: React.AnchorHTMLAttributes<HTMLAnchorElement>) => {
+      const url = href || "";
+      const isInternal = url.startsWith("/") || url.startsWith("#");
+      if (isInternal) {
+        return (
+          <a
+            href={url}
+            onClick={(e) => {
+              e.preventDefault();
+              if (url.startsWith("#")) {
+                document.getElementById(url.slice(1))?.scrollIntoView({ behavior: "smooth" });
+              } else {
+                setLocation(url);
+              }
+            }}
+            {...props}
+          >
+            {children}
+          </a>
+        );
+      }
+      return (
+        <a href={url} target="_blank" rel="noopener noreferrer" {...props}>
+          {children}
+        </a>
+      );
+    },
+  };
 
   // Fetch the blog post
   const { data: post, isLoading, isError } = useQuery<BlogPost>({
@@ -147,7 +178,7 @@ export default function BlogDetailPage() {
       
       <Navigation />
       
-      <main id="main-content" className="flex-1 container mx-auto px-4 pt-20 sm:pt-24 pb-8 max-w-4xl">
+      <main id="main-content" className="flex-1 container mx-auto px-4 pt-20 sm:pt-24 lg:pt-32 pb-8 max-w-4xl">
         {/* Back to Blog */}
         <Button 
           variant="ghost" 
@@ -180,7 +211,7 @@ export default function BlogDetailPage() {
               {localized(post.titleByLang as Record<string, string> | null, post.title, language)}
             </h1>
 
-            <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
+            <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
               <div className="flex items-center gap-2" data-testid={`text-author-${post.slug}`}>
                 <User className="h-4 w-4" />
                 {post.author}
@@ -189,11 +220,28 @@ export default function BlogDetailPage() {
                 <Calendar className="h-4 w-4" />
                 {formatDate(post.publishedAt)}
               </div>
+              {post.tags && post.tags.length > 0 && (
+                <>
+                  <span className="text-border">|</span>
+                  <div className="flex flex-wrap gap-1.5">
+                    {post.tags.map((tag, index) => (
+                      <Badge
+                        key={index}
+                        variant="outline"
+                        className="text-xs"
+                        data-testid={`badge-tag-${index}`}
+                      >
+                        {tag}
+                      </Badge>
+                    ))}
+                  </div>
+                </>
+              )}
             </div>
 
             {(post.excerpt || post.excerptByLang) && (
               <p
-                className="text-xl text-muted-foreground"
+                className="text-lg leading-relaxed text-muted-foreground"
                 data-testid={`text-excerpt-${post.slug}`}
               >
                 {localized(post.excerptByLang as Record<string, string> | null, post.excerpt, language)}
@@ -207,7 +255,7 @@ export default function BlogDetailPage() {
               <img
                 src={post.featuredImage}
                 alt={post.title}
-                className="w-full h-auto rounded-lg"
+                className="w-full aspect-video object-cover rounded-lg"
                 loading="lazy"
                 width={1200}
                 height={630}
@@ -218,30 +266,14 @@ export default function BlogDetailPage() {
 
           {/* Article Content */}
           <div 
-            className="prose prose-lg max-w-none dark:prose-invert"
+            className="prose max-w-none dark:prose-invert prose-headings:font-heading prose-headings:tracking-tight prose-a:text-cta prose-a:decoration-cta/40 hover:prose-a:decoration-cta prose-img:rounded-lg"
             data-testid={`content-article-${post.slug}`}
           >
-            <ReactMarkdown remarkPlugins={[remarkGfm]}>
+            <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>
               {localized(post.contentByLang as Record<string, string> | null, post.content, language)}
             </ReactMarkdown>
           </div>
 
-          {/* Tags */}
-          {post.tags && post.tags.length > 0 && (
-            <div className="pt-6 border-t">
-              <div className="flex flex-wrap gap-2">
-                {post.tags.map((tag, index) => (
-                  <Badge 
-                    key={index} 
-                    variant="outline"
-                    data-testid={`badge-tag-${index}`}
-                  >
-                    {tag}
-                  </Badge>
-                ))}
-              </div>
-            </div>
-          )}
         </article>
 
         {/* Related Posts */}
@@ -252,45 +284,46 @@ export default function BlogDetailPage() {
             </h2>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {relatedPosts.map((relatedPost) => (
-                <Card 
-                  key={relatedPost.id} 
-                  className="hover-elevate"
+                <Link
+                  key={relatedPost.id}
+                  href={`/blog/${relatedPost.slug}`}
+                  className="block group"
                   data-testid={`card-related-${relatedPost.slug}`}
                 >
-                  <CardHeader>
-                    <Badge 
-                      variant="secondary" 
-                      className="w-fit mb-2"
-                      data-testid={`badge-related-category-${relatedPost.slug}`}
-                    >
-                      {relatedPost.category}
-                    </Badge>
-                    <CardTitle 
-                      className="line-clamp-2"
-                      data-testid={`text-related-title-${relatedPost.slug}`}
-                    >
-                      {relatedPost.title}
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p 
-                      className="text-sm text-muted-foreground line-clamp-3 mb-4"
-                      data-testid={`text-related-excerpt-${relatedPost.slug}`}
-                    >
-                      {relatedPost.excerpt}
-                    </p>
-                    <Button 
-                      asChild 
-                      variant="outline" 
-                      className="w-full"
-                      data-testid={`button-read-${relatedPost.slug}`}
-                    >
-                      <Link href={`/blog/${relatedPost.slug}`}>
-                        {bd.readMore}
-                      </Link>
-                    </Button>
-                  </CardContent>
-                </Card>
+                  <Card className="overflow-hidden hover-elevate h-full">
+                    {relatedPost.featuredImage && (
+                      <img
+                        src={relatedPost.featuredImage}
+                        alt={relatedPost.title}
+                        className="w-full aspect-[3/2] object-cover"
+                        loading="lazy"
+                      />
+                    )}
+                    <CardHeader className={relatedPost.featuredImage ? "pt-4" : ""}>
+                      <Badge
+                        variant="secondary"
+                        className="w-fit mb-1 text-xs"
+                        data-testid={`badge-related-category-${relatedPost.slug}`}
+                      >
+                        {relatedPost.category}
+                      </Badge>
+                      <CardTitle
+                        className="line-clamp-2 text-base group-hover:text-cta transition-colors"
+                        data-testid={`text-related-title-${relatedPost.slug}`}
+                      >
+                        {relatedPost.title}
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <p
+                        className="text-sm text-muted-foreground line-clamp-2"
+                        data-testid={`text-related-excerpt-${relatedPost.slug}`}
+                      >
+                        {relatedPost.excerpt}
+                      </p>
+                    </CardContent>
+                  </Card>
+                </Link>
               ))}
             </div>
           </section>

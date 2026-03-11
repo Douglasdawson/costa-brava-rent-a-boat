@@ -1,84 +1,67 @@
 # TODO - Costa Brava Rent a Boat
 
-> Última actualización: Febrero 2026
+> Ultima actualizacion: Marzo 2026
 
 ## Prioridad Alta
 
 ### Funcionalidades Pendientes
 - [ ] **Completar booking desde WhatsApp** - El chatbot no crea reservas reales
   - Archivo: `server/whatsapp/aiService.ts`
-  - Crear función para generar booking desde conversación
+  - Crear funcion para generar booking desde conversacion
   - Integrar link de pago Stripe
 
 - [ ] **Validar capacidad de barco en chatbot**
   - Archivo: `server/whatsapp/functionCallingService.ts`
   - Verificar que numberOfPeople <= boat.capacity
 
-### Seguridad
-- [ ] **Mejorar autenticación admin**
-  - Actualmente: PIN fijo (ver .env)
-  - Implementar: JWT con refresh tokens o session-based auth
-
-### Código
-- [ ] **Dividir `server/routes.ts`** (2061 líneas)
-  - Crear: `server/routes/boats.ts`
-  - Crear: `server/routes/bookings.ts`
-  - Crear: `server/routes/admin.ts`
-  - Crear: `server/routes/blog.ts`
-  - Crear: `server/routes/destinations.ts`
-  - Crear: `server/routes/whatsapp.ts`
-  - Crear: `server/routes/sitemaps.ts`
-
-- [ ] **Dividir `CRMDashboard.tsx`** (114KB)
-  - Crear: `components/crm/BookingsTable.tsx`
-  - Crear: `components/crm/BoatManagement.tsx`
-  - Crear: `components/crm/CustomerList.tsx`
-  - Crear: `components/crm/DashboardStats.tsx`
-  - Crear: `components/crm/BlogEditor.tsx`
+### Codigo
+- [ ] **Reducir CRMDashboard.tsx** (446 lineas)
+  - Ya se extrajeron 29 sub-componentes a `components/crm/`
+  - Quedan oportunidades de simplificar el wrapper principal
 
 ## Prioridad Media
-
-### Testing
-- [ ] **Configurar Vitest**
-  - Setup básico para unit tests
-  - Tests para `shared/pricing.ts`
-  - Tests para funciones de disponibilidad
 
 ### SEO
 - [ ] **Corregir Offer Schema**
   - Los rangos de fechas discontinuos se fusionan
-  - Implementar múltiples Offers para temporada BAJA
+  - Implementar multiples Offers para temporada BAJA
 
-- [ ] **Añadir ReviewAggregate real**
+- [ ] **Anadir ReviewAggregate real**
   - Calcular rating promedio de testimonials verificados
-  - Añadir a LocalBusiness schema
+  - Anadir a LocalBusiness schema
 
 ### UX
 - [ ] **Mejorar feedback de errores**
-  - Mensajes más descriptivos en formularios
+  - Mensajes mas descriptivos en formularios
   - Toasts con acciones (retry, contact support)
 
 ### Performance
 - [ ] **Implementar ISR para blog posts**
-  - Cache de páginas estáticas
-  - Revalidación bajo demanda
+  - Cache de paginas estaticas
+  - Revalidacion bajo demanda
+
+### Testing
+- [ ] **Escribir tests con Vitest**
+  - Vitest ya esta instalado (v4.0.18)
+  - Faltan tests reales: `shared/pricing.ts`, funciones de disponibilidad
+  - Configurar coverage
 
 ## Prioridad Baja
 
-### Internacionalización
+### Internacionalizacion
 - [ ] **Completar traducciones**
-  - Algunas páginas faltan en idiomas no-ES
+  - Algunas paginas faltan en idiomas no-ES
   - Revisar: `client/src/utils/seo-config.ts`
 
 ### Analytics
 - [ ] **Dashboard de analytics**
   - Visualizar `page_visits` en CRM
-  - Gráficos de conversión
+  - Graficos de conversion
 
 ### DevOps
 - [ ] **CI/CD Pipeline**
   - GitHub Actions para lint + type check
-  - Deploy automático en merge a main
+  - Deploy automatico en merge a main
 
 ## Completado
 
@@ -88,56 +71,39 @@
 - [x] RAG con knowledge base
 - [x] Multi-idioma (8 idiomas)
 - [x] SEO con JSON-LD schemas
-- [x] Sitemaps dinámicos
+- [x] Sitemaps dinamicos
 - [x] CRM administrativo
-- [x] Blog con Markdown
+- [x] Blog con Markdown + autopublish
 - [x] Sistema de testimonios
-- [x] Autenticación cliente (Replit Auth)
 - [x] Configurar ESLint + Prettier
-- [x] Crear documentación proyecto
-
----
-
-## Notas de Implementación
-
-### Para dividir routes.ts
-```typescript
-// server/routes/index.ts
-import { boatRoutes } from "./boats";
-import { bookingRoutes } from "./bookings";
-// ...
-
-export function registerAllRoutes(app: Express) {
-  boatRoutes(app);
-  bookingRoutes(app);
-  // ...
-}
-```
-
-### Para dividir CRMDashboard
-```typescript
-// Crear context para estado compartido
-const CRMContext = createContext<CRMState>(null);
-
-// Componentes hijos usan el context
-function BookingsTable() {
-  const { bookings, updateBooking } = useCRMContext();
-}
-```
+- [x] Crear documentacion proyecto
+- [x] **Dividir `server/routes.ts`** - 33 modulos en `server/routes/`
+- [x] **Dividir `CRMDashboard.tsx`** - 29 sub-componentes en `components/crm/`
+- [x] **Simplificar LoginPage** - PIN-only (123 lineas)
+- [x] **Resolver errores TypeScript** - 0 errores en `tsc --noEmit`
+- [x] **Instalar Vitest** (v4.0.18)
+- [x] **Mejorar autenticacion admin** - Sistema SaaS JWT + PIN legacy funcional
+- [x] **Sistema de newsletter** con SendGrid
+- [x] **Optimizacion SEO para AI search** (llms.txt, schemas enriquecidos)
+- [x] **Galerias responsive** por barco (desktop/tablet/mobile)
+- [x] **Optimizacion mobile** completa para CRM
+- [x] **Optimizacion de imagenes** (~5.9MB reduccion payload)
+- [x] **Blog autopilot** con clusters y cola de publicacion
+- [x] **MCP Servers** (5 custom + 3 externos)
+- [x] Sistema de cupones/descuentos
 
 ---
 
 ## Bugs Conocidos
 
-- [ ] **Hold expiration race condition** - Si dos usuarios intentan reservar el mismo slot simultáneamente
-- [ ] **WhatsApp media URLs expiran** - Las imágenes de barcos pueden no cargar si pasa tiempo
+- [ ] **Hold expiration race condition** - Si dos usuarios intentan reservar el mismo slot simultaneamente
+- [ ] **WhatsApp media URLs expiran** - Las imagenes de barcos pueden no cargar si pasa tiempo
 
 ---
 
 ## Ideas Futuras
 
-- Integración con Google Calendar para disponibilidad
-- App móvil nativa (React Native)
-- Sistema de cupones/descuentos
+- Integracion con Google Calendar para disponibilidad
+- App movil nativa (React Native)
 - Programa de fidelidad
-- Integración con meteo para recomendaciones
+- Integracion con meteo para recomendaciones

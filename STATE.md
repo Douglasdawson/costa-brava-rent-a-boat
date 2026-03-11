@@ -1,6 +1,6 @@
-# NauticFlow - Estado Actual del Proyecto
+# Costa Brava Rent a Boat - Estado Actual del Proyecto
 
-Actualizado: 15 Feb 2026
+Actualizado: 11 Marzo 2026
 
 ---
 
@@ -8,78 +8,88 @@ Actualizado: 15 Feb 2026
 
 | Aspecto | Estado |
 |---------|--------|
-| Producto original (CBRB) | En produccion |
-| Transformacion SaaS | En progreso (Fase 2, Tarea 2 completada) |
-| Ultimo commit | 29c989c - Sistema autenticacion multi-tenant |
+| Producto (CBRB) | En produccion |
+| Transformacion SaaS | Completada (multi-tenant funcional) |
 | Branch | main |
 | Despliegue | Replit (produccion) |
 | URL produccion | https://costabravarentaboat.app |
+| TypeScript | 0 errores (`tsc --noEmit` limpio) |
 
 ---
 
 ## Base de Datos
 
-### Tablas Totales: 34
+### Tablas Totales: 36
 
-**Nuevas (SaaS):**
+**SaaS / Auth:**
 - `tenants` - Empresas registradas (plan, status, branding, settings)
 - `users` - Usuarios SaaS con roles (owner/admin/employee) por tenant
 - `refresh_tokens` - Tokens de refresco con rotation y cleanup
 - `password_reset_tokens` - Tokens de reset de contrasena (1h expiry)
+- `admin_sessions` - Sesiones de admin
+- `token_blacklist` - Tokens revocados
 
-**Existentes con `tenant_id` (22 tablas):**
-boats, bookings, customers, extras, booking_extras, admin_users, employees, blog_posts, testimonials, discount_codes, gift_cards, gift_card_transactions, knowledge_base, conversations, conversation_messages, lead_scoring, gallery_photos, boat_documents, maintenance_records, inventory_items, scheduled_reminders, booking_status_history
+**Core del negocio (22 tablas):**
+boats, bookings, customers, crm_customers, booking_extras, admin_users, customer_users, blog_posts, blog_clusters, blog_autopilot_config, blog_autopilot_log, blog_autopilot_queue, testimonials, discount_codes, gift_cards, knowledge_base, chatbot_conversations, ai_chat_sessions, ai_chat_messages, checkins, page_visits, whatsapp_inquiries
 
-**Existentes sin `tenant_id` (legacy/global):**
-contact_messages, sessions, notification_settings, routes, route_waypoints, destinations
+**Operaciones:**
+maintenance_logs, boat_documents, inventory_items, inventory_movements, client_photos, newsletter_subscribers
 
-### Migraciones Pendientes
-- Ejecutar `npm run db:push` en produccion para crear tablas users, refresh_tokens, password_reset_tokens
+**Global/Legacy:**
+sessions, destinations
 
 ---
 
 ## Autenticacion
 
-### Sistema Actual (Dual)
+### Sistema Actual
 
-**Legacy (activo en produccion):**
-- PIN admin (ver .env) via `/api/admin/login`
-- Username/password via `/api/admin/login-user`
-- Replit Auth OIDC para clientes
+**Admin CRM:**
+- PIN fijo via variable de entorno ADMIN_PIN
+- Login en `/api/admin/login`
+- Sesion basada en admin_sessions
 
-**SaaS (nuevo, listo para usar):**
+**SaaS (disponible pero secundario):**
 - Email/password con JWT (1h access + 30d refresh)
-- Registro con creacion automatica de tenant (14 dias trial)
+- Registro con creacion automatica de tenant
 - Token rotation en refresh
 - Reset de password con token criptografico
-- Resolucion de tenant: subdominio, dominio custom, header
-
-### Endpoints Nuevos
-| Endpoint | Metodo | Auth |
-|----------|--------|------|
-| `/api/auth/register` | POST | Publico |
-| `/api/auth/login` | POST | Publico |
-| `/api/auth/logout` | POST | SaaS JWT |
-| `/api/auth/refresh-token` | POST | Refresh token |
-| `/api/auth/me` | GET | SaaS JWT |
-| `/api/auth/profile` | PATCH | SaaS JWT |
-| `/api/auth/forgot-password` | POST | Publico |
-| `/api/auth/reset-password` | POST | Publico + token |
-| `/api/auth/migrate-admin-users` | POST | Admin JWT |
 
 ---
 
 ## Frontend
 
-### Login Page
-- 4 tabs: Email (SaaS), Equipo (legacy), PIN (legacy), Cliente (Replit)
-- Formulario de registro integrado en tab Email
-- Auto-refresh de access token cada 50 minutos
+### Paginas: 22
 
-### Paginas: 19
-HomePage, LoginPage, CRMDashboard, ClientDashboard, BoatDetailPage, BookingFlow, CondicionesGenerales, FAQ, PrivacyPolicy, TermsConditions, CookiesPolicy, LocationBlanes, LocationLloret, LocationTossa, CategoryLicenseFree, CategoryLicensed, Testimonios, Blog, BlogDetail, DestinationDetail, Gallery, Routes, GiftCards, NotFound
+LoginPage, OnboardingPage, ClientDashboardPage, CancelBookingPage, blog, blog-detail, faq, gallery, gift-cards, routes, testimonios, location-blanes, location-lloret-de-mar, location-tossa-de-mar, category-license-free, category-licensed, destination-detail, privacy-policy, terms-conditions, cookies-policy, accessibility-declaration, not-found
 
-### Componentes: ~99 (+ 49 shadcn/ui)
+### Componentes: ~86 custom + 46 shadcn/ui
+
+### CRM Sub-componentes: 29 (en `components/crm/`)
+
+### Hooks personalizados: 11
+
+---
+
+## Backend
+
+### Rutas: 33 modulos en `server/routes/`
+
+El archivo `server/routes.ts` original (2061 lineas) fue dividido completamente en modulos independientes:
+admin.ts, admin-bookings.ts, admin-customers.ts, admin-fleet.ts, admin-marketing.ts, admin-operations.ts, admin-stats.ts, auth.ts, auth-legacy.ts, auth-middleware.ts, auth-saas.ts, auto-discounts.ts, availability.ts, blog.ts, boats.ts, bookings.ts, destinations.ts, discounts.ts, employees.ts, gallery.ts, giftcards.ts, health.ts, imageResize.ts, inquiries.ts, metaWebhook.ts, newsletter.ts, payments.ts, sitemaps.ts, superadmin.ts, tenant.ts, testimonials.ts, whatsapp.ts
+
+### MCP Servers: 5 custom + 3 externos
+
+Servidores custom en `server/mcp/`:
+- `business-server.ts` - CRM/booking
+- `chatbot-server.ts` - WhatsApp chatbot manager
+- `content-server.ts` - Blog/SEO manager
+- `sendgrid-server.ts` - Email activity
+- `twilio-server.ts` - WhatsApp message logs
+
+Externos: neon, stripe, sentry
+
+### WhatsApp Chatbot: 19 archivos en `server/whatsapp/`
 
 ---
 
@@ -88,65 +98,43 @@ HomePage, LoginPage, CRMDashboard, ClientDashboard, BoatDetailPage, BookingFlow,
 | Servicio | Estado | Uso |
 |----------|--------|-----|
 | Stripe | Activo | Pagos de reservas |
-| SendGrid | Activo | Emails transaccionales |
+| SendGrid | Activo | Emails transaccionales + newsletter |
 | Twilio | Activo | WhatsApp chatbot |
-| OpenAI GPT-4o-mini | Activo | Chatbot IA + RAG |
+| OpenAI GPT-4o-mini | Activo | Chatbot IA + RAG + embeddings |
 | Google Cloud Storage | Activo | Imagenes |
 | GA4 + GTM | Activo | Analytics |
-| Replit Auth | Activo | Login clientes |
 
 ---
 
-## Errores Conocidos (Pre-existentes)
+## Archivos Clave
 
-21 errores de TypeScript, ninguno critico:
-
-| Archivo | Error | Impacto |
-|---------|-------|---------|
-| `client/src/lib/translations.ts` | Claves de traduccion faltantes | Bajo - UI |
-| `client/src/pages/testimonios.tsx` | Props .occasion y .boat no existen en tipo | Bajo - UI |
-| `client/src/components/CRMDashboard.tsx` | Prop adminToken faltante | Bajo - compilacion |
-| `client/src/components/crm/ReportsTab.tsx` | Tipo formatter Recharts | Bajo - compilacion |
-
-Build de Vite funciona correctamente (los errores son solo de `tsc --noEmit`).
+| Archivo | Lineas | Descripcion |
+|---------|--------|-------------|
+| `shared/schema.ts` | ~1439 | 36 tablas Drizzle + validacion Zod |
+| `server/routes/` | 33 modulos | API REST modularizada |
+| `client/src/components/CRMDashboard.tsx` | ~446 | Wrapper del CRM (logica en crm/) |
+| `client/src/pages/LoginPage.tsx` | ~123 | Login PIN-only simplificado |
+| `shared/pricing.ts` | ~210 | Logica de precios por temporada |
 
 ---
 
-## Archivos Clave Modificados Recientemente
+## Modificaciones Recientes
 
-| Archivo | Lineas | Ultima modificacion |
-|---------|--------|---------------------|
-| `shared/schema.ts` | ~1280 | Tarea 2 - tablas users, tokens |
-| `server/storage.ts` | ~2400 | Tarea 2 - 13 metodos nuevos |
-| `server/routes/auth.ts` | ~999 | Tarea 2 - reescritura completa |
-| `client/src/pages/LoginPage.tsx` | ~340 | Tarea 2 - 4 tabs login |
-| `client/src/App.tsx` | ~339 | Tarea 2 - auto-refresh tokens |
-
----
-
-## Para Desplegar Tarea 2 en Produccion
-
-```bash
-# En Replit
-git pull origin main
-npm install
-npm run db:push
-
-# Migrar usuarios admin existentes (opcional)
-curl -X POST https://costabravarentaboat.app/api/auth/migrate-admin-users \
-  -H "Authorization: Bearer <admin-token>" \
-  -H "Content-Type: application/json"
-```
-
----
-
-## Siguiente Tarea
-
-**Fase 2 - Tarea 3: Onboarding Wizard**
-- Registro guiado en 4 pasos
-- Configuracion inicial de empresa
-- Creacion de primer barco
-- Email de bienvenida
+| Commit | Descripcion |
+|--------|-------------|
+| 9b2fc40 | Simplificar login a PIN-only |
+| 9d0df06 | Fix formato deposito como string decimal |
+| 6bdbc23 | Fix badge fuel included por case-sensitive |
+| 487aa31 | Optimizar imagenes, fix preloads, robots.txt |
+| 7306392 | Optimizacion mobile completa para rutas CRM |
+| 57d9dec | Crop imagenes 4:3, filtros mobile nativos |
+| d11b05b | Audit UX: wizard, hero, blog autopublish |
+| 203a48a | Audit web: reviews, filtros, badges, i18n |
+| 1b833bb | Galerias responsive por barco |
+| e4b1a3d | SEO: renombrar imagenes, alt texts, sitemaps |
+| 99e7146 | Sistema newsletter, emails mejorados |
+| 66fe1e6 | Resolver errores TypeScript pre-existentes |
+| 3749fe9 | SEO: optimizacion agresiva para AI search |
 
 ---
 
@@ -155,9 +143,6 @@ curl -X POST https://costabravarentaboat.app/api/auth/migrate-admin-users \
 | Documento | Contenido |
 |-----------|-----------|
 | `PROJECT.md` | Documentacion tecnica completa del proyecto |
+| `TODO.md` | Tareas pendientes y completadas |
 | `ROADMAP.md` | Plan de desarrollo SaaS por fases |
-| `MASTER_PLAN.md` | Plan original de mejoras (10 fases, producto CBRB) |
-| `GTM_SAAS_STRATEGY.md` | Estrategia go-to-market SaaS |
-| `ADMIN_DESIGN_REPORT.md` | Diseno UX/UI del admin panel |
-| `docs/CX_SAAS_SYSTEM_DESIGN.md` | Diseno del sistema de experiencia cliente |
 | `CLAUDE.md` | Instrucciones de desarrollo para Claude Code |

@@ -6,6 +6,18 @@
 
 ## [Marzo 2026]
 
+### Blog: Enlaces y Rediseno de Articulos
+- Links internos en markdown usan navegacion SPA (sin recarga de pagina)
+- Links externos abren en nueva pestana con `rel="noopener noreferrer"`
+- Redireccion `/barcos` → `/#fleet` (seccion flota en homepage)
+- Tipografia reducida de `prose-lg` a `prose` base (~16px)
+- Headings del articulo con fuente Clash Display (`font-heading`)
+- Color de enlaces alineado al CTA de la marca
+- Tags movidos al header junto a autor/fecha
+- Related posts con imagen featured y card clickable completa
+- Fix scroll-to-top al navegar al blog desde el navbar
+- Mayor padding superior en desktop para separar del navbar
+
 ### Auditoria de Calidad (8.3 → ~9.2/10)
 
 #### Infraestructura (Oleada 1)

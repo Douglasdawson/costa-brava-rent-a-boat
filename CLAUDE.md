@@ -59,6 +59,7 @@ Este es un proyecto de alquiler de barcos en Blanes, Costa Brava. Lee `PROJECT_C
 | Audit logs | `server/lib/audit.ts` |
 | Traducciones (a11y) | `client/src/lib/translations.ts` |
 | Booking flow (split) | `client/src/components/booking-flow/` |
+| Blog articulo detalle | `client/src/pages/blog-detail.tsx` |
 
 ## Patrones Comunes
 

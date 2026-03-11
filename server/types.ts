@@ -5,6 +5,7 @@ export interface AdminJwtPayload {
   userId: string;
   role: string;
   username: string;
+  allowedTabs?: string[];
   iat?: number;
   exp?: number;
 }

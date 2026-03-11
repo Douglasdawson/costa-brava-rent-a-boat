@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
+import { Checkbox } from "@/components/ui/checkbox";
 import {
   Dialog,
   DialogContent,
@@ -22,11 +23,27 @@ import {
 } from "@/components/ui/select";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Tooltip, TooltipTrigger, TooltipContent } from "@/components/ui/tooltip";
-import { Plus, Edit, UserX, UserCheck, Users } from "lucide-react";
+import { Plus, Edit, UserX, UserCheck, Users, KeyRound, Shield } from "lucide-react";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { useToast } from "@/hooks/use-toast";
 import { queryClient } from "@/lib/queryClient";
 import { PaginationControls } from "./shared/PaginationControls";
+
+const TAB_OPTIONS: { id: string; label: string }[] = [
+  { id: "dashboard", label: "Dashboard" },
+  { id: "calendar", label: "Calendario" },
+  { id: "bookings", label: "Reservas" },
+  { id: "customers", label: "Clientes" },
+  { id: "inquiries", label: "Consultas" },
+  { id: "fleet", label: "Flota" },
+  { id: "maintenance", label: "Mantenimiento" },
+  { id: "inventory", label: "Inventario" },
+  { id: "reports", label: "Informes" },
+  { id: "gallery", label: "Galeria" },
+  { id: "blog", label: "Blog" },
+  { id: "giftcards", label: "Tarjetas regalo" },
+  { id: "discounts", label: "Descuentos" },
+];
 
 interface Employee {
   id: string;
@@ -34,6 +51,8 @@ interface Employee {
   role: string;
   displayName: string | null;
   isActive: boolean;
+  hasPin: boolean;
+  allowedTabs: string[] | null;
   createdAt: string;
   lastLoginAt: string | null;
 }
@@ -52,7 +71,10 @@ export function EmployeeManagement({ adminToken }: EmployeeManagementProps) {
     password: "",
     displayName: "",
     role: "employee",
+    pin: "",
+    allowedTabs: [] as string[],
   });
+  const [pinError, setPinError] = useState("");
   const { toast } = useToast();
 
   const headers = {
@@ -76,10 +98,18 @@ export function EmployeeManagement({ adminToken }: EmployeeManagementProps) {
 
   const createMutation = useMutation({
     mutationFn: async (data: typeof formData) => {
+      const body: Record<string, unknown> = {
+        username: data.username,
+        password: data.password,
+        displayName: data.displayName,
+        role: data.role,
+        allowedTabs: data.allowedTabs,
+      };
+      if (data.pin) body.pin = data.pin;
       const res = await fetch("/api/admin/employees", {
         method: "POST",
         headers,
-        body: JSON.stringify(data),
+        body: JSON.stringify(body),
       });
       if (!res.ok) {
         const err = await res.json();
@@ -91,7 +121,7 @@ export function EmployeeManagement({ adminToken }: EmployeeManagementProps) {
       queryClient.invalidateQueries({ queryKey: ["/api/admin/employees"] });
       setShowDialog(false);
       resetForm();
-      toast({ title: "Empleado creado correctamente" });
+      toast({ title: "Usuario creado correctamente" });
     },
     onError: (error: Error) => {
       toast({ variant: "destructive", title: "Error", description: error.message });
@@ -116,7 +146,7 @@ export function EmployeeManagement({ adminToken }: EmployeeManagementProps) {
       setShowDialog(false);
       setEditingEmployee(null);
       resetForm();
-      toast({ title: "Empleado actualizado correctamente" });
+      toast({ title: "Usuario actualizado correctamente" });
     },
     onError: (error: Error) => {
       toast({ variant: "destructive", title: "Error", description: error.message });
@@ -140,7 +170,8 @@ export function EmployeeManagement({ adminToken }: EmployeeManagementProps) {
   });
 
   const resetForm = () => {
-    setFormData({ username: "", password: "", displayName: "", role: "employee" });
+    setFormData({ username: "", password: "", displayName: "", role: "employee", pin: "", allowedTabs: [] });
+    setPinError("");
   };
 
   const handleCreate = () => {
@@ -156,21 +187,49 @@ export function EmployeeManagement({ adminToken }: EmployeeManagementProps) {
       password: "",
       displayName: employee.displayName || "",
       role: employee.role,
+      pin: "", // Don't show existing PIN
+      allowedTabs: employee.allowedTabs || [],
     });
+    setPinError("");
     setShowDialog(true);
   };
 
   const handleSubmit = () => {
+    if (formData.pin && !/^\d{6}$/.test(formData.pin)) {
+      setPinError("El PIN debe ser exactamente 6 digitos numericos");
+      return;
+    }
+    setPinError("");
+
     if (editingEmployee) {
       const data: Record<string, unknown> = {
         displayName: formData.displayName,
         role: formData.role,
+        allowedTabs: formData.allowedTabs,
       };
       if (formData.password) data.password = formData.password;
+      if (formData.pin) data.pin = formData.pin;
       updateMutation.mutate({ id: editingEmployee.id, data });
     } else {
       createMutation.mutate(formData);
     }
+  };
+
+  const allTabsSelected = formData.allowedTabs.length === TAB_OPTIONS.length;
+
+  const toggleAllTabs = () => {
+    if (allTabsSelected) {
+      setFormData({ ...formData, allowedTabs: [] });
+    } else {
+      setFormData({ ...formData, allowedTabs: TAB_OPTIONS.map(t => t.id) });
+    }
+  };
+
+  const toggleTab = (tabId: string) => {
+    const tabs = formData.allowedTabs.includes(tabId)
+      ? formData.allowedTabs.filter(t => t !== tabId)
+      : [...formData.allowedTabs, tabId];
+    setFormData({ ...formData, allowedTabs: tabs });
   };
 
   return (
@@ -178,19 +237,17 @@ export function EmployeeManagement({ adminToken }: EmployeeManagementProps) {
       <div className="flex items-center justify-between">
         <h2 className="text-xl font-bold font-heading flex items-center gap-2">
           <Users className="w-5 h-5" />
-          Gestión de Empleados
+          Gestion de Usuarios
         </h2>
         <Button onClick={handleCreate}>
           <Plus className="w-4 h-4 mr-2" />
-          Nuevo Empleado
+          Nuevo Usuario
         </Button>
       </div>
 
       {isLoading ? (
         <Card>
           <CardContent className="p-4 space-y-3">
-            <Skeleton className="h-10 w-full" />
-            <Skeleton className="h-10 w-full" />
             <Skeleton className="h-10 w-full" />
             <Skeleton className="h-10 w-full" />
             <Skeleton className="h-10 w-full" />
@@ -201,8 +258,8 @@ export function EmployeeManagement({ adminToken }: EmployeeManagementProps) {
           <CardContent>
             <div className="flex flex-col items-center justify-center py-12 text-center">
               <Users className="w-12 h-12 text-muted-foreground/50 mb-4" />
-              <p className="text-lg font-heading font-medium text-foreground mb-1">No hay empleados registrados</p>
-              <p className="text-sm text-muted-foreground">Agrega empleados para gestionar el acceso al CRM</p>
+              <p className="text-lg font-heading font-medium text-foreground mb-1">No hay usuarios registrados</p>
+              <p className="text-sm text-muted-foreground">Agrega usuarios para gestionar el acceso al CRM</p>
             </div>
           </CardContent>
         </Card>
@@ -217,8 +274,10 @@ export function EmployeeManagement({ adminToken }: EmployeeManagementProps) {
                     <TableHead>Usuario</TableHead>
                     <TableHead>Nombre</TableHead>
                     <TableHead>Rol</TableHead>
+                    <TableHead>PIN</TableHead>
+                    <TableHead>Permisos</TableHead>
                     <TableHead>Estado</TableHead>
-                    <TableHead>Último Acceso</TableHead>
+                    <TableHead>Ultimo Acceso</TableHead>
                     <TableHead className="text-right">Acciones</TableHead>
                   </TableRow>
                 </TableHeader>
@@ -231,6 +290,35 @@ export function EmployeeManagement({ adminToken }: EmployeeManagementProps) {
                         <Badge variant={employee.role === "admin" ? "default" : "secondary"}>
                           {employee.role === "admin" ? "Admin" : "Empleado"}
                         </Badge>
+                      </TableCell>
+                      <TableCell>
+                        {employee.hasPin ? (
+                          <Badge className="bg-blue-100 text-blue-800">
+                            <KeyRound className="w-3 h-3 mr-1" />
+                            Asignado
+                          </Badge>
+                        ) : (
+                          <span className="text-muted-foreground text-sm">Sin PIN</span>
+                        )}
+                      </TableCell>
+                      <TableCell>
+                        {employee.allowedTabs && employee.allowedTabs.length > 0 ? (
+                          <Tooltip>
+                            <TooltipTrigger asChild>
+                              <Badge variant="outline" className="cursor-help">
+                                <Shield className="w-3 h-3 mr-1" />
+                                {employee.allowedTabs.length === TAB_OPTIONS.length
+                                  ? "Todos"
+                                  : `${employee.allowedTabs.length} tabs`}
+                              </Badge>
+                            </TooltipTrigger>
+                            <TooltipContent>
+                              {employee.allowedTabs.map(t => TAB_OPTIONS.find(o => o.id === t)?.label || t).join(", ")}
+                            </TooltipContent>
+                          </Tooltip>
+                        ) : (
+                          <span className="text-muted-foreground text-sm">Ninguno</span>
+                        )}
                       </TableCell>
                       <TableCell>
                         <Badge className={employee.isActive ? "bg-emerald-100 text-emerald-800" : "bg-red-100 text-red-800"}>
@@ -305,7 +393,19 @@ export function EmployeeManagement({ adminToken }: EmployeeManagementProps) {
                   <Badge variant={employee.role === "admin" ? "default" : "secondary"}>
                     {employee.role === "admin" ? "Admin" : "Empleado"}
                   </Badge>
+                  {employee.hasPin && (
+                    <Badge className="bg-blue-100 text-blue-800">
+                      <KeyRound className="w-3 h-3 mr-1" />PIN
+                    </Badge>
+                  )}
                 </div>
+                {employee.allowedTabs && employee.allowedTabs.length > 0 && (
+                  <div className="text-xs text-muted-foreground">
+                    Acceso: {employee.allowedTabs.length === TAB_OPTIONS.length
+                      ? "Todos los tabs"
+                      : employee.allowedTabs.map(t => TAB_OPTIONS.find(o => o.id === t)?.label || t).join(", ")}
+                  </div>
+                )}
                 <div className="flex items-center justify-between">
                   <span className="text-sm text-muted-foreground">
                     {employee.lastLoginAt
@@ -367,12 +467,14 @@ export function EmployeeManagement({ adminToken }: EmployeeManagementProps) {
 
       {/* Create/Edit Dialog */}
       <Dialog open={showDialog} onOpenChange={setShowDialog}>
-        <DialogContent>
+        <DialogContent className="max-h-[90vh] overflow-y-auto sm:max-w-lg">
           <DialogHeader>
             <DialogTitle>
-              {editingEmployee ? "Editar Empleado" : "Nuevo Empleado"}
+              {editingEmployee ? "Editar Usuario" : "Nuevo Usuario"}
             </DialogTitle>
-            <DialogDescription>Crea o edita un empleado del sistema</DialogDescription>
+            <DialogDescription>
+              {editingEmployee ? "Modifica los datos y permisos del usuario" : "Crea un usuario con acceso al CRM"}
+            </DialogDescription>
           </DialogHeader>
           <div className="space-y-4 py-4">
             <div className="space-y-2">
@@ -391,12 +493,12 @@ export function EmployeeManagement({ adminToken }: EmployeeManagementProps) {
                 id="emp-displayname"
                 value={formData.displayName}
                 onChange={(e) => setFormData({ ...formData, displayName: e.target.value })}
-                placeholder="Juan García"
+                placeholder="Juan Garcia"
               />
             </div>
             <div className="space-y-2">
               <Label htmlFor="emp-password">
-                {editingEmployee ? "Nueva Contraseña (dejar vacío para no cambiar)" : "Contraseña"}
+                {editingEmployee ? "Nueva Contrasena (dejar vacio para no cambiar)" : "Contrasena"}
               </Label>
               <Input
                 id="emp-password"
@@ -420,6 +522,66 @@ export function EmployeeManagement({ adminToken }: EmployeeManagementProps) {
                   <SelectItem value="admin">Administrador</SelectItem>
                 </SelectContent>
               </Select>
+            </div>
+
+            {/* PIN Section */}
+            <div className="space-y-2">
+              <Label htmlFor="emp-pin" className="flex items-center gap-1.5">
+                <KeyRound className="w-4 h-4" />
+                PIN de Acceso (6 digitos)
+              </Label>
+              <Input
+                id="emp-pin"
+                type="password"
+                value={formData.pin}
+                onChange={(e) => {
+                  const val = e.target.value.replace(/\D/g, "");
+                  setFormData({ ...formData, pin: val });
+                  setPinError("");
+                }}
+                maxLength={6}
+                placeholder={editingEmployee?.hasPin ? "Dejar vacio para no cambiar" : "123456"}
+                autoComplete="off"
+              />
+              {pinError && <p className="text-sm text-destructive">{pinError}</p>}
+              <p className="text-xs text-muted-foreground">
+                El usuario podra iniciar sesion en el CRM con este PIN
+              </p>
+            </div>
+
+            {/* Permissions Section */}
+            <div className="space-y-3">
+              <div className="flex items-center justify-between">
+                <Label className="flex items-center gap-1.5">
+                  <Shield className="w-4 h-4" />
+                  Permisos de acceso
+                </Label>
+                <Button
+                  type="button"
+                  variant="outline"
+                  size="sm"
+                  onClick={toggleAllTabs}
+                >
+                  {allTabsSelected ? "Quitar todos" : "Seleccionar todos"}
+                </Button>
+              </div>
+              <div className="grid grid-cols-2 gap-2 border rounded-lg p-3">
+                {TAB_OPTIONS.map((tab) => (
+                  <label
+                    key={tab.id}
+                    className="flex items-center gap-2 cursor-pointer py-1 px-1 rounded hover:bg-muted/50 transition-colors"
+                  >
+                    <Checkbox
+                      checked={formData.allowedTabs.includes(tab.id)}
+                      onCheckedChange={() => toggleTab(tab.id)}
+                    />
+                    <span className="text-sm">{tab.label}</span>
+                  </label>
+                ))}
+              </div>
+              <p className="text-xs text-muted-foreground">
+                Solo los tabs seleccionados seran visibles para este usuario
+              </p>
             </div>
           </div>
           <DialogFooter>

@@ -48,15 +48,27 @@ const VALID_TABS = [
 export default function CRMDashboard({ adminToken }: CRMDashboardProps) {
   const [, params] = useRoute("/crm/:tab");
   const [, setLocation] = useLocation();
-  const rawTab = params?.tab || "dashboard";
-  const selectedTab = VALID_TABS.includes(rawTab) ? rawTab : "dashboard";
-  const setSelectedTab = useCallback((tab: string) => setLocation(`/crm/${tab}`), [setLocation]);
   const [selectedTimeRange, setSelectedTimeRange] = useState("today");
   const adminRole = sessionStorage.getItem("adminRole") || "admin";
   const adminUsername = sessionStorage.getItem("adminUsername") || "Admin";
   const tenantName = sessionStorage.getItem("tenantName");
   const tenantStatus = sessionStorage.getItem("tenantStatus");
   const trialEndsAt = sessionStorage.getItem("tenantTrialEndsAt");
+  const allowedTabsRaw = sessionStorage.getItem("allowedTabs");
+  const allowedTabs: string[] | null = allowedTabsRaw ? JSON.parse(allowedTabsRaw) : null;
+  const isOwner = adminRole === "owner";
+
+  const rawTab = params?.tab || "dashboard";
+  const ownerOnlyTabs = ["employees", "config", "superadmin"];
+  const canAccessTab = (tab: string) => {
+    if (!VALID_TABS.includes(tab)) return false;
+    if (isOwner || allowedTabs === null) return true;
+    if (ownerOnlyTabs.includes(tab)) return false;
+    return allowedTabs.includes(tab);
+  };
+  const firstAllowedTab = allowedTabs && allowedTabs.length > 0 ? allowedTabs[0] : "dashboard";
+  const selectedTab = canAccessTab(rawTab) ? rawTab : firstAllowedTab;
+  const setSelectedTab = useCallback((tab: string) => setLocation(`/crm/${tab}`), [setLocation]);
 
   // Booking details modal state
   const [selectedBooking, setSelectedBooking] = useState<Booking | null>(null);
@@ -88,7 +100,7 @@ export default function CRMDashboard({ adminToken }: CRMDashboardProps) {
       giftcards: "Tarjetas Regalo",
       discounts: "Descuentos",
       blog: "Blog",
-      employees: "Equipo",
+      employees: "Usuarios",
       config: "Configuración",
       superadmin: "Plataforma",
     };
@@ -100,6 +112,7 @@ export default function CRMDashboard({ adminToken }: CRMDashboardProps) {
   // Logout handler
   const handleLogout = useCallback(() => {
     sessionStorage.removeItem("adminToken");
+    sessionStorage.removeItem("allowedTabs");
     window.location.href = "/";
   }, []);
 
@@ -306,6 +319,7 @@ export default function CRMDashboard({ adminToken }: CRMDashboardProps) {
         onTabChange={setSelectedTab}
         adminRole={adminRole}
         adminUsername={adminUsername}
+        allowedTabs={allowedTabs}
         tenantName={tenantName}
         tenantStatus={tenantStatus}
         trialEndsAt={trialEndsAt}

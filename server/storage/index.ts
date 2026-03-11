@@ -55,6 +55,7 @@ export const storage = {
   createAdminUser: authRepo.createAdminUser,
   updateAdminUser: authRepo.updateAdminUser,
   getAllAdminUsers: authRepo.getAllAdminUsers,
+  getAdminUsersWithPin: authRepo.getAdminUsersWithPin,
   getCustomerUser: authRepo.getCustomerUser,
   upsertCustomerUser: authRepo.upsertCustomerUser,
   getCustomer: authRepo.getCustomer,

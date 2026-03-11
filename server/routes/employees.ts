@@ -4,6 +4,7 @@ import { z } from "zod";
 import { storage } from "../storage";
 import { requireAdminSession, requireOwner } from "./auth";
 import { logger } from "../lib/logger";
+import { ASSIGNABLE_TABS } from "@shared/schema";
 
 const BCRYPT_ROUNDS = 10;
 
@@ -12,6 +13,8 @@ const createEmployeeSchema = z.object({
   password: z.string().min(6, "La contrasena debe tener al menos 6 caracteres").max(128),
   displayName: z.string().max(100).optional(),
   role: z.enum(["admin", "employee"]).optional(),
+  pin: z.string().regex(/^\d{6}$/, "El PIN debe ser exactamente 6 digitos numericos").optional(),
+  allowedTabs: z.array(z.string()).optional(),
 });
 
 const updateEmployeeSchema = z.object({
@@ -19,19 +22,55 @@ const updateEmployeeSchema = z.object({
   role: z.enum(["admin", "employee"]).optional(),
   password: z.string().min(6, "La contrasena debe tener al menos 6 caracteres").max(128).optional(),
   isActive: z.boolean().optional(),
+  pin: z.string().regex(/^\d{6}$/, "El PIN debe ser exactamente 6 digitos numericos").optional().nullable(),
+  allowedTabs: z.array(z.string()).optional(),
 });
+
+async function isPinTaken(pin: string, excludeUserId?: string): Promise<boolean> {
+  // Check against owner PIN
+  const adminPin = process.env.ADMIN_PIN;
+  if (adminPin && pin === adminPin) return true;
+
+  // Check against other users' PINs
+  const usersWithPin = await storage.getAdminUsersWithPin();
+  for (const user of usersWithPin) {
+    if (excludeUserId && user.id === excludeUserId) continue;
+    if (user.pin && await bcrypt.compare(pin, user.pin)) return true;
+  }
+  return false;
+}
 
 export function registerEmployeeRoutes(app: Express) {
   // List all employees (admin only)
   app.get("/api/admin/employees", requireAdminSession, requireOwner, async (_req, res) => {
     try {
       const employees = await storage.getAllAdminUsers();
-      // Remove password hashes from response
-      const sanitized = employees.map(({ passwordHash, ...rest }) => rest);
+      // Remove password hashes and PIN hashes from response, indicate if PIN is set
+      const sanitized = employees.map(({ passwordHash, pin, ...rest }) => ({
+        ...rest,
+        hasPin: !!pin,
+      }));
       res.json(sanitized);
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Unknown error";
       logger.error("[Employees] Error fetching employees", { error: message });
+      res.status(500).json({ message: "Error interno del servidor" });
+    }
+  });
+
+  // Check PIN uniqueness
+  app.get("/api/admin/employees/check-pin/:pin", requireAdminSession, requireOwner, async (req, res) => {
+    try {
+      const { pin } = req.params;
+      if (!/^\d{6}$/.test(pin)) {
+        return res.status(400).json({ message: "PIN debe ser 6 digitos" });
+      }
+      const excludeUserId = req.query.excludeUserId as string | undefined;
+      const taken = await isPinTaken(pin, excludeUserId);
+      res.json({ available: !taken });
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : "Unknown error";
+      logger.error("[Employees] Error checking PIN", { error: message });
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });
@@ -47,7 +86,7 @@ export function registerEmployeeRoutes(app: Express) {
         });
       }
 
-      const { username, password, displayName, role } = parsed.data;
+      const { username, password, displayName, role, pin, allowedTabs } = parsed.data;
 
       // Check if username already exists
       const existing = await storage.getAdminUserByUsername(username);
@@ -55,16 +94,30 @@ export function registerEmployeeRoutes(app: Express) {
         return res.status(409).json({ message: "El nombre de usuario ya existe" });
       }
 
+      // Validate and hash PIN if provided
+      let pinHash: string | undefined;
+      if (pin) {
+        if (await isPinTaken(pin)) {
+          return res.status(409).json({ message: "Este PIN ya esta en uso" });
+        }
+        pinHash = await bcrypt.hash(pin, BCRYPT_ROUNDS);
+      }
+
+      // Validate allowedTabs
+      const validTabs = allowedTabs?.filter(t => (ASSIGNABLE_TABS as readonly string[]).includes(t)) || [];
+
       const passwordHash = await bcrypt.hash(password, BCRYPT_ROUNDS);
       const employee = await storage.createAdminUser({
         username,
         passwordHash,
         displayName: displayName || username,
         role: role === "admin" ? "admin" : "employee",
+        pin: pinHash,
+        allowedTabs: validTabs,
       });
 
-      const { passwordHash: _, ...sanitized } = employee;
-      res.status(201).json(sanitized);
+      const { passwordHash: _, pin: _pin, ...sanitized } = employee;
+      res.status(201).json({ ...sanitized, hasPin: !!pinHash });
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Unknown error";
       logger.error("[Employees] Error creating employee", { error: message });
@@ -85,7 +138,7 @@ export function registerEmployeeRoutes(app: Express) {
         });
       }
 
-      const { displayName, role, password, isActive } = parsed.data;
+      const { displayName, role, password, isActive, pin, allowedTabs } = parsed.data;
 
       const existing = await storage.getAdminUser(id);
       if (!existing) {
@@ -100,13 +153,30 @@ export function registerEmployeeRoutes(app: Express) {
         updates.passwordHash = await bcrypt.hash(password, BCRYPT_ROUNDS);
       }
 
+      // Handle PIN update
+      if (pin !== undefined) {
+        if (pin === null) {
+          updates.pin = null; // Remove PIN
+        } else {
+          if (await isPinTaken(pin, id)) {
+            return res.status(409).json({ message: "Este PIN ya esta en uso" });
+          }
+          updates.pin = await bcrypt.hash(pin, BCRYPT_ROUNDS);
+        }
+      }
+
+      // Handle allowedTabs
+      if (allowedTabs !== undefined) {
+        updates.allowedTabs = allowedTabs.filter(t => (ASSIGNABLE_TABS as readonly string[]).includes(t));
+      }
+
       const updated = await storage.updateAdminUser(id, updates);
       if (!updated) {
         return res.status(500).json({ message: "Error actualizando empleado" });
       }
 
-      const { passwordHash: _, ...sanitized } = updated;
-      res.json(sanitized);
+      const { passwordHash: _, pin: _pin, ...sanitized } = updated;
+      res.json({ ...sanitized, hasPin: !!updated.pin });
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Unknown error";
       logger.error("[Employees] Error updating employee", { error: message });

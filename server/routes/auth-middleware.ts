@@ -74,17 +74,40 @@ setInterval(async () => {
 // ===== Token Generation =====
 
 // Legacy admin token (backward compat)
-export function generateAdminToken(role: string = "admin", username: string = "admin", userId: string = "owner"): string {
-  const token = jwt.sign(
-    { userId, role, username } as AdminJwtPayload,
-    JWT_SECRET,
-    { expiresIn: "24h" }
-  );
+export function generateAdminToken(role: string = "admin", username: string = "admin", userId: string = "owner", allowedTabs?: string[]): string {
+  const payload: AdminJwtPayload = { userId, role, username };
+  if (allowedTabs) payload.allowedTabs = allowedTabs;
+  const token = jwt.sign(payload, JWT_SECRET, { expiresIn: "24h" });
 
   const expiresAt = new Date(Date.now() + 24 * 60 * 60 * 1000); // 24h
   storage.createAdminSession(token, userId, role, username, expiresAt).catch(() => {});
 
   return token;
+}
+
+// Middleware to check if the user has access to a specific CRM tab
+export function requireTabAccess(tabName: string) {
+  return async (req: Request, res: Response, next: NextFunction) => {
+    const tokenData = await getTokenData(req);
+    if (!tokenData) {
+      return res.status(401).json({ message: "No autorizado" });
+    }
+    // Owner (legacy PIN login) always has full access
+    if ("username" in tokenData && tokenData.username === "ivan") {
+      return next();
+    }
+    // SaaS owner always has full access
+    if ("tenantId" in tokenData && tokenData.role === "owner") {
+      return next();
+    }
+    // Check allowedTabs for legacy admin tokens
+    if ("allowedTabs" in tokenData && tokenData.allowedTabs) {
+      if (!tokenData.allowedTabs.includes(tabName)) {
+        return res.status(403).json({ message: "No tienes acceso a esta seccion" });
+      }
+    }
+    next();
+  };
 }
 
 // New SaaS access token with tenantId

@@ -69,6 +69,7 @@ export interface IStorage {
   createAdminUser(user: InsertAdminUser): Promise<AdminUser>;
   updateAdminUser(id: string, updates: Partial<AdminUser>): Promise<AdminUser | undefined>;
   getAllAdminUsers(): Promise<AdminUser[]>;
+  getAdminUsersWithPin(): Promise<AdminUser[]>;
 
   // Customer User methods
   getCustomerUser(id: string): Promise<CustomerUser | undefined>;

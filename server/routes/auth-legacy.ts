@@ -153,7 +153,7 @@ export function registerLegacyAuthRoutes(app: Express) {
     res.json({ success: true, message: "Sesion cerrada correctamente" });
   });
 
-  // PIN login (legacy - owner)
+  // PIN login (legacy - owner + user PINs)
   app.post("/api/admin/login", async (req, res) => {
     try {
       const clientIp = req.ip || req.socket.remoteAddress || "unknown";
@@ -166,22 +166,53 @@ export function registerLegacyAuthRoutes(app: Express) {
         return res.status(503).json({ message: "Admin access not configured" });
       }
 
+      // 1. Check owner PIN (ADMIN_PIN env var) — timing-safe comparison
       const pinBuffer = Buffer.from(String(pin || '').padEnd(64, '\0'));
       const adminPinBuffer = Buffer.from(String(adminPin).padEnd(64, '\0'));
-      if (!crypto.timingSafeEqual(pinBuffer, adminPinBuffer)) {
+      if (crypto.timingSafeEqual(pinBuffer, adminPinBuffer)) {
+        loginAttempts.delete(clientIp);
+        const token = generateAdminToken("admin", "ivan", "owner");
+
+        return res.json({
+          success: true,
+          token,
+          role: "admin",
+          username: "ivan",
+          displayName: "Ivan",
+          allowedTabs: null, // null = full access (owner)
+          message: "Login successful",
+        });
+      }
+
+      // 2. Check user PINs in admin_users table
+      const usersWithPin = await storage.getAdminUsersWithPin();
+      let matchedUser = null;
+      for (const user of usersWithPin) {
+        if (user.pin && await bcrypt.compare(String(pin), user.pin)) {
+          matchedUser = user;
+          break;
+        }
+      }
+
+      if (!matchedUser) {
         trackFailedAttempt(clientIp);
         return res.status(401).json({ message: "PIN incorrecto" });
       }
 
+      // Update last login
+      await storage.updateAdminUser(matchedUser.id, { lastLoginAt: new Date() });
+
       loginAttempts.delete(clientIp);
-      const token = generateAdminToken("admin", "ivan", "owner");
+      const allowedTabs = (matchedUser.allowedTabs as string[]) || [];
+      const token = generateAdminToken(matchedUser.role, matchedUser.username, matchedUser.id, allowedTabs);
 
       res.json({
         success: true,
         token,
-        role: "admin",
-        username: "ivan",
-        displayName: "Ivan",
+        role: matchedUser.role,
+        username: matchedUser.username,
+        displayName: matchedUser.displayName || matchedUser.username,
+        allowedTabs,
         message: "Login successful",
       });
     } catch (error: unknown) {

@@ -191,6 +191,11 @@ export async function getAllAdminUsers(): Promise<AdminUser[]> {
   return await db.select().from(adminUsers);
 }
 
+export async function getAdminUsersWithPin(): Promise<AdminUser[]> {
+  const all = await db.select().from(adminUsers);
+  return all.filter(u => u.pin && u.isActive);
+}
+
 // ===== CUSTOMER USER METHODS =====
 
 export async function getCustomerUser(id: string): Promise<CustomerUser | undefined> {

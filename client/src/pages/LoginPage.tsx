@@ -43,6 +43,11 @@ export default function LoginPage() {
       sessionStorage.setItem("adminToken", data.token);
       sessionStorage.setItem("adminRole", data.role || "admin");
       sessionStorage.setItem("adminUsername", data.displayName || data.username || "admin");
+      if (data.allowedTabs) {
+        sessionStorage.setItem("allowedTabs", JSON.stringify(data.allowedTabs));
+      } else {
+        sessionStorage.removeItem("allowedTabs");
+      }
 
       toast({
         title: "Acceso concedido",

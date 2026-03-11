@@ -34,6 +34,7 @@ interface AdminLayoutProps {
   onTabChange: (tab: string) => void;
   adminRole: string;
   adminUsername: string;
+  allowedTabs: string[] | null; // null = full access (owner)
   tenantName?: string | null;
   tenantStatus?: string | null;
   trialEndsAt?: string | null;
@@ -63,7 +64,7 @@ const ADMIN_TABS = [
 ];
 
 const OWNER_TABS = [
-  { id: "employees", label: "Equipo", icon: Users },
+  { id: "employees", label: "Usuarios", icon: Users },
   { id: "config", label: "Config", icon: Settings },
 ];
 
@@ -72,6 +73,7 @@ export function AdminLayout({
   onTabChange,
   adminRole,
   adminUsername,
+  allowedTabs,
   tenantName,
   tenantStatus,
   trialEndsAt,
@@ -98,44 +100,53 @@ export function AdminLayout({
   // Platform tab: only for legacy admin (no tenant = NauticFlow platform admin)
   const isPlatformAdmin = !tenantName && adminRole === "admin";
 
+  // Owner always has full access; non-owner users have limited tabs
+  const isOwner = adminRole === "owner";
+  const hasFullAccess = isOwner || allowedTabs === null;
+
+  // Helper to check if a tab should be visible for this user
+  const canSeeTab = (tabId: string) => {
+    if (hasFullAccess) return true;
+    return allowedTabs?.includes(tabId) ?? false;
+  };
+
+  // Filter primary tabs by permissions
+  const visiblePrimaryTabs = TAB_CONFIG.filter(t => canSeeTab(t.id));
+
   const secondaryTabs = [
-    ...(adminRole === "admin" || adminRole === "owner" ? ADMIN_TABS : []),
-    ...(adminRole === "owner" ? OWNER_TABS : []),
+    ...(adminRole === "admin" || adminRole === "owner" ? ADMIN_TABS.filter(t => canSeeTab(t.id)) : []),
+    ...(isOwner ? OWNER_TABS : []),
     ...(isPlatformAdmin ? [{ id: "superadmin", label: "Platform", icon: Globe }] : []),
   ];
 
   // Build grouped secondary tabs for the new layout
   const secondaryGroups: { label: string; tabs: typeof ADMIN_TABS }[] = [];
   if (adminRole === "admin" || adminRole === "owner") {
-    secondaryGroups.push({
-      label: "CRM",
-      tabs: [
-        { id: "customers", label: "Clientes", icon: Users },
-        { id: "inquiries", label: "Peticiones", icon: MessageSquare },
-      ],
-    });
-    secondaryGroups.push({
-      label: "Flota",
-      tabs: [
-        { id: "fleet", label: "Flota", icon: Anchor },
-        { id: "maintenance", label: "Mant.", icon: Wrench },
-        { id: "inventory", label: "Inventario", icon: Package },
-      ],
-    });
-    secondaryGroups.push({
-      label: "Negocio",
-      tabs: [
-        { id: "reports", label: "Reportes", icon: BarChart3 },
-        { id: "gallery", label: "Galeria", icon: Camera },
-        { id: "blog", label: "Blog", icon: FileText },
-        { id: "giftcards", label: "Regalos", icon: Gift },
-        { id: "discounts", label: "Descuentos", icon: Percent },
-      ],
-    });
+    const crmTabs = [
+      { id: "customers", label: "Clientes", icon: Users },
+      { id: "inquiries", label: "Peticiones", icon: MessageSquare },
+    ].filter(t => canSeeTab(t.id));
+    if (crmTabs.length > 0) secondaryGroups.push({ label: "CRM", tabs: crmTabs });
+
+    const flotaTabs = [
+      { id: "fleet", label: "Flota", icon: Anchor },
+      { id: "maintenance", label: "Mant.", icon: Wrench },
+      { id: "inventory", label: "Inventario", icon: Package },
+    ].filter(t => canSeeTab(t.id));
+    if (flotaTabs.length > 0) secondaryGroups.push({ label: "Flota", tabs: flotaTabs });
+
+    const negocioTabs = [
+      { id: "reports", label: "Reportes", icon: BarChart3 },
+      { id: "gallery", label: "Galeria", icon: Camera },
+      { id: "blog", label: "Blog", icon: FileText },
+      { id: "giftcards", label: "Regalos", icon: Gift },
+      { id: "discounts", label: "Descuentos", icon: Percent },
+    ].filter(t => canSeeTab(t.id));
+    if (negocioTabs.length > 0) secondaryGroups.push({ label: "Negocio", tabs: negocioTabs });
   }
-  if (adminRole === "owner") {
+  if (isOwner) {
     const ajustesTabs: typeof ADMIN_TABS = [
-      { id: "employees", label: "Equipo", icon: Users },
+      { id: "employees", label: "Usuarios", icon: Users },
       { id: "config", label: "Config", icon: Settings },
     ];
     if (isPlatformAdmin) {
@@ -226,7 +237,7 @@ export function AdminLayout({
 
         {/* Primary tabs row — Dashboard, Calendario, Reservas */}
         <div className="flex gap-1 md:gap-2 mt-4 md:mt-5 overflow-x-auto pb-1 -mx-4 px-4 md:mx-0 md:px-0 scrollbar-hide">
-          {TAB_CONFIG.map((tab) => (
+          {visiblePrimaryTabs.map((tab) => (
             <button
               key={tab.id}
               onClick={() => onTabChange(tab.id)}
@@ -249,7 +260,7 @@ export function AdminLayout({
                 <PopoverTrigger asChild>
                   <button
                     className={`flex items-center justify-center gap-1 px-3 py-2 font-medium rounded-lg transition-colors whitespace-nowrap flex-shrink-0 min-w-[44px] min-h-[44px] ${
-                      !TAB_CONFIG.some((t) => t.id === selectedTab)
+                      !visiblePrimaryTabs.some((t) => t.id === selectedTab)
                         ? 'bg-primary/20 text-primary'
                         : 'text-muted-foreground hover:text-foreground hover:bg-muted'
                     }`}

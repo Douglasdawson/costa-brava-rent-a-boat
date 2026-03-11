@@ -206,6 +206,8 @@ export const adminUsers = pgTable("admin_users", {
   passwordHash: text("password_hash").notNull(),
   role: text("role").notNull().default("employee"), // 'admin' | 'employee'
   displayName: text("display_name"),
+  pin: text("pin"), // bcrypt-hashed 6-digit PIN for CRM login
+  allowedTabs: json("allowed_tabs").$type<string[]>().default([]),
   isActive: boolean("is_active").notNull().default(true),
   createdAt: timestamp("created_at", { withTimezone: true }).notNull().default(sql`now()`),
   lastLoginAt: timestamp("last_login_at", { withTimezone: true }),
@@ -394,7 +396,17 @@ export const insertAdminUserSchema = createInsertSchema(adminUsers).pick({
   passwordHash: true,
   role: true,
   displayName: true,
+  pin: true,
+  allowedTabs: true,
 });
+
+export const ASSIGNABLE_TABS = [
+  "dashboard", "calendar", "bookings", "customers", "inquiries",
+  "fleet", "maintenance", "inventory", "reports", "gallery",
+  "blog", "giftcards", "discounts",
+] as const;
+
+export type AssignableTab = typeof ASSIGNABLE_TABS[number];
 
 export const upsertCustomerUserSchema = createInsertSchema(customerUsers);
 export const insertCustomerSchema = createInsertSchema(customers).omit({

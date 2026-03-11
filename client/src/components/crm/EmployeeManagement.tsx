@@ -82,7 +82,7 @@ export function EmployeeManagement({ adminToken }: EmployeeManagementProps) {
     "Content-Type": "application/json",
   };
 
-  const { data: employees = [], isLoading } = useQuery<Employee[]>({
+  const { data: dbEmployees = [], isLoading } = useQuery<Employee[]>({
     queryKey: ["/api/admin/employees"],
     queryFn: async () => {
       const res = await fetch("/api/admin/employees", { headers });
@@ -90,6 +90,20 @@ export function EmployeeManagement({ adminToken }: EmployeeManagementProps) {
       return res.json();
     },
   });
+
+  // Prepend Ivan (owner) as a virtual entry — his auth is via ADMIN_PIN env var
+  const ownerEntry: Employee = {
+    id: "owner",
+    username: "ivan",
+    role: "owner",
+    displayName: "Ivan",
+    isActive: true,
+    hasPin: true,
+    allowedTabs: null, // null = full access
+    createdAt: "",
+    lastLoginAt: null,
+  };
+  const employees = [ownerEntry, ...dbEmployees];
 
   // Pagination
   const totalPages = Math.max(1, Math.ceil(employees.length / PAGE_SIZE));
@@ -282,27 +296,38 @@ export function EmployeeManagement({ adminToken }: EmployeeManagementProps) {
                   </TableRow>
                 </TableHeader>
                 <TableBody>
-                  {paginatedEmployees.map((employee) => (
-                    <TableRow key={employee.id}>
+                  {paginatedEmployees.map((employee) => {
+                    const isOwnerRow = employee.id === "owner";
+                    return (
+                    <TableRow key={employee.id} className={isOwnerRow ? "bg-primary/5" : ""}>
                       <TableCell className="font-medium">{employee.username}</TableCell>
                       <TableCell>{employee.displayName || "-"}</TableCell>
                       <TableCell>
-                        <Badge variant={employee.role === "admin" ? "default" : "secondary"}>
-                          {employee.role === "admin" ? "Admin" : "Empleado"}
-                        </Badge>
+                        {isOwnerRow ? (
+                          <Badge className="bg-amber-100 text-amber-800">Propietario</Badge>
+                        ) : (
+                          <Badge variant={employee.role === "admin" ? "default" : "secondary"}>
+                            {employee.role === "admin" ? "Admin" : "Empleado"}
+                          </Badge>
+                        )}
                       </TableCell>
                       <TableCell>
                         {employee.hasPin ? (
                           <Badge className="bg-blue-100 text-blue-800">
                             <KeyRound className="w-3 h-3 mr-1" />
-                            Asignado
+                            {isOwnerRow ? "Env" : "Asignado"}
                           </Badge>
                         ) : (
                           <span className="text-muted-foreground text-sm">Sin PIN</span>
                         )}
                       </TableCell>
                       <TableCell>
-                        {employee.allowedTabs && employee.allowedTabs.length > 0 ? (
+                        {isOwnerRow || employee.allowedTabs === null ? (
+                          <Badge variant="outline">
+                            <Shield className="w-3 h-3 mr-1" />
+                            Acceso total
+                          </Badge>
+                        ) : employee.allowedTabs && employee.allowedTabs.length > 0 ? (
                           <Tooltip>
                             <TooltipTrigger asChild>
                               <Badge variant="outline" className="cursor-help">
@@ -334,9 +359,12 @@ export function EmployeeManagement({ adminToken }: EmployeeManagementProps) {
                               hour: "2-digit",
                               minute: "2-digit",
                             })
-                          : "Nunca"}
+                          : isOwnerRow ? "-" : "Nunca"}
                       </TableCell>
                       <TableCell className="text-right">
+                        {isOwnerRow ? (
+                          <span className="text-xs text-muted-foreground">PIN en .env</span>
+                        ) : (
                         <div className="flex justify-end gap-2">
                           <Tooltip>
                             <TooltipTrigger asChild>
@@ -368,9 +396,11 @@ export function EmployeeManagement({ adminToken }: EmployeeManagementProps) {
                             <TooltipContent>{employee.isActive ? "Desactivar" : "Activar"}</TooltipContent>
                           </Tooltip>
                         </div>
+                        )}
                       </TableCell>
                     </TableRow>
-                  ))}
+                    );
+                  })}
                 </TableBody>
               </Table>
             </CardContent>
@@ -378,8 +408,10 @@ export function EmployeeManagement({ adminToken }: EmployeeManagementProps) {
 
           {/* Mobile cards */}
           <div className="block md:hidden space-y-3">
-            {paginatedEmployees.map((employee) => (
-              <div key={employee.id} className="bg-card border border-border rounded-lg p-4 space-y-2">
+            {paginatedEmployees.map((employee) => {
+              const isOwnerRow = employee.id === "owner";
+              return (
+              <div key={employee.id} className={`bg-card border border-border rounded-lg p-4 space-y-2 ${isOwnerRow ? "border-amber-200 bg-primary/5" : ""}`}>
                 <div className="flex items-center justify-between">
                   <span className="font-heading font-semibold text-foreground">
                     {employee.displayName || employee.username}
@@ -390,22 +422,33 @@ export function EmployeeManagement({ adminToken }: EmployeeManagementProps) {
                 </div>
                 <div className="flex items-center gap-2 text-sm text-muted-foreground">
                   <span>{employee.username}</span>
-                  <Badge variant={employee.role === "admin" ? "default" : "secondary"}>
-                    {employee.role === "admin" ? "Admin" : "Empleado"}
-                  </Badge>
+                  {isOwnerRow ? (
+                    <Badge className="bg-amber-100 text-amber-800">Propietario</Badge>
+                  ) : (
+                    <Badge variant={employee.role === "admin" ? "default" : "secondary"}>
+                      {employee.role === "admin" ? "Admin" : "Empleado"}
+                    </Badge>
+                  )}
                   {employee.hasPin && (
                     <Badge className="bg-blue-100 text-blue-800">
-                      <KeyRound className="w-3 h-3 mr-1" />PIN
+                      <KeyRound className="w-3 h-3 mr-1" />{isOwnerRow ? "Env" : "PIN"}
                     </Badge>
                   )}
                 </div>
-                {employee.allowedTabs && employee.allowedTabs.length > 0 && (
+                {isOwnerRow || employee.allowedTabs === null ? (
+                  <div className="text-xs text-muted-foreground">
+                    <Badge variant="outline">
+                      <Shield className="w-3 h-3 mr-1" />
+                      Acceso total
+                    </Badge>
+                  </div>
+                ) : employee.allowedTabs && employee.allowedTabs.length > 0 ? (
                   <div className="text-xs text-muted-foreground">
                     Acceso: {employee.allowedTabs.length === TAB_OPTIONS.length
                       ? "Todos los tabs"
                       : employee.allowedTabs.map(t => TAB_OPTIONS.find(o => o.id === t)?.label || t).join(", ")}
                   </div>
-                )}
+                ) : null}
                 <div className="flex items-center justify-between">
                   <span className="text-sm text-muted-foreground">
                     {employee.lastLoginAt
@@ -416,8 +459,11 @@ export function EmployeeManagement({ adminToken }: EmployeeManagementProps) {
                           hour: "2-digit",
                           minute: "2-digit",
                         })
-                      : "Nunca"}
+                      : isOwnerRow ? "-" : "Nunca"}
                   </span>
+                  {isOwnerRow ? (
+                    <span className="text-xs text-muted-foreground">PIN en .env</span>
+                  ) : (
                   <div className="flex gap-1">
                     <Tooltip>
                       <TooltipTrigger asChild>
@@ -449,9 +495,11 @@ export function EmployeeManagement({ adminToken }: EmployeeManagementProps) {
                       <TooltipContent>{employee.isActive ? "Desactivar" : "Activar"}</TooltipContent>
                     </Tooltip>
                   </div>
+                  )}
                 </div>
               </div>
-            ))}
+              );
+            })}
           </div>
 
           {/* Pagination */}

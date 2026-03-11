@@ -118,7 +118,9 @@ async function updateInquiryByPhone(phone: string) {
     for (const inquiry of result.data) {
       // Match: inquiry phone (without prefix symbols) contains the incoming phone digits
       const inquiryPhone = `${inquiry.phonePrefix}${inquiry.phoneNumber}`.replace(/[^0-9]/g, "");
-      if (inquiryPhone === cleanPhone || cleanPhone.endsWith(inquiry.phoneNumber.replace(/[^0-9]/g, ""))) {
+      const cleanInquiryPhoneNumber = inquiry.phoneNumber.replace(/[^0-9]/g, "");
+      // Require exact match or at least 9 digits matching at the end to prevent false positives
+      if (inquiryPhone === cleanPhone || (cleanInquiryPhoneNumber.length >= 9 && cleanPhone.endsWith(cleanInquiryPhoneNumber))) {
         await storage.updateWhatsappInquiry(inquiry.id, { status: "contacted" });
         logger.info("Meta Webhook auto-updated inquiry to contacted", { inquiryId: inquiry.id, name: `${inquiry.firstName} ${inquiry.lastName}` });
       }

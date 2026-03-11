@@ -81,16 +81,22 @@ export async function seedDefaultTenant(): Promise<Tenant> {
  * Updates all rows with NULL tenant_id to the specified tenant.
  */
 async function migrateDataToTenant(tenantId: string): Promise<void> {
-  const tableNames = [
+  // Whitelist of allowed table names to prevent injection via sql.identifier()
+  const ALLOWED_TABLES = new Set([
     "admin_users", "customers", "boats", "bookings", "booking_extras",
     "page_visits", "testimonials", "blog_posts", "destinations",
     "client_photos", "gift_cards", "discount_codes",
     "chatbot_conversations", "ai_chat_sessions", "ai_chat_messages",
     "knowledge_base", "crm_customers", "checkins",
     "maintenance_logs", "boat_documents", "inventory_items", "inventory_movements",
-  ];
+  ]);
+
+  const tableNames = Array.from(ALLOWED_TABLES);
 
   for (const tableName of tableNames) {
+    if (!ALLOWED_TABLES.has(tableName)) {
+      throw new Error(`Invalid table name for tenant migration: ${tableName}`);
+    }
     await db.execute(
       sql`UPDATE ${sql.identifier(tableName)} SET tenant_id = ${tenantId} WHERE tenant_id IS NULL`
     );

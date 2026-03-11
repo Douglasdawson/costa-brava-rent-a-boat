@@ -31,8 +31,9 @@ export const de: Translations = {
     experience: '+5 Jahre Erfahrung',
     freeCancellation: 'Kostenlose Stornierung 48h',
     instantConfirmation: 'Sofortige Bestätigung',
+    marqueeText: 'Bootsverleih in Blanes | Mit und Ohne Führerschein | Treibstoff Inklusive | Ab 70\u20AC/Std',
   },
-  
+
   fleet: {
     title: 'Wähle dein Boot',
     subtitle: 'Je nach Gruppengröße und gewünschtem Erlebnis. Versicherung und Sicherheitsausrüstung inklusive.',
@@ -328,6 +329,9 @@ export const de: Translations = {
     priceConfirmedWhatsApp: 'Der endgültige Preis wird per WhatsApp bestätigt',
     gdprConsent: 'Ich habe die {privacyPolicy} und die {termsAndConditions} gelesen und akzeptiere sie. Meine Daten werden zur Verwaltung meiner Buchung verarbeitet (DSGVO Art. 6.1.b).',
     gdprPassive: 'Mit dem Absenden dieser Anfrage akzeptieren Sie unsere {privacyPolicy} und die {termsAndConditions}.',
+    errorGeneric: 'Ein unerwarteter Fehler ist aufgetreten',
+    errorPayment: 'Fehler bei der Zahlungsverarbeitung',
+    backToHome: 'Zurück zur Startseite',
     gdprPrivacyLink: 'Datenschutzrichtlinie',
     gdprTermsLink: 'Allgemeine Geschäftsbedingungen',
   },
@@ -1122,6 +1126,9 @@ export const de: Translations = {
     dontMissIt: 'Nicht verpassen',
     viewBoats: 'Boote ansehen',
     bookNow: 'Jetzt buchen',
+    noThanks: 'Jetzt nicht, danke',
+    limitedSpots: 'Begrenzte Plätze für diese Saison',
+    discountWithCode: '10% Rabatt mit dem Code:',
   },
 
   confirmation: {
@@ -1144,6 +1151,7 @@ export const de: Translations = {
     shareTitle: 'Teilen Sie Ihr Abenteuer',
     shareWhatsApp: 'Auf WhatsApp teilen',
     copyLink: 'Link kopieren',
+    shareWhatsAppMessage: 'Ich miete ein Boot in Blanes bei Costa Brava Rent a Boat',
     repeatBooking: 'Möchten Sie wiederkommen?',
     saveDiscount: 'Sparen Sie 10% bei Ihrer nächsten Buchung',
     discountCode: 'Verwenden Sie den Code',
@@ -1175,5 +1183,13 @@ export const de: Translations = {
     freeGuideSubtitle: 'Erhalten Sie unseren Führer mit den 10 besten Buchten der Costa Brava, die nur per Boot erreichbar sind',
     sendFreeGuide: 'Kostenlosen Führer senden',
     freeGuideSent: 'Führer gesendet! Prüfen Sie Ihre E-Mail.',
+  },
+  notFound: {
+    title: 'Seite nicht gefunden',
+    description: 'Die gesuchte Seite existiert nicht oder wurde verschoben',
+    backHome: 'Zurück zur Startseite',
+  },
+  cancelBooking: {
+    tokenNotFound: 'Stornierungs-Token nicht gefunden',
   },
 };

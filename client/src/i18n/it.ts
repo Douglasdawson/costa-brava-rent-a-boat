@@ -31,8 +31,9 @@ export const it: Translations = {
     experience: '+5 anni di esp.',
     freeCancellation: 'Cancellazione gratuita 48h',
     instantConfirmation: 'Conferma immediata',
+    marqueeText: 'Noleggio Barche a Blanes | Con e Senza Patente | Carburante Incluso | Da 70\u20AC/ora',
   },
-  
+
   fleet: {
     title: 'Scegli la tua barca',
     subtitle: 'In base al tuo gruppo e all\'esperienza che cerchi. Assicurazione e attrezzatura di sicurezza incluse.',
@@ -328,6 +329,9 @@ export const it: Translations = {
     priceConfirmedWhatsApp: 'Il prezzo finale è confermato via WhatsApp',
     gdprConsent: "Ho letto e accetto la {privacyPolicy} e le {termsAndConditions}. I miei dati saranno trattati per gestire la mia prenotazione (GDPR Art. 6.1.b).",
     gdprPassive: 'Inviando questa richiesta, accetti la nostra {privacyPolicy} e le {termsAndConditions}.',
+    errorGeneric: 'Si è verificato un errore imprevisto',
+    errorPayment: 'Errore durante l\'elaborazione del pagamento',
+    backToHome: 'Torna alla home',
     gdprPrivacyLink: 'Informativa sulla Privacy',
     gdprTermsLink: 'Condizioni Generali',
   },
@@ -1122,6 +1126,9 @@ export const it: Translations = {
     dontMissIt: 'Non perderlo',
     viewBoats: 'Vedi barche',
     bookNow: 'Prenota ora',
+    noThanks: 'Non ora, grazie',
+    limitedSpots: 'Posti limitati per questa stagione',
+    discountWithCode: '10% di sconto con il codice:',
   },
 
   confirmation: {
@@ -1144,6 +1151,7 @@ export const it: Translations = {
     shareTitle: 'Condividi la tua avventura',
     shareWhatsApp: 'Condividi su WhatsApp',
     copyLink: 'Copia link',
+    shareWhatsAppMessage: 'Noleggerò una barca a Blanes con Costa Brava Rent a Boat',
     repeatBooking: 'Vuoi tornare?',
     saveDiscount: 'Risparmia 10% sulla prossima prenotazione',
     discountCode: 'Usa il codice',
@@ -1175,5 +1183,13 @@ export const it: Translations = {
     freeGuideSubtitle: 'Ricevi la nostra guida con le 10 migliori calette della Costa Brava accessibili solo in barca',
     sendFreeGuide: 'Invia guida gratuita',
     freeGuideSent: 'Guida inviata! Controlla la tua email.',
+  },
+  notFound: {
+    title: 'Pagina non trovata',
+    description: 'La pagina che stai cercando non esiste o è stata spostata',
+    backHome: 'Torna alla home',
+  },
+  cancelBooking: {
+    tokenNotFound: 'Token di cancellazione non trovato',
   },
 };

@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useRoute } from "wouter";
 import { Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useTranslations } from "@/lib/translations";
 
 interface CancelInfo {
   booking: {
@@ -25,6 +26,7 @@ interface CancelInfo {
 export default function CancelBookingPage() {
   const [, params] = useRoute("/cancel/:token");
   const token = params?.token;
+  const t = useTranslations();
 
   const [info, setInfo] = useState<CancelInfo | null>(null);
   const [loading, setLoading] = useState(true);
@@ -35,7 +37,7 @@ export default function CancelBookingPage() {
 
   useEffect(() => {
     if (!token) {
-      setError("Token de cancelación no encontrado.");
+      setError(t.cancelBooking?.tokenNotFound || "Token de cancelación no encontrado.");
       setLoading(false);
       return;
     }

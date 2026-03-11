@@ -31,7 +31,7 @@ interface BlogArticle {
 }
 
 export function generateArticleSchema(article: BlogArticle) {
-  const schema: any = {
+  const schema: Record<string, unknown> = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     "headline": article.headline,
@@ -88,7 +88,7 @@ interface PlaceDestination {
 }
 
 export function generatePlaceSchema(place: PlaceDestination) {
-  const schema: any = {
+  const schema: Record<string, unknown> = {
     "@context": "https://schema.org",
     "@type": "TouristAttraction",
     "name": place.name,

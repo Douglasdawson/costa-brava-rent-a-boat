@@ -31,8 +31,9 @@ export const ca: Translations = {
     experience: '+5 anys exp.',
     freeCancellation: "Cancel·lació gratuïta 48h",
     instantConfirmation: 'Confirmació immediata',
+    marqueeText: 'Lloguer de Vaixells a Blanes | Amb i Sense Llicència | Gasolina Inclosa | Des de 70\u20AC/h',
   },
-  
+
   fleet: {
     title: 'Tria el teu vaixell',
     subtitle: 'Segons la mida del teu grup i l\'experiència que busques. Assegurança i equip de seguretat inclosos.',
@@ -330,6 +331,9 @@ export const ca: Translations = {
     gdprPassive: 'En enviar aquesta sol·licitud, acceptes la nostra {privacyPolicy} i les {termsAndConditions}.',
     gdprPrivacyLink: 'Política de Privacitat',
     gdprTermsLink: 'Condicions Generals',
+    errorGeneric: "S'ha produït un error inesperat",
+    errorPayment: 'Error en processar el pagament',
+    backToHome: "Tornar a l'inici",
   },
   faq: {
     title: 'Preguntes Freqüents',
@@ -1121,6 +1125,9 @@ export const ca: Translations = {
     dontMissIt: 'No t\'ho perdis',
     viewBoats: 'Veure vaixells',
     bookNow: 'Reservar',
+    noThanks: 'Ara no, gràcies',
+    limitedSpots: 'Places limitades per aquesta temporada',
+    discountWithCode: '10% de descompte amb el codi:',
   },
 
   confirmation: {
@@ -1143,6 +1150,7 @@ export const ca: Translations = {
     shareTitle: 'Comparteix la teva aventura',
     shareWhatsApp: 'Compartir per WhatsApp',
     copyLink: 'Copiar enllaç',
+    shareWhatsAppMessage: 'Llogaré un vaixell a Blanes amb Costa Brava Rent a Boat',
     repeatBooking: 'Vols repetir?',
     saveDiscount: 'Estalvia 10% a la teva pròxima reserva',
     discountCode: 'Usa el codi',
@@ -1174,5 +1182,13 @@ export const ca: Translations = {
     freeGuideSubtitle: 'Rep la nostra guia amb les 10 millors cales de la Costa Brava accessibles només en vaixell',
     sendFreeGuide: 'Enviar guia gratis',
     freeGuideSent: 'Guia enviada. Revisa el teu email.',
+  },
+  notFound: {
+    title: 'Pàgina no trobada',
+    description: 'La pàgina que cerques no existeix o ha estat moguda',
+    backHome: "Tornar a l'inici",
+  },
+  cancelBooking: {
+    tokenNotFound: 'Token de cancel·lació no trobat',
   },
 };

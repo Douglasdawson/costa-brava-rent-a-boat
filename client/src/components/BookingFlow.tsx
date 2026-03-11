@@ -74,7 +74,18 @@ export default function BookingFlow({
   const [showPhonePrefixDropdown, setShowPhonePrefixDropdown] = useState(false);
   const [nationalitySearch, setNationalitySearch] = useState("");
   const [showNationalityDropdown, setShowNationalityDropdown] = useState(false);
-  const [quote, setQuote] = useState<any>(null);
+  const [quote, setQuote] = useState<{
+    season?: string;
+    basePrice?: number;
+    selectedExtras?: string[];
+    extrasPrice?: number;
+    deposit?: number;
+    subtotal?: number;
+    total?: number;
+    duration?: string;
+    numberOfPeople?: number;
+    [key: string]: unknown;
+  } | null>(null);
   const [holdId, setHoldId] = useState<string | null>(null);
   const [paymentIntentId, setPaymentIntentId] = useState<string | null>(null);
   const { toast } = useToast();
@@ -169,7 +180,7 @@ export default function BookingFlow({
   const availableBoats = useMemo(() => {
     if (licenseFilter === "all") return allBoats;
     
-    return allBoats.filter((boat: any) => {
+    return allBoats.filter((boat: Boat) => {
       const requiresLicense = boat.requiresLicense !== undefined 
         ? !!boat.requiresLicense 
         : boat.subtitle?.includes("Con Licencia");
@@ -183,9 +194,9 @@ export default function BookingFlow({
   // Get maximum capacity based on selected boat
   const getMaxCapacity = (boatId: string): number => {
     // First try to get capacity from the actual boat data
-    const boat = availableBoats.find((b: any) => b.id === boatId);
-    if (boat && (boat as any).capacity) {
-      return (boat as any).capacity;
+    const boat = availableBoats.find((b: Boat) => b.id === boatId);
+    if (boat && boat.capacity) {
+      return boat.capacity;
     }
     
     // Fallback to hardcoded mapping if boat data doesn't have capacity
@@ -232,8 +243,8 @@ export default function BookingFlow({
 
     try {
       // Find boat in availableBoats (API data)
-      const boat = availableBoats.find((b: any) => b.id === selectedBoat);
-      
+      const boat = availableBoats.find((b: Boat) => b.id === selectedBoat);
+
       if (!boat) {
         throw new Error(`Boat ${selectedBoat} not found`);
       }
@@ -256,9 +267,9 @@ export default function BookingFlow({
           { id: "6h", label: t.booking.sixHours, price: seasonPrices["6h"] || 150 },
           { id: "8h", label: t.booking.eightHours, price: seasonPrices["8h"] || 180 }
         ];
-      } else if ((boat as any).pricePerHour) {
+      } else if (boat.pricePerHour) {
         // Last resort: no seasonal pricing JSON, use pricePerHour with multipliers
-        const basePrice = parseFloat((boat as any).pricePerHour);
+        const basePrice = parseFloat(boat.pricePerHour);
         return [
           { id: "1h", label: t.booking.oneHour, price: basePrice },
           { id: "2h", label: t.booking.twoHours, price: Math.round(basePrice * 1.8) },
@@ -271,7 +282,7 @@ export default function BookingFlow({
         throw new Error(`Boat ${selectedBoat} has no pricing data`);
       }
     } catch (error) {
-      console.error('Error calculating durations:', error);
+      if (import.meta.env.DEV) console.error('Error calculating durations:', error);
       // If date is outside season or other error, use fallback prices
       return [
         { id: "1h", label: t.booking.oneHour, price: 70 },
@@ -342,8 +353,8 @@ export default function BookingFlow({
       const result = await response.json();
       return result.available;
     } catch (error) {
-      console.error('Error checking availability:', error);
-      return true; // Assume available on error
+      if (import.meta.env.DEV) console.error('Error checking availability:', error);
+      return false; // Fail closed - don't allow booking on error
     }
   };
 
@@ -395,11 +406,11 @@ export default function BookingFlow({
       });
 
       return true;
-    } catch (error: any) {
-      console.error('Error creating quote:', error);
+    } catch (error: unknown) {
+      if (import.meta.env.DEV) console.error('Error creating quote:', error);
       toast({
         title: "Error al crear cotización",
-        description: error.message || "Ha ocurrido un error inesperado. Por favor, inténtalo de nuevo.",
+        description: error instanceof Error ? error.message : "Ha ocurrido un error inesperado. Por favor, inténtalo de nuevo.",
         variant: "destructive",
       });
       return false;
@@ -489,20 +500,20 @@ export default function BookingFlow({
           } else {
             throw new Error("Error en la simulación de pago");
           }
-        } catch (error: any) {
+        } catch (error: unknown) {
           toast({
             title: "Error en el pago",
-            description: error.message,
+            description: error instanceof Error ? error.message : "Error desconocido",
             variant: "destructive",
           });
         }
       }, 2000);
 
-    } catch (error: any) {
-      console.error('Error processing payment:', error);
+    } catch (error: unknown) {
+      if (import.meta.env.DEV) console.error('Error processing payment:', error);
       toast({
-        title: "Error al procesar el pago",
-        description: error.message || "Ha ocurrido un error inesperado. Por favor, inténtalo de nuevo.",
+        title: t.booking.errorPayment,
+        description: error instanceof Error ? error.message : t.booking.errorGeneric,
         variant: "destructive",
       });
     } finally {
@@ -522,7 +533,7 @@ export default function BookingFlow({
             data-testid="button-back-home"
           >
             <ArrowLeft className="w-4 h-4 mr-2" />
-            Volver al inicio
+            {t.booking.backToHome}
           </Button>
         </div>
 
@@ -564,7 +575,7 @@ export default function BookingFlow({
                 type="date"
                 value={selectedDate}
                 onChange={(e) => setSelectedDate(e.target.value)}
-                min={new Date().toISOString().split('T')[0]}
+                min={new Intl.DateTimeFormat('en-CA', { timeZone: 'Europe/Madrid' }).format(new Date())}
                 className="w-full p-4 border border-primary/20 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary text-lg text-left text-foreground"
                 data-testid="input-booking-date"
               />
@@ -624,13 +635,13 @@ export default function BookingFlow({
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {availableBoats.map((boat: any) => {
+                {availableBoats.map((boat: Boat) => {
                   const isSelected = selectedBoat === boat.id;
                   // Handle boat data from API
                   const boatName = boat.name;
                   const boatCapacity = boat.capacity || parseInt(boat.specifications?.capacity?.split(' ')[0] || '5');
                   const boatPrice = boat.pricePerHour ? parseFloat(boat.pricePerHour) : Math.min(...Object.values(boat.pricing?.BAJA?.prices || {"1h": 75}) as number[]);
-                  const boatImage = boat.imageUrl || boat.image || "/placeholder-boat.jpg";
+                  const boatImage = boat.imageUrl || (boat as Record<string, unknown>).image as string || "/placeholder-boat.jpg";
                   const requiresLicense = boat.requiresLicense !== undefined ? boat.requiresLicense : boat.subtitle?.includes("Con Licencia");
                   
                   return (
@@ -1029,7 +1040,7 @@ export default function BookingFlow({
                   </div>
                   <div className="flex justify-between">
                     <span>{t.booking.summaryBoat}</span>
-                    <span className="font-medium">{availableBoats.find((b: any) => b.id === selectedBoat)?.name || 'N/A'}</span>
+                    <span className="font-medium">{availableBoats.find((b: Boat) => b.id === selectedBoat)?.name || 'N/A'}</span>
                   </div>
                   <hr className="my-2" />
                   {quote ? (

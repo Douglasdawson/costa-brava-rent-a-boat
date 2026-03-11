@@ -870,7 +870,7 @@ const replacePlaceholders = (text: string, data: Record<string, string>): string
 export function generateLocalBusinessSchema(language: Language = 'es', rating?: number, reviewCount?: number) {
   const baseUrl = typeof window !== 'undefined' ? window.location.origin : BUSINESS_INFO.url;
   
-  const schema: any = {
+  const schema: Record<string, unknown> = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "@id": `${baseUrl}/#organization`,
@@ -1086,7 +1086,22 @@ export function generateBreadcrumbSchema(breadcrumbs: Array<{name: string, url: 
 }
 
 // Generate enhanced Product JSON-LD schema for boats
-export function generateEnhancedProductSchema(boatData: any, language: Language = 'es') {
+interface BoatProductData {
+  id: string;
+  name: string;
+  description: string | null;
+  brand?: string;
+  year?: number;
+  capacity: number;
+  power: string | number;
+  pricePerHour?: number | string;
+  image?: string;
+  imageGallery?: string[];
+  pricing?: Record<string, { period: string; prices: Record<string, number> }>;
+  requiresLicense?: boolean;
+}
+
+export function generateEnhancedProductSchema(boatData: BoatProductData, language: Language = 'es') {
   const baseUrl = typeof window !== 'undefined' ? window.location.origin : BUSINESS_INFO.url;
   const currentYear = new Date().getFullYear();
   
@@ -1174,7 +1189,7 @@ export function generateEnhancedProductSchema(boatData: any, language: Language 
     }
   };
 
-  const baseSchema: any = {
+  const baseSchema: Record<string, unknown> = {
     "@context": "https://schema.org",
     "@type": "Product",
     "@id": `${baseUrl}/barco/${boatData.id}`,
@@ -1207,13 +1222,13 @@ export function generateEnhancedProductSchema(boatData: any, language: Language 
 
   // Enhanced Offers with seasonal pricing
   if (boatData.pricing) {
-    const offers: any[] = [];
+    const offers: Record<string, unknown>[] = [];
     
     // Generate offer for each season
     ['BAJA', 'MEDIA', 'ALTA'].forEach((season) => {
-      const seasonData = boatData.pricing[season as keyof typeof boatData.pricing];
+      const seasonData = boatData.pricing![season as keyof typeof boatData.pricing];
       if (seasonData && seasonData.prices) {
-        const prices = Object.values(seasonData.prices).filter((p: any) => p > 0) as number[];
+        const prices = Object.values(seasonData.prices).filter((p): p is number => typeof p === 'number' && p > 0);
         if (prices.length > 0) {
           const dates = parseSeasonDates(seasonData.period, season);
           
@@ -1254,7 +1269,7 @@ export function generateEnhancedProductSchema(boatData: any, language: Language 
 
     // Use AggregateOffer if multiple seasons, or single Offer
     if (offers.length > 1) {
-      const allPrices = offers.flatMap(o => [parseFloat(o.lowPrice), parseFloat(o.highPrice)]);
+      const allPrices = offers.flatMap(o => [parseFloat(o.lowPrice as string), parseFloat(o.highPrice as string)]);
       baseSchema.offers = {
         "@type": "AggregateOffer",
         "priceCurrency": "EUR",

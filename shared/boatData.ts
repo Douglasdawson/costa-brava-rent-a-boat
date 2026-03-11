@@ -289,7 +289,7 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
   "astec-480": {
     id: "astec-480",
     name: "Astec 480",
-    image: "ASTEC_400_boat_photo_9dde16a8.png",
+    image: "ASTEC_400_boat_photo_9dde16a8.png", // TODO: replace with actual ASTEC 480 photo (currently using ASTEC 400 image)
     subtitle: "Sin licencia · 5 personas · Premium con bluetooth",
     description: "La experiencia premium sin necesidad de carnet náutico. Con 4,80m de eslora, equipo de música bluetooth, solárium acolchado y el doble de depósito de combustible, es la embarcación sin licencia más completa de Blanes. Navega con tu música favorita hacia las calas más bonitas de la Costa Brava. Gasolina, seguro y equipo de seguridad incluidos.",
     specifications: {
@@ -564,7 +564,7 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
       "Toldo bimini inox",
       "Mesa en popa y/o proa",
       "Ducha de agua dulce",
-      "Escalera de bano",
+      "Escalera de baño",
       "Equipo de seguridad y salvamento"
     ],
     included: [
@@ -572,7 +572,7 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
       "Patron profesional",
       "Amarre",
       "Limpieza",
-      "Seguro embarcacion y ocupantes"
+      "Seguro embarcación y ocupantes"
     ],
     features: [
       "No requiere licencia",

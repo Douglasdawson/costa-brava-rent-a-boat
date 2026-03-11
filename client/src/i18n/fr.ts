@@ -31,8 +31,9 @@ export const fr: Translations = {
     experience: '+5 ans exp.',
     freeCancellation: 'Annulation gratuite 48h',
     instantConfirmation: 'Confirmation immédiate',
+    marqueeText: 'Location de Bateaux à Blanes | Avec et Sans Permis | Carburant Inclus | Dès 70\u20AC/h',
   },
-  
+
   fleet: {
     title: 'Choisissez votre bateau',
     subtitle: 'Selon la taille de votre groupe et l\'expérience souhaitée. Assurance et équipement de sécurité inclus.',
@@ -328,6 +329,9 @@ export const fr: Translations = {
     priceConfirmedWhatsApp: 'Le prix final est confirmé par WhatsApp',
     gdprConsent: "J'ai lu et j'accepte la {privacyPolicy} et les {termsAndConditions}. Mes données seront traitées pour gérer ma réservation (RGPD Art. 6.1.b).",
     gdprPassive: 'En envoyant cette demande, vous acceptez notre {privacyPolicy} et les {termsAndConditions}.',
+    errorGeneric: 'Une erreur inattendue s\'est produite',
+    errorPayment: 'Erreur lors du traitement du paiement',
+    backToHome: 'Retour à l\'accueil',
     gdprPrivacyLink: 'Politique de Confidentialité',
     gdprTermsLink: 'Conditions Générales',
   },
@@ -1122,6 +1126,9 @@ export const fr: Translations = {
     dontMissIt: 'Ne manquez pas',
     viewBoats: 'Voir les bateaux',
     bookNow: 'Réserver',
+    noThanks: 'Pas maintenant, merci',
+    limitedSpots: 'Places limitées pour cette saison',
+    discountWithCode: '10% de réduction avec le code :',
   },
 
   confirmation: {
@@ -1144,6 +1151,7 @@ export const fr: Translations = {
     shareTitle: 'Partagez votre aventure',
     shareWhatsApp: 'Partager sur WhatsApp',
     copyLink: 'Copier le lien',
+    shareWhatsAppMessage: 'Je vais louer un bateau à Blanes avec Costa Brava Rent a Boat',
     repeatBooking: 'Envie de revenir ?',
     saveDiscount: 'Économisez 10% sur votre prochaine réservation',
     discountCode: 'Utilisez le code',
@@ -1175,5 +1183,13 @@ export const fr: Translations = {
     freeGuideSubtitle: 'Recevez notre guide des 10 meilleures criques de la Costa Brava accessibles uniquement en bateau',
     sendFreeGuide: 'Envoyer le guide gratuit',
     freeGuideSent: 'Guide envoyé ! Vérifiez votre email.',
+  },
+  notFound: {
+    title: 'Page non trouvée',
+    description: 'La page que vous cherchez n\'existe pas ou a été déplacée',
+    backHome: 'Retour à l\'accueil',
+  },
+  cancelBooking: {
+    tokenNotFound: 'Token d\'annulation introuvable',
   },
 };

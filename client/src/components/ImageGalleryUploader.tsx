@@ -174,7 +174,7 @@ function GalleryTab({
         onMainImageChange(newImages[0]);
       }
     } catch (error) {
-      console.error("Error uploading cropped image:", error);
+      if (import.meta.env.DEV) console.error("Error uploading cropped image:", error);
       alert("Error al subir la imagen. Por favor, intenta de nuevo.");
     } finally {
       setUploading(false);

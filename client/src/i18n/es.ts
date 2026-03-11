@@ -31,8 +31,9 @@ export const es: Translations = {
     experience: '+5 años exp.',
     freeCancellation: 'Cancelación gratuita 48h',
     instantConfirmation: 'Confirmación inmediata',
+    marqueeText: 'Alquiler de Barcos en Blanes | Con y Sin Licencia | Gasolina Incluida | Desde 70\u20AC/h',
   },
-  
+
   fleet: {
     title: 'Elige tu barco',
     subtitle: 'Según el tamaño de tu grupo y la experiencia que buscas. Todos con seguro y equipo de seguridad incluido.',
@@ -340,6 +341,9 @@ export const es: Translations = {
     gdprPassive: 'Al enviar esta solicitud, aceptas nuestra {privacyPolicy} y las {termsAndConditions}.',
     gdprPrivacyLink: 'Política de Privacidad',
     gdprTermsLink: 'Condiciones Generales',
+    errorGeneric: 'Ha ocurrido un error inesperado',
+    errorPayment: 'Error al procesar el pago',
+    backToHome: 'Volver al inicio',
   },
   faq: {
     title: 'Preguntas Frecuentes',
@@ -1132,6 +1136,9 @@ export const es: Translations = {
     dontMissIt: 'No te lo pierdas',
     viewBoats: 'Ver barcos',
     bookNow: 'Reservar',
+    noThanks: 'Ahora no, gracias',
+    limitedSpots: 'Plazas limitadas para esta temporada',
+    discountWithCode: '10% de descuento con el código:',
   },
 
   confirmation: {
@@ -1154,6 +1161,7 @@ export const es: Translations = {
     shareTitle: 'Comparte tu aventura',
     shareWhatsApp: 'Compartir por WhatsApp',
     copyLink: 'Copiar enlace',
+    shareWhatsAppMessage: 'Voy a alquilar un barco en Blanes con Costa Brava Rent a Boat',
     repeatBooking: '¿Quieres repetir?',
     saveDiscount: 'Ahorra 10% en tu próxima reserva',
     discountCode: 'Usa el código',
@@ -1185,5 +1193,13 @@ export const es: Translations = {
     registeredBusiness: 'Empresa registrada en España',
     maritimeInsurance: 'Seguro marítimo completo',
     gdprCompliant: 'Cumplimiento RGPD',
+  },
+  notFound: {
+    title: 'Página no encontrada',
+    description: 'La página que buscas no existe o ha sido movida',
+    backHome: 'Volver al inicio',
+  },
+  cancelBooking: {
+    tokenNotFound: 'Token de cancelación no encontrado',
   },
 };

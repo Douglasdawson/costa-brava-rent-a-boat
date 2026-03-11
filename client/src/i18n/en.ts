@@ -31,8 +31,9 @@ export const en: Translations = {
     experience: '+5 years exp.',
     freeCancellation: 'Free cancellation 48h',
     instantConfirmation: 'Instant confirmation',
+    marqueeText: 'Boat Rental in Blanes | With and Without License | Fuel Included | From \u20AC70/h',
   },
-  
+
   fleet: {
     title: 'Choose your boat',
     subtitle: 'Based on your group size and the experience you want. All include insurance and safety equipment.',
@@ -330,6 +331,9 @@ export const en: Translations = {
     gdprPassive: 'By sending this request, you accept our {privacyPolicy} and {termsAndConditions}.',
     gdprPrivacyLink: 'Privacy Policy',
     gdprTermsLink: 'General Conditions',
+    errorGeneric: 'An unexpected error occurred',
+    errorPayment: 'Error processing payment',
+    backToHome: 'Back to home',
   },
   faq: {
     title: 'Frequently Asked Questions',
@@ -1122,6 +1126,9 @@ export const en: Translations = {
     dontMissIt: 'Don\'t miss out',
     viewBoats: 'View boats',
     bookNow: 'Book now',
+    noThanks: 'Not now, thanks',
+    limitedSpots: 'Limited spots for this season',
+    discountWithCode: '10% discount with code:',
   },
 
   confirmation: {
@@ -1144,6 +1151,7 @@ export const en: Translations = {
     shareTitle: 'Share your adventure',
     shareWhatsApp: 'Share on WhatsApp',
     copyLink: 'Copy link',
+    shareWhatsAppMessage: 'I\'m going to rent a boat in Blanes with Costa Brava Rent a Boat',
     repeatBooking: 'Want to come back?',
     saveDiscount: 'Save 10% on your next booking',
     discountCode: 'Use code',
@@ -1175,5 +1183,13 @@ export const en: Translations = {
     freeGuideSubtitle: 'Get our guide with the 10 best coves on the Costa Brava accessible only by boat',
     sendFreeGuide: 'Send free guide',
     freeGuideSent: 'Guide sent! Check your email.',
+  },
+  notFound: {
+    title: 'Page not found',
+    description: 'The page you\'re looking for doesn\'t exist or has been moved',
+    backHome: 'Back to home',
+  },
+  cancelBooking: {
+    tokenNotFound: 'Cancellation token not found',
   },
 };

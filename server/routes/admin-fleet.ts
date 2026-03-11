@@ -133,7 +133,7 @@ export function registerAdminFleetRoutes(app: Express) {
     try {
       const { BOAT_DATA } = await import("@shared/boatData");
 
-      const boatsToCreate = Object.values(BOAT_DATA).map((boat: any) => {
+      const boatsToCreate = Object.values(BOAT_DATA).map((boat) => {
         const capacityMatch = boat.specifications.capacity.match(/(\d+)/);
         const capacity = capacityMatch ? parseInt(capacityMatch[1]) : 5;
         const depositMatch = boat.specifications.deposit.match(/(\d+)/);

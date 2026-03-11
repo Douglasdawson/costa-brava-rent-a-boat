@@ -29,7 +29,7 @@ export function useAuth() {
         window.location.href = "/";
       }
     } catch (error) {
-      console.error("Logout error:", error);
+      if (import.meta.env.DEV) console.error("Logout error:", error);
       throw error;
     }
   };

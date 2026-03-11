@@ -42,8 +42,9 @@ export interface Translations {
     experience: string;
     freeCancellation: string;
     instantConfirmation: string;
+    marqueeText: string;
   };
-  
+
   // Fleet Section
   fleet: {
     title: string;
@@ -361,6 +362,9 @@ export interface Translations {
     gdprPrivacyLink: string;
     gdprTermsLink: string;
     gdprPassive: string;
+    errorGeneric: string;
+    errorPayment: string;
+    backToHome: string;
   };
 
   // FAQ Page
@@ -1171,6 +1175,9 @@ export interface Translations {
     dontMissIt: string;
     viewBoats: string;
     bookNow: string;
+    noThanks: string;
+    limitedSpots: string;
+    discountWithCode: string;
   };
 
   // Authority Badges & Trust Credentials
@@ -1198,11 +1205,24 @@ export interface Translations {
     shareTitle: string;
     shareWhatsApp: string;
     copyLink: string;
+    shareWhatsAppMessage: string;
     repeatBooking: string;
     saveDiscount: string;
     discountCode: string;
     linkCopied: string;
     close: string;
+  };
+
+  // Not Found Page
+  notFound?: {
+    title: string;
+    description: string;
+    backHome: string;
+  };
+
+  // Cancel Booking Page
+  cancelBooking?: {
+    tokenNotFound: string;
   };
 }
 export const translations: Record<Language, Translations> = { es, ca, en, fr, de, nl, it, ru };

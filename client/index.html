@@ -40,12 +40,19 @@
     <link rel="icon" type="image/png" href="/assets/logo-icon.png">
     <link rel="apple-touch-icon" href="/assets/logo-icon.png">
     <!-- Performance Optimizations -->
-    
+
+    <!-- Preload critical fonts to avoid FOUT -->
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/ClashDisplay-Variable.woff2" crossorigin>
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/Archivo-Variable.woff2" crossorigin>
+
     <!-- Preload critical assets for LCP optimization (matches Hero.tsx <picture> sources) -->
     <link rel="preload" as="image" href="/images/hero/hero-dive-mobile.webp" media="(max-width: 767px)" fetchpriority="high">
     <link rel="preload" as="image" href="/images/hero/hero-dive-desktop.webp" media="(min-width: 768px)" fetchpriority="high">
     <link rel="modulepreload" href="/src/main.tsx">
-    
+
+    <!-- Preconnect to Google Tag Manager -->
+    <link rel="preconnect" href="https://www.googletagmanager.com">
+
     <!-- DNS Prefetch for external resources -->
     <link rel="dns-prefetch" href="https://api.whatsapp.com">
     <link rel="dns-prefetch" href="https://js.stripe.com">
@@ -115,7 +122,7 @@
       :root{--background:200 20% 98%;--foreground:210 60% 20%;--primary:210 85% 25%;}
       *,::before,::after{box-sizing:border-box;border-width:0;border-style:solid;}
       html{-webkit-text-size-adjust:100%;tab-size:4;font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent;}
-      body{margin:0;line-height:inherit;font-family:Inter,system-ui,-apple-system,sans-serif;background:hsl(var(--background));color:hsl(var(--foreground));}
+      body{margin:0;line-height:inherit;font-family:'Archivo',Inter,system-ui,-apple-system,sans-serif;background:hsl(var(--background));color:hsl(var(--foreground));}
       #root{min-height:100vh;display:flex;flex-direction:column;}
     </style>
     
@@ -175,7 +182,7 @@
             <li class="noscript-boat-item">
               <div class="noscript-boat-name">ASTEC 480</div>
               <div class="noscript-boat-capacity">Hasta 5 personas</div>
-              <div class="noscript-boat-price">Desde 80€</div>
+              <div class="noscript-boat-price">Desde 90€</div>
             </li>
             <li class="noscript-boat-item">
               <div class="noscript-boat-name">SOLAR 450</div>
@@ -249,24 +256,24 @@
           <h2 class="noscript-section-title">Preguntas Frecuentes</h2>
           <ul class="noscript-boat-list">
             <li class="noscript-boat-item">
-              <div class="noscript-boat-name">Necesito licencia para alquilar un barco?</div>
-              <div class="noscript-boat-capacity">No. Tenemos 5 barcos sin licencia para hasta 5 personas. Solo necesitas ser mayor de 18 anos. Te damos formacion de 15 minutos antes de salir.</div>
+              <div class="noscript-boat-name">¿Necesito licencia para alquilar un barco?</div>
+              <div class="noscript-boat-capacity">No. Tenemos 5 barcos sin licencia para hasta 5 personas. Solo necesitas ser mayor de 18 años. Te damos formación de 15 minutos antes de salir.</div>
             </li>
             <li class="noscript-boat-item">
-              <div class="noscript-boat-name">Que incluye el precio del alquiler?</div>
-              <div class="noscript-boat-capacity">Combustible, seguro, equipo de seguridad (chalecos salvavidas, extintor, ancla) y formacion de seguridad de 15 minutos.</div>
+              <div class="noscript-boat-name">¿Qué incluye el precio del alquiler?</div>
+              <div class="noscript-boat-capacity">Combustible, seguro, equipo de seguridad (chalecos salvavidas, extintor, ancla) y formación de seguridad de 15 minutos.</div>
             </li>
             <li class="noscript-boat-item">
-              <div class="noscript-boat-name">Cuanto cuesta alquilar un barco en Blanes?</div>
+              <div class="noscript-boat-name">¿Cuánto cuesta alquilar un barco en Blanes?</div>
               <div class="noscript-boat-capacity">Barcos sin licencia desde 70 EUR/hora (temporada baja) hasta 95 EUR/hora (temporada alta). Barcos con licencia desde 150 EUR/2 horas.</div>
             </li>
             <li class="noscript-boat-item">
-              <div class="noscript-boat-name">Desde donde salen los barcos?</div>
-              <div class="noscript-boat-capacity">Todos los barcos salen desde el Puerto de Blanes, Girona, Espana. Temporada de abril a octubre, de 09:00 a 20:00.</div>
+              <div class="noscript-boat-name">¿Desde dónde salen los barcos?</div>
+              <div class="noscript-boat-capacity">Todos los barcos salen desde el Puerto de Blanes, Girona, España. Temporada de abril a octubre, de 09:00 a 20:00.</div>
             </li>
             <li class="noscript-boat-item">
-              <div class="noscript-boat-name">Se puede llevar ninos?</div>
-              <div class="noscript-boat-capacity">Si, los ninos de todas las edades son bienvenidos. Proporcionamos chalecos salvavidas infantiles.</div>
+              <div class="noscript-boat-name">¿Se puede llevar niños?</div>
+              <div class="noscript-boat-capacity">Sí, los niños de todas las edades son bienvenidos. Proporcionamos chalecos salvavidas infantiles.</div>
             </li>
           </ul>
         </section>

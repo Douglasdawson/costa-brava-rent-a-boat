@@ -11,6 +11,10 @@ import { csrfProtection } from "./middleware/csrf";
 
 const app = express();
 
+// Trust first proxy (Render/Nginx/etc.) so Express uses real client IP from X-Forwarded-For
+// This must be set before any rate-limiting middleware
+app.set('trust proxy', 1);
+
 // Sentry error monitoring — only active when SENTRY_DSN is set
 if (config.SENTRY_DSN) {
   Sentry.init({
@@ -124,9 +128,6 @@ app.use('/api/', (req: Request, res: Response, next: NextFunction) => {
   }
   next();
 });
-
-// Trust proxy for correct protocol detection behind reverse proxies
-app.set('trust proxy', 1);
 
 // Enable ETag for better caching (default is weak ETag)
 app.set('etag', 'strong');

@@ -20,6 +20,8 @@ export default function Hero() {
           src="/images/hero/hero-dive-mobile.webp"
           alt="Barco de alquiler sin licencia navegando por aguas turquesa cerca de las calas de Blanes, Costa Brava"
           className="absolute inset-0 w-full h-full object-cover brightness-110 saturate-[1.05]"
+          width={1920}
+          height={1080}
           loading="eager"
           fetchPriority="high"
         />
@@ -115,7 +117,7 @@ export default function Hero() {
       {/* Curved loop marquee — overlaid at bottom of hero */}
       <div className="absolute bottom-0 left-0 right-0 z-10 overflow-hidden opacity-50 sm:hidden">
         <CurvedLoop
-          marqueeText="Alquiler de Barcos ✦ Con Licencia y sin Licencia ✦ En la Costa Brava ✦ Blanes ✦ Desde 70€ ✦ 4.8 Google ✦ Más de 2000 Clientes ✦ Desde 2020 ✦ "
+          marqueeText={t.hero.marqueeText}
           speed={1.5}
           curveAmount={60}
           direction="left"

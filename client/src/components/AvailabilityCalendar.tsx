@@ -27,7 +27,7 @@ export default function AvailabilityCalendar({ boatId, onSlotSelect }: Availabil
 
   const monthKey = `${currentMonth.getFullYear()}-${String(currentMonth.getMonth() + 1).padStart(2, "0")}`;
 
-  const { data: availability, isLoading } = useQuery<AvailabilityData>({
+  const { data: availability, isLoading, isError, refetch } = useQuery<AvailabilityData>({
     queryKey: ["/api/boats", boatId, "availability", monthKey],
     queryFn: async () => {
       const response = await fetch(`/api/boats/${boatId}/availability?month=${monthKey}`);
@@ -119,6 +119,16 @@ export default function AvailabilityCalendar({ boatId, onSlotSelect }: Availabil
             {isLoading ? (
               <div className="flex items-center justify-center h-64 w-64">
                 <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary" />
+              </div>
+            ) : isError ? (
+              <div className="flex flex-col items-center justify-center h-64 w-64 text-center gap-3">
+                <p className="text-sm text-muted-foreground">No se pudo cargar la disponibilidad.</p>
+                <button
+                  onClick={() => refetch()}
+                  className="text-sm text-primary underline hover:no-underline"
+                >
+                  Reintentar
+                </button>
               </div>
             ) : (
               <Calendar

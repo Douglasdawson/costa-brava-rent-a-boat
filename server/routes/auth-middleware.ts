@@ -57,8 +57,8 @@ export function trackFailedAttempt(clientIp: string) {
 setInterval(async () => {
   try {
     await storage.cleanupExpiredSessions();
-  } catch {
-    // Silent cleanup failure
+  } catch (error) {
+    console.warn("Session cleanup failed:", error instanceof Error ? error.message : String(error));
   }
 }, 60 * 60 * 1000);
 
@@ -66,8 +66,8 @@ setInterval(async () => {
 setInterval(async () => {
   try {
     await storage.cleanupExpiredRefreshTokens();
-  } catch {
-    // Silent cleanup failure
+  } catch (error) {
+    console.warn("Refresh token cleanup failed:", error instanceof Error ? error.message : String(error));
   }
 }, 6 * 60 * 60 * 1000);
 

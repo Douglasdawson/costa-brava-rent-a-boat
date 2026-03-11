@@ -31,8 +31,9 @@ export const ru: Translations = {
     experience: '+5 лет опыта',
     freeCancellation: 'Бесплатная отмена 48ч',
     instantConfirmation: 'Мгновенное подтверждение',
+    marqueeText: 'Аренда лодок в Бланесе | С лицензией и без | Топливо включено | От 70\u20AC/ч',
   },
-  
+
   fleet: {
     title: 'Выберите свою лодку',
     subtitle: 'В зависимости от размера группы и желаемого опыта. Страховка и оборудование безопасности включены.',
@@ -328,6 +329,9 @@ export const ru: Translations = {
     priceConfirmedWhatsApp: 'Окончательная цена подтверждается в WhatsApp',
     gdprConsent: 'Я прочитал(а) и принимаю {privacyPolicy} и {termsAndConditions}. Мои данные будут обработаны для управления моим бронированием (GDPR ст. 6.1.b).',
     gdprPassive: 'Отправляя этот запрос, вы принимаете нашу {privacyPolicy} и {termsAndConditions}.',
+    errorGeneric: 'Произошла непредвиденная ошибка',
+    errorPayment: 'Ошибка при обработке платежа',
+    backToHome: 'Вернуться на главную',
     gdprPrivacyLink: 'Политику конфиденциальности',
     gdprTermsLink: 'Общие условия',
   },
@@ -1121,6 +1125,9 @@ export const ru: Translations = {
     dontMissIt: 'Не пропустите',
     viewBoats: 'Смотреть лодки',
     bookNow: 'Забронировать',
+    noThanks: 'Не сейчас, спасибо',
+    limitedSpots: 'Ограниченное количество мест на этот сезон',
+    discountWithCode: 'Скидка 10% с кодом:',
   },
 
   confirmation: {
@@ -1143,6 +1150,7 @@ export const ru: Translations = {
     shareTitle: 'Поделитесь своим приключением',
     shareWhatsApp: 'Поделиться в WhatsApp',
     copyLink: 'Копировать ссылку',
+    shareWhatsAppMessage: 'Я арендую лодку в Бланесе в Costa Brava Rent a Boat',
     repeatBooking: 'Хотите повторить?',
     saveDiscount: 'Сэкономьте 10% на следующем бронировании',
     discountCode: 'Используйте код',
@@ -1174,5 +1182,13 @@ export const ru: Translations = {
     freeGuideSubtitle: 'Получите наш гид с 10 лучшими бухтами Коста-Бравы, доступными только на лодке',
     sendFreeGuide: 'Отправить бесплатный гид',
     freeGuideSent: 'Гид отправлен! Проверьте вашу почту.',
+  },
+  notFound: {
+    title: 'Страница не найдена',
+    description: 'Страница, которую вы ищете, не существует или была перемещена',
+    backHome: 'Вернуться на главную',
+  },
+  cancelBooking: {
+    tokenNotFound: 'Токен отмены не найден',
   },
 };

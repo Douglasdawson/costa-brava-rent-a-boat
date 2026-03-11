@@ -31,8 +31,9 @@ export const nl: Translations = {
     experience: '+5 jaar ervaring',
     freeCancellation: 'Gratis annulering 48h',
     instantConfirmation: 'Directe bevestiging',
+    marqueeText: 'Bootverhuur in Blanes | Met en Zonder Vaarbewijs | Brandstof Inbegrepen | Vanaf \u20AC70/u',
   },
-  
+
   fleet: {
     title: 'Kies jouw boot',
     subtitle: 'Op basis van je groepsgrootte en de ervaring die je zoekt. Verzekering en veiligheidsuitrusting inbegrepen.',
@@ -328,6 +329,9 @@ export const nl: Translations = {
     priceConfirmedWhatsApp: 'De definitieve prijs wordt bevestigd via WhatsApp',
     gdprConsent: 'Ik heb het {privacyPolicy} en de {termsAndConditions} gelezen en accepteer deze. Mijn gegevens worden verwerkt om mijn boeking te beheren (AVG Art. 6.1.b).',
     gdprPassive: 'Door dit verzoek te verzenden, accepteert u ons {privacyPolicy} en de {termsAndConditions}.',
+    errorGeneric: 'Er is een onverwachte fout opgetreden',
+    errorPayment: 'Fout bij het verwerken van de betaling',
+    backToHome: 'Terug naar home',
     gdprPrivacyLink: 'Privacybeleid',
     gdprTermsLink: 'Algemene Voorwaarden',
   },
@@ -1121,6 +1125,9 @@ export const nl: Translations = {
     dontMissIt: 'Mis het niet',
     viewBoats: 'Boten bekijken',
     bookNow: 'Nu boeken',
+    noThanks: 'Nu niet, bedankt',
+    limitedSpots: 'Beperkte plaatsen voor dit seizoen',
+    discountWithCode: '10% korting met de code:',
   },
 
   confirmation: {
@@ -1143,6 +1150,7 @@ export const nl: Translations = {
     shareTitle: 'Deel uw avontuur',
     shareWhatsApp: 'Delen via WhatsApp',
     copyLink: 'Link kopiëren',
+    shareWhatsAppMessage: 'Ik ga een boot huren in Blanes bij Costa Brava Rent a Boat',
     repeatBooking: 'Wilt u terugkomen?',
     saveDiscount: 'Bespaar 10% op uw volgende boeking',
     discountCode: 'Gebruik code',
@@ -1174,5 +1182,13 @@ export const nl: Translations = {
     freeGuideSubtitle: 'Ontvang onze gids met de 10 beste baaien van de Costa Brava die alleen per boot bereikbaar zijn',
     sendFreeGuide: 'Gratis gids versturen',
     freeGuideSent: 'Gids verzonden! Controleer uw e-mail.',
+  },
+  notFound: {
+    title: 'Pagina niet gevonden',
+    description: 'De pagina die je zoekt bestaat niet of is verplaatst',
+    backHome: 'Terug naar home',
+  },
+  cancelBooking: {
+    tokenNotFound: 'Annuleringstoken niet gevonden',
   },
 };

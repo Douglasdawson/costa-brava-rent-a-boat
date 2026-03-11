@@ -6,7 +6,7 @@ export function usePrefetchCriticalRoutes() {
     const shouldPrefetch = () => {
       // Check for Save-Data mode (user has requested reduced data usage)
       if ('connection' in navigator) {
-        const connection = (navigator as any).connection;
+        const connection = (navigator as unknown as { connection?: { saveData?: boolean; effectiveType?: string } }).connection;
         
         // Don't prefetch if Save-Data is enabled
         if (connection?.saveData) {

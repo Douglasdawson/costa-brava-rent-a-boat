@@ -3,6 +3,7 @@ import { X, Anchor, ChevronRight, Users, Copy, Check } from "lucide-react";
 import { useLocation } from "wouter";
 import { useTranslations } from "@/lib/translations";
 import { useBookingModal } from "@/hooks/bookingModalContext";
+import { useToast } from "@/hooks/use-toast";
 
 const SEASON_START_MONTH = 4;
 const SEASON_END_MONTH = 10;
@@ -55,6 +56,7 @@ export function SeasonBanner() {
   const [countdown, setCountdown] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
   const [copied, setCopied] = useState(false);
   const t = useTranslations();
+  const { toast } = useToast();
   const { openBookingModal } = useBookingModal();
 
   const now = new Date();
@@ -272,12 +274,19 @@ export function SeasonBanner() {
 
             {/* Discount code */}
             <div className="mb-6">
-              <p className="text-white/50 text-[11px] mb-2 tracking-wide">10% de descuento con el codigo:</p>
+              <p className="text-white/50 text-[11px] mb-2 tracking-wide">{sb.discountWithCode || '10% de descuento con el código:'}</p>
               <button
                 onClick={() => {
-                  navigator.clipboard.writeText("BIENVENIDO10");
-                  setCopied(true);
-                  setTimeout(() => setCopied(false), 2000);
+                  navigator.clipboard.writeText("BIENVENIDO10").then(() => {
+                    setCopied(true);
+                    setTimeout(() => setCopied(false), 2000);
+                  }).catch(() => {
+                    toast({
+                      title: "Error al copiar",
+                      description: "No se pudo copiar el codigo al portapapeles.",
+                      variant: "destructive",
+                    });
+                  });
                 }}
                 className="inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-lg px-4 py-2 hover:bg-white/15 transition-colors group"
               >
@@ -311,7 +320,7 @@ export function SeasonBanner() {
 
             {/* Dismiss text */}
             <p className="text-white/25 text-xs mt-5 cursor-pointer hover:text-white/45 transition-colors" onClick={handleDismiss}>
-              Ahora no, gracias
+              {sb.noThanks || 'Ahora no, gracias'}
             </p>
           </div>
         </div>

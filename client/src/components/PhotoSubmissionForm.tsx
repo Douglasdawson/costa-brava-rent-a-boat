@@ -99,8 +99,14 @@ export default function PhotoSubmissionForm({ open, onOpenChange, onSuccess }: P
       });
 
       if (!res.ok) {
-        const err = await res.json();
-        throw new Error(err.message);
+        let errMessage = "Error al enviar la foto";
+        try {
+          const err = await res.json();
+          errMessage = err.message || errMessage;
+        } catch {
+          // Response was not valid JSON
+        }
+        throw new Error(errMessage);
       }
 
       toast({ title: "Foto enviada", description: "Sera revisada antes de publicarse." });

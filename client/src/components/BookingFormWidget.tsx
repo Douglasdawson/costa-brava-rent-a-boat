@@ -266,7 +266,13 @@ export default function BookingFormWidget({ preSelectedBoatId, prefillDate, pref
               });
             }
           })
-          .catch(() => {});
+          .catch(() => {
+            toast({
+              title: "Error al validar codigo",
+              description: "No se pudo verificar el codigo de descuento. Intentalo de nuevo.",
+              variant: "destructive",
+            });
+          });
       }, 300);
       return () => clearTimeout(timer);
     }
@@ -1043,9 +1049,15 @@ Looking forward to confirmation. Thanks!`;
           language,
           source: isMobile ? 'mobile' : 'desktop',
         }),
-      }).catch(() => {});
+      }).catch(() => {
+        toast({
+          title: "Error al guardar consulta",
+          description: "Tu solicitud de WhatsApp fue enviada, pero no pudimos registrarla internamente.",
+          variant: "destructive",
+        });
+      });
     } catch {
-      // Silent fail
+      // Silent fail - WhatsApp was already opened
     }
 
     toast({

@@ -69,7 +69,7 @@ export function BookingConfirmation({
   };
 
   const handleShareWhatsApp = () => {
-    const shareText = `Voy a alquilar un barco (${boatName}) en Blanes, Costa Brava! costabravarentaboat.com`;
+    const shareText = `${ct.shareWhatsAppMessage || 'Voy a alquilar un barco en Blanes con Costa Brava Rent a Boat'} (${boatName}) costabravarentaboat.com`;
     const url = `https://wa.me/?text=${encodeURIComponent(shareText)}`;
     window.open(url, "_blank");
   };
@@ -78,6 +78,12 @@ export function BookingConfirmation({
     navigator.clipboard.writeText("https://costabravarentaboat.com").then(() => {
       toast({
         title: ct.linkCopied,
+      });
+    }).catch(() => {
+      toast({
+        title: "Error al copiar",
+        description: "No se pudo copiar al portapapeles.",
+        variant: "destructive",
       });
     });
   };
@@ -240,8 +246,15 @@ export function BookingConfirmation({
                 <span className="font-mono font-bold text-sm tracking-wider">{REPEAT_DISCOUNT_CODE}</span>
                 <button
                   onClick={() => {
-                    navigator.clipboard.writeText(REPEAT_DISCOUNT_CODE);
-                    toast({ title: ct.linkCopied });
+                    navigator.clipboard.writeText(REPEAT_DISCOUNT_CODE).then(() => {
+                      toast({ title: ct.linkCopied });
+                    }).catch(() => {
+                      toast({
+                        title: "Error al copiar",
+                        description: "No se pudo copiar al portapapeles.",
+                        variant: "destructive",
+                      });
+                    });
                   }}
                   className="ml-1 p-0.5 hover:bg-white/20 rounded transition-colors"
                   aria-label="Copy code"

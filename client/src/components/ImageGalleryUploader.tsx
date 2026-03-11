@@ -22,6 +22,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { cn } from "@/lib/utils";
+import ImageCropDialog from "./ImageCropDialog";
 
 interface ImageGalleryUploaderProps {
   images: string[];
@@ -126,6 +127,7 @@ function GalleryTab({
   onMainImageChange,
 }: GalleryTabProps) {
   const [uploading, setUploading] = useState(false);
+  const [cropQueue, setCropQueue] = useState<{ file: File; dataUrl: string }[]>([]);
 
   const sensors = useSensors(
     useSensor(PointerSensor),
@@ -133,6 +135,61 @@ function GalleryTab({
       coordinateGetter: sortableKeyboardCoordinates,
     })
   );
+
+  // Upload a single blob (cropped image) to object storage
+  const uploadBlob = useCallback(async (blob: Blob): Promise<string> => {
+    const adminToken = sessionStorage.getItem("adminToken");
+    if (!adminToken) throw new Error("Admin token not found. Please login again.");
+
+    const urlResponse = await fetch("/api/admin/boat-images/upload", {
+      method: "POST",
+      credentials: "include",
+      headers: { "Content-Type": "application/json", "Authorization": `Bearer ${adminToken}` },
+    });
+    if (!urlResponse.ok) throw new Error("Failed to get upload URL");
+    const { uploadURL } = await urlResponse.json();
+
+    const uploadResponse = await fetch(uploadURL, {
+      method: "PUT",
+      body: blob,
+      headers: { "Content-Type": "image/webp" },
+    });
+    if (!uploadResponse.ok) throw new Error("Failed to upload image");
+
+    const normalizeResponse = await fetch("/api/admin/boat-images/normalize", {
+      method: "POST",
+      credentials: "include",
+      headers: { "Content-Type": "application/json", "Authorization": `Bearer ${adminToken}` },
+      body: JSON.stringify({ imageUrl: uploadURL }),
+    });
+    if (!normalizeResponse.ok) throw new Error("Failed to normalize image URL");
+
+    const { normalizedPath } = await normalizeResponse.json();
+    return normalizedPath;
+  }, []);
+
+  // When user confirms crop, upload and move to next in queue
+  const handleCropConfirm = useCallback(async (croppedBlob: Blob) => {
+    setUploading(true);
+    try {
+      const normalizedPath = await uploadBlob(croppedBlob);
+      const newImages = [...images, normalizedPath];
+      onImagesChange(newImages);
+      if (onMainImageChange && newImages.length > 0) {
+        onMainImageChange(newImages[0]);
+      }
+    } catch (error) {
+      console.error("Error uploading cropped image:", error);
+      alert("Error al subir la imagen. Por favor, intenta de nuevo.");
+    } finally {
+      setUploading(false);
+      setCropQueue(prev => prev.slice(1));
+    }
+  }, [images, onImagesChange, onMainImageChange, uploadBlob]);
+
+  const handleCropCancel = useCallback(() => {
+    setCropQueue(prev => prev.slice(1));
+  }, []);
 
   const onDrop = useCallback(
     async (acceptedFiles: File[]) => {
@@ -142,91 +199,27 @@ function GalleryTab({
       }
 
       const remainingSlots = maxImages - images.length;
-      const filesToUpload = acceptedFiles.slice(0, remainingSlots);
+      const filesToProcess = acceptedFiles.slice(0, remainingSlots);
 
-      if (filesToUpload.length < acceptedFiles.length) {
+      if (filesToProcess.length < acceptedFiles.length) {
         alert(
-          `Solo se subiran ${filesToUpload.length} de ${acceptedFiles.length} archivos (limite: ${maxImages} imagenes)`
+          `Solo se subiran ${filesToProcess.length} de ${acceptedFiles.length} archivos (limite: ${maxImages} imagenes)`
         );
       }
 
-      setUploading(true);
-
-      try {
-        // Get admin token from sessionStorage
-        const adminToken = sessionStorage.getItem("adminToken");
-        if (!adminToken) {
-          throw new Error("Admin token not found. Please login again.");
-        }
-
-        const uploadPromises = filesToUpload.map(async (file) => {
-          // Get presigned upload URL
-          const urlResponse = await fetch("/api/admin/boat-images/upload", {
-            method: "POST",
-            credentials: "include",
-            headers: {
-              "Content-Type": "application/json",
-              "Authorization": `Bearer ${adminToken}`,
-            },
-          });
-
-          if (!urlResponse.ok) {
-            throw new Error("Failed to get upload URL");
-          }
-
-          const { uploadURL } = await urlResponse.json();
-
-          // Upload file to object storage
-          const uploadResponse = await fetch(uploadURL, {
-            method: "PUT",
-            body: file,
-            headers: {
-              "Content-Type": file.type,
-            },
-          });
-
-          if (!uploadResponse.ok) {
-            throw new Error("Failed to upload image");
-          }
-
-          // Normalize the uploaded URL
-          const normalizeResponse = await fetch(
-            "/api/admin/boat-images/normalize",
-            {
-              method: "POST",
-              credentials: "include",
-              headers: {
-                "Content-Type": "application/json",
-                "Authorization": `Bearer ${adminToken}`,
-              },
-              body: JSON.stringify({ imageUrl: uploadURL }),
-            }
-          );
-
-          if (!normalizeResponse.ok) {
-            throw new Error("Failed to normalize image URL");
-          }
-
-          const { normalizedPath } = await normalizeResponse.json();
-          return normalizedPath;
+      // Read files as data URLs and queue them for cropping
+      const items: { file: File; dataUrl: string }[] = [];
+      for (const file of filesToProcess) {
+        const dataUrl = await new Promise<string>((resolve) => {
+          const reader = new FileReader();
+          reader.onload = () => resolve(reader.result as string);
+          reader.readAsDataURL(file);
         });
-
-        const uploadedPaths = await Promise.all(uploadPromises);
-        const newImages = [...images, ...uploadedPaths];
-        onImagesChange(newImages);
-
-        // Notify main image change if callback provided
-        if (onMainImageChange && newImages.length > 0) {
-          onMainImageChange(newImages[0]);
-        }
-      } catch (error) {
-        console.error("Error uploading images:", error);
-        alert("Error al subir las imagenes. Por favor, intenta de nuevo.");
-      } finally {
-        setUploading(false);
+        items.push({ file, dataUrl });
       }
+      setCropQueue(prev => [...prev, ...items]);
     },
-    [images, maxImages, onImagesChange, onMainImageChange]
+    [images, maxImages]
   );
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
@@ -350,6 +343,15 @@ function GalleryTab({
             </SortableContext>
           </DndContext>
         </div>
+      )}
+      {/* Crop dialog */}
+      {cropQueue.length > 0 && (
+        <ImageCropDialog
+          imageSrc={cropQueue[0].dataUrl}
+          aspect={4 / 3}
+          onConfirm={handleCropConfirm}
+          onCancel={handleCropCancel}
+        />
       )}
     </div>
   );

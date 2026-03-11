@@ -186,8 +186,43 @@ export default function FleetSection() {
           </p>
         </div>
 
-        {/* Filters: license type + group size + view mode toggle */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-6 mb-6 sm:mb-8">
+        {/* Filters — native selects on mobile, pill buttons on desktop */}
+
+        {/* Mobile: native OS selects */}
+        <div className="flex sm:hidden items-center justify-center gap-3 mb-6">
+          <div className="relative">
+            <Anchor className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground pointer-events-none" />
+            <select
+              value={licenseFilter}
+              onChange={(e) => setLicenseFilter(e.target.value as 'all' | 'no' | 'yes')}
+              className="appearance-none bg-muted text-foreground text-sm font-medium rounded-xl pl-9 pr-8 py-2.5 border border-border focus:ring-2 focus:ring-primary focus:outline-none"
+            >
+              <option value="all">{t.recommendation?.all}</option>
+              <option value="no">{t.recommendation?.withoutLicense}</option>
+              <option value="yes">{t.recommendation?.withLicense}</option>
+            </select>
+            <ChevronDown className="absolute right-2.5 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground pointer-events-none" />
+          </div>
+          <div className="relative">
+            <Users className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground pointer-events-none" />
+            <select
+              value={selectedGroupSize === null ? '' : String(selectedGroupSize)}
+              onChange={(e) => setSelectedGroupSize(e.target.value ? Number(e.target.value) : null)}
+              className="appearance-none bg-muted text-foreground text-sm font-medium rounded-xl pl-9 pr-8 py-2.5 border border-border focus:ring-2 focus:ring-primary focus:outline-none"
+            >
+              <option value="">{t.recommendation?.all}</option>
+              {groupSizeOptions.map((option) => (
+                <option key={option.label} value={option.min}>
+                  {option.label} {t.boats?.people}
+                </option>
+              ))}
+            </select>
+            <ChevronDown className="absolute right-2.5 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground pointer-events-none" />
+          </div>
+        </div>
+
+        {/* Desktop: pill buttons */}
+        <div className="hidden sm:flex flex-row items-center justify-center gap-6 mb-8">
           {/* License filter */}
           <div className="flex items-center gap-2">
             <span className="inline-flex items-center gap-1.5 text-sm text-muted-foreground font-medium">

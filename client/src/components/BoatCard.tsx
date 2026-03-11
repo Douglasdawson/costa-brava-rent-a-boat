@@ -90,7 +90,7 @@ export default function BoatCard({
         aria-label={`Ver detalles del barco ${name}`}
       >
         {imageError ? (
-          <div className="w-full aspect-[3/4] sm:aspect-[4/3] flex items-center justify-center">
+          <div className="w-full aspect-[4/3] flex items-center justify-center">
             <Anchor className="w-12 h-12 text-muted-foreground/50" aria-hidden="true" />
           </div>
         ) : (
@@ -106,7 +106,7 @@ export default function BoatCard({
               srcSet={imageSrcSet || undefined}
               sizes="(max-width: 639px) calc(100vw - 32px), (max-width: 1279px) calc(50vw - 20px), calc(33vw - 24px)"
               alt={imageAlt}
-              className="w-full aspect-[3/4] sm:aspect-[4/3] object-cover transition-transform duration-200 group-hover:scale-[1.03]"
+              className="w-full aspect-[4/3] object-cover transition-transform duration-200 group-hover:scale-[1.03]"
               loading="lazy"
               onError={() => setImageError(true)}
             />

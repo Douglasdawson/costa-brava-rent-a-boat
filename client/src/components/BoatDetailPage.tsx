@@ -341,7 +341,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
               onTouchEnd={(e) => {
                 if (touchStartX.current === null || displayImages.length <= 1) return;
                 const delta = touchStartX.current - e.changedTouches[0].clientX;
-                if (Math.abs(delta) > 50) { delta > 0 ? nextImage() : prevImage(); }
+                if (Math.abs(delta) > 50) { if (delta > 0) { nextImage(); } else { prevImage(); } }
                 touchStartX.current = null;
               }}
             >

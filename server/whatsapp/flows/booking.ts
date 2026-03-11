@@ -276,7 +276,7 @@ export async function createBookingFromSession(
           await storage.createBookingExtra({
             bookingId: booking.id,
             extraName: extra.name,
-            extraPrice: extra.price.replace(/[€\/ud\s]/g, ""),
+            extraPrice: extra.price.replace(/[€/ud\s]/g, ""),
             quantity: 1,
           });
         }

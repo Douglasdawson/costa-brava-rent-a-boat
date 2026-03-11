@@ -561,7 +561,7 @@ export function parseMultipleSelections(message: string): number[] {
  * Parse date from message (DD/MM/YYYY format)
  */
 export function parseDate(message: string): Date | null {
-  const dateRegex = /(\d{1,2})[\/\-\.](\d{1,2})[\/\-\.](\d{4})/;
+  const dateRegex = /(\d{1,2})[/\-.](\d{1,2})[/\-.](\d{4})/;
   const match = message.match(dateRegex);
 
   if (match) {

@@ -435,7 +435,8 @@ async function handleBookingContactEmailState(
     await updateBookingData(session.phoneNumber, { customerEmail: email });
     await updateState(session.phoneNumber, CHATBOT_STATES.BOOKING_CONFIRM);
     // Get fresh session with all booking data
-    const updatedSession = await require("./sessionManager").getSession(session.phoneNumber);
+    const { getSession } = await import("./sessionManager");
+    const updatedSession = await getSession(session.phoneNumber);
     return handleBookingConfirm(t, updatedSession);
   }
 

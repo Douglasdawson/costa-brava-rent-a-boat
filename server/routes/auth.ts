@@ -7,7 +7,6 @@ export {
   requireAdminSession,
   requireSaasAuth,
   requireAdminRole,
-  requireSuperAdmin,
   requireOwner,
   injectTenantId,
   generateAdminToken,

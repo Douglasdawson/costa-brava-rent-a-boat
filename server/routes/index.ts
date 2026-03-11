@@ -21,7 +21,6 @@ import { registerGiftCardRoutes } from "./giftcards";
 import { registerDiscountRoutes } from "./discounts";
 import { registerImageResizeRoutes } from "./imageResize";
 import { registerTenantRoutes } from "./tenant";
-import { registerSuperAdminRoutes } from "./superadmin";
 import { registerNewsletterRoutes } from "./newsletter";
 import { registerInquiryRoutes } from "./inquiries";
 import { registerMetaWebhookRoutes } from "./metaWebhook";
@@ -52,7 +51,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
   registerDiscountRoutes(app);
   registerImageResizeRoutes(app);
   registerTenantRoutes(app);
-  registerSuperAdminRoutes(app);
   registerNewsletterRoutes(app);
   registerInquiryRoutes(app);
   registerMetaWebhookRoutes(app);

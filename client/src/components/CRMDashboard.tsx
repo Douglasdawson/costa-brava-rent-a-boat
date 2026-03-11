@@ -17,7 +17,6 @@ import {
   BlogManagement,
   EmployeeManagement,
   TenantAdminTab,
-  SuperAdminTab,
   GalleryManagement,
   GiftCardManagement,
   DiscountManagement,
@@ -42,7 +41,7 @@ interface CRMDashboardProps {
 const VALID_TABS = [
   "dashboard", "calendar", "bookings", "customers", "inquiries",
   "fleet", "maintenance", "inventory", "reports", "gallery",
-  "giftcards", "discounts", "blog", "employees", "config", "superadmin",
+  "giftcards", "discounts", "blog", "employees", "config",
 ];
 
 export default function CRMDashboard({ adminToken }: CRMDashboardProps) {
@@ -59,7 +58,7 @@ export default function CRMDashboard({ adminToken }: CRMDashboardProps) {
   const isOwner = adminRole === "owner";
 
   const rawTab = params?.tab || "dashboard";
-  const ownerOnlyTabs = ["employees", "config", "superadmin"];
+  const ownerOnlyTabs = ["employees", "config"];
   const canAccessTab = (tab: string) => {
     if (!VALID_TABS.includes(tab)) return false;
     if (isOwner || allowedTabs === null) return true;
@@ -102,7 +101,6 @@ export default function CRMDashboard({ adminToken }: CRMDashboardProps) {
       blog: "Blog",
       employees: "Usuarios",
       config: "Configuración",
-      superadmin: "Plataforma",
     };
     const prev = document.title;
     document.title = `${titles[selectedTab] || "Dashboard"} — Costa Brava Rent a Boat`;
@@ -422,11 +420,6 @@ export default function CRMDashboard({ adminToken }: CRMDashboardProps) {
         {/* Tenant Config Tab */}
         {selectedTab === "config" && (
           <TenantAdminTab adminToken={adminToken} />
-        )}
-
-        {/* Super Admin / Platform Tab */}
-        {selectedTab === "superadmin" && (
-          <SuperAdminTab adminToken={adminToken} />
         )}
       </AdminLayout>
 

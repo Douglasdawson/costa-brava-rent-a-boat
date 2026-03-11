@@ -11,7 +11,6 @@ export { InquiriesTab } from "./InquiriesTab";
 export { FleetManagement } from "./FleetManagement";
 export { EmployeeManagement } from "./EmployeeManagement";
 export { TenantAdminTab } from "./TenantAdminTab";
-export { SuperAdminTab } from "./SuperAdminTab";
 export { GalleryManagement } from "./GalleryManagement";
 export { GiftCardManagement } from "./GiftCardManagement";
 export { DiscountManagement } from "./DiscountManagement";

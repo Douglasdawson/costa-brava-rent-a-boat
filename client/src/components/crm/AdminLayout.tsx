@@ -23,7 +23,6 @@ import {
   AlertCircle,
   Zap,
   Settings,
-  Globe,
   MessageSquare,
   FileText,
   MoreHorizontal,
@@ -97,9 +96,6 @@ export function AdminLayout({
     : null;
   const showTrialBanner = tenantStatus === "trial" && trialDaysLeft !== null;
 
-  // Platform tab: only for legacy admin (no tenant = NauticFlow platform admin)
-  const isPlatformAdmin = !tenantName && adminRole === "admin";
-
   // Owner always has full access; non-owner users have limited tabs
   const isOwner = adminRole === "owner";
   const hasFullAccess = isOwner || allowedTabs === null;
@@ -116,7 +112,6 @@ export function AdminLayout({
   const secondaryTabs = [
     ...(adminRole === "admin" || adminRole === "owner" ? ADMIN_TABS.filter(t => canSeeTab(t.id)) : []),
     ...(isOwner ? OWNER_TABS : []),
-    ...(isPlatformAdmin ? [{ id: "superadmin", label: "Platform", icon: Globe }] : []),
   ];
 
   // Build grouped secondary tabs for the new layout
@@ -145,18 +140,12 @@ export function AdminLayout({
     if (negocioTabs.length > 0) secondaryGroups.push({ label: "Negocio", tabs: negocioTabs });
   }
   if (isOwner) {
-    const ajustesTabs: typeof ADMIN_TABS = [
-      { id: "employees", label: "Usuarios", icon: Users },
-      { id: "config", label: "Config", icon: Settings },
-    ];
-    if (isPlatformAdmin) {
-      ajustesTabs.push({ id: "superadmin", label: "Platform", icon: Globe });
-    }
-    secondaryGroups.push({ label: "Ajustes", tabs: ajustesTabs });
-  } else if (isPlatformAdmin) {
     secondaryGroups.push({
       label: "Ajustes",
-      tabs: [{ id: "superadmin", label: "Platform", icon: Globe }],
+      tabs: [
+        { id: "employees", label: "Usuarios", icon: Users },
+        { id: "config", label: "Config", icon: Settings },
+      ],
     });
   }
 
@@ -205,7 +194,7 @@ export function AdminLayout({
                 {tenantName || "Costa Brava Rent a Boat"}
               </h1>
               <p className="text-xs md:text-sm text-muted-foreground hidden md:block">
-                {adminUsername} · {isPlatformAdmin ? "Admin de Plataforma" : adminRole === "owner" ? "Propietario" : adminRole === "admin" ? "Administrador" : "Empleado"}
+                {adminUsername} · {adminRole === "owner" ? "Propietario" : adminRole === "admin" ? "Administrador" : "Empleado"}
               </p>
             </div>
           </div>

@@ -46,25 +46,31 @@ Este es un proyecto de alquiler de barcos en Blanes, Costa Brava. Lee `PROJECT_C
 |--------------|------------|
 | Nueva ruta frontend | `client/src/App.tsx` |
 | Nuevo componente | `client/src/components/` |
-| Nuevo endpoint API | `server/routes.ts` |
+| Nuevo endpoint API | `server/routes/*.ts` |
 | Nuevo campo DB | `shared/schema.ts` + `npm run db:push` |
 | Precios/temporadas | `shared/pricing.ts` |
 | Datos de barcos | `shared/boatData.ts` |
 | SEO de página | `client/src/utils/seo-config.ts` |
 | Chatbot comportamiento | `server/whatsapp/aiService.ts` |
 | Knowledge base | `server/whatsapp/seedKnowledgeBase.ts` |
+| Logger estructurado | `server/lib/logger.ts` |
+| Circuit breaker | `server/lib/circuitBreaker.ts` |
+| Retry queue | `server/lib/retryQueue.ts` |
+| Audit logs | `server/lib/audit.ts` |
+| Traducciones (a11y) | `client/src/lib/translations.ts` |
+| Booking flow (split) | `client/src/components/booking-flow/` |
 
 ## Patrones Comunes
 
 ### Crear nuevo endpoint API
 ```typescript
-// En server/routes.ts
+// En server/routes/<modulo>.ts
 app.get("/api/nuevo-endpoint", async (req, res) => {
   try {
     const data = await storage.getData();
     res.json(data);
-  } catch (error: any) {
-    res.status(500).json({ message: "Error: " + error.message });
+  } catch (error) {
+    res.status(500).json({ message: "Error: " + (error instanceof Error ? error.message : "unknown") });
   }
 });
 
@@ -129,19 +135,22 @@ const [updated] = await db
 
 - NO crear archivos `.md` nuevos sin que el usuario lo pida
 - NO añadir emojis al código o UI
-- NO usar `console.log` en producción (usar solo para debug temporal)
+- NO usar `console.log` en producción — usar `logger` de `server/lib/logger.ts`
 - NO commitear cambios sin que el usuario lo solicite
 - NO modificar `package.json` sin explicar por qué
 - NO usar `any` en TypeScript
-- NO crear tests (no hay setup de testing)
+- Tests con Vitest: `npm test` para correr, archivos `*.test.ts` junto al código que testean
 
 ## Flujo de Trabajo Recomendado
 
 1. **Antes de modificar**: Leer el archivo completo con `Read`
 2. **Cambios pequeños**: Usar `Edit` con old_string/new_string
 3. **Archivos nuevos**: Usar `Write`
-4. **Verificar sintaxis**: El usuario puede correr `npm run check`
-5. **Probar**: El usuario puede correr `npm run dev`
+4. **Verificar sintaxis**: `npm run check`
+5. **Tests**: `npm test`
+6. **Lint**: `npm run lint`
+7. **Todo junto**: `npm run check:all`
+8. **Probar**: `npm run dev`
 
 ## Información de Negocio
 
@@ -149,7 +158,8 @@ const [updated] = await db
 - **Ubicación**: Puerto de Blanes, Girona, España
 - **Teléfono**: +34 611 500 372
 - **Email**: costabravarentaboat@gmail.com
-- **PIN Admin CRM**: ver variable de entorno ADMIN_PIN en el servidor
+- **PIN Admin CRM**: variable de entorno `ADMIN_PIN`
+- **JWT Secret**: variable de entorno `JWT_SECRET` (min 32 caracteres)
 
 ## Preguntas Frecuentes del Desarrollo
 

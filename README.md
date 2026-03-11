@@ -62,6 +62,7 @@ The development server starts at `http://localhost:5000` with hot-reload for bot
 | `OPENAI_API_KEY` | No | OpenAI API key for chatbot and RAG |
 | `GCS_BUCKET_NAME` | No | Google Cloud Storage bucket |
 | `GCS_PROJECT_ID` | No | Google Cloud project ID |
+| `JWT_SECRET` | Yes | JWT signing secret (min 32 chars) |
 | `ADMIN_PIN` | Yes | PIN code for CRM admin access |
 | `SESSION_SECRET` | Yes | Express session secret |
 | `SENTRY_DSN` | No | Sentry DSN for error tracking |

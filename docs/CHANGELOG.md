@@ -6,6 +6,45 @@
 
 ## [Marzo 2026]
 
+### Auditoria de Calidad (8.3 → ~9.2/10)
+
+#### Infraestructura (Oleada 1)
+- Graceful shutdown con SIGTERM/SIGINT handlers, cierre de server + DB pool + cron jobs
+- Request timeout middleware (30s general, 60s uploads)
+- Request ID tracking (X-Request-Id header) para correlacion de logs
+- Idempotencia de webhooks Stripe (dedup in-memory con TTL 24h)
+- Statement timeout de 15s en PostgreSQL
+
+#### Resiliencia y Observabilidad (Oleada 2)
+- Circuit breaker (CLOSED/OPEN/HALF_OPEN) para SendGrid, Twilio, OpenAI, Meta API
+- Retry queue con backoff exponencial para emails y WhatsApp
+- Audit logs fire-and-forget en acciones destructivas del CRM
+- Migracion de ~60 archivos server/ de console.log a logger estructurado
+
+#### Accesibilidad + SEO (Oleada 3)
+- aria-label en 25+ icon-only buttons con traducciones en 8 idiomas
+- aria-describedby en todos los campos del BookingFormDesktop
+- JSON-LD Event schema para temporada 2026
+
+#### UX/UI + Rendimiento (Oleada 4)
+- Dark mode toggle con persistencia en localStorage
+- Print styles (@media print)
+- prefers-reduced-motion support
+- Social proof query optimizado de 2 queries a 1 INNER JOIN
+- Validacion de capacidad de barcos en chatbot WhatsApp
+
+#### Testing (Oleada 5) — 216 tests totales
+- Tests de pricing (85), descuentos (14), disponibilidad (6), booking (25), gift cards (14)
+- Tests API con supertest: availability (13), bookings (11), health (4), discounts (7)
+- Tests frontend: booking-validation (16), SEO schemas (16), circuit breaker (5)
+- README.md y docs/DEPLOYMENT.md creados
+
+#### Code Quality (Oleada 6)
+- Script de validacion de traducciones (972 claves x 8 idiomas)
+- BookingFlow.tsx (1204 lineas) dividido en 10 modulos
+- 10 errores de lint corregidos para CI verde
+- Alias @/ en vitest.config.ts para tests de cliente
+
 ### Nuevas Funcionalidades
 - Sistema de recorte de imagenes 4:3, filtros nativos en movil y normalizacion de aspect ratio (57d9dec)
 - Auditoria UX completa: reestructuracion del wizard de reserva, mejoras en hero, autopublicacion de blog (d11b05b, 203a48a)

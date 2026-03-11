@@ -173,7 +173,7 @@ export function SuperAdminTab({ adminToken }: SuperAdminTabProps) {
 
       {/* Stats cards */}
       {stats && (
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
           <Card>
             <CardContent className="p-4">
               <div className="flex items-center gap-2 mb-1">
@@ -271,7 +271,7 @@ export function SuperAdminTab({ adminToken }: SuperAdminTabProps) {
                 <button
                   key={f}
                   onClick={() => setStatusFilter(f)}
-                  className={`px-2.5 py-1 rounded-md text-xs font-medium transition-colors ${
+                  className={`px-3 py-2 min-h-[36px] rounded-md text-xs font-medium transition-colors ${
                     statusFilter === f
                       ? "bg-primary text-white"
                       : "text-muted-foreground hover:bg-muted"
@@ -452,7 +452,7 @@ export function SuperAdminTab({ adminToken }: SuperAdminTabProps) {
 
       {/* Manage Dialog */}
       <Dialog open={!!managingTenant} onOpenChange={(open) => !open && setManagingTenant(null)}>
-        <DialogContent>
+        <DialogContent className="max-w-[95vw] sm:max-w-lg">
           <DialogHeader>
             <DialogTitle className="flex items-center gap-2 font-heading">
               <Building2 className="w-4 h-4" />

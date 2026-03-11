@@ -452,7 +452,7 @@ export function InquiriesTab({ adminToken, onOpenWhatsApp }: InquiriesTabProps) 
                   )}
                   <div className="flex items-center gap-2">
                     <Select value={inq.status} onValueChange={(v) => updateInquiry(inq.id, { status: v })}>
-                      <SelectTrigger className="h-8 text-xs flex-1">
+                      <SelectTrigger className="h-10 sm:h-8 text-xs flex-1">
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent>

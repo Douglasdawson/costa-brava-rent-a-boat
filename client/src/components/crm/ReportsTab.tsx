@@ -225,7 +225,7 @@ export function ReportsTab({ adminToken }: ReportsTabProps) {
       </div>
 
       {/* Report selector */}
-      <div className="flex gap-2 overflow-x-auto pb-2">
+      <div className="flex flex-wrap gap-2 overflow-x-auto pb-2">
         {REPORT_TABS.map(tab => (
           <Button
             key={tab.id}
@@ -245,7 +245,7 @@ export function ReportsTab({ adminToken }: ReportsTabProps) {
         <div className="space-y-4">
           <div className="flex justify-between items-center">
             <Select value={fleetPeriod} onValueChange={setFleetPeriod}>
-              <SelectTrigger className="w-[150px]">
+              <SelectTrigger className="w-full sm:w-[150px]">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
@@ -271,7 +271,8 @@ export function ReportsTab({ adminToken }: ReportsTabProps) {
                     <CardTitle className="text-base font-heading">Ingresos vs Mantenimiento por Barco</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <ResponsiveContainer width="100%" height={300}>
+                    <div className="h-[250px] sm:h-[300px] w-full">
+                    <ResponsiveContainer width="100%" height="100%">
                       <BarChart data={fleetChartData}>
                         <CartesianGrid strokeDasharray="3 3" />
                         <XAxis dataKey="name" fontSize={12} />
@@ -281,6 +282,7 @@ export function ReportsTab({ adminToken }: ReportsTabProps) {
                         <Bar dataKey="maintenance" name="Mantenimiento" fill="hsl(var(--chart-2))" radius={[4, 4, 0, 0]} />
                       </BarChart>
                     </ResponsiveContainer>
+                    </div>
                   </CardContent>
                 </Card>
               )}

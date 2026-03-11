@@ -109,14 +109,14 @@ export default function OnboardingPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-primary/5 to-primary/10 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-br from-primary/5 to-primary/10 flex items-center justify-start pt-8 sm:justify-center sm:pt-0 p-4">
       <div className="w-full max-w-lg">
         {/* Header */}
-        <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-primary mb-4 shadow-lg">
+        <div className="text-center mb-5 sm:mb-8">
+          <div className="inline-flex items-center justify-center w-11 h-11 sm:w-14 sm:h-14 rounded-2xl bg-primary mb-4 shadow-lg">
             <Ship className="w-8 h-8 text-white" />
           </div>
-          <h1 className="text-2xl font-bold text-foreground">Configura tu cuenta</h1>
+          <h1 className="text-xl sm:text-2xl font-bold text-foreground">Configura tu cuenta</h1>
           <p className="text-muted-foreground mt-1 text-sm">Solo te llevará 2 minutos</p>
         </div>
 
@@ -128,7 +128,7 @@ export default function OnboardingPage() {
             return (
               <div key={id} className="flex items-center">
                 <div className="flex flex-col items-center">
-                  <div className={`w-9 h-9 rounded-full flex items-center justify-center transition-all ${
+                  <div className={`w-8 h-8 sm:w-9 sm:h-9 rounded-full flex items-center justify-center transition-all ${
                     done ? "bg-primary shadow-sm" : active ? "bg-primary ring-4 ring-primary/20 shadow-sm" : "bg-muted"
                   }`}>
                     {done
@@ -149,7 +149,7 @@ export default function OnboardingPage() {
         </div>
 
         {/* Card */}
-        <div className="bg-white rounded-2xl shadow-xl p-6 sm:p-8">
+        <div className="bg-white rounded-2xl shadow-xl p-4 sm:p-6 md:p-8">
 
           {/* Step 1: Datos empresa */}
           {step === 1 && (
@@ -263,7 +263,7 @@ export default function OnboardingPage() {
                       className="mt-1"
                     />
                   </div>
-                  <div className="grid grid-cols-2 gap-3">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div>
                       <Label htmlFor="ob-capacity" className="text-sm font-medium">Capacidad (personas)</Label>
                       <Input
@@ -332,7 +332,7 @@ export default function OnboardingPage() {
           {step === 4 && (
             <div className="text-center space-y-5 py-2">
               <div className="flex justify-center">
-                <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center">
+                <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-primary/10 flex items-center justify-center">
                   <CheckCircle className="w-10 h-10 text-primary" />
                 </div>
               </div>

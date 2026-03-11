@@ -53,7 +53,7 @@ export function BoatFormDialog({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="w-[95vw] max-w-4xl max-h-[90vh] overflow-y-auto p-4 sm:p-6">
+      <DialogContent className="w-[95vw] max-w-4xl max-h-[90vh] overflow-y-auto p-3 sm:p-4 md:p-6">
         <DialogHeader>
           <DialogTitle>{editingBoat ? "Editar Barco" : "Agregar Barco"}</DialogTitle>
           <DialogDescription>Complete todos los campos del barco</DialogDescription>
@@ -214,26 +214,30 @@ export function BoatFormDialog({
                 )}
               </div>
             </div>
-            <div className="flex flex-col sm:flex-row gap-4 sm:gap-6">
-              <div className="flex items-center space-x-2">
-                <input
-                  id="requiresLicense"
-                  type="checkbox"
-                  {...form.register("requiresLicense")}
-                  className="w-4 h-4"
-                  data-testid="checkbox-requires-license"
-                />
-                <Label htmlFor="requiresLicense">Requiere licencia nautica</Label>
+            <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 md:gap-6">
+              <div className="p-2 -m-2 rounded">
+                <div className="flex items-center space-x-2">
+                  <input
+                    id="requiresLicense"
+                    type="checkbox"
+                    {...form.register("requiresLicense")}
+                    className="w-4 h-4"
+                    data-testid="checkbox-requires-license"
+                  />
+                  <Label htmlFor="requiresLicense">Requiere licencia nautica</Label>
+                </div>
               </div>
-              <div className="flex items-center space-x-2">
-                <input
-                  id="isActive"
-                  type="checkbox"
-                  {...form.register("isActive")}
-                  className="w-4 h-4"
-                  data-testid="checkbox-is-active"
-                />
-                <Label htmlFor="isActive">Barco activo</Label>
+              <div className="p-2 -m-2 rounded">
+                <div className="flex items-center space-x-2">
+                  <input
+                    id="isActive"
+                    type="checkbox"
+                    {...form.register("isActive")}
+                    className="w-4 h-4"
+                    data-testid="checkbox-is-active"
+                  />
+                  <Label htmlFor="isActive">Barco activo</Label>
+                </div>
               </div>
             </div>
             <div>

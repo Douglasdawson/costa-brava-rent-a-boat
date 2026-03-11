@@ -29,7 +29,7 @@ export function PaginationControls({
   }
 
   return (
-    <div className="flex items-center justify-between mt-6 pt-4 border-t">
+    <div className="flex items-center justify-between mt-4 sm:mt-6 pt-3 sm:pt-4 border-t">
       <div className="text-sm text-muted-foreground">
         Página {currentPage} de {totalPages}
       </div>
@@ -59,7 +59,7 @@ export function PaginationControls({
             variant={pageNum === currentPage ? "default" : "outline"}
             size="sm"
             onClick={() => onPageChange(pageNum)}
-            className="min-w-[36px]"
+            className="min-w-[40px] h-9 sm:h-8 sm:min-w-[36px]"
           >
             {pageNum}
           </Button>

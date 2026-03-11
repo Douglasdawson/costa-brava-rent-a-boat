@@ -172,7 +172,7 @@ export function AdminLayout({
           <Button
             variant="outline"
             size="sm"
-            className={`h-7 text-xs ${
+            className={`h-10 sm:h-7 text-xs ${
               trialDaysLeft! <= 3
                 ? "border-destructive/40 text-destructive hover:bg-destructive/10"
                 : "border-accent-foreground/40 text-accent-foreground hover:bg-accent"
@@ -230,7 +230,7 @@ export function AdminLayout({
             <button
               key={tab.id}
               onClick={() => onTabChange(tab.id)}
-              className={`flex items-center justify-center gap-1.5 px-3 md:px-4 py-2 md:py-2.5 font-medium rounded-lg transition-colors whitespace-nowrap flex-shrink-0 min-w-[44px] ${
+              className={`flex items-center justify-center gap-1.5 px-3 md:px-4 py-2 md:py-2.5 font-medium rounded-lg transition-colors whitespace-nowrap flex-shrink-0 min-w-[44px] min-h-[44px] ${
                 selectedTab === tab.id
                   ? 'bg-primary text-white'
                   : 'text-muted-foreground hover:text-foreground hover:bg-muted'
@@ -248,7 +248,7 @@ export function AdminLayout({
               <Popover open={moreOpen} onOpenChange={setMoreOpen}>
                 <PopoverTrigger asChild>
                   <button
-                    className={`flex items-center justify-center gap-1 px-3 py-2 font-medium rounded-lg transition-colors whitespace-nowrap flex-shrink-0 min-w-[44px] ${
+                    className={`flex items-center justify-center gap-1 px-3 py-2 font-medium rounded-lg transition-colors whitespace-nowrap flex-shrink-0 min-w-[44px] min-h-[44px] ${
                       !TAB_CONFIG.some((t) => t.id === selectedTab)
                         ? 'bg-primary/20 text-primary'
                         : 'text-muted-foreground hover:text-foreground hover:bg-muted'
@@ -259,10 +259,10 @@ export function AdminLayout({
                     <span className="text-xs">Mas</span>
                   </button>
                 </PopoverTrigger>
-                <PopoverContent className="w-64 p-2" align="end">
+                <PopoverContent className="w-[min(256px,calc(100vw-2rem))] p-2" align="end">
                   {secondaryGroups.map((group) => (
                     <div key={group.label} className="mb-2 last:mb-0">
-                      <span className="text-[10px] uppercase tracking-wider text-muted-foreground/60 px-2 font-medium">
+                      <span className="text-[11px] sm:text-[10px] uppercase tracking-wider text-muted-foreground/60 px-2 font-medium">
                         {group.label}
                       </span>
                       <div className="flex flex-col gap-0.5 mt-0.5">
@@ -273,7 +273,7 @@ export function AdminLayout({
                               onTabChange(tab.id);
                               setMoreOpen(false);
                             }}
-                            className={`flex items-center gap-2 px-2 py-1.5 text-sm rounded-md transition-colors w-full text-left ${
+                            className={`flex items-center gap-2 px-2 py-1.5 text-sm rounded-md transition-colors w-full text-left min-h-[40px] ${
                               selectedTab === tab.id
                                 ? 'bg-primary text-white'
                                 : 'text-muted-foreground hover:text-foreground hover:bg-muted'
@@ -324,7 +324,7 @@ export function AdminLayout({
         )}
       </div>
 
-      <div className="p-3 md:p-5 lg:p-6">
+      <div className="p-2 sm:p-3 md:p-5 lg:p-6">
         {children}
       </div>
     </div>

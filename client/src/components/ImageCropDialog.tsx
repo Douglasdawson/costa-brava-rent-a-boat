@@ -100,15 +100,15 @@ export default function ImageCropDialog({
   };
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/70 p-4">
-      <div className="bg-white rounded-xl shadow-2xl max-w-2xl w-full max-h-[90vh] flex flex-col overflow-hidden">
+    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/70 p-2 sm:p-4">
+      <div className="bg-white rounded-xl shadow-2xl max-w-2xl w-full max-h-[95vh] sm:max-h-[90vh] flex flex-col overflow-hidden">
         <div className="flex items-center justify-between px-4 py-3 border-b">
           <h3 className="font-semibold text-sm">Recortar imagen (4:3)</h3>
           <div className="flex items-center gap-2">
-            <Button size="sm" variant="ghost" onClick={handleReset}>
+            <Button size="sm" variant="ghost" className="h-10 w-10 sm:h-9 sm:w-auto" onClick={handleReset}>
               <RotateCcw className="w-4 h-4 mr-1" /> Reset
             </Button>
-            <Button size="sm" variant="ghost" onClick={onCancel}>
+            <Button size="sm" variant="ghost" className="h-10 w-10 sm:h-9 sm:w-auto" onClick={onCancel}>
               <X className="w-4 h-4" />
             </Button>
           </div>
@@ -120,24 +120,24 @@ export default function ImageCropDialog({
             onChange={(_, percentCrop) => setCrop(percentCrop)}
             onComplete={(_, percentCrop) => setCompletedCrop(percentCrop)}
             aspect={aspect}
-            className="max-h-[60vh]"
+            className="max-h-[50vh] sm:max-h-[60vh]"
           >
             <img
               ref={imgRef}
               src={imageSrc}
               alt="Recortar"
               onLoad={onImageLoad}
-              className="max-h-[60vh] max-w-full"
+              className="max-h-[50vh] sm:max-h-[60vh] max-w-full"
               crossOrigin="anonymous"
             />
           </ReactCrop>
         </div>
 
-        <div className="flex items-center justify-end gap-3 px-4 py-3 border-t">
-          <Button variant="outline" onClick={onCancel} disabled={saving}>
+        <div className="flex flex-col-reverse sm:flex-row items-center justify-end gap-2 sm:gap-3 px-4 py-3 border-t">
+          <Button variant="outline" className="w-full sm:w-auto" onClick={onCancel} disabled={saving}>
             Cancelar
           </Button>
-          <Button onClick={handleConfirm} disabled={saving || !completedCrop}>
+          <Button className="w-full sm:w-auto text-sm sm:text-base" onClick={handleConfirm} disabled={saving || !completedCrop}>
             {saving ? (
               <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2" />
             ) : (

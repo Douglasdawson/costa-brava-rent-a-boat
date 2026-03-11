@@ -63,7 +63,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-blue-100 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-blue-100 flex flex-col items-center justify-start pt-12 sm:justify-center sm:pt-0 p-4">
       <Card className="w-full max-w-md relative">
         <Button
           variant="ghost"
@@ -76,7 +76,7 @@ export default function LoginPage() {
         </Button>
         <CardHeader className="text-center">
           <div className="flex justify-center mb-4">
-            <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center">
+            <div className="w-12 h-12 sm:w-16 sm:h-16 bg-primary/10 rounded-full flex items-center justify-center">
               <Anchor className="w-8 h-8 text-primary" />
             </div>
           </div>
@@ -88,7 +88,7 @@ export default function LoginPage() {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <form onSubmit={handleAdminPinSubmit} className="space-y-4 py-4">
+          <form onSubmit={handleAdminPinSubmit} className="space-y-3 sm:space-y-4 py-4">
             <div className="space-y-2">
               <label htmlFor="pin" className="text-sm font-medium">
                 PIN de Administrador

@@ -146,6 +146,7 @@ function SortableBoatCard({
                 <Button
                   size="icon"
                   variant="ghost"
+                  className="h-10 w-10"
                   onClick={() => onEdit(boat)}
                   data-testid={`button-edit-boat-${boat.id}`}
                 >
@@ -155,6 +156,7 @@ function SortableBoatCard({
                   <Button
                     size="icon"
                     variant="ghost"
+                    className="h-10 w-10"
                     onClick={() => onDelete(boat.id)}
                     data-testid={`button-delete-boat-${boat.id}`}
                   >
@@ -240,7 +242,7 @@ export function BoatListTable({
           <p className="text-muted-foreground mb-4">
             Importa los 7 barcos de la flota o agrega uno manualmente
           </p>
-          <div className="flex justify-center gap-4">
+          <div className="flex flex-col sm:flex-row justify-center gap-4 w-full sm:w-auto">
             <Button
               onClick={onImport}
               disabled={isImporting}

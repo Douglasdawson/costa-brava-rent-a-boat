@@ -171,7 +171,7 @@ export function GalleryManagement({ adminToken }: GalleryManagementProps) {
                   {photo.isApproved ? "Aprobada" : "Pendiente"}
                 </Badge>
                 {/* Hover overlay with action buttons */}
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-all duration-200 flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100">
+                <div className="absolute inset-0 bg-black/0 sm:group-hover:bg-black/40 transition-all duration-200 flex items-center justify-center gap-2 opacity-100 sm:opacity-0 sm:group-hover:opacity-100">
                   {!photo.isApproved && (
                     <Button
                       size="sm"

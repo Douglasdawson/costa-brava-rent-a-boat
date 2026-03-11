@@ -465,12 +465,12 @@ export function MaintenanceTab({ adminToken }: MaintenanceTabProps) {
 
       <Tabs value={activeSubTab} onValueChange={setActiveSubTab}>
         <TabsList className="grid w-full grid-cols-2">
-          <TabsTrigger value="maintenance" className="flex items-center gap-2">
+          <TabsTrigger value="maintenance" className="flex items-center gap-2 text-xs sm:text-sm">
             <Wrench className="w-4 h-4" />
             <span className="hidden sm:inline">Mantenimiento</span>
             <span className="sm:hidden">Mant.</span>
           </TabsTrigger>
-          <TabsTrigger value="documents" className="flex items-center gap-2">
+          <TabsTrigger value="documents" className="flex items-center gap-2 text-xs sm:text-sm">
             <FileText className="w-4 h-4" />
             <span>Documentos</span>
           </TabsTrigger>

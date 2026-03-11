@@ -84,22 +84,22 @@ function SortableImage({ id, imageUrl, index, onRemove, showCoverBadge }: Sortab
         </div>
 
         {/* Controls bar */}
-        <div className="flex items-center justify-between px-2 py-1.5">
+        <div className="flex items-center justify-between px-3 py-2">
           <div className="flex items-center gap-2">
             <div
               {...attributes}
               {...listeners}
-              className="p-1 rounded cursor-grab active:cursor-grabbing hover:bg-muted transition-colors"
+              className="p-2 rounded cursor-grab active:cursor-grabbing hover:bg-muted transition-colors"
               data-testid={`drag-handle-${index}`}
             >
-              <GripVertical className="w-4 h-4 text-muted-foreground" />
+              <GripVertical className="w-5 h-5 text-muted-foreground" />
             </div>
             <span className="text-xs text-muted-foreground">Imagen {index + 1}</span>
           </div>
           <Button
             size="icon"
             variant="ghost"
-            className="h-7 w-7 text-muted-foreground hover:text-destructive"
+            className="h-9 w-9 sm:h-7 sm:w-7 text-muted-foreground hover:text-destructive"
             onClick={() => onRemove(index)}
             data-testid={`button-remove-image-${index}`}
           >
@@ -266,7 +266,7 @@ function GalleryTab({
       <div
         {...getRootProps()}
         className={cn(
-          "border-2 border-dashed rounded-lg p-8 text-center transition-colors cursor-pointer hover-elevate",
+          "border-2 border-dashed rounded-lg p-4 sm:p-8 text-center transition-colors cursor-pointer hover-elevate",
           isDragActive && "border-primary bg-primary/5",
           (uploading || images.length >= maxImages) &&
             "opacity-50 cursor-not-allowed"

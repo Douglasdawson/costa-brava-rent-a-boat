@@ -406,7 +406,7 @@ export function DashboardTab({
       </div>
 
       {/* KPI Cards */}
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
         {statsLoading ? (
           <>
             <KPICardSkeleton />
@@ -517,7 +517,7 @@ export function DashboardTab({
       </div>
 
       {/* Charts Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 sm:gap-6">
         {/* Revenue Trend - Area Chart */}
         {trendLoading ? (
           <ChartSkeleton />

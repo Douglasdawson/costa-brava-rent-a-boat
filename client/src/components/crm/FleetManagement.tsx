@@ -379,7 +379,7 @@ export function FleetManagement({ adminToken }: FleetManagementProps) {
           }}
           data-testid="button-add-boat"
           size="sm"
-          className="sm:h-10"
+          className="h-10"
         >
           <Plus className="w-4 h-4 sm:mr-2" />
           <span className="hidden sm:inline">Agregar Barco</span>

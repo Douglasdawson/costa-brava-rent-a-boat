@@ -174,7 +174,7 @@ export default function BoatCard({
             </div>
             <div className="flex items-center gap-1.5 justify-end">
               {showPriceAnchoring && (
-                <span className="inline-flex items-center bg-green-100 text-green-700 text-xs font-semibold px-1.5 py-0.5 rounded-full">
+                <span className="inline-flex items-center bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 text-xs font-semibold px-1.5 py-0.5 rounded-full">
                   -{savingsPercent}%
                 </span>
               )}
@@ -199,12 +199,12 @@ export default function BoatCard({
             </span>
           )}
           {currentSeason === 'BAJA' && (
-            <span className="inline-flex items-center text-xs text-green-700 bg-green-50 px-2 py-0.5 rounded-full font-medium">
+            <span className="inline-flex items-center text-xs text-green-700 dark:text-green-400 bg-green-50 dark:bg-green-900/20 px-2 py-0.5 rounded-full font-medium">
               {t.boats.seasonPriceLow}
             </span>
           )}
           {currentSeason === 'MEDIA' && (
-            <span className="inline-flex items-center text-xs text-amber-700 bg-amber-50 px-2 py-0.5 rounded-full font-medium">
+            <span className="inline-flex items-center text-xs text-amber-700 dark:text-amber-400 bg-amber-50 dark:bg-amber-900/20 px-2 py-0.5 rounded-full font-medium">
               {t.boats.seasonPriceMid}
             </span>
           )}

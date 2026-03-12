@@ -1072,7 +1072,7 @@ export default function FAQPage() {
       </div>
 
       {/* Quick Info Cards */}
-      <div className="py-8 sm:py-12 bg-white">
+      <div className="py-8 sm:py-12 bg-background">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-3 gap-4 sm:gap-6 mb-8 sm:mb-12">
             <Card className="text-center hover-elevate">

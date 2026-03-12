@@ -42,9 +42,9 @@ export function Breadcrumbs({ items, className = "" }: BreadcrumbsProps) {
           
           return (
             <li key={index} className="flex items-center">
-              <ChevronRight className="w-4 h-4 mx-1 text-gray-400" />
+              <ChevronRight className="w-4 h-4 mx-1 text-muted-foreground/50" />
               {isLast ? (
-                <span className="text-gray-600 font-medium" aria-current="page" data-testid={`breadcrumb-current`}>
+                <span className="text-muted-foreground font-medium" aria-current="page" data-testid={`breadcrumb-current`}>
                   {translatedLabel}
                 </span>
               ) : (

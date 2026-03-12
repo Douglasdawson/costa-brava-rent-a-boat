@@ -143,7 +143,7 @@ export function BookingStepCustomer({
                   data-testid="input-phone-prefix-search"
                 />
                 {showPhonePrefixDropdown && filteredPhoneCountries.length > 0 && (
-                  <div className="absolute z-10 left-0 w-full max-w-xs max-h-48 overflow-y-auto bg-white border border-primary/20 rounded-lg shadow-lg mt-1">
+                  <div className="absolute z-10 left-0 w-full max-w-xs max-h-48 overflow-y-auto bg-background border border-primary/20 rounded-lg shadow-lg mt-1">
                     {filteredPhoneCountries.slice(0, 8).map((country) => (
                       <button
                         key={country.code}
@@ -212,7 +212,7 @@ export function BookingStepCustomer({
                   data-testid="input-nationality-search"
                 />
                 {showNationalityDropdown && filteredNationalities.length > 0 && (
-                  <div className="absolute z-10 w-full max-h-48 overflow-y-auto bg-white border border-primary/20 rounded-lg shadow-lg mt-1">
+                  <div className="absolute z-10 w-full max-h-48 overflow-y-auto bg-background border border-primary/20 rounded-lg shadow-lg mt-1">
                     {filteredNationalities.slice(0, 10).map((nationality) => (
                       <button
                         key={nationality}

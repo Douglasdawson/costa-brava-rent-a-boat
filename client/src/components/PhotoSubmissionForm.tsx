@@ -156,9 +156,9 @@ export default function PhotoSubmissionForm({ open, onOpenChange, onSuccess }: P
                 </Button>
               </div>
             ) : (
-              <label className="flex flex-col items-center justify-center h-32 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer hover:border-primary transition-colors">
-                <Upload className="w-8 h-8 text-gray-400 mb-2" />
-                <span className="text-sm text-gray-500">
+              <label className="flex flex-col items-center justify-center h-32 border-2 border-dashed border-border rounded-lg cursor-pointer hover:border-primary transition-colors">
+                <Upload className="w-8 h-8 text-muted-foreground/60 mb-2" />
+                <span className="text-sm text-muted-foreground/60">
                   {isUploading ? "Subiendo..." : "Haz clic para subir una imagen"}
                 </span>
                 <input

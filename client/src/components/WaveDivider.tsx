@@ -1,10 +1,9 @@
 interface WaveDividerProps {
-  fill?: string;
   flip?: boolean;
   className?: string;
 }
 
-export default function WaveDivider({ fill = "#f9fafb", flip = false, className = "" }: WaveDividerProps) {
+export default function WaveDivider({ flip = false, className = "" }: WaveDividerProps) {
   return (
     <div className={`w-full overflow-hidden leading-[0] ${flip ? "rotate-180" : ""} ${className}`}>
       <svg
@@ -14,7 +13,7 @@ export default function WaveDivider({ fill = "#f9fafb", flip = false, className 
       >
         <path
           d="M0,40 C360,80 720,0 1080,40 C1260,60 1380,50 1440,40 L1440,80 L0,80 Z"
-          fill={fill}
+          fill="currentColor"
         />
       </svg>
     </div>

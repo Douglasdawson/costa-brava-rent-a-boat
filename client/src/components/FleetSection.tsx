@@ -182,7 +182,7 @@ export default function FleetSection() {
   };
 
   return (
-    <section ref={revealRef} className={`py-16 sm:py-24 lg:py-32 bg-white transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`} id="fleet">
+    <section ref={revealRef} className={`py-16 sm:py-24 lg:py-32 bg-background transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`} id="fleet">
       <div className="container mx-auto px-3 sm:px-4 max-w-7xl">
         <div className="text-center mb-8 sm:mb-12 lg:mb-16">
           <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl font-medium text-foreground tracking-tight mb-2 sm:mb-3 lg:mb-4 px-2 text-balance">
@@ -380,7 +380,7 @@ export default function FleetSection() {
             <Table>
               <TableHeader>
                 <TableRow>
-                  <TableHead className="min-w-[100px] sticky left-0 bg-white z-10">{t.comparison.compare}</TableHead>
+                  <TableHead className="min-w-[100px] sticky left-0 bg-background z-10">{t.comparison.compare}</TableHead>
                   {sortedBoats.map((boat) => (
                     <TableHead key={boat.id} className="min-w-[160px] text-center">{boat.name}</TableHead>
                   ))}
@@ -389,7 +389,7 @@ export default function FleetSection() {
               <TableBody>
                 {/* Photo thumbnail */}
                 <TableRow>
-                  <TableCell className="font-medium sticky left-0 bg-white z-10">{''}</TableCell>
+                  <TableCell className="font-medium sticky left-0 bg-background z-10">{''}</TableCell>
                   {sortedBoats.map((boat) => (
                     <TableCell key={boat.id} className="text-center">
                       <img
@@ -404,7 +404,7 @@ export default function FleetSection() {
                 </TableRow>
                 {/* Capacity */}
                 <TableRow>
-                  <TableCell className="font-medium sticky left-0 bg-white z-10">{t.comparison.tableCapacity}</TableCell>
+                  <TableCell className="font-medium sticky left-0 bg-background z-10">{t.comparison.tableCapacity}</TableCell>
                   {sortedBoats.map((boat) => (
                     <TableCell key={boat.id} className="text-center">
                       <span className="inline-flex items-center gap-1">
@@ -416,20 +416,20 @@ export default function FleetSection() {
                 </TableRow>
                 {/* License */}
                 <TableRow>
-                  <TableCell className="font-medium sticky left-0 bg-white z-10">{t.comparison.tableLicense}</TableCell>
+                  <TableCell className="font-medium sticky left-0 bg-background z-10">{t.comparison.tableLicense}</TableCell>
                   {sortedBoats.map((boat) => (
                     <TableCell key={boat.id} className="text-center">
                       {boat.requiresLicense ? (
-                        <span className="text-amber-600 font-medium">{t.comparison.tableYes}</span>
+                        <span className="text-amber-600 dark:text-amber-400 font-medium">{t.comparison.tableYes}</span>
                       ) : (
-                        <span className="text-green-600 font-medium">{t.comparison.tableNo}</span>
+                        <span className="text-green-600 dark:text-green-400 font-medium">{t.comparison.tableNo}</span>
                       )}
                     </TableCell>
                   ))}
                 </TableRow>
                 {/* Engine */}
                 <TableRow>
-                  <TableCell className="font-medium sticky left-0 bg-white z-10">{t.comparison.tableEngine}</TableCell>
+                  <TableCell className="font-medium sticky left-0 bg-background z-10">{t.comparison.tableEngine}</TableCell>
                   {sortedBoats.map((boat) => (
                     <TableCell key={boat.id} className="text-center text-sm">
                       {boat.enginePower || '-'}
@@ -438,7 +438,7 @@ export default function FleetSection() {
                 </TableRow>
                 {/* Duration options */}
                 <TableRow>
-                  <TableCell className="font-medium sticky left-0 bg-white z-10">{t.comparison.tableDuration}</TableCell>
+                  <TableCell className="font-medium sticky left-0 bg-background z-10">{t.comparison.tableDuration}</TableCell>
                   {sortedBoats.map((boat) => {
                     const rawBoat = boatsData?.find(b => b.id === boat.id);
                     const season = currentSeason || 'BAJA';
@@ -454,7 +454,7 @@ export default function FleetSection() {
                 </TableRow>
                 {/* Price from */}
                 <TableRow>
-                  <TableCell className="font-medium sticky left-0 bg-white z-10">{t.comparison.tablePriceFrom}</TableCell>
+                  <TableCell className="font-medium sticky left-0 bg-background z-10">{t.comparison.tablePriceFrom}</TableCell>
                   {sortedBoats.map((boat) => (
                     <TableCell key={boat.id} className="text-center">
                       <span className="font-semibold text-foreground">{boat.basePrice > 0 ? `${boat.basePrice}\u20AC` : '-'}</span>
@@ -463,7 +463,7 @@ export default function FleetSection() {
                 </TableRow>
                 {/* Price per person */}
                 <TableRow>
-                  <TableCell className="font-medium sticky left-0 bg-white z-10">{t.comparison.tablePricePerPerson}</TableCell>
+                  <TableCell className="font-medium sticky left-0 bg-background z-10">{t.comparison.tablePricePerPerson}</TableCell>
                   {sortedBoats.map((boat) => {
                     const perPerson = boat.basePrice > 0 && boat.capacity > 0
                       ? Math.ceil(boat.basePrice / boat.capacity)
@@ -477,7 +477,7 @@ export default function FleetSection() {
                 </TableRow>
                 {/* Rating */}
                 <TableRow>
-                  <TableCell className="font-medium sticky left-0 bg-white z-10">{t.comparison.tableRating}</TableCell>
+                  <TableCell className="font-medium sticky left-0 bg-background z-10">{t.comparison.tableRating}</TableCell>
                   {sortedBoats.map((boat) => {
                     const ratingData = getBoatAverageRating(boat.id);
                     return (
@@ -495,11 +495,11 @@ export default function FleetSection() {
                 </TableRow>
                 {/* Fuel included */}
                 <TableRow>
-                  <TableCell className="font-medium sticky left-0 bg-white z-10">{t.comparison.tableFuelIncluded}</TableCell>
+                  <TableCell className="font-medium sticky left-0 bg-background z-10">{t.comparison.tableFuelIncluded}</TableCell>
                   {sortedBoats.map((boat) => (
                     <TableCell key={boat.id} className="text-center">
                       {!boat.requiresLicense ? (
-                        <span className="text-green-600 font-medium">{t.comparison.tableYes}</span>
+                        <span className="text-green-600 dark:text-green-400 font-medium">{t.comparison.tableYes}</span>
                       ) : (
                         <span className="text-muted-foreground">{t.comparison.tableNo}</span>
                       )}
@@ -508,12 +508,12 @@ export default function FleetSection() {
                 </TableRow>
                 {/* CTA button */}
                 <TableRow>
-                  <TableCell className="sticky left-0 bg-white z-10">{''}</TableCell>
+                  <TableCell className="sticky left-0 bg-background z-10">{''}</TableCell>
                   {sortedBoats.map((boat) => (
                     <TableCell key={boat.id} className="text-center">
                       <button
                         onClick={() => handleBooking(boat.id)}
-                        className="bg-[hsl(210,35%,76%)] hover:bg-[hsl(210,35%,68%)] text-foreground px-4 py-2 rounded-full text-sm font-medium transition-colors"
+                        className="bg-cta hover:bg-cta/90 text-foreground px-4 py-2 rounded-full text-sm font-medium transition-colors"
                       >
                         {t.boats.book}
                       </button>
@@ -526,7 +526,7 @@ export default function FleetSection() {
         )}
 
         <div className="text-center px-2 sm:px-4">
-          <p className="text-sm lg:text-base text-gray-600 mb-3 sm:mb-4 lg:mb-6">{t.fleet.helpText}</p>
+          <p className="text-sm lg:text-base text-muted-foreground mb-3 sm:mb-4 lg:mb-6">{t.fleet.helpText}</p>
           <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 lg:gap-4 justify-center max-w-sm sm:max-w-lg mx-auto">
             <button
               className="border border-border text-foreground hover:border-foreground/30 px-5 py-3 rounded-full font-medium flex items-center justify-center transition-colors text-sm lg:text-base min-h-11"

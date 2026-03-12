@@ -115,9 +115,9 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
     pack.extras.every(name => boatExtraNames.has(name))
   );
 
-  const inputBase = "w-full px-3 py-2.5 border-2 rounded-lg bg-white text-foreground text-sm font-medium focus:ring-2 focus:ring-[#0D0D2B]/30 focus:border-[#0D0D2B] focus:outline-none h-[46px] transition-colors";
+  const inputBase = "w-full px-3 py-2.5 border-2 rounded-lg bg-background text-foreground text-sm font-medium focus:ring-2 focus:ring-foreground/30 focus:border-foreground focus:outline-none h-[46px] transition-colors";
   const inputError = "border-red-400";
-  const inputNormal = "border-[#A8C4DD]/40";
+  const inputNormal = "border-cta/40";
 
   // Endowment Effect: once a boat is selected, shift to possessive language
   const boatSelected = !!selectedBoatInfo;
@@ -131,7 +131,7 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
   return (
     <div className="flex flex-col h-full">
       {/* Step progress bar */}
-      <div className="flex-shrink-0 px-8 pt-3 pb-2 border-b border-[#A8C4DD]/20">
+      <div className="flex-shrink-0 px-8 pt-3 pb-2 border-b border-cta/20">
         <BookingProgressBar
           currentStep={currentStep}
           totalSteps={4}
@@ -253,12 +253,12 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
       )}
 
       {/* Navigation footer */}
-      <div className="flex-shrink-0 border-t border-[#A8C4DD]/20 px-6 py-3">
+      <div className="flex-shrink-0 border-t border-cta/20 px-6 py-3">
         <div className={`flex items-center ${currentStep > 1 ? "justify-between" : "justify-end"}`}>
           {currentStep > 1 && (
             <button
               onClick={onBack}
-              className="text-[#0D0D2B]/60 hover:text-[#0D0D2B] transition-colors px-4 py-2.5 rounded-lg font-medium text-sm"
+              className="text-foreground/60 hover:text-foreground transition-colors px-4 py-2.5 rounded-lg font-medium text-sm"
             >
               {t.booking.back}
             </button>
@@ -266,7 +266,7 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
           {currentStep < 4 ? (
             <button
               onClick={onNext}
-              className="bg-[#0D0D2B] text-white rounded-full px-8 py-2.5 font-medium text-sm hover:bg-[#0D0D2B]/90 transition-all btn-elevated"
+              className="bg-foreground text-white rounded-full px-8 py-2.5 font-medium text-sm hover:bg-foreground/90 transition-all btn-elevated"
             >
               {t.booking.next}
             </button>
@@ -342,8 +342,8 @@ function Step1BoatDate({
               onClick={() => setLicenseFilter("without")}
               className={`flex-1 py-2.5 rounded-lg text-sm font-semibold border-2 transition-all ${
                 licenseFilter === "without"
-                  ? "border-[#0D0D2B] bg-[#0D0D2B] text-white"
-                  : "border-[#A8C4DD]/40 text-muted-foreground hover:border-[#A8C4DD]"
+                  ? "border-foreground bg-foreground text-white"
+                  : "border-cta/40 text-muted-foreground hover:border-cta"
               }`}
             >
               {t.wizard.withoutLicense}
@@ -353,8 +353,8 @@ function Step1BoatDate({
               onClick={() => setLicenseFilter("with")}
               className={`flex-1 py-2.5 rounded-lg text-sm font-semibold border-2 transition-all ${
                 licenseFilter === "with"
-                  ? "border-[#0D0D2B] bg-[#0D0D2B] text-white"
-                  : "border-[#A8C4DD]/40 text-muted-foreground hover:border-[#A8C4DD]"
+                  ? "border-foreground bg-foreground text-white"
+                  : "border-cta/40 text-muted-foreground hover:border-cta"
               }`}
             >
               {t.wizard.withLicense}
@@ -376,9 +376,9 @@ function Step1BoatDate({
         {isBoatsLoading ? (
           <div className="grid grid-cols-2 gap-2">
             {[1, 2, 3, 4].map(i => (
-              <div key={i} className="animate-pulse flex items-center gap-2 p-3 rounded-lg border-2 border-[#A8C4DD]/20">
-                <div className="w-4 h-4 rounded-full bg-[#A8C4DD]/30 flex-shrink-0" />
-                <div className="flex-1 h-3 bg-[#A8C4DD]/30 rounded w-3/4" />
+              <div key={i} className="animate-pulse flex items-center gap-2 p-3 rounded-lg border-2 border-cta/20">
+                <div className="w-4 h-4 rounded-full bg-cta/30 flex-shrink-0" />
+                <div className="flex-1 h-3 bg-cta/30 rounded w-3/4" />
               </div>
             ))}
           </div>
@@ -397,18 +397,18 @@ function Step1BoatDate({
                   onClick={() => setSelectedBoat(boat.id)}
                   disabled={!!preSelectedBoatId && boat.id !== preSelectedBoatId}
                   className={`w-full flex items-center gap-2.5 p-3 rounded-lg border-2 text-left transition-all ${
-                    isSelected ? "border-[#0D0D2B] bg-[#0D0D2B]/5" : "border-[#A8C4DD]/40 bg-white hover:border-[#A8C4DD]"
+                    isSelected ? "border-foreground bg-foreground/5" : "border-cta/40 bg-background hover:border-cta"
                   }`}
                 >
                   <div className={`w-4 h-4 rounded-full border-2 flex items-center justify-center flex-shrink-0 ${
-                    isSelected ? "border-[#0D0D2B] bg-[#0D0D2B]" : "border-muted-foreground/30"
+                    isSelected ? "border-foreground bg-foreground" : "border-muted-foreground/30"
                   }`}>
                     {isSelected && <Check className="w-2.5 h-2.5 text-white" />}
                   </div>
                   <div className="flex-1 min-w-0">
                     <p className="font-semibold text-foreground text-sm truncate">{boat.name}</p>
                     {minPrice !== null && (
-                      <p className="text-xs text-[#0D0D2B] font-medium">{t.boats.from} {minPrice}€</p>
+                      <p className="text-xs text-foreground font-medium">{t.boats.from} {minPrice}€</p>
                     )}
                   </div>
                   <span className="text-xs text-muted-foreground flex-shrink-0">{boat.capacity}p</span>
@@ -484,7 +484,7 @@ function Step2Details({
               aria-describedby={showFieldError('date') ? "error-desktop-date" : undefined}
               className={`${inputBase} flex items-center gap-2 ${showFieldError('date') ? inputError : inputNormal}`}
             >
-              <CalendarIcon className="w-4 h-4 text-[#0D0D2B] flex-shrink-0" />
+              <CalendarIcon className="w-4 h-4 text-foreground flex-shrink-0" />
               {selectedDate
                 ? new Date(selectedDate + 'T00:00:00').toLocaleDateString('es-ES', { day: '2-digit', month: 'short', year: 'numeric' })
                 : <span className="text-muted-foreground">{t.wizard.selectDate}</span>
@@ -568,20 +568,20 @@ function Step2Details({
                 title={isSeasonRestricted ? opt.disabledReason : undefined}
                 className={`py-3 px-2 rounded-lg border-2 text-center transition-all ${
                   isDisabled
-                    ? "border-gray-100 bg-gray-50 opacity-50 cursor-not-allowed"
+                    ? "border-border bg-muted opacity-50 cursor-not-allowed"
                     : selectedDuration === opt.value
-                    ? "border-[#0D0D2B] bg-[#0D0D2B]/5"
-                    : "border-[#A8C4DD]/40 bg-white hover:border-[#A8C4DD]"
+                    ? "border-foreground bg-foreground/5"
+                    : "border-cta/40 bg-background hover:border-cta"
                 }`}
               >
                 {opt.value === "4h" && !isDisabled && (
-                  <p className="text-[9px] font-medium text-gray-400 uppercase tracking-wider mb-0.5">{t.wizard.mostPopular}</p>
+                  <p className="text-[9px] font-medium text-muted-foreground/60 uppercase tracking-wider mb-0.5">{t.wizard.mostPopular}</p>
                 )}
-                <p className={`text-sm font-semibold ${isDisabled ? "text-gray-400 line-through" : "text-foreground"}`}>{labelText}</p>
+                <p className={`text-sm font-semibold ${isDisabled ? "text-muted-foreground/60 line-through" : "text-foreground"}`}>{labelText}</p>
                 {isDisabled ? (
                   <p className="text-xs text-amber-600 font-medium">{opt.disabledReason || t.boats.notAvailable}</p>
                 ) : priceText ? (
-                  <p className="text-xs font-bold text-[#0D0D2B]">{priceText}</p>
+                  <p className="text-xs font-bold text-foreground">{priceText}</p>
                 ) : null}
               </button>
             );
@@ -596,8 +596,8 @@ function Step2Details({
           {t.wizard.numberOfPeople}
           {selectedBoatInfo && <span className="font-normal text-muted-foreground/70 ml-1">(max {maxCapacity})</span>}
         </label>
-        <div className={`flex items-center justify-between border-2 rounded-lg bg-white px-4 py-2 ${
-          showFieldError('people') ? 'border-red-400' : 'border-[#A8C4DD]/40'
+        <div className={`flex items-center justify-between border-2 rounded-lg bg-background px-4 py-2 ${
+          showFieldError('people') ? 'border-red-400' : 'border-cta/40'
         }`}>
           <button
             type="button"
@@ -607,7 +607,7 @@ function Step2Details({
             }}
             disabled={!numberOfPeople || parseInt(numberOfPeople) <= 0}
             aria-label={t.a11y.decreasePeople}
-            className="w-11 h-11 rounded-full border-2 border-[#A8C4DD]/40 flex items-center justify-center font-bold text-muted-foreground disabled:opacity-30 hover:border-[#0D0D2B] hover:text-[#0D0D2B] transition-colors text-lg"
+            className="w-11 h-11 rounded-full border-2 border-cta/40 flex items-center justify-center font-bold text-muted-foreground disabled:opacity-30 hover:border-foreground hover:text-foreground transition-colors text-lg"
           >−</button>
           <span className="text-2xl font-bold text-foreground min-w-[2rem] text-center">
             {numberOfPeople || '0'}
@@ -620,7 +620,7 @@ function Step2Details({
             }}
             disabled={!!numberOfPeople && parseInt(numberOfPeople) >= maxCapacity}
             aria-label={t.a11y.increasePeople}
-            className="w-11 h-11 rounded-full border-2 border-[#A8C4DD]/40 flex items-center justify-center font-bold text-muted-foreground disabled:opacity-30 hover:border-[#0D0D2B] hover:text-[#0D0D2B] transition-colors text-lg"
+            className="w-11 h-11 rounded-full border-2 border-cta/40 flex items-center justify-center font-bold text-muted-foreground disabled:opacity-30 hover:border-foreground hover:text-foreground transition-colors text-lg"
           >+</button>
         </div>
         {showFieldError('people') && <p id="error-desktop-people" className="text-xs text-red-500 mt-1">{getFieldError('people')}</p>}
@@ -674,7 +674,7 @@ function Step3Extras({
           {t.endowment?.customizeExperience || t.booking.extrasSection.title}
         </p>
         {totalExtrasPrice > 0 && (
-          <span className="text-sm text-[#0D0D2B] font-bold">+{totalExtrasPrice}€</span>
+          <span className="text-sm text-foreground font-bold">+{totalExtrasPrice}€</span>
         )}
       </div>
 
@@ -687,8 +687,8 @@ function Step3Extras({
             onClick={() => handlePackSelect(pack.id)}
             className={`flex flex-col items-center gap-2 p-5 rounded-lg border-2 text-center transition-all ${
               selectedPack === pack.id
-                ? 'border-[#0D0D2B] bg-gradient-to-br from-[#A8C4DD]/55 via-[#A8C4DD]/25 to-[#0D0D2B]/15 shadow-md'
-                : 'border-[#A8C4DD]/50 bg-gradient-to-br from-[#A8C4DD]/40 via-[#A8C4DD]/20 to-[#A8C4DD]/5 hover:border-[#A8C4DD] hover:from-[#A8C4DD]/50 hover:shadow-sm'
+                ? 'border-foreground bg-gradient-to-br from-cta/55 via-cta/25 to-foreground/15 shadow-md'
+                : 'border-cta/50 bg-gradient-to-br from-cta/40 via-cta/20 to-cta/5 hover:border-cta hover:from-cta/50 hover:shadow-sm'
             }`}
           >
             <div className="flex-1 flex flex-col items-center gap-1.5">
@@ -699,7 +699,7 @@ function Step3Extras({
                 {pack.extras.join(', ')}
               </p>
             </div>
-            <p className="text-base font-bold text-[#0D0D2B]">{pack.price}€</p>
+            <p className="text-base font-bold text-foreground">{pack.price}€</p>
             <span className="inline-block px-2.5 py-0.5 rounded-full text-white text-xs font-semibold animate-savings-pulse">
               -{calculatePackSavings(pack.id).toFixed(2)}€ {t.booking.extrasSection.savings.toLowerCase()}
             </span>
@@ -721,22 +721,22 @@ function Step3Extras({
               disabled={inPack}
               className={`flex flex-col items-center gap-1.5 p-3 rounded-lg border-2 text-center transition-all ${
                 inPack
-                  ? 'border-[#0D0D2B]/20 bg-[#0D0D2B]/5 opacity-70 cursor-default'
+                  ? 'border-foreground/20 bg-foreground/5 opacity-70 cursor-default'
                   : isSelected
-                  ? 'border-[#0D0D2B] bg-[#0D0D2B]/5'
-                  : 'border-[#A8C4DD]/40 bg-white hover:border-[#A8C4DD]'
+                  ? 'border-foreground bg-foreground/5'
+                  : 'border-cta/40 bg-background hover:border-cta'
               }`}
             >
-              {Icon && <Icon className="w-7 h-7 text-[#0D0D2B]" />}
+              {Icon && <Icon className="w-7 h-7 text-foreground" />}
               <span className="text-xs font-medium text-foreground leading-tight">
                 {extra.name}
               </span>
               {inPack ? (
-                <span className="text-xs text-[#0D0D2B] font-semibold">
+                <span className="text-xs text-foreground font-semibold">
                   {t.booking.extrasSection.included.toLowerCase()}
                 </span>
               ) : (
-                <span className="text-sm font-bold text-[#0D0D2B]">
+                <span className="text-sm font-bold text-foreground">
                   {extra.price}
                 </span>
               )}
@@ -830,10 +830,10 @@ function Step4Contact({
   return (
     <div className="space-y-4">
       {/* Review summary card */}
-      <div className="bg-[#A8C4DD]/10 border border-[#A8C4DD]/30 rounded-xl p-4">
+      <div className="bg-cta/10 border border-cta/30 rounded-xl p-4">
         <div className="flex items-center justify-between mb-3">
           <div className="flex items-center gap-2">
-            <ClipboardList className="w-4 h-4 text-[#0D0D2B]/70" />
+            <ClipboardList className="w-4 h-4 text-foreground/70" />
             <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">
               {t.reviewSummary?.title || 'Resumen de tu reserva'}
             </p>
@@ -841,7 +841,7 @@ function Step4Contact({
           <button
             type="button"
             onClick={() => onGoToStep(1)}
-            className="text-xs font-medium text-[#0D0D2B]/70 hover:text-[#0D0D2B] transition-colors underline underline-offset-2"
+            className="text-xs font-medium text-foreground/70 hover:text-foreground transition-colors underline underline-offset-2"
           >
             {t.reviewSummary?.modify || 'Modificar'}
           </button>
@@ -929,13 +929,13 @@ function Step4Contact({
                 <span className="truncate text-sm">{phonePrefix}</span>
               </button>
               {showPrefixDropdown && (
-                <div className="absolute top-full left-0 mt-1 w-64 bg-white border border-[#A8C4DD]/40 rounded-xl shadow-lg z-50 max-h-48 overflow-y-auto">
-                  <div className="p-2 border-b sticky top-0 bg-white">
+                <div className="absolute top-full left-0 mt-1 w-64 bg-background border border-cta/40 rounded-xl shadow-lg z-50 max-h-48 overflow-y-auto">
+                  <div className="p-2 border-b sticky top-0 bg-background">
                     <input
                       type="text" value={prefixSearch}
                       onChange={(e) => setPrefixSearch(e.target.value)}
                       placeholder={t.wizard.searchCountry}
-                      className="w-full p-2 border border-[#A8C4DD]/40 rounded-lg text-sm bg-white text-foreground"
+                      className="w-full p-2 border border-cta/40 rounded-lg text-sm bg-background text-foreground"
                     />
                   </div>
                   {filteredPrefixes.map((prefix) => (
@@ -943,7 +943,7 @@ function Step4Contact({
                       key={`${prefix.code}-${prefix.country}`}
                       type="button"
                       onClick={() => { setPhonePrefix(prefix.code); setShowPrefixDropdown(false); setPrefixSearch(""); }}
-                      className="w-full p-2 hover:bg-[#A8C4DD]/10 text-left flex items-center gap-2 text-sm bg-white"
+                      className="w-full p-2 hover:bg-cta/10 text-left flex items-center gap-2 text-sm bg-background"
                     >
                       <span>{prefix.flag}</span>
                       <span className="font-medium">{prefix.code}</span>
@@ -999,10 +999,10 @@ function Step4Contact({
         {showCodeSection && (
           <div className="space-y-2">
             {validatedCode ? (
-              <div className="flex items-center justify-between bg-[#0D0D2B]/5 border border-[#0D0D2B]/20 rounded-lg p-2.5">
+              <div className="flex items-center justify-between bg-foreground/5 border border-foreground/20 rounded-lg p-2.5">
                 <div>
-                  <p className="text-xs font-bold text-[#0D0D2B]">{validatedCode.code}</p>
-                  <p className="text-xs text-[#0D0D2B]">
+                  <p className="text-xs font-bold text-foreground">{validatedCode.code}</p>
+                  <p className="text-xs text-foreground">
                     {validatedCode.type === 'gift_card'
                       ? `-${discount}\u20AC`
                       : `-${validatedCode.percentage}% (-${discount}\u20AC)`}
@@ -1022,14 +1022,14 @@ function Step4Contact({
                   type="text" value={codeInput}
                   onChange={(e) => setCodeInput(e.target.value.toUpperCase())}
                   placeholder={t.codeValidation.enterCode}
-                  className={`flex-1 p-2.5 border-2 ${inputNormal} rounded-lg bg-white text-foreground text-sm font-medium focus:ring-2 focus:ring-[#0D0D2B]/30 focus:outline-none uppercase`}
+                  className={`flex-1 p-2.5 border-2 ${inputNormal} rounded-lg bg-background text-foreground text-sm font-medium focus:ring-2 focus:ring-foreground/30 focus:outline-none uppercase`}
                   maxLength={32}
                   onKeyDown={(e) => { if (e.key === 'Enter') { e.preventDefault(); handleValidateCode(); } }}
                 />
                 <button
                   type="button" onClick={handleValidateCode}
                   disabled={isValidatingCode || !codeInput.trim()}
-                  className="px-3 py-2.5 bg-[#0D0D2B] text-white text-xs font-semibold rounded-lg disabled:opacity-50 hover:bg-[#0D0D2B]/90 transition-colors flex-shrink-0"
+                  className="px-3 py-2.5 bg-foreground text-white text-xs font-semibold rounded-lg disabled:opacity-50 hover:bg-foreground/90 transition-colors flex-shrink-0"
                 >
                   {isValidatingCode
                     ? <Loader2 className="w-4 h-4 animate-spin" />
@@ -1044,7 +1044,7 @@ function Step4Contact({
 
       {/* Price summary */}
       {price !== null && (
-        <div className="bg-[#A8C4DD]/10 border border-[#A8C4DD]/30 rounded-xl p-4">
+        <div className="bg-cta/10 border border-cta/30 rounded-xl p-4">
           <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-2">
             {t.endowment?.yourPrice || t.booking.estimatedTotal}
           </p>
@@ -1072,19 +1072,19 @@ function Step4Contact({
               </div>
             )}
             {discount > 0 && validatedCode && (
-              <div className="flex justify-between text-sm text-[#0D0D2B]">
+              <div className="flex justify-between text-sm text-foreground">
                 <span>{validatedCode.code}</span>
                 <span>-{discount}€</span>
               </div>
             )}
-            <div className="flex justify-between items-baseline border-t border-[#A8C4DD]/30 pt-2 mt-2">
+            <div className="flex justify-between items-baseline border-t border-cta/30 pt-2 mt-2">
               <span className="text-sm font-bold text-foreground">{t.endowment?.yourPrice || 'Total'}</span>
-              <span className="text-xl font-bold text-[#0D0D2B]">
+              <span className="text-xl font-bold text-foreground">
                 {price + totalExtrasPrice - discount - autoDiscountAmount}€
               </span>
             </div>
             {depositAmount && (
-              <div className="flex justify-between text-sm mt-2 pt-2 border-t border-[#A8C4DD]/20 border-dashed">
+              <div className="flex justify-between text-sm mt-2 pt-2 border-t border-cta/20 border-dashed">
                 <span className="text-muted-foreground/70">
                   {t.pricing?.depositLabel || 'Fianza'} ({t.pricing?.depositRefundable || 'reembolsable'})
                 </span>
@@ -1104,11 +1104,11 @@ function Step4Contact({
       {/* RGPD passive consent notice */}
       <p className="text-xs text-muted-foreground leading-relaxed text-center">
         {t.booking.gdprPassive?.split('{privacyPolicy}')[0] || 'Al enviar esta solicitud, aceptas nuestra '}
-        <a href="/privacy-policy" target="_blank" rel="noopener noreferrer" className="text-[#0D0D2B] underline hover:text-[#0D0D2B]/80">
+        <a href="/privacy-policy" target="_blank" rel="noopener noreferrer" className="text-foreground underline hover:text-foreground/80">
           {t.booking.gdprPrivacyLink}
         </a>
         {(t.booking.gdprPassive?.split('{privacyPolicy}')[1] || ' y ').split('{termsAndConditions}')[0]}
-        <a href="/condiciones-generales" target="_blank" rel="noopener noreferrer" className="text-[#0D0D2B] underline hover:text-[#0D0D2B]/80">
+        <a href="/condiciones-generales" target="_blank" rel="noopener noreferrer" className="text-foreground underline hover:text-foreground/80">
           {t.booking.gdprTermsLink}
         </a>
         {(t.booking.gdprPassive?.split('{privacyPolicy}')[1] || '').split('{termsAndConditions}')[1] || '.'}

@@ -53,7 +53,7 @@ export function RouteProgressBar() {
       style={{ opacity: visible ? 1 : 0, transition: "opacity 300ms ease-out" }}
     >
       <div
-        className="h-full bg-[#A8C4DD]"
+        className="h-full bg-cta"
         style={{
           width: `${progress}%`,
           transition: progress === 0

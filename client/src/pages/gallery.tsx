@@ -47,7 +47,7 @@ export default function GalleryPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-muted">
       <SEO
         title={seoConfig.title}
         description={seoConfig.description}
@@ -58,10 +58,10 @@ export default function GalleryPage() {
 
       <div className="container mx-auto px-4 pt-20 sm:pt-24 pb-8 sm:pb-12">
         <div className="text-center mb-8">
-          <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-3">
+          <h1 className="text-3xl sm:text-4xl font-bold text-foreground mb-3">
             {t.gallery?.title || "Galeria de Fotos"}
           </h1>
-          <p className="text-gray-600 max-w-2xl mx-auto mb-6">
+          <p className="text-muted-foreground max-w-2xl mx-auto mb-6">
             {t.gallery?.subtitle || "Fotos de nuestros clientes disfrutando de la Costa Brava"}
           </p>
           <Button onClick={() => setShowSubmitForm(true)}>
@@ -76,8 +76,8 @@ export default function GalleryPage() {
           </div>
         ) : photos.length === 0 ? (
           <div className="text-center py-16">
-            <Camera className="w-16 h-16 text-gray-300 mx-auto mb-4" />
-            <p className="text-gray-500 text-lg">
+            <Camera className="w-16 h-16 text-muted-foreground/40 mx-auto mb-4" />
+            <p className="text-muted-foreground/60 text-lg">
               {t.gallery?.noPhotos || "Aun no hay fotos. Se el primero en compartir!"}
             </p>
           </div>
@@ -90,7 +90,7 @@ export default function GalleryPage() {
                 className="break-inside-avoid cursor-pointer group"
                 onClick={() => openLightbox(index)}
               >
-                <div className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                <div className="bg-background rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow">
                   <img
                     src={photo.imageUrl}
                     alt={photo.caption || `Photo by ${photo.customerName}`}
@@ -99,9 +99,9 @@ export default function GalleryPage() {
                   />
                   <div className="p-3">
                     {photo.caption && (
-                      <p className="text-sm text-gray-700 mb-1">{photo.caption}</p>
+                      <p className="text-sm text-muted-foreground mb-1">{photo.caption}</p>
                     )}
-                    <p className="text-xs text-gray-500">
+                    <p className="text-xs text-muted-foreground/60">
                       {photo.customerName}
                       {photo.boatName && ` - ${photo.boatName}`}
                     </p>

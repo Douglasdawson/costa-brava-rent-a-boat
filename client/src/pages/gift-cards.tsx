@@ -96,7 +96,7 @@ export default function GiftCardsPage() {
 
   if (purchaseComplete) {
     return (
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-muted">
         <SEO title={seoConfig.title} description={seoConfig.description} canonical={canonical} hreflang={hreflangLinks} />
         <Navigation />
         <div className="container mx-auto px-4 py-16">
@@ -108,14 +108,14 @@ export default function GiftCardsPage() {
               <h2 className="text-2xl font-bold mb-2">
                 {t.giftCards?.purchaseSuccess || "Tarjeta regalo creada"}
               </h2>
-              <p className="text-gray-600 mb-4">
+              <p className="text-muted-foreground mb-4">
                 {t.giftCards?.purchaseSuccessDesc || "Se enviará por email una vez confirmado el pago."}
               </p>
-              <div className="bg-gray-100 rounded-lg p-4 mb-4">
-                <p className="text-sm text-gray-500 mb-1">{t.giftCards?.code || "Código"}</p>
+              <div className="bg-muted rounded-lg p-4 mb-4">
+                <p className="text-sm text-muted-foreground/60 mb-1">{t.giftCards?.code || "Código"}</p>
                 <p className="text-2xl font-mono font-bold tracking-wider">{giftCardCode}</p>
               </div>
-              <p className="text-sm text-gray-500 mb-6">
+              <p className="text-sm text-muted-foreground/60 mb-6">
                 {t.giftCards?.forRecipient || "Para"}: {recipientName}
               </p>
               <div className="flex gap-3 justify-center">
@@ -145,16 +145,16 @@ export default function GiftCardsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-muted">
       <SEO title={seoConfig.title} description={seoConfig.description} canonical={canonical} hreflang={hreflangLinks} />
       <Navigation />
 
       <div className="container mx-auto px-4 pt-20 sm:pt-24 pb-8 sm:pb-12">
         <div className="text-center mb-8">
-          <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-3">
+          <h1 className="text-3xl sm:text-4xl font-bold text-foreground mb-3">
             {t.giftCards?.title || "Tarjetas Regalo"}
           </h1>
-          <p className="text-gray-600 max-w-2xl mx-auto">
+          <p className="text-muted-foreground max-w-2xl mx-auto">
             {t.giftCards?.subtitle || "Regala una experiencia inolvidable en barco por la Costa Brava"}
           </p>
         </div>
@@ -237,7 +237,7 @@ export default function GiftCardsPage() {
               </div>
 
               <div className="border-t pt-4">
-                <p className="text-sm font-medium text-gray-700 mb-3">
+                <p className="text-sm font-medium text-muted-foreground mb-3">
                   {t.giftCards?.recipientInfo || "Datos del destinatario"}
                 </p>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -278,7 +278,7 @@ export default function GiftCardsPage() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between mb-4">
                 <div>
-                  <p className="text-sm text-gray-500">{t.giftCards?.total || "Total"}</p>
+                  <p className="text-sm text-muted-foreground/60">{t.giftCards?.total || "Total"}</p>
                   <p className="text-3xl font-bold">
                     {effectiveAmount ? `${effectiveAmount}EUR` : "---"}
                   </p>
@@ -288,7 +288,7 @@ export default function GiftCardsPage() {
                     <Ship className="w-3 h-3 mr-1" />
                     {t.giftCards?.validOneYear || "Valida 1 ano"}
                   </Badge>
-                  <p className="text-xs text-gray-500">
+                  <p className="text-xs text-muted-foreground/60">
                     {t.giftCards?.allBoats || "Valida para todos los barcos"}
                   </p>
                 </div>

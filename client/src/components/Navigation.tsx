@@ -160,7 +160,7 @@ export default function Navigation() {
   };
 
   return (
-    <nav className="fixed top-3 left-3 right-3 z-50 bg-white/95 backdrop-blur-xl rounded-2xl border border-gray-200 shadow-[0_4px_16px_rgba(0,0,0,0.08)] md:top-6 md:left-6 md:right-6 pt-safe">
+    <nav className="fixed top-3 left-3 right-3 z-50 bg-background/95 backdrop-blur-xl rounded-2xl border border-border shadow-md md:top-6 md:left-6 md:right-6 pt-safe">
       <a
         href="#main-content"
         className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-primary focus:text-white focus:rounded-lg focus:outline-none"
@@ -223,11 +223,11 @@ export default function Navigation() {
               size="icon"
               onClick={toggleTheme}
               aria-label={theme === 'dark' ? t.a11y.switchToLightMode : t.a11y.switchToDarkMode}
-              className="text-foreground/70 hover:text-foreground hover:bg-gray-100"
+              className="text-foreground/70 hover:text-foreground hover:bg-muted"
             >
               {theme === 'dark' ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
             </Button>
-            <LanguageSelector variant="minimal" className="text-foreground/70 hover:text-foreground hover:bg-gray-100" />
+            <LanguageSelector variant="minimal" className="text-foreground/70 hover:text-foreground hover:bg-muted" />
             <Button
               onClick={() => handleNavigation("#booking", t.nav.bookNow)}
               data-testid="desktop-button-book"
@@ -242,7 +242,7 @@ export default function Navigation() {
                 onClick={handleMyAccountClick}
                 data-testid="button-my-account"
                 aria-label={t.a11y.accessMyAccount}
-                className="text-foreground/70 hover:text-foreground hover:bg-gray-100"
+                className="text-foreground/70 hover:text-foreground hover:bg-muted"
               >
                 <UserCircle className="w-4 h-4 mr-2" />
                 {t.nav.myAccount}
@@ -270,11 +270,11 @@ export default function Navigation() {
         <nav
           aria-label={t.a11y.mobileNavMenu}
           aria-hidden={!isOpen}
-          className={`lg:hidden border-t border-border bg-white overflow-hidden transition-all duration-200 ease-in-out ${isOpen ? "max-h-[600px] opacity-100 py-3" : "max-h-0 opacity-0 py-0"}`}
+          className={`lg:hidden border-t border-border bg-background overflow-hidden transition-all duration-200 ease-in-out ${isOpen ? "max-h-[600px] opacity-100 py-3" : "max-h-0 opacity-0 py-0"}`}
         >
             <div className="grid grid-cols-1 gap-0">
               {navigationItems.map((item) => {
-                const baseClass = "px-4 py-3.5 text-gray-700 hover:text-primary hover:bg-gray-50 transition-colors w-full text-left font-medium block text-base rounded focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent focus-visible:outline-none";
+                const baseClass = "px-4 py-3.5 text-foreground hover:text-primary hover:bg-muted transition-colors w-full text-left font-medium block text-base rounded focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent focus-visible:outline-none";
                 if (!item.href.startsWith("#")) {
                   const href = item.href === "#faq" ? "/faq" : item.href;
                   return (

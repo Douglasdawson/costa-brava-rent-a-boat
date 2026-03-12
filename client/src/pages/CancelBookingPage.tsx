@@ -91,7 +91,7 @@ export default function CancelBookingPage() {
   if (error) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-muted">
-        <div className="max-w-md w-full mx-4 bg-white rounded-2xl shadow-lg p-8 text-center">
+        <div className="max-w-md w-full mx-4 bg-background rounded-2xl shadow-lg p-8 text-center">
           <p className="text-2xl mb-2">No se puede cancelar</p>
           <p className="text-muted-foreground">{error}</p>
           <a href="/" className="mt-4 inline-block text-primary underline">Volver al inicio</a>
@@ -103,7 +103,7 @@ export default function CancelBookingPage() {
   if (cancelled && cancelResult) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-muted">
-        <div className="max-w-md w-full mx-4 bg-white rounded-2xl shadow-lg p-8 text-center">
+        <div className="max-w-md w-full mx-4 bg-background rounded-2xl shadow-lg p-8 text-center">
           <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
             <span className="text-3xl text-primary">&#10003;</span>
           </div>
@@ -130,7 +130,7 @@ export default function CancelBookingPage() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-muted">
-      <div className="max-w-md w-full mx-4 bg-white rounded-2xl shadow-lg p-8">
+      <div className="max-w-md w-full mx-4 bg-background rounded-2xl shadow-lg p-8">
         <h1 className="text-2xl font-bold text-foreground mb-6">Cancelar reserva</h1>
 
         {/* Booking details */}

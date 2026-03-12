@@ -168,9 +168,9 @@ export default function ReviewsSection() {
             onClick={() => handleScroll("left")}
             disabled={!canScrollLeft}
             aria-label="Scroll left"
-            className={`absolute left-0 top-1/2 -translate-y-1/2 -translate-x-3 z-10 hidden md:flex items-center justify-center w-10 h-10 rounded-full bg-white border border-border shadow-md transition-opacity ${
+            className={`absolute left-0 top-1/2 -translate-y-1/2 -translate-x-3 z-10 hidden md:flex items-center justify-center w-10 h-10 rounded-full bg-background border border-border shadow-md transition-opacity ${
               canScrollLeft
-                ? "opacity-0 group-hover:opacity-100 hover:bg-gray-50 cursor-pointer"
+                ? "opacity-0 group-hover:opacity-100 hover:bg-muted cursor-pointer"
                 : "opacity-0 pointer-events-none"
             }`}
           >
@@ -182,9 +182,9 @@ export default function ReviewsSection() {
             onClick={() => handleScroll("right")}
             disabled={!canScrollRight}
             aria-label="Scroll right"
-            className={`absolute right-0 top-1/2 -translate-y-1/2 translate-x-3 z-10 hidden md:flex items-center justify-center w-10 h-10 rounded-full bg-white border border-border shadow-md transition-opacity ${
+            className={`absolute right-0 top-1/2 -translate-y-1/2 translate-x-3 z-10 hidden md:flex items-center justify-center w-10 h-10 rounded-full bg-background border border-border shadow-md transition-opacity ${
               canScrollRight
-                ? "opacity-0 group-hover:opacity-100 hover:bg-gray-50 cursor-pointer"
+                ? "opacity-0 group-hover:opacity-100 hover:bg-muted cursor-pointer"
                 : "opacity-0 pointer-events-none"
             }`}
           >
@@ -200,7 +200,7 @@ export default function ReviewsSection() {
             {displayReviews.map((review) => (
               <div
                 key={review.id}
-                className="w-[220px] sm:w-[240px] aspect-[3/3.2] snap-start flex-shrink-0 bg-white rounded-2xl border border-border p-5 flex flex-col"
+                className="w-[220px] sm:w-[240px] aspect-[3/3.2] snap-start flex-shrink-0 bg-background rounded-2xl border border-border p-5 flex flex-col"
               >
                 {/* Stars */}
                 <div className="flex gap-0.5 mb-2">
@@ -210,7 +210,7 @@ export default function ReviewsSection() {
                       className={`w-3 h-3 ${
                         i < review.rating
                           ? "text-amber-400 fill-amber-400"
-                          : "text-gray-300"
+                          : "text-muted-foreground/40"
                       }`}
                     />
                   ))}

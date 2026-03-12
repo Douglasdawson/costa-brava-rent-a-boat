@@ -334,7 +334,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
         {/* Image and Description Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 mb-6 sm:mb-8">
           {/* Left Column - Image Gallery Carousel */}
-          <div className="bg-white rounded-xl overflow-hidden shadow-lg">
+          <div className="bg-background rounded-xl overflow-hidden shadow-lg">
             <div
               className="relative group"
               onTouchStart={(e) => { touchStartX.current = e.touches[0].clientX; }}
@@ -527,8 +527,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                     {Object.entries(boatData.pricing[selectedSeason].prices).sort((a, b) => parseInt(a[0]) - parseInt(b[0])).map(([duration, price]) => {
                       const isRecommended = !requiresLicense && duration === "4h";
                       return (
-                        <div key={duration} className={`relative text-center p-3 rounded-lg min-w-[120px] transition-all cursor-pointer ${isRecommended ? "bg-white border-2 border-primary shadow-md scale-105 hover:shadow-lg" : "bg-white border hover:bg-primary/5"}`}
-                          style={isRecommended ? { boxShadow: "0 0 12px 2px rgba(168, 196, 221, 0.35)" } : undefined}
+                        <div key={duration} className={`relative text-center p-3 rounded-lg min-w-[120px] transition-all cursor-pointer ${isRecommended ? "bg-background border-2 border-primary shadow-md scale-105 hover:shadow-lg ring-3 ring-cta/35" : "bg-background border hover:bg-primary/5"}`}
                         >
                           {isRecommended && (
                             <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-white text-[10px] font-bold px-3 py-0.5 rounded-full whitespace-nowrap tracking-wide shadow-sm">
@@ -796,7 +795,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                   <a
                     key={relBoat.id}
                     href={`/barco/${relBoat.id}`}
-                    className="group bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow border border-border"
+                    className="group bg-background rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow border border-border"
                   >
                     <div className="relative overflow-hidden" style={{ aspectRatio: '4/3' }}>
                       <img
@@ -866,7 +865,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
       {/* Sticky pricing sidebar for desktop */}
       {showStickyCTA && !isBookingModalOpen && lowestPrice > 0 && (
         <div className="hidden lg:block fixed right-6 top-24 w-64 z-30 transition-all duration-300">
-          <div className="bg-white rounded-xl shadow-xl border border-border p-4 space-y-3">
+          <div className="bg-background rounded-xl shadow-xl border border-border p-4 space-y-3">
             <p className="font-bold text-foreground truncate">{boatData.name}</p>
             <div className="flex items-baseline gap-2">
               <span className="text-sm text-muted-foreground">{t.boats.from}</span>

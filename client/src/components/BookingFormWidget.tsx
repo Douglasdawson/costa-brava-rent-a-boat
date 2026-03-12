@@ -816,7 +816,12 @@ export default function BookingFormWidget({ preSelectedBoatId, prefillDate, pref
 
     const nonPackExtras = selectedExtras.filter(e => !extrasInPack.has(e));
     if (nonPackExtras.length > 0) {
-      parts.push(`Extras: ${nonPackExtras.join(', ')}`);
+      const boatExtras = selectedBoat && BOAT_DATA[selectedBoat] ? BOAT_DATA[selectedBoat].extras : [];
+      nonPackExtras.forEach(extraName => {
+        const extraData = boatExtras.find(e => e.name === extraName);
+        const priceStr = extraData?.price ? ` (${extraData.price})` : '';
+        parts.push(`· ${extraName}${priceStr}`);
+      });
     }
 
     if (parts.length === 0) return '';
@@ -843,66 +848,70 @@ export default function BookingFormWidget({ preSelectedBoatId, prefillDate, pref
     const autoDiscountAmount = autoDiscount?.type ? autoDiscount.amount : 0;
     const totalPrice = price ? price + totalExtrasPrice - codeDiscount - autoDiscountAmount : null;
 
+    const separator = '┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄';
+
     let autoDiscountBlock = '';
     if (autoDiscount?.type) {
       const label = autoDiscount.type === 'early-bird'
         ? (isSpanish ? 'Descuento early-bird' : 'Early-bird discount')
         : (isSpanish ? 'Oferta flash' : 'Flash deal');
-      autoDiscountBlock = isSpanish
-        ? `\n\n*DESCUENTO AUTOMATICO*\n${label}: -${autoDiscountAmount}€ (-10%)`
-        : `\n\n*AUTOMATIC DISCOUNT*\n${label}: -${autoDiscountAmount}€ (-10%)`;
+      autoDiscountBlock = `\n\n🏷️ *${label}*\n-${autoDiscountAmount}€ (-10%)`;
     }
 
     let codeBlock = '';
     if (validatedCode) {
       if (validatedCode.type === 'gift_card') {
         codeBlock = isSpanish
-          ? `\n\n*TARJETA REGALO*\nCodigo: ${validatedCode.code}\nValor: -${codeDiscount}€`
-          : `\n\n*GIFT CARD*\nCode: ${validatedCode.code}\nValue: -${codeDiscount}€`;
+          ? `\n\n🎁 *Tarjeta regalo*\n${separator}\nCodigo: ${validatedCode.code}\nValor: -${codeDiscount}€`
+          : `\n\n🎁 *Gift card*\n${separator}\nCode: ${validatedCode.code}\nValue: -${codeDiscount}€`;
       } else if (validatedCode.type === 'discount') {
         codeBlock = isSpanish
-          ? `\n\n*DESCUENTO*\nCodigo: ${validatedCode.code}\nDescuento: ${validatedCode.percentage}% (-${codeDiscount}€)`
-          : `\n\n*DISCOUNT*\nCode: ${validatedCode.code}\nDiscount: ${validatedCode.percentage}% (-${codeDiscount}€)`;
+          ? `\n\n🏷️ *Descuento*\n${separator}\nCodigo: ${validatedCode.code}\nDescuento: ${validatedCode.percentage}% (-${codeDiscount}€)`
+          : `\n\n🏷️ *Discount*\n${separator}\nCode: ${validatedCode.code}\nDiscount: ${validatedCode.percentage}% (-${codeDiscount}€)`;
       }
     }
 
     if (isSpanish) {
-      return `Hola! Me gustaría reservar un barco:
+      return `⛵ *NUEVA RESERVA*
 
-*MIS DATOS*
+👤 *Datos del cliente*
+${separator}
 Nombre: ${fullName}
 Tel: ${phone}
 Email: ${email.trim()}
 
-*MI PETICIÓN DE RESERVA*
+🚤 *Detalles de la reserva*
+${separator}
 Barco: ${boatName}
 Fecha: ${formattedDate}
-Hora inicio: ${preferredTime}h
+Hora: ${preferredTime}h
 Duracion: ${durationText}
-Personas: ${numberOfPeople} de ${capacity} max
+Nº de Personas: ${numberOfPeople}
 Temporada: ${getSeasonLabel()}
-Precio base: ${price ? price + '€' : 'Consultar'}${extrasBlock ? '\n\n*EXTRAS*' + extrasBlock : ''}${autoDiscountBlock}${codeBlock}
-${totalPrice ? `\n*PRECIO TOTAL: ${totalPrice}€*` : ''}
+Precio base: ${price ? price + '€' : 'Consultar'}${extrasBlock ? `\n\n🎒 *Extras*\n${separator}` + extrasBlock : ''}${autoDiscountBlock}${codeBlock}
+${totalPrice ? `\n💰 *TOTAL: ${totalPrice}€*` : ''}
 Fianza: ${deposit}
 
-Quedo a la espera de confirmacion. Gracias!`;
+Quedo a la espera de confirmacion. ¡Gracias!`;
     } else {
-      return `Hello! I would like to book a boat:
+      return `⛵ *NEW BOOKING*
 
-*CLIENT DETAILS*
+👤 *Client details*
+${separator}
 Name: ${fullName}
 Phone: ${phone}
 Email: ${email.trim()}
 
-*BOOKING DETAILS*
+🚤 *Booking details*
+${separator}
 Boat: ${boatName}
 Date: ${formattedDate}
-Start time: ${preferredTime}h
+Time: ${preferredTime}h
 Duration: ${durationText}
-People: ${numberOfPeople} of ${capacity} max
+Nº of People: ${numberOfPeople}
 Season: ${getSeasonLabel()}
-Base price: ${price ? price + '€' : 'Ask'}${extrasBlock ? '\n\n*EXTRAS*' + extrasBlock : ''}${autoDiscountBlock}${codeBlock}
-${totalPrice ? `\n*TOTAL PRICE: ${totalPrice}€*` : ''}
+Base price: ${price ? price + '€' : 'Ask'}${extrasBlock ? `\n\n🎒 *Extras*\n${separator}` + extrasBlock : ''}${autoDiscountBlock}${codeBlock}
+${totalPrice ? `\n💰 *TOTAL: ${totalPrice}€*` : ''}
 Deposit: ${deposit}
 
 Looking forward to confirmation. Thanks!`;

@@ -109,13 +109,13 @@ export function ExitIntentModal() {
       {/* Modal */}
       <div
         ref={modalRef}
-        className="relative bg-white rounded-2xl shadow-2xl max-w-md w-full overflow-hidden"
+        className="relative bg-background rounded-2xl shadow-2xl max-w-md w-full overflow-hidden"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close button */}
         <button
           onClick={handleDismiss}
-          className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 z-10"
+          className="absolute top-4 right-4 text-muted-foreground/60 hover:text-muted-foreground z-10"
           aria-label={t.a11y.close}
         >
           <X className="w-5 h-5" />

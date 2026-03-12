@@ -132,7 +132,7 @@ export default function LocationBlanesPage() {
       <Navigation />
       
       {/* Breadcrumbs */}
-      <div className="bg-gray-50 border-b border-gray-200">
+      <div className="bg-muted border-b border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
           <Breadcrumbs 
             items={[
@@ -149,11 +149,11 @@ export default function LocationBlanesPage() {
           <div className="text-center mb-8">
             <div className="flex items-center justify-center mb-6">
               <MapPin className="w-8 h-8 text-primary mr-4" />
-              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold text-gray-900">
+              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold text-foreground">
                 {t.locationPages.blanes.hero.title}
               </h1>
             </div>
-            <p className="text-lg text-gray-600 mb-6 max-w-4xl mx-auto">
+            <p className="text-lg text-muted-foreground mb-6 max-w-4xl mx-auto">
               {t.locationPages.blanes.hero.subtitle}
             </p>
             <div className="flex flex-wrap gap-3 justify-center">
@@ -175,7 +175,7 @@ export default function LocationBlanesPage() {
       </div>
 
       {/* Main Content */}
-      <div className="py-12 bg-gray-50">
+      <div className="py-12 bg-muted">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           
           {/* Why Choose Blanes */}
@@ -190,17 +190,17 @@ export default function LocationBlanesPage() {
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
                   <h3 className="font-semibold text-lg mb-3">{s.strategicLocation}</h3>
-                  <p className="text-gray-700 mb-4">{s.strategicLocationDesc}</p>
+                  <p className="text-muted-foreground mb-4">{s.strategicLocationDesc}</p>
 
                   <h3 className="font-semibold text-lg mb-3">{s.safePorts}</h3>
-                  <p className="text-gray-700">{s.safePortsDesc}</p>
+                  <p className="text-muted-foreground">{s.safePortsDesc}</p>
                 </div>
                 <div>
                   <h3 className="font-semibold text-lg mb-3">{s.accessibleCoves}</h3>
-                  <p className="text-gray-700 mb-4">{s.accessibleCovesDesc}</p>
+                  <p className="text-muted-foreground mb-4">{s.accessibleCovesDesc}</p>
 
                   <h3 className="font-semibold text-lg mb-3">{s.allLevels}</h3>
-                  <p className="text-gray-700">{s.allLevelsDesc}</p>
+                  <p className="text-muted-foreground">{s.allLevelsDesc}</p>
                 </div>
               </div>
             </CardContent>
@@ -221,8 +221,8 @@ export default function LocationBlanesPage() {
                     <Waves className="w-8 h-8 text-primary" />
                   </div>
                   <h3 className="font-semibold text-lg mb-2">{s.calaBrava}</h3>
-                  <p className="text-gray-600 text-sm mb-2">{s.calaBravaTime}</p>
-                  <p className="text-gray-700">{s.calaBravaDesc}</p>
+                  <p className="text-muted-foreground text-sm mb-2">{s.calaBravaTime}</p>
+                  <p className="text-muted-foreground">{s.calaBravaDesc}</p>
                 </div>
 
                 <div className="text-center">
@@ -230,8 +230,8 @@ export default function LocationBlanesPage() {
                     <Camera className="w-8 h-8 text-primary" />
                   </div>
                   <h3 className="font-semibold text-lg mb-2">{s.lloretDeMar}</h3>
-                  <p className="text-gray-600 text-sm mb-2">{s.lloretTime}</p>
-                  <p className="text-gray-700">{s.lloretDesc}</p>
+                  <p className="text-muted-foreground text-sm mb-2">{s.lloretTime}</p>
+                  <p className="text-muted-foreground">{s.lloretDesc}</p>
                 </div>
 
                 <div className="text-center">
@@ -239,8 +239,8 @@ export default function LocationBlanesPage() {
                     <Sun className="w-8 h-8 text-orange-600" />
                   </div>
                   <h3 className="font-semibold text-lg mb-2">{s.calaSantFrancesc}</h3>
-                  <p className="text-gray-600 text-sm mb-2">{s.calaSantFrancescTime}</p>
-                  <p className="text-gray-700">{s.calaSantFrancescDesc}</p>
+                  <p className="text-muted-foreground text-sm mb-2">{s.calaSantFrancescTime}</p>
+                  <p className="text-muted-foreground">{s.calaSantFrancescDesc}</p>
                 </div>
               </div>
             </CardContent>
@@ -279,7 +279,7 @@ export default function LocationBlanesPage() {
                 </div>
                 <div>
                   <h3 className="font-semibold text-lg mb-3">{s.howToGet}</h3>
-                  <ul className="space-y-2 text-gray-700">
+                  <ul className="space-y-2 text-muted-foreground">
                     <li>{s.fromBarcelona}</li>
                     <li>{s.fromGirona}</li>
                     <li>{s.fromFrance}</li>
@@ -330,7 +330,7 @@ export default function LocationBlanesPage() {
                   data-testid="map-blanes"
                 />
               </div>
-              <p className="text-sm text-gray-600 mt-4">
+              <p className="text-sm text-muted-foreground mt-4">
                 📍 <a 
                   href="https://maps.app.goo.gl/ma3qtsJbuFNhcr4bA"
                   target="_blank"

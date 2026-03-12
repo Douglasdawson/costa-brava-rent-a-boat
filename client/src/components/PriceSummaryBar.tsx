@@ -49,7 +49,7 @@ export default function PriceSummaryBar({
   // --- DESKTOP: compact card with breakdown ---
   if (variant === "desktop") {
     return (
-      <div className="border border-[#A8C4DD]/40 rounded-xl bg-[#A8C4DD]/5 px-4 py-3 space-y-1.5">
+      <div className="border border-cta/40 rounded-xl bg-cta/5 px-4 py-3 space-y-1.5">
         <div className="flex items-center justify-between">
           <span className="text-sm text-muted-foreground font-medium truncate mr-2">
             {boatName} · {duration}
@@ -69,8 +69,8 @@ export default function PriceSummaryBar({
           )}
           {autoDiscountAmount > 0 && autoDiscountLabel && (
             <div className="flex justify-between text-sm">
-              <span className="text-green-600 font-medium">{autoDiscountLabel}</span>
-              <span className="text-green-600 font-medium">-{autoDiscountAmount}€</span>
+              <span className="text-green-600 dark:text-green-400 font-medium">{autoDiscountLabel}</span>
+              <span className="text-green-600 dark:text-green-400 font-medium">-{autoDiscountAmount}€</span>
             </div>
           )}
           {discount > 0 && (
@@ -78,12 +78,12 @@ export default function PriceSummaryBar({
               <span className="text-muted-foreground">
                 {discountLabel || discountText}
               </span>
-              <span className="text-green-600 font-medium">-{discount}€</span>
+              <span className="text-green-600 dark:text-green-400 font-medium">-{discount}€</span>
             </div>
           )}
           {hasBreakdown && (
             <>
-              <div className="border-t border-[#A8C4DD]/30 my-1" />
+              <div className="border-t border-cta/30 my-1" />
               <div className="flex justify-between text-sm font-bold">
                 <span className="text-foreground">{totalLabel}</span>
                 <span className="text-foreground">{total}€</span>
@@ -97,7 +97,7 @@ export default function PriceSummaryBar({
 
   // --- MOBILE: compact sticky bar, expandable ---
   return (
-    <div className="border-t border-gray-200 bg-[#0D0D2B] text-white">
+    <div className="border-t border-border bg-foreground text-white">
       <button
         type="button"
         onClick={() => setExpanded(!expanded)}

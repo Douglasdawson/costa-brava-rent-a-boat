@@ -17,7 +17,7 @@ export function SocialProofStrip() {
           >
             <div className="flex items-center gap-0.5">
               {[...Array(5)].map((_, i) => (
-                <Star key={i} className={`w-4 h-4 ${i < 5 ? 'text-amber-400 fill-amber-400' : 'text-gray-300'}`} />
+                <Star key={i} className={`w-4 h-4 ${i < 5 ? 'text-amber-400 fill-amber-400' : 'text-muted-foreground/40'}`} />
               ))}
             </div>
             <span className="font-medium text-foreground">4.8</span>

@@ -149,7 +149,7 @@ export default function OnboardingPage() {
         </div>
 
         {/* Card */}
-        <div className="bg-white rounded-2xl shadow-xl p-4 sm:p-6 md:p-8">
+        <div className="bg-background rounded-2xl shadow-xl p-4 sm:p-6 md:p-8">
 
           {/* Step 1: Datos empresa */}
           {step === 1 && (

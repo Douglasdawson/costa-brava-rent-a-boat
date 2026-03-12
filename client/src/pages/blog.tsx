@@ -150,7 +150,7 @@ export default function BlogPage() {
           </div>
         </div>
         {/* Skeleton category pills */}
-        <div className="bg-white">
+        <div className="bg-background">
           <div className="container mx-auto px-4 py-6">
             <div className="flex gap-2">
               {[80, 100, 90, 110, 70].map((w, i) => (
@@ -160,7 +160,7 @@ export default function BlogPage() {
           </div>
         </div>
         {/* Skeleton grid */}
-        <div className="bg-white py-8">
+        <div className="bg-background py-8">
           <div className="container mx-auto px-4">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-7">
               {Array.from({ length: 6 }).map((_, i) => (
@@ -186,13 +186,13 @@ export default function BlogPage() {
   // --- Error ---
   if (isError) {
     return (
-      <div className="min-h-screen bg-white">
+      <div className="min-h-screen bg-background">
         <SEO title={seoConfig.title} description={seoConfig.description} canonical={canonical} hreflang={hreflangLinks} />
         <Navigation />
         <div className="flex flex-col items-center justify-center min-h-[60vh] px-4">
           <div className="text-center max-w-md">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">{bp.errorTitle}</h2>
-            <p className="text-gray-600 mb-6">{bp.errorDescription}</p>
+            <h2 className="text-2xl font-bold text-foreground mb-4">{bp.errorTitle}</h2>
+            <p className="text-muted-foreground mb-6">{bp.errorDescription}</p>
             <Button onClick={() => window.location.reload()} size="lg" data-testid="button-reload">
               {bp.retry}
             </Button>
@@ -235,10 +235,10 @@ export default function BlogPage() {
       </header>
 
       {/* Wave separator */}
-      <WaveDivider className="text-white h-6 md:h-10 -mb-px" />
+      <WaveDivider className="text-background h-6 md:h-10 -mb-px" />
 
       {/* Category pills */}
-      <div className="bg-white">
+      <div className="bg-background">
         <div className="container mx-auto px-4 py-6">
           <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide -mx-4 px-4 md:mx-0 md:px-0 md:flex-wrap" data-testid="select-category-filter">
             <button
@@ -276,7 +276,7 @@ export default function BlogPage() {
 
       {/* Featured Post — large cinematic card, only on first page + "all" category */}
       {featuredPost && (
-        <section className="bg-white pb-8 md:pb-12">
+        <section className="bg-background pb-8 md:pb-12">
           <div className="container mx-auto px-4">
             <Link href={`/blog/${featuredPost.slug}`}>
               <article
@@ -359,7 +359,7 @@ export default function BlogPage() {
       )}
 
       {/* Post Grid — mixed layout */}
-      <section className="bg-white py-8 md:py-12">
+      <section className="bg-background py-8 md:py-12">
         <div className="container mx-auto px-4">
           {paginatedPosts.length === 0 && !featuredPost ? (
             <div className="text-center py-16 space-y-4">
@@ -521,7 +521,7 @@ export default function BlogPage() {
       </section>
 
       {/* Bottom wave before footer */}
-      <WaveDivider className="text-[#faf9f7] h-6 md:h-10 -mb-px bg-white" />
+      <WaveDivider className="text-muted h-6 md:h-10 -mb-px bg-background" />
 
       <div className="bg-muted/30 h-8" />
 

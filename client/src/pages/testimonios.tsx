@@ -141,14 +141,14 @@ export default function TestimoniosPage() {
         className={`w-4 h-4 ${
           index < rating
             ? 'text-amber-400 fill-amber-400'
-            : 'text-gray-300'
+            : 'text-muted-foreground/40'
         }`}
       />
     ));
   };
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-background">
       <SEO
         title={seoConfig.title}
         description={seoConfig.description}
@@ -191,12 +191,12 @@ export default function TestimoniosPage() {
       </div>
 
       {/* Main Content */}
-      <div className="py-12 bg-gray-50">
+      <div className="py-12 bg-muted">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
           {/* Filter by Boat */}
           <div className="mb-8">
-            <h2 className="text-lg font-semibold mb-4 text-gray-900 flex items-center gap-2">
+            <h2 className="text-lg font-semibold mb-4 text-foreground flex items-center gap-2">
               <Ship className="w-5 h-5 text-primary" />
               Filtrar por barco
             </h2>
@@ -233,7 +233,7 @@ export default function TestimoniosPage() {
                 <CardHeader className="pb-3">
                   <div className="flex items-start justify-between gap-2">
                     <div className="flex-1">
-                      <h3 className="font-semibold text-base text-gray-900">
+                      <h3 className="font-semibold text-base text-foreground">
                         {review.flag && (
                           <span className="mr-1.5" role="img" aria-label={review.flag}>
                             {countryFlag(review.flag)}
@@ -241,7 +241,7 @@ export default function TestimoniosPage() {
                         )}
                         {review.name}
                       </h3>
-                      <p className="text-xs text-gray-500 mt-0.5">
+                      <p className="text-xs text-muted-foreground/60 mt-0.5">
                         {new Date(review.date + "-01").toLocaleDateString(
                           LOCALE_MAP[language] || "es-ES",
                           { month: "long", year: "numeric" }
@@ -264,8 +264,8 @@ export default function TestimoniosPage() {
 
                     {/* Comment */}
                     <div className="relative">
-                      <Quote className="absolute -top-1 -left-1 w-5 h-5 text-gray-200" />
-                      <p className="text-sm text-gray-700 pl-5 leading-relaxed">
+                      <Quote className="absolute -top-1 -left-1 w-5 h-5 text-muted-foreground/40" />
+                      <p className="text-sm text-muted-foreground pl-5 leading-relaxed">
                         {review.text}
                       </p>
                     </div>
@@ -289,10 +289,10 @@ export default function TestimoniosPage() {
           {/* CTA Section */}
           <Card className="bg-gradient-to-br from-blue-50 to-teal-50 border-blue-200">
             <CardContent className="p-8 text-center">
-              <h2 className="text-2xl font-bold text-gray-900 mb-3">
+              <h2 className="text-2xl font-bold text-foreground mb-3">
                 ¿Listo para vivir tu propia experiencia?
               </h2>
-              <p className="text-gray-700 mb-6 max-w-2xl mx-auto">
+              <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
                 Únete a cientos de clientes satisfechos que han descubierto las mejores calas de la Costa Brava con nosotros. Reserva ahora y crea recuerdos inolvidables.
               </p>
               <div className="flex flex-col sm:flex-row gap-3 justify-center">

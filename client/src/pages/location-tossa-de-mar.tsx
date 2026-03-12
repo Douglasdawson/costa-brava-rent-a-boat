@@ -133,7 +133,7 @@ export default function LocationTossaPage() {
       <Navigation />
       
       {/* Breadcrumbs */}
-      <div className="bg-gray-50 border-b border-gray-200">
+      <div className="bg-muted border-b border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
           <Breadcrumbs 
             items={[
@@ -150,11 +150,11 @@ export default function LocationTossaPage() {
           <div className="text-center mb-8">
             <div className="flex items-center justify-center mb-6">
               <Castle className="w-8 h-8 text-primary mr-4" />
-              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold text-gray-900">
+              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold text-foreground">
                 {t.locationPages.tossa.hero.title}
               </h1>
             </div>
-            <p className="text-lg text-gray-600 mb-6 max-w-4xl mx-auto">
+            <p className="text-lg text-muted-foreground mb-6 max-w-4xl mx-auto">
               {t.locationPages.tossa.hero.subtitle}
             </p>
             <div className="flex flex-wrap gap-3 justify-center">
@@ -176,7 +176,7 @@ export default function LocationTossaPage() {
       </div>
 
       {/* Main Content */}
-      <div className="py-12 bg-gray-50">
+      <div className="py-12 bg-muted">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           
           {/* Why Visit Tossa de Mar by Boat */}
@@ -191,17 +191,17 @@ export default function LocationTossaPage() {
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
                   <h3 className="font-semibold text-lg mb-3">{s.jewelCostaBrava}</h3>
-                  <p className="text-gray-700 mb-4">{s.jewelCostaBravaDesc}</p>
+                  <p className="text-muted-foreground mb-4">{s.jewelCostaBravaDesc}</p>
 
                   <h3 className="font-semibold text-lg mb-3">{s.historicHeritage}</h3>
-                  <p className="text-gray-700">{s.historicHeritageDesc}</p>
+                  <p className="text-muted-foreground">{s.historicHeritageDesc}</p>
                 </div>
                 <div>
                   <h3 className="font-semibold text-lg mb-3">{s.paradisiacalCoves}</h3>
-                  <p className="text-gray-700 mb-4">{s.paradisiacalCovesDesc}</p>
+                  <p className="text-muted-foreground mb-4">{s.paradisiacalCovesDesc}</p>
 
                   <h3 className="font-semibold text-lg mb-3">{s.panoramicNavigation}</h3>
-                  <p className="text-gray-700">{s.panoramicNavigationDesc}</p>
+                  <p className="text-muted-foreground">{s.panoramicNavigationDesc}</p>
                 </div>
               </div>
             </CardContent>
@@ -222,8 +222,8 @@ export default function LocationTossaPage() {
                     <Castle className="w-8 h-8 text-purple-600" />
                   </div>
                   <h3 className="font-semibold text-lg mb-2">{s.vilaVella}</h3>
-                  <p className="text-gray-600 text-sm mb-2">{s.vilaVellaSub}</p>
-                  <p className="text-gray-700">{s.vilaVellaDesc}</p>
+                  <p className="text-muted-foreground text-sm mb-2">{s.vilaVellaSub}</p>
+                  <p className="text-muted-foreground">{s.vilaVellaDesc}</p>
                 </div>
 
                 <div className="text-center">
@@ -231,8 +231,8 @@ export default function LocationTossaPage() {
                     <Waves className="w-8 h-8 text-primary" />
                   </div>
                   <h3 className="font-semibold text-lg mb-2">{s.playaGrande}</h3>
-                  <p className="text-gray-600 text-sm mb-2">{s.playaGrandeSub}</p>
-                  <p className="text-gray-700">{s.playaGrandeDesc}</p>
+                  <p className="text-muted-foreground text-sm mb-2">{s.playaGrandeSub}</p>
+                  <p className="text-muted-foreground">{s.playaGrandeDesc}</p>
                 </div>
 
                 <div className="text-center">
@@ -240,8 +240,8 @@ export default function LocationTossaPage() {
                     <Sun className="w-8 h-8 text-primary" />
                   </div>
                   <h3 className="font-semibold text-lg mb-2">{s.virginCoves}</h3>
-                  <p className="text-gray-600 text-sm mb-2">{s.virginCovesSub}</p>
-                  <p className="text-gray-700">{s.virginCovesDesc}</p>
+                  <p className="text-muted-foreground text-sm mb-2">{s.virginCovesSub}</p>
+                  <p className="text-muted-foreground">{s.virginCovesDesc}</p>
                 </div>
               </div>
             </CardContent>
@@ -315,17 +315,17 @@ export default function LocationTossaPage() {
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
                   <h3 className="font-semibold text-lg mb-3">{s.recommendedRoute}</h3>
-                  <p className="text-gray-700 mb-4">{s.recommendedRouteDesc}</p>
+                  <p className="text-muted-foreground mb-4">{s.recommendedRouteDesc}</p>
 
                   <h3 className="font-semibold text-lg mb-3">{s.bestSeason}</h3>
-                  <p className="text-gray-700">{s.bestSeasonDesc}</p>
+                  <p className="text-muted-foreground">{s.bestSeasonDesc}</p>
                 </div>
                 <div>
                   <h3 className="font-semibold text-lg mb-3">{s.anchoringZones}</h3>
-                  <p className="text-gray-700 mb-4">{s.anchoringZonesDesc}</p>
+                  <p className="text-muted-foreground mb-4">{s.anchoringZonesDesc}</p>
 
                   <h3 className="font-semibold text-lg mb-3">{s.safeNavigation}</h3>
-                  <p className="text-gray-700">{s.safeNavigationDesc}</p>
+                  <p className="text-muted-foreground">{s.safeNavigationDesc}</p>
                 </div>
               </div>
             </CardContent>

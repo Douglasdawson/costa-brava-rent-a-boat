@@ -134,7 +134,7 @@ export default function LocationLloretPage() {
       <Navigation />
       
       {/* Breadcrumbs */}
-      <div className="bg-gray-50 border-b border-gray-200">
+      <div className="bg-muted border-b border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
           <Breadcrumbs 
             items={[
@@ -151,11 +151,11 @@ export default function LocationLloretPage() {
           <div className="text-center mb-8">
             <div className="flex items-center justify-center mb-6">
               <MapPin className="w-8 h-8 text-primary mr-4" />
-              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold text-gray-900">
+              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold text-foreground">
                 {t.locationPages.lloret.hero.title}
               </h1>
             </div>
-            <p className="text-lg text-gray-600 mb-6 max-w-4xl mx-auto">
+            <p className="text-lg text-muted-foreground mb-6 max-w-4xl mx-auto">
               {t.locationPages.lloret.hero.subtitle}
             </p>
             <div className="flex flex-wrap gap-3 justify-center">
@@ -177,7 +177,7 @@ export default function LocationLloretPage() {
       </div>
 
       {/* Main Content */}
-      <div className="py-12 bg-gray-50">
+      <div className="py-12 bg-muted">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           
           {/* Why Visit Lloret de Mar by Boat */}
@@ -192,17 +192,17 @@ export default function LocationLloretPage() {
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
                   <h3 className="font-semibold text-lg mb-3">{s.uniquePerspective}</h3>
-                  <p className="text-gray-700 mb-4">{s.uniquePerspectiveDesc}</p>
+                  <p className="text-muted-foreground mb-4">{s.uniquePerspectiveDesc}</p>
 
                   <h3 className="font-semibold text-lg mb-3">{s.spectacularBeaches}</h3>
-                  <p className="text-gray-700">{s.spectacularBeachesDesc}</p>
+                  <p className="text-muted-foreground">{s.spectacularBeachesDesc}</p>
                 </div>
                 <div>
                   <h3 className="font-semibold text-lg mb-3">{s.vibrantAtmosphere}</h3>
-                  <p className="text-gray-700 mb-4">{s.vibrantAtmosphereDesc}</p>
+                  <p className="text-muted-foreground mb-4">{s.vibrantAtmosphereDesc}</p>
 
                   <h3 className="font-semibold text-lg mb-3">{s.easyAccess}</h3>
-                  <p className="text-gray-700">{s.easyAccessDesc}</p>
+                  <p className="text-muted-foreground">{s.easyAccessDesc}</p>
                 </div>
               </div>
             </CardContent>
@@ -223,8 +223,8 @@ export default function LocationLloretPage() {
                     <Users className="w-8 h-8 text-primary" />
                   </div>
                   <h3 className="font-semibold text-lg mb-2">{s.playaLloret}</h3>
-                  <p className="text-gray-600 text-sm mb-2">{s.playaLloretSub}</p>
-                  <p className="text-gray-700">{s.playaLloretDesc}</p>
+                  <p className="text-muted-foreground text-sm mb-2">{s.playaLloretSub}</p>
+                  <p className="text-muted-foreground">{s.playaLloretDesc}</p>
                 </div>
 
                 <div className="text-center">
@@ -232,8 +232,8 @@ export default function LocationLloretPage() {
                     <Sun className="w-8 h-8 text-primary" />
                   </div>
                   <h3 className="font-semibold text-lg mb-2">{s.calaBoadella}</h3>
-                  <p className="text-gray-600 text-sm mb-2">{s.calaBoadellaSub}</p>
-                  <p className="text-gray-700">{s.calaBoadellaDesc}</p>
+                  <p className="text-muted-foreground text-sm mb-2">{s.calaBoadellaSub}</p>
+                  <p className="text-muted-foreground">{s.calaBoadellaDesc}</p>
                 </div>
 
                 <div className="text-center">
@@ -241,8 +241,8 @@ export default function LocationLloretPage() {
                     <Camera className="w-8 h-8 text-orange-600" />
                   </div>
                   <h3 className="font-semibold text-lg mb-2">{s.santaCristina}</h3>
-                  <p className="text-gray-600 text-sm mb-2">{s.santaCristinaSub}</p>
-                  <p className="text-gray-700">{s.santaCristinaDesc}</p>
+                  <p className="text-muted-foreground text-sm mb-2">{s.santaCristinaSub}</p>
+                  <p className="text-muted-foreground">{s.santaCristinaDesc}</p>
                 </div>
               </div>
             </CardContent>
@@ -316,17 +316,17 @@ export default function LocationLloretPage() {
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
                   <h3 className="font-semibold text-lg mb-3">{s.recommendedRoute}</h3>
-                  <p className="text-gray-700 mb-4">{s.recommendedRouteDesc}</p>
+                  <p className="text-muted-foreground mb-4">{s.recommendedRouteDesc}</p>
 
                   <h3 className="font-semibold text-lg mb-3">{s.bestTimes}</h3>
-                  <p className="text-gray-700">{s.bestTimesDesc}</p>
+                  <p className="text-muted-foreground">{s.bestTimesDesc}</p>
                 </div>
                 <div>
                   <h3 className="font-semibold text-lg mb-3">{s.whereToAnchor}</h3>
-                  <p className="text-gray-700 mb-4">{s.whereToAnchorDesc}</p>
+                  <p className="text-muted-foreground mb-4">{s.whereToAnchorDesc}</p>
 
                   <h3 className="font-semibold text-lg mb-3">{s.safety}</h3>
-                  <p className="text-gray-700">{s.safetyDesc}</p>
+                  <p className="text-muted-foreground">{s.safetyDesc}</p>
                 </div>
               </div>
             </CardContent>

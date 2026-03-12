@@ -19,18 +19,18 @@ export default function AccessibilityDeclarationPage() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="flex items-center justify-center mb-4">
             <Shield className="w-8 h-8 text-primary mr-4" aria-hidden="true" />
-            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold text-gray-900">
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold text-foreground">
               Declaración de Accesibilidad
             </h1>
           </div>
-          <p className="text-sm text-gray-500">
+          <p className="text-sm text-muted-foreground/60">
             Conforme al Real Decreto 1112/2018, de 7 de septiembre
           </p>
         </div>
       </div>
 
       {/* Content */}
-      <div className="pt-6 pb-10 sm:pt-8 sm:pb-16 bg-gray-50">
+      <div className="pt-6 pb-10 sm:pt-8 sm:pb-16 bg-muted">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
 
           {/* Compromiso */}
@@ -38,7 +38,7 @@ export default function AccessibilityDeclarationPage() {
             <CardHeader>
               <CardTitle className="text-xl">Compromiso con la accesibilidad</CardTitle>
             </CardHeader>
-            <CardContent className="text-sm text-gray-700 space-y-3">
+            <CardContent className="text-sm text-muted-foreground space-y-3">
               <p>
                 <strong>Costa Brava Rent a Boat</strong> se compromete a hacer accesible su sitio web{" "}
                 <strong>costabravarentaboat.com</strong> de conformidad con el Real Decreto 1112/2018, de 7 de
@@ -62,7 +62,7 @@ export default function AccessibilityDeclarationPage() {
                 Estado de conformidad
               </CardTitle>
             </CardHeader>
-            <CardContent className="text-sm text-gray-700 space-y-3">
+            <CardContent className="text-sm text-muted-foreground space-y-3">
               <p>
                 Este sitio web es <strong>parcialmente conforme</strong> con las WCAG 2.1, nivel AA. Las
                 no conformidades conocidas se detallan a continuación.
@@ -93,7 +93,7 @@ export default function AccessibilityDeclarationPage() {
                 No conformidades conocidas
               </CardTitle>
             </CardHeader>
-            <CardContent className="text-sm text-gray-700 space-y-3">
+            <CardContent className="text-sm text-muted-foreground space-y-3">
               <ul className="list-disc pl-5 space-y-2">
                 <li>
                   <strong>Contraste de placeholders:</strong> Algunos campos de formulario presentan texto
@@ -105,7 +105,7 @@ export default function AccessibilityDeclarationPage() {
                   alternativas basadas en nonce.
                 </li>
               </ul>
-              <p className="text-xs text-gray-500">
+              <p className="text-xs text-muted-foreground/60">
                 Última auditoría realizada: febrero de 2026. Próxima revisión prevista: agosto de 2026.
               </p>
             </CardContent>
@@ -116,7 +116,7 @@ export default function AccessibilityDeclarationPage() {
             <CardHeader>
               <CardTitle className="text-xl">Contacto y reclamaciones</CardTitle>
             </CardHeader>
-            <CardContent className="text-sm text-gray-700 space-y-3">
+            <CardContent className="text-sm text-muted-foreground space-y-3">
               <p>
                 Si detectas alguna barrera de accesibilidad en nuestro sitio web o necesitas acceder a
                 contenido en un formato alternativo, puedes contactar con nosotros:
@@ -157,7 +157,7 @@ export default function AccessibilityDeclarationPage() {
           </Card>
 
           {/* Fecha */}
-          <p className="text-xs text-gray-500 text-center">
+          <p className="text-xs text-muted-foreground/60 text-center">
             Esta declaración fue preparada el 25 de febrero de 2026 mediante autoevaluación.
           </p>
 

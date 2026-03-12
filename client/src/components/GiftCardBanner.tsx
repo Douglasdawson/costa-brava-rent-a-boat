@@ -24,7 +24,7 @@ export default function GiftCardBanner() {
             <div className="flex-shrink-0">
               <a
                 href="/tarjetas-regalo"
-                className="inline-flex items-center gap-2 bg-white text-foreground hover:bg-white/90 rounded-full px-8 py-3 font-medium transition-colors"
+                className="inline-flex items-center gap-2 bg-background text-foreground hover:bg-background/90 rounded-full px-8 py-3 font-medium transition-colors"
               >
                 {banner.cta}
                 <ArrowRight className="w-4 h-4" />

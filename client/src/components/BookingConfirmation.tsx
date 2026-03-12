@@ -94,22 +94,22 @@ export function BookingConfirmation({
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4" onClick={onClose}>
       <div
-        className="bg-white rounded-2xl shadow-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto relative pb-safe"
+        className="bg-background rounded-2xl shadow-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto relative pb-safe"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close button */}
         <button
           onClick={onClose}
-          className="absolute top-3 right-3 p-1.5 hover:bg-gray-100 rounded-full transition-colors z-10"
+          className="absolute top-3 right-3 p-1.5 hover:bg-muted rounded-full transition-colors z-10"
           aria-label={ct.close}
         >
-          <X className="h-5 w-5 text-gray-500" />
+          <X className="h-5 w-5 text-muted-foreground/60" />
         </button>
 
         {/* Success header */}
         <div className="text-center pt-8 pb-4 px-6">
           <div
-            className={`inline-flex items-center justify-center w-16 h-16 rounded-full bg-green-100 mb-4 transition-all duration-700 ${
+            className={`inline-flex items-center justify-center w-16 h-16 rounded-full bg-green-100 dark:bg-green-900/30 mb-4 transition-all duration-700 ${
               showCheckAnimation ? "scale-100 opacity-100" : "scale-50 opacity-0"
             }`}
           >
@@ -119,41 +119,41 @@ export function BookingConfirmation({
               }`}
             />
           </div>
-          <h2 className="text-xl font-display font-bold text-[hsl(215,45%,20%)]">
+          <h2 className="text-xl font-display font-bold text-foreground">
             {ct.title}
           </h2>
         </div>
 
         {/* Booking summary */}
-        <div className="mx-6 mb-4 p-4 bg-[hsl(210,35%,96%)] rounded-xl border border-[hsl(210,35%,90%)]">
-          <h3 className="text-sm font-semibold text-[hsl(215,45%,20%)] mb-2">
+        <div className="mx-6 mb-4 p-4 bg-muted rounded-xl border border-border">
+          <h3 className="text-sm font-semibold text-foreground mb-2">
             {ct.summary}
           </h3>
           <div className="grid grid-cols-2 gap-2 text-sm">
             <div>
-              <span className="text-gray-500">Barco:</span>
-              <p className="font-medium text-[hsl(215,45%,20%)]">{boatName}</p>
+              <span className="text-muted-foreground/60">Barco:</span>
+              <p className="font-medium text-foreground">{boatName}</p>
             </div>
             <div>
-              <span className="text-gray-500">Fecha:</span>
-              <p className="font-medium text-[hsl(215,45%,20%)]">{formatDate(date)}</p>
+              <span className="text-muted-foreground/60">Fecha:</span>
+              <p className="font-medium text-foreground">{formatDate(date)}</p>
             </div>
             <div>
-              <span className="text-gray-500">Hora:</span>
-              <p className="font-medium text-[hsl(215,45%,20%)]">{time}h</p>
+              <span className="text-muted-foreground/60">Hora:</span>
+              <p className="font-medium text-foreground">{time}h</p>
             </div>
             <div>
-              <span className="text-gray-500">Duracion:</span>
-              <p className="font-medium text-[hsl(215,45%,20%)]">{duration}</p>
+              <span className="text-muted-foreground/60">Duracion:</span>
+              <p className="font-medium text-foreground">{duration}</p>
             </div>
             <div>
-              <span className="text-gray-500">Personas:</span>
-              <p className="font-medium text-[hsl(215,45%,20%)]">{people}</p>
+              <span className="text-muted-foreground/60">Personas:</span>
+              <p className="font-medium text-foreground">{people}</p>
             </div>
             {price !== null && (
               <div>
-                <span className="text-gray-500">Precio:</span>
-                <p className="font-bold text-[hsl(215,45%,20%)]">{price}€</p>
+                <span className="text-muted-foreground/60">Precio:</span>
+                <p className="font-bold text-foreground">{price}€</p>
               </div>
             )}
           </div>
@@ -161,7 +161,7 @@ export function BookingConfirmation({
 
         {/* Pre-trip checklist */}
         <div className="mx-6 mb-4">
-          <h3 className="text-sm font-semibold text-[hsl(215,45%,20%)] mb-2">
+          <h3 className="text-sm font-semibold text-foreground mb-2">
             {ct.checklist}
           </h3>
           <div className="space-y-1.5">
@@ -174,13 +174,13 @@ export function BookingConfirmation({
                   type="checkbox"
                   checked={checkedItems[i] || false}
                   onChange={() => toggleItem(i)}
-                  className="h-4 w-4 rounded border-gray-300 text-[hsl(210,35%,76%)] focus:ring-[hsl(210,35%,76%)] cursor-pointer"
+                  className="h-4 w-4 rounded border-border text-cta focus:ring-cta cursor-pointer"
                 />
                 <span
                   className={`text-sm transition-all ${
                     checkedItems[i]
-                      ? "line-through text-gray-400"
-                      : "text-gray-700 group-hover:text-[hsl(215,45%,20%)]"
+                      ? "line-through text-muted-foreground/60"
+                      : "text-muted-foreground group-hover:text-foreground"
                   }`}
                 >
                   {item}
@@ -192,7 +192,7 @@ export function BookingConfirmation({
 
         {/* What's next timeline */}
         <div className="mx-6 mb-4">
-          <h3 className="text-sm font-semibold text-[hsl(215,45%,20%)] mb-3">
+          <h3 className="text-sm font-semibold text-foreground mb-3">
             {ct.whatsNext}
           </h3>
           <div className="space-y-3">
@@ -200,10 +200,10 @@ export function BookingConfirmation({
               const Icon = timelineIcons[i] || Clock;
               return (
                 <div key={i} className="flex gap-3 items-start">
-                  <div className="flex-shrink-0 w-7 h-7 rounded-full bg-[hsl(210,35%,76%)]/20 flex items-center justify-center">
-                    <Icon className="h-3.5 w-3.5 text-[hsl(215,45%,30%)]" />
+                  <div className="flex-shrink-0 w-7 h-7 rounded-full bg-cta/20 flex items-center justify-center">
+                    <Icon className="h-3.5 w-3.5 text-foreground/80" />
                   </div>
-                  <p className="text-sm text-gray-700 pt-0.5">{step}</p>
+                  <p className="text-sm text-muted-foreground pt-0.5">{step}</p>
                 </div>
               );
             })}
@@ -211,8 +211,8 @@ export function BookingConfirmation({
         </div>
 
         {/* Share section */}
-        <div className="mx-6 mb-4 p-4 bg-gray-50 rounded-xl">
-          <h3 className="text-sm font-semibold text-[hsl(215,45%,20%)] mb-2 flex items-center gap-1.5">
+        <div className="mx-6 mb-4 p-4 bg-muted rounded-xl">
+          <h3 className="text-sm font-semibold text-foreground mb-2 flex items-center gap-1.5">
             <Share2 className="h-4 w-4" />
             {ct.shareTitle}
           </h3>
@@ -226,7 +226,7 @@ export function BookingConfirmation({
             </button>
             <button
               onClick={handleCopyLink}
-              className="inline-flex items-center justify-center gap-1.5 bg-gray-200 hover:bg-gray-300 text-gray-700 text-sm font-medium py-2 px-3 rounded-lg transition-colors"
+              className="inline-flex items-center justify-center gap-1.5 bg-muted hover:bg-muted/80 text-muted-foreground text-sm font-medium py-2 px-3 rounded-lg transition-colors"
             >
               <Copy className="h-4 w-4" />
               {ct.copyLink}
@@ -235,9 +235,9 @@ export function BookingConfirmation({
         </div>
 
         {/* Repeat booking CTA */}
-        <div className="mx-6 mb-6 p-4 bg-gradient-to-r from-[hsl(210,35%,25%)] to-[hsl(210,45%,35%)] rounded-xl text-white">
+        <div className="mx-6 mb-6 p-4 bg-gradient-to-r from-foreground/90 to-foreground/70 rounded-xl text-white">
           <div className="flex items-start gap-3">
-            <Gift className="h-5 w-5 flex-shrink-0 mt-0.5 text-[hsl(210,35%,76%)]" />
+            <Gift className="h-5 w-5 flex-shrink-0 mt-0.5 text-cta" />
             <div>
               <p className="font-semibold text-sm">{ct.repeatBooking}</p>
               <p className="text-xs text-white/80 mt-0.5">{ct.saveDiscount}</p>

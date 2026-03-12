@@ -57,8 +57,8 @@ export function LicenseComparisonSection() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Without License Card */}
-          <div className="bg-white rounded-2xl border border-border p-4 xs:p-6 sm:p-8 relative overflow-hidden">
-            <div className="inline-flex items-center gap-2 bg-green-50 text-green-700 text-xs font-medium px-3 py-1 rounded-full mb-4">
+          <div className="bg-background rounded-2xl border border-border p-4 xs:p-6 sm:p-8 relative overflow-hidden">
+            <div className="inline-flex items-center gap-2 bg-green-50 dark:bg-green-950/30 text-green-700 dark:text-green-400 text-xs font-medium px-3 py-1 rounded-full mb-4">
               {t.comparison.noLicenseNeeded}
             </div>
             <div className="flex items-center gap-3 mb-4">
@@ -96,8 +96,8 @@ export function LicenseComparisonSection() {
           </div>
 
           {/* With License Card */}
-          <div className="bg-white rounded-2xl border border-border p-4 xs:p-6 sm:p-8 relative overflow-hidden">
-            <div className="inline-flex items-center gap-2 bg-blue-50 text-blue-700 text-xs font-medium px-3 py-1 rounded-full mb-4">
+          <div className="bg-background rounded-2xl border border-border p-4 xs:p-6 sm:p-8 relative overflow-hidden">
+            <div className="inline-flex items-center gap-2 bg-blue-50 dark:bg-blue-950/30 text-blue-700 dark:text-blue-400 text-xs font-medium px-3 py-1 rounded-full mb-4">
               {t.comparison.licenseRequired}
             </div>
             <div className="flex items-center gap-3 mb-4">
@@ -136,7 +136,7 @@ export function LicenseComparisonSection() {
         </div>
 
         {/* Captain's Pro Tip — free expert advice (reciprocity) */}
-        <div className="mt-8 bg-amber-50/70 border-l-4 border-amber-400 rounded-r-xl p-4 sm:p-5 flex gap-3 items-start">
+        <div className="mt-8 bg-amber-50/70 dark:bg-amber-950/30 border-l-4 border-amber-400 rounded-r-xl p-4 sm:p-5 flex gap-3 items-start">
           <Lightbulb className="w-5 h-5 text-amber-500 flex-shrink-0 mt-0.5" />
           <div>
             <span className="font-medium text-foreground text-sm">{t.reciprocity?.captainTip}</span>

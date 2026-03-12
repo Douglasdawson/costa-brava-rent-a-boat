@@ -128,7 +128,7 @@ export default function CategoryLicenseFreePage() {
       <Navigation />
 
       {/* Breadcrumbs */}
-      <div className="bg-gray-50 border-b border-gray-200">
+      <div className="bg-muted border-b border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
           <Breadcrumbs
             items={[
@@ -145,11 +145,11 @@ export default function CategoryLicenseFreePage() {
           <div className="text-center mb-8">
             <div className="flex items-center justify-center mb-6">
               <Zap className="w-8 h-8 text-primary mr-4" />
-              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold text-gray-900">
+              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold text-foreground">
                 {clf.heroTitle}
               </h1>
             </div>
-            <p className="text-lg text-gray-600 mb-6 max-w-4xl mx-auto">
+            <p className="text-lg text-muted-foreground mb-6 max-w-4xl mx-auto">
               {clf.heroDescription}
             </p>
             <div className="flex flex-wrap gap-3 justify-center">
@@ -171,7 +171,7 @@ export default function CategoryLicenseFreePage() {
       </div>
 
       {/* Main Content */}
-      <div className="py-12 bg-gray-50">
+      <div className="py-12 bg-muted">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
           {/* What are License-Free Boats */}
@@ -186,23 +186,23 @@ export default function CategoryLicenseFreePage() {
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
                   <h3 className="font-semibold text-lg mb-3">{clf.freeNavigation}</h3>
-                  <p className="text-gray-700 mb-4">
+                  <p className="text-muted-foreground mb-4">
                     {clf.freeNavigationDesc}
                   </p>
 
                   <h3 className="font-semibold text-lg mb-3">{clf.easyToHandle}</h3>
-                  <p className="text-gray-700">
+                  <p className="text-muted-foreground">
                     {clf.easyToHandleDesc}
                   </p>
                 </div>
                 <div>
                   <h3 className="font-semibold text-lg mb-3">{clf.safeLimits}</h3>
-                  <p className="text-gray-700 mb-4">
+                  <p className="text-muted-foreground mb-4">
                     {clf.safeLimitsDesc}
                   </p>
 
                   <h3 className="font-semibold text-lg mb-3">{clf.completeEquipment}</h3>
-                  <p className="text-gray-700">
+                  <p className="text-muted-foreground">
                     {clf.completeEquipmentDesc}
                   </p>
                 </div>
@@ -221,20 +221,20 @@ export default function CategoryLicenseFreePage() {
             <CardContent>
               <div className="grid md:grid-cols-3 gap-6">
                 {licenseFreeBoats.map((boat, index) => (
-                  <div key={index} className="bg-white rounded-lg p-6 shadow-sm border">
+                  <div key={index} className="bg-background rounded-lg p-6 shadow-sm border">
                     <h3 className="font-semibold text-xl mb-3">{boat.name}</h3>
                     <div className="space-y-3 mb-4">
-                      <div className="flex items-center text-gray-600">
+                      <div className="flex items-center text-muted-foreground">
                         <Users className="w-4 h-4 mr-2" />
                         <span>{boat.capacity}</span>
                       </div>
-                      <div className="flex items-center text-gray-600">
+                      <div className="flex items-center text-muted-foreground">
                         <Gauge className="w-4 h-4 mr-2" />
                         <span>{boat.engine}</span>
                       </div>
                       <div className="space-y-1">
                         {boat.features.map((feature, idx) => (
-                          <div key={idx} className="flex items-center text-gray-600">
+                          <div key={idx} className="flex items-center text-muted-foreground">
                             <CheckCircle className="w-4 h-4 mr-2 text-primary" />
                             <span className="text-sm">{feature}</span>
                           </div>

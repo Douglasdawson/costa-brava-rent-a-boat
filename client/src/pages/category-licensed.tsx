@@ -133,7 +133,7 @@ export default function CategoryLicensedPage() {
       <Navigation />
 
       {/* Breadcrumbs */}
-      <div className="bg-gray-50 border-b border-gray-200">
+      <div className="bg-muted border-b border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
           <Breadcrumbs
             items={[
@@ -150,11 +150,11 @@ export default function CategoryLicensedPage() {
           <div className="text-center mb-8">
             <div className="flex items-center justify-center mb-6">
               <Award className="w-8 h-8 text-primary mr-4" />
-              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold text-gray-900">
+              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold text-foreground">
                 {cl.heroTitle}
               </h1>
             </div>
-            <p className="text-lg text-gray-600 mb-6 max-w-4xl mx-auto">
+            <p className="text-lg text-muted-foreground mb-6 max-w-4xl mx-auto">
               {cl.heroDescription}
             </p>
             <div className="flex flex-wrap gap-3 justify-center">
@@ -176,7 +176,7 @@ export default function CategoryLicensedPage() {
       </div>
 
       {/* Main Content */}
-      <div className="py-12 bg-gray-50">
+      <div className="py-12 bg-muted">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
           {/* What are Licensed Boats */}
@@ -191,17 +191,17 @@ export default function CategoryLicensedPage() {
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
                   <h3 className="font-semibold text-lg mb-3">{cl.advancedNavigation}</h3>
-                  <p className="text-gray-700 mb-4">{cl.advancedNavigationDesc}</p>
+                  <p className="text-muted-foreground mb-4">{cl.advancedNavigationDesc}</p>
 
                   <h3 className="font-semibold text-lg mb-3">{cl.greaterFreedom}</h3>
-                  <p className="text-gray-700">{cl.greaterFreedomDesc}</p>
+                  <p className="text-muted-foreground">{cl.greaterFreedomDesc}</p>
                 </div>
                 <div>
                   <h3 className="font-semibold text-lg mb-3">{cl.professionalEquipment}</h3>
-                  <p className="text-gray-700 mb-4">{cl.professionalEquipmentDesc}</p>
+                  <p className="text-muted-foreground mb-4">{cl.professionalEquipmentDesc}</p>
 
                   <h3 className="font-semibold text-lg mb-3">{cl.superiorPerformance}</h3>
-                  <p className="text-gray-700">{cl.superiorPerformanceDesc}</p>
+                  <p className="text-muted-foreground">{cl.superiorPerformanceDesc}</p>
                 </div>
               </div>
             </CardContent>
@@ -218,14 +218,14 @@ export default function CategoryLicensedPage() {
             <CardContent>
               <div className="grid md:grid-cols-3 gap-6">
                 {licensedBoats.map((boat, index) => (
-                  <div key={index} className="bg-white rounded-lg p-6 shadow-sm border">
+                  <div key={index} className="bg-background rounded-lg p-6 shadow-sm border">
                     <h3 className="font-semibold text-xl mb-3">{boat.name}</h3>
                     <div className="space-y-3 mb-4">
-                      <div className="flex items-center text-gray-600">
+                      <div className="flex items-center text-muted-foreground">
                         <Users className="w-4 h-4 mr-2" />
                         <span>{boat.capacity}</span>
                       </div>
-                      <div className="flex items-center text-gray-600">
+                      <div className="flex items-center text-muted-foreground">
                         <Gauge className="w-4 h-4 mr-2" />
                         <span>{boat.engine}</span>
                       </div>
@@ -235,7 +235,7 @@ export default function CategoryLicensedPage() {
                       </div>
                       <div className="space-y-1">
                         {boat.features.map((feature, idx) => (
-                          <div key={idx} className="flex items-center text-gray-600">
+                          <div key={idx} className="flex items-center text-muted-foreground">
                             <CheckCircle className="w-4 h-4 mr-2 text-primary" />
                             <span className="text-sm">{feature}</span>
                           </div>

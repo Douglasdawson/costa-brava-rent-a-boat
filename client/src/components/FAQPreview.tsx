@@ -81,7 +81,7 @@ export default function FAQPreview() {
   const viewAll = t.faqPreview?.viewAll ?? "Ver todas las preguntas frecuentes";
 
   return (
-    <section ref={revealRef} className={`py-16 sm:py-20 bg-white transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`} aria-labelledby="faq-preview-title">
+    <section ref={revealRef} className={`py-16 sm:py-20 bg-background transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`} aria-labelledby="faq-preview-title">
       <div className="container mx-auto px-4 sm:px-6 max-w-3xl">
         {/* Header */}
         <div className="text-center mb-10">

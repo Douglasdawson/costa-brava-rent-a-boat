@@ -32,7 +32,7 @@ export default function PrivacyPolicyPage() {
       <Navigation />
 
       {/* Breadcrumbs */}
-      <div className="bg-gray-50 border-b border-gray-200">
+      <div className="bg-muted border-b border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
           <Breadcrumbs
             items={[
@@ -48,16 +48,16 @@ export default function PrivacyPolicyPage() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="flex items-center justify-center mb-4">
             <Shield className="w-8 h-8 text-primary mr-4" aria-hidden="true" />
-            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold text-gray-900">
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold text-foreground">
               Política de Privacidad
             </h1>
           </div>
-          <p className="text-sm text-gray-500">Última actualización: febrero de 2026</p>
+          <p className="text-sm text-muted-foreground/60">Última actualización: febrero de 2026</p>
         </div>
       </div>
 
       {/* Content */}
-      <div className="pt-6 pb-10 sm:pt-8 sm:pb-16 bg-gray-50">
+      <div className="pt-6 pb-10 sm:pt-8 sm:pb-16 bg-muted">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
 
           {/* 1. Responsable del tratamiento */}
@@ -68,7 +68,7 @@ export default function PrivacyPolicyPage() {
                 1. Responsable del tratamiento
               </CardTitle>
             </CardHeader>
-            <CardContent className="text-sm text-gray-700 space-y-2">
+            <CardContent className="text-sm text-muted-foreground space-y-2">
               <p><strong>Identidad:</strong> Costa Brava Rent a Boat</p>
               <p><strong>NIF:</strong> B22566327</p>
               <p><strong>Domicilio:</strong> Puerto de Blanes, Girona, España</p>
@@ -89,7 +89,7 @@ export default function PrivacyPolicyPage() {
                 2. Datos personales que recopilamos
               </CardTitle>
             </CardHeader>
-            <CardContent className="text-sm text-gray-700 space-y-4">
+            <CardContent className="text-sm text-muted-foreground space-y-4">
               <div>
                 <h3 className="font-semibold mb-2">Datos facilitados por el usuario al realizar una reserva:</h3>
                 <ul className="list-disc pl-5 space-y-1">
@@ -118,40 +118,40 @@ export default function PrivacyPolicyPage() {
                 3. Finalidad del tratamiento y base jurídica
               </CardTitle>
             </CardHeader>
-            <CardContent className="text-sm text-gray-700 space-y-4">
+            <CardContent className="text-sm text-muted-foreground space-y-4">
               <div className="overflow-x-auto">
                 <table className="w-full text-xs border-collapse">
                   <thead>
-                    <tr className="bg-gray-100">
-                      <th className="text-left p-2 border border-gray-200 font-semibold">Finalidad</th>
-                      <th className="text-left p-2 border border-gray-200 font-semibold">Base jurídica (RGPD)</th>
+                    <tr className="bg-muted">
+                      <th className="text-left p-2 border border-border font-semibold">Finalidad</th>
+                      <th className="text-left p-2 border border-border font-semibold">Base jurídica (RGPD)</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
-                      <td className="p-2 border border-gray-200">Gestión y confirmación de reservas de embarcaciones</td>
-                      <td className="p-2 border border-gray-200">Art. 6.1.b — ejecución de un contrato</td>
+                      <td className="p-2 border border-border">Gestión y confirmación de reservas de embarcaciones</td>
+                      <td className="p-2 border border-border">Art. 6.1.b — ejecución de un contrato</td>
                     </tr>
-                    <tr className="bg-gray-50">
-                      <td className="p-2 border border-gray-200">Envío de recordatorios y comunicaciones relativas a la reserva</td>
-                      <td className="p-2 border border-gray-200">Art. 6.1.b — ejecución de un contrato</td>
-                    </tr>
-                    <tr>
-                      <td className="p-2 border border-gray-200">Atención al cliente y resolución de incidencias</td>
-                      <td className="p-2 border border-gray-200">Art. 6.1.b — ejecución de un contrato / Art. 6.1.f — interés legítimo</td>
-                    </tr>
-                    <tr className="bg-gray-50">
-                      <td className="p-2 border border-gray-200">Análisis estadístico del tráfico web (Google Analytics)</td>
-                      <td className="p-2 border border-gray-200">Art. 6.1.a — consentimiento (banner de cookies)</td>
+                    <tr className="bg-muted">
+                      <td className="p-2 border border-border">Envío de recordatorios y comunicaciones relativas a la reserva</td>
+                      <td className="p-2 border border-border">Art. 6.1.b — ejecución de un contrato</td>
                     </tr>
                     <tr>
-                      <td className="p-2 border border-gray-200">Cumplimiento de obligaciones legales y fiscales</td>
-                      <td className="p-2 border border-gray-200">Art. 6.1.c — obligación legal</td>
+                      <td className="p-2 border border-border">Atención al cliente y resolución de incidencias</td>
+                      <td className="p-2 border border-border">Art. 6.1.b — ejecución de un contrato / Art. 6.1.f — interés legítimo</td>
+                    </tr>
+                    <tr className="bg-muted">
+                      <td className="p-2 border border-border">Análisis estadístico del tráfico web (Google Analytics)</td>
+                      <td className="p-2 border border-border">Art. 6.1.a — consentimiento (banner de cookies)</td>
+                    </tr>
+                    <tr>
+                      <td className="p-2 border border-border">Cumplimiento de obligaciones legales y fiscales</td>
+                      <td className="p-2 border border-border">Art. 6.1.c — obligación legal</td>
                     </tr>
                   </tbody>
                 </table>
               </div>
-              <p className="text-xs text-gray-500">No tomamos decisiones automatizadas ni elaboramos perfiles con fines de segmentación publicitaria a partir de tus datos de reserva.</p>
+              <p className="text-xs text-muted-foreground/60">No tomamos decisiones automatizadas ni elaboramos perfiles con fines de segmentación publicitaria a partir de tus datos de reserva.</p>
             </CardContent>
           </Card>
 
@@ -163,7 +163,7 @@ export default function PrivacyPolicyPage() {
                 4. Plazos de conservación
               </CardTitle>
             </CardHeader>
-            <CardContent className="text-sm text-gray-700 space-y-2">
+            <CardContent className="text-sm text-muted-foreground space-y-2">
               <ul className="list-disc pl-5 space-y-2">
                 <li><strong>Datos de reserva:</strong> Se conservan durante 5 años desde la fecha del servicio, en cumplimiento de las obligaciones fiscales (RD 1619/2012, Ley 58/2003 General Tributaria).</li>
                 <li><strong>Comunicaciones por WhatsApp/email:</strong> 1 año desde la última comunicación, salvo reclamación en curso.</li>
@@ -181,7 +181,7 @@ export default function PrivacyPolicyPage() {
                 5. Destinatarios y transferencias internacionales
               </CardTitle>
             </CardHeader>
-            <CardContent className="text-sm text-gray-700 space-y-4">
+            <CardContent className="text-sm text-muted-foreground space-y-4">
               <p>Tus datos pueden ser comunicados a los siguientes terceros encargados del tratamiento:</p>
               <ul className="list-disc pl-5 space-y-2">
                 <li><strong>SendGrid (Twilio Inc., EE. UU.):</strong> Servicio de envío de emails de confirmación y recordatorios de reserva. Transferencia internacional amparada en las Cláusulas Contractuales Tipo aprobadas por la Comisión Europea.</li>
@@ -201,7 +201,7 @@ export default function PrivacyPolicyPage() {
                 6. Tus derechos (ARCO+)
               </CardTitle>
             </CardHeader>
-            <CardContent className="text-sm text-gray-700 space-y-4">
+            <CardContent className="text-sm text-muted-foreground space-y-4">
               <p>En virtud de los artículos 15 a 22 del RGPD y la LOPD-GDD, tienes derecho a:</p>
               <ul className="list-disc pl-5 space-y-2">
                 <li><strong>Acceso:</strong> Obtener confirmación sobre si tratamos tus datos y, en su caso, una copia.</li>
@@ -236,7 +236,7 @@ export default function PrivacyPolicyPage() {
                 7. Medidas de seguridad
               </CardTitle>
             </CardHeader>
-            <CardContent className="text-sm text-gray-700 space-y-2">
+            <CardContent className="text-sm text-muted-foreground space-y-2">
               <p>Aplicamos medidas técnicas y organizativas adecuadas para proteger tus datos contra accesos no autorizados, pérdida o destrucción accidental, conforme al art. 32 RGPD:</p>
               <ul className="list-disc pl-5 space-y-1">
                 <li>Transmisión cifrada mediante HTTPS (TLS 1.2+)</li>
@@ -255,7 +255,7 @@ export default function PrivacyPolicyPage() {
                 8. Cookies
               </CardTitle>
             </CardHeader>
-            <CardContent className="text-sm text-gray-700">
+            <CardContent className="text-sm text-muted-foreground">
               <p>Para información detallada sobre las cookies que utilizamos, consulta nuestra{" "}
                 <a href="/cookies-policy" className="text-primary underline">
                   Política de Cookies
@@ -269,7 +269,7 @@ export default function PrivacyPolicyPage() {
             <CardHeader>
               <CardTitle className="text-xl">9. Cambios en esta política</CardTitle>
             </CardHeader>
-            <CardContent className="text-sm text-gray-700">
+            <CardContent className="text-sm text-muted-foreground">
               <p>Podemos actualizar esta política de privacidad para reflejar cambios legales o en nuestros servicios. Te notificaremos los cambios relevantes mediante un aviso en la web. La fecha de última actualización siempre aparecerá al inicio de este documento.</p>
             </CardContent>
           </Card>

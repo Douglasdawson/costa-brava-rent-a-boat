@@ -41,16 +41,16 @@ export default function RoutesPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-muted">
       <SEO title={seoConfig.title} description={seoConfig.description} canonical={canonical} hreflang={hreflangLinks} />
       <Navigation />
 
       <div className="container mx-auto px-4 pt-20 sm:pt-24 pb-8 sm:pb-12">
         <div className="text-center mb-8">
-          <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-3">
+          <h1 className="text-3xl sm:text-4xl font-bold text-foreground mb-3">
             {t.routes?.title || "Rutas Sugeridas"}
           </h1>
-          <p className="text-gray-600 max-w-2xl mx-auto">
+          <p className="text-muted-foreground max-w-2xl mx-auto">
             {t.routes?.subtitle || "Descubre las mejores rutas en barco desde el Puerto de Blanes"}
           </p>
         </div>
@@ -88,9 +88,9 @@ export default function RoutesPage() {
                     </Badge>
                   </div>
 
-                  <p className="text-sm text-gray-600 mb-4 line-clamp-3">{desc.description}</p>
+                  <p className="text-sm text-muted-foreground mb-4 line-clamp-3">{desc.description}</p>
 
-                  <div className="flex items-center gap-4 text-sm text-gray-500 mb-4">
+                  <div className="flex items-center gap-4 text-sm text-muted-foreground/60 mb-4">
                     <div className="flex items-center gap-1">
                       <Ruler className="w-4 h-4" />
                       {route.distance}

@@ -7,7 +7,7 @@ import { useTranslations } from "@/lib/translations";
 export default function NotFound() {
   const t = useTranslations();
   return (
-    <div className="min-h-screen w-full flex items-center justify-center bg-gray-50 p-4">
+    <div className="min-h-screen w-full flex items-center justify-center bg-muted p-4">
       <Card className="w-full max-w-md">
         <CardContent className="pt-8 pb-6 text-center">
           <AlertCircle className="w-12 h-12 text-muted-foreground mx-auto mb-4" />

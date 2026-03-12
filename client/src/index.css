@@ -29,6 +29,16 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Prevent horizontal scroll — body overflow propagates to viewport per CSS spec.
+   MUST be outside @layer to have higher priority than Tailwind utilities.
+   Do NOT set overflow on html — it breaks body→viewport propagation. */
+body {
+  overflow-x: hidden;
+}
+#root {
+  overflow-x: hidden;
+}
+
 /* LIGHT MODE */
 :root {
   --button-outline: rgba(0,0,0, .10);

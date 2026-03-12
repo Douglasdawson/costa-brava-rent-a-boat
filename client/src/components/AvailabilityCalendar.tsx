@@ -56,12 +56,16 @@ export default function AvailabilityCalendar({ boatId, onSlotSelect }: Availabil
   const selectedSlots = getSelectedDaySlots();
 
   // Custom day modifiers for styling
+  const today = new Date();
+  const todayDate = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+
   const modifiers = {
     available: [] as Date[],
     partial: [] as Date[],
     booked: [] as Date[],
     offSeason: [] as Date[],
     past: [] as Date[],
+    today: [todayDate],
   };
 
   if (availability) {
@@ -78,30 +82,40 @@ export default function AvailabilityCalendar({ boatId, onSlotSelect }: Availabil
 
   const modifiersStyles = {
     available: {
-      backgroundColor: "hsl(var(--primary) / 0.1)",
-      color: "hsl(var(--primary))",
+      backgroundColor: "#a7f3d0",
+      color: "#064e3b",
       borderRadius: "6px",
     },
     partial: {
-      backgroundColor: "hsl(var(--cta) / 0.1)",
-      color: "hsl(var(--cta))",
+      backgroundColor: "#fde68a",
+      color: "#78350f",
       borderRadius: "6px",
     },
     booked: {
-      backgroundColor: "rgb(254, 226, 226)",
-      color: "rgb(153, 27, 27)",
+      backgroundColor: "#fecaca",
+      color: "#7f1d1d",
       borderRadius: "6px",
     },
     offSeason: {
-      backgroundColor: "rgb(243, 244, 246)",
-      color: "rgb(156, 163, 175)",
+      backgroundColor: "#bae6fd",
+      color: "#0c4a6e",
       borderRadius: "6px",
     },
     past: {
-      backgroundColor: "rgb(243, 244, 246)",
-      color: "rgb(156, 163, 175)",
+      backgroundColor: "#bae6fd",
+      color: "#0c4a6e",
       borderRadius: "6px",
     },
+    today: {
+      boxShadow: "inset 0 0 0 2px hsl(var(--primary))",
+      borderRadius: "6px",
+      fontWeight: 700,
+    },
+  };
+
+  // Format month caption to include year
+  const formatCaption = (month: Date): string => {
+    return month.toLocaleDateString(undefined, { month: 'long', year: 'numeric' });
   };
 
   return (
@@ -145,6 +159,7 @@ export default function AvailabilityCalendar({ boatId, onSlotSelect }: Availabil
                 ]}
                 fromMonth={new Date()}
                 toMonth={new Date(new Date().getFullYear(), 9, 31)} // October
+                formatters={{ formatCaption }}
               />
             )}
           </div>
@@ -154,19 +169,19 @@ export default function AvailabilityCalendar({ boatId, onSlotSelect }: Availabil
             {/* Legend */}
             <div className="flex flex-wrap gap-3 text-sm">
               <div className="flex items-center gap-1.5">
-                <div className="w-3 h-3 rounded-sm bg-primary/10 border border-primary/30" />
+                <div className="w-3.5 h-3.5 rounded-sm bg-emerald-500 border border-emerald-600" />
                 <span>{t.availability?.available || "Disponible"}</span>
               </div>
               <div className="flex items-center gap-1.5">
-                <div className="w-3 h-3 rounded-sm bg-cta/10 border border-cta/30" />
+                <div className="w-3.5 h-3.5 rounded-sm bg-amber-400 border border-amber-500" />
                 <span>{t.availability?.partial || "Parcial"}</span>
               </div>
               <div className="flex items-center gap-1.5">
-                <div className="w-3 h-3 rounded-sm bg-red-100 border border-red-300" />
+                <div className="w-3.5 h-3.5 rounded-sm bg-red-500 border border-red-600" />
                 <span>{t.availability?.booked || "Ocupado"}</span>
               </div>
               <div className="flex items-center gap-1.5">
-                <div className="w-3 h-3 rounded-sm bg-muted border border-muted-foreground/30" />
+                <div className="w-3.5 h-3.5 rounded-sm bg-sky-300 border border-sky-400" />
                 <span>{t.availability?.offSeason || "Fuera de temporada"}</span>
               </div>
             </div>

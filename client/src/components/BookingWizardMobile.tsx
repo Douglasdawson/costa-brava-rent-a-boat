@@ -413,7 +413,7 @@ function Step2Trip({
         <p className="text-sm text-gray-500">{t.wizard.howLongHowMany}</p>
       </div>
       {/* Date picker — moved from step 1 */}
-      <div>
+      <div id="field-date">
         <label className="block text-sm font-semibold text-gray-700 mb-2">
           {t.wizard.date}
         </label>
@@ -461,7 +461,7 @@ function Step2Trip({
         )}
       </div>
       {/* Time — shown before duration so maxDuration can filter durations */}
-      <div>
+      <div id="field-time">
         <label htmlFor="wizard-time" className="block text-sm font-semibold text-gray-700 mb-2">
           {t.wizard.departureTime}
         </label>
@@ -491,7 +491,7 @@ function Step2Trip({
           <p id="error-wizard-time" className="text-xs text-red-500 mt-1">{getFieldError('time')}</p>
         )}
       </div>
-      <div>
+      <div id="field-duration">
         <label className="block text-sm font-semibold text-gray-700 mb-2">{t.wizard.duration}</label>
         <div className="space-y-2">
           {durationOptions.map((opt) => {
@@ -538,7 +538,7 @@ function Step2Trip({
           <p className="text-xs text-red-500 mt-1">{getFieldError('duration')}</p>
         )}
       </div>
-      <div>
+      <div id="field-people">
         <label className="block text-sm font-semibold text-gray-700 mb-2">
           {t.wizard.numberOfPeople}
           {selectedBoatInfo && (
@@ -797,6 +797,108 @@ function Step4Confirm({
         </h2>
         <p className="text-sm text-gray-500">{t.booking.confirmSubtitle}</p>
       </div>
+      {/* Extras & Packs collapsible section */}
+      {boatExtras.length > 0 && (
+        <div className="border border-gray-200 rounded-xl overflow-hidden">
+          <button
+            type="button"
+            onClick={() => setShowExtras(!showExtras)}
+            aria-expanded={showExtras}
+            aria-controls="extras-panel"
+            className="w-full flex items-center justify-between p-4 text-sm font-semibold text-gray-800 bg-gray-50"
+          >
+            <span className="flex items-center gap-2">
+              <Package className="w-4 h-4 text-primary" />
+              {t.endowment?.customizeExperience || t.booking.extrasSection.title}
+              {(selectedExtras.length > 0 || selectedPack) && (
+                <span className="bg-primary text-white text-xs px-2 py-0.5 rounded-full">
+                  {totalExtrasPrice}€
+                </span>
+              )}
+            </span>
+            {showExtras ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+          </button>
+          {showExtras && (
+            <div id="extras-panel" className="p-4 space-y-4 bg-white">
+              {/* Packs */}
+              <div>
+                <p className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-2">{t.booking.extrasSection.packs}</p>
+                <div className="space-y-2">
+                  <button
+                    type="button"
+                    onClick={() => handlePackSelect("")}
+                    aria-pressed={!selectedPack}
+                    className={`w-full p-3 rounded-xl border-2 text-left text-sm transition-all ${!selectedPack ? 'border-primary bg-primary/5' : 'border-gray-200'}`}
+                  >
+                    {t.booking.extrasSection.noPack}
+                  </button>
+                  {availablePacks.map((pack) => {
+                    const isSelected = selectedPack === pack.id;
+                    const savings = calculatePackSavings(pack.id);
+                    const IconComp = iconMap[pack.icon] || Package;
+                    return (
+                      <button
+                        key={pack.id}
+                        type="button"
+                        onClick={() => handlePackSelect(pack.id)}
+                        aria-pressed={isSelected}
+                        className={`w-full p-3 rounded-xl border-2 text-left transition-all ${isSelected ? 'border-primary bg-primary/5' : 'border-gray-200 bg-white'}`}
+                      >
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center gap-2">
+                            <IconComp className="w-4 h-4 text-primary" />
+                            <span className="text-sm font-semibold">{isSpanishLang ? pack.name : pack.nameEN}</span>
+                            <span className="text-xs text-gray-500 font-normal">{pack.extras.join(', ')}</span>
+                          </div>
+                          <div className="text-right">
+                            <span className="text-sm font-bold text-primary">{pack.price}€</span>
+                            {savings > 0 && (
+                              <span className="block text-xs text-green-600">{t.booking.extrasSection.savings} {savings.toFixed(0)}€</span>
+                            )}
+                          </div>
+                        </div>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+              {/* Individual extras */}
+              <div>
+                <p className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-2">{t.booking.extrasSection.individual}</p>
+                <div className="grid grid-cols-1 gap-2">
+                  {boatExtras.map((extra) => {
+                    const isChecked = selectedExtras.includes(extra.name);
+                    const isInPack = extrasInPack.has(extra.name);
+                    const IconComp = iconMap[extra.icon] || Package;
+                    return (
+                      <button
+                        key={extra.name}
+                        type="button"
+                        onClick={() => handleExtraToggle(extra.name)}
+                        disabled={isInPack}
+                        aria-pressed={isChecked || isInPack}
+                        className={`flex items-center gap-2 p-2.5 rounded-xl border-2 text-left transition-all ${
+                          isInPack ? 'border-primary/40 bg-primary/10 opacity-75 cursor-not-allowed'
+                          : isChecked ? 'border-primary bg-primary/5'
+                          : 'border-gray-200 bg-white'
+                        }`}
+                      >
+                        <div className={`w-4 h-4 rounded border-2 flex items-center justify-center flex-shrink-0 ${(isChecked || isInPack) ? 'border-primary bg-primary' : 'border-gray-300'}`}>
+                          {(isChecked || isInPack) && <Check className="w-2.5 h-2.5 text-white" />}
+                        </div>
+                        <div className="min-w-0">
+                          <p className="text-sm font-medium text-gray-800 truncate">{extra.name}</p>
+                          <p className="text-xs text-gray-500">{isInPack ? t.booking.extrasSection.included : extra.price}</p>
+                        </div>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+      )}
       {/* Booking summary card */}
       <div className="bg-primary/5 border border-primary/20 rounded-xl p-4 space-y-2">
         <div className="flex items-center justify-between mb-1">
@@ -856,107 +958,6 @@ function Step4Confirm({
           </div>
         )}
       </div>
-      {/* Extras & Packs collapsible section */}
-      {boatExtras.length > 0 && (
-        <div className="border border-gray-200 rounded-xl overflow-hidden">
-          <button
-            type="button"
-            onClick={() => setShowExtras(!showExtras)}
-            aria-expanded={showExtras}
-            aria-controls="extras-panel"
-            className="w-full flex items-center justify-between p-4 text-sm font-semibold text-gray-800 bg-gray-50"
-          >
-            <span className="flex items-center gap-2">
-              <Package className="w-4 h-4 text-primary" />
-              {t.endowment?.customizeExperience || t.booking.extrasSection.title}
-              {(selectedExtras.length > 0 || selectedPack) && (
-                <span className="bg-primary text-white text-xs px-2 py-0.5 rounded-full">
-                  {totalExtrasPrice}€
-                </span>
-              )}
-            </span>
-            {showExtras ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
-          </button>
-          {showExtras && (
-            <div id="extras-panel" className="p-4 space-y-4 bg-white">
-              {/* Packs */}
-              <div>
-                <p className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-2">{t.booking.extrasSection.packs}</p>
-                <div className="space-y-2">
-                  <button
-                    type="button"
-                    onClick={() => handlePackSelect("")}
-                    aria-pressed={!selectedPack}
-                    className={`w-full p-3 rounded-xl border-2 text-left text-sm transition-all ${!selectedPack ? 'border-primary bg-primary/5' : 'border-gray-200'}`}
-                  >
-                    {t.booking.extrasSection.noPack}
-                  </button>
-                  {availablePacks.map((pack) => {
-                    const isSelected = selectedPack === pack.id;
-                    const savings = calculatePackSavings(pack.id);
-                    const IconComp = iconMap[pack.icon] || Package;
-                    return (
-                      <button
-                        key={pack.id}
-                        type="button"
-                        onClick={() => handlePackSelect(pack.id)}
-                        aria-pressed={isSelected}
-                        className={`w-full p-3 rounded-xl border-2 text-left transition-all ${isSelected ? 'border-primary bg-primary/5' : 'border-gray-200 bg-white'}`}
-                      >
-                        <div className="flex items-center justify-between">
-                          <div className="flex items-center gap-2">
-                            <IconComp className="w-4 h-4 text-primary" />
-                            <span className="text-sm font-semibold">{isSpanishLang ? pack.name : pack.nameEN}</span>
-                          </div>
-                          <div className="text-right">
-                            <span className="text-sm font-bold text-primary">{pack.price}€</span>
-                            {savings > 0 && (
-                              <span className="block text-xs text-green-600">{t.booking.extrasSection.savings} {savings.toFixed(0)}€</span>
-                            )}
-                          </div>
-                        </div>
-                      </button>
-                    );
-                  })}
-                </div>
-              </div>
-              {/* Individual extras */}
-              <div>
-                <p className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-2">{t.booking.extrasSection.individual}</p>
-                <div className="grid grid-cols-1 gap-2">
-                  {boatExtras.map((extra) => {
-                    const isChecked = selectedExtras.includes(extra.name);
-                    const isInPack = extrasInPack.has(extra.name);
-                    const IconComp = iconMap[extra.icon] || Package;
-                    return (
-                      <button
-                        key={extra.name}
-                        type="button"
-                        onClick={() => handleExtraToggle(extra.name)}
-                        disabled={isInPack}
-                        aria-pressed={isChecked || isInPack}
-                        className={`flex items-center gap-2 p-2.5 rounded-xl border-2 text-left transition-all ${
-                          isInPack ? 'border-primary/40 bg-primary/10 opacity-75 cursor-not-allowed'
-                          : isChecked ? 'border-primary bg-primary/5'
-                          : 'border-gray-200 bg-white'
-                        }`}
-                      >
-                        <div className={`w-4 h-4 rounded border-2 flex items-center justify-center flex-shrink-0 ${(isChecked || isInPack) ? 'border-primary bg-primary' : 'border-gray-300'}`}>
-                          {(isChecked || isInPack) && <Check className="w-2.5 h-2.5 text-white" />}
-                        </div>
-                        <div className="min-w-0">
-                          <p className="text-sm font-medium text-gray-800 truncate">{extra.name}</p>
-                          <p className="text-xs text-gray-500">{isInPack ? t.booking.extrasSection.included : extra.price}</p>
-                        </div>
-                      </button>
-                    );
-                  })}
-                </div>
-              </div>
-            </div>
-          )}
-        </div>
-      )}
       {/* Discount / gift card code section */}
       <div className="border border-gray-200 rounded-xl overflow-hidden">
         <button

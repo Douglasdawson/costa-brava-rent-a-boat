@@ -1,6 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Clock, AlertTriangle } from "lucide-react";
 import type { Translations } from "@/lib/translations";
 import type { Duration, TimeSlot } from "./types";
@@ -88,23 +89,18 @@ export function BookingStepTime({
         {selectedTime && (
           <div className="mb-6">
             <h3 className="font-medium text-foreground mb-3 text-base">{t.booking.duration}</h3>
-            <div className="grid grid-cols-2 gap-3">
-              {getAvailableDurations(selectedTime).map((dur) => (
-                <button
-                  key={dur.id}
-                  onClick={() => setDuration(dur.id)}
-                  className={`p-3 border rounded-lg text-center hover-elevate ${
-                    duration === dur.id
-                      ? 'border-primary bg-primary/10 text-primary'
-                      : 'border-primary/20 hover:border-primary/20'
-                  }`}
-                  data-testid={`button-duration-${dur.id}`}
-                >
-                  <div className="font-medium">{dur.label}</div>
-                  <div className="text-sm text-muted-foreground">{dur.price}€</div>
-                </button>
-              ))}
-            </div>
+            <Select value={duration} onValueChange={(value) => setDuration(value)}>
+              <SelectTrigger data-testid="select-duration">
+                <SelectValue placeholder={t.booking.selectDuration} />
+              </SelectTrigger>
+              <SelectContent>
+                {getAvailableDurations(selectedTime).map((dur) => (
+                  <SelectItem key={dur.id} value={dur.id}>
+                    {dur.label} — {dur.price}€
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
           </div>
         )}
 

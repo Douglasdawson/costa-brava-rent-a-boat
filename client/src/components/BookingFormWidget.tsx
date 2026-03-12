@@ -743,6 +743,22 @@ export default function BookingFormWidget({ preSelectedBoatId, prefillDate, pref
     if (currentStep === 2) {
       if (!canAdvanceFromStep2()) {
         setTouched(prev => ({ ...prev, date: true, duration: true, time: true, people: true }));
+        // Scroll to the first invalid field
+        const n = parseInt(numberOfPeople);
+        const firstInvalid = !selectedDate || selectedDate < getLocalISODate()
+          ? 'field-date'
+          : !preferredTime
+          ? 'field-time'
+          : !selectedDuration
+          ? 'field-duration'
+          : (!numberOfPeople || n < 1 || n > getMaxCapacity())
+          ? 'field-people'
+          : null;
+        if (firstInvalid) {
+          setTimeout(() => {
+            document.getElementById(firstInvalid)?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }, 50);
+        }
         return;
       }
     }

@@ -12,12 +12,30 @@ import {
   generateCanonicalUrl,
   generateBreadcrumbSchema
 } from "@/utils/seo-config";
-import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { useTranslations } from "@/lib/translations";
-import { useState } from "react";
-import { useQuery } from "@tanstack/react-query";
+import { useState, useMemo } from "react";
 import { useLocation } from "wouter";
-import type { Testimonial } from "@shared/schema";
+import { getAllReviews } from "@/data/boatReviews";
+import { BOAT_DATA } from "@shared/boatData";
+
+// Convert 2-letter country code to flag emoji
+function countryFlag(code: string): string {
+  const upper = code.toUpperCase();
+  return String.fromCodePoint(
+    ...Array.from(upper).map((c) => 0x1f1e6 + c.charCodeAt(0) - 65)
+  );
+}
+
+const LOCALE_MAP: Record<string, string> = {
+  es: "es-ES",
+  ca: "ca-ES",
+  en: "en-GB",
+  fr: "fr-FR",
+  de: "de-DE",
+  nl: "nl-NL",
+  it: "it-IT",
+  ru: "ru-RU",
+};
 
 export default function TestimoniosPage() {
   const { language } = useLanguage();
@@ -29,29 +47,47 @@ export default function TestimoniosPage() {
   const [selectedBoat, setSelectedBoat] = useState<string>('all');
   const [, setLocation] = useLocation();
 
-  // Fetch testimonials from API
-  const { data: testimonials, isLoading, isError } = useQuery<Testimonial[]>({
-    queryKey: ['/api/testimonials']
-  });
+  // Use client-side reviews (same source as ReviewsSection on home)
+  const allReviews = useMemo(() => {
+    return getAllReviews()
+      .map((r) => ({
+        id: `${r.boatId}-${r.name}-${r.date}`,
+        name: r.name,
+        flag: r.flag,
+        boatId: r.boatId,
+        boatName: BOAT_DATA[r.boatId]?.name || r.boatId,
+        rating: r.rating,
+        text: r.text,
+        date: r.date,
+      }))
+      .sort((a, b) => {
+        if (b.rating !== a.rating) return b.rating - a.rating;
+        return b.date.localeCompare(a.date);
+      });
+  }, []);
 
-  // Filter testimonials by boat
-  const filteredTestimonials = selectedBoat === 'all'
-    ? testimonials || []
-    : (testimonials || []).filter(t => t.boatId === selectedBoat);
+  // Get unique boats
+  const boats = useMemo(() => {
+    const boatMap = new Map<string, string>();
+    for (const r of allReviews) {
+      if (!boatMap.has(r.boatId)) {
+        boatMap.set(r.boatId, r.boatName);
+      }
+    }
+    return Array.from(boatMap.entries())
+      .map(([id, name]) => ({ id, name }))
+      .sort((a, b) => a.name.localeCompare(b.name));
+  }, [allReviews]);
 
-  // Calculate average rating
-  const averageRating = testimonials && testimonials.length > 0
-    ? (testimonials.reduce((sum, t) => sum + t.rating, 0) / testimonials.length).toFixed(1)
+  // Filter by boat
+  const filteredReviews = selectedBoat === 'all'
+    ? allReviews
+    : allReviews.filter(r => r.boatId === selectedBoat);
+
+  // Average rating
+  const averageRating = allReviews.length > 0
+    ? (allReviews.reduce((sum, r) => sum + r.rating, 0) / allReviews.length).toFixed(1)
     : "5.0";
-
-  // Get unique boats from testimonials
-  const boats = Array.from(
-    new Set((testimonials || [])
-      .filter(t => t.boatId && t.boatName)
-      .map(t => JSON.stringify({ id: t.boatId, name: t.boatName })))
-  )
-    .map(str => JSON.parse(str))
-    .sort((a, b) => a.name.localeCompare(b.name));
 
   // Breadcrumb schema
   const breadcrumbSchema = generateBreadcrumbSchema([
@@ -59,41 +95,40 @@ export default function TestimoniosPage() {
     { name: "Opiniones", url: "/testimonios" }
   ]);
 
-  // Review schema for SEO - only if we have testimonials
-  const reviewsSchema = testimonials && testimonials.length > 0 ? {
+  // Review schema for SEO
+  const reviewsSchema = allReviews.length > 0 ? {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "name": "Costa Brava Rent a Boat - Blanes",
     "aggregateRating": {
       "@type": "AggregateRating",
       "ratingValue": averageRating,
-      "reviewCount": testimonials.length,
+      "reviewCount": allReviews.length,
       "bestRating": "5",
       "worstRating": "1"
     },
-    "review": testimonials.map(testimonial => ({
+    "review": allReviews.slice(0, 20).map(review => ({
       "@type": "Review",
       "author": {
         "@type": "Person",
-        "name": testimonial.customerName
+        "name": review.name
       },
       "reviewRating": {
         "@type": "Rating",
-        "ratingValue": testimonial.rating.toString(),
+        "ratingValue": review.rating.toString(),
         "bestRating": "5",
         "worstRating": "1"
       },
-      "reviewBody": testimonial.comment,
-      "datePublished": new Date(testimonial.date).toISOString().split('T')[0],
+      "reviewBody": review.text,
+      "datePublished": review.date + "-01",
       "itemReviewed": {
         "@type": "Product",
-        "name": `Alquiler ${testimonial.boatName}`,
-        "description": `Alquiler de barco ${testimonial.boatName} en Blanes, Costa Brava`
+        "name": `Alquiler ${review.boatName}`,
+        "description": `Alquiler de barco ${review.boatName} en Blanes, Costa Brava`
       }
     }))
   } : null;
 
-  // Combine schemas
   const combinedJsonLd = {
     "@context": "https://schema.org",
     "@graph": reviewsSchema ? [breadcrumbSchema, reviewsSchema] : [breadcrumbSchema]
@@ -105,51 +140,12 @@ export default function TestimoniosPage() {
         key={index}
         className={`w-4 h-4 ${
           index < rating
-            ? 'text-cta fill-cta'
+            ? 'text-amber-400 fill-amber-400'
             : 'text-gray-300'
         }`}
       />
     ));
   };
-
-  // Show loading state
-  if (isLoading) {
-    return (
-      <div className="min-h-screen bg-white">
-        <Navigation />
-        <div className="flex items-center justify-center min-h-[60vh]">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
-        </div>
-        <Footer />
-      </div>
-    );
-  }
-
-  // Show error state
-  if (isError) {
-    return (
-      <div className="min-h-screen bg-white">
-        <Navigation />
-        <div className="flex flex-col items-center justify-center min-h-[60vh] px-4">
-          <div className="text-center max-w-md">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">Error al cargar opiniones</h2>
-            <p className="text-gray-600 mb-6">
-              No pudimos cargar las opiniones de clientes en este momento. Por favor, intenta de nuevo más tarde.
-            </p>
-            <Button
-              onClick={() => window.location.reload()}
-              size="lg"
-              data-testid="reload-button"
-            >
-              Reintentar
-            </Button>
-          </div>
-        </div>
-        <Footer />
-      </div>
-    );
-  }
-
 
   return (
     <div className="min-h-screen bg-white">
@@ -160,19 +156,12 @@ export default function TestimoniosPage() {
         hreflang={hreflangLinks}
         jsonLd={combinedJsonLd}
       />
-      
+
       <Navigation />
 
       {/* Hero Section */}
       <div className="bg-gradient-to-br from-blue-600 to-teal-600 text-white pt-20 pb-12">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Breadcrumbs
-            items={[
-              { label: t.breadcrumbs.home, href: "/" },
-              { label: "Opiniones", href: "/testimonios" }
-            ]}
-          />
-          
           <div className="text-center mt-8">
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6">
               <Quote className="w-10 h-10 sm:w-12 sm:h-12 hidden sm:block" />
@@ -180,7 +169,7 @@ export default function TestimoniosPage() {
                 Opiniones de Nuestros Clientes
               </h1>
             </div>
-            
+
             <p className="text-lg sm:text-xl max-w-3xl mx-auto mb-6 text-blue-50">
               Descubre por qué más de 1,000 personas confían en nosotros cada temporada para vivir experiencias únicas en la Costa Brava
             </p>
@@ -194,7 +183,7 @@ export default function TestimoniosPage() {
                 </div>
               </div>
               <p className="text-blue-50">
-                Basado en {testimonials?.length || 0} opiniones verificadas
+                Basado en {allReviews.length} opiniones verificadas
               </p>
             </div>
           </div>
@@ -218,10 +207,10 @@ export default function TestimoniosPage() {
                 onClick={() => setSelectedBoat('all')}
                 data-testid="filter-all"
               >
-                Todos ({testimonials?.length || 0})
+                Todos ({allReviews.length})
               </Button>
               {boats.map(boat => {
-                const count = (testimonials || []).filter(t => t.boatId === boat.id).length;
+                const count = allReviews.filter(r => r.boatId === boat.id).length;
                 return (
                   <Button
                     key={boat.id}
@@ -238,54 +227,46 @@ export default function TestimoniosPage() {
           </div>
 
           {/* Testimonials Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
-            {filteredTestimonials.map((testimonial) => (
-              <Card key={testimonial.id} className="hover-elevate" data-testid={`testimonial-${testimonial.id}`}>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+            {filteredReviews.map((review) => (
+              <Card key={review.id} className="hover-elevate" data-testid={`testimonial-${review.id}`}>
                 <CardHeader className="pb-3">
-                  <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2">
+                  <div className="flex items-start justify-between gap-2">
                     <div className="flex-1">
-                      <div className="flex items-center gap-2 mb-1">
-                        <h3 className="font-semibold text-lg text-gray-900">
-                          {testimonial.customerName}
-                        </h3>
-                        {testimonial.isVerified && (
-                          <Badge variant="default" className="text-xs">
-                            Verificado
-                          </Badge>
+                      <h3 className="font-semibold text-base text-gray-900">
+                        {review.flag && (
+                          <span className="mr-1.5" role="img" aria-label={review.flag}>
+                            {countryFlag(review.flag)}
+                          </span>
                         )}
-                      </div>
-                      <p className="text-sm text-gray-600">
-                        {new Date(testimonial.date).toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' })}
+                        {review.name}
+                      </h3>
+                      <p className="text-xs text-gray-500 mt-0.5">
+                        {new Date(review.date + "-01").toLocaleDateString(
+                          LOCALE_MAP[language] || "es-ES",
+                          { month: "long", year: "numeric" }
+                        )}
                       </p>
                     </div>
                     <div className="flex">
-                      {renderStars(testimonial.rating)}
+                      {renderStars(review.rating)}
                     </div>
                   </div>
                 </CardHeader>
-                
+
                 <CardContent>
                   <div className="space-y-3">
-                    {/* Boat and Details */}
-                    <div className="flex flex-wrap gap-2 text-xs">
-                      <Badge variant="outline" className="gap-1">
-                        <Ship className="w-3 h-3" />
-                        {testimonial.boatName}
-                      </Badge>
-                      <Badge variant="outline" className="gap-1" data-testid={`testimonial-date-${testimonial.id}`}>
-                        {new Date(testimonial.date).toLocaleDateString('es-ES', { 
-                          year: 'numeric', 
-                          month: 'long' 
-                        })}
-                      </Badge>
-                    </div>
-
+                    {/* Boat badge */}
+                    <Badge variant="outline" className="gap-1 text-xs">
+                      <Ship className="w-3 h-3" />
+                      {review.boatName}
+                    </Badge>
 
                     {/* Comment */}
                     <div className="relative">
-                      <Quote className="absolute -top-1 -left-1 w-6 h-6 text-gray-200" />
-                      <p className="text-sm text-gray-700 pl-6 leading-relaxed">
-                        {testimonial.comment}
+                      <Quote className="absolute -top-1 -left-1 w-5 h-5 text-gray-200" />
+                      <p className="text-sm text-gray-700 pl-5 leading-relaxed">
+                        {review.text}
                       </p>
                     </div>
 
@@ -294,10 +275,10 @@ export default function TestimoniosPage() {
                       variant="outline"
                       size="sm"
                       className="w-full mt-2"
-                      onClick={() => setLocation(`/barco/${testimonial.boatId}`)}
-                      data-testid={`button-view-boat-${testimonial.id}`}
+                      onClick={() => setLocation(`/barco/${review.boatId}`)}
+                      data-testid={`button-view-boat-${review.id}`}
                     >
-                      Ver {testimonial.boatName ?? "barco"}
+                      Ver {review.boatName}
                     </Button>
                   </div>
                 </CardContent>

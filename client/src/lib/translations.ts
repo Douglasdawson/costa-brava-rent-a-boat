@@ -306,6 +306,27 @@ export interface Translations {
     acceptTerms: string;
     termsAndConditions: string;
     privacyPolicy: string;
+    // New booking flow keys
+    boatType: string;
+    allBoats: string;
+    optional: string;
+    nationality: string;
+    searchNationality: string;
+    person: string;
+    deposit: string;
+    subtotal: string;
+    season: string;
+    getQuote: string;
+    creatingQuote: string;
+    quoteDescription: string;
+    quoteCreated: string;
+    quoteTimeLimit: string;
+    processingPayment: string;
+    estimatedPriceNote: string;
+    scheduleAndDuration: string;
+    startTime: string;
+    iAcceptThe: string;
+    andThe: string;
     // BookingFormWidget labels
     firstName: string;
     lastName: string;
@@ -365,6 +386,11 @@ export interface Translations {
     errorGeneric: string;
     errorPayment: string;
     backToHome: string;
+    // Pricing transparency
+    weekendSurchargeTitle?: string;
+    weekendSurcharge?: string;
+    weekendSurchargeLabel?: string;
+    minDuration2h?: string;
   };
 
   // FAQ Page
@@ -1001,6 +1027,11 @@ export interface Translations {
     readMore: string;
     notFoundTitle: string;
     notFoundDescription: string;
+    shareArticle: string;
+    copyLink: string;
+    linkCopied: string;
+    share: string;
+    minRead: string;
   };
 
   // Social Proof Strip (homepage)

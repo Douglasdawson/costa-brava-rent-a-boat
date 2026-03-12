@@ -6,11 +6,32 @@ import Footer from "@/components/Footer";
 import { SEO } from "@/components/SEO";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Calendar, User, ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
+import { Calendar, User, ChevronLeft, ChevronRight, ArrowRight, Home } from "lucide-react";
 import { useLanguage } from "@/hooks/use-language";
 import { useTranslations } from "@/lib/translations";
 import { getSEOConfig, generateHreflangLinks, generateCanonicalUrl } from "@/utils/seo-config";
 import type { BlogPost } from "@shared/schema";
+
+const LOCALE_MAP: Record<string, string> = {
+  es: 'es-ES', en: 'en-GB', ca: 'ca-ES', fr: 'fr-FR',
+  de: 'de-DE', nl: 'nl-NL', it: 'it-IT', ru: 'ru-RU',
+};
+
+const CATEGORY_TRANSLATIONS: Record<string, Record<string, string>> = {
+  'Destinos': { es: 'Destinos', en: 'Destinations', ca: 'Destinacions', fr: 'Destinations', de: 'Reiseziele', nl: 'Bestemmingen', it: 'Destinazioni', ru: 'Направления' },
+  'Consejos': { es: 'Consejos', en: 'Tips', ca: 'Consells', fr: 'Conseils', de: 'Tipps', nl: 'Tips', it: 'Consigli', ru: 'Советы' },
+  'Guías': { es: 'Guías', en: 'Guides', ca: 'Guies', fr: 'Guides', de: 'Anleitungen', nl: 'Gidsen', it: 'Guide', ru: 'Гиды' },
+  'Aventuras': { es: 'Aventuras', en: 'Adventures', ca: 'Aventures', fr: 'Aventures', de: 'Abenteuer', nl: 'Avonturen', it: 'Avventure', ru: 'Приключения' },
+  'Naturaleza': { es: 'Naturaleza', en: 'Nature', ca: 'Natura', fr: 'Nature', de: 'Natur', nl: 'Natuur', it: 'Natura', ru: 'Природа' },
+  'Gastronomía': { es: 'Gastronomía', en: 'Gastronomy', ca: 'Gastronomia', fr: 'Gastronomie', de: 'Gastronomie', nl: 'Gastronomie', it: 'Gastronomia', ru: 'Гастрономия' },
+  'Cultura': { es: 'Cultura', en: 'Culture', ca: 'Cultura', fr: 'Culture', de: 'Kultur', nl: 'Cultuur', it: 'Cultura', ru: 'Культура' },
+  'Seguridad': { es: 'Seguridad', en: 'Safety', ca: 'Seguretat', fr: 'Sécurité', de: 'Sicherheit', nl: 'Veiligheid', it: 'Sicurezza', ru: 'Безопасность' },
+  'Familia': { es: 'Familia', en: 'Family', ca: 'Família', fr: 'Famille', de: 'Familie', nl: 'Familie', it: 'Famiglia', ru: 'Семья' },
+};
+
+function localizeCategory(category: string, lang: string): string {
+  return CATEGORY_TRANSLATIONS[category]?.[lang] || category;
+}
 
 const POSTS_PER_PAGE = 8;
 
@@ -118,11 +139,44 @@ export default function BlogPage() {
   // --- Loading ---
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-white">
+      <div className="min-h-screen bg-muted/30">
         <SEO title={seoConfig.title} description={seoConfig.description} canonical={canonical} hreflang={hreflangLinks} />
         <Navigation />
-        <div className="flex items-center justify-center min-h-[60vh]">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+        {/* Skeleton header */}
+        <div className="container mx-auto px-4 pt-20 sm:pt-24 pb-8 md:pb-12">
+          <div className="max-w-3xl space-y-4">
+            <div className="h-10 md:h-14 bg-muted animate-pulse rounded-lg w-2/3" />
+            <div className="h-5 bg-muted animate-pulse rounded w-full max-w-2xl" />
+          </div>
+        </div>
+        {/* Skeleton category pills */}
+        <div className="bg-white">
+          <div className="container mx-auto px-4 py-6">
+            <div className="flex gap-2">
+              {[80, 100, 90, 110, 70].map((w, i) => (
+                <div key={i} className="h-9 bg-muted animate-pulse rounded-full shrink-0" style={{ width: w }} />
+              ))}
+            </div>
+          </div>
+        </div>
+        {/* Skeleton grid */}
+        <div className="bg-white py-8">
+          <div className="container mx-auto px-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-7">
+              {Array.from({ length: 6 }).map((_, i) => (
+                <div key={i} className="space-y-3">
+                  <div className="aspect-[16/9] bg-muted animate-pulse rounded-xl" />
+                  <div className="flex gap-2">
+                    <div className="h-5 w-16 bg-muted animate-pulse rounded" />
+                    <div className="h-5 w-20 bg-muted animate-pulse rounded" />
+                  </div>
+                  <div className="h-6 bg-muted animate-pulse rounded w-5/6" />
+                  <div className="h-4 bg-muted animate-pulse rounded w-full" />
+                  <div className="h-4 bg-muted animate-pulse rounded w-2/3" />
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
         <Footer />
       </div>
@@ -150,12 +204,26 @@ export default function BlogPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#faf9f7]">
+    <div className="min-h-screen bg-muted/30">
       <SEO title={seoConfig.title} description={seoConfig.description} canonical={canonical} hreflang={hreflangLinks} />
       <Navigation />
 
+      {/* Breadcrumbs */}
+      <nav className="container mx-auto px-4 pt-20 sm:pt-24 pb-2" aria-label="Breadcrumb">
+        <ol className="flex items-center gap-1.5 text-sm text-muted-foreground">
+          <li>
+            <Link href="/" className="flex items-center gap-1 hover:text-foreground transition-colors">
+              <Home className="w-3.5 h-3.5" />
+              {bp.breadcrumbHome}
+            </Link>
+          </li>
+          <li className="text-muted-foreground/50">/</li>
+          <li className="text-foreground font-medium">{bp.breadcrumbBlog}</li>
+        </ol>
+      </nav>
+
       {/* Header — editorial style, no gradient hero */}
-      <header className="container mx-auto px-4 pt-20 sm:pt-24 pb-8 md:pb-12">
+      <header className="container mx-auto px-4 pb-8 md:pb-12">
         <div className="max-w-3xl">
           <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-foreground leading-[1.1]">
             {bp.title}
@@ -193,7 +261,7 @@ export default function BlogPage() {
                     : 'bg-transparent text-muted-foreground border-border hover:border-foreground/30 hover:text-foreground'
                 }`}
               >
-                {cat}
+                {localizeCategory(cat, language)}
               </button>
             ))}
           </div>
@@ -201,7 +269,7 @@ export default function BlogPage() {
           {/* Post count */}
           <p className="mt-4 text-sm text-muted-foreground" data-testid="text-posts-count">
             {filteredPosts.length} {filteredPosts.length === 1 ? bp.article : bp.articles}
-            {selectedCategory !== 'all' && ` ${bp.inCategory} ${selectedCategory}`}
+            {selectedCategory !== 'all' && ` ${bp.inCategory} ${localizeCategory(selectedCategory, language)}`}
           </p>
         </div>
       </div>
@@ -247,7 +315,7 @@ export default function BlogPage() {
                         className="bg-white/15 text-white border-0 backdrop-blur-sm"
                         data-testid={`badge-category-${featuredPost.slug}`}
                       >
-                        {featuredPost.category}
+                        {localizeCategory(featuredPost.category, language)}
                       </Badge>
                     </div>
 
@@ -272,7 +340,7 @@ export default function BlogPage() {
                       {featuredPost.publishedAt && (
                         <span className="flex items-center gap-1.5" data-testid={`text-date-${featuredPost.slug}`}>
                           <Calendar className="w-3.5 h-3.5" />
-                          {new Date(featuredPost.publishedAt).toLocaleDateString('es-ES')}
+                          {new Date(featuredPost.publishedAt).toLocaleDateString(LOCALE_MAP[language] || 'es-ES')}
                         </span>
                       )}
                       <span>{estimateReadingTime(featuredPost.content)} {bp.minRead}</span>
@@ -294,25 +362,30 @@ export default function BlogPage() {
       <section className="bg-white py-8 md:py-12">
         <div className="container mx-auto px-4">
           {paginatedPosts.length === 0 && !featuredPost ? (
-            <div className="text-center py-16">
+            <div className="text-center py-16 space-y-4">
               <p className="text-muted-foreground text-lg">{bp.noArticles}</p>
+              {selectedCategory !== 'all' && (
+                <Button
+                  variant="outline"
+                  onClick={() => setSelectedCategory('all')}
+                  className="rounded-full"
+                >
+                  {bp.allCategories}
+                </Button>
+              )}
             </div>
           ) : (
             <>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-7">
-                {paginatedPosts.map((post, index) => {
-                  // First two posts get a larger treatment
-                  const isLarge = index < 2 && currentPage === 1 && selectedCategory === 'all';
-
-                  return (
+                {paginatedPosts.map((post) => (
                     <Link key={post.id} href={`/blog/${post.slug}`}>
                       <article
-                        className={`group cursor-pointer h-full ${isLarge ? '' : ''}`}
+                        className="group cursor-pointer h-full"
                         data-testid={`link-blog-card-${post.slug}`}
                       >
                         {/* Image */}
                         {post.featuredImage && (
-                          <div className={`relative overflow-hidden rounded-xl mb-4 ${isLarge ? 'aspect-[16/10]' : 'aspect-[16/9]'}`}>
+                          <div className="relative overflow-hidden rounded-xl mb-4 aspect-[16/9]">
                             <img
                               src={post.featuredImage}
                               alt={localized(post.titleByLang as Record<string, string> | null, post.title, language)}
@@ -334,7 +407,7 @@ export default function BlogPage() {
                             className="text-xs font-medium"
                             data-testid={`badge-category-${post.slug}`}
                           >
-                            {post.category}
+                            {localizeCategory(post.category, language)}
                           </Badge>
                           <span className="text-xs text-muted-foreground">
                             {estimateReadingTime(post.content)} {bp.minRead}
@@ -343,9 +416,7 @@ export default function BlogPage() {
 
                         {/* Title */}
                         <h3
-                          className={`font-display font-semibold leading-snug text-foreground group-hover:text-primary/80 transition-colors duration-200 mb-2 ${
-                            isLarge ? 'text-xl md:text-2xl' : 'text-lg'
-                          }`}
+                          className="font-display font-semibold leading-snug text-foreground group-hover:text-primary/80 transition-colors duration-200 mb-2 text-lg"
                           data-testid={`text-title-${post.slug}`}
                         >
                           {localized(post.titleByLang as Record<string, string> | null, post.title, language)}
@@ -371,7 +442,7 @@ export default function BlogPage() {
                             {post.publishedAt && (
                               <span className="flex items-center gap-1" data-testid={`text-date-${post.slug}`}>
                                 <Calendar className="w-3.5 h-3.5" />
-                                {new Date(post.publishedAt).toLocaleDateString('es-ES')}
+                                {new Date(post.publishedAt).toLocaleDateString(LOCALE_MAP[language] || 'es-ES')}
                               </span>
                             )}
                           </div>
@@ -393,8 +464,7 @@ export default function BlogPage() {
                         )}
                       </article>
                     </Link>
-                  );
-                })}
+                ))}
               </div>
 
               {/* Pagination */}
@@ -453,7 +523,7 @@ export default function BlogPage() {
       {/* Bottom wave before footer */}
       <WaveDivider className="text-[#faf9f7] h-6 md:h-10 -mb-px bg-white" />
 
-      <div className="bg-[#faf9f7] h-8" />
+      <div className="bg-muted/30 h-8" />
 
       <Footer />
     </div>

@@ -329,7 +329,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
         </div>
       </div>
 
-      <div className="container mx-auto px-4 pt-6 sm:pt-8 pb-6 sm:pb-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-6 sm:pt-8 pb-6 sm:pb-8">
 
         {/* Image and Description Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 mb-6 sm:mb-8">
@@ -350,7 +350,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                 srcSet={getBoatImageSrcSet(displayImages[currentImageIndex]) || undefined}
                 sizes="(max-width: 767px) 100vw, 800px"
                 alt={getBoatAltText(boatData.name, currentImageIndex)}
-                className="w-full aspect-[3/4] sm:h-80 sm:aspect-auto md:h-96 object-cover cursor-zoom-in"
+                className="w-full aspect-[4/3] object-cover cursor-zoom-in"
                 width={800}
                 height={600}
                 loading="lazy"

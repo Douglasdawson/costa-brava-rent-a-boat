@@ -366,7 +366,7 @@ export default function BlogDetailPage() {
             <div className="my-8">
               <img
                 src={post.featuredImage}
-                alt={localized(post.titleByLang as Record<string, string> | null, post.title, language)}
+                alt={localized(post.featuredImageAltByLang as Record<string, string> | null, null, language) || localized(post.titleByLang as Record<string, string> | null, post.title, language)}
                 className="w-full aspect-video object-cover rounded-lg"
                 loading="eager"
                 fetchPriority="high"
@@ -414,7 +414,7 @@ export default function BlogDetailPage() {
                     {relatedPost.featuredImage && (
                       <img
                         src={relatedPost.featuredImage}
-                        alt={localized(relatedPost.titleByLang as Record<string, string> | null, relatedPost.title, language)}
+                        alt={localized(relatedPost.featuredImageAltByLang as Record<string, string> | null, null, language) || localized(relatedPost.titleByLang as Record<string, string> | null, relatedPost.title, language)}
                         className="w-full aspect-[3/2] object-cover"
                         loading="lazy"
                       />

@@ -289,7 +289,7 @@ export default function BlogPage() {
                     {featuredPost.featuredImage ? (
                       <img
                         src={featuredPost.featuredImage}
-                        alt={localized(featuredPost.titleByLang as Record<string, string> | null, featuredPost.title, language)}
+                        alt={localized(featuredPost.featuredImageAltByLang as Record<string, string> | null, null, language) || localized(featuredPost.titleByLang as Record<string, string> | null, featuredPost.title, language)}
                         className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                         loading="eager"
                         fetchPriority="high"
@@ -388,7 +388,7 @@ export default function BlogPage() {
                           <div className="relative overflow-hidden rounded-xl mb-4 aspect-[16/9]">
                             <img
                               src={post.featuredImage}
-                              alt={localized(post.titleByLang as Record<string, string> | null, post.title, language)}
+                              alt={localized(post.featuredImageAltByLang as Record<string, string> | null, null, language) || localized(post.titleByLang as Record<string, string> | null, post.title, language)}
                               className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
                               loading="lazy"
                               width={800}

@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { X, Gift } from "lucide-react";
 import { useTranslations } from "@/lib/translations";
 import { useBookingModal } from "@/hooks/bookingModalContext";
@@ -8,6 +8,13 @@ export function ExitIntentModal() {
   const { openBookingModal } = useBookingModal();
   const [show, setShow] = useState(false);
   const [dismissed, setDismissed] = useState(false);
+  const modalRef = useRef<HTMLDivElement>(null);
+  const previousFocusRef = useRef<HTMLElement | null>(null);
+
+  const handleDismiss = useCallback(() => {
+    setShow(false);
+    setDismissed(true);
+  }, []);
 
   const handleMouseLeave = useCallback((e: MouseEvent) => {
     // Only trigger when mouse exits through the top of the viewport
@@ -33,10 +40,52 @@ export function ExitIntentModal() {
     };
   }, [handleMouseLeave]);
 
-  const handleDismiss = () => {
-    setShow(false);
-    setDismissed(true);
-  };
+  // Close on Escape key
+  useEffect(() => {
+    if (!show) return;
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') handleDismiss();
+    };
+    document.addEventListener('keydown', handleEscape);
+    return () => document.removeEventListener('keydown', handleEscape);
+  }, [show, handleDismiss]);
+
+  // Focus management: focus first button on open, restore focus on close
+  useEffect(() => {
+    if (show) {
+      previousFocusRef.current = document.activeElement as HTMLElement;
+      setTimeout(() => {
+        const closeBtn = modalRef.current?.querySelector('button');
+        closeBtn?.focus();
+      }, 100);
+    } else if (previousFocusRef.current) {
+      previousFocusRef.current.focus();
+    }
+  }, [show]);
+
+  // Focus trap: cycle Tab within modal
+  useEffect(() => {
+    if (!show) return;
+    const handleTab = (e: KeyboardEvent) => {
+      if (e.key !== 'Tab') return;
+      const modal = modalRef.current;
+      if (!modal) return;
+      const focusable = modal.querySelectorAll<HTMLElement>(
+        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+      );
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    };
+    document.addEventListener('keydown', handleTab);
+    return () => document.removeEventListener('keydown', handleTab);
+  }, [show]);
 
   const handleBookNow = () => {
     setShow(false);
@@ -47,12 +96,19 @@ export function ExitIntentModal() {
   if (!show) return null;
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4" onClick={handleDismiss}>
+    <div
+      className="fixed inset-0 z-[100] flex items-center justify-center p-4"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="exit-intent-title"
+      onClick={handleDismiss}
+    >
       {/* Backdrop */}
       <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" />
 
       {/* Modal */}
       <div
+        ref={modalRef}
         className="relative bg-white rounded-2xl shadow-2xl max-w-md w-full overflow-hidden"
         onClick={(e) => e.stopPropagation()}
       >
@@ -74,7 +130,7 @@ export function ExitIntentModal() {
             <Gift className="w-8 h-8 text-cta" />
           </div>
 
-          <h3 className="font-heading text-2xl font-medium text-foreground mb-2">
+          <h3 id="exit-intent-title" className="font-heading text-2xl font-medium text-foreground mb-2">
             {t.exitIntent?.title}
           </h3>
           <p className="text-muted-foreground text-sm mb-6">

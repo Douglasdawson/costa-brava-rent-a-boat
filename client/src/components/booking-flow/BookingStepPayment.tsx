@@ -34,7 +34,7 @@ export function BookingStepPayment({
       <CardHeader>
         <CardTitle className="flex items-center">
           <CreditCard className="w-5 h-5 mr-2" />
-          Resumen y pago
+          {t.booking.summaryTitle}
         </CardTitle>
       </CardHeader>
       <CardContent>
@@ -60,18 +60,31 @@ export function BookingStepPayment({
                   <span>{t.booking.summaryBasePrice} ({quote.season})</span>
                   <span>{quote.basePrice}€</span>
                 </div>
+                {(() => {
+                  const parsedDate = selectedDate ? new Date(selectedDate + "T12:00:00") : null;
+                  const isWeekendDay = parsedDate ? (parsedDate.getDay() === 0 || parsedDate.getDay() === 6) : false;
+                  if (!isWeekendDay || !quote.basePrice) return null;
+                  const priceBeforeSurcharge = Math.round(quote.basePrice / 1.15);
+                  const surchargeAmount = quote.basePrice - priceBeforeSurcharge;
+                  return (
+                    <div className="flex justify-between text-amber-600 text-xs">
+                      <span>{t.booking?.weekendSurchargeLabel || 'Weekend surcharge (15%)'}</span>
+                      <span>+{surchargeAmount}€</span>
+                    </div>
+                  );
+                })()}
                 {quote.selectedExtras && quote.selectedExtras.length > 0 && (
                   <div className="flex justify-between">
-                    <span>Extras: {quote.selectedExtras.join(', ')}</span>
+                    <span>{t.booking.extras}: {quote.selectedExtras.join(', ')}</span>
                     <span>{quote.extrasPrice}€</span>
                   </div>
                 )}
                 <div className="flex justify-between">
-                  <span>Depósito</span>
+                  <span>{t.booking.deposit}</span>
                   <span>{quote.deposit}€</span>
                 </div>
                 <div className="flex justify-between">
-                  <span>Subtotal</span>
+                  <span>{t.booking.subtotal}</span>
                   <span>{quote.subtotal}€</span>
                 </div>
                 <hr className="my-2" />
@@ -84,7 +97,7 @@ export function BookingStepPayment({
                 </div>
                 {quote.season && (
                   <p className="text-xs text-muted-foreground mt-2">
-                    Temporada {quote.season} {quote.duration} {quote.numberOfPeople} personas
+                    {t.booking.season} {quote.season} {quote.duration} {quote.numberOfPeople} {t.booking.people}
                   </p>
                 )}
               </>
@@ -113,7 +126,7 @@ export function BookingStepPayment({
                   </span>
                 </div>
                 <p className="text-xs text-muted-foreground mt-2">
-                  *Precio estimado. El precio final se calculará con las tarifas de temporada.
+                  {t.booking.estimatedPriceNote}
                 </p>
               </>
             )}
@@ -134,17 +147,17 @@ export function BookingStepPayment({
                 ) : (
                   <Euro className="w-5 h-5 mr-2" />
                 )}
-                {isLoading ? "Creando cotización..." : "Obtener Cotización"}
+                {isLoading ? t.booking.creatingQuote : t.booking.getQuote}
               </Button>
               <p className="text-xs text-muted-foreground text-center">
-                Obtén el precio final con tarifas de temporada y crea una reserva temporal de 30 minutos.
+                {t.booking.quoteDescription}
               </p>
             </>
           ) : (
             <>
               <div className="bg-primary/5 p-3 rounded-lg">
                 <p className="text-sm text-primary">
-                  Cotización creada. Tienes <strong>30 minutos</strong> para completar el pago.
+                  {t.booking.quoteCreated} <strong>{t.booking.quoteTimeLimit}</strong>
                   {holdId && (
                     <span className="block text-xs mt-1">Hold ID: {holdId}</span>
                   )}
@@ -154,7 +167,7 @@ export function BookingStepPayment({
               <div className="flex items-center space-x-2 text-sm text-muted-foreground">
                 <input type="checkbox" id="terms" className="rounded" />
                 <label htmlFor="terms">
-                  Acepto los <a href="#" className="text-primary hover:underline">{t.booking.termsAndConditions}</a> y la <a href="#" className="text-primary hover:underline">{t.booking.privacyPolicy}</a>
+                  {t.booking.iAcceptThe} <a href="#" className="text-primary hover:underline">{t.booking.termsAndConditions}</a> {t.booking.andThe} <a href="#" className="text-primary hover:underline">{t.booking.privacyPolicy}</a>
                 </label>
               </div>
 
@@ -169,11 +182,11 @@ export function BookingStepPayment({
                 ) : (
                   <CreditCard className="w-5 h-5 mr-2" />
                 )}
-                {isLoading ? "Procesando pago..." : `${t.booking.pay || 'Pagar'} ${calculateTotal()}€`}
+                {isLoading ? t.booking.processingPayment : `${t.booking.pay || 'Pagar'} ${calculateTotal()}€`}
               </Button>
 
               <p className="text-xs text-muted-foreground text-center">
-                Pago seguro procesado por Stripe.
+                {t.booking.stripePaymentSecure}
               </p>
             </>
           )}

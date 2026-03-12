@@ -220,7 +220,7 @@ export default function ReviewsSection() {
                   &ldquo;
                 </span>
                 {/* Comment */}
-                <p className="text-foreground text-[13px] leading-relaxed mt-1 line-clamp-6 flex-1">
+                <p className="text-foreground text-sm leading-relaxed mt-1 line-clamp-6 flex-1">
                   {review.text}
                 </p>
                 {/* Author */}

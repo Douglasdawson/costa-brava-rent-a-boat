@@ -56,7 +56,7 @@ export default function FleetSection() {
   const [, setLocation] = useLocation();
   const { openBookingModal } = useBookingModal();
   const { ref: revealRef, isVisible } = useScrollReveal();
-  const [selectedGroupSize, setSelectedGroupSize] = useState<number | null>(null);
+  const [selectedGroupSize, setSelectedGroupSize] = useState<string | null>(null);
   const [licenseFilter, setLicenseFilter] = useState<'all' | 'no' | 'yes'>('all');
   const [checklistOpen, setChecklistOpen] = useState(false);
   const [viewMode, setViewMode] = useState<'grid' | 'table'>('grid');
@@ -146,7 +146,7 @@ export default function FleetSection() {
     return getGroupSizeOptions(maxCapacity);
   }, [boats]);
 
-  // Filter by license and sort: recommended ones first when a group size is selected
+  // Filter by license and group size
   const sortedBoats = useMemo(() => {
     let filtered = boats;
 
@@ -158,23 +158,18 @@ export default function FleetSection() {
     }
 
     if (selectedGroupSize === null) return filtered;
-    const option = groupSizeOptions.find(
-      o => selectedGroupSize >= o.min && selectedGroupSize <= o.max
-    );
+    const option = groupSizeOptions.find(o => o.label === selectedGroupSize);
     if (!option) return filtered;
 
-    return [...filtered].sort((a, b) => {
-      const aMatch = a.capacity >= option.min && a.capacity >= selectedGroupSize;
-      const bMatch = b.capacity >= option.min && b.capacity >= selectedGroupSize;
-      if (aMatch && !bMatch) return -1;
-      if (!aMatch && bMatch) return 1;
-      return 0;
-    });
-  }, [boats, selectedGroupSize, licenseFilter]);
+    // Filter: only show boats whose capacity falls within the selected bucket
+    return filtered.filter(b => b.capacity >= option.min && b.capacity <= option.max);
+  }, [boats, selectedGroupSize, licenseFilter, groupSizeOptions]);
 
   const isBoatRecommended = (capacity: number): boolean => {
     if (selectedGroupSize === null) return false;
-    return capacity >= selectedGroupSize;
+    const option = groupSizeOptions.find(o => o.label === selectedGroupSize);
+    if (!option) return false;
+    return capacity >= option.min && capacity <= option.max;
   };
 
   const handleBooking = (boatId: string) => {
@@ -201,7 +196,7 @@ export default function FleetSection() {
         {/* Filters — native selects on mobile, pill buttons on desktop */}
 
         {/* Mobile + Tablet: native OS selects */}
-        <div className="flex lg:hidden items-center justify-center gap-3 mb-6">
+        <div className="flex lg:hidden items-center justify-center gap-3 mb-6 sticky top-16 z-30 bg-background/95 backdrop-blur-sm py-2 -mx-4 px-4 md:static md:bg-transparent md:backdrop-blur-none md:py-0 md:mx-0 md:px-0">
           <div className="relative">
             <Anchor className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground pointer-events-none" />
             <select
@@ -218,13 +213,13 @@ export default function FleetSection() {
           <div className="relative">
             <Users className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground pointer-events-none" />
             <select
-              value={selectedGroupSize === null ? '' : String(selectedGroupSize)}
-              onChange={(e) => setSelectedGroupSize(e.target.value ? Number(e.target.value) : null)}
+              value={selectedGroupSize ?? ''}
+              onChange={(e) => setSelectedGroupSize(e.target.value || null)}
               className="appearance-none bg-muted text-foreground text-sm font-medium rounded-xl pl-9 pr-8 py-2.5 border border-border focus:ring-2 focus:ring-primary focus:outline-none"
             >
               <option value="">{t.recommendation?.all}</option>
               {groupSizeOptions.map((option) => (
-                <option key={option.label} value={option.min}>
+                <option key={option.label} value={option.label}>
                   {option.label} {t.boats?.people}
                 </option>
               ))}
@@ -282,9 +277,9 @@ export default function FleetSection() {
               {groupSizeOptions.map((option) => (
                 <button
                   key={option.label}
-                  onClick={() => setSelectedGroupSize(option.min)}
+                  onClick={() => setSelectedGroupSize(option.label)}
                   className={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors ${
-                    selectedGroupSize !== null && selectedGroupSize >= option.min && selectedGroupSize <= option.max
+                    selectedGroupSize === option.label
                       ? 'bg-foreground text-white'
                       : 'bg-muted text-muted-foreground hover:bg-muted-foreground/10'
                   }`}
@@ -310,7 +305,7 @@ export default function FleetSection() {
             </button>
             <button
               onClick={() => setViewMode('table')}
-              className={`p-2 rounded-full transition-colors ${
+              className={`hidden md:inline-flex p-2 rounded-full transition-colors ${
                 viewMode === 'table'
                   ? 'bg-foreground text-white'
                   : 'bg-muted text-muted-foreground hover:bg-muted-foreground/10'
@@ -324,39 +319,59 @@ export default function FleetSection() {
 
         {/* Grid view */}
         {viewMode === 'grid' && (
-          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 mb-6 sm:mb-8 lg:mb-12">
-            {isLoading ? (
-              Array.from({ length: 6 }).map((_, i) => (
-                <div key={i} className="bg-white rounded-lg p-4 animate-pulse">
-                  <div className="bg-gray-200 h-48 rounded mb-4"></div>
-                  <div className="bg-gray-200 h-6 rounded mb-2"></div>
-                  <div className="bg-gray-200 h-4 rounded mb-4"></div>
-                  <div className="bg-gray-200 h-10 rounded"></div>
-                </div>
-              ))
-            ) : (
-              sortedBoats.map((boat) => (
-                <div
-                  key={boat.id}
-                  className={`transition-opacity duration-300 ${
-                    selectedGroupSize !== null && !isBoatRecommended(boat.capacity)
-                      ? 'opacity-50'
-                      : 'opacity-100'
-                  }`}
+          <>
+            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 mb-6 sm:mb-8 lg:mb-12">
+              {isLoading ? (
+                Array.from({ length: 3 }).map((_, i) => (
+                  <div key={i} className="rounded-xl border border-primary/10 overflow-hidden animate-pulse">
+                    <div className="h-48 bg-muted" />
+                    <div className="p-4 space-y-3">
+                      <div className="h-5 bg-muted rounded w-3/4" />
+                      <div className="h-4 bg-muted rounded w-1/2" />
+                      <div className="h-8 bg-muted rounded w-full" />
+                    </div>
+                  </div>
+                ))
+              ) : (
+                sortedBoats.map((boat) => (
+                  <div
+                    key={boat.id}
+                    className={`transition-opacity duration-300 ${
+                      selectedGroupSize !== null && !isBoatRecommended(boat.capacity)
+                        ? 'opacity-50'
+                        : 'opacity-100'
+                    }`}
+                  >
+                    <BoatCard
+                      {...boat}
+                      isPopular={boat.id === popularBoatId}
+                      isRecommended={isBoatRecommended(boat.capacity)}
+                      scarcityData={fleetAvailability?.boats[boat.id]}
+                      weeklyBookings={weeklyBookings?.[boat.id]}
+                      onBooking={handleBooking}
+                      onDetails={handleDetails}
+                    />
+                  </div>
+                ))
+              )}
+            </div>
+            {sortedBoats.length === 0 && !isLoading && (
+              <div className="text-center py-12">
+                <p className="text-muted-foreground mb-4">
+                  {t.boats.notAvailable}
+                </p>
+                <button
+                  onClick={() => {
+                    setLicenseFilter('all');
+                    setSelectedGroupSize(null);
+                  }}
+                  className="px-4 py-2 rounded-full border border-border text-foreground text-sm font-medium hover:bg-muted transition-colors"
                 >
-                  <BoatCard
-                    {...boat}
-                    isPopular={boat.id === popularBoatId}
-                    isRecommended={isBoatRecommended(boat.capacity)}
-                    scarcityData={fleetAvailability?.boats[boat.id]}
-                    weeklyBookings={weeklyBookings?.[boat.id]}
-                    onBooking={handleBooking}
-                    onDetails={handleDetails}
-                  />
-                </div>
-              ))
+                  {t.recommendation?.all || 'All'}
+                </button>
+              </div>
             )}
-          </div>
+          </>
         )}
 
         {/* Comparison table view */}

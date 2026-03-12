@@ -1,9 +1,11 @@
 import { useLocation } from "wouter";
 import { SiWhatsapp } from "react-icons/si";
 import { trackWhatsAppClick } from "@/utils/analytics";
+import { useTranslations } from "@/lib/translations";
 
 export default function WhatsAppFloatingButton() {
   const [location] = useLocation();
+  const t = useTranslations();
 
   // Hide on admin/CRM pages
   if (location.startsWith("/admin") || location.startsWith("/crm")) {
@@ -13,9 +15,13 @@ export default function WhatsAppFloatingButton() {
   // On boat detail pages, raise the button above the sticky CTA bar (h-16)
   const isBoatDetailPage = location.startsWith("/barco/");
 
+  const whatsappMessage = encodeURIComponent(
+    t.footer?.whatsappMessage || 'Hola, me interesa alquilar un barco'
+  );
+
   return (
     <a
-      href="https://wa.me/34611500372?text=Hola,%20me%20interesa%20alquilar%20un%20barco"
+      href={`https://wa.me/34611500372?text=${whatsappMessage}`}
       target="_blank"
       rel="noopener noreferrer"
       title="WhatsApp"

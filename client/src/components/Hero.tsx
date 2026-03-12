@@ -1,5 +1,5 @@
 import { Button } from "./ui/button";
-import { ShieldCheck, Shield, CheckCircle, Award, Users, Star, ChevronDown } from "lucide-react";
+import { ShieldCheck, Shield, CheckCircle, Award, Users, Star } from "lucide-react";
 import { useTranslations } from "@/lib/translations";
 import { useBookingModal } from "@/hooks/bookingModalContext";
 import CurvedLoop from "./CurvedLoop";
@@ -79,40 +79,27 @@ export default function Hero() {
       </div>
 
       {/* Trust badges strip — full width at bottom */}
-      <div className="hidden sm:block absolute bottom-0 left-0 right-0 z-20 bg-foreground/90 backdrop-blur-sm">
-        <div className="flex items-center justify-center gap-6 lg:gap-8 px-4 py-3">
-          <span className="inline-flex items-center gap-1.5 text-white text-xs sm:text-sm font-medium">
-            <Award className="w-3.5 h-3.5 flex-shrink-0" />
+      <div className="absolute bottom-0 left-0 right-0 z-20 bg-foreground/90 backdrop-blur-sm">
+        <div className="flex items-center justify-center gap-3 sm:gap-6 lg:gap-8 px-3 sm:px-4 py-2.5 sm:py-3 overflow-x-auto scrollbar-hide">
+          <span className="inline-flex items-center gap-1 sm:gap-1.5 text-white text-[11px] sm:text-sm font-medium whitespace-nowrap">
+            <Award className="w-3 h-3 sm:w-3.5 sm:h-3.5 flex-shrink-0" />
             {t.authority?.yearsExperience || '6+ anos de experiencia'}
           </span>
-          <span className="inline-flex items-center gap-1.5 text-white text-xs sm:text-sm font-medium">
-            <Shield className="w-3.5 h-3.5 flex-shrink-0" />
+          <span className="inline-flex items-center gap-1 sm:gap-1.5 text-white text-[11px] sm:text-sm font-medium whitespace-nowrap">
+            <Shield className="w-3 h-3 sm:w-3.5 sm:h-3.5 flex-shrink-0" />
             {t.authority?.fullInsurance || 'Seguro a todo riesgo'}
           </span>
-          <span className="inline-flex items-center gap-1.5 text-white text-xs sm:text-sm font-medium">
-            <Users className="w-3.5 h-3.5 flex-shrink-0" />
+          <span className="inline-flex items-center gap-1 sm:gap-1.5 text-white text-[11px] sm:text-sm font-medium whitespace-nowrap">
+            <Users className="w-3 h-3 sm:w-3.5 sm:h-3.5 flex-shrink-0" />
             {t.authority?.happyCustomers || '5000+ clientes satisfechos'}
           </span>
-          <span className="inline-flex items-center gap-1.5 text-white text-xs sm:text-sm font-medium">
-            <Star className="w-3.5 h-3.5 flex-shrink-0 fill-amber-400 text-amber-400" />
+          <span className="inline-flex items-center gap-1 sm:gap-1.5 text-white text-[11px] sm:text-sm font-medium whitespace-nowrap">
+            <Star className="w-3 h-3 sm:w-3.5 sm:h-3.5 flex-shrink-0 fill-amber-400 text-amber-400" />
             {t.hero.googleRating}
           </span>
         </div>
       </div>
 
-      {/* Scroll indicator — animated chevron between CTAs and trust strip (desktop only) */}
-      <div className="hidden sm:flex absolute bottom-[46px] left-0 right-0 z-20 justify-center pointer-events-none">
-        <button
-          onClick={() => {
-            const fleet = document.getElementById('fleet');
-            if (fleet) fleet.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          }}
-          className="pointer-events-auto animate-bounce text-white/60 hover:text-white transition-colors"
-          aria-label="Scroll down"
-        >
-          <ChevronDown className="w-5 h-5" />
-        </button>
-      </div>
 
       {/* Curved loop marquee — overlaid at bottom of hero */}
       <div className="absolute bottom-0 left-0 right-0 z-10 overflow-hidden opacity-50 sm:hidden">

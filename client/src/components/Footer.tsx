@@ -46,7 +46,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-[#1A2B4A] text-white/70">
+    <footer className="bg-[#1A2B4A] text-white/80">
       <div className="container mx-auto px-4 py-16 sm:py-20 lg:px-8 max-w-7xl">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-12">
 
@@ -61,7 +61,7 @@ export default function Footer() {
             >
               <LogoCostaBravaFooter className="h-10" />
             </a>
-            <p className="text-sm text-white/50 mb-4 leading-relaxed">
+            <p className="text-sm text-white/60 mb-4 leading-relaxed">
               {t.footer.description}
             </p>
             <div className="flex items-center space-x-2 text-sm mb-6">
@@ -75,7 +75,7 @@ export default function Footer() {
                 href="https://www.instagram.com/costabravarentaboat/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-white/50 hover:text-white transition-colors rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2 focus-visible:outline-none"
+                className="text-white/70 hover:text-white transition-colors rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2 focus-visible:outline-none"
                 data-testid="social-instagram"
                 aria-label="Instagram"
               >
@@ -85,7 +85,7 @@ export default function Footer() {
                 href="https://www.facebook.com/costabravarentaboat"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-white/50 hover:text-white transition-colors rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2 focus-visible:outline-none"
+                className="text-white/70 hover:text-white transition-colors rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2 focus-visible:outline-none"
                 data-testid="social-facebook"
                 aria-label="Facebook"
               >
@@ -95,7 +95,7 @@ export default function Footer() {
                 href="https://www.tiktok.com/@costabravarentaboat"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-white/50 hover:text-white transition-colors rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2 focus-visible:outline-none"
+                className="text-white/70 hover:text-white transition-colors rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2 focus-visible:outline-none"
                 data-testid="social-tiktok"
                 aria-label="TikTok"
               >
@@ -109,7 +109,7 @@ export default function Footer() {
                 <Map className="w-4 h-4 text-cta" />
                 {t.locationPages.newsletter.title}
               </h3>
-              <p className="text-sm text-white/50 mb-3">{t.locationPages.newsletter.subtitle}</p>
+              <p className="text-sm text-white/60 mb-3">{t.locationPages.newsletter.subtitle}</p>
               {newsletterState === 'success' ? (
                 <p className="text-xs text-green-400">{t.locationPages.newsletter.success}</p>
               ) : (
@@ -124,7 +124,7 @@ export default function Footer() {
                     onChange={(e) => setNewsletterEmail(e.target.value)}
                     placeholder={t.locationPages.newsletter.placeholder}
                     required
-                    className="bg-white/10 border border-white/20 rounded-full px-4 py-3 text-base md:text-sm text-white placeholder:text-white/50 focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none focus:border-white/40 flex-1 min-w-0"
+                    className="bg-white/10 border border-white/20 rounded-full px-4 py-3 text-base md:text-sm text-white placeholder:text-white/60 focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none focus:border-white/40 flex-1 min-w-0"
                   />
                   <button
                     type="submit"
@@ -183,7 +183,7 @@ export default function Footer() {
             <h3 className="font-medium text-white mb-4 text-sm">{t.footer.contact}</h3>
             <div className="space-y-4">
               <div className="flex items-start space-x-3">
-                <Phone className="w-4 h-4 text-white/40 flex-shrink-0 mt-0.5" />
+                <Phone className="w-4 h-4 text-white/50 flex-shrink-0 mt-0.5" />
                 <div>
                   <a
                     href="tel:+34611500372"
@@ -191,12 +191,12 @@ export default function Footer() {
                     data-testid="phone-call-link"
                     aria-label={`${t.a11y.callPhone} +34 611 500 372`}
                   >+34 611 500 372</a>
-                  <p className="text-xs text-white/50 mt-0.5">{t.footer.callsAndWhatsapp}</p>
+                  <p className="text-xs text-white/60 mt-0.5">{t.footer.callsAndWhatsapp}</p>
                 </div>
               </div>
 
               <div className="flex items-start space-x-3">
-                <Mail className="w-4 h-4 text-white/40 flex-shrink-0 mt-0.5" />
+                <Mail className="w-4 h-4 text-white/50 flex-shrink-0 mt-0.5" />
                 <div>
                   <a
                     href="mailto:costabravarentaboat@gmail.com"
@@ -206,12 +206,12 @@ export default function Footer() {
                   >
                     costabravarentaboat@gmail.com
                   </a>
-                  <p className="text-xs text-white/50 mt-0.5">{t.footer.responseTime}</p>
+                  <p className="text-xs text-white/60 mt-0.5">{t.footer.responseTime}</p>
                 </div>
               </div>
 
               <div className="flex items-start space-x-3">
-                <MapPin className="w-4 h-4 text-white/40 flex-shrink-0 mt-0.5" />
+                <MapPin className="w-4 h-4 text-white/50 flex-shrink-0 mt-0.5" />
                 <div>
                   <a
                     href="https://maps.app.goo.gl/NHV4PcaFPmwBYqCt5"
@@ -223,15 +223,15 @@ export default function Footer() {
                   >
                     {t.footer.location}
                   </a>
-                  <p className="text-xs text-white/50 mt-0.5">{t.footer.region}</p>
+                  <p className="text-xs text-white/60 mt-0.5">{t.footer.region}</p>
                 </div>
               </div>
 
               <div className="flex items-start space-x-3">
-                <Clock className="w-4 h-4 text-white/40 flex-shrink-0 mt-0.5" />
+                <Clock className="w-4 h-4 text-white/50 flex-shrink-0 mt-0.5" />
                 <div>
                   <p className="text-sm">{t.footer.businessHours}</p>
-                  <p className="text-xs text-white/50 mt-0.5">{t.footer.flexibleHours}</p>
+                  <p className="text-xs text-white/60 mt-0.5">{t.footer.flexibleHours}</p>
                 </div>
               </div>
             </div>
@@ -242,18 +242,18 @@ export default function Footer() {
         {/* Bottom Section */}
         <div className="border-t border-white/10 mt-12 pt-8">
           <div className="flex flex-col items-center gap-3">
-            <div className="text-white/60 text-sm flex flex-wrap gap-2 sm:gap-4 justify-center">
-              <a href="/terms-conditions" className="hover:text-white/60 transition-colors rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none" data-testid="footer-terms-link">{t.footer.terms}</a>
-              <a href="/privacy-policy" className="hover:text-white/60 transition-colors rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none" data-testid="footer-privacy-link">{t.footer.privacy}</a>
-              <a href="/cookies-policy" className="hover:text-white/60 transition-colors rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none" data-testid="footer-cookies-link">{t.footer.cookiesPolicy}</a>
-              <a href="/accesibilidad" className="hover:text-white/60 transition-colors rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none" data-testid="footer-accessibility-link">{t.footer.accessibility}</a>
+            <div className="text-white/70 text-sm flex flex-wrap gap-2 sm:gap-4 justify-center">
+              <a href="/terms-conditions" className="hover:text-white transition-colors rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none" data-testid="footer-terms-link">{t.footer.terms}</a>
+              <a href="/privacy-policy" className="hover:text-white transition-colors rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none" data-testid="footer-privacy-link">{t.footer.privacy}</a>
+              <a href="/cookies-policy" className="hover:text-white transition-colors rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none" data-testid="footer-cookies-link">{t.footer.cookiesPolicy}</a>
+              <a href="/accesibilidad" className="hover:text-white transition-colors rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none" data-testid="footer-accessibility-link">{t.footer.accessibility}</a>
             </div>
-            <p className="text-white/40 text-xs text-center text-balance">
+            <p className="text-white/50 text-xs text-center text-balance">
               {currentYear} Costa Brava Rent a Boat Blanes. {t.footer.rights}
             </p>
-            <div className="flex items-center justify-center gap-3 text-white/30 text-xs">
+            <div className="flex items-center justify-center gap-3 text-white/50 text-xs">
               <span>NIF: B22566327</span>
-              <a href="/login" className="inline-flex items-center gap-1 hover:text-white/50 transition-colors" aria-label="Acceso administración">
+              <a href="/login" className="inline-flex items-center gap-1 hover:text-white/60 transition-colors" aria-label="Acceso administración">
                 <Lock className="w-3 h-3" />
               </a>
             </div>

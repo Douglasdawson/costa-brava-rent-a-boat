@@ -29,6 +29,10 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Hide scrollbar for horizontal scroll containers */
+.scrollbar-hide::-webkit-scrollbar { display: none; }
+.scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+
 /* Prevent horizontal scroll — body overflow propagates to viewport per CSS spec.
    MUST be outside @layer to have higher priority than Tailwind utilities.
    Do NOT set overflow on html — it breaks body→viewport propagation. */

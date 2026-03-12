@@ -1,6 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Plus, Minus } from "lucide-react";
+import type { Translations } from "@/lib/translations";
 import type { Extra } from "./types";
 
 interface BookingStepExtrasProps {
@@ -8,13 +9,14 @@ interface BookingStepExtrasProps {
   extras: Record<string, number>;
   updateExtra: (extraId: string, increment: boolean) => void;
   setStep: (step: number) => void;
+  t: Translations;
 }
 
-export function BookingStepExtras({ availableExtras, extras, updateExtra, setStep }: BookingStepExtrasProps) {
+export function BookingStepExtras({ availableExtras, extras, updateExtra, setStep, t }: BookingStepExtrasProps) {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Extras (opcional)</CardTitle>
+        <CardTitle>{t.booking.extras} ({t.booking.optional})</CardTitle>
       </CardHeader>
       <CardContent>
         <div className="space-y-4 mb-6">
@@ -55,7 +57,7 @@ export function BookingStepExtras({ availableExtras, extras, updateExtra, setSte
           className="w-full py-3"
           data-testid="button-continue-customer-data"
         >
-          Continuar
+          {t.booking.continue}
         </Button>
       </CardContent>
     </Card>

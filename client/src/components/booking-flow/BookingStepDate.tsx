@@ -35,7 +35,7 @@ export function BookingStepDate({ selectedDate, setSelectedDate, setStep, t }: B
             className="w-full py-3"
             data-testid="button-next-step"
           >
-            Continuar
+            {t.booking.continue}
           </Button>
         </div>
       </CardContent>

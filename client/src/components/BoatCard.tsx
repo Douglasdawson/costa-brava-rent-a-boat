@@ -113,26 +113,20 @@ export default function BoatCard({
             />
           </picture>
         )}
-        {isPopular && (
-          <div className="absolute top-3 left-3 z-10 inline-flex items-center gap-1 bg-amber-500 text-white text-xs font-bold px-2.5 py-1 rounded-full shadow-md">
-            <Star className="w-3 h-3 fill-white" />
-            {t.boats.mostPopular}
-          </div>
-        )}
-        {isRecommended && !isPopular && (
-          <div className="absolute top-3 left-3 z-10 inline-flex items-center gap-1 bg-cta text-white text-xs font-bold px-2.5 py-1 rounded-full shadow-md">
-            <ThumbsUp className="w-3 h-3" />
-            {t.recommendation?.recommendedForYou}
-          </div>
-        )}
-        {isRecommended && isPopular && (
-          <div className="absolute top-11 left-3 z-10 inline-flex items-center gap-1 bg-cta text-white text-xs font-bold px-2.5 py-1 rounded-full shadow-md">
-            <ThumbsUp className="w-3 h-3" />
-            {t.recommendation?.recommendedForYou}
-          </div>
-        )}
-        <div className={`absolute ${isPopular && isRecommended ? 'top-[76px]' : isPopular || isRecommended ? 'top-11' : 'top-3'} left-3`}>
-          <span className="bg-white/90 backdrop-blur-sm text-foreground text-sm font-medium rounded-full px-3 py-1">
+        <div className="absolute top-3 left-3 flex flex-col gap-1.5 z-10">
+          {isPopular && (
+            <div className="inline-flex items-center gap-1 bg-amber-500 text-white text-xs font-bold px-2.5 py-1 rounded-full shadow-md">
+              <Star className="w-3 h-3 fill-white" />
+              {t.boats.mostPopular}
+            </div>
+          )}
+          {isRecommended && (
+            <div className="inline-flex items-center gap-1 bg-cta text-white text-xs font-bold px-2.5 py-1 rounded-full shadow-md">
+              <ThumbsUp className="w-3 h-3" />
+              {t.recommendation?.recommendedForYou}
+            </div>
+          )}
+          <span className="bg-white/90 backdrop-blur-sm text-foreground text-sm font-medium rounded-full px-3 py-1 self-start">
             {requiresLicense ? t.boats.withLicense : t.boats.withoutLicense}
           </span>
         </div>
@@ -171,7 +165,7 @@ export default function BoatCard({
             <div className="flex items-baseline gap-1.5 justify-end">
               {showPriceAnchoring && (
                 <span className="text-sm text-muted-foreground/70 line-through">
-                  {highSeasonPrice}&euro;
+                  <span className="text-[10px] no-underline">{t.pricing?.highSeason || 'High season'}: </span>{highSeasonPrice}&euro;
                 </span>
               )}
               <span className="text-cta font-medium text-lg">
@@ -256,7 +250,7 @@ export default function BoatCard({
         </a>
         <button
           onClick={() => onBooking(id)}
-          className="bg-cta hover:bg-cta/90 text-white text-sm font-medium px-4 py-1.5 rounded-full transition-colors focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2 focus-visible:outline-none"
+          className="bg-cta hover:bg-cta/90 text-white text-sm font-medium px-4 py-1.5 rounded-full transition-colors focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2 focus-visible:outline-none cta-pulse"
           data-testid={`button-book-${id}`}
         >
           {t.boats.book}

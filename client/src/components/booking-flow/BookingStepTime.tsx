@@ -1,7 +1,8 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Clock } from "lucide-react";
+import { Clock, AlertTriangle } from "lucide-react";
+import type { Translations } from "@/lib/translations";
 import type { Duration, TimeSlot } from "./types";
 
 interface BookingStepTimeProps {
@@ -12,23 +13,45 @@ interface BookingStepTimeProps {
   setDuration: (duration: string) => void;
   getAvailableDurations: (startTime: string) => Duration[];
   setStep: (step: number) => void;
+  selectedDate: string;
+  t: Translations;
 }
 
 export function BookingStepTime({
   timeSlots, selectedTime, setSelectedTime,
   duration, setDuration, getAvailableDurations, setStep,
+  selectedDate, t,
 }: BookingStepTimeProps) {
+  const parsedDate = selectedDate ? new Date(selectedDate + "T12:00:00") : null;
+  const isWeekendDay = parsedDate ? (parsedDate.getDay() === 0 || parsedDate.getDay() === 6) : false;
+  const isAugust = parsedDate ? (parsedDate.getMonth() === 7) : false;
+  const minDuration2h = isWeekendDay || isAugust;
+
   return (
     <Card>
       <CardHeader>
         <CardTitle className="flex items-center">
           <Clock className="w-5 h-5 mr-2" />
-          Horario y duración
+          {t.booking.scheduleAndDuration}
         </CardTitle>
       </CardHeader>
       <CardContent>
+        {isWeekendDay && (
+          <div className="bg-amber-50 border border-amber-200 rounded-lg p-3 mb-4 text-sm text-amber-800 flex items-start gap-2">
+            <AlertTriangle className="w-4 h-4 mt-0.5 shrink-0" />
+            <span>
+              <strong>{t.booking?.weekendSurchargeTitle || 'Weekend surcharge'}:</strong>{' '}
+              {t.booking?.weekendSurcharge || 'A 15% surcharge applies on weekends.'}
+            </span>
+          </div>
+        )}
+        {minDuration2h && (
+          <p className="text-xs text-muted-foreground mb-4">
+            {t.booking?.minDuration2h || 'Minimum duration: 2 hours on weekends and high season.'}
+          </p>
+        )}
         <div className="mb-6">
-          <h3 className="font-medium text-foreground mb-3 text-base">Horario de inicio</h3>
+          <h3 className="font-medium text-foreground mb-3 text-base">{t.booking.startTime}</h3>
           <div className="space-y-2">
             {timeSlots.map((slot) => (
               <button
@@ -53,9 +76,9 @@ export function BookingStepTime({
               >
                 <span className="font-medium">{slot.label}</span>
                 {slot.available ? (
-                  <Badge variant="secondary">Disponible</Badge>
+                  <Badge variant="secondary">{t.boats.available}</Badge>
                 ) : (
-                  <Badge variant="outline">Ocupado</Badge>
+                  <Badge variant="outline">{t.boats.occupied}</Badge>
                 )}
               </button>
             ))}
@@ -64,7 +87,7 @@ export function BookingStepTime({
 
         {selectedTime && (
           <div className="mb-6">
-            <h3 className="font-medium text-foreground mb-3 text-base">Duración</h3>
+            <h3 className="font-medium text-foreground mb-3 text-base">{t.booking.duration}</h3>
             <div className="grid grid-cols-2 gap-3">
               {getAvailableDurations(selectedTime).map((dur) => (
                 <button
@@ -92,7 +115,7 @@ export function BookingStepTime({
               className="w-full py-3"
               data-testid="button-continue-extras"
             >
-              Continuar
+              {t.booking.continue}
             </Button>
           </div>
         )}

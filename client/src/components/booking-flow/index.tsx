@@ -36,7 +36,7 @@ export default function BookingFlow(props: BookingFlowProps) {
           </Button>
         </div>
 
-        <BookingProgressIndicator currentStep={step} />
+        <BookingProgressIndicator currentStep={step} t={t} />
 
         {step === 1 && (
           <BookingStepDate
@@ -55,6 +55,7 @@ export default function BookingFlow(props: BookingFlowProps) {
             licenseFilter={state.licenseFilter}
             setLicenseFilter={state.setLicenseFilter}
             setStep={setStep}
+            t={t}
           />
         )}
 
@@ -67,6 +68,8 @@ export default function BookingFlow(props: BookingFlowProps) {
             setDuration={state.setDuration}
             getAvailableDurations={state.getAvailableDurations}
             setStep={setStep}
+            selectedDate={state.selectedDate}
+            t={t}
           />
         )}
 
@@ -76,6 +79,7 @@ export default function BookingFlow(props: BookingFlowProps) {
             extras={state.extras}
             updateExtra={state.updateExtra}
             setStep={setStep}
+            t={t}
           />
         )}
 

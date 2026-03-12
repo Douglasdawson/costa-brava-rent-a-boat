@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -34,12 +35,34 @@ export function BookingStepCustomer({
   filteredNationalities,
   setStep, t,
 }: BookingStepCustomerProps) {
+  const [touched, setTouched] = useState<Record<string, boolean>>({});
+
+  const errors = {
+    customerName: !customerData.customerName && touched.customerName,
+    customerSurname: !customerData.customerSurname && touched.customerSurname,
+    customerPhone: !customerData.customerPhone && touched.customerPhone,
+    customerNationality: !customerData.customerNationality && touched.customerNationality,
+  };
+
+  const handleBlur = (field: string) => {
+    setTouched(prev => ({ ...prev, [field]: true }));
+  };
+
+  const isFormValid = customerData.customerName &&
+    customerData.customerSurname &&
+    customerData.customerPhone &&
+    customerData.customerNationality &&
+    customerData.numberOfPeople >= 1;
+
+  const errorBorderClass = "border-red-400 focus:ring-red-400 focus:border-red-400";
+  const normalBorderClass = "border-primary/20 focus:ring-primary focus:border-primary";
+
   return (
     <Card>
       <CardHeader>
         <CardTitle className="flex items-center">
           <Users className="w-5 h-5 mr-2" />
-          Datos del cliente
+          {t.booking.customerData}
         </CardTitle>
       </CardHeader>
       <CardContent>
@@ -47,47 +70,57 @@ export function BookingStepCustomer({
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <label className="block text-base font-medium text-foreground mb-2">
-                Nombre *
+                {t.booking.firstName} *
               </label>
               <input
                 type="text"
+                required
                 value={customerData.customerName}
                 onChange={(e) => setCustomerData(prev => ({...prev, customerName: e.target.value}))}
-                className="w-full p-3 border border-primary/20 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary text-foreground"
+                onBlur={() => handleBlur('customerName')}
+                className={`w-full p-3 border rounded-lg focus:ring-2 text-foreground ${errors.customerName ? errorBorderClass : normalBorderClass}`}
                 placeholder="Ana"
                 data-testid="input-customer-name"
               />
+              {errors.customerName && (
+                <p className="text-red-500 text-xs mt-1">{t.validation.required}</p>
+              )}
             </div>
             <div>
               <label className="block text-base font-medium text-foreground mb-2">
-                Apellidos *
+                {t.booking.lastName} *
               </label>
               <input
                 type="text"
+                required
                 value={customerData.customerSurname}
                 onChange={(e) => setCustomerData(prev => ({...prev, customerSurname: e.target.value}))}
-                className="w-full p-3 border border-primary/20 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary text-foreground"
+                onBlur={() => handleBlur('customerSurname')}
+                className={`w-full p-3 border rounded-lg focus:ring-2 text-foreground ${errors.customerSurname ? errorBorderClass : normalBorderClass}`}
                 placeholder="García López"
                 data-testid="input-customer-surname"
               />
+              {errors.customerSurname && (
+                <p className="text-red-500 text-xs mt-1">{t.validation.required}</p>
+              )}
             </div>
           </div>
           <div>
             <label className="block text-base font-medium text-foreground mb-2">
-              Email *
+              {t.booking.emailLabel} ({t.booking.optional})
             </label>
             <input
               type="email"
               value={customerData.customerEmail}
               onChange={(e) => setCustomerData(prev => ({...prev, customerEmail: e.target.value}))}
               className="w-full p-3 border border-primary/20 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary text-foreground"
-              placeholder="ana@ejemplo.com (opcional)"
+              placeholder="ana@example.com"
               data-testid="input-customer-email"
             />
           </div>
           <div>
             <label className="block text-base font-medium text-foreground mb-2">
-              Teléfono *
+              {t.booking.phone} *
             </label>
             <div className="flex gap-2">
               <div className="relative w-28 flex-shrink-0">
@@ -101,6 +134,9 @@ export function BookingStepCustomer({
                   onFocus={() => setShowPhonePrefixDropdown(true)}
                   onBlur={() => {
                     setTimeout(() => setShowPhonePrefixDropdown(false), 200);
+                  }}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Escape') setShowPhonePrefixDropdown(false);
                   }}
                   placeholder="+34"
                   className="w-full p-3 border border-primary/20 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary text-sm text-foreground"
@@ -129,23 +165,29 @@ export function BookingStepCustomer({
               <div className="flex-1 min-w-0">
                 <input
                   type="tel"
+                  required
                   value={customerData.customerPhone}
                   onChange={(e) => setCustomerData(prev => ({...prev, customerPhone: e.target.value}))}
-                  className="w-full p-3 border border-primary/20 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary text-foreground"
+                  onBlur={() => handleBlur('customerPhone')}
+                  className={`w-full p-3 border rounded-lg focus:ring-2 text-foreground ${errors.customerPhone ? errorBorderClass : normalBorderClass}`}
                   placeholder="600 000 000"
                   data-testid="input-customer-phone"
                 />
               </div>
             </div>
+            {errors.customerPhone && (
+              <p className="text-red-500 text-xs mt-1">{t.validation.required}</p>
+            )}
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <label className="block text-sm font-medium text-foreground mb-2">
-                Nacionalidad *
+                {t.booking.nationality} *
               </label>
               <div className="relative">
                 <input
                   type="text"
+                  required
                   value={nationalitySearch || customerData.customerNationality}
                   onChange={(e) => {
                     const value = e.target.value;
@@ -159,10 +201,14 @@ export function BookingStepCustomer({
                       setNationalitySearch("");
                     }
                     setShowNationalityDropdown(false);
+                    handleBlur('customerNationality');
                   }}
                   onFocus={() => setShowNationalityDropdown(true)}
-                  placeholder="Buscar nacionalidad"
-                  className="w-full p-3 border border-primary/20 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary text-foreground"
+                  onKeyDown={(e) => {
+                    if (e.key === 'Escape') setShowNationalityDropdown(false);
+                  }}
+                  placeholder={t.booking.searchNationality}
+                  className={`w-full p-3 border rounded-lg focus:ring-2 text-foreground ${errors.customerNationality ? errorBorderClass : normalBorderClass}`}
                   data-testid="input-nationality-search"
                 />
                 {showNationalityDropdown && filteredNationalities.length > 0 && (
@@ -186,10 +232,13 @@ export function BookingStepCustomer({
                   </div>
                 )}
               </div>
+              {errors.customerNationality && (
+                <p className="text-red-500 text-xs mt-1">{t.validation.required}</p>
+              )}
             </div>
             <div>
               <label className="block text-sm font-medium text-foreground mb-2">
-                Número de personas *
+                {t.booking.numberOfPeople} *
               </label>
               <Select value={customerData.numberOfPeople.toString()} onValueChange={(value) => setCustomerData(prev => ({...prev, numberOfPeople: parseInt(value)}))}>
                 <SelectTrigger>
@@ -198,7 +247,7 @@ export function BookingStepCustomer({
                 <SelectContent>
                   {Array.from({ length: maxCapacity }, (_, i) => i + 1).map((num) => (
                     <SelectItem key={num} value={num.toString()}>
-                      {num} {num === 1 ? 'persona' : 'personas'}
+                      {num} {num === 1 ? t.booking.person : t.booking.people}
                     </SelectItem>
                   ))}
                 </SelectContent>
@@ -209,7 +258,7 @@ export function BookingStepCustomer({
 
         <Button
           onClick={() => setStep(6)}
-          disabled={!customerData.customerName || !customerData.customerSurname || !customerData.customerPhone || !customerData.customerNationality || customerData.numberOfPeople < 1 || customerData.customerPhone?.length < 9}
+          disabled={!isFormValid}
           className="w-full py-3"
           data-testid="button-continue-payment"
         >

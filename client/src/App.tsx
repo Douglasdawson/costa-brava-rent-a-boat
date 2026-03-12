@@ -176,9 +176,9 @@ function HomePage() {
         <Hero />
         <FleetSection />
         <NeverSailedSection />
+        <GiftCardBanner />
         <LicenseComparisonSection />
         <ReviewsSection />
-        <GiftCardBanner />
         <FeaturesSection />
         <FAQPreview />
         <ContactSection />

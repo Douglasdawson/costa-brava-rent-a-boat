@@ -25,6 +25,8 @@ import {
   Wrench,
   Package,
   Loader2,
+  Search,
+  ArrowRight,
 } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { useToast } from "@/hooks/use-toast";
@@ -90,6 +92,17 @@ interface InventoryItem {
   pricePerUnit: string | null;
 }
 
+interface AnalyticsOverview {
+  gsc?: {
+    totals: {
+      clicks: number;
+      impressions: number;
+      ctr: number;
+      position: number;
+    };
+  };
+}
+
 const SEGMENT_COLORS: Record<string, string> = {
   vip: "bg-emerald-100 text-emerald-800",
   returning: "bg-blue-100 text-blue-800",
@@ -144,6 +157,18 @@ export function ReportsTab({ adminToken }: ReportsTabProps) {
       return res.json();
     },
   });
+
+  // Google Search Console analytics
+  const { data: analyticsData } = useQuery<AnalyticsOverview>({
+    queryKey: ["/api/admin/analytics/overview"],
+    queryFn: async () => {
+      const res = await fetch("/api/admin/analytics/overview", { headers });
+      if (!res.ok) throw new Error("Error");
+      return res.json();
+    },
+  });
+
+  const gscTotals = analyticsData?.gsc?.totals;
 
   // Export functions
   const exportCSV = (data: Record<string, unknown>[], filename: string, headerMap: Record<string, string>) => {
@@ -220,6 +245,57 @@ export function ReportsTab({ adminToken }: ReportsTabProps) {
 
   return (
     <div className="space-y-4 sm:space-y-6">
+      {/* Google Search KPIs */}
+      <div className="space-y-3">
+        <div className="flex items-center gap-2">
+          <Search className="w-5 h-5 text-muted-foreground" />
+          <h3 className="text-lg font-semibold font-heading">Google Search</h3>
+        </div>
+        {gscTotals ? (
+          <>
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+              <Card>
+                <CardHeader className="pb-2">
+                  <CardTitle className="text-sm font-medium text-muted-foreground">Clics organicos</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-2xl font-bold">{gscTotals.clicks.toLocaleString()}</p>
+                </CardContent>
+              </Card>
+              <Card>
+                <CardHeader className="pb-2">
+                  <CardTitle className="text-sm font-medium text-muted-foreground">Impresiones</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-2xl font-bold">{gscTotals.impressions.toLocaleString()}</p>
+                </CardContent>
+              </Card>
+              <Card>
+                <CardHeader className="pb-2">
+                  <CardTitle className="text-sm font-medium text-muted-foreground">CTR medio</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-2xl font-bold">{(gscTotals.ctr * 100).toFixed(1)}%</p>
+                </CardContent>
+              </Card>
+              <Card>
+                <CardHeader className="pb-2">
+                  <CardTitle className="text-sm font-medium text-muted-foreground">Posicion media</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-2xl font-bold">{gscTotals.position.toFixed(1)}</p>
+                </CardContent>
+              </Card>
+            </div>
+            <p className="text-sm text-muted-foreground flex items-center gap-1">
+              Ver mas en SEO & Analytics <ArrowRight className="w-3 h-3" />
+            </p>
+          </>
+        ) : (
+          <p className="text-sm text-muted-foreground">Google API no configurada</p>
+        )}
+      </div>
+
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <h2 className="text-xl sm:text-2xl font-bold font-heading">Reportes Operativos</h2>
       </div>

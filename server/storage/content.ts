@@ -1,5 +1,5 @@
 import {
-  db, eq, and, gte, lte,
+  db, eq, and, gte, lte, desc,
   testimonials, blogPosts, destinations, newsletterSubscribers,
   type Testimonial, type InsertTestimonial,
   type BlogPost, type InsertBlogPost,
@@ -42,7 +42,8 @@ export async function getPublishedBlogPosts(): Promise<BlogPost[]> {
     .where(and(
       eq(blogPosts.isPublished, true),
       lte(blogPosts.publishedAt, new Date()),
-    ));
+    ))
+    .orderBy(desc(blogPosts.publishedAt));
 }
 
 export async function getBlogPost(id: string): Promise<BlogPost | undefined> {
@@ -62,7 +63,8 @@ export async function getBlogPostsByCategory(category: string): Promise<BlogPost
       eq(blogPosts.category, category),
       eq(blogPosts.isPublished, true),
       lte(blogPosts.publishedAt, new Date()),
-    ));
+    ))
+    .orderBy(desc(blogPosts.publishedAt));
 }
 
 export async function createBlogPost(insertPost: InsertBlogPost): Promise<BlogPost> {
@@ -182,5 +184,6 @@ export async function getRecentPublishedBlogPosts(since: Date): Promise<BlogPost
     .where(and(
       eq(blogPosts.isPublished, true),
       gte(blogPosts.publishedAt, since)
-    ));
+    ))
+    .orderBy(desc(blogPosts.publishedAt));
 }

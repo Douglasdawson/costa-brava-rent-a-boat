@@ -3,6 +3,36 @@ import { storage } from "../storage";
 import { insertDestinationSchema } from "@shared/schema";
 import { requireAdminSession } from "./auth";
 import { logger } from "../lib/logger";
+import { boatRoutes } from "@shared/routesData";
+import type { Destination } from "@shared/schema";
+
+// Build a synthetic Destination object from a boatRoute for fallback when DB is empty
+function buildDestinationFromRoute(routeId: string): Destination | undefined {
+  const route = boatRoutes.find(r => r.id === routeId);
+  if (!route) return undefined;
+
+  const desc = route.descriptions.es;
+  const lastCoord = route.coordinates[route.coordinates.length - 1];
+
+  return {
+    id: route.id,
+    tenantId: null,
+    name: desc.name,
+    slug: route.id,
+    description: desc.description,
+    content: `## ${desc.name}\n\n${desc.description}\n\n### Puntos de interes\n\n${desc.highlights.map(h => `- ${h}`).join("\n")}\n\n**Distancia:** ${route.distance}\n**Tiempo estimado:** ${route.estimatedTime}`,
+    coordinates: { lat: lastCoord.lat, lng: lastCoord.lng },
+    featuredImage: null,
+    imageGallery: null,
+    metaDescription: desc.description.substring(0, 155),
+    nearbyAttractions: desc.highlights,
+    distanceFromPort: route.distance,
+    recommendedBoats: null,
+    isPublished: true,
+    createdAt: new Date(),
+    updatedAt: new Date(),
+  };
+}
 
 export function registerDestinationRoutes(app: Express) {
   // ===== PUBLIC ROUTES =====
@@ -11,6 +41,13 @@ export function registerDestinationRoutes(app: Express) {
   app.get("/api/destinations", async (req, res) => {
     try {
       const destinations = await storage.getPublishedDestinations();
+      // Fallback to boatRoutes when no DB destinations exist
+      if (destinations.length === 0) {
+        const fallbackDestinations = boatRoutes
+          .map(r => buildDestinationFromRoute(r.id))
+          .filter((d): d is Destination => d !== undefined);
+        return res.json(fallbackDestinations);
+      }
       res.json(destinations);
     } catch (error: unknown) {
       logger.error("[Destinations] Error fetching destinations", { error: error instanceof Error ? error.message : String(error) });
@@ -23,6 +60,11 @@ export function registerDestinationRoutes(app: Express) {
     try {
       const destination = await storage.getDestinationBySlug(req.params.slug);
       if (!destination) {
+        // Fallback: try to match slug against boatRoutes
+        const fallback = buildDestinationFromRoute(req.params.slug);
+        if (fallback) {
+          return res.json(fallback);
+        }
         return res.status(404).json({ message: "Destination not found" });
       }
       res.json(destination);

@@ -27,6 +27,7 @@ const CATEGORY_TRANSLATIONS: Record<string, Record<string, string>> = {
   'Cultura': { es: 'Cultura', en: 'Culture', ca: 'Cultura', fr: 'Culture', de: 'Kultur', nl: 'Cultuur', it: 'Cultura', ru: 'Культура' },
   'Seguridad': { es: 'Seguridad', en: 'Safety', ca: 'Seguretat', fr: 'Sécurité', de: 'Sicherheit', nl: 'Veiligheid', it: 'Sicurezza', ru: 'Безопасность' },
   'Familia': { es: 'Familia', en: 'Family', ca: 'Família', fr: 'Famille', de: 'Familie', nl: 'Familie', it: 'Famiglia', ru: 'Семья' },
+  'Rutas': { es: 'Rutas', en: 'Routes', ca: 'Rutes', fr: 'Itinéraires', de: 'Routen', nl: 'Routes', it: 'Percorsi', ru: 'Маршруты' },
 };
 
 function localizeCategory(category: string, lang: string): string {

@@ -293,8 +293,8 @@ app.use((req: Request, res: Response, next: NextFunction) => {
     "/destino/blanes": "/alquiler-barcos-blanes",
     "/destino/lloret-de-mar": "/alquiler-barcos-lloret-de-mar",
     "/destino/tossa-de-mar": "/alquiler-barcos-tossa-de-mar",
-    "/categoria/sin-licencia": "/alquiler-barcos-sin-licencia",
-    "/categoria/con-licencia": "/alquiler-barcos-con-licencia",
+    "/categoria/sin-licencia": "/barcos-sin-licencia",
+    "/categoria/con-licencia": "/barcos-con-licencia",
   };
   for (const [from, to] of Object.entries(legacyRedirects)) {
     app.get(from, (_req: Request, res: Response) => {

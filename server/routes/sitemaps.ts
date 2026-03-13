@@ -3,6 +3,7 @@ import fs from "fs";
 import path from "path";
 import { storage } from "../storage";
 import { logger } from "../lib/logger";
+import { boatRoutes } from "@shared/routesData";
 
 const SUPPORTED_LANGUAGES = ["es", "en", "ca", "fr", "de", "nl", "it", "ru"];
 
@@ -287,33 +288,58 @@ ${boatHreflang}  </url>
 
       const now = Date.now();
       publishedBlogPosts.forEach(post => {
-        const rawDate = (post as Record<string, any>).updatedAt || (post as Record<string, any>).publishedAt || (post as Record<string, any>).createdAt;
+        const rawDate = post.updatedAt || post.publishedAt || post.createdAt;
         const postDate = formatSitemapDate(rawDate) || fallbackDate;
         const ageMs = rawDate ? now - new Date(rawDate as string).getTime() : Infinity;
         const ageDays = ageMs / (1000 * 60 * 60 * 24);
         const priority = ageDays < 30 ? "0.9" : ageDays < 90 ? "0.8" : "0.7";
 
-        // Use generateUrlEntry for hreflang links, then inject image tag if featured image exists
-        const postEntry = generateUrlEntry(baseUrl, `/blog/${post.slug}`, priority, postDate);
+        const postPath = `/blog/${post.slug}`;
+        const postHreflang = buildHreflangLinks(baseUrl, postPath);
 
-        if ((post as Record<string, any>).featuredImage) {
-          const featuredImg = (post as Record<string, any>).featuredImage as string;
-          const imageUrl = featuredImg.startsWith("http")
-            ? featuredImg
-            : `${baseUrl}/object-storage/${featuredImg}`;
+        // Build image tag if featured image exists
+        let imageTag = "";
+        if (post.featuredImage) {
+          const rawImageUrl = post.featuredImage.startsWith("http")
+            ? post.featuredImage
+            : `${baseUrl}/object-storage/${post.featuredImage}`;
 
-          const imageTag = `
+          // Escape XML special characters in URL and title
+          const imageUrl = rawImageUrl.replace(/&/g, "&amp;");
+          const safeTitle = post.title
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;");
+
+          imageTag = `
     <image:image>
       <image:loc>${imageUrl}</image:loc>
-      <image:caption>${post.title} - Blog Costa Brava Rent a Boat</image:caption>
-      <image:title>${post.title}</image:title>
+      <image:caption>${safeTitle} - Blog Costa Brava Rent a Boat</image:caption>
+      <image:title>${safeTitle}</image:title>
     </image:image>`;
-
-          // Insert image tag after the first <priority> closing tag in the canonical URL entry
-          sitemap += postEntry.replace(/<\/priority>/, `</priority>${imageTag}`);
-        } else {
-          sitemap += postEntry;
         }
+
+        // Canonical (ES) entry with image and hreflang
+        sitemap += `  <url>
+    <loc>${baseUrl}${postPath}</loc>
+    <lastmod>${postDate}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>${priority}</priority>${imageTag}
+${postHreflang}  </url>
+`;
+
+        // Language variant entries
+        SUPPORTED_LANGUAGES.forEach(lang => {
+          if (lang !== "es") {
+            sitemap += `  <url>
+    <loc>${baseUrl}${postPath}?lang=${lang}</loc>
+    <lastmod>${postDate}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>${priority}</priority>${imageTag}
+${postHreflang}  </url>
+`;
+          }
+        });
       });
 
       sitemap += `</urlset>`;
@@ -328,6 +354,7 @@ ${boatHreflang}  </url>
   });
 
   // Destinations Sitemap with image tags
+  // Uses DB destinations if available, otherwise falls back to boatRoutes static data
   app.get("/sitemap-destinations.xml", async (req, res) => {
     try {
       const baseUrl = getBaseUrl(req);
@@ -342,47 +369,79 @@ ${boatHreflang}  </url>
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
 `;
 
-      publishedDestinations.forEach(destination => {
-        const destPath = `/destinos/${destination.slug}`;
-        const destLastmod = formatSitemapDate((destination as Record<string, any>).updatedAt || (destination as Record<string, any>).createdAt) || fallbackDate;
+      if (publishedDestinations.length > 0) {
+        // Generate entries from DB destinations
+        publishedDestinations.forEach(destination => {
+          const destPath = `/destinos/${destination.slug}`;
+          const destLastmod = formatSitemapDate((destination as Record<string, any>).updatedAt || (destination as Record<string, any>).createdAt) || fallbackDate;
 
-        const destHreflang = buildHreflangLinks(baseUrl, destPath);
+          const destHreflang = buildHreflangLinks(baseUrl, destPath);
 
-        sitemap += `  <url>
+          sitemap += `  <url>
     <loc>${baseUrl}${destPath}</loc>
     <lastmod>${destLastmod}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>`;
 
-        if (destination.featuredImage) {
-          const imageUrl = destination.featuredImage.startsWith("http")
-            ? destination.featuredImage
-            : `${baseUrl}/object-storage/${destination.featuredImage}`;
+          if (destination.featuredImage) {
+            const imageUrl = destination.featuredImage.startsWith("http")
+              ? destination.featuredImage
+              : `${baseUrl}/object-storage/${destination.featuredImage}`;
 
-          sitemap += `
+            sitemap += `
     <image:image>
       <image:loc>${imageUrl}</image:loc>
       <image:caption>${destination.name} - Destino Costa Brava cerca de Blanes</image:caption>
       <image:title>${destination.name} - Costa Brava</image:title>
     </image:image>`;
-        }
+          }
 
-        sitemap += `
+          sitemap += `
 ${destHreflang}  </url>
 `;
 
-        SUPPORTED_LANGUAGES.forEach(lang => {
-          if (lang !== "es") {
-            sitemap += `  <url>
+          SUPPORTED_LANGUAGES.forEach(lang => {
+            if (lang !== "es") {
+              sitemap += `  <url>
     <loc>${baseUrl}${destPath}?lang=${lang}</loc>
     <lastmod>${destLastmod}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
 ${destHreflang}  </url>
 `;
-          }
+            }
+          });
         });
-      });
+      } else {
+        // Fallback: generate entries from boatRoutes static data
+        // These represent the navigable destinations from Blanes
+        boatRoutes.forEach(route => {
+          const destPath = `/destinos/${route.id}`;
+          const destHreflang = buildHreflangLinks(baseUrl, destPath);
+
+          sitemap += `  <url>
+    <loc>${baseUrl}${destPath}</loc>
+    <lastmod>${fallbackDate}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>`;
+
+          sitemap += `
+${destHreflang}  </url>
+`;
+
+          SUPPORTED_LANGUAGES.forEach(lang => {
+            if (lang !== "es") {
+              sitemap += `  <url>
+    <loc>${baseUrl}${destPath}?lang=${lang}</loc>
+    <lastmod>${fallbackDate}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+${destHreflang}  </url>
+`;
+            }
+          });
+        });
+      }
 
       sitemap += `</urlset>`;
 

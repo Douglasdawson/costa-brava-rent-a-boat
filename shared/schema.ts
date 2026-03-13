@@ -403,7 +403,7 @@ export const insertAdminUserSchema = createInsertSchema(adminUsers).pick({
 export const ASSIGNABLE_TABS = [
   "dashboard", "calendar", "bookings", "customers", "inquiries",
   "fleet", "maintenance", "inventory", "reports", "gallery",
-  "blog", "giftcards", "discounts",
+  "blog", "giftcards", "discounts", "analytics",
 ] as const;
 
 export type AssignableTab = typeof ASSIGNABLE_TABS[number];

@@ -27,6 +27,36 @@ function getDateRange(days: number) {
 }
 
 export function registerAnalyticsRoutes(app: Express) {
+  // Debug: test Google API connection (temporary)
+  app.get("/api/admin/analytics/debug", requireAdminSession, async (_req, res) => {
+    try {
+      const results: Record<string, string> = { configured: String(isConfigured()) };
+      try {
+        const { startDate, endDate } = getDateRange(7);
+        const gsc = await fetchGSCOverview(startDate, endDate);
+        results.gsc = "OK: " + JSON.stringify(gsc).substring(0, 200);
+      } catch (e: unknown) {
+        results.gsc = "FAIL: " + (e instanceof Error ? e.message : String(e));
+      }
+      try {
+        const { startDate, endDate } = getDateRange(7);
+        const ga4 = await fetchGA4Overview(startDate, endDate);
+        results.ga4 = "OK: " + JSON.stringify(ga4).substring(0, 200);
+      } catch (e: unknown) {
+        results.ga4 = "FAIL: " + (e instanceof Error ? e.message : String(e));
+      }
+      try {
+        const cached = await getCachedAnalytics("gsc", "overview");
+        results.cache = cached ? "HAS_DATA" : "EMPTY";
+      } catch (e: unknown) {
+        results.cache = "FAIL: " + (e instanceof Error ? e.message : String(e));
+      }
+      res.json(results);
+    } catch (error: unknown) {
+      res.status(500).json({ error: error instanceof Error ? error.message : String(error) });
+    }
+  });
+
   // Status: check if Google Analytics services are configured
   app.get("/api/admin/analytics/status", requireAdminSession, async (_req, res) => {
     try {

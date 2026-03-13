@@ -1,5 +1,5 @@
 import { sql } from "drizzle-orm";
-import { pgTable, text, varchar, integer, decimal, timestamp, boolean, json, jsonb, index, unique, uniqueIndex } from "drizzle-orm/pg-core";
+import { pgTable, text, varchar, integer, serial, decimal, timestamp, date, boolean, json, jsonb, index, unique, uniqueIndex } from "drizzle-orm/pg-core";
 import { createInsertSchema, createSelectSchema } from "drizzle-zod";
 import { z } from "zod";
 
@@ -1485,3 +1485,18 @@ export const auditLogs = pgTable("audit_logs", {
 
 export type AuditLog = typeof auditLogs.$inferSelect;
 export type InsertAuditLog = typeof auditLogs.$inferInsert;
+
+// ===== ANALYTICS SNAPSHOTS (Google Analytics / Search Console cache) =====
+
+export const analyticsSnapshots = pgTable("analytics_snapshots", {
+  id: serial("id").primaryKey(),
+  date: date("date").notNull(),
+  source: text("source").notNull(),
+  metricType: text("metric_type").notNull(),
+  data: jsonb("data").notNull(),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().default(sql`now()`),
+}, (table) => ({
+  uniqueSnapshot: unique("analytics_snapshot_unique").on(table.date, table.source, table.metricType),
+}));
+
+export type AnalyticsSnapshot = typeof analyticsSnapshots.$inferSelect;

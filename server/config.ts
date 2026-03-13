@@ -21,6 +21,10 @@ const envSchema = z.object({
   TWILIO_WHATSAPP_FROM: z.string().optional(),
   GCS_BUCKET_NAME: z.string().optional(),
   ANTHROPIC_API_KEY: z.string().optional(),
+  GOOGLE_SERVICE_ACCOUNT_EMAIL: z.string().optional(),
+  GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY: z.string().optional(),
+  GOOGLE_ANALYTICS_PROPERTY_ID: z.string().optional(),
+  GSC_SITE_URL: z.string().optional(),
   BASE_URL: z.string().default("https://costabravarentaboat.com"),
 });
 

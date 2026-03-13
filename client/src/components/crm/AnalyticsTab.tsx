@@ -264,7 +264,8 @@ export function AnalyticsTab({ adminToken }: AnalyticsTabProps) {
     queryFn: async () => {
       const res = await fetch("/api/admin/analytics/overview", { headers });
       if (!res.ok) throw new Error("Error");
-      return res.json();
+      const json = await res.json();
+      return { ...json.data, cached: json.cached };
     },
     enabled: status?.configured === true,
   });
@@ -274,7 +275,8 @@ export function AnalyticsTab({ adminToken }: AnalyticsTabProps) {
     queryFn: async () => {
       const res = await fetch("/api/admin/analytics/trends", { headers });
       if (!res.ok) throw new Error("Error");
-      return res.json();
+      const json = await res.json();
+      return json.data;
     },
     enabled: status?.configured === true && activeTab === "general",
   });
@@ -553,7 +555,7 @@ export function AnalyticsTab({ adminToken }: AnalyticsTabProps) {
                   </CardHeader>
                   <CardContent>
                     <div className="text-2xl font-bold font-heading text-foreground">
-                      {overview.gsc.totals.clicks.toLocaleString("es-ES")}
+                      {overview.gsc?.totals?.clicks?.toLocaleString("es-ES") ?? "—"}
                     </div>
                   </CardContent>
                 </Card>
@@ -570,7 +572,7 @@ export function AnalyticsTab({ adminToken }: AnalyticsTabProps) {
                   </CardHeader>
                   <CardContent>
                     <div className="text-2xl font-bold font-heading text-foreground">
-                      {overview.gsc.totals.impressions.toLocaleString("es-ES")}
+                      {overview.gsc?.totals?.impressions?.toLocaleString("es-ES") ?? "—"}
                     </div>
                   </CardContent>
                 </Card>
@@ -587,7 +589,7 @@ export function AnalyticsTab({ adminToken }: AnalyticsTabProps) {
                   </CardHeader>
                   <CardContent>
                     <div className="text-2xl font-bold font-heading text-foreground">
-                      {formatCtr(overview.gsc.totals.ctr)}
+                      {overview.gsc?.totals ? formatCtr(overview.gsc.totals.ctr) : "—"}
                     </div>
                   </CardContent>
                 </Card>
@@ -604,7 +606,7 @@ export function AnalyticsTab({ adminToken }: AnalyticsTabProps) {
                   </CardHeader>
                   <CardContent>
                     <div className="text-2xl font-bold font-heading text-foreground">
-                      {formatPosition(overview.gsc.totals.position)}
+                      {overview.gsc?.totals ? formatPosition(overview.gsc.totals.position) : "—"}
                     </div>
                   </CardContent>
                 </Card>
@@ -621,7 +623,7 @@ export function AnalyticsTab({ adminToken }: AnalyticsTabProps) {
                   </CardHeader>
                   <CardContent>
                     <div className="text-2xl font-bold font-heading text-foreground">
-                      {overview.ga4.activeUsers.toLocaleString("es-ES")}
+                      {overview.ga4?.activeUsers?.toLocaleString("es-ES") ?? "—"}
                     </div>
                   </CardContent>
                 </Card>
@@ -638,7 +640,7 @@ export function AnalyticsTab({ adminToken }: AnalyticsTabProps) {
                   </CardHeader>
                   <CardContent>
                     <div className="text-2xl font-bold font-heading text-foreground">
-                      {overview.ga4.sessions.toLocaleString("es-ES")}
+                      {overview.ga4?.sessions?.toLocaleString("es-ES") ?? "—"}
                     </div>
                   </CardContent>
                 </Card>

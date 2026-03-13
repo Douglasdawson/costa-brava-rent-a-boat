@@ -56,6 +56,7 @@ const ADMIN_TABS = [
   { id: "maintenance", label: "Mant.", icon: Wrench },
   { id: "inventory", label: "Inventario", icon: Package },
   { id: "reports", label: "Reportes", icon: BarChart3 },
+  { id: "analytics", label: "SEO", icon: BarChart3 },
   { id: "gallery", label: "Galería", icon: Camera },
   { id: "blog", label: "Blog", icon: FileText },
   { id: "giftcards", label: "Regalos", icon: Gift },
@@ -132,6 +133,7 @@ export function AdminLayout({
 
     const negocioTabs = [
       { id: "reports", label: "Reportes", icon: BarChart3 },
+      { id: "analytics", label: "SEO", icon: BarChart3 },
       { id: "gallery", label: "Galeria", icon: Camera },
       { id: "blog", label: "Blog", icon: FileText },
       { id: "giftcards", label: "Regalos", icon: Gift },

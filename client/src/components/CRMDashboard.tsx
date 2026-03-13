@@ -23,6 +23,7 @@ import {
   MaintenanceTab,
   InventoryTab,
   ReportsTab,
+  AnalyticsTab,
   BookingDetailsModal,
   getStatusLabel,
 } from "./crm";
@@ -40,7 +41,7 @@ interface CRMDashboardProps {
 
 const VALID_TABS = [
   "dashboard", "calendar", "bookings", "customers", "inquiries",
-  "fleet", "maintenance", "inventory", "reports", "gallery",
+  "fleet", "maintenance", "inventory", "reports", "analytics", "gallery",
   "giftcards", "discounts", "blog", "employees", "config",
 ];
 
@@ -390,6 +391,11 @@ export default function CRMDashboard({ adminToken }: CRMDashboardProps) {
         {/* Reports Tab */}
         {selectedTab === "reports" && (
           <ReportsTab adminToken={adminToken} />
+        )}
+
+        {/* SEO & Analytics Tab */}
+        {selectedTab === "analytics" && (
+          <AnalyticsTab adminToken={adminToken} />
         )}
 
         {/* Gallery Tab */}

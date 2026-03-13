@@ -6,6 +6,7 @@ import {
   sendNewsletterEmail,
 } from "./emailService";
 import { runAutopilotPipeline, publishNextDraft, getConfig } from "./blogAutopilot.js";
+import { syncAllAnalytics } from "./googleAnalyticsService";
 import type { Booking, Boat, BlogPost } from "@shared/schema";
 import { logger } from "../lib/logger";
 
@@ -332,6 +333,16 @@ export function startScheduler(): void {
     }
   }));
 
+  // Google Analytics sync: every 6 hours at :15 past the hour
+  scheduledTasks.push(cron.schedule("15 */6 * * *", async () => {
+    logger.info("[Scheduler] Running Google Analytics sync");
+    try {
+      await syncAllAnalytics();
+    } catch (error) {
+      logger.error("[Scheduler] Analytics sync failed", { error: error instanceof Error ? error.message : String(error) });
+    }
+  }));
+
   // Newsletter: send monthly digest on 1st of each month at 10am
   scheduledTasks.push(cron.schedule("0 10 1 * *", async () => {
     try {
@@ -343,7 +354,7 @@ export function startScheduler(): void {
     }
   }));
 
-  logger.info("Scheduled services started: reminders (:00), thank-you (:30), hold cleanup (every 5min), auto-complete (:45), blog autopilot (config), blog publish (Mon 9am), newsletter (1st of month 10am)");
+  logger.info("Scheduled services started: reminders (:00), thank-you (:30), hold cleanup (every 5min), auto-complete (:45), blog autopilot (config), blog publish (Mon 9am), analytics sync (every 6h), newsletter (1st of month 10am)");
 }
 
 /**

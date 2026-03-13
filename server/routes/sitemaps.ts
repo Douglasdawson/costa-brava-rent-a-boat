@@ -3,7 +3,14 @@ import fs from "fs";
 import path from "path";
 import { storage } from "../storage";
 import { logger } from "../lib/logger";
-import { boatRoutes } from "@shared/routesData";
+// Static destination slugs for sitemap fallback (when DB has no published destinations)
+const FALLBACK_DESTINATION_SLUGS = [
+  "sa-palomera",
+  "cala-sant-francesc",
+  "blanes-lloret",
+  "blanes-tossa",
+  "costa-brava-tour",
+];
 
 const SUPPORTED_LANGUAGES = ["es", "en", "ca", "fr", "de", "nl", "it", "ru"];
 
@@ -415,8 +422,8 @@ ${destHreflang}  </url>
       } else {
         // Fallback: generate entries from boatRoutes static data
         // These represent the navigable destinations from Blanes
-        boatRoutes.forEach(route => {
-          const destPath = `/destinos/${route.id}`;
+        FALLBACK_DESTINATION_SLUGS.forEach(slug => {
+          const destPath = `/destinos/${slug}`;
           const destHreflang = buildHreflangLinks(baseUrl, destPath);
 
           sitemap += `  <url>

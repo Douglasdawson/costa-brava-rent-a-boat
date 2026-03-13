@@ -14,7 +14,7 @@ function getGoogleAuth() {
   }
   return new google.auth.JWT({
     email,
-    key: key.replace(/\\n/g, "\n"),
+    key: key.replace(/\\n/g, "\n").replace(/\\\\n/g, "\n"),
     scopes: [
       "https://www.googleapis.com/auth/webmasters.readonly",
       "https://www.googleapis.com/auth/analytics.readonly",

@@ -56,8 +56,10 @@ export function registerAnalyticsRoutes(app: Express) {
       ]);
       res.json({ data: { gsc, ga4 }, cached: false });
     } catch (error: unknown) {
-      logger.error("[Analytics] Error fetching overview", { error: error instanceof Error ? error.message : String(error) });
-      res.status(500).json({ message: "Error obteniendo datos de overview" });
+      const errMsg = error instanceof Error ? error.message : String(error);
+      const errStack = error instanceof Error ? error.stack : "";
+      logger.error("[Analytics] Error fetching overview", { error: errMsg, stack: errStack });
+      res.status(500).json({ message: "Error obteniendo datos de overview", error: errMsg });
     }
   });
 

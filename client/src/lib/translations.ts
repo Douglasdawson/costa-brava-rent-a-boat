@@ -1032,6 +1032,15 @@ export interface Translations {
     linkCopied: string;
     share: string;
     minRead: string;
+    previousArticle: string;
+    nextArticle: string;
+    newsletterTitle: string;
+    newsletterSubtitle: string;
+    newsletterPlaceholder: string;
+    newsletterButton: string;
+    newsletterSuccess: string;
+    newsletterError: string;
+    tableOfContents: string;
   };
 
   // Social Proof Strip (homepage)

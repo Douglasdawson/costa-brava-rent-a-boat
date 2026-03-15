@@ -48,7 +48,10 @@ export function startSeoWorker(): void {
   // registerJob("weekly-strategy", schedules.weeklyStrategy, ...);
 
   // Phase 4: Execution
-  // registerJob("execute-actions", schedules.executeActions, ...);
+  registerJob("execute-actions", schedules.executeActions, async () => {
+    const { executeScheduledActions } = await import("./executors/runner");
+    await executeScheduledActions();
+  });
 
   // Phase 5: Feedback
   // registerJob("experiment-review", schedules.experimentReview, ...);
@@ -58,8 +61,15 @@ export function startSeoWorker(): void {
   // registerJob("geo-monitor", schedules.geoMonitor, ...);
 
   // Phase 7: Reporting
-  // registerJob("weekly-report", schedules.weeklyReport, ...);
-  // registerJob("alert-check", schedules.alertCheck, ...);
+  registerJob("weekly-report", schedules.weeklyReport, async () => {
+    const { generateWeeklyReport } = await import("./reports/weekly");
+    await generateWeeklyReport();
+  });
+
+  registerJob("alert-check", schedules.alertCheck, async () => {
+    const { checkAlerts } = await import("./alerts/engine");
+    await checkAlerts();
+  });
 
   logger.info(`[SEO] Worker started with ${scheduledTasks.length} jobs. Season mode: ${SEO_CONFIG.getSeasonMode()}`);
 }

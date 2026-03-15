@@ -1,7 +1,7 @@
 // server/seo/feedback/experiments.ts
 import { db } from "../../db";
 import { seoExperiments, seoRankings, seoKeywords, seoLearnings } from "../../../shared/schema";
-import { eq, and, gte, lte, desc } from "drizzle-orm";
+import { eq, and, gte, lte, desc, isNotNull, sql } from "drizzle-orm";
 import { logger } from "../../lib/logger";
 
 export async function reviewExperiments(): Promise<void> {
@@ -14,7 +14,8 @@ export async function reviewExperiments(): Promise<void> {
     .where(
       and(
         eq(seoExperiments.status, "running"),
-        lte(seoExperiments.measureAt, now),
+        isNotNull(seoExperiments.measureAt),
+        sql`${seoExperiments.measureAt} <= ${now}`,
       )
     );
 

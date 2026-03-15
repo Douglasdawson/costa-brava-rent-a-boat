@@ -16,7 +16,7 @@ export async function checkAlerts(): Promise<void> {
 
   for (const alert of newAlerts) {
     if (alert.severity === "critical" || alert.severity === "high") {
-      await sendSeoAlert(alert.title, alert.message, alert.severity);
+      await sendSeoAlert(alert.title, alert.message || "", alert.severity);
       await db
         .update(seoAlerts)
         .set({ status: "sent", sentVia: "whatsapp" })

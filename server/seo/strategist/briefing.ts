@@ -138,7 +138,7 @@ export async function buildBriefing(): Promise<SeoBriefing> {
     }
   }
 
-  const topKeywords = [...keywordMap.values()].map(row => ({
+  const topKeywords = Array.from(keywordMap.values()).map(row => ({
     keyword: row.keyword,
     position: Number(row.position || 0),
     clicks: row.clicks || 0,
@@ -218,8 +218,8 @@ export async function buildBriefing(): Promise<SeoBriefing> {
     losing: [], // TODO: calculate from ranking trend
 
     competitorComparison: competitors.map(c => ({
-      competitor: c.name,
-      type: c.type,
+      competitor: c.name || "",
+      type: c.type || "",
       keywordsTheyBeatUs: [],
     })),
 
@@ -227,30 +227,30 @@ export async function buildBriefing(): Promise<SeoBriefing> {
 
     campaigns: campaigns.map(c => ({
       name: c.name,
-      objective: c.objective,
-      status: c.status,
+      objective: c.objective || "",
+      status: c.status || "",
       progress: c.progress,
     })),
 
     runningExperiments: runningExperiments.map(e => ({
       id: e.id,
-      type: e.type,
-      page: e.page,
-      hypothesis: e.hypothesis,
-      status: e.status,
-      executedAt: e.executedAt.toISOString(),
+      type: e.type || "",
+      page: e.page || "",
+      hypothesis: e.hypothesis || "",
+      status: e.status || "",
+      executedAt: e.executedAt ? e.executedAt.toISOString() : "",
     })),
 
     recentResults: recentResults.map(e => ({
-      type: e.type,
-      page: e.page,
-      hypothesis: e.hypothesis,
-      result: e.status,
+      type: e.type || "",
+      page: e.page || "",
+      hypothesis: e.hypothesis || "",
+      result: e.status || "",
       learning: e.learning,
     })),
 
     learnings: learnings.map(l => ({
-      category: l.category,
+      category: l.category || "",
       insight: l.insight,
       confidence: Number(l.confidence || 0),
     })),

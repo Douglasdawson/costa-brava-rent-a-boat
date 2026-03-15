@@ -29,7 +29,7 @@ async function crawlCompetitorPage(url: string): Promise<CompetitorSnapshot | nu
     const titleMatch = html.match(/<title[^>]*>([^<]+)<\/title>/i);
     const descMatch = html.match(/<meta[^>]*name=["']description["'][^>]*content=["']([^"']+)["']/i);
     const h1Match = html.match(/<h1[^>]*>([^<]+)<\/h1>/i);
-    const h2Matches = [...html.matchAll(/<h2[^>]*>([^<]+)<\/h2>/gi)].map(m => m[1]);
+    const h2Matches = Array.from(html.matchAll(/<h2[^>]*>([^<]+)<\/h2>/gi)).map(m => m[1]);
 
     // Strip HTML tags and count words
     const textContent = html.replace(/<script[^>]*>[\s\S]*?<\/script>/gi, "")
@@ -39,7 +39,7 @@ async function crawlCompetitorPage(url: string): Promise<CompetitorSnapshot | nu
       .trim();
     const wordCount = textContent.split(" ").length;
 
-    const schemaMatches = [...html.matchAll(/"@type"\s*:\s*"([^"]+)"/g)].map(m => m[1]);
+    const schemaMatches = Array.from(html.matchAll(/"@type"\s*:\s*"([^"]+)"/g)).map(m => m[1]);
 
     return {
       domain: new URL(url).hostname,
@@ -47,7 +47,7 @@ async function crawlCompetitorPage(url: string): Promise<CompetitorSnapshot | nu
       description: descMatch?.[1] || "",
       wordCount,
       hasSchemaOrg: schemaMatches.length > 0,
-      schemaTypes: [...new Set(schemaMatches)],
+      schemaTypes: Array.from(new Set(schemaMatches)),
       h1: h1Match?.[1] || "",
       h2s: h2Matches.slice(0, 10),
     };

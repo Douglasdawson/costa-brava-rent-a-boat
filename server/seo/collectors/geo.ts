@@ -60,14 +60,13 @@ async function queryPerplexity(query: string): Promise<{
     const position = citedUrl ? citations.indexOf(citedUrl) + 1 : null;
 
     // Check which competitors are cited
-    const competitorsCited = SEO_CONFIG.competitors
-      .map(comp => {
-        const compCitation = citations.find((c: string) => c.includes(comp.domain));
-        return compCitation
-          ? { domain: comp.domain, position: citations.indexOf(compCitation) + 1 }
-          : null;
-      })
-      .filter((c): c is { domain: string; position: number } => c !== null);
+    const competitorsCited: Array<{ domain: string; position: number }> = [];
+    for (const comp of SEO_CONFIG.competitors) {
+      const compCitation = citations.find((c: string) => c.includes(comp.domain));
+      if (compCitation) {
+        competitorsCited.push({ domain: comp.domain, position: citations.indexOf(compCitation) + 1 });
+      }
+    }
 
     return {
       cited,

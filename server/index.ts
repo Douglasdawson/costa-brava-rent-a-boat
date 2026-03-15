@@ -51,12 +51,12 @@ if (!isDev) {
       directives: {
         defaultSrc: ["'self'"],
         // Note: 'unsafe-inline' required by GTM; 'unsafe-eval' removed — monitor for issues
-        scriptSrc: ["'self'", "'unsafe-inline'", "https://www.googletagmanager.com", "https://www.google-analytics.com", "https://googletagmanager.com", "https://js.stripe.com"],
+        scriptSrc: ["'self'", "'unsafe-inline'", "https://www.googletagmanager.com", "https://www.google-analytics.com", "https://googletagmanager.com", "https://js.stripe.com", "https://connect.facebook.net", "https://www.googleadservices.com", "https://googleads.g.doubleclick.net"],
         styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
         fontSrc: ["'self'", "https://fonts.gstatic.com"],
         imgSrc: ["'self'", "data:", "https:", "blob:"],
-        connectSrc: ["'self'", "https://www.google-analytics.com", "https://region1.google-analytics.com", "https://www.googletagmanager.com", "https://api.stripe.com", "wss:"],
-        frameSrc: ["'self'", "https://js.stripe.com", "https://www.googletagmanager.com"],
+        connectSrc: ["'self'", "https://www.google-analytics.com", "https://region1.google-analytics.com", "https://www.googletagmanager.com", "https://api.stripe.com", "https://www.facebook.com", "https://connect.facebook.net", "https://www.googleadservices.com", "https://googleads.g.doubleclick.net", "wss:"],
+        frameSrc: ["'self'", "https://js.stripe.com", "https://www.googletagmanager.com", "https://www.facebook.com"],
       }
     },
     referrerPolicy: { policy: "strict-origin-when-cross-origin" },

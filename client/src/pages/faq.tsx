@@ -35,7 +35,6 @@ import {
 } from "@/utils/seo-config";
 import { openWhatsApp, createBookingMessage } from "@/utils/whatsapp";
 import { useState } from "react";
-import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { useTranslations } from "@/lib/translations";
 
 export default function FAQPage() {
@@ -357,18 +356,6 @@ export default function FAQPage() {
       <Navigation />
 
       <main id="main-content">
-      {/* Breadcrumbs */}
-      <div className="bg-primary/5 border-b border-primary/20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
-          <Breadcrumbs 
-            items={[
-              { label: 'breadcrumbs.home', href: '/' },
-              { label: 'breadcrumbs.faq' }
-            ]}
-          />
-        </div>
-      </div>
-      
       {/* Hero Section */}
       <div className="bg-gradient-to-br from-primary/5 to-primary/10 pt-20 sm:pt-24 pb-8">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

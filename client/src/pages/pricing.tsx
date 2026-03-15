@@ -19,7 +19,6 @@ import {
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { SEO } from "@/components/SEO";
-import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { useLanguage } from "@/hooks/use-language";
 import { useTranslations } from "@/lib/translations";
 import { useBookingModal } from "@/hooks/bookingModalContext";
@@ -138,14 +137,6 @@ export default function PricingPage() {
 
       {/* Hero */}
       <div className="bg-gradient-to-br from-blue-50 to-teal-50 pt-28 pb-12">
-        {/* Breadcrumbs */}
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mb-6">
-          <Breadcrumbs
-            items={[
-              { label: "Precios" },
-            ]}
-          />
-        </div>
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold text-foreground mb-4">
             Precios Alquiler de Barcos en Blanes 2026

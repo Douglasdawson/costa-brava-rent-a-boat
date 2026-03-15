@@ -8,7 +8,7 @@ import { SEO } from "@/components/SEO";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Calendar, User, Tag, ArrowLeft, Home, Share2, Copy, Check, ChevronLeft, ChevronRight, Mail, List, Anchor } from "lucide-react";
+import { Calendar, User, Tag, ArrowLeft, Share2, Copy, Check, ChevronLeft, ChevronRight, Mail, List, Anchor } from "lucide-react";
 import { useState, useEffect, useRef, useCallback, useMemo } from "react";
 import { useLanguage } from "@/hooks/use-language";
 import { useTranslations } from "@/lib/translations";
@@ -675,26 +675,6 @@ export default function BlogDetailPage() {
       <StickyMobileCTA slug={post.slug} />
 
       <main id="main-content" className="flex-1 container mx-auto px-4 pt-20 sm:pt-24 lg:pt-32 pb-20 lg:pb-8 max-w-6xl">
-        {/* Breadcrumbs */}
-        <nav className="mb-6 max-w-4xl" aria-label="Breadcrumb">
-          <ol className="flex items-center gap-1.5 text-sm text-muted-foreground">
-            <li>
-              <Link href="/" className="flex items-center gap-1 hover:text-foreground transition-colors">
-                <Home className="w-3.5 h-3.5" />
-                {bd.breadcrumbHome}
-              </Link>
-            </li>
-            <li className="text-muted-foreground/50">/</li>
-            <li>
-              <Link href="/blog" className="hover:text-foreground transition-colors">
-                {bd.breadcrumbBlog}
-              </Link>
-            </li>
-            <li className="text-muted-foreground/50">/</li>
-            <li className="text-foreground font-medium">{localizeCategory(post.category, language)}</li>
-          </ol>
-        </nav>
-
         {/* S5/U1: Two-column layout with TOC sidebar on desktop */}
         <div className="lg:flex lg:gap-10">
           {/* Main article content */}

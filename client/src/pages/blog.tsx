@@ -6,7 +6,7 @@ import Footer from "@/components/Footer";
 import { SEO } from "@/components/SEO";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Calendar, User, ChevronLeft, ChevronRight, ArrowRight, Home } from "lucide-react";
+import { Calendar, User, ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
 import { useLanguage } from "@/hooks/use-language";
 import { useTranslations } from "@/lib/translations";
 import { getSEOConfig, generateHreflangLinks, generateCanonicalUrl } from "@/utils/seo-config";
@@ -209,22 +209,8 @@ export default function BlogPage() {
       <SEO title={seoConfig.title} description={seoConfig.description} canonical={canonical} hreflang={hreflangLinks} />
       <Navigation />
 
-      {/* Breadcrumbs */}
-      <nav className="container mx-auto px-4 pt-20 sm:pt-24 pb-2" aria-label="Breadcrumb">
-        <ol className="flex items-center gap-1.5 text-sm text-muted-foreground">
-          <li>
-            <Link href="/" className="flex items-center gap-1 hover:text-foreground transition-colors">
-              <Home className="w-3.5 h-3.5" />
-              {bp.breadcrumbHome}
-            </Link>
-          </li>
-          <li className="text-muted-foreground/50">/</li>
-          <li className="text-foreground font-medium">{bp.breadcrumbBlog}</li>
-        </ol>
-      </nav>
-
       {/* Header — editorial style, no gradient hero */}
-      <header className="container mx-auto px-4 pb-8 md:pb-12">
+      <header className="container mx-auto px-4 pt-20 sm:pt-24 pb-8 md:pb-12">
         <div className="max-w-3xl">
           <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-foreground leading-[1.1]">
             {bp.title}

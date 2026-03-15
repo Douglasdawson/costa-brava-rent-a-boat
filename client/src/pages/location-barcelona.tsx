@@ -15,7 +15,6 @@ import {
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { SEO } from "@/components/SEO";
-import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { useLanguage } from "@/hooks/use-language";
 import { useTranslations } from "@/lib/translations";
 import { useBookingModal } from "@/hooks/bookingModalContext";
@@ -114,18 +113,6 @@ export default function LocationBarcelonaPage() {
         jsonLd={combinedJsonLd}
       />
       <Navigation />
-
-      {/* Breadcrumbs */}
-      <div className="bg-muted border-b border-border">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
-          <Breadcrumbs
-            items={[
-              { label: "breadcrumbs.home", href: "/" },
-              { label: "Alquiler barcos cerca de Barcelona" },
-            ]}
-          />
-        </div>
-      </div>
 
       {/* Hero */}
       <div className="bg-gradient-to-br from-blue-50 to-teal-50 pt-24 pb-12">

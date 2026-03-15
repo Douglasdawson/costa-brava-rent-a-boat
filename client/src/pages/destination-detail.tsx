@@ -5,7 +5,6 @@ import remarkGfm from "remark-gfm";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { SEO } from "@/components/SEO";
-import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -120,15 +119,6 @@ export default function DestinationDetailPage() {
       <Navigation />
       
       <main id="main-content" className="flex-1 container mx-auto px-4 pt-20 sm:pt-24 pb-8 max-w-4xl">
-        {/* Breadcrumbs */}
-        <Breadcrumbs 
-          items={[
-            { label: "Inicio", href: "/" },
-            { label: "Destinos", href: "/destinos" },
-            { label: destination.name }
-          ]} 
-        />
-
         {/* Back to Destinations */}
         <Button 
           variant="ghost" 

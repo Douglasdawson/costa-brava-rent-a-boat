@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import { useTranslations } from "@/lib/translations";
 import { SEO } from "@/components/SEO";
 import { getSEOConfig, generateCanonicalUrl, generateHreflangLinks } from "@/utils/seo-config";
-import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { useLanguage } from "@/hooks/use-language";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
@@ -29,13 +28,6 @@ export default function CookiesPolicy() {
       <Navigation />
       <div className="min-h-screen bg-gradient-to-b from-muted to-background">
         <div className="container mx-auto px-4 pt-20 sm:pt-24 pb-8 sm:pb-12 lg:pb-16 max-w-4xl">
-          <Breadcrumbs 
-            items={[
-              { label: 'breadcrumbs.home', href: '/' },
-              { label: 'Política de Cookies' }
-            ]}
-          />
-          
           <h1 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold text-foreground mb-6 sm:mb-8">
             Política de Cookies
           </h1>

@@ -5,7 +5,6 @@ import Footer from "@/components/Footer";
 import { SEO } from "@/components/SEO";
 import { useLanguage } from "@/hooks/use-language";
 import { getSEOConfig, generateHreflangLinks, generateCanonicalUrl, generateBreadcrumbSchema } from "@/utils/seo-config";
-import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { useTranslations } from "@/lib/translations";
 
 export default function PrivacyPolicyPage() {
@@ -30,18 +29,6 @@ export default function PrivacyPolicyPage() {
         jsonLd={breadcrumbSchema}
       />
       <Navigation />
-
-      {/* Breadcrumbs */}
-      <div className="bg-muted border-b border-border">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
-          <Breadcrumbs
-            items={[
-              { label: 'breadcrumbs.home', href: '/' },
-              { label: 'breadcrumbs.privacyPolicy' }
-            ]}
-          />
-        </div>
-      </div>
 
       {/* Hero Section */}
       <div className="bg-gradient-to-br from-blue-50 to-teal-50 pt-20 sm:pt-24 pb-8">

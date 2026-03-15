@@ -34,7 +34,7 @@ export async function reviewExperiments(): Promise<void> {
       .innerJoin(seoKeywords, eq(seoRankings.keywordId, seoKeywords.id))
       .where(
         and(
-          eq(seoRankings.page, exp.page),
+          eq(seoRankings.page, exp.page || ""),
           gte(seoRankings.date, now.toISOString().split("T")[0]),
         )
       )

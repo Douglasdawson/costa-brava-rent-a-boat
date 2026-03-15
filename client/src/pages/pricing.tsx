@@ -87,7 +87,7 @@ export default function PricingPage() {
         name: "Cuanto cuesta alquilar un barco sin licencia en Blanes?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Los barcos sin licencia en Blanes cuestan desde 70 EUR/hora en temporada baja (abril-junio, septiembre-octubre). En temporada media (julio) desde 80 EUR/hora y en temporada alta (agosto) desde 90 EUR/hora. El precio incluye gasolina, seguro y equipo de seguridad.",
+          text: "Los barcos sin licencia en Blanes cuestan desde 70 €/hora en temporada baja (abril-junio, septiembre-octubre). En temporada media (julio) desde 80 €/hora y en temporada alta (agosto) desde 90 €/hora. El precio incluye gasolina, seguro y equipo de seguridad.",
         },
       },
       {
@@ -111,7 +111,7 @@ export default function PricingPage() {
         name: "Cuanto cuesta alquilar un barco con licencia en Blanes?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Los barcos con licencia en Blanes cuestan desde 150 EUR/hora en temporada baja. Requieren PER o titulo nautico equivalente. Son barcos mas potentes con mayor autonomia para explorar la Costa Brava.",
+          text: "Los barcos con licencia en Blanes cuestan desde 150 €/hora en temporada baja. Requieren PER o titulo nautico equivalente. Son barcos mas potentes con mayor autonomia para explorar la Costa Brava.",
         },
       },
     ],
@@ -485,9 +485,9 @@ export default function PricingPage() {
                     Cuanto cuesta alquilar un barco sin licencia en Blanes?
                   </h3>
                   <p className="text-muted-foreground">
-                    Los barcos sin licencia cuestan desde 70 EUR/hora en temporada baja
+                    Los barcos sin licencia cuestan desde 70 €/hora en temporada baja
                     (abril-junio, septiembre-octubre). En temporada media (julio) desde
-                    80 EUR/hora y en temporada alta (agosto) desde 90 EUR/hora. El precio incluye
+                    80 €/hora y en temporada alta (agosto) desde 90 €/hora. El precio incluye
                     gasolina, seguro y equipo de seguridad.
                   </p>
                 </CardContent>
@@ -523,7 +523,7 @@ export default function PricingPage() {
                     Cuanto cuesta alquilar un barco con licencia?
                   </h3>
                   <p className="text-muted-foreground">
-                    Los barcos con licencia cuestan desde 150 EUR/hora en temporada baja.
+                    Los barcos con licencia cuestan desde 150 €/hora en temporada baja.
                     Requieren PER o titulo nautico equivalente. Son barcos mas potentes
                     con mayor autonomia para explorar toda la Costa Brava.
                   </p>

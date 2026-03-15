@@ -46,7 +46,7 @@ export default function LocationBarcelonaPage() {
         name: "Puedo alquilar un barco sin licencia cerca de Barcelona?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Si, en Blanes (Costa Brava), a solo 70 minutos de Barcelona por la autopista AP-7, puedes alquilar barcos sin licencia desde 70 EUR/hora. No necesitas experiencia previa ni titulacion nautica, solo ser mayor de 18 anos.",
+          text: "Si, en Blanes (Costa Brava), a solo 70 minutos de Barcelona por la autopista AP-7, puedes alquilar barcos sin licencia desde 70 €/hora. No necesitas experiencia previa ni titulacion nautica, solo ser mayor de 18 anos.",
         },
       },
       {
@@ -62,7 +62,7 @@ export default function LocationBarcelonaPage() {
         name: "Es mas barato alquilar un barco en Blanes que en Barcelona?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Si, significativamente. En Blanes los barcos sin licencia cuestan desde 70 EUR/hora con gasolina incluida, mientras que en puertos de Barcelona los precios suelen empezar desde 120-150 EUR/hora. Ademas, las aguas en la Costa Brava son mucho mas cristalinas y hay menos trafico maritimo.",
+          text: "Si, significativamente. En Blanes los barcos sin licencia cuestan desde 70 €/hora con gasolina incluida, mientras que en puertos de Barcelona los precios suelen empezar desde 120-150 €/hora. Ademas, las aguas en la Costa Brava son mucho mas cristalinas y hay menos trafico maritimo.",
         },
       },
     ],
@@ -73,7 +73,7 @@ export default function LocationBarcelonaPage() {
     "@type": "TouristDestination",
     name: "Alquiler de Barcos cerca de Barcelona - Blanes, Costa Brava",
     description:
-      "Alquiler de barcos sin licencia a 70 minutos de Barcelona. Puerto de Blanes, Costa Brava. Desde 70 EUR con gasolina incluida.",
+      "Alquiler de barcos sin licencia a 70 minutos de Barcelona. Puerto de Blanes, Costa Brava. Desde 70 € con gasolina incluida.",
     geo: {
       "@type": "GeoCoordinates",
       latitude: 41.6667,
@@ -125,7 +125,7 @@ export default function LocationBarcelonaPage() {
           </div>
           <p className="text-lg text-muted-foreground max-w-4xl mx-auto mb-6">
             A solo 70 minutos de Barcelona, el Puerto de Blanes te ofrece la mejor experiencia
-            nautica de la Costa Brava. Barcos sin licencia desde 70 EUR con gasolina incluida.
+            nautica de la Costa Brava. Barcos sin licencia desde 70 € con gasolina incluida.
           </p>
           <div className="flex flex-wrap gap-3 justify-center">
             <Badge variant="outline" className="text-primary border-primary">
@@ -134,7 +134,7 @@ export default function LocationBarcelonaPage() {
             </Badge>
             <Badge variant="outline" className="text-primary border-primary">
               <Anchor className="w-4 h-4 mr-2" />
-              Sin licencia desde 70 EUR
+              Sin licencia desde 70 €
             </Badge>
             <Badge variant="outline" className="text-primary border-primary">
               <Waves className="w-4 h-4 mr-2" />
@@ -160,8 +160,8 @@ export default function LocationBarcelonaPage() {
                 <div>
                   <h3 className="font-semibold text-lg mb-3">Mejores precios</h3>
                   <p className="text-muted-foreground mb-4">
-                    En Blanes los barcos sin licencia cuestan desde 70 EUR/hora con gasolina
-                    incluida. En Barcelona los precios empiezan desde 120-150 EUR/hora sin
+                    En Blanes los barcos sin licencia cuestan desde 70 €/hora con gasolina
+                    incluida. En Barcelona los precios empiezan desde 120-150 €/hora sin
                     gasolina. Te ahorras hasta un 50% en el alquiler.
                   </p>
 
@@ -327,7 +327,7 @@ export default function LocationBarcelonaPage() {
                   </h3>
                   <p className="text-muted-foreground">
                     Si, en Blanes (Costa Brava), a solo 70 minutos de Barcelona por la
-                    autopista AP-7, puedes alquilar barcos sin licencia desde 70 EUR/hora.
+                    autopista AP-7, puedes alquilar barcos sin licencia desde 70 €/hora.
                     No necesitas experiencia previa ni titulacion nautica, solo ser mayor de
                     18 anos.
                   </p>
@@ -352,8 +352,8 @@ export default function LocationBarcelonaPage() {
                   </h3>
                   <p className="text-muted-foreground">
                     Si, significativamente. En Blanes los barcos sin licencia cuestan desde
-                    70 EUR/hora con gasolina incluida, mientras que en puertos de Barcelona
-                    los precios suelen empezar desde 120-150 EUR/hora. Ademas, las aguas son
+                    70 €/hora con gasolina incluida, mientras que en puertos de Barcelona
+                    los precios suelen empezar desde 120-150 €/hora. Ademas, las aguas son
                     mucho mas cristalinas y hay menos trafico maritimo.
                   </p>
                 </CardContent>
@@ -368,7 +368,7 @@ export default function LocationBarcelonaPage() {
                 Escapa de Barcelona y navega por la Costa Brava
               </h2>
               <p className="text-lg mb-6 opacity-90">
-                A solo 70 minutos de Barcelona. Barcos sin licencia desde 70 EUR con
+                A solo 70 minutos de Barcelona. Barcos sin licencia desde 70 € con
                 gasolina incluida. Aguas cristalinas y calas secretas te esperan.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">

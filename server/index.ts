@@ -51,7 +51,7 @@ if (!isDev) {
       directives: {
         defaultSrc: ["'self'"],
         // Note: 'unsafe-inline' required by GTM; 'unsafe-eval' removed — monitor for issues
-        scriptSrc: ["'self'", "'unsafe-inline'", "https://www.googletagmanager.com", "https://www.google-analytics.com", "https://googletagmanager.com", "https://js.stripe.com", "https://connect.facebook.net", "https://www.googleadservices.com", "https://googleads.g.doubleclick.net"],
+        scriptSrc: ["'self'", "'unsafe-inline'", "data:", "https://www.googletagmanager.com", "https://www.google-analytics.com", "https://googletagmanager.com", "https://js.stripe.com", "https://connect.facebook.net", "https://www.googleadservices.com", "https://googleads.g.doubleclick.net"],
         styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
         fontSrc: ["'self'", "https://fonts.gstatic.com"],
         imgSrc: ["'self'", "data:", "https:", "blob:"],

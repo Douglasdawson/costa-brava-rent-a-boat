@@ -55,7 +55,7 @@ function getMinPrice(boat: Boat, season: SeasonKey): number | null {
 
 function formatPrice(price: number | null): string {
   if (price === null) return "-";
-  return `${price}`;
+  return `${price}\u20AC`;
 }
 
 export default function PricingPage() {

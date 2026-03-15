@@ -21,6 +21,7 @@ export const nl: Translations = {
     priceBadge: 'Vanaf €70',
     fuelBadge: 'Brandstof inbegrepen',
     bookNow: 'Beschikbaarheid bekijken',
+    findYourBoat: 'Vind je boot',
     viewFleet: 'Boten bekijken',
     trustText: 'Geen verplichtingen • Transparante prijzen',
     whatsappContact: 'WhatsApp +34 611 500 372',

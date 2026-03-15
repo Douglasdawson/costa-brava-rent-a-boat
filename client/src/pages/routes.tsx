@@ -42,7 +42,7 @@ export default function RoutesPage() {
 
   return (
     <div className="min-h-screen bg-muted">
-      <SEO title={seoConfig.title} description={seoConfig.description} canonical={canonical} hreflang={hreflangLinks} />
+      <SEO title={seoConfig.title} description={seoConfig.description} keywords={seoConfig.keywords} canonical={canonical} hreflang={hreflangLinks} />
       <Navigation />
 
       <div className="container mx-auto px-4 pt-20 sm:pt-24 pb-8 sm:pb-12">
@@ -53,6 +53,18 @@ export default function RoutesPage() {
           <p className="text-muted-foreground max-w-2xl mx-auto">
             {t.routes?.subtitle || "Descubre las mejores rutas en barco desde el Puerto de Blanes"}
           </p>
+
+          {/* Intro paragraph with internal links */}
+          <div className="max-w-3xl mx-auto text-left mt-4 mb-2 text-muted-foreground">
+            <p>
+              Desde el Puerto de Blanes, la puerta de entrada a la Costa Brava, tienes acceso directo a algunas
+              de las rutas costeras más espectaculares del Mediterráneo. Cada ruta está pensada para diferentes
+              niveles de experiencia y duraciones, desde escapadas de 1 hora hasta excursiones de día completo.
+              Explora nuestras{" "}
+              <a href="/#fleet" className="text-primary hover:underline">embarcaciones disponibles</a>{" "}
+              para encontrar el barco perfecto para tu ruta.
+            </p>
+          </div>
         </div>
 
         {/* Map */}
@@ -127,6 +139,22 @@ export default function RoutesPage() {
               </Card>
             );
           })}
+        </div>
+
+        {/* Related destinations */}
+        <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
+          <a href="/alquiler-barcos-lloret-de-mar" className="block p-6 bg-background rounded-lg border border-border hover:border-primary transition-colors">
+            <h3 className="font-bold text-lg mb-2">Lloret de Mar en barco</h3>
+            <p className="text-sm text-muted-foreground">Playas doradas, calas escondidas y vida nocturna. A solo 20 min en barco desde Blanes.</p>
+          </a>
+          <a href="/alquiler-barcos-tossa-de-mar" className="block p-6 bg-background rounded-lg border border-border hover:border-primary transition-colors">
+            <h3 className="font-bold text-lg mb-2">Tossa de Mar en barco</h3>
+            <p className="text-sm text-muted-foreground">La Vila Vella medieval, acantilados impresionantes y las calas más vírgenes de la Costa Brava.</p>
+          </a>
+          <a href="/precios" className="block p-6 bg-background rounded-lg border border-border hover:border-primary transition-colors">
+            <h3 className="font-bold text-lg mb-2">Precios y tarifas</h3>
+            <p className="text-sm text-muted-foreground">Consulta los precios por temporada de todos nuestros barcos. Desde 70€/hora sin licencia.</p>
+          </a>
         </div>
       </div>
 

@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { useTranslations } from "@/lib/translations";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { useQuery } from "@tanstack/react-query";
+import { Link } from "wouter";
 import type { Boat } from "@shared/schema";
 
 export function LicenseComparisonSection() {
@@ -84,14 +85,21 @@ export function LicenseComparisonSection() {
                 <span className="text-xs text-muted-foreground">{t.comparison.fromPrice}</span>
                 <span className="text-xl font-heading font-medium text-foreground ml-1">{noLicenseMinPrice}€</span>
               </div>
-              <Button
-                size="sm"
-                variant="outline"
-                onClick={() => scrollToFleetWithFilter('no')}
-                className="rounded-full text-xs"
-              >
-                {'Ver barcos'}
-              </Button>
+              <div className="flex items-center gap-2">
+                <Button
+                  size="sm"
+                  variant="outline"
+                  onClick={() => scrollToFleetWithFilter('no')}
+                  className="rounded-full text-xs"
+                >
+                  {'Ver barcos'}
+                </Button>
+                <Link href="/barcos-sin-licencia">
+                  <Button size="sm" variant="ghost" className="rounded-full text-xs text-muted-foreground hover:text-foreground">
+                    {'Ver todos'}
+                  </Button>
+                </Link>
+              </div>
             </div>
           </div>
 
@@ -123,14 +131,21 @@ export function LicenseComparisonSection() {
                 <span className="text-xs text-muted-foreground">{t.comparison.fromPrice}</span>
                 <span className="text-xl font-heading font-medium text-foreground ml-1">{withLicenseMinPrice}€</span>
               </div>
-              <Button
-                size="sm"
-                variant="outline"
-                onClick={() => scrollToFleetWithFilter('yes')}
-                className="rounded-full text-xs"
-              >
-                {'Ver barcos'}
-              </Button>
+              <div className="flex items-center gap-2">
+                <Button
+                  size="sm"
+                  variant="outline"
+                  onClick={() => scrollToFleetWithFilter('yes')}
+                  className="rounded-full text-xs"
+                >
+                  {'Ver barcos'}
+                </Button>
+                <Link href="/barcos-con-licencia">
+                  <Button size="sm" variant="ghost" className="rounded-full text-xs text-muted-foreground hover:text-foreground">
+                    {'Ver todos'}
+                  </Button>
+                </Link>
+              </div>
             </div>
           </div>
         </div>

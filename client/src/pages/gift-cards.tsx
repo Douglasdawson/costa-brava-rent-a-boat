@@ -97,7 +97,7 @@ export default function GiftCardsPage() {
   if (purchaseComplete) {
     return (
       <div className="min-h-screen bg-muted">
-        <SEO title={seoConfig.title} description={seoConfig.description} canonical={canonical} hreflang={hreflangLinks} />
+        <SEO title={seoConfig.title} description={seoConfig.description} keywords={seoConfig.keywords} canonical={canonical} hreflang={hreflangLinks} />
         <Navigation />
         <div className="container mx-auto px-4 py-16">
           <Card className="max-w-md mx-auto">
@@ -146,7 +146,7 @@ export default function GiftCardsPage() {
 
   return (
     <div className="min-h-screen bg-muted">
-      <SEO title={seoConfig.title} description={seoConfig.description} canonical={canonical} hreflang={hreflangLinks} />
+      <SEO title={seoConfig.title} description={seoConfig.description} keywords={seoConfig.keywords} canonical={canonical} hreflang={hreflangLinks} />
       <Navigation />
 
       <div className="container mx-auto px-4 pt-20 sm:pt-24 pb-8 sm:pb-12">
@@ -157,6 +157,32 @@ export default function GiftCardsPage() {
           <p className="text-muted-foreground max-w-2xl mx-auto">
             {t.giftCards?.subtitle || "Regala una experiencia inolvidable en barco por la Costa Brava"}
           </p>
+        </div>
+
+        {/* Why gift a boat experience */}
+        <div className="max-w-2xl mx-auto mb-10">
+          <div className="bg-background rounded-xl p-6 sm:p-8 border border-border">
+            <h2 className="text-xl font-heading font-bold text-foreground mb-4">
+              ¿Por qué regalar una experiencia en barco?
+            </h2>
+            <div className="space-y-3 text-muted-foreground">
+              <p>
+                Un regalo original que no se olvida. Navegar por las calas de la Costa Brava,
+                descubrir playas escondidas y disfrutar del Mediterráneo es una experiencia única
+                que supera cualquier regalo material.
+              </p>
+              <p>
+                Nuestras tarjetas regalo son válidas para cualquiera de nuestros{" "}
+                <a href="/#fleet" className="text-primary hover:underline">7 barcos</a>,
+                tanto sin licencia como con licencia. El destinatario puede elegir el barco,
+                la fecha y la duración que prefiera durante toda la temporada (abril a octubre).
+              </p>
+              <p>
+                Perfecta para cumpleaños, aniversarios, despedidas de soltero/a o simplemente
+                para sorprender a alguien especial. El mar siempre es el mejor regalo.
+              </p>
+            </div>
+          </div>
         </div>
 
         <div className="max-w-2xl mx-auto">
@@ -304,6 +330,43 @@ export default function GiftCardsPage() {
               </Button>
             </CardContent>
           </Card>
+
+          {/* FAQ Section */}
+          <div className="mt-8 space-y-3">
+            <h2 className="text-xl font-heading font-bold text-foreground mb-4">
+              Preguntas frecuentes sobre tarjetas regalo
+            </h2>
+            <details className="group border border-border rounded-lg bg-background">
+              <summary className="flex items-center justify-between cursor-pointer p-4 font-medium">
+                ¿Cuánto tiempo es válida la tarjeta regalo?
+                <Gift className="w-4 h-4 transition-transform group-open:rotate-90" />
+              </summary>
+              <p className="px-4 pb-4 text-muted-foreground">
+                La tarjeta regalo tiene una validez de 1 año desde la fecha de compra.
+                Puede utilizarse en cualquier momento durante la temporada de navegación (abril a octubre).
+              </p>
+            </details>
+            <details className="group border border-border rounded-lg bg-background">
+              <summary className="flex items-center justify-between cursor-pointer p-4 font-medium">
+                ¿El destinatario puede elegir el barco?
+                <Gift className="w-4 h-4 transition-transform group-open:rotate-90" />
+              </summary>
+              <p className="px-4 pb-4 text-muted-foreground">
+                Sí, el destinatario puede elegir cualquier barco de nuestra flota, sujeto a disponibilidad.
+                Si el valor de la tarjeta no cubre el total, puede pagar la diferencia.
+              </p>
+            </details>
+            <details className="group border border-border rounded-lg bg-background">
+              <summary className="flex items-center justify-between cursor-pointer p-4 font-medium">
+                ¿Cómo se canjea la tarjeta regalo?
+                <Gift className="w-4 h-4 transition-transform group-open:rotate-90" />
+              </summary>
+              <p className="px-4 pb-4 text-muted-foreground">
+                El destinatario recibirá un código único por email. Para canjearla, solo tiene que contactarnos
+                por WhatsApp al +34 611 500 372 o por email indicando el código y la fecha deseada.
+              </p>
+            </details>
+          </div>
         </div>
       </div>
 

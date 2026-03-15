@@ -14,7 +14,8 @@ import {
   Car,
   Ship,
   Music,
-  Utensils
+  Utensils,
+  ChevronRight
 } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
@@ -78,35 +79,36 @@ export default function LocationLloretPage() {
     { name: t.breadcrumbs.locationLloret, url: "/alquiler-barcos-lloret-de-mar" }
   ]);
 
-  // FAQ schema for AI search extraction - Lloret specific
+  // FAQ data for both schema and visible section - Lloret specific
+  const faqItems = [
+    {
+      question: "¿Cuánto se tarda en llegar a Lloret de Mar en barco desde Blanes?",
+      answer: "El trayecto desde el Puerto de Blanes hasta Lloret de Mar dura aproximadamente 20-30 minutos dependiendo del barco y las condiciones del mar. Es una ruta costera preciosa que pasa por calas como Cala Sant Francesc."
+    },
+    {
+      question: "¿Se puede fondear en las playas de Lloret de Mar?",
+      answer: "Sí, puedes fondear en varias playas y calas de Lloret. Las mejores zonas de fondeo son Cala Boadella, Sa Caleta y la zona de Santa Cristina. Recuerda mantener distancia de la zona de bañistas."
+    },
+    {
+      question: "¿Necesito licencia para ir en barco a Lloret de Mar?",
+      answer: "No necesariamente. Con nuestros barcos sin licencia puedes llegar a Lloret de Mar cómodamente. Solo necesitas ser mayor de 18 años. También tenemos barcos con licencia para una experiencia más potente."
+    },
+    {
+      question: "¿Cuál es la mejor época para ir en barco a Lloret de Mar?",
+      answer: "Los mejores meses son junio y septiembre: temperaturas agradables, mar tranquilo y menos afluencia turística. Julio y agosto son más concurridos pero el agua está más cálida."
+    }
+  ];
+
   const faqSchema = {
     "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "Se puede ir en barco de alquiler desde Blanes a Lloret de Mar?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Si. Lloret de Mar esta a solo 30 minutos en barco desde el Puerto de Blanes. Puedes ir con barcos sin licencia o con licencia. Es una de las rutas mas populares."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Cuanto tiempo se tarda en llegar a Lloret de Mar en barco desde Blanes?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Aproximadamente 30 minutos navegando desde el Puerto de Blanes. Por el camino puedes parar en calas como Cala Brava y Cala Sant Francesc."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Donde puedo fondear en Lloret de Mar?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Puedes fondear frente a la Playa de Lloret, en Cala Boadella o en Santa Cristina. Recuerda respetar las zonas de banistas y fondear a distancia adecuada de la playa."
-        }
+    "mainEntity": faqItems.map(item => ({
+      "@type": "Question",
+      "name": item.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": item.answer
       }
-    ]
+    }))
   };
 
   // Combine schemas using @graph
@@ -343,8 +345,48 @@ export default function LocationLloretPage() {
         </div>
       </div>
 
+      {/* FAQ Section */}
+      <div className="py-12 bg-background">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-2xl font-heading font-bold text-center mb-8">
+            Preguntas frecuentes sobre Lloret de Mar en barco
+          </h2>
+          <div className="space-y-3">
+            {faqItems.map((item, index) => (
+              <details
+                key={index}
+                className="group border border-border rounded-lg bg-card"
+              >
+                <summary className="flex cursor-pointer items-center justify-between px-6 py-4 font-semibold text-foreground [&::-webkit-details-marker]:hidden">
+                  <span className="pr-4">{item.question}</span>
+                  <ChevronRight className="w-5 h-5 shrink-0 text-muted-foreground transition-transform group-open:rotate-90" />
+                </summary>
+                <div className="px-6 pb-4 text-muted-foreground">
+                  {item.answer}
+                </div>
+              </details>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Blog section */}
+      <div className="py-12 bg-muted">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="py-8">
+            <h2 className="text-xl font-heading font-bold text-foreground mb-4">
+              Artículos del blog
+            </h2>
+            <p className="text-muted-foreground mb-4">
+              Descubre más sobre navegar por la Costa Brava en nuestro{" "}
+              <a href="/blog" className="text-primary hover:underline font-medium">blog de navegación</a>.
+            </p>
+          </div>
+        </div>
+      </div>
+
       <RelatedLocationsSection currentLocation="lloret" />
-      
+
       <Footer />
     </div>
   );

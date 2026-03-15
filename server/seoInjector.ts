@@ -1242,6 +1242,52 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
   return null;
 }
 
+// Valid SPA routes — used to return 404 for unknown paths
+const VALID_SPA_ROUTES = new Set([
+  "/",
+  "/login",
+  "/onboarding",
+  "/faq",
+  "/privacy-policy",
+  "/terms-conditions",
+  "/cookies-policy",
+  "/condiciones-generales",
+  "/accesibilidad",
+  "/alquiler-barcos-blanes",
+  "/alquiler-barcos-lloret-de-mar",
+  "/alquiler-barcos-tossa-de-mar",
+  "/alquiler-barcos-cerca-barcelona",
+  "/alquiler-barcos-costa-brava",
+  "/barcos-sin-licencia",
+  "/barcos-con-licencia",
+  "/galeria",
+  "/rutas",
+  "/tarjetas-regalo",
+  "/testimonios",
+  "/precios",
+  "/blog",
+  "/barcos",
+]);
+
+// Dynamic route patterns
+const VALID_DYNAMIC_PATTERNS = [
+  /^\/barco\/[\w-]+$/,
+  /^\/blog\/[\w-]+$/,
+  /^\/destinos\/[\w-]+$/,
+  /^\/cancel\/[\w-]+$/,
+  /^\/crm(\/[\w-]*)?$/,
+  /^\/mi-cuenta$/,
+  /^\/client\/dashboard$/,
+  /^\/destino\/(blanes|lloret-de-mar|tossa-de-mar)$/,
+  /^\/categoria\/(sin-licencia|con-licencia)$/,
+];
+
+export function isValidSPARoute(pathname: string): boolean {
+  const cleanPath = pathname.replace(/\/$/, "") || "/";
+  if (VALID_SPA_ROUTES.has(cleanPath)) return true;
+  return VALID_DYNAMIC_PATTERNS.some(pattern => pattern.test(cleanPath));
+}
+
 export async function serveWithSEO(
   req: Request,
   res: Response,
@@ -1265,9 +1311,13 @@ export async function serveWithSEO(
       res.set("Cache-Control", "public, max-age=300, must-revalidate"); // 5 min cache for SEO-injected pages
       res.send(html);
     } else {
-      res.sendFile(path.resolve(distPath, "index.html"));
+      // If route is unknown, send 404 status so crawlers don't index non-existent pages
+      const status = isValidSPARoute(pathname) ? 200 : 404;
+      res.status(status).sendFile(path.resolve(distPath, "index.html"));
     }
   } catch {
-    res.sendFile(path.resolve(distPath, "index.html"));
+    const parsedUrl = new URL(req.originalUrl, "http://localhost");
+    const status = isValidSPARoute(parsedUrl.pathname) ? 200 : 404;
+    res.status(status).sendFile(path.resolve(distPath, "index.html"));
   }
 }

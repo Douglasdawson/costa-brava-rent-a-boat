@@ -13,7 +13,8 @@ import {
   Shield,
   Castle,
   Crown,
-  Heart
+  Heart,
+  ChevronRight
 } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
@@ -77,35 +78,36 @@ export default function LocationTossaPage() {
     { name: t.breadcrumbs.locationTossa, url: "/alquiler-barcos-tossa-de-mar" }
   ]);
 
-  // FAQ schema for AI search extraction - Tossa specific
+  // FAQ data for both schema and visible section - Tossa specific
+  const faqItems = [
+    {
+      question: "¿Cuánto se tarda en llegar a Tossa de Mar en barco desde Blanes?",
+      answer: "El trayecto dura entre 30-45 minutos dependiendo del barco. Es una ruta espectacular con vistas a acantilados y calas vírgenes. Recomendamos la ruta costera para disfrutar del paisaje."
+    },
+    {
+      question: "¿Se puede ver la Vila Vella de Tossa desde el barco?",
+      answer: "Sí, la Vila Vella (recinto amurallado medieval) es visible desde el mar y ofrece una perspectiva única. Es uno de los puntos más fotografiados de la Costa Brava desde el agua."
+    },
+    {
+      question: "¿Qué calas puedo visitar entre Blanes y Tossa de Mar?",
+      answer: "En la ruta encontrarás calas espectaculares como Cala Sant Francesc, Sa Palomera, Cala Boadella, Cala Santa Cristina y las calas de Lloret. Puedes parar a nadar en cualquiera de ellas."
+    },
+    {
+      question: "¿Es seguro ir a Tossa de Mar en barco sin licencia?",
+      answer: "Sí, la ruta es segura en condiciones normales de mar. Antes de zarpar te damos formación completa y recomendaciones sobre la ruta. El barco incluye todo el equipo de seguridad homologado."
+    }
+  ];
+
   const faqSchema = {
     "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "Se puede ir en barco de alquiler desde Blanes a Tossa de Mar?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Si, pero solo con barcos con licencia debido a la distancia. Tossa de Mar esta a unos 45 minutos desde el Puerto de Blanes. Tambien ofrecemos excursiones privadas con capitan."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Cuanto cuesta una excursion en barco a Tossa de Mar desde Blanes?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Los barcos con licencia para ir a Tossa cuestan desde 150 EUR por 2 horas. Para una excursion privada con capitan, desde 240 EUR por 2 horas para hasta 7 personas."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Que se puede ver en Tossa de Mar desde el barco?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Desde el mar tienes vistas espectaculares de la Vila Vella (recinto amurallado medieval), la Playa Grande, calas virgenes y acantilados. Es una de las vistas mas iconicas de la Costa Brava."
-        }
+    "mainEntity": faqItems.map(item => ({
+      "@type": "Question",
+      "name": item.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": item.answer
       }
-    ]
+    }))
   };
 
   // Combine schemas using @graph
@@ -342,8 +344,48 @@ export default function LocationTossaPage() {
         </div>
       </div>
 
+      {/* FAQ Section */}
+      <div className="py-12 bg-background">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-2xl font-heading font-bold text-center mb-8">
+            Preguntas frecuentes sobre Tossa de Mar en barco
+          </h2>
+          <div className="space-y-3">
+            {faqItems.map((item, index) => (
+              <details
+                key={index}
+                className="group border border-border rounded-lg bg-card"
+              >
+                <summary className="flex cursor-pointer items-center justify-between px-6 py-4 font-semibold text-foreground [&::-webkit-details-marker]:hidden">
+                  <span className="pr-4">{item.question}</span>
+                  <ChevronRight className="w-5 h-5 shrink-0 text-muted-foreground transition-transform group-open:rotate-90" />
+                </summary>
+                <div className="px-6 pb-4 text-muted-foreground">
+                  {item.answer}
+                </div>
+              </details>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Blog section */}
+      <div className="py-12 bg-muted">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="py-8">
+            <h2 className="text-xl font-heading font-bold text-foreground mb-4">
+              Artículos del blog
+            </h2>
+            <p className="text-muted-foreground mb-4">
+              Descubre más sobre navegar por la Costa Brava en nuestro{" "}
+              <a href="/blog" className="text-primary hover:underline font-medium">blog de navegación</a>.
+            </p>
+          </div>
+        </div>
+      </div>
+
       <RelatedLocationsSection currentLocation="tossa" />
-      
+
       <Footer />
     </div>
   );

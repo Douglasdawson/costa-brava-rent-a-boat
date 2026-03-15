@@ -295,6 +295,11 @@ app.use((req: Request, res: Response, next: NextFunction) => {
     "/destino/tossa-de-mar": "/alquiler-barcos-tossa-de-mar",
     "/categoria/sin-licencia": "/barcos-sin-licencia",
     "/categoria/con-licencia": "/barcos-con-licencia",
+    "/copia-de-embarcaciones": "/barcos-sin-licencia",
+    "/copy-of-extras": "/precios",
+    "/copy-of-hoteles-y-alojamientos": "/alquiler-barcos-blanes",
+    "/motos-de-agua": "/barcos-sin-licencia",
+    "/alquiler-con-licencia": "/barcos-con-licencia",
   };
   for (const [from, to] of Object.entries(legacyRedirects)) {
     app.get(from, (_req: Request, res: Response) => {

@@ -32,6 +32,7 @@ export interface Translations {
     priceBadge: string;
     fuelBadge: string;
     bookNow: string;
+    findYourBoat: string;
     viewFleet: string;
     trustText: string;
     whatsappContact: string;

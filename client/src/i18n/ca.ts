@@ -21,6 +21,7 @@ export const ca: Translations = {
     priceBadge: 'Des de 70€',
     fuelBadge: 'Gasolina inclosa',
     bookNow: 'Veure Disponibilitat',
+    findYourBoat: 'Troba el teu vaixell',
     viewFleet: 'Veure Vaixells',
     trustText: 'Sense compromís • Confirmació immediata • Preus transparents',
     whatsappContact: 'WhatsApp +34 611 500 372',

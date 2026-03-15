@@ -21,6 +21,7 @@ export const ru: Translations = {
     priceBadge: 'От 70€',
     fuelBadge: 'Топливо включено',
     bookNow: 'Проверить наличие',
+    findYourBoat: 'Найди свою лодку',
     viewFleet: 'Посмотреть лодки',
     trustText: 'Без обязательств • Прозрачные цены',
     whatsappContact: 'WhatsApp +34 611 500 372',

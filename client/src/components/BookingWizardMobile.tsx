@@ -147,7 +147,7 @@ export default function BookingWizardMobile(props: BookingWizardMobileProps) {
 
   return (
     <div className="flex flex-col h-full overflow-x-hidden" role="form" aria-label={props.t.a11y.bookingForm}>
-      <div className="sticky top-0 z-10 bg-background px-4 py-3 border-b border-border">
+      <div className="sticky top-0 z-10 bg-background px-3 py-1.5 border-b border-border">
         <BookingProgressBar
           currentStep={currentStep}
           totalSteps={4}
@@ -157,7 +157,7 @@ export default function BookingWizardMobile(props: BookingWizardMobileProps) {
             props.selectedBoatInfo ? (props.t.endowment?.confirmStep || props.t.wizard.stepYourData) : props.t.wizard.stepYourData,
             props.selectedBoatInfo ? (props.t.endowment?.confirmStep || props.t.wizard.stepConfirm) : props.t.wizard.stepConfirm,
           ]}
-          estimatedTime={undefined}
+
         />
       </div>
       {/* Hold countdown timer — only visible on final step */}
@@ -247,16 +247,6 @@ export default function BookingWizardMobile(props: BookingWizardMobileProps) {
             </Button>
           )}
         </div>
-        <a
-          href="https://wa.me/34611500372"
-          target="_blank"
-          rel="noopener noreferrer"
-          onClick={() => trackWhatsAppClick("booking_mobile")}
-          className="flex items-center justify-center gap-1 text-xs text-muted-foreground/60 hover:text-muted-foreground transition-colors mt-2"
-        >
-          <SiWhatsapp className="w-3 h-3" aria-hidden="true" />
-          {props.t.booking.needHelp}
-        </a>
       </div>
     </div>
   );

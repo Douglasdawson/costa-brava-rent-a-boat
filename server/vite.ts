@@ -5,7 +5,7 @@ import { createServer as createViteServer, createLogger } from "vite";
 import { type Server } from "http";
 import viteConfig from "../vite.config";
 import { nanoid } from "nanoid";
-import { serveWithSEO } from "./seoInjector";
+import { serveWithSEO, isValidSPARoute } from "./seoInjector";
 
 const viteLogger = createLogger();
 
@@ -60,7 +60,9 @@ export async function setupVite(app: Express, server: Server) {
         `src="/src/main.tsx?v=${nanoid()}"`,
       );
       const page = await vite.transformIndexHtml(url, template);
-      res.status(200).set({ "Content-Type": "text/html" }).end(page);
+      const parsedUrl = new URL(url, "http://localhost");
+      const status = isValidSPARoute(parsedUrl.pathname) ? 200 : 404;
+      res.status(status).set({ "Content-Type": "text/html" }).end(page);
     } catch (e) {
       vite.ssrFixStacktrace(e as Error);
       next(e);

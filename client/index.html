@@ -50,6 +50,8 @@
     <link rel="preload" as="font" type="font/woff2" href="/fonts/Archivo-Variable.woff2" crossorigin>
 
     <!-- Preload critical assets for LCP optimization (matches Hero.tsx <picture> sources) -->
+    <link rel="preload" as="image" type="image/avif" href="/images/hero/hero-dive-mobile.avif" media="(max-width: 767px)" fetchpriority="high">
+    <link rel="preload" as="image" type="image/avif" href="/images/hero/hero-dive-desktop.avif" media="(min-width: 768px)" fetchpriority="high">
     <link rel="preload" as="image" href="/images/hero/hero-dive-mobile.webp" media="(max-width: 767px)" fetchpriority="high">
     <link rel="preload" as="image" href="/images/hero/hero-dive-desktop.webp" media="(min-width: 768px)" fetchpriority="high">
     <link rel="modulepreload" href="/src/main.tsx">
@@ -131,6 +133,9 @@
       html{-webkit-text-size-adjust:100%;tab-size:4;font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent;}
       body{margin:0;line-height:inherit;font-family:'Archivo',Inter,system-ui,-apple-system,sans-serif;background:hsl(var(--background));color:hsl(var(--foreground));overflow-x:hidden;}
       #root{min-height:100vh;display:flex;flex-direction:column;overflow-x:hidden;}
+      /* Critical CSS for hero LCP — prevents layout shift */
+      .font-heading{font-family:'Clash Display',sans-serif;}
+      #home{position:relative;height:100dvh;min-height:600px;overflow:hidden;}
     </style>
     
     <!-- GTM Consent Mode v2 — analytics denied by default until user accepts cookies -->
@@ -145,16 +150,27 @@
         wait_for_update: 500
       });
     </script>
-    <!-- Google Ads Conversion Tracking (loads gtag.js for direct conversion firing) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-341099427"></script>
-    <script>gtag('js', new Date());gtag('config', 'AW-341099427', { 'allow_enhanced_conversions': true });</script>
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-WPSV63W');</script>
-    <!-- End Google Tag Manager -->
+    <!-- Google Ads + GTM — deferred to avoid blocking LCP -->
+    <script>
+    (function(){
+      function loadTracking(){
+        // Google Ads Conversion Tracking
+        var s=document.createElement('script');s.async=true;
+        s.src='https://www.googletagmanager.com/gtag/js?id=AW-341099427';
+        document.head.appendChild(s);
+        s.onload=function(){gtag('js',new Date());gtag('config','AW-341099427',{'allow_enhanced_conversions':true});};
+        // Google Tag Manager
+        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(w,d,'script','dataLayer','GTM-WPSV63W');
+      }
+      var w=window,d=document;
+      if('requestIdleCallback' in w){w.requestIdleCallback(loadTracking);}
+      else{w.addEventListener('load',loadTracking);}
+    })();
+    </script>
   </head>
   <body>
     <!-- Google Tag Manager (noscript) -->

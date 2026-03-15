@@ -11,6 +11,7 @@ import {
   Bus,
   Waves,
   ArrowRight,
+  ChevronRight,
 } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
@@ -38,34 +39,31 @@ export default function LocationBarcelonaPage() {
     { name: "Alquiler barcos cerca de Barcelona", url: "/alquiler-barcos-cerca-barcelona" },
   ]);
 
+  const faqItems = [
+    {
+      question: "¿Puedo alquilar un barco sin licencia cerca de Barcelona?",
+      answer: "Sí, en Blanes (Costa Brava), a solo 70 minutos de Barcelona por la autopista AP-7, puedes alquilar barcos sin licencia desde 70 €/hora. No necesitas experiencia previa ni titulación náutica, solo ser mayor de 18 años.",
+    },
+    {
+      question: "¿Cuánto se tarda de Barcelona a Blanes?",
+      answer: "En coche por la AP-7 se tarda aproximadamente 70 minutos. En tren RENFE (línea R1 Rodalies) unos 90 minutos desde Barcelona Sants o Passeig de Gràcia. También hay autobuses directos desde la Estación del Nord.",
+    },
+    {
+      question: "¿Es más barato alquilar un barco en Blanes que en Barcelona?",
+      answer: "Sí, significativamente. En Blanes los barcos sin licencia cuestan desde 70 €/hora con gasolina incluida, mientras que en puertos de Barcelona los precios suelen empezar desde 120-150 €/hora. Además, las aguas en la Costa Brava son mucho más cristalinas y hay menos tráfico marítimo.",
+    },
+  ];
+
   const faqSchema = {
     "@type": "FAQPage",
-    mainEntity: [
-      {
-        "@type": "Question",
-        name: "Puedo alquilar un barco sin licencia cerca de Barcelona?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Si, en Blanes (Costa Brava), a solo 70 minutos de Barcelona por la autopista AP-7, puedes alquilar barcos sin licencia desde 70 €/hora. No necesitas experiencia previa ni titulacion nautica, solo ser mayor de 18 anos.",
-        },
+    mainEntity: faqItems.map(item => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer,
       },
-      {
-        "@type": "Question",
-        name: "Cuanto se tarda de Barcelona a Blanes?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "En coche por la AP-7 se tarda aproximadamente 70 minutos. En tren RENFE (linea R1 Rodalies) unos 90 minutos desde Barcelona Sants o Passeig de Gracia. Tambien hay autobuses directos desde la Estacion del Nord.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "Es mas barato alquilar un barco en Blanes que en Barcelona?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Si, significativamente. En Blanes los barcos sin licencia cuestan desde 70 €/hora con gasolina incluida, mientras que en puertos de Barcelona los precios suelen empezar desde 120-150 €/hora. Ademas, las aguas en la Costa Brava son mucho mas cristalinas y hay menos trafico maritimo.",
-        },
-      },
-    ],
+    })),
   };
 
   const locationSchema = {
@@ -167,21 +165,21 @@ export default function LocationBarcelonaPage() {
 
                   <h3 className="font-semibold text-lg mb-3">Aguas cristalinas</h3>
                   <p className="text-muted-foreground">
-                    La Costa Brava ofrece aguas transparentes y turquesas que no encontraras
+                    La Costa Brava ofrece aguas transparentes y turquesas que no encontrarás
                     en el litoral de Barcelona. Calas escondidas, fondos rocosos para
                     hacer snorkel y paisajes naturales espectaculares.
                   </p>
                 </div>
                 <div>
-                  <h3 className="font-semibold text-lg mb-3">Menos trafico maritimo</h3>
+                  <h3 className="font-semibold text-lg mb-3">Menos tráfico marítimo</h3>
                   <p className="text-muted-foreground mb-4">
-                    El puerto de Barcelona tiene un intenso trafico de ferries, cruceros y
+                    El puerto de Barcelona tiene un intenso tráfico de ferries, cruceros y
                     embarcaciones comerciales. En Blanes navegas tranquilamente por aguas
                     limpias y sin aglomeraciones.
                   </p>
 
                   <h3 className="font-semibold text-lg mb-3">
-                    La autentica Costa Brava
+                    La auténtica Costa Brava
                   </h3>
                   <p className="text-muted-foreground">
                     Desde Blanes puedes explorar calas secretas como Cala Sant Francesc,
@@ -199,7 +197,7 @@ export default function LocationBarcelonaPage() {
             <CardHeader>
               <h2 className="flex items-center gap-3 text-2xl font-semibold leading-none tracking-tight">
                 <MapPin className="w-6 h-6 text-primary" />
-                Como llegar de Barcelona a Blanes
+                Cómo llegar de Barcelona a Blanes
               </h2>
             </CardHeader>
             <CardContent>
@@ -213,7 +211,7 @@ export default function LocationBarcelonaPage() {
                     <strong>70 minutos</strong> por la AP-7
                   </p>
                   <p className="text-muted-foreground text-sm">
-                    Toma la autopista AP-7 direccion Girona/Francia. Salida 9 (Blanes).
+                    Toma la autopista AP-7 dirección Girona/Francia. Salida 9 (Blanes).
                     Aparcamiento gratuito junto al puerto.
                   </p>
                 </div>
@@ -227,8 +225,8 @@ export default function LocationBarcelonaPage() {
                     <strong>90 minutos</strong> RENFE Rodalies
                   </p>
                   <p className="text-muted-foreground text-sm">
-                    Linea R1 desde Barcelona Sants o Passeig de Gracia hasta
-                    Blanes. Trenes cada 30 minutos. Estacion a 10 min del puerto.
+                    Línea R1 desde Barcelona Sants o Passeig de Gràcia hasta
+                    Blanes. Trenes cada 30 minutos. Estación a 10 min del puerto.
                   </p>
                 </div>
 
@@ -236,12 +234,12 @@ export default function LocationBarcelonaPage() {
                   <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
                     <Bus className="w-8 h-8 text-primary" />
                   </div>
-                  <h3 className="font-semibold text-lg mb-2">En autobus</h3>
+                  <h3 className="font-semibold text-lg mb-2">En autobús</h3>
                   <p className="text-muted-foreground text-sm mb-2">
-                    <strong>80 minutos</strong> desde Estacion del Nord
+                    <strong>80 minutos</strong> desde Estación del Nord
                   </p>
                   <p className="text-muted-foreground text-sm">
-                    Autobuses directos desde la Estacion del Nord de Barcelona.
+                    Autobuses directos desde la Estación del Nord de Barcelona.
                     Varias frecuencias diarias en temporada de verano.
                   </p>
                 </div>
@@ -265,7 +263,7 @@ export default function LocationBarcelonaPage() {
                   </h3>
                   <p className="text-muted-foreground mb-3">
                     5 embarcaciones para 4-5 personas. No necesitas experiencia previa ni
-                    titulacion. Te damos una formacion de 15 minutos y listo para navegar.
+                    titulación. Te damos una formación de 15 minutos y listo para navegar.
                     Gasolina incluida en el precio.
                   </p>
                   <ul className="space-y-1 text-muted-foreground text-sm">
@@ -285,7 +283,7 @@ export default function LocationBarcelonaPage() {
                   </h3>
                   <p className="text-muted-foreground mb-3">
                     2 embarcaciones potentes para hasta 7 personas. Requieren PER o
-                    titulo nautico equivalente. Mayor autonomia y velocidad para
+                    título náutico equivalente. Mayor autonomía y velocidad para
                     explorar toda la Costa Brava.
                   </p>
                   <ul className="space-y-1 text-muted-foreground text-sm">
@@ -319,45 +317,21 @@ export default function LocationBarcelonaPage() {
             <h2 className="text-2xl font-heading font-bold text-center mb-8">
               Preguntas frecuentes
             </h2>
-            <div className="space-y-4 max-w-3xl mx-auto">
-              <Card>
-                <CardContent className="pt-6">
-                  <h3 className="font-semibold mb-2">
-                    Puedo alquilar un barco sin licencia cerca de Barcelona?
-                  </h3>
-                  <p className="text-muted-foreground">
-                    Si, en Blanes (Costa Brava), a solo 70 minutos de Barcelona por la
-                    autopista AP-7, puedes alquilar barcos sin licencia desde 70 €/hora.
-                    No necesitas experiencia previa ni titulacion nautica, solo ser mayor de
-                    18 anos.
-                  </p>
-                </CardContent>
-              </Card>
-              <Card>
-                <CardContent className="pt-6">
-                  <h3 className="font-semibold mb-2">
-                    Cuanto se tarda de Barcelona a Blanes?
-                  </h3>
-                  <p className="text-muted-foreground">
-                    En coche por la AP-7 se tarda aproximadamente 70 minutos. En tren RENFE
-                    (linea R1 Rodalies) unos 90 minutos desde Barcelona Sants o Passeig de
-                    Gracia. Tambien hay autobuses directos desde la Estacion del Nord.
-                  </p>
-                </CardContent>
-              </Card>
-              <Card>
-                <CardContent className="pt-6">
-                  <h3 className="font-semibold mb-2">
-                    Es mas barato alquilar un barco en Blanes que en Barcelona?
-                  </h3>
-                  <p className="text-muted-foreground">
-                    Si, significativamente. En Blanes los barcos sin licencia cuestan desde
-                    70 €/hora con gasolina incluida, mientras que en puertos de Barcelona
-                    los precios suelen empezar desde 120-150 €/hora. Ademas, las aguas son
-                    mucho mas cristalinas y hay menos trafico maritimo.
-                  </p>
-                </CardContent>
-              </Card>
+            <div className="space-y-3 max-w-3xl mx-auto">
+              {faqItems.map((item, index) => (
+                <details
+                  key={index}
+                  className="group border border-border rounded-lg bg-card"
+                >
+                  <summary className="flex cursor-pointer items-center justify-between px-6 py-4 font-semibold text-foreground [&::-webkit-details-marker]:hidden">
+                    <span className="pr-4">{item.question}</span>
+                    <ChevronRight className="w-5 h-5 shrink-0 text-muted-foreground transition-transform group-open:rotate-90" />
+                  </summary>
+                  <div className="px-6 pb-4 text-muted-foreground">
+                    {item.answer}
+                  </div>
+                </details>
+              ))}
             </div>
           </div>
 
@@ -394,6 +368,21 @@ export default function LocationBarcelonaPage() {
               </div>
             </CardContent>
           </Card>
+        </div>
+      </div>
+
+      {/* Blog section */}
+      <div className="py-12 bg-muted">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="py-8">
+            <h2 className="text-xl font-heading font-bold text-foreground mb-4">
+              Artículos del blog
+            </h2>
+            <p className="text-muted-foreground mb-4">
+              Descubre más sobre navegar por la Costa Brava en nuestro{" "}
+              <a href="/blog" className="text-primary hover:underline font-medium">blog de navegación</a>.
+            </p>
+          </div>
         </div>
       </div>
 

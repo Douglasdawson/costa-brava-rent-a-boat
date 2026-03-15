@@ -21,6 +21,7 @@ export const fr: Translations = {
     priceBadge: 'Dès 70€',
     fuelBadge: 'Carburant inclus',
     bookNow: 'Voir Disponibilités',
+    findYourBoat: 'Trouve ton bateau',
     viewFleet: 'Voir les Bateaux',
     trustText: 'Sans engagement • Confirmation immédiate • Prix transparents',
     whatsappContact: 'WhatsApp +34 611 500 372',

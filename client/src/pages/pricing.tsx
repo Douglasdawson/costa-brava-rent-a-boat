@@ -105,7 +105,7 @@ export default function PricingPage() {
     mainEntity: [
       {
         "@type": "Question",
-        name: "Cuanto cuesta alquilar un barco sin licencia en Blanes?",
+        name: "¿Cuánto cuesta alquilar un barco sin licencia en Blanes?",
         acceptedAnswer: {
           "@type": "Answer",
           text: "Los barcos sin licencia en Blanes cuestan desde 70 €/hora en temporada baja (abril-junio, septiembre-octubre). En temporada media (julio) desde 80 €/hora y en temporada alta (agosto) desde 90 €/hora. El precio incluye gasolina, seguro y equipo de seguridad.",
@@ -113,26 +113,26 @@ export default function PricingPage() {
       },
       {
         "@type": "Question",
-        name: "La gasolina esta incluida en el precio del alquiler?",
+        name: "¿La gasolina está incluida en el precio del alquiler?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Si, todos nuestros barcos sin licencia incluyen la gasolina en el precio. Para los barcos con licencia, el combustible se paga aparte segun el consumo real.",
+          text: "Sí, todos nuestros barcos sin licencia incluyen la gasolina en el precio. Para los barcos con licencia, el combustible se paga aparte según el consumo real.",
         },
       },
       {
         "@type": "Question",
-        name: "Hay diferencia de precio entre temporada baja y alta?",
+        name: "¿Hay diferencia de precio entre temporada baja y alta?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Si. La temporada baja (abril-junio y septiembre-octubre) tiene los mejores precios. La temporada media es julio con precios intermedios, y la temporada alta es agosto con las tarifas mas altas. Recomendamos reservar en temporada baja para la mejor relacion calidad-precio.",
+          text: "Sí. La temporada baja (abril-junio y septiembre-octubre) tiene los mejores precios. La temporada media es julio con precios intermedios, y la temporada alta es agosto con las tarifas más altas. Recomendamos reservar en temporada baja para la mejor relación calidad-precio.",
         },
       },
       {
         "@type": "Question",
-        name: "Cuanto cuesta alquilar un barco con licencia en Blanes?",
+        name: "¿Cuánto cuesta alquilar un barco con licencia en Blanes?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Los barcos con licencia en Blanes cuestan desde 150 €/hora en temporada baja. Requieren PER o titulo nautico equivalente. Son barcos mas potentes con mayor autonomia para explorar la Costa Brava.",
+          text: "Los barcos con licencia en Blanes cuestan desde 150 €/hora en temporada baja. Requieren PER o título náutico equivalente. Son barcos más potentes con mayor autonomía para explorar la Costa Brava.",
         },
       },
     ],
@@ -150,6 +150,7 @@ export default function PricingPage() {
         description={seoConfig.description}
         ogTitle={seoConfig.ogTitle}
         ogDescription={seoConfig.ogDescription}
+        keywords={seoConfig.keywords}
         canonical={canonical}
         hreflang={hreflangLinks}
         jsonLd={combinedJsonLd}
@@ -458,11 +459,11 @@ export default function PricingPage() {
                   </li>
                   <li className="flex items-start gap-2">
                     <Users className="w-4 h-4 text-primary mt-1 shrink-0" />
-                    <span>Formacion de 15 minutos antes de zarpar</span>
+                    <span>Formación de 15 minutos antes de zarpar</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <Anchor className="w-4 h-4 text-primary mt-1 shrink-0" />
-                    <span>Equipo de snorkel y paddle surf (segun disponibilidad)</span>
+                    <span>Equipo de snorkel y paddle surf (según disponibilidad)</span>
                   </li>
                 </ul>
               </CardContent>
@@ -470,23 +471,23 @@ export default function PricingPage() {
 
             <Card>
               <CardHeader>
-                <h2 className="text-xl font-semibold">Informacion importante</h2>
+                <h2 className="text-xl font-semibold">Información importante</h2>
               </CardHeader>
               <CardContent>
                 <ul className="space-y-2 text-muted-foreground">
                   <li>
-                    Los precios mostrados son el <strong>minimo por hora</strong>. Segun la
-                    duracion elegida, el precio por hora puede variar.
+                    Los precios mostrados son el <strong>mínimo por hora</strong>. Según la
+                    duración elegida, el precio por hora puede variar.
                   </li>
                   <li>
                     Se requiere una <strong>fianza</strong> que se devuelve al
                     finalizar el alquiler sin incidencias.
                   </li>
                   <li>
-                    <strong>Cancelacion gratuita</strong> hasta 48h antes de la reserva.
+                    <strong>Cancelación gratuita</strong> hasta 48h antes de la reserva.
                   </li>
                   <li>
-                    Los barcos con licencia requieren <strong>PER o titulo nautico</strong>{" "}
+                    Los barcos con licencia requieren <strong>PER o título náutico</strong>{" "}
                     equivalente en vigor.
                   </li>
                 </ul>
@@ -503,7 +504,7 @@ export default function PricingPage() {
               <Card>
                 <CardContent className="pt-6">
                   <h3 className="font-semibold mb-2">
-                    Cuanto cuesta alquilar un barco sin licencia en Blanes?
+                    ¿Cuánto cuesta alquilar un barco sin licencia en Blanes?
                   </h3>
                   <p className="text-muted-foreground">
                     Los barcos sin licencia cuestan desde 70 €/hora en temporada baja
@@ -516,37 +517,37 @@ export default function PricingPage() {
               <Card>
                 <CardContent className="pt-6">
                   <h3 className="font-semibold mb-2">
-                    La gasolina esta incluida en el precio?
+                    ¿La gasolina está incluida en el precio?
                   </h3>
                   <p className="text-muted-foreground">
-                    Si, todos nuestros barcos sin licencia incluyen la gasolina en el
+                    Sí, todos nuestros barcos sin licencia incluyen la gasolina en el
                     precio. Para los barcos con licencia, el combustible se paga aparte
-                    segun el consumo real.
+                    según el consumo real.
                   </p>
                 </CardContent>
               </Card>
               <Card>
                 <CardContent className="pt-6">
                   <h3 className="font-semibold mb-2">
-                    Hay diferencia de precio entre temporada baja y alta?
+                    ¿Hay diferencia de precio entre temporada baja y alta?
                   </h3>
                   <p className="text-muted-foreground">
-                    Si. La temporada baja (abril-junio y septiembre-octubre) tiene los
+                    Sí. La temporada baja (abril-junio y septiembre-octubre) tiene los
                     mejores precios. La temporada media es julio con precios intermedios,
-                    y la temporada alta es agosto con las tarifas mas altas. Recomendamos
-                    reservar en temporada baja para la mejor relacion calidad-precio.
+                    y la temporada alta es agosto con las tarifas más altas. Recomendamos
+                    reservar en temporada baja para la mejor relación calidad-precio.
                   </p>
                 </CardContent>
               </Card>
               <Card>
                 <CardContent className="pt-6">
                   <h3 className="font-semibold mb-2">
-                    Cuanto cuesta alquilar un barco con licencia?
+                    ¿Cuánto cuesta alquilar un barco con licencia?
                   </h3>
                   <p className="text-muted-foreground">
                     Los barcos con licencia cuestan desde 150 €/hora en temporada baja.
-                    Requieren PER o titulo nautico equivalente. Son barcos mas potentes
-                    con mayor autonomia para explorar toda la Costa Brava.
+                    Requieren PER o título náutico equivalente. Son barcos más potentes
+                    con mayor autonomía para explorar toda la Costa Brava.
                   </p>
                 </CardContent>
               </Card>
@@ -560,7 +561,7 @@ export default function PricingPage() {
                 Reserva tu barco al mejor precio
               </h2>
               <p className="text-lg mb-6 opacity-90">
-                Elige tu barco, fecha y horario. Confirmacion inmediata.
+                Elige tu barco, fecha y horario. Confirmación inmediata.
               </p>
               <Button
                 size="lg"

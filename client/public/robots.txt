@@ -11,6 +11,8 @@ Disallow: /client/dashboard
 Disallow: /mi-cuenta
 Disallow: /api/
 Disallow: /cancel/
+Disallow: /copia-de-*
+Disallow: /copy-of-*
 
 Sitemap: https://costabravarentaboat.com/sitemap.xml
 Sitemap: https://costabravarentaboat.com/sitemap-pages.xml

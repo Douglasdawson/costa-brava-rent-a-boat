@@ -1,6 +1,6 @@
 import { useState, useMemo } from "react";
 import { Link } from "wouter";
-import { Users, Clock, Wallet, Anchor, ChevronRight, RotateCcw } from "lucide-react";
+import { Users, Clock, Wallet, Anchor, ChevronLeft, ChevronRight, RotateCcw } from "lucide-react";
 import { useLanguage } from "@/hooks/use-language";
 import { trackBlogCtaClick } from "@/utils/analytics";
 
@@ -31,23 +31,25 @@ const QUIZ_TRANSLATIONS: Record<string, {
   alsoConsider: string;
   bookNow: string;
   viewDetails: string;
+  back: string;
   restart: string;
   people: string;
 }> = {
   es: {
     title: "Encuentra tu barco ideal",
     subtitle: "Responde 3 preguntas y te recomendamos el barco perfecto",
-    q1: "Cuantas personas sois?",
+    q1: "¿Cuántas personas sois?",
     q1options: ["2 personas", "3-4 personas", "5 personas", "6+ personas"],
-    q2: "Cuanto tiempo quieres navegar?",
-    q2options: ["1-2 horas", "3-4 horas (medio dia)", "6-8 horas (dia completo)"],
-    q3: "Cual es tu presupuesto?",
-    q3options: ["Economico (desde 70€)", "Medio (100-200€)", "Sin limite"],
+    q2: "¿Cuánto tiempo quieres navegar?",
+    q2options: ["1-2 horas", "3-4 horas (medio día)", "6-8 horas (día completo)"],
+    q3: "¿Cuál es tu presupuesto?",
+    q3options: ["Económico (desde 70€)", "Medio (100-200€)", "Sin límite"],
     result: "Tu barco ideal es...",
-    bestMatch: "Mejor opcion",
-    alsoConsider: "Tambien puedes considerar",
+    bestMatch: "Mejor opción",
+    alsoConsider: "También puedes considerar",
     bookNow: "Reservar ahora",
     viewDetails: "Ver detalles",
+    back: "Atrás",
     restart: "Empezar de nuevo",
     people: "personas",
   },
@@ -65,6 +67,7 @@ const QUIZ_TRANSLATIONS: Record<string, {
     alsoConsider: "Also consider",
     bookNow: "Book now",
     viewDetails: "View details",
+    back: "Back",
     restart: "Start over",
     people: "people",
   },
@@ -111,12 +114,12 @@ function getReasonText(boat: typeof BOAT_PROFILES[0], lang: string): string {
     es: {
       "astec-400": "Perfecto para parejas. El mejor precio por persona de toda la flota.",
       "solar-450": "Gran solarium para tomar el sol. Ideal para disfrutar de las calas.",
-      "remus-450": "Estable y facil de manejar. Excelente para familias.",
-      "astec-480": "La opcion premium sin licencia. Bluetooth y mas espacio.",
-      "voraz-v2": "Versatil y comoda. Buen equilibrio entre precio y prestaciones.",
-      "mingolla-brava-19": "Potente y rapida. Llega a Tossa de Mar en 30 minutos.",
-      "trimarchi-57s": "Espaciosa para grupos. Ducha y mesa para comer a bordo.",
-      "pacific-craft-625": "La mas grande y completa. Para dias de aventura total.",
+      "remus-450": "Estable y fácil de manejar. Excelente para familias.",
+      "astec-480": "La opción premium sin licencia. Bluetooth y más espacio.",
+      "voraz-v2": "Versátil y cómoda. Buen equilibrio entre precio y prestaciones.",
+      "mingolla-brava-19": "Espaciosa para grupos. Ducha y mesa para comer a bordo.",
+      "trimarchi-57s": "Potente y rápida. Llega a Tossa de Mar en 30 minutos.",
+      "pacific-craft-625": "La más grande, lujosa y completa. Para disfrutar sin igual.",
     },
     en: {
       "astec-400": "Perfect for couples. Best price per person in the fleet.",
@@ -124,15 +127,15 @@ function getReasonText(boat: typeof BOAT_PROFILES[0], lang: string): string {
       "remus-450": "Stable and easy to handle. Excellent for families.",
       "astec-480": "Premium no-license option. Bluetooth and more space.",
       "voraz-v2": "Versatile and comfortable. Good balance of price and features.",
-      "mingolla-brava-19": "Powerful and fast. Reaches Tossa de Mar in 30 minutes.",
-      "trimarchi-57s": "Spacious for groups. Shower and dining table on board.",
-      "pacific-craft-625": "The largest and most complete. For full adventure days.",
+      "mingolla-brava-19": "Spacious for groups. Shower and dining table on board.",
+      "trimarchi-57s": "Powerful and fast. Reaches Tossa de Mar in 30 minutes.",
+      "pacific-craft-625": "The largest, most luxurious and complete. An unmatched experience.",
     },
   };
   return reasons[lang]?.[boat.id] || reasons.es[boat.id] || "";
 }
 
-export default function BoatQuiz({ source = "page" }: { source?: string }) {
+export default function BoatQuiz({ source = "page", onBoatSelect }: { source?: string; onBoatSelect?: (boatId: string) => void }) {
   const { language } = useLanguage();
   const t = QUIZ_TRANSLATIONS[language] || QUIZ_TRANSLATIONS.es;
   const [step, setStep] = useState(0);
@@ -140,7 +143,7 @@ export default function BoatQuiz({ source = "page" }: { source?: string }) {
 
   const handleAnswer = (value: string | number) => {
     if (step === 0) {
-      const passengerMap = [2, 4, 5, 7];
+      const passengerMap = [2, 4, 5, 6];
       setAnswers(prev => ({ ...prev, passengers: passengerMap[value as number] }));
     } else if (step === 1) {
       const durationMap = ["short", "medium", "long"];
@@ -212,6 +215,16 @@ export default function BoatQuiz({ source = "page" }: { source?: string }) {
             </button>
           ))}
         </div>
+
+        {step > 0 && (
+          <button
+            onClick={() => setStep(prev => prev - 1)}
+            className="mt-4 flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground transition-colors mx-auto"
+          >
+            <ChevronLeft className="w-3.5 h-3.5" />
+            {t.back}
+          </button>
+        )}
       </div>
     );
   }
@@ -239,14 +252,27 @@ export default function BoatQuiz({ source = "page" }: { source?: string }) {
             <h4 className="font-heading font-bold text-lg">{rec.name}</h4>
             <p className="text-sm text-muted-foreground mt-1">{rec.reason}</p>
             <div className="flex gap-2 mt-3">
-              <Link
-                href={`/barco/${rec.id}?utm_source=blog&utm_medium=boat_quiz&utm_campaign=${source}`}
-                onClick={() => trackBlogCtaClick(rec.id, 'boat_quiz_book')}
-                className={`inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-medium transition-colors ${idx === 0 ? 'bg-cta text-white hover:bg-cta/90' : 'bg-foreground/5 text-foreground hover:bg-foreground/10'}`}
-              >
-                {idx === 0 ? t.bookNow : t.viewDetails}
-                <ChevronRight className="w-3.5 h-3.5" />
-              </Link>
+              {onBoatSelect ? (
+                <button
+                  onClick={() => {
+                    trackBlogCtaClick(rec.id, 'boat_quiz_book');
+                    onBoatSelect(rec.id);
+                  }}
+                  className={`inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-medium transition-colors ${idx === 0 ? 'bg-cta text-white hover:bg-cta/90' : 'bg-foreground/5 text-foreground hover:bg-foreground/10'}`}
+                >
+                  {idx === 0 ? t.bookNow : t.viewDetails}
+                  <ChevronRight className="w-3.5 h-3.5" />
+                </button>
+              ) : (
+                <Link
+                  href={`/barco/${rec.id}?utm_source=blog&utm_medium=boat_quiz&utm_campaign=${source}`}
+                  onClick={() => trackBlogCtaClick(rec.id, 'boat_quiz_book')}
+                  className={`inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-medium transition-colors ${idx === 0 ? 'bg-cta text-white hover:bg-cta/90' : 'bg-foreground/5 text-foreground hover:bg-foreground/10'}`}
+                >
+                  {idx === 0 ? t.bookNow : t.viewDetails}
+                  <ChevronRight className="w-3.5 h-3.5" />
+                </Link>
+              )}
             </div>
           </div>
         ))}

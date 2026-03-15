@@ -1,17 +1,15 @@
-import { Check, Clock } from "lucide-react";
+import { Check } from "lucide-react";
 
 interface BookingProgressBarProps {
   currentStep: number;
   totalSteps: number;
   stepLabels: string[];
-  estimatedTime?: string;
 }
 
 export default function BookingProgressBar({
   currentStep,
   totalSteps,
   stepLabels,
-  estimatedTime,
 }: BookingProgressBarProps) {
   return (
     <nav aria-label="Booking progress" className="w-full">
@@ -26,10 +24,10 @@ export default function BookingProgressBar({
             return (
               <div key={stepNum} className="flex items-center flex-1 last:flex-none">
                 {/* Step circle + label */}
-                <div className="flex flex-col items-center gap-1 relative">
+                <div className="flex flex-col items-center gap-0.5 relative">
                   <div
                     className={`
-                      w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold
+                      w-7 h-7 rounded-full flex items-center justify-center text-[11px] font-bold
                       transition-all duration-300
                       ${isComplete
                         ? "bg-foreground text-white"
@@ -42,7 +40,7 @@ export default function BookingProgressBar({
                     aria-current={isActive ? "step" : undefined}
                   >
                     {isComplete ? (
-                      <Check className="w-3.5 h-3.5" strokeWidth={3} aria-hidden="true" />
+                      <Check className="w-3 h-3" strokeWidth={3} aria-hidden="true" />
                     ) : (
                       <span>{stepNum}</span>
                     )}
@@ -50,7 +48,7 @@ export default function BookingProgressBar({
                   {/* Label below circle - hidden on very small screens */}
                   <span
                     className={`
-                      hidden xs:block text-xs font-medium whitespace-nowrap
+                      hidden xs:block text-[11px] font-medium whitespace-nowrap
                       transition-colors duration-300
                       ${isActive
                         ? "text-foreground font-semibold"
@@ -67,7 +65,7 @@ export default function BookingProgressBar({
 
                 {/* Connecting line (not after last step) */}
                 {index < totalSteps - 1 && (
-                  <div className="flex-1 h-0.5 mx-2 mb-5 relative overflow-hidden rounded-full bg-border">
+                  <div className="flex-1 h-0.5 mx-1.5 mb-3.5 relative overflow-hidden rounded-full bg-border">
                     <div
                       className="absolute left-0 top-0 h-full bg-foreground rounded-full transition-all duration-500 ease-out"
                       style={{
@@ -81,15 +79,6 @@ export default function BookingProgressBar({
           })}
         </div>
 
-        {/* Estimated time badge */}
-        {estimatedTime && (
-          <div className="flex items-center gap-1 ml-3 mb-5 flex-shrink-0">
-            <Clock className="w-3 h-3 text-muted-foreground" aria-hidden="true" />
-            <span className="text-xs text-muted-foreground font-medium whitespace-nowrap">
-              {estimatedTime}
-            </span>
-          </div>
-        )}
       </div>
     </nav>
   );

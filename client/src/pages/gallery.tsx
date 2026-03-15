@@ -51,6 +51,7 @@ export default function GalleryPage() {
       <SEO
         title={seoConfig.title}
         description={seoConfig.description}
+        keywords={seoConfig.keywords}
         canonical={canonical}
         hreflang={hreflangLinks}
       />
@@ -64,6 +65,25 @@ export default function GalleryPage() {
           <p className="text-muted-foreground max-w-2xl mx-auto mb-6">
             {t.gallery?.subtitle || "Fotos de nuestros clientes disfrutando de la Costa Brava"}
           </p>
+
+          {/* Rich intro paragraph with internal links */}
+          <div className="max-w-3xl mx-auto text-left mt-6 mb-8 space-y-4 text-muted-foreground">
+            <p>
+              Nuestros clientes capturan momentos inolvidables navegando por las aguas turquesa de la Costa Brava.
+              Desde las calas escondidas de Lloret de Mar hasta los impresionantes acantilados cerca de Tossa de Mar,
+              cada salida en barco es una oportunidad para crear recuerdos que duran toda la vida.
+            </p>
+            <p>
+              Tanto si navegas con nuestra flota de{" "}
+              <a href="/#fleet" className="text-primary hover:underline">barcos sin licencia</a>{" "}
+              como si prefieres un{" "}
+              <a href="/barcos-con-licencia" className="text-primary hover:underline">barco con licencia</a>{" "}
+              para explorar más lejos, las fotos de esta galería muestran la variedad de experiencias que puedes vivir:
+              snorkel en aguas cristalinas, atardeceres desde cubierta, fondeo en calas vírgenes
+              y la diversión en familia que solo el mar puede ofrecer.
+            </p>
+          </div>
+
           <Button onClick={() => setShowSubmitForm(true)}>
             <Plus className="w-4 h-4 mr-2" />
             {t.gallery?.sharePhoto || "Comparte tu foto"}
@@ -94,8 +114,10 @@ export default function GalleryPage() {
                   <img
                     src={photo.imageUrl}
                     alt={photo.caption || `Photo by ${photo.customerName}`}
-                    className="w-full object-cover group-hover:opacity-95 transition-opacity"
+                    className="w-full object-cover group-hover:opacity-95 transition-opacity aspect-[4/3]"
                     loading="lazy"
+                    width={600}
+                    height={450}
                   />
                   <div className="p-3">
                     {photo.caption && (
@@ -111,6 +133,24 @@ export default function GalleryPage() {
             ))}
           </div>
         )}
+
+        {/* CTA Section */}
+        <div className="mt-12 text-center space-y-4">
+          <h2 className="text-2xl font-heading font-bold text-foreground">
+            Crea tus propios recuerdos
+          </h2>
+          <p className="text-muted-foreground max-w-xl mx-auto">
+            Explora la Costa Brava desde el agua. Elige tu barco, reserva tu fecha y prepárate para una experiencia inolvidable.
+          </p>
+          <div className="flex flex-wrap gap-3 justify-center">
+            <a href="/#fleet" className="inline-flex items-center gap-2 bg-primary text-white px-6 py-3 rounded-lg font-medium hover:bg-primary/90 transition-colors">
+              Ver nuestra flota
+            </a>
+            <a href="/rutas" className="inline-flex items-center gap-2 border border-primary text-primary px-6 py-3 rounded-lg font-medium hover:bg-primary/5 transition-colors">
+              Descubrir rutas
+            </a>
+          </div>
+        </div>
       </div>
 
       <PhotoLightbox

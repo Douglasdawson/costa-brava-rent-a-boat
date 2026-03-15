@@ -1,17 +1,29 @@
+import { useState } from "react";
 import { Button } from "./ui/button";
 import { ShieldCheck, Shield, CheckCircle, Award, Users, Star } from "lucide-react";
 import { useTranslations } from "@/lib/translations";
 import { useBookingModal } from "@/hooks/bookingModalContext";
 import CurvedLoop from "./CurvedLoop";
+import BoatQuizModal from "./BoatQuizModal";
 
 export default function Hero() {
   const t = useTranslations();
   const { openBookingModal } = useBookingModal();
+  const [quizOpen, setQuizOpen] = useState(false);
 
   return (
     <div className="relative h-dvh min-h-[600px] overflow-hidden" id="home">
       {/* Background Image - Responsive <picture> */}
       <picture>
+        <source
+          media="(min-width: 768px)"
+          type="image/avif"
+          srcSet="/images/hero/hero-dive-desktop.avif"
+        />
+        <source
+          type="image/avif"
+          srcSet="/images/hero/hero-dive-mobile.avif"
+        />
         <source
           media="(min-width: 768px)"
           srcSet="/images/hero/hero-dive-desktop.webp"
@@ -58,12 +70,12 @@ export default function Hero() {
       {/* CTA - fixed at bottom center of hero */}
       <div className="absolute bottom-14 sm:bottom-16 left-0 right-0 z-20 flex flex-row items-center justify-center gap-3">
         <Button
-          onClick={() => openBookingModal()}
+          onClick={() => setQuizOpen(true)}
           size="lg"
           className="bg-cta hover:bg-cta/90 text-white px-8 py-3 text-base sm:px-10 sm:py-4 sm:text-lg rounded-full font-medium btn-elevated cta-pulse"
           data-testid="button-hero-cta"
         >
-          {t.hero.bookNow}
+          {t.hero.findYourBoat}
         </Button>
         <Button
           size="lg"
@@ -111,6 +123,15 @@ export default function Hero() {
           className="fill-white text-[3rem] lg:text-[3rem] font-display tracking-wider lg:lowercase"
         />
       </div>
+
+      <BoatQuizModal
+        open={quizOpen}
+        onOpenChange={setQuizOpen}
+        onBoatSelect={(boatId) => {
+          setQuizOpen(false);
+          openBookingModal(boatId);
+        }}
+      />
     </div>
   );
 }

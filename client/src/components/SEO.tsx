@@ -22,6 +22,7 @@ interface SEOProps {
   ogType?: string;
   ogTitle?: string;
   ogDescription?: string;
+  keywords?: string;
   jsonLd?: object;
   hreflang?: Array<{
     lang: string;
@@ -37,6 +38,7 @@ export function SEO({
   ogType = "website",
   ogTitle,
   ogDescription,
+  keywords,
   jsonLd,
   hreflang
 }: SEOProps) {
@@ -58,6 +60,19 @@ export function SEO({
       newMeta.name = 'description';
       newMeta.content = description;
       document.head.appendChild(newMeta);
+    }
+
+    // Update meta keywords (used by Bing and other search engines)
+    if (keywords) {
+      let metaKeywords = document.querySelector('meta[name="keywords"]');
+      if (metaKeywords) {
+        metaKeywords.setAttribute('content', keywords);
+      } else {
+        metaKeywords = document.createElement('meta');
+        metaKeywords.setAttribute('name', 'keywords');
+        metaKeywords.setAttribute('content', keywords);
+        document.head.appendChild(metaKeywords);
+      }
     }
 
     // Update canonical link
@@ -170,7 +185,7 @@ export function SEO({
         document.head.removeChild(jsonLdScript);
       }
     };
-  }, [title, description, canonical, ogImage, ogType, ogTitle, ogDescription, jsonLd, hreflang, language]);
+  }, [title, description, canonical, ogImage, ogType, ogTitle, ogDescription, keywords, jsonLd, hreflang, language]);
 
   return null;
 }

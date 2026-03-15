@@ -137,7 +137,7 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
           currentStep={currentStep}
           totalSteps={4}
           stepLabels={stepLabels}
-          estimatedTime={t.wizard.estimatedTime}
+
         />
       </div>
 
@@ -290,16 +290,6 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
             </Button>
           )}
         </div>
-        <a
-          href="https://wa.me/34611500372"
-          target="_blank"
-          rel="noopener noreferrer"
-          onClick={() => trackWhatsAppClick("booking_desktop")}
-          className="flex items-center gap-1 text-xs text-muted-foreground/60 hover:text-muted-foreground transition-colors mt-1"
-        >
-          <SiWhatsapp className="w-3 h-3" />
-          {t.booking.needHelp}
-        </a>
       </div>
     </div>
   );

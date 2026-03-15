@@ -78,15 +78,15 @@ export default function LocationBlanesPage() {
     "mainEntity": [
       {
         "@type": "Question",
-        "name": "Necesito licencia para alquilar un barco en Blanes?",
+        "name": "¿Necesito licencia para alquilar un barco en Blanes?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "No. Tenemos 5 barcos sin licencia para hasta 5 personas. Solo necesitas ser mayor de 18 anos. Te damos una formacion de 15 minutos antes de salir."
+          "text": "No. Tenemos 5 barcos sin licencia para hasta 5 personas. Solo necesitas ser mayor de 18 años. Te damos una formación de 15 minutos antes de salir."
         }
       },
       {
         "@type": "Question",
-        "name": "Cuanto cuesta alquilar un barco en el Puerto de Blanes?",
+        "name": "¿Cuánto cuesta alquilar un barco en el Puerto de Blanes?",
         "acceptedAnswer": {
           "@type": "Answer",
           "text": "Los barcos sin licencia cuestan desde 70 EUR/hora en temporada baja (abril-junio, septiembre-octubre). En temporada alta (agosto) desde 90 EUR/hora. El precio incluye combustible, seguro y equipo de seguridad."
@@ -94,18 +94,18 @@ export default function LocationBlanesPage() {
       },
       {
         "@type": "Question",
-        "name": "A donde puedo ir en barco desde Blanes?",
+        "name": "¿A dónde puedo ir en barco desde Blanes?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Desde el Puerto de Blanes puedes visitar Cala Brava (15 min), Cala Sant Francesc (20 min), Lloret de Mar (30 min) y Tossa de Mar (45 min). Los barcos con licencia tienen mayor autonomia para destinos mas lejanos."
+          "text": "Desde el Puerto de Blanes puedes visitar Cala Brava (15 min), Cala Sant Francesc (20 min), Lloret de Mar (30 min) y Tossa de Mar (45 min). Los barcos con licencia tienen mayor autonomía para destinos más lejanos."
         }
       },
       {
         "@type": "Question",
-        "name": "Hay aparcamiento cerca del Puerto de Blanes?",
+        "name": "¿Hay aparcamiento cerca del Puerto de Blanes?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Si. Hay aparcamiento gratuito junto al Puerto de Blanes. Tambien hay restaurantes, tiendas nauticas y gasolinera en la zona portuaria."
+          "text": "Sí. Hay aparcamiento gratuito junto al Puerto de Blanes. También hay restaurantes, tiendas náuticas y gasolinera en la zona portuaria."
         }
       }
     ]

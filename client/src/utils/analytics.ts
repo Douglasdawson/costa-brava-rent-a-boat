@@ -69,6 +69,15 @@ export function trackPhoneClick() {
   trackMetaContact("phone");
 }
 
+export function trackGenerateLead(boatId: string, boatName: string, value: number) {
+  trackEvent("generate_lead", {
+    boat_id: boatId,
+    boat_name: boatName,
+    value: value,
+    currency: "EUR",
+  });
+}
+
 export function trackBookingFormOpen(boatId?: string) {
   trackEvent("booking_form_open", { boat_id: boatId || "general" });
 }

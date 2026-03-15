@@ -268,20 +268,63 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
     { name: boatData.name, url: `/barco/${boatId}` }
   ]);
 
+  // FAQ schema for boat page
+  const boatFaqSchema = {
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: `¿Cuánto cuesta alquilar el ${boatData.name}?`,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: `El ${boatData.name} tiene precios desde ${lowestPrice}€/hora en temporada baja (abril-junio, septiembre-octubre). ${!requiresLicense ? "El precio incluye gasolina, seguro a todo riesgo y equipo de seguridad." : "El combustible se paga aparte según consumo real. Incluye seguro a todo riesgo."}`,
+        },
+      },
+      {
+        "@type": "Question",
+        name: `¿Cuántas personas caben en el ${boatData.name}?`,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: `El ${boatData.name} tiene capacidad para ${capacity} personas.`,
+        },
+      },
+      {
+        "@type": "Question",
+        name: `¿Necesito licencia para el ${boatData.name}?`,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: !requiresLicense
+            ? `No, el ${boatData.name} no requiere licencia de navegación. Solo necesitas ser mayor de 18 años.`
+            : `Sí, el ${boatData.name} requiere licencia de navegación (PER o título equivalente en vigor).`,
+        },
+      },
+      {
+        "@type": "Question",
+        name: `¿Qué incluye el alquiler del ${boatData.name}?`,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: `El alquiler incluye seguro a todo riesgo, equipo de seguridad homologado y formación previa. ${!requiresLicense ? "También incluye gasolina y equipo de snorkel según disponibilidad." : "El combustible se paga según consumo."}`,
+        },
+      },
+    ],
+  };
+
   // Combine schemas using @graph
   const combinedJsonLd = {
     "@context": "https://schema.org",
     "@graph": [
       enhancedProductSchema,
-      breadcrumbSchema
+      breadcrumbSchema,
+      boatFaqSchema
     ]
   };
 
   return (
     <div className="min-h-screen bg-background">
-      <SEO 
+      <SEO
         title={seoConfig.title}
         description={seoConfig.description}
+        keywords={seoConfig.keywords}
         canonical={canonical}
         hreflang={hreflangLinks}
         ogImage={getBoatImage(boatData.imageUrl || '')}
@@ -331,7 +374,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
             </span>
           </div>
           <h1 className="font-heading font-bold text-white text-2xl sm:text-3xl md:text-4xl leading-tight mb-1">
-            {boatData.name}
+            {boatData.name} <span className="font-normal text-white/80 text-lg sm:text-xl md:text-2xl">— Blanes, Costa Brava</span>
           </h1>
           <div className="flex flex-wrap items-center gap-3 mt-2">
             <p className="text-white/80 text-sm sm:text-base">{boatData.subtitle}</p>
@@ -479,6 +522,11 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                 </div>
               </div>
             )}
+            <div className="px-4 py-2 text-center border-t border-border">
+              <a href="/galeria" className="text-sm text-primary hover:underline">
+                Ver galería de fotos de clientes
+              </a>
+            </div>
           </div>
 
           {/* Right Column - Description */}
@@ -881,6 +929,57 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
           </div>
         </section>
       )}
+
+      {/* FAQ Section */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
+        <h2 className="text-2xl font-heading font-bold text-foreground mb-6">
+          Preguntas frecuentes sobre {boatData.name}
+        </h2>
+        <div className="space-y-4 max-w-3xl">
+          <details className="group border border-border rounded-lg">
+            <summary className="flex items-center justify-between cursor-pointer p-4 font-medium">
+              ¿Cuánto cuesta alquilar el {boatData.name}?
+              <ChevronRight className="w-4 h-4 transition-transform group-open:rotate-90" />
+            </summary>
+            <div className="px-4 pb-4 text-muted-foreground">
+              El {boatData.name} tiene precios desde {lowestPrice}€/hora en temporada baja (abril-junio, septiembre-octubre).
+              {!requiresLicense && " El precio incluye gasolina, seguro a todo riesgo y equipo de seguridad."}
+              {requiresLicense && " El combustible se paga aparte según consumo real. Incluye seguro a todo riesgo."}
+            </div>
+          </details>
+          <details className="group border border-border rounded-lg">
+            <summary className="flex items-center justify-between cursor-pointer p-4 font-medium">
+              ¿Cuántas personas caben en el {boatData.name}?
+              <ChevronRight className="w-4 h-4 transition-transform group-open:rotate-90" />
+            </summary>
+            <div className="px-4 pb-4 text-muted-foreground">
+              El {boatData.name} tiene capacidad para {capacity} personas. Es ideal para {capacity <= 4 ? "parejas y familias pequeñas" : capacity <= 6 ? "familias y grupos de amigos" : "grupos grandes y celebraciones"}.
+            </div>
+          </details>
+          <details className="group border border-border rounded-lg">
+            <summary className="flex items-center justify-between cursor-pointer p-4 font-medium">
+              ¿Necesito licencia para el {boatData.name}?
+              <ChevronRight className="w-4 h-4 transition-transform group-open:rotate-90" />
+            </summary>
+            <div className="px-4 pb-4 text-muted-foreground">
+              {!requiresLicense
+                ? `No, el ${boatData.name} no requiere licencia de navegación. Solo necesitas ser mayor de 18 años. Antes de zarpar recibirás una formación de 15 minutos sobre el manejo del barco.`
+                : `Sí, el ${boatData.name} requiere licencia de navegación (PER o título equivalente en vigor). Deberás presentar tu titulación antes de zarpar.`}
+            </div>
+          </details>
+          <details className="group border border-border rounded-lg">
+            <summary className="flex items-center justify-between cursor-pointer p-4 font-medium">
+              ¿Qué incluye el alquiler del {boatData.name}?
+              <ChevronRight className="w-4 h-4 transition-transform group-open:rotate-90" />
+            </summary>
+            <div className="px-4 pb-4 text-muted-foreground">
+              El alquiler incluye seguro a todo riesgo, equipo de seguridad homologado y formación previa.
+              {!requiresLicense && " También incluye gasolina y, según disponibilidad, equipo de snorkel y paddle surf."}
+              {requiresLicense && " El combustible se paga según consumo. Según disponibilidad, puede incluir extras como equipo de snorkel."}
+            </div>
+          </details>
+        </div>
+      </div>
 
       <Footer />
 

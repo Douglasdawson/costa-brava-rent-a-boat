@@ -1,6 +1,7 @@
 import cron, { type ScheduledTask } from "node-cron";
 import { logger } from "../lib/logger";
 import { SEO_CONFIG, validateConfig } from "./config";
+import { seedCompetitors } from "./seed";
 
 const scheduledTasks: ScheduledTask[] = [];
 
@@ -26,6 +27,9 @@ export function startSeoWorker(): void {
     logger.warn("[SEO] Running in limited mode (missing API keys)");
   }
 
+  // Seed competitor data on startup
+  seedCompetitors().catch(err => logger.warn("[SEO] Failed to seed competitors", { error: String(err) }));
+
   const { cron: schedules } = SEO_CONFIG;
 
   // Phase 1: Data collection
@@ -39,13 +43,27 @@ export function startSeoWorker(): void {
     await checkSiteHealth();
   });
 
-  // Phase 2: Intelligence (uncomment as implemented)
-  // registerJob("serp-tracking", schedules.serpTracking, ...);
-  // registerJob("competitor-check", schedules.competitorCheck, ...);
+  // Phase 2: Intelligence
+  registerJob("serp-tracking", schedules.serpTracking, async () => {
+    const { trackSerps } = await import("./collectors/serp");
+    await trackSerps();
+  });
+
+  registerJob("competitor-check", schedules.competitorCheck, async () => {
+    const { checkCompetitors } = await import("./collectors/competitors");
+    await checkCompetitors();
+  });
 
   // Phase 3: Brain
-  // registerJob("daily-analysis", schedules.dailyAnalysis, ...);
-  // registerJob("weekly-strategy", schedules.weeklyStrategy, ...);
+  registerJob("daily-analysis", schedules.dailyAnalysis, async () => {
+    const { runDailyAnalysis } = await import("./strategist/agent");
+    await runDailyAnalysis();
+  });
+
+  registerJob("weekly-strategy", schedules.weeklyStrategy, async () => {
+    const { runWeeklyStrategy } = await import("./strategist/agent");
+    await runWeeklyStrategy();
+  });
 
   // Phase 4: Execution
   registerJob("execute-actions", schedules.executeActions, async () => {
@@ -54,11 +72,21 @@ export function startSeoWorker(): void {
   });
 
   // Phase 5: Feedback
-  // registerJob("experiment-review", schedules.experimentReview, ...);
-  // registerJob("revenue-correlation", schedules.revenueCorrelation, ...);
+  registerJob("experiment-review", schedules.experimentReview, async () => {
+    const { reviewExperiments } = await import("./feedback/experiments");
+    await reviewExperiments();
+  });
+
+  registerJob("revenue-correlation", schedules.revenueCorrelation, async () => {
+    const { correlateRevenue } = await import("./feedback/revenue");
+    await correlateRevenue();
+  });
 
   // Phase 6: GEO
-  // registerJob("geo-monitor", schedules.geoMonitor, ...);
+  registerJob("geo-monitor", schedules.geoMonitor, async () => {
+    const { monitorGeo } = await import("./collectors/geo");
+    await monitorGeo();
+  });
 
   // Phase 7: Reporting
   registerJob("weekly-report", schedules.weeklyReport, async () => {

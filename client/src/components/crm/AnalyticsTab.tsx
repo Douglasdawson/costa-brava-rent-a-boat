@@ -455,11 +455,15 @@ export function AnalyticsTab({ adminToken }: AnalyticsTabProps) {
       dateMap.set(point.date, { clicks: point.clicks, users: 0 });
     }
     for (const point of (trends.ga4 || [])) {
-      const existing = dateMap.get(point.date);
+      // Normalize GA4 date format "20260214" → "2026-02-14"
+      const d = point.date.length === 8 && !point.date.includes("-")
+        ? `${point.date.slice(0, 4)}-${point.date.slice(4, 6)}-${point.date.slice(6, 8)}`
+        : point.date;
+      const existing = dateMap.get(d);
       if (existing) {
         existing.users = point.users;
       } else {
-        dateMap.set(point.date, { clicks: 0, users: point.users });
+        dateMap.set(d, { clicks: 0, users: point.users });
       }
     }
     for (const [date, values] of Array.from(dateMap.entries()).sort()) {

@@ -136,20 +136,16 @@ export default function PricingPage() {
       />
       <Navigation />
 
-      {/* Breadcrumbs */}
-      <div className="bg-muted border-b border-border">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+      {/* Hero */}
+      <div className="bg-gradient-to-br from-blue-50 to-teal-50 pt-28 pb-12">
+        {/* Breadcrumbs */}
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mb-6">
           <Breadcrumbs
             items={[
-              { label: "breadcrumbs.home", href: "/" },
               { label: "Precios" },
             ]}
           />
         </div>
-      </div>
-
-      {/* Hero */}
-      <div className="bg-gradient-to-br from-blue-50 to-teal-50 pt-24 pb-12">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold text-foreground mb-4">
             Precios Alquiler de Barcos en Blanes 2026

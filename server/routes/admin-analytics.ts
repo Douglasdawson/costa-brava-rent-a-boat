@@ -98,7 +98,7 @@ export function registerAnalyticsRoutes(app: Express) {
   // GA4 Traffic Sources
   app.get("/api/admin/analytics/traffic", requireAdminSession, async (req, res) => {
     try {
-      const cached = await getCachedAnalytics("ga4", "traffic_sources");
+      const cached = await getCachedAnalytics("ga4", "traffic");
       if (cached) return res.json({ data: cached, cached: true });
       if (!isConfigured()) return res.json({ data: [], cached: false, configured: false });
       const days = parseInt(req.query.days as string) || 28;

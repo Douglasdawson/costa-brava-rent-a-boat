@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { CheckCircle2, Copy, Share2, Gift, X, Clock, MapPin, MessageCircle } from "lucide-react";
 import { useTranslations } from "@/lib/translations";
 import { useToast } from "@/hooks/use-toast";
+import { trackWhatsAppClick } from "@/utils/analytics";
 
 interface BookingConfirmationProps {
   boatName: string;
@@ -69,6 +70,7 @@ export function BookingConfirmation({
   };
 
   const handleShareWhatsApp = () => {
+    trackWhatsAppClick("booking_confirmation");
     const shareText = `${ct.shareWhatsAppMessage || 'Voy a alquilar un barco en Blanes con Costa Brava Rent a Boat'} (${boatName}) costabravarentaboat.com`;
     const url = `https://wa.me/?text=${encodeURIComponent(shareText)}`;
     window.open(url, "_blank");

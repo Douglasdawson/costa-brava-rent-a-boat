@@ -10,6 +10,7 @@ import type { Translations } from "@/lib/translations";
 import BookingProgressBar from "@/components/BookingProgressBar";
 import HoldCountdown from "@/components/HoldCountdown";
 import PriceSummaryBar from "@/components/PriceSummaryBar";
+import { trackWhatsAppClick } from "@/utils/analytics";
 
 interface PhonePrefix {
   code: string;
@@ -250,6 +251,7 @@ export default function BookingWizardMobile(props: BookingWizardMobileProps) {
           href="https://wa.me/34611500372"
           target="_blank"
           rel="noopener noreferrer"
+          onClick={() => trackWhatsAppClick("booking_mobile")}
           className="flex items-center justify-center gap-1 text-xs text-muted-foreground/60 hover:text-muted-foreground transition-colors mt-2"
         >
           <SiWhatsapp className="w-3 h-3" aria-hidden="true" />

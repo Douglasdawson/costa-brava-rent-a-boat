@@ -12,7 +12,7 @@ import { useTranslations } from "@/lib/translations";
 import { useLanguage } from "@/hooks/use-language";
 import { useQuery } from "@tanstack/react-query";
 import type { Boat } from "@shared/schema";
-import { trackBookingStarted } from "@/utils/analytics";
+import { trackBookingStarted, trackWhatsAppClick } from "@/utils/analytics";
 import { getStoredUtm } from "@/hooks/useUtmCapture";
 import { BOAT_DATA, EXTRA_PACKS } from "@shared/boatData";
 import { calculateExtrasPrice, calculatePackSavings, getAvailableDurationsForDate, type DurationOption } from "@shared/pricing";
@@ -1043,6 +1043,7 @@ Looking forward to confirmation. Thanks!`;
     trackBookingStarted(selectedBoat, selectedBoatInfo?.name || selectedBoat, getStoredUtm());
 
     // Open WhatsApp immediately (must be synchronous with user click to avoid popup blocker)
+    trackWhatsAppClick("booking_form");
     const message = createWhatsAppBookingMessage();
     openWhatsApp(message);
 

@@ -6,7 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { MapPin, Phone, Mail, Clock, Camera, Star, ExternalLink, Waves } from "lucide-react";
 import { SiWhatsapp } from "react-icons/si";
 import { Link } from "wouter";
-import { trackPhoneClick } from "@/utils/analytics";
+import { trackPhoneClick, trackWhatsAppClick } from "@/utils/analytics";
 
 export default function ContactSection() {
   const t = useTranslations();
@@ -97,7 +97,7 @@ export default function ContactSection() {
               {/* WhatsApp Button */}
               <div className="pt-6 border-t border-border">
                 <Button
-                  onClick={() => window.open("https://wa.me/34611500372", "_blank")}
+                  onClick={() => { trackWhatsAppClick("contact_section"); window.open("https://wa.me/34611500372", "_blank"); }}
                   className="w-full bg-[#25D366] hover:bg-[#128C7E] text-white px-6 py-3 h-12 text-base"
                   data-testid="button-whatsapp-quick"
                   aria-label={t.a11y.checkWhatsApp}

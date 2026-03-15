@@ -10,6 +10,7 @@ import { EXTRA_PACKS } from "@shared/boatData";
 import BookingProgressBar from "@/components/BookingProgressBar";
 import HoldCountdown from "@/components/HoldCountdown";
 import PriceSummaryBar from "@/components/PriceSummaryBar";
+import { trackWhatsAppClick } from "@/utils/analytics";
 
 // Slide animation variants
 const slideVariants = {
@@ -293,6 +294,7 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
           href="https://wa.me/34611500372"
           target="_blank"
           rel="noopener noreferrer"
+          onClick={() => trackWhatsAppClick("booking_desktop")}
           className="flex items-center gap-1 text-xs text-muted-foreground/60 hover:text-muted-foreground transition-colors mt-1"
         >
           <SiWhatsapp className="w-3 h-3" />

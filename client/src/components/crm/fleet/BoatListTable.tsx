@@ -42,11 +42,28 @@ export type BoatListItem = {
   name: string;
   capacity: number;
   requiresLicense: boolean;
+  licenseType?: string;
   deposit: string;
   isActive: boolean;
   displayOrder?: number;
   [key: string]: unknown;
 };
+
+const LICENSE_TYPE_LABELS: Record<string, string> = {
+  none: "Sin licencia",
+  navegacion: "Lic. Navegación",
+  pnb: "PNB",
+  per: "PER",
+  patron_yate: "Patrón de Yate",
+  capitan_yate: "Capitán de Yate",
+};
+
+function getLicenseDisplay(boat: BoatListItem): string {
+  if (boat.licenseType && boat.licenseType !== "none") {
+    return LICENSE_TYPE_LABELS[boat.licenseType] || boat.licenseType;
+  }
+  return boat.requiresLicense ? "Con licencia" : "Sin licencia";
+}
 
 // Sortable row component for drag and drop (desktop)
 function SortableBoatRow({
@@ -79,7 +96,7 @@ function SortableBoatRow({
       <TableCell>{boat.capacity} personas</TableCell>
       <TableCell>
         <Badge variant={boat.requiresLicense ? "default" : "secondary"}>
-          {boat.requiresLicense ? "Requerida" : "No requerida"}
+          {getLicenseDisplay(boat)}
         </Badge>
       </TableCell>
       <TableCell>{"\u20AC"}{boat.deposit}</TableCell>
@@ -171,7 +188,7 @@ function SortableBoatCard({
             </div>
             <div className="flex gap-2 mb-3">
               <Badge variant={boat.requiresLicense ? "default" : "secondary"} className="text-xs">
-                {boat.requiresLicense ? "Licencia" : "Sin licencia"}
+                {getLicenseDisplay(boat)}
               </Badge>
               <Badge className={`text-xs ${boat.isActive ? "bg-emerald-100 text-emerald-800" : "bg-muted text-muted-foreground"}`}>
                 {boat.isActive ? "Activo" : "Inactivo"}

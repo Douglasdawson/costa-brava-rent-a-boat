@@ -295,7 +295,10 @@ export const boats = pgTable("boats", {
   
   // Extras as JSON array
   extras: json("extras").$type<Array<{ name: string; price: string; icon: string }>>(),
-  
+
+  // License type: none, navegacion, pnb, per, patron_yate, capitan_yate
+  licenseType: text("license_type").default("none"),
+
   isActive: boolean("is_active").notNull().default(true),
 });
 
@@ -422,6 +425,7 @@ export const updateBoatSchema = z.object({
   name: z.string().min(1).optional(),
   capacity: z.coerce.number().min(1).optional(),
   requiresLicense: z.coerce.boolean().optional(),
+  licenseType: z.enum(["none", "navegacion", "pnb", "per", "patron_yate", "capitan_yate"]).optional(),
   deposit: z.string().optional(),
   displayOrder: z.number().nullable().optional(),
   isActive: z.coerce.boolean().optional(),

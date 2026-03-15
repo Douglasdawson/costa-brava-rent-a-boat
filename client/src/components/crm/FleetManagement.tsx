@@ -44,6 +44,7 @@ export function FleetManagement({ adminToken }: FleetManagementProps) {
       name: "",
       capacity: 0,
       requiresLicense: false,
+      licenseType: "none",
       deposit: "",
       isActive: true,
       imageUrl: "",
@@ -299,6 +300,7 @@ export function FleetManagement({ adminToken }: FleetManagementProps) {
       name: boat.name as string,
       capacity: boat.capacity as number,
       requiresLicense: boat.requiresLicense as boolean,
+      licenseType: (boat.licenseType as string) || "none",
       deposit: boat.deposit as string,
       isActive: boat.isActive as boolean,
       imageUrl: (boat.imageUrl as string) || "",
@@ -328,9 +330,13 @@ export function FleetManagement({ adminToken }: FleetManagementProps) {
   };
 
   const handleSubmit = (data: BoatFormData) => {
+    // Auto-derive requiresLicense from licenseType
+    const derivedRequiresLicense = (data.licenseType || "none") !== "none";
+
     // Ensure specifications is properly formatted as an object
     const formattedData = {
       ...data,
+      requiresLicense: derivedRequiresLicense,
       specifications: data.specifications || {
         model: "",
         length: "",

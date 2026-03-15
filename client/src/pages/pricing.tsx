@@ -58,7 +58,20 @@ function formatPrice(price: number | null): string {
   return `${price}\u20AC`;
 }
 
+const LICENSE_TYPE_LABELS: Record<string, string> = {
+  none: "Sin licencia",
+  navegacion: "Lic. Navegación",
+  pnb: "PNB requerido",
+  per: "PER requerido",
+  patron_yate: "Patrón de Yate",
+  capitan_yate: "Capitán de Yate",
+};
+
 function getLicenseLabel(boat: Boat): string {
+  const lt = (boat as Boat & { licenseType?: string }).licenseType;
+  if (lt && lt !== "none") {
+    return LICENSE_TYPE_LABELS[lt] || lt;
+  }
   if (!boat.requiresLicense) return "Sin licencia";
   const licenseFeature = (boat.features as string[] | null)?.find(
     (f) => f.toLowerCase().includes("licencia") || f.toLowerCase().includes("license")

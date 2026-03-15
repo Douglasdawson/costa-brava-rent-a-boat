@@ -7,7 +7,7 @@ interface PricingSeasonSectionProps {
   seasonKey: "BAJA" | "MEDIA" | "ALTA";
   seasonLabel: string;
   periodPlaceholder: string;
-  requiresLicense: boolean;
+  licenseType: string;
   form: UseFormReturn<BoatFormData>;
 }
 
@@ -18,10 +18,10 @@ export function PricingSeasonSection({
   seasonKey,
   seasonLabel,
   periodPlaceholder,
-  requiresLicense,
+  licenseType,
   form,
 }: PricingSeasonSectionProps) {
-  const durations = requiresLicense ? LICENSE_DURATIONS : NO_LICENSE_DURATIONS;
+  const durations = licenseType !== "none" ? LICENSE_DURATIONS : NO_LICENSE_DURATIONS;
 
   return (
     <div className="border rounded-lg p-4 space-y-3">

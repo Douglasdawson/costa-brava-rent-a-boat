@@ -33,6 +33,7 @@ export const boatSchema = z.object({
   name: z.string().min(2, "El nombre debe tener al menos 2 caracteres"),
   capacity: z.coerce.number().min(1, "La capacidad debe ser al menos 1"),
   requiresLicense: z.boolean(),
+  licenseType: z.enum(["none", "navegacion", "pnb", "per", "patron_yate", "capitan_yate"]).default("none"),
   deposit: z.string().min(1, "El depósito es requerido"),
   isActive: z.boolean(),
   displayOrder: z.number().nullable().optional(),

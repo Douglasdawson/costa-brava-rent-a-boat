@@ -11,6 +11,13 @@ import {
   DialogDescription,
   DialogFooter,
 } from "@/components/ui/dialog";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Check, Download, Loader2 } from "lucide-react";
 import { ImageGalleryUploader } from "@/components/ImageGalleryUploader";
 import { EQUIPMENT_OPTIONS, INCLUDED_OPTIONS } from "../constants";
@@ -49,7 +56,7 @@ export function BoatFormDialog({
   onCancel,
   isSaving,
 }: BoatFormDialogProps) {
-  const requiresLicense = form.watch("requiresLicense");
+  const licenseType = form.watch("licenseType") || "none";
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
@@ -206,29 +213,49 @@ export function BoatFormDialog({
                 )}
               </div>
             </div>
-            <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 md:gap-6">
-              <div className="p-2 -m-2 rounded">
-                <div className="flex items-center space-x-2">
-                  <input
-                    id="requiresLicense"
-                    type="checkbox"
-                    {...form.register("requiresLicense")}
-                    className="w-4 h-4"
-                    data-testid="checkbox-requires-license"
-                  />
-                  <Label htmlFor="requiresLicense">Requiere licencia náutica</Label>
-                </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <Label htmlFor="licenseType">Tipo de Licencia</Label>
+                <Select
+                  value={licenseType}
+                  onValueChange={(value) => {
+                    form.setValue("licenseType", value as BoatFormData["licenseType"]);
+                    form.setValue("requiresLicense", value !== "none");
+                  }}
+                >
+                  <SelectTrigger data-testid="select-license-type">
+                    <SelectValue placeholder="Seleccionar licencia" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="none">Sin licencia</SelectItem>
+                    <SelectItem value="navegacion">Licencia de Navegación</SelectItem>
+                    <SelectItem value="pnb">PNB (Patrón Nav. Básica)</SelectItem>
+                    <SelectItem value="per">PER (Patrón Emb. Recreo)</SelectItem>
+                    <SelectItem value="patron_yate">Patrón de Yate</SelectItem>
+                    <SelectItem value="capitan_yate">Capitán de Yate</SelectItem>
+                  </SelectContent>
+                </Select>
+                <p className="text-xs text-muted-foreground mt-1">
+                  {licenseType === "none" && "Eslora max 5m, 15cv — hasta 2 millas de costa"}
+                  {licenseType === "navegacion" && "Eslora max 6m — hasta 2 millas de costa"}
+                  {licenseType === "pnb" && "Eslora max 8m — hasta 5 millas de costa"}
+                  {licenseType === "per" && "Eslora max 15m — hasta 12 millas de costa"}
+                  {licenseType === "patron_yate" && "Eslora max 24m — hasta 150 millas de costa"}
+                  {licenseType === "capitan_yate" && "Sin limite de eslora ni distancia"}
+                </p>
               </div>
-              <div className="p-2 -m-2 rounded">
-                <div className="flex items-center space-x-2">
-                  <input
-                    id="isActive"
-                    type="checkbox"
-                    {...form.register("isActive")}
-                    className="w-4 h-4"
-                    data-testid="checkbox-is-active"
-                  />
-                  <Label htmlFor="isActive">Barco activo</Label>
+              <div className="flex items-center">
+                <div className="p-2 -m-2 rounded">
+                  <div className="flex items-center space-x-2">
+                    <input
+                      id="isActive"
+                      type="checkbox"
+                      {...form.register("isActive")}
+                      className="w-4 h-4"
+                      data-testid="checkbox-is-active"
+                    />
+                    <Label htmlFor="isActive">Barco activo</Label>
+                  </div>
                 </div>
               </div>
             </div>
@@ -403,21 +430,21 @@ export function BoatFormDialog({
               seasonKey="BAJA"
               seasonLabel="BAJA"
               periodPlaceholder="Periodo (ej: Abril-Junio, Septiembre-Cierre)"
-              requiresLicense={requiresLicense}
+              licenseType={licenseType}
               form={form}
             />
             <PricingSeasonSection
               seasonKey="MEDIA"
               seasonLabel="MEDIA"
               periodPlaceholder="Periodo (ej: Julio)"
-              requiresLicense={requiresLicense}
+              licenseType={licenseType}
               form={form}
             />
             <PricingSeasonSection
               seasonKey="ALTA"
               seasonLabel="ALTA"
               periodPlaceholder="Periodo (ej: Agosto)"
-              requiresLicense={requiresLicense}
+              licenseType={licenseType}
               form={form}
             />
           </div>

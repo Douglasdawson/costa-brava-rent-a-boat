@@ -107,7 +107,7 @@ interface ConversionRow {
 }
 
 interface TrendsData {
-  gsc: Array<{ date: string; clicks: number; impressions: number }>;
+  gsc: { totals: Record<string, number>; daily: Array<{ date: string; clicks: number; impressions: number }> } | Array<{ date: string; clicks: number; impressions: number }>;
   ga4: Array<{ date: string; users: number; sessions: number; pageViews: number }>;
 }
 
@@ -450,7 +450,8 @@ export function AnalyticsTab({ adminToken }: AnalyticsTabProps) {
   const mergedTrends: Array<{ date: string; clicks: number; users: number }> = [];
   if (trends) {
     const dateMap = new Map<string, { clicks: number; users: number }>();
-    for (const point of (trends.gsc || [])) {
+    const gscDaily = Array.isArray(trends.gsc) ? trends.gsc : (trends.gsc?.daily || []);
+    for (const point of gscDaily) {
       dateMap.set(point.date, { clicks: point.clicks, users: 0 });
     }
     for (const point of (trends.ga4 || [])) {

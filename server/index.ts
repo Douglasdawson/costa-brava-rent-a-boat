@@ -10,6 +10,7 @@ import { config, isDev } from "./config";
 import { errorHandler, AppError } from "./middleware/errorHandler";
 import { csrfProtection } from "./middleware/csrf";
 import { stopScheduler } from "./services/schedulerService";
+import { startSeoWorker, stopSeoWorker } from "./seo/worker";
 import { pool } from "./db";
 
 // Extend Express Request with requestId
@@ -358,6 +359,7 @@ app.use((req: Request, res: Response, next: NextFunction) => {
     host: "0.0.0.0",
   }, () => {
     log(`serving on port ${port}`);
+    startSeoWorker();
   });
 
   // Graceful shutdown
@@ -365,6 +367,7 @@ app.use((req: Request, res: Response, next: NextFunction) => {
     log("Shutting down gracefully...");
     server.close(() => {
       stopScheduler();
+      stopSeoWorker();
       pool.end().then(() => process.exit(0));
     });
     setTimeout(() => process.exit(1), 10000);

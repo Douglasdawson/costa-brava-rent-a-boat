@@ -2,6 +2,9 @@ import fs from "fs";
 import path from "path";
 import type { Request, Response } from "express";
 import { storage } from "./storage";
+import { db } from "./db";
+import { seoMeta } from "../shared/schema";
+import { eq, and } from "drizzle-orm";
 
 const BASE_URL = process.env.BASE_URL || "https://costabravarentaboat.com";
 
@@ -45,6 +48,25 @@ type LangCode = "es" | "ca" | "en" | "fr" | "de" | "nl" | "it" | "ru";
 // Escape special HTML attribute characters
 function esc(str: string): string {
   return str.replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+}
+
+// Fetch SEO meta overrides from the database (seo_meta table).
+// Returns null on miss or error so callers can fall back to hardcoded values.
+async function getDbMeta(pagePath: string, lang: string): Promise<{ title?: string; description?: string; keywords?: string } | null> {
+  try {
+    const [meta] = await db
+      .select()
+      .from(seoMeta)
+      .where(and(eq(seoMeta.page, pagePath), eq(seoMeta.language, lang)))
+      .limit(1);
+    return meta ? {
+      title: meta.title || undefined,
+      description: meta.description || undefined,
+      keywords: meta.keywords || undefined,
+    } : null;
+  } catch {
+    return null;
+  }
 }
 
 // Per-route, per-language SEO meta. Covers main crawled pages.
@@ -1305,6 +1327,22 @@ export async function serveWithSEO(
 
     const resolved = await resolveMeta(canonicalPath, lang);
     if (resolved) {
+      // Override with DB-sourced meta if available (seo_meta table)
+      const dbMeta = await getDbMeta(canonicalPath, lang);
+      if (dbMeta) {
+        if (dbMeta.title) {
+          resolved.meta.title = dbMeta.title;
+          if (!resolved.meta.ogTitle || resolved.meta.ogTitle === resolved.meta.title) {
+            resolved.meta.ogTitle = dbMeta.title;
+          }
+        }
+        if (dbMeta.description) {
+          resolved.meta.description = dbMeta.description;
+          if (!resolved.meta.ogDescription || resolved.meta.ogDescription === resolved.meta.description) {
+            resolved.meta.ogDescription = dbMeta.description;
+          }
+        }
+      }
       const baseHtml = await getBaseHtml(distPath);
       const html = injectMeta(baseHtml, resolved.meta, canonicalUrl, resolved.jsonLd);
       res.set("Content-Type", "text/html; charset=utf-8");

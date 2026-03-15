@@ -1504,3 +1504,263 @@ export const analyticsSnapshots = pgTable("analytics_snapshots", {
 }));
 
 export type AnalyticsSnapshot = typeof analyticsSnapshots.$inferSelect;
+
+// ============================================================
+// SEO ENGINE TABLES
+
+export const seoKeywords = pgTable("seo_keywords", {
+  id: serial("id").primaryKey(),
+  keyword: text("keyword").notNull(),
+  language: varchar("language", { length: 5 }).notNull(),
+  intent: text("intent"),
+  cluster: text("cluster"),
+  tracked: boolean("tracked").notNull().default(false),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().default(sql`now()`),
+}, (table) => [
+  uniqueIndex("seo_keywords_keyword_language_idx").on(table.keyword, table.language),
+]);
+
+export const seoRankings = pgTable("seo_rankings", {
+  id: serial("id").primaryKey(),
+  keywordId: integer("keyword_id").notNull(),
+  date: date("date").notNull(),
+  position: decimal("position", { precision: 5, scale: 2 }),
+  clicks: integer("clicks"),
+  impressions: integer("impressions"),
+  ctr: decimal("ctr", { precision: 5, scale: 4 }),
+  page: text("page"),
+  device: text("device"),
+  source: text("source"),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().default(sql`now()`),
+}, (table) => [
+  uniqueIndex("seo_rankings_keyword_date_device_source_idx").on(table.keywordId, table.date, table.device, table.source),
+  index("seo_rankings_keyword_id_idx").on(table.keywordId),
+  index("seo_rankings_date_idx").on(table.date),
+]);
+
+export const seoPages = pgTable("seo_pages", {
+  id: serial("id").primaryKey(),
+  path: text("path").notNull().unique(),
+  title: text("title"),
+  description: text("description"),
+  wordCount: integer("word_count"),
+  lastCrawled: timestamp("last_crawled", { withTimezone: true }),
+  lastModified: timestamp("last_modified", { withTimezone: true }),
+  status: integer("status"),
+  loadTimeMs: integer("load_time_ms"),
+  hasSchemaOrg: boolean("has_schema_org").notNull().default(false),
+  schemaTypes: text("schema_types"),
+  internalLinksIn: integer("internal_links_in"),
+  internalLinksOut: integer("internal_links_out"),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().default(sql`now()`),
+}, (table) => [
+  index("seo_pages_path_idx").on(table.path),
+]);
+
+export const seoCompetitors = pgTable("seo_competitors", {
+  id: serial("id").primaryKey(),
+  domain: text("domain").notNull().unique(),
+  name: text("name"),
+  type: text("type"),
+  active: boolean("active").notNull().default(false),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().default(sql`now()`),
+});
+
+export const seoCompetitorRankings = pgTable("seo_competitor_rankings", {
+  id: serial("id").primaryKey(),
+  competitorId: integer("competitor_id").notNull(),
+  keywordId: integer("keyword_id").notNull(),
+  date: date("date").notNull(),
+  position: decimal("position", { precision: 5, scale: 2 }),
+  url: text("url"),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().default(sql`now()`),
+}, (table) => [
+  uniqueIndex("seo_competitor_rankings_comp_kw_date_idx").on(table.competitorId, table.keywordId, table.date),
+  index("seo_competitor_rankings_competitor_id_idx").on(table.competitorId),
+  index("seo_competitor_rankings_keyword_id_idx").on(table.keywordId),
+]);
+
+export const seoSerpFeatures = pgTable("seo_serp_features", {
+  id: serial("id").primaryKey(),
+  keywordId: integer("keyword_id").notNull(),
+  date: date("date").notNull(),
+  features: jsonb("features"),
+  ownsFaq: boolean("owns_faq").notNull().default(false),
+  ownsLocalPack: boolean("owns_local_pack").notNull().default(false),
+  ownsImages: boolean("owns_images").notNull().default(false),
+  ownsAiOverview: boolean("owns_ai_overview").notNull().default(false),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().default(sql`now()`),
+}, (table) => [
+  uniqueIndex("seo_serp_features_keyword_date_idx").on(table.keywordId, table.date),
+  index("seo_serp_features_keyword_id_idx").on(table.keywordId),
+]);
+
+export const seoCampaigns = pgTable("seo_campaigns", {
+  id: serial("id").primaryKey(),
+  name: text("name").notNull(),
+  objective: text("objective"),
+  cluster: text("cluster"),
+  status: text("status"),
+  startDate: date("start_date"),
+  endDate: date("end_date"),
+  weeklyActionBudget: integer("weekly_action_budget"),
+  progress: jsonb("progress"),
+  results: jsonb("results"),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().default(sql`now()`),
+});
+
+export const seoExperiments = pgTable("seo_experiments", {
+  id: serial("id").primaryKey(),
+  campaignId: integer("campaign_id"),
+  type: text("type"),
+  page: text("page"),
+  hypothesis: text("hypothesis"),
+  action: text("action"),
+  previousValue: text("previous_value"),
+  newValue: text("new_value"),
+  status: text("status"),
+  executedAt: timestamp("executed_at", { withTimezone: true }),
+  measureAt: timestamp("measure_at", { withTimezone: true }),
+  baselineMetrics: jsonb("baseline_metrics"),
+  resultMetrics: jsonb("result_metrics"),
+  learning: text("learning"),
+  agentReasoning: text("agent_reasoning"),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().default(sql`now()`),
+}, (table) => [
+  index("seo_experiments_campaign_id_idx").on(table.campaignId),
+  index("seo_experiments_status_idx").on(table.status),
+]);
+
+export const seoConversions = pgTable("seo_conversions", {
+  id: serial("id").primaryKey(),
+  keywordId: integer("keyword_id"),
+  page: text("page"),
+  bookingId: integer("booking_id"),
+  revenue: decimal("revenue", { precision: 10, scale: 2 }),
+  date: date("date"),
+  sessionId: text("session_id"),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().default(sql`now()`),
+}, (table) => [
+  index("seo_conversions_keyword_id_idx").on(table.keywordId),
+  index("seo_conversions_date_idx").on(table.date),
+]);
+
+export const seoLearnings = pgTable("seo_learnings", {
+  id: serial("id").primaryKey(),
+  experimentId: integer("experiment_id"),
+  category: text("category"),
+  insight: text("insight").notNull(),
+  confidence: decimal("confidence", { precision: 3, scale: 2 }),
+  applicableTo: text("applicable_to"),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().default(sql`now()`),
+}, (table) => [
+  index("seo_learnings_experiment_id_idx").on(table.experimentId),
+  index("seo_learnings_category_idx").on(table.category),
+]);
+
+export const seoMeta = pgTable("seo_meta", {
+  id: serial("id").primaryKey(),
+  page: text("page").notNull(),
+  language: varchar("language", { length: 5 }).notNull(),
+  title: text("title"),
+  description: text("description"),
+  keywords: text("keywords"),
+  updatedBy: text("updated_by"),
+  updatedAt: timestamp("updated_at", { withTimezone: true }),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().default(sql`now()`),
+}, (table) => [
+  uniqueIndex("seo_meta_page_language_idx").on(table.page, table.language),
+]);
+
+export const seoFaqs = pgTable("seo_faqs", {
+  id: serial("id").primaryKey(),
+  page: text("page").notNull(),
+  language: varchar("language", { length: 5 }).notNull(),
+  question: text("question").notNull(),
+  answer: text("answer").notNull(),
+  sortOrder: integer("sort_order"),
+  active: boolean("active").notNull().default(false),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().default(sql`now()`),
+}, (table) => [
+  index("seo_faqs_page_language_idx").on(table.page, table.language),
+]);
+
+export const seoLinks = pgTable("seo_links", {
+  id: serial("id").primaryKey(),
+  fromPage: text("from_page").notNull(),
+  toPage: text("to_page").notNull(),
+  anchorText: text("anchor_text").notNull(),
+  context: text("context"),
+  autoGenerated: boolean("auto_generated").notNull().default(false),
+  active: boolean("active").notNull().default(false),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().default(sql`now()`),
+}, (table) => [
+  uniqueIndex("seo_links_from_to_anchor_idx").on(table.fromPage, table.toPage, table.anchorText),
+  index("seo_links_from_page_idx").on(table.fromPage),
+  index("seo_links_to_page_idx").on(table.toPage),
+]);
+
+export const seoGeo = pgTable("seo_geo", {
+  id: serial("id").primaryKey(),
+  query: text("query").notNull(),
+  engine: text("engine").notNull(),
+  date: date("date").notNull(),
+  cited: boolean("cited").notNull().default(false),
+  mentionedWithoutLink: boolean("mentioned_without_link").notNull().default(false),
+  citedUrl: text("cited_url"),
+  position: integer("position"),
+  competitorsCited: jsonb("competitors_cited"),
+  analysis: text("analysis"),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().default(sql`now()`),
+}, (table) => [
+  uniqueIndex("seo_geo_query_engine_date_idx").on(table.query, table.engine, table.date),
+]);
+
+export const seoAlerts = pgTable("seo_alerts", {
+  id: serial("id").primaryKey(),
+  type: text("type").notNull(),
+  severity: text("severity").notNull(),
+  title: text("title").notNull(),
+  message: text("message"),
+  data: jsonb("data"),
+  status: text("status"),
+  sentVia: text("sent_via"),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().default(sql`now()`),
+  resolvedAt: timestamp("resolved_at", { withTimezone: true }),
+}, (table) => [
+  index("seo_alerts_type_idx").on(table.type),
+  index("seo_alerts_severity_idx").on(table.severity),
+  index("seo_alerts_status_idx").on(table.status),
+]);
+
+export const seoReports = pgTable("seo_reports", {
+  id: serial("id").primaryKey(),
+  type: text("type").notNull(),
+  periodStart: date("period_start").notNull(),
+  periodEnd: date("period_end").notNull(),
+  summary: text("summary"),
+  data: jsonb("data"),
+  sentVia: text("sent_via"),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().default(sql`now()`),
+}, (table) => [
+  index("seo_reports_type_idx").on(table.type),
+  index("seo_reports_period_idx").on(table.periodStart, table.periodEnd),
+]);
+
+export const seoHealthChecks = pgTable("seo_health_checks", {
+  id: serial("id").primaryKey(),
+  url: text("url").notNull(),
+  status: integer("status"),
+  loadTimeMs: integer("load_time_ms"),
+  hasMetaTitle: boolean("has_meta_title").notNull().default(false),
+  hasMetaDescription: boolean("has_meta_description").notNull().default(false),
+  hasCanonical: boolean("has_canonical").notNull().default(false),
+  hasHreflang: boolean("has_hreflang").notNull().default(false),
+  hasSchemaOrg: boolean("has_schema_org").notNull().default(false),
+  issues: jsonb("issues"),
+  checkedAt: timestamp("checked_at", { withTimezone: true }),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().default(sql`now()`),
+}, (table) => [
+  index("seo_health_checks_url_idx").on(table.url),
+  index("seo_health_checks_checked_at_idx").on(table.checkedAt),
+]);

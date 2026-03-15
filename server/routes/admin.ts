@@ -9,6 +9,7 @@ import { registerAdminCustomerRoutes } from "./admin-customers";
 import { registerAdminStatsRoutes } from "./admin-stats";
 import { registerAdminOperationsRoutes } from "./admin-operations";
 import { registerAdminMarketingRoutes } from "./admin-marketing";
+import { registerSeoRoutes } from "./admin-seo";
 import { logger } from "../lib/logger";
 
 export function registerAdminRoutes(app: Express) {
@@ -19,6 +20,7 @@ export function registerAdminRoutes(app: Express) {
   registerAdminStatsRoutes(app);
   registerAdminOperationsRoutes(app);
   registerAdminMarketingRoutes(app);
+  registerSeoRoutes(app);
 
   // ===== OBJECT STORAGE =====
 

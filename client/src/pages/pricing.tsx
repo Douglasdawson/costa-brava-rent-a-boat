@@ -58,6 +58,14 @@ function formatPrice(price: number | null): string {
   return `${price}\u20AC`;
 }
 
+function getLicenseLabel(boat: Boat): string {
+  if (!boat.requiresLicense) return "Sin licencia";
+  const licenseFeature = (boat.features as string[] | null)?.find(
+    (f) => f.toLowerCase().includes("licencia") || f.toLowerCase().includes("license")
+  );
+  return licenseFeature || "Con licencia";
+}
+
 export default function PricingPage() {
   const { language } = useLanguage();
   const t = useTranslations();
@@ -270,7 +278,7 @@ export default function PricingPage() {
                                       : "border-green-600 text-green-700"
                                   }
                                 >
-                                  {boat.requiresLicense ? "PER requerido" : "Sin licencia"}
+                                  {getLicenseLabel(boat)}
                                 </Badge>
                               </TableCell>
                               <TableCell className="text-center font-semibold">
@@ -352,7 +360,7 @@ export default function PricingPage() {
                                 : "border-green-600 text-green-700"
                             }
                           >
-                            {boat.requiresLicense ? "Con licencia" : "Sin licencia"}
+                            {getLicenseLabel(boat)}
                           </Badge>
                         </div>
                         {!boat.requiresLicense && (

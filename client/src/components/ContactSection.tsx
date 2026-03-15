@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { MapPin, Phone, Mail, Clock, Camera, Star, ExternalLink, Waves } from "lucide-react";
 import { SiWhatsapp } from "react-icons/si";
 import { Link } from "wouter";
+import { trackPhoneClick } from "@/utils/analytics";
 
 export default function ContactSection() {
   const t = useTranslations();
@@ -40,6 +41,7 @@ export default function ContactSection() {
                     className="text-muted-foreground hover:text-primary transition-colors cursor-pointer block mb-1 text-sm"
                     data-testid="phone-link"
                     aria-label={`${t.a11y.callPhone} +34 611 500 372`}
+                    onClick={() => trackPhoneClick()}
                   >
                     +34 611 500 372
                   </a>

@@ -87,8 +87,9 @@ export function SocialProofToast() {
         const res = await fetch("/api/social-proof");
         if (res.ok) {
           const data = await res.json();
-          if (!cancelled && Array.isArray(data) && data.length > 0) {
-            setActivities(data);
+          const items = Array.isArray(data) ? data : Array.isArray(data?.activities) ? data.activities : null;
+          if (!cancelled && items && items.length > 0) {
+            setActivities(items);
             return;
           }
         }

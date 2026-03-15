@@ -8,6 +8,7 @@ import { useLanguage } from "@/hooks/use-language";
 import CentresNLCatalunyaLogo from "@/components/icons/CentresNLCatalunyaLogo";
 import ClusterNauticLogo from "@/components/icons/ClusterNauticLogo";
 import DonQualitaLogo from "@/components/icons/DonQualitaLogo";
+import { trackPhoneClick } from "@/utils/analytics";
 
 export default function Footer() {
   const t = useTranslations();
@@ -155,6 +156,9 @@ export default function Footer() {
                 <a href="/blog" className="hover:text-white transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none" data-testid="footer-blog-link">{t.footer.blog}</a>
               </li>
               <li>
+                <a href="/precios" className="hover:text-white transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none">Precios</a>
+              </li>
+              <li>
                 <a href="/faq" className="hover:text-white transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none" data-testid="footer-faq-link">{t.footer.faqLabel}</a>
               </li>
               <li>
@@ -175,6 +179,7 @@ export default function Footer() {
             <ul className="space-y-1 text-sm">
               <li><a href="/barcos-sin-licencia" className="hover:text-white transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none">{t.boats.withoutLicense}</a></li>
               <li><a href="/barcos-con-licencia" className="hover:text-white transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none">{t.boats.withLicense}</a></li>
+              <li><a href="/alquiler-barcos-cerca-barcelona" className="hover:text-white transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none">Barcos cerca de Barcelona</a></li>
             </ul>
           </div>
 
@@ -190,6 +195,7 @@ export default function Footer() {
                     className="text-sm hover:text-white transition-colors block"
                     data-testid="phone-call-link"
                     aria-label={`${t.a11y.callPhone} +34 611 500 372`}
+                    onClick={() => trackPhoneClick()}
                   >+34 611 500 372</a>
                   <p className="text-xs text-white/60 mt-0.5">{t.footer.callsAndWhatsapp}</p>
                 </div>

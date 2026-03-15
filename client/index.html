@@ -60,10 +60,13 @@
     <!-- DNS Prefetch for external resources -->
     <link rel="dns-prefetch" href="https://api.whatsapp.com">
     <link rel="dns-prefetch" href="https://js.stripe.com">
+    <link rel="dns-prefetch" href="https://connect.facebook.net">
     
     <!-- Resource hints for better performance -->
     <meta name="color-scheme" content="light dark">
     <meta name="theme-color" content="#1e3a8a">
+    <!-- Meta Pixel ID (set via server injection or manually) -->
+    <meta name="fb-pixel-id" content="1435375734200141">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="format-detection" content="telephone=no">
@@ -142,6 +145,9 @@
         wait_for_update: 500
       });
     </script>
+    <!-- Google Ads Conversion Tracking (loads gtag.js for direct conversion firing) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-341099427"></script>
+    <script>gtag('js', new Date());gtag('config', 'AW-341099427', { 'allow_enhanced_conversions': true });</script>
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],

@@ -25,6 +25,13 @@ export default function CookieBanner() {
   const handleAcceptAll = () => {
     localStorage.setItem("cookieConsent", "accepted");
     updateGTMConsent(true);
+
+    // Initialize Meta Pixel now that consent is granted
+    const metaPixelId = document.querySelector('meta[name="fb-pixel-id"]')?.getAttribute('content');
+    if (metaPixelId) {
+      import('@/utils/meta-pixel').then(({ initMetaPixel }) => initMetaPixel(metaPixelId));
+    }
+
     setVisible(false);
   };
 

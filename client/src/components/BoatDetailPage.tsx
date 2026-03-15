@@ -55,10 +55,13 @@ import type { Boat } from "@shared/schema";
 import { Breadcrumbs } from "./Breadcrumbs";
 import { useTranslations } from "@/lib/translations";
 import AvailabilityCalendar from "./AvailabilityCalendar";
+import AvailabilityUrgency from "./AvailabilityUrgency";
 import BoatReviewCarousel from "./BoatReviewCarousel";
 import { getBoatReviews, getBoatAverageRating } from "@/data/boatReviews";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import type { BookingPrefillData } from "@/hooks/bookingModalContext";
+import { trackGoogleAdsRemarketing } from "@/utils/google-ads";
+import { trackMetaViewContent } from "@/utils/meta-pixel";
 
 interface BoatDetailPageProps {
   boatId?: string;
@@ -102,8 +105,29 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
 
   const boatData = useMemo(() => boats?.find(boat => boat.id === boatId), [boats, boatId]);
 
+  // View counter - increments on each page load
+  const { data: viewsData } = useQuery<{ views: number }>({
+    queryKey: [`/api/boats/${boatId}/views`],
+    staleTime: 60000,
+  });
+
   // Image gallery handling - uses responsive gallery with fallback chain (must be before early returns)
   const displayImages = useResponsiveGallery(boatData);
+
+  // Google Ads remarketing + Meta Pixel view tracking for product page
+  useEffect(() => {
+    if (boatData) {
+      const pricing = boatData.pricing as Record<string, { prices: Record<string, number> }> | null;
+      const price = pricing ? Math.min(...Object.values(pricing.BAJA.prices)) : 0;
+      trackGoogleAdsRemarketing({
+        ecommPageType: 'product',
+        productId: boatId,
+        productName: boatData.name,
+        productPrice: price,
+      });
+      trackMetaViewContent(boatId, boatData.name, price);
+    }
+  }, [boatData, boatId]);
 
   // Related boats: same license type OR similar capacity (+-2), excluding current boat
   const relatedBoats = useMemo(() => {
@@ -329,6 +353,16 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
         </div>
       </div>
 
+      {/* View counter - only shown when views > 3 */}
+      {viewsData && viewsData.views > 3 && (
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-2">
+          <p className="text-sm text-muted-foreground flex items-center gap-1.5">
+            <Eye className="w-3.5 h-3.5" />
+            {viewsData.views} personas han visto este barco hoy
+          </p>
+        </div>
+      )}
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-6 sm:pt-8 pb-6 sm:pb-8">
 
         {/* Image and Description Grid */}
@@ -466,6 +500,11 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
               )}
             </CardContent>
           </Card>
+        </div>
+
+        {/* Availability urgency indicator */}
+        <div className="mb-4">
+          <AvailabilityUrgency boatId={boatId} />
         </div>
 
         {/* Booking Actions - CTA */}
@@ -850,14 +889,21 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
         <div className="fixed bottom-0 left-0 right-0 z-40 md:hidden pb-safe">
           <button
             onClick={() => handleReservation()}
-            className="w-full bg-primary text-white py-4 px-6 font-semibold shadow-lg flex items-center justify-center gap-3"
+            className="w-full bg-primary text-white py-3 px-6 font-semibold shadow-lg flex items-center justify-center gap-3"
           >
-            <span>{t.hero.bookNow}</span>
-            {lowestPrice > 0 && (
-              <span className="bg-white/20 rounded-full px-3 py-0.5 text-sm font-bold">
-                {t.boats.from} {lowestPrice}€
-              </span>
-            )}
+            <div className="flex flex-col items-center">
+              <div className="flex items-center gap-3">
+                <span>{t.hero.bookNow}</span>
+                {lowestPrice > 0 && (
+                  <span className="bg-white/20 rounded-full px-3 py-0.5 text-sm font-bold">
+                    {t.boats.from} {lowestPrice}€
+                  </span>
+                )}
+              </div>
+              {!requiresLicense && (
+                <span className="text-white/80 text-xs mt-0.5">Gasolina incluida</span>
+              )}
+            </div>
           </button>
         </div>
       )}
@@ -871,6 +917,12 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
               <span className="text-sm text-muted-foreground">{t.boats.from}</span>
               <span className="text-2xl font-bold text-primary">{lowestPrice}€</span>
             </div>
+            {!requiresLicense && (
+              <p className="text-xs text-muted-foreground flex items-center gap-1">
+                <Fuel className="w-3 h-3" />
+                Gasolina incluida
+              </p>
+            )}
             <Button
               onClick={() => handleReservation()}
               className="w-full bg-primary text-white py-2 text-sm font-semibold"

@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
   Table,
@@ -24,6 +25,8 @@ import {
   Loader2,
   AlertTriangle,
   TrendingUp,
+  Target,
+  Filter,
 } from "lucide-react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useToast } from "@/hooks/use-toast";
@@ -754,6 +757,101 @@ export function AnalyticsTab({ adminToken }: AnalyticsTabProps) {
             </Card>
           ) : (
             <>
+              {/* --- Keyword Opportunities Alerts --- */}
+              {(() => {
+                const lowCtrKeywords = sortedKeywords.filter(
+                  kw => kw.impressions > 10 && kw.ctr < 0.02
+                );
+                const almostPage1Keywords = sortedKeywords.filter(
+                  kw => kw.position >= 8 && kw.position <= 20
+                );
+
+                if (lowCtrKeywords.length === 0 && almostPage1Keywords.length === 0) return null;
+
+                return (
+                  <div className="space-y-3">
+                    <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wide flex items-center gap-2">
+                      <Target className="h-4 w-4" />
+                      Oportunidades
+                    </h3>
+
+                    {lowCtrKeywords.length > 0 && (
+                      <Card className="border-l-4 border-l-amber-500">
+                        <CardHeader className="pb-2">
+                          <CardTitle className="text-sm font-heading flex items-center gap-2">
+                            <AlertTriangle className="h-4 w-4 text-amber-500" />
+                            Mejorar meta title ({lowCtrKeywords.length})
+                          </CardTitle>
+                          <CardDescription className="text-xs">
+                            Keywords con impresiones pero CTR bajo (&lt;2%). Optimiza el title y description para mejorar el CTR.
+                          </CardDescription>
+                        </CardHeader>
+                        <CardContent className="pt-0">
+                          <div className="space-y-2">
+                            {lowCtrKeywords.slice(0, 5).map((kw, i) => (
+                              <div key={i} className="flex flex-wrap items-center gap-2 text-sm">
+                                <span className="font-medium truncate max-w-[200px] sm:max-w-[300px]">{kw.keyword}</span>
+                                <Badge variant="secondary" className="text-xs">
+                                  {kw.impressions.toLocaleString("es-ES")} imp.
+                                </Badge>
+                                <Badge variant="destructive" className="text-xs">
+                                  CTR {formatCtr(kw.ctr)}
+                                </Badge>
+                                <Badge variant="outline" className="text-xs">
+                                  Pos. {formatPosition(kw.position)}
+                                </Badge>
+                              </div>
+                            ))}
+                            {lowCtrKeywords.length > 5 && (
+                              <p className="text-xs text-muted-foreground">
+                                ...y {lowCtrKeywords.length - 5} keywords mas
+                              </p>
+                            )}
+                          </div>
+                        </CardContent>
+                      </Card>
+                    )}
+
+                    {almostPage1Keywords.length > 0 && (
+                      <Card className="border-l-4 border-l-emerald-500">
+                        <CardHeader className="pb-2">
+                          <CardTitle className="text-sm font-heading flex items-center gap-2">
+                            <TrendingUp className="h-4 w-4 text-emerald-500" />
+                            Casi en pagina 1 ({almostPage1Keywords.length})
+                          </CardTitle>
+                          <CardDescription className="text-xs">
+                            Keywords en posiciones 8-20. Con algo de optimizacion pueden subir a la primera pagina.
+                          </CardDescription>
+                        </CardHeader>
+                        <CardContent className="pt-0">
+                          <div className="space-y-2">
+                            {almostPage1Keywords.slice(0, 5).map((kw, i) => (
+                              <div key={i} className="flex flex-wrap items-center gap-2 text-sm">
+                                <span className="font-medium truncate max-w-[200px] sm:max-w-[300px]">{kw.keyword}</span>
+                                <Badge variant="secondary" className="text-xs">
+                                  {kw.clicks.toLocaleString("es-ES")} clics
+                                </Badge>
+                                <Badge variant="outline" className="text-xs bg-emerald-50 text-emerald-700 dark:bg-emerald-950/30 dark:text-emerald-400 border-emerald-200 dark:border-emerald-800">
+                                  Pos. {formatPosition(kw.position)}
+                                </Badge>
+                                <Badge variant="secondary" className="text-xs">
+                                  {kw.impressions.toLocaleString("es-ES")} imp.
+                                </Badge>
+                              </div>
+                            ))}
+                            {almostPage1Keywords.length > 5 && (
+                              <p className="text-xs text-muted-foreground">
+                                ...y {almostPage1Keywords.length - 5} keywords mas
+                              </p>
+                            )}
+                          </div>
+                        </CardContent>
+                      </Card>
+                    )}
+                  </div>
+                );
+              })()}
+
               {/* Desktop table */}
               <Card className="hidden md:block">
                 <CardHeader>
@@ -1163,26 +1261,136 @@ export function AnalyticsTab({ adminToken }: AnalyticsTabProps) {
               </CardContent>
             </Card>
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
-              {(conversionsData?.data || []).map((conv, i) => (
-                <Card key={i} className="hover:shadow-md transition-shadow">
-                  <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                    <CardTitle className="text-sm font-medium text-muted-foreground">
-                      {CONVERSION_LABELS[conv.event] || conv.event}
+            <>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+                {(conversionsData?.data || []).map((conv, i) => (
+                  <Card key={i} className="hover:shadow-md transition-shadow">
+                    <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                      <CardTitle className="text-sm font-medium text-muted-foreground">
+                        {CONVERSION_LABELS[conv.event] || conv.event}
+                      </CardTitle>
+                      <div className="rounded-md bg-primary/10 p-1.5">
+                        <TrendingUp className="h-4 w-4 text-primary" />
+                      </div>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="text-3xl font-bold font-heading text-foreground">
+                        {conv.count.toLocaleString("es-ES")}
+                      </div>
+                      <p className="text-xs text-muted-foreground mt-1">eventos registrados</p>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+
+              {/* --- Conversion Funnel Visualization --- */}
+              {overview && (
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="text-base font-heading flex items-center gap-2">
+                      <Filter className="h-4 w-4" />
+                      Embudo de conversion
                     </CardTitle>
-                    <div className="rounded-md bg-primary/10 p-1.5">
-                      <TrendingUp className="h-4 w-4 text-primary" />
-                    </div>
+                    <CardDescription className="text-xs">
+                      Visualizacion del flujo desde visitas hasta compras completadas
+                    </CardDescription>
                   </CardHeader>
                   <CardContent>
-                    <div className="text-3xl font-bold font-heading text-foreground">
-                      {conv.count.toLocaleString("es-ES")}
-                    </div>
-                    <p className="text-xs text-muted-foreground mt-1">eventos registrados</p>
+                    {(() => {
+                      const sessions = overview.ga4?.sessions || 0;
+                      const conversionEvents = conversionsData?.data || [];
+                      const bookingStarted = conversionEvents.find(c => c.event === "booking_started")?.count || 0;
+                      const purchases = conversionEvents.find(c => c.event === "purchase")?.count || 0;
+
+                      // Use real data when available, otherwise estimate from sessions
+                      const funnelSteps = [
+                        {
+                          label: "Sesiones",
+                          value: sessions,
+                          color: "bg-blue-500",
+                          widthPct: 100,
+                        },
+                        {
+                          label: "Reservas iniciadas",
+                          value: bookingStarted || Math.round(sessions * 0.05),
+                          color: "bg-amber-500",
+                          widthPct: sessions > 0
+                            ? Math.max(10, Math.round(((bookingStarted || Math.round(sessions * 0.05)) / sessions) * 100))
+                            : 50,
+                          estimated: bookingStarted === 0,
+                        },
+                        {
+                          label: "Compras completadas",
+                          value: purchases || Math.round(sessions * 0.01),
+                          color: "bg-emerald-500",
+                          widthPct: sessions > 0
+                            ? Math.max(5, Math.round(((purchases || Math.round(sessions * 0.01)) / sessions) * 100))
+                            : 25,
+                          estimated: purchases === 0,
+                        },
+                      ];
+
+                      return (
+                        <div className="space-y-4">
+                          {funnelSteps.map((step, i) => {
+                            const prevValue = i > 0 ? funnelSteps[i - 1].value : null;
+                            const dropOff = prevValue && prevValue > 0
+                              ? ((1 - step.value / prevValue) * 100).toFixed(1)
+                              : null;
+                            const convRate = prevValue && prevValue > 0
+                              ? ((step.value / prevValue) * 100).toFixed(1)
+                              : null;
+
+                            return (
+                              <div key={i} className="space-y-1">
+                                {dropOff !== null && (
+                                  <div className="flex items-center gap-2 ml-2 text-xs text-muted-foreground">
+                                    <span className="border-l-2 border-dashed border-muted-foreground/30 h-3" />
+                                    <span>
+                                      {convRate}% conversion / {dropOff}% abandono
+                                    </span>
+                                  </div>
+                                )}
+                                <div className="flex items-center gap-3">
+                                  <div className="flex-1">
+                                    <div
+                                      className={`${step.color} rounded-md h-10 flex items-center px-3 transition-all`}
+                                      style={{ width: `${step.widthPct}%` }}
+                                    >
+                                      <span className="text-white text-sm font-medium truncate">
+                                        {step.value.toLocaleString("es-ES")}
+                                      </span>
+                                    </div>
+                                  </div>
+                                  <div className="flex-shrink-0 w-[140px] sm:w-[180px]">
+                                    <p className="text-sm font-medium">{step.label}</p>
+                                    {"estimated" in step && step.estimated && (
+                                      <p className="text-[10px] text-muted-foreground">
+                                        (estimado)
+                                      </p>
+                                    )}
+                                  </div>
+                                </div>
+                              </div>
+                            );
+                          })}
+                          {sessions > 0 && (
+                            <div className="pt-2 border-t">
+                              <p className="text-xs text-muted-foreground">
+                                Tasa de conversion global:{" "}
+                                <span className="font-semibold text-foreground">
+                                  {((funnelSteps[2].value / sessions) * 100).toFixed(2)}%
+                                </span>
+                              </p>
+                            </div>
+                          )}
+                        </div>
+                      );
+                    })()}
                   </CardContent>
                 </Card>
-              ))}
-            </div>
+              )}
+            </>
           )}
         </div>
       )}

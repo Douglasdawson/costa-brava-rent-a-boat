@@ -48,6 +48,8 @@ const GalleryPage = lazy(() => import("@/pages/gallery"));
 const RoutesPage = lazy(() => import("@/pages/routes"));
 const GiftCardsPage = lazy(() => import("@/pages/gift-cards"));
 const CancelBookingPage = lazy(() => import("@/pages/CancelBookingPage"));
+const PricingPage = lazy(() => import("@/pages/pricing"));
+const LocationBarcelonaPage = lazy(() => import("@/pages/location-barcelona"));
 const NotFound = lazy(() => import("@/pages/not-found"));
 const OnboardingPage = lazy(() => import("@/pages/OnboardingPage"));
 const AccessibilityDeclarationPage = lazy(() => import("@/pages/accessibility-declaration"));
@@ -60,6 +62,7 @@ import { SocialProofToast } from "./components/SocialProofToast";
 import { SeasonBanner } from "./components/SeasonBanner";
 import { RouteProgressBar } from "./components/RouteProgressBar";
 import { usePrefetchCriticalRoutes } from "@/hooks/usePrefetch";
+import { initWebVitals } from "@/utils/web-vitals";
 import { 
   getSEOConfig, 
   generateHreflangLinks, 
@@ -333,6 +336,8 @@ function Router() {
         <Route path="/rutas" component={RoutesPage} />
         <Route path="/tarjetas-regalo" component={GiftCardsPage} />
         <Route path="/testimonios" component={TestimoniosPage} />
+        <Route path="/precios" component={PricingPage} />
+        <Route path="/alquiler-barcos-cerca-barcelona" component={LocationBarcelonaPage} />
         <Route path="/blog/:slug" component={BlogDetailPage} />
         <Route path="/blog" component={BlogPage} />
         <Route path="/destinos/:slug" component={DestinationDetailPage} />
@@ -344,6 +349,16 @@ function Router() {
 }
 
 function App() {
+  useEffect(() => {
+    initWebVitals();
+
+    // Initialize Meta Pixel if configured (pixel ID injected via meta tag)
+    const metaPixelId = document.querySelector('meta[name="fb-pixel-id"]')?.getAttribute("content");
+    if (metaPixelId) {
+      import("./utils/meta-pixel").then(({ initMetaPixel }) => initMetaPixel(metaPixelId));
+    }
+  }, []);
+
   return (
     <ErrorBoundary>
       <QueryClientProvider client={queryClient}>

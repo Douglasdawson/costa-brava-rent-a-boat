@@ -25,6 +25,8 @@ const envSchema = z.object({
   GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY: z.string().optional(),
   GOOGLE_ANALYTICS_PROPERTY_ID: z.string().optional(),
   GSC_SITE_URL: z.string().optional(),
+  META_PIXEL_ID: z.string().optional(),
+  META_CAPI_ACCESS_TOKEN: z.string().optional(),
   BASE_URL: z.string().default("https://costabravarentaboat.com"),
 });
 

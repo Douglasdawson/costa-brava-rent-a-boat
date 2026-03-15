@@ -68,7 +68,7 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       ogDescription: "¿Licencia necesaria? ¿Qué incluye? ¿Precios? Todas las respuestas sobre alquilar barcos en Blanes. ¡Información clara y completa!"
     },
     locationBlanes: {
-      title: "Alquiler Barcos en Blanes Puerto | Costa Brava 2026",
+      title: "Alquilar Barco en Blanes sin Licencia | Desde 70\u20ac | Costa Brava 2026",
       description: "Alquila barcos en Puerto de Blanes. Sin licencia y con licencia. 7 embarcaciones disponibles. Explora calas y playas de la Costa Brava. ¡Reserva ya!",
       keywords: "alquiler barcos blanes puerto, embarcaciones blanes costa brava, barcos sin licencia blanes, calas costa brava desde blanes",
       ogTitle: "Alquiler de Barcos en Puerto de Blanes | Costa Brava 2026",
@@ -161,6 +161,20 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       keywords: "tarjetas regalo barcos, regalo alquiler barco blanes, experiencia nautica regalo, costa brava regalo",
       ogTitle: "Tarjetas Regalo | Costa Brava Rent a Boat",
       ogDescription: "Regala una experiencia nautica inolvidable. Tarjetas desde 50EUR canjeables en todos nuestros barcos en Blanes."
+    },
+    pricing: {
+      title: "Precios Alquiler Barcos Blanes 2026 | Costa Brava Rent a Boat",
+      description: "Consulta precios de alquiler de barcos en Blanes. Sin licencia desde 70\u20ac/hora. Con licencia desde 150\u20ac. Gasolina incluida. Temporada baja, media y alta.",
+      keywords: "precios alquiler barco costa brava, cuanto cuesta alquilar barco blanes, tarifas barco sin licencia",
+      ogTitle: "Precios Alquiler Barcos Blanes 2026 | Desde 70\u20ac",
+      ogDescription: "Compara precios de todos nuestros barcos en Blanes. Sin licencia desde 70\u20ac/h. Gasolina incluida. Temporada baja, media y alta."
+    },
+    locationBarcelona: {
+      title: "Alquiler Barcos cerca de Barcelona | Blanes a 70min | Costa Brava",
+      description: "Alquila barcos sin licencia a 70 minutos de Barcelona. Blanes, Costa Brava. Mejores precios, aguas cristalinas. Desde 70\u20ac. Gasolina incluida.",
+      keywords: "alquilar barco sin licencia barcelona, alquiler barcos cerca barcelona, barcos costa brava desde barcelona",
+      ogTitle: "Alquiler Barcos cerca de Barcelona | Blanes Costa Brava",
+      ogDescription: "A solo 70 min de Barcelona. Barcos sin licencia desde 70\u20ac con gasolina incluida. Aguas cristalinas de la Costa Brava."
     },
     notFound: {
       title: "Página no encontrada | Costa Brava Rent a Boat",
@@ -271,6 +285,16 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       ogTitle: "Gift Cards | Costa Brava Rent a Boat",
       ogDescription: "Give an unforgettable nautical experience. Cards from 50EUR redeemable on all our boats in Blanes."
     },
+    pricing: {
+      title: "Boat Rental Prices Blanes 2026 | Costa Brava Rent a Boat",
+      description: "Check boat rental prices in Blanes. No license from 70\u20ac/h. Licensed from 150\u20ac. Fuel included. Low, mid and high season rates.",
+      keywords: "boat rental prices costa brava, how much boat rental blanes, boat hire rates blanes"
+    },
+    locationBarcelona: {
+      title: "Boat Rental near Barcelona | Blanes 70min | Costa Brava",
+      description: "Rent boats without license 70 minutes from Barcelona. Blanes, Costa Brava. Best prices, crystal clear water. From 70\u20ac. Fuel included.",
+      keywords: "boat rental near barcelona, boats without license barcelona, costa brava boats from barcelona"
+    },
     notFound: {
       title: "Page not found | Costa Brava Rent a Boat",
       description: "The page you're looking for doesn't exist. Return to home to rent boats in Blanes, Costa Brava.",
@@ -363,6 +387,16 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       title: "Targetes Regal Lloguer Barques | Costa Brava Rent a Boat",
       description: "Regala una experiencia nautica a la Costa Brava. Targetes regal des de 50EUR per llogar barques a Blanes. Valides 1 any.",
       keywords: "targetes regal barques, regal lloguer barca blanes, experiencia nautica regal, costa brava regal"
+    },
+    pricing: {
+      title: "Preus Lloguer Barques Blanes 2026 | Costa Brava Rent a Boat",
+      description: "Consulta els preus de lloguer de barques a Blanes. Sense llicencia des de 70\u20ac/h. Gasolina inclosa. Temporada baixa, mitja i alta.",
+      keywords: "preus lloguer barques costa brava, quant costa llogar barca blanes, tarifes barca sense llicencia"
+    },
+    locationBarcelona: {
+      title: "Lloguer Barques prop de Barcelona | Blanes a 70min | Costa Brava",
+      description: "Lloga barques sense llicencia a 70 minuts de Barcelona. Blanes, Costa Brava. Millors preus, aigues cristallines. Des de 70\u20ac.",
+      keywords: "llogar barca sense llicencia barcelona, lloguer barques prop barcelona, barques costa brava des de barcelona"
     }
   },
   fr: {
@@ -437,6 +471,16 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       title: "Cartes Cadeaux Location Bateaux | Costa Brava Rent a Boat",
       description: "Offrez une experience nautique sur la Costa Brava. Cartes cadeaux des 50EUR pour louer des bateaux a Blanes. Valables 1 an.",
       keywords: "cartes cadeaux bateaux, cadeau location bateau blanes, experience nautique cadeau, costa brava cadeau"
+    },
+    pricing: {
+      title: "Tarifs Location Bateaux Blanes 2026 | Costa Brava Rent a Boat",
+      description: "Consultez les tarifs de location de bateaux a Blanes. Sans permis des 70\u20ac/h. Carburant inclus. Basse, moyenne et haute saison.",
+      keywords: "tarifs location bateaux costa brava, combien coute louer bateau blanes, prix bateau sans permis"
+    },
+    locationBarcelona: {
+      title: "Location Bateaux pres de Barcelone | Blanes a 70min | Costa Brava",
+      description: "Louez des bateaux sans permis a 70 minutes de Barcelone. Blanes, Costa Brava. Meilleurs prix, eaux cristallines. Des 70\u20ac.",
+      keywords: "location bateau sans permis barcelone, location bateaux pres barcelone, bateaux costa brava depuis barcelone"
     }
   },
   de: {
@@ -511,6 +555,16 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       title: "Geschenkkarten Bootsverleih | Costa Brava Rent a Boat",
       description: "Verschenken Sie ein nautisches Erlebnis an der Costa Brava. Geschenkkarten ab 50EUR fur Bootsverleih in Blanes. 1 Jahr gultig.",
       keywords: "geschenkkarten boote, geschenk bootsverleih blanes, nautisches erlebnis geschenk, costa brava geschenk"
+    },
+    pricing: {
+      title: "Bootsverleih Preise Blanes 2026 | Costa Brava Rent a Boat",
+      description: "Bootsverleih Preise in Blanes. Ohne Fuhrerschein ab 70\u20ac/h. Kraftstoff inklusive. Neben-, Mittel- und Hochsaison.",
+      keywords: "bootsverleih preise costa brava, was kostet boot mieten blanes, bootstarife ohne fuhrerschein"
+    },
+    locationBarcelona: {
+      title: "Bootsverleih nahe Barcelona | Blanes 70min | Costa Brava",
+      description: "Boote ohne Fuhrerschein mieten, 70 Minuten von Barcelona. Blanes, Costa Brava. Beste Preise, kristallklares Wasser. Ab 70\u20ac.",
+      keywords: "boot mieten nahe barcelona, boote ohne fuhrerschein barcelona, costa brava boote von barcelona"
     }
   },
   nl: {
@@ -585,6 +639,16 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       title: "Cadeaukaarten Bootverhuur | Costa Brava Rent a Boat",
       description: "Geef een nautische ervaring aan de Costa Brava. Cadeaukaarten vanaf 50EUR voor bootverhuur in Blanes. 1 jaar geldig.",
       keywords: "cadeaukaarten boten, cadeau bootverhuur blanes, nautische ervaring cadeau, costa brava cadeau"
+    },
+    pricing: {
+      title: "Bootverhuur Prijzen Blanes 2026 | Costa Brava Rent a Boat",
+      description: "Bekijk bootverhuur prijzen in Blanes. Zonder vaarbewijs vanaf 70\u20ac/u. Brandstof inbegrepen. Laag-, midden- en hoogseizoen.",
+      keywords: "bootverhuur prijzen costa brava, hoeveel kost boot huren blanes, boottarieven zonder vaarbewijs"
+    },
+    locationBarcelona: {
+      title: "Bootverhuur nabij Barcelona | Blanes 70min | Costa Brava",
+      description: "Huur boten zonder vaarbewijs op 70 minuten van Barcelona. Blanes, Costa Brava. Beste prijzen, kristalhelder water. Vanaf 70\u20ac.",
+      keywords: "boot huren nabij barcelona, boten zonder vaarbewijs barcelona, costa brava boten vanuit barcelona"
     }
   },
   it: {
@@ -654,6 +718,16 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       title: "Carte Regalo Noleggio Barche | Costa Brava Rent a Boat",
       description: "Regala un'esperienza nautica sulla Costa Brava. Carte regalo da 50EUR per noleggio barche a Blanes. Valide 1 anno.",
       keywords: "carte regalo barche, regalo noleggio barca blanes, esperienza nautica regalo, costa brava regalo"
+    },
+    pricing: {
+      title: "Prezzi Noleggio Barche Blanes 2026 | Costa Brava Rent a Boat",
+      description: "Consulta i prezzi di noleggio barche a Blanes. Senza patente da 70\u20ac/h. Carburante incluso. Bassa, media e alta stagione.",
+      keywords: "prezzi noleggio barche costa brava, quanto costa noleggiare barca blanes, tariffe barca senza patente"
+    },
+    locationBarcelona: {
+      title: "Noleggio Barche vicino a Barcellona | Blanes a 70min | Costa Brava",
+      description: "Noleggia barche senza patente a 70 minuti da Barcellona. Blanes, Costa Brava. Migliori prezzi, acque cristalline. Da 70\u20ac.",
+      keywords: "noleggio barca senza patente barcellona, noleggio barche vicino barcellona, barche costa brava da barcellona"
     }
   },
   ru: {
@@ -723,6 +797,16 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       title: "Подарочные Карты Аренда Лодок | Costa Brava Rent a Boat",
       description: "Подарите морской опыт на Коста-Браве. Подарочные карты от 50EUR на аренду лодок в Бланесе. Действительны 1 год.",
       keywords: "подарочные карты лодки, подарок аренда лодки бланес, морской опыт подарок, коста брава подарок"
+    },
+    pricing: {
+      title: "Цены Аренда Лодок Бланес 2026 | Costa Brava Rent a Boat",
+      description: "Узнайте цены аренды лодок в Бланесе. Без лицензии от 70\u20ac/ч. Топливо включено. Низкий, средний и высокий сезон.",
+      keywords: "цены аренда лодок коста брава, сколько стоит арендовать лодку бланес, тарифы лодка без лицензии"
+    },
+    locationBarcelona: {
+      title: "Аренда Лодок рядом с Барселоной | Бланес 70мин | Коста-Брава",
+      description: "Арендуйте лодки без лицензии в 70 минутах от Барселоны. Бланес, Коста-Брава. Лучшие цены, кристально чистая вода. От 70\u20ac.",
+      keywords: "аренда лодки без лицензии барселона, аренда лодок рядом барселона, лодки коста брава из барселоны"
     }
   }
 };
@@ -812,6 +896,8 @@ const getPagePath = (pageName: string): string => {
     gallery: 'galeria',
     routes: 'rutas',
     giftCards: 'tarjetas-regalo',
+    pricing: 'precios',
+    locationBarcelona: 'alquiler-barcos-cerca-barcelona',
     notFound: '404'
   };
   

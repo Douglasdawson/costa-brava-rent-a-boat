@@ -15,7 +15,31 @@ const checkAvailabilityWithBoatSchema = checkAvailabilitySchema.extend({
   boatId: z.string().min(1, "El ID del barco es requerido"),
 });
 
+// In-memory daily view counter (resets on server restart)
+const dailyViews = new Map<string, { count: number; date: string }>();
+
+function getTodayStr(): string {
+  return new Date().toISOString().split("T")[0];
+}
+
 export function registerBoatRoutes(app: Express) {
+  // GET /api/boats/:id/views - Get and increment view count
+  app.get("/api/boats/:id/views", (req, res) => {
+    const boatId = req.params.id;
+    const today = getTodayStr();
+
+    const current = dailyViews.get(boatId);
+    if (!current || current.date !== today) {
+      dailyViews.set(boatId, { count: 1, date: today });
+    } else {
+      current.count += 1;
+    }
+
+    const views = dailyViews.get(boatId)!.count;
+    res.setHeader("Cache-Control", "no-cache");
+    res.json({ views });
+  });
+
   // Weekly bookings count per boat (social proof)
   app.get("/api/boats/weekly-bookings", async (req, res) => {
     try {

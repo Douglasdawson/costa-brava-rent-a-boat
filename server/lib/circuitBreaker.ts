@@ -50,3 +50,6 @@ export const sendgridBreaker = new CircuitBreaker("sendgrid", 3, 120000);
 export const twilioBreaker = new CircuitBreaker("twilio", 3, 120000);
 export const openaiBreaker = new CircuitBreaker("openai", 5, 60000);
 export const metaBreaker = new CircuitBreaker("meta", 3, 120000);
+export const valueSerpBreaker = new CircuitBreaker("valueserp", 3, 300000); // 5min cooldown
+export const perplexityBreaker = new CircuitBreaker("perplexity", 3, 300000);
+export const anthropicSeoBreaker = new CircuitBreaker("anthropic-seo", 3, 300000);

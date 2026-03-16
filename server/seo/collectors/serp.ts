@@ -4,6 +4,7 @@ import { seoKeywords, seoRankings, seoSerpFeatures, seoCompetitorRankings, seoCo
 import { eq } from "drizzle-orm";
 import { logger } from "../../lib/logger";
 import { SEO_CONFIG } from "../config";
+import { valueSerpBreaker } from "../../lib/circuitBreaker";
 
 interface ValueSerpResult {
   search_parameters: { q: string };
@@ -19,6 +20,7 @@ interface ValueSerpResult {
   local_results?: Array<Record<string, unknown>>;
   inline_images?: Array<Record<string, unknown>>;
   ai_overview?: Record<string, unknown>;
+  search_information?: { total_results?: number };
 }
 
 async function queryValueSerp(keyword: string, location: string = "Girona,Catalonia,Spain"): Promise<ValueSerpResult | null> {
@@ -36,12 +38,11 @@ async function queryValueSerp(keyword: string, location: string = "Girona,Catalo
   });
 
   try {
-    const response = await fetch(`https://api.valueserp.com/search?${params}`);
-    if (!response.ok) {
-      logger.error(`[SEO:SERP] ValueSERP API error: ${response.status}`);
-      return null;
-    }
-    return await response.json() as ValueSerpResult;
+    return await valueSerpBreaker.call(async () => {
+      const response = await fetch(`https://api.valueserp.com/search?${params}`);
+      if (!response.ok) throw new Error(`ValueSERP API error: ${response.status}`);
+      return await response.json() as ValueSerpResult;
+    });
   } catch (error) {
     logger.error("[SEO:SERP] ValueSERP request failed", { error: String(error) });
     return null;
@@ -136,20 +137,29 @@ export async function trackSerps(): Promise<void> {
       String(lr.title || "").toLowerCase().includes("costa brava rent")
     ) || false;
 
+    const ownsFaq = features.faq && !!ourResult && Number(ourResult.position) <= 3;
+
+    const ownsImages = result.inline_images?.some((img: Record<string, unknown>) =>
+      String(img.source || img.link || "").includes("costabravarentaboat")
+    ) || false;
+
+    const ownsAiOverview = result.ai_overview ?
+      JSON.stringify(result.ai_overview).toLowerCase().includes("costa brava rent") : false;
+
     await db
       .insert(seoSerpFeatures)
       .values({
         keywordId: kw.id,
         date: today,
         features,
-        ownsFaq: false, // TODO: detect if our FAQ appears
+        ownsFaq,
         ownsLocalPack,
-        ownsImages: false, // TODO: detect if our images appear
-        ownsAiOverview: false,
+        ownsImages,
+        ownsAiOverview,
       })
       .onConflictDoUpdate({
         target: [seoSerpFeatures.keywordId, seoSerpFeatures.date],
-        set: { features, ownsLocalPack },
+        set: { features, ownsLocalPack, ownsFaq, ownsImages, ownsAiOverview },
       });
 
     tracked++;

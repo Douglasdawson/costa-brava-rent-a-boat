@@ -6,6 +6,9 @@ import { logger } from "../../lib/logger";
 import { SEO_CONFIG } from "../config";
 import { runDailyAnalysis } from "../strategist/agent";
 import { updateMeta } from "./meta";
+import { addFaq } from "./faq";
+import { addInternalLink } from "./internalLink";
+import { updateSchema } from "./schema";
 
 type Executor = (action: {
   page: string;
@@ -17,12 +20,9 @@ type Executor = (action: {
 const executors: Record<string, Executor> = {
   meta_title: updateMeta,
   meta_description: updateMeta,
-  // Future phases:
-  // content_expansion: expandContent,
-  // faq_add: addFaq,
-  // internal_link: addInternalLink,
-  // new_page: createPage,
-  // schema_update: updateSchema,
+  faq_add: addFaq,
+  internal_link: addInternalLink,
+  schema_update: updateSchema,
 };
 
 export async function executeScheduledActions(): Promise<void> {

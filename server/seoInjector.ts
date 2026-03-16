@@ -337,7 +337,7 @@ async function getBaseHtml(distPath: string): Promise<string> {
   return cachedBaseHtml;
 }
 
-function injectMeta(html: string, meta: SEOMeta, canonicalUrl: string, extraJsonLd?: object): string {
+function injectMeta(html: string, meta: SEOMeta, canonicalUrl: string, extraJsonLd?: object, lang: LangCode = "es"): string {
   const title = esc(meta.title);
   const desc = esc(meta.description);
   const ogTitle = esc(meta.ogTitle || meta.title);
@@ -345,6 +345,24 @@ function injectMeta(html: string, meta: SEOMeta, canonicalUrl: string, extraJson
   const canonical = esc(canonicalUrl);
 
   let result = html;
+
+  // Dynamic html lang attribute — Google uses this as primary language signal
+  result = result.replace(/<html lang="[^"]*">/, `<html lang="${esc(lang)}">`);
+
+  // Update og:locale to match detected language
+  const OG_LOCALE_MAP: Record<LangCode, string> = {
+    es: "es_ES", ca: "ca_ES", en: "en_US", fr: "fr_FR",
+    de: "de_DE", nl: "nl_NL", it: "it_IT", ru: "ru_RU",
+  };
+  result = result.replace(/<meta property="og:locale" content="[^"]*">/, `<meta property="og:locale" content="${OG_LOCALE_MAP[lang] || "es_ES"}">`);
+
+  // Update meta language tag
+  const LANG_NAME_MAP: Record<LangCode, string> = {
+    es: "Spanish", ca: "Catalan", en: "English", fr: "French",
+    de: "German", nl: "Dutch", it: "Italian", ru: "Russian",
+  };
+  result = result.replace(/<meta name="language" content="[^"]*">/, `<meta name="language" content="${LANG_NAME_MAP[lang] || "Spanish"}">`);
+
   result = result.replace(/<title>[^<]*<\/title>/, `<title>${title}</title>`);
   result = result.replace(/<meta name="description" content="[^"]*">/, `<meta name="description" content="${desc}">`);
   result = result.replace(/<meta property="og:title" content="[^"]*">/, `<meta property="og:title" content="${ogTitle}">`);
@@ -1344,7 +1362,7 @@ export async function serveWithSEO(
         }
       }
       const baseHtml = await getBaseHtml(distPath);
-      const html = injectMeta(baseHtml, resolved.meta, canonicalUrl, resolved.jsonLd);
+      const html = injectMeta(baseHtml, resolved.meta, canonicalUrl, resolved.jsonLd, lang);
       res.set("Content-Type", "text/html; charset=utf-8");
       res.set("Cache-Control", "public, max-age=300, must-revalidate"); // 5 min cache for SEO-injected pages
       res.send(html);

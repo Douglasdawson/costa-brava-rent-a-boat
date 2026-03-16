@@ -5,7 +5,7 @@ import {
   seoSerpFeatures, seoCampaigns, seoExperiments, seoLearnings,
   seoConversions, seoPages, seoGeo, seoAlerts, bookings,
 } from "../../../shared/schema";
-import { eq, desc, gte, and, sql, count } from "drizzle-orm";
+import { eq, desc, gte, and, sql, count, sum, lt, inArray } from "drizzle-orm";
 import { SEO_CONFIG } from "../config";
 
 export interface SeoBriefing {
@@ -207,6 +207,159 @@ export async function buildBriefing(): Promise<SeoBriefing> {
     .orderBy(desc(seoGeo.date))
     .limit(20);
 
+  // Keywords losing position week-over-week
+  const losingRaw: Array<{ keyword: string; positionChange: number; currentPosition: number }> = [];
+  for (const row of topKeywordsRaw) {
+    const keywordId = row.id;
+    const latestEntry = keywordMap.get(row.keyword);
+    if (!latestEntry || !latestEntry.position) continue;
+
+    const weekAgoRankings = await db
+      .select({ position: seoRankings.position })
+      .from(seoRankings)
+      .where(
+        and(
+          eq(seoRankings.keywordId, keywordId),
+          eq(seoRankings.date, dateStr(sevenDaysAgo)),
+        )
+      )
+      .limit(1);
+
+    if (weekAgoRankings.length > 0 && weekAgoRankings[0].position) {
+      const currentPos = Number(latestEntry.position);
+      const oldPos = Number(weekAgoRankings[0].position);
+      const change = currentPos - oldPos; // positive = worsened
+      if (change > 2) {
+        losingRaw.push({
+          keyword: row.keyword,
+          positionChange: change,
+          currentPosition: currentPos,
+        });
+      }
+    }
+  }
+  // Deduplicate by keyword
+  const losingMap = new Map<string, typeof losingRaw[0]>();
+  for (const l of losingRaw) {
+    if (!losingMap.has(l.keyword)) losingMap.set(l.keyword, l);
+  }
+  const losing = Array.from(losingMap.values());
+
+  // Competitor comparison: keywords they beat us
+  const competitorKeywordIds = Array.from(keywordMap.values()).map(k => k.id);
+  const competitorComparison = await Promise.all(
+    competitors.map(async (c) => {
+      const keywordsTheyBeatUs: Array<{ keyword: string; theirPosition: number; ourPosition: number }> = [];
+
+      if (competitorKeywordIds.length > 0) {
+        const compRankings = await db
+          .select({
+            keywordId: seoCompetitorRankings.keywordId,
+            position: seoCompetitorRankings.position,
+          })
+          .from(seoCompetitorRankings)
+          .where(
+            and(
+              eq(seoCompetitorRankings.competitorId, c.id),
+              gte(seoCompetitorRankings.date, dateStr(sevenDaysAgo)),
+              inArray(seoCompetitorRankings.keywordId, competitorKeywordIds),
+            )
+          );
+
+        // Group by keyword, get latest (we already have recent data)
+        const compMap = new Map<number, number>();
+        for (const cr of compRankings) {
+          if (cr.position) {
+            const pos = Number(cr.position);
+            const existing = compMap.get(cr.keywordId);
+            if (!existing || pos < existing) compMap.set(cr.keywordId, pos);
+          }
+        }
+
+        for (const [kwId, theirPos] of Array.from(compMap.entries())) {
+          const ourEntry = topKeywordsRaw.find(k => k.id === kwId);
+          if (ourEntry && ourEntry.position) {
+            const ourPos = Number(ourEntry.position);
+            if (theirPos < ourPos) {
+              keywordsTheyBeatUs.push({
+                keyword: ourEntry.keyword,
+                theirPosition: theirPos,
+                ourPosition: ourPos,
+              });
+            }
+          }
+        }
+      }
+
+      return {
+        competitor: c.name || "",
+        type: c.type || "",
+        keywordsTheyBeatUs,
+      };
+    })
+  );
+
+  // SERP feature opportunities
+  const serpRaw = await db
+    .select({
+      keyword: seoKeywords.keyword,
+      features: seoSerpFeatures.features,
+      ownsFaq: seoSerpFeatures.ownsFaq,
+      ownsLocalPack: seoSerpFeatures.ownsLocalPack,
+      ownsImages: seoSerpFeatures.ownsImages,
+      ownsAiOverview: seoSerpFeatures.ownsAiOverview,
+    })
+    .from(seoSerpFeatures)
+    .innerJoin(seoKeywords, eq(seoSerpFeatures.keywordId, seoKeywords.id))
+    .where(gte(seoSerpFeatures.date, dateStr(sevenDaysAgo)))
+    .orderBy(desc(seoSerpFeatures.date));
+
+  const serpFeatureOpportunities = serpRaw.map(row => {
+    const featuresObj = (row.features || {}) as Record<string, boolean>;
+    const ownershipMap: Record<string, boolean> = {
+      faq: row.ownsFaq,
+      localPack: row.ownsLocalPack,
+      images: row.ownsImages,
+      aiOverview: row.ownsAiOverview,
+    };
+    const weOwn: string[] = [];
+    const weMiss: string[] = [];
+    for (const [feature, exists] of Object.entries(featuresObj)) {
+      if (exists) {
+        if (ownershipMap[feature]) {
+          weOwn.push(feature);
+        } else {
+          weMiss.push(feature);
+        }
+      }
+    }
+    return {
+      keyword: row.keyword,
+      features: featuresObj,
+      weOwn,
+      weMiss,
+    };
+  });
+
+  // Top revenue keywords
+  const topRevenueKeywordsRaw = await db
+    .select({
+      keyword: seoKeywords.keyword,
+      revenue: sum(seoConversions.revenue).as("total_revenue"),
+      bookings: count(seoConversions.bookingId).as("total_bookings"),
+    })
+    .from(seoConversions)
+    .innerJoin(seoKeywords, eq(seoConversions.keywordId, seoKeywords.id))
+    .groupBy(seoKeywords.keyword)
+    .orderBy(desc(sql`total_revenue`))
+    .limit(20);
+
+  const topRevenueKeywords = topRevenueKeywordsRaw.map(r => ({
+    keyword: r.keyword,
+    revenue: Number(r.revenue || 0),
+    bookings: Number(r.bookings || 0),
+  }));
+
   return {
     timestamp: now.toISOString(),
     seasonMode: SEO_CONFIG.getSeasonMode(),
@@ -215,15 +368,11 @@ export async function buildBriefing(): Promise<SeoBriefing> {
     topKeywords,
     almostThere,
     doorway,
-    losing: [], // TODO: calculate from ranking trend
+    losing,
 
-    competitorComparison: competitors.map(c => ({
-      competitor: c.name || "",
-      type: c.type || "",
-      keywordsTheyBeatUs: [],
-    })),
+    competitorComparison,
 
-    serpFeatureOpportunities: [],
+    serpFeatureOpportunities,
 
     campaigns: campaigns.map(c => ({
       name: c.name,
@@ -255,7 +404,7 @@ export async function buildBriefing(): Promise<SeoBriefing> {
       confidence: Number(l.confidence || 0),
     })),
 
-    topRevenueKeywords: [],
+    topRevenueKeywords,
 
     pagesWithIssues: pagesRaw.map(p => ({
       path: p.path,

@@ -18,6 +18,7 @@ export { MaintenanceTab } from "./MaintenanceTab";
 export { InventoryTab } from "./InventoryTab";
 export { ReportsTab } from "./ReportsTab";
 export { AnalyticsTab } from "./AnalyticsTab";
+export { SeoTab } from "./SeoTab";
 export { BlogManagement } from "./BlogManagement";
 
 // CRM Module exports - Modals

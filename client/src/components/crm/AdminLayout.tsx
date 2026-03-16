@@ -26,6 +26,7 @@ import {
   MessageSquare,
   FileText,
   MoreHorizontal,
+  Search,
 } from "lucide-react";
 
 interface AdminLayoutProps {
@@ -61,6 +62,7 @@ const ADMIN_TABS = [
   { id: "blog", label: "Blog", icon: FileText },
   { id: "giftcards", label: "Regalos", icon: Gift },
   { id: "discounts", label: "Descuentos", icon: Percent },
+  { id: "seo", label: "SEO Engine", icon: Search },
 ];
 
 const OWNER_TABS = [
@@ -138,6 +140,7 @@ export function AdminLayout({
       { id: "blog", label: "Blog", icon: FileText },
       { id: "giftcards", label: "Regalos", icon: Gift },
       { id: "discounts", label: "Descuentos", icon: Percent },
+      { id: "seo", label: "SEO Engine", icon: Search },
     ].filter(t => canSeeTab(t.id));
     if (negocioTabs.length > 0) secondaryGroups.push({ label: "Negocio", tabs: negocioTabs });
   }

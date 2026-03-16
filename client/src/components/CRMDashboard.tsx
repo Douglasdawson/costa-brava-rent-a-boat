@@ -24,6 +24,7 @@ import {
   InventoryTab,
   ReportsTab,
   AnalyticsTab,
+  SeoTab,
   BookingDetailsModal,
   getStatusLabel,
 } from "./crm";
@@ -42,7 +43,7 @@ interface CRMDashboardProps {
 const VALID_TABS = [
   "dashboard", "calendar", "bookings", "customers", "inquiries",
   "fleet", "maintenance", "inventory", "reports", "analytics", "gallery",
-  "giftcards", "discounts", "blog", "employees", "config",
+  "giftcards", "discounts", "blog", "employees", "config", "seo",
 ];
 
 export default function CRMDashboard({ adminToken }: CRMDashboardProps) {
@@ -102,6 +103,7 @@ export default function CRMDashboard({ adminToken }: CRMDashboardProps) {
       blog: "Blog",
       employees: "Usuarios",
       config: "Configuración",
+      seo: "SEO Engine",
     };
     const prev = document.title;
     document.title = `${titles[selectedTab] || "Dashboard"} — Costa Brava Rent a Boat`;
@@ -396,6 +398,11 @@ export default function CRMDashboard({ adminToken }: CRMDashboardProps) {
         {/* SEO & Analytics Tab */}
         {selectedTab === "analytics" && (
           <AnalyticsTab adminToken={adminToken} />
+        )}
+
+        {/* SEO Engine Tab */}
+        {selectedTab === "seo" && (
+          <SeoTab adminToken={adminToken} />
         )}
 
         {/* Gallery Tab */}

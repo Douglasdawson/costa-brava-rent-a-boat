@@ -48,6 +48,9 @@ export function SEO({
     ogImage.startsWith('/') ? `${window.location.origin}${ogImage}` :
     `${window.location.origin}/${ogImage}`;
   useEffect(() => {
+    // Update html lang attribute for SPA navigation
+    document.documentElement.lang = language;
+
     // Update title
     document.title = title;
 

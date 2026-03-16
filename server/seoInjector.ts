@@ -21,6 +21,14 @@ const AI_BOT_PATTERNS = [
   /Bytespider/i,
   /CCBot/i,
   /cohere-ai/i,
+  /Meta-ExternalAgent/i,
+  /Amazonbot/i,
+  /YouBot/i,
+  /Timpibot/i,
+  /AI2Bot/i,
+  /Diffbot/i,
+  /ImagesiftBot/i,
+  /Omgili/i,
 ];
 
 export function isAICrawler(userAgent: string | undefined): boolean {
@@ -301,6 +309,26 @@ const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
       description: "Declaración de accesibilidad web de Costa Brava Rent a Boat. Cumplimiento WCAG 2.1.",
     },
   },
+  "/precios": {
+    es: {
+      title: "Precios Alquiler Barcos Blanes 2026 | Costa Brava Rent a Boat",
+      description: "Consulta precios de alquiler de barcos en Blanes. Sin licencia desde 70\u20ac/hora. Con licencia desde 150\u20ac. Gasolina incluida. Temporada baja, media y alta.",
+      ogTitle: "Precios Alquiler Barcos Blanes 2026 | Desde 70\u20ac",
+      ogDescription: "Compara precios de todos nuestros barcos en Blanes. Sin licencia desde 70\u20ac/h. Gasolina incluida. Temporada baja, media y alta.",
+    },
+    en: {
+      title: "Boat Rental Prices Blanes 2026 | Costa Brava Rent a Boat",
+      description: "Check boat rental prices in Blanes. No license from 70\u20ac/h. Licensed from 150\u20ac. Fuel included. Low, mid and high season rates.",
+    },
+    fr: {
+      title: "Tarifs Location Bateaux Blanes 2026 | Costa Brava",
+      description: "Consultez les tarifs de location de bateaux a Blanes. Sans permis des 70\u20ac/h. Essence incluse. Tarifs basse, moyenne et haute saison.",
+    },
+    de: {
+      title: "Preise Bootsverleih Blanes 2026 | Costa Brava",
+      description: "Bootsverleih-Preise in Blanes. Ohne Fuhrerschein ab 70\u20ac/h. Benzin inklusive. Neben-, Mittel- und Hochsaison-Preise.",
+    },
+  },
   // Long-tail: these map to existing SPA routes but give AI crawlers ultra-specific meta
   "/destinos": {
     es: {
@@ -351,7 +379,7 @@ function injectMeta(html: string, meta: SEOMeta, canonicalUrl: string, extraJson
 
   // Update og:locale to match detected language
   const OG_LOCALE_MAP: Record<LangCode, string> = {
-    es: "es_ES", ca: "ca_ES", en: "en_US", fr: "fr_FR",
+    es: "es_ES", ca: "ca_ES", en: "en_GB", fr: "fr_FR",
     de: "de_DE", nl: "nl_NL", it: "it_IT", ru: "ru_RU",
   };
   result = result.replace(/<meta property="og:locale" content="[^"]*">/, `<meta property="og:locale" content="${OG_LOCALE_MAP[lang] || "es_ES"}">`);
@@ -375,6 +403,15 @@ function injectMeta(html: string, meta: SEOMeta, canonicalUrl: string, extraJson
     const absImage = meta.ogImage.startsWith("http") ? meta.ogImage : `${BASE_URL}${meta.ogImage}`;
     result = result.replace(/<meta property="og:image" content="[^"]*">/, `<meta property="og:image" content="${esc(absImage)}">`);
     result = result.replace(/<meta name="twitter:image" content="[^"]*">/, `<meta name="twitter:image" content="${esc(absImage)}">`);
+    // Update dimensions to match the actual image (blog/boat images are landscape)
+    result = result.replace(/<meta property="og:image:width" content="[^"]*">/, `<meta property="og:image:width" content="1200">`);
+    result = result.replace(/<meta property="og:image:height" content="[^"]*">/, `<meta property="og:image:height" content="630">`);
+    // Add og:image:secure_url for parsers that require explicit HTTPS reference
+    result = result.replace("</head>", `  <meta property="og:image:secure_url" content="${esc(absImage)}" />\n</head>`);
+  } else {
+    // Default og:image (1200x630 landscape recommended by Facebook/LinkedIn)
+    result = result.replace(/<meta property="og:image:width" content="[^"]*">/, `<meta property="og:image:width" content="1200">`);
+    result = result.replace(/<meta property="og:image:height" content="[^"]*">/, `<meta property="og:image:height" content="630">`);
   }
 
   // Replace og:type if specified (e.g. "product" for boats, "article" for blog)
@@ -402,8 +439,11 @@ function injectMeta(html: string, meta: SEOMeta, canonicalUrl: string, extraJson
     }
   }
 
-  // Inject extra JSON-LD before </head>
+  // Replace fallback JSON-LD with page-specific JSON-LD to avoid duplicate schemas
   if (extraJsonLd) {
+    // Remove the hardcoded fallback JSON-LD from index.html (LocalBusiness + WebSite graph)
+    result = result.replace(/\s*<script type="application\/ld\+json">[\s\S]*?<\/script>/, "");
+    // Inject page-specific JSON-LD
     const jsonLdTag = `\n  <script type="application/ld+json">\n${JSON.stringify(extraJsonLd, null, 2)}\n  </script>`;
     result = result.replace("</head>", `${jsonLdTag}\n</head>`);
   }

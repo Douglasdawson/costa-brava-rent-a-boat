@@ -141,7 +141,7 @@ export default function ReviewsSection() {
     <section
       ref={revealRef}
       id="reviews"
-      className={`py-16 sm:py-24 lg:py-32 bg-card transition-all duration-700 ${
+      className={`below-fold py-16 sm:py-24 lg:py-32 bg-card transition-all duration-700 ${
         isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
       }`}
     >

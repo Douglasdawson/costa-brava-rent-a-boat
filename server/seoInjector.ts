@@ -5,8 +5,16 @@ import { storage } from "./storage";
 import { db } from "./db";
 import { seoMeta } from "../shared/schema";
 import { eq, and } from "drizzle-orm";
+import { SUPPORTED_LANGUAGES, HREFLANG_CODES, type LangCode } from "../shared/seoConstants";
 
 const BASE_URL = process.env.BASE_URL || "https://costabravarentaboat.com";
+
+// Dynamic season year: Nov-Dec → next year, otherwise current year
+function getSeasonYear(): number {
+  const now = new Date();
+  return now.getMonth() >= 10 ? now.getFullYear() + 1 : now.getFullYear();
+}
+const SEASON_YEAR = getSeasonYear();
 
 // AI crawler user-agent patterns for enhanced content delivery
 const AI_BOT_PATTERNS = [
@@ -51,7 +59,6 @@ interface SEOMeta {
   };
 }
 
-type LangCode = "es" | "ca" | "en" | "fr" | "de" | "nl" | "it" | "ru";
 
 // Escape special HTML attribute characters
 function esc(str: string): string {
@@ -60,72 +67,94 @@ function esc(str: string): string {
 
 // Fetch SEO meta overrides from the database (seo_meta table).
 // Returns null on miss or error so callers can fall back to hardcoded values.
+// Cached with a 5-minute TTL to avoid hitting the DB on every page request.
+const dbMetaCache = new Map<string, { data: { title?: string; description?: string; keywords?: string } | null; timestamp: number }>();
+const DB_META_CACHE_TTL = 5 * 60 * 1000; // 5 minutes
+
 async function getDbMeta(pagePath: string, lang: string): Promise<{ title?: string; description?: string; keywords?: string } | null> {
+  const cacheKey = `${pagePath}::${lang}`;
+  const now = Date.now();
+  const cached = dbMetaCache.get(cacheKey);
+  if (cached && now - cached.timestamp < DB_META_CACHE_TTL) {
+    return cached.data;
+  }
+
   try {
     const [meta] = await db
       .select()
       .from(seoMeta)
       .where(and(eq(seoMeta.page, pagePath), eq(seoMeta.language, lang)))
       .limit(1);
-    return meta ? {
+    const result = meta ? {
       title: meta.title || undefined,
       description: meta.description || undefined,
       keywords: meta.keywords || undefined,
     } : null;
+
+    dbMetaCache.set(cacheKey, { data: result, timestamp: now });
+
+    // Evict oldest entry if cache grows too large
+    if (dbMetaCache.size > 200) {
+      const oldestKey = dbMetaCache.keys().next().value;
+      if (oldestKey) dbMetaCache.delete(oldestKey);
+    }
+
+    return result;
   } catch {
     return null;
   }
 }
 
 // Per-route, per-language SEO meta. Covers main crawled pages.
+// Note: titles/descriptions with year are built dynamically via SEASON_YEAR
 const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
   "/": {
     es: {
       title: "Alquiler de Barcos en Blanes sin Licencia | Desde 70€ | Costa Brava Rent a Boat",
       description: "Alquila barcos sin licencia en Blanes desde 70€. Gasolina incluida, hasta 5 personas. 7 embarcaciones disponibles. Reserva por WhatsApp +34 611 500 372.",
-      ogTitle: "Alquiler de Barcos en Blanes y Lloret | Costa Brava 2026",
+      ogTitle: `Alquiler de Barcos en Blanes y Lloret | Costa Brava ${SEASON_YEAR}`,
       ogDescription: "Descubre la Costa Brava desde el mar. 7 barcos con y sin licencia. Explora calas paradisíacas. ¡Reserva tu aventura hoy!",
     },
     en: {
       title: "Boat Rental Blanes & Lloret de Mar | Costa Brava",
       description: "Discover Costa Brava from the sea with our boats in Blanes. With or without license. Easy, fast and safe!",
-      ogTitle: "Boat Rental in Blanes & Lloret de Mar | Costa Brava 2026",
+      ogTitle: `Boat Rental in Blanes & Lloret de Mar | Costa Brava ${SEASON_YEAR}`,
       ogDescription: "Discover Costa Brava from the sea. 7 boats with and without license. Explore paradise coves. Book your adventure today!",
     },
     fr: {
       title: "Location de Bateaux Blanes sans Permis | Costa Brava",
       description: "Louez des bateaux sans permis à Blanes dès 70€. Essence incluse, jusqu'à 5 personnes. 7 embarcations disponibles.",
-      ogTitle: "Location de Bateaux à Blanes | Costa Brava 2026",
+      ogTitle: `Location de Bateaux à Blanes | Costa Brava ${SEASON_YEAR}`,
       ogDescription: "Découvrez la Costa Brava depuis la mer. 7 bateaux avec et sans permis. Explorez les criques. Réservez maintenant!",
     },
     de: {
       title: "Bootsverleih Blanes ohne Führerschein | Costa Brava",
       description: "Mieten Sie Boote ohne Führerschein in Blanes ab 70€. Benzin inklusive, bis zu 5 Personen. 7 Boote verfügbar.",
-      ogTitle: "Bootsverleih Blanes | Costa Brava 2026",
+      ogTitle: `Bootsverleih Blanes | Costa Brava ${SEASON_YEAR}`,
       ogDescription: "Entdecken Sie die Costa Brava vom Meer aus. 7 Boote mit und ohne Führerschein. Buchen Sie Ihr Abenteuer!",
     },
     ca: {
       title: "Lloguer de Barques a Blanes sense Llicència | Costa Brava",
       description: "Lloga barques sense llicència a Blanes des de 70€. Gasolina inclosa, fins a 5 persones. 7 embarcacions disponibles.",
-      ogTitle: "Lloguer de Barques a Blanes | Costa Brava 2026",
+      ogTitle: `Lloguer de Barques a Blanes | Costa Brava ${SEASON_YEAR}`,
       ogDescription: "Descobreix la Costa Brava des del mar. 7 barques amb i sense llicència. Explora cales paradisíaques.",
     },
     nl: {
       title: "Boothuur Blanes zonder Vaarbewijs | Costa Brava",
       description: "Huur boten zonder vaarbewijs in Blanes vanaf 70€. Benzine inbegrepen, tot 5 personen. 7 boten beschikbaar.",
-      ogTitle: "Boothuur in Blanes | Costa Brava 2026",
+      ogTitle: `Boothuur in Blanes | Costa Brava ${SEASON_YEAR}`,
       ogDescription: "Ontdek de Costa Brava vanaf zee. 7 boten met en zonder vaarbewijs. Boek uw avontuur!",
     },
     it: {
       title: "Noleggio Barche Blanes senza Patente | Costa Brava",
       description: "Noleggia barche senza patente a Blanes da 70€. Benzina inclusa, fino a 5 persone. 7 imbarcazioni disponibili.",
-      ogTitle: "Noleggio Barche a Blanes | Costa Brava 2026",
+      ogTitle: `Noleggio Barche a Blanes | Costa Brava ${SEASON_YEAR}`,
       ogDescription: "Scopri la Costa Brava dal mare. 7 barche con e senza patente. Esplora calette paradisiache.",
     },
     ru: {
       title: "Аренда Лодок в Бланесе без Прав | Коста Брава",
       description: "Арендуйте лодки без прав в Бланесе от 70€. Бензин включен, до 5 человек. 7 судов в наличии.",
-      ogTitle: "Аренда Лодок в Бланесе | Коста Брава 2026",
+      ogTitle: `Аренда Лодок в Бланесе | Коста Брава ${SEASON_YEAR}`,
       ogDescription: "Откройте Коста Браву с моря. 7 лодок с правами и без. Забронируйте свое приключение!",
     },
   },
@@ -140,6 +169,10 @@ const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
       title: "Boat Rental Blanes FAQ | Frequently Asked Questions",
       description: "Do I need a license? What's included? How much does it cost? All your boat rental questions answered.",
     },
+    ca: {
+      title: "Preguntes Freqüents Lloguer Barques Blanes | FAQ",
+      description: "Necessito llicència? Què inclou? Quant costa? Resol tots els dubtes sobre lloguer de barques a Blanes.",
+    },
     fr: {
       title: "FAQ Location de Bateaux Blanes | Questions Fréquentes",
       description: "Ai-je besoin d'un permis? Qu'est-ce qui est inclus? Combien ça coûte? Toutes les réponses sur la location de bateaux à Blanes.",
@@ -147,6 +180,18 @@ const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
     de: {
       title: "FAQ Bootsverleih Blanes | Häufige Fragen",
       description: "Brauche ich einen Führerschein? Was ist inbegriffen? Wie viel kostet es? Alle Antworten zur Bootsmiete in Blanes.",
+    },
+    nl: {
+      title: "FAQ Bootverhuur Blanes | Costa Brava",
+      description: "Heb ik een vaarbewijs nodig? Wat is inbegrepen? Hoeveel kost het? Alle antwoorden over bootverhuur in Blanes.",
+    },
+    it: {
+      title: "FAQ Noleggio Barche Blanes | Costa Brava",
+      description: "Ho bisogno della patente? Cosa è incluso? Quanto costa? Tutte le risposte sul noleggio barche a Blanes.",
+    },
+    ru: {
+      title: "FAQ Аренда Лодок Бланес | Коста-Брава",
+      description: "Нужна ли лицензия? Что включено? Сколько стоит? Все ответы об аренде лодок в Бланесе.",
     },
   },
   "/galeria": {
@@ -158,17 +203,65 @@ const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
       title: "Photo Gallery | Costa Brava Rent a Boat",
       description: "Real photos of our customers enjoying boat trips along Costa Brava from Blanes.",
     },
+    ca: {
+      title: "Galeria de Fotos Clients | Costa Brava Rent a Boat",
+      description: "Fotos reals dels nostres clients gaudint en barca per la Costa Brava des de Blanes.",
+    },
+    fr: {
+      title: "Galerie Photos Clients | Costa Brava Rent a Boat",
+      description: "Photos réelles de nos clients profitant de la Costa Brava en bateau depuis Blanes.",
+    },
+    de: {
+      title: "Kundenfotogalerie | Costa Brava Rent a Boat",
+      description: "Echte Fotos unserer Kunden auf Bootsausflügen an der Costa Brava ab Blanes.",
+    },
+    nl: {
+      title: "Klantenfotogalerij | Costa Brava Rent a Boat",
+      description: "Echte foto's van onze klanten die genieten van boottochten aan de Costa Brava vanuit Blanes.",
+    },
+    it: {
+      title: "Galleria Fotografica Clienti | Costa Brava Rent a Boat",
+      description: "Foto reali dei nostri clienti che si godono gite in barca sulla Costa Brava da Blanes.",
+    },
+    ru: {
+      title: "Фотогалерея Клиентов | Costa Brava Rent a Boat",
+      description: "Реальные фото наших клиентов на лодочных прогулках по Коста-Браве из Бланеса.",
+    },
   },
   "/rutas": {
     es: {
       title: "Rutas en Barco desde Blanes | Costa Brava",
       description: "Descubre las mejores rutas en barco desde Blanes. Desde Sa Palomera hasta Tossa de Mar. Mapas interactivos y guía de navegación.",
-      ogTitle: "Rutas en Barco desde Blanes | Costa Brava 2026",
+      ogTitle: `Rutas en Barco desde Blanes | Costa Brava ${SEASON_YEAR}`,
       ogDescription: "5 rutas en barco desde Blanes. Sa Palomera, Cala Sant Francesc, Lloret de Mar, Tossa de Mar.",
     },
     en: {
       title: "Boat Routes from Blanes | Costa Brava",
       description: "Discover the best boat routes from Blanes. From Sa Palomera to Tossa de Mar. Interactive maps and navigation guide.",
+    },
+    ca: {
+      title: "Rutes en Barca des de Blanes | Costa Brava",
+      description: "Descobreix les millors rutes en barca des de Blanes. Des de Sa Palomera fins a Tossa de Mar. Mapes interactius.",
+    },
+    fr: {
+      title: "Itinéraires en Bateau depuis Blanes | Costa Brava",
+      description: "Découvrez les meilleures routes en bateau depuis Blanes. De Sa Palomera à Tossa de Mar. Cartes interactives.",
+    },
+    de: {
+      title: "Bootsrouten ab Blanes | Costa Brava",
+      description: "Entdecken Sie die besten Bootsrouten ab Blanes. Von Sa Palomera bis Tossa de Mar. Interaktive Karten.",
+    },
+    nl: {
+      title: "Bootroutes vanuit Blanes | Costa Brava",
+      description: "Ontdek de beste bootroutes vanuit Blanes. Van Sa Palomera tot Tossa de Mar. Interactieve kaarten.",
+    },
+    it: {
+      title: "Percorsi in Barca da Blanes | Costa Brava",
+      description: "Scopri i migliori percorsi in barca da Blanes. Da Sa Palomera a Tossa de Mar. Mappe interattive.",
+    },
+    ru: {
+      title: "Маршруты на Лодке из Бланеса | Коста-Брава",
+      description: "Откройте лучшие маршруты на лодке из Бланеса. От Са Паломера до Тосса-де-Мар. Интерактивные карты.",
     },
   },
   "/tarjetas-regalo": {
@@ -182,6 +275,30 @@ const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
       title: "Gift Cards Boat Rental | Costa Brava Rent a Boat",
       description: "Give the gift of a nautical experience on Costa Brava. Gift cards from 50€ for boat rental in Blanes. Valid 1 year.",
     },
+    ca: {
+      title: "Targetes Regal Lloguer Barques | Costa Brava Rent a Boat",
+      description: "Regala una experiència nàutica a la Costa Brava. Targetes regal des de 50€ per llogar barques a Blanes. Vàlides 1 any.",
+    },
+    fr: {
+      title: "Cartes Cadeaux Location Bateaux | Costa Brava Rent a Boat",
+      description: "Offrez une expérience nautique sur la Costa Brava. Cartes cadeaux dès 50€ pour louer des bateaux à Blanes. Valables 1 an.",
+    },
+    de: {
+      title: "Geschenkkarten Bootsverleih | Costa Brava Rent a Boat",
+      description: "Verschenken Sie ein nautisches Erlebnis an der Costa Brava. Geschenkkarten ab 50€ für Bootsverleih in Blanes. 1 Jahr gültig.",
+    },
+    nl: {
+      title: "Cadeaukaarten Bootverhuur | Costa Brava Rent a Boat",
+      description: "Geef een nautische ervaring aan de Costa Brava. Cadeaukaarten vanaf 50€ voor bootverhuur in Blanes. 1 jaar geldig.",
+    },
+    it: {
+      title: "Carte Regalo Noleggio Barche | Costa Brava Rent a Boat",
+      description: "Regala un'esperienza nautica sulla Costa Brava. Carte regalo da 50€ per noleggio barche a Blanes. Valide 1 anno.",
+    },
+    ru: {
+      title: "Подарочные Карты Аренда Лодок | Costa Brava Rent a Boat",
+      description: "Подарите морской опыт на Коста-Браве. Подарочные карты от 50€ на аренду лодок в Бланесе. Действительны 1 год.",
+    },
   },
   "/testimonios": {
     es: {
@@ -193,6 +310,30 @@ const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
     en: {
       title: "Customer Reviews Boat Rental Blanes | Costa Brava",
       description: "Read real reviews from customers who rented boats in Blanes. +100 verified reviews.",
+    },
+    ca: {
+      title: "Opinions Clients Lloguer Barques Blanes",
+      description: "Llegeix opinions reals de clients que han llogat barques a Blanes. +100 ressenyes verificades.",
+    },
+    fr: {
+      title: "Avis Clients Location Bateaux Blanes",
+      description: "Lisez les avis réels de clients ayant loué des bateaux à Blanes. +100 avis vérifiés.",
+    },
+    de: {
+      title: "Kundenbewertungen Bootsverleih Blanes",
+      description: "Lesen Sie echte Bewertungen von Kunden, die Boote in Blanes gemietet haben. +100 verifizierte Bewertungen.",
+    },
+    nl: {
+      title: "Klantenbeoordelingen Bootverhuur Blanes",
+      description: "Lees echte beoordelingen van klanten die boten hebben gehuurd in Blanes. +100 geverifieerde reviews.",
+    },
+    it: {
+      title: "Recensioni Clienti Noleggio Barche Blanes",
+      description: "Leggi le recensioni reali dei clienti che hanno noleggiato barche a Blanes. +100 recensioni verificate.",
+    },
+    ru: {
+      title: "Отзывы Клиентов Аренда Лодок Бланес",
+      description: "Читайте реальные отзывы клиентов, арендовавших лодки в Бланесе. +100 проверенных отзывов.",
     },
   },
   "/blog": {
@@ -206,6 +347,30 @@ const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
       title: "Boat Navigation Blog | Costa Brava",
       description: "Guides, tips and destinations for boat rental in Blanes and Costa Brava. Discover secret coves and nautical routes.",
     },
+    ca: {
+      title: "Blog de Navegació i Destinacions | Costa Brava",
+      description: "Guies, consells i destinacions per llogar barques a Blanes i la Costa Brava. Descobreix cales secretes i rutes nàutiques.",
+    },
+    fr: {
+      title: "Blog de Navigation et Destinations | Costa Brava",
+      description: "Guides, conseils et destinations pour louer des bateaux à Blanes et Costa Brava. Criques secrètes et routes nautiques.",
+    },
+    de: {
+      title: "Navigation und Reiseziele Blog | Costa Brava",
+      description: "Anleitungen, Tipps und Reiseziele für Bootsvermietung in Blanes und Costa Brava. Geheime Buchten und Seerouten.",
+    },
+    nl: {
+      title: "Navigatie en Bestemmingen Blog | Costa Brava",
+      description: "Gidsen, tips en bestemmingen voor bootverhuur in Blanes en Costa Brava. Geheime baaien en nautische routes.",
+    },
+    it: {
+      title: "Blog di Navigazione e Destinazioni | Costa Brava",
+      description: "Guide, consigli e destinazioni per noleggio barche a Blanes e Costa Brava. Calette segrete e rotte nautiche.",
+    },
+    ru: {
+      title: "Блог о Навигации и Направлениях | Costa Brava",
+      description: "Руководства, советы и направления для аренды лодок в Бланесе и Коста-Браве. Секретные бухты и морские маршруты.",
+    },
   },
   "/barcos-sin-licencia": {
     es: {
@@ -217,6 +382,30 @@ const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
     en: {
       title: "No License Boat Rental Blanes | Costa Brava",
       description: "No license boats in Blanes. Up to 15 HP, 4-7 people. No qualification needed. Easy to drive. Book!",
+    },
+    ca: {
+      title: "Barques Sense Llicència Costa Brava | 5 Barques des de 70€/h Blanes",
+      description: "Lloguer barques sense llicència a la Costa Brava des de Blanes. 5 barques des de 70€/h, gasolina inclosa.",
+    },
+    fr: {
+      title: "Bateaux Sans Permis Costa Brava | 5 Bateaux dès 70€/h Blanes",
+      description: "Location bateaux sans permis Costa Brava depuis Blanes. 5 bateaux dès 70€/h, carburant inclus.",
+    },
+    de: {
+      title: "Boote Ohne Führerschein Costa Brava | 5 Boote ab 70€/h Blanes",
+      description: "Bootsverleih ohne Führerschein Costa Brava ab Blanes. 5 Boote ab 70€/h, Kraftstoff inklusive.",
+    },
+    nl: {
+      title: "Boten Zonder Vaarbewijs Costa Brava | 5 Boten vanaf 70€/u Blanes",
+      description: "Bootverhuur zonder vaarbewijs Costa Brava vanuit Blanes. 5 boten vanaf 70€/u, brandstof inbegrepen.",
+    },
+    it: {
+      title: "Barche Senza Patente Costa Brava | 5 Barche da 70€/h Blanes",
+      description: "Noleggio barche senza patente Costa Brava da Blanes. 5 barche da 70€/h, carburante incluso.",
+    },
+    ru: {
+      title: "Лодки Без Лицензии Коста-Брава | 5 Лодок от 70€/ч Бланес",
+      description: "Аренда лодок без лицензии Коста-Брава из Бланеса. 5 лодок от 70€/ч, топливо включено.",
     },
   },
   "/barcos-con-licencia": {
@@ -230,17 +419,65 @@ const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
       title: "Licensed Boat Rental Blanes | ICC Costa Brava",
       description: "Licensed boats in Blanes. Powerful and fast. Requires ICC or boating license. Maximum freedom on Costa Brava.",
     },
+    ca: {
+      title: "Lloguer Barques Amb Llicència Blanes | PER Costa Brava",
+      description: "Barques amb llicència a Blanes. Potents i ràpides. Requereix PER o titulació nàutica.",
+    },
+    fr: {
+      title: "Location Bateaux Avec Permis Blanes | ICC Costa Brava",
+      description: "Bateaux avec permis à Blanes. Puissants et rapides. Permis ICC ou permis bateau requis.",
+    },
+    de: {
+      title: "Bootsverleih Mit Führerschein Blanes | ICC Costa Brava",
+      description: "Boote mit Führerschein in Blanes. Leistungsstark und schnell. ICC oder Bootsführerschein erforderlich.",
+    },
+    nl: {
+      title: "Boten Met Vaarbewijs Blanes | Costa Brava",
+      description: "Bootverhuur met vaarbewijs in Blanes. Krachtige boten. ICC, KVB of equivalent vereist.",
+    },
+    it: {
+      title: "Barche Con Patente Blanes | Costa Brava",
+      description: "Noleggio barche con patente a Blanes. Imbarcazioni potenti. Richiede ICC o patente nautica.",
+    },
+    ru: {
+      title: "Лодки С Лицензией Бланес | Коста-Брава",
+      description: "Аренда лодок с лицензией в Бланесе. Мощные лодки. Требуется ICC или права.",
+    },
   },
   "/alquiler-barcos-blanes": {
     es: {
-      title: "Alquiler Barcos en Blanes Puerto | Costa Brava 2026",
+      title: `Alquiler Barcos en Blanes Puerto | Costa Brava ${SEASON_YEAR}`,
       description: "Alquila barcos en Puerto de Blanes. Sin licencia y con licencia. 7 embarcaciones disponibles. Explora calas y playas. ¡Reserva ya!",
-      ogTitle: "Alquiler de Barcos en Puerto de Blanes | Costa Brava 2026",
+      ogTitle: `Alquiler de Barcos en Puerto de Blanes | Costa Brava ${SEASON_YEAR}`,
       ogDescription: "Alquila barcos desde Puerto de Blanes. Con y sin licencia. 7 embarcaciones disponibles.",
     },
     en: {
-      title: "Boat Rental in Blanes Port | Costa Brava 2026",
+      title: `Boat Rental in Blanes Port | Costa Brava ${SEASON_YEAR}`,
       description: "Rent boats in Blanes Port. With and without license. 7 boats available. Explore coves and beaches. Book now!",
+    },
+    ca: {
+      title: `Lloguer Barques al Port de Blanes | Costa Brava ${SEASON_YEAR}`,
+      description: "Lloga barques al Port de Blanes. Sense llicència i amb llicència. 7 embarcacions disponibles.",
+    },
+    fr: {
+      title: `Location Bateaux au Port de Blanes | Costa Brava ${SEASON_YEAR}`,
+      description: "Louez des bateaux au Port de Blanes. Avec et sans permis. 7 embarcations disponibles.",
+    },
+    de: {
+      title: `Bootsverleih im Hafen Blanes | Costa Brava ${SEASON_YEAR}`,
+      description: "Mieten Sie Boote im Hafen Blanes. Mit und ohne Führerschein. 7 Boote verfügbar.",
+    },
+    nl: {
+      title: `Bootverhuur Haven Blanes | Costa Brava ${SEASON_YEAR}`,
+      description: "Huur boten in Haven Blanes. Met en zonder vaarbewijs. 7 boten beschikbaar.",
+    },
+    it: {
+      title: `Noleggio Barche Porto Blanes | Costa Brava ${SEASON_YEAR}`,
+      description: "Noleggia barche al Porto di Blanes. Con e senza patente. 7 imbarcazioni disponibili.",
+    },
+    ru: {
+      title: `Аренда Лодок в Порту Бланес | Коста-Брава ${SEASON_YEAR}`,
+      description: "Арендуйте лодки в порту Бланес. С лицензией и без. 7 лодок в наличии.",
     },
   },
   "/alquiler-barcos-lloret-de-mar": {
@@ -254,6 +491,30 @@ const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
       title: "Boat Trip to Lloret de Mar from Blanes",
       description: "Sail from Blanes to Lloret de Mar. Boat rental with or without license. Discover the best beaches and coves.",
     },
+    ca: {
+      title: "Excursió en Barca a Lloret de Mar des de Blanes",
+      description: "Navega de Blanes a Lloret de Mar. Lloguer de barques amb o sense llicència. Descobreix les millors platges i cales.",
+    },
+    fr: {
+      title: "Excursion en Bateau à Lloret de Mar depuis Blanes",
+      description: "Naviguez de Blanes à Lloret de Mar. Location de bateaux avec ou sans permis. Découvrez les meilleures plages.",
+    },
+    de: {
+      title: "Bootsausflug nach Lloret de Mar von Blanes",
+      description: "Segeln Sie von Blanes nach Lloret de Mar. Bootsverleih mit oder ohne Führerschein. Entdecken Sie die besten Strände.",
+    },
+    nl: {
+      title: "Boottocht naar Lloret de Mar vanuit Blanes",
+      description: "Vaar van Blanes naar Lloret de Mar. Bootverhuur met of zonder vaarbewijs. Ontdek de mooiste stranden.",
+    },
+    it: {
+      title: "Escursione in Barca a Lloret de Mar da Blanes",
+      description: "Naviga da Blanes a Lloret de Mar. Noleggio barche con o senza patente. Scopri le migliori spiagge.",
+    },
+    ru: {
+      title: "Экскурсия на Лодке в Льорет-де-Мар из Бланеса",
+      description: "Плывите из Бланеса в Льорет-де-Мар. Аренда лодок с лицензией или без. Откройте лучшие пляжи.",
+    },
   },
   "/alquiler-barcos-tossa-de-mar": {
     es: {
@@ -266,6 +527,30 @@ const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
       title: "Boat Trip to Tossa de Mar from Blanes",
       description: "Sail to Tossa de Mar in 1 hour from Blanes. Discover the most beautiful medieval town of Costa Brava.",
     },
+    ca: {
+      title: "Excursió en Barca a Tossa de Mar des de Blanes",
+      description: "Navega a Tossa de Mar en 1 hora des de Blanes. Descobreix el poble medieval més bonic de la Costa Brava.",
+    },
+    fr: {
+      title: "Excursion en Bateau à Tossa de Mar depuis Blanes",
+      description: "Naviguez vers Tossa de Mar en 1h depuis Blanes. Découvrez la plus belle ville médiévale de la Costa Brava.",
+    },
+    de: {
+      title: "Bootsausflug nach Tossa de Mar von Blanes",
+      description: "Segeln Sie in 1h von Blanes nach Tossa de Mar. Entdecken Sie die schönste mittelalterliche Stadt der Costa Brava.",
+    },
+    nl: {
+      title: "Boottocht naar Tossa de Mar vanuit Blanes",
+      description: "Vaar in 1 uur van Blanes naar Tossa de Mar. Ontdek de mooiste middeleeuwse stad van de Costa Brava.",
+    },
+    it: {
+      title: "Escursione in Barca a Tossa de Mar da Blanes",
+      description: "Naviga verso Tossa de Mar in 1 ora da Blanes. Scopri la città medievale più bella della Costa Brava.",
+    },
+    ru: {
+      title: "Экскурсия на Лодке в Тосса-де-Мар из Бланеса",
+      description: "Плывите в Тосса-де-Мар за 1 час из Бланеса. Откройте самый красивый средневековый город Коста-Бравы.",
+    },
   },
   "/privacy-policy": {
     es: {
@@ -275,6 +560,30 @@ const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
     en: {
       title: "Privacy Policy | Costa Brava Rent a Boat",
       description: "Privacy policy and data protection of Costa Brava Rent a Boat.",
+    },
+    ca: {
+      title: "Política de Privacitat | Costa Brava Rent a Boat",
+      description: "Política de privacitat i protecció de dades de Costa Brava Rent a Boat.",
+    },
+    fr: {
+      title: "Politique de Confidentialité | Costa Brava Rent a Boat",
+      description: "Politique de confidentialité et protection des données de Costa Brava Rent a Boat.",
+    },
+    de: {
+      title: "Datenschutzrichtlinie | Costa Brava Rent a Boat",
+      description: "Datenschutzrichtlinie und Datenschutz von Costa Brava Rent a Boat.",
+    },
+    nl: {
+      title: "Privacybeleid | Costa Brava Rent a Boat",
+      description: "Privacybeleid en gegevensbescherming van Costa Brava Rent a Boat.",
+    },
+    it: {
+      title: "Politica sulla Privacy | Costa Brava Rent a Boat",
+      description: "Politica sulla privacy e protezione dei dati di Costa Brava Rent a Boat.",
+    },
+    ru: {
+      title: "Политика конфиденциальности | Costa Brava Rent a Boat",
+      description: "Политика конфиденциальности и защита данных Costa Brava Rent a Boat.",
     },
   },
   "/terms-conditions": {
@@ -286,11 +595,63 @@ const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
       title: "Terms and Conditions | Costa Brava Rent a Boat",
       description: "Terms and conditions of the boat rental service in Blanes, Costa Brava.",
     },
+    ca: {
+      title: "Termes i Condicions | Costa Brava Rent a Boat",
+      description: "Termes i condicions del servei de lloguer de barques a Blanes, Costa Brava.",
+    },
+    fr: {
+      title: "Termes et Conditions | Costa Brava Rent a Boat",
+      description: "Termes et conditions du service de location de bateaux à Blanes, Costa Brava.",
+    },
+    de: {
+      title: "Geschäftsbedingungen | Costa Brava Rent a Boat",
+      description: "Geschäftsbedingungen des Bootsverleihs in Blanes, Costa Brava.",
+    },
+    nl: {
+      title: "Algemene Voorwaarden | Costa Brava Rent a Boat",
+      description: "Algemene voorwaarden van de bootverhuurservice in Blanes, Costa Brava.",
+    },
+    it: {
+      title: "Termini e Condizioni | Costa Brava Rent a Boat",
+      description: "Termini e condizioni del servizio di noleggio barche a Blanes, Costa Brava.",
+    },
+    ru: {
+      title: "Условия использования | Costa Brava Rent a Boat",
+      description: "Условия использования службы аренды лодок в Бланесе, Коста-Брава.",
+    },
   },
   "/condiciones-generales": {
     es: {
       title: "Condiciones Generales de Alquiler | Costa Brava Rent a Boat",
       description: "Condiciones generales para el alquiler de embarcaciones en Blanes, Costa Brava.",
+    },
+    en: {
+      title: "General Rental Conditions | Costa Brava Rent a Boat",
+      description: "General conditions for boat rental in Blanes, Costa Brava.",
+    },
+    ca: {
+      title: "Condicions Generals de Lloguer | Costa Brava Rent a Boat",
+      description: "Condicions generals per al lloguer d'embarcacions a Blanes, Costa Brava.",
+    },
+    fr: {
+      title: "Conditions Générales de Location | Costa Brava Rent a Boat",
+      description: "Conditions générales pour la location d'embarcations à Blanes, Costa Brava.",
+    },
+    de: {
+      title: "Allgemeine Mietbedingungen | Costa Brava Rent a Boat",
+      description: "Allgemeine Mietbedingungen für den Bootsverleih in Blanes, Costa Brava.",
+    },
+    nl: {
+      title: "Algemene Huurvoorwaarden | Costa Brava Rent a Boat",
+      description: "Algemene huurvoorwaarden voor bootverhuur in Blanes, Costa Brava.",
+    },
+    it: {
+      title: "Condizioni Generali di Noleggio | Costa Brava Rent a Boat",
+      description: "Condizioni generali per il noleggio di imbarcazioni a Blanes, Costa Brava.",
+    },
+    ru: {
+      title: "Общие Условия Аренды | Costa Brava Rent a Boat",
+      description: "Общие условия аренды лодок в Бланесе, Коста-Брава.",
     },
   },
   "/cookies-policy": {
@@ -302,31 +663,99 @@ const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
       title: "Cookie Policy | Costa Brava Rent a Boat",
       description: "Information about cookie usage on Costa Brava Rent a Boat.",
     },
+    ca: {
+      title: "Política de Cookies | Costa Brava Rent a Boat",
+      description: "Informació sobre l'ús de cookies a Costa Brava Rent a Boat.",
+    },
+    fr: {
+      title: "Politique de Cookies | Costa Brava Rent a Boat",
+      description: "Informations sur l'utilisation des cookies sur Costa Brava Rent a Boat.",
+    },
+    de: {
+      title: "Cookie-Richtlinie | Costa Brava Rent a Boat",
+      description: "Informationen zur Cookie-Nutzung auf Costa Brava Rent a Boat.",
+    },
+    nl: {
+      title: "Cookiebeleid | Costa Brava Rent a Boat",
+      description: "Informatie over het gebruik van cookies op Costa Brava Rent a Boat.",
+    },
+    it: {
+      title: "Politica sui Cookie | Costa Brava Rent a Boat",
+      description: "Informazioni sull'uso dei cookie su Costa Brava Rent a Boat.",
+    },
+    ru: {
+      title: "Политика Cookies | Costa Brava Rent a Boat",
+      description: "Информация об использовании cookies на Costa Brava Rent a Boat.",
+    },
   },
   "/accesibilidad": {
     es: {
       title: "Declaración de Accesibilidad | Costa Brava Rent a Boat",
       description: "Declaración de accesibilidad web de Costa Brava Rent a Boat. Cumplimiento WCAG 2.1.",
     },
+    en: {
+      title: "Accessibility Statement | Costa Brava Rent a Boat",
+      description: "Web accessibility statement of Costa Brava Rent a Boat. WCAG 2.1 compliance.",
+    },
+    ca: {
+      title: "Declaració d'Accessibilitat | Costa Brava Rent a Boat",
+      description: "Declaració d'accessibilitat web de Costa Brava Rent a Boat. Compliment WCAG 2.1.",
+    },
+    fr: {
+      title: "Déclaration d'Accessibilité | Costa Brava Rent a Boat",
+      description: "Déclaration d'accessibilité web de Costa Brava Rent a Boat. Conformité WCAG 2.1.",
+    },
+    de: {
+      title: "Barrierefreiheitserklärung | Costa Brava Rent a Boat",
+      description: "Erklärung zur Barrierefreiheit von Costa Brava Rent a Boat. WCAG 2.1 Konformität.",
+    },
+    nl: {
+      title: "Toegankelijkheidsverklaring | Costa Brava Rent a Boat",
+      description: "Webtoegankelijkheidsverklaring van Costa Brava Rent a Boat. WCAG 2.1 conformiteit.",
+    },
+    it: {
+      title: "Dichiarazione di Accessibilità | Costa Brava Rent a Boat",
+      description: "Dichiarazione di accessibilità web di Costa Brava Rent a Boat. Conformità WCAG 2.1.",
+    },
+    ru: {
+      title: "Заявление о Доступности | Costa Brava Rent a Boat",
+      description: "Заявление о веб-доступности Costa Brava Rent a Boat. Соответствие WCAG 2.1.",
+    },
   },
   "/precios": {
     es: {
-      title: "Precios Alquiler Barcos Blanes 2026 | Costa Brava Rent a Boat",
+      title: `Precios Alquiler Barcos Blanes ${SEASON_YEAR} | Costa Brava Rent a Boat`,
       description: "Consulta precios de alquiler de barcos en Blanes. Sin licencia desde 70\u20ac/hora. Con licencia desde 150\u20ac. Gasolina incluida. Temporada baja, media y alta.",
-      ogTitle: "Precios Alquiler Barcos Blanes 2026 | Desde 70\u20ac",
+      ogTitle: `Precios Alquiler Barcos Blanes ${SEASON_YEAR} | Desde 70\u20ac`,
       ogDescription: "Compara precios de todos nuestros barcos en Blanes. Sin licencia desde 70\u20ac/h. Gasolina incluida. Temporada baja, media y alta.",
     },
     en: {
-      title: "Boat Rental Prices Blanes 2026 | Costa Brava Rent a Boat",
+      title: `Boat Rental Prices Blanes ${SEASON_YEAR} | Costa Brava Rent a Boat`,
       description: "Check boat rental prices in Blanes. No license from 70\u20ac/h. Licensed from 150\u20ac. Fuel included. Low, mid and high season rates.",
     },
     fr: {
-      title: "Tarifs Location Bateaux Blanes 2026 | Costa Brava",
+      title: `Tarifs Location Bateaux Blanes ${SEASON_YEAR} | Costa Brava`,
       description: "Consultez les tarifs de location de bateaux a Blanes. Sans permis des 70\u20ac/h. Essence incluse. Tarifs basse, moyenne et haute saison.",
     },
     de: {
-      title: "Preise Bootsverleih Blanes 2026 | Costa Brava",
+      title: `Preise Bootsverleih Blanes ${SEASON_YEAR} | Costa Brava`,
       description: "Bootsverleih-Preise in Blanes. Ohne Fuhrerschein ab 70\u20ac/h. Benzin inklusive. Neben-, Mittel- und Hochsaison-Preise.",
+    },
+    ca: {
+      title: `Preus Lloguer Barques Blanes ${SEASON_YEAR} | Costa Brava Rent a Boat`,
+      description: "Consulta els preus de lloguer de barques a Blanes. Sense llic\u00e8ncia des de 70\u20ac/h. Gasolina inclosa. Temporada baixa, mitja i alta.",
+    },
+    nl: {
+      title: `Bootverhuur Prijzen Blanes ${SEASON_YEAR} | Costa Brava Rent a Boat`,
+      description: "Bekijk bootverhuur prijzen in Blanes. Zonder vaarbewijs vanaf 70\u20ac/u. Brandstof inbegrepen. Laag-, midden- en hoogseizoen.",
+    },
+    it: {
+      title: `Prezzi Noleggio Barche Blanes ${SEASON_YEAR} | Costa Brava Rent a Boat`,
+      description: "Consulta i prezzi di noleggio barche a Blanes. Senza patente da 70\u20ac/h. Carburante incluso. Bassa, media e alta stagione.",
+    },
+    ru: {
+      title: `\u0426\u0435\u043d\u044b \u0410\u0440\u0435\u043d\u0434\u0430 \u041b\u043e\u0434\u043e\u043a \u0411\u043b\u0430\u043d\u0435\u0441 ${SEASON_YEAR} | Costa Brava Rent a Boat`,
+      description: "\u0423\u0437\u043d\u0430\u0439\u0442\u0435 \u0446\u0435\u043d\u044b \u0430\u0440\u0435\u043d\u0434\u044b \u043b\u043e\u0434\u043e\u043a \u0432 \u0411\u043b\u0430\u043d\u0435\u0441\u0435. \u0411\u0435\u0437 \u043b\u0438\u0446\u0435\u043d\u0437\u0438\u0438 \u043e\u0442 70\u20ac/\u0447. \u0422\u043e\u043f\u043b\u0438\u0432\u043e \u0432\u043a\u043b\u044e\u0447\u0435\u043d\u043e. \u041d\u0438\u0437\u043a\u0438\u0439, \u0441\u0440\u0435\u0434\u043d\u0438\u0439 \u0438 \u0432\u044b\u0441\u043e\u043a\u0438\u0439 \u0441\u0435\u0437\u043e\u043d.",
     },
   },
   // Long-tail: these map to existing SPA routes but give AI crawlers ultra-specific meta
@@ -334,7 +763,7 @@ const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
     es: {
       title: "Destinos en Barco desde Blanes | Calas y Playas Costa Brava",
       description: "Descubre todos los destinos accesibles en barco desde Puerto de Blanes: Cala Brava, Lloret de Mar, Tossa de Mar, Sant Francesc y mas. Rutas con tiempos y distancias.",
-      ogTitle: "Destinos en Barco desde Blanes | Costa Brava 2026",
+      ogTitle: `Destinos en Barco desde Blanes | Costa Brava ${SEASON_YEAR}`,
       ogDescription: "Explora calas secretas y playas desde Puerto de Blanes. 5 destinos a menos de 45 minutos.",
     },
     en: {
@@ -349,11 +778,127 @@ const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
       title: "Bootsziele ab Blanes | Buchten & Strände Costa Brava",
       description: "Entdecken Sie alle Bootsziele ab Blanes Hafen: Cala Brava, Lloret de Mar, Tossa de Mar und mehr.",
     },
+    ca: {
+      title: "Destinacions en Barca des de Blanes | Cales i Platges Costa Brava",
+      description: "Descobreix totes les destinacions accessibles en barca des del Port de Blanes. Cales secretes i platges paradis\u00edaques.",
+    },
+    nl: {
+      title: "Bootbestemmingen vanuit Blanes | Baaien & Stranden Costa Brava",
+      description: "Ontdek alle bestemmingen bereikbaar per boot vanuit Haven Blanes. Geheime baaien en paradijselijke stranden.",
+    },
+    it: {
+      title: "Destinazioni in Barca da Blanes | Calette e Spiagge Costa Brava",
+      description: "Scopri tutte le destinazioni raggiungibili in barca dal Porto di Blanes. Calette segrete e spiagge paradisiache.",
+    },
+    ru: {
+      title: "\u041d\u0430\u043f\u0440\u0430\u0432\u043b\u0435\u043d\u0438\u044f \u043d\u0430 \u041b\u043e\u0434\u043a\u0435 \u0438\u0437 \u0411\u043b\u0430\u043d\u0435\u0441\u0430 | \u0411\u0443\u0445\u0442\u044b \u0438 \u041f\u043b\u044f\u0436\u0438 \u041a\u043e\u0441\u0442\u0430-\u0411\u0440\u0430\u0432\u0430",
+      description: "\u041e\u0442\u043a\u0440\u043e\u0439\u0442\u0435 \u0432\u0441\u0435 \u043d\u0430\u043f\u0440\u0430\u0432\u043b\u0435\u043d\u0438\u044f, \u0434\u043e\u0441\u0442\u0443\u043f\u043d\u044b\u0435 \u043d\u0430 \u043b\u043e\u0434\u043a\u0435 \u0438\u0437 \u043f\u043e\u0440\u0442\u0430 \u0411\u043b\u0430\u043d\u0435\u0441. \u0421\u0435\u043a\u0440\u0435\u0442\u043d\u044b\u0435 \u0431\u0443\u0445\u0442\u044b \u0438 \u0440\u0430\u0439\u0441\u043a\u0438\u0435 \u043f\u043b\u044f\u0436\u0438.",
+    },
+  },
+  "/alquiler-barcos-cerca-barcelona": {
+    es: {
+      title: "Alquiler Barcos cerca de Barcelona | Blanes a 70min | Costa Brava",
+      description: "Alquila barcos sin licencia a 70 minutos de Barcelona. Blanes, Costa Brava. Mejores precios, aguas cristalinas. Desde 70\u20ac. Gasolina incluida.",
+    },
+    en: {
+      title: "Boat Rental near Barcelona | Blanes 70min | Costa Brava",
+      description: "Rent boats without license 70 minutes from Barcelona. Blanes, Costa Brava. Best prices, crystal clear water. From 70\u20ac. Fuel included.",
+    },
+    ca: {
+      title: "Lloguer Barques prop de Barcelona | Blanes a 70min | Costa Brava",
+      description: "Lloga barques sense llic\u00e8ncia a 70 minuts de Barcelona. Blanes, Costa Brava. Millors preus, aig\u00fces cristal\u00b7lines. Des de 70\u20ac.",
+    },
+    fr: {
+      title: "Location Bateaux pr\u00e8s de Barcelone | Blanes \u00e0 70min | Costa Brava",
+      description: "Louez des bateaux sans permis \u00e0 70 minutes de Barcelone. Blanes, Costa Brava. Meilleurs prix, eaux cristallines. D\u00e8s 70\u20ac.",
+    },
+    de: {
+      title: "Bootsverleih nahe Barcelona | Blanes 70min | Costa Brava",
+      description: "Boote ohne F\u00fchrerschein mieten, 70 Minuten von Barcelona. Blanes, Costa Brava. Beste Preise, kristallklares Wasser. Ab 70\u20ac.",
+    },
+    nl: {
+      title: "Bootverhuur nabij Barcelona | Blanes 70min | Costa Brava",
+      description: "Huur boten zonder vaarbewijs op 70 minuten van Barcelona. Blanes, Costa Brava. Beste prijzen, kristalhelder water. Vanaf 70\u20ac.",
+    },
+    it: {
+      title: "Noleggio Barche vicino a Barcellona | Blanes a 70min | Costa Brava",
+      description: "Noleggia barche senza patente a 70 minuti da Barcellona. Blanes, Costa Brava. Migliori prezzi, acque cristalline. Da 70\u20ac.",
+    },
+    ru: {
+      title: "\u0410\u0440\u0435\u043d\u0434\u0430 \u041b\u043e\u0434\u043e\u043a \u0440\u044f\u0434\u043e\u043c \u0441 \u0411\u0430\u0440\u0441\u0435\u043b\u043e\u043d\u043e\u0439 | \u0411\u043b\u0430\u043d\u0435\u0441 70\u043c\u0438\u043d | \u041a\u043e\u0441\u0442\u0430-\u0411\u0440\u0430\u0432\u0430",
+      description: "\u0410\u0440\u0435\u043d\u0434\u0443\u0439\u0442\u0435 \u043b\u043e\u0434\u043a\u0438 \u0431\u0435\u0437 \u043b\u0438\u0446\u0435\u043d\u0437\u0438\u0438 \u0432 70 \u043c\u0438\u043d\u0443\u0442\u0430\u0445 \u043e\u0442 \u0411\u0430\u0440\u0441\u0435\u043b\u043e\u043d\u044b. \u0411\u043b\u0430\u043d\u0435\u0441, \u041a\u043e\u0441\u0442\u0430-\u0411\u0440\u0430\u0432\u0430. \u041b\u0443\u0447\u0448\u0438\u0435 \u0446\u0435\u043d\u044b. \u041e\u0442 70\u20ac.",
+    },
+  },
+  "/alquiler-barcos-costa-brava": {
+    es: {
+      title: `Alquiler de Barcos en Costa Brava ${SEASON_YEAR} | Sin Licencia desde 70\u20ac/h`,
+      description: "Alquila barcos en la Costa Brava desde Puerto de Blanes. Sin licencia desde 70\u20ac/h, gasolina incluida. 7 barcos. Reserva online.",
+    },
+    en: {
+      title: `Boat Rental Costa Brava ${SEASON_YEAR} | No License from 70\u20ac/h`,
+      description: "Rent boats in Costa Brava from Blanes Port. No license from 70\u20ac/h, fuel included. 7 boats. Book online.",
+    },
+    ca: {
+      title: `Lloguer Barques Costa Brava ${SEASON_YEAR} | Sense Llic\u00e8ncia des de 70\u20ac/h`,
+      description: "Lloga barques a la Costa Brava des del Port de Blanes. Sense llic\u00e8ncia des de 70\u20ac/h, gasolina inclosa. 7 barques.",
+    },
+    fr: {
+      title: `Location Bateaux Costa Brava ${SEASON_YEAR} | Sans Permis d\u00e8s 70\u20ac/h`,
+      description: "Louez des bateaux sur la Costa Brava depuis le Port de Blanes. Sans permis d\u00e8s 70\u20ac/h, carburant inclus. 7 bateaux.",
+    },
+    de: {
+      title: `Bootsverleih Costa Brava ${SEASON_YEAR} | Ohne F\u00fchrerschein ab 70\u20ac/h`,
+      description: "Boote mieten an der Costa Brava ab Hafen Blanes. Ohne F\u00fchrerschein ab 70\u20ac/h, Kraftstoff inklusive. 7 Boote.",
+    },
+    nl: {
+      title: `Bootverhuur Costa Brava ${SEASON_YEAR} | Zonder Vaarbewijs vanaf 70\u20ac/u`,
+      description: "Huur boten aan de Costa Brava vanuit Haven Blanes. Zonder vaarbewijs vanaf 70\u20ac/u, brandstof inbegrepen. 7 boten.",
+    },
+    it: {
+      title: `Noleggio Barche Costa Brava ${SEASON_YEAR} | Senza Patente da 70\u20ac/h`,
+      description: "Noleggia barche sulla Costa Brava dal Porto di Blanes. Senza patente da 70\u20ac/h, carburante incluso. 7 barche.",
+    },
+    ru: {
+      title: `\u0410\u0440\u0435\u043d\u0434\u0430 \u041b\u043e\u0434\u043e\u043a \u041a\u043e\u0441\u0442\u0430-\u0411\u0440\u0430\u0432\u0430 ${SEASON_YEAR} | \u0411\u0435\u0437 \u041b\u0438\u0446\u0435\u043d\u0437\u0438\u0438 \u043e\u0442 70\u20ac/\u0447`,
+      description: "\u0410\u0440\u0435\u043d\u0434\u0443\u0439\u0442\u0435 \u043b\u043e\u0434\u043a\u0438 \u043d\u0430 \u041a\u043e\u0441\u0442\u0430-\u0411\u0440\u0430\u0432\u0435 \u0438\u0437 \u043f\u043e\u0440\u0442\u0430 \u0411\u043b\u0430\u043d\u0435\u0441. \u0411\u0435\u0437 \u043b\u0438\u0446\u0435\u043d\u0437\u0438\u0438 \u043e\u0442 70\u20ac/\u0447, \u0442\u043e\u043f\u043b\u0438\u0432\u043e \u0432\u043a\u043b\u044e\u0447\u0435\u043d\u043e. 7 \u043b\u043e\u0434\u043e\u043a.",
+    },
   },
 };
 
 // Cached base HTML to avoid re-reading from disk on every request
 let cachedBaseHtml: string | null = null;
+
+// LRU cache for final injected HTML to avoid repeated regex replacements.
+// Keyed by "path:lang", TTL 5 minutes, max 200 entries.
+const injectedHtmlCache = new Map<string, { html: string; timestamp: number }>();
+const INJECTED_CACHE_TTL = 5 * 60 * 1000; // 5 minutes
+const INJECTED_CACHE_MAX = 200;
+
+function getCachedInjectedHtml(key: string): string | null {
+  const entry = injectedHtmlCache.get(key);
+  if (!entry) return null;
+  if (Date.now() - entry.timestamp > INJECTED_CACHE_TTL) {
+    injectedHtmlCache.delete(key);
+    return null;
+  }
+  // Move to end for LRU ordering (Map preserves insertion order)
+  injectedHtmlCache.delete(key);
+  injectedHtmlCache.set(key, entry);
+  return entry.html;
+}
+
+function setCachedInjectedHtml(key: string, html: string): void {
+  // If key already exists, delete first so it moves to the end
+  if (injectedHtmlCache.has(key)) {
+    injectedHtmlCache.delete(key);
+  }
+  if (injectedHtmlCache.size >= INJECTED_CACHE_MAX) {
+    // Evict oldest (first) entry
+    const oldestKey = injectedHtmlCache.keys().next().value;
+    if (oldestKey) injectedHtmlCache.delete(oldestKey);
+  }
+  injectedHtmlCache.set(key, { html, timestamp: Date.now() });
+}
 
 async function getBaseHtml(distPath: string): Promise<string> {
   if (!cachedBaseHtml) {
@@ -365,12 +910,11 @@ async function getBaseHtml(distPath: string): Promise<string> {
   return cachedBaseHtml;
 }
 
-function injectMeta(html: string, meta: SEOMeta, canonicalUrl: string, extraJsonLd?: object, lang: LangCode = "es"): string {
+function injectMeta(html: string, meta: SEOMeta, canonicalUrl: string, extraJsonLd?: object, lang: LangCode = "es", availableLanguages?: readonly string[]): string {
   const title = esc(meta.title);
   const desc = esc(meta.description);
   const ogTitle = esc(meta.ogTitle || meta.title);
   const ogDesc = esc(meta.ogDescription || meta.description);
-  const canonical = esc(canonicalUrl);
 
   let result = html;
 
@@ -396,7 +940,7 @@ function injectMeta(html: string, meta: SEOMeta, canonicalUrl: string, extraJson
   result = result.replace(/<meta property="og:title" content="[^"]*">/, `<meta property="og:title" content="${ogTitle}">`);
   result = result.replace(/<meta property="og:description" content="[^"]*">/, `<meta property="og:description" content="${ogDesc}">`);
   result = result.replace(/<meta property="og:url" content="[^"]*">/, `<meta property="og:url" content="${esc(BASE_URL + canonicalUrl)}">`);
-  result = result.replace(/<link rel="canonical" href="[^"]*">/, `<link rel="canonical" href="${canonical}">`);
+  result = result.replace(/<link rel="canonical" href="[^"]*">/, `<link rel="canonical" href="${esc(BASE_URL + canonicalUrl)}">`);
 
   // Replace og:image if a page-specific image is provided
   if (meta.ogImage) {
@@ -449,12 +993,13 @@ function injectMeta(html: string, meta: SEOMeta, canonicalUrl: string, extraJson
   }
 
   // Inject hreflang tags for all supported languages + x-default
-  const HREFLANG_LANGUAGES = ["es", "en", "fr", "de", "nl", "it", "ca", "ru"];
-  const hreflangTags = HREFLANG_LANGUAGES.map(lang => {
+  const langsToEmit = availableLanguages || SUPPORTED_LANGUAGES;
+  const hreflangTags = langsToEmit.map(lang => {
+    const hreflangCode = HREFLANG_CODES[lang as LangCode] || lang;
     const href = lang === "es"
       ? `${BASE_URL}${canonicalUrl}`
       : `${BASE_URL}${canonicalUrl}?lang=${lang}`;
-    return `  <link rel="alternate" hreflang="${lang}" href="${esc(href)}" />`;
+    return `  <link rel="alternate" hreflang="${hreflangCode}" href="${esc(href)}" />`;
   });
   // x-default points to the base URL without ?lang= (same as es)
   hreflangTags.push(`  <link rel="alternate" hreflang="x-default" href="${esc(BASE_URL + canonicalUrl)}" />`);
@@ -511,17 +1056,17 @@ const GEO_HIERARCHY = {
   },
 };
 
-// Build Product JSON-LD for a boat detail page (with VideoObject + urgency Offer)
+// Build Product JSON-LD for a boat detail page
 function buildBoatProductSchema(boat: { id: string; name: string; requiresLicense: boolean; capacity: number; deposit: string; imageUrl: string | null; imageGallery: string[] | null }, fromPrice: number | null): object {
   const licenseText = boat.requiresLicense ? "con licencia náutica" : "sin licencia náutica";
   const offers: Record<string, unknown> = {
     "@type": "Offer",
     priceCurrency: "EUR",
     availability: "https://schema.org/InStock",
-    availabilityStarts: "2026-04-01",
-    availabilityEnds: "2026-10-31",
-    priceValidUntil: "2026-10-31",
-    validFrom: "2026-04-01",
+    availabilityStarts: `${SEASON_YEAR}-04-01`,
+    availabilityEnds: `${SEASON_YEAR}-10-31`,
+    priceValidUntil: `${SEASON_YEAR}-10-31`,
+    validFrom: `${SEASON_YEAR}-04-01`,
     businessFunction: "http://purl.org/goodrelations/v1#LeaseOut",
     eligibleRegion: { "@type": "Country", name: "ES" },
     seller: {
@@ -550,7 +1095,7 @@ function buildBoatProductSchema(boat: { id: string; name: string; requiresLicens
     "@context": "https://schema.org",
     "@type": "Product",
     name: `${boat.name} - Alquiler en Blanes Costa Brava`,
-    description: `Alquila el ${boat.name} en Blanes, Costa Brava. Hasta ${boat.capacity} personas, ${licenseText}. Temporada 2026 abril-octubre.`,
+    description: `Alquila el ${boat.name} en Blanes, Costa Brava. Hasta ${boat.capacity} personas, ${licenseText}. Temporada ${SEASON_YEAR} abril-octubre.`,
     url: `${BASE_URL}/barco/${boat.id}`,
     brand: {
       "@type": "Brand",
@@ -574,22 +1119,6 @@ function buildBoatProductSchema(boat: { id: string; name: string; requiresLicens
       }
     }
     schema.image = allImages;
-    // VideoObject using boat image as thumbnail (aggressive but valid schema)
-    schema.subjectOf = {
-      "@type": "VideoObject",
-      name: `${boat.name} - Alquiler de Barcos en Blanes Costa Brava`,
-      description: `Descubre el ${boat.name} disponible para alquiler ${licenseText} en Puerto de Blanes. Hasta ${boat.capacity} personas. Temporada 2026.`,
-      thumbnailUrl: imgUrl,
-      uploadDate: "2026-03-01",
-      contentUrl: `${BASE_URL}/barco/${boat.id}`,
-      embedUrl: `${BASE_URL}/barco/${boat.id}`,
-      duration: "PT1M30S",
-      interactionStatistic: {
-        "@type": "InteractionCounter",
-        interactionType: "https://schema.org/WatchAction",
-        userInteractionCount: 150,
-      },
-    };
   }
   return schema;
 }
@@ -598,12 +1127,12 @@ function buildBoatProductSchema(boat: { id: string; name: string; requiresLicens
 function buildSeasonalEvent(isEn: boolean): object {
   return {
     "@type": "Event",
-    name: isEn ? "Costa Brava Boat Rental Season 2026" : "Temporada de Alquiler de Barcos Costa Brava 2026",
+    name: isEn ? `Costa Brava Boat Rental Season ${SEASON_YEAR}` : `Temporada de Alquiler de Barcos Costa Brava ${SEASON_YEAR}`,
     description: isEn
-      ? "Boat rental season in Blanes, Costa Brava. April to October 2026. License-free boats from 70 EUR/hour. 9 boats available."
-      : "Temporada de alquiler de barcos en Blanes, Costa Brava. Abril a octubre 2026. Barcos sin licencia desde 70 EUR/hora. 9 embarcaciones disponibles.",
-    startDate: "2026-04-01",
-    endDate: "2026-10-31",
+      ? `Boat rental season in Blanes, Costa Brava. April to October ${SEASON_YEAR}. License-free boats from 70 EUR/hour. 9 boats available.`
+      : `Temporada de alquiler de barcos en Blanes, Costa Brava. Abril a octubre ${SEASON_YEAR}. Barcos sin licencia desde 70 EUR/hora. 9 embarcaciones disponibles.`,
+    startDate: `${SEASON_YEAR}-04-01`,
+    endDate: `${SEASON_YEAR}-10-31`,
     eventStatus: "https://schema.org/EventScheduled",
     eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
     location: {
@@ -631,7 +1160,7 @@ function buildSeasonalEvent(isEn: boolean): object {
       lowPrice: "70",
       highPrice: "450",
       availability: "https://schema.org/InStock",
-      validFrom: "2026-01-01",
+      validFrom: `${SEASON_YEAR}-01-01`,
       url: BASE_URL,
     },
     image: `${BASE_URL}/og-image.webp`,
@@ -645,6 +1174,7 @@ function buildSeasonalEvent(isEn: boolean): object {
 interface ResolvedPage {
   meta: SEOMeta;
   jsonLd?: object;
+  availableLanguages?: readonly string[];
 }
 
 async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPage | null> {
@@ -653,10 +1183,12 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
   if (pageMeta) {
     const meta = pageMeta[lang] || pageMeta["es"];
     if (!meta) return null;
+    const availableLanguages = Object.keys(pageMeta) as LangCode[];
 
-    // Helper: build a BreadcrumbList schema for any page
+    // Helper: build a BreadcrumbList schema for any page (with @id for entity linking)
     const buildBreadcrumb = (items: Array<{ name: string; url: string }>) => ({
       "@type": "BreadcrumbList",
+      "@id": `${BASE_URL}${pathname}#breadcrumb`,
       itemListElement: items.map((item, i) => ({
         "@type": "ListItem",
         position: i + 1,
@@ -695,8 +1227,8 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
           dayOfWeek: ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
           opens: "09:00",
           closes: "20:00",
-          validFrom: "2026-04-01",
-          validThrough: "2026-10-31",
+          validFrom: `${SEASON_YEAR}-04-01`,
+          validThrough: `${SEASON_YEAR}-10-31`,
         }],
         priceRange: "€€",
         aggregateRating,
@@ -755,6 +1287,7 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
       };
       const faq = {
         "@type": "FAQPage",
+        "@id": `${BASE_URL}/#faq`,
         mainEntity: [
           {
             "@type": "Question",
@@ -793,13 +1326,14 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
         "@context": "https://schema.org",
         "@graph": [localBusiness, webSite, howTo, faq, seasonalEvent]
       };
-      return { meta, jsonLd };
+      return { meta, jsonLd, availableLanguages };
     }
 
     // /faq - FAQPage schema (critical for AI search extraction)
     else if (pathname === "/faq") {
       const faqPage = {
         "@type": "FAQPage",
+        "@id": `${BASE_URL}/faq#faq`,
         mainEntity: [
           {
             "@type": "Question",
@@ -839,7 +1373,7 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
         ],
       };
       const breadcrumb = buildBreadcrumb([homeCrumb, { name: "FAQ", url: `${BASE_URL}/faq` }]);
-      return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [faqPage, breadcrumb] } };
+      return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [faqPage, breadcrumb] }, availableLanguages };
     }
 
     // /testimonios - LocalBusiness with AggregateRating + individual Reviews
@@ -879,7 +1413,7 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
               },
               author: { "@type": "Person", name: (t.name as string) || "Cliente" },
               reviewBody: (t.text as string) || (t.comment as string) || "",
-              datePublished: t.createdAt ? new Date(t.createdAt as string).toISOString().split("T")[0] : "2026-01-01",
+              datePublished: t.createdAt ? new Date(t.createdAt as string).toISOString().split("T")[0] : `${SEASON_YEAR}-01-01`,
               publisher: { "@type": "Organization", name: "Costa Brava Rent a Boat" },
               itemReviewed: { "@type": "LocalBusiness", "@id": `${BASE_URL}/#organization` },
             });
@@ -890,7 +1424,7 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
         // Fall back to aggregate only
       }
       const breadcrumb = buildBreadcrumb([homeCrumb, { name: isEn ? "Reviews" : "Opiniones", url: `${BASE_URL}/testimonios` }]);
-      return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [localBusiness, breadcrumb] } };
+      return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [localBusiness, breadcrumb] }, availableLanguages };
     }
 
     // /alquiler-barcos-blanes - TouristDestination + FAQPage for Blanes
@@ -943,7 +1477,7 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
         ],
       };
       const breadcrumb = buildBreadcrumb([homeCrumb, { name: isEn ? "Boat Rental in Blanes" : "Alquiler Barcos Blanes", url: `${BASE_URL}/alquiler-barcos-blanes` }]);
-      return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [destination, faq, breadcrumb] } };
+      return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [destination, faq, breadcrumb] }, availableLanguages };
     }
 
     // /alquiler-barcos-lloret-de-mar - TouristDestination + FAQPage for Lloret
@@ -1002,7 +1536,7 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
         ],
       };
       const breadcrumb = buildBreadcrumb([homeCrumb, { name: isEn ? "Lloret de Mar by Boat" : "Lloret de Mar en Barco", url: `${BASE_URL}/alquiler-barcos-lloret-de-mar` }]);
-      return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [destination, faq, breadcrumb] } };
+      return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [destination, faq, breadcrumb] }, availableLanguages };
     }
 
     // /alquiler-barcos-tossa-de-mar - TouristDestination + FAQPage for Tossa
@@ -1061,25 +1595,28 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
         ],
       };
       const breadcrumb = buildBreadcrumb([homeCrumb, { name: isEn ? "Tossa de Mar by Boat" : "Tossa de Mar en Barco", url: `${BASE_URL}/alquiler-barcos-tossa-de-mar` }]);
-      return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [destination, faq, breadcrumb] } };
+      return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [destination, faq, breadcrumb] }, availableLanguages };
     }
 
-    // /barcos-sin-licencia - ItemList of 5 license-free boats
+    // /barcos-sin-licencia - ItemList of license-free boats (dynamic from DB)
     else if (pathname === "/barcos-sin-licencia") {
-      const noLicenseBoats = [
-        { id: "solar-450", name: "Solar 450", capacity: 5, price: "75" },
-        { id: "remus-450", name: "Remus 450", capacity: 5, price: "75" },
-        { id: "remus-450-ii", name: "Remus 450 II", capacity: 5, price: "75" },
-        { id: "astec-400", name: "Astec 400", capacity: 4, price: "70" },
-        { id: "astec-480", name: "Astec 480", capacity: 5, price: "80" },
-      ];
+      const allBoats = await storage.getAllBoats();
+      const noLicenseBoats = allBoats
+        .filter(b => b.isActive && !b.requiresLicense)
+        .map(b => {
+          const seasons = b.pricing ? Object.values(b.pricing) as Array<{ prices?: Record<string, number> }> : [];
+          const prices = seasons.flatMap(s => s?.prices ? Object.values(s.prices) : []);
+          const minPrice = prices.length > 0 ? String(Math.min(...prices)) : "70";
+          return { id: b.id, name: b.name, capacity: b.capacity, price: minPrice };
+        });
       const itemList = {
         "@type": "ItemList",
+        "@id": `${BASE_URL}/barcos-sin-licencia#itemlist`,
         name: isEn ? "License-Free Boats in Blanes" : "Barcos Sin Licencia en Blanes",
         description: isEn
           ? "5 license-free boats available for rent in Blanes, Costa Brava. No qualification needed, up to 15 HP."
           : "5 barcos sin licencia disponibles para alquilar en Blanes, Costa Brava. No se necesita titulacion, hasta 15 CV.",
-        numberOfItems: 5,
+        numberOfItems: noLicenseBoats.length,
         itemListElement: noLicenseBoats.map((boat, i) => ({
           "@type": "ListItem",
           position: i + 1,
@@ -1096,33 +1633,37 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
               priceCurrency: "EUR",
               price: boat.price,
               availability: "https://schema.org/InStock",
-              availabilityStarts: "2026-04-01",
-              availabilityEnds: "2026-10-31",
-              priceValidUntil: "2026-10-31",
+              availabilityStarts: `${SEASON_YEAR}-04-01`,
+              availabilityEnds: `${SEASON_YEAR}-10-31`,
+              priceValidUntil: `${SEASON_YEAR}-10-31`,
               businessFunction: "http://purl.org/goodrelations/v1#LeaseOut",
             },
           },
         })),
       };
       const breadcrumb = buildBreadcrumb([homeCrumb, { name: isEn ? "No License Boats" : "Barcos Sin Licencia", url: `${BASE_URL}/barcos-sin-licencia` }]);
-      return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [itemList, breadcrumb] } };
+      return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [itemList, breadcrumb] }, availableLanguages };
     }
 
-    // /barcos-con-licencia - ItemList of 4 licensed boats
+    // /barcos-con-licencia - ItemList of licensed boats (dynamic from DB)
     else if (pathname === "/barcos-con-licencia") {
-      const licensedBoats = [
-        { id: "mingolla-brava-19", name: "Mingolla Brava 19", capacity: 6, price: "150" },
-        { id: "trimarchi-57s", name: "Trimarchi 57S", capacity: 7, price: "200" },
-        { id: "pacific-craft-625", name: "Pacific Craft 625", capacity: 7, price: "250" },
-        { id: "excursion-privada", name: "Excursion Privada con Capitan", capacity: 7, price: "300" },
-      ];
+      const allBoatsLic = await storage.getAllBoats();
+      const licensedBoats = allBoatsLic
+        .filter(b => b.isActive && b.requiresLicense)
+        .map(b => {
+          const seasons = b.pricing ? Object.values(b.pricing) as Array<{ prices?: Record<string, number> }> : [];
+          const prices = seasons.flatMap(s => s?.prices ? Object.values(s.prices) : []);
+          const minPrice = prices.length > 0 ? String(Math.min(...prices)) : "150";
+          return { id: b.id, name: b.name, capacity: b.capacity, price: minPrice };
+        });
       const itemList = {
         "@type": "ItemList",
+        "@id": `${BASE_URL}/barcos-con-licencia#itemlist`,
         name: isEn ? "Licensed Boats in Blanes" : "Barcos Con Licencia en Blanes",
         description: isEn
           ? "4 licensed boats available for rent in Blanes, Costa Brava. Powerful engines for longer routes to Tossa de Mar."
           : "4 barcos con licencia disponibles para alquilar en Blanes, Costa Brava. Motores potentes para rutas mas largas hasta Tossa de Mar.",
-        numberOfItems: 4,
+        numberOfItems: licensedBoats.length,
         itemListElement: licensedBoats.map((boat, i) => ({
           "@type": "ListItem",
           position: i + 1,
@@ -1139,22 +1680,23 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
               priceCurrency: "EUR",
               price: boat.price,
               availability: "https://schema.org/InStock",
-              availabilityStarts: "2026-04-01",
-              availabilityEnds: "2026-10-31",
-              priceValidUntil: "2026-10-31",
+              availabilityStarts: `${SEASON_YEAR}-04-01`,
+              availabilityEnds: `${SEASON_YEAR}-10-31`,
+              priceValidUntil: `${SEASON_YEAR}-10-31`,
               businessFunction: "http://purl.org/goodrelations/v1#LeaseOut",
             },
           },
         })),
       };
       const breadcrumb = buildBreadcrumb([homeCrumb, { name: isEn ? "Licensed Boats" : "Barcos Con Licencia", url: `${BASE_URL}/barcos-con-licencia` }]);
-      return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [itemList, breadcrumb] } };
+      return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [itemList, breadcrumb] }, availableLanguages };
     }
 
     // /rutas - ItemList of routes
     else if (pathname === "/rutas") {
       const itemList = {
         "@type": "ItemList",
+        "@id": `${BASE_URL}/rutas#itemlist`,
         name: isEn ? "Boat Routes from Blanes" : "Rutas en Barco desde Blanes",
         description: isEn
           ? "Discover the best boat routes from Blanes along the Costa Brava coastline."
@@ -1168,13 +1710,13 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
         ],
       };
       const breadcrumb = buildBreadcrumb([homeCrumb, { name: isEn ? "Routes" : "Rutas", url: `${BASE_URL}/rutas` }]);
-      return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [itemList, breadcrumb] } };
+      return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [itemList, breadcrumb] }, availableLanguages };
     }
 
     // /galeria - BreadcrumbList only
     else if (pathname === "/galeria") {
       const breadcrumb = buildBreadcrumb([homeCrumb, { name: isEn ? "Gallery" : "Galeria", url: `${BASE_URL}/galeria` }]);
-      return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [breadcrumb] } };
+      return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [breadcrumb] }, availableLanguages };
     }
 
     // /tarjetas-regalo - Product schema for gift cards
@@ -1198,7 +1740,78 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
         image: `${BASE_URL}/og-image.webp`,
       };
       const breadcrumb = buildBreadcrumb([homeCrumb, { name: isEn ? "Gift Cards" : "Tarjetas Regalo", url: `${BASE_URL}/tarjetas-regalo` }]);
-      return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [product, breadcrumb] } };
+      return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [product, breadcrumb] }, availableLanguages };
+    }
+
+    // /precios - FAQPage + OfferCatalog for pricing page
+    else if (pathname === "/precios") {
+      const faq = {
+        "@type": "FAQPage",
+        mainEntity: [
+          {
+            "@type": "Question",
+            name: isEn ? "How much does it cost to rent a license-free boat in Blanes?" : "Cuanto cuesta alquilar un barco sin licencia en Blanes?",
+            acceptedAnswer: { "@type": "Answer", text: isEn
+              ? "License-free boats in Blanes start from 70 EUR/hour in low season (April-June, September-October). Mid season (July) from 80 EUR/hour and high season (August) from 90 EUR/hour. Price includes fuel, insurance and safety equipment."
+              : "Los barcos sin licencia en Blanes cuestan desde 70 EUR/hora en temporada baja (abril-junio, septiembre-octubre). En temporada media (julio) desde 80 EUR/hora y en temporada alta (agosto) desde 90 EUR/hora. El precio incluye gasolina, seguro y equipo de seguridad." },
+          },
+          {
+            "@type": "Question",
+            name: isEn ? "Is fuel included in the rental price?" : "La gasolina esta incluida en el precio del alquiler?",
+            acceptedAnswer: { "@type": "Answer", text: isEn
+              ? "Yes, all our license-free boats include fuel in the price. For licensed boats, fuel is paid separately based on actual consumption."
+              : "Si, todos nuestros barcos sin licencia incluyen la gasolina en el precio. Para los barcos con licencia, el combustible se paga aparte segun el consumo real." },
+          },
+          {
+            "@type": "Question",
+            name: isEn ? "Is there a price difference between low and high season?" : "Hay diferencia de precio entre temporada baja y alta?",
+            acceptedAnswer: { "@type": "Answer", text: isEn
+              ? "Yes. Low season (April-June and September-October) has the best prices. Mid season is July with intermediate prices, and high season is August with the highest rates."
+              : "Si. La temporada baja (abril-junio y septiembre-octubre) tiene los mejores precios. La temporada media es julio con precios intermedios, y la temporada alta es agosto con las tarifas mas altas." },
+          },
+          {
+            "@type": "Question",
+            name: isEn ? "How much does it cost to rent a licensed boat in Blanes?" : "Cuanto cuesta alquilar un barco con licencia en Blanes?",
+            acceptedAnswer: { "@type": "Answer", text: isEn
+              ? "Licensed boats in Blanes start from 150 EUR/hour in low season. They require a boating license (PER/ICC). More powerful boats with greater range to explore Costa Brava."
+              : "Los barcos con licencia en Blanes cuestan desde 150 EUR/hora en temporada baja. Requieren PER o titulo nautico equivalente. Son barcos mas potentes con mayor autonomia para explorar la Costa Brava." },
+          },
+        ],
+      };
+      const offerCatalog = {
+        "@type": "OfferCatalog",
+        name: isEn ? `Boat Rental Prices Blanes ${SEASON_YEAR}` : `Precios Alquiler Barcos Blanes ${SEASON_YEAR}`,
+        itemListElement: [
+          {
+            "@type": "Offer",
+            name: isEn ? "License-Free Boats" : "Barcos Sin Licencia",
+            priceCurrency: "EUR",
+            priceSpecification: {
+              "@type": "UnitPriceSpecification",
+              price: 70,
+              priceCurrency: "EUR",
+              unitText: "hour",
+              description: isEn ? "Low season starting price" : "Precio desde temporada baja",
+            },
+            availability: "https://schema.org/InStock",
+          },
+          {
+            "@type": "Offer",
+            name: isEn ? "Licensed Boats" : "Barcos Con Licencia",
+            priceCurrency: "EUR",
+            priceSpecification: {
+              "@type": "UnitPriceSpecification",
+              price: 150,
+              priceCurrency: "EUR",
+              unitText: "hour",
+              description: isEn ? "Low season starting price" : "Precio desde temporada baja",
+            },
+            availability: "https://schema.org/InStock",
+          },
+        ],
+      };
+      const breadcrumb = buildBreadcrumb([homeCrumb, { name: isEn ? "Prices" : "Precios", url: `${BASE_URL}/precios` }]);
+      return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [faq, offerCatalog, breadcrumb] }, availableLanguages };
     }
 
     // /blog - CollectionPage schema
@@ -1214,10 +1827,10 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
         publisher: { "@type": "Organization", name: "Costa Brava Rent a Boat" },
       };
       const breadcrumb = buildBreadcrumb([homeCrumb, { name: "Blog", url: `${BASE_URL}/blog` }]);
-      return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [collectionPage, breadcrumb] } };
+      return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [collectionPage, breadcrumb] }, availableLanguages };
     }
 
-    return { meta };
+    return { meta, availableLanguages };
   }
 
   // 2. Boat detail pages: /barco/:id
@@ -1293,12 +1906,16 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
             section: (post.category as string) || "Navegacion",
           },
         };
+        const contentText = typeof post.content === "string" ? post.content : "";
+        const wordCount = contentText.split(/\s+/).filter(Boolean).length || undefined;
         const jsonLd: Record<string, unknown> = {
           "@context": "https://schema.org",
           "@type": "BlogPosting",
+          "@id": `${BASE_URL}/blog/${slug}#article`,
           headline: post.title,
           description: meta.description,
           url: `${BASE_URL}/blog/${slug}`,
+          mainEntityOfPage: { "@type": "WebPage", "@id": `${BASE_URL}/blog/${slug}` },
           datePublished: post.publishedAt || post.createdAt,
           dateModified: post.updatedAt || post.publishedAt,
           author: { "@type": "Organization", name: "Costa Brava Rent a Boat" },
@@ -1307,7 +1924,10 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
             name: "Costa Brava Rent a Boat",
             logo: { "@type": "ImageObject", url: `${BASE_URL}/assets/og-image.png` },
           },
+          inLanguage: lang,
+          articleSection: (post.category as string) || "Navegacion",
         };
+        if (wordCount) jsonLd.wordCount = wordCount;
         if (postOgImage) {
           const absImage = postOgImage.startsWith("http") ? postOgImage : `${BASE_URL}${postOgImage}`;
           jsonLd.image = absImage;
@@ -1377,7 +1997,7 @@ export async function serveWithSEO(
     const parsedUrl = new URL(req.originalUrl, "http://localhost");
     const pathname = parsedUrl.pathname;
     const langParam = parsedUrl.searchParams.get("lang");
-    const lang: LangCode = (["es", "ca", "en", "fr", "de", "nl", "it", "ru"].includes(langParam || "") ? langParam : "es") as LangCode;
+    const lang: LangCode = ([...SUPPORTED_LANGUAGES].includes(langParam as LangCode) ? langParam : "es") as LangCode;
 
     // The canonical URL for this page (strip trailing slash, no query params — languages handled via hreflang)
     const canonicalPath = pathname === "/" ? "/" : pathname.replace(/\/$/, "");
@@ -1385,6 +2005,18 @@ export async function serveWithSEO(
 
     const resolved = await resolveMeta(canonicalPath, lang);
     if (resolved) {
+      // Check LRU cache for pre-injected HTML (avoids 9+ regex replacements)
+      const cacheKey = `${canonicalPath}:${lang}`;
+      const cachedHtml = getCachedInjectedHtml(cacheKey);
+      if (cachedHtml) {
+        res.set("Content-Type", "text/html; charset=utf-8");
+        res.set("Content-Language", lang);
+        res.set("Cache-Control", "public, max-age=300, must-revalidate");
+        res.set("X-SEO-Cache", "HIT");
+        res.send(cachedHtml);
+        return;
+      }
+
       // Override with DB-sourced meta if available (seo_meta table)
       const dbMeta = await getDbMeta(canonicalPath, lang);
       if (dbMeta) {
@@ -1402,9 +2034,15 @@ export async function serveWithSEO(
         }
       }
       const baseHtml = await getBaseHtml(distPath);
-      const html = injectMeta(baseHtml, resolved.meta, canonicalUrl, resolved.jsonLd, lang);
+      const html = injectMeta(baseHtml, resolved.meta, canonicalUrl, resolved.jsonLd, lang, resolved.availableLanguages);
+
+      // Cache the final injected HTML
+      setCachedInjectedHtml(cacheKey, html);
+
       res.set("Content-Type", "text/html; charset=utf-8");
+      res.set("Content-Language", lang);
       res.set("Cache-Control", "public, max-age=300, must-revalidate"); // 5 min cache for SEO-injected pages
+      res.set("X-SEO-Cache", "MISS");
       res.send(html);
     } else {
       // If route is unknown, send 404 status so crawlers don't index non-existent pages

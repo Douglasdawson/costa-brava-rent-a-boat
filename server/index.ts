@@ -1,6 +1,7 @@
 import express, { type Request, Response, NextFunction } from "express";
 import compression from "compression";
 import helmet from "helmet";
+import https from "https";
 import rateLimit from "express-rate-limit";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
@@ -12,6 +13,11 @@ import { csrfProtection } from "./middleware/csrf";
 import { stopScheduler } from "./services/schedulerService";
 import { startSeoWorker, stopSeoWorker } from "./seo/worker";
 import { pool } from "./db";
+
+// Enable HTTP keep-alive globally for external API connections (Stripe, Twilio, OpenAI, etc.)
+// Reduces TLS handshake overhead on repeated requests to the same hosts
+https.globalAgent.maxSockets = 10;
+(https.globalAgent as unknown as { keepAlive: boolean }).keepAlive = true;
 
 // Extend Express Request with requestId
 declare global {
@@ -186,9 +192,19 @@ app.use(compression({
     if (req.headers['x-no-compression']) {
       return false;
     }
+    // Always compress JSON API responses regardless of Content-Type detection
+    if (req.path.startsWith('/api')) {
+      return true;
+    }
+    // Ensure SVGs get compressed (they're XML text, highly compressible)
+    const ct = String(res.getHeader('content-type') || '');
+    if (ct.includes('image/svg+xml')) {
+      return true;
+    }
     return compression.filter(req, res);
   },
   level: 6,
+  threshold: 1024, // Only compress responses larger than 1KB
 }));
 
 // CSRF protection — validates Origin/Referer for cookie-based auth (state-changing requests)
@@ -333,17 +349,21 @@ app.use((req: Request, res: Response, next: NextFunction) => {
   } else {
     // Add Cache-Control headers for production static assets
     app.use((req, res, next) => {
-      const path = req.path;
-      
-      // Static assets with content hash (immutable, long cache)
-      if (path.match(/\.(js|css|woff2?|ttf|eot|otf|svg|png|jpg|jpeg|gif|webp|ico|map)$/)) {
+      const p = req.path;
+
+      // Vite-hashed assets in /assets/ — immutable, cache for 1 year
+      if (p.startsWith('/assets/') && p.match(/\.(js|css|woff2?|ttf|eot|otf|svg|png|jpg|jpeg|gif|webp|avif|map)$/)) {
         res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
       }
-      // HTML files (always revalidate)
-      else if (path.match(/\.html$/) || path === '/') {
+      // Other static assets (favicon, robots.txt, manifest, etc.) — cache 1 day, revalidate
+      else if (p.match(/\.(ico|txt|xml|json|webmanifest|png|jpg|svg)$/) && !p.startsWith('/api')) {
+        res.setHeader('Cache-Control', 'public, max-age=86400, stale-while-revalidate=604800');
+      }
+      // HTML files and SPA routes — never cache, always revalidate
+      else if (p.match(/\.html$/) || p === '/') {
         res.setHeader('Cache-Control', 'public, max-age=0, must-revalidate');
       }
-      
+
       next();
     });
     
@@ -373,6 +393,16 @@ app.use((req: Request, res: Response, next: NextFunction) => {
     });
     setTimeout(() => process.exit(1), 10000);
   };
+  process.on("uncaughtException", (err) => {
+    log(`Uncaught exception — shutting down: ${err.message}\n${err.stack}`);
+    shutdown();
+  });
+
+  process.on("unhandledRejection", (reason) => {
+    log(`Unhandled rejection — shutting down: ${reason instanceof Error ? reason.message : String(reason)}`);
+    shutdown();
+  });
+
   process.on("SIGTERM", shutdown);
   process.on("SIGINT", shutdown);
 })();

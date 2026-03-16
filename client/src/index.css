@@ -482,6 +482,7 @@ body {
   .btn-elevated {
     box-shadow: 0 4px 14px hsl(var(--foreground) / 0.35);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
+    will-change: transform, box-shadow;
   }
   .btn-elevated:hover {
     transform: translateY(-2px);
@@ -507,6 +508,7 @@ body {
   }
   .animate-savings-pulse {
     animation: savings-pulse 2s ease-in-out infinite;
+    will-change: background-color;
   }
 
   @keyframes cta-ring {
@@ -517,6 +519,7 @@ body {
 
   .cta-pulse {
     animation: cta-ring 2s ease-out infinite;
+    will-change: box-shadow;
   }
 
   .pb-safe {
@@ -538,7 +541,14 @@ body {
   /* SocialProofToast transition (CSS class instead of inline style for reduced-motion override) */
   .social-proof-transition {
     transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: transform, opacity;
   }
+}
+
+/* Below-fold sections: skip rendering until near viewport */
+.below-fold {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 500px;
 }
 
 /* Reduced motion — disable animations for users with vestibular disorders */

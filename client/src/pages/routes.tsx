@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, lazy, Suspense } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -6,7 +6,7 @@ import { MapPin, Clock, Ruler, Ship, ChevronRight } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { SEO } from "@/components/SEO";
-import RouteMap from "@/components/RouteMap";
+const RouteMap = lazy(() => import("@/components/RouteMap"));
 import { boatRoutes } from "@shared/routesData";
 import { useLanguage } from "@/hooks/use-language";
 import { useTranslations } from "@/lib/translations";
@@ -69,11 +69,13 @@ export default function RoutesPage() {
 
         {/* Map */}
         <div className="mb-8">
-          <RouteMap
-            routes={boatRoutes}
-            selectedRouteId={selectedRouteId}
-            onRouteSelect={handleRouteSelect}
-          />
+          <Suspense fallback={<div className="min-h-[400px] animate-pulse bg-muted rounded-lg" />}>
+            <RouteMap
+              routes={boatRoutes}
+              selectedRouteId={selectedRouteId}
+              onRouteSelect={handleRouteSelect}
+            />
+          </Suspense>
         </div>
 
         {/* Route Cards */}

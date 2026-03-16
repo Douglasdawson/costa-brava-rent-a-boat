@@ -4,6 +4,7 @@ import { getSeason } from "@shared/pricing";
 import { useToast } from "@/hooks/use-toast";
 import { useTranslations } from "@/lib/translations";
 import { useAuth } from "@/hooks/useAuth";
+import { useDebounce } from "@/hooks/useDebounce";
 import { PHONE_PREFIXES, filterPhonePrefixes } from "@/utils/phone-prefixes";
 import type { Boat } from "@shared/schema";
 import type { BookingFlowProps, Customer, CustomerData, Quote, Duration, TimeSlot, Extra } from "./types";
@@ -117,10 +118,21 @@ export function useBookingFlowState(props: BookingFlowProps) {
     { id: "seascooter", name: t.booking?.extrasDetails?.seascooter?.name || "Seascooter", price: 50, description: t.booking?.extrasDetails?.seascooter?.description || "Scooter acuático" }
   ];
 
-  const filteredPhoneCountries = filterPhonePrefixes(PHONE_PREFIXES, phonePrefixSearch);
+  // Debounce search values so filtering only runs after 200ms of inactivity,
+  // while the input fields remain immediately responsive to typing
+  const debouncedPhoneSearch = useDebounce(phonePrefixSearch, 200);
+  const debouncedNationalitySearch = useDebounce(nationalitySearch, 200);
 
-  const filteredNationalities = nationalities.filter(nationality =>
-    nationality.toLowerCase().includes(nationalitySearch.toLowerCase())
+  const filteredPhoneCountries = useMemo(
+    () => filterPhonePrefixes(PHONE_PREFIXES, debouncedPhoneSearch),
+    [debouncedPhoneSearch]
+  );
+
+  const filteredNationalities = useMemo(
+    () => nationalities.filter(nationality =>
+      nationality.toLowerCase().includes(debouncedNationalitySearch.toLowerCase())
+    ),
+    [debouncedNationalitySearch]
   );
 
   const allBoats = boats || [];

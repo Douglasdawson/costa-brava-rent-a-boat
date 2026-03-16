@@ -1,5 +1,13 @@
 import { Language } from "@/hooks/use-language";
 import { getBaseUrl } from "@/lib/domain";
+import { HREFLANG_CODES } from "@shared/seoConstants";
+
+// Dynamic season year: Nov-Dec → next year, otherwise current year
+function getSeasonYear(): number {
+  const now = new Date();
+  return now.getMonth() >= 10 ? now.getFullYear() + 1 : now.getFullYear();
+}
+const SEASON_YEAR = getSeasonYear();
 
 // SEO Configuration for all languages
 export interface SEOConfig {
@@ -52,7 +60,7 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       title: "Alquiler Barcos Costa Brava Sin Licencia | Blanes desde 70\u20ac/h",
       description: "Alquila barcos sin licencia en Costa Brava desde Puerto de Blanes. Desde 70\u20ac/h, gasolina incluida. 4.8\u2605 en Google (307 opiniones). 7 barcos para 4-7 personas. Reserva online en 2 min.",
       keywords: "alquiler barco costa brava, alquiler barcos blanes, barco alquiler costa brava, alquiler de barco en costa brava, alquiler embarcaciones costa brava",
-      ogTitle: "Alquiler de Barcos en Costa Brava | Blanes 2026",
+      ogTitle: `Alquiler de Barcos en Costa Brava | Blanes ${SEASON_YEAR}`,
       ogDescription: "Alquila barcos en Costa Brava desde Puerto de Blanes. Sin licencia ni experiencia, desde 70\u20ac con gasolina incluida. Reserva ya tu aventura."
     },
     booking: {
@@ -71,7 +79,7 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       title: "Alquiler Barco Blanes Sin Licencia | Puerto de Blanes desde 70\u20ac/h",
       description: "Alquiler de barcos sin licencia en Puerto de Blanes. Desde 70\u20ac/h, gasolina incluida. 4.8\u2605 Google (307 opiniones). 7 barcos para hasta 7 personas. Reserva online.",
       keywords: "alquiler barco blanes, alquiler barcos blanes, alquilar barco en blanes, barcos sin licencia blanes, puerto blanes",
-      ogTitle: "Alquiler de Barcos en Blanes | Puerto de Blanes 2026",
+      ogTitle: `Alquiler de Barcos en Blanes | Puerto de Blanes ${SEASON_YEAR}`,
       ogDescription: "Alquila barcos en Puerto de Blanes. Sin licencia desde 70\u20ac con gasolina incluida. 7 embarcaciones disponibles. Reserva ya."
     },
     locationLloret: {
@@ -129,6 +137,11 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       description: "Información sobre el uso de cookies en Costa Brava Rent a Boat. Aprende cómo utilizamos cookies para mejorar tu experiencia.",
       keywords: "política cookies, cookies costa brava rent boat, uso cookies, privacidad navegación"
     },
+    accesibilidad: {
+      title: "Declaracion de Accesibilidad | Costa Brava Rent a Boat",
+      description: "Declaracion de accesibilidad web de Costa Brava Rent a Boat. Cumplimiento WCAG 2.1.",
+      keywords: "accesibilidad web, wcag 2.1, accesibilidad costa brava rent boat"
+    },
     blog: {
       title: "Blog de Navegación y Destinos | Costa Brava",
       description: "Guías, consejos y destinos para alquilar barcos en Blanes y la Costa Brava. Descubre calas secretas, rutas náuticas y tips de navegación.",
@@ -152,7 +165,7 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       title: "Rutas en Barco desde Blanes | Costa Brava",
       description: "Descubre las mejores rutas en barco desde Blanes. Desde Sa Palomera hasta Tossa de Mar. Mapas interactivos y guia de navegacion.",
       keywords: "rutas barco blanes, excursiones barco costa brava, mapa rutas nauticas, tossa de mar barco, lloret barco",
-      ogTitle: "Rutas en Barco desde Blanes | Costa Brava 2026",
+      ogTitle: `Rutas en Barco desde Blanes | Costa Brava ${SEASON_YEAR}`,
       ogDescription: "5 rutas en barco desde Blanes. Sa Palomera, Cala Sant Francesc, Lloret de Mar, Tossa de Mar. Mapas interactivos!"
     },
     giftCards: {
@@ -163,10 +176,10 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       ogDescription: "Regala una experiencia nautica inolvidable. Tarjetas desde 50EUR canjeables en todos nuestros barcos en Blanes."
     },
     pricing: {
-      title: "Precios Alquiler Barcos Blanes 2026 | Costa Brava Rent a Boat",
+      title: `Precios Alquiler Barcos Blanes ${SEASON_YEAR} | Costa Brava Rent a Boat`,
       description: "Consulta precios de alquiler de barcos en Blanes. Sin licencia desde 70\u20ac/hora. Con licencia desde 150\u20ac. Gasolina incluida. Temporada baja, media y alta.",
       keywords: "precios alquiler barco costa brava, cuanto cuesta alquilar barco blanes, tarifas barco sin licencia",
-      ogTitle: "Precios Alquiler Barcos Blanes 2026 | Desde 70\u20ac",
+      ogTitle: `Precios Alquiler Barcos Blanes ${SEASON_YEAR} | Desde 70\u20ac`,
       ogDescription: "Compara precios de todos nuestros barcos en Blanes. Sin licencia desde 70\u20ac/h. Gasolina incluida. Temporada baja, media y alta."
     },
     locationBarcelona: {
@@ -177,9 +190,9 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       ogDescription: "A solo 70 min de Barcelona. Barcos sin licencia desde 70\u20ac con gasolina incluida. Aguas cristalinas de la Costa Brava."
     },
     locationCostaBrava: {
-      title: "Alquiler de Barcos en Costa Brava 2026 | Sin Licencia desde 70\u20ac/h",
+      title: `Alquiler de Barcos en Costa Brava ${SEASON_YEAR} | Sin Licencia desde 70\u20ac/h`,
       description: "Alquila barcos en la Costa Brava desde Puerto de Blanes. Sin licencia desde 70\u20ac/h, gasolina incluida. 4.8\u2605 Google (307 opiniones). 7 barcos. Reserva online.",
-      keywords: "alquiler barcos costa brava, alquiler barcos sin licencia costa brava, barcos costa brava 2026"
+      keywords: `alquiler barcos costa brava, alquiler barcos sin licencia costa brava, barcos costa brava ${SEASON_YEAR}`
     },
     notFound: {
       title: "Página no encontrada | Costa Brava Rent a Boat",
@@ -192,7 +205,7 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       title: "Boat Rental Costa Brava No License | Blanes from 70\u20ac/h",
       description: "Rent boats without license in Costa Brava from Blanes Port. From 70\u20ac/h, fuel included. 4.8\u2605 Google (307 reviews). 7 boats for 4-7 people. Book online in 2 min.",
       keywords: "boat rental blanes, boats without license costa brava, boat charter blanes, costa brava rent boat, blanes port",
-      ogTitle: "Boat Rental in Blanes & Lloret de Mar | Costa Brava 2026",
+      ogTitle: `Boat Rental in Blanes & Lloret de Mar | Costa Brava ${SEASON_YEAR}`,
       ogDescription: "Discover Costa Brava from the sea. 7 boats with and without license. Explore paradise coves. Book your adventure today!"
     },
     booking: {
@@ -211,7 +224,7 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       title: "Boat Rental Blanes No License | Blanes Port from 70\u20ac/h",
       description: "Boat rental without license at Blanes Port. From 70\u20ac/h, fuel included. 4.8\u2605 Google (307 reviews). 7 boats for up to 7 people. Book online.",
       keywords: "boat rental blanes port, boats blanes costa brava, boats without license blanes, costa brava coves from blanes",
-      ogTitle: "Boat Rental at Blanes Port | Costa Brava 2026",
+      ogTitle: `Boat Rental at Blanes Port | Costa Brava ${SEASON_YEAR}`,
       ogDescription: "Rent boats from Blanes Port. With and without license. 7 boats available. Explore coves and beaches. Book now!"
     },
     locationLloret: {
@@ -242,6 +255,11 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       ogTitle: "Licensed Boats in Blanes | ICC Costa Brava",
       ogDescription: "Powerful and fast boats in Blanes. Requires ICC or boating license. Maximum freedom on Costa Brava. Book your boat!"
     },
+    testimonios: {
+      title: "Customer Reviews Boat Rental Blanes",
+      description: "Read real customer reviews who rented boats in Blanes. +100 verified reviews. Costa Brava experiences.",
+      keywords: "boat rental reviews blanes, reviews costa brava rent boat, customer testimonials boats"
+    },
     privacyPolicy: {
       title: "Privacy Policy | Costa Brava Rent a Boat",
       description: "Privacy policy and data protection of Costa Brava Rent a Boat. Information about the processing of your personal data.",
@@ -256,6 +274,16 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       title: "General Rental Conditions | Costa Brava Rent a Boat",
       description: "General conditions for boat rental in Blanes, Costa Brava. Terms and responsibilities.",
       keywords: "general rental conditions, boat rental terms blanes"
+    },
+    cookiesPolicy: {
+      title: "Cookie Policy | Costa Brava Rent a Boat",
+      description: "Information about cookie usage on Costa Brava Rent a Boat website.",
+      keywords: "cookie policy, cookies costa brava rent boat, cookie usage, browsing privacy"
+    },
+    accesibilidad: {
+      title: "Accessibility Statement | Costa Brava Rent a Boat",
+      description: "Web accessibility statement of Costa Brava Rent a Boat. WCAG 2.1 compliance.",
+      keywords: "web accessibility, wcag 2.1, accessibility costa brava rent boat"
     },
     blog: {
       title: "Navigation and Destinations Blog | Costa Brava",
@@ -280,7 +308,7 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       title: "Boat Routes from Blanes | Costa Brava",
       description: "Discover the best boat routes from Blanes. From Sa Palomera to Tossa de Mar. Interactive maps and navigation guide.",
       keywords: "boat routes blanes, boat excursions costa brava, nautical route maps, tossa de mar boat, lloret boat",
-      ogTitle: "Boat Routes from Blanes | Costa Brava 2026",
+      ogTitle: `Boat Routes from Blanes | Costa Brava ${SEASON_YEAR}`,
       ogDescription: "5 boat routes from Blanes. Sa Palomera, Cala Sant Francesc, Lloret de Mar, Tossa de Mar. Interactive maps!"
     },
     giftCards: {
@@ -291,7 +319,7 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       ogDescription: "Give an unforgettable nautical experience. Cards from 50EUR redeemable on all our boats in Blanes."
     },
     pricing: {
-      title: "Boat Rental Prices Blanes 2026 | Costa Brava Rent a Boat",
+      title: `Boat Rental Prices Blanes ${SEASON_YEAR} | Costa Brava Rent a Boat`,
       description: "Check boat rental prices in Blanes. No license from 70\u20ac/h. Licensed from 150\u20ac. Fuel included. Low, mid and high season rates.",
       keywords: "boat rental prices costa brava, how much boat rental blanes, boat hire rates blanes"
     },
@@ -301,9 +329,9 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       keywords: "boat rental near barcelona, boats without license barcelona, costa brava boats from barcelona"
     },
     locationCostaBrava: {
-      title: "Boat Rental Costa Brava 2026 | No License from 70\u20ac/h",
+      title: `Boat Rental Costa Brava ${SEASON_YEAR} | No License from 70\u20ac/h`,
       description: "Rent boats in Costa Brava from Blanes Port. No license from 70\u20ac/h, fuel included. 4.8\u2605 Google (307 reviews). 7 boats. Book online.",
-      keywords: "boat rental costa brava, no license boats costa brava, costa brava boats 2026"
+      keywords: `boat rental costa brava, no license boats costa brava, costa brava boats ${SEASON_YEAR}`
     },
     notFound: {
       title: "Page not found | Costa Brava Rent a Boat",
@@ -316,7 +344,7 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       title: "Lloguer Barques Costa Brava Sense Llicencia | Blanes des de 70\u20ac/h",
       description: "Lloga barques sense llicencia a la Costa Brava des del Port de Blanes. Des de 70\u20ac/h, gasolina inclosa. 4.8\u2605 Google (307 opinions). 7 barques per a 4-7 persones. Reserva online en 2 min.",
       keywords: "lloguer barques blanes, barques sense llicència costa brava, lloguer embarcacions blanes, costa brava rent boat, port blanes",
-      ogTitle: "Lloguer de Barques a Blanes i Lloret | Costa Brava 2026",
+      ogTitle: `Lloguer de Barques a Blanes i Lloret | Costa Brava ${SEASON_YEAR}`,
       ogDescription: "Descobreix la Costa Brava des del mar. 7 barques amb i sense llicència. Explora cales paradisíaques. Reserva la teva aventura!"
     },
     booking: {
@@ -335,7 +363,7 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       title: "Lloguer Barques Blanes Sense Llicencia | Port de Blanes des de 70\u20ac/h",
       description: "Lloguer de barques sense llicencia al Port de Blanes. Des de 70\u20ac/h, gasolina inclosa. 4.8\u2605 Google (307 opinions). 7 barques per a fins a 7 persones. Reserva online.",
       keywords: "lloguer barques blanes port, embarcacions blanes costa brava, barques sense llicència blanes",
-      ogTitle: "Lloguer de Barques al Port de Blanes | Costa Brava 2026",
+      ogTitle: `Lloguer de Barques al Port de Blanes | Costa Brava ${SEASON_YEAR}`,
       ogDescription: "Lloga barques des del Port de Blanes. Amb i sense llicència. 7 embarcacions disponibles. Explora cales i platges. Reserva ja!"
     },
     locationLloret: {
@@ -366,6 +394,11 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       ogTitle: "Barques Amb Llicència a Blanes | PER Costa Brava",
       ogDescription: "Barques potents i ràpides a Blanes. Requereix PER o titulació nàutica. Màxima llibertat a la Costa Brava. Reserva la teva barca!"
     },
+    testimonios: {
+      title: "Opinions Clients Lloguer Barques Blanes",
+      description: "Llegeix opinions reals de clients que han llogat barques a Blanes. +100 ressenyes verificades. Experiencies a la Costa Brava.",
+      keywords: "opinions lloguer barques blanes, ressenyes costa brava rent boat, testimonis clients barques"
+    },
     privacyPolicy: {
       title: "Política de Privacitat | Costa Brava Rent a Boat",
       description: "Política de privacitat i protecció de dades de Costa Brava Rent a Boat.",
@@ -375,6 +408,21 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       title: "Termes i Condicions | Costa Brava Rent a Boat",
       description: "Termes i condicions del servei de lloguer de barques a Blanes, Costa Brava.",
       keywords: "termes condicions, condicions lloguer barques, normes ús embarcacions"
+    },
+    condicionesGenerales: {
+      title: "Condicions Generals de Lloguer | Costa Brava Rent a Boat",
+      description: "Condicions generals per al lloguer d'embarcacions a Blanes, Costa Brava. Termes i responsabilitats.",
+      keywords: "condicions generals lloguer, termes lloguer barques blanes"
+    },
+    cookiesPolicy: {
+      title: "Politica de Cookies | Costa Brava Rent a Boat",
+      description: "Informacio sobre l'us de cookies a Costa Brava Rent a Boat.",
+      keywords: "politica cookies, cookies costa brava rent boat, us cookies, privacitat navegacio"
+    },
+    accesibilidad: {
+      title: "Declaracio d'Accessibilitat | Costa Brava Rent a Boat",
+      description: "Declaracio d'accessibilitat web de Costa Brava Rent a Boat. Compliment WCAG 2.1.",
+      keywords: "accessibilitat web, wcag 2.1, accessibilitat costa brava rent boat"
     },
     blog: {
       title: "Blog de Navegació i Destinacions | Costa Brava",
@@ -399,7 +447,7 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       keywords: "targetes regal barques, regal lloguer barca blanes, experiencia nautica regal, costa brava regal"
     },
     pricing: {
-      title: "Preus Lloguer Barques Blanes 2026 | Costa Brava Rent a Boat",
+      title: `Preus Lloguer Barques Blanes ${SEASON_YEAR} | Costa Brava Rent a Boat`,
       description: "Consulta els preus de lloguer de barques a Blanes. Sense llicencia des de 70\u20ac/h. Gasolina inclosa. Temporada baixa, mitja i alta.",
       keywords: "preus lloguer barques costa brava, quant costa llogar barca blanes, tarifes barca sense llicencia"
     },
@@ -409,9 +457,9 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       keywords: "llogar barca sense llicencia barcelona, lloguer barques prop barcelona, barques costa brava des de barcelona"
     },
     locationCostaBrava: {
-      title: "Lloguer Barques Costa Brava 2026 | Sense Llicencia des de 70\u20ac/h",
+      title: `Lloguer Barques Costa Brava ${SEASON_YEAR} | Sense Llicencia des de 70\u20ac/h`,
       description: "Lloga barques a la Costa Brava des del Port de Blanes. Sense llicencia des de 70\u20ac/h, gasolina inclosa. 4.8\u2605 Google (307 opinions). 7 barques. Reserva online.",
-      keywords: "lloguer barques costa brava, barques sense llicencia costa brava, barques costa brava 2026"
+      keywords: `lloguer barques costa brava, barques sense llicencia costa brava, barques costa brava ${SEASON_YEAR}`
     }
   },
   fr: {
@@ -455,6 +503,11 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       description: "Bateaux avec permis à Blanes. Puissants et rapides. Permis ICC ou permis bateau requis. Liberté maximale Costa Brava. Réservez!",
       keywords: "bateaux avec permis blanes, location bateaux ICC, embarcations permis bateau, bateaux puissants costa brava"
     },
+    testimonios: {
+      title: "Avis Clients Location Bateaux Blanes",
+      description: "Lisez les avis reels de clients ayant loue des bateaux a Blanes. +100 avis verifies. Experiences sur la Costa Brava.",
+      keywords: "avis location bateaux blanes, reviews costa brava rent boat, temoignages clients bateaux"
+    },
     privacyPolicy: {
       title: "Politique de Confidentialité | Costa Brava Rent a Boat",
       description: "Politique de confidentialité et protection des données de Costa Brava Rent a Boat.",
@@ -464,6 +517,21 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       title: "Termes et Conditions | Costa Brava Rent a Boat",
       description: "Termes et conditions du service de location de bateaux à Blanes, Costa Brava.",
       keywords: "termes conditions, conditions location bateaux, règles usage embarcations"
+    },
+    condicionesGenerales: {
+      title: "Conditions Generales de Location | Costa Brava Rent a Boat",
+      description: "Conditions generales pour la location d'embarcations a Blanes, Costa Brava. Termes et responsabilites.",
+      keywords: "conditions generales location, termes location bateaux blanes"
+    },
+    cookiesPolicy: {
+      title: "Politique de Cookies | Costa Brava Rent a Boat",
+      description: "Informations sur l'utilisation des cookies sur Costa Brava Rent a Boat.",
+      keywords: "politique cookies, cookies costa brava rent boat, utilisation cookies, confidentialite navigation"
+    },
+    accesibilidad: {
+      title: "Declaration d'Accessibilite | Costa Brava Rent a Boat",
+      description: "Declaration d'accessibilite web de Costa Brava Rent a Boat. Conformite WCAG 2.1.",
+      keywords: "accessibilite web, wcag 2.1, accessibilite costa brava rent boat"
     },
     blog: {
       title: "Blog de Navigation et Destinations | Costa Brava",
@@ -488,7 +556,7 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       keywords: "cartes cadeaux bateaux, cadeau location bateau blanes, experience nautique cadeau, costa brava cadeau"
     },
     pricing: {
-      title: "Tarifs Location Bateaux Blanes 2026 | Costa Brava Rent a Boat",
+      title: `Tarifs Location Bateaux Blanes ${SEASON_YEAR} | Costa Brava Rent a Boat`,
       description: "Consultez les tarifs de location de bateaux a Blanes. Sans permis des 70\u20ac/h. Carburant inclus. Basse, moyenne et haute saison.",
       keywords: "tarifs location bateaux costa brava, combien coute louer bateau blanes, prix bateau sans permis"
     },
@@ -498,9 +566,9 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       keywords: "location bateau sans permis barcelone, location bateaux pres barcelone, bateaux costa brava depuis barcelone"
     },
     locationCostaBrava: {
-      title: "Location Bateaux Costa Brava 2026 | Sans Permis des 70\u20ac/h",
+      title: `Location Bateaux Costa Brava ${SEASON_YEAR} | Sans Permis des 70\u20ac/h`,
       description: "Louez des bateaux sur la Costa Brava depuis le Port de Blanes. Sans permis des 70\u20ac/h, carburant inclus. 4.8\u2605 Google (307 avis). 7 bateaux. Reservez en ligne.",
-      keywords: "location bateaux costa brava, bateaux sans permis costa brava, bateaux costa brava 2026"
+      keywords: `location bateaux costa brava, bateaux sans permis costa brava, bateaux costa brava ${SEASON_YEAR}`
     }
   },
   de: {
@@ -544,6 +612,11 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       description: "Boote mit Führerschein in Blanes. Leistungsstark und schnell. ICC oder Bootsführerschein erforderlich. Maximale Freiheit Costa Brava. Buchen!",
       keywords: "boote mit führerschein blanes, bootsverleih ICC, boote bootsführerschein, starke boote costa brava"
     },
+    testimonios: {
+      title: "Kundenbewertungen Bootsverleih Blanes",
+      description: "Lesen Sie echte Bewertungen von Kunden, die Boote in Blanes gemietet haben. +100 verifizierte Bewertungen. Erfahrungen Costa Brava.",
+      keywords: "bewertungen bootsverleih blanes, rezensionen costa brava rent boat, kundenerfahrungen boote"
+    },
     privacyPolicy: {
       title: "Datenschutzrichtlinie | Costa Brava Rent a Boat",
       description: "Datenschutzrichtlinie und Datenschutz von Costa Brava Rent a Boat.",
@@ -553,6 +626,21 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       title: "Geschäftsbedingungen | Costa Brava Rent a Boat",
       description: "Geschäftsbedingungen des Bootsverleihs in Blanes, Costa Brava.",
       keywords: "geschäftsbedingungen, bootsverleihs bedingungen, nutzungsregeln boote"
+    },
+    condicionesGenerales: {
+      title: "Allgemeine Mietbedingungen | Costa Brava Rent a Boat",
+      description: "Allgemeine Mietbedingungen fur den Bootsverleih in Blanes, Costa Brava. Bedingungen und Verantwortlichkeiten.",
+      keywords: "allgemeine mietbedingungen, bedingungen bootsverleih blanes"
+    },
+    cookiesPolicy: {
+      title: "Cookie-Richtlinie | Costa Brava Rent a Boat",
+      description: "Informationen zur Cookie-Nutzung auf Costa Brava Rent a Boat.",
+      keywords: "cookie-richtlinie, cookies costa brava rent boat, cookie-nutzung, datenschutz navigation"
+    },
+    accesibilidad: {
+      title: "Barrierefreiheitserklarung | Costa Brava Rent a Boat",
+      description: "Erklarung zur Barrierefreiheit von Costa Brava Rent a Boat. WCAG 2.1 Konformitat.",
+      keywords: "barrierefreiheit web, wcag 2.1, barrierefreiheit costa brava rent boat"
     },
     blog: {
       title: "Navigation und Reiseziele Blog | Costa Brava",
@@ -577,7 +665,7 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       keywords: "geschenkkarten boote, geschenk bootsverleih blanes, nautisches erlebnis geschenk, costa brava geschenk"
     },
     pricing: {
-      title: "Bootsverleih Preise Blanes 2026 | Costa Brava Rent a Boat",
+      title: `Bootsverleih Preise Blanes ${SEASON_YEAR} | Costa Brava Rent a Boat`,
       description: "Bootsverleih Preise in Blanes. Ohne Fuhrerschein ab 70\u20ac/h. Kraftstoff inklusive. Neben-, Mittel- und Hochsaison.",
       keywords: "bootsverleih preise costa brava, was kostet boot mieten blanes, bootstarife ohne fuhrerschein"
     },
@@ -587,9 +675,9 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       keywords: "boot mieten nahe barcelona, boote ohne fuhrerschein barcelona, costa brava boote von barcelona"
     },
     locationCostaBrava: {
-      title: "Bootsverleih Costa Brava 2026 | Ohne Fuhrerschein ab 70\u20ac/h",
+      title: `Bootsverleih Costa Brava ${SEASON_YEAR} | Ohne Fuhrerschein ab 70\u20ac/h`,
       description: "Boote mieten an der Costa Brava ab Hafen Blanes. Ohne Fuhrerschein ab 70\u20ac/h, Kraftstoff inklusive. 4.8\u2605 Google (307 Bewertungen). 7 Boote. Online buchen.",
-      keywords: "bootsverleih costa brava, boote ohne fuhrerschein costa brava, boote costa brava 2026"
+      keywords: `bootsverleih costa brava, boote ohne fuhrerschein costa brava, boote costa brava ${SEASON_YEAR}`
     }
   },
   nl: {
@@ -633,6 +721,11 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       description: "Bootverhuur met vaarbewijs in Blanes. Krachtige boten voor gevorderde navigatie. ICC, KVB of equivalent vereist. Maximale vrijheid Costa Brava.",
       keywords: "boten met vaarbewijs blanes, bootverhuur ICC, boten vaarbewijs, krachtige boten costa brava"
     },
+    testimonios: {
+      title: "Klantenbeoordelingen Bootverhuur Blanes",
+      description: "Lees echte beoordelingen van klanten die boten hebben gehuurd in Blanes. +100 geverifieerde reviews. Ervaringen Costa Brava.",
+      keywords: "beoordelingen bootverhuur blanes, reviews costa brava rent boat, klantervaringen boten"
+    },
     privacyPolicy: {
       title: "Privacybeleid | Costa Brava Rent a Boat",
       description: "Privacybeleid en gegevensbescherming van Costa Brava Rent a Boat.",
@@ -642,6 +735,21 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       title: "Algemene Voorwaarden | Costa Brava Rent a Boat",
       description: "Algemene voorwaarden van de bootverhuurservice in Blanes, Costa Brava.",
       keywords: "algemene voorwaarden, bootverhuur voorwaarden, gebruiksregels boten"
+    },
+    condicionesGenerales: {
+      title: "Algemene Huurvoorwaarden | Costa Brava Rent a Boat",
+      description: "Algemene huurvoorwaarden voor bootverhuur in Blanes, Costa Brava. Voorwaarden en verantwoordelijkheden.",
+      keywords: "algemene huurvoorwaarden, voorwaarden bootverhuur blanes"
+    },
+    cookiesPolicy: {
+      title: "Cookiebeleid | Costa Brava Rent a Boat",
+      description: "Informatie over het gebruik van cookies op Costa Brava Rent a Boat.",
+      keywords: "cookiebeleid, cookies costa brava rent boat, cookie gebruik, privacy navigatie"
+    },
+    accesibilidad: {
+      title: "Toegankelijkheidsverklaring | Costa Brava Rent a Boat",
+      description: "Webtoegankelijkheidsverklaring van Costa Brava Rent a Boat. WCAG 2.1 conformiteit.",
+      keywords: "webtoegankelijkheid, wcag 2.1, toegankelijkheid costa brava rent boat"
     },
     blog: {
       title: "Navigatie en Bestemmingen Blog | Costa Brava",
@@ -666,7 +774,7 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       keywords: "cadeaukaarten boten, cadeau bootverhuur blanes, nautische ervaring cadeau, costa brava cadeau"
     },
     pricing: {
-      title: "Bootverhuur Prijzen Blanes 2026 | Costa Brava Rent a Boat",
+      title: `Bootverhuur Prijzen Blanes ${SEASON_YEAR} | Costa Brava Rent a Boat`,
       description: "Bekijk bootverhuur prijzen in Blanes. Zonder vaarbewijs vanaf 70\u20ac/u. Brandstof inbegrepen. Laag-, midden- en hoogseizoen.",
       keywords: "bootverhuur prijzen costa brava, hoeveel kost boot huren blanes, boottarieven zonder vaarbewijs"
     },
@@ -676,9 +784,9 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       keywords: "boot huren nabij barcelona, boten zonder vaarbewijs barcelona, costa brava boten vanuit barcelona"
     },
     locationCostaBrava: {
-      title: "Bootverhuur Costa Brava 2026 | Zonder Vaarbewijs vanaf 70\u20ac/u",
+      title: `Bootverhuur Costa Brava ${SEASON_YEAR} | Zonder Vaarbewijs vanaf 70\u20ac/u`,
       description: "Huur boten aan de Costa Brava vanuit Haven Blanes. Zonder vaarbewijs vanaf 70\u20ac/u, brandstof inbegrepen. 4.8\u2605 Google (307 beoordelingen). 7 boten. Online boeken.",
-      keywords: "bootverhuur costa brava, boten zonder vaarbewijs costa brava, boten costa brava 2026"
+      keywords: `bootverhuur costa brava, boten zonder vaarbewijs costa brava, boten costa brava ${SEASON_YEAR}`
     }
   },
   it: {
@@ -686,6 +794,11 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       title: "Noleggio Barche Costa Brava Senza Patente | Blanes da 70\u20ac/h",
       description: "Noleggia barche senza patente sulla Costa Brava dal Porto di Blanes. Da 70\u20ac/h, carburante incluso. 4.8\u2605 Google (307 recensioni). 7 barche per 4-7 persone. Prenota online in 2 min.",
       keywords: "noleggio barche blanes, barche senza patente costa brava, charter barche blanes, costa brava rent boat, porto blanes"
+    },
+    booking: {
+      title: "Prenota la Tua Barca a Blanes | Costa Brava",
+      description: "Prenota la tua barca a Blanes in pochi minuti. Con o senza patente, da 1 ora. Risposta WhatsApp immediata. Inizia la tua avventura!",
+      keywords: "prenotare barca blanes, modulo prenotazione barca, prenotazione barca costa brava, noleggio barche online"
     },
     faq: {
       title: "FAQ Noleggio Barche Blanes | Costa Brava",
@@ -717,6 +830,11 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       description: "Noleggio barche con patente a Blanes. Imbarcazioni potenti per navigazione avanzata. Richiede ICC, patente costiera o equivalente.",
       keywords: "barche con patente blanes, noleggio barche ICC, imbarcazioni patente nautica, barche potenti costa brava"
     },
+    testimonios: {
+      title: "Recensioni Clienti Noleggio Barche Blanes",
+      description: "Leggi le recensioni reali dei clienti che hanno noleggiato barche a Blanes. +100 recensioni verificate. Esperienze Costa Brava.",
+      keywords: "recensioni noleggio barche blanes, reviews costa brava rent boat, testimonianze clienti barche"
+    },
     privacyPolicy: {
       title: "Politica sulla Privacy | Costa Brava Rent a Boat",
       description: "Politica sulla privacy e protezione dei dati di Costa Brava Rent a Boat.",
@@ -726,6 +844,21 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       title: "Termini e Condizioni | Costa Brava Rent a Boat",
       description: "Termini e condizioni del servizio di noleggio barche a Blanes, Costa Brava.",
       keywords: "termini condizioni, condizioni noleggio barche, regole uso barche"
+    },
+    condicionesGenerales: {
+      title: "Condizioni Generali di Noleggio | Costa Brava Rent a Boat",
+      description: "Condizioni generali per il noleggio di imbarcazioni a Blanes, Costa Brava. Termini e responsabilita.",
+      keywords: "condizioni generali noleggio, termini noleggio barche blanes"
+    },
+    cookiesPolicy: {
+      title: "Politica sui Cookie | Costa Brava Rent a Boat",
+      description: "Informazioni sull'uso dei cookie su Costa Brava Rent a Boat.",
+      keywords: "politica cookie, cookies costa brava rent boat, uso cookie, privacy navigazione"
+    },
+    accesibilidad: {
+      title: "Dichiarazione di Accessibilita | Costa Brava Rent a Boat",
+      description: "Dichiarazione di accessibilita web di Costa Brava Rent a Boat. Conformita WCAG 2.1.",
+      keywords: "accessibilita web, wcag 2.1, accessibilita costa brava rent boat"
     },
     blog: {
       title: "Blog di Navigazione e Destinazioni | Costa Brava",
@@ -750,7 +883,7 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       keywords: "carte regalo barche, regalo noleggio barca blanes, esperienza nautica regalo, costa brava regalo"
     },
     pricing: {
-      title: "Prezzi Noleggio Barche Blanes 2026 | Costa Brava Rent a Boat",
+      title: `Prezzi Noleggio Barche Blanes ${SEASON_YEAR} | Costa Brava Rent a Boat`,
       description: "Consulta i prezzi di noleggio barche a Blanes. Senza patente da 70\u20ac/h. Carburante incluso. Bassa, media e alta stagione.",
       keywords: "prezzi noleggio barche costa brava, quanto costa noleggiare barca blanes, tariffe barca senza patente"
     },
@@ -760,9 +893,9 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       keywords: "noleggio barca senza patente barcellona, noleggio barche vicino barcellona, barche costa brava da barcellona"
     },
     locationCostaBrava: {
-      title: "Noleggio Barche Costa Brava 2026 | Senza Patente da 70\u20ac/h",
+      title: `Noleggio Barche Costa Brava ${SEASON_YEAR} | Senza Patente da 70\u20ac/h`,
       description: "Noleggia barche sulla Costa Brava dal Porto di Blanes. Senza patente da 70\u20ac/h, carburante incluso. 4.8\u2605 Google (307 recensioni). 7 barche. Prenota online.",
-      keywords: "noleggio barche costa brava, barche senza patente costa brava, barche costa brava 2026"
+      keywords: `noleggio barche costa brava, barche senza patente costa brava, barche costa brava ${SEASON_YEAR}`
     }
   },
   ru: {
@@ -770,6 +903,11 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       title: "Аренда Лодок Коста-Брава Без Лицензии | Бланес от 70\u20ac/ч",
       description: "Арендуйте лодки без лицензии на Коста-Браве из порта Бланес. От 70\u20ac/ч, топливо включено. 4.8\u2605 Google (307 отзывов). 7 лодок для 4-7 человек. Бронируйте онлайн за 2 мин.",
       keywords: "аренда лодок бланес, лодки без лицензии коста брава, чартер лодок бланес, costa brava rent boat, порт бланес"
+    },
+    booking: {
+      title: "Забронировать Лодку в Бланесе | Коста-Брава",
+      description: "Забронируйте лодку в Бланесе за минуты. С лицензией или без, от 1 часа. Мгновенный ответ в WhatsApp. Начните приключение\!",
+      keywords: "забронировать лодку бланес, форма бронирования лодки, бронирование лодки коста брава, аренда лодок онлайн"
     },
     faq: {
       title: "FAQ Аренда Лодок Бланес | Коста-Брава",
@@ -801,6 +939,11 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       description: "Аренда лодок с лицензией в Бланесе. Мощные лодки для продвинутой навигации. Требуется ICC, права или эквивалент. Свобода Коста-Брава.",
       keywords: "лодки с лицензией бланес, аренда лодок ICC, лодки с правами, мощные лодки коста брава"
     },
+    testimonios: {
+      title: "Отзывы Клиентов Аренда Лодок Бланес",
+      description: "Читайте реальные отзывы клиентов, арендовавших лодки в Бланесе. +100 проверенных отзывов. Впечатления от Коста-Бравы.",
+      keywords: "отзывы аренда лодок бланес, отзывы costa brava rent boat, впечатления клиентов лодки"
+    },
     privacyPolicy: {
       title: "Политика конфиденциальности | Costa Brava Rent a Boat",
       description: "Политика конфиденциальности и защита данных Costa Brava Rent a Boat.",
@@ -810,6 +953,21 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       title: "Условия использования | Costa Brava Rent a Boat",
       description: "Условия использования службы аренды лодок в Бланесе, Коста-Брава.",
       keywords: "условия использования, условия аренды лодок, правила использования лодок"
+    },
+    condicionesGenerales: {
+      title: "Общие Условия Аренды | Costa Brava Rent a Boat",
+      description: "Общие условия аренды лодок в Бланесе, Коста-Брава. Условия и ответственность.",
+      keywords: "общие условия аренды, условия аренда лодок бланес"
+    },
+    cookiesPolicy: {
+      title: "Политика Cookies | Costa Brava Rent a Boat",
+      description: "Информация об использовании cookies на Costa Brava Rent a Boat.",
+      keywords: "политика cookies, cookies costa brava rent boat, использование cookies, конфиденциальность"
+    },
+    accesibilidad: {
+      title: "Заявление о Доступности | Costa Brava Rent a Boat",
+      description: "Заявление о веб-доступности Costa Brava Rent a Boat. Соответствие WCAG 2.1.",
+      keywords: "веб-доступность, wcag 2.1, доступность costa brava rent boat"
     },
     blog: {
       title: "Блог о Навигации и Направлениях | Costa Brava",
@@ -834,7 +992,7 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       keywords: "подарочные карты лодки, подарок аренда лодки бланес, морской опыт подарок, коста брава подарок"
     },
     pricing: {
-      title: "Цены Аренда Лодок Бланес 2026 | Costa Brava Rent a Boat",
+      title: `Цены Аренда Лодок Бланес ${SEASON_YEAR} | Costa Brava Rent a Boat`,
       description: "Узнайте цены аренды лодок в Бланесе. Без лицензии от 70\u20ac/ч. Топливо включено. Низкий, средний и высокий сезон.",
       keywords: "цены аренда лодок коста брава, сколько стоит арендовать лодку бланес, тарифы лодка без лицензии"
     },
@@ -844,24 +1002,14 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       keywords: "аренда лодки без лицензии барселона, аренда лодок рядом барселона, лодки коста брава из барселоны"
     },
     locationCostaBrava: {
-      title: "Аренда Лодок Коста-Брава 2026 | Без Лицензии от 70\u20ac/ч",
+      title: `Аренда Лодок Коста-Брава ${SEASON_YEAR} | Без Лицензии от 70\u20ac/ч`,
       description: "Арендуйте лодки на Коста-Браве из порта Бланес. Без лицензии от 70\u20ac/ч, топливо включено. 4.8\u2605 Google (307 отзывов). 7 лодок. Бронируйте онлайн.",
-      keywords: "аренда лодок коста брава, лодки без лицензии коста брава, лодки коста брава 2026"
+      keywords: `аренда лодок коста брава, лодки без лицензии коста брава, лодки коста брава ${SEASON_YEAR}`
     }
   }
 };
 
-// Map language codes to full hreflang codes with country
-const HREFLANG_CODES: Record<Language, string> = {
-  'es': 'es-ES',  // Spanish (Spain)
-  'en': 'en-GB',  // English (United Kingdom)
-  'ca': 'ca-ES',  // Catalan (Spain)
-  'fr': 'fr-FR',  // French (France)
-  'de': 'de-DE',  // German (Germany)
-  'nl': 'nl-NL',  // Dutch (Netherlands)
-  'it': 'it-IT',  // Italian (Italy)
-  'ru': 'ru-RU'   // Russian (Russia)
-};
+// HREFLANG_CODES imported from @shared/seoConstants
 
 // Generate hreflang links for a page
 export const generateHreflangLinks = (pageName: string, params?: string): Array<{ lang: string; url: string }> => {
@@ -932,7 +1080,7 @@ const getPagePath = (pageName: string): string => {
     condicionesGenerales: 'condiciones-generales',
     boatDetail: 'barco', // This will be handled dynamically
     blogDetail: 'blog', // This will be handled dynamically with slug
-    destinationDetail: 'destination', // This will be handled dynamically with slug
+    destinationDetail: 'destinos', // This will be handled dynamically with slug
     gallery: 'galeria',
     routes: 'rutas',
     giftCards: 'tarjetas-regalo',

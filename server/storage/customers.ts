@@ -260,9 +260,6 @@ export async function syncAllCustomersFromBookings(): Promise<{ created: number;
     customerMap.set(key, existing);
   }
 
-  let created = 0;
-  let updated = 0;
-
   const entries = Array.from(customerMap.entries());
   const phones = entries.map(([phone]) => phone);
   if (phones.length === 0) return { created: 0, updated: 0 };
@@ -271,66 +268,91 @@ export async function syncAllCustomersFromBookings(): Promise<{ created: number;
     .where(inArray(crmCustomers.phone, phones));
   const existingMap = new Map(existingCustomers.map(c => [c.phone, c]));
 
+  // Separate into bulk insert and parallel update arrays
+  const toInsert: Array<{
+    name: string; surname: string; email: string | null; phone: string;
+    nationality: string | null; segment: string; totalBookings: number;
+    totalSpent: string; firstBookingDate: Date; lastBookingDate: Date;
+  }> = [];
+  const toUpdate: Array<{
+    id: string; data: {
+      name: string; surname: string; email: string | null;
+      nationality: string | null; totalBookings: number; totalSpent: string;
+      firstBookingDate: Date; lastBookingDate: Date; segment: string;
+      updatedAt: Date;
+    };
+  }> = [];
+
+  for (const [phone, custBookings] of entries) {
+    const existing = existingMap.get(phone);
+
+    const sorted = [...custBookings].sort(
+      (a: Booking, b: Booking) => new Date(b.startTime).getTime() - new Date(a.startTime).getTime()
+    );
+    const latest = sorted[0];
+
+    const totalBookings = custBookings.length;
+    const totalSpent = custBookings
+      .filter((b: Booking) => b.bookingStatus === "confirmed")
+      .reduce((sum: number, b: Booking) => sum + parseFloat(b.totalAmount), 0);
+    const dates = custBookings.map((b: Booking) => new Date(b.startTime).getTime());
+    const firstBookingDate = new Date(Math.min(...dates));
+    const lastBookingDate = new Date(Math.max(...dates));
+
+    let segment = "new";
+    if (totalBookings >= 4 || totalSpent >= 1000) {
+      segment = "vip";
+    } else if (totalBookings >= 2) {
+      segment = "returning";
+    }
+
+    if (existing) {
+      toUpdate.push({
+        id: existing.id,
+        data: {
+          name: latest.customerName,
+          surname: latest.customerSurname,
+          email: latest.customerEmail || existing.email,
+          nationality: latest.customerNationality || existing.nationality,
+          totalBookings,
+          totalSpent: totalSpent.toFixed(2),
+          firstBookingDate,
+          lastBookingDate,
+          segment: existing.segment === "vip" ? "vip" : segment,
+          updatedAt: new Date(),
+        },
+      });
+    } else {
+      toInsert.push({
+        name: latest.customerName,
+        surname: latest.customerSurname,
+        email: latest.customerEmail || null,
+        phone: latest.customerPhone,
+        nationality: latest.customerNationality,
+        segment,
+        totalBookings,
+        totalSpent: totalSpent.toFixed(2),
+        firstBookingDate,
+        lastBookingDate,
+      });
+    }
+  }
+
   await db.transaction(async (tx) => {
-    for (const [phone, custBookings] of entries) {
-      const existing = existingMap.get(phone);
+    // Bulk insert all new customers in a single statement
+    if (toInsert.length > 0) {
+      await tx.insert(crmCustomers).values(toInsert);
+    }
 
-      const sorted = [...custBookings].sort(
-        (a: Booking, b: Booking) => new Date(b.startTime).getTime() - new Date(a.startTime).getTime()
+    // Parallel updates — each targets a different row by id
+    if (toUpdate.length > 0) {
+      await Promise.all(
+        toUpdate.map(({ id, data }) =>
+          tx.update(crmCustomers).set(data).where(eq(crmCustomers.id, id))
+        )
       );
-      const latest = sorted[0];
-
-      const totalBookings = custBookings.length;
-      const totalSpent = custBookings
-        .filter((b: Booking) => b.bookingStatus === "confirmed")
-        .reduce((sum: number, b: Booking) => sum + parseFloat(b.totalAmount), 0);
-      const dates = custBookings.map((b: Booking) => new Date(b.startTime).getTime());
-      const firstBookingDate = new Date(Math.min(...dates));
-      const lastBookingDate = new Date(Math.max(...dates));
-
-      let segment = "new";
-      if (totalBookings >= 4 || totalSpent >= 1000) {
-        segment = "vip";
-      } else if (totalBookings >= 2) {
-        segment = "returning";
-      }
-
-      if (existing) {
-        await tx
-          .update(crmCustomers)
-          .set({
-            name: latest.customerName,
-            surname: latest.customerSurname,
-            email: latest.customerEmail || existing.email,
-            nationality: latest.customerNationality || existing.nationality,
-            totalBookings,
-            totalSpent: totalSpent.toFixed(2),
-            firstBookingDate,
-            lastBookingDate,
-            segment: existing.segment === "vip" ? "vip" : segment,
-            updatedAt: new Date(),
-          })
-          .where(eq(crmCustomers.id, existing.id));
-        updated++;
-      } else {
-        await tx
-          .insert(crmCustomers)
-          .values({
-            name: latest.customerName,
-            surname: latest.customerSurname,
-            email: latest.customerEmail || null,
-            phone: latest.customerPhone,
-            nationality: latest.customerNationality,
-            segment,
-            totalBookings,
-            totalSpent: totalSpent.toFixed(2),
-            firstBookingDate,
-            lastBookingDate,
-          });
-        created++;
-      }
     }
   });
 
-  return { created, updated };
+  return { created: toInsert.length, updated: toUpdate.length };
 }

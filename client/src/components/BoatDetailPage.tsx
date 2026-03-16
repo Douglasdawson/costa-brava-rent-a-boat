@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useMemo } from "react";
+import React, { useState, useEffect, useRef, useMemo, useCallback } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -40,6 +40,7 @@ import BebidasIcon from "@/components/icons/BebidasIcon";
 import { openWhatsApp } from "@/utils/whatsapp";
 import { getBoatImage, getBoatImageSrcSet, getBoatAltText } from "@/utils/boatImages";
 import { useResponsiveGallery } from "@/hooks/useResponsiveGallery";
+import { useThrottledScroll } from "@/hooks/useThrottledScroll";
 import Navigation from "./Navigation";
 import Footer from "./Footer";
 import { SEO } from "./SEO";
@@ -90,13 +91,8 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
   }, [boatId]);
 
   // Show/hide sticky CTA based on scroll position
-  useEffect(() => {
-    const handleScroll = () => {
-      setShowStickyCTA(window.scrollY > 300);
-    };
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  const handleStickyCTAScroll = useCallback((scrollY: number) => setShowStickyCTA(scrollY > 300), []);
+  useThrottledScroll(handleStickyCTAScroll);
   
   // Fetch boat data from API
   const { data: boats, isLoading, error } = useQuery<Boat[]>({
@@ -983,33 +979,38 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
 
       <Footer />
 
-      {/* Sticky CTA for mobile */}
-      {showStickyCTA && !isBookingModalOpen && (
-        <div className="fixed bottom-0 left-0 right-0 z-40 md:hidden pb-safe">
-          <button
-            onClick={() => handleReservation()}
-            className="w-full bg-primary text-white py-3 px-6 font-semibold shadow-lg flex items-center justify-center gap-3"
-          >
-            <div className="flex flex-col items-center">
-              <div className="flex items-center gap-3">
-                <span>{t.hero.bookNow}</span>
-                {lowestPrice > 0 && (
-                  <span className="bg-white/20 rounded-full px-3 py-0.5 text-sm font-bold">
-                    {t.boats.from} {lowestPrice}€
-                  </span>
-                )}
-              </div>
-              {!requiresLicense && (
-                <span className="text-white/80 text-xs mt-0.5">Gasolina incluida</span>
+      {/* Sticky CTA for mobile — always mounted, visibility via CSS to avoid CLS */}
+      <div
+        className={`fixed bottom-0 left-0 right-0 z-40 md:hidden pb-safe transition-all duration-300 ${showStickyCTA && !isBookingModalOpen ? "opacity-100 translate-y-0" : "opacity-0 translate-y-full pointer-events-none"}`}
+        aria-hidden={!showStickyCTA || isBookingModalOpen}
+      >
+        <button
+          onClick={() => handleReservation()}
+          tabIndex={showStickyCTA && !isBookingModalOpen ? 0 : -1}
+          className="w-full bg-primary text-white py-3 px-6 font-semibold shadow-lg flex items-center justify-center gap-3"
+        >
+          <div className="flex flex-col items-center">
+            <div className="flex items-center gap-3">
+              <span>{t.hero.bookNow}</span>
+              {lowestPrice > 0 && (
+                <span className="bg-white/20 rounded-full px-3 py-0.5 text-sm font-bold">
+                  {t.boats.from} {lowestPrice}€
+                </span>
               )}
             </div>
-          </button>
-        </div>
-      )}
+            {!requiresLicense && (
+              <span className="text-white/80 text-xs mt-0.5">Gasolina incluida</span>
+            )}
+          </div>
+        </button>
+      </div>
 
-      {/* Sticky pricing sidebar for desktop */}
-      {showStickyCTA && !isBookingModalOpen && lowestPrice > 0 && (
-        <div className="hidden lg:block fixed right-6 top-24 w-64 z-30 transition-all duration-300">
+      {/* Sticky pricing sidebar for desktop — always mounted, visibility via CSS */}
+      {lowestPrice > 0 && (
+        <div
+          className={`hidden lg:block fixed right-6 top-24 w-64 z-30 transition-all duration-300 ${showStickyCTA && !isBookingModalOpen ? "opacity-100 translate-x-0" : "opacity-0 translate-x-8 pointer-events-none"}`}
+          aria-hidden={!showStickyCTA || isBookingModalOpen}
+        >
           <div className="bg-background rounded-xl shadow-xl border border-border p-4 space-y-3">
             <p className="font-bold text-foreground truncate">{boatData.name}</p>
             <div className="flex items-baseline gap-2">
@@ -1024,6 +1025,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
             )}
             <Button
               onClick={() => handleReservation()}
+              tabIndex={showStickyCTA && !isBookingModalOpen ? 0 : -1}
               className="w-full bg-primary text-white py-2 text-sm font-semibold"
             >
               <Calendar className="w-4 h-4 mr-1.5" />
@@ -1031,6 +1033,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
             </Button>
             <button
               onClick={handleWhatsApp}
+              tabIndex={showStickyCTA && !isBookingModalOpen ? 0 : -1}
               className="w-full text-xs text-primary hover:text-primary/80 flex items-center justify-center gap-1.5 py-1"
             >
               <MessageSquare className="w-3.5 h-3.5" />

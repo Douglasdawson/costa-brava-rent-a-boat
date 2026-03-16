@@ -3,6 +3,7 @@ import fs from "fs";
 import path from "path";
 import { storage } from "../storage";
 import { logger } from "../lib/logger";
+import { SUPPORTED_LANGUAGES, HREFLANG_CODES } from "../../shared/seoConstants";
 // Static destination slugs for sitemap fallback (when DB has no published destinations)
 const FALLBACK_DESTINATION_SLUGS = [
   "sa-palomera",
@@ -11,20 +12,6 @@ const FALLBACK_DESTINATION_SLUGS = [
   "blanes-tossa",
   "costa-brava-tour",
 ];
-
-const SUPPORTED_LANGUAGES = ["es", "en", "ca", "fr", "de", "nl", "it", "ru"];
-
-// RFC 5646 language tags with region codes (matches seo-config.ts HREFLANG_CODES)
-const HREFLANG_CODES: Record<string, string> = {
-  es: "es-ES",
-  en: "en-GB",
-  ca: "ca-ES",
-  fr: "fr-FR",
-  de: "de-DE",
-  nl: "nl-NL",
-  it: "it-IT",
-  ru: "ru-RU",
-};
 
 const getBaseUrl = (req?: any) => {
   if (req) {
@@ -37,24 +24,38 @@ const getBaseUrl = (req?: any) => {
   return process.env.BASE_URL || "https://costabravarentaboat.com";
 };
 
+// Stable lastmod for static pages — computed once at server start (approximates last deploy)
+const DEPLOY_DATE = new Date().toISOString().split("T")[0];
+
 // Helper to format a date or timestamp as YYYY-MM-DD for sitemaps
 const formatSitemapDate = (date?: Date | string | null): string => {
-  if (!date) return "2026-02-12";
+  if (!date) return DEPLOY_DATE;
   const d = typeof date === "string" ? new Date(date) : date;
-  if (isNaN(d.getTime())) return "2026-02-12";
+  if (isNaN(d.getTime())) return DEPLOY_DATE;
   return d.toISOString().split("T")[0];
 };
 
-// Build xhtml:link alternate tags for all supported languages
-const buildHreflangLinks = (baseUrl: string, path: string): string => {
+// Escape XML special characters to produce valid XML
+const escapeXml = (str: string): string =>
+  str
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&apos;");
+
+// Build xhtml:link alternate tags for specified (or all) languages
+const buildHreflangLinks = (baseUrl: string, path: string, languages: readonly string[] = SUPPORTED_LANGUAGES): string => {
   const canonicalPath = path === "/" ? "/" : path;
   let links = "";
   // x-default points to the Spanish (canonical) version
   links += `    <xhtml:link rel="alternate" hreflang="x-default" href="${baseUrl}${canonicalPath}"/>\n`;
-  links += `    <xhtml:link rel="alternate" hreflang="${HREFLANG_CODES.es}" href="${baseUrl}${canonicalPath}"/>\n`;
-  SUPPORTED_LANGUAGES.forEach(lang => {
+  if (languages.includes("es")) {
+    links += `    <xhtml:link rel="alternate" hreflang="${HREFLANG_CODES.es}" href="${baseUrl}${canonicalPath}"/>\n`;
+  }
+  languages.forEach(lang => {
     if (lang !== "es") {
-      const hreflangCode = HREFLANG_CODES[lang] || lang;
+      const hreflangCode = HREFLANG_CODES[lang as keyof typeof HREFLANG_CODES] || lang;
       links += `    <xhtml:link rel="alternate" hreflang="${hreflangCode}" href="${baseUrl}${canonicalPath}?lang=${lang}"/>\n`;
     }
   });
@@ -65,29 +66,27 @@ const generateUrlEntry = (
   baseUrl: string,
   path: string,
   priority: string,
-  now: string,
-  changeFreq: string = "weekly"
+  lastmod: string,
+  languages: readonly string[] = SUPPORTED_LANGUAGES
 ) => {
-  const hreflangLinks = buildHreflangLinks(baseUrl, path);
+  const hreflangLinks = buildHreflangLinks(baseUrl, path, languages);
   let urls = "";
 
   // Canonical (ES) entry with all hreflang alternates
   urls += `  <url>
     <loc>${baseUrl}${path}</loc>
-    <lastmod>${now}</lastmod>
-    <changefreq>${changeFreq}</changefreq>
+    <lastmod>${lastmod}</lastmod>
     <priority>${priority}</priority>
 ${hreflangLinks}  </url>
 `;
 
   // One entry per non-ES language variant, each with hreflang links
-  SUPPORTED_LANGUAGES.forEach(lang => {
+  languages.forEach(lang => {
     if (lang !== "es") {
       const langPath = path === "/" ? `/?lang=${lang}` : `${path}?lang=${lang}`;
       urls += `  <url>
     <loc>${baseUrl}${langPath}</loc>
-    <lastmod>${now}</lastmod>
-    <changefreq>${changeFreq}</changefreq>
+    <lastmod>${lastmod}</lastmod>
     <priority>${priority}</priority>
 ${hreflangLinks}  </url>
 `;
@@ -95,6 +94,17 @@ ${hreflangLinks}  </url>
   });
 
   return urls;
+};
+
+// Get the most recent date from a list of date-like values
+const getMaxDate = (dates: Array<Date | string | null | undefined>): string => {
+  let max = 0;
+  for (const d of dates) {
+    if (!d) continue;
+    const ts = (typeof d === "string" ? new Date(d) : d).getTime();
+    if (!isNaN(ts) && ts > max) max = ts;
+  }
+  return max > 0 ? new Date(max).toISOString().split("T")[0] : DEPLOY_DATE;
 };
 
 export function registerSitemapRoutes(app: Express) {
@@ -116,29 +126,49 @@ export function registerSitemapRoutes(app: Express) {
     res.status(404).send("llms.txt not found");
   });
 
-  // Sitemap Index - Main entry point
+  // Sitemap Index - Main entry point with real lastmod per sub-sitemap
   app.get("/sitemap.xml", async (req, res) => {
     try {
       const baseUrl = getBaseUrl(req);
-      const now = formatSitemapDate(new Date());
+
+      // Query DB for real lastmod dates per sub-sitemap
+      const [boats, blogPosts, destinations] = await Promise.all([
+        storage.getAllBoats(),
+        storage.getAllBlogPosts(),
+        storage.getAllDestinations(),
+      ]);
+
+      const activeBoats = boats.filter(b => b.isActive);
+      const publishedPosts = blogPosts.filter(p => p.isPublished);
+      const publishedDests = destinations.filter(d => d.isPublished);
+
+      const boatsLastmod = getMaxDate(
+        activeBoats.map(b => (b as Record<string, any>).updatedAt || (b as Record<string, any>).createdAt)
+      );
+      const blogLastmod = getMaxDate(
+        publishedPosts.map(p => p.updatedAt || p.publishedAt || p.createdAt)
+      );
+      const destsLastmod = getMaxDate(
+        publishedDests.map(d => (d as Record<string, any>).updatedAt || (d as Record<string, any>).createdAt)
+      );
 
       const sitemapIndex = `<?xml version="1.0" encoding="UTF-8"?>
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <sitemap>
     <loc>${baseUrl}/sitemap-pages.xml</loc>
-    <lastmod>${now}</lastmod>
+    <lastmod>${DEPLOY_DATE}</lastmod>
   </sitemap>
   <sitemap>
     <loc>${baseUrl}/sitemap-boats.xml</loc>
-    <lastmod>${now}</lastmod>
+    <lastmod>${boatsLastmod}</lastmod>
   </sitemap>
   <sitemap>
     <loc>${baseUrl}/sitemap-blog.xml</loc>
-    <lastmod>${now}</lastmod>
+    <lastmod>${blogLastmod}</lastmod>
   </sitemap>
   <sitemap>
     <loc>${baseUrl}/sitemap-destinations.xml</loc>
-    <lastmod>${now}</lastmod>
+    <lastmod>${destsLastmod}</lastmod>
   </sitemap>
 </sitemapindex>`;
 
@@ -151,40 +181,39 @@ export function registerSitemapRoutes(app: Express) {
     }
   });
 
-  // Pages Sitemap
+  // Pages Sitemap — uses DEPLOY_DATE (stable per server lifecycle, not "today")
   app.get("/sitemap-pages.xml", async (req, res) => {
     try {
       const baseUrl = getBaseUrl(req);
-      const now = formatSitemapDate(new Date());
 
       let sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
 `;
 
-      sitemap += generateUrlEntry(baseUrl, "/", "1.0", now, "daily");
+      sitemap += generateUrlEntry(baseUrl, "/", "1.0", DEPLOY_DATE);
 
       const locationSlugs = ["blanes", "lloret-de-mar", "tossa-de-mar"];
       locationSlugs.forEach(slug => {
-        sitemap += generateUrlEntry(baseUrl, `/alquiler-barcos-${slug}`, "0.7", now);
+        sitemap += generateUrlEntry(baseUrl, `/alquiler-barcos-${slug}`, "0.7", DEPLOY_DATE);
       });
 
-      sitemap += generateUrlEntry(baseUrl, "/galeria", "0.6", now);
-      sitemap += generateUrlEntry(baseUrl, "/rutas", "0.7", now);
-      sitemap += generateUrlEntry(baseUrl, "/tarjetas-regalo", "0.6", now);
-      sitemap += generateUrlEntry(baseUrl, "/precios", "0.8", now);
-      sitemap += generateUrlEntry(baseUrl, "/alquiler-barcos-cerca-barcelona", "0.7", now);
-      sitemap += generateUrlEntry(baseUrl, "/alquiler-barcos-costa-brava", "0.9", now);
-      sitemap += generateUrlEntry(baseUrl, "/faq", "0.6", now);
-      sitemap += generateUrlEntry(baseUrl, "/testimonios", "0.6", now);
-      sitemap += generateUrlEntry(baseUrl, "/blog", "0.7", now);
-      sitemap += generateUrlEntry(baseUrl, "/barcos-sin-licencia", "0.7", now);
-      sitemap += generateUrlEntry(baseUrl, "/barcos-con-licencia", "0.7", now);
-      sitemap += generateUrlEntry(baseUrl, "/privacy-policy", "0.3", now, "monthly");
-      sitemap += generateUrlEntry(baseUrl, "/terms-conditions", "0.3", now, "monthly");
-      sitemap += generateUrlEntry(baseUrl, "/condiciones-generales", "0.3", now, "monthly");
-      sitemap += generateUrlEntry(baseUrl, "/cookies-policy", "0.3", now, "monthly");
-      sitemap += generateUrlEntry(baseUrl, "/accesibilidad", "0.3", now, "monthly");
+      sitemap += generateUrlEntry(baseUrl, "/galeria", "0.6", DEPLOY_DATE);
+      sitemap += generateUrlEntry(baseUrl, "/rutas", "0.7", DEPLOY_DATE);
+      sitemap += generateUrlEntry(baseUrl, "/tarjetas-regalo", "0.6", DEPLOY_DATE);
+      sitemap += generateUrlEntry(baseUrl, "/precios", "0.8", DEPLOY_DATE);
+      sitemap += generateUrlEntry(baseUrl, "/alquiler-barcos-cerca-barcelona", "0.7", DEPLOY_DATE);
+      sitemap += generateUrlEntry(baseUrl, "/alquiler-barcos-costa-brava", "0.9", DEPLOY_DATE);
+      sitemap += generateUrlEntry(baseUrl, "/faq", "0.6", DEPLOY_DATE);
+      sitemap += generateUrlEntry(baseUrl, "/testimonios", "0.6", DEPLOY_DATE);
+      sitemap += generateUrlEntry(baseUrl, "/destinos", "0.7", DEPLOY_DATE);
+      sitemap += generateUrlEntry(baseUrl, "/barcos-sin-licencia", "0.7", DEPLOY_DATE);
+      sitemap += generateUrlEntry(baseUrl, "/barcos-con-licencia", "0.7", DEPLOY_DATE);
+      sitemap += generateUrlEntry(baseUrl, "/privacy-policy", "0.3", DEPLOY_DATE);
+      sitemap += generateUrlEntry(baseUrl, "/terms-conditions", "0.3", DEPLOY_DATE);
+      sitemap += generateUrlEntry(baseUrl, "/condiciones-generales", "0.3", DEPLOY_DATE);
+      sitemap += generateUrlEntry(baseUrl, "/cookies-policy", "0.3", DEPLOY_DATE);
+      sitemap += generateUrlEntry(baseUrl, "/accesibilidad", "0.3", DEPLOY_DATE);
 
       sitemap += `</urlset>`;
 
@@ -197,11 +226,10 @@ export function registerSitemapRoutes(app: Express) {
     }
   });
 
-  // Boats Sitemap with image tags
+  // Boats Sitemap with image tags and XML escaping
   app.get("/sitemap-boats.xml", async (req, res) => {
     try {
       const baseUrl = getBaseUrl(req);
-      const fallbackDate = formatSitemapDate(new Date());
 
       const boats = await storage.getAllBoats();
       const activeBoats = boats.filter(b => b.isActive);
@@ -214,40 +242,42 @@ export function registerSitemapRoutes(app: Express) {
 
       activeBoats.forEach(boat => {
         const boatPath = `/barco/${boat.id}`;
-        const boatLastmod = formatSitemapDate((boat as Record<string, any>).updatedAt || (boat as Record<string, any>).createdAt) || fallbackDate;
+        const boatLastmod = formatSitemapDate((boat as Record<string, any>).updatedAt || (boat as Record<string, any>).createdAt);
+        const safeName = escapeXml(boat.name);
 
         const boatHreflang = buildHreflangLinks(baseUrl, boatPath);
 
         sitemap += `  <url>
     <loc>${baseUrl}${boatPath}</loc>
     <lastmod>${boatLastmod}</lastmod>
-    <changefreq>weekly</changefreq>
     <priority>0.8</priority>`;
 
         if (boat.imageUrl) {
-          const imageUrl = boat.imageUrl.startsWith("http")
+          const rawImageUrl = boat.imageUrl.startsWith("http")
             ? boat.imageUrl
             : `${baseUrl}/object-storage/${boat.imageUrl}`;
+          const imageUrl = escapeXml(rawImageUrl);
 
           sitemap += `
     <image:image>
       <image:loc>${imageUrl}</image:loc>
-      <image:caption>Alquiler barco ${boat.name} en Blanes Costa Brava - ${boat.requiresLicense ? "Con licencia" : "Sin licencia"}</image:caption>
-      <image:title>${boat.name} - Costa Brava Rent a Boat</image:title>
+      <image:caption>Alquiler barco ${safeName} en Blanes Costa Brava - ${boat.requiresLicense ? "Con licencia" : "Sin licencia"}</image:caption>
+      <image:title>${safeName} - Costa Brava Rent a Boat</image:title>
     </image:image>`;
         }
 
         if (boat.imageGallery && Array.isArray(boat.imageGallery)) {
           boat.imageGallery.forEach((galleryImg, index) => {
-            const galleryUrl = galleryImg.startsWith("http")
+            const rawGalleryUrl = galleryImg.startsWith("http")
               ? galleryImg
               : `${baseUrl}/object-storage/${galleryImg}`;
+            const galleryUrl = escapeXml(rawGalleryUrl);
 
             sitemap += `
     <image:image>
       <image:loc>${galleryUrl}</image:loc>
-      <image:caption>${boat.name} - Foto ${index + 1} - Alquiler barco en Blanes Costa Brava</image:caption>
-      <image:title>${boat.name} - Galeria ${index + 1} - Costa Brava Rent a Boat</image:title>
+      <image:caption>${safeName} - Foto ${index + 1} - Alquiler barco en Blanes Costa Brava</image:caption>
+      <image:title>${safeName} - Galeria ${index + 1} - Costa Brava Rent a Boat</image:title>
     </image:image>`;
           });
         }
@@ -261,7 +291,6 @@ ${boatHreflang}  </url>
             sitemap += `  <url>
     <loc>${baseUrl}${boatPath}?lang=${lang}</loc>
     <lastmod>${boatLastmod}</lastmod>
-    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
 ${boatHreflang}  </url>
 `;
@@ -280,11 +309,10 @@ ${boatHreflang}  </url>
     }
   });
 
-  // Blog Sitemap
+  // Blog Sitemap with XML escaping
   app.get("/sitemap-blog.xml", async (req, res) => {
     try {
       const baseUrl = getBaseUrl(req);
-      const fallbackDate = formatSitemapDate(new Date());
 
       const blogPosts = await storage.getAllBlogPosts();
       const publishedBlogPosts = blogPosts.filter(post => post.isPublished);
@@ -295,32 +323,26 @@ ${boatHreflang}  </url>
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
 `;
 
-      sitemap += generateUrlEntry(baseUrl, "/blog", "0.6", fallbackDate);
-
       const now = Date.now();
       publishedBlogPosts.forEach(post => {
         const rawDate = post.updatedAt || post.publishedAt || post.createdAt;
-        const postDate = formatSitemapDate(rawDate) || fallbackDate;
-        const ageMs = rawDate ? now - new Date(rawDate as string).getTime() : Infinity;
+        const postDate = formatSitemapDate(rawDate);
+        const ageMs = rawDate ? now - new Date(String(rawDate)).getTime() : Infinity;
         const ageDays = ageMs / (1000 * 60 * 60 * 24);
         const priority = ageDays < 30 ? "0.9" : ageDays < 90 ? "0.8" : "0.7";
 
         const postPath = `/blog/${post.slug}`;
         const postHreflang = buildHreflangLinks(baseUrl, postPath);
 
-        // Build image tag if featured image exists
+        // Build image tag if featured image exists (with XML escaping)
         let imageTag = "";
         if (post.featuredImage) {
           const rawImageUrl = post.featuredImage.startsWith("http")
             ? post.featuredImage
             : `${baseUrl}/object-storage/${post.featuredImage}`;
 
-          // Escape XML special characters in URL and title
-          const imageUrl = rawImageUrl.replace(/&/g, "&amp;");
-          const safeTitle = post.title
-            .replace(/&/g, "&amp;")
-            .replace(/</g, "&lt;")
-            .replace(/>/g, "&gt;");
+          const imageUrl = escapeXml(rawImageUrl);
+          const safeTitle = escapeXml(post.title);
 
           imageTag = `
     <image:image>
@@ -334,7 +356,6 @@ ${boatHreflang}  </url>
         sitemap += `  <url>
     <loc>${baseUrl}${postPath}</loc>
     <lastmod>${postDate}</lastmod>
-    <changefreq>weekly</changefreq>
     <priority>${priority}</priority>${imageTag}
 ${postHreflang}  </url>
 `;
@@ -345,7 +366,6 @@ ${postHreflang}  </url>
             sitemap += `  <url>
     <loc>${baseUrl}${postPath}?lang=${lang}</loc>
     <lastmod>${postDate}</lastmod>
-    <changefreq>weekly</changefreq>
     <priority>${priority}</priority>${imageTag}
 ${postHreflang}  </url>
 `;
@@ -364,12 +384,11 @@ ${postHreflang}  </url>
     }
   });
 
-  // Destinations Sitemap with image tags
+  // Destinations Sitemap with image tags and XML escaping
   // Uses DB destinations if available, otherwise falls back to boatRoutes static data
   app.get("/sitemap-destinations.xml", async (req, res) => {
     try {
       const baseUrl = getBaseUrl(req);
-      const fallbackDate = formatSitemapDate(new Date());
 
       const destinations = await storage.getAllDestinations();
       const publishedDestinations = destinations.filter(dest => dest.isPublished);
@@ -384,26 +403,27 @@ ${postHreflang}  </url>
         // Generate entries from DB destinations
         publishedDestinations.forEach(destination => {
           const destPath = `/destinos/${destination.slug}`;
-          const destLastmod = formatSitemapDate((destination as Record<string, any>).updatedAt || (destination as Record<string, any>).createdAt) || fallbackDate;
+          const destLastmod = formatSitemapDate((destination as Record<string, any>).updatedAt || (destination as Record<string, any>).createdAt);
+          const safeName = escapeXml(destination.name);
 
           const destHreflang = buildHreflangLinks(baseUrl, destPath);
 
           sitemap += `  <url>
     <loc>${baseUrl}${destPath}</loc>
     <lastmod>${destLastmod}</lastmod>
-    <changefreq>weekly</changefreq>
     <priority>0.7</priority>`;
 
           if (destination.featuredImage) {
-            const imageUrl = destination.featuredImage.startsWith("http")
+            const rawImageUrl = destination.featuredImage.startsWith("http")
               ? destination.featuredImage
               : `${baseUrl}/object-storage/${destination.featuredImage}`;
+            const imageUrl = escapeXml(rawImageUrl);
 
             sitemap += `
     <image:image>
       <image:loc>${imageUrl}</image:loc>
-      <image:caption>${destination.name} - Destino Costa Brava cerca de Blanes</image:caption>
-      <image:title>${destination.name} - Costa Brava</image:title>
+      <image:caption>${safeName} - Destino Costa Brava cerca de Blanes</image:caption>
+      <image:title>${safeName} - Costa Brava</image:title>
     </image:image>`;
           }
 
@@ -416,7 +436,6 @@ ${destHreflang}  </url>
               sitemap += `  <url>
     <loc>${baseUrl}${destPath}?lang=${lang}</loc>
     <lastmod>${destLastmod}</lastmod>
-    <changefreq>weekly</changefreq>
     <priority>0.7</priority>
 ${destHreflang}  </url>
 `;
@@ -432,8 +451,7 @@ ${destHreflang}  </url>
 
           sitemap += `  <url>
     <loc>${baseUrl}${destPath}</loc>
-    <lastmod>${fallbackDate}</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>${DEPLOY_DATE}</lastmod>
     <priority>0.7</priority>`;
 
           sitemap += `
@@ -444,8 +462,7 @@ ${destHreflang}  </url>
             if (lang !== "es") {
               sitemap += `  <url>
     <loc>${baseUrl}${destPath}?lang=${lang}</loc>
-    <lastmod>${fallbackDate}</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>${DEPLOY_DATE}</lastmod>
     <priority>0.7</priority>
 ${destHreflang}  </url>
 `;

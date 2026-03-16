@@ -10,6 +10,7 @@ interface QueueEntry {
 }
 
 export class RetryQueue {
+  private static readonly MAX_QUEUE_SIZE = 1000;
   private queue: QueueEntry[] = [];
   private timer: ReturnType<typeof setInterval> | null = null;
 
@@ -18,6 +19,10 @@ export class RetryQueue {
   }
 
   enqueue(fn: RetryFn, maxRetries = 3): void {
+    if (this.queue.length >= RetryQueue.MAX_QUEUE_SIZE) {
+      logger.warn(`${this.name}: retry queue full, dropping oldest entry`, { queueSize: this.queue.length });
+      this.queue.shift();
+    }
     this.queue.push({ fn, retries: 0, maxRetries, nextAttempt: Date.now() });
   }
 

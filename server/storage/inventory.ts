@@ -348,31 +348,45 @@ export async function decrementExtrasStock(bookingId: string): Promise<void> {
     .where(inArray(inventoryItems.name, extraNames));
   const itemMap = new Map(items.map(i => [i.name, i]));
 
+  // Collect all update and movement data before entering the transaction
+  const updates: Array<{ itemId: string; qty: number }> = [];
+  const movements: Array<{ itemId: string; type: string; quantity: number; reason: string }> = [];
+
+  for (const extra of extras) {
+    const item = itemMap.get(extra.extraName);
+    if (!item) continue;
+
+    const qty = extra.quantity || 1;
+    updates.push({ itemId: item.id, qty });
+    movements.push({
+      itemId: item.id,
+      type: "OUT",
+      quantity: qty,
+      reason: `booking:${bookingId}`,
+    });
+  }
+
+  if (updates.length === 0) return;
+
   await db.transaction(async (tx) => {
-    for (const extra of extras) {
-      const item = itemMap.get(extra.extraName);
-      if (!item) continue;
+    // Parallel updates — each targets a different row
+    await Promise.all(
+      updates.map(({ itemId, qty }) =>
+        tx
+          .update(inventoryItems)
+          .set({
+            availableStock: sql`GREATEST(${inventoryItems.availableStock} - ${qty}, 0)`,
+            status: sql`CASE
+              WHEN ${inventoryItems.availableStock} - ${qty} <= 0 THEN 'out_of_stock'
+              WHEN ${inventoryItems.availableStock} - ${qty} <= ${inventoryItems.minStockAlert} THEN 'low_stock'
+              ELSE 'available'
+            END`,
+          })
+          .where(eq(inventoryItems.id, itemId))
+      )
+    );
 
-      const qty = extra.quantity || 1;
-
-      await tx
-        .update(inventoryItems)
-        .set({
-          availableStock: sql`GREATEST(${inventoryItems.availableStock} - ${qty}, 0)`,
-          status: sql`CASE
-            WHEN ${inventoryItems.availableStock} - ${qty} <= 0 THEN 'out_of_stock'
-            WHEN ${inventoryItems.availableStock} - ${qty} <= ${inventoryItems.minStockAlert} THEN 'low_stock'
-            ELSE 'available'
-          END`,
-        })
-        .where(eq(inventoryItems.id, item.id));
-
-      await tx.insert(inventoryMovements).values({
-        itemId: item.id,
-        type: "OUT",
-        quantity: qty,
-        reason: `booking:${bookingId}`,
-      });
-    }
+    // Bulk insert all movements in a single statement
+    await tx.insert(inventoryMovements).values(movements);
   });
 }

@@ -36,6 +36,7 @@ const CurvedLoop: FC<CurvedLoopProps> = ({
   const lastXRef = useRef(0);
   const dirRef = useRef<'left' | 'right'>(direction);
   const velRef = useRef(0);
+  const rafPending = useRef(false);
 
   const textLength = spacing;
   const totalText = textLength
@@ -87,17 +88,25 @@ const CurvedLoop: FC<CurvedLoopProps> = ({
   };
 
   const onPointerMove = (e: PointerEvent) => {
-    if (!interactive || !dragRef.current || !textPathRef.current) return;
+    if (!interactive || !dragRef.current) return;
+    // Capture pointer data immediately (events are pooled/reused)
     const dx = e.clientX - lastXRef.current;
     lastXRef.current = e.clientX;
     velRef.current = dx;
-    const currentOffset = parseFloat(textPathRef.current.getAttribute('startOffset') || '0');
-    let newOffset = currentOffset + dx;
-    const wrapPoint = spacing;
-    if (newOffset <= -wrapPoint) newOffset += wrapPoint;
-    if (newOffset > 0) newOffset -= wrapPoint;
-    textPathRef.current.setAttribute('startOffset', newOffset + 'px');
-    setOffset(newOffset);
+    // Throttle DOM manipulation to one update per animation frame
+    if (rafPending.current) return;
+    rafPending.current = true;
+    requestAnimationFrame(() => {
+      rafPending.current = false;
+      if (!textPathRef.current) return;
+      const currentOffset = parseFloat(textPathRef.current.getAttribute('startOffset') || '0');
+      let newOffset = currentOffset + dx;
+      const wrapPoint = spacing;
+      if (newOffset <= -wrapPoint) newOffset += wrapPoint;
+      if (newOffset > 0) newOffset -= wrapPoint;
+      textPathRef.current.setAttribute('startOffset', newOffset + 'px');
+      setOffset(newOffset);
+    });
   };
 
   const endDrag = () => {

@@ -31,9 +31,13 @@ export function usePrefetchCriticalRoutes() {
     const timer = setTimeout(() => {
       // Prefetch BookingFlow (most likely next interaction)
       import('../components/BookingFlow');
-      
+
       // Prefetch popular boat detail pages
       import('../components/BoatDetailPage');
+
+      // Prefetch popular category and info pages
+      import('../pages/category-license-free');
+      import('../pages/pricing');
     }, 2000); // Wait 2s after initial load to avoid blocking
 
     return () => clearTimeout(timer);

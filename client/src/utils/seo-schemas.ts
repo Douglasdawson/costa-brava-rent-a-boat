@@ -119,12 +119,14 @@ export function generateFAQSchema(faqs: FAQItem[]) {
 }
 
 export function generateSeasonalEventSchema() {
+  const now = new Date();
+  const year = now.getMonth() >= 10 ? now.getFullYear() + 1 : now.getFullYear();
   return {
     "@context": "https://schema.org",
     "@type": "Event",
-    name: "Temporada 2026 — Alquiler de Barcos en Costa Brava",
-    startDate: "2026-04-01",
-    endDate: "2026-10-31",
+    name: `Temporada ${year} — Alquiler de Barcos en Costa Brava`,
+    startDate: `${year}-04-01`,
+    endDate: `${year}-10-31`,
     eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
     eventStatus: "https://schema.org/EventScheduled",
     location: {

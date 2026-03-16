@@ -150,36 +150,47 @@ export function SEO({
       }
     });
 
-    // Add hreflang tags if provided
+    // Add hreflang tags if provided — skip if server already injected (avoid duplicate tags)
     if (hreflang && hreflang.length > 0) {
-      // Remove existing hreflang tags
-      const existingHreflangTags = document.querySelectorAll('link[hreflang]');
-      existingHreflangTags.forEach(tag => tag.remove());
-      
-      // Add new hreflang tags
-      hreflang.forEach(({ lang, url }) => {
-        const hreflangLink = document.createElement('link');
-        hreflangLink.rel = 'alternate';
-        hreflangLink.hreflang = lang;
-        hreflangLink.href = url;
-        document.head.appendChild(hreflangLink);
-      });
+      const existingHreflangTags = document.querySelectorAll('link[rel="alternate"][hreflang]');
+      // Detect server-injected hreflang: server uses RFC 5646 codes with "-" (e.g. "es-ES")
+      const serverInjected = Array.from(existingHreflangTags).some(
+        tag => tag.getAttribute('hreflang')?.includes('-')
+      );
+
+      if (!serverInjected) {
+        // Remove any existing client-side hreflang tags and re-add
+        existingHreflangTags.forEach(tag => tag.remove());
+        hreflang.forEach(({ lang, url }) => {
+          const hreflangLink = document.createElement('link');
+          hreflangLink.rel = 'alternate';
+          hreflangLink.hreflang = lang;
+          hreflangLink.href = url;
+          document.head.appendChild(hreflangLink);
+        });
+      }
     }
 
-    // Add JSON-LD if provided
+    // Add JSON-LD if provided — skip if server already injected (avoid duplicate schemas)
     let jsonLdScript: HTMLScriptElement | null = null;
     if (jsonLd) {
-      // Remove existing page-specific JSON-LD
+      // Check if seoInjector already injected server-side JSON-LD (no data-seo-jsonld attribute)
+      const serverInjectedJsonLd = document.querySelector('script[type="application/ld+json"]:not([data-seo-jsonld])');
+
+      // Remove existing client-side JSON-LD
       const existingScript = document.querySelector('script[data-seo-jsonld]');
       if (existingScript) {
         existingScript.remove();
       }
 
-      jsonLdScript = document.createElement('script');
-      jsonLdScript.type = 'application/ld+json';
-      jsonLdScript.setAttribute('data-seo-jsonld', 'true');
-      jsonLdScript.textContent = JSON.stringify(jsonLd);
-      document.head.appendChild(jsonLdScript);
+      // Only inject client-side if server didn't already provide structured data
+      if (!serverInjectedJsonLd) {
+        jsonLdScript = document.createElement('script');
+        jsonLdScript.type = 'application/ld+json';
+        jsonLdScript.setAttribute('data-seo-jsonld', 'true');
+        jsonLdScript.textContent = JSON.stringify(jsonLd);
+        document.head.appendChild(jsonLdScript);
+      }
     }
 
     // Cleanup function

@@ -38,6 +38,8 @@ export default function BookingFlow(props: BookingFlowProps) {
 
         <BookingProgressIndicator currentStep={step} t={t} />
 
+        {/* min-height prevents CLS when switching between steps */}
+        <div className="min-h-[420px]">
         {step === 1 && (
           <BookingStepDate
             selectedDate={state.selectedDate}
@@ -122,6 +124,7 @@ export default function BookingFlow(props: BookingFlowProps) {
             t={t}
           />
         )}
+        </div>
 
         {/* Navigation buttons */}
         {step > 1 && (

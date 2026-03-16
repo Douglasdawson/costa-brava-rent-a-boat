@@ -211,7 +211,9 @@ export const adminUsers = pgTable("admin_users", {
   isActive: boolean("is_active").notNull().default(true),
   createdAt: timestamp("created_at", { withTimezone: true }).notNull().default(sql`now()`),
   lastLoginAt: timestamp("last_login_at", { withTimezone: true }),
-});
+}, (table) => ({
+  tenantIdx: index("admin_users_tenant_id_idx").on(table.tenantId),
+}));
 
 // Session storage table for Replit Auth
 export const sessions = pgTable(
@@ -300,7 +302,10 @@ export const boats = pgTable("boats", {
   licenseType: text("license_type").default("none"),
 
   isActive: boolean("is_active").notNull().default(true),
-});
+}, (table) => ({
+  isActiveIdx: index("boats_is_active_idx").on(table.isActive),
+  tenantIdx: index("boats_tenant_id_idx").on(table.tenantId),
+}));
 
 export const bookings = pgTable("bookings", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
@@ -357,6 +362,7 @@ export const bookings = pgTable("bookings", {
   customerPhoneIdx: index("customer_phone_idx").on(table.customerPhone),
   // Composite index for customer bookings lookup
   customerIdDateIdx: index("customer_id_date_idx").on(table.customerId, table.startTime),
+  tenantIdx: index("bookings_tenant_id_idx").on(table.tenantId),
 }));
 
 // Note: booking_holds functionality unified into bookings table with 'hold' status
@@ -370,6 +376,7 @@ export const bookingExtras = pgTable("booking_extras", {
   quantity: integer("quantity").notNull().default(1),
 }, (table) => ({
   bookingIdx: index("booking_extras_booking_idx").on(table.bookingId),
+  tenantIdx: index("booking_extras_tenant_id_idx").on(table.tenantId),
 }));
 
 // Page visits analytics
@@ -391,6 +398,7 @@ export const pageVisits = pgTable("page_visits", {
   visitedAtIdx: index("page_visits_visited_at_idx").on(table.visitedAt),
   pagePathIdx: index("page_visits_page_path_idx").on(table.pagePath),
   sessionIdIdx: index("page_visits_session_idx").on(table.sessionId),
+  tenantIdx: index("page_visits_tenant_id_idx").on(table.tenantId),
 }));
 
 // Zod schemas for validation
@@ -638,6 +646,8 @@ export const blogPosts = pgTable("blog_posts", {
   seoScore: integer("seo_score"),
 }, (table) => ({
   publishedAtIdx: index("blog_published_idx").on(table.publishedAt),
+  categoryIdx: index("blog_posts_category_idx").on(table.category),
+  tenantIdx: index("blog_posts_tenant_id_idx").on(table.tenantId),
 }));
 
 // Destinations landing pages for SEO
@@ -658,7 +668,9 @@ export const destinations = pgTable("destinations", {
   isPublished: boolean("is_published").notNull().default(true),
   createdAt: timestamp("created_at", { withTimezone: true }).notNull().default(sql`now()`),
   updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().default(sql`now()`),
-});
+}, (table) => ({
+  tenantIdx: index("destinations_tenant_id_idx").on(table.tenantId),
+}));
 
 // Insert schemas for blog and destinations
 export const insertBlogPostSchema = createInsertSchema(blogPosts).omit({
@@ -704,7 +716,9 @@ export const clientPhotos = pgTable("client_photos", {
   isApproved: boolean("is_approved").notNull().default(false),
   createdAt: timestamp("created_at", { withTimezone: true }).notNull().default(sql`now()`),
   approvedAt: timestamp("approved_at", { withTimezone: true }),
-});
+}, (table) => ({
+  tenantIdx: index("client_photos_tenant_id_idx").on(table.tenantId),
+}));
 
 export const insertClientPhotoSchema = createInsertSchema(clientPhotos).omit({
   id: true,
@@ -735,7 +749,9 @@ export const giftCards = pgTable("gift_cards", {
   usedBookingId: varchar("used_booking_id"),
   expiresAt: timestamp("expires_at", { withTimezone: true }).notNull(),
   createdAt: timestamp("created_at", { withTimezone: true }).notNull().default(sql`now()`),
-});
+}, (table) => ({
+  tenantIdx: index("gift_cards_tenant_id_idx").on(table.tenantId),
+}));
 
 export const insertGiftCardSchema = createInsertSchema(giftCards).omit({
   id: true,
@@ -758,7 +774,9 @@ export const discountCodes = pgTable("discount_codes", {
   isActive: boolean("is_active").notNull().default(true),
   expiresAt: timestamp("expires_at", { withTimezone: true }),
   createdAt: timestamp("created_at", { withTimezone: true }).notNull().default(sql`now()`),
-});
+}, (table) => ({
+  tenantIdx: index("discount_codes_tenant_id_idx").on(table.tenantId),
+}));
 
 export const insertDiscountCodeSchema = createInsertSchema(discountCodes).omit({
   id: true,
@@ -998,6 +1016,7 @@ export const crmCustomers = pgTable("crm_customers", {
   segmentIdx: index("crm_customers_segment_idx").on(table.segment),
   nameIdx: index("crm_customers_name_idx").on(table.name, table.surname),
   tenantPhoneIdx: uniqueIndex("crm_customer_tenant_phone_idx").on(table.tenantId, table.phone),
+  tenantIdx: index("crm_customers_tenant_id_idx").on(table.tenantId),
 }));
 
 export const insertCrmCustomerSchema = createInsertSchema(crmCustomers).omit({
@@ -1229,6 +1248,7 @@ export const inventoryItems = pgTable("inventory_items", {
   categoryIdx: index("inventory_category_idx").on(table.category),
   statusIdx: index("inventory_status_idx").on(table.status),
   nameIdx: index("inventory_item_name_idx").on(table.name),
+  tenantIdx: index("inventory_items_tenant_id_idx").on(table.tenantId),
 }));
 
 export const insertInventoryItemSchema = z.object({
@@ -1282,6 +1302,7 @@ export const inventoryMovements = pgTable("inventory_movements", {
   typeIdx: index("movements_type_idx").on(table.type),
   bookingIdx: index("movements_booking_idx").on(table.bookingId),
   createdIdx: index("movements_created_idx").on(table.createdAt),
+  tenantIdx: index("inventory_movements_tenant_id_idx").on(table.tenantId),
 }));
 
 export const insertInventoryMovementSchema = z.object({
@@ -1422,6 +1443,7 @@ export const whatsappInquiries = pgTable("whatsapp_inquiries", {
   createdAtIdx: index("inquiry_created_at_idx").on(table.createdAt),
   phoneIdx: index("inquiry_phone_idx").on(table.phoneNumber),
   emailIdx: index("inquiry_email_idx").on(table.email),
+  tenantIdx: index("whatsapp_inquiries_tenant_id_idx").on(table.tenantId),
 }));
 
 export const insertWhatsappInquirySchema = createInsertSchema(whatsappInquiries).omit({

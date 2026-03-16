@@ -24,9 +24,21 @@ export type StoredSaasUser = NonNullable<Awaited<ReturnType<typeof storage.getUs
 
 // ===== Rate Limiting =====
 
+const MAX_LOGIN_ATTEMPTS_ENTRIES = 10000;
 export const loginAttempts = new Map<string, { count: number; firstAttempt: number }>();
 export const MAX_LOGIN_ATTEMPTS = 5;
 export const LOGIN_WINDOW_MS = 15 * 60 * 1000; // 15 minutes
+
+// Periodic cleanup to prevent memory leak from IPs that never return
+const LOGIN_CLEANUP_INTERVAL = 5 * 60 * 1000; // every 5 minutes
+setInterval(() => {
+  const now = Date.now();
+  loginAttempts.forEach((data, ip) => {
+    if (now - data.firstAttempt > LOGIN_WINDOW_MS) {
+      loginAttempts.delete(ip);
+    }
+  });
+}, LOGIN_CLEANUP_INTERVAL).unref(); // .unref() so it doesn't prevent process exit
 
 export function checkRateLimit(clientIp: string, res: Response): boolean {
   const attempts = loginAttempts.get(clientIp);
@@ -48,6 +60,10 @@ export function trackFailedAttempt(clientIp: string) {
   if (current) {
     current.count++;
   } else {
+    if (loginAttempts.size >= MAX_LOGIN_ATTEMPTS_ENTRIES) {
+      const oldestKey = loginAttempts.keys().next().value;
+      if (oldestKey) loginAttempts.delete(oldestKey);
+    }
     loginAttempts.set(clientIp, { count: 1, firstAttempt: Date.now() });
   }
 }

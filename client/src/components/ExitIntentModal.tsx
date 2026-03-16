@@ -93,13 +93,16 @@ export function ExitIntentModal() {
     openBookingModal(undefined, { coupon: "BIENVENIDO10" });
   };
 
-  if (!show) return null;
-
+  // Always render with CSS-based visibility to avoid CLS from DOM insertion/removal.
+  // Using opacity + pointer-events instead of conditional mounting ensures no layout shift.
   return (
     <div
-      className="fixed inset-0 z-[100] flex items-center justify-center p-4"
+      className={`fixed inset-0 z-[100] flex items-center justify-center p-4 transition-opacity duration-200 ${
+        show ? "opacity-100" : "opacity-0 pointer-events-none"
+      }`}
       role="dialog"
-      aria-modal="true"
+      aria-modal={show}
+      aria-hidden={!show}
       aria-labelledby="exit-intent-title"
       onClick={handleDismiss}
     >
@@ -109,7 +112,9 @@ export function ExitIntentModal() {
       {/* Modal */}
       <div
         ref={modalRef}
-        className="relative bg-background rounded-2xl shadow-2xl max-w-md w-full overflow-hidden"
+        className={`relative bg-background rounded-2xl shadow-2xl max-w-md w-full overflow-hidden transition-transform duration-200 ${
+          show ? "scale-100" : "scale-95"
+        }`}
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close button */}
@@ -117,6 +122,7 @@ export function ExitIntentModal() {
           onClick={handleDismiss}
           className="absolute top-4 right-4 text-muted-foreground/60 hover:text-muted-foreground z-10"
           aria-label={t.a11y.close}
+          tabIndex={show ? 0 : -1}
         >
           <X className="w-5 h-5" />
         </button>
@@ -147,6 +153,7 @@ export function ExitIntentModal() {
           <button
             onClick={handleBookNow}
             className="w-full bg-cta hover:bg-cta/90 text-white rounded-full py-3.5 font-medium transition-colors cta-pulse"
+            tabIndex={show ? 0 : -1}
           >
             {t.exitIntent?.bookNow}
           </button>
@@ -154,6 +161,7 @@ export function ExitIntentModal() {
           <button
             onClick={handleDismiss}
             className="mt-3 text-sm text-muted-foreground hover:text-foreground transition-colors"
+            tabIndex={show ? 0 : -1}
           >
             {t.exitIntent?.noThanks}
           </button>

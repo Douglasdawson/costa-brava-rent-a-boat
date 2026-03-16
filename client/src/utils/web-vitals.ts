@@ -1,8 +1,8 @@
-import { onCLS, onLCP, onINP } from "web-vitals";
+import { onCLS, onLCP, onINP, onTTFB, onFCP } from "web-vitals";
 
 declare global {
   interface Window {
-    dataLayer?: Array<Record<string, unknown>>;
+    dataLayer: Record<string, unknown>[];
   }
 }
 
@@ -22,6 +22,8 @@ export function initWebVitals() {
     onCLS(sendToGA4);
     onLCP(sendToGA4);
     onINP(sendToGA4);
+    onTTFB(sendToGA4);
+    onFCP(sendToGA4);
   } catch {
     // web-vitals not available
   }

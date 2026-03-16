@@ -356,9 +356,18 @@ function App() {
     initWebVitals();
 
     // Initialize Meta Pixel if configured (pixel ID injected via meta tag)
+    // Deferred via requestIdleCallback to avoid blocking LCP
     const metaPixelId = document.querySelector('meta[name="fb-pixel-id"]')?.getAttribute("content");
     if (metaPixelId) {
-      import("./utils/meta-pixel").then(({ initMetaPixel }) => initMetaPixel(metaPixelId));
+      const loadPixel = () => {
+        import("./utils/meta-pixel").then(({ initMetaPixel }) => initMetaPixel(metaPixelId));
+      };
+
+      if ("requestIdleCallback" in window) {
+        (window as unknown as { requestIdleCallback: (cb: () => void, opts?: { timeout: number }) => number }).requestIdleCallback(loadPixel, { timeout: 5000 });
+      } else {
+        setTimeout(loadPixel, 3000);
+      }
     }
   }, []);
 

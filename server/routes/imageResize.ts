@@ -35,7 +35,7 @@ function resolveFilename(filename: string): string {
 
 // Simple in-memory LRU-like cache
 const cache = new Map<string, Buffer>();
-const MAX_CACHE_ENTRIES = 100;
+const MAX_CACHE_ENTRIES = 500;
 
 export function registerImageResizeRoutes(app: Express) {
   // Route outside /api/ to bypass the general rate limiter

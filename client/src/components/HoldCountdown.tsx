@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useRef } from "react";
+import { useState, useEffect, useCallback, useRef, memo, useMemo } from "react";
 import { Clock, RefreshCw } from "lucide-react";
 import { useTranslations } from "@/lib/translations";
 
@@ -11,7 +11,7 @@ interface HoldCountdownProps {
   onVerify?: () => void;
 }
 
-export default function HoldCountdown({ expiresAt, onExpired, softExpiry, onVerify }: HoldCountdownProps) {
+const HoldCountdown = memo(function HoldCountdown({ expiresAt, onExpired, softExpiry, onVerify }: HoldCountdownProps) {
   const t = useTranslations();
   const [secondsLeft, setSecondsLeft] = useState(() => {
     const diff = Math.floor((new Date(expiresAt).getTime() - Date.now()) / 1000);
@@ -42,6 +42,13 @@ export default function HoldCountdown({ expiresAt, onExpired, softExpiry, onVeri
     const secs = total % 60;
     return `${String(mins).padStart(2, "0")}:${String(secs).padStart(2, "0")}`;
   }, []);
+
+  // Total duration for CSS progress bar animation (computed once on mount)
+  const totalSeconds = useMemo(() => {
+    const diff = Math.floor((new Date(expiresAt).getTime() - Date.now()) / 1000);
+    return Math.max(0, diff);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [expiresAt]);
 
   const isExpired = secondsLeft <= 0;
   const isUrgent = secondsLeft > 0 && secondsLeft < 60;
@@ -100,19 +107,40 @@ export default function HoldCountdown({ expiresAt, onExpired, softExpiry, onVeri
   }
 
   return (
-    <div
-      className={`${bgClass} text-white rounded-lg h-10 flex items-center justify-center gap-2 px-4 w-full transition-colors duration-700`}
-    >
-      <Clock className="w-4 h-4 flex-shrink-0" />
-      <span className="text-sm font-medium">
-        {isUrgent && (
-          <span className="font-bold mr-1">
-            {holdCountdownText?.hurry ?? "Date prisa"} --
-          </span>
-        )}
-        {holdCountdownText?.reserved ?? "Tu barco esta reservado durante"}{" "}
-        <span className="font-bold tabular-nums">{formatTime(secondsLeft)}</span>
-      </span>
+    <div className="w-full">
+      <div
+        className={`${bgClass} text-white rounded-lg h-10 flex items-center justify-center gap-2 px-4 w-full transition-colors duration-700`}
+      >
+        <Clock className="w-4 h-4 flex-shrink-0" />
+        <span className="text-sm font-medium">
+          {isUrgent && (
+            <span className="font-bold mr-1">
+              {holdCountdownText?.hurry ?? "Date prisa"} --
+            </span>
+          )}
+          {holdCountdownText?.reserved ?? "Tu barco esta reservado durante"}{" "}
+          <span className="font-bold tabular-nums">{formatTime(secondsLeft)}</span>
+        </span>
+      </div>
+      {/* CSS-animated progress bar: runs entirely on GPU, no JS updates needed */}
+      {totalSeconds > 0 && (
+        <div className="w-full h-1 bg-white/20 rounded-b-lg overflow-hidden -mt-0.5">
+          <div
+            className="h-full bg-white/60 origin-left rounded-b-lg"
+            style={{
+              animation: `hold-countdown-progress ${totalSeconds}s linear forwards`,
+            }}
+          />
+        </div>
+      )}
+      <style>{`
+        @keyframes hold-countdown-progress {
+          from { transform: scaleX(1); }
+          to { transform: scaleX(0); }
+        }
+      `}</style>
     </div>
   );
-}
+});
+
+export default HoldCountdown;

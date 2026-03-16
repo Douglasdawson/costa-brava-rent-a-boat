@@ -12,29 +12,24 @@ export async function getDashboardStats(startDate: Date, endDate: Date): Promise
   const start = startDate instanceof Date ? startDate : new Date(startDate);
   const end = endDate instanceof Date ? endDate : new Date(endDate);
 
-  const bookingsInRange = await db
-    .select()
-    .from(bookings)
-    .where(
-      and(
-        gte(bookings.bookingDate, start),
-        lte(bookings.bookingDate, end),
-        inArray(bookings.bookingStatus, ["confirmed", "pending_payment"])
-      )
-    );
-
-  const confirmedBookings = bookingsInRange.filter(b => b.bookingStatus === "confirmed");
-  const pendingBookings = bookingsInRange.filter(b => b.bookingStatus === "pending_payment");
-
-  const revenue = confirmedBookings.reduce((sum, booking) => {
-    return sum + parseFloat(booking.totalAmount);
-  }, 0);
+  const { rows: statsRows } = await db.execute(sql`
+    SELECT
+      COUNT(*)::int AS bookings_count,
+      COALESCE(SUM(CASE WHEN booking_status = 'confirmed' THEN total_amount::numeric ELSE 0 END), 0) AS revenue,
+      COUNT(CASE WHEN booking_status = 'confirmed' THEN 1 END)::int AS confirmed_bookings,
+      COUNT(CASE WHEN booking_status = 'pending_payment' THEN 1 END)::int AS pending_bookings
+    FROM bookings
+    WHERE booking_date >= ${start}
+      AND booking_date <= ${end}
+      AND booking_status IN ('confirmed', 'pending_payment')
+  `);
+  const result = statsRows[0] as Record<string, unknown>;
 
   return {
-    bookingsCount: bookingsInRange.length,
-    revenue: Math.round(revenue * 100) / 100,
-    confirmedBookings: confirmedBookings.length,
-    pendingBookings: pendingBookings.length,
+    bookingsCount: Number(result.bookings_count) || 0,
+    revenue: Math.round(Number(result.revenue) * 100) / 100,
+    confirmedBookings: Number(result.confirmed_bookings) || 0,
+    pendingBookings: Number(result.pending_bookings) || 0,
   };
 }
 
@@ -42,26 +37,27 @@ export async function getFleetAvailability(): Promise<{
   totalBoats: number;
   availableBoats: number;
 }> {
-  const allBoats = await db.select().from(boats).where(eq(boats.isActive, true));
   const now = new Date();
 
-  const activeBookings = await db
-    .select()
-    .from(bookings)
-    .where(
-      and(
-        lte(bookings.startTime, now),
-        gte(bookings.endTime, now),
-        inArray(bookings.bookingStatus, ["confirmed", "pending_payment"])
-      )
-    );
-
-  const bookedBoatIds = new Set(activeBookings.map(b => b.boatId));
-  const availableBoats = allBoats.filter(boat => !bookedBoatIds.has(boat.id));
+  const { rows: fleetRows } = await db.execute(sql`
+    SELECT
+      (SELECT COUNT(*)::int FROM boats WHERE is_active = true) AS total_boats,
+      (
+        SELECT COUNT(*)::int FROM boats
+        WHERE is_active = true
+          AND id NOT IN (
+            SELECT DISTINCT boat_id FROM bookings
+            WHERE start_time <= ${now}
+              AND end_time >= ${now}
+              AND booking_status IN ('confirmed', 'pending_payment')
+          )
+      ) AS available_boats
+  `);
+  const result = fleetRows[0] as Record<string, unknown>;
 
   return {
-    totalBoats: allBoats.length,
-    availableBoats: availableBoats.length,
+    totalBoats: Number(result.total_boats) || 0,
+    availableBoats: Number(result.available_boats) || 0,
   };
 }
 
@@ -128,55 +124,50 @@ export async function getRevenueTrend(period: "30d" | "90d" | "365d"): Promise<A
   }
   startDate.setHours(0, 0, 0, 0);
 
-  const allBookings = await db
-    .select()
-    .from(bookings)
-    .where(
-      and(
-        gte(bookings.bookingDate, startDate),
-        lte(bookings.bookingDate, now),
-        inArray(bookings.bookingStatus, ["confirmed", "pending_payment"])
-      )
-    );
+  // Use date_trunc for grouping at SQL level
+  const truncUnit = groupByWeek ? "week" : "day";
 
-  const grouped = new Map<string, { revenue: number; bookings: number }>();
+  const { rows: trendRows } = await db.execute(sql`
+    SELECT
+      date_trunc(${truncUnit}, booking_date)::date::text AS period_date,
+      COALESCE(SUM(CASE WHEN booking_status = 'confirmed' THEN total_amount::numeric ELSE 0 END), 0) AS revenue,
+      COUNT(*)::int AS bookings
+    FROM bookings
+    WHERE booking_date >= ${startDate}
+      AND booking_date <= ${now}
+      AND booking_status IN ('confirmed', 'pending_payment')
+    GROUP BY 1
+    ORDER BY 1
+  `);
 
-  if (groupByWeek) {
-    for (const b of allBookings) {
-      const d = new Date(b.bookingDate);
-      const day = d.getDay();
-      const diff = d.getDate() - day + (day === 0 ? -6 : 1);
-      const weekStart = new Date(d.setDate(diff));
-      const key = weekStart.toISOString().split("T")[0];
-      const entry = grouped.get(key) || { revenue: 0, bookings: 0 };
-      if (b.bookingStatus === "confirmed") {
-        entry.revenue += parseFloat(b.totalAmount);
-      }
-      entry.bookings += 1;
-      grouped.set(key, entry);
-    }
-  } else {
-    for (const b of allBookings) {
-      const key = new Date(b.bookingDate).toISOString().split("T")[0];
-      const entry = grouped.get(key) || { revenue: 0, bookings: 0 };
-      if (b.bookingStatus === "confirmed") {
-        entry.revenue += parseFloat(b.totalAmount);
-      }
-      entry.bookings += 1;
-      grouped.set(key, entry);
-    }
+  // Build a lookup from the SQL results
+  const dataMap = new Map<string, { revenue: number; bookings: number }>();
+  for (const row of trendRows) {
+    const r = row as { period_date: string; revenue: string | number; bookings: number };
+    dataMap.set(r.period_date, {
+      revenue: Math.round(Number(r.revenue) * 100) / 100,
+      bookings: Number(r.bookings),
+    });
   }
 
+  // Fill in all dates/weeks in the range to maintain the same output shape
   const result: Array<{ date: string; revenue: number; bookings: number }> = [];
   const cursor = new Date(startDate);
   const stepDays = groupByWeek ? 7 : 1;
 
+  // For weekly grouping, align cursor to Monday (same as date_trunc('week') in PostgreSQL)
+  if (groupByWeek) {
+    const day = cursor.getDay();
+    const diff = day === 0 ? -6 : 1 - day;
+    cursor.setDate(cursor.getDate() + diff);
+  }
+
   while (cursor <= now) {
     const key = cursor.toISOString().split("T")[0];
-    const entry = grouped.get(key) || { revenue: 0, bookings: 0 };
+    const entry = dataMap.get(key) || { revenue: 0, bookings: 0 };
     result.push({
       date: key,
-      revenue: Math.round(entry.revenue * 100) / 100,
+      revenue: entry.revenue,
       bookings: entry.bookings,
     });
     cursor.setDate(cursor.getDate() + stepDays);
@@ -209,47 +200,50 @@ export async function getBoatsPerformance(period: "month" | "season" | "year"): 
       break;
   }
 
-  const allBoats = await db.select().from(boats).where(eq(boats.isActive, true));
-
-  const periodBookings = await db
-    .select()
-    .from(bookings)
-    .where(
-      and(
-        gte(bookings.bookingDate, startDate),
-        lte(bookings.bookingDate, now),
-        inArray(bookings.bookingStatus, ["confirmed", "pending_payment"])
-      )
-    );
-
   const totalDaysInPeriod = Math.ceil((now.getTime() - startDate.getTime()) / (24 * 60 * 60 * 1000));
   const operatingHoursPerDay = 10;
   const totalAvailableHours = totalDaysInPeriod * operatingHoursPerDay;
 
-  const bookingsByBoat = new Map<string, typeof periodBookings>();
-  for (const b of periodBookings) {
-    if (!bookingsByBoat.has(b.boatId)) bookingsByBoat.set(b.boatId, []);
-    bookingsByBoat.get(b.boatId)!.push(b);
-  }
+  // Single query: join boats with aggregated booking stats
+  const { rows: boatRows } = await db.execute(sql`
+    SELECT
+      b.id AS boat_id,
+      b.name AS boat_name,
+      COALESCE(SUM(CASE WHEN bk.booking_status = 'confirmed' THEN bk.total_amount::numeric ELSE 0 END), 0) AS revenue,
+      COUNT(bk.id)::int AS bookings,
+      COALESCE(SUM(bk.total_hours), 0)::int AS hours
+    FROM boats b
+    LEFT JOIN bookings bk
+      ON bk.boat_id = b.id
+      AND bk.booking_date >= ${startDate}
+      AND bk.booking_date <= ${now}
+      AND bk.booking_status IN ('confirmed', 'pending_payment')
+    WHERE b.is_active = true
+    GROUP BY b.id, b.name
+    ORDER BY revenue DESC
+  `);
 
-  return allBoats.map(boat => {
-    const boatBookings = bookingsByBoat.get(boat.id) || [];
-    const confirmedBookings = boatBookings.filter(b => b.bookingStatus === "confirmed");
-    const revenue = confirmedBookings.reduce((sum, b) => sum + parseFloat(b.totalAmount), 0);
-    const totalHours = boatBookings.reduce((sum, b) => sum + (b.totalHours || 0), 0);
+  return (boatRows as unknown as Array<{
+    boat_id: string;
+    boat_name: string;
+    revenue: string | number;
+    bookings: number;
+    hours: number;
+  }>).map(row => {
+    const hours = Number(row.hours);
     const utilization = totalAvailableHours > 0
-      ? Math.round((totalHours / totalAvailableHours) * 100)
+      ? Math.round((hours / totalAvailableHours) * 100)
       : 0;
 
     return {
-      boatId: boat.id,
-      boatName: boat.name,
-      revenue: Math.round(revenue * 100) / 100,
-      bookings: boatBookings.length,
-      hours: totalHours,
+      boatId: row.boat_id,
+      boatName: row.boat_name,
+      revenue: Math.round(Number(row.revenue) * 100) / 100,
+      bookings: Number(row.bookings),
+      hours,
       utilization: Math.min(utilization, 100),
     };
-  }).sort((a, b) => b.revenue - a.revenue);
+  });
 }
 
 export async function getStatusDistribution(startDate: Date, endDate: Date): Promise<{
@@ -263,15 +257,15 @@ export async function getStatusDistribution(startDate: Date, endDate: Date): Pro
   const start = startDate instanceof Date ? startDate : new Date(startDate);
   const end = endDate instanceof Date ? endDate : new Date(endDate);
 
-  const allBookingsInRange = await db
-    .select()
-    .from(bookings)
-    .where(
-      and(
-        gte(bookings.bookingDate, start),
-        lte(bookings.bookingDate, end)
-      )
-    );
+  const { rows: statusRows } = await db.execute(sql`
+    SELECT
+      booking_status,
+      COUNT(*)::int AS cnt
+    FROM bookings
+    WHERE booking_date >= ${start}
+      AND booking_date <= ${end}
+    GROUP BY booking_status
+  `);
 
   const distribution = {
     confirmed: 0,
@@ -282,10 +276,11 @@ export async function getStatusDistribution(startDate: Date, endDate: Date): Pro
     draft: 0,
   };
 
-  for (const b of allBookingsInRange) {
-    const status = b.bookingStatus as keyof typeof distribution;
+  for (const row of statusRows) {
+    const r = row as { booking_status: string; cnt: number };
+    const status = r.booking_status as keyof typeof distribution;
     if (status in distribution) {
-      distribution[status] += 1;
+      distribution[status] = Number(r.cnt);
     }
   }
 

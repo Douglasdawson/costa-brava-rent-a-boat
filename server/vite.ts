@@ -79,7 +79,10 @@ export function serveStatic(app: Express) {
     );
   }
 
-  app.use(express.static(distPath));
+  app.use(express.static(distPath, {
+    etag: true,
+    lastModified: true,
+  }));
 
   // fall through to index.html with SSR-lite SEO meta injection
   app.use("*", (req, res) => {

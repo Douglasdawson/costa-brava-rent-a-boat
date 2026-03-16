@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useCallback } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X, UserCircle, Calendar, Sun, Moon } from "lucide-react";
 import logoHorizontal from "@/assets/real-photos/logo-horizontal.png";
@@ -11,18 +11,15 @@ import { useAuth } from "@/hooks/useAuth";
 import { useBookingModal } from "@/hooks/bookingModalContext";
 import { trackBookingFormOpen } from "@/utils/analytics";
 import { useTheme } from "@/hooks/use-theme";
+import { useThrottledScroll } from "@/hooks/useThrottledScroll";
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [currentLocation, setLocation] = useLocation();
 
-  useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50);
-    handleScroll(); // Check initial state
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  const handleScroll = useCallback((scrollY: number) => setScrolled(scrollY > 50), []);
+  useThrottledScroll(handleScroll);
   const t = useTranslations();
   const { isAuthenticated } = useAuth();
   const { openBookingModal } = useBookingModal();

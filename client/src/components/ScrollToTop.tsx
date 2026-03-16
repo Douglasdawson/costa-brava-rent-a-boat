@@ -1,18 +1,14 @@
-import { useState, useEffect } from "react";
+import { useState, useCallback } from "react";
 import { ChevronUp } from "lucide-react";
 import { useTranslations } from "@/lib/translations";
+import { useThrottledScroll } from "@/hooks/useThrottledScroll";
 
 export function ScrollToTop() {
   const t = useTranslations();
   const [visible, setVisible] = useState(false);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setVisible(window.scrollY > 400);
-    };
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  const handleScroll = useCallback((scrollY: number) => setVisible(scrollY > 400), []);
+  useThrottledScroll(handleScroll);
 
   // Hide on admin pages
   if (typeof window !== "undefined" && (window.location.pathname.startsWith("/admin") || window.location.pathname.startsWith("/crm"))) {

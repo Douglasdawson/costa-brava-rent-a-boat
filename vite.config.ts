@@ -17,7 +17,7 @@ export default defineConfig({
           ),
         ]
       : []),
-    compression({ algorithm: "brotliCompress", ext: ".br", threshold: 1024 }),
+    // Only gzip — Replit's CDN handles brotli; dual compression doubles build time
     compression({ algorithm: "gzip", ext: ".gz", threshold: 1024 }),
     VitePWA({
       registerType: "autoUpdate",
@@ -108,7 +108,7 @@ export default defineConfig({
   build: {
     outDir: path.resolve(import.meta.dirname, "dist/public"),
     emptyOutDir: true,
-    sourcemap: true,
+    sourcemap: false,
     rollupOptions: {
       output: {
         manualChunks: {

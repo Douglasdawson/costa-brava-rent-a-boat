@@ -3,7 +3,6 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Anchor, ArrowRight, Clock, Fuel, Star, ThumbsUp } from "lucide-react";
 import { useTranslations } from "@/lib/translations";
 import { getBoatAverageRating } from "@/data/boatReviews";
-import { useProgressiveImage } from "@/hooks/use-progressive-image";
 
 interface BoatCardProps {
   id: string;
@@ -47,8 +46,6 @@ const BoatCardImage = memo(function BoatCardImage({
   imageError: boolean;
   onImageError: () => void;
 }) {
-  const loaded = useProgressiveImage(image);
-
   if (imageError) {
     return (
       <div className="w-full aspect-[4/3] flex items-center justify-center">
@@ -59,12 +56,6 @@ const BoatCardImage = memo(function BoatCardImage({
 
   return (
     <div className="relative w-full aspect-[4/3] overflow-hidden">
-      {/* Placeholder shown until image loads */}
-      <div
-        className={`absolute inset-0 bg-muted animate-pulse transition-opacity duration-300 ${
-          loaded ? "opacity-0" : "opacity-100"
-        }`}
-      />
       <picture>
         {imageMobile && (
           <source media="(max-width: 767px)" srcSet={imageMobile} type="image/webp" />
@@ -77,9 +68,7 @@ const BoatCardImage = memo(function BoatCardImage({
           srcSet={imageSrcSet || undefined}
           sizes="(max-width: 639px) calc(100vw - 32px), (max-width: 1279px) calc(50vw - 20px), calc(33vw - 24px)"
           alt={imageAlt}
-          className={`w-full h-full object-cover transition-all duration-300 group-hover:scale-[1.03] ${
-            loaded ? "opacity-100" : "opacity-0"
-          }`}
+          className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
           loading="lazy"
           decoding="async"
           onError={onImageError}

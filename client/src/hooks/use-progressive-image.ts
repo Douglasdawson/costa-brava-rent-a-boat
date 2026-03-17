@@ -6,17 +6,23 @@ import { useState, useEffect } from "react";
  * allowing a CSS transition from placeholder to loaded state.
  */
 export function useProgressiveImage(src: string): boolean {
-  const [loaded, setLoaded] = useState(false);
+  const [loaded, setLoaded] = useState(() => {
+    if (typeof document === "undefined") return false;
+    const img = new Image();
+    img.src = src;
+    return img.complete && img.naturalWidth > 0;
+  });
 
   useEffect(() => {
-    setLoaded(false);
     const img = new Image();
-    img.onload = () => setLoaded(true);
     img.src = src;
-
-    return () => {
-      img.onload = null;
-    };
+    if (img.complete && img.naturalWidth > 0) {
+      setLoaded(true);
+      return;
+    }
+    setLoaded(false);
+    img.onload = () => setLoaded(true);
+    return () => { img.onload = null; };
   }, [src]);
 
   return loaded;

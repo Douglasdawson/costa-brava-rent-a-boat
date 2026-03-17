@@ -206,7 +206,8 @@ export function registerAvailabilityRoutes(app: Express) {
       });
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Unknown error";
-      logger.error("[Availability] Error fetching availability", { error: message });
+      const stack = error instanceof Error ? error.stack : "";
+      logger.error("[Availability] Error fetching availability", { error: message, stack });
       res.status(500).json({ message: "Error interno del servidor" });
     }
   });

@@ -1008,7 +1008,7 @@ export const nl: Translations = {
     tableEngine: 'Motor',
     tableDuration: 'Duur',
     tablePriceFrom: 'Prijs vanaf',
-    tablePricePerPerson: 'Prijs/persoon',
+    tablePricePerPerson: 'Prijs/persoon vanaf',
     tableRating: 'Beoordeling',
     tableFuelIncluded: 'Brandstof inbegrepen',
     tableYes: 'Ja',

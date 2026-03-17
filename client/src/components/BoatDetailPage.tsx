@@ -22,7 +22,6 @@ ArrowUpDown,
   Shield,
   Eye,
   Waves,
-  MessageSquare,
   Heart,
   Sun,
   Clock,
@@ -37,6 +36,7 @@ import ParkingIcon from "@/components/icons/ParkingIcon";
 import PaddleSurfIcon from "@/components/icons/PaddleSurfIcon";
 import NeveraIcon from "@/components/icons/NeveraIcon";
 import BebidasIcon from "@/components/icons/BebidasIcon";
+import { SiWhatsapp } from "react-icons/si";
 import { openWhatsApp } from "@/utils/whatsapp";
 import { getBoatImage, getBoatImageSrcSet, getBoatAltText } from "@/utils/boatImages";
 import { useResponsiveGallery } from "@/hooks/useResponsiveGallery";
@@ -1036,7 +1036,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
               tabIndex={showStickyCTA && !isBookingModalOpen ? 0 : -1}
               className="w-full text-xs text-primary hover:text-primary/80 flex items-center justify-center gap-1.5 py-1"
             >
-              <MessageSquare className="w-3.5 h-3.5" />
+              <SiWhatsapp className="w-3.5 h-3.5 text-[#25D366]" />
               {t.contact?.whatsapp || "Consultar por WhatsApp"}
             </button>
           </div>

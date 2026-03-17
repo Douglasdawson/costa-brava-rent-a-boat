@@ -1019,7 +1019,7 @@ export const es: Translations = {
     tableEngine: 'Motor',
     tableDuration: 'Duración',
     tablePriceFrom: 'Precio desde',
-    tablePricePerPerson: 'Precio/persona',
+    tablePricePerPerson: 'Precio/persona desde',
     tableRating: 'Valoración',
     tableFuelIncluded: 'Gasolina incluida',
     tableYes: 'Sí',

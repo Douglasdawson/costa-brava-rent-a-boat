@@ -1008,7 +1008,7 @@ export const ru: Translations = {
     tableEngine: 'Двигатель',
     tableDuration: 'Продолжительность',
     tablePriceFrom: 'Цена от',
-    tablePricePerPerson: 'Цена/чел.',
+    tablePricePerPerson: 'Цена/чел. от',
     tableRating: 'Рейтинг',
     tableFuelIncluded: 'Топливо включено',
     tableYes: 'Да',

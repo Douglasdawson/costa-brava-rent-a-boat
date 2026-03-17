@@ -153,7 +153,7 @@ const VirtualizedBoatGrid = React.memo(function VirtualizedBoatGrid({
         {virtualizer.getVirtualItems().map((virtualRow) => (
           <div
             key={virtualRow.key}
-            className="absolute left-0 w-full grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4 sm:gap-6 lg:gap-8"
+            className="absolute left-0 w-full grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6 lg:gap-8"
             style={{
               top: `${virtualRow.start}px`,
               height: `${virtualRow.size}px`,
@@ -460,7 +460,7 @@ function FleetSection() {
         {viewMode === 'grid' && (
           <>
             {isLoading ? (
-              <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 mb-6 sm:mb-8 lg:mb-12">
+              <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 mb-6 sm:mb-8 lg:mb-12">
                 {Array.from({ length: 3 }).map((_, i) => (
                   <div key={i} className="rounded-xl border border-primary/10 overflow-hidden animate-pulse">
                     <div className="h-48 bg-muted" />
@@ -484,7 +484,7 @@ function FleetSection() {
                 onDetails={handleDetails}
               />
             ) : (
-              <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 mb-6 sm:mb-8 lg:mb-12">
+              <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 mb-6 sm:mb-8 lg:mb-12">
                 {sortedBoats.map((boat) => (
                   <div
                     key={boat.id}
@@ -665,7 +665,7 @@ function FleetSection() {
                     <TableCell key={boat.id} className="text-center">
                       <button
                         onClick={() => handleBooking(boat.id)}
-                        className="bg-cta hover:bg-cta/90 text-foreground px-4 py-2 rounded-full text-sm font-medium transition-colors"
+                        className="bg-cta hover:bg-cta/90 text-white px-4 py-2 rounded-full text-sm font-medium transition-colors"
                       >
                         {t.boats.book}
                       </button>

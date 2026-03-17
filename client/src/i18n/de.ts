@@ -1008,7 +1008,7 @@ export const de: Translations = {
     tableEngine: 'Motor',
     tableDuration: 'Dauer',
     tablePriceFrom: 'Preis ab',
-    tablePricePerPerson: 'Preis/Person',
+    tablePricePerPerson: 'Preis/Person ab',
     tableRating: 'Bewertung',
     tableFuelIncluded: 'Treibstoff inklusive',
     tableYes: 'Ja',

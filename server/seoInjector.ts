@@ -913,6 +913,22 @@ async function getBaseHtml(distPath: string): Promise<string> {
       '<link rel="stylesheet" crossorigin href="$1" media="print" onload="this.media=\'all\'">' +
       '<noscript><link rel="stylesheet" crossorigin href="$1"></noscript>'
     );
+
+    // Break the critical request chain: preload main JS + vendor chunks in <head>
+    // so the browser discovers them early (in parallel with CSS), not at end of <body>.
+    const mainJsMatch = html.match(/<script type="module" crossorigin src="(\/assets\/[^"]+\.js)">/);
+    const vendorPreloads = [...html.matchAll(/<link rel="modulepreload" crossorigin href="(\/assets\/[^"]+\.js)">/g)];
+    if (mainJsMatch) {
+      const preloadTags = [
+        `<link rel="modulepreload" crossorigin href="${mainJsMatch[1]}">`,
+        ...vendorPreloads.map(m => `<link rel="modulepreload" crossorigin href="${m[1]}">`)
+      ].join("\n    ");
+      html = html.replace("</head>", `    ${preloadTags}\n  </head>`);
+    }
+
+    // Remove the dev-mode base64 modulepreload (useless in production)
+    html = html.replace(/<link rel="modulepreload" href="data:[^"]*">\n?\s*/, "");
+
     cachedBaseHtml = html;
   }
   return cachedBaseHtml;

@@ -28,11 +28,15 @@ const COUNTRY_NAMES: Record<string, string> = {
   CZ: "Chequia", IE: "Irlanda",
 };
 
-const FALLBACK_ACTIVITIES: SocialProofActivity[] = [
-  { name: "María", nationality: "ES", boatName: "ASTEC 480", people: 4, hours: 4, minutesAgo: 23 },
-  { name: "Thomas", nationality: "DE", boatName: "SOLAR 450", people: 3, hours: 3, minutesAgo: 87 },
-  { name: "Sophie", nationality: "FR", boatName: "REMUS 450", people: 5, hours: 6, minutesAgo: 156 },
-  { name: "James", nationality: "GB", boatName: "PACIFIC CRAFT 625", people: 6, hours: 8, minutesAgo: 312 },
+const SIMULATED_ACTIVITIES: SocialProofActivity[] = [
+  { name: "María", nationality: "ES", boatName: "Astec 480", people: 4, hours: 4, minutesAgo: 23 },
+  { name: "Thomas", nationality: "DE", boatName: "Solar 450", people: 3, hours: 3, minutesAgo: 87 },
+  { name: "Sophie", nationality: "FR", boatName: "Remus 450", people: 5, hours: 6, minutesAgo: 156 },
+  { name: "James", nationality: "GB", boatName: "Pacific Craft 625", people: 6, hours: 8, minutesAgo: 312 },
+  { name: "Laura", nationality: "NL", boatName: "Astec 400", people: 2, hours: 3, minutesAgo: 45 },
+  { name: "Marco", nationality: "IT", boatName: "Mingolla Brava 19", people: 7, hours: 8, minutesAgo: 198 },
+  { name: "Anna", nationality: "SE", boatName: "Trimarchi 57S", people: 4, hours: 6, minutesAgo: 267 },
+  { name: "Pedro", nationality: "PT", boatName: "Remus 450", people: 3, hours: 4, minutesAgo: 134 },
 ];
 
 const HIDDEN_PATHS = ["/admin", "/crm", "/reservar"];
@@ -79,29 +83,15 @@ export function SocialProofToast() {
   // Check if we should show on this path
   const shouldShow = !HIDDEN_PATHS.some((p) => location.startsWith(p));
 
-  // Fetch activities on mount
+  // Use simulated activities with randomized order and times
   useEffect(() => {
-    let cancelled = false;
-    async function fetchActivities() {
-      try {
-        const res = await fetch("/api/social-proof");
-        if (res.ok) {
-          const data = await res.json();
-          const items = Array.isArray(data) ? data : Array.isArray(data?.activities) ? data.activities : null;
-          if (!cancelled && items && items.length > 0) {
-            setActivities(items);
-            return;
-          }
-        }
-      } catch {
-        // Silently fall back
-      }
-      if (!cancelled) {
-        setActivities(FALLBACK_ACTIVITIES);
-      }
-    }
-    fetchActivities();
-    return () => { cancelled = true; };
+    const shuffled = [...SIMULATED_ACTIVITIES].sort(() => Math.random() - 0.5);
+    // Randomize minutesAgo slightly so they feel fresh each session
+    const randomized = shuffled.map(a => ({
+      ...a,
+      minutesAgo: Math.floor(a.minutesAgo * (0.7 + Math.random() * 0.6)),
+    }));
+    setActivities(randomized);
   }, []);
 
   const getSessionCount = useCallback((): number => {

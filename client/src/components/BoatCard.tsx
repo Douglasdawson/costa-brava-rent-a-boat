@@ -211,7 +211,7 @@ function BoatCard({
               {t.recommendation?.recommendedForYou}
             </div>
           )}
-          <span className="bg-white/90 backdrop-blur-sm text-foreground text-sm font-medium rounded-full px-3 py-1 self-start">
+          <span className="bg-white/90 backdrop-blur-sm text-slate-800 text-sm font-medium rounded-full px-3 py-1 self-start">
             {requiresLicense ? t.boats.withLicense : t.boats.withoutLicense}
           </span>
         </div>

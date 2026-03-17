@@ -586,7 +586,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
               <>
                 <div className="flex flex-wrap gap-2 mb-6 justify-center">
                   {(["BAJA", "MEDIA", "ALTA"] as const).filter(s => s in boatData.pricing!).map((season) => {
-                    const seasonNames: Record<string, string> = { BAJA: 'BAJA', MEDIA: 'MEDIA', ALTA: 'ALTA' };
+                    const seasonNames: Record<string, string> = { BAJA: t.boatDetail.seasonLow, MEDIA: t.boatDetail.seasonMid, ALTA: t.boatDetail.seasonHigh };
                     return (
                       <Button
                         key={season}

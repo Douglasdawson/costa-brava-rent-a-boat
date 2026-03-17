@@ -387,7 +387,7 @@ function FleetSection() {
                   onClick={() => setLicenseFilter(opt.value)}
                   className={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors ${
                     licenseFilter === opt.value
-                      ? 'bg-foreground text-white'
+                      ? 'bg-foreground text-white dark:bg-cta dark:text-foreground'
                       : 'bg-muted text-muted-foreground hover:bg-muted-foreground/10'
                   }`}
                 >
@@ -408,7 +408,7 @@ function FleetSection() {
                 onClick={() => setSelectedGroupSize(null)}
                 className={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors ${
                   selectedGroupSize === null
-                    ? 'bg-foreground text-white'
+                    ? 'bg-foreground text-white dark:bg-cta dark:text-foreground'
                     : 'bg-muted text-muted-foreground hover:bg-muted-foreground/10'
                 }`}
               >
@@ -420,7 +420,7 @@ function FleetSection() {
                   onClick={() => setSelectedGroupSize(option.label)}
                   className={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors ${
                     selectedGroupSize === option.label
-                      ? 'bg-foreground text-white'
+                      ? 'bg-foreground text-white dark:bg-cta dark:text-foreground'
                       : 'bg-muted text-muted-foreground hover:bg-muted-foreground/10'
                   }`}
                 >
@@ -436,7 +436,7 @@ function FleetSection() {
               onClick={() => setViewMode('grid')}
               className={`p-2 rounded-full transition-colors ${
                 viewMode === 'grid'
-                  ? 'bg-foreground text-white'
+                  ? 'bg-foreground text-white dark:bg-cta dark:text-foreground'
                   : 'bg-muted text-muted-foreground hover:bg-muted-foreground/10'
               }`}
               aria-label="Grid view"
@@ -447,7 +447,7 @@ function FleetSection() {
               onClick={() => setViewMode('table')}
               className={`hidden md:inline-flex p-2 rounded-full transition-colors ${
                 viewMode === 'table'
-                  ? 'bg-foreground text-white'
+                  ? 'bg-foreground text-white dark:bg-cta dark:text-foreground'
                   : 'bg-muted text-muted-foreground hover:bg-muted-foreground/10'
               }`}
               aria-label={t.comparison.compare}

@@ -319,8 +319,15 @@ export default function AvailabilityCalendar({
       const date = info.date;
       setInternalSelected(date);
       onDateSelect?.(date);
+
+      // If no slot panel will appear, open booking directly with the selected date
+      const dateStr = toDateKey(date.getFullYear(), date.getMonth() + 1, date.getDate());
+      const daySlots = availability?.days[dateStr]?.slots || [];
+      if (onSlotSelect && daySlots.length === 0) {
+        onSlotSelect(dateStr, "");
+      }
     },
-    [onDateSelect]
+    [onDateSelect, onSlotSelect, availability]
   );
 
   // ---------------------------------------------------------------------------
@@ -441,12 +448,7 @@ export default function AvailabilityCalendar({
                   {day}
                 </span>
 
-                {/* Price badge */}
-                {info.price !== null && info.price > 0 && info.status !== "past" && info.status !== "off_season" && (
-                  <span className="text-[10px] leading-tight whitespace-nowrap opacity-80">
-                    {info.price}€
-                  </span>
-                )}
+                {/* Price badge removed — prices shown in pricing section instead */}
 
                 {/* Booked indicator */}
                 {info.status === "booked" && (

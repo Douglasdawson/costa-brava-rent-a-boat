@@ -32,11 +32,21 @@ const updateCustomerProfileSchema = z.object({
 export function registerLegacyAuthRoutes(app: Express) {
 
   // Get current authenticated user (customer - Replit Auth)
-  app.get("/api/auth/user", isAuthenticated, async (req: any, res) => {
+  // Returns 200 with null for unauthenticated users (avoids browser console 401 error)
+  app.get("/api/auth/user", async (req: any, res) => {
     try {
-      const userId = req.user.claims.sub;
-      const user = await storage.getCustomerUser(userId);
-      res.json(user);
+      if (typeof req.isAuthenticated !== 'function' || !req.isAuthenticated()) {
+        return res.json(null);
+      }
+      const user = req.user as { expires_at?: number; claims?: { sub: string } };
+      const now = Math.floor(Date.now() / 1000);
+      if (!user?.expires_at || now > user.expires_at) {
+        return res.json(null);
+      }
+      const userId = user.claims?.sub;
+      if (!userId) return res.json(null);
+      const customerUser = await storage.getCustomerUser(userId);
+      res.json(customerUser);
     } catch (error) {
       logger.error("Error fetching user", { error: error instanceof Error ? error.message : String(error) });
       res.status(500).json({ message: "Failed to fetch user" });

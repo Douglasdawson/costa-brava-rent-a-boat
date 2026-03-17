@@ -334,7 +334,9 @@ function FleetSection() {
         <div className="flex lg:hidden items-center justify-center gap-3 mb-6 sticky top-16 z-30 bg-background/95 backdrop-blur-sm py-2 -mx-4 px-4 md:static md:bg-transparent md:backdrop-blur-none md:py-0 md:mx-0 md:px-0">
           <div className="relative">
             <Anchor className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground pointer-events-none" />
+            <label htmlFor="fleet-license-filter" className="sr-only">{t.recommendation?.withoutLicense || "License filter"}</label>
             <select
+              id="fleet-license-filter"
               value={licenseFilter}
               onChange={(e) => setLicenseFilter(e.target.value as 'all' | 'no' | 'yes')}
               className="appearance-none bg-muted text-foreground text-sm font-medium rounded-xl pl-9 pr-8 py-2.5 border border-border focus:ring-2 focus:ring-primary focus:outline-none"
@@ -347,7 +349,9 @@ function FleetSection() {
           </div>
           <div className="relative">
             <Users className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground pointer-events-none" />
+            <label htmlFor="fleet-group-size" className="sr-only">{t.boats?.people || "Group size"}</label>
             <select
+              id="fleet-group-size"
               value={selectedGroupSize ?? ''}
               onChange={(e) => setSelectedGroupSize(e.target.value || null)}
               className="appearance-none bg-muted text-foreground text-sm font-medium rounded-xl pl-9 pr-8 py-2.5 border border-border focus:ring-2 focus:ring-primary focus:outline-none"

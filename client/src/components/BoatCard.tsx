@@ -115,7 +115,7 @@ const BoatCardPricing = memo(function BoatCardPricing({
       <div className="text-sm text-muted-foreground">{fromLabel}</div>
       <div className="flex items-baseline gap-1.5 justify-end">
         {showPriceAnchoring && (
-          <span className="text-sm text-muted-foreground/70 line-through">
+          <span className="text-sm text-muted-foreground line-through">
             <span className="text-[10px] no-underline">{highSeasonLabel}: </span>{highSeasonPrice}&euro;
           </span>
         )}
@@ -211,8 +211,8 @@ function BoatCard({
         />
         <div className="absolute top-3 left-3 flex flex-col gap-1.5 z-10">
           {isPopular && (
-            <div className="inline-flex items-center gap-1 bg-amber-500 text-white text-xs font-bold px-2.5 py-1 rounded-full shadow-md">
-              <Star className="w-3 h-3 fill-white" />
+            <div className="inline-flex items-center gap-1 bg-amber-500 text-amber-950 text-xs font-bold px-2.5 py-1 rounded-full shadow-md">
+              <Star className="w-3 h-3 fill-amber-950" />
               {t.boats.mostPopular}
             </div>
           )}
@@ -326,6 +326,7 @@ function BoatCard({
           onClick={handleDetailsClick}
           className="text-sm font-medium text-foreground hover:text-cta inline-flex items-center gap-1.5 transition-colors py-2 -my-1 focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2 focus-visible:outline-none rounded"
           data-testid={`button-details-${id}`}
+          aria-label={`${t.boats.viewDetails} — ${name}`}
         >
           {t.boats.viewDetails} <ArrowRight className="w-4 h-4" />
         </a>

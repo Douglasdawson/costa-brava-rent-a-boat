@@ -926,8 +926,8 @@ async function getBaseHtml(distPath: string): Promise<string> {
     // of heavy chunks (vendor-ui, vendor-charts) that aren't needed for first paint.
     html = html.replace(/\s*<link rel="modulepreload" crossorigin href="\/assets\/vendor-[^"]+\.js">/g, "");
 
-    // Remove the dev-mode base64 modulepreload (useless in production)
-    html = html.replace(/<link rel="modulepreload" href="data:[^"]*">\n?\s*/, "");
+    // Remove the dev-mode base64 modulepreload (causes MIME type error in browser)
+    html = html.replace(/\s*<link rel="modulepreload"[^>]*href="data:[^"]*"[^>]*>\s*/g, "");
 
     cachedBaseHtml = html;
   }

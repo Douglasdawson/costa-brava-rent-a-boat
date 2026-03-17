@@ -4,6 +4,7 @@ import { requireAdminSession, requireTabAccess } from "./auth";
 import { z } from "zod";
 import crypto from "crypto";
 import { logger } from "../lib/logger";
+import { validatePromoCode } from "../lib/discountValidation";
 
 // Validation schemas
 const validateCodeSchema = z.object({
@@ -23,6 +24,7 @@ export function registerDiscountRoutes(app: Express) {
   // ===== PUBLIC ENDPOINTS =====
 
   // Validate a discount code (public - customers validate during booking)
+  // Uses the shared validatePromoCode function as single source of truth
   app.post("/api/discounts/validate", async (req, res) => {
     try {
       const parsed = validateCodeSchema.safeParse(req.body);
@@ -33,43 +35,19 @@ export function registerDiscountRoutes(app: Express) {
         });
       }
 
-      const code = parsed.data.code.toUpperCase().trim();
-      const discountCode = await storage.getDiscountCodeByCode(code);
+      const result = await validatePromoCode(parsed.data.code);
 
-      if (!discountCode) {
+      // Only return discount code results from this endpoint (not gift cards)
+      if (!result.valid || result.type !== "discount") {
         return res.json({
           valid: false,
-          error: "Codigo de descuento no valido",
-        });
-      }
-
-      // Check if expired
-      if (discountCode.expiresAt && new Date() > discountCode.expiresAt) {
-        return res.json({
-          valid: false,
-          error: "Este codigo de descuento ha expirado",
-        });
-      }
-
-      // Check if uses remain
-      if (discountCode.currentUses >= discountCode.maxUses) {
-        return res.json({
-          valid: false,
-          error: "Este codigo de descuento ya ha sido utilizado",
-        });
-      }
-
-      // Check if not active
-      if (!discountCode.isActive) {
-        return res.json({
-          valid: false,
-          error: "Este codigo de descuento no esta activo",
+          error: result.error || "Codigo de descuento no valido",
         });
       }
 
       return res.json({
         valid: true,
-        discountPercent: discountCode.discountPercent,
+        discountPercent: result.discountPercent,
       });
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Error desconocido";

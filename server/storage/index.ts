@@ -20,6 +20,10 @@ import * as inventoryRepo from "./inventory";
 import * as inquiryRepo from "./inquiries";
 import * as companyRepo from "./company";
 import * as auditRepo from "./audit";
+import * as membershipRepo from "./memberships";
+import * as experimentsRepo from "./experiments";
+import * as featureFlagsRepo from "./featureFlags";
+import * as leadNurturingRepo from "./leadNurturing";
 
 // Re-export the IStorage interface for consumers that import it
 export type { IStorage } from "./types";
@@ -108,6 +112,11 @@ export const storage = {
   updateBookingEmailStatus: bookingRepo.updateBookingEmailStatus,
   updateBookingWhatsAppThankYouStatus: bookingRepo.updateBookingWhatsAppThankYouStatus,
   getRecentSocialProofBookings: bookingRepo.getRecentSocialProofBookings,
+  // Post-rental flywheel
+  getBookingsForReviewRequest: bookingRepo.getBookingsForReviewRequest,
+  getBookingsForReferralCode: bookingRepo.getBookingsForReferralCode,
+  getBookingsForEarlyBird: bookingRepo.getBookingsForEarlyBird,
+  markFlywheelStepSent: bookingRepo.markFlywheelStepSent,
 
   // ===== Analytics =====
   getDashboardStats: analyticsRepo.getDashboardStats,
@@ -116,6 +125,7 @@ export const storage = {
   getRevenueTrend: analyticsRepo.getRevenueTrend,
   getBoatsPerformance: analyticsRepo.getBoatsPerformance,
   getStatusDistribution: analyticsRepo.getStatusDistribution,
+  getYieldAnalytics: analyticsRepo.getYieldAnalytics,
 
   // ===== Content (Blog, Destinations, Testimonials, Newsletter) =====
   getTestimonials: contentRepo.getTestimonials,
@@ -217,4 +227,44 @@ export const storage = {
   // ===== Audit Log =====
   createAuditLog: auditRepo.createAuditLog,
   getRecentAuditLogs: auditRepo.getRecentAuditLogs,
+
+  // ===== Memberships (Boat Club) =====
+  createMembership: membershipRepo.createMembership,
+  getMembershipById: membershipRepo.getMembershipById,
+  getMembershipByEmail: membershipRepo.getMembershipByEmail,
+  getActiveMemberships: membershipRepo.getActiveMemberships,
+  getAllMemberships: membershipRepo.getAllMemberships,
+  updateMembership: membershipRepo.updateMembership,
+  deductFreeHours: membershipRepo.deductFreeHours,
+  getMembershipStats: membershipRepo.getMembershipStats,
+  expireOverdueMemberships: membershipRepo.expireOverdueMemberships,
+
+  // ===== Experiments (A/B Testing) =====
+  getActiveExperiments: experimentsRepo.getActiveExperiments,
+  getAllExperiments: experimentsRepo.getAllExperiments,
+  getExperimentById: experimentsRepo.getExperimentById,
+  getExperimentByName: experimentsRepo.getExperimentByName,
+  createExperiment: experimentsRepo.createExperiment,
+  updateExperiment: experimentsRepo.updateExperiment,
+  getOrCreateAssignment: experimentsRepo.getOrCreateAssignment,
+  trackExperimentEvent: experimentsRepo.trackEvent,
+  getExperimentResults: experimentsRepo.getExperimentResults,
+
+  // ===== Feature Flags =====
+  getFeatureFlagsForTenant: featureFlagsRepo.getFeatureFlagsForTenant,
+  isFeatureEnabled: featureFlagsRepo.isFeatureEnabled,
+  setFeatureFlag: featureFlagsRepo.setFeatureFlag,
+  getTenantFlags: featureFlagsRepo.getTenantFlags,
+  deleteTenantFlag: featureFlagsRepo.deleteTenantFlag,
+  getGlobalFlags: featureFlagsRepo.getGlobalFlags,
+  createGlobalFlag: featureFlagsRepo.createGlobalFlag,
+  updateGlobalFlag: featureFlagsRepo.updateGlobalFlag,
+  deleteGlobalFlag: featureFlagsRepo.deleteGlobalFlag,
+
+  // ===== Lead Nurturing =====
+  getLeadsForNurturing: leadNurturingRepo.getLeadsForNurturing,
+  markLeadNurtured: leadNurturingRepo.markLeadNurtured,
+  wasNurturedRecently: leadNurturingRepo.wasNurturedRecently,
+  isAlreadySubscribed: leadNurturingRepo.isAlreadySubscribed,
+  getNurturingStats: leadNurturingRepo.getNurturingStats,
 };

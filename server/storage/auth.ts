@@ -84,19 +84,22 @@ export async function cleanupExpiredRefreshTokens(): Promise<number> {
 // ===== PASSWORD RESET TOKEN METHODS =====
 
 export async function createPasswordResetToken(userId: string, token: string, expiresAt: Date): Promise<PasswordResetToken> {
-  const [prt] = await db.insert(passwordResetTokens).values({ userId, token, expiresAt }).returning();
+  const hashed = hashToken(token);
+  const [prt] = await db.insert(passwordResetTokens).values({ userId, token: hashed, expiresAt }).returning();
   return prt;
 }
 
 export async function getPasswordResetToken(token: string): Promise<PasswordResetToken | undefined> {
+  const hashed = hashToken(token);
   const [prt] = await db.select().from(passwordResetTokens).where(
-    and(eq(passwordResetTokens.token, token), isNull(passwordResetTokens.usedAt))
+    and(eq(passwordResetTokens.token, hashed), isNull(passwordResetTokens.usedAt))
   );
   return prt || undefined;
 }
 
 export async function markPasswordResetTokenUsed(token: string): Promise<void> {
-  await db.update(passwordResetTokens).set({ usedAt: new Date() }).where(eq(passwordResetTokens.token, token));
+  const hashed = hashToken(token);
+  await db.update(passwordResetTokens).set({ usedAt: new Date() }).where(eq(passwordResetTokens.token, hashed));
 }
 
 // ===== MIGRATION: admin_users -> users =====

@@ -7,7 +7,10 @@ import {
 
 // ===== GIFT CARD METHODS =====
 
-export async function getAllGiftCards(): Promise<GiftCard[]> {
+export async function getAllGiftCards(tenantId?: string): Promise<GiftCard[]> {
+  if (tenantId) {
+    return await db.select().from(giftCards).where(eq(giftCards.tenantId, tenantId));
+  }
   return await db.select().from(giftCards);
 }
 
@@ -60,18 +63,23 @@ export async function useDiscountCode(code: string, bookingId: string): Promise<
   return updated || undefined;
 }
 
-export async function getDiscountCodes(): Promise<DiscountCode[]> {
+export async function getDiscountCodes(tenantId?: string): Promise<DiscountCode[]> {
+  if (tenantId) {
+    return await db.select().from(discountCodes).where(eq(discountCodes.tenantId, tenantId));
+  }
   return await db.select().from(discountCodes);
 }
 
-export async function getDiscountCodesByEmail(email: string): Promise<DiscountCode[]> {
+export async function getDiscountCodesByEmail(email: string, tenantId?: string): Promise<DiscountCode[]> {
+  const conditions = [eq(discountCodes.customerEmail, email.toLowerCase().trim())];
+  if (tenantId) conditions.push(eq(discountCodes.tenantId, tenantId));
   return await db
     .select()
     .from(discountCodes)
-    .where(eq(discountCodes.customerEmail, email.toLowerCase().trim()));
+    .where(and(...conditions));
 }
 
-export async function generateRepeatCustomerCode(email: string, bookingId: string): Promise<DiscountCode> {
+export async function generateRepeatCustomerCode(email: string, bookingId: string, tenantId?: string): Promise<DiscountCode> {
   const emailHash = email.toLowerCase().trim().split("").reduce((hash, char) => {
     return ((hash << 5) - hash + char.charCodeAt(0)) | 0;
   }, 0);
@@ -90,6 +98,7 @@ export async function generateRepeatCustomerCode(email: string, bookingId: strin
       customerEmail: email.toLowerCase().trim(),
       isActive: true,
       expiresAt,
+      ...(tenantId ? { tenantId } : {}),
     })
     .onConflictDoNothing({ target: discountCodes.code })
     .returning();
@@ -107,6 +116,7 @@ export async function generateRepeatCustomerCode(email: string, bookingId: strin
         customerEmail: email.toLowerCase().trim(),
         isActive: true,
         expiresAt,
+        ...(tenantId ? { tenantId } : {}),
       })
       .returning();
     return fallback;

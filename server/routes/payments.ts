@@ -10,6 +10,7 @@ import { sendBookingConfirmation } from "../services/emailService";
 import type { Booking, Boat } from "@shared/schema";
 import { requireAdminSession } from "./auth";
 import { logger } from "../lib/logger";
+import { validatePromoCode, calculateDiscountAmount } from "../lib/discountValidation";
 
 type WaLang = "es" | "en" | "fr" | "de" | "nl" | "it" | "ru";
 
@@ -169,7 +170,49 @@ export function registerPaymentRoutes(app: Express) {
         });
       }
 
-      // Charge only service amount (subtotal + extras) via Stripe.
+      // Re-validate discount code at payment time to prevent stale/tampered discounts
+      if (hold.couponCode) {
+        const promo = await validatePromoCode(hold.couponCode);
+        if (!promo.valid) {
+          logger.warn("[Payments] Discount code invalid at payment time", {
+            holdId: hold.id,
+            couponCode: hold.couponCode,
+            error: promo.error,
+          });
+          return res.status(400).json({
+            message: `Codigo de descuento "${hold.couponCode}" ya no es valido: ${promo.error}`,
+            success: false,
+            reason: "invalid_discount_code",
+          });
+        }
+
+        // Recalculate expected amount with server-side discount to prevent amount tampering
+        const subtotal = parseFloat(hold.subtotal || "0");
+        const extrasTotal = parseFloat(hold.extrasTotal || "0");
+        const deposit = parseFloat(hold.deposit || "0");
+        const baseTotal = subtotal + extrasTotal;
+        const discountAmount = calculateDiscountAmount(promo, subtotal, baseTotal);
+        const expectedTotal = Math.max(0, baseTotal - discountAmount);
+
+        const storedTotal = parseFloat(hold.totalAmount);
+        // Allow 1 cent tolerance for floating-point rounding
+        if (Math.abs(storedTotal - expectedTotal) > 0.01) {
+          logger.warn("[Payments] Amount mismatch — possible discount tampering", {
+            holdId: hold.id,
+            couponCode: hold.couponCode,
+            storedTotal,
+            expectedTotal,
+            discountAmount,
+          });
+          // Correct the hold amount to the server-calculated value
+          await storage.updateBooking(hold.id, {
+            totalAmount: expectedTotal.toString(),
+          });
+          hold.totalAmount = expectedTotal.toString();
+        }
+      }
+
+      // Charge only service amount (subtotal + extras - discount) via Stripe.
       // Deposit is collected in cash at the port — not charged online.
       const depositAmount = parseFloat(hold.deposit || "0");
       const serviceAmount = parseFloat(hold.totalAmount) - depositAmount;
@@ -190,6 +233,7 @@ export function registerPaymentRoutes(app: Express) {
           numberOfPeople: hold.numberOfPeople.toString(),
           depositAmount: depositAmount.toString(),
           depositCollectionMethod: "cash_on_site",
+          ...(hold.couponCode ? { couponCode: hold.couponCode } : {}),
         },
         description: `Reserva de barco ${hold.boatId} - ${hold.bookingDate.toISOString().split("T")[0]}`,
       });
@@ -312,6 +356,43 @@ export function registerPaymentRoutes(app: Express) {
 
       if (hold.expiresAt && new Date() > hold.expiresAt) {
         return res.status(410).json({ message: "El hold ha expirado", success: false });
+      }
+
+      // Re-validate discount code at payment time (same logic as real payment)
+      if (hold.couponCode) {
+        const promo = await validatePromoCode(hold.couponCode);
+        if (!promo.valid) {
+          logger.warn("[Payments] Discount code invalid at mock payment time", {
+            holdId: hold.id,
+            couponCode: hold.couponCode,
+            error: promo.error,
+          });
+          return res.status(400).json({
+            message: `Codigo de descuento "${hold.couponCode}" ya no es valido: ${promo.error}`,
+            success: false,
+            reason: "invalid_discount_code",
+          });
+        }
+
+        // Recalculate and correct if tampered
+        const subtotal = parseFloat(hold.subtotal || "0");
+        const extrasTotal = parseFloat(hold.extrasTotal || "0");
+        const baseTotal = subtotal + extrasTotal;
+        const discountAmount = calculateDiscountAmount(promo, subtotal, baseTotal);
+        const expectedTotal = Math.max(0, baseTotal - discountAmount);
+
+        const storedTotal = parseFloat(hold.totalAmount);
+        if (Math.abs(storedTotal - expectedTotal) > 0.01) {
+          logger.warn("[Payments] Amount mismatch in mock payment — correcting", {
+            holdId: hold.id,
+            storedTotal,
+            expectedTotal,
+          });
+          await storage.updateBooking(hold.id, {
+            totalAmount: expectedTotal.toString(),
+          });
+          hold.totalAmount = expectedTotal.toString();
+        }
       }
 
       const mockPaymentIntentId = `pi_mock_${Date.now()}_${Math.random().toString(36).substring(7)}`;
@@ -500,6 +581,55 @@ export function registerPaymentRoutes(app: Express) {
             }
           } else {
             logger.warn(`No booking found for payment intent ${paymentIntent.id}`);
+          }
+          break;
+        }
+
+        case "checkout.session.completed": {
+          const session = event.data.object as Stripe.Checkout.Session;
+          logger.info("Checkout session completed", { sessionId: session.id });
+
+          const bookingId = session.metadata?.bookingId;
+          if (!bookingId) {
+            logger.debug("Checkout session has no bookingId metadata, skipping", { sessionId: session.id });
+            break;
+          }
+
+          // Look up booking by ID (checkout sessions store their ID in stripePaymentIntentId)
+          const csBooking = await storage.getBooking(bookingId);
+          if (!csBooking) {
+            logger.warn("No booking found for checkout session", { sessionId: session.id, bookingId });
+            break;
+          }
+
+          // Update the stripePaymentIntentId to the actual PaymentIntent for refund support
+          const paymentIntentId = typeof session.payment_intent === "string"
+            ? session.payment_intent
+            : session.payment_intent?.id;
+
+          const confirmedCsBooking = await storage.updateBooking(csBooking.id, {
+            bookingStatus: "confirmed",
+            paymentStatus: "completed",
+            ...(paymentIntentId ? { stripePaymentIntentId: paymentIntentId } : {}),
+          });
+          logger.info("Booking confirmed via checkout session", { bookingId: csBooking.id, sessionId: session.id });
+
+          // Send confirmation email + WhatsApp (fire-and-forget)
+          if (confirmedCsBooking) {
+            const csBoat = await storage.getBoat(confirmedCsBooking.boatId);
+            if (csBoat) {
+              const csExtras = await storage.getBookingExtras(confirmedCsBooking.id);
+              if (confirmedCsBooking.customerEmail) {
+                sendBookingConfirmation({ booking: confirmedCsBooking, boat: csBoat, extras: csExtras }).catch(
+                  (err: unknown) => logger.error("[Payment] Error sending confirmation email for checkout session", { error: err instanceof Error ? err.message : String(err) })
+                );
+              }
+              trySendWhatsAppConfirmation(confirmedCsBooking, csBoat).catch(() => {});
+            }
+
+            storage.decrementExtrasStock(confirmedCsBooking.id).catch((err: unknown) => {
+              logger.error(`[Payments] Failed to decrement extras stock for booking ${confirmedCsBooking.id}`, { error: err instanceof Error ? err.message : String(err) });
+            });
           }
           break;
         }

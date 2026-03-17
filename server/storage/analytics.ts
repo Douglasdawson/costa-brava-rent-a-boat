@@ -286,3 +286,112 @@ export async function getStatusDistribution(startDate: Date, endDate: Date): Pro
 
   return distribution;
 }
+
+// ===== Yield Management Analytics =====
+
+export interface YieldBoatData {
+  boatId: string;
+  boatName: string;
+  totalRevenue: number;
+  totalHours: number;
+  revenuePerHour: number;
+  bookingCount: number;
+  avgBookingDuration: number;
+  occupancyRate: number;
+}
+
+export interface YieldAnalytics {
+  boats: YieldBoatData[];
+  period: { from: string; to: string };
+}
+
+/**
+ * Calculate revenue-per-hour yield data for each boat.
+ * Joins confirmed/completed bookings with boats, grouped by boat_id.
+ * Accepts optional date range; defaults to current season (Apr 1 - Oct 31).
+ */
+export async function getYieldAnalytics(
+  fromDate?: string,
+  toDate?: string,
+  tenantId?: string,
+): Promise<YieldAnalytics> {
+  const now = new Date();
+  const year = now.getFullYear();
+
+  // Default to current season: April 1 - October 31
+  const from = fromDate ? new Date(fromDate) : new Date(year, 3, 1); // April 1
+  const to = toDate ? new Date(toDate) : new Date(year, 9, 31, 23, 59, 59); // Oct 31
+
+  const operatingHoursPerDay = 10; // 9am - 7pm
+  const daysInPeriod = Math.max(
+    1,
+    Math.ceil((to.getTime() - from.getTime()) / (24 * 60 * 60 * 1000)),
+  );
+  const totalAvailableHours = daysInPeriod * operatingHoursPerDay;
+
+  // Build tenant filter if provided
+  const tenantFilter = tenantId
+    ? sql` AND b.tenant_id = ${tenantId}`
+    : sql``;
+
+  const { rows } = await db.execute(sql`
+    SELECT
+      b.id AS boat_id,
+      b.name AS boat_name,
+      COALESCE(SUM(bk.total_amount::numeric), 0) AS total_revenue,
+      COALESCE(SUM(
+        EXTRACT(EPOCH FROM (bk.end_time - bk.start_time)) / 3600.0
+      ), 0) AS total_hours,
+      COUNT(bk.id)::int AS booking_count
+    FROM boats b
+    LEFT JOIN bookings bk
+      ON bk.boat_id = b.id
+      AND bk.booking_date >= ${from}
+      AND bk.booking_date <= ${to}
+      AND bk.booking_status IN ('confirmed', 'completed')
+    WHERE b.is_active = true
+      ${tenantFilter}
+    GROUP BY b.id, b.name
+    ORDER BY total_revenue DESC
+  `);
+
+  const boats: YieldBoatData[] = (rows as unknown as Array<{
+    boat_id: string;
+    boat_name: string;
+    total_revenue: string | number;
+    total_hours: string | number;
+    booking_count: number;
+  }>).map(row => {
+    const totalRevenue = Math.round(Number(row.total_revenue) * 100) / 100;
+    const totalHours = Math.round(Number(row.total_hours) * 100) / 100;
+    const bookingCount = Number(row.booking_count);
+    const revenuePerHour = totalHours > 0
+      ? Math.round((totalRevenue / totalHours) * 100) / 100
+      : 0;
+    const avgBookingDuration = bookingCount > 0
+      ? Math.round((totalHours / bookingCount) * 100) / 100
+      : 0;
+    const occupancyRate = totalAvailableHours > 0
+      ? Math.round((totalHours / totalAvailableHours) * 100) / 100
+      : 0;
+
+    return {
+      boatId: row.boat_id,
+      boatName: row.boat_name,
+      totalRevenue,
+      totalHours,
+      revenuePerHour,
+      bookingCount,
+      avgBookingDuration,
+      occupancyRate: Math.min(occupancyRate, 1), // Cap at 100%
+    };
+  });
+
+  return {
+    boats,
+    period: {
+      from: from.toISOString().split("T")[0],
+      to: to.toISOString().split("T")[0],
+    },
+  };
+}

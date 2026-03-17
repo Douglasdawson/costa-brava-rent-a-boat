@@ -355,6 +355,11 @@ export const ca: Translations = {
     errorGeneric: "S'ha produït un error inesperat",
     errorPayment: 'Error en processar el pagament',
     backToHome: "Tornar a l'inici",
+    stepExperience: 'Experiencia',
+    stepPersonalize: 'Personalitza',
+    stepPay: 'Pagament',
+    chooseBoatFirst: 'Selecciona un vaixell per triar horari',
+    chooseTimeFirst: 'Selecciona data i vaixell primer',
   },
   faq: {
     title: 'Preguntes Freqüents',

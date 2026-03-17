@@ -355,6 +355,11 @@ export const nl: Translations = {
     backToHome: 'Terug naar home',
     gdprPrivacyLink: 'Privacybeleid',
     gdprTermsLink: 'Algemene Voorwaarden',
+    stepExperience: 'Ervaring',
+    stepPersonalize: 'Personaliseer',
+    stepPay: 'Betaling',
+    chooseBoatFirst: 'Selecteer een boot om een tijd te kiezen',
+    chooseTimeFirst: 'Selecteer eerst datum en boot',
   },
   faq: {
     title: 'Veelgestelde Vragen',

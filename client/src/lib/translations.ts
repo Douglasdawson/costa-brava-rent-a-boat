@@ -387,6 +387,12 @@ export interface Translations {
     errorGeneric: string;
     errorPayment: string;
     backToHome: string;
+    // 3-step flow labels
+    stepExperience: string;
+    stepPersonalize: string;
+    stepPay: string;
+    chooseBoatFirst: string;
+    chooseTimeFirst: string;
     // Pricing transparency
     weekendSurchargeTitle?: string;
     weekendSurcharge?: string;

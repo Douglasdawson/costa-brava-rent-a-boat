@@ -1023,3 +1023,297 @@ export async function sendCancelationEmail(data: CancelationEmailData): Promise<
 
   return { success: true };
 }
+
+// ===== POST-RENTAL FLYWHEEL EMAILS =====
+
+/**
+ * Send referral code email (~3 days after trip).
+ * Includes a friend code (15% off) and a personal code (10% off).
+ */
+export async function sendReferralEmail(
+  booking: Booking,
+  friendCode: string,
+  referrerCode: string,
+): Promise<EmailResult> {
+  if (!initSendGrid()) {
+    return { success: false, error: "SendGrid not configured" };
+  }
+  if (!booking.customerEmail) {
+    return { success: false, error: "No customer email address" };
+  }
+
+  const lang = (booking.language || "es") as EmailLang;
+  const strings = REFERRAL_STRINGS[lang] || REFERRAL_STRINGS.es;
+
+  const content = `
+    <h2 style="margin:0 0 8px; color:#1e3a5f; font-size:20px;">${strings.title}</h2>
+    <p style="margin:0 0 20px; color:#475569; font-size:15px; line-height:1.6;">
+      ${booking.customerName}, ${strings.intro}
+    </p>
+
+    <!-- Friend code -->
+    <div style="background-color:#eff6ff; border-radius:8px; padding:24px; margin:20px 0; text-align:center;">
+      <p style="margin:0 0 4px; color:#1e3a5f; font-size:16px; font-weight:600;">${strings.friendTitle}</p>
+      <p style="margin:0 0 16px; color:#475569; font-size:14px;">${strings.friendDesc}</p>
+      <div style="background-color:#ffffff; border:2px dashed #2563eb; border-radius:6px; padding:12px; display:inline-block;">
+        <span style="color:#2563eb; font-size:22px; font-weight:700; letter-spacing:2px;">${friendCode}</span>
+      </div>
+    </div>
+
+    <!-- Referrer reward -->
+    <div style="background: linear-gradient(135deg, #1e3a5f 0%, #2563eb 100%); border-radius:8px; padding:24px; margin:20px 0; text-align:center;">
+      <p style="margin:0 0 4px; color:#93c5fd; font-size:13px; text-transform:uppercase; letter-spacing:1px;">${strings.yourReward}</p>
+      <p style="margin:0 0 12px; color:#ffffff; font-size:18px; font-weight:700;">${strings.yourRewardDesc}</p>
+      <div style="background-color:rgba(255,255,255,0.15); border:2px dashed rgba(255,255,255,0.4); border-radius:6px; padding:12px; display:inline-block;">
+        <span style="color:#ffffff; font-size:20px; font-weight:700; letter-spacing:2px;">${referrerCode}</span>
+      </div>
+    </div>
+
+    <div style="text-align:center; margin:24px 0;">
+      <a href="https://costabravarentaboat.com" target="_blank" style="display:inline-block; background-color:#2563eb; color:#ffffff; text-decoration:none; padding:12px 28px; border-radius:6px; font-size:15px; font-weight:600;">${strings.bookNow}</a>
+    </div>
+  `;
+
+  try {
+    await sendgridBreaker.call(() => sgMail.send({
+      to: booking.customerEmail!,
+      from: { email: getFromEmail(), name: "Costa Brava Rent a Boat" },
+      subject: strings.subject.replace("{name}", booking.customerName),
+      html: emailWrapper(content),
+    }));
+
+    logger.info("Referral email sent", { to: booking.customerEmail, bookingId: booking.id, friendCode, referrerCode });
+    return { success: true };
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : "Unknown error";
+    logger.error("[Email] Error sending referral email", { to: booking.customerEmail, error: message });
+    return { success: false, error: message };
+  }
+}
+
+/**
+ * Send early bird offer email (~7 days after trip).
+ * Includes a 20% discount code for next season.
+ */
+export async function sendEarlyBirdEmail(
+  booking: Booking,
+  earlyBirdCode: string,
+  expiresAt: Date,
+): Promise<EmailResult> {
+  if (!initSendGrid()) {
+    return { success: false, error: "SendGrid not configured" };
+  }
+  if (!booking.customerEmail) {
+    return { success: false, error: "No customer email address" };
+  }
+
+  const lang = (booking.language || "es") as EmailLang;
+  const strings = EARLY_BIRD_STRINGS[lang] || EARLY_BIRD_STRINGS.es;
+  const expiresStr = expiresAt.toLocaleDateString(lang === "en" ? "en-GB" : `${lang}-ES`, {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
+
+  const content = `
+    <h2 style="margin:0 0 8px; color:#1e3a5f; font-size:20px;">${strings.title}</h2>
+    <p style="margin:0 0 20px; color:#475569; font-size:15px; line-height:1.6;">
+      ${booking.customerName}, ${strings.intro}
+    </p>
+
+    <div style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); border-radius:8px; padding:28px; margin:20px 0; text-align:center;">
+      <p style="margin:0 0 8px; color:#ffffff; font-size:14px; text-transform:uppercase; letter-spacing:1.5px; font-weight:600;">${strings.offerLabel}</p>
+      <p style="margin:0 0 16px; color:#ffffff; font-size:28px; font-weight:700;">20% OFF</p>
+      <div style="background-color:rgba(255,255,255,0.2); border:2px dashed rgba(255,255,255,0.5); border-radius:6px; padding:12px; display:inline-block;">
+        <span style="color:#ffffff; font-size:22px; font-weight:700; letter-spacing:2px;">${earlyBirdCode}</span>
+      </div>
+      <p style="margin:12px 0 0; color:#fef3c7; font-size:13px;">${strings.validUntil} ${expiresStr}</p>
+    </div>
+
+    <div style="text-align:center; margin:24px 0;">
+      <a href="https://costabravarentaboat.com" target="_blank" style="display:inline-block; background-color:#2563eb; color:#ffffff; text-decoration:none; padding:12px 28px; border-radius:6px; font-size:15px; font-weight:600;">${strings.bookNow}</a>
+    </div>
+
+    <p style="margin:20px 0 0; color:#475569; font-size:14px; line-height:1.5; text-align:center;">
+      ${strings.footer}
+    </p>
+  `;
+
+  try {
+    await sendgridBreaker.call(() => sgMail.send({
+      to: booking.customerEmail!,
+      from: { email: getFromEmail(), name: "Costa Brava Rent a Boat" },
+      subject: strings.subject.replace("{name}", booking.customerName),
+      html: emailWrapper(content),
+    }));
+
+    logger.info("Early bird email sent", { to: booking.customerEmail, bookingId: booking.id, earlyBirdCode });
+    return { success: true };
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : "Unknown error";
+    logger.error("[Email] Error sending early bird email", { to: booking.customerEmail, error: message });
+    return { success: false, error: message };
+  }
+}
+
+// ===== FLYWHEEL EMAIL STRINGS =====
+
+interface ReferralStrings {
+  subject: string;
+  title: string;
+  intro: string;
+  friendTitle: string;
+  friendDesc: string;
+  yourReward: string;
+  yourRewardDesc: string;
+  bookNow: string;
+}
+
+const REFERRAL_STRINGS: Record<EmailLang, ReferralStrings> = {
+  es: {
+    subject: "{name}, comparte el mar con tus amigos",
+    title: "Comparte el mar",
+    intro: "nos encanta que hayas disfrutado de tu experiencia en la Costa Brava. Ahora puedes regalar esa experiencia a tus amigos.",
+    friendTitle: "15% de descuento para tu amigo",
+    friendDesc: "Comparte este codigo con alguien especial",
+    yourReward: "Tu recompensa",
+    yourRewardDesc: "10% en tu proxima reserva",
+    bookNow: "Reservar ahora",
+  },
+  en: {
+    subject: "{name}, share the sea with your friends",
+    title: "Share the sea",
+    intro: "we loved having you on the Costa Brava waters. Now you can give your friends the same experience.",
+    friendTitle: "15% off for your friend",
+    friendDesc: "Share this code with someone special",
+    yourReward: "Your reward",
+    yourRewardDesc: "10% off your next trip",
+    bookNow: "Book now",
+  },
+  fr: {
+    subject: "{name}, partagez la mer avec vos amis",
+    title: "Partagez la mer",
+    intro: "nous sommes ravis que vous ayez profite de votre experience sur la Costa Brava. Offrez la meme experience a vos amis.",
+    friendTitle: "15% de reduction pour votre ami",
+    friendDesc: "Partagez ce code avec quelqu'un de special",
+    yourReward: "Votre recompense",
+    yourRewardDesc: "10% sur votre prochaine reservation",
+    bookNow: "Reservez maintenant",
+  },
+  de: {
+    subject: "{name}, teilen Sie das Meer mit Ihren Freunden",
+    title: "Teilen Sie das Meer",
+    intro: "wir freuen uns, dass Sie Ihr Erlebnis an der Costa Brava genossen haben. Schenken Sie Ihren Freunden dasselbe Erlebnis.",
+    friendTitle: "15% Rabatt fur Ihren Freund",
+    friendDesc: "Teilen Sie diesen Code mit jemandem Besonderem",
+    yourReward: "Ihre Belohnung",
+    yourRewardDesc: "10% auf Ihre nachste Buchung",
+    bookNow: "Jetzt buchen",
+  },
+  nl: {
+    subject: "{name}, deel de zee met je vrienden",
+    title: "Deel de zee",
+    intro: "we vonden het geweldig dat je van je ervaring aan de Costa Brava hebt genoten. Geef je vrienden dezelfde ervaring.",
+    friendTitle: "15% korting voor je vriend",
+    friendDesc: "Deel deze code met iemand speciaal",
+    yourReward: "Jouw beloning",
+    yourRewardDesc: "10% korting op je volgende boeking",
+    bookNow: "Nu boeken",
+  },
+  it: {
+    subject: "{name}, condividi il mare con i tuoi amici",
+    title: "Condividi il mare",
+    intro: "siamo felici che tu abbia apprezzato la tua esperienza sulla Costa Brava. Ora puoi regalare la stessa esperienza ai tuoi amici.",
+    friendTitle: "15% di sconto per il tuo amico",
+    friendDesc: "Condividi questo codice con qualcuno di speciale",
+    yourReward: "La tua ricompensa",
+    yourRewardDesc: "10% sulla tua prossima prenotazione",
+    bookNow: "Prenota ora",
+  },
+  ru: {
+    subject: "{name}, podelites morem s druzyami",
+    title: "Podelites morem",
+    intro: "nam priyatno, chto vam ponravilos na Kosta Brave. Teper vy mozhete podarit eto zhe vpechatlenie svoim druzyam.",
+    friendTitle: "Skidka 15% dlya vashego druga",
+    friendDesc: "Podelites etim kodom s kem-to osobennym",
+    yourReward: "Vasha nagrada",
+    yourRewardDesc: "Skidka 10% na sleduyushchuyu bronirovaniyu",
+    bookNow: "Zabronirovat",
+  },
+};
+
+interface EarlyBirdStrings {
+  subject: string;
+  title: string;
+  intro: string;
+  offerLabel: string;
+  validUntil: string;
+  bookNow: string;
+  footer: string;
+}
+
+const EARLY_BIRD_STRINGS: Record<EmailLang, EarlyBirdStrings> = {
+  es: {
+    subject: "{name}, reserva la proxima temporada con 20% de descuento",
+    title: "Reserva anticipada",
+    intro: "la temporada pasada fue increible. Asegura tu lugar para la proxima temporada con un descuento exclusivo.",
+    offerLabel: "Oferta exclusiva",
+    validUntil: "Valido hasta",
+    bookNow: "Reservar temporada",
+    footer: "Este descuento es exclusivo para ti como cliente. No es acumulable con otras ofertas.",
+  },
+  en: {
+    subject: "{name}, book next season with 20% off",
+    title: "Early bird offer",
+    intro: "last season was amazing. Secure your spot for next season with an exclusive discount.",
+    offerLabel: "Exclusive offer",
+    validUntil: "Valid until",
+    bookNow: "Book next season",
+    footer: "This discount is exclusive to you as a customer. Cannot be combined with other offers.",
+  },
+  fr: {
+    subject: "{name}, reservez la prochaine saison avec 20% de reduction",
+    title: "Offre anticipee",
+    intro: "la saison derniere etait incroyable. Assurez votre place pour la prochaine saison avec une reduction exclusive.",
+    offerLabel: "Offre exclusive",
+    validUntil: "Valable jusqu'au",
+    bookNow: "Reservez la saison",
+    footer: "Cette reduction vous est exclusivement reservee. Non cumulable avec d'autres offres.",
+  },
+  de: {
+    subject: "{name}, buchen Sie nachste Saison mit 20% Rabatt",
+    title: "Fruhbucher-Angebot",
+    intro: "die letzte Saison war fantastisch. Sichern Sie sich Ihren Platz fur die nachste Saison mit einem exklusiven Rabatt.",
+    offerLabel: "Exklusives Angebot",
+    validUntil: "Gultig bis",
+    bookNow: "Saison buchen",
+    footer: "Dieser Rabatt ist exklusiv fur Sie als Kunde. Nicht mit anderen Angeboten kombinierbar.",
+  },
+  nl: {
+    subject: "{name}, boek volgend seizoen met 20% korting",
+    title: "Vroegboek-aanbieding",
+    intro: "vorig seizoen was geweldig. Verzeker je plek voor volgend seizoen met een exclusieve korting.",
+    offerLabel: "Exclusieve aanbieding",
+    validUntil: "Geldig tot",
+    bookNow: "Seizoen boeken",
+    footer: "Deze korting is exclusief voor jou als klant. Niet te combineren met andere aanbiedingen.",
+  },
+  it: {
+    subject: "{name}, prenota la prossima stagione con il 20% di sconto",
+    title: "Offerta anticipata",
+    intro: "la scorsa stagione e stata incredibile. Assicurati il tuo posto per la prossima stagione con uno sconto esclusivo.",
+    offerLabel: "Offerta esclusiva",
+    validUntil: "Valido fino al",
+    bookNow: "Prenota la stagione",
+    footer: "Questo sconto e esclusivo per te come cliente. Non cumulabile con altre offerte.",
+  },
+  ru: {
+    subject: "{name}, zabroniruyte sleduyushchiy sezon so skidkoy 20%",
+    title: "Ranneye bronirovanie",
+    intro: "proshlyy sezon byl potryasayushchim. Obespechte sebe mesto na sleduyushchiy sezon s eksklyuzivnoy skidkoy.",
+    offerLabel: "Eksklyuzivnoye predlozheniye",
+    validUntil: "Deystvitelno do",
+    bookNow: "Zabronirovat sezon",
+    footer: "Eta skidka eksklyuzivna dlya vas kak klienta. Ne summiruyetsya s drugimi predlozheniyami.",
+  },
+};

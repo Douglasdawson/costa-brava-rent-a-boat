@@ -17,6 +17,7 @@ interface BookingStepPaymentProps {
   extras: Record<string, number>;
   availableExtras: Extra[];
   isLoading: boolean;
+  isProcessingPayment: boolean;
   calculateTotal: () => number | undefined;
   createQuote: () => Promise<boolean>;
   handlePayment: () => Promise<void>;
@@ -26,7 +27,7 @@ interface BookingStepPaymentProps {
 export function BookingStepPayment({
   selectedDate, selectedTime, duration, selectedBoat,
   availableBoats, quote, holdId, durations, extras,
-  availableExtras, isLoading, calculateTotal,
+  availableExtras, isLoading, isProcessingPayment, calculateTotal,
   createQuote, handlePayment, t,
 }: BookingStepPaymentProps) {
   return (
@@ -173,16 +174,16 @@ export function BookingStepPayment({
 
               <Button
                 onClick={handlePayment}
-                disabled={isLoading}
+                disabled={isLoading || isProcessingPayment}
                 className="w-full py-3 text-lg font-medium"
                 data-testid="button-pay-now"
               >
-                {isLoading ? (
+                {(isLoading || isProcessingPayment) ? (
                   <div className="animate-spin w-4 h-4 border-2 border-white border-t-transparent rounded-full mr-2" />
                 ) : (
                   <CreditCard className="w-5 h-5 mr-2" />
                 )}
-                {isLoading ? t.booking.processingPayment : `${t.booking.pay || 'Pagar'} ${calculateTotal()}€`}
+                {(isLoading || isProcessingPayment) ? t.booking.processingPayment : `${t.booking.pay || 'Pagar'} ${calculateTotal()}€`}
               </Button>
 
               <p className="text-xs text-muted-foreground text-center">

@@ -80,6 +80,7 @@ export function useBookingFlowState(props: BookingFlowProps) {
   const [quote, setQuote] = useState<Quote | null>(null);
   const [holdId, setHoldId] = useState<string | null>(null);
   const [paymentIntentId, setPaymentIntentId] = useState<string | null>(null);
+  const [isProcessingPayment, setIsProcessingPayment] = useState(false);
 
   // Auth & profile
   const { isAuthenticated } = useAuth();
@@ -267,6 +268,7 @@ export function useBookingFlowState(props: BookingFlowProps) {
     quote, setQuote,
     holdId, setHoldId,
     paymentIntentId, setPaymentIntentId,
+    isProcessingPayment, setIsProcessingPayment,
     // Derived
     availableBoats,
     availableExtras,

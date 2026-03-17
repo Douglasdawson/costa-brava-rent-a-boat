@@ -1,3 +1,20 @@
+# Costa Brava Rent a Boat - CI Pipeline
+#
+# Quality Gates (Torvalds-style):
+#   1. All tests must pass
+#   2. TypeScript strict mode with zero errors
+#   3. Lint clean (zero warnings)
+#   4. No new `any` types introduced
+#   5. No console.log in server code (use logger)
+#   6. Critical files (payments, auth, storage) require tests
+#
+# Branch Protection Recommendation:
+#   Configure these rules on the `main` branch in GitHub Settings > Branches:
+#   - Require status checks to pass: lint, typecheck, test, quality-gate
+#   - Require branches to be up to date before merging
+#   - Require pull request reviews (at least 1)
+#   - Do not allow bypassing the above settings
+
 name: CI
 
 on:
@@ -6,11 +23,14 @@ on:
   pull_request:
     branches: [main]
 
-jobs:
-  check:
-    name: Lint, Typecheck & Test
-    runs-on: ubuntu-latest
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
 
+jobs:
+  lint:
+    name: Lint & Format
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
@@ -28,8 +48,145 @@ jobs:
       - name: Format check
         run: npm run format:check
 
-      - name: TypeScript check
+  typecheck:
+    name: TypeScript Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: TypeScript strict check (zero errors)
         run: npm run check
 
-      - name: Run tests
-        run: npm test
+  test:
+    name: Tests & Coverage
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run tests with coverage
+        run: npx vitest run --coverage
+
+      - name: Upload coverage report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report
+          path: coverage/
+          retention-days: 14
+
+  quality-gate:
+    name: Quality Gate
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check for new `any` types in diff
+        run: |
+          # Get the diff of added lines only (lines starting with +, excluding file headers)
+          DIFF=$(git diff origin/${{ github.base_ref }}...HEAD -- '*.ts' '*.tsx' \
+            ':!node_modules' ':!dist' \
+            | grep '^+' | grep -v '^+++' || true)
+
+          # Match common `any` patterns:
+          #   : any, : any[], as any, <any>, : Array<any>
+          # Exclude comments (lines starting with // or *)
+          ANY_MATCHES=$(echo "$DIFF" | grep -v '^\+\s*//' | grep -v '^\+\s*\*' \
+            | grep -E ':\s*any\b|:\s*any\[|as\s+any\b|<any>|Array<any>' || true)
+
+          if [ -n "$ANY_MATCHES" ]; then
+            echo "::error::New \`any\` types detected in the diff. Use proper types instead."
+            echo ""
+            echo "Offending lines:"
+            echo "$ANY_MATCHES"
+            exit 1
+          fi
+
+          echo "No new \`any\` types found."
+
+      - name: Check for console.log in server code
+        run: |
+          # Get added lines in server/ directory
+          DIFF=$(git diff origin/${{ github.base_ref }}...HEAD -- 'server/**/*.ts' \
+            ':!server/**/*.test.ts' \
+            | grep '^+' | grep -v '^+++' || true)
+
+          # Match console.log (allow console.error, console.warn in edge cases)
+          CONSOLE_MATCHES=$(echo "$DIFF" | grep -v '^\+\s*//' \
+            | grep -E 'console\.(log|debug|info)\(' || true)
+
+          if [ -n "$CONSOLE_MATCHES" ]; then
+            echo "::error::console.log/debug/info found in server code. Use the structured logger from server/lib/logger.ts instead."
+            echo ""
+            echo "Offending lines:"
+            echo "$CONSOLE_MATCHES"
+            exit 1
+          fi
+
+          echo "No console.log found in server code."
+
+      - name: Critical files require tests
+        run: |
+          # List of critical file patterns (payments, auth, storage)
+          CHANGED_FILES=$(git diff --name-only origin/${{ github.base_ref }}...HEAD)
+
+          CRITICAL_FILES=$(echo "$CHANGED_FILES" | grep -E \
+            '^server/routes/payments\.ts|^server/routes/auth[^/]*\.ts|^server/storage/[^/]+\.ts' \
+            | grep -v '\.test\.ts$' || true)
+
+          if [ -z "$CRITICAL_FILES" ]; then
+            echo "No critical files modified. Skipping test requirement check."
+            exit 0
+          fi
+
+          echo "Critical files modified:"
+          echo "$CRITICAL_FILES"
+          echo ""
+
+          MISSING_TESTS=""
+          while IFS= read -r file; do
+            # Derive expected test file path: foo.ts -> foo.test.ts
+            TEST_FILE="${file%.ts}.test.ts"
+
+            if [ ! -f "$TEST_FILE" ]; then
+              # Also check if there is a test file in the same directory with any name
+              DIR=$(dirname "$file")
+              BASE=$(basename "$file" .ts)
+              ALT_TEST=$(find "$DIR" -maxdepth 1 -name "${BASE}*.test.ts" 2>/dev/null | head -1)
+
+              if [ -z "$ALT_TEST" ]; then
+                MISSING_TESTS="$MISSING_TESTS\n  - $file (expected: $TEST_FILE)"
+              fi
+            fi
+          done <<< "$CRITICAL_FILES"
+
+          if [ -n "$MISSING_TESTS" ]; then
+            echo "::error::Critical files were modified without corresponding test files."
+            echo ""
+            echo "Missing test files:"
+            echo -e "$MISSING_TESTS"
+            echo ""
+            echo "Payments, auth, and storage code must have tests."
+            echo "Create a test file alongside the source file (e.g., payments.test.ts)."
+            exit 1
+          fi
+
+          echo "All critical files have corresponding tests."

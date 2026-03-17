@@ -137,38 +137,46 @@ export async function updateBookingWhatsAppStatus(id: string, confirmationSent?:
   return updatedBooking || undefined;
 }
 
-export async function getAllBookings(): Promise<Booking[]> {
+export async function getAllBookings(tenantId?: string): Promise<Booking[]> {
+  if (tenantId) {
+    return await db.select().from(bookings).where(eq(bookings.tenantId, tenantId));
+  }
   return await db.select().from(bookings);
 }
 
-export async function getConfirmedBookings(): Promise<Booking[]> {
+export async function getConfirmedBookings(tenantId?: string): Promise<Booking[]> {
+  const conditions = [eq(bookings.bookingStatus, "confirmed")];
+  if (tenantId) conditions.push(eq(bookings.tenantId, tenantId));
   return await db
     .select()
     .from(bookings)
-    .where(eq(bookings.bookingStatus, "confirmed"));
+    .where(and(...conditions));
 }
 
-export async function getConfirmedBookingsWithEmail(): Promise<Booking[]> {
+export async function getConfirmedBookingsWithEmail(tenantId?: string): Promise<Booking[]> {
+  const conditions = [
+    eq(bookings.bookingStatus, "confirmed"),
+    sql`${bookings.customerEmail} IS NOT NULL AND ${bookings.customerEmail} != ''`,
+  ];
+  if (tenantId) conditions.push(eq(bookings.tenantId, tenantId));
   return await db
     .select()
     .from(bookings)
-    .where(
-      and(
-        eq(bookings.bookingStatus, "confirmed"),
-        sql`${bookings.customerEmail} IS NOT NULL AND ${bookings.customerEmail} != ''`
-      )
-    );
+    .where(and(...conditions));
 }
 
-export async function getBookingsByCustomer(customerId: string, email: string | null, phone: string | null): Promise<Booking[]> {
-  const conditions = [eq(bookings.customerId, customerId)];
-  if (email) conditions.push(eq(bookings.customerEmail, email));
-  if (phone) conditions.push(eq(bookings.customerPhone, phone));
+export async function getBookingsByCustomer(customerId: string, email: string | null, phone: string | null, tenantId?: string): Promise<Booking[]> {
+  const orConditions = [eq(bookings.customerId, customerId)];
+  if (email) orConditions.push(eq(bookings.customerEmail, email));
+  if (phone) orConditions.push(eq(bookings.customerPhone, phone));
+
+  const conditions = [or(...orConditions)];
+  if (tenantId) conditions.push(eq(bookings.tenantId, tenantId));
 
   return await db
     .select()
     .from(bookings)
-    .where(or(...conditions))
+    .where(and(...conditions))
     .orderBy(sql`${bookings.startTime} DESC`);
 }
 
@@ -324,42 +332,44 @@ export async function getBookingExtras(bookingId: string): Promise<BookingExtra[
     .where(eq(bookingExtras.bookingId, bookingId));
 }
 
-export async function getDailyBookings(boatId: string, date: Date): Promise<Booking[]> {
+export async function getDailyBookings(boatId: string, date: Date, tenantId?: string): Promise<Booking[]> {
   const startOfDay = new Date(date);
   startOfDay.setHours(0, 0, 0, 0);
   const endOfDay = new Date(date);
   endOfDay.setHours(23, 59, 59, 999);
   const boatIds = getBoatIdsToCheck(boatId);
 
+  const conditions = [
+    inArray(bookings.boatId, boatIds),
+    lte(bookings.startTime, endOfDay),
+    gte(bookings.endTime, startOfDay),
+    inArray(bookings.bookingStatus, ["hold", "pending_payment", "confirmed"]),
+  ];
+  if (tenantId) conditions.push(eq(bookings.tenantId, tenantId));
+
   return await db
     .select()
     .from(bookings)
-    .where(
-      and(
-        inArray(bookings.boatId, boatIds),
-        lte(bookings.startTime, endOfDay),
-        gte(bookings.endTime, startOfDay),
-        inArray(bookings.bookingStatus, ["hold", "pending_payment", "confirmed"])
-      )
-    );
+    .where(and(...conditions));
 }
 
-export async function getMonthlyBookings(boatId: string, year: number, month: number): Promise<Booking[]> {
+export async function getMonthlyBookings(boatId: string, year: number, month: number, tenantId?: string): Promise<Booking[]> {
   const startDate = new Date(year, month - 1, 1);
   const endDate = new Date(year, month, 0, 23, 59, 59, 999);
   const boatIds = getBoatIdsToCheck(boatId);
 
+  const conditions = [
+    inArray(bookings.boatId, boatIds),
+    gte(bookings.startTime, startDate),
+    lte(bookings.endTime, endDate),
+    inArray(bookings.bookingStatus, ["hold", "pending_payment", "confirmed"]),
+  ];
+  if (tenantId) conditions.push(eq(bookings.tenantId, tenantId));
+
   return await db
     .select()
     .from(bookings)
-    .where(
-      and(
-        inArray(bookings.boatId, boatIds),
-        gte(bookings.startTime, startDate),
-        lte(bookings.endTime, endDate),
-        inArray(bookings.bookingStatus, ["hold", "pending_payment", "confirmed"])
-      )
-    );
+    .where(and(...conditions));
 }
 
 export async function checkAvailability(boatId: string, startTime: Date, endTime: Date): Promise<boolean> {
@@ -547,67 +557,71 @@ export async function cleanupExpiredHolds(): Promise<number> {
 
 // ===== EMAIL / SCHEDULER METHODS =====
 
-export async function getUpcomingBookingsForReminder(hoursAhead: number): Promise<Booking[]> {
+export async function getUpcomingBookingsForReminder(hoursAhead: number, tenantId?: string): Promise<Booking[]> {
   const now = new Date();
   const windowStart = new Date(now.getTime() + (hoursAhead - 2) * 60 * 60 * 1000);
   const windowEnd = new Date(now.getTime() + (hoursAhead + 2) * 60 * 60 * 1000);
 
+  const conditions = [
+    eq(bookings.bookingStatus, "confirmed"),
+    eq(bookings.emailReminderSent, false),
+    gte(bookings.startTime, windowStart),
+    lte(bookings.startTime, windowEnd),
+  ];
+  if (tenantId) conditions.push(eq(bookings.tenantId, tenantId));
+
   return await db
     .select()
     .from(bookings)
-    .where(
-      and(
-        eq(bookings.bookingStatus, "confirmed"),
-        eq(bookings.emailReminderSent, false),
-        gte(bookings.startTime, windowStart),
-        lte(bookings.startTime, windowEnd)
-      )
-    );
+    .where(and(...conditions));
 }
 
-export async function getCompletedBookingsForThankYou(hoursAfter: number): Promise<Booking[]> {
+export async function getCompletedBookingsForThankYou(hoursAfter: number, tenantId?: string): Promise<Booking[]> {
   const now = new Date();
   const windowEnd = new Date(now.getTime() - (hoursAfter - 2) * 60 * 60 * 1000);
   const windowStart = new Date(now.getTime() - (hoursAfter + 2) * 60 * 60 * 1000);
 
+  const conditions = [
+    eq(bookings.bookingStatus, "confirmed"),
+    eq(bookings.emailThankYouSent, false),
+    gte(bookings.endTime, windowStart),
+    lte(bookings.endTime, windowEnd),
+  ];
+  if (tenantId) conditions.push(eq(bookings.tenantId, tenantId));
+
   return await db
     .select()
     .from(bookings)
-    .where(
-      and(
-        eq(bookings.bookingStatus, "confirmed"),
-        eq(bookings.emailThankYouSent, false),
-        gte(bookings.endTime, windowStart),
-        lte(bookings.endTime, windowEnd)
-      )
-    );
+    .where(and(...conditions));
 }
 
-export async function autoCompleteBookings(): Promise<number> {
+export async function autoCompleteBookings(tenantId?: string): Promise<number> {
   const now = new Date();
+  const conditions = [
+    eq(bookings.bookingStatus, "confirmed"),
+    lt(bookings.endTime, now),
+  ];
+  if (tenantId) conditions.push(eq(bookings.tenantId, tenantId));
+
   const result = await db
     .update(bookings)
     .set({ bookingStatus: "completed" })
-    .where(
-      and(
-        eq(bookings.bookingStatus, "confirmed"),
-        lt(bookings.endTime, now)
-      )
-    )
+    .where(and(...conditions))
     .returning({ id: bookings.id });
   return result.length;
 }
 
-export async function isRepeatCustomer(email: string): Promise<boolean> {
+export async function isRepeatCustomer(email: string, tenantId?: string): Promise<boolean> {
+  const conditions = [
+    eq(bookings.customerEmail, email.toLowerCase().trim()),
+    eq(bookings.bookingStatus, "confirmed"),
+  ];
+  if (tenantId) conditions.push(eq(bookings.tenantId, tenantId));
+
   const result = await db
     .select()
     .from(bookings)
-    .where(
-      and(
-        eq(bookings.customerEmail, email.toLowerCase().trim()),
-        eq(bookings.bookingStatus, "confirmed")
-      )
-    )
+    .where(and(...conditions))
     .limit(2);
 
   return result.length > 1;
@@ -637,10 +651,106 @@ export async function updateBookingWhatsAppThankYouStatus(id: string, sent: bool
     .where(eq(bookings.id, id));
 }
 
+// ===== POST-RENTAL FLYWHEEL =====
+
+/**
+ * Get completed bookings eligible for review request (~24h after completion).
+ * Note: The existing thank-you email already includes a review CTA. This query
+ * catches any bookings where the dedicated reviewRequestSent flag is still false,
+ * allowing a standalone review-only reminder for bookings that may have missed
+ * the thank-you flow or to re-prompt via a different channel.
+ */
+export async function getBookingsForReviewRequest(tenantId?: string): Promise<Booking[]> {
+  const now = new Date();
+  // Window: 22-26 hours after endTime (same pattern as thank-you)
+  const windowStart = new Date(now.getTime() - 26 * 60 * 60 * 1000);
+  const windowEnd = new Date(now.getTime() - 22 * 60 * 60 * 1000);
+
+  const conditions = [
+    inArray(bookings.bookingStatus, ["completed", "confirmed"]),
+    eq(bookings.reviewRequestSent, false),
+    gte(bookings.endTime, windowStart),
+    lte(bookings.endTime, windowEnd),
+  ];
+  if (tenantId) conditions.push(eq(bookings.tenantId, tenantId));
+
+  return await db
+    .select()
+    .from(bookings)
+    .where(and(...conditions));
+}
+
+/**
+ * Get completed bookings eligible for referral code (~3 days after completion).
+ */
+export async function getBookingsForReferralCode(tenantId?: string): Promise<Booking[]> {
+  const now = new Date();
+  // Window: 70-74 hours after endTime (~3 days)
+  const windowStart = new Date(now.getTime() - 74 * 60 * 60 * 1000);
+  const windowEnd = new Date(now.getTime() - 70 * 60 * 60 * 1000);
+
+  const conditions = [
+    inArray(bookings.bookingStatus, ["completed", "confirmed"]),
+    eq(bookings.referralCodeSent, false),
+    gte(bookings.endTime, windowStart),
+    lte(bookings.endTime, windowEnd),
+    sql`${bookings.customerEmail} IS NOT NULL AND ${bookings.customerEmail} != ''`,
+  ];
+  if (tenantId) conditions.push(eq(bookings.tenantId, tenantId));
+
+  return await db
+    .select()
+    .from(bookings)
+    .where(and(...conditions));
+}
+
+/**
+ * Get completed bookings eligible for early bird offer (~7 days after completion).
+ */
+export async function getBookingsForEarlyBird(tenantId?: string): Promise<Booking[]> {
+  const now = new Date();
+  // Window: 166-170 hours after endTime (~7 days)
+  const windowStart = new Date(now.getTime() - 170 * 60 * 60 * 1000);
+  const windowEnd = new Date(now.getTime() - 166 * 60 * 60 * 1000);
+
+  const conditions = [
+    inArray(bookings.bookingStatus, ["completed", "confirmed"]),
+    eq(bookings.earlyBirdOfferSent, false),
+    gte(bookings.endTime, windowStart),
+    lte(bookings.endTime, windowEnd),
+    sql`${bookings.customerEmail} IS NOT NULL AND ${bookings.customerEmail} != ''`,
+  ];
+  if (tenantId) conditions.push(eq(bookings.tenantId, tenantId));
+
+  return await db
+    .select()
+    .from(bookings)
+    .where(and(...conditions));
+}
+
+/**
+ * Mark a flywheel step as sent on a booking.
+ */
+export async function markFlywheelStepSent(
+  id: string,
+  step: "reviewRequestSent" | "referralCodeSent" | "earlyBirdOfferSent"
+): Promise<void> {
+  await db
+    .update(bookings)
+    .set({ [step]: true })
+    .where(eq(bookings.id, id));
+}
+
 // ===== SOCIAL PROOF =====
 
-export async function getRecentSocialProofBookings(): Promise<SocialProofBooking[]> {
+export async function getRecentSocialProofBookings(tenantId?: string): Promise<SocialProofBooking[]> {
   const now = new Date();
+  const conditions = [
+    eq(bookings.bookingStatus, "confirmed"),
+    gte(bookings.bookingDate, now),
+  ];
+  if (tenantId) conditions.push(eq(bookings.tenantId, tenantId));
+
   const rows = await db
     .select({
       customerName: bookings.customerName,
@@ -655,12 +765,7 @@ export async function getRecentSocialProofBookings(): Promise<SocialProofBooking
     })
     .from(bookings)
     .innerJoin(boats, eq(bookings.boatId, boats.id))
-    .where(
-      and(
-        eq(bookings.bookingStatus, "confirmed"),
-        gte(bookings.bookingDate, now)
-      )
-    )
+    .where(and(...conditions))
     .orderBy(desc(bookings.createdAt))
     .limit(20);
 

@@ -107,14 +107,18 @@ export function serveStatic(app: Express) {
     res.set("CDN-Cache-Control", "public, s-maxage=31536000");
     res.set("Vary", "Accept-Encoding");
 
+    const contentType = getContentType(req.path);
+
     if (acceptEncoding.includes("br") && existsSync(filePath + ".br")) {
-      req.url += ".br";
+      // Serve compressed file directly — express.static would override Content-Type
+      // based on .br extension, causing application/octet-stream MIME errors
       res.set("Content-Encoding", "br");
-      res.set("Content-Type", getContentType(req.path));
+      res.set("Content-Type", contentType);
+      return res.sendFile(filePath + ".br");
     } else if (acceptEncoding.includes("gzip") && existsSync(filePath + ".gz")) {
-      req.url += ".gz";
       res.set("Content-Encoding", "gzip");
-      res.set("Content-Type", getContentType(req.path));
+      res.set("Content-Type", contentType);
+      return res.sendFile(filePath + ".gz");
     }
     next();
   });

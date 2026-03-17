@@ -2,16 +2,27 @@ import type { Express } from "express";
 import { z } from "zod";
 import { storage } from "../storage";
 import { logger } from "../lib/logger";
+import { OPERATING_START_HOUR, OPERATING_END_HOUR, SEASON_START_MONTH, SEASON_END_MONTH } from "@shared/constants";
 
-// Operating hours: boats depart from 08:00, must return by 19:00
-const OPERATING_START = 8;
-const OPERATING_END = 19;
+/** Extract hours and minutes in Europe/Madrid timezone */
+function getMadridTime(date: Date): { hours: number; minutes: number } {
+  const parts = new Intl.DateTimeFormat("en-US", {
+    timeZone: "Europe/Madrid",
+    hour: "numeric",
+    minute: "numeric",
+    hour12: false,
+  }).formatToParts(date);
+  const hours = parseInt(parts.find((p) => p.type === "hour")!.value);
+  const minutes = parseInt(parts.find((p) => p.type === "minute")!.value);
+  return { hours, minutes };
+}
 
 // All possible half-hour start slots (matching the frontend TIME_SLOTS)
+// Last departure slot is 1 hour before closing (minimum rental = 1h)
 const ALL_START_SLOTS: string[] = [];
-for (let h = OPERATING_START; h <= 18; h++) {
+for (let h = OPERATING_START_HOUR; h <= OPERATING_END_HOUR - 1; h++) {
   ALL_START_SLOTS.push(`${String(h).padStart(2, "0")}:00`);
-  if (h < 18) ALL_START_SLOTS.push(`${String(h).padStart(2, "0")}:30`);
+  if (h < OPERATING_END_HOUR - 1) ALL_START_SLOTS.push(`${String(h).padStart(2, "0")}:30`);
 }
 
 /** Parse "HH:MM" to fractional hours from midnight (e.g. "09:30" -> 9.5) */
@@ -43,21 +54,21 @@ export function registerAvailabilityRoutes(app: Express) {
         return res.status(404).json({ message: "Barco no encontrado" });
       }
 
-      // Off-season check (April-October)
-      if (m < 4 || m > 10) {
+      // Off-season check
+      if (m < SEASON_START_MONTH || m > SEASON_END_MONTH) {
         return res.json({ availableSlots: [], unavailableSlots: ALL_START_SLOTS.slice() });
       }
 
       // Fetch active bookings for this boat+date
       const dayBookings = await storage.getDailyBookings(boatId, requestDate);
 
-      // Build list of booked intervals as fractional hours [start, end)
+      // Build list of booked intervals as fractional hours [start, end) in Madrid timezone
       const bookedIntervals = dayBookings.map((b) => {
-        const bStart = new Date(b.startTime);
-        const bEnd = new Date(b.endTime);
+        const startMadrid = getMadridTime(new Date(b.startTime));
+        const endMadrid = getMadridTime(new Date(b.endTime));
         return {
-          start: bStart.getHours() + bStart.getMinutes() / 60,
-          end: bEnd.getHours() + bEnd.getMinutes() / 60,
+          start: startMadrid.hours + startMadrid.minutes / 60,
+          end: endMadrid.hours + endMadrid.minutes / 60,
         };
       });
 
@@ -78,7 +89,7 @@ export function registerAvailabilityRoutes(app: Express) {
         }
 
         // Calculate max duration: time until operating end or next booking, whichever is sooner
-        let maxEnd = OPERATING_END;
+        let maxEnd = OPERATING_END_HOUR;
         for (const interval of bookedIntervals) {
           if (interval.start > slotHour && interval.start < maxEnd) {
             maxEnd = interval.start;
@@ -127,8 +138,8 @@ export function registerAvailabilityRoutes(app: Express) {
         return res.status(400).json({ message: "Mes inválido" });
       }
 
-      // Season: April (4) - October (10)
-      const isOffSeason = monthNum < 4 || monthNum > 10;
+      // Season check
+      const isOffSeason = monthNum < SEASON_START_MONTH || monthNum > SEASON_END_MONTH;
 
       const bookings = await storage.getMonthlyBookings(id, year, monthNum);
 
@@ -153,12 +164,12 @@ export function registerAvailabilityRoutes(app: Express) {
           continue;
         }
 
-        // Generate hourly slots from 09:00 to 18:00
+        // Generate hourly slots from opening to 1 hour before closing
         const slots: { time: string; available: boolean }[] = [];
         let bookedSlots = 0;
-        const totalSlots = 10; // 09:00 to 18:00 (one slot per hour)
+        const totalSlots = OPERATING_END_HOUR - OPERATING_START_HOUR; // one slot per hour
 
-        for (let hour = 9; hour <= 18; hour++) {
+        for (let hour = OPERATING_START_HOUR; hour <= OPERATING_END_HOUR - 1; hour++) {
           const slotStart = new Date(year, monthNum - 1, day, hour, 0, 0);
           const slotEnd = new Date(year, monthNum - 1, day, hour + 1, 0, 0);
 
@@ -216,9 +227,9 @@ export function registerAvailabilityRoutes(app: Express) {
 
       const dateStr = `${nextSaturday.getFullYear()}-${String(nextSaturday.getMonth() + 1).padStart(2, "0")}-${String(nextSaturday.getDate()).padStart(2, "0")}`;
 
-      // Off-season check (April-October)
+      // Off-season check
       const month = nextSaturday.getMonth() + 1;
-      if (month < 4 || month > 10) {
+      if (month < SEASON_START_MONTH || month > SEASON_END_MONTH) {
         return res.json({ date: dateStr, boats: {} });
       }
 
@@ -231,13 +242,13 @@ export function registerAvailabilityRoutes(app: Express) {
       for (const boat of activeBoats) {
         const dayBookings = await storage.getDailyBookings(boat.id, nextSaturday);
 
-        // Build booked intervals
+        // Build booked intervals in Madrid timezone
         const bookedIntervals = dayBookings.map((b) => {
-          const bStart = new Date(b.startTime);
-          const bEnd = new Date(b.endTime);
+          const startMadrid = getMadridTime(new Date(b.startTime));
+          const endMadrid = getMadridTime(new Date(b.endTime));
           return {
-            start: bStart.getHours() + bStart.getMinutes() / 60,
-            end: bEnd.getHours() + bEnd.getMinutes() / 60,
+            start: startMadrid.hours + startMadrid.minutes / 60,
+            end: endMadrid.hours + endMadrid.minutes / 60,
           };
         });
 
@@ -250,7 +261,7 @@ export function registerAvailabilityRoutes(app: Express) {
           );
           if (!isBooked) {
             // Check there's at least 1 hour of availability
-            let maxEnd = OPERATING_END;
+            let maxEnd = OPERATING_END_HOUR;
             for (const interval of bookedIntervals) {
               if (interval.start > slotHour && interval.start < maxEnd) {
                 maxEnd = interval.start;

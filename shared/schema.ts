@@ -340,6 +340,11 @@ export const bookings = pgTable("bookings", {
   emailReminderSent: boolean("email_reminder_sent").notNull().default(false),
   emailThankYouSent: boolean("email_thank_you_sent").notNull().default(false),
   whatsappThankYouSent: boolean("whatsapp_thank_you_sent").notNull().default(false),
+  // Post-rental flywheel tracking
+  reviewRequestSent: boolean("review_request_sent").notNull().default(false),
+  referralCodeSent: boolean("referral_code_sent").notNull().default(false),
+  earlyBirdOfferSent: boolean("early_bird_offer_sent").notNull().default(false),
+  recoveryEmailSent: boolean("recovery_email_sent").notNull().default(false), // Abandoned booking recovery email
   notes: text("notes"),
   cancelationToken: text("cancelation_token").unique(), // UUID for cancel-without-login flow
   language: text("language").default("es"), // ISO 639-1: es, en, fr, de, nl, it, ru, ca
@@ -1828,3 +1833,302 @@ export const seoRedirects = pgTable("seo_redirects", {
 }, (table) => [
   index("seo_redirects_from_idx").on(table.fromPath),
 ]);
+
+// ===== MEMBERSHIPS (Boat Club) =====
+
+export const MEMBERSHIP_PLANS = {
+  ANNUAL: 'annual',
+  SEASONAL: 'seasonal',
+} as const;
+
+export type MembershipPlan = typeof MEMBERSHIP_PLANS[keyof typeof MEMBERSHIP_PLANS];
+
+export const MEMBERSHIP_STATUSES = {
+  ACTIVE: 'active',
+  EXPIRED: 'expired',
+  CANCELLED: 'cancelled',
+} as const;
+
+export type MembershipStatus = typeof MEMBERSHIP_STATUSES[keyof typeof MEMBERSHIP_STATUSES];
+
+export const memberships = pgTable("memberships", {
+  id: serial("id").primaryKey(),
+  tenantId: varchar("tenant_id").references(() => tenants.id),
+  customerId: varchar("customer_id").references(() => customers.id),
+  customerEmail: text("customer_email").notNull(),
+  customerName: text("customer_name").notNull(),
+  plan: text("plan").notNull().default("annual"), // annual, seasonal
+  status: text("status").notNull().default("active"), // active, expired, cancelled
+  startDate: timestamp("start_date", { withTimezone: true }).notNull(),
+  endDate: timestamp("end_date", { withTimezone: true }).notNull(),
+  price: decimal("price", { precision: 10, scale: 2 }).notNull(),
+  stripeSubscriptionId: text("stripe_subscription_id"),
+  discountPercent: integer("discount_percent").notNull().default(15),
+  freeHoursRemaining: decimal("free_hours_remaining", { precision: 4, scale: 1 }).notNull().default("1"),
+  priorityBooking: boolean("priority_booking").notNull().default(true),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().default(sql`now()`),
+  updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().default(sql`now()`),
+}, (table) => ({
+  customerEmailIdx: index("memberships_customer_email_idx").on(table.customerEmail),
+  statusIdx: index("memberships_status_idx").on(table.status),
+  tenantIdx: index("memberships_tenant_id_idx").on(table.tenantId),
+  endDateIdx: index("memberships_end_date_idx").on(table.endDate),
+}));
+
+export const insertMembershipSchema = z.object({
+  tenantId: z.string().optional().nullable(),
+  customerId: z.string().optional().nullable(),
+  customerEmail: z.string().email("Email invalido"),
+  customerName: z.string().min(2, "El nombre debe tener al menos 2 caracteres"),
+  plan: z.enum(["annual", "seasonal"]).default("annual"),
+  status: z.enum(["active", "expired", "cancelled"]).default("active"),
+  startDate: z.coerce.date(),
+  endDate: z.coerce.date(),
+  price: z.string().regex(/^\d+(\.\d{1,2})?$/, "Precio invalido"),
+  stripeSubscriptionId: z.string().optional().nullable(),
+  discountPercent: z.number().int().min(1).max(100).default(15),
+  freeHoursRemaining: z.string().default("1"),
+  priorityBooking: z.boolean().default(true),
+});
+
+export const updateMembershipSchema = z.object({
+  customerEmail: z.string().email("Email invalido").optional(),
+  customerName: z.string().min(2).optional(),
+  plan: z.enum(["annual", "seasonal"]).optional(),
+  status: z.enum(["active", "expired", "cancelled"]).optional(),
+  startDate: z.coerce.date().optional(),
+  endDate: z.coerce.date().optional(),
+  price: z.string().regex(/^\d+(\.\d{1,2})?$/).optional(),
+  stripeSubscriptionId: z.string().optional().nullable(),
+  discountPercent: z.number().int().min(1).max(100).optional(),
+  freeHoursRemaining: z.string().optional(),
+  priorityBooking: z.boolean().optional(),
+});
+
+export type Membership = typeof memberships.$inferSelect;
+export type InsertMembership = z.infer<typeof insertMembershipSchema>;
+export type UpdateMembership = z.infer<typeof updateMembershipSchema>;
+
+// ===== A/B TESTING & EXPERIMENTS =====
+
+export const EXPERIMENT_STATUS = {
+  DRAFT: "draft",
+  ACTIVE: "active",
+  PAUSED: "paused",
+  COMPLETED: "completed",
+} as const;
+
+export type ExperimentStatus = typeof EXPERIMENT_STATUS[keyof typeof EXPERIMENT_STATUS];
+
+export interface ExperimentVariant {
+  id: string;
+  weight: number;
+}
+
+export const experiments = pgTable("experiments", {
+  id: serial("id").primaryKey(),
+  tenantId: text("tenant_id").references(() => tenants.id),
+  name: text("name").notNull().unique(),
+  description: text("description"),
+  status: text("status").notNull().default("draft"), // draft, active, paused, completed
+  variants: jsonb("variants").$type<ExperimentVariant[]>().notNull(),
+  targetPages: text("target_pages").array(), // ["/", "/boats/*"]
+  startDate: timestamp("start_date", { withTimezone: true }),
+  endDate: timestamp("end_date", { withTimezone: true }),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().default(sql`now()`),
+}, (table) => [
+  index("experiments_status_idx").on(table.status),
+  index("experiments_tenant_idx").on(table.tenantId),
+]);
+
+export const experimentAssignments = pgTable("experiment_assignments", {
+  id: serial("id").primaryKey(),
+  experimentId: integer("experiment_id").notNull().references(() => experiments.id),
+  sessionId: text("session_id").notNull(),
+  variant: text("variant").notNull(),
+  assignedAt: timestamp("assigned_at", { withTimezone: true }).notNull().default(sql`now()`),
+}, (table) => [
+  index("exp_assign_experiment_idx").on(table.experimentId),
+  index("exp_assign_session_idx").on(table.sessionId),
+  unique("exp_assign_unique").on(table.experimentId, table.sessionId),
+]);
+
+export const experimentEvents = pgTable("experiment_events", {
+  id: serial("id").primaryKey(),
+  experimentId: integer("experiment_id").notNull().references(() => experiments.id),
+  sessionId: text("session_id").notNull(),
+  variant: text("variant").notNull(),
+  eventType: text("event_type").notNull(), // "view", "click", "booking_started", "booking_completed"
+  metadata: jsonb("metadata").$type<Record<string, unknown>>(),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().default(sql`now()`),
+}, (table) => [
+  index("exp_events_experiment_idx").on(table.experimentId),
+  index("exp_events_type_idx").on(table.eventType),
+]);
+
+// Zod schemas for experiments
+export const insertExperimentSchema = z.object({
+  tenantId: z.string().optional().nullable(),
+  name: z.string().min(1, "El nombre es requerido").max(100),
+  description: z.string().optional().nullable(),
+  status: z.enum(["draft", "active", "paused", "completed"]).optional().default("draft"),
+  variants: z.array(z.object({
+    id: z.string().min(1),
+    weight: z.number().int().min(0).max(100),
+  })).min(2, "Se necesitan al menos 2 variantes").refine(
+    (variants) => variants.reduce((sum, v) => sum + v.weight, 0) === 100,
+    "Los pesos de las variantes deben sumar 100"
+  ),
+  targetPages: z.array(z.string()).optional().nullable(),
+  startDate: z.coerce.date().optional().nullable(),
+  endDate: z.coerce.date().optional().nullable(),
+});
+
+export const updateExperimentSchema = z.object({
+  name: z.string().min(1).max(100).optional(),
+  description: z.string().optional().nullable(),
+  status: z.enum(["draft", "active", "paused", "completed"]).optional(),
+  variants: z.array(z.object({
+    id: z.string().min(1),
+    weight: z.number().int().min(0).max(100),
+  })).min(2).refine(
+    (variants) => variants.reduce((sum, v) => sum + v.weight, 0) === 100,
+    "Los pesos de las variantes deben sumar 100"
+  ).optional(),
+  targetPages: z.array(z.string()).optional().nullable(),
+  startDate: z.coerce.date().optional().nullable(),
+  endDate: z.coerce.date().optional().nullable(),
+});
+
+export const trackExperimentEventSchema = z.object({
+  experimentName: z.string().min(1),
+  sessionId: z.string().min(1),
+  variant: z.string().min(1),
+  eventType: z.string().min(1),
+  metadata: z.record(z.unknown()).optional(),
+});
+
+export const assignExperimentSchema = z.object({
+  experimentName: z.string().min(1),
+  sessionId: z.string().min(1),
+});
+
+// Types
+export type InsertExperiment = z.infer<typeof insertExperimentSchema>;
+export type UpdateExperiment = z.infer<typeof updateExperimentSchema>;
+export type Experiment = typeof experiments.$inferSelect;
+export type ExperimentAssignment = typeof experimentAssignments.$inferSelect;
+export type ExperimentEvent = typeof experimentEvents.$inferSelect;
+
+// ===== FEATURE FLAGS =====
+
+/**
+ * Conditions for conditional feature flag evaluation.
+ * These allow fine-grained control beyond simple on/off.
+ */
+export interface FeatureFlagConditions {
+  plan?: string[];           // Tenant must be on one of these plans
+  minBookings?: number;      // Tenant must have at least this many bookings
+  minBoats?: number;         // Tenant must have at least this many boats
+  [key: string]: unknown;    // Extensible for future conditions
+}
+
+/**
+ * Global feature flags: platform-wide defaults managed by super admin.
+ * Tenants inherit these unless they have a tenant-specific override.
+ */
+export const globalFeatureFlags = pgTable("global_feature_flags", {
+  id: serial("id").primaryKey(),
+  name: text("name").notNull().unique(),
+  description: text("description"),
+  enabled: boolean("enabled").notNull().default(false),
+  rolloutPercent: integer("rollout_percent").notNull().default(0), // 0-100
+  allowedPlans: text("allowed_plans").array(), // ["pro", "enterprise"]
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().default(sql`now()`),
+  updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().default(sql`now()`),
+});
+
+/**
+ * Per-tenant feature flag overrides.
+ * When a tenant has an entry here, it takes priority over the global flag.
+ */
+export const featureFlags = pgTable("feature_flags", {
+  id: serial("id").primaryKey(),
+  tenantId: text("tenant_id").notNull().references(() => tenants.id),
+  name: text("name").notNull(),
+  description: text("description"),
+  enabled: boolean("enabled").notNull().default(false),
+  rolloutPercent: integer("rollout_percent").notNull().default(100), // 0-100
+  conditions: jsonb("conditions").$type<FeatureFlagConditions>(),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().default(sql`now()`),
+  updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().default(sql`now()`),
+}, (table) => [
+  unique("feature_flags_tenant_name").on(table.tenantId, table.name),
+  index("feature_flags_tenant_idx").on(table.tenantId),
+  index("feature_flags_name_idx").on(table.name),
+]);
+
+// Zod schemas for feature flags
+export const insertGlobalFeatureFlagSchema = z.object({
+  name: z.string().min(1, "El nombre es requerido").max(100)
+    .regex(/^[a-z0-9_-]+$/, "Solo letras minusculas, numeros, guiones y guiones bajos"),
+  description: z.string().max(500).optional().nullable(),
+  enabled: z.boolean().optional().default(false),
+  rolloutPercent: z.number().int().min(0).max(100).optional().default(0),
+  allowedPlans: z.array(z.enum(["starter", "pro", "enterprise"])).optional().nullable(),
+});
+
+export const updateGlobalFeatureFlagSchema = z.object({
+  description: z.string().max(500).optional().nullable(),
+  enabled: z.boolean().optional(),
+  rolloutPercent: z.number().int().min(0).max(100).optional(),
+  allowedPlans: z.array(z.enum(["starter", "pro", "enterprise"])).optional().nullable(),
+});
+
+export const upsertFeatureFlagSchema = z.object({
+  enabled: z.boolean(),
+  description: z.string().max(500).optional().nullable(),
+  rolloutPercent: z.number().int().min(0).max(100).optional().default(100),
+  conditions: z.object({
+    plan: z.array(z.string()).optional(),
+    minBookings: z.number().int().min(0).optional(),
+    minBoats: z.number().int().min(0).optional(),
+  }).passthrough().optional().nullable(),
+});
+
+// Types
+export type GlobalFeatureFlag = typeof globalFeatureFlags.$inferSelect;
+export type InsertGlobalFeatureFlag = z.infer<typeof insertGlobalFeatureFlagSchema>;
+export type UpdateGlobalFeatureFlag = z.infer<typeof updateGlobalFeatureFlagSchema>;
+export type FeatureFlag = typeof featureFlags.$inferSelect;
+export type UpsertFeatureFlag = z.infer<typeof upsertFeatureFlagSchema>;
+
+// ===== LEAD NURTURING LOG =====
+
+export const NURTURING_ACTIONS = {
+  HOT_AVAILABILITY: 'hot_availability',   // Sent availability + booking link
+  WARM_DISCOUNT: 'warm_discount',         // Sent 10% discount code
+  COLD_NEWSLETTER: 'cold_newsletter',     // Added to newsletter list
+} as const;
+
+export type NurturingAction = typeof NURTURING_ACTIONS[keyof typeof NURTURING_ACTIONS];
+
+export const leadNurturingLog = pgTable("lead_nurturing_log", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  tenantId: varchar("tenant_id").references(() => tenants.id),
+  sessionId: varchar("session_id").notNull().references(() => aiChatSessions.id, { onDelete: "cascade" }),
+  phoneNumber: varchar("phone_number", { length: 20 }).notNull(),
+  action: varchar("action", { length: 30 }).notNull(), // 'hot_availability' | 'warm_discount' | 'cold_newsletter'
+  discountCode: varchar("discount_code", { length: 30 }), // Only for warm_discount actions
+  messageSent: text("message_sent"), // The WhatsApp message text that was sent
+  success: boolean("success").notNull().default(true),
+  errorMessage: text("error_message"),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().default(sql`now()`),
+}, (table) => ({
+  phoneIdx: index("nurturing_phone_idx").on(table.phoneNumber),
+  sessionIdx: index("nurturing_session_idx").on(table.sessionId),
+  createdIdx: index("nurturing_created_idx").on(table.createdAt),
+}));
+
+export type LeadNurturingLog = typeof leadNurturingLog.$inferSelect;
+export type InsertLeadNurturingLog = typeof leadNurturingLog.$inferInsert;

@@ -355,6 +355,11 @@ export const en: Translations = {
     errorGeneric: 'An unexpected error occurred',
     errorPayment: 'Error processing payment',
     backToHome: 'Back to home',
+    stepExperience: 'Experience',
+    stepPersonalize: 'Personalize',
+    stepPay: 'Payment',
+    chooseBoatFirst: 'Select a boat to choose a time',
+    chooseTimeFirst: 'Select date and boat first',
   },
   faq: {
     title: 'Frequently Asked Questions',

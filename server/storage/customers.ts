@@ -4,16 +4,19 @@ import {
   type Booking, type CrmCustomer, type UpdateCrmCustomer,
 } from "./base";
 
-export async function upsertCrmCustomer(booking: Booking): Promise<CrmCustomer> {
-  const conditions = [eq(crmCustomers.phone, booking.customerPhone)];
+export async function upsertCrmCustomer(booking: Booking, tenantId?: string): Promise<CrmCustomer> {
+  const orConditions = [eq(crmCustomers.phone, booking.customerPhone)];
   if (booking.customerEmail) {
-    conditions.push(eq(crmCustomers.email, booking.customerEmail));
+    orConditions.push(eq(crmCustomers.email, booking.customerEmail));
   }
+
+  const conditions = [or(...orConditions)];
+  if (tenantId) conditions.push(eq(crmCustomers.tenantId, tenantId));
 
   const [existing] = await db
     .select()
     .from(crmCustomers)
-    .where(or(...conditions))
+    .where(and(...conditions))
     .limit(1);
 
   if (existing) {
@@ -33,6 +36,7 @@ export async function upsertCrmCustomer(booking: Booking): Promise<CrmCustomer> 
       totalSpent: booking.totalAmount,
       firstBookingDate: booking.startTime,
       lastBookingDate: booking.startTime,
+      ...(tenantId ? { tenantId } : {}),
     })
     .returning();
 
@@ -47,6 +51,7 @@ export async function getPaginatedCrmCustomers(params: {
   nationality?: string;
   sortBy?: string;
   sortOrder?: "asc" | "desc";
+  tenantId?: string;
 }): Promise<{
   data: CrmCustomer[];
   total: number;
@@ -57,10 +62,14 @@ export async function getPaginatedCrmCustomers(params: {
   totalSpentAll: string;
   totalCustomersAll: number;
 }> {
-  const { page, limit, search, segment, nationality, sortBy = "lastBookingDate", sortOrder = "desc" } = params;
+  const { page, limit, search, segment, nationality, sortBy = "lastBookingDate", sortOrder = "desc", tenantId } = params;
   const offset = (page - 1) * limit;
 
   const conditions = [];
+
+  if (tenantId) {
+    conditions.push(eq(crmCustomers.tenantId, tenantId));
+  }
 
   if (segment && segment !== "all") {
     conditions.push(eq(crmCustomers.segment, segment));
@@ -112,12 +121,15 @@ export async function getPaginatedCrmCustomers(params: {
     .limit(limit)
     .offset(offset);
 
+  const tenantFilter = tenantId ? eq(crmCustomers.tenantId, tenantId) : undefined;
+
   const statsResult = await db
     .select({
       totalSpentAll: sql<string>`COALESCE(SUM(${crmCustomers.totalSpent}), 0)::text`,
       totalCustomers: sql<number>`COUNT(*)::int`,
     })
-    .from(crmCustomers);
+    .from(crmCustomers)
+    .where(tenantFilter);
 
   const bestCustomerResult = await db
     .select({
@@ -125,6 +137,7 @@ export async function getPaginatedCrmCustomers(params: {
       totalSpent: sql<string>`${crmCustomers.totalSpent}::text`,
     })
     .from(crmCustomers)
+    .where(tenantFilter)
     .orderBy(sql`${crmCustomers.totalSpent} DESC NULLS LAST`)
     .limit(1);
 

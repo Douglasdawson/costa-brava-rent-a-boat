@@ -53,6 +53,7 @@ const CancelBookingPage = lazy(() => import("@/pages/CancelBookingPage"));
 const PricingPage = lazy(() => import("@/pages/pricing"));
 const LocationBarcelonaPage = lazy(() => import("@/pages/location-barcelona"));
 const LocationCostaBravaPage = lazy(() => import("@/pages/alquiler-barcos-costa-brava"));
+const NauticFlowLanding = lazy(() => import("@/pages/NauticFlowLanding"));
 const NotFound = lazy(() => import("@/pages/not-found"));
 const OnboardingPage = lazy(() => import("@/pages/OnboardingPage"));
 const AccessibilityDeclarationPage = lazy(() => import("@/pages/accessibility-declaration"));
@@ -356,6 +357,11 @@ function Router() {
       <Route path="/destino/tossa-de-mar">{() => <Redirect to="/alquiler-barcos-tossa-de-mar" />}</Route>
       <Route path="/categoria/sin-licencia">{() => <Redirect to="/barcos-sin-licencia" />}</Route>
       <Route path="/categoria/con-licencia">{() => <Redirect to="/barcos-con-licencia" />}</Route>
+
+      {/* SaaS landing — standalone layout, no nav/footer from main site */}
+      <Route path="/nauticflow">
+        {() => <Suspense fallback={<MainRouteFallback />}><NauticFlowLanding /></Suspense>}
+      </Route>
 
       {/* Admin, auth, and legal routes — minimal fallback */}
       <Route path="/login">

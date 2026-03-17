@@ -152,7 +152,7 @@ export function ExitIntentModal() {
 
           <button
             onClick={handleBookNow}
-            className="w-full bg-cta hover:bg-cta/90 text-white rounded-full py-3.5 font-medium transition-colors cta-pulse"
+            className="w-full bg-cta hover:bg-cta/90 text-white rounded-full py-3.5 font-medium cta-pulse cta-hover-lift"
             tabIndex={show ? 0 : -1}
           >
             {t.exitIntent?.bookNow}

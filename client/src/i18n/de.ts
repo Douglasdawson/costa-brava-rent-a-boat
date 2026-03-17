@@ -355,6 +355,11 @@ export const de: Translations = {
     backToHome: 'Zurück zur Startseite',
     gdprPrivacyLink: 'Datenschutzrichtlinie',
     gdprTermsLink: 'Allgemeine Geschäftsbedingungen',
+    stepExperience: 'Erlebnis',
+    stepPersonalize: 'Personalisieren',
+    stepPay: 'Zahlung',
+    chooseBoatFirst: 'Wahlen Sie ein Boot, um eine Zeit zu wahlen',
+    chooseTimeFirst: 'Wahlen Sie zuerst Datum und Boot',
   },
   faq: {
     title: 'Häufig Gestellte Fragen',

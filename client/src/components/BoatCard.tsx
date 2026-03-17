@@ -188,7 +188,7 @@ function BoatCard({
   }, [handleDetails]);
 
   return (
-    <Card className={`overflow-hidden transition-all duration-200 ${
+    <Card className={`overflow-hidden boat-card-tilt ${
       isRecommended
         ? 'border-cta ring-1 ring-cta/30 shadow-md'
         : 'hover:border-cta/50'
@@ -295,12 +295,12 @@ function BoatCard({
           <div className="flex items-center gap-1.5 text-xs font-medium">
             {scarcityData.availableSlots === 0 ? (
               <>
-                <span className="w-1.5 h-1.5 rounded-full bg-red-500 flex-shrink-0" />
+                <span className="w-1.5 h-1.5 rounded-full bg-red-500 flex-shrink-0 urgency-dot-pulse" />
                 <span className="text-red-600">{t.scarcity?.soldOutSaturday}</span>
               </>
             ) : scarcityData.availableSlots <= 3 ? (
               <>
-                <span className="w-1.5 h-1.5 rounded-full bg-amber-500 flex-shrink-0" />
+                <span className="w-1.5 h-1.5 rounded-full bg-amber-500 flex-shrink-0 urgency-dot-pulse" />
                 <span className="text-amber-600">
                   {t.scarcity?.onlyXSlots?.replace('{count}', String(scarcityData.availableSlots))}
                 </span>
@@ -324,15 +324,15 @@ function BoatCard({
         <a
           href={`/barco/${id}`}
           onClick={handleDetailsClick}
-          className="text-sm font-medium text-foreground hover:text-cta inline-flex items-center gap-1.5 transition-colors py-2 -my-1 focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2 focus-visible:outline-none rounded"
+          className="details-link text-sm font-medium text-foreground hover:text-cta inline-flex items-center gap-1.5 transition-colors py-2 -my-1 focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2 focus-visible:outline-none rounded"
           data-testid={`button-details-${id}`}
           aria-label={`${t.boats.viewDetails} — ${name}`}
         >
-          {t.boats.viewDetails} <ArrowRight className="w-4 h-4" />
+          {t.boats.viewDetails} <ArrowRight className="w-4 h-4 details-link-arrow" />
         </a>
         <button
           onClick={handleBooking}
-          className="bg-cta hover:bg-cta/90 text-white text-sm font-medium px-4 py-1.5 rounded-full transition-colors focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2 focus-visible:outline-none cta-pulse"
+          className="bg-cta hover:bg-cta/90 text-white text-sm font-medium px-4 py-1.5 rounded-full focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2 focus-visible:outline-none cta-pulse cta-hover-lift"
           data-testid={`button-book-${id}`}
         >
           {t.boats.book}

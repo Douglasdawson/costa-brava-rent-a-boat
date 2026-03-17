@@ -30,6 +30,12 @@ export const API = {
     employees: `${ADMIN}/employees`,
     checkins: `${ADMIN}/checkins`,
     config: `${ADMIN}/config`,
+    experiments: `${ADMIN}/experiments`,
+  },
+  experiments: {
+    active: `${BASE}/experiments/active`,
+    assign: `${BASE}/experiments/assign`,
+    track: `${BASE}/experiments/track`,
   },
 } as const;
 

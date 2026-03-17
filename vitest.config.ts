@@ -7,6 +7,18 @@ export default defineConfig({
     environment: "node",
     include: ["**/*.test.ts"],
     exclude: ["node_modules", "dist"],
+    coverage: {
+      provider: "v8",
+      reporter: ["text", "text-summary", "html"],
+      include: ["server/**/*.ts", "shared/**/*.ts"],
+      exclude: [
+        "**/*.test.ts",
+        "server/mcp/**",
+        "server/index.ts",
+        "node_modules/**",
+        "dist/**",
+      ],
+    },
   },
   resolve: {
     alias: {

@@ -127,6 +127,7 @@ export interface IStorage {
   getRevenueTrend(period: "30d" | "90d" | "365d"): Promise<Array<{ date: string; revenue: number; bookings: number }>>;
   getBoatsPerformance(period: "month" | "season" | "year"): Promise<Array<{ boatId: string; boatName: string; revenue: number; bookings: number; hours: number; utilization: number }>>;
   getStatusDistribution(startDate: Date, endDate: Date): Promise<{ confirmed: number; pending_payment: number; hold: number; cancelled: number; completed: number; draft: number }>;
+  getYieldAnalytics(fromDate?: string, toDate?: string, tenantId?: string): Promise<import("./analytics").YieldAnalytics>;
 
   // Testimonials
   getTestimonials(): Promise<Testimonial[]>;

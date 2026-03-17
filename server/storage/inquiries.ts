@@ -4,8 +4,10 @@ import {
   type WhatsappInquiry, type InsertWhatsappInquiry, type UpdateWhatsappInquiry,
 } from "./base";
 
-export async function getWhatsappInquiry(id: string): Promise<WhatsappInquiry | undefined> {
-  const [inquiry] = await db.select().from(whatsappInquiries).where(eq(whatsappInquiries.id, id));
+export async function getWhatsappInquiry(id: string, tenantId?: string): Promise<WhatsappInquiry | undefined> {
+  const conditions = [eq(whatsappInquiries.id, id)];
+  if (tenantId) conditions.push(eq(whatsappInquiries.tenantId, tenantId));
+  const [inquiry] = await db.select().from(whatsappInquiries).where(and(...conditions));
   return inquiry;
 }
 
@@ -19,11 +21,15 @@ export async function getPaginatedInquiries(params: {
   limit: number;
   status?: string;
   search?: string;
+  tenantId?: string;
 }): Promise<{ data: WhatsappInquiry[]; total: number; page: number; totalPages: number }> {
-  const { page, limit, status, search } = params;
+  const { page, limit, status, search, tenantId } = params;
   const offset = (page - 1) * limit;
 
   const conditions = [];
+  if (tenantId) {
+    conditions.push(eq(whatsappInquiries.tenantId, tenantId));
+  }
   if (status && status !== "all") {
     conditions.push(eq(whatsappInquiries.status, status));
   }

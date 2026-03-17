@@ -250,6 +250,53 @@ body { overflow-x: hidden; }
     transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.4s cubic-bezier(0.22, 1, 0.36, 1);
     will-change: transform, opacity;
   }
+
+  /* J5: Micro-interactions — all GPU-composited (transform + opacity only) */
+
+  /* BoatCard 3D tilt on hover */
+  .boat-card-tilt {
+    transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .boat-card-tilt:hover {
+    transform: perspective(800px) rotateY(2deg) scale(1.015);
+  }
+
+  /* CTA button hover lift (composited: translateY + scale) */
+  .cta-hover-lift {
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+  .cta-hover-lift:hover {
+    transform: translateY(-1px) scale(1.03);
+  }
+  .cta-hover-lift:active {
+    transform: translateY(0) scale(0.98);
+  }
+
+  /* "View Details" arrow nudge on hover */
+  .details-link-arrow {
+    transition: transform 0.2s ease;
+  }
+  .details-link:hover .details-link-arrow {
+    transform: translateX(3px);
+  }
+
+  /* Urgency/scarcity dot gentle pulse */
+  @keyframes urgency-dot-pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+  .urgency-dot-pulse {
+    animation: urgency-dot-pulse 2s ease-in-out infinite;
+  }
+
+  /* Booking confirmation modal entrance */
+  @keyframes confirm-slide-up {
+    from { transform: translateY(16px) scale(0.97); opacity: 0; }
+    to { transform: translateY(0) scale(1); opacity: 1; }
+  }
+  .confirm-enter {
+    animation: confirm-slide-up 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
 }
 
 /* Below-fold sections: skip style/layout/paint until near viewport */
@@ -266,7 +313,9 @@ body { overflow-x: hidden; }
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
-  .animate-bounce, .animate-pulse, .animate-spin { animation: none !important; }
+  .animate-bounce, .animate-pulse, .animate-spin,
+  .urgency-dot-pulse, .confirm-enter, .cta-pulse::after { animation: none !important; }
+  .boat-card-tilt, .cta-hover-lift, .details-link-arrow { transition: none !important; }
   html { scroll-behavior: auto !important; }
   .social-proof-transition { transition: none !important; }
 }

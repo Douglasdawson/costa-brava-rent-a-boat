@@ -17,6 +17,17 @@ const gallerySubmitSchema = z.object({
 const submitAttempts = new Map<string, { count: number; firstAttempt: number }>();
 const MAX_SUBMIT_ATTEMPTS = 5;
 const SUBMIT_WINDOW_MS = 60 * 60 * 1000; // 1 hour
+const SUBMIT_CLEANUP_INTERVAL = 10 * 60 * 1000; // 10 minutes
+
+// Periodically clean up expired entries to prevent memory leak
+setInterval(() => {
+  const now = Date.now();
+  submitAttempts.forEach((data, ip) => {
+    if (now - data.firstAttempt > SUBMIT_WINDOW_MS) {
+      submitAttempts.delete(ip);
+    }
+  });
+}, SUBMIT_CLEANUP_INTERVAL).unref();
 
 export function registerGalleryRoutes(app: Express) {
   // Public: get approved photos

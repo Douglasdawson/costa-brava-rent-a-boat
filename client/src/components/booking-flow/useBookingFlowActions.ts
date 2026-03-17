@@ -1,11 +1,16 @@
 import { apiRequest } from "@/lib/queryClient";
 import type { BookingFlowStateReturn } from "./useBookingFlowState";
 
+function delay(ms: number): Promise<void> {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 export function useBookingFlowActions(state: BookingFlowStateReturn, onClose?: () => void) {
   const {
     selectedDate, selectedBoat, selectedTime, duration, extras,
     customerData, holdId,
     setIsLoading, setQuote, setHoldId, setPaymentIntentId,
+    isProcessingPayment, setIsProcessingPayment,
     toast, t, availableExtras,
   } = state;
 
@@ -86,6 +91,7 @@ export function useBookingFlowActions(state: BookingFlowStateReturn, onClose?: (
     }
 
     setIsLoading(true);
+    setIsProcessingPayment(true);
 
     try {
       const paymentResponse = await apiRequest('POST', '/api/create-payment-intent-mock', {
@@ -105,31 +111,23 @@ export function useBookingFlowActions(state: BookingFlowStateReturn, onClose?: (
         description: "Simulando pago exitoso para testing",
       });
 
-      setTimeout(async () => {
-        try {
-          const successResponse = await apiRequest('POST', '/api/simulate-payment-success', {
-            paymentIntentId: paymentData.paymentIntentId
-          });
+      // Wait for simulated payment processing instead of detached setTimeout
+      await delay(2000);
 
-          if (successResponse.ok) {
-            const result = await successResponse.json();
-            toast({
-              title: "¡Pago exitoso!",
-              description: `Reserva confirmada. ID: ${result.bookingId}`,
-            });
-            if (onClose) onClose();
-          } else {
-            throw new Error("Error en la simulación de pago");
-          }
-        } catch (error: unknown) {
-          toast({
-            title: "Error en el pago",
-            description: error instanceof Error ? error.message : "Error desconocido",
-            variant: "destructive",
-          });
-        }
-      }, 2000);
+      const successResponse = await apiRequest('POST', '/api/simulate-payment-success', {
+        paymentIntentId: paymentData.paymentIntentId
+      });
 
+      if (successResponse.ok) {
+        const result = await successResponse.json();
+        toast({
+          title: "¡Pago exitoso!",
+          description: `Reserva confirmada. ID: ${result.bookingId}`,
+        });
+        if (onClose) onClose();
+      } else {
+        throw new Error("Error en la simulación de pago");
+      }
     } catch (error: unknown) {
       if (import.meta.env.DEV) console.error('Error processing payment:', error);
       toast({
@@ -139,17 +137,19 @@ export function useBookingFlowActions(state: BookingFlowStateReturn, onClose?: (
       });
     } finally {
       setIsLoading(false);
+      setIsProcessingPayment(false);
     }
   };
 
   const handlePayment = async () => {
+    // Guard against double-submit
+    if (isProcessingPayment) return;
+
     if (!state.quote || !holdId) {
       const quoteCreated = await createQuote();
       if (!quoteCreated) return;
-      setTimeout(() => { proceedWithPayment(); }, 100);
-      return;
     }
-    proceedWithPayment();
+    await proceedWithPayment();
   };
 
   return { createQuote, handlePayment };

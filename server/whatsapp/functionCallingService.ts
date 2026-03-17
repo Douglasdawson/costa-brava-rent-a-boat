@@ -1,8 +1,17 @@
-// Function Calling Service - AI can query availability, prices, and create drafts
+// Function Calling Service - AI can query availability, prices, and create bookings
 import OpenAI from "openai";
 import { storage } from "../storage";
 import type { Boat } from "@shared/schema";
-import { getSeason, isOperationalSeason, getSeasonDisplayName, type Season } from "@shared/pricing";
+import {
+  getSeason,
+  isOperationalSeason,
+  getSeasonDisplayName,
+  calculatePricingBreakdown,
+  isValidDuration,
+  type Season,
+  type Duration,
+} from "@shared/pricing";
+import { getStripe } from "../routes/payments";
 import { logger } from "../lib/logger";
 
 let _openai: OpenAI | null = null;
@@ -111,6 +120,84 @@ export const AVAILABLE_FUNCTIONS: OpenAI.Chat.Completions.ChatCompletionTool[] =
       },
     },
   },
+  {
+    type: "function",
+    function: {
+      name: "create_booking_link",
+      description: "Creates a booking with a Stripe payment link for the customer. Use when the customer has confirmed their boat choice, date, time, and duration, and wants to proceed with the reservation. You MUST have all required information before calling this function.",
+      parameters: {
+        type: "object",
+        properties: {
+          boat_id: {
+            type: "string",
+            description: "The boat identifier (e.g., 'voraz-450', 'quicksilver-505')",
+          },
+          date: {
+            type: "string",
+            description: "Date in YYYY-MM-DD format",
+          },
+          start_time: {
+            type: "string",
+            description: "Start time in HH:MM format (e.g., '10:00', '14:00')",
+          },
+          duration_hours: {
+            type: "number",
+            description: "Duration in hours (1, 2, 3, 4, 6, or 8)",
+          },
+          customer_name: {
+            type: "string",
+            description: "Customer's full name",
+          },
+          customer_phone: {
+            type: "string",
+            description: "Customer's phone number (WhatsApp number)",
+          },
+          customer_email: {
+            type: "string",
+            description: "Customer's email address (optional, for sending confirmation)",
+          },
+          number_of_people: {
+            type: "number",
+            description: "Number of passengers",
+          },
+        },
+        required: ["boat_id", "date", "start_time", "duration_hours", "customer_name", "customer_phone", "number_of_people"],
+      },
+    },
+  },
+  {
+    type: "function",
+    function: {
+      name: "suggest_alternatives",
+      description: "When a boat is unavailable, suggests similar alternatives that are available on the requested date. Filters by similar capacity, price range, and license requirement.",
+      parameters: {
+        type: "object",
+        properties: {
+          original_boat_id: {
+            type: "string",
+            description: "The ID of the originally requested boat that is unavailable",
+          },
+          date: {
+            type: "string",
+            description: "The date in YYYY-MM-DD format",
+          },
+          start_time: {
+            type: "string",
+            description: "The start time in HH:MM format (e.g., '10:00', '14:00')",
+          },
+          duration_hours: {
+            type: "number",
+            description: "Duration in hours (2, 4, 6, or 8)",
+          },
+          min_capacity: {
+            type: "number",
+            description: "Minimum number of people needed",
+          },
+        },
+        required: ["original_boat_id", "date", "start_time", "duration_hours"],
+      },
+    },
+  },
 ];
 
 // Execute a function call
@@ -131,7 +218,28 @@ export async function executeFunction(
       
       case "get_boat_details":
         return await getBoatDetails(args.boat_id as string);
-      
+
+      case "suggest_alternatives":
+        return await suggestAlternatives(
+          args.original_boat_id as string,
+          args.date as string,
+          args.start_time as string,
+          args.duration_hours as number,
+          args.min_capacity as number | undefined,
+        );
+
+      case "create_booking_link":
+        return await createBookingLink({
+          boatId: args.boat_id as string,
+          dateStr: args.date as string,
+          startTime: args.start_time as string,
+          durationHours: args.duration_hours as number,
+          customerName: args.customer_name as string,
+          customerPhone: args.customer_phone as string,
+          customerEmail: args.customer_email as string | undefined,
+          numberOfPeople: args.number_of_people as number,
+        });
+
       default:
         return JSON.stringify({ error: "Unknown function" });
     }
@@ -345,6 +453,370 @@ async function getBoatDetails(boatId: string): Promise<string> {
       ALTA: pricing?.ALTA?.prices,
     },
     image_url: boat.imageUrl,
+  });
+}
+
+// Suggest alternative boats when the preferred one is unavailable
+async function suggestAlternatives(
+  originalBoatId: string,
+  dateStr: string,
+  startTime: string,
+  durationHours: number,
+  minCapacity?: number,
+): Promise<string> {
+  const originalBoat = await storage.getBoat(originalBoatId);
+  if (!originalBoat) {
+    return JSON.stringify({ error: "Barco original no encontrado" });
+  }
+
+  const date = new Date(dateStr);
+
+  if (!isOperationalSeason(date)) {
+    return JSON.stringify({
+      error: "Esa fecha esta fuera de temporada. Operamos de abril a octubre.",
+      alternatives: [],
+    });
+  }
+
+  const season = getSeason(date);
+  const durationKey = `${durationHours}h`;
+
+  // Get original boat price for comparison
+  const originalPricing = originalBoat.pricing as Record<string, { prices?: Record<string, number> }> | null;
+  const originalPrice = originalPricing?.[season]?.prices?.[durationKey] ?? 0;
+
+  // Build time window for availability check
+  const [startHour, startMin] = startTime.split(':').map(Number);
+  const startDate = new Date(date);
+  startDate.setHours(startHour, startMin, 0, 0);
+  const endDate = new Date(startDate);
+  endDate.setHours(startDate.getHours() + durationHours);
+
+  const allBoats = await storage.getAllBoats();
+
+  // Effective minimum capacity: use explicit param or original boat capacity
+  const requiredCapacity = minCapacity ?? originalBoat.capacity;
+
+  // Filter candidates by compatibility criteria
+  const candidates: Array<{
+    boat: typeof allBoats[number];
+    price: number;
+    capacityDiff: number;
+    priceDiff: number;
+  }> = [];
+
+  for (const boat of allBoats) {
+    // Skip the original boat itself
+    if (boat.id === originalBoatId) continue;
+
+    // License requirement must match: no-license boats only suggest no-license alternatives
+    if (originalBoat.requiresLicense !== boat.requiresLicense) continue;
+
+    // Capacity within +/-2 of original, and must meet minimum
+    if (Math.abs(boat.capacity - originalBoat.capacity) > 2) continue;
+    if (boat.capacity < requiredCapacity) continue;
+
+    // Get price for this boat
+    const candidatePricing = boat.pricing as Record<string, { prices?: Record<string, number> }> | null;
+    const candidatePrice = candidatePricing?.[season]?.prices?.[durationKey];
+
+    // Skip if duration not available for this boat
+    if (!candidatePrice) continue;
+
+    // Price within +/-30% of original
+    if (originalPrice > 0) {
+      const priceRatio = candidatePrice / originalPrice;
+      if (priceRatio < 0.7 || priceRatio > 1.3) continue;
+    }
+
+    // Check actual availability
+    const isAvailable = await storage.checkAvailability(boat.id, startDate, endDate);
+    if (!isAvailable) continue;
+
+    candidates.push({
+      boat,
+      price: candidatePrice,
+      capacityDiff: Math.abs(boat.capacity - originalBoat.capacity),
+      priceDiff: Math.abs(candidatePrice - originalPrice),
+    });
+  }
+
+  // Sort: best capacity match first, then best price match
+  candidates.sort((a, b) => {
+    if (a.capacityDiff !== b.capacityDiff) return a.capacityDiff - b.capacityDiff;
+    return a.priceDiff - b.priceDiff;
+  });
+
+  // Return top 3
+  const top3 = candidates.slice(0, 3).map(c => ({
+    id: c.boat.id,
+    name: c.boat.name,
+    capacity: c.boat.capacity,
+    requires_license: c.boat.requiresLicense,
+    price: c.price,
+    deposit: c.boat.deposit,
+    subtitle: c.boat.subtitle,
+  }));
+
+  return JSON.stringify({
+    original_boat: originalBoat.name,
+    date: dateStr,
+    start_time: startTime,
+    duration_hours: durationHours,
+    season,
+    total_alternatives: top3.length,
+    alternatives: top3,
+    message: top3.length > 0
+      ? `El ${originalBoat.name} no esta disponible, pero tenemos ${top3.length} alternativa${top3.length > 1 ? 's' : ''} similar${top3.length > 1 ? 'es' : ''}`
+      : `Lo siento, no hay alternativas similares disponibles el ${dateStr}. Contactanos al +34 611 500 372 para ayudarte.`,
+  });
+}
+
+// Hold expiry duration for WhatsApp-initiated bookings (30 minutes)
+const WHATSAPP_HOLD_MINUTES = 30;
+
+interface CreateBookingLinkParams {
+  boatId: string;
+  dateStr: string;
+  startTime: string;
+  durationHours: number;
+  customerName: string;
+  customerPhone: string;
+  customerEmail?: string;
+  numberOfPeople: number;
+}
+
+/**
+ * Create a booking hold and Stripe Checkout Session, returning a payment link.
+ * This closes the booking loop: customers can pay entirely from WhatsApp.
+ */
+async function createBookingLink(params: CreateBookingLinkParams): Promise<string> {
+  const {
+    boatId,
+    dateStr,
+    startTime,
+    durationHours,
+    customerName,
+    customerPhone,
+    customerEmail,
+    numberOfPeople,
+  } = params;
+
+  // 1. Validate boat exists in DB
+  const boat = await storage.getBoat(boatId);
+  if (!boat) {
+    return JSON.stringify({ success: false, error: "Barco no encontrado. Verifica el identificador del barco." });
+  }
+
+  // 2. Validate date is within operational season
+  const date = new Date(dateStr);
+  if (isNaN(date.getTime())) {
+    return JSON.stringify({ success: false, error: "Fecha invalida. Usa el formato YYYY-MM-DD." });
+  }
+
+  if (!isOperationalSeason(date)) {
+    return JSON.stringify({
+      success: false,
+      error: "Esa fecha esta fuera de temporada. Operamos de abril a octubre.",
+    });
+  }
+
+  // 3. Validate date is in the future
+  const now = new Date();
+  const bookingDay = new Date(dateStr);
+  bookingDay.setHours(0, 0, 0, 0);
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  if (bookingDay < today) {
+    return JSON.stringify({ success: false, error: "La fecha debe ser hoy o en el futuro." });
+  }
+
+  // 4. Validate duration
+  const durationKey = `${durationHours}h` as Duration;
+  if (!isValidDuration(durationKey)) {
+    return JSON.stringify({
+      success: false,
+      error: `Duracion ${durationHours}h no valida. Duraciones disponibles: 1h, 2h, 3h, 4h, 6h, 8h.`,
+    });
+  }
+
+  // 5. Validate number of people against boat capacity
+  if (numberOfPeople < 1) {
+    return JSON.stringify({ success: false, error: "El numero de personas debe ser al menos 1." });
+  }
+  if (numberOfPeople > boat.capacity) {
+    return JSON.stringify({
+      success: false,
+      error: `El ${boat.name} tiene capacidad maxima de ${boat.capacity} personas. Has indicado ${numberOfPeople}.`,
+    });
+  }
+
+  // 6. Parse start/end times
+  const timeMatch = startTime.match(/^(\d{1,2}):(\d{2})$/);
+  if (!timeMatch) {
+    return JSON.stringify({ success: false, error: "Hora de inicio invalida. Usa formato HH:MM." });
+  }
+  const [, startHourStr, startMinStr] = timeMatch;
+  const startHour = parseInt(startHourStr, 10);
+  const startMin = parseInt(startMinStr, 10);
+
+  const startDate = new Date(date);
+  startDate.setHours(startHour, startMin, 0, 0);
+  const endDate = new Date(startDate);
+  endDate.setHours(startDate.getHours() + durationHours);
+
+  // 7. Calculate pricing using the pricing engine
+  let pricing;
+  try {
+    pricing = calculatePricingBreakdown(boatId, date, durationKey);
+  } catch (pricingError: unknown) {
+    const msg = pricingError instanceof Error ? pricingError.message : String(pricingError);
+    logger.error("Pricing calculation failed for WhatsApp booking", { boatId, dateStr, durationKey, error: msg });
+    return JSON.stringify({
+      success: false,
+      error: `No se pudo calcular el precio: ${msg}`,
+    });
+  }
+
+  // 8. Atomically check availability and create hold booking
+  const expiresAt = new Date(now.getTime() + WHATSAPP_HOLD_MINUTES * 60 * 1000);
+
+  // Split customer name into first name / surname best-effort
+  const nameParts = customerName.trim().split(/\s+/);
+  const firstName = nameParts[0] || customerName;
+  const surname = nameParts.length > 1 ? nameParts.slice(1).join(" ") : "-";
+
+  const result = await storage.checkAvailabilityAndCreateBooking(
+    boatId,
+    startDate,
+    endDate,
+    {
+      boatId,
+      bookingDate: date,
+      startTime: startDate,
+      endTime: endDate,
+      customerName: firstName,
+      customerSurname: surname,
+      customerPhone,
+      customerEmail: customerEmail || null,
+      customerNationality: "N/A",
+      numberOfPeople,
+      totalHours: durationHours,
+      subtotal: pricing.basePrice.toString(),
+      extrasTotal: pricing.extrasPrice.toString(),
+      deposit: pricing.deposit.toString(),
+      totalAmount: pricing.total.toString(),
+      bookingStatus: "hold",
+      paymentStatus: "pending",
+      source: "whatsapp",
+      expiresAt,
+      language: "es",
+    },
+  );
+
+  if (!result.available) {
+    const endTimeStr = `${endDate.getHours()}:${String(endDate.getMinutes()).padStart(2, "0")}`;
+    return JSON.stringify({
+      success: false,
+      error: `Lo siento, el ${boat.name} ya no esta disponible el ${dateStr} de ${startTime} a ${endTimeStr}. Prueba con otro horario o fecha.`,
+    });
+  }
+
+  const booking = result.booking;
+
+  logger.info("WhatsApp booking hold created", {
+    bookingId: booking.id,
+    boatId,
+    dateStr,
+    startTime,
+    durationHours,
+    customerPhone,
+    totalAmount: pricing.total,
+  });
+
+  // 9. Create Stripe Checkout Session
+  // Service amount = subtotal (basePrice + extras). Deposit collected in cash at the port.
+  const serviceAmount = pricing.subtotal;
+  if (serviceAmount <= 0) {
+    return JSON.stringify({
+      success: false,
+      error: "Error interno: importe de pago invalido.",
+    });
+  }
+
+  const endTimeStr = `${endDate.getHours()}:${String(endDate.getMinutes()).padStart(2, "0")}`;
+  let paymentUrl: string | null = null;
+
+  try {
+    const stripeInstance = getStripe();
+
+    const session = await stripeInstance.checkout.sessions.create({
+      payment_method_types: ["card"],
+      line_items: [
+        {
+          price_data: {
+            currency: "eur",
+            product_data: {
+              name: `Reserva ${boat.name}`,
+              description: `${dateStr} | ${startTime}-${endTimeStr} (${durationHours}h) | ${numberOfPeople} pers.`,
+            },
+            unit_amount: Math.round(serviceAmount * 100),
+          },
+          quantity: 1,
+        },
+      ],
+      mode: "payment",
+      success_url: `${process.env.APP_URL || "https://costabravarentaboat.com"}/booking/success?session_id={CHECKOUT_SESSION_ID}&booking_id=${booking.id}`,
+      cancel_url: `${process.env.APP_URL || "https://costabravarentaboat.com"}/boats/${boatId}`,
+      metadata: {
+        bookingId: booking.id,
+        boatId,
+        customerPhone,
+        source: "whatsapp",
+      },
+      expires_at: Math.floor(expiresAt.getTime() / 1000),
+    });
+
+    paymentUrl = session.url;
+
+    // Store the Stripe session reference on the booking
+    await storage.updateBooking(booking.id, {
+      bookingStatus: "pending_payment",
+      stripePaymentIntentId: session.id,
+    });
+  } catch (stripeError: unknown) {
+    const msg = stripeError instanceof Error ? stripeError.message : String(stripeError);
+    logger.error("Stripe Checkout Session creation failed for WhatsApp booking", {
+      bookingId: booking.id,
+      error: msg,
+    });
+    return JSON.stringify({
+      success: false,
+      booking_created: true,
+      booking_id: booking.id,
+      error: "No se pudo generar el enlace de pago. Contacta con nosotros al +34 611 500 372 para completar la reserva.",
+    });
+  }
+
+  // 10. Return structured result for the AI to compose a natural message
+  const season = getSeason(date);
+
+  return JSON.stringify({
+    success: true,
+    booking_id: booking.id,
+    booking_summary: {
+      boat: boat.name,
+      date: dateStr,
+      time: `${startTime} - ${endTimeStr}`,
+      duration: `${durationHours}h`,
+      people: numberOfPeople,
+      price: `${pricing.subtotal}EUR`,
+      deposit: `${pricing.deposit}EUR (en efectivo en el puerto)`,
+      season: getSeasonDisplayName(season),
+    },
+    payment_url: paymentUrl,
+    expires_in: `${WHATSAPP_HOLD_MINUTES} minutos`,
+    message: `Reserva creada para el ${boat.name} el ${dateStr} de ${startTime} a ${endTimeStr}. Precio: ${pricing.subtotal}EUR. Deposito: ${pricing.deposit}EUR (en efectivo). Enlace de pago valido ${WHATSAPP_HOLD_MINUTES} minutos.`,
   });
 }
 

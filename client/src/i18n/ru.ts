@@ -355,6 +355,11 @@ export const ru: Translations = {
     backToHome: 'Вернуться на главную',
     gdprPrivacyLink: 'Политику конфиденциальности',
     gdprTermsLink: 'Общие условия',
+    stepExperience: 'Впечатление',
+    stepPersonalize: 'Персонализация',
+    stepPay: 'Оплата',
+    chooseBoatFirst: 'Выберите лодку, чтобы выбрать время',
+    chooseTimeFirst: 'Сначала выберите дату и лодку',
   },
   faq: {
     title: 'Часто Задаваемые Вопросы',

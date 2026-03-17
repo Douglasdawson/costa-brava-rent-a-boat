@@ -5,10 +5,11 @@ import { db } from "../db";
 import { aiChatSessions, aiChatMessages, knowledgeBase } from "@shared/schema";
 import { desc, sql, eq } from "drizzle-orm";
 import { logger } from "../lib/logger";
+import { requireAdminSession } from "../routes/auth-middleware";
 
 export function registerChatbotAnalyticsRoutes(app: Express): void {
   // Get chatbot analytics summary
-  app.get("/api/chatbot/analytics", async (req: Request, res: Response) => {
+  app.get("/api/chatbot/analytics", requireAdminSession, async (req: Request, res: Response) => {
     try {
       const analytics = await getChatAnalytics();
       const frequentIntents = await getFrequentIntents(10);
@@ -28,7 +29,7 @@ export function registerChatbotAnalyticsRoutes(app: Express): void {
   });
 
   // Get hot leads for CRM
-  app.get("/api/chatbot/leads", async (req: Request, res: Response) => {
+  app.get("/api/chatbot/leads", requireAdminSession, async (req: Request, res: Response) => {
     try {
       const limit = parseInt(req.query.limit as string) || 20;
       const quality = req.query.quality as string; // 'hot', 'warm', 'cold'
@@ -63,7 +64,7 @@ export function registerChatbotAnalyticsRoutes(app: Express): void {
   });
 
   // Get conversation history for a specific phone number
-  app.get("/api/chatbot/conversations/:phoneNumber", async (req: Request, res: Response) => {
+  app.get("/api/chatbot/conversations/:phoneNumber", requireAdminSession, async (req: Request, res: Response) => {
     try {
       const { phoneNumber } = req.params;
       const decodedPhone = decodeURIComponent(phoneNumber);
@@ -120,7 +121,7 @@ export function registerChatbotAnalyticsRoutes(app: Express): void {
   });
 
   // Get knowledge base entries
-  app.get("/api/chatbot/knowledge", async (req: Request, res: Response) => {
+  app.get("/api/chatbot/knowledge", requireAdminSession, async (req: Request, res: Response) => {
     try {
       const category = req.query.category as string;
       const language = (req.query.language as string) || "es";
@@ -158,7 +159,7 @@ export function registerChatbotAnalyticsRoutes(app: Express): void {
   });
 
   // Get recent conversations list
-  app.get("/api/chatbot/conversations", async (req: Request, res: Response) => {
+  app.get("/api/chatbot/conversations", requireAdminSession, async (req: Request, res: Response) => {
     try {
       const limit = parseInt(req.query.limit as string) || 50;
       

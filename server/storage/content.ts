@@ -9,8 +9,10 @@ import {
 
 // ===== TESTIMONIAL METHODS =====
 
-export async function getTestimonials(): Promise<Testimonial[]> {
-  return await db.select().from(testimonials).where(eq(testimonials.isVerified, true));
+export async function getTestimonials(tenantId?: string): Promise<Testimonial[]> {
+  const conditions = [eq(testimonials.isVerified, true)];
+  if (tenantId) conditions.push(eq(testimonials.tenantId, tenantId));
+  return await db.select().from(testimonials).where(and(...conditions));
 }
 
 export async function getTestimonialsByBoat(boatId: string): Promise<Testimonial[]> {
@@ -32,17 +34,22 @@ export async function createTestimonial(insertTestimonial: InsertTestimonial): P
 
 // ===== BLOG POST METHODS =====
 
-export async function getAllBlogPosts(): Promise<BlogPost[]> {
+export async function getAllBlogPosts(tenantId?: string): Promise<BlogPost[]> {
+  if (tenantId) {
+    return await db.select().from(blogPosts).where(eq(blogPosts.tenantId, tenantId));
+  }
   return await db.select().from(blogPosts);
 }
 
-export async function getPublishedBlogPosts(): Promise<BlogPost[]> {
+export async function getPublishedBlogPosts(tenantId?: string): Promise<BlogPost[]> {
+  const conditions = [
+    eq(blogPosts.isPublished, true),
+    lte(blogPosts.publishedAt, new Date()),
+  ];
+  if (tenantId) conditions.push(eq(blogPosts.tenantId, tenantId));
   return await db.select()
     .from(blogPosts)
-    .where(and(
-      eq(blogPosts.isPublished, true),
-      lte(blogPosts.publishedAt, new Date()),
-    ))
+    .where(and(...conditions))
     .orderBy(desc(blogPosts.publishedAt));
 }
 

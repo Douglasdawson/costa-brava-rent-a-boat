@@ -1,5 +1,6 @@
 // Pricing utility for Costa Brava Rent a Boat seasonal pricing system
 import { BOAT_DATA, EXTRA_PACKS, type BoatData } from './boatData';
+import { SEASON_START_MONTH, SEASON_END_MONTH } from './constants';
 
 export type Season = 'BAJA' | 'MEDIA' | 'ALTA';
 export type Duration = '1h' | '2h' | '3h' | '4h' | '6h' | '8h';
@@ -55,7 +56,7 @@ export function getSeason(date: Date): Season {
  */
 export function isOperationalSeason(date: Date): boolean {
   const month = date.getMonth() + 1;
-  return month >= 4 && month <= 10;
+  return month >= SEASON_START_MONTH && month <= SEASON_END_MONTH;
 }
 
 /**
@@ -302,6 +303,14 @@ export function priceFor(boatId: string, date: Date, duration: Duration): number
 }
 
 /**
+ * Apply a membership discount to a base price.
+ * Returns the discounted price, rounded to the nearest euro.
+ */
+export function applyMembershipDiscount(basePrice: number, discountPercent: number): number {
+  return Math.round(basePrice * (1 - discountPercent / 100));
+}
+
+/**
  * Validate if a duration is supported
  */
 export function isValidDuration(duration: string): duration is Duration {
@@ -315,8 +324,102 @@ export function isValidDuration(duration: string): duration is Duration {
 export function getSeasonDisplayName(season: Season): string {
   const seasonNames = {
     'BAJA': 'Temporada Baja',
-    'MEDIA': 'Temporada Media', 
+    'MEDIA': 'Temporada Media',
     'ALTA': 'Temporada Alta'
   };
   return seasonNames[season];
+}
+
+// ===== DYNAMIC PRICING ENGINE =====
+
+/** Configuration for demand-responsive price adjustments */
+export interface DynamicPricingConfig {
+  /** Occupancy rate (0-1) above which prices start increasing */
+  highDemandThreshold: number;
+  /** Occupancy rate (0-1) below which prices start decreasing */
+  lowDemandThreshold: number;
+  /** Maximum price increase factor (e.g., 0.25 = +25%) */
+  maxSurcharge: number;
+  /** Maximum price decrease factor (e.g., 0.25 = -25%) */
+  maxDiscount: number;
+}
+
+export const DEFAULT_DYNAMIC_PRICING_CONFIG: DynamicPricingConfig = {
+  highDemandThreshold: 0.75,
+  lowDemandThreshold: 0.30,
+  maxSurcharge: 0.25,
+  maxDiscount: 0.25,
+};
+
+/** Reason why a dynamic price adjustment was applied */
+export type DynamicPricingReason = 'high_demand' | 'low_demand' | 'normal';
+
+/** Result of a dynamic pricing calculation */
+export interface DynamicPricingResult {
+  /** The original base price before dynamic adjustment */
+  basePrice: number;
+  /** The final price after dynamic adjustment */
+  adjustedPrice: number;
+  /** Multiplicative factor applied (e.g., 1.15 means +15%) */
+  adjustmentFactor: number;
+  /** The occupancy rate used for this calculation */
+  occupancyRate: number;
+  /** Why the adjustment was applied */
+  reason: DynamicPricingReason;
+}
+
+/**
+ * Calculate a demand-responsive price on top of the static base price.
+ *
+ * Pure function: takes occupancyRate as input, does NOT query the database.
+ *
+ * Adjustment logic (linear interpolation):
+ * - occupancyRate >= highDemandThreshold:
+ *     surcharge grows linearly from 0% at threshold to maxSurcharge at 100%
+ * - occupancyRate <= lowDemandThreshold:
+ *     discount grows linearly from 0% at threshold to maxDiscount at 0%
+ * - Between thresholds: no adjustment (base price)
+ */
+export function calculateDynamicPrice(
+  boatId: string,
+  date: Date,
+  duration: Duration,
+  occupancyRate: number,
+  config: DynamicPricingConfig = DEFAULT_DYNAMIC_PRICING_CONFIG,
+): DynamicPricingResult {
+  // Clamp occupancy to valid range
+  const clampedOccupancy = Math.max(0, Math.min(1, occupancyRate));
+
+  const basePrice = calculateBasePrice(boatId, date, duration);
+
+  let adjustmentFactor = 1;
+  let reason: DynamicPricingReason = 'normal';
+
+  if (clampedOccupancy >= config.highDemandThreshold) {
+    // Linear interpolation: 0% surcharge at threshold, maxSurcharge at 100%
+    const range = 1 - config.highDemandThreshold;
+    const progress = range > 0
+      ? (clampedOccupancy - config.highDemandThreshold) / range
+      : 1;
+    adjustmentFactor = 1 + config.maxSurcharge * progress;
+    reason = 'high_demand';
+  } else if (clampedOccupancy <= config.lowDemandThreshold) {
+    // Linear interpolation: 0% discount at threshold, maxDiscount at 0%
+    const range = config.lowDemandThreshold;
+    const progress = range > 0
+      ? (config.lowDemandThreshold - clampedOccupancy) / range
+      : 1;
+    adjustmentFactor = 1 - config.maxDiscount * progress;
+    reason = 'low_demand';
+  }
+
+  const adjustedPrice = Math.round(basePrice * adjustmentFactor);
+
+  return {
+    basePrice,
+    adjustedPrice,
+    adjustmentFactor,
+    occupancyRate: clampedOccupancy,
+    reason,
+  };
 }

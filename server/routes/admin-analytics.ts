@@ -1,6 +1,8 @@
-import type { Express } from "express";
+import type { Express, Request } from "express";
 import { requireAdminSession } from "./auth";
 import { logger } from "../lib/logger";
+import { getYieldAnalytics } from "../storage/analytics";
+import type { AuthenticatedRequest } from "../types";
 import {
   getCachedAnalytics,
   syncAllAnalytics,
@@ -191,6 +193,31 @@ export function registerAnalyticsRoutes(app: Express) {
     } catch (error: unknown) {
       logger.error("[Analytics] Error during manual sync", { error: error instanceof Error ? error.message : String(error) });
       res.status(500).json({ message: "Error durante la sincronizacion" });
+    }
+  });
+
+  // Yield Management: revenue per boat hour
+  // GET /api/admin/analytics/yield?from=2026-04-01&to=2026-10-31
+  app.get("/api/admin/analytics/yield", requireAdminSession, async (req: Request, res) => {
+    try {
+      const from = req.query.from as string | undefined;
+      const to = req.query.to as string | undefined;
+      const tenantId = (req as AuthenticatedRequest).tenantId;
+
+      // Validate date format if provided
+      if (from && isNaN(Date.parse(from))) {
+        return res.status(400).json({ message: "Parametro 'from' no es una fecha valida (YYYY-MM-DD)" });
+      }
+      if (to && isNaN(Date.parse(to))) {
+        return res.status(400).json({ message: "Parametro 'to' no es una fecha valida (YYYY-MM-DD)" });
+      }
+
+      const data = await getYieldAnalytics(from, to, tenantId);
+      res.json(data);
+    } catch (error: unknown) {
+      const errMsg = error instanceof Error ? error.message : String(error);
+      logger.error("[Analytics] Error fetching yield data", { error: errMsg });
+      res.status(500).json({ message: "Error obteniendo datos de yield management" });
     }
   });
 }

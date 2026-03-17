@@ -4,6 +4,7 @@ import { requireAdminSession, requireAdminRole, requireTabAccess } from "./auth"
 import { getStripe } from "./payments";
 import { z } from "zod";
 import { logger } from "../lib/logger";
+import { validatePromoCode } from "../lib/discountValidation";
 
 function generateGiftCardCode(): string {
   const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
@@ -118,6 +119,7 @@ export function registerGiftCardRoutes(app: Express) {
   });
 
   // Validate a gift card code (public)
+  // Uses the shared validatePromoCode function as single source of truth
   app.post("/api/gift-cards/validate", async (req, res) => {
     try {
       const parsed = validateCodeSchema.safeParse(req.body);
@@ -125,25 +127,17 @@ export function registerGiftCardRoutes(app: Express) {
         return res.status(400).json({ message: "Codigo requerido" });
       }
 
-      const giftCard = await storage.getGiftCardByCode(parsed.data.code.toUpperCase().trim());
+      const result = await validatePromoCode(parsed.data.code);
+
+      // Only return gift card results from this endpoint (not discount codes)
+      if (!result.valid || result.type !== "gift_card") {
+        return res.status(404).json({ message: result.error || "Codigo de tarjeta regalo no valido", valid: false });
+      }
+
+      // Fetch full gift card details for the response (recipient info, expiry)
+      const giftCard = await storage.getGiftCardByCode(result.code!);
       if (!giftCard) {
         return res.status(404).json({ message: "Codigo de tarjeta regalo no valido", valid: false });
-      }
-
-      if (giftCard.status === "expired" || new Date() > giftCard.expiresAt) {
-        return res.json({ valid: false, message: "Esta tarjeta regalo ha expirado" });
-      }
-
-      if (giftCard.status === "used") {
-        return res.json({ valid: false, message: "Esta tarjeta regalo ya ha sido utilizada" });
-      }
-
-      if (giftCard.status === "cancelled") {
-        return res.json({ valid: false, message: "Esta tarjeta regalo ha sido cancelada" });
-      }
-
-      if (giftCard.paymentStatus !== "completed") {
-        return res.json({ valid: false, message: "Esta tarjeta regalo no esta activada" });
       }
 
       res.json({

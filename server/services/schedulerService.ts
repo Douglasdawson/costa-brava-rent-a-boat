@@ -5,8 +5,12 @@ import {
   sendThankYouEmail,
   sendNewsletterEmail,
 } from "./emailService";
+import { processAbandonedBookings } from "./abandonedBookingService";
 import { runAutopilotPipeline, publishNextDraft, getConfig } from "./blogAutopilot.js";
 import { syncAllAnalytics } from "./googleAnalyticsService";
+import { syncReviewRequests, sendReferralCodes, sendEarlyBirdOffers } from "./flywheelService";
+import { generateWeeklyInsights } from "./chatbotInsightsService";
+import { processLeadNurturing } from "./leadNurturingService";
 import type { Booking, Boat, BlogPost } from "@shared/schema";
 import { logger } from "../lib/logger";
 
@@ -280,6 +284,17 @@ export function startScheduler(): void {
     }
   }));
 
+  // Abandoned booking recovery: every 30 minutes at :15 and :45
+  // Sends recovery emails with 5% discount to cancelled/expired bookings
+  scheduledTasks.push(cron.schedule("15,45 * * * *", async () => {
+    try {
+      await processAbandonedBookings();
+    } catch (error: unknown) {
+      const msg = error instanceof Error ? error.message : "Unknown error";
+      logger.error("[Scheduler] Abandoned booking recovery error", { error: msg });
+    }
+  }));
+
   // Auto-complete confirmed bookings whose end time has passed (every hour at :45)
   // Runs after the thank-you job (:30) so thank-you emails are sent before status changes
   scheduledTasks.push(cron.schedule("45 * * * *", async () => {
@@ -354,7 +369,64 @@ export function startScheduler(): void {
     }
   }));
 
-  logger.info("Scheduled services started: reminders (:00), thank-you (:30), hold cleanup (every 5min), auto-complete (:45), blog autopilot (config), blog publish (Mon 9am), analytics sync (every 6h), newsletter (1st of month 10am)");
+  // ===== POST-RENTAL FLYWHEEL =====
+  // Three stages run hourly at :10 to avoid overlap with thank-you (:30) and reminders (:00)
+
+  // Flywheel step 1: Sync review request flags (+24h, piggybacks on thank-you email)
+  scheduledTasks.push(cron.schedule("10 * * * *", async () => {
+    try {
+      await syncReviewRequests();
+    } catch (error: unknown) {
+      const msg = error instanceof Error ? error.message : "Unknown error";
+      logger.error("[Scheduler] Flywheel review sync error", { error: msg });
+    }
+  }));
+
+  // Flywheel step 2: Send referral codes (+3 days after trip)
+  scheduledTasks.push(cron.schedule("10 * * * *", async () => {
+    try {
+      await sendReferralCodes();
+    } catch (error: unknown) {
+      const msg = error instanceof Error ? error.message : "Unknown error";
+      logger.error("[Scheduler] Flywheel referral error", { error: msg });
+    }
+  }));
+
+  // Flywheel step 3: Send early bird offers (+7 days after trip)
+  scheduledTasks.push(cron.schedule("10 * * * *", async () => {
+    try {
+      await sendEarlyBirdOffers();
+    } catch (error: unknown) {
+      const msg = error instanceof Error ? error.message : "Unknown error";
+      logger.error("[Scheduler] Flywheel early bird error", { error: msg });
+    }
+  }));
+
+  // ===== CHATBOT SELF-IMPROVEMENT =====
+  // Weekly insights report: every Monday at 06:00
+  scheduledTasks.push(cron.schedule("0 6 * * 1", async () => {
+    try {
+      logger.info("[Scheduler] Running chatbot weekly insights");
+      await generateWeeklyInsights();
+    } catch (error: unknown) {
+      const msg = error instanceof Error ? error.message : "Unknown error";
+      logger.error("[Scheduler] Chatbot insights error", { error: msg });
+    }
+  }));
+
+  // ===== LEAD NURTURING =====
+  // Process chatbot leads every 2 hours at :20 (avoids overlap with other jobs)
+  scheduledTasks.push(cron.schedule("20 */2 * * *", async () => {
+    try {
+      logger.info("[Scheduler] Running lead nurturing");
+      await processLeadNurturing();
+    } catch (error: unknown) {
+      const msg = error instanceof Error ? error.message : "Unknown error";
+      logger.error("[Scheduler] Lead nurturing error", { error: msg });
+    }
+  }));
+
+  logger.info("Scheduled services started: reminders (:00), flywheel (:10), thank-you (:30), hold cleanup (every 5min), abandoned recovery (:15/:45), auto-complete (:45), blog autopilot (config), blog publish (Mon 9am), analytics sync (every 6h), newsletter (1st of month 10am), chatbot insights (Mon 6am), lead nurturing (every 2h at :20)");
 }
 
 /**

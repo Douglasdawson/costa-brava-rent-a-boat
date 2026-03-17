@@ -4,11 +4,8 @@ import { useLocation } from "wouter";
 import { useBookingFlowState } from "./useBookingFlowState";
 import { useBookingFlowActions } from "./useBookingFlowActions";
 import { BookingProgressIndicator } from "./BookingProgressIndicator";
-import { BookingStepDate } from "./BookingStepDate";
-import { BookingStepBoat } from "./BookingStepBoat";
-import { BookingStepTime } from "./BookingStepTime";
-import { BookingStepExtras } from "./BookingStepExtras";
-import { BookingStepCustomer } from "./BookingStepCustomer";
+import { BookingStepExperience } from "./BookingStepExperience";
+import { BookingStepPersonalize } from "./BookingStepPersonalize";
 import { BookingStepPayment } from "./BookingStepPayment";
 import type { BookingFlowProps } from "./types";
 
@@ -22,7 +19,7 @@ export default function BookingFlow(props: BookingFlowProps) {
 
   return (
     <div className="min-h-screen bg-primary/5 py-4 sm:py-8">
-      <div className="container mx-auto px-4 max-w-2xl">
+      <div className="container mx-auto px-4 max-w-4xl">
         {/* Back to home button */}
         <div className="mb-4">
           <Button
@@ -41,28 +38,14 @@ export default function BookingFlow(props: BookingFlowProps) {
         {/* min-height prevents CLS when switching between steps */}
         <div className="min-h-[420px]" aria-live="polite" aria-atomic="false">
         {step === 1 && (
-          <BookingStepDate
+          <BookingStepExperience
             selectedDate={state.selectedDate}
             setSelectedDate={state.setSelectedDate}
-            setStep={setStep}
-            t={t}
-          />
-        )}
-
-        {step === 2 && (
-          <BookingStepBoat
             availableBoats={state.availableBoats}
             selectedBoat={state.selectedBoat}
             setSelectedBoat={state.setSelectedBoat}
             licenseFilter={state.licenseFilter}
             setLicenseFilter={state.setLicenseFilter}
-            setStep={setStep}
-            t={t}
-          />
-        )}
-
-        {step === 3 && (
-          <BookingStepTime
             timeSlots={state.timeSlots}
             selectedTime={state.selectedTime}
             setSelectedTime={state.setSelectedTime}
@@ -70,23 +53,15 @@ export default function BookingFlow(props: BookingFlowProps) {
             setDuration={state.setDuration}
             getAvailableDurations={state.getAvailableDurations}
             setStep={setStep}
-            selectedDate={state.selectedDate}
             t={t}
           />
         )}
 
-        {step === 4 && (
-          <BookingStepExtras
+        {step === 2 && (
+          <BookingStepPersonalize
             availableExtras={state.availableExtras}
             extras={state.extras}
             updateExtra={state.updateExtra}
-            setStep={setStep}
-            t={t}
-          />
-        )}
-
-        {step === 5 && (
-          <BookingStepCustomer
             customerData={state.customerData}
             setCustomerData={state.setCustomerData}
             maxCapacity={state.maxCapacity}
@@ -105,7 +80,7 @@ export default function BookingFlow(props: BookingFlowProps) {
           />
         )}
 
-        {step === 6 && (
+        {step === 3 && (
           <BookingStepPayment
             selectedDate={state.selectedDate}
             selectedTime={state.selectedTime}
@@ -118,6 +93,7 @@ export default function BookingFlow(props: BookingFlowProps) {
             extras={state.extras}
             availableExtras={state.availableExtras}
             isLoading={state.isLoading}
+            isProcessingPayment={state.isProcessingPayment}
             calculateTotal={state.calculateTotal}
             createQuote={createQuote}
             handlePayment={handlePayment}
@@ -154,4 +130,3 @@ export default function BookingFlow(props: BookingFlowProps) {
     </div>
   );
 }
-

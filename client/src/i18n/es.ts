@@ -366,6 +366,11 @@ export const es: Translations = {
     errorGeneric: 'Ha ocurrido un error inesperado',
     errorPayment: 'Error al procesar el pago',
     backToHome: 'Volver al inicio',
+    stepExperience: 'Experiencia',
+    stepPersonalize: 'Personaliza',
+    stepPay: 'Pago',
+    chooseBoatFirst: 'Selecciona un barco para elegir horario',
+    chooseTimeFirst: 'Selecciona fecha y barco primero',
   },
   faq: {
     title: 'Preguntas Frecuentes',

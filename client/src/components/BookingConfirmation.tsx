@@ -96,7 +96,7 @@ export function BookingConfirmation({
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4" onClick={onClose}>
       <div
-        className="bg-background rounded-2xl shadow-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto relative pb-safe"
+        className="bg-background rounded-2xl shadow-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto relative pb-safe confirm-enter"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close button */}

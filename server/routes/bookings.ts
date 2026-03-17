@@ -1,9 +1,15 @@
 import type { Express } from "express";
 import { z } from "zod";
 import { storage } from "../storage";
+import { db } from "../db";
+import { bookings } from "@shared/schema";
+import { eq } from "drizzle-orm";
 import { requireAdminSession } from "./auth";
 import { sendCancelationEmail } from "../services";
+import { getStripe } from "./payments";
 import { logger } from "../lib/logger";
+import { validatePromoCode, calculateDiscountAmount } from "../lib/discountValidation";
+import { OPERATING_START_HOUR, OPERATING_END_HOUR } from "@shared/constants";
 
 const isoDateString = z
   .string()
@@ -16,6 +22,7 @@ const quoteSchema = z.object({
   endTime: isoDateString,
   numberOfPeople: z.number().int().min(1, "Minimo 1 persona").max(20, "Maximo 20 personas"),
   extras: z.array(z.string().max(64)).max(10).optional(),
+  discountCode: z.string().max(30).optional(),
 });
 
 const paymentStatusSchema = z.object({
@@ -126,6 +133,70 @@ export function registerBookingRoutes(app: Express) {
 
       const { booking, refundAmount, refundPercentage } = result;
 
+      // Process Stripe refund if applicable
+      if (refundAmount > 0 && booking.stripePaymentIntentId) {
+        // Skip mock payment intents (dev/test) — they have no real Stripe charge
+        const isMockPayment = booking.stripePaymentIntentId.startsWith("pi_mock_");
+
+        if (!isMockPayment) {
+          try {
+            const stripeInstance = getStripe();
+
+            // The deposit is collected in cash, so cap the Stripe refund
+            // at whatever was actually charged online (total minus deposit)
+            const depositAmount = parseFloat(booking.deposit || "0");
+            const maxStripeRefundable = parseFloat(booking.totalAmount) - depositAmount;
+            const stripeRefundAmount = Math.min(refundAmount, maxStripeRefundable);
+
+            if (stripeRefundAmount > 0) {
+              await db.update(bookings)
+                .set({ refundStatus: "processing" })
+                .where(eq(bookings.id, booking.id));
+
+              const refund = await stripeInstance.refunds.create({
+                payment_intent: booking.stripePaymentIntentId,
+                amount: Math.round(stripeRefundAmount * 100),
+                reason: "requested_by_customer",
+              });
+
+              await db.update(bookings)
+                .set({ refundStatus: "completed", paymentStatus: "refunded" })
+                .where(eq(bookings.id, booking.id));
+
+              logger.info("Stripe refund issued for cancelled booking", {
+                bookingId: booking.id,
+                refundId: refund.id,
+                refundAmount: stripeRefundAmount,
+              });
+            } else {
+              // Refund amount doesn't exceed deposit — nothing to refund via Stripe
+              await db.update(bookings)
+                .set({ refundStatus: "completed" })
+                .where(eq(bookings.id, booking.id));
+            }
+          } catch (stripeError: unknown) {
+            const errorMsg = stripeError instanceof Error ? stripeError.message : String(stripeError);
+            logger.error("Stripe refund failed for cancelled booking", {
+              bookingId: booking.id,
+              paymentIntentId: booking.stripePaymentIntentId,
+              refundAmount,
+              error: errorMsg,
+            });
+
+            // Mark as failed so admin can retry manually via the admin refund endpoint
+            await db.update(bookings)
+              .set({ refundStatus: "failed" })
+              .where(eq(bookings.id, booking.id))
+              .catch(() => {});
+          }
+        } else {
+          // Mock payment — mark refund as completed immediately
+          await db.update(bookings)
+            .set({ refundStatus: "completed" })
+            .where(eq(bookings.id, booking.id));
+        }
+      }
+
       // Fire-and-forget email (don't block response)
       sendCancelationEmail({ booking, refundAmount, refundPercentage }).catch((err: unknown) => {
         logger.error("[Bookings] Error sending cancelation email", { error: err instanceof Error ? err.message : String(err) });
@@ -173,7 +244,7 @@ export function registerBookingRoutes(app: Express) {
         });
       }
 
-      const { boatId, startTime, endTime, numberOfPeople, extras } = parsed.data;
+      const { boatId, startTime, endTime, numberOfPeople, extras, discountCode } = parsed.data;
 
       const start = new Date(startTime);
       const end = new Date(endTime);
@@ -186,19 +257,19 @@ export function registerBookingRoutes(app: Express) {
         });
       }
 
-      // Validate operating hours 09:00-20:00 Spain time
+      // Validate operating hours (Spain time)
       const startHour = getMadridHour(start);
       const endHour = getMadridHour(end);
-      if (startHour < 9) {
+      if (startHour < OPERATING_START_HOUR) {
         return res.status(400).json({
-          message: "El horario de salida mínimo es las 09:00 (hora de España)",
+          message: `El horario de salida mínimo es las ${String(OPERATING_START_HOUR).padStart(2, "0")}:00 (hora de España)`,
           available: false,
           reason: "before_opening",
         });
       }
-      if (endHour > 20 || (endHour === 20 && end.getMinutes() > 0)) {
+      if (endHour > OPERATING_END_HOUR || (endHour === OPERATING_END_HOUR && end.getMinutes() > 0)) {
         return res.status(400).json({
-          message: "El horario máximo de regreso es las 20:00 (hora de España)",
+          message: `El horario máximo de regreso es las ${String(OPERATING_END_HOUR).padStart(2, "0")}:00 (hora de España)`,
           available: false,
           reason: "after_closing",
         });
@@ -257,6 +328,45 @@ export function registerBookingRoutes(app: Express) {
 
       const pricingBreakdown = calculatePricingBreakdown(boatId, start, duration, extras || []);
 
+      // Server-side discount/gift card validation
+      let discountInfo: {
+        type: "discount" | "gift_card";
+        code: string;
+        discountPercent?: number;
+        giftCardAmount?: number;
+        discountAmount: number;
+      } | null = null;
+
+      if (discountCode) {
+        const promo = await validatePromoCode(discountCode);
+        if (!promo.valid) {
+          return res.status(400).json({
+            available: false,
+            reason: "invalid_discount_code",
+            message: promo.error || "Codigo de descuento no valido",
+          });
+        }
+
+        const discountAmount = calculateDiscountAmount(
+          promo,
+          pricingBreakdown.basePrice,
+          pricingBreakdown.total,
+        );
+
+        discountInfo = {
+          type: promo.type!,
+          code: promo.code!,
+          discountPercent: promo.discountPercent,
+          giftCardAmount: promo.remainingAmount,
+          discountAmount,
+        };
+      }
+
+      // Apply discount to total if validated
+      const finalTotal = discountInfo
+        ? Math.max(0, pricingBreakdown.total - discountInfo.discountAmount)
+        : pricingBreakdown.total;
+
       const expiresAt = new Date(Date.now() + 30 * 60 * 1000);
       const sessionId =
         (req.headers["x-session-id"] as string) ||
@@ -277,7 +387,8 @@ export function registerBookingRoutes(app: Express) {
         subtotal: pricingBreakdown.basePrice.toString(),
         extrasTotal: pricingBreakdown.extrasPrice.toString(),
         deposit: pricingBreakdown.deposit.toString(),
-        totalAmount: pricingBreakdown.total.toString(),
+        totalAmount: finalTotal.toString(),
+        couponCode: discountInfo?.code || null,
         bookingStatus: "hold",
         paymentStatus: "pending",
         sessionId,
@@ -313,6 +424,17 @@ export function registerBookingRoutes(app: Express) {
           totalHours,
           numberOfPeople,
           ...pricingBreakdown,
+          // Override total with discount-adjusted amount
+          total: finalTotal,
+          ...(discountInfo ? {
+            discount: {
+              type: discountInfo.type,
+              code: discountInfo.code,
+              discountPercent: discountInfo.discountPercent,
+              giftCardAmount: discountInfo.giftCardAmount,
+              discountAmount: discountInfo.discountAmount,
+            },
+          } : {}),
         },
         hold: {
           id: holdBooking.id,

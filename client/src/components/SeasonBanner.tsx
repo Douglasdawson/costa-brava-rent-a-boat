@@ -181,17 +181,26 @@ export function SeasonBanner() {
           0% { transform: translateX(-100%); }
           100% { transform: translateX(100%); }
         }
-        @keyframes seasonPulse {
-          0%, 100% { box-shadow: 0 0 0 0 rgba(168, 196, 221, 0.4); }
-          50% { box-shadow: 0 0 20px 6px rgba(168, 196, 221, 0.25); }
-        }
         @keyframes countdownPop {
           0% { transform: scale(1); }
           50% { transform: scale(1.08); }
           100% { transform: scale(1); }
         }
         .season-cta-btn {
+          position: relative;
+        }
+        .season-cta-btn::after {
+          content: "";
+          position: absolute;
+          inset: 0;
+          border-radius: inherit;
+          border: 2px solid rgba(168, 196, 221, 0.4);
           animation: seasonPulse 2.5s ease-in-out infinite;
+          pointer-events: none;
+        }
+        @keyframes seasonPulse {
+          0%, 100% { transform: scale(1); opacity: 1; }
+          50% { transform: scale(1.12); opacity: 0; }
         }
         .season-cta-btn:hover {
           animation: none;

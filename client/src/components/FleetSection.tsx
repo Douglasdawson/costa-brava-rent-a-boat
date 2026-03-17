@@ -263,9 +263,10 @@ function FleetSection() {
         imageAlt: `Alquiler barco ${boat.name} ${boat.requiresLicense ? "con licencia" : "sin licencia"} en Blanes Costa Brava 2026 - Capacidad ${boat.capacity} personas`,
         capacity: boat.capacity,
         requiresLicense: boat.requiresLicense,
-        description: boat.description
-          ? (boat.description.length > 150 ? boat.description.substring(0, 150) + "..." : boat.description)
-          : '',
+        description: (() => {
+          const desc = t.boatDescriptions?.[boat.id] || boat.description || '';
+          return desc.length > 150 ? desc.substring(0, 150) + "..." : desc;
+        })(),
         basePrice,
         // Only pass high season price when we're NOT in high season
         highSeasonPrice: currentSeason !== 'ALTA' ? highSeasonPrice : undefined,
@@ -273,7 +274,7 @@ function FleetSection() {
         available: true,
         enginePower: enginePower
       };
-    }), [boatsData, currentSeason]);
+    }), [boatsData, currentSeason, t]);
 
   // Dynamic group size options based on max boat capacity
   const groupSizeOptions = useMemo(() => {

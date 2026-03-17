@@ -488,6 +488,15 @@ export const en: Translations = {
     title: 'Suggested Routes',
     subtitle: 'Discover the best boat routes from Blanes Port',
     bookBoat: 'Book a boat',
+    introText: 'From Blanes Port, the gateway to the Costa Brava, you have direct access to some of the most spectacular coastal routes in the Mediterranean. Each route is designed for different experience levels and durations, from 1-hour getaways to full-day excursions. Explore our',
+    introFleetLink: 'available boats',
+    introSuffix: 'to find the perfect boat for your route.',
+    lloretTitle: 'Lloret de Mar by boat',
+    lloretDesc: 'Golden beaches, hidden coves and nightlife. Just 20 min by boat from Blanes.',
+    tossaTitle: 'Tossa de Mar by boat',
+    tossaDesc: 'The medieval Vila Vella, stunning cliffs and the most unspoilt coves on the Costa Brava.',
+    pricesTitle: 'Prices and rates',
+    pricesDesc: 'Check seasonal prices for all our boats. From €70/hour without licence.',
   },
   giftCardBanner: {
     title: 'Give a unique experience on the sea',
@@ -1259,5 +1268,17 @@ export const en: Translations = {
     checkWhatsApp: "Check availability via WhatsApp",
     viewBoatDetails: "View boat details",
     stepOf: "of",
+  },
+
+  boatDescriptions: {
+    "solar-450": "Designed for sun lovers. Its cushioned solarium is the largest in the entire no-licence fleet: anchor in a turquoise cove near Blanes and relax like nowhere else. No licence needed — we teach you to drive in 15 minutes. Fuel, insurance and safety equipment included.",
+    "remus-450": "The most rented boat in Blanes and the top choice for couples and families with children. Its Bi Mini canopy covers the whole boat to protect the little ones from the sun, and its stability makes it ideal for first-timers at sea. Perfect for 2-5 people looking for a peaceful day in crystal-clear coves. We teach you to handle it in 15 minutes. Fuel, insurance and safety equipment included.",
+    "remus-450-ii": "Same model as our most popular boat, with guaranteed availability even in peak August. Ideal when the Remus 450 is already booked: enjoy the same comfort, stability and Bi Mini canopy that families on the Costa Brava love. Fuel, insurance and safety equipment included.",
+    "astec-400": "The most affordable option for couples and families who want to enjoy the sea without overspending. With 2-4 passengers, the price per person is the lowest in the entire fleet. Stable, easy to handle and with a Bi Mini canopy to protect the little ones. Anchor in quiet coves near Blanes — no boating licence required. Fuel, insurance and safety equipment included.",
+    "astec-480": "The premium no-licence experience. At 4.80 m, with Bluetooth speakers, a cushioned solarium and double fuel tank, it's the most complete no-licence boat in Blanes. Sail to the most beautiful Costa Brava coves with your favourite music. Fuel, insurance and safety equipment included.",
+    "trimarchi-57s": "The ideal speedboat to explore the full coastline: Lloret de Mar in 15 minutes, Tossa de Mar in half an hour. With 80 hp, GPS and depth sounder, you'll reach coves other boats can't. Freshwater shower, Bluetooth and stainless-steel arch for water sports. All the gear to cruise the Costa Brava with total freedom. Boating licence required (ICC/Day Skipper).",
+    "mingolla-brava-19": "110 hp of Italian design for groups of up to 7 who want equal parts adrenaline and comfort. Double bow and stern solariums for sunbathing, a central table for lunch anchored in a cove, and the power to reach any spot between Blanes and Tossa de Mar in minutes. The boat for those who want speed without giving anything up. Boating licence required (ICC/Day Skipper).",
+    "pacific-craft-625": "The best rental in Blanes. 6.24 m, 115 hp Yamaha engine and luxury space for 7. Double solarium, dining table for meals at anchor, freshwater shower and electronic controls. For those who want no compromises and seek the most complete boating experience on the Costa Brava. Boating licence required (ICC/Day Skipper).",
+    "excursion-privada": "You just enjoy — our professional skipper takes you to secret coves, sea caves and spots inaccessible on foot between Blanes and Tossa de Mar. You'll anchor in the perfect cove of the day, chosen by wind and currents. Ideal for celebrations, anniversaries or families who want an exclusive private excursion on the Costa Brava with zero worries.",
   },
 };

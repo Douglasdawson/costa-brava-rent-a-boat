@@ -215,7 +215,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
   const adaptedBoatData = {
     id: boatId,
     name: boatData.name,
-    description: boatData.description,
+    description: t.boatDescriptions?.[boatId] || boatData.description,
     image: absoluteImages[0],
     brand: "Costa Brava Rent a Boat",
     power: parseInt(boatData.specifications?.engine?.match(/\d+/)?.[0] || "15"),
@@ -532,7 +532,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
             </CardHeader>
             <CardContent>
               <p className="text-foreground/80 leading-relaxed">
-                {boatData.description}
+                {t.boatDescriptions?.[boatId] || boatData.description}
               </p>
               {!requiresLicense && (
                 <div className="mt-4 p-4 bg-primary/5 rounded-lg">

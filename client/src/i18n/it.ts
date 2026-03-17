@@ -488,6 +488,15 @@ export const it: Translations = {
     title: 'Percorsi Suggeriti',
     subtitle: 'Scopri i migliori percorsi in barca dal Porto di Blanes',
     bookBoat: 'Prenota barca',
+    introText: 'Dal Porto di Blanes, la porta d\'ingresso alla Costa Brava, avete accesso diretto ad alcuni dei percorsi costieri piu spettacolari del Mediterraneo. Ogni percorso e pensato per diversi livelli di esperienza e durate, dalle fughe di 1 ora alle escursioni di un\'intera giornata. Esplorate le nostre',
+    introFleetLink: 'imbarcazioni disponibili',
+    introSuffix: 'per trovare la barca perfetta per il vostro percorso.',
+    lloretTitle: 'Lloret de Mar in barca',
+    lloretDesc: 'Spiagge dorate, cale nascoste e vita notturna. A soli 20 min in barca da Blanes.',
+    tossaTitle: 'Tossa de Mar in barca',
+    tossaDesc: 'La Vila Vella medievale, scogliere impressionanti e le cale piu incontaminate della Costa Brava.',
+    pricesTitle: 'Prezzi e tariffe',
+    pricesDesc: 'Consultate i prezzi stagionali di tutte le nostre barche. Da 70€/ora senza patente.',
   },
   giftCardBanner: {
     title: 'Regala un\'esperienza unica in mare',
@@ -1259,5 +1268,17 @@ export const it: Translations = {
     checkWhatsApp: "Verifica disponibilita via WhatsApp",
     viewBoatDetails: "Vedi dettagli della barca",
     stepOf: "di",
+  },
+
+  boatDescriptions: {
+    "solar-450": "Pensata per chi ama prendere il sole in mare. Il suo solarium imbottito e il piu ampio di tutta la flotta senza patente: ancorate in una cala dalle acque turchesi vicino a Blanes e rilassatevi come in nessun altro posto. Nessuna patente nautica necessaria — vi insegniamo a guidarla in 15 minuti. Carburante, assicurazione e dotazioni di sicurezza inclusi.",
+    "remus-450": "La barca piu noleggiata di Blanes e la prima scelta di coppie e famiglie con bambini. Il suo tendalino Bi Mini copre tutta l'imbarcazione per proteggere i piccoli dal sole, e la sua stabilita la rende ideale per chi va in mare per la prima volta. Perfetta per 2-5 persone in cerca di una giornata tranquilla in cale dalle acque cristalline. Vi insegniamo a manovrarla in 15 minuti. Carburante, assicurazione e dotazioni di sicurezza inclusi.",
+    "remus-450-ii": "Stesso modello della nostra barca piu popolare, con disponibilita garantita anche in pieno agosto. Ideale quando la Remus 450 e gia prenotata: godete dello stesso comfort, della stessa stabilita e del tendalino Bi Mini tanto apprezzato dalle famiglie in Costa Brava. Carburante, assicurazione e dotazioni di sicurezza inclusi.",
+    "astec-400": "L'opzione piu economica per coppie e famiglie che vogliono godersi il mare senza spendere troppo. Con 2-4 passeggeri, il prezzo a persona e il piu basso di tutta la flotta. Stabile, facile da manovrare e con tendalino Bi Mini per proteggere i piccoli. Ancorate in cale tranquille vicino a Blanes senza bisogno di patente nautica. Carburante, assicurazione e dotazioni di sicurezza inclusi.",
+    "astec-480": "L'esperienza premium senza patente nautica. Con 4,80 m, casse Bluetooth, solarium imbottito e doppio serbatoio, e la barca senza patente piu completa di Blanes. Navigate verso le cale piu belle della Costa Brava con la vostra musica preferita. Carburante, assicurazione e dotazioni di sicurezza inclusi.",
+    "trimarchi-57s": "Il motoscafo ideale per esplorare tutta la costa: Lloret de Mar in 15 minuti, Tossa de Mar in mezz'ora. Con 80 cv, GPS e ecoscandaglio, raggiungerete cale che altre barche non possono. Doccia d'acqua dolce, Bluetooth e arco in acciaio inox per sport acquatici. Tutto il necessario per percorrere la Costa Brava in totale liberta. Patente nautica richiesta (patente entro 12 miglia).",
+    "mingolla-brava-19": "110 cv di design italiano per gruppi fino a 7 persone che vogliono adrenalina e comfort in parti uguali. Doppio solarium a prua e poppa per prendere il sole, tavolo centrale per pranzare all'ancora in una cala e la potenza per raggiungere qualsiasi angolo tra Blanes e Tossa de Mar in pochi minuti. La barca di chi vuole velocita senza rinunciare a nulla. Patente nautica richiesta (patente entro 12 miglia).",
+    "pacific-craft-625": "Il meglio che si possa noleggiare a Blanes. 6,24 metri, motore Yamaha 115 cv e spazio di lusso per 7 persone. Doppio solarium, tavolo per pranzare all'ancora, doccia d'acqua dolce e comandi elettronici. Per chi non vuole compromessi e cerca l'esperienza nautica piu completa della Costa Brava. Patente nautica richiesta (patente entro 12 miglia).",
+    "excursion-privada": "Voi vi godete il mare — il nostro skipper professionista vi porta in cale segrete, grotte marine e angoli inaccessibili a piedi tra Blanes e Tossa de Mar. Getterete l'ancora nella cala perfetta del giorno, scelta in base a vento e correnti. Ideale per celebrazioni, anniversari o famiglie che desiderano un'escursione privata esclusiva in Costa Brava senza pensieri.",
   },
 };

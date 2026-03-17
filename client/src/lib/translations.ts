@@ -547,6 +547,15 @@ export interface Translations {
     title: string;
     subtitle: string;
     bookBoat: string;
+    introText: string;
+    introFleetLink: string;
+    introSuffix: string;
+    lloretTitle: string;
+    lloretDesc: string;
+    tossaTitle: string;
+    tossaDesc: string;
+    pricesTitle: string;
+    pricesDesc: string;
   };
 
   // Gift Card Banner (homepage)
@@ -1300,6 +1309,9 @@ export interface Translations {
     viewBoatDetails: string;
     stepOf: string;
   };
+
+  // Boat descriptions (keyed by boat ID)
+  boatDescriptions?: Record<string, string>;
 }
 export const translations: Record<Language, Translations> = { es, ca, en, fr, de, nl, it, ru };
 

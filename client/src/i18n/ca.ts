@@ -488,6 +488,15 @@ export const ca: Translations = {
     title: 'Rutes Suggerides',
     subtitle: 'Descobreix les millors rutes en barca des del Port de Blanes',
     bookBoat: 'Reservar barca',
+    introText: 'Des del Port de Blanes, la porta d\'entrada a la Costa Brava, tens acces directe a algunes de les rutes costaneres mes espectaculars de la Mediterrania. Cada ruta esta pensada per a diferents nivells d\'experiencia i duracions, des d\'escapades d\'1 hora fins a excursions de dia complet. Explora les nostres',
+    introFleetLink: 'embarcacions disponibles',
+    introSuffix: 'per trobar la barca perfecta per a la teva ruta.',
+    lloretTitle: 'Lloret de Mar en barca',
+    lloretDesc: 'Platges daurades, cales amagades i vida nocturna. A nomes 20 min en barca des de Blanes.',
+    tossaTitle: 'Tossa de Mar en barca',
+    tossaDesc: 'La Vila Vella medieval, penya-segats impressionants i les cales mes verges de la Costa Brava.',
+    pricesTitle: 'Preus i tarifes',
+    pricesDesc: 'Consulta els preus per temporada de totes les nostres embarcacions. Des de 70€/hora sense llicencia.',
   },
   giftCardBanner: {
     title: 'Regala una experiència única al mar',
@@ -1258,5 +1267,17 @@ export const ca: Translations = {
     checkWhatsApp: "Consultar disponibilitat per WhatsApp",
     viewBoatDetails: "Veure detalls del vaixell",
     stepOf: "de",
+  },
+
+  boatDescriptions: {
+    "solar-450": "Pensada per als qui volen prendre el sol al mar. El seu solarium encoixinat es el mes ampli de tota la flota sense llicencia: fondeja en una cala d'aigues turqueses prop de Blanes i relaxa't com en cap altre lloc. Sense carnet necessari, t'ensenyem a manejar-la en 15 minuts. Gasolina, asseguranca i equip de seguretat inclosos.",
+    "remus-450": "El vaixell mes llogat de Blanes i la primera opcio de parelles i families amb nens. El seu tendal Bi Mini cobreix tota l'embarcacio per protegir els petits del sol, i la seva estabilitat la fa ideal si es la vostra primera vegada al mar. Perfecte per a 2-5 persones que busquen una jornada tranquil·la en cales d'aigua cristal·lina. T'ensenyem a manejar-lo en 15 minuts. Gasolina, asseguranca i equip de seguretat inclosos.",
+    "remus-450-ii": "Mateix model que el nostre vaixell mes popular, amb disponibilitat garantida fins i tot a l'agost. Ideal si la Remus 450 ja esta reservada: gaudeix del mateix confort, la mateixa estabilitat i el tendal Bi Mini que tant valoren les families a la Costa Brava. Gasolina, asseguranca i equip de seguretat inclosos.",
+    "astec-400": "L'opcio mes economica per a parelles i families que volen gaudir del mar sense gastar de mes. En ser 2-4 persones, el preu per persona es el mes baix de tota la flota. Estable, facil de manejar i amb tendal Bi Mini per protegir els petits del sol. Fondeja en cales tranquil·les prop de Blanes sense necessitat de carnet nautic. Gasolina, asseguranca i equip de seguretat inclosos.",
+    "astec-480": "L'experiencia premium sense necessitat de carnet nautic. Amb 4,80 m d'eslora, equip de musica bluetooth, solarium encoixinat i el doble de diposit de combustible, es l'embarcacio sense llicencia mes completa de Blanes. Navega amb la teva musica preferida cap a les cales mes boniques de la Costa Brava. Gasolina, asseguranca i equip de seguretat inclosos.",
+    "trimarchi-57s": "La llanxa ideal per explorar tota la costa: Lloret de Mar en 15 minuts, Tossa de Mar en mitja hora. Amb 80 cv, GPS i sonda nautica, arribes a cales que altres vaixells no assoleixen. Dutxa d'aigua dolca, bluetooth i arc d'acer inoxidable per a esports aquatics. Tot l'equipament per recorrer la Costa Brava amb total autonomia. Requereix llicencia nautica (PER/PNB).",
+    "mingolla-brava-19": "110 cv de disseny italia per a grups de fins a 7 persones que volen adrenalina i confort a parts iguals. Solarium doble a proa i popa per prendre el sol, taula central per dinar fondejats en una cala i la potencia per arribar a qualsevol raco entre Blanes i Tossa de Mar en minuts. L'embarcacio que tria qui vol sentir la velocitat sense renunciar a res. Requereix llicencia nautica (PER/PNB).",
+    "pacific-craft-625": "El millor que pots llogar a Blanes. 6,24 metres d'eslora, motor Yamaha 115 cv i espai de luxe per a 7 persones. Solarium doble, taula per dinar fondejats davant d'una cala, dutxa d'aigua dolca i comandament electronic. Per als qui no volen compromisos i busquen l'experiencia nautica mes completa de la Costa Brava. Requereix llicencia nautica (PER/PNB).",
+    "excursion-privada": "Tu nomes gaudeixes: el nostre patro professional et porta a cales secretes, coves marines i racons inaccessibles a peu entre Blanes i Tossa de Mar. Fondejareu a la cala perfecta del dia, escollida segons vent i corrents. Ideal per a celebracions, aniversaris o families que volen una excursio privada exclusiva per la Costa Brava sense preocupar-se de res.",
   },
 };

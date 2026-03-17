@@ -488,6 +488,15 @@ export const nl: Translations = {
     title: 'Voorgestelde Routes',
     subtitle: 'Ontdek de beste bootroutes vanuit de haven van Blanes',
     bookBoat: 'Boot boeken',
+    introText: 'Vanuit de haven van Blanes, de poort naar de Costa Brava, heeft u directe toegang tot enkele van de meest spectaculaire kustroutes van de Middellandse Zee. Elke route is ontworpen voor verschillende ervaringsniveaus en duur, van uitstapjes van 1 uur tot dagexcursies. Ontdek onze',
+    introFleetLink: 'beschikbare boten',
+    introSuffix: 'om de perfecte boot voor uw route te vinden.',
+    lloretTitle: 'Lloret de Mar per boot',
+    lloretDesc: 'Gouden stranden, verborgen baaien en nachtleven. Slechts 20 min per boot vanuit Blanes.',
+    tossaTitle: 'Tossa de Mar per boot',
+    tossaDesc: 'De middeleeuwse Vila Vella, indrukwekkende kliffen en de meest ongerepte baaien van de Costa Brava.',
+    pricesTitle: 'Prijzen en tarieven',
+    pricesDesc: 'Bekijk de seizoensprijzen van al onze boten. Vanaf €70/uur zonder vaarbewijs.',
   },
   giftCardBanner: {
     title: 'Geef een unieke ervaring op zee',
@@ -1258,5 +1267,17 @@ export const nl: Translations = {
     checkWhatsApp: "Beschikbaarheid controleren via WhatsApp",
     viewBoatDetails: "Bekijk bootdetails",
     stepOf: "van",
+  },
+
+  boatDescriptions: {
+    "solar-450": "Ontworpen voor zonliefhebbers. Het gewatteerde solarium is het grootste van de hele vaarbewijsvrije vloot: anker in een turquoise baai bij Blanes en ontspan als nergens anders. Geen vaarbewijs nodig — wij leren u in 15 minuten hoe u vaart. Brandstof, verzekering en veiligheidsuitrusting inbegrepen.",
+    "remus-450": "De meest gehuurde boot in Blanes en de eerste keuze voor koppels en gezinnen met kinderen. De Bi Mini kap bedekt de hele boot om de kleintjes tegen de zon te beschermen, en de stabiliteit maakt het ideaal voor beginners op zee. Perfect voor 2-5 personen die op zoek zijn naar een rustige dag in kristalheldere baaien. Wij leren u in 15 minuten hoe u het bestuurt. Brandstof, verzekering en veiligheidsuitrusting inbegrepen.",
+    "remus-450-ii": "Zelfde model als onze populairste boot, met gegarandeerde beschikbaarheid zelfs in het hoogseizoen augustus. Ideaal wanneer de Remus 450 al geboekt is: geniet van hetzelfde comfort, dezelfde stabiliteit en de Bi Mini kap waar gezinnen aan de Costa Brava zo van houden. Brandstof, verzekering en veiligheidsuitrusting inbegrepen.",
+    "astec-400": "De voordeligste optie voor koppels en gezinnen die van de zee willen genieten zonder te veel uit te geven. Met 2-4 passagiers is de prijs per persoon de laagste van de hele vloot. Stabiel, makkelijk te besturen en met Bi Mini kap om de kleintjes te beschermen. Anker in rustige baaien bij Blanes — geen vaarbewijs nodig. Brandstof, verzekering en veiligheidsuitrusting inbegrepen.",
+    "astec-480": "De premium ervaring zonder vaarbewijs. Met 4,80 m, Bluetooth speakers, gewatteerd solarium en dubbele brandstoftank is het de meest complete vaarbewijsvrije boot in Blanes. Vaar met uw favoriete muziek naar de mooiste baaien van de Costa Brava. Brandstof, verzekering en veiligheidsuitrusting inbegrepen.",
+    "trimarchi-57s": "De ideale speedboot om de hele kust te verkennen: Lloret de Mar in 15 minuten, Tossa de Mar in een half uur. Met 80 pk, GPS en dieptemeter bereikt u baaien die andere boten niet halen. Zoetwaterdouche, Bluetooth en RVS beugel voor watersport. Alle uitrusting om de Costa Brava in totale vrijheid te verkennen. Vaarbewijs vereist (ICC).",
+    "mingolla-brava-19": "110 pk Italiaans design voor groepen tot 7 personen die evenveel adrenaline als comfort willen. Dubbel solarium op voor- en achtersteven om te zonnen, een centrale tafel voor de lunch voor anker in een baai en het vermogen om elk plekje tussen Blanes en Tossa de Mar in minuten te bereiken. De boot voor wie snelheid wil zonder iets op te geven. Vaarbewijs vereist (ICC).",
+    "pacific-craft-625": "Het beste wat u in Blanes kunt huren. 6,24 m, Yamaha 115 pk motor en luxe ruimte voor 7. Dubbel solarium, eettafel voor maaltijden voor anker, zoetwaterdouche en elektronische bediening. Voor wie geen compromissen wil en de meest complete vaarervaring van de Costa Brava zoekt. Vaarbewijs vereist (ICC).",
+    "excursion-privada": "U geniet gewoon — onze professionele schipper brengt u naar geheime baaien, zeegrootten en plekken die te voet onbereikbaar zijn tussen Blanes en Tossa de Mar. U ankert in de perfecte baai van de dag, gekozen op basis van wind en stroming. Ideaal voor feesten, jubilea of gezinnen die een exclusief prive-uitje aan de Costa Brava willen zonder zorgen.",
   },
 };

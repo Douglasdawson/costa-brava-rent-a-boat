@@ -499,6 +499,15 @@ export const es: Translations = {
     title: 'Rutas Sugeridas',
     subtitle: 'Descubre las mejores rutas en barco desde el Puerto de Blanes',
     bookBoat: 'Reservar barco',
+    introText: 'Desde el Puerto de Blanes, la puerta de entrada a la Costa Brava, tienes acceso directo a algunas de las rutas costeras mas espectaculares del Mediterraneo. Cada ruta esta pensada para diferentes niveles de experiencia y duraciones, desde escapadas de 1 hora hasta excursiones de dia completo. Explora nuestras',
+    introFleetLink: 'embarcaciones disponibles',
+    introSuffix: 'para encontrar el barco perfecto para tu ruta.',
+    lloretTitle: 'Lloret de Mar en barco',
+    lloretDesc: 'Playas doradas, calas escondidas y vida nocturna. A solo 20 min en barco desde Blanes.',
+    tossaTitle: 'Tossa de Mar en barco',
+    tossaDesc: 'La Vila Vella medieval, acantilados impresionantes y las calas mas virgenes de la Costa Brava.',
+    pricesTitle: 'Precios y tarifas',
+    pricesDesc: 'Consulta los precios por temporada de todos nuestros barcos. Desde 70€/hora sin licencia.',
   },
   giftCardBanner: {
     title: 'Regala una experiencia única en el mar',
@@ -1270,5 +1279,17 @@ export const es: Translations = {
     checkWhatsApp: "Consultar disponibilidad por WhatsApp",
     viewBoatDetails: "Ver detalles del barco",
     stepOf: "de",
+  },
+
+  boatDescriptions: {
+    "solar-450": "El barco pensado para quienes quieren tomar el sol en el mar. Su solárium acolchado es el más amplio de toda la flota sin licencia: fondea en una cala de agua turquesa cerca de Blanes y relájate como en ningún otro sitio. Sin carnet necesario, te enseñamos a manejarla en 15 minutos. Gasolina, seguro y equipo de seguridad incluidos.",
+    "remus-450": "El barco más alquilado de Blanes y la primera elección de parejas y familias con niños. Su toldo Bi Mini cubre toda la embarcación para proteger a los peques del sol, y su estabilidad la hace ideal si es vuestra primera vez en el mar. Perfecto para 2-5 personas que buscan una jornada tranquila en calas de agua cristalina. Te enseñamos a manejarlo en 15 minutos. Gasolina, seguro y equipo de seguridad incluidos.",
+    "remus-450-ii": "Mismo modelo que nuestro barco más popular, con disponibilidad garantizada incluso en pleno agosto. Ideal si la Remus 450 ya está reservada: disfrutas del mismo confort, la misma estabilidad y el toldo Bi Mini que tanto valoran las familias en la Costa Brava. Gasolina, seguro y equipo de seguridad incluidos.",
+    "astec-400": "La opción más económica para parejas y familias que quieren disfrutar del mar sin gastar de más. Al ser 2-4 personas, el precio por persona es el más bajo de toda la flota. Estable, fácil de manejar y con toldo Bi Mini para proteger a los peques del sol. Fondea en calas tranquilas cerca de Blanes sin necesidad de carnet náutico. Gasolina, seguro y equipo de seguridad incluidos.",
+    "astec-480": "La experiencia premium sin necesidad de carnet náutico. Con 4,80m de eslora, equipo de música bluetooth, solárium acolchado y el doble de depósito de combustible, es la embarcación sin licencia más completa de Blanes. Navega con tu música favorita hacia las calas más bonitas de la Costa Brava. Gasolina, seguro y equipo de seguridad incluidos.",
+    "trimarchi-57s": "La lancha ideal para explorar toda la costa: Lloret de Mar en 15 minutos, Tossa de Mar en media hora. Con 80cv, GPS y sonda náutica, llegas a calas que otros barcos no alcanzan. Ducha de agua dulce, bluetooth y arco inox para deportes acuáticos. Todo el equipamiento para recorrer la Costa Brava con total autonomía. Requiere licencia náutica (PER/PNB).",
+    "mingolla-brava-19": "110cv de diseño italiano para grupos de hasta 7 personas que quieren adrenalina y confort a partes iguales. Solárium doble en proa y popa para tomar el sol, mesa central para comer fondeados en una cala y la potencia para llegar a cualquier rincón entre Blanes y Tossa de Mar en minutos. La embarcación que elige quien quiere sentir la velocidad sin renunciar a nada. Requiere licencia náutica (PER/PNB).",
+    "pacific-craft-625": "Lo mejor que puedes alquilar en Blanes. 6,24 metros de eslora, motor Yamaha 115cv y espacio de lujo para 7 personas. Solárium doble, mesa para comer fondeados frente a una cala, ducha de agua dulce y mando electrónico. Para quienes no quieren compromisos y buscan la experiencia náutica más completa de la Costa Brava. Requiere licencia náutica (PER/PNB).",
+    "excursion-privada": "Tú solo disfrutas: nuestro patrón profesional te lleva a calas secretas, cuevas marinas y rincones inaccesibles a pie entre Blanes y Tossa de Mar. Fondearéis en la cala perfecta del día, elegida según viento y corrientes. Ideal para celebraciones, aniversarios o familias que quieren una excursión privada exclusiva por la Costa Brava sin preocuparse de nada.",
   },
 };

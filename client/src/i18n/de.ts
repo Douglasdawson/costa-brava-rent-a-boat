@@ -488,6 +488,15 @@ export const de: Translations = {
     title: 'Vorgeschlagene Routen',
     subtitle: 'Entdecken Sie die besten Bootsrouten ab dem Hafen von Blanes',
     bookBoat: 'Boot buchen',
+    introText: 'Vom Hafen von Blanes, dem Tor zur Costa Brava, haben Sie direkten Zugang zu einigen der spektakularsten Kustenrouten des Mittelmeers. Jede Route ist fur verschiedene Erfahrungsstufen und Dauern konzipiert, von 1-stundigen Ausflügen bis zu Ganztagesexkursionen. Entdecken Sie unsere',
+    introFleetLink: 'verfügbaren Boote',
+    introSuffix: 'um das perfekte Boot fur Ihre Route zu finden.',
+    lloretTitle: 'Lloret de Mar per Boot',
+    lloretDesc: 'Goldene Strande, versteckte Buchten und Nachtleben. Nur 20 Min. per Boot ab Blanes.',
+    tossaTitle: 'Tossa de Mar per Boot',
+    tossaDesc: 'Die mittelalterliche Vila Vella, beeindruckende Klippen und die unberuhrtesten Buchten der Costa Brava.',
+    pricesTitle: 'Preise und Tarife',
+    pricesDesc: 'Saisonpreise fur alle unsere Boote. Ab 70€/Stunde ohne Fuhrerschein.',
   },
   giftCardBanner: {
     title: 'Verschenken Sie ein einzigartiges Erlebnis auf dem Meer',
@@ -1259,5 +1268,17 @@ export const de: Translations = {
     checkWhatsApp: "Verfugbarkeit per WhatsApp prufen",
     viewBoatDetails: "Bootdetails anzeigen",
     stepOf: "von",
+  },
+
+  boatDescriptions: {
+    "solar-450": "Fur Sonnenliebhaber gemacht. Sein gepolstertes Solarium ist das grosste der gesamten fuhrerscheinfreien Flotte: Ankern Sie in einer turkisfarbenen Bucht nahe Blanes und entspannen Sie wie nirgendwo sonst. Kein Bootsfuhrerschein notig — wir zeigen Ihnen in 15 Minuten, wie es geht. Treibstoff, Versicherung und Sicherheitsausrustung inklusive.",
+    "remus-450": "Das meistgemietete Boot in Blanes und die erste Wahl fur Paare und Familien mit Kindern. Sein Bi-Mini-Verdeck bedeckt das gesamte Boot und schutzt die Kleinen vor der Sonne. Seine Stabilitat macht es ideal fur Erstfahrer auf dem Meer. Perfekt fur 2-5 Personen, die einen ruhigen Tag in kristallklaren Buchten suchen. Wir zeigen Ihnen in 15 Minuten, wie man es steuert. Treibstoff, Versicherung und Sicherheitsausrustung inklusive.",
+    "remus-450-ii": "Gleiches Modell wie unser beliebtestes Boot, mit garantierter Verfugbarkeit selbst im Hochsommer August. Ideal, wenn die Remus 450 bereits gebucht ist: Geniessen Sie denselben Komfort, dieselbe Stabilitat und das Bi-Mini-Verdeck, das Familien an der Costa Brava so schatzen. Treibstoff, Versicherung und Sicherheitsausrustung inklusive.",
+    "astec-400": "Die gunstigste Option fur Paare und Familien, die das Meer geniessen mochten, ohne zu viel auszugeben. Bei 2-4 Passagieren ist der Preis pro Person der niedrigste der gesamten Flotte. Stabil, leicht zu handhaben und mit Bi-Mini-Verdeck zum Schutz der Kleinen. Ankern Sie in ruhigen Buchten nahe Blanes — kein Bootsfuhrerschein erforderlich. Treibstoff, Versicherung und Sicherheitsausrustung inklusive.",
+    "astec-480": "Das Premium-Erlebnis ohne Fuhrerschein. Mit 4,80 m, Bluetooth-Lautsprechern, gepolstertem Solarium und doppeltem Kraftstofftank ist es das kompletteste fuhrerscheinfreie Boot in Blanes. Segeln Sie mit Ihrer Lieblingsmusik zu den schonsten Buchten der Costa Brava. Treibstoff, Versicherung und Sicherheitsausrustung inklusive.",
+    "trimarchi-57s": "Das ideale Motorboot, um die gesamte Kuste zu erkunden: Lloret de Mar in 15 Minuten, Tossa de Mar in einer halben Stunde. Mit 80 PS, GPS und Echolot erreichen Sie Buchten, die andere Boote nicht erreichen. Susswasserdusche, Bluetooth und Edelstahlbugel fur Wassersport. Alles, um die Costa Brava in voller Freiheit zu erkunden. Bootsfuhrerschein erforderlich (SBF See).",
+    "mingolla-brava-19": "110 PS italienisches Design fur Gruppen bis 7 Personen, die gleichermassen Adrenalin und Komfort suchen. Doppeltes Solarium an Bug und Heck zum Sonnenbaden, ein Tisch in der Mitte zum Mittagessen vor Anker in einer Bucht und die Power, jeden Winkel zwischen Blanes und Tossa de Mar in Minuten zu erreichen. Das Boot fur alle, die Geschwindigkeit wollen, ohne auf etwas zu verzichten. Bootsfuhrerschein erforderlich (SBF See).",
+    "pacific-craft-625": "Das beste Mietboot in Blanes. 6,24 m, Yamaha 115 PS und luxurioser Platz fur 7. Doppeltes Solarium, Tisch fur Mahlzeiten vor Anker, Susswasserdusche und elektronische Steuerung. Fur alle, die keine Kompromisse eingehen und das kompletteste Bootserlebnis an der Costa Brava suchen. Bootsfuhrerschein erforderlich (SBF See).",
+    "excursion-privada": "Sie geniessen einfach — unser professioneller Skipper bringt Sie zu geheimen Buchten, Meereshohlen und zu Fuss unzuganglichen Orten zwischen Blanes und Tossa de Mar. Sie ankern in der perfekten Bucht des Tages, ausgewahlt nach Wind und Stromungen. Ideal fur Feiern, Jubilaen oder Familien, die einen exklusiven Privatausflug an der Costa Brava ganz ohne Sorgen erleben mochten.",
   },
 };

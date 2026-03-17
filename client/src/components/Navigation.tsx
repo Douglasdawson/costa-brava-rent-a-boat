@@ -144,7 +144,7 @@ export default function Navigation() {
   const navigationItems = [
     { label: t.nav.home, href: "/" },
     { label: t.nav.fleet, href: "#fleet" },
-    { label: "Destinos", href: "/rutas" },
+    { label: t.nav.destinations, href: "/rutas" },
     { label: "Blog", href: "/blog" },
   ];
 

@@ -488,6 +488,15 @@ export const fr: Translations = {
     title: 'Itinéraires Suggérés',
     subtitle: 'Découvrez les meilleures routes en bateau depuis le port de Blanes',
     bookBoat: 'Réserver un bateau',
+    introText: 'Depuis le port de Blanes, porte d\'entree de la Costa Brava, vous avez un acces direct a certains des itineraires cotiers les plus spectaculaires de la Mediterranee. Chaque itineraire est concu pour differents niveaux d\'experience et durees, des escapades d\'1 heure aux excursions a la journee. Explorez nos',
+    introFleetLink: 'bateaux disponibles',
+    introSuffix: 'pour trouver le bateau parfait pour votre itineraire.',
+    lloretTitle: 'Lloret de Mar en bateau',
+    lloretDesc: 'Plages dorees, criques cachees et vie nocturne. A seulement 20 min en bateau depuis Blanes.',
+    tossaTitle: 'Tossa de Mar en bateau',
+    tossaDesc: 'La Vila Vella medievale, des falaises impressionnantes et les criques les plus sauvages de la Costa Brava.',
+    pricesTitle: 'Prix et tarifs',
+    pricesDesc: 'Consultez les prix par saison de tous nos bateaux. A partir de 70€/heure sans permis.',
   },
   giftCardBanner: {
     title: 'Offrez une expérience unique en mer',
@@ -1259,5 +1268,17 @@ export const fr: Translations = {
     checkWhatsApp: "Verifier la disponibilite par WhatsApp",
     viewBoatDetails: "Voir les details du bateau",
     stepOf: "de",
+  },
+
+  boatDescriptions: {
+    "solar-450": "Concu pour les amoureux du soleil. Son solarium rembourre est le plus grand de toute la flotte sans permis : mouillez dans une crique aux eaux turquoise pres de Blanes et detendez-vous comme nulle part ailleurs. Aucun permis necessaire — nous vous apprenons a le piloter en 15 minutes. Carburant, assurance et equipement de securite inclus.",
+    "remus-450": "Le bateau le plus loue de Blanes et le premier choix des couples et familles avec enfants. Son auvent Bi Mini couvre tout le bateau pour proteger les petits du soleil, et sa stabilite le rend ideal pour une premiere sortie en mer. Parfait pour 2 a 5 personnes a la recherche d'une journee tranquille dans des criques aux eaux cristallines. Nous vous apprenons a le manoeuvrer en 15 minutes. Carburant, assurance et equipement de securite inclus.",
+    "remus-450-ii": "Meme modele que notre bateau le plus populaire, avec disponibilite garantie meme en plein mois d'aout. Ideal quand le Remus 450 est deja reserve : profitez du meme confort, de la meme stabilite et de l'auvent Bi Mini tant apprecie des familles sur la Costa Brava. Carburant, assurance et equipement de securite inclus.",
+    "astec-400": "L'option la plus economique pour les couples et familles qui veulent profiter de la mer sans trop depenser. A 2-4 passagers, le prix par personne est le plus bas de toute la flotte. Stable, facile a manoeuvrer et avec un auvent Bi Mini pour proteger les petits. Mouillez dans des criques calmes pres de Blanes — aucun permis bateau necessaire. Carburant, assurance et equipement de securite inclus.",
+    "astec-480": "L'experience premium sans permis. Avec 4,80 m, haut-parleurs Bluetooth, solarium rembourre et double reservoir, c'est le bateau sans permis le plus complet de Blanes. Naviguez vers les plus belles criques de la Costa Brava avec votre musique preferee. Carburant, assurance et equipement de securite inclus.",
+    "trimarchi-57s": "Le hors-bord ideal pour explorer toute la cote : Lloret de Mar en 15 minutes, Tossa de Mar en une demi-heure. Avec 80 cv, GPS et sondeur, vous atteindrez des criques inaccessibles aux autres bateaux. Douche d'eau douce, Bluetooth et arceau inox pour les sports nautiques. Tout l'equipement pour parcourir la Costa Brava en toute liberte. Permis bateau requis (permis cotier).",
+    "mingolla-brava-19": "110 cv de design italien pour des groupes jusqu'a 7 personnes qui veulent adrenaline et confort a parts egales. Double solarium a la proue et a la poupe, table centrale pour dejeuner au mouillage dans une crique et la puissance pour atteindre n'importe quel recoin entre Blanes et Tossa de Mar en minutes. Le bateau de ceux qui veulent de la vitesse sans rien sacrifier. Permis bateau requis (permis cotier).",
+    "pacific-craft-625": "Le meilleur bateau a louer a Blanes. 6,24 m, moteur Yamaha 115 cv et espace de luxe pour 7 personnes. Double solarium, table pour dejeuner au mouillage, douche d'eau douce et commandes electroniques. Pour ceux qui ne veulent aucun compromis et recherchent l'experience nautique la plus complete de la Costa Brava. Permis bateau requis (permis cotier).",
+    "excursion-privada": "Vous n'avez qu'a profiter : notre skipper professionnel vous emmene vers des criques secretes, des grottes marines et des recoins inaccessibles a pied entre Blanes et Tossa de Mar. Vous mouillerez dans la crique parfaite du jour, choisie selon le vent et les courants. Ideal pour les celebrations, anniversaires ou familles qui souhaitent une excursion privee exclusive sur la Costa Brava sans aucun souci.",
   },
 };

@@ -57,15 +57,15 @@ const NotFound = lazy(() => import("@/pages/not-found"));
 const OnboardingPage = lazy(() => import("@/pages/OnboardingPage"));
 const AccessibilityDeclarationPage = lazy(() => import("@/pages/accessibility-declaration"));
 
-import WhatsAppFloatingButton from "./components/WhatsAppFloatingButton";
 import { ScrollToTop } from "./components/ScrollToTop";
-import CookieBanner from "./components/CookieBanner";
-import { ExitIntentModal } from "./components/ExitIntentModal";
-import { SocialProofToast } from "./components/SocialProofToast";
-import { SeasonBanner } from "./components/SeasonBanner";
 import { RouteProgressBar } from "./components/RouteProgressBar";
 import { usePrefetchCriticalRoutes } from "@/hooks/usePrefetch";
-import { initWebVitals } from "@/utils/web-vitals";
+// Defer non-critical UI: these components are not needed for FCP/LCP
+const WhatsAppFloatingButton = lazy(() => import("./components/WhatsAppFloatingButton"));
+const CookieBanner = lazy(() => import("./components/CookieBanner"));
+const ExitIntentModal = lazy(() => import("./components/ExitIntentModal").then(m => ({ default: m.ExitIntentModal })));
+const SocialProofToast = lazy(() => import("./components/SocialProofToast").then(m => ({ default: m.SocialProofToast })));
+const SeasonBanner = lazy(() => import("./components/SeasonBanner").then(m => ({ default: m.SeasonBanner })));
 
 // HomePageSEO lazy-loaded: seo-config.ts (100KB) deferred from main bundle
 const HomePageSEO = lazy(() => import("@/components/HomePageSEO"));
@@ -112,28 +112,28 @@ function HomePage() {
       <Navigation />
       <main id="main-content">
         <Hero />
-        <Suspense fallback={<div className="min-h-[400px]" />}>
+        <Suspense fallback={<div className="min-h-[400px] below-fold" />}>
           <FleetSection />
         </Suspense>
-        <Suspense fallback={<div className="min-h-[400px]" />}>
+        <Suspense fallback={<div className="min-h-[400px] below-fold" />}>
           <NeverSailedSection />
         </Suspense>
-        <Suspense fallback={<div className="min-h-[400px]" />}>
+        <Suspense fallback={<div className="min-h-[400px] below-fold" />}>
           <GiftCardBanner />
         </Suspense>
-        <Suspense fallback={<div className="min-h-[400px]" />}>
+        <Suspense fallback={<div className="min-h-[400px] below-fold" />}>
           <LicenseComparisonSection />
         </Suspense>
-        <Suspense fallback={<div className="min-h-[400px]" />}>
+        <Suspense fallback={<div className="min-h-[400px] below-fold" />}>
           <ReviewsSection />
         </Suspense>
-        <Suspense fallback={<div className="min-h-[400px]" />}>
+        <Suspense fallback={<div className="min-h-[400px] below-fold" />}>
           <FeaturesSection />
         </Suspense>
-        <Suspense fallback={<div className="min-h-[400px]" />}>
+        <Suspense fallback={<div className="min-h-[400px] below-fold" />}>
           <FAQPreview />
         </Suspense>
-        <Suspense fallback={<div className="min-h-[400px]" />}>
+        <Suspense fallback={<div className="min-h-[400px] below-fold" />}>
           <ContactSection />
         </Suspense>
       </main>
@@ -402,21 +402,20 @@ function Router() {
 
 function App() {
   useEffect(() => {
-    initWebVitals();
+    // Defer web vitals + Meta Pixel to idle time — not needed for FCP/LCP
+    const initDeferred = () => {
+      import("./utils/web-vitals").then(({ initWebVitals }) => initWebVitals());
 
-    // Initialize Meta Pixel if configured (pixel ID injected via meta tag)
-    // Deferred via requestIdleCallback to avoid blocking LCP
-    const metaPixelId = document.querySelector('meta[name="fb-pixel-id"]')?.getAttribute("content");
-    if (metaPixelId) {
-      const loadPixel = () => {
+      const metaPixelId = document.querySelector('meta[name="fb-pixel-id"]')?.getAttribute("content");
+      if (metaPixelId) {
         import("./utils/meta-pixel").then(({ initMetaPixel }) => initMetaPixel(metaPixelId));
-      };
-
-      if ("requestIdleCallback" in window) {
-        (window as unknown as { requestIdleCallback: (cb: () => void, opts?: { timeout: number }) => number }).requestIdleCallback(loadPixel, { timeout: 5000 });
-      } else {
-        setTimeout(loadPixel, 3000);
       }
+    };
+
+    if ("requestIdleCallback" in window) {
+      (window as unknown as { requestIdleCallback: (cb: () => void, opts?: { timeout: number }) => number }).requestIdleCallback(initDeferred, { timeout: 5000 });
+    } else {
+      setTimeout(initDeferred, 3000);
     }
   }, []);
 
@@ -428,13 +427,16 @@ function App() {
             <TooltipProvider>
               <Toaster />
               <RouteProgressBar />
-              <SeasonBanner />
               <Router />
-              <WhatsAppFloatingButton />
               <ScrollToTop />
-              <CookieBanner />
-              <ExitIntentModal />
-              <SocialProofToast />
+              {/* Non-critical overlays: lazy-loaded post-FCP */}
+              <Suspense fallback={null}>
+                <SeasonBanner />
+                <WhatsAppFloatingButton />
+                <CookieBanner />
+                <ExitIntentModal />
+                <SocialProofToast />
+              </Suspense>
             </TooltipProvider>
           </BookingModalProvider>
         </LanguageProvider>

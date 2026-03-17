@@ -545,10 +545,11 @@ body {
   }
 }
 
-/* Below-fold sections: skip rendering until near viewport */
+/* Below-fold sections: skip style/layout/paint until near viewport */
 .below-fold {
   content-visibility: auto;
   contain-intrinsic-size: auto 500px;
+  contain: layout style paint;
 }
 
 /* Reduced motion — disable animations for users with vestibular disorders */

@@ -155,24 +155,29 @@ function ReviewsSection() {
     return (sum / allReviews.length).toFixed(1);
   }, [allReviews]);
 
-  // Scroll state tracking
+  // Scroll state tracking — batched reads in rAF to avoid forced reflow
+  const scrollRafRef = useRef(0);
   const updateScrollState = useCallback(() => {
-    const el = scrollRef.current;
-    if (!el) return;
-    const tolerance = 4;
-    setCanScrollLeft(el.scrollLeft > tolerance);
-    setCanScrollRight(
-      el.scrollLeft + el.clientWidth < el.scrollWidth - tolerance
-    );
-    // Calculate active dot based on scroll progress
-    const maxScroll = el.scrollWidth - el.clientWidth;
-    if (maxScroll <= 0) {
-      setActiveIndex(0);
-      return;
-    }
-    const progress = el.scrollLeft / maxScroll;
-    const dotCount = Math.min(displayReviews.length, 6);
-    setActiveIndex(Math.min(Math.round(progress * (dotCount - 1)), dotCount - 1));
+    if (scrollRafRef.current) return;
+    scrollRafRef.current = requestAnimationFrame(() => {
+      scrollRafRef.current = 0;
+      const el = scrollRef.current;
+      if (!el) return;
+      // Batch all geometric reads together (single layout pass)
+      const { scrollLeft, clientWidth, scrollWidth } = el;
+      const tolerance = 4;
+      const maxScroll = scrollWidth - clientWidth;
+      // Batch all state writes together (React batches these automatically)
+      setCanScrollLeft(scrollLeft > tolerance);
+      setCanScrollRight(scrollLeft + clientWidth < scrollWidth - tolerance);
+      if (maxScroll <= 0) {
+        setActiveIndex(0);
+      } else {
+        const progress = scrollLeft / maxScroll;
+        const dotCount = Math.min(displayReviews.length, 6);
+        setActiveIndex(Math.min(Math.round(progress * (dotCount - 1)), dotCount - 1));
+      }
+    });
   }, [displayReviews.length]);
 
   useEffect(() => {
@@ -182,6 +187,7 @@ function ReviewsSection() {
     el.addEventListener("scroll", updateScrollState, { passive: true });
     window.addEventListener("resize", updateScrollState);
     return () => {
+      cancelAnimationFrame(scrollRafRef.current);
       el.removeEventListener("scroll", updateScrollState);
       window.removeEventListener("resize", updateScrollState);
     };

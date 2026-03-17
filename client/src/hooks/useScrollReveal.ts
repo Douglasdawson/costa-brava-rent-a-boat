@@ -26,12 +26,9 @@ export function useScrollReveal(threshold = 0.1) {
 
     observer.observe(node);
 
-    // Safety net: if the element is already near the viewport, reveal it
-    const rect = node.getBoundingClientRect();
-    if (rect.top < window.innerHeight + 200) {
-      setIsVisible(true);
-      observer.unobserve(node);
-    }
+    // The IntersectionObserver callback fires asynchronously (no forced reflow).
+    // No need for a synchronous getBoundingClientRect safety net —
+    // the rootMargin: 100px already handles near-viewport elements.
 
     return () => observer.disconnect();
   }, [threshold]);

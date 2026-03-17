@@ -47,7 +47,11 @@ const CurvedLoop: FC<CurvedLoopProps> = ({
   const ready = spacing > 0;
 
   useEffect(() => {
-    if (measureRef.current) setSpacing(measureRef.current.getComputedTextLength());
+    if (!measureRef.current) return;
+    // Defer text measurement to next frame to avoid forced reflow during mount
+    requestAnimationFrame(() => {
+      if (measureRef.current) setSpacing(measureRef.current.getComputedTextLength());
+    });
   }, [text, className]);
 
   useEffect(() => {

@@ -388,6 +388,11 @@ export default function BlogDetailPage() {
   const t = useTranslations();
   const bd = t.blogDetail!;
   const [, setLocation] = useLocation();
+
+  // Scroll to top on route change
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [slug]);
   const articleRef = useRef<HTMLElement>(null);
   const scrollMilestonesRef = useRef<Set<25 | 50 | 75 | 100>>(new Set());
 

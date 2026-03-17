@@ -1,5 +1,5 @@
 import express, { type Express } from "express";
-import fs from "fs";
+import fs, { existsSync } from "fs";
 import path from "path";
 import { createServer as createViteServer, createLogger } from "vite";
 import { type Server } from "http";
@@ -70,6 +70,24 @@ export async function setupVite(app: Express, server: Server) {
   });
 }
 
+function getContentType(filePath: string): string {
+  const ext = path.extname(filePath).toLowerCase();
+  const types: Record<string, string> = {
+    ".js": "application/javascript",
+    ".mjs": "application/javascript",
+    ".css": "text/css",
+    ".html": "text/html",
+    ".json": "application/json",
+    ".svg": "image/svg+xml",
+    ".woff": "font/woff",
+    ".woff2": "font/woff2",
+    ".ttf": "font/ttf",
+    ".txt": "text/plain",
+    ".xml": "application/xml",
+  };
+  return types[ext] || "application/octet-stream";
+}
+
 export function serveStatic(app: Express) {
   const distPath = path.resolve(import.meta.dirname, "public");
 
@@ -78,6 +96,28 @@ export function serveStatic(app: Express) {
       `Could not find the build directory: ${distPath}, make sure to build the client first`,
     );
   }
+
+  // Serve pre-compressed Brotli/gzip assets with CDN-ready cache headers
+  app.use("/assets", (req, res, next) => {
+    const acceptEncoding = req.headers["accept-encoding"] || "";
+    const filePath = path.join(distPath, "assets", req.path);
+
+    // CDN-ready cache headers for hashed assets (immutable, 1 year)
+    res.set("Cache-Control", "public, max-age=31536000, immutable");
+    res.set("CDN-Cache-Control", "public, s-maxage=31536000");
+    res.set("Vary", "Accept-Encoding");
+
+    if (acceptEncoding.includes("br") && existsSync(filePath + ".br")) {
+      req.url += ".br";
+      res.set("Content-Encoding", "br");
+      res.set("Content-Type", getContentType(req.path));
+    } else if (acceptEncoding.includes("gzip") && existsSync(filePath + ".gz")) {
+      req.url += ".gz";
+      res.set("Content-Encoding", "gzip");
+      res.set("Content-Type", getContentType(req.path));
+    }
+    next();
+  });
 
   app.use(express.static(distPath, {
     etag: true,

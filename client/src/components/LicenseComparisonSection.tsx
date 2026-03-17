@@ -6,7 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 import { Link } from "wouter";
 import type { Boat } from "@shared/schema";
 
-export function LicenseComparisonSection() {
+export default function LicenseComparisonSection() {
   const t = useTranslations();
   const { ref: revealRef, isVisible } = useScrollReveal();
 

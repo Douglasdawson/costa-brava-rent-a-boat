@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect, useMemo, useCallback } from "react";
+import React, { memo, useRef, useState, useEffect, useMemo, useCallback } from "react";
 import { Star, ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import type { Testimonial } from "@shared/schema";
@@ -35,7 +35,66 @@ const LOCALE_MAP: Record<string, string> = {
   ru: "ru-RU",
 };
 
-export default function ReviewsSection() {
+/** Memoized individual review card */
+const ReviewCard = memo(function ReviewCard({
+  review,
+  locale,
+}: {
+  review: NormalizedReview;
+  locale: string;
+}) {
+  return (
+    <div
+      className="w-[220px] sm:w-[240px] aspect-[3/3.2] snap-start flex-shrink-0 bg-background rounded-2xl border border-border p-5 flex flex-col"
+    >
+      {/* Stars */}
+      <div className="flex gap-0.5 mb-2">
+        {Array.from({ length: 5 }).map((_, i) => (
+          <Star
+            key={i}
+            aria-hidden="true"
+            className={`w-3 h-3 ${
+              i < review.rating
+                ? "text-amber-400 fill-amber-400"
+                : "text-muted-foreground/40"
+            }`}
+          />
+        ))}
+      </div>
+      {/* Decorative quote */}
+      <span className="text-3xl font-serif text-border leading-none" aria-hidden="true">
+        &ldquo;
+      </span>
+      {/* Comment */}
+      <p className="text-foreground text-sm leading-relaxed mt-1 line-clamp-6 flex-1">
+        {review.text}
+      </p>
+      {/* Author */}
+      <div className="mt-auto pt-3">
+        <p className="font-medium text-foreground text-[13px]">
+          {review.flag && (
+            <span
+              className="mr-1.5"
+              role="img"
+              aria-label={review.flag}
+            >
+              {countryFlag(review.flag)}
+            </span>
+          )}
+          {review.name}
+        </p>
+        <p className="text-xs text-muted-foreground">
+          {new Date(review.date + "-01").toLocaleDateString(
+            locale,
+            { month: "long", year: "numeric" }
+          )}
+        </p>
+      </div>
+    </div>
+  );
+});
+
+function ReviewsSection() {
   const t = useTranslations();
   const { language } = useLanguage();
   const { ref: revealRef, isVisible } = useScrollReveal();
@@ -43,6 +102,8 @@ export default function ReviewsSection() {
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
   const [activeIndex, setActiveIndex] = useState(0);
+
+  const locale = LOCALE_MAP[language] || "es-ES";
 
   // Server testimonials as fallback
   const { data: testimonials } = useQuery<Testimonial[]>({
@@ -126,12 +187,17 @@ export default function ReviewsSection() {
     };
   }, [updateScrollState]);
 
-  const handleScroll = (direction: "left" | "right") => {
+  const handleScrollLeft = useCallback(() => {
     const el = scrollRef.current;
     if (!el) return;
-    const amount = direction === "left" ? -350 : 350;
-    el.scrollBy({ left: amount, behavior: "smooth" });
-  };
+    el.scrollBy({ left: -350, behavior: "smooth" });
+  }, []);
+
+  const handleScrollRight = useCallback(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    el.scrollBy({ left: 350, behavior: "smooth" });
+  }, []);
 
   const dotCount = Math.min(displayReviews.length, 6);
 
@@ -165,7 +231,7 @@ export default function ReviewsSection() {
         <div className="relative group">
           {/* Left arrow - desktop only */}
           <button
-            onClick={() => handleScroll("left")}
+            onClick={handleScrollLeft}
             disabled={!canScrollLeft}
             aria-label="Scroll left"
             className={`absolute left-0 top-1/2 -translate-y-1/2 -translate-x-3 z-10 hidden md:flex items-center justify-center w-10 h-10 rounded-full bg-background border border-border shadow-md transition-opacity ${
@@ -179,7 +245,7 @@ export default function ReviewsSection() {
 
           {/* Right arrow - desktop only */}
           <button
-            onClick={() => handleScroll("right")}
+            onClick={handleScrollRight}
             disabled={!canScrollRight}
             aria-label="Scroll right"
             className={`absolute right-0 top-1/2 -translate-y-1/2 translate-x-3 z-10 hidden md:flex items-center justify-center w-10 h-10 rounded-full bg-background border border-border shadow-md transition-opacity ${
@@ -198,54 +264,7 @@ export default function ReviewsSection() {
             style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
           >
             {displayReviews.map((review) => (
-              <div
-                key={review.id}
-                className="w-[220px] sm:w-[240px] aspect-[3/3.2] snap-start flex-shrink-0 bg-background rounded-2xl border border-border p-5 flex flex-col"
-              >
-                {/* Stars */}
-                <div className="flex gap-0.5 mb-2">
-                  {Array.from({ length: 5 }).map((_, i) => (
-                    <Star
-                      key={i}
-                      aria-hidden="true"
-                      className={`w-3 h-3 ${
-                        i < review.rating
-                          ? "text-amber-400 fill-amber-400"
-                          : "text-muted-foreground/40"
-                      }`}
-                    />
-                  ))}
-                </div>
-                {/* Decorative quote */}
-                <span className="text-3xl font-serif text-border leading-none" aria-hidden="true">
-                  &ldquo;
-                </span>
-                {/* Comment */}
-                <p className="text-foreground text-sm leading-relaxed mt-1 line-clamp-6 flex-1">
-                  {review.text}
-                </p>
-                {/* Author */}
-                <div className="mt-auto pt-3">
-                  <p className="font-medium text-foreground text-[13px]">
-                    {review.flag && (
-                      <span
-                        className="mr-1.5"
-                        role="img"
-                        aria-label={review.flag}
-                      >
-                        {countryFlag(review.flag)}
-                      </span>
-                    )}
-                    {review.name}
-                  </p>
-                  <p className="text-xs text-muted-foreground">
-                    {new Date(review.date + "-01").toLocaleDateString(
-                      LOCALE_MAP[language] || "es-ES",
-                      { month: "long", year: "numeric" }
-                    )}
-                  </p>
-                </div>
-              </div>
+              <ReviewCard key={review.id} review={review} locale={locale} />
             ))}
           </div>
         </div>
@@ -278,3 +297,5 @@ export default function ReviewsSection() {
     </section>
   );
 }
+
+export default memo(ReviewsSection);

@@ -168,8 +168,8 @@ app.use('/api/', (req: Request, res: Response, next: NextFunction) => {
   next();
 });
 
-// Enable ETag for better caching (default is weak ETag)
-app.set('etag', 'strong');
+// Enable weak ETag for CDN-friendly caching (strong ETags can break with compression proxies)
+app.set('etag', 'weak');
 
 // Optimize JSON parsing — skip for Stripe webhook (needs raw body for signature verification)
 // Meta WhatsApp webhook also needs raw body for X-Hub-Signature-256 verification
@@ -347,21 +347,23 @@ app.use((req: Request, res: Response, next: NextFunction) => {
   if (app.get("env") === "development") {
     await setupVite(app, server);
   } else {
-    // Add Cache-Control headers for production static assets
+    // Add Cache-Control + CDN headers for production static assets
     app.use((req, res, next) => {
       const p = req.path;
 
-      // Vite-hashed assets in /assets/ — immutable, cache for 1 year
+      // Vite-hashed assets in /assets/ — immutable, cache for 1 year (browser + CDN)
       if (p.startsWith('/assets/') && p.match(/\.(js|css|woff2?|ttf|eot|otf|svg|png|jpg|jpeg|gif|webp|avif|map)$/)) {
         res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
+        res.setHeader('CDN-Cache-Control', 'public, s-maxage=31536000');
+        res.setHeader('Vary', 'Accept-Encoding');
       }
       // Other static assets (favicon, robots.txt, manifest, etc.) — cache 1 day, revalidate
       else if (p.match(/\.(ico|txt|xml|json|webmanifest|png|jpg|svg)$/) && !p.startsWith('/api')) {
         res.setHeader('Cache-Control', 'public, max-age=86400, stale-while-revalidate=604800');
       }
-      // HTML files and SPA routes — never cache, always revalidate
+      // HTML files and SPA routes — short cache, CDN caches for 1 hour with stale-while-revalidate
       else if (p.match(/\.html$/) || p === '/') {
-        res.setHeader('Cache-Control', 'public, max-age=0, must-revalidate');
+        res.setHeader('Cache-Control', 'public, max-age=0, s-maxage=3600, stale-while-revalidate=86400');
       }
 
       next();

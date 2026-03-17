@@ -1,5 +1,6 @@
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { useEffect, useMemo, useState } from "react";
+import { useVirtualizer } from "@tanstack/react-virtual";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import BoatCard from "./BoatCard";
 import { openWhatsApp } from "@/utils/whatsapp";
@@ -51,7 +52,141 @@ function getCurrentSeason(): 'BAJA' | 'MEDIA' | 'ALTA' | null {
   return null;
 }
 
-export default function FleetSection() {
+/** Estimated height of a single boat card row (px). Used by the virtualizer. */
+const BOAT_ROW_HEIGHT = 480;
+
+/** Threshold: only virtualize when more than this many boats */
+const VIRTUALIZATION_THRESHOLD = 12;
+
+/** Number of columns per breakpoint — must match the Tailwind grid classes */
+function useGridColumns(): number {
+  const [cols, setCols] = useState(1);
+  useEffect(() => {
+    function update() {
+      const w = window.innerWidth;
+      if (w >= 1536) setCols(4);       // 2xl
+      else if (w >= 1280) setCols(3);  // xl
+      else if (w >= 640) setCols(2);   // sm
+      else setCols(1);
+    }
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, []);
+  return cols;
+}
+
+interface VirtualizedBoatGridProps {
+  boats: Array<{
+    id: string;
+    name: string;
+    image: string;
+    imageSrcSet: string;
+    imageTablet?: string;
+    imageMobile?: string;
+    imageAlt: string;
+    capacity: number;
+    requiresLicense: boolean;
+    description: string;
+    basePrice: number;
+    highSeasonPrice?: number;
+    features: string[];
+    available: boolean;
+    enginePower: string;
+  }>;
+  popularBoatId: string;
+  selectedGroupSize: string | null;
+  isBoatRecommended: (capacity: number) => boolean;
+  fleetAvailability?: {
+    date: string;
+    boats: Record<string, { availableSlots: number; totalSlots: number }>;
+  };
+  weeklyBookings?: Record<string, number>;
+  onBooking: (boatId: string) => void;
+  onDetails: (boatId: string) => void;
+}
+
+/**
+ * Virtualized boat grid — only rendered when >12 boats.
+ * Uses @tanstack/react-virtual to render only visible rows,
+ * keeping the same responsive column layout as the normal grid.
+ */
+const VirtualizedBoatGrid = React.memo(function VirtualizedBoatGrid({
+  boats,
+  popularBoatId,
+  selectedGroupSize,
+  isBoatRecommended,
+  fleetAvailability,
+  weeklyBookings,
+  onBooking,
+  onDetails,
+}: VirtualizedBoatGridProps) {
+  const parentRef = useRef<HTMLDivElement>(null);
+  const columns = useGridColumns();
+
+  // Split boats into rows based on column count
+  const rows = useMemo(() => {
+    const result: Array<typeof boats> = [];
+    for (let i = 0; i < boats.length; i += columns) {
+      result.push(boats.slice(i, i + columns));
+    }
+    return result;
+  }, [boats, columns]);
+
+  const virtualizer = useVirtualizer({
+    count: rows.length,
+    getScrollElement: () => parentRef.current,
+    estimateSize: () => BOAT_ROW_HEIGHT,
+    overscan: 2,
+  });
+
+  return (
+    <div
+      ref={parentRef}
+      className="mb-6 sm:mb-8 lg:mb-12 overflow-y-auto"
+      style={{ maxHeight: "80vh" }}
+    >
+      <div
+        className="relative w-full"
+        style={{ height: `${virtualizer.getTotalSize()}px` }}
+      >
+        {virtualizer.getVirtualItems().map((virtualRow) => (
+          <div
+            key={virtualRow.key}
+            className="absolute left-0 w-full grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4 sm:gap-6 lg:gap-8"
+            style={{
+              top: `${virtualRow.start}px`,
+              height: `${virtualRow.size}px`,
+            }}
+          >
+            {rows[virtualRow.index].map((boat) => (
+              <div
+                key={boat.id}
+                className={`transition-opacity duration-300 ${
+                  selectedGroupSize !== null && !isBoatRecommended(boat.capacity)
+                    ? "opacity-50"
+                    : "opacity-100"
+                }`}
+              >
+                <BoatCard
+                  {...boat}
+                  isPopular={boat.id === popularBoatId}
+                  isRecommended={isBoatRecommended(boat.capacity)}
+                  scarcityData={fleetAvailability?.boats[boat.id]}
+                  weeklyBookings={weeklyBookings?.[boat.id]}
+                  onBooking={onBooking}
+                  onDetails={onDetails}
+                />
+              </div>
+            ))}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+});
+
+function FleetSection() {
   const t = useTranslations();
   const [, setLocation] = useLocation();
   const { openBookingModal } = useBookingModal();
@@ -165,21 +300,21 @@ export default function FleetSection() {
     return filtered.filter(b => b.capacity >= option.min && b.capacity <= option.max);
   }, [boats, selectedGroupSize, licenseFilter, groupSizeOptions]);
 
-  const isBoatRecommended = (capacity: number): boolean => {
+  const isBoatRecommended = useCallback((capacity: number): boolean => {
     if (selectedGroupSize === null) return false;
     const option = groupSizeOptions.find(o => o.label === selectedGroupSize);
     if (!option) return false;
     return capacity >= option.min && capacity <= option.max;
-  };
+  }, [selectedGroupSize, groupSizeOptions]);
 
-  const handleBooking = (boatId: string) => {
+  const handleBooking = useCallback((boatId: string) => {
     openBookingModal(boatId);
-  };
+  }, [openBookingModal]);
 
-  const handleDetails = (boatId: string) => {
+  const handleDetails = useCallback((boatId: string) => {
     setLocation(`/barco/${boatId}`);
     window.scrollTo(0, 0);
-  };
+  }, [setLocation]);
 
   return (
     <section ref={revealRef} className={`py-16 sm:py-24 lg:py-32 bg-background transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`} id="fleet">
@@ -320,9 +455,9 @@ export default function FleetSection() {
         {/* Grid view */}
         {viewMode === 'grid' && (
           <>
-            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 mb-6 sm:mb-8 lg:mb-12">
-              {isLoading ? (
-                Array.from({ length: 3 }).map((_, i) => (
+            {isLoading ? (
+              <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 mb-6 sm:mb-8 lg:mb-12">
+                {Array.from({ length: 3 }).map((_, i) => (
                   <div key={i} className="rounded-xl border border-primary/10 overflow-hidden animate-pulse">
                     <div className="h-48 bg-muted" />
                     <div className="p-4 space-y-3">
@@ -331,9 +466,22 @@ export default function FleetSection() {
                       <div className="h-8 bg-muted rounded w-full" />
                     </div>
                   </div>
-                ))
-              ) : (
-                sortedBoats.map((boat) => (
+                ))}
+              </div>
+            ) : sortedBoats.length > VIRTUALIZATION_THRESHOLD ? (
+              <VirtualizedBoatGrid
+                boats={sortedBoats}
+                popularBoatId={popularBoatId}
+                selectedGroupSize={selectedGroupSize}
+                isBoatRecommended={isBoatRecommended}
+                fleetAvailability={fleetAvailability}
+                weeklyBookings={weeklyBookings}
+                onBooking={handleBooking}
+                onDetails={handleDetails}
+              />
+            ) : (
+              <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 mb-6 sm:mb-8 lg:mb-12">
+                {sortedBoats.map((boat) => (
                   <div
                     key={boat.id}
                     className={`transition-opacity duration-300 ${
@@ -352,9 +500,9 @@ export default function FleetSection() {
                       onDetails={handleDetails}
                     />
                   </div>
-                ))
-              )}
-            </div>
+                ))}
+              </div>
+            )}
             {sortedBoats.length === 0 && !isLoading && (
               <div className="text-center py-12">
                 <p className="text-muted-foreground mb-4">
@@ -581,3 +729,5 @@ export default function FleetSection() {
     </section>
   );
 }
+
+export default React.memo(FleetSection);

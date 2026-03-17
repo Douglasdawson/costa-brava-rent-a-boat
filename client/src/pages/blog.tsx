@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "wouter";
 import Navigation from "@/components/Navigation";
@@ -65,7 +65,134 @@ function WaveDivider({ className = "" }: { className?: string }) {
   );
 }
 
-export default function BlogPage() {
+/** Memo'd category pill button to avoid re-renders when other categories change */
+const CategoryButton = React.memo(function CategoryButton({
+  category,
+  isSelected,
+  label,
+  onSelect,
+}: {
+  category: string;
+  isSelected: boolean;
+  label: string;
+  onSelect: (cat: string) => void;
+}) {
+  const handleClick = useCallback(() => onSelect(category), [onSelect, category]);
+  return (
+    <button
+      onClick={handleClick}
+      className={`shrink-0 px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 border ${
+        isSelected
+          ? 'bg-foreground text-background border-foreground'
+          : 'bg-transparent text-muted-foreground border-border hover:border-foreground/30 hover:text-foreground'
+      }`}
+    >
+      {label}
+    </button>
+  );
+});
+
+/** Memo'd blog post card rendered inside .map() to avoid unnecessary re-renders */
+const BlogPostCard = React.memo(function BlogPostCard({
+  post,
+  language,
+  bp,
+}: {
+  post: BlogPost;
+  language: string;
+  bp: Record<string, string>;
+}) {
+  return (
+    <Link href={`/blog/${post.slug}`}>
+      <article
+        className="group cursor-pointer h-full"
+        data-testid={`link-blog-card-${post.slug}`}
+      >
+        {/* Image */}
+        {post.featuredImage && (
+          <div className="relative overflow-hidden rounded-xl mb-4 aspect-[16/9]">
+            <img
+              src={post.featuredImage}
+              alt={localized(post.featuredImageAltByLang as Record<string, string> | null, null, language) || localized(post.titleByLang as Record<string, string> | null, post.title, language)}
+              className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+              loading="lazy"
+              width={800}
+              height={450}
+              data-testid={`img-blog-${post.slug}`}
+            />
+            {/* Subtle bottom gradient for depth */}
+            <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/20 to-transparent" />
+          </div>
+        )}
+
+        {/* Meta line */}
+        <div className="flex items-center gap-3 mb-2.5">
+          <Badge
+            variant="secondary"
+            className="text-xs font-medium"
+            data-testid={`badge-category-${post.slug}`}
+          >
+            {localizeCategory(post.category, language)}
+          </Badge>
+          <span className="text-xs text-muted-foreground">
+            {estimateReadingTime(post.content)} {bp.minRead}
+          </span>
+        </div>
+
+        {/* Title */}
+        <h3
+          className="font-display font-semibold leading-snug text-foreground group-hover:text-primary/80 transition-colors duration-200 mb-2 text-lg"
+          data-testid={`text-title-${post.slug}`}
+        >
+          {localized(post.titleByLang as Record<string, string> | null, post.title, language)}
+        </h3>
+
+        {/* Excerpt */}
+        {(post.excerpt || post.excerptByLang) && (
+          <p
+            className="text-muted-foreground text-sm leading-relaxed line-clamp-2 mb-3"
+            data-testid={`text-excerpt-${post.slug}`}
+          >
+            {localized(post.excerptByLang as Record<string, string> | null, post.excerpt, language)}
+          </p>
+        )}
+
+        {/* Footer */}
+        <div className="flex items-center justify-between mt-auto pt-3 border-t border-border/50">
+          <div className="flex items-center gap-3 text-xs text-muted-foreground">
+            <span className="flex items-center gap-1" data-testid={`text-author-${post.slug}`}>
+              <User className="w-3.5 h-3.5" />
+              {post.author}
+            </span>
+            {post.publishedAt && (
+              <span className="flex items-center gap-1" data-testid={`text-date-${post.slug}`}>
+                <Calendar className="w-3.5 h-3.5" />
+                {new Date(post.publishedAt).toLocaleDateString(LOCALE_MAP[language] || 'es-ES')}
+              </span>
+            )}
+          </div>
+          <span className="text-xs font-medium text-foreground/60 group-hover:text-[hsl(var(--cta))] transition-colors flex items-center gap-1">
+            {bp.readMore}
+            <ArrowRight className="w-3 h-3 transition-transform duration-200 group-hover:translate-x-0.5" />
+          </span>
+        </div>
+
+        {/* Tags */}
+        {post.tags && post.tags.length > 0 && (
+          <div className="flex items-center gap-2 mt-3 flex-wrap">
+            {post.tags.slice(0, 3).map(tag => (
+              <span key={tag} className="text-xs text-muted-foreground/60" data-testid={`text-tag-${tag}-${post.slug}`}>
+                #{tag}
+              </span>
+            ))}
+          </div>
+        )}
+      </article>
+    </Link>
+  );
+});
+
+function BlogPage() {
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const [currentPage, setCurrentPage] = useState(1);
   const { language } = useLanguage();
@@ -111,13 +238,17 @@ export default function BlogPage() {
   const startIndex = (currentPage - 1) * POSTS_PER_PAGE;
   const paginatedPosts = gridPosts.slice(startIndex, startIndex + POSTS_PER_PAGE);
 
-  const goToPage = (page: number) => {
+  const handleCategorySelect = useCallback((cat: string) => {
+    setSelectedCategory(cat);
+  }, []);
+
+  const goToPage = useCallback((page: number) => {
     setCurrentPage(page);
     window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
+  }, []);
 
-  const goToPrevious = () => { if (currentPage > 1) goToPage(currentPage - 1); };
-  const goToNext = () => { if (currentPage < totalPages) goToPage(currentPage + 1); };
+  const goToPrevious = useCallback(() => { if (currentPage > 1) goToPage(currentPage - 1); }, [currentPage, goToPage]);
+  const goToNext = useCallback(() => { if (currentPage < totalPages) goToPage(currentPage + 1); }, [currentPage, totalPages, goToPage]);
 
   const getPageNumbers = () => {
     const pages: (number | string)[] = [];
@@ -228,28 +359,20 @@ export default function BlogPage() {
       <div className="bg-background">
         <div className="container mx-auto px-4 py-6">
           <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide -mx-4 px-4 md:mx-0 md:px-0 md:flex-wrap" data-testid="select-category-filter">
-            <button
-              onClick={() => setSelectedCategory('all')}
-              className={`shrink-0 px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 border ${
-                selectedCategory === 'all'
-                  ? 'bg-foreground text-background border-foreground'
-                  : 'bg-transparent text-muted-foreground border-border hover:border-foreground/30 hover:text-foreground'
-              }`}
-            >
-              {bp.allCategories}
-            </button>
+            <CategoryButton
+              category="all"
+              isSelected={selectedCategory === 'all'}
+              label={bp.allCategories}
+              onSelect={handleCategorySelect}
+            />
             {categories.map(cat => (
-              <button
+              <CategoryButton
                 key={cat}
-                onClick={() => setSelectedCategory(cat)}
-                className={`shrink-0 px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 border ${
-                  selectedCategory === cat
-                    ? 'bg-foreground text-background border-foreground'
-                    : 'bg-transparent text-muted-foreground border-border hover:border-foreground/30 hover:text-foreground'
-                }`}
-              >
-                {localizeCategory(cat, language)}
-              </button>
+                category={cat}
+                isSelected={selectedCategory === cat}
+                label={localizeCategory(cat, language)}
+                onSelect={handleCategorySelect}
+              />
             ))}
           </div>
 
@@ -365,92 +488,7 @@ export default function BlogPage() {
             <>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-7">
                 {paginatedPosts.map((post) => (
-                    <Link key={post.id} href={`/blog/${post.slug}`}>
-                      <article
-                        className="group cursor-pointer h-full"
-                        data-testid={`link-blog-card-${post.slug}`}
-                      >
-                        {/* Image */}
-                        {post.featuredImage && (
-                          <div className="relative overflow-hidden rounded-xl mb-4 aspect-[16/9]">
-                            <img
-                              src={post.featuredImage}
-                              alt={localized(post.featuredImageAltByLang as Record<string, string> | null, null, language) || localized(post.titleByLang as Record<string, string> | null, post.title, language)}
-                              className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-                              loading="lazy"
-                              width={800}
-                              height={450}
-                              data-testid={`img-blog-${post.slug}`}
-                            />
-                            {/* Subtle bottom gradient for depth */}
-                            <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/20 to-transparent" />
-                          </div>
-                        )}
-
-                        {/* Meta line */}
-                        <div className="flex items-center gap-3 mb-2.5">
-                          <Badge
-                            variant="secondary"
-                            className="text-xs font-medium"
-                            data-testid={`badge-category-${post.slug}`}
-                          >
-                            {localizeCategory(post.category, language)}
-                          </Badge>
-                          <span className="text-xs text-muted-foreground">
-                            {estimateReadingTime(post.content)} {bp.minRead}
-                          </span>
-                        </div>
-
-                        {/* Title */}
-                        <h3
-                          className="font-display font-semibold leading-snug text-foreground group-hover:text-primary/80 transition-colors duration-200 mb-2 text-lg"
-                          data-testid={`text-title-${post.slug}`}
-                        >
-                          {localized(post.titleByLang as Record<string, string> | null, post.title, language)}
-                        </h3>
-
-                        {/* Excerpt */}
-                        {(post.excerpt || post.excerptByLang) && (
-                          <p
-                            className="text-muted-foreground text-sm leading-relaxed line-clamp-2 mb-3"
-                            data-testid={`text-excerpt-${post.slug}`}
-                          >
-                            {localized(post.excerptByLang as Record<string, string> | null, post.excerpt, language)}
-                          </p>
-                        )}
-
-                        {/* Footer */}
-                        <div className="flex items-center justify-between mt-auto pt-3 border-t border-border/50">
-                          <div className="flex items-center gap-3 text-xs text-muted-foreground">
-                            <span className="flex items-center gap-1" data-testid={`text-author-${post.slug}`}>
-                              <User className="w-3.5 h-3.5" />
-                              {post.author}
-                            </span>
-                            {post.publishedAt && (
-                              <span className="flex items-center gap-1" data-testid={`text-date-${post.slug}`}>
-                                <Calendar className="w-3.5 h-3.5" />
-                                {new Date(post.publishedAt).toLocaleDateString(LOCALE_MAP[language] || 'es-ES')}
-                              </span>
-                            )}
-                          </div>
-                          <span className="text-xs font-medium text-foreground/60 group-hover:text-[hsl(var(--cta))] transition-colors flex items-center gap-1">
-                            {bp.readMore}
-                            <ArrowRight className="w-3 h-3 transition-transform duration-200 group-hover:translate-x-0.5" />
-                          </span>
-                        </div>
-
-                        {/* Tags */}
-                        {post.tags && post.tags.length > 0 && (
-                          <div className="flex items-center gap-2 mt-3 flex-wrap">
-                            {post.tags.slice(0, 3).map(tag => (
-                              <span key={tag} className="text-xs text-muted-foreground/60" data-testid={`text-tag-${tag}-${post.slug}`}>
-                                #{tag}
-                              </span>
-                            ))}
-                          </div>
-                        )}
-                      </article>
-                    </Link>
+                  <BlogPostCard key={post.id} post={post} language={language} bp={bp} />
                 ))}
               </div>
 
@@ -516,3 +554,5 @@ export default function BlogPage() {
     </main>
   );
 }
+
+export default React.memo(BlogPage);

@@ -1,8 +1,9 @@
+import React, { memo, useCallback, useMemo, useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Anchor, ArrowRight, Clock, Fuel, Star, ThumbsUp } from "lucide-react";
 import { useTranslations } from "@/lib/translations";
-import { useMemo, useState } from "react";
 import { getBoatAverageRating } from "@/data/boatReviews";
+import { useProgressiveImage } from "@/hooks/use-progressive-image";
 
 interface BoatCardProps {
   id: string;
@@ -28,7 +29,115 @@ interface BoatCardProps {
   onDetails: (boatId: string) => void;
 }
 
-export default function BoatCard({
+/** Memoized boat image with picture element and error fallback */
+const BoatCardImage = memo(function BoatCardImage({
+  image,
+  imageSrcSet,
+  imageTablet,
+  imageMobile,
+  imageAlt,
+  imageError,
+  onImageError,
+}: {
+  image: string;
+  imageSrcSet?: string;
+  imageTablet?: string;
+  imageMobile?: string;
+  imageAlt: string;
+  imageError: boolean;
+  onImageError: () => void;
+}) {
+  const loaded = useProgressiveImage(image);
+
+  if (imageError) {
+    return (
+      <div className="w-full aspect-[4/3] flex items-center justify-center">
+        <Anchor className="w-12 h-12 text-muted-foreground/50" aria-hidden="true" />
+      </div>
+    );
+  }
+
+  return (
+    <div className="relative w-full aspect-[4/3] overflow-hidden">
+      {/* Placeholder shown until image loads */}
+      <div
+        className={`absolute inset-0 bg-muted animate-pulse transition-opacity duration-300 ${
+          loaded ? "opacity-0" : "opacity-100"
+        }`}
+      />
+      <picture>
+        {imageMobile && (
+          <source media="(max-width: 767px)" srcSet={imageMobile} type="image/webp" />
+        )}
+        {imageTablet && (
+          <source media="(max-width: 1024px)" srcSet={imageTablet} type="image/webp" />
+        )}
+        <img
+          src={image}
+          srcSet={imageSrcSet || undefined}
+          sizes="(max-width: 639px) calc(100vw - 32px), (max-width: 1279px) calc(50vw - 20px), calc(33vw - 24px)"
+          alt={imageAlt}
+          className={`w-full h-full object-cover transition-all duration-300 group-hover:scale-[1.03] ${
+            loaded ? "opacity-100" : "opacity-0"
+          }`}
+          loading="lazy"
+          decoding="async"
+          onError={onImageError}
+        />
+      </picture>
+    </div>
+  );
+});
+
+/** Memoized pricing display with price anchoring */
+const BoatCardPricing = memo(function BoatCardPricing({
+  basePrice,
+  highSeasonPrice,
+  capacity,
+  perPersonLabel,
+  fromLabel,
+  highSeasonLabel,
+}: {
+  basePrice: number;
+  highSeasonPrice?: number;
+  capacity: number;
+  perPersonLabel: string;
+  fromLabel: string;
+  highSeasonLabel: string;
+}) {
+  const savingsPercent = highSeasonPrice && highSeasonPrice > basePrice
+    ? Math.round(((highSeasonPrice - basePrice) / highSeasonPrice) * 100)
+    : 0;
+  const showPriceAnchoring = savingsPercent > 15;
+
+  return (
+    <div className="text-right flex-shrink-0">
+      <div className="text-sm text-muted-foreground">{fromLabel}</div>
+      <div className="flex items-baseline gap-1.5 justify-end">
+        {showPriceAnchoring && (
+          <span className="text-sm text-muted-foreground/70 line-through">
+            <span className="text-[10px] no-underline">{highSeasonLabel}: </span>{highSeasonPrice}&euro;
+          </span>
+        )}
+        <span className="text-cta font-medium text-lg">
+          {basePrice}&euro;
+        </span>
+      </div>
+      <div className="flex items-center gap-1.5 justify-end">
+        {showPriceAnchoring && (
+          <span className="inline-flex items-center bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 text-xs font-semibold px-1.5 py-0.5 rounded-full">
+            -{savingsPercent}%
+          </span>
+        )}
+        <span className="text-xs text-muted-foreground">
+          {Math.ceil(basePrice / capacity)}&euro;/{perPersonLabel}
+        </span>
+      </div>
+    </div>
+  );
+});
+
+function BoatCard({
   id,
   name,
   image,
@@ -64,17 +173,19 @@ export default function BoatCard({
     return null;
   }, []);
 
-  const handleDetails = () => {
+  const handleDetails = useCallback(() => {
     onDetails(id);
     setTimeout(() => window.scrollTo(0, 0), 50);
-  };
+  }, [onDetails, id]);
 
-  // Calculate savings percentage for price anchoring
-  // Only show when high season price is >15% more expensive than current base price
-  const savingsPercent = highSeasonPrice && highSeasonPrice > basePrice
-    ? Math.round(((highSeasonPrice - basePrice) / highSeasonPrice) * 100)
-    : 0;
-  const showPriceAnchoring = savingsPercent > 15;
+  const handleImageError = useCallback(() => setImageError(true), []);
+
+  const handleBooking = useCallback(() => onBooking(id), [onBooking, id]);
+
+  const handleDetailsClick = useCallback((e: React.MouseEvent) => {
+    e.preventDefault();
+    handleDetails();
+  }, [handleDetails]);
 
   return (
     <Card className={`overflow-hidden transition-all duration-200 ${
@@ -84,35 +195,20 @@ export default function BoatCard({
     }`}>
       <a
         href={`/barco/${id}`}
-        onClick={(e) => { e.preventDefault(); handleDetails(); }}
+        onClick={handleDetailsClick}
         className="relative block cursor-pointer group bg-muted focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2 focus-visible:outline-none"
         data-testid={`image-${id}`}
         aria-label={`${t.a11y.viewBoatDetails} ${name}`}
       >
-        {imageError ? (
-          <div className="w-full aspect-[4/3] flex items-center justify-center">
-            <Anchor className="w-12 h-12 text-muted-foreground/50" aria-hidden="true" />
-          </div>
-        ) : (
-          <picture>
-            {imageMobile && (
-              <source media="(max-width: 767px)" srcSet={imageMobile} type="image/webp" />
-            )}
-            {imageTablet && (
-              <source media="(max-width: 1024px)" srcSet={imageTablet} type="image/webp" />
-            )}
-            <img
-              src={image}
-              srcSet={imageSrcSet || undefined}
-              sizes="(max-width: 639px) calc(100vw - 32px), (max-width: 1279px) calc(50vw - 20px), calc(33vw - 24px)"
-              alt={imageAlt}
-              className="w-full aspect-[4/3] object-cover transition-transform duration-200 group-hover:scale-[1.03]"
-              loading="lazy"
-              decoding="async"
-              onError={() => setImageError(true)}
-            />
-          </picture>
-        )}
+        <BoatCardImage
+          image={image}
+          imageSrcSet={imageSrcSet}
+          imageTablet={imageTablet}
+          imageMobile={imageMobile}
+          imageAlt={imageAlt}
+          imageError={imageError}
+          onImageError={handleImageError}
+        />
         <div className="absolute top-3 left-3 flex flex-col gap-1.5 z-10">
           {isPopular && (
             <div className="inline-flex items-center gap-1 bg-amber-500 text-white text-xs font-bold px-2.5 py-1 rounded-full shadow-md">
@@ -160,29 +256,14 @@ export default function BoatCard({
               </div>
             )}
           </div>
-          <div className="text-right flex-shrink-0">
-            <div className="text-sm text-muted-foreground">{t.boats.from}</div>
-            <div className="flex items-baseline gap-1.5 justify-end">
-              {showPriceAnchoring && (
-                <span className="text-sm text-muted-foreground/70 line-through">
-                  <span className="text-[10px] no-underline">{t.pricing?.highSeason || 'High season'}: </span>{highSeasonPrice}&euro;
-                </span>
-              )}
-              <span className="text-cta font-medium text-lg">
-                {basePrice}&euro;
-              </span>
-            </div>
-            <div className="flex items-center gap-1.5 justify-end">
-              {showPriceAnchoring && (
-                <span className="inline-flex items-center bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 text-xs font-semibold px-1.5 py-0.5 rounded-full">
-                  -{savingsPercent}%
-                </span>
-              )}
-              <span className="text-xs text-muted-foreground">
-                {Math.ceil(basePrice / capacity)}&euro;/{t.boats.perPerson}
-              </span>
-            </div>
-          </div>
+          <BoatCardPricing
+            basePrice={basePrice}
+            highSeasonPrice={highSeasonPrice}
+            capacity={capacity}
+            perPersonLabel={t.boats.perPerson}
+            fromLabel={t.boats.from}
+            highSeasonLabel={t.pricing?.highSeason || 'High season'}
+          />
         </div>
 
         <p className="text-muted-foreground text-sm mb-3 line-clamp-2">{description}</p>
@@ -242,14 +323,14 @@ export default function BoatCard({
       <div className="px-3 sm:px-4 pb-3 sm:pb-4 flex items-center justify-between gap-2">
         <a
           href={`/barco/${id}`}
-          onClick={(e) => { e.preventDefault(); handleDetails(); }}
+          onClick={handleDetailsClick}
           className="text-sm font-medium text-foreground hover:text-cta inline-flex items-center gap-1.5 transition-colors py-2 -my-1 focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2 focus-visible:outline-none rounded"
           data-testid={`button-details-${id}`}
         >
           {t.boats.viewDetails} <ArrowRight className="w-4 h-4" />
         </a>
         <button
-          onClick={() => onBooking(id)}
+          onClick={handleBooking}
           className="bg-cta hover:bg-cta/90 text-white text-sm font-medium px-4 py-1.5 rounded-full transition-colors focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2 focus-visible:outline-none cta-pulse"
           data-testid={`button-book-${id}`}
         >
@@ -259,3 +340,5 @@ export default function BoatCard({
     </Card>
   );
 }
+
+export default memo(BoatCard);

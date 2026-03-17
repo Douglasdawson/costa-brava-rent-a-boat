@@ -12,17 +12,19 @@ import { useUtmCapture } from "@/hooks/useUtmCapture";
 // Import critical components (above the fold)
 import Navigation from "./components/Navigation";
 import Hero from "./components/Hero";
-import FeaturesSection from "./components/FeaturesSection";
-import FleetSection from "./components/FleetSection";
-import NeverSailedSection from "./components/NeverSailedSection";
-import ReviewsSection from "./components/ReviewsSection";
-import GiftCardBanner from "./components/GiftCardBanner";
-import ContactSection from "./components/ContactSection";
 import Footer from "./components/Footer";
-import FAQPreview from "./components/FAQPreview";
 import { SocialProofStrip } from "./components/SocialProofStrip";
-import { LicenseComparisonSection } from "./components/LicenseComparisonSection";
 import { SEO } from "./components/SEO";
+
+// Lazy load below-fold homepage sections
+const FleetSection = lazy(() => import("@/components/FleetSection"));
+const NeverSailedSection = lazy(() => import("@/components/NeverSailedSection"));
+const GiftCardBanner = lazy(() => import("@/components/GiftCardBanner"));
+const LicenseComparisonSection = lazy(() => import("@/components/LicenseComparisonSection"));
+const ReviewsSection = lazy(() => import("@/components/ReviewsSection"));
+const FeaturesSection = lazy(() => import("@/components/FeaturesSection"));
+const FAQPreview = lazy(() => import("@/components/FAQPreview"));
+const ContactSection = lazy(() => import("@/components/ContactSection"));
 
 // Lazy load non-critical components
 const BookingFlow = lazy(() => import("./components/BookingFlow"));
@@ -179,14 +181,30 @@ function HomePage() {
       <Navigation />
       <main id="main-content">
         <Hero />
-        <FleetSection />
-        <NeverSailedSection />
-        <GiftCardBanner />
-        <LicenseComparisonSection />
-        <ReviewsSection />
-        <FeaturesSection />
-        <FAQPreview />
-        <ContactSection />
+        <Suspense fallback={<div className="min-h-[400px]" />}>
+          <FleetSection />
+        </Suspense>
+        <Suspense fallback={<div className="min-h-[400px]" />}>
+          <NeverSailedSection />
+        </Suspense>
+        <Suspense fallback={<div className="min-h-[400px]" />}>
+          <GiftCardBanner />
+        </Suspense>
+        <Suspense fallback={<div className="min-h-[400px]" />}>
+          <LicenseComparisonSection />
+        </Suspense>
+        <Suspense fallback={<div className="min-h-[400px]" />}>
+          <ReviewsSection />
+        </Suspense>
+        <Suspense fallback={<div className="min-h-[400px]" />}>
+          <FeaturesSection />
+        </Suspense>
+        <Suspense fallback={<div className="min-h-[400px]" />}>
+          <FAQPreview />
+        </Suspense>
+        <Suspense fallback={<div className="min-h-[400px]" />}>
+          <ContactSection />
+        </Suspense>
       </main>
       <Footer />
     </div>
@@ -290,64 +308,164 @@ function BoatPage() {
   return <BoatDetailPage boatId={boatId} />;
 }
 
-// Loading fallback component
-function LoadingFallback() {
+// Granular Suspense fallbacks per route priority group
+// Main routes: minimal skeleton with nav spacer + pulse area (fast perceived load)
+function MainRouteFallback() {
   return (
-    <div className="min-h-screen flex items-center justify-center">
-      <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+    <div className="min-h-screen">
+      <div className="h-16" /> {/* nav spacer */}
+      <div className="max-w-7xl mx-auto px-4 py-12">
+        <div className="h-8 w-64 bg-muted animate-pulse rounded mb-6" />
+        <div className="h-4 w-full bg-muted animate-pulse rounded mb-3" />
+        <div className="h-4 w-3/4 bg-muted animate-pulse rounded mb-8" />
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="h-48 bg-muted animate-pulse rounded-lg" />
+          <div className="h-48 bg-muted animate-pulse rounded-lg" />
+          <div className="h-48 bg-muted animate-pulse rounded-lg" />
+        </div>
+      </div>
     </div>
   );
 }
 
-// Router Component
+// Secondary routes: text-heavy content skeleton
+function SecondaryRouteFallback() {
+  return (
+    <div className="min-h-screen">
+      <div className="h-16" />
+      <div className="max-w-4xl mx-auto px-4 py-12">
+        <div className="h-8 w-48 bg-muted animate-pulse rounded mb-8" />
+        <div className="space-y-3">
+          <div className="h-4 w-full bg-muted animate-pulse rounded" />
+          <div className="h-4 w-5/6 bg-muted animate-pulse rounded" />
+          <div className="h-4 w-4/6 bg-muted animate-pulse rounded" />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// Admin/legal routes: minimal placeholder
+function MinimalRouteFallback() {
+  return <div className="min-h-screen" />;
+}
+
+// Router Component — granular Suspense boundaries per route priority group
 function Router() {
   useUtmCapture();
   return (
-    <Suspense fallback={<LoadingFallback />}>
-      <Switch>
-        <Route path="/" component={HomePage} />
-        <Route path="/login" component={LoginPage} />
-        <Route path="/onboarding" component={OnboardingPage} />
-        <Route path="/crm/:tab?" component={CRMDashboardPage} />
-        <Route path="/mi-cuenta" component={ClientDashboardPage} />
-        <Route path="/client/dashboard" component={ClientDashboardPage} />
-        <Route path="/barco/:id" component={BoatPage} />
-        <Route path="/condiciones-generales" component={CondicionesGenerales} />
-        <Route path="/faq" component={FAQPage} />
-        <Route path="/privacy-policy" component={PrivacyPolicyPage} />
-        <Route path="/terms-conditions" component={TermsConditionsPage} />
-        <Route path="/cookies-policy" component={CookiesPolicyPage} />
-        <Route path="/accesibilidad" component={AccessibilityDeclarationPage} />
-        <Route path="/alquiler-barcos-blanes" component={LocationBlanesPage} />
-        <Route path="/alquiler-barcos-lloret-de-mar" component={LocationLloretPage} />
-        <Route path="/alquiler-barcos-tossa-de-mar" component={LocationTossaPage} />
-        <Route path="/destino/blanes">{() => <Redirect to="/alquiler-barcos-blanes" />}</Route>
-        <Route path="/destino/lloret-de-mar">{() => <Redirect to="/alquiler-barcos-lloret-de-mar" />}</Route>
-        <Route path="/destino/tossa-de-mar">{() => <Redirect to="/alquiler-barcos-tossa-de-mar" />}</Route>
-        <Route path="/barcos-sin-licencia" component={CategoryLicenseFreePage} />
-        <Route path="/barcos-con-licencia" component={CategoryLicensedPage} />
-        <Route path="/categoria/sin-licencia">{() => <Redirect to="/barcos-sin-licencia" />}</Route>
-        <Route path="/categoria/con-licencia">{() => <Redirect to="/barcos-con-licencia" />}</Route>
-        <Route path="/barcos">
-          {() => {
-            window.location.href = "/#fleet";
-            return null;
-          }}
-        </Route>
-        <Route path="/galeria" component={GalleryPage} />
-        <Route path="/rutas" component={RoutesPage} />
-        <Route path="/tarjetas-regalo" component={GiftCardsPage} />
-        <Route path="/testimonios" component={TestimoniosPage} />
-        <Route path="/precios" component={PricingPage} />
-        <Route path="/alquiler-barcos-cerca-barcelona" component={LocationBarcelonaPage} />
-        <Route path="/alquiler-barcos-costa-brava" component={LocationCostaBravaPage} />
-        <Route path="/blog/:slug" component={BlogDetailPage} />
-        <Route path="/blog" component={BlogPage} />
-        <Route path="/destinos/:slug" component={DestinationDetailPage} />
-        <Route path="/cancel/:token" component={CancelBookingPage} />
-        <Route component={NotFound} />
-      </Switch>
-    </Suspense>
+    <Switch>
+      {/* Home page has its own internal Suspense boundaries for sections */}
+      <Route path="/" component={HomePage} />
+
+      {/* Main routes: fleet, pricing, gallery, boat details — fast skeleton */}
+      <Route path="/precios">
+        {() => <Suspense fallback={<MainRouteFallback />}><PricingPage /></Suspense>}
+      </Route>
+      <Route path="/galeria">
+        {() => <Suspense fallback={<MainRouteFallback />}><GalleryPage /></Suspense>}
+      </Route>
+      <Route path="/barco/:id">
+        {() => <Suspense fallback={<MainRouteFallback />}><BoatPage /></Suspense>}
+      </Route>
+      <Route path="/barcos-sin-licencia">
+        {() => <Suspense fallback={<MainRouteFallback />}><CategoryLicenseFreePage /></Suspense>}
+      </Route>
+      <Route path="/barcos-con-licencia">
+        {() => <Suspense fallback={<MainRouteFallback />}><CategoryLicensedPage /></Suspense>}
+      </Route>
+      <Route path="/tarjetas-regalo">
+        {() => <Suspense fallback={<MainRouteFallback />}><GiftCardsPage /></Suspense>}
+      </Route>
+      <Route path="/testimonios">
+        {() => <Suspense fallback={<MainRouteFallback />}><TestimoniosPage /></Suspense>}
+      </Route>
+      <Route path="/barcos">
+        {() => {
+          window.location.href = "/#fleet";
+          return null;
+        }}
+      </Route>
+
+      {/* Secondary routes: blog, FAQ, routes, destinations, locations — content skeleton */}
+      <Route path="/blog/:slug">
+        {() => <Suspense fallback={<SecondaryRouteFallback />}><BlogDetailPage /></Suspense>}
+      </Route>
+      <Route path="/blog">
+        {() => <Suspense fallback={<SecondaryRouteFallback />}><BlogPage /></Suspense>}
+      </Route>
+      <Route path="/faq">
+        {() => <Suspense fallback={<SecondaryRouteFallback />}><FAQPage /></Suspense>}
+      </Route>
+      <Route path="/rutas">
+        {() => <Suspense fallback={<SecondaryRouteFallback />}><RoutesPage /></Suspense>}
+      </Route>
+      <Route path="/destinos/:slug">
+        {() => <Suspense fallback={<SecondaryRouteFallback />}><DestinationDetailPage /></Suspense>}
+      </Route>
+      <Route path="/alquiler-barcos-blanes">
+        {() => <Suspense fallback={<SecondaryRouteFallback />}><LocationBlanesPage /></Suspense>}
+      </Route>
+      <Route path="/alquiler-barcos-lloret-de-mar">
+        {() => <Suspense fallback={<SecondaryRouteFallback />}><LocationLloretPage /></Suspense>}
+      </Route>
+      <Route path="/alquiler-barcos-tossa-de-mar">
+        {() => <Suspense fallback={<SecondaryRouteFallback />}><LocationTossaPage /></Suspense>}
+      </Route>
+      <Route path="/alquiler-barcos-cerca-barcelona">
+        {() => <Suspense fallback={<SecondaryRouteFallback />}><LocationBarcelonaPage /></Suspense>}
+      </Route>
+      <Route path="/alquiler-barcos-costa-brava">
+        {() => <Suspense fallback={<SecondaryRouteFallback />}><LocationCostaBravaPage /></Suspense>}
+      </Route>
+
+      {/* Redirects — no Suspense needed (instant) */}
+      <Route path="/destino/blanes">{() => <Redirect to="/alquiler-barcos-blanes" />}</Route>
+      <Route path="/destino/lloret-de-mar">{() => <Redirect to="/alquiler-barcos-lloret-de-mar" />}</Route>
+      <Route path="/destino/tossa-de-mar">{() => <Redirect to="/alquiler-barcos-tossa-de-mar" />}</Route>
+      <Route path="/categoria/sin-licencia">{() => <Redirect to="/barcos-sin-licencia" />}</Route>
+      <Route path="/categoria/con-licencia">{() => <Redirect to="/barcos-con-licencia" />}</Route>
+
+      {/* Admin, auth, and legal routes — minimal fallback */}
+      <Route path="/login">
+        {() => <Suspense fallback={<MinimalRouteFallback />}><LoginPage /></Suspense>}
+      </Route>
+      <Route path="/onboarding">
+        {() => <Suspense fallback={<MinimalRouteFallback />}><OnboardingPage /></Suspense>}
+      </Route>
+      <Route path="/crm/:tab?">
+        {() => <Suspense fallback={<MinimalRouteFallback />}><CRMDashboardPage /></Suspense>}
+      </Route>
+      <Route path="/mi-cuenta">
+        {() => <Suspense fallback={<MinimalRouteFallback />}><ClientDashboardPage /></Suspense>}
+      </Route>
+      <Route path="/client/dashboard">
+        {() => <Suspense fallback={<MinimalRouteFallback />}><ClientDashboardPage /></Suspense>}
+      </Route>
+      <Route path="/cancel/:token">
+        {() => <Suspense fallback={<MinimalRouteFallback />}><CancelBookingPage /></Suspense>}
+      </Route>
+      <Route path="/condiciones-generales">
+        {() => <Suspense fallback={<MinimalRouteFallback />}><CondicionesGenerales /></Suspense>}
+      </Route>
+      <Route path="/privacy-policy">
+        {() => <Suspense fallback={<MinimalRouteFallback />}><PrivacyPolicyPage /></Suspense>}
+      </Route>
+      <Route path="/terms-conditions">
+        {() => <Suspense fallback={<MinimalRouteFallback />}><TermsConditionsPage /></Suspense>}
+      </Route>
+      <Route path="/cookies-policy">
+        {() => <Suspense fallback={<MinimalRouteFallback />}><CookiesPolicyPage /></Suspense>}
+      </Route>
+      <Route path="/accesibilidad">
+        {() => <Suspense fallback={<MinimalRouteFallback />}><AccessibilityDeclarationPage /></Suspense>}
+      </Route>
+
+      {/* 404 fallback */}
+      <Route>
+        {() => <Suspense fallback={<MinimalRouteFallback />}><NotFound /></Suspense>}
+      </Route>
+    </Switch>
   );
 }
 

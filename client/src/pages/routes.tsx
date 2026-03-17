@@ -1,4 +1,4 @@
-import { useState, lazy, Suspense } from "react";
+import React, { useState, useCallback, lazy, Suspense } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -8,6 +8,7 @@ import Footer from "@/components/Footer";
 import { SEO } from "@/components/SEO";
 const RouteMap = lazy(() => import("@/components/RouteMap"));
 import { boatRoutes } from "@shared/routesData";
+import type { BoatRoute } from "@shared/routesData";
 import { useLanguage } from "@/hooks/use-language";
 import { useTranslations } from "@/lib/translations";
 import { getSEOConfig, generateCanonicalUrl, generateHreflangLinks } from "@/utils/seo-config";
@@ -24,7 +25,82 @@ const difficultyLabels: Record<string, Record<string, string>> = {
   advanced: { es: "Avanzada", ca: "Avancada", en: "Advanced", fr: "Avance", de: "Fortgeschritten", nl: "Gevorderd", it: "Avanzato", ru: "Продвинутый" },
 };
 
-export default function RoutesPage() {
+/** Memo'd route card to avoid re-renders when sibling cards change selection */
+const RouteCard = React.memo(function RouteCard({
+  route,
+  isSelected,
+  language,
+  bookBoatLabel,
+  onSelect,
+}: {
+  route: BoatRoute;
+  isSelected: boolean;
+  language: string;
+  bookBoatLabel: string;
+  onSelect: (id: string) => void;
+}) {
+  const desc = route.descriptions[language] || route.descriptions.es;
+  const handleClick = useCallback(() => onSelect(route.id), [onSelect, route.id]);
+  const handleBookClick = useCallback((e: React.MouseEvent) => {
+    e.stopPropagation();
+    window.location.href = "/#fleet";
+  }, []);
+
+  return (
+    <Card
+      className={`cursor-pointer transition-all hover:shadow-lg ${
+        isSelected ? "ring-2 ring-primary shadow-lg" : ""
+      }`}
+      onClick={handleClick}
+    >
+      <CardContent className="p-5">
+        <div className="flex items-start justify-between mb-3">
+          <h3 className="font-bold text-lg" style={{ color: route.color }}>
+            {desc.name}
+          </h3>
+          <Badge className={difficultyColors[route.difficulty]}>
+            {difficultyLabels[route.difficulty]?.[language] || difficultyLabels[route.difficulty]?.es}
+          </Badge>
+        </div>
+
+        <p className="text-sm text-muted-foreground mb-4 line-clamp-3">{desc.description}</p>
+
+        <div className="flex items-center gap-4 text-sm text-muted-foreground/60 mb-4">
+          <div className="flex items-center gap-1">
+            <Ruler className="w-4 h-4" />
+            {route.distance}
+          </div>
+          <div className="flex items-center gap-1">
+            <Clock className="w-4 h-4" />
+            {route.estimatedTime}
+          </div>
+        </div>
+
+        <div className="flex flex-wrap gap-1.5">
+          {desc.highlights.map((highlight, i) => (
+            <Badge key={i} variant="secondary" className="text-xs">
+              <MapPin className="w-3 h-3 mr-1" />
+              {highlight}
+            </Badge>
+          ))}
+        </div>
+
+        {isSelected && (
+          <Button
+            className="w-full mt-4"
+            onClick={handleBookClick}
+          >
+            <Ship className="w-4 h-4 mr-2" />
+            {bookBoatLabel}
+            <ChevronRight className="w-4 h-4 ml-2" />
+          </Button>
+        )}
+      </CardContent>
+    </Card>
+  );
+});
+
+function RoutesPage() {
   const [selectedRouteId, setSelectedRouteId] = useState<string | null>(null);
   const { language } = useLanguage();
   const t = useTranslations();
@@ -36,9 +112,9 @@ export default function RoutesPage() {
   const canonical = generateCanonicalUrl("routes", language);
   const hreflangLinks = generateHreflangLinks("routes");
 
-  const handleRouteSelect = (id: string) => {
-    setSelectedRouteId(selectedRouteId === id ? null : id);
-  };
+  const handleRouteSelect = useCallback((id: string) => {
+    setSelectedRouteId(prev => prev === id ? null : id);
+  }, []);
 
   return (
     <main id="main-content" className="min-h-screen bg-muted">
@@ -80,67 +156,16 @@ export default function RoutesPage() {
 
         {/* Route Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {boatRoutes.map((route) => {
-            const desc = route.descriptions[language] || route.descriptions.es;
-            const isSelected = route.id === selectedRouteId;
-
-            return (
-              <Card
-                key={route.id}
-                className={`cursor-pointer transition-all hover:shadow-lg ${
-                  isSelected ? "ring-2 ring-primary shadow-lg" : ""
-                }`}
-                onClick={() => handleRouteSelect(route.id)}
-              >
-                <CardContent className="p-5">
-                  <div className="flex items-start justify-between mb-3">
-                    <h3 className="font-bold text-lg" style={{ color: route.color }}>
-                      {desc.name}
-                    </h3>
-                    <Badge className={difficultyColors[route.difficulty]}>
-                      {difficultyLabels[route.difficulty]?.[language] || difficultyLabels[route.difficulty]?.es}
-                    </Badge>
-                  </div>
-
-                  <p className="text-sm text-muted-foreground mb-4 line-clamp-3">{desc.description}</p>
-
-                  <div className="flex items-center gap-4 text-sm text-muted-foreground/60 mb-4">
-                    <div className="flex items-center gap-1">
-                      <Ruler className="w-4 h-4" />
-                      {route.distance}
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <Clock className="w-4 h-4" />
-                      {route.estimatedTime}
-                    </div>
-                  </div>
-
-                  <div className="flex flex-wrap gap-1.5">
-                    {desc.highlights.map((highlight, i) => (
-                      <Badge key={i} variant="secondary" className="text-xs">
-                        <MapPin className="w-3 h-3 mr-1" />
-                        {highlight}
-                      </Badge>
-                    ))}
-                  </div>
-
-                  {isSelected && (
-                    <Button
-                      className="w-full mt-4"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        window.location.href = "/#fleet";
-                      }}
-                    >
-                      <Ship className="w-4 h-4 mr-2" />
-                      {t.routes?.bookBoat || "Reservar barco"}
-                      <ChevronRight className="w-4 h-4 ml-2" />
-                    </Button>
-                  )}
-                </CardContent>
-              </Card>
-            );
-          })}
+          {boatRoutes.map((route) => (
+            <RouteCard
+              key={route.id}
+              route={route}
+              isSelected={route.id === selectedRouteId}
+              language={language}
+              bookBoatLabel={t.routes?.bookBoat || "Reservar barco"}
+              onSelect={handleRouteSelect}
+            />
+          ))}
         </div>
 
         {/* Related destinations */}
@@ -164,3 +189,5 @@ export default function RoutesPage() {
     </main>
   );
 }
+
+export default React.memo(RoutesPage);

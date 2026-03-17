@@ -3,6 +3,7 @@ import { Button } from "./ui/button";
 import { ShieldCheck, Shield, CheckCircle, Award, Users, Star } from "lucide-react";
 import { useTranslations } from "@/lib/translations";
 import { useBookingModal } from "@/hooks/bookingModalContext";
+import { useProgressiveImage } from "@/hooks/use-progressive-image";
 import CurvedLoop from "./CurvedLoop";
 import BoatQuizModal from "./BoatQuizModal";
 
@@ -10,9 +11,17 @@ export default function Hero() {
   const t = useTranslations();
   const { openBookingModal } = useBookingModal();
   const [quizOpen, setQuizOpen] = useState(false);
+  const heroLoaded = useProgressiveImage("/images/hero/hero-dive-mobile.webp");
 
   return (
     <div className="relative h-dvh min-h-[600px] overflow-hidden" id="home">
+      {/* Placeholder background until hero image loads */}
+      <div
+        className={`absolute inset-0 bg-muted transition-opacity duration-500 ${
+          heroLoaded ? "opacity-0" : "opacity-100"
+        }`}
+      />
+
       {/* Background Image - Responsive <picture> */}
       <picture>
         <source
@@ -31,7 +40,9 @@ export default function Hero() {
         <img
           src="/images/hero/hero-dive-mobile.webp"
           alt="Barco de alquiler sin licencia navegando por aguas turquesa cerca de las calas de Blanes, Costa Brava"
-          className="absolute inset-0 w-full h-full object-cover brightness-110 saturate-[1.05]"
+          className={`absolute inset-0 w-full h-full object-cover brightness-110 saturate-[1.05] transition-opacity duration-500 ${
+            heroLoaded ? "opacity-100" : "opacity-0"
+          }`}
           width={1920}
           height={1080}
           loading="eager"

@@ -2011,7 +2011,7 @@ export async function serveWithSEO(
       if (cachedHtml) {
         res.set("Content-Type", "text/html; charset=utf-8");
         res.set("Content-Language", lang);
-        res.set("Cache-Control", "public, max-age=300, must-revalidate");
+        res.set("Cache-Control", "public, max-age=0, s-maxage=3600, stale-while-revalidate=86400");
         res.set("X-SEO-Cache", "HIT");
         res.send(cachedHtml);
         return;
@@ -2041,7 +2041,7 @@ export async function serveWithSEO(
 
       res.set("Content-Type", "text/html; charset=utf-8");
       res.set("Content-Language", lang);
-      res.set("Cache-Control", "public, max-age=300, must-revalidate"); // 5 min cache for SEO-injected pages
+      res.set("Cache-Control", "public, max-age=0, s-maxage=3600, stale-while-revalidate=86400");
       res.set("X-SEO-Cache", "MISS");
       res.send(html);
     } else {

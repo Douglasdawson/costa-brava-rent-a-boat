@@ -27,19 +27,18 @@ export function usePrefetchCriticalRoutes() {
       return;
     }
 
-    // Prefetch critical lazy-loaded chunks after initial load
-    const timer = setTimeout(() => {
-      // Prefetch BookingFlow (most likely next interaction)
+    // Prefetch only BookingFlow (most likely next interaction) during idle time.
+    // Don't prefetch BoatDetailPage, category, or pricing — they load fast via
+    // code-splitting and prefetching them adds to Lighthouse "unused JS" score.
+    const prefetch = () => {
       import('../components/BookingFlow');
+    };
 
-      // Prefetch popular boat detail pages
-      import('../components/BoatDetailPage');
-
-      // Prefetch popular category and info pages
-      import('../pages/category-license-free');
-      import('../pages/pricing');
-    }, 2000); // Wait 2s after initial load to avoid blocking
-
+    if ('requestIdleCallback' in window) {
+      const id = (window as unknown as { requestIdleCallback: (cb: () => void) => number }).requestIdleCallback(prefetch);
+      return () => (window as unknown as { cancelIdleCallback: (id: number) => void }).cancelIdleCallback(id);
+    }
+    const timer = setTimeout(prefetch, 3000);
     return () => clearTimeout(timer);
   }, []);
 }

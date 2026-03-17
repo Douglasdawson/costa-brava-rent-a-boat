@@ -914,17 +914,17 @@ async function getBaseHtml(distPath: string): Promise<string> {
       '<noscript><link rel="stylesheet" crossorigin href="$1"></noscript>'
     );
 
-    // Break the critical request chain: preload main JS + vendor chunks in <head>
-    // so the browser discovers them early (in parallel with CSS), not at end of <body>.
+    // Preload only the main entry JS in <head> to break the critical chain.
+    // Do NOT preload vendor chunks (vendor-ui 255KB, vendor-charts 396KB, etc.)
+    // — let the browser load them on demand via the module graph. Eager preloading
+    // forces parse+eval of all vendors upfront, adding ~1s to JS execution time.
     const mainJsMatch = html.match(/<script type="module" crossorigin src="(\/assets\/[^"]+\.js)">/);
-    const vendorPreloads = [...html.matchAll(/<link rel="modulepreload" crossorigin href="(\/assets\/[^"]+\.js)">/g)];
     if (mainJsMatch) {
-      const preloadTags = [
-        `<link rel="modulepreload" crossorigin href="${mainJsMatch[1]}">`,
-        ...vendorPreloads.map(m => `<link rel="modulepreload" crossorigin href="${m[1]}">`)
-      ].join("\n    ");
-      html = html.replace("</head>", `    ${preloadTags}\n  </head>`);
+      html = html.replace("</head>", `    <link rel="modulepreload" crossorigin href="${mainJsMatch[1]}">\n  </head>`);
     }
+    // Remove Vite's body-injected vendor modulepreloads — they cause eager evaluation
+    // of heavy chunks (vendor-ui, vendor-charts) that aren't needed for first paint.
+    html = html.replace(/\s*<link rel="modulepreload" crossorigin href="\/assets\/vendor-[^"]+\.js">/g, "");
 
     // Remove the dev-mode base64 modulepreload (useless in production)
     html = html.replace(/<link rel="modulepreload" href="data:[^"]*">\n?\s*/, "");

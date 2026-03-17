@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, lazy, Suspense, Component } from "react";
 import { Switch, Route, useSearch, useLocation, useRoute, Redirect } from "wouter";
 import { queryClient } from "./lib/queryClient";
-import { QueryClientProvider, useQuery } from "@tanstack/react-query";
+import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Button } from "@/components/ui/button";
@@ -14,7 +14,7 @@ import Navigation from "./components/Navigation";
 import Hero from "./components/Hero";
 import Footer from "./components/Footer";
 import { SocialProofStrip } from "./components/SocialProofStrip";
-import { SEO } from "./components/SEO";
+
 
 // Lazy load below-fold homepage sections
 const FleetSection = lazy(() => import("@/components/FleetSection"));
@@ -56,7 +56,7 @@ const LocationCostaBravaPage = lazy(() => import("@/pages/alquiler-barcos-costa-
 const NotFound = lazy(() => import("@/pages/not-found"));
 const OnboardingPage = lazy(() => import("@/pages/OnboardingPage"));
 const AccessibilityDeclarationPage = lazy(() => import("@/pages/accessibility-declaration"));
-import { useLanguage } from "@/hooks/use-language";
+
 import WhatsAppFloatingButton from "./components/WhatsAppFloatingButton";
 import { ScrollToTop } from "./components/ScrollToTop";
 import CookieBanner from "./components/CookieBanner";
@@ -66,19 +66,9 @@ import { SeasonBanner } from "./components/SeasonBanner";
 import { RouteProgressBar } from "./components/RouteProgressBar";
 import { usePrefetchCriticalRoutes } from "@/hooks/usePrefetch";
 import { initWebVitals } from "@/utils/web-vitals";
-import { 
-  getSEOConfig, 
-  generateHreflangLinks, 
-  generateCanonicalUrl,
-  generateLocalBusinessSchema,
-  generateServiceSchema,
-  generateBreadcrumbSchema,
-  generateWebSiteSchema,
-  generateHowToBookingSchema,
-  generateSpeakableSchema
-} from "@/utils/seo-config";
-import { generateItemListSchema, generateSeasonalEventSchema } from "@/utils/seo-schemas";
-import type { Boat } from "@shared/schema";
+
+// HomePageSEO lazy-loaded: seo-config.ts (100KB) deferred from main bundle
+const HomePageSEO = lazy(() => import("@/components/HomePageSEO"));
 
 // Error Boundary — catches any unhandled render error and prevents a blank white screen
 class ErrorBoundary extends Component<{ children: React.ReactNode }, { hasError: boolean }> {
@@ -112,72 +102,13 @@ class ErrorBoundary extends Component<{ children: React.ReactNode }, { hasError:
 
 // Main Home Page Component
 function HomePage() {
-  const { language } = useLanguage();
   usePrefetchCriticalRoutes();
-  const seoConfig = getSEOConfig('home', language);
-  const hreflangLinks = generateHreflangLinks('home');
-  const canonical = generateCanonicalUrl('home', language);
-
-  // Fetch boats for ItemList schema
-  const { data: boats } = useQuery<Boat[]>({
-    queryKey: ['/api/boats']
-  });
-
-  // Generate combined JSON-LD schemas for homepage
-  // AggregateRating: Google Maps baseline (4.8, 307 reviews) — server-side injection enriches with DB data
-  const localBusinessSchema = generateLocalBusinessSchema(language, 4.8, 307);
-  const serviceSchema = generateServiceSchema(language);
-  const breadcrumbSchema = generateBreadcrumbSchema([
-    { name: "Inicio", url: "/" }
-  ]);
-
-  // Generate ItemList schema for fleet section (from API data)
-  const activeBoats = (boats || []).filter(boat => boat.isActive);
-  const fleetItems = activeBoats.map(boat => ({
-    id: boat.id,
-    name: boat.name
-  }));
-  const itemListSchema = generateItemListSchema(fleetItems);
-
-  // AI Search optimization schemas
-  const webSiteSchema = generateWebSiteSchema();
-  const howToSchema = generateHowToBookingSchema(language);
-  const seasonalEventSchema = generateSeasonalEventSchema();
-
-  // Speakable: mark key content sections for AI voice extraction
-  const speakableSpec = generateSpeakableSchema([
-    "h1", ".hero-description", ".fleet-section h2", ".faq-answer"
-  ]);
-
-  // Attach speakable to LocalBusiness
-  localBusinessSchema.speakable = speakableSpec;
-
-  // Combine multiple schemas using @graph
-  const combinedJsonLd = {
-    "@context": "https://schema.org",
-    "@graph": [
-      localBusinessSchema,
-      serviceSchema,
-      breadcrumbSchema,
-      itemListSchema,
-      webSiteSchema,
-      howToSchema,
-      seasonalEventSchema
-    ]
-  };
 
   return (
     <div className="min-h-screen">
-      <SEO
-        title={seoConfig.title}
-        description={seoConfig.description}
-        ogTitle={seoConfig.ogTitle}
-        ogDescription={seoConfig.ogDescription}
-        keywords={seoConfig.keywords}
-        canonical={canonical}
-        hreflang={hreflangLinks}
-        jsonLd={combinedJsonLd}
-      />
+      <Suspense fallback={null}>
+        <HomePageSEO />
+      </Suspense>
       <Navigation />
       <main id="main-content">
         <Hero />

@@ -94,19 +94,19 @@ export default function Hero() {
       <div className="absolute bottom-0 left-0 right-0 z-20 bg-foreground/90 backdrop-blur-sm min-h-[40px]">
         <div className="flex items-center justify-center gap-3 sm:gap-6 lg:gap-8 px-3 sm:px-4 py-2.5 sm:py-3 overflow-x-auto scrollbar-hide">
           <span className="inline-flex items-center gap-1 sm:gap-1.5 text-white text-[11px] sm:text-sm font-medium whitespace-nowrap">
-            <Award className="w-3 h-3 sm:w-3.5 sm:h-3.5 flex-shrink-0" />
+            <Award className="w-3 h-3 sm:w-3.5 sm:h-3.5 flex-shrink-0" aria-hidden="true" />
             {t.authority?.yearsExperience || '6+ anos de experiencia'}
           </span>
           <span className="inline-flex items-center gap-1 sm:gap-1.5 text-white text-[11px] sm:text-sm font-medium whitespace-nowrap">
-            <Shield className="w-3 h-3 sm:w-3.5 sm:h-3.5 flex-shrink-0" />
+            <Shield className="w-3 h-3 sm:w-3.5 sm:h-3.5 flex-shrink-0" aria-hidden="true" />
             {t.authority?.fullInsurance || 'Seguro a todo riesgo'}
           </span>
           <span className="inline-flex items-center gap-1 sm:gap-1.5 text-white text-[11px] sm:text-sm font-medium whitespace-nowrap">
-            <Users className="w-3 h-3 sm:w-3.5 sm:h-3.5 flex-shrink-0" />
+            <Users className="w-3 h-3 sm:w-3.5 sm:h-3.5 flex-shrink-0" aria-hidden="true" />
             {t.authority?.happyCustomers || '5000+ clientes satisfechos'}
           </span>
           <span className="inline-flex items-center gap-1 sm:gap-1.5 text-white text-[11px] sm:text-sm font-medium whitespace-nowrap">
-            <Star className="w-3 h-3 sm:w-3.5 sm:h-3.5 flex-shrink-0 fill-amber-400 text-amber-400" />
+            <Star className="w-3 h-3 sm:w-3.5 sm:h-3.5 flex-shrink-0 fill-amber-400 text-amber-400" aria-hidden="true" />
             {t.hero.googleRating}
           </span>
         </div>

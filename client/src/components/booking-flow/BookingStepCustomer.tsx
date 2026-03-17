@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useCallback } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -36,6 +36,11 @@ export function BookingStepCustomer({
   setStep, t,
 }: BookingStepCustomerProps) {
   const [touched, setTouched] = useState<Record<string, boolean>>({});
+  const [phonePrefixActiveIndex, setPhonePrefixActiveIndex] = useState(-1);
+  const [nationalityActiveIndex, setNationalityActiveIndex] = useState(-1);
+
+  const phonePrefixListRef = useRef<HTMLDivElement>(null);
+  const nationalityListRef = useRef<HTMLDivElement>(null);
 
   const errors = {
     customerName: !customerData.customerName && touched.customerName,
@@ -57,6 +62,94 @@ export function BookingStepCustomer({
   const errorBorderClass = "border-red-400 focus:ring-red-400 focus:border-red-400";
   const normalBorderClass = "border-primary/20 focus:ring-primary focus:border-primary";
 
+  const visiblePrefixes = filteredPhoneCountries.slice(0, 8);
+  const visibleNationalities = filteredNationalities.slice(0, 10);
+
+  const handlePhonePrefixKeyDown = useCallback((e: React.KeyboardEvent) => {
+    if (!showPhonePrefixDropdown || visiblePrefixes.length === 0) {
+      if (e.key === 'ArrowDown') {
+        setShowPhonePrefixDropdown(true);
+        setPhonePrefixActiveIndex(0);
+        e.preventDefault();
+      }
+      return;
+    }
+
+    switch (e.key) {
+      case 'ArrowDown':
+        e.preventDefault();
+        setPhonePrefixActiveIndex(prev =>
+          prev < visiblePrefixes.length - 1 ? prev + 1 : 0
+        );
+        break;
+      case 'ArrowUp':
+        e.preventDefault();
+        setPhonePrefixActiveIndex(prev =>
+          prev > 0 ? prev - 1 : visiblePrefixes.length - 1
+        );
+        break;
+      case 'Enter':
+        e.preventDefault();
+        if (phonePrefixActiveIndex >= 0 && phonePrefixActiveIndex < visiblePrefixes.length) {
+          const country = visiblePrefixes[phonePrefixActiveIndex];
+          setCustomerData(prev => ({...prev, phonePrefix: country.code}));
+          setPhonePrefixSearch("");
+          setShowPhonePrefixDropdown(false);
+          setPhonePrefixActiveIndex(-1);
+        }
+        break;
+      case 'Escape':
+        e.preventDefault();
+        setShowPhonePrefixDropdown(false);
+        setPhonePrefixActiveIndex(-1);
+        break;
+    }
+  }, [showPhonePrefixDropdown, visiblePrefixes, phonePrefixActiveIndex, setCustomerData, setPhonePrefixSearch, setShowPhonePrefixDropdown]);
+
+  const handleNationalityKeyDown = useCallback((e: React.KeyboardEvent) => {
+    if (!showNationalityDropdown || visibleNationalities.length === 0) {
+      if (e.key === 'ArrowDown') {
+        setShowNationalityDropdown(true);
+        setNationalityActiveIndex(0);
+        e.preventDefault();
+      }
+      if (e.key === 'Escape') {
+        setShowNationalityDropdown(false);
+      }
+      return;
+    }
+
+    switch (e.key) {
+      case 'ArrowDown':
+        e.preventDefault();
+        setNationalityActiveIndex(prev =>
+          prev < visibleNationalities.length - 1 ? prev + 1 : 0
+        );
+        break;
+      case 'ArrowUp':
+        e.preventDefault();
+        setNationalityActiveIndex(prev =>
+          prev > 0 ? prev - 1 : visibleNationalities.length - 1
+        );
+        break;
+      case 'Enter':
+        e.preventDefault();
+        if (nationalityActiveIndex >= 0 && nationalityActiveIndex < visibleNationalities.length) {
+          const nationality = visibleNationalities[nationalityActiveIndex];
+          setCustomerData(prev => ({...prev, customerNationality: nationality}));
+          setNationalitySearch("");
+          setShowNationalityDropdown(false);
+          setNationalityActiveIndex(-1);
+        }
+        break;
+      case 'Escape':
+        e.preventDefault();
+        setShowNationalityDropdown(false);
+        setNationalityActiveIndex(-1);
+        break;
+    }
+  }, [showNationalityDropdown, visibleNationalities, nationalityActiveIndex, setCustomerData, setNationalitySearch, setShowNationalityDropdown]);
+
   return (
     <Card>
       <CardHeader>
@@ -69,12 +162,16 @@ export function BookingStepCustomer({
         <div className="space-y-4 mb-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <label className="block text-base font-medium text-foreground mb-2">
+              <label htmlFor="customerName" className="block text-base font-medium text-foreground mb-2">
                 {t.booking.firstName} *
               </label>
               <input
+                id="customerName"
                 type="text"
                 required
+                aria-required="true"
+                aria-invalid={!!errors.customerName}
+                aria-describedby={errors.customerName ? "customerName-error" : undefined}
                 value={customerData.customerName}
                 onChange={(e) => setCustomerData(prev => ({...prev, customerName: e.target.value}))}
                 onBlur={() => handleBlur('customerName')}
@@ -83,16 +180,20 @@ export function BookingStepCustomer({
                 data-testid="input-customer-name"
               />
               {errors.customerName && (
-                <p className="text-red-500 text-xs mt-1">{t.validation.required}</p>
+                <p id="customerName-error" role="alert" className="text-red-500 text-xs mt-1">{t.validation.required}</p>
               )}
             </div>
             <div>
-              <label className="block text-base font-medium text-foreground mb-2">
+              <label htmlFor="customerSurname" className="block text-base font-medium text-foreground mb-2">
                 {t.booking.lastName} *
               </label>
               <input
+                id="customerSurname"
                 type="text"
                 required
+                aria-required="true"
+                aria-invalid={!!errors.customerSurname}
+                aria-describedby={errors.customerSurname ? "customerSurname-error" : undefined}
                 value={customerData.customerSurname}
                 onChange={(e) => setCustomerData(prev => ({...prev, customerSurname: e.target.value}))}
                 onBlur={() => handleBlur('customerSurname')}
@@ -101,15 +202,16 @@ export function BookingStepCustomer({
                 data-testid="input-customer-surname"
               />
               {errors.customerSurname && (
-                <p className="text-red-500 text-xs mt-1">{t.validation.required}</p>
+                <p id="customerSurname-error" role="alert" className="text-red-500 text-xs mt-1">{t.validation.required}</p>
               )}
             </div>
           </div>
           <div>
-            <label className="block text-base font-medium text-foreground mb-2">
+            <label htmlFor="customerEmail" className="block text-base font-medium text-foreground mb-2">
               {t.booking.emailLabel} ({t.booking.optional})
             </label>
             <input
+              id="customerEmail"
               type="email"
               value={customerData.customerEmail}
               onChange={(e) => setCustomerData(prev => ({...prev, customerEmail: e.target.value}))}
@@ -119,41 +221,59 @@ export function BookingStepCustomer({
             />
           </div>
           <div>
-            <label className="block text-base font-medium text-foreground mb-2">
+            <label htmlFor="customerPhone" className="block text-base font-medium text-foreground mb-2">
               {t.booking.phone} *
             </label>
             <div className="flex gap-2">
               <div className="relative w-28 flex-shrink-0">
                 <input
                   type="text"
+                  role="combobox"
+                  aria-expanded={showPhonePrefixDropdown}
+                  aria-haspopup="listbox"
+                  aria-controls="phonePrefix-listbox"
+                  aria-activedescendant={phonePrefixActiveIndex >= 0 ? `phonePrefix-option-${phonePrefixActiveIndex}` : undefined}
+                  aria-label={t.booking.phone + " prefix"}
                   value={phonePrefixSearch || customerData.phonePrefix}
                   onChange={(e) => {
                     setPhonePrefixSearch(e.target.value);
                     setShowPhonePrefixDropdown(true);
+                    setPhonePrefixActiveIndex(-1);
                   }}
                   onFocus={() => setShowPhonePrefixDropdown(true)}
                   onBlur={() => {
-                    setTimeout(() => setShowPhonePrefixDropdown(false), 200);
+                    setTimeout(() => {
+                      setShowPhonePrefixDropdown(false);
+                      setPhonePrefixActiveIndex(-1);
+                    }, 200);
                   }}
-                  onKeyDown={(e) => {
-                    if (e.key === 'Escape') setShowPhonePrefixDropdown(false);
-                  }}
+                  onKeyDown={handlePhonePrefixKeyDown}
                   placeholder="+34"
                   className="w-full p-3 border border-primary/20 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary text-sm text-foreground"
                   data-testid="input-phone-prefix-search"
                 />
-                {showPhonePrefixDropdown && filteredPhoneCountries.length > 0 && (
-                  <div className="absolute z-10 left-0 w-full max-w-xs max-h-48 overflow-y-auto bg-background border border-primary/20 rounded-lg shadow-lg mt-1">
-                    {filteredPhoneCountries.slice(0, 8).map((country) => (
+                {showPhonePrefixDropdown && visiblePrefixes.length > 0 && (
+                  <div
+                    ref={phonePrefixListRef}
+                    id="phonePrefix-listbox"
+                    role="listbox"
+                    aria-label="Phone prefix"
+                    className="absolute z-10 left-0 w-full max-w-xs max-h-48 overflow-y-auto bg-background border border-primary/20 rounded-lg shadow-lg mt-1"
+                  >
+                    {visiblePrefixes.map((country, index) => (
                       <button
                         key={country.code}
+                        id={`phonePrefix-option-${index}`}
                         type="button"
+                        role="option"
+                        aria-selected={phonePrefixActiveIndex === index}
                         onClick={() => {
                           setCustomerData(prev => ({...prev, phonePrefix: country.code}));
                           setPhonePrefixSearch("");
                           setShowPhonePrefixDropdown(false);
+                          setPhonePrefixActiveIndex(-1);
                         }}
-                        className="w-full text-left px-3 py-2 hover:bg-primary/5 focus:bg-primary/5 text-sm border-b last:border-b-0 text-foreground"
+                        className={`w-full text-left px-3 py-2 hover:bg-primary/5 focus:bg-primary/5 text-sm border-b last:border-b-0 text-foreground ${phonePrefixActiveIndex === index ? "bg-primary/10" : ""}`}
                         data-testid={`option-prefix-${country.code}`}
                       >
                         <span className="font-mono">{country.code}</span> {country.country}
@@ -164,8 +284,12 @@ export function BookingStepCustomer({
               </div>
               <div className="flex-1 min-w-0">
                 <input
+                  id="customerPhone"
                   type="tel"
                   required
+                  aria-required="true"
+                  aria-invalid={!!errors.customerPhone}
+                  aria-describedby={errors.customerPhone ? "customerPhone-error" : undefined}
                   value={customerData.customerPhone}
                   onChange={(e) => setCustomerData(prev => ({...prev, customerPhone: e.target.value}))}
                   onBlur={() => handleBlur('customerPhone')}
@@ -176,23 +300,33 @@ export function BookingStepCustomer({
               </div>
             </div>
             {errors.customerPhone && (
-              <p className="text-red-500 text-xs mt-1">{t.validation.required}</p>
+              <p id="customerPhone-error" role="alert" className="text-red-500 text-xs mt-1">{t.validation.required}</p>
             )}
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium text-foreground mb-2">
+              <label htmlFor="customerNationality" className="block text-sm font-medium text-foreground mb-2">
                 {t.booking.nationality} *
               </label>
               <div className="relative">
                 <input
+                  id="customerNationality"
                   type="text"
                   required
+                  role="combobox"
+                  aria-required="true"
+                  aria-invalid={!!errors.customerNationality}
+                  aria-describedby={errors.customerNationality ? "customerNationality-error" : undefined}
+                  aria-expanded={showNationalityDropdown}
+                  aria-haspopup="listbox"
+                  aria-controls="nationality-listbox"
+                  aria-activedescendant={nationalityActiveIndex >= 0 ? `nationality-option-${nationalityActiveIndex}` : undefined}
                   value={nationalitySearch || customerData.customerNationality}
                   onChange={(e) => {
                     const value = e.target.value;
                     setNationalitySearch(value);
                     setShowNationalityDropdown(true);
+                    setNationalityActiveIndex(-1);
                     setCustomerData(prev => ({...prev, customerNationality: value}));
                   }}
                   onBlur={() => {
@@ -201,29 +335,38 @@ export function BookingStepCustomer({
                       setNationalitySearch("");
                     }
                     setShowNationalityDropdown(false);
+                    setNationalityActiveIndex(-1);
                     handleBlur('customerNationality');
                   }}
                   onFocus={() => setShowNationalityDropdown(true)}
-                  onKeyDown={(e) => {
-                    if (e.key === 'Escape') setShowNationalityDropdown(false);
-                  }}
+                  onKeyDown={handleNationalityKeyDown}
                   placeholder={t.booking.searchNationality}
                   className={`w-full p-3 border rounded-lg focus:ring-2 text-foreground ${errors.customerNationality ? errorBorderClass : normalBorderClass}`}
                   data-testid="input-nationality-search"
                 />
-                {showNationalityDropdown && filteredNationalities.length > 0 && (
-                  <div className="absolute z-10 w-full max-h-48 overflow-y-auto bg-background border border-primary/20 rounded-lg shadow-lg mt-1">
-                    {filteredNationalities.slice(0, 10).map((nationality) => (
+                {showNationalityDropdown && visibleNationalities.length > 0 && (
+                  <div
+                    ref={nationalityListRef}
+                    id="nationality-listbox"
+                    role="listbox"
+                    aria-label={t.booking.nationality}
+                    className="absolute z-10 w-full max-h-48 overflow-y-auto bg-background border border-primary/20 rounded-lg shadow-lg mt-1"
+                  >
+                    {visibleNationalities.map((nationality, index) => (
                       <button
                         key={nationality}
+                        id={`nationality-option-${index}`}
                         type="button"
+                        role="option"
+                        aria-selected={nationalityActiveIndex === index}
                         onMouseDown={(e) => {
                           e.preventDefault();
                           setCustomerData(prev => ({...prev, customerNationality: nationality}));
                           setNationalitySearch("");
                           setShowNationalityDropdown(false);
+                          setNationalityActiveIndex(-1);
                         }}
-                        className="w-full text-left px-3 py-2 hover:bg-primary/5 focus:bg-primary/5 border-b last:border-b-0 text-foreground"
+                        className={`w-full text-left px-3 py-2 hover:bg-primary/5 focus:bg-primary/5 border-b last:border-b-0 text-foreground ${nationalityActiveIndex === index ? "bg-primary/10" : ""}`}
                         data-testid={`option-nationality-${nationality.toLowerCase()}`}
                       >
                         {nationality}
@@ -233,15 +376,15 @@ export function BookingStepCustomer({
                 )}
               </div>
               {errors.customerNationality && (
-                <p className="text-red-500 text-xs mt-1">{t.validation.required}</p>
+                <p id="customerNationality-error" role="alert" className="text-red-500 text-xs mt-1">{t.validation.required}</p>
               )}
             </div>
             <div>
-              <label className="block text-sm font-medium text-foreground mb-2">
+              <label htmlFor="numberOfPeople" className="block text-sm font-medium text-foreground mb-2">
                 {t.booking.numberOfPeople} *
               </label>
               <Select value={customerData.numberOfPeople.toString()} onValueChange={(value) => setCustomerData(prev => ({...prev, numberOfPeople: parseInt(value)}))}>
-                <SelectTrigger>
+                <SelectTrigger aria-required="true">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>

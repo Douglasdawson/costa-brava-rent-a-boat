@@ -1,8 +1,7 @@
 import type { Express } from "express";
-import fs from "fs";
-import path from "path";
 import { storage } from "../storage";
 import { logger } from "../lib/logger";
+import { registerRobotsRoutes } from "./robots";
 import { SUPPORTED_LANGUAGES, HREFLANG_CODES } from "../../shared/seoConstants";
 // Static destination slugs for sitemap fallback (when DB has no published destinations)
 const FALLBACK_DESTINATION_SLUGS = [
@@ -108,22 +107,17 @@ const getMaxDate = (dates: Array<Date | string | null | undefined>): string => {
 };
 
 export function registerSitemapRoutes(app: Express) {
-  // Serve llms.txt with proper text/plain content-type for AI crawlers
-  app.get("/llms.txt", (_req, res) => {
-    // Try client/public first (dev), then dist/public (prod)
-    const candidates = [
-      path.resolve(process.cwd(), "client/public/llms.txt"),
-      path.resolve(process.cwd(), "dist/public/llms.txt"),
-    ];
-    for (const filePath of candidates) {
-      if (fs.existsSync(filePath)) {
-        res.set("Content-Type", "text/plain; charset=utf-8");
-        res.set("Cache-Control", "public, max-age=86400");
-        res.sendFile(filePath);
-        return;
-      }
+  // Register dynamic robots.txt and llms.txt routes
+  registerRobotsRoutes(app);
+
+  // IndexNow key verification
+  app.get("/:key.txt", (req, res, next) => {
+    const indexNowKey = process.env.INDEXNOW_KEY;
+    if (indexNowKey && req.params.key === indexNowKey) {
+      res.type("text/plain").send(indexNowKey);
+    } else {
+      next();
     }
-    res.status(404).send("llms.txt not found");
   });
 
   // Sitemap Index - Main entry point with real lastmod per sub-sitemap
@@ -479,6 +473,25 @@ ${destHreflang}  </url>
     } catch (error: unknown) {
       logger.error("Error generating destinations sitemap", { error: error instanceof Error ? error.message : String(error) });
       res.status(500).send('<?xml version="1.0" encoding="UTF-8"?><error>Sitemap temporarily unavailable</error>');
+    }
+  });
+
+  // CWV beacon — receives Core Web Vitals data from client
+  app.post("/api/cwv-beacon", async (req, res) => {
+    try {
+      const { page, name, value, rating } = req.body;
+      if (!page || !name || typeof value !== "number") {
+        return res.status(400).json({ message: "Invalid beacon data" });
+      }
+      const validMetrics = ["CLS", "LCP", "INP", "TTFB", "FCP"];
+      if (!validMetrics.includes(name)) {
+        return res.status(400).json({ message: "Invalid metric name" });
+      }
+      const { recordCwvBeacon } = await import("../seo/collectors/cwv");
+      await recordCwvBeacon({ page, name, value, rating });
+      res.status(204).end();
+    } catch {
+      res.status(500).json({ message: "Error recording CWV" });
     }
   });
 }

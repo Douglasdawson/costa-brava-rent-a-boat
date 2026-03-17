@@ -148,7 +148,7 @@ export default function TestimoniosPage() {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <main id="main-content" className="min-h-screen bg-background">
       <SEO
         title={seoConfig.title}
         description={seoConfig.description}
@@ -319,6 +319,6 @@ export default function TestimoniosPage() {
       </div>
 
       <Footer />
-    </div>
+    </main>
   );
 }

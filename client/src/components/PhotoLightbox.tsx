@@ -1,5 +1,5 @@
-import { useState, useCallback } from "react";
-import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { useState, useCallback, useEffect, useRef } from "react";
+import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 
@@ -20,6 +20,8 @@ interface PhotoLightboxProps {
 
 export default function PhotoLightbox({ photos, initialIndex, open, onOpenChange }: PhotoLightboxProps) {
   const [currentIndex, setCurrentIndex] = useState(initialIndex);
+  const dialogRef = useRef<HTMLDivElement>(null);
+  const previousFocusRef = useRef<HTMLElement | null>(null);
 
   const goNext = useCallback(() => {
     setCurrentIndex((prev) => (prev + 1) % photos.length);
@@ -29,13 +31,39 @@ export default function PhotoLightbox({ photos, initialIndex, open, onOpenChange
     setCurrentIndex((prev) => (prev - 1 + photos.length) % photos.length);
   }, [photos.length]);
 
+  // Sync index when lightbox opens with a new initialIndex
+  useEffect(() => {
+    if (open) {
+      setCurrentIndex(initialIndex);
+    }
+  }, [open, initialIndex]);
+
+  // Focus management: save previous focus on open, restore on close
+  useEffect(() => {
+    if (open) {
+      previousFocusRef.current = document.activeElement as HTMLElement | null;
+      // Focus the dialog container after render
+      requestAnimationFrame(() => {
+        dialogRef.current?.focus();
+      });
+    } else if (previousFocusRef.current) {
+      previousFocusRef.current.focus();
+      previousFocusRef.current = null;
+    }
+  }, [open]);
+
   if (!photos.length) return null;
 
   const photo = photos[currentIndex];
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-4xl w-[95vw] p-0 gap-0 bg-black/95 border-none [&>button]:hidden">
+      <DialogContent
+        ref={dialogRef}
+        className="max-w-4xl w-[95vw] p-0 gap-0 bg-black/95 border-none [&>button]:hidden"
+        aria-label="Visor de imagenes"
+      >
+        <DialogTitle className="sr-only">Visor de imagenes</DialogTitle>
         <div className="relative">
           {/* Close button */}
           <Button
@@ -43,7 +71,7 @@ export default function PhotoLightbox({ photos, initialIndex, open, onOpenChange
             size="icon"
             className="absolute top-2 right-2 z-10 text-white hover:bg-white/20"
             onClick={() => onOpenChange(false)}
-            aria-label="Close lightbox"
+            aria-label="Cerrar visor"
           >
             <X className="w-5 h-5" />
           </Button>
@@ -65,7 +93,7 @@ export default function PhotoLightbox({ photos, initialIndex, open, onOpenChange
                 size="icon"
                 className="absolute left-1 sm:left-2 top-1/2 -translate-y-1/2 text-white hover:bg-white/20 active:bg-white/20"
                 onClick={goPrev}
-                aria-label="Previous photo"
+                aria-label="Foto anterior"
               >
                 <ChevronLeft className="w-6 h-6 sm:w-8 sm:h-8" />
               </Button>
@@ -74,7 +102,7 @@ export default function PhotoLightbox({ photos, initialIndex, open, onOpenChange
                 size="icon"
                 className="absolute right-1 sm:right-2 top-1/2 -translate-y-1/2 text-white hover:bg-white/20 active:bg-white/20"
                 onClick={goNext}
-                aria-label="Next photo"
+                aria-label="Foto siguiente"
               >
                 <ChevronRight className="w-6 h-6 sm:w-8 sm:h-8" />
               </Button>

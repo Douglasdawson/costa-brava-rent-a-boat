@@ -52,3 +52,20 @@ export function getQuotaUsage(): QuotaUsage {
   resetIfNewDay();
   return { ...usage };
 }
+
+export function checkQuotaUsage(): {
+  tokensUsed: number; tokensLimit: number; tokensUsedPercent: number;
+  serpUsed: number; serpLimit: number; serpUsedPercent: number;
+} {
+  resetIfNewDay();
+  const tokensLimit = SEO_CONFIG.maxTokensPerDay;
+  const serpLimit = SEO_CONFIG.maxSerpQueriesPerDay;
+  return {
+    tokensUsed: usage.tokensUsed,
+    tokensLimit,
+    tokensUsedPercent: tokensLimit > 0 ? Math.round((usage.tokensUsed / tokensLimit) * 100) : 0,
+    serpUsed: usage.serpQueries,
+    serpLimit,
+    serpUsedPercent: serpLimit > 0 ? Math.round((usage.serpQueries / serpLimit) * 100) : 0,
+  };
+}

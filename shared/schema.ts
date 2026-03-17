@@ -1,5 +1,5 @@
 import { sql } from "drizzle-orm";
-import { pgTable, text, varchar, integer, serial, decimal, timestamp, date, boolean, json, jsonb, index, unique, uniqueIndex } from "drizzle-orm/pg-core";
+import { pgTable, text, varchar, integer, serial, decimal, timestamp, date, boolean, json, jsonb, index, unique, uniqueIndex, real } from "drizzle-orm/pg-core";
 import { createInsertSchema, createSelectSchema } from "drizzle-zod";
 import { z } from "zod";
 
@@ -1785,4 +1785,46 @@ export const seoHealthChecks = pgTable("seo_health_checks", {
 }, (table) => [
   index("seo_health_checks_url_idx").on(table.url),
   index("seo_health_checks_checked_at_idx").on(table.checkedAt),
+]);
+
+export const seoCwvMetrics = pgTable("seo_cwv_metrics", {
+  id: serial("id").primaryKey(),
+  page: text("page").notNull(),
+  metricName: text("metric_name").notNull(), // CLS, LCP, INP, TTFB, FCP
+  value: real("value").notNull(),
+  rating: text("rating"), // good, needs-improvement, poor
+  sampleSize: integer("sample_size").notNull().default(1),
+  p75: real("p75"), // 75th percentile
+  recordedAt: timestamp("recorded_at", { withTimezone: true }).notNull().default(sql`now()`),
+}, (table) => [
+  index("seo_cwv_page_metric_idx").on(table.page, table.metricName),
+]);
+
+export type InsertSeoCwvMetric = typeof seoCwvMetrics.$inferInsert;
+
+export const seoEngineRuns = pgTable("seo_engine_runs", {
+  id: serial("id").primaryKey(),
+  jobName: text("job_name").notNull(),
+  startedAt: timestamp("started_at", { withTimezone: true }).notNull(),
+  finishedAt: timestamp("finished_at", { withTimezone: true }),
+  status: text("status").notNull().default("running"), // running, success, failed
+  error: text("error"),
+  durationMs: integer("duration_ms"),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().default(sql`now()`),
+}, (table) => [
+  index("seo_engine_runs_job_idx").on(table.jobName),
+  index("seo_engine_runs_status_idx").on(table.status),
+]);
+
+export const seoRedirects = pgTable("seo_redirects", {
+  id: serial("id").primaryKey(),
+  fromPath: text("from_path").notNull().unique(),
+  toPath: text("to_path").notNull(),
+  statusCode: integer("status_code").notNull().default(301),
+  hits: integer("hits").notNull().default(0),
+  lastHitAt: timestamp("last_hit_at", { withTimezone: true }),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().default(sql`now()`),
+  createdBy: text("created_by").default("system"), // system or admin
+}, (table) => [
+  index("seo_redirects_from_idx").on(table.fromPath),
 ]);

@@ -3,6 +3,7 @@ import { db } from "../../db";
 import { seoMeta } from "../../../shared/schema";
 import { eq, and } from "drizzle-orm";
 import { logger } from "../../lib/logger";
+import { notifyPageChanged } from "../indexnow";
 
 export async function updateMeta(action: {
   page: string;
@@ -50,6 +51,9 @@ export async function updateMeta(action: {
     });
 
   logger.info(`[SEO:Meta] Updated ${fieldName} for ${action.page}`);
+
+  // Notify search engines of the change
+  await notifyPageChanged(action.page);
 
   return { previousValue, newValue };
 }

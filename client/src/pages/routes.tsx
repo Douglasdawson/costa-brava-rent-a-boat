@@ -41,7 +41,7 @@ export default function RoutesPage() {
   };
 
   return (
-    <div className="min-h-screen bg-muted">
+    <main id="main-content" className="min-h-screen bg-muted">
       <SEO title={seoConfig.title} description={seoConfig.description} keywords={seoConfig.keywords} canonical={canonical} hreflang={hreflangLinks} />
       <Navigation />
 
@@ -161,6 +161,6 @@ export default function RoutesPage() {
       </div>
 
       <Footer />
-    </div>
+    </main>
   );
 }

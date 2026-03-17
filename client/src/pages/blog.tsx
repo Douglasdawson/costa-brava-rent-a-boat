@@ -140,7 +140,7 @@ export default function BlogPage() {
   // --- Loading ---
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-muted/30">
+      <main id="main-content" className="min-h-screen bg-muted/30">
         <SEO title={seoConfig.title} description={seoConfig.description} canonical={canonical} hreflang={hreflangLinks} />
         <Navigation />
         {/* Skeleton header */}
@@ -180,14 +180,14 @@ export default function BlogPage() {
           </div>
         </div>
         <Footer />
-      </div>
+      </main>
     );
   }
 
   // --- Error ---
   if (isError) {
     return (
-      <div className="min-h-screen bg-background">
+      <main id="main-content" className="min-h-screen bg-background">
         <SEO title={seoConfig.title} description={seoConfig.description} canonical={canonical} hreflang={hreflangLinks} />
         <Navigation />
         <div className="flex flex-col items-center justify-center min-h-[60vh] px-4">
@@ -200,12 +200,12 @@ export default function BlogPage() {
           </div>
         </div>
         <Footer />
-      </div>
+      </main>
     );
   }
 
   return (
-    <div className="min-h-screen bg-muted/30">
+    <main id="main-content" className="min-h-screen bg-muted/30">
       <SEO title={seoConfig.title} description={seoConfig.description} canonical={canonical} hreflang={hreflangLinks} />
       <Navigation />
 
@@ -513,6 +513,6 @@ export default function BlogPage() {
       <div className="bg-muted/30 h-8" />
 
       <Footer />
-    </div>
+    </main>
   );
 }

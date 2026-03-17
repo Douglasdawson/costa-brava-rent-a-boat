@@ -313,7 +313,7 @@ export default function LocationBlanesPage() {
                   allowFullScreen
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
-                  title="Puerto de Blanes - Costa Brava Rent a Boat"
+                  title="Mapa de ubicación - Puerto de Blanes"
                   data-testid="map-blanes"
                 />
               </div>

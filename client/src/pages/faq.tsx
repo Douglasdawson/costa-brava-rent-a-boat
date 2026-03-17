@@ -343,7 +343,7 @@ export default function FAQPage() {
   };
 
   return (
-    <div className="min-h-screen">
+    <main id="main-content" className="min-h-screen">
       <SEO
         title={seoConfig.title}
         description={seoConfig.description}
@@ -355,7 +355,6 @@ export default function FAQPage() {
       />
       <Navigation />
 
-      <main id="main-content">
       {/* Hero Section */}
       <div className="bg-gradient-to-br from-primary/5 to-primary/10 pt-20 sm:pt-24 pb-8">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -1086,9 +1085,8 @@ export default function FAQPage() {
           </div>
         </div>
       </div>
-      </main>
 
       <Footer />
-    </div>
+    </main>
   );
 }

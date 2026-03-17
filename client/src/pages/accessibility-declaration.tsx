@@ -6,7 +6,7 @@ import { SEO } from "@/components/SEO";
 
 export default function AccessibilityDeclarationPage() {
   return (
-    <div className="min-h-screen">
+    <main id="main-content" className="min-h-screen">
       <SEO
         title="Declaración de Accesibilidad | Costa Brava Rent a Boat"
         description="Declaración de accesibilidad de costabravarentaboat.com conforme al Real Decreto 1112/2018."
@@ -70,16 +70,21 @@ export default function AccessibilityDeclarationPage() {
               <div className="bg-green-50 border border-green-200 rounded-lg p-4 space-y-2">
                 <p className="font-semibold text-green-800">Aspectos conformes:</p>
                 <ul className="list-disc pl-5 space-y-1 text-green-700">
-                  <li>Etiquetas <code>aria-label</code> en elementos interactivos</li>
+                  <li>Etiquetas <code>aria-label</code> en todos los elementos interactivos</li>
                   <li>Atributos <code>alt</code> en imágenes</li>
-                  <li>Navegación por teclado en formularios</li>
+                  <li>Navegación completa por teclado en formularios y dropdowns personalizados</li>
                   <li>Tamaño mínimo de áreas táctiles (44×44 px)</li>
                   <li>Ratio de contraste de color WCAG AA en texto principal</li>
-                  <li>Formularios con etiquetas y mensajes de error accesibles</li>
+                  <li>Formularios con <code>aria-describedby</code>, <code>aria-invalid</code> y <code>aria-required</code></li>
                   <li>Estructura semántica con encabezados jerarquizados</li>
-                  <li>Menú de navegación con <code>aria-expanded</code> y <code>aria-hidden</code></li>
-                  <li>Landmark regions (nav, main, footer)</li>
-                  <li>Breadcrumbs con navegación accesible</li>
+                  <li>Menú de navegación con <code>aria-expanded</code>, <code>aria-hidden</code> y <code>aria-current</code></li>
+                  <li>Landmark regions (<code>nav</code>, <code>main</code>, <code>footer</code>) en todas las páginas</li>
+                  <li>Diálogos modales con <code>role="dialog"</code>, <code>aria-modal</code> y gestión de foco</li>
+                  <li>Dropdowns con roles ARIA (<code>combobox</code>, <code>listbox</code>, <code>option</code>) y navegación con flechas</li>
+                  <li>Carruseles con <code>aria-live="polite"</code> y <code>aria-roledescription</code></li>
+                  <li>Iconos decorativos marcados con <code>aria-hidden="true"</code></li>
+                  <li>Tablas con <code>scope="col"</code> en encabezados</li>
+                  <li>Galería con botones semánticos accesibles por teclado</li>
                 </ul>
               </div>
             </CardContent>
@@ -106,7 +111,7 @@ export default function AccessibilityDeclarationPage() {
                 </li>
               </ul>
               <p className="text-xs text-muted-foreground/60">
-                Última auditoría realizada: febrero de 2026. Próxima revisión prevista: agosto de 2026.
+                Última auditoría realizada: marzo de 2026. Próxima revisión prevista: septiembre de 2026.
               </p>
             </CardContent>
           </Card>
@@ -158,13 +163,13 @@ export default function AccessibilityDeclarationPage() {
 
           {/* Fecha */}
           <p className="text-xs text-muted-foreground/60 text-center">
-            Esta declaración fue preparada el 25 de febrero de 2026 mediante autoevaluación.
+            Esta declaración fue actualizada el 17 de marzo de 2026 mediante autoevaluación.
           </p>
 
         </div>
       </div>
 
       <Footer />
-    </div>
+    </main>
   );
 }

@@ -17,13 +17,32 @@ function sendToGA4(metric: { name: string; value: number; id: string }) {
   }
 }
 
+function sendToBeacon(metric: { name: string; value: number; id: string }) {
+  if (typeof window === "undefined" || typeof navigator.sendBeacon !== "function") return;
+
+  const page = window.location.pathname;
+  const data = JSON.stringify({
+    page,
+    name: metric.name,
+    value: metric.name === "CLS" ? metric.value : Math.round(metric.value),
+    rating: undefined, // server will classify
+  });
+
+  navigator.sendBeacon("/api/cwv-beacon", new Blob([data], { type: "application/json" }));
+}
+
+function handleMetric(metric: { name: string; value: number; id: string }) {
+  sendToGA4(metric);
+  sendToBeacon(metric);
+}
+
 export function initWebVitals() {
   try {
-    onCLS(sendToGA4);
-    onLCP(sendToGA4);
-    onINP(sendToGA4);
-    onTTFB(sendToGA4);
-    onFCP(sendToGA4);
+    onCLS(handleMetric);
+    onLCP(handleMetric);
+    onINP(handleMetric);
+    onTTFB(handleMetric);
+    onFCP(handleMetric);
   } catch {
     // web-vitals not available
   }

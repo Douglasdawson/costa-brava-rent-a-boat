@@ -80,7 +80,7 @@ export default function Footer() {
                 data-testid="social-instagram"
                 aria-label="Instagram"
               >
-                <SiInstagram className="w-5 h-5" />
+                <SiInstagram className="w-5 h-5" aria-hidden="true" />
               </a>
               <a
                 href="https://www.facebook.com/costabravarentaboat"
@@ -90,7 +90,7 @@ export default function Footer() {
                 data-testid="social-facebook"
                 aria-label="Facebook"
               >
-                <SiFacebook className="w-5 h-5" />
+                <SiFacebook className="w-5 h-5" aria-hidden="true" />
               </a>
               <a
                 href="https://www.tiktok.com/@costabravarentaboat"
@@ -100,7 +100,7 @@ export default function Footer() {
                 data-testid="social-tiktok"
                 aria-label="TikTok"
               >
-                <SiTiktok className="w-5 h-5" />
+                <SiTiktok className="w-5 h-5" aria-hidden="true" />
               </a>
             </div>
 
@@ -260,7 +260,7 @@ export default function Footer() {
             <div className="flex items-center justify-center gap-3 text-white/50 text-xs">
               <span>NIF: B22566327</span>
               <a href="/login" className="inline-flex items-center gap-1 hover:text-white/60 transition-colors" aria-label="Acceso administración">
-                <Lock className="w-3 h-3" />
+                <Lock className="w-3 h-3" aria-hidden="true" />
               </a>
             </div>
             {/* Institutional logos */}

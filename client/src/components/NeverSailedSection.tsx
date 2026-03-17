@@ -48,7 +48,7 @@ export default function NeverSailedSection() {
               >
                 {/* Step number + icon */}
                 <div className="relative z-10 flex items-center justify-center w-20 h-20 rounded-full bg-primary/10 mb-4">
-                  <Icon className="w-8 h-8 text-primary" strokeWidth={1.5} />
+                  <Icon className="w-8 h-8 text-primary" strokeWidth={1.5} aria-hidden="true" />
                 </div>
 
                 {/* Step number badge */}

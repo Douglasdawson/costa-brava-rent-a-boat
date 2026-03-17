@@ -47,7 +47,7 @@ export default function GalleryPage() {
   };
 
   return (
-    <div className="min-h-screen bg-muted">
+    <main id="main-content" className="min-h-screen bg-muted">
       <SEO
         title={seoConfig.title}
         description={seoConfig.description}
@@ -105,10 +105,12 @@ export default function GalleryPage() {
           /* Masonry grid with CSS columns */
           <div className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-4 space-y-4">
             {photos.map((photo, index) => (
-              <div
+              <button
                 key={photo.id}
-                className="break-inside-avoid cursor-pointer group"
+                type="button"
+                className="break-inside-avoid cursor-pointer group text-left w-full"
                 onClick={() => openLightbox(index)}
+                aria-label={`Ver imagen ${index + 1} en pantalla completa`}
               >
                 <div className="bg-background rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow">
                   <img
@@ -129,7 +131,7 @@ export default function GalleryPage() {
                     </p>
                   </div>
                 </div>
-              </div>
+              </button>
             ))}
           </div>
         )}
@@ -167,6 +169,6 @@ export default function GalleryPage() {
       />
 
       <Footer />
-    </div>
+    </main>
   );
 }

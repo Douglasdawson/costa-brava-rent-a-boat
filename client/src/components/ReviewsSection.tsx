@@ -153,7 +153,7 @@ export default function ReviewsSection() {
           </div>
           <div className="flex justify-center gap-1 mt-3">
             {Array.from({ length: 5 }).map((_, i) => (
-              <Star key={i} className="w-5 h-5 text-amber-400 fill-amber-400" />
+              <Star key={i} className="w-5 h-5 text-amber-400 fill-amber-400" aria-hidden="true" />
             ))}
           </div>
           <p className="text-sm text-muted-foreground mt-2">
@@ -207,6 +207,7 @@ export default function ReviewsSection() {
                   {Array.from({ length: 5 }).map((_, i) => (
                     <Star
                       key={i}
+                      aria-hidden="true"
                       className={`w-3 h-3 ${
                         i < review.rating
                           ? "text-amber-400 fill-amber-400"
@@ -216,7 +217,7 @@ export default function ReviewsSection() {
                   ))}
                 </div>
                 {/* Decorative quote */}
-                <span className="text-3xl font-serif text-border leading-none">
+                <span className="text-3xl font-serif text-border leading-none" aria-hidden="true">
                   &ldquo;
                 </span>
                 {/* Comment */}

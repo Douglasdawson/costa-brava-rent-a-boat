@@ -8,12 +8,30 @@ const scheduledTasks: ScheduledTask[] = [];
 function registerJob(name: string, cronExpr: string, handler: () => Promise<void>): void {
   const task = cron.schedule(cronExpr, async () => {
     const start = Date.now();
+    let runId: number | null = null;
     logger.info(`[SEO] Starting job: ${name}`);
+    try {
+      const { recordJobStart } = await import("./monitor");
+      runId = await recordJobStart(name);
+    } catch {
+      // monitor table may not exist yet
+    }
     try {
       await handler();
       logger.info(`[SEO] Completed job: ${name} in ${Date.now() - start}ms`);
+      if (runId !== null) {
+        const { recordJobEnd } = await import("./monitor");
+        await recordJobEnd(runId, true);
+      }
     } catch (error) {
-      logger.error(`[SEO] Failed job: ${name}`, { error: error instanceof Error ? error.message : String(error) });
+      const errMsg = error instanceof Error ? error.message : String(error);
+      logger.error(`[SEO] Failed job: ${name}`, { error: errMsg });
+      if (runId !== null) {
+        try {
+          const { recordJobEnd } = await import("./monitor");
+          await recordJobEnd(runId, false, errMsg);
+        } catch { /* ignore monitor errors */ }
+      }
     }
   });
   scheduledTasks.push(task);
@@ -97,6 +115,30 @@ export function startSeoWorker(): void {
   registerJob("alert-check", schedules.alertCheck, async () => {
     const { checkAlerts } = await import("./alerts/engine");
     await checkAlerts();
+  });
+
+  // Self-monitoring: check engine health every 6 hours
+  registerJob("engine-health", "0 */6 * * *", async () => {
+    const { checkEngineHealth } = await import("./monitor");
+    await checkEngineHealth();
+  });
+
+  // Schema validation (weekly on Wednesday at 3am)
+  registerJob("schema-validation", "0 3 * * 3", async () => {
+    const { validateAllSchemas } = await import("./validators/schema");
+    await validateAllSchemas();
+  });
+
+  // Link rot detection (weekly on Sunday at 3am)
+  registerJob("link-rot-check", "0 3 * * 0", async () => {
+    const { detectLinkRot } = await import("./collectors/linkrot");
+    await detectLinkRot();
+  });
+
+  // Content freshness check (weekly on Monday at 4am)
+  registerJob("content-freshness", "0 4 * * 1", async () => {
+    const { detectStaleContent } = await import("./executors/freshness");
+    await detectStaleContent();
   });
 
   logger.info(`[SEO] Worker started with ${scheduledTasks.length} jobs. Season mode: ${SEO_CONFIG.getSeasonMode()}`);

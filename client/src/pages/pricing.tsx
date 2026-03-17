@@ -144,7 +144,7 @@ export default function PricingPage() {
   };
 
   return (
-    <div className="min-h-screen">
+    <main id="main-content" className="min-h-screen">
       <SEO
         title={seoConfig.title}
         description={seoConfig.description}
@@ -577,6 +577,6 @@ export default function PricingPage() {
       </div>
 
       <Footer />
-    </div>
+    </main>
   );
 }

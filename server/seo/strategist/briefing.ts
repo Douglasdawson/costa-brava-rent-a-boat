@@ -98,6 +98,20 @@ export interface SeoBriefing {
     engine: string;
     cited: boolean;
   }>;
+
+  // Core Web Vitals
+  coreWebVitals: Array<{
+    page: string;
+    metrics: Record<string, { p75: number; rating: string; samples: number }>;
+  }>;
+
+  // Content health
+  cannibalizationConflicts: Array<{
+    keyword: string;
+    pages: Array<{ page: string; position: number; clicks: number }>;
+  }>;
+  orphanPages: string[];
+  staleContent: Array<{ slug: string; title: string; daysSinceUpdate: number }>;
 }
 
 export async function buildBriefing(): Promise<SeoBriefing> {
@@ -360,6 +374,41 @@ export async function buildBriefing(): Promise<SeoBriefing> {
     bookings: Number(r.bookings || 0),
   }));
 
+  // Core Web Vitals summary
+  let coreWebVitals: SeoBriefing["coreWebVitals"] = [];
+  try {
+    const { getCwvSummary } = await import("../collectors/cwv");
+    coreWebVitals = await getCwvSummary();
+  } catch {
+    // CWV table may not exist yet
+  }
+
+  // Cannibalization detection
+  let cannibalizationConflicts: SeoBriefing["cannibalizationConflicts"] = [];
+  try {
+    const { detectCannibalization } = await import("../analyzers/cannibalization");
+    cannibalizationConflicts = await detectCannibalization();
+  } catch { /* table may not exist */ }
+
+  // Orphan pages
+  let orphanPages: string[] = [];
+  try {
+    const { detectOrphanPages } = await import("../analyzers/orphans");
+    orphanPages = await detectOrphanPages();
+  } catch { /* ignore */ }
+
+  // Stale content
+  let staleContent: SeoBriefing["staleContent"] = [];
+  try {
+    const { detectStaleContent } = await import("../executors/freshness");
+    const stale = await detectStaleContent();
+    staleContent = stale.map(s => ({
+      slug: s.slug,
+      title: s.title,
+      daysSinceUpdate: s.daysSinceUpdate,
+    }));
+  } catch { /* ignore */ }
+
   return {
     timestamp: now.toISOString(),
     seasonMode: SEO_CONFIG.getSeasonMode(),
@@ -416,5 +465,11 @@ export async function buildBriefing(): Promise<SeoBriefing> {
       engine: g.engine,
       cited: g.cited,
     })),
+
+    coreWebVitals,
+
+    cannibalizationConflicts,
+    orphanPages,
+    staleContent,
   };
 }

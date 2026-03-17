@@ -151,6 +151,7 @@ export default function Navigation() {
   const isTransparent = currentLocation === "/" && !scrolled;
 
   const isNavItemActive = (href: string): boolean => {
+    if (href === "/") return currentLocation === "/";
     if (href === "/blog") return currentLocation === "/blog" || currentLocation.startsWith("/blog/");
     if (href === "/rutas") return currentLocation === "/rutas" || currentLocation.startsWith("/destinos/");
     return false;
@@ -194,6 +195,7 @@ export default function Navigation() {
                     onClick={(e) => { e.preventDefault(); handleNavigation(item.href, item.label); }}
                     className={baseClass}
                     data-testid={`nav-link-${item.label.toLowerCase()}`}
+                    {...(isNavItemActive(item.href) ? { "aria-current": "page" as const } : {})}
                   >
                     {item.label}
                   </a>
@@ -281,6 +283,7 @@ export default function Navigation() {
                       onClick={(e) => { e.preventDefault(); handleNavigation(item.href, item.label); }}
                       className={baseClass}
                       data-testid={`mobile-nav-${item.label.toLowerCase()}`}
+                      {...(isNavItemActive(item.href) ? { "aria-current": "page" as const } : {})}
                     >
                       {item.label}
                     </a>

@@ -97,7 +97,21 @@ export function serveStatic(app: Express) {
     );
   }
 
-  // Serve pre-compressed Brotli/gzip assets with CDN-ready cache headers
+  // Redirect old manifest path to new PWA-generated one
+  app.get('/site.webmanifest', (_req, res) => {
+    res.redirect(301, '/manifest.webmanifest');
+  });
+
+  // Force fresh HTML/SW/manifest — prevents stale Service Worker serving old cached HTML
+  app.use((req, res, next) => {
+    const noCachePaths = ['/', '/index.html', '/sw.js', '/registerSW.js', '/manifest.webmanifest'];
+    if (noCachePaths.includes(req.path)) {
+      res.set('Cache-Control', 'no-cache, no-store, must-revalidate');
+    }
+    next();
+  });
+
+  // Serve pre-compressed gzip assets with CDN-ready cache headers
   app.use("/assets", (req, res, next) => {
     const acceptEncoding = req.headers["accept-encoding"] || "";
     const filePath = path.join(distPath, "assets", req.path);
@@ -109,13 +123,7 @@ export function serveStatic(app: Express) {
 
     const contentType = getContentType(req.path);
 
-    if (acceptEncoding.includes("br") && existsSync(filePath + ".br")) {
-      // Serve compressed file directly — express.static would override Content-Type
-      // based on .br extension, causing application/octet-stream MIME errors
-      res.set("Content-Encoding", "br");
-      res.set("Content-Type", contentType);
-      return res.sendFile(filePath + ".br");
-    } else if (acceptEncoding.includes("gzip") && existsSync(filePath + ".gz")) {
+    if (acceptEncoding.includes("gzip") && existsSync(filePath + ".gz")) {
       res.set("Content-Encoding", "gzip");
       res.set("Content-Type", contentType);
       return res.sendFile(filePath + ".gz");

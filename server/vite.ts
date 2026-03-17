@@ -126,7 +126,7 @@ export function serveStatic(app: Express) {
     if (acceptEncoding.includes("gzip") && existsSync(filePath + ".gz")) {
       res.set("Content-Encoding", "gzip");
       res.set("Content-Type", contentType);
-      return res.sendFile(filePath + ".gz");
+      return fs.createReadStream(filePath + ".gz").pipe(res);
     }
     next();
   });

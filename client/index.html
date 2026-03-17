@@ -51,11 +51,9 @@
     <link rel="preload" as="font" type="font/woff2" href="/fonts/ClashDisplay-Variable.woff2" crossorigin>
     <link rel="preload" as="font" type="font/woff2" href="/fonts/Archivo-Variable.woff2" crossorigin>
 
-    <!-- Preload critical assets for LCP optimization (matches Hero.tsx <picture> sources) -->
+    <!-- Preload critical hero images for LCP (avif only — webp fallback loads naturally via <picture>) -->
     <link rel="preload" as="image" type="image/avif" href="/images/hero/hero-dive-mobile.avif" media="(max-width: 767px)" fetchpriority="high">
     <link rel="preload" as="image" type="image/avif" href="/images/hero/hero-dive-desktop.avif" media="(min-width: 768px)" fetchpriority="high">
-    <link rel="preload" as="image" href="/images/hero/hero-dive-mobile.webp" media="(max-width: 767px)" fetchpriority="high">
-    <link rel="preload" as="image" href="/images/hero/hero-dive-desktop.webp" media="(min-width: 768px)" fetchpriority="high">
     <!-- Preconnect to Google Tag Manager -->
     <link rel="preconnect" href="https://www.googletagmanager.com">
 

@@ -33,82 +33,44 @@
 .scrollbar-hide::-webkit-scrollbar { display: none; }
 .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
 
-/* Prevent horizontal scroll — body overflow propagates to viewport per CSS spec.
-   MUST be outside @layer to have higher priority than Tailwind utilities.
-   Do NOT set overflow on html — it breaks body→viewport propagation. */
-body {
-  overflow-x: hidden;
-}
-#root {
-  overflow-x: hidden;
-}
+/* Prevent horizontal scroll */
+body { overflow-x: hidden; }
+#root { overflow-x: hidden; }
 
 /* LIGHT MODE */
 :root {
   --button-outline: rgba(0,0,0, .10);
   --badge-outline: rgba(0,0,0, .05);
-
-  /* Automatic computation of border around primary / danger buttons */
-  --opaque-button-border-intensity: -8; /* In terms of percentages */
-
-  /* Backgrounds applied on top of other backgrounds when hovered/active */
+  --opaque-button-border-intensity: -8;
   --elevate-1: rgba(0,0,0, .03);
   --elevate-2: rgba(0,0,0, .08);
-
   --background: 0 0% 100%;
-
   --foreground: 215 45% 20%;
-
   --border: 210 14% 91%;
-
   --card: 210 20% 97%;
-
   --card-foreground: 210 60% 20%;
-
   --card-border: 200 15% 92%;
-
   --sidebar: 200 12% 94%;
-
   --sidebar-foreground: 210 60% 20%;
-
   --sidebar-border: 200 15% 90%;
-
   --sidebar-primary: 210 85% 25%;
-
   --sidebar-primary-foreground: 200 20% 98%;
-
   --sidebar-accent: 200 15% 90%;
-
   --sidebar-accent-foreground: 210 60% 20%;
-
   --sidebar-ring: 185 75% 45%;
-
   --popover: 200 18% 92%;
-
   --popover-foreground: 210 60% 20%;
-
   --popover-border: 200 15% 86%;
-
   --primary: 215 45% 20%;
-
   --primary-foreground: 200 20% 98%;
-
   --secondary: 200 18% 88%;
-
   --secondary-foreground: 210 60% 20%;
-
   --muted: 210 15% 93%;
-
   --muted-foreground: 215 25% 38%;
-
   --accent: 185 20% 92%;
-
   --accent-foreground: 210 60% 20%;
-
   --destructive: 0 75% 45%;
-
   --destructive-foreground: 0 20% 98%;
-
   --input: 200 15% 82%;
   --ring: 185 75% 45%;
   --chart-1: 210 85% 25%;
@@ -116,15 +78,13 @@ body {
   --chart-3: 15 80% 55%;
   --chart-4: 45 60% 65%;
   --chart-5: 270 60% 55%;
-
   --cta: 240 53% 11%;
   --cta-foreground: 0 0% 100%;
-
   --font-sans: 'Archivo', Inter, sans-serif;
   --font-display: 'Clash Display', 'Archivo', sans-serif;
   --font-serif: Georgia, serif;
   --font-mono: Menlo, monospace;
-  --radius: .5rem; /* 8px */
+  --radius: .5rem;
   --shadow-2xs: 0px 1px 2px 0px hsl(210 15% 25% / 0.05);
   --shadow-xs: 0px 1px 3px 0px hsl(210 15% 25% / 0.08);
   --shadow-sm: 0px 2px 4px 0px hsl(210 15% 25% / 0.06), 0px 1px 2px -1px hsl(210 15% 25% / 0.06);
@@ -135,34 +95,18 @@ body {
   --shadow-2xl: 0px 25px 50px -12px hsl(210 15% 25% / 0.15);
   --tracking-normal: 0em;
   --spacing: 0.25rem;
-
-  /* Automatically computed borders - intensity can be controlled by the user by the --opaque-button-border-intensity setting */
-
-  /* Fallback for older browsers */
   --sidebar-primary-border: hsl(var(--sidebar-primary));
   --sidebar-primary-border: hsl(from hsl(var(--sidebar-primary)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
-
-  /* Fallback for older browsers */
   --sidebar-accent-border: hsl(var(--sidebar-accent));
   --sidebar-accent-border: hsl(from hsl(var(--sidebar-accent)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
-
-  /* Fallback for older browsers */
   --primary-border: hsl(var(--primary));
   --primary-border: hsl(from hsl(var(--primary)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
-
-  /* Fallback for older browsers */
   --secondary-border: hsl(var(--secondary));
   --secondary-border: hsl(from hsl(var(--secondary)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
-
-  /* Fallback for older browsers */
   --muted-border: hsl(var(--muted));
   --muted-border: hsl(from hsl(var(--muted)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
-
-  /* Fallback for older browsers */
   --accent-border: hsl(var(--accent));
   --accent-border: hsl(from hsl(var(--accent)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
-
-  /* Fallback for older browsers */
   --destructive-border: hsl(var(--destructive));
   --destructive-border: hsl(from hsl(var(--destructive)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
 }
@@ -170,67 +114,36 @@ body {
 .dark {
   --button-outline: rgba(255,255,255, .10);
   --badge-outline: rgba(255,255,255, .05);
-
-  --opaque-button-border-intensity: 9;  /* In terms of percentages */
-
-  /* Backgrounds applied on top of other backgrounds when hovered/active */
+  --opaque-button-border-intensity: 9;
   --elevate-1: rgba(255,255,255, .04);
   --elevate-2: rgba(255,255,255, .09);
-
   --background: 215 50% 12%;
-
   --foreground: 200 15% 92%;
-
   --border: 215 30% 18%;
-
   --card: 215 45% 15%;
-
   --card-foreground: 200 15% 92%;
-
   --card-border: 215 35% 20%;
-
   --sidebar: 215 48% 13%;
-
   --sidebar-foreground: 200 15% 92%;
-
   --sidebar-border: 215 35% 18%;
-
   --sidebar-primary: 210 70% 35%;
-
   --sidebar-primary-foreground: 200 20% 98%;
-
   --sidebar-accent: 215 35% 18%;
-
   --sidebar-accent-foreground: 200 15% 92%;
-
   --sidebar-ring: 185 60% 55%;
-
   --popover: 215 40% 18%;
-
   --popover-foreground: 200 15% 92%;
-
   --popover-border: 215 35% 22%;
-
   --primary: 210 70% 35%;
-
   --primary-foreground: 200 20% 98%;
-
   --secondary: 215 35% 20%;
-
   --secondary-foreground: 200 15% 92%;
-
   --muted: 215 30% 16%;
-
   --muted-foreground: 200 10% 65%;
-
   --accent: 185 15% 18%;
-
   --accent-foreground: 200 15% 92%;
-
   --destructive: 0 65% 45%;
-
   --destructive-foreground: 0 20% 98%;
-
   --input: 215 25% 25%;
   --ring: 185 60% 55%;
   --chart-1: 210 75% 65%;
@@ -238,10 +151,8 @@ body {
   --chart-3: 15 75% 65%;
   --chart-4: 45 55% 75%;
   --chart-5: 270 55% 65%;
-
   --cta: 15 75% 55%;
   --cta-foreground: 0 0% 100%;
-
   --shadow-2xs: 0px 1px 2px 0px hsl(215 50% 8% / 0.15);
   --shadow-xs: 0px 1px 3px 0px hsl(215 50% 8% / 0.20);
   --shadow-sm: 0px 2px 4px 0px hsl(215 50% 8% / 0.18), 0px 1px 2px -1px hsl(215 50% 8% / 0.18);
@@ -250,295 +161,81 @@ body {
   --shadow-lg: 0px 10px 15px -3px hsl(215 50% 8% / 0.22), 0px 4px 6px -2px hsl(215 50% 8% / 0.15);
   --shadow-xl: 0px 20px 25px -5px hsl(215 50% 8% / 0.22), 0px 8px 10px -6px hsl(215 50% 8% / 0.15);
   --shadow-2xl: 0px 25px 50px -12px hsl(215 50% 8% / 0.35);
-
 }
 
 @layer base {
-  * {
-    @apply border-border;
-  }
-
+  * { @apply border-border; }
   body {
     @apply font-sans antialiased bg-background text-foreground;
     overflow-x: hidden;
   }
-
-  /* Global focus-visible fallback for accessibility */
-  a:focus-visible,
-  button:focus-visible,
-  [role="button"]:focus-visible,
-  input:focus-visible,
-  select:focus-visible,
-  textarea:focus-visible {
+  a:focus-visible, button:focus-visible, [role="button"]:focus-visible,
+  input:focus-visible, select:focus-visible, textarea:focus-visible {
     outline: 2px solid hsl(var(--cta));
     outline-offset: 2px;
   }
 }
 
-/**
- * Using the elevate system.
- * Automatic contrast adjustment.
- *
- * <element className="hover-elevate" />
- * <element className="active-elevate-2" />
- *
- * // Using the tailwind utility when a data attribute is "on"
- * <element className="toggle-elevate data-[state=on]:toggle-elevated" />
- * // Or manually controlling the toggle state
- * <element className="toggle-elevate toggle-elevated" />
- *
- * Elevation systems have to handle many states.
- * - not-hovered, vs. hovered vs. active  (three mutually exclusive states)
- * - toggled or not
- * - focused or not (this is not handled with these utilities)
- *
- * Even without handling focused or not, this is six possible combinations that
- * need to be distinguished from eachother visually.
- */
 @layer utilities {
-
-  /* Dynamic viewport height for iOS Safari (avoids toolbar overlap) */
-  .h-dvh {
-    height: 100vh; /* fallback */
-    height: 100dvh;
-  }
-
-  /* Hide ugly search cancel button in Chrome until we can style it properly */
-  input[type="search"]::-webkit-search-cancel-button {
-    @apply hidden;
-  }
-
-  /* Placeholder styling for contentEditable div */
+  .h-dvh { height: 100vh; height: 100dvh; }
+  input[type="search"]::-webkit-search-cancel-button { @apply hidden; }
   [contenteditable][data-placeholder]:empty::before {
     content: attr(data-placeholder);
     color: hsl(var(--muted-foreground));
     pointer-events: none;
   }
 
-  /* .no-default-hover-elevate/no-default-active-elevate is an escape hatch so consumers of
-   * buttons/badges can remove the automatic brightness adjustment on interactions
-   * and program their own. */
-  .no-default-hover-elevate {}
-
-  .no-default-active-elevate {}
-
-
-  /**
-   * Toggleable backgrounds go behind the content. Hoverable/active goes on top.
-   * This way they can stack/compound. Both will overlap the parent's borders!
-   * So borders will be automatically adjusted both on toggle, and hover/active,
-   * and they will be compounded.
-   */
-  .toggle-elevate::before,
-  .toggle-elevate-2::before {
-    content: "";
-    pointer-events: none;
-    position: absolute;
-    inset: 0px;
-    /*border-radius: inherit;   match rounded corners */
-    border-radius: inherit;
-    z-index: -1;
-    /* sits behind content but above backdrop */
+  /* Hover elevate system (used by shadcn buttons/badges) */
+  .hover-elevate, .hover-elevate-2 { position: relative; z-index: 0; }
+  .hover-elevate::after, .hover-elevate-2::after {
+    content: ""; pointer-events: none; position: absolute; inset: 0px;
+    border-radius: inherit; z-index: 999;
   }
+  .hover-elevate:hover::after { background-color: var(--elevate-1); }
+  .hover-elevate-2:hover::after { background-color: var(--elevate-2); }
+  .border.hover-elevate::after, .border.hover-elevate-2::after { inset: -1px; }
 
-  .toggle-elevate.toggle-elevated::before {
-    background-color: var(--elevate-2);
-  }
-
-  /* If there's a 1px border, adjust the inset so that it covers that parent's border */
-  .border.toggle-elevate::before {
-    inset: -1px;
-  }
-
-  /* Does not work on elements with overflow:hidden! */
-  .hover-elevate:not(.no-default-hover-elevate),
-  .active-elevate:not(.no-default-active-elevate),
-  .hover-elevate-2:not(.no-default-hover-elevate),
-  .active-elevate-2:not(.no-default-active-elevate) {
-    position: relative;
-    z-index: 0;
-  }
-
-  .hover-elevate:not(.no-default-hover-elevate)::after,
-  .active-elevate:not(.no-default-active-elevate)::after,
-  .hover-elevate-2:not(.no-default-hover-elevate)::after,
-  .active-elevate-2:not(.no-default-active-elevate)::after {
-    content: "";
-    pointer-events: none;
-    position: absolute;
-    inset: 0px;
-    /*border-radius: inherit;   match rounded corners */
-    border-radius: inherit;
-    z-index: 999;
-    /* sits in front of content */
-  }
-
-  .hover-elevate:hover:not(.no-default-hover-elevate)::after,
-  .active-elevate:active:not(.no-default-active-elevate)::after {
-    background-color: var(--elevate-1);
-  }
-
-  .hover-elevate-2:hover:not(.no-default-hover-elevate)::after,
-  .active-elevate-2:active:not(.no-default-active-elevate)::after {
-    background-color: var(--elevate-2);
-  }
-
-  /* If there's a 1px border, adjust the inset so that it covers that parent's border */
-  .border.hover-elevate:not(.no-hover-interaction-elevate)::after,
-  .border.active-elevate:not(.no-active-interaction-elevate)::after,
-  .border.hover-elevate-2:not(.no-hover-interaction-elevate)::after,
-  .border.active-elevate-2:not(.no-active-interaction-elevate)::after,
-  .border.hover-elevate:not(.no-hover-interaction-elevate)::after {
-    inset: -1px;
-  }
-
-  /* Custom date input left alignment */
-  .date-left-align {
-    text-align: left !important;
-    direction: ltr !important;
-  }
-
-  /* Target date input specific parts */
-  .date-left-align::-webkit-datetime-edit {
-    text-align: left !important;
-  }
-  
-  .date-left-align::-webkit-inner-spin-button,
-  .date-left-align::-webkit-calendar-picker-indicator {
-    text-align: left !important;
-  }
-
-  /* Smooth scrolling - on html only (not * which interferes with JS animations) */
   html {
     scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%;
     text-size-adjust: 100%;
   }
 
-  /* Mobile scrolling enhancements */
   @media (max-width: 768px) {
-    body, html {
-      -webkit-overflow-scrolling: touch;
-      overscroll-behavior-y: contain;
-      scroll-behavior: smooth;
-    }
-
-    /* Optimize all scrollable containers on mobile */
-    [class*="overflow-auto"],
-    [class*="overflow-y-auto"],
-    [class*="overflow-x-auto"],
-    .scroll-area {
-      -webkit-overflow-scrolling: touch;
-      overscroll-behavior: contain;
-      scroll-behavior: smooth;
-    }
-
-    /* Specific optimizations for commonly scrolled elements */
-    main, article, section, div[role="main"] {
-      -webkit-overflow-scrolling: touch;
-      overscroll-behavior-y: contain;
-    }
-
-    /* Smooth momentum scrolling for the main content */
-    #root {
-      -webkit-overflow-scrolling: touch;
-      overscroll-behavior-y: contain;
-      scroll-behavior: smooth;
-    }
-
-    /* Optimize booking flow and modals for mobile */
-    .booking-content {
-      -webkit-overflow-scrolling: touch;
-    }
+    body, html { -webkit-overflow-scrolling: touch; overscroll-behavior-y: contain; }
+    #root { -webkit-overflow-scrolling: touch; overscroll-behavior-y: contain; }
   }
 
-  /* Hardware acceleration for better performance */
-  .smooth-scroll {
-    -webkit-overflow-scrolling: touch;
-    scroll-behavior: smooth;
-    transform: translateZ(0);
-    backface-visibility: hidden;
-  }
+  section[id], div[id] { scroll-margin-top: 4rem; }
 
-  /* Scroll margin for sections with anchors to account for fixed navbar */
-  section[id],
-  div[id] {
-    scroll-margin-top: 4rem; /* Navbar height only - sections have their own internal padding */
-  }
-
-  /* Remove native select styling to prevent browser gradients */
-  select.clean-select {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
-    background-position: right 0.5rem center;
-    background-repeat: no-repeat;
-    background-size: 1.5em 1.5em;
-    padding-right: 2.5rem;
-  }
-
-  /* Safe area utilities for iOS notch / home indicator */
   .btn-elevated {
     box-shadow: 0 4px 14px hsl(var(--foreground) / 0.35);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     will-change: transform, box-shadow;
   }
-  .btn-elevated:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px hsl(var(--foreground) / 0.45);
-  }
-  .btn-elevated:active {
-    transform: translateY(0);
-    box-shadow: 0 2px 8px hsl(var(--foreground) / 0.3);
-  }
-  .dark .btn-elevated {
-    box-shadow: 0 4px 14px hsl(var(--foreground) / 0.15);
-  }
-  .dark .btn-elevated:hover {
-    box-shadow: 0 6px 20px hsl(var(--foreground) / 0.2);
-  }
-  .dark .btn-elevated:active {
-    box-shadow: 0 2px 8px hsl(var(--foreground) / 0.1);
-  }
+  .btn-elevated:hover { transform: translateY(-2px); box-shadow: 0 6px 20px hsl(var(--foreground) / 0.45); }
+  .btn-elevated:active { transform: translateY(0); box-shadow: 0 2px 8px hsl(var(--foreground) / 0.3); }
+  .dark .btn-elevated { box-shadow: 0 4px 14px hsl(var(--foreground) / 0.15); }
+  .dark .btn-elevated:hover { box-shadow: 0 6px 20px hsl(var(--foreground) / 0.2); }
+  .dark .btn-elevated:active { box-shadow: 0 2px 8px hsl(var(--foreground) / 0.1); }
 
   @keyframes savings-pulse {
     0%, 100% { background-color: hsl(var(--foreground)); }
     50% { background-color: hsl(var(--cta)); }
   }
-  .animate-savings-pulse {
-    animation: savings-pulse 2s ease-in-out infinite;
-    will-change: background-color;
-  }
+  .animate-savings-pulse { animation: savings-pulse 2s ease-in-out infinite; will-change: background-color; }
 
   @keyframes cta-ring {
     0% { box-shadow: 0 0 0 0 hsl(var(--cta) / 0.6); }
     70% { box-shadow: 0 0 0 12px hsl(var(--cta) / 0); }
     100% { box-shadow: 0 0 0 0 hsl(var(--cta) / 0); }
   }
+  .cta-pulse { animation: cta-ring 2s ease-out infinite; will-change: box-shadow; }
 
-  .cta-pulse {
-    animation: cta-ring 2s ease-out infinite;
-    will-change: box-shadow;
-  }
+  .pb-safe { padding-bottom: env(safe-area-inset-bottom, 0px); }
+  .pt-safe { padding-top: env(safe-area-inset-top, 0px); }
+  .mb-safe { margin-bottom: env(safe-area-inset-bottom, 0px); }
 
-  .pb-safe {
-    padding-bottom: env(safe-area-inset-bottom, 0px);
-  }
-  .pt-safe {
-    padding-top: env(safe-area-inset-top, 0px);
-  }
-  .mb-safe {
-    margin-bottom: env(safe-area-inset-bottom, 0px);
-  }
-  .mt-safe {
-    margin-top: env(safe-area-inset-top, 0px);
-  }
-  .bottom-safe {
-    bottom: env(safe-area-inset-bottom, 0px);
-  }
-
-  /* SocialProofToast transition (CSS class instead of inline style for reduced-motion override) */
   .social-proof-transition {
     transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.4s cubic-bezier(0.22, 1, 0.36, 1);
     will-change: transform, opacity;
@@ -552,51 +249,22 @@ body {
   contain: layout style paint;
 }
 
-/* Reduced motion — disable animations for users with vestibular disorders */
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
+  *, *::before, *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
-
-  .animate-bounce,
-  .animate-pulse,
-  .animate-spin {
-    animation: none !important;
-  }
-
-  html {
-    scroll-behavior: auto !important;
-  }
-
-  .social-proof-transition {
-    transition: none !important;
-  }
+  .animate-bounce, .animate-pulse, .animate-spin { animation: none !important; }
+  html { scroll-behavior: auto !important; }
+  .social-proof-transition { transition: none !important; }
 }
 
 @media print {
-  nav, footer, .fixed, .sticky, button, .no-print {
-    display: none !important;
-  }
-  body {
-    background: white !important;
-    color: black !important;
-    font-size: 12pt;
-  }
-  img {
-    max-width: 100% !important;
-    page-break-inside: avoid;
-  }
-  h1, h2, h3 {
-    page-break-after: avoid;
-  }
-  a[href]:after {
-    content: " (" attr(href) ")";
-    font-size: 0.8em;
-    color: #666;
-  }
+  nav, footer, .fixed, .sticky, button, .no-print { display: none !important; }
+  body { background: white !important; color: black !important; font-size: 12pt; }
+  img { max-width: 100% !important; page-break-inside: avoid; }
+  h1, h2, h3 { page-break-after: avoid; }
+  a[href]:after { content: " (" attr(href) ")"; font-size: 0.8em; color: #666; }
 }

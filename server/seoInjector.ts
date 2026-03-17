@@ -902,10 +902,18 @@ function setCachedInjectedHtml(key: string, html: string): void {
 
 async function getBaseHtml(distPath: string): Promise<string> {
   if (!cachedBaseHtml) {
-    cachedBaseHtml = await fs.promises.readFile(
+    let html = await fs.promises.readFile(
       path.resolve(distPath, "index.html"),
       "utf-8"
     );
+    // Make the main CSS non-render-blocking: load async via media swap.
+    // The inline <style> in index.html already covers critical above-fold CSS.
+    html = html.replace(
+      /<link rel="stylesheet" crossorigin href="(\/assets\/[^"]+\.css)">/,
+      '<link rel="stylesheet" crossorigin href="$1" media="print" onload="this.media=\'all\'">' +
+      '<noscript><link rel="stylesheet" crossorigin href="$1"></noscript>'
+    );
+    cachedBaseHtml = html;
   }
   return cachedBaseHtml;
 }

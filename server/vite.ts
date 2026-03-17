@@ -1,5 +1,5 @@
 import express, { type Express } from "express";
-import fs, { existsSync } from "fs";
+import fs from "fs";
 import path from "path";
 import { createServer as createViteServer, createLogger } from "vite";
 import { type Server } from "http";
@@ -70,24 +70,6 @@ export async function setupVite(app: Express, server: Server) {
   });
 }
 
-function getContentType(filePath: string): string {
-  const ext = path.extname(filePath).toLowerCase();
-  const types: Record<string, string> = {
-    ".js": "application/javascript",
-    ".mjs": "application/javascript",
-    ".css": "text/css",
-    ".html": "text/html",
-    ".json": "application/json",
-    ".svg": "image/svg+xml",
-    ".woff": "font/woff",
-    ".woff2": "font/woff2",
-    ".ttf": "font/ttf",
-    ".txt": "text/plain",
-    ".xml": "application/xml",
-  };
-  return types[ext] || "application/octet-stream";
-}
-
 export function serveStatic(app: Express) {
   const distPath = path.resolve(import.meta.dirname, "public");
 
@@ -111,25 +93,16 @@ export function serveStatic(app: Express) {
     next();
   });
 
-  // Serve pre-compressed gzip assets with CDN-ready cache headers
-  app.use("/assets", (req, res, next) => {
-    const acceptEncoding = req.headers["accept-encoding"] || "";
-    const filePath = path.join(distPath, "assets", req.path);
-
-    // CDN-ready cache headers for hashed assets (immutable, 1 year)
-    res.set("Cache-Control", "public, max-age=31536000, immutable");
-    res.set("CDN-Cache-Control", "public, s-maxage=31536000");
-    res.set("Vary", "Accept-Encoding");
-
-    const contentType = getContentType(req.path);
-
-    if (acceptEncoding.includes("gzip") && existsSync(filePath + ".gz")) {
-      res.set("Content-Encoding", "gzip");
-      res.set("Content-Type", contentType);
-      return fs.createReadStream(filePath + ".gz").pipe(res);
-    }
-    next();
-  });
+  // Hashed assets get immutable cache (1 year) — express.static handles MIME types reliably
+  app.use("/assets", express.static(path.join(distPath, "assets"), {
+    etag: true,
+    lastModified: true,
+    maxAge: "1y",
+    immutable: true,
+    setHeaders: (res) => {
+      res.setHeader("CDN-Cache-Control", "public, s-maxage=31536000");
+    },
+  }));
 
   app.use(express.static(distPath, {
     etag: true,

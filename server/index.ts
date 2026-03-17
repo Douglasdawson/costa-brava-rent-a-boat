@@ -217,8 +217,14 @@ app.use((req: Request, res: Response, next: NextFunction) => {
   const host = req.hostname;
   const canonicalDomain = 'costabravarentaboat.com';
   
-  // Skip in development (localhost)
-  if (host === 'localhost' || host === '127.0.0.1' || host.includes('.replit.dev')) {
+  // Skip in development (localhost) and Replit preview/deployment domains
+  if (
+    host === 'localhost' ||
+    host === '127.0.0.1' ||
+    host.includes('.replit.dev') ||
+    host.includes('.replit.app') ||
+    host.includes('.kirk.replit.dev')
+  ) {
     return next();
   }
   

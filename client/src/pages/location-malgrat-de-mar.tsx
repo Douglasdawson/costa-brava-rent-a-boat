@@ -9,7 +9,6 @@ import {
   Star,
   Car,
   Train,
-  Fuel,
   ParkingCircle,
   Waves,
   TreePine,

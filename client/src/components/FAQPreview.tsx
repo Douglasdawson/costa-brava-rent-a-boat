@@ -65,6 +65,16 @@ const FALLBACK_ITEMS = [
     question: "¿Hasta dónde puedo navegar?",
     answer: "Puedes explorar toda la costa entre Blanes y Tossa de Mar. Te recomendamos las calas de Sa Forcanera, Cala Bona y Cala Sant Francesc, accesibles solo por mar.",
   },
+  {
+    id: "pueblos-cercanos",
+    question: "Estoy alojado en Malgrat de Mar / Santa Susanna / Calella. ¿Puedo alquilar un barco?",
+    answer: "¡Sí! El Puerto de Blanes es el punto de alquiler náutico más cercano. Malgrat de Mar está a 10 minutos en coche, Santa Susanna a 15 minutos y Calella a 20 minutos. También puedes llegar en tren RENFE línea R1. Tenemos 7 barcos disponibles desde 70 EUR/hora con gasolina incluida.",
+  },
+  {
+    id: "como-llegar-puerto",
+    question: "¿Cómo llego al Puerto de Blanes desde los pueblos cercanos?",
+    answer: "Desde Malgrat de Mar: 10 min en coche por la N-II o 5 min en tren. Desde Santa Susanna: 15 min en coche o 10 min en tren. Desde Calella: 20 min en coche por la C-32 o 15 min en tren RENFE R1. Hay parking gratuito junto al puerto.",
+  },
 ];
 
 /** Number of items shown on the homepage preview */

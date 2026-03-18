@@ -178,6 +178,12 @@ export default function PricingPage() {
               7 embarcaciones disponibles
             </Badge>
           </div>
+          <p className="text-muted-foreground text-sm text-center mb-8">
+            Puerto de Blanes — accesible desde{" "}
+            <a href="/alquiler-barcos-malgrat-de-mar" className="text-primary hover:underline">Malgrat de Mar</a> (10 min),{" "}
+            <a href="/alquiler-barcos-santa-susanna" className="text-primary hover:underline">Santa Susanna</a> (15 min) y{" "}
+            <a href="/alquiler-barcos-calella" className="text-primary hover:underline">Calella</a> (20 min en coche)
+          </p>
         </div>
       </div>
 

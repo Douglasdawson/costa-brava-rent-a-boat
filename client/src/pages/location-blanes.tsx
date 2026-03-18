@@ -278,6 +278,20 @@ export default function LocationBlanesPage() {
             </CardContent>
           </Card>
 
+          {/* Nearby Towns */}
+          <Card className="mb-8">
+            <CardContent className="py-6">
+              <h3 className="font-semibold text-lg mb-3">Pueblos cercanos al Puerto de Blanes</h3>
+              <p className="text-muted-foreground">
+                Turistas alojados en la costa del Maresme pueden llegar facilmente al Puerto de Blanes:{" "}
+                <a href="/alquiler-barcos-malgrat-de-mar" className="text-primary hover:underline font-medium">Malgrat de Mar</a> (10 min),{" "}
+                <a href="/alquiler-barcos-santa-susanna" className="text-primary hover:underline font-medium">Santa Susanna</a> (15 min) y{" "}
+                <a href="/alquiler-barcos-calella" className="text-primary hover:underline font-medium">Calella</a> (20 min en coche).
+                Tambien accesible en tren RENFE linea R1.
+              </p>
+            </CardContent>
+          </Card>
+
           {/* CTA Section */}
           <Card className="bg-primary text-white">
             <CardContent className="p-8 text-center">

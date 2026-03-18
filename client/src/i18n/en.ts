@@ -851,7 +851,7 @@ export const en: Translations = {
         townAttractionsTitle: 'What to See in Malgrat de Mar',
         attraction1: 'Malgrat Beach',
         attraction1Desc: 'Wide golden sand beach with all services. Ideal for families with beach bars and sports areas.',
-        attraction2: 'Parc Francesc Macia',
+        attraction2: 'Parc Francesc Macià',
         attraction2Desc: 'Large urban park with gardens, playgrounds and green spaces. Perfect for afternoon walks.',
         attraction3: 'Seafront Promenade',
         attraction3Desc: 'Promenade along the sea with restaurants, ice cream shops and Mediterranean views. Relaxed family atmosphere.',

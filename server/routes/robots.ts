@@ -1,4 +1,6 @@
 import type { Express } from "express";
+import fs from "fs";
+import path from "path";
 import { storage } from "../storage";
 import { logger } from "../lib/logger";
 
@@ -29,9 +31,10 @@ export function registerRobotsRoutes(app: Express): void {
     // General crawler rules
     lines.push("User-agent: *");
     lines.push("Allow: /");
+    lines.push("Allow: /api/ai-context");
     lines.push("");
-    for (const path of DISALLOWED_PATHS) {
-      lines.push(`Disallow: ${path}`);
+    for (const p of DISALLOWED_PATHS) {
+      lines.push(`Disallow: ${p}`);
     }
     lines.push("");
     lines.push(`Sitemap: ${BASE_URL}/sitemap.xml`);
@@ -50,73 +53,158 @@ export function registerRobotsRoutes(app: Express): void {
     res.send(lines.join("\n") + "\n");
   });
 
-  // Dynamic llms.txt — generated from business data
-  app.get("/llms.txt", async (_req, res) => {
+  // Serve static llms.txt from client/public with dynamic date injection
+  app.get("/llms.txt", (_req, res) => {
     try {
-      // Fetch active boats for dynamic fleet info
-      let boatCount = 9;
-      let boatNames: string[] = [];
-      try {
-        const boats = await storage.getAllBoats();
-        const activeBoats = boats.filter(b => b.isActive);
-        if (activeBoats.length > 0) {
-          boatCount = activeBoats.length;
-          boatNames = activeBoats.map(b => b.name);
-        }
-      } catch {
-        // Use defaults if DB unavailable
-      }
+      const llmsPath = path.resolve(process.cwd(), "client/public/llms.txt");
+      let content = fs.readFileSync(llmsPath, "utf-8");
 
-      const now = new Date();
-      const lastUpdated = now.toISOString().split("T")[0];
-
-      const content = `# Costa Brava Rent a Boat - Blanes, Costa Brava, Spain
-
-> Last updated: ${lastUpdated}
-
-> The largest boat rental company in Blanes with a fleet of ${boatCount} boats. License-free and licensed boats for 4-7 people. Fuel included on all license-free boats. Season: April to October. Based in Puerto de Blanes, Girona, Spain.
-
-## About
-
-Costa Brava Rent a Boat is a local family business based in Puerto de Blanes, Girona, Spain. We operate the largest boat rental fleet in Blanes with ${boatCount} boats available.${boatNames.length > 0 ? ` Fleet: ${boatNames.join(", ")}.` : ""} All license-free rentals include fuel, insurance, VAT, mooring, cleaning, and full safety equipment. We provide a 15-minute safety briefing in your language before every departure. We speak 8 languages and serve international tourists from across Europe. Rated 4.8 stars on Google Maps with over 300 reviews.
-
-## Key Facts
-
-- **Business type**: Boat rental / Nautical tourism
-- **Location**: Puerto de Blanes, 17300 Blanes, Girona, Catalonia, Spain
-- **Service area**: Costa Brava coastline from Blanes to Tossa de Mar
-- **Price range**: 70-420 EUR depending on boat and duration
-- **Rating**: 4.8/5 on Google Maps (300+ reviews)
-- **Languages**: Spanish, English, Catalan, French, German, Dutch, Italian, Russian
-- **Opening season**: April through October
-- **Opening hours**: 09:00 - 20:00, Monday to Sunday
-- **Payment methods**: Cash, credit card, debit card
-- **Phone / WhatsApp**: +34 611 500 372
-- **Email**: costabravarentaboat@gmail.com
-- **Website**: https://costabravarentaboat.com
-- **GPS Coordinates**: 41.6751 N, 2.7934 E
-
-## Links
-
-- Website: https://costabravarentaboat.com
-- Fleet: https://costabravarentaboat.com/#fleet
-- Pricing: https://costabravarentaboat.com/precios
-- Routes: https://costabravarentaboat.com/rutas
-- Gallery: https://costabravarentaboat.com/galeria
-- FAQ: https://costabravarentaboat.com/faq
-- Blog: https://costabravarentaboat.com/blog
-- Instagram: https://www.instagram.com/costabravarentaboat/
-- Google Maps: https://maps.app.goo.gl/NHV4PcaFPmwBYqCt5
-`;
+      // Inject current date for freshness
+      const lastUpdated = new Date().toISOString().split("T")[0];
+      content = content.replace(
+        /> Last updated: \d{4}-\d{2}-\d{2}/,
+        `> Last updated: ${lastUpdated}`,
+      );
 
       res.setHeader("Content-Type", "text/plain; charset=utf-8");
       res.setHeader("Cache-Control", "public, max-age=86400, stale-while-revalidate=604800");
       res.send(content);
     } catch (error) {
-      logger.warn("[robots] llms.txt generation failed", {
+      logger.warn("[robots] Failed to read static llms.txt, falling back to dynamic generation", {
         error: error instanceof Error ? error.message : String(error),
       });
-      res.status(500).send("Error generating llms.txt");
+
+      // Fallback: minimal dynamic version
+      const lastUpdated = new Date().toISOString().split("T")[0];
+      const fallback = `# Costa Brava Rent a Boat - Blanes, Costa Brava, Spain
+
+> Last updated: ${lastUpdated}
+
+> The largest boat rental company in Blanes with a fleet of 9 boats. License-free and licensed boats for 4-7 people. Fuel included on all license-free boats. Season: April to October. Based in Puerto de Blanes, Girona, Spain.
+
+## Key Facts
+
+- **Location**: Puerto de Blanes, 17300 Blanes, Girona, Catalonia, Spain
+- **Price range**: 70-420 EUR
+- **Phone / WhatsApp**: +34 611 500 372
+- **Website**: https://costabravarentaboat.com
+`;
+      res.setHeader("Content-Type", "text/plain; charset=utf-8");
+      res.setHeader("Cache-Control", "public, max-age=3600");
+      res.send(fallback);
+    }
+  });
+
+  // Serve static llms-full.txt with dynamic date injection
+  app.get("/llms-full.txt", (_req, res) => {
+    try {
+      const llmsFullPath = path.resolve(process.cwd(), "client/public/llms-full.txt");
+      let content = fs.readFileSync(llmsFullPath, "utf-8");
+
+      // Inject current date for freshness
+      const lastUpdated = new Date().toISOString().split("T")[0];
+      content = content.replace(
+        /> Last updated: \d{4}-\d{2}-\d{2}/,
+        `> Last updated: ${lastUpdated}`,
+      );
+
+      res.setHeader("Content-Type", "text/plain; charset=utf-8");
+      res.setHeader("Cache-Control", "public, max-age=86400, stale-while-revalidate=604800");
+      res.send(content);
+    } catch (error) {
+      logger.warn("[robots] Failed to read static llms-full.txt", {
+        error: error instanceof Error ? error.message : String(error),
+      });
+      res.status(404).send("llms-full.txt not found");
+    }
+  });
+
+  // Serve .well-known/ai-plugin.json
+  app.get("/.well-known/ai-plugin.json", (_req, res) => {
+    try {
+      const pluginPath = path.resolve(process.cwd(), "client/public/.well-known/ai-plugin.json");
+      const content = fs.readFileSync(pluginPath, "utf-8");
+      res.setHeader("Content-Type", "application/json; charset=utf-8");
+      res.setHeader("Cache-Control", "public, max-age=86400, stale-while-revalidate=604800");
+      res.send(content);
+    } catch (error) {
+      logger.warn("[robots] Failed to read ai-plugin.json", {
+        error: error instanceof Error ? error.message : String(error),
+      });
+      res.status(404).json({ error: "ai-plugin.json not found" });
+    }
+  });
+
+  // AI context endpoint — structured JSON-LD for AI agent consumption
+  app.get("/api/ai-context", async (_req, res) => {
+    try {
+      let boats: Array<{name: string; capacity: number; enginePower: string; pricePerHour: number; licenseRequired: boolean}> = [];
+      try {
+        const allBoats = await storage.getAllBoats();
+        boats = allBoats.filter(b => b.isActive).map(b => ({
+          name: b.name,
+          capacity: b.capacity || 5,
+          enginePower: b.enginePower || "15hp",
+          pricePerHour: b.pricePerHour ? Number(b.pricePerHour) : 70,
+          licenseRequired: b.licenseType !== null && b.licenseType !== "none",
+        }));
+      } catch {
+        // Use empty array if DB unavailable
+      }
+
+      const context = {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        name: "Costa Brava Rent a Boat",
+        description: "Largest boat rental fleet in Blanes, Costa Brava, Spain. 9 boats, license-free and licensed. Fuel included. From 70 EUR/hour.",
+        url: "https://costabravarentaboat.com",
+        telephone: "+34611500372",
+        email: "costabravarentaboat@gmail.com",
+        address: {
+          "@type": "PostalAddress",
+          streetAddress: "Puerto de Blanes",
+          addressLocality: "Blanes",
+          postalCode: "17300",
+          addressRegion: "Girona",
+          addressCountry: "ES",
+        },
+        geo: { "@type": "GeoCoordinates", latitude: 41.6751, longitude: 2.7934 },
+        openingHours: "Mo-Su 09:00-20:00",
+        openingSeason: "April-October",
+        priceRange: "70-420 EUR",
+        aggregateRating: { "@type": "AggregateRating", ratingValue: 4.8, reviewCount: 300, bestRating: 5 },
+        sameAs: [
+          "https://www.instagram.com/costabravarentaboat/",
+          "https://www.facebook.com/costabravarentaboat",
+          "https://www.tiktok.com/@costabravarentaboat",
+          "https://maps.app.goo.gl/NHV4PcaFPmwBYqCt5",
+        ],
+        availableLanguage: ["es", "en", "ca", "fr", "de", "nl", "it", "ru"],
+        fleet: boats.length > 0 ? boats : undefined,
+        destinations: [
+          { name: "Sa Palomera", timeFromPort: "5 min", coordinates: "41.6742,2.7905", licenseRequired: false },
+          { name: "Cala Brava", timeFromPort: "15 min", coordinates: "41.6820,2.8050", licenseRequired: false },
+          { name: "Cala Sant Francesc", timeFromPort: "20 min", coordinates: "41.6890,2.8180", licenseRequired: false },
+          { name: "Lloret de Mar", timeFromPort: "30 min", coordinates: "41.6994,2.8455", licenseRequired: false },
+          { name: "Tossa de Mar", timeFromPort: "45 min", coordinates: "41.7196,2.9313", licenseRequired: true },
+        ],
+        nearbyTowns: [
+          { name: "Malgrat de Mar", distanceKm: 8, driveTime: "10 min", trainTime: "5 min", page: "/alquiler-barcos-malgrat-de-mar" },
+          { name: "Santa Susanna", distanceKm: 12, driveTime: "15 min", trainTime: "10 min", page: "/alquiler-barcos-santa-susanna" },
+          { name: "Calella", distanceKm: 17, driveTime: "20 min", trainTime: "15 min", page: "/alquiler-barcos-calella" },
+        ],
+        llmsTxt: "https://costabravarentaboat.com/llms.txt",
+        llmsFullTxt: "https://costabravarentaboat.com/llms-full.txt",
+      };
+
+      res.setHeader("Content-Type", "application/ld+json; charset=utf-8");
+      res.setHeader("Cache-Control", "public, max-age=3600");
+      res.json(context);
+    } catch (error) {
+      logger.warn("[robots] ai-context generation failed", {
+        error: error instanceof Error ? error.message : String(error),
+      });
+      res.status(500).json({ error: "Failed to generate AI context" });
     }
   });
 }

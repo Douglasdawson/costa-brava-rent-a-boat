@@ -1360,6 +1360,10 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
         },
         geo: { "@type": "GeoCoordinates", latitude: 41.6751, longitude: 2.7934 },
         containedInPlace: GEO_HIERARCHY,
+        areaServed: {
+          "@type": "GeoShape",
+          box: "41.60 2.65 41.75 2.95"
+        },
         openingHoursSpecification: [{
           "@type": "OpeningHoursSpecification",
           dayOfWeek: ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
@@ -1368,9 +1372,12 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
           validFrom: `${SEASON_YEAR}-04-01`,
           validThrough: `${SEASON_YEAR}-10-31`,
         }],
-        priceRange: "€€",
+        priceRange: "70-420 EUR",
+        paymentAccepted: ["Cash", "Credit Card", "Debit Card"],
+        currenciesAccepted: "EUR",
         aggregateRating,
-        image: `${BASE_URL}/og-image.webp`,
+        image: `${BASE_URL}/og-image.jpg`,
+        logo: `${BASE_URL}/og-image.jpg`,
         knowsAbout: [
           "Costa Brava", "Blanes", "Boat Rental", "Boat Navigation",
           "Maritime Safety", "License-Free Boating", "Lloret de Mar",
@@ -1378,14 +1385,22 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
           "Costa Brava Coves", "Water Sports"
         ],
         sameAs: [
-          "https://maps.app.goo.gl/NHV4PcaFPmwBYqCt5",
           "https://www.instagram.com/costabravarentaboat/",
           "https://www.facebook.com/costabravarentaboat",
           "https://www.tiktok.com/@costabravarentaboat",
+          "https://maps.app.goo.gl/NHV4PcaFPmwBYqCt5",
+          "https://en.wikipedia.org/wiki/Blanes",
         ],
         speakable: {
           "@type": "SpeakableSpecification",
-          cssSelector: ["h1", ".hero-description"]
+          cssSelector: [
+            ".hero-title",
+            ".hero-subtitle",
+            "h1",
+            "h2",
+            ".faq-answer",
+            "[data-speakable]"
+          ]
         }
       };
       const webSite = {

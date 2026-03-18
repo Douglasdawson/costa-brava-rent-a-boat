@@ -84,18 +84,39 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       ogDescription: "Alquila barcos en Puerto de Blanes. Sin licencia desde 70\u20ac con gasolina incluida. 7 embarcaciones disponibles. Reserva ya."
     },
     locationLloret: {
-      title: "Alquiler Barco Lloret de Mar | Desde Blanes 70\u20ac/h Gasolina Incluida",
+      title: "Alquiler Barco Lloret de Mar Sin Licencia | 25 min desde Blanes 70\u20ac",
       description: "Alquiler barco en Lloret de Mar sin licencia desde Blanes. Desde 70\u20ac/h, gasolina incluida. 4.8\u2605 Google. Navega por calas y playas de Lloret. Reserva online.",
-      keywords: "alquiler barco lloret de mar, alquiler barco sin licencia lloret de mar, barcos lloret de mar, excursion lloret desde blanes",
+      keywords: "alquiler barco lloret de mar, alquiler barco sin licencia lloret de mar, barcos lloret de mar, excursion lloret desde blanes, ir en barco a lloret",
       ogTitle: "Alquiler de Barco en Lloret de Mar | Desde Blanes Costa Brava",
-      ogDescription: "Alquila un barco sin licencia y navega a Lloret de Mar desde Blanes. Desde 70\u20ac con gasolina incluida. Reserva tu aventura."
+      ogDescription: "Alquila un barco sin licencia y navega a Lloret de Mar desde Blanes en 25 min. Desde 70\u20ac con gasolina incluida. Reserva tu aventura."
     },
     locationTossa: {
-      title: "Alquiler Barco Tossa de Mar | Desde Blanes | Costa Brava",
-      description: "Alquiler barco en Tossa de Mar desde Blanes. Sin licencia desde 70\u20ac, gasolina incluida. Navega 1h hasta Vila Vella y calas de Tossa. Reserva ya.",
-      keywords: "alquiler barco tossa de mar, barcos tossa de mar, excursion tossa desde blanes, barcos tossa costa brava, vila vella tossa",
-      ogTitle: "Alquiler de Barco en Tossa de Mar | Desde Blanes Costa Brava",
-      ogDescription: "Navega a Tossa de Mar en 1 hora desde Blanes. Alquiler de barco sin licencia desde 70\u20ac. Descubre Vila Vella y calas secretas. Reserva."
+      title: "Excursión Barco a Tossa de Mar | Vila Vella desde Blanes 1h | 70\u20ac",
+      description: "Excursión en barco a Tossa de Mar desde Blanes. Navega 1h hasta Vila Vella y calas de Tossa. Desde 70\u20ac, gasolina incluida. Reserva ya.",
+      keywords: "alquiler barco tossa de mar, excursion barco tossa de mar, barcos tossa de mar, excursion tossa desde blanes, barcos tossa costa brava, vila vella tossa, cuanto cuesta barco tossa",
+      ogTitle: "Excursión en Barco a Tossa de Mar | Vila Vella desde Blanes",
+      ogDescription: "Navega a Tossa de Mar en 1 hora desde Blanes. Descubre Vila Vella y calas secretas desde 70\u20ac. Gasolina incluida. Reserva."
+    },
+    locationMalgrat: {
+      title: "Alquiler Barco cerca de Malgrat de Mar | Puerto Blanes 10 min 70\u20ac",
+      description: "Alojado en Malgrat de Mar? Puerto de Blanes a 10 min en coche. Alquiler barcos sin licencia desde 70\u20ac/h, gasolina incluida. 7 barcos disponibles.",
+      keywords: "alquiler barco malgrat de mar, barcos cerca malgrat, excursion barco malgrat, alquiler barco costa maresme",
+      ogTitle: "Alquiler de Barcos cerca de Malgrat de Mar | Desde Blanes",
+      ogDescription: "Desde Malgrat de Mar al Puerto de Blanes en 10 min. Barcos sin licencia desde 70\u20ac. Gasolina incluida. Reserva ya."
+    },
+    locationSantaSusanna: {
+      title: "Alquiler Barco cerca de Santa Susanna | Puerto Blanes 15 min 70\u20ac",
+      description: "Vacaciones en Santa Susanna? Puerto de Blanes a 15 min. Alquiler barcos sin licencia desde 70\u20ac/h. 7 barcos, gasolina incluida. Reserva online.",
+      keywords: "alquiler barco santa susanna, barcos cerca santa susanna, excursion barco santa susanna, alquiler barco costa brava sur",
+      ogTitle: "Alquiler de Barcos cerca de Santa Susanna | Desde Blanes",
+      ogDescription: "Desde Santa Susanna al Puerto de Blanes en 15 min. Barcos sin licencia desde 70\u20ac. Reserva tu aventura."
+    },
+    locationCalella: {
+      title: "Alquiler Barco cerca de Calella | Puerto Blanes 20 min desde 70\u20ac",
+      description: "En Calella? Puerto de Blanes a 20 min en coche. Alquiler barcos sin licencia desde 70\u20ac/h. 7 barcos, gasolina incluida. Explora la Costa Brava.",
+      keywords: "alquiler barco calella, barcos calella maresme, excursion barco calella, alquiler barco costa maresme calella",
+      ogTitle: "Alquiler de Barcos cerca de Calella | Desde Blanes Costa Brava",
+      ogDescription: "Desde Calella al Puerto de Blanes en 20 min. Barcos sin licencia desde 70\u20ac. Descubre la Costa Brava."
     },
     categoryLicenseFree: {
       title: "Barcos Sin Licencia Costa Brava | 5 Barcos desde 70\u20ac/h Blanes",
@@ -242,6 +263,27 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       ogTitle: "Boat Trip to Tossa de Mar | Vila Vella from Blanes",
       ogDescription: "Sail to Tossa de Mar in 1h from Blanes. Discover the most beautiful medieval town of Costa Brava. With or without license. Book!"
     },
+    locationMalgrat: {
+      title: "Boat Rental near Malgrat de Mar | Blanes Port 10 min \u20ac70",
+      description: "Staying in Malgrat de Mar? Blanes Port is 10 min by car. License-free boat rental from \u20ac70/h, fuel included. 7 boats available.",
+      keywords: "boat rental malgrat de mar, boats near malgrat, boat trip malgrat, costa brava boat rental south",
+      ogTitle: "Boat Rental near Malgrat de Mar | From Blanes",
+      ogDescription: "Malgrat de Mar to Blanes Port in 10 min. License-free boats from \u20ac70. Fuel included. Book now."
+    },
+    locationSantaSusanna: {
+      title: "Boat Rental near Santa Susanna | Blanes Port 15 min \u20ac70",
+      description: "Holiday in Santa Susanna? Blanes Port is 15 min away. Boat rental from \u20ac70/h, fuel included. 7 boats available.",
+      keywords: "boat rental santa susanna, boats near santa susanna, costa brava boat rental",
+      ogTitle: "Boat Rental near Santa Susanna | From Blanes",
+      ogDescription: "Santa Susanna to Blanes Port in 15 min. License-free boats from \u20ac70. Book your adventure."
+    },
+    locationCalella: {
+      title: "Boat Rental near Calella | Blanes Port 20 min from \u20ac70",
+      description: "Staying in Calella? Blanes Port is 20 min by car. Boat rental from \u20ac70/h, fuel included. Explore Costa Brava.",
+      keywords: "boat rental calella, boats calella maresme, boat trip calella, costa brava boat rental",
+      ogTitle: "Boat Rental near Calella | From Blanes Costa Brava",
+      ogDescription: "Calella to Blanes Port in 20 min. License-free boats from \u20ac70. Discover Costa Brava."
+    },
     categoryLicenseFree: {
       title: "No License Boats Costa Brava | 5 Boats from 70\u20ac/h Blanes",
       description: "No license boat rental in Costa Brava from Blanes. 5 boats from 70\u20ac/h, fuel included. 4.8\u2605 Google (307 reviews). 15 min training. Book online.",
@@ -381,6 +423,27 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       ogTitle: "Excursió en Barca a Tossa de Mar | Vila Vella des de Blanes",
       ogDescription: "Navega a Tossa de Mar en 1h des de Blanes. Descobreix el poble medieval més bonic de la Costa Brava. Amb o sense llicència. Reserva!"
     },
+    locationMalgrat: {
+      title: "Lloguer de Barques a prop de Malgrat de Mar | Port de Blanes 10 min 70\u20ac",
+      description: "Allotjat a Malgrat de Mar? Port de Blanes a 10 min en cotxe. Lloguer barques sense llicència des de 70\u20ac/h. 7 barques disponibles.",
+      keywords: "lloguer barca malgrat de mar, barques prop malgrat, excursió barca malgrat",
+      ogTitle: "Lloguer de Barques a prop de Malgrat de Mar | Des de Blanes",
+      ogDescription: "De Malgrat al Port de Blanes en 10 min. Barques sense llicència des de 70\u20ac. Reserva ara."
+    },
+    locationSantaSusanna: {
+      title: "Lloguer de Barques a prop de Santa Susanna | Port de Blanes 15 min 70\u20ac",
+      description: "Vacances a Santa Susanna? Port de Blanes a 15 min. Lloguer barques sense llicència des de 70\u20ac/h. Reserva online.",
+      keywords: "lloguer barca santa susanna, barques prop santa susanna, excursió barca santa susanna",
+      ogTitle: "Lloguer de Barques a prop de Santa Susanna | Des de Blanes",
+      ogDescription: "De Santa Susanna al Port de Blanes en 15 min. Barques sense llicència des de 70\u20ac."
+    },
+    locationCalella: {
+      title: "Lloguer de Barques a prop de Calella | Port de Blanes 20 min des de 70\u20ac",
+      description: "A Calella? Port de Blanes a 20 min en cotxe. Lloguer barques sense llicència des de 70\u20ac/h. Gasolina inclosa.",
+      keywords: "lloguer barca calella, barques calella maresme, excursió barca calella",
+      ogTitle: "Lloguer de Barques a prop de Calella | Des de Blanes Costa Brava",
+      ogDescription: "De Calella al Port de Blanes en 20 min. Barques sense llicència des de 70\u20ac."
+    },
     categoryLicenseFree: {
       title: "Barques Sense Llicencia Costa Brava | 5 Barques des de 70\u20ac/h Blanes",
       description: "Lloguer barques sense llicencia a la Costa Brava des de Blanes. 5 barques des de 70\u20ac/h, gasolina inclosa. 4.8\u2605 Google (307 opinions). 15 min de formacio. Reserva online.",
@@ -494,6 +557,27 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       description: "Naviguez vers Tossa de Mar en 1h depuis Blanes. Découvrez la plus belle ville médiévale de la Costa Brava. Avec ou sans permis. Réservez!",
       keywords: "location bateaux tossa de mar, visiter tossa en bateau, excursion tossa depuis blanes, vila vella tossa"
     },
+    locationMalgrat: {
+      title: "Location Bateau près de Malgrat de Mar | Port Blanes 10 min 70\u20ac",
+      description: "En vacances à Malgrat de Mar ? Port de Blanes à 10 min en voiture. Location bateaux sans permis dès 70\u20ac/h. Essence incluse.",
+      keywords: "location bateau malgrat de mar, bateaux près malgrat, excursion bateau malgrat",
+      ogTitle: "Location de Bateaux près de Malgrat de Mar | Depuis Blanes",
+      ogDescription: "De Malgrat au Port de Blanes en 10 min. Bateaux sans permis dès 70\u20ac. Réservez maintenant."
+    },
+    locationSantaSusanna: {
+      title: "Location Bateau près de Santa Susanna | Port Blanes 15 min 70\u20ac",
+      description: "Vacances à Santa Susanna ? Port de Blanes à 15 min. Location bateaux sans permis dès 70\u20ac/h. 7 bateaux disponibles.",
+      keywords: "location bateau santa susanna, bateaux près santa susanna, excursion bateau santa susanna",
+      ogTitle: "Location de Bateaux près de Santa Susanna | Depuis Blanes",
+      ogDescription: "De Santa Susanna au Port de Blanes en 15 min. Bateaux sans permis dès 70\u20ac."
+    },
+    locationCalella: {
+      title: "Location Bateau près de Calella | Port Blanes 20 min dès 70\u20ac",
+      description: "En séjour à Calella ? Port de Blanes à 20 min en voiture. Location bateaux sans permis dès 70\u20ac/h. Essence incluse.",
+      keywords: "location bateau calella, bateaux calella maresme, excursion bateau calella",
+      ogTitle: "Location de Bateaux près de Calella | Depuis Blanes Costa Brava",
+      ogDescription: "De Calella au Port de Blanes en 20 min. Bateaux sans permis dès 70\u20ac."
+    },
     categoryLicenseFree: {
       title: "Bateaux Sans Permis Costa Brava | 5 Bateaux des 70\u20ac/h Blanes",
       description: "Location bateaux sans permis Costa Brava depuis Blanes. 5 bateaux des 70\u20ac/h, carburant inclus. 4.8\u2605 Google (307 avis). 15 min de formation. Reservez en ligne.",
@@ -602,6 +686,27 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       title: "Bootsausflug nach Tossa de Mar von Blanes",
       description: "Segeln Sie in 1h von Blanes nach Tossa de Mar. Entdecken Sie die schönste mittelalterliche Stadt der Costa Brava. Mit oder ohne Führerschein. Buchen!",
       keywords: "bootsverleih tossa de mar, tossa per boot besuchen, tossa ausflug von blanes, vila vella tossa"
+    },
+    locationMalgrat: {
+      title: "Bootsverleih bei Malgrat de Mar | Hafen Blanes 10 Min 70\u20ac",
+      description: "Urlaub in Malgrat de Mar? Hafen Blanes in 10 Min mit dem Auto. Boote ohne Führerschein ab 70\u20ac/Std. Benzin inklusive.",
+      keywords: "bootsverleih malgrat de mar, boote nahe malgrat, bootsausflug malgrat",
+      ogTitle: "Bootsverleih bei Malgrat de Mar | Ab Blanes",
+      ogDescription: "Von Malgrat zum Hafen Blanes in 10 Min. Boote ohne Führerschein ab 70\u20ac. Jetzt buchen."
+    },
+    locationSantaSusanna: {
+      title: "Bootsverleih bei Santa Susanna | Hafen Blanes 15 Min 70\u20ac",
+      description: "Urlaub in Santa Susanna? Hafen Blanes in 15 Min. Boote ohne Führerschein ab 70\u20ac/Std. 7 Boote verfügbar.",
+      keywords: "bootsverleih santa susanna, boote nahe santa susanna, bootsausflug santa susanna",
+      ogTitle: "Bootsverleih bei Santa Susanna | Ab Blanes",
+      ogDescription: "Von Santa Susanna zum Hafen Blanes in 15 Min. Boote ohne Führerschein ab 70\u20ac."
+    },
+    locationCalella: {
+      title: "Bootsverleih bei Calella | Hafen Blanes 20 Min ab 70\u20ac",
+      description: "In Calella? Hafen Blanes in 20 Min mit dem Auto. Boote ohne Führerschein ab 70\u20ac/Std. Benzin inklusive.",
+      keywords: "bootsverleih calella, boote calella maresme, bootsausflug calella",
+      ogTitle: "Bootsverleih bei Calella | Ab Blanes Costa Brava",
+      ogDescription: "Von Calella zum Hafen Blanes in 20 Min. Boote ohne Führerschein ab 70\u20ac."
     },
     categoryLicenseFree: {
       title: "Boote Ohne Fuhrerschein Costa Brava | 5 Boote ab 70\u20ac/h Blanes",
@@ -712,6 +817,27 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       description: "Bootverhuur voor Tossa de Mar vanuit Haven Blanes. 1u varen naar mooiste middeleeuwse stad Costa Brava. Boten zonder en met vaarbewijs.",
       keywords: "bootverhuur tossa de mar, tossa bezoeken per boot, tossa excursie vanuit blanes, vila vella tossa"
     },
+    locationMalgrat: {
+      title: "Boothuur bij Malgrat de Mar | Haven Blanes 10 min \u20ac70",
+      description: "Op vakantie in Malgrat de Mar? Haven Blanes op 10 min met de auto. Boten zonder vaarbewijs vanaf \u20ac70/uur. Brandstof inbegrepen.",
+      keywords: "boothuur malgrat de mar, boten nabij malgrat, boottocht malgrat",
+      ogTitle: "Boothuur bij Malgrat de Mar | Vanaf Blanes",
+      ogDescription: "Van Malgrat naar Haven Blanes in 10 min. Boten zonder vaarbewijs vanaf \u20ac70. Reserveer nu."
+    },
+    locationSantaSusanna: {
+      title: "Boothuur bij Santa Susanna | Haven Blanes 15 min \u20ac70",
+      description: "Vakantie in Santa Susanna? Haven Blanes op 15 min. Boten zonder vaarbewijs vanaf \u20ac70/uur. 7 boten beschikbaar.",
+      keywords: "boothuur santa susanna, boten nabij santa susanna, boottocht santa susanna",
+      ogTitle: "Boothuur bij Santa Susanna | Vanaf Blanes",
+      ogDescription: "Van Santa Susanna naar Haven Blanes in 15 min. Boten zonder vaarbewijs vanaf \u20ac70."
+    },
+    locationCalella: {
+      title: "Boothuur bij Calella | Haven Blanes 20 min vanaf \u20ac70",
+      description: "In Calella? Haven Blanes op 20 min met de auto. Boten zonder vaarbewijs vanaf \u20ac70/uur. Brandstof inbegrepen.",
+      keywords: "boothuur calella, boten calella maresme, boottocht calella",
+      ogTitle: "Boothuur bij Calella | Vanaf Blanes Costa Brava",
+      ogDescription: "Van Calella naar Haven Blanes in 20 min. Boten zonder vaarbewijs vanaf \u20ac70."
+    },
     categoryLicenseFree: {
       title: "Boten Zonder Vaarbewijs Costa Brava | 5 Boten vanaf 70\u20ac/u Blanes",
       description: "Bootverhuur zonder vaarbewijs Costa Brava vanuit Blanes. 5 boten vanaf 70\u20ac/u, brandstof inbegrepen. 4.8\u2605 Google (307 beoordelingen). 15 min instructie. Online boeken.",
@@ -821,6 +947,27 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       description: "Noleggio barche per Tossa de Mar dal Porto Blanes. 1h di navigazione verso la città medievale più bella. Barche senza e con patente.",
       keywords: "noleggio barche tossa de mar, visitare tossa in barca, escursione tossa da blanes, vila vella tossa"
     },
+    locationMalgrat: {
+      title: "Noleggio Barche vicino a Malgrat de Mar | Porto Blanes 10 min 70\u20ac",
+      description: "In vacanza a Malgrat de Mar? Porto di Blanes a 10 min in auto. Noleggio barche senza patente da 70\u20ac/ora. Benzina inclusa.",
+      keywords: "noleggio barche malgrat de mar, barche vicino malgrat, escursione barca malgrat",
+      ogTitle: "Noleggio Barche vicino a Malgrat de Mar | Da Blanes",
+      ogDescription: "Da Malgrat al Porto di Blanes in 10 min. Barche senza patente da 70\u20ac. Prenota ora."
+    },
+    locationSantaSusanna: {
+      title: "Noleggio Barche vicino a Santa Susanna | Porto Blanes 15 min 70\u20ac",
+      description: "Vacanza a Santa Susanna? Porto di Blanes a 15 min. Noleggio barche senza patente da 70\u20ac/ora. 7 barche disponibili.",
+      keywords: "noleggio barche santa susanna, barche vicino santa susanna, escursione barca santa susanna",
+      ogTitle: "Noleggio Barche vicino a Santa Susanna | Da Blanes",
+      ogDescription: "Da Santa Susanna al Porto di Blanes in 15 min. Barche senza patente da 70\u20ac."
+    },
+    locationCalella: {
+      title: "Noleggio Barche vicino a Calella | Porto Blanes 20 min da 70\u20ac",
+      description: "A Calella? Porto di Blanes a 20 min in auto. Noleggio barche senza patente da 70\u20ac/ora. Benzina inclusa.",
+      keywords: "noleggio barche calella, barche calella maresme, escursione barca calella",
+      ogTitle: "Noleggio Barche vicino a Calella | Da Blanes Costa Brava",
+      ogDescription: "Da Calella al Porto di Blanes in 20 min. Barche senza patente da 70\u20ac."
+    },
     categoryLicenseFree: {
       title: "Barche Senza Patente Costa Brava | 5 Barche da 70\u20ac/h Blanes",
       description: "Noleggio barche senza patente Costa Brava da Blanes. 5 barche da 70\u20ac/h, carburante incluso. 4.8\u2605 Google (307 recensioni). 15 min formazione. Prenota online.",
@@ -929,6 +1076,27 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       title: "Лодки в Тосса-де-Мар из Бланеса | Коста-Брава",
       description: "Аренда лодок для посещения Тосса-де-Мар из Порта Бланес. 1 час плавания к самому красивому средневековому городу Коста-Брава. Лодки без лицензии и с лицензией.",
       keywords: "аренда лодок тосса де мар, посетить тосса на лодке, экскурсия тосса из бланеса, вила велла тосса"
+    },
+    locationMalgrat: {
+      title: "Аренда лодок рядом с Малграт-де-Мар | Порт Бланес 10 мин 70\u20ac",
+      description: "Отдыхаете в Малграт-де-Мар? Порт Бланеса в 10 мин на машине. Аренда лодок без прав от 70\u20ac/час. Бензин включён.",
+      keywords: "аренда лодок малграт де мар, лодки рядом малграт, прогулка на лодке малграт",
+      ogTitle: "Аренда лодок рядом с Малграт-де-Мар | Из Бланеса",
+      ogDescription: "Из Малграта в порт Бланеса за 10 мин. Лодки без прав от 70\u20ac. Забронируйте сейчас."
+    },
+    locationSantaSusanna: {
+      title: "Аренда лодок рядом с Санта-Сусанна | Порт Бланес 15 мин 70\u20ac",
+      description: "Отпуск в Санта-Сусанне? Порт Бланеса в 15 мин. Аренда лодок без прав от 70\u20ac/час. 7 лодок в наличии.",
+      keywords: "аренда лодок санта сусанна, лодки рядом санта сусанна, прогулка лодке санта сусанна",
+      ogTitle: "Аренда лодок рядом с Санта-Сусанна | Из Бланеса",
+      ogDescription: "Из Санта-Сусанны в порт Бланеса за 15 мин. Лодки без прав от 70\u20ac."
+    },
+    locationCalella: {
+      title: "Аренда лодок рядом с Калелья | Порт Бланес 20 мин от 70\u20ac",
+      description: "В Калелье? Порт Бланеса в 20 мин на машине. Аренда лодок без прав от 70\u20ac/час. Бензин включён.",
+      keywords: "аренда лодок калелья, лодки калелья маресме, прогулка лодке калелья",
+      ogTitle: "Аренда лодок рядом с Калелья | Из Бланеса Коста-Брава",
+      ogDescription: "Из Калельи в порт Бланеса за 20 мин. Лодки без прав от 70\u20ac."
     },
     categoryLicenseFree: {
       title: "Лодки Без Лицензии Коста-Брава | 5 Лодок от 70\u20ac/ч Бланес",
@@ -1073,6 +1241,9 @@ const getPagePath = (pageName: string): string => {
     locationBlanes: 'alquiler-barcos-blanes',
     locationLloret: 'alquiler-barcos-lloret-de-mar',
     locationTossa: 'alquiler-barcos-tossa-de-mar',
+    locationMalgrat: 'alquiler-barcos-malgrat-de-mar',
+    locationSantaSusanna: 'alquiler-barcos-santa-susanna',
+    locationCalella: 'alquiler-barcos-calella',
     categoryLicenseFree: 'barcos-sin-licencia',
     categoryLicensed: 'barcos-con-licencia',
     privacyPolicy: 'privacy-policy',

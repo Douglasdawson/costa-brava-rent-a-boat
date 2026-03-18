@@ -188,7 +188,7 @@ export function registerSitemapRoutes(app: Express) {
 
       sitemap += generateUrlEntry(baseUrl, "/", "1.0", DEPLOY_DATE);
 
-      const locationSlugs = ["blanes", "lloret-de-mar", "tossa-de-mar"];
+      const locationSlugs = ["blanes", "lloret-de-mar", "tossa-de-mar", "malgrat-de-mar", "santa-susanna", "calella"];
       locationSlugs.forEach(slug => {
         sitemap += generateUrlEntry(baseUrl, `/alquiler-barcos-${slug}`, "0.7", DEPLOY_DATE);
       });

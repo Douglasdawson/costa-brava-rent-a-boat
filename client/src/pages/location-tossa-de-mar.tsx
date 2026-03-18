@@ -95,6 +95,14 @@ export default function LocationTossaPage() {
     {
       question: "¿Es seguro ir a Tossa de Mar en barco sin licencia?",
       answer: "Sí, la ruta es segura en condiciones normales de mar. Antes de zarpar te damos formación completa y recomendaciones sobre la ruta. El barco incluye todo el equipo de seguridad homologado."
+    },
+    {
+      question: "¿Cuánto cuesta alquilar un barco para ir a Tossa de Mar?",
+      answer: "El alquiler empieza desde 70 EUR por hora con gasolina incluida. Para una excursión a Tossa recomendamos mínimo 4-5 horas para disfrutar del trayecto y explorar. También ofrecemos excursiones privadas con patrón."
+    },
+    {
+      question: "¿Cuánto se tarda en barco de Blanes a Tossa de Mar?",
+      answer: "Aproximadamente 1 hora desde el Puerto de Blanes con un barco con licencia. La ruta costera pasa por Lloret de Mar, acantilados espectaculares y calas escondidas como Cala Pola."
     }
   ];
 
@@ -318,6 +326,19 @@ export default function LocationTossaPage() {
                   <p className="text-muted-foreground">{s.safeNavigationDesc}</p>
                 </div>
               </div>
+            </CardContent>
+          </Card>
+
+          {/* Cross-linking to southern towns */}
+          <Card className="mb-8">
+            <CardContent className="py-6">
+              <p className="text-muted-foreground">
+                También ofrecemos servicio para turistas alojados en{" "}
+                <a href="/alquiler-barcos-malgrat-de-mar" className="text-primary hover:underline font-medium">Malgrat de Mar</a>,{" "}
+                <a href="/alquiler-barcos-santa-susanna" className="text-primary hover:underline font-medium">Santa Susanna</a> y{" "}
+                <a href="/alquiler-barcos-calella" className="text-primary hover:underline font-medium">Calella</a>.
+                Desde estos pueblos de la costa del Maresme se llega al Puerto de Blanes en 10-20 minutos en coche.
+              </p>
             </CardContent>
           </Card>
 

@@ -39,6 +39,9 @@ const CookiesPolicyPage = lazy(() => import("@/pages/cookies-policy"));
 const LocationBlanesPage = lazy(() => import("@/pages/location-blanes"));
 const LocationLloretPage = lazy(() => import("@/pages/location-lloret-de-mar"));
 const LocationTossaPage = lazy(() => import("@/pages/location-tossa-de-mar"));
+const LocationMalgratPage = lazy(() => import("@/pages/location-malgrat-de-mar"));
+const LocationSantaSusannaPage = lazy(() => import("@/pages/location-santa-susanna"));
+const LocationCalellaPage = lazy(() => import("@/pages/location-calella"));
 const CategoryLicenseFreePage = lazy(() => import("@/pages/category-license-free"));
 const CategoryLicensedPage = lazy(() => import("@/pages/category-licensed"));
 const TestimoniosPage = lazy(() => import("@/pages/testimonios"));
@@ -376,6 +379,15 @@ function Router() {
       </Route>
       <Route path="/alquiler-barcos-tossa-de-mar">
         {() => <Suspense fallback={<SecondaryRouteFallback />}><LocationTossaPage /></Suspense>}
+      </Route>
+      <Route path="/alquiler-barcos-malgrat-de-mar">
+        {() => <Suspense fallback={<SecondaryRouteFallback />}><LocationMalgratPage /></Suspense>}
+      </Route>
+      <Route path="/alquiler-barcos-santa-susanna">
+        {() => <Suspense fallback={<SecondaryRouteFallback />}><LocationSantaSusannaPage /></Suspense>}
+      </Route>
+      <Route path="/alquiler-barcos-calella">
+        {() => <Suspense fallback={<SecondaryRouteFallback />}><LocationCalellaPage /></Suspense>}
       </Route>
       <Route path="/alquiler-barcos-cerca-barcelona">
         {() => <Suspense fallback={<SecondaryRouteFallback />}><LocationBarcelonaPage /></Suspense>}

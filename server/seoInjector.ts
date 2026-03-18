@@ -483,10 +483,10 @@ const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
   },
   "/alquiler-barcos-lloret-de-mar": {
     es: {
-      title: "Excursión en Barco a Lloret de Mar desde Blanes",
-      description: "Navega desde Blanes hasta Lloret de Mar. Alquiler de barcos con o sin licencia. Descubre las mejores playas y calas.",
-      ogTitle: "Excursión en Barco a Lloret de Mar | Desde Blanes Costa Brava",
-      ogDescription: "Navega desde Blanes hasta Lloret de Mar en barco. Descubre las mejores playas y calas.",
+      title: "Alquiler Barco Lloret de Mar Sin Licencia | 25 min desde Blanes 70\u20ac",
+      description: "Navega desde Blanes hasta Lloret de Mar en 25 min. Barcos sin licencia desde 70\u20ac/h, gasolina incluida. Descubre playas y calas.",
+      ogTitle: "Alquiler Barco Lloret de Mar | 25 min desde Blanes Costa Brava",
+      ogDescription: "Navega a Lloret de Mar en 25 min desde Blanes. Barcos sin licencia desde 70\u20ac. Gasolina incluida.",
     },
     en: {
       title: "Boat Trip to Lloret de Mar from Blanes",
@@ -519,10 +519,10 @@ const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
   },
   "/alquiler-barcos-tossa-de-mar": {
     es: {
-      title: "Excursión en Barco a Tossa de Mar desde Blanes",
-      description: "Navega a Tossa de Mar en 1 hora desde Blanes. Descubre el pueblo medieval más bonito de la Costa Brava.",
-      ogTitle: "Excursión en Barco a Tossa de Mar | Vila Vella desde Blanes",
-      ogDescription: "Navega a Tossa de Mar en 1h desde Blanes. Descubre el pueblo medieval más bonito de la Costa Brava.",
+      title: "Excursión Barco a Tossa de Mar | Vila Vella desde Blanes 1h | 70\u20ac",
+      description: "Excursión en barco a Tossa de Mar desde Blanes en 1h. Vila Vella, calas vírgenes. Desde 70\u20ac, gasolina incluida.",
+      ogTitle: "Excursión Barco a Tossa de Mar | Vila Vella desde Blanes",
+      ogDescription: "Navega a Tossa de Mar en 1h desde Blanes. Vila Vella y calas vírgenes desde 70\u20ac. Gasolina incluida.",
     },
     en: {
       title: "Boat Trip to Tossa de Mar from Blanes",
@@ -551,6 +551,114 @@ const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
     ru: {
       title: "Экскурсия на Лодке в Тосса-де-Мар из Бланеса",
       description: "Плывите в Тосса-де-Мар за 1 час из Бланеса. Откройте самый красивый средневековый город Коста-Бравы.",
+    },
+  },
+  "/alquiler-barcos-malgrat-de-mar": {
+    es: {
+      title: "Alquiler Barco cerca de Malgrat de Mar | Puerto Blanes 10 min",
+      description: "Alojado en Malgrat de Mar? Puerto de Blanes a 10 min en coche. Barcos sin licencia desde 70\u20ac/h con gasolina incluida.",
+      ogTitle: "Alquiler Barco cerca de Malgrat de Mar | Desde Blanes",
+      ogDescription: "Desde Malgrat al Puerto de Blanes en 10 min. Barcos sin licencia desde 70\u20ac con gasolina. Reserva ya.",
+    },
+    en: {
+      title: "Boat Rental near Malgrat de Mar | Blanes Port 10 min",
+      description: "Staying in Malgrat de Mar? Blanes Port is 10 min by car. License-free boats from \u20ac70/h, fuel included.",
+    },
+    ca: {
+      title: "Lloguer Barques a prop de Malgrat de Mar | Port Blanes 10 min",
+      description: "Allotjat a Malgrat de Mar? Port de Blanes a 10 min en cotxe. Barques sense llicència des de 70\u20ac/h.",
+    },
+    fr: {
+      title: "Location Bateau près de Malgrat de Mar | Port Blanes 10 min",
+      description: "En vacances à Malgrat de Mar ? Port de Blanes à 10 min en voiture. Bateaux sans permis dès 70\u20ac/h.",
+    },
+    de: {
+      title: "Bootsverleih bei Malgrat de Mar | Hafen Blanes 10 Min",
+      description: "Urlaub in Malgrat de Mar? Hafen Blanes in 10 Min. Boote ohne Führerschein ab 70\u20ac/Std.",
+    },
+    nl: {
+      title: "Boothuur bij Malgrat de Mar | Haven Blanes 10 min",
+      description: "Op vakantie in Malgrat de Mar? Haven Blanes op 10 min. Boten zonder vaarbewijs vanaf \u20ac70/uur.",
+    },
+    it: {
+      title: "Noleggio Barche vicino a Malgrat de Mar | Porto Blanes 10 min",
+      description: "In vacanza a Malgrat de Mar? Porto di Blanes a 10 min. Barche senza patente da 70\u20ac/ora.",
+    },
+    ru: {
+      title: "Аренда лодок рядом с Малграт-де-Мар | Порт Бланес 10 мин",
+      description: "Отдыхаете в Малграт-де-Мар? Порт Бланеса в 10 мин на машине. Лодки без прав от 70\u20ac/час.",
+    },
+  },
+  "/alquiler-barcos-santa-susanna": {
+    es: {
+      title: "Alquiler Barco cerca de Santa Susanna | Puerto Blanes 15 min",
+      description: "Vacaciones en Santa Susanna? Puerto de Blanes a 15 min. Barcos sin licencia desde 70\u20ac/h con gasolina incluida.",
+      ogTitle: "Alquiler Barco cerca de Santa Susanna | Desde Blanes",
+      ogDescription: "Desde Santa Susanna al Puerto de Blanes en 15 min. Barcos sin licencia desde 70\u20ac. Reserva tu aventura.",
+    },
+    en: {
+      title: "Boat Rental near Santa Susanna | Blanes Port 15 min",
+      description: "Holiday in Santa Susanna? Blanes Port is 15 min by car. License-free boats from \u20ac70/h, fuel included.",
+    },
+    ca: {
+      title: "Lloguer Barques a prop de Santa Susanna | Port Blanes 15 min",
+      description: "Vacances a Santa Susanna? Port de Blanes a 15 min en cotxe. Barques sense llicència des de 70\u20ac/h.",
+    },
+    fr: {
+      title: "Location Bateau près de Santa Susanna | Port Blanes 15 min",
+      description: "Vacances à Santa Susanna ? Port de Blanes à 15 min. Bateaux sans permis dès 70\u20ac/h.",
+    },
+    de: {
+      title: "Bootsverleih bei Santa Susanna | Hafen Blanes 15 Min",
+      description: "Urlaub in Santa Susanna? Hafen Blanes in 15 Min. Boote ohne Führerschein ab 70\u20ac/Std.",
+    },
+    nl: {
+      title: "Boothuur bij Santa Susanna | Haven Blanes 15 min",
+      description: "Vakantie in Santa Susanna? Haven Blanes op 15 min. Boten zonder vaarbewijs vanaf \u20ac70/uur.",
+    },
+    it: {
+      title: "Noleggio Barche vicino a Santa Susanna | Porto Blanes 15 min",
+      description: "Vacanza a Santa Susanna? Porto di Blanes a 15 min. Barche senza patente da 70\u20ac/ora.",
+    },
+    ru: {
+      title: "Аренда лодок рядом с Санта-Сусанна | Порт Бланес 15 мин",
+      description: "Отпуск в Санта-Сусанне? Порт Бланеса в 15 мин. Лодки без прав от 70\u20ac/час.",
+    },
+  },
+  "/alquiler-barcos-calella": {
+    es: {
+      title: "Alquiler Barco cerca de Calella | Puerto Blanes 20 min desde 70\u20ac",
+      description: "En Calella? Puerto de Blanes a 20 min en coche. Barcos sin licencia desde 70\u20ac/h con gasolina incluida.",
+      ogTitle: "Alquiler Barco cerca de Calella | Desde Blanes Costa Brava",
+      ogDescription: "Desde Calella al Puerto de Blanes en 20 min. Barcos sin licencia desde 70\u20ac. Descubre la Costa Brava.",
+    },
+    en: {
+      title: "Boat Rental near Calella | Blanes Port 20 min from \u20ac70",
+      description: "Staying in Calella? Blanes Port is 20 min by car. License-free boats from \u20ac70/h, fuel included.",
+    },
+    ca: {
+      title: "Lloguer Barques a prop de Calella | Port Blanes 20 min des de 70\u20ac",
+      description: "A Calella? Port de Blanes a 20 min en cotxe. Barques sense llicència des de 70\u20ac/h. Gasolina inclosa.",
+    },
+    fr: {
+      title: "Location Bateau près de Calella | Port Blanes 20 min dès 70\u20ac",
+      description: "En séjour à Calella ? Port de Blanes à 20 min. Bateaux sans permis dès 70\u20ac/h. Essence incluse.",
+    },
+    de: {
+      title: "Bootsverleih bei Calella | Hafen Blanes 20 Min ab 70\u20ac",
+      description: "In Calella? Hafen Blanes in 20 Min. Boote ohne Führerschein ab 70\u20ac/Std. Benzin inklusive.",
+    },
+    nl: {
+      title: "Boothuur bij Calella | Haven Blanes 20 min vanaf \u20ac70",
+      description: "In Calella? Haven Blanes op 20 min. Boten zonder vaarbewijs vanaf \u20ac70/uur. Brandstof inbegrepen.",
+    },
+    it: {
+      title: "Noleggio Barche vicino a Calella | Porto Blanes 20 min da 70\u20ac",
+      description: "A Calella? Porto di Blanes a 20 min. Barche senza patente da 70\u20ac/ora. Benzina inclusa.",
+    },
+    ru: {
+      title: "Аренда лодок рядом с Калелья | Порт Бланес 20 мин от 70\u20ac",
+      description: "В Калелье? Порт Бланеса в 20 мин на машине. Лодки без прав от 70\u20ac/час.",
     },
   },
   "/privacy-policy": {
@@ -1628,6 +1736,173 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
       return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [destination, faq, breadcrumb] }, availableLanguages };
     }
 
+    // /alquiler-barcos-malgrat-de-mar - TouristDestination + FAQPage
+    else if (pathname === "/alquiler-barcos-malgrat-de-mar") {
+      const destination = {
+        "@type": "TouristDestination",
+        name: isEn ? "Boat Rental near Malgrat de Mar" : "Alquiler de Barcos cerca de Malgrat de Mar",
+        description: isEn
+          ? "Rent boats from Blanes Port, just 10 minutes by car from Malgrat de Mar. License-free boats from 70 EUR/hour with fuel included."
+          : "Alquila barcos desde el Puerto de Blanes, a solo 10 minutos en coche de Malgrat de Mar. Barcos sin licencia desde 70 EUR/hora con gasolina incluida.",
+        url: `${BASE_URL}/alquiler-barcos-malgrat-de-mar`,
+        touristType: [
+          { "@type": "Audience", audienceType: isEn ? "Family tourists" : "Turistas familiares" },
+          { "@type": "Audience", audienceType: isEn ? "Beach holiday makers" : "Turistas de playa" },
+        ],
+        geo: { "@type": "GeoCoordinates", latitude: 41.6458, longitude: 2.7419 },
+        containedInPlace: {
+          "@type": "Place",
+          name: "Malgrat de Mar",
+          sameAs: "https://en.wikipedia.org/wiki/Malgrat_de_Mar",
+          containedInPlace: { "@type": "Place", name: "Costa Brava", containedInPlace: { "@type": "Place", name: "Catalonia, Spain" } },
+        },
+        includesAttraction: [
+          { "@type": "TouristAttraction", name: "Playa de Malgrat de Mar" },
+          { "@type": "TouristAttraction", name: "Parc Francesc Macià" },
+          { "@type": "TouristAttraction", name: "Paseo Marítimo de Malgrat" },
+        ],
+      };
+      const faq = {
+        "@type": "FAQPage",
+        mainEntity: [
+          {
+            "@type": "Question",
+            name: isEn ? "How far is Malgrat de Mar from Blanes Port?" : "A cuanta distancia esta Malgrat de Mar del Puerto de Blanes?",
+            acceptedAnswer: { "@type": "Answer", text: isEn
+              ? "Malgrat de Mar is just 8 km (10 minutes by car) from Blanes Port. You can also take the RENFE R1 train (5 minutes)."
+              : "Malgrat de Mar esta a solo 8 km (10 minutos en coche) del Puerto de Blanes. Tambien puedes tomar el tren RENFE R1 (5 minutos)." },
+          },
+          {
+            "@type": "Question",
+            name: isEn ? "How much does it cost to rent a boat from Blanes?" : "Cuanto cuesta alquilar un barco desde Blanes?",
+            acceptedAnswer: { "@type": "Answer", text: isEn
+              ? "Boat rental starts from 70 EUR per hour with fuel included. No license needed for boats up to 15 HP."
+              : "El alquiler de barco empieza desde 70 EUR por hora con gasolina incluida. No se necesita licencia para barcos de hasta 15 CV." },
+          },
+          {
+            "@type": "Question",
+            name: isEn ? "Do I need a boating license?" : "Necesito licencia de navegacion?",
+            acceptedAnswer: { "@type": "Answer", text: isEn
+              ? "No! We offer license-free boats that anyone over 18 can operate. We provide 15 minutes of training before departure."
+              : "No! Ofrecemos barcos sin licencia que cualquier mayor de 18 anos puede manejar. Damos 15 minutos de formacion antes de zarpar." },
+          },
+        ],
+      };
+      const breadcrumb = buildBreadcrumb([homeCrumb, { name: isEn ? "Boats near Malgrat de Mar" : "Barcos cerca de Malgrat de Mar", url: `${BASE_URL}/alquiler-barcos-malgrat-de-mar` }]);
+      return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [destination, faq, breadcrumb] }, availableLanguages };
+    }
+
+    // /alquiler-barcos-santa-susanna - TouristDestination + FAQPage
+    else if (pathname === "/alquiler-barcos-santa-susanna") {
+      const destination = {
+        "@type": "TouristDestination",
+        name: isEn ? "Boat Rental near Santa Susanna" : "Alquiler de Barcos cerca de Santa Susanna",
+        description: isEn
+          ? "Rent boats from Blanes Port, just 15 minutes by car from Santa Susanna. License-free boats from 70 EUR/hour with fuel included."
+          : "Alquila barcos desde el Puerto de Blanes, a solo 15 minutos en coche de Santa Susanna. Barcos sin licencia desde 70 EUR/hora con gasolina incluida.",
+        url: `${BASE_URL}/alquiler-barcos-santa-susanna`,
+        touristType: [
+          { "@type": "Audience", audienceType: isEn ? "Resort tourists" : "Turistas de resort" },
+          { "@type": "Audience", audienceType: isEn ? "Families with children" : "Familias con ninos" },
+        ],
+        geo: { "@type": "GeoCoordinates", latitude: 41.6332, longitude: 2.7133 },
+        containedInPlace: {
+          "@type": "Place",
+          name: "Santa Susanna",
+          sameAs: "https://en.wikipedia.org/wiki/Santa_Susanna",
+          containedInPlace: { "@type": "Place", name: "Costa Brava", containedInPlace: { "@type": "Place", name: "Catalonia, Spain" } },
+        },
+        includesAttraction: [
+          { "@type": "TouristAttraction", name: "Playa de Santa Susanna" },
+          { "@type": "TouristAttraction", name: "Castell de Can Rates" },
+        ],
+      };
+      const faq = {
+        "@type": "FAQPage",
+        mainEntity: [
+          {
+            "@type": "Question",
+            name: isEn ? "How far is Santa Susanna from Blanes Port?" : "A cuanta distancia esta Santa Susanna del Puerto de Blanes?",
+            acceptedAnswer: { "@type": "Answer", text: isEn
+              ? "Santa Susanna is 12 km (15 minutes by car) from Blanes Port. The RENFE R1 train takes 10 minutes."
+              : "Santa Susanna esta a 12 km (15 minutos en coche) del Puerto de Blanes. El tren RENFE R1 tarda 10 minutos." },
+          },
+          {
+            "@type": "Question",
+            name: isEn ? "How much does it cost to rent a boat from Blanes?" : "Cuanto cuesta alquilar un barco desde Blanes?",
+            acceptedAnswer: { "@type": "Answer", text: isEn
+              ? "From 70 EUR per hour with fuel included. License-free boats available for up to 7 passengers."
+              : "Desde 70 EUR por hora con gasolina incluida. Barcos sin licencia disponibles para hasta 7 pasajeros." },
+          },
+          {
+            "@type": "Question",
+            name: isEn ? "Do I need a boating license?" : "Necesito licencia de navegacion?",
+            acceptedAnswer: { "@type": "Answer", text: isEn
+              ? "No license needed! Our boats up to 15 HP can be operated by anyone over 18. Training included."
+              : "No se necesita licencia! Nuestros barcos de hasta 15 CV pueden ser manejados por cualquier mayor de 18 anos. Formacion incluida." },
+          },
+        ],
+      };
+      const breadcrumb = buildBreadcrumb([homeCrumb, { name: isEn ? "Boats near Santa Susanna" : "Barcos cerca de Santa Susanna", url: `${BASE_URL}/alquiler-barcos-santa-susanna` }]);
+      return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [destination, faq, breadcrumb] }, availableLanguages };
+    }
+
+    // /alquiler-barcos-calella - TouristDestination + FAQPage
+    else if (pathname === "/alquiler-barcos-calella") {
+      const destination = {
+        "@type": "TouristDestination",
+        name: isEn ? "Boat Rental near Calella" : "Alquiler de Barcos cerca de Calella",
+        description: isEn
+          ? "Rent boats from Blanes Port, just 20 minutes by car from Calella. License-free boats from 70 EUR/hour with fuel included."
+          : "Alquila barcos desde el Puerto de Blanes, a solo 20 minutos en coche de Calella. Barcos sin licencia desde 70 EUR/hora con gasolina incluida.",
+        url: `${BASE_URL}/alquiler-barcos-calella`,
+        touristType: [
+          { "@type": "Audience", audienceType: isEn ? "Beach tourists" : "Turistas de playa" },
+          { "@type": "Audience", audienceType: isEn ? "Cultural tourists" : "Turistas culturales" },
+        ],
+        geo: { "@type": "GeoCoordinates", latitude: 41.6136, longitude: 2.6545 },
+        containedInPlace: {
+          "@type": "Place",
+          name: "Calella",
+          sameAs: "https://en.wikipedia.org/wiki/Calella",
+          containedInPlace: { "@type": "Place", name: "Maresme", containedInPlace: { "@type": "Place", name: "Catalonia, Spain" } },
+        },
+        includesAttraction: [
+          { "@type": "TouristAttraction", name: "Playa Gran de Calella" },
+          { "@type": "TouristAttraction", name: "Faro de Calella" },
+          { "@type": "TouristAttraction", name: "Parc Dalmau" },
+        ],
+      };
+      const faq = {
+        "@type": "FAQPage",
+        mainEntity: [
+          {
+            "@type": "Question",
+            name: isEn ? "How far is Calella from Blanes Port?" : "A cuanta distancia esta Calella del Puerto de Blanes?",
+            acceptedAnswer: { "@type": "Answer", text: isEn
+              ? "Calella is 17 km (20 minutes by car via the C-32) from Blanes Port. The RENFE R1 train takes 15 minutes."
+              : "Calella esta a 17 km (20 minutos en coche por la C-32) del Puerto de Blanes. El tren RENFE R1 tarda 15 minutos." },
+          },
+          {
+            "@type": "Question",
+            name: isEn ? "How much does it cost to rent a boat?" : "Cuanto cuesta alquilar un barco?",
+            acceptedAnswer: { "@type": "Answer", text: isEn
+              ? "Boat rental starts from 70 EUR per hour with fuel included. No license required for boats up to 15 HP."
+              : "El alquiler empieza desde 70 EUR por hora con gasolina incluida. No se necesita licencia para barcos de hasta 15 CV." },
+          },
+          {
+            "@type": "Question",
+            name: isEn ? "Do I need a boating license?" : "Necesito licencia de navegacion?",
+            acceptedAnswer: { "@type": "Answer", text: isEn
+              ? "No! We have license-free boats for anyone over 18. 15 minutes of training included before departure."
+              : "No! Tenemos barcos sin licencia para cualquier mayor de 18 anos. 15 minutos de formacion incluidos antes de zarpar." },
+          },
+        ],
+      };
+      const breadcrumb = buildBreadcrumb([homeCrumb, { name: isEn ? "Boats near Calella" : "Barcos cerca de Calella", url: `${BASE_URL}/alquiler-barcos-calella` }]);
+      return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [destination, faq, breadcrumb] }, availableLanguages };
+    }
+
     // /barcos-sin-licencia - ItemList of license-free boats (dynamic from DB)
     else if (pathname === "/barcos-sin-licencia") {
       const allBoats = await storage.getAllBoats();
@@ -2061,6 +2336,9 @@ const VALID_SPA_ROUTES = new Set([
   "/alquiler-barcos-blanes",
   "/alquiler-barcos-lloret-de-mar",
   "/alquiler-barcos-tossa-de-mar",
+  "/alquiler-barcos-malgrat-de-mar",
+  "/alquiler-barcos-santa-susanna",
+  "/alquiler-barcos-calella",
   "/alquiler-barcos-cerca-barcelona",
   "/alquiler-barcos-costa-brava",
   "/barcos-sin-licencia",

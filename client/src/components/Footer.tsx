@@ -176,6 +176,16 @@ export default function Footer() {
               </li>
             </ul>
 
+            <h3 className="font-medium text-white mb-4 text-sm mt-8">Destinos</h3>
+            <ul className="space-y-1 text-sm">
+              <li><a href="/alquiler-barcos-blanes" className="hover:text-white transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none">Blanes</a></li>
+              <li><a href="/alquiler-barcos-lloret-de-mar" className="hover:text-white transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none">Lloret de Mar</a></li>
+              <li><a href="/alquiler-barcos-tossa-de-mar" className="hover:text-white transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none">Tossa de Mar</a></li>
+              <li><a href="/alquiler-barcos-malgrat-de-mar" className="hover:text-white transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none">Malgrat de Mar</a></li>
+              <li><a href="/alquiler-barcos-santa-susanna" className="hover:text-white transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none">Santa Susanna</a></li>
+              <li><a href="/alquiler-barcos-calella" className="hover:text-white transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none">Calella</a></li>
+            </ul>
+
             <h3 className="font-medium text-white mb-4 text-sm mt-8">{t.footer.services}</h3>
             <ul className="space-y-1 text-sm">
               <li><a href="/barcos-sin-licencia" className="hover:text-white transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none">{t.boats.withoutLicense}</a></li>

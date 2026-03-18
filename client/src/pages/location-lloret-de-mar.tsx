@@ -96,6 +96,14 @@ export default function LocationLloretPage() {
     {
       question: "¿Cuál es la mejor época para ir en barco a Lloret de Mar?",
       answer: "Los mejores meses son junio y septiembre: temperaturas agradables, mar tranquilo y menos afluencia turística. Julio y agosto son más concurridos pero el agua está más cálida."
+    },
+    {
+      question: "¿Se puede ir a Lloret de Mar en barco sin licencia?",
+      answer: "Sí, Lloret de Mar está dentro de la zona de 2 millas náuticas, por lo que es accesible con nuestros barcos sin licencia. Solo necesitas ser mayor de 18 años y te damos 15 minutos de formación antes de zarpar."
+    },
+    {
+      question: "¿Cuánto cuesta alquilar un barco para ir a Lloret de Mar?",
+      answer: "El alquiler empieza desde 70 EUR por hora con gasolina incluida. Para una excursión completa a Lloret recomendamos mínimo 3 horas (ida, exploración y vuelta). Disponemos de 7 barcos para 4-7 personas."
     }
   ];
 
@@ -319,6 +327,19 @@ export default function LocationLloretPage() {
                   <p className="text-muted-foreground">{s.safetyDesc}</p>
                 </div>
               </div>
+            </CardContent>
+          </Card>
+
+          {/* Cross-linking to southern towns */}
+          <Card className="mb-8">
+            <CardContent className="py-6">
+              <p className="text-muted-foreground">
+                También ofrecemos servicio para turistas alojados en{" "}
+                <a href="/alquiler-barcos-malgrat-de-mar" className="text-primary hover:underline font-medium">Malgrat de Mar</a>,{" "}
+                <a href="/alquiler-barcos-santa-susanna" className="text-primary hover:underline font-medium">Santa Susanna</a> y{" "}
+                <a href="/alquiler-barcos-calella" className="text-primary hover:underline font-medium">Calella</a>.
+                Desde estos pueblos de la costa del Maresme se llega al Puerto de Blanes en 10-20 minutos en coche.
+              </p>
             </CardContent>
           </Card>
 

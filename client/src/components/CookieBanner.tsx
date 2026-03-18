@@ -1,12 +1,15 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Cookie } from "lucide-react";
+import { trackCookieConsent } from "@/utils/analytics";
 
 function updateGTMConsent(granted: boolean) {
   if (typeof window !== "undefined" && typeof window.gtag === "function") {
     const consent = {
       analytics_storage: granted ? "granted" : "denied",
       ad_storage: granted ? "granted" : "denied",
+      ad_user_data: granted ? "granted" : "denied",
+      ad_personalization: granted ? "granted" : "denied",
     };
     window.gtag("consent", "update", consent as unknown);
   }
@@ -25,6 +28,7 @@ export default function CookieBanner() {
   const handleAcceptAll = () => {
     localStorage.setItem("cookieConsent", "accepted");
     updateGTMConsent(true);
+    trackCookieConsent('accepted');
 
     // Initialize Meta Pixel now that consent is granted
     const metaPixelId = document.querySelector('meta[name="fb-pixel-id"]')?.getAttribute('content');
@@ -38,6 +42,7 @@ export default function CookieBanner() {
   const handleEssentialOnly = () => {
     localStorage.setItem("cookieConsent", "essential");
     updateGTMConsent(false);
+    trackCookieConsent('essential');
     setVisible(false);
   };
 

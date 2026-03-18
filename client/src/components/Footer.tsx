@@ -8,7 +8,7 @@ import { useLanguage } from "@/hooks/use-language";
 import CentresNLCatalunyaLogo from "@/components/icons/CentresNLCatalunyaLogo";
 import ClusterNauticLogo from "@/components/icons/ClusterNauticLogo";
 import DonQualitaLogo from "@/components/icons/DonQualitaLogo";
-import { trackPhoneClick } from "@/utils/analytics";
+import { trackPhoneClick, trackNewsletterSignup } from "@/utils/analytics";
 
 export default function Footer() {
   const t = useTranslations();
@@ -28,6 +28,7 @@ export default function Footer() {
         body: JSON.stringify({ email: newsletterEmail.trim(), language, source: 'footer' }),
       });
       if (res.ok || res.status === 409) {
+        trackNewsletterSignup('footer');
         setNewsletterState('success');
       } else {
         setNewsletterState('error');

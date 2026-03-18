@@ -1,8 +1,8 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { Link } from "wouter";
 import { Users, Clock, Wallet, Anchor, ChevronLeft, ChevronRight, RotateCcw } from "lucide-react";
 import { useLanguage } from "@/hooks/use-language";
-import { trackBlogCtaClick } from "@/utils/analytics";
+import { trackBlogCtaClick, trackBoatQuizStart, trackBoatQuizComplete } from "@/utils/analytics";
 
 interface QuizAnswer {
   passengers: number | null;
@@ -143,6 +143,7 @@ export default function BoatQuiz({ source = "page", onBoatSelect }: { source?: s
 
   const handleAnswer = (value: string | number) => {
     if (step === 0) {
+      trackBoatQuizStart(source);
       const passengerMap = [2, 4, 5, 6];
       setAnswers(prev => ({ ...prev, passengers: passengerMap[value as number] }));
     } else if (step === 1) {
@@ -172,6 +173,12 @@ export default function BoatQuiz({ source = "page", onBoatSelect }: { source?: s
       .sort((a, b) => b.score - a.score)
       .slice(0, 3);
   }, [answers, language]);
+
+  useEffect(() => {
+    if (step === 3 && recommendations.length > 0) {
+      trackBoatQuizComplete(recommendations[0]?.name || 'unknown');
+    }
+  }, [step, recommendations]);
 
   // Quiz questions UI
   if (step < 3) {

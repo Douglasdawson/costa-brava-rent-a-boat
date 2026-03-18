@@ -63,6 +63,8 @@ import { Dialog, DialogContent } from "@/components/ui/dialog";
 import type { BookingPrefillData } from "@/hooks/bookingModalContext";
 import { trackGoogleAdsRemarketing } from "@/utils/google-ads";
 import { trackMetaViewContent } from "@/utils/meta-pixel";
+import { trackViewItem } from "@/utils/analytics";
+import { useScrollDepthTracking } from "@/hooks/useScrollDepthTracking";
 
 interface BoatDetailPageProps {
   boatId?: string;
@@ -79,6 +81,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
   const touchStartX = useRef<number | null>(null);
   const { language } = useLanguage();
   const t = useTranslations();
+  useScrollDepthTracking('boat_detail');
   const seasonPeriods: Record<string, string> = {
     BAJA: t.boatDetail.periodLow,
     MEDIA: t.boatDetail.periodMid,
@@ -122,6 +125,8 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
         productPrice: price,
       });
       trackMetaViewContent(boatId, boatData.name, price);
+      // GA4 ecommerce view_item
+      trackViewItem(boatId, boatData.name, price);
     }
   }, [boatData, boatId]);
 

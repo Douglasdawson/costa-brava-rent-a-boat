@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import { X, Gift } from "lucide-react";
 import { useTranslations } from "@/lib/translations";
 import { useBookingModal } from "@/hooks/bookingModalContext";
+import { trackExitIntentShown, trackExitIntentCtaClick } from "@/utils/analytics";
 
 export function ExitIntentModal() {
   const t = useTranslations();
@@ -24,6 +25,7 @@ export function ExitIntentModal() {
       if (!shown) {
         setShow(true);
         sessionStorage.setItem("exitIntentShown", "true");
+        trackExitIntentShown();
       }
     }
   }, [dismissed]);
@@ -90,6 +92,7 @@ export function ExitIntentModal() {
   const handleBookNow = () => {
     setShow(false);
     setDismissed(true);
+    trackExitIntentCtaClick();
     openBookingModal(undefined, { coupon: "BIENVENIDO10" });
   };
 

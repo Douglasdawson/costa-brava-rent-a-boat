@@ -1,4 +1,5 @@
 import { apiRequest } from "@/lib/queryClient";
+import { trackPurchaseEcommerce, trackBookingWithUserData } from "@/utils/analytics";
 import type { BookingFlowStateReturn } from "./useBookingFlowState";
 
 function delay(ms: number): Promise<void> {
@@ -8,7 +9,7 @@ function delay(ms: number): Promise<void> {
 export function useBookingFlowActions(state: BookingFlowStateReturn, onClose?: () => void) {
   const {
     selectedDate, selectedBoat, selectedTime, duration, extras,
-    customerData, holdId,
+    customerData, holdId, availableBoats,
     setIsLoading, setQuote, setHoldId, setPaymentIntentId,
     isProcessingPayment, setIsProcessingPayment,
     toast, t, availableExtras,
@@ -120,6 +121,15 @@ export function useBookingFlowActions(state: BookingFlowStateReturn, onClose?: (
 
       if (successResponse.ok) {
         const result = await successResponse.json();
+        const boat = availableBoats.find(b => b.id === selectedBoat);
+        const boatName = boat?.name || selectedBoat;
+        trackPurchaseEcommerce(result.bookingId, state.quote?.total || 0, selectedBoat, boatName);
+        trackBookingWithUserData(result.bookingId, state.quote?.total || 0, selectedBoat, {
+          email: customerData.customerEmail,
+          phone: customerData.phonePrefix + customerData.customerPhone,
+          firstName: customerData.customerName,
+          lastName: customerData.customerSurname,
+        });
         toast({
           title: "¡Pago exitoso!",
           description: `Reserva confirmada. ID: ${result.bookingId}`,

@@ -12,6 +12,7 @@ import { SiWhatsapp } from "react-icons/si";
 import { Phone, Users, CheckCircle, ChevronDown, Anchor, LayoutGrid, TableProperties, Star } from "lucide-react";
 import { useBookingModal } from "@/hooks/bookingModalContext";
 import { getBoatAverageRating } from "@/data/boatReviews";
+import { trackViewItemList } from "@/utils/analytics";
 import {
   Table,
   TableBody,
@@ -227,6 +228,17 @@ function FleetSection() {
     queryKey: ['/api/fleet-availability'],
     staleTime: 5 * 60 * 1000, // match server cache: 5 minutes
   });
+
+  // GA4 ecommerce view_item_list tracking
+  useEffect(() => {
+    if (boatsData && boatsData.length > 0) {
+      trackViewItemList('fleet', 'Fleet Section', boatsData.filter(b => b.isActive).map(boat => {
+        const pricing = boat.pricing as Record<string, { prices: Record<string, number> }> | null;
+        const price = pricing?.BAJA?.prices ? Math.min(...Object.values(pricing.BAJA.prices)) : 75;
+        return { id: boat.id, name: boat.name, price };
+      }));
+    }
+  }, [boatsData]);
 
   const currentSeason = useMemo(() => getCurrentSeason(), []);
 

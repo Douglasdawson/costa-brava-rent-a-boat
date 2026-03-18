@@ -1,4 +1,5 @@
 import { useState, useEffect, createContext, useContext } from 'react';
+import { trackLanguageChange } from "@/utils/analytics";
 
 // Supported languages
 export type Language = 'es' | 'ca' | 'fr' | 'de' | 'nl' | 'it' | 'ru' | 'en';
@@ -69,6 +70,7 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
   }, [language]);
 
   const setLanguage = (lang: Language) => {
+    trackLanguageChange(language, lang);
     setLanguageState(lang);
     localStorage.setItem('costa-brava-language', lang);
   };

@@ -3,6 +3,8 @@ import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Calendar, Anchor, Clock, Gauge, AlertTriangle } from "lucide-react";
 import { getBoatAltText } from "@/utils/boatImages";
+import { trackBeginCheckout, trackBookingStarted } from "@/utils/analytics";
+import { getStoredUtm } from "@/hooks/useUtmCapture";
 import type { Boat } from "@shared/schema";
 import type { Translations } from "@/lib/translations";
 import type { Duration, TimeSlot } from "./types";
@@ -236,7 +238,16 @@ export function BookingStepExperience({
       {canContinue && (
         <div className="animate-in fade-in duration-200">
           <Button
-            onClick={() => setStep(2)}
+            onClick={() => {
+              const boat = availableBoats.find(b => b.id === selectedBoat);
+              const boatName = boat?.name || selectedBoat;
+              const pricing = boat?.pricing as Record<string, { prices: Record<string, number> }> | null;
+              const price = pricing ? Math.min(...Object.values(pricing.BAJA?.prices || { "1h": 75 })) : 0;
+              const utm = getStoredUtm();
+              trackBeginCheckout(selectedBoat, boatName, price, utm);
+              trackBookingStarted(selectedBoat, boatName, utm);
+              setStep(2);
+            }}
             className="w-full py-3"
             data-testid="button-next-step"
           >

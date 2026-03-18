@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { LanguageProvider } from "@/hooks/use-language";
 import { BookingModalProvider } from "@/hooks/useBookingModal";
 import { useUtmCapture } from "@/hooks/useUtmCapture";
+import { trackJsError } from "@/utils/analytics";
 
 // Import critical components (above the fold)
 import Navigation from "./components/Navigation";
@@ -70,6 +71,37 @@ const SeasonBanner = lazy(() => import("./components/SeasonBanner").then(m => ({
 
 // HomePageSEO lazy-loaded: seo-config.ts (100KB) deferred from main bundle
 const HomePageSEO = lazy(() => import("@/components/HomePageSEO"));
+
+// SPA Virtual Pageview Tracking — GA4 only records the initial page load,
+// so we push a virtual_page_view on every SPA navigation
+function usePageViewTracking() {
+  const [location] = useLocation();
+  const isFirstRender = useRef(true);
+
+  useEffect(() => {
+    // Skip first render — GTM handles the initial pageview
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
+    }
+
+    // Push virtual pageview to dataLayer
+    if (typeof window !== "undefined" && window.dataLayer) {
+      window.dataLayer.push({
+        event: 'virtual_page_view',
+        page_location: window.location.href,
+        page_path: location,
+        page_title: document.title,
+        user_language: document.documentElement.lang || 'es',
+      });
+    }
+
+    // Also fire Meta Pixel PageView for SPA navigations
+    if (typeof window !== "undefined" && (window as unknown as Record<string, unknown>).fbq) {
+      ((window as unknown as Record<string, unknown>).fbq as (...args: unknown[]) => void)('track', 'PageView');
+    }
+  }, [location]);
+}
 
 // Error Boundary — catches any unhandled render error and prevents a blank white screen
 class ErrorBoundary extends Component<{ children: React.ReactNode }, { hasError: boolean }> {
@@ -285,6 +317,7 @@ function MinimalRouteFallback() {
 // Router Component — granular Suspense boundaries per route priority group
 function Router() {
   useUtmCapture();
+  usePageViewTracking();
   return (
     <Switch>
       {/* Home page has its own internal Suspense boundaries for sections */}
@@ -423,6 +456,19 @@ function App() {
     } else {
       setTimeout(initDeferred, 3000);
     }
+  }, []);
+
+  // Global JS error tracking to GA4 — complements Sentry with UX correlation
+  useEffect(() => {
+    const handleError = (event: ErrorEvent) => {
+      trackJsError(
+        event.message || 'Unknown error',
+        event.filename || 'unknown',
+        event.lineno || 0,
+      );
+    };
+    window.addEventListener('error', handleError);
+    return () => window.removeEventListener('error', handleError);
   }, []);
 
   return (

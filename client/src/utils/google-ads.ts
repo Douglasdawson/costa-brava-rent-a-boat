@@ -18,7 +18,14 @@ declare global {
  */
 // Google Ads Conversion ID and Label — from Google Ads account 727-861-8415
 const GOOGLE_ADS_CONVERSION_ID = 'AW-341099427';
-const GOOGLE_ADS_CONVERSION_LABEL = 'C8nZCPLtj4kcEKOH06IB';
+
+// Conversion label map — replace placeholders when actions are created in Google Ads
+const GOOGLE_ADS_LABELS: Record<string, string> = {
+  purchase: 'C8nZCPLtj4kcEKOH06IB',
+  whatsapp_click: 'REPLACE_WITH_WHATSAPP_LABEL',
+  phone_click: 'REPLACE_WITH_PHONE_LABEL',
+  generate_lead: 'REPLACE_WITH_LEAD_LABEL',
+};
 
 export function trackGoogleAdsConversion(params: {
   conversionLabel: string;
@@ -32,7 +39,7 @@ export function trackGoogleAdsConversion(params: {
   // Fire via gtag directly (works without GTM configuration)
   if (typeof window.gtag === 'function') {
     window.gtag('event', 'conversion', {
-      send_to: `${GOOGLE_ADS_CONVERSION_ID}/${GOOGLE_ADS_CONVERSION_LABEL}`,
+      send_to: `${GOOGLE_ADS_CONVERSION_ID}/${GOOGLE_ADS_LABELS[params.conversionLabel] || GOOGLE_ADS_LABELS.purchase}`,
       value: params.value ?? 150,
       currency: params.currency || 'EUR',
       transaction_id: params.transactionId || '',

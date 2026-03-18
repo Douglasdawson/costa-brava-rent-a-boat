@@ -19,10 +19,10 @@
     <meta property="og:title" content="Alquiler de Barcos en Blanes sin Licencia | Costa Brava Rent a Boat">
     <meta property="og:description" content="Alquila barcos desde 70€ en Blanes. Gasolina incluida, hasta 5 personas. 7 embarcaciones disponibles. Reserva por WhatsApp.">
     <meta property="og:url" content="https://costabravarentaboat.com">
-    <meta property="og:image" content="https://costabravarentaboat.com/assets/og-image.png">
+    <meta property="og:image" content="https://costabravarentaboat.com/og-image.webp">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:type" content="image/webp">
     <meta property="og:image:alt" content="Costa Brava Rent a Boat - Alquiler de barcos en Blanes">
     <meta property="og:locale" content="es_ES">
 
@@ -31,7 +31,7 @@
     <meta name="twitter:site" content="@costabravarentaboat">
     <meta name="twitter:title" content="Alquiler de Barcos en Blanes | Costa Brava Rent a Boat">
     <meta name="twitter:description" content="Barcos sin licencia desde 70€. Gasolina incluida. Reserva ahora en WhatsApp.">
-    <meta name="twitter:image" content="https://costabravarentaboat.com/assets/og-image.png">
+    <meta name="twitter:image" content="https://costabravarentaboat.com/og-image.webp">
     <meta name="twitter:image:alt" content="Costa Brava Rent a Boat - Alquiler de barcos en Blanes">
     
     <!-- Geo Tags -->
@@ -168,7 +168,18 @@
       gtag('consent', 'default', {
         analytics_storage: _consent === 'accepted' ? 'granted' : 'denied',
         ad_storage: _consent === 'accepted' ? 'granted' : 'denied',
+        ad_user_data: _consent === 'accepted' ? 'granted' : 'denied',
+        ad_personalization: _consent === 'accepted' ? 'granted' : 'denied',
         wait_for_update: 500
+      });
+    </script>
+    <!-- DataLayer init event — available before GTM loads -->
+    <script>
+      window.dataLayer.push({
+        event: 'dl_init',
+        site_language: document.documentElement.lang || 'es',
+        consent_status: _consent || 'pending',
+        page_type: location.pathname === '/' ? 'home' : 'content',
       });
     </script>
     <!-- Google Ads + GTM — deferred to avoid blocking LCP -->

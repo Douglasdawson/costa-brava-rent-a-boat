@@ -3,6 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Plus, Minus, Users } from "lucide-react";
+import { trackAddShippingInfo, trackGenerateLead } from "@/utils/analytics";
 import type { Translations } from "@/lib/translations";
 import type { PhonePrefix } from "@/utils/phone-prefixes";
 import type { Extra, CustomerData } from "./types";
@@ -26,6 +27,10 @@ interface BookingStepPersonalizeProps {
   showNationalityDropdown: boolean;
   setShowNationalityDropdown: (show: boolean) => void;
   filteredNationalities: string[];
+  // Boat info for analytics
+  boatId: string;
+  boatName: string;
+  boatPrice: number;
   // Navigation
   setStep: (step: number) => void;
   t: Translations;
@@ -40,6 +45,7 @@ export function BookingStepPersonalize({
   nationalitySearch, setNationalitySearch,
   showNationalityDropdown, setShowNationalityDropdown,
   filteredNationalities,
+  boatId, boatName, boatPrice,
   setStep, t,
 }: BookingStepPersonalizeProps) {
   const [touched, setTouched] = useState<Record<string, boolean>>({});
@@ -461,7 +467,11 @@ export function BookingStepPersonalize({
 
       {/* Continue to payment button */}
       <Button
-        onClick={() => setStep(3)}
+        onClick={() => {
+          trackAddShippingInfo(boatId, boatName);
+          trackGenerateLead(boatId, boatName, boatPrice);
+          setStep(3);
+        }}
         disabled={!isFormValid}
         className="w-full py-3"
         data-testid="button-continue-payment"

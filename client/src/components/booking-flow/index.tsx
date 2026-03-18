@@ -57,28 +57,37 @@ export default function BookingFlow(props: BookingFlowProps) {
           />
         )}
 
-        {step === 2 && (
-          <BookingStepPersonalize
-            availableExtras={state.availableExtras}
-            extras={state.extras}
-            updateExtra={state.updateExtra}
-            customerData={state.customerData}
-            setCustomerData={state.setCustomerData}
-            maxCapacity={state.maxCapacity}
-            phonePrefixSearch={state.phonePrefixSearch}
-            setPhonePrefixSearch={state.setPhonePrefixSearch}
-            showPhonePrefixDropdown={state.showPhonePrefixDropdown}
-            setShowPhonePrefixDropdown={state.setShowPhonePrefixDropdown}
-            filteredPhoneCountries={state.filteredPhoneCountries}
-            nationalitySearch={state.nationalitySearch}
-            setNationalitySearch={state.setNationalitySearch}
-            showNationalityDropdown={state.showNationalityDropdown}
-            setShowNationalityDropdown={state.setShowNationalityDropdown}
-            filteredNationalities={state.filteredNationalities}
-            setStep={setStep}
-            t={t}
-          />
-        )}
+        {step === 2 && (() => {
+          const boat = state.availableBoats.find(b => b.id === state.selectedBoat);
+          const boatName = boat?.name || state.selectedBoat;
+          const pricing = boat?.pricing as Record<string, { prices: Record<string, number> }> | null;
+          const boatPrice = pricing ? Math.min(...Object.values(pricing.BAJA?.prices || { "1h": 75 })) : 0;
+          return (
+            <BookingStepPersonalize
+              availableExtras={state.availableExtras}
+              extras={state.extras}
+              updateExtra={state.updateExtra}
+              customerData={state.customerData}
+              setCustomerData={state.setCustomerData}
+              maxCapacity={state.maxCapacity}
+              phonePrefixSearch={state.phonePrefixSearch}
+              setPhonePrefixSearch={state.setPhonePrefixSearch}
+              showPhonePrefixDropdown={state.showPhonePrefixDropdown}
+              setShowPhonePrefixDropdown={state.setShowPhonePrefixDropdown}
+              filteredPhoneCountries={state.filteredPhoneCountries}
+              nationalitySearch={state.nationalitySearch}
+              setNationalitySearch={state.setNationalitySearch}
+              showNationalityDropdown={state.showNationalityDropdown}
+              setShowNationalityDropdown={state.setShowNationalityDropdown}
+              filteredNationalities={state.filteredNationalities}
+              boatId={state.selectedBoat}
+              boatName={boatName}
+              boatPrice={boatPrice}
+              setStep={setStep}
+              t={t}
+            />
+          );
+        })()}
 
         {step === 3 && (
           <BookingStepPayment

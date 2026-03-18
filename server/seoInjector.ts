@@ -111,52 +111,52 @@ async function getDbMeta(pagePath: string, lang: string): Promise<{ title?: stri
 const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
   "/": {
     es: {
-      title: "Alquiler de Barcos en Blanes sin Licencia | Desde 70€ | Costa Brava Rent a Boat",
-      description: "Alquila barcos sin licencia en Blanes desde 70€. Gasolina incluida, hasta 5 personas. 7 embarcaciones disponibles. Reserva por WhatsApp +34 611 500 372.",
+      title: "Alquiler Barcos Blanes Sin Licencia | Desde 70€/h | 4.8★ Google | Costa Brava",
+      description: "Alquiler barcos Blanes sin licencia desde 70€/h. Gasolina incluida. 4.8★ Google (300+ opiniones). 9 barcos, hasta 7 personas. Reserva online o WhatsApp.",
       ogTitle: `Alquiler de Barcos en Blanes y Lloret | Costa Brava ${SEASON_YEAR}`,
-      ogDescription: "Descubre la Costa Brava desde el mar. 7 barcos con y sin licencia. Explora calas paradisíacas. ¡Reserva tu aventura hoy!",
+      ogDescription: "Descubre la Costa Brava desde el mar. 9 barcos con y sin licencia. 4.8★ Google. ¡Reserva tu aventura hoy!",
     },
     en: {
-      title: "Boat Rental Blanes & Lloret de Mar | Costa Brava",
-      description: "Discover Costa Brava from the sea with our boats in Blanes. With or without license. Easy, fast and safe!",
+      title: "Boat Rental Blanes No License | From 70€/h | 4.8★ Google | Costa Brava",
+      description: "Boat rental Blanes without license from 70€/h. Fuel included. 4.8★ Google (300+ reviews). 9 boats, up to 7 people. Book online or WhatsApp.",
       ogTitle: `Boat Rental in Blanes & Lloret de Mar | Costa Brava ${SEASON_YEAR}`,
-      ogDescription: "Discover Costa Brava from the sea. 7 boats with and without license. Explore paradise coves. Book your adventure today!",
+      ogDescription: "Discover Costa Brava from the sea. 9 boats with and without license. 4.8★ Google. Book your adventure today!",
     },
     fr: {
-      title: "Location de Bateaux Blanes sans Permis | Costa Brava",
-      description: "Louez des bateaux sans permis à Blanes dès 70€. Essence incluse, jusqu'à 5 personnes. 7 embarcations disponibles.",
+      title: "Location Bateaux Blanes Sans Permis | Dès 70€/h | 4.8★ Google | Costa Brava",
+      description: "Location bateaux Blanes sans permis dès 70€/h. Carburant inclus. 4.8★ Google (300+ avis). 9 bateaux, jusqu'à 7 personnes. Réservez en ligne ou WhatsApp.",
       ogTitle: `Location de Bateaux à Blanes | Costa Brava ${SEASON_YEAR}`,
-      ogDescription: "Découvrez la Costa Brava depuis la mer. 7 bateaux avec et sans permis. Explorez les criques. Réservez maintenant!",
+      ogDescription: "Découvrez la Costa Brava depuis la mer. 9 bateaux avec et sans permis. 4.8★ Google. Réservez maintenant!",
     },
     de: {
-      title: "Bootsverleih Blanes ohne Führerschein | Costa Brava",
-      description: "Mieten Sie Boote ohne Führerschein in Blanes ab 70€. Benzin inklusive, bis zu 5 Personen. 7 Boote verfügbar.",
+      title: "Bootsverleih Blanes Ohne Führerschein | Ab 70€/h | 4.8★ Google | Costa Brava",
+      description: "Bootsverleih Blanes ohne Führerschein ab 70€/h. Kraftstoff inklusive. 4.8★ Google (300+ Bewertungen). 9 Boote, bis zu 7 Personen. Online oder WhatsApp buchen.",
       ogTitle: `Bootsverleih Blanes | Costa Brava ${SEASON_YEAR}`,
-      ogDescription: "Entdecken Sie die Costa Brava vom Meer aus. 7 Boote mit und ohne Führerschein. Buchen Sie Ihr Abenteuer!",
+      ogDescription: "Entdecken Sie die Costa Brava vom Meer aus. 9 Boote mit und ohne Führerschein. 4.8★ Google. Buchen Sie Ihr Abenteuer!",
     },
     ca: {
-      title: "Lloguer de Barques a Blanes sense Llicència | Costa Brava",
-      description: "Lloga barques sense llicència a Blanes des de 70€. Gasolina inclosa, fins a 5 persones. 7 embarcacions disponibles.",
+      title: "Lloguer Barques Blanes Sense Llicència | Des de 70€/h | 4.8★ Google | Costa Brava",
+      description: "Lloguer barques Blanes sense llicència des de 70€/h. Gasolina inclosa. 4.8★ Google (300+ opinions). 9 barques, fins a 7 persones. Reserva online o WhatsApp.",
       ogTitle: `Lloguer de Barques a Blanes | Costa Brava ${SEASON_YEAR}`,
-      ogDescription: "Descobreix la Costa Brava des del mar. 7 barques amb i sense llicència. Explora cales paradisíaques.",
+      ogDescription: "Descobreix la Costa Brava des del mar. 9 barques amb i sense llicència. 4.8★ Google. Explora cales paradisíaques.",
     },
     nl: {
-      title: "Boothuur Blanes zonder Vaarbewijs | Costa Brava",
-      description: "Huur boten zonder vaarbewijs in Blanes vanaf 70€. Benzine inbegrepen, tot 5 personen. 7 boten beschikbaar.",
+      title: "Bootverhuur Blanes Zonder Vaarbewijs | Vanaf 70€/u | 4.8★ Google | Costa Brava",
+      description: "Bootverhuur Blanes zonder vaarbewijs vanaf 70€/u. Brandstof inbegrepen. 4.8★ Google (300+ beoordelingen). 9 boten, tot 7 personen. Online of WhatsApp boeken.",
       ogTitle: `Boothuur in Blanes | Costa Brava ${SEASON_YEAR}`,
-      ogDescription: "Ontdek de Costa Brava vanaf zee. 7 boten met en zonder vaarbewijs. Boek uw avontuur!",
+      ogDescription: "Ontdek de Costa Brava vanaf zee. 9 boten met en zonder vaarbewijs. 4.8★ Google. Boek uw avontuur!",
     },
     it: {
-      title: "Noleggio Barche Blanes senza Patente | Costa Brava",
-      description: "Noleggia barche senza patente a Blanes da 70€. Benzina inclusa, fino a 5 persone. 7 imbarcazioni disponibili.",
+      title: "Noleggio Barche Blanes Senza Patente | Da 70€/h | 4.8★ Google | Costa Brava",
+      description: "Noleggio barche Blanes senza patente da 70€/h. Carburante incluso. 4.8★ Google (300+ recensioni). 9 barche, fino a 7 persone. Prenota online o WhatsApp.",
       ogTitle: `Noleggio Barche a Blanes | Costa Brava ${SEASON_YEAR}`,
-      ogDescription: "Scopri la Costa Brava dal mare. 7 barche con e senza patente. Esplora calette paradisiache.",
+      ogDescription: "Scopri la Costa Brava dal mare. 9 barche con e senza patente. 4.8★ Google. Esplora calette paradisiache.",
     },
     ru: {
-      title: "Аренда Лодок в Бланесе без Прав | Коста Брава",
-      description: "Арендуйте лодки без прав в Бланесе от 70€. Бензин включен, до 5 человек. 7 судов в наличии.",
+      title: "Аренда Лодок Бланес Без Лицензии | От 70€/ч | 4.8★ Google | Коста Брава",
+      description: "Аренда лодок Бланес без лицензии от 70€/ч. Топливо включено. 4.8★ Google (300+ отзывов). 9 лодок, до 7 человек. Бронируйте онлайн или WhatsApp.",
       ogTitle: `Аренда Лодок в Бланесе | Коста Брава ${SEASON_YEAR}`,
-      ogDescription: "Откройте Коста Браву с моря. 7 лодок с правами и без. Забронируйте свое приключение!",
+      ogDescription: "Откройте Коста Браву с моря. 9 лодок с правами и без. 4.8★ Google. Забронируйте свое приключение!",
     },
   },
   "/faq": {
@@ -375,38 +375,38 @@ const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
   },
   "/barcos-sin-licencia": {
     es: {
-      title: "Alquiler Barcos Sin Licencia Blanes | Costa Brava",
-      description: "Barcos sin licencia en Blanes. Hasta 15 CV, 4-7 personas. No necesitas titulación. Fácil de manejar. ¡Reserva!",
+      title: "Alquiler Barcos Sin Licencia Costa Brava | Blanes desde 70€/h",
+      description: "5 barcos sin licencia en Blanes desde 70€/h. Gasolina incluida, 4-7 personas. Sin experiencia, formacion 15 min. 4.8★ Google. Reserva online.",
       ogTitle: "Barcos Sin Licencia en Blanes | Fácil y Seguro Costa Brava",
       ogDescription: "Alquila barcos sin licencia en Blanes. Hasta 15 CV, 4-7 personas. No necesitas titulación.",
     },
     en: {
-      title: "No License Boat Rental Blanes | Costa Brava",
-      description: "No license boats in Blanes. Up to 15 HP, 4-7 people. No qualification needed. Easy to drive. Book!",
+      title: "No License Boat Rental Costa Brava | Blanes from 70€/h",
+      description: "5 no-license boats in Blanes from 70€/h. Fuel included, 4-7 people. No experience needed, 15 min training. 4.8★ Google. Book online.",
     },
     ca: {
-      title: "Barques Sense Llicència Costa Brava | 5 Barques des de 70€/h Blanes",
-      description: "Lloguer barques sense llicència a la Costa Brava des de Blanes. 5 barques des de 70€/h, gasolina inclosa.",
+      title: "Barques Sense Llicencia Costa Brava | 5 Barques des de 70€/h Blanes",
+      description: "5 barques sense llicencia a Blanes des de 70€/h. Gasolina inclosa, 4-7 persones. Sense experiencia, formacio 15 min. 4.8★ Google. Reserva online.",
     },
     fr: {
       title: "Bateaux Sans Permis Costa Brava | 5 Bateaux dès 70€/h Blanes",
-      description: "Location bateaux sans permis Costa Brava depuis Blanes. 5 bateaux dès 70€/h, carburant inclus.",
+      description: "5 bateaux sans permis a Blanes des 70€/h. Carburant inclus, 4-7 personnes. Aucune experience, formation 15 min. 4.8★ Google. Reservez en ligne.",
     },
     de: {
       title: "Boote Ohne Führerschein Costa Brava | 5 Boote ab 70€/h Blanes",
-      description: "Bootsverleih ohne Führerschein Costa Brava ab Blanes. 5 Boote ab 70€/h, Kraftstoff inklusive.",
+      description: "5 Boote ohne Fuhrerschein in Blanes ab 70€/h. Kraftstoff inklusive, 4-7 Personen. Keine Erfahrung notig, 15 Min Einweisung. 4.8★ Google. Online buchen.",
     },
     nl: {
       title: "Boten Zonder Vaarbewijs Costa Brava | 5 Boten vanaf 70€/u Blanes",
-      description: "Bootverhuur zonder vaarbewijs Costa Brava vanuit Blanes. 5 boten vanaf 70€/u, brandstof inbegrepen.",
+      description: "5 boten zonder vaarbewijs in Blanes vanaf 70€/u. Brandstof inbegrepen, 4-7 personen. Geen ervaring nodig, 15 min instructie. 4.8★ Google. Boek online.",
     },
     it: {
       title: "Barche Senza Patente Costa Brava | 5 Barche da 70€/h Blanes",
-      description: "Noleggio barche senza patente Costa Brava da Blanes. 5 barche da 70€/h, carburante incluso.",
+      description: "5 barche senza patente a Blanes da 70€/h. Carburante incluso, 4-7 persone. Nessuna esperienza, formazione 15 min. 4.8★ Google. Prenota online.",
     },
     ru: {
       title: "Лодки Без Лицензии Коста-Брава | 5 Лодок от 70€/ч Бланес",
-      description: "Аренда лодок без лицензии Коста-Брава из Бланеса. 5 лодок от 70€/ч, топливо включено.",
+      description: "5 лодок без лицензии в Бланесе от 70€/ч. Топливо включено, 4-7 человек. Без опыта, обучение 15 мин. 4.8★ Google. Бронируйте онлайн.",
     },
   },
   "/barcos-con-licencia": {
@@ -941,35 +941,35 @@ const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
   "/alquiler-barcos-costa-brava": {
     es: {
       title: `Alquiler de Barcos en Costa Brava ${SEASON_YEAR} | Sin Licencia desde 70\u20ac/h`,
-      description: "Alquila barcos en la Costa Brava desde Puerto de Blanes. Sin licencia desde 70\u20ac/h, gasolina incluida. 7 barcos. Reserva online.",
+      description: "Alquiler barcos Costa Brava desde Puerto de Blanes, puerta sur de la Costa Brava. Sin licencia desde 70\u20ac/h, gasolina incluida. 4.8\u2605 Google. 9 barcos. Reserva online.",
     },
     en: {
       title: `Boat Rental Costa Brava ${SEASON_YEAR} | No License from 70\u20ac/h`,
-      description: "Rent boats in Costa Brava from Blanes Port. No license from 70\u20ac/h, fuel included. 7 boats. Book online.",
+      description: "Boat rental Costa Brava from Blanes Port, southern gateway to Costa Brava. No license from 70\u20ac/h, fuel included. 4.8\u2605 Google. 9 boats. Book online.",
     },
     ca: {
       title: `Lloguer Barques Costa Brava ${SEASON_YEAR} | Sense Llic\u00e8ncia des de 70\u20ac/h`,
-      description: "Lloga barques a la Costa Brava des del Port de Blanes. Sense llic\u00e8ncia des de 70\u20ac/h, gasolina inclosa. 7 barques.",
+      description: "Lloguer barques Costa Brava des del Port de Blanes, porta sud de la Costa Brava. Sense llic\u00e8ncia des de 70\u20ac/h, gasolina inclosa. 4.8\u2605 Google. 9 barques.",
     },
     fr: {
       title: `Location Bateaux Costa Brava ${SEASON_YEAR} | Sans Permis d\u00e8s 70\u20ac/h`,
-      description: "Louez des bateaux sur la Costa Brava depuis le Port de Blanes. Sans permis d\u00e8s 70\u20ac/h, carburant inclus. 7 bateaux.",
+      description: "Location bateaux Costa Brava depuis le Port de Blanes, porte sud de la Costa Brava. Sans permis d\u00e8s 70\u20ac/h, carburant inclus. 4.8\u2605 Google. 9 bateaux.",
     },
     de: {
       title: `Bootsverleih Costa Brava ${SEASON_YEAR} | Ohne F\u00fchrerschein ab 70\u20ac/h`,
-      description: "Boote mieten an der Costa Brava ab Hafen Blanes. Ohne F\u00fchrerschein ab 70\u20ac/h, Kraftstoff inklusive. 7 Boote.",
+      description: "Bootsverleih Costa Brava ab Hafen Blanes, s\u00fcdliches Tor zur Costa Brava. Ohne F\u00fchrerschein ab 70\u20ac/h, Kraftstoff inklusive. 4.8\u2605 Google. 9 Boote.",
     },
     nl: {
       title: `Bootverhuur Costa Brava ${SEASON_YEAR} | Zonder Vaarbewijs vanaf 70\u20ac/u`,
-      description: "Huur boten aan de Costa Brava vanuit Haven Blanes. Zonder vaarbewijs vanaf 70\u20ac/u, brandstof inbegrepen. 7 boten.",
+      description: "Bootverhuur Costa Brava vanuit Haven Blanes, zuidelijke poort naar de Costa Brava. Zonder vaarbewijs vanaf 70\u20ac/u, brandstof inbegrepen. 4.8\u2605 Google. 9 boten.",
     },
     it: {
       title: `Noleggio Barche Costa Brava ${SEASON_YEAR} | Senza Patente da 70\u20ac/h`,
-      description: "Noleggia barche sulla Costa Brava dal Porto di Blanes. Senza patente da 70\u20ac/h, carburante incluso. 7 barche.",
+      description: "Noleggio barche Costa Brava dal Porto di Blanes, porta sud della Costa Brava. Senza patente da 70\u20ac/h, carburante incluso. 4.8\u2605 Google. 9 barche.",
     },
     ru: {
       title: `\u0410\u0440\u0435\u043d\u0434\u0430 \u041b\u043e\u0434\u043e\u043a \u041a\u043e\u0441\u0442\u0430-\u0411\u0440\u0430\u0432\u0430 ${SEASON_YEAR} | \u0411\u0435\u0437 \u041b\u0438\u0446\u0435\u043d\u0437\u0438\u0438 \u043e\u0442 70\u20ac/\u0447`,
-      description: "\u0410\u0440\u0435\u043d\u0434\u0443\u0439\u0442\u0435 \u043b\u043e\u0434\u043a\u0438 \u043d\u0430 \u041a\u043e\u0441\u0442\u0430-\u0411\u0440\u0430\u0432\u0435 \u0438\u0437 \u043f\u043e\u0440\u0442\u0430 \u0411\u043b\u0430\u043d\u0435\u0441. \u0411\u0435\u0437 \u043b\u0438\u0446\u0435\u043d\u0437\u0438\u0438 \u043e\u0442 70\u20ac/\u0447, \u0442\u043e\u043f\u043b\u0438\u0432\u043e \u0432\u043a\u043b\u044e\u0447\u0435\u043d\u043e. 7 \u043b\u043e\u0434\u043e\u043a.",
+      description: "\u0410\u0440\u0435\u043d\u0434\u0430 \u043b\u043e\u0434\u043e\u043a \u041a\u043e\u0441\u0442\u0430-\u0411\u0440\u0430\u0432\u0430 \u0438\u0437 \u043f\u043e\u0440\u0442\u0430 \u0411\u043b\u0430\u043d\u0435\u0441, \u044e\u0436\u043d\u044b\u0445 \u0432\u043e\u0440\u043e\u0442 \u041a\u043e\u0441\u0442\u0430-\u0411\u0440\u0430\u0432\u044b. \u0411\u0435\u0437 \u043b\u0438\u0446\u0435\u043d\u0437\u0438\u0438 \u043e\u0442 70\u20ac/\u0447, \u0442\u043e\u043f\u043b\u0438\u0432\u043e \u0432\u043a\u043b\u044e\u0447\u0435\u043d\u043e. 4.8\u2605 Google. 9 \u043b\u043e\u0434\u043e\u043a.",
     },
   },
 };

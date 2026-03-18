@@ -70,6 +70,24 @@ export async function seedLegacyRedirects(): Promise<void> {
     "/copy-of-hoteles-y-alojamientos": "/alquiler-barcos-blanes",
     "/motos-de-agua": "/barcos-sin-licencia",
     "/alquiler-con-licencia": "/barcos-con-licencia",
+
+    // GSC-discovered old site URLs (March 2026)
+    "/barco-sin-licencia-blanes-astec-400": "/barco/astec-400",
+    "/barco-sin-licencia-blanes-solar-450": "/barco/solar-450",
+    "/barco-sin-licencia-blanes-remus-450": "/barco/remus-450",
+    "/barco-sin-licencia-blanes-astec-450": "/barco/astec-480",
+    "/barco-con-licencia-blanes-pacific-craft-625": "/barco/pacific-craft-625",
+    "/barco-con-licencia-blanes-trimarchi-57-s": "/barco/trimarchi-57s",
+    "/barco-con-licencia-blanes-mingolla-brava-19": "/barco/mingolla-brava-19",
+    "/excursiones-privadas-con-patron-blanes": "/barcos-con-licencia",
+    "/excursiones-moto-agua": "/barcos-sin-licencia",
+    "/condiciones-generales-alquiler": "/condiciones-generales",
+    "/preguntas-frequentes": "/faq",
+    "/fuegos-artificiales-blanes-2025": "/blog",
+    "/fr/fuegos-artificiales-blanes-2025": "/blog?lang=fr",
+    "/ca/fuegos-artificiales-blanes-2025": "/blog?lang=ca",
+    "/ca/barco-sin-licencia-blanes-astec-400": "/barco/astec-400?lang=ca",
+    "/ca/condiciones-de-reserva": "/condiciones-generales?lang=ca",
   };
 
   for (const [from, to] of Object.entries(legacyRedirects)) {
@@ -79,5 +97,5 @@ export async function seedLegacyRedirects(): Promise<void> {
       .onConflictDoNothing();
   }
 
-  logger.info(`[SEO:Redirects] Seeded ${Object.keys(legacyRedirects).length} legacy redirects`);
+  logger.info(`[SEO:Redirects] Seeded ${Object.keys(legacyRedirects).length} legacy redirects (26 total)`);
 }

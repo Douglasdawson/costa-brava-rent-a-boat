@@ -312,24 +312,10 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 (async () => {
   const server = await registerRoutes(app);
 
-  // 301 redirects for legacy routes (SEO)
-  const legacyRedirects: Record<string, string> = {
-    "/destino/blanes": "/alquiler-barcos-blanes",
-    "/destino/lloret-de-mar": "/alquiler-barcos-lloret-de-mar",
-    "/destino/tossa-de-mar": "/alquiler-barcos-tossa-de-mar",
-    "/categoria/sin-licencia": "/barcos-sin-licencia",
-    "/categoria/con-licencia": "/barcos-con-licencia",
-    "/copia-de-embarcaciones": "/barcos-sin-licencia",
-    "/copy-of-extras": "/precios",
-    "/copy-of-hoteles-y-alojamientos": "/alquiler-barcos-blanes",
-    "/motos-de-agua": "/barcos-sin-licencia",
-    "/alquiler-con-licencia": "/barcos-con-licencia",
-  };
-  for (const [from, to] of Object.entries(legacyRedirects)) {
-    app.get(from, (_req: Request, res: Response) => {
-      res.redirect(301, to);
-    });
-  }
+  // Dynamic 301 redirects (managed via DB, seeded on startup)
+  const { redirectMiddleware, seedLegacyRedirects } = await import("./seo/redirects");
+  app.use(redirectMiddleware());
+  await seedLegacyRedirects();
 
   // 404 handler for unknown API routes
   app.all("/api/*", (_req: Request, res: Response) => {

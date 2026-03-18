@@ -2967,10 +2967,131 @@ Un atardecer desde el mar es uno de esos regalos que la Costa Brava te hace sin 
 
 [Reserva tu barco de atardecer](/barcos) y descubre por qué nuestros clientes repiten año tras año. El Mediterráneo al sunset te espera.`,
   },
+
+  // ===== POST 19: Excursión Barco Tossa de Mar =====
+  {
+    title: "Excursión en Barco a Tossa de Mar desde Blanes: Guía Completa con Precios",
+    slug: "excursion-barco-tossa-de-mar-desde-blanes",
+    category: "Destinos",
+    author: "Costa Brava Rent a Boat",
+    featuredImage: "/images/blog/excursion-barco-tossa-de-mar.jpg",
+    metaDescription: "Guía completa para ir en barco de Blanes a Tossa de Mar. Precios desde 150 EUR, rutas, calas, Vila Vella y consejos. Todo lo que necesitas saber.",
+    tags: ["excursion barco tossa de mar", "alquiler barco tossa de mar", "tossa de mar en barco", "vila vella tossa barco", "cuanto cuesta barco tossa", "blanes a tossa en barco"],
+    isPublished: true,
+    _publishedAt: new Date("2026-03-18T10:00:00Z"),
+    excerpt: "Todo lo que necesitas saber para navegar de Blanes a Tossa de Mar: precios, barcos recomendados, ruta paso a paso, calas imprescindibles y la mejor época para ir.",
+    content: `Tossa de Mar es, sin exageración, uno de los pueblos más bonitos del Mediterráneo. Su Vila Vella (ciudad vieja amurallada del siglo XII) asomando sobre los acantilados es una imagen que no se olvida. Y verla desde el mar, llegando en barco, es una experiencia completamente distinta a llegar por carretera.
+
+En esta guía te contamos **todo lo que necesitas saber** para hacer la excursión en barco desde el Puerto de Blanes hasta Tossa de Mar: precios, barcos, ruta, calas por el camino y consejos prácticos.
+
+## Datos rápidos
+
+| Concepto | Detalle |
+|----------|---------|
+| **Distancia** | ~15 km por mar desde Puerto de Blanes |
+| **Tiempo** | 45 min - 1 hora (según barco y mar) |
+| **Precio desde** | 150 EUR / 2 horas (barco con licencia) |
+| **Licencia necesaria** | Sí (PER/PNB) o excursión con patrón |
+| **Mejor época** | Junio y septiembre |
+| **Dificultad** | Fácil con licencia, no apto sin licencia |
+
+## ¿Necesito licencia para ir a Tossa de Mar en barco?
+
+**Sí.** Tossa de Mar está más allá del límite de 2 millas náuticas que permite la navegación sin licencia en España. Para llegar necesitas:
+
+1. **Un barco con licencia** (PER o PNB) — Traes tu propia titulación y alquilas uno de nuestros barcos: [Mingolla Brava 19](/barco/mingolla-brava-19) (80 CV), [Trimarchi 57S](/barco/trimarchi-57s) (110 CV) o [Pacific Craft 625](/barco/pacific-craft-625) (115 CV).
+2. **Excursión privada con patrón** — Nuestro capitán profesional te lleva. Tú solo disfrutas. Ideal para quien no tiene licencia pero quiere vivir la experiencia.
+
+## Precios para ir en barco a Tossa de Mar
+
+Para una excursión a Tossa recomendamos **mínimo 4 horas** (ida + exploración + vuelta). Estos son los precios en temporada baja (abril-junio, septiembre-octubre):
+
+| Barco | Capacidad | Precio 4h | Precio 8h |
+|-------|-----------|-----------|-----------|
+| Mingolla Brava 19 (80 CV) | 6 personas | 230 EUR | 280 EUR |
+| Trimarchi 57S (110 CV) | 7 personas | 240 EUR | 290 EUR |
+| Pacific Craft 625 (115 CV) | 7 personas | 250 EUR | 300 EUR |
+| Excursión con patrón | 7 personas | 380 EUR (4h) | — |
+
+**Nota:** Los barcos con licencia NO incluyen combustible. Calcula unos 40-60 EUR adicionales de gasolina para la ida y vuelta a Tossa.
+
+En temporada alta (agosto), los precios suben un 15-25%. Consulta nuestra [página de precios](/precios) para las tarifas actualizadas.
+
+## La ruta: de Blanes a Tossa paso a paso
+
+### Salida: Puerto de Blanes (km 0)
+
+Zarpa desde nuestro muelle en el Puerto de Blanes. Te recomendamos salir **antes de las 10:00** para aprovechar el mar en calma de la mañana. Dirección norte, siguiendo la costa.
+
+### Parada 1: Cala Sant Francesc (km 1,5 — 5 min)
+
+La primera cala que encontrarás. Aguas turquesas, pinos hasta la orilla. Si tienes tiempo, merece un baño rápido. Si no, disfruta las vistas desde el barco.
+
+### Parada 2: Zona de Lloret de Mar (km 6 — 20 min)
+
+Pasarás por Santa Cristina, Fenals y la playa principal de Lloret. Desde el mar verás la famosa escultura de La Mujer Marinera y el skyline de Lloret. No hace falta parar, pero si buscas un buen punto para comer, los chiringuitos de Lloret están a tiro de ancla.
+
+### Parada 3: Cala Canyelles (km 9 — 30 min)
+
+Entre Lloret y Tossa. Cala más salvaje, rocas, buena para snorkel. Buen punto intermedio para descansar.
+
+### Parada 4: Cala Pola (km 12 — 40 min)
+
+Una de las calas más bonitas de toda la Costa Brava. Pequeña, rodeada de acantilados, aguas cristalinas. **Solo accesible cómodamente por mar.** Imprescindible si tienes tiempo.
+
+### Llegada: Tossa de Mar (km 15 — 50-60 min)
+
+La silueta de la Vila Vella creciendo en el horizonte es el momento mágico de la excursión. Las torres medievales y las murallas del siglo XII cayendo sobre el mar forman una imagen que parece sacada de una película.
+
+Puedes fondear frente a la **Playa Grande** (Platja Gran), justo debajo de las murallas. Hay zona de fondeo habilitada para embarcaciones recreativas.
+
+## Qué ver en Tossa de Mar desde el barco
+
+- **Vila Vella**: El recinto amurallado medieval es Monumento Histórico-Artístico Nacional. Vista espectacular desde el mar.
+- **Torre del Far**: El faro de Tossa en lo alto de las murallas.
+- **Platja Gran**: Playa principal de arena dorada protegida por las murallas.
+- **Cala Es Codolar**: Pequeña cala de guijarros junto a las murallas, solo accesible por mar o por un sendero estrecho.
+- **Acantilados entre Lloret y Tossa**: Algunos de los acantilados más dramáticos de la Costa Brava.
+
+## ¿Cuál es la mejor época para ir?
+
+| Mes | Valoración | Por qué |
+|-----|-----------|---------|
+| Abril-Mayo | Buena | Pocos turistas, precios bajos. Agua fresca (16-19°C) |
+| **Junio** | **Excelente** | Buen tiempo, mar en calma, precios bajos, menos gente |
+| Julio | Muy buena | Calor, agua templada. Precios medios |
+| Agosto | Buena con reserva | Máxima afluencia. Reserva con 1 semana. Precios altos |
+| **Septiembre** | **Excelente** | Agua más caliente del año (23-25°C), pocos turistas, precios bajos |
+| Octubre | Aceptable | Últimas semanas de temporada. Mar puede estar más movido |
+
+## Consejos prácticos
+
+1. **Sal temprano.** A las 9:00-10:00 el mar suele estar más tranquilo. Por la tarde se levanta el viento de Garbí (suroeste).
+2. **Lleva combustible de más.** Los barcos con licencia no incluyen gasolina. Mejor repostar de más que quedarse corto.
+3. **Planifica el regreso.** Calcula 1 hora de vuelta + tiempo para devolver el barco. No apures.
+4. **Lleva comida y agua.** En Tossa puedes bajar a comer, pero tener provisiones a bordo da más libertad.
+5. **Consulta el tiempo.** Si el parte anuncia viento norte (Tramontana) o marejada, es mejor posponer. Te ofrecemos cambio de fecha gratuito.
+
+## ¿Vienes desde Malgrat de Mar, Santa Susanna o Calella?
+
+Si estás alojado en alguno de estos pueblos de la costa del Maresme, puedes llegar fácilmente al Puerto de Blanes:
+
+- [Malgrat de Mar](/alquiler-barcos-malgrat-de-mar): 10 minutos en coche
+- [Santa Susanna](/alquiler-barcos-santa-susanna): 15 minutos en coche
+- [Calella](/alquiler-barcos-calella): 20 minutos en coche
+
+Hay parking gratuito junto al puerto. También puedes venir en tren RENFE (línea R1).
+
+---
+
+La excursión en barco a Tossa de Mar es una de las experiencias más memorables que puedes vivir en la Costa Brava. La combinación de navegación costera, calas vírgenes y la llegada a un pueblo medieval desde el mar es sencillamente inigualable.
+
+[Consulta disponibilidad y reserva tu barco](/barcos) o escríbenos por [WhatsApp](https://wa.me/34611500372) para que te ayudemos a planificar tu excursión perfecta a Tossa.`,
+  },
 ];
 
 /**
- * Seeds the database with 18 SEO blog posts.
+ * Seeds the database with 19 SEO blog posts.
  * Handles duplicate slugs gracefully by upserting existing posts.
  * After creation, updates publishedAt to the staggered date.
  */

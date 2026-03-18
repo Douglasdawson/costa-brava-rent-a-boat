@@ -120,6 +120,7 @@ export default function CategoryLicenseFreePage() {
         description={seoConfig.description}
         ogTitle={seoConfig.ogTitle}
         ogDescription={seoConfig.ogDescription}
+        ogImage={seoConfig.image}
         canonical={canonical}
         hreflang={hreflangLinks}
         jsonLd={combinedJsonLd}

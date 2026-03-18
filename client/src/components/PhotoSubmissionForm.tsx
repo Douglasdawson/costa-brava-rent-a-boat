@@ -145,7 +145,7 @@ export default function PhotoSubmissionForm({ open, onOpenChange, onSuccess }: P
             <Label>{t.gallery?.photo || "Foto"}</Label>
             {imageUrl ? (
               <div className="relative">
-                <img src={imageUrl} alt="Preview" className="w-full h-48 object-cover rounded-lg" />
+                <img src={imageUrl} alt={caption || "Vista previa de la foto enviada por el cliente"} className="w-full h-48 object-cover rounded-lg" />
                 <Button
                   variant="secondary"
                   size="sm"

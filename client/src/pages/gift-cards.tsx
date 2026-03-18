@@ -97,7 +97,7 @@ export default function GiftCardsPage() {
   if (purchaseComplete) {
     return (
       <main id="main-content" className="min-h-screen bg-muted">
-        <SEO title={seoConfig.title} description={seoConfig.description} keywords={seoConfig.keywords} canonical={canonical} hreflang={hreflangLinks} />
+        <SEO title={seoConfig.title} description={seoConfig.description} keywords={seoConfig.keywords} ogImage={seoConfig.image} canonical={canonical} hreflang={hreflangLinks} />
         <Navigation />
         <div className="container mx-auto px-4 py-16">
           <Card className="max-w-md mx-auto">
@@ -146,7 +146,7 @@ export default function GiftCardsPage() {
 
   return (
     <main id="main-content" className="min-h-screen bg-muted">
-      <SEO title={seoConfig.title} description={seoConfig.description} keywords={seoConfig.keywords} canonical={canonical} hreflang={hreflangLinks} />
+      <SEO title={seoConfig.title} description={seoConfig.description} keywords={seoConfig.keywords} ogImage={seoConfig.image} canonical={canonical} hreflang={hreflangLinks} />
       <Navigation />
 
       <div className="container mx-auto px-4 pt-20 sm:pt-24 pb-8 sm:pb-12">

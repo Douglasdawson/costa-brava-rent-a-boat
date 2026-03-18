@@ -152,6 +152,7 @@ export default function TestimoniosPage() {
       <SEO
         title={seoConfig.title}
         description={seoConfig.description}
+        ogImage={seoConfig.image}
         canonical={canonical}
         hreflang={hreflangLinks}
         jsonLd={combinedJsonLd}

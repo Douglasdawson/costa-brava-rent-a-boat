@@ -80,7 +80,7 @@ export default function PhotoLightbox({ photos, initialIndex, open, onOpenChange
           <div className="flex items-center justify-center min-h-[50vh] max-h-[80vh]">
             <img
               src={photo.imageUrl}
-              alt={photo.caption || `Photo by ${photo.customerName}`}
+              alt={photo.caption || `Foto de experiencia nautica en Costa Brava por ${photo.customerName}${photo.boatName ? ` en ${photo.boatName}` : ""}`}
               className="max-w-full max-h-[80vh] object-contain"
             />
           </div>

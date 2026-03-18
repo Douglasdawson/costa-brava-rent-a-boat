@@ -52,6 +52,7 @@ export default function GalleryPage() {
         title={seoConfig.title}
         description={seoConfig.description}
         keywords={seoConfig.keywords}
+        ogImage={seoConfig.image}
         canonical={canonical}
         hreflang={hreflangLinks}
       />

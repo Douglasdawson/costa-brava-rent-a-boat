@@ -1,6 +1,9 @@
 import { useEffect } from "react";
-import { getCanonicalUrl, getDefaultOgImage } from "@/lib/domain";
+import { getCanonicalUrl, getDefaultOgImage, getBaseUrl } from "@/lib/domain";
 import { useLanguage } from "@/hooks/use-language";
+
+// Supported languages for auto-generating hreflang tags
+const SUPPORTED_LANGS = ["es", "en", "ca", "fr", "de", "nl", "it", "ru"] as const;
 
 // OG locale codes for each supported language
 const OG_LOCALE_MAP: Record<string, string> = {
@@ -102,10 +105,23 @@ export function SEO({
       }
     };
 
+    // Detect MIME type from image URL extension
+    function getImageMimeType(url: string): string {
+      const lower = url.toLowerCase();
+      if (lower.endsWith('.webp')) return 'image/webp';
+      if (lower.endsWith('.jpg') || lower.endsWith('.jpeg')) return 'image/jpeg';
+      if (lower.endsWith('.avif')) return 'image/avif';
+      if (lower.endsWith('.gif')) return 'image/gif';
+      return 'image/png';
+    }
+
     updateOGTag('og:title', ogTitle || title);
     updateOGTag('og:description', ogDescription || description);
     updateOGTag('og:image', absoluteOgImage);
-    updateOGTag('og:image:type', absoluteOgImage.endsWith('.webp') ? 'image/webp' : 'image/png');
+    updateOGTag('og:image:secure_url', absoluteOgImage);
+    updateOGTag('og:image:type', getImageMimeType(absoluteOgImage));
+    updateOGTag('og:image:width', '1200');
+    updateOGTag('og:image:height', '630');
     updateOGTag('og:image:alt', ogTitle || title);
     updateOGTag('og:type', ogType);
     updateOGTag('og:url', canonical);
@@ -126,49 +142,51 @@ export function SEO({
 
     updateTwitterTag('card', 'summary_large_image');
     updateTwitterTag('site', '@costabravarentaboat');
+    updateTwitterTag('creator', '@costabravarentaboat');
     updateTwitterTag('title', ogTitle || title);
     updateTwitterTag('description', ogDescription || description);
     updateTwitterTag('image', absoluteOgImage);
     updateTwitterTag('image:alt', ogTitle || title);
     updateTwitterTag('url', canonical);
 
-    // Set og:locale for current language and og:locale:alternate for other languages
+    // Set og:locale for current language
     const currentLocale = OG_LOCALE_MAP[language] || "es_ES";
     updateOGTag('og:locale', currentLocale);
 
-    // Remove existing og:locale:alternate tags
-    const existingLocaleAlts = document.querySelectorAll('meta[property="og:locale:alternate"]');
-    existingLocaleAlts.forEach(tag => tag.remove());
+    // Clean up any legacy og:locale:alternate tags (not part of OG standard)
+    document.querySelectorAll('meta[property="og:locale:alternate"]').forEach(tag => tag.remove());
 
-    // Add og:locale:alternate for all languages except current
-    Object.entries(OG_LOCALE_MAP).forEach(([lang, locale]) => {
-      if (lang !== language) {
-        const altTag = document.createElement('meta');
-        altTag.setAttribute('property', 'og:locale:alternate');
-        altTag.setAttribute('content', locale);
-        document.head.appendChild(altTag);
-      }
-    });
+    // Add hreflang tags — auto-generate from pathname if not explicitly provided
+    // Skip if server already injected (server uses RFC 5646 codes with "-" e.g. "es-ES")
+    const existingHreflangTags = document.querySelectorAll('link[rel="alternate"][hreflang]');
+    const serverInjected = Array.from(existingHreflangTags).some(
+      tag => tag.getAttribute('hreflang')?.includes('-')
+    );
 
-    // Add hreflang tags if provided — skip if server already injected (avoid duplicate tags)
-    if (hreflang && hreflang.length > 0) {
-      const existingHreflangTags = document.querySelectorAll('link[rel="alternate"][hreflang]');
-      // Detect server-injected hreflang: server uses RFC 5646 codes with "-" (e.g. "es-ES")
-      const serverInjected = Array.from(existingHreflangTags).some(
-        tag => tag.getAttribute('hreflang')?.includes('-')
-      );
+    if (!serverInjected) {
+      // Use provided hreflang or auto-generate from current pathname
+      const hreflangEntries = (hreflang && hreflang.length > 0)
+        ? hreflang
+        : SUPPORTED_LANGS.map(lang => ({
+            lang,
+            url: `${getBaseUrl()}${window.location.pathname}${lang === "es" ? "" : `?lang=${lang}`}`,
+          }));
 
-      if (!serverInjected) {
-        // Remove any existing client-side hreflang tags and re-add
-        existingHreflangTags.forEach(tag => tag.remove());
-        hreflang.forEach(({ lang, url }) => {
-          const hreflangLink = document.createElement('link');
-          hreflangLink.rel = 'alternate';
-          hreflangLink.hreflang = lang;
-          hreflangLink.href = url;
-          document.head.appendChild(hreflangLink);
-        });
-      }
+      // Remove existing client-side hreflang tags and re-add
+      existingHreflangTags.forEach(tag => tag.remove());
+      hreflangEntries.forEach(({ lang, url }) => {
+        const hreflangLink = document.createElement('link');
+        hreflangLink.rel = 'alternate';
+        hreflangLink.hreflang = lang;
+        hreflangLink.href = url;
+        document.head.appendChild(hreflangLink);
+      });
+      // Add x-default pointing to Spanish (default language)
+      const xDefaultLink = document.createElement('link');
+      xDefaultLink.rel = 'alternate';
+      xDefaultLink.hreflang = 'x-default';
+      xDefaultLink.href = `${getBaseUrl()}${window.location.pathname}`;
+      document.head.appendChild(xDefaultLink);
     }
 
     // Add JSON-LD if provided — skip if server already injected (avoid duplicate schemas)

@@ -16,6 +16,7 @@ export interface SEOConfig {
   keywords?: string;
   ogTitle?: string;
   ogDescription?: string;
+  image?: string;
 }
 
 export interface PageSEOConfig {

@@ -151,6 +151,7 @@ export default function PricingPage() {
         ogTitle={seoConfig.ogTitle}
         ogDescription={seoConfig.ogDescription}
         keywords={seoConfig.keywords}
+        ogImage={seoConfig.image}
         canonical={canonical}
         hreflang={hreflangLinks}
         jsonLd={combinedJsonLd}

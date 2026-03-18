@@ -2,6 +2,7 @@ import type { Express } from "express";
 import { storage } from "../storage";
 import { logger } from "../lib/logger";
 import { registerRobotsRoutes } from "./robots";
+import { requireAdminSession } from "./auth-middleware";
 import { SUPPORTED_LANGUAGES, HREFLANG_CODES } from "../../shared/seoConstants";
 // Static destination slugs for sitemap fallback (when DB has no published destinations)
 const FALLBACK_DESTINATION_SLUGS = [
@@ -473,6 +474,30 @@ ${destHreflang}  </url>
     } catch (error: unknown) {
       logger.error("Error generating destinations sitemap", { error: error instanceof Error ? error.message : String(error) });
       res.status(500).send('<?xml version="1.0" encoding="UTF-8"?><error>Sitemap temporarily unavailable</error>');
+    }
+  });
+
+  // CWV summary — admin dashboard for Core Web Vitals (last 7 days)
+  app.get("/api/admin/cwv-summary", requireAdminSession, async (_req, res) => {
+    try {
+      const { getCwvSummary } = await import("../seo/collectors/cwv");
+      const summary = await getCwvSummary();
+
+      let hasAlert = false;
+      for (const page of summary) {
+        for (const metric of Object.values(page.metrics)) {
+          if (metric.rating === "poor") {
+            hasAlert = true;
+            break;
+          }
+        }
+        if (hasAlert) break;
+      }
+
+      res.json({ summary, hasAlert });
+    } catch (error: unknown) {
+      logger.error("Error fetching CWV summary", { error: error instanceof Error ? error.message : String(error) });
+      res.status(500).json({ message: "Error al obtener resumen de CWV" });
     }
   });
 

@@ -143,6 +143,22 @@ interface HealthCheck {
   checkedAt: string | null;
 }
 
+interface CwvMetric {
+  p75: number;
+  rating: string;
+  samples: number;
+}
+
+interface CwvPageSummary {
+  page: string;
+  metrics: Record<string, CwvMetric>;
+}
+
+interface CwvSummaryResponse {
+  summary: CwvPageSummary[];
+  hasAlert: boolean;
+}
+
 // --- Sub-tab definitions ---
 
 type SubTab = "resumen" | "keywords" | "campanas" | "competencia" | "experimentos" | "informes" | "salud";
@@ -375,6 +391,9 @@ function ResumenSubTab({ adminToken }: { adminToken: string }) {
           </CardContent>
         </Card>
       )}
+
+      {/* Core Web Vitals */}
+      <CwvWidget adminToken={adminToken} />
 
       {!dashboard?.topKeywords?.length && pendingAlerts.length === 0 && (
         <EmptyState
@@ -811,6 +830,98 @@ function SaludSubTab({ adminToken }: { adminToken: string }) {
         ))}
       </div>
     </div>
+  );
+}
+
+// --- CWV Widget ---
+
+const CWV_METRIC_NAMES = ["CLS", "LCP", "INP", "TTFB", "FCP"] as const;
+
+function cwvRatingColor(rating: string): string {
+  if (rating === "good") return "text-green-600";
+  if (rating === "needs-improvement") return "text-yellow-600";
+  if (rating === "poor") return "text-red-600";
+  return "text-muted-foreground";
+}
+
+function formatCwvValue(name: string, value: number): string {
+  if (name === "CLS") return value.toFixed(3);
+  return `${Math.round(value)}ms`;
+}
+
+function CwvWidget({ adminToken }: { adminToken: string }) {
+  const { data, isLoading, isError } = useQuery<CwvSummaryResponse>({
+    queryKey: ["cwv-summary"],
+    queryFn: async () => {
+      const res = await fetch("/api/admin/cwv-summary", {
+        headers: { Authorization: `Bearer ${adminToken}` },
+      });
+      if (!res.ok) throw new Error("Error al cargar CWV");
+      return res.json();
+    },
+    staleTime: 60_000,
+  });
+
+  if (isLoading) return null;
+  if (isError || !data?.summary?.length) return null;
+
+  return (
+    <Card>
+      <CardHeader className="pb-2">
+        <CardTitle className="text-sm font-heading flex items-center gap-2">
+          <Activity className="w-4 h-4" />
+          Core Web Vitals (7d)
+          {data.hasAlert && (
+            <Badge variant="outline" className="bg-red-500/10 text-red-600 border-red-200 ml-auto">
+              Metricas pobres
+            </Badge>
+          )}
+        </CardTitle>
+      </CardHeader>
+      <CardContent>
+        <div className="overflow-x-auto -mx-2 px-2">
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead>Pagina</TableHead>
+                {CWV_METRIC_NAMES.map((m) => (
+                  <TableHead key={m} className="text-right">{m}</TableHead>
+                ))}
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {data.summary.map((row) => (
+                <TableRow key={row.page}>
+                  <TableCell className="font-medium max-w-[180px] truncate text-xs">
+                    {row.page}
+                  </TableCell>
+                  {CWV_METRIC_NAMES.map((m) => {
+                    const metric = row.metrics[m];
+                    if (!metric) {
+                      return (
+                        <TableCell key={m} className="text-right text-muted-foreground text-xs">
+                          -
+                        </TableCell>
+                      );
+                    }
+                    return (
+                      <TableCell key={m} className="text-right">
+                        <span className={`text-xs font-medium ${cwvRatingColor(metric.rating)}`}>
+                          {formatCwvValue(m, metric.p75)}
+                        </span>
+                        <span className="block text-[10px] text-muted-foreground">
+                          n={metric.samples}
+                        </span>
+                      </TableCell>
+                    );
+                  })}
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </div>
+      </CardContent>
+    </Card>
   );
 }
 

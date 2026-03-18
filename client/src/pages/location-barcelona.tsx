@@ -106,6 +106,7 @@ export default function LocationBarcelonaPage() {
         description={seoConfig.description}
         ogTitle={seoConfig.ogTitle}
         ogDescription={seoConfig.ogDescription}
+        ogImage={seoConfig.image}
         canonical={canonical}
         hreflang={hreflangLinks}
         jsonLd={combinedJsonLd}

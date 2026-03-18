@@ -56,6 +56,7 @@ interface SEOMeta {
     modifiedTime?: string;
     author?: string;
     section?: string;
+    tags?: string[];
   };
 }
 
@@ -971,9 +972,9 @@ function injectMeta(html: string, meta: SEOMeta, canonicalUrl: string, extraJson
     const absImage = meta.ogImage.startsWith("http") ? meta.ogImage : `${BASE_URL}${meta.ogImage}`;
     result = result.replace(/<meta property="og:image" content="[^"]*">/, `<meta property="og:image" content="${esc(absImage)}">`);
     result = result.replace(/<meta name="twitter:image" content="[^"]*">/, `<meta name="twitter:image" content="${esc(absImage)}">`);
-    // Update dimensions to match the actual image (blog/boat images are landscape)
-    result = result.replace(/<meta property="og:image:width" content="[^"]*">/, `<meta property="og:image:width" content="1200">`);
-    result = result.replace(/<meta property="og:image:height" content="[^"]*">/, `<meta property="og:image:height" content="630">`);
+    // Remove hardcoded dimensions for dynamic images — crawlers determine size automatically
+    result = result.replace(/\s*<meta property="og:image:width" content="[^"]*">/, "");
+    result = result.replace(/\s*<meta property="og:image:height" content="[^"]*">/, "");
     // Add og:image:secure_url for parsers that require explicit HTTPS reference
     result = result.replace("</head>", `  <meta property="og:image:secure_url" content="${esc(absImage)}" />\n</head>`);
   } else {
@@ -1001,6 +1002,11 @@ function injectMeta(html: string, meta: SEOMeta, canonicalUrl: string, extraJson
     }
     if (meta.articleMeta.section) {
       articleTags.push(`  <meta property="article:section" content="${esc(meta.articleMeta.section)}" />`);
+    }
+    if (meta.articleMeta.tags) {
+      for (const tag of meta.articleMeta.tags) {
+        articleTags.push(`  <meta property="article:tag" content="${esc(tag)}" />`);
+      }
     }
     if (articleTags.length > 0) {
       result = result.replace("</head>", `${articleTags.join("\n")}\n</head>`);
@@ -1737,10 +1743,21 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
       return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [itemList, breadcrumb] }, availableLanguages };
     }
 
-    // /galeria - BreadcrumbList only
+    // /galeria - CollectionPage + BreadcrumbList
     else if (pathname === "/galeria") {
+      const gallery = {
+        "@type": "CollectionPage",
+        "@id": `${BASE_URL}/galeria#gallery`,
+        name: isEn ? "Customer Photo Gallery" : "Galeria de Fotos de Clientes",
+        description: isEn
+          ? "Real photos from our customers enjoying boat trips on Costa Brava from Blanes."
+          : "Fotos reales de nuestros clientes disfrutando en barco por la Costa Brava desde Blanes.",
+        url: `${BASE_URL}/galeria`,
+        isPartOf: { "@type": "WebSite", "@id": `${BASE_URL}/#website` },
+        about: { "@type": "LocalBusiness", "@id": `${BASE_URL}/#organization` },
+      };
       const breadcrumb = buildBreadcrumb([homeCrumb, { name: isEn ? "Gallery" : "Galeria", url: `${BASE_URL}/galeria` }]);
-      return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [breadcrumb] }, availableLanguages };
+      return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [gallery, breadcrumb] }, availableLanguages };
     }
 
     // /tarjetas-regalo - Product schema for gift cards
@@ -1928,6 +1945,7 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
             modifiedTime,
             author: "Costa Brava Rent a Boat",
             section: (post.category as string) || "Navegacion",
+            tags: Array.isArray(post.tags) ? post.tags.filter((t): t is string => typeof t === "string") : undefined,
           },
         };
         const contentText = typeof post.content === "string" ? post.content : "";
@@ -1957,6 +1975,69 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
           jsonLd.image = absImage;
         }
         return { meta, jsonLd };
+      }
+    } catch {
+      // fall through
+    }
+  }
+
+  // 4. Destination detail pages: /destinos/:slug
+  const destMatch = pathname.match(/^\/destinos\/([^/]+)$/);
+  if (destMatch) {
+    const slug = destMatch[1];
+    try {
+      const dest = await storage.getDestinationBySlug(slug);
+      if (dest) {
+        const destOgImage = dest.featuredImage
+          ? (dest.featuredImage.startsWith("http") ? dest.featuredImage
+            : dest.featuredImage.startsWith("/") ? dest.featuredImage
+            : `/object-storage/${dest.featuredImage}`)
+          : undefined;
+        const meta: SEOMeta = {
+          title: `${dest.name} | Costa Brava Rent a Boat`,
+          description: dest.metaDescription || dest.description || dest.name,
+          ogImage: destOgImage,
+          ogType: "place",
+        };
+
+        const touristAttraction: Record<string, unknown> = {
+          "@type": "TouristAttraction",
+          "@id": `${BASE_URL}/destinos/${slug}#place`,
+          name: dest.name,
+          description: meta.description,
+          url: `${BASE_URL}/destinos/${slug}`,
+        };
+        if (destOgImage) {
+          touristAttraction.image = destOgImage.startsWith("http") ? destOgImage : `${BASE_URL}${destOgImage}`;
+        }
+        if (dest.coordinates) {
+          try {
+            const coords = typeof dest.coordinates === "string"
+              ? JSON.parse(dest.coordinates)
+              : dest.coordinates;
+            if (coords.lat && coords.lng) {
+              touristAttraction.geo = {
+                "@type": "GeoCoordinates",
+                latitude: coords.lat,
+                longitude: coords.lng,
+              };
+            }
+          } catch { /* ignore parsing errors */ }
+        }
+        touristAttraction.isAccessibleForFree = false;
+        touristAttraction.touristType = ["Families", "Couples", "Adventure seekers"];
+
+        const breadcrumb = {
+          "@type": "BreadcrumbList",
+          "@id": `${BASE_URL}/destinos/${slug}#breadcrumb`,
+          itemListElement: [
+            { "@type": "ListItem", position: 1, name: "Costa Brava Rent a Boat", item: BASE_URL },
+            { "@type": "ListItem", position: 2, name: lang === "en" ? "Destinations" : "Destinos", item: `${BASE_URL}/destinos` },
+            { "@type": "ListItem", position: 3, name: dest.name, item: `${BASE_URL}/destinos/${slug}` },
+          ],
+        };
+
+        return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [touristAttraction, breadcrumb] } };
       }
     } catch {
       // fall through

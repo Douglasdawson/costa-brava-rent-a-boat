@@ -15,7 +15,8 @@ import {
   Waves,
   Compass,
   Target,
-  TrendingUp
+  TrendingUp,
+  ChevronRight
 } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
@@ -438,6 +439,31 @@ export default function CategoryLicensedPage() {
                     </li>
                   </ul>
                 </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Explore Destinations - Internal Linking */}
+          <Card className="mb-8">
+            <CardContent className="pt-6">
+              <h3 className="font-semibold text-lg mb-4">Destinos con barco con licencia desde Blanes</h3>
+              <div className="flex flex-wrap gap-3">
+                <a href="/alquiler-barcos-blanes" className="text-primary hover:underline flex items-center gap-1">
+                  <ChevronRight className="w-4 h-4" />
+                  Puerto de Blanes: punto de salida
+                </a>
+                <a href="/alquiler-barcos-tossa-de-mar" className="text-primary hover:underline flex items-center gap-1">
+                  <ChevronRight className="w-4 h-4" />
+                  Navega hasta Tossa de Mar
+                </a>
+                <a href="/alquiler-barcos-costa-brava" className="text-primary hover:underline flex items-center gap-1">
+                  <ChevronRight className="w-4 h-4" />
+                  Explora toda la Costa Brava en barco
+                </a>
+                <a href="/precios" className="text-primary hover:underline flex items-center gap-1">
+                  <ChevronRight className="w-4 h-4" />
+                  Tarifas de barcos con licencia
+                </a>
               </div>
             </CardContent>
           </Card>

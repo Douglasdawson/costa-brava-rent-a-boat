@@ -343,6 +343,31 @@ export default function LocationLloretPage() {
             </CardContent>
           </Card>
 
+          {/* Related Services - Internal Linking */}
+          <Card className="mb-8">
+            <CardContent className="pt-6">
+              <h3 className="font-semibold text-lg mb-4">Servicios y destinos relacionados</h3>
+              <div className="flex flex-wrap gap-3">
+                <a href="/barcos-sin-licencia" className="text-primary hover:underline flex items-center gap-1">
+                  <ChevronRight className="w-4 h-4" />
+                  Barcos sin licencia disponibles en Blanes
+                </a>
+                <a href="/precios" className="text-primary hover:underline flex items-center gap-1">
+                  <ChevronRight className="w-4 h-4" />
+                  Ver precios por temporada
+                </a>
+                <a href="/alquiler-barcos-tossa-de-mar" className="text-primary hover:underline flex items-center gap-1">
+                  <ChevronRight className="w-4 h-4" />
+                  Continua la ruta hasta Tossa de Mar
+                </a>
+                <a href="/alquiler-barcos-costa-brava" className="text-primary hover:underline flex items-center gap-1">
+                  <ChevronRight className="w-4 h-4" />
+                  Alquiler de barcos en la Costa Brava
+                </a>
+              </div>
+            </CardContent>
+          </Card>
+
           {/* CTA Section */}
           <Card className="bg-primary text-white">
             <CardContent className="py-8 text-center">

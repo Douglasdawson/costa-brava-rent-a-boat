@@ -342,6 +342,31 @@ export default function LocationTossaPage() {
             </CardContent>
           </Card>
 
+          {/* Related Services - Internal Linking */}
+          <Card className="mb-8">
+            <CardContent className="pt-6">
+              <h3 className="font-semibold text-lg mb-4">Servicios y destinos relacionados</h3>
+              <div className="flex flex-wrap gap-3">
+                <a href="/barcos-con-licencia" className="text-primary hover:underline flex items-center gap-1">
+                  <ChevronRight className="w-4 h-4" />
+                  Barcos con licencia para llegar a Tossa
+                </a>
+                <a href="/precios" className="text-primary hover:underline flex items-center gap-1">
+                  <ChevronRight className="w-4 h-4" />
+                  Consulta precios y temporadas
+                </a>
+                <a href="/alquiler-barcos-lloret-de-mar" className="text-primary hover:underline flex items-center gap-1">
+                  <ChevronRight className="w-4 h-4" />
+                  Ruta intermedia: Lloret de Mar en barco
+                </a>
+                <a href="/alquiler-barcos-blanes" className="text-primary hover:underline flex items-center gap-1">
+                  <ChevronRight className="w-4 h-4" />
+                  Puerto de salida: Blanes
+                </a>
+              </div>
+            </CardContent>
+          </Card>
+
           {/* CTA Section */}
           <Card className="bg-primary text-white">
             <CardContent className="py-8 text-center">

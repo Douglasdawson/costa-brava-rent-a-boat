@@ -375,8 +375,8 @@ const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
   },
   "/barcos-sin-licencia": {
     es: {
-      title: "Alquiler Barcos Sin Licencia Costa Brava | Blanes desde 70€/h",
-      description: "5 barcos sin licencia en Blanes desde 70€/h. Gasolina incluida, 4-7 personas. Sin experiencia, formacion 15 min. 4.8★ Google. Reserva online.",
+      title: "Barcos Sin Licencia Costa Brava | 5 Barcos desde 70€/h Gasolina Incluida",
+      description: "Alquiler barco sin licencia Costa Brava: 5 barcos en Blanes desde 70€/h. Gasolina incluida, 4-7 personas. Formacion 15 min. 4.8★ Google. Reserva hoy.",
       ogTitle: "Barcos Sin Licencia en Blanes | Fácil y Seguro Costa Brava",
       ogDescription: "Alquila barcos sin licencia en Blanes. Hasta 15 CV, 4-7 personas. No necesitas titulación.",
     },
@@ -483,10 +483,10 @@ const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
   },
   "/alquiler-barcos-lloret-de-mar": {
     es: {
-      title: "Alquiler Barco Lloret de Mar Sin Licencia | 25 min desde Blanes 70\u20ac",
-      description: "Navega desde Blanes hasta Lloret de Mar en 25 min. Barcos sin licencia desde 70\u20ac/h, gasolina incluida. Descubre playas y calas.",
-      ogTitle: "Alquiler Barco Lloret de Mar | 25 min desde Blanes Costa Brava",
-      ogDescription: "Navega a Lloret de Mar en 25 min desde Blanes. Barcos sin licencia desde 70\u20ac. Gasolina incluida.",
+      title: "Alquiler Barco Lloret de Mar | Sin Licencia desde 70\u20ac/h Gasolina Incluida",
+      description: "Alquiler barco Lloret de Mar desde Blanes en 25 min. 5 barcos sin licencia desde 70\u20ac/h, gasolina incluida. 4.8\u2605 Google. Reserva online hoy.",
+      ogTitle: "Alquiler Barco Lloret de Mar | Sin Licencia desde 70\u20ac/h",
+      ogDescription: "Navega a Lloret de Mar en 25 min desde Blanes. 5 barcos sin licencia desde 70\u20ac/h. Gasolina incluida. 4.8\u2605.",
     },
     en: {
       title: "Boat Trip to Lloret de Mar from Blanes",
@@ -519,10 +519,10 @@ const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
   },
   "/alquiler-barcos-tossa-de-mar": {
     es: {
-      title: "Excursión Barco a Tossa de Mar | Vila Vella desde Blanes 1h | 70\u20ac",
-      description: "Excursión en barco a Tossa de Mar desde Blanes en 1h. Vila Vella, calas vírgenes. Desde 70\u20ac, gasolina incluida.",
-      ogTitle: "Excursión Barco a Tossa de Mar | Vila Vella desde Blanes",
-      ogDescription: "Navega a Tossa de Mar en 1h desde Blanes. Vila Vella y calas vírgenes desde 70\u20ac. Gasolina incluida.",
+      title: "Alquiler Barco Tossa de Mar | Vila Vella desde 70\u20ac/h Sin Licencia",
+      description: "Alquiler barco Tossa de Mar desde Blanes. Vila Vella y calas virgenes en 1h. Desde 70\u20ac/h, gasolina incluida. 4.8\u2605 Google. Reserva hoy.",
+      ogTitle: "Alquiler Barco Tossa de Mar | Vila Vella desde 70\u20ac/h",
+      ogDescription: "Navega a Tossa de Mar en 1h desde Blanes. Vila Vella y calas virgenes desde 70\u20ac/h. Gasolina incluida. 4.8\u2605.",
     },
     en: {
       title: "Boat Trip to Tossa de Mar from Blanes",
@@ -940,8 +940,8 @@ const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
   },
   "/alquiler-barcos-costa-brava": {
     es: {
-      title: `Alquiler de Barcos en Costa Brava ${SEASON_YEAR} | Sin Licencia desde 70\u20ac/h`,
-      description: "Alquiler barcos Costa Brava desde Puerto de Blanes, puerta sur de la Costa Brava. Sin licencia desde 70\u20ac/h, gasolina incluida. 4.8\u2605 Google. 8 barcos. Reserva online.",
+      title: `Alquiler Barco Costa Brava ${SEASON_YEAR} | 8 Barcos desde 70\u20ac/h Blanes`,
+      description: "Alquiler barco Costa Brava: 8 barcos en Blanes desde 70\u20ac/h. Sin licencia, gasolina incluida. Lloret 25 min, Tossa 1h. 4.8\u2605 Google. Reserva online.",
     },
     en: {
       title: `Boat Rental Costa Brava ${SEASON_YEAR} | No License from 70\u20ac/h`,

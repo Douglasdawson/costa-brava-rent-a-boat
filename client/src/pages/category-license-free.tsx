@@ -13,7 +13,8 @@ import {
   Zap,
   Navigation as NavigationIcon,
   Waves,
-  Sun
+  Sun,
+  ChevronRight
 } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
@@ -373,6 +374,31 @@ export default function CategoryLicenseFreePage() {
                     </li>
                   </ul>
                 </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Explore Destinations - Internal Linking */}
+          <Card className="mb-8">
+            <CardContent className="pt-6">
+              <h3 className="font-semibold text-lg mb-4">Navega desde Blanes con barco sin licencia</h3>
+              <div className="flex flex-wrap gap-3">
+                <a href="/alquiler-barcos-blanes" className="text-primary hover:underline flex items-center gap-1">
+                  <ChevronRight className="w-4 h-4" />
+                  Salida desde el Puerto de Blanes
+                </a>
+                <a href="/alquiler-barcos-lloret-de-mar" className="text-primary hover:underline flex items-center gap-1">
+                  <ChevronRight className="w-4 h-4" />
+                  Excursion sin licencia a Lloret de Mar
+                </a>
+                <a href="/alquiler-barcos-tossa-de-mar" className="text-primary hover:underline flex items-center gap-1">
+                  <ChevronRight className="w-4 h-4" />
+                  Ruta en barco hasta Tossa de Mar
+                </a>
+                <a href="/precios" className="text-primary hover:underline flex items-center gap-1">
+                  <ChevronRight className="w-4 h-4" />
+                  Consulta precios por temporada
+                </a>
               </div>
             </CardContent>
           </Card>

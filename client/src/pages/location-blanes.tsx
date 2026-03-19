@@ -12,7 +12,8 @@ import {
   Waves,
   Camera,
   Car,
-  Ship
+  Ship,
+  ChevronRight
 } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
@@ -289,6 +290,35 @@ export default function LocationBlanesPage() {
                 <a href="/alquiler-barcos-calella" className="text-primary hover:underline font-medium">Calella</a> (20 min en coche).
                 Tambien accesible en tren RENFE linea R1.
               </p>
+            </CardContent>
+          </Card>
+
+          {/* Related Services - Internal Linking */}
+          <Card className="mb-8">
+            <CardContent className="pt-6">
+              <h3 className="font-semibold text-lg mb-4">Explora nuestros servicios desde Blanes</h3>
+              <div className="flex flex-wrap gap-3">
+                <a href="/barcos-sin-licencia" className="text-primary hover:underline flex items-center gap-1">
+                  <ChevronRight className="w-4 h-4" />
+                  Alquiler de barcos sin licencia
+                </a>
+                <a href="/barcos-con-licencia" className="text-primary hover:underline flex items-center gap-1">
+                  <ChevronRight className="w-4 h-4" />
+                  Barcos con licencia en Blanes
+                </a>
+                <a href="/precios" className="text-primary hover:underline flex items-center gap-1">
+                  <ChevronRight className="w-4 h-4" />
+                  Precios y tarifas por temporada
+                </a>
+                <a href="/alquiler-barcos-lloret-de-mar" className="text-primary hover:underline flex items-center gap-1">
+                  <ChevronRight className="w-4 h-4" />
+                  Excursion en barco a Lloret de Mar
+                </a>
+                <a href="/alquiler-barcos-tossa-de-mar" className="text-primary hover:underline flex items-center gap-1">
+                  <ChevronRight className="w-4 h-4" />
+                  Navega hasta Tossa de Mar
+                </a>
+              </div>
             </CardContent>
           </Card>
 

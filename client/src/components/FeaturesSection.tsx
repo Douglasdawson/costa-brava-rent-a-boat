@@ -6,6 +6,7 @@ import {
   Award,
   Anchor,
   Compass,
+  ChevronRight,
 } from "lucide-react";
 import SnorkelIcon from "./icons/SnorkelIcon";
 import PaddleSurfIcon from "./icons/PaddleSurfIcon";
@@ -109,6 +110,35 @@ export default function FeaturesSection() {
                 <span className="font-heading font-medium text-foreground mt-1">{extra.price}</span>
               </div>
             ))}
+          </div>
+        </div>
+
+        {/* Internal Links - Explore More */}
+        <div className="border-t border-border pt-8 sm:pt-12 mt-8 sm:mt-12">
+          <h3 className="font-heading text-lg sm:text-xl font-semibold text-foreground tracking-tight text-center mb-6">
+            {t.features.exploreMore || 'Explora nuestros servicios'}
+          </h3>
+          <div className="flex flex-wrap justify-center gap-x-6 gap-y-3">
+            <a href="/barcos-sin-licencia" className="text-primary hover:underline flex items-center gap-1 text-sm sm:text-base">
+              <ChevronRight className="w-4 h-4" />
+              Barcos sin licencia
+            </a>
+            <a href="/barcos-con-licencia" className="text-primary hover:underline flex items-center gap-1 text-sm sm:text-base">
+              <ChevronRight className="w-4 h-4" />
+              Barcos con licencia
+            </a>
+            <a href="/precios" className="text-primary hover:underline flex items-center gap-1 text-sm sm:text-base">
+              <ChevronRight className="w-4 h-4" />
+              Precios y tarifas
+            </a>
+            <a href="/alquiler-barcos-costa-brava" className="text-primary hover:underline flex items-center gap-1 text-sm sm:text-base">
+              <ChevronRight className="w-4 h-4" />
+              Alquiler barcos Costa Brava
+            </a>
+            <a href="/blog" className="text-primary hover:underline flex items-center gap-1 text-sm sm:text-base">
+              <ChevronRight className="w-4 h-4" />
+              Blog de navegacion
+            </a>
           </div>
         </div>
       </div>

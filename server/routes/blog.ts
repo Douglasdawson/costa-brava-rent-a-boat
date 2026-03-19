@@ -4,6 +4,7 @@ import { insertBlogPostSchema } from "@shared/schema";
 import { requireAdminSession, requireTabAccess } from "./auth";
 import { logger } from "../lib/logger";
 import { notifySubscribersOfNewPost } from "../services/blogNotifier";
+import { notifyIndexNow } from "../seo/indexnow";
 
 export function registerBlogRoutes(app: Express) {
   // ===== PUBLIC ROUTES =====
@@ -148,6 +149,9 @@ ${entries}
         }).catch(() => {
           // Already logged inside notifySubscribersOfNewPost
         });
+
+        // Notify search engines via IndexNow for faster indexing
+        notifyIndexNow([`/blog/${post.slug}`]).catch(() => {});
       }
 
       res.status(201).json(post);
@@ -193,6 +197,11 @@ ${entries}
         }).catch(() => {
           // Already logged inside notifySubscribersOfNewPost
         });
+      }
+
+      // Notify IndexNow on publish or update of published posts
+      if (post.isPublished) {
+        notifyIndexNow([`/blog/${post.slug}`]).catch(() => {});
       }
 
       res.json(post);

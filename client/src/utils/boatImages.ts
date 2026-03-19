@@ -49,13 +49,26 @@ export function getBoatImage(imagePath: string): string {
 
 /**
  * Generate SEO-friendly alt text for a boat image.
+ * Varies description by gallery position for better Google Images indexing.
  */
+const GALLERY_DESCRIPTORS = [
+  "vista principal exterior",
+  "interior y equipamiento",
+  "navegando en Costa Brava",
+  "vista lateral en puerto de Blanes",
+  "detalle de la cabina",
+  "en el mar Mediterráneo",
+  "vista panorámica",
+  "equipamiento de navegación",
+];
+
 export function getBoatAltText(boatName: string, index?: number): string {
-  const base = `Alquiler barco ${boatName} en Blanes, Costa Brava - Rent a Boat`;
-  if (index !== undefined && index > 0) {
-    return `${base} - foto ${index + 1}`;
+  const base = `Alquiler barco ${boatName} en Blanes, Costa Brava`;
+  if (index === undefined || index === 0) {
+    return `${base} - ${GALLERY_DESCRIPTORS[0]}`;
   }
-  return base;
+  const descriptor = GALLERY_DESCRIPTORS[index % GALLERY_DESCRIPTORS.length];
+  return `${base} - ${descriptor}`;
 }
 
 // Map used by the server-side resize endpoint (needs actual filenames)

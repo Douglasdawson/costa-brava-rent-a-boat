@@ -66,16 +66,16 @@ const generateUrlEntry = (
   baseUrl: string,
   path: string,
   priority: string,
-  lastmod: string,
+  lastmod: string | null,
   languages: readonly string[] = SUPPORTED_LANGUAGES
 ) => {
   const hreflangLinks = buildHreflangLinks(baseUrl, path, languages);
+  const lastmodTag = lastmod ? `\n    <lastmod>${lastmod}</lastmod>` : "";
   let urls = "";
 
   // Canonical (ES) entry with all hreflang alternates
   urls += `  <url>
-    <loc>${baseUrl}${path}</loc>
-    <lastmod>${lastmod}</lastmod>
+    <loc>${baseUrl}${path}</loc>${lastmodTag}
     <priority>${priority}</priority>
 ${hreflangLinks}  </url>
 `;
@@ -85,8 +85,7 @@ ${hreflangLinks}  </url>
     if (lang !== "es") {
       const langPath = path === "/" ? `/?lang=${lang}` : `${path}?lang=${lang}`;
       urls += `  <url>
-    <loc>${baseUrl}${langPath}</loc>
-    <lastmod>${lastmod}</lastmod>
+    <loc>${baseUrl}${langPath}</loc>${lastmodTag}
     <priority>${priority}</priority>
 ${hreflangLinks}  </url>
 `;
@@ -186,29 +185,31 @@ export function registerSitemapRoutes(app: Express) {
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
 `;
 
-      sitemap += generateUrlEntry(baseUrl, "/", "1.0", DEPLOY_DATE);
+      // Static pages omit <lastmod> — Google recommends only including lastmod
+      // when the date is accurate. Static pages don't have real modification dates.
+      sitemap += generateUrlEntry(baseUrl, "/", "1.0", null);
 
       const locationSlugs = ["blanes", "lloret-de-mar", "tossa-de-mar", "malgrat-de-mar", "santa-susanna", "calella"];
       locationSlugs.forEach(slug => {
-        sitemap += generateUrlEntry(baseUrl, `/alquiler-barcos-${slug}`, "0.7", DEPLOY_DATE);
+        sitemap += generateUrlEntry(baseUrl, `/alquiler-barcos-${slug}`, "0.7", null);
       });
 
-      sitemap += generateUrlEntry(baseUrl, "/galeria", "0.6", DEPLOY_DATE);
-      sitemap += generateUrlEntry(baseUrl, "/rutas", "0.7", DEPLOY_DATE);
-      sitemap += generateUrlEntry(baseUrl, "/tarjetas-regalo", "0.6", DEPLOY_DATE);
-      sitemap += generateUrlEntry(baseUrl, "/precios", "0.8", DEPLOY_DATE);
-      sitemap += generateUrlEntry(baseUrl, "/alquiler-barcos-cerca-barcelona", "0.7", DEPLOY_DATE);
-      sitemap += generateUrlEntry(baseUrl, "/alquiler-barcos-costa-brava", "0.9", DEPLOY_DATE);
-      sitemap += generateUrlEntry(baseUrl, "/faq", "0.6", DEPLOY_DATE);
-      sitemap += generateUrlEntry(baseUrl, "/testimonios", "0.6", DEPLOY_DATE);
-      sitemap += generateUrlEntry(baseUrl, "/destinos", "0.7", DEPLOY_DATE);
-      sitemap += generateUrlEntry(baseUrl, "/barcos-sin-licencia", "0.7", DEPLOY_DATE);
-      sitemap += generateUrlEntry(baseUrl, "/barcos-con-licencia", "0.7", DEPLOY_DATE);
-      sitemap += generateUrlEntry(baseUrl, "/privacy-policy", "0.3", DEPLOY_DATE);
-      sitemap += generateUrlEntry(baseUrl, "/terms-conditions", "0.3", DEPLOY_DATE);
-      sitemap += generateUrlEntry(baseUrl, "/condiciones-generales", "0.3", DEPLOY_DATE);
-      sitemap += generateUrlEntry(baseUrl, "/cookies-policy", "0.3", DEPLOY_DATE);
-      sitemap += generateUrlEntry(baseUrl, "/accesibilidad", "0.3", DEPLOY_DATE);
+      sitemap += generateUrlEntry(baseUrl, "/galeria", "0.6", null);
+      sitemap += generateUrlEntry(baseUrl, "/rutas", "0.7", null);
+      sitemap += generateUrlEntry(baseUrl, "/tarjetas-regalo", "0.6", null);
+      sitemap += generateUrlEntry(baseUrl, "/precios", "0.8", null);
+      sitemap += generateUrlEntry(baseUrl, "/alquiler-barcos-cerca-barcelona", "0.7", null);
+      sitemap += generateUrlEntry(baseUrl, "/alquiler-barcos-costa-brava", "0.9", null);
+      sitemap += generateUrlEntry(baseUrl, "/faq", "0.6", null);
+      sitemap += generateUrlEntry(baseUrl, "/testimonios", "0.6", null);
+      sitemap += generateUrlEntry(baseUrl, "/destinos", "0.7", null);
+      sitemap += generateUrlEntry(baseUrl, "/barcos-sin-licencia", "0.7", null);
+      sitemap += generateUrlEntry(baseUrl, "/barcos-con-licencia", "0.7", null);
+      sitemap += generateUrlEntry(baseUrl, "/privacy-policy", "0.3", null);
+      sitemap += generateUrlEntry(baseUrl, "/terms-conditions", "0.3", null);
+      sitemap += generateUrlEntry(baseUrl, "/condiciones-generales", "0.3", null);
+      sitemap += generateUrlEntry(baseUrl, "/cookies-policy", "0.3", null);
+      sitemap += generateUrlEntry(baseUrl, "/accesibilidad", "0.3", null);
 
       sitemap += `</urlset>`;
 

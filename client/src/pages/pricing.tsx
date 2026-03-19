@@ -138,9 +138,50 @@ export default function PricingPage() {
     ],
   };
 
+  // Dynamic ItemList schema with Product entries for each boat
+  const itemListSchema = activeBoats.length > 0 ? {
+    "@type": "ItemList",
+    "name": "Precios Alquiler de Barcos en Blanes",
+    "numberOfItems": activeBoats.length,
+    "itemListElement": activeBoats.map((boat, index) => {
+      const allPrices = (["BAJA", "MEDIA", "ALTA"] as SeasonKey[])
+        .map(s => getMinPrice(boat, s))
+        .filter((p): p is number => p !== null);
+      const lowPrice = allPrices.length > 0 ? Math.min(...allPrices) : null;
+      const highPrice = allPrices.length > 0 ? Math.max(...allPrices) : null;
+
+      return {
+        "@type": "ListItem",
+        "position": index + 1,
+        "name": boat.name,
+        "url": `https://costabravarentaboat.com/barco/${boat.id}`,
+        "item": {
+          "@type": "Product",
+          "name": `Alquiler ${boat.name} en Blanes`,
+          "description": `Barco ${boat.name} para ${boat.capacity} personas${boat.requiresLicense ? " (requiere licencia)" : " (sin licencia)"}`,
+          "brand": { "@type": "Brand", "name": "Costa Brava Rent a Boat" },
+          ...(lowPrice && highPrice ? {
+            "offers": {
+              "@type": "AggregateOffer",
+              "priceCurrency": "EUR",
+              "lowPrice": lowPrice.toString(),
+              "highPrice": highPrice.toString(),
+              "offerCount": allPrices.length,
+              "availability": "https://schema.org/InStock",
+              "seller": { "@type": "Organization", "name": "Costa Brava Rent a Boat Blanes" }
+            }
+          } : {})
+        }
+      };
+    })
+  } : null;
+
+  const graphItems = [breadcrumbSchema, faqSchema];
+  if (itemListSchema) graphItems.push(itemListSchema);
+
   const combinedJsonLd = {
     "@context": "https://schema.org",
-    "@graph": [breadcrumbSchema, faqSchema],
+    "@graph": graphItems,
   };
 
   return (

@@ -79,11 +79,38 @@ export default function CategoryLicensedPage() {
     { name: t.breadcrumbs.categoryLicensed, url: "/barcos-con-licencia" }
   ]);
 
+  // ItemList schema for category page (helps Google understand this is a product listing)
+  const itemListSchema = {
+    "@type": "ItemList",
+    "name": "Barcos Con Licencia en Blanes",
+    "numberOfItems": licensedBoats.length,
+    "itemListElement": licensedBoats.map((boat, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "name": boat.name,
+      "url": `https://costabravarentaboat.com/barcos-con-licencia`,
+      "item": {
+        "@type": "Product",
+        "name": boat.name,
+        "description": `Barco con licencia ${boat.name}, ${boat.capacity}, motor ${boat.engine} - ${boat.range}`,
+        "brand": { "@type": "Brand", "name": "Costa Brava Rent a Boat" },
+        "offers": {
+          "@type": "Offer",
+          "priceCurrency": "EUR",
+          "price": boat.price.replace(/[^\d]/g, ""),
+          "availability": "https://schema.org/InStock",
+          "seller": { "@type": "Organization", "name": "Costa Brava Rent a Boat Blanes" }
+        }
+      }
+    }))
+  };
+
   // Combine schemas using @graph
   const combinedJsonLd = {
     "@context": "https://schema.org",
     "@graph": [
       serviceSchema,
+      itemListSchema,
       breadcrumbSchema
     ]
   };

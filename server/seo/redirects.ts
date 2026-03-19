@@ -59,6 +59,14 @@ export function redirectMiddleware() {
 
 // Seed initial redirects from the hardcoded list in server/index.ts
 export async function seedLegacyRedirects(): Promise<void> {
+  // Check if table exists before seeding (prevents startup crash if table is missing)
+  try {
+    await db.execute(sql`SELECT 1 FROM seo_redirects LIMIT 1`);
+  } catch {
+    logger.warn("[SEO:Redirects] seo_redirects table not found, skipping seed");
+    return;
+  }
+
   const legacyRedirects: Record<string, string> = {
     "/destino/blanes": "/alquiler-barcos-blanes",
     "/destino/lloret-de-mar": "/alquiler-barcos-lloret-de-mar",

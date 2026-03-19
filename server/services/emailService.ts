@@ -1317,3 +1317,117 @@ const EARLY_BIRD_STRINGS: Record<EmailLang, EarlyBirdStrings> = {
     footer: "Eta skidka eksklyuzivna dlya vas kak klienta. Ne summiruyetsya s drugimi predlozheniyami.",
   },
 };
+
+// ===== PARTNERSHIP OUTREACH EMAIL =====
+
+interface PartnershipEmailData {
+  email: string;
+  hotelName: string;
+  contactName?: string;
+  town: string;
+  unsubscribeUrl: string;
+}
+
+const TOWN_NAMES: Record<string, string> = {
+  blanes: "Blanes",
+  lloret: "Lloret de Mar",
+  tossa: "Tossa de Mar",
+  malgrat: "Malgrat de Mar",
+  "santa-susanna": "Santa Susanna",
+  calella: "Calella",
+};
+
+export async function sendPartnershipProposal(data: PartnershipEmailData): Promise<EmailResult> {
+  if (!initSendGrid()) {
+    return { success: false, error: "SendGrid not configured" };
+  }
+
+  const townName = TOWN_NAMES[data.town] || data.town;
+  const greeting = data.contactName ? `Estimado/a ${data.contactName}` : `Estimado equipo de ${data.hotelName}`;
+
+  const content = `
+    <h2 style="margin:0 0 16px; color:#1e3a5f; font-size:20px;">Propuesta de colaboracion</h2>
+
+    <p style="margin:0 0 16px; color:#334155; font-size:15px; line-height:1.7;">
+      ${greeting},
+    </p>
+
+    <p style="margin:0 0 16px; color:#334155; font-size:15px; line-height:1.7;">
+      Me dirijo a ustedes desde <strong>Costa Brava Rent a Boat</strong>, empresa de alquiler de
+      embarcaciones ubicada en el <strong>Puerto de Blanes</strong>. Contamos con
+      <strong>4.8 estrellas en Google</strong> y mas de 300 opiniones positivas.
+    </p>
+
+    <p style="margin:0 0 16px; color:#334155; font-size:15px; line-height:1.7;">
+      Sabemos que muchos huespedes de <strong>${data.hotelName}</strong> en ${townName} buscan
+      actividades nauticas durante su estancia. Por eso, nos gustaria proponerles una
+      <strong>colaboracion mutuamente beneficiosa</strong>:
+    </p>
+
+    <div style="background:#f0f9ff; border-left:4px solid #2563eb; padding:20px; margin:20px 0; border-radius:0 6px 6px 0;">
+      <h3 style="margin:0 0 12px; color:#1e3a5f; font-size:16px;">Que ofrecemos a sus huespedes:</h3>
+      <ul style="margin:0; padding:0 0 0 20px; color:#334155; font-size:14px; line-height:1.8;">
+        <li><strong>Codigo de descuento exclusivo</strong> para clientes de ${data.hotelName}</li>
+        <li>8 barcos (con y sin licencia) para 4-7 personas</li>
+        <li>Gasolina incluida en barcos sin licencia (desde 70 EUR/h)</li>
+        <li>Excursiones a calas, Lloret de Mar, Tossa de Mar</li>
+        <li>Reserva online inmediata o por WhatsApp</li>
+      </ul>
+    </div>
+
+    <div style="background:#f0fdf4; border-left:4px solid #16a34a; padding:20px; margin:20px 0; border-radius:0 6px 6px 0;">
+      <h3 style="margin:0 0 12px; color:#166534; font-size:16px;">Que ofrecemos al hotel:</h3>
+      <ul style="margin:0; padding:0 0 0 20px; color:#334155; font-size:14px; line-height:1.8;">
+        <li><strong>Comision por cada reserva</strong> generada por sus huespedes</li>
+        <li>Material promocional (flyers, QR codes) sin coste</li>
+        <li>Enlace personalizado para seguimiento de reservas</li>
+        <li>Una actividad mas que ofrecer a sus clientes</li>
+      </ul>
+    </div>
+
+    <p style="margin:20px 0; color:#334155; font-size:15px; line-height:1.7;">
+      Estamos abiertos a adaptar la colaboracion a sus necesidades. Podemos organizar una
+      breve reunion o llamada para concretar los detalles.
+    </p>
+
+    <div style="text-align:center; margin:28px 0;">
+      <a href="https://wa.me/34611500372?text=${encodeURIComponent(`Hola, soy de ${data.hotelName} en ${townName}. Me interesa la propuesta de colaboracion.`)}"
+         target="_blank"
+         style="display:inline-block; background-color:#25d366; color:#ffffff; text-decoration:none; padding:14px 32px; border-radius:6px; font-size:16px; font-weight:700;">
+        Contactar por WhatsApp
+      </a>
+    </div>
+
+    <p style="margin:20px 0 0; color:#334155; font-size:15px; line-height:1.7;">
+      Tambien puede responder directamente a este email o llamarnos al
+      <a href="tel:+34611500372" style="color:#2563eb;">+34 611 500 372</a>.
+    </p>
+
+    <p style="margin:20px 0 0; color:#334155; font-size:15px;">
+      Un cordial saludo,<br>
+      <strong>Ivan</strong><br>
+      Costa Brava Rent a Boat Blanes
+    </p>
+
+    <p style="margin:24px 0 0; text-align:center;">
+      <a href="${data.unsubscribeUrl}" style="color:#94a3b8; font-size:11px; text-decoration:underline;">No deseo recibir mas correos de este tipo</a>
+    </p>
+  `;
+
+  try {
+    await sendgridBreaker.call(() => sgMail.send({
+      to: data.email,
+      from: { email: getFromEmail(), name: "Costa Brava Rent a Boat" },
+      replyTo: { email: "costabravarentaboat@gmail.com", name: "Ivan - Costa Brava Rent a Boat" },
+      subject: `Propuesta de colaboracion - Costa Brava Rent a Boat x ${data.hotelName}`,
+      html: emailWrapper(content),
+    }));
+
+    logger.info("[Email] Partnership proposal sent", { to: data.email, hotel: data.hotelName });
+    return { success: true };
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : "Unknown error";
+    logger.error("[Email] Error sending partnership proposal", { to: data.email, error: message });
+    return { success: false, error: message };
+  }
+}

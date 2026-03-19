@@ -2132,3 +2132,36 @@ export const leadNurturingLog = pgTable("lead_nurturing_log", {
 
 export type LeadNurturingLog = typeof leadNurturingLog.$inferSelect;
 export type InsertLeadNurturingLog = typeof leadNurturingLog.$inferInsert;
+
+// ===== PARTNERSHIP CONTACTS (Hotel outreach) =====
+
+export const PARTNERSHIP_TOWNS = ["blanes", "lloret", "tossa", "malgrat", "santa-susanna", "calella"] as const;
+export type PartnershipTown = typeof PARTNERSHIP_TOWNS[number];
+
+export const PARTNERSHIP_STATUSES = ["pending", "sent", "opened", "replied", "converted", "unsubscribed"] as const;
+export type PartnershipStatus = typeof PARTNERSHIP_STATUSES[number];
+
+export const partnershipContacts = pgTable("partnership_contacts", {
+  id: serial("id").primaryKey(),
+  hotelName: text("hotel_name").notNull(),
+  contactName: text("contact_name"),
+  email: text("email").notNull(),
+  phone: text("phone"),
+  town: text("town").notNull(),
+  website: text("website"),
+  status: text("status").notNull().default("pending"),
+  campaignId: text("campaign_id"),
+  sentAt: timestamp("sent_at", { withTimezone: true }),
+  openedAt: timestamp("opened_at", { withTimezone: true }),
+  repliedAt: timestamp("replied_at", { withTimezone: true }),
+  notes: text("notes"),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().default(sql`now()`),
+  updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().default(sql`now()`),
+}, (table) => ({
+  emailIdx: uniqueIndex("partnership_email_idx").on(table.email),
+  townIdx: index("partnership_town_idx").on(table.town),
+  statusIdx: index("partnership_status_idx").on(table.status),
+}));
+
+export type PartnershipContact = typeof partnershipContacts.$inferSelect;
+export type InsertPartnershipContact = typeof partnershipContacts.$inferInsert;

@@ -1,0 +1,13 @@
+{
+  "name": "Costa Brava Rent a Boat",
+  "short_name": "CBRB Blanes",
+  "description": "Alquiler de barcos en Blanes, Costa Brava",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#1a2d40",
+  "icons": [
+    { "src": "/assets/logo-icon.png", "sizes": "180x180", "type": "image/png" },
+    { "src": "/og-image.webp", "sizes": "1200x630", "type": "image/webp", "purpose": "any" }
+  ]
+}

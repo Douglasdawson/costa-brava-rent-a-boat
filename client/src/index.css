@@ -306,6 +306,20 @@ body { overflow-x: hidden; }
   contain: layout style paint;
 }
 
+/* iOS Safari: prevent auto-zoom on input focus (requires font-size >= 16px) */
+@supports (-webkit-touch-callout: none) {
+  input, select, textarea { font-size: 16px !important; }
+}
+
+/* Touch devices: prevent sticky hover on scale transforms */
+@media (hover: none) {
+  .hover\:scale-110:hover { transform: none !important; }
+  .hover\:scale-105:hover { transform: none !important; }
+  .boat-card-tilt:hover { transform: none !important; }
+  .cta-hover-lift:hover { transform: none !important; }
+  .btn-elevated:hover { transform: none !important; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;

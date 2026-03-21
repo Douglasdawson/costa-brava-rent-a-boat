@@ -248,15 +248,56 @@ async function main() {
 
     console.log(`\nTotal pages to prerender: ${jobs.length}\n`);
 
-    // 4. Launch browser (try Playwright's bundled Chromium, fall back to system)
+    // 4. Launch browser — try multiple Chromium paths
+    const chromiumPaths = [
+      process.env.PLAYWRIGHT_CHROMIUM_PATH,
+      // Common Nix/Replit paths
+      "/nix/store/chromium/bin/chromium",
+      "/usr/bin/chromium",
+      "/usr/bin/chromium-browser",
+      "/usr/bin/google-chrome",
+    ].filter(Boolean) as string[];
+
+    // First try Playwright's bundled Chromium (installed via npx playwright install)
     try {
       browser = await chromium.launch({ headless: true });
     } catch {
-      console.log("  Playwright Chromium not found, trying system chromium...");
-      browser = await chromium.launch({
-        headless: true,
-        executablePath: process.env.PLAYWRIGHT_CHROMIUM_PATH || "/nix/store/chromium/bin/chromium",
-      });
+      // Try system-installed Chromium paths
+      let launched = false;
+      for (const execPath of chromiumPaths) {
+        if (fs.existsSync(execPath)) {
+          console.log(`  Using system Chromium: ${execPath}`);
+          try {
+            browser = await chromium.launch({ headless: true, executablePath: execPath });
+            launched = true;
+            break;
+          } catch {
+            continue;
+          }
+        }
+      }
+
+      if (!launched) {
+        // Try `which chromium` as last resort
+        const { execSync } = await import("child_process");
+        try {
+          const whichPath = execSync("which chromium 2>/dev/null || which chromium-browser 2>/dev/null || which google-chrome 2>/dev/null", { encoding: "utf-8" }).trim();
+          if (whichPath) {
+            console.log(`  Using Chromium found at: ${whichPath}`);
+            browser = await chromium.launch({ headless: true, executablePath: whichPath });
+            launched = true;
+          }
+        } catch {
+          // No chromium found anywhere
+        }
+      }
+
+      if (!launched) {
+        console.warn("\nWARN: Chromium not available in this environment — skipping prerender.");
+        console.warn("      Prerendered HTML will not be generated; the SPA fallback will be used.");
+        console.warn("      Install Chromium or set PLAYWRIGHT_CHROMIUM_PATH to enable prerendering.\n");
+        return;
+      }
     }
 
     // 5. Render with concurrency limit

@@ -20,7 +20,7 @@
     "remotion": "remotion studio client/src/remotion/index.tsx",
     "i18n:validate": "tsx scripts/validate-translations.ts",
     "seo:worker": "NODE_ENV=production tsx server/seo/worker.ts",
-    "prerender": "tsx scripts/prerender.ts",
+    "prerender": "npx playwright install chromium 2>/dev/null; tsx scripts/prerender.ts",
     "build:full": "npm run build && npm run prerender"
   },
   "dependencies": {

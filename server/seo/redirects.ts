@@ -129,6 +129,30 @@ export async function seedLegacyRedirects(): Promise<void> {
     "/ca/fuegos-artificiales-blanes-2025": "/blog?lang=ca",
     "/ca/barco-sin-licencia-blanes-astec-400": "/barco/astec-400?lang=ca",
     "/ca/condiciones-de-reserva": "/condiciones-generales?lang=ca",
+
+    // Old Wix site URLs with path-based i18n (discovered in GSC "Rastreada, sin indexar")
+    "/fr/excursion-barco-privado": "/barcos-con-licencia?lang=fr",
+    "/fr/copy-of-hoteles-y-alojamientos": "/alquiler-barcos-blanes?lang=fr",
+    "/en/barco-sin-licencia-blanes-solar-450": "/barco/solar-450?lang=en",
+    "/barco-mingolla-brava-19": "/barco/mingolla-brava-19",
+    "/fr/barco-con-licencia-blanes-pacific-craft-625": "/barco/pacific-craft-625?lang=fr",
+    "/fr/politica-de-privacidad": "/politica-privacidad?lang=fr",
+    "/ca/beneteau-flyer-5-5": "/barcos-con-licencia?lang=ca",
+    "/en/barco-con-licencia-blanes-pacific-craft-625": "/barco/pacific-craft-625?lang=en",
+    "/fr/barco-sin-licencia-blanes-solar-450": "/barco/solar-450?lang=fr",
+    "/en/motos-de-agua": "/barcos-sin-licencia?lang=en",
+    "/en/nota-legal": "/politica-privacidad?lang=en",
+    "/fr/copia-de-embarcaciones": "/barcos-sin-licencia?lang=fr",
+    "/fr/beneteau-flyer-5-5": "/barcos-con-licencia?lang=fr",
+    "/en/condiciones-de-reserva": "/condiciones-generales?lang=en",
+    "/fr/motos-de-agua": "/barcos-sin-licencia?lang=fr",
+    "/ca/copy-of-extras": "/precios?lang=ca",
+    "/blank": "/",
+    "/barco-sin-licencia-solar-450-blanes": "/barco/solar-450",
+    "/excursion-barco-privado": "/barcos-con-licencia",
+    "/condiciones-de-reserva": "/condiciones-generales",
+    "/nota-legal": "/politica-privacidad",
+    "/beneteau-flyer-5-5": "/barcos-con-licencia",
   };
 
   for (const [from, to] of Object.entries(legacyRedirects)) {

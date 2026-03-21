@@ -248,8 +248,16 @@ async function main() {
 
     console.log(`\nTotal pages to prerender: ${jobs.length}\n`);
 
-    // 4. Launch browser
-    browser = await chromium.launch({ headless: true });
+    // 4. Launch browser (try Playwright's bundled Chromium, fall back to system)
+    try {
+      browser = await chromium.launch({ headless: true });
+    } catch {
+      console.log("  Playwright Chromium not found, trying system chromium...");
+      browser = await chromium.launch({
+        headless: true,
+        executablePath: process.env.PLAYWRIGHT_CHROMIUM_PATH || "/nix/store/chromium/bin/chromium",
+      });
+    }
 
     // 5. Render with concurrency limit
     const concurrency = manifest.concurrency;

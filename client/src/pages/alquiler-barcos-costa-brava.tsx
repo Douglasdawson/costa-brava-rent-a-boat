@@ -3,7 +3,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
   MapPin, Anchor, Users, Star, Navigation as NavigationIcon,
-  Sun, Waves, Ship, ChevronRight
+  Sun, Waves, Ship, ChevronRight, Clock
 } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
@@ -11,15 +11,21 @@ import FleetSection from "@/components/FleetSection";
 import RelatedLocationsSection from "@/components/RelatedLocationsSection";
 import { SEO } from "@/components/SEO";
 import { useLanguage } from "@/hooks/use-language";
+import { useTranslations } from "@/lib/translations";
 import { getSEOConfig, generateHreflangLinks, generateCanonicalUrl, generateBreadcrumbSchema } from "@/utils/seo-config";
 import { openWhatsApp, createBookingMessage } from "@/utils/whatsapp";
 import { Link } from "wouter";
 
 export default function LocationCostaBravaPage() {
   const { language } = useLanguage();
+  const t = useTranslations();
   const seoConfig = getSEOConfig('locationCostaBrava', language);
   const hreflangLinks = generateHreflangLinks('locationCostaBrava');
   const canonical = generateCanonicalUrl('locationCostaBrava', language);
+
+  const cb = t.locationPages.costaBrava;
+  const s = cb?.sections;
+  const faqT = cb?.faq;
 
   const handleBookingWhatsApp = () => {
     const message = createBookingMessage();
@@ -57,11 +63,11 @@ export default function LocationCostaBravaPage() {
 
   // Breadcrumb schema
   const breadcrumbSchema = generateBreadcrumbSchema([
-    { name: "Inicio", url: "/" },
+    { name: t.breadcrumbs.home, url: "/" },
     { name: "Alquiler Barcos Costa Brava", url: "/alquiler-barcos-costa-brava" }
   ]);
 
-  // FAQ schema for AI search extraction
+  // FAQ schema for AI search extraction — original 5 + 4 new
   const faqSchema = {
     "@type": "FAQPage",
     "mainEntity": [
@@ -102,7 +108,39 @@ export default function LocationCostaBravaPage() {
         "name": "Esta incluida la gasolina en el precio?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Si, todos nuestros barcos incluyen gasolina, seguro a todo riesgo y equipo de seguridad en el precio. Sin costes ocultos ni sorpresas."
+          "text": "En barcos sin licencia, si: gasolina, seguro a todo riesgo y equipo de seguridad estan incluidos. En barcos con licencia el combustible se paga aparte segun consumo real."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": faqT?.experienceQ || "Necesito experiencia previa para alquilar un barco en la Costa Brava?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": faqT?.experienceA || "No, no necesitas ninguna experiencia previa. Para nuestros barcos sin licencia (hasta 15 CV) solo debes ser mayor de 18 anos. Te proporcionamos una formacion practica de 15 minutos."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": faqT?.distanceQ || "Hasta donde puedo navegar sin licencia desde Blanes?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": faqT?.distanceA || "Con un barco sin licencia puedes navegar hasta 2 millas nauticas de la costa (3,7 km). Esto te permite explorar Cala Brava, Cala Sant Francesc, Lloret de Mar y Cala Treumal."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": faqT?.weatherQ || "Que pasa si hace mal tiempo el dia de mi reserva?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": faqT?.weatherA || "La seguridad es nuestra prioridad. Si las condiciones no permiten navegar, te ofrecemos cambio de fecha sin coste o devolucion completa."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": faqT?.petsQ || "Puedo llevar mascotas en el barco?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": faqT?.petsA || "Si, las mascotas son bienvenidas en todos nuestros barcos. Recomendamos traer agua fresca y proteccion solar para tu mascota."
         }
       }
     ]
@@ -114,7 +152,6 @@ export default function LocationCostaBravaPage() {
     "@graph": [locationSchema, breadcrumbSchema, faqSchema]
   };
 
-  // TODO: Move all hardcoded Spanish text below to translation files (t.locationPages.costaBrava.*)
   // Departure ports data
   const departurePorts = [
     {
@@ -144,6 +181,45 @@ export default function LocationCostaBravaPage() {
     },
   ];
 
+  // Navigation routes data
+  const routes = [
+    {
+      title: s?.routeBlanesLloret || "Blanes - Lloret de Mar: 30 min, facil, sin licencia",
+      description: s?.routeBlanesLloretDesc || "",
+      difficulty: "easy" as const,
+    },
+    {
+      title: s?.routeBlaneCalaBrava || "Blanes - Cala Brava: 15 min, facil, sin licencia",
+      description: s?.routeBlaneCalaBravaDesc || "",
+      difficulty: "easy" as const,
+    },
+    {
+      title: s?.routeBlanesTossa || "Blanes - Tossa de Mar: 45 min, media, licencia recomendada",
+      description: s?.routeBlanesTossaDesc || "",
+      difficulty: "medium" as const,
+    },
+    {
+      title: s?.routeBlaneSantFeliu || "Blanes - Sant Feliu de Guixols: 1,5h, avanzada, licencia requerida",
+      description: s?.routeBlaneSantFeliuDesc || "",
+      difficulty: "advanced" as const,
+    },
+  ];
+
+  // Coves data
+  const coves = [
+    { name: s?.calaBravaName || "Cala Brava", description: s?.calaBravaDesc || "" },
+    { name: s?.calaSantFrancescName || "Cala Sant Francesc", description: s?.calaSantFrancescDesc || "" },
+    { name: s?.calaTreumalName || "Cala Treumal", description: s?.calaTreumalDesc || "" },
+    { name: s?.calaBBoadellaName || "Cala Boadella", description: s?.calaBBoadellaDesc || "" },
+    { name: s?.platjaPalomeraName || "Platja de Sa Palomera", description: s?.platjaPalomeraDesc || "" },
+  ];
+
+  const difficultyColors = {
+    easy: "bg-green-100 text-green-800",
+    medium: "bg-yellow-100 text-yellow-800",
+    advanced: "bg-red-100 text-red-800",
+  };
+
   return (
     <div className="min-h-screen">
       <SEO
@@ -165,26 +241,24 @@ export default function LocationCostaBravaPage() {
             <div className="flex items-center justify-center mb-6">
               <MapPin className="w-8 h-8 text-primary mr-4" />
               <h1 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold text-foreground">
-                Alquiler de Barcos en la Costa Brava
+                {cb?.hero.title || "Alquiler de Barcos en la Costa Brava"}
               </h1>
             </div>
             <p className="text-lg text-muted-foreground mb-6 max-w-4xl mx-auto">
-              Descubre las mejores calas y playas de la Costa Brava a bordo de nuestros barcos.
-              Salidas desde el Puerto de Blanes, en el corazon de la costa catalana.
-              Barcos sin licencia desde 70 EUR/hora con gasolina y seguro incluidos.
+              {cb?.hero.subtitle || "Descubre las mejores calas y playas de la Costa Brava a bordo de nuestros barcos. Salidas desde el Puerto de Blanes, en el corazon de la costa catalana. Barcos sin licencia desde 70 EUR/hora con gasolina y seguro incluidos."}
             </p>
             <div className="flex flex-wrap gap-3 justify-center">
               <Badge variant="outline" className="text-primary border-primary">
                 <Anchor className="w-4 h-4 mr-2" />
-                Puerto de Blanes
+                {cb?.hero.badgePort || "Puerto de Blanes"}
               </Badge>
               <Badge variant="outline" className="text-primary border-primary">
                 <Users className="w-4 h-4 mr-2" />
-                4-7 personas
+                {cb?.hero.badgeCapacity || "4-7 personas"}
               </Badge>
               <Badge variant="outline" className="text-primary border-primary">
                 <Ship className="w-4 h-4 mr-2" />
-                Con y sin licencia
+                {cb?.hero.badgeLicense || "Con y sin licencia"}
               </Badge>
             </div>
           </div>
@@ -199,21 +273,13 @@ export default function LocationCostaBravaPage() {
           <Card className="mb-8">
             <CardContent className="p-6 md:p-8">
               <p className="text-muted-foreground text-lg leading-relaxed mb-4">
-                La <strong>Costa Brava</strong> es uno de los destinos nauticos mas espectaculares del Mediterraneo.
-                Con mas de 200 kilometros de litoral entre Blanes y la frontera francesa, ofrece una
-                combinacion unica de acantilados, calas de aguas cristalinas, pueblos medievales y
-                una naturaleza que solo se puede apreciar desde el mar.
+                {s?.introP1 || "La Costa Brava es uno de los destinos nauticos mas espectaculares del Mediterraneo."}
               </p>
               <p className="text-muted-foreground text-lg leading-relaxed mb-4">
-                En <strong>Costa Brava Rent a Boat</strong> te ofrecemos la forma mas facil de explorar
-                esta costa: alquila uno de nuestros barcos en el Puerto de Blanes y navega a tu ritmo.
-                No necesitas experiencia previa ni licencia nautica para la mayoria de nuestras embarcaciones.
-                Te proporcionamos 15 minutos de formacion y todo lo necesario para un dia perfecto en el mar.
+                {s?.introP2 || "En Costa Brava Rent a Boat te ofrecemos la forma mas facil de explorar esta costa."}
               </p>
               <p className="text-muted-foreground text-lg leading-relaxed">
-                Todos nuestros precios incluyen <strong>gasolina, seguro a todo riesgo y equipo de seguridad</strong>.
-                Sin costes ocultos. Reserva hoy y descubre por que miles de familias eligen la Costa Brava
-                cada verano para sus aventuras nauticas.
+                {s?.introP3 || "En los barcos sin licencia el precio incluye gasolina, seguro a todo riesgo y equipo de seguridad."}
               </p>
             </CardContent>
           </Card>
@@ -223,62 +289,168 @@ export default function LocationCostaBravaPage() {
             <CardHeader>
               <h2 className="flex items-center gap-3 text-2xl font-semibold leading-none tracking-tight">
                 <Star className="w-6 h-6 text-cta" />
-                Por que elegir la Costa Brava para alquilar un barco
+                {s?.whyChooseTitle || "Por que elegir la Costa Brava para alquilar un barco"}
               </h2>
             </CardHeader>
             <CardContent>
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
-                  <h3 className="font-semibold text-lg mb-3">Calas y playas inaccesibles por tierra</h3>
+                  <h3 className="font-semibold text-lg mb-3">{s?.covesTitle || "Calas y playas inaccesibles por tierra"}</h3>
                   <p className="text-muted-foreground mb-4">
-                    La Costa Brava esconde decenas de calas que solo se pueden visitar en barco.
-                    Desde Blanes, en solo 15-45 minutos llegaras a playas virgenes de aguas turquesa
-                    sin las aglomeraciones de las playas principales. Cala Brava, Cala Sant Francesc,
-                    Sa Forcanera y muchas mas te esperan.
+                    {s?.covesDesc || ""}
                   </p>
 
-                  <h3 className="font-semibold text-lg mb-3">Aguas tranquilas y protegidas</h3>
+                  <h3 className="font-semibold text-lg mb-3">{s?.calmWatersTitle || "Aguas tranquilas y protegidas"}</h3>
                   <p className="text-muted-foreground">
-                    La orientacion de la costa y sus numerosas bahias crean condiciones ideales
-                    para la navegacion, incluso para principiantes. Las aguas son calmas y
-                    cristalinas, perfectas para banarse, hacer snorkel o simplemente disfrutar
-                    del sol a bordo.
+                    {s?.calmWatersDesc || ""}
                   </p>
                 </div>
                 <div>
-                  <h3 className="font-semibold text-lg mb-3">Accesible desde Barcelona y Girona</h3>
+                  <h3 className="font-semibold text-lg mb-3">{s?.accessibleTitle || "Accesible desde Barcelona y Girona"}</h3>
                   <p className="text-muted-foreground mb-4">
-                    Nuestro puerto base en Blanes esta a solo 70 minutos de Barcelona y 35 minutos
-                    de Girona por autopista. Aparcamiento gratuito junto al puerto. La escapada
-                    perfecta para un dia o medio dia de aventura nautica.
+                    {s?.accessibleDesc || ""}
                   </p>
 
-                  <h3 className="font-semibold text-lg mb-3">Para todos los niveles</h3>
+                  <h3 className="font-semibold text-lg mb-3">{s?.allLevelsTitle || "Para todos los niveles"}</h3>
                   <p className="text-muted-foreground">
-                    Tanto si nunca has navegado como si eres un patron experimentado, tenemos
-                    el barco perfecto para ti. 5 barcos sin licencia para principiantes y
-                    embarcaciones con motor potente para quienes buscan explorar mas lejos.
-                    Formacion incluida en todos los alquileres.
+                    {s?.allLevelsDesc || ""}
                   </p>
                 </div>
               </div>
             </CardContent>
           </Card>
 
-          {/* Fleet Section */}
-          <div className="mb-8">
-            <Card>
-              <CardHeader>
-                <h2 className="flex items-center gap-3 text-2xl font-semibold leading-none tracking-tight">
-                  <Ship className="w-6 h-6 text-primary" />
-                  Nuestros Barcos
-                </h2>
-                <p className="text-muted-foreground mt-2">
-                  Elige entre nuestra flota de barcos sin licencia y con licencia. Todos salen desde el Puerto de Blanes.
-                </p>
-              </CardHeader>
-            </Card>
-          </div>
+          {/* Section A: Navigation Guide */}
+          <Card className="mb-8">
+            <CardHeader>
+              <h2 className="flex items-center gap-3 text-2xl font-semibold leading-none tracking-tight">
+                <NavigationIcon className="w-6 h-6 text-primary" />
+                {s?.navigationGuideTitle || "Guia de Navegacion por la Costa Brava"}
+              </h2>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-6">
+                {routes.map((route, index) => (
+                  <div key={index} className="border-b border-border pb-5 last:border-0 last:pb-0">
+                    <div className="flex items-center gap-3 mb-2">
+                      <Badge className={difficultyColors[route.difficulty]}>
+                        {route.difficulty === "easy" ? "Facil" : route.difficulty === "medium" ? "Media" : "Avanzada"}
+                      </Badge>
+                      <h3 className="font-semibold text-lg">{route.title}</h3>
+                    </div>
+                    <p className="text-muted-foreground">{route.description}</p>
+                  </div>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Section B: Boat Types Comparison */}
+          <Card className="mb-8">
+            <CardHeader>
+              <h2 className="flex items-center gap-3 text-2xl font-semibold leading-none tracking-tight">
+                <Ship className="w-6 h-6 text-primary" />
+                {s?.boatTypesTitle || "Tipos de Barcos para la Costa Brava"}
+              </h2>
+            </CardHeader>
+            <CardContent>
+              <div className="grid md:grid-cols-2 gap-6">
+                {/* No License Column */}
+                <div className="border border-primary rounded-lg p-6 bg-primary/5">
+                  <h3 className="font-bold text-xl mb-4 text-primary">{s?.noLicenseTitle || "Barcos Sin Licencia"}</h3>
+                  <ul className="space-y-3 mb-4">
+                    <li className="flex items-center gap-2">
+                      <Anchor className="w-4 h-4 text-primary flex-shrink-0" />
+                      <span className="text-sm">{s?.noLicensePower || "Hasta 15 CV de potencia"}</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <Users className="w-4 h-4 text-primary flex-shrink-0" />
+                      <span className="text-sm">{s?.noLicenseCapacity || "Maximo 5 personas a bordo"}</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <NavigationIcon className="w-4 h-4 text-primary flex-shrink-0" />
+                      <span className="text-sm">{s?.noLicenseNavigation || "Navegacion costera hasta 2 millas"}</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <Sun className="w-4 h-4 text-green-600 flex-shrink-0" />
+                      <span className="text-sm font-semibold text-green-700">{s?.noLicenseFuel || "Gasolina incluida en el precio"}</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <Star className="w-4 h-4 text-primary flex-shrink-0" />
+                      <span className="text-sm font-semibold">{s?.noLicensePrice || "Desde 70 EUR/hora"}</span>
+                    </li>
+                  </ul>
+                  <p className="text-muted-foreground text-sm">{s?.noLicenseDesc || ""}</p>
+                </div>
+
+                {/* Licensed Column */}
+                <div className="border border-border rounded-lg p-6">
+                  <h3 className="font-bold text-xl mb-4">{s?.licensedTitle || "Barcos Con Licencia"}</h3>
+                  <ul className="space-y-3 mb-4">
+                    <li className="flex items-center gap-2">
+                      <Anchor className="w-4 h-4 text-primary flex-shrink-0" />
+                      <span className="text-sm">{s?.licensedPower || "De 40 CV a 150 CV"}</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <Users className="w-4 h-4 text-primary flex-shrink-0" />
+                      <span className="text-sm">{s?.licensedCapacity || "Hasta 12 personas a bordo"}</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <NavigationIcon className="w-4 h-4 text-primary flex-shrink-0" />
+                      <span className="text-sm">{s?.licensedNavigation || "Navegacion en mar abierto sin limites"}</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <Sun className="w-4 h-4 text-orange-600 flex-shrink-0" />
+                      <span className="text-sm font-semibold text-orange-700">{s?.licensedFuel || "Combustible NO incluido (deposito aparte)"}</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <Star className="w-4 h-4 text-primary flex-shrink-0" />
+                      <span className="text-sm font-semibold">{s?.licensedPrice || "Desde 90 EUR/hora"}</span>
+                    </li>
+                  </ul>
+                  <p className="text-muted-foreground text-sm">{s?.licensedDesc || ""}</p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Section C: Best Coves */}
+          <Card className="mb-8">
+            <CardHeader>
+              <h2 className="flex items-center gap-3 text-2xl font-semibold leading-none tracking-tight">
+                <Waves className="w-6 h-6 text-primary" />
+                {s?.bestCovesTitle || "Las Mejores Calas de la Costa Brava en Barco"}
+              </h2>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-6">
+                {coves.map((cove, index) => (
+                  <div key={index} className="border-b border-border pb-5 last:border-0 last:pb-0">
+                    <div className="flex items-center gap-3 mb-2">
+                      <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
+                        <span className="text-primary font-bold text-sm">{index + 1}</span>
+                      </div>
+                      <h3 className="font-semibold text-lg">{cove.name}</h3>
+                    </div>
+                    <p className="text-muted-foreground ml-11">{cove.description}</p>
+                  </div>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Section D: Fleet / Pricing */}
+          <Card className="mb-8">
+            <CardHeader>
+              <h2 className="flex items-center gap-3 text-2xl font-semibold leading-none tracking-tight">
+                <Clock className="w-6 h-6 text-primary" />
+                {s?.pricingTitle || "Precios Alquiler Barco Costa Brava 2026"}
+              </h2>
+              <p className="text-muted-foreground mt-2">
+                {s?.noLicenseFuel || "Gasolina incluida en el precio"} (sin licencia) | {s?.licensedFuel || "Combustible NO incluido"} (con licencia)
+              </p>
+            </CardHeader>
+          </Card>
           <FleetSection />
 
           {/* Departure Ports */}
@@ -340,13 +512,38 @@ export default function LocationCostaBravaPage() {
             </CardContent>
           </Card>
 
+          {/* Cross-link to English version */}
+          <Card className="mb-8">
+            <CardContent className="py-4">
+              <div className="flex flex-wrap gap-3">
+                <Link href="/boat-rental-costa-brava" className="text-primary hover:underline flex items-center gap-1">
+                  <ChevronRight className="w-4 h-4" />
+                  {s?.crossLinkEnglish || "This page in English: Boat Rental Costa Brava"}
+                </Link>
+                <Link href="/barcos-sin-licencia" className="text-primary hover:underline flex items-center gap-1">
+                  <ChevronRight className="w-4 h-4" />
+                  Barcos sin licencia
+                </Link>
+                <Link href="/barcos-con-licencia" className="text-primary hover:underline flex items-center gap-1">
+                  <ChevronRight className="w-4 h-4" />
+                  Barcos con licencia
+                </Link>
+                <Link href="/precios" className="text-primary hover:underline flex items-center gap-1">
+                  <ChevronRight className="w-4 h-4" />
+                  Precios y tarifas
+                </Link>
+              </div>
+            </CardContent>
+          </Card>
+
           {/* CTA Section */}
           <Card className="bg-primary text-white">
             <CardContent className="p-8 text-center">
-              <h2 className="text-2xl font-bold mb-4">Reserva tu Barco en la Costa Brava</h2>
+              <h2 className="text-2xl font-bold mb-4">
+                {s?.ctaTitle || "Reserva tu Barco en la Costa Brava"}
+              </h2>
               <p className="text-lg mb-6 opacity-90">
-                Elige tu barco, fecha y horario. Gasolina, seguro y formacion incluidos.
-                Reserva por WhatsApp y recibe confirmacion inmediata.
+                {s?.ctaDescription || "Elige tu barco, fecha y horario. Gasolina, seguro y formacion incluidos en barcos sin licencia. Reserva por WhatsApp y recibe confirmacion inmediata."}
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button
@@ -356,7 +553,7 @@ export default function LocationCostaBravaPage() {
                   data-testid="button-book-costa-brava"
                 >
                   <Anchor className="w-5 h-5 mr-2" />
-                  Reservar por WhatsApp
+                  {s?.ctaButton || "Reservar por WhatsApp"}
                 </Button>
               </div>
             </CardContent>

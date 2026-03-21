@@ -322,15 +322,12 @@ app.use((req: Request, res: Response, next: NextFunction) => {
     res.status(404).json({ message: "Endpoint no encontrado" });
   });
 
+  // Sentry Express error handler — must be before our custom errorHandler
+  if (config.SENTRY_DSN) {
+    Sentry.setupExpressErrorHandler(app);
+  }
+
   // Global error handler (centralized in middleware/errorHandler.ts)
-  // Sentry capture for 5xx errors before passing to errorHandler
-  app.use((err: Error, _req: Request, res: Response, next: NextFunction) => {
-    const statusCode = err instanceof AppError ? err.statusCode : 500;
-    if (statusCode >= 500 && config.SENTRY_DSN) {
-      Sentry.captureException(err);
-    }
-    next(err);
-  });
   app.use(errorHandler);
 
   // importantly only setup vite in development and after

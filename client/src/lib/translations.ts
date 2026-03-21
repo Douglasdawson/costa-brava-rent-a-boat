@@ -295,6 +295,7 @@ export interface Translations {
     summaryTotal: string;
     close: string;
     pay: string;
+    sendRequest: string;
     error: string;
     missingFields: string;
     missingPersonalData: string;

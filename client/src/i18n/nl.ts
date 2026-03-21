@@ -297,6 +297,7 @@ export const nl: Translations = {
     summaryTotal: 'Totaal:',
     close: 'Sluiten',
     pay: 'Betalen',
+    sendRequest: 'Boeking aanvragen',
     error: 'Fout',
     missingFields: 'Vul alle verplichte velden in.',
     missingPersonalData: 'Vul alle verplichte persoonsgegevens in.',

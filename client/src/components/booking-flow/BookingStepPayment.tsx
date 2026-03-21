@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { CreditCard, Euro } from "lucide-react";
@@ -30,6 +31,8 @@ export function BookingStepPayment({
   availableExtras, isLoading, isProcessingPayment, calculateTotal,
   createQuote, handlePayment, t,
 }: BookingStepPaymentProps) {
+  const [termsAccepted, setTermsAccepted] = useState(false);
+
   return (
     <Card>
       <CardHeader>
@@ -166,15 +169,21 @@ export function BookingStepPayment({
               </div>
 
               <div className="flex items-center space-x-2 text-sm text-muted-foreground">
-                <input type="checkbox" id="terms" className="rounded" />
+                <input
+                  type="checkbox"
+                  id="terms"
+                  className="rounded"
+                  checked={termsAccepted}
+                  onChange={(e) => setTermsAccepted(e.target.checked)}
+                />
                 <label htmlFor="terms">
-                  {t.booking.iAcceptThe} <a href="#" className="text-primary hover:underline">{t.booking.termsAndConditions}</a> {t.booking.andThe} <a href="#" className="text-primary hover:underline">{t.booking.privacyPolicy}</a>
+                  {t.booking.iAcceptThe} <a href="/terms-conditions" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">{t.booking.termsAndConditions}</a> {t.booking.andThe} <a href="/privacy-policy" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">{t.booking.privacyPolicy}</a>
                 </label>
               </div>
 
               <Button
                 onClick={handlePayment}
-                disabled={isLoading || isProcessingPayment}
+                disabled={isLoading || isProcessingPayment || !termsAccepted}
                 className="w-full py-3 text-lg font-medium"
                 data-testid="button-pay-now"
               >
@@ -183,7 +192,7 @@ export function BookingStepPayment({
                 ) : (
                   <CreditCard className="w-5 h-5 mr-2" />
                 )}
-                {(isLoading || isProcessingPayment) ? t.booking.processingPayment : `${t.booking.pay || 'Pagar'} ${calculateTotal()}€`}
+                {(isLoading || isProcessingPayment) ? t.booking.processingPayment : `${t.booking.sendRequest || t.booking.pay || 'Solicitar reserva'} ${calculateTotal()}€`}
               </Button>
 
               <p className="text-xs text-muted-foreground text-center">

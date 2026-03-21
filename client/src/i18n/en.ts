@@ -297,6 +297,7 @@ export const en: Translations = {
     summaryTotal: 'Total:',
     close: 'Close',
     pay: 'Pay',
+    sendRequest: 'Request booking',
     error: 'Error',
     missingFields: 'Please complete all required fields.',
     missingPersonalData: 'Please complete all required personal data.',

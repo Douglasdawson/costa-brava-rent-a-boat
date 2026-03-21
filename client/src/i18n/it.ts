@@ -297,6 +297,7 @@ export const it: Translations = {
     summaryTotal: 'Totale:',
     close: 'Chiudi',
     pay: 'Paga',
+    sendRequest: 'Richiedi prenotazione',
     error: 'Errore',
     missingFields: 'Completa tutti i campi obbligatori.',
     missingPersonalData: 'Completa tutti i dati personali obbligatori.',

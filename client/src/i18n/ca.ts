@@ -297,6 +297,7 @@ export const ca: Translations = {
     summaryTotal: 'Total:',
     close: 'Tancar',
     pay: 'Pagar',
+    sendRequest: 'Sol·licitar reserva',
     error: 'Error',
     missingFields: 'Si us plau, completa tots els camps requerits.',
     missingPersonalData: 'Si us plau, completa totes les dades personals requerides.',

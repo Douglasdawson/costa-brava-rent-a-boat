@@ -273,6 +273,7 @@ export const es: Translations = {
     // Navigation & Actions  
     close: 'Cerrar',
     pay: 'Pagar',
+    sendRequest: 'Solicitar reserva',
     // Errors
     error: 'Error',
     missingFields: 'Por favor completa todos los campos requeridos.',

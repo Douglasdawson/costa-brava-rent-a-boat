@@ -297,6 +297,7 @@ export const fr: Translations = {
     summaryTotal: 'Total:',
     close: 'Fermer',
     pay: 'Payer',
+    sendRequest: 'Demander la reservation',
     error: 'Erreur',
     missingFields: 'Veuillez compléter tous les champs requis.',
     missingPersonalData: 'Veuillez compléter toutes les données personnelles requises.',

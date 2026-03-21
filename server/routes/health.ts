@@ -2,6 +2,7 @@ import type { Express } from "express";
 import { db } from "../db";
 import { sql } from "drizzle-orm";
 import Stripe from "stripe";
+import * as Sentry from "@sentry/node";
 
 export function registerHealthRoutes(app: Express) {
   app.get("/api/health", async (_req, res) => {
@@ -40,6 +41,12 @@ export function registerHealthRoutes(app: Express) {
       status: process.env.TWILIO_ACCOUNT_SID && process.env.TWILIO_AUTH_TOKEN
         ? "configured"
         : "not_configured",
+    };
+
+    // Check Sentry
+    const sentryClient = Sentry.getClient();
+    services.sentry = {
+      status: sentryClient ? "ok" : "not_configured",
     };
 
     const allOk = Object.values(services).every(

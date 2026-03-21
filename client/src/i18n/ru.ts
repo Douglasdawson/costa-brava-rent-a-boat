@@ -297,6 +297,7 @@ export const ru: Translations = {
     summaryTotal: 'Итого:',
     close: 'Закрыть',
     pay: 'Оплатить',
+    sendRequest: 'Запросить бронирование',
     error: 'Ошибка',
     missingFields: 'Пожалуйста, заполните все обязательные поля.',
     missingPersonalData: 'Пожалуйста, заполните все обязательные личные данные.',

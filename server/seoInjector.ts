@@ -1097,6 +1097,18 @@ const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
       description: "Рекреационная рыбалка на лодке из Бланеса. Сибас, дорада на Коста-Браве. Без лицензии на лодку от 70€/ч. 4.8★ Google. Бронируйте онлайн.",
     },
   },
+  "/boat-rental-blanes": {
+    en: {
+      title: `Boat Rental in Blanes | Costa Brava, Spain ${SEASON_YEAR} - No License from 70€/h`,
+      description: "Rent a boat in Blanes, Costa Brava. No license needed from 70€/h, fuel included. 8 boats for 4-12 people. April to October. 4.8★ Google. Book online.",
+      ogTitle: `Boat Rental in Blanes | Costa Brava, Spain ${SEASON_YEAR}`,
+      ogDescription: "Rent boats in Blanes, gateway to Costa Brava. No license needed. Fuel included. 8 boats, 4-12 people. Book your adventure.",
+    },
+    es: {
+      title: `Boat Rental in Blanes | Alquiler Barcos Costa Brava ${SEASON_YEAR}`,
+      description: "Alquila un barco en Blanes, Costa Brava. Sin licencia desde 70€/h, gasolina incluida. 8 barcos para 4-12 personas. Reserva online.",
+    },
+  },
 };
 
 // Cached base HTML to avoid re-reading from disk on every request
@@ -2508,6 +2520,7 @@ const VALID_SPA_ROUTES = new Set([
   "/precios",
   "/blog",
   "/barcos",
+  "/boat-rental-blanes",
 ]);
 
 // Dynamic route patterns

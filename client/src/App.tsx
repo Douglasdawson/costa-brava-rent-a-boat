@@ -65,6 +65,7 @@ const ActivityFamiliesPage = lazy(() => import("@/pages/activity-families"));
 const ActivitySunsetPage = lazy(() => import("@/pages/activity-sunset"));
 const ActivityFishingPage = lazy(() => import("@/pages/activity-fishing"));
 const AboutPage = lazy(() => import("@/pages/about"));
+const BoatRentalBlanesPage = lazy(() => import("@/pages/boat-rental-blanes"));
 
 const NotFound = lazy(() => import("@/pages/not-found"));
 const OnboardingPage = lazy(() => import("@/pages/OnboardingPage"));
@@ -423,6 +424,9 @@ function Router() {
       </Route>
       <Route path="/pesca-barco-blanes">
         {() => <Suspense fallback={<SecondaryRouteFallback />}><ActivityFishingPage /></Suspense>}
+      </Route>
+      <Route path="/boat-rental-blanes">
+        {() => <Suspense fallback={<SecondaryRouteFallback />}><BoatRentalBlanesPage /></Suspense>}
       </Route>
       <Route path="/about">
         {() => <Suspense fallback={<SecondaryRouteFallback />}><AboutPage /></Suspense>}

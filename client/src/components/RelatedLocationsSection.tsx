@@ -105,6 +105,42 @@ export default function RelatedLocationsSection({ currentLocation }: RelatedLoca
       color: "text-primary",
       bgColor: "bg-primary/5",
       group: "car"
+    },
+    {
+      id: "pineda",
+      name: "Barcos cerca de Pineda de Mar",
+      url: "/alquiler-barcos-pineda-de-mar",
+      description: "Desde Pineda de Mar al Puerto de Blanes en 18 minutos. Zona hotelera con acceso directo por tren o coche.",
+      duration: "18 min en coche",
+      highlights: ["Zona hotelera", "Tren RENFE R1", "Familias"],
+      icon: Car,
+      color: "text-primary",
+      bgColor: "bg-primary/5",
+      group: "car"
+    },
+    {
+      id: "palafolls",
+      name: "Barcos cerca de Palafolls",
+      url: "/alquiler-barcos-palafolls",
+      description: "Desde los campings de Palafolls al Puerto de Blanes en 12 minutos. La excursion perfecta desde tu camping.",
+      duration: "12 min en coche",
+      highlights: ["Campings", "Muy cerca", "Naturaleza"],
+      icon: Car,
+      color: "text-primary",
+      bgColor: "bg-primary/5",
+      group: "car"
+    },
+    {
+      id: "tordera",
+      name: "Barcos cerca de Tordera",
+      url: "/alquiler-barcos-tordera",
+      description: "Desde Tordera al Puerto de Blanes en 15 minutos. Puerta de entrada a la Costa Brava con parking facil.",
+      duration: "15 min en coche",
+      highlights: ["Tren 8 min", "Parking facil", "Interior"],
+      icon: Car,
+      color: "text-primary",
+      bgColor: "bg-primary/5",
+      group: "car"
     }
   ];
 
@@ -137,7 +173,10 @@ export default function RelatedLocationsSection({ currentLocation }: RelatedLoca
     'tossa': 'tossa',
     'malgrat': 'malgrat',
     'santaSusanna': 'santaSusanna',
-    'calella': 'calella'
+    'calella': 'calella',
+    'pineda': 'pineda',
+    'palafolls': 'palafolls',
+    'tordera': 'tordera'
   };
 
   // Filter out current location

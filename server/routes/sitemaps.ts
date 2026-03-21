@@ -192,7 +192,7 @@ export function registerSitemapRoutes(app: Express) {
       // changefreq hints help AI crawlers (Perplexity, ChatGPT) understand content freshness.
       sitemap += generateUrlEntry(baseUrl, "/", "1.0", null, SUPPORTED_LANGUAGES, "daily");
 
-      const locationSlugs = ["blanes", "lloret-de-mar", "tossa-de-mar", "malgrat-de-mar", "santa-susanna", "calella"];
+      const locationSlugs = ["blanes", "lloret-de-mar", "tossa-de-mar", "malgrat-de-mar", "santa-susanna", "calella", "pineda-de-mar", "palafolls", "tordera"];
       locationSlugs.forEach(slug => {
         sitemap += generateUrlEntry(baseUrl, `/alquiler-barcos-${slug}`, "0.7", null, SUPPORTED_LANGUAGES, "monthly");
       });

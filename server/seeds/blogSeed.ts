@@ -3663,10 +3663,706 @@ A sunset boat trip in Blanes is more than just an activity. It is one of those r
 
 [Book your sunset boat trip now](/barcos) and discover why the Costa Brava earned its name. If you have questions or want help choosing the perfect time slot, message us on [WhatsApp](https://wa.me/34611500372) and we will help you plan the perfect evening on the water.`,
   },
+
+  // ===== POST: Alquiler barco Lloret de Mar precios guia =====
+  {
+    title: "Alquiler de Barco en Lloret de Mar: Precios, Opciones y Como Llegar desde Blanes",
+    slug: "alquiler-barco-lloret-de-mar-precios-guia",
+    category: "Guias",
+    author: "Costa Brava Rent a Boat",
+    featuredImage: "/images/blog/rutas-barco-desde-blanes.jpg",
+    metaDescription: "Alquiler de barco en Lloret de Mar: precios desde 70 EUR/hora, como llegar desde Blanes, calas que puedes visitar y barcos disponibles sin licencia y con licencia.",
+    tags: ["alquiler barco lloret de mar", "barco lloret precio", "lloret de mar en barco", "lloret blanes barco"],
+    isPublished: true,
+    _publishedAt: new Date("2026-03-28T10:00:00Z"),
+    excerpt: "Lloret de Mar no tiene puerto de alquiler propio, pero desde el Puerto de Blanes estas a solo 25 minutos en barco. Te explicamos precios, opciones sin licencia y con licencia, y las calas que puedes descubrir por el camino.",
+    titleByLang: {
+      es: "Alquiler de Barco en Lloret de Mar: Precios, Opciones y Como Llegar desde Blanes",
+      en: "Boat Rental in Lloret de Mar: Prices, Options and How to Get There from Blanes",
+    },
+    excerptByLang: {
+      es: "Lloret de Mar no tiene puerto de alquiler propio, pero desde el Puerto de Blanes estas a solo 25 minutos en barco. Te explicamos precios, opciones sin licencia y con licencia, y las calas que puedes descubrir por el camino.",
+      en: "Lloret de Mar does not have its own rental port, but from Puerto de Blanes you are just 25 minutes away by boat. We explain prices, license-free and licensed options, and the coves you can discover along the way.",
+    },
+    content: `Si estas buscando alquilar un barco en Lloret de Mar, hay algo importante que debes saber: **Lloret no tiene un puerto de alquiler de embarcaciones de recreo**. La playa principal de Lloret es una bahia abierta sin instalaciones portuarias para alquiler turistico. Pero eso no significa que no puedas disfrutar de Lloret desde el mar. Todo lo contrario.
+
+El **Puerto de Blanes** esta a solo 10 minutos en coche o 15 minutos en autobus desde Lloret de Mar, y desde ahi puedes navegar hacia las calas mas bonitas de la costa, incluyendo las que estan frente a Lloret. En esta guia te explicamos todas las opciones, precios y lo que puedes ver por el camino.
+
+## Como llegar desde Lloret de Mar al Puerto de Blanes
+
+El Puerto de Blanes se encuentra en la parte sur del paseo maritimo de Blanes. Llegar desde Lloret es muy sencillo:
+
+- **En coche:** 10 minutos por la GI-682. Hay parking disponible junto al puerto (10 EUR/dia).
+- **En autobus:** La linea conecta Lloret con Blanes cada 15-20 minutos. El trayecto dura unos 15 minutos y el billete cuesta menos de 3 EUR.
+- **En taxi:** Unos 15-20 EUR desde el centro de Lloret.
+
+Una vez en el puerto, nos encontraras en el pantalon principal. Te recomendamos llegar **15 minutos antes** de la hora reservada para el briefing de seguridad.
+
+## Precios de alquiler de barco para ir a Lloret
+
+### Barcos sin licencia (desde 70 EUR/hora)
+
+No necesitas ningun titulo nautico. Te ensenamos a manejar el barco en un briefing de 10-15 minutos. **Gasolina, seguro y equipo de seguridad incluidos.**
+
+| Barco | Capacidad | Precio desde (temporada baja) | Ideal para |
+|-------|-----------|-------------------------------|------------|
+| [Astec 400](/barco/astec-400) | 4 personas | 70 EUR/hora | Parejas, mejor precio |
+| [Solar 450](/barco/solar-450) | 5 personas | 75 EUR/hora | Tomar el sol, solarium amplio |
+| [Remus 450](/barco/remus-450) | 5 personas | 75 EUR/hora | Familias con ninos, estabilidad |
+| [Astec 480](/barco/astec-480) | 5 personas | 80 EUR/hora | Premium, musica bluetooth |
+
+**Importante:** Los barcos sin licencia pueden navegar hasta **2 millas nauticas** de la costa (unos 3,7 km). Esto significa que desde Blanes puedes llegar comodamente hasta la **playa de Fenals**, que esta a unos 5 km del puerto. Fenals es la segunda playa de Lloret, mas tranquila y familiar que la playa principal.
+
+Sin embargo, **para llegar a la playa principal de Lloret de Mar** (que esta a unos 6 km del puerto de Blanes), la ruta costera supera el limite de 2 millas en algunos tramos. Para esa ruta necesitas un barco con licencia o nuestra excursion con capitan.
+
+### Barcos con licencia (desde 150 EUR/2 horas)
+
+Requieren titulacion nautica PER o PNB. **El combustible NO esta incluido** (se paga aparte al repostar).
+
+| Barco | Capacidad | Precio desde (temporada baja) | Motor |
+|-------|-----------|-------------------------------|-------|
+| [Mingolla Brava 19](/barco/mingolla-brava-19) | 6 personas | 150 EUR/2h | Mercury 80cv |
+| [Trimarchi 57S](/barco/trimarchi-57s) | 7 personas | 160 EUR/2h | Selva 110cv |
+| [Pacific Craft 625](/barco/pacific-craft-625) | 7 personas | 180 EUR/2h | Yamaha 115cv |
+
+Con un barco con licencia llegas a la playa de Lloret en **15 minutos** y puedes continuar hasta Tossa de Mar si quieres.
+
+### Excursion privada con capitan (desde 240 EUR/2 horas)
+
+Si no tienes licencia pero quieres un barco grande y llegar hasta Lloret o mas alla, nuestra [excursion privada con capitan](/barco/excursion-privada) es la solucion perfecta. Un patron profesional te lleva en el Pacific Craft 625 por las mejores calas. Tu solo te preocupas de disfrutar.
+
+## Que puedes ver en barco de Blanes a Lloret
+
+La ruta costera de Blanes hacia Lloret es una de las mas bonitas de la Costa Brava. Estas son las paradas que puedes hacer:
+
+### 1. Cala Sant Francesc (5 min desde el puerto)
+
+La primera parada y una de las mas impresionantes. Aguas turquesas, pinos hasta la orilla y un fondo marino espectacular para snorkel. Accesible con cualquier barco sin licencia.
+
+### 2. Cala Bona (7 min desde el puerto)
+
+Justo al lado de Sant Francesc, mas pequena y tranquila. Ideal para fondear en soledad, especialmente entre semana o a primera hora de la manana.
+
+### 3. Cala Brava (10 min desde el puerto)
+
+Una cala rocosa y salvaje con aguas cristalinas. Menos conocida que las anteriores, lo que la hace perfecta para quienes buscan tranquilidad absoluta. Excelente para snorkel.
+
+### 4. Cala Treumal (10 min desde el puerto)
+
+En el limite entre Blanes y Lloret, rodeada de vegetacion exuberante. Tiene un chiringuito con encanto accesible nadando desde el barco.
+
+### 5. Playa de Santa Cristina (12 min desde el puerto)
+
+Una playa de postal con la ermita de Santa Cristina en lo alto del acantilado. Arena dorada, pinos y aguas de un azul intenso. Uno de los paisajes mas fotografiados de la costa.
+
+### 6. Playa de Fenals (15 min desde el puerto)
+
+La playa familiar de Lloret. Mas tranquila que la playa principal, con aguas poco profundas y protegidas. **Este es el punto mas lejano al que puedes llegar comodamente con barco sin licencia.**
+
+### 7. Playa de Lloret (20-25 min desde el puerto)
+
+La gran playa de Lloret de Mar con el Castillo de Sa Caleta y la escultura de la Dona Marinera. Solo accesible con barco con licencia o excursion con capitan.
+
+## Tabla comparativa: sin licencia vs con licencia para ir a Lloret
+
+| | Sin licencia | Con licencia | Excursion con capitan |
+|---|---|---|---|
+| **Precio desde** | 70 EUR/h | 150 EUR/2h | 240 EUR/2h |
+| **Llegas a Fenals** | Si | Si | Si |
+| **Llegas a Lloret playa** | No | Si | Si |
+| **Combustible incluido** | Si | No | No |
+| **Necesitas titulo** | No | PER/PNB | No |
+| **Duracion recomendada** | 3-4 horas | 4-6 horas | 2-4 horas |
+| **Capacidad maxima** | 5 personas | 7 personas | 7 personas |
+
+## Duracion recomendada para una excursion a Lloret
+
+Si tu objetivo es **llegar hasta la zona de Lloret y disfrutar de las calas**, te recomendamos:
+
+- **Con barco sin licencia:** Minimo **3 horas**, idealmente **4 horas**. Esto te da tiempo para navegar hasta Fenals (15 min), fondear y banarte (1-1,5h), explorar alguna cala intermedia (30 min) y volver al puerto con calma.
+- **Con barco con licencia:** Minimo **4 horas** para llegar a Lloret playa, fondear, banarte y volver. Si quieres explorar varias calas, reserva **6-8 horas**.
+- **Excursion con capitan:** Con **2 horas** ya puedes hacer una ruta espectacular. El capitan conoce los mejores rincones y optimiza el tiempo.
+
+## Temporada y consejos meteorologicos
+
+- **Mejor epoca:** De junio a septiembre. El mar esta mas calmado y la temperatura del agua es perfecta para banarse.
+- **Mejor momento del dia:** Por la manana temprano (10:00-12:00) el mar suele estar como un plato. A partir de mediodia puede levantarse brisa de mar.
+- **Dias ideales:** Entre semana encontraras menos trafico maritimo y las calas mas vacias.
+- **Viento:** Si el parte anuncia tramontana (viento del norte), la ruta hacia Lloret estara mas protegida que la ruta norte hacia Tossa. Si hay levante (viento del este), mejor quedarse en las calas cercanas a Blanes.
+
+## Extras que puedes anadir
+
+Complementa tu experiencia con nuestros extras:
+
+- **Nevera con hielo:** 5 EUR (imprescindible en verano)
+- **Equipo de snorkel:** 7,50 EUR (las calas entre Blanes y Lloret tienen un fondo marino increible)
+- **Paddle surf:** 25 EUR (perfecto para explorar cuevas y rincones)
+- **Seascooter:** 50 EUR (propulsion submarina para snorkel avanzado)
+- **Parking junto al barco:** 10 EUR/dia
+
+## Como reservar
+
+1. **Elige tu barco** en nuestra [pagina de barcos](/barcos)
+2. **Selecciona fecha, hora y duracion** en el calendario
+3. **Anade extras** si quieres
+4. **Paga online** de forma segura con tarjeta
+5. **Recibe confirmacion** por email y WhatsApp
+6. **Ven al Puerto de Blanes** 15 minutos antes
+
+---
+
+Aunque Lloret de Mar no tiene puerto de alquiler propio, el Puerto de Blanes es tu puerta de entrada perfecta a toda la costa. Con barcos desde 70 EUR la hora y la posibilidad de llegar a Fenals sin licencia, no hay excusa para no descubrir Lloret desde el mar.
+
+[Reserva tu barco ahora](/barcos) o escribenos por [WhatsApp](https://wa.me/34611500372) si tienes dudas sobre que barco elegir para tu excursion a Lloret.`,
+  },
+
+  // ===== POST: Barco Tossa de Mar desde Blanes =====
+  {
+    title: "Tossa de Mar en Barco desde Blanes: Vila Vella, Calas Virgenes y Precios",
+    slug: "barco-tossa-de-mar-desde-blanes",
+    category: "Destinos",
+    author: "Costa Brava Rent a Boat",
+    featuredImage: "/images/blog/excursion-barco-tossa-de-mar.jpg",
+    metaDescription: "Llega a Tossa de Mar en barco desde Blanes: Vila Vella desde el mar, calas virgenes, precios desde 150 EUR y excursion con capitan desde 240 EUR.",
+    tags: ["tossa de mar barco", "barco blanes tossa", "vila vella barco", "excursion tossa de mar"],
+    isPublished: true,
+    _publishedAt: new Date("2026-03-30T10:00:00Z"),
+    excerpt: "La ruta de Blanes a Tossa de Mar en barco es una de las experiencias mas impresionantes de la Costa Brava. Vila Vella desde el mar, calas inaccesibles y aguas cristalinas. Te contamos todo: precios, barcos, ruta y consejos.",
+    titleByLang: {
+      es: "Tossa de Mar en Barco desde Blanes: Vila Vella, Calas Virgenes y Precios",
+      en: "Tossa de Mar by Boat from Blanes: Vila Vella, Hidden Coves and Prices",
+    },
+    excerptByLang: {
+      es: "La ruta de Blanes a Tossa de Mar en barco es una de las experiencias mas impresionantes de la Costa Brava. Vila Vella desde el mar, calas inaccesibles y aguas cristalinas.",
+      en: "The route from Blanes to Tossa de Mar by boat is one of the most impressive experiences on the Costa Brava. Vila Vella from the sea, hidden coves and crystal-clear waters.",
+    },
+    content: `Tossa de Mar es, probablemente, el pueblo mas bonito de la Costa Brava. Su recinto amurallado medieval, la Vila Vella, se levanta sobre un promontorio rocoso que se adentra en el mar, y la vista desde un barco es absolutamente espectacular. Si estas planeando visitar Tossa de Mar en barco desde Blanes, esta guia te explica todo lo que necesitas saber.
+
+## Puedo llegar a Tossa de Mar con un barco sin licencia?
+
+**La respuesta corta es no.** Tossa de Mar esta a unos 12 km del Puerto de Blanes siguiendo la costa. Los barcos sin licencia tienen un limite de navegacion de 2 millas nauticas (3,7 km) desde la costa, pero eso no es el problema principal. El problema es la **distancia y el tiempo**: con un motor de 15 CV, tardarias mas de 45 minutos en cada sentido navegando a velocidad maxima, lo que haria inviable una excursion de ida y vuelta en un alquiler de pocas horas.
+
+Para llegar a Tossa necesitas un **barco con licencia** (PER o PNB) o nuestra **excursion privada con capitan**.
+
+## Tiempo de navegacion Blanes - Tossa de Mar
+
+| Barco | Motor | Tiempo aprox. |
+|-------|-------|---------------|
+| [Mingolla Brava 19](/barco/mingolla-brava-19) | Mercury 80cv | 25-30 min |
+| [Trimarchi 57S](/barco/trimarchi-57s) | Selva 110cv | 20-25 min |
+| [Pacific Craft 625](/barco/pacific-craft-625) | Yamaha 115cv | 20-25 min |
+| [Excursion con capitan](/barco/excursion-privada) | Yamaha 115cv | 20-25 min |
+
+Con un barco con licencia, la travesia es rapida y comoda. En 25 minutos estas fondeando frente a las murallas de la Vila Vella, una imagen que no olvidaras.
+
+## Precios para ir a Tossa de Mar en barco
+
+### Barcos con licencia
+
+Requieren titulacion nautica PER o PNB. **El combustible NO esta incluido** y se paga aparte al repostar (calcula unos 30-50 EUR de gasolina para la ida y vuelta a Tossa, dependiendo del barco y la velocidad).
+
+| Barco | Capacidad | Precio desde (temporada baja) | Duracion recomendada |
+|-------|-----------|-------------------------------|----------------------|
+| [Mingolla Brava 19](/barco/mingolla-brava-19) | 6 personas | 150 EUR/2h | 6-8 horas |
+| [Trimarchi 57S](/barco/trimarchi-57s) | 7 personas | 160 EUR/2h | 6-8 horas |
+| [Pacific Craft 625](/barco/pacific-craft-625) | 7 personas | 180 EUR/2h | 6-8 horas |
+
+**Nuestra recomendacion:** Para una excursion a Tossa en condiciones, reserva **minimo 6 horas**, idealmente **8 horas** (dia completo). Dos horas son insuficientes: solo tendrias tiempo para ir y volver sin parar. Con 6-8 horas puedes navegar con calma, parar en varias calas por el camino, fondear frente a Tossa, banarte, comer a bordo y volver disfrutando de cada rincon.
+
+### Excursion privada con capitan
+
+Si no tienes licencia, nuestra [excursion privada con capitan](/barco/excursion-privada) es la mejor forma de llegar a Tossa. El capitan conoce cada cala, cada cueva y cada rincon secreto de la ruta.
+
+| Duracion | Precio desde (temporada baja) |
+|----------|-------------------------------|
+| 2 horas | 240 EUR |
+| 3 horas | 320 EUR |
+| 4 horas | 380 EUR |
+
+**Nota:** Con la excursion de 2 horas, el capitan adaptara la ruta para mostrarte lo maximo posible, pero probablemente no llegara hasta Tossa. Para llegar a Tossa y disfrutar de fondeo y bano, recomendamos **3-4 horas minimo**.
+
+## La ruta: que ver de Blanes a Tossa de Mar
+
+La navegacion de Blanes a Tossa es una sucesion de calas, acantilados y paisajes espectaculares. Estas son las paradas recomendadas:
+
+### Salida del Puerto de Blanes
+
+Desde el pantalon del puerto sales al mar abierto y pones rumbo norte. A tu izquierda, los acantilados del Jardi Botanic Marimurtra y las ultimas casas de Blanes.
+
+### Parada 1: Cala Sant Francesc (5 min)
+
+La primera cala importante. Aguas turquesas y un fondo marino perfecto para snorkel. Si llevas equipo, merece una parada rapida de 15-20 minutos.
+
+### Parada 2: Santa Cristina y Fenals (10-15 min)
+
+La playa de Santa Cristina con su ermita es preciosa desde el mar. Fenals es mas amplia y con aguas poco profundas. Buen punto para un primer bano.
+
+### Parada 3: Lloret de Mar (20 min)
+
+Pasas frente a la playa principal de Lloret. Desde el barco veras el Castillo de Sa Caleta en el extremo sur y la escultura de la Dona Marinera. No es necesario parar aqui si tu destino es Tossa, pero las vistas merecen la pena.
+
+### Parada 4: Cala Canyelles (25 min)
+
+La ultima cala importante antes de Tossa. Tiene un pequeno puerto deportivo y aguas muy limpias. Buena opcion para una parada si necesitas estirar las piernas.
+
+### Parada 5: Cala Pola (30-35 min)
+
+Una cala espectacular entre Lloret y Tossa, rodeada de acantilados cubiertos de pinos. Aguas increiblemente transparentes. Muchos dias la tendras casi para ti solo si llegas en barco.
+
+### Parada 6: Cala Giverola (35 min)
+
+Un anfiteatro natural de rocas y vegetacion con una playa de arena gruesa. El snorkel aqui es de los mejores de toda la costa. Cerca hay pequenas cuevas explorables en paddle surf o nadando.
+
+### Llegada: Tossa de Mar (40-45 min con paradas)
+
+Y por fin, Tossa. La vision de las **murallas de la Vila Vella** emergiendo del promontorio rocoso es una de las imagenes mas iconicas del Mediterraneo. Puedes fondear frente a la **Platja Gran** (la playa principal) o en la **Platja de Es Codolar**, una playa mas pequena justo al pie de las murallas.
+
+## Vila Vella desde el mar
+
+La Vila Vella de Tossa de Mar es el unico ejemplo de pueblo medieval fortificado que queda en la costa catalana. Desde el barco, la perspectiva es completamente diferente a la que se tiene desde tierra:
+
+- Las **murallas del siglo XII** se elevan directamente sobre las rocas del acantilado
+- Las **tres torres cilindricas** (Torre de les Hores, Torre d'en Jonama y Torre de Sa Guineu) se recortan contra el cielo
+- En la base, las rocas forman pequenas calas y cuevas solo accesibles desde el mar
+- Al atardecer, las murallas se tinen de un tono dorado espectacular
+
+Es, sin duda, uno de los momentos mas memorables de cualquier vacacion en la Costa Brava.
+
+## Donde fondear en Tossa de Mar
+
+Hay varias opciones para fondear frente a Tossa:
+
+- **Platja Gran:** La playa principal. Fondea a unos 50-100 metros de la orilla sobre arena. En verano puede haber bastantes barcos.
+- **Es Codolar:** Playa pequena al pie de la Vila Vella. Mas protegida y con menos barcos. El lugar mas fotografiado.
+- **Bahia norte:** Pasada la Vila Vella hacia el norte, hay varias calas rocosas tranquilas para fondear en soledad.
+
+**Consejo:** Llega antes de las 12:00 para conseguir buen sitio. En agosto, la zona de fondeo frente a Platja Gran se llena.
+
+## Consejos practicos para la ruta a Tossa
+
+### Combustible
+
+Recuerda que **el combustible NO esta incluido** en los barcos con licencia. Para la ruta ida y vuelta Blanes - Tossa:
+
+- **Mingolla Brava 19** (80cv): Calcula unos 30-40 EUR de gasolina
+- **Trimarchi 57S** (110cv): Calcula unos 40-50 EUR
+- **Pacific Craft 625** (115cv): Calcula unos 40-50 EUR
+
+El consumo varia segun la velocidad. Navegar a velocidad de crucero (no a maxima) reduce el consumo significativamente.
+
+### Que llevar
+
+- **Snorkel:** Las calas entre Blanes y Tossa tienen un fondo marino espectacular. Puedes alquilar equipo con nosotros (7,50 EUR)
+- **Comida y bebida:** Si reservas un dia completo, lleva comida para un picnic a bordo. Alquila nuestra nevera (5 EUR) para mantener las bebidas frias
+- **Proteccion solar:** Factor 50+ imprescindible. En el mar, la radiacion es mas intensa
+- **Toallas y ropa de recambio:** Despues de un dia en el agua, agradeceras ropa seca para la vuelta
+- **Calzado acuatico:** Para subir y bajar del barco comodamente
+
+### Meteorologia
+
+- **Comprueba el parte antes de salir.** La ruta a Tossa es mas expuesta que las calas cercanas a Blanes
+- **Si hay tramontana** (viento norte) fuerte, la ruta puede estar movida. Consulta con nosotros antes de salir
+- **El mar suele estar mas calmado** por la manana. Sal temprano y vuelve a primera hora de la tarde
+- **Olas de levante:** Si el parte anuncia olas del este superiores a 1 metro, mejor postponer la ruta a Tossa y quedarse en calas protegidas cerca de Blanes
+
+## Comparativa: barco propio vs excursion con capitan para ir a Tossa
+
+| | Barco con licencia | Excursion con capitan |
+|---|---|---|
+| **Precio desde** | 150 EUR/2h + combustible | 240 EUR/2h (combustible no incluido) |
+| **Necesitas licencia** | Si (PER/PNB) | No |
+| **Libertad de ruta** | Total | El capitan adapta a tus preferencias |
+| **Conocimiento local** | Depende de ti | El capitan conoce cada rincon |
+| **Ideal para** | Navegantes experimentados | Familias, celebraciones, primera vez |
+
+---
+
+La ruta de Blanes a Tossa de Mar en barco es una de las experiencias imprescindibles de la Costa Brava. Las murallas medievales de la Vila Vella vistas desde el mar, las calas virgenes por el camino y la libertad de fondear donde quieras hacen de esta excursion algo unico.
+
+[Reserva tu barco con licencia](/barcos-con-licencia) o nuestra [excursion privada con capitan](/barco/excursion-privada) y descubre Tossa de Mar como nunca antes la habias visto. Si tienes dudas sobre la ruta o las condiciones del mar, escribenos por [WhatsApp](https://wa.me/34611500372).`,
+  },
+
+  // ===== POST: Playas solo accesibles en barco Costa Brava =====
+  {
+    title: "7 Playas de la Costa Brava Solo Accesibles en Barco (Desde Blanes)",
+    slug: "playas-solo-accesibles-barco-costa-brava",
+    category: "Destinos",
+    author: "Costa Brava Rent a Boat",
+    featuredImage: "/images/blog/mejores-calas-costa-brava-en-barco.jpg",
+    metaDescription: "Descubre 7 playas y calas de la Costa Brava que solo puedes visitar en barco desde Blanes. Calas secretas, aguas cristalinas y snorkel increible.",
+    tags: ["playas accesibles barco costa brava", "calas secretas costa brava", "playas escondidas barco", "calas costa brava barco"],
+    isPublished: true,
+    _publishedAt: new Date("2026-04-01T10:00:00Z"),
+    excerpt: "Hay playas en la Costa Brava que solo puedes visitar si llegas en barco. Cuevas escondidas, calas sin nombre y rincones de agua cristalina entre Blanes y Tossa de Mar. Estas son las 7 mejores.",
+    titleByLang: {
+      es: "7 Playas de la Costa Brava Solo Accesibles en Barco (Desde Blanes)",
+      en: "7 Beaches on the Costa Brava Only Accessible by Boat (From Blanes)",
+    },
+    excerptByLang: {
+      es: "Hay playas en la Costa Brava que solo puedes visitar si llegas en barco. Cuevas escondidas, calas sin nombre y rincones de agua cristalina entre Blanes y Tossa de Mar.",
+      en: "There are beaches on the Costa Brava that you can only visit by boat. Hidden caves, unnamed coves and crystal-clear spots between Blanes and Tossa de Mar.",
+    },
+    content: `La Costa Brava no seria la Costa Brava sin sus calas escondidas. Pero muchas de las mejores no tienen acceso por tierra, o el camino es tan complicado que casi nadie llega. La unica forma real de disfrutarlas es desde el mar. Y desde el Puerto de Blanes tienes acceso directo a todas ellas.
+
+En esta guia te presentamos **7 playas y calas entre Blanes y Tossa de Mar que solo puedes visitar comodamente en barco**. Para cada una te explicamos como llegar, que barco necesitas y si merece la pena llevar equipo de snorkel.
+
+## 1. Cala Brava
+
+**Distancia desde el Puerto de Blanes:** 2 km (8 minutos en barco)
+**Barco necesario:** Cualquier barco sin licencia
+**Snorkel:** 9/10
+**Mejor hora:** 10:00 - 13:00 (el sol ilumina el fondo marino)
+
+Cala Brava es una de las joyas mas desconocidas de Blanes. Se encuentra entre Cala Sant Francesc y Cala Treumal, en un tramo de acantilados rocosos sin caminos de acceso facil. Existe un sendero desde la urbanizacion de arriba, pero es empinado, esta mal senalizado y en verano el calor lo hace poco recomendable.
+
+Desde el barco, simplemente fondeas sobre la arena y te tiras al agua. El fondo marino aqui es excepcional: posidonia oceanica, bancos de sargos y obladas, y rocas cubiertas de gorgonias a poca profundidad. Si solo puedes hacer snorkel en un sitio de toda la Costa Brava, que sea aqui.
+
+**Barco recomendado:** El [Astec 400](/barco/astec-400) (desde 70 EUR/hora) es perfecto para parejas que quieran esta cala en exclusiva. Si vais 4-5 personas, el [Remus 450](/barco/remus-450) o el [Solar 450](/barco/solar-450) (desde 75 EUR/hora) os daran mas espacio.
+
+## 2. Las cuevas entre Cala Sant Francesc y Santa Cristina
+
+**Distancia desde el Puerto de Blanes:** 2,5 km (10 minutos en barco)
+**Barco necesario:** Barco sin licencia (mejor uno pequeno para acercarse a las rocas)
+**Snorkel:** 8/10
+**Mejor hora:** Por la manana, con el sol rasante sobre el agua
+
+Entre Cala Sant Francesc y la playa de Santa Cristina hay un tramo de costa de unos 800 metros que la mayoria de barcas pasan de largo. Pero si reduces velocidad y te acercas a los acantilados, descubriras una serie de **pequenas cuevas y recovecos rocosos** donde el agua tiene un color turquesa increible.
+
+No son playas propiamente dichas: son formaciones rocosas con pequenas piscinas naturales donde puedes fondear a pocos metros y nadar entre las rocas. Algunas cuevas tienen profundidad suficiente para entrar nadando o en paddle surf.
+
+**Lo que hace este sitio especial** es que incluso en pleno agosto, cuando todas las calas conocidas estan llenas, estos rincones suelen estar vacios. La mayoria de barcos van directos a Cala Sant Francesc o Santa Cristina y se saltan este tramo.
+
+**Consejo:** Alquila un paddle surf (25 EUR) con nosotros. Es la mejor forma de explorar las cuevas desde dentro, ya que el barco no puede entrar.
+
+## 3. La cara oculta de Cala Boadella
+
+**Distancia desde el Puerto de Blanes:** 4 km (12 minutos en barco)
+**Barco necesario:** Barco sin licencia
+**Snorkel:** 7/10
+**Mejor hora:** Manana para snorkel, tarde para sol
+
+Cala Boadella es una playa conocida de Lloret de Mar con acceso por tierra, pero tiene un secreto: su **extremo norte** (el mas cercano a Blanes) tiene una seccion rocosa separada del resto de la playa por grandes bloques de piedra. Desde tierra es practicamente inaccesible, ya que hay que trepar por rocas resbaladizas.
+
+Desde el barco, simplemente fondeas frente a esta seccion y tienes tu propia playa semi-privada. Las rocas crean piscinas naturales poco profundas que son perfectas para ninos y para snorkel tranquilo. El fondo es de roca y posidonia, con muchos peces.
+
+**Dato curioso:** En los anos 70 y 80, esta seccion de la playa era una zona naturista. Hoy en dia es mixta, pero sigue manteniendo un ambiente mucho mas tranquilo y natural que el resto de Boadella.
+
+**Barco recomendado:** El [Astec 480](/barco/astec-480) (desde 80 EUR/hora) con su equipo de musica bluetooth convierte esta parada en una experiencia premium.
+
+## 4. Micro-calas entre Lloret y Tossa
+
+**Distancia desde el Puerto de Blanes:** 8-10 km (25-30 minutos en barco)
+**Barco necesario:** Barco con licencia (la distancia supera la zona practica de los sin licencia)
+**Snorkel:** 10/10
+**Mejor hora:** Todo el dia (las paredes rocosas crean sombra natural)
+
+El tramo de costa entre la playa de Lloret y Cala Canyelles es uno de los mas salvajes de toda la Costa Brava. Los acantilados caen directamente al mar, sin caminos, sin urbanizaciones, sin nada. Y en la base de esos acantilados hay **docenas de micro-calas sin nombre** que solo se pueden visitar en barco.
+
+Hablamos de rincones de 10-20 metros de ancho, con paredes rocosas verticales cubiertas de vegetacion, aguas tan cristalinas que ves el fondo a 8-10 metros y una vida marina excepcional. Algunos tienen pequenas cuevas submarinas que puedes explorar con snorkel.
+
+**Por que necesitas barco con licencia:** No es solo por la distancia. Estas micro-calas requieren un motor con potencia suficiente para maniobrar cerca de las rocas con seguridad. Los barcos con licencia, como la [Mingolla Brava 19](/barco/mingolla-brava-19) (desde 150 EUR/2h), tienen la maniobrabilidad necesaria.
+
+**Consejo del capitan:** Si contratas nuestra [excursion privada con capitan](/barco/excursion-privada) (desde 240 EUR/2h), el patron conoce exactamente donde estan las mejores micro-calas de este tramo. Es conocimiento que no sale en ningun mapa.
+
+## 5. Cala Pola
+
+**Distancia desde el Puerto de Blanes:** 10 km (30 minutos en barco con licencia)
+**Barco necesario:** Barco con licencia o excursion con capitan
+**Snorkel:** 9/10
+**Mejor hora:** 10:00 - 14:00
+
+Cala Pola se encuentra a medio camino entre Lloret y Tossa de Mar. Tecnicamente tiene un acceso por tierra a traves de un camino de ronda, pero el sendero es largo y empinado, lo que significa que la gran mayoria de visitantes no llega. En barco, estas ahi en media hora desde Blanes.
+
+La cala en si es un anfiteatro natural de rocas y pinos que llegan hasta el agua. La arena es gruesa y el agua tiene esa transparencia que solo encuentras en sitios sin rios cercanos. El snorkel en las rocas laterales es espectacular: peces de colores, erizos (cuidado donde pisas), y si tienes suerte, algun pulpo escondido entre las grietas.
+
+**Lo que la hace unica:** Al estar lejos de cualquier nucleo urbano y con acceso terrestre dificil, Cala Pola mantiene un ambiente de cala virgen incluso en pleno agosto. Es uno de esos sitios donde sientes que has descubierto algo que nadie mas conoce.
+
+**Barco recomendado:** El [Trimarchi 57S](/barco/trimarchi-57s) (desde 160 EUR/2h) combina velocidad para llegar rapido con espacio y confort para hasta 7 personas.
+
+## 6. Calas al norte de Tossa (zona Cala Giverola)
+
+**Distancia desde el Puerto de Blanes:** 11-12 km (35 minutos en barco con licencia)
+**Barco necesario:** Barco con licencia o excursion con capitan
+**Snorkel:** 10/10
+**Mejor hora:** Por la manana (el sol entra directo en la cala)
+
+Justo al norte de Tossa de Mar, pasada la Vila Vella, hay un tramo de costa con varias calas espectaculares. La mas conocida es **Cala Giverola**, un anfiteatro natural de rocas y pinos con un hotel en la parte alta, pero lo interesante esta en las **calas mas pequenas que la rodean**.
+
+Hay al menos 4-5 rincones rocosos sin nombre entre Cala Giverola y la Platja de Llorell que solo se ven desde el mar. Paredes de roca cubiertas de liquen naranja, aguas de color esmeralda y fondos marinos que rivalizan con los mejores del Mediterraneo.
+
+**Snorkel de nivel mundial:** Las rocas submarinas al norte de Tossa estan cubiertas de gorgonias rojas y amarillas. Es uno de los mejores puntos de snorkel de toda la Costa Brava. Si te gusta la biologia marina, este tramo es imprescindible.
+
+**Barco recomendado:** El [Pacific Craft 625](/barco/pacific-craft-625) (desde 180 EUR/2h) es nuestra mejor embarcacion y la mas comoda para un dia completo explorando esta zona. Con solárium doble, mesa para comer a bordo y ducha de agua dulce, es como tener tu propio yate privado.
+
+## 7. Los rincones secretos del capitan
+
+**Distancia desde el Puerto de Blanes:** Variable
+**Barco necesario:** Excursion privada con capitan
+**Snorkel:** Variable (el capitan te lleva al mejor sitio del dia)
+**Mejor hora:** Cuando el capitan diga
+
+Esta ultima entrada no es un lugar concreto, sino una experiencia. Nuestro patron profesional lleva anos navegando esta costa y conoce rincones que no aparecen en ninguna guia, ninguna web y ninguna app. Pequenas cuevas donde el agua brilla azul electrico, rocas donde se concentran bancos de peces enormes, corrientes que crean piscinas de agua caliente junto a la costa.
+
+Lo mas interesante es que **el mejor sitio cambia cada dia**. Depende del viento, la corriente, la hora y la epoca del ano. El capitan lee las condiciones del dia y te lleva al rincon que estara perfecto en ese momento.
+
+**Que incluye la excursion:** El [capitan te lleva en el Pacific Craft 625](/barco/excursion-privada), un barco de 6,24 metros con capacidad para 7 personas. Desde 240 EUR por 2 horas. El capitan adapta la ruta a tus preferencias: snorkel, calas virgenes, vistas de Vila Vella o un mix de todo.
+
+**Para quien es ideal:** Familias con ninos (el capitan se encarga de todo), celebraciones (cumpleanos, aniversarios), y cualquiera que quiera la experiencia mas exclusiva y personalizada de la costa.
+
+## Que barco necesito? Resumen rapido
+
+| Playa/Cala | Sin licencia | Con licencia | Excursion capitan |
+|------------|:---:|:---:|:---:|
+| 1. Cala Brava | Si | Si | Si |
+| 2. Cuevas Sant Francesc - Santa Cristina | Si | Si | Si |
+| 3. Cala Boadella (cara oculta) | Si | Si | Si |
+| 4. Micro-calas Lloret - Tossa | No | Si | Si |
+| 5. Cala Pola | No | Si | Si |
+| 6. Calas norte de Tossa | No | Si | Si |
+| 7. Rincones secretos del capitan | No | No | Si |
+
+## Extras imprescindibles para estas calas
+
+Si tu plan es explorar calas escondidas, estos son los extras que recomendamos:
+
+- **Equipo de snorkel** (7,50 EUR): Absolutamente imprescindible. Estas calas tienen el mejor fondo marino de la Costa Brava.
+- **Paddle surf** (25 EUR): Para entrar en cuevas y explorar rincones donde el barco no llega.
+- **Seascooter** (50 EUR): Propulsion submarina para cubrir mas distancia haciendo snorkel. Espectacular en las micro-calas entre Lloret y Tossa.
+- **Nevera** (5 EUR): Imprescindible para mantener agua y bebidas frias todo el dia.
+- **Adventure Pack** (75 EUR): Incluye nevera + snorkel + paddle surf + seascooter. El pack completo para un dia de exploracion.
+
+## Consejos finales
+
+- **Reserva para dia completo** si quieres visitar las calas mas lejanas (puntos 4-7). Necesitas 6-8 horas minimo.
+- **Sal temprano.** Las calas estan mas vacias y el mar mas calmado por la manana.
+- **Lleva comida.** En estas calas no hay chiringuitos ni servicios. Es parte de su encanto.
+- **Respeta el medio ambiente.** No dejes basura, no toques la posidonia y no ancles sobre praderas de posidonia (busca fondos de arena).
+- **Proteccion solar.** En calas con paredes rocosas la reflexion del agua multiplica la radiacion UV.
+
+---
+
+La Costa Brava tiene cientos de calas, pero las que solo puedes visitar en barco son las que realmente merecen ese nombre de "brava". Salvajes, cristalinas y con la sensacion de ser el unico ser humano en kilometros.
+
+[Reserva tu barco](/barcos) y descubre las calas que ningun turista a pie podra visitar jamas. O dejate llevar por nuestro [capitan experto](/barco/excursion-privada) y conoce rincones que no salen en ninguna guia.`,
+  },
+
+  // ===== POST: Alquiler barco cumpleanos despedida Costa Brava =====
+  {
+    title: "Cumpleanos y Celebraciones en Barco: Guia para Eventos en la Costa Brava",
+    slug: "alquiler-barco-cumpleanos-despedida-costa-brava",
+    category: "Aventuras",
+    author: "Costa Brava Rent a Boat",
+    featuredImage: "/images/blog/excursiones-barco-grupos-eventos-blanes.jpg",
+    metaDescription: "Organiza tu cumpleanos, despedida de soltera o celebracion en barco en la Costa Brava. Barcos para grupos, extras, precios y consejos practicos.",
+    tags: ["barco cumpleanos costa brava", "despedida soltera barco blanes", "celebracion barco", "fiesta barco costa brava"],
+    isPublished: true,
+    _publishedAt: new Date("2026-04-03T10:00:00Z"),
+    excerpt: "Cumpleanos, despedida de soltera, aniversario o simplemente una celebracion especial: un barco privado en la Costa Brava es la forma mas original y memorable de hacerlo. Te explicamos todo: barcos, precios, extras y consejos.",
+    titleByLang: {
+      es: "Cumpleanos y Celebraciones en Barco: Guia para Eventos en la Costa Brava",
+      en: "Birthday and Celebration Boat Trips: Guide for Events on the Costa Brava",
+    },
+    excerptByLang: {
+      es: "Cumpleanos, despedida de soltera, aniversario o simplemente una celebracion especial: un barco privado en la Costa Brava es la forma mas original y memorable de hacerlo.",
+      en: "Birthday, hen party, anniversary or simply a special celebration: a private boat on the Costa Brava is the most original and memorable way to do it.",
+    },
+    content: `Hay celebraciones que se olvidan al dia siguiente y hay celebraciones que recuerdas toda la vida. Un cumpleanos fondeados en una cala de agua cristalina, una despedida de soltera con musica y banos en el Mediterraneo, un aniversario viendo el atardecer desde el mar. En la Costa Brava, un barco privado convierte cualquier evento en algo extraordinario.
+
+En esta guia te explicamos como organizar tu celebracion perfecta en barco desde el Puerto de Blanes: que barco elegir, cuanto cuesta, que extras anadir y todos los consejos practicos para que todo salga perfecto.
+
+## El mejor barco para celebraciones y grupos
+
+### Para grupos grandes (6-7 personas): Pacific Craft 625
+
+El [Pacific Craft 625](/barco/pacific-craft-625) es nuestra embarcacion estrella para celebraciones. Con **6,24 metros de eslora** y capacidad para **7 personas**, ofrece todo lo que necesitas para un evento en el mar:
+
+- **Solarium doble** (proa y popa) para tomar el sol todo el grupo
+- **Mesa central** para poner comida, bebida o la tarta de cumpleanos
+- **Ducha de agua dulce** para quitarse la sal despues de cada bano
+- **Motor Yamaha 115cv** para llegar a las mejores calas rapidamente
+- **Bluetooth y altavoces** para poner vuestra musica favorita
+
+**Precios desde:**
+| Duracion | Temporada baja | Temporada media (julio) | Temporada alta (agosto) |
+|----------|---------------|------------------------|------------------------|
+| 2 horas | 180 EUR | 200 EUR | 220 EUR |
+| 4 horas | 250 EUR | 280 EUR | 320 EUR |
+| 8 horas | 300 EUR | 360 EUR | 420 EUR |
+
+**Requiere licencia nautica** (PER o PNB). Si nadie del grupo tiene licencia, la excursion con capitan es vuestra opcion.
+
+### Para grupos grandes sin licencia: Excursion con capitan
+
+La [excursion privada con capitan](/barco/excursion-privada) es la opcion perfecta para celebraciones donde **nadie tiene licencia nautica**. Un patron profesional os lleva en el Pacific Craft 625 por las mejores calas mientras vosotros solo os preocupais de pasarlo bien.
+
+**Precios desde:**
+| Duracion | Temporada baja | Temporada media (julio) | Temporada alta (agosto) |
+|----------|---------------|------------------------|------------------------|
+| 2 horas | 240 EUR | 260 EUR | 280 EUR |
+| 3 horas | 320 EUR | 340 EUR | 360 EUR |
+| 4 horas | 380 EUR | 400 EUR | 420 EUR |
+
+**Ventajas para celebraciones:**
+- No necesitais licencia
+- El capitan se encarga de la navegacion y el fondeo
+- Conoce las mejores calas para cada tipo de celebracion
+- Podeis dedicar toda vuestra atencion a disfrutar
+
+### Para grupos medianos (5 personas): Astec 480
+
+Si sois un grupo de hasta 5 personas, el [Astec 480](/barco/astec-480) es una excelente opcion **sin necesidad de licencia**:
+
+- **Musica bluetooth** integrada
+- **Solarium acolchado** amplio
+- **Gasolina incluida** (sin sorpresas al final)
+- Desde **80 EUR/hora** en temporada baja
+
+El Astec 480 es especialmente popular para cumpleanos intimos y aniversarios de pareja o grupos pequenos.
+
+### Para parejas o grupos de 4: Astec 400
+
+El [Astec 400](/barco/astec-400) es la opcion mas economica, perfecta para un aniversario romantico o un cumpleanos intimo:
+
+- Capacidad para 4 personas
+- **Sin licencia** necesaria
+- Desde **70 EUR/hora** en temporada baja
+- Gasolina, seguro y equipo incluidos
+
+## Que se puede hacer en una celebracion en barco
+
+### Fondear en una cala privada
+
+Lo mejor de un barco es que puedes elegir tu propia "playa privada". Desde el puerto de Blanes tienes decenas de calas accesibles. El capitan o nuestro equipo te recomendaran la mejor cala del dia segun el viento y las condiciones.
+
+Fondeais el barco, os tirais al agua, nadais, haceis snorkel y disfrutais de la cala como si fuera vuestra. Sin toallas apinadas, sin sombrillas y sin ruido.
+
+### Musica y ambiente
+
+Los barcos [Astec 480](/barco/astec-480), [Mingolla Brava 19](/barco/mingolla-brava-19), [Trimarchi 57S](/barco/trimarchi-57s) y [Pacific Craft 625](/barco/pacific-craft-625) tienen **equipo de musica bluetooth**. Conectais vuestro movil y poneis vuestra playlist favorita. Musica sonando mientras fondeais en una cala de agua turquesa: asi se celebra en la Costa Brava.
+
+### Picnic a bordo
+
+Los barcos con licencia y la excursion con capitan tienen **mesa** donde podeis montar un picnic completo. Quesos, embutido, fruta, una botella de cava y la tarta de cumpleanos. Alquilad nuestra nevera (5 EUR) para mantener todo fresco.
+
+**Consejo:** Llevad la comida en tuppers estables y la tarta en un recipiente rigido y bien cerrado. El mar puede moverse, asi que evitad envases abiertos.
+
+### Actividades acuaticas
+
+Anadid diversión con nuestros extras:
+
+- **Paddle surf** (25 EUR): Perfecto para competiciones amistosas o para explorar cuevas cercanas
+- **Seascooter** (50-60 EUR): Propulsion submarina para snorkel. Diversion garantizada para todos
+- **Equipo de snorkel** (7,50 EUR): Las calas de la Costa Brava tienen un fondo marino espectacular
+- **GoPro** (30 EUR): Grabad toda la experiencia bajo el agua y sobre cubierta
+
+### El Adventure Pack
+
+Para celebraciones, recomendamos nuestro **Adventure Pack** por **75 EUR**:
+- Nevera con hielo
+- Equipo de snorkel
+- Paddle surf
+- Seascooter
+
+Es el complemento perfecto para un dia completo de celebracion en el mar.
+
+## Ideas para cada tipo de celebracion
+
+### Cumpleanos
+
+- **Barco recomendado:** [Pacific Craft 625](/barco/pacific-craft-625) o [excursion con capitan](/barco/excursion-privada)
+- **Duracion:** 4 horas minimo
+- **Ruta:** Salida del puerto, cala para bano y picnic, vuelta con musica
+- **Toque especial:** Llevad la tarta en un tupper rigido, cuchillo de plastico y platos. Cantad el cumpleanos feliz fondeados en una cala. Momento inolvidable.
+
+### Despedida de soltera o soltero
+
+- **Barco recomendado:** [Excursion con capitan](/barco/excursion-privada) (nadie se preocupa de conducir)
+- **Duracion:** 3-4 horas
+- **Ruta:** El capitan os lleva a las calas mas espectaculares
+- **Toque especial:** Decorad el barco con globos y carteles (nada que pueda salir volando al mar). Musica, banos y mucho paddle surf.
+
+### Aniversario romantico
+
+- **Barco recomendado:** [Astec 400](/barco/astec-400) o [Solar 450](/barco/solar-450)
+- **Duracion:** 2-3 horas, idealmente al atardecer
+- **Ruta:** Cala Sant Francesc, fondear y disfrutar de la tranquilidad
+- **Toque especial:** Llevad una botella de cava y algo para picar. El atardecer desde una cala sin nadie alrededor es puro romanticismo.
+
+### Reunion familiar
+
+- **Barco recomendado:** [Astec 480](/barco/astec-480) o [Remus 450](/barco/remus-450) (sin licencia, facil para todos)
+- **Duracion:** 3-4 horas
+- **Ruta:** Calas cercanas con aguas poco profundas, perfectas para ninos
+- **Toque especial:** El paddle surf es un exito total con ninos y adolescentes. La nevera con bebidas frias mantiene a todos contentos.
+
+## Lo que dicen nuestros clientes
+
+Nuestros clientes valoran especialmente las celebraciones en barco. Con mas de **307 resenas en Google** y una puntuacion media de **4,8 estrellas**, estos son algunos comentarios reales de clientes que celebraron eventos con nosotros:
+
+- "Hicimos la despedida de soltera de mi amiga y fue el mejor plan que hemos hecho nunca. El capitan nos llevo a unas calas preciosas."
+- "Celebramos el cumpleanos de mi hijo de 10 anos. Los ninos no querian volver al puerto."
+- "Aniversario de boda perfecto. Cava, atardecer y una cala para nosotros solos."
+- "Grupo de 7 amigos, dia completo. La mejor experiencia de nuestras vacaciones en la Costa Brava."
+
+## Consejos practicos para celebraciones en barco
+
+### Reserva con antelacion
+
+Las celebraciones requieren planificacion. En temporada alta (julio-agosto), los barcos grandes se reservan con semanas de antelacion, especialmente para fines de semana. **Reserva con al menos 7-10 dias** de margen.
+
+### Elige el horario de manana
+
+Para celebraciones, recomendamos el **slot de manana** (10:00 - 14:00) por varias razones:
+- El mar esta mas calmado (menos probabilidad de mareo)
+- Las calas estan mas vacias
+- La luz es perfecta para fotos
+- Despues podeis seguir la celebracion en tierra por la tarde
+
+Si prefieres **atardecer**, reserva el ultimo slot del dia. Los atardeceres desde el barco son espectaculares, pero el mar puede estar mas movido por la tarde.
+
+### Designa un patron sobrio
+
+Si alquilais un barco con licencia y planeais beber alcohol, **la persona que conduce el barco NO puede beber**. Es la ley, es sentido comun y es por vuestra seguridad. Si todos quereis disfrutar sin restricciones, la [excursion con capitan](/barco/excursion-privada) es la opcion: el patron profesional conduce y vosotros celebrais.
+
+### Proteccion solar
+
+En el mar, la radiacion solar se multiplica por la reflexion del agua. Usad **factor 50+**, renovadlo cada 2 horas y no olvideis cuello, orejas y empeines de los pies. Un dia de celebracion arruinado por quemaduras solares no es un buen recuerdo.
+
+### Que llevar
+
+- Proteccion solar y gorra
+- Toallas
+- Comida y bebida (en tuppers y envases cerrados)
+- Tarta en recipiente rigido
+- Ropa de recambio seca
+- Funda impermeable para moviles
+- Calzado acuatico
+- Buen humor
+
+### Que NO llevar
+
+- Objetos que se lleve el viento (globos de helio, confeti suelto)
+- Cristal (usar vasos y platos de plastico)
+- Demasiado equipaje (el espacio en un barco es limitado)
+
+## Como reservar tu celebracion
+
+1. **Elige barco y duracion** en nuestra [pagina de barcos](/barcos)
+2. **Anade extras** (Adventure Pack recomendado para grupos)
+3. **Paga online** con tarjeta de forma segura
+4. **Escribenos por [WhatsApp](https://wa.me/34611500372)** si quieres planificar algo especial o tienes peticiones
+5. **Presentaos en el puerto** 15 minutos antes con todo lo necesario
+
+---
+
+Una celebracion en barco en la Costa Brava no es solo un plan original: es una experiencia que vuestro grupo recordara durante anos. El mar, las calas, la musica, los banos y esa sensacion de libertad total hacen que cualquier evento sea infinitamente mejor sobre el agua.
+
+[Reserva tu barco para la proxima celebracion](/barcos) o contactanos por [WhatsApp](https://wa.me/34611500372) para que te ayudemos a planificar el evento perfecto.`,
+  },
 ];
 
 /**
- * Seeds the database with 24 SEO blog posts.
+ * Seeds the database with 28 SEO blog posts.
  * Handles duplicate slugs gracefully by upserting existing posts.
  * After creation, updates publishedAt to the staggered date.
  */

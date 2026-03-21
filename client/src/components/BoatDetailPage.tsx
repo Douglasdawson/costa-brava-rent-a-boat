@@ -66,6 +66,436 @@ import { trackMetaViewContent } from "@/utils/meta-pixel";
 import { trackViewItem } from "@/utils/analytics";
 import { useScrollDepthTracking } from "@/hooks/useScrollDepthTracking";
 
+// Translation map for boat data strings that come from the DB in Spanish
+const boatTextTranslations: Record<string, Record<string, string>> = {
+  // === Subtitles (9 unique) ===
+  "Sin licencia · 5 personas · Para disfrutar del sol": {
+    en: "No licence required · 5 people · For sun lovers",
+    fr: "Sans permis · 5 personnes · Pour profiter du soleil",
+    de: "Ohne Fuehrerschein · 5 Personen · Zum Sonnenbaden",
+    nl: "Geen vaarbewijs · 5 personen · Voor zonliefhebbers",
+    it: "Senza patente · 5 persone · Per gli amanti del sole",
+    ru: "Bez licenzii · 5 chelovek · Dlya lyubitelej solnca",
+    ca: "Sense llicencia · 5 persones · Per gaudir del sol",
+  },
+  "Sin licencia · 5 personas · El favorito de parejas y familias": {
+    en: "No licence required · 5 people · Couples & families favourite",
+    fr: "Sans permis · 5 personnes · Le prefere des couples et familles",
+    de: "Ohne Fuehrerschein · 5 Personen · Liebling von Paaren und Familien",
+    nl: "Geen vaarbewijs · 5 personen · Favoriet van koppels en gezinnen",
+    it: "Senza patente · 5 persone · Il preferito di coppie e famiglie",
+    ru: "Bez licenzii · 5 chelovek · Ljubimyj u par i semej",
+    ca: "Sense llicencia · 5 persones · El favorit de parelles i families",
+  },
+  "Sin licencia · 5 personas · Disponibilidad extra": {
+    en: "No licence required · 5 people · Extra availability",
+    fr: "Sans permis · 5 personnes · Disponibilite supplementaire",
+    de: "Ohne Fuehrerschein · 5 Personen · Zusaetzliche Verfuegbarkeit",
+    nl: "Geen vaarbewijs · 5 personen · Extra beschikbaarheid",
+    it: "Senza patente · 5 persone · Disponibilita extra",
+    ru: "Bez licenzii · 5 chelovek · Dopolnitel'naya dostupnost'",
+    ca: "Sense llicencia · 5 persones · Disponibilitat extra",
+  },
+  "Sin licencia · 4 personas · El mejor precio por persona": {
+    en: "No licence required · 4 people · Best price per person",
+    fr: "Sans permis · 4 personnes · Le meilleur prix par personne",
+    de: "Ohne Fuehrerschein · 4 Personen · Bester Preis pro Person",
+    nl: "Geen vaarbewijs · 4 personen · Beste prijs per persoon",
+    it: "Senza patente · 4 persone · Il miglior prezzo a persona",
+    ru: "Bez licenzii · 4 cheloveka · Luchshaya cena za cheloveka",
+    ca: "Sense llicencia · 4 persones · El millor preu per persona",
+  },
+  "Sin licencia · 5 personas · Premium con bluetooth": {
+    en: "No licence required · 5 people · Premium with bluetooth",
+    fr: "Sans permis · 5 personnes · Premium avec bluetooth",
+    de: "Ohne Fuehrerschein · 5 Personen · Premium mit Bluetooth",
+    nl: "Geen vaarbewijs · 5 personen · Premium met bluetooth",
+    it: "Senza patente · 5 persone · Premium con bluetooth",
+    ru: "Bez licenzii · 5 chelovek · Premium s bluetooth",
+    ca: "Sense llicencia · 5 persones · Premium amb bluetooth",
+  },
+  "Con licencia · 6 personas · Lloret en 15 min, Tossa en 30": {
+    en: "Licence required · 6 people · Lloret in 15 min, Tossa in 30",
+    fr: "Avec permis · 6 personnes · Lloret en 15 min, Tossa en 30",
+    de: "Mit Fuehrerschein · 6 Personen · Lloret in 15 Min, Tossa in 30",
+    nl: "Vaarbewijs vereist · 6 personen · Lloret in 15 min, Tossa in 30",
+    it: "Con patente · 6 persone · Lloret in 15 min, Tossa in 30",
+    ru: "S licenziej · 6 chelovek · Lloret za 15 min, Tossa za 30",
+    ca: "Amb llicencia · 6 persones · Lloret en 15 min, Tossa en 30",
+  },
+  "Con licencia · 7 personas · Adrenalina para grupos": {
+    en: "Licence required · 7 people · Adrenaline for groups",
+    fr: "Avec permis · 7 personnes · Adrenaline pour les groupes",
+    de: "Mit Fuehrerschein · 7 Personen · Adrenalin fuer Gruppen",
+    nl: "Vaarbewijs vereist · 7 personen · Adrenaline voor groepen",
+    it: "Con patente · 7 persone · Adrenalina per gruppi",
+    ru: "S licenziej · 7 chelovek · Adrenalin dlya grupp",
+    ca: "Amb llicencia · 7 persones · Adrenalina per a grups",
+  },
+  "Con licencia · 7 personas · La experiencia de lujo": {
+    en: "Licence required · 7 people · The luxury experience",
+    fr: "Avec permis · 7 personnes · L'experience de luxe",
+    de: "Mit Fuehrerschein · 7 Personen · Das Luxus-Erlebnis",
+    nl: "Vaarbewijs vereist · 7 personen · De luxe ervaring",
+    it: "Con patente · 7 persone · L'esperienza di lusso",
+    ru: "S licenziej · 7 chelovek · Roskoshnyj opyt",
+    ca: "Amb llicencia · 7 persones · L'experiencia de luxe",
+  },
+  "Con patrón · 7 personas · Experiencia VIP": {
+    en: "With skipper · 7 people · VIP experience",
+    fr: "Avec skipper · 7 personnes · Experience VIP",
+    de: "Mit Skipper · 7 Personen · VIP-Erlebnis",
+    nl: "Met schipper · 7 personen · VIP-ervaring",
+    it: "Con skipper · 7 persone · Esperienza VIP",
+    ru: "S shkhiperom · 7 chelovek · VIP-opyt",
+    ca: "Amb patro · 7 persones · Experiencia VIP",
+  },
+
+  // === Included items (6 unique) ===
+  "IVA": {
+    en: "VAT", fr: "TVA", de: "MwSt.", nl: "BTW", it: "IVA", ru: "NDS", ca: "IVA",
+  },
+  "Carburante": {
+    en: "Fuel", fr: "Carburant", de: "Kraftstoff", nl: "Brandstof", it: "Carburante", ru: "Toplivo", ca: "Combustible",
+  },
+  "Amarre": {
+    en: "Mooring", fr: "Amarrage", de: "Liegeplatz", nl: "Aanlegplaats", it: "Ormeggio", ru: "Shvartovka", ca: "Amarratge",
+  },
+  "Limpieza": {
+    en: "Cleaning", fr: "Nettoyage", de: "Reinigung", nl: "Reiniging", it: "Pulizia", ru: "Uborka", ca: "Neteja",
+  },
+  "Seguro embarcación y ocupantes": {
+    en: "Boat & passenger insurance", fr: "Assurance bateau et passagers", de: "Boot- & Insassenversicherung", nl: "Boot- & passagiersverzekering", it: "Assicurazione barca e passeggeri", ru: "Strakhovka lodki i passazhirov", ca: "Asseguranca embarcacio i ocupants",
+  },
+  "Patron profesional": {
+    en: "Professional skipper", fr: "Skipper professionnel", de: "Professioneller Skipper", nl: "Professionele schipper", it: "Skipper professionale", ru: "Professional'nyj shkhiper", ca: "Patro professional",
+  },
+
+  // === Features (26 unique) ===
+  "Sin licencia requerida": {
+    en: "No licence required", fr: "Sans permis requis", de: "Kein Fuehrerschein erforderlich", nl: "Geen vaarbewijs vereist", it: "Nessuna patente richiesta", ru: "Licenziya ne trebuetsya", ca: "Sense llicencia requerida",
+  },
+  "Hasta 5 personas": {
+    en: "Up to 5 people", fr: "Jusqu'a 5 personnes", de: "Bis zu 5 Personen", nl: "Tot 5 personen", it: "Fino a 5 persone", ru: "Do 5 chelovek", ca: "Fins a 5 persones",
+  },
+  "Gasolina incluida": {
+    en: "Fuel included", fr: "Carburant inclus", de: "Kraftstoff inklusive", nl: "Brandstof inbegrepen", it: "Carburante incluso", ru: "Toplivo vklyucheno", ca: "Gasolina inclosa",
+  },
+  "Seguro incluido": {
+    en: "Insurance included", fr: "Assurance incluse", de: "Versicherung inklusive", nl: "Verzekering inbegrepen", it: "Assicurazione inclusa", ru: "Strakhovka vklyuchena", ca: "Asseguranca inclosa",
+  },
+  "Equipo de seguridad": {
+    en: "Safety equipment", fr: "Equipement de securite", de: "Sicherheitsausruestung", nl: "Veiligheidsuitrusting", it: "Equipaggiamento di sicurezza", ru: "Oborudovanie bezopasnosti", ca: "Equip de seguretat",
+  },
+  "Escalera de baño": {
+    en: "Bathing ladder", fr: "Echelle de bain", de: "Badeleiter", nl: "Zwemladder", it: "Scaletta da bagno", ru: "Kupol'naya lestnica", ca: "Escala de bany",
+  },
+  "Hasta 4 personas": {
+    en: "Up to 4 people", fr: "Jusqu'a 4 personnes", de: "Bis zu 4 Personen", nl: "Tot 4 personen", it: "Fino a 4 persone", ru: "Do 4 chelovek", ca: "Fins a 4 persones",
+  },
+  "Perfecta para parejas": {
+    en: "Perfect for couples", fr: "Parfait pour les couples", de: "Perfekt fuer Paare", nl: "Perfect voor koppels", it: "Perfetta per coppie", ru: "Ideal'na dlya par", ca: "Perfecta per a parelles",
+  },
+  "Equipo de música": {
+    en: "Sound system", fr: "Systeme audio", de: "Soundsystem", nl: "Geluidsinstallatie", it: "Impianto audio", ru: "Muzykal'naya sistema", ca: "Equip de musica",
+  },
+  "Más espaciosa": {
+    en: "More spacious", fr: "Plus spacieux", de: "Geraeumiger", nl: "Ruimer", it: "Piu spaziosa", ru: "Bolee prostornaya", ca: "Mes espaiosa",
+  },
+  "Licencia Básica requerida": {
+    en: "Basic licence required", fr: "Permis basique requis", de: "Basis-Fuehrerschein erforderlich", nl: "Basisvaarbewijs vereist", it: "Patente base richiesta", ru: "Trebuetsya bazovaya licenziya", ca: "Llicencia basica requerida",
+  },
+  "Hasta 6 personas": {
+    en: "Up to 6 people", fr: "Jusqu'a 6 personnes", de: "Bis zu 6 Personen", nl: "Tot 6 personen", it: "Fino a 6 persone", ru: "Do 6 chelovek", ca: "Fins a 6 persones",
+  },
+  "GPS y sonda incluidos": {
+    en: "GPS & fish finder included", fr: "GPS et sondeur inclus", de: "GPS & Echolot inklusive", nl: "GPS & dieptemeter inbegrepen", it: "GPS e ecoscandaglio inclusi", ru: "GPS i ehkholot vklyucheny", ca: "GPS i sonda inclosos",
+  },
+  "Ducha agua dulce": {
+    en: "Freshwater shower", fr: "Douche eau douce", de: "Suesswasserdusche", nl: "Zoetwaterdouche", it: "Doccia acqua dolce", ru: "Dush s presnoj vodoj", ca: "Dutxa d'aigua dolca",
+  },
+  "Deportiva elegante": {
+    en: "Sporty & elegant", fr: "Sportif et elegant", de: "Sportlich & elegant", nl: "Sportief & elegant", it: "Sportiva ed elegante", ru: "Sportivnaya i ehlegantnaya", ca: "Esportiva i elegant",
+  },
+  "Combustible NO incluido": {
+    en: "Fuel NOT included", fr: "Carburant NON inclus", de: "Kraftstoff NICHT inklusive", nl: "Brandstof NIET inbegrepen", it: "Carburante NON incluso", ru: "Toplivo NE vklyucheno", ca: "Combustible NO inclos",
+  },
+  "Hasta 7 personas": {
+    en: "Up to 7 people", fr: "Jusqu'a 7 personnes", de: "Bis zu 7 Personen", nl: "Tot 7 personen", it: "Fino a 7 persone", ru: "Do 7 chelovek", ca: "Fins a 7 persones",
+  },
+  "Ideal para velocidad": {
+    en: "Ideal for speed", fr: "Ideal pour la vitesse", de: "Ideal fuer Geschwindigkeit", nl: "Ideaal voor snelheid", it: "Ideale per la velocita", ru: "Ideal'na dlya skorosti", ca: "Ideal per a velocitat",
+  },
+  "Mesa central": {
+    en: "Central table", fr: "Table centrale", de: "Zentraler Tisch", nl: "Centrale tafel", it: "Tavolo centrale", ru: "Central'nyj stol", ca: "Taula central",
+  },
+  "Embarcación premium": {
+    en: "Premium vessel", fr: "Embarcation premium", de: "Premium-Boot", nl: "Premiumvaartuig", it: "Imbarcazione premium", ru: "Premium sudno", ca: "Embarcacio premium",
+  },
+  "Mesa para comidas": {
+    en: "Dining table", fr: "Table a manger", de: "Esstisch", nl: "Eettafel", it: "Tavolo da pranzo", ru: "Obedennyj stol", ca: "Taula per a menjar",
+  },
+  "Lujo y confort": {
+    en: "Luxury & comfort", fr: "Luxe et confort", de: "Luxus & Komfort", nl: "Luxe & comfort", it: "Lusso e comfort", ru: "Roskosh' i komfort", ca: "Luxe i confort",
+  },
+  "No requiere licencia": {
+    en: "No licence required", fr: "Sans permis", de: "Kein Fuehrerschein noetig", nl: "Geen vaarbewijs nodig", it: "Nessuna patente necessaria", ru: "Licenziya ne nuzhna", ca: "No requereix llicencia",
+  },
+  "Patron profesional incluido": {
+    en: "Professional skipper included", fr: "Skipper professionnel inclus", de: "Professioneller Skipper inklusive", nl: "Professionele schipper inbegrepen", it: "Skipper professionale incluso", ru: "Professional'nyj shkhiper vklyuchen", ca: "Patro professional inclos",
+  },
+  "Calas escondidas y cuevas": {
+    en: "Hidden coves & caves", fr: "Criques cachees et grottes", de: "Versteckte Buchten & Hoehlen", nl: "Verborgen baaien & grotten", it: "Calette nascoste e grotte", ru: "Skrytye bukhty i peshchery", ca: "Cales amagades i coves",
+  },
+  "Parada para nadar": {
+    en: "Swimming stop", fr: "Arret baignade", de: "Badestopp", nl: "Zwemstop", it: "Sosta per nuotare", ru: "Ostanovka dlya plavaniya", ca: "Parada per nedar",
+  },
+
+  // === Equipment items (25 unique) ===
+  "Toldo": {
+    en: "Sunshade", fr: "Auvent", de: "Sonnenverdeck", nl: "Zonnetent", it: "Tendalino", ru: "Tent", ca: "Tendal",
+  },
+  "Arranque eléctrico": {
+    en: "Electric start", fr: "Demarrage electrique", de: "Elektrostart", nl: "Elektrische start", it: "Avviamento elettrico", ru: "Ehlektricheskij zapusk", ca: "Arrencada electrica",
+  },
+  "Gran solárium de proa": {
+    en: "Large bow sundeck", fr: "Grand solarium de proue", de: "Grosses Bug-Sonnendeck", nl: "Groot voordek zonnedek", it: "Ampio solarium di prua", ru: "Bol'shoj solyarij na nosu", ca: "Gran solarium de proa",
+  },
+  "Equipo de seguridad y salvamento": {
+    en: "Safety & rescue equipment", fr: "Equipement de securite et sauvetage", de: "Sicherheits- & Rettungsausruestung", nl: "Veiligheids- & reddingsuitrusting", it: "Equipaggiamento di sicurezza e salvataggio", ru: "Oborudovanie bezopasnosti i spaseniya", ca: "Equip de seguretat i salvament",
+  },
+  "Toldo Bi Mini": {
+    en: "Bimini top", fr: "Taud bimini", de: "Bimini-Verdeck", nl: "Bimini-kap", it: "Tendalino bimini", ru: "Tent bimini", ca: "Tendal bimini",
+  },
+  "Equipo de música bluetooth": {
+    en: "Bluetooth sound system", fr: "Systeme audio bluetooth", de: "Bluetooth-Soundsystem", nl: "Bluetooth-geluidsinstallatie", it: "Impianto audio bluetooth", ru: "Bluetooth muzykal'naya sistema", ca: "Equip de musica bluetooth",
+  },
+  "Radio bluetooth": {
+    en: "Bluetooth radio", fr: "Radio bluetooth", de: "Bluetooth-Radio", nl: "Bluetooth-radio", it: "Radio bluetooth", ru: "Bluetooth radio", ca: "Radio bluetooth",
+  },
+  "Altavoces": {
+    en: "Speakers", fr: "Haut-parleurs", de: "Lautsprecher", nl: "Luidsprekers", it: "Altoparlanti", ru: "Dinamiki", ca: "Altaveus",
+  },
+  "Sonda": {
+    en: "Fish finder", fr: "Sondeur", de: "Echolot", nl: "Dieptemeter", it: "Ecoscandaglio", ru: "Ehkholot", ca: "Sonda",
+  },
+  "GPS": {
+    en: "GPS", fr: "GPS", de: "GPS", nl: "GPS", it: "GPS", ru: "GPS", ca: "GPS",
+  },
+  "Ducha": {
+    en: "Shower", fr: "Douche", de: "Dusche", nl: "Douche", it: "Doccia", ru: "Dush", ca: "Dutxa",
+  },
+  "Toldo bimini": {
+    en: "Bimini top", fr: "Taud bimini", de: "Bimini-Verdeck", nl: "Bimini-kap", it: "Tendalino bimini", ru: "Tent bimini", ca: "Tendal bimini",
+  },
+  "Nevera": {
+    en: "Cooler", fr: "Glaciere", de: "Kuehlbox", nl: "Koelbox", it: "Frigo portatile", ru: "Kholodil'nik", ca: "Nevera",
+  },
+  "Arco de Inox para deportes acuáticos": {
+    en: "Stainless steel arch for water sports", fr: "Arceau inox pour sports nautiques", de: "Edelstahlbuegel fuer Wassersport", nl: "RVS beugel voor watersporten", it: "Arco in acciaio inox per sport acquatici", ru: "Arka iz nerzhaveyushchej stali dlya vodnogo sporta", ca: "Arc d'inox per a esports aquatics",
+  },
+  "Solarium en proa y popa": {
+    en: "Sundeck at bow & stern", fr: "Solarium proue et poupe", de: "Sonnendeck Bug & Heck", nl: "Zonnedek voor & achter", it: "Solarium a prua e poppa", ru: "Solyarij na nosu i korme", ca: "Solarium a proa i popa",
+  },
+  "Toldo bimini inox": {
+    en: "Stainless steel bimini top", fr: "Taud bimini inox", de: "Edelstahl-Bimini-Verdeck", nl: "RVS bimini-kap", it: "Tendalino bimini inox", ru: "Tent bimini iz nerzhaveyushchej stali", ca: "Tendal bimini inox",
+  },
+  "Mesa en popa y/o proa": {
+    en: "Table at stern and/or bow", fr: "Table en poupe et/ou proue", de: "Tisch am Heck und/oder Bug", nl: "Tafel op achter- en/of voordek", it: "Tavolo a poppa e/o prua", ru: "Stol na korme i/ili nosu", ca: "Taula a popa i/o proa",
+  },
+  "Ducha de agua dulce": {
+    en: "Freshwater shower", fr: "Douche eau douce", de: "Suesswasserdusche", nl: "Zoetwaterdouche", it: "Doccia acqua dolce", ru: "Dush s presnoj vodoj", ca: "Dutxa d'aigua dolca",
+  },
+  "Mando electrónico": {
+    en: "Electronic throttle", fr: "Commande electronique", de: "Elektronische Steuerung", nl: "Elektronische bediening", it: "Comando elettronico", ru: "Ehlektronnoe upravlenie", ca: "Comandament electronic",
+  },
+  "Bichero": {
+    en: "Boat hook", fr: "Gaffe", de: "Bootshaken", nl: "Bootshaak", it: "Mezzo marinaio", ru: "Bagor", ca: "Bitxero",
+  },
+  "Cabos": {
+    en: "Ropes", fr: "Cordages", de: "Leinen", nl: "Lijnen", it: "Cavi", ru: "Kanaty", ca: "Caps",
+  },
+  "Defensas": {
+    en: "Fenders", fr: "Defenses", de: "Fender", nl: "Stootkussens", it: "Parabordi", ru: "Kendery", ca: "Defenses",
+  },
+  "Apta para deportes náuticos": {
+    en: "Suitable for water sports", fr: "Adaptee aux sports nautiques", de: "Geeignet fuer Wassersport", nl: "Geschikt voor watersporten", it: "Adatta per sport acquatici", ru: "Podkhodit dlya vodnogo sporta", ca: "Apta per a esports nautics",
+  },
+  "Patron profesional": {
+    en: "Professional skipper", fr: "Skipper professionnel", de: "Professioneller Skipper", nl: "Professionele schipper", it: "Skipper professionale", ru: "Professional'nyj shkhiper", ca: "Patro professional",
+  },
+
+  // === Hardcoded UI strings ===
+  "Ver galería de fotos de clientes": {
+    en: "View customer photo gallery", fr: "Voir la galerie photos clients", de: "Kundenfotogalerie ansehen", nl: "Bekijk klantenfotogalerij", it: "Vedi galleria foto clienti", ru: "Smotret' galereyu foto klientov", ca: "Veure galeria de fotos de clients",
+  },
+  "Recomendado": {
+    en: "Recommended", fr: "Recommande", de: "Empfohlen", nl: "Aanbevolen", it: "Consigliato", ru: "Rekomendovano", ca: "Recomanat",
+  },
+  "personas han visto este barco hoy": {
+    en: "people viewed this boat today", fr: "personnes ont vu ce bateau aujourd'hui", de: "Personen haben dieses Boot heute angesehen", nl: "personen hebben deze boot vandaag bekeken", it: "persone hanno visto questa barca oggi", ru: "chelovek smotreli ehtu lodku segodnya", ca: "persones han vist aquest vaixell avui",
+  },
+  "Gasolina incluida": {
+    en: "Fuel included", fr: "Carburant inclus", de: "Kraftstoff inklusive", nl: "Brandstof inbegrepen", it: "Carburante incluso", ru: "Toplivo vklyucheno", ca: "Gasolina inclosa",
+  },
+};
+
+/** Translate a Spanish boat text to the current language. Falls back to Spanish original. */
+function translateBoatText(text: string, lang: string): string {
+  if (lang === "es") return text;
+  return boatTextTranslations[text]?.[lang] ?? text;
+}
+
+/** FAQ translations keyed by language */
+const boatFaqTranslations: Record<string, {
+  title: string;
+  q1: string;
+  a1: (name: string, price: number, noLicense: boolean) => string;
+  q2: string;
+  a2: (name: string, capacity: number) => string;
+  q3: string;
+  a3: (name: string, noLicense: boolean) => string;
+  q4: string;
+  a4: (name: string, noLicense: boolean) => string;
+}> = {
+  es: {
+    title: "Preguntas frecuentes sobre",
+    q1: "Cuanto cuesta alquilar el",
+    a1: (name, price, noLicense) =>
+      `El ${name} tiene precios desde ${price}€/hora en temporada baja (abril-junio, septiembre-octubre).${noLicense ? " El precio incluye gasolina, seguro a todo riesgo y equipo de seguridad." : " El combustible se paga aparte segun consumo real. Incluye seguro a todo riesgo."}`,
+    q2: "Cuantas personas caben en el",
+    a2: (name, cap) =>
+      `El ${name} tiene capacidad para ${cap} personas. Es ideal para ${cap <= 4 ? "parejas y familias pequenas" : cap <= 6 ? "familias y grupos de amigos" : "grupos grandes y celebraciones"}.`,
+    q3: "Necesito licencia para el",
+    a3: (name, noLicense) =>
+      noLicense
+        ? `No, el ${name} no requiere licencia de navegacion. Solo necesitas ser mayor de 18 anos. Antes de zarpar recibiras una formacion de 15 minutos sobre el manejo del barco.`
+        : `Si, el ${name} requiere licencia de navegacion (PER o titulo equivalente en vigor). Deberas presentar tu titulacion antes de zarpar.`,
+    q4: "Que incluye el alquiler del",
+    a4: (name, noLicense) =>
+      `El alquiler incluye seguro a todo riesgo, equipo de seguridad homologado y formacion previa.${noLicense ? " Tambien incluye gasolina y, segun disponibilidad, equipo de snorkel y paddle surf." : " El combustible se paga segun consumo. Segun disponibilidad, puede incluir extras como equipo de snorkel."}`,
+  },
+  en: {
+    title: "Frequently asked questions about",
+    q1: "How much does it cost to rent the",
+    a1: (name, price, noLicense) =>
+      `The ${name} starts from ${price}€/hour in low season (April-June, September-October).${noLicense ? " The price includes fuel, comprehensive insurance and safety equipment." : " Fuel is charged separately based on actual consumption. Comprehensive insurance is included."}`,
+    q2: "How many people fit on the",
+    a2: (name, cap) =>
+      `The ${name} has a capacity of ${cap} people. It is ideal for ${cap <= 4 ? "couples and small families" : cap <= 6 ? "families and groups of friends" : "large groups and celebrations"}.`,
+    q3: "Do I need a licence for the",
+    a3: (name, noLicense) =>
+      noLicense
+        ? `No, the ${name} does not require a boating licence. You only need to be over 18. Before departure you will receive a 15-minute briefing on how to operate the boat.`
+        : `Yes, the ${name} requires a boating licence (PER or equivalent valid qualification). You must present your licence before departure.`,
+    q4: "What is included in the rental of the",
+    a4: (name, noLicense) =>
+      `The rental includes comprehensive insurance, certified safety equipment and a pre-departure briefing.${noLicense ? " It also includes fuel and, subject to availability, snorkelling and paddle surf gear." : " Fuel is charged based on consumption. Subject to availability, extras such as snorkelling gear may be included."}`,
+  },
+  fr: {
+    title: "Questions frequentes sur le",
+    q1: "Combien coute la location du",
+    a1: (name, price, noLicense) =>
+      `Le ${name} est disponible a partir de ${price}€/heure en basse saison (avril-juin, septembre-octobre).${noLicense ? " Le prix comprend le carburant, l'assurance tous risques et l'equipement de securite." : " Le carburant est facture separement selon la consommation reelle. L'assurance tous risques est incluse."}`,
+    q2: "Combien de personnes peuvent monter sur le",
+    a2: (name, cap) =>
+      `Le ${name} a une capacite de ${cap} personnes. Il est ideal pour ${cap <= 4 ? "les couples et les petites familles" : cap <= 6 ? "les familles et les groupes d'amis" : "les grands groupes et les celebrations"}.`,
+    q3: "Ai-je besoin d'un permis pour le",
+    a3: (name, noLicense) =>
+      noLicense
+        ? `Non, le ${name} ne necessite pas de permis bateau. Il suffit d'avoir plus de 18 ans. Avant le depart, vous recevrez une formation de 15 minutes sur la conduite du bateau.`
+        : `Oui, le ${name} necessite un permis bateau (PER ou titre equivalent en vigueur). Vous devrez presenter votre permis avant le depart.`,
+    q4: "Que comprend la location du",
+    a4: (name, noLicense) =>
+      `La location comprend une assurance tous risques, un equipement de securite homologue et une formation prealable.${noLicense ? " Elle inclut egalement le carburant et, selon disponibilite, du materiel de snorkeling et paddle surf." : " Le carburant est facture selon la consommation. Selon disponibilite, des extras comme le materiel de snorkeling peuvent etre inclus."}`,
+  },
+  de: {
+    title: "Haeufig gestellte Fragen zum",
+    q1: "Wie viel kostet die Miete des",
+    a1: (name, price, noLicense) =>
+      `Das ${name} ist ab ${price}€/Stunde in der Nebensaison (April-Juni, September-Oktober) verfuegbar.${noLicense ? " Der Preis beinhaltet Kraftstoff, Vollkaskoversicherung und Sicherheitsausruestung." : " Der Kraftstoff wird separat nach tatsaechlichem Verbrauch berechnet. Vollkaskoversicherung ist inklusive."}`,
+    q2: "Wie viele Personen passen auf das",
+    a2: (name, cap) =>
+      `Das ${name} bietet Platz fuer ${cap} Personen. Es ist ideal fuer ${cap <= 4 ? "Paare und kleine Familien" : cap <= 6 ? "Familien und Freundesgruppen" : "grosse Gruppen und Feiern"}.`,
+    q3: "Brauche ich einen Fuehrerschein fuer das",
+    a3: (name, noLicense) =>
+      noLicense
+        ? `Nein, das ${name} erfordert keinen Bootsführerschein. Sie muessen lediglich ueber 18 Jahre alt sein. Vor der Abfahrt erhalten Sie eine 15-minuetige Einweisung.`
+        : `Ja, das ${name} erfordert einen Bootsführerschein (PER oder gleichwertiger gueltiger Nachweis). Sie muessen Ihren Fuehrerschein vor der Abfahrt vorlegen.`,
+    q4: "Was ist in der Miete des enthalten",
+    a4: (name, noLicense) =>
+      `Die Miete beinhaltet Vollkaskoversicherung, zertifizierte Sicherheitsausruestung und eine Einweisung vor der Abfahrt.${noLicense ? " Kraftstoff sowie nach Verfuegbarkeit Schnorchel- und Paddle-Surf-Ausruestung sind ebenfalls enthalten." : " Kraftstoff wird nach Verbrauch berechnet. Nach Verfuegbarkeit koennen Extras wie Schnorchelausruestung enthalten sein."}`,
+  },
+  nl: {
+    title: "Veelgestelde vragen over de",
+    q1: "Hoeveel kost het huren van de",
+    a1: (name, price, noLicense) =>
+      `De ${name} is beschikbaar vanaf ${price}€/uur in het laagseizoen (april-juni, september-oktober).${noLicense ? " De prijs is inclusief brandstof, allriskverzekering en veiligheidsuitrusting." : " Brandstof wordt apart in rekening gebracht op basis van werkelijk verbruik. Allriskverzekering is inbegrepen."}`,
+    q2: "Hoeveel personen passen er op de",
+    a2: (name, cap) =>
+      `De ${name} biedt plaats aan ${cap} personen. Ideaal voor ${cap <= 4 ? "koppels en kleine gezinnen" : cap <= 6 ? "gezinnen en vriendengroepen" : "grote groepen en feesten"}.`,
+    q3: "Heb ik een vaarbewijs nodig voor de",
+    a3: (name, noLicense) =>
+      noLicense
+        ? `Nee, de ${name} vereist geen vaarbewijs. U hoeft alleen ouder dan 18 jaar te zijn. Voor vertrek ontvangt u een instructie van 15 minuten.`
+        : `Ja, de ${name} vereist een vaarbewijs (PER of gelijkwaardig geldig bewijs). U dient uw vaarbewijs voor vertrek te tonen.`,
+    q4: "Wat is inbegrepen bij de huur van de",
+    a4: (name, noLicense) =>
+      `De huur omvat allriskverzekering, gecertificeerde veiligheidsuitrusting en een briefing voor vertrek.${noLicense ? " Ook brandstof en, afhankelijk van beschikbaarheid, snorkel- en paddle surf-uitrusting zijn inbegrepen." : " Brandstof wordt in rekening gebracht op basis van verbruik. Afhankelijk van beschikbaarheid kunnen extras zoals snorkeluitrusting inbegrepen zijn."}`,
+  },
+  it: {
+    title: "Domande frequenti sul",
+    q1: "Quanto costa noleggiare il",
+    a1: (name, price, noLicense) =>
+      `Il ${name} parte da ${price}€/ora in bassa stagione (aprile-giugno, settembre-ottobre).${noLicense ? " Il prezzo include carburante, assicurazione completa e equipaggiamento di sicurezza." : " Il carburante viene addebitato separatamente in base al consumo effettivo. L'assicurazione completa e inclusa."}`,
+    q2: "Quante persone possono salire sul",
+    a2: (name, cap) =>
+      `Il ${name} ha una capacita di ${cap} persone. E ideale per ${cap <= 4 ? "coppie e piccole famiglie" : cap <= 6 ? "famiglie e gruppi di amici" : "grandi gruppi e celebrazioni"}.`,
+    q3: "Ho bisogno di una patente per il",
+    a3: (name, noLicense) =>
+      noLicense
+        ? `No, il ${name} non richiede patente nautica. Basta avere piu di 18 anni. Prima della partenza riceverete un briefing di 15 minuti.`
+        : `Si, il ${name} richiede una patente nautica (PER o titolo equivalente valido). Dovrete presentare la patente prima della partenza.`,
+    q4: "Cosa include il noleggio del",
+    a4: (name, noLicense) =>
+      `Il noleggio include assicurazione completa, equipaggiamento di sicurezza certificato e briefing pre-partenza.${noLicense ? " Include anche il carburante e, in base alla disponibilita, attrezzatura snorkeling e paddle surf." : " Il carburante viene addebitato in base al consumo. In base alla disponibilita, possono essere inclusi extra come attrezzatura snorkeling."}`,
+  },
+  ru: {
+    title: "Chasto zadavaemye voprosy o",
+    q1: "Skol'ko stoit arenda",
+    a1: (name, price, noLicense) =>
+      `${name} dostupna ot ${price}€/chas v nizkij sezon (aprel'-iyun', sentyabr'-oktyabr').${noLicense ? " V cenu vkhodit toplivo, polnaya strakhovka i oborudovanie bezopasnosti." : " Toplivo oplachivaetsya otdel'no po faktu rashoda. Polnaya strakhovka vklyuchena."}`,
+    q2: "Skol'ko chelovek vmeshchaet",
+    a2: (name, cap) =>
+      `${name} vmeshchaet do ${cap} chelovek. Ideal'no podkhodit dlya ${cap <= 4 ? "par i nebol'shikh semej" : cap <= 6 ? "semej i druzheskih grupp" : "bol'shikh grupp i prazdnikov"}.`,
+    q3: "Nuzhna li licenziya dlya",
+    a3: (name, noLicense) =>
+      noLicense
+        ? `Net, ${name} ne trebuet licenzii. Nuzhno tol'ko byt' starshe 18 let. Pered otpravleniem vy poluchite 15-minutnyj instruktazh.`
+        : `Da, ${name} trebuet licenziyu na upravlenie lodkoj (PER ili ehkvivalent). Vy dolzhny pred"yavit' licenziyu pered otpravleniem.`,
+    q4: "Chto vklyucheno v arendu",
+    a4: (name, noLicense) =>
+      `Arenda vklyuchaet polnuyu strakhovku, sertificirovannoe oborudovanie bezopasnosti i instruktazh pered otpravleniem.${noLicense ? " Takzhe vklyucheno toplivo i, pri nalichii, snaryazhenie dlya snorkelinga i paddle surf." : " Toplivo oplachivaetsya po rashodu. Pri nalichii mogut byt' vklyucheny dopolneniya, takie kak snaryazhenie dlya snorkelinga."}`,
+  },
+  ca: {
+    title: "Preguntes frequents sobre",
+    q1: "Quant costa llogar el",
+    a1: (name, price, noLicense) =>
+      `El ${name} te preus des de ${price}€/hora en temporada baixa (abril-juny, setembre-octubre).${noLicense ? " El preu inclou gasolina, asseguranca a tot risc i equip de seguretat." : " El combustible es paga a part segons el consum real. Inclou asseguranca a tot risc."}`,
+    q2: "Quantes persones caben al",
+    a2: (name, cap) =>
+      `El ${name} te capacitat per a ${cap} persones. Es ideal per a ${cap <= 4 ? "parelles i families petites" : cap <= 6 ? "families i grups d'amics" : "grups grans i celebracions"}.`,
+    q3: "Necessito llicencia per al",
+    a3: (name, noLicense) =>
+      noLicense
+        ? `No, el ${name} no requereix llicencia de navegacio. Nomes cal ser major de 18 anys. Abans de sortir rebras una formacio de 15 minuts sobre el maneig del vaixell.`
+        : `Si, el ${name} requereix llicencia de navegacio (PER o titol equivalent en vigor). Hauras de presentar la teva titulacio abans de sortir.`,
+    q4: "Que inclou el lloguer del",
+    a4: (name, noLicense) =>
+      `El lloguer inclou asseguranca a tot risc, equip de seguretat homologat i formacio previa.${noLicense ? " Tambe inclou gasolina i, segons disponibilitat, equip de snorkel i paddle surf." : " El combustible es paga segons consum. Segons disponibilitat, pot incloure extres com equip de snorkel."}`,
+  },
+};
+
 interface BoatDetailPageProps {
   boatId?: string;
   onBack?: () => void;
@@ -269,42 +699,42 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
     { name: boatData.name, url: `/barco/${boatId}` }
   ]);
 
-  // FAQ schema for boat page
+  // FAQ schema for boat page (translated to match visible FAQ)
+  const faqLang = boatFaqTranslations[language] || boatFaqTranslations.es;
+  const noLicenseFlag = !requiresLicense;
   const boatFaqSchema = {
     "@type": "FAQPage",
     mainEntity: [
       {
         "@type": "Question",
-        name: `¿Cuánto cuesta alquilar el ${boatData.name}?`,
+        name: `${faqLang.q1} ${boatData.name}?`,
         acceptedAnswer: {
           "@type": "Answer",
-          text: `El ${boatData.name} tiene precios desde ${lowestPrice}€/hora en temporada baja (abril-junio, septiembre-octubre). ${!requiresLicense ? "El precio incluye gasolina, seguro a todo riesgo y equipo de seguridad." : "El combustible se paga aparte según consumo real. Incluye seguro a todo riesgo."}`,
+          text: faqLang.a1(boatData.name, lowestPrice, noLicenseFlag),
         },
       },
       {
         "@type": "Question",
-        name: `¿Cuántas personas caben en el ${boatData.name}?`,
+        name: `${faqLang.q2} ${boatData.name}?`,
         acceptedAnswer: {
           "@type": "Answer",
-          text: `El ${boatData.name} tiene capacidad para ${capacity} personas.`,
+          text: faqLang.a2(boatData.name, capacity),
         },
       },
       {
         "@type": "Question",
-        name: `¿Necesito licencia para el ${boatData.name}?`,
+        name: `${faqLang.q3} ${boatData.name}?`,
         acceptedAnswer: {
           "@type": "Answer",
-          text: !requiresLicense
-            ? `No, el ${boatData.name} no requiere licencia de navegación. Solo necesitas ser mayor de 18 años.`
-            : `Sí, el ${boatData.name} requiere licencia de navegación (PER o título equivalente en vigor).`,
+          text: faqLang.a3(boatData.name, noLicenseFlag),
         },
       },
       {
         "@type": "Question",
-        name: `¿Qué incluye el alquiler del ${boatData.name}?`,
+        name: `${faqLang.q4} ${boatData.name}?`,
         acceptedAnswer: {
           "@type": "Answer",
-          text: `El alquiler incluye seguro a todo riesgo, equipo de seguridad homologado y formación previa. ${!requiresLicense ? "También incluye gasolina y equipo de snorkel según disponibilidad." : "El combustible se paga según consumo."}`,
+          text: faqLang.a4(boatData.name, noLicenseFlag),
         },
       },
     ],
@@ -378,7 +808,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
             {boatData.name} <span className="font-normal text-white/80 text-lg sm:text-xl md:text-2xl">— Blanes, Costa Brava</span>
           </h1>
           <div className="flex flex-wrap items-center gap-3 mt-2">
-            <p className="text-white/80 text-sm sm:text-base">{boatData.subtitle}</p>
+            <p className="text-white/80 text-sm sm:text-base">{translateBoatText(boatData.subtitle || '', language)}</p>
             {lowestPrice > 0 && (
               <div className="flex items-center gap-2 bg-white/15 backdrop-blur-sm rounded-full px-4 py-1.5">
                 <span className="text-white/80 text-xs">{t.boats.from}</span>
@@ -402,7 +832,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
         <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-2">
           <p className="text-sm text-muted-foreground flex items-center gap-1.5">
             <Eye className="w-3.5 h-3.5" />
-            {viewsData.views} personas han visto este barco hoy
+            {viewsData.views} {translateBoatText("personas han visto este barco hoy", language)}
           </p>
         </div>
       )}
@@ -525,7 +955,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
             )}
             <div className="px-4 py-2 text-center border-t border-border">
               <a href="/galeria" className="text-sm text-primary hover:underline">
-                Ver galería de fotos de clientes
+                {translateBoatText("Ver galería de fotos de clientes", language)}
               </a>
             </div>
           </div>
@@ -619,7 +1049,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                         >
                           {isRecommended && (
                             <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-white text-[10px] font-bold px-3 py-0.5 rounded-full whitespace-nowrap tracking-wide shadow-sm">
-                              Recomendado
+                              {translateBoatText("Recomendado", language)}
                             </span>
                           )}
                           <div className={`font-bold ${isRecommended ? "text-xl text-primary" : "text-lg text-primary"}`}>{price}€</div>
@@ -639,7 +1069,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                   {boatData.included.map((item, index) => (
                     <div key={index} className="flex items-center">
                       <CheckCircle className="w-3 h-3 text-primary mr-1" />
-                      <span className="text-xs">{item}</span>
+                      <span className="text-xs">{translateBoatText(item, language)}</span>
                     </div>
                   ))}
                 </div>
@@ -708,7 +1138,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                 {boatData.features?.map((feature, index) => (
                   <div key={index} className="flex items-center">
                     <CheckCircle className="w-4 h-4 text-primary mr-2 flex-shrink-0" />
-                    <span className="text-sm">{feature}</span>
+                    <span className="text-sm">{translateBoatText(feature, language)}</span>
                   </div>
                 )) || <span className="text-sm text-muted-foreground">{t.boatDetail.noFeatures}</span>}
               </div>
@@ -780,7 +1210,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                 {boatData.equipment?.map((item, index) => (
                   <div key={index} className="flex items-center">
                     <CheckCircle className="w-4 h-4 text-primary mr-2 flex-shrink-0" />
-                    <span className="text-sm">{item}</span>
+                    <span className="text-sm">{translateBoatText(item, language)}</span>
                   </div>
                 )) || <span className="text-sm text-muted-foreground">{t.boatDetail.noEquipment}</span>}
               </div>
@@ -932,55 +1362,55 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
       )}
 
       {/* FAQ Section */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
-        <h2 className="text-2xl font-heading font-bold text-foreground mb-6">
-          Preguntas frecuentes sobre {boatData.name}
-        </h2>
-        <div className="space-y-4 max-w-3xl">
-          <details className="group border border-border rounded-lg">
-            <summary className="flex items-center justify-between cursor-pointer p-4 font-medium">
-              ¿Cuánto cuesta alquilar el {boatData.name}?
-              <ChevronRight className="w-4 h-4 transition-transform group-open:rotate-90" />
-            </summary>
-            <div className="px-4 pb-4 text-muted-foreground">
-              El {boatData.name} tiene precios desde {lowestPrice}€/hora en temporada baja (abril-junio, septiembre-octubre).
-              {!requiresLicense && " El precio incluye gasolina, seguro a todo riesgo y equipo de seguridad."}
-              {requiresLicense && " El combustible se paga aparte según consumo real. Incluye seguro a todo riesgo."}
+      {(() => {
+        const faq = boatFaqTranslations[language] || boatFaqTranslations.es;
+        const noLicense = !requiresLicense;
+        return (
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
+            <h2 className="text-2xl font-heading font-bold text-foreground mb-6">
+              {faq.title} {boatData.name}
+            </h2>
+            <div className="space-y-4 max-w-3xl">
+              <details className="group border border-border rounded-lg">
+                <summary className="flex items-center justify-between cursor-pointer p-4 font-medium">
+                  {faq.q1} {boatData.name}?
+                  <ChevronRight className="w-4 h-4 transition-transform group-open:rotate-90" />
+                </summary>
+                <div className="px-4 pb-4 text-muted-foreground">
+                  {faq.a1(boatData.name, lowestPrice, noLicense)}
+                </div>
+              </details>
+              <details className="group border border-border rounded-lg">
+                <summary className="flex items-center justify-between cursor-pointer p-4 font-medium">
+                  {faq.q2} {boatData.name}?
+                  <ChevronRight className="w-4 h-4 transition-transform group-open:rotate-90" />
+                </summary>
+                <div className="px-4 pb-4 text-muted-foreground">
+                  {faq.a2(boatData.name, capacity)}
+                </div>
+              </details>
+              <details className="group border border-border rounded-lg">
+                <summary className="flex items-center justify-between cursor-pointer p-4 font-medium">
+                  {faq.q3} {boatData.name}?
+                  <ChevronRight className="w-4 h-4 transition-transform group-open:rotate-90" />
+                </summary>
+                <div className="px-4 pb-4 text-muted-foreground">
+                  {faq.a3(boatData.name, noLicense)}
+                </div>
+              </details>
+              <details className="group border border-border rounded-lg">
+                <summary className="flex items-center justify-between cursor-pointer p-4 font-medium">
+                  {faq.q4} {boatData.name}?
+                  <ChevronRight className="w-4 h-4 transition-transform group-open:rotate-90" />
+                </summary>
+                <div className="px-4 pb-4 text-muted-foreground">
+                  {faq.a4(boatData.name, noLicense)}
+                </div>
+              </details>
             </div>
-          </details>
-          <details className="group border border-border rounded-lg">
-            <summary className="flex items-center justify-between cursor-pointer p-4 font-medium">
-              ¿Cuántas personas caben en el {boatData.name}?
-              <ChevronRight className="w-4 h-4 transition-transform group-open:rotate-90" />
-            </summary>
-            <div className="px-4 pb-4 text-muted-foreground">
-              El {boatData.name} tiene capacidad para {capacity} personas. Es ideal para {capacity <= 4 ? "parejas y familias pequeñas" : capacity <= 6 ? "familias y grupos de amigos" : "grupos grandes y celebraciones"}.
-            </div>
-          </details>
-          <details className="group border border-border rounded-lg">
-            <summary className="flex items-center justify-between cursor-pointer p-4 font-medium">
-              ¿Necesito licencia para el {boatData.name}?
-              <ChevronRight className="w-4 h-4 transition-transform group-open:rotate-90" />
-            </summary>
-            <div className="px-4 pb-4 text-muted-foreground">
-              {!requiresLicense
-                ? `No, el ${boatData.name} no requiere licencia de navegación. Solo necesitas ser mayor de 18 años. Antes de zarpar recibirás una formación de 15 minutos sobre el manejo del barco.`
-                : `Sí, el ${boatData.name} requiere licencia de navegación (PER o título equivalente en vigor). Deberás presentar tu titulación antes de zarpar.`}
-            </div>
-          </details>
-          <details className="group border border-border rounded-lg">
-            <summary className="flex items-center justify-between cursor-pointer p-4 font-medium">
-              ¿Qué incluye el alquiler del {boatData.name}?
-              <ChevronRight className="w-4 h-4 transition-transform group-open:rotate-90" />
-            </summary>
-            <div className="px-4 pb-4 text-muted-foreground">
-              El alquiler incluye seguro a todo riesgo, equipo de seguridad homologado y formación previa.
-              {!requiresLicense && " También incluye gasolina y, según disponibilidad, equipo de snorkel y paddle surf."}
-              {requiresLicense && " El combustible se paga según consumo. Según disponibilidad, puede incluir extras como equipo de snorkel."}
-            </div>
-          </details>
-        </div>
-      </div>
+          </div>
+        );
+      })()}
 
       <Footer />
 
@@ -1004,7 +1434,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
               )}
             </div>
             {!requiresLicense && (
-              <span className="text-white/80 text-xs mt-0.5">Gasolina incluida</span>
+              <span className="text-white/80 text-xs mt-0.5">{translateBoatText("Gasolina incluida", language)}</span>
             )}
           </div>
         </button>
@@ -1025,7 +1455,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
             {!requiresLicense && (
               <p className="text-xs text-muted-foreground flex items-center gap-1">
                 <Fuel className="w-3 h-3" />
-                Gasolina incluida
+                {translateBoatText("Gasolina incluida", language)}
               </p>
             )}
             <Button

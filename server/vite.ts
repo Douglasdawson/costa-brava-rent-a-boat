@@ -105,16 +105,16 @@ export function serveStatic(app: Express) {
     },
   }));
 
-  app.use(express.static(distPath, {
-    etag: true,
-    lastModified: true,
-  }));
-
-  // Serve prerendered HTML when available (before the SPA catch-all)
+  // Serve prerendered HTML when available (BEFORE express.static and SPA catch-all)
   const prerenderedDir = path.resolve(distPath, "..", "prerendered");
   if (fs.existsSync(prerenderedDir)) {
     app.use(prerenderedMiddleware(prerenderedDir));
   }
+
+  app.use(express.static(distPath, {
+    etag: true,
+    lastModified: true,
+  }));
 
   // fall through to index.html with SSR-lite SEO meta injection
   app.use("*", (req, res) => {

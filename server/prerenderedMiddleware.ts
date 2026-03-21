@@ -49,19 +49,29 @@ export function prerenderedMiddleware(prerenderedDir: string) {
 
     const filePath = path.join(prerenderedDir, `${routePath}${langSuffix}.html`);
 
-    if (fs.existsSync(filePath)) {
-      const effectiveLang =
-        lang && SUPPORTED_LANGS.includes(lang) ? lang : "es";
+    // Try exact match first, then fallback to __lang_en for English-only pages
+    const candidates = [filePath];
+    if (!langSuffix) {
+      // No lang param — also check if an English-only prerender exists
+      candidates.push(path.join(prerenderedDir, `${routePath}__lang_en.html`));
+    }
 
-      res.set("Content-Type", "text/html; charset=utf-8");
-      res.set("Content-Language", effectiveLang);
-      res.set(
-        "Cache-Control",
-        "public, max-age=0, s-maxage=3600, stale-while-revalidate=86400",
-      );
-      res.set("X-Prerendered", "true");
+    for (const candidate of candidates) {
+      if (fs.existsSync(candidate)) {
+        const effectiveLang =
+          candidate.includes("__lang_en") ? "en" :
+          lang && SUPPORTED_LANGS.includes(lang) ? lang : "es";
 
-      return res.sendFile(path.resolve(filePath));
+        res.set("Content-Type", "text/html; charset=utf-8");
+        res.set("Content-Language", effectiveLang);
+        res.set(
+          "Cache-Control",
+          "public, max-age=0, s-maxage=3600, stale-while-revalidate=86400",
+        );
+        res.set("X-Prerendered", "true");
+
+        return res.sendFile(path.resolve(candidate));
+      }
     }
 
     next();

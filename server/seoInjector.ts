@@ -2561,6 +2561,36 @@ export async function serveWithSEO(
   distPath: string
 ): Promise<void> {
   try {
+    // Serve prerendered HTML if available (full page content for SEO crawlers)
+    const prerenderedDir = path.resolve(distPath, "..", "prerendered");
+    if (fs.existsSync(prerenderedDir)) {
+      const parsedPre = new URL(req.originalUrl, "http://localhost");
+      const routePath = parsedPre.pathname === "/" ? "/index" : parsedPre.pathname;
+      const langPre = parsedPre.searchParams.get("lang");
+      const PRERENDER_LANGS = ["es", "en", "ca", "fr", "de", "nl", "it", "ru"];
+      const langSuffix = langPre && PRERENDER_LANGS.includes(langPre) && langPre !== "es"
+        ? `__lang_${langPre}` : "";
+
+      // Try exact match, then English-only pages (no lang param but saved as __lang_en)
+      const candidates = [
+        path.join(prerenderedDir, `${routePath}${langSuffix}.html`),
+        ...(!langSuffix ? [path.join(prerenderedDir, `${routePath}__lang_en.html`)] : []),
+      ];
+
+      for (const candidate of candidates) {
+        if (fs.existsSync(candidate)) {
+          const effectiveLang = candidate.includes("__lang_en") ? "en" :
+            langPre && PRERENDER_LANGS.includes(langPre) ? langPre : "es";
+          res.set("Content-Type", "text/html; charset=utf-8");
+          res.set("Content-Language", effectiveLang);
+          res.set("Cache-Control", "public, max-age=0, s-maxage=3600, stale-while-revalidate=86400");
+          res.set("X-Prerendered", "true");
+          res.sendFile(path.resolve(candidate));
+          return;
+        }
+      }
+    }
+
     // Trailing slash redirect (except root)
     if (req.path !== "/" && req.path.endsWith("/")) {
       const clean = req.path.slice(0, -1);

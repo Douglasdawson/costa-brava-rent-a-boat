@@ -161,11 +161,11 @@ async function renderPage(
 ): Promise<boolean> {
   const page = await context.newPage();
   try {
-    await page.goto(job.url, { waitUntil: "networkidle", timeout: 30_000 });
-    await page.waitForSelector(waitForSelector, { timeout: 10_000 });
+    await page.goto(job.url, { waitUntil: "domcontentloaded", timeout: 30_000 });
+    await page.waitForSelector(waitForSelector, { timeout: 15_000 });
 
-    // Small extra wait to let lazy images / animations settle
-    await page.waitForTimeout(500);
+    // Wait for React to fully render content (lazy components, data fetching)
+    await page.waitForTimeout(3000);
 
     const html = await page.content();
 

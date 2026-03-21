@@ -796,6 +796,43 @@ export interface Translations {
         ctaDescription: string;
         ctaButton: string;
         mapTitle: string;
+        // Section A: Fleet
+        fleetTitle: string;
+        fleetIntro: string;
+        fleetNoLicense: string;
+        fleetLicense: string;
+        fleetFrom: string;
+        fleetViewDetails: string;
+        // Section B: Complete Guide
+        guideTitle: string;
+        guideRequirementsTitle: string;
+        guideRequirementsText: string;
+        guideSeasonTitle: string;
+        guideSeasonText: string;
+        guideIncludedTitle: string;
+        guideIncludedText: string;
+        guideBookingTitle: string;
+        guideBookingText: string;
+        // Section C: Pricing
+        pricingTitle: string;
+        pricingIntro: string;
+        pricingSeasons: string;
+        pricingBoatCol: string;
+        pricingCapacityCol: string;
+        pricingLowCol: string;
+        pricingHighCol: string;
+        pricingFuelNote: string;
+        pricingFullDetails: string;
+        // Section D: Experiences
+        experiencesTitle: string;
+        expSnorkelTitle: string;
+        expSnorkelDesc: string;
+        expSunsetTitle: string;
+        expSunsetDesc: string;
+        expTossaTitle: string;
+        expTossaDesc: string;
+        expFishingTitle: string;
+        expFishingDesc: string;
       };
     };
     lloret: {

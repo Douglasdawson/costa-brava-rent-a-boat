@@ -1,11 +1,11 @@
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { 
-  MapPin, 
-  Clock, 
-  Anchor, 
-  Users, 
+import {
+  MapPin,
+  Clock,
+  Anchor,
+  Users,
   Star,
   Navigation as NavigationIcon,
   Sun,
@@ -13,7 +13,10 @@ import {
   Camera,
   Car,
   Ship,
-  ChevronRight
+  ChevronRight,
+  Tag,
+  Compass,
+  Fish
 } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
@@ -24,6 +27,7 @@ import { useLanguage } from "@/hooks/use-language";
 import { getSEOConfig, generateHreflangLinks, generateCanonicalUrl, generateBreadcrumbSchema } from "@/utils/seo-config";
 import { openWhatsApp, createBookingMessage } from "@/utils/whatsapp";
 import { useTranslations } from "@/lib/translations";
+import { BOAT_DATA } from "@shared/boatData";
 
 export default function LocationBlanesPage() {
   const { language } = useLanguage();
@@ -109,6 +113,30 @@ export default function LocationBlanesPage() {
           "@type": "Answer",
           "text": "Sí. Hay aparcamiento gratuito junto al Puerto de Blanes. También hay restaurantes, tiendas náuticas y gasolinera en la zona portuaria."
         }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Cual es la mejor epoca para alquilar un barco en Blanes?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "La temporada va de abril a octubre. Junio y septiembre ofrecen los mejores precios y menos afluencia. Agosto es temporada alta con las mejores condiciones de mar pero precios mas altos."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Se puede alquilar un barco en Blanes el mismo dia?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Si, aceptamos reservas de ultimo momento si hay disponibilidad. Contacta por WhatsApp al +34 611 500 372 para comprobar disponibilidad el mismo dia."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Es seguro navegar sin licencia desde Blanes?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Si. Nuestros barcos sin licencia tienen un maximo de 15CV, no requieren titulacion y navegan cerca de la costa. Incluimos formacion de seguridad de 15 minutos, chalecos salvavidas y equipo de emergencia."
+        }
       }
     ]
   };
@@ -192,6 +220,195 @@ export default function LocationBlanesPage() {
                   <h3 className="font-semibold text-lg mb-3">{s.allLevels}</h3>
                   <p className="text-muted-foreground">{s.allLevelsDesc}</p>
                 </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Section A: Fleet */}
+          <Card className="mb-8">
+            <CardHeader>
+              <h2 className="flex items-center gap-3 text-2xl font-semibold leading-none tracking-tight">
+                <Anchor className="w-6 h-6 text-primary" />
+                {s.fleetTitle}
+              </h2>
+            </CardHeader>
+            <CardContent>
+              <p className="text-muted-foreground mb-6">{s.fleetIntro}</p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                {Object.values(BOAT_DATA).map((boat) => {
+                  const isNoLicense = boat.features.some(
+                    (f) => f.toLowerCase().includes("sin licencia")
+                  );
+                  const lowestPrice = Math.min(
+                    ...Object.values(boat.pricing.BAJA.prices)
+                  );
+                  return (
+                    <a
+                      key={boat.id}
+                      href={`/barco/${boat.id}`}
+                      className="block border rounded-lg p-4 hover:shadow-md transition-shadow"
+                    >
+                      <div className="flex items-center justify-between mb-2">
+                        <h3 className="font-semibold text-lg">{boat.name}</h3>
+                        <Badge
+                          variant={isNoLicense ? "secondary" : "outline"}
+                          className="text-xs"
+                        >
+                          {isNoLicense ? s.fleetNoLicense : s.fleetLicense}
+                        </Badge>
+                      </div>
+                      <div className="flex items-center gap-4 text-sm text-muted-foreground mb-3">
+                        <span className="flex items-center gap-1">
+                          <Users className="w-4 h-4" />
+                          {boat.specifications.capacity}
+                        </span>
+                        <span>{boat.specifications.engine}</span>
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <span className="text-primary font-semibold">
+                          {s.fleetFrom} {lowestPrice} EUR
+                        </span>
+                        <span className="text-sm text-primary hover:underline">
+                          {s.fleetViewDetails}
+                        </span>
+                      </div>
+                    </a>
+                  );
+                })}
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Section B: Complete Guide */}
+          <Card className="mb-8">
+            <CardHeader>
+              <h2 className="flex items-center gap-3 text-2xl font-semibold leading-none tracking-tight">
+                <Ship className="w-6 h-6 text-primary" />
+                {s.guideTitle}
+              </h2>
+            </CardHeader>
+            <CardContent>
+              <div className="grid md:grid-cols-2 gap-6">
+                <div>
+                  <h3 className="font-semibold text-lg mb-3">{s.guideRequirementsTitle}</h3>
+                  <p className="text-muted-foreground mb-6">{s.guideRequirementsText}</p>
+
+                  <h3 className="font-semibold text-lg mb-3">{s.guideSeasonTitle}</h3>
+                  <p className="text-muted-foreground">{s.guideSeasonText}</p>
+                </div>
+                <div>
+                  <h3 className="font-semibold text-lg mb-3">{s.guideIncludedTitle}</h3>
+                  <p className="text-muted-foreground mb-6">{s.guideIncludedText}</p>
+
+                  <h3 className="font-semibold text-lg mb-3">{s.guideBookingTitle}</h3>
+                  <p className="text-muted-foreground">{s.guideBookingText}</p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Section C: Pricing Table */}
+          <Card className="mb-8">
+            <CardHeader>
+              <h2 className="flex items-center gap-3 text-2xl font-semibold leading-none tracking-tight">
+                <Tag className="w-6 h-6 text-cta" />
+                {s.pricingTitle}
+              </h2>
+            </CardHeader>
+            <CardContent>
+              <p className="text-muted-foreground mb-4">{s.pricingIntro}</p>
+              <div className="overflow-x-auto mb-4">
+                <table className="w-full text-sm border-collapse">
+                  <thead>
+                    <tr className="border-b bg-muted/50">
+                      <th className="text-left p-3 font-semibold">{s.pricingBoatCol}</th>
+                      <th className="text-center p-3 font-semibold">{s.pricingCapacityCol}</th>
+                      <th className="text-center p-3 font-semibold">{s.pricingLowCol}</th>
+                      <th className="text-center p-3 font-semibold">{s.pricingHighCol}</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {Object.values(BOAT_DATA).map((boat) => (
+                      <tr key={boat.id} className="border-b hover:bg-muted/30">
+                        <td className="p-3">
+                          <a href={`/barco/${boat.id}`} className="text-primary hover:underline font-medium">
+                            {boat.name}
+                          </a>
+                        </td>
+                        <td className="p-3 text-center">{boat.specifications.capacity}</td>
+                        <td className="p-3 text-center">
+                          {boat.pricing.BAJA.prices["2h"]
+                            ? `${boat.pricing.BAJA.prices["2h"]} EUR`
+                            : "-"}
+                        </td>
+                        <td className="p-3 text-center">
+                          {boat.pricing.ALTA.prices["2h"]
+                            ? `${boat.pricing.ALTA.prices["2h"]} EUR`
+                            : "-"}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              <p className="text-xs text-muted-foreground mb-3">{s.pricingFuelNote}</p>
+              <p className="text-sm text-muted-foreground mb-2">{s.pricingSeasons}</p>
+              <a href="/precios" className="text-primary hover:underline text-sm font-medium flex items-center gap-1">
+                <ChevronRight className="w-4 h-4" />
+                {s.pricingFullDetails}
+              </a>
+            </CardContent>
+          </Card>
+
+          {/* Section D: Popular Experiences */}
+          <Card className="mb-8">
+            <CardHeader>
+              <h2 className="flex items-center gap-3 text-2xl font-semibold leading-none tracking-tight">
+                <Sun className="w-6 h-6 text-orange-500" />
+                {s.experiencesTitle}
+              </h2>
+            </CardHeader>
+            <CardContent>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <a href="/excursion-snorkel-barco-blanes" className="block border rounded-lg p-5 hover:shadow-md transition-shadow">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
+                      <Waves className="w-5 h-5 text-primary" />
+                    </div>
+                    <h3 className="font-semibold text-lg">{s.expSnorkelTitle}</h3>
+                  </div>
+                  <p className="text-muted-foreground text-sm">{s.expSnorkelDesc}</p>
+                </a>
+
+                <a href="/sunset-boat-trip-blanes" className="block border rounded-lg p-5 hover:shadow-md transition-shadow">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-10 h-10 bg-orange-100 rounded-full flex items-center justify-center">
+                      <Sun className="w-5 h-5 text-orange-600" />
+                    </div>
+                    <h3 className="font-semibold text-lg">{s.expSunsetTitle}</h3>
+                  </div>
+                  <p className="text-muted-foreground text-sm">{s.expSunsetDesc}</p>
+                </a>
+
+                <a href="/alquiler-barcos-tossa-de-mar" className="block border rounded-lg p-5 hover:shadow-md transition-shadow">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
+                      <Compass className="w-5 h-5 text-primary" />
+                    </div>
+                    <h3 className="font-semibold text-lg">{s.expTossaTitle}</h3>
+                  </div>
+                  <p className="text-muted-foreground text-sm">{s.expTossaDesc}</p>
+                </a>
+
+                <a href="/pesca-barco-blanes" className="block border rounded-lg p-5 hover:shadow-md transition-shadow">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
+                      <Fish className="w-5 h-5 text-primary" />
+                    </div>
+                    <h3 className="font-semibold text-lg">{s.expFishingTitle}</h3>
+                  </div>
+                  <p className="text-muted-foreground text-sm">{s.expFishingDesc}</p>
+                </a>
               </div>
             </CardContent>
           </Card>

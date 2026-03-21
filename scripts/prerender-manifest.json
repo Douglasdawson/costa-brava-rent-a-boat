@@ -1,0 +1,35 @@
+{
+  "baseUrl": "http://localhost:{port}",
+  "outputDir": "dist/prerendered",
+  "routes": [
+    { "path": "/", "langs": ["es", "en", "ca", "fr", "de", "nl", "it", "ru"] },
+    { "path": "/alquiler-barcos-blanes", "langs": ["es", "en", "ca", "fr", "de", "nl", "it", "ru"] },
+    { "path": "/alquiler-barcos-costa-brava", "langs": ["es", "en", "ca", "fr", "de", "nl", "it", "ru"] },
+    { "path": "/alquiler-barcos-lloret-de-mar", "langs": ["es", "en"] },
+    { "path": "/alquiler-barcos-tossa-de-mar", "langs": ["es", "en"] },
+    { "path": "/alquiler-barcos-malgrat-de-mar", "langs": ["es"] },
+    { "path": "/alquiler-barcos-santa-susanna", "langs": ["es"] },
+    { "path": "/alquiler-barcos-calella", "langs": ["es"] },
+    { "path": "/alquiler-barcos-cerca-barcelona", "langs": ["es", "en"] },
+    { "path": "/barcos-sin-licencia", "langs": ["es", "en", "ca", "fr", "de", "nl", "it", "ru"] },
+    { "path": "/barcos-con-licencia", "langs": ["es", "en", "ca", "fr", "de", "nl", "it", "ru"] },
+    { "path": "/boat-rental-blanes", "langs": ["en"] },
+    { "path": "/boat-rental-costa-brava", "langs": ["en"] },
+    { "path": "/faq", "langs": ["es", "en"] },
+    { "path": "/about", "langs": ["es", "en"] },
+    { "path": "/precios", "langs": ["es", "en"] },
+    { "path": "/galeria", "langs": ["es", "en"] },
+    { "path": "/blog", "langs": ["es"] },
+    { "path": "/testimonios", "langs": ["es", "en"] },
+    { "path": "/rutas-maritimas", "langs": ["es", "en"] },
+    { "path": "/gift-cards", "langs": ["es", "en"] }
+  ],
+  "dynamicRoutes": {
+    "boats": { "apiEndpoint": "/api/boats", "pathTemplate": "/barco/{slug}", "langs": ["es", "en", "fr", "de"] },
+    "blog": { "apiEndpoint": "/api/blog/posts?status=published", "pathTemplate": "/blog/{slug}", "langs": ["es"] },
+    "destinations": { "apiEndpoint": "/api/destinations?status=published", "pathTemplate": "/destinos/{slug}", "langs": ["es", "en"] }
+  },
+  "waitForSelector": "#root > *",
+  "networkIdleTimeout": 3000,
+  "concurrency": 3
+}

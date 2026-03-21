@@ -216,6 +216,13 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       description: "Alquiler barco Costa Brava desde Blanes: 8 barcos desde 70\u20ac/h. Sin licencia, gasolina incluida, parking gratis. Lloret 25 min, Tossa 1h. 4.8\u2605 Google. Reserva online.",
       keywords: `alquiler barcos costa brava, alquiler barcos sin licencia costa brava, barcos costa brava ${SEASON_YEAR}`
     },
+    boatRentalCostaBrava: {
+      title: `Boat Rental Costa Brava | No License from 70\u20ac/h — Blanes, Spain`,
+      description: "Rent a boat on the Costa Brava from Blanes port. No license required. 9 boats for 4-12 people. Explore hidden coves, snorkel spots & medieval villages.",
+      keywords: "boat rental costa brava, rent a boat costa brava, boat hire spain no license",
+      ogTitle: "Boat Rental Costa Brava — From Blanes Port",
+      ogDescription: "Explore Spain's most beautiful coastline by boat. No license needed. From 70\u20ac/hour."
+    },
     activitySnorkel: {
       title: "Excursion Snorkel en Barco Blanes | Mejores Calas Costa Brava",
       description: "Excursion de snorkel en barco desde Blanes. Descubre las mejores calas para hacer snorkel en Costa Brava. Equipo disponible desde 7,50 EUR. Reserva online.",
@@ -411,6 +418,13 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       description: "Boat rental Costa Brava from Blanes Port. No license from 70\u20ac/h, fuel included, free parking. Lloret 25 min, Tossa 1h. 4.8\u2605 Google (300+ reviews). Book online.",
       keywords: `boat rental costa brava, no license boats costa brava, costa brava boats ${SEASON_YEAR}`
     },
+    boatRentalCostaBrava: {
+      title: `Boat Rental Costa Brava | No License from 70\u20ac/h — Blanes, Spain`,
+      description: "Rent a boat on the Costa Brava from Blanes port. No license required. 9 boats for 4-12 people. Explore hidden coves, snorkel spots & medieval villages.",
+      keywords: "boat rental costa brava, rent a boat costa brava, boat hire spain no license",
+      ogTitle: "Boat Rental Costa Brava — From Blanes Port",
+      ogDescription: "Explore Spain's most beautiful coastline by boat. No license needed. From 70\u20ac/hour."
+    },
     activitySnorkel: {
       title: "Snorkeling Boat Trip Blanes | Best Coves Costa Brava",
       description: "Snorkeling boat excursion from Blanes. Discover the best coves for snorkeling in Costa Brava. Equipment rental from 7.50 EUR. Book online.",
@@ -594,6 +608,11 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       title: `Lloguer Barques Costa Brava ${SEASON_YEAR} | Sense Llicencia des de 70\u20ac/h`,
       description: "Lloguer barques Costa Brava des del Port de Blanes, porta sud de la Costa Brava. Sense llic\u00e8ncia des de 70\u20ac/h, gasolina inclosa. 4.8\u2605 Google (300+ opinions). 8 barques. Reserva online.",
       keywords: `lloguer barques costa brava, barques sense llicencia costa brava, barques costa brava ${SEASON_YEAR}`
+    },
+    boatRentalCostaBrava: {
+      title: `Boat Rental Costa Brava | No License from 70\u20ac/h — Blanes, Spain`,
+      description: "Rent a boat on the Costa Brava from Blanes port. No license required. 9 boats for 4-12 people. Explore hidden coves, snorkel spots & medieval villages.",
+      keywords: "boat rental costa brava, rent a boat costa brava, boat hire spain no license"
     }
   },
   fr: {
@@ -726,6 +745,11 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       title: `Location Bateaux Costa Brava ${SEASON_YEAR} | Sans Permis des 70\u20ac/h`,
       description: "Location bateaux Costa Brava depuis le Port de Blanes, porte sud de la Costa Brava. Sans permis d\u00e8s 70\u20ac/h, carburant inclus. 4.8\u2605 Google (300+ avis). 8 bateaux. R\u00e9servez en ligne.",
       keywords: `location bateaux costa brava, bateaux sans permis costa brava, bateaux costa brava ${SEASON_YEAR}`
+    },
+    boatRentalCostaBrava: {
+      title: `Boat Rental Costa Brava | No License from 70\u20ac/h — Blanes, Spain`,
+      description: "Rent a boat on the Costa Brava from Blanes port. No license required. 9 boats for 4-12 people. Explore hidden coves, snorkel spots & medieval villages.",
+      keywords: "boat rental costa brava, rent a boat costa brava, boat hire spain no license"
     }
   },
   de: {
@@ -858,6 +882,11 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       title: `Bootsverleih Costa Brava ${SEASON_YEAR} | Ohne Fuhrerschein ab 70\u20ac/h`,
       description: "Bootsverleih Costa Brava ab Hafen Blanes, s\u00fcdliches Tor zur Costa Brava. Ohne F\u00fchrerschein ab 70\u20ac/h, Kraftstoff inklusive. 4.8\u2605 Google (300+ Bewertungen). 8 Boote. Online buchen.",
       keywords: `bootsverleih costa brava, boote ohne fuhrerschein costa brava, boote costa brava ${SEASON_YEAR}`
+    },
+    boatRentalCostaBrava: {
+      title: `Boat Rental Costa Brava | No License from 70\u20ac/h — Blanes, Spain`,
+      description: "Rent a boat on the Costa Brava from Blanes port. No license required. 9 boats for 4-12 people. Explore hidden coves, snorkel spots & medieval villages.",
+      keywords: "boat rental costa brava, rent a boat costa brava, boat hire spain no license"
     }
   },
   nl: {
@@ -990,6 +1019,11 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       title: `Bootverhuur Costa Brava ${SEASON_YEAR} | Zonder Vaarbewijs vanaf 70\u20ac/u`,
       description: "Bootverhuur Costa Brava vanuit Haven Blanes, zuidelijke poort naar de Costa Brava. Zonder vaarbewijs vanaf 70\u20ac/u, brandstof inbegrepen. 4.8\u2605 Google (300+ beoordelingen). 8 boten. Online boeken.",
       keywords: `bootverhuur costa brava, boten zonder vaarbewijs costa brava, boten costa brava ${SEASON_YEAR}`
+    },
+    boatRentalCostaBrava: {
+      title: `Boat Rental Costa Brava | No License from 70\u20ac/h — Blanes, Spain`,
+      description: "Rent a boat on the Costa Brava from Blanes port. No license required. 9 boats for 4-12 people. Explore hidden coves, snorkel spots & medieval villages.",
+      keywords: "boat rental costa brava, rent a boat costa brava, boat hire spain no license"
     }
   },
   it: {
@@ -1122,6 +1156,11 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       title: `Noleggio Barche Costa Brava ${SEASON_YEAR} | Senza Patente da 70\u20ac/h`,
       description: "Noleggio barche Costa Brava dal Porto di Blanes, porta sud della Costa Brava. Senza patente da 70\u20ac/h, carburante incluso. 4.8\u2605 Google (300+ recensioni). 8 barche. Prenota online.",
       keywords: `noleggio barche costa brava, barche senza patente costa brava, barche costa brava ${SEASON_YEAR}`
+    },
+    boatRentalCostaBrava: {
+      title: `Boat Rental Costa Brava | No License from 70\u20ac/h — Blanes, Spain`,
+      description: "Rent a boat on the Costa Brava from Blanes port. No license required. 9 boats for 4-12 people. Explore hidden coves, snorkel spots & medieval villages.",
+      keywords: "boat rental costa brava, rent a boat costa brava, boat hire spain no license"
     }
   },
   ru: {
@@ -1254,6 +1293,11 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       title: `Аренда Лодок Коста-Брава ${SEASON_YEAR} | Без Лицензии от 70\u20ac/ч`,
       description: "Аренда лодок Коста-Брава из порта Бланес, южных ворот Коста-Бравы. Без лицензии от 70\u20ac/ч, топливо включено. 4.8\u2605 Google (300+ отзывов). 8 лодок. Бронируйте онлайн.",
       keywords: `аренда лодок коста брава, лодки без лицензии коста брава, лодки коста брава ${SEASON_YEAR}`
+    },
+    boatRentalCostaBrava: {
+      title: `Boat Rental Costa Brava | No License from 70\u20ac/h — Blanes, Spain`,
+      description: "Rent a boat on the Costa Brava from Blanes port. No license required. 9 boats for 4-12 people. Explore hidden coves, snorkel spots & medieval villages.",
+      keywords: "boat rental costa brava, rent a boat costa brava, boat hire spain no license"
     }
   }
 };
@@ -1339,6 +1383,7 @@ const getPagePath = (pageName: string): string => {
     pricing: 'precios',
     locationBarcelona: 'alquiler-barcos-cerca-barcelona',
     locationCostaBrava: 'alquiler-barcos-costa-brava',
+    boatRentalCostaBrava: 'boat-rental-costa-brava',
     activitySnorkel: 'excursion-snorkel-barco-blanes',
     activityFamilies: 'barco-familias-costa-brava',
     activitySunset: 'sunset-boat-trip-blanes',

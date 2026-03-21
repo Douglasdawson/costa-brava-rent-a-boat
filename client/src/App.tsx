@@ -60,6 +60,7 @@ const CancelBookingPage = lazy(() => import("@/pages/CancelBookingPage"));
 const PricingPage = lazy(() => import("@/pages/pricing"));
 const LocationBarcelonaPage = lazy(() => import("@/pages/location-barcelona"));
 const LocationCostaBravaPage = lazy(() => import("@/pages/alquiler-barcos-costa-brava"));
+const BoatRentalCostaBravaPage = lazy(() => import("@/pages/boat-rental-costa-brava"));
 const ActivitySnorkelPage = lazy(() => import("@/pages/activity-snorkel"));
 const ActivityFamiliesPage = lazy(() => import("@/pages/activity-families"));
 const ActivitySunsetPage = lazy(() => import("@/pages/activity-sunset"));
@@ -412,6 +413,9 @@ function Router() {
       </Route>
       <Route path="/alquiler-barcos-costa-brava">
         {() => <Suspense fallback={<SecondaryRouteFallback />}><LocationCostaBravaPage /></Suspense>}
+      </Route>
+      <Route path="/boat-rental-costa-brava">
+        {() => <Suspense fallback={<SecondaryRouteFallback />}><BoatRentalCostaBravaPage /></Suspense>}
       </Route>
       <Route path="/excursion-snorkel-barco-blanes">
         {() => <Suspense fallback={<SecondaryRouteFallback />}><ActivitySnorkelPage /></Suspense>}

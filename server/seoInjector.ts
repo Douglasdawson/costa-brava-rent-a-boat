@@ -953,6 +953,18 @@ const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
       description: "\u0410\u0440\u0435\u043d\u0434\u0430 \u043b\u043e\u0434\u043e\u043a \u041a\u043e\u0441\u0442\u0430-\u0411\u0440\u0430\u0432\u0430 \u0438\u0437 \u043f\u043e\u0440\u0442\u0430 \u0411\u043b\u0430\u043d\u0435\u0441, \u044e\u0436\u043d\u044b\u0445 \u0432\u043e\u0440\u043e\u0442 \u041a\u043e\u0441\u0442\u0430-\u0411\u0440\u0430\u0432\u044b. \u0411\u0435\u0437 \u043b\u0438\u0446\u0435\u043d\u0437\u0438\u0438 \u043e\u0442 70\u20ac/\u0447, \u0442\u043e\u043f\u043b\u0438\u0432\u043e \u0432\u043a\u043b\u044e\u0447\u0435\u043d\u043e. 4.8\u2605 Google. 9 \u043b\u043e\u0434\u043e\u043a.",
     },
   },
+  "/boat-rental-costa-brava": {
+    en: {
+      title: "Boat Rental Costa Brava | No License from 70\u20ac/h — Blanes, Spain",
+      description: "Rent a boat on the Costa Brava from Blanes port. No license required. 9 boats for 4-12 people. Explore hidden coves, snorkel spots & medieval villages.",
+      ogTitle: "Boat Rental Costa Brava — From Blanes Port",
+      ogDescription: "Explore Spain's most beautiful coastline by boat. No license needed. From 70\u20ac/hour.",
+    },
+    es: {
+      title: "Boat Rental Costa Brava | No License from 70\u20ac/h — Blanes, Spain",
+      description: "Rent a boat on the Costa Brava from Blanes port. No license required. 9 boats for 4-12 people. Explore hidden coves, snorkel spots & medieval villages.",
+    },
+  },
   "/excursion-snorkel-barco-blanes": {
     es: {
       title: "Snorkel en Barco Blanes | Calas Cristalinas Costa Brava desde 70€/h",
@@ -2511,6 +2523,7 @@ const VALID_SPA_ROUTES = new Set([
   "/alquiler-barcos-calella",
   "/alquiler-barcos-cerca-barcelona",
   "/alquiler-barcos-costa-brava",
+  "/boat-rental-costa-brava",
   "/barcos-sin-licencia",
   "/barcos-con-licencia",
   "/galeria",

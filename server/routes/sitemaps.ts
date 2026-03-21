@@ -205,6 +205,11 @@ export function registerSitemapRoutes(app: Express) {
       sitemap += generateUrlEntry(baseUrl, "/destinos", "0.7", null);
       sitemap += generateUrlEntry(baseUrl, "/barcos-sin-licencia", "0.7", null);
       sitemap += generateUrlEntry(baseUrl, "/barcos-con-licencia", "0.7", null);
+      sitemap += generateUrlEntry(baseUrl, "/blog", "0.7", null);
+      sitemap += generateUrlEntry(baseUrl, "/excursion-snorkel-barco-blanes", "0.7", null);
+      sitemap += generateUrlEntry(baseUrl, "/barco-familias-costa-brava", "0.7", null);
+      sitemap += generateUrlEntry(baseUrl, "/sunset-boat-trip-blanes", "0.7", null);
+      sitemap += generateUrlEntry(baseUrl, "/pesca-barco-blanes", "0.7", null);
       sitemap += generateUrlEntry(baseUrl, "/privacy-policy", "0.3", null);
       sitemap += generateUrlEntry(baseUrl, "/terms-conditions", "0.3", null);
       sitemap += generateUrlEntry(baseUrl, "/condiciones-generales", "0.3", null);
@@ -505,7 +510,7 @@ ${destHreflang}  </url>
   // CWV beacon — receives Core Web Vitals data from client
   app.post("/api/cwv-beacon", async (req, res) => {
     try {
-      const { page, name, value, rating } = req.body;
+      const { page, name, value, rating, deviceType, navigationType, connectionType } = req.body;
       if (!page || !name || typeof value !== "number") {
         return res.status(400).json({ message: "Invalid beacon data" });
       }
@@ -514,7 +519,7 @@ ${destHreflang}  </url>
         return res.status(400).json({ message: "Invalid metric name" });
       }
       const { recordCwvBeacon } = await import("../seo/collectors/cwv");
-      await recordCwvBeacon({ page, name, value, rating });
+      await recordCwvBeacon({ page, name, value, rating, deviceType, navigationType, connectionType });
       res.status(204).end();
     } catch {
       res.status(500).json({ message: "Error recording CWV" });

@@ -7,10 +7,124 @@ import Footer from "@/components/Footer";
 import { SEO } from "@/components/SEO";
 import PhotoLightbox from "@/components/PhotoLightbox";
 import PhotoSubmissionForm from "@/components/PhotoSubmissionForm";
-import { useLanguage } from "@/hooks/use-language";
+import { useLanguage, type Language } from "@/hooks/use-language";
 import { useTranslations } from "@/lib/translations";
 import { getSEOConfig, generateCanonicalUrl, generateHreflangLinks } from "@/utils/seo-config";
 import { queryClient } from "@/lib/queryClient";
+
+const galleryText: Record<string, {
+  introP1: string;
+  introP2pre: string;
+  introP2licenseFree: string;
+  introP2mid: string;
+  introP2licensed: string;
+  introP2post: string;
+  ctaTitle: string;
+  ctaSubtitle: string;
+  ctaFleet: string;
+  ctaRoutes: string;
+}> = {
+  es: {
+    introP1: "Nuestros clientes capturan momentos inolvidables navegando por las aguas turquesa de la Costa Brava. Desde las calas escondidas de Lloret de Mar hasta los impresionantes acantilados cerca de Tossa de Mar, cada salida en barco es una oportunidad para crear recuerdos que duran toda la vida.",
+    introP2pre: "Tanto si navegas con nuestra flota de",
+    introP2licenseFree: "barcos sin licencia",
+    introP2mid: "como si prefieres un",
+    introP2licensed: "barco con licencia",
+    introP2post: "para explorar mas lejos, las fotos de esta galeria muestran la variedad de experiencias que puedes vivir: snorkel en aguas cristalinas, atardeceres desde cubierta, fondeo en calas virgenes y la diversion en familia que solo el mar puede ofrecer.",
+    ctaTitle: "Crea tus propios recuerdos",
+    ctaSubtitle: "Explora la Costa Brava desde el agua. Elige tu barco, reserva tu fecha y preparate para una experiencia inolvidable.",
+    ctaFleet: "Ver nuestra flota",
+    ctaRoutes: "Descubrir rutas",
+  },
+  en: {
+    introP1: "Our customers capture unforgettable moments sailing through the turquoise waters of the Costa Brava. From the hidden coves of Lloret de Mar to the stunning cliffs near Tossa de Mar, every boat trip is a chance to create memories that last a lifetime.",
+    introP2pre: "Whether you sail with our fleet of",
+    introP2licenseFree: "licence-free boats",
+    introP2mid: "or prefer a",
+    introP2licensed: "licensed boat",
+    introP2post: "to explore further, the photos in this gallery show the variety of experiences you can enjoy: snorkelling in crystal-clear waters, sunsets from the deck, anchoring in pristine coves and the family fun that only the sea can offer.",
+    ctaTitle: "Create your own memories",
+    ctaSubtitle: "Explore the Costa Brava from the water. Choose your boat, book your date and get ready for an unforgettable experience.",
+    ctaFleet: "See our fleet",
+    ctaRoutes: "Discover routes",
+  },
+  fr: {
+    introP1: "Nos clients capturent des moments inoubliables en naviguant dans les eaux turquoise de la Costa Brava. Des criques cachees de Lloret de Mar aux falaises impressionnantes pres de Tossa de Mar, chaque sortie en bateau est une occasion de creer des souvenirs qui durent toute la vie.",
+    introP2pre: "Que vous naviguiez avec notre flotte de",
+    introP2licenseFree: "bateaux sans permis",
+    introP2mid: "ou que vous preferiez un",
+    introP2licensed: "bateau avec permis",
+    introP2post: "pour explorer plus loin, les photos de cette galerie montrent la variete d'experiences que vous pouvez vivre : snorkeling dans des eaux cristallines, couchers de soleil depuis le pont, mouillage dans des criques vierges et le plaisir en famille que seule la mer peut offrir.",
+    ctaTitle: "Creez vos propres souvenirs",
+    ctaSubtitle: "Explorez la Costa Brava depuis la mer. Choisissez votre bateau, reservez votre date et preparez-vous pour une experience inoubliable.",
+    ctaFleet: "Voir notre flotte",
+    ctaRoutes: "Decouvrir les itineraires",
+  },
+  de: {
+    introP1: "Unsere Kunden fangen unvergessliche Momente beim Segeln durch das turkisfarbene Wasser der Costa Brava ein. Von den versteckten Buchten von Lloret de Mar bis zu den beeindruckenden Klippen bei Tossa de Mar ist jeder Bootsausflug eine Gelegenheit, Erinnerungen zu schaffen, die ein Leben lang halten.",
+    introP2pre: "Ob Sie mit unserer Flotte von",
+    introP2licenseFree: "fuhrerscheinfreien Booten",
+    introP2mid: "segeln oder ein",
+    introP2licensed: "Boot mit Fuhrerschein",
+    introP2post: "bevorzugen, um weiter zu erkunden — die Fotos in dieser Galerie zeigen die Vielfalt der Erlebnisse: Schnorcheln in kristallklarem Wasser, Sonnenuntergange vom Deck, Ankern in unberuhrten Buchten und der Familienspass, den nur das Meer bieten kann.",
+    ctaTitle: "Schaffen Sie Ihre eigenen Erinnerungen",
+    ctaSubtitle: "Erkunden Sie die Costa Brava vom Wasser aus. Wahlen Sie Ihr Boot, buchen Sie Ihr Datum und bereiten Sie sich auf ein unvergessliches Erlebnis vor.",
+    ctaFleet: "Unsere Flotte ansehen",
+    ctaRoutes: "Routen entdecken",
+  },
+  nl: {
+    introP1: "Onze klanten leggen onvergetelijke momenten vast terwijl ze over het turquoise water van de Costa Brava varen. Van de verborgen baaien van Lloret de Mar tot de indrukwekkende kliffen bij Tossa de Mar, elke boottocht is een kans om herinneringen te creeren die een leven lang meegaan.",
+    introP2pre: "Of u nu vaart met onze vloot van",
+    introP2licenseFree: "boten zonder vaarbewijs",
+    introP2mid: "of de voorkeur geeft aan een",
+    introP2licensed: "boot met vaarbewijs",
+    introP2post: "om verder te verkennen, de foto's in deze galerij tonen de verscheidenheid aan ervaringen: snorkelen in kristalhelder water, zonsondergangen vanaf het dek, ankeren in ongerepte baaien en het familieplezier dat alleen de zee kan bieden.",
+    ctaTitle: "Maak uw eigen herinneringen",
+    ctaSubtitle: "Verken de Costa Brava vanaf het water. Kies uw boot, boek uw datum en bereid u voor op een onvergetelijke ervaring.",
+    ctaFleet: "Onze vloot bekijken",
+    ctaRoutes: "Routes ontdekken",
+  },
+  it: {
+    introP1: "I nostri clienti catturano momenti indimenticabili navigando nelle acque turchesi della Costa Brava. Dalle calette nascoste di Lloret de Mar alle impressionanti scogliere vicino a Tossa de Mar, ogni uscita in barca e un'opportunita per creare ricordi che durano tutta la vita.",
+    introP2pre: "Sia che navighi con la nostra flotta di",
+    introP2licenseFree: "barche senza patente",
+    introP2mid: "o che preferisca una",
+    introP2licensed: "barca con patente",
+    introP2post: "per esplorare piu lontano, le foto di questa galleria mostrano la varieta di esperienze che puoi vivere: snorkeling in acque cristalline, tramonti dal ponte, ancoraggio in calette incontaminate e il divertimento in famiglia che solo il mare puo offrire.",
+    ctaTitle: "Crea i tuoi ricordi",
+    ctaSubtitle: "Esplora la Costa Brava dall'acqua. Scegli la tua barca, prenota la tua data e preparati per un'esperienza indimenticabile.",
+    ctaFleet: "Vedi la nostra flotta",
+    ctaRoutes: "Scopri gli itinerari",
+  },
+  ru: {
+    introP1: "Наши клиенты запечатлевают незабываемые моменты, плавая по бирюзовым водам Коста-Бравы. От скрытых бухт Льорет-де-Мар до впечатляющих скал возле Тосса-де-Мар — каждая морская прогулка это возможность создать воспоминания на всю жизнь.",
+    introP2pre: "Плаваете ли вы на нашем флоте",
+    introP2licenseFree: "лодок без лицензии",
+    introP2mid: "или предпочитаете",
+    introP2licensed: "лодку с лицензией",
+    introP2post: "для дальних путешествий — фотографии в этой галерее показывают разнообразие впечатлений: снорклинг в кристально чистой воде, закаты с палубы, якорные стоянки в нетронутых бухтах и семейное веселье, которое может подарить только море.",
+    ctaTitle: "Создайте свои воспоминания",
+    ctaSubtitle: "Исследуйте Коста-Браву с воды. Выберите лодку, забронируйте дату и приготовьтесь к незабываемому опыту.",
+    ctaFleet: "Посмотреть наш флот",
+    ctaRoutes: "Открыть маршруты",
+  },
+  ca: {
+    introP1: "Els nostres clients capturen moments inoblidables navegant per les aigues turquesa de la Costa Brava. Des de les cales amagades de Lloret de Mar fins als impressionants penya-segats prop de Tossa de Mar, cada sortida en vaixell es una oportunitat per crear records que duren tota la vida.",
+    introP2pre: "Tant si navegues amb la nostra flota de",
+    introP2licenseFree: "barques sense llicencia",
+    introP2mid: "com si prefereixes una",
+    introP2licensed: "barca amb llicencia",
+    introP2post: "per explorar mes lluny, les fotos d'aquesta galeria mostren la varietat d'experiencies que pots viure: snorkel en aigues cristal·lines, postes de sol des de coberta, fondeig en cales verges i la diversio en familia que nomes el mar pot oferir.",
+    ctaTitle: "Crea els teus propis records",
+    ctaSubtitle: "Explora la Costa Brava des de l'aigua. Tria la teva barca, reserva la teva data i prepara't per a una experiencia inoblidable.",
+    ctaFleet: "Veure la nostra flota",
+    ctaRoutes: "Descobrir rutes",
+  },
+};
+
+function getGalleryText(language: Language) {
+  return galleryText[language] || galleryText.es;
+}
 
 interface GalleryPhoto {
   id: string;
@@ -29,6 +143,7 @@ export default function GalleryPage() {
   const [showSubmitForm, setShowSubmitForm] = useState(false);
   const { language } = useLanguage();
   const t = useTranslations();
+  const gt = getGalleryText(language);
 
   const { data: photos = [], isLoading } = useQuery<GalleryPhoto[]>({
     queryKey: ["/api/gallery"],
@@ -69,19 +184,13 @@ export default function GalleryPage() {
 
           {/* Rich intro paragraph with internal links */}
           <div className="max-w-3xl mx-auto text-left mt-6 mb-8 space-y-4 text-muted-foreground">
+            <p>{gt.introP1}</p>
             <p>
-              Nuestros clientes capturan momentos inolvidables navegando por las aguas turquesa de la Costa Brava.
-              Desde las calas escondidas de Lloret de Mar hasta los impresionantes acantilados cerca de Tossa de Mar,
-              cada salida en barco es una oportunidad para crear recuerdos que duran toda la vida.
-            </p>
-            <p>
-              Tanto si navegas con nuestra flota de{" "}
-              <a href="/#fleet" className="text-primary hover:underline">barcos sin licencia</a>{" "}
-              como si prefieres un{" "}
-              <a href="/barcos-con-licencia" className="text-primary hover:underline">barco con licencia</a>{" "}
-              para explorar más lejos, las fotos de esta galería muestran la variedad de experiencias que puedes vivir:
-              snorkel en aguas cristalinas, atardeceres desde cubierta, fondeo en calas vírgenes
-              y la diversión en familia que solo el mar puede ofrecer.
+              {gt.introP2pre}{" "}
+              <a href="/#fleet" className="text-primary hover:underline">{gt.introP2licenseFree}</a>{" "}
+              {gt.introP2mid}{" "}
+              <a href="/barcos-con-licencia" className="text-primary hover:underline">{gt.introP2licensed}</a>{" "}
+              {gt.introP2post}
             </p>
           </div>
 
@@ -140,17 +249,17 @@ export default function GalleryPage() {
         {/* CTA Section */}
         <div className="mt-12 text-center space-y-4">
           <h2 className="text-2xl font-heading font-bold text-foreground">
-            Crea tus propios recuerdos
+            {gt.ctaTitle}
           </h2>
           <p className="text-muted-foreground max-w-xl mx-auto">
-            Explora la Costa Brava desde el agua. Elige tu barco, reserva tu fecha y prepárate para una experiencia inolvidable.
+            {gt.ctaSubtitle}
           </p>
           <div className="flex flex-wrap gap-3 justify-center">
             <a href="/#fleet" className="inline-flex items-center gap-2 bg-primary text-white px-6 py-3 rounded-lg font-medium hover:bg-primary/90 transition-colors">
-              Ver nuestra flota
+              {gt.ctaFleet}
             </a>
             <a href="/rutas" className="inline-flex items-center gap-2 border border-primary text-primary px-6 py-3 rounded-lg font-medium hover:bg-primary/5 transition-colors">
-              Descubrir rutas
+              {gt.ctaRoutes}
             </a>
           </div>
         </div>

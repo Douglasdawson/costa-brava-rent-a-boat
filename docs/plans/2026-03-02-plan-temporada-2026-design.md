@@ -129,7 +129,7 @@ Basado en la auditoría de 7 agentes (CTO, CMO, CFO, CDO, CCO, COO, CEO) realiza
 
 ## Fuera de alcance (post-temporada)
 
-- Transformación SaaS completa (multi-tenant real, billing, NauticFlow)
+- Transformación SaaS completa (multi-tenant real, billing)
 - Paginación de endpoints de lista
 - Splitting de `storage.ts` y `schema.ts`
 - Video en el hero

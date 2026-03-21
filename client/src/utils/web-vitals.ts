@@ -21,11 +21,20 @@ function sendToBeacon(metric: { name: string; value: number; id: string }) {
   if (typeof window === "undefined" || typeof navigator.sendBeacon !== "function") return;
 
   const page = window.location.pathname;
+  const deviceType = window.innerWidth < 768 ? "mobile" : window.innerWidth < 1024 ? "tablet" : "desktop";
+  const navEntry = performance.getEntriesByType("navigation")[0] as PerformanceNavigationTiming | undefined;
+  const navigationType = navEntry?.type || "navigate";
+  const connection = (navigator as Record<string, unknown>).connection as { effectiveType?: string } | undefined;
+  const connectionType = connection?.effectiveType || "unknown";
+
   const data = JSON.stringify({
     page,
     name: metric.name,
     value: metric.name === "CLS" ? metric.value : Math.round(metric.value),
     rating: undefined, // server will classify
+    deviceType,
+    navigationType,
+    connectionType,
   });
 
   navigator.sendBeacon("/api/cwv-beacon", new Blob([data], { type: "application/json" }));

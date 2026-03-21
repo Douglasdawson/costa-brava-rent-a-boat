@@ -1798,6 +1798,9 @@ export const seoCwvMetrics = pgTable("seo_cwv_metrics", {
   metricName: text("metric_name").notNull(), // CLS, LCP, INP, TTFB, FCP
   value: real("value").notNull(),
   rating: text("rating"), // good, needs-improvement, poor
+  deviceType: text("device_type"),       // mobile, tablet, desktop
+  navigationType: text("navigation_type"), // navigate, reload, back_forward
+  connectionType: text("connection_type"), // 4g, 3g, wifi, unknown
   sampleSize: integer("sample_size").notNull().default(1),
   p75: real("p75"), // 75th percentile
   recordedAt: timestamp("recorded_at", { withTimezone: true }).notNull().default(sql`now()`),

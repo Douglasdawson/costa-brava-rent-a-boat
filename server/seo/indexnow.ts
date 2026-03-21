@@ -6,7 +6,7 @@ const INDEXNOW_ENDPOINT = "https://api.indexnow.org/IndexNow";
 const INDEXNOW_KEY = process.env.INDEXNOW_KEY || "";
 
 // Batch notify IndexNow of URL changes (max 10,000 per call)
-export async function notifyIndexNow(urls: string[]): Promise<void> {
+export async function notifyIndexNow(urls: string[], retryCount = 0): Promise<void> {
   if (!INDEXNOW_KEY) {
     logger.debug("[SEO:IndexNow] Skipped — INDEXNOW_KEY not set");
     return;
@@ -29,18 +29,46 @@ export async function notifyIndexNow(urls: string[]): Promise<void> {
     });
 
     if (response.ok || response.status === 202) {
-      logger.info(`[SEO:IndexNow] Notified ${fullUrls.length} URLs`);
+      logger.info({ urls: fullUrls.length, status: response.status }, "[SEO:IndexNow] Submission successful");
+    } else if ((response.status === 429 || response.status >= 500) && retryCount < 1) {
+      logger.warn({ status: response.status }, "[SEO:IndexNow] Retrying in 5s");
+      setTimeout(() => notifyIndexNow(urls, retryCount + 1), 5000);
     } else {
-      logger.warn(`[SEO:IndexNow] Failed: ${response.status} ${response.statusText}`);
+      logger.warn({ status: response.status, statusText: response.statusText }, "[SEO:IndexNow] Submission failed");
     }
   } catch (error) {
-    logger.warn("[SEO:IndexNow] Request failed", {
-      error: error instanceof Error ? error.message : String(error)
-    });
+    if (retryCount < 1) {
+      logger.warn({ error: error instanceof Error ? error.message : String(error) }, "[SEO:IndexNow] Request failed, retrying in 5s");
+      setTimeout(() => notifyIndexNow(urls, retryCount + 1), 5000);
+    } else {
+      logger.warn({ error: error instanceof Error ? error.message : String(error) }, "[SEO:IndexNow] Request failed after retry");
+    }
+  }
+}
+
+// Safe wrapper with logging for page change notifications
+export async function notifyPageChangedSafe(path: string): Promise<void> {
+  try {
+    await notifyIndexNow([path]);
+  } catch (err) {
+    logger.warn({ err, path }, "[SEO:IndexNow] Page change notification failed");
   }
 }
 
 // Notify for a single page change
 export async function notifyPageChanged(path: string): Promise<void> {
   await notifyIndexNow([path]);
+}
+
+// Batch notify critical pages on deploy (call on startup if INDEXNOW_ON_DEPLOY is set)
+export async function notifyCriticalPagesOnDeploy(): Promise<void> {
+  const criticalPages = [
+    "/", "/barcos-sin-licencia", "/barcos-con-licencia",
+    "/alquiler-barcos-blanes", "/alquiler-barcos-costa-brava",
+    "/precios", "/faq",
+    "/excursion-snorkel-barco-blanes", "/barco-familias-costa-brava",
+    "/sunset-boat-trip-blanes", "/pesca-barco-blanes",
+  ];
+  logger.info({ count: criticalPages.length }, "[SEO:IndexNow] Notifying critical pages on deploy");
+  await notifyIndexNow(criticalPages);
 }

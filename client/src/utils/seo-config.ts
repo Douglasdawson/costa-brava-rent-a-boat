@@ -46,7 +46,7 @@ export const BUSINESS_INFO = {
     "Mo-Su 09:00-20:00"  // April-October season
   ],
   seasonalHours: "April to October",
-  priceRange: "€€",
+  priceRange: "70€ - 400€",
   servesCuisine: null,
   hasDeliveryService: false
 };
@@ -59,7 +59,7 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
   es: {
     home: {
       title: "Alquiler Barcos Blanes Sin Licencia | Puerto de Blanes desde 70\u20ac/h",
-      description: "Alquiler barcos Blanes sin licencia desde 70\u20ac/h. Gasolina incluida. 4.8\u2605 Google (300+ opiniones). 8 barcos, hasta 7 personas. Reserva online o WhatsApp.",
+      description: "Alquiler barcos Blanes sin licencia desde 70\u20ac/h. Gasolina incluida, parking gratis. Elige 2h, 4h, 6h u 8h. 4.8\u2605 Google (300+ opiniones). Reserva online al instante.",
       keywords: "alquiler barco costa brava, alquiler barcos blanes, barco alquiler costa brava, alquiler de barco en costa brava, alquiler embarcaciones costa brava",
       ogTitle: `Alquiler de Barcos en Costa Brava | Blanes ${SEASON_YEAR}`,
       ogDescription: "Alquila barcos en Costa Brava desde Puerto de Blanes. Sin licencia ni experiencia, desde 70\u20ac con gasolina incluida. Reserva ya tu aventura."
@@ -78,7 +78,7 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
     },
     locationBlanes: {
       title: "Alquiler Barco Blanes Sin Licencia | Puerto de Blanes desde 70\u20ac/h",
-      description: "Alquiler de barcos sin licencia en Puerto de Blanes. Desde 70\u20ac/h, gasolina incluida. 4.8\u2605 Google (300+ opiniones). 8 barcos para hasta 7 personas. Reserva online.",
+      description: "Alquiler barcos sin licencia Puerto de Blanes desde 70\u20ac/h. Gasolina incluida, parking gratis. Snorkel, paddle board y seascooter disponibles. 4.8\u2605 Google. Reserva online.",
       keywords: "alquiler barco blanes, alquiler barcos blanes, alquilar barco en blanes, barcos sin licencia blanes, puerto blanes",
       ogTitle: `Alquiler de Barcos en Blanes | Puerto de Blanes ${SEASON_YEAR}`,
       ogDescription: "Alquila barcos en Puerto de Blanes. Sin licencia desde 70\u20ac con gasolina incluida. 8 embarcaciones disponibles. Reserva ya."
@@ -213,8 +213,36 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
     },
     locationCostaBrava: {
       title: `Alquiler Barco Costa Brava ${SEASON_YEAR} | 8 Barcos desde 70\u20ac/h Blanes`,
-      description: "Alquiler barco Costa Brava: 8 barcos en Blanes desde 70\u20ac/h. Sin licencia, gasolina incluida. Lloret 25 min, Tossa 1h. 4.8\u2605 Google. Reserva online.",
+      description: "Alquiler barco Costa Brava desde Blanes: 8 barcos desde 70\u20ac/h. Sin licencia, gasolina incluida, parking gratis. Lloret 25 min, Tossa 1h. 4.8\u2605 Google. Reserva online.",
       keywords: `alquiler barcos costa brava, alquiler barcos sin licencia costa brava, barcos costa brava ${SEASON_YEAR}`
+    },
+    activitySnorkel: {
+      title: "Excursion Snorkel en Barco Blanes | Mejores Calas Costa Brava",
+      description: "Excursion de snorkel en barco desde Blanes. Descubre las mejores calas para hacer snorkel en Costa Brava. Equipo disponible desde 7,50 EUR. Reserva online.",
+      keywords: "snorkel barco blanes, excursion snorkel costa brava, calas snorkel blanes, alquiler barco snorkel",
+      ogTitle: "Excursion Snorkel en Barco desde Blanes | Costa Brava",
+      ogDescription: "Descubre las mejores calas para snorkel desde Blanes. Barcos sin licencia, equipo disponible. Reserva tu aventura submarina."
+    },
+    activityFamilies: {
+      title: "Alquiler Barco Familias Costa Brava | Desde 70 EUR/h Blanes",
+      description: "Alquiler barco para familias en Costa Brava desde 70 EUR/h. Sin licencia, gasolina incluida, chalecos infantiles. Calas tranquilas y seguras. Reserva online.",
+      keywords: "barco familias costa brava, alquiler barco con ninos, excursion barco familiar, barco sin licencia familias",
+      ogTitle: "Barco para Familias en Costa Brava | Desde Blanes",
+      ogDescription: "Barcos seguros para toda la familia. Sin licencia necesaria, chalecos infantiles incluidos. Desde 70 EUR/h con gasolina."
+    },
+    activitySunset: {
+      title: "Sunset Boat Trip Blanes | Evening Boat Ride Costa Brava",
+      description: "Experience a magical sunset boat trip from Blanes, Costa Brava. No license needed, from 70 EUR/h. Perfect for couples and groups. Book your evening boat ride.",
+      keywords: "sunset boat trip blanes, evening boat ride costa brava, sunset cruise blanes, romantic boat trip",
+      ogTitle: "Sunset Boat Trip from Blanes | Costa Brava",
+      ogDescription: "Magical sunset views from the sea. No license needed. Perfect evening experience from Blanes port."
+    },
+    activityFishing: {
+      title: "Pesca desde Barco en Blanes | Alquiler Barco Pesca Costa Brava",
+      description: "Pesca desde nuestros barcos en Blanes, Costa Brava. Barcos con licencia para zonas de pesca. Lubinas, doradas y mas. Reserva tu jornada de pesca.",
+      keywords: "pesca barco blanes, alquiler barco pesca costa brava, pesca deportiva blanes, barco para pescar",
+      ogTitle: "Pesca desde Barco en Blanes | Costa Brava",
+      ogDescription: "Alquila un barco para pescar en Blanes. Barcos con licencia para llegar a las mejores zonas de pesca."
     },
     notFound: {
       title: "Página no encontrada | Costa Brava Rent a Boat",
@@ -225,7 +253,7 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
   en: {
     home: {
       title: "Boat Rental Blanes No License | Blanes Port from 70\u20ac/h",
-      description: "Boat rental Blanes without license from 70\u20ac/h. Fuel included. 4.8\u2605 Google (300+ reviews). 8 boats, up to 7 people. Book online or WhatsApp.",
+      description: "Boat rental Blanes no license needed from 70\u20ac/h. Fuel included, free parking. Choose 2h, 4h, 6h or 8h. 4.8\u2605 Google (300+ reviews). Book online instantly.",
       keywords: "boat rental blanes, boats without license costa brava, boat charter blanes, costa brava rent boat, blanes port",
       ogTitle: `Boat Rental in Blanes & Lloret de Mar | Costa Brava ${SEASON_YEAR}`,
       ogDescription: "Discover Costa Brava from the sea. 8 boats with and without license. 4.8\u2605 Google. Book your adventure today!"
@@ -244,7 +272,7 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
     },
     locationBlanes: {
       title: "Boat Rental Blanes No License | Blanes Port from 70\u20ac/h",
-      description: "Boat rental without license at Blanes Port. From 70\u20ac/h, fuel included. 4.8\u2605 Google (300+ reviews). 8 boats for up to 7 people. Book online.",
+      description: "No license boat rental at Blanes Port from 70\u20ac/h. Fuel included, free parking. Snorkel, paddle board & seascooter available. 4.8\u2605 Google. Book online.",
       keywords: "boat rental blanes port, boats blanes costa brava, boats without license blanes, costa brava coves from blanes",
       ogTitle: `Boat Rental at Blanes Port | Costa Brava ${SEASON_YEAR}`,
       ogDescription: "Rent boats from Blanes Port. With and without license. 8 boats available. Explore coves and beaches. Book now!"
@@ -373,8 +401,36 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
     },
     locationCostaBrava: {
       title: `Boat Rental Costa Brava ${SEASON_YEAR} | No License from 70\u20ac/h`,
-      description: "Boat rental Costa Brava from Blanes Port, southern gateway to Costa Brava. No license from 70\u20ac/h, fuel included. 4.8\u2605 Google (300+ reviews). 8 boats. Book online.",
+      description: "Boat rental Costa Brava from Blanes Port. No license from 70\u20ac/h, fuel included, free parking. Lloret 25 min, Tossa 1h. 4.8\u2605 Google (300+ reviews). Book online.",
       keywords: `boat rental costa brava, no license boats costa brava, costa brava boats ${SEASON_YEAR}`
+    },
+    activitySnorkel: {
+      title: "Snorkeling Boat Trip Blanes | Best Coves Costa Brava",
+      description: "Snorkeling boat excursion from Blanes. Discover the best coves for snorkeling in Costa Brava. Equipment rental from 7.50 EUR. Book online.",
+      keywords: "snorkeling boat trip blanes, snorkel costa brava, boat snorkeling excursion, best snorkel coves blanes",
+      ogTitle: "Snorkeling Boat Trip from Blanes | Costa Brava",
+      ogDescription: "Discover the best snorkeling coves from Blanes. No license boats, equipment available. Book your underwater adventure."
+    },
+    activityFamilies: {
+      title: "Family Boat Rental Costa Brava | From 70 EUR/h Blanes",
+      description: "Family boat rental in Costa Brava from 70 EUR/h. No license needed, fuel included, children life jackets. Safe coves for kids. Book online.",
+      keywords: "family boat rental costa brava, boat with kids blanes, family boat trip, no license family boat",
+      ogTitle: "Family Boat Rental in Costa Brava | From Blanes",
+      ogDescription: "Safe boats for the whole family. No license needed, children life jackets included. From 70 EUR/h with fuel."
+    },
+    activitySunset: {
+      title: "Sunset Boat Trip Blanes | Evening Boat Ride Costa Brava",
+      description: "Experience a magical sunset boat trip from Blanes, Costa Brava. No license needed, from 70 EUR/h. Perfect for couples and groups. Book your evening boat ride.",
+      keywords: "sunset boat trip blanes, evening boat ride costa brava, sunset cruise blanes, romantic boat trip",
+      ogTitle: "Sunset Boat Trip from Blanes | Costa Brava",
+      ogDescription: "Magical sunset views from the sea. No license needed. Perfect evening experience from Blanes port."
+    },
+    activityFishing: {
+      title: "Fishing Boat Rental Blanes | Boat Fishing Costa Brava",
+      description: "Rent a boat for fishing in Blanes, Costa Brava. Licensed boats for deeper waters. Sea bass, sea bream and more. Book your fishing day.",
+      keywords: "fishing boat blanes, boat fishing costa brava, sport fishing blanes, fishing boat rental",
+      ogTitle: "Fishing Boat Rental in Blanes | Costa Brava",
+      ogDescription: "Rent a boat for fishing in Blanes. Licensed boats to reach the best fishing grounds in Costa Brava."
     },
     notFound: {
       title: "Page not found | Costa Brava Rent a Boat",
@@ -1269,6 +1325,10 @@ const getPagePath = (pageName: string): string => {
     pricing: 'precios',
     locationBarcelona: 'alquiler-barcos-cerca-barcelona',
     locationCostaBrava: 'alquiler-barcos-costa-brava',
+    activitySnorkel: 'excursion-snorkel-barco-blanes',
+    activityFamilies: 'barco-familias-costa-brava',
+    activitySunset: 'sunset-boat-trip-blanes',
+    activityFishing: 'pesca-barco-blanes',
     notFound: '404'
   };
 
@@ -1368,16 +1428,54 @@ export function generateLocalBusinessSchema(language: Language = 'es', rating?: 
           "itemOffered": {
             "@type": "Service",
             "name": "Alquiler de barcos sin licencia",
-            "description": "Embarcaciones hasta 15 CV que no requieren titulación náutica"
-          }
+            "description": "Embarcaciones hasta 15 CV que no requieren titulación náutica. Gasolina incluida."
+          },
+          "priceSpecification": {
+            "@type": "UnitPriceSpecification",
+            "price": "70",
+            "priceCurrency": "EUR",
+            "unitText": "hora",
+            "description": "Precio desde (temporada baja)"
+          },
+          "availability": "https://schema.org/SeasonalAvailability",
+          "validFrom": "2026-04-01",
+          "validThrough": "2026-10-31"
         },
         {
-          "@type": "Offer", 
+          "@type": "Offer",
           "itemOffered": {
             "@type": "Service",
             "name": "Alquiler de barcos con licencia",
-            "description": "Embarcaciones que requieren titulación náutica oficial"
-          }
+            "description": "Embarcaciones potentes 80-115CV que requieren titulación náutica oficial"
+          },
+          "priceSpecification": {
+            "@type": "UnitPriceSpecification",
+            "price": "150",
+            "priceCurrency": "EUR",
+            "unitText": "hora",
+            "description": "Precio desde (temporada baja)"
+          },
+          "availability": "https://schema.org/SeasonalAvailability",
+          "validFrom": "2026-04-01",
+          "validThrough": "2026-10-31"
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Excursión privada con capitán",
+            "description": "Excursión guiada por la Costa Brava con patrón profesional"
+          },
+          "priceSpecification": {
+            "@type": "UnitPriceSpecification",
+            "price": "200",
+            "priceCurrency": "EUR",
+            "unitText": "hora",
+            "description": "Precio desde"
+          },
+          "availability": "https://schema.org/SeasonalAvailability",
+          "validFrom": "2026-04-01",
+          "validThrough": "2026-10-31"
         }
       ]
     },

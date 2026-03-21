@@ -205,7 +205,7 @@ export function registerTenantMetricsRoutes(app: Express) {
 
   /**
    * GET /api/super-admin/tenants/metrics
-   * Aggregated metrics across all tenants (NauticFlow super admin view).
+   * Aggregated metrics across all tenants (super admin view).
    * Protected by requireAdminSession (legacy PIN owner / SaaS owner).
    */
   app.get(

@@ -63,6 +63,8 @@ export function registerBlogRoutes(app: Express) {
           ? `\n      <category term="${escapeXml(post.category)}" />`
           : "";
 
+        const contentHtml = post.content ? `\n      <content type="html">${escapeXml(post.content)}</content>` : "";
+
         return `  <entry>
       <title>${escapeXml(post.title)}</title>
       <link href="${escapeXml(postUrl)}" rel="alternate" type="text/html" />
@@ -70,7 +72,7 @@ export function registerBlogRoutes(app: Express) {
       <published>${published}</published>
       <updated>${updated}</updated>
       <author><name>${escapeXml(post.author || "Costa Brava Rent a Boat")}</name></author>
-      <summary type="text">${escapeXml(summary)}</summary>${categoryTag}
+      <summary type="text">${escapeXml(summary)}</summary>${contentHtml}${categoryTag}
     </entry>`;
       }).join("\n");
 
@@ -151,7 +153,9 @@ ${entries}
         });
 
         // Notify search engines via IndexNow for faster indexing
-        notifyIndexNow([`/blog/${post.slug}`]).catch(() => {});
+        notifyIndexNow([`/blog/${post.slug}`]).catch(err =>
+          logger.warn({ err, slug: post.slug }, "[Blog] IndexNow notification failed")
+        );
       }
 
       res.status(201).json(post);
@@ -201,7 +205,9 @@ ${entries}
 
       // Notify IndexNow on publish or update of published posts
       if (post.isPublished) {
-        notifyIndexNow([`/blog/${post.slug}`]).catch(() => {});
+        notifyIndexNow([`/blog/${post.slug}`]).catch(err =>
+          logger.warn({ err, slug: post.slug }, "[Blog] IndexNow notification failed")
+        );
       }
 
       res.json(post);

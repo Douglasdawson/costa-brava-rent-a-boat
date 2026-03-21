@@ -20,6 +20,7 @@ import {
 } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import RelatedContent from "@/components/RelatedContent";
 import { SEO } from "@/components/SEO";
 import { useLanguage } from "@/hooks/use-language";
 import { 
@@ -491,6 +492,8 @@ export default function CategoryLicensedPage() {
 
         </div>
       </div>
+
+      <RelatedContent currentPage="categoryLicensed" />
 
       <Footer />
     </div>

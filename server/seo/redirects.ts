@@ -5,10 +5,10 @@ import { seoRedirects } from "../../shared/schema";
 import { eq, sql } from "drizzle-orm";
 import { logger } from "../lib/logger";
 
-// In-memory cache for redirects (refreshed every 5 minutes)
+// In-memory cache for redirects (refreshed every 1 minute)
 let redirectCache: Map<string, { toPath: string; statusCode: number }> = new Map();
 let cacheLastRefresh = 0;
-const CACHE_TTL = 5 * 60 * 1000; // 5 minutes
+const CACHE_TTL = 60 * 1000; // 1 minute
 
 async function refreshCache(): Promise<void> {
   try {
@@ -19,11 +19,41 @@ async function refreshCache(): Promise<void> {
     }
     redirectCache = newCache;
     cacheLastRefresh = Date.now();
+    detectAndFlattenChains();
   } catch (error) {
     logger.warn("[SEO:Redirects] Cache refresh failed", {
       error: error instanceof Error ? error.message : String(error),
     });
   }
+}
+
+// Detect and flatten redirect chains (A -> B -> C becomes A -> C)
+function detectAndFlattenChains(): void {
+  for (const [fromPath, redirect] of redirectCache) {
+    const next = redirectCache.get(redirect.toPath);
+    if (next) {
+      logger.warn("[SEO:Redirects] Chain detected and flattened", {
+        from: fromPath,
+        via: redirect.toPath,
+        to: next.toPath,
+      });
+      redirect.toPath = next.toPath;
+    }
+  }
+}
+
+// Validate a redirect before creating it
+export function validateRedirect(fromPath: string, toPath: string): { valid: boolean; error?: string } {
+  if (fromPath === toPath) {
+    return { valid: false, error: "fromPath and toPath must be different (would create a loop)" };
+  }
+  if (toPath.startsWith("/api/")) {
+    return { valid: false, error: "toPath must not point to an API route" };
+  }
+  if (redirectCache.has(toPath)) {
+    return { valid: false, error: `toPath "${toPath}" is already a redirect source (would create a chain)` };
+  }
+  return { valid: true };
 }
 
 // Express middleware for dynamic redirects
@@ -50,6 +80,9 @@ export function redirectMiddleware() {
         .where(eq(seoRedirects.fromPath, req.path))
         .catch(() => {});
 
+      if (redirect.statusCode === 301) {
+        res.set('Cache-Control', 'public, max-age=31536000, immutable');
+      }
       return res.redirect(redirect.statusCode, redirect.toPath);
     }
 

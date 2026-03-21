@@ -136,15 +136,26 @@ All prices in EUR. VAT included. Weekend surcharge: +15% on Saturdays and Sunday
 
 ### License-Free Boats
 
-#### Solar 450 / Remus 450 / Remus 450 II (5 people, fuel included)
+#### Solar 450 (5 people, fuel included)
+
+| Duration | Low Season (Apr-Jun, Sep-Oct) | Mid Season (July) | High Season (August) |
+|----------|-------------------------------|--------------------|-----------------------|
+| 1 hour   | 75 EUR                        | 85 EUR             | 95 EUR                |
+| 2 hours  | 115 EUR                       | 135 EUR            | 150 EUR               |
+| 3 hours  | 130 EUR                       | 160 EUR            | 180 EUR               |
+| 4 hours  | 150 EUR                       | 180 EUR            | 210 EUR               |
+| 6 hours  | 190 EUR                       | 230 EUR            | 260 EUR               |
+| 8 hours  | 220 EUR                       | 270 EUR            | 300 EUR               |
+
+#### Remus 450 / Remus 450 II (5 people, fuel included)
 
 | Duration | Low Season (Apr-Jun, Sep-Oct) | Mid Season (July) | High Season (August) |
 |----------|-------------------------------|--------------------|-----------------------|
 | 1 hour   | 75 EUR                        | 85 EUR             | 95 EUR                |
 | 2 hours  | 115 EUR                       | 130 EUR            | 140 EUR               |
 | 3 hours  | 130 EUR                       | 160 EUR            | 170 EUR               |
-| 4 hours  | 150 EUR                       | 180 EUR            | 195 EUR               |
-| 6 hours  | 190 EUR                       | 230 EUR            | 240 EUR               |
+| 4 hours  | 150 EUR                       | 180 EUR            | 210 EUR               |
+| 6 hours  | 190 EUR                       | 230 EUR            | 250 EUR               |
 | 8 hours  | 220 EUR                       | 270 EUR            | 290 EUR               |
 
 #### Astec 400 (4 people, fuel included - most affordable)
@@ -163,11 +174,11 @@ All prices in EUR. VAT included. Weekend surcharge: +15% on Saturdays and Sunday
 | Duration | Low Season (Apr-Jun, Sep-Oct) | Mid Season (July) | High Season (August) |
 |----------|-------------------------------|--------------------|-----------------------|
 | 1 hour   | 80 EUR                        | 90 EUR             | 100 EUR               |
-| 2 hours  | 130 EUR                       | 150 EUR            | 170 EUR               |
-| 3 hours  | 155 EUR                       | 190 EUR            | 200 EUR               |
-| 4 hours  | 180 EUR                       | 220 EUR            | 230 EUR               |
-| 6 hours  | 260 EUR                       | 300 EUR            | 325 EUR               |
-| 8 hours  | 300 EUR                       | 350 EUR            | 380 EUR               |
+| 2 hours  | 150 EUR                       | 160 EUR            | 180 EUR               |
+| 3 hours  | 180 EUR                       | 200 EUR            | 220 EUR               |
+| 4 hours  | 200 EUR                       | 220 EUR            | 250 EUR               |
+| 6 hours  | 240 EUR                       | 270 EUR            | 290 EUR               |
+| 8 hours  | 270 EUR                       | 340 EUR            | 370 EUR               |
 
 ### Licensed Boats (fuel NOT included)
 

@@ -57,7 +57,12 @@ const CancelBookingPage = lazy(() => import("@/pages/CancelBookingPage"));
 const PricingPage = lazy(() => import("@/pages/pricing"));
 const LocationBarcelonaPage = lazy(() => import("@/pages/location-barcelona"));
 const LocationCostaBravaPage = lazy(() => import("@/pages/alquiler-barcos-costa-brava"));
-const NauticFlowLanding = lazy(() => import("@/pages/NauticFlowLanding"));
+const ActivitySnorkelPage = lazy(() => import("@/pages/activity-snorkel"));
+const ActivityFamiliesPage = lazy(() => import("@/pages/activity-families"));
+const ActivitySunsetPage = lazy(() => import("@/pages/activity-sunset"));
+const ActivityFishingPage = lazy(() => import("@/pages/activity-fishing"));
+const AboutPage = lazy(() => import("@/pages/about"));
+
 const NotFound = lazy(() => import("@/pages/not-found"));
 const OnboardingPage = lazy(() => import("@/pages/OnboardingPage"));
 const AccessibilityDeclarationPage = lazy(() => import("@/pages/accessibility-declaration"));
@@ -395,6 +400,24 @@ function Router() {
       <Route path="/alquiler-barcos-costa-brava">
         {() => <Suspense fallback={<SecondaryRouteFallback />}><LocationCostaBravaPage /></Suspense>}
       </Route>
+      <Route path="/excursion-snorkel-barco-blanes">
+        {() => <Suspense fallback={<SecondaryRouteFallback />}><ActivitySnorkelPage /></Suspense>}
+      </Route>
+      <Route path="/barco-familias-costa-brava">
+        {() => <Suspense fallback={<SecondaryRouteFallback />}><ActivityFamiliesPage /></Suspense>}
+      </Route>
+      <Route path="/sunset-boat-trip-blanes">
+        {() => <Suspense fallback={<SecondaryRouteFallback />}><ActivitySunsetPage /></Suspense>}
+      </Route>
+      <Route path="/pesca-barco-blanes">
+        {() => <Suspense fallback={<SecondaryRouteFallback />}><ActivityFishingPage /></Suspense>}
+      </Route>
+      <Route path="/about">
+        {() => <Suspense fallback={<SecondaryRouteFallback />}><AboutPage /></Suspense>}
+      </Route>
+      <Route path="/sobre-nosotros">
+        {() => <Suspense fallback={<SecondaryRouteFallback />}><AboutPage /></Suspense>}
+      </Route>
 
       {/* Redirects — no Suspense needed (instant) */}
       <Route path="/destino/blanes">{() => <Redirect to="/alquiler-barcos-blanes" />}</Route>
@@ -403,10 +426,6 @@ function Router() {
       <Route path="/categoria/sin-licencia">{() => <Redirect to="/barcos-sin-licencia" />}</Route>
       <Route path="/categoria/con-licencia">{() => <Redirect to="/barcos-con-licencia" />}</Route>
 
-      {/* SaaS landing — standalone layout, no nav/footer from main site */}
-      <Route path="/nauticflow">
-        {() => <Suspense fallback={<MainRouteFallback />}><NauticFlowLanding /></Suspense>}
-      </Route>
 
       {/* Admin, auth, and legal routes — minimal fallback */}
       <Route path="/login">

@@ -36,11 +36,11 @@ export function generateArticleSchema(article: BlogArticle) {
     "@type": "BlogPosting",
     "headline": article.headline,
     "description": article.description,
-    "author": {
+    "author": [{
       "@type": "Organization",
       "name": article.author,
       "url": BASE_DOMAIN
-    },
+    }],
     "publisher": {
       "@type": "Organization",
       "name": "Costa Brava Rent a Boat",
@@ -74,6 +74,26 @@ export function generateArticleSchema(article: BlogArticle) {
   if (article.body) {
     schema.articleBody = article.body;
   }
+
+  // Add word count and reading time
+  if (article.body) {
+    const wordCount = article.body.split(/\s+/).filter(Boolean).length;
+    schema.wordCount = wordCount;
+    schema.timeRequired = `PT${Math.ceil(wordCount / 200)}M`;
+  }
+
+  // Link to parent website
+  schema.isPartOf = {
+    "@type": "WebSite",
+    "name": "Costa Brava Rent a Boat",
+    "@id": `${BASE_DOMAIN}/#website`
+  };
+
+  // Speakable specification for voice assistants
+  schema.speakable = {
+    "@type": "SpeakableSpecification",
+    "cssSelector": ["h1", ".blog-content p:first-of-type"]
+  };
 
   return schema;
 }

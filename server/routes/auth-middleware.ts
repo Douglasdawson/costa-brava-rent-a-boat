@@ -195,7 +195,7 @@ export async function resolveTenantFromRequest(req: Request): Promise<string | n
     return tenant?.id || null;
   }
 
-  // 2. Check subdomain: empresa.nauticflow.app
+  // 2. Check subdomain: empresa.costabravarentaboat.app
   const host = req.hostname;
   if (host && host.includes(".")) {
     const parts = host.split(".");

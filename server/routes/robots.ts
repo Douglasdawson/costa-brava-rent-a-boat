@@ -3,23 +3,16 @@ import fs from "fs";
 import path from "path";
 import { storage } from "../storage";
 import { logger } from "../lib/logger";
+import { AI_CRAWLER_NAMES } from "../seo/constants";
 
 const BASE_URL = process.env.BASE_URL || "https://costabravarentaboat.com";
-
-// AI crawler user agents to explicitly allow
-const AI_CRAWLERS = [
-  "GPTBot", "ChatGPT-User", "Google-Extended", "PerplexityBot",
-  "ClaudeBot", "Claude-Web", "Anthropic", "Applebot-Extended",
-  "CCBot", "Bytespider", "cohere-ai", "Meta-ExternalAgent",
-  "Amazonbot", "YouBot", "Timpibot", "AI2Bot", "Diffbot",
-  "ImagesiftBot", "Omgili",
-];
 
 // Paths that should always be disallowed
 const DISALLOWED_PATHS = [
   "/crm", "/crm/", "/admin", "/admin/", "/login",
   "/onboarding", "/client/dashboard", "/mi-cuenta",
   "/api/", "/cancel/", "/copia-de-*", "/copy-of-*",
+  "/client/",
 ];
 
 export function registerRobotsRoutes(app: Express): void {
@@ -42,11 +35,22 @@ export function registerRobotsRoutes(app: Express): void {
 
     // AI crawler explicit allows
     lines.push("# AI Search Optimization — explicit Allow for all known AI crawlers");
-    for (const crawler of AI_CRAWLERS) {
+    for (const crawler of AI_CRAWLER_NAMES) {
       lines.push("");
       lines.push(`User-agent: ${crawler}`);
       lines.push("Allow: /");
     }
+
+    // Crawl-delay for aggressive bots
+    lines.push("");
+    lines.push("User-agent: AhrefsBot");
+    lines.push("Crawl-delay: 10");
+    lines.push("");
+    lines.push("User-agent: SemrushBot");
+    lines.push("Crawl-delay: 10");
+    lines.push("");
+    lines.push("User-agent: DotBot");
+    lines.push("Crawl-delay: 30");
 
     res.setHeader("Content-Type", "text/plain; charset=utf-8");
     res.setHeader("Cache-Control", "public, max-age=3600, stale-while-revalidate=86400");

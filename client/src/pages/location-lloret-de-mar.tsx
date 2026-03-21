@@ -20,6 +20,7 @@ import {
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import RelatedLocationsSection from "@/components/RelatedLocationsSection";
+import RelatedContent from "@/components/RelatedContent";
 import { SEO } from "@/components/SEO";
 import { useLanguage } from "@/hooks/use-language";
 import { 
@@ -433,6 +434,8 @@ export default function LocationLloretPage() {
       </div>
 
       <RelatedLocationsSection currentLocation="lloret" />
+
+      <RelatedContent currentPage="locationLloret" />
 
       <Footer />
     </div>

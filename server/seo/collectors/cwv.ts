@@ -9,6 +9,9 @@ interface CwvBeacon {
   name: string; // CLS, LCP, INP, TTFB, FCP
   value: number;
   rating?: string; // good, needs-improvement, poor
+  deviceType?: string;
+  navigationType?: string;
+  connectionType?: string;
 }
 
 // Thresholds from web.dev
@@ -36,6 +39,9 @@ export async function recordCwvBeacon(beacon: CwvBeacon): Promise<void> {
     metricName: beacon.name,
     value: beacon.value,
     rating,
+    deviceType: beacon.deviceType,
+    navigationType: beacon.navigationType,
+    connectionType: beacon.connectionType,
   });
 }
 
@@ -72,4 +78,36 @@ export async function getCwvSummary(): Promise<Array<{
   }
 
   return Array.from(pageMap.entries()).map(([page, metrics]) => ({ page, metrics }));
+}
+
+// Check for poor CWV metrics and log alerts
+export async function checkCwvAlerts(): Promise<{ hasAlerts: boolean; alerts: string[] }> {
+  const sevenDaysAgo = new Date();
+  sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
+
+  const rows = await db
+    .select({
+      metricName: seoCwvMetrics.metricName,
+      p75: sql<number>`percentile_cont(0.75) WITHIN GROUP (ORDER BY ${seoCwvMetrics.value})`.as("p75"),
+    })
+    .from(seoCwvMetrics)
+    .where(gte(seoCwvMetrics.recordedAt, sevenDaysAgo))
+    .groupBy(seoCwvMetrics.metricName);
+
+  const alerts: string[] = [];
+  const criticalMetrics = ["LCP", "CLS", "INP"];
+
+  for (const row of rows) {
+    if (criticalMetrics.includes(row.metricName)) {
+      const p75 = Number(row.p75);
+      const rating = classifyRating(row.metricName, p75);
+      if (rating === "poor") {
+        const msg = `${row.metricName} p75=${p75} is POOR`;
+        alerts.push(msg);
+        logger.warn({ metric: row.metricName, p75, rating }, `[CWV:Alert] ${msg}`);
+      }
+    }
+  }
+
+  return { hasAlerts: alerts.length > 0, alerts };
 }

@@ -1228,7 +1228,7 @@ export const es: Translations = {
       {
         id: 'precios',
         question: '¿Cuáles son los precios del alquiler?',
-        answer: 'Barcos sin licencia desde 70€ con gasolina incluida (1h, 2h, 3h, 4h, 6h o día completo). Barcos con licencia desde 150€ sin gasolina incluida (2h, 4h, 8h). Los precios varían según temporada (julio/agosto) y embarcación.',
+        answer: 'Barcos sin licencia desde 70€ con gasolina incluida (1h, 2h, 3h, 4h, 6h o dia completo). Barcos con licencia desde 150€ sin gasolina incluida (2h, 4h, 8h). Los precios varian segun temporada (julio/agosto) y embarcacion.',
       },
       {
         id: 'sin-licencia',
@@ -1284,6 +1284,54 @@ export const es: Translations = {
         id: 'hasta-donde',
         question: '¿Hasta dónde puedo navegar?',
         answer: 'Puedes explorar toda la costa entre Blanes y Tossa de Mar. Te recomendamos las calas de Sa Forcanera, Cala Bona y Cala Sant Francesc, accesibles solo por mar.',
+      },
+      // Comparative questions
+      {
+        id: 'diferencia-licencia',
+        question: '¿Cual es la diferencia entre barcos sin licencia y con licencia?',
+        answer: 'Los barcos sin licencia tienen hasta 15 CV, capacidad de 4-5 personas, gasolina incluida y cuestan desde 70€. Los barcos con licencia tienen motores de 40-150 CV, capacidad de hasta 8 personas, mayor autonomia y cuestan desde 150€ (gasolina no incluida). Los barcos con licencia permiten navegar mas lejos, hasta Tossa de Mar y mas alla.',
+      },
+      {
+        id: 'precio-blanes-vs-lloret',
+        question: '¿Es mas barato alquilar un barco en Blanes o en Lloret de Mar?',
+        answer: 'Blanes es el punto de alquiler nautico mas asequible de la Costa Brava, con barcos sin licencia desde 70€ la hora con gasolina incluida. Al operar desde el Puerto de Blanes con nuestra propia flota, ofrecemos precios mas competitivos que otras localidades como Lloret de Mar o Tossa de Mar.',
+      },
+      {
+        id: 'barco-grupo-grande',
+        question: '¿Que barco me recomendais para un grupo grande?',
+        answer: 'Para grupos grandes recomendamos el Pacific Craft 625 (hasta 8 personas, con licencia) o nuestra Excursion Privada con patron (hasta 10 personas). La excursion con patron es ideal si nadie del grupo tiene licencia nautica, ya que incluye un capitan profesional que os lleva a las mejores calas.',
+      },
+      // Location-specific pricing questions
+      {
+        id: 'precio-costa-brava',
+        question: '¿Cuanto cuesta alquilar un barco en la Costa Brava?',
+        answer: 'En la Costa Brava puedes alquilar un barco desde 70€ la hora en Blanes, con gasolina incluida y sin necesidad de licencia. Los precios varian segun la duracion (de 1h a dia completo), el tipo de barco y la temporada. Julio y agosto son temporada alta con precios mas elevados; junio y septiembre ofrecen la mejor relacion calidad-precio.',
+      },
+      {
+        id: 'blanes-tossa-barco',
+        question: '¿Se puede ir a Tossa de Mar en barco desde Blanes?',
+        answer: 'Si, Tossa de Mar esta a unos 30 minutos en barco desde Blanes. Sin embargo, necesitas un barco con licencia o contratar nuestra excursion con patron, ya que los barcos sin licencia tienen un radio de navegacion limitado. La ruta costera de Blanes a Tossa es espectacular, con calas virgenes y acantilados.',
+      },
+      {
+        id: 'excursion-con-patron',
+        question: '¿Cuanto cuesta una excursion en barco con patron?',
+        answer: 'Nuestras excursiones privadas con patron profesional parten desde 240€ por 2 horas para hasta 10 personas. El patron os lleva a las mejores calas, se encarga de toda la navegacion y no necesitais licencia. Es la opcion perfecta para familias o grupos que quieren disfrutar sin preocuparse de nada.',
+      },
+      // Decision-helping questions
+      {
+        id: 'seguro-sin-experiencia',
+        question: '¿Es seguro alquilar un barco sin experiencia?',
+        answer: 'Totalmente seguro. Antes de salir a navegar, nuestro equipo te da un briefing de 15 minutos donde te explica el funcionamiento del barco, las normas de navegacion y la zona autorizada. Los barcos sin licencia son muy estables y faciles de manejar, y la zona de Blanes tiene aguas tranquilas y protegidas.',
+      },
+      {
+        id: 'barco-vs-excursion',
+        question: '¿Que es mejor, alquilar un barco o una excursion con patron?',
+        answer: 'Depende de lo que busques. Alquilar un barco sin licencia (desde 70€/h) te da total libertad para ir a tu ritmo y explorar por tu cuenta. La excursion con patron (desde 240€/2h) es ideal si quieres relajarte completamente, no tienes experiencia o quieres llegar a calas mas lejanas como Tossa de Mar.',
+      },
+      {
+        id: 'mejor-epoca',
+        question: '¿Cual es la mejor epoca para alquilar un barco en Blanes?',
+        answer: 'Septiembre es el mes estrella: el agua del mar esta en su temperatura mas calida (24-25 grados C), los precios son de temporada media, hay menos turistas y las condiciones meteorologicas son excelentes. Junio y la primera quincena de julio tambien son muy buenas opciones. Julio y agosto tienen el mejor clima pero los precios y la afluencia son mas altos.',
       },
     ],
   },

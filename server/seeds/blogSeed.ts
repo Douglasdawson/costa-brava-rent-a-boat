@@ -3088,10 +3088,585 @@ La excursión en barco a Tossa de Mar es una de las experiencias más memorables
 
 [Consulta disponibilidad y reserva tu barco](/barcos) o escríbenos por [WhatsApp](https://wa.me/34611500372) para que te ayudemos a planificar tu excursión perfecta a Tossa.`,
   },
+
+  // ===== POST: Barco sin licencia vs con licencia =====
+  {
+    title: "Barco sin licencia vs con licencia: Guia completa para elegir",
+    slug: "barco-sin-licencia-vs-con-licencia-guia",
+    category: "Guías",
+    author: "Costa Brava Rent a Boat",
+    featuredImage: "/images/blog/barco-sin-licencia-vs-con-licencia-guia.jpg",
+    metaDescription: "Barco sin licencia vs con licencia: comparativa completa con precios, distancias, capacidad y actividades para ayudarte a elegir el barco perfecto en Blanes.",
+    tags: ["barco sin licencia", "barco con licencia", "comparativa barcos", "licencia nautica", "que barco elegir"],
+    isPublished: true,
+    _publishedAt: new Date("2026-03-25T10:00:00Z"),
+    excerpt: "No sabes si necesitas un barco con o sin licencia para tu dia en la Costa Brava? Te explicamos todas las diferencias, precios y ventajas de cada opcion para que elijas con confianza.",
+    content: `Una de las preguntas mas frecuentes que recibimos en Costa Brava Rent a Boat es: "Necesito licencia para alquilar un barco?" La respuesta corta es que no siempre. En Espana puedes disfrutar de un dia de navegacion sin tener ningun titulo nautico. Pero tener licencia te abre mas opciones. En esta guia te explicamos todas las diferencias para que elijas la opcion perfecta para ti.
+
+## Que es un barco sin licencia
+
+Un barco sin licencia es una embarcacion de hasta 5 metros de eslora y un motor de hasta 15 CV que, segun la legislacion espanola, cualquier persona mayor de 18 anos puede pilotar sin necesitar titulo nautico. Solo necesitas tu DNI o pasaporte y prestar atencion al briefing de seguridad que te damos antes de salir.
+
+En [Costa Brava Rent a Boat](/barcos-sin-licencia) disponemos de varios modelos sin licencia: el [Solar 450](/barco/solar-450), el [Astec 480](/barco/astec-480), el [Astec 400](/barco/astec-400) y el [Remus 450](/barco/remus-450). Todos incluyen combustible, equipo de seguridad y un briefing completo.
+
+## Que es un barco con licencia
+
+Un barco con licencia requiere que el patron (la persona que conduce) tenga una titulacion nautica oficial, como el PER (Patron de Embarcaciones de Recreo) o superior. Estos barcos son mas grandes, mas potentes y te permiten navegar a mayor distancia de la costa.
+
+Nuestros [barcos con licencia](/barcos-con-licencia) incluyen el [Pacific Craft 625](/barco/pacific-craft-625) y la [Mingolla Brava 19](/barco/mingolla-brava-19). Tambien ofrecemos la [excursion privada con capitan](/barco/excursion-privada) para quienes quieran un barco grande sin tener licencia.
+
+## Tabla comparativa: sin licencia vs con licencia
+
+| Caracteristica | Sin licencia | Con licencia |
+|---|---|---|
+| **Titulo necesario** | Ninguno | PER o superior |
+| **Eslora maxima** | 5 metros | 6-7+ metros |
+| **Potencia motor** | Hasta 15 CV | 100-150 CV |
+| **Velocidad maxima** | 5-6 nudos (~10 km/h) | 20-30 nudos (~45 km/h) |
+| **Distancia de costa** | 2 millas nauticas | Sin limite practico |
+| **Capacidad** | 4-5 personas | 6-8 personas |
+| **Combustible incluido** | Si | No (se paga aparte) |
+| **Precio desde** | 70 EUR/hora | 150 EUR/hora |
+| **Ideal para** | Familias, principiantes, calas cercanas | Grupos grandes, rutas largas, experiencias deportivas |
+
+## Quien deberia elegir un barco sin licencia
+
+El barco sin licencia es perfecto si:
+
+- **Nunca has navegado antes.** No necesitas experiencia previa. Te ensenamos todo en un briefing de 10 minutos.
+- **Vienes con familia.** Los barcos son estables, seguros y faciles de manejar. Los ninos disfrutan muchisimo.
+- **Quieres visitar calas cercanas.** Desde el puerto de Blanes, tienes [Cala Sant Francesc](/rutas), Cala Bona, Cala Treumal y la playa de Santa Cristina a menos de 15 minutos.
+- **Buscas la opcion mas economica.** Desde 70 EUR la hora con combustible incluido, es la forma mas accesible de disfrutar del mar.
+- **Prefieres tranquilidad.** Navegar a ritmo lento, fondear en una cala, banarte y hacer snorkel sin prisas.
+
+### Barcos sin licencia recomendados
+
+- [Solar 450](/barco/solar-450): Compacto y agil, ideal para parejas.
+- [Astec 480](/barco/astec-480): El mas espacioso sin licencia, perfecto para familias de 4-5 personas.
+- [Astec 400](/barco/astec-400): Maniobrable y comodo, buena relacion calidad-precio.
+- [Remus 450](/barco/remus-450): Robusto y estable, ideal para principiantes.
+
+## Quien deberia elegir un barco con licencia
+
+El barco con licencia es la mejor opcion si:
+
+- **Tienes experiencia nautica.** Ya sabes navegar y quieres un barco con mas prestaciones.
+- **Quieres llegar mas lejos.** Puedes hacer la [ruta Blanes - Tossa de Mar](/rutas) ida y vuelta en un solo dia con tiempo de sobra.
+- **Venís en un grupo grande.** Capacidad para 6-8 personas con espacio para moverse comodamente.
+- **Buscas velocidad.** Los barcos con licencia alcanzan 20-30 nudos, lo que te permite cubrir mas terreno y visitar mas calas.
+- **Quieres pescar o hacer deportes nauticos.** La potencia extra permite actividades que no son posibles con barcos mas pequenos.
+
+### Barcos con licencia recomendados
+
+- [Pacific Craft 625](/barco/pacific-craft-625): 150 CV, hasta 8 personas, ideal para rutas largas hasta Tossa de Mar.
+- [Mingolla Brava 19](/barco/mingolla-brava-19): 100 CV, versatil y comoda, perfecta para grupos de 6 personas.
+
+## Y si quiero un barco grande pero no tengo licencia?
+
+Tenemos la solucion perfecta: nuestra [excursion privada con capitan](/barco/excursion-privada). Un patron profesional te lleva en un barco de 19 pies por las mejores calas y rutas de la Costa Brava. Tu solo te preocupas de disfrutar.
+
+Esta opcion es ideal para celebraciones, despedidas, aniversarios o simplemente para quienes quieren la experiencia de un barco grande sin necesitar licencia.
+
+## Precios y duraciones
+
+Tanto los barcos sin licencia como con licencia se pueden alquilar por horas. Las duraciones mas populares son 2 horas y 4 horas. Consulta todos los [precios actualizados en nuestra web](/precios).
+
+En temporada alta (julio-agosto), recomendamos reservar con al menos una semana de antelacion, especialmente para fines de semana.
+
+---
+
+Elegir entre barco sin licencia o con licencia depende de tu experiencia, el tamano de tu grupo y lo lejos que quieras llegar. En cualquier caso, la Costa Brava te ofrece una experiencia de navegacion inolvidable.
+
+[Explora todos nuestros barcos](/barcos) y reserva online en menos de 2 minutos. Si tienes dudas, escribenos por [WhatsApp](https://wa.me/34611500372) y te asesoramos encantados.`,
+  },
+
+  // ===== POST: Que llevar en un barco de alquiler =====
+  {
+    title: "Que llevar en un barco de alquiler: checklist completo",
+    slug: "que-llevar-barco-alquiler-checklist",
+    category: "Consejos",
+    author: "Costa Brava Rent a Boat",
+    featuredImage: "/images/blog/que-llevar-barco-alquiler-checklist.jpg",
+    metaDescription: "Checklist completo de que llevar en un barco de alquiler: proteccion solar, comida, entretenimiento y todo lo esencial para un dia perfecto en el mar.",
+    tags: ["que llevar barco", "checklist barco", "preparar excursion barco", "consejos nauticos", "dia en barco"],
+    isPublished: true,
+    _publishedAt: new Date("2026-03-28T10:00:00Z"),
+    excerpt: "Preparar bien tu dia en barco marca la diferencia entre una buena experiencia y una experiencia inolvidable. Aqui tienes el checklist definitivo con todo lo que necesitas llevar.",
+    content: `Tienes tu reserva confirmada, el dia esta soleado y las ganas son enormes. Pero, que necesitas llevar para un dia perfecto en el mar? En Costa Brava Rent a Boat hemos visto miles de salidas y sabemos exactamente que marca la diferencia entre un buen dia y un dia inolvidable. Aqui tienes nuestro checklist completo organizado por categorias.
+
+## Lo que ya incluye tu alquiler
+
+Antes de preparar tu mochila, ten en cuenta que cuando [alquilas un barco con nosotros](/barcos) ya te proporcionamos:
+
+- **Equipo de seguridad completo:** chalecos salvavidas para todos los pasajeros (incluidos ninos), bengalas, extintor y botiquin basico.
+- **Combustible incluido** en todos los [barcos sin licencia](/barcos-sin-licencia) (los barcos con licencia no incluyen combustible).
+- **Briefing de seguridad y navegacion:** te explicamos como manejar el barco, las zonas recomendadas y consejos practicos.
+- **Mapa de rutas y calas:** para que sepas exactamente donde ir.
+- **Ancla y cabo de fondeo:** para que puedas parar en cualquier cala.
+
+Tambien puedes anadir extras opcionales como **equipo de snorkel** (7,50 EUR) y **paddle board** (20 EUR) directamente en tu reserva.
+
+## Proteccion solar (imprescindible)
+
+El sol en el mar es mucho mas intenso de lo que parece. El reflejo del agua multiplica la radiacion UV y es muy facil quemarse sin darse cuenta.
+
+- **Crema solar SPF 50+:** Aplicala 30 minutos antes de embarcar y reaplica cada 2 horas. Usa crema biodegradable para proteger el ecosistema marino.
+- **Gafas de sol polarizadas:** Las polarizadas reducen el reflejo del agua y te permiten ver el fondo marino. Usa una cinta para no perderlas.
+- **Gorra o sombrero:** Esencial. En el barco no hay sombra y la insolacion puede arruinarte el dia.
+- **Camiseta UV o rash guard:** Especialmente para ninos, es la mejor proteccion contra el sol durante las horas centrales.
+
+### Consejo extra
+
+Si vienes con ninos menores de 6 anos, la crema sola no es suficiente. Combina crema + camiseta UV + gorra y manten al nino hidratado.
+
+## Ropa y calzado
+
+- **Banador:** Parece obvio pero mas de uno se ha presentado sin el.
+- **Toalla:** Una por persona. Las de microfibra ocupan menos y secan mas rapido.
+- **Ropa de cambio:** Al final del dia agradeceras tener ropa seca para volver a casa.
+- **Calzado de agua o sandalias con suela:** El suelo del barco puede estar mojado y resbaladizo. Las chancletas de dedo no son ideales, mejor zapatos de agua con suela de goma.
+- **Sudadera ligera o cortavientos:** Aunque haga calor en tierra, la brisa marina puede refrescar bastante, especialmente al navegar.
+
+## Comida y bebida
+
+No hay chiringuito en medio del mar, asi que planifica bien:
+
+- **Agua abundante:** Minimo 1,5 litros por persona. La deshidratacion es el error numero uno en el mar.
+- **Snacks energeticos:** Fruta, frutos secos, barritas de cereales. Evita cosas que se derritan con el calor.
+- **Bocadillos o sandwiches:** Preparalos en casa y llevalos en una nevera portatil.
+- **Nevera portatil con hielo:** Fundamental para mantener la comida y bebida frescas.
+- **Bebidas:** Zumos, refrescos o lo que prefieras. Si llevas alcohol, hazlo con moderacion: el sol y el mar potencian sus efectos.
+
+### Para familias con ninos
+
+Lleva mas agua de la que crees necesaria. Los ninos se deshidratan rapido, especialmente cuando estan excitados y activos. Las bolsas de snacks tipo galletitas saladas funcionan muy bien.
+
+## Entretenimiento y actividades
+
+- **Equipo de snorkel:** Si no lo has anadido como extra en tu reserva, puedes traer el tuyo. Las calas cerca de [Blanes](/alquiler-barcos-blanes) tienen fondos marinos espectaculares.
+- **Camara acuatica o funda sumergible para el movil:** Las fotos desde el agua y bajo el agua son las mejores del viaje.
+- **Altavoz bluetooth portatil:** Musica suave mientras fondeas en una cala. Nuestros barcos [Astec 480](/barco/astec-480) ya incluyen altavoz bluetooth.
+- **Juegos de agua:** Para los ninos: pistolas de agua, hinchables pequenos.
+- **Libro o revista:** Para los ratos de fondeo mientras los demas se banan.
+
+## Objetos practicos
+
+- **Bolsa estanca o bolsa de plastico con cierre:** Para proteger el movil, llaves y cartera del agua.
+- **Medicacion personal:** Si tomas alguna medicacion diaria o para el mareo (biodramina).
+- **Pastillas para el mareo:** Si es tu primera vez en barco, tomalas 30 minutos antes de embarcar por precaucion.
+- **Efectivo y documentacion:** Lleva tu DNI o pasaporte (obligatorio para alquilar). Guarda todo en la bolsa estanca.
+
+## Lo que NO debes llevar
+
+- **Objetos de valor innecesarios:** Joyas, relojes caros o electronica delicada. El agua salada y los golpes no perdonan.
+- **Bolsas o mochilas grandes:** El espacio en el barco es limitado. Optimiza y lleva solo lo esencial.
+- **Zapatos de suela dura:** Pueden danar el suelo del barco.
+- **Cristal:** Por seguridad, evita llevar botellas o vasos de cristal al barco.
+
+## Checklist rapido para imprimir
+
+- [ ] Crema solar SPF 50+ biodegradable
+- [ ] Gafas de sol polarizadas con cinta
+- [ ] Gorra o sombrero
+- [ ] Banador
+- [ ] Toalla (microfibra)
+- [ ] Calzado de agua
+- [ ] Ropa de cambio
+- [ ] Sudadera ligera
+- [ ] Agua (1,5L por persona)
+- [ ] Snacks y bocadillos
+- [ ] Nevera portatil con hielo
+- [ ] Bolsa estanca para movil/llaves
+- [ ] Crema after-sun
+- [ ] DNI o pasaporte
+- [ ] Camara o funda sumergible
+- [ ] Medicacion personal
+
+---
+
+Un dia en el mar es una de las mejores experiencias que puedes vivir en la Costa Brava. Con esta checklist, solo te queda elegir tu barco y disfrutar.
+
+[Reserva tu barco ahora](/barcos) y empieza a preparar tu aventura. Consulta nuestros [precios](/precios) o escribenos por [WhatsApp](https://wa.me/34611500372) si tienes cualquier duda.`,
+  },
+
+  // ===== POST: Alquiler barco familias Costa Brava =====
+  {
+    title: "Alquiler de barco para familias en Costa Brava: la experiencia perfecta",
+    slug: "alquiler-barco-familias-costa-brava",
+    category: "Experiencias",
+    author: "Costa Brava Rent a Boat",
+    featuredImage: "/images/blog/alquiler-barco-familias-costa-brava.jpg",
+    metaDescription: "Alquiler de barcos para familias en la Costa Brava: barcos sin licencia seguros para ninos, calas poco profundas, snorkel y la experiencia perfecta desde Blanes.",
+    tags: ["barco familias", "excursion familiar barco", "costa brava niños", "actividades acuaticas familias", "barco con niños"],
+    isPublished: true,
+    _publishedAt: new Date("2026-04-01T10:00:00Z"),
+    excerpt: "Descubre por que alquilar un barco sin licencia en Blanes es la actividad perfecta para familias con ninos: seguro, facil, asequible y con calas espectaculares a pocos minutos.",
+    content: `Si hay una actividad que transforma unas vacaciones familiares en la Costa Brava en algo verdaderamente especial, es alquilar un barco. No hace falta tener experiencia, ni licencia, ni ser un lobo de mar. Solo hacen falta ganas de vivir una aventura juntos en el Mediterraneo.
+
+En [Costa Brava Rent a Boat](/alquiler-barcos-blanes) llevamos anos ayudando a familias a crear recuerdos inolvidables en el mar. En esta guia te contamos todo lo que necesitas saber para planificar la excursion familiar perfecta.
+
+## Por que un barco es la actividad ideal para familias
+
+Alquilar un barco ofrece algo que pocas actividades pueden igualar: combina aventura, naturaleza, deporte y relajacion en una sola experiencia. Para los ninos, pilotar un barco (con papa o mama al mando) es una aventura que recordaran siempre. Para los padres, es la oportunidad de desconectar del ruido y disfrutar de calas que desde tierra son inaccesibles o estan masificadas.
+
+### Ventajas frente a otras actividades
+
+- **Exclusividad:** Tienes tu propio barco, tu propio ritmo, tu propia cala. Sin multitudes.
+- **Flexibilidad:** Paras donde quieres, el tiempo que quieres. Si los ninos se cansan, volvemos al puerto.
+- **Educativo:** Los ninos aprenden sobre navegacion, el mar, la fauna marina y la costa.
+- **Actividades multiples:** Navegacion + snorkel + bano + picnic, todo en una sola salida.
+- **Para todas las edades:** Desde bebes (con precauciones) hasta abuelos. No hay limites de edad.
+
+## Barcos sin licencia: seguros y faciles para familias
+
+Todos nuestros [barcos sin licencia](/barcos-sin-licencia) estan pensados para que cualquier persona pueda pilotarlos con seguridad, incluso sin experiencia previa. Antes de salir, te damos un briefing completo de 10-15 minutos donde te explicamos:
+
+- Como arrancar, acelerar y frenar el motor.
+- Como maniobrar y fondear (anclar) en una cala.
+- Normas de seguridad y navegacion.
+- Las mejores calas y rutas segun el dia y las condiciones.
+- Que hacer en caso de cualquier incidencia (siempre estamos a una llamada de distancia).
+
+### Seguridad para los ninos
+
+La seguridad de los mas pequenos es nuestra prioridad:
+
+- **Chalecos salvavidas infantiles:** Disponemos de chalecos para todas las tallas, incluidos bebes. Todos los menores deben llevar chaleco puesto durante la navegacion.
+- **Barcos estables:** Nuestros barcos sin licencia son embarcaciones anchas y estables, disenadas para no volcar y soportar oleaje moderado.
+- **Velocidad controlada:** Con un maximo de 5-6 nudos (unos 10 km/h), la navegacion es tranquila y segura.
+- **Zonas protegidas:** Las calas cercanas a Blanes estan protegidas del oleaje y tienen aguas poco profundas, ideales para ninos.
+- **Contacto permanente:** Tienes nuestro numero de telefono y estamos siempre pendientes por si necesitas asistencia.
+
+## Que barco elegir para tu familia
+
+### Familias de 3-4 personas
+
+El [Astec 480](/barco/astec-480) es nuestro barco estrella para familias. Con casi 5 metros de eslora, ofrece el maximo espacio posible sin necesitar licencia. Tiene espacio para moverse comodamente, guardar mochilas y nevera, y cuenta con altavoz bluetooth integrado. Capacidad maxima: 5 personas.
+
+### Parejas con 1-2 ninos
+
+El [Solar 450](/barco/solar-450) es compacto, agil y muy facil de manejar. Perfecto si sois 3-4 personas y buscais una experiencia mas deportiva. Es el barco ideal para primera vez.
+
+### Familias grandes (6+ personas)
+
+Si sois mas de 5, necesitareis un [barco con licencia](/barcos-con-licencia) como el [Pacific Craft 625](/barco/pacific-craft-625) (hasta 8 personas) o contratar nuestra [excursion privada con capitan](/barco/excursion-privada), donde un patron profesional os lleva por las mejores calas sin que necesiteis ningun titulo.
+
+## Itinerario familiar recomendado: 2 horas
+
+Este es nuestro itinerario mas popular para familias con ninos:
+
+**10:00** - Llegada al puerto de Blanes. Briefing de seguridad y embarque.
+
+**10:15** - Salida del puerto. Navegacion rumbo sur bordeando la costa.
+
+**10:25** - Llegada a Cala Sant Francesc. Fondeo y bano. Si habeis alquilado equipo de snorkel, este es el mejor sitio. El agua es poco profunda y transparente, perfecta para que los ninos vean peces sin miedo.
+
+**11:00** - Navegacion a Cala Bona (5 minutos). Mas tranquila y recogida, ideal para el picnic. Los ninos pueden jugar en el agua con seguridad.
+
+**11:30** - Regreso al puerto con parada en Sa Palomera para fotos desde el mar.
+
+**11:50** - Llegada al puerto. Fin de la experiencia.
+
+## Itinerario familiar extendido: 4 horas
+
+Si teneis toda la manana, el alquiler de 4 horas os permite llegar mas lejos:
+
+**10:00** - Salida del puerto de Blanes.
+
+**10:15** - Primera parada en Cala Sant Francesc. Bano y snorkel.
+
+**10:45** - Navegacion hasta Cala Treumal (10 min). Esta cala tiene un chiringuito donde podeis acercaros nadando a tomar algo.
+
+**11:30** - Continuacion hasta la playa de Santa Cristina (5 min). Paisaje de postal para fotos familiares.
+
+**12:15** - Regreso lento bordeando la costa, con parada libre en Cala Bona o donde mas os apetezca.
+
+**13:30** - Llegada al puerto.
+
+## Precios para familias
+
+Los [precios](/precios) de nuestros barcos sin licencia empiezan desde 70 EUR la hora, con combustible incluido. Las duraciones mas populares para familias son:
+
+- **2 horas:** Suficiente para visitar 2-3 calas cercanas. Ideal con ninos pequenos.
+- **4 horas:** La experiencia completa. Tiempo para explorar, nadar, hacer snorkel y comer a bordo.
+
+Reservar online tiene un **5% de descuento**. Puedes hacerlo directamente desde nuestra web.
+
+### Extras recomendados para familias
+
+- **Equipo de snorkel** (7,50 EUR): Incluye mascara y tubo. Los ninos flipan viendo peces, erizos y estrellas de mar.
+- **Paddle board** (20 EUR): Los adolescentes lo adoran. Incluye remo y chaleco.
+
+## Consejos practicos para familias
+
+1. **Reserva por la manana.** Las calas estan mas vacias y el mar mas tranquilo.
+2. **Lleva mucha agua.** Minimo 1,5 litros por persona. Los ninos se deshidratan rapido.
+3. **Crema solar SPF 50+** biodegradable. Aplica 30 minutos antes y reaplica cada 2 horas.
+4. **Camisetas UV para los ninos.** Mejor que solo crema, especialmente en las horas centrales.
+5. **Snacks y picnic.** Bocadillos, fruta, galletas. Lleva nevera con hielo.
+6. **Bolsa estanca** para moviles y llaves. El agua salada no perdona.
+7. **Pastillas para el mareo** si es la primera vez. Biodramina infantil existe y funciona.
+8. **Calzado de agua.** El suelo del barco puede estar mojado.
+
+---
+
+Alquilar un barco en familia es una de esas experiencias que los ninos recordaran para siempre. La combinacion de aventura, naturaleza y tiempo juntos en un entorno tan espectacular como la Costa Brava es dificil de superar.
+
+[Reserva ahora tu barco familiar](/barcos) y crea recuerdos que duraran toda la vida. Si tienes dudas, escribenos por [WhatsApp](https://wa.me/34611500372) y te ayudamos a planificar vuestra excursion perfecta.`,
+  },
+
+  // ===== POST: Las 10 mejores calas de Blanes accesibles en barco =====
+  {
+    title: "Las 10 mejores calas de Blanes accesibles solo en barco",
+    slug: "mejores-calas-blanes-accesibles-en-barco",
+    category: "Destinos",
+    author: "Costa Brava Rent a Boat",
+    featuredImage: "/images/blog/mejores-calas-blanes-accesibles-en-barco.jpg",
+    metaDescription: "Las 10 mejores calas de Blanes y alrededores accesibles en barco: calas secretas, snorkel, aguas cristalinas a menos de 30 minutos del puerto.",
+    tags: ["calas blanes", "calas secretas blanes", "calas barco blanes", "playas escondidas blanes", "snorkel blanes"],
+    isPublished: true,
+    _publishedAt: new Date("2026-04-04T10:00:00Z"),
+    excerpt: "Descubre las 10 mejores calas cerca de Blanes que puedes visitar en barco: desde Cala Sant Francesc hasta rincones secretos a menos de 30 minutos del puerto.",
+    content: `Blanes es el punto de partida perfecto para explorar algunas de las calas mas bonitas del Mediterraneo. Mientras que nuestra guia de [las mejores calas de la Costa Brava](/blog/mejores-calas-costa-brava-en-barco) cubre toda la costa desde Blanes hasta Tossa de Mar, en este articulo nos centramos exclusivamente en las calas cercanas al puerto de Blanes, esas que puedes visitar incluso con un alquiler de solo 2 horas en un [barco sin licencia](/barcos-sin-licencia).
+
+## 1. Cala Sant Francesc
+
+**Tiempo desde el puerto:** 5 minutos | **Distancia:** 1,5 km | **Snorkel:** Excelente
+
+La joya de Blanes. Declarada una de las mejores playas de Espana, Cala Sant Francesc esta rodeada de pinos centenarios y acantilados. Sus aguas turquesas y poco profundas son perfectas para el snorkel: posidonias, sargos, doncellas y, con suerte, algun pulpo entre las rocas.
+
+Aunque tiene acceso a pie por un camino empinado, llegar en barco te permite evitar la caminata y fondear directamente frente a la playa. Por la manana temprano, antes de las 11:00, puedes tener la cala casi para ti solo.
+
+**Lo que la hace especial:** El fondo marino es uno de los mejores de toda la zona para snorkel. Las praderas de posidonia estan sanas y albergan una biodiversidad impresionante.
+
+## 2. Cala Bona
+
+**Tiempo desde el puerto:** 7 minutos | **Distancia:** 2 km | **Snorkel:** Muy bueno
+
+Justo al lado de Cala Sant Francesc pero mucho mas pequena y escondida. Cala Bona es una miniatura de playa encajada entre rocas, con arena gruesa y agua cristalina. Su reducido tamano hace que pocos turistas lleguen hasta aqui, incluso en pleno agosto.
+
+Es la cala perfecta para fondear el barco, lanzarse al agua y disfrutar de la tranquilidad absoluta. Las paredes rocosas que la enmarcan crean un paisaje muy fotogenico.
+
+**Lo que la hace especial:** Es una de las calas menos masificadas de Blanes precisamente por su dificil acceso a pie. En barco, es trivial llegar.
+
+## 3. Punta de Santa Anna
+
+**Tiempo desde el puerto:** 4 minutos | **Distancia:** 1 km | **Snorkel:** Excelente
+
+No es una playa sino un tramo de costa rocosa al pie del promontorio de Santa Anna, donde se encuentran los restos del antiguo castillo. Aqui no vas a tomar el sol sino a hacer snorkel de primer nivel. Las formaciones rocosas submarinas crean cuevas, grietas y tuneles donde se esconde una fauna marina increible.
+
+**Lo que la hace especial:** Es uno de los puntos de snorkel mas subestimados de toda la Costa Brava. Pocos turistas saben que existe porque no aparece en las guias convencionales.
+
+## 4. Racó de Sa Palomera
+
+**Tiempo desde el puerto:** 2 minutos | **Distancia:** 300 m | **Snorkel:** Bueno
+
+La mayoria de visitantes conocen Sa Palomera como la roca iconica que divide las dos playas de Blanes. Pero lo que pocos saben es que en su cara norte, mirando hacia el puerto, hay un pequeno rincón rocoso protegido del oleaje donde el agua es extraordinariamente clara.
+
+Desde el barco, puedes fondear a pocos metros y bajar nadando para explorar las rocas. Es una parada rapida perfecta para empezar o terminar tu ruta.
+
+**Lo que la hace especial:** Ver Sa Palomera desde el nivel del agua, con los acantilados alzandose sobre ti, es una perspectiva que muy poca gente conoce.
+
+## 5. Platja de S'Abanell (zona norte)
+
+**Tiempo desde el puerto:** 5 minutos | **Distancia:** 1,5 km (rumbo norte) | **Snorkel:** Basico
+
+S'Abanell es la playa mas larga de Blanes (mas de 2 km), pero la zona norte, cerca de la desembocadura del Tordera, tiene un caracter completamente distinto. Aqui la playa es ancha, la arena fina y la afluencia mucho menor que en el centro.
+
+Desde el barco, la perspectiva de toda la bahia de Blanes con el Jardi Botanic Marimurtra al fondo es espectacular. Es un buen sitio para fondear si quieres arena y agua poco profunda sin las aglomeraciones del centro.
+
+**Lo que la hace especial:** Las vistas panoramicas de la bahia de Blanes completa, con el pueblo, los jardines y las montanas de fondo.
+
+## 6. Cala Treumal
+
+**Tiempo desde el puerto:** 10 minutos | **Distancia:** 3 km | **Snorkel:** Bueno
+
+Cala Treumal marca la frontera entre Blanes y [Lloret de Mar](/alquiler-barcos-lloret-de-mar). Es una playa rodeada de vegetacion subtropical gracias al cercano Jardin Botanico Pinya de Rosa. Las aguas son tranquilas y poco profundas, ideales para familias con ninos pequenos.
+
+Tiene un chiringuito al que puedes acercarte nadando desde el barco fondeado. La combinacion de bano, snorkel y vermut es dificil de superar.
+
+**Lo que la hace especial:** La vegetacion exotica que llega hasta la arena le da un aire tropical unico en la Costa Brava.
+
+## 7. Playa de Santa Cristina
+
+**Tiempo desde el puerto:** 12 minutos | **Distancia:** 3,5 km | **Snorkel:** Bueno
+
+Santa Cristina es una playa de postal. Arena dorada, pinos maritimos que llegan hasta la orilla y la ermita de Santa Cristina en lo alto del acantilado. Es una de las playas mas fotografiadas de la Costa Brava y verla desde el mar es aun mejor que desde tierra.
+
+El fondeo aqui es comodo y el agua tiene un color azul intenso que no encontraras en muchas otras playas de la zona.
+
+**Lo que la hace especial:** La ermita romanica del siglo XIV coronando el acantilado crea un paisaje que parece sacado de otra epoca.
+
+## 8. Roca de Ses Torretes
+
+**Tiempo desde el puerto:** 8 minutos | **Distancia:** 2,5 km | **Snorkel:** Excelente
+
+Entre Cala Bona y Cala Treumal hay un tramo de costa rocosa salvaje conocido como Ses Torretes. Aqui no hay playa, pero las formaciones rocosas crean pozas naturales y repisas donde puedes fondear el barco y bajar a explorar.
+
+El snorkel es de nivel avanzado: las paredes rocosas caen verticalmente y estan cubiertas de gorgonias, esponjas y erizos. Es comun ver morenas, meros juveniles y bancos de castanuelas.
+
+**Lo que la hace especial:** Es snorkel de verdad salvaje, sin ningun tipo de infraestructura humana a la vista. Te sientes como un explorador.
+
+## 9. Cala dels Frares
+
+**Tiempo desde el puerto:** 3 minutos | **Distancia:** 800 m | **Snorkel:** Muy bueno
+
+Debajo del Jardin Botanico Marimurtra, en la punta del promontorio que separa Blanes del norte, hay una pequena ensenada rocosa conocida como Cala dels Frares. Desde tierra se ve pero no se puede bajar facilmente. En barco, puedes fondear y disfrutar de uno de los rincones mas tranquilos y bellos de Blanes.
+
+Las aguas son profundas (4-6 metros junto a la costa) y muy claras. El fondo es de roca y posidonia, ideal para snorkel.
+
+**Lo que la hace especial:** Las vistas del Jardin Botanico desde el nivel del agua, con las terrazas escalonadas y la vegetacion colgando sobre los acantilados, son magicas.
+
+## 10. Cala de Sant Francesc Nord (la cala secreta)
+
+**Tiempo desde el puerto:** 6 minutos | **Distancia:** 1,8 km | **Snorkel:** Excelente
+
+Al norte de Cala Sant Francesc, separada por un pequeno promontorio rocoso, hay una mini-cala sin nombre oficial que los locales llaman "la cala secreta". No tiene mas de 15 metros de ancho, con cantos rodados y agua cristalina de color esmeralda.
+
+No tiene acceso a pie (los acantilados la rodean por completo) y solo se puede llegar nadando desde Sant Francesc o directamente en barco. Incluso en pleno agosto, es raro encontrar mas de un par de barcos fondeados.
+
+**Lo que la hace especial:** Es literalmente inaccesible sin barco. Si buscas exclusividad y soledad en el Mediterraneo en pleno verano, este es tu sitio.
+
+---
+
+## Que barco elegir para explorar las calas de Blanes
+
+Todas estas calas estan a menos de 15 minutos del puerto, lo que las hace perfectas para un alquiler corto de 2 horas en un [barco sin licencia](/barcos-sin-licencia):
+
+- [Astec 480](/barco/astec-480): El mas espacioso. Ideal para familias que quieren visitar 3-4 calas comodamente.
+- [Solar 450](/barco/solar-450): Agil y maniobrable. Perfecto para parejas que quieren explorar los rincones mas estrechos.
+- [Remus 450](/barco/remus-450): Estable y robusto. La mejor opcion para principiantes absolutos.
+
+Si tienes licencia y quieres combinar calas cercanas con una escapada mas lejana a [Tossa de Mar](/alquiler-barcos-tossa-de-mar), el [Pacific Craft 625](/barco/pacific-craft-625) te permite hacerlo comodamente en una jornada de 4 horas.
+
+## Consejos para visitar estas calas
+
+- **Llega antes de las 11:00.** Las calas mas populares (Sant Francesc, Treumal) se llenan rapido en verano.
+- **Lleva equipo de snorkel.** Puedes [anadirlo a tu reserva](/barcos) por solo 7,50 EUR.
+- **Respeta el fondeo.** Evita anclar sobre praderas de posidonia. Busca fondos de arena para soltar el ancla.
+- **Consulta nuestras [rutas recomendadas](/rutas)** para optimizar tu recorrido segun la duracion del alquiler.
+
+[Reserva tu barco ahora](/barcos) y descubre estas calas por ti mismo. El Mediterraneo te espera a solo 5 minutos del puerto de Blanes.`,
+  },
+
+  // ===== POST: Sunset boat trip in Blanes =====
+  {
+    title: "Sunset boat trip in Blanes: the perfect evening experience",
+    slug: "sunset-boat-trip-blanes-costa-brava",
+    category: "Experiences",
+    author: "Costa Brava Rent a Boat",
+    featuredImage: "/images/blog/sunset-boat-trip-blanes-costa-brava.jpg",
+    metaDescription: "Experience a magical sunset boat trip in Blanes, Costa Brava. No license needed, stunning coastal views, hidden coves and golden hour photography tips.",
+    tags: ["sunset boat trip", "blanes sunset", "evening boat ride costa brava", "romantic boat trip", "atardecer barco blanes"],
+    isPublished: true,
+    _publishedAt: new Date("2026-04-07T10:00:00Z"),
+    excerpt: "Imagine gliding across the Mediterranean as the sun paints the sky in shades of gold and pink over the Costa Brava. A sunset boat trip from Blanes is the most magical way to end a summer day.",
+    content: `There are few experiences on the Costa Brava that rival the magic of watching the sun set from the water. As the sky shifts from blue to gold to pink, and the cliffs of the coastline glow in warm amber light, you realize this is what Mediterranean summers are all about. A sunset boat trip from Blanes is, without exaggeration, one of the most beautiful experiences you can have on the Spanish coast.
+
+## Why Blanes is perfect for sunset boat trips
+
+Blanes sits at the southernmost tip of the Costa Brava, facing southwest across the Mediterranean. This orientation means that during summer evenings, the sun sets directly over the coastline, creating a spectacular backdrop of golden light reflecting off the water and illuminating the cliffs, coves, and pine forests along the shore.
+
+From the port of Blanes, you are just minutes away from some of the most beautiful coastal scenery in Catalonia. The combination of dramatic cliffs, hidden coves, and crystal-clear water makes every sunset trip unique.
+
+## No license needed
+
+One of the best things about renting a boat in Blanes is that you do not need a boating license. Spanish law allows anyone over 18 to pilot boats under 5 meters with engines up to 15 HP. Our [boats without license](/barcos-sin-licencia) are easy to drive and we give you a full safety briefing before departure. Even if you have never been on a boat before, you will feel confident within minutes.
+
+If you prefer to sit back and enjoy without worrying about navigation, our [private excursion with a captain](/barco/excursion-privada) is the perfect option. A professional skipper takes you on a curated route while you relax with drinks and watch the show.
+
+## Best time of year for sunset trips
+
+Sunset boat trips are available throughout our season from April to October. Here is what to expect each month:
+
+### April - May
+Sunset around 20:30-21:00. The sea is calm, the temperatures are pleasant (18-22C), and the coast is uncrowded. This is the most peaceful time for a sunset experience, though the water may be a bit cool for swimming.
+
+### June
+Sunset around 21:15-21:30. The longest days of the year mean extended golden hours. The water temperature is comfortable for swimming (around 22C). June offers the perfect balance between warm weather and fewer crowds.
+
+### July - August
+Sunset around 21:00-21:15. Peak summer with warm waters (24-26C) and long evenings. The light is intense and the sunsets are often the most dramatic, with vivid colors reflecting off the calm sea. Book well in advance as these are our most popular months.
+
+### September - October
+Sunset around 19:30-20:30. The angle of the sun creates particularly warm, golden light. September is arguably the best month for sunset photography, with slightly hazy skies that diffuse the light beautifully. Water is still warm (22-24C in September).
+
+## Recommended duration: 2 hours
+
+For a sunset boat trip, we recommend booking a **2-hour slot** that starts approximately 90 minutes before sunset. This gives you time to:
+
+1. **Navigate to your chosen spot** (15-20 minutes)
+2. **Swim and snorkel** in a hidden cove while the light is still good (30-40 minutes)
+3. **Position your boat for the sunset** and enjoy the golden hour (30 minutes)
+4. **Return to port** as twilight settles over the coast (15-20 minutes)
+
+Check sunset times for your travel dates and book your time slot accordingly. You can make your reservation directly on our [boats page](/barcos).
+
+## The best sunset routes from Blanes
+
+### Route 1: Cala Sant Francesc (for couples)
+
+Head south from the port to Cala Sant Francesc, just 5 minutes away. This stunning cove surrounded by pine-covered cliffs catches the last light of the day beautifully. Drop anchor, swim in the turquoise water, and watch the sun dip below the horizon from the most beautiful cove in [Blanes](/alquiler-barcos-blanes).
+
+**Best boat:** [Solar 450](/barco/solar-450) or [Astec 400](/barco/astec-400) for an intimate experience.
+
+### Route 2: Coastal cruise to Santa Cristina (for groups)
+
+Navigate south past Cala Sant Francesc, Cala Bona, and Cala Treumal to reach the beach of Santa Cristina. The hermitage perched on the cliff above the beach is breathtaking in the sunset light. On the way back, hug the coastline and watch the cliffs change color as the light fades.
+
+**Best boat:** [Astec 480](/barco/astec-480) for families, or [Pacific Craft 625](/barco/pacific-craft-625) for larger groups with a license.
+
+### Route 3: Sa Palomera panoramic (quick and stunning)
+
+If you want something shorter, simply cruise out to sea in front of Sa Palomera rock and the Blanes waterfront. From the water, you get a panoramic view of the entire town with the mountains behind. When the sun sets, the whole scene turns golden. This is the classic Blanes sunset shot.
+
+## What to bring on your sunset trip
+
+- **A light jacket or sweater.** The temperature drops noticeably once the sun goes down and the sea breeze picks up.
+- **Drinks and snacks.** A bottle of cava, some cheese and olives, or whatever you enjoy. There is nothing quite like toasting the sunset from your own boat on the Mediterranean.
+- **A camera.** Obviously. But more importantly, a dry bag or waterproof case for your phone. The best photos happen when you are also swimming.
+- **Sunglasses.** Polarized lenses are essential on the water, especially when the sun is low.
+- **Towels and a change of clothes.** If you plan to swim before sunset (you should), you will want to be dry and comfortable for the viewing.
+- **Snorkel gear.** You can add it to your booking for just 7.50 EUR. The underwater light during golden hour is extraordinary.
+
+## Photography tips for sunset boat trips
+
+The light on the Costa Brava during golden hour is extraordinary. Here are some tips to capture it:
+
+- **Shoot during the golden hour**, which starts about 1 hour before sunset. The light is warm, soft, and flattering.
+- **Use the water as a mirror.** The reflection of the sunset on calm water doubles the drama.
+- **Include the coastline.** The cliffs and pine trees silhouetted against the colored sky add depth and context.
+- **Shoot from water level.** Lean close to the surface for dramatic perspective shots.
+- **Face away from the sun sometimes.** The warm light illuminating the cliffs creates gorgeous landscapes.
+- **Use portrait mode** on your phone for stunning photos of your travel companions with the sunset behind them.
+- **Take video.** The gentle rocking of the boat, the sound of the water, and the changing light make for incredible short videos.
+
+## Romantic sunset experience
+
+A sunset boat trip is one of the most romantic activities on the Costa Brava. Imagine drifting in a hidden cove with your partner, a bottle of cava, and the sky exploding in color around you. No crowds, no noise, just the two of you and the Mediterranean.
+
+For the ultimate romantic experience, we recommend:
+
+- The [Solar 450](/barco/solar-450) for its intimate size and easy handling.
+- A 2-hour booking starting 90 minutes before sunset.
+- Cala Sant Francesc as your destination.
+- A bottle of something sparkling and some local cheese and fuet.
+- Snorkel gear for a swim together before the sun goes down.
+
+## Pricing
+
+Our [boats without license](/barcos-sin-licencia) start from 70 EUR per hour, with fuel included. A 2-hour sunset trip for two to four people is one of the best value experiences on the Costa Brava. Check our current [prices](/precios) for all options and seasonal rates.
+
+---
+
+A sunset boat trip in Blanes is more than just an activity. It is one of those rare moments where everything comes together: the light, the water, the coastline, and the feeling of complete freedom on the Mediterranean. It is the kind of experience you will remember long after your holiday is over.
+
+[Book your sunset boat trip now](/barcos) and discover why the Costa Brava earned its name. If you have questions or want help choosing the perfect time slot, message us on [WhatsApp](https://wa.me/34611500372) and we will help you plan the perfect evening on the water.`,
+  },
 ];
 
 /**
- * Seeds the database with 19 SEO blog posts.
+ * Seeds the database with 24 SEO blog posts.
  * Handles duplicate slugs gracefully by upserting existing posts.
  * After creation, updates publishedAt to the staggered date.
  */

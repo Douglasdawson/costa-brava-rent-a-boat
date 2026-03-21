@@ -67,16 +67,18 @@ const generateUrlEntry = (
   path: string,
   priority: string,
   lastmod: string | null,
-  languages: readonly string[] = SUPPORTED_LANGUAGES
+  languages: readonly string[] = SUPPORTED_LANGUAGES,
+  changefreq?: string
 ) => {
   const hreflangLinks = buildHreflangLinks(baseUrl, path, languages);
   const lastmodTag = lastmod ? `\n    <lastmod>${lastmod}</lastmod>` : "";
+  const changefreqTag = changefreq ? `\n    <changefreq>${changefreq}</changefreq>` : "";
   let urls = "";
 
   // Canonical (ES) entry with all hreflang alternates
   urls += `  <url>
     <loc>${baseUrl}${path}</loc>${lastmodTag}
-    <priority>${priority}</priority>
+    <priority>${priority}</priority>${changefreqTag}
 ${hreflangLinks}  </url>
 `;
 
@@ -86,7 +88,7 @@ ${hreflangLinks}  </url>
       const langPath = path === "/" ? `/?lang=${lang}` : `${path}?lang=${lang}`;
       urls += `  <url>
     <loc>${baseUrl}${langPath}</loc>${lastmodTag}
-    <priority>${priority}</priority>
+    <priority>${priority}</priority>${changefreqTag}
 ${hreflangLinks}  </url>
 `;
     }
@@ -187,34 +189,36 @@ export function registerSitemapRoutes(app: Express) {
 
       // Static pages omit <lastmod> — Google recommends only including lastmod
       // when the date is accurate. Static pages don't have real modification dates.
-      sitemap += generateUrlEntry(baseUrl, "/", "1.0", null);
+      // changefreq hints help AI crawlers (Perplexity, ChatGPT) understand content freshness.
+      sitemap += generateUrlEntry(baseUrl, "/", "1.0", null, SUPPORTED_LANGUAGES, "daily");
 
       const locationSlugs = ["blanes", "lloret-de-mar", "tossa-de-mar", "malgrat-de-mar", "santa-susanna", "calella"];
       locationSlugs.forEach(slug => {
-        sitemap += generateUrlEntry(baseUrl, `/alquiler-barcos-${slug}`, "0.7", null);
+        sitemap += generateUrlEntry(baseUrl, `/alquiler-barcos-${slug}`, "0.7", null, SUPPORTED_LANGUAGES, "monthly");
       });
 
-      sitemap += generateUrlEntry(baseUrl, "/galeria", "0.6", null);
-      sitemap += generateUrlEntry(baseUrl, "/rutas", "0.7", null);
-      sitemap += generateUrlEntry(baseUrl, "/tarjetas-regalo", "0.6", null);
-      sitemap += generateUrlEntry(baseUrl, "/precios", "0.8", null);
-      sitemap += generateUrlEntry(baseUrl, "/alquiler-barcos-cerca-barcelona", "0.7", null);
-      sitemap += generateUrlEntry(baseUrl, "/alquiler-barcos-costa-brava", "0.9", null);
-      sitemap += generateUrlEntry(baseUrl, "/faq", "0.6", null);
-      sitemap += generateUrlEntry(baseUrl, "/testimonios", "0.6", null);
-      sitemap += generateUrlEntry(baseUrl, "/destinos", "0.7", null);
-      sitemap += generateUrlEntry(baseUrl, "/barcos-sin-licencia", "0.7", null);
-      sitemap += generateUrlEntry(baseUrl, "/barcos-con-licencia", "0.7", null);
-      sitemap += generateUrlEntry(baseUrl, "/blog", "0.7", null);
-      sitemap += generateUrlEntry(baseUrl, "/excursion-snorkel-barco-blanes", "0.7", null);
-      sitemap += generateUrlEntry(baseUrl, "/barco-familias-costa-brava", "0.7", null);
-      sitemap += generateUrlEntry(baseUrl, "/sunset-boat-trip-blanes", "0.7", null);
-      sitemap += generateUrlEntry(baseUrl, "/pesca-barco-blanes", "0.7", null);
-      sitemap += generateUrlEntry(baseUrl, "/privacy-policy", "0.3", null);
-      sitemap += generateUrlEntry(baseUrl, "/terms-conditions", "0.3", null);
-      sitemap += generateUrlEntry(baseUrl, "/condiciones-generales", "0.3", null);
-      sitemap += generateUrlEntry(baseUrl, "/cookies-policy", "0.3", null);
-      sitemap += generateUrlEntry(baseUrl, "/accesibilidad", "0.3", null);
+      sitemap += generateUrlEntry(baseUrl, "/galeria", "0.6", null, SUPPORTED_LANGUAGES, "monthly");
+      sitemap += generateUrlEntry(baseUrl, "/rutas", "0.7", null, SUPPORTED_LANGUAGES, "monthly");
+      sitemap += generateUrlEntry(baseUrl, "/tarjetas-regalo", "0.6", null, SUPPORTED_LANGUAGES, "monthly");
+      sitemap += generateUrlEntry(baseUrl, "/precios", "0.8", null, SUPPORTED_LANGUAGES, "weekly");
+      sitemap += generateUrlEntry(baseUrl, "/alquiler-barcos-cerca-barcelona", "0.7", null, SUPPORTED_LANGUAGES, "monthly");
+      sitemap += generateUrlEntry(baseUrl, "/alquiler-barcos-costa-brava", "0.9", null, SUPPORTED_LANGUAGES, "monthly");
+      sitemap += generateUrlEntry(baseUrl, "/faq", "0.6", null, SUPPORTED_LANGUAGES, "monthly");
+      sitemap += generateUrlEntry(baseUrl, "/testimonios", "0.6", null, SUPPORTED_LANGUAGES, "monthly");
+      sitemap += generateUrlEntry(baseUrl, "/about", "0.6", null, SUPPORTED_LANGUAGES, "monthly");
+      sitemap += generateUrlEntry(baseUrl, "/destinos", "0.7", null, SUPPORTED_LANGUAGES, "monthly");
+      sitemap += generateUrlEntry(baseUrl, "/barcos-sin-licencia", "0.7", null, SUPPORTED_LANGUAGES, "monthly");
+      sitemap += generateUrlEntry(baseUrl, "/barcos-con-licencia", "0.7", null, SUPPORTED_LANGUAGES, "monthly");
+      sitemap += generateUrlEntry(baseUrl, "/blog", "0.7", null, SUPPORTED_LANGUAGES, "weekly");
+      sitemap += generateUrlEntry(baseUrl, "/excursion-snorkel-barco-blanes", "0.7", null, SUPPORTED_LANGUAGES, "monthly");
+      sitemap += generateUrlEntry(baseUrl, "/barco-familias-costa-brava", "0.7", null, SUPPORTED_LANGUAGES, "monthly");
+      sitemap += generateUrlEntry(baseUrl, "/sunset-boat-trip-blanes", "0.7", null, SUPPORTED_LANGUAGES, "monthly");
+      sitemap += generateUrlEntry(baseUrl, "/pesca-barco-blanes", "0.7", null, SUPPORTED_LANGUAGES, "monthly");
+      sitemap += generateUrlEntry(baseUrl, "/privacy-policy", "0.3", null, SUPPORTED_LANGUAGES, "yearly");
+      sitemap += generateUrlEntry(baseUrl, "/terms-conditions", "0.3", null, SUPPORTED_LANGUAGES, "yearly");
+      sitemap += generateUrlEntry(baseUrl, "/condiciones-generales", "0.3", null, SUPPORTED_LANGUAGES, "yearly");
+      sitemap += generateUrlEntry(baseUrl, "/cookies-policy", "0.3", null, SUPPORTED_LANGUAGES, "yearly");
+      sitemap += generateUrlEntry(baseUrl, "/accesibilidad", "0.3", null, SUPPORTED_LANGUAGES, "yearly");
 
       sitemap += `</urlset>`;
 
@@ -251,7 +255,8 @@ export function registerSitemapRoutes(app: Express) {
         sitemap += `  <url>
     <loc>${baseUrl}${boatPath}</loc>
     <lastmod>${boatLastmod}</lastmod>
-    <priority>0.8</priority>`;
+    <priority>0.8</priority>
+    <changefreq>weekly</changefreq>`;
 
         if (boat.imageUrl) {
           const rawImageUrl = boat.imageUrl.startsWith("http")
@@ -293,6 +298,7 @@ ${boatHreflang}  </url>
     <loc>${baseUrl}${boatPath}?lang=${lang}</loc>
     <lastmod>${boatLastmod}</lastmod>
     <priority>0.8</priority>
+    <changefreq>weekly</changefreq>
 ${boatHreflang}  </url>
 `;
           }
@@ -331,6 +337,7 @@ ${boatHreflang}  </url>
         const ageMs = rawDate ? now - new Date(String(rawDate)).getTime() : Infinity;
         const ageDays = ageMs / (1000 * 60 * 60 * 24);
         const priority = ageDays < 30 ? "0.9" : ageDays < 90 ? "0.8" : "0.7";
+        const blogChangefreq = ageDays < 30 ? "weekly" : ageDays < 90 ? "monthly" : "yearly";
 
         const postPath = `/blog/${post.slug}`;
         const postHreflang = buildHreflangLinks(baseUrl, postPath);
@@ -357,7 +364,8 @@ ${boatHreflang}  </url>
         sitemap += `  <url>
     <loc>${baseUrl}${postPath}</loc>
     <lastmod>${postDate}</lastmod>
-    <priority>${priority}</priority>${imageTag}
+    <priority>${priority}</priority>
+    <changefreq>${blogChangefreq}</changefreq>${imageTag}
 ${postHreflang}  </url>
 `;
 
@@ -367,7 +375,8 @@ ${postHreflang}  </url>
             sitemap += `  <url>
     <loc>${baseUrl}${postPath}?lang=${lang}</loc>
     <lastmod>${postDate}</lastmod>
-    <priority>${priority}</priority>${imageTag}
+    <priority>${priority}</priority>
+    <changefreq>${blogChangefreq}</changefreq>${imageTag}
 ${postHreflang}  </url>
 `;
           }
@@ -412,7 +421,8 @@ ${postHreflang}  </url>
           sitemap += `  <url>
     <loc>${baseUrl}${destPath}</loc>
     <lastmod>${destLastmod}</lastmod>
-    <priority>0.7</priority>`;
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>`;
 
           if (destination.featuredImage) {
             const rawImageUrl = destination.featuredImage.startsWith("http")
@@ -438,6 +448,7 @@ ${destHreflang}  </url>
     <loc>${baseUrl}${destPath}?lang=${lang}</loc>
     <lastmod>${destLastmod}</lastmod>
     <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
 ${destHreflang}  </url>
 `;
             }
@@ -453,7 +464,8 @@ ${destHreflang}  </url>
           sitemap += `  <url>
     <loc>${baseUrl}${destPath}</loc>
     <lastmod>${DEPLOY_DATE}</lastmod>
-    <priority>0.7</priority>`;
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>`;
 
           sitemap += `
 ${destHreflang}  </url>
@@ -465,6 +477,7 @@ ${destHreflang}  </url>
     <loc>${baseUrl}${destPath}?lang=${lang}</loc>
     <lastmod>${DEPLOY_DATE}</lastmod>
     <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
 ${destHreflang}  </url>
 `;
             }

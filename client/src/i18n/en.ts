@@ -1274,6 +1274,54 @@ export const en: Translations = {
         question: 'How far can I navigate?',
         answer: 'You can explore the entire coast between Blanes and Tossa de Mar. We recommend the coves of Sa Forcanera, Cala Bona and Cala Sant Francesc, accessible only by sea.',
       },
+      // Comparative questions
+      {
+        id: 'diferencia-licencia',
+        question: 'What is the difference between licence-free and licensed boats?',
+        answer: 'Licence-free boats have up to 15 HP engines, capacity for 4-5 people, fuel included and start from 70€. Licensed boats have 40-150 HP engines, capacity for up to 8 people, greater range and start from 150€ (fuel not included). Licensed boats allow you to navigate further, all the way to Tossa de Mar and beyond.',
+      },
+      {
+        id: 'precio-blanes-vs-lloret',
+        question: 'Is it cheaper to rent a boat in Blanes or Lloret de Mar?',
+        answer: 'Blanes is the most affordable boat rental location on the Costa Brava, with licence-free boats from 70€ per hour with fuel included. By operating from Blanes Port with our own fleet, we offer more competitive prices than other towns like Lloret de Mar or Tossa de Mar.',
+      },
+      {
+        id: 'barco-grupo-grande',
+        question: 'Which boat do you recommend for a large group?',
+        answer: 'For large groups we recommend the Pacific Craft 625 (up to 8 people, licence required) or our Private Excursion with captain (up to 10 people). The captain excursion is ideal if nobody in the group has a boating licence, as it includes a professional skipper who takes you to the best coves.',
+      },
+      // Location-specific pricing questions
+      {
+        id: 'precio-costa-brava',
+        question: 'How much does it cost to rent a boat on the Costa Brava?',
+        answer: 'On the Costa Brava you can rent a boat from 70€ per hour in Blanes, with fuel included and no licence required. Prices vary by duration (1h to full day), boat type and season. July and August are peak season with higher prices; June and September offer the best value for money.',
+      },
+      {
+        id: 'blanes-tossa-barco',
+        question: 'Can I go to Tossa de Mar by boat from Blanes?',
+        answer: 'Yes, Tossa de Mar is about 30 minutes by boat from Blanes. However, you need a licensed boat or our captain excursion, as licence-free boats have a limited navigation range. The coastal route from Blanes to Tossa is spectacular, with hidden coves and cliffs.',
+      },
+      {
+        id: 'excursion-con-patron',
+        question: 'How much does a boat trip with a captain cost?',
+        answer: 'Our private excursions with a professional captain start from 240€ for 2 hours for up to 10 people. The captain takes you to the best coves, handles all the navigation and you do not need a licence. It is the perfect option for families or groups who want to enjoy without any worries.',
+      },
+      // Decision-helping questions
+      {
+        id: 'seguro-sin-experiencia',
+        question: 'Is it safe to rent a boat without experience?',
+        answer: 'Completely safe. Before heading out, our team gives you a 15-minute briefing covering how the boat works, navigation rules and the authorised zone. Licence-free boats are very stable and easy to handle, and the Blanes area has calm and sheltered waters.',
+      },
+      {
+        id: 'barco-vs-excursion',
+        question: 'What is better, renting a boat or a captain excursion?',
+        answer: 'It depends on what you are looking for. Renting a licence-free boat (from 70€/h) gives you total freedom to go at your own pace and explore independently. The captain excursion (from 240€/2h) is ideal if you want to fully relax, have no experience or want to reach more distant coves like Tossa de Mar.',
+      },
+      {
+        id: 'mejor-epoca',
+        question: 'What is the best time of year to rent a boat in Blanes?',
+        answer: 'September is the star month: the sea water is at its warmest (24-25 degrees C), prices are mid-season, there are fewer tourists and weather conditions are excellent. June and early July are also great options. July and August have the best weather but prices and crowds are higher.',
+      },
     ],
   },
 

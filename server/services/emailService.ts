@@ -327,9 +327,8 @@ function emailWrapper(content: string): string {
         <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="max-width:600px; width:100%; background-color:#ffffff; border-radius:8px; overflow:hidden; box-shadow:0 2px 8px rgba(0,0,0,0.08);">
           <!-- Header -->
           <tr>
-            <td style="background: linear-gradient(135deg, #1e3a5f 0%, #2563eb 100%); padding:28px 32px; text-align:center;">
-              <h1 style="margin:0; color:#ffffff; font-size:24px; font-weight:700; letter-spacing:0.5px;">Costa Brava Rent a Boat</h1>
-              <p style="margin:6px 0 0; color:#93c5fd; font-size:14px;">Puerto de Blanes, Costa Brava</p>
+            <td style="background: linear-gradient(135deg, #0d1a2d 0%, #1a2a4a 100%); padding:28px 32px; text-align:center; border-bottom:3px solid #A8C4DD;">
+              <img src="https://costabravarentaboat.com/assets/logo-email-white.svg" alt="Costa Brava Rent a Boat" width="280" height="130" style="display:block; margin:0 auto; width:280px; height:auto;">
             </td>
           </tr>
           <!-- Body -->
@@ -338,17 +337,25 @@ function emailWrapper(content: string): string {
               ${content}
             </td>
           </tr>
-          <!-- Footer -->
+          <!-- Footer: Social Media -->
           <tr>
-            <td style="background-color:#f8fafc; padding:24px 32px; border-top:1px solid #e2e8f0;">
+            <td style="background-color:#0d1a2d; padding:20px 32px 0; text-align:center;">
+              <a href="https://www.instagram.com/costabravarentaboat/" target="_blank" style="display:inline-block; background-color:#E4405F; padding:6px 14px; border-radius:50px; color:#ffffff; font-size:11px; font-weight:600; text-decoration:none; margin:0 3px;">Instagram</a>
+              <a href="https://www.facebook.com/costabravarentaboat" target="_blank" style="display:inline-block; background-color:#1877F2; padding:6px 14px; border-radius:50px; color:#ffffff; font-size:11px; font-weight:600; text-decoration:none; margin:0 3px;">Facebook</a>
+              <a href="https://www.tiktok.com/@costabravarentaboat" target="_blank" style="display:inline-block; background-color:#000000; border:1px solid #333333; padding:6px 14px; border-radius:50px; color:#ffffff; font-size:11px; font-weight:600; text-decoration:none; margin:0 3px;">TikTok</a>
+              <a href="https://maps.app.goo.gl/NHV4PcaFPmwBYqCt5" target="_blank" style="display:inline-block; background-color:#4285F4; padding:6px 14px; border-radius:50px; color:#ffffff; font-size:11px; font-weight:600; text-decoration:none; margin:0 3px;">Ubicacion</a>
+            </td>
+          </tr>
+          <!-- Footer: Contact -->
+          <tr>
+            <td style="background-color:#0d1a2d; border-top:1px solid #1a2a4a; padding:16px 32px 24px;">
               <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
                 <tr>
                   <td style="text-align:center;">
-                    <p style="margin:0 0 8px; color:#475569; font-size:14px; font-weight:600;">Costa Brava Rent a Boat</p>
-                    <p style="margin:0 0 4px; color:#64748b; font-size:13px;">Puerto de Blanes, Girona, Costa Brava</p>
-                    <p style="margin:0 0 4px; color:#64748b; font-size:13px;">Tel: <a href="tel:+34611500372" style="color:#2563eb; text-decoration:none;">+34 611 500 372</a></p>
-                    <p style="margin:0 0 12px; color:#64748b; font-size:13px;">Email: <a href="mailto:costabravarentaboat@gmail.com" style="color:#2563eb; text-decoration:none;">costabravarentaboat@gmail.com</a></p>
-                    <p style="margin:0; color:#94a3b8; font-size:11px;">www.costabravarentaboat.com</p>
+                    <img src="https://costabravarentaboat.com/assets/logo-email-white.svg" alt="Costa Brava Rent a Boat" width="160" height="74" style="display:block; margin:0 auto 8px; width:160px; height:auto;">
+                    <p style="margin:0 0 4px; color:#A8C4DD; font-size:12px;">&#9875; Puerto de Blanes, Girona, Costa Brava</p>
+                    <p style="margin:0 0 4px; color:#A8C4DD; font-size:12px;">Tel: <a href="tel:+34611500372" style="color:#A8C4DD; text-decoration:none;">+34 611 500 372</a> &middot; <a href="mailto:costabravarentaboat@gmail.com" style="color:#A8C4DD; text-decoration:none;">costabravarentaboat@gmail.com</a></p>
+                    <p style="margin:0; color:#A8C4DD; font-size:11px; opacity:0.7;">www.costabravarentaboat.com</p>
                   </td>
                 </tr>
               </table>
@@ -730,7 +737,7 @@ export async function sendWelcomeEmail(
   const safeName = firstName?.trim() || "usuario";
 
   const content = `
-    <h2 style="margin:0 0 8px; color:#1e3a5f; font-size:20px;">Bienvenido/a a NauticFlow</h2>
+    <h2 style="margin:0 0 8px; color:#1e3a5f; font-size:20px;">Bienvenido/a a Costa Brava Rent a Boat</h2>
     <p style="margin:0 0 20px; color:#475569; font-size:15px; line-height:1.6;">
       Hola ${safeName},<br>
       Tu cuenta para <strong>${companyName}</strong> ha sido creada correctamente. Empieza a gestionar tu flota desde el panel de administracion.
@@ -755,8 +762,8 @@ export async function sendWelcomeEmail(
   try {
     await sendgridBreaker.call(() => sgMail.send({
       to: email,
-      from: { email: getFromEmail(), name: "NauticFlow" },
-      subject: `Bienvenido/a a NauticFlow — Tu prueba gratuita ha comenzado`,
+      from: { email: getFromEmail(), name: "Costa Brava Rent a Boat" },
+      subject: `Bienvenido/a a Costa Brava Rent a Boat — Tu prueba gratuita ha comenzado`,
       html: emailWrapper(content),
     }));
 
@@ -1346,71 +1353,141 @@ export async function sendPartnershipProposal(data: PartnershipEmailData): Promi
   const greeting = data.contactName ? `Estimado/a ${data.contactName}` : `Estimado equipo de ${data.hotelName}`;
 
   const content = `
-    <h2 style="margin:0 0 16px; color:#1e3a5f; font-size:20px;">Propuesta de colaboracion</h2>
-
+    <!-- 1. Saludo personal -->
     <p style="margin:0 0 16px; color:#334155; font-size:15px; line-height:1.7;">
       ${greeting},
     </p>
 
+    <!-- 2. Pitch + social proof inline -->
     <p style="margin:0 0 16px; color:#334155; font-size:15px; line-height:1.7;">
-      Me dirijo a ustedes desde <strong>Costa Brava Rent a Boat</strong>, empresa de alquiler de
-      embarcaciones ubicada en el <strong>Puerto de Blanes</strong>. Contamos con
-      <strong>4.8 estrellas en Google</strong> y mas de 300 opiniones positivas.
+      Soy Iv&aacute;n, de <strong>Costa Brava Rent a Boat</strong>, la empresa de alquiler de embarcaciones del <strong>Puerto de Blanes</strong> con <strong>4.8 estrellas en Google</strong>, m&aacute;s de <strong>5.000 clientes satisfechos</strong> y <strong>6 temporadas consecutivas</strong> operando en la Costa Brava.
     </p>
 
-    <p style="margin:0 0 16px; color:#334155; font-size:15px; line-height:1.7;">
-      Sabemos que muchos huespedes de <strong>${data.hotelName}</strong> en ${townName} buscan
-      actividades nauticas durante su estancia. Por eso, nos gustaria proponerles una
-      <strong>colaboracion mutuamente beneficiosa</strong>:
+    <!-- 3. Puente contextual hotel -->
+    <p style="margin:0 0 28px; color:#334155; font-size:15px; line-height:1.7;">
+      Sabemos que los hu&eacute;spedes de <strong>${data.hotelName}</strong> en ${townName} buscan experiencias &uacute;nicas durante su estancia. Queremos que puedas ofrecerles la mejor actividad n&aacute;utica de la zona &mdash; y que tu equipo gane dinero por ello.
     </p>
 
-    <div style="background:#f0f9ff; border-left:4px solid #2563eb; padding:20px; margin:20px 0; border-radius:0 6px 6px 0;">
-      <h3 style="margin:0 0 12px; color:#1e3a5f; font-size:16px;">Que ofrecemos a sus huespedes:</h3>
-      <ul style="margin:0; padding:0 0 0 20px; color:#334155; font-size:14px; line-height:1.8;">
-        <li><strong>Codigo de descuento exclusivo</strong> para clientes de ${data.hotelName}</li>
-        <li>8 barcos (con y sin licencia) para 4-7 personas</li>
-        <li>Gasolina incluida en barcos sin licencia (desde 70 EUR/h)</li>
-        <li>Excursiones a calas, Lloret de Mar, Tossa de Mar</li>
-        <li>Reserva online inmediata o por WhatsApp</li>
-      </ul>
+    <!-- 4. Hero: 10% comision -->
+    <div style="background:linear-gradient(135deg,#0d1a2d,#1a2a4a); border-radius:12px; padding:40px 32px; margin:0 0 28px; text-align:center; border:1px solid rgba(168,196,221,0.2);">
+      <p style="margin:0 0 12px; color:#A8C4DD; font-size:12px; text-transform:uppercase; letter-spacing:2px; font-weight:600;">PROPUESTA DE COLABORACI&Oacute;N</p>
+      <p style="margin:0 0 12px; color:#ffffff; font-size:32px; font-weight:700; font-family:'Clash Display',Arial,sans-serif; line-height:1.2;">10% de comisi&oacute;n por cada reserva</p>
+      <p style="margin:0; color:#A8C4DD; font-size:16px; line-height:1.5;">Para ti o tu equipo de recepci&oacute;n.</p>
     </div>
 
-    <div style="background:#f0fdf4; border-left:4px solid #16a34a; padding:20px; margin:20px 0; border-radius:0 6px 6px 0;">
-      <h3 style="margin:0 0 12px; color:#166534; font-size:16px;">Que ofrecemos al hotel:</h3>
-      <ul style="margin:0; padding:0 0 0 20px; color:#334155; font-size:14px; line-height:1.8;">
-        <li><strong>Comision por cada reserva</strong> generada por sus huespedes</li>
-        <li>Material promocional (flyers, QR codes) sin coste</li>
-        <li>Enlace personalizado para seguimiento de reservas</li>
-        <li>Una actividad mas que ofrecer a sus clientes</li>
-      </ul>
+    <!-- 5. Social Proof Strip -->
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:0 0 28px;">
+      <tr>
+        <td width="33%" style="text-align:center; padding:16px 8px; border-right:1px solid #e2e8f0;">
+          <p style="margin:0 0 4px; color:#0d1a2d; font-size:24px; font-weight:700; font-family:'Clash Display',Arial,sans-serif;">4.8 <span style="color:#f59e0b;">&#9733;</span></p>
+          <p style="margin:0; color:#64748b; font-size:11px; text-transform:uppercase; letter-spacing:1px;">Google Reviews</p>
+        </td>
+        <td width="33%" style="text-align:center; padding:16px 8px; border-right:1px solid #e2e8f0;">
+          <p style="margin:0 0 4px; color:#0d1a2d; font-size:24px; font-weight:700; font-family:'Clash Display',Arial,sans-serif;">5.000+</p>
+          <p style="margin:0; color:#64748b; font-size:11px; text-transform:uppercase; letter-spacing:1px;">Clientes</p>
+        </td>
+        <td width="33%" style="text-align:center; padding:16px 8px;">
+          <p style="margin:0 0 4px; color:#0d1a2d; font-size:24px; font-weight:700; font-family:'Clash Display',Arial,sans-serif;">6+</p>
+          <p style="margin:0; color:#64748b; font-size:11px; text-transform:uppercase; letter-spacing:1px;">Temporadas</p>
+        </td>
+      </tr>
+    </table>
+
+    <!-- 6. Como funciona (3 pasos) -->
+    <div style="margin:0 0 28px;">
+      <h3 style="margin:0 0 20px; color:#0d1a2d; font-size:17px; font-weight:700; font-family:'Clash Display', Arial, sans-serif;">C&oacute;mo funciona</h3>
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+        <tr>
+          <td style="padding:0 0 16px; vertical-align:top; width:48px;">
+            <div style="width:36px; height:36px; background:linear-gradient(135deg,#0d1a2d,#1a2a4a); color:#A8C4DD; border-radius:50%; text-align:center; line-height:36px; font-size:15px; font-weight:700;">1</div>
+          </td>
+          <td style="padding:6px 0 16px 12px; color:#334155; font-size:14px; line-height:1.6; border-bottom:1px solid #e2e8f0;">Ll&aacute;manos para reservar la actividad para tu hu&eacute;sped</td>
+        </tr>
+        <tr>
+          <td style="padding:16px 0 16px; vertical-align:top; width:48px;">
+            <div style="width:36px; height:36px; background:linear-gradient(135deg,#0d1a2d,#1a2a4a); color:#A8C4DD; border-radius:50%; text-align:center; line-height:36px; font-size:15px; font-weight:700;">2</div>
+          </td>
+          <td style="padding:22px 0 16px 12px; color:#334155; font-size:14px; line-height:1.6; border-bottom:1px solid #e2e8f0;">El cliente paga la se&ntilde;al en tu recepci&oacute;n &mdash; cobras tu comisi&oacute;n al momento</td>
+        </tr>
+        <tr>
+          <td style="padding:16px 0 0; vertical-align:top; width:48px;">
+            <div style="width:36px; height:36px; background:linear-gradient(135deg,#0d1a2d,#1a2a4a); color:#A8C4DD; border-radius:50%; text-align:center; line-height:36px; font-size:15px; font-weight:700;">3</div>
+          </td>
+          <td style="padding:22px 0 0 12px; color:#334155; font-size:14px; line-height:1.6;">Enviamos la confirmaci&oacute;n de reserva por WhatsApp directamente al cliente</td>
+        </tr>
+      </table>
     </div>
 
-    <p style="margin:20px 0; color:#334155; font-size:15px; line-height:1.7;">
-      Estamos abiertos a adaptar la colaboracion a sus necesidades. Podemos organizar una
-      breve reunion o llamada para concretar los detalles.
+    <!-- 7. Nuestra flota (checklist verde) -->
+    <div style="background:rgba(168, 196, 221, 0.15); border-radius:12px; padding:24px; margin:0 0 28px;">
+      <h3 style="margin:0 0 16px; color:#0d1a2d; font-size:17px; font-weight:700; font-family:'Clash Display', Arial, sans-serif;">Nuestra flota</h3>
+      <table role="presentation" cellpadding="0" cellspacing="0">
+        <tr><td style="padding:0 8px 8px 0; color:#22c55e; font-size:16px; vertical-align:top;">&#10003;</td><td style="padding:0 0 8px; color:#334155; font-size:14px; line-height:1.6;">8 barcos (con y sin licencia) para 4-7 personas</td></tr>
+        <tr><td style="padding:0 8px 8px 0; color:#22c55e; font-size:16px; vertical-align:top;">&#10003;</td><td style="padding:0 0 8px; color:#334155; font-size:14px; line-height:1.6;">Gasolina incluida en barcos sin licencia (desde 70 EUR/h)</td></tr>
+        <tr><td style="padding:0 8px 8px 0; color:#22c55e; font-size:16px; vertical-align:top;">&#10003;</td><td style="padding:0 0 8px; color:#334155; font-size:14px; line-height:1.6;">Excursiones a calas, Lloret de Mar, Tossa de Mar</td></tr>
+        <tr><td style="padding:0 8px 8px 0; color:#22c55e; font-size:16px; vertical-align:top;">&#10003;</td><td style="padding:0 0 8px; color:#334155; font-size:14px; line-height:1.6;">Reserva online inmediata o por WhatsApp</td></tr>
+        <tr><td style="padding:0 8px 8px 0; color:#22c55e; font-size:16px; vertical-align:top;">&#10003;</td><td style="padding:0 0 8px; color:#334155; font-size:14px; line-height:1.6;">Seguro a todo riesgo incluido</td></tr>
+        <tr><td style="padding:0 8px 0 0; color:#22c55e; font-size:16px; vertical-align:top;">&#10003;</td><td style="padding:0; color:#334155; font-size:14px; line-height:1.6;">Una experiencia n&aacute;utica premium para tus hu&eacute;spedes</td></tr>
+      </table>
+    </div>
+
+    <!-- 8. Que ofrecemos a ${hotelName} -->
+    <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:12px; padding:24px; margin:0 0 28px;">
+      <h3 style="margin:0 0 16px; color:#0d1a2d; font-size:17px; font-weight:700; font-family:'Clash Display', Arial, sans-serif;">Qu&eacute; ofrecemos a ${data.hotelName}</h3>
+      <table role="presentation" cellpadding="0" cellspacing="0">
+        <tr><td style="padding:0 8px 8px 0; color:#22c55e; font-size:16px; vertical-align:top;">&#10003;</td><td style="padding:0 0 8px; color:#334155; font-size:14px; line-height:1.6;"><strong>10% de comisi&oacute;n</strong> por cada reserva referida</td></tr>
+        <tr><td style="padding:0 8px 8px 0; color:#22c55e; font-size:16px; vertical-align:top;">&#10003;</td><td style="padding:0 0 8px; color:#334155; font-size:14px; line-height:1.6;"><strong>Flyers y c&oacute;digos QR gratis</strong> personalizados para recepci&oacute;n</td></tr>
+        <tr><td style="padding:0 8px 8px 0; color:#22c55e; font-size:16px; vertical-align:top;">&#10003;</td><td style="padding:0 0 8px; color:#334155; font-size:14px; line-height:1.6;"><strong>Reserva por tel&eacute;fono en 2 minutos</strong> &mdash; nos llamas y lo gestionamos todo</td></tr>
+        <tr><td style="padding:0 8px 0 0; color:#22c55e; font-size:16px; vertical-align:top;">&#10003;</td><td style="padding:0; color:#334155; font-size:14px; line-height:1.6;"><strong>Empresa certificada</strong> &mdash; Centres N&agrave;utica y Cl&uacute;ster N&agrave;utic de Catalunya</td></tr>
+      </table>
+    </div>
+
+    <!-- 9. Urgencia estacional -->
+    <p style="margin:0 0 28px; color:#64748b; font-size:14px; font-style:italic; line-height:1.6; text-align:center;">
+      La temporada n&aacute;utica comienza en abril. Aseg&uacute;rate de ofrecer esta experiencia a tus hu&eacute;spedes desde el primer d&iacute;a.
     </p>
 
-    <div style="text-align:center; margin:28px 0;">
-      <a href="https://wa.me/34611500372?text=${encodeURIComponent(`Hola, soy de ${data.hotelName} en ${townName}. Me interesa la propuesta de colaboracion.`)}"
+    <!-- 10. CTA WhatsApp (principal) -->
+    <div style="text-align:center; margin:0 0 16px;">
+      <a href="https://wa.me/34611500372?text=${encodeURIComponent(`Hola, soy de ${data.hotelName} en ${townName}. Me interesa la propuesta de colaboración.`)}"
          target="_blank"
-         style="display:inline-block; background-color:#25d366; color:#ffffff; text-decoration:none; padding:14px 32px; border-radius:6px; font-size:16px; font-weight:700;">
+         style="display:block; background-color:#25d366; color:#ffffff; text-decoration:none; padding:16px 32px; border-radius:50px; font-size:17px; font-weight:700; text-align:center;">
         Contactar por WhatsApp
       </a>
     </div>
 
-    <p style="margin:20px 0 0; color:#334155; font-size:15px; line-height:1.7;">
-      Tambien puede responder directamente a este email o llamarnos al
-      <a href="tel:+34611500372" style="color:#2563eb;">+34 611 500 372</a>.
-    </p>
+    <!-- 11. CTAs secundarios: Email + Llamar -->
+    <div style="text-align:center; margin:0 0 12px;">
+      <a href="mailto:costabravarentaboat@gmail.com"
+         style="display:inline-block; background-color:#A8C4DD; color:#0d1a2d; text-decoration:none; padding:12px 28px; border-radius:50px; font-size:14px; font-weight:700;">
+        Escr&iacute;benos por email
+      </a>
+      &nbsp;&nbsp;
+      <a href="tel:+34611500372"
+         style="display:inline-block; background-color:#A8C4DD; color:#0d1a2d; text-decoration:none; padding:12px 28px; border-radius:50px; font-size:14px; font-weight:700;">
+        Llamar: +34 611 500 372
+      </a>
+    </div>
 
-    <p style="margin:20px 0 0; color:#334155; font-size:15px;">
-      Un cordial saludo,<br>
-      <strong>Ivan</strong><br>
-      Costa Brava Rent a Boat Blanes
-    </p>
+    <!-- 12. CTA Ghost: Ver web -->
+    <div style="text-align:center; margin:12px 0 0;">
+      <a href="https://costabravarentaboat.com" style="display:inline-block; border:2px solid #A8C4DD; color:#0d1a2d; padding:11px 24px; border-radius:50px; font-size:13px; font-weight:600; text-decoration:none;">
+        Ver nuestra web &#8594;
+      </a>
+    </div>
 
+    <!-- 13. Firma -->
+    <div style="border-top:1px solid #e2e8f0; margin:28px 0 0; padding:24px 0 0;">
+      <p style="margin:0; color:#334155; font-size:15px; line-height:1.7;">
+        Un cordial saludo,<br>
+        <strong>Iv&aacute;n</strong><br>
+        <span style="color:#64748b; font-size:13px;">Costa Brava Rent a Boat &middot; Puerto de Blanes</span>
+      </p>
+    </div>
+
+    <!-- 14. Unsubscribe -->
     <p style="margin:24px 0 0; text-align:center;">
-      <a href="${data.unsubscribeUrl}" style="color:#94a3b8; font-size:11px; text-decoration:underline;">No deseo recibir mas correos de este tipo</a>
+      <a href="${data.unsubscribeUrl}" style="color:#94a3b8; font-size:11px; text-decoration:underline;">No deseo recibir m&aacute;s correos de este tipo</a>
     </p>
   `;
 
@@ -1419,7 +1496,7 @@ export async function sendPartnershipProposal(data: PartnershipEmailData): Promi
       to: data.email,
       from: { email: getFromEmail(), name: "Costa Brava Rent a Boat" },
       replyTo: { email: "costabravarentaboat@gmail.com", name: "Ivan - Costa Brava Rent a Boat" },
-      subject: `Propuesta de colaboracion - Costa Brava Rent a Boat x ${data.hotelName}`,
+      subject: `${data.hotelName} x Costa Brava Rent a Boat — 10% comisión por reserva`,
       html: emailWrapper(content),
     }));
 

@@ -6,6 +6,7 @@ import { type Server } from "http";
 import viteConfig from "../vite.config";
 import { nanoid } from "nanoid";
 import { serveWithSEO, isValidSPARoute } from "./seoInjector";
+import { prerenderedMiddleware } from "./prerenderedMiddleware";
 
 const viteLogger = createLogger();
 
@@ -108,6 +109,12 @@ export function serveStatic(app: Express) {
     etag: true,
     lastModified: true,
   }));
+
+  // Serve prerendered HTML when available (before the SPA catch-all)
+  const prerenderedDir = path.resolve(distPath, "..", "prerendered");
+  if (fs.existsSync(prerenderedDir)) {
+    app.use(prerenderedMiddleware(prerenderedDir));
+  }
 
   // fall through to index.html with SSR-lite SEO meta injection
   app.use("*", (req, res) => {

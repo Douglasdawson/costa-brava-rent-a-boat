@@ -1189,6 +1189,47 @@ export interface Translations {
     ctaTitle: string;
     ctaDescription: string;
     ctaButton: string;
+    // Section A: Legal framework
+    regulationTitle: string;
+    regulationIntro: string;
+    regulationRequirements: string;
+    regulationAllowed: string;
+    regulationNotAllowed: string;
+    regulationFuelIncluded: string;
+    // Section B: Detailed comparison
+    comparisonTitle: string;
+    comparisonIntro: string;
+    comparisonBoatName: string;
+    comparisonCapacity: string;
+    comparisonEngine: string;
+    comparisonBestFor: string;
+    comparisonPriceLow: string;
+    comparisonPriceHigh: string;
+    comparisonSolar450: string;
+    comparisonRemus450: string;
+    comparisonAstec400: string;
+    comparisonAstec480: string;
+    // Section C: Testimonials
+    testimonialsTitle: string;
+    testimonial1Name: string;
+    testimonial1Text: string;
+    testimonial1Context: string;
+    testimonial2Name: string;
+    testimonial2Text: string;
+    testimonial2Context: string;
+    testimonial3Name: string;
+    testimonial3Text: string;
+    testimonial3Context: string;
+    testimonial4Name: string;
+    testimonial4Text: string;
+    testimonial4Context: string;
+    // FAQ additions
+    faqSpeedQuestion: string;
+    faqSpeedAnswer: string;
+    faqChildrenQuestion: string;
+    faqChildrenAnswer: string;
+    faqDistanceQuestion: string;
+    faqDistanceAnswer: string;
   };
 
   // Category Licensed Page

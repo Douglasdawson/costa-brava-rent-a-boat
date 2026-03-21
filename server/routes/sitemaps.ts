@@ -214,6 +214,24 @@ export function registerSitemapRoutes(app: Express) {
       sitemap += generateUrlEntry(baseUrl, "/barco-familias-costa-brava", "0.7", null, SUPPORTED_LANGUAGES, "monthly");
       sitemap += generateUrlEntry(baseUrl, "/sunset-boat-trip-blanes", "0.7", null, SUPPORTED_LANGUAGES, "monthly");
       sitemap += generateUrlEntry(baseUrl, "/pesca-barco-blanes", "0.7", null, SUPPORTED_LANGUAGES, "monthly");
+      // English landing pages with dedicated paths (cross-linked hreflang with Spanish counterparts)
+      const englishLandingPages: Array<{ en: string; es: string }> = [
+        { en: "/boat-rental-blanes", es: "/alquiler-barcos-blanes" },
+        { en: "/boat-rental-costa-brava", es: "/alquiler-barcos-costa-brava" },
+      ];
+      englishLandingPages.forEach(({ en, es }) => {
+        const hreflangBlock =
+          `    <xhtml:link rel="alternate" hreflang="x-default" href="${baseUrl}${es}"/>\n` +
+          `    <xhtml:link rel="alternate" hreflang="${HREFLANG_CODES.es}" href="${baseUrl}${es}"/>\n` +
+          `    <xhtml:link rel="alternate" hreflang="${HREFLANG_CODES.en}" href="${baseUrl}${en}"/>\n`;
+        sitemap += `  <url>
+    <loc>${baseUrl}${en}</loc>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+${hreflangBlock}  </url>
+`;
+      });
+
       sitemap += generateUrlEntry(baseUrl, "/privacy-policy", "0.3", null, SUPPORTED_LANGUAGES, "yearly");
       sitemap += generateUrlEntry(baseUrl, "/terms-conditions", "0.3", null, SUPPORTED_LANGUAGES, "yearly");
       sitemap += generateUrlEntry(baseUrl, "/condiciones-generales", "0.3", null, SUPPORTED_LANGUAGES, "yearly");

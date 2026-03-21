@@ -19,7 +19,9 @@
     "clean": "rm -rf dist node_modules/.vite",
     "remotion": "remotion studio client/src/remotion/index.tsx",
     "i18n:validate": "tsx scripts/validate-translations.ts",
-    "seo:worker": "NODE_ENV=production tsx server/seo/worker.ts"
+    "seo:worker": "NODE_ENV=production tsx server/seo/worker.ts",
+    "prerender": "tsx scripts/prerender.ts",
+    "build:full": "npm run build && npm run prerender"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.78.0",

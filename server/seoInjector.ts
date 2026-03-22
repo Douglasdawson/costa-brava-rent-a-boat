@@ -1166,12 +1166,21 @@ async function getBaseHtml(distPath: string): Promise<string> {
       "utf-8"
     );
     // Make the main CSS non-render-blocking: load async via media swap.
-    // The inline <style> in index.html already covers critical above-fold CSS.
-    html = html.replace(
-      /<link rel="stylesheet" crossorigin href="(\/assets\/[^"]+\.css)">/,
-      '<link rel="stylesheet" crossorigin href="$1" media="print" onload="this.media=\'all\'">' +
-      '<noscript><link rel="stylesheet" crossorigin href="$1"></noscript>'
-    );
+    // Uses a <script> tag instead of inline onload= to comply with CSP script-src-attr 'none'.
+    const cssMatch = html.match(/<link rel="stylesheet" crossorigin href="(\/assets\/[^"]+\.css)">/);
+    if (cssMatch) {
+      const cssHref = cssMatch[1];
+      html = html.replace(
+        cssMatch[0],
+        `<link rel="stylesheet" crossorigin href="${cssHref}" media="print" id="main-css">` +
+        `<noscript><link rel="stylesheet" crossorigin href="${cssHref}"></noscript>`
+      );
+      // Add a small script before </body> to swap media once loaded (CSP-compliant)
+      html = html.replace(
+        "</body>",
+        `<script>document.getElementById("main-css").addEventListener("load",function(){this.media="all"});</script>\n</body>`
+      );
+    }
 
     // Preload only the main entry JS in <head> to break the critical chain.
     // Do NOT preload vendor chunks (vendor-ui 255KB, vendor-charts 396KB, etc.)
@@ -1224,6 +1233,12 @@ function injectMeta(html: string, meta: SEOMeta, canonicalUrl: string, extraJson
   result = result.replace(/<meta property="og:description" content="[^"]*">/, `<meta property="og:description" content="${ogDesc}">`);
   result = result.replace(/<meta property="og:url" content="[^"]*">/, `<meta property="og:url" content="${esc(BASE_URL + canonicalUrl)}">`);
   result = result.replace(/<link rel="canonical" href="[^"]*">/, `<link rel="canonical" href="${esc(BASE_URL + canonicalUrl)}">`);
+
+  // Strip hero image preloads on non-homepage routes (they cause "preloaded but not used" warnings)
+  const isHome = canonicalUrl === "/" || /^\/[a-z]{2}\/?$/.test(canonicalUrl);
+  if (!isHome) {
+    result = result.replace(/\s*<link rel="preload" as="image"[^>]*hero-[^>]*>/g, "");
+  }
 
   // Replace og:image if a page-specific image is provided
   if (meta.ogImage) {

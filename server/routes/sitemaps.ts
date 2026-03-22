@@ -490,22 +490,27 @@ ${destHreflang}  </url>
     }
   });
 
-  // CWV beacon — receives Core Web Vitals data from client
+  // CWV beacon — receives Core Web Vitals data from client (via navigator.sendBeacon)
   app.post("/api/cwv-beacon", async (req, res) => {
     try {
-      const { page, name, value, rating, deviceType, navigationType, connectionType } = req.body;
-      if (!page || !name || typeof value !== "number") {
-        return res.status(400).json({ message: "Invalid beacon data" });
+      const body = req.body;
+      if (!body || typeof body !== "object") {
+        return res.status(204).end(); // silently accept malformed beacons
+      }
+      const { page, name, value, rating, deviceType, navigationType, connectionType } = body;
+      if (!page || !name || typeof value !== "number" || !isFinite(value)) {
+        return res.status(204).end();
       }
       const validMetrics = ["CLS", "LCP", "INP", "TTFB", "FCP"];
       if (!validMetrics.includes(name)) {
-        return res.status(400).json({ message: "Invalid metric name" });
+        return res.status(204).end();
       }
       const { recordCwvBeacon } = await import("../seo/collectors/cwv");
       await recordCwvBeacon({ page, name, value, rating, deviceType, navigationType, connectionType });
       res.status(204).end();
-    } catch {
-      res.status(500).json({ message: "Error recording CWV" });
+    } catch (error) {
+      logger.warn("CWV beacon recording failed", { error: error instanceof Error ? error.message : String(error) });
+      res.status(204).end(); // never return 500 for beacons — they're fire-and-forget
     }
   });
 }

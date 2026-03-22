@@ -85,6 +85,22 @@ export function registerImageResizeRoutes(app: Express) {
         filePath = candidate;
         break;
       }
+      // If file is an SEO filename (alquiler-barco-*), try to find it in a subdirectory
+      // by extracting the boat model from the filename (e.g. pacific-craft-625 → pacific-craft/)
+      if (!filePath && resolvedFilename.startsWith("alquiler-barco-")) {
+        const baseName = path.basename(resolvedFilename);
+        try {
+          const subdirs = fs.readdirSync(dir, { withFileTypes: true }).filter(d => d.isDirectory());
+          for (const subdir of subdirs) {
+            const subCandidate = path.resolve(dir, subdir.name, baseName);
+            if (fs.existsSync(subCandidate)) {
+              filePath = subCandidate;
+              break;
+            }
+          }
+        } catch { /* dir doesn't exist or can't read */ }
+        if (filePath) break;
+      }
     }
 
     if (!filePath) {

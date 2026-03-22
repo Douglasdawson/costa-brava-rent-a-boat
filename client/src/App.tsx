@@ -491,11 +491,12 @@ function Router() {
       {/* Root: redirect to /:lang/ */}
       <Route path="/" component={RootRedirect} />
 
+      {/* CRM routes — must come before /:lang to avoid being caught as a language slug */}
+      <Route path="/crm/:tab?" component={CRMRoute} />
+      <Route path="/:lang/crm/:tab?" component={CRMRoute} />
+
       {/* /:lang/ home page */}
       <Route path="/:lang" component={LangHome} />
-
-      {/* CRM with optional tab sub-path */}
-      <Route path="/:lang/crm/:tab?" component={CRMRoute} />
 
       {/* Dynamic routes: /:lang/:slug/:param */}
       <Route path="/:lang/:slug/:param" component={DynamicPageResolver} />

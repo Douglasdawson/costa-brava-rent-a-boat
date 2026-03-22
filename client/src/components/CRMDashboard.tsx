@@ -1,5 +1,5 @@
 import { useState, useCallback, useEffect } from "react";
-import { useLocation, useRoute } from "wouter";
+import { useLocation } from "wouter";
 import { useToast } from "@/hooks/use-toast";
 import { format } from "date-fns";
 import type { Booking } from "@shared/schema";
@@ -47,8 +47,7 @@ const VALID_TABS = [
 ];
 
 export default function CRMDashboard({ adminToken }: CRMDashboardProps) {
-  const [, params] = useRoute("/crm/:tab");
-  const [, setLocation] = useLocation();
+  const [location, setLocation] = useLocation();
   const [selectedTimeRange, setSelectedTimeRange] = useState("today");
   const adminRole = sessionStorage.getItem("adminRole") || "admin";
   const adminUsername = sessionStorage.getItem("adminUsername") || "Admin";
@@ -59,7 +58,10 @@ export default function CRMDashboard({ adminToken }: CRMDashboardProps) {
   const allowedTabs: string[] | null = allowedTabsRaw ? JSON.parse(allowedTabsRaw) : null;
   const isOwner = adminRole === "owner";
 
-  const rawTab = params?.tab || "dashboard";
+  // Parse tab from URL: supports both /crm/:tab and /:lang/crm/:tab
+  const urlSegments = location.split("/").filter(Boolean);
+  const crmIndex = urlSegments.indexOf("crm");
+  const rawTab = (crmIndex >= 0 && urlSegments[crmIndex + 1]) ? urlSegments[crmIndex + 1] : "dashboard";
   const ownerOnlyTabs = ["employees", "config"];
   const canAccessTab = (tab: string) => {
     if (!VALID_TABS.includes(tab)) return false;

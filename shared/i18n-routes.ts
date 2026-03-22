@@ -18,21 +18,21 @@ export const ROUTE_SLUGS = {
   home: { es: "", en: "", fr: "", de: "" },
 
   // Location pages
-  locationBlanes: { es: "alquiler-barcos-blanes", en: "boat-rental-blanes", fr: "location-bateaux-blanes", de: "bootsverleih-blanes" },
-  locationLloret: { es: "alquiler-barcos-lloret-de-mar", en: "boat-rental-lloret-de-mar", fr: "location-bateaux-lloret-de-mar", de: "bootsverleih-lloret-de-mar" },
-  locationTossa: { es: "alquiler-barcos-tossa-de-mar", en: "boat-rental-tossa-de-mar", fr: "location-bateaux-tossa-de-mar", de: "bootsverleih-tossa-de-mar" },
-  locationMalgrat: { es: "alquiler-barcos-malgrat-de-mar", en: "boat-rental-malgrat-de-mar", fr: "location-bateaux-malgrat-de-mar", de: "bootsverleih-malgrat-de-mar" },
-  locationSantaSusanna: { es: "alquiler-barcos-santa-susanna", en: "boat-rental-santa-susanna", fr: "location-bateaux-santa-susanna", de: "bootsverleih-santa-susanna" },
-  locationCalella: { es: "alquiler-barcos-calella", en: "boat-rental-calella", fr: "location-bateaux-calella", de: "bootsverleih-calella" },
-  locationPinedaDeMar: { es: "alquiler-barcos-pineda-de-mar", en: "boat-rental-pineda-de-mar", fr: "location-bateaux-pineda-de-mar", de: "bootsverleih-pineda-de-mar" },
-  locationPalafolls: { es: "alquiler-barcos-palafolls", en: "boat-rental-palafolls", fr: "location-bateaux-palafolls", de: "bootsverleih-palafolls" },
-  locationTordera: { es: "alquiler-barcos-tordera", en: "boat-rental-tordera", fr: "location-bateaux-tordera", de: "bootsverleih-tordera" },
-  locationBarcelona: { es: "alquiler-barcos-cerca-barcelona", en: "boat-rental-near-barcelona", fr: "location-bateaux-pres-barcelone", de: "bootsverleih-nahe-barcelona" },
-  locationCostaBrava: { es: "alquiler-barcos-costa-brava", en: "boat-rental-costa-brava", fr: "location-bateaux-costa-brava", de: "bootsverleih-costa-brava" },
+  locationBlanes: { es: "alquiler-barcos-blanes", en: "boat-rental-blanes", fr: "location-bateau-blanes", de: "bootsverleih-blanes" },
+  locationLloret: { es: "alquiler-barcos-lloret-de-mar", en: "boat-rental-lloret-de-mar", fr: "location-bateau-lloret-de-mar", de: "bootsverleih-lloret-de-mar" },
+  locationTossa: { es: "alquiler-barcos-tossa-de-mar", en: "boat-rental-tossa-de-mar", fr: "location-bateau-tossa-de-mar", de: "bootsverleih-tossa-de-mar" },
+  locationMalgrat: { es: "alquiler-barcos-malgrat-de-mar", en: "boat-rental-malgrat-de-mar", fr: "location-bateau-malgrat-de-mar", de: "bootsverleih-malgrat-de-mar" },
+  locationSantaSusanna: { es: "alquiler-barcos-santa-susanna", en: "boat-rental-santa-susanna", fr: "location-bateau-santa-susanna", de: "bootsverleih-santa-susanna" },
+  locationCalella: { es: "alquiler-barcos-calella", en: "boat-rental-calella", fr: "location-bateau-calella", de: "bootsverleih-calella" },
+  locationPinedaDeMar: { es: "alquiler-barcos-pineda-de-mar", en: "boat-rental-pineda-de-mar", fr: "location-bateau-pineda-de-mar", de: "bootsverleih-pineda-de-mar" },
+  locationPalafolls: { es: "alquiler-barcos-palafolls", en: "boat-rental-palafolls", fr: "location-bateau-palafolls", de: "bootsverleih-palafolls" },
+  locationTordera: { es: "alquiler-barcos-tordera", en: "boat-rental-tordera", fr: "location-bateau-tordera", de: "bootsverleih-tordera" },
+  locationBarcelona: { es: "alquiler-barcos-cerca-barcelona", en: "boat-rental-near-barcelona", fr: "location-bateau-pres-barcelone", de: "bootsverleih-nahe-barcelona" },
+  locationCostaBrava: { es: "alquiler-barcos-costa-brava", en: "boat-rental-costa-brava", fr: "location-bateau-costa-brava", de: "bootsverleih-costa-brava" },
 
   // Category pages
-  categoryLicenseFree: { es: "barcos-sin-licencia", en: "boats-without-license", fr: "bateaux-sans-permis", de: "boote-ohne-fuehrerschein" },
-  categoryLicensed: { es: "barcos-con-licencia", en: "boats-with-license", fr: "bateaux-avec-permis", de: "boote-mit-fuehrerschein" },
+  categoryLicenseFree: { es: "barcos-sin-licencia", en: "boats-without-license", fr: "bateau-sans-permis", de: "boote-ohne-fuehrerschein" },
+  categoryLicensed: { es: "barcos-con-licencia", en: "boats-with-license", fr: "bateau-avec-permis", de: "boote-mit-fuehrerschein" },
 
   // Content pages
   blog: { es: "blog", en: "blog", fr: "blog", de: "blog" },
@@ -52,15 +52,15 @@ export const ROUTE_SLUGS = {
 
   // Activity pages
   activitySnorkel: { es: "excursion-snorkel-barco-blanes", en: "snorkel-boat-trip-blanes", fr: "excursion-snorkel-bateau-blanes", de: "schnorchel-bootsausflug-blanes" },
-  activityFamilies: { es: "barco-familias-costa-brava", en: "family-boat-costa-brava", fr: "bateau-famille-costa-brava", de: "familien-boot-costa-brava" },
-  activitySunset: { es: "sunset-boat-trip-blanes", en: "sunset-boat-trip-blanes", fr: "croisiere-coucher-soleil-blanes", de: "sonnenuntergang-bootsfahrt-blanes" },
+  activityFamilies: { es: "barco-familias-costa-brava", en: "family-boat-costa-brava", fr: "bateau-familles-costa-brava", de: "familien-boot-costa-brava" },
+  activitySunset: { es: "paseo-atardecer-barco-blanes", en: "sunset-boat-trip-blanes", fr: "balade-coucher-soleil-bateau-blanes", de: "sonnenuntergang-bootsfahrt-blanes" },
   activityFishing: { es: "pesca-barco-blanes", en: "fishing-boat-blanes", fr: "peche-bateau-blanes", de: "angel-boot-blanes" },
 
   // Legal pages
-  privacyPolicy: { es: "privacy-policy", en: "privacy-policy", fr: "privacy-policy", de: "privacy-policy" },
-  termsConditions: { es: "terms-conditions", en: "terms-conditions", fr: "terms-conditions", de: "terms-conditions" },
-  cookiesPolicy: { es: "cookies-policy", en: "cookies-policy", fr: "cookies-policy", de: "cookies-policy" },
-  condicionesGenerales: { es: "condiciones-generales", en: "general-conditions", fr: "conditions-generales", de: "allgemeine-bedingungen" },
+  privacyPolicy: { es: "politica-privacidad", en: "privacy-policy", fr: "politique-confidentialite", de: "datenschutz" },
+  termsConditions: { es: "terminos-condiciones", en: "terms-conditions", fr: "conditions-generales", de: "geschaeftsbedingungen" },
+  cookiesPolicy: { es: "politica-cookies", en: "cookies-policy", fr: "politique-cookies", de: "cookie-richtlinie" },
+  condicionesGenerales: { es: "condiciones-generales", en: "general-conditions", fr: "conditions-de-reservation", de: "allgemeine-bedingungen" },
   accessibility: { es: "accesibilidad", en: "accessibility", fr: "accessibilite", de: "barrierefreiheit" },
 
   // App pages

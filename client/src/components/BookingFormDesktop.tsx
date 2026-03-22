@@ -805,6 +805,7 @@ function Step4Contact({
   showFieldError, getFieldError, handleBlur,
   t, inputBase, inputError, inputNormal,
 }: Step4Props) {
+  const { localizedPath } = useLanguage();
   const depositStr = selectedBoatInfo?.specifications?.deposit;
   const depositAmount = depositStr ? parseInt(depositStr.replace(/[^0-9]/g, '')) : null;
   const autoDiscountAmount = autoDiscount?.type ? autoDiscount.amount : 0;

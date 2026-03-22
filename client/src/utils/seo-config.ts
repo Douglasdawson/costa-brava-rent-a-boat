@@ -60,11 +60,11 @@ export const BASE_DOMAIN = getBaseUrl();
 export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
   es: {
     home: {
-      title: "Alquiler Barcos Blanes Sin Licencia | Puerto de Blanes desde 70\u20ac/h",
-      description: "Alquiler barcos Blanes sin licencia desde 70\u20ac/h. Gasolina incluida, parking gratis. Elige 2h, 4h, 6h u 8h. 4.8\u2605 Google (300+ opiniones). Reserva online al instante.",
-      keywords: "alquiler barco costa brava, alquiler barcos blanes, barco alquiler costa brava, alquiler de barco en costa brava, alquiler embarcaciones costa brava",
+      title: "Alquiler Barcos Costa Brava Sin Licencia | Blanes desde 70\u20ac/h",
+      description: "Alquiler de barcos en Costa Brava desde 70\u20ac/h con gasolina incluida. Sin licencia ni experiencia. Blanes, Lloret, Tossa de Mar. 4.8\u2605 Google (300+ opiniones). Reserva hoy.",
+      keywords: "alquiler barco costa brava, alquiler barcos blanes, alquiler barco lloret de mar, alquiler barco sin licencia costa brava, alquiler embarcaciones costa brava, alquilar barco blanes",
       ogTitle: `Alquiler de Barcos en Costa Brava | Blanes ${SEASON_YEAR}`,
-      ogDescription: "Alquila barcos en Costa Brava desde Puerto de Blanes. Sin licencia ni experiencia, desde 70\u20ac con gasolina incluida. Reserva ya tu aventura."
+      ogDescription: "Alquila barcos en Costa Brava desde Puerto de Blanes. Sin licencia ni experiencia, desde 70\u20ac con gasolina incluida. Blanes, Lloret, Tossa. Reserva ya."
     },
     booking: {
       title: "Solicitar Reserva de Barco en Blanes | Costa Brava",
@@ -268,11 +268,11 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
   },
   en: {
     home: {
-      title: "Boat Rental Blanes No License | Blanes Port from 70\u20ac/h",
-      description: "Boat rental Blanes no license needed from 70\u20ac/h. Fuel included, free parking. Choose 2h, 4h, 6h or 8h. 4.8\u2605 Google (300+ reviews). Book online instantly.",
-      keywords: "boat rental blanes, boats without license costa brava, boat charter blanes, costa brava rent boat, blanes port",
-      ogTitle: `Boat Rental in Blanes & Lloret de Mar | Costa Brava ${SEASON_YEAR}`,
-      ogDescription: "Discover Costa Brava from the sea. 8 boats with and without license. 4.8\u2605 Google. Book your adventure today!"
+      title: "Boat Rental Costa Brava No License | Blanes from 70\u20ac/h",
+      description: "Rent a boat in Costa Brava from 70\u20ac/h, fuel included. No license needed. Blanes, Lloret, Tossa de Mar. 4.8\u2605 Google (300+ reviews). Book online today.",
+      keywords: "boat rental costa brava, rent boat blanes, costa brava boat rental, boat rental blanes no license, costa brava rent a boat",
+      ogTitle: `Boat Rental Costa Brava | Blanes ${SEASON_YEAR}`,
+      ogDescription: "Rent boats in Costa Brava from Blanes port. No license needed, from 70\u20ac with fuel included. Blanes, Lloret, Tossa. Book now."
     },
     booking: {
       title: "Book Your Boat in Blanes | Costa Brava",
@@ -619,9 +619,9 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
   },
   fr: {
     home: {
-      title: "Location Bateaux Blanes Sans Permis | Port de Blanes d\u00e8s 70\u20ac/h",
-      description: "Location bateaux Blanes sans permis d\u00e8s 70\u20ac/h. Carburant inclus. 4.8\u2605 Google (300+ avis). 8 bateaux, jusqu'\u00e0 7 personnes. R\u00e9servez en ligne ou WhatsApp.",
-      keywords: "location bateaux blanes, bateaux sans permis costa brava, location embarcations blanes, costa brava rent boat, port blanes"
+      title: "Location Bateau Costa Brava Sans Permis | Blanes d\u00e8s 70\u20ac/h",
+      description: "Location de bateau en Costa Brava d\u00e8s 70\u20ac/h, carburant inclus. Sans permis. Blanes, Lloret, Tossa de Mar. 4.8\u2605 Google (300+ avis). R\u00e9servez aujourd'hui.",
+      keywords: "location bateau blanes, location bateau costa brava, location bateau journee blanes, bateau sans permis costa brava, location bateau lloret de mar"
     },
     booking: {
       title: "Réserver Votre Bateau à Blanes | Costa Brava",

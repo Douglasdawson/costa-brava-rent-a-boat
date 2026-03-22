@@ -93,22 +93,22 @@ async function getDbMeta(pagePath: string, lang: string): Promise<{ title?: stri
 const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
   "/": {
     es: {
-      title: "Alquiler Barcos Blanes Sin Licencia | Puerto de Blanes desde 70€/h",
-      description: "Alquiler barcos Blanes sin licencia desde 70€/h. Gasolina incluida. 4.8★ Google (300+ opiniones). 8 barcos, hasta 7 personas. Reserva online o WhatsApp.",
-      ogTitle: `Alquiler de Barcos en Blanes y Lloret | Costa Brava ${SEASON_YEAR}`,
-      ogDescription: "Descubre la Costa Brava desde el mar. 8 barcos con y sin licencia. 4.8★ Google. ¡Reserva tu aventura hoy!",
+      title: "Alquiler Barcos Costa Brava Sin Licencia | Blanes desde 70€/h",
+      description: "Alquiler de barcos en Costa Brava desde 70€/h con gasolina incluida. Sin licencia ni experiencia. Blanes, Lloret, Tossa de Mar. 4.8★ Google (300+ opiniones). Reserva hoy.",
+      ogTitle: `Alquiler de Barcos en Costa Brava | Blanes ${SEASON_YEAR}`,
+      ogDescription: "Alquila barcos en Costa Brava desde Puerto de Blanes. Sin licencia ni experiencia, desde 70€ con gasolina incluida. Blanes, Lloret, Tossa. Reserva ya.",
     },
     en: {
-      title: "Boat Rental Blanes No License | Blanes Port from 70€/h",
-      description: "Boat rental Blanes without license from 70€/h. Fuel included. 4.8★ Google (300+ reviews). 8 boats, up to 7 people. Book online or WhatsApp.",
+      title: "Boat Rental Costa Brava No License | Blanes from 70€/h",
+      description: "Rent a boat in Costa Brava from 70€/h, fuel included. No license needed. Blanes, Lloret, Tossa de Mar. 4.8★ Google (300+ reviews). Book online today.",
       ogTitle: `Boat Rental in Blanes & Lloret de Mar | Costa Brava ${SEASON_YEAR}`,
       ogDescription: "Discover Costa Brava from the sea. 8 boats with and without license. 4.8★ Google. Book your adventure today!",
     },
     fr: {
-      title: "Location Bateaux Blanes Sans Permis | Port de Blanes dès 70€/h",
-      description: "Location bateaux Blanes sans permis dès 70€/h. Carburant inclus. 4.8★ Google (300+ avis). 8 bateaux, jusqu'à 7 personnes. Réservez en ligne ou WhatsApp.",
-      ogTitle: `Location de Bateaux à Blanes | Costa Brava ${SEASON_YEAR}`,
-      ogDescription: "Découvrez la Costa Brava depuis la mer. 8 bateaux avec et sans permis. 4.8★ Google. Réservez maintenant!",
+      title: "Location Bateau Costa Brava Sans Permis | Blanes dès 70€/h",
+      description: "Location de bateau en Costa Brava dès 70€/h, carburant inclus. Sans permis. Blanes, Lloret, Tossa de Mar. 4.8★ Google (300+ avis). Réservez aujourd'hui.",
+      ogTitle: `Location Bateau Costa Brava | Blanes ${SEASON_YEAR}`,
+      ogDescription: "Louez un bateau en Costa Brava depuis Blanes. Sans permis, dès 70€ carburant inclus. Blanes, Lloret, Tossa. Réservez maintenant!",
     },
     de: {
       title: "Bootsverleih Blanes Ohne Führerschein | Hafen Blanes ab 70€/h",

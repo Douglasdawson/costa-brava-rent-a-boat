@@ -8,6 +8,15 @@ function isCookieBannerVisible(): boolean {
   return !localStorage.getItem("cookieConsent");
 }
 
+function isMobileNavOpen(): boolean {
+  const btn = document.querySelector<HTMLElement>('[data-testid="button-mobile-menu"]');
+  return btn?.getAttribute("aria-expanded") === "true";
+}
+
+function isAnyModalOpen(): boolean {
+  return document.body.style.overflow === "hidden";
+}
+
 const EXIT_INTENT_EXCLUDED_SLUGS = [
   "privacy-policy", "politica-privacidad", "politique-confidentialite", "datenschutz", "privacybeleid", "informativa-privacy", "politica-privacitat", "politika-konfidentsialnosti",
   "terms-conditions", "terminos-condiciones", "conditions-generales", "agb", "algemene-voorwaarden", "termini-condizioni", "termes-condicions", "usloviya-ispolzovaniya",
@@ -42,6 +51,8 @@ export function ExitIntentModal() {
     if (sessionStorage.getItem("exitIntentShown")) return;
     if (isCookieBannerVisible()) return;
     if (isExcludedPage()) return;
+    if (isMobileNavOpen()) return;
+    if (isAnyModalOpen()) return;
     setShow(true);
     sessionStorage.setItem("exitIntentShown", "true");
     document.body.style.overflow = "hidden";
@@ -67,14 +78,16 @@ export function ExitIntentModal() {
     };
   }, [handleMouseLeave]);
 
-  // Mobile: show after 30s of inactivity (only if cookie banner dismissed)
+  // Mobile: show after 50s (only if cookie banner dismissed and nav/modals closed)
   useEffect(() => {
     const isMobile = window.matchMedia("(pointer: coarse)").matches;
     if (!isMobile) return;
 
     const timer = setTimeout(() => {
+      // Extra safety: re-check nav and any blocking UI at fire time
+      if (isMobileNavOpen() || isAnyModalOpen()) return;
       tryShow();
-    }, 30000);
+    }, 50000);
 
     return () => clearTimeout(timer);
   }, [tryShow]);

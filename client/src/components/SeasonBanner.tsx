@@ -4,6 +4,7 @@ import { useLocation } from "wouter";
 import { useTranslations } from "@/lib/translations";
 import { useBookingModal } from "@/hooks/bookingModalContext";
 import { useToast } from "@/hooks/use-toast";
+import { isMobileNavOpen, isAnyModalOpen } from "@/utils/overlay-guards";
 
 const SEASON_START_MONTH = 4;
 const SEASON_END_MONTH = 10;
@@ -47,7 +48,7 @@ function formatCountdown(ms: number) {
 
 const HIDDEN_SLUGS = ["crm", "login", "onboarding", "booking", "cancel"];
 const STORAGE_KEY = "seasonPopupSeen";
-const SHOW_DELAY_MS = 5000;
+const SHOW_DELAY_MS = 8000;
 
 export function SeasonBanner() {
   const [location] = useLocation();
@@ -70,9 +71,9 @@ export function SeasonBanner() {
   useEffect(() => {
     const wasSeen = localStorage.getItem(STORAGE_KEY);
     if (wasSeen || shouldHide) return;
-    // Don't show if cookie banner is still visible
     if (!localStorage.getItem("cookieConsent")) return;
     const timer = setTimeout(() => {
+      if (isMobileNavOpen() || isAnyModalOpen()) return;
       setVisible(true);
       document.body.style.overflow = "hidden";
       requestAnimationFrame(() => setAnimateIn(true));

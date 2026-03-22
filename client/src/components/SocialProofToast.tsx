@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import { useLocation } from "wouter";
 import { X } from "lucide-react";
 import { useTranslations } from "@/lib/translations";
+import { isMobileNavOpen, isAnyModalOpen } from "@/utils/overlay-guards";
 
 interface SocialProofActivity {
   name: string;
@@ -122,6 +123,7 @@ export function SocialProofToast() {
   const showNextToast = useCallback(() => {
     if (getSessionCount() >= MAX_TOASTS_PER_SESSION) return;
     if (activities.length === 0) return;
+    if (isMobileNavOpen() || isAnyModalOpen()) return;
 
     setCurrentIndex((prev) => {
       const next = prev >= activities.length - 1 ? 0 : prev + 1;

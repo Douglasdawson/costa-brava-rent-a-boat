@@ -6,6 +6,7 @@ import { db } from "./db";
 import { seoMeta } from "../shared/schema";
 import { eq, and } from "drizzle-orm";
 import { SUPPORTED_LANGUAGES, HREFLANG_CODES, type LangCode } from "../shared/seoConstants";
+import { isValidLang, resolveSlug, getSlugForPage, switchLanguagePath, type PageKey } from "../shared/i18n-routes";
 import { AI_CRAWLER_NAMES } from "./seo/constants";
 
 const BASE_URL = process.env.BASE_URL || "https://costabravarentaboat.com";
@@ -1280,16 +1281,16 @@ function injectMeta(html: string, meta: SEOMeta, canonicalUrl: string, extraJson
   }
 
   // Inject hreflang tags for all supported languages + x-default
+  // Use switchLanguagePath to generate localized URLs for each language
   const langsToEmit = availableLanguages || SUPPORTED_LANGUAGES;
-  const hreflangTags = langsToEmit.map(lang => {
-    const hreflangCode = HREFLANG_CODES[lang as LangCode] || lang;
-    const href = lang === "es"
-      ? `${BASE_URL}${canonicalUrl}`
-      : `${BASE_URL}${canonicalUrl}?lang=${lang}`;
-    return `  <link rel="alternate" hreflang="${hreflangCode}" href="${esc(href)}" />`;
+  const hreflangTags = langsToEmit.map(hrefLang => {
+    const hreflangCode = HREFLANG_CODES[hrefLang as LangCode] || hrefLang;
+    const localizedPath = switchLanguagePath(canonicalUrl, hrefLang as LangCode);
+    return `  <link rel="alternate" hreflang="${hreflangCode}" href="${esc(BASE_URL + localizedPath)}" />`;
   });
-  // x-default points to the base URL without ?lang= (same as es)
-  hreflangTags.push(`  <link rel="alternate" hreflang="x-default" href="${esc(BASE_URL + canonicalUrl)}" />`);
+  // x-default points to the Spanish version
+  const xDefaultPath = switchLanguagePath(canonicalUrl, "es");
+  hreflangTags.push(`  <link rel="alternate" hreflang="x-default" href="${esc(BASE_URL + xDefaultPath)}" />`);
   result = result.replace("</head>", `${hreflangTags.join("\n")}\n</head>`);
 
   return result;
@@ -1464,9 +1465,46 @@ interface ResolvedPage {
   availableLanguages?: readonly string[];
 }
 
+// Convert a /:lang/:slug path to the STATIC_META key (Spanish path) for lookup.
+// This avoids re-keying the massive STATIC_META object while supporting i18n subdirectory URLs.
+function pathToStaticMetaKey(pathname: string): { metaKey: string; lang: LangCode } {
+  const parts = pathname.split("/").filter(Boolean);
+
+  // Root path: /
+  if (parts.length === 0) return { metaKey: "/", lang: "es" };
+
+  // Check if first segment is a valid language code
+  const lang = isValidLang(parts[0]) ? parts[0] as LangCode : "es";
+
+  // /:lang (home page)
+  if (parts.length === 1 && isValidLang(parts[0])) {
+    return { metaKey: "/", lang };
+  }
+
+  // For paths without a lang prefix (legacy), treat the whole path as the key
+  if (!isValidLang(parts[0])) {
+    return { metaKey: pathname, lang: "es" };
+  }
+
+  const slug = parts[1];
+  const resolved = resolveSlug(slug);
+  if (resolved) {
+    const esSlug = getSlugForPage(resolved.pageKey as PageKey, "es");
+    const metaKey = esSlug ? `/${esSlug}` : "/";
+    const params = parts.slice(2).join("/");
+    return { metaKey: params ? `${metaKey}/${params}` : metaKey, lang };
+  }
+
+  // Fallback: use slug as-is (may match old STATIC_META keys like /privacy-policy)
+  return { metaKey: `/${parts.slice(1).join("/")}`, lang };
+}
+
 async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPage | null> {
+  // Resolve the STATIC_META key from the i18n path
+  const { metaKey } = pathToStaticMetaKey(pathname);
+
   // 1. Static page lookup
-  const pageMeta = STATIC_META[pathname];
+  const pageMeta = STATIC_META[metaKey];
   if (pageMeta) {
     const meta = pageMeta[lang] || pageMeta["es"];
     if (!meta) return null;
@@ -1475,7 +1513,7 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
     // Helper: build a BreadcrumbList schema for any page (with @id for entity linking)
     const buildBreadcrumb = (items: Array<{ name: string; url: string }>) => ({
       "@type": "BreadcrumbList",
-      "@id": `${BASE_URL}${pathname}#breadcrumb`,
+      "@id": `${BASE_URL}${metaKey}#breadcrumb`,
       itemListElement: items.map((item, i) => ({
         "@type": "ListItem",
         position: i + 1,
@@ -1488,7 +1526,7 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
     const homeCrumb = { name: isEn ? "Home" : "Inicio", url: BASE_URL };
 
     // For home page: add rich JSON-LD graph with all schemas
-    if (pathname === "/") {
+    if (metaKey === "/") {
       const aggregateRating = await buildAggregateRating();
       const localBusiness = {
         "@type": "LocalBusiness",
@@ -1650,7 +1688,7 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
     }
 
     // /faq - FAQPage schema (critical for AI search extraction)
-    else if (pathname === "/faq") {
+    else if (metaKey === "/faq") {
       const faqPage = {
         "@type": "FAQPage",
         "@id": `${BASE_URL}/faq#faq`,
@@ -1697,7 +1735,7 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
     }
 
     // /testimonios - LocalBusiness with AggregateRating + individual Reviews
-    else if (pathname === "/testimonios") {
+    else if (metaKey === "/testimonios") {
       const aggregateRating = await buildAggregateRating();
       const localBusiness: Record<string, unknown> = {
         "@type": "LocalBusiness",
@@ -1748,7 +1786,7 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
     }
 
     // /alquiler-barcos-blanes - TouristDestination + FAQPage for Blanes
-    else if (pathname === "/alquiler-barcos-blanes") {
+    else if (metaKey === "/alquiler-barcos-blanes") {
       const destination = {
         "@type": "TouristDestination",
         name: isEn ? "Blanes Port - Boat Rental" : "Puerto de Blanes - Alquiler de Barcos",
@@ -1801,7 +1839,7 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
     }
 
     // /alquiler-barcos-lloret-de-mar - TouristDestination + FAQPage for Lloret
-    else if (pathname === "/alquiler-barcos-lloret-de-mar") {
+    else if (metaKey === "/alquiler-barcos-lloret-de-mar") {
       const destination = {
         "@type": "TouristDestination",
         name: isEn ? "Boat Trip to Lloret de Mar from Blanes" : "Excursion en Barco a Lloret de Mar desde Blanes",
@@ -1860,7 +1898,7 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
     }
 
     // /alquiler-barcos-tossa-de-mar - TouristDestination + FAQPage for Tossa
-    else if (pathname === "/alquiler-barcos-tossa-de-mar") {
+    else if (metaKey === "/alquiler-barcos-tossa-de-mar") {
       const destination = {
         "@type": "TouristDestination",
         name: isEn ? "Boat Trip to Tossa de Mar from Blanes" : "Excursion en Barco a Tossa de Mar desde Blanes",
@@ -1919,7 +1957,7 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
     }
 
     // /alquiler-barcos-malgrat-de-mar - TouristDestination + FAQPage
-    else if (pathname === "/alquiler-barcos-malgrat-de-mar") {
+    else if (metaKey === "/alquiler-barcos-malgrat-de-mar") {
       const destination = {
         "@type": "TouristDestination",
         name: isEn ? "Boat Rental near Malgrat de Mar" : "Alquiler de Barcos cerca de Malgrat de Mar",
@@ -1975,7 +2013,7 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
     }
 
     // /alquiler-barcos-santa-susanna - TouristDestination + FAQPage
-    else if (pathname === "/alquiler-barcos-santa-susanna") {
+    else if (metaKey === "/alquiler-barcos-santa-susanna") {
       const destination = {
         "@type": "TouristDestination",
         name: isEn ? "Boat Rental near Santa Susanna" : "Alquiler de Barcos cerca de Santa Susanna",
@@ -2030,7 +2068,7 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
     }
 
     // /alquiler-barcos-calella - TouristDestination + FAQPage
-    else if (pathname === "/alquiler-barcos-calella") {
+    else if (metaKey === "/alquiler-barcos-calella") {
       const destination = {
         "@type": "TouristDestination",
         name: isEn ? "Boat Rental near Calella" : "Alquiler de Barcos cerca de Calella",
@@ -2086,7 +2124,7 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
     }
 
     // /barcos-sin-licencia - ItemList of license-free boats (dynamic from DB)
-    else if (pathname === "/barcos-sin-licencia") {
+    else if (metaKey === "/barcos-sin-licencia") {
       const allBoats = await storage.getAllBoats();
       const noLicenseBoats = allBoats
         .filter(b => b.isActive && !b.requiresLicense)
@@ -2133,7 +2171,7 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
     }
 
     // /barcos-con-licencia - ItemList of licensed boats (dynamic from DB)
-    else if (pathname === "/barcos-con-licencia") {
+    else if (metaKey === "/barcos-con-licencia") {
       const allBoatsLic = await storage.getAllBoats();
       const licensedBoats = allBoatsLic
         .filter(b => b.isActive && b.requiresLicense)
@@ -2180,7 +2218,7 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
     }
 
     // /rutas - ItemList of routes
-    else if (pathname === "/rutas") {
+    else if (metaKey === "/rutas") {
       const itemList = {
         "@type": "ItemList",
         "@id": `${BASE_URL}/rutas#itemlist`,
@@ -2201,7 +2239,7 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
     }
 
     // /galeria - CollectionPage + BreadcrumbList
-    else if (pathname === "/galeria") {
+    else if (metaKey === "/galeria") {
       const gallery = {
         "@type": "CollectionPage",
         "@id": `${BASE_URL}/galeria#gallery`,
@@ -2218,7 +2256,7 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
     }
 
     // /tarjetas-regalo - Product schema for gift cards
-    else if (pathname === "/tarjetas-regalo") {
+    else if (metaKey === "/tarjetas-regalo") {
       const product = {
         "@type": "Product",
         name: isEn ? "Gift Card - Boat Rental Costa Brava" : "Tarjeta Regalo - Alquiler de Barcos Costa Brava",
@@ -2242,7 +2280,7 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
     }
 
     // /precios - FAQPage + OfferCatalog for pricing page
-    else if (pathname === "/precios") {
+    else if (metaKey === "/precios") {
       const faq = {
         "@type": "FAQPage",
         mainEntity: [
@@ -2313,7 +2351,7 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
     }
 
     // /blog - CollectionPage schema
-    else if (pathname === "/blog") {
+    else if (metaKey === "/blog") {
       const collectionPage = {
         "@type": "CollectionPage",
         name: isEn ? "Boat Navigation Blog - Costa Brava" : "Blog de Navegacion y Destinos - Costa Brava",
@@ -2331,8 +2369,8 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
     return { meta, availableLanguages };
   }
 
-  // 2. Boat detail pages: /barco/:id
-  const boatMatch = pathname.match(/^\/barco\/([^/]+)$/);
+  // 2. Boat detail pages: /barco/:id (metaKey is already the Spanish path form)
+  const boatMatch = metaKey.match(/^\/barco\/([^/]+)$/);
   if (boatMatch) {
     const boatId = boatMatch[1];
     try {
@@ -2376,8 +2414,8 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
     }
   }
 
-  // 3. Blog post pages: /blog/:slug
-  const blogMatch = pathname.match(/^\/blog\/([^/]+)$/);
+  // 3. Blog post pages: /blog/:slug (metaKey is already the Spanish path form)
+  const blogMatch = metaKey.match(/^\/blog\/([^/]+)$/);
   if (blogMatch) {
     const slug = blogMatch[1];
     try {
@@ -2438,8 +2476,8 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
     }
   }
 
-  // 4. Destination detail pages: /destinos/:slug
-  const destMatch = pathname.match(/^\/destinos\/([^/]+)$/);
+  // 4. Destination detail pages: /destinos/:slug (metaKey is already the Spanish path form)
+  const destMatch = metaKey.match(/^\/destinos\/([^/]+)$/);
   if (destMatch) {
     const slug = destMatch[1];
     try {
@@ -2504,8 +2542,8 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
   return null;
 }
 
-// Valid SPA routes — used to return 404 for unknown paths
-const VALID_SPA_ROUTES = new Set([
+// Legacy routes (without lang prefix) — kept for redirect middleware to catch
+const LEGACY_SPA_ROUTES = new Set([
   "/",
   "/login",
   "/onboarding",
@@ -2534,10 +2572,11 @@ const VALID_SPA_ROUTES = new Set([
   "/blog",
   "/barcos",
   "/boat-rental-blanes",
+  "/sobre-nosotros",
+  "/about",
 ]);
 
-// Dynamic route patterns
-const VALID_DYNAMIC_PATTERNS = [
+const LEGACY_DYNAMIC_PATTERNS = [
   /^\/barco\/[\w-]+$/,
   /^\/blog\/[\w-]+$/,
   /^\/destinos\/[\w-]+$/,
@@ -2551,8 +2590,37 @@ const VALID_DYNAMIC_PATTERNS = [
 
 export function isValidSPARoute(pathname: string): boolean {
   const cleanPath = pathname.replace(/\/$/, "") || "/";
-  if (VALID_SPA_ROUTES.has(cleanPath)) return true;
-  return VALID_DYNAMIC_PATTERNS.some(pattern => pattern.test(cleanPath));
+
+  // Root is always valid
+  if (cleanPath === "/") return true;
+
+  const segments = cleanPath.split("/").filter(Boolean);
+
+  // Check if starts with valid lang code
+  if (segments.length > 0 && isValidLang(segments[0])) {
+    // /:lang/ (home)
+    if (segments.length === 1) return true;
+
+    const slug = segments[1];
+
+    // Try to resolve as a known page slug
+    const resolved = resolveSlug(slug);
+    if (resolved) {
+      // /:lang/:slug (static page)
+      if (segments.length === 2) return true;
+      // /:lang/:slug/:param (dynamic page like blog detail, boat detail)
+      if (segments.length === 3) return true;
+    }
+
+    // CRM with optional tab: /:lang/crm/:tab?
+    if (slug === "crm" && segments.length <= 3) return true;
+
+    return false;
+  }
+
+  // Legacy routes (without lang prefix) — serve as 200 so redirect middleware can catch them
+  if (LEGACY_SPA_ROUTES.has(cleanPath)) return true;
+  return LEGACY_DYNAMIC_PATTERNS.some(pattern => pattern.test(cleanPath));
 }
 
 export async function serveWithSEO(
@@ -2561,51 +2629,67 @@ export async function serveWithSEO(
   distPath: string
 ): Promise<void> {
   try {
+    // Trailing slash redirect (except root and /:lang/ which is acceptable)
+    if (req.path !== "/" && req.path.endsWith("/")) {
+      const parts = req.path.split("/").filter(Boolean);
+      // Allow trailing slash for /:lang/ (home page) — strip for everything else
+      if (!(parts.length === 1 && isValidLang(parts[0]))) {
+        const clean = req.path.slice(0, -1);
+        const qs = req.originalUrl.includes("?") ? req.originalUrl.substring(req.originalUrl.indexOf("?")) : "";
+        res.set("Cache-Control", "public, max-age=31536000, immutable");
+        return res.redirect(301, clean + qs);
+      }
+    }
+
+    const parsedUrl = new URL(req.originalUrl, "http://localhost");
+    const pathname = parsedUrl.pathname;
+
+    // Extract language from URL path (/:lang/...)
+    const pathParts = pathname.split("/").filter(Boolean);
+    const pathLang = pathParts[0];
+
+    let lang: LangCode;
+    if (isValidLang(pathLang)) {
+      lang = pathLang as LangCode;
+    } else {
+      // Legacy URL without lang prefix — use ?lang= param or default to es
+      const legacyLang = parsedUrl.searchParams.get("lang");
+      lang = (legacyLang && isValidLang(legacyLang)) ? legacyLang as LangCode : "es";
+    }
+
     // Serve prerendered HTML if available (full page content for SEO crawlers)
+    // New format: prerendered/:lang/:slug.html (e.g. prerendered/fr/location-bateau-blanes.html)
     const prerenderedDir = path.resolve(distPath, "..", "prerendered");
     if (fs.existsSync(prerenderedDir)) {
-      const parsedPre = new URL(req.originalUrl, "http://localhost");
-      const routePath = parsedPre.pathname === "/" ? "/index" : parsedPre.pathname;
-      const langPre = parsedPre.searchParams.get("lang");
-      const PRERENDER_LANGS = ["es", "en", "ca", "fr", "de", "nl", "it", "ru"];
-      const langSuffix = langPre && PRERENDER_LANGS.includes(langPre) && langPre !== "es"
-        ? `__lang_${langPre}` : "";
+      // For subdirectory URLs, the file path mirrors the URL structure
+      const routePath = pathname === "/" ? `/${lang}/index` : pathname.replace(/\/$/, "");
+      const candidate = path.join(prerenderedDir, `${routePath}.html`);
 
-      // Try exact match, then English-only pages (no lang param but saved as __lang_en)
-      const candidates = [
-        path.join(prerenderedDir, `${routePath}${langSuffix}.html`),
-        ...(!langSuffix ? [path.join(prerenderedDir, `${routePath}__lang_en.html`)] : []),
+      // Also try legacy format: prerendered/slug__lang_xx.html
+      const { metaKey } = pathToStaticMetaKey(pathname);
+      const legacyRoute = metaKey === "/" ? "/index" : metaKey;
+      const legacyLangSuffix = lang !== "es" ? `__lang_${lang}` : "";
+      const legacyCandidates = [
+        path.join(prerenderedDir, `${legacyRoute}${legacyLangSuffix}.html`),
+        ...(!legacyLangSuffix ? [path.join(prerenderedDir, `${legacyRoute}__lang_en.html`)] : []),
       ];
 
-      for (const candidate of candidates) {
-        if (fs.existsSync(candidate)) {
-          const effectiveLang = candidate.includes("__lang_en") ? "en" :
-            langPre && PRERENDER_LANGS.includes(langPre) ? langPre : "es";
+      const allCandidates = [candidate, ...legacyCandidates];
+
+      for (const c of allCandidates) {
+        if (fs.existsSync(c)) {
           res.set("Content-Type", "text/html; charset=utf-8");
-          res.set("Content-Language", effectiveLang);
+          res.set("Content-Language", lang);
           res.set("Cache-Control", "public, max-age=0, s-maxage=3600, stale-while-revalidate=86400");
           res.set("X-Prerendered", "true");
-          res.sendFile(path.resolve(candidate));
+          res.sendFile(path.resolve(c));
           return;
         }
       }
     }
 
-    // Trailing slash redirect (except root)
-    if (req.path !== "/" && req.path.endsWith("/")) {
-      const clean = req.path.slice(0, -1);
-      const qs = req.originalUrl.includes("?") ? req.originalUrl.substring(req.originalUrl.indexOf("?")) : "";
-      res.set("Cache-Control", "public, max-age=31536000, immutable");
-      return res.redirect(301, clean + qs);
-    }
-
-    const parsedUrl = new URL(req.originalUrl, "http://localhost");
-    const pathname = parsedUrl.pathname;
-    const langParam = parsedUrl.searchParams.get("lang");
-    const lang: LangCode = ([...SUPPORTED_LANGUAGES].includes(langParam as LangCode) ? langParam : "es") as LangCode;
-
-    // The canonical URL for this page (strip trailing slash, no query params — languages handled via hreflang)
-    const canonicalPath = pathname === "/" ? "/" : pathname.replace(/\/$/, "");
+    // The canonical URL is the full localized path (e.g. /fr/location-bateau-blanes)
+    const canonicalPath = pathname === "/" ? `/${lang}/` : pathname.replace(/\/$/, "");
     const canonicalUrl = canonicalPath;
 
     const resolved = await resolveMeta(canonicalPath, lang);
@@ -2624,7 +2708,8 @@ export async function serveWithSEO(
       }
 
       // Override with DB-sourced meta if available (seo_meta table)
-      const dbMeta = await getDbMeta(canonicalPath, lang);
+      const { metaKey } = pathToStaticMetaKey(canonicalPath);
+      const dbMeta = await getDbMeta(metaKey, lang);
       if (dbMeta) {
         if (dbMeta.title) {
           resolved.meta.title = dbMeta.title;
@@ -2652,9 +2737,10 @@ export async function serveWithSEO(
       res.set("Link", `<${BASE_URL}${canonicalUrl}>; rel="canonical"`);
       res.send(html);
     } else {
-      // Dynamic content routes (blog, barco, destinos) that resolveMeta couldn't match
+      // Dynamic content routes that resolveMeta couldn't match
       // are genuinely non-existent — return 404 to avoid soft 404 indexing issues.
-      const isDynamicContentRoute = /^\/(blog|barco|destinos)\/[\w-]+$/.test(pathname);
+      // Match both new /:lang/(blog|barco|destinos)/:slug and legacy /(blog|barco|destinos)/:slug
+      const isDynamicContentRoute = /^(\/[a-z]{2})?\/(blog|barco|destinos)\/[\w-]+$/.test(pathname);
       const status = isDynamicContentRoute ? 404 : (isValidSPARoute(pathname) ? 200 : 404);
       res.status(status).sendFile(path.resolve(distPath, "index.html"));
     }

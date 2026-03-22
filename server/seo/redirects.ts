@@ -4,6 +4,8 @@ import { db } from "../db";
 import { seoRedirects } from "../../shared/schema";
 import { eq, sql } from "drizzle-orm";
 import { logger } from "../lib/logger";
+import { getLocalizedPath, isValidLang, resolveSlug } from "../../shared/i18n-routes";
+import type { PageKey } from "../../shared/i18n-routes";
 
 // In-memory cache for redirects (refreshed every 1 minute)
 let redirectCache: Map<string, { toPath: string; statusCode: number }> = new Map();
@@ -64,6 +66,41 @@ export function redirectMiddleware() {
       return next();
     }
 
+    // Handle ?lang= query param redirects (legacy URLs from before i18n subdirectory migration)
+    const langParam = req.query.lang as string;
+    if (langParam && isValidLang(langParam)) {
+      const pathWithoutQuery = req.path;
+
+      // Root with ?lang= -> /{lang}/
+      const slug = pathWithoutQuery.replace(/^\//, "");
+      if (slug === "") {
+        return res.redirect(301, `/${langParam}/`);
+      }
+
+      const resolved = resolveSlug(slug);
+      if (resolved) {
+        const newPath = getLocalizedPath(resolved.pageKey as PageKey, langParam);
+        res.set('Cache-Control', 'public, max-age=31536000, immutable');
+        return res.redirect(301, newPath);
+      }
+
+      // Dynamic routes: /barco/slug?lang=fr -> /fr/bateau/slug
+      const segments = slug.split("/");
+      if (segments.length >= 2) {
+        const prefixResolved = resolveSlug(segments[0]);
+        if (prefixResolved) {
+          const param = segments.slice(1).join("/");
+          const newPath = getLocalizedPath(prefixResolved.pageKey as PageKey, langParam) + `/${param}`;
+          res.set('Cache-Control', 'public, max-age=31536000, immutable');
+          return res.redirect(301, newPath);
+        }
+      }
+
+      // Fallback: just prepend the lang code
+      res.set('Cache-Control', 'public, max-age=31536000, immutable');
+      return res.redirect(301, `/${langParam}/${slug}`);
+    }
+
     // Refresh cache if stale
     if (Date.now() - cacheLastRefresh > CACHE_TTL) {
       await refreshCache();
@@ -101,58 +138,100 @@ export async function seedLegacyRedirects(): Promise<void> {
   }
 
   const legacyRedirects: Record<string, string> = {
-    "/destino/blanes": "/alquiler-barcos-blanes",
-    "/destino/lloret-de-mar": "/alquiler-barcos-lloret-de-mar",
-    "/destino/tossa-de-mar": "/alquiler-barcos-tossa-de-mar",
-    "/categoria/sin-licencia": "/barcos-sin-licencia",
-    "/categoria/con-licencia": "/barcos-con-licencia",
-    "/copia-de-embarcaciones": "/barcos-sin-licencia",
-    "/copy-of-extras": "/precios",
-    "/copy-of-hoteles-y-alojamientos": "/alquiler-barcos-blanes",
-    "/motos-de-agua": "/barcos-sin-licencia",
-    "/alquiler-con-licencia": "/barcos-con-licencia",
+    // Old destination URLs -> ES subdirectory
+    "/destino/blanes": getLocalizedPath("locationBlanes", "es"),
+    "/destino/lloret-de-mar": getLocalizedPath("locationLloret", "es"),
+    "/destino/tossa-de-mar": getLocalizedPath("locationTossa", "es"),
+    "/categoria/sin-licencia": getLocalizedPath("categoryLicenseFree", "es"),
+    "/categoria/con-licencia": getLocalizedPath("categoryLicensed", "es"),
+    "/copia-de-embarcaciones": getLocalizedPath("categoryLicenseFree", "es"),
+    "/copy-of-extras": getLocalizedPath("pricing", "es"),
+    "/copy-of-hoteles-y-alojamientos": getLocalizedPath("locationBlanes", "es"),
+    "/motos-de-agua": getLocalizedPath("categoryLicenseFree", "es"),
+    "/alquiler-con-licencia": getLocalizedPath("categoryLicensed", "es"),
 
-    // GSC-discovered old site URLs (March 2026)
-    "/barco-sin-licencia-blanes-astec-400": "/barco/astec-400",
-    "/barco-sin-licencia-blanes-solar-450": "/barco/solar-450",
-    "/barco-sin-licencia-blanes-remus-450": "/barco/remus-450",
-    "/barco-sin-licencia-blanes-astec-450": "/barco/astec-480",
-    "/barco-con-licencia-blanes-pacific-craft-625": "/barco/pacific-craft-625",
-    "/barco-con-licencia-blanes-trimarchi-57-s": "/barco/trimarchi-57s",
-    "/barco-con-licencia-blanes-mingolla-brava-19": "/barco/mingolla-brava-19",
-    "/excursiones-privadas-con-patron-blanes": "/barcos-con-licencia",
-    "/excursiones-moto-agua": "/barcos-sin-licencia",
-    "/condiciones-generales-alquiler": "/condiciones-generales",
-    "/preguntas-frequentes": "/faq",
-    "/fuegos-artificiales-blanes-2025": "/blog",
-    "/fr/fuegos-artificiales-blanes-2025": "/blog?lang=fr",
-    "/ca/fuegos-artificiales-blanes-2025": "/blog?lang=ca",
-    "/ca/barco-sin-licencia-blanes-astec-400": "/barco/astec-400?lang=ca",
-    "/ca/condiciones-de-reserva": "/condiciones-generales?lang=ca",
+    // Old boat detail URLs -> ES boat detail
+    "/barco-sin-licencia-blanes-astec-400": getLocalizedPath("boatDetail", "es") + "/astec-400",
+    "/barco-sin-licencia-blanes-solar-450": getLocalizedPath("boatDetail", "es") + "/solar-450",
+    "/barco-sin-licencia-blanes-remus-450": getLocalizedPath("boatDetail", "es") + "/remus-450",
+    "/barco-sin-licencia-blanes-astec-450": getLocalizedPath("boatDetail", "es") + "/astec-480",
+    "/barco-con-licencia-blanes-pacific-craft-625": getLocalizedPath("boatDetail", "es") + "/pacific-craft-625",
+    "/barco-con-licencia-blanes-trimarchi-57-s": getLocalizedPath("boatDetail", "es") + "/trimarchi-57s",
+    "/barco-con-licencia-blanes-mingolla-brava-19": getLocalizedPath("boatDetail", "es") + "/mingolla-brava-19",
+    "/excursiones-privadas-con-patron-blanes": getLocalizedPath("categoryLicensed", "es"),
+    "/excursiones-moto-agua": getLocalizedPath("categoryLicenseFree", "es"),
+    "/condiciones-generales-alquiler": getLocalizedPath("condicionesGenerales", "es"),
+    "/preguntas-frequentes": getLocalizedPath("faq", "es"),
+    "/fuegos-artificiales-blanes-2025": getLocalizedPath("blog", "es"),
 
-    // Old Wix site URLs with path-based i18n (discovered in GSC "Rastreada, sin indexar")
-    "/fr/excursion-barco-privado": "/barcos-con-licencia?lang=fr",
-    "/fr/copy-of-hoteles-y-alojamientos": "/alquiler-barcos-blanes?lang=fr",
-    "/en/barco-sin-licencia-blanes-solar-450": "/barco/solar-450?lang=en",
-    "/barco-mingolla-brava-19": "/barco/mingolla-brava-19",
-    "/fr/barco-con-licencia-blanes-pacific-craft-625": "/barco/pacific-craft-625?lang=fr",
-    "/fr/politica-de-privacidad": "/politica-privacidad?lang=fr",
-    "/ca/beneteau-flyer-5-5": "/barcos-con-licencia?lang=ca",
-    "/en/barco-con-licencia-blanes-pacific-craft-625": "/barco/pacific-craft-625?lang=en",
-    "/fr/barco-sin-licencia-blanes-solar-450": "/barco/solar-450?lang=fr",
-    "/en/motos-de-agua": "/barcos-sin-licencia?lang=en",
-    "/en/nota-legal": "/politica-privacidad?lang=en",
-    "/fr/copia-de-embarcaciones": "/barcos-sin-licencia?lang=fr",
-    "/fr/beneteau-flyer-5-5": "/barcos-con-licencia?lang=fr",
-    "/en/condiciones-de-reserva": "/condiciones-generales?lang=en",
-    "/fr/motos-de-agua": "/barcos-sin-licencia?lang=fr",
-    "/ca/copy-of-extras": "/precios?lang=ca",
-    "/blank": "/",
-    "/barco-sin-licencia-solar-450-blanes": "/barco/solar-450",
-    "/excursion-barco-privado": "/barcos-con-licencia",
-    "/condiciones-de-reserva": "/condiciones-generales",
-    "/nota-legal": "/politica-privacidad",
-    "/beneteau-flyer-5-5": "/barcos-con-licencia",
+    // Old Wix paths with /fr/, /en/, /ca/ prefix -> correct language subdirectory
+    "/fr/fuegos-artificiales-blanes-2025": getLocalizedPath("blog", "fr"),
+    "/ca/fuegos-artificiales-blanes-2025": getLocalizedPath("blog", "ca"),
+    "/ca/barco-sin-licencia-blanes-astec-400": getLocalizedPath("boatDetail", "ca") + "/astec-400",
+    "/ca/condiciones-de-reserva": getLocalizedPath("condicionesGenerales", "ca"),
+    "/fr/excursion-barco-privado": getLocalizedPath("categoryLicensed", "fr"),
+    "/fr/copy-of-hoteles-y-alojamientos": getLocalizedPath("locationBlanes", "fr"),
+    "/en/barco-sin-licencia-blanes-solar-450": getLocalizedPath("boatDetail", "en") + "/solar-450",
+    "/barco-mingolla-brava-19": getLocalizedPath("boatDetail", "es") + "/mingolla-brava-19",
+    "/fr/barco-con-licencia-blanes-pacific-craft-625": getLocalizedPath("boatDetail", "fr") + "/pacific-craft-625",
+    "/fr/politica-de-privacidad": getLocalizedPath("privacyPolicy", "fr"),
+    "/ca/beneteau-flyer-5-5": getLocalizedPath("categoryLicensed", "ca"),
+    "/en/barco-con-licencia-blanes-pacific-craft-625": getLocalizedPath("boatDetail", "en") + "/pacific-craft-625",
+    "/fr/barco-sin-licencia-blanes-solar-450": getLocalizedPath("boatDetail", "fr") + "/solar-450",
+    "/en/motos-de-agua": getLocalizedPath("categoryLicenseFree", "en"),
+    "/en/nota-legal": getLocalizedPath("privacyPolicy", "en"),
+    "/fr/copia-de-embarcaciones": getLocalizedPath("categoryLicenseFree", "fr"),
+    "/fr/beneteau-flyer-5-5": getLocalizedPath("categoryLicensed", "fr"),
+    "/en/condiciones-de-reserva": getLocalizedPath("condicionesGenerales", "en"),
+    "/fr/motos-de-agua": getLocalizedPath("categoryLicenseFree", "fr"),
+    "/ca/copy-of-extras": getLocalizedPath("pricing", "ca"),
+    "/blank": getLocalizedPath("home", "es"),
+    "/barco-sin-licencia-solar-450-blanes": getLocalizedPath("boatDetail", "es") + "/solar-450",
+    "/excursion-barco-privado": getLocalizedPath("categoryLicensed", "es"),
+    "/condiciones-de-reserva": getLocalizedPath("condicionesGenerales", "es"),
+    "/nota-legal": getLocalizedPath("privacyPolicy", "es"),
+    "/beneteau-flyer-5-5": getLocalizedPath("categoryLicensed", "es"),
+
+    // Currently indexed bare paths (no lang prefix) -> ES subdirectory
+    "/alquiler-barcos-blanes": getLocalizedPath("locationBlanes", "es"),
+    "/alquiler-barcos-lloret-de-mar": getLocalizedPath("locationLloret", "es"),
+    "/alquiler-barcos-tossa-de-mar": getLocalizedPath("locationTossa", "es"),
+    "/alquiler-barcos-malgrat-de-mar": getLocalizedPath("locationMalgrat", "es"),
+    "/alquiler-barcos-santa-susanna": getLocalizedPath("locationSantaSusanna", "es"),
+    "/alquiler-barcos-calella": getLocalizedPath("locationCalella", "es"),
+    "/alquiler-barcos-pineda-de-mar": getLocalizedPath("locationPinedaDeMar", "es"),
+    "/alquiler-barcos-palafolls": getLocalizedPath("locationPalafolls", "es"),
+    "/alquiler-barcos-tordera": getLocalizedPath("locationTordera", "es"),
+    "/alquiler-barcos-cerca-barcelona": getLocalizedPath("locationBarcelona", "es"),
+    "/alquiler-barcos-costa-brava": getLocalizedPath("locationCostaBrava", "es"),
+    "/precios": getLocalizedPath("pricing", "es"),
+    "/privacy-policy": getLocalizedPath("privacyPolicy", "es"),
+    "/blog": getLocalizedPath("blog", "es"),
+    "/faq": getLocalizedPath("faq", "es"),
+    "/barcos-sin-licencia": getLocalizedPath("categoryLicenseFree", "es"),
+    "/barcos-con-licencia": getLocalizedPath("categoryLicensed", "es"),
+    "/galeria": getLocalizedPath("gallery", "es"),
+    "/rutas": getLocalizedPath("routes", "es"),
+    "/testimonios": getLocalizedPath("testimonials", "es"),
+    "/tarjetas-regalo": getLocalizedPath("giftCards", "es"),
+    "/about": getLocalizedPath("about", "es"),
+    "/sobre-nosotros": getLocalizedPath("about", "es"),
+    "/accesibilidad": getLocalizedPath("accessibility", "es"),
+    "/terms-conditions": getLocalizedPath("termsConditions", "es"),
+    "/cookies-policy": getLocalizedPath("cookiesPolicy", "es"),
+    "/condiciones-generales": getLocalizedPath("condicionesGenerales", "es"),
+
+    // Activity pages (bare paths -> ES subdirectory)
+    "/excursion-snorkel-barco-blanes": getLocalizedPath("activitySnorkel", "es"),
+    "/barco-familias-costa-brava": getLocalizedPath("activityFamilies", "es"),
+    "/sunset-boat-trip-blanes": getLocalizedPath("activitySunset", "es"),
+    "/pesca-barco-blanes": getLocalizedPath("activityFishing", "es"),
+
+    // English landing pages -> EN subdirectory
+    "/boat-rental-blanes": getLocalizedPath("locationBlanes", "en"),
+    "/boat-rental-costa-brava": getLocalizedPath("locationCostaBrava", "en"),
+
+    "/login": getLocalizedPath("login", "es"),
   };
 
   for (const [from, to] of Object.entries(legacyRedirects)) {
@@ -162,5 +241,5 @@ export async function seedLegacyRedirects(): Promise<void> {
       .onConflictDoNothing();
   }
 
-  logger.info(`[SEO:Redirects] Seeded ${Object.keys(legacyRedirects).length} legacy redirects (26 total)`);
+  logger.info(`[SEO:Redirects] Seeded ${Object.keys(legacyRedirects).length} legacy redirects`);
 }

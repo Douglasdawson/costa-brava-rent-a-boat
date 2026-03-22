@@ -25,6 +25,9 @@ import {
   Plus,
   Download,
   LogOut,
+  Search,
+  FileText,
+  UserCog,
 } from "lucide-react";
 
 interface CommandPaletteProps {
@@ -44,9 +47,13 @@ const NAVIGATION_ITEMS = [
   { id: "maintenance", label: "Mantenimiento", icon: Wrench, keywords: ["reparacion", "revision"] },
   { id: "inventory", label: "Inventario", icon: Package, keywords: ["stock", "material", "equipo"] },
   { id: "reports", label: "Reportes", icon: BarChart3, keywords: ["informe", "estadistica", "analytics"] },
+  { id: "analytics", label: "SEO Analytics", icon: Search, keywords: ["seo", "analytics", "google", "busqueda", "trafico"] },
+  { id: "seo", label: "SEO Engine", icon: Search, keywords: ["seo", "engine", "motor", "keywords", "competidores"] },
   { id: "gallery", label: "Galería", icon: Camera, keywords: ["foto", "imagen", "photo"] },
+  { id: "blog", label: "Blog", icon: FileText, keywords: ["articulo", "post", "contenido", "publicacion"] },
   { id: "giftcards", label: "Tarjetas Regalo", icon: Gift, keywords: ["regalo", "gift", "voucher"] },
   { id: "discounts", label: "Descuentos", icon: Percent, keywords: ["descuento", "cupon", "oferta", "promocion"] },
+  { id: "employees", label: "Usuarios", icon: UserCog, keywords: ["empleado", "usuario", "staff", "acceso"] },
   { id: "config", label: "Configuración", icon: Settings, keywords: ["ajustes", "settings", "preferencias"] },
 ];
 

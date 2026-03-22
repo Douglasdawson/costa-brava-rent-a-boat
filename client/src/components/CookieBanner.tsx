@@ -55,7 +55,7 @@ export default function CookieBanner() {
       role="dialog"
       aria-modal="true"
       aria-label="Aviso de cookies"
-      className="fixed bottom-0 left-0 right-0 z-[100] bg-background border-t border-border shadow-lg pb-safe"
+      className="fixed bottom-0 left-0 right-0 z-[300] bg-background border-t border-border shadow-lg pb-safe"
     >
       <div className="container mx-auto px-4 py-4 max-w-6xl">
         <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">

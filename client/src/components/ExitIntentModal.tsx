@@ -4,6 +4,10 @@ import { useTranslations } from "@/lib/translations";
 import { useBookingModal } from "@/hooks/bookingModalContext";
 import { trackExitIntentShown, trackExitIntentCtaClick } from "@/utils/analytics";
 
+function isCookieBannerVisible(): boolean {
+  return !localStorage.getItem("cookieConsent");
+}
+
 export function ExitIntentModal() {
   const t = useTranslations();
   const { openBookingModal } = useBookingModal();
@@ -15,32 +19,49 @@ export function ExitIntentModal() {
   const handleDismiss = useCallback(() => {
     setShow(false);
     setDismissed(true);
+    document.body.style.overflow = "";
   }, []);
 
-  const handleMouseLeave = useCallback((e: MouseEvent) => {
-    // Only trigger when mouse exits through the top of the viewport
-    if (e.clientY <= 0 && !dismissed) {
-      // Check if already shown in this session
-      const shown = sessionStorage.getItem("exitIntentShown");
-      if (!shown) {
-        setShow(true);
-        sessionStorage.setItem("exitIntentShown", "true");
-        trackExitIntentShown();
-      }
-    }
+  const tryShow = useCallback(() => {
+    if (dismissed) return;
+    if (sessionStorage.getItem("exitIntentShown")) return;
+    if (isCookieBannerVisible()) return;
+    setShow(true);
+    sessionStorage.setItem("exitIntentShown", "true");
+    document.body.style.overflow = "hidden";
+    trackExitIntentShown();
   }, [dismissed]);
 
+  const handleMouseLeave = useCallback((e: MouseEvent) => {
+    if (e.clientY <= 0) tryShow();
+  }, [tryShow]);
+
+  // Desktop: mouseleave after 15s delay
   useEffect(() => {
-    // Only add listener after a delay (don't show immediately)
+    const isMobile = window.matchMedia("(pointer: coarse)").matches;
+    if (isMobile) return;
+
     const timer = setTimeout(() => {
       document.addEventListener("mouseleave", handleMouseLeave);
-    }, 15000); // 15 second delay before enabling
+    }, 15000);
 
     return () => {
       clearTimeout(timer);
       document.removeEventListener("mouseleave", handleMouseLeave);
     };
   }, [handleMouseLeave]);
+
+  // Mobile: show after 30s of inactivity (only if cookie banner dismissed)
+  useEffect(() => {
+    const isMobile = window.matchMedia("(pointer: coarse)").matches;
+    if (!isMobile) return;
+
+    const timer = setTimeout(() => {
+      tryShow();
+    }, 30000);
+
+    return () => clearTimeout(timer);
+  }, [tryShow]);
 
   // Close on Escape key
   useEffect(() => {
@@ -92,6 +113,7 @@ export function ExitIntentModal() {
   const handleBookNow = () => {
     setShow(false);
     setDismissed(true);
+    document.body.style.overflow = "";
     trackExitIntentCtaClick();
     openBookingModal(undefined, { coupon: "BIENVENIDO10" });
   };
@@ -100,7 +122,7 @@ export function ExitIntentModal() {
   // Using opacity + pointer-events instead of conditional mounting ensures no layout shift.
   return (
     <div
-      className={`fixed inset-0 z-[100] flex items-center justify-center p-4 transition-opacity duration-200 ${
+      className={`fixed inset-0 z-[200] flex items-center justify-center p-4 transition-opacity duration-200 ${
         show ? "opacity-100" : "opacity-0 pointer-events-none"
       }`}
       role="dialog"

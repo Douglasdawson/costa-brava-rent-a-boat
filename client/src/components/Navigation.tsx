@@ -28,22 +28,31 @@ export default function Navigation() {
   const { openBookingModal } = useBookingModal();
   const { theme, toggleTheme } = useTheme();
 
-  const toggleMenu = () => setIsOpen(!isOpen);
+  const toggleMenu = () => {
+    const next = !isOpen;
+    setIsOpen(next);
+    document.body.style.overflow = next ? "hidden" : "";
+  };
   
+  const closeMenu = () => {
+    setIsOpen(false);
+    document.body.style.overflow = "";
+  };
+
   const handleMyAccountClick = () => {
-    setIsOpen(false); // Close mobile menu if open
+    closeMenu();
     setLocation(localizedPath("clientDashboard"));
   };
 
   const handleLoginClick = () => {
-    setIsOpen(false); // Close mobile menu if open
+    closeMenu();
     setLocation(localizedPath("login"));
   };
 
   const handleMobileBooking = () => {
-    setIsOpen(false); // Close mobile menu
+    closeMenu();
     trackBookingFormOpen();
-    openBookingModal(); // Open booking modal
+    openBookingModal();
   };
 
   const scrollToSection = (sectionId: string, maxAttempts = 10) => {
@@ -67,7 +76,7 @@ export default function Navigation() {
   };
 
   const handleLogoClick = () => {
-    setIsOpen(false); // Close mobile menu if open
+    closeMenu();
     setLocation(localizedPath("home"));
     window.scrollTo({
       top: 0,
@@ -76,9 +85,7 @@ export default function Navigation() {
   };
 
   const handleNavigation = (href: string, label: string) => {
-
-    // Close mobile menu
-    setIsOpen(false);
+    closeMenu();
 
     const homePath = localizedPath("home");
     const blogPath = localizedPath("blog");

@@ -84,7 +84,7 @@ const faqs = [
 ];
 
 export default function ActivityFamiliesPage() {
-  const { language } = useLanguage();
+  const { language, localizedPath } = useLanguage();
   const seoConfig = getSEOConfig('activityFamilies', language);
   const hreflangLinks = generateHreflangLinks('activityFamilies');
   const canonical = generateCanonicalUrl('activityFamilies', language);
@@ -356,23 +356,23 @@ export default function ActivityFamiliesPage() {
               <CardContent className="pt-6">
                 <h3 className="font-semibold text-lg mb-4">Descubre mas sobre nuestros servicios</h3>
                 <div className="flex flex-wrap gap-3">
-                  <a href="/barcos-sin-licencia" className="text-primary hover:underline flex items-center gap-1">
+                  <a href={localizedPath("categoryLicenseFree")} className="text-primary hover:underline flex items-center gap-1">
                     <ChevronRight className="w-4 h-4" />
                     Barcos sin licencia
                   </a>
-                  <a href="/excursion-snorkel-barco-blanes" className="text-primary hover:underline flex items-center gap-1">
+                  <a href={localizedPath("activitySnorkel")} className="text-primary hover:underline flex items-center gap-1">
                     <ChevronRight className="w-4 h-4" />
                     Excursion de snorkel
                   </a>
-                  <a href="/precios" className="text-primary hover:underline flex items-center gap-1">
+                  <a href={localizedPath("pricing")} className="text-primary hover:underline flex items-center gap-1">
                     <ChevronRight className="w-4 h-4" />
                     Precios y tarifas
                   </a>
-                  <a href="/alquiler-barcos-blanes" className="text-primary hover:underline flex items-center gap-1">
+                  <a href={localizedPath("locationBlanes")} className="text-primary hover:underline flex items-center gap-1">
                     <ChevronRight className="w-4 h-4" />
                     Puerto de Blanes
                   </a>
-                  <a href="/rutas" className="text-primary hover:underline flex items-center gap-1">
+                  <a href={localizedPath("routes")} className="text-primary hover:underline flex items-center gap-1">
                     <ChevronRight className="w-4 h-4" />
                     Rutas maritimas
                   </a>
@@ -418,7 +418,7 @@ export default function ActivityFamiliesPage() {
                     <MessageCircle className="w-5 h-5 mr-2" />
                     Reservar por WhatsApp
                   </Button>
-                  <a href="/barcos-sin-licencia">
+                  <a href={localizedPath("categoryLicenseFree")}>
                     <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 w-full">
                       <Anchor className="w-5 h-5 mr-2" />
                       Ver barcos sin licencia

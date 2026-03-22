@@ -509,7 +509,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
   const { openBookingModal, isOpen: isBookingModalOpen } = useBookingModal();
   const [showStickyCTA, setShowStickyCTA] = useState(false);
   const touchStartX = useRef<number | null>(null);
-  const { language } = useLanguage();
+  const { language, localizedPath } = useLanguage();
   const t = useTranslations();
   useScrollDepthTracking('boat_detail');
   const seasonPeriods: Record<string, string> = {
@@ -591,7 +591,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
         <div className="flex items-center justify-center min-h-[60vh]">
           <div className="text-center">
             <div className="text-lg mb-4">{t.boatDetail.notFound}</div>
-            <a href="/">
+            <a href={localizedPath("home")}>
               <Button variant="outline">
                 <ArrowLeft className="w-4 h-4 mr-2" />
                 {t.boatDetail.backToFleet}
@@ -954,7 +954,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
               </div>
             )}
             <div className="px-4 py-2 text-center border-t border-border">
-              <a href="/galeria" className="text-sm text-primary hover:underline">
+              <a href={localizedPath("gallery")} className="text-sm text-primary hover:underline">
                 {translateBoatText("Ver galería de fotos de clientes", language)}
               </a>
             </div>
@@ -1274,7 +1274,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                   <button
                     onClick={() => {
                       const targetSection = requiresLicense ? "embarcaciones-con-licencia" : "embarcaciones-sin-licencia";
-                      setLocation("/terms-conditions");
+                      setLocation(localizedPath("termsConditions"));
                       setTimeout(() => {
                         const element = document.getElementById(targetSection);
                         if (element) {

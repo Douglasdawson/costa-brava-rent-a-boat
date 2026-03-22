@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useLocation } from "wouter";
+import { useLanguage } from "@/hooks/use-language";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -29,6 +30,7 @@ interface BoatData {
 
 export default function OnboardingPage() {
   const [, setLocation] = useLocation();
+  const { localizedPath } = useLanguage();
   const [step, setStep] = useState(1);
   const [isSaving, setIsSaving] = useState(false);
 
@@ -358,7 +360,7 @@ export default function OnboardingPage() {
                 ))}
               </div>
               <Button
-                onClick={() => setLocation("/crm")}
+                onClick={() => setLocation(localizedPath("crm"))}
                 className="w-full py-6 text-base font-semibold"
               >
                 Ir a mi panel

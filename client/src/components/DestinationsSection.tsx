@@ -10,9 +10,11 @@ import {
 } from "lucide-react";
 import { Link } from "wouter";
 import { useTranslations } from "@/lib/translations";
+import { useLanguage } from "@/hooks/use-language";
 
 export default function DestinationsSection() {
   const t = useTranslations();
+  const { localizedPath } = useLanguage();
 
   return (
     <section className="py-12 bg-background" id="destinations">
@@ -30,7 +32,7 @@ export default function DestinationsSection() {
           </div>
 
           <div className="grid md:grid-cols-1 gap-8 max-w-md mx-auto">
-            <Link href="/alquiler-barcos-tossa-de-mar" asChild>
+            <Link href={localizedPath("locationTossa")} asChild>
               <Card className="hover:shadow-lg transition-shadow cursor-pointer group">
                 <CardHeader>
                   <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
@@ -80,7 +82,7 @@ export default function DestinationsSection() {
           </div>
 
           <div className="grid md:grid-cols-1 gap-8 max-w-md mx-auto">
-            <Link href="/barcos-sin-licencia" asChild>
+            <Link href={localizedPath("categoryLicenseFree")} asChild>
               <Card className="hover:shadow-lg transition-shadow cursor-pointer group">
                 <CardHeader>
                   <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">

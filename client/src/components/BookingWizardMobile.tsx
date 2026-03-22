@@ -11,6 +11,7 @@ import BookingProgressBar from "@/components/BookingProgressBar";
 import HoldCountdown from "@/components/HoldCountdown";
 import PriceSummaryBar from "@/components/PriceSummaryBar";
 import { trackWhatsAppClick } from "@/utils/analytics";
+import { useLanguage } from "@/hooks/use-language";
 
 interface PhonePrefix {
   code: string;
@@ -117,6 +118,7 @@ export interface BookingWizardMobileProps {
 
 export default function BookingWizardMobile(props: BookingWizardMobileProps) {
   const { currentStep, onNext, onBack, handleBookingSearch } = props;
+  const { localizedPath } = useLanguage();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [animating, setAnimating] = useState(false);
   const [displayStep, setDisplayStep] = useState(currentStep);
@@ -1052,11 +1054,11 @@ function Step4Confirm({
       {/* RGPD passive consent notice */}
       <p className="text-xs text-muted-foreground/60 leading-relaxed text-center">
         {t.booking.gdprPassive?.split('{privacyPolicy}')[0] || 'Al enviar esta solicitud, aceptas nuestra '}
-        <a href="/privacy-policy" target="_blank" rel="noopener noreferrer" className="text-primary underline">
+        <a href={localizedPath("privacyPolicy")} target="_blank" rel="noopener noreferrer" className="text-primary underline">
           {t.booking.gdprPrivacyLink}
         </a>
         {(t.booking.gdprPassive?.split('{privacyPolicy}')[1] || ' y ').split('{termsAndConditions}')[0]}
-        <a href="/condiciones-generales" target="_blank" rel="noopener noreferrer" className="text-primary underline">
+        <a href={localizedPath("condicionesGenerales")} target="_blank" rel="noopener noreferrer" className="text-primary underline">
           {t.booking.gdprTermsLink}
         </a>
         {(t.booking.gdprPassive?.split('{privacyPolicy}')[1] || '').split('{termsAndConditions}')[1] || '.'}

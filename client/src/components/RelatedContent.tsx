@@ -3,10 +3,11 @@ import { ArrowRight } from "lucide-react";
 
 type ContentType = "blog" | "actividad" | "ubicacion" | "guia";
 
-interface RelatedItem {
+interface RelatedItemDef {
   title: string;
   description: string;
-  href: string;
+  pageKey: string;
+  param?: string;
   type: ContentType;
 }
 
@@ -21,60 +22,60 @@ const TYPE_STYLES: Record<ContentType, { label: string; labelEn: string; classNa
   guia: { label: "Guia", labelEn: "Guide", className: "bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-300" },
 };
 
-const RELATED_CONTENT: Record<string, RelatedItem[]> = {
+const RELATED_CONTENT: Record<string, RelatedItemDef[]> = {
   locationBlanes: [
-    { title: "Las 10 mejores calas de Blanes en barco", description: "Descubre las calas mas bonitas accesibles solo desde el mar", href: "/blog/mejores-calas-blanes-accesibles-en-barco", type: "blog" },
-    { title: "Excursion de snorkel en barco", description: "Las mejores calas para snorkel cerca de Blanes", href: "/excursion-snorkel-barco-blanes", type: "actividad" },
-    { title: "Barcos para familias", description: "La experiencia perfecta para toda la familia", href: "/barco-familias-costa-brava", type: "actividad" },
-    { title: "Rutas en barco desde Blanes", description: "5 rutas con mapas interactivos", href: "/rutas", type: "guia" },
+    { title: "Las 10 mejores calas de Blanes en barco", description: "Descubre las calas mas bonitas accesibles solo desde el mar", pageKey: "blogDetail", param: "mejores-calas-blanes-accesibles-en-barco", type: "blog" },
+    { title: "Excursion de snorkel en barco", description: "Las mejores calas para snorkel cerca de Blanes", pageKey: "activitySnorkel", type: "actividad" },
+    { title: "Barcos para familias", description: "La experiencia perfecta para toda la familia", pageKey: "activityFamilies", type: "actividad" },
+    { title: "Rutas en barco desde Blanes", description: "5 rutas con mapas interactivos", pageKey: "routes", type: "guia" },
   ],
   locationLloret: [
-    { title: "Mejores calas Costa Brava en barco", description: "Las 10 calas mas espectaculares entre Blanes y Tossa", href: "/blog/mejores-calas-costa-brava-en-barco", type: "blog" },
-    { title: "Sunset boat trip", description: "Experiencia de atardecer en barco", href: "/sunset-boat-trip-blanes", type: "actividad" },
-    { title: "Barcos sin licencia", description: "5 barcos desde 70EUR/h, gasolina incluida", href: "/barcos-sin-licencia", type: "guia" },
+    { title: "Mejores calas Costa Brava en barco", description: "Las 10 calas mas espectaculares entre Blanes y Tossa", pageKey: "blogDetail", param: "mejores-calas-costa-brava-en-barco", type: "blog" },
+    { title: "Sunset boat trip", description: "Experiencia de atardecer en barco", pageKey: "activitySunset", type: "actividad" },
+    { title: "Barcos sin licencia", description: "5 barcos desde 70EUR/h, gasolina incluida", pageKey: "categoryLicenseFree", type: "guia" },
   ],
   locationTossa: [
-    { title: "Mejores calas Costa Brava en barco", description: "Las 10 calas mas espectaculares entre Blanes y Tossa", href: "/blog/mejores-calas-costa-brava-en-barco", type: "blog" },
-    { title: "Barcos con licencia", description: "Llega a Tossa en 30 min con nuestros barcos potentes", href: "/barcos-con-licencia", type: "guia" },
-    { title: "Pesca desde barco", description: "Pesca deportiva en las aguas de la Costa Brava", href: "/pesca-barco-blanes", type: "actividad" },
+    { title: "Mejores calas Costa Brava en barco", description: "Las 10 calas mas espectaculares entre Blanes y Tossa", pageKey: "blogDetail", param: "mejores-calas-costa-brava-en-barco", type: "blog" },
+    { title: "Barcos con licencia", description: "Llega a Tossa en 30 min con nuestros barcos potentes", pageKey: "categoryLicensed", type: "guia" },
+    { title: "Pesca desde barco", description: "Pesca deportiva en las aguas de la Costa Brava", pageKey: "activityFishing", type: "actividad" },
   ],
   activitySnorkel: [
-    { title: "Mejores calas de Blanes en barco", description: "Calas con aguas cristalinas perfectas para snorkel", href: "/blog/mejores-calas-blanes-accesibles-en-barco", type: "blog" },
-    { title: "Barcos sin licencia", description: "Perfectos para excursiones de snorkel", href: "/barcos-sin-licencia", type: "guia" },
-    { title: "Alquiler barcos Blanes", description: "Todo sobre alquilar barco en Puerto de Blanes", href: "/alquiler-barcos-blanes", type: "ubicacion" },
+    { title: "Mejores calas de Blanes en barco", description: "Calas con aguas cristalinas perfectas para snorkel", pageKey: "blogDetail", param: "mejores-calas-blanes-accesibles-en-barco", type: "blog" },
+    { title: "Barcos sin licencia", description: "Perfectos para excursiones de snorkel", pageKey: "categoryLicenseFree", type: "guia" },
+    { title: "Alquiler barcos Blanes", description: "Todo sobre alquilar barco en Puerto de Blanes", pageKey: "locationBlanes", type: "ubicacion" },
   ],
   activityFamilies: [
-    { title: "Que llevar en un barco", description: "Checklist completo para tu dia en el mar", href: "/blog/que-llevar-barco-alquiler-checklist", type: "blog" },
-    { title: "Excursion de snorkel", description: "Actividad perfecta para ninos", href: "/excursion-snorkel-barco-blanes", type: "actividad" },
-    { title: "Precios alquiler barcos", description: "Consulta tarifas por temporada", href: "/precios", type: "guia" },
+    { title: "Que llevar en un barco", description: "Checklist completo para tu dia en el mar", pageKey: "blogDetail", param: "que-llevar-barco-alquiler-checklist", type: "blog" },
+    { title: "Excursion de snorkel", description: "Actividad perfecta para ninos", pageKey: "activitySnorkel", type: "actividad" },
+    { title: "Precios alquiler barcos", description: "Consulta tarifas por temporada", pageKey: "pricing", type: "guia" },
   ],
   activitySunset: [
-    { title: "Boat routes from Blanes", description: "5 routes with interactive maps", href: "/rutas", type: "guia" },
-    { title: "Best coves Costa Brava", description: "Top 10 coves between Blanes and Tossa", href: "/blog/mejores-calas-costa-brava-en-barco", type: "blog" },
-    { title: "No license boats", description: "Perfect for sunset trips, from 70EUR/h", href: "/barcos-sin-licencia", type: "guia" },
+    { title: "Boat routes from Blanes", description: "5 routes with interactive maps", pageKey: "routes", type: "guia" },
+    { title: "Best coves Costa Brava", description: "Top 10 coves between Blanes and Tossa", pageKey: "blogDetail", param: "mejores-calas-costa-brava-en-barco", type: "blog" },
+    { title: "No license boats", description: "Perfect for sunset trips, from 70EUR/h", pageKey: "categoryLicenseFree", type: "guia" },
   ],
   activityFishing: [
-    { title: "Barcos con licencia", description: "Barcos potentes para zonas de pesca", href: "/barcos-con-licencia", type: "guia" },
-    { title: "Rutas en barco desde Blanes", description: "Descubre las mejores zonas", href: "/rutas", type: "guia" },
-    { title: "Alquiler barcos Costa Brava", description: "8 barcos disponibles en Blanes", href: "/alquiler-barcos-costa-brava", type: "ubicacion" },
+    { title: "Barcos con licencia", description: "Barcos potentes para zonas de pesca", pageKey: "categoryLicensed", type: "guia" },
+    { title: "Rutas en barco desde Blanes", description: "Descubre las mejores zonas", pageKey: "routes", type: "guia" },
+    { title: "Alquiler barcos Costa Brava", description: "8 barcos disponibles en Blanes", pageKey: "locationCostaBrava", type: "ubicacion" },
   ],
   categoryLicenseFree: [
-    { title: "Barco sin licencia vs con licencia", description: "Guia comparativa completa", href: "/blog/barco-sin-licencia-vs-con-licencia-guia", type: "blog" },
-    { title: "Barcos para familias", description: "Experiencia perfecta sin necesidad de licencia", href: "/barco-familias-costa-brava", type: "actividad" },
-    { title: "Que llevar en el barco", description: "Checklist para tu dia en el mar", href: "/blog/que-llevar-barco-alquiler-checklist", type: "blog" },
+    { title: "Barco sin licencia vs con licencia", description: "Guia comparativa completa", pageKey: "blogDetail", param: "barco-sin-licencia-vs-con-licencia-guia", type: "blog" },
+    { title: "Barcos para familias", description: "Experiencia perfecta sin necesidad de licencia", pageKey: "activityFamilies", type: "actividad" },
+    { title: "Que llevar en el barco", description: "Checklist para tu dia en el mar", pageKey: "blogDetail", param: "que-llevar-barco-alquiler-checklist", type: "blog" },
   ],
   categoryLicensed: [
-    { title: "Barco sin licencia vs con licencia", description: "Guia comparativa completa", href: "/blog/barco-sin-licencia-vs-con-licencia-guia", type: "blog" },
-    { title: "Pesca desde barco", description: "Barcos con licencia para zonas de pesca", href: "/pesca-barco-blanes", type: "actividad" },
-    { title: "Excursion a Tossa de Mar", description: "Llega en 30 min con barco con licencia", href: "/alquiler-barcos-tossa-de-mar", type: "ubicacion" },
+    { title: "Barco sin licencia vs con licencia", description: "Guia comparativa completa", pageKey: "blogDetail", param: "barco-sin-licencia-vs-con-licencia-guia", type: "blog" },
+    { title: "Pesca desde barco", description: "Barcos con licencia para zonas de pesca", pageKey: "activityFishing", type: "actividad" },
+    { title: "Excursion a Tossa de Mar", description: "Llega en 30 min con barco con licencia", pageKey: "locationTossa", type: "ubicacion" },
   ],
 };
 
 export default function RelatedContent({ currentPage }: RelatedContentProps) {
-  const { language } = useLanguage();
-  const items = RELATED_CONTENT[currentPage];
+  const { language, localizedPath } = useLanguage();
+  const itemDefs = RELATED_CONTENT[currentPage];
 
-  if (!items || items.length === 0) {
+  if (!itemDefs || itemDefs.length === 0) {
     return null;
   }
 
@@ -88,15 +89,16 @@ export default function RelatedContent({ currentPage }: RelatedContentProps) {
         <h2 className="font-heading text-2xl lg:text-3xl font-bold text-foreground text-center mb-8">
           {sectionTitle}
         </h2>
-        <div className={`grid grid-cols-1 md:grid-cols-2 ${items.length >= 4 ? "lg:grid-cols-4" : "lg:grid-cols-3"} gap-6 max-w-5xl mx-auto`}>
-          {items.map((item, index) => {
+        <div className={`grid grid-cols-1 md:grid-cols-2 ${itemDefs.length >= 4 ? "lg:grid-cols-4" : "lg:grid-cols-3"} gap-6 max-w-5xl mx-auto`}>
+          {itemDefs.map((item, index) => {
             const typeStyle = TYPE_STYLES[item.type];
             const typeLabel = isEnglish ? typeStyle.labelEn : typeStyle.label;
+            const href = localizedPath(item.pageKey, item.param);
 
             return (
               <a
                 key={index}
-                href={item.href}
+                href={href}
                 className="group bg-background border rounded-lg p-5 flex flex-col gap-3 transition-all duration-200 hover:-translate-y-1 hover:shadow-lg"
               >
                 <span className={`inline-block w-fit text-xs font-medium px-2.5 py-0.5 rounded-full ${typeStyle.className}`}>

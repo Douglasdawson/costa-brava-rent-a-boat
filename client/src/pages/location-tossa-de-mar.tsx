@@ -32,7 +32,7 @@ import { openWhatsApp, createBookingMessage } from "@/utils/whatsapp";
 import { useTranslations } from "@/lib/translations";
 
 export default function LocationTossaPage() {
-  const { language } = useLanguage();
+  const { language, localizedPath } = useLanguage();
   const t = useTranslations();
   const seoConfig = getSEOConfig('locationTossa', language);
   const hreflangLinks = generateHreflangLinks('locationTossa');
@@ -335,9 +335,9 @@ export default function LocationTossaPage() {
             <CardContent className="py-6">
               <p className="text-muted-foreground">
                 También ofrecemos servicio para turistas alojados en{" "}
-                <a href="/alquiler-barcos-malgrat-de-mar" className="text-primary hover:underline font-medium">Malgrat de Mar</a>,{" "}
-                <a href="/alquiler-barcos-santa-susanna" className="text-primary hover:underline font-medium">Santa Susanna</a> y{" "}
-                <a href="/alquiler-barcos-calella" className="text-primary hover:underline font-medium">Calella</a>.
+                <a href={localizedPath("locationMalgrat")} className="text-primary hover:underline font-medium">Malgrat de Mar</a>,{" "}
+                <a href={localizedPath("locationSantaSusanna")} className="text-primary hover:underline font-medium">Santa Susanna</a> y{" "}
+                <a href={localizedPath("locationCalella")} className="text-primary hover:underline font-medium">Calella</a>.
                 Desde estos pueblos de la costa del Maresme se llega al Puerto de Blanes en 10-20 minutos en coche.
               </p>
             </CardContent>
@@ -348,19 +348,19 @@ export default function LocationTossaPage() {
             <CardContent className="pt-6">
               <h3 className="font-semibold text-lg mb-4">Servicios y destinos relacionados</h3>
               <div className="flex flex-wrap gap-3">
-                <a href="/barcos-con-licencia" className="text-primary hover:underline flex items-center gap-1">
+                <a href={localizedPath("categoryLicensed")} className="text-primary hover:underline flex items-center gap-1">
                   <ChevronRight className="w-4 h-4" />
                   Barcos con licencia para llegar a Tossa
                 </a>
-                <a href="/precios" className="text-primary hover:underline flex items-center gap-1">
+                <a href={localizedPath("pricing")} className="text-primary hover:underline flex items-center gap-1">
                   <ChevronRight className="w-4 h-4" />
                   Consulta precios y temporadas
                 </a>
-                <a href="/alquiler-barcos-lloret-de-mar" className="text-primary hover:underline flex items-center gap-1">
+                <a href={localizedPath("locationLloret")} className="text-primary hover:underline flex items-center gap-1">
                   <ChevronRight className="w-4 h-4" />
                   Ruta intermedia: Lloret de Mar en barco
                 </a>
-                <a href="/alquiler-barcos-blanes" className="text-primary hover:underline flex items-center gap-1">
+                <a href={localizedPath("locationBlanes")} className="text-primary hover:underline flex items-center gap-1">
                   <ChevronRight className="w-4 h-4" />
                   Puerto de salida: Blanes
                 </a>
@@ -426,7 +426,7 @@ export default function LocationTossaPage() {
             </h2>
             <p className="text-muted-foreground mb-4">
               Descubre más sobre navegar por la Costa Brava en nuestro{" "}
-              <a href="/blog" className="text-primary hover:underline font-medium">blog de navegación</a>.
+              <a href={localizedPath("blog")} className="text-primary hover:underline font-medium">blog de navegación</a>.
             </p>
           </div>
         </div>

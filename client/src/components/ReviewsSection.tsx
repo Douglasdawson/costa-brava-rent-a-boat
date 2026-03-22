@@ -96,7 +96,7 @@ const ReviewCard = memo(function ReviewCard({
 
 function ReviewsSection() {
   const t = useTranslations();
-  const { language } = useLanguage();
+  const { language, localizedPath } = useLanguage();
   const { ref: revealRef, isVisible } = useScrollReveal();
   const scrollRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
@@ -292,7 +292,7 @@ function ReviewsSection() {
         {/* CTA link */}
         <div className="text-center">
           <a
-            href="/testimonios"
+            href={localizedPath("testimonials")}
             className="text-sm font-medium text-foreground hover:text-cta inline-flex items-center gap-1 transition-colors"
           >
             {t.reviews.viewAll}

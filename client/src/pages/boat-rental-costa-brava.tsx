@@ -13,10 +13,12 @@ import { SEO } from "@/components/SEO";
 import { generateBreadcrumbSchema } from "@/utils/seo-config";
 import { openWhatsApp, createBookingMessage } from "@/utils/whatsapp";
 import { Link } from "wouter";
+import { useLanguage } from "@/hooks/use-language";
 import { BOAT_DATA } from "@shared/boatData";
 
 // Static English-only landing page targeting "boat rental costa brava"
 export default function BoatRentalCostaBravaPage() {
+  const { localizedPath } = useLanguage();
   const handleBookingWhatsApp = () => {
     const message = createBookingMessage();
     openWhatsApp(message);
@@ -291,7 +293,7 @@ export default function BoatRentalCostaBravaPage() {
                       </li>
                     </ul>
                   </div>
-                  <Link href="/boat-rental-blanes">
+                  <Link href={localizedPath("locationBlanes")}>
                     <div className="border border-primary/30 rounded-lg p-4 hover:border-primary transition-colors cursor-pointer">
                       <span className="text-primary font-medium inline-flex items-center">
                         Learn more about Blanes as a departure point <ChevronRight className="w-4 h-4 ml-1" />
@@ -448,7 +450,7 @@ export default function BoatRentalCostaBravaPage() {
                   <p className="text-xs text-muted-foreground mt-3">
                     * Prices shown for the Solar 450 (license-free, 5 passengers). Other boats have different rates.
                     See individual boat pages for full pricing or visit our{" "}
-                    <Link href="/precios" className="text-primary underline">pricing page</Link>.
+                    <Link href={localizedPath("pricing")} className="text-primary underline">pricing page</Link>.
                   </p>
                 </div>
               )}
@@ -587,7 +589,7 @@ export default function BoatRentalCostaBravaPage() {
             </CardHeader>
             <CardContent>
               <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                <Link href="/alquiler-barcos-costa-brava">
+                <Link href={localizedPath("locationCostaBrava")}>
                   <div className="border border-border rounded-lg p-4 hover:border-primary transition-colors cursor-pointer">
                     <h3 className="font-semibold mb-1">Alquiler Barcos Costa Brava</h3>
                     <p className="text-muted-foreground text-sm">Esta pagina en espanol</p>
@@ -596,7 +598,7 @@ export default function BoatRentalCostaBravaPage() {
                     </span>
                   </div>
                 </Link>
-                <Link href="/boat-rental-blanes">
+                <Link href={localizedPath("locationBlanes")}>
                   <div className="border border-border rounded-lg p-4 hover:border-primary transition-colors cursor-pointer">
                     <h3 className="font-semibold mb-1">Boat Rental Blanes</h3>
                     <p className="text-muted-foreground text-sm">Detailed guide to Blanes port</p>
@@ -605,7 +607,7 @@ export default function BoatRentalCostaBravaPage() {
                     </span>
                   </div>
                 </Link>
-                <Link href="/barcos-sin-licencia">
+                <Link href={localizedPath("categoryLicenseFree")}>
                   <div className="border border-border rounded-lg p-4 hover:border-primary transition-colors cursor-pointer">
                     <h3 className="font-semibold mb-1">License-Free Boats</h3>
                     <p className="text-muted-foreground text-sm">Our 5 no-license boats in detail</p>

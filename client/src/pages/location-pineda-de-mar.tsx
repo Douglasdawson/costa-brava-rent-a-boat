@@ -26,7 +26,7 @@ import { openWhatsApp, createBookingMessage } from "@/utils/whatsapp";
 import { getCanonicalUrl } from "@/lib/domain";
 
 export default function LocationPinedaDeMarPage() {
-  const { language } = useLanguage();
+  const { language, localizedPath } = useLanguage();
 
   const handleBookingWhatsApp = () => {
     const message = createBookingMessage();
@@ -282,13 +282,13 @@ export default function LocationPinedaDeMarPage() {
                 Desde el Puerto de Blanes puedes navegar hacia el norte por la espectacular costa de la Costa Brava. Descubre calas escondidas, acantilados impresionantes y pueblos medievales como Tossa de Mar. Con un barco sin licencia puedes explorar hasta 2 millas de la costa, suficiente para llegar a las calas mas bonitas de la zona.
               </p>
               <div className="flex flex-wrap gap-3">
-                <Link href="/alquiler-barcos-lloret-de-mar">
+                <Link href={localizedPath("locationLloret")}>
                   <Badge variant="outline" className="cursor-pointer hover:bg-primary/10">Lloret de Mar - 25 min</Badge>
                 </Link>
-                <Link href="/alquiler-barcos-tossa-de-mar">
+                <Link href={localizedPath("locationTossa")}>
                   <Badge variant="outline" className="cursor-pointer hover:bg-primary/10">Tossa de Mar - 1h</Badge>
                 </Link>
-                <Link href="/alquiler-barcos-blanes">
+                <Link href={localizedPath("locationBlanes")}>
                   <Badge variant="outline" className="cursor-pointer hover:bg-primary/10">Calas de Blanes</Badge>
                 </Link>
               </div>
@@ -322,7 +322,7 @@ export default function LocationPinedaDeMarPage() {
                 </div>
               </div>
               <div className="mt-4">
-                <Link href="/precios">
+                <Link href={localizedPath("pricing")}>
                   <Button variant="outline" size="sm">
                     Ver todos los precios y barcos
                   </Button>

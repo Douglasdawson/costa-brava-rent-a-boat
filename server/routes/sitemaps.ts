@@ -4,6 +4,8 @@ import { logger } from "../lib/logger";
 import { registerRobotsRoutes } from "./robots";
 import { requireAdminSession } from "./auth-middleware";
 import { SUPPORTED_LANGUAGES, HREFLANG_CODES } from "../../shared/seoConstants";
+import { getLocalizedPath } from "../../shared/i18n-routes";
+import type { PageKey } from "../../shared/i18n-routes";
 // Static destination slugs for sitemap fallback (when DB has no published destinations)
 const FALLBACK_DESTINATION_SLUGS = [
   "sa-palomera",
@@ -44,54 +46,54 @@ const escapeXml = (str: string): string =>
     .replace(/"/g, "&quot;")
     .replace(/'/g, "&apos;");
 
-// Build xhtml:link alternate tags for specified (or all) languages
-const buildHreflangLinks = (baseUrl: string, path: string, languages: readonly string[] = SUPPORTED_LANGUAGES): string => {
-  const canonicalPath = path === "/" ? "/" : path;
+// Build xhtml:link alternate tags for all languages using subdirectory URLs
+const buildHreflangLinks = (baseUrl: string, pageKey: PageKey, dynamicParam?: string): string => {
   let links = "";
   // x-default points to the Spanish (canonical) version
-  links += `    <xhtml:link rel="alternate" hreflang="x-default" href="${baseUrl}${canonicalPath}"/>\n`;
-  if (languages.includes("es")) {
-    links += `    <xhtml:link rel="alternate" hreflang="${HREFLANG_CODES.es}" href="${baseUrl}${canonicalPath}"/>\n`;
-  }
-  languages.forEach(lang => {
-    if (lang !== "es") {
-      const hreflangCode = HREFLANG_CODES[lang as keyof typeof HREFLANG_CODES] || lang;
-      links += `    <xhtml:link rel="alternate" hreflang="${hreflangCode}" href="${baseUrl}${canonicalPath}?lang=${lang}"/>\n`;
-    }
+  let xDefaultPath = getLocalizedPath(pageKey, "es");
+  if (dynamicParam) xDefaultPath += `/${dynamicParam}`;
+  links += `    <xhtml:link rel="alternate" hreflang="x-default" href="${baseUrl}${xDefaultPath}"/>\n`;
+
+  SUPPORTED_LANGUAGES.forEach(lang => {
+    const code = HREFLANG_CODES[lang as keyof typeof HREFLANG_CODES] || lang;
+    let path = getLocalizedPath(pageKey, lang);
+    if (dynamicParam) path += `/${dynamicParam}`;
+    links += `    <xhtml:link rel="alternate" hreflang="${code}" href="${baseUrl}${path}"/>\n`;
+  });
+  return links;
+};
+
+// Build hreflang links for blog posts where each language may have a different slug
+const buildBlogHreflangLinks = (baseUrl: string, post: { slug: string; slugByLang?: Record<string, string> | null }): string => {
+  let links = "";
+  const esSlug = post.slugByLang?.es || post.slug;
+  links += `    <xhtml:link rel="alternate" hreflang="x-default" href="${baseUrl}${getLocalizedPath("blogDetail", "es")}/${esSlug}"/>\n`;
+  SUPPORTED_LANGUAGES.forEach(lang => {
+    const code = HREFLANG_CODES[lang as keyof typeof HREFLANG_CODES] || lang;
+    const langSlug = post.slugByLang?.[lang] || post.slug;
+    links += `    <xhtml:link rel="alternate" hreflang="${code}" href="${baseUrl}${getLocalizedPath("blogDetail", lang)}/${langSlug}"/>\n`;
   });
   return links;
 };
 
 const generateUrlEntry = (
   baseUrl: string,
-  path: string,
+  pageKey: PageKey,
   priority: string,
   lastmod: string | null,
-  languages: readonly string[] = SUPPORTED_LANGUAGES,
   changefreq?: string
-) => {
-  const hreflangLinks = buildHreflangLinks(baseUrl, path, languages);
+): string => {
+  const hreflangLinks = buildHreflangLinks(baseUrl, pageKey);
   const lastmodTag = lastmod ? `\n    <lastmod>${lastmod}</lastmod>` : "";
   const changefreqTag = changefreq ? `\n    <changefreq>${changefreq}</changefreq>` : "";
   let urls = "";
 
-  // Canonical (ES) entry with all hreflang alternates
-  urls += `  <url>
+  SUPPORTED_LANGUAGES.forEach(lang => {
+    const path = getLocalizedPath(pageKey, lang);
+    urls += `  <url>
     <loc>${baseUrl}${path}</loc>${lastmodTag}
     <priority>${priority}</priority>${changefreqTag}
-${hreflangLinks}  </url>
-`;
-
-  // One entry per non-ES language variant, each with hreflang links
-  languages.forEach(lang => {
-    if (lang !== "es") {
-      const langPath = path === "/" ? `/?lang=${lang}` : `${path}?lang=${lang}`;
-      urls += `  <url>
-    <loc>${baseUrl}${langPath}</loc>${lastmodTag}
-    <priority>${priority}</priority>${changefreqTag}
-${hreflangLinks}  </url>
-`;
-    }
+${hreflangLinks}  </url>\n`;
   });
 
   return urls;
@@ -190,53 +192,50 @@ export function registerSitemapRoutes(app: Express) {
       // Static pages omit <lastmod> — Google recommends only including lastmod
       // when the date is accurate. Static pages don't have real modification dates.
       // changefreq hints help AI crawlers (Perplexity, ChatGPT) understand content freshness.
-      sitemap += generateUrlEntry(baseUrl, "/", "1.0", null, SUPPORTED_LANGUAGES, "daily");
+      sitemap += generateUrlEntry(baseUrl, "home", "1.0", null, "daily");
 
-      const locationSlugs = ["blanes", "lloret-de-mar", "tossa-de-mar", "malgrat-de-mar", "santa-susanna", "calella", "pineda-de-mar", "palafolls", "tordera"];
-      locationSlugs.forEach(slug => {
-        sitemap += generateUrlEntry(baseUrl, `/alquiler-barcos-${slug}`, "0.7", null, SUPPORTED_LANGUAGES, "monthly");
-      });
-
-      sitemap += generateUrlEntry(baseUrl, "/galeria", "0.6", null, SUPPORTED_LANGUAGES, "monthly");
-      sitemap += generateUrlEntry(baseUrl, "/rutas", "0.7", null, SUPPORTED_LANGUAGES, "monthly");
-      sitemap += generateUrlEntry(baseUrl, "/tarjetas-regalo", "0.6", null, SUPPORTED_LANGUAGES, "monthly");
-      sitemap += generateUrlEntry(baseUrl, "/precios", "0.8", null, SUPPORTED_LANGUAGES, "weekly");
-      sitemap += generateUrlEntry(baseUrl, "/alquiler-barcos-cerca-barcelona", "0.7", null, SUPPORTED_LANGUAGES, "monthly");
-      sitemap += generateUrlEntry(baseUrl, "/alquiler-barcos-costa-brava", "0.9", null, SUPPORTED_LANGUAGES, "monthly");
-      sitemap += generateUrlEntry(baseUrl, "/faq", "0.6", null, SUPPORTED_LANGUAGES, "monthly");
-      sitemap += generateUrlEntry(baseUrl, "/testimonios", "0.6", null, SUPPORTED_LANGUAGES, "monthly");
-      sitemap += generateUrlEntry(baseUrl, "/about", "0.6", null, SUPPORTED_LANGUAGES, "monthly");
-      sitemap += generateUrlEntry(baseUrl, "/destinos", "0.7", null, SUPPORTED_LANGUAGES, "monthly");
-      sitemap += generateUrlEntry(baseUrl, "/barcos-sin-licencia", "0.7", null, SUPPORTED_LANGUAGES, "monthly");
-      sitemap += generateUrlEntry(baseUrl, "/barcos-con-licencia", "0.7", null, SUPPORTED_LANGUAGES, "monthly");
-      sitemap += generateUrlEntry(baseUrl, "/blog", "0.7", null, SUPPORTED_LANGUAGES, "weekly");
-      sitemap += generateUrlEntry(baseUrl, "/excursion-snorkel-barco-blanes", "0.7", null, SUPPORTED_LANGUAGES, "monthly");
-      sitemap += generateUrlEntry(baseUrl, "/barco-familias-costa-brava", "0.7", null, SUPPORTED_LANGUAGES, "monthly");
-      sitemap += generateUrlEntry(baseUrl, "/sunset-boat-trip-blanes", "0.7", null, SUPPORTED_LANGUAGES, "monthly");
-      sitemap += generateUrlEntry(baseUrl, "/pesca-barco-blanes", "0.7", null, SUPPORTED_LANGUAGES, "monthly");
-      // English landing pages with dedicated paths (cross-linked hreflang with Spanish counterparts)
-      const englishLandingPages: Array<{ en: string; es: string }> = [
-        { en: "/boat-rental-blanes", es: "/alquiler-barcos-blanes" },
-        { en: "/boat-rental-costa-brava", es: "/alquiler-barcos-costa-brava" },
+      // Location pages
+      const locationPages: PageKey[] = [
+        "locationBlanes", "locationLloret", "locationTossa", "locationMalgrat",
+        "locationSantaSusanna", "locationCalella", "locationPinedaDeMar",
+        "locationPalafolls", "locationTordera",
       ];
-      englishLandingPages.forEach(({ en, es }) => {
-        const hreflangBlock =
-          `    <xhtml:link rel="alternate" hreflang="x-default" href="${baseUrl}${es}"/>\n` +
-          `    <xhtml:link rel="alternate" hreflang="${HREFLANG_CODES.es}" href="${baseUrl}${es}"/>\n` +
-          `    <xhtml:link rel="alternate" hreflang="${HREFLANG_CODES.en}" href="${baseUrl}${en}"/>\n`;
-        sitemap += `  <url>
-    <loc>${baseUrl}${en}</loc>
-    <priority>0.8</priority>
-    <changefreq>monthly</changefreq>
-${hreflangBlock}  </url>
-`;
+      locationPages.forEach(pageKey => {
+        sitemap += generateUrlEntry(baseUrl, pageKey, "0.7", null, "monthly");
       });
 
-      sitemap += generateUrlEntry(baseUrl, "/privacy-policy", "0.3", null, SUPPORTED_LANGUAGES, "yearly");
-      sitemap += generateUrlEntry(baseUrl, "/terms-conditions", "0.3", null, SUPPORTED_LANGUAGES, "yearly");
-      sitemap += generateUrlEntry(baseUrl, "/condiciones-generales", "0.3", null, SUPPORTED_LANGUAGES, "yearly");
-      sitemap += generateUrlEntry(baseUrl, "/cookies-policy", "0.3", null, SUPPORTED_LANGUAGES, "yearly");
-      sitemap += generateUrlEntry(baseUrl, "/accesibilidad", "0.3", null, SUPPORTED_LANGUAGES, "yearly");
+      sitemap += generateUrlEntry(baseUrl, "locationBarcelona", "0.7", null, "monthly");
+      sitemap += generateUrlEntry(baseUrl, "locationCostaBrava", "0.9", null, "monthly");
+
+      // Content pages
+      sitemap += generateUrlEntry(baseUrl, "gallery", "0.6", null, "monthly");
+      sitemap += generateUrlEntry(baseUrl, "routes", "0.7", null, "monthly");
+      sitemap += generateUrlEntry(baseUrl, "giftCards", "0.6", null, "monthly");
+      sitemap += generateUrlEntry(baseUrl, "pricing", "0.8", null, "weekly");
+      sitemap += generateUrlEntry(baseUrl, "faq", "0.6", null, "monthly");
+      sitemap += generateUrlEntry(baseUrl, "testimonials", "0.6", null, "monthly");
+      sitemap += generateUrlEntry(baseUrl, "about", "0.6", null, "monthly");
+      sitemap += generateUrlEntry(baseUrl, "destinations", "0.7", null, "monthly");
+
+      // Category pages
+      sitemap += generateUrlEntry(baseUrl, "categoryLicenseFree", "0.7", null, "monthly");
+      sitemap += generateUrlEntry(baseUrl, "categoryLicensed", "0.7", null, "monthly");
+
+      // Blog index
+      sitemap += generateUrlEntry(baseUrl, "blog", "0.7", null, "weekly");
+
+      // Activity pages
+      sitemap += generateUrlEntry(baseUrl, "activitySnorkel", "0.7", null, "monthly");
+      sitemap += generateUrlEntry(baseUrl, "activityFamilies", "0.7", null, "monthly");
+      sitemap += generateUrlEntry(baseUrl, "activitySunset", "0.7", null, "monthly");
+      sitemap += generateUrlEntry(baseUrl, "activityFishing", "0.7", null, "monthly");
+
+      // Legal pages
+      sitemap += generateUrlEntry(baseUrl, "privacyPolicy", "0.3", null, "yearly");
+      sitemap += generateUrlEntry(baseUrl, "termsConditions", "0.3", null, "yearly");
+      sitemap += generateUrlEntry(baseUrl, "condicionesGenerales", "0.3", null, "yearly");
+      sitemap += generateUrlEntry(baseUrl, "cookiesPolicy", "0.3", null, "yearly");
+      sitemap += generateUrlEntry(baseUrl, "accessibility", "0.3", null, "yearly");
 
       sitemap += `</urlset>`;
 
@@ -264,25 +263,20 @@ ${hreflangBlock}  </url>
 `;
 
       activeBoats.forEach(boat => {
-        const boatPath = `/barco/${boat.id}`;
+        const boatSlug = (boat as Record<string, any>).slug || String(boat.id);
         const boatLastmod = formatSitemapDate((boat as Record<string, any>).updatedAt || (boat as Record<string, any>).createdAt);
         const safeName = escapeXml(boat.name);
+        const boatHreflang = buildHreflangLinks(baseUrl, "boatDetail", boatSlug);
 
-        const boatHreflang = buildHreflangLinks(baseUrl, boatPath);
-
-        sitemap += `  <url>
-    <loc>${baseUrl}${boatPath}</loc>
-    <lastmod>${boatLastmod}</lastmod>
-    <priority>0.8</priority>
-    <changefreq>weekly</changefreq>`;
-
+        // Build image tags once (shared across all language URLs)
+        let imageTags = "";
         if (boat.imageUrl) {
           const rawImageUrl = boat.imageUrl.startsWith("http")
             ? boat.imageUrl
             : `${baseUrl}/object-storage/${boat.imageUrl}`;
           const imageUrl = escapeXml(rawImageUrl);
 
-          sitemap += `
+          imageTags += `
     <image:image>
       <image:loc>${imageUrl}</image:loc>
       <image:caption>Alquiler barco ${safeName} en Blanes Costa Brava - ${boat.requiresLicense ? "Con licencia" : "Sin licencia"}</image:caption>
@@ -297,7 +291,7 @@ ${hreflangBlock}  </url>
               : `${baseUrl}/object-storage/${galleryImg}`;
             const galleryUrl = escapeXml(rawGalleryUrl);
 
-            sitemap += `
+            imageTags += `
     <image:image>
       <image:loc>${galleryUrl}</image:loc>
       <image:caption>${safeName} - Foto ${index + 1} - Alquiler barco en Blanes Costa Brava</image:caption>
@@ -306,20 +300,16 @@ ${hreflangBlock}  </url>
           });
         }
 
-        sitemap += `
-${boatHreflang}  </url>
-`;
-
+        // Generate one <url> per language
         SUPPORTED_LANGUAGES.forEach(lang => {
-          if (lang !== "es") {
-            sitemap += `  <url>
-    <loc>${baseUrl}${boatPath}?lang=${lang}</loc>
+          const boatPath = getLocalizedPath("boatDetail", lang) + `/${boatSlug}`;
+          sitemap += `  <url>
+    <loc>${baseUrl}${boatPath}</loc>
     <lastmod>${boatLastmod}</lastmod>
     <priority>0.8</priority>
-    <changefreq>weekly</changefreq>
+    <changefreq>weekly</changefreq>${imageTags}
 ${boatHreflang}  </url>
 `;
-          }
         });
       });
 
@@ -357,8 +347,7 @@ ${boatHreflang}  </url>
         const priority = ageDays < 30 ? "0.9" : ageDays < 90 ? "0.8" : "0.7";
         const blogChangefreq = ageDays < 30 ? "weekly" : ageDays < 90 ? "monthly" : "yearly";
 
-        const postPath = `/blog/${post.slug}`;
-        const postHreflang = buildHreflangLinks(baseUrl, postPath);
+        const postHreflang = buildBlogHreflangLinks(baseUrl, post);
 
         // Build image tag if featured image exists (with XML escaping)
         let imageTag = "";
@@ -378,26 +367,19 @@ ${boatHreflang}  </url>
     </image:image>`;
         }
 
-        // Canonical (ES) entry with image and hreflang
-        sitemap += `  <url>
-    <loc>${baseUrl}${postPath}</loc>
-    <lastmod>${postDate}</lastmod>
-    <priority>${priority}</priority>
-    <changefreq>${blogChangefreq}</changefreq>${imageTag}
-${postHreflang}  </url>
-`;
-
-        // Language variant entries
+        // Generate one <url> per language, each with its own localized slug
         SUPPORTED_LANGUAGES.forEach(lang => {
-          if (lang !== "es") {
-            sitemap += `  <url>
-    <loc>${baseUrl}${postPath}?lang=${lang}</loc>
+          const postSlug = (post as Record<string, unknown>).slugByLang
+            ? ((post as Record<string, unknown>).slugByLang as Record<string, string>)[lang] || post.slug
+            : post.slug;
+          const blogPath = getLocalizedPath("blogDetail", lang) + `/${postSlug}`;
+          sitemap += `  <url>
+    <loc>${baseUrl}${blogPath}</loc>
     <lastmod>${postDate}</lastmod>
     <priority>${priority}</priority>
     <changefreq>${blogChangefreq}</changefreq>${imageTag}
 ${postHreflang}  </url>
 `;
-          }
         });
       });
 
@@ -430,25 +412,19 @@ ${postHreflang}  </url>
       if (publishedDestinations.length > 0) {
         // Generate entries from DB destinations
         publishedDestinations.forEach(destination => {
-          const destPath = `/destinos/${destination.slug}`;
           const destLastmod = formatSitemapDate((destination as Record<string, any>).updatedAt || (destination as Record<string, any>).createdAt);
           const safeName = escapeXml(destination.name);
+          const destHreflang = buildHreflangLinks(baseUrl, "destinationDetail", destination.slug);
 
-          const destHreflang = buildHreflangLinks(baseUrl, destPath);
-
-          sitemap += `  <url>
-    <loc>${baseUrl}${destPath}</loc>
-    <lastmod>${destLastmod}</lastmod>
-    <priority>0.7</priority>
-    <changefreq>monthly</changefreq>`;
-
+          // Build image tag once (shared across all language URLs)
+          let imageTag = "";
           if (destination.featuredImage) {
             const rawImageUrl = destination.featuredImage.startsWith("http")
               ? destination.featuredImage
               : `${baseUrl}/object-storage/${destination.featuredImage}`;
             const imageUrl = escapeXml(rawImageUrl);
 
-            sitemap += `
+            imageTag = `
     <image:image>
       <image:loc>${imageUrl}</image:loc>
       <image:caption>${safeName} - Destino Costa Brava cerca de Blanes</image:caption>
@@ -456,49 +432,32 @@ ${postHreflang}  </url>
     </image:image>`;
           }
 
-          sitemap += `
-${destHreflang}  </url>
-`;
-
+          // Generate one <url> per language; slug stays the same, only prefix changes
           SUPPORTED_LANGUAGES.forEach(lang => {
-            if (lang !== "es") {
-              sitemap += `  <url>
-    <loc>${baseUrl}${destPath}?lang=${lang}</loc>
+            const destPath = getLocalizedPath("destinationDetail", lang) + `/${destination.slug}`;
+            sitemap += `  <url>
+    <loc>${baseUrl}${destPath}</loc>
     <lastmod>${destLastmod}</lastmod>
     <priority>0.7</priority>
-    <changefreq>monthly</changefreq>
+    <changefreq>monthly</changefreq>${imageTag}
 ${destHreflang}  </url>
 `;
-            }
           });
         });
       } else {
-        // Fallback: generate entries from boatRoutes static data
-        // These represent the navigable destinations from Blanes
+        // Fallback: generate entries from static destination slugs
         FALLBACK_DESTINATION_SLUGS.forEach(slug => {
-          const destPath = `/destinos/${slug}`;
-          const destHreflang = buildHreflangLinks(baseUrl, destPath);
-
-          sitemap += `  <url>
-    <loc>${baseUrl}${destPath}</loc>
-    <lastmod>${DEPLOY_DATE}</lastmod>
-    <priority>0.7</priority>
-    <changefreq>monthly</changefreq>`;
-
-          sitemap += `
-${destHreflang}  </url>
-`;
+          const destHreflang = buildHreflangLinks(baseUrl, "destinationDetail", slug);
 
           SUPPORTED_LANGUAGES.forEach(lang => {
-            if (lang !== "es") {
-              sitemap += `  <url>
-    <loc>${baseUrl}${destPath}?lang=${lang}</loc>
+            const destPath = getLocalizedPath("destinationDetail", lang) + `/${slug}`;
+            sitemap += `  <url>
+    <loc>${baseUrl}${destPath}</loc>
     <lastmod>${DEPLOY_DATE}</lastmod>
     <priority>0.7</priority>
     <changefreq>monthly</changefreq>
 ${destHreflang}  </url>
 `;
-            }
           });
         });
       }

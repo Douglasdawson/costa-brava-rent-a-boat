@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { Link, useParams, useLocation } from "wouter";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import rehypeRaw from "rehype-raw";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { SEO } from "@/components/SEO";
@@ -382,9 +383,10 @@ function ShareButtons({ title, url, bd, slug }: { title: string; url: string; bd
   );
 }
 
-export default function BlogDetailPage() {
-  const { slug } = useParams<{ slug: string }>();
-  const { language } = useLanguage();
+export default function BlogDetailPage({ slug: slugProp }: { slug?: string }) {
+  const routeParams = useParams<{ slug: string }>();
+  const slug = slugProp || routeParams.slug;
+  const { language, localizedPath } = useLanguage();
   const t = useTranslations();
   const bd = t.blogDetail!;
   const [, setLocation] = useLocation();
@@ -644,7 +646,7 @@ export default function BlogDetailPage() {
                 {bd.notFoundDescription}
               </p>
               <Button asChild data-testid="button-back-blog">
-                <Link href="/blog">
+                <Link href={localizedPath("blog")}>
                   <ArrowLeft className="h-4 w-4 mr-2" />
                   {bd.backToBlog}
                 </Link>
@@ -769,7 +771,7 @@ export default function BlogDetailPage() {
                 className="prose max-w-none dark:prose-invert prose-headings:font-heading prose-headings:tracking-tight prose-a:text-cta prose-a:decoration-cta/40 hover:prose-a:decoration-cta prose-img:rounded-lg prose-table:m-0"
                 data-testid={`content-article-${post.slug}`}
               >
-                <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>
+                <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]} components={markdownComponents}>
                   {localized(post.contentByLang as Record<string, string> | null, post.content, language)}
                 </ReactMarkdown>
               </div>
@@ -886,15 +888,15 @@ export default function BlogDetailPage() {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 pb-12">
         <h2 className="text-xl font-heading font-bold text-foreground mb-4">Destinos relacionados</h2>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-          <a href="/alquiler-barcos-blanes" className="block p-4 bg-background rounded-lg border border-border hover:border-primary hover:shadow-sm transition-all">
+          <a href={localizedPath("locationBlanes")} className="block p-4 bg-background rounded-lg border border-border hover:border-primary hover:shadow-sm transition-all">
             <h3 className="font-semibold mb-1">Blanes</h3>
             <p className="text-sm text-muted-foreground">Puerto base. Barcos sin licencia desde 70€/h.</p>
           </a>
-          <a href="/alquiler-barcos-lloret-de-mar" className="block p-4 bg-background rounded-lg border border-border hover:border-primary hover:shadow-sm transition-all">
+          <a href={localizedPath("locationLloret")} className="block p-4 bg-background rounded-lg border border-border hover:border-primary hover:shadow-sm transition-all">
             <h3 className="font-semibold mb-1">Lloret de Mar</h3>
             <p className="text-sm text-muted-foreground">Calas y playas a 20 min en barco desde Blanes.</p>
           </a>
-          <a href="/alquiler-barcos-tossa-de-mar" className="block p-4 bg-background rounded-lg border border-border hover:border-primary hover:shadow-sm transition-all">
+          <a href={localizedPath("locationTossa")} className="block p-4 bg-background rounded-lg border border-border hover:border-primary hover:shadow-sm transition-all">
             <h3 className="font-semibold mb-1">Tossa de Mar</h3>
             <p className="text-sm text-muted-foreground">Vila Vella medieval y las mejores calas de la Costa Brava.</p>
           </a>

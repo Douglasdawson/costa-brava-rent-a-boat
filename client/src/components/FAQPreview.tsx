@@ -2,6 +2,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { HelpCircle, ArrowRight } from "lucide-react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { useTranslations } from "@/lib/translations";
+import { useLanguage } from "@/hooks/use-language";
 
 /** Fallback items (Spanish) used when faqPreview translations are not loaded */
 const FALLBACK_ITEMS = [
@@ -83,6 +84,7 @@ const PREVIEW_COUNT = 8;
 export default function FAQPreview() {
   const { ref: revealRef, isVisible } = useScrollReveal();
   const t = useTranslations();
+  const { localizedPath } = useLanguage();
 
   const items = t.faqPreview?.items?.length ? t.faqPreview.items : FALLBACK_ITEMS;
   const previewItems = items.slice(0, PREVIEW_COUNT);
@@ -127,7 +129,7 @@ export default function FAQPreview() {
         {/* Link to full FAQ */}
         <div className="text-center mt-8">
           <a
-            href="/faq"
+            href={localizedPath("faq")}
             className="inline-flex items-center gap-2 text-primary font-semibold text-sm hover:underline"
           >
             {viewAll}

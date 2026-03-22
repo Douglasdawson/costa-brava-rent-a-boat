@@ -11,6 +11,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { useToast } from "@/hooks/use-toast";
 import { Loader2, User, Calendar, Ship, LogOut, Save } from "lucide-react";
 import { useLocation } from "wouter";
+import { useLanguage } from "@/hooks/use-language";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -444,6 +445,7 @@ function BookingsTab() {
 
 function NewBookingTab() {
   const [, navigate] = useLocation();
+  const { localizedPath } = useLanguage();
 
   return (
     <Card>
@@ -456,7 +458,7 @@ function NewBookingTab() {
           Para realizar una nueva reserva, serás redirigido a nuestra página de reservas.
           Tus datos se autocompletarán automáticamente.
         </p>
-        <Button onClick={() => navigate("/booking")} className="w-full" data-testid="button-new-booking">
+        <Button onClick={() => navigate(localizedPath("booking"))} className="w-full" data-testid="button-new-booking">
           <Ship className="mr-2 h-4 w-4" />
           Ir a Reservas
         </Button>
@@ -468,6 +470,7 @@ function NewBookingTab() {
 export default function ClientDashboard() {
   const { user, logout, isLoading } = useAuth();
   const [, navigate] = useLocation();
+  const { localizedPath } = useLanguage();
   const { toast } = useToast();
 
   const handleLogout = async () => {
@@ -477,7 +480,7 @@ export default function ClientDashboard() {
         title: "Sesión cerrada",
         description: "Has cerrado sesión correctamente",
       });
-      navigate("/");
+      navigate(localizedPath("home"));
     } catch (error) {
       toast({
         title: "Error",
@@ -496,7 +499,7 @@ export default function ClientDashboard() {
   }
 
   if (!user) {
-    navigate("/");
+    navigate(localizedPath("home"));
     return null;
   }
 

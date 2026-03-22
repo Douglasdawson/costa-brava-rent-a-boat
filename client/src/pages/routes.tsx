@@ -102,7 +102,7 @@ const RouteCard = React.memo(function RouteCard({
 
 function RoutesPage() {
   const [selectedRouteId, setSelectedRouteId] = useState<string | null>(null);
-  const { language } = useLanguage();
+  const { language, localizedPath } = useLanguage();
   const t = useTranslations();
 
   const seoConfig = getSEOConfig("routes", language) || {
@@ -134,7 +134,7 @@ function RoutesPage() {
           <div className="max-w-3xl mx-auto text-left mt-4 mb-2 text-muted-foreground">
             <p>
               {t.routes?.introText}{" "}
-              <a href="/#fleet" className="text-primary hover:underline">{t.routes?.introFleetLink}</a>{" "}
+              <a href={localizedPath("home") + "#fleet"} className="text-primary hover:underline">{t.routes?.introFleetLink}</a>{" "}
               {t.routes?.introSuffix}
             </p>
           </div>
@@ -167,15 +167,15 @@ function RoutesPage() {
 
         {/* Related destinations */}
         <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
-          <a href="/alquiler-barcos-lloret-de-mar" className="block p-6 bg-background rounded-lg border border-border hover:border-primary transition-colors">
+          <a href={localizedPath("locationLloret")} className="block p-6 bg-background rounded-lg border border-border hover:border-primary transition-colors">
             <h3 className="font-bold text-lg mb-2">{t.routes?.lloretTitle}</h3>
             <p className="text-sm text-muted-foreground">{t.routes?.lloretDesc}</p>
           </a>
-          <a href="/alquiler-barcos-tossa-de-mar" className="block p-6 bg-background rounded-lg border border-border hover:border-primary transition-colors">
+          <a href={localizedPath("locationTossa")} className="block p-6 bg-background rounded-lg border border-border hover:border-primary transition-colors">
             <h3 className="font-bold text-lg mb-2">{t.routes?.tossaTitle}</h3>
             <p className="text-sm text-muted-foreground">{t.routes?.tossaDesc}</p>
           </a>
-          <a href="/precios" className="block p-6 bg-background rounded-lg border border-border hover:border-primary transition-colors">
+          <a href={localizedPath("pricing")} className="block p-6 bg-background rounded-lg border border-border hover:border-primary transition-colors">
             <h3 className="font-bold text-lg mb-2">{t.routes?.pricesTitle}</h3>
             <p className="text-sm text-muted-foreground">{t.routes?.pricesDesc}</p>
           </a>

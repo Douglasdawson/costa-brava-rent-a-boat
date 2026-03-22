@@ -1,21 +1,21 @@
 import { useState, useEffect, useRef, lazy, Suspense, Component } from "react";
-import { Switch, Route, useSearch, useLocation, useRoute, Redirect } from "wouter";
+import { Switch, Route, useSearch, useLocation, useParams, Redirect } from "wouter";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import { Button } from "@/components/ui/button";
-import { LanguageProvider } from "@/hooks/use-language";
+import { LanguageProvider, useLanguage } from "@/hooks/use-language";
+import type { Language } from "@/hooks/use-language";
 import { BookingModalProvider } from "@/hooks/useBookingModal";
 import { useUtmCapture } from "@/hooks/useUtmCapture";
 import { trackJsError } from "@/utils/analytics";
+import { isValidLang, resolveSlug } from "@shared/i18n-routes";
+import type { PageKey } from "@shared/i18n-routes";
 
 // Import critical components (above the fold)
 import Navigation from "./components/Navigation";
 import Hero from "./components/Hero";
 import Footer from "./components/Footer";
-import { SocialProofStrip } from "./components/SocialProofStrip";
-
 
 // Lazy load below-fold homepage sections
 const FleetSection = lazy(() => import("@/components/FleetSection"));
@@ -60,13 +60,11 @@ const CancelBookingPage = lazy(() => import("@/pages/CancelBookingPage"));
 const PricingPage = lazy(() => import("@/pages/pricing"));
 const LocationBarcelonaPage = lazy(() => import("@/pages/location-barcelona"));
 const LocationCostaBravaPage = lazy(() => import("@/pages/alquiler-barcos-costa-brava"));
-const BoatRentalCostaBravaPage = lazy(() => import("@/pages/boat-rental-costa-brava"));
 const ActivitySnorkelPage = lazy(() => import("@/pages/activity-snorkel"));
 const ActivityFamiliesPage = lazy(() => import("@/pages/activity-families"));
 const ActivitySunsetPage = lazy(() => import("@/pages/activity-sunset"));
 const ActivityFishingPage = lazy(() => import("@/pages/activity-fishing"));
 const AboutPage = lazy(() => import("@/pages/about"));
-const BoatRentalBlanesPage = lazy(() => import("@/pages/boat-rental-blanes"));
 
 const NotFound = lazy(() => import("@/pages/not-found"));
 const OnboardingPage = lazy(() => import("@/pages/OnboardingPage"));
@@ -75,30 +73,25 @@ const AccessibilityDeclarationPage = lazy(() => import("@/pages/accessibility-de
 import { ScrollToTop } from "./components/ScrollToTop";
 import { RouteProgressBar } from "./components/RouteProgressBar";
 import { usePrefetchCriticalRoutes } from "@/hooks/usePrefetch";
-// Defer non-critical UI: these components are not needed for FCP/LCP
 const WhatsAppFloatingButton = lazy(() => import("./components/WhatsAppFloatingButton"));
 const CookieBanner = lazy(() => import("./components/CookieBanner"));
 const ExitIntentModal = lazy(() => import("./components/ExitIntentModal").then(m => ({ default: m.ExitIntentModal })));
 const SocialProofToast = lazy(() => import("./components/SocialProofToast").then(m => ({ default: m.SocialProofToast })));
 const SeasonBanner = lazy(() => import("./components/SeasonBanner").then(m => ({ default: m.SeasonBanner })));
 
-// HomePageSEO lazy-loaded: seo-config.ts (100KB) deferred from main bundle
 const HomePageSEO = lazy(() => import("@/components/HomePageSEO"));
 
-// SPA Virtual Pageview Tracking — GA4 only records the initial page load,
-// so we push a virtual_page_view on every SPA navigation
+// SPA Virtual Pageview Tracking
 function usePageViewTracking() {
   const [location] = useLocation();
   const isFirstRender = useRef(true);
 
   useEffect(() => {
-    // Skip first render — GTM handles the initial pageview
     if (isFirstRender.current) {
       isFirstRender.current = false;
       return;
     }
 
-    // Push virtual pageview to dataLayer
     if (typeof window !== "undefined" && window.dataLayer) {
       window.dataLayer.push({
         event: 'virtual_page_view',
@@ -109,14 +102,12 @@ function usePageViewTracking() {
       });
     }
 
-    // Also fire Meta Pixel PageView for SPA navigations
     if (typeof window !== "undefined" && (window as unknown as Record<string, unknown>).fbq) {
       ((window as unknown as Record<string, unknown>).fbq as (...args: unknown[]) => void)('track', 'PageView');
     }
   }, [location]);
 }
 
-// Error Boundary — catches any unhandled render error and prevents a blank white screen
 class ErrorBoundary extends Component<{ children: React.ReactNode }, { hasError: boolean }> {
   constructor(props: { children: React.ReactNode }) {
     super(props);
@@ -146,7 +137,6 @@ class ErrorBoundary extends Component<{ children: React.ReactNode }, { hasError:
   }
 }
 
-// Main Home Page Component
 function HomePage() {
   usePrefetchCriticalRoutes();
 
@@ -188,11 +178,10 @@ function HomePage() {
   );
 }
 
-// Wrapper components for router
 function BookingFlowPage() {
   const search = useSearch();
   const params = new URLSearchParams(search);
-  const boatId = params.get('boat') || 'astec-480'; // Default boat if none specified
+  const boatId = params.get('boat') || 'astec-480';
   const date = params.get('date') || '';
   const duration = params.get('duration') || '';
   const time = params.get('time') || '';
@@ -201,9 +190,9 @@ function BookingFlowPage() {
   const phonePrefix = params.get('phonePrefix') || '';
   const phoneNumber = params.get('phoneNumber') || '';
   const email = params.get('email') || '';
-  
+
   return (
-    <BookingFlow 
+    <BookingFlow
       boatId={boatId}
       initialDate={date}
       initialDuration={duration}
@@ -223,22 +212,20 @@ function CRMDashboardPage() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [adminToken, setAdminToken] = useState<string | null>(null);
   const [, setLocation] = useLocation();
+  const { localizedPath } = useLanguage();
   const setLocationRef = useRef(setLocation);
   useEffect(() => { setLocationRef.current = setLocation; });
 
-  // Check for existing session on mount
   useEffect(() => {
     const token = sessionStorage.getItem("adminToken");
     if (token) {
       setAdminToken(token);
       setIsAuthenticated(true);
     } else {
-      // Redirect to unified login page if not authenticated
-      setLocation("/login");
+      setLocation(localizedPath("login"));
     }
-  }, [setLocation]);
+  }, [setLocation, localizedPath]);
 
-  // Auto-refresh token if we have a refresh token
   useEffect(() => {
     if (!isAuthenticated) return;
 
@@ -259,38 +246,28 @@ function CRMDashboardPage() {
           sessionStorage.setItem("refreshToken", data.refreshToken);
           setAdminToken(data.accessToken);
         } else {
-          // Refresh failed - session expired
           sessionStorage.clear();
-          setLocationRef.current("/login");
+          setLocationRef.current(localizedPath("login"));
         }
       } catch {
         // Silent failure on refresh
       }
-    }, 50 * 60 * 1000); // Refresh every 50 minutes (token expires in 60)
+    }, 50 * 60 * 1000);
 
     return () => clearInterval(refreshInterval);
-  }, [isAuthenticated]); // setLocation is stable via ref — no interval thrashing
+  }, [isAuthenticated, localizedPath]);
 
   if (!isAuthenticated) {
-    return null; // Will redirect in useEffect
+    return null;
   }
 
   return <CRMDashboard adminToken={adminToken!} />;
 }
 
-// Dynamic boat detail page wrapper
-function BoatPage() {
-  const [match, params] = useRoute("/barco/:id");
-  const boatId = params?.id || "solar-450"; // Fallback to default
-  return <BoatDetailPage boatId={boatId} />;
-}
-
-// Granular Suspense fallbacks per route priority group
-// Main routes: minimal skeleton with nav spacer + pulse area (fast perceived load)
 function MainRouteFallback() {
   return (
     <div className="min-h-screen">
-      <div className="h-16" /> {/* nav spacer */}
+      <div className="h-16" />
       <div className="max-w-7xl mx-auto px-4 py-12">
         <div className="h-8 w-64 bg-muted animate-pulse rounded mb-6" />
         <div className="h-4 w-full bg-muted animate-pulse rounded mb-3" />
@@ -305,7 +282,6 @@ function MainRouteFallback() {
   );
 }
 
-// Secondary routes: text-heavy content skeleton
 function SecondaryRouteFallback() {
   return (
     <div className="min-h-screen">
@@ -322,165 +298,210 @@ function SecondaryRouteFallback() {
   );
 }
 
-// Admin/legal routes: minimal placeholder
 function MinimalRouteFallback() {
   return <div className="min-h-screen" />;
 }
 
-// Router Component — granular Suspense boundaries per route priority group
+// Static page component map for PageResolver
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const PAGE_COMPONENTS: Record<string, React.LazyExoticComponent<any> | React.ComponentType<any>> = {
+  locationBlanes: LocationBlanesPage,
+  locationLloret: LocationLloretPage,
+  locationTossa: LocationTossaPage,
+  locationMalgrat: LocationMalgratPage,
+  locationSantaSusanna: LocationSantaSusannaPage,
+  locationCalella: LocationCalellaPage,
+  locationPinedaDeMar: LocationPinedaDeMarPage,
+  locationPalafolls: LocationPalafollsPage,
+  locationTordera: LocationTorderaPage,
+  locationBarcelona: LocationBarcelonaPage,
+  locationCostaBrava: LocationCostaBravaPage,
+  categoryLicenseFree: CategoryLicenseFreePage,
+  categoryLicensed: CategoryLicensedPage,
+  blog: BlogPage,
+  faq: FAQPage,
+  gallery: GalleryPage,
+  routes: RoutesPage,
+  pricing: PricingPage,
+  testimonials: TestimoniosPage,
+  giftCards: GiftCardsPage,
+  about: AboutPage,
+  activitySnorkel: ActivitySnorkelPage,
+  activityFamilies: ActivityFamiliesPage,
+  activitySunset: ActivitySunsetPage,
+  activityFishing: ActivityFishingPage,
+  privacyPolicy: PrivacyPolicyPage,
+  termsConditions: TermsConditionsPage,
+  cookiesPolicy: CookiesPolicyPage,
+  condicionesGenerales: CondicionesGenerales,
+  accessibility: AccessibilityDeclarationPage,
+  login: LoginPage,
+  onboarding: OnboardingPage,
+  myAccount: ClientDashboardPage,
+  clientDashboard: ClientDashboardPage,
+  booking: BookingFlowPage,
+};
+
+// Fallback group for Suspense based on page key
+const MAIN_ROUTE_KEYS = new Set<string>([
+  "pricing", "gallery", "categoryLicenseFree", "categoryLicensed",
+  "giftCards", "testimonials", "booking",
+]);
+
+const MINIMAL_ROUTE_KEYS = new Set<string>([
+  "login", "onboarding", "myAccount", "clientDashboard",
+  "privacyPolicy", "termsConditions", "cookiesPolicy",
+  "condicionesGenerales", "accessibility", "crm",
+]);
+
+function getFallback(pageKey: string) {
+  if (MAIN_ROUTE_KEYS.has(pageKey)) return <MainRouteFallback />;
+  if (MINIMAL_ROUTE_KEYS.has(pageKey)) return <MinimalRouteFallback />;
+  return <SecondaryRouteFallback />;
+}
+
+// Resolves a static page slug to its component
+function PageResolver() {
+  const { localizedPath } = useLanguage();
+  const params = useParams<{ slug: string }>();
+  const slug = params.slug;
+
+  if (!slug) {
+    return <Suspense fallback={<MinimalRouteFallback />}><NotFound /></Suspense>;
+  }
+
+  // Handle "barcos" -> redirect to fleet section
+  if (slug === "barcos") {
+    const homePath = localizedPath("home");
+    window.location.href = homePath + "#fleet";
+    return null;
+  }
+
+  const resolved = resolveSlug(slug);
+
+  if (!resolved) {
+    return <Suspense fallback={<MinimalRouteFallback />}><NotFound /></Suspense>;
+  }
+
+  // Dynamic routes should not be handled here -- they have explicit Route entries
+  // But if someone navigates to e.g. /es/blog without a slug, it resolves to blogDetail or blog
+  // For ambiguous slugs (blog, destinos), prefer the index page over the detail page
+  const pageKey = resolved.pageKey as string;
+
+  // CRM gets special treatment since it has a sub-path for tabs
+  if (pageKey === "crm") {
+    return <Suspense fallback={<MinimalRouteFallback />}><CRMDashboardPage /></Suspense>;
+  }
+
+  const PageComponent = PAGE_COMPONENTS[pageKey];
+
+  if (!PageComponent) {
+    return <Suspense fallback={<MinimalRouteFallback />}><NotFound /></Suspense>;
+  }
+
+  return <Suspense fallback={getFallback(pageKey)}><PageComponent /></Suspense>;
+}
+
+// Map from index page keys to their dynamic counterparts.
+// resolveSlug may return the index page key when the slug is ambiguous (e.g. "blog").
+const DYNAMIC_KEY_MAP: Record<string, PageKey> = {
+  blog: "blogDetail",
+  blogDetail: "blogDetail",
+  destinations: "destinationDetail",
+  destinationDetail: "destinationDetail",
+  boatDetail: "boatDetail",
+  cancel: "cancel",
+};
+
+function DynamicPageResolver() {
+  const params = useParams<{ slug: string; param: string }>();
+  const slug = params.slug;
+  const dynamicParam = params.param;
+
+  if (!slug || !dynamicParam) {
+    return <Suspense fallback={<MinimalRouteFallback />}><NotFound /></Suspense>;
+  }
+
+  const resolved = resolveSlug(slug);
+
+  if (!resolved) {
+    return <Suspense fallback={<MinimalRouteFallback />}><NotFound /></Suspense>;
+  }
+
+  const dynamicKey = DYNAMIC_KEY_MAP[resolved.pageKey];
+
+  if (!dynamicKey) {
+    return <Suspense fallback={<MinimalRouteFallback />}><NotFound /></Suspense>;
+  }
+
+  if (dynamicKey === "boatDetail") {
+    return <Suspense fallback={<MainRouteFallback />}><BoatDetailPage boatId={dynamicParam} /></Suspense>;
+  }
+
+  if (dynamicKey === "blogDetail") {
+    return <Suspense fallback={<SecondaryRouteFallback />}><BlogDetailPage slug={dynamicParam} /></Suspense>;
+  }
+
+  if (dynamicKey === "destinationDetail") {
+    return <Suspense fallback={<SecondaryRouteFallback />}><DestinationDetailPage slug={dynamicParam} /></Suspense>;
+  }
+
+  if (dynamicKey === "cancel") {
+    return <Suspense fallback={<MinimalRouteFallback />}><CancelBookingPage token={dynamicParam} /></Suspense>;
+  }
+
+  return <Suspense fallback={<MinimalRouteFallback />}><NotFound /></Suspense>;
+}
+
+// Detects the user language from localStorage or browser for the root redirect
+function detectLanguageForRedirect(): Language {
+  const saved = localStorage.getItem('costa-brava-language');
+  if (saved && isValidLang(saved)) return saved as Language;
+
+  const browserLang = navigator.language || navigator.languages?.[0] || 'es';
+  const langCode = browserLang.toLowerCase().split('-')[0];
+  if (isValidLang(langCode)) return langCode as Language;
+  return 'es';
+}
+
+function RootRedirect() {
+  const lang = detectLanguageForRedirect();
+  return <Redirect to={`/${lang}/`} />;
+}
+
+// Validates the :lang param and renders home or 404
+function LangHome() {
+  const params = useParams<{ lang: string }>();
+  if (!params.lang || !isValidLang(params.lang)) {
+    return <Suspense fallback={<MinimalRouteFallback />}><NotFound /></Suspense>;
+  }
+  return <HomePage />;
+}
+
+// CRM route handler with optional tab
+function CRMRoute() {
+  return <Suspense fallback={<MinimalRouteFallback />}><CRMDashboardPage /></Suspense>;
+}
+
 function Router() {
   useUtmCapture();
   usePageViewTracking();
   return (
     <Switch>
-      {/* Home page has its own internal Suspense boundaries for sections */}
-      <Route path="/" component={HomePage} />
+      {/* Root: redirect to /:lang/ */}
+      <Route path="/" component={RootRedirect} />
 
-      {/* Main routes: fleet, pricing, gallery, boat details — fast skeleton */}
-      <Route path="/precios">
-        {() => <Suspense fallback={<MainRouteFallback />}><PricingPage /></Suspense>}
-      </Route>
-      <Route path="/galeria">
-        {() => <Suspense fallback={<MainRouteFallback />}><GalleryPage /></Suspense>}
-      </Route>
-      <Route path="/barco/:id">
-        {() => <Suspense fallback={<MainRouteFallback />}><BoatPage /></Suspense>}
-      </Route>
-      <Route path="/barcos-sin-licencia">
-        {() => <Suspense fallback={<MainRouteFallback />}><CategoryLicenseFreePage /></Suspense>}
-      </Route>
-      <Route path="/barcos-con-licencia">
-        {() => <Suspense fallback={<MainRouteFallback />}><CategoryLicensedPage /></Suspense>}
-      </Route>
-      <Route path="/tarjetas-regalo">
-        {() => <Suspense fallback={<MainRouteFallback />}><GiftCardsPage /></Suspense>}
-      </Route>
-      <Route path="/testimonios">
-        {() => <Suspense fallback={<MainRouteFallback />}><TestimoniosPage /></Suspense>}
-      </Route>
-      <Route path="/barcos">
-        {() => {
-          window.location.href = "/#fleet";
-          return null;
-        }}
-      </Route>
+      {/* /:lang/ home page */}
+      <Route path="/:lang" component={LangHome} />
 
-      {/* Secondary routes: blog, FAQ, routes, destinations, locations — content skeleton */}
-      <Route path="/blog/:slug">
-        {() => <Suspense fallback={<SecondaryRouteFallback />}><BlogDetailPage /></Suspense>}
-      </Route>
-      <Route path="/blog">
-        {() => <Suspense fallback={<SecondaryRouteFallback />}><BlogPage /></Suspense>}
-      </Route>
-      <Route path="/faq">
-        {() => <Suspense fallback={<SecondaryRouteFallback />}><FAQPage /></Suspense>}
-      </Route>
-      <Route path="/rutas">
-        {() => <Suspense fallback={<SecondaryRouteFallback />}><RoutesPage /></Suspense>}
-      </Route>
-      <Route path="/destinos/:slug">
-        {() => <Suspense fallback={<SecondaryRouteFallback />}><DestinationDetailPage /></Suspense>}
-      </Route>
-      <Route path="/alquiler-barcos-blanes">
-        {() => <Suspense fallback={<SecondaryRouteFallback />}><LocationBlanesPage /></Suspense>}
-      </Route>
-      <Route path="/alquiler-barcos-lloret-de-mar">
-        {() => <Suspense fallback={<SecondaryRouteFallback />}><LocationLloretPage /></Suspense>}
-      </Route>
-      <Route path="/alquiler-barcos-tossa-de-mar">
-        {() => <Suspense fallback={<SecondaryRouteFallback />}><LocationTossaPage /></Suspense>}
-      </Route>
-      <Route path="/alquiler-barcos-malgrat-de-mar">
-        {() => <Suspense fallback={<SecondaryRouteFallback />}><LocationMalgratPage /></Suspense>}
-      </Route>
-      <Route path="/alquiler-barcos-santa-susanna">
-        {() => <Suspense fallback={<SecondaryRouteFallback />}><LocationSantaSusannaPage /></Suspense>}
-      </Route>
-      <Route path="/alquiler-barcos-calella">
-        {() => <Suspense fallback={<SecondaryRouteFallback />}><LocationCalellaPage /></Suspense>}
-      </Route>
-      <Route path="/alquiler-barcos-pineda-de-mar">
-        {() => <Suspense fallback={<SecondaryRouteFallback />}><LocationPinedaDeMarPage /></Suspense>}
-      </Route>
-      <Route path="/alquiler-barcos-palafolls">
-        {() => <Suspense fallback={<SecondaryRouteFallback />}><LocationPalafollsPage /></Suspense>}
-      </Route>
-      <Route path="/alquiler-barcos-tordera">
-        {() => <Suspense fallback={<SecondaryRouteFallback />}><LocationTorderaPage /></Suspense>}
-      </Route>
-      <Route path="/alquiler-barcos-cerca-barcelona">
-        {() => <Suspense fallback={<SecondaryRouteFallback />}><LocationBarcelonaPage /></Suspense>}
-      </Route>
-      <Route path="/alquiler-barcos-costa-brava">
-        {() => <Suspense fallback={<SecondaryRouteFallback />}><LocationCostaBravaPage /></Suspense>}
-      </Route>
-      <Route path="/boat-rental-costa-brava">
-        {() => <Suspense fallback={<SecondaryRouteFallback />}><BoatRentalCostaBravaPage /></Suspense>}
-      </Route>
-      <Route path="/excursion-snorkel-barco-blanes">
-        {() => <Suspense fallback={<SecondaryRouteFallback />}><ActivitySnorkelPage /></Suspense>}
-      </Route>
-      <Route path="/barco-familias-costa-brava">
-        {() => <Suspense fallback={<SecondaryRouteFallback />}><ActivityFamiliesPage /></Suspense>}
-      </Route>
-      <Route path="/sunset-boat-trip-blanes">
-        {() => <Suspense fallback={<SecondaryRouteFallback />}><ActivitySunsetPage /></Suspense>}
-      </Route>
-      <Route path="/pesca-barco-blanes">
-        {() => <Suspense fallback={<SecondaryRouteFallback />}><ActivityFishingPage /></Suspense>}
-      </Route>
-      <Route path="/boat-rental-blanes">
-        {() => <Suspense fallback={<SecondaryRouteFallback />}><BoatRentalBlanesPage /></Suspense>}
-      </Route>
-      <Route path="/about">
-        {() => <Suspense fallback={<SecondaryRouteFallback />}><AboutPage /></Suspense>}
-      </Route>
-      <Route path="/sobre-nosotros">
-        {() => <Suspense fallback={<SecondaryRouteFallback />}><AboutPage /></Suspense>}
-      </Route>
+      {/* CRM with optional tab sub-path */}
+      <Route path="/:lang/crm/:tab?" component={CRMRoute} />
 
-      {/* Redirects — no Suspense needed (instant) */}
-      <Route path="/destino/blanes">{() => <Redirect to="/alquiler-barcos-blanes" />}</Route>
-      <Route path="/destino/lloret-de-mar">{() => <Redirect to="/alquiler-barcos-lloret-de-mar" />}</Route>
-      <Route path="/destino/tossa-de-mar">{() => <Redirect to="/alquiler-barcos-tossa-de-mar" />}</Route>
-      <Route path="/categoria/sin-licencia">{() => <Redirect to="/barcos-sin-licencia" />}</Route>
-      <Route path="/categoria/con-licencia">{() => <Redirect to="/barcos-con-licencia" />}</Route>
+      {/* Dynamic routes: /:lang/:slug/:param */}
+      <Route path="/:lang/:slug/:param" component={DynamicPageResolver} />
 
-
-      {/* Admin, auth, and legal routes — minimal fallback */}
-      <Route path="/login">
-        {() => <Suspense fallback={<MinimalRouteFallback />}><LoginPage /></Suspense>}
-      </Route>
-      <Route path="/onboarding">
-        {() => <Suspense fallback={<MinimalRouteFallback />}><OnboardingPage /></Suspense>}
-      </Route>
-      <Route path="/crm/:tab?">
-        {() => <Suspense fallback={<MinimalRouteFallback />}><CRMDashboardPage /></Suspense>}
-      </Route>
-      <Route path="/mi-cuenta">
-        {() => <Suspense fallback={<MinimalRouteFallback />}><ClientDashboardPage /></Suspense>}
-      </Route>
-      <Route path="/client/dashboard">
-        {() => <Suspense fallback={<MinimalRouteFallback />}><ClientDashboardPage /></Suspense>}
-      </Route>
-      <Route path="/cancel/:token">
-        {() => <Suspense fallback={<MinimalRouteFallback />}><CancelBookingPage /></Suspense>}
-      </Route>
-      <Route path="/condiciones-generales">
-        {() => <Suspense fallback={<MinimalRouteFallback />}><CondicionesGenerales /></Suspense>}
-      </Route>
-      <Route path="/privacy-policy">
-        {() => <Suspense fallback={<MinimalRouteFallback />}><PrivacyPolicyPage /></Suspense>}
-      </Route>
-      <Route path="/terms-conditions">
-        {() => <Suspense fallback={<MinimalRouteFallback />}><TermsConditionsPage /></Suspense>}
-      </Route>
-      <Route path="/cookies-policy">
-        {() => <Suspense fallback={<MinimalRouteFallback />}><CookiesPolicyPage /></Suspense>}
-      </Route>
-      <Route path="/accesibilidad">
-        {() => <Suspense fallback={<MinimalRouteFallback />}><AccessibilityDeclarationPage /></Suspense>}
-      </Route>
+      {/* Static routes: /:lang/:slug */}
+      <Route path="/:lang/:slug" component={PageResolver} />
 
       {/* 404 fallback */}
       <Route>
@@ -492,7 +513,6 @@ function Router() {
 
 function App() {
   useEffect(() => {
-    // Defer web vitals + Meta Pixel to idle time — not needed for FCP/LCP
     const initDeferred = () => {
       import("./utils/web-vitals").then(({ initWebVitals }) => initWebVitals());
 
@@ -509,7 +529,6 @@ function App() {
     }
   }, []);
 
-  // Global JS error tracking to GA4 — complements Sentry with UX correlation
   useEffect(() => {
     const handleError = (event: ErrorEvent) => {
       trackJsError(
@@ -532,7 +551,6 @@ function App() {
               <RouteProgressBar />
               <Router />
               <ScrollToTop />
-              {/* Non-critical overlays: lazy-loaded post-FCP */}
               <Suspense fallback={null}>
                 <SeasonBanner />
                 <WhatsAppFloatingButton />

@@ -7,6 +7,8 @@ import LogoCostaBravaSVG from "@/components/icons/LogoCostavaBravaSVG";
 import { useLocation, Link } from "wouter";
 import LanguageSelector from "./LanguageSelector";
 import { useTranslations } from "@/lib/translations";
+import { useLanguage } from "@/hooks/use-language";
+import { getSlugForPage } from "@shared/i18n-routes";
 import { useAuth } from "@/hooks/useAuth";
 import { useBookingModal } from "@/hooks/bookingModalContext";
 import { trackBookingFormOpen } from "@/utils/analytics";
@@ -21,6 +23,7 @@ export default function Navigation() {
   const handleScroll = useCallback((scrollY: number) => setScrolled(scrollY > 50), []);
   useThrottledScroll(handleScroll);
   const t = useTranslations();
+  const { language, localizedPath } = useLanguage();
   const { isAuthenticated } = useAuth();
   const { openBookingModal } = useBookingModal();
   const { theme, toggleTheme } = useTheme();
@@ -29,12 +32,12 @@ export default function Navigation() {
   
   const handleMyAccountClick = () => {
     setIsOpen(false); // Close mobile menu if open
-    setLocation("/client/dashboard");
+    setLocation(localizedPath("clientDashboard"));
   };
 
   const handleLoginClick = () => {
     setIsOpen(false); // Close mobile menu if open
-    setLocation("/login");
+    setLocation(localizedPath("login"));
   };
 
   const handleMobileBooking = () => {
@@ -65,7 +68,7 @@ export default function Navigation() {
 
   const handleLogoClick = () => {
     setIsOpen(false); // Close mobile menu if open
-    setLocation("/");
+    setLocation(localizedPath("home"));
     window.scrollTo({
       top: 0,
       behavior: "smooth"
@@ -73,14 +76,18 @@ export default function Navigation() {
   };
 
   const handleNavigation = (href: string, label: string) => {
-    
+
     // Close mobile menu
     setIsOpen(false);
-    
-    if (href === "/") {
+
+    const homePath = localizedPath("home");
+    const blogPath = localizedPath("blog");
+    const faqPath = localizedPath("faq");
+
+    if (href === homePath) {
       // Navigate to homepage
       const currentPath = window.location.pathname;
-      if (currentPath === "/") {
+      if (currentPath === `/${language}/` || currentPath === `/${language}`) {
         // Already on homepage, scroll to top
         window.scrollTo({
           top: 0,
@@ -88,16 +95,16 @@ export default function Navigation() {
         });
       } else {
         // Navigate to homepage
-        setLocation("/");
+        setLocation(homePath);
       }
     } else if (href === "#booking") {
       // Open booking modal
       trackBookingFormOpen();
       openBookingModal();
-    } else if (href === "/blog") {
+    } else if (href === blogPath) {
       // Navigate to Blog page or scroll to top if already on Blog page
       const currentPath = window.location.pathname;
-      if (currentPath === "/blog" || currentPath.startsWith("/blog/")) {
+      if (currentPath.startsWith(`/${language}/blog`)) {
         // Already on Blog, scroll to top
         window.scrollTo({
           top: 0,
@@ -105,13 +112,13 @@ export default function Navigation() {
         });
       } else {
         // Navigate to Blog page
-        setLocation("/blog");
+        setLocation(blogPath);
         window.scrollTo({ top: 0 });
       }
-    } else if (href === "#faq") {
+    } else if (href === faqPath) {
       // Navigate to FAQ page or scroll to top if already on FAQ page
       const currentPath = window.location.pathname;
-      if (currentPath === "/faq") {
+      if (currentPath === faqPath) {
         // Already on FAQ page, scroll to top
         window.scrollTo({
           top: 0,
@@ -119,16 +126,16 @@ export default function Navigation() {
         });
       } else {
         // Navigate to FAQ page
-        setLocation("/faq");
+        setLocation(faqPath);
       }
     } else if (href.startsWith("#")) {
       // For anchor links, first navigate to homepage if not already there
       const sectionId = href.substring(1);
       const currentPath = window.location.pathname;
-      
-      if (currentPath !== "/") {
+
+      if (currentPath !== `/${language}/` && currentPath !== `/${language}`) {
         // Navigate to homepage first, then scroll to section
-        setLocation("/");
+        setLocation(homePath);
         // Use robust scroll after navigation
         setTimeout(() => scrollToSection(sectionId), 50);
       } else {
@@ -142,18 +149,24 @@ export default function Navigation() {
   };
 
   const navigationItems = [
-    { label: t.nav.home, href: "/" },
+    { label: t.nav.home, href: localizedPath("home") },
     { label: t.nav.fleet, href: "#fleet" },
-    { label: t.footer.destinations, href: "/rutas" },
-    { label: "Blog", href: "/blog" },
+    { label: t.footer.destinations, href: localizedPath("routes") },
+    { label: "Blog", href: localizedPath("blog") },
   ];
 
-  const isTransparent = currentLocation === "/" && !scrolled;
+  const homePath = localizedPath("home");
+  const isTransparent = (currentLocation === homePath || currentLocation === homePath.replace(/\/$/, "")) && !scrolled;
 
   const isNavItemActive = (href: string): boolean => {
-    if (href === "/") return currentLocation === "/";
-    if (href === "/blog") return currentLocation === "/blog" || currentLocation.startsWith("/blog/");
-    if (href === "/rutas") return currentLocation === "/rutas" || currentLocation.startsWith("/destinos/");
+    const path = window.location.pathname;
+    if (href === localizedPath("home")) return path === `/${language}/` || path === `/${language}`;
+    if (href === localizedPath("blog")) return path.startsWith(`/${language}/blog`);
+    if (href === localizedPath("routes")) {
+      const routesSlug = getSlugForPage("routes", language);
+      const destSlug = getSlugForPage("destinations", language);
+      return path.includes(routesSlug) || path.includes(destSlug);
+    }
     return false;
   };
 
@@ -169,7 +182,7 @@ export default function Navigation() {
         <div className="relative flex items-center justify-between h-12 lg:h-16">
           {/* Logo - Left */}
           <a
-            href="/"
+            href={localizedPath("home")}
             onClick={(e) => { e.preventDefault(); handleLogoClick(); }}
             className="flex items-center space-x-2 hover:opacity-80 transition-opacity cursor-pointer p-0 z-10"
             data-testid="brand-logo"
@@ -187,11 +200,10 @@ export default function Navigation() {
               const baseClass = `hover:text-foreground transition-colors whitespace-nowrap rounded focus-visible:ring-2 focus-visible:ring-foreground/20 focus-visible:ring-offset-2 focus-visible:outline-none ${activeClass}`;
               // Page routes: render as <a> so Googlebot can crawl them
               if (!item.href.startsWith("#")) {
-                const href = item.href === "#faq" ? "/faq" : item.href;
                 return (
                   <a
                     key={item.label}
-                    href={href}
+                    href={item.href}
                     onClick={(e) => { e.preventDefault(); handleNavigation(item.href, item.label); }}
                     className={baseClass}
                     data-testid={`nav-link-${item.label.toLowerCase()}`}
@@ -275,11 +287,10 @@ export default function Navigation() {
               {navigationItems.map((item) => {
                 const baseClass = "px-4 py-3.5 text-foreground hover:text-primary hover:bg-muted transition-colors w-full text-left font-medium block text-base rounded focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent focus-visible:outline-none";
                 if (!item.href.startsWith("#")) {
-                  const href = item.href === "#faq" ? "/faq" : item.href;
                   return (
                     <a
                       key={item.label}
-                      href={href}
+                      href={item.href}
                       onClick={(e) => { e.preventDefault(); handleNavigation(item.href, item.label); }}
                       className={baseClass}
                       data-testid={`mobile-nav-${item.label.toLowerCase()}`}

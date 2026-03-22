@@ -14,9 +14,10 @@ import { generateHreflangLinks, generateCanonicalUrl, generateBreadcrumbSchema }
 import { generatePlaceSchema } from "@/utils/seo-schemas";
 import type { Destination } from "@shared/schema";
 
-export default function DestinationDetailPage() {
-  const { slug } = useParams<{ slug: string }>();
-  const { language } = useLanguage();
+export default function DestinationDetailPage({ slug: slugProp }: { slug?: string }) {
+  const routeParams = useParams<{ slug: string }>();
+  const slug = slugProp || routeParams.slug;
+  const { language, localizedPath } = useLanguage();
 
   // Fetch the destination
   const { data: destination, isLoading, isError } = useQuery<Destination>({
@@ -89,7 +90,7 @@ export default function DestinationDetailPage() {
                 El destino que buscas no existe o ha sido eliminado.
               </p>
               <Button asChild data-testid="button-back-destinations">
-                <Link href="/destinos">
+                <Link href={localizedPath("destinations")}>
                   <ArrowLeft className="h-4 w-4 mr-2" />
                   Volver a Destinos
                 </Link>
@@ -126,7 +127,7 @@ export default function DestinationDetailPage() {
           className="mb-6"
           data-testid="button-back-to-destinations"
         >
-          <Link href="/destinos">
+          <Link href={localizedPath("destinations")}>
             <ArrowLeft className="h-4 w-4 mr-2" />
             Volver a Destinos
           </Link>
@@ -258,12 +259,12 @@ export default function DestinationDetailPage() {
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">
                   <Button asChild data-testid="button-cta-booking">
-                    <Link href="/#fleet">
+                    <Link href={localizedPath("home") + "#fleet"}>
                       Ver Barcos Disponibles
                     </Link>
                   </Button>
                   <Button variant="outline" asChild data-testid="button-cta-contact">
-                    <Link href="/#contact">
+                    <Link href={localizedPath("home") + "#contact"}>
                       Contactar
                     </Link>
                   </Button>

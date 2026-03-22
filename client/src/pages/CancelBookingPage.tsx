@@ -3,6 +3,7 @@ import { useRoute } from "wouter";
 import { Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTranslations } from "@/lib/translations";
+import { useLanguage } from "@/hooks/use-language";
 
 interface CancelInfo {
   booking: {
@@ -23,10 +24,11 @@ interface CancelInfo {
   };
 }
 
-export default function CancelBookingPage() {
+export default function CancelBookingPage({ token: tokenProp }: { token?: string }) {
   const [, params] = useRoute("/cancel/:token");
-  const token = params?.token;
+  const token = tokenProp || params?.token;
   const t = useTranslations();
+  const { localizedPath } = useLanguage();
 
   const [info, setInfo] = useState<CancelInfo | null>(null);
   const [loading, setLoading] = useState(true);
@@ -94,7 +96,7 @@ export default function CancelBookingPage() {
         <div className="max-w-md w-full mx-4 bg-background rounded-2xl shadow-lg p-8 text-center">
           <p className="text-2xl mb-2">No se puede cancelar</p>
           <p className="text-muted-foreground">{error}</p>
-          <a href="/" className="mt-4 inline-block text-primary underline">Volver al inicio</a>
+          <a href={localizedPath("home")} className="mt-4 inline-block text-primary underline">Volver al inicio</a>
         </div>
       </div>
     );
@@ -118,7 +120,7 @@ export default function CancelBookingPage() {
             </p>
           )}
           <p className="text-sm text-muted-foreground mt-4">Recibirás un email de confirmación.</p>
-          <a href="/" className="mt-6 inline-block text-primary underline">Volver al inicio</a>
+          <a href={localizedPath("home")} className="mt-6 inline-block text-primary underline">Volver al inicio</a>
         </div>
       </div>
     );
@@ -173,7 +175,7 @@ export default function CancelBookingPage() {
             Confirmar cancelación
           </Button>
           <a
-            href="/"
+            href={localizedPath("home")}
             className="block text-center text-sm text-muted-foreground hover:text-foreground underline"
           >
             Mantener reserva

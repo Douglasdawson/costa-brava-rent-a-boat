@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Cookie } from "lucide-react";
 import { trackCookieConsent } from "@/utils/analytics";
+import { useLanguage } from "@/hooks/use-language";
 
 function updateGTMConsent(granted: boolean) {
   if (typeof window !== "undefined" && typeof window.gtag === "function") {
@@ -16,6 +17,7 @@ function updateGTMConsent(granted: boolean) {
 }
 
 export default function CookieBanner() {
+  const { localizedPath } = useLanguage();
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
@@ -62,14 +64,14 @@ export default function CookieBanner() {
             <p>
               Utilizamos cookies propias y de terceros (Google Analytics) para mejorar tu experiencia y analizar el tráfico web. Puedes aceptar todas las cookies o solo las esenciales.{" "}
               <a
-                href="/cookies-policy"
+                href={localizedPath("cookiesPolicy")}
                 className="text-primary underline hover:text-primary/80"
               >
                 Política de Cookies
               </a>
               {" · "}
               <a
-                href="/privacy-policy"
+                href={localizedPath("privacyPolicy")}
                 className="text-primary underline hover:text-primary/80"
               >
                 Política de Privacidad

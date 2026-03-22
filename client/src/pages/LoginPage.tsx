@@ -5,12 +5,14 @@ import { Input } from "@/components/ui/input";
 import { Anchor, Lock, X } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { useLocation } from "wouter";
+import { useLanguage } from "@/hooks/use-language";
 
 export default function LoginPage() {
   const [pin, setPin] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
   const [, setLocation] = useLocation();
+  const { localizedPath } = useLanguage();
 
   const handleAdminPinSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -54,7 +56,7 @@ export default function LoginPage() {
         description: `Bienvenido, ${data.displayName || data.username}`,
       });
 
-      setLocation("/crm");
+      setLocation(localizedPath("crm"));
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Error desconocido";
       toast({
@@ -74,7 +76,7 @@ export default function LoginPage() {
           variant="ghost"
           size="icon"
           className="!absolute !top-3 !right-3 !z-10"
-          onClick={() => setLocation("/")}
+          onClick={() => setLocation(localizedPath("home"))}
           data-testid="button-close-login"
         >
           <X className="w-5 h-5" />

@@ -141,7 +141,7 @@ export default function GalleryPage() {
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(0);
   const [showSubmitForm, setShowSubmitForm] = useState(false);
-  const { language } = useLanguage();
+  const { language, localizedPath } = useLanguage();
   const t = useTranslations();
   const gt = getGalleryText(language);
 
@@ -187,9 +187,9 @@ export default function GalleryPage() {
             <p>{gt.introP1}</p>
             <p>
               {gt.introP2pre}{" "}
-              <a href="/#fleet" className="text-primary hover:underline">{gt.introP2licenseFree}</a>{" "}
+              <a href={localizedPath("home") + "#fleet"} className="text-primary hover:underline">{gt.introP2licenseFree}</a>{" "}
               {gt.introP2mid}{" "}
-              <a href="/barcos-con-licencia" className="text-primary hover:underline">{gt.introP2licensed}</a>{" "}
+              <a href={localizedPath("categoryLicensed")} className="text-primary hover:underline">{gt.introP2licensed}</a>{" "}
               {gt.introP2post}
             </p>
           </div>
@@ -255,10 +255,10 @@ export default function GalleryPage() {
             {gt.ctaSubtitle}
           </p>
           <div className="flex flex-wrap gap-3 justify-center">
-            <a href="/#fleet" className="inline-flex items-center gap-2 bg-primary text-white px-6 py-3 rounded-lg font-medium hover:bg-primary/90 transition-colors">
+            <a href={localizedPath("home") + "#fleet"} className="inline-flex items-center gap-2 bg-primary text-white px-6 py-3 rounded-lg font-medium hover:bg-primary/90 transition-colors">
               {gt.ctaFleet}
             </a>
-            <a href="/rutas" className="inline-flex items-center gap-2 border border-primary text-primary px-6 py-3 rounded-lg font-medium hover:bg-primary/5 transition-colors">
+            <a href={localizedPath("routes")} className="inline-flex items-center gap-2 border border-primary text-primary px-6 py-3 rounded-lg font-medium hover:bg-primary/5 transition-colors">
               {gt.ctaRoutes}
             </a>
           </div>

@@ -1,6 +1,9 @@
 import { useEffect } from "react";
 import { getCanonicalUrl, getDefaultOgImage, getBaseUrl } from "@/lib/domain";
 import { useLanguage } from "@/hooks/use-language";
+import { resolveSlug, getLocalizedPath, isValidLang } from "@shared/i18n-routes";
+import type { PageKey } from "@shared/i18n-routes";
+import { HREFLANG_CODES } from "@shared/seoConstants";
 
 // Supported languages for auto-generating hreflang tags
 const SUPPORTED_LANGS = ["es", "en", "ca", "fr", "de", "nl", "it", "ru"] as const;
@@ -164,29 +167,58 @@ export function SEO({
     );
 
     if (!serverInjected) {
-      // Use provided hreflang or auto-generate from current pathname
-      const hreflangEntries = (hreflang && hreflang.length > 0)
-        ? hreflang
-        : SUPPORTED_LANGS.map(lang => ({
-            lang,
-            url: `${getBaseUrl()}${window.location.pathname}${lang === "es" ? "" : `?lang=${lang}`}`,
-          }));
-
-      // Remove existing client-side hreflang tags and re-add
       existingHreflangTags.forEach(tag => tag.remove());
-      hreflangEntries.forEach(({ lang, url }) => {
-        const hreflangLink = document.createElement('link');
-        hreflangLink.rel = 'alternate';
-        hreflangLink.hreflang = lang;
-        hreflangLink.href = url;
-        document.head.appendChild(hreflangLink);
-      });
-      // Add x-default pointing to Spanish (default language)
-      const xDefaultLink = document.createElement('link');
-      xDefaultLink.rel = 'alternate';
-      xDefaultLink.hreflang = 'x-default';
-      xDefaultLink.href = `${getBaseUrl()}${window.location.pathname}`;
-      document.head.appendChild(xDefaultLink);
+
+      // If explicit hreflang provided (e.g., blog detail with slugByLang), prefer it
+      if (hreflang && hreflang.length > 0) {
+        hreflang.forEach(({ lang, url }) => {
+          const link = document.createElement('link');
+          link.rel = 'alternate';
+          link.hreflang = lang;
+          link.href = url;
+          document.head.appendChild(link);
+        });
+      } else {
+        // Auto-generate hreflang from subdirectory URL structure
+        const segments = window.location.pathname.split('/').filter(Boolean);
+        const pathLang = segments[0] || '';
+        const pathSlug = segments[1] || '';
+        const dynamicParam = segments[2]; // for /es/blog/my-post or /es/barco/remus-450
+
+        let resolvedPageKey: PageKey | null = null;
+        if (pathSlug === '') {
+          resolvedPageKey = 'home';
+        } else {
+          const resolved = resolveSlug(pathSlug);
+          resolvedPageKey = resolved?.pageKey ?? null;
+        }
+
+        if (resolvedPageKey && isValidLang(pathLang)) {
+          const baseUrl = getBaseUrl();
+
+          // Generate hreflang for each supported language
+          SUPPORTED_LANGS.forEach(lang => {
+            let path = getLocalizedPath(resolvedPageKey as PageKey, lang);
+            if (dynamicParam) path += `/${dynamicParam}`;
+
+            const hreflangCode = HREFLANG_CODES[lang] || lang;
+            const link = document.createElement('link');
+            link.rel = 'alternate';
+            link.hreflang = hreflangCode;
+            link.href = `${baseUrl}${path}`;
+            document.head.appendChild(link);
+          });
+
+          // x-default points to Spanish version
+          let xDefaultPath = getLocalizedPath(resolvedPageKey as PageKey, 'es');
+          if (dynamicParam) xDefaultPath += `/${dynamicParam}`;
+          const xDefaultLink = document.createElement('link');
+          xDefaultLink.rel = 'alternate';
+          xDefaultLink.hreflang = 'x-default';
+          xDefaultLink.href = `${baseUrl}${xDefaultPath}`;
+          document.head.appendChild(xDefaultLink);
+        }
+      }
     }
 
     // Add JSON-LD if provided — skip if server already injected (avoid duplicate schemas)

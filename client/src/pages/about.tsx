@@ -562,7 +562,7 @@ function getWhyDesc(key: typeof whyItems[number]["key"], lang: Language): string
 // Component
 // ---------------------------------------------------------------------------
 export default function AboutPage() {
-  const { language } = useLanguage();
+  const { language, localizedPath } = useLanguage();
   const txt = t[language];
 
   const handleBookingWhatsApp = () => {
@@ -895,23 +895,23 @@ export default function AboutPage() {
               <CardContent className="pt-6">
                 <h3 className="font-semibold text-lg mb-4">{txt.linksTitle}</h3>
                 <div className="flex flex-wrap gap-3">
-                  <a href="/barcos-sin-licencia" className="text-primary hover:underline flex items-center gap-1">
+                  <a href={localizedPath("categoryLicenseFree")} className="text-primary hover:underline flex items-center gap-1">
                     <ChevronRight className="w-4 h-4" />
                     {txt.linkFleet}
                   </a>
-                  <a href="/precios" className="text-primary hover:underline flex items-center gap-1">
+                  <a href={localizedPath("pricing")} className="text-primary hover:underline flex items-center gap-1">
                     <ChevronRight className="w-4 h-4" />
                     {txt.linkPricing}
                   </a>
-                  <a href="/faq" className="text-primary hover:underline flex items-center gap-1">
+                  <a href={localizedPath("faq")} className="text-primary hover:underline flex items-center gap-1">
                     <ChevronRight className="w-4 h-4" />
                     {txt.linkFaq}
                   </a>
-                  <a href="/testimonios" className="text-primary hover:underline flex items-center gap-1">
+                  <a href={localizedPath("testimonials")} className="text-primary hover:underline flex items-center gap-1">
                     <ChevronRight className="w-4 h-4" />
                     {txt.linkTestimonials}
                   </a>
-                  <a href="/rutas" className="text-primary hover:underline flex items-center gap-1">
+                  <a href={localizedPath("routes")} className="text-primary hover:underline flex items-center gap-1">
                     <ChevronRight className="w-4 h-4" />
                     {txt.linkRoutes}
                   </a>
@@ -933,7 +933,7 @@ export default function AboutPage() {
                     <MessageCircle className="w-5 h-5 mr-2" />
                     {txt.ctaWhatsApp}
                   </Button>
-                  <a href="/#fleet">
+                  <a href={localizedPath("home") + "#fleet"}>
                     <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 w-full">
                       <Ship className="w-5 h-5 mr-2" />
                       {txt.ctaFleet}

@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { CreditCard, Euro } from "lucide-react";
 import type { Boat } from "@shared/schema";
 import type { Translations } from "@/lib/translations";
+import { useLanguage } from "@/hooks/use-language";
 import type { Quote, Duration, Extra } from "./types";
 
 interface BookingStepPaymentProps {
@@ -32,6 +33,7 @@ export function BookingStepPayment({
   createQuote, handlePayment, t,
 }: BookingStepPaymentProps) {
   const [termsAccepted, setTermsAccepted] = useState(false);
+  const { localizedPath } = useLanguage();
 
   return (
     <Card>
@@ -177,7 +179,7 @@ export function BookingStepPayment({
                   onChange={(e) => setTermsAccepted(e.target.checked)}
                 />
                 <label htmlFor="terms">
-                  {t.booking.iAcceptThe} <a href="/terms-conditions" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">{t.booking.termsAndConditions}</a> {t.booking.andThe} <a href="/privacy-policy" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">{t.booking.privacyPolicy}</a>
+                  {t.booking.iAcceptThe} <a href={localizedPath("termsConditions")} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">{t.booking.termsAndConditions}</a> {t.booking.andThe} <a href={localizedPath("privacyPolicy")} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">{t.booking.privacyPolicy}</a>
                 </label>
               </div>
 

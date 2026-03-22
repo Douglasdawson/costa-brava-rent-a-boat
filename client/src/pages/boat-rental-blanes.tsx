@@ -26,9 +26,11 @@ import RelatedContent from "@/components/RelatedContent";
 import { SEO } from "@/components/SEO";
 import { getSEOConfig, generateHreflangLinks, generateCanonicalUrl, generateBreadcrumbSchema } from "@/utils/seo-config";
 import { openWhatsApp, createBookingMessage } from "@/utils/whatsapp";
+import { useLanguage } from "@/hooks/use-language";
 import { BOAT_DATA } from "@shared/boatData";
 
 export default function BoatRentalBlanesPage() {
+  const { localizedPath } = useLanguage();
   const seoConfig = getSEOConfig('boatRentalBlanes', 'en');
   const hreflangLinks = [
     { lang: 'en-GB', url: 'https://costabravarentaboat.com/boat-rental-blanes' },
@@ -511,7 +513,7 @@ export default function BoatRentalBlanesPage() {
               <p className="text-sm text-muted-foreground mb-2">
                 Low season: April - June, September - October. Mid season: July. High season: August.
               </p>
-              <a href="/precios?lang=en" className="text-primary hover:underline text-sm font-medium flex items-center gap-1">
+              <a href={localizedPath("pricing")} className="text-primary hover:underline text-sm font-medium flex items-center gap-1">
                 <ChevronRight className="w-4 h-4" />
                 See full pricing details and all durations
               </a>
@@ -650,7 +652,7 @@ export default function BoatRentalBlanesPage() {
                     Fuel, insurance, and safety equipment are included for license-free boats. Licensed
                     boats start from 150 EUR for 2 hours, but fuel is not included. Longer rental
                     durations (2h, 3h, 4h, 6h, 8h) offer better value per hour. See our
-                    <a href="/precios?lang=en" className="text-primary hover:underline ml-1">full pricing page</a> for
+                    <a href={localizedPath("pricing")} className="text-primary hover:underline ml-1">full pricing page</a> for
                     detailed rates.
                   </p>
                 </div>
@@ -749,27 +751,27 @@ export default function BoatRentalBlanesPage() {
             <CardContent className="pt-6">
               <h3 className="font-semibold text-lg mb-4">Explore more</h3>
               <div className="flex flex-wrap gap-3">
-                <a href="/alquiler-barcos-blanes" className="text-primary hover:underline flex items-center gap-1">
+                <a href={localizedPath("locationBlanes")} className="text-primary hover:underline flex items-center gap-1">
                   <ChevronRight className="w-4 h-4" />
                   Esta pagina en espanol (Spanish version)
                 </a>
-                <a href="/barcos-sin-licencia?lang=en" className="text-primary hover:underline flex items-center gap-1">
+                <a href={localizedPath("categoryLicenseFree")} className="text-primary hover:underline flex items-center gap-1">
                   <ChevronRight className="w-4 h-4" />
                   License-free boats
                 </a>
-                <a href="/barcos-con-licencia?lang=en" className="text-primary hover:underline flex items-center gap-1">
+                <a href={localizedPath("categoryLicensed")} className="text-primary hover:underline flex items-center gap-1">
                   <ChevronRight className="w-4 h-4" />
                   Licensed boats
                 </a>
-                <a href="/precios?lang=en" className="text-primary hover:underline flex items-center gap-1">
+                <a href={localizedPath("pricing")} className="text-primary hover:underline flex items-center gap-1">
                   <ChevronRight className="w-4 h-4" />
                   Prices and seasonal rates
                 </a>
-                <a href="/alquiler-barcos-lloret-de-mar?lang=en" className="text-primary hover:underline flex items-center gap-1">
+                <a href={localizedPath("locationLloret")} className="text-primary hover:underline flex items-center gap-1">
                   <ChevronRight className="w-4 h-4" />
                   Boat trip to Lloret de Mar
                 </a>
-                <a href="/alquiler-barcos-tossa-de-mar?lang=en" className="text-primary hover:underline flex items-center gap-1">
+                <a href={localizedPath("locationTossa")} className="text-primary hover:underline flex items-center gap-1">
                   <ChevronRight className="w-4 h-4" />
                   Boat trip to Tossa de Mar
                 </a>

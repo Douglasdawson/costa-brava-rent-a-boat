@@ -23,9 +23,9 @@ interface CancelInfo {
   };
 }
 
-export default function CancelBookingPage() {
+export default function CancelBookingPage({ token: tokenProp }: { token?: string }) {
   const [, params] = useRoute("/cancel/:token");
-  const token = params?.token;
+  const token = tokenProp || params?.token;
   const t = useTranslations();
 
   const [info, setInfo] = useState<CancelInfo | null>(null);

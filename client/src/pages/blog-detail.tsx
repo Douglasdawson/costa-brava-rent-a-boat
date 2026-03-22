@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { Link, useParams, useLocation } from "wouter";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import rehypeRaw from "rehype-raw";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { SEO } from "@/components/SEO";
@@ -382,8 +383,9 @@ function ShareButtons({ title, url, bd, slug }: { title: string; url: string; bd
   );
 }
 
-export default function BlogDetailPage() {
-  const { slug } = useParams<{ slug: string }>();
+export default function BlogDetailPage({ slug: slugProp }: { slug?: string }) {
+  const routeParams = useParams<{ slug: string }>();
+  const slug = slugProp || routeParams.slug;
   const { language } = useLanguage();
   const t = useTranslations();
   const bd = t.blogDetail!;
@@ -769,7 +771,7 @@ export default function BlogDetailPage() {
                 className="prose max-w-none dark:prose-invert prose-headings:font-heading prose-headings:tracking-tight prose-a:text-cta prose-a:decoration-cta/40 hover:prose-a:decoration-cta prose-img:rounded-lg prose-table:m-0"
                 data-testid={`content-article-${post.slug}`}
               >
-                <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>
+                <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]} components={markdownComponents}>
                   {localized(post.contentByLang as Record<string, string> | null, post.content, language)}
                 </ReactMarkdown>
               </div>

@@ -2658,33 +2658,23 @@ export async function serveWithSEO(
     }
 
     // Serve prerendered HTML if available (full page content for SEO crawlers)
-    // New format: prerendered/:lang/:slug.html (e.g. prerendered/fr/location-bateau-blanes.html)
+    // Only serve NEW format prerendered files (prerendered/:lang/:slug.html)
+    // Legacy format (prerendered/slug__lang_xx.html) is disabled until files are
+    // regenerated for subdirectory URLs — old prerendered files lack JS bundles
+    // and break the SPA when served for /:lang/ routes.
     const prerenderedDir = path.resolve(distPath, "..", "prerendered");
     if (fs.existsSync(prerenderedDir)) {
       // For subdirectory URLs, the file path mirrors the URL structure
       const routePath = pathname === "/" ? `/${lang}/index` : pathname.replace(/\/$/, "");
       const candidate = path.join(prerenderedDir, `${routePath}.html`);
 
-      // Also try legacy format: prerendered/slug__lang_xx.html
-      const { metaKey } = pathToStaticMetaKey(pathname);
-      const legacyRoute = metaKey === "/" ? "/index" : metaKey;
-      const legacyLangSuffix = lang !== "es" ? `__lang_${lang}` : "";
-      const legacyCandidates = [
-        path.join(prerenderedDir, `${legacyRoute}${legacyLangSuffix}.html`),
-        ...(!legacyLangSuffix ? [path.join(prerenderedDir, `${legacyRoute}__lang_en.html`)] : []),
-      ];
-
-      const allCandidates = [candidate, ...legacyCandidates];
-
-      for (const c of allCandidates) {
-        if (fs.existsSync(c)) {
-          res.set("Content-Type", "text/html; charset=utf-8");
-          res.set("Content-Language", lang);
-          res.set("Cache-Control", "public, max-age=0, s-maxage=3600, stale-while-revalidate=86400");
-          res.set("X-Prerendered", "true");
-          res.sendFile(path.resolve(c));
-          return;
-        }
+      if (fs.existsSync(candidate)) {
+        res.set("Content-Type", "text/html; charset=utf-8");
+        res.set("Content-Language", lang);
+        res.set("Cache-Control", "public, max-age=0, s-maxage=3600, stale-while-revalidate=86400");
+        res.set("X-Prerendered", "true");
+        res.sendFile(path.resolve(candidate));
+        return;
       }
     }
 

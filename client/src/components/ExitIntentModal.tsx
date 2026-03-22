@@ -8,6 +8,21 @@ function isCookieBannerVisible(): boolean {
   return !localStorage.getItem("cookieConsent");
 }
 
+const EXIT_INTENT_EXCLUDED_SLUGS = [
+  "privacy-policy", "politica-privacidad", "politique-confidentialite", "datenschutz", "privacybeleid", "informativa-privacy", "politica-privacitat", "politika-konfidentsialnosti",
+  "terms-conditions", "terminos-condiciones", "conditions-generales", "agb", "algemene-voorwaarden", "termini-condizioni", "termes-condicions", "usloviya-ispolzovaniya",
+  "cookies-policy", "politica-cookies", "politique-cookies", "cookie-richtlinie", "cookiebeleid", "informativa-cookie", "politika-cookie",
+  "condiciones-generales", "general-conditions", "conditions-de-reservation", "allgemeine-bedingungen", "condicions-generals", "obshchie-usloviya",
+  "accesibilidad", "accessibility", "accessibilite", "barrierefreiheit", "toegankelijkheid", "accessibilita", "accessibilitat", "dostupnost",
+  "booking", "cancel", "login", "onboarding", "crm",
+];
+
+function isExcludedPage(): boolean {
+  const segments = window.location.pathname.split("/").filter(Boolean);
+  const slug = segments[1] || "";
+  return EXIT_INTENT_EXCLUDED_SLUGS.includes(slug);
+}
+
 export function ExitIntentModal() {
   const t = useTranslations();
   const { openBookingModal } = useBookingModal();
@@ -26,6 +41,7 @@ export function ExitIntentModal() {
     if (dismissed) return;
     if (sessionStorage.getItem("exitIntentShown")) return;
     if (isCookieBannerVisible()) return;
+    if (isExcludedPage()) return;
     setShow(true);
     sessionStorage.setItem("exitIntentShown", "true");
     document.body.style.overflow = "hidden";

@@ -45,9 +45,9 @@ function formatCountdown(ms: number) {
   };
 }
 
-const HIDDEN_PATHS = ["/admin", "/crm", "/reservar", "/login", "/onboarding"];
+const HIDDEN_SLUGS = ["crm", "login", "onboarding", "booking", "cancel"];
 const STORAGE_KEY = "seasonPopupSeen";
-const SHOW_DELAY_MS = 2500;
+const SHOW_DELAY_MS = 5000;
 
 export function SeasonBanner() {
   const [location] = useLocation();
@@ -62,13 +62,19 @@ export function SeasonBanner() {
   const now = new Date();
   const phase = getSeasonPhase(now);
   const target = getCountdownTarget(phase, now);
-  const shouldHide = HIDDEN_PATHS.some(p => location.startsWith(p));
+  // Match /:lang/slug — extract slug to check against hidden list
+  const pathSegments = location.split("/").filter(Boolean);
+  const currentSlug = pathSegments[1] || "";
+  const shouldHide = HIDDEN_SLUGS.includes(currentSlug);
 
   useEffect(() => {
     const wasSeen = localStorage.getItem(STORAGE_KEY);
     if (wasSeen || shouldHide) return;
+    // Don't show if cookie banner is still visible
+    if (!localStorage.getItem("cookieConsent")) return;
     const timer = setTimeout(() => {
       setVisible(true);
+      document.body.style.overflow = "hidden";
       requestAnimationFrame(() => setAnimateIn(true));
     }, SHOW_DELAY_MS);
     return () => clearTimeout(timer);
@@ -84,6 +90,7 @@ export function SeasonBanner() {
 
   const handleDismiss = useCallback(() => {
     setAnimateIn(false);
+    document.body.style.overflow = "";
     setTimeout(() => {
       setVisible(false);
       localStorage.setItem(STORAGE_KEY, "1");
@@ -91,20 +98,21 @@ export function SeasonBanner() {
   }, []);
 
   const handleCTA = useCallback(() => {
-    // Mark as seen immediately
     localStorage.setItem(STORAGE_KEY, "1");
     setAnimateIn(false);
+    document.body.style.overflow = "";
 
     setTimeout(() => {
       setVisible(false);
 
       if (phase === "offseason") {
-        // Navigate to homepage first if not there, then scroll
-        if (window.location.pathname !== "/") {
-          window.location.href = "/#fleet";
+        const segments = window.location.pathname.split("/").filter(Boolean);
+        const isHome = segments.length <= 1;
+        if (!isHome) {
+          const lang = segments[0] || "es";
+          window.location.href = `/${lang}/#fleet`;
           return;
         }
-        // Already on homepage — scroll to fleet
         const fleet = document.getElementById("fleet");
         if (fleet) {
           fleet.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -211,7 +219,7 @@ export function SeasonBanner() {
       `}</style>
 
       <div
-        className={`fixed inset-0 z-[100] flex items-center justify-center p-4 transition-all duration-300 ${
+        className={`fixed inset-0 z-[150] flex items-center justify-center p-4 transition-all duration-300 ${
           animateIn ? "bg-black/60 backdrop-blur-sm" : "bg-black/0"
         }`}
         onClick={handleDismiss}

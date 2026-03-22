@@ -14,8 +14,9 @@ import { generateHreflangLinks, generateCanonicalUrl, generateBreadcrumbSchema }
 import { generatePlaceSchema } from "@/utils/seo-schemas";
 import type { Destination } from "@shared/schema";
 
-export default function DestinationDetailPage() {
-  const { slug } = useParams<{ slug: string }>();
+export default function DestinationDetailPage({ slug: slugProp }: { slug?: string }) {
+  const routeParams = useParams<{ slug: string }>();
+  const slug = slugProp || routeParams.slug;
   const { language } = useLanguage();
 
   // Fetch the destination

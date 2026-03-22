@@ -772,6 +772,7 @@ function Step4Confirm({
   privacyConsent, setPrivacyConsent,
   t, isSpanishLang, language,
 }: BookingWizardMobileProps) {
+  const { localizedPath } = useLanguage();
   const basePrice = getBookingPrice();
   const discount = getCodeDiscount();
   const autoDiscountAmount = autoDiscount?.type ? autoDiscount.amount : 0;

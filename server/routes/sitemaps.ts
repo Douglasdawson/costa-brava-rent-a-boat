@@ -369,7 +369,9 @@ ${boatHreflang}  </url>
 
         // Generate one <url> per language, each with its own localized slug
         SUPPORTED_LANGUAGES.forEach(lang => {
-          const postSlug = post.slugByLang?.[lang] || post.slug;
+          const postSlug = (post as Record<string, unknown>).slugByLang
+            ? ((post as Record<string, unknown>).slugByLang as Record<string, string>)[lang] || post.slug
+            : post.slug;
           const blogPath = getLocalizedPath("blogDetail", lang) + `/${postSlug}`;
           sitemap += `  <url>
     <loc>${baseUrl}${blogPath}</loc>

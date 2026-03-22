@@ -314,8 +314,38 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 
   // Dynamic 301 redirects (managed via DB, seeded on startup)
   const { redirectMiddleware, seedLegacyRedirects } = await import("./seo/redirects");
+  const { isValidLang } = await import("../shared/i18n-routes");
   app.use(redirectMiddleware());
   await seedLegacyRedirects();
+
+  // Root redirect with Accept-Language detection (302 — destination depends on visitor)
+  app.get("/", (req, res) => {
+    // 1. Check Accept-Language header
+    const acceptLang = req.headers["accept-language"];
+    if (acceptLang) {
+      const langPrefs = acceptLang.split(",").map(part => {
+        const [lang, q] = part.trim().split(";q=");
+        return { lang: lang.split("-")[0].toLowerCase(), q: q ? parseFloat(q) : 1 };
+      }).sort((a, b) => b.q - a.q);
+
+      for (const pref of langPrefs) {
+        if (isValidLang(pref.lang)) {
+          return res.redirect(302, `/${pref.lang}/`);
+        }
+      }
+    }
+
+    // 2. Check language cookie (read manually from header — no cookie-parser needed)
+    const cookieHeader = req.headers.cookie || "";
+    const match = cookieHeader.match(/costa-brava-language=(\w+)/);
+    const cookieLang = match?.[1];
+    if (cookieLang && isValidLang(cookieLang)) {
+      return res.redirect(302, `/${cookieLang}/`);
+    }
+
+    // 3. Fallback to Spanish
+    return res.redirect(302, "/es/");
+  });
 
   // 404 handler for unknown API routes
   app.all("/api/*", (_req: Request, res: Response) => {

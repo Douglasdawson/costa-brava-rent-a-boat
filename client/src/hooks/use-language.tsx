@@ -89,6 +89,7 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     trackLanguageChange(language, lang);
     setLanguageState(lang);
     localStorage.setItem('costa-brava-language', lang);
+    document.cookie = `costa-brava-language=${lang};path=/;max-age=31536000;SameSite=Lax`;
 
     const currentPath = window.location.pathname;
     const newPath = switchLanguagePath(currentPath, lang);

@@ -5,7 +5,7 @@ import { storage } from "../storage";
 import { logger } from "../lib/logger";
 import { AI_CRAWLER_NAMES } from "../seo/constants";
 
-const BASE_URL = process.env.BASE_URL || "https://costabravarentaboat.com";
+const BASE_URL = process.env.BASE_URL || "https://www.costabravarentaboat.com";
 
 // Paths that should always be disallowed
 const DISALLOWED_PATHS = [
@@ -91,7 +91,7 @@ export function registerRobotsRoutes(app: Express): void {
 - **Location**: Puerto de Blanes, 17300 Blanes, Girona, Catalonia, Spain
 - **Price range**: 70-420 EUR
 - **Phone / WhatsApp**: +34 611 500 372
-- **Website**: https://costabravarentaboat.com
+- **Website**: https://www.costabravarentaboat.com
 `;
       res.setHeader("Content-Type", "text/plain; charset=utf-8");
       res.setHeader("Cache-Control", "public, max-age=3600");
@@ -161,7 +161,7 @@ export function registerRobotsRoutes(app: Express): void {
         "@type": "LocalBusiness",
         name: "Costa Brava Rent a Boat",
         description: "Largest boat rental fleet in Blanes, Costa Brava, Spain. 9 boats, license-free and licensed. Fuel included. From 70 EUR/hour.",
-        url: "https://costabravarentaboat.com",
+        url: "https://www.costabravarentaboat.com",
         telephone: "+34611500372",
         email: "costabravarentaboat@gmail.com",
         address: {
@@ -197,8 +197,8 @@ export function registerRobotsRoutes(app: Express): void {
           { name: "Santa Susanna", distanceKm: 12, driveTime: "15 min", trainTime: "10 min", page: "/alquiler-barcos-santa-susanna" },
           { name: "Calella", distanceKm: 17, driveTime: "20 min", trainTime: "15 min", page: "/alquiler-barcos-calella" },
         ],
-        llmsTxt: "https://costabravarentaboat.com/llms.txt",
-        llmsFullTxt: "https://costabravarentaboat.com/llms-full.txt",
+        llmsTxt: "https://www.costabravarentaboat.com/llms.txt",
+        llmsFullTxt: "https://www.costabravarentaboat.com/llms-full.txt",
       };
 
       res.setHeader("Content-Type", "application/ld+json; charset=utf-8");

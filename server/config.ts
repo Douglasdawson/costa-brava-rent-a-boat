@@ -27,7 +27,7 @@ const envSchema = z.object({
   GSC_SITE_URL: z.string().optional(),
   META_PIXEL_ID: z.string().optional(),
   META_CAPI_ACCESS_TOKEN: z.string().optional(),
-  BASE_URL: z.string().default("https://costabravarentaboat.com"),
+  BASE_URL: z.string().default("https://www.costabravarentaboat.com"),
 });
 
 export type EnvConfig = z.infer<typeof envSchema>;

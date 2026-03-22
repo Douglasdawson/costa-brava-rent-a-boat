@@ -10,7 +10,7 @@ export default function AccessibilityDeclarationPage() {
       <SEO
         title="Declaración de Accesibilidad | Costa Brava Rent a Boat"
         description="Declaración de accesibilidad de costabravarentaboat.com conforme al Real Decreto 1112/2018."
-        canonical="https://costabravarentaboat.com/accesibilidad"
+        canonical="https://www.costabravarentaboat.com/accesibilidad"
       />
       <Navigation />
 

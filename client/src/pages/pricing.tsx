@@ -154,7 +154,7 @@ export default function PricingPage() {
         "@type": "ListItem",
         "position": index + 1,
         "name": boat.name,
-        "url": `https://costabravarentaboat.com/barco/${boat.id}`,
+        "url": `https://www.costabravarentaboat.com/barco/${boat.id}`,
         "item": {
           "@type": "Product",
           "name": `Alquiler ${boat.name} en Blanes`,

@@ -127,7 +127,7 @@ export default function CategoryLicenseFreePage() {
       "@type": "LocalBusiness",
       "name": "Costa Brava Rent a Boat Blanes",
       "telephone": "+34611500372",
-      "url": "https://costabravarentaboat.com/",
+      "url": "https://www.costabravarentaboat.com/",
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "Puerto de Blanes",
@@ -164,7 +164,7 @@ export default function CategoryLicenseFreePage() {
       "@type": "ListItem",
       "position": index + 1,
       "name": boat.name,
-      "url": `https://costabravarentaboat.com/barcos-sin-licencia`,
+      "url": `https://www.costabravarentaboat.com/barcos-sin-licencia`,
       "item": {
         "@type": "Product",
         "name": boat.name,

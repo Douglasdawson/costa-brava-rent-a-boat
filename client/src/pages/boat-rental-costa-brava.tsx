@@ -68,7 +68,7 @@ export default function BoatRentalCostaBravaPage() {
       "@type": "LocalBusiness",
       "name": "Costa Brava Rent a Boat Blanes",
       "telephone": "+34611500372",
-      "url": "https://costabravarentaboat.com/",
+      "url": "https://www.costabravarentaboat.com/",
       "priceRange": "70-400 EUR",
       "aggregateRating": {
         "@type": "AggregateRating",
@@ -129,9 +129,9 @@ export default function BoatRentalCostaBravaPage() {
 
   // Hreflang: en-GB self, es-ES to Spanish version
   const hreflangLinks = [
-    { lang: "en-GB", url: "https://costabravarentaboat.com/boat-rental-costa-brava" },
-    { lang: "es-ES", url: "https://costabravarentaboat.com/alquiler-barcos-costa-brava" },
-    { lang: "x-default", url: "https://costabravarentaboat.com/boat-rental-costa-brava" }
+    { lang: "en-GB", url: "https://www.costabravarentaboat.com/boat-rental-costa-brava" },
+    { lang: "es-ES", url: "https://www.costabravarentaboat.com/alquiler-barcos-costa-brava" },
+    { lang: "x-default", url: "https://www.costabravarentaboat.com/boat-rental-costa-brava" }
   ];
 
   // Destinations organized by distance
@@ -164,7 +164,7 @@ export default function BoatRentalCostaBravaPage() {
       <SEO
         title="Boat Rental Costa Brava | No License from 70 EUR/h - Blanes, Spain"
         description="Rent a boat on the Costa Brava from Blanes port. No license required. 9 boats for 4-12 people. Explore hidden coves, snorkel spots and medieval villages."
-        canonical="https://costabravarentaboat.com/boat-rental-costa-brava"
+        canonical="https://www.costabravarentaboat.com/boat-rental-costa-brava"
         ogTitle="Boat Rental Costa Brava - From Blanes Port"
         ogDescription="Explore Spain's most beautiful coastline by boat. No license needed. From 70 EUR per hour."
         keywords="boat rental costa brava, rent a boat costa brava, boat hire spain no license"

@@ -77,7 +77,7 @@ export function BookingConfirmation({
   };
 
   const handleCopyLink = () => {
-    navigator.clipboard.writeText("https://costabravarentaboat.com").then(() => {
+    navigator.clipboard.writeText("https://www.costabravarentaboat.com").then(() => {
       toast({
         title: ct.linkCopied,
       });

@@ -145,7 +145,7 @@ app.use("/api/create-checkout-session", paymentLimiter);
 // CORS — restrict API access to known origins
 const allowedOrigins = isDev
   ? ['http://localhost:5000', 'http://localhost:3000', 'http://127.0.0.1:5000']
-  : ['https://costabravarentaboat.com', 'https://www.costabravarentaboat.com', 'https://costabravarentaboat.app'];
+  : ['https://www.costabravarentaboat.com', 'https://costabravarentaboat.com', 'https://costabravarentaboat.app'];
 
 app.use('/api/', (req: Request, res: Response, next: NextFunction) => {
   const origin = req.headers.origin as string | undefined;
@@ -211,12 +211,12 @@ app.use(compression({
 app.use(csrfProtection);
 
 // Canonical domain redirection middleware (SEO)
-// Force all traffic to HTTPS costabravarentaboat.com
-// Redirects .app domain and www to the canonical .com domain.
+// Force all traffic to HTTPS www.costabravarentaboat.com
+// Redirects non-www and .app domain to the canonical www domain.
 app.use((req: Request, res: Response, next: NextFunction) => {
   const host = req.hostname;
-  const canonicalDomain = 'costabravarentaboat.com';
-  
+  const canonicalDomain = 'www.costabravarentaboat.com';
+
   // Skip in development (localhost) and Replit preview/deployment domains
   if (
     host === 'localhost' ||
@@ -227,19 +227,18 @@ app.use((req: Request, res: Response, next: NextFunction) => {
   ) {
     return next();
   }
-  
+
   // Check if request is secure (handles trust proxy and X-Forwarded-Proto)
   const isSecure = req.secure || req.headers['x-forwarded-proto'] === 'https';
-  
+
   const isCanonicalHost = host === canonicalDomain;
-  const targetHost = canonicalDomain;
 
   // Redirect if host is not canonical OR not HTTPS
   if (!isCanonicalHost || !isSecure) {
-    const canonicalUrl = `https://${targetHost}${req.originalUrl}`;
+    const canonicalUrl = `https://${canonicalDomain}${req.originalUrl}`;
     return res.redirect(301, canonicalUrl);
   }
-  
+
   next();
 });
 

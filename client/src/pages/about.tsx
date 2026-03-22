@@ -576,11 +576,11 @@ export default function AboutPage() {
     "@graph": [
       {
         "@type": "LocalBusiness",
-        "@id": "https://costabravarentaboat.com/#localbusiness",
+        "@id": "https://www.costabravarentaboat.com/#localbusiness",
         "name": "Costa Brava Rent a Boat",
         "alternateName": "CBRAB",
         "description": "Family-run boat rental business in the Port of Blanes, Costa Brava, Spain. Largest fleet in Blanes with 9 boats including 5 licence-free, 3 licensed motorboats and 1 private excursion with captain.",
-        "url": "https://costabravarentaboat.com",
+        "url": "https://www.costabravarentaboat.com",
         "telephone": "+34611500372",
         "email": "costabravarentaboat@gmail.com",
         "address": {
@@ -669,10 +669,10 @@ export default function AboutPage() {
       },
       {
         "@type": "Organization",
-        "@id": "https://costabravarentaboat.com/#organization",
+        "@id": "https://www.costabravarentaboat.com/#organization",
         "name": "Costa Brava Rent a Boat",
-        "url": "https://costabravarentaboat.com",
-        "logo": "https://costabravarentaboat.com/assets/logo-email-white.svg",
+        "url": "https://www.costabravarentaboat.com",
+        "logo": "https://www.costabravarentaboat.com/assets/logo-email-white.svg",
         "contactPoint": {
           "@type": "ContactPoint",
           "telephone": "+34611500372",
@@ -689,7 +689,7 @@ export default function AboutPage() {
       <SEO
         title={txt.metaTitle}
         description={txt.metaDescription}
-        canonical="https://costabravarentaboat.com/about"
+        canonical="https://www.costabravarentaboat.com/about"
         jsonLd={jsonLd}
       />
       <Navigation />

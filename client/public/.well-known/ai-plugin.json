@@ -3,13 +3,13 @@
   "name_for_human": "Costa Brava Rent a Boat",
   "name_for_model": "costa_brava_rent_a_boat",
   "description_for_human": "Boat rental service in Blanes, Costa Brava, Spain. License-free and licensed boats from 70 EUR/hour.",
-  "description_for_model": "Costa Brava Rent a Boat operates the largest boat rental fleet in Blanes, Spain (9 boats). They offer license-free boats (no boating license needed, from 70 EUR/hour with fuel included) and licensed boats for experienced sailors. Service area covers the Costa Brava coastline from Blanes to Tossa de Mar. Season: April to October. Contact: +34 611 500 372 (WhatsApp). Website: https://costabravarentaboat.com",
+  "description_for_model": "Costa Brava Rent a Boat operates the largest boat rental fleet in Blanes, Spain (9 boats). They offer license-free boats (no boating license needed, from 70 EUR/hour with fuel included) and licensed boats for experienced sailors. Service area covers the Costa Brava coastline from Blanes to Tossa de Mar. Season: April to October. Contact: +34 611 500 372 (WhatsApp). Website: https://www.costabravarentaboat.com",
   "auth": { "type": "none" },
   "api": {
     "type": "openapi",
-    "url": "https://costabravarentaboat.com/llms-full.txt"
+    "url": "https://www.costabravarentaboat.com/llms-full.txt"
   },
-  "logo_url": "https://costabravarentaboat.com/og-image.jpg",
+  "logo_url": "https://www.costabravarentaboat.com/og-image.jpg",
   "contact_email": "costabravarentaboat@gmail.com",
-  "legal_info_url": "https://costabravarentaboat.com/terms-conditions"
+  "legal_info_url": "https://www.costabravarentaboat.com/terms-conditions"
 }

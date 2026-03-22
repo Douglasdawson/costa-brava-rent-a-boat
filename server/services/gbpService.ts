@@ -10,7 +10,7 @@ import { storage } from "../storage";
 import type { BlogPost } from "@shared/schema";
 import { logger } from "../lib/logger";
 
-const BASE_URL = process.env.APP_URL || "https://costabravarentaboat.com";
+const BASE_URL = process.env.APP_URL || "https://www.costabravarentaboat.com";
 
 interface GBPPost {
   type: "UPDATE" | "OFFER" | "EVENT";

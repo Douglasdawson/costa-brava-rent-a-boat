@@ -171,7 +171,7 @@ async function sendRecoveryEmail(
       year: "numeric",
     });
 
-    const bookingUrl = "https://costabravarentaboat.com";
+    const bookingUrl = "https://www.costabravarentaboat.com";
 
     const html = `
       <!DOCTYPE html>

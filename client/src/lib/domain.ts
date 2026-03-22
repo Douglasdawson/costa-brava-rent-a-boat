@@ -4,7 +4,7 @@
  */
 
 // Canonical domain (always use in production)
-export const CANONICAL_DOMAIN = 'costabravarentaboat.com';
+export const CANONICAL_DOMAIN = 'www.costabravarentaboat.com';
 
 // Get the base URL (always canonical domain for SEO)
 export function getBaseUrl(): string {

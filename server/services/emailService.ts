@@ -328,7 +328,7 @@ function emailWrapper(content: string): string {
           <!-- Header -->
           <tr>
             <td style="background: linear-gradient(135deg, #0d1a2d 0%, #1a2a4a 100%); padding:28px 32px; text-align:center; border-bottom:3px solid #A8C4DD;">
-              <img src="https://costabravarentaboat.com/assets/logo-email-white.svg" alt="Costa Brava Rent a Boat" width="280" height="130" style="display:block; margin:0 auto; width:280px; height:auto;">
+              <img src="https://www.costabravarentaboat.com/assets/logo-email-white.svg" alt="Costa Brava Rent a Boat" width="280" height="130" style="display:block; margin:0 auto; width:280px; height:auto;">
             </td>
           </tr>
           <!-- Body -->
@@ -352,7 +352,7 @@ function emailWrapper(content: string): string {
               <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
                 <tr>
                   <td style="text-align:center;">
-                    <img src="https://costabravarentaboat.com/assets/logo-email-white.svg" alt="Costa Brava Rent a Boat" width="160" height="74" style="display:block; margin:0 auto 8px; width:160px; height:auto;">
+                    <img src="https://www.costabravarentaboat.com/assets/logo-email-white.svg" alt="Costa Brava Rent a Boat" width="160" height="74" style="display:block; margin:0 auto 8px; width:160px; height:auto;">
                     <p style="margin:0 0 4px; color:#A8C4DD; font-size:12px;">&#9875; Puerto de Blanes, Girona, Costa Brava</p>
                     <p style="margin:0 0 4px; color:#A8C4DD; font-size:12px;">Tel: <a href="tel:+34611500372" style="color:#A8C4DD; text-decoration:none;">+34 611 500 372</a> &middot; <a href="mailto:costabravarentaboat@gmail.com" style="color:#A8C4DD; text-decoration:none;">costabravarentaboat@gmail.com</a></p>
                     <p style="margin:0; color:#A8C4DD; font-size:11px; opacity:0.7;">www.costabravarentaboat.com</p>
@@ -478,7 +478,7 @@ export async function sendBookingConfirmation(data: BookingEmailData): Promise<E
     </p>
   `;
 
-  const appUrl = process.env.APP_URL || "https://costabravarentaboat.com";
+  const appUrl = process.env.APP_URL || "https://www.costabravarentaboat.com";
   const cancelUrl = booking.cancelationToken
     ? `${appUrl}/cancel/${booking.cancelationToken}`
     : null;
@@ -622,7 +622,7 @@ export async function sendThankYouEmail(data: BookingEmailData, discountCode: st
     <!-- Social sharing -->
     <div style="text-align:center; margin:0 0 20px; padding:12px; background-color:#fafafa; border-radius:6px;">
       <p style="margin:0 0 8px; color:#64748b; font-size:12px; text-transform:uppercase; letter-spacing:1px;">Share your experience</p>
-      <a href="https://www.facebook.com/sharer/sharer.php?u=https://costabravarentaboat.com" target="_blank" style="display:inline-block; margin:0 4px; padding:8px 14px; background-color:#1877f2; color:#fff; border-radius:4px; font-size:12px; font-weight:600; text-decoration:none;">Facebook</a>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.costabravarentaboat.com" target="_blank" style="display:inline-block; margin:0 4px; padding:8px 14px; background-color:#1877f2; color:#fff; border-radius:4px; font-size:12px; font-weight:600; text-decoration:none;">Facebook</a>
       <a href="https://www.instagram.com/costabravarentaboat/" target="_blank" style="display:inline-block; margin:0 4px; padding:8px 14px; background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888); color:#fff; border-radius:4px; font-size:12px; font-weight:600; text-decoration:none;">Instagram</a>
     </div>
 
@@ -637,7 +637,7 @@ export async function sendThankYouEmail(data: BookingEmailData, discountCode: st
     </div>
 
     <div style="text-align:center; margin:24px 0;">
-      <a href="https://costabravarentaboat.com" target="_blank" style="display:inline-block; background-color:#2563eb; color:#ffffff; text-decoration:none; padding:12px 28px; border-radius:6px; font-size:15px; font-weight:600;">${strings.bookAgain}</a>
+      <a href="https://www.costabravarentaboat.com" target="_blank" style="display:inline-block; background-color:#2563eb; color:#ffffff; text-decoration:none; padding:12px 28px; border-radius:6px; font-size:15px; font-weight:600;">${strings.bookAgain}</a>
     </div>
 
     <p style="margin:20px 0 0; color:#475569; font-size:14px; line-height:1.5; text-align:center;">
@@ -694,7 +694,7 @@ export async function sendPreSeasonEmail(
     </div>
 
     <div style="text-align:center; margin:24px 0;">
-      <a href="https://costabravarentaboat.com" target="_blank" style="display:inline-block; background-color:#2563eb; color:#ffffff; text-decoration:none; padding:14px 32px; border-radius:6px; font-size:16px; font-weight:600;">Reservar ahora</a>
+      <a href="https://www.costabravarentaboat.com" target="_blank" style="display:inline-block; background-color:#2563eb; color:#ffffff; text-decoration:none; padding:14px 32px; border-radius:6px; font-size:16px; font-weight:600;">Reservar ahora</a>
     </div>
 
     <p style="margin:20px 0 0; color:#475569; font-size:14px; line-height:1.5; text-align:center;">
@@ -751,7 +751,7 @@ export async function sendWelcomeEmail(
     </div>
 
     <div style="text-align:center; margin:24px 0;">
-      <a href="https://costabravarentaboat.com/crm" target="_blank" style="display:inline-block; background-color:#2563eb; color:#ffffff; text-decoration:none; padding:12px 28px; border-radius:6px; font-size:15px; font-weight:600;">Ir a mi panel</a>
+      <a href="https://www.costabravarentaboat.com/crm" target="_blank" style="display:inline-block; background-color:#2563eb; color:#ffffff; text-decoration:none; padding:12px 28px; border-radius:6px; font-size:15px; font-weight:600;">Ir a mi panel</a>
     </div>
 
     <p style="margin:0; color:#64748b; font-size:13px; line-height:1.6;">
@@ -900,7 +900,7 @@ export async function sendNewsletterEmail(
   }
 
   const strings = getNewsletterStrings(language);
-  const appUrl = process.env.APP_URL || "https://costabravarentaboat.com";
+  const appUrl = process.env.APP_URL || "https://www.costabravarentaboat.com";
   const unsubUrl = `${appUrl}/api/newsletter/unsubscribe?email=${encodeURIComponent(email)}`;
 
   const postsHtml = posts.map(post => {
@@ -974,7 +974,7 @@ export async function sendCancelationEmail(data: CancelationEmailData): Promise<
   }
 
   const { booking, refundAmount, refundPercentage } = data;
-  const appUrl = process.env.APP_URL || "https://costabravarentaboat.com";
+  const appUrl = process.env.APP_URL || "https://www.costabravarentaboat.com";
 
   const refundBlock = refundAmount > 0
     ? `<p style="color:#16a34a; font-weight:bold;">Reembolso: ${refundAmount.toFixed(2)} EUR (${refundPercentage}%) — se procesará en los próximos días hábiles.</p>`
@@ -1077,7 +1077,7 @@ export async function sendReferralEmail(
     </div>
 
     <div style="text-align:center; margin:24px 0;">
-      <a href="https://costabravarentaboat.com" target="_blank" style="display:inline-block; background-color:#2563eb; color:#ffffff; text-decoration:none; padding:12px 28px; border-radius:6px; font-size:15px; font-weight:600;">${strings.bookNow}</a>
+      <a href="https://www.costabravarentaboat.com" target="_blank" style="display:inline-block; background-color:#2563eb; color:#ffffff; text-decoration:none; padding:12px 28px; border-radius:6px; font-size:15px; font-weight:600;">${strings.bookNow}</a>
     </div>
   `;
 
@@ -1138,7 +1138,7 @@ export async function sendEarlyBirdEmail(
     </div>
 
     <div style="text-align:center; margin:24px 0;">
-      <a href="https://costabravarentaboat.com" target="_blank" style="display:inline-block; background-color:#2563eb; color:#ffffff; text-decoration:none; padding:12px 28px; border-radius:6px; font-size:15px; font-weight:600;">${strings.bookNow}</a>
+      <a href="https://www.costabravarentaboat.com" target="_blank" style="display:inline-block; background-color:#2563eb; color:#ffffff; text-decoration:none; padding:12px 28px; border-radius:6px; font-size:15px; font-weight:600;">${strings.bookNow}</a>
     </div>
 
     <p style="margin:20px 0 0; color:#475569; font-size:14px; line-height:1.5; text-align:center;">
@@ -1471,7 +1471,7 @@ export async function sendPartnershipProposal(data: PartnershipEmailData): Promi
 
     <!-- 12. CTA Ghost: Ver web -->
     <div style="text-align:center; margin:12px 0 0;">
-      <a href="https://costabravarentaboat.com" style="display:inline-block; border:2px solid #A8C4DD; color:#0d1a2d; padding:11px 24px; border-radius:50px; font-size:13px; font-weight:600; text-decoration:none;">
+      <a href="https://www.costabravarentaboat.com" style="display:inline-block; border:2px solid #A8C4DD; color:#0d1a2d; padding:11px 24px; border-radius:50px; font-size:13px; font-weight:600; text-decoration:none;">
         Ver nuestra web &#8594;
       </a>
     </div>

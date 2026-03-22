@@ -32,7 +32,7 @@ export function registerBlogRoutes(app: Express) {
   app.get("/api/blog/feed.xml", async (req, res) => {
     try {
       const posts = await storage.getPublishedBlogPosts();
-      const siteUrl = "https://costabravarentaboat.com";
+      const siteUrl = "https://www.costabravarentaboat.com";
 
       // Determine feed-level updated date from the most recently updated post
       const feedUpdated = posts.length > 0

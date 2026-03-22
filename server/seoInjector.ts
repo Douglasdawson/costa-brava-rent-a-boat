@@ -9,7 +9,7 @@ import { SUPPORTED_LANGUAGES, HREFLANG_CODES, type LangCode } from "../shared/se
 import { isValidLang, resolveSlug, getSlugForPage, switchLanguagePath, type PageKey } from "../shared/i18n-routes";
 import { AI_CRAWLER_NAMES } from "./seo/constants";
 
-const BASE_URL = process.env.BASE_URL || "https://costabravarentaboat.com";
+const BASE_URL = process.env.BASE_URL || "https://www.costabravarentaboat.com";
 
 // Dynamic season year: Nov-Dec → next year, otherwise current year
 function getSeasonYear(): number {

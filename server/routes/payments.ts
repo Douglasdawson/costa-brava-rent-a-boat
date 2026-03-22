@@ -303,8 +303,8 @@ export function registerPaymentRoutes(app: Express) {
           },
         ],
         mode: "payment",
-        success_url: `${process.env.APP_URL || 'https://costabravarentaboat.com'}/booking/success?session_id={CHECKOUT_SESSION_ID}&booking_id=${bookingId}`,
-        cancel_url: `${process.env.APP_URL || 'https://costabravarentaboat.com'}/booking?step=6&booking_id=${bookingId}`,
+        success_url: `${process.env.APP_URL || 'https://www.costabravarentaboat.com'}/booking/success?session_id={CHECKOUT_SESSION_ID}&booking_id=${bookingId}`,
+        cancel_url: `${process.env.APP_URL || 'https://www.costabravarentaboat.com'}/booking?step=6&booking_id=${bookingId}`,
         metadata: {
           bookingId: bookingId,
         },

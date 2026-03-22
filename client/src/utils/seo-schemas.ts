@@ -164,7 +164,7 @@ export function generateSeasonalEventSchema() {
     organizer: {
       "@type": "Organization",
       name: "Costa Brava Rent a Boat",
-      url: "https://costabravarentaboat.com",
+      url: "https://www.costabravarentaboat.com",
     },
     offers: {
       "@type": "AggregateOffer",

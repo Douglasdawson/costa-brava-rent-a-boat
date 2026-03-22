@@ -196,7 +196,7 @@ export function registerPartnershipRoutes(app: Express) {
       let failed = 0;
       const errors: string[] = [];
 
-      const appUrl = process.env.APP_URL || "https://costabravarentaboat.com";
+      const appUrl = process.env.APP_URL || "https://www.costabravarentaboat.com";
 
       for (const contact of batch) {
         const unsubToken = generateUnsubToken(contact.email);

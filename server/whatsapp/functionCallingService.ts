@@ -766,8 +766,8 @@ async function createBookingLink(params: CreateBookingLinkParams): Promise<strin
         },
       ],
       mode: "payment",
-      success_url: `${process.env.APP_URL || "https://costabravarentaboat.com"}/booking/success?session_id={CHECKOUT_SESSION_ID}&booking_id=${booking.id}`,
-      cancel_url: `${process.env.APP_URL || "https://costabravarentaboat.com"}/boats/${boatId}`,
+      success_url: `${process.env.APP_URL || "https://www.costabravarentaboat.com"}/booking/success?session_id={CHECKOUT_SESSION_ID}&booking_id=${booking.id}`,
+      cancel_url: `${process.env.APP_URL || "https://www.costabravarentaboat.com"}/boats/${boatId}`,
       metadata: {
         bookingId: booking.id,
         boatId,

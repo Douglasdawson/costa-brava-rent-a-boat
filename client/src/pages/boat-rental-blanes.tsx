@@ -33,9 +33,9 @@ export default function BoatRentalBlanesPage() {
   const { localizedPath } = useLanguage();
   const seoConfig = getSEOConfig('boatRentalBlanes', 'en');
   const hreflangLinks = [
-    { lang: 'en-GB', url: 'https://costabravarentaboat.com/boat-rental-blanes' },
-    { lang: 'es-ES', url: 'https://costabravarentaboat.com/alquiler-barcos-blanes' },
-    { lang: 'x-default', url: 'https://costabravarentaboat.com/alquiler-barcos-blanes' },
+    { lang: 'en-GB', url: 'https://www.costabravarentaboat.com/boat-rental-blanes' },
+    { lang: 'es-ES', url: 'https://www.costabravarentaboat.com/alquiler-barcos-blanes' },
+    { lang: 'x-default', url: 'https://www.costabravarentaboat.com/alquiler-barcos-blanes' },
   ];
   const canonical = generateCanonicalUrl('boatRentalBlanes', 'en');
 
@@ -68,7 +68,7 @@ export default function BoatRentalBlanesPage() {
       "@type": "LocalBusiness",
       "name": "Costa Brava Rent a Boat Blanes",
       "telephone": "+34611500372",
-      "url": "https://costabravarentaboat.com/"
+      "url": "https://www.costabravarentaboat.com/"
     }
   };
 

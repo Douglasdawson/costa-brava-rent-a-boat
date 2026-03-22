@@ -15,15 +15,8 @@ const FALLBACK_DESTINATION_SLUGS = [
   "costa-brava-tour",
 ];
 
-const getBaseUrl = (req?: any) => {
-  if (req) {
-    const protocol = req.protocol || "https";
-    const host = req.get("host") || req.get("Host");
-    if (host) {
-      return `${protocol}://${host}`;
-    }
-  }
-  return process.env.BASE_URL || "https://costabravarentaboat.com";
+const getBaseUrl = () => {
+  return process.env.BASE_URL || "https://www.costabravarentaboat.com";
 };
 
 // Stable lastmod for static pages — computed once at server start (approximates last deploy)
@@ -127,7 +120,7 @@ export function registerSitemapRoutes(app: Express) {
   // Sitemap Index - Main entry point with real lastmod per sub-sitemap
   app.get("/sitemap.xml", async (req, res) => {
     try {
-      const baseUrl = getBaseUrl(req);
+      const baseUrl = getBaseUrl();
 
       // Query DB for real lastmod dates per sub-sitemap
       const [boats, blogPosts, destinations] = await Promise.all([
@@ -182,7 +175,7 @@ export function registerSitemapRoutes(app: Express) {
   // Pages Sitemap — uses DEPLOY_DATE (stable per server lifecycle, not "today")
   app.get("/sitemap-pages.xml", async (req, res) => {
     try {
-      const baseUrl = getBaseUrl(req);
+      const baseUrl = getBaseUrl();
 
       let sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
@@ -251,7 +244,7 @@ export function registerSitemapRoutes(app: Express) {
   // Boats Sitemap with image tags and XML escaping
   app.get("/sitemap-boats.xml", async (req, res) => {
     try {
-      const baseUrl = getBaseUrl(req);
+      const baseUrl = getBaseUrl();
 
       const boats = await storage.getAllBoats();
       const activeBoats = boats.filter(b => b.isActive);
@@ -327,7 +320,7 @@ ${boatHreflang}  </url>
   // Blog Sitemap with XML escaping
   app.get("/sitemap-blog.xml", async (req, res) => {
     try {
-      const baseUrl = getBaseUrl(req);
+      const baseUrl = getBaseUrl();
 
       const blogPosts = await storage.getAllBlogPosts();
       const publishedBlogPosts = blogPosts.filter(post => post.isPublished);
@@ -398,7 +391,7 @@ ${postHreflang}  </url>
   // Uses DB destinations if available, otherwise falls back to boatRoutes static data
   app.get("/sitemap-destinations.xml", async (req, res) => {
     try {
-      const baseUrl = getBaseUrl(req);
+      const baseUrl = getBaseUrl();
 
       const destinations = await storage.getAllDestinations();
       const publishedDestinations = destinations.filter(dest => dest.isPublished);

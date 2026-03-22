@@ -54,7 +54,7 @@ export function registerNewsletterRoutes(app: Express) {
         <body style="font-family:Arial,sans-serif; text-align:center; padding:60px 20px;">
           <h2 style="color:#1e3a5f;">Has cancelado tu suscripcion</h2>
           <p style="color:#475569;">Ya no recibiras nuestro newsletter. Si cambias de opinion, puedes volver a suscribirte en nuestra web.</p>
-          <a href="https://costabravarentaboat.com" style="color:#2563eb;">Volver a costabravarentaboat.com</a>
+          <a href="https://www.costabravarentaboat.com" style="color:#2563eb;">Volver a costabravarentaboat.com</a>
         </body></html>
       `);
     } catch (error: unknown) {

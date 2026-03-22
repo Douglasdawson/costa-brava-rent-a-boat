@@ -8,7 +8,7 @@ import { getSEOConfig, generateHreflangLinks, generateCanonicalUrl, generateBrea
 import { useTranslations } from "@/lib/translations";
 
 export default function PrivacyPolicyPage() {
-  const { language } = useLanguage();
+  const { language, localizedPath } = useLanguage();
   const t = useTranslations();
   const seoConfig = getSEOConfig('privacyPolicy', language);
   const hreflangLinks = generateHreflangLinks('privacyPolicy');
@@ -244,7 +244,7 @@ export default function PrivacyPolicyPage() {
             </CardHeader>
             <CardContent className="text-sm text-muted-foreground">
               <p>Para información detallada sobre las cookies que utilizamos, consulta nuestra{" "}
-                <a href="/cookies-policy" className="text-primary underline">
+                <a href={localizedPath("cookiesPolicy")} className="text-primary underline">
                   Política de Cookies
                 </a>.
               </p>

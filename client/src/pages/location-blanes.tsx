@@ -30,7 +30,7 @@ import { useTranslations } from "@/lib/translations";
 import { BOAT_DATA } from "@shared/boatData";
 
 export default function LocationBlanesPage() {
-  const { language } = useLanguage();
+  const { language, localizedPath } = useLanguage();
   const t = useTranslations();
   const seoConfig = getSEOConfig('locationBlanes', language);
   const hreflangLinks = generateHreflangLinks('locationBlanes');
@@ -353,7 +353,7 @@ export default function LocationBlanesPage() {
               </div>
               <p className="text-xs text-muted-foreground mb-3">{s.pricingFuelNote}</p>
               <p className="text-sm text-muted-foreground mb-2">{s.pricingSeasons}</p>
-              <a href="/precios" className="text-primary hover:underline text-sm font-medium flex items-center gap-1">
+              <a href={localizedPath("pricing")} className="text-primary hover:underline text-sm font-medium flex items-center gap-1">
                 <ChevronRight className="w-4 h-4" />
                 {s.pricingFullDetails}
               </a>
@@ -370,7 +370,7 @@ export default function LocationBlanesPage() {
             </CardHeader>
             <CardContent>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                <a href="/excursion-snorkel-barco-blanes" className="block border rounded-lg p-5 hover:shadow-md transition-shadow">
+                <a href={localizedPath("activitySnorkel")} className="block border rounded-lg p-5 hover:shadow-md transition-shadow">
                   <div className="flex items-center gap-3 mb-3">
                     <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
                       <Waves className="w-5 h-5 text-primary" />
@@ -380,7 +380,7 @@ export default function LocationBlanesPage() {
                   <p className="text-muted-foreground text-sm">{s.expSnorkelDesc}</p>
                 </a>
 
-                <a href="/sunset-boat-trip-blanes" className="block border rounded-lg p-5 hover:shadow-md transition-shadow">
+                <a href={localizedPath("activitySunset")} className="block border rounded-lg p-5 hover:shadow-md transition-shadow">
                   <div className="flex items-center gap-3 mb-3">
                     <div className="w-10 h-10 bg-orange-100 rounded-full flex items-center justify-center">
                       <Sun className="w-5 h-5 text-orange-600" />
@@ -390,7 +390,7 @@ export default function LocationBlanesPage() {
                   <p className="text-muted-foreground text-sm">{s.expSunsetDesc}</p>
                 </a>
 
-                <a href="/alquiler-barcos-tossa-de-mar" className="block border rounded-lg p-5 hover:shadow-md transition-shadow">
+                <a href={localizedPath("locationTossa")} className="block border rounded-lg p-5 hover:shadow-md transition-shadow">
                   <div className="flex items-center gap-3 mb-3">
                     <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
                       <Compass className="w-5 h-5 text-primary" />
@@ -400,7 +400,7 @@ export default function LocationBlanesPage() {
                   <p className="text-muted-foreground text-sm">{s.expTossaDesc}</p>
                 </a>
 
-                <a href="/pesca-barco-blanes" className="block border rounded-lg p-5 hover:shadow-md transition-shadow">
+                <a href={localizedPath("activityFishing")} className="block border rounded-lg p-5 hover:shadow-md transition-shadow">
                   <div className="flex items-center gap-3 mb-3">
                     <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
                       <Fish className="w-5 h-5 text-primary" />
@@ -503,9 +503,9 @@ export default function LocationBlanesPage() {
               <h3 className="font-semibold text-lg mb-3">Pueblos cercanos al Puerto de Blanes</h3>
               <p className="text-muted-foreground">
                 Turistas alojados en la costa del Maresme pueden llegar facilmente al Puerto de Blanes:{" "}
-                <a href="/alquiler-barcos-malgrat-de-mar" className="text-primary hover:underline font-medium">Malgrat de Mar</a> (10 min),{" "}
-                <a href="/alquiler-barcos-santa-susanna" className="text-primary hover:underline font-medium">Santa Susanna</a> (15 min) y{" "}
-                <a href="/alquiler-barcos-calella" className="text-primary hover:underline font-medium">Calella</a> (20 min en coche).
+                <a href={localizedPath("locationMalgrat")} className="text-primary hover:underline font-medium">Malgrat de Mar</a> (10 min),{" "}
+                <a href={localizedPath("locationSantaSusanna")} className="text-primary hover:underline font-medium">Santa Susanna</a> (15 min) y{" "}
+                <a href={localizedPath("locationCalella")} className="text-primary hover:underline font-medium">Calella</a> (20 min en coche).
                 Tambien accesible en tren RENFE linea R1.
               </p>
             </CardContent>
@@ -516,23 +516,23 @@ export default function LocationBlanesPage() {
             <CardContent className="pt-6">
               <h3 className="font-semibold text-lg mb-4">Explora nuestros servicios desde Blanes</h3>
               <div className="flex flex-wrap gap-3">
-                <a href="/barcos-sin-licencia" className="text-primary hover:underline flex items-center gap-1">
+                <a href={localizedPath("categoryLicenseFree")} className="text-primary hover:underline flex items-center gap-1">
                   <ChevronRight className="w-4 h-4" />
                   Alquiler de barcos sin licencia
                 </a>
-                <a href="/barcos-con-licencia" className="text-primary hover:underline flex items-center gap-1">
+                <a href={localizedPath("categoryLicensed")} className="text-primary hover:underline flex items-center gap-1">
                   <ChevronRight className="w-4 h-4" />
                   Barcos con licencia en Blanes
                 </a>
-                <a href="/precios" className="text-primary hover:underline flex items-center gap-1">
+                <a href={localizedPath("pricing")} className="text-primary hover:underline flex items-center gap-1">
                   <ChevronRight className="w-4 h-4" />
                   Precios y tarifas por temporada
                 </a>
-                <a href="/alquiler-barcos-lloret-de-mar" className="text-primary hover:underline flex items-center gap-1">
+                <a href={localizedPath("locationLloret")} className="text-primary hover:underline flex items-center gap-1">
                   <ChevronRight className="w-4 h-4" />
                   Excursion en barco a Lloret de Mar
                 </a>
-                <a href="/alquiler-barcos-tossa-de-mar" className="text-primary hover:underline flex items-center gap-1">
+                <a href={localizedPath("locationTossa")} className="text-primary hover:underline flex items-center gap-1">
                   <ChevronRight className="w-4 h-4" />
                   Navega hasta Tossa de Mar
                 </a>

@@ -27,7 +27,7 @@ import {
 } from "@/utils/seo-config";
 
 export default function LocationBarcelonaPage() {
-  const { language } = useLanguage();
+  const { language, localizedPath } = useLanguage();
   const t = useTranslations();
   const { openBookingModal } = useBookingModal();
   const seoConfig = getSEOConfig("locationBarcelona", language);
@@ -304,7 +304,7 @@ export default function LocationBarcelonaPage() {
                   variant="outline"
                   asChild
                 >
-                  <a href="/#fleet">
+                  <a href={localizedPath("home") + "#fleet"}>
                     Ver todos los barcos
                     <ArrowRight className="w-4 h-4 ml-2" />
                   </a>
@@ -361,7 +361,7 @@ export default function LocationBarcelonaPage() {
                   className="border-white text-white hover:bg-white/10"
                   asChild
                 >
-                  <a href="/precios">
+                  <a href={localizedPath("pricing")}>
                     Ver precios
                     <ArrowRight className="w-4 h-4 ml-2" />
                   </a>
@@ -381,7 +381,7 @@ export default function LocationBarcelonaPage() {
             </h2>
             <p className="text-muted-foreground mb-4">
               Descubre más sobre navegar por la Costa Brava en nuestro{" "}
-              <a href="/blog" className="text-primary hover:underline font-medium">blog de navegación</a>.
+              <a href={localizedPath("blog")} className="text-primary hover:underline font-medium">blog de navegación</a>.
             </p>
           </div>
         </div>

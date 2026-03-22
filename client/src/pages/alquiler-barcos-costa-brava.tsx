@@ -17,7 +17,7 @@ import { openWhatsApp, createBookingMessage } from "@/utils/whatsapp";
 import { Link } from "wouter";
 
 export default function LocationCostaBravaPage() {
-  const { language } = useLanguage();
+  const { language, localizedPath } = useLanguage();
   const t = useTranslations();
   const seoConfig = getSEOConfig('locationCostaBrava', language);
   const hreflangLinks = generateHreflangLinks('locationCostaBrava');
@@ -516,19 +516,19 @@ export default function LocationCostaBravaPage() {
           <Card className="mb-8">
             <CardContent className="py-4">
               <div className="flex flex-wrap gap-3">
-                <Link href="/boat-rental-costa-brava" className="text-primary hover:underline flex items-center gap-1">
+                <Link href={localizedPath("locationCostaBrava")} className="text-primary hover:underline flex items-center gap-1">
                   <ChevronRight className="w-4 h-4" />
                   {s?.crossLinkEnglish || "This page in English: Boat Rental Costa Brava"}
                 </Link>
-                <Link href="/barcos-sin-licencia" className="text-primary hover:underline flex items-center gap-1">
+                <Link href={localizedPath("categoryLicenseFree")} className="text-primary hover:underline flex items-center gap-1">
                   <ChevronRight className="w-4 h-4" />
                   Barcos sin licencia
                 </Link>
-                <Link href="/barcos-con-licencia" className="text-primary hover:underline flex items-center gap-1">
+                <Link href={localizedPath("categoryLicensed")} className="text-primary hover:underline flex items-center gap-1">
                   <ChevronRight className="w-4 h-4" />
                   Barcos con licencia
                 </Link>
-                <Link href="/precios" className="text-primary hover:underline flex items-center gap-1">
+                <Link href={localizedPath("pricing")} className="text-primary hover:underline flex items-center gap-1">
                   <ChevronRight className="w-4 h-4" />
                   Precios y tarifas
                 </Link>

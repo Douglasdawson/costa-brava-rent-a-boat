@@ -1,8 +1,10 @@
 import { ArrowRight } from "lucide-react";
 import { useTranslations } from "@/lib/translations";
+import { useLanguage } from "@/hooks/use-language";
 
 export default function GiftCardBanner() {
   const t = useTranslations();
+  const { localizedPath } = useLanguage();
   const banner = t.giftCardBanner;
 
   return (
@@ -23,7 +25,7 @@ export default function GiftCardBanner() {
             {/* CTA Button */}
             <div className="flex-shrink-0">
               <a
-                href="/tarjetas-regalo"
+                href={localizedPath("giftCards")}
                 className="inline-flex items-center gap-2 bg-background text-foreground hover:bg-background/90 rounded-full px-8 py-3 font-medium transition-colors"
               >
                 {banner.cta}

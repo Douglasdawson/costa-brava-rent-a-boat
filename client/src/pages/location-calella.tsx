@@ -31,7 +31,7 @@ import { openWhatsApp, createBookingMessage } from "@/utils/whatsapp";
 import { useTranslations } from "@/lib/translations";
 
 export default function LocationCalellaPage() {
-  const { language } = useLanguage();
+  const { language, localizedPath } = useLanguage();
   const t = useTranslations();
   const seoConfig = getSEOConfig('locationCalella', language);
   const hreflangLinks = generateHreflangLinks('locationCalella');
@@ -274,13 +274,13 @@ export default function LocationCalellaPage() {
             <CardContent>
               <p className="text-muted-foreground mb-4">{s.boatDestinationsDesc}</p>
               <div className="flex flex-wrap gap-3">
-                <Link href="/alquiler-barcos-lloret-de-mar">
+                <Link href={localizedPath("locationLloret")}>
                   <Badge variant="outline" className="cursor-pointer hover:bg-primary/10">Lloret de Mar - 25 min</Badge>
                 </Link>
-                <Link href="/alquiler-barcos-tossa-de-mar">
+                <Link href={localizedPath("locationTossa")}>
                   <Badge variant="outline" className="cursor-pointer hover:bg-primary/10">Tossa de Mar - 1h</Badge>
                 </Link>
-                <Link href="/alquiler-barcos-blanes">
+                <Link href={localizedPath("locationBlanes")}>
                   <Badge variant="outline" className="cursor-pointer hover:bg-primary/10">Calas de Blanes</Badge>
                 </Link>
               </div>

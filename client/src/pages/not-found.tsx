@@ -3,9 +3,11 @@ import { Button } from "@/components/ui/button";
 import { AlertCircle, Anchor, HelpCircle, Phone } from "lucide-react";
 import { Link } from "wouter";
 import { useTranslations } from "@/lib/translations";
+import { useLanguage } from "@/hooks/use-language";
 
 export default function NotFound() {
   const t = useTranslations();
+  const { localizedPath } = useLanguage();
   return (
     <div className="min-h-screen w-full flex items-center justify-center bg-muted p-4">
       <Card className="w-full max-w-md">
@@ -19,16 +21,16 @@ export default function NotFound() {
           </p>
           <div className="space-y-3">
             <Button asChild className="w-full">
-              <Link href="/">{t.notFound?.backHome || 'Back to home'}</Link>
+              <Link href={localizedPath("home")}>{t.notFound?.backHome || 'Back to home'}</Link>
             </Button>
             <Button asChild variant="outline" className="w-full">
-              <Link href="/#fleet">
+              <Link href={localizedPath("home") + "#fleet"}>
                 <Anchor className="w-4 h-4 mr-2" />
                 {t.nav.fleet}
               </Link>
             </Button>
             <Button asChild variant="ghost" className="w-full">
-              <Link href="/faq">
+              <Link href={localizedPath("faq")}>
                 <HelpCircle className="w-4 h-4 mr-2" />
                 {t.nav.faq}
               </Link>

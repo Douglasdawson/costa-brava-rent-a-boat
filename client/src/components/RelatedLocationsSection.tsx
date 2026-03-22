@@ -13,6 +13,7 @@ import {
   Car
 } from "lucide-react";
 import { Link } from "wouter";
+import { useLanguage } from "@/hooks/use-language";
 
 interface RelatedLocation {
   id: string;
@@ -32,12 +33,13 @@ interface RelatedLocationsSectionProps {
 }
 
 export default function RelatedLocationsSection({ currentLocation }: RelatedLocationsSectionProps) {
+  const { localizedPath } = useLanguage();
 
   const allLocations: RelatedLocation[] = [
     {
       id: "blanes",
       name: "Alquiler Barcos Blanes",
-      url: "/alquiler-barcos-blanes",
+      url: localizedPath("locationBlanes"),
       description: "Puerto base de operaciones con todas las comodidades. Punto de partida perfecto para explorar toda la Costa Brava.",
       duration: "Base principal",
       highlights: ["Puerto seguro", "Parking gratuito", "Restaurantes"],
@@ -49,7 +51,7 @@ export default function RelatedLocationsSection({ currentLocation }: RelatedLoca
     {
       id: "lloret",
       name: "Excursión a Lloret de Mar",
-      url: "/alquiler-barcos-lloret-de-mar",
+      url: localizedPath("locationLloret"),
       description: "Playas vibrantes y calas escondidas. Desde Blanes llegas en 25 minutos navegando por la costa.",
       duration: "25 min desde Blanes",
       highlights: ["Playas famosas", "Calas vírgenes", "Vida nocturna"],
@@ -61,7 +63,7 @@ export default function RelatedLocationsSection({ currentLocation }: RelatedLoca
     {
       id: "tossa",
       name: "Visita Tossa de Mar",
-      url: "/alquiler-barcos-tossa-de-mar",
+      url: localizedPath("locationTossa"),
       description: "Villa medieval protegida por murallas. La joya histórica más bella de la Costa Brava.",
       duration: "1h desde Blanes",
       highlights: ["Vila Vella", "Historia medieval", "Aguas cristalinas"],
@@ -73,7 +75,7 @@ export default function RelatedLocationsSection({ currentLocation }: RelatedLoca
     {
       id: "malgrat",
       name: "Barcos cerca de Malgrat de Mar",
-      url: "/alquiler-barcos-malgrat-de-mar",
+      url: localizedPath("locationMalgrat"),
       description: "A solo 10 minutos en coche del Puerto de Blanes. El punto de alquiler náutico más cercano para turistas en Malgrat.",
       duration: "10 min en coche",
       highlights: ["Playa familiar", "Resort", "Cerca de Blanes"],
@@ -85,7 +87,7 @@ export default function RelatedLocationsSection({ currentLocation }: RelatedLoca
     {
       id: "santaSusanna",
       name: "Barcos cerca de Santa Susanna",
-      url: "/alquiler-barcos-santa-susanna",
+      url: localizedPath("locationSantaSusanna"),
       description: "Zona resort a 15 minutos del Puerto de Blanes. Combina tu estancia con una aventura náutica en la Costa Brava.",
       duration: "15 min en coche",
       highlights: ["Tranquilidad", "Resort", "Termas"],
@@ -97,7 +99,7 @@ export default function RelatedLocationsSection({ currentLocation }: RelatedLoca
     {
       id: "calella",
       name: "Barcos cerca de Calella",
-      url: "/alquiler-barcos-calella",
+      url: localizedPath("locationCalella"),
       description: "Desde Calella al Puerto de Blanes en 20 minutos. Playa Gran, casco antiguo y barcos esperándote.",
       duration: "20 min en coche",
       highlights: ["Playa Gran", "Casco antiguo", "Comercios"],
@@ -109,7 +111,7 @@ export default function RelatedLocationsSection({ currentLocation }: RelatedLoca
     {
       id: "pineda",
       name: "Barcos cerca de Pineda de Mar",
-      url: "/alquiler-barcos-pineda-de-mar",
+      url: localizedPath("locationPinedaDeMar"),
       description: "Desde Pineda de Mar al Puerto de Blanes en 18 minutos. Zona hotelera con acceso directo por tren o coche.",
       duration: "18 min en coche",
       highlights: ["Zona hotelera", "Tren RENFE R1", "Familias"],
@@ -121,7 +123,7 @@ export default function RelatedLocationsSection({ currentLocation }: RelatedLoca
     {
       id: "palafolls",
       name: "Barcos cerca de Palafolls",
-      url: "/alquiler-barcos-palafolls",
+      url: localizedPath("locationPalafolls"),
       description: "Desde los campings de Palafolls al Puerto de Blanes en 12 minutos. La excursion perfecta desde tu camping.",
       duration: "12 min en coche",
       highlights: ["Campings", "Muy cerca", "Naturaleza"],
@@ -133,7 +135,7 @@ export default function RelatedLocationsSection({ currentLocation }: RelatedLoca
     {
       id: "tordera",
       name: "Barcos cerca de Tordera",
-      url: "/alquiler-barcos-tordera",
+      url: localizedPath("locationTordera"),
       description: "Desde Tordera al Puerto de Blanes en 15 minutos. Puerta de entrada a la Costa Brava con parking facil.",
       duration: "15 min en coche",
       highlights: ["Tren 8 min", "Parking facil", "Interior"],
@@ -148,7 +150,7 @@ export default function RelatedLocationsSection({ currentLocation }: RelatedLoca
     {
       id: "license-free",
       name: "Barcos Sin Licencia",
-      url: "/barcos-sin-licencia",
+      url: localizedPath("categoryLicenseFree"),
       description: "Embarcaciones hasta 15 CV perfectas para principiantes y familias.",
       features: ["Hasta 15 CV", "4-7 personas", "Fácil manejo"],
       icon: Waves,
@@ -158,7 +160,7 @@ export default function RelatedLocationsSection({ currentLocation }: RelatedLoca
     {
       id: "licensed",
       name: "Barcos Con Licencia",
-      url: "/barcos-con-licencia",
+      url: localizedPath("categoryLicensed"),
       description: "Embarcaciones potentes para navegación avanzada con titulación.",
       features: ["40-115 CV", "Mayor velocidad", "Sin límite distancia"],
       icon: Star,

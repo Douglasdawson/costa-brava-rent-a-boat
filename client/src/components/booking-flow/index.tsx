@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import { useLocation } from "wouter";
+import { useLanguage } from "@/hooks/use-language";
 import { useBookingFlowState } from "./useBookingFlowState";
 import { useBookingFlowActions } from "./useBookingFlowActions";
 import { BookingProgressIndicator } from "./BookingProgressIndicator";
@@ -12,6 +13,7 @@ import type { BookingFlowProps } from "./types";
 export default function BookingFlow(props: BookingFlowProps) {
   const { onClose } = props;
   const [, setLocation] = useLocation();
+  const { localizedPath } = useLanguage();
   const state = useBookingFlowState(props);
   const { createQuote, handlePayment } = useBookingFlowActions(state, onClose);
 
@@ -24,7 +26,7 @@ export default function BookingFlow(props: BookingFlowProps) {
         <div className="mb-4">
           <Button
             variant="ghost"
-            onClick={() => setLocation("/")}
+            onClick={() => setLocation(localizedPath("home"))}
             className="flex items-center text-muted-foreground hover:text-foreground"
             data-testid="button-back-home"
           >

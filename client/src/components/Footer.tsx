@@ -13,7 +13,7 @@ import { trackPhoneClick, trackNewsletterSignup } from "@/utils/analytics";
 export default function Footer() {
   const t = useTranslations();
   const currentYear = new Date().getFullYear();
-  const { language } = useLanguage();
+  const { language, localizedPath } = useLanguage();
   const [newsletterEmail, setNewsletterEmail] = useState('');
   const [newsletterState, setNewsletterState] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
 
@@ -55,7 +55,7 @@ export default function Footer() {
           {/* Column 1: Company */}
           <div>
             <a
-              href="/"
+              href={localizedPath("home")}
               onClick={(e) => { e.preventDefault(); handleLogoClick(); }}
               className="flex items-center space-x-2 mb-4 hover:opacity-80 transition-opacity rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2 focus-visible:outline-none"
               data-testid="footer-logo-button"
@@ -151,46 +151,46 @@ export default function Footer() {
                 <a href="#fleet" className="hover:text-white transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none">{t.nav.fleet}</a>
               </li>
               <li>
-                <a href="/rutas" className="hover:text-white transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none">{t.footer.destinations}</a>
+                <a href={localizedPath("routes")} className="hover:text-white transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none">{t.footer.destinations}</a>
               </li>
               <li>
-                <a href="/blog" className="hover:text-white transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none" data-testid="footer-blog-link">{t.footer.blog}</a>
+                <a href={localizedPath("blog")} className="hover:text-white transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none" data-testid="footer-blog-link">{t.footer.blog}</a>
               </li>
               <li>
-                <a href="/precios" className="hover:text-white transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none">Precios</a>
+                <a href={localizedPath("pricing")} className="hover:text-white transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none">Precios</a>
               </li>
               <li>
-                <a href="/faq" className="hover:text-white transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none" data-testid="footer-faq-link">{t.footer.faqLabel}</a>
+                <a href={localizedPath("faq")} className="hover:text-white transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none" data-testid="footer-faq-link">{t.footer.faqLabel}</a>
               </li>
               <li>
-                <a href="/tarjetas-regalo" className="hover:text-white transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none">{t.nav.giftCards}</a>
+                <a href={localizedPath("giftCards")} className="hover:text-white transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none">{t.nav.giftCards}</a>
               </li>
               <li>
                 <a href="#contact" className="hover:text-white transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none">{t.nav.contact}</a>
               </li>
               <li>
-                <a href="/testimonios" className="hover:text-white transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none" data-testid="footer-testimonials-link">{t.footer.customerReviews}</a>
+                <a href={localizedPath("testimonials")} className="hover:text-white transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none" data-testid="footer-testimonials-link">{t.footer.customerReviews}</a>
               </li>
               <li>
-                <a href="/galeria" className="hover:text-white transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none">{t.footer.gallery}</a>
+                <a href={localizedPath("gallery")} className="hover:text-white transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none">{t.footer.gallery}</a>
               </li>
             </ul>
 
             <h3 className="font-medium text-white mb-4 text-sm mt-8">Destinos</h3>
             <ul className="space-y-1 text-sm">
-              <li><a href="/alquiler-barcos-blanes" className="hover:text-white transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none">Blanes</a></li>
-              <li><a href="/alquiler-barcos-lloret-de-mar" className="hover:text-white transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none">Lloret de Mar</a></li>
-              <li><a href="/alquiler-barcos-tossa-de-mar" className="hover:text-white transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none">Tossa de Mar</a></li>
-              <li><a href="/alquiler-barcos-malgrat-de-mar" className="hover:text-white transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none">Malgrat de Mar</a></li>
-              <li><a href="/alquiler-barcos-santa-susanna" className="hover:text-white transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none">Santa Susanna</a></li>
-              <li><a href="/alquiler-barcos-calella" className="hover:text-white transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none">Calella</a></li>
+              <li><a href={localizedPath("locationBlanes")} className="hover:text-white transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none">Blanes</a></li>
+              <li><a href={localizedPath("locationLloret")} className="hover:text-white transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none">Lloret de Mar</a></li>
+              <li><a href={localizedPath("locationTossa")} className="hover:text-white transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none">Tossa de Mar</a></li>
+              <li><a href={localizedPath("locationMalgrat")} className="hover:text-white transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none">Malgrat de Mar</a></li>
+              <li><a href={localizedPath("locationSantaSusanna")} className="hover:text-white transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none">Santa Susanna</a></li>
+              <li><a href={localizedPath("locationCalella")} className="hover:text-white transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none">Calella</a></li>
             </ul>
 
             <h3 className="font-medium text-white mb-4 text-sm mt-8">{t.footer.services}</h3>
             <ul className="space-y-1 text-sm">
-              <li><a href="/barcos-sin-licencia" className="hover:text-white transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none">{t.boats.withoutLicense}</a></li>
-              <li><a href="/barcos-con-licencia" className="hover:text-white transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none">{t.boats.withLicense}</a></li>
-              <li><a href="/alquiler-barcos-cerca-barcelona" className="hover:text-white transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none">Barcos cerca de Barcelona</a></li>
+              <li><a href={localizedPath("categoryLicenseFree")} className="hover:text-white transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none">{t.boats.withoutLicense}</a></li>
+              <li><a href={localizedPath("categoryLicensed")} className="hover:text-white transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none">{t.boats.withLicense}</a></li>
+              <li><a href={localizedPath("locationBarcelona")} className="hover:text-white transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none">Barcos cerca de Barcelona</a></li>
             </ul>
           </div>
 
@@ -260,17 +260,17 @@ export default function Footer() {
         <div className="border-t border-white/10 mt-12 pt-8">
           <div className="flex flex-col items-center gap-3">
             <div className="text-white/70 text-sm flex flex-wrap gap-2 sm:gap-4 justify-center">
-              <a href="/terms-conditions" className="hover:text-white transition-colors rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none" data-testid="footer-terms-link">{t.footer.terms}</a>
-              <a href="/privacy-policy" className="hover:text-white transition-colors rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none" data-testid="footer-privacy-link">{t.footer.privacy}</a>
-              <a href="/cookies-policy" className="hover:text-white transition-colors rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none" data-testid="footer-cookies-link">{t.footer.cookiesPolicy}</a>
-              <a href="/accesibilidad" className="hover:text-white transition-colors rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none" data-testid="footer-accessibility-link">{t.footer.accessibility}</a>
+              <a href={localizedPath("termsConditions")} className="hover:text-white transition-colors rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none" data-testid="footer-terms-link">{t.footer.terms}</a>
+              <a href={localizedPath("privacyPolicy")} className="hover:text-white transition-colors rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none" data-testid="footer-privacy-link">{t.footer.privacy}</a>
+              <a href={localizedPath("cookiesPolicy")} className="hover:text-white transition-colors rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none" data-testid="footer-cookies-link">{t.footer.cookiesPolicy}</a>
+              <a href={localizedPath("accessibility")} className="hover:text-white transition-colors rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none" data-testid="footer-accessibility-link">{t.footer.accessibility}</a>
             </div>
             <p className="text-white/50 text-xs text-center text-balance">
               {currentYear} Costa Brava Rent a Boat Blanes. {t.footer.rights}
             </p>
             <div className="flex items-center justify-center gap-3 text-white/50 text-xs">
               <span>NIF: B22566327</span>
-              <a href="/login" className="inline-flex items-center gap-1 hover:text-white/60 transition-colors" aria-label="Acceso administración">
+              <a href={localizedPath("login")} className="inline-flex items-center gap-1 hover:text-white/60 transition-colors" aria-label="Acceso administración">
                 <Lock className="w-3 h-3" aria-hidden="true" />
               </a>
             </div>

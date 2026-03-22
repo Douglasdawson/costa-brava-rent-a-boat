@@ -33,7 +33,7 @@ import { openWhatsApp, createBookingMessage } from "@/utils/whatsapp";
 import { useTranslations } from "@/lib/translations";
 
 export default function CategoryLicensedPage() {
-  const { language } = useLanguage();
+  const { language, localizedPath } = useLanguage();
   const t = useTranslations();
   const seoConfig = getSEOConfig('categoryLicensed', language);
   const hreflangLinks = generateHreflangLinks('categoryLicensed');
@@ -449,19 +449,19 @@ export default function CategoryLicensedPage() {
             <CardContent className="pt-6">
               <h3 className="font-semibold text-lg mb-4">Destinos con barco con licencia desde Blanes</h3>
               <div className="flex flex-wrap gap-3">
-                <a href="/alquiler-barcos-blanes" className="text-primary hover:underline flex items-center gap-1">
+                <a href={localizedPath("locationBlanes")} className="text-primary hover:underline flex items-center gap-1">
                   <ChevronRight className="w-4 h-4" />
                   Puerto de Blanes: punto de salida
                 </a>
-                <a href="/alquiler-barcos-tossa-de-mar" className="text-primary hover:underline flex items-center gap-1">
+                <a href={localizedPath("locationTossa")} className="text-primary hover:underline flex items-center gap-1">
                   <ChevronRight className="w-4 h-4" />
                   Navega hasta Tossa de Mar
                 </a>
-                <a href="/alquiler-barcos-costa-brava" className="text-primary hover:underline flex items-center gap-1">
+                <a href={localizedPath("locationCostaBrava")} className="text-primary hover:underline flex items-center gap-1">
                   <ChevronRight className="w-4 h-4" />
                   Explora toda la Costa Brava en barco
                 </a>
-                <a href="/precios" className="text-primary hover:underline flex items-center gap-1">
+                <a href={localizedPath("pricing")} className="text-primary hover:underline flex items-center gap-1">
                   <ChevronRight className="w-4 h-4" />
                   Tarifas de barcos con licencia
                 </a>

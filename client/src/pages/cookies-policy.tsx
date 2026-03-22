@@ -8,7 +8,7 @@ import Footer from "@/components/Footer";
 
 export default function CookiesPolicy() {
   const t = useTranslations();
-  const { language } = useLanguage();
+  const { language, localizedPath } = useLanguage();
   const seoConfig = getSEOConfig('cookiesPolicy', language);
   const canonical = generateCanonicalUrl('cookiesPolicy', language);
   const hreflangLinks = generateHreflangLinks('cookiesPolicy');
@@ -206,7 +206,7 @@ export default function CookiesPolicy() {
                 Si tiene cualquier duda acerca de nuestra política de cookies, puede contactar con nosotros a través 
                 de nuestros canales de contacto disponibles en{" "}
                 <a 
-                  href="/#contact" 
+                  href={localizedPath("home") + "#contact"}
                   className="text-primary hover:underline"
                   data-testid="link-contact-section"
                 >

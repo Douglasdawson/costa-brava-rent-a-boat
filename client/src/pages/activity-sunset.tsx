@@ -94,7 +94,7 @@ const faqs = [
 ];
 
 export default function ActivitySunsetPage() {
-  const { language } = useLanguage();
+  const { language, localizedPath } = useLanguage();
   const seoConfig = getSEOConfig('activitySunset', language);
   const hreflangLinks = generateHreflangLinks('activitySunset');
   const canonical = generateCanonicalUrl('activitySunset', language);
@@ -372,23 +372,23 @@ export default function ActivitySunsetPage() {
               <CardContent className="pt-6">
                 <h3 className="font-semibold text-lg mb-4">Explore more experiences</h3>
                 <div className="flex flex-wrap gap-3">
-                  <a href="/barcos-sin-licencia" className="text-primary hover:underline flex items-center gap-1">
+                  <a href={localizedPath("categoryLicenseFree")} className="text-primary hover:underline flex items-center gap-1">
                     <ChevronRight className="w-4 h-4" />
                     No-license boats
                   </a>
-                  <a href="/excursion-snorkel-barco-blanes" className="text-primary hover:underline flex items-center gap-1">
+                  <a href={localizedPath("activitySnorkel")} className="text-primary hover:underline flex items-center gap-1">
                     <ChevronRight className="w-4 h-4" />
                     Snorkeling excursion
                   </a>
-                  <a href="/precios" className="text-primary hover:underline flex items-center gap-1">
+                  <a href={localizedPath("pricing")} className="text-primary hover:underline flex items-center gap-1">
                     <ChevronRight className="w-4 h-4" />
                     Prices and rates
                   </a>
-                  <a href="/alquiler-barcos-blanes" className="text-primary hover:underline flex items-center gap-1">
+                  <a href={localizedPath("locationBlanes")} className="text-primary hover:underline flex items-center gap-1">
                     <ChevronRight className="w-4 h-4" />
                     Blanes port info
                   </a>
-                  <a href="/rutas" className="text-primary hover:underline flex items-center gap-1">
+                  <a href={localizedPath("routes")} className="text-primary hover:underline flex items-center gap-1">
                     <ChevronRight className="w-4 h-4" />
                     Maritime routes
                   </a>
@@ -434,7 +434,7 @@ export default function ActivitySunsetPage() {
                     <MessageCircle className="w-5 h-5 mr-2" />
                     Book via WhatsApp
                   </Button>
-                  <a href="/barcos-sin-licencia">
+                  <a href={localizedPath("categoryLicenseFree")}>
                     <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 w-full">
                       <Anchor className="w-5 h-5 mr-2" />
                       View available boats

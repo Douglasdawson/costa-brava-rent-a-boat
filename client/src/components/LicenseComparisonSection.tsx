@@ -1,6 +1,7 @@
 import { Check, Anchor, Ship, Lightbulb } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTranslations } from "@/lib/translations";
+import { useLanguage } from "@/hooks/use-language";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "wouter";
@@ -8,6 +9,7 @@ import type { Boat } from "@shared/schema";
 
 export default function LicenseComparisonSection() {
   const t = useTranslations();
+  const { localizedPath } = useLanguage();
   const { ref: revealRef, isVisible } = useScrollReveal();
 
   const { data: boats } = useQuery<Boat[]>({ queryKey: ['/api/boats'] });
@@ -94,7 +96,7 @@ export default function LicenseComparisonSection() {
                 >
                   {'Ver barcos'}
                 </Button>
-                <Link href="/barcos-sin-licencia">
+                <Link href={localizedPath("categoryLicenseFree")}>
                   <Button size="sm" variant="ghost" className="rounded-full text-xs text-muted-foreground hover:text-foreground">
                     {'Ver todos'}
                   </Button>
@@ -140,7 +142,7 @@ export default function LicenseComparisonSection() {
                 >
                   {'Ver barcos'}
                 </Button>
-                <Link href="/barcos-con-licencia">
+                <Link href={localizedPath("categoryLicensed")}>
                   <Button size="sm" variant="ghost" className="rounded-full text-xs text-muted-foreground hover:text-foreground">
                     {'Ver todos'}
                   </Button>

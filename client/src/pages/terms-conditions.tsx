@@ -8,7 +8,7 @@ import { getSEOConfig, generateHreflangLinks, generateCanonicalUrl, generateBrea
 import { useTranslations } from "@/lib/translations";
 
 export default function TermsConditionsPage() {
-  const { language } = useLanguage();
+  const { language, localizedPath } = useLanguage();
   const t = useTranslations();
   const seoConfig = getSEOConfig('termsConditions', language);
   const hreflangLinks = generateHreflangLinks('termsConditions');
@@ -290,7 +290,7 @@ export default function TermsConditionsPage() {
               <p>De conformidad con el artículo 16.l) de la Directiva 2011/83/UE y el Real Decreto Legislativo 1/2007, de 16 de noviembre, por el que se aprueba el Texto Refundido de la Ley General para la Defensa de los Consumidores y Usuarios (TRLGDCU), <strong>el derecho de desistimiento de 14 días no es aplicable</strong> a los contratos de servicios de alquiler de embarcaciones recreativas para una fecha o período concreto.</p>
               <p>Esto se debe a que los servicios de alquiler náutico están vinculados a actividades de ocio en fechas específicas, excepción expresamente prevista en el art. 103.l) del TRLGDCU.</p>
               <p>Para cancelaciones y cambios, consulta nuestra{" "}
-                <a href="/terms-conditions#cancelaciones-cambios" className="text-primary underline">
+                <a href={localizedPath("termsConditions") + "#cancelaciones-cambios"} className="text-primary underline">
                   Política de Cancelación
                 </a>.
               </p>

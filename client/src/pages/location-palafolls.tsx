@@ -26,7 +26,7 @@ import { openWhatsApp, createBookingMessage } from "@/utils/whatsapp";
 import { getCanonicalUrl } from "@/lib/domain";
 
 export default function LocationPalafollsPage() {
-  const { language } = useLanguage();
+  const { language, localizedPath } = useLanguage();
 
   const handleBookingWhatsApp = () => {
     const message = createBookingMessage();
@@ -282,13 +282,13 @@ export default function LocationPalafollsPage() {
                 Desde el Puerto de Blanes puedes navegar hacia el norte explorando la espectacular costa de la Costa Brava. Calas escondidas de aguas turquesas, acantilados cubiertos de pinos y la impresionante silueta de Tossa de Mar en el horizonte. Todo esto a tu alcance desde el barco.
               </p>
               <div className="flex flex-wrap gap-3">
-                <Link href="/alquiler-barcos-lloret-de-mar">
+                <Link href={localizedPath("locationLloret")}>
                   <Badge variant="outline" className="cursor-pointer hover:bg-primary/10">Lloret de Mar - 25 min</Badge>
                 </Link>
-                <Link href="/alquiler-barcos-tossa-de-mar">
+                <Link href={localizedPath("locationTossa")}>
                   <Badge variant="outline" className="cursor-pointer hover:bg-primary/10">Tossa de Mar - 1h</Badge>
                 </Link>
-                <Link href="/alquiler-barcos-blanes">
+                <Link href={localizedPath("locationBlanes")}>
                   <Badge variant="outline" className="cursor-pointer hover:bg-primary/10">Calas de Blanes</Badge>
                 </Link>
               </div>
@@ -322,7 +322,7 @@ export default function LocationPalafollsPage() {
                 </div>
               </div>
               <div className="mt-4">
-                <Link href="/precios">
+                <Link href={localizedPath("pricing")}>
                   <Button variant="outline" size="sm">
                     Ver todos los precios y barcos
                   </Button>

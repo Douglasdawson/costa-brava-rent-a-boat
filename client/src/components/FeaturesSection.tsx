@@ -13,10 +13,12 @@ import PaddleSurfIcon from "./icons/PaddleSurfIcon";
 import NeveraIcon from "./icons/NeveraIcon";
 import ParkingIcon from "./icons/ParkingIcon";
 import { useTranslations } from "@/lib/translations";
+import { useLanguage } from "@/hooks/use-language";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 export default function FeaturesSection() {
   const t = useTranslations();
+  const { localizedPath } = useLanguage();
   const { ref: revealRef, isVisible } = useScrollReveal();
   const features = [
     {
@@ -119,23 +121,23 @@ export default function FeaturesSection() {
             {t.features.exploreMore || 'Explora nuestros servicios'}
           </h3>
           <div className="flex flex-wrap justify-center gap-x-6 gap-y-3">
-            <a href="/barcos-sin-licencia" className="text-primary hover:underline flex items-center gap-1 text-sm sm:text-base">
+            <a href={localizedPath("categoryLicenseFree")} className="text-primary hover:underline flex items-center gap-1 text-sm sm:text-base">
               <ChevronRight className="w-4 h-4" />
               Barcos sin licencia
             </a>
-            <a href="/barcos-con-licencia" className="text-primary hover:underline flex items-center gap-1 text-sm sm:text-base">
+            <a href={localizedPath("categoryLicensed")} className="text-primary hover:underline flex items-center gap-1 text-sm sm:text-base">
               <ChevronRight className="w-4 h-4" />
               Barcos con licencia
             </a>
-            <a href="/precios" className="text-primary hover:underline flex items-center gap-1 text-sm sm:text-base">
+            <a href={localizedPath("pricing")} className="text-primary hover:underline flex items-center gap-1 text-sm sm:text-base">
               <ChevronRight className="w-4 h-4" />
               Precios y tarifas
             </a>
-            <a href="/alquiler-barcos-costa-brava" className="text-primary hover:underline flex items-center gap-1 text-sm sm:text-base">
+            <a href={localizedPath("locationCostaBrava")} className="text-primary hover:underline flex items-center gap-1 text-sm sm:text-base">
               <ChevronRight className="w-4 h-4" />
               Alquiler barcos Costa Brava
             </a>
-            <a href="/blog" className="text-primary hover:underline flex items-center gap-1 text-sm sm:text-base">
+            <a href={localizedPath("blog")} className="text-primary hover:underline flex items-center gap-1 text-sm sm:text-base">
               <ChevronRight className="w-4 h-4" />
               Blog de navegacion
             </a>

@@ -36,7 +36,7 @@ import { useTranslations } from "@/lib/translations";
 import { BOAT_DATA } from "@shared/boatData";
 
 export default function CategoryLicenseFreePage() {
-  const { language } = useLanguage();
+  const { language, localizedPath } = useLanguage();
   const t = useTranslations();
   const seoConfig = getSEOConfig('categoryLicenseFree', language);
   const hreflangLinks = generateHreflangLinks('categoryLicenseFree');
@@ -621,19 +621,19 @@ export default function CategoryLicenseFreePage() {
             <CardContent className="pt-6">
               <h3 className="font-semibold text-lg mb-4">Navega desde Blanes con barco sin licencia</h3>
               <div className="flex flex-wrap gap-3">
-                <a href="/alquiler-barcos-blanes" className="text-primary hover:underline flex items-center gap-1">
+                <a href={localizedPath("locationBlanes")} className="text-primary hover:underline flex items-center gap-1">
                   <ChevronRight className="w-4 h-4" />
                   Salida desde el Puerto de Blanes
                 </a>
-                <a href="/alquiler-barcos-lloret-de-mar" className="text-primary hover:underline flex items-center gap-1">
+                <a href={localizedPath("locationLloret")} className="text-primary hover:underline flex items-center gap-1">
                   <ChevronRight className="w-4 h-4" />
                   Excursion sin licencia a Lloret de Mar
                 </a>
-                <a href="/alquiler-barcos-tossa-de-mar" className="text-primary hover:underline flex items-center gap-1">
+                <a href={localizedPath("locationTossa")} className="text-primary hover:underline flex items-center gap-1">
                   <ChevronRight className="w-4 h-4" />
                   Ruta en barco hasta Tossa de Mar
                 </a>
-                <a href="/precios" className="text-primary hover:underline flex items-center gap-1">
+                <a href={localizedPath("pricing")} className="text-primary hover:underline flex items-center gap-1">
                   <ChevronRight className="w-4 h-4" />
                   Consulta precios por temporada
                 </a>

@@ -28,7 +28,7 @@ export default function GiftCardsPage() {
   const [purchaseComplete, setPurchaseComplete] = useState(false);
   const [giftCardCode, setGiftCardCode] = useState("");
   const { toast } = useToast();
-  const { language } = useLanguage();
+  const { language, localizedPath } = useLanguage();
   const t = useTranslations();
 
   const seoConfig = getSEOConfig("giftCards", language) || {
@@ -173,7 +173,7 @@ export default function GiftCardsPage() {
               </p>
               <p>
                 Nuestras tarjetas regalo son válidas para cualquiera de nuestros{" "}
-                <a href="/#fleet" className="text-primary hover:underline">7 barcos</a>,
+                <a href={localizedPath("home") + "#fleet"} className="text-primary hover:underline">7 barcos</a>,
                 tanto sin licencia como con licencia. El destinatario puede elegir el barco,
                 la fecha y la duración que prefiera durante toda la temporada (abril a octubre).
               </p>

@@ -1,14 +1,23 @@
 import type { Express } from "express";
 import { db } from "../db";
 import { sql } from "drizzle-orm";
-import Stripe from "stripe";
 import * as Sentry from "@sentry/node";
 
 export function registerHealthRoutes(app: Express) {
+  // Lightweight liveness probe used by deployment platform.
+  // Always returns 200 while the process is alive.
+  app.get("/api/health/live", (_req, res) => {
+    res.status(200).json({ status: "ok", timestamp: new Date().toISOString() });
+  });
+
+  // Readiness probe — only the database is a hard dependency.
+  // Third-party services (Stripe, SendGrid, Twilio, Sentry) are informational
+  // only and never cause a 503, because their availability at startup time
+  // is not required for the application to serve requests.
   app.get("/api/health", async (_req, res) => {
     const services: Record<string, { status: string; latencyMs?: number }> = {};
 
-    // Check DB
+    // ── Database (only hard dependency) ──────────────────────────────────────
     const dbStart = Date.now();
     try {
       await db.execute(sql`SELECT 1`);
@@ -17,44 +26,31 @@ export function registerHealthRoutes(app: Express) {
       services.database = { status: "error", latencyMs: Date.now() - dbStart };
     }
 
-    // Check Stripe
-    const stripeStart = Date.now();
-    try {
-      if (!process.env.STRIPE_SECRET_KEY) {
-        services.stripe = { status: "not_configured" };
-      } else {
-        const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
-        await stripe.balance.retrieve();
-        services.stripe = { status: "ok", latencyMs: Date.now() - stripeStart };
-      }
-    } catch {
-      services.stripe = { status: "error", latencyMs: Date.now() - stripeStart };
-    }
+    // ── Third-party integrations (informational — no API calls) ──────────────
+    services.stripe = {
+      status: process.env.STRIPE_SECRET_KEY ? "configured" : "not_configured",
+    };
 
-    // Check SendGrid (just verify env var presence)
     services.sendgrid = {
       status: process.env.SENDGRID_API_KEY ? "configured" : "not_configured",
     };
 
-    // Check Twilio
     services.twilio = {
-      status: process.env.TWILIO_ACCOUNT_SID && process.env.TWILIO_AUTH_TOKEN
-        ? "configured"
-        : "not_configured",
+      status:
+        process.env.TWILIO_ACCOUNT_SID && process.env.TWILIO_AUTH_TOKEN
+          ? "configured"
+          : "not_configured",
     };
 
-    // Check Sentry
-    const sentryClient = Sentry.getClient();
     services.sentry = {
-      status: sentryClient ? "ok" : "not_configured",
+      status: Sentry.getClient() ? "ok" : "not_configured",
     };
 
-    const allOk = Object.values(services).every(
-      (s) => s.status === "ok" || s.status === "configured" || s.status === "not_configured"
-    );
+    // Only treat the database being down as a hard failure.
+    const dbOk = services.database.status === "ok";
 
-    res.status(allOk ? 200 : 503).json({
-      status: allOk ? "ok" : "degraded",
+    res.status(dbOk ? 200 : 503).json({
+      status: dbOk ? "ok" : "degraded",
       timestamp: new Date().toISOString(),
       services,
     });

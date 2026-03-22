@@ -1,6 +1,8 @@
 import { Language } from "@/hooks/use-language";
 import { getBaseUrl } from "@/lib/domain";
 import { HREFLANG_CODES } from "@shared/seoConstants";
+import { getLocalizedPath } from "@shared/i18n-routes";
+import type { PageKey } from "@shared/i18n-routes";
 
 // Dynamic season year: Nov-Dec → next year, otherwise current year
 function getSeasonYear(): number {
@@ -1304,118 +1306,52 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
 
 // HREFLANG_CODES imported from @shared/seoConstants
 
-// Generate hreflang links for a page
+// Alias map for legacy page names that differ from i18n-routes PageKey
+const PAGE_NAME_ALIASES: Record<string, PageKey> = {
+  testimonios: "testimonials",
+  boatRentalBlanes: "locationBlanes",
+  boatRentalCostaBrava: "locationCostaBrava",
+  notFound: "home",
+};
+
+// Resolve a page name string to a valid PageKey (handles legacy aliases)
+const resolvePageKey = (pageName: string): PageKey => {
+  if (pageName in PAGE_NAME_ALIASES) {
+    return PAGE_NAME_ALIASES[pageName];
+  }
+  return pageName as PageKey;
+};
+
+// Generate hreflang links for a page using subdirectory URLs
+// e.g. /fr/location-bateau-blanes instead of /alquiler-barcos-blanes?lang=fr
 export const generateHreflangLinks = (pageName: string, params?: string): Array<{ lang: string; url: string }> => {
   const languages: Language[] = ['es', 'en', 'ca', 'fr', 'de', 'nl', 'it', 'ru'];
-  
+  const pageKey = resolvePageKey(pageName);
+
   const hreflangLinks = languages.map(lang => {
-    let url = '';
-    const pagePath = getPagePath(pageName);
-    
-    if (pagePath) {
-      url = `${BASE_DOMAIN}/${pagePath}`;
-      if (params) {
-        url += `/${params}`;
-      }
-    } else {
-      url = BASE_DOMAIN;
-    }
-    
-    // Add language query param for non-Spanish languages
-    if (lang !== 'es') {
-      const separator = url.includes('?') ? '&' : '?';
-      url += `${separator}lang=${lang}`;
-    }
-    
+    const path = getLocalizedPath(pageKey, lang, params ? { slug: params } : undefined);
     return {
-      lang: HREFLANG_CODES[lang], // Use full hreflang code with country
-      url
+      lang: HREFLANG_CODES[lang],
+      url: `${BASE_DOMAIN}${path}`,
     };
   });
 
-  // Add x-default pointing to Spanish version (no lang param)
-  let defaultUrl = '';
-  const pagePath = getPagePath(pageName);
-  if (pagePath) {
-    defaultUrl = `${BASE_DOMAIN}/${pagePath}`;
-    if (params) {
-      defaultUrl += `/${params}`;
-    }
-  } else {
-    defaultUrl = BASE_DOMAIN;
-  }
-  
+  // x-default points to the Spanish version
+  const esPath = getLocalizedPath(pageKey, 'es', params ? { slug: params } : undefined);
   hreflangLinks.push({
     lang: 'x-default',
-    url: defaultUrl
+    url: `${BASE_DOMAIN}${esPath}`,
   });
 
   return hreflangLinks;
 };
 
-// Get page path based on page name
-const getPagePath = (pageName: string): string => {
-  const paths: Record<string, string> = {
-    home: '',
-    booking: 'booking',
-    blog: 'blog',
-    destinations: 'destinations',
-    faq: 'faq',
-    testimonios: 'testimonios',
-    locationBlanes: 'alquiler-barcos-blanes',
-    locationLloret: 'alquiler-barcos-lloret-de-mar',
-    locationTossa: 'alquiler-barcos-tossa-de-mar',
-    locationMalgrat: 'alquiler-barcos-malgrat-de-mar',
-    locationSantaSusanna: 'alquiler-barcos-santa-susanna',
-    locationCalella: 'alquiler-barcos-calella',
-    categoryLicenseFree: 'barcos-sin-licencia',
-    categoryLicensed: 'barcos-con-licencia',
-    privacyPolicy: 'privacy-policy',
-    termsConditions: 'terms-conditions',
-    cookiesPolicy: 'cookies-policy',
-    condicionesGenerales: 'condiciones-generales',
-    boatDetail: 'barco', // This will be handled dynamically
-    blogDetail: 'blog', // This will be handled dynamically with slug
-    destinationDetail: 'destinos', // This will be handled dynamically with slug
-    gallery: 'galeria',
-    routes: 'rutas',
-    giftCards: 'tarjetas-regalo',
-    pricing: 'precios',
-    locationBarcelona: 'alquiler-barcos-cerca-barcelona',
-    locationCostaBrava: 'alquiler-barcos-costa-brava',
-    boatRentalCostaBrava: 'boat-rental-costa-brava',
-    activitySnorkel: 'excursion-snorkel-barco-blanes',
-    activityFamilies: 'barco-familias-costa-brava',
-    activitySunset: 'sunset-boat-trip-blanes',
-    activityFishing: 'pesca-barco-blanes',
-    boatRentalBlanes: 'boat-rental-blanes',
-    notFound: '404'
-  };
-
-  return paths[pageName] || '';
-};
-
-// Generate canonical URL for a page
-// NOTE: Canonical URLs must be clean without language query params
-// Language variants are handled via hreflang tags, not canonicals
+// Generate canonical URL for a page using subdirectory URLs
+// Each language now gets its own canonical (e.g. /fr/location-bateau-blanes)
 export const generateCanonicalUrl = (pageName: string, language: Language = 'es', params?: string): string => {
-  const pagePath = getPagePath(pageName);
-  let baseUrl = '';
-  
-  if (pagePath) {
-    baseUrl = `${BASE_DOMAIN}/${pagePath}`;
-    if (params) {
-      baseUrl += `/${params}`;
-    }
-  } else {
-    baseUrl = BASE_DOMAIN;
-  }
-  
-  // DO NOT add language query params to canonical URLs
-  // Canonical URLs must be clean and consistent for proper SEO
-  // Language variants are indicated through hreflang tags instead
-  
-  return baseUrl;
+  const pageKey = resolvePageKey(pageName);
+  const path = getLocalizedPath(pageKey, language, params ? { slug: params } : undefined);
+  return `${BASE_DOMAIN}${path}`;
 };
 
 // Get SEO config for a page and language with dynamic content replacement

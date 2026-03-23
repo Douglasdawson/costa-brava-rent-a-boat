@@ -19,15 +19,12 @@ declare global {
 // Google Ads Conversion ID and Label — from Google Ads account 727-861-8415
 const GOOGLE_ADS_CONVERSION_ID = 'AW-341099427';
 
-// Conversion label map — replace placeholders when actions are created in Google Ads
-// TODO: Create conversion actions in Google Ads (account 727-861-8415) for:
-//   whatsapp_click, phone_click, generate_lead
-// Then replace the REPLACE_WITH_* values with actual labels from Google Ads UI
+// Conversion label map — Google Ads account 727-861-8415
 const GOOGLE_ADS_LABELS: Record<string, string> = {
   purchase: 'C8nZCPLtj4kcEKOH06IB',
-  whatsapp_click: 'REPLACE_WITH_WHATSAPP_LABEL',
-  phone_click: 'REPLACE_WITH_PHONE_LABEL',
-  generate_lead: 'REPLACE_WITH_LEAD_LABEL',
+  whatsapp_click: 'zxvsCLeNj44cEKOH06IB',
+  phone_click: 'F9UsCJTmoI4cEKOH06IB',
+  generate_lead: '9PadCJfmoI4cEKOH06IB',
 };
 
 export function trackGoogleAdsConversion(params: {

@@ -4,6 +4,20 @@ import { getStoredClickIds } from '@/hooks/useUtmCapture';
 import { trackMetaInitiateCheckout, trackMetaPurchase, trackMetaContact } from './meta-pixel';
 import { trackGoogleAdsConversion, pushEnhancedConversionData, trackGoogleAdsRemarketing } from './google-ads';
 
+const ANALYTICS_DEBUG = typeof window !== 'undefined' &&
+  (new URLSearchParams(window.location?.search || '').has('gtm_debug') ||
+   localStorage.getItem('analytics_debug') === 'true');
+
+function debugLog(eventName: string, params?: Record<string, unknown>) {
+  if (ANALYTICS_DEBUG) {
+    console.log(`[GTM Debug] ${eventName}`, params || {});
+  }
+}
+
+export function generateEventId(): string {
+  return `${Date.now()}-${Math.random().toString(36).substring(2, 11)}`;
+}
+
 declare global {
   interface Window {
     dataLayer: Record<string, unknown>[];
@@ -12,25 +26,31 @@ declare global {
 }
 
 export function trackEvent(eventName: string, params?: Record<string, string | number | boolean>) {
+  debugLog(eventName, params);
   if (typeof window !== "undefined" && window.dataLayer) {
+    const cleanParams = params
+      ? Object.fromEntries(Object.entries(params).filter(([, v]) => v !== undefined && v !== null && v !== ''))
+      : {};
     window.dataLayer.push({
       event: eventName,
       engagement_time_msec: 100,
-      ...params,
+      ...cleanParams,
     });
   }
 }
 
 // Specific conversion events
 export function trackBookingStarted(boatId: string, boatName: string, utm?: UtmParams) {
+  const eventId = generateEventId();
   trackEvent("booking_started", {
     boat_id: boatId,
     boat_name: boatName,
+    event_id: eventId,
     ...(utm?.utm_source && { utm_source: utm.utm_source }),
     ...(utm?.utm_medium && { utm_medium: utm.utm_medium }),
     ...(utm?.utm_campaign && { utm_campaign: utm.utm_campaign }),
   });
-  trackMetaInitiateCheckout(boatId, boatName, 0);
+  trackMetaInitiateCheckout(boatId, boatName, 0, eventId);
 
   trackGoogleAdsRemarketing({
     ecommPageType: 'cart',
@@ -41,16 +61,18 @@ export function trackBookingStarted(boatId: string, boatName: string, utm?: UtmP
 
 export function trackBookingCompleted(bookingId: string, amount: number, boatId: string) {
   const clickIds = getStoredClickIds();
+  const eventId = generateEventId();
   trackEvent("purchase", {
     transaction_id: bookingId,
     value: amount,
     currency: "EUR",
     boat_id: boatId,
+    event_id: eventId,
     ...(clickIds.gclid && { gclid: clickIds.gclid }),
     ...(clickIds.fbclid && { fbclid: clickIds.fbclid }),
     ...(clickIds.msclkid && { msclkid: clickIds.msclkid }),
   });
-  trackMetaPurchase(bookingId, amount, boatId);
+  trackMetaPurchase(bookingId, amount, boatId, eventId);
 
   trackGoogleAdsConversion({
     conversionLabel: 'purchase',
@@ -61,14 +83,16 @@ export function trackBookingCompleted(bookingId: string, amount: number, boatId:
 }
 
 export function trackWhatsAppClick(source: string) {
-  trackEvent("whatsapp_click", { source });
-  trackMetaContact("whatsapp");
+  const eventId = generateEventId();
+  trackEvent("whatsapp_click", { source, event_id: eventId });
+  trackMetaContact("whatsapp", eventId);
   trackGoogleAdsConversion({ conversionLabel: 'whatsapp_click' });
 }
 
 export function trackPhoneClick() {
-  trackEvent("phone_click");
-  trackMetaContact("phone");
+  const eventId = generateEventId();
+  trackEvent("phone_click", { event_id: eventId });
+  trackMetaContact("phone", eventId);
   trackGoogleAdsConversion({ conversionLabel: 'phone_click' });
 }
 
@@ -158,6 +182,19 @@ export function trackSelectItem(boatId: string, boatName: string, listName: stri
   });
 }
 
+export function trackAddToCart(boatId: string, boatName: string, price: number) {
+  if (typeof window === "undefined" || !window.dataLayer) return;
+  window.dataLayer.push({ ecommerce: null });
+  window.dataLayer.push({
+    event: 'add_to_cart',
+    ecommerce: {
+      currency: 'EUR',
+      value: price,
+      items: [buildEcommerceItem(boatId, boatName, price)],
+    },
+  });
+}
+
 export function trackBeginCheckout(boatId: string, boatName: string, price: number, utm?: UtmParams) {
   if (typeof window === "undefined" || !window.dataLayer) return;
   window.dataLayer.push({ ecommerce: null });
@@ -234,7 +271,12 @@ export function trackScrollDepth(pageName: string, depth: 25 | 50 | 75 | 100) {
 }
 
 // Client error tracking
+let jsErrorCount = 0;
+const JS_ERROR_MAX_PER_SESSION = 10;
+
 export function trackJsError(message: string, source: string, line: number) {
+  if (jsErrorCount >= JS_ERROR_MAX_PER_SESSION) return;
+  jsErrorCount++;
   trackEvent('js_error', {
     error_message: message.substring(0, 150),
     error_source: source,

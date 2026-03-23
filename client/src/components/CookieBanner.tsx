@@ -11,6 +11,8 @@ function updateGTMConsent(granted: boolean) {
       ad_storage: granted ? "granted" : "denied",
       ad_user_data: granted ? "granted" : "denied",
       ad_personalization: granted ? "granted" : "denied",
+      functional_storage: "granted",
+      security_storage: "granted",
     };
     window.gtag("consent", "update", consent as unknown);
   }

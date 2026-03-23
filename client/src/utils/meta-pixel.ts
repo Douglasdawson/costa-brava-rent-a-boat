@@ -47,50 +47,75 @@ export function initMetaPixel(pixelId: string) {
 
 // Standard events mapped to our business
 
-export function trackMetaViewContent(boatId: string, boatName: string, price: number) {
+export function trackMetaViewContent(boatId: string, boatName: string, price: number, eventId?: string) {
   if (typeof window.fbq !== "function") return;
-  window.fbq("track", "ViewContent", {
+  const params = {
     content_name: boatName,
     content_ids: [boatId],
     content_type: "product",
     value: price,
     currency: "EUR",
-  });
+  };
+  if (eventId) {
+    window.fbq("track", "ViewContent", params, { eventID: eventId });
+  } else {
+    window.fbq("track", "ViewContent", params);
+  }
 }
 
-export function trackMetaInitiateCheckout(boatId: string, boatName: string, price: number) {
+export function trackMetaInitiateCheckout(boatId: string, boatName: string, price: number, eventId?: string) {
   if (typeof window.fbq !== "function") return;
-  window.fbq("track", "InitiateCheckout", {
+  const params = {
     content_name: boatName,
     content_ids: [boatId],
     content_type: "product",
     value: price,
     currency: "EUR",
     num_items: 1,
-  });
+  };
+  if (eventId) {
+    window.fbq("track", "InitiateCheckout", params, { eventID: eventId });
+  } else {
+    window.fbq("track", "InitiateCheckout", params);
+  }
 }
 
-export function trackMetaPurchase(bookingId: string, amount: number, boatId: string) {
+export function trackMetaPurchase(bookingId: string, amount: number, boatId: string, eventId?: string) {
   if (typeof window.fbq !== "function") return;
-  window.fbq("track", "Purchase", {
+  const params = {
     content_ids: [boatId],
     content_type: "product",
     value: amount,
     currency: "EUR",
     order_id: bookingId,
-  });
+  };
+  if (eventId) {
+    window.fbq("track", "Purchase", params, { eventID: eventId });
+  } else {
+    window.fbq("track", "Purchase", params);
+  }
 }
 
-export function trackMetaLead(source: string) {
+export function trackMetaLead(source: string, eventId?: string) {
   if (typeof window.fbq !== "function") return;
-  window.fbq("track", "Lead", {
+  const params = {
     content_name: source,
-  });
+  };
+  if (eventId) {
+    window.fbq("track", "Lead", params, { eventID: eventId });
+  } else {
+    window.fbq("track", "Lead", params);
+  }
 }
 
-export function trackMetaContact(method: string) {
+export function trackMetaContact(method: string, eventId?: string) {
   if (typeof window.fbq !== "function") return;
-  window.fbq("track", "Contact", {
+  const params = {
     content_name: method,
-  });
+  };
+  if (eventId) {
+    window.fbq("track", "Contact", params, { eventID: eventId });
+  } else {
+    window.fbq("track", "Contact", params);
+  }
 }

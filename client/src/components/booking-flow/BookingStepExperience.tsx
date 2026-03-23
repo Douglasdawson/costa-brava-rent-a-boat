@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Calendar, Anchor, Clock, Gauge, AlertTriangle } from "lucide-react";
 import { getBoatAltText } from "@/utils/boatImages";
-import { trackBeginCheckout, trackBookingStarted, trackDateSelected, trackDurationSelected } from "@/utils/analytics";
+import { trackAddToCart, trackBeginCheckout, trackBookingStarted, trackDateSelected, trackDurationSelected } from "@/utils/analytics";
 import { getStoredUtm } from "@/hooks/useUtmCapture";
 import type { Boat } from "@shared/schema";
 import type { Translations } from "@/lib/translations";
@@ -244,6 +244,7 @@ export function BookingStepExperience({
               const pricing = boat?.pricing as Record<string, { prices: Record<string, number> }> | null;
               const price = pricing ? Math.min(...Object.values(pricing.BAJA?.prices || { "1h": 75 })) : 0;
               const utm = getStoredUtm();
+              trackAddToCart(selectedBoat, boatName, price);
               trackBeginCheckout(selectedBoat, boatName, price, utm);
               trackBookingStarted(selectedBoat, boatName, utm);
               setStep(2);

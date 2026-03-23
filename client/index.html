@@ -170,6 +170,8 @@
         ad_storage: _consent === 'accepted' ? 'granted' : 'denied',
         ad_user_data: _consent === 'accepted' ? 'granted' : 'denied',
         ad_personalization: _consent === 'accepted' ? 'granted' : 'denied',
+        functional_storage: 'granted',
+        security_storage: 'granted',
         wait_for_update: 500
       });
     </script>
@@ -182,16 +184,11 @@
         page_type: location.pathname === '/' ? 'home' : 'content',
       });
     </script>
-    <!-- Google Ads + GTM — deferred to avoid blocking LCP -->
+    <!-- GTM — deferred to avoid blocking LCP (GA4 + Google Ads configured as GTM tags) -->
     <script>
     (function(){
       function loadTracking(){
-        // Google Ads Conversion Tracking
-        var s=document.createElement('script');s.async=true;
-        s.src='https://www.googletagmanager.com/gtag/js?id=AW-341099427';
-        document.head.appendChild(s);
-        s.onload=function(){gtag('js',new Date());gtag('config','AW-341099427',{'allow_enhanced_conversions':true});};
-        // Google Tag Manager
+        // Google Tag Manager (handles GA4 + Google Ads + all tags)
         (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
         new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
         j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=

@@ -165,7 +165,7 @@
             "type": "MATCH_REGEX",
             "parameter": [
               { "type": "TEMPLATE", "key": "arg0", "value": "{{_event}}" },
-              { "type": "TEMPLATE", "key": "arg1", "value": "booking_|purchase|whatsapp_|phone_|generate_lead|blog_|exit_intent_|scroll_depth|language_change|newsletter_|cookie_consent|boat_quiz_|js_error|faq_expanded|review_carousel_|social_proof_|gallery_viewed|route_selected|gift_card_|location_page_|boat_clicked_|payment_initiated|coupon_applied|virtual_page_view|web_vitals" }
+              { "type": "TEMPLATE", "key": "arg1", "value": ".*" }
             ]
           }
         ]

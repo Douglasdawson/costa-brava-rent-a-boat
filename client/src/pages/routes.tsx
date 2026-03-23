@@ -40,11 +40,12 @@ const RouteCard = React.memo(function RouteCard({
   onSelect: (id: string) => void;
 }) {
   const desc = route.descriptions[language] || route.descriptions.es;
+  const { localizedPath } = useLanguage();
   const handleClick = useCallback(() => onSelect(route.id), [onSelect, route.id]);
   const handleBookClick = useCallback((e: React.MouseEvent) => {
     e.stopPropagation();
-    window.location.href = "/#fleet";
-  }, []);
+    window.location.href = localizedPath("home") + "#fleet";
+  }, [localizedPath]);
 
   return (
     <Card

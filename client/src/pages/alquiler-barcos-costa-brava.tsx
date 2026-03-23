@@ -157,26 +157,26 @@ export default function LocationCostaBravaPage() {
     {
       name: "Blanes",
       description: "Nuestro puerto base. Punto de partida de todos los barcos. Aparcamiento gratuito, restaurantes y servicios nauticos.",
-      href: "/alquiler-barcos-blanes",
+      href: localizedPath("locationBlanes"),
       icon: Anchor,
       highlight: true,
     },
     {
       name: "Lloret de Mar",
       description: "A solo 30 minutos en barco desde Blanes. Playas espectaculares y calas escondidas por el camino.",
-      href: "/alquiler-barcos-lloret-de-mar",
+      href: localizedPath("locationLloret"),
       icon: Waves,
     },
     {
       name: "Tossa de Mar",
       description: "45 minutos de navegacion por la costa mas bonita del Mediterraneo. Vila Vella y calas cristalinas.",
-      href: "/alquiler-barcos-tossa-de-mar",
+      href: localizedPath("locationTossa"),
       icon: Sun,
     },
     {
       name: "Barcelona",
       description: "A 70 minutos en coche desde Barcelona. La escapada perfecta para un dia de mar en la Costa Brava.",
-      href: "/alquiler-barcos-cerca-barcelona",
+      href: localizedPath("locationBarcelona"),
       icon: Ship,
     },
   ];

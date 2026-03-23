@@ -119,7 +119,7 @@ export default function GiftCardsPage() {
                 {t.giftCards?.forRecipient || "Para"}: {recipientName}
               </p>
               <div className="flex gap-3 justify-center">
-                <Button variant="outline" onClick={() => window.location.href = "/"}>
+                <Button variant="outline" onClick={() => window.location.href = localizedPath("home")}>
                   {t.giftCards?.backHome || "Volver al inicio"}
                 </Button>
                 <Button onClick={() => {

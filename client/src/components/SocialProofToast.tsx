@@ -3,6 +3,7 @@ import { useLocation } from "wouter";
 import { X } from "lucide-react";
 import { useTranslations } from "@/lib/translations";
 import { isMobileNavOpen, isAnyModalOpen } from "@/utils/overlay-guards";
+import { trackSocialProofDismissed } from "@/utils/analytics";
 
 interface SocialProofActivity {
   name: string;
@@ -114,6 +115,7 @@ export function SocialProofToast() {
 
   const dismissToast = useCallback(() => {
     setAnimState("exiting");
+    trackSocialProofDismissed();
     setTimeout(() => {
       setVisible(false);
       setAnimState("entering");

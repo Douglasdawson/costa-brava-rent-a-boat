@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -15,9 +16,11 @@ import { useTranslations } from "@/lib/translations";
 import { getSEOConfig, generateHreflangLinks, generateCanonicalUrl, generateBreadcrumbSchema } from "@/utils/seo-config";
 import { openWhatsApp, createBookingMessage } from "@/utils/whatsapp";
 import { Link } from "wouter";
+import { trackLocationPageView } from "@/utils/analytics";
 
 export default function LocationCostaBravaPage() {
   const { language, localizedPath } = useLanguage();
+  useEffect(() => { trackLocationPageView("costa-brava"); }, []);
   const t = useTranslations();
   const seoConfig = getSEOConfig('locationCostaBrava', language);
   const hreflangLinks = generateHreflangLinks('locationCostaBrava');

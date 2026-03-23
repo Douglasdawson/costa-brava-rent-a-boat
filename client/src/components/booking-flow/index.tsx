@@ -9,6 +9,7 @@ import { BookingStepExperience } from "./BookingStepExperience";
 import { BookingStepPersonalize } from "./BookingStepPersonalize";
 import { BookingStepPayment } from "./BookingStepPayment";
 import type { BookingFlowProps } from "./types";
+import { trackBookingAbandoned } from "@/utils/analytics";
 
 export default function BookingFlow(props: BookingFlowProps) {
   const { onClose } = props;
@@ -26,7 +27,7 @@ export default function BookingFlow(props: BookingFlowProps) {
         <div className="mb-4">
           <Button
             variant="ghost"
-            onClick={() => setLocation(localizedPath("home"))}
+            onClick={() => { trackBookingAbandoned(`step_${step}`, state.selectedBoat); setLocation(localizedPath("home")); }}
             className="flex items-center text-muted-foreground hover:text-foreground"
             data-testid="button-back-home"
           >
@@ -130,7 +131,7 @@ export default function BookingFlow(props: BookingFlowProps) {
           <div className="mt-4 text-center">
             <Button
               variant="ghost"
-              onClick={onClose}
+              onClick={() => { trackBookingAbandoned(`step_${step}`, state.selectedBoat); onClose(); }}
               data-testid="button-close-booking"
             >
               {t.booking.close}

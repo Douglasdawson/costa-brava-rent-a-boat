@@ -6,6 +6,7 @@ import { useTranslations } from "@/lib/translations";
 import { useLanguage } from "@/hooks/use-language";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { getAllReviews } from "@/data/boatReviews";
+import { trackReviewCarouselScroll } from "@/utils/analytics";
 
 // Convert 2-letter country code to flag emoji
 function countryFlag(code: string): string {
@@ -197,12 +198,14 @@ function ReviewsSection() {
     const el = scrollRef.current;
     if (!el) return;
     el.scrollBy({ left: -350, behavior: "smooth" });
+    trackReviewCarouselScroll('left');
   }, []);
 
   const handleScrollRight = useCallback(() => {
     const el = scrollRef.current;
     if (!el) return;
     el.scrollBy({ left: 350, behavior: "smooth" });
+    trackReviewCarouselScroll('right');
   }, []);
 
   const dotCount = Math.min(displayReviews.length, 6);

@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Plus, Minus } from "lucide-react";
 import type { Translations } from "@/lib/translations";
 import type { Extra } from "./types";
+import { trackExtrasChanged } from "@/utils/analytics";
 
 interface BookingStepExtrasProps {
   availableExtras: Extra[];
@@ -31,7 +32,7 @@ export function BookingStepExtras({ availableExtras, extras, updateExtra, setSte
                 <Button
                   variant="outline"
                   size="icon"
-                  onClick={() => updateExtra(extra.id, false)}
+                  onClick={() => { updateExtra(extra.id, false); trackExtrasChanged(extra.id, extra.name, false); }}
                   data-testid={`button-decrease-${extra.id}`}
                 >
                   <Minus className="w-4 h-4" />
@@ -42,7 +43,7 @@ export function BookingStepExtras({ availableExtras, extras, updateExtra, setSte
                 <Button
                   variant="outline"
                   size="icon"
-                  onClick={() => updateExtra(extra.id, true)}
+                  onClick={() => { updateExtra(extra.id, true); trackExtrasChanged(extra.id, extra.name, true); }}
                   data-testid={`button-increase-${extra.id}`}
                 >
                   <Plus className="w-4 h-4" />

@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -25,9 +26,11 @@ import {
   generateCanonicalUrl,
   generateBreadcrumbSchema,
 } from "@/utils/seo-config";
+import { trackLocationPageView } from "@/utils/analytics";
 
 export default function LocationBarcelonaPage() {
   const { language, localizedPath } = useLanguage();
+  useEffect(() => { trackLocationPageView("barcelona"); }, []);
   const t = useTranslations();
   const { openBookingModal } = useBookingModal();
   const seoConfig = getSEOConfig("locationBarcelona", language);

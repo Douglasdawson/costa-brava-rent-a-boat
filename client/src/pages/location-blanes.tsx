@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -28,9 +29,11 @@ import { getSEOConfig, generateHreflangLinks, generateCanonicalUrl, generateBrea
 import { openWhatsApp, createBookingMessage } from "@/utils/whatsapp";
 import { useTranslations } from "@/lib/translations";
 import { BOAT_DATA } from "@shared/boatData";
+import { trackLocationPageView } from "@/utils/analytics";
 
 export default function LocationBlanesPage() {
   const { language, localizedPath } = useLanguage();
+  useEffect(() => { trackLocationPageView("blanes"); }, []);
   const t = useTranslations();
   const seoConfig = getSEOConfig('locationBlanes', language);
   const hreflangLinks = generateHreflangLinks('locationBlanes');

@@ -10,6 +10,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { SEO } from "@/components/SEO";
 import { useToast } from "@/hooks/use-toast";
+import { trackGiftCardPurchase } from "@/utils/analytics";
 import { useLanguage } from "@/hooks/use-language";
 import { useTranslations } from "@/lib/translations";
 import { getSEOConfig, generateCanonicalUrl, generateHreflangLinks } from "@/utils/seo-config";
@@ -85,8 +86,10 @@ export default function GiftCardsPage() {
       const data = await res.json();
       setGiftCardCode(data.code);
       setPurchaseComplete(true);
+      trackGiftCardPurchase(effectiveAmount, true);
       toast({ title: t.giftCards?.purchaseSuccess || "Tarjeta regalo creada" });
     } catch (error: unknown) {
+      trackGiftCardPurchase(effectiveAmount, false);
       const message = error instanceof Error ? error.message : "Error desconocido";
       toast({ variant: "destructive", title: "Error", description: message });
     } finally {

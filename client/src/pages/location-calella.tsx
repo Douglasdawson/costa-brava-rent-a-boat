@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -29,9 +30,11 @@ import {
 } from "@/utils/seo-config";
 import { openWhatsApp, createBookingMessage } from "@/utils/whatsapp";
 import { useTranslations } from "@/lib/translations";
+import { trackLocationPageView } from "@/utils/analytics";
 
 export default function LocationCalellaPage() {
   const { language, localizedPath } = useLanguage();
+  useEffect(() => { trackLocationPageView("calella"); }, []);
   const t = useTranslations();
   const seoConfig = getSEOConfig('locationCalella', language);
   const hreflangLinks = generateHreflangLinks('locationCalella');

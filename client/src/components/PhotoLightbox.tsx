@@ -2,6 +2,7 @@ import { useState, useCallback, useEffect, useRef } from "react";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
+import { trackGalleryViewed } from "@/utils/analytics";
 
 interface Photo {
   id: string;
@@ -24,12 +25,16 @@ export default function PhotoLightbox({ photos, initialIndex, open, onOpenChange
   const previousFocusRef = useRef<HTMLElement | null>(null);
 
   const goNext = useCallback(() => {
-    setCurrentIndex((prev) => (prev + 1) % photos.length);
-  }, [photos.length]);
+    const next = (currentIndex + 1) % photos.length;
+    setCurrentIndex(next);
+    trackGalleryViewed(photos[next]?.boatName || '', next);
+  }, [photos, currentIndex]);
 
   const goPrev = useCallback(() => {
-    setCurrentIndex((prev) => (prev - 1 + photos.length) % photos.length);
-  }, [photos.length]);
+    const prev = (currentIndex - 1 + photos.length) % photos.length;
+    setCurrentIndex(prev);
+    trackGalleryViewed(photos[prev]?.boatName || '', prev);
+  }, [photos, currentIndex]);
 
   // Sync index when lightbox opens with a new initialIndex
   useEffect(() => {

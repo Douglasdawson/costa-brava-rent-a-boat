@@ -8,6 +8,7 @@ import Footer from "@/components/Footer";
 import { SEO } from "@/components/SEO";
 const RouteMap = lazy(() => import("@/components/RouteMap"));
 import { boatRoutes } from "@shared/routesData";
+import { trackRouteSelected } from "@/utils/analytics";
 import type { BoatRoute } from "@shared/routesData";
 import { useLanguage } from "@/hooks/use-language";
 import { useTranslations } from "@/lib/translations";
@@ -115,6 +116,7 @@ function RoutesPage() {
 
   const handleRouteSelect = useCallback((id: string) => {
     setSelectedRouteId(prev => prev === id ? null : id);
+    trackRouteSelected(id);
   }, []);
 
   return (

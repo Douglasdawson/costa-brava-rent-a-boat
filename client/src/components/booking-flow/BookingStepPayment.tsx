@@ -6,6 +6,7 @@ import type { Boat } from "@shared/schema";
 import type { Translations } from "@/lib/translations";
 import { useLanguage } from "@/hooks/use-language";
 import type { Quote, Duration, Extra } from "./types";
+import { trackPaymentInitiated } from "@/utils/analytics";
 
 interface BookingStepPaymentProps {
   selectedDate: string;
@@ -184,7 +185,7 @@ export function BookingStepPayment({
               </div>
 
               <Button
-                onClick={handlePayment}
+                onClick={() => { trackPaymentInitiated(calculateTotal(), selectedBoat); handlePayment(); }}
                 disabled={isLoading || isProcessingPayment || !termsAccepted}
                 className="w-full py-3 text-lg font-medium"
                 data-testid="button-pay-now"

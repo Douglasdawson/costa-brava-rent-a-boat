@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -28,9 +29,11 @@ import {
 } from "@/utils/seo-config";
 import { openWhatsApp, createBookingMessage } from "@/utils/whatsapp";
 import { useTranslations } from "@/lib/translations";
+import { trackLocationPageView } from "@/utils/analytics";
 
 export default function LocationSantaSusannaPage() {
   const { language, localizedPath } = useLanguage();
+  useEffect(() => { trackLocationPageView("santa-susanna"); }, []);
   const t = useTranslations();
   const seoConfig = getSEOConfig('locationSantaSusanna', language);
   const hreflangLinks = generateHreflangLinks('locationSantaSusanna');

@@ -13,7 +13,7 @@ import { SiWhatsapp } from "react-icons/si";
 import { Phone, Users, CheckCircle, ChevronDown, Anchor, LayoutGrid, TableProperties, Star } from "lucide-react";
 import { useBookingModal } from "@/hooks/bookingModalContext";
 import { getBoatAverageRating } from "@/data/boatReviews";
-import { trackViewItemList } from "@/utils/analytics";
+import { trackViewItemList, trackBoatClickedFromFleet } from "@/utils/analytics";
 import {
   Table,
   TableBody,
@@ -323,10 +323,12 @@ function FleetSection() {
   }, [selectedGroupSize, groupSizeOptions]);
 
   const handleBooking = useCallback((boatId: string) => {
+    trackBoatClickedFromFleet(boatId, 'book');
     openBookingModal(boatId);
   }, [openBookingModal]);
 
   const handleDetails = useCallback((boatId: string) => {
+    trackBoatClickedFromFleet(boatId, 'details');
     setLocation(localizedPath("boatDetail", boatId));
     window.scrollTo(0, 0);
   }, [setLocation, localizedPath]);

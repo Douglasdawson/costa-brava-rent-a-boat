@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -24,9 +25,11 @@ import { useLanguage } from "@/hooks/use-language";
 import { generateBreadcrumbSchema } from "@/utils/seo-config";
 import { openWhatsApp, createBookingMessage } from "@/utils/whatsapp";
 import { getCanonicalUrl } from "@/lib/domain";
+import { trackLocationPageView } from "@/utils/analytics";
 
 export default function LocationPalafollsPage() {
   const { language, localizedPath } = useLanguage();
+  useEffect(() => { trackLocationPageView("palafolls"); }, []);
 
   const handleBookingWhatsApp = () => {
     const message = createBookingMessage();

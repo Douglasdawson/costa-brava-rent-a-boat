@@ -242,6 +242,52 @@ export function trackJsError(message: string, source: string, line: number) {
   });
 }
 
+// Booking funnel micro-events
+export function trackDateSelected(date: string, boatId: string) {
+  trackEvent('booking_date_selected', { selected_date: date, boat_id: boatId });
+}
+export function trackDurationSelected(duration: string, boatId: string) {
+  trackEvent('booking_duration_selected', { duration, boat_id: boatId });
+}
+export function trackExtrasChanged(extraId: string, extraName: string, added: boolean) {
+  trackEvent('booking_extras_changed', { extra_id: extraId, extra_name: extraName, action: added ? 'add' : 'remove' });
+}
+export function trackCouponApplied(couponCode: string, success: boolean) {
+  trackEvent('coupon_applied', { coupon_code: couponCode, success });
+}
+export function trackPaymentInitiated(amount: number, boatId: string) {
+  trackEvent('payment_initiated', { value: amount, currency: 'EUR', boat_id: boatId });
+}
+export function trackBookingAbandoned(step: string, boatId: string) {
+  trackEvent('booking_abandoned', { abandoned_step: step, boat_id: boatId });
+}
+
+// Engagement events
+export function trackFaqExpanded(questionId: string) {
+  trackEvent('faq_expanded', { question_id: questionId });
+}
+export function trackReviewCarouselScroll(direction: 'left' | 'right') {
+  trackEvent('review_carousel_scroll', { direction });
+}
+export function trackSocialProofDismissed() {
+  trackEvent('social_proof_dismissed');
+}
+export function trackGalleryViewed(boatId: string, photoIndex: number) {
+  trackEvent('gallery_viewed', { boat_id: boatId, photo_index: photoIndex });
+}
+export function trackRouteSelected(routeId: string) {
+  trackEvent('route_selected', { route_id: routeId });
+}
+export function trackGiftCardPurchase(amount: number, success: boolean) {
+  trackEvent('gift_card_purchase', { value: amount, currency: 'EUR', success });
+}
+export function trackLocationPageView(locationId: string) {
+  trackEvent('location_page_view', { location_id: locationId });
+}
+export function trackBoatClickedFromFleet(boatId: string, action: 'book' | 'details') {
+  trackEvent('boat_clicked_fleet', { boat_id: boatId, click_action: action });
+}
+
 // Server-side event forwarding to Meta Conversion API (CAPI)
 // Sends events server-side for better attribution, bypassing ad blockers
 export async function sendServerEvent(

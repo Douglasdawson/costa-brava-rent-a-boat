@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Calendar, Anchor, Clock, Gauge, AlertTriangle } from "lucide-react";
 import { getBoatAltText } from "@/utils/boatImages";
-import { trackBeginCheckout, trackBookingStarted } from "@/utils/analytics";
+import { trackBeginCheckout, trackBookingStarted, trackDateSelected, trackDurationSelected } from "@/utils/analytics";
 import { getStoredUtm } from "@/hooks/useUtmCapture";
 import type { Boat } from "@shared/schema";
 import type { Translations } from "@/lib/translations";
@@ -60,7 +60,7 @@ export function BookingStepExperience({
           <input
             type="date"
             value={selectedDate}
-            onChange={(e) => setSelectedDate(e.target.value)}
+            onChange={(e) => { setSelectedDate(e.target.value); if (e.target.value) trackDateSelected(e.target.value, selectedBoat); }}
             min={new Intl.DateTimeFormat('en-CA', { timeZone: 'Europe/Madrid' }).format(new Date())}
             className="w-full p-3 border border-primary/20 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary text-base text-left text-foreground"
             data-testid="input-booking-date"
@@ -216,7 +216,7 @@ export function BookingStepExperience({
             {selectedTime && (
               <div className="animate-in fade-in duration-200">
                 <h3 className="font-medium text-foreground mb-2 text-sm">{t.booking.duration}</h3>
-                <Select value={duration} onValueChange={(value) => setDuration(value)}>
+                <Select value={duration} onValueChange={(value) => { setDuration(value); trackDurationSelected(value, selectedBoat); }}>
                   <SelectTrigger data-testid="select-duration">
                     <SelectValue placeholder={t.booking.selectDuration} />
                   </SelectTrigger>

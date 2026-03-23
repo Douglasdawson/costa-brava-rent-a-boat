@@ -3,6 +3,7 @@ import { HelpCircle, ArrowRight } from "lucide-react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { useTranslations } from "@/lib/translations";
 import { useLanguage } from "@/hooks/use-language";
+import { trackFaqExpanded } from "@/utils/analytics";
 
 /** Fallback items (Spanish) used when faqPreview translations are not loaded */
 const FALLBACK_ITEMS = [
@@ -109,7 +110,7 @@ export default function FAQPreview() {
         </div>
 
         {/* Accordion */}
-        <Accordion type="single" collapsible className="space-y-2">
+        <Accordion type="single" collapsible className="space-y-2" onValueChange={(value) => { if (value) trackFaqExpanded(value); }}>
           {previewItems.map((item) => (
             <AccordionItem
               key={item.id}

@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -31,9 +32,11 @@ import {
 } from "@/utils/seo-config";
 import { openWhatsApp, createBookingMessage } from "@/utils/whatsapp";
 import { useTranslations } from "@/lib/translations";
+import { trackLocationPageView } from "@/utils/analytics";
 
 export default function LocationLloretPage() {
   const { language, localizedPath } = useLanguage();
+  useEffect(() => { trackLocationPageView("lloret"); }, []);
   const t = useTranslations();
   const seoConfig = getSEOConfig('locationLloret', language);
   const hreflangLinks = generateHreflangLinks('locationLloret');

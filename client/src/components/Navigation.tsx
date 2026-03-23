@@ -1,4 +1,4 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X, UserCircle, Calendar, Sun, Moon } from "lucide-react";
 import logoHorizontal from "@/assets/real-photos/logo-horizontal.png";
@@ -13,6 +13,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { useBookingModal } from "@/hooks/bookingModalContext";
 import { trackBookingFormOpen } from "@/utils/analytics";
 import { useTheme } from "@/hooks/use-theme";
+import { lockScroll, unlockScroll } from "@/utils/scroll-lock";
 import { useThrottledScroll } from "@/hooks/useThrottledScroll";
 
 export default function Navigation() {
@@ -31,13 +32,19 @@ export default function Navigation() {
   const toggleMenu = () => {
     const next = !isOpen;
     setIsOpen(next);
-    document.body.style.overflow = next ? "hidden" : "";
+    if (next) lockScroll("mobile-nav");
+    else unlockScroll("mobile-nav");
   };
-  
+
   const closeMenu = () => {
     setIsOpen(false);
-    document.body.style.overflow = "";
+    unlockScroll("mobile-nav");
   };
+
+  // Guarantee scroll unlock on unmount
+  useEffect(() => {
+    return () => unlockScroll("mobile-nav");
+  }, []);
 
   const handleMyAccountClick = () => {
     closeMenu();

@@ -201,10 +201,6 @@ body { overflow-x: hidden; }
     text-size-adjust: 100%;
   }
 
-  @media (max-width: 768px) {
-    body, html { -webkit-overflow-scrolling: touch; overscroll-behavior-y: contain; }
-    #root { -webkit-overflow-scrolling: touch; overscroll-behavior-y: contain; }
-  }
 
   section[id], div[id] { scroll-margin-top: 4rem; }
 

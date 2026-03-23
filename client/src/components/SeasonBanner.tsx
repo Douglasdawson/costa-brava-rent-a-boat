@@ -5,6 +5,7 @@ import { useTranslations } from "@/lib/translations";
 import { useBookingModal } from "@/hooks/bookingModalContext";
 import { useToast } from "@/hooks/use-toast";
 import { isMobileNavOpen, isAnyModalOpen } from "@/utils/overlay-guards";
+import { lockScroll, unlockScroll } from "@/utils/scroll-lock";
 
 const SEASON_START_MONTH = 4;
 const SEASON_END_MONTH = 10;
@@ -68,6 +69,11 @@ export function SeasonBanner() {
   const currentSlug = pathSegments[1] || "";
   const shouldHide = HIDDEN_SLUGS.includes(currentSlug);
 
+  // Guarantee scroll unlock on unmount
+  useEffect(() => {
+    return () => unlockScroll("season-banner");
+  }, []);
+
   useEffect(() => {
     const wasSeen = localStorage.getItem(STORAGE_KEY);
     if (wasSeen || shouldHide) return;
@@ -75,7 +81,7 @@ export function SeasonBanner() {
     const timer = setTimeout(() => {
       if (isMobileNavOpen() || isAnyModalOpen()) return;
       setVisible(true);
-      document.body.style.overflow = "hidden";
+      lockScroll("season-banner");
       requestAnimationFrame(() => setAnimateIn(true));
     }, SHOW_DELAY_MS);
     return () => clearTimeout(timer);
@@ -91,7 +97,7 @@ export function SeasonBanner() {
 
   const handleDismiss = useCallback(() => {
     setAnimateIn(false);
-    document.body.style.overflow = "";
+    unlockScroll("season-banner");
     setTimeout(() => {
       setVisible(false);
       localStorage.setItem(STORAGE_KEY, "1");
@@ -101,7 +107,7 @@ export function SeasonBanner() {
   const handleCTA = useCallback(() => {
     localStorage.setItem(STORAGE_KEY, "1");
     setAnimateIn(false);
-    document.body.style.overflow = "";
+    unlockScroll("season-banner");
 
     setTimeout(() => {
       setVisible(false);

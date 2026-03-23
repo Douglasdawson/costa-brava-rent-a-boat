@@ -4,6 +4,7 @@ import { useTranslations } from "@/lib/translations";
 import { useBookingModal } from "@/hooks/bookingModalContext";
 import { trackExitIntentShown, trackExitIntentCtaClick } from "@/utils/analytics";
 import { isMobileNavOpen, isAnyModalOpen, isCookieBannerVisible } from "@/utils/overlay-guards";
+import { lockScroll, unlockScroll } from "@/utils/scroll-lock";
 
 const EXIT_INTENT_EXCLUDED_SLUGS = [
   "privacy-policy", "politica-privacidad", "politique-confidentialite", "datenschutz", "privacybeleid", "informativa-privacy", "politica-privacitat", "politika-konfidentsialnosti",
@@ -31,7 +32,7 @@ export function ExitIntentModal() {
   const handleDismiss = useCallback(() => {
     setShow(false);
     setDismissed(true);
-    document.body.style.overflow = "";
+    unlockScroll("exit-intent");
   }, []);
 
   const tryShow = useCallback(() => {
@@ -43,13 +44,18 @@ export function ExitIntentModal() {
     if (isAnyModalOpen()) return;
     setShow(true);
     sessionStorage.setItem("exitIntentShown", "true");
-    document.body.style.overflow = "hidden";
+    lockScroll("exit-intent");
     trackExitIntentShown();
   }, [dismissed]);
 
   const handleMouseLeave = useCallback((e: MouseEvent) => {
     if (e.clientY <= 0) tryShow();
   }, [tryShow]);
+
+  // Guarantee scroll unlock on unmount (e.g. client-side navigation while modal is open)
+  useEffect(() => {
+    return () => unlockScroll("exit-intent");
+  }, []);
 
   // Desktop: mouseleave after 15s delay
   useEffect(() => {
@@ -130,7 +136,7 @@ export function ExitIntentModal() {
   const handleBookNow = () => {
     setShow(false);
     setDismissed(true);
-    document.body.style.overflow = "";
+    unlockScroll("exit-intent");
     trackExitIntentCtaClick();
     openBookingModal(undefined, { coupon: "BIENVENIDO10" });
   };

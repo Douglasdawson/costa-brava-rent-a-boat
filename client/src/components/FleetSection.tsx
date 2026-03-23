@@ -7,6 +7,7 @@ import { openWhatsApp } from "@/utils/whatsapp";
 import { useLocation } from "wouter";
 import { getBoatImage, getBoatImageSrcSet } from "@/utils/boatImages";
 import { useTranslations } from "@/lib/translations";
+import { useLanguage } from "@/hooks/use-language";
 import type { Boat } from "@shared/schema";
 import { SiWhatsapp } from "react-icons/si";
 import { Phone, Users, CheckCircle, ChevronDown, Anchor, LayoutGrid, TableProperties, Star } from "lucide-react";
@@ -189,6 +190,7 @@ const VirtualizedBoatGrid = React.memo(function VirtualizedBoatGrid({
 
 function FleetSection() {
   const t = useTranslations();
+  const { localizedPath } = useLanguage();
   const [, setLocation] = useLocation();
   const { openBookingModal } = useBookingModal();
   const { ref: revealRef, isVisible } = useScrollReveal();
@@ -325,9 +327,9 @@ function FleetSection() {
   }, [openBookingModal]);
 
   const handleDetails = useCallback((boatId: string) => {
-    setLocation(`/barco/${boatId}`);
+    setLocation(localizedPath("boatDetail", boatId));
     window.scrollTo(0, 0);
-  }, [setLocation]);
+  }, [setLocation, localizedPath]);
 
   return (
     <section ref={revealRef} className={`py-16 sm:py-24 lg:py-32 bg-background transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`} id="fleet">

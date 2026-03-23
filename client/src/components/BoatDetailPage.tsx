@@ -1312,7 +1312,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                 return (
                   <a
                     key={relBoat.id}
-                    href={`/barco/${relBoat.id}`}
+                    href={localizedPath("boatDetail", relBoat.id)}
                     className="group bg-background rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow border border-border"
                   >
                     <div className="relative overflow-hidden" style={{ aspectRatio: '4/3' }}>

@@ -245,7 +245,7 @@ export default function LocationBlanesPage() {
                   return (
                     <a
                       key={boat.id}
-                      href={`/barco/${boat.id}`}
+                      href={localizedPath("boatDetail", boat.id)}
                       className="block border rounded-lg p-4 hover:shadow-md transition-shadow"
                     >
                       <div className="flex items-center justify-between mb-2">
@@ -331,7 +331,7 @@ export default function LocationBlanesPage() {
                     {Object.values(BOAT_DATA).map((boat) => (
                       <tr key={boat.id} className="border-b hover:bg-muted/30">
                         <td className="p-3">
-                          <a href={`/barco/${boat.id}`} className="text-primary hover:underline font-medium">
+                          <a href={localizedPath("boatDetail", boat.id)} className="text-primary hover:underline font-medium">
                             {boat.name}
                           </a>
                         </td>

@@ -136,7 +136,7 @@ function getReasonText(boat: typeof BOAT_PROFILES[0], lang: string): string {
 }
 
 export default function BoatQuiz({ source = "page", onBoatSelect }: { source?: string; onBoatSelect?: (boatId: string) => void }) {
-  const { language } = useLanguage();
+  const { language, localizedPath } = useLanguage();
   const t = QUIZ_TRANSLATIONS[language] || QUIZ_TRANSLATIONS.es;
   const [step, setStep] = useState(0);
   const [answers, setAnswers] = useState<QuizAnswer>({ passengers: null, duration: null, budget: null });
@@ -272,7 +272,7 @@ export default function BoatQuiz({ source = "page", onBoatSelect }: { source?: s
                 </button>
               ) : (
                 <Link
-                  href={`/barco/${rec.id}?utm_source=blog&utm_medium=boat_quiz&utm_campaign=${source}`}
+                  href={`${localizedPath("boatDetail", rec.id)}?utm_source=blog&utm_medium=boat_quiz&utm_campaign=${source}`}
                   onClick={() => trackBlogCtaClick(rec.id, 'boat_quiz_book')}
                   className={`inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-medium transition-colors ${idx === 0 ? 'bg-cta text-white hover:bg-cta/90' : 'bg-foreground/5 text-foreground hover:bg-foreground/10'}`}
                 >

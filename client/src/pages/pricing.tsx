@@ -310,7 +310,7 @@ export default function PricingPage() {
                             <TableRow key={boat.id}>
                               <TableCell className="font-medium">
                                 <a
-                                  href={`/barco/${boat.id}`}
+                                  href={localizedPath("boatDetail", boat.id)}
                                   className="hover:text-primary transition-colors underline-offset-2 hover:underline"
                                 >
                                   {boat.name}
@@ -402,7 +402,7 @@ export default function PricingPage() {
                         <div className="flex items-start justify-between">
                           <div>
                             <a
-                              href={`/barco/${boat.id}`}
+                              href={localizedPath("boatDetail", boat.id)}
                               className="text-lg font-semibold hover:text-primary transition-colors"
                             >
                               {boat.name}

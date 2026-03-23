@@ -380,7 +380,7 @@ Contáctanos por [WhatsApp](https://wa.me/34611500372) o reserva directamente en
   {
     title: "Boat Rental in Costa Brava: Your Complete English Guide",
     slug: "boat-rental-costa-brava-english-guide",
-    category: "Guias",
+    category: "Guías",
     author: "Costa Brava Rent a Boat",
     featuredImage: "/images/blog/boat-rental-costa-brava-english-guide.jpg",
     metaDescription: "Complete English guide to renting a boat in Costa Brava, Spain. No license needed, prices from 70EUR/h, beautiful coves near Blanes.",
@@ -3668,7 +3668,7 @@ A sunset boat trip in Blanes is more than just an activity. It is one of those r
   {
     title: "Alquiler de Barco en Lloret de Mar: Precios, Opciones y Como Llegar desde Blanes",
     slug: "alquiler-barco-lloret-de-mar-precios-guia",
-    category: "Guias",
+    category: "Guías",
     author: "Costa Brava Rent a Boat",
     featuredImage: "/images/blog/rutas-barco-desde-blanes.jpg",
     metaDescription: "Alquiler de barco en Lloret de Mar: precios desde 70 EUR/hora, como llegar desde Blanes, calas disponibles y barcos sin licencia y con licencia.",

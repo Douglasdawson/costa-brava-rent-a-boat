@@ -295,7 +295,7 @@ export default function Navigation() {
         <nav
           aria-label={t.a11y.mobileNavMenu}
           aria-hidden={!isOpen}
-          className={`lg:hidden border-t border-border bg-background overflow-hidden transition-all duration-200 ease-in-out ${isOpen ? "max-h-[600px] opacity-100 py-3" : "max-h-0 opacity-0 py-0"}`}
+          className={`lg:hidden overflow-hidden transition-all duration-200 ease-in-out ${isOpen ? "max-h-[600px] opacity-100 py-3 border-t border-border bg-background" : "max-h-0 opacity-0 py-0"}`}
         >
             <div className="grid grid-cols-1 gap-0">
               {navigationItems.map((item) => {

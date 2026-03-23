@@ -88,7 +88,7 @@ server.tool(
       .regex(/^[a-z0-9-]+$/, "Lowercase letters, numbers and hyphens only")
       .describe("URL slug, e.g. 'best-coves-costa-brava'"),
     content: z.string().min(100).describe("Full article content in Markdown (min 100 chars)"),
-    category: z.string().min(1).describe("Category, e.g. 'Guias', 'Destinos', 'Consejos'"),
+    category: z.string().min(1).describe("Category, e.g. 'Guías', 'Destinos', 'Consejos'"),
     excerpt: z.string().optional().describe("Short summary for cards/listings"),
     metaDescription: z
       .string()

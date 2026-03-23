@@ -264,14 +264,17 @@ export default function Footer() {
         {/* Bottom Section */}
         <div className="border-t border-white/10 mt-12 pt-8">
           <div className="flex flex-col items-center gap-3">
-            <div className="text-white/70 text-sm flex flex-wrap gap-2 sm:gap-4 justify-center">
+            <div className="text-white/70 text-sm flex flex-wrap items-center gap-x-1 gap-y-2 sm:gap-x-2 justify-center">
               <a href={localizedPath("termsConditions")} className="hover:text-white transition-colors rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none" data-testid="footer-terms-link">{t.footer.terms}</a>
+              <span className="text-white/30" aria-hidden="true">|</span>
               <a href={localizedPath("privacyPolicy")} className="hover:text-white transition-colors rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none" data-testid="footer-privacy-link">{t.footer.privacy}</a>
+              <span className="text-white/30" aria-hidden="true">|</span>
               <a href={localizedPath("cookiesPolicy")} className="hover:text-white transition-colors rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none" data-testid="footer-cookies-link">{t.footer.cookiesPolicy}</a>
+              <span className="text-white/30" aria-hidden="true">|</span>
               <a href={localizedPath("accessibility")} className="hover:text-white transition-colors rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none" data-testid="footer-accessibility-link">{t.footer.accessibility}</a>
             </div>
             <p className="text-white/50 text-xs text-center text-balance">
-              {currentYear} Costa Brava Rent a Boat Blanes. {t.footer.rights}
+              &copy; {currentYear} Costa Brava Rent a Boat Blanes. {t.footer.rights}
             </p>
             <div className="flex items-center justify-center gap-3 text-white/50 text-xs">
               <span>NIF: B22566327</span>

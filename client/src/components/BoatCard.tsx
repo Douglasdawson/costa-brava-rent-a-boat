@@ -101,19 +101,19 @@ const BoatCardPricing = memo(function BoatCardPricing({
   const showPriceAnchoring = savingsPercent > 15;
 
   return (
-    <div className="text-right flex-shrink-0">
+    <div className="text-right flex-shrink-0 space-y-1">
       <div className="text-sm text-muted-foreground">{fromLabel}</div>
-      <div className="flex items-baseline gap-1.5 justify-end">
+      <div className="flex items-baseline gap-2 justify-end">
         {showPriceAnchoring && (
           <span className="text-sm text-muted-foreground line-through">
-            <span className="text-[10px] no-underline">{highSeasonLabel}: </span>{highSeasonPrice}&euro;
+            {highSeasonPrice}&euro;
           </span>
         )}
         <span className="text-cta font-medium text-lg">
           {basePrice}&euro;
         </span>
       </div>
-      <div className="flex items-center gap-1.5 justify-end">
+      <div className="flex items-center gap-2 justify-end">
         {showPriceAnchoring && (
           <span className="inline-flex items-center bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 text-xs font-semibold px-1.5 py-0.5 rounded-full">
             -{savingsPercent}%

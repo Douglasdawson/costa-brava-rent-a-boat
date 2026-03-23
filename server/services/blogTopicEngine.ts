@@ -18,7 +18,7 @@ import { logger } from "../lib/logger";
 
 export const SUPPORTED_LANGUAGES = ["es", "en", "fr", "de", "it", "nl", "ru", "ca"] as const;
 
-const TOPIC_CATEGORIES = ["Destinos", "Guias", "Consejos", "Actividades", "Costa Brava"] as const;
+const TOPIC_CATEGORIES = ["Destinos", "Guías", "Consejos", "Actividades", "Costa Brava"] as const;
 
 // ---------------------------------------------------------------------------
 // Types
@@ -27,7 +27,7 @@ const TOPIC_CATEGORIES = ["Destinos", "Guias", "Consejos", "Actividades", "Costa
 interface TopicSuggestion {
   topic: string;       // Full title in Spanish
   slug: string;        // URL-friendly slug
-  category: string;    // Destinos | Guias | Consejos | Actividades | Costa Brava
+  category: string;    // Destinos | Guías | Consejos | Actividades | Costa Brava
   keywords: string[];  // 5 SEO keywords
   clusterName: string; // Cluster name
   type: "pillar" | "satellite";

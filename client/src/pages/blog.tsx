@@ -30,8 +30,18 @@ const CATEGORY_TRANSLATIONS: Record<string, Record<string, string>> = {
   'Rutas': { es: 'Rutas', en: 'Routes', ca: 'Rutes', fr: 'Itinéraires', de: 'Routen', nl: 'Routes', it: 'Percorsi', ru: 'Маршруты' },
 };
 
+/** Normalize common category typos (e.g. "Guias" without accent) to the canonical form */
+const CATEGORY_ALIASES: Record<string, string> = {
+  'Guias': 'Guías',
+};
+
+function normalizeCategory(category: string): string {
+  return CATEGORY_ALIASES[category] || category;
+}
+
 function localizeCategory(category: string, lang: string): string {
-  return CATEGORY_TRANSLATIONS[category]?.[lang] || category;
+  const normalized = normalizeCategory(category);
+  return CATEGORY_TRANSLATIONS[normalized]?.[lang] || normalized;
 }
 
 const POSTS_PER_PAGE = 8;
@@ -210,15 +220,15 @@ function BlogPage() {
     queryKey: ['/api/blog']
   });
 
-  // Get unique categories
+  // Get unique categories (normalized to avoid duplicates like "Guias" vs "Guías")
   const categories = posts
-    ? Array.from(new Set(posts.map(p => p.category)))
+    ? Array.from(new Set(posts.map(p => normalizeCategory(p.category))))
     : [];
 
-  // Filter posts by category
+  // Filter posts by category (compare normalized values)
   const filteredPosts = selectedCategory === 'all'
     ? posts || []
-    : posts?.filter(p => p.category === selectedCategory) || [];
+    : posts?.filter(p => normalizeCategory(p.category) === selectedCategory) || [];
 
   // Reset to page 1 when category changes
   useEffect(() => {

@@ -89,8 +89,8 @@ export default function ContactSection() {
                     <Clock className="w-6 h-6 text-primary" />
                   </div>
                   <h3 className="font-medium text-foreground mb-2 text-sm">{t.contact.seasonLabel}</h3>
-                  <p className="text-muted-foreground mb-1 text-sm">{t.contact.seasonMonths}</p>
-                  <p className="text-xs text-muted-foreground">{t.contact.flexibleHours}</p>
+                  <p className="text-muted-foreground mb-2 text-sm">{t.contact.seasonMonths}</p>
+                  <p className="text-xs text-muted-foreground mt-1">{t.contact.flexibleHours}</p>
                 </div>
               </div>
 

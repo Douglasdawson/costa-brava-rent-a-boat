@@ -326,6 +326,7 @@ const PAGE_COMPONENTS: Record<string, React.LazyExoticComponent<any> | React.Com
   faq: FAQPage,
   gallery: GalleryPage,
   routes: RoutesPage,
+  destinations: RoutesPage,
   pricing: PricingPage,
   testimonials: TestimoniosPage,
   giftCards: GiftCardsPage,
@@ -374,11 +375,18 @@ function PageResolver() {
     return <Suspense fallback={<MinimalRouteFallback />}><NotFound /></Suspense>;
   }
 
-  // Handle "barcos" -> redirect to fleet section
-  if (slug === "barcos") {
+  // Handle fleet-related slugs -> redirect to homepage #fleet anchor
+  const fleetSlugs = ["barcos", "flota", "fleet", "flotte", "floot", "boten"];
+  if (fleetSlugs.includes(slug)) {
     const homePath = localizedPath("home");
     window.location.href = homePath + "#fleet";
     return null;
+  }
+
+  // Handle booking-related slugs -> redirect to localized booking path
+  const bookingSlugs = ["reservar", "reserva", "buchen", "boeken", "prenotare", "rezervirovat"];
+  if (bookingSlugs.includes(slug)) {
+    return <Redirect to={localizedPath("booking")} />;
   }
 
   const resolved = resolveSlug(slug);

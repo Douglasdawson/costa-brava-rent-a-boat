@@ -38,7 +38,7 @@ const LOCALE_MAP: Record<string, string> = {
 };
 
 export default function TestimoniosPage() {
-  const { language } = useLanguage();
+  const { language, localizedPath } = useLanguage();
   const t = useTranslations();
   const seoConfig = getSEOConfig('testimonios', language);
   const hreflangLinks = generateHreflangLinks('testimonios');
@@ -276,7 +276,7 @@ export default function TestimoniosPage() {
                       variant="outline"
                       size="sm"
                       className="w-full mt-2"
-                      onClick={() => setLocation(`/barco/${review.boatId}`)}
+                      onClick={() => setLocation(localizedPath("boatDetail", review.boatId))}
                       data-testid={`button-view-boat-${review.id}`}
                     >
                       Ver {review.boatName}
@@ -299,7 +299,7 @@ export default function TestimoniosPage() {
               <div className="flex flex-col sm:flex-row gap-3 justify-center">
                 <Button
                   size="lg"
-                  onClick={() => setLocation('/#fleet')}
+                  onClick={() => setLocation(localizedPath("home") + "#fleet")}
                   data-testid="button-view-fleet"
                 >
                   Ver Nuestra Flota
@@ -307,7 +307,7 @@ export default function TestimoniosPage() {
                 <Button
                   size="lg"
                   variant="outline"
-                  onClick={() => setLocation('/faq')}
+                  onClick={() => setLocation(localizedPath("faq"))}
                   data-testid="button-view-faq"
                 >
                   Preguntas Frecuentes

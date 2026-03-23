@@ -182,6 +182,7 @@ function TableOfContents({ items, title }: { items: TocItem[]; title: string }) 
 function StickyMobileCTA({ slug }: { slug: string }) {
   const [visible, setVisible] = useState(false);
   const t = useTranslations();
+  const { localizedPath } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -196,7 +197,7 @@ function StickyMobileCTA({ slug }: { slug: string }) {
   return (
     <div className="fixed bottom-0 left-0 right-0 z-50 lg:hidden bg-background/95 backdrop-blur-sm border-t border-border p-3 safe-area-bottom">
       <Link
-        href={`/barcos?utm_source=blog&utm_medium=sticky_cta&utm_campaign=${slug}`}
+        href={`${localizedPath("home")}#fleet`}
         onClick={() => trackBlogCtaClick(slug, 'sticky_mobile_cta')}
         className="block w-full bg-cta hover:bg-cta/90 text-white rounded-full py-3 text-center text-sm font-semibold btn-elevated flex items-center justify-center gap-2"
       >
@@ -789,7 +790,7 @@ export default function BlogDetailPage({ slug: slugProp }: { slug?: string }) {
                 <nav className="mt-8 pt-6 border-t border-border/50 grid grid-cols-2 gap-4" aria-label="Article navigation">
                   {prevPost ? (
                     <Link
-                      href={`/blog/${prevPost.slug}`}
+                      href={localizedPath("blogDetail", prevPost.slug)}
                       className="group flex flex-col gap-1 text-left"
                     >
                       <span className="text-xs text-muted-foreground flex items-center gap-1">
@@ -803,7 +804,7 @@ export default function BlogDetailPage({ slug: slugProp }: { slug?: string }) {
                   ) : <div />}
                   {nextPost ? (
                     <Link
-                      href={`/blog/${nextPost.slug}`}
+                      href={localizedPath("blogDetail", nextPost.slug)}
                       className="group flex flex-col gap-1 text-right ml-auto"
                     >
                       <span className="text-xs text-muted-foreground flex items-center gap-1 justify-end">
@@ -840,7 +841,7 @@ export default function BlogDetailPage({ slug: slugProp }: { slug?: string }) {
               {relatedPosts.map((relatedPost) => (
                 <Link
                   key={relatedPost.id}
-                  href={`/blog/${relatedPost.slug}`}
+                  href={localizedPath("blogDetail", relatedPost.slug)}
                   className="block group"
                   data-testid={`card-related-${relatedPost.slug}`}
                 >

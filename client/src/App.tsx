@@ -487,6 +487,24 @@ function CRMRoute() {
   return <Suspense fallback={<MinimalRouteFallback />}><CRMDashboardPage /></Suspense>;
 }
 
+// Legacy redirect helpers for unprefixed paths in Markdown content & old links
+function LegacyBoatRedirect() {
+  const params = useParams<{ id: string }>();
+  const { localizedPath } = useLanguage();
+  return <Redirect to={localizedPath("boatDetail", params.id)} />;
+}
+
+function LegacyBlogRedirect() {
+  const params = useParams<{ slug: string }>();
+  const { localizedPath } = useLanguage();
+  return <Redirect to={localizedPath("blogDetail", params.slug)} />;
+}
+
+function LegacyFleetRedirect() {
+  const { localizedPath } = useLanguage();
+  return <Redirect to={localizedPath("home") + "#fleet"} />;
+}
+
 function Router() {
   useUtmCapture();
   usePageViewTracking();
@@ -498,6 +516,11 @@ function Router() {
       {/* CRM routes — must come before /:lang to avoid being caught as a language slug */}
       <Route path="/crm/:tab?" component={CRMRoute} />
       <Route path="/:lang/crm/:tab?" component={CRMRoute} />
+
+      {/* Legacy unprefixed routes — redirect to localized equivalents */}
+      <Route path="/barco/:id" component={LegacyBoatRedirect} />
+      <Route path="/blog/:slug" component={LegacyBlogRedirect} />
+      <Route path="/barcos" component={LegacyFleetRedirect} />
 
       {/* /:lang/ home page */}
       <Route path="/:lang" component={LangHome} />

@@ -102,8 +102,9 @@ const BlogPostCard = React.memo(function BlogPostCard({
   language: string;
   bp: Record<string, string>;
 }) {
+  const { localizedPath } = useLanguage();
   return (
-    <Link href={`/blog/${post.slug}`}>
+    <Link href={localizedPath("blogDetail", post.slug)}>
       <article
         className="group cursor-pointer h-full"
         data-testid={`link-blog-card-${post.slug}`}
@@ -195,7 +196,7 @@ const BlogPostCard = React.memo(function BlogPostCard({
 function BlogPage() {
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const [currentPage, setCurrentPage] = useState(1);
-  const { language } = useLanguage();
+  const { language, localizedPath } = useLanguage();
   const t = useTranslations();
   const bp = t.blogPage!;
 
@@ -388,7 +389,7 @@ function BlogPage() {
       {featuredPost && (
         <section className="bg-background pb-8 md:pb-12">
           <div className="container mx-auto px-4">
-            <Link href={`/blog/${featuredPost.slug}`}>
+            <Link href={localizedPath("blogDetail", featuredPost.slug)}>
               <article
                 className="group relative bg-foreground rounded-2xl overflow-hidden cursor-pointer"
                 data-testid={`link-blog-card-${featuredPost.slug}`}

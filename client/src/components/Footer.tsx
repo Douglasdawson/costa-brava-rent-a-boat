@@ -184,6 +184,11 @@ export default function Footer() {
               <li><a href={localizedPath("locationMalgrat")} className="hover:text-white transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none">Malgrat de Mar</a></li>
               <li><a href={localizedPath("locationSantaSusanna")} className="hover:text-white transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none">Santa Susanna</a></li>
               <li><a href={localizedPath("locationCalella")} className="hover:text-white transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none">Calella</a></li>
+              <li><a href={localizedPath("locationPinedaDeMar")} className="hover:text-white transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none">Pineda de Mar</a></li>
+              <li><a href={localizedPath("locationPalafolls")} className="hover:text-white transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none">Palafolls</a></li>
+              <li><a href={localizedPath("locationTordera")} className="hover:text-white transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none">Tordera</a></li>
+              <li><a href={localizedPath("locationBarcelona")} className="hover:text-white transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none">Barcelona</a></li>
+              <li><a href={localizedPath("locationCostaBrava")} className="hover:text-white transition-colors py-1.5 block rounded focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none">Costa Brava</a></li>
             </ul>
 
             <h3 className="font-medium text-white mb-4 text-sm mt-8">{t.footer.services}</h3>

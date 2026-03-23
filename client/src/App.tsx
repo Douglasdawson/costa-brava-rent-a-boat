@@ -24,6 +24,7 @@ const GiftCardBanner = lazy(() => import("@/components/GiftCardBanner"));
 const LicenseComparisonSection = lazy(() => import("@/components/LicenseComparisonSection"));
 const ReviewsSection = lazy(() => import("@/components/ReviewsSection"));
 const FeaturesSection = lazy(() => import("@/components/FeaturesSection"));
+const HomepageLocationsSection = lazy(() => import("@/components/HomepageLocationsSection"));
 const FAQPreview = lazy(() => import("@/components/FAQPreview"));
 const ContactSection = lazy(() => import("@/components/ContactSection"));
 
@@ -165,6 +166,9 @@ function HomePage() {
         </Suspense>
         <Suspense fallback={<div className="min-h-[400px] below-fold" />}>
           <FeaturesSection />
+        </Suspense>
+        <Suspense fallback={<div className="min-h-[400px] below-fold" />}>
+          <HomepageLocationsSection />
         </Suspense>
         <Suspense fallback={<div className="min-h-[400px] below-fold" />}>
           <FAQPreview />

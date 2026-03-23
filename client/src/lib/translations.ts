@@ -752,6 +752,36 @@ export interface Translations {
     licenseFreeFeat3: string;
   };
 
+  // Homepage Locations Section (SEO internal linking)
+  homepageLocations: {
+    sectionTitle: string;
+    sectionSubtitle: string;
+    sailTo: string;
+    nearbyTowns: string;
+    blanes: string;
+    blanesDesc: string;
+    costaBrava: string;
+    costaBravaDesc: string;
+    lloret: string;
+    lloretDesc: string;
+    tossa: string;
+    tossaDesc: string;
+    malgrat: string;
+    malgratDesc: string;
+    santaSusanna: string;
+    santaSusannaDesc: string;
+    calella: string;
+    calellaDesc: string;
+    pineda: string;
+    pinedaDesc: string;
+    palafolls: string;
+    palafollsDesc: string;
+    tordera: string;
+    torderaDesc: string;
+    barcelona: string;
+    barcelonaDesc: string;
+  };
+
   locationPages: {
     blanes: {
       hero: {

@@ -68,10 +68,20 @@ export default function CategoryLicensedPage() {
       "@type": "Place",
       "name": "Costa Brava, Cataluña, Mediterráneo"
     },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.8",
+      "reviewCount": "307",
+      "bestRating": "5",
+      "worstRating": "1"
+    },
     "offers": {
-      "@type": "Offer",
-      "description": "Alquiler barcos con licencia desde medio día hasta día completo",
-      "priceCurrency": "EUR"
+      "@type": "AggregateOffer",
+      "lowPrice": "150",
+      "highPrice": "350",
+      "priceCurrency": "EUR",
+      "offerCount": "4",
+      "availability": "https://schema.org/InStock"
     }
   };
 
@@ -96,6 +106,25 @@ export default function CategoryLicensedPage() {
         "name": boat.name,
         "description": `Barco con licencia ${boat.name}, ${boat.capacity}, motor ${boat.engine} - ${boat.range}`,
         "brand": { "@type": "Brand", "name": "Costa Brava Rent a Boat" },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.8",
+          "reviewCount": "307",
+          "bestRating": "5",
+          "worstRating": "1"
+        },
+        "review": {
+          "@type": "Review",
+          "author": { "@type": "Person", "name": "Carlos R." },
+          "datePublished": "2025-09-10",
+          "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": "5",
+            "bestRating": "5",
+            "worstRating": "1"
+          },
+          "reviewBody": "Barco potente y bien mantenido. Navegamos hasta Tossa de Mar y la experiencia fue fantastica. Muy recomendable."
+        },
         "offers": {
           "@type": "Offer",
           "priceCurrency": "EUR",

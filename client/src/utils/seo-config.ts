@@ -1558,7 +1558,8 @@ export function generateLocalBusinessSchema(language: Language = 'es', rating?: 
       "@type": "AggregateRating",
       "ratingValue": rating.toString(),
       "reviewCount": reviewCount.toString(),
-      "bestRating": "5"
+      "bestRating": "5",
+      "worstRating": "1"
     };
   }
 
@@ -1592,27 +1593,28 @@ export function generateServiceSchema(language: Language = 'es') {
     "category": "Transportation",
     "serviceType": "Boat Rental",
     "hoursAvailable": {
-      "@type": "OpeningHoursSpecification", 
+      "@type": "OpeningHoursSpecification",
       "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
       "opens": "09:00",
       "closes": "20:00",
       "validFrom": "2026-04-01",
       "validThrough": "2026-10-31"
     },
-    "offers": [
-      {
-        "@type": "Offer",
-        "name": "Alquiler por horas",
-        "description": "Desde 1 hora de duración",
-        "priceCurrency": "EUR",
-        "eligibleQuantity": {
-          "@type": "QuantitativeValue",
-          "minValue": 1,
-          "maxValue": 8,
-          "unitText": "hours"
-        }
-      }
-    ],
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.8",
+      "reviewCount": "307",
+      "bestRating": "5",
+      "worstRating": "1"
+    },
+    "offers": {
+      "@type": "AggregateOffer",
+      "lowPrice": "70",
+      "highPrice": "350",
+      "priceCurrency": "EUR",
+      "offerCount": "8",
+      "availability": "https://schema.org/InStock"
+    },
     "serviceOutput": {
       "@type": "Thing",
       "name": "Experiencia náutica en Costa Brava"

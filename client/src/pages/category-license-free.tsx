@@ -121,7 +121,7 @@ export default function CategoryLicenseFreePage() {
   // Service schema for license-free boats
   const serviceSchema = {
     "@type": "Service",
-    "name": "Alquiler de Barcos Sin Licencia en Blanes",
+    "name": "Alquiler de Barcos Sin Licencia en Costa Brava — Puerto de Blanes",
     "description": "Alquiler de embarcaciones sin licencia hasta 15 CV en Puerto de Blanes, Costa Brava. No requiere titulacion nautica. Barcos para 4-7 personas.",
     "provider": {
       "@type": "LocalBusiness",
@@ -142,10 +142,20 @@ export default function CategoryLicenseFreePage() {
       "@type": "Place",
       "name": "Costa Brava, Cataluna"
     },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.8",
+      "reviewCount": "307",
+      "bestRating": "5",
+      "worstRating": "1"
+    },
     "offers": {
-      "@type": "Offer",
-      "description": "Alquiler barcos sin licencia desde 4 horas hasta dia completo",
-      "priceCurrency": "EUR"
+      "@type": "AggregateOffer",
+      "lowPrice": "70",
+      "highPrice": "95",
+      "priceCurrency": "EUR",
+      "offerCount": "4",
+      "availability": "https://schema.org/InStock"
     }
   };
 
@@ -158,7 +168,7 @@ export default function CategoryLicenseFreePage() {
   // ItemList schema for category page (helps Google understand this is a product listing)
   const itemListSchema = {
     "@type": "ItemList",
-    "name": "Barcos Sin Licencia en Blanes",
+    "name": "Barcos Sin Licencia en Costa Brava — Puerto de Blanes",
     "numberOfItems": licenseFreeBoats.length,
     "itemListElement": licenseFreeBoats.map((boat, index) => ({
       "@type": "ListItem",
@@ -170,6 +180,25 @@ export default function CategoryLicenseFreePage() {
         "name": boat.name,
         "description": `Barco sin licencia ${boat.name}, ${boat.capacity}, motor ${boat.engine}`,
         "brand": { "@type": "Brand", "name": "Costa Brava Rent a Boat" },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.8",
+          "reviewCount": "307",
+          "bestRating": "5",
+          "worstRating": "1"
+        },
+        "review": {
+          "@type": "Review",
+          "author": { "@type": "Person", "name": "Maria G." },
+          "datePublished": "2025-08-15",
+          "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": "5",
+            "bestRating": "5",
+            "worstRating": "1"
+          },
+          "reviewBody": "Experiencia increible navegando por la Costa Brava sin necesidad de licencia. El barco estaba en perfecto estado y la atencion fue excelente."
+        },
         "offers": {
           "@type": "Offer",
           "priceCurrency": "EUR",

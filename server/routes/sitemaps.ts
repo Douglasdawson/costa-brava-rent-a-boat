@@ -69,6 +69,27 @@ const buildBlogHreflangLinks = (baseUrl: string, post: { slug: string; slugByLan
   return links;
 };
 
+// Language-tier priority multipliers: high-traffic languages get full priority,
+// secondary languages get a slight reduction to signal content importance to crawlers.
+const LANG_PRIORITY_TIER: Record<string, number> = {
+  es: 1.0,   // primary language
+  en: 0.9,   // high traffic
+  fr: 0.9,   // high traffic
+  de: 0.9,   // high traffic
+  nl: 0.9,   // high traffic
+  ca: 0.7,   // lower traffic
+  it: 0.7,   // lower traffic
+  ru: 0.7,   // lower traffic
+};
+
+const getLanguagePriority = (basePriority: string, lang: string): string => {
+  const base = parseFloat(basePriority);
+  const tier = LANG_PRIORITY_TIER[lang] ?? 0.7;
+  // Clamp between 0.1 and 1.0, round to 1 decimal
+  const adjusted = Math.min(1.0, Math.max(0.1, Math.round(base * tier * 10) / 10));
+  return adjusted.toFixed(1);
+};
+
 const generateUrlEntry = (
   baseUrl: string,
   pageKey: PageKey,
@@ -83,9 +104,10 @@ const generateUrlEntry = (
 
   SUPPORTED_LANGUAGES.forEach(lang => {
     const path = getLocalizedPath(pageKey, lang);
+    const langPriority = getLanguagePriority(priority, lang);
     urls += `  <url>
     <loc>${baseUrl}${path}</loc>${lastmodTag}
-    <priority>${priority}</priority>${changefreqTag}
+    <priority>${langPriority}</priority>${changefreqTag}
 ${hreflangLinks}  </url>\n`;
   });
 
@@ -296,10 +318,11 @@ export function registerSitemapRoutes(app: Express) {
         // Generate one <url> per language
         SUPPORTED_LANGUAGES.forEach(lang => {
           const boatPath = getLocalizedPath("boatDetail", lang) + `/${boatSlug}`;
+          const boatPriority = getLanguagePriority("0.8", lang);
           sitemap += `  <url>
     <loc>${baseUrl}${boatPath}</loc>
     <lastmod>${boatLastmod}</lastmod>
-    <priority>0.8</priority>
+    <priority>${boatPriority}</priority>
     <changefreq>weekly</changefreq>${imageTags}
 ${boatHreflang}  </url>
 `;
@@ -366,10 +389,11 @@ ${boatHreflang}  </url>
             ? ((post as Record<string, unknown>).slugByLang as Record<string, string>)[lang] || post.slug
             : post.slug;
           const blogPath = getLocalizedPath("blogDetail", lang) + `/${postSlug}`;
+          const blogPriority = getLanguagePriority(priority, lang);
           sitemap += `  <url>
     <loc>${baseUrl}${blogPath}</loc>
     <lastmod>${postDate}</lastmod>
-    <priority>${priority}</priority>
+    <priority>${blogPriority}</priority>
     <changefreq>${blogChangefreq}</changefreq>${imageTag}
 ${postHreflang}  </url>
 `;
@@ -428,10 +452,11 @@ ${postHreflang}  </url>
           // Generate one <url> per language; slug stays the same, only prefix changes
           SUPPORTED_LANGUAGES.forEach(lang => {
             const destPath = getLocalizedPath("destinationDetail", lang) + `/${destination.slug}`;
+            const destPriority = getLanguagePriority("0.7", lang);
             sitemap += `  <url>
     <loc>${baseUrl}${destPath}</loc>
     <lastmod>${destLastmod}</lastmod>
-    <priority>0.7</priority>
+    <priority>${destPriority}</priority>
     <changefreq>monthly</changefreq>${imageTag}
 ${destHreflang}  </url>
 `;
@@ -444,10 +469,11 @@ ${destHreflang}  </url>
 
           SUPPORTED_LANGUAGES.forEach(lang => {
             const destPath = getLocalizedPath("destinationDetail", lang) + `/${slug}`;
+            const destPriority = getLanguagePriority("0.7", lang);
             sitemap += `  <url>
     <loc>${baseUrl}${destPath}</loc>
     <lastmod>${DEPLOY_DATE}</lastmod>
-    <priority>0.7</priority>
+    <priority>${destPriority}</priority>
     <changefreq>monthly</changefreq>
 ${destHreflang}  </url>
 `;

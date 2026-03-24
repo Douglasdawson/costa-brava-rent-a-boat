@@ -8,6 +8,8 @@ import {
 } from "@shared/i18n-routes";
 import type { LangCode } from "@shared/seoConstants";
 import { SUPPORTED_LANGUAGES } from "@shared/seoConstants";
+import { es } from '../i18n/es';
+import { langLoaders } from '../i18n/loaders';
 
 export type Language = LangCode;
 
@@ -37,6 +39,7 @@ interface LanguageContextType {
   isLoading: boolean;
   localizedPath: (pageKey: string, param?: string) => string;
   switchLanguageUrl: (targetLang: Language) => string;
+  currentTranslation: Record<string, any>;
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
@@ -45,6 +48,7 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const [language, setLanguageState] = useState<Language>('es');
   const [isLoading, setIsLoading] = useState(true);
   const [, setLocation] = useLocation();
+  const [loadedLangs, setLoadedLangs] = useState<Record<string, Record<string, any>>>({ es });
 
   useEffect(() => {
     // 1. Check URL path first segment (highest priority)
@@ -85,6 +89,17 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     document.documentElement.lang = language;
   }, [language]);
 
+  // Lazy-load the active language translation file if not already cached
+  useEffect(() => {
+    if (language === 'es' || loadedLangs[language]) return;
+    const loader = langLoaders[language];
+    if (loader) {
+      loader().then(trans => {
+        setLoadedLangs(prev => ({ ...prev, [language]: trans }));
+      });
+    }
+  }, [language, loadedLangs]);
+
   const setLanguage = useCallback((lang: Language) => {
     trackLanguageChange(language, lang);
     setLanguageState(lang);
@@ -108,6 +123,8 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     return switchLanguagePath(window.location.pathname, targetLang);
   }, []);
 
+  const currentTranslation = loadedLangs[language] ?? es;
+
   return (
     <LanguageContext.Provider value={{
       language,
@@ -115,6 +132,7 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
       isLoading,
       localizedPath: localizedPathFn,
       switchLanguageUrl: switchLanguageUrlFn,
+      currentTranslation,
     }}>
       {children}
     </LanguageContext.Provider>

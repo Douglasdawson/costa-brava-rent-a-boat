@@ -1,12 +1,5 @@
 import { Language, useLanguage } from '@/hooks/use-language';
 import { es } from '../i18n/es';
-import { ca } from '../i18n/ca';
-import { en } from '../i18n/en';
-import { fr } from '../i18n/fr';
-import { de } from '../i18n/de';
-import { nl } from '../i18n/nl';
-import { it } from '../i18n/it';
-import { ru } from '../i18n/ru';
 
 export interface Translations {
   // Navigation
@@ -1621,8 +1614,6 @@ export interface Translations {
   // Boat descriptions (keyed by boat ID)
   boatDescriptions?: Record<string, string>;
 }
-export const translations: Record<Language, Translations> = { es, ca, en, fr, de, nl, it, ru };
-
 function deepMerge(target: Record<string, any>, fallback: Record<string, any>): Record<string, any> {
   const result = { ...fallback, ...target };
   for (const key of Object.keys(fallback)) {
@@ -1639,9 +1630,9 @@ function deepMerge(target: Record<string, any>, fallback: Record<string, any>): 
   return result;
 }
 
-// Translation hook — falls back to Spanish for missing keys
+// Translation hook — loads current language lazily; falls back to Spanish for missing keys
 export function useTranslations(): Translations {
-  const { language } = useLanguage();
-  if (language === 'es') return translations.es;
-  return deepMerge(translations[language] as Record<string, any>, translations.es as Record<string, any>) as Translations;
+  const { language, currentTranslation } = useLanguage();
+  if (language === 'es') return currentTranslation as Translations;
+  return deepMerge(currentTranslation as Record<string, any>, es as Record<string, any>) as Translations;
 }

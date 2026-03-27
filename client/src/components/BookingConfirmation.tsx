@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { CheckCircle2, Copy, Share2, Gift, X, Clock, MapPin, MessageCircle } from "lucide-react";
 import { useTranslations } from "@/lib/translations";
 import { useToast } from "@/hooks/use-toast";
-import { trackWhatsAppClick } from "@/utils/analytics";
+import { trackWhatsAppClick, trackBookingConfirmed } from "@/utils/analytics";
 
 interface BookingConfirmationProps {
   boatName: string;
@@ -38,6 +38,11 @@ export function BookingConfirmation({
       setCheckedItems(new Array(ct.checklistItems.length).fill(false));
     }
   }, [ct?.checklistItems?.length]);
+
+  // Track booking confirmation on mount
+  useEffect(() => {
+    trackBookingConfirmed("", boatName, date, price || 0);
+  }, [boatName, date, price]);
 
   // Trigger the checkmark animation after mount
   useEffect(() => {

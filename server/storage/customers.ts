@@ -217,28 +217,26 @@ export async function recalculateCustomerStats(customerId: string): Promise<CrmC
     .where(
       and(
         or(...conditions),
-        inArray(bookings.bookingStatus, ["confirmed", "pending_payment"])
+        inArray(bookings.bookingStatus, ["confirmed", "pending_payment", "completed"])
       )
     );
 
   const totalBookings = customerBookings.length;
   const totalSpent = customerBookings
-    .filter(b => b.bookingStatus === "confirmed")
+    .filter(b => b.bookingStatus === "confirmed" || b.bookingStatus === "completed")
     .reduce((sum, b) => sum + parseFloat(b.totalAmount), 0);
 
   const dates = customerBookings.map(b => new Date(b.startTime).getTime()).filter(Boolean);
   const firstBookingDate = dates.length > 0 ? new Date(Math.min(...dates)) : null;
   const lastBookingDate = dates.length > 0 ? new Date(Math.max(...dates)) : null;
 
-  let segment: string = customer.segment;
-  if (customer.segment !== "vip" || totalBookings === 0) {
-    if (totalBookings >= 4 || totalSpent >= 1000) {
-      segment = "vip";
-    } else if (totalBookings >= 2) {
-      segment = "returning";
-    } else {
-      segment = "new";
-    }
+  let segment: string;
+  if (totalBookings >= 4 || totalSpent >= 1000) {
+    segment = "vip";
+  } else if (totalBookings >= 2) {
+    segment = "returning";
+  } else {
+    segment = "new";
   }
 
   const [updated] = await db
@@ -262,7 +260,7 @@ export async function syncAllCustomersFromBookings(): Promise<{ created: number;
     .select()
     .from(bookings)
     .where(
-      inArray(bookings.bookingStatus, ["confirmed", "pending_payment"])
+      inArray(bookings.bookingStatus, ["confirmed", "pending_payment", "completed"])
     );
 
   const customerMap = new Map<string, Booking[]>();
@@ -306,7 +304,7 @@ export async function syncAllCustomersFromBookings(): Promise<{ created: number;
 
     const totalBookings = custBookings.length;
     const totalSpent = custBookings
-      .filter((b: Booking) => b.bookingStatus === "confirmed")
+      .filter((b: Booking) => b.bookingStatus === "confirmed" || b.bookingStatus === "completed")
       .reduce((sum: number, b: Booking) => sum + parseFloat(b.totalAmount), 0);
     const dates = custBookings.map((b: Booking) => new Date(b.startTime).getTime());
     const firstBookingDate = new Date(Math.min(...dates));
@@ -331,7 +329,7 @@ export async function syncAllCustomersFromBookings(): Promise<{ created: number;
           totalSpent: totalSpent.toFixed(2),
           firstBookingDate,
           lastBookingDate,
-          segment: existing.segment === "vip" ? "vip" : segment,
+          segment,
           updatedAt: new Date(),
         },
       });

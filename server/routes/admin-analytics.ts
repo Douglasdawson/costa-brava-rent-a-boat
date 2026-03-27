@@ -20,8 +20,7 @@ import {
 
 function getDateRange(days: number) {
   const end = new Date();
-  const start = new Date();
-  start.setDate(end.getDate() - days);
+  const start = new Date(end.getTime() - days * 24 * 60 * 60 * 1000);
   return {
     startDate: start.toISOString().split("T")[0],
     endDate: end.toISOString().split("T")[0],
@@ -46,7 +45,7 @@ export function registerAnalyticsRoutes(app: Express) {
       const cachedGSC = await getCachedAnalytics("gsc", "overview");
       const cachedGA4 = await getCachedAnalytics("ga4", "overview");
       if (cachedGSC && cachedGA4) {
-        return res.json({ data: { gsc: cachedGSC, ga4: cachedGA4 }, cached: true });
+        return res.json({ data: { gsc: cachedGSC.data, ga4: cachedGA4.data }, cached: true, stale: cachedGSC.stale || cachedGA4.stale, cachedAt: cachedGSC.cachedAt });
       }
       if (!isConfigured()) {
         return res.json({ data: { gsc: null, ga4: null }, cached: false, configured: false });
@@ -69,7 +68,7 @@ export function registerAnalyticsRoutes(app: Express) {
   app.get("/api/admin/analytics/keywords", requireAdminSession, async (req, res) => {
     try {
       const cached = await getCachedAnalytics("gsc", "keywords");
-      if (cached) return res.json({ data: cached, cached: true });
+      if (cached) return res.json({ data: cached.data, cached: true, stale: cached.stale, cachedAt: cached.cachedAt });
       if (!isConfigured()) return res.json({ data: [], cached: false, configured: false });
       const days = parseInt(req.query.days as string) || 28;
       const { startDate, endDate } = getDateRange(days);
@@ -85,7 +84,7 @@ export function registerAnalyticsRoutes(app: Express) {
   app.get("/api/admin/analytics/pages", requireAdminSession, async (req, res) => {
     try {
       const cached = await getCachedAnalytics("gsc", "pages");
-      if (cached) return res.json({ data: cached, cached: true });
+      if (cached) return res.json({ data: cached.data, cached: true, stale: cached.stale, cachedAt: cached.cachedAt });
       if (!isConfigured()) return res.json({ data: [], cached: false, configured: false });
       const days = parseInt(req.query.days as string) || 28;
       const { startDate, endDate } = getDateRange(days);
@@ -101,7 +100,7 @@ export function registerAnalyticsRoutes(app: Express) {
   app.get("/api/admin/analytics/traffic", requireAdminSession, async (req, res) => {
     try {
       const cached = await getCachedAnalytics("ga4", "traffic");
-      if (cached) return res.json({ data: cached, cached: true });
+      if (cached) return res.json({ data: cached.data, cached: true, stale: cached.stale, cachedAt: cached.cachedAt });
       if (!isConfigured()) return res.json({ data: [], cached: false, configured: false });
       const days = parseInt(req.query.days as string) || 28;
       const { startDate, endDate } = getDateRange(days);
@@ -117,7 +116,7 @@ export function registerAnalyticsRoutes(app: Express) {
   app.get("/api/admin/analytics/devices", requireAdminSession, async (_req, res) => {
     try {
       const cached = await getCachedAnalytics("ga4", "devices");
-      if (cached) return res.json({ data: cached, cached: true });
+      if (cached) return res.json({ data: cached.data, cached: true, stale: cached.stale, cachedAt: cached.cachedAt });
       if (!isConfigured()) return res.json({ data: [], cached: false, configured: false });
       const { startDate, endDate } = getDateRange(28);
       const data = await fetchGA4Devices(startDate, endDate);
@@ -132,7 +131,7 @@ export function registerAnalyticsRoutes(app: Express) {
   app.get("/api/admin/analytics/countries", requireAdminSession, async (_req, res) => {
     try {
       const cached = await getCachedAnalytics("ga4", "countries");
-      if (cached) return res.json({ data: cached, cached: true });
+      if (cached) return res.json({ data: cached.data, cached: true, stale: cached.stale, cachedAt: cached.cachedAt });
       if (!isConfigured()) return res.json({ data: [], cached: false, configured: false });
       const { startDate, endDate } = getDateRange(28);
       const data = await fetchGA4Countries(startDate, endDate);
@@ -147,7 +146,7 @@ export function registerAnalyticsRoutes(app: Express) {
   app.get("/api/admin/analytics/conversions", requireAdminSession, async (_req, res) => {
     try {
       const cached = await getCachedAnalytics("ga4", "conversions");
-      if (cached) return res.json({ data: cached, cached: true });
+      if (cached) return res.json({ data: cached.data, cached: true, stale: cached.stale, cachedAt: cached.cachedAt });
       if (!isConfigured()) return res.json({ data: [], cached: false, configured: false });
       const { startDate, endDate } = getDateRange(28);
       const data = await fetchGA4Conversions(startDate, endDate);
@@ -164,7 +163,7 @@ export function registerAnalyticsRoutes(app: Express) {
       const cachedGSC = await getCachedAnalytics("gsc", "daily_trend");
       const cachedGA4 = await getCachedAnalytics("ga4", "daily_trend");
       if (cachedGSC && cachedGA4) {
-        return res.json({ data: { gsc: cachedGSC, ga4: cachedGA4 }, cached: true });
+        return res.json({ data: { gsc: cachedGSC.data, ga4: cachedGA4.data }, cached: true, stale: cachedGSC.stale || cachedGA4.stale, cachedAt: cachedGSC.cachedAt });
       }
       if (!isConfigured()) {
         return res.json({ data: { gsc: [], ga4: [] }, cached: false, configured: false });

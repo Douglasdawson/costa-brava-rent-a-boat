@@ -82,21 +82,38 @@ export function trackBookingCompleted(bookingId: string, amount: number, boatId:
   });
 }
 
-export function trackWhatsAppClick(source: string) {
+export function trackWhatsAppClick(source: string, utm?: UtmParams) {
   const eventId = generateEventId();
-  trackEvent("whatsapp_click", { source, event_id: eventId });
+  trackEvent("whatsapp_click", {
+    source,
+    event_id: eventId,
+    ...(utm?.utm_source && { utm_source: utm.utm_source }),
+    ...(utm?.utm_medium && { utm_medium: utm.utm_medium }),
+    ...(utm?.utm_campaign && { utm_campaign: utm.utm_campaign }),
+  });
   trackMetaContact("whatsapp", eventId);
   trackGoogleAdsConversion({ conversionLabel: 'whatsapp_click' });
 }
 
-export function trackPhoneClick() {
+export function trackPhoneClick(utm?: UtmParams) {
   const eventId = generateEventId();
-  trackEvent("phone_click", { event_id: eventId });
+  trackEvent("phone_click", {
+    event_id: eventId,
+    ...(utm?.utm_source && { utm_source: utm.utm_source }),
+    ...(utm?.utm_medium && { utm_medium: utm.utm_medium }),
+    ...(utm?.utm_campaign && { utm_campaign: utm.utm_campaign }),
+  });
   trackMetaContact("phone", eventId);
   trackGoogleAdsConversion({ conversionLabel: 'phone_click' });
 }
 
-export function trackGenerateLead(boatId: string, boatName: string, value: number) {
+export function trackGenerateLead(boatId: string, boatName: string, value: number, userData?: {
+  email?: string;
+  phone?: string;
+  firstName?: string;
+  lastName?: string;
+}) {
+  if (userData) pushEnhancedConversionData(userData);
   trackEvent("generate_lead", {
     boat_id: boatId,
     boat_name: boatName,
@@ -296,6 +313,15 @@ export function trackExtrasChanged(extraId: string, extraName: string, added: bo
 }
 export function trackCouponApplied(couponCode: string, success: boolean) {
   trackEvent('coupon_applied', { coupon_code: couponCode, success });
+}
+export function trackTimeSlotSelected(time: string, boatId: string) {
+  trackEvent('time_slot_selected', { selected_time: time, boat_id: boatId });
+}
+export function trackQuoteCreated(holdId: string, total: number, boatId: string) {
+  trackEvent('quote_created', { hold_id: holdId, value: total, currency: 'EUR', boat_id: boatId });
+}
+export function trackBookingConfirmed(bookingId: string, boatName: string, date: string, amount: number) {
+  trackEvent('booking_confirmed', { booking_id: bookingId, boat_name: boatName, booking_date: date, value: amount, currency: 'EUR' });
 }
 export function trackPaymentInitiated(amount: number, boatId: string) {
   trackEvent('payment_initiated', { value: amount, currency: 'EUR', boat_id: boatId });

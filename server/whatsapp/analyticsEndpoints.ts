@@ -3,7 +3,7 @@ import type { Express, Request, Response } from "express";
 import { getChatAnalytics, getFrequentIntents, getHotLeads } from "./chatMemoryService";
 import { db } from "../db";
 import { aiChatSessions, aiChatMessages, knowledgeBase } from "@shared/schema";
-import { desc, sql, eq } from "drizzle-orm";
+import { desc, sql, eq, and } from "drizzle-orm";
 import { logger } from "../lib/logger";
 import { requireAdminSession } from "../routes/auth-middleware";
 
@@ -32,14 +32,9 @@ export function registerChatbotAnalyticsRoutes(app: Express): void {
   app.get("/api/chatbot/leads", requireAdminSession, async (req: Request, res: Response) => {
     try {
       const limit = parseInt(req.query.limit as string) || 20;
-      const quality = req.query.quality as string; // 'hot', 'warm', 'cold'
-      
-      let leads = await getHotLeads(limit);
-      
-      // Filter by quality if specified
-      if (quality && ['hot', 'warm', 'cold'].includes(quality)) {
-        leads = leads.filter(l => l.leadQuality === quality);
-      }
+      const quality = req.query.quality as string | undefined;
+
+      const leads = await getHotLeads(limit, quality);
       
       res.json({
         success: true,
@@ -125,8 +120,16 @@ export function registerChatbotAnalyticsRoutes(app: Express): void {
     try {
       const category = req.query.category as string;
       const language = (req.query.language as string) || "es";
-      
-      let query = db.select({
+
+      const conditions = [
+        eq(knowledgeBase.isActive, true),
+        eq(knowledgeBase.language, language),
+      ];
+      if (category) {
+        conditions.push(eq(knowledgeBase.category, category));
+      }
+
+      const entries = await db.select({
         id: knowledgeBase.id,
         title: knowledgeBase.title,
         content: knowledgeBase.content,
@@ -137,19 +140,14 @@ export function registerChatbotAnalyticsRoutes(app: Express): void {
         isActive: knowledgeBase.isActive,
         createdAt: knowledgeBase.createdAt,
         updatedAt: knowledgeBase.updatedAt,
-      }).from(knowledgeBase);
-      
-      const entries = await query.orderBy(desc(knowledgeBase.priority));
-      
-      // Filter in JS for flexibility
-      let filtered = entries.filter(e => e.language === language);
-      if (category) {
-        filtered = filtered.filter(e => e.category === category);
-      }
-      
+      })
+        .from(knowledgeBase)
+        .where(and(...conditions))
+        .orderBy(desc(knowledgeBase.priority));
+
       res.json({
         success: true,
-        data: filtered,
+        data: entries,
       });
     } catch (error: unknown) {
       const errorMsg = error instanceof Error ? error.message : String(error);

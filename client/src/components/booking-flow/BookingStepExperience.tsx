@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Calendar, Anchor, Clock, Gauge, AlertTriangle } from "lucide-react";
 import { getBoatAltText } from "@/utils/boatImages";
-import { trackAddToCart, trackBeginCheckout, trackBookingStarted, trackDateSelected, trackDurationSelected } from "@/utils/analytics";
+import { trackAddToCart, trackBeginCheckout, trackBookingStarted, trackDateSelected, trackDurationSelected, trackTimeSlotSelected } from "@/utils/analytics";
 import { getStoredUtm } from "@/hooks/useUtmCapture";
 import type { Boat } from "@shared/schema";
 import type { Translations } from "@/lib/translations";
@@ -190,6 +190,7 @@ export function BookingStepExperience({
                     key={slot.id}
                     onClick={() => {
                       setSelectedTime(slot.id);
+                      trackTimeSlotSelected(slot.id, selectedBoat);
                       const availableDurations = getAvailableDurations(slot.id);
                       const isDurationStillAvailable = availableDurations.some(d => d.id === duration);
                       if (!isDurationStillAvailable) {

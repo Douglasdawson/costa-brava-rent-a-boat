@@ -374,7 +374,13 @@ export async function syncAllAnalytics() {
   }
 }
 
-export async function getCachedAnalytics(source: string, metricType: string) {
+const CACHE_TTL_MS = 12 * 60 * 60 * 1000; // 12 hours — data older than this is considered stale
+
+export async function getCachedAnalytics(source: string, metricType: string): Promise<{
+  data: unknown;
+  cachedAt: Date;
+  stale: boolean;
+} | null> {
   const [latest] = await db
     .select()
     .from(analyticsSnapshots)
@@ -382,5 +388,12 @@ export async function getCachedAnalytics(source: string, metricType: string) {
     .orderBy(desc(analyticsSnapshots.createdAt))
     .limit(1);
 
-  return latest?.data || null;
+  if (!latest) return null;
+
+  const age = Date.now() - new Date(latest.createdAt).getTime();
+  return {
+    data: latest.data,
+    cachedAt: latest.createdAt,
+    stale: age > CACHE_TTL_MS,
+  };
 }

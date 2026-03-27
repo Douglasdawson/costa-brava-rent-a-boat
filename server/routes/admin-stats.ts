@@ -44,17 +44,18 @@ export function registerAdminStatsRoutes(app: Express) {
         startDate.setHours(0, 0, 0, 0);
         endDate.setHours(23, 59, 59, 999);
       } else if (period === "week") {
-        startDate.setDate(now.getDate() - 7);
+        startDate = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
         startDate.setHours(0, 0, 0, 0);
         endDate.setHours(23, 59, 59, 999);
       } else if (period === "month") {
-        startDate.setDate(now.getDate() - 30);
+        startDate = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000);
         startDate.setHours(0, 0, 0, 0);
         endDate.setHours(23, 59, 59, 999);
       } else if (period === "season") {
         // Season: April 1 to October 31 of current year
         startDate = new Date(now.getFullYear(), 3, 1);
         startDate.setHours(0, 0, 0, 0);
+        endDate = new Date(now.getFullYear(), 9, 31);
         endDate.setHours(23, 59, 59, 999);
       } else if (period === "year") {
         startDate = new Date(now.getFullYear(), 0, 1);
@@ -141,7 +142,19 @@ export function registerAdminStatsRoutes(app: Express) {
     try {
       const period = (req.query.period as string) || "season";
       const performance = await storage.getBoatsPerformance(period as "month" | "season" | "year");
-      const maintenanceLogs = await storage.getMaintenanceLogs();
+
+      // Calculate period dates for maintenance cost filtering
+      const now = new Date();
+      let maintStartDate: Date;
+      if (period === "season") {
+        maintStartDate = new Date(now.getFullYear(), 3, 1);
+      } else if (period === "year") {
+        maintStartDate = new Date(now.getFullYear(), 0, 1);
+      } else {
+        maintStartDate = new Date(now.getFullYear(), now.getMonth(), 1);
+      }
+
+      const maintenanceLogs = await storage.getMaintenanceLogs(undefined, maintStartDate, now);
       const maintenanceCosts = new Map<string, number>();
       for (const log of maintenanceLogs) {
         const cost = parseFloat(log.cost || "0");

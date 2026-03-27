@@ -74,10 +74,16 @@ export async function createMaintenanceLog(data: InsertMaintenanceLog): Promise<
   return log;
 }
 
-export async function getMaintenanceLogs(boatId?: string): Promise<MaintenanceLog[]> {
+export async function getMaintenanceLogs(boatId?: string, startDate?: Date, endDate?: Date): Promise<MaintenanceLog[]> {
   const conditions = [];
   if (boatId) {
     conditions.push(eq(maintenanceLogs.boatId, boatId));
+  }
+  if (startDate) {
+    conditions.push(gte(maintenanceLogs.date, startDate));
+  }
+  if (endDate) {
+    conditions.push(lte(maintenanceLogs.date, endDate));
   }
   const whereClause = conditions.length > 0 ? and(...conditions) : undefined;
 

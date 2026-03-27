@@ -82,12 +82,12 @@ export async function getDashboardStatsEnhanced(startDate: Date, endDate: Date):
 
   const prevStats = await getDashboardStats(prevStart, prevEnd);
 
-  const averageTicket = currentStats.bookingsCount > 0
-    ? Math.round((currentStats.revenue / currentStats.bookingsCount) * 100) / 100
+  const averageTicket = currentStats.confirmedBookings > 0
+    ? Math.round((currentStats.revenue / currentStats.confirmedBookings) * 100) / 100
     : 0;
 
-  const previousAverageTicket = prevStats.bookingsCount > 0
-    ? Math.round((prevStats.revenue / prevStats.bookingsCount) * 100) / 100
+  const previousAverageTicket = prevStats.confirmedBookings > 0
+    ? Math.round((prevStats.revenue / prevStats.confirmedBookings) * 100) / 100
     : 0;
 
   return {
@@ -124,21 +124,34 @@ export async function getRevenueTrend(period: "30d" | "90d" | "365d"): Promise<A
   }
   startDate.setHours(0, 0, 0, 0);
 
-  // Use date_trunc for grouping at SQL level
-  const truncUnit = groupByWeek ? "week" : "day";
+  // Use separate SQL templates to avoid interpolating the trunc unit as a parameter
+  const trendQuery = groupByWeek
+    ? sql`
+        SELECT
+          date_trunc('week', booking_date)::date::text AS period_date,
+          COALESCE(SUM(CASE WHEN booking_status = 'confirmed' THEN total_amount::numeric ELSE 0 END), 0) AS revenue,
+          COUNT(*)::int AS bookings
+        FROM bookings
+        WHERE booking_date >= ${startDate}
+          AND booking_date <= ${now}
+          AND booking_status IN ('confirmed', 'pending_payment')
+        GROUP BY 1
+        ORDER BY 1
+      `
+    : sql`
+        SELECT
+          date_trunc('day', booking_date)::date::text AS period_date,
+          COALESCE(SUM(CASE WHEN booking_status = 'confirmed' THEN total_amount::numeric ELSE 0 END), 0) AS revenue,
+          COUNT(*)::int AS bookings
+        FROM bookings
+        WHERE booking_date >= ${startDate}
+          AND booking_date <= ${now}
+          AND booking_status IN ('confirmed', 'pending_payment')
+        GROUP BY 1
+        ORDER BY 1
+      `;
 
-  const { rows: trendRows } = await db.execute(sql`
-    SELECT
-      date_trunc(${truncUnit}, booking_date)::date::text AS period_date,
-      COALESCE(SUM(CASE WHEN booking_status = 'confirmed' THEN total_amount::numeric ELSE 0 END), 0) AS revenue,
-      COUNT(*)::int AS bookings
-    FROM bookings
-    WHERE booking_date >= ${startDate}
-      AND booking_date <= ${now}
-      AND booking_status IN ('confirmed', 'pending_payment')
-    GROUP BY 1
-    ORDER BY 1
-  `);
+  const { rows: trendRows } = await db.execute(trendQuery);
 
   // Build a lookup from the SQL results
   const dataMap = new Map<string, { revenue: number; bookings: number }>();

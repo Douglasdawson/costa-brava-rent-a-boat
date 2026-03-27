@@ -153,20 +153,21 @@ export function calculateIntentScore(currentScore: number, intent: string): numb
   return Math.min(100, currentScore + scoreToAdd);
 }
 
-// Get hot leads for the CRM
-export async function getHotLeads(limit: number = 20): Promise<AiChatSession[]> {
+// Get leads for the CRM, optionally filtered by quality
+export async function getHotLeads(limit: number = 20, quality?: string): Promise<AiChatSession[]> {
   try {
+    const conditions = [eq(aiChatSessions.isLead, true)];
+    if (quality && ['hot', 'warm', 'cold'].includes(quality)) {
+      conditions.push(eq(aiChatSessions.leadQuality, quality));
+    }
     return await db.select()
       .from(aiChatSessions)
-      .where(and(
-        eq(aiChatSessions.isLead, true),
-        eq(aiChatSessions.leadQuality, 'hot')
-      ))
+      .where(and(...conditions))
       .orderBy(desc(aiChatSessions.intentScore), desc(aiChatSessions.lastMessageAt))
       .limit(limit);
   } catch (error: unknown) {
     const errorMsg = error instanceof Error ? error.message : String(error);
-    logger.error("Error getting hot leads", { error: errorMsg });
+    logger.error("Error getting leads", { error: errorMsg });
     return [];
   }
 }

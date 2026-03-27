@@ -208,7 +208,7 @@ export interface IStorage {
 
   // Maintenance
   createMaintenanceLog(data: InsertMaintenanceLog): Promise<MaintenanceLog>;
-  getMaintenanceLogs(boatId?: string): Promise<MaintenanceLog[]>;
+  getMaintenanceLogs(boatId?: string, startDate?: Date, endDate?: Date): Promise<MaintenanceLog[]>;
   getMaintenanceLog(id: string): Promise<MaintenanceLog | undefined>;
   updateMaintenanceLog(id: string, data: UpdateMaintenanceLog): Promise<MaintenanceLog | undefined>;
   deleteMaintenanceLog(id: string): Promise<boolean>;

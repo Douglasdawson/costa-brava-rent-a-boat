@@ -1,5 +1,5 @@
 import { apiRequest } from "@/lib/queryClient";
-import { trackPurchaseEcommerce, trackBookingWithUserData } from "@/utils/analytics";
+import { trackPurchaseEcommerce, trackBookingWithUserData, trackQuoteCreated } from "@/utils/analytics";
 import type { BookingFlowStateReturn } from "./useBookingFlowState";
 
 function delay(ms: number): Promise<void> {
@@ -52,6 +52,7 @@ export function useBookingFlowActions(state: BookingFlowStateReturn, onClose?: (
       const quoteData = await quoteResponse.json();
       setQuote(quoteData.quote);
       setHoldId(quoteData.holdId);
+      trackQuoteCreated(quoteData.holdId, quoteData.quote.total, selectedBoat);
 
       toast({
         title: "Cotización creada",

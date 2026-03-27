@@ -71,8 +71,7 @@ export const SERVER_BOAT_DATA: { [key: string]: ServerBoatData } = {
     features: [
       "Sin licencia requerida",
       "Hasta 5 personas",
-      "Gasolina incluida", 
-      "Seguro incluido",
+      "Gasolina incluida",
       "Equipo de seguridad",
       "Escalera de baño"
     ],
@@ -132,7 +131,6 @@ export const SERVER_BOAT_DATA: { [key: string]: ServerBoatData } = {
       "Sin licencia requerida",
       "Hasta 5 personas",
       "Gasolina incluida",
-      "Seguro incluido",
       "Equipo de seguridad",
       "Escalera de baño"
     ],
@@ -192,7 +190,6 @@ export const SERVER_BOAT_DATA: { [key: string]: ServerBoatData } = {
       "Sin licencia requerida",
       "Hasta 5 personas",
       "Gasolina incluida",
-      "Seguro incluido",
       "Equipo de seguridad",
       "Escalera de baño"
     ],
@@ -251,8 +248,7 @@ export const SERVER_BOAT_DATA: { [key: string]: ServerBoatData } = {
     features: [
       "Sin licencia requerida",
       "Hasta 4 personas",
-      "Gasolina incluida", 
-      "Seguro incluido",
+      "Gasolina incluida",
       "Equipo de seguridad",
       "Perfecta para parejas"
     ],
@@ -312,8 +308,7 @@ export const SERVER_BOAT_DATA: { [key: string]: ServerBoatData } = {
     features: [
       "Sin licencia requerida",
       "Hasta 5 personas",
-      "Gasolina incluida", 
-      "Seguro incluido",
+      "Gasolina incluida",
       "Equipo de música",
       "Más espaciosa"
     ],

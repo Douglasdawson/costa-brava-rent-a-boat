@@ -124,14 +124,14 @@ export default function Hero() {
       </div>
 
 
-      {/* Curved loop marquee — overlaid at bottom of hero */}
-      <div className="absolute bottom-0 left-0 right-0 z-10 overflow-hidden opacity-50 sm:hidden">
+      {/* Curved loop marquee — above the trust badges strip */}
+      <div className="absolute bottom-[40px] left-0 right-0 z-10 overflow-hidden opacity-30 sm:hidden pointer-events-none">
         <CurvedLoop
           marqueeText={t.hero.marqueeText}
           speed={1.5}
           curveAmount={60}
           direction="left"
-          className="fill-white text-[3rem] lg:text-[3rem] font-display tracking-wider lg:lowercase"
+          className="fill-white text-[2rem] font-display tracking-wider"
         />
       </div>
 

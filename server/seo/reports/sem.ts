@@ -4,7 +4,7 @@ import { db } from "../../db";
 import { seoReports } from "../../../shared/schema";
 import { logger } from "../../lib/logger";
 import { buildBriefing } from "../strategist/briefing";
-import { sendSeoAlert } from "../alerts/whatsapp";
+import { sendTelegramMessage } from "../alerts/telegram";
 
 const client = new Anthropic();
 
@@ -66,15 +66,11 @@ FORMATO: Texto plano conciso (max 800 palabras), listo para enviar por WhatsApp.
       periodEnd: now.toISOString().split("T")[0],
       summary,
       data: briefing,
-      sentVia: "whatsapp",
+      sentVia: "telegram",
     });
 
-    // Send via WhatsApp
-    await sendSeoAlert(
-      "Informe SEM (cada 5 dias)",
-      summary,
-      "low",
-    );
+    // Send via Telegram
+    await sendTelegramMessage("Informe SEM (cada 5 días)", summary);
 
     logger.info("[SEO:Reports] SEM report generated and sent");
   } catch (error) {

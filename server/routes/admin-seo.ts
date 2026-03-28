@@ -157,6 +157,17 @@ export function registerSeoRoutes(app: Express): void {
     }
   });
 
+  // Manual SEM report trigger
+  app.post("/api/admin/seo/sem-report", requireAdminSession, async (_req, res) => {
+    try {
+      const { generateSemReport } = await import("../seo/reports/sem");
+      await generateSemReport();
+      res.json({ message: "SEM report generated and sent" });
+    } catch (error) {
+      res.status(500).json({ message: "Error generating SEM report" });
+    }
+  });
+
   // GEO status
   app.get("/api/admin/seo/geo", requireAdminSession, async (_req, res) => {
     try {

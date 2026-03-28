@@ -112,6 +112,11 @@ export function startSeoWorker(): void {
     await generateWeeklyReport();
   });
 
+  registerJob("sem-report", schedules.semReport, async () => {
+    const { generateSemReport } = await import("./reports/sem");
+    await generateSemReport();
+  });
+
   registerJob("alert-check", schedules.alertCheck, async () => {
     const { checkAlerts } = await import("./alerts/engine");
     await checkAlerts();

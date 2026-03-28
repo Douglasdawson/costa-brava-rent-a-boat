@@ -28,6 +28,7 @@ export const SEO_CONFIG = {
     experimentReview: "0 11 * * *",
     revenueCorrelation: "0 0 * * *",
     weeklyReport: "0 20 * * 0",
+    semReport: "0 10 */5 * *",
     alertCheck: "45 */6 * * *",
   },
 

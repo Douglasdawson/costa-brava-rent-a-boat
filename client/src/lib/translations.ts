@@ -74,6 +74,10 @@ export interface Translations {
     seasonPriceLow: string;
     seasonPriceMid: string;
     weeklyBookings: string;
+    bestForBudget?: string;
+    bestForSundeck?: string;
+    bestForFamilies?: string;
+    bestForPremium?: string;
   };
 
   // Features Section

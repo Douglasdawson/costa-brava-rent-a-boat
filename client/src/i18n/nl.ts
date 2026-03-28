@@ -67,6 +67,10 @@ export const nl: Translations = {
     seasonPriceLow: 'Laagseizoen prijs',
     seasonPriceMid: 'Tussenseizoen prijs',
     weeklyBookings: '{count} boekingen deze week',
+    bestForBudget: 'Beste prijs',
+    bestForSundeck: 'Beste zonnedek',
+    bestForFamilies: 'Favoriet gezinnen',
+    bestForPremium: 'Premium zonder vaarbewijs',
   },
   features: {
     title: 'Waarom Kiezen voor Costa Brava Rent a Boat',

@@ -67,6 +67,10 @@ export const ca: Translations = {
     seasonPriceLow: 'Preu temporada baixa',
     seasonPriceMid: 'Preu temporada mitjana',
     weeklyBookings: '{count} reserves aquesta setmana',
+    bestForBudget: 'Millor preu',
+    bestForSundeck: 'Millor solàrium',
+    bestForFamilies: 'Favorit famílies',
+    bestForPremium: 'Premium sense llicència',
   },
   features: {
     title: 'Per què triar Costa Brava Rent a Boat',

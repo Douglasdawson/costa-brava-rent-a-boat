@@ -286,6 +286,15 @@ function FleetSection() {
 
   const popularBoatId = "solar-450";
 
+  // "Best for" labels to differentiate similar no-license boats
+  const bestForLabels: Record<string, string> = useMemo(() => ({
+    'astec-400': t.boats?.bestForBudget || '',
+    'solar-450': t.boats?.bestForSundeck || '',
+    'remus-450': t.boats?.bestForFamilies || '',
+    'remus-450-ii': t.boats?.bestForFamilies || '',
+    'astec-480': t.boats?.bestForPremium || '',
+  }), [t]);
+
   // Transform API data to BoatCard format — memoized to avoid recalculation on every render
   const boats = useMemo(() => (boatsData || [])
     .filter(boat => boat.isActive)
@@ -326,9 +335,10 @@ function FleetSection() {
         highSeasonPrice: currentSeason !== 'ALTA' ? highSeasonPrice : undefined,
         features: boat.equipment || [],
         available: true,
-        enginePower: enginePower
+        enginePower: enginePower,
+        bestFor: bestForLabels[boat.id] || ''
       };
-    }), [boatsData, currentSeason, t]);
+    }), [boatsData, currentSeason, t, bestForLabels]);
 
   // Dynamic group size options based on max boat capacity
   const groupSizeOptions = useMemo(() => {

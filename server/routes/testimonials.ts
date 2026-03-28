@@ -35,6 +35,11 @@ export function registerTestimonialRoutes(app: Express) {
   // Create a new testimonial (public - will be unverified by default)
   app.post("/api/testimonials", submitLimiter, async (req, res) => {
     try {
+      // Honeypot anti-bot check
+      if (req.body.website) {
+        return res.json({ success: true });
+      }
+
       const parsed = insertTestimonialSchema.safeParse(req.body);
       if (!parsed.success) {
         return res.status(400).json({

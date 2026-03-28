@@ -45,6 +45,11 @@ export function registerGalleryRoutes(app: Express) {
   // Public: submit a photo (rate limited)
   app.post("/api/gallery/submit", async (req, res) => {
     try {
+      // Honeypot anti-bot check
+      if (req.body.website) {
+        return res.json({ success: true });
+      }
+
       const clientIp = req.ip || req.socket.remoteAddress || "unknown";
 
       // Rate limit check

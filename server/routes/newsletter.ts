@@ -1,8 +1,15 @@
 import type { Express } from "express";
 import rateLimit from "express-rate-limit";
+import crypto from "crypto";
 import { z } from "zod";
 import { storage } from "../storage";
 import { logger } from "../lib/logger";
+
+// HMAC token for unsubscribe links
+export function generateNewsletterUnsubToken(email: string): string {
+  const secret = process.env.JWT_SECRET || "newsletter-unsub-fallback";
+  return crypto.createHmac("sha256", secret).update(email).digest("hex").slice(0, 16);
+}
 
 const submitLimiter = rateLimit({
   windowMs: 60 * 60 * 1000, // 1 hour
@@ -21,6 +28,11 @@ const subscribeSchema = z.object({
 export function registerNewsletterRoutes(app: Express) {
   app.post("/api/newsletter/subscribe", submitLimiter, async (req, res) => {
     try {
+      // Honeypot anti-bot check
+      if (req.body.website) {
+        return res.json({ success: true });
+      }
+
       const parsed = subscribeSchema.safeParse(req.body);
       if (!parsed.success) {
         return res.status(400).json({ message: "Email inválido" });
@@ -44,8 +56,9 @@ export function registerNewsletterRoutes(app: Express) {
   app.get("/api/newsletter/unsubscribe", async (req, res) => {
     try {
       const email = req.query.email as string;
-      if (!email) {
-        return res.status(400).send("Email requerido");
+      const token = req.query.token as string;
+      if (!email || !token || generateNewsletterUnsubToken(email) !== token) {
+        return res.status(400).send("Enlace de cancelación no válido");
       }
       await storage.unsubscribeNewsletter(email);
       res.send(`

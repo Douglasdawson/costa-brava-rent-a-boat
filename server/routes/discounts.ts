@@ -1,10 +1,19 @@
 import type { Express } from "express";
+import rateLimit from "express-rate-limit";
 import { storage } from "../storage";
 import { requireAdminSession, requireTabAccess } from "./auth";
 import { z } from "zod";
 import crypto from "crypto";
 import { logger } from "../lib/logger";
 import { validatePromoCode } from "../lib/discountValidation";
+
+const validateLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 10, // 10 attempts per 15 min per IP
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { message: "Demasiados intentos de validacion. Intenta de nuevo en unos minutos." },
+});
 
 // Validation schemas
 const validateCodeSchema = z.object({
@@ -25,7 +34,7 @@ export function registerDiscountRoutes(app: Express) {
 
   // Validate a discount code (public - customers validate during booking)
   // Uses the shared validatePromoCode function as single source of truth
-  app.post("/api/discounts/validate", async (req, res) => {
+  app.post("/api/discounts/validate", validateLimiter, async (req, res) => {
     try {
       const parsed = validateCodeSchema.safeParse(req.body);
       if (!parsed.success) {
@@ -39,6 +48,8 @@ export function registerDiscountRoutes(app: Express) {
 
       // Only return discount code results from this endpoint (not gift cards)
       if (!result.valid || result.type !== "discount") {
+        // Delay response to slow brute-force enumeration
+        await new Promise(resolve => setTimeout(resolve, 300));
         return res.json({
           valid: false,
           error: result.error || "Codigo de descuento no valido",

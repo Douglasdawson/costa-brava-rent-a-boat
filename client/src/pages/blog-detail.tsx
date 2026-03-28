@@ -239,6 +239,7 @@ function ReadingProgressBar() {
 function InlineNewsletterCTA({ bd, language }: { bd: Record<string, string>; language: string }) {
   const [email, setEmail] = useState('');
   const [state, setState] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [website, setWebsite] = useState('');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -249,7 +250,7 @@ function InlineNewsletterCTA({ bd, language }: { bd: Record<string, string>; lan
       const res = await fetch('/api/newsletter/subscribe', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: email.trim(), language, source: 'blog_inline' }),
+        body: JSON.stringify({ website, email: email.trim(), language, source: 'blog_inline' }),
       });
       if (res.ok || res.status === 409) {
         setState('success');
@@ -277,6 +278,16 @@ function InlineNewsletterCTA({ bd, language }: { bd: Record<string, string>; lan
           <p className="text-sm text-muted-foreground">{bd.newsletterSubtitle}</p>
         </div>
         <form onSubmit={handleSubmit} className="flex gap-2 w-full sm:w-auto">
+          <input
+            type="text"
+            name="website"
+            value={website}
+            onChange={(e) => setWebsite(e.target.value)}
+            style={{ position: 'absolute', left: '-9999px', opacity: 0, height: 0, width: 0 }}
+            tabIndex={-1}
+            autoComplete="off"
+            aria-hidden="true"
+          />
           <label htmlFor="blog-newsletter-email" className="sr-only">{bd.newsletterPlaceholder}</label>
           <input
             id="blog-newsletter-email"

@@ -11,6 +11,39 @@ import { sendWhatsAppMessageWithMedia } from "./twilioClient";
 import { detectLanguageFromPhone, getWelcomeMessage, isGreeting } from "./languageDetector";
 import { logger } from "../lib/logger";
 
+// --- Per-sender AI rate limiting ---
+const aiRateLimit = new Map<string, { count: number; windowStart: number }>();
+const AI_RATE_LIMIT_MAX = 10; // max messages per window
+const AI_RATE_LIMIT_WINDOW = 5 * 60 * 1000; // 5 minutes
+
+// Cleanup stale entries every 5 minutes
+setInterval(() => {
+  const now = Date.now();
+  aiRateLimit.forEach((val, key) => {
+    if (now - val.windowStart > AI_RATE_LIMIT_WINDOW) {
+      aiRateLimit.delete(key);
+    }
+  });
+}, AI_RATE_LIMIT_WINDOW);
+
+// --- Global daily AI call budget ---
+let dailyAiCalls = 0;
+const MAX_DAILY_AI_CALLS = parseInt(process.env.MAX_DAILY_AI_CALLS || "500", 10);
+let lastDailyReset = new Date().toDateString();
+
+function checkAndResetDailyCounter(): boolean {
+  const today = new Date().toDateString();
+  if (today !== lastDailyReset) {
+    dailyAiCalls = 0;
+    lastDailyReset = today;
+  }
+  if (dailyAiCalls >= MAX_DAILY_AI_CALLS) {
+    return false; // budget exceeded
+  }
+  dailyAiCalls++;
+  return true;
+}
+
 /**
  * Twilio WhatsApp Webhook Request Body
  */
@@ -161,6 +194,31 @@ async function processIncomingMessage(
       const freshSession = await getSession(from);
       const t = getTranslation(freshSession.language as any);
       await sendMainMenu(from, t);
+      return;
+    }
+
+    // Per-sender AI rate limit
+    const now = Date.now();
+    const senderLimit = aiRateLimit.get(from);
+    if (senderLimit && now - senderLimit.windowStart < AI_RATE_LIMIT_WINDOW) {
+      if (senderLimit.count >= AI_RATE_LIMIT_MAX) {
+        logger.warn("AI rate limit exceeded for sender", { from, count: senderLimit.count });
+        await sendWhatsAppMessage(from, "Por favor, espera unos minutos antes de enviar más mensajes. / Please wait a few minutes before sending more messages.");
+        return;
+      }
+      senderLimit.count++;
+    } else {
+      aiRateLimit.set(from, { count: 1, windowStart: now });
+    }
+
+    // Global daily AI budget
+    if (!checkAndResetDailyCounter()) {
+      logger.warn("Daily AI call budget exceeded", { dailyAiCalls, max: MAX_DAILY_AI_CALLS });
+      // Fall back to menu-based flow
+      const response = await processMessage(session, messageBody, intent);
+      if (response) {
+        await sendWhatsAppMessage(from, response);
+      }
       return;
     }
 

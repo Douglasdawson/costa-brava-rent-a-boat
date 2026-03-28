@@ -105,7 +105,7 @@ const adminLimiter = rateLimit({
 // Quote endpoint: up to 20 quotes per minute
 const quoteLimiter = rateLimit({
   windowMs: 60 * 1000,
-  max: 20,
+  max: 5,
   standardHeaders: true,
   legacyHeaders: false,
   message: { message: "Demasiadas solicitudes de cotización. Espera un momento antes de intentarlo de nuevo." },

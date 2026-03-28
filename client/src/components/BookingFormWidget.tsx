@@ -65,6 +65,7 @@ interface BookingFormWidgetProps {
 
 export default function BookingFormWidget({ preSelectedBoatId, prefillDate, prefillTime, prefillCoupon, onClose }: BookingFormWidgetProps) {
   // Form state
+  const [website, setWebsite] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [phonePrefix, setPhonePrefix] = useState("+34");
@@ -1058,6 +1059,7 @@ Looking forward to confirmation. Thanks!`;
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
+          website,
           boatId: selectedBoat,
           boatName: selectedBoatInfo?.name || selectedBoat,
           bookingDate: selectedDate,
@@ -1204,6 +1206,17 @@ Looking forward to confirmation. Thanks!`;
 
   return (
     <>
+      {/* Honeypot anti-bot field */}
+      <input
+        type="text"
+        name="website"
+        value={website}
+        onChange={(e) => setWebsite(e.target.value)}
+        style={{ position: 'absolute', left: '-9999px', opacity: 0, height: 0, width: 0 }}
+        tabIndex={-1}
+        autoComplete="off"
+        aria-hidden="true"
+      />
       {isMobile ? (
         <BookingWizardMobile {...sharedProps} />
       ) : (

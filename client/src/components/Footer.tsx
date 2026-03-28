@@ -16,6 +16,7 @@ export default function Footer() {
   const { language, localizedPath } = useLanguage();
   const [newsletterEmail, setNewsletterEmail] = useState('');
   const [newsletterState, setNewsletterState] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [website, setWebsite] = useState('');
 
   const handleNewsletterSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -25,7 +26,7 @@ export default function Footer() {
       const res = await fetch('/api/newsletter/subscribe', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: newsletterEmail.trim(), language, source: 'footer' }),
+        body: JSON.stringify({ website, email: newsletterEmail.trim(), language, source: 'footer' }),
       });
       if (res.ok || res.status === 409) {
         trackNewsletterSignup('footer');
@@ -116,6 +117,16 @@ export default function Footer() {
                 <p className="text-xs text-green-400">{t.locationPages.newsletter.success}</p>
               ) : (
                 <form onSubmit={handleNewsletterSubmit} className="flex gap-2">
+                  <input
+                    type="text"
+                    name="website"
+                    value={website}
+                    onChange={(e) => setWebsite(e.target.value)}
+                    style={{ position: 'absolute', left: '-9999px', opacity: 0, height: 0, width: 0 }}
+                    tabIndex={-1}
+                    autoComplete="off"
+                    aria-hidden="true"
+                  />
                   <label htmlFor="footer-newsletter-email" className="sr-only">
                     {t.locationPages.newsletter.placeholder}
                   </label>

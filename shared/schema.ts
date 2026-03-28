@@ -615,7 +615,7 @@ export const insertTestimonialSchema = createInsertSchema(testimonials).omit({
   isVerified: true, // Prevent users from self-verifying - must be done by admin
 }).extend({
   rating: z.number().int().min(1).max(5),
-  comment: z.string().min(10, "El comentario debe tener al menos 10 caracteres"),
+  comment: z.string().min(10, "El comentario debe tener al menos 10 caracteres").max(5000),
 });
 
 // Types
@@ -1454,11 +1454,13 @@ export const whatsappInquiries = pgTable("whatsapp_inquiries", {
 export const insertWhatsappInquirySchema = createInsertSchema(whatsappInquiries).omit({
   id: true,
   createdAt: true,
+}).extend({
+  notes: z.string().max(5000).optional().or(z.null()),
 });
 
 export const updateWhatsappInquirySchema = z.object({
   status: z.enum(["pending", "contacted", "converted", "lost"]).optional(),
-  notes: z.string().optional().or(z.null()),
+  notes: z.string().max(5000).optional().or(z.null()),
 });
 
 export type WhatsappInquiry = typeof whatsappInquiries.$inferSelect;

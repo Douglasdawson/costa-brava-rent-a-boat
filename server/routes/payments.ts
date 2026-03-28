@@ -528,7 +528,9 @@ export function registerPaymentRoutes(app: Express) {
     if (processedEvents.has(event.id)) {
       return res.json({ received: true });
     }
-    processedEvents.set(event.id, Date.now());
+    if (processedEvents.size < 10000) {
+      processedEvents.set(event.id, Date.now());
+    }
 
     try {
       switch (event.type) {

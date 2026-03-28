@@ -1,10 +1,19 @@
 import type { Express } from "express";
+import rateLimit from "express-rate-limit";
 import { storage } from "../storage";
 import { requireAdminSession, requireAdminRole, requireTabAccess } from "./auth";
 import { getStripe } from "./payments";
 import { z } from "zod";
 import { logger } from "../lib/logger";
 import { validatePromoCode } from "../lib/discountValidation";
+
+const validateLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 10, // 10 attempts per 15 min per IP
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { message: "Demasiados intentos de validacion. Intenta de nuevo en unos minutos." },
+});
 
 function generateGiftCardCode(): string {
   const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
@@ -120,7 +129,7 @@ export function registerGiftCardRoutes(app: Express) {
 
   // Validate a gift card code (public)
   // Uses the shared validatePromoCode function as single source of truth
-  app.post("/api/gift-cards/validate", async (req, res) => {
+  app.post("/api/gift-cards/validate", validateLimiter, async (req, res) => {
     try {
       const parsed = validateCodeSchema.safeParse(req.body);
       if (!parsed.success) {
@@ -131,6 +140,8 @@ export function registerGiftCardRoutes(app: Express) {
 
       // Only return gift card results from this endpoint (not discount codes)
       if (!result.valid || result.type !== "gift_card") {
+        // Delay response to slow brute-force enumeration
+        await new Promise(resolve => setTimeout(resolve, 300));
         return res.status(404).json({ message: result.error || "Codigo de tarjeta regalo no valido", valid: false });
       }
 

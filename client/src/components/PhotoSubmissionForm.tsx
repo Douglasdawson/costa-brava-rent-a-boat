@@ -24,6 +24,7 @@ export default function PhotoSubmissionForm({ open, onOpenChange, onSuccess }: P
   const [imageUrl, setImageUrl] = useState("");
   const [isUploading, setIsUploading] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [website, setWebsite] = useState("");
   const { toast } = useToast();
   const t = useTranslations();
 
@@ -89,6 +90,7 @@ export default function PhotoSubmissionForm({ open, onOpenChange, onSuccess }: P
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
+          website,
           imageUrl,
           caption: caption || null,
           customerName: customerName.trim(),
@@ -140,6 +142,17 @@ export default function PhotoSubmissionForm({ open, onOpenChange, onSuccess }: P
         </DialogHeader>
 
         <div className="space-y-4 py-2">
+          {/* Honeypot anti-bot field */}
+          <input
+            type="text"
+            name="website"
+            value={website}
+            onChange={(e) => setWebsite(e.target.value)}
+            style={{ position: 'absolute', left: '-9999px', opacity: 0, height: 0, width: 0 }}
+            tabIndex={-1}
+            autoComplete="off"
+            aria-hidden="true"
+          />
           {/* Image upload */}
           <div className="space-y-2">
             <Label>{t.gallery?.photo || "Foto"}</Label>

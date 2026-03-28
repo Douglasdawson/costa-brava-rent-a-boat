@@ -26,6 +26,11 @@ export function registerInquiryRoutes(app: Express) {
   // Public: save inquiry when user submits booking form
   app.post("/api/booking-inquiries", submitLimiter, async (req, res) => {
     try {
+      // Honeypot anti-bot check
+      if (req.body.website) {
+        return res.json({ success: true });
+      }
+
       const parsed = insertWhatsappInquirySchema.safeParse(req.body);
       if (!parsed.success) {
         return res.status(400).json({

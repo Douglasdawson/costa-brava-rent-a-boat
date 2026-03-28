@@ -249,6 +249,15 @@ export function registerBookingRoutes(app: Express) {
       const start = new Date(startTime);
       const end = new Date(endTime);
 
+      // Prevent bookings in the past
+      if (start < new Date()) {
+        return res.status(400).json({
+          message: "No se puede reservar en una fecha pasada",
+          available: false,
+          reason: "past_date",
+        });
+      }
+
       if (start >= end) {
         return res.status(400).json({
           message: "La hora de inicio debe ser anterior a la hora de fin",

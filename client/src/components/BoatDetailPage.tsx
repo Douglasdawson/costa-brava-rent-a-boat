@@ -321,9 +321,6 @@ const boatTextTranslations: Record<string, Record<string, string>> = {
   "Apta para deportes náuticos": {
     en: "Suitable for water sports", fr: "Adaptee aux sports nautiques", de: "Geeignet fuer Wassersport", nl: "Geschikt voor watersporten", it: "Adatta per sport acquatici", ru: "Podkhodit dlya vodnogo sporta", ca: "Apta per a esports nautics",
   },
-  "Patron profesional": {
-    en: "Professional skipper", fr: "Skipper professionnel", de: "Professioneller Skipper", nl: "Professionele schipper", it: "Skipper professionale", ru: "Professional'nyj shkhiper", ca: "Patro professional",
-  },
 
   // === Hardcoded UI strings ===
   "Ver galería de fotos de clientes": {
@@ -334,9 +331,6 @@ const boatTextTranslations: Record<string, Record<string, string>> = {
   },
   "personas han visto este barco hoy": {
     en: "people viewed this boat today", fr: "personnes ont vu ce bateau aujourd'hui", de: "Personen haben dieses Boot heute angesehen", nl: "personen hebben deze boot vandaag bekeken", it: "persone hanno visto questa barca oggi", ru: "chelovek smotreli ehtu lodku segodnya", ca: "persones han vist aquest vaixell avui",
-  },
-  "Gasolina incluida": {
-    en: "Fuel included", fr: "Carburant inclus", de: "Kraftstoff inklusive", nl: "Brandstof inbegrepen", it: "Carburante incluso", ru: "Toplivo vklyucheno", ca: "Gasolina inclosa",
   },
 };
 

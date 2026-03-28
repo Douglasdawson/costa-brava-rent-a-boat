@@ -1411,11 +1411,6 @@ export const es: Translations = {
     yourBoat: 'Tu {boat}',
   },
 
-  bookingTrust: {
-    customers: '5000+ clientes',
-    rating: '4.8 Google',
-    confirmation: 'Respuesta en minutos',
-  },
 
   faqPreview: {
     title: 'Preguntas frecuentes',

@@ -1392,11 +1392,6 @@ export const fr: Translations = {
     yourBoat: 'Votre {boat}',
   },
 
-  bookingTrust: {
-    customers: '5000+ clients',
-    rating: '4.8 Google',
-    confirmation: 'Réponse en minutes',
-  },
 
   faqPreview: {
     title: 'Questions fréquentes',

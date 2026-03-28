@@ -1392,11 +1392,6 @@ export const nl: Translations = {
     yourBoat: 'Jouw {boat}',
   },
 
-  bookingTrust: {
-    customers: '5000+ klanten',
-    rating: '4.8 Google',
-    confirmation: 'Antwoord in minuten',
-  },
   faqPreview: {
     title: 'Veelgestelde vragen',
     subtitle: 'De antwoorden die je zoekt, zonder kleine lettertjes',

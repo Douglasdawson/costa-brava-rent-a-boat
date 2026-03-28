@@ -1392,11 +1392,6 @@ export const ca: Translations = {
     yourBoat: 'El teu {boat}',
   },
 
-  bookingTrust: {
-    customers: '5000+ clients',
-    rating: '4.8 Google',
-    confirmation: 'Resposta en minuts',
-  },
   faqPreview: {
     title: 'Preguntes freqüents',
     subtitle: 'Les respostes que busques, sense lletra petita',

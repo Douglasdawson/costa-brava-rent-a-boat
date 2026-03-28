@@ -4,12 +4,11 @@ import { db } from "../../db";
 import { seoReports } from "../../../shared/schema";
 import { logger } from "../../lib/logger";
 import { sendTelegramMessage } from "../alerts/telegram";
-import { GoogleAnalyticsService } from "../../services/googleAnalyticsService";
+import { fetchGSCKeywords, fetchGSCPages, fetchGA4Overview, fetchGA4TrafficSources } from "../../services/googleAnalyticsService";
 
 const client = new Anthropic();
 
 async function fetchSemData() {
-  const ga = new GoogleAnalyticsService();
   const now = new Date();
   const fiveDaysAgo = new Date(now);
   fiveDaysAgo.setDate(fiveDaysAgo.getDate() - 5);
@@ -18,10 +17,10 @@ async function fetchSemData() {
 
   // Fetch data in parallel — these are the most relevant for SEM
   const [gscKeywords, gscPages, ga4Overview, ga4Traffic] = await Promise.allSettled([
-    ga.fetchGSCKeywords(startDate, endDate, 50),
-    ga.fetchGSCPages(startDate, endDate, 20),
-    ga.fetchGA4Overview(startDate, endDate),
-    ga.fetchGA4TrafficSources(startDate, endDate),
+    fetchGSCKeywords(startDate, endDate, 50),
+    fetchGSCPages(startDate, endDate, 20),
+    fetchGA4Overview(startDate, endDate),
+    fetchGA4TrafficSources(startDate, endDate),
   ]);
 
   return {

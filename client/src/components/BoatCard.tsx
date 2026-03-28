@@ -25,6 +25,7 @@ interface BoatCardProps {
   isRecommended?: boolean;
   scarcityData?: { availableSlots: number; totalSlots: number };
   weeklyBookings?: number;
+  bestFor?: string;
   onBooking: (boatId: string) => void;
   onDetails: (boatId: string) => void;
 }
@@ -101,16 +102,19 @@ const BoatCardPricing = memo(function BoatCardPricing({
   const showPriceAnchoring = savingsPercent > 15;
 
   return (
-    <div className="text-right flex-shrink-0 space-y-1">
+    <div className="text-right flex-shrink-0 space-y-0.5">
       <div className="text-sm text-muted-foreground">{fromLabel}</div>
-      <div className="flex items-baseline gap-2 justify-end">
+      <div className="flex items-baseline gap-1.5 justify-end">
         {showPriceAnchoring && (
-          <span className="text-sm text-muted-foreground line-through">
-            {highSeasonPrice}&euro;
+          <span className="text-xs text-muted-foreground line-through">
+            {Math.ceil((highSeasonPrice || 0) / capacity)}&euro;
           </span>
         )}
-        <span className="text-cta font-medium text-lg">
-          {basePrice}&euro;
+        <span className="text-cta font-semibold text-xl">
+          {Math.ceil(basePrice / capacity)}&euro;
+        </span>
+        <span className="text-xs text-muted-foreground">
+          /{perPersonLabel}
         </span>
       </div>
       <div className="flex items-center gap-2 justify-end">
@@ -120,7 +124,7 @@ const BoatCardPricing = memo(function BoatCardPricing({
           </span>
         )}
         <span className="text-xs text-muted-foreground">
-          {Math.ceil(basePrice / capacity)}&euro;/{perPersonLabel}
+          {basePrice}&euro; total
         </span>
       </div>
     </div>
@@ -147,6 +151,7 @@ function BoatCard({
   isRecommended,
   scarcityData,
   weeklyBookings,
+  bestFor,
   onBooking,
   onDetails
 }: BoatCardProps) {
@@ -216,6 +221,11 @@ function BoatCard({
           <span className="bg-white/90 backdrop-blur-sm text-slate-800 text-sm font-medium rounded-full px-3 py-1 self-start">
             {requiresLicense ? t.boats.withLicense : t.boats.withoutLicense}
           </span>
+          {bestFor && (
+            <span className="bg-indigo-50 dark:bg-indigo-950/30 text-indigo-700 dark:text-indigo-400 text-xs font-semibold rounded-full px-3 py-1 self-start">
+              {bestFor}
+            </span>
+          )}
         </div>
         {!requiresLicense && (
           <div className="absolute top-3 right-3 inline-flex items-center gap-1.5 bg-green-600/90 backdrop-blur-sm text-white text-xs font-semibold px-2.5 py-1 rounded-full">

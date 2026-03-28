@@ -45,6 +45,9 @@ export function BookingStepExperience({
   const isAugust = parsedDate ? (parsedDate.getMonth() === 7) : false;
   const minDuration2h = isWeekendDay || isAugust;
 
+  const selectedBoatData = availableBoats.find(b => b.id === selectedBoat);
+  const boatCapacity = selectedBoatData?.capacity || parseInt(selectedBoatData?.specifications?.capacity?.split(' ')[0] || '5');
+
   const canContinue = selectedDate && selectedBoat && selectedTime && duration;
 
   return (
@@ -226,7 +229,7 @@ export function BookingStepExperience({
                   <SelectContent>
                     {getAvailableDurations(selectedTime).map((dur) => (
                       <SelectItem key={dur.id} value={dur.id}>
-                        {dur.label} — {dur.price}€
+                        {dur.label} — {dur.price}€ ({Math.ceil(dur.price / boatCapacity)}€/{t.boats?.perPerson || 'pers.'})
                       </SelectItem>
                     ))}
                   </SelectContent>

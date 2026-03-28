@@ -362,22 +362,22 @@ const boatFaqTranslations: Record<string, {
 }> = {
   es: {
     title: "Preguntas frecuentes sobre",
-    q1: "Cuanto cuesta alquilar el",
+    q1: "¿Cuánto cuesta alquilar el",
     a1: (name, price, noLicense) =>
-      `El ${name} tiene precios desde ${price}€/hora en temporada baja (abril-junio, septiembre-octubre).${noLicense ? " El precio incluye gasolina, seguro a todo riesgo y equipo de seguridad." : " El combustible se paga aparte segun consumo real. Incluye seguro a todo riesgo."}`,
-    q2: "Cuantas personas caben en el",
+      `El ${name} tiene precios desde ${price}€/hora en temporada baja (abril-junio, septiembre-octubre).${noLicense ? " El precio incluye gasolina, seguro a todo riesgo y equipo de seguridad." : " El combustible se paga aparte según consumo real. Incluye seguro a todo riesgo."}`,
+    q2: "¿Cuántas personas caben en el",
     a2: (name, cap) =>
-      `El ${name} tiene capacidad para ${cap} personas. Es ideal para ${cap <= 4 ? "parejas y familias pequenas" : cap <= 6 ? "familias y grupos de amigos" : "grupos grandes y celebraciones"}.`,
-    q3: "Necesito licencia para el",
+      `El ${name} tiene capacidad para ${cap} personas. Es ideal para ${cap <= 4 ? "parejas y familias pequeñas" : cap <= 6 ? "familias y grupos de amigos" : "grupos grandes y celebraciones"}.`,
+    q3: "¿Necesito licencia para el",
     a3: (name, noLicense) =>
       noLicense
-        ? `No, el ${name} no requiere licencia de navegacion. Solo necesitas ser mayor de 18 anos. Antes de zarpar recibiras una formacion de 15 minutos sobre el manejo del barco.`
-        : `Si, el ${name} requiere licencia de navegacion (PER o titulo equivalente en vigor). Deberas presentar tu titulacion antes de zarpar.`,
-    q4: "Que incluye el alquiler del",
+        ? `No, el ${name} no requiere licencia de navegación. Solo necesitas ser mayor de 18 años. Antes de zarpar recibirás una formación de 15 minutos sobre el manejo del barco.`
+        : `Sí, el ${name} requiere licencia de navegación (PER o título equivalente en vigor). Deberás presentar tu titulación antes de zarpar.`,
+    q4: "¿Qué incluye el alquiler del",
     a4: (name, noLicense) =>
-      `El alquiler incluye seguro a todo riesgo, equipo de seguridad homologado y formacion previa.${noLicense ? " Tambien incluye gasolina y, segun disponibilidad, equipo de snorkel y paddle surf." : " El combustible se paga segun consumo. Segun disponibilidad, puede incluir extras como equipo de snorkel."}`,
-    q5: "Cual es la politica de cancelacion",
-    a5: "Cancelacion gratuita hasta 24 horas antes de la salida. En caso de mal tiempo, ofrecemos reprogramacion completa sin coste.",
+      `El alquiler incluye seguro a todo riesgo, equipo de seguridad homologado y formación previa.${noLicense ? " También incluye gasolina y, según disponibilidad, equipo de snorkel y paddle surf." : " El combustible se paga según consumo. Según disponibilidad, puede incluir extras como equipo de snorkel."}`,
+    q5: "¿Cuál es la política de cancelación?",
+    a5: "Cancelación gratuita hasta 24 horas antes de la salida. En caso de mal tiempo, ofrecemos reprogramación completa sin coste.",
   },
   en: {
     title: "Frequently asked questions about",
@@ -399,42 +399,42 @@ const boatFaqTranslations: Record<string, {
     a5: "Free cancellation up to 24 hours before departure. In case of bad weather, we offer full rescheduling at no cost.",
   },
   fr: {
-    title: "Questions frequentes sur le",
-    q1: "Combien coute la location du",
+    title: "Questions fréquentes sur le",
+    q1: "Combien coûte la location du",
     a1: (name, price, noLicense) =>
-      `Le ${name} est disponible a partir de ${price}€/heure en basse saison (avril-juin, septembre-octobre).${noLicense ? " Le prix comprend le carburant, l'assurance tous risques et l'equipement de securite." : " Le carburant est facture separement selon la consommation reelle. L'assurance tous risques est incluse."}`,
+      `Le ${name} est disponible à partir de ${price}€/heure en basse saison (avril-juin, septembre-octobre).${noLicense ? " Le prix comprend le carburant, l'assurance tous risques et l'équipement de sécurité." : " Le carburant est facturé séparément selon la consommation réelle. L'assurance tous risques est incluse."}`,
     q2: "Combien de personnes peuvent monter sur le",
     a2: (name, cap) =>
-      `Le ${name} a une capacite de ${cap} personnes. Il est ideal pour ${cap <= 4 ? "les couples et les petites familles" : cap <= 6 ? "les familles et les groupes d'amis" : "les grands groupes et les celebrations"}.`,
+      `Le ${name} a une capacité de ${cap} personnes. Il est idéal pour ${cap <= 4 ? "les couples et les petites familles" : cap <= 6 ? "les familles et les groupes d'amis" : "les grands groupes et les célébrations"}.`,
     q3: "Ai-je besoin d'un permis pour le",
     a3: (name, noLicense) =>
       noLicense
-        ? `Non, le ${name} ne necessite pas de permis bateau. Il suffit d'avoir plus de 18 ans. Avant le depart, vous recevrez une formation de 15 minutes sur la conduite du bateau.`
-        : `Oui, le ${name} necessite un permis bateau (PER ou titre equivalent en vigueur). Vous devrez presenter votre permis avant le depart.`,
+        ? `Non, le ${name} ne nécessite pas de permis bateau. Il suffit d'avoir plus de 18 ans. Avant le départ, vous recevrez une formation de 15 minutes sur la conduite du bateau.`
+        : `Oui, le ${name} nécessite un permis bateau (PER ou titre équivalent en vigueur). Vous devrez présenter votre permis avant le départ.`,
     q4: "Que comprend la location du",
     a4: (name, noLicense) =>
-      `La location comprend une assurance tous risques, un equipement de securite homologue et une formation prealable.${noLicense ? " Elle inclut egalement le carburant et, selon disponibilite, du materiel de snorkeling et paddle surf." : " Le carburant est facture selon la consommation. Selon disponibilite, des extras comme le materiel de snorkeling peuvent etre inclus."}`,
-    q5: "Quelle est la politique d'annulation",
-    a5: "Annulation gratuite jusqu'a 24 heures avant le depart. En cas de mauvais temps, nous offrons une reprogrammation complete sans frais.",
+      `La location comprend une assurance tous risques, un équipement de sécurité homologué et une formation préalable.${noLicense ? " Elle inclut également le carburant et, selon disponibilité, du matériel de snorkeling et paddle surf." : " Le carburant est facturé selon la consommation. Selon disponibilité, des extras comme le matériel de snorkeling peuvent être inclus."}`,
+    q5: "Quelle est la politique d'annulation ?",
+    a5: "Annulation gratuite jusqu'à 24 heures avant le départ. En cas de mauvais temps, nous offrons une reprogrammation complète sans frais.",
   },
   de: {
-    title: "Haeufig gestellte Fragen zum",
+    title: "Häufig gestellte Fragen zum",
     q1: "Wie viel kostet die Miete des",
     a1: (name, price, noLicense) =>
-      `Das ${name} ist ab ${price}€/Stunde in der Nebensaison (April-Juni, September-Oktober) verfuegbar.${noLicense ? " Der Preis beinhaltet Kraftstoff, Vollkaskoversicherung und Sicherheitsausruestung." : " Der Kraftstoff wird separat nach tatsaechlichem Verbrauch berechnet. Vollkaskoversicherung ist inklusive."}`,
+      `Das ${name} ist ab ${price}€/Stunde in der Nebensaison (April-Juni, September-Oktober) verfügbar.${noLicense ? " Der Preis beinhaltet Kraftstoff, Vollkaskoversicherung und Sicherheitsausrüstung." : " Der Kraftstoff wird separat nach tatsächlichem Verbrauch berechnet. Vollkaskoversicherung ist inklusive."}`,
     q2: "Wie viele Personen passen auf das",
     a2: (name, cap) =>
-      `Das ${name} bietet Platz fuer ${cap} Personen. Es ist ideal fuer ${cap <= 4 ? "Paare und kleine Familien" : cap <= 6 ? "Familien und Freundesgruppen" : "grosse Gruppen und Feiern"}.`,
-    q3: "Brauche ich einen Fuehrerschein fuer das",
+      `Das ${name} bietet Platz für ${cap} Personen. Es ist ideal für ${cap <= 4 ? "Paare und kleine Familien" : cap <= 6 ? "Familien und Freundesgruppen" : "große Gruppen und Feiern"}.`,
+    q3: "Brauche ich einen Führerschein für das",
     a3: (name, noLicense) =>
       noLicense
-        ? `Nein, das ${name} erfordert keinen Bootsführerschein. Sie muessen lediglich ueber 18 Jahre alt sein. Vor der Abfahrt erhalten Sie eine 15-minuetige Einweisung.`
-        : `Ja, das ${name} erfordert einen Bootsführerschein (PER oder gleichwertiger gueltiger Nachweis). Sie muessen Ihren Fuehrerschein vor der Abfahrt vorlegen.`,
+        ? `Nein, das ${name} erfordert keinen Bootsführerschein. Sie müssen lediglich über 18 Jahre alt sein. Vor der Abfahrt erhalten Sie eine 15-minütige Einweisung.`
+        : `Ja, das ${name} erfordert einen Bootsführerschein (PER oder gleichwertiger gültiger Nachweis). Sie müssen Ihren Führerschein vor der Abfahrt vorlegen.`,
     q4: "Was ist in der Miete des enthalten",
     a4: (name, noLicense) =>
-      `Die Miete beinhaltet Vollkaskoversicherung, zertifizierte Sicherheitsausruestung und eine Einweisung vor der Abfahrt.${noLicense ? " Kraftstoff sowie nach Verfuegbarkeit Schnorchel- und Paddle-Surf-Ausruestung sind ebenfalls enthalten." : " Kraftstoff wird nach Verbrauch berechnet. Nach Verfuegbarkeit koennen Extras wie Schnorchelausruestung enthalten sein."}`,
-    q5: "Wie lautet die Stornierungsrichtlinie",
-    a5: "Kostenlose Stornierung bis 24 Stunden vor Abfahrt. Bei schlechtem Wetter bieten wir eine vollstaendige Umplanung ohne Kosten an.",
+      `Die Miete beinhaltet Vollkaskoversicherung, zertifizierte Sicherheitsausrüstung und eine Einweisung vor der Abfahrt.${noLicense ? " Kraftstoff sowie nach Verfügbarkeit Schnorchel- und Paddle-Surf-Ausrüstung sind ebenfalls enthalten." : " Kraftstoff wird nach Verbrauch berechnet. Nach Verfügbarkeit können Extras wie Schnorchelausrüstung enthalten sein."}`,
+    q5: "Wie lautet die Stornierungsrichtlinie?",
+    a5: "Kostenlose Stornierung bis 24 Stunden vor Abfahrt. Bei schlechtem Wetter bieten wir eine vollständige Umplanung ohne Kosten an.",
   },
   nl: {
     title: "Veelgestelde vragen over de",

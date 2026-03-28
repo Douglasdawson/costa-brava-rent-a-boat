@@ -1698,7 +1698,7 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
         mainEntity: [
           {
             "@type": "Question",
-            name: lang === "en" ? "Do I need a license to rent a boat in Blanes?" : "Necesito licencia para alquilar un barco en Blanes?",
+            name: lang === "en" ? "Do I need a license to rent a boat in Blanes?" : "¿Necesito licencia para alquilar un barco en Blanes?",
             acceptedAnswer: {
               "@type": "Answer",
               text: lang === "en"
@@ -1708,7 +1708,7 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
           },
           {
             "@type": "Question",
-            name: lang === "en" ? "How much does it cost to rent a boat in Blanes?" : "Cuanto cuesta alquilar un barco en Blanes?",
+            name: lang === "en" ? "How much does it cost to rent a boat in Blanes?" : "¿Cuánto cuesta alquilar un barco en Blanes?",
             acceptedAnswer: {
               "@type": "Answer",
               text: lang === "en"
@@ -1744,14 +1744,14 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
         mainEntity: [
           {
             "@type": "Question",
-            name: isEn ? "Do I need a license to rent a boat in Blanes?" : "Necesito licencia para alquilar un barco en Blanes?",
+            name: isEn ? "Do I need a license to rent a boat in Blanes?" : "¿Necesito licencia para alquilar un barco en Blanes?",
             acceptedAnswer: { "@type": "Answer", text: isEn
               ? "No. We have 5 license-free boats (up to 15 HP) for up to 5 people. You only need to be 18+. We provide a 15-minute safety briefing."
               : "No. Tenemos 5 barcos sin licencia (hasta 15 CV) para hasta 5 personas. Solo necesitas ser mayor de 18 anos. Te damos una formacion de seguridad de 15 minutos." },
           },
           {
             "@type": "Question",
-            name: isEn ? "How much does it cost to rent a boat in Blanes?" : "Cuanto cuesta alquilar un barco en Blanes?",
+            name: isEn ? "How much does it cost to rent a boat in Blanes?" : "¿Cuánto cuesta alquilar un barco en Blanes?",
             acceptedAnswer: { "@type": "Answer", text: isEn
               ? "License-free boats from 70 EUR/hour (low season) to 95 EUR/hour (high season). Licensed boats from 150 EUR/2 hours. Fuel, insurance and safety equipment are always included."
               : "Barcos sin licencia desde 70 EUR/hora (temporada baja) hasta 95 EUR/hora (temporada alta). Barcos con licencia desde 150 EUR/2 horas. Combustible, seguro y equipo de seguridad siempre incluidos." },
@@ -1765,7 +1765,7 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
           },
           {
             "@type": "Question",
-            name: isEn ? "What is the cancellation policy?" : "Cual es la politica de cancelacion?",
+            name: isEn ? "What is the cancellation policy?" : "¿Cuál es la política de cancelación?",
             acceptedAnswer: { "@type": "Answer", text: isEn
               ? "Free cancellation up to 24 hours before departure. Same-day cancellations may be rescheduled depending on availability. In case of bad weather, we offer full rescheduling."
               : "Cancelacion gratuita hasta 24 horas antes de la salida. Cancelaciones del mismo dia pueden reprogramarse segun disponibilidad. En caso de mal tiempo, ofrecemos reprogramacion completa." },
@@ -1987,7 +1987,7 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
           },
           {
             "@type": "Question",
-            name: isEn ? "Do I need a license to reach Tossa de Mar by boat?" : "Necesito licencia para llegar a Tossa de Mar en barco?",
+            name: isEn ? "Do I need a license to reach Tossa de Mar by boat?" : "¿Necesito licencia para llegar a Tossa de Mar en barco?",
             acceptedAnswer: { "@type": "Answer", text: isEn
               ? "Yes, Tossa de Mar is beyond the 2-mile zone for license-free boats. You need a licensed boat (Basic Navigation License or ICC) or our private excursion with captain."
               : "Si, Tossa de Mar esta mas alla de la zona de 2 millas para barcos sin licencia. Necesitas un barco con licencia (Licencia Básica de Navegación o ICC) o nuestra excursion privada con patron." },
@@ -2043,7 +2043,7 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
           },
           {
             "@type": "Question",
-            name: isEn ? "How much does it cost to rent a boat from Blanes?" : "Cuanto cuesta alquilar un barco desde Blanes?",
+            name: isEn ? "How much does it cost to rent a boat from Blanes?" : "¿Cuánto cuesta alquilar un barco desde Blanes?",
             acceptedAnswer: { "@type": "Answer", text: isEn
               ? "Boat rental starts from 70 EUR per hour with fuel included. No license needed for boats up to 15 HP."
               : "El alquiler de barco empieza desde 70 EUR por hora con gasolina incluida. No se necesita licencia para barcos de hasta 15 CV." },
@@ -2098,7 +2098,7 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
           },
           {
             "@type": "Question",
-            name: isEn ? "How much does it cost to rent a boat from Blanes?" : "Cuanto cuesta alquilar un barco desde Blanes?",
+            name: isEn ? "How much does it cost to rent a boat from Blanes?" : "¿Cuánto cuesta alquilar un barco desde Blanes?",
             acceptedAnswer: { "@type": "Answer", text: isEn
               ? "From 70 EUR per hour with fuel included. License-free boats available for up to 7 passengers."
               : "Desde 70 EUR por hora con gasolina incluida. Barcos sin licencia disponibles para hasta 7 pasajeros." },
@@ -2154,7 +2154,7 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
           },
           {
             "@type": "Question",
-            name: isEn ? "How much does it cost to rent a boat?" : "Cuanto cuesta alquilar un barco?",
+            name: isEn ? "How much does it cost to rent a boat?" : "¿Cuánto cuesta alquilar un barco?",
             acceptedAnswer: { "@type": "Answer", text: isEn
               ? "Boat rental starts from 70 EUR per hour with fuel included. No license required for boats up to 15 HP."
               : "El alquiler empieza desde 70 EUR por hora con gasolina incluida. No se necesita licencia para barcos de hasta 15 CV." },
@@ -2220,7 +2220,7 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
         mainEntity: [
           {
             "@type": "Question",
-            name: isEn ? "Do I need a license to rent a boat in Blanes?" : "Necesito licencia para alquilar un barco sin licencia en Blanes?",
+            name: isEn ? "Do I need a license to rent a boat in Blanes?" : "¿Necesito licencia para alquilar un barco sin licencia en Blanes?",
             acceptedAnswer: { "@type": "Answer", text: isEn
               ? "No. Our license-free boats (up to 15 HP) require no boating license. You must be 18+ and we provide a 15-minute safety briefing."
               : "No. Nuestros barcos sin licencia (hasta 15 CV) no requieren ningun titulo nautico. Debes ser mayor de 18 anos y te damos una formacion de seguridad de 15 minutos." },
@@ -2387,7 +2387,7 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
         mainEntity: [
           {
             "@type": "Question",
-            name: isEn ? "How much does it cost to rent a license-free boat in Blanes?" : "Cuanto cuesta alquilar un barco sin licencia en Blanes?",
+            name: isEn ? "How much does it cost to rent a license-free boat in Blanes?" : "¿Cuánto cuesta alquilar un barco sin licencia en Blanes?",
             acceptedAnswer: { "@type": "Answer", text: isEn
               ? "License-free boats in Blanes start from 70 EUR/hour in low season (April-June, September-October). Mid season (July) from 80 EUR/hour and high season (August) from 90 EUR/hour. Price includes fuel, insurance and safety equipment."
               : "Los barcos sin licencia en Blanes cuestan desde 70 EUR/hora en temporada baja (abril-junio, septiembre-octubre). En temporada media (julio) desde 80 EUR/hora y en temporada alta (agosto) desde 90 EUR/hora. El precio incluye gasolina, seguro y equipo de seguridad." },
@@ -2408,7 +2408,7 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
           },
           {
             "@type": "Question",
-            name: isEn ? "How much does it cost to rent a licensed boat in Blanes?" : "Cuanto cuesta alquilar un barco con licencia en Blanes?",
+            name: isEn ? "How much does it cost to rent a licensed boat in Blanes?" : "¿Cuánto cuesta alquilar un barco con licencia en Blanes?",
             acceptedAnswer: { "@type": "Answer", text: isEn
               ? "Licensed boats in Blanes start from 150 EUR/hour in low season. They require a boating license (Basic Navigation License or ICC). More powerful boats with greater range to explore Costa Brava."
               : "Los barcos con licencia en Blanes cuestan desde 150 EUR/hora en temporada baja. Requieren Licencia Básica de Navegación o ICC. Son barcos mas potentes con mayor autonomia para explorar la Costa Brava." },

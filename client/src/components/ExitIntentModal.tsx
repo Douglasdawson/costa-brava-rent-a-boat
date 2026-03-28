@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback, useRef } from "react";
-import { X, Gift } from "lucide-react";
+import { X, Gift, Copy, Check } from "lucide-react";
 import { useTranslations } from "@/lib/translations";
 import { useBookingModal } from "@/hooks/bookingModalContext";
 import { trackExitIntentShown, trackExitIntentCtaClick } from "@/utils/analytics";
@@ -26,6 +26,7 @@ export function ExitIntentModal() {
   const { openBookingModal } = useBookingModal();
   const [show, setShow] = useState(false);
   const [dismissed, setDismissed] = useState(false);
+  const [copied, setCopied] = useState(false);
   const modalRef = useRef<HTMLDivElement>(null);
   const previousFocusRef = useRef<HTMLElement | null>(null);
 
@@ -191,10 +192,27 @@ export function ExitIntentModal() {
             {t.exitIntent?.subtitle}
           </p>
 
-          {/* Discount code display */}
+          {/* Discount code display — click to copy */}
           <div className="bg-muted/50 rounded-xl p-4 mb-6">
             <p className="text-xs text-muted-foreground mb-1">{t.exitIntent?.useCode}</p>
-            <p className="font-heading text-2xl font-bold text-foreground tracking-wider">BIENVENIDO10</p>
+            <button
+              type="button"
+              onClick={() => {
+                navigator.clipboard.writeText("BIENVENIDO10").then(() => {
+                  setCopied(true);
+                  setTimeout(() => setCopied(false), 2000);
+                });
+              }}
+              className="inline-flex items-center gap-2 bg-background border border-border rounded-lg px-4 py-2 hover:bg-muted transition-colors group mt-1 mb-1"
+              tabIndex={show ? 0 : -1}
+            >
+              <span className="font-heading text-2xl font-bold text-foreground tracking-wider">BIENVENIDO10</span>
+              {copied ? (
+                <Check className="w-4 h-4 text-green-500" />
+              ) : (
+                <Copy className="w-4 h-4 text-muted-foreground group-hover:text-foreground transition-colors" />
+              )}
+            </button>
             <p className="text-xs text-muted-foreground mt-1">{t.exitIntent?.validFirstBooking}</p>
           </div>
 

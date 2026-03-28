@@ -1466,6 +1466,13 @@ export const de: Translations = {
     ],
   },
 
+  finalCta: {
+    title: 'Noch am Uberlegen?',
+    subtitle: 'Jetzt buchen und bis 48h vorher kostenlos stornieren',
+    cta: 'Unverbindlich buchen',
+    trust: 'Kostenlose Stornierung · Sichere Zahlung · Versicherung inklusive',
+  },
+
   holdCountdown: {
     reserved: 'Ihr Boot ist reserviert für',
     expired: 'Ihre Reservierung ist abgelaufen',

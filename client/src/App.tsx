@@ -183,6 +183,29 @@ function HomePage() {
         <Suspense fallback={<div className="min-h-[400px] below-fold" />}>
           <FAQPreview />
         </Suspense>
+        {/* Final CTA — peak-end conversion push */}
+        <section className="py-12 px-4">
+          <div className="max-w-2xl mx-auto text-center bg-foreground text-background rounded-2xl p-8 sm:p-12">
+            <h2 className="font-heading text-2xl sm:text-3xl font-semibold mb-3">
+              {t.finalCta?.title}
+            </h2>
+            <p className="text-background/80 mb-6 text-sm sm:text-base">
+              {t.finalCta?.subtitle}
+            </p>
+            <button
+              onClick={() => {
+                const fleet = document.getElementById('fleet');
+                if (fleet) fleet.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              }}
+              className="bg-cta hover:bg-cta/90 text-white px-8 py-3 text-base sm:text-lg rounded-full font-medium inline-block"
+            >
+              {t.finalCta?.cta}
+            </button>
+            <p className="text-background/60 text-xs mt-4">
+              {t.finalCta?.trust}
+            </p>
+          </div>
+        </section>
         <Suspense fallback={<div className="min-h-[400px] below-fold" />}>
           <ContactSection />
         </Suspense>

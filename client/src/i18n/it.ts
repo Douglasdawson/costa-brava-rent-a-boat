@@ -1466,6 +1466,13 @@ export const it: Translations = {
     ],
   },
 
+  finalCta: {
+    title: 'Ci stai ancora pensando?',
+    subtitle: 'Prenota ora e cancella gratis fino a 48h prima',
+    cta: 'Prenota senza impegno',
+    trust: 'Cancellazione gratuita · Pagamento sicuro · Assicurazione inclusa',
+  },
+
   holdCountdown: {
     reserved: 'La tua barca è riservata per',
     expired: 'La tua prenotazione è scaduta',

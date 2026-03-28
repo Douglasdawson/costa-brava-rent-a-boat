@@ -1465,6 +1465,13 @@ export const ca: Translations = {
     ],
   },
 
+  finalCta: {
+    title: 'Encara hi estas pensant?',
+    subtitle: 'Reserva ara i cancel·la gratis fins a 48h abans',
+    cta: 'Reservar sense compromis',
+    trust: 'Cancel·lacio gratuita · Pagament segur · Asseguranca inclosa',
+  },
+
   holdCountdown: {
     reserved: 'El teu vaixell està reservat durant',
     expired: 'La teva reserva ha caducat',

@@ -1466,6 +1466,13 @@ export const fr: Translations = {
     ],
   },
 
+  finalCta: {
+    title: 'Vous hesitez encore ?',
+    subtitle: 'Reservez maintenant, annulation gratuite jusqu\'a 48h avant',
+    cta: 'Reserver sans engagement',
+    trust: 'Annulation gratuite · Paiement securise · Assurance incluse',
+  },
+
   holdCountdown: {
     reserved: 'Votre bateau est réservé pendant',
     expired: 'Votre réservation a expiré',

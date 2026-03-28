@@ -1465,6 +1465,13 @@ export const nl: Translations = {
     ],
   },
 
+  finalCta: {
+    title: 'Nog aan het twijfelen?',
+    subtitle: 'Boek nu en annuleer gratis tot 48u van tevoren',
+    cta: 'Boek vrijblijvend',
+    trust: 'Gratis annulering · Veilige betaling · Verzekering inbegrepen',
+  },
+
   holdCountdown: {
     reserved: 'Uw boot is gereserveerd voor',
     expired: 'Uw reservering is verlopen',

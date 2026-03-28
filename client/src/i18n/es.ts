@@ -1533,6 +1533,13 @@ export const es: Translations = {
     ],
   },
 
+  finalCta: {
+    title: 'Todavia pensandolo?',
+    subtitle: 'Reserva ahora y cancela gratis hasta 48h antes',
+    cta: 'Reservar sin compromiso',
+    trust: 'Cancelacion gratuita · Pago seguro · Seguro incluido',
+  },
+
   holdCountdown: {
     reserved: 'Tu barco está reservado durante',
     expired: 'Tu reserva ha expirado',

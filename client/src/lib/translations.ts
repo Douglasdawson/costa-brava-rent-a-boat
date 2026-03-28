@@ -1503,6 +1503,14 @@ export interface Translations {
     freeGuideSent: string;
   };
 
+  // Final CTA (peak-end conversion section)
+  finalCta?: {
+    title: string;
+    subtitle: string;
+    cta: string;
+    trust: string;
+  };
+
   // FAQ Preview (homepage accordion — 12 items)
   faqPreview?: {
     title: string;

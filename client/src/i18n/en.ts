@@ -1518,6 +1518,13 @@ export const en: Translations = {
     ],
   },
 
+  finalCta: {
+    title: 'Still thinking about it?',
+    subtitle: 'Book now and cancel free up to 48h before',
+    cta: 'Book with no commitment',
+    trust: 'Free cancellation · Secure payment · Insurance included',
+  },
+
   holdCountdown: {
     reserved: 'Your boat is reserved for',
     expired: 'Your reservation has expired',

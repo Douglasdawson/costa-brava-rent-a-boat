@@ -896,10 +896,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
         <LiveInterestIndicator boatId={boatId} />
       </div>
 
-      {/* Trust badges — authority signals near boat info */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-2">
-        <TrustBadges t={t} />
-      </div>
+      {/* TrustBadges moved inside description card below */}
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-6 sm:pt-8 pb-6 sm:pb-8">
 
@@ -1041,6 +1038,10 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                   </p>
                 </div>
               )}
+              {/* Trust badges — authority signals */}
+              <div className="mt-4">
+                <TrustBadges t={t} />
+              </div>
             </CardContent>
           </Card>
         </div>

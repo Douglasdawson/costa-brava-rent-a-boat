@@ -79,6 +79,11 @@ export default function Hero() {
               <span className="hidden sm:inline">{t.hero.subtitleLine1}<br />{t.hero.subtitleLine2}</span>
             </p>
 
+            {/* Sensory copy — time & season aware */}
+            <div className="mt-3 sm:mt-4 mb-2">
+              <SensoryHeroCopy />
+            </div>
+
             {/* Separator - desktop only */}
             <div className="hidden sm:block w-16 h-px bg-white/40 mb-5 lg:w-24" />
 
@@ -90,11 +95,6 @@ export default function Hero() {
               <p className="text-white/75 text-xs sm:text-sm mt-0.5">
                 {t.hero.pricePerPersonDetail}
               </p>
-            </div>
-
-            {/* Sensory copy — time & season aware */}
-            <div className="mt-2 sm:mt-3">
-              <SensoryHeroCopy />
             </div>
 
           </div>

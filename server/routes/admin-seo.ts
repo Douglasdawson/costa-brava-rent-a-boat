@@ -1,4 +1,5 @@
 import type { Express } from "express";
+import { logger } from "../lib/logger";
 import { db } from "../db";
 import {
   seoKeywords,
@@ -164,7 +165,9 @@ export function registerSeoRoutes(app: Express): void {
       await generateSemReport();
       res.json({ message: "SEM report generated and sent" });
     } catch (error) {
-      res.status(500).json({ message: "Error generating SEM report" });
+      const msg = error instanceof Error ? error.message : String(error);
+      logger.error("[SEM] Report generation failed", { error: msg });
+      res.status(500).json({ message: "Error generating SEM report", error: msg });
     }
   });
 

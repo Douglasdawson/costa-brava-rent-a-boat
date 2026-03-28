@@ -756,6 +756,7 @@ export default function BlogDetailPage({ slug: slugProp }: { slug?: string }) {
                     fetchPriority="high"
                     width={1200}
                     height={630}
+                    onError={(e) => { (e.target as HTMLImageElement).src = "/images/blog/barco-mar.jpg"; }}
                     data-testid={`img-featured-${post.slug}`}
                   />
                 </div>
@@ -852,6 +853,7 @@ export default function BlogDetailPage({ slug: slugProp }: { slug?: string }) {
                         alt={localized(relatedPost.featuredImageAltByLang as Record<string, string> | null, null, language) || localized(relatedPost.titleByLang as Record<string, string> | null, relatedPost.title, language)}
                         className="w-full aspect-[3/2] object-cover"
                         loading="lazy"
+                        onError={(e) => { (e.target as HTMLImageElement).src = "/images/blog/barco-mar.jpg"; }}
                       />
                     )}
                     <CardHeader className={relatedPost.featuredImage ? "pt-4" : ""}>

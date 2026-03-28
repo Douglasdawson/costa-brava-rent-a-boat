@@ -130,6 +130,7 @@ const BlogPostCard = React.memo(function BlogPostCard({
               width={800}
               height={450}
               data-testid={`img-blog-${post.slug}`}
+              onError={(e) => { (e.target as HTMLImageElement).src = "/images/blog/barco-mar.jpg"; }}
             />
             {/* Subtle bottom gradient for depth */}
             <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/20 to-transparent" />

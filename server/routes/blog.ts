@@ -217,6 +217,53 @@ ${entries}
     }
   });
 
+  // Fix blog post images — maps broken image URLs to actual files on disk
+  app.post("/api/admin/blog/fix-images", requireAdminSession, async (req, res) => {
+    const IMAGE_MAP: Record<string, string> = {
+      "mejores-calas-costa-brava-en-barco.jpg": "calas-costa-brava.jpg",
+      "alquiler-barco-sin-licencia-blanes-guia.jpg": "barco-mar.jpg",
+      "que-hacer-en-blanes-verano.jpg": "puerto-barcos.jpg",
+      "boat-rental-costa-brava-english-guide.jpg": "barco-mar.jpg",
+      "rutas-barco-desde-blanes.jpg": "ruta-costera.jpg",
+      "consejos-primera-vez-alquilar-barco.jpg": "barco-mar.jpg",
+      "navegar-con-ninos-costa-brava-guia-familias.jpg": "familias-barco.jpg",
+      "seguridad-navegacion-mar-guia.jpg": "seguridad-barco.jpg",
+      "gastronomia-marinera-blanes.jpg": "gastronomia-marina.jpg",
+      "fauna-marina-costa-brava-barco.jpg": "snorkel-mar.jpg",
+      "historia-maritima-blanes.jpg": "puerto-barcos.jpg",
+      "snorkel-buceo-costa-brava-barco.jpg": "snorkel-mar.jpg",
+      "cuanto-cuesta-alquilar-barco-blanes-precios.jpg": "barco-mar.jpg",
+      "comparativa-barcos-sin-licencia-blanes.jpg": "barco-mar.jpg",
+      "costa-brava-septiembre-mejor-mes-navegar.jpg": "calas-costa-brava.jpg",
+      "preguntas-frecuentes-alquiler-barco-sin-licencia.jpg": "barco-mar.jpg",
+      "excursiones-barco-grupos-eventos-blanes.jpg": "grupos-barco.jpg",
+      "atardeceres-mar-rutas-sunset-costa-brava.jpg": "atardecer-mar.jpg",
+      "excursion-barco-tossa-de-mar.jpg": "ruta-costera.jpg",
+      "barco-sin-licencia-vs-con-licencia-guia.jpg": "barco-mar.jpg",
+      "que-llevar-barco-alquiler-checklist.jpg": "seguridad-barco.jpg",
+      "alquiler-barco-familias-costa-brava.jpg": "familias-barco.jpg",
+      "mejores-calas-blanes-accesibles-en-barco.jpg": "calas-costa-brava.jpg",
+      "sunset-boat-trip-blanes-costa-brava.jpg": "atardecer-mar.jpg",
+    };
+    try {
+      const posts = await storage.getAllBlogPosts();
+      let fixed = 0;
+      for (const post of posts) {
+        const img = post.featuredImage as string | null;
+        if (!img) continue;
+        const filename = img.split("/").pop() || "";
+        if (IMAGE_MAP[filename]) {
+          await storage.updateBlogPost(post.id, { featuredImage: `/images/blog/${IMAGE_MAP[filename]}` });
+          fixed++;
+        }
+      }
+      res.json({ message: `Fixed ${fixed} blog post images`, total: posts.length });
+    } catch (error: unknown) {
+      logger.error("[Blog] Error fixing images", { error: error instanceof Error ? error.message : String(error) });
+      res.status(500).json({ message: "Error fixing blog images" });
+    }
+  });
+
   // Delete a blog post (admin only)
   app.delete("/api/admin/blog/:id", requireAdminSession, requireTabAccess("blog"), async (req, res) => {
     try {

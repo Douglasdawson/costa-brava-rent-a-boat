@@ -8,6 +8,7 @@ import { eq, and } from "drizzle-orm";
 import { SUPPORTED_LANGUAGES, HREFLANG_CODES, type LangCode } from "../shared/seoConstants";
 import { isValidLang, resolveSlug, getSlugForPage, switchLanguagePath, type PageKey } from "../shared/i18n-routes";
 import { AI_CRAWLER_NAMES } from "./seo/constants";
+import { getBoatReviewStats } from "./data/boatReviewStats";
 
 const BASE_URL = process.env.BASE_URL || "https://www.costabravarentaboat.com";
 
@@ -1360,7 +1361,14 @@ const GEO_HIERARCHY = {
 };
 
 // Build Product JSON-LD for a boat detail page
-function buildBoatProductSchema(boat: { id: string; name: string; requiresLicense: boolean; capacity: number; deposit: string; imageUrl: string | null; imageGallery: string[] | null }, fromPrice: number | null): object {
+// NOTE: Google shows star snippets for Product schemas (NOT for self-reviewed LocalBusiness).
+// AggregateRating + Review here is the primary path to getting stars in SERP.
+function buildBoatProductSchema(
+  boat: { id: string; name: string; requiresLicense: boolean; capacity: number; deposit: string; imageUrl: string | null; imageGallery: string[] | null },
+  fromPrice: number | null,
+  aggregateRating?: object,
+  reviews?: Array<{ name: string; rating: number; text: string; date: string }>,
+): object {
   const licenseText = boat.requiresLicense ? "con licencia náutica" : "sin licencia náutica";
   const offers: Record<string, unknown> = {
     "@type": "Offer",
@@ -1423,6 +1431,29 @@ function buildBoatProductSchema(boat: { id: string; name: string; requiresLicens
     }
     schema.image = allImages;
   }
+
+  // AggregateRating — required for star snippets in Google SERP
+  if (aggregateRating) {
+    schema.aggregateRating = aggregateRating;
+  }
+
+  // Individual reviews — strengthens the AggregateRating signal for Google
+  if (reviews && reviews.length > 0) {
+    schema.review = reviews.slice(0, 5).map(r => ({
+      "@type": "Review",
+      reviewRating: {
+        "@type": "Rating",
+        ratingValue: String(r.rating),
+        bestRating: "5",
+        worstRating: "1",
+      },
+      author: { "@type": "Person", name: r.name },
+      reviewBody: r.text,
+      datePublished: r.date.length === 7 ? `${r.date}-15` : r.date,
+      itemReviewed: { "@type": "Product", name: boat.name },
+    }));
+  }
+
   return schema;
 }
 
@@ -1541,6 +1572,9 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
     const homeCrumb = { name: isEn ? "Home" : "Inicio", url: BASE_URL };
 
     // For home page: add rich JSON-LD graph with all schemas
+    // NOTE: Google will NOT show star snippets for self-reviewed LocalBusiness schemas.
+    // Stars can only appear on Product schemas (boat detail pages). The AggregateRating
+    // here is kept for general structured data quality, not for SERP star snippets.
     if (metaKey === "/") {
       const aggregateRating = await buildAggregateRating();
       const localBusiness = {
@@ -2181,8 +2215,34 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
           },
         })),
       };
+      const faqNoLicense = {
+        "@type": "FAQPage",
+        mainEntity: [
+          {
+            "@type": "Question",
+            name: isEn ? "Do I need a license to rent a boat in Blanes?" : "Necesito licencia para alquilar un barco sin licencia en Blanes?",
+            acceptedAnswer: { "@type": "Answer", text: isEn
+              ? "No. Our license-free boats (up to 15 HP) require no boating license. You must be 18+ and we provide a 15-minute safety briefing."
+              : "No. Nuestros barcos sin licencia (hasta 15 CV) no requieren ningun titulo nautico. Debes ser mayor de 18 anos y te damos una formacion de seguridad de 15 minutos." },
+          },
+          {
+            "@type": "Question",
+            name: isEn ? "What is included in the license-free boat rental price?" : "Que incluye el precio del alquiler de barco sin licencia?",
+            acceptedAnswer: { "@type": "Answer", text: isEn
+              ? "Fuel, civil liability insurance, safety equipment (life jackets, fire extinguisher, anchor), mooring, cleaning, and a 15-minute training."
+              : "Combustible, seguro de responsabilidad civil, equipo de seguridad (chalecos, extintor, ancla), amarre, limpieza y formacion de 15 minutos." },
+          },
+          {
+            "@type": "Question",
+            name: isEn ? "How far can I go with a license-free boat?" : "Hasta donde puedo navegar con un barco sin licencia?",
+            acceptedAnswer: { "@type": "Answer", text: isEn
+              ? "Up to 2 nautical miles from the coast. You can explore from Sa Palomera beach to Lloret de Mar, including beautiful coves like Cala Sant Francesc."
+              : "Hasta 2 millas nauticas de la costa. Puedes explorar desde la playa de Sa Palomera hasta Lloret de Mar, incluyendo calas como Cala Sant Francesc." },
+          },
+        ],
+      };
       const breadcrumb = buildBreadcrumb([homeCrumb, { name: isEn ? "No License Boats" : "Barcos Sin Licencia", url: `${BASE_URL}/barcos-sin-licencia` }]);
-      return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [itemList, breadcrumb] }, availableLanguages };
+      return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [itemList, faqNoLicense, breadcrumb] }, availableLanguages };
     }
 
     // /barcos-con-licencia - ItemList of licensed boats (dynamic from DB)
@@ -2228,8 +2288,34 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
           },
         })),
       };
+      const faqLicense = {
+        "@type": "FAQPage",
+        mainEntity: [
+          {
+            "@type": "Question",
+            name: isEn ? "What license do I need to rent a licensed boat in Blanes?" : "Que licencia necesito para alquilar un barco con licencia en Blanes?",
+            acceptedAnswer: { "@type": "Answer", text: isEn
+              ? "You need a valid Spanish PER (Patron de Embarcaciones de Recreo) or equivalent international boating license."
+              : "Necesitas un PER (Patron de Embarcaciones de Recreo) valido o licencia nautica internacional equivalente." },
+          },
+          {
+            "@type": "Question",
+            name: isEn ? "Is fuel included with licensed boats?" : "El combustible esta incluido en los barcos con licencia?",
+            acceptedAnswer: { "@type": "Answer", text: isEn
+              ? "No. Fuel is charged separately based on actual consumption. Insurance and safety equipment are always included."
+              : "No. El combustible se cobra aparte segun el consumo real. El seguro y el equipo de seguridad siempre estan incluidos." },
+          },
+          {
+            "@type": "Question",
+            name: isEn ? "How far can I go with a licensed boat from Blanes?" : "Hasta donde puedo navegar con un barco con licencia desde Blanes?",
+            acceptedAnswer: { "@type": "Answer", text: isEn
+              ? "Much further than license-free boats. You can reach Tossa de Mar, explore hidden coves, and navigate up to the limits of your license."
+              : "Mucho mas lejos que los barcos sin licencia. Puedes llegar hasta Tossa de Mar, explorar calas escondidas y navegar hasta los limites de tu titulo." },
+          },
+        ],
+      };
       const breadcrumb = buildBreadcrumb([homeCrumb, { name: isEn ? "Licensed Boats" : "Barcos Con Licencia", url: `${BASE_URL}/barcos-con-licencia` }]);
-      return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [itemList, breadcrumb] }, availableLanguages };
+      return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [itemList, faqLicense, breadcrumb] }, availableLanguages };
     }
 
     // /rutas - ItemList of routes
@@ -2421,7 +2507,16 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
               ogImage: boatOgImage,
               ogType: "product",
             };
-        const jsonLd = buildBoatProductSchema(boat, fromPrice);
+        // Build Product schema with AggregateRating + Reviews for star snippets
+        const reviewStats = getBoatReviewStats(boat.id);
+        const boatAggregateRating = reviewStats ? {
+          "@type": "AggregateRating",
+          ratingValue: String(reviewStats.average),
+          reviewCount: String(reviewStats.count),
+          bestRating: "5",
+          worstRating: "1",
+        } : await buildAggregateRating();
+        const jsonLd = buildBoatProductSchema(boat, fromPrice, boatAggregateRating, reviewStats?.reviews);
         return { meta, jsonLd };
       }
     } catch {
@@ -2470,7 +2565,7 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
           mainEntityOfPage: { "@type": "WebPage", "@id": `${BASE_URL}/blog/${slug}` },
           datePublished: post.publishedAt || post.createdAt,
           dateModified: post.updatedAt || post.publishedAt,
-          author: { "@type": "Organization", name: "Costa Brava Rent a Boat" },
+          author: { "@type": "Organization", name: "Costa Brava Rent a Boat", url: BASE_URL },
           publisher: {
             "@type": "Organization",
             name: "Costa Brava Rent a Boat",

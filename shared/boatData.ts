@@ -7,6 +7,7 @@ export interface BoatData {
   image: string;
   subtitle: string;
   description: string;
+  emotionTag?: string; // i18n key for emotion tag
   specifications: {
     model: string;
     length: string;
@@ -45,6 +46,7 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
     id: "solar-450",
     name: "Solar 450",
     image: "SOLAR_450_boat_photo_b70eb7e1.png",
+    emotionTag: "emotionTags.sunLovers",
     subtitle: "Sin licencia · 5 personas · Para disfrutar del sol",
     description: "El barco pensado para quienes quieren tomar el sol en el mar. Su solárium acolchado es el más amplio de toda la flota sin licencia: fondea en una cala de agua turquesa cerca de Blanes y relájate como en ningún otro sitio. Sin carnet necesario, te enseñamos a manejarla en 15 minutos. Gasolina, seguro y equipo de seguridad incluidos.",
     specifications: {
@@ -105,6 +107,7 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
     id: "remus-450",
     name: "Remus 450",
     image: "REMUS_450_boat_photo_ec8b926c.png",
+    emotionTag: "emotionTags.familyFavorite",
     subtitle: "Sin licencia · 5 personas · El favorito de parejas y familias",
     description: "El barco más alquilado de Blanes y la primera elección de parejas y familias con niños. Su toldo Bi Mini cubre toda la embarcación para proteger a los peques del sol, y su estabilidad la hace ideal si es vuestra primera vez en el mar. Perfecto para 2-5 personas que buscan una jornada tranquila en calas de agua cristalina. Te enseñamos a manejarlo en 15 minutos. Gasolina, seguro y equipo de seguridad incluidos.",
     specifications: {
@@ -165,6 +168,7 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
     id: "remus-450-ii",
     name: "Remus 450 II",
     image: "REMUS_450_boat_photo_ec8b926c.png",
+    emotionTag: "emotionTags.alwaysAvailable",
     subtitle: "Sin licencia · 5 personas · Disponibilidad extra",
     description: "Mismo modelo que nuestro barco más popular, con disponibilidad garantizada incluso en pleno agosto. Ideal si la Remus 450 ya está reservada: disfrutas del mismo confort, la misma estabilidad y el toldo Bi Mini que tanto valoran las familias en la Costa Brava. Gasolina, seguro y equipo de seguridad incluidos.",
     specifications: {
@@ -225,6 +229,7 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
     id: "astec-400",
     name: "Astec 400",
     image: "ASTEC_400_boat_photo_9dde16a8.png",
+    emotionTag: "emotionTags.bestPrice",
     subtitle: "Sin licencia · 4 personas · El mejor precio por persona",
     description: "La opción más económica para parejas y familias que quieren disfrutar del mar sin gastar de más. Al ser 2-4 personas, el precio por persona es el más bajo de toda la flota. Estable, fácil de manejar y con toldo Bi Mini para proteger a los peques del sol. Fondea en calas tranquilas cerca de Blanes sin necesidad de carnet náutico. Gasolina, seguro y equipo de seguridad incluidos.",
     specifications: {
@@ -286,6 +291,7 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
     id: "astec-480",
     name: "Astec 480",
     image: "ASTEC_400_boat_photo_9dde16a8.png", // TODO: replace with actual ASTEC 480 photo (currently using ASTEC 400 image)
+    emotionTag: "emotionTags.premiumNoLicense",
     subtitle: "Sin licencia · 5 personas · Premium con bluetooth",
     description: "La experiencia premium sin necesidad de carnet náutico. Con 4,80m de eslora, equipo de música bluetooth, solárium acolchado y el doble de depósito de combustible, es la embarcación sin licencia más completa de Blanes. Navega con tu música favorita hacia las calas más bonitas de la Costa Brava. Gasolina, seguro y equipo de seguridad incluidos.",
     specifications: {
@@ -347,6 +353,7 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
     id: "mingolla-brava-19",
     name: "Mingolla Brava 19",
     image: "MINGOLLA_BRAVA_19_boat_c0e4a5b5.png",
+    emotionTag: "emotionTags.explorer",
     subtitle: "Con licencia · 6 personas · Lloret en 15 min, Tossa en 30",
     description: "La lancha ideal para explorar toda la costa: Lloret de Mar en 15 minutos, Tossa de Mar en media hora. Con 80cv, GPS y sonda náutica, llegas a calas que otros barcos no alcanzan. Ducha de agua dulce, bluetooth y arco inox para deportes acuáticos. Todo el equipamiento para recorrer la Costa Brava con total autonomía. Requiere licencia náutica (PER/PNB).",
     specifications: {
@@ -410,6 +417,7 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
     id: "trimarchi-57s",
     name: "Trimarchi 57S",
     image: "Trimarchi_57S_luxury_boat_0ef0159a.png",
+    emotionTag: "emotionTags.adrenaline",
     subtitle: "Con licencia · 7 personas · Adrenalina para grupos",
     description: "110cv de diseño italiano para grupos de hasta 7 personas que quieren adrenalina y confort a partes iguales. Solárium doble en proa y popa para tomar el sol, mesa central para comer fondeados en una cala y la potencia para llegar a cualquier rincón entre Blanes y Tossa de Mar en minutos. La embarcación que elige quien quiere sentir la velocidad sin renunciar a nada. Requiere licencia náutica (PER/PNB).",
     specifications: {
@@ -473,6 +481,7 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
     id: "pacific-craft-625",
     name: "Pacific Craft 625",
     image: "PACIFIC_CRAFT_625_boat_fbe4f4d0.png",
+    emotionTag: "emotionTags.luxury",
     subtitle: "Con licencia · 7 personas · La experiencia de lujo",
     description: "Lo mejor que puedes alquilar en Blanes. 6,24 metros de eslora, motor Yamaha 115cv y espacio de lujo para 7 personas. Solárium doble, mesa para comer fondeados frente a una cala, ducha de agua dulce y mando electrónico. Para quienes no quieren compromisos y buscan la experiencia náutica más completa de la Costa Brava. Requiere licencia náutica (PER/PNB).",
     specifications: {
@@ -540,6 +549,7 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
     id: "excursion-privada",
     name: "Excursion Privada con Capitan",
     image: "PACIFIC_CRAFT_625_boat_fbe4f4d0.png",
+    emotionTag: "emotionTags.vip",
     subtitle: "Con patrón · 7 personas · Experiencia VIP",
     description: "Tú solo disfrutas: nuestro patrón profesional te lleva a calas secretas, cuevas marinas y rincones inaccesibles a pie entre Blanes y Tossa de Mar. Fondearéis en la cala perfecta del día, elegida según viento y corrientes. Ideal para celebraciones, aniversarios o familias que quieren una excursión privada exclusiva por la Costa Brava sin preocuparse de nada.",
     specifications: {

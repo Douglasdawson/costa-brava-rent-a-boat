@@ -1316,6 +1316,15 @@ export const es: Translations = {
     validFirstBooking: 'Válido para tu primera reserva',
     bookNow: 'Reservar con descuento',
     noThanks: 'Prefiero pagar precio completo',
+    quizTitle: 'No sabes que barco elegir?',
+    quizSubtitle: 'Nuestro quiz de 30 segundos te ayuda a encontrar el barco perfecto',
+    quizCta: 'Encontrar mi barco',
+    abandonedTitle: 'Tu barco te espera',
+    abandonedSubtitle: 'El {boat} esta listo para ti',
+    abandonedCta: 'Completar reserva — 10% dto.',
+    quizResultTitle: 'Gran eleccion!',
+    quizResultSubtitle: 'Reserva el {boat} ahora con 10% de descuento',
+    quizResultCta: 'Reservar ahora — 10% dto.',
   },
 
   socialProof: {
@@ -1411,6 +1420,14 @@ export const es: Translations = {
     yourBoat: 'Tu {boat}',
   },
 
+  bookingTrust: {
+    customers: '5000+ clientes',
+    rating: '4.8 Google',
+    confirmation: 'Respuesta en minutos',
+    freeCancellation: 'Cancelacion gratuita 48h',
+    securePayment: 'Pago seguro',
+    insuranceIncluded: 'Seguro incluido',
+  },
 
   faqPreview: {
     title: 'Preguntas frecuentes',
@@ -1617,6 +1634,12 @@ export const es: Translations = {
     maritimeInsurance: 'Seguro marítimo completo',
     gdprCompliant: 'Cumplimiento RGPD',
   },
+  returnVisitor: {
+    welcomeBack: 'Bienvenido de nuevo',
+    stillThinking: 'Aun pensando en el {boat}?',
+    continueBooking: 'Continua donde lo dejaste',
+    checkAvailability: 'Ver disponibilidad',
+  },
   notFound: {
     title: 'Página no encontrada',
     description: 'La página que buscas no existe o ha sido movida',
@@ -1654,7 +1677,68 @@ export const es: Translations = {
     stepOf: "de",
   },
 
-  bookingTrust: { freeCancellation: 'Cancelacion gratuita 48h', securePayment: 'Pago seguro', insuranceIncluded: 'Seguro incluido' },
+  neuro: {
+    mostPopular: 'Mas popular',
+    bestValue: 'Mejor valor',
+    perHour: '/hora',
+  },
+
+  emotionTags: {
+    sunLovers: 'Para amantes del sol',
+    familyFavorite: 'Favorito de familias',
+    alwaysAvailable: 'Siempre disponible',
+    bestPrice: 'Mejor precio por persona',
+    premiumNoLicense: 'Premium sin carnet',
+    explorer: 'El explorador',
+    adrenaline: 'Pura adrenalina',
+    luxury: 'La experiencia de lujo',
+    vip: 'VIP: Tu solo disfruta',
+  },
+
+  valueStack: {
+    title: 'Todo incluido en tu precio',
+    fuelIncluded: 'Combustible incluido',
+    insurance: 'Seguro de embarcacion y ocupantes',
+    safetyEquipment: 'Equipo de seguridad completo',
+    briefing: 'Formacion de 15 min incluida',
+    freeCancellation: 'Cancelacion gratuita 48h',
+    securePayment: 'Pago seguro con Stripe',
+    gpsAndSonar: 'GPS y sonda incluidos',
+    professionalSkipper: 'Patron profesional incluido',
+  },
+
+  liveInterest: {
+    viewing: '{count} personas mirando este barco ahora mismo',
+  },
+
+  adaptiveUrgency: {
+    popularBoat: 'Barco popular esta temporada',
+    highDemandWeekend: 'Alta demanda este fin de semana',
+    bookingsToday: '{count} reservas hoy',
+    mostBookedWeek: 'El mas reservado esta semana',
+    onlyXSlots: 'Solo quedan {count} horas para el {date}',
+    limitedAvailability: 'Disponibilidad limitada',
+  },
+
+  trustEscalation: {
+    familiesThisSeason: '100+ familias esta temporada',
+    bookingsThisWeek: '{count}+ reservas esta semana',
+    officialPort: 'Puerto oficial de Blanes',
+    googleRating: '4.8 en Google',
+    fullInsurance: 'Seguro completo',
+    yearsExperience: '5 anos de experiencia',
+  },
+
+  sensoryHero: {
+    morningLine: 'Siente la brisa mediterranea en tu piel',
+    afternoonLine: 'Manana, este podria ser tu atardecer',
+    eveningLine: 'Despierta manana en el agua',
+    nightLine: 'Manana, el mar te espera',
+    seasonLow: 'Temporada tranquila -- calas solo para ti',
+    seasonMid: 'El mejor momento del verano empieza ahora',
+    seasonHigh: 'Ultimas plazas de agosto -- no esperes mas',
+    seasonOff: 'La temporada abre en abril',
+  },
 
   boatDescriptions: {
     "solar-450": "El barco pensado para quienes quieren tomar el sol en el mar. Su solárium acolchado es el más amplio de toda la flota sin licencia: fondea en una cala de agua turquesa cerca de Blanes y relájate como en ningún otro sitio. Sin carnet necesario, te enseñamos a manejarla en 15 minutos. Gasolina, seguro y equipo de seguridad incluidos.",

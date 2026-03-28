@@ -26,6 +26,7 @@ interface BoatCardProps {
   scarcityData?: { availableSlots: number; totalSlots: number };
   weeklyBookings?: number;
   bestFor?: string;
+  emotionTag?: string;
   onBooking: (boatId: string) => void;
   onDetails: (boatId: string) => void;
 }
@@ -152,6 +153,7 @@ function BoatCard({
   scarcityData,
   weeklyBookings,
   bestFor,
+  emotionTag,
   onBooking,
   onDetails
 }: BoatCardProps) {
@@ -255,6 +257,9 @@ function BoatCard({
                 <span className="text-xs font-medium text-foreground">{ratingData.average}</span>
                 <span className="text-xs text-muted-foreground">({ratingData.count})</span>
               </div>
+            )}
+            {emotionTag && (
+              <p className="text-xs italic text-muted-foreground/80 mt-0.5">{emotionTag}</p>
             )}
           </div>
           <BoatCardPricing

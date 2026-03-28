@@ -176,7 +176,17 @@ export default function BoatQuiz({ source = "page", onBoatSelect }: { source?: s
 
   useEffect(() => {
     if (step === 3 && recommendations.length > 0) {
-      trackBoatQuizComplete(recommendations[0]?.name || 'unknown');
+      const topResult = recommendations[0];
+      trackBoatQuizComplete(topResult?.name || 'unknown');
+      // Store quiz result for session-aware exit intent
+      if (topResult) {
+        try {
+          sessionStorage.setItem("cbrb_quizResult", JSON.stringify({
+            boatId: topResult.id,
+            boatName: topResult.name,
+          }));
+        } catch { /* sessionStorage unavailable */ }
+      }
     }
   }, [step, recommendations]);
 

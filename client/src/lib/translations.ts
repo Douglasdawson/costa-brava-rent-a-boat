@@ -1426,6 +1426,16 @@ export interface Translations {
     validFirstBooking: string;
     bookNow: string;
     noThanks: string;
+    // Session-aware variant keys
+    quizTitle: string;
+    quizSubtitle: string;
+    quizCta: string;
+    abandonedTitle: string;
+    abandonedSubtitle: string;
+    abandonedCta: string;
+    quizResultTitle: string;
+    quizResultSubtitle: string;
+    quizResultCta: string;
   };
 
   // Price Anchoring
@@ -1528,6 +1538,9 @@ export interface Translations {
     customers: string;
     rating: string;
     confirmation: string;
+    freeCancellation: string;
+    securePayment: string;
+    insuranceIncluded: string;
   };
 
   // Hold Countdown (booking form urgency timer)
@@ -1595,6 +1608,14 @@ export interface Translations {
     close: string;
   };
 
+  // Return Visitor Banner
+  returnVisitor?: {
+    welcomeBack: string;
+    stillThinking: string;
+    continueBooking: string;
+    checkAvailability: string;
+  };
+
   // Not Found Page
   notFound?: {
     title: string;
@@ -1636,11 +1657,74 @@ export interface Translations {
     stepOf: string;
   };
 
-  // Booking Trust Banner
-  bookingTrust?: {
+  // Neuro CRO techniques
+  neuro?: {
+    mostPopular: string;
+    bestValue: string;
+    perHour: string;
+  };
+
+  // Emotion tags for boat cards (identity-based decision making)
+  emotionTags?: {
+    sunLovers: string;
+    familyFavorite: string;
+    alwaysAvailable: string;
+    bestPrice: string;
+    premiumNoLicense: string;
+    explorer: string;
+    adrenaline: string;
+    luxury: string;
+    vip: string;
+  };
+
+  // Value stacking at checkout
+  valueStack?: {
+    title: string;
+    fuelIncluded: string;
+    insurance: string;
+    safetyEquipment: string;
+    briefing: string;
     freeCancellation: string;
     securePayment: string;
-    insuranceIncluded: string;
+    gpsAndSonar: string;
+    professionalSkipper: string;
+  };
+
+  // Live Interest Indicator
+  liveInterest?: {
+    viewing: string;
+  };
+
+  // Adaptive Urgency
+  adaptiveUrgency?: {
+    popularBoat: string;
+    highDemandWeekend: string;
+    bookingsToday: string;
+    mostBookedWeek: string;
+    onlyXSlots: string;
+    limitedAvailability: string;
+  };
+
+  // Progressive Trust Escalation
+  trustEscalation?: {
+    familiesThisSeason: string;
+    bookingsThisWeek: string;
+    officialPort: string;
+    googleRating: string;
+    fullInsurance: string;
+    yearsExperience: string;
+  };
+
+  // Sensory Hero Copy (time & season aware)
+  sensoryHero?: {
+    morningLine: string;
+    afternoonLine: string;
+    eveningLine: string;
+    nightLine: string;
+    seasonLow: string;
+    seasonMid: string;
+    seasonHigh: string;
+    seasonOff: string;
   };
 
   // Boat descriptions (keyed by boat ID)

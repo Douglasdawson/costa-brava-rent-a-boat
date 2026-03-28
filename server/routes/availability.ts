@@ -290,6 +290,72 @@ export function registerAvailabilityRoutes(app: Express) {
     }
   });
 
+  // Scarcity data for a single boat+date (used by adaptive urgency component)
+  app.get("/api/availability/scarcity", async (req, res) => {
+    try {
+      const schema = z.object({
+        boatId: z.string().min(1),
+        date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "Formato de fecha: YYYY-MM-DD"),
+      });
+      const parsed = schema.safeParse(req.query);
+      if (!parsed.success) {
+        return res.status(400).json({ message: parsed.error.issues[0].message });
+      }
+
+      const { boatId, date: dateStr } = parsed.data;
+      const [y, m, d] = dateStr.split("-").map(Number);
+      const requestDate = new Date(y, m - 1, d);
+
+      // Validate boat exists
+      const boat = await storage.getBoat(boatId);
+      if (!boat) {
+        return res.status(404).json({ message: "Barco no encontrado" });
+      }
+
+      // Operating hours: each hour is one slot (9:00-19:00 = 10 slots when end is 20)
+      const totalSlots = OPERATING_END_HOUR - OPERATING_START_HOUR;
+
+      // Off-season: all slots available (no urgency)
+      if (m < SEASON_START_MONTH || m > SEASON_END_MONTH) {
+        return res.json({ remainingSlots: totalSlots, totalSlots, bookedToday: 0 });
+      }
+
+      const dayBookings = await storage.getDailyBookings(boatId, requestDate);
+
+      // Count booked hourly slots by checking each hour against booking intervals
+      const bookedIntervals = dayBookings.map((b) => {
+        const startMadrid = getMadridTime(new Date(b.startTime));
+        const endMadrid = getMadridTime(new Date(b.endTime));
+        return {
+          start: startMadrid.hours + startMadrid.minutes / 60,
+          end: endMadrid.hours + endMadrid.minutes / 60,
+        };
+      });
+
+      let bookedSlotCount = 0;
+      for (let hour = OPERATING_START_HOUR; hour < OPERATING_END_HOUR; hour++) {
+        const isBooked = bookedIntervals.some(
+          (interval) => hour >= interval.start && hour < interval.end
+        );
+        if (isBooked) bookedSlotCount++;
+      }
+
+      const remainingSlots = totalSlots - bookedSlotCount;
+
+      // Cache for 2 minutes
+      res.set("Cache-Control", "public, max-age=120");
+      res.json({
+        remainingSlots,
+        totalSlots,
+        bookedToday: dayBookings.length,
+      });
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : "Unknown error";
+      logger.error("[Availability] Error fetching scarcity data", { error: message });
+      res.status(500).json({ message: "Error interno del servidor" });
+    }
+  });
+
   // iCal feed for confirmed bookings (protected by token)
   app.get("/api/calendar/feed.ics", async (req, res) => {
     try {

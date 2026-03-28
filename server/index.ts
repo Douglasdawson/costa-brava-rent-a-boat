@@ -38,9 +38,10 @@ app.use((req: Request, _res: Response, next: NextFunction) => {
   next();
 });
 
-// Trust first proxy (Render/Nginx/etc.) so Express uses real client IP from X-Forwarded-For
+// Trust proxies so Express uses real client IP from X-Forwarded-For
+// Set to 2 for Cloudflare + Replit proxy chain; was 1 before Cloudflare
 // This must be set before any rate-limiting middleware
-app.set('trust proxy', 1);
+app.set('trust proxy', 2);
 
 // Sentry error monitoring — only active when SENTRY_DSN is set
 if (config.SENTRY_DSN) {

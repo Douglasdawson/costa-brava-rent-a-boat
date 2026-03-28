@@ -1297,6 +1297,15 @@ export const it: Translations = {
     validFirstBooking: 'Valido per la tua prima prenotazione',
     bookNow: 'Prenota con sconto',
     noThanks: 'Preferisco pagare il prezzo intero',
+    quizTitle: 'Non sai quale barca scegliere?',
+    quizSubtitle: 'Il nostro quiz di 30 secondi ti aiuta a trovare la barca perfetta',
+    quizCta: 'Trova la mia barca',
+    abandonedTitle: 'La tua barca ti aspetta!',
+    abandonedSubtitle: 'La {boat} e pronta per te',
+    abandonedCta: 'Completa prenotazione — 10% di sconto',
+    quizResultTitle: 'Ottima scelta!',
+    quizResultSubtitle: 'Prenota la {boat} ora con il 10% di sconto',
+    quizResultCta: 'Prenota ora — 10% di sconto',
   },
 
   socialProof: {

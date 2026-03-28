@@ -10,6 +10,7 @@ import type { Language } from "@/hooks/use-language";
 import { BookingModalProvider } from "@/hooks/useBookingModal";
 import { useUtmCapture } from "@/hooks/useUtmCapture";
 import { trackJsError } from "@/utils/analytics";
+import { useJourneyState } from "@/hooks/useJourneyState";
 import { isValidLang, resolveSlug } from "@shared/i18n-routes";
 import type { PageKey } from "@shared/i18n-routes";
 
@@ -80,6 +81,7 @@ const CookieBanner = lazy(() => import("./components/CookieBanner"));
 const ExitIntentModal = lazy(() => import("./components/ExitIntentModal").then(m => ({ default: m.ExitIntentModal })));
 const SocialProofToast = lazy(() => import("./components/SocialProofToast").then(m => ({ default: m.SocialProofToast })));
 const SeasonBanner = lazy(() => import("./components/SeasonBanner").then(m => ({ default: m.SeasonBanner })));
+const ReturnVisitorBanner = lazy(() => import("./components/ReturnVisitorBanner").then(m => ({ default: m.ReturnVisitorBanner })));
 
 const HomePageSEO = lazy(() => import("@/components/HomePageSEO"));
 
@@ -587,6 +589,8 @@ function Router() {
 }
 
 function App() {
+  useJourneyState();
+
   useEffect(() => {
     const initDeferred = () => {
       import("./utils/web-vitals").then(({ initWebVitals }) => initWebVitals());
@@ -627,6 +631,7 @@ function App() {
               <Router />
               <ScrollToTop />
               <Suspense fallback={null}>
+                <ReturnVisitorBanner />
                 <SeasonBanner />
                 <WhatsAppFloatingButton />
                 <CookieBanner />

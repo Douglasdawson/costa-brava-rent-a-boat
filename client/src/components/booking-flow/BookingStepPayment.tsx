@@ -8,6 +8,7 @@ import { useLanguage } from "@/hooks/use-language";
 import type { Quote, Duration, Extra } from "./types";
 import { trackPaymentInitiated } from "@/utils/analytics";
 import { BookingTrustBanner } from "./BookingTrustBanner";
+import { ValueStack } from "./ValueStack";
 
 interface BookingStepPaymentProps {
   selectedDate: string;
@@ -39,7 +40,7 @@ export function BookingStepPayment({
 
   return (
     <>
-      <BookingTrustBanner t={t} />
+      <BookingTrustBanner t={t} stage="step3" />
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center">
@@ -142,6 +143,12 @@ export function BookingStepPayment({
             )}
           </div>
         </div>
+
+        <ValueStack
+          requiresLicense={availableBoats.find((b: Boat) => b.id === selectedBoat)?.requiresLicense ?? false}
+          isExcursion={selectedBoat === "excursion-privada"}
+          t={t}
+        />
 
         <div className="space-y-4">
           {!quote ? (

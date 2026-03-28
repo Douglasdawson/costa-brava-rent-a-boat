@@ -1297,6 +1297,15 @@ export const nl: Translations = {
     validFirstBooking: 'Geldig voor je eerste boeking',
     bookNow: 'Boek met korting',
     noThanks: 'Ik betaal liever de volle prijs',
+    quizTitle: 'Niet zeker welke boot?',
+    quizSubtitle: 'Onze 30-seconden quiz helpt je de perfecte boot te vinden',
+    quizCta: 'Vind mijn boot',
+    abandonedTitle: 'Je boot wacht!',
+    abandonedSubtitle: 'De {boat} is klaar voor je',
+    abandonedCta: 'Boeking voltooien — 10% korting',
+    quizResultTitle: 'Geweldige keuze!',
+    quizResultSubtitle: 'Boek de {boat} nu met 10% korting',
+    quizResultCta: 'Nu boeken — 10% korting',
   },
 
   socialProof: {

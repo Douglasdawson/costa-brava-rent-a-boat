@@ -1297,6 +1297,15 @@ export const ru: Translations = {
     validFirstBooking: 'Действителен для первого бронирования',
     bookNow: 'Забронировать со скидкой',
     noThanks: 'Предпочитаю полную цену',
+    quizTitle: 'Не знаете какую лодку выбрать?',
+    quizSubtitle: 'Наш 30-секундный тест поможет найти идеальную лодку',
+    quizCta: 'Найти мою лодку',
+    abandonedTitle: 'Ваша лодка ждет!',
+    abandonedSubtitle: '{boat} готова для вас',
+    abandonedCta: 'Завершить бронирование — скидка 10%',
+    quizResultTitle: 'Отличный выбор!',
+    quizResultSubtitle: 'Забронируйте {boat} сейчас со скидкой 10%',
+    quizResultCta: 'Забронировать — скидка 10%',
   },
 
   socialProof: {

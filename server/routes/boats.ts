@@ -18,6 +18,25 @@ const checkAvailabilityWithBoatSchema = checkAvailabilitySchema.extend({
 // In-memory daily view counter (resets on server restart)
 const dailyViews = new Map<string, { count: number; date: string }>();
 
+// In-memory live interest counter: boatId -> Map<sessionToken, lastPingTimestamp>
+const interestMap = new Map<string, Map<string, number>>();
+const INTEREST_TTL_MS = 2 * 60 * 1000; // 2 minutes
+const MAX_TOKENS_PER_BOAT = 100;
+
+const interestPingSchema = z.object({
+  token: z.string().min(1).max(128),
+});
+
+/** Remove entries older than 2 minutes from a boat's interest map */
+function cleanStaleInterest(boatMap: Map<string, number>): void {
+  const cutoff = Date.now() - INTEREST_TTL_MS;
+  boatMap.forEach((ts, token) => {
+    if (ts < cutoff) {
+      boatMap.delete(token);
+    }
+  });
+}
+
 function getTodayStr(): string {
   return new Date().toISOString().split("T")[0];
 }
@@ -38,6 +57,48 @@ export function registerBoatRoutes(app: Express) {
     const views = dailyViews.get(boatId)!.count;
     res.setHeader("Cache-Control", "no-cache");
     res.json({ views });
+  });
+
+  // POST /api/boats/:id/interest/ping — record anonymous viewer heartbeat
+  app.post("/api/boats/:id/interest/ping", (req, res) => {
+    const parsed = interestPingSchema.safeParse(req.body);
+    if (!parsed.success) {
+      return res.status(400).json({ message: "Token requerido" });
+    }
+
+    const boatId = req.params.id;
+    const { token } = parsed.data;
+
+    if (!interestMap.has(boatId)) {
+      interestMap.set(boatId, new Map());
+    }
+    const boatMap = interestMap.get(boatId)!;
+
+    // Clean stale entries first
+    cleanStaleInterest(boatMap);
+
+    // Prevent abuse: cap tokens per boat
+    if (boatMap.size >= MAX_TOKENS_PER_BOAT && !boatMap.has(token)) {
+      return res.json({ ok: true });
+    }
+
+    boatMap.set(token, Date.now());
+    res.json({ ok: true });
+  });
+
+  // GET /api/boats/:id/interest — count of unique viewers in last 2 minutes
+  app.get("/api/boats/:id/interest", (req, res) => {
+    const boatId = req.params.id;
+    const boatMap = interestMap.get(boatId);
+
+    if (!boatMap) {
+      res.setHeader("Cache-Control", "no-cache");
+      return res.json({ count: 0 });
+    }
+
+    cleanStaleInterest(boatMap);
+    res.setHeader("Cache-Control", "no-cache");
+    res.json({ count: boatMap.size });
   });
 
   // Weekly bookings count per boat (social proof)

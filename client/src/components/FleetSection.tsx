@@ -295,6 +295,19 @@ function FleetSection() {
     'astec-480': t.boats?.bestForPremium || '',
   }), [t]);
 
+  // Emotion tags for identity-based decision making (Cialdini)
+  const emotionTagLabels: Record<string, string> = useMemo(() => ({
+    'solar-450': t.emotionTags?.sunLovers || '',
+    'remus-450': t.emotionTags?.familyFavorite || '',
+    'remus-450-ii': t.emotionTags?.alwaysAvailable || '',
+    'astec-400': t.emotionTags?.bestPrice || '',
+    'astec-480': t.emotionTags?.premiumNoLicense || '',
+    'mingolla-brava-19': t.emotionTags?.explorer || '',
+    'trimarchi-57s': t.emotionTags?.adrenaline || '',
+    'pacific-craft-625': t.emotionTags?.luxury || '',
+    'excursion-privada': t.emotionTags?.vip || '',
+  }), [t]);
+
   // Transform API data to BoatCard format — memoized to avoid recalculation on every render
   const boats = useMemo(() => (boatsData || [])
     .filter(boat => boat.isActive)
@@ -336,9 +349,10 @@ function FleetSection() {
         features: boat.equipment || [],
         available: true,
         enginePower: enginePower,
-        bestFor: bestForLabels[boat.id] || ''
+        bestFor: bestForLabels[boat.id] || '',
+        emotionTag: emotionTagLabels[boat.id] || ''
       };
-    }), [boatsData, currentSeason, t, bestForLabels]);
+    }), [boatsData, currentSeason, t, bestForLabels, emotionTagLabels]);
 
   // Dynamic group size options based on max boat capacity
   const groupSizeOptions = useMemo(() => {

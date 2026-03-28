@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "./ui/button";
 import { ShieldCheck, Shield, CheckCircle, Award, Users, Star } from "lucide-react";
 import { useTranslations } from "@/lib/translations";
@@ -7,12 +7,20 @@ import { useProgressiveImage } from "@/hooks/use-progressive-image";
 import { trackWhatsAppClick } from "@/utils/analytics";
 import CurvedLoop from "./CurvedLoop";
 import BoatQuizModal from "./BoatQuizModal";
+import { SensoryHeroCopy } from "./SensoryHeroCopy";
 
 export default function Hero() {
   const t = useTranslations();
   const { openBookingModal } = useBookingModal();
   const [quizOpen, setQuizOpen] = useState(false);
   const heroLoaded = useProgressiveImage("/images/hero/hero-dive-mobile.webp");
+
+  // Listen for exit intent quiz trigger
+  useEffect(() => {
+    const handleOpenQuiz = () => setQuizOpen(true);
+    window.addEventListener("cbrb:openQuiz", handleOpenQuiz);
+    return () => window.removeEventListener("cbrb:openQuiz", handleOpenQuiz);
+  }, []);
 
   return (
     <div className="relative h-dvh min-h-[600px] overflow-hidden" id="home">
@@ -82,6 +90,11 @@ export default function Hero() {
               <p className="text-white/75 text-xs sm:text-sm mt-0.5">
                 {t.hero.pricePerPersonDetail}
               </p>
+            </div>
+
+            {/* Sensory copy — time & season aware */}
+            <div className="mt-2 sm:mt-3">
+              <SensoryHeroCopy />
             </div>
 
           </div>

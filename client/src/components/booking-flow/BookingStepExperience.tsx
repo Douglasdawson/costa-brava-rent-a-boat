@@ -1,14 +1,20 @@
+import { useEffect, useRef, useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Calendar, Anchor, Clock, Gauge, AlertTriangle } from "lucide-react";
 import { getBoatAltText } from "@/utils/boatImages";
-import { trackAddToCart, trackBeginCheckout, trackBookingStarted, trackDateSelected, trackDurationSelected, trackTimeSlotSelected } from "@/utils/analytics";
+import { trackAddToCart, trackBeginCheckout, trackBookingStarted, trackDateSelected, trackDurationSelected, trackTimeSlotSelected, trackEvent } from "@/utils/analytics";
 import { getStoredUtm } from "@/hooks/useUtmCapture";
 import type { Boat } from "@shared/schema";
 import type { Translations } from "@/lib/translations";
 import type { Duration, TimeSlot } from "./types";
 import { BookingTrustBanner } from "./BookingTrustBanner";
+
+interface PopularChoices {
+  popularTime: string;
+  popularDuration: string;
+  sampleSize: number;
+}
 
 interface BookingStepExperienceProps {
   // Date
@@ -50,9 +56,54 @@ export function BookingStepExperience({
 
   const canContinue = selectedDate && selectedBoat && selectedTime && duration;
 
+  // Smart defaults: fetch popular choices when a boat is selected
+  const [popularChoices, setPopularChoices] = useState<PopularChoices | null>(null);
+  const userChangedTime = useRef(false);
+  const userChangedDuration = useRef(false);
+  const lastFetchedBoatId = useRef<string>("");
+
+  useEffect(() => {
+    if (!selectedBoat) return;
+    // Only fetch once per boat selection
+    if (lastFetchedBoatId.current === selectedBoat) return;
+    lastFetchedBoatId.current = selectedBoat;
+    userChangedTime.current = false;
+    userChangedDuration.current = false;
+
+    fetch(`/api/boats/${selectedBoat}/popular-choices`)
+      .then((res) => res.json())
+      .then((data: PopularChoices) => {
+        setPopularChoices(data);
+      })
+      .catch(() => {
+        setPopularChoices(null);
+      });
+  }, [selectedBoat]);
+
+  // Auto-select popular time slot when time slots become available
+  useEffect(() => {
+    if (!popularChoices || !timeSlots.length || userChangedTime.current || selectedTime) return;
+    const popularSlot = timeSlots.find(
+      (s) => s.available && s.id === popularChoices.popularTime,
+    );
+    if (popularSlot) {
+      setSelectedTime(popularSlot.id);
+    }
+  }, [popularChoices, timeSlots, selectedTime, setSelectedTime]);
+
+  // Auto-select popular duration when durations become available
+  useEffect(() => {
+    if (!popularChoices || !selectedTime || userChangedDuration.current || duration) return;
+    const durations = getAvailableDurations(selectedTime);
+    const popularDur = durations.find((d) => d.id === popularChoices.popularDuration);
+    if (popularDur) {
+      setDuration(popularDur.id);
+    }
+  }, [popularChoices, selectedTime, duration, setDuration, getAvailableDurations]);
+
   return (
     <div className="space-y-4">
-      <BookingTrustBanner t={t} />
+      <BookingTrustBanner t={t} stage="step1" />
       {/* Section 1: Date */}
       <Card>
         <CardHeader className="pb-3">
@@ -186,56 +237,112 @@ export function BookingStepExperience({
               </p>
             )}
 
-            {/* Time slots - compact grid instead of full-width list */}
+            {/* Time slots - compact grid with "Most popular" badge */}
             <div className="mb-4">
               <h3 className="font-medium text-foreground mb-2 text-sm">{t.booking.startTime}</h3>
               <div className="grid grid-cols-3 sm:grid-cols-5 gap-2">
-                {timeSlots.map((slot) => (
-                  <button
-                    key={slot.id}
-                    onClick={() => {
-                      setSelectedTime(slot.id);
-                      trackTimeSlotSelected(slot.id, selectedBoat);
-                      const availableDurations = getAvailableDurations(slot.id);
-                      const isDurationStillAvailable = availableDurations.some(d => d.id === duration);
-                      if (!isDurationStillAvailable) {
-                        setDuration("2h");
-                      }
-                    }}
-                    disabled={!slot.available}
-                    className={`p-2 border rounded-lg text-sm font-medium text-center ${
-                      selectedTime === slot.id
-                        ? 'border-primary bg-primary/10 text-primary'
-                        : !slot.available
-                          ? 'border-primary/20 bg-primary/5 text-muted-foreground/70 cursor-not-allowed'
-                          : 'border-primary/20 hover:border-primary hover:bg-primary/5'
-                    }`}
-                    data-testid={`button-timeslot-${slot.id}`}
-                  >
-                    {slot.label}
-                  </button>
-                ))}
+                {timeSlots.map((slot) => {
+                  const isPopularTime = popularChoices && popularChoices.sampleSize > 0 && slot.id === popularChoices.popularTime;
+                  return (
+                    <button
+                      key={slot.id}
+                      onClick={() => {
+                        userChangedTime.current = true;
+                        setSelectedTime(slot.id);
+                        trackTimeSlotSelected(slot.id, selectedBoat);
+                        const availableDurations = getAvailableDurations(slot.id);
+                        const isDurationStillAvailable = availableDurations.some(d => d.id === duration);
+                        if (!isDurationStillAvailable) {
+                          setDuration("2h");
+                        }
+                      }}
+                      disabled={!slot.available}
+                      className={`relative p-2 border rounded-lg text-sm font-medium text-center ${
+                        selectedTime === slot.id
+                          ? 'border-primary bg-primary/10 text-primary'
+                          : !slot.available
+                            ? 'border-primary/20 bg-primary/5 text-muted-foreground/70 cursor-not-allowed'
+                            : 'border-primary/20 hover:border-primary hover:bg-primary/5'
+                      }`}
+                      data-testid={`button-timeslot-${slot.id}`}
+                    >
+                      {slot.label}
+                      {isPopularTime && slot.available && (
+                        <span className="absolute -top-2 left-1/2 -translate-x-1/2 bg-indigo-50 text-indigo-600 text-[10px] font-medium px-1.5 py-0.5 rounded-full whitespace-nowrap">
+                          {t.neuro?.mostPopular || 'Mas popular'}
+                        </span>
+                      )}
+                    </button>
+                  );
+                })}
               </div>
             </div>
 
-            {/* Duration selector */}
-            {selectedTime && (
-              <div className="animate-in fade-in duration-200">
-                <h3 className="font-medium text-foreground mb-2 text-sm">{t.booking.duration}</h3>
-                <Select value={duration} onValueChange={(value) => { setDuration(value); trackDurationSelected(value, selectedBoat); }}>
-                  <SelectTrigger data-testid="select-duration">
-                    <SelectValue placeholder={t.booking.selectDuration} />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {getAvailableDurations(selectedTime).map((dur) => (
-                      <SelectItem key={dur.id} value={dur.id}>
-                        {dur.label} — {dur.price}€ ({Math.ceil(dur.price / boatCapacity)}€/{t.boats?.perPerson || 'pers.'})
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
-            )}
+            {/* Duration selector - visual card grid with per-hour pricing */}
+            {selectedTime && (() => {
+              const availableDurations = getAvailableDurations(selectedTime);
+              // Find the duration with the lowest per-hour price (best value)
+              const bestValueId = availableDurations.length > 0
+                ? availableDurations.reduce((best, dur) => {
+                    const bestPerHour = best.price / parseFloat(best.id);
+                    const durPerHour = dur.price / parseFloat(dur.id);
+                    return durPerHour < bestPerHour ? dur : best;
+                  }).id
+                : null;
+
+              return (
+                <div className="animate-in fade-in duration-200">
+                  <h3 className="font-medium text-foreground mb-2 text-sm">{t.booking.duration}</h3>
+                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                    {availableDurations.map((dur) => {
+                      const isSelected = duration === dur.id;
+                      const hours = parseFloat(dur.id);
+                      const perHour = dur.price / hours;
+                      const perPersonPerHour = perHour / boatCapacity;
+                      const isBestValue = dur.id === bestValueId && availableDurations.length > 1;
+                      const isPopularDuration = popularChoices && popularChoices.sampleSize > 0 && dur.id === popularChoices.popularDuration;
+
+                      return (
+                        <button
+                          key={dur.id}
+                          onClick={() => {
+                            userChangedDuration.current = true;
+                            setDuration(dur.id);
+                            trackDurationSelected(dur.id, selectedBoat);
+                          }}
+                          className={`relative p-3 border rounded-lg text-left transition-colors ${
+                            isSelected
+                              ? 'border-primary bg-primary/10'
+                              : 'border-primary/20 hover:border-primary/40'
+                          }`}
+                          data-testid={`duration-card-${dur.id}`}
+                        >
+                          <div className="flex items-baseline justify-between mb-1">
+                            <span className="font-semibold text-foreground text-sm">{dur.label}</span>
+                            <span className="font-semibold text-foreground text-sm">{dur.price}€</span>
+                          </div>
+                          <div className="text-xs text-muted-foreground">
+                            {perHour.toFixed(perHour % 1 === 0 ? 0 : 2)}€{t.neuro?.perHour || '/hora'} · {Math.ceil(perPersonPerHour)}€/{t.boats?.perPerson || 'pers.'}
+                          </div>
+                          <div className="flex gap-1 mt-1.5 flex-wrap">
+                            {isBestValue && (
+                              <span className="bg-green-50 text-green-700 text-xs font-semibold px-1.5 py-0.5 rounded-full">
+                                {t.neuro?.bestValue || 'Mejor valor'}
+                              </span>
+                            )}
+                            {isPopularDuration && (
+                              <span className="bg-indigo-50 text-indigo-600 text-xs font-medium px-1.5 py-0.5 rounded-full">
+                                {t.neuro?.mostPopular || 'Mas popular'}
+                              </span>
+                            )}
+                          </div>
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              );
+            })()}
           </CardContent>
         </Card>
       )}
@@ -253,6 +360,26 @@ export function BookingStepExperience({
               trackAddToCart(selectedBoat, boatName, price);
               trackBeginCheckout(selectedBoat, boatName, price, utm);
               trackBookingStarted(selectedBoat, boatName, utm);
+
+              // Track smart default acceptance/change
+              if (popularChoices && popularChoices.sampleSize > 0) {
+                const timeAccepted = selectedTime === popularChoices.popularTime;
+                const durationAccepted = duration === popularChoices.popularDuration;
+                if (timeAccepted && durationAccepted) {
+                  trackEvent("default_accepted", { boat_id: selectedBoat, popular_time: popularChoices.popularTime, popular_duration: popularChoices.popularDuration });
+                } else {
+                  trackEvent("default_changed", {
+                    boat_id: selectedBoat,
+                    time_changed: !timeAccepted,
+                    duration_changed: !durationAccepted,
+                    selected_time: selectedTime,
+                    selected_duration: duration,
+                    popular_time: popularChoices.popularTime,
+                    popular_duration: popularChoices.popularDuration,
+                  });
+                }
+              }
+
               setStep(2);
             }}
             className="w-full py-3"

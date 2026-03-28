@@ -1297,6 +1297,15 @@ export const fr: Translations = {
     validFirstBooking: 'Valable pour votre premi\u00e8re r\u00e9servation',
     bookNow: 'R\u00e9server avec r\u00e9duction',
     noThanks: 'Je préfère payer le prix complet',
+    quizTitle: 'Pas certain quel bateau choisir ?',
+    quizSubtitle: 'Notre quiz de 30 secondes vous aide a trouver le bateau parfait',
+    quizCta: 'Trouver mon bateau',
+    abandonedTitle: 'Votre bateau vous attend !',
+    abandonedSubtitle: 'Le {boat} est pret pour vous',
+    abandonedCta: 'Finaliser — 10% de reduction',
+    quizResultTitle: 'Excellent choix !',
+    quizResultSubtitle: 'Reservez le {boat} maintenant avec 10% de reduction',
+    quizResultCta: 'Reserver — 10% de reduction',
   },
 
   socialProof: {

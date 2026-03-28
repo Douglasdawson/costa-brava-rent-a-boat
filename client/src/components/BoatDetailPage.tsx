@@ -57,6 +57,8 @@ import { Breadcrumbs } from "./Breadcrumbs";
 import { useTranslations } from "@/lib/translations";
 import AvailabilityCalendar from "./AvailabilityCalendar";
 import AvailabilityUrgency from "./AvailabilityUrgency";
+import { LiveInterestIndicator } from "./LiveInterestIndicator";
+import { TrustBadges } from "./TrustBadges";
 import BoatReviewCarousel from "./BoatReviewCarousel";
 import { getBoatReviews, getBoatAverageRating } from "@/data/boatReviews";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
@@ -65,6 +67,7 @@ import { trackGoogleAdsRemarketing } from "@/utils/google-ads";
 import { trackMetaViewContent } from "@/utils/meta-pixel";
 import { trackViewItem } from "@/utils/analytics";
 import { useScrollDepthTracking } from "@/hooks/useScrollDepthTracking";
+import { saveLastViewedBoat } from "@/hooks/useJourneyState";
 
 // Translation map for boat data strings that come from the DB in Spanish
 const boatTextTranslations: Record<string, Record<string, string>> = {
@@ -535,6 +538,14 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
     setCurrentImageIndex(0);
   }, [boatId]);
 
+  // Track boat views for session-aware exit intent
+  useEffect(() => {
+    try {
+      const current = parseInt(sessionStorage.getItem("cbrb_boatsViewed") || "0", 10);
+      sessionStorage.setItem("cbrb_boatsViewed", String(current + 1));
+    } catch { /* sessionStorage unavailable */ }
+  }, [boatId]);
+
   // Show/hide sticky CTA based on scroll position
   const handleStickyCTAScroll = useCallback((scrollY: number) => setShowStickyCTA(scrollY > 300), []);
   useThrottledScroll(handleStickyCTAScroll);
@@ -569,6 +580,13 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
       trackMetaViewContent(boatId, boatData.name, price);
       // GA4 ecommerce view_item
       trackViewItem(boatId, boatData.name, price);
+    }
+  }, [boatData, boatId]);
+
+  // Save last viewed boat for return-visitor banner
+  useEffect(() => {
+    if (boatData) {
+      saveLastViewedBoat(boatId, boatData.name);
     }
   }, [boatData, boatId]);
 
@@ -872,6 +890,16 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
           </p>
         </div>
       )}
+
+      {/* Live interest indicator - shows when 2+ people viewing */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-2">
+        <LiveInterestIndicator boatId={boatId} />
+      </div>
+
+      {/* Trust badges — authority signals near boat info */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-2">
+        <TrustBadges t={t} />
+      </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-6 sm:pt-8 pb-6 sm:pb-8">
 

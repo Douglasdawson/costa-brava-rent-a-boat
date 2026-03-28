@@ -28,6 +28,12 @@ export function BookingModalProvider({ children }: { children: React.ReactNode }
     setSelectedBoatId(boatId);
     setPrefillData(prefill);
     setIsOpen(true);
+    // Store booking-started signal for session-aware exit intent
+    if (boatId) {
+      try {
+        sessionStorage.setItem("cbrb_bookingStarted", boatId);
+      } catch { /* sessionStorage unavailable */ }
+    }
   }, []);
 
   const closeBookingModal = useCallback(() => {

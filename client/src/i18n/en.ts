@@ -1301,6 +1301,15 @@ export const en: Translations = {
     validFirstBooking: 'Valid for your first booking',
     bookNow: 'Book with discount',
     noThanks: 'I prefer to pay full price',
+    quizTitle: 'Not sure which boat?',
+    quizSubtitle: 'Take our 30-second quiz to find your perfect boat',
+    quizCta: 'Find my boat',
+    abandonedTitle: 'Your boat is waiting!',
+    abandonedSubtitle: '{boat} is ready for you',
+    abandonedCta: 'Complete booking — 10% off',
+    quizResultTitle: 'Great choice!',
+    quizResultSubtitle: 'Book {boat} now with 10% off',
+    quizResultCta: 'Book now — 10% off',
   },
 
   socialProof: {

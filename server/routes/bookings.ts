@@ -3,7 +3,7 @@ import { z } from "zod";
 import { storage } from "../storage";
 import { db } from "../db";
 import { bookings } from "@shared/schema";
-import { eq } from "drizzle-orm";
+import { eq, and, gte, sql, ne } from "drizzle-orm";
 import { requireAdminSession } from "./auth";
 import { sendCancelationEmail } from "../services";
 import { getStripe } from "./payments";
@@ -47,6 +47,68 @@ function getMadridHour(date: Date): number {
 }
 
 export function registerBookingRoutes(app: Express) {
+  // Popular choices for a boat (last 30 days) — used by smart defaults in booking flow
+  app.get("/api/boats/:id/popular-choices", async (req, res) => {
+    try {
+      const boatId = req.params.id;
+      const thirtyDaysAgo = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000);
+
+      const rows = await db
+        .select({
+          startHour: sql<string>`to_char(${bookings.startTime} AT TIME ZONE 'Europe/Madrid', 'HH24:00')`,
+          totalHours: bookings.totalHours,
+        })
+        .from(bookings)
+        .where(
+          and(
+            eq(bookings.boatId, boatId),
+            gte(bookings.startTime, thirtyDaysAgo),
+            ne(bookings.bookingStatus, "hold"),
+            ne(bookings.bookingStatus, "cancelled"),
+          ),
+        );
+
+      if (rows.length === 0) {
+        return res.json({ popularTime: "10:00", popularDuration: "2h", sampleSize: 0 });
+      }
+
+      // Find most frequent start hour
+      const timeCounts: Record<string, number> = {};
+      for (const row of rows) {
+        const t = row.startHour;
+        timeCounts[t] = (timeCounts[t] || 0) + 1;
+      }
+      let popularTime = "10:00";
+      let maxTimeCount = 0;
+      for (const time of Object.keys(timeCounts)) {
+        if (timeCounts[time] > maxTimeCount) {
+          maxTimeCount = timeCounts[time];
+          popularTime = time;
+        }
+      }
+
+      // Find most frequent duration
+      const durationCounts: Record<string, number> = {};
+      for (const row of rows) {
+        const d = `${row.totalHours}h`;
+        durationCounts[d] = (durationCounts[d] || 0) + 1;
+      }
+      let popularDuration = "2h";
+      let maxDurCount = 0;
+      for (const dur of Object.keys(durationCounts)) {
+        if (durationCounts[dur] > maxDurCount) {
+          maxDurCount = durationCounts[dur];
+          popularDuration = dur;
+        }
+      }
+
+      res.json({ popularTime, popularDuration, sampleSize: rows.length });
+    } catch (error: unknown) {
+      logger.error("[Bookings] Error fetching popular choices", { error: error instanceof Error ? error.message : String(error) });
+      res.json({ popularTime: "10:00", popularDuration: "2h", sampleSize: 0 });
+    }
+  });
+
   // Get bookings by date (admin only) — must be registered before :id to avoid "date" matching as an ID
   app.get("/api/bookings/date/:date", requireAdminSession, async (req, res) => {
     try {

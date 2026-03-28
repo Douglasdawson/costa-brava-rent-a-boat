@@ -1297,6 +1297,15 @@ export const ca: Translations = {
     validFirstBooking: 'V\u00e0lid per a la teva primera reserva',
     bookNow: 'Reservar amb descompte',
     noThanks: 'Prefereixo pagar el preu complet',
+    quizTitle: 'No saps quin vaixell triar?',
+    quizSubtitle: 'El nostre quiz de 30 segons et ajuda a trobar el vaixell perfecte',
+    quizCta: 'Trobar el meu vaixell',
+    abandonedTitle: 'El teu vaixell t\'espera!',
+    abandonedSubtitle: 'El {boat} esta llest per a tu',
+    abandonedCta: 'Completar reserva — 10% dte.',
+    quizResultTitle: 'Gran eleccio!',
+    quizResultSubtitle: 'Reserva el {boat} ara amb un 10% de descompte',
+    quizResultCta: 'Reservar ara — 10% dte.',
   },
 
   socialProof: {

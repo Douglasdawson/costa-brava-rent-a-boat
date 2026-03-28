@@ -10,6 +10,20 @@ interface RecentActivity {
   boatName: string;
   numberOfPeople: number;
   createdAt: string;
+  country: string;
+}
+
+const COUNTRY_FLAGS: Record<string, string> = {
+  ES: "\u{1F1EA}\u{1F1F8}", FR: "\u{1F1EB}\u{1F1F7}", DE: "\u{1F1E9}\u{1F1EA}",
+  GB: "\u{1F1EC}\u{1F1E7}", UK: "\u{1F1EC}\u{1F1E7}", IT: "\u{1F1EE}\u{1F1F9}",
+  NL: "\u{1F1F3}\u{1F1F1}", PT: "\u{1F1F5}\u{1F1F9}", BE: "\u{1F1E7}\u{1F1EA}",
+  CH: "\u{1F1E8}\u{1F1ED}", US: "\u{1F1FA}\u{1F1F8}", RU: "\u{1F1F7}\u{1F1FA}",
+};
+
+function getFlag(country: string): string {
+  if (!country) return "";
+  const code = country.toUpperCase().trim();
+  return COUNTRY_FLAGS[code] || "";
 }
 
 const HIDDEN_PATHS = ["/admin", "/crm", "/reservar"];
@@ -164,7 +178,8 @@ export function SocialProofToast() {
   if (!activity) return null;
 
   const toast = t.socialProofToast;
-  const bookedText = toast?.booked || "Nueva reserva";
+  const flag = getFlag(activity.country);
+  const bookedText = flag ? `${flag} Reservó` : (toast?.booked || "Nueva reserva");
   const forPeopleText = toast?.forPeople?.replace("{n}", String(activity.numberOfPeople)) || `para ${activity.numberOfPeople} personas`;
   const timeAgoText = formatTimeAgo(activity.createdAt, t);
 

@@ -81,6 +81,7 @@ export function registerBoatRoutes(app: Express) {
           boatName: boats.name,
           numberOfPeople: bookings.numberOfPeople,
           createdAt: bookings.createdAt,
+          country: bookings.customerNationality,
         })
         .from(bookings)
         .innerJoin(boats, eq(bookings.boatId, boats.id))

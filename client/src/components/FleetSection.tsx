@@ -3,6 +3,8 @@ import { useQuery } from "@tanstack/react-query";
 import { useVirtualizer } from "@tanstack/react-virtual";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import BoatCard from "./BoatCard";
+import { Skeleton } from "@/components/ui/skeleton";
+import { Card, CardContent } from "@/components/ui/card";
 import { openWhatsApp } from "@/utils/whatsapp";
 import { useLocation } from "wouter";
 import { getBoatImage, getBoatImageSrcSet } from "@/utils/boatImages";
@@ -22,6 +24,44 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+
+/** Skeleton that mirrors BoatCard layout: image 4/3 + content + buttons */
+function BoatCardSkeleton() {
+  return (
+    <Card className="overflow-hidden">
+      <div className="relative w-full aspect-[4/3] bg-muted">
+        <Skeleton className="w-full h-full rounded-none" />
+        <div className="absolute top-3 left-3">
+          <Skeleton className="h-6 w-24 rounded-full" />
+        </div>
+      </div>
+      <CardContent className="p-3 sm:p-4">
+        <div className="flex items-start justify-between mb-2">
+          <div className="flex-1 mr-2">
+            <Skeleton className="h-5 w-32 mb-1.5" />
+            <Skeleton className="h-3 w-24" />
+          </div>
+          <div className="text-right space-y-1">
+            <Skeleton className="h-3 w-12 ml-auto" />
+            <Skeleton className="h-5 w-16 ml-auto" />
+            <Skeleton className="h-3 w-20 ml-auto" />
+          </div>
+        </div>
+        <Skeleton className="h-4 w-full mb-1" />
+        <Skeleton className="h-4 w-3/4 mb-3" />
+        <Skeleton className="h-3 w-2/3 mb-2" />
+        <div className="flex gap-1.5 mb-3">
+          <Skeleton className="h-5 w-16 rounded-full" />
+          <Skeleton className="h-5 w-20 rounded-full" />
+        </div>
+      </CardContent>
+      <div className="px-3 sm:px-4 pb-3 sm:pb-4 flex items-center justify-between gap-2">
+        <Skeleton className="h-4 w-24" />
+        <Skeleton className="h-8 w-20 rounded-full" />
+      </div>
+    </Card>
+  );
+}
 
 /** All possible group size filter buckets */
 const ALL_GROUP_SIZE_OPTIONS = [
@@ -478,15 +518,8 @@ function FleetSection() {
           <>
             {isLoading ? (
               <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 mb-6 sm:mb-8 lg:mb-12">
-                {Array.from({ length: 3 }).map((_, i) => (
-                  <div key={i} className="rounded-xl border border-primary/10 overflow-hidden animate-pulse">
-                    <div className="h-48 bg-muted" />
-                    <div className="p-4 space-y-3">
-                      <div className="h-5 bg-muted rounded w-3/4" />
-                      <div className="h-4 bg-muted rounded w-1/2" />
-                      <div className="h-8 bg-muted rounded w-full" />
-                    </div>
-                  </div>
+                {Array.from({ length: 6 }).map((_, i) => (
+                  <BoatCardSkeleton key={i} />
                 ))}
               </div>
             ) : sortedBoats.length > VIRTUALIZATION_THRESHOLD ? (
@@ -541,6 +574,38 @@ function FleetSection() {
               </div>
             )}
           </>
+        )}
+
+        {/* Comparison table view — skeleton */}
+        {viewMode === 'table' && isLoading && (
+          <div className="mb-6 sm:mb-8 lg:mb-12 overflow-x-auto -mx-3 sm:-mx-4 px-3 sm:px-4">
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead className="min-w-[100px]"><Skeleton className="h-4 w-16" /></TableHead>
+                  {Array.from({ length: 4 }).map((_, i) => (
+                    <TableHead key={i} className="min-w-[160px] text-center"><Skeleton className="h-4 w-24 mx-auto" /></TableHead>
+                  ))}
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {Array.from({ length: 6 }).map((_, row) => (
+                  <TableRow key={row}>
+                    <TableCell><Skeleton className="h-4 w-20" /></TableCell>
+                    {Array.from({ length: 4 }).map((_, col) => (
+                      <TableCell key={col} className="text-center">
+                        {row === 0 ? (
+                          <Skeleton className="w-32 h-20 rounded-lg mx-auto" />
+                        ) : (
+                          <Skeleton className="h-4 w-16 mx-auto" />
+                        )}
+                      </TableCell>
+                    ))}
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </div>
         )}
 
         {/* Comparison table view */}

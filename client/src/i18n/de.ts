@@ -20,9 +20,11 @@ export const de: Translations = {
     subtitleMobile: 'Geheime Buchten der Costa Brava. Ohne Erfahrung.',
     priceBadge: 'Ab 70€',
     fuelBadge: 'Benzin inklusive',
+    pricePerPerson: 'Ab 14€ pro Person/Stunde',
+    pricePerPersonDetail: 'Ganzes Boot ab 70€/h für bis zu 5 Personen',
     bookNow: 'Verfügbarkeit prüfen',
-    findYourBoat: 'Finde dein Boot',
-    viewFleet: 'Boote ansehen',
+    findYourBoat: 'Buchen ab 14€/Person',
+    viewFleet: 'Alle 9 Boote ansehen',
     trustText: 'Ohne Verpflichtung • Transparente Preise',
     whatsappContact: 'WhatsApp +34 611 500 372',
     location: 'Standort',
@@ -1290,7 +1292,7 @@ export const de: Translations = {
     useCode: 'Code verwenden',
     validFirstBooking: 'G\u00fcltig f\u00fcr Ihre erste Buchung',
     bookNow: 'Mit Rabatt buchen',
-    noThanks: 'Nein, danke',
+    noThanks: 'Ich zahle lieber den vollen Preis',
   },
 
   socialProof: {

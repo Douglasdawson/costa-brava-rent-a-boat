@@ -20,9 +20,11 @@ export const it: Translations = {
     subtitleMobile: 'Calette segrete della Costa Brava. Senza esperienza.',
     priceBadge: 'Da 70€',
     fuelBadge: 'Carburante incluso',
+    pricePerPerson: 'Da 14€ a persona/ora',
+    pricePerPersonDetail: 'Barca completa da 70€/h per max 5 persone',
     bookNow: 'Verifica Disponibilità',
-    findYourBoat: 'Trova la tua barca',
-    viewFleet: 'Vedi le Barche',
+    findYourBoat: 'Prenota da 14€/persona',
+    viewFleet: 'Vedi tutte le 9 barche',
     trustText: 'Senza impegno • Prezzi trasparenti',
     whatsappContact: 'WhatsApp +34 611 500 372',
     location: 'Posizione',
@@ -1285,12 +1287,12 @@ export const it: Translations = {
     ctaWhatsApp: 'Chiedi su WhatsApp',
   },
   exitIntent: {
-    title: 'Aspetta! Abbiamo qualcosa per te',
+    title: '10% di sconto sulla tua prima prenotazione',
     subtitle: 'Prenota ora e ottieni il 10% di sconto sulla tua prima esperienza nautica sulla Costa Brava',
     useCode: 'Usa il codice',
     validFirstBooking: 'Valido per la tua prima prenotazione',
     bookNow: 'Prenota con sconto',
-    noThanks: 'No, grazie',
+    noThanks: 'Preferisco pagare il prezzo intero',
   },
 
   socialProof: {

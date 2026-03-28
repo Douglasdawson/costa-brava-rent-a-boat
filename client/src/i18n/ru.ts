@@ -20,9 +20,11 @@ export const ru: Translations = {
     subtitleMobile: 'Секретные бухты Коста-Бравы. Без опыта.',
     priceBadge: 'От 70€',
     fuelBadge: 'Топливо включено',
+    pricePerPerson: 'От 14€ с человека/час',
+    pricePerPersonDetail: 'Полная лодка от 70€/ч на 5 человек',
     bookNow: 'Проверить наличие',
-    findYourBoat: 'Найди свою лодку',
-    viewFleet: 'Посмотреть лодки',
+    findYourBoat: 'Бронировать от 14€/чел.',
+    viewFleet: 'Все 9 лодок',
     trustText: 'Без обязательств • Прозрачные цены',
     whatsappContact: 'WhatsApp +34 611 500 372',
     location: 'Местоположение',
@@ -1285,12 +1287,12 @@ export const ru: Translations = {
     ctaWhatsApp: 'Спросить в WhatsApp',
   },
   exitIntent: {
-    title: 'Подождите! У нас есть кое-что для вас',
+    title: '10% скидка на первое бронирование',
     subtitle: 'Забронируйте сейчас и получите скидку 10% на ваш первый морской опыт на Коста-Брава',
     useCode: 'Используйте код',
     validFirstBooking: 'Действителен для первого бронирования',
     bookNow: 'Забронировать со скидкой',
-    noThanks: 'Нет, спасибо',
+    noThanks: 'Предпочитаю полную цену',
   },
 
   socialProof: {

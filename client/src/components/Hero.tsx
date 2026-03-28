@@ -74,10 +74,15 @@ export default function Hero() {
             {/* Separator - desktop only */}
             <div className="hidden sm:block w-16 h-px bg-white/40 mb-5 lg:w-24" />
 
-            {/* Price callout */}
-            <p className="font-medium text-white/90 text-sm sm:text-base lg:text-lg mb-0 sm:mb-4 drop-shadow-[0_1px_4px_rgba(0,0,0,0.35)]">
-              {t.hero.priceBadge} &middot; {t.hero.fuelBadge}
-            </p>
+            {/* Price callout — per-person framing for higher conversion */}
+            <div className="mb-0 sm:mb-4 drop-shadow-[0_1px_4px_rgba(0,0,0,0.35)]">
+              <p className="font-semibold text-white text-base sm:text-lg lg:text-xl">
+                {t.hero.pricePerPerson} &middot; {t.hero.fuelBadge}
+              </p>
+              <p className="text-white/75 text-xs sm:text-sm mt-0.5">
+                {t.hero.pricePerPersonDetail}
+              </p>
+            </div>
 
           </div>
         </div>

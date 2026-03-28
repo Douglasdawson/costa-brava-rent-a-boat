@@ -20,9 +20,11 @@ export const en: Translations = {
     subtitleMobile: 'Secret Costa Brava coves. No experience needed.',
     priceBadge: 'From €70',
     fuelBadge: 'Fuel included',
+    pricePerPerson: 'From €14 per person/hour',
+    pricePerPersonDetail: 'Full boat from €70/h for up to 5 people',
     bookNow: 'Check Availability',
-    findYourBoat: 'Find your boat',
-    viewFleet: 'View Boats',
+    findYourBoat: 'Book from €14/person',
+    viewFleet: 'See all 9 boats',
     trustText: 'No commitment • Instant confirmation • Transparent prices',
     whatsappContact: 'WhatsApp +34 611 500 372',
     location: 'Location',
@@ -1289,12 +1291,12 @@ export const en: Translations = {
     ctaWhatsApp: 'Ask on WhatsApp',
   },
   exitIntent: {
-    title: 'Wait! We have something for you',
+    title: '10% off your first booking',
     subtitle: 'Book now and get 10% off your first nautical experience on the Costa Brava',
     useCode: 'Use code',
     validFirstBooking: 'Valid for your first booking',
     bookNow: 'Book with discount',
-    noThanks: 'No, thanks',
+    noThanks: 'I prefer to pay full price',
   },
 
   socialProof: {

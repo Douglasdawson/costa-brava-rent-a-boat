@@ -20,9 +20,11 @@ export const es: Translations = {
     subtitleMobile: 'Barcos sin licencia en Costa Brava. Sin experiencia necesaria.',
     priceBadge: 'Desde 70€',
     fuelBadge: 'Gasolina incluida',
+    pricePerPerson: 'Desde 14€ por persona/hora',
+    pricePerPersonDetail: 'Barco completo desde 70€/h para hasta 5 personas',
     bookNow: 'Reservar',
-    findYourBoat: 'Encuentra tu barco',
-    viewFleet: 'Ver Barcos',
+    findYourBoat: 'Reservar desde 14€/persona',
+    viewFleet: 'Ver los 9 barcos',
     trustText: 'Sin compromiso • Precios transparentes',
     whatsappContact: 'WhatsApp +34 611 500 372',
     location: 'Ubicación',
@@ -1304,12 +1306,12 @@ export const es: Translations = {
     ctaWhatsApp: 'Preguntar por WhatsApp',
   },
   exitIntent: {
-    title: '¡Espera! Tenemos algo para ti',
+    title: '10% de descuento en tu primera reserva',
     subtitle: 'Reserva ahora y obtén un 10% de descuento en tu primera experiencia náutica en la Costa Brava',
     useCode: 'Usa el código',
     validFirstBooking: 'Válido para tu primera reserva',
     bookNow: 'Reservar con descuento',
-    noThanks: 'No, gracias',
+    noThanks: 'Prefiero pagar precio completo',
   },
 
   socialProof: {

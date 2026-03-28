@@ -20,9 +20,11 @@ export const fr: Translations = {
     subtitleMobile: 'Criques secrètes de la Costa Brava. Sans expérience requise.',
     priceBadge: 'Dès 70€',
     fuelBadge: 'Carburant inclus',
+    pricePerPerson: 'Dès 14€ par personne/heure',
+    pricePerPersonDetail: 'Bateau complet dès 70€/h pour 5 personnes',
     bookNow: 'Voir Disponibilités',
-    findYourBoat: 'Trouve ton bateau',
-    viewFleet: 'Voir les Bateaux',
+    findYourBoat: 'Réserver dès 14€/personne',
+    viewFleet: 'Voir les 9 bateaux',
     trustText: 'Sans engagement • Confirmation immédiate • Prix transparents',
     whatsappContact: 'WhatsApp +34 611 500 372',
     location: 'Emplacement',
@@ -1285,12 +1287,12 @@ export const fr: Translations = {
     ctaWhatsApp: 'Demander sur WhatsApp',
   },
   exitIntent: {
-    title: 'Attendez ! Nous avons quelque chose pour vous',
+    title: '10% de réduction sur votre première réservation',
     subtitle: 'R\u00e9servez maintenant et obtenez 10% de r\u00e9duction sur votre premi\u00e8re exp\u00e9rience nautique sur la Costa Brava',
     useCode: 'Utilisez le code',
     validFirstBooking: 'Valable pour votre premi\u00e8re r\u00e9servation',
     bookNow: 'R\u00e9server avec r\u00e9duction',
-    noThanks: 'Non, merci',
+    noThanks: 'Je préfère payer le prix complet',
   },
 
   socialProof: {

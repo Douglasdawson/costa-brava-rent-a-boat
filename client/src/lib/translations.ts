@@ -24,6 +24,8 @@ export interface Translations {
     subtitleMobile: string;
     priceBadge: string;
     fuelBadge: string;
+    pricePerPerson: string;
+    pricePerPersonDetail: string;
     bookNow: string;
     findYourBoat: string;
     viewFleet: string;

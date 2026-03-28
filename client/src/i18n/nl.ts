@@ -20,9 +20,11 @@ export const nl: Translations = {
     subtitleMobile: 'Geheime baaien van de Costa Brava. Geen ervaring nodig.',
     priceBadge: 'Vanaf €70',
     fuelBadge: 'Brandstof inbegrepen',
+    pricePerPerson: 'Vanaf €14 per persoon/uur',
+    pricePerPersonDetail: 'Complete boot vanaf €70/u voor max 5 personen',
     bookNow: 'Beschikbaarheid bekijken',
-    findYourBoat: 'Vind je boot',
-    viewFleet: 'Boten bekijken',
+    findYourBoat: 'Boek vanaf €14/persoon',
+    viewFleet: 'Bekijk alle 9 boten',
     trustText: 'Geen verplichtingen • Transparante prijzen',
     whatsappContact: 'WhatsApp +34 611 500 372',
     location: 'Locatie',
@@ -1285,12 +1287,12 @@ export const nl: Translations = {
     ctaWhatsApp: 'Vraag via WhatsApp',
   },
   exitIntent: {
-    title: 'Wacht! We hebben iets voor je',
+    title: '10% korting op je eerste boeking',
     subtitle: 'Boek nu en krijg 10% korting op je eerste nautische ervaring aan de Costa Brava',
     useCode: 'Gebruik code',
     validFirstBooking: 'Geldig voor je eerste boeking',
     bookNow: 'Boek met korting',
-    noThanks: 'Nee, bedankt',
+    noThanks: 'Ik betaal liever de volle prijs',
   },
 
   socialProof: {

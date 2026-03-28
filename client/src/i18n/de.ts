@@ -1287,7 +1287,7 @@ export const de: Translations = {
     ctaWhatsApp: 'Auf WhatsApp fragen',
   },
   exitIntent: {
-    title: 'Warten Sie! Wir haben etwas f\u00fcr Sie',
+    title: '10% Rabatt auf Ihre erste Buchung',
     subtitle: 'Buchen Sie jetzt und erhalten Sie 10% Rabatt auf Ihr erstes nautisches Erlebnis an der Costa Brava',
     useCode: 'Code verwenden',
     validFirstBooking: 'G\u00fcltig f\u00fcr Ihre erste Buchung',

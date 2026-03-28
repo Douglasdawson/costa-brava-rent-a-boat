@@ -1292,7 +1292,7 @@ export const ca: Translations = {
     useCode: 'Utilitza el codi',
     validFirstBooking: 'V\u00e0lid per a la teva primera reserva',
     bookNow: 'Reservar amb descompte',
-    noThanks: 'No, gr\u00e0cies',
+    noThanks: 'Prefereixo pagar el preu complet',
   },
 
   socialProof: {

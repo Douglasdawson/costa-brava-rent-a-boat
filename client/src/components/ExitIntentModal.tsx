@@ -82,7 +82,7 @@ export function ExitIntentModal() {
       // Extra safety: re-check nav and any blocking UI at fire time
       if (isMobileNavOpen() || isAnyModalOpen()) return;
       tryShow();
-    }, 50000);
+    }, 90000);
 
     return () => clearTimeout(timer);
   }, [tryShow]);

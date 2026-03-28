@@ -1313,7 +1313,7 @@ export const it: Translations = {
     licenseFeature1: 'Barche potenti fino a {maxHP}CV',
     licenseFeature2: 'Maggiore autonomia e raggio di navigazione',
     licenseFeature3: 'Accesso a calette remote della Costa Brava',
-    licenseFeature4: 'Benzina inclusa nel prezzo',
+    licenseFeature4: 'Benzina non inclusa nel prezzo',
     fromPrice: 'Da',
     compare: 'Confronta barche',
     tableCapacity: 'Capacità',

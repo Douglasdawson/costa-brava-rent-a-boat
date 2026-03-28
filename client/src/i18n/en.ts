@@ -1317,7 +1317,7 @@ export const en: Translations = {
     licenseFeature1: 'Powerful boats up to {maxHP}HP',
     licenseFeature2: 'Greater autonomy and navigation range',
     licenseFeature3: 'Access to remote Costa Brava coves',
-    licenseFeature4: 'Fuel included in the price',
+    licenseFeature4: 'Fuel not included in the price',
     fromPrice: 'From',
     compare: 'Compare boats',
     tableCapacity: 'Capacity',

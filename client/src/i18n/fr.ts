@@ -1313,7 +1313,7 @@ export const fr: Translations = {
     licenseFeature1: 'Bateaux puissants jusqu\'à {maxHP}CV',
     licenseFeature2: 'Plus grande autonomie et rayon de navigation',
     licenseFeature3: 'Accès aux criques isolées de la Costa Brava',
-    licenseFeature4: 'Essence incluse dans le prix',
+    licenseFeature4: 'Essence non incluse dans le prix',
     fromPrice: 'À partir de',
     compare: 'Comparer les bateaux',
     tableCapacity: 'Capacité',

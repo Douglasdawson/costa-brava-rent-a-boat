@@ -1313,7 +1313,7 @@ export const ca: Translations = {
     licenseFeature1: 'Barques potents de fins a {maxHP}CV',
     licenseFeature2: 'Major autonomia i abast de navegaci\u00f3',
     licenseFeature3: 'Acc\u00e9s a cales remotes de la Costa Brava',
-    licenseFeature4: 'Gasolina inclosa en el preu',
+    licenseFeature4: 'Gasolina no inclosa en el preu',
     fromPrice: 'Des de',
     compare: 'Comparar barcos',
     tableCapacity: 'Capacitat',

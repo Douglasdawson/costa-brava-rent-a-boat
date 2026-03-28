@@ -1313,7 +1313,7 @@ export const ru: Translations = {
     licenseFeature1: 'Мощные лодки до {maxHP} л.с.',
     licenseFeature2: 'Большая автономность и дальность плавания',
     licenseFeature3: 'Доступ к удаленным бухтам Коста-Бравы',
-    licenseFeature4: 'Бензин включен в стоимость',
+    licenseFeature4: 'Бензин не включен в стоимость',
     fromPrice: 'От',
     compare: 'Сравнить лодки',
     tableCapacity: 'Вместимость',

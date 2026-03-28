@@ -1313,7 +1313,7 @@ export const nl: Translations = {
     licenseFeature1: 'Krachtige boten tot {maxHP}PK',
     licenseFeature2: 'Grotere autonomie en vaarbereik',
     licenseFeature3: 'Toegang tot afgelegen baaien van de Costa Brava',
-    licenseFeature4: 'Brandstof inbegrepen in de prijs',
+    licenseFeature4: 'Brandstof niet inbegrepen in de prijs',
     fromPrice: 'Vanaf',
     compare: 'Boten vergelijken',
     tableCapacity: 'Capaciteit',

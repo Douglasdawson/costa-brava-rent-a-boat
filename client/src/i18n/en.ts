@@ -33,6 +33,9 @@ export const en: Translations = {
     freeCancellation: 'Free cancellation 48h',
     instantConfirmation: 'Instant confirmation',
     marqueeText: 'Boat Rental in Blanes | With and Without License | Fuel Included | From \u20AC70/h',
+    askWhatsApp: 'Ask us on WhatsApp',
+    testimonialQuote: 'Amazing experience, we will definitely come back',
+    testimonialQuoteShort: 'We will be back',
   },
 
   fleet: {
@@ -1330,6 +1333,8 @@ export const en: Translations = {
     tableFuelIncluded: 'Fuel included',
     tableYes: 'Yes',
     tableNo: 'No',
+    viewBoats: 'View boats',
+    viewAll: 'View all',
   },
 
   socialProofToast: {

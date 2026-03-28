@@ -33,6 +33,9 @@ export const nl: Translations = {
     freeCancellation: 'Gratis annulering 48h',
     instantConfirmation: 'Directe bevestiging',
     marqueeText: 'Bootverhuur in Blanes | Met en Zonder Vaarbewijs | Brandstof Inbegrepen | Vanaf \u20AC70/u',
+    askWhatsApp: 'Vraag ons via WhatsApp',
+    testimonialQuote: 'Ongelooflijke ervaring, we komen terug',
+    testimonialQuoteShort: 'We komen terug',
   },
 
   fleet: {
@@ -1326,6 +1329,8 @@ export const nl: Translations = {
     tableFuelIncluded: 'Brandstof inbegrepen',
     tableYes: 'Ja',
     tableNo: 'Nee',
+    viewBoats: 'Boten bekijken',
+    viewAll: 'Alles bekijken',
   },
 
   socialProofToast: {

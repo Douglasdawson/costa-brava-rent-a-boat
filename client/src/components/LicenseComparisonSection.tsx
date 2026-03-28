@@ -94,11 +94,11 @@ export default function LicenseComparisonSection() {
                   onClick={() => scrollToFleetWithFilter('no')}
                   className="rounded-full text-xs"
                 >
-                  {'Ver barcos'}
+                  {t.comparison.viewBoats}
                 </Button>
                 <Link href={localizedPath("categoryLicenseFree")}>
                   <Button size="sm" variant="ghost" className="rounded-full text-xs text-muted-foreground hover:text-foreground">
-                    {'Ver todos'}
+                    {t.comparison.viewAll}
                   </Button>
                 </Link>
               </div>
@@ -140,11 +140,11 @@ export default function LicenseComparisonSection() {
                   onClick={() => scrollToFleetWithFilter('yes')}
                   className="rounded-full text-xs"
                 >
-                  {'Ver barcos'}
+                  {t.comparison.viewBoats}
                 </Button>
                 <Link href={localizedPath("categoryLicensed")}>
                   <Button size="sm" variant="ghost" className="rounded-full text-xs text-muted-foreground hover:text-foreground">
-                    {'Ver todos'}
+                    {t.comparison.viewAll}
                   </Button>
                 </Link>
               </div>

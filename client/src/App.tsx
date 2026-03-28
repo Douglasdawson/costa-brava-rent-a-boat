@@ -5,6 +5,7 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { LanguageProvider, useLanguage } from "@/hooks/use-language";
+import { useTranslations } from "@/lib/translations";
 import type { Language } from "@/hooks/use-language";
 import { BookingModalProvider } from "@/hooks/useBookingModal";
 import { useUtmCapture } from "@/hooks/useUtmCapture";
@@ -139,6 +140,7 @@ class ErrorBoundary extends Component<{ children: React.ReactNode }, { hasError:
 }
 
 function HomePage() {
+  const t = useTranslations();
   usePrefetchCriticalRoutes();
 
   return (
@@ -157,10 +159,10 @@ function HomePage() {
               4.8/5
             </span>
             <span className="text-border">|</span>
-            <span>5000+ clientes</span>
+            <span>{t.hero.clients}</span>
             <span className="text-border">|</span>
-            <span className="hidden sm:inline">&ldquo;Experiencia increíble, repetiremos seguro&rdquo;</span>
-            <span className="sm:hidden">&ldquo;Repetiremos seguro&rdquo;</span>
+            <span className="hidden sm:inline">&ldquo;{t.hero.testimonialQuote}&rdquo;</span>
+            <span className="sm:hidden">&ldquo;{t.hero.testimonialQuoteShort}&rdquo;</span>
           </div>
         </div>
         <Suspense fallback={<div className="min-h-[400px] below-fold" />}>

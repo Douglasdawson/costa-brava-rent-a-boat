@@ -33,6 +33,9 @@ export const de: Translations = {
     freeCancellation: 'Kostenlose Stornierung 48h',
     instantConfirmation: 'Sofortige Bestätigung',
     marqueeText: 'Bootsverleih in Blanes | Mit und Ohne Führerschein | Treibstoff Inklusive | Ab 70\u20AC/Std',
+    askWhatsApp: 'Fragen Sie uns per WhatsApp',
+    testimonialQuote: 'Unglaubliche Erfahrung, wir kommen wieder',
+    testimonialQuoteShort: 'Wir kommen wieder',
   },
 
   fleet: {
@@ -1326,6 +1329,8 @@ export const de: Translations = {
     tableFuelIncluded: 'Treibstoff inklusive',
     tableYes: 'Ja',
     tableNo: 'Nein',
+    viewBoats: 'Boote ansehen',
+    viewAll: 'Alle ansehen',
   },
 
   socialProofToast: {

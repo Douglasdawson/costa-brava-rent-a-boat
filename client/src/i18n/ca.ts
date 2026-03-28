@@ -33,6 +33,9 @@ export const ca: Translations = {
     freeCancellation: "Cancel·lació gratuïta 48h",
     instantConfirmation: 'Confirmació immediata',
     marqueeText: 'Lloguer de Vaixells a Blanes | Amb i Sense Llicència | Gasolina Inclosa | Des de 70\u20AC/h',
+    askWhatsApp: "Pregunta'ns per WhatsApp",
+    testimonialQuote: 'Experi\u00E8ncia incre\u00EFble, repetirem segur',
+    testimonialQuoteShort: 'Repetirem segur',
   },
 
   fleet: {
@@ -1326,6 +1329,8 @@ export const ca: Translations = {
     tableFuelIncluded: 'Benzina inclosa',
     tableYes: 'Sí',
     tableNo: 'No',
+    viewBoats: 'Veure vaixells',
+    viewAll: 'Veure tots',
   },
 
   socialProofToast: {

@@ -33,6 +33,9 @@ export const ru: Translations = {
     freeCancellation: 'Бесплатная отмена 48ч',
     instantConfirmation: 'Мгновенное подтверждение',
     marqueeText: 'Аренда лодок в Бланесе | С лицензией и без | Топливо включено | От 70\u20AC/ч',
+    askWhatsApp: 'Спросите нас в WhatsApp',
+    testimonialQuote: 'Невероятный опыт, обязательно вернёмся',
+    testimonialQuoteShort: 'Обязательно вернёмся',
   },
 
   fleet: {
@@ -1326,6 +1329,8 @@ export const ru: Translations = {
     tableFuelIncluded: 'Топливо включено',
     tableYes: 'Да',
     tableNo: 'Нет',
+    viewBoats: 'Посмотреть лодки',
+    viewAll: 'Посмотреть все',
   },
 
   socialProofToast: {

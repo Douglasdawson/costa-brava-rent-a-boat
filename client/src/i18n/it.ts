@@ -33,6 +33,9 @@ export const it: Translations = {
     freeCancellation: 'Cancellazione gratuita 48h',
     instantConfirmation: 'Conferma immediata',
     marqueeText: 'Noleggio Barche a Blanes | Con e Senza Patente | Carburante Incluso | Da 70\u20AC/ora',
+    askWhatsApp: 'Chiedici su WhatsApp',
+    testimonialQuote: 'Esperienza incredibile, torneremo sicuramente',
+    testimonialQuoteShort: 'Torneremo sicuramente',
   },
 
   fleet: {
@@ -1326,6 +1329,8 @@ export const it: Translations = {
     tableFuelIncluded: 'Carburante incluso',
     tableYes: 'Sì',
     tableNo: 'No',
+    viewBoats: 'Vedi barche',
+    viewAll: 'Vedi tutti',
   },
 
   socialProofToast: {

@@ -33,6 +33,9 @@ export const fr: Translations = {
     freeCancellation: 'Annulation gratuite 48h',
     instantConfirmation: 'Confirmation immédiate',
     marqueeText: 'Location de Bateaux à Blanes | Avec et Sans Permis | Carburant Inclus | Dès 70\u20AC/h',
+    askWhatsApp: 'Demandez-nous sur WhatsApp',
+    testimonialQuote: 'Exp\u00E9rience incroyable, nous reviendrons',
+    testimonialQuoteShort: 'Nous reviendrons',
   },
 
   fleet: {
@@ -1326,6 +1329,8 @@ export const fr: Translations = {
     tableFuelIncluded: 'Carburant inclus',
     tableYes: 'Oui',
     tableNo: 'Non',
+    viewBoats: 'Voir les bateaux',
+    viewAll: 'Voir tous',
   },
 
   socialProofToast: {

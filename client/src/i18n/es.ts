@@ -33,6 +33,9 @@ export const es: Translations = {
     freeCancellation: 'Cancelación gratuita 48h',
     instantConfirmation: 'Confirmación inmediata',
     marqueeText: 'Alquiler de Barcos en Blanes | Con y Sin Licencia | Gasolina Incluida | Desde 70\u20AC/h',
+    askWhatsApp: 'Preg\u00FAntanos por WhatsApp',
+    testimonialQuote: 'Experiencia incre\u00EDble, repetiremos seguro',
+    testimonialQuoteShort: 'Repetiremos seguro',
   },
 
   fleet: {
@@ -1345,6 +1348,8 @@ export const es: Translations = {
     tableFuelIncluded: 'Gasolina incluida',
     tableYes: 'Sí',
     tableNo: 'No',
+    viewBoats: 'Ver barcos',
+    viewAll: 'Ver todos',
   },
 
   socialProofToast: {

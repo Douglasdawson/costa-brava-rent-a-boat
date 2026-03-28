@@ -37,6 +37,9 @@ export interface Translations {
     freeCancellation: string;
     instantConfirmation: string;
     marqueeText: string;
+    askWhatsApp: string;
+    testimonialQuote: string;
+    testimonialQuoteShort: string;
   };
 
   // Fleet Section
@@ -1405,6 +1408,8 @@ export interface Translations {
     tableFuelIncluded: string;
     tableYes: string;
     tableNo: string;
+    viewBoats: string;
+    viewAll: string;
   };
 
   // Exit Intent Modal

@@ -6,8 +6,9 @@ import Footer from "@/components/Footer";
 import { SEO } from "@/components/SEO";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Calendar, User, ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
+import { Calendar, User, ChevronLeft, ChevronRight, ArrowRight, Anchor } from "lucide-react";
 import { useLanguage } from "@/hooks/use-language";
+import { useBookingModal } from "@/hooks/bookingModalContext";
 import { useTranslations } from "@/lib/translations";
 import { getSEOConfig, generateHreflangLinks, generateCanonicalUrl } from "@/utils/seo-config";
 import type { BlogPost } from "@shared/schema";
@@ -203,6 +204,49 @@ const BlogPostCard = React.memo(function BlogPostCard({
     </Link>
   );
 });
+
+/** Inline CTA banner inserted between blog post rows */
+function BlogListCtaBanner({ bp }: { bp: Record<string, string> }) {
+  const { openBookingModal } = useBookingModal();
+
+  return (
+    <div
+      className="col-span-full bg-muted/50 rounded-2xl p-5 sm:p-6 flex flex-col sm:flex-row items-center justify-between gap-4"
+      data-testid="blog-list-cta-banner"
+    >
+      <p className="font-heading font-semibold text-foreground text-center sm:text-left">
+        {bp.ctaBanner || 'Ya sabes que barco quieres? Reserva desde 70\u20AC/h'}
+      </p>
+      <Button
+        size="lg"
+        className="bg-cta hover:bg-cta/90 text-white rounded-full px-8 font-semibold btn-elevated shrink-0"
+        onClick={() => openBookingModal()}
+        data-testid="button-blog-list-cta"
+      >
+        <Anchor className="w-4 h-4 mr-2" />
+        {bp.ctaBannerButton || 'Reservar ahora'}
+      </Button>
+    </div>
+  );
+}
+
+/** Post grid with CTA banner injected after every 6 posts */
+function BlogPostGrid({ posts, language, bp }: { posts: BlogPost[]; language: string; bp: Record<string, string> }) {
+  const CTA_INTERVAL = 6;
+
+  return (
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-7">
+      {posts.map((post, index) => (
+        <React.Fragment key={post.id}>
+          <BlogPostCard post={post} language={language} bp={bp} />
+          {(index + 1) % CTA_INTERVAL === 0 && index + 1 < posts.length && (
+            <BlogListCtaBanner bp={bp} />
+          )}
+        </React.Fragment>
+      ))}
+    </div>
+  );
+}
 
 function BlogPage() {
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
@@ -498,11 +542,7 @@ function BlogPage() {
             </div>
           ) : (
             <>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-7">
-                {paginatedPosts.map((post) => (
-                  <BlogPostCard key={post.id} post={post} language={language} bp={bp} />
-                ))}
-              </div>
+              <BlogPostGrid posts={paginatedPosts} language={language} bp={bp} />
 
               {/* Pagination */}
               {totalPages > 1 && (

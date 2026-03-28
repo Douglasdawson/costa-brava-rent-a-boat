@@ -149,32 +149,46 @@ function HomePage() {
       <Navigation />
       <main id="main-content">
         <Hero />
+        {/* Compact trust strip — social proof visible immediately after hero */}
+        <div className="bg-muted/50 border-y border-border py-3 px-4">
+          <div className="max-w-4xl mx-auto flex items-center justify-center gap-2 sm:gap-4 text-xs sm:text-sm text-muted-foreground">
+            <span className="inline-flex items-center gap-1 font-medium text-foreground">
+              <svg className="w-3.5 h-3.5 text-amber-400 fill-amber-400" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              4.8/5
+            </span>
+            <span className="text-border">|</span>
+            <span>5000+ clientes</span>
+            <span className="text-border">|</span>
+            <span className="hidden sm:inline">&ldquo;Experiencia increíble, repetiremos seguro&rdquo;</span>
+            <span className="sm:hidden">&ldquo;Repetiremos seguro&rdquo;</span>
+          </div>
+        </div>
         <Suspense fallback={<div className="min-h-[400px] below-fold" />}>
           <FleetSection />
-        </Suspense>
-        <Suspense fallback={<div className="min-h-[400px] below-fold" />}>
-          <NeverSailedSection />
-        </Suspense>
-        <Suspense fallback={<div className="min-h-[400px] below-fold" />}>
-          <GiftCardBanner />
-        </Suspense>
-        <Suspense fallback={<div className="min-h-[400px] below-fold" />}>
-          <LicenseComparisonSection />
-        </Suspense>
-        <Suspense fallback={<div className="min-h-[400px] below-fold" />}>
-          <ReviewsSection />
         </Suspense>
         <Suspense fallback={<div className="min-h-[400px] below-fold" />}>
           <FeaturesSection />
         </Suspense>
         <Suspense fallback={<div className="min-h-[400px] below-fold" />}>
-          <HomepageLocationsSection />
+          <LicenseComparisonSection />
         </Suspense>
         <Suspense fallback={<div className="min-h-[400px] below-fold" />}>
           <FAQPreview />
         </Suspense>
         <Suspense fallback={<div className="min-h-[400px] below-fold" />}>
+          <NeverSailedSection />
+        </Suspense>
+        <Suspense fallback={<div className="min-h-[400px] below-fold" />}>
+          <ReviewsSection />
+        </Suspense>
+        <Suspense fallback={<div className="min-h-[400px] below-fold" />}>
+          <GiftCardBanner />
+        </Suspense>
+        <Suspense fallback={<div className="min-h-[400px] below-fold" />}>
           <ContactSection />
+        </Suspense>
+        <Suspense fallback={<div className="min-h-[400px] below-fold" />}>
+          <HomepageLocationsSection />
         </Suspense>
       </main>
       <Footer />

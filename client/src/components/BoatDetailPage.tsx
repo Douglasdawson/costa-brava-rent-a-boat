@@ -357,6 +357,8 @@ const boatFaqTranslations: Record<string, {
   a3: (name: string, noLicense: boolean) => string;
   q4: string;
   a4: (name: string, noLicense: boolean) => string;
+  q5: string;
+  a5: string;
 }> = {
   es: {
     title: "Preguntas frecuentes sobre",
@@ -374,6 +376,8 @@ const boatFaqTranslations: Record<string, {
     q4: "Que incluye el alquiler del",
     a4: (name, noLicense) =>
       `El alquiler incluye seguro a todo riesgo, equipo de seguridad homologado y formacion previa.${noLicense ? " Tambien incluye gasolina y, segun disponibilidad, equipo de snorkel y paddle surf." : " El combustible se paga segun consumo. Segun disponibilidad, puede incluir extras como equipo de snorkel."}`,
+    q5: "Cual es la politica de cancelacion",
+    a5: "Cancelacion gratuita hasta 24 horas antes de la salida. En caso de mal tiempo, ofrecemos reprogramacion completa sin coste.",
   },
   en: {
     title: "Frequently asked questions about",
@@ -391,6 +395,8 @@ const boatFaqTranslations: Record<string, {
     q4: "What is included in the rental of the",
     a4: (name, noLicense) =>
       `The rental includes comprehensive insurance, certified safety equipment and a pre-departure briefing.${noLicense ? " It also includes fuel and, subject to availability, snorkelling and paddle surf gear." : " Fuel is charged based on consumption. Subject to availability, extras such as snorkelling gear may be included."}`,
+    q5: "What is the cancellation policy",
+    a5: "Free cancellation up to 24 hours before departure. In case of bad weather, we offer full rescheduling at no cost.",
   },
   fr: {
     title: "Questions frequentes sur le",
@@ -408,6 +414,8 @@ const boatFaqTranslations: Record<string, {
     q4: "Que comprend la location du",
     a4: (name, noLicense) =>
       `La location comprend une assurance tous risques, un equipement de securite homologue et une formation prealable.${noLicense ? " Elle inclut egalement le carburant et, selon disponibilite, du materiel de snorkeling et paddle surf." : " Le carburant est facture selon la consommation. Selon disponibilite, des extras comme le materiel de snorkeling peuvent etre inclus."}`,
+    q5: "Quelle est la politique d'annulation",
+    a5: "Annulation gratuite jusqu'a 24 heures avant le depart. En cas de mauvais temps, nous offrons une reprogrammation complete sans frais.",
   },
   de: {
     title: "Haeufig gestellte Fragen zum",
@@ -425,6 +433,8 @@ const boatFaqTranslations: Record<string, {
     q4: "Was ist in der Miete des enthalten",
     a4: (name, noLicense) =>
       `Die Miete beinhaltet Vollkaskoversicherung, zertifizierte Sicherheitsausruestung und eine Einweisung vor der Abfahrt.${noLicense ? " Kraftstoff sowie nach Verfuegbarkeit Schnorchel- und Paddle-Surf-Ausruestung sind ebenfalls enthalten." : " Kraftstoff wird nach Verbrauch berechnet. Nach Verfuegbarkeit koennen Extras wie Schnorchelausruestung enthalten sein."}`,
+    q5: "Wie lautet die Stornierungsrichtlinie",
+    a5: "Kostenlose Stornierung bis 24 Stunden vor Abfahrt. Bei schlechtem Wetter bieten wir eine vollstaendige Umplanung ohne Kosten an.",
   },
   nl: {
     title: "Veelgestelde vragen over de",
@@ -442,6 +452,8 @@ const boatFaqTranslations: Record<string, {
     q4: "Wat is inbegrepen bij de huur van de",
     a4: (name, noLicense) =>
       `De huur omvat allriskverzekering, gecertificeerde veiligheidsuitrusting en een briefing voor vertrek.${noLicense ? " Ook brandstof en, afhankelijk van beschikbaarheid, snorkel- en paddle surf-uitrusting zijn inbegrepen." : " Brandstof wordt in rekening gebracht op basis van verbruik. Afhankelijk van beschikbaarheid kunnen extras zoals snorkeluitrusting inbegrepen zijn."}`,
+    q5: "Wat is het annuleringsbeleid",
+    a5: "Gratis annulering tot 24 uur voor vertrek. Bij slecht weer bieden wij een volledige omboeking aan zonder extra kosten.",
   },
   it: {
     title: "Domande frequenti sul",
@@ -459,6 +471,8 @@ const boatFaqTranslations: Record<string, {
     q4: "Cosa include il noleggio del",
     a4: (name, noLicense) =>
       `Il noleggio include assicurazione completa, equipaggiamento di sicurezza certificato e briefing pre-partenza.${noLicense ? " Include anche il carburante e, in base alla disponibilita, attrezzatura snorkeling e paddle surf." : " Il carburante viene addebitato in base al consumo. In base alla disponibilita, possono essere inclusi extra come attrezzatura snorkeling."}`,
+    q5: "Qual e la politica di cancellazione",
+    a5: "Cancellazione gratuita fino a 24 ore prima della partenza. In caso di maltempo, offriamo una riprogrammazione completa senza costi.",
   },
   ru: {
     title: "Chasto zadavaemye voprosy o",
@@ -476,6 +490,8 @@ const boatFaqTranslations: Record<string, {
     q4: "Chto vklyucheno v arendu",
     a4: (name, noLicense) =>
       `Arenda vklyuchaet polnuyu strakhovku, sertificirovannoe oborudovanie bezopasnosti i instruktazh pered otpravleniem.${noLicense ? " Takzhe vklyucheno toplivo i, pri nalichii, snaryazhenie dlya snorkelinga i paddle surf." : " Toplivo oplachivaetsya po rashodu. Pri nalichii mogut byt' vklyucheny dopolneniya, takie kak snaryazhenie dlya snorkelinga."}`,
+    q5: "Kakova politika otmeny",
+    a5: "Besplatnaya otmena do 24 chasov do otpravleniya. V sluchae plokhoj pogody my predlagaem polnoe perenaplanirovanie bez dopolnitel'nykh zatrat.",
   },
   ca: {
     title: "Preguntes frequents sobre",
@@ -493,6 +509,8 @@ const boatFaqTranslations: Record<string, {
     q4: "Que inclou el lloguer del",
     a4: (name, noLicense) =>
       `El lloguer inclou asseguranca a tot risc, equip de seguretat homologat i formacio previa.${noLicense ? " Tambe inclou gasolina i, segons disponibilitat, equip de snorkel i paddle surf." : " El combustible es paga segons consum. Segons disponibilitat, pot incloure extres com equip de snorkel."}`,
+    q5: "Quina es la politica de cancelacio",
+    a5: "Cancelacio gratuita fins a 24 hores abans de la sortida. En cas de mal temps, oferim reprogramacio completa sense cost.",
   },
 };
 
@@ -751,6 +769,14 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
         acceptedAnswer: {
           "@type": "Answer",
           text: faqLang.a4(boatData.name, noLicenseFlag),
+        },
+      },
+      {
+        "@type": "Question",
+        name: `${faqLang.q5}?`,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: faqLang.a5,
         },
       },
     ],
@@ -1094,9 +1120,6 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
           </CardContent>
         </Card>
 
-        {/* Customer Reviews Carousel */}
-        <BoatReviewCarousel boatId={boatId} />
-
         {/* Availability Calendar */}
         <div className="mb-6 sm:mb-8">
           <AvailabilityCalendar
@@ -1104,6 +1127,9 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
             onSlotSelect={(date, time) => handleReservation({ date, time })}
           />
         </div>
+
+        {/* Customer Reviews Carousel */}
+        <BoatReviewCarousel boatId={boatId} />
 
         {/* Tabbed detail sections */}
         <Card className="mb-8">
@@ -1423,6 +1449,15 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                   {faq.a4(boatData.name, noLicense)}
                 </div>
               </details>
+              <details className="group border border-border rounded-lg">
+                <summary className="flex items-center justify-between cursor-pointer p-4 font-medium">
+                  {faq.q5}?
+                  <ChevronRight className="w-4 h-4 transition-transform group-open:rotate-90" />
+                </summary>
+                <div className="px-4 pb-4 text-muted-foreground">
+                  {faq.a5}
+                </div>
+              </details>
             </div>
           </div>
         );
@@ -1435,25 +1470,26 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
         className={`fixed bottom-0 left-0 right-0 z-40 md:hidden pb-safe transition-all duration-300 ${showStickyCTA && !isBookingModalOpen ? "opacity-100 translate-y-0" : "opacity-0 translate-y-full pointer-events-none"}`}
         aria-hidden={!showStickyCTA || isBookingModalOpen}
       >
-        <button
-          onClick={() => handleReservation()}
-          tabIndex={showStickyCTA && !isBookingModalOpen ? 0 : -1}
-          className="w-full bg-primary text-white py-3 px-6 font-semibold shadow-lg flex items-center justify-center gap-3"
-        >
-          <div className="flex flex-col items-center">
-            <div className="flex items-center gap-3">
-              <span>{t.hero.bookNow}</span>
-              {lowestPrice > 0 && (
-                <span className="bg-white/20 rounded-full px-3 py-0.5 text-sm font-bold">
-                  {t.boats.from} {lowestPrice}€
-                </span>
-              )}
-            </div>
-            {!requiresLicense && (
-              <span className="text-white/80 text-xs mt-0.5">{translateBoatText("Gasolina incluida", language)}</span>
-            )}
-          </div>
-        </button>
+        <div className="flex gap-2 px-3 py-2 bg-background border-t border-border shadow-lg">
+          <button
+            onClick={() => handleReservation()}
+            tabIndex={showStickyCTA && !isBookingModalOpen ? 0 : -1}
+            className="flex-1 bg-primary text-white py-3 px-4 font-semibold rounded-lg flex items-center justify-center gap-2"
+          >
+            <Calendar className="w-4 h-4" />
+            <span>{t.hero.bookNow} {lowestPrice > 0 ? `· ${t.boats.from} ${lowestPrice}€` : ""}</span>
+          </button>
+          <a
+            href={`https://wa.me/34611500372?text=${encodeURIComponent(`Hola, me interesa el ${boatData.name}. ¿Podrían darme más información?`)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            tabIndex={showStickyCTA && !isBookingModalOpen ? 0 : -1}
+            className="flex-1 bg-[#25D366] text-white py-3 px-4 font-semibold rounded-lg flex items-center justify-center gap-2"
+          >
+            <SiWhatsapp className="w-4 h-4" />
+            <span>WhatsApp</span>
+          </a>
+        </div>
       </div>
 
       {/* Sticky pricing sidebar for desktop — always mounted, visibility via CSS */}

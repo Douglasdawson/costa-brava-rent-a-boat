@@ -1251,6 +1251,8 @@ export const fr: Translations = {
     featuredArticle: 'À la une',
     readMore: 'Lire l\'article',
     minRead: 'min de lecture',
+    ctaBanner: 'Vous savez quel bateau vous voulez ? R\u00E9servez d\u00E8s 70\u20AC/h',
+    ctaBannerButton: 'R\u00E9server maintenant',
   },
   blogDetail: {
     breadcrumbHome: 'Accueil',
@@ -1274,6 +1276,10 @@ export const fr: Translations = {
     newsletterSuccess: 'Guide envoyé ! Vérifiez votre email.',
     newsletterError: 'Erreur d\'envoi. Veuillez réessayer.',
     tableOfContents: 'Sommaire',
+    ctaTitle: 'Pr\u00EAt pour votre aventure ?',
+    ctaSubtitle: 'Louez un bateau d\u00E8s 70\u20AC/heure \u00B7 Essence incluse',
+    ctaBookNow: 'R\u00E9server maintenant',
+    ctaWhatsApp: 'Demander sur WhatsApp',
   },
   exitIntent: {
     title: 'Attendez ! Nous avons quelque chose pour vous',

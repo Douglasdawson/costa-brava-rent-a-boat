@@ -1255,6 +1255,8 @@ export const en: Translations = {
     featuredArticle: 'Featured',
     readMore: 'Read article',
     minRead: 'min read',
+    ctaBanner: 'Know which boat you want? Book from \u20AC70/h',
+    ctaBannerButton: 'Book now',
   },
   blogDetail: {
     breadcrumbHome: 'Home',
@@ -1278,6 +1280,10 @@ export const en: Translations = {
     newsletterSuccess: 'Guide sent! Check your email.',
     newsletterError: 'Error sending. Please try again.',
     tableOfContents: 'Contents',
+    ctaTitle: 'Ready for your adventure?',
+    ctaSubtitle: 'Rent a boat from \u20AC70/hour \u00B7 Fuel included',
+    ctaBookNow: 'Book now',
+    ctaWhatsApp: 'Ask on WhatsApp',
   },
   exitIntent: {
     title: 'Wait! We have something for you',

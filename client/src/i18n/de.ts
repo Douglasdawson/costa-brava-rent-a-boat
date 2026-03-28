@@ -1251,6 +1251,8 @@ export const de: Translations = {
     featuredArticle: 'Empfohlen',
     readMore: 'Artikel lesen',
     minRead: 'Min. Lesezeit',
+    ctaBanner: 'Wissen Sie schon welches Boot? Buchen Sie ab 70\u20AC/h',
+    ctaBannerButton: 'Jetzt buchen',
   },
   blogDetail: {
     breadcrumbHome: 'Startseite',
@@ -1274,6 +1276,10 @@ export const de: Translations = {
     newsletterSuccess: 'Führer gesendet! Überprüfen Sie Ihre E-Mail.',
     newsletterError: 'Fehler beim Senden. Bitte versuchen Sie es erneut.',
     tableOfContents: 'Inhaltsverzeichnis',
+    ctaTitle: 'Bereit f\u00FCr Ihr Abenteuer?',
+    ctaSubtitle: 'Mieten Sie ein Boot ab 70\u20AC/Stunde \u00B7 Benzin inklusive',
+    ctaBookNow: 'Jetzt buchen',
+    ctaWhatsApp: 'Auf WhatsApp fragen',
   },
   exitIntent: {
     title: 'Warten Sie! Wir haben etwas f\u00fcr Sie',

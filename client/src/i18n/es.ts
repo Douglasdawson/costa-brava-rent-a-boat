@@ -1270,6 +1270,8 @@ export const es: Translations = {
     featuredArticle: 'Destacado',
     readMore: 'Leer artículo',
     minRead: 'min de lectura',
+    ctaBanner: 'Ya sabes que barco quieres? Reserva desde 70\u20AC/h',
+    ctaBannerButton: 'Reservar ahora',
   },
   blogDetail: {
     breadcrumbHome: 'Inicio',
@@ -1293,6 +1295,10 @@ export const es: Translations = {
     newsletterSuccess: 'Guía enviada. Revisa tu email.',
     newsletterError: 'Error al enviar. Inténtalo de nuevo.',
     tableOfContents: 'Índice',
+    ctaTitle: 'Listo para tu aventura?',
+    ctaSubtitle: 'Alquila un barco desde 70\u20AC/hora \u00B7 Gasolina incluida',
+    ctaBookNow: 'Reservar ahora',
+    ctaWhatsApp: 'Preguntar por WhatsApp',
   },
   exitIntent: {
     title: '¡Espera! Tenemos algo para ti',

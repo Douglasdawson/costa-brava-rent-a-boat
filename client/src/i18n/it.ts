@@ -1251,6 +1251,8 @@ export const it: Translations = {
     featuredArticle: 'In evidenza',
     readMore: 'Leggi articolo',
     minRead: 'min di lettura',
+    ctaBanner: 'Sai gi\u00E0 quale barca vuoi? Prenota da 70\u20AC/h',
+    ctaBannerButton: 'Prenota ora',
   },
   blogDetail: {
     breadcrumbHome: 'Home',
@@ -1274,6 +1276,10 @@ export const it: Translations = {
     newsletterSuccess: 'Guida inviata! Controlla la tua email.',
     newsletterError: 'Errore nell\'invio. Riprova.',
     tableOfContents: 'Indice',
+    ctaTitle: 'Pronto per la tua avventura?',
+    ctaSubtitle: 'Noleggia una barca da 70\u20AC/ora \u00B7 Benzina inclusa',
+    ctaBookNow: 'Prenota ora',
+    ctaWhatsApp: 'Chiedi su WhatsApp',
   },
   exitIntent: {
     title: 'Aspetta! Abbiamo qualcosa per te',

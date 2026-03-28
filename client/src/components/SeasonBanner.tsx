@@ -343,9 +343,13 @@ export function SeasonBanner() {
             </button>
 
             {/* Dismiss text */}
-            <p className="text-white/25 text-xs mt-5 cursor-pointer hover:text-white/45 transition-colors" onClick={handleDismiss}>
+            <button
+              className="text-white/40 text-sm mt-5 hover:text-white/70 transition-colors bg-transparent border-none py-2 px-4"
+              onClick={handleDismiss}
+              type="button"
+            >
               {sb.noThanks || 'Ahora no, gracias'}
-            </p>
+            </button>
           </div>
         </div>
       </div>

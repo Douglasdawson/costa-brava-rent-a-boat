@@ -139,15 +139,22 @@ function ReviewsSection() {
   // Prefer client-side reviews; use server as fallback
   const allReviews = clientReviews.length > 0 ? clientReviews : serverReviews;
 
-  // Pick top 12 sorted by rating (desc) then date (desc)
+  // Pick top 12 sorted by: visitor's language first, then rating (desc), then date (desc)
   const displayReviews = useMemo(() => {
+    const NATIONALITY_TO_LANG: Record<string, string> = {
+      ES: "es", FR: "fr", DE: "de", GB: "en", UK: "en",
+      IT: "it", NL: "nl", RU: "ru", CA: "ca",
+    };
     return [...allReviews]
       .sort((a, b) => {
+        const aMatch = NATIONALITY_TO_LANG[a.flag?.toUpperCase()] === language ? 1 : 0;
+        const bMatch = NATIONALITY_TO_LANG[b.flag?.toUpperCase()] === language ? 1 : 0;
+        if (bMatch !== aMatch) return bMatch - aMatch;
         if (b.rating !== a.rating) return b.rating - a.rating;
         return b.date.localeCompare(a.date);
       })
       .slice(0, 12);
-  }, [allReviews]);
+  }, [allReviews, language]);
 
   // Average rating across all reviews
   const averageRating = useMemo(() => {

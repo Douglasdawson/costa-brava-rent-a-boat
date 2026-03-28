@@ -1251,6 +1251,8 @@ export const ru: Translations = {
     featuredArticle: 'Рекомендуемое',
     readMore: 'Читать статью',
     minRead: 'мин чтения',
+    ctaBanner: 'Уже знаете какую лодку хотите? Бронируйте от 70\u20AC/ч',
+    ctaBannerButton: 'Забронировать',
   },
   blogDetail: {
     breadcrumbHome: 'Главная',
@@ -1274,6 +1276,10 @@ export const ru: Translations = {
     newsletterSuccess: 'Гид отправлен! Проверьте вашу почту.',
     newsletterError: 'Ошибка отправки. Попробуйте снова.',
     tableOfContents: 'Содержание',
+    ctaTitle: 'Готовы к приключению?',
+    ctaSubtitle: 'Арендуйте лодку от 70\u20AC/час \u00B7 Бензин включён',
+    ctaBookNow: 'Забронировать',
+    ctaWhatsApp: 'Спросить в WhatsApp',
   },
   exitIntent: {
     title: 'Подождите! У нас есть кое-что для вас',

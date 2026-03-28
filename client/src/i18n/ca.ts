@@ -1251,6 +1251,8 @@ export const ca: Translations = {
     featuredArticle: 'Destacat',
     readMore: 'Llegir article',
     minRead: 'min de lectura',
+    ctaBanner: 'Ja saps quin vaixell vols? Reserva des de 70\u20AC/h',
+    ctaBannerButton: 'Reservar ara',
   },
   blogDetail: {
     breadcrumbHome: 'Inici',
@@ -1274,6 +1276,10 @@ export const ca: Translations = {
     newsletterSuccess: 'Guia enviada. Revisa el teu email.',
     newsletterError: 'Error en enviar. Torna-ho a provar.',
     tableOfContents: 'Índex',
+    ctaTitle: 'Preparat per a la teva aventura?',
+    ctaSubtitle: 'Lloga un vaixell des de 70\u20AC/hora \u00B7 Benzina inclosa',
+    ctaBookNow: 'Reservar ara',
+    ctaWhatsApp: 'Preguntar per WhatsApp',
   },
   exitIntent: {
     title: 'Espera! Tenim alguna cosa per a tu',

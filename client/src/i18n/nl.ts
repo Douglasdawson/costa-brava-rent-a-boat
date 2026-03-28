@@ -1251,6 +1251,8 @@ export const nl: Translations = {
     featuredArticle: 'Uitgelicht',
     readMore: 'Lees artikel',
     minRead: 'min leestijd',
+    ctaBanner: 'Weet je al welke boot je wilt? Boek vanaf \u20AC70/u',
+    ctaBannerButton: 'Nu boeken',
   },
   blogDetail: {
     breadcrumbHome: 'Home',
@@ -1274,6 +1276,10 @@ export const nl: Translations = {
     newsletterSuccess: 'Gids verzonden! Controleer uw e-mail.',
     newsletterError: 'Fout bij het verzenden. Probeer het opnieuw.',
     tableOfContents: 'Inhoudsopgave',
+    ctaTitle: 'Klaar voor je avontuur?',
+    ctaSubtitle: 'Huur een boot vanaf \u20AC70/uur \u00B7 Brandstof inbegrepen',
+    ctaBookNow: 'Nu boeken',
+    ctaWhatsApp: 'Vraag via WhatsApp',
   },
   exitIntent: {
     title: 'Wacht! We hebben iets voor je',

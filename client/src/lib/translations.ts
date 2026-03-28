@@ -1333,6 +1333,8 @@ export interface Translations {
     featuredArticle: string;
     readMore: string;
     minRead: string;
+    ctaBanner: string;
+    ctaBannerButton: string;
   };
 
   // Blog Detail Page
@@ -1358,6 +1360,10 @@ export interface Translations {
     newsletterSuccess: string;
     newsletterError: string;
     tableOfContents: string;
+    ctaTitle: string;
+    ctaSubtitle: string;
+    ctaBookNow: string;
+    ctaWhatsApp: string;
   };
 
   // Social Proof Strip (homepage)

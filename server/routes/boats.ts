@@ -3,8 +3,8 @@ import { z } from "zod";
 import { storage } from "../storage";
 import { logger } from "../lib/logger";
 import { db } from "../db";
-import { bookings } from "@shared/schema";
-import { gte, sql, and, inArray } from "drizzle-orm";
+import { bookings, boats } from "@shared/schema";
+import { gte, sql, and, inArray, eq, desc } from "drizzle-orm";
 
 const checkAvailabilitySchema = z.object({
   startTime: z.string().min(1, "La hora de inicio es requerida"),
@@ -70,6 +70,33 @@ export function registerBoatRoutes(app: Express) {
     } catch (error: unknown) {
       logger.error("[Boats] Error fetching weekly bookings", { error: error instanceof Error ? error.message : String(error) });
       res.status(500).json({ message: "Error interno del servidor" });
+    }
+  });
+
+  // Recent booking activity for social proof (no PII — only boat name, people count, timestamp)
+  app.get("/api/recent-activity", async (req, res) => {
+    try {
+      const rows = await db
+        .select({
+          boatName: boats.name,
+          numberOfPeople: bookings.numberOfPeople,
+          createdAt: bookings.createdAt,
+        })
+        .from(bookings)
+        .innerJoin(boats, eq(bookings.boatId, boats.id))
+        .where(
+          inArray(bookings.bookingStatus, ["confirmed", "completed"])
+        )
+        .orderBy(desc(bookings.createdAt))
+        .limit(5);
+
+      res.setHeader("Cache-Control", "public, max-age=600, s-maxage=600");
+      res.json(rows);
+    } catch (error: unknown) {
+      logger.error("[Boats] Error fetching recent activity", {
+        error: error instanceof Error ? error.message : String(error),
+      });
+      res.json([]);
     }
   });
 

@@ -1580,6 +1580,8 @@ export const nl: Translations = {
     stepOf: "van",
   },
 
+  bookingTrust: { freeCancellation: 'Gratis annulering 48u', securePayment: 'Veilige betaling', insuranceIncluded: 'Verzekering inbegrepen' },
+
   boatDescriptions: {
     "solar-450": "Ontworpen voor zonliefhebbers. Het gewatteerde solarium is het grootste van de hele vaarbewijsvrije vloot: anker in een turquoise baai bij Blanes en ontspan als nergens anders. Geen vaarbewijs nodig — wij leren u in 15 minuten hoe u vaart. Brandstof, verzekering en veiligheidsuitrusting inbegrepen.",
     "remus-450": "De meest gehuurde boot in Blanes en de eerste keuze voor koppels en gezinnen met kinderen. De Bi Mini kap bedekt de hele boot om de kleintjes tegen de zon te beschermen, en de stabiliteit maakt het ideaal voor beginners op zee. Perfect voor 2-5 personen die op zoek zijn naar een rustige dag in kristalheldere baaien. Wij leren u in 15 minuten hoe u het bestuurt. Brandstof, verzekering en veiligheidsuitrusting inbegrepen.",

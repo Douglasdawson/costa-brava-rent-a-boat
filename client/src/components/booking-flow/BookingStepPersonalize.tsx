@@ -7,6 +7,7 @@ import { trackAddShippingInfo, trackGenerateLead } from "@/utils/analytics";
 import type { Translations } from "@/lib/translations";
 import type { PhonePrefix } from "@/utils/phone-prefixes";
 import type { Extra, CustomerData } from "./types";
+import { BookingTrustBanner } from "./BookingTrustBanner";
 
 interface BookingStepPersonalizeProps {
   // Extras
@@ -165,6 +166,7 @@ export function BookingStepPersonalize({
 
   return (
     <div className="space-y-4">
+      <BookingTrustBanner t={t} />
       {/* Desktop: side-by-side | Mobile: stacked */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {/* Extras section */}

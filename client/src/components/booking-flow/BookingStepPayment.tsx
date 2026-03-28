@@ -7,6 +7,7 @@ import type { Translations } from "@/lib/translations";
 import { useLanguage } from "@/hooks/use-language";
 import type { Quote, Duration, Extra } from "./types";
 import { trackPaymentInitiated } from "@/utils/analytics";
+import { BookingTrustBanner } from "./BookingTrustBanner";
 
 interface BookingStepPaymentProps {
   selectedDate: string;
@@ -37,13 +38,15 @@ export function BookingStepPayment({
   const { localizedPath } = useLanguage();
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle className="flex items-center">
-          <CreditCard className="w-5 h-5 mr-2" />
-          {t.booking.summaryTitle}
-        </CardTitle>
-      </CardHeader>
+    <>
+      <BookingTrustBanner t={t} />
+      <Card>
+        <CardHeader>
+          <CardTitle className="flex items-center">
+            <CreditCard className="w-5 h-5 mr-2" />
+            {t.booking.summaryTitle}
+          </CardTitle>
+        </CardHeader>
       <CardContent>
         <div className="bg-primary/5 p-4 rounded-lg mb-6">
           <h3 className="font-medium text-foreground mb-3">{t.booking.summaryTitle}</h3>
@@ -206,5 +209,6 @@ export function BookingStepPayment({
         </div>
       </CardContent>
     </Card>
+    </>
   );
 }

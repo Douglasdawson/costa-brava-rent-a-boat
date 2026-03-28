@@ -1581,6 +1581,8 @@ export const de: Translations = {
     stepOf: "von",
   },
 
+  bookingTrust: { freeCancellation: 'Kostenlose Stornierung 48h', securePayment: 'Sichere Zahlung', insuranceIncluded: 'Versicherung inklusive' },
+
   boatDescriptions: {
     "solar-450": "Fur Sonnenliebhaber gemacht. Sein gepolstertes Solarium ist das grosste der gesamten fuhrerscheinfreien Flotte: Ankern Sie in einer turkisfarbenen Bucht nahe Blanes und entspannen Sie wie nirgendwo sonst. Kein Bootsfuhrerschein notig — wir zeigen Ihnen in 15 Minuten, wie es geht. Treibstoff, Versicherung und Sicherheitsausrustung inklusive.",
     "remus-450": "Das meistgemietete Boot in Blanes und die erste Wahl fur Paare und Familien mit Kindern. Sein Bi-Mini-Verdeck bedeckt das gesamte Boot und schutzt die Kleinen vor der Sonne. Seine Stabilitat macht es ideal fur Erstfahrer auf dem Meer. Perfekt fur 2-5 Personen, die einen ruhigen Tag in kristallklaren Buchten suchen. Wir zeigen Ihnen in 15 Minuten, wie man es steuert. Treibstoff, Versicherung und Sicherheitsausrustung inklusive.",

@@ -1581,6 +1581,8 @@ export const fr: Translations = {
     stepOf: "de",
   },
 
+  bookingTrust: { freeCancellation: 'Annulation gratuite 48h', securePayment: 'Paiement securise', insuranceIncluded: 'Assurance incluse' },
+
   boatDescriptions: {
     "solar-450": "Concu pour les amoureux du soleil. Son solarium rembourre est le plus grand de toute la flotte sans permis : mouillez dans une crique aux eaux turquoise pres de Blanes et detendez-vous comme nulle part ailleurs. Aucun permis necessaire — nous vous apprenons a le piloter en 15 minutes. Carburant, assurance et equipement de securite inclus.",
     "remus-450": "Le bateau le plus loue de Blanes et le premier choix des couples et familles avec enfants. Son auvent Bi Mini couvre tout le bateau pour proteger les petits du soleil, et sa stabilite le rend ideal pour une premiere sortie en mer. Parfait pour 2 a 5 personnes a la recherche d'une journee tranquille dans des criques aux eaux cristallines. Nous vous apprenons a le manoeuvrer en 15 minutes. Carburant, assurance et equipement de securite inclus.",

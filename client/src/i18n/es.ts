@@ -1648,6 +1648,8 @@ export const es: Translations = {
     stepOf: "de",
   },
 
+  bookingTrust: { freeCancellation: 'Cancelacion gratuita 48h', securePayment: 'Pago seguro', insuranceIncluded: 'Seguro incluido' },
+
   boatDescriptions: {
     "solar-450": "El barco pensado para quienes quieren tomar el sol en el mar. Su solárium acolchado es el más amplio de toda la flota sin licencia: fondea en una cala de agua turquesa cerca de Blanes y relájate como en ningún otro sitio. Sin carnet necesario, te enseñamos a manejarla en 15 minutos. Gasolina, seguro y equipo de seguridad incluidos.",
     "remus-450": "El barco más alquilado de Blanes y la primera elección de parejas y familias con niños. Su toldo Bi Mini cubre toda la embarcación para proteger a los peques del sol, y su estabilidad la hace ideal si es vuestra primera vez en el mar. Perfecto para 2-5 personas que buscan una jornada tranquila en calas de agua cristalina. Te enseñamos a manejarlo en 15 minutos. Gasolina, seguro y equipo de seguridad incluidos.",

@@ -1581,6 +1581,8 @@ export const it: Translations = {
     stepOf: "di",
   },
 
+  bookingTrust: { freeCancellation: 'Cancellazione gratuita 48h', securePayment: 'Pagamento sicuro', insuranceIncluded: 'Assicurazione inclusa' },
+
   boatDescriptions: {
     "solar-450": "Pensata per chi ama prendere il sole in mare. Il suo solarium imbottito e il piu ampio di tutta la flotta senza patente: ancorate in una cala dalle acque turchesi vicino a Blanes e rilassatevi come in nessun altro posto. Nessuna patente nautica necessaria — vi insegniamo a guidarla in 15 minuti. Carburante, assicurazione e dotazioni di sicurezza inclusi.",
     "remus-450": "La barca piu noleggiata di Blanes e la prima scelta di coppie e famiglie con bambini. Il suo tendalino Bi Mini copre tutta l'imbarcazione per proteggere i piccoli dal sole, e la sua stabilita la rende ideale per chi va in mare per la prima volta. Perfetta per 2-5 persone in cerca di una giornata tranquilla in cale dalle acque cristalline. Vi insegniamo a manovrarla in 15 minuti. Carburante, assicurazione e dotazioni di sicurezza inclusi.",

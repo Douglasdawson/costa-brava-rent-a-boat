@@ -1580,6 +1580,8 @@ export const ca: Translations = {
     stepOf: "de",
   },
 
+  bookingTrust: { freeCancellation: 'Cancel·lacio gratuita 48h', securePayment: 'Pagament segur', insuranceIncluded: 'Asseguranca inclosa' },
+
   boatDescriptions: {
     "solar-450": "Pensada per als qui volen prendre el sol al mar. El seu solarium encoixinat es el mes ampli de tota la flota sense llicencia: fondeja en una cala d'aigues turqueses prop de Blanes i relaxa't com en cap altre lloc. Sense carnet necessari, t'ensenyem a manejar-la en 15 minuts. Gasolina, asseguranca i equip de seguretat inclosos.",
     "remus-450": "El vaixell mes llogat de Blanes i la primera opcio de parelles i families amb nens. El seu tendal Bi Mini cobreix tota l'embarcacio per protegir els petits del sol, i la seva estabilitat la fa ideal si es la vostra primera vegada al mar. Perfecte per a 2-5 persones que busquen una jornada tranquil·la en cales d'aigua cristal·lina. T'ensenyem a manejar-lo en 15 minuts. Gasolina, asseguranca i equip de seguretat inclosos.",

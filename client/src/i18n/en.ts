@@ -1633,6 +1633,8 @@ export const en: Translations = {
     stepOf: "of",
   },
 
+  bookingTrust: { freeCancellation: 'Free cancellation 48h', securePayment: 'Secure payment', insuranceIncluded: 'Insurance included' },
+
   boatDescriptions: {
     "solar-450": "Designed for sun lovers. Its cushioned solarium is the largest in the entire no-licence fleet: anchor in a turquoise cove near Blanes and relax like nowhere else. No licence needed — we teach you to drive in 15 minutes. Fuel, insurance and safety equipment included.",
     "remus-450": "The most rented boat in Blanes and the top choice for couples and families with children. Its Bi Mini canopy covers the whole boat to protect the little ones from the sun, and its stability makes it ideal for first-timers at sea. Perfect for 2-5 people looking for a peaceful day in crystal-clear coves. We teach you to handle it in 15 minutes. Fuel, insurance and safety equipment included.",

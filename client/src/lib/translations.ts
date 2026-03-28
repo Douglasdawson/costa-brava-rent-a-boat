@@ -1624,6 +1624,13 @@ export interface Translations {
     stepOf: string;
   };
 
+  // Booking Trust Banner
+  bookingTrust?: {
+    freeCancellation: string;
+    securePayment: string;
+    insuranceIncluded: string;
+  };
+
   // Boat descriptions (keyed by boat ID)
   boatDescriptions?: Record<string, string>;
 }

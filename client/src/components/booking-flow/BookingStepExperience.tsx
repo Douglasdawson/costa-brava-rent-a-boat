@@ -8,6 +8,7 @@ import { getStoredUtm } from "@/hooks/useUtmCapture";
 import type { Boat } from "@shared/schema";
 import type { Translations } from "@/lib/translations";
 import type { Duration, TimeSlot } from "./types";
+import { BookingTrustBanner } from "./BookingTrustBanner";
 
 interface BookingStepExperienceProps {
   // Date
@@ -48,6 +49,7 @@ export function BookingStepExperience({
 
   return (
     <div className="space-y-4">
+      <BookingTrustBanner t={t} />
       {/* Section 1: Date */}
       <Card>
         <CardHeader className="pb-3">

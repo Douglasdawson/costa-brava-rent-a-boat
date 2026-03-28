@@ -58,6 +58,15 @@ export default function LicenseComparisonSection() {
           {t.comparison.subtitle}
         </p>
 
+        {/* Captain's Pro Tip — free expert advice (reciprocity) */}
+        <div className="mb-8 bg-amber-50/70 dark:bg-amber-950/30 border-l-4 border-amber-400 rounded-r-xl p-4 sm:p-5 flex gap-3 items-start">
+          <Lightbulb className="w-5 h-5 text-amber-500 flex-shrink-0 mt-0.5" />
+          <div>
+            <span className="font-medium text-foreground text-sm">{t.reciprocity?.captainTip}</span>
+            <p className="text-sm text-muted-foreground mt-1 leading-relaxed">{t.reciprocity?.captainTipText}</p>
+          </div>
+        </div>
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Without License Card */}
           <div className="bg-background rounded-2xl border border-border p-4 xs:p-6 sm:p-8 relative overflow-hidden">
@@ -152,14 +161,6 @@ export default function LicenseComparisonSection() {
           </div>
         </div>
 
-        {/* Captain's Pro Tip — free expert advice (reciprocity) */}
-        <div className="mt-8 bg-amber-50/70 dark:bg-amber-950/30 border-l-4 border-amber-400 rounded-r-xl p-4 sm:p-5 flex gap-3 items-start">
-          <Lightbulb className="w-5 h-5 text-amber-500 flex-shrink-0 mt-0.5" />
-          <div>
-            <span className="font-medium text-foreground text-sm">{t.reciprocity?.captainTip}</span>
-            <p className="text-sm text-muted-foreground mt-1 leading-relaxed">{t.reciprocity?.captainTipText}</p>
-          </div>
-        </div>
       </div>
     </section>
   );

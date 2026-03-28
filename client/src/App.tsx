@@ -166,28 +166,28 @@ function HomePage() {
           </div>
         </div>
         <Suspense fallback={<div className="min-h-[400px] below-fold" />}>
-          <FleetSection />
-        </Suspense>
-        <Suspense fallback={<div className="min-h-[400px] below-fold" />}>
-          <FeaturesSection />
-        </Suspense>
-        <Suspense fallback={<div className="min-h-[400px] below-fold" />}>
-          <LicenseComparisonSection />
-        </Suspense>
-        <Suspense fallback={<div className="min-h-[400px] below-fold" />}>
-          <FAQPreview />
-        </Suspense>
-        <Suspense fallback={<div className="min-h-[400px] below-fold" />}>
           <NeverSailedSection />
+        </Suspense>
+        <Suspense fallback={<div className="min-h-[400px] below-fold" />}>
+          <FleetSection />
         </Suspense>
         <Suspense fallback={<div className="min-h-[400px] below-fold" />}>
           <ReviewsSection />
         </Suspense>
         <Suspense fallback={<div className="min-h-[400px] below-fold" />}>
-          <GiftCardBanner />
+          <LicenseComparisonSection />
+        </Suspense>
+        <Suspense fallback={<div className="min-h-[400px] below-fold" />}>
+          <FeaturesSection />
+        </Suspense>
+        <Suspense fallback={<div className="min-h-[400px] below-fold" />}>
+          <FAQPreview />
         </Suspense>
         <Suspense fallback={<div className="min-h-[400px] below-fold" />}>
           <ContactSection />
+        </Suspense>
+        <Suspense fallback={<div className="min-h-[400px] below-fold" />}>
+          <GiftCardBanner />
         </Suspense>
         <Suspense fallback={<div className="min-h-[400px] below-fold" />}>
           <HomepageLocationsSection />

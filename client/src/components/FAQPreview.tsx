@@ -94,14 +94,14 @@ export default function FAQPreview() {
   const viewAll = t.faqPreview?.viewAll ?? "Ver todas las preguntas frecuentes";
 
   return (
-    <section ref={revealRef} className={`py-16 sm:py-20 bg-background transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`} aria-labelledby="faq-preview-title">
+    <section ref={revealRef} className={`py-16 sm:py-20 lg:py-24 bg-background transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`} aria-labelledby="faq-preview-title">
       <div className="container mx-auto px-4 sm:px-6 max-w-3xl">
         {/* Header */}
         <div className="text-center mb-10">
           <div className="inline-flex items-center justify-center w-12 h-12 bg-primary/10 rounded-full mb-4">
             <HelpCircle className="w-6 h-6 text-primary" />
           </div>
-          <h2 id="faq-preview-title" className="font-heading text-2xl sm:text-3xl font-bold text-foreground mb-3">
+          <h2 id="faq-preview-title" className="font-heading text-2xl sm:text-3xl md:text-4xl font-semibold text-foreground tracking-tight mb-3">
             {title}
           </h2>
           <p className="text-muted-foreground text-base sm:text-lg">

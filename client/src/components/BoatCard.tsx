@@ -338,7 +338,7 @@ function BoatCard({
         </a>
         <button
           onClick={handleBooking}
-          className="bg-cta hover:bg-cta/90 text-white text-sm font-medium px-4 py-1.5 rounded-full focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2 focus-visible:outline-none cta-pulse cta-hover-lift"
+          className="bg-cta hover:bg-cta/90 text-white text-base font-medium px-6 py-2.5 rounded-full focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2 focus-visible:outline-none cta-pulse cta-hover-lift"
           data-testid={`button-book-${id}`}
         >
           {t.boats.book}

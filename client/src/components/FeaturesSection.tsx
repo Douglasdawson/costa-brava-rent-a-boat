@@ -139,7 +139,7 @@ export default function FeaturesSection() {
             </a>
             <a href={localizedPath("blog")} className="text-primary hover:underline flex items-center gap-1 text-sm sm:text-base">
               <ChevronRight className="w-4 h-4" />
-              Blog de navegacion
+              Blog de navegación
             </a>
           </div>
         </div>

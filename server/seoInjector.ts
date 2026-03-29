@@ -1768,11 +1768,11 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
             name: isEn ? "What is the cancellation policy?" : "¿Cuál es la política de cancelación?",
             acceptedAnswer: { "@type": "Answer", text: isEn
               ? "Free cancellation up to 24 hours before departure. Same-day cancellations may be rescheduled depending on availability. In case of bad weather, we offer full rescheduling."
-              : "Cancelacion gratuita hasta 24 horas antes de la salida. Cancelaciones del mismo dia pueden reprogramarse segun disponibilidad. En caso de mal tiempo, ofrecemos reprogramacion completa." },
+              : "Cancelación gratuita hasta 24 horas antes de la salida. Cancelaciones del mismo día pueden reprogramarse según disponibilidad. En caso de mal tiempo, ofrecemos reprogramación completa." },
           },
           {
             "@type": "Question",
-            name: isEn ? "Where can I navigate with the rental boats?" : "Donde puedo navegar con los barcos de alquiler?",
+            name: isEn ? "Where can I navigate with the rental boats?" : "¿Dónde puedo navegar con los barcos de alquiler?",
             acceptedAnswer: { "@type": "Answer", text: isEn
               ? "License-free boats can navigate up to 2 nautical miles from the coast. You can explore from Sa Palomera to Lloret de Mar. Licensed boats can reach Tossa de Mar and beyond."
               : "Los barcos sin licencia pueden navegar hasta 2 millas nauticas de la costa. Puedes explorar desde Sa Palomera hasta Lloret de Mar. Los barcos con licencia pueden llegar hasta Tossa de Mar y mas alla." },
@@ -1841,10 +1841,10 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
         name: isEn ? "Blanes Port - Boat Rental" : "Puerto de Blanes - Alquiler de Barcos",
         description: isEn
           ? "Rent boats in Blanes Port, the gateway to Costa Brava. 8 boats available with and without license. Explore coves, beaches, and the Mediterranean coast."
-          : "Alquila barcos en el Puerto de Blanes, la puerta de la Costa Brava. 8 embarcaciones disponibles con y sin licencia. Explora calas, playas y la costa mediterranea.",
+          : "Alquila barcos en el Puerto de Blanes, la puerta de la Costa Brava. 8 embarcaciones disponibles con y sin licencia. Explora calas, playas y la costa mediterránea.",
         url: `${BASE_URL}/alquiler-barcos-blanes`,
         touristType: [
-          { "@type": "Audience", audienceType: isEn ? "Nautical tourists" : "Turistas nauticos" },
+          { "@type": "Audience", audienceType: isEn ? "Nautical tourists" : "Turistas náuticos" },
           { "@type": "Audience", audienceType: isEn ? "Families with children" : "Familias con ninos" },
           { "@type": "Audience", audienceType: isEn ? "Adventure seekers" : "Buscadores de aventura" },
         ],
@@ -1897,7 +1897,7 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
           : "Navega desde Blanes hasta Lloret de Mar y descubre calas y playas impresionantes a lo largo de la costa de la Costa Brava.",
         url: `${BASE_URL}/alquiler-barcos-lloret-de-mar`,
         touristType: [
-          { "@type": "Audience", audienceType: isEn ? "Nautical tourists" : "Turistas nauticos" },
+          { "@type": "Audience", audienceType: isEn ? "Nautical tourists" : "Turistas náuticos" },
           { "@type": "Audience", audienceType: isEn ? "Beach lovers" : "Amantes de la playa" },
           { "@type": "Audience", audienceType: isEn ? "Families with children" : "Familias con ninos" },
         ],
@@ -1956,7 +1956,7 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
           : "Navega desde Blanes hasta Tossa de Mar en aproximadamente 1 hora. Descubre la Vila Vella medieval, acantilados impresionantes y calas escondidas.",
         url: `${BASE_URL}/alquiler-barcos-tossa-de-mar`,
         touristType: [
-          { "@type": "Audience", audienceType: isEn ? "Nautical tourists" : "Turistas nauticos" },
+          { "@type": "Audience", audienceType: isEn ? "Nautical tourists" : "Turistas náuticos" },
           { "@type": "Audience", audienceType: isEn ? "History enthusiasts" : "Entusiastas de la historia" },
           { "@type": "Audience", audienceType: isEn ? "Adventure seekers" : "Buscadores de aventura" },
         ],
@@ -1994,10 +1994,10 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
           },
           {
             "@type": "Question",
-            name: isEn ? "What can I see on the boat trip to Tossa de Mar?" : "Que puedo ver en la excursion en barco a Tossa de Mar?",
+            name: isEn ? "What can I see on the boat trip to Tossa de Mar?" : "¿Qué puedo ver en la excursión en barco a Tossa de Mar?",
             acceptedAnswer: { "@type": "Answer", text: isEn
               ? "You'll see dramatic cliffs, hidden coves like Cala Pola, the iconic Vila Vella medieval fortress, and crystal-clear Mediterranean waters."
-              : "Veras acantilados dramaticos, calas escondidas como Cala Pola, la iconica fortaleza medieval de la Vila Vella y aguas cristalinas del Mediterraneo." },
+              : "Verás acantilados dramáticos, calas escondidas como Cala Pola, la icónica fortaleza medieval de la Vila Vella y aguas cristalinas del Mediterráneo." },
           },
         ],
       };

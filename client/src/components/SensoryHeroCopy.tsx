@@ -55,16 +55,16 @@ export function SensoryHeroCopy({ className }: SensoryHeroCopyProps) {
   }, []);
 
   const mainLineMap: Record<TimeOfDay, string> = {
-    morning: t.sensoryHero?.morningLine || "Siente la brisa mediterranea en tu piel",
-    afternoon: t.sensoryHero?.afternoonLine || "Manana, este podria ser tu atardecer",
-    evening: t.sensoryHero?.eveningLine || "Despierta manana en el agua",
-    night: t.sensoryHero?.nightLine || "Manana, el mar te espera",
+    morning: t.sensoryHero?.morningLine || "Siente la brisa mediterránea en tu piel",
+    afternoon: t.sensoryHero?.afternoonLine || "Mañana, este podría ser tu atardecer",
+    evening: t.sensoryHero?.eveningLine || "Despierta mañana en el agua",
+    night: t.sensoryHero?.nightLine || "Mañana, el mar te espera",
   };
 
   const seasonLineMap: Record<SeasonKey, string> = {
     low: t.sensoryHero?.seasonLow || "Temporada tranquila -- calas solo para ti",
     mid: t.sensoryHero?.seasonMid || "El mejor momento del verano empieza ahora",
-    high: t.sensoryHero?.seasonHigh || "Ultimas plazas de agosto -- no esperes mas",
+    high: t.sensoryHero?.seasonHigh || "Últimas plazas de agosto — no esperes más",
     off: t.sensoryHero?.seasonOff || "La temporada abre en abril",
   };
 

@@ -401,7 +401,7 @@ function FleetSection() {
     <section ref={revealRef} className={`py-16 sm:py-24 lg:py-32 bg-background transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`} id="fleet">
       <div className="container mx-auto px-3 sm:px-4 max-w-7xl">
         <div className="text-center mb-8 sm:mb-12 lg:mb-16">
-          <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl font-medium text-foreground tracking-tight mb-2 sm:mb-3 lg:mb-4 px-2 text-balance">
+          <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl font-semibold text-foreground tracking-tight mb-2 sm:mb-3 lg:mb-4 px-2 text-balance">
             {t.fleet.title}
           </h2>
           <p className="text-base text-muted-foreground font-light mt-3 max-w-xl sm:max-w-2xl lg:max-w-4xl mx-auto px-2 sm:px-4">

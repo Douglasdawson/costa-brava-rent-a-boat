@@ -14,7 +14,7 @@ export default function GiftCardBanner() {
           <div className="flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
             {/* Text */}
             <div>
-              <h2 className="text-2xl sm:text-3xl font-heading font-light text-white tracking-tight">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-heading font-semibold text-white tracking-tight">
                 {banner.title}
               </h2>
               <p className="text-white/60 font-light mt-2 max-w-lg">

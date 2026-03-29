@@ -279,7 +279,7 @@ export function ExitIntentModal() {
         {/* Close button */}
         <button
           onClick={handleDismiss}
-          className="absolute top-4 right-4 text-muted-foreground/60 hover:text-muted-foreground z-10"
+          className="absolute top-3 right-3 p-2 text-muted-foreground/60 hover:text-muted-foreground z-10"
           aria-label={t.a11y.close}
           tabIndex={show ? 0 : -1}
         >
@@ -338,7 +338,7 @@ export function ExitIntentModal() {
 
           <button
             onClick={handleDismiss}
-            className="mt-3 text-sm text-muted-foreground hover:text-foreground transition-colors"
+            className="mt-3 py-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
             tabIndex={show ? 0 : -1}
           >
             {t.exitIntent?.noThanks}

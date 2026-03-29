@@ -330,7 +330,7 @@ function BoatCard({
         <a
           href={localizedPath("boatDetail", id)}
           onClick={handleDetailsClick}
-          className="details-link text-sm font-medium text-foreground hover:text-cta inline-flex items-center gap-1.5 transition-colors py-2 -my-1 focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2 focus-visible:outline-none rounded"
+          className="details-link text-sm font-medium text-foreground hover:text-cta inline-flex items-center gap-1.5 transition-colors py-3 -my-1 focus-visible:ring-2 focus-visible:ring-cta focus-visible:ring-offset-2 focus-visible:outline-none rounded"
           data-testid={`button-details-${id}`}
           aria-label={`${t.boats.viewDetails} — ${name}`}
         >

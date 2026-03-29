@@ -1702,7 +1702,7 @@ export const es: Translations = {
     safetyEquipment: 'Equipo de seguridad completo',
     briefing: 'Formacion de 15 min incluida',
     freeCancellation: 'Cancelacion gratuita 48h',
-    securePayment: 'Pago seguro con Stripe',
+    securePayment: 'Pago seguro',
     gpsAndSonar: 'GPS y sonda incluidos',
     professionalSkipper: 'Patron profesional incluido',
   },
@@ -1726,7 +1726,7 @@ export const es: Translations = {
     officialPort: 'Puerto oficial de Blanes',
     googleRating: '4.8 en Google',
     fullInsurance: 'Seguro completo',
-    yearsExperience: '5 anos de experiencia',
+    yearsExperience: '5 años de experiencia',
   },
 
   sensoryHero: {

@@ -8,6 +8,8 @@ import type { Boat } from "@shared/schema";
 import { EXTRA_PACKS } from "@shared/boatData";
 import type { Translations } from "@/lib/translations";
 import BookingProgressBar from "@/components/BookingProgressBar";
+import { ValueStack } from "@/components/booking-flow/ValueStack";
+import { BookingTrustBanner } from "@/components/booking-flow/BookingTrustBanner";
 import HoldCountdown from "@/components/HoldCountdown";
 import PriceSummaryBar from "@/components/PriceSummaryBar";
 import { trackWhatsAppClick } from "@/utils/analytics";
@@ -65,7 +67,7 @@ export interface BookingWizardMobileProps {
   filteredBoats: Boat[];
   isBoatsLoading: boolean;
   selectedBoatInfo: Boat | undefined;
-  getDurationOptions: () => { value: string; label: string; disabled?: boolean; disabledReason?: string }[];
+  getDurationOptions: () => { value: string; label: string; price?: number; disabled?: boolean; disabledReason?: string }[];
   getMaxCapacity: () => number;
   getLocalISODate: () => string;
   preSelectedBoatId?: string;
@@ -174,6 +176,10 @@ export default function BookingWizardMobile(props: BookingWizardMobileProps) {
         </div>
       )}
       <div ref={scrollContainerRef} className="flex-1 overflow-y-auto overflow-x-hidden px-4 py-4">
+        <BookingTrustBanner
+          t={props.t}
+          stage={currentStep <= 2 ? "step1" : currentStep === 3 ? "step2" : "step3"}
+        />
         <div
           className={`transition-all duration-150 ${animClass}`}
           aria-live="polite"
@@ -488,45 +494,67 @@ function Step2Trip({
       <div id="field-duration">
         <label className="block text-sm font-semibold text-muted-foreground mb-2">{t.wizard.duration}</label>
         <div className="space-y-2">
-          {durationOptions.map((opt) => {
-            const durationHours = parseInt(opt.value.replace("h", ""));
-            const exceedsMax = selectedTimeMaxDuration !== null && durationHours > selectedTimeMaxDuration;
-            const isSeasonRestricted = !!opt.disabled;
-            const isDisabled = exceedsMax || isSeasonRestricted;
-            const parts = opt.label.split(' - ');
-            const lastPart = parts[parts.length - 1];
-            const hasPrice = parts.length > 1 && lastPart.includes('€');
-            const labelText = hasPrice ? parts.slice(0, -1).join(' · ') : opt.label;
-            const priceText = hasPrice ? lastPart : null;
-            return (
-              <button
-                key={opt.value}
-                type="button"
-                disabled={isDisabled}
-                onClick={() => !isDisabled && setSelectedDuration(opt.value)}
-                title={isSeasonRestricted ? opt.disabledReason : undefined}
-                className={`w-full flex items-center justify-between p-3 rounded-xl border-2 text-left transition-all ${
-                  isDisabled
-                    ? "border-border bg-muted opacity-50 cursor-not-allowed"
-                    : selectedDuration === opt.value
-                    ? "border-primary bg-primary/5"
-                    : "border-border bg-background"
-                }`}
-              >
-                <span className="flex items-center gap-2">
-                  <span className={`text-sm font-medium ${isDisabled ? "text-muted-foreground/60 line-through" : "text-foreground"}`}>{labelText}</span>
-                  {opt.value === "4h" && !isDisabled && (
-                    <span className="text-[10px] font-medium text-muted-foreground/60 uppercase tracking-wide">{t.wizard.mostPopular}</span>
-                  )}
-                </span>
-                {isDisabled ? (
-                  <span className="text-xs text-amber-600 font-medium">{opt.disabledReason || t.boats.notAvailable}</span>
-                ) : priceText ? (
-                  <span className="text-xs font-bold text-primary">{priceText}</span>
-                ) : null}
-              </button>
-            );
-          })}
+          {(() => {
+            const enabledWithPrice = durationOptions.filter(o => !o.disabled && o.price);
+            const bestValueId = enabledWithPrice.length > 1
+              ? enabledWithPrice.reduce((best, dur) => {
+                  const bestPH = best.price! / parseFloat(best.value);
+                  const durPH = dur.price! / parseFloat(dur.value);
+                  return durPH < bestPH ? dur : best;
+                }).value
+              : null;
+            return durationOptions.map((opt) => {
+              const durationHours = parseInt(opt.value.replace("h", ""));
+              const exceedsMax = selectedTimeMaxDuration !== null && durationHours > selectedTimeMaxDuration;
+              const isSeasonRestricted = !!opt.disabled;
+              const isDisabled = exceedsMax || isSeasonRestricted;
+              const parts = opt.label.split(' - ');
+              const lastPart = parts[parts.length - 1];
+              const hasPrice = parts.length > 1 && lastPart.includes('€');
+              const labelText = hasPrice ? parts.slice(0, -1).join(' · ') : opt.label;
+              const priceText = hasPrice ? lastPart : null;
+              return (
+                <button
+                  key={opt.value}
+                  type="button"
+                  disabled={isDisabled}
+                  onClick={() => !isDisabled && setSelectedDuration(opt.value)}
+                  title={isSeasonRestricted ? opt.disabledReason : undefined}
+                  className={`w-full flex items-center justify-between p-3 rounded-xl border-2 text-left transition-all ${
+                    isDisabled
+                      ? "border-border bg-muted opacity-50 cursor-not-allowed"
+                      : selectedDuration === opt.value
+                      ? "border-primary bg-primary/5"
+                      : "border-border bg-background"
+                  }`}
+                >
+                  <span className="flex flex-col">
+                    <span className="flex items-center gap-2">
+                      <span className={`text-sm font-medium ${isDisabled ? "text-muted-foreground/60 line-through" : "text-foreground"}`}>{labelText}</span>
+                      {opt.value === "4h" && !isDisabled && (
+                        <span className="text-[10px] font-medium text-muted-foreground/60 uppercase tracking-wide">{t.wizard.mostPopular}</span>
+                      )}
+                      {opt.value === bestValueId && (
+                        <span className="text-[10px] font-semibold text-green-700 bg-green-50 px-1.5 py-0.5 rounded-full">
+                          {t.neuro?.bestValue || 'Mejor valor'}
+                        </span>
+                      )}
+                    </span>
+                    {opt.price && !isDisabled && (
+                      <span className="text-[10px] text-muted-foreground/60 block">
+                        {(opt.price / parseFloat(opt.value)).toFixed(0)}{t.neuro?.perHour || '/hora'} · {Math.ceil(opt.price / parseFloat(opt.value) / maxCapacity)}/{t.boats?.perPerson || 'pers.'}
+                      </span>
+                    )}
+                  </span>
+                  {isDisabled ? (
+                    <span className="text-xs text-amber-600 font-medium">{opt.disabledReason || t.boats.notAvailable}</span>
+                  ) : priceText ? (
+                    <span className="text-xs font-bold text-primary">{priceText}</span>
+                  ) : null}
+                </button>
+              );
+            });
+          })()}
         </div>
         {showFieldError('duration') && (
           <p className="text-xs text-red-500 mt-1">{getFieldError('duration')}</p>
@@ -1052,6 +1080,12 @@ function Step4Confirm({
           </div>
         );
       })()}
+      {/* Value stacking — what's included */}
+      <ValueStack
+        requiresLicense={!!selectedBoatInfo?.requiresLicense}
+        isExcursion={selectedBoatInfo?.id === "excursion-privada"}
+        t={t}
+      />
       {/* RGPD passive consent notice */}
       <p className="text-xs text-muted-foreground/60 leading-relaxed text-center">
         {t.booking.gdprPassive?.split('{privacyPolicy}')[0] || 'Al enviar esta solicitud, aceptas nuestra '}

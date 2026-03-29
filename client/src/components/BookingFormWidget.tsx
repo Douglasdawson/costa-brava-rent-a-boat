@@ -438,7 +438,7 @@ export default function BookingFormWidget({ preSelectedBoatId, prefillDate, pref
   };
 
   // Duration options based on boat, license, date, and season restrictions
-  const getDurationOptions = (): { value: string; label: string; disabled?: boolean; disabledReason?: string }[] => {
+  const getDurationOptions = (): { value: string; label: string; price?: number; disabled?: boolean; disabledReason?: string }[] => {
     const getPriceForDuration = (durationKey: string) => {
       if (!selectedBoatInfo || !selectedBoatInfo.pricing) return null;
 
@@ -475,7 +475,7 @@ export default function BookingFormWidget({ preSelectedBoatId, prefillDate, pref
               disabledReason: getRestrictionTooltip(opt),
             };
           }
-          return { value: opt.duration, label };
+          return { value: opt.duration, label, price: getPriceForDuration(opt.duration) ?? undefined };
         });
       }
     }
@@ -502,18 +502,18 @@ export default function BookingFormWidget({ preSelectedBoatId, prefillDate, pref
     // Boat selected but no date — show boat-specific durations without restrictions
     if (selectedBoatInfo.requiresLicense) {
       return [
-        { value: "2h", label: formatLabel("2h", t.booking.twoHours || "2 horas") },
-        { value: "4h", label: formatLabel("4h", t.booking.fourHours || "4 horas - Medio dia") },
-        { value: "8h", label: formatLabel("8h", t.booking.eightHours || "8 horas - Dia completo") },
+        { value: "2h", label: formatLabel("2h", t.booking.twoHours || "2 horas"), price: getPriceForDuration("2h") ?? undefined },
+        { value: "4h", label: formatLabel("4h", t.booking.fourHours || "4 horas - Medio dia"), price: getPriceForDuration("4h") ?? undefined },
+        { value: "8h", label: formatLabel("8h", t.booking.eightHours || "8 horas - Dia completo"), price: getPriceForDuration("8h") ?? undefined },
       ];
     }
     return [
-      { value: "1h", label: formatLabel("1h", t.booking.oneHour || "1 hora") },
-      { value: "2h", label: formatLabel("2h", t.booking.twoHours || "2 horas") },
-      { value: "3h", label: formatLabel("3h", t.booking.threeHours || "3 horas") },
-      { value: "4h", label: formatLabel("4h", t.booking.fourHours || "4 horas - Medio dia") },
-      { value: "6h", label: formatLabel("6h", t.booking.sixHours || "6 horas") },
-      { value: "8h", label: formatLabel("8h", t.booking.eightHours || "8 horas - Dia completo") },
+      { value: "1h", label: formatLabel("1h", t.booking.oneHour || "1 hora"), price: getPriceForDuration("1h") ?? undefined },
+      { value: "2h", label: formatLabel("2h", t.booking.twoHours || "2 horas"), price: getPriceForDuration("2h") ?? undefined },
+      { value: "3h", label: formatLabel("3h", t.booking.threeHours || "3 horas"), price: getPriceForDuration("3h") ?? undefined },
+      { value: "4h", label: formatLabel("4h", t.booking.fourHours || "4 horas - Medio dia"), price: getPriceForDuration("4h") ?? undefined },
+      { value: "6h", label: formatLabel("6h", t.booking.sixHours || "6 horas"), price: getPriceForDuration("6h") ?? undefined },
+      { value: "8h", label: formatLabel("8h", t.booking.eightHours || "8 horas - Dia completo"), price: getPriceForDuration("8h") ?? undefined },
     ];
   };
 

@@ -8,6 +8,8 @@ import { motion, AnimatePresence } from "motion/react";
 import type { BookingWizardMobileProps } from "./BookingWizardMobile";
 import { EXTRA_PACKS } from "@shared/boatData";
 import BookingProgressBar from "@/components/BookingProgressBar";
+import { ValueStack } from "@/components/booking-flow/ValueStack";
+import { BookingTrustBanner } from "@/components/booking-flow/BookingTrustBanner";
 import HoldCountdown from "@/components/HoldCountdown";
 import PriceSummaryBar from "@/components/PriceSummaryBar";
 import { trackWhatsAppClick } from "@/utils/analytics";
@@ -168,6 +170,10 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
             transition={{ duration: 0.3, ease: "easeInOut" }}
             className="px-6 py-5"
           >
+            <BookingTrustBanner
+              t={t}
+              stage={currentStep <= 2 ? "step1" : currentStep === 3 ? "step2" : "step3"}
+            />
             {currentStep === 1 && (
               <Step1BoatDate
                 licenseFilter={licenseFilter} setLicenseFilter={setLicenseFilter}
@@ -435,7 +441,7 @@ interface Step2Props {
   setPreferredTime: (v: string) => void;
   numberOfPeople: string;
   setNumberOfPeople: (v: string) => void;
-  durationOptions: { value: string; label: string; disabled?: boolean; disabledReason?: string }[];
+  durationOptions: { value: string; label: string; price?: number; disabled?: boolean; disabledReason?: string }[];
   maxCapacity: number;
   selectedBoatInfo: BookingWizardMobileProps["selectedBoatInfo"];
   timeSlots: string[];
@@ -545,41 +551,61 @@ function Step2Details({
           {t.wizard.duration}
         </label>
         <div className="grid grid-cols-3 gap-2">
-          {durationOptions.map((opt) => {
-            const durationHours = parseInt(opt.value.replace("h", ""));
-            const exceedsMax = selectedTimeMaxDuration !== null && durationHours > selectedTimeMaxDuration;
-            const isSeasonRestricted = !!opt.disabled;
-            const isDisabled = exceedsMax || isSeasonRestricted;
-            const parts = opt.label.split(' - ');
-            const priceText = parts.length > 1 && parts[parts.length - 1].includes('€') ? parts[parts.length - 1] : null;
-            const labelText = priceText ? parts.slice(0, -1).join(' · ') : opt.label;
-            return (
-              <button
-                key={opt.value}
-                type="button"
-                disabled={isDisabled}
-                onClick={() => !isDisabled && setSelectedDuration(opt.value)}
-                title={isSeasonRestricted ? opt.disabledReason : undefined}
-                className={`py-3 px-2 rounded-lg border-2 text-center transition-all ${
-                  isDisabled
-                    ? "border-border bg-muted opacity-50 cursor-not-allowed"
-                    : selectedDuration === opt.value
-                    ? "border-foreground bg-foreground/5"
-                    : "border-cta/40 bg-background hover:border-cta"
-                }`}
-              >
-                {opt.value === "4h" && !isDisabled && (
-                  <p className="text-[9px] font-medium text-muted-foreground/60 uppercase tracking-wider mb-0.5">{t.wizard.mostPopular}</p>
-                )}
-                <p className={`text-sm font-semibold ${isDisabled ? "text-muted-foreground/60 line-through" : "text-foreground"}`}>{labelText}</p>
-                {isDisabled ? (
-                  <p className="text-xs text-amber-600 font-medium">{opt.disabledReason || t.boats.notAvailable}</p>
-                ) : priceText ? (
-                  <p className="text-xs font-bold text-foreground">{priceText}</p>
-                ) : null}
-              </button>
-            );
-          })}
+          {(() => {
+            const enabledWithPrice = durationOptions.filter(o => !o.disabled && o.price);
+            const bestValueId = enabledWithPrice.length > 1
+              ? enabledWithPrice.reduce((best, dur) => {
+                  const bestPH = best.price! / parseFloat(best.value);
+                  const durPH = dur.price! / parseFloat(dur.value);
+                  return durPH < bestPH ? dur : best;
+                }).value
+              : null;
+            return durationOptions.map((opt) => {
+              const durationHours = parseInt(opt.value.replace("h", ""));
+              const exceedsMax = selectedTimeMaxDuration !== null && durationHours > selectedTimeMaxDuration;
+              const isSeasonRestricted = !!opt.disabled;
+              const isDisabled = exceedsMax || isSeasonRestricted;
+              const parts = opt.label.split(' - ');
+              const priceText = parts.length > 1 && parts[parts.length - 1].includes('€') ? parts[parts.length - 1] : null;
+              const labelText = priceText ? parts.slice(0, -1).join(' · ') : opt.label;
+              return (
+                <button
+                  key={opt.value}
+                  type="button"
+                  disabled={isDisabled}
+                  onClick={() => !isDisabled && setSelectedDuration(opt.value)}
+                  title={isSeasonRestricted ? opt.disabledReason : undefined}
+                  className={`py-3 px-2 rounded-lg border-2 text-center transition-all ${
+                    isDisabled
+                      ? "border-border bg-muted opacity-50 cursor-not-allowed"
+                      : selectedDuration === opt.value
+                      ? "border-foreground bg-foreground/5"
+                      : "border-cta/40 bg-background hover:border-cta"
+                  }`}
+                >
+                  {opt.value === "4h" && !isDisabled && (
+                    <p className="text-[9px] font-medium text-muted-foreground/60 uppercase tracking-wider mb-0.5">{t.wizard.mostPopular}</p>
+                  )}
+                  {opt.value === bestValueId && (
+                    <p className="text-[9px] font-semibold text-green-700 bg-green-50 inline-block px-1.5 py-0.5 rounded-full mb-0.5">
+                      {t.neuro?.bestValue || 'Mejor valor'}
+                    </p>
+                  )}
+                  <p className={`text-sm font-semibold ${isDisabled ? "text-muted-foreground/60 line-through" : "text-foreground"}`}>{labelText}</p>
+                  {isDisabled ? (
+                    <p className="text-xs text-amber-600 font-medium">{opt.disabledReason || t.boats.notAvailable}</p>
+                  ) : priceText ? (
+                    <p className="text-xs font-bold text-foreground">{priceText}</p>
+                  ) : null}
+                  {opt.price && !isDisabled && (
+                    <p className="text-[10px] text-muted-foreground/60">
+                      {(opt.price / parseFloat(opt.value)).toFixed(0)}{t.neuro?.perHour || '/hora'} · {Math.ceil(opt.price / parseFloat(opt.value) / maxCapacity)}/{t.boats?.perPerson || 'pers.'}
+                    </p>
+                  )}
+                </button>
+              );
+            });
+          })()}
         </div>
         {showFieldError('duration') && <p id="error-desktop-duration" className="text-xs text-red-500 mt-1">{getFieldError('duration')}</p>}
       </div>
@@ -1095,6 +1121,13 @@ function Step4Contact({
           )}
         </div>
       )}
+
+      {/* Value stacking — what's included */}
+      <ValueStack
+        requiresLicense={!!selectedBoatInfo?.requiresLicense}
+        isExcursion={selectedBoatInfo?.id === "excursion-privada"}
+        t={t}
+      />
 
       {/* RGPD passive consent notice */}
       <p className="text-xs text-muted-foreground leading-relaxed text-center">

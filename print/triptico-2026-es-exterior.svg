@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     width="297mm" height="210mm"
+     viewBox="0 0 297 210">
+
+  <defs>
+    <style type="text/css">
+      @font-face {
+        font-family: 'Clash Display';
+        src: url('../client/public/fonts/ClashDisplay-Variable.woff2') format('woff2');
+        font-weight: 200 700;
+      }
+      @font-face {
+        font-family: 'Archivo';
+        src: url('../client/public/fonts/Archivo-Variable.woff2') format('woff2');
+        font-weight: 100 900;
+        font-style: normal;
+      }
+      @font-face {
+        font-family: 'Archivo';
+        src: url('../client/public/fonts/Archivo-Variable.woff2') format('woff2');
+        font-weight: 100 900;
+        font-style: italic;
+      }
+    </style>
+
+    <!-- Rounded rect clips -->
+    <clipPath id="clip-hero-portada">
+      <rect x="203" y="100" width="90" height="60" rx="3" ry="3"/>
+    </clipPath>
+    <clipPath id="clip-photo-contra">
+      <rect x="104" y="12" width="89" height="70" rx="3" ry="3"/>
+    </clipPath>
+  </defs>
+
+  <!-- ============================================================ -->
+  <!-- PANEL 1: EXTRAS (x=0, 99mm wide) -->
+  <!-- ============================================================ -->
+  <g id="panel-extras" transform="translate(0,0)">
+    <!-- Background -->
+    <rect id="extras-bg" x="0" y="0" width="99" height="210" fill="#f3f4f6"/>
+
+    <!-- Title -->
+    <text id="extras-title" x="49.5" y="14" text-anchor="middle"
+          font-family="Clash Display" font-size="12" font-weight="600" fill="#1C2B42">
+      Extras
+    </text>
+
+    <!-- 2x3 grid of extras -->
+    <g id="extras-grid">
+      <!-- Row 1 -->
+      <g id="extra-nevera" transform="translate(5, 22)">
+        <rect x="0" y="0" width="42" height="30" rx="2.5" ry="2.5" fill="#ffffff"/>
+        <circle cx="21" cy="10" r="5" fill="#A8C4DD" opacity="0.3"/>
+        <circle cx="21" cy="10" r="3" fill="#A8C4DD"/>
+        <text x="21" y="22" text-anchor="middle"
+              font-family="Archivo" font-size="5" font-weight="700" fill="#1C2B42">Nevera</text>
+        <text x="21" y="28" text-anchor="middle"
+              font-family="Archivo" font-size="5" font-weight="700" fill="#A8C4DD">5&#8364;</text>
+      </g>
+      <g id="extra-bebidas" transform="translate(52, 22)">
+        <rect x="0" y="0" width="42" height="30" rx="2.5" ry="2.5" fill="#ffffff"/>
+        <circle cx="21" cy="10" r="5" fill="#A8C4DD" opacity="0.3"/>
+        <circle cx="21" cy="10" r="3" fill="#A8C4DD"/>
+        <text x="21" y="22" text-anchor="middle"
+              font-family="Archivo" font-size="5" font-weight="700" fill="#1C2B42">Bebidas</text>
+        <text x="21" y="28" text-anchor="middle"
+              font-family="Archivo" font-size="5" font-weight="700" fill="#A8C4DD">2,50&#8364;/ud</text>
+      </g>
+
+      <!-- Row 2 -->
+      <g id="extra-snorkel" transform="translate(5, 56)">
+        <rect x="0" y="0" width="42" height="30" rx="2.5" ry="2.5" fill="#ffffff"/>
+        <circle cx="21" cy="10" r="5" fill="#A8C4DD" opacity="0.3"/>
+        <circle cx="21" cy="10" r="3" fill="#A8C4DD"/>
+        <text x="21" y="22" text-anchor="middle"
+              font-family="Archivo" font-size="5" font-weight="700" fill="#1C2B42">Snorkel</text>
+        <text x="21" y="28" text-anchor="middle"
+              font-family="Archivo" font-size="5" font-weight="700" fill="#A8C4DD">7,50&#8364;</text>
+      </g>
+      <g id="extra-paddle" transform="translate(52, 56)">
+        <rect x="0" y="0" width="42" height="30" rx="2.5" ry="2.5" fill="#ffffff"/>
+        <circle cx="21" cy="10" r="5" fill="#A8C4DD" opacity="0.3"/>
+        <circle cx="21" cy="10" r="3" fill="#A8C4DD"/>
+        <text x="21" y="22" text-anchor="middle"
+              font-family="Archivo" font-size="5" font-weight="700" fill="#1C2B42">Paddle Surf</text>
+        <text x="21" y="28" text-anchor="middle"
+              font-family="Archivo" font-size="5" font-weight="700" fill="#A8C4DD">25&#8364;</text>
+      </g>
+
+      <!-- Row 3 -->
+      <g id="extra-seascooter" transform="translate(5, 90)">
+        <rect x="0" y="0" width="42" height="30" rx="2.5" ry="2.5" fill="#ffffff"/>
+        <circle cx="21" cy="10" r="5" fill="#A8C4DD" opacity="0.3"/>
+        <circle cx="21" cy="10" r="3" fill="#A8C4DD"/>
+        <text x="21" y="22" text-anchor="middle"
+              font-family="Archivo" font-size="5" font-weight="700" fill="#1C2B42">Seascooter</text>
+        <text x="21" y="28" text-anchor="middle"
+              font-family="Archivo" font-size="5" font-weight="700" fill="#A8C4DD">50&#8364;</text>
+      </g>
+      <g id="extra-parking" transform="translate(52, 90)">
+        <rect x="0" y="0" width="42" height="30" rx="2.5" ry="2.5" fill="#ffffff"/>
+        <circle cx="21" cy="10" r="5" fill="#A8C4DD" opacity="0.3"/>
+        <circle cx="21" cy="10" r="3" fill="#A8C4DD"/>
+        <text x="21" y="22" text-anchor="middle"
+              font-family="Archivo" font-size="5" font-weight="700" fill="#1C2B42">Parking</text>
+        <text x="21" y="28" text-anchor="middle"
+              font-family="Archivo" font-size="5" font-weight="700" fill="#A8C4DD">10&#8364;</text>
+      </g>
+    </g>
+
+    <!-- Packs Ahorro subtitle -->
+    <text id="packs-title" x="49.5" y="133" text-anchor="middle"
+          font-family="Clash Display" font-size="9" font-weight="600" fill="#1C2B42">
+      Packs Ahorro
+    </text>
+
+    <!-- Pack cards -->
+    <g id="packs">
+      <!-- Pack Basic -->
+      <g id="pack-basic" transform="translate(5, 137)">
+        <rect x="0" y="0" width="89" height="16" rx="2" ry="2" fill="#ffffff"/>
+        <text x="4" y="6" font-family="Clash Display" font-size="5" font-weight="600" fill="#1C2B42">Pack Basic</text>
+        <text x="4" y="11.5" font-family="Archivo" font-size="3.5" fill="#1C2B42">Nevera + Snorkel</text>
+        <text x="85" y="6" text-anchor="end"
+              font-family="Archivo" font-size="5.5" font-weight="700" fill="#A8C4DD">10&#8364;</text>
+        <text x="85" y="11.5" text-anchor="end"
+              font-family="Archivo" font-size="3.5" fill="#999999" text-decoration="line-through">12,50&#8364;</text>
+      </g>
+
+      <!-- Pack Premium (highlighted with blue border) -->
+      <g id="pack-premium" transform="translate(5, 156)">
+        <rect x="0" y="0" width="89" height="16" rx="2" ry="2" fill="#ffffff"
+              stroke="#A8C4DD" stroke-width="0.5"/>
+        <text x="4" y="6" font-family="Clash Display" font-size="5" font-weight="600" fill="#1C2B42">Pack Premium</text>
+        <text x="4" y="11.5" font-family="Archivo" font-size="3.5" fill="#1C2B42">Nevera + Snorkel + Paddle Surf</text>
+        <text x="85" y="6" text-anchor="end"
+              font-family="Archivo" font-size="5.5" font-weight="700" fill="#A8C4DD">30&#8364;</text>
+        <text x="85" y="11.5" text-anchor="end"
+              font-family="Archivo" font-size="3.5" fill="#999999" text-decoration="line-through">37,50&#8364;</text>
+      </g>
+
+      <!-- Pack Aventura -->
+      <g id="pack-aventura" transform="translate(5, 175)">
+        <rect x="0" y="0" width="89" height="18" rx="2" ry="2" fill="#ffffff"/>
+        <text x="4" y="6" font-family="Clash Display" font-size="5" font-weight="600" fill="#1C2B42">Pack Aventura</text>
+        <text x="4" y="11.5" font-family="Archivo" font-size="3.2" fill="#1C2B42">Nevera + Snorkel + Paddle + Seascooter</text>
+        <text x="85" y="6" text-anchor="end"
+              font-family="Archivo" font-size="5.5" font-weight="700" fill="#A8C4DD">75&#8364;</text>
+        <text x="85" y="11.5" text-anchor="end"
+              font-family="Archivo" font-size="3.5" fill="#999999" text-decoration="line-through">87,50&#8364;</text>
+      </g>
+    </g>
+
+    <!-- Bottom banner -->
+    <g id="extras-bottom-banner">
+      <rect x="0" y="198" width="99" height="12" fill="#1C2B42"/>
+      <text x="49.5" y="204" text-anchor="middle"
+            font-family="Archivo" font-size="4" font-weight="500" fill="#ffffff">
+        Puerto de Blanes, Girona
+      </text>
+      <text x="49.5" y="208.5" text-anchor="middle"
+            font-family="Archivo" font-size="3.5" font-weight="400" fill="#A8C4DD">
+        2026
+      </text>
+    </g>
+  </g>
+
+  <!-- ============================================================ -->
+  <!-- PANEL 2: CONTRAPORTADA (x=99mm) -->
+  <!-- ============================================================ -->
+  <g id="panel-contraportada" transform="translate(99,0)">
+    <!-- Background -->
+    <rect id="contra-bg" x="0" y="0" width="99" height="210" fill="#ffffff"/>
+
+    <!-- Photo -->
+    <image id="contra-photo"
+           href="../client/public/images/boats/pacific-craft/alquiler-barco-pacific-craft-625-rent-a-boat-costa-brava-blanes-cala-costa-brava.webp"
+           x="5" y="12" width="89" height="70"
+           clip-path="url(#clip-photo-contra)"
+           preserveAspectRatio="xMidYMid slice"/>
+
+    <!-- Title -->
+    <text id="contra-title" x="49.5" y="93" text-anchor="middle"
+          font-family="Clash Display" font-size="11" font-weight="600" fill="#1C2B42">
+      Tu aventura empieza aqui
+    </text>
+
+    <!-- Contact info -->
+    <g id="contra-contact" transform="translate(10, 102)">
+      <!-- Phone -->
+      <g id="contact-phone" transform="translate(0, 0)">
+        <circle cx="3" cy="-1.5" r="2.5" fill="#A8C4DD" opacity="0.2"/>
+        <text x="3" y="-0.5" text-anchor="middle"
+              font-family="Archivo" font-size="3" fill="#A8C4DD">&#9742;</text>
+        <text x="8" y="0" font-family="Archivo" font-size="4.5" font-weight="500" fill="#1C2B42">
+          +34 611 500 372
+        </text>
+      </g>
+
+      <!-- Email -->
+      <g id="contact-email" transform="translate(0, 9)">
+        <circle cx="3" cy="-1.5" r="2.5" fill="#A8C4DD" opacity="0.2"/>
+        <text x="3" y="-0.5" text-anchor="middle"
+              font-family="Archivo" font-size="3" fill="#A8C4DD">&#9993;</text>
+        <text x="8" y="0" font-family="Archivo" font-size="4" font-weight="400" fill="#1C2B42">
+          costabravarentaboat@gmail.com
+        </text>
+      </g>
+
+      <!-- Web -->
+      <g id="contact-web" transform="translate(0, 18)">
+        <circle cx="3" cy="-1.5" r="2.5" fill="#A8C4DD" opacity="0.2"/>
+        <text x="3" y="-0.5" text-anchor="middle"
+              font-family="Archivo" font-size="3" fill="#A8C4DD">&#9679;</text>
+        <text x="8" y="0" font-family="Archivo" font-size="4" font-weight="400" fill="#1C2B42">
+          www.costabravarentaboat.com
+        </text>
+      </g>
+
+      <!-- Instagram -->
+      <g id="contact-instagram" transform="translate(0, 27)">
+        <circle cx="3" cy="-1.5" r="2.5" fill="#A8C4DD" opacity="0.2"/>
+        <text x="3" y="-0.5" text-anchor="middle"
+              font-family="Archivo" font-size="3" fill="#A8C4DD">@</text>
+        <text x="8" y="0" font-family="Archivo" font-size="4" font-weight="400" fill="#1C2B42">
+          @costabravarentaboat
+        </text>
+      </g>
+
+      <!-- Location -->
+      <g id="contact-location" transform="translate(0, 36)">
+        <circle cx="3" cy="-1.5" r="2.5" fill="#A8C4DD" opacity="0.2"/>
+        <text x="3" y="-0.5" text-anchor="middle"
+              font-family="Archivo" font-size="3" fill="#A8C4DD">&#9650;</text>
+        <text x="8" y="0" font-family="Archivo" font-size="4" font-weight="400" fill="#1C2B42">
+          Puerto de Blanes, Girona
+        </text>
+      </g>
+    </g>
+
+    <!-- Rating -->
+    <g id="contra-rating" transform="translate(5, 152)">
+      <rect x="0" y="0" width="89" height="18" rx="2.5" ry="2.5" fill="#f3f4f6"/>
+      <text x="44.5" y="8" text-anchor="middle"
+            font-family="Archivo" font-size="6" fill="#F59E0B">
+        &#9733;&#9733;&#9733;&#9733;&#9733;
+      </text>
+      <text x="44.5" y="14.5" text-anchor="middle"
+            font-family="Archivo" font-size="3.8" font-weight="500" fill="#1C2B42">
+        4,8/5 en Google &#8212; +200 resenas
+      </text>
+    </g>
+
+    <!-- Season banner -->
+    <g id="contra-season-banner">
+      <rect x="0" y="180" width="99" height="16" fill="#1C2B42" rx="0" ry="0"/>
+      <text x="49.5" y="190" text-anchor="middle"
+            font-family="Clash Display" font-size="5.5" font-weight="600" fill="#ffffff">
+        Temporada Abril &#8211; Octubre 2026
+      </text>
+    </g>
+  </g>
+
+  <!-- ============================================================ -->
+  <!-- PANEL 3: PORTADA (x=198mm) -->
+  <!-- ============================================================ -->
+  <g id="panel-portada" transform="translate(198,0)">
+    <!-- Background -->
+    <rect id="portada-bg" x="0" y="0" width="99" height="210" fill="#1C2B42"/>
+
+    <!-- Logo -->
+    <g id="logo" transform="translate(13.5, 12)">
+      <!-- Simplified logo: text + purple bar -->
+      <text x="36" y="12" text-anchor="middle"
+            font-family="Clash Display" font-size="10" font-weight="700" fill="#ffffff"
+            letter-spacing="2">
+        COSTA BRAVA
+      </text>
+      <rect x="0" y="17" width="72" height="14" fill="#b6a6d0" rx="0" ry="0"/>
+      <text x="36" y="27" text-anchor="middle"
+            font-family="Clash Display" font-size="9" font-weight="600" fill="#ffffff"
+            letter-spacing="1.5">
+        RENT A BOAT
+      </text>
+    </g>
+
+    <!-- Title -->
+    <text id="portada-title" x="49.5" y="55" text-anchor="middle"
+          font-family="Clash Display" font-size="13" font-weight="700" fill="#ffffff">
+      Alquiler de Barcos
+    </text>
+
+    <!-- Subtitle -->
+    <text id="portada-subtitle" x="49.5" y="63" text-anchor="middle"
+          font-family="Archivo" font-size="5" font-weight="400" fill="#A8C4DD">
+      Costa Brava &#183; Blanes &#183; 2026
+    </text>
+
+    <!-- Hero photo -->
+    <defs>
+      <clipPath id="clip-hero-porta">
+        <rect x="5" y="70" width="89" height="80" rx="3" ry="3"/>
+      </clipPath>
+    </defs>
+    <image id="portada-hero"
+           href="../client/public/images/boats/pacific-craft/alquiler-barco-pacific-craft-625-rent-a-boat-costa-brava-blanes-cala-agua-cristalina.webp"
+           x="5" y="70" width="89" height="80"
+           clip-path="url(#clip-hero-porta)"
+           preserveAspectRatio="xMidYMid slice"/>
+
+    <!-- Flags row -->
+    <text id="portada-flags" x="49.5" y="160" text-anchor="middle"
+          font-family="Archivo" font-size="5.5" letter-spacing="1.5" fill="#ffffff">
+      &#127466;&#127480; &#127468;&#127463; &#127467;&#127479; &#127465;&#127466; &#127470;&#127481; &#127475;&#127473; &#127477;&#127481; &#127479;&#127482;
+    </text>
+
+    <!-- Contact box -->
+    <g id="portada-contact-box" transform="translate(5, 168)">
+      <rect x="0" y="0" width="89" height="24" rx="3" ry="3"
+            fill="#ffffff" fill-opacity="0.1"/>
+      <text x="44.5" y="9" text-anchor="middle"
+            font-family="Archivo" font-size="5" font-weight="600" fill="#ffffff">
+        +34 611 500 372
+      </text>
+      <text x="44.5" y="17" text-anchor="middle"
+            font-family="Archivo" font-size="4" font-weight="400" fill="#A8C4DD">
+        costabravarentaboat.com
+      </text>
+    </g>
+  </g>
+
+  <!-- Panel divider guides (optional, for print alignment) -->
+  <g id="panel-guides" opacity="0">
+    <line x1="99" y1="0" x2="99" y2="210" stroke="#cccccc" stroke-width="0.1" stroke-dasharray="1,1"/>
+    <line x1="198" y1="0" x2="198" y2="210" stroke="#cccccc" stroke-width="0.1" stroke-dasharray="1,1"/>
+  </g>
+
+</svg>

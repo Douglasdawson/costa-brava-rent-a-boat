@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Route Preview</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<style>body{margin:0}#map{height:100vh}</style>
+</head>
+<body>
+<div id="map"></div>
+<script>
+const map = L.map('map').setView([41.695, 2.87], 12);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  attribution: 'OSM'
+}).addTo(map);
+
+// Port marker
+L.marker([41.6742, 2.7930]).addTo(map).bindPopup('Puerto de Blanes');
+
+const routes = {
+  "sa-palomera": {
+    color: "#22c55e",
+    points: [
+      [41.6742, 2.7930],[41.6734, 2.7926],[41.6724, 2.7922],[41.6714, 2.7919],[41.6706, 2.7916]
+    ]
+  },
+  "cala-sant-francesc": {
+    color: "#3b82f6",
+    points: [
+      [41.6742, 2.7930],[41.6744, 2.7958],[41.6746, 2.7985],[41.6743, 2.8012],
+      [41.6740, 2.8038],[41.6748, 2.8055],[41.6762, 2.8065],[41.6778, 2.8068],[41.6790, 2.8062]
+    ]
+  },
+  "blanes-lloret": {
+    color: "#f59e0b",
+    points: [
+      [41.6742, 2.7930],[41.6744, 2.7960],[41.6743, 2.7995],[41.6740, 2.8030],
+      [41.6745, 2.8055],[41.6765, 2.8070],[41.6790, 2.8080],[41.6815, 2.8105],
+      [41.6840, 2.8135],[41.6862, 2.8170],[41.6882, 2.8205],[41.6905, 2.8250],
+      [41.6925, 2.8300],[41.6945, 2.8355],[41.6960, 2.8410],[41.6975, 2.8460],[41.6982, 2.8490]
+    ]
+  },
+  "blanes-tossa": {
+    color: "#ef4444",
+    points: [
+      [41.6742, 2.7930],[41.6744, 2.7965],[41.6741, 2.8015],[41.6740, 2.8050],
+      [41.6760, 2.8072],[41.6800, 2.8098],[41.6845, 2.8145],[41.6878, 2.8195],
+      [41.6915, 2.8270],[41.6948, 2.8365],[41.6975, 2.8460],[41.6995, 2.8535],
+      [41.7015, 2.8620],[41.7030, 2.8700],[41.7045, 2.8770],[41.7055, 2.8835],
+      [41.7070, 2.8905],[41.7085, 2.8970],[41.7098, 2.9040],[41.7112, 2.9105],
+      [41.7128, 2.9165],[41.7145, 2.9225],[41.7162, 2.9280],[41.7180, 2.9330]
+    ]
+  },
+  "costa-brava-tour": {
+    color: "#8b5cf6",
+    points: [
+      [41.6742, 2.7930],[41.6744, 2.7965],[41.6740, 2.8030],[41.6755, 2.8068],
+      [41.6800, 2.8098],[41.6855, 2.8160],[41.6915, 2.8270],[41.6960, 2.8400],
+      [41.6990, 2.8510],[41.7030, 2.8700],[41.7058, 2.8845],[41.7090, 2.8990],
+      [41.7125, 2.9155],[41.7165, 2.9290],[41.7180, 2.9330],
+      // Return
+      [41.7160, 2.9270],[41.7120, 2.9100],[41.7075, 2.8920],[41.7035, 2.8720],
+      [41.6985, 2.8500],[41.6930, 2.8300],[41.6870, 2.8150],[41.6800, 2.8020],
+      [41.6755, 2.7960],[41.6742, 2.7930]
+    ]
+  }
+};
+
+for (const [name, route] of Object.entries(routes)) {
+  L.polyline(route.points, {color: route.color, weight: 4, opacity: 0.8}).addTo(map).bindPopup(name);
+  // End marker
+  const end = route.points[route.points.length - 1];
+  if (name !== 'costa-brava-tour') {
+    L.circleMarker(end, {radius: 6, color: route.color, fillOpacity: 1}).addTo(map).bindPopup(name + ' (end)');
+  }
+  // Point markers for debugging
+  route.points.forEach((p, i) => {
+    L.circleMarker(p, {radius: 2, color: route.color, fillOpacity: 0.5}).addTo(map);
+  });
+}
+</script>
+</body>
+</html>

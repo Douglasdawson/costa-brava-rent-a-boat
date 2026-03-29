@@ -1,0 +1,105 @@
+PROMPT PARA CLAUDE EN CHROME - CONFIGURAR CLOUDFLARE + GODADDY
+================================================================
+
+Copia y pega esto en Claude con la extension de Chrome cuando tengas
+abiertas las pestanas de Cloudflare y GoDaddy.
+
+---
+
+Necesito que me ayudes a configurar Cloudflare como CDN/WAF para mi web
+de alquiler de barcos y cambiar los nameservers en GoDaddy. Vamos paso
+a paso, esperando mi confirmacion antes de cada accion.
+
+## Datos del proyecto
+- Dominio principal: costabravarentaboat.com
+- Dominio secundario: costabravarentaboat.app
+- Registrador: GoDaddy
+- Hosting: Replit (autoscale)
+- Web: https://www.costabravarentaboat.com
+
+## PASO 1: Crear cuenta en Cloudflare (si no la tengo)
+- Ve a https://dash.cloudflare.com/sign-up
+- Ayudame a crear una cuenta con mi email
+- Plan gratuito (Free)
+
+## PASO 2: Anadir dominio en Cloudflare
+- En el dashboard de Cloudflare, click "Add a site"
+- Escribir: costabravarentaboat.com
+- Seleccionar plan "Free"
+- Cloudflare escaneara los registros DNS existentes
+- IMPORTANTE: Verificar que los registros DNS que encuentra coinciden
+  con los actuales (especialmente los registros A/CNAME que apuntan a Replit)
+- Si faltan registros, anadirlos manualmente
+- Asegurar que el icono de nube naranja (proxy) esta ACTIVADO para los
+  registros A/CNAME principales
+
+## PASO 3: Anotar los nameservers de Cloudflare
+- Cloudflare te dara 2 nameservers (algo como xxx.ns.cloudflare.com)
+- ANOTAR AMBOS antes de continuar
+
+## PASO 4: Cambiar nameservers en GoDaddy
+- Ve a https://dcc.godaddy.com/ (GoDaddy Domain Control Center)
+- Buscar el dominio costabravarentaboat.com
+- Click en "DNS" o "Manage DNS"
+- Buscar "Nameservers" y click "Change"
+- Seleccionar "Custom" o "I'll use my own nameservers"
+- Borrar los nameservers actuales de GoDaddy
+- Pegar los 2 nameservers de Cloudflare del paso 3
+- Guardar cambios
+- NOTA: La propagacion puede tardar hasta 24-48 horas (normalmente 1-2h)
+
+## PASO 5: Configurar Cloudflare (una vez verificado el dominio)
+Cuando Cloudflare confirme que los nameservers estan activos:
+
+### 5a. SSL/TLS
+- Ir a SSL/TLS en el menu lateral
+- Seleccionar modo: "Full (strict)"
+- Activar "Always Use HTTPS"
+- Activar "Automatic HTTPS Rewrites"
+
+### 5b. Bot Protection
+- Ir a Security > Bots
+- Activar "Bot Fight Mode" (gratis)
+
+### 5c. Seguridad
+- Ir a Security > Settings
+- Security Level: "Medium"
+- Challenge Passage: 30 minutes
+- Browser Integrity Check: ON
+
+### 5d. Cache
+- Ir a Caching > Configuration
+- Caching Level: "Standard"
+- Browser Cache TTL: "Respect Existing Headers"
+- Always Online: ON
+
+### 5e. Page Rules (3 gratis)
+Crear estas reglas en orden:
+
+Regla 1 - No cachear API:
+- URL: costabravarentaboat.com/api/*
+- Setting: Cache Level = Bypass
+
+Regla 2 - Cachear assets estaticos agresivamente:
+- URL: costabravarentaboat.com/assets/*
+- Setting: Cache Level = Cache Everything, Edge Cache TTL = 1 month
+
+Regla 3 - Forzar HTTPS:
+- URL: http://costabravarentaboat.com/*
+- Setting: Always Use HTTPS
+
+## PASO 6: Repetir para dominio secundario (opcional)
+- Repetir pasos 2-5 para costabravarentaboat.app
+- O simplemente redirigir .app al .com desde Cloudflare
+
+## VERIFICACION FINAL
+Una vez propagados los nameservers, verificar:
+1. https://www.costabravarentaboat.com carga correctamente
+2. El certificado SSL muestra "Cloudflare" como emisor
+3. Las cabeceras de respuesta incluyen "cf-ray" (confirma que pasa por Cloudflare)
+4. La API sigue funcionando: https://www.costabravarentaboat.com/api/health
+
+## IMPORTANTE
+- NO tocar registros DNS de email (MX records) - dejarlos como estan
+- NO activar "Under Attack Mode" a menos que haya un ataque real
+- Si algo sale mal, cambiar los nameservers de vuelta a GoDaddy restaura todo

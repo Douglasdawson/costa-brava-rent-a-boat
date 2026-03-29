@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Costa Brava Rent a Boat — Brochure 2026 EN</title>
+<style>
+/* ─── Fonts ─── */
+@font-face {
+  font-family: 'Clash Display';
+  src: url('../client/public/fonts/ClashDisplay-Variable.woff2') format('woff2'),
+       url('../client/public/fonts/ClashDisplay-Variable.ttf') format('truetype');
+  font-weight: 200 700;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Archivo';
+  src: url('../client/public/fonts/Archivo-Variable.woff2') format('woff2');
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+/* ─── Print ─── */
+@page { size: A4 landscape; margin: 0; }
+@media print {
+  body { margin: 0; }
+  .page { page-break-after: always; box-shadow: none !important; margin: 0 !important; }
+  .page:last-child { page-break-after: avoid; }
+}
+
+/* ─── Base ─── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --navy: #1C2B42;
+  --navy-dark: #1A2B4A;
+  --celeste: #A8C4DD;
+  --celeste-light: #d4e4f0;
+  --white: #ffffff;
+  --green: #22c55e;
+  --green-bg: #dcfce7;
+  --blue-bg: #dbeafe;
+  --gray-100: #f3f4f6;
+  --gray-200: #e5e7eb;
+  --gray-300: #d1d5db;
+  --gray-500: #6b7280;
+  --gray-600: #4b5563;
+  --gray-700: #374151;
+}
+body {
+  font-family: 'Archivo', Arial, sans-serif;
+  color: var(--navy);
+  print-color-adjust: exact;
+  -webkit-print-color-adjust: exact;
+  background: #e5e7eb;
+}
+h1, h2, h3, h4 { font-family: 'Clash Display', 'Arial Black', sans-serif; }
+
+/* ─── Screen preview ─── */
+@media screen {
+  .page { margin: 20px auto; box-shadow: 0 4px 24px rgba(0,0,0,.15); }
+}
+
+/* ─── Page layout ─── */
+.page {
+  width: 297mm;
+  height: 210mm;
+  position: relative;
+  overflow: hidden;
+  background: var(--white);
+}
+
+/* ══════════════════════════════════════
+   PAGE 1 — EXTERIOR (3 panels)
+   ══════════════════════════════════════ */
+.exterior { display: flex; }
+.panel { width: 99mm; height: 210mm; position: relative; overflow: hidden; }
+
+/* ── Right panel: COVER ── */
+.portada {
+  background: linear-gradient(170deg, var(--navy) 0%, var(--navy-dark) 100%);
+  color: var(--white);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10mm 6mm 8mm;
+}
+.portada-logo { width: 72mm; margin-bottom: 4mm; }
+.portada-logo svg { width: 100%; height: auto; }
+.portada h1 { font-size: 13pt; font-weight: 600; text-align: center; letter-spacing: 0.5px; margin-bottom: 1.5mm; }
+.portada .subtitle { font-size: 9pt; color: var(--celeste); text-align: center; margin-bottom: 5mm; font-weight: 400; letter-spacing: 1px; }
+.portada-photo {
+  width: 87mm;
+  height: 52mm;
+  border-radius: 4mm;
+  object-fit: cover;
+  margin-bottom: 5mm;
+  border: 0.5mm solid rgba(168,196,221,0.3);
+}
+.portada-flags { display: flex; gap: 2mm; margin-bottom: 5mm; flex-wrap: wrap; justify-content: center; }
+.portada-flags span { font-size: 14pt; }
+.portada-contact-row {
+  background: rgba(168,196,221,0.12);
+  border-radius: 3mm;
+  padding: 3mm 4mm;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 2mm;
+  margin-top: auto;
+}
+.portada-contact-row .row {
+  display: flex;
+  align-items: center;
+  gap: 2mm;
+  font-size: 7.5pt;
+  color: var(--celeste-light);
+}
+.portada-contact-row .row svg { width: 3.5mm; height: 3.5mm; flex-shrink: 0; fill: var(--celeste); }
+
+/* ── Center panel: BACK COVER ── */
+.contra {
+  background: var(--white);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 6mm 5mm;
+}
+.contra-photo {
+  width: 89mm;
+  height: 70mm;
+  border-radius: 4mm;
+  object-fit: cover;
+  margin-bottom: 4mm;
+}
+.contra h2 { font-size: 11pt; font-weight: 600; color: var(--navy); margin-bottom: 3mm; text-align: center; }
+.contra-info { width: 100%; display: flex; flex-direction: column; gap: 2.5mm; margin-bottom: 4mm; }
+.contra-info .info-row {
+  display: flex;
+  align-items: center;
+  gap: 2.5mm;
+  font-size: 7.5pt;
+  color: var(--gray-700);
+}
+.contra-info .info-row svg { width: 4mm; height: 4mm; flex-shrink: 0; }
+.contra-rating {
+  background: var(--gray-100);
+  border-radius: 3mm;
+  padding: 3mm 4mm;
+  text-align: center;
+  width: 100%;
+  margin-bottom: 3mm;
+}
+.contra-rating .stars { font-size: 11pt; color: #f59e0b; letter-spacing: 1px; }
+.contra-rating .rating-text { font-size: 7pt; color: var(--gray-600); margin-top: 1mm; }
+.contra-season {
+  background: var(--navy);
+  color: var(--white);
+  border-radius: 3mm;
+  padding: 3mm 5mm;
+  text-align: center;
+  width: 100%;
+  font-size: 8pt;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+.contra-qr { margin-top: auto; text-align: center; }
+.contra-qr p { font-size: 6.5pt; color: var(--gray-500); margin-top: 1.5mm; }
+
+/* ── Left panel: EXTRAS ── */
+.extras-panel {
+  background: var(--gray-100);
+  display: flex;
+  flex-direction: column;
+  padding: 6mm 5mm;
+}
+.extras-panel h2 { font-size: 12pt; font-weight: 600; color: var(--navy); margin-bottom: 3mm; text-align: center; }
+.extras-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2mm;
+  margin-bottom: 4mm;
+}
+.extra-item {
+  background: var(--white);
+  border-radius: 2.5mm;
+  padding: 2.5mm;
+  text-align: center;
+  border: 0.3mm solid var(--gray-200);
+}
+.extra-item svg { width: 6mm; height: 6mm; margin-bottom: 1mm; }
+.extra-item .extra-name { font-size: 6.5pt; font-weight: 600; color: var(--navy); line-height: 1.2; }
+.extra-item .extra-price { font-size: 6.5pt; color: var(--celeste); font-weight: 700; margin-top: 0.5mm; }
+
+.packs-title { font-size: 9pt; font-weight: 600; color: var(--navy); margin-bottom: 2mm; text-align: center; margin-top: 1mm; }
+.pack-card {
+  background: var(--white);
+  border-radius: 2.5mm;
+  padding: 2.5mm 3mm;
+  margin-bottom: 2mm;
+  border: 0.3mm solid var(--gray-200);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.pack-card.premium { border-color: var(--celeste); background: linear-gradient(135deg, #f0f7ff, var(--white)); }
+.pack-card .pack-info h4 { font-size: 7.5pt; font-weight: 700; color: var(--navy); font-family: 'Clash Display', sans-serif; }
+.pack-card .pack-info p { font-size: 6pt; color: var(--gray-600); margin-top: 0.3mm; }
+.pack-card .pack-price { font-size: 10pt; font-weight: 700; color: var(--navy); font-family: 'Clash Display', sans-serif; }
+.pack-card .pack-price .old { font-size: 6.5pt; color: var(--gray-500); text-decoration: line-through; font-weight: 400; display: block; text-align: right; }
+
+.parking-banner {
+  background: var(--navy);
+  color: var(--white);
+  border-radius: 2.5mm;
+  padding: 2.5mm 3mm;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+}
+.parking-banner span:first-child { font-size: 7.5pt; font-weight: 600; }
+.parking-banner span:last-child { font-size: 10pt; font-weight: 700; font-family: 'Clash Display', sans-serif; }
+
+/* ══════════════════════════════════════
+   PAGE 2 — INTERIOR (Solar hero + 6 cards)
+   ══════════════════════════════════════ */
+.interior {
+  padding: 5mm;
+  display: flex;
+  flex-direction: column;
+  gap: 3mm;
+}
+
+/* Solar 450 hero card */
+.hero-boat {
+  display: flex;
+  gap: 4mm;
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-dark) 100%);
+  border-radius: 3mm;
+  padding: 4mm;
+  color: var(--white);
+  height: 62mm;
+}
+.hero-boat-photo {
+  width: 82mm;
+  height: 100%;
+  border-radius: 2.5mm;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+.hero-boat-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.hero-boat-content h2 {
+  font-size: 14pt;
+  font-weight: 700;
+  margin-bottom: 1mm;
+  color: var(--white);
+}
+.hero-boat-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 1mm;
+  background: rgba(34,197,94,0.2);
+  color: #86efac;
+  border-radius: 9999px;
+  padding: 1mm 3mm;
+  font-size: 6pt;
+  font-weight: 600;
+  width: fit-content;
+  margin-bottom: 2mm;
+}
+.hero-boat-badge svg { width: 2.5mm; height: 2.5mm; fill: #86efac; }
+.hero-specs {
+  display: flex;
+  gap: 4mm;
+  margin-bottom: 2.5mm;
+  flex-wrap: wrap;
+}
+.hero-spec {
+  display: flex;
+  align-items: center;
+  gap: 1.2mm;
+  font-size: 6.5pt;
+  color: var(--celeste-light);
+}
+.hero-spec svg { width: 3mm; height: 3mm; fill: var(--celeste); flex-shrink: 0; }
+.hero-desc {
+  font-size: 6pt;
+  color: rgba(255,255,255,0.7);
+  line-height: 1.4;
+  margin-bottom: auto;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.hero-prices {
+  display: flex;
+  gap: 0;
+  margin-top: 2mm;
+}
+.hero-prices table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 6pt;
+}
+.hero-prices th {
+  font-family: 'Clash Display', sans-serif;
+  font-size: 6pt;
+  font-weight: 600;
+  padding: 1mm 1.5mm;
+  text-align: center;
+  border-bottom: 0.3mm solid rgba(168,196,221,0.3);
+}
+.hero-prices th.season-baja { color: var(--celeste); }
+.hero-prices th.season-media { color: #fbbf24; }
+.hero-prices th.season-alta { color: #f87171; }
+.hero-prices td {
+  padding: 0.8mm 1.5mm;
+  text-align: center;
+  font-weight: 500;
+  color: rgba(255,255,255,0.85);
+  font-size: 6pt;
+}
+.hero-prices td:first-child {
+  text-align: left;
+  font-weight: 600;
+  color: var(--celeste-light);
+}
+.hero-fuel-note {
+  font-size: 5.5pt;
+  color: #86efac;
+  margin-top: 1mm;
+  font-weight: 500;
+}
+
+/* ── Boat cards grid (6 cards: 3x2) ── */
+.boats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 3mm;
+  flex: 1;
+}
+.boat-card {
+  background: var(--white);
+  border-radius: 2.5mm;
+  border: 0.3mm solid var(--gray-200);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.boat-card-photo {
+  width: 100%;
+  height: 30mm;
+  object-fit: cover;
+}
+.boat-card-body {
+  padding: 2mm 2.5mm;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.boat-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1.5mm;
+}
+.boat-card-header h3 {
+  font-size: 8pt;
+  font-weight: 700;
+  color: var(--navy);
+  line-height: 1.1;
+}
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8mm;
+  border-radius: 9999px;
+  padding: 0.6mm 2mm;
+  font-size: 5pt;
+  font-weight: 600;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.badge-green { background: var(--green-bg); color: #166534; }
+.badge-blue { background: var(--blue-bg); color: #1e40af; }
+.badge svg { width: 2mm; height: 2mm; }
+
+.boat-specs-row {
+  display: flex;
+  gap: 2.5mm;
+  margin-bottom: 1.5mm;
+  flex-wrap: wrap;
+}
+.boat-spec {
+  display: flex;
+  align-items: center;
+  gap: 0.8mm;
+  font-size: 5.5pt;
+  color: var(--gray-600);
+}
+.boat-spec svg { width: 2.5mm; height: 2.5mm; flex-shrink: 0; }
+
+.boat-prices { margin-top: auto; }
+.boat-prices table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 5.5pt;
+}
+.boat-prices th {
+  font-family: 'Clash Display', sans-serif;
+  font-size: 5.5pt;
+  font-weight: 600;
+  padding: 0.8mm 1mm;
+  text-align: center;
+  color: var(--gray-500);
+  border-bottom: 0.3mm solid var(--gray-200);
+}
+.boat-prices th.season-baja { color: #3b82f6; }
+.boat-prices th.season-media { color: #f59e0b; }
+.boat-prices th.season-alta { color: #ef4444; }
+.boat-prices td {
+  padding: 0.5mm 1mm;
+  text-align: center;
+  font-weight: 500;
+  color: var(--gray-700);
+  font-size: 5.5pt;
+}
+.boat-prices td:first-child {
+  text-align: left;
+  font-weight: 600;
+  color: var(--navy);
+}
+.fuel-note {
+  font-size: 5pt;
+  margin-top: 0.8mm;
+  font-weight: 500;
+}
+.fuel-included { color: var(--green); }
+.fuel-not-included { color: #ef4444; }
+
+/* ── SVG icon helpers ── */
+.icon { display: inline-block; vertical-align: middle; }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════
+     PAGE 1 — EXTERIOR
+     ═══════════════════════════════════════════ -->
+<div class="page exterior">
+
+  <!-- Left panel: EXTRAS -->
+  <div class="panel extras-panel">
+    <h2>Extras</h2>
+    <div class="extras-grid">
+      <!-- Cooler -->
+      <div class="extra-item">
+        <svg viewBox="0 0 470 350.79" xmlns="http://www.w3.org/2000/svg"><path fill="#22264d" d="M31.85,83.48H439.32A3.68,3.68,0,0,1,443,87.15v26.8a0,0,0,0,1,0,0H28.17a0,0,0,0,1,0,0V87.15A3.68,3.68,0,0,1,31.85,83.48Z"/><path fill="#4e5ea0" d="M442.69,158.08H427.26c8.39,0,15.19,7.92,15.19,17.7v12.77h15.42V175.78C457.87,166,451.07,158.08,442.69,158.08Z" transform="translate(-15 -74.6)"/><path fill="#b6a6d0" d="M278,214.6H43.17L76.8,399a32.16,32.16,0,0,0,31.64,26.39H392.73A32.15,32.15,0,0,0,424.36,399L458,214.6Z" transform="translate(-15 -74.6)"/><path fill="#22264d" d="M392.73,425.4A32.15,32.15,0,0,0,424.36,399L458,214.6H421.16L389.81,386.53a32.16,32.16,0,0,1-31.64,26.39H83a32.14,32.14,0,0,0,25.43,12.48Z" transform="translate(-15 -74.6)"/><path fill="#b6a6d0" d="M451.59,74.6H48.41A33.41,33.41,0,0,0,15,108v89.68a7.2,7.2,0,0,0,7.2,7.2H25V117.55a33.4,33.4,0,0,1,33.41-33.4H441.57A33.4,33.4,0,0,1,475,117.55v87.34h2.75a7.27,7.27,0,0,0,7.27-7.27V108A33.41,33.41,0,0,0,451.59,74.6Z" transform="translate(-15 -74.6)"/><path fill="#b6a6d0" d="M9.8,113.06H460.2a0,0,0,0,1,0,0v34.68a4.76,4.76,0,0,1-4.76,4.76H14.56a4.76,4.76,0,0,1-4.76-4.76V113.06a0,0,0,0,1,0,0Z"/><ellipse fill="#22264d" cx="234.28" cy="240.99" rx="90.12" ry="45.48"/><path fill="#b6a6d0" d="M176.34,298c-3.23,2.56-6.51,5.33-8.2,9.1s-1.28,8.8,2,11.27c3.88,2.91,9.6,1,13.24-2.21,4-3.47,6.6-8.17,9.85-12.31a50.41,50.41,0,0,1,22.25-16.08,8.57,8.57,0,0,0,3.53-1.89c.92-1,1.21-2.71.22-3.63a3.55,3.55,0,0,0-1.79-.72C201.79,278.51,188,288.69,176.34,298Z" transform="translate(-15 -74.6)"/></svg>
+        <div class="extra-name">Cooler</div>
+        <div class="extra-price">5&euro;</div>
+      </div>
+      <!-- Drinks -->
+      <div class="extra-item">
+        <svg viewBox="0 0 350 310.04" xmlns="http://www.w3.org/2000/svg"><path fill="#a9b0a8" d="M190.49,388.61s-5.3,5.3-12.18,6.89a6.25,6.25,0,0,0-3.44,3c-1,2.18-3.17,6.35-8.53,6.55H106c-5.36-.2-7.54-4.37-8.53-6.55a6.22,6.22,0,0,0-3.44-3c-6.88-1.59-12.18-6.89-12.18-6.89H190.49" transform="translate(-75 -94.98)"/><path fill="#b6a6d0" d="M230.13,131.9H189.44c-8.05-14.57-10.11-22.76-10.11-22.76H220s2.05,8.19,10.1,22.76" transform="translate(-75 -94.98)"/><path fill="#c2c3d3" d="M193.1,138.25s4.23,5.3,4.23,10.58V380.15a15.19,15.19,0,0,1-2.86,5.7,8.39,8.39,0,0,1-4,2.76H81.88C76.59,387,75,380.15,75,380.15V148.83c0-5.28,4.23-10.58,4.23-10.58,1.35-2.23,2.56-4.35,3.66-6.35C91,117.33,93,109.14,93,109.14h86.34s2.06,8.19,10.11,22.76c1.11,2,2.32,4.12,3.66,6.35" transform="translate(-75 -94.98)"/><path fill="#a9b0a8" d="M183.84,100.79v4.79a3.57,3.57,0,0,1-3.56,3.56H92.05a3.57,3.57,0,0,1-3.55-3.56v-4.79a3.57,3.57,0,0,1,3.55-3.56h88.23a3.57,3.57,0,0,1,3.56,3.56" transform="translate(-75 -94.98)"/><path fill="#b6a6d0" d="M197.33,148.83V380.15a15.19,15.19,0,0,1-2.86,5.7,8.39,8.39,0,0,1-4,2.76H81.88C76.59,387,75,380.15,75,380.15V148.83c0-5.28,4.23-10.58,4.23-10.58,1.35-2.23,2.56-4.35,3.66-6.35H189.44c1.11,2,2.32,4.12,3.66,6.35,0,0,4.23,5.3,4.23,10.58" transform="translate(-75 -94.98)"/><path fill="#22264d" d="M197.33,380.15a15.19,15.19,0,0,1-2.86,5.7,8.39,8.39,0,0,1-4,2.76H81.88C76.59,387,75,380.15,75,380.15H197.33" transform="translate(-75 -94.98)"/><path fill="#fff" d="M96.61,380.15A8.13,8.13,0,0,1,88.5,372V159.93s0-11.35,5.55-16.38a9.25,9.25,0,0,1,6.26-2.62c3.31,0,6,2,6.71,4.21,1.06,3.44-2.3,6-2.3,14.79V372a8.13,8.13,0,0,1-8.11,8.11" transform="translate(-75 -94.98)"/></svg>
+        <div class="extra-name">Drinks</div>
+        <div class="extra-price">2.50&euro;/ea</div>
+      </div>
+      <!-- Snorkel -->
+      <div class="extra-item">
+        <svg viewBox="0 0 360 437.91" xmlns="http://www.w3.org/2000/svg"><rect fill="#b6a6d0" x="305.2" y="222.69" width="3.88" height="12.06"/><rect fill="#b6a6d0" y="197.45" width="32.05" height="66.04" rx="14.31"/><rect fill="#b6a6d0" x="273.15" y="197.45" width="32.05" height="66.04" rx="14.31"/><path fill="#b6a6d0" d="M222.6,220.63c-53.86,0-74.27,110.35-74.27,110.35,16.91-6.61,36.18-6.09,42.33-6.09s12.7,8.52,31.94,8.52,25.78-8.52,31.93-8.52,25.43-.52,42.34,6.09C296.87,331,276.46,220.63,222.6,220.63Z" transform="translate(-70 -31.05)"/><path fill="#22264d" d="M350.33,203.32c-26.55-25.78-127.73-23.09-127.73-23.09s-101.18-2.69-127.73,23.09-21.54,106.18,0,120.8S153.35,334.89,168,321s35.78-67.33,54.63-67.33,40,53.48,54.63,67.33,51.55,17.7,73.1,3.08S376.87,229.09,350.33,203.32Z" transform="translate(-70 -31.05)"/><path fill="#e1f2fd" d="M316.14,321.87c-12.71,0-25.16-3.7-31-9.21-4.22-4-10.37-14.25-16.32-24.17-14.28-23.82-27.78-46.32-46.25-46.32s-32,22.5-46.25,46.32c-5.95,9.92-12.11,20.18-16.32,24.17-5.81,5.51-18.26,9.21-31,9.21-10.93,0-20.76-2.6-27.71-7.3-3.91-2.66-10.46-15-12.47-38-2.44-27.84,3.33-54.54,14-64.93,12.45-12.1,56.23-19.91,111.54-19.91,4.87,0,7.76.08,7.84.08h.61c.09,0,3-.08,7.85-.08,55.31,0,99.09,7.81,111.53,19.91C353,222,358.76,248.69,356.33,276.53c-2,23.06-8.57,35.38-12.48,38-6.94,4.7-16.78,7.3-27.7,7.3Z" transform="translate(-70 -31.05)"/><path fill="#22264d" d="M233,209.66c0-4.09,9.68-4.52,16.77-8.85s8.17-13.08,8.17-13.08H187.29s1.07,8.75,8.17,13.08,16.77,4.76,16.77,8.85v18.83c0,5-17,25.77-24.94,42.28l35.31-23.56,35.31,23.56C250,254.26,233,233.52,233,228.49Z" transform="translate(-70 -31.05)"/></svg>
+        <div class="extra-name">Snorkel</div>
+        <div class="extra-price">7.50&euro;</div>
+      </div>
+      <!-- Paddle Board -->
+      <div class="extra-item">
+        <svg viewBox="0 0 481.28 290" xmlns="http://www.w3.org/2000/svg"><path fill="#22264d" d="M24.46,108.83c-3.22,3.57-7,11.47-7.3,22.26h0v1.53h0c.33,10.8,4.08,18.69,7.3,22.26,4.05,4.47,17.19,5.05,37,1.63,20.28-3.51,38.18-12.07,45.82-15.73,1.12-.53,2-.95,2.57-1.2a51.88,51.88,0,0,1,8.81-2.5l15.62,1.07a5.19,5.19,0,0,0,4.21-2.4L350,137.3a4.25,4.25,0,0,0,2.76,1.69h21a4.91,4.91,0,0,0,3.44-1.49l107.25.78a6.19,6.19,0,1,0,0-12.37H376.84a4.8,4.8,0,0,0-3.09-1.18h-21a4.42,4.42,0,0,0-2.34,1.18H138.21a5.06,5.06,0,0,0-3.92-2l-20.75,1.43-.15,0a28.69,28.69,0,0,1-3.53-1.22c-.57-.25-1.45-.67-2.57-1.2-7.64-3.66-25.54-12.22-45.82-15.72C41.65,103.78,28.51,104.36,24.46,108.83Z" transform="translate(-9.36 -105)"/><path fill="#22264d" d="M9.36,236.86h0C70.93,194,125.13,175.4,287,175.4s199.22,47.85,199.22,50.74v10.72h0v10.71c0,2.89-37.31,50.74-199.22,50.74S70.93,279.72,9.36,236.86Z" transform="translate(-9.36 -105)"/><path fill="#b6a6d0" d="M481.5,246.46c-1.74,2.33-11.24,13.55-39.89,24.75-26.05,10.19-74,22.34-154.57,22.34-79.63,0-133.71-4.48-175.35-14.52C72,269.46,44.91,255.22,17.77,236.86H481.5Z" transform="translate(-9.36 -105)"/><path fill="#fff" d="M102.57,236.86H60.92l33.51-37.48c5.49-1.67,11.23-3.24,17.26-4.69,10.61-2.56,22-4.76,34.49-6.61Z" transform="translate(-9.36 -105)"/><path fill="#fff" d="M171.43,236.86H129.77l46.89-52.44c13.6-1.29,28.31-2.28,44.31-3Z" transform="translate(-9.36 -105)"/><path fill="#fff" d="M377.39,236.86H335.73l44.75-50.05a354.07,354.07,0,0,1,35.11,7.32Z" transform="translate(-9.36 -105)"/><path fill="#b6a6d0" d="M417.45,389.43a2.3,2.3,0,0,0,1.09-3l-18.39-38.82a2.3,2.3,0,0,0-3-1.09l-10.19,4.83a2.29,2.29,0,0,0-1.09,3.05l18.38,38.81a2.29,2.29,0,0,0,3.05,1.09Z" transform="translate(-9.36 -105)"/></svg>
+        <div class="extra-name">Paddle Board</div>
+        <div class="extra-price">25&euro;</div>
+      </div>
+      <!-- Seascooter -->
+      <div class="extra-item">
+        <svg viewBox="0 0 440 330.34" xmlns="http://www.w3.org/2000/svg"><path fill="#22264d" d="M466.44,338.12c-16.43-60.66-75.35-100.81-94.72-114-70.66-48.15-125.85-48.52-144-48.64-6.72.09-13.43,2-20.52,6-25.89,14.43-47.18,50.45-47.54,80.46-.11,8.71,1.56,15.95,4.61,21.5,8.78,15.29,32.1,55.93,95,91.35,22,12.37,88.78,50,156,38.12,21.91-3.88,41.24-13.94,49.24-25.64C471.05,377.71,471.82,358,466.44,338.12Z" transform="translate(-30 -84.83)"/><path fill="#d5cbe6" d="M311.38,339c30.28,17.23,79.3,39.52,131.58,40.91,12.91.34,24.26-9.12,25.51-22a55.22,55.22,0,0,0-2-19.83c-16.43-60.66-75.35-100.81-94.72-114-70.66-48.15-125.85-48.52-144-48.64-6.72.09-13.43,2-20.52,6-17.5,9.75-32.88,29.36-41.13,50.31A9.85,9.85,0,0,0,169,243.07C194.82,263.91,236.5,296.41,311.38,339Z" transform="translate(-30 -84.83)"/><path fill="#b6a6d0" d="M380.33,241.71c-36.17-24.47-91.09-42.19-108.6-44.32-14.79-1.79-13.19,6.66-10.51,12.1,12.35,25.09,68.87,77.82,121.8,98.36,28.09,10.91,55.8,17.46,61.38,10.42C444.58,318.06,454.22,291.69,380.33,241.71Z" transform="translate(-30 -84.83)"/><path fill="#c58310" d="M79.44,277.89a29.33,29.33,0,0,1-13.27-3c-11.61-5.82-18-19.61-18-38.83,0-41.49,29.84-97.5,66.52-124.86C133.82,97,152.3,92.55,165.37,99.12c11.6,5.82,18,19.61,18,38.83,0,41.49-29.85,97.5-66.53,124.85C103.53,272.74,90.53,277.89,79.44,277.89Z" transform="translate(-30 -84.83)"/><path fill="#d5cbe6" d="M88.52,255.62a22.41,22.41,0,0,1-10.14-2.27c-8.87-4.45-13.76-14.94-13.76-29.53,0-31.23,22.46-73.41,50.07-94,14.47-10.79,28.5-14.14,38.48-9.12,8.86,4.45,13.75,14.93,13.75,29.53,0,31.24-22.47,73.41-50.08,94C106.78,251.73,96.93,255.62,88.52,255.62Z" transform="translate(-30 -84.83)"/></svg>
+        <div class="extra-name">Seascooter</div>
+        <div class="extra-price">50&euro;</div>
+      </div>
+      <!-- Parking -->
+      <div class="extra-item">
+        <svg viewBox="0 0 430 430" xmlns="http://www.w3.org/2000/svg"><rect fill="#22264d" width="430" height="430"/><path fill="#fff" d="M128.1,87.77H248.62a238.43,238.43,0,0,1,47.66,4.59q22.46,4.59,39.19,15.8A79.93,79.93,0,0,1,362,138.41q9.89,19,9.87,47.88,0,28.43-9.16,47.66t-25.21,30.71q-16,11.46-38,16.27a222.81,222.81,0,0,1-47.66,4.82H199.58V412.23H128.1Zm71.48,137.48h47.66a91.59,91.59,0,0,0,18.57-1.84,49.3,49.3,0,0,0,16-6.18,33.1,33.1,0,0,0,11.46-11.91c2.9-5,4.34-11.38,4.34-19q0-12.37-5.73-19.93a38.06,38.06,0,0,0-14.66-11.68,62.52,62.52,0,0,0-19.93-5.27,204.85,204.85,0,0,0-21.09-1.14H199.58Z" transform="translate(-35 -35)"/></svg>
+        <div class="extra-name">Parking</div>
+        <div class="extra-price">10&euro;</div>
+      </div>
+    </div>
+
+    <div class="packs-title">Savings Packs</div>
+
+    <div class="pack-card">
+      <div class="pack-info">
+        <h4>Basic Pack</h4>
+        <p>Cooler + Snorkel</p>
+      </div>
+      <div class="pack-price">
+        <span class="old">12.50&euro;</span>
+        10&euro;
+      </div>
+    </div>
+
+    <div class="pack-card premium">
+      <div class="pack-info">
+        <h4>Premium Pack</h4>
+        <p>Cooler + Snorkel + Paddle Board</p>
+      </div>
+      <div class="pack-price">
+        <span class="old">37.50&euro;</span>
+        30&euro;
+      </div>
+    </div>
+
+    <div class="pack-card">
+      <div class="pack-info">
+        <h4>Adventure Pack</h4>
+        <p>Cooler + Snorkel + Paddle + Seascooter</p>
+      </div>
+      <div class="pack-price">
+        <span class="old">87.50&euro;</span>
+        75&euro;
+      </div>
+    </div>
+
+    <div class="parking-banner">
+      <span>Port of Blanes, Girona</span>
+      <span>2026</span>
+    </div>
+  </div>
+
+  <!-- Center panel: BACK COVER -->
+  <div class="panel contra">
+    <img class="contra-photo" src="../client/public/images/boats/pacific-craft/alquiler-barco-pacific-craft-625-rent-a-boat-costa-brava-blanes-cala-costa-brava.webp" alt="Boat in cove">
+
+    <h2>Your adventure starts here</h2>
+
+    <div class="contra-info">
+      <div class="info-row">
+        <svg viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+        <span>+34 611 500 372</span>
+      </div>
+      <div class="info-row">
+        <svg viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        <span>costabravarentaboat@gmail.com</span>
+      </div>
+      <div class="info-row">
+        <svg viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+        <span>www.costabravarentaboat.com</span>
+      </div>
+      <div class="info-row">
+        <svg viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="var(--navy)" stroke="none"/></svg>
+        <span>@costabravarentaboat</span>
+      </div>
+      <div class="info-row">
+        <svg viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <span>Port of Blanes, Girona, Spain</span>
+      </div>
+    </div>
+
+    <div class="contra-rating">
+      <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <div class="rating-text">4.8/5 on Google &mdash; 200+ reviews</div>
+    </div>
+
+    <div class="contra-season">Season: April &ndash; October 2026</div>
+  </div>
+
+  <!-- Right panel: COVER -->
+  <div class="panel portada">
+    <div class="portada-logo">
+      <svg viewBox="0 0 737.01 339.41" xmlns="http://www.w3.org/2000/svg">
+        <rect fill="#b6a6d0" y="92.74" width="737.01" height="113.99"/>
+        <path fill="#ffffff" d="M199.3,79.33a38.32,38.32,0,0,1-5.85,8.33,37.62,37.62,0,0,1-7.87,6.45,39.57,39.57,0,0,1-9.52,4.21,37.92,37.92,0,0,1-25.21-1.42,38.64,38.64,0,0,1-12.08-8,37.69,37.69,0,0,1-8.19-11.76,35.89,35.89,0,0,1,0-28.82,37.69,37.69,0,0,1,8.19-11.76,38.64,38.64,0,0,1,12.08-8A37.77,37.77,0,0,1,176,27.22a40.05,40.05,0,0,1,9.47,4.16,36.28,36.28,0,0,1,7.87,6.41A38.88,38.88,0,0,1,199.21,46l-16.65,7.51a18.67,18.67,0,0,0-6.91-7.37,19.89,19.89,0,0,0-17.76-1.28A19.75,19.75,0,0,0,151.72,49a18.79,18.79,0,0,0-4.17,6.17,19.86,19.86,0,0,0,0,15.19,18.94,18.94,0,0,0,4.17,6.18,19.92,19.92,0,0,0,6.17,4.12A19.2,19.2,0,0,0,182.56,72Z" transform="translate(-127.56 -25.71)"/>
+        <path fill="#ffffff" d="M205.07,62.77a34.63,34.63,0,0,1,3-14.41,37.69,37.69,0,0,1,8.19-11.76,38.71,38.71,0,0,1,12.07-8,38.06,38.06,0,0,1,29.29,0,38.88,38.88,0,0,1,12.08,8,37.22,37.22,0,0,1,8.14,11.76,36.33,36.33,0,0,1,0,28.82,37.22,37.22,0,0,1-8.14,11.76,38.88,38.88,0,0,1-12.08,8,38.06,38.06,0,0,1-29.29,0,38.71,38.71,0,0,1-12.07-8,37.69,37.69,0,0,1-8.19-11.76,34.66,34.66,0,0,1-3-14.41m18.48,0a19.22,19.22,0,0,0,1.51,7.59,18.91,18.91,0,0,0,4.16,6.18,20,20,0,0,0,6.18,4.12A18.92,18.92,0,0,0,243,82.17a19.12,19.12,0,0,0,7.64-1.51,19.58,19.58,0,0,0,10.25-25.49A19.2,19.2,0,0,0,243,43.37a18.92,18.92,0,0,0-7.55,1.51A19.79,19.79,0,0,0,229.22,49a18.76,18.76,0,0,0-4.16,6.17,19.24,19.24,0,0,0-1.51,7.6" transform="translate(-127.56 -25.71)"/>
+        <path fill="#ffffff" d="M306.18,77v.46a4,4,0,0,0,.74,2.15,7.16,7.16,0,0,0,2.19,2.11,13.68,13.68,0,0,0,3.75,1.6,20.09,20.09,0,0,0,5.4.64c3.42,0,5.78-.47,7.1-1.42s2-1.94,2-3q0-2.3-2.83-3.94a55.83,55.83,0,0,0-9.34-3.84q-4.31-1.38-8.92-3.25A41.32,41.32,0,0,1,297.76,64a24.21,24.21,0,0,1-6.36-6.68,17.19,17.19,0,0,1-2.51-9.43A20,20,0,0,1,291,38.66a20.3,20.3,0,0,1,5.76-7,27.14,27.14,0,0,1,8.83-4.44,38.9,38.9,0,0,1,11.26-1.55,40.17,40.17,0,0,1,11.58,1.6,28.22,28.22,0,0,1,9.24,4.62,22.39,22.39,0,0,1,6.13,7.27A20.29,20.29,0,0,1,346,48.77v1H328.15v-.64a5.88,5.88,0,0,0-.69-2.65A7.34,7.34,0,0,0,325.4,44,11.09,11.09,0,0,0,322,42.22a15.44,15.44,0,0,0-4.8-.68c-3.12,0-5.34.5-6.69,1.51a4.22,4.22,0,0,0-2,3.34q0,2.1,2.7,3.57a67.9,67.9,0,0,0,9.11,3.66q3.66,1.27,8.32,3.15a43,43,0,0,1,8.74,4.76,26.94,26.94,0,0,1,6.87,7,17.6,17.6,0,0,1,2.79,10,18.48,18.48,0,0,1-8.1,15.83,28.15,28.15,0,0,1-9,4,44.18,44.18,0,0,1-11.3,1.37,46.84,46.84,0,0,1-11.94-1.46,30.83,30.83,0,0,1-9.61-4.26,20.61,20.61,0,0,1-6.41-6.91,18.64,18.64,0,0,1-2.33-9.33V77Z" transform="translate(-127.56 -25.71)"/>
+        <polygon fill="#ffffff" points="225.93 1.37 288.71 1.37 288.71 19.13 266.47 19.13 266.47 72.75 248.17 72.75 248.17 19.13 225.93 19.13 225.93 1.37"/>
+        <path fill="#ffffff" d="M456.16,27.08,485,98.46H465L461.11,88H433l-3.93,10.44H409.13l28.92-71.38Zm-9.05,23.43-7.87,20.95h15.64Z" transform="translate(-127.56 -25.71)"/>
+        <path fill="#ffffff" d="M516.93,27.08h35.5a31.88,31.88,0,0,1,10.11,1.46,19.89,19.89,0,0,1,7.23,4.12,17.28,17.28,0,0,1,4.35,6.27,20.57,20.57,0,0,1,1.46,7.82,16.65,16.65,0,0,1-2.33,9.15,17,17,0,0,1-6.36,5.86,19.82,19.82,0,0,1,8.69,6.18,16.26,16.26,0,0,1,3.21,10.38,20.16,20.16,0,0,1-1.61,8.1,18,18,0,0,1-4.62,6.41A20.81,20.81,0,0,1,565.24,97a29.9,29.9,0,0,1-9.7,1.47H516.93Zm18.3,16.65V55.08h15.1q3.75,0,5.26-1.55a5.65,5.65,0,0,0,1.51-4.12,5.86,5.86,0,0,0-1.42-4.12,5.59,5.59,0,0,0-4.35-1.56Zm0,25.63V81.89h18.3c2.5,0,4.26-.59,5.26-1.78a6.89,6.89,0,0,0,1.51-4.62,6.41,6.41,0,0,0-1.51-4.44c-1-1.13-2.76-1.69-5.26-1.69Z" transform="translate(-127.56 -25.71)"/>
+        <path fill="#ffffff" d="M624.27,27.08a31.33,31.33,0,0,1,11.89,2.06,22.32,22.32,0,0,1,13.22,14A31.34,31.34,0,0,1,651,53.16a30.8,30.8,0,0,1-.87,7.32,25.6,25.6,0,0,1-2.61,6.63,23.91,23.91,0,0,1-4.39,5.59,22.93,22.93,0,0,1-6.23,4.16l15.47,21.6H630.49L616.94,79.33h-9.33V98.46H589.4V27.08ZM607.61,43.73v19h15.65a12.43,12.43,0,0,0,4.67-.78A8.54,8.54,0,0,0,631,59.93a7.9,7.9,0,0,0,1.74-3,12,12,0,0,0,.54-3.57A10.38,10.38,0,0,0,631,46.48q-2.29-2.74-7.78-2.75Z" transform="translate(-127.56 -25.71)"/>
+        <path fill="#ffffff" d="M703.79,27.08l28.82,71.38h-20L708.73,88h-28.1L676.7,98.46h-20l28.92-71.38Zm-9.06,23.43-7.87,20.95h15.65Z" transform="translate(-127.56 -25.71)"/>
+        <polygon fill="#ffffff" points="624.09 72.75 595.26 1.37 615.21 1.37 633.15 49.32 651.17 1.37 671.12 1.37 642.21 72.75 624.09 72.75"/>
+        <path fill="#ffffff" d="M835.74,27.08l28.83,71.38h-20L840.68,88H812.59l-3.94,10.44H788.71l28.91-71.38Zm-9.06,23.43-7.87,20.95h15.65Z" transform="translate(-127.56 -25.71)"/>
+        <path fill="#fff" d="M183.13,138.82a31.44,31.44,0,0,1,12.08,2.11,22.83,22.83,0,0,1,13.43,14.32,32.62,32.62,0,0,1,1.63,10.33,31.82,31.82,0,0,1-.89,7.51,26.57,26.57,0,0,1-2.65,6.81,24.41,24.41,0,0,1-4.45,5.73A23.5,23.5,0,0,1,196,189.9l15.7,22.16H189.45L175.7,192.43h-9.48v19.63H147.73V138.82Zm-16.91,17.09v19.53h15.89a12.56,12.56,0,0,0,4.74-.8,8.64,8.64,0,0,0,3.16-2.11,8.14,8.14,0,0,0,1.76-3.1,12,12,0,0,0,.56-3.66,10.66,10.66,0,0,0-2.32-7q-2.32-2.82-7.9-2.82Z" transform="translate(-127.56 -25.71)"/>
+        <polygon fill="#fff" points="94.14 113.11 149.8 113.11 149.8 131.33 112.72 131.33 112.72 141.84 143.2 141.84 143.2 158.84 112.72 158.84 112.72 168.23 149.8 168.23 149.8 186.35 94.14 186.35 94.14 113.11"/>
+        <polygon fill="#fff" points="161.6 186.35 161.6 113.11 177.4 113.11 209.74 154.05 209.74 113.11 228.23 113.11 228.23 186.35 212.53 186.35 180.19 145.51 180.19 186.35 161.6 186.35"/>
+        <polygon fill="#fff" points="237.71 113.11 301.45 113.11 301.45 131.33 278.87 131.33 278.87 186.35 260.29 186.35 260.29 131.33 237.71 131.33 237.71 113.11"/>
+        <path fill="#fff" d="M501.78,138.82l29.27,73.24H510.79l-4-10.71H478.27l-4,10.71H454l29.37-73.24Zm-9.2,24-8,21.5h15.89Z" transform="translate(-127.56 -25.71)"/>
+        <path fill="#fff" d="M563.48,138.82h36.06a31.87,31.87,0,0,1,10.26,1.5,20,20,0,0,1,7.34,4.23,17.52,17.52,0,0,1,4.42,6.43,21.4,21.4,0,0,1,1.49,8,17.31,17.31,0,0,1-2.37,9.39,17.56,17.56,0,0,1-6.46,6,20,20,0,0,1,8.83,6.34,16.85,16.85,0,0,1,3.25,10.65,20.78,20.78,0,0,1-1.63,8.31,18.51,18.51,0,0,1-4.69,6.57,21.14,21.14,0,0,1-7.43,4.28,30.29,30.29,0,0,1-9.86,1.5H563.48Zm18.59,17.09v11.64H597.4q3.81,0,5.34-1.59a5.88,5.88,0,0,0,1.54-4.23,6.06,6.06,0,0,0-1.45-4.22,5.63,5.63,0,0,0-4.41-1.6Zm0,26.29v12.86h18.58q3.81,0,5.34-1.83a7.09,7.09,0,0,0,1.54-4.74,6.58,6.58,0,0,0-1.54-4.55q-1.53-1.74-5.34-1.74Z" transform="translate(-127.56 -25.71)"/>
+        <path fill="#fff" d="M633.64,175.44a35.91,35.91,0,0,1,3.07-14.79A38.78,38.78,0,0,1,645,148.59a39.27,39.27,0,0,1,12.27-8.17,38.23,38.23,0,0,1,29.74,0,39.34,39.34,0,0,1,12.26,8.17,38.17,38.17,0,0,1,8.27,12.06,37.73,37.73,0,0,1,0,29.58,38.17,38.17,0,0,1-8.27,12.06A39.34,39.34,0,0,1,687,210.46a38.23,38.23,0,0,1-29.74,0A39.27,39.27,0,0,1,645,202.29a38.78,38.78,0,0,1-8.31-12.06,35.91,35.91,0,0,1-3.07-14.79m18.77,0a20,20,0,0,0,1.53,7.79,19.42,19.42,0,0,0,4.23,6.34,20.43,20.43,0,0,0,6.28,4.23,19.07,19.07,0,0,0,7.66,1.55,19.38,19.38,0,0,0,7.76-1.55,20,20,0,0,0,0-36.72,19.38,19.38,0,0,0-7.76-1.55,19.07,19.07,0,0,0-7.66,1.55,20.26,20.26,0,0,0-6.28,4.23,19.31,19.31,0,0,0-4.23,6.34,20,20,0,0,0-1.53,7.79" transform="translate(-127.56 -25.71)"/>
+        <path fill="#fff" d="M758.63,138.82l29.27,73.24H767.64l-4-10.71H735.12l-4,10.71H710.86l29.37-73.24Zm-9.2,24-8,21.5h15.89Z" transform="translate(-127.56 -25.71)"/>
+        <polygon fill="#fff" points="653.09 113.11 716.84 113.11 716.84 131.33 694.26 131.33 694.26 186.35 675.67 186.35 675.67 131.33 653.09 131.33 653.09 113.11"/>
+        <path fill="#ffffff" d="M348.74,229.76c8.36,14.82,9.69,31.54,4.94,45.22a11,11,0,0,1,3.23,1.14c11.78,4.94,18,12.73,20.33,21.28,8-4.18,14.44-9.5,18.05-16.53,1.33-2.85,5.7-2.66,5.13.57-.76,3.23-4.56,14.44-22.23,23.94,0,24.13-26.41,51.11-53.2,45.79-13.68-2.66-20.33-9.31-16-19.38,5.7-13.3,27.36-18.81,47.88-26,2.28-8.55.76-16.72-7.22-22.42a33.32,33.32,0,0,1-11.78,11.78c-5.7,3.42-17.29,4.56-22.23-1.71-6.84-8.55,1.71-17.86,18.43-19.38,4.18-20.33,2.85-49.78-8-49.59-22.23.19-25.27,89.3-28.5,118.94v.19c.19,4.37-6.65,7-11,1.9C267,322.67,270.84,261.11,280,226.34c2.47-9.5,18.62-4.57,16.72,9.3-2.47,18.63-4.75,45.42-4.56,67.84,1.71-33.44,9.69-75.43,24.7-83.79a21.84,21.84,0,0,1,9.5-2.67c9.5-.18,18.62,6.08,22.42,12.74M316.25,342.24c8.74,4.75,28.5-10.45,37.24-27.55-35.91,10.26-45,23.18-37.24,27.55M324,292.46c3.42.19,6.46-4.94,8.74-12.35-12.73.57-17.67,11.78-8.74,12.35" transform="translate(-127.56 -25.71)"/>
+        <path fill="#ffffff" d="M430.81,210.38c30.78,2.47,4.94,61.94-17.67,74.1a1.14,1.14,0,0,1-.76.19c-2.85,31-1.52,60.23,7.41,60.42,11.4,0,25.65-32.3,32.49-64.22.38-2.66,4.75-1.71,4.56.19-1.9,11.21-13.3,74.86-41.42,69.73-41.8-7.41-21.09-139.08,13.68-140.41Zm1.52,4.18c-8.17,1.52-15.77,32.68-19.38,64.22,18.43-16.91,23-48.26,23.37-55.48.19-7-1.14-8.93-3-8.93-.38,0-.57.19-.95.19" transform="translate(-127.56 -25.71)"/>
+        <path fill="#ffffff" d="M480.78,275.74a1,1,0,0,1,.38.76c3.23-3,11.4-4.37,14.63,1.71,3.61,7.22-4.18,49.4,3,47.69,12-2.85,18.24-42.18,19-45,.57-2.85,5.51-1.9,5.13.76-.57,2.85-5.32,51.68-27,50.73-13.68-.76-19.19-13.49-20-27.55-5.13,11.59-11,21.28-23.37,17.86-12-3.23-11.78-16.72-9.69-25.84,2.28-9.12,8.93-20.52,20.14-24.13a21.37,21.37,0,0,1,7.41-1.14c6.27.19,9.69,3.42,10.26,4.18m-20.71,41c4.18-.76,15.39-27,18.05-32.68,0-.19.19-.57.19-.76l-.76.76c-.95.38-4.56-.57-4.56-1.9.19-1.14,0-1.71-.76-2.09-2.85-.95-17.67,37.81-12.16,36.67" transform="translate(-127.56 -25.71)"/>
+        <path fill="#ffffff" d="M571.22,261.11c7.41,2.85,10.45,10.45,9.69,18.05-.76,8.74-9.69,70.11-.76,65.55,11.78-5.7,21.85-56,24.89-64.41.57-1.9,5.51-2.28,5.32.57-.57,8-12.92,71.06-33.06,70.49-39.14-1.52-5.7-89.68-16.72-80.94-4.94,3.8-12,42-21.28,60.61-2.66,5.13-7.41,4.18-9.88,3.61-17.29-3.8-16.72-47.12-11.21-58.9,3.42-6.84,19.38,1.33,18.43,7-4.56,26.79-2.47,50.16-1.14,45.6,9.5-32.68,16.53-67.07,31-68.21a11.15,11.15,0,0,1,4.75.95" transform="translate(-127.56 -25.71)"/>
+        <path fill="#ffffff" d="M638.67,282.58c4.18,10.07-11,21.28-24.13,20.52-3,13.3-2.47,27.55,6.46,27.55,22.23.19,32.87-35.72,37-50.16.38-1.71,5.51-1.52,5.13.57C659.76,301.77,643.8,340,618,337.87c-31.16-2.66-32.87-59.66,1.14-63.46a36.9,36.9,0,0,1,4.56-.38c6.27,0,12.35,1.9,15,8.55m-11.78-2.28c-4.37,2.09-8.74,10.07-11.21,19,11.59-2.28,19-8.36,18.62-14.25-.19-4.37-2.66-5.51-4.56-5.32a8.18,8.18,0,0,0-2.85.57" transform="translate(-127.56 -25.71)"/>
+        <path fill="#ffffff" d="M677.62,257.31c18.24,1.71,16.53,24.32,14.82,31.92-1,4.37-9.5,5.7-8.36-.76.38-2.09,0-24.51-3.61-23.75-1.9.38-12.35,24.32,4.18,48.83a33,33,0,0,1,2.09,3.42c8.55-4.56,20.33-13.3,28.12-35.91.95-2.47,5.13-1.14,4.75.57-5.7,22.8-19.76,34.39-30.21,40.28,12.54,25.46.57,45.79-16.53,42.94-15.2-2.66-11-25.84-1-38.19A119.25,119.25,0,0,0,662.61,306c-14.44-24.89-6.08-48.83,13.11-48.64Zm-5.51,103c3.23.38,6.27-9.88,2.09-26.41-5.51,10.26-5.89,26-2.09,26.41" transform="translate(-127.56 -25.71)"/>
+      </svg>
+    </div>
+    <h1>Boat Rental</h1>
+    <div class="subtitle">Costa Brava &middot; Blanes &middot; 2026</div>
+    <img class="portada-photo" src="../client/public/images/boats/pacific-craft/alquiler-barco-pacific-craft-625-rent-a-boat-costa-brava-blanes-cala-agua-cristalina.webp" alt="Boat in Costa Brava cove">
+    <div class="portada-flags">
+      <span>&#127466;&#127480;</span>
+      <span>&#127468;&#127463;</span>
+      <span>&#127467;&#127479;</span>
+      <span>&#127465;&#127466;</span>
+      <span>&#127470;&#127481;</span>
+      <span>&#127475;&#127473;</span>
+      <span>&#127477;&#127481;</span>
+      <span>&#127479;&#127482;</span>
+    </div>
+    <div class="portada-contact-row">
+      <div class="row">
+        <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+        <span>+34 611 500 372</span>
+      </div>
+      <div class="row">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+        <span>costabravarentaboat.com</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     PAGE 2 — INTERIOR (Solar hero + 6 cards)
+     ═══════════════════════════════════════════ -->
+<div class="page interior">
+
+  <!-- SOLAR 450 — Hero card -->
+  <div class="hero-boat">
+    <img class="hero-boat-photo" src="../client/public/images/boats/solar-450/alquiler-barco-solar-450-rent-a-boat-costa-brava-blanes-exterior-puerto.webp" alt="Solar 450">
+    <div class="hero-boat-content">
+      <h2>Solar 450</h2>
+      <div class="hero-boat-badge">
+        <svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
+        No licence required &middot; Fuel included
+      </div>
+      <div class="hero-specs">
+        <div class="hero-spec">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 17V5H6v12"/><path d="M2 17h20"/><path d="M12 17v4"/></svg>
+          4.50m
+        </div>
+        <div class="hero-spec">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+          Mercury 15hp
+        </div>
+        <div class="hero-spec">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4-4v-2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+          5 people
+        </div>
+        <div class="hero-spec">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          Petrol 30L
+        </div>
+      </div>
+      <div class="hero-desc">The boat designed for sun lovers. Its cushioned sundeck is the largest in the entire no-licence fleet. No boating licence needed — we teach you in 15 minutes.</div>
+      <div class="hero-prices">
+        <table>
+          <thead>
+            <tr>
+              <th></th>
+              <th class="season-baja">LOW</th>
+              <th class="season-media">MID</th>
+              <th class="season-alta">HIGH</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>1h</td><td>75&euro;</td><td>85&euro;</td><td>95&euro;</td></tr>
+            <tr><td>2h</td><td>115&euro;</td><td>135&euro;</td><td>150&euro;</td></tr>
+            <tr><td>4h</td><td>150&euro;</td><td>180&euro;</td><td>210&euro;</td></tr>
+            <tr><td>8h</td><td>220&euro;</td><td>270&euro;</td><td>300&euro;</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6 boats in 3x2 grid -->
+  <div class="boats-grid">
+
+    <!-- Remus 450 -->
+    <div class="boat-card">
+      <img class="boat-card-photo" src="../client/public/images/boats/remus-450/alquiler-barco-remus-450-rent-a-boat-costa-brava-blanes-exterior-puerto.webp" alt="Remus 450">
+      <div class="boat-card-body">
+        <div class="boat-card-header">
+          <h3>Remus 450</h3>
+          <span class="badge badge-green">No licence</span>
+        </div>
+        <div class="boat-specs-row">
+          <div class="boat-spec"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="10" height="10"><path d="M18 17V5H6v12"/><path d="M2 17h20"/></svg>4.50m</div>
+          <div class="boat-spec"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="10" height="10"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M19 12h4"/></svg>Suzuki 15hp</div>
+          <div class="boat-spec"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="10" height="10"><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/></svg>5 ppl</div>
+        </div>
+        <div class="boat-prices">
+          <table>
+            <thead><tr><th></th><th class="season-baja">LOW</th><th class="season-media">MID</th><th class="season-alta">HIGH</th></tr></thead>
+            <tbody>
+              <tr><td>1h</td><td>75&euro;</td><td>85&euro;</td><td>95&euro;</td></tr>
+              <tr><td>2h</td><td>115&euro;</td><td>130&euro;</td><td>140&euro;</td></tr>
+              <tr><td>4h</td><td>150&euro;</td><td>180&euro;</td><td>210&euro;</td></tr>
+              <tr><td>8h</td><td>220&euro;</td><td>270&euro;</td><td>290&euro;</td></tr>
+            </tbody>
+          </table>
+          <div class="fuel-note fuel-included">Fuel included</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Astec 400 -->
+    <div class="boat-card">
+      <img class="boat-card-photo" src="../client/public/images/boats/astec-400/alquiler-barco-astec-400-rent-a-boat-costa-brava-blanes-exterior-puerto.webp" alt="Astec 400">
+      <div class="boat-card-body">
+        <div class="boat-card-header">
+          <h3>Astec 400</h3>
+          <span class="badge badge-green">No licence</span>
+        </div>
+        <div class="boat-specs-row">
+          <div class="boat-spec"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="10" height="10"><path d="M18 17V5H6v12"/><path d="M2 17h20"/></svg>4.00m</div>
+          <div class="boat-spec"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="10" height="10"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M19 12h4"/></svg>Suzuki 15hp</div>
+          <div class="boat-spec"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="10" height="10"><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/></svg>4 ppl</div>
+        </div>
+        <div class="boat-prices">
+          <table>
+            <thead><tr><th></th><th class="season-baja">LOW</th><th class="season-media">MID</th><th class="season-alta">HIGH</th></tr></thead>
+            <tbody>
+              <tr><td>1h</td><td>75&euro;</td><td>85&euro;</td><td>95&euro;</td></tr>
+              <tr><td>2h</td><td>115&euro;</td><td>130&euro;</td><td>140&euro;</td></tr>
+              <tr><td>4h</td><td>150&euro;</td><td>180&euro;</td><td>190&euro;</td></tr>
+              <tr><td>8h</td><td>220&euro;</td><td>270&euro;</td><td>290&euro;</td></tr>
+            </tbody>
+          </table>
+          <div class="fuel-note fuel-included">Fuel included</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Astec 480 -->
+    <div class="boat-card">
+      <img class="boat-card-photo" src="../client/public/images/boats/astec-480/alquiler-barco-astec-480-rent-a-boat-costa-brava-blanes-exterior-puerto.webp" alt="Astec 480">
+      <div class="boat-card-body">
+        <div class="boat-card-header">
+          <h3>Astec 480</h3>
+          <span class="badge badge-green">No licence</span>
+        </div>
+        <div class="boat-specs-row">
+          <div class="boat-spec"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="10" height="10"><path d="M18 17V5H6v12"/><path d="M2 17h20"/></svg>4.80m</div>
+          <div class="boat-spec"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="10" height="10"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M19 12h4"/></svg>Parsun 40/15hp</div>
+          <div class="boat-spec"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="10" height="10"><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/></svg>5 ppl</div>
+        </div>
+        <div class="boat-prices">
+          <table>
+            <thead><tr><th></th><th class="season-baja">LOW</th><th class="season-media">MID</th><th class="season-alta">HIGH</th></tr></thead>
+            <tbody>
+              <tr><td>1h</td><td>90&euro;</td><td>95&euro;</td><td>100&euro;</td></tr>
+              <tr><td>2h</td><td>160&euro;</td><td>165&euro;</td><td>175&euro;</td></tr>
+              <tr><td>4h</td><td>220&euro;</td><td>230&euro;</td><td>240&euro;</td></tr>
+              <tr><td>8h</td><td>340&euro;</td><td>350&euro;</td><td>360&euro;</td></tr>
+            </tbody>
+          </table>
+          <div class="fuel-note fuel-included">Fuel included</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Trimarchi 57S -->
+    <div class="boat-card">
+      <img class="boat-card-photo" src="../client/public/images/boats/trimarchi/alquiler-barco-trimarchi-57s-rent-a-boat-costa-brava-blanes-exterior-puerto.webp" alt="Trimarchi 57S">
+      <div class="boat-card-body">
+        <div class="boat-card-header">
+          <h3>Trimarchi 57S</h3>
+          <span class="badge badge-blue">Licence req.</span>
+        </div>
+        <div class="boat-specs-row">
+          <div class="boat-spec"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="10" height="10"><path d="M18 17V5H6v12"/><path d="M2 17h20"/></svg>5.70m</div>
+          <div class="boat-spec"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="10" height="10"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M19 12h4"/></svg>Selva 110hp</div>
+          <div class="boat-spec"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="10" height="10"><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/></svg>7 ppl</div>
+        </div>
+        <div class="boat-prices">
+          <table>
+            <thead><tr><th></th><th class="season-baja">LOW</th><th class="season-media">MID</th><th class="season-alta">HIGH</th></tr></thead>
+            <tbody>
+              <tr><td>2h</td><td>160&euro;</td><td>180&euro;</td><td>200&euro;</td></tr>
+              <tr><td>4h</td><td>240&euro;</td><td>260&euro;</td><td>280&euro;</td></tr>
+              <tr><td>8h</td><td>290&euro;</td><td>340&euro;</td><td>390&euro;</td></tr>
+            </tbody>
+          </table>
+          <div class="fuel-note fuel-not-included">Fuel not included</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pacific Craft 625 -->
+    <div class="boat-card">
+      <img class="boat-card-photo" src="../client/public/images/boats/pacific-craft/alquiler-barco-pacific-craft-625-rent-a-boat-costa-brava-blanes-exterior-puerto.webp" alt="Pacific Craft 625">
+      <div class="boat-card-body">
+        <div class="boat-card-header">
+          <h3>Pacific Craft 625</h3>
+          <span class="badge badge-blue">Licence req.</span>
+        </div>
+        <div class="boat-specs-row">
+          <div class="boat-spec"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="10" height="10"><path d="M18 17V5H6v12"/><path d="M2 17h20"/></svg>6.24m</div>
+          <div class="boat-spec"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="10" height="10"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M19 12h4"/></svg>Yamaha 115hp</div>
+          <div class="boat-spec"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="10" height="10"><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/></svg>7 ppl</div>
+        </div>
+        <div class="boat-prices">
+          <table>
+            <thead><tr><th></th><th class="season-baja">LOW</th><th class="season-media">MID</th><th class="season-alta">HIGH</th></tr></thead>
+            <tbody>
+              <tr><td>2h</td><td>180&euro;</td><td>200&euro;</td><td>220&euro;</td></tr>
+              <tr><td>4h</td><td>250&euro;</td><td>280&euro;</td><td>300&euro;</td></tr>
+              <tr><td>8h</td><td>300&euro;</td><td>360&euro;</td><td>420&euro;</td></tr>
+            </tbody>
+          </table>
+          <div class="fuel-note fuel-not-included">Fuel not included</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mingolla Brava 19 -->
+    <div class="boat-card">
+      <img class="boat-card-photo" src="../client/public/images/boats/mingolla/alquiler-barco-mingolla-brava-19-rent-a-boat-costa-brava-blanes-exterior-puerto.webp" alt="Mingolla Brava 19">
+      <div class="boat-card-body">
+        <div class="boat-card-header">
+          <h3>Mingolla Brava 19</h3>
+          <span class="badge badge-blue">Licence req.</span>
+        </div>
+        <div class="boat-specs-row">
+          <div class="boat-spec"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="10" height="10"><path d="M18 17V5H6v12"/><path d="M2 17h20"/></svg>5.99m</div>
+          <div class="boat-spec"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="10" height="10"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M19 12h4"/></svg>Mercury 80hp</div>
+          <div class="boat-spec"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="10" height="10"><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/></svg>6 ppl</div>
+        </div>
+        <div class="boat-prices">
+          <table>
+            <thead><tr><th></th><th class="season-baja">LOW</th><th class="season-media">MID</th><th class="season-alta">HIGH</th></tr></thead>
+            <tbody>
+              <tr><td>2h</td><td>150&euro;</td><td>160&euro;</td><td>180&euro;</td></tr>
+              <tr><td>4h</td><td>230&euro;</td><td>240&euro;</td><td>250&euro;</td></tr>
+              <tr><td>8h</td><td>280&euro;</td><td>300&euro;</td><td>390&euro;</td></tr>
+            </tbody>
+          </table>
+          <div class="fuel-note fuel-not-included">Fuel not included</div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /boats-grid -->
+</div><!-- /page interior -->
+
+</body>
+</html>

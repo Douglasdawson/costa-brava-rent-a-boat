@@ -465,7 +465,7 @@ function FleetSection() {
                 <button
                   key={opt.value}
                   onClick={() => setLicenseFilter(opt.value)}
-                  className={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors ${
+                  className={`px-4 py-2.5 rounded-full text-sm font-medium transition-colors ${
                     licenseFilter === opt.value
                       ? 'bg-foreground text-white dark:bg-cta dark:text-foreground'
                       : 'bg-muted text-muted-foreground hover:bg-muted-foreground/10'
@@ -486,7 +486,7 @@ function FleetSection() {
             <div className="flex flex-wrap gap-1.5">
               <button
                 onClick={() => setSelectedGroupSize(null)}
-                className={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors ${
+                className={`px-4 py-2.5 rounded-full text-sm font-medium transition-colors ${
                   selectedGroupSize === null
                     ? 'bg-foreground text-white dark:bg-cta dark:text-foreground'
                     : 'bg-muted text-muted-foreground hover:bg-muted-foreground/10'
@@ -498,7 +498,7 @@ function FleetSection() {
                 <button
                   key={option.label}
                   onClick={() => setSelectedGroupSize(option.label)}
-                  className={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors ${
+                  className={`px-4 py-2.5 rounded-full text-sm font-medium transition-colors ${
                     selectedGroupSize === option.label
                       ? 'bg-foreground text-white dark:bg-cta dark:text-foreground'
                       : 'bg-muted text-muted-foreground hover:bg-muted-foreground/10'
@@ -514,7 +514,7 @@ function FleetSection() {
           <div className="flex items-center gap-1.5">
             <button
               onClick={() => setViewMode('grid')}
-              className={`p-2 rounded-full transition-colors ${
+              className={`p-2.5 rounded-full transition-colors ${
                 viewMode === 'grid'
                   ? 'bg-foreground text-white dark:bg-cta dark:text-foreground'
                   : 'bg-muted text-muted-foreground hover:bg-muted-foreground/10'
@@ -525,7 +525,7 @@ function FleetSection() {
             </button>
             <button
               onClick={() => setViewMode('table')}
-              className={`hidden md:inline-flex p-2 rounded-full transition-colors ${
+              className={`hidden md:inline-flex p-2.5 rounded-full transition-colors ${
                 viewMode === 'table'
                   ? 'bg-foreground text-white dark:bg-cta dark:text-foreground'
                   : 'bg-muted text-muted-foreground hover:bg-muted-foreground/10'

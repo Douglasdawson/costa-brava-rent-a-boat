@@ -98,15 +98,14 @@ export default function LicenseComparisonSection() {
               </div>
               <div className="flex items-center gap-2">
                 <Button
-                  size="sm"
                   variant="outline"
                   onClick={() => scrollToFleetWithFilter('no')}
-                  className="rounded-full text-xs"
+                  className="rounded-full text-sm"
                 >
                   {t.comparison.viewBoats}
                 </Button>
                 <Link href={localizedPath("categoryLicenseFree")}>
-                  <Button size="sm" variant="ghost" className="rounded-full text-xs text-muted-foreground hover:text-foreground">
+                  <Button variant="ghost" className="rounded-full text-sm text-muted-foreground hover:text-foreground">
                     {t.comparison.viewAll}
                   </Button>
                 </Link>
@@ -144,15 +143,14 @@ export default function LicenseComparisonSection() {
               </div>
               <div className="flex items-center gap-2">
                 <Button
-                  size="sm"
                   variant="outline"
                   onClick={() => scrollToFleetWithFilter('yes')}
-                  className="rounded-full text-xs"
+                  className="rounded-full text-sm"
                 >
                   {t.comparison.viewBoats}
                 </Button>
                 <Link href={localizedPath("categoryLicensed")}>
-                  <Button size="sm" variant="ghost" className="rounded-full text-xs text-muted-foreground hover:text-foreground">
+                  <Button variant="ghost" className="rounded-full text-sm text-muted-foreground hover:text-foreground">
                     {t.comparison.viewAll}
                   </Button>
                 </Link>

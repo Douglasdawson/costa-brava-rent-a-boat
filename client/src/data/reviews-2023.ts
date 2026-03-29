@@ -1,7 +1,7 @@
 export const REVIEWS_2023: Record<string, { name: string; nationality: string; flag: string; rating: number; text: string; date: string }[]> = {
   "solar-450": [
     { name: "Carlos Navarro", nationality: "ES", flag: "ES", rating: 5, text: "Barco ideal para familias. Muy estable incluso con los niños moviéndose. El toldo Bimini es imprescindible en julio.", date: "2023-07" },
-    { name: "Maria José Lopez", nationality: "ES", flag: "ES", rating: 5, text: "El soladero acolchado es comodísimo, nos pasamos la mañana tumbados al sol. Combustible incluido, genial.", date: "2023-08" },
+    { name: "Maria José López", nationality: "ES", flag: "ES", rating: 5, text: "El soladero acolchado es comodísimo, nos pasamos la mañana tumbados al sol. Combustible incluido, genial.", date: "2023-08" },
     { name: "Francisco Delgado", nationality: "ES", flag: "ES", rating: 4, text: "Buen barco para pasar el día. Fácil de manejar sin título náutico. Un poco justo para 5 adultos pero para familia con niños perfecto.", date: "2023-06" },
     { name: "Elena Castillo", nationality: "ES", flag: "ES", rating: 5, text: "Tercer año que alquilamos este barco y siempre perfecto. Los niños lo piden cada verano.", date: "2023-07" },
     { name: "Roberto Vega", nationality: "ES", flag: "ES", rating: 5, text: "Fuimos hasta Cala Bona y fue espectacular. Barco muy estable y cómodo.", date: "2023-08" },
@@ -53,12 +53,12 @@ export const REVIEWS_2023: Record<string, { name: string; nationality: string; f
   ],
   "remus-450": [
     { name: "Manuel Gimenez", nationality: "ES", flag: "ES", rating: 5, text: "Barco muy estable y fácil de llevar. Perfecto para ir con niños sin título náutico.", date: "2023-07" },
-    { name: "Rosa Perez", nationality: "ES", flag: "ES", rating: 5, text: "Fuimos a Sa Forcanera y el agua estaba cristalina. El Remus es muy cómodo y estable.", date: "2023-08" },
-    { name: "Fernando Diaz", nationality: "ES", flag: "ES", rating: 4, text: "Buen barco, muy fácil de conducir. Ideal para quien no tiene experiencia en el mar.", date: "2023-06" },
+    { name: "Rosa Pérez", nationality: "ES", flag: "ES", rating: 5, text: "Fuimos a Sa Forcanera y el agua estaba cristalina. El Remus es muy cómodo y estable.", date: "2023-08" },
+    { name: "Fernando Díaz", nationality: "ES", flag: "ES", rating: 4, text: "Buen barco, muy fácil de conducir. Ideal para quien no tiene experiencia en el mar.", date: "2023-06" },
     { name: "Raquel Moreno", nationality: "ES", flag: "ES", rating: 5, text: "Repetimos cada verano con este barco. Los niños disfrutan un monton y es muy seguro.", date: "2023-07" },
-    { name: "Pablo Jimenez", nationality: "ES", flag: "ES", rating: 5, text: "Nos encantó explorar la costa de Blanes. El barco responde muy bien y es fácil de aparcar en las calas.", date: "2023-08" },
+    { name: "Pablo Jiménez", nationality: "ES", flag: "ES", rating: 5, text: "Nos encantó explorar la costa de Blanes. El barco responde muy bien y es fácil de aparcar en las calas.", date: "2023-08" },
     { name: "Sandra Gil", nationality: "ES", flag: "ES", rating: 4, text: "Día genial con la familia. Barco estable y sin necesidad de licencia. Muy recomendable.", date: "2023-09" },
-    { name: "Marcos Hernandez", nationality: "ES", flag: "ES", rating: 5, text: "El Remus es perfecto para descubrir Cala Bona y las calas cercanas. Muy estable.", date: "2023-05" },
+    { name: "Marcos Hernández", nationality: "ES", flag: "ES", rating: 5, text: "El Remus es perfecto para descubrir Cala Bona y las calas cercanas. Muy estable.", date: "2023-05" },
     { name: "Beatriz Ruiz", nationality: "ES", flag: "ES", rating: 3, text: "Cumple con lo esperado. Es pequeño pero para 3-4 personas va bien.", date: "2023-07" },
     { name: "Adrián Santos", nationality: "ES", flag: "ES", rating: 5, text: "Segundo año que venimos y siempre elegimos el Remus. Estable y super fácil de manejar.", date: "2023-08" },
     { name: "Laura Blanco", nationality: "ES", flag: "ES", rating: 5, text: "Llegamos hasta Sa Palomera y el paseo fue increíble. Barco muy cómodo.", date: "2023-10" },
@@ -104,9 +104,9 @@ export const REVIEWS_2023: Record<string, { name: string; nationality: string; f
     { name: "Tomás Horak", nationality: "CZ", flag: "CZ", rating: 4, text: "Good boat, very stable. We went to Cala Bona and the kids enjoyed swimming.", date: "2023-07" },
   ],
   "remus-450-ii": [
-    { name: "Antonio Dominguez", nationality: "ES", flag: "ES", rating: 5, text: "Mismo modelo que el Remus que ya conocíamos, igual de estable y fácil de llevar.", date: "2023-07" },
+    { name: "Antonio Domínguez", nationality: "ES", flag: "ES", rating: 5, text: "Mismo modelo que el Remus que ya conocíamos, igual de estable y fácil de llevar.", date: "2023-07" },
     { name: "Pilar Morales", nationality: "ES", flag: "ES", rating: 5, text: "Nos encantó. Fuimos a Sa Forcanera y el agua estaba perfecta. Barco muy cómodo.", date: "2023-08" },
-    { name: "Diego Martinez", nationality: "ES", flag: "ES", rating: 4, text: "Buen barco, igual que el otro Remus. Estable y sin necesidad de título.", date: "2023-06" },
+    { name: "Diego Martínez", nationality: "ES", flag: "ES", rating: 4, text: "Buen barco, igual que el otro Remus. Estable y sin necesidad de título.", date: "2023-06" },
     { name: "Natalia Guerrero", nationality: "ES", flag: "ES", rating: 5, text: "Es nuestro cuarto año alquilando y siempre salimos contentos. Barco perfecto para familias.", date: "2023-07" },
     { name: "Sergio Rubio", nationality: "ES", flag: "ES", rating: 5, text: "Fuimos hasta la costa de Lloret y el paseo fue increíble. Barco estable y fácil.", date: "2023-08" },
     { name: "Monica Torres", nationality: "ES", flag: "ES", rating: 4, text: "Buen barco para media jornada. Los niños se lo pasaron genial.", date: "2023-09" },

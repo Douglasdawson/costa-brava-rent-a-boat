@@ -1,7 +1,7 @@
 export const REVIEWS_2020: Record<string, { name: string; nationality: string; flag: string; rating: number; text: string; date: string }[]> = {
   "solar-450": [
     { name: "Javier Herrero", nationality: "ES", flag: "ES", rating: 5, text: "Primer verano de esta empresa y se nota que todo es nuevo. Barco impecable, muy estable para ir con los niños.", date: "2020-06" },
-    { name: "Raquel Dominguez", nationality: "ES", flag: "ES", rating: 5, text: "Nos encantó el soladero acolchado, comodísimo para tomar el sol. Fuimos hasta Cala Bona y el agua estaba cristalina.", date: "2020-07" },
+    { name: "Raquel Domínguez", nationality: "ES", flag: "ES", rating: 5, text: "Nos encantó el soladero acolchado, comodísimo para tomar el sol. Fuimos hasta Cala Bona y el agua estaba cristalina.", date: "2020-07" },
     { name: "Fernando Iglesias", nationality: "ES", flag: "ES", rating: 4, text: "Buen barco para familias. El toldo Bimini es imprescindible en julio. Combustible incluido, sin sorpresas.", date: "2020-07" },
     { name: "Elena Navarro", nationality: "ES", flag: "ES", rating: 5, text: "Sin título náutico y disfrutamos un día genial en el mar. Mis hijos de 5 y 7 años se lo pasaron en grande.", date: "2020-08" },
     { name: "Philippe Moreau", nationality: "FR", flag: "FR", rating: 5, text: "Bateau tout neuf, très agréable. Nous sommes allés jusqu'à Sa Forcanera, l'eau est magnifique. Le bain de soleil rembourre est un vrai plus.", date: "2020-07" },
@@ -30,14 +30,14 @@ export const REVIEWS_2020: Record<string, { name: string; nationality: string; f
     { name: "Annette Richter", nationality: "DE", flag: "DE", rating: 5, text: "Sehr stabiles Boot, ideal für Familien. Wir haben die Küste bis Lloret erkundet, wunderschön.", date: "2020-08" },
     { name: "Daan Meijer", nationality: "NL", flag: "NL", rating: 4, text: "Fijne boot voor een ochtend op zee. Makkelijk te besturen en lekker stabiel. Goede prijs ook.", date: "2020-07" },
     { name: "Chiara Ferrari", nationality: "IT", flag: "IT", rating: 5, text: "Barca stabile e facile da guidare, anche senza patente nautica. Perfetta per una coppia.", date: "2020-08" },
-    { name: "Pilar Jimenez", nationality: "ES", flag: "ES", rating: 5, text: "Descubrimos Blanes desde el mar, una experiencia única. El Remus es un barco nuevo y se nota.", date: "2020-06" },
+    { name: "Pilar Jiménez", nationality: "ES", flag: "ES", rating: 5, text: "Descubrimos Blanes desde el mar, una experiencia única. El Remus es un barco nuevo y se nota.", date: "2020-06" },
     { name: "Nicolas Blanc", nationality: "FR", flag: "FR", rating: 5, text: "Nous venons de découvrir cette nouvelle entreprise. Bateaux neufs, personnel sympa. Le Remus est parfait pour les débutants.", date: "2020-09" },
     { name: "George Taylor", nationality: "GB", flag: "GB", rating: 5, text: "Took the family out for a morning sail. Very stable even when the kids were jumping around. Easy to drive.", date: "2020-09" },
     { name: "Roberto Mancini", nationality: "IT", flag: "IT", rating: 4, text: "Buona barca per esplorare le cale vicine. Molto stabile, adatta ai principianti.", date: "2020-07" },
   ],
   "remus-450-ii": [
-    { name: "Alejandro Perez", nationality: "ES", flag: "ES", rating: 5, text: "Igual de bueno que el otro Remus. Barco nuevo, estable y fácil de manejar. Ideal para salir sin título.", date: "2020-07" },
-    { name: "Maria Jose Sanchez", nationality: "ES", flag: "ES", rating: 4, text: "Buen barco para una escapada en familia. Estable y cómodo, aunque para 5 adultos queda un poco justo.", date: "2020-08" },
+    { name: "Alejandro Pérez", nationality: "ES", flag: "ES", rating: 5, text: "Igual de bueno que el otro Remus. Barco nuevo, estable y fácil de manejar. Ideal para salir sin título.", date: "2020-07" },
+    { name: "Maria Jose Sánchez", nationality: "ES", flag: "ES", rating: 4, text: "Buen barco para una escapada en familia. Estable y cómodo, aunque para 5 adultos queda un poco justo.", date: "2020-08" },
     { name: "Sergio Blanco", nationality: "ES", flag: "ES", rating: 5, text: "Fantastico para recorrer las calas de Blanes. Fuimos hasta Cala Bona y fue espectacular. Todo nuevo y limpio.", date: "2020-06" },
     { name: "Ines Caballero", nationality: "ES", flag: "ES", rating: 5, text: "Perfectamañana en el mar con mis padres. Barco muy fácil de llevar, sin necesidad de título náutico.", date: "2020-09" },
     { name: "Laurent Petit", nationality: "FR", flag: "FR", rating: 5, text: "Bateau identique au Remus 450, tout aussi bien. Stable, facile, idéal pour une demi-journée en mer.", date: "2020-07" },

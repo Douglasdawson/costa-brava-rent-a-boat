@@ -68,7 +68,7 @@ export default function Hero() {
           <div className="text-center flex flex-col items-center">
             {/* H1 - top on mobile, flows naturally on desktop */}
             <div className="pt-32 sm:pt-0">
-              <h1 className="font-heading font-bold text-white tracking-tight mb-4 sm:mb-6 leading-[1.08] uppercase drop-shadow-[0_2px_8px_rgba(0,0,0,0.4)]" style={{ fontSize: 'clamp(2.2rem, 6vw, 3.5rem)' }}>
+              <h1 className="font-heading font-bold text-white tracking-tight mb-4 sm:mb-6 leading-[1.08] uppercase drop-shadow-[0_2px_8px_rgba(0,0,0,0.4)]" style={{ fontSize: 'clamp(2rem, 5.5vw, 3.5rem)' }}>
                 {t.hero.title}
               </h1>
             </div>

@@ -513,7 +513,7 @@ export const it: Translations = {
   },
   giftCardBanner: {
     title: 'Regala un\'esperienza unica in mare',
-    subtitle: 'Carte regalo da 50EUR. Il regalo perfetto per ogni occasione.',
+    subtitle: 'Carte regalo da 50 €. Il regalo perfetto per ogni occasione.',
     cta: 'Acquista carta regalo',
   },
   codeValidation: {

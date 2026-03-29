@@ -513,7 +513,7 @@ export const ca: Translations = {
   },
   giftCardBanner: {
     title: 'Regala una experiència única al mar',
-    subtitle: 'Targetes regal des de 50EUR. El regal perfecte per a qualsevol ocasió.',
+    subtitle: 'Targetes regal des de 50 €. El regal perfecte per a qualsevol ocasió.',
     cta: 'Comprar targeta regal',
   },
   codeValidation: {

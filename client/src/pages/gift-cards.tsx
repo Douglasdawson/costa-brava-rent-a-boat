@@ -34,7 +34,7 @@ export default function GiftCardsPage() {
 
   const seoConfig = getSEOConfig("giftCards", language) || {
     title: "Tarjetas Regalo | Costa Brava Rent a Boat",
-    description: "Regala una experiencia en barco por la Costa Brava. Tarjetas regalo desde 50EUR.",
+    description: "Regala una experiencia en barco por la Costa Brava. Tarjetas regalo desde 50 €.",
   };
   const canonical = generateCanonicalUrl("giftCards", language);
   const hreflangLinks = generateHreflangLinks("giftCards");

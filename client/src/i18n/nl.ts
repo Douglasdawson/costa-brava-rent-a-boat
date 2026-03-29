@@ -513,7 +513,7 @@ export const nl: Translations = {
   },
   giftCardBanner: {
     title: 'Geef een unieke ervaring op zee',
-    subtitle: 'Cadeaukaarten vanaf 50EUR. Het perfecte cadeau voor elke gelegenheid.',
+    subtitle: 'Cadeaukaarten vanaf 50 €. Het perfecte cadeau voor elke gelegenheid.',
     cta: 'Cadeaukaart kopen',
   },
   codeValidation: {

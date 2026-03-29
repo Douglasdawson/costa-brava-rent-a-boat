@@ -524,7 +524,7 @@ export const es: Translations = {
   },
   giftCardBanner: {
     title: 'Regala una experiencia única en el mar',
-    subtitle: 'Tarjetas regalo desde 50EUR. El regalo perfecto para cualquier ocasión.',
+    subtitle: 'Tarjetas regalo desde 50 €. El regalo perfecto para cualquier ocasión.',
     cta: 'Comprar tarjeta regalo',
   },
   codeValidation: {
@@ -1692,7 +1692,7 @@ export const es: Translations = {
     explorer: 'El explorador',
     adrenaline: 'Pura adrenalina',
     luxury: 'La experiencia de lujo',
-    vip: 'VIP: Tu solo disfruta',
+    vip: 'VIP: Tú solo disfruta',
   },
 
   valueStack: {

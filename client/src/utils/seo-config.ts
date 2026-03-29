@@ -194,10 +194,10 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
     },
     giftCards: {
       title: "Tarjetas Regalo Alquiler Barcos | Costa Brava Rent a Boat",
-      description: "Regala una experiencia nautica en la Costa Brava. Tarjetas regalo desde 50EUR para alquilar barcos en Blanes. Validas 1 ano.",
-      keywords: "tarjetas regalo barcos, regalo alquiler barco blanes, experiencia nautica regalo, costa brava regalo",
+      description: "Regala una experiencia náutica en la Costa Brava. Tarjetas regalo desde 50 € para alquilar barcos en Blanes. Válidas 1 año.",
+      keywords: "tarjetas regalo barcos, regalo alquiler barco blanes, experiencia náutica regalo, costa brava regalo",
       ogTitle: "Tarjetas Regalo | Costa Brava Rent a Boat",
-      ogDescription: "Regala una experiencia nautica inolvidable. Tarjetas desde 50EUR canjeables en todos nuestros barcos en Blanes."
+      ogDescription: "Regala una experiencia náutica inolvidable. Tarjetas desde 50 € canjeables en todos nuestros barcos en Blanes."
     },
     pricing: {
       title: `Precios Alquiler Barcos Blanes ${SEASON_YEAR} | Costa Brava Rent a Boat`,
@@ -400,10 +400,10 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
     },
     giftCards: {
       title: "Gift Cards Boat Rental | Costa Brava Rent a Boat",
-      description: "Give a nautical experience on Costa Brava. Gift cards from 50EUR for boat rental in Blanes. Valid for 1 year.",
+      description: "Give a nautical experience on Costa Brava. Gift cards from 50 € for boat rental in Blanes. Valid for 1 year.",
       keywords: "boat gift cards, boat rental gift blanes, nautical experience gift, costa brava gift",
       ogTitle: "Gift Cards | Costa Brava Rent a Boat",
-      ogDescription: "Give an unforgettable nautical experience. Cards from 50EUR redeemable on all our boats in Blanes."
+      ogDescription: "Give an unforgettable nautical experience. Cards from 50 € redeemable on all our boats in Blanes."
     },
     pricing: {
       title: `Boat Rental Prices Blanes ${SEASON_YEAR} | Costa Brava Rent a Boat`,
@@ -593,7 +593,7 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
     },
     giftCards: {
       title: "Targetes Regal Lloguer Barques | Costa Brava Rent a Boat",
-      description: "Regala una experiencia nautica a la Costa Brava. Targetes regal des de 50EUR per llogar barques a Blanes. Valides 1 any.",
+      description: "Regala una experiencia nautica a la Costa Brava. Targetes regal des de 50 € per llogar barques a Blanes. Valides 1 any.",
       keywords: "targetes regal barques, regal lloguer barca blanes, experiencia nautica regal, costa brava regal"
     },
     pricing: {
@@ -730,7 +730,7 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
     },
     giftCards: {
       title: "Cartes Cadeaux Location Bateaux | Costa Brava Rent a Boat",
-      description: "Offrez une experience nautique sur la Costa Brava. Cartes cadeaux des 50EUR pour louer des bateaux a Blanes. Valables 1 an.",
+      description: "Offrez une experience nautique sur la Costa Brava. Cartes cadeaux des 50 € pour louer des bateaux a Blanes. Valables 1 an.",
       keywords: "cartes cadeaux bateaux, cadeau location bateau blanes, experience nautique cadeau, costa brava cadeau"
     },
     pricing: {
@@ -867,7 +867,7 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
     },
     giftCards: {
       title: "Geschenkkarten Bootsverleih | Costa Brava Rent a Boat",
-      description: "Verschenken Sie ein nautisches Erlebnis an der Costa Brava. Geschenkkarten ab 50EUR fur Bootsverleih in Blanes. 1 Jahr gultig.",
+      description: "Verschenken Sie ein nautisches Erlebnis an der Costa Brava. Geschenkkarten ab 50 € fur Bootsverleih in Blanes. 1 Jahr gultig.",
       keywords: "geschenkkarten boote, geschenk bootsverleih blanes, nautisches erlebnis geschenk, costa brava geschenk"
     },
     pricing: {
@@ -1004,7 +1004,7 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
     },
     giftCards: {
       title: "Cadeaukaarten Bootverhuur | Costa Brava Rent a Boat",
-      description: "Geef een nautische ervaring aan de Costa Brava. Cadeaukaarten vanaf 50EUR voor bootverhuur in Blanes. 1 jaar geldig.",
+      description: "Geef een nautische ervaring aan de Costa Brava. Cadeaukaarten vanaf 50 € voor bootverhuur in Blanes. 1 jaar geldig.",
       keywords: "cadeaukaarten boten, cadeau bootverhuur blanes, nautische ervaring cadeau, costa brava cadeau"
     },
     pricing: {
@@ -1141,7 +1141,7 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
     },
     giftCards: {
       title: "Carte Regalo Noleggio Barche | Costa Brava Rent a Boat",
-      description: "Regala un'esperienza nautica sulla Costa Brava. Carte regalo da 50EUR per noleggio barche a Blanes. Valide 1 anno.",
+      description: "Regala un'esperienza nautica sulla Costa Brava. Carte regalo da 50 € per noleggio barche a Blanes. Valide 1 anno.",
       keywords: "carte regalo barche, regalo noleggio barca blanes, esperienza nautica regalo, costa brava regalo"
     },
     pricing: {
@@ -1278,7 +1278,7 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
     },
     giftCards: {
       title: "Подарочные Карты Аренда Лодок | Costa Brava Rent a Boat",
-      description: "Подарите морской опыт на Коста-Браве. Подарочные карты от 50EUR на аренду лодок в Бланесе. Действительны 1 год.",
+      description: "Подарите морской опыт на Коста-Браве. Подарочные карты от 50 € на аренду лодок в Бланесе. Действительны 1 год.",
       keywords: "подарочные карты лодки, подарок аренда лодки бланес, морской опыт подарок, коста брава подарок"
     },
     pricing: {

@@ -103,11 +103,11 @@ export default function Hero() {
 
       {/* CTA - fixed at bottom center of hero */}
       <div className="absolute bottom-14 sm:bottom-16 left-0 right-0 z-20 flex flex-col items-center gap-2.5">
-        <div className="flex flex-row items-center justify-center gap-3">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 w-full px-6 sm:px-0 sm:w-auto">
           <Button
             onClick={() => setQuizOpen(true)}
             size="lg"
-            className="bg-cta hover:bg-cta/90 text-white px-8 py-3 text-base sm:px-10 sm:py-4 sm:text-lg rounded-full font-medium btn-elevated cta-pulse"
+            className="bg-cta hover:bg-cta/90 text-white px-8 py-3 text-base sm:px-10 sm:py-4 sm:text-lg rounded-full font-medium btn-elevated cta-pulse w-full sm:w-auto"
             data-testid="button-hero-cta"
           >
             {t.hero.findYourBoat}
@@ -118,7 +118,7 @@ export default function Hero() {
               const fleet = document.getElementById('fleet');
               if (fleet) fleet.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }}
-            className="bg-[#A8C4DD] hover:bg-[#93b5d2] text-[hsl(215_45%_20%)] px-6 py-3 text-base lg:px-10 lg:py-4 lg:text-lg rounded-full font-medium btn-elevated"
+            className="bg-[#A8C4DD] hover:bg-[#93b5d2] text-[hsl(215_45%_20%)] px-6 py-3 text-base lg:px-10 lg:py-4 lg:text-lg rounded-full font-medium btn-elevated w-full sm:w-auto"
             data-testid="button-hero-explore"
           >
             {t.hero.viewFleet}

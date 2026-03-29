@@ -513,7 +513,7 @@ export const de: Translations = {
   },
   giftCardBanner: {
     title: 'Verschenken Sie ein einzigartiges Erlebnis auf dem Meer',
-    subtitle: 'Geschenkkarten ab 50EUR. Das perfekte Geschenk für jeden Anlass.',
+    subtitle: 'Geschenkkarten ab 50 €. Das perfekte Geschenk für jeden Anlass.',
     cta: 'Geschenkkarte kaufen',
   },
   codeValidation: {

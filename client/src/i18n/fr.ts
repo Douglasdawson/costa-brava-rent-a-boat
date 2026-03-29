@@ -513,7 +513,7 @@ export const fr: Translations = {
   },
   giftCardBanner: {
     title: 'Offrez une expérience unique en mer',
-    subtitle: 'Cartes cadeaux à partir de 50EUR. Le cadeau parfait pour toute occasion.',
+    subtitle: 'Cartes cadeaux à partir de 50 €. Le cadeau parfait pour toute occasion.',
     cta: 'Acheter une carte cadeau',
   },
   codeValidation: {

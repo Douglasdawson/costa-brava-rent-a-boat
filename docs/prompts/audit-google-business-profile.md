@@ -53,7 +53,7 @@ Coordenadas (verificar que el pin del mapa este en el puerto, no en otro sitio):
   41.6751°N, 2.7934°E
 
 Telefono: +34 611 500 372
-Sitio web: https://costabravarentaboat.com
+Sitio web: https://www.costabravarentaboat.com
   (Verificar que NO sea una URL antigua, con typo, o sin HTTPS)
 
 ==========================================================
@@ -211,11 +211,11 @@ Posts sugeridos si no hay ninguno activo:
 
 POST 1 — Tipo: Update
 Texto: Temporada 2026 abierta. Alquila tu barco en el Puerto de Blanes y descubre las calas mas bonitas de la Costa Brava. 9 barcos disponibles, 5 sin licencia. Desde 70 EUR/hora con gasolina incluida. Formacion de 15 min incluida. Reserva online o por WhatsApp.
-Boton: Reservar → https://costabravarentaboat.com
+Boton: Reservar → https://www.costabravarentaboat.com
 
 POST 2 — Tipo: Oferta
 Texto: Temporada baja (abril-junio): los mejores precios del ano. Calas tranquilas, sin aglomeraciones. Barcos sin licencia desde 70 EUR/h. El secreto mejor guardado de la Costa Brava.
-Boton: Ver precios → https://costabravarentaboat.com/es/pricing
+Boton: Ver precios → https://www.costabravarentaboat.com/es/precios
 
 ==========================================================
 BLOQUE 8 — PREGUNTAS Y RESPUESTAS (Q&A)
@@ -263,8 +263,8 @@ BLOQUE 10 — URL DE RESERVAS
 ==========================================================
 
 Verificar si tiene configurado enlace de reservas:
-  URL correcta: https://costabravarentaboat.com
-  (o https://costabravarentaboat.com/es/ para espanol)
+  URL correcta: https://www.costabravarentaboat.com
+  (o https://www.costabravarentaboat.com/es/ para espanol)
 
 Si no esta configurado, es un ERROR — este campo es clave para conversion.
 

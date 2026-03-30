@@ -46,10 +46,10 @@ TAREA 2 — CONFIGURAR URL DE RESERVAS
 En el panel principal del perfil, busca la seccion "Reservas" o "Reservar" o "URLs" o "Vinculos".
 
 Si ves un boton "Agregar vinculo" o "Configurar reservas":
-  URL: https://costabravarentaboat.com
+  URL: https://www.costabravarentaboat.com
   Proveedor: Sitio web propio (o "Otro proveedor")
 
-Si ya esta configurado, verificar que la URL sea https://costabravarentaboat.com (NO .app).
+Si ya esta configurado, verificar que la URL sea https://www.costabravarentaboat.com (NO .app).
 
 Si no encuentras esta seccion, busca en "Editar perfil" > "Contacto" si hay un campo para URL de reservas.
 
@@ -101,13 +101,13 @@ En el panel principal, busca "Publicaciones" o "Posts" o "Crear publicacion".
 POST 1 — Tipo: Novedades / Update
   Texto:
   Temporada 2026 abierta! Alquila tu barco en el Puerto de Blanes y descubre las calas mas bonitas de la Costa Brava. 9 barcos disponibles, 5 sin licencia. Desde 70 EUR/hora con gasolina incluida. Formacion de 15 min incluida para principiantes. Cancelacion gratuita 48h.
-  Boton: "Reservar" → https://costabravarentaboat.com
+  Boton: "Reservar" → https://www.costabravarentaboat.com
   NO subir foto (la anadire manualmente despues)
 
 POST 2 — Tipo: Oferta
   Texto:
   Temporada baja (abril-junio): los mejores precios del ano para navegar. Calas tranquilas, sin aglomeraciones. Barcos sin licencia desde 70 EUR/h con todo incluido. El secreto mejor guardado de la Costa Brava. A solo 60 km de Barcelona.
-  Boton: "Mas informacion" → https://costabravarentaboat.com/es/pricing
+  Boton: "Mas informacion" → https://www.costabravarentaboat.com/es/precios
   NO subir foto
 
 Si ya hay posts activos recientes, no es necesario crear duplicados. Solo crear estos si no hay posts activos o los existentes tienen mas de 7 dias.

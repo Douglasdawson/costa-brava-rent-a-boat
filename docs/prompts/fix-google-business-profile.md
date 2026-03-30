@@ -42,7 +42,7 @@ DIRECCION: OK, no tocar
 TELEFONO: OK, no tocar
 
 SITIO WEB — VERIFICAR:
-  Correcto: https://costabravarentaboat.com
+  Correcto: https://www.costabravarentaboat.com
   Accion: Verificar que apunte a .com (sin trailing slash)
 
 ==========================================================
@@ -137,11 +137,11 @@ BLOQUE 6 — CONFIGURAR URL DE RESERVAS (ir a "Reservas" o "URLs")
 
 CORREGIR URGENTE — Actualmente NO hay URL de reservas configurada.
 
-URL de reservas: https://costabravarentaboat.com
+URL de reservas: https://www.costabravarentaboat.com
 Proveedor: Sitio web propio
 
 Si Google permite multiples enlaces:
-  - Enlace principal: https://costabravarentaboat.com
+  - Enlace principal: https://www.costabravarentaboat.com
   - WhatsApp: https://wa.me/34611500372
 
 ==========================================================
@@ -195,11 +195,11 @@ Si el perfil permite publicar posts, crear estos 2:
 
 POST 1 — Tipo: Novedades/Update
   Texto: Temporada 2026 abierta! Alquila tu barco en el Puerto de Blanes y descubre las calas mas bonitas de la Costa Brava. 9 barcos disponibles, 5 sin licencia. Desde 70 EUR/hora con gasolina incluida. Formacion de 15 min incluida para principiantes. Cancelacion gratuita 48h.
-  Boton: Reservar → https://costabravarentaboat.com
+  Boton: Reservar → https://www.costabravarentaboat.com
 
 POST 2 — Tipo: Oferta
   Texto: Temporada baja (abril-junio): los mejores precios del ano para navegar. Calas tranquilas, sin aglomeraciones. Barcos sin licencia desde 70 EUR/h con todo incluido. El secreto mejor guardado de la Costa Brava. A solo 60 km de Barcelona.
-  Boton: Ver precios → https://costabravarentaboat.com/es/pricing
+  Boton: Ver precios → https://www.costabravarentaboat.com/es/precios
 
 NO subir fotos a los posts — las anadire yo manualmente despues.
 

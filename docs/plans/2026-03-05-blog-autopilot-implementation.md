@@ -320,7 +320,7 @@ async function getBusinessContext(): Promise<string> {
   let context = "Business context for internal linking:\n";
   context += `  Boats: ${boats.map(b => b.name).join(", ") || "none in DB"}\n`;
   context += `  Destinations: ${destinations.map(d => `${d.name} (/destinos/${d.slug})`).join(", ") || "none in DB"}\n`;
-  context += `  Website: costabravarentaboat.app\n`;
+  context += `  Website: costabravarentaboat.com\n`;
   context += `  Location: Puerto de Blanes, Costa Brava, Girona, Spain\n`;
   context += `  Business: Boat rental without/with license, 2-8 hour trips\n`;
   context += `  Season: April-October (low: Apr-Jun/Sep-Oct, mid: Jul, high: Aug)\n`;

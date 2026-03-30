@@ -124,7 +124,7 @@ export async function migrateAdminUsersToUsers(tenantId: string): Promise<{ migr
   let skipped = 0;
 
   for (const admin of admins) {
-    const email = `${admin.username}@${tenant.slug}.costabravarentaboat.app`;
+    const email = `${admin.username}@${tenant.slug}.costabravarentaboat.com`;
 
     const existing = await getUserByEmail(email, tenantId);
     if (existing) {

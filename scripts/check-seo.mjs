@@ -4,21 +4,21 @@
  * SEO Validation Script
  * 
  * Verifies SEO implementation for Costa Brava Rent a Boat:
- * - Canonical URLs point to costabravarentaboat.app
+ * - Canonical URLs point to costabravarentaboat.com
  * - Hreflang tags include 8 languages + x-default
  * - JSON-LD schemas present (BreadcrumbList, Product, FAQPage, etc.)
  * - Meta descriptions under 160 characters
  * - HTTPS enforcement on canonical domain
  * 
  * Usage: node scripts/check-seo.mjs [url]
- * Example: node scripts/check-seo.mjs https://costabravarentaboat.app
+ * Example: node scripts/check-seo.mjs https://costabravarentaboat.com
  */
 
 import { JSDOM } from 'jsdom';
 import https from 'https';
 import http from 'http';
 
-const CANONICAL_DOMAIN = 'costabravarentaboat.app';
+const CANONICAL_DOMAIN = 'costabravarentaboat.com';
 const REQUIRED_LANGUAGES = ['es', 'en', 'ca', 'fr', 'de', 'nl', 'it', 'ru'];
 const MAX_META_DESC_LENGTH = 160;
 

@@ -12,7 +12,7 @@ a paso, esperando mi confirmacion antes de cada accion.
 
 ## Datos del proyecto
 - Dominio principal: costabravarentaboat.com
-- Dominio secundario: costabravarentaboat.app
+- Dominio secundario (legacy, ya no activo): costabravarentaboat.app
 - Registrador: GoDaddy
 - Hosting: Replit (autoscale)
 - Web: https://www.costabravarentaboat.com
@@ -89,7 +89,7 @@ Regla 3 - Forzar HTTPS:
 - Setting: Always Use HTTPS
 
 ## PASO 6: Repetir para dominio secundario (opcional)
-- Repetir pasos 2-5 para costabravarentaboat.app
+- Repetir pasos 2-5 para costabravarentaboat.app (legacy)
 - O simplemente redirigir .app al .com desde Cloudflare
 
 ## VERIFICACION FINAL

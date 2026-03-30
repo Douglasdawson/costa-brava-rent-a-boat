@@ -1,7 +1,7 @@
 # API Reference - Costa Brava Rent a Boat
 
 > Ultima actualizacion: Marzo 2026
-> Base URL: `https://costabravarentaboat.app`
+> Base URL: `https://costabravarentaboat.com`
 
 ## Tabla de Contenidos
 
@@ -3036,7 +3036,7 @@ Estado de salud de la integracion WhatsApp.
 {
   "configured": true,
   "aiEnabled": true,
-  "webhookUrl": "https://costabravarentaboat.app/api/whatsapp/webhook",
+  "webhookUrl": "https://costabravarentaboat.com/api/whatsapp/webhook",
   "diagnostics": {
     "twilio": {
       "hasAccountSid": true,

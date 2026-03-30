@@ -2,7 +2,7 @@
 
 > **Última actualización**: Marzo 2026
 > **Versión**: 1.1.0
-> **Dominio**: https://costabravarentaboat.app
+> **Dominio**: https://costabravarentaboat.com
 
 ---
 
@@ -452,7 +452,7 @@ npm run db:push
 
 ## 16. Contacto y Recursos
 
-- **Dominio**: https://costabravarentaboat.app
+- **Dominio**: https://costabravarentaboat.com
 - **Repositorio**: costa-brava-rent-a-boat
 - **Documentación adicional**:
   - `replit.md` - Arquitectura sistema

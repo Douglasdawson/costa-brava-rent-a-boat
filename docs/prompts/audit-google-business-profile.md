@@ -53,7 +53,7 @@ Coordenadas (verificar que el pin del mapa este en el puerto, no en otro sitio):
   41.6751°N, 2.7934°E
 
 Telefono: +34 611 500 372
-Sitio web: https://costabravarentaboat.app
+Sitio web: https://costabravarentaboat.com
   (Verificar que NO sea una URL antigua, con typo, o sin HTTPS)
 
 ==========================================================
@@ -211,11 +211,11 @@ Posts sugeridos si no hay ninguno activo:
 
 POST 1 — Tipo: Update
 Texto: Temporada 2026 abierta. Alquila tu barco en el Puerto de Blanes y descubre las calas mas bonitas de la Costa Brava. 9 barcos disponibles, 5 sin licencia. Desde 70 EUR/hora con gasolina incluida. Formacion de 15 min incluida. Reserva online o por WhatsApp.
-Boton: Reservar → https://costabravarentaboat.app
+Boton: Reservar → https://costabravarentaboat.com
 
 POST 2 — Tipo: Oferta
 Texto: Temporada baja (abril-junio): los mejores precios del ano. Calas tranquilas, sin aglomeraciones. Barcos sin licencia desde 70 EUR/h. El secreto mejor guardado de la Costa Brava.
-Boton: Ver precios → https://costabravarentaboat.app/es/pricing
+Boton: Ver precios → https://costabravarentaboat.com/es/pricing
 
 ==========================================================
 BLOQUE 8 — PREGUNTAS Y RESPUESTAS (Q&A)
@@ -255,7 +255,7 @@ BLOQUE 9 — MENSAJES
 
 Verificar si los mensajes estan activados:
   - Mensajes activos: SI deberia estar activado
-  - Mensaje de bienvenida sugerido: "Hola! Gracias por contactar con Costa Brava Rent a Boat. Para reservas rapidas visita costabravarentaboat.app o escribenos por WhatsApp al +34 611 500 372. Te respondemos en minutos!"
+  - Mensaje de bienvenida sugerido: "Hola! Gracias por contactar con Costa Brava Rent a Boat. Para reservas rapidas visita costabravarentaboat.com o escribenos por WhatsApp al +34 611 500 372. Te respondemos en minutos!"
   - Tiempo medio de respuesta (si Google lo muestra)
 
 ==========================================================
@@ -263,8 +263,8 @@ BLOQUE 10 — URL DE RESERVAS
 ==========================================================
 
 Verificar si tiene configurado enlace de reservas:
-  URL correcta: https://costabravarentaboat.app
-  (o https://costabravarentaboat.app/es/ para espanol)
+  URL correcta: https://costabravarentaboat.com
+  (o https://costabravarentaboat.com/es/ para espanol)
 
 Si no esta configurado, es un ERROR — este campo es clave para conversion.
 

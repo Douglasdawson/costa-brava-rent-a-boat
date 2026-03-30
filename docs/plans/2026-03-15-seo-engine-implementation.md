@@ -298,7 +298,7 @@ export const SEO_CONFIG = {
 
   // Site
   siteUrl: process.env.GSC_SITE_URL || "sc-domain:costabravarentaboat.com",
-  baseUrl: process.env.BASE_URL || "https://costabravarentaboat.app",
+  baseUrl: process.env.BASE_URL || "https://costabravarentaboat.com",
 
   // Scheduling
   cron: {

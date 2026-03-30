@@ -146,14 +146,13 @@ app.use("/api/create-checkout-session", paymentLimiter);
 // CORS — restrict API access to known origins
 const allowedOrigins = isDev
   ? ['http://localhost:5000', 'http://localhost:3000', 'http://127.0.0.1:5000']
-  : ['https://www.costabravarentaboat.com', 'https://costabravarentaboat.com', 'https://costabravarentaboat.app'];
+  : ['https://www.costabravarentaboat.com', 'https://costabravarentaboat.com'];
 
 app.use('/api/', (req: Request, res: Response, next: NextFunction) => {
   const origin = req.headers.origin as string | undefined;
   const isAllowed = !origin
     || allowedOrigins.includes(origin)
-    || (!isDev && origin.endsWith('.costabravarentaboat.com'))
-    || (!isDev && origin.endsWith('.costabravarentaboat.app'));
+    || (!isDev && origin.endsWith('.costabravarentaboat.com'));
 
   if (isAllowed && origin) {
     res.setHeader('Access-Control-Allow-Origin', origin);

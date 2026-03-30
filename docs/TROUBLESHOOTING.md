@@ -432,7 +432,7 @@ stripe listen --forward-to localhost:5000/api/stripe-webhook
 
 # 3. Verificar en el dashboard de Stripe:
 #    Developers > Webhooks > tu endpoint
-#    - URL: https://costabravarentaboat.app/api/stripe-webhook
+#    - URL: https://costabravarentaboat.com/api/stripe-webhook
 #    - Eventos suscritos: payment_intent.succeeded, payment_intent.payment_failed
 #    - Ver log de intentos de entrega
 ```
@@ -652,11 +652,11 @@ npx tsx -e "
 
 ```bash
 # 1. Verificar el HTML renderizado del servidor
-curl -s https://costabravarentaboat.app/barco/solar-450 | grep -E "<title>|og:title|og:description"
+curl -s https://costabravarentaboat.com/barco/solar-450 | grep -E "<title>|og:title|og:description"
 
 # 2. Verificar sitemaps
-curl -s https://costabravarentaboat.app/sitemap.xml
-curl -s https://costabravarentaboat.app/sitemap-boats.xml
+curl -s https://costabravarentaboat.com/sitemap.xml
+curl -s https://costabravarentaboat.com/sitemap-boats.xml
 ```
 
 **Nota:** Este proyecto usa React con `react-helmet-async` para SEO. Los meta tags se inyectan en el lado del cliente. Para que los crawlers los vean correctamente, el servidor inyecta meta tags en el HTML estático antes de servir la pagina (ver `server/routes.ts`).
@@ -792,7 +792,7 @@ curl -s "http://localhost:5000/api/meta-whatsapp/webhook?hub.mode=subscribe&hub.
 **Configuracion en Meta Developer:**
 
 1. Ir a Meta for Developers > tu app > WhatsApp > Configuration.
-2. En "Callback URL": `https://costabravarentaboat.app/api/meta-whatsapp/webhook`
+2. En "Callback URL": `https://costabravarentaboat.com/api/meta-whatsapp/webhook`
 3. En "Verify token": el mismo valor que `META_WHATSAPP_VERIFY_TOKEN` en tu `.env`.
 4. Suscribir al campo `messages`.
 

@@ -12,7 +12,7 @@ Actualizado: 11 Marzo 2026
 | Transformacion SaaS | Completada (multi-tenant funcional) |
 | Branch | main |
 | Despliegue | Replit (produccion) |
-| URL produccion | https://costabravarentaboat.app |
+| URL produccion | https://costabravarentaboat.com |
 | TypeScript | 0 errores (`tsc --noEmit` limpio) |
 
 ---

@@ -2,7 +2,7 @@
 
 Boat rental booking platform for the Port of Blanes, Costa Brava (Girona, Spain). Full-stack application with online booking, Stripe payments, WhatsApp chatbot, AI-powered customer support, and a CRM admin panel.
 
-Website: [costabravarentaboat.app](https://costabravarentaboat.app)
+Website: [costabravarentaboat.com](https://costabravarentaboat.com)
 
 ## Tech Stack
 

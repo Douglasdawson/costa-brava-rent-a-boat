@@ -9,7 +9,7 @@ import * as schema from "../../shared/schema";
 // Constants
 // ---------------------------------------------------------------------------
 
-const WEBSITE_BASE_URL = "https://costabravarentaboat.app";
+const WEBSITE_BASE_URL = "https://costabravarentaboat.com";
 const BUSINESS_PHONE = "+34 611 500 372";
 const SEASON_MONTHS = [4, 5, 6, 7, 8, 9, 10]; // April - October
 
@@ -677,7 +677,7 @@ server.tool(
         {
           name: "Website Visitors (30 days)",
           source: "Meta Pixel",
-          description: "All visitors to costabravarentaboat.app in the last 30 days",
+          description: "All visitors to costabravarentaboat.com in the last 30 days",
           priority: "high",
         },
         {
@@ -794,7 +794,7 @@ server.tool(
           "3-8s: POV from the boat, crystal clear water",
           "8-15s: Passengers enjoying, swimming at a cove",
           "15-25s: Different boats shown with pricing overlay",
-          "25-30s: Logo + 'Book now at costabravarentaboat.app'",
+          "25-30s: Logo + 'Book now at costabravarentaboat.com'",
         ],
       },
     };

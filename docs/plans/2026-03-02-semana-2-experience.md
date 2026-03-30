@@ -981,7 +981,7 @@ Inside the `sendBookingConfirmation` function, find where the HTML body is const
 Find the closing part of the confirmation email content (before `emailWrapper()`) and add:
 
 ```typescript
-const appUrl = process.env.APP_URL || 'https://costabravarentaboat.app';
+const appUrl = process.env.APP_URL || 'https://costabravarentaboat.com';
 const cancelUrl = booking.cancelationToken
   ? `${appUrl}/cancel/${booking.cancelationToken}`
   : null;
@@ -1057,7 +1057,7 @@ export async function sendCancelationEmail(data: CancelationEmailData): Promise<
 
   const { booking, refundAmount, refundPercentage } = data;
   const strings = getEmailStrings(booking.language);
-  const appUrl = process.env.APP_URL || 'https://costabravarentaboat.app';
+  const appUrl = process.env.APP_URL || 'https://costabravarentaboat.com';
 
   const refundBlock = refundAmount > 0
     ? `<p style="color:#16a34a; font-weight:bold;">Reembolso: ${refundAmount}€ (${refundPercentage}%) — se procesará en los próximos días hábiles.</p>`
@@ -1072,7 +1072,7 @@ export async function sendCancelationEmail(data: CancelationEmailData): Promise<
     <p style="color:#64748b; font-size:13px; margin-top:24px;">
       Si tienes dudas, contáctanos en <a href="mailto:costabravarentaboat@gmail.com" style="color:#2563eb;">costabravarentaboat@gmail.com</a> o al +34 611 500 372.
     </p>
-    <p style="margin-top:16px;"><a href="${appUrl}" style="color:#2563eb; text-decoration:none;">Volver a costabravarentaboat.app</a></p>
+    <p style="margin-top:16px;"><a href="${appUrl}" style="color:#2563eb; text-decoration:none;">Volver a costabravarentaboat.com</a></p>
   `);
 
   const customerSubject = `Cancelación confirmada — ${booking.customerName}`;

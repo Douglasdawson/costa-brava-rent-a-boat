@@ -177,7 +177,7 @@ SESSION_SECRET=...
 # Opcional
 NODE_ENV=production|development
 PORT=3000
-BASE_URL=https://costabravarentaboat.app
+BASE_URL=https://costabravarentaboat.com
 ```
 
 ## Comandos

@@ -31,7 +31,7 @@ const WARM_IDLE_MINUTES = 24 * 60; // 24 hours
 const COLD_IDLE_MINUTES = 24 * 60; // 24 hours
 const COOLDOWN_HOURS = 24;
 
-const BASE_URL = process.env.BASE_URL || "https://costabravarentaboat.app";
+const BASE_URL = process.env.BASE_URL || "https://costabravarentaboat.com";
 
 /**
  * Main entry point: process all lead tiers.

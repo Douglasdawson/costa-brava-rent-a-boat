@@ -57,7 +57,7 @@ Preferred communication style: Simple, everyday language.
   - **Technical SEO (Oct 2025)**:
     - robots.txt: Optimized static file with crawl directives, sitemap location, admin blocking
     - Canonical URLs: Clean URLs without language query params; language variants via hreflang only
-    - HTTPS Enforcement: Canonical domain redirect middleware (costabravarentaboat.app) with trust proxy
+    - HTTPS Enforcement: Canonical domain redirect middleware (costabravarentaboat.com) with trust proxy
     - SEO Validation: Automated check-seo.mjs script with jsdom for canonical/hreflang verification
     - Dynamic Pages: Fixed blog/destination detail canonical URLs to use pageName+params pattern
 

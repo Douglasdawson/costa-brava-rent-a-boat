@@ -75,7 +75,7 @@ export async function registerWhatsAppRoutes(app: Express) {
 
 Comprobar que `.env` (o variables del hosting) incluye:
 ```
-BASE_URL=https://costabravarentaboat.app
+BASE_URL=https://costabravarentaboat.com
 ```
 Si no existe, la URL se construye desde `req.protocol + host`, que puede diferir de la URL registrada en Twilio.
 
@@ -108,8 +108,8 @@ git commit -m "fix(security): validate Twilio HMAC signature on WhatsApp webhook
         cancel_url: `${req.headers.origin}/booking?step=6&booking_id=${bookingId}`,
 
 // Después:
-        success_url: `${process.env.APP_URL || 'https://costabravarentaboat.app'}/booking/success?session_id={CHECKOUT_SESSION_ID}&booking_id=${bookingId}`,
-        cancel_url: `${process.env.APP_URL || 'https://costabravarentaboat.app'}/booking?step=6&booking_id=${bookingId}`,
+        success_url: `${process.env.APP_URL || 'https://costabravarentaboat.com'}/booking/success?session_id={CHECKOUT_SESSION_ID}&booking_id=${bookingId}`,
+        cancel_url: `${process.env.APP_URL || 'https://costabravarentaboat.com'}/booking?step=6&booking_id=${bookingId}`,
 ```
 
 **Step 3: Añadir `APP_URL` a `server/index.ts`** — ya tiene `BASE_URL` como opcional, añadir `APP_URL` a la lista de opcionales:
@@ -200,14 +200,14 @@ git commit -m "fix(chatbot): use persistent intentScore instead of hardcoded 0 f
 
 ```typescript
     const fallbackResponses: Record<string, string> = {
-      es: "Lo siento, estoy teniendo problemas tecnicos. Por favor, contacta directamente por WhatsApp al +34 611 500 372 o visita costabravarentaboat.app",
-      en: "Sorry, I'm having technical difficulties. Please contact us directly via WhatsApp at +34 611 500 372 or visit costabravarentaboat.app",
-      ca: "Ho sento, estic tenint problemes tecnics. Si us plau, contacta directament per WhatsApp al +34 611 500 372 o visita costabravarentaboat.app",
-      fr: "Desole, je rencontre des difficultes techniques. Veuillez nous contacter directement via WhatsApp au +34 611 500 372 ou visitez costabravarentaboat.app",
-      de: "Entschuldigung, ich habe technische Schwierigkeiten. Bitte kontaktieren Sie uns direkt uber WhatsApp unter +34 611 500 372 oder besuchen Sie costabravarentaboat.app",
-      nl: "Sorry, ik heb technische problemen. Neem direct contact op via WhatsApp op +34 611 500 372 of bezoek costabravarentaboat.app",
-      it: "Mi dispiace, sto avendo difficolta tecniche. Vi preghiamo di contattarci direttamente tramite WhatsApp al +34 611 500 372 o visitate costabravarentaboat.app",
-      ru: "Izvinite, u menya tekhnicheskiye trudnosti. Svyazhites' s nami napryamuyu cherez WhatsApp po nomeru +34 611 500 372 ili posetite costabravarentaboat.app",
+      es: "Lo siento, estoy teniendo problemas tecnicos. Por favor, contacta directamente por WhatsApp al +34 611 500 372 o visita costabravarentaboat.com",
+      en: "Sorry, I'm having technical difficulties. Please contact us directly via WhatsApp at +34 611 500 372 or visit costabravarentaboat.com",
+      ca: "Ho sento, estic tenint problemes tecnics. Si us plau, contacta directament per WhatsApp al +34 611 500 372 o visita costabravarentaboat.com",
+      fr: "Desole, je rencontre des difficultes techniques. Veuillez nous contacter directement via WhatsApp au +34 611 500 372 ou visitez costabravarentaboat.com",
+      de: "Entschuldigung, ich habe technische Schwierigkeiten. Bitte kontaktieren Sie uns direkt uber WhatsApp unter +34 611 500 372 oder besuchen Sie costabravarentaboat.com",
+      nl: "Sorry, ik heb technische problemen. Neem direct contact op via WhatsApp op +34 611 500 372 of bezoek costabravarentaboat.com",
+      it: "Mi dispiace, sto avendo difficolta tecniche. Vi preghiamo di contattarci direttamente tramite WhatsApp al +34 611 500 372 o visitate costabravarentaboat.com",
+      ru: "Izvinite, u menya tekhnicheskiye trudnosti. Svyazhites' s nami napryamuyu cherez WhatsApp po nomeru +34 611 500 372 ili posetite costabravarentaboat.com",
     };
 ```
 

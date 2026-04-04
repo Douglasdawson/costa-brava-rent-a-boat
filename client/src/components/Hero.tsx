@@ -5,7 +5,6 @@ import { useTranslations } from "@/lib/translations";
 import { useBookingModal } from "@/hooks/bookingModalContext";
 import { useProgressiveImage } from "@/hooks/use-progressive-image";
 
-import CurvedLoop from "./CurvedLoop";
 import BoatQuizModal from "./BoatQuizModal";
 
 export default function Hero() {
@@ -58,13 +57,13 @@ export default function Hero() {
         />
       </picture>
 
-      {/* Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black/50" />
+      {/* Overlay — lighter center on mobile/tablet to show image, stronger on desktop where text covers center */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/25 to-black/50 lg:from-black/50 lg:via-black/40 lg:to-black/50" />
 
       {/* Content — justify-between pushes CTAs to bottom, content centers in remaining space */}
       <div className="relative z-10 h-full flex flex-col justify-between">
         {/* Top: centered content block */}
-        <div className="flex-1 flex flex-col justify-between lg:justify-center pt-24 lg:pt-24 pb-[70px] lg:pb-[52px] px-4 sm:px-6 lg:px-16 xl:px-24 max-w-screen-2xl mx-auto w-full">
+        <div className="flex-1 flex flex-col justify-between lg:justify-center pt-24 lg:pt-24 pb-[56px] lg:pb-[52px] px-4 sm:px-6 lg:px-16 xl:px-24 max-w-screen-2xl mx-auto w-full">
           {/* Text group — top on mobile, centered with CTAs on tablet+ */}
           <div className="text-center flex flex-col items-center">
             <h1 className="font-heading font-bold text-white tracking-tight mb-2 sm:mb-6 leading-[1.08] uppercase drop-shadow-[0_2px_8px_rgba(0,0,0,0.4)]" style={{ fontSize: 'clamp(1.75rem, 5.5vw, 3.5rem)' }}>
@@ -91,10 +90,10 @@ export default function Hero() {
           <div className="text-center flex flex-col items-center">
             {/* Price callout — mobile + tablet, near CTAs */}
             <div className="lg:hidden mb-3 drop-shadow-[0_1px_4px_rgba(0,0,0,0.35)]">
-              <p className="font-semibold text-white text-sm">
+              <p className="font-bold text-white text-base sm:text-lg">
                 {t.hero.pricePerPerson} &middot; {t.hero.fuelBadge}
               </p>
-              <p className="text-white/85 text-xs mt-0.5">
+              <p className="text-white/85 text-xs sm:text-sm mt-0.5">
                 {t.hero.pricePerPersonDetail}
               </p>
             </div>
@@ -114,7 +113,7 @@ export default function Hero() {
                   const fleet = document.getElementById('fleet');
                   if (fleet) fleet.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }}
-                className="bg-[#A8C4DD] hover:bg-[#93b5d2] text-[hsl(215_45%_20%)] px-6 py-2.5 text-sm sm:py-3.5 sm:text-base lg:px-10 lg:py-3.5 lg:text-lg rounded-full font-medium btn-elevated w-full sm:w-auto"
+                className="bg-white/90 hover:bg-white text-cta sm:bg-[#A8C4DD] sm:hover:bg-[#93b5d2] sm:text-[hsl(215_45%_20%)] px-6 py-2.5 text-sm sm:py-3.5 sm:text-base lg:px-10 lg:py-3.5 lg:text-lg rounded-full font-medium btn-elevated w-full sm:w-auto"
                 data-testid="button-hero-explore"
               >
                 {t.hero.viewFleet}
@@ -149,17 +148,6 @@ export default function Hero() {
         </div>
       </div>
 
-
-      {/* Curved loop marquee — above the trust badges strip */}
-      <div className="absolute bottom-[40px] left-0 right-0 z-10 overflow-hidden opacity-30 sm:hidden pointer-events-none">
-        <CurvedLoop
-          marqueeText={t.hero.marqueeText}
-          speed={1.5}
-          curveAmount={60}
-          direction="left"
-          className="fill-white text-[2rem] font-display tracking-wider"
-        />
-      </div>
 
       <BoatQuizModal
         open={quizOpen}

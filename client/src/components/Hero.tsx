@@ -59,38 +59,51 @@ export default function Hero() {
       </picture>
 
       {/* Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/45" />
+      <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black/50" />
 
       {/* Content — justify-between pushes CTAs to bottom, content centers in remaining space */}
       <div className="relative z-10 h-full flex flex-col justify-between">
         {/* Top: centered content block */}
-        <div className="flex-1 flex flex-col justify-center pt-14 sm:pt-24 pb-[70px] sm:pb-[52px] px-4 sm:px-6 lg:px-16 xl:px-24 max-w-screen-2xl mx-auto w-full">
+        <div className="flex-1 flex flex-col justify-between lg:justify-center pt-24 lg:pt-24 pb-[70px] lg:pb-[52px] px-4 sm:px-6 lg:px-16 xl:px-24 max-w-screen-2xl mx-auto w-full">
+          {/* Text group — top on mobile, centered with CTAs on tablet+ */}
           <div className="text-center flex flex-col items-center">
             <h1 className="font-heading font-bold text-white tracking-tight mb-2 sm:mb-6 leading-[1.08] uppercase drop-shadow-[0_2px_8px_rgba(0,0,0,0.4)]" style={{ fontSize: 'clamp(1.75rem, 5.5vw, 3.5rem)' }}>
               {t.hero.title}
             </h1>
 
-            <p className="text-[0.875rem] sm:text-[1.3rem] lg:text-[1.575rem] text-white/85 font-medium mb-2 sm:mb-6 leading-snug sm:leading-relaxed max-w-2xl lg:max-w-3xl drop-shadow-[0_1px_4px_rgba(0,0,0,0.35)]">
+            <p className="text-[0.875rem] sm:text-[1.15rem] lg:text-[1.575rem] text-white/85 font-medium mb-2 sm:mb-6 leading-snug sm:leading-relaxed sm:max-w-[720px] lg:max-w-3xl drop-shadow-[0_1px_4px_rgba(0,0,0,0.35)]">
               <span className="hidden sm:inline">{t.hero.subtitleLine1}<br />{t.hero.subtitleLine2}</span>
               <span className="sm:hidden">{t.hero.subtitleMobile || t.hero.subtitleLine1}</span>
             </p>
 
-            {/* Price callout */}
-            <div className="mb-4 sm:mb-8 drop-shadow-[0_1px_4px_rgba(0,0,0,0.35)]">
+            {/* Price callout — visible on lg+ (desktop), hidden on mobile/tablet (shown near CTAs instead) */}
+            <div className="hidden lg:block mb-4 lg:mb-8 drop-shadow-[0_1px_4px_rgba(0,0,0,0.35)]">
               <p className="font-semibold text-white text-sm sm:text-lg lg:text-xl">
                 {t.hero.pricePerPerson} &middot; {t.hero.fuelBadge}
               </p>
-              <p className="text-white/75 text-xs sm:text-sm mt-0.5">
+              <p className="text-white/85 text-xs sm:text-sm mt-0.5">
+                {t.hero.pricePerPersonDetail}
+              </p>
+            </div>
+          </div>
+
+          {/* CTA group — bottom on mobile, flows after text on tablet+ */}
+          <div className="text-center flex flex-col items-center">
+            {/* Price callout — mobile + tablet, near CTAs */}
+            <div className="lg:hidden mb-3 drop-shadow-[0_1px_4px_rgba(0,0,0,0.35)]">
+              <p className="font-semibold text-white text-sm">
+                {t.hero.pricePerPerson} &middot; {t.hero.fuelBadge}
+              </p>
+              <p className="text-white/85 text-xs mt-0.5">
                 {t.hero.pricePerPersonDetail}
               </p>
             </div>
 
-            {/* CTAs — in the natural content flow */}
             <div className="flex flex-col sm:flex-row items-center justify-center gap-2.5 sm:gap-3 w-full px-2 sm:px-0 sm:w-auto">
               <Button
                 onClick={() => setQuizOpen(true)}
                 size="lg"
-                className="bg-cta hover:bg-cta/90 text-white px-8 py-2.5 text-sm sm:px-10 sm:py-4 sm:text-lg rounded-full font-medium btn-elevated cta-pulse w-full sm:w-auto"
+                className="bg-cta hover:bg-cta/90 text-white px-8 py-2.5 text-sm sm:px-10 sm:py-3.5 sm:text-base lg:text-lg rounded-full font-semibold sm:font-medium btn-elevated cta-pulse w-full sm:w-auto"
                 data-testid="button-hero-cta"
               >
                 {t.hero.findYourBoat}
@@ -101,13 +114,13 @@ export default function Hero() {
                   const fleet = document.getElementById('fleet');
                   if (fleet) fleet.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }}
-                className="bg-[#A8C4DD] hover:bg-[#93b5d2] text-[hsl(215_45%_20%)] px-6 py-2.5 text-sm sm:py-3 sm:text-base lg:px-10 lg:py-4 lg:text-lg rounded-full font-medium btn-elevated w-full sm:w-auto"
+                className="bg-[#A8C4DD] hover:bg-[#93b5d2] text-[hsl(215_45%_20%)] px-6 py-2.5 text-sm sm:py-3.5 sm:text-base lg:px-10 lg:py-3.5 lg:text-lg rounded-full font-medium btn-elevated w-full sm:w-auto"
                 data-testid="button-hero-explore"
               >
                 {t.hero.viewFleet}
               </Button>
             </div>
-            <p className="text-white/70 text-xs sm:text-sm mt-1.5 sm:mt-2">
+            <p className="text-white/80 text-xs sm:text-sm mt-1.5 sm:mt-3">
               {t.hero.freeCancellation}
             </p>
           </div>

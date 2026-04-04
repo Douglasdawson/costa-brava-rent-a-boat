@@ -1,13 +1,12 @@
 import { useState, useEffect } from "react";
 import { Button } from "./ui/button";
-import { ShieldCheck, Shield, CheckCircle, Award, Users, Star } from "lucide-react";
+import { Shield, Award, Users, Star } from "lucide-react";
 import { useTranslations } from "@/lib/translations";
 import { useBookingModal } from "@/hooks/bookingModalContext";
 import { useProgressiveImage } from "@/hooks/use-progressive-image";
-import { trackWhatsAppClick } from "@/utils/analytics";
+
 import CurvedLoop from "./CurvedLoop";
 import BoatQuizModal from "./BoatQuizModal";
-import { SensoryHeroCopy } from "./SensoryHeroCopy";
 
 export default function Hero() {
   const t = useTranslations();
@@ -49,7 +48,7 @@ export default function Hero() {
         <img
           src="/images/hero/hero-dive-mobile.webp"
           alt="Barco de alquiler sin licencia navegando por aguas turquesa cerca de las calas de Blanes, Costa Brava"
-          className={`absolute inset-0 w-full h-full object-cover brightness-110 saturate-[1.05] transition-opacity duration-500 ${
+          className={`absolute inset-0 w-full h-full object-cover saturate-[1.05] transition-opacity duration-500 ${
             heroLoaded ? "opacity-100" : "opacity-0"
           }`}
           width={1920}
@@ -60,36 +59,25 @@ export default function Hero() {
       </picture>
 
       {/* Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-black/20 to-black/5" />
+      <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/45" />
 
-      {/* Content */}
-      <div className="relative z-10 h-full flex flex-col sm:justify-start sm:pt-36 lg:pt-40">
-        <div className="px-4 sm:px-6 lg:px-16 xl:px-24 max-w-screen-2xl mx-auto w-full h-full sm:h-auto flex flex-col sm:block">
+      {/* Content — justify-between pushes CTAs to bottom, content centers in remaining space */}
+      <div className="relative z-10 h-full flex flex-col justify-between">
+        {/* Top: centered content block */}
+        <div className="flex-1 flex flex-col justify-center pt-14 sm:pt-24 pb-[70px] sm:pb-[52px] px-4 sm:px-6 lg:px-16 xl:px-24 max-w-screen-2xl mx-auto w-full">
           <div className="text-center flex flex-col items-center">
-            {/* H1 - top on mobile, flows naturally on desktop */}
-            <div className="pt-32 sm:pt-0">
-              <h1 className="font-heading font-bold text-white tracking-tight mb-4 sm:mb-6 leading-[1.08] uppercase drop-shadow-[0_2px_8px_rgba(0,0,0,0.4)]" style={{ fontSize: 'clamp(2rem, 5.5vw, 3.5rem)' }}>
-                {t.hero.title}
-              </h1>
-            </div>
+            <h1 className="font-heading font-bold text-white tracking-tight mb-2 sm:mb-6 leading-[1.08] uppercase drop-shadow-[0_2px_8px_rgba(0,0,0,0.4)]" style={{ fontSize: 'clamp(1.75rem, 5.5vw, 3.5rem)' }}>
+              {t.hero.title}
+            </h1>
 
-            {/* Subtitle - single line on mobile, full on desktop */}
-            <p className="text-[0.925rem] sm:text-[1.3rem] lg:text-[1.575rem] text-white/85 font-medium mb-0 sm:mb-8 leading-relaxed max-w-2xl lg:max-w-4xl drop-shadow-[0_1px_4px_rgba(0,0,0,0.35)]">
-              <span className="sm:hidden">{t.hero.subtitleLine1}<br />{t.hero.subtitleLine2}</span>
+            <p className="text-[0.875rem] sm:text-[1.3rem] lg:text-[1.575rem] text-white/85 font-medium mb-2 sm:mb-6 leading-snug sm:leading-relaxed max-w-2xl lg:max-w-3xl drop-shadow-[0_1px_4px_rgba(0,0,0,0.35)]">
               <span className="hidden sm:inline">{t.hero.subtitleLine1}<br />{t.hero.subtitleLine2}</span>
+              <span className="sm:hidden">{t.hero.subtitleMobile || t.hero.subtitleLine1}</span>
             </p>
 
-            {/* Sensory copy — time & season aware */}
-            <div className="mt-3 sm:mt-4 mb-2">
-              <SensoryHeroCopy />
-            </div>
-
-            {/* Separator - desktop only */}
-            <div className="hidden sm:block w-16 h-px bg-white/40 mb-5 lg:w-24" />
-
-            {/* Price callout — per-person framing for higher conversion */}
-            <div className="mb-0 sm:mb-4 drop-shadow-[0_1px_4px_rgba(0,0,0,0.35)]">
-              <p className="font-semibold text-white text-base sm:text-lg lg:text-xl">
+            {/* Price callout */}
+            <div className="mb-4 sm:mb-8 drop-shadow-[0_1px_4px_rgba(0,0,0,0.35)]">
+              <p className="font-semibold text-white text-sm sm:text-lg lg:text-xl">
                 {t.hero.pricePerPerson} &middot; {t.hero.fuelBadge}
               </p>
               <p className="text-white/75 text-xs sm:text-sm mt-0.5">
@@ -97,34 +85,33 @@ export default function Hero() {
               </p>
             </div>
 
+            {/* CTAs — in the natural content flow */}
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-2.5 sm:gap-3 w-full px-2 sm:px-0 sm:w-auto">
+              <Button
+                onClick={() => setQuizOpen(true)}
+                size="lg"
+                className="bg-cta hover:bg-cta/90 text-white px-8 py-2.5 text-sm sm:px-10 sm:py-4 sm:text-lg rounded-full font-medium btn-elevated cta-pulse w-full sm:w-auto"
+                data-testid="button-hero-cta"
+              >
+                {t.hero.findYourBoat}
+              </Button>
+              <Button
+                size="lg"
+                onClick={() => {
+                  const fleet = document.getElementById('fleet');
+                  if (fleet) fleet.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }}
+                className="bg-[#A8C4DD] hover:bg-[#93b5d2] text-[hsl(215_45%_20%)] px-6 py-2.5 text-sm sm:py-3 sm:text-base lg:px-10 lg:py-4 lg:text-lg rounded-full font-medium btn-elevated w-full sm:w-auto"
+                data-testid="button-hero-explore"
+              >
+                {t.hero.viewFleet}
+              </Button>
+            </div>
+            <p className="text-white/70 text-xs sm:text-sm mt-1.5 sm:mt-2">
+              {t.hero.freeCancellation}
+            </p>
           </div>
         </div>
-      </div>
-
-      {/* CTA - fixed at bottom center of hero */}
-      <div className="absolute bottom-14 sm:bottom-16 left-0 right-0 z-20 flex flex-col items-center gap-2.5">
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 w-full px-6 sm:px-0 sm:w-auto">
-          <Button
-            onClick={() => setQuizOpen(true)}
-            size="lg"
-            className="bg-cta hover:bg-cta/90 text-white px-8 py-3 text-base sm:px-10 sm:py-4 sm:text-lg rounded-full font-medium btn-elevated cta-pulse w-full sm:w-auto"
-            data-testid="button-hero-cta"
-          >
-            {t.hero.findYourBoat}
-          </Button>
-          <Button
-            size="lg"
-            onClick={() => {
-              const fleet = document.getElementById('fleet');
-              if (fleet) fleet.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }}
-            className="bg-[#A8C4DD] hover:bg-[#93b5d2] text-[hsl(215_45%_20%)] px-6 py-3 text-base lg:px-10 lg:py-4 lg:text-lg rounded-full font-medium btn-elevated w-full sm:w-auto"
-            data-testid="button-hero-explore"
-          >
-            {t.hero.viewFleet}
-          </Button>
-        </div>
-        {/* WhatsApp button removed — global floating button handles this */}
       </div>
 
       {/* Trust badges strip — full width at bottom */}

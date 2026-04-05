@@ -30,6 +30,7 @@ interface SEOProps {
   ogDescription?: string;
   keywords?: string;
   jsonLd?: object;
+  robots?: string;
   hreflang?: Array<{
     lang: string;
     url: string;
@@ -46,6 +47,7 @@ export function SEO({
   ogDescription,
   keywords,
   jsonLd,
+  robots,
   hreflang
 }: SEOProps) {
   const { language } = useLanguage();
@@ -82,6 +84,21 @@ export function SEO({
         metaKeywords.setAttribute('content', keywords);
         document.head.appendChild(metaKeywords);
       }
+    }
+
+    // Update robots meta tag (for noindex on low-traffic language pages)
+    const robotsTag = document.querySelector('meta[name="robots"]');
+    if (robots) {
+      if (robotsTag) {
+        robotsTag.setAttribute('content', robots);
+      } else {
+        const newRobots = document.createElement('meta');
+        newRobots.setAttribute('name', 'robots');
+        newRobots.setAttribute('content', robots);
+        document.head.appendChild(newRobots);
+      }
+    } else if (robotsTag) {
+      robotsTag.remove();
     }
 
     // Update canonical link

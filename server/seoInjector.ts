@@ -1285,6 +1285,12 @@ function injectMeta(html: string, meta: SEOMeta, canonicalUrl: string, extraJson
     if (articleTags.length > 0) {
       result = result.replace("</head>", `${articleTags.join("\n")}\n</head>`);
     }
+
+    // noindex for blog posts in low-traffic languages (save crawl budget)
+    const noindexBlogLangs: readonly string[] = ["ca", "it", "ru"];
+    if (noindexBlogLangs.includes(lang)) {
+      result = result.replace("</head>", `  <meta name="robots" content="noindex, follow" />\n</head>`);
+    }
   }
 
   // Replace fallback JSON-LD with page-specific JSON-LD to avoid duplicate schemas

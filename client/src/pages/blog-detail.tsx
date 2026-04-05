@@ -737,6 +737,7 @@ export default function BlogDetailPage({ slug: slugProp }: { slug?: string }) {
         canonical={canonical}
         hreflang={hreflangLinks}
         jsonLd={combinedJsonLd || undefined}
+        robots={['ca', 'it', 'ru'].includes(language) ? 'noindex, follow' : undefined}
       />
 
       <Navigation />

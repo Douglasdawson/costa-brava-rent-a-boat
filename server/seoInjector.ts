@@ -1704,32 +1704,66 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
         mainEntity: [
           {
             "@type": "Question",
-            name: lang === "en" ? "Do I need a license to rent a boat in Blanes?" : "¿Necesito licencia para alquilar un barco en Blanes?",
+            name: "¿Cuáles son los precios del alquiler?",
             acceptedAnswer: {
               "@type": "Answer",
-              text: lang === "en"
-                ? "No. We have 5 license-free boats for up to 5 people. You only need to be 18+. We provide a 15-minute training."
-                : "No. Tenemos 5 barcos sin licencia para hasta 5 personas. Solo necesitas ser mayor de 18. Te damos formacion de 15 minutos."
+              text: "Barcos sin licencia desde 70€ con gasolina incluida (1h, 2h, 3h, 4h, 6h o dia completo). Barcos con licencia desde 150€ sin gasolina incluida (2h, 4h, 8h). Los precios varian segun temporada (julio/agosto) y embarcacion."
             }
           },
           {
             "@type": "Question",
-            name: lang === "en" ? "How much does it cost to rent a boat in Blanes?" : "¿Cuánto cuesta alquilar un barco en Blanes?",
+            name: "¿Puedo alquilar un barco sin tener licencia náutica?",
             acceptedAnswer: {
               "@type": "Answer",
-              text: lang === "en"
-                ? "License-free boats from 70 EUR/hour (low season) to 95 EUR/hour (high season). Price includes fuel, insurance and safety equipment."
-                : "Barcos sin licencia desde 70 EUR/hora (temporada baja) hasta 95 EUR/hora (temporada alta). Precio incluye combustible, seguro y equipo de seguridad."
+              text: "¡Sí! Tenemos varios barcos perfectos sin licencia de hasta 15 CV. Solo necesitas ser mayor de 18 años. Antes de salir te damos un briefing completo para que navegues con total seguridad."
             }
           },
           {
             "@type": "Question",
-            name: lang === "en" ? "What is included in the boat rental price?" : "Que incluye el precio del alquiler?",
+            name: "¿Qué está incluido en el precio?",
             acceptedAnswer: {
               "@type": "Answer",
-              text: lang === "en"
-                ? "Fuel, insurance, safety equipment (life jackets, fire extinguisher, anchor), and a 15-minute safety briefing."
-                : "Combustible, seguro, equipo de seguridad (chalecos, extintor, ancla) y formacion de seguridad de 15 minutos."
+              text: "Incluido en todos los alquileres: embarcación equipada, gasolina (en barcos sin licencia), chalecos salvavidas, kit de seguridad, ancla, escalera de baño, instrucciones de uso y seguro básico."
+            }
+          },
+          {
+            "@type": "Question",
+            name: "¿Cuál es la política de cancelación?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "Cancelación flexible: más de 48h antes = reembolso completo. Entre 24-48h = 50% de reembolso. Menos de 24h = sin reembolso. En caso de mal tiempo, reprogramación gratuita o reembolso total."
+            }
+          },
+          {
+            "@type": "Question",
+            name: "¿Por dónde puedo navegar?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "Barcos sin licencia: desde Blanes hasta Playa de Fenals al norte y el final de la playa de Blanes al sur, siempre a menos de 2 millas de la costa. Barcos con licencia: mayor radio de navegación, hasta Sant Feliu de Guíxols y más allá."
+            }
+          },
+          {
+            "@type": "Question",
+            name: "¿Qué pasa si hace mal tiempo?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "Si las condiciones meteorológicas no son seguras, te ofrecemos cambio de fecha gratuito o reembolso completo. Consultamos la previsión 24h antes y te avisamos."
+            }
+          },
+          {
+            "@type": "Question",
+            name: "¿Necesito experiencia previa?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "No, ninguna. Antes de zarpar te damos una explicación completa del barco (10-15 min). Nuestros barcos sin licencia son muy fáciles de manejar."
+            }
+          },
+          {
+            "@type": "Question",
+            name: "¿Puedo llevar comida y bebida?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "¡Por supuesto! Puedes traer tu propia comida, bebidas y snacks. Tenemos nevera a bordo. Solo pedimos que no se use cristal por seguridad."
             }
           },
         ]

@@ -9,7 +9,7 @@ import * as schema from "../../shared/schema";
 // Constants
 // ---------------------------------------------------------------------------
 
-const WEBSITE_BASE_URL = "https://costabravarentaboat.com";
+const WEBSITE_BASE_URL = "https://www.costabravarentaboat.com";
 const BUSINESS_PHONE = "+34 611 500 372";
 const SEASON_MONTHS = [4, 5, 6, 7, 8, 9, 10]; // April - October
 

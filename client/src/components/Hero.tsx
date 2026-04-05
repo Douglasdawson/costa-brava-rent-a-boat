@@ -52,6 +52,7 @@ export default function Hero() {
           }`}
           width={1920}
           height={1080}
+          sizes="100vw"
           loading="eager"
           fetchPriority="high"
         />

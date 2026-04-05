@@ -180,7 +180,7 @@
         page_type: location.pathname === '/' ? 'home' : 'content',
       });
     </script>
-    <!-- GTM — deferred to avoid blocking LCP (GA4 + Google Ads configured as GTM tags) -->
+    <!-- GTM — deferred after page load to avoid blocking LCP/TBT (GA4 + Google Ads configured as GTM tags) -->
     <script>
     (function(){
       function loadTracking(){
@@ -192,8 +192,9 @@
         })(w,d,'script','dataLayer','GTM-WPSV63W');
       }
       var w=window,d=document;
-      if('requestIdleCallback' in w){w.requestIdleCallback(loadTracking);}
-      else{w.addEventListener('load',loadTracking);}
+      w.addEventListener('load',function(){
+        setTimeout(loadTracking, 1500);
+      });
     })();
     </script>
   </head>

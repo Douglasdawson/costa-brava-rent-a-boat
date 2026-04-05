@@ -13,6 +13,7 @@ import {
   generateSpeakableSchema
 } from "@/utils/seo-config";
 import { generateItemListSchema, generateSeasonalEventSchema } from "@/utils/seo-schemas";
+import { FALLBACK_ITEMS } from "@/components/FAQPreview";
 import type { Boat } from "@shared/schema";
 
 export default function HomePageSEO() {
@@ -42,6 +43,20 @@ export default function HomePageSEO() {
   const howToSchema = generateHowToBookingSchema(language);
   const seasonalEventSchema = generateSeasonalEventSchema();
 
+  // FAQPage schema using homepage FAQ preview items
+  const faqPageSchema = {
+    "@type": "FAQPage",
+    "@id": `${canonical}#faq`,
+    "mainEntity": FALLBACK_ITEMS.slice(0, 8).map(item => ({
+      "@type": "Question",
+      "name": item.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": item.answer
+      }
+    }))
+  };
+
   const speakableSpec = generateSpeakableSchema([
     "h1", ".hero-description", ".fleet-section h2", ".faq-answer"
   ]);
@@ -57,7 +72,8 @@ export default function HomePageSEO() {
       itemListSchema,
       webSiteSchema,
       howToSchema,
-      seasonalEventSchema
+      seasonalEventSchema,
+      faqPageSchema
     ]
   };
 

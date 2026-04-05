@@ -6,7 +6,7 @@ import { useLanguage } from "@/hooks/use-language";
 import { trackFaqExpanded } from "@/utils/analytics";
 
 /** Fallback items (Spanish) used when faqPreview translations are not loaded */
-const FALLBACK_ITEMS = [
+export const FALLBACK_ITEMS = [
   {
     id: "precios",
     question: "¿Cuáles son los precios del alquiler?",

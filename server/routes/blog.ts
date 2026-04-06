@@ -5,6 +5,7 @@ import { requireAdminSession, requireTabAccess } from "./auth";
 import { logger } from "../lib/logger";
 import { notifySubscribersOfNewPost } from "../services/blogNotifier";
 import { notifyIndexNow } from "../seo/indexnow";
+import { fetchUnsplashImage } from "../services/blogAutopilot";
 
 export function registerBlogRoutes(app: Express) {
   // ===== PUBLIC ROUTES =====
@@ -261,6 +262,44 @@ ${entries}
     } catch (error: unknown) {
       logger.error("[Blog] Error fixing images", { error: error instanceof Error ? error.message : String(error) });
       res.status(500).json({ message: "Error fixing blog images" });
+    }
+  });
+
+  // Refresh blog images: replace local stock images with unique Unsplash photos
+  app.post("/api/admin/blog/refresh-images", requireAdminSession, async (req, res) => {
+    try {
+      const posts = await storage.getAllBlogPosts();
+      let updated = 0;
+      let skipped = 0;
+      const localImagePrefix = "/images/blog/";
+
+      for (const post of posts) {
+        const img = post.featuredImage as string | null;
+        // Replace local stock images and posts without any image; skip existing Unsplash URLs
+        const isLocalStock = img && img.startsWith(localImagePrefix);
+        const hasNoImage = !img;
+        if (!isLocalStock && !hasNoImage) {
+          skipped++;
+          continue;
+        }
+
+        // Extract keywords from the post title for a relevant search
+        const titleWords = (post.title as string || "").split(/\s+/).slice(0, 3);
+        const newImage = await fetchUnsplashImage(titleWords);
+        if (newImage) {
+          await storage.updateBlogPost(post.id, { featuredImage: newImage });
+          updated++;
+          logger.info("[Blog] Refreshed image", { postId: post.id, title: post.title });
+        }
+
+        // Respect Unsplash rate limits (50 req/hour on free tier)
+        await new Promise((r) => setTimeout(r, 1500));
+      }
+
+      res.json({ message: `Refreshed ${updated} images, skipped ${skipped}`, total: posts.length });
+    } catch (error: unknown) {
+      logger.error("[Blog] Error refreshing images", { error: error instanceof Error ? error.message : String(error) });
+      res.status(500).json({ message: "Error refreshing blog images" });
     }
   });
 

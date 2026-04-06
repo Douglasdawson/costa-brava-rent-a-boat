@@ -555,20 +555,37 @@ Respond with ONLY a JSON object (no markdown, no backticks):
 // Internal: Fetch Unsplash image
 // ---------------------------------------------------------------------------
 
-async function fetchUnsplashImage(keywords: string[]): Promise<string | null> {
+export async function fetchUnsplashImage(keywords: string[]): Promise<string | null> {
   const unsplash = getUnsplashClient();
   if (!unsplash) return null;
 
+  // Location-specific terms to get photos relevant to Costa Brava / Mediterranean
+  const localTerms = [
+    "Costa Brava boat",
+    "Mediterranean cove",
+    "Catalonia coast",
+    "Spain beach boat",
+    "Mediterranean sea boat",
+    "turquoise cove Spain",
+    "rocky coast Mediterranean",
+    "boat rental Mediterranean",
+  ];
+  const localTerm = localTerms[Math.floor(Math.random() * localTerms.length)];
+
+  // Build query: up to 2 article keywords + a rotating local context term
+  const query = [...keywords.slice(0, 2), localTerm].join(" ");
+
   try {
-    const query = [...keywords.slice(0, 2), "boat sea"].join(" ");
     const result = await unsplash.search.getPhotos({
       query,
-      perPage: 1,
+      perPage: 10,
       orientation: "landscape",
     });
 
     if (result.response && result.response.results.length > 0) {
-      const photo = result.response.results[0];
+      // Pick a random result from the top 10 to avoid always using the same image
+      const photos = result.response.results;
+      const photo = photos[Math.floor(Math.random() * photos.length)];
       // Use regular size (1080px wide) with UTM attribution as required by Unsplash
       return `${photo.urls.regular}&utm_source=costabravarentaboat&utm_medium=referral`;
     }

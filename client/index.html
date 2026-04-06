@@ -50,6 +50,8 @@
     <!-- Preload critical hero images for LCP (avif only — webp fallback loads naturally via <picture>) -->
     <link rel="preload" as="image" type="image/avif" href="/images/hero/hero-dive-mobile.avif" media="(max-width: 767px)" fetchpriority="high">
     <link rel="preload" as="image" type="image/avif" href="/images/hero/hero-dive-desktop.avif" media="(min-width: 768px)" fetchpriority="high">
+    <!-- Preload critical font for LCP (H1 heading) -->
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/ClashDisplay-Variable.woff2" crossorigin>
     <!-- Preconnect to Google Tag Manager -->
     <link rel="preconnect" href="https://www.googletagmanager.com">
 

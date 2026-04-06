@@ -233,6 +233,16 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 
   const isCanonicalHost = host === canonicalDomain;
 
+  // Language subdomain redirect: en.costabravarentaboat.com → www.../en/
+  // Maps old Wix-era language subdomains to the canonical /:lang/ path structure
+  const langSubdomainMatch = host.match(/^(en|fr|de|nl|it|ru|ca)\.costabravarentaboat\.com$/);
+  if (langSubdomainMatch) {
+    const lang = langSubdomainMatch[1];
+    const path = req.originalUrl === '/' ? '' : req.originalUrl;
+    const canonicalUrl = `https://${canonicalDomain}/${lang}${path}`;
+    return res.redirect(301, canonicalUrl);
+  }
+
   // Redirect if host is not canonical OR not HTTPS
   if (!isCanonicalHost || !isSecure) {
     const canonicalUrl = `https://${canonicalDomain}${req.originalUrl}`;

@@ -54,6 +54,9 @@ export function startSeoWorker(): void {
   registerJob("gsc-sync", schedules.gscSync, async () => {
     const { collectGscData } = await import("./collectors/gsc");
     await collectGscData();
+    // Export GSC data to markdown for marketing team
+    const { exportGscMarkdown } = await import("./exportGscMarkdown");
+    await exportGscMarkdown();
   });
 
   registerJob("site-health", schedules.siteHealth, async () => {

@@ -893,7 +893,7 @@ El [Solar 450](/barco/solar-450) es otra opción excelente para familias. Con su
 
 ### Otros barcos de la flota
 
-El [Remus 450](/barco/remus-450) y el [Astec 400](/barco/astec-400) también son aptos para familias, aunque son algo más compactos. El [Voraz V2](/barco/voraz-v2) es perfecto para parejas con un solo niño.
+El [Remus 450](/barco/remus-450) y el [Astec 400](/barco/astec-400) también son aptos para familias, aunque son algo más compactos. El [Remus 450 II](/barco/remus-450-ii) es perfecto para parejas con un solo niño.
 
 Consulta todos nuestros [barcos disponibles](/barcos) y elige el que mejor se adapte a tu familia.
 
@@ -1905,7 +1905,7 @@ A continuación te mostramos los precios orientativos para cada barco de nuestra
 | [Solar 450](/barco/solar-450) | Hasta 5 | Desde 100 EUR | Desde 140 EUR | Desde 180 EUR |
 | [Remus 450](/barco/remus-450) | Hasta 5 | Desde 100 EUR | Desde 140 EUR | Desde 180 EUR |
 | [Astec 480](/barco/astec-480) | Hasta 6 | Desde 110 EUR | Desde 150 EUR | Desde 200 EUR |
-| [Voraz V2](/barco/voraz-v2) | Hasta 5 | Desde 120 EUR | Desde 160 EUR | Desde 210 EUR |
+| [Remus 450 II](/barco/remus-450-ii) | Hasta 5 | Desde 120 EUR | Desde 160 EUR | Desde 210 EUR |
 
 ### Alquiler de día completo (8 horas)
 
@@ -1915,7 +1915,7 @@ A continuación te mostramos los precios orientativos para cada barco de nuestra
 | [Solar 450](/barco/solar-450) | Hasta 5 | Desde 150 EUR | Desde 200 EUR | Desde 270 EUR |
 | [Remus 450](/barco/remus-450) | Hasta 5 | Desde 150 EUR | Desde 200 EUR | Desde 270 EUR |
 | [Astec 480](/barco/astec-480) | Hasta 6 | Desde 170 EUR | Desde 220 EUR | Desde 295 EUR |
-| [Voraz V2](/barco/voraz-v2) | Hasta 5 | Desde 180 EUR | Desde 230 EUR | Desde 300 EUR |
+| [Remus 450 II](/barco/remus-450-ii) | Hasta 5 | Desde 180 EUR | Desde 230 EUR | Desde 300 EUR |
 
 **Nota:** Los precios son orientativos y pueden variar. Consulta los [precios exactos y disponibilidad en tiempo real](/barcos) en nuestra web.
 
@@ -1964,11 +1964,11 @@ Si es tu primera vez o no estás seguro de cuántas horas quieres navegar, el al
 
 ### 4. Divide el coste entre el grupo
 
-El precio del barco es por embarcación, no por persona. Un barco como el [Astec 480](/barco/astec-480) para 6 personas en temporada baja puede salir a menos de **22 EUR por persona** para un día completo. Difícilmente encontrarás una actividad con mejor relación calidad-precio en la Costa Brava.
+El precio del barco es por embarcación, no por persona. Un barco como el [Astec 480](/barco/astec-480) para 5 personas en temporada baja puede salir a menos de **22 EUR por persona** para un día completo. Difícilmente encontrarás una actividad con mejor relación calidad-precio en la Costa Brava.
 
 ### 5. Elige el barco adecuado
 
-No necesitas el barco más grande o más caro si sois pocos. Para una pareja, el [Astec 400](/barco/astec-400) es perfecto y es la opción más económica. Para un grupo de 5-6 personas, el [Astec 480](/barco/astec-480) ofrece la mejor relación espacio-precio.
+No necesitas el barco más grande o más caro si sois pocos. Para una pareja, el [Astec 400](/barco/astec-400) es perfecto y es la opción más económica. Para un grupo de 4-5 personas, el [Astec 480](/barco/astec-480) ofrece la mejor relación espacio-precio.
 
 ## Comparativa: alquiler de barco vs. otras actividades
 
@@ -2039,22 +2039,22 @@ Alquilar un barco sin licencia en Blanes es más asequible de lo que imaginas. D
     category: "Consejos",
     author: "Costa Brava Rent a Boat",
     featuredImage: "/images/blog/barco-mar.jpg",
-    metaDescription: "Compara todos los barcos sin licencia disponibles en Blanes. Astec 400, Astec 480, Remus 450, Solar 450 y Voraz V2 frente a frente.",
-    tags: ["barcos sin licencia blanes", "comparativa barcos", "mejor barco alquiler", "astec 480", "remus 450", "solar 450", "voraz v2"],
+    metaDescription: "Compara todos los barcos sin licencia disponibles en Blanes. Astec 400, Astec 480, Remus 450, Solar 450 y Remus 450 II frente a frente.",
+    tags: ["barcos sin licencia blanes", "comparativa barcos", "mejor barco alquiler", "astec 480", "remus 450", "solar 450", "remus 450 ii"],
     isPublished: true,
     _publishedAt: new Date("2026-04-04T10:00:00Z"),
-    excerpt: "No sabes qué barco elegir? Comparamos todos los barcos sin licencia de nuestra flota en Blanes: Astec 400, Astec 480, Remus 450, Solar 450 y Voraz V2. Encuentra el tuyo.",
+    excerpt: "No sabes qué barco elegir? Comparamos todos los barcos sin licencia de nuestra flota en Blanes: Astec 400, Astec 480, Remus 450, Solar 450 y Remus 450 II. Encuentra el tuyo.",
     content: `Elegir el barco adecuado puede marcar la diferencia entre un buen día y un día perfecto en el mar. En Costa Brava Rent a Boat disponemos de 5 modelos de barcos sin licencia, cada uno con características distintas pensadas para diferentes tipos de navegantes y grupos.
 
 En esta guía comparamos todos nuestros barcos para que elijas el que mejor se adapta a tus necesidades: ya seas una pareja buscando intimidad, una familia con niños o un grupo de amigos que quiere vivir una aventura.
 
 ## Tabla comparativa general
 
-| Característica | [Astec 400](/barco/astec-400) | [Astec 480](/barco/astec-480) | [Remus 450](/barco/remus-450) | [Solar 450](/barco/solar-450) | [Voraz V2](/barco/voraz-v2) |
+| Característica | [Astec 400](/barco/astec-400) | [Astec 480](/barco/astec-480) | [Remus 450](/barco/remus-450) | [Solar 450](/barco/solar-450) | [Remus 450 II](/barco/remus-450-ii) |
 |---------------|------------|------------|-------------|-------------|-----------|
 | **Eslora** | 4,00 m | 4,80 m | 4,50 m | 4,50 m | 4,25 m |
-| **Capacidad** | 4 personas | 6 personas | 5 personas | 5 personas | 5 personas |
-| **Motor** | 6 CV | 6 CV | 6 CV | 6 CV | 6 CV |
+| **Capacidad** | 4 personas | 5 personas | 5 personas | 5 personas | 5 personas |
+| **Motor** | 15 CV | 15 CV | 15 CV | 15 CV | 15 CV |
 | **Ideal para** | Parejas | Familias/Grupos | Grupos medianos | Confort | Aventureros |
 | **Estabilidad** | Buena | Excelente | Muy buena | Muy buena | Buena |
 | **Espacio** | Compacto | Amplio | Medio | Medio | Medio |
@@ -2089,14 +2089,14 @@ El [Astec 480](/barco/astec-480) es, con diferencia, nuestro barco más demandad
 ### Puntos fuertes
 
 - **El más estable:** Su casco ancho y su eslora de 4,80 metros le dan una estabilidad excelente, incluso con algo de oleaje. Los pasajeros se sienten seguros.
-- **Mayor capacidad:** Hasta 6 personas pueden navegar cómodamente. Es el único barco de la flota con esta capacidad.
+- **Mayor capacidad:** Hasta 5 personas pueden navegar cómodamente. Es el barco sin licencia más espacioso de la flota.
 - **Espacio de sobra:** Hay sitio para mochilas, nevera, equipo de snorkel y todo lo que necesites.
 - **Escalera de baño amplia:** Entrar y salir del agua es cómodo incluso para niños.
 
 ### Para quién es
 
 - **Familias con niños:** La estabilidad y el espacio lo hacen ideal para navegar con los más pequeños
-- **Grupos de 5-6 personas:** El único barco donde 6 personas van realmente cómodas
+- **Grupos de 4-5 personas:** El barco sin licencia donde 5 personas van realmente cómodas
 - **Día completo de navegación:** Su espacio permite pasar 8 horas a bordo sin agobios
 
 ### Limitaciones
@@ -2148,9 +2148,9 @@ El [Solar 450](/barco/solar-450) destaca por su diseño orientado al confort. Es
 - Similar en dimensiones al Remus 450, no ofrece más espacio
 - Precio ligeramente superior al Remus por su mayor equipamiento
 
-## Voraz V2: El deportivo
+## Remus 450 II: El deportivo
 
-El [Voraz V2](/barco/voraz-v2) es el barco con carácter más deportivo de nuestra flota. Su diseño ofrece sensaciones de navegación más dinámicas.
+El [Remus 450 II](/barco/remus-450-ii) es el barco con carácter más deportivo de nuestra flota. Su diseño ofrece sensaciones de navegación más dinámicas.
 
 ### Puntos fuertes
 
@@ -2185,12 +2185,12 @@ Sin duda. Su estabilidad y espacio son ideales para navegar con niños. Los pequ
 Depende del número de personas. Si sois 5-6, el Astec 480 es la opción. Si sois 4, el Remus 450 ofrece un buen espacio a mejor precio.
 
 ### Sois un grupo de amigos (3-4 personas)
-**Recomendación:** [Voraz V2](/barco/voraz-v2) o [Solar 450](/barco/solar-450)
-El Voraz V2 para quienes buscan dinamismo, el Solar 450 para quienes priorizan comodidad.
+**Recomendación:** [Remus 450 II](/barco/remus-450-ii) o [Solar 450](/barco/solar-450)
+El Remus 450 II para quienes buscan dinamismo, el Solar 450 para quienes priorizan comodidad.
 
-### Sois un grupo grande (5-6 personas)
+### Sois un grupo grande (4-5 personas)
 **Recomendación:** [Astec 480](/barco/astec-480)
-Es el único barco con capacidad para 6 personas. Para 5 personas con mucho equipaje, también es la mejor opción.
+Es el barco sin licencia más espacioso, con capacidad para 5 personas. Para 4 personas con mucho equipaje, también es la mejor opción.
 
 ### Es tu primera vez en un barco
 **Recomendación:** [Astec 400](/barco/astec-400) o [Astec 480](/barco/astec-480)
@@ -2433,12 +2433,12 @@ La capacidad depende del modelo de barco que elijas:
 | [Astec 400](/barco/astec-400) | 4 personas | Parejas o grupos pequeños |
 | [Solar 450](/barco/solar-450) | 5 personas | Familias o grupos medianos |
 | [Remus 450](/barco/remus-450) | 5 personas | Familias o grupos medianos |
-| [Voraz V2](/barco/voraz-v2) | 5 personas | Grupos de amigos |
-| [Astec 480](/barco/astec-480) | 6 personas | Familias grandes o grupos |
+| [Remus 450 II](/barco/remus-450-ii) | 5 personas | Grupos de amigos |
+| [Astec 480](/barco/astec-480) | 5 personas | Familias o grupos |
 
 La capacidad máxima incluye adultos y niños, incluidos bebés. Nuestra recomendación es que, para mayor comodidad, navegues con **una persona menos** de la capacidad máxima. Por ejemplo, en un barco de 5 plazas, 4 personas irán muy cómodas.
 
-Para grupos mayores de 6 personas, la opción es alquilar dos barcos y navegar juntos. Es una experiencia muy divertida y permite mantener contacto visual entre los dos barcos.
+Para grupos mayores de 5 personas, la opción es alquilar dos barcos y navegar juntos. Es una experiencia muy divertida y permite mantener contacto visual entre los dos barcos.
 
 ## ¿Qué incluye el precio del alquiler?
 
@@ -2642,9 +2642,9 @@ Abuelos, padres, hijos, primos... Una excursión familiar en barco es una forma 
 
 Un solo barco es suficiente. El [Astec 400](/barco/astec-400) para parejas o el [Remus 450](/barco/remus-450) para 3-4 personas.
 
-### Grupos de 5-6 personas
+### Grupos de 4-5 personas
 
-El [Astec 480](/barco/astec-480) con capacidad para 6 personas es la opción ideal. Es el barco más espacioso y estable, perfecto para que el grupo vaya cómodo.
+El [Astec 480](/barco/astec-480) con capacidad para 5 personas es la opción ideal. Es el barco sin licencia más espacioso y estable, perfecto para que el grupo vaya cómodo.
 
 ### Grupos de 7-12 personas
 
@@ -2745,7 +2745,7 @@ La ventaja del alquiler de barco para grupos es que **el coste se divide entre t
 - Altavoz Bluetooth x 2: incluido como extra
 - **Total por persona: aprox. 42 EUR**
 
-### Cumpleaños de 6 personas (1 barco, día completo, temporada media)
+### Cumpleaños de 5 personas (1 barco, día completo, temporada media)
 
 - 1 x [Astec 480](/barco/astec-480) día completo: aprox. 220 EUR
 - Kit snorkel x 6: 45 EUR

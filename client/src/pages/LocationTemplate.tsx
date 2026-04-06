@@ -1,3 +1,4 @@
+import type React from "react";
 import { useEffect } from "react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -18,6 +19,7 @@ import { Link } from "wouter";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import RelatedLocationsSection from "@/components/RelatedLocationsSection";
+import RelatedContent from "@/components/RelatedContent";
 import { SEO } from "@/components/SEO";
 import { useLanguage } from "@/hooks/use-language";
 import {
@@ -60,15 +62,20 @@ export interface LocationConfig {
   };
   faqItems: Array<{ question: string; answer: string }>;
   faqTitle: string;
-  showRelatedContent?: boolean;     // Lloret, Tossa have RelatedContent
-  relatedContentPage?: string;      // e.g. "locationLloret"
+  relatedContentPage?: string;      // e.g. "locationLloret" — shows RelatedContent component
+}
+
+interface LocationTemplateProps {
+  config: LocationConfig;
+  extraCards?: React.ReactNode;       // additional Cards rendered before CTA
+  afterFaq?: React.ReactNode;         // content rendered after FAQ (e.g. blog section)
 }
 
 // ---------------------------------------------------------------------------
 // Template component
 // ---------------------------------------------------------------------------
 
-export default function LocationTemplate({ config }: { config: LocationConfig }) {
+export default function LocationTemplate({ config, extraCards, afterFaq }: LocationTemplateProps) {
   const { language, localizedPath } = useLanguage();
   const t = useTranslations();
 
@@ -306,6 +313,9 @@ export default function LocationTemplate({ config }: { config: LocationConfig })
             </Card>
           )}
 
+          {/* Extra cards slot (cross-links, related services, etc.) */}
+          {extraCards}
+
           {/* CTA */}
           {s && (
             <Card className="bg-primary text-white">
@@ -353,7 +363,13 @@ export default function LocationTemplate({ config }: { config: LocationConfig })
         </div>
       </div>
 
+      {/* After FAQ slot (blog section, etc.) */}
+      {afterFaq}
+
       <RelatedLocationsSection currentLocation={config.slug} />
+      {config.relatedContentPage && (
+        <RelatedContent currentPage={config.relatedContentPage} />
+      )}
       <Footer />
     </div>
   );

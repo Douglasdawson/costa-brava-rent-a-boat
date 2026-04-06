@@ -16,15 +16,6 @@
   size-adjust: 101%;
 }
 
-@font-face {
-  font-family: 'Archivo';
-  src: url('/fonts/Archivo-VariableItalic.woff2') format('woff2');
-  font-weight: 100 900;
-  font-display: swap;
-  font-style: italic;
-  size-adjust: 101%;
-}
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

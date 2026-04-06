@@ -171,6 +171,7 @@ export async function seedLegacyRedirects(): Promise<void> {
     "/ca/condiciones-de-reserva": getLocalizedPath("condicionesGenerales", "ca"),
     "/fr/excursion-barco-privado": getLocalizedPath("categoryLicensed", "fr"),
     "/fr/copy-of-hoteles-y-alojamientos": getLocalizedPath("locationBlanes", "fr"),
+    "/en/copy-of-hoteles-y-alojamientos": getLocalizedPath("locationBlanes", "en"),
     "/en/barco-sin-licencia-blanes-solar-450": getLocalizedPath("boatDetail", "en") + "/solar-450",
     "/barco-mingolla-brava-19": getLocalizedPath("boatDetail", "es") + "/mingolla-brava-19",
     "/fr/barco-con-licencia-blanes-pacific-craft-625": getLocalizedPath("boatDetail", "fr") + "/pacific-craft-625",

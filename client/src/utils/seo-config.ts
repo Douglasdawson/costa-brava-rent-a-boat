@@ -60,8 +60,8 @@ export const BASE_DOMAIN = getBaseUrl();
 export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
   es: {
     home: {
-      title: "Alquiler Barcos Sin Licencia en Blanes | Costa Brava desde 70\u20ac/h",
-      description: "Alquiler de barcos sin licencia en Blanes, Costa Brava. Desde 70\u20ac/h, gasolina incluida. Sin experiencia, 15 min de formaci\u00f3n. 4.8\u2605 Google. Reserva online.",
+      title: "Alquiler Barco en Blanes desde 70\u20ac/h | Gasolina Incluida",
+      description: "Alquila un barco sin licencia en Blanes desde 70\u20ac/h con gasolina incluida. 15 min de formaci\u00f3n y a navegar. 5 barcos disponibles. Reserva online con cancelaci\u00f3n gratuita 48h.",
       keywords: "alquiler barco costa brava, alquiler barcos blanes, alquiler barco lloret de mar, alquiler barco sin licencia costa brava, alquiler embarcaciones costa brava, alquilar barco blanes, alquiler barcos sin licencia blanes",
       ogTitle: `Alquiler Barcos Sin Licencia Blanes | Costa Brava ${SEASON_YEAR}`,
       ogDescription: "Alquila barcos en Costa Brava desde Puerto de Blanes. Sin licencia ni experiencia, desde 70\u20ac con gasolina incluida. Blanes, Lloret, Tossa. Reserva ya."
@@ -121,8 +121,8 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       ogDescription: "Desde Calella al Puerto de Blanes en 20 min. Barcos sin licencia desde 70\u20ac. Descubre la Costa Brava."
     },
     categoryLicenseFree: {
-      title: "Alquiler Barcos Sin Licencia Blanes | Sin Experiencia \u00b7 Desde 70\u20ac/h \u00b7 Gasolina Incluida",
-      description: "Alquiler de barcos sin licencia en Blanes, Costa Brava. 5 barcos de 4-7 personas, desde 70\u20ac/h. Sin experiencia, formaci\u00f3n de 15 min incluida. Gasolina y parking gratis. Reserva online.",
+      title: "Barcos Sin Licencia en Blanes | 5 Barcos desde 70\u20ac/h",
+      description: "5 barcos sin licencia en Blanes con gasolina incluida. Astec 400, Solar 450, Remus 450 y Astec 480. Formaci\u00f3n de 15 min incluida. Sin experiencia necesaria. Reserva online.",
       keywords: "alquiler barco sin licencia costa brava, alquiler barco blanes sin licencia, alquiler barcos sin licencia costa brava, barcos sin licencia blanes",
       ogTitle: "Barcos Sin Licencia Costa Brava | 5 Barcos desde 70\u20ac/h",
       ogDescription: "5 barcos sin licencia en Blanes desde 70\u20ac/h. Gasolina incluida, 4-7 personas. Formacion 15 min. 4.8\u2605 Google. Reserva hoy."
@@ -214,8 +214,8 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       ogDescription: "A solo 70 min de Barcelona. Barcos sin licencia desde 70\u20ac con gasolina incluida. Aguas cristalinas de la Costa Brava."
     },
     locationCostaBrava: {
-      title: "Alquiler Barco Sin Licencia Costa Brava | Desde 70\u20ac/h",
-      description: "Alquiler barco sin licencia en Costa Brava desde 70\u20ac/h con gasolina incluida. Puerto de Blanes: Lloret 25 min, Tossa 1h. 4.8\u2605 Google. Reserva hoy.",
+      title: `Alquiler Barco Costa Brava ${SEASON_YEAR} | Desde 70\u20ac/h Gasolina Incluida`,
+      description: "8 barcos para alquilar en la Costa Brava desde el Puerto de Blanes. Sin licencia desde 70\u20ac/h (gasolina incluida). Con licencia desde 150\u20ac/2h. Reserva online \u00b7 Cancelaci\u00f3n gratuita 48h.",
       keywords: `alquiler barcos costa brava, alquiler barcos sin licencia costa brava, barcos costa brava ${SEASON_YEAR}`
     },
     boatRentalCostaBrava: {

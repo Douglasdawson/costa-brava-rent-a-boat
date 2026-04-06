@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useTranslations } from "@/lib/translations";
 import { SEO } from "@/components/SEO";
-import { getSEOConfig, generateCanonicalUrl, generateHreflangLinks } from "@/utils/seo-config";
+import { getSEOConfig, generateCanonicalUrl, generateHreflangLinks, generateBreadcrumbSchema } from "@/utils/seo-config";
 import { useLanguage } from "@/hooks/use-language";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
@@ -12,6 +12,11 @@ export default function CookiesPolicy() {
   const seoConfig = getSEOConfig('cookiesPolicy', language);
   const canonical = generateCanonicalUrl('cookiesPolicy', language);
   const hreflangLinks = generateHreflangLinks('cookiesPolicy');
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: t.breadcrumbs.home, url: "/" },
+    { name: t.breadcrumbs.legal, url: "/" },
+    { name: t.breadcrumbs.cookiesPolicy, url: "/cookies" }
+  ]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -24,6 +29,7 @@ export default function CookiesPolicy() {
         description={seoConfig.description}
         canonical={canonical}
         hreflang={hreflangLinks}
+        jsonLd={breadcrumbSchema}
       />
       <Navigation />
       <div className="min-h-screen bg-gradient-to-b from-muted to-background">

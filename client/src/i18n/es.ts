@@ -478,6 +478,12 @@ export const es: Translations = {
     locationCalella: 'Alquiler Barcos Calella',
     privacyPolicy: 'Política de Privacidad',
     termsConditions: 'Términos y Condiciones',
+    cookiesPolicy: 'Política de Cookies',
+    gallery: 'Galería',
+    blog: 'Blog',
+    about: 'Sobre Nosotros',
+    giftCards: 'Tarjetas Regalo',
+    routes: 'Rutas',
   },
   relatedBoats: {
     title: 'También te puede interesar',

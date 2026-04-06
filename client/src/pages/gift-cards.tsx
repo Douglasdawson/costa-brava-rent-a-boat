@@ -13,7 +13,7 @@ import { useToast } from "@/hooks/use-toast";
 import { trackGiftCardPurchase } from "@/utils/analytics";
 import { useLanguage } from "@/hooks/use-language";
 import { useTranslations } from "@/lib/translations";
-import { getSEOConfig, generateCanonicalUrl, generateHreflangLinks } from "@/utils/seo-config";
+import { getSEOConfig, generateCanonicalUrl, generateHreflangLinks, generateBreadcrumbSchema } from "@/utils/seo-config";
 
 const AMOUNTS = [50, 100, 150, 200, 300];
 
@@ -38,6 +38,10 @@ export default function GiftCardsPage() {
   };
   const canonical = generateCanonicalUrl("giftCards", language);
   const hreflangLinks = generateHreflangLinks("giftCards");
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: t.breadcrumbs.home, url: "/" },
+    { name: t.breadcrumbs.giftCards, url: "/tarjetas-regalo" }
+  ]);
 
   const effectiveAmount = selectedAmount === -1 ? Number(customAmount) : selectedAmount;
 
@@ -100,7 +104,7 @@ export default function GiftCardsPage() {
   if (purchaseComplete) {
     return (
       <main id="main-content" className="min-h-screen bg-muted">
-        <SEO title={seoConfig.title} description={seoConfig.description} keywords={seoConfig.keywords} ogImage={seoConfig.image} canonical={canonical} hreflang={hreflangLinks} />
+        <SEO title={seoConfig.title} description={seoConfig.description} keywords={seoConfig.keywords} ogImage={seoConfig.image} canonical={canonical} hreflang={hreflangLinks} jsonLd={breadcrumbSchema} />
         <Navigation />
         <div className="container mx-auto px-4 py-16">
           <Card className="max-w-md mx-auto">
@@ -149,7 +153,7 @@ export default function GiftCardsPage() {
 
   return (
     <main id="main-content" className="min-h-screen bg-muted">
-      <SEO title={seoConfig.title} description={seoConfig.description} keywords={seoConfig.keywords} ogImage={seoConfig.image} canonical={canonical} hreflang={hreflangLinks} />
+      <SEO title={seoConfig.title} description={seoConfig.description} keywords={seoConfig.keywords} ogImage={seoConfig.image} canonical={canonical} hreflang={hreflangLinks} jsonLd={breadcrumbSchema} />
       <Navigation />
 
       <div className="container mx-auto px-4 pt-20 sm:pt-24 pb-8 sm:pb-12">

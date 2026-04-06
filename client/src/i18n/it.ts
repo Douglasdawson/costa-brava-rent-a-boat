@@ -467,6 +467,12 @@ export const it: Translations = {
     locationCalella: 'Noleggio Barche Calella',
     privacyPolicy: 'Privacy Policy',
     termsConditions: 'Termini e Condizioni',
+    cookiesPolicy: 'Politica dei Cookie',
+    gallery: 'Galleria',
+    blog: 'Blog',
+    about: 'Chi Siamo',
+    giftCards: 'Carte Regalo',
+    routes: 'Percorsi',
   },
   relatedBoats: {
     title: 'Potrebbe interessarti anche',

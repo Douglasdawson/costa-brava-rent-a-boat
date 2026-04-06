@@ -467,6 +467,12 @@ export const fr: Translations = {
     locationCalella: 'Location Bateaux Calella',
     privacyPolicy: 'Politique de Confidentialité',
     termsConditions: 'Conditions Générales',
+    cookiesPolicy: 'Politique de Cookies',
+    gallery: 'Galerie',
+    blog: 'Blog',
+    about: 'À Propos',
+    giftCards: 'Cartes Cadeaux',
+    routes: 'Itinéraires',
   },
   relatedBoats: {
     title: 'Vous pourriez aussi aimer',

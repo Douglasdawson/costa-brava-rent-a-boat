@@ -18,7 +18,9 @@ import {
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { SEO } from "@/components/SEO";
+import { generateBreadcrumbSchema } from "@/utils/seo-config";
 import { useLanguage, type Language } from "@/hooks/use-language";
+import { useTranslations } from "@/lib/translations";
 import { openWhatsApp, createBookingMessage } from "@/utils/whatsapp";
 
 // ---------------------------------------------------------------------------
@@ -564,6 +566,7 @@ function getWhyDesc(key: typeof whyItems[number]["key"], lang: Language): string
 export default function AboutPage() {
   const { language, localizedPath } = useLanguage();
   const txt = t[language];
+  const tr = useTranslations();
 
   const handleBookingWhatsApp = () => {
     const message = createBookingMessage();
@@ -680,7 +683,11 @@ export default function AboutPage() {
           "availableLanguage": ["Spanish", "English", "Catalan", "French", "German", "Dutch", "Italian", "Russian"],
           "areaServed": "ES"
         }
-      }
+      },
+      generateBreadcrumbSchema([
+        { name: tr.breadcrumbs.home, url: "/" },
+        { name: tr.breadcrumbs.about, url: "/about" }
+      ])
     ]
   };
 

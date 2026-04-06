@@ -9,7 +9,7 @@ import PhotoLightbox from "@/components/PhotoLightbox";
 import PhotoSubmissionForm from "@/components/PhotoSubmissionForm";
 import { useLanguage, type Language } from "@/hooks/use-language";
 import { useTranslations } from "@/lib/translations";
-import { getSEOConfig, generateCanonicalUrl, generateHreflangLinks } from "@/utils/seo-config";
+import { getSEOConfig, generateCanonicalUrl, generateHreflangLinks, generateBreadcrumbSchema } from "@/utils/seo-config";
 import { queryClient } from "@/lib/queryClient";
 
 const galleryText: Record<string, {
@@ -155,6 +155,10 @@ export default function GalleryPage() {
   };
   const canonical = generateCanonicalUrl("gallery", language);
   const hreflangLinks = generateHreflangLinks("gallery");
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: t.breadcrumbs.home, url: "/" },
+    { name: t.breadcrumbs.gallery, url: "/galeria" }
+  ]);
 
   const openLightbox = (index: number) => {
     setLightboxIndex(index);
@@ -170,6 +174,7 @@ export default function GalleryPage() {
         ogImage={seoConfig.image}
         canonical={canonical}
         hreflang={hreflangLinks}
+        jsonLd={breadcrumbSchema}
       />
       <Navigation />
 

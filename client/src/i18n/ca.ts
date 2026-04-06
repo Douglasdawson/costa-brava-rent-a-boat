@@ -467,6 +467,12 @@ export const ca: Translations = {
     locationCalella: 'Lloguer Barques Calella',
     privacyPolicy: 'Política de Privacitat',
     termsConditions: 'Termes i Condicions',
+    cookiesPolicy: 'Política de Cookies',
+    gallery: 'Galeria',
+    blog: 'Blog',
+    about: 'Sobre Nosaltres',
+    giftCards: 'Targetes Regal',
+    routes: 'Rutes',
   },
   relatedBoats: {
     title: 'També et pot interessar',

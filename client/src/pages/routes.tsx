@@ -12,7 +12,7 @@ import { trackRouteSelected } from "@/utils/analytics";
 import type { BoatRoute } from "@shared/routesData";
 import { useLanguage } from "@/hooks/use-language";
 import { useTranslations } from "@/lib/translations";
-import { getSEOConfig, generateCanonicalUrl, generateHreflangLinks } from "@/utils/seo-config";
+import { getSEOConfig, generateCanonicalUrl, generateHreflangLinks, generateBreadcrumbSchema } from "@/utils/seo-config";
 
 const difficultyColors: Record<string, string> = {
   easy: "bg-primary/10 text-primary",
@@ -113,6 +113,10 @@ function RoutesPage() {
   };
   const canonical = generateCanonicalUrl("routes", language);
   const hreflangLinks = generateHreflangLinks("routes");
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: t.breadcrumbs.home, url: "/" },
+    { name: t.breadcrumbs.routes, url: "/rutas" }
+  ]);
 
   const handleRouteSelect = useCallback((id: string) => {
     setSelectedRouteId(prev => prev === id ? null : id);
@@ -121,7 +125,7 @@ function RoutesPage() {
 
   return (
     <main id="main-content" className="min-h-screen bg-muted">
-      <SEO title={seoConfig.title} description={seoConfig.description} keywords={seoConfig.keywords} ogImage={seoConfig.image} canonical={canonical} hreflang={hreflangLinks} />
+      <SEO title={seoConfig.title} description={seoConfig.description} keywords={seoConfig.keywords} ogImage={seoConfig.image} canonical={canonical} hreflang={hreflangLinks} jsonLd={breadcrumbSchema} />
       <Navigation />
 
       <div className="container mx-auto px-4 pt-20 sm:pt-24 pb-8 sm:pb-12">

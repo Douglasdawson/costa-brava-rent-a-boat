@@ -467,6 +467,12 @@ export const de: Translations = {
     locationCalella: 'Bootsverleih Calella',
     privacyPolicy: 'Datenschutz',
     termsConditions: 'Geschäftsbedingungen',
+    cookiesPolicy: 'Cookie-Richtlinie',
+    gallery: 'Galerie',
+    blog: 'Blog',
+    about: 'Über Uns',
+    giftCards: 'Geschenkkarten',
+    routes: 'Routen',
   },
   relatedBoats: {
     title: 'Das könnte Ihnen auch gefallen',

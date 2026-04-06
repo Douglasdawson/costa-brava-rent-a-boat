@@ -467,6 +467,12 @@ export const nl: Translations = {
     locationCalella: 'Boothuur Calella',
     privacyPolicy: 'Privacybeleid',
     termsConditions: 'Algemene Voorwaarden',
+    cookiesPolicy: 'Cookiebeleid',
+    gallery: 'Galerij',
+    blog: 'Blog',
+    about: 'Over Ons',
+    giftCards: 'Cadeaubonnen',
+    routes: 'Routes',
   },
   relatedBoats: {
     title: 'Misschien vind je dit ook leuk',

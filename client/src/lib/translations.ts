@@ -511,6 +511,12 @@ export interface Translations {
     locationCalella: string;
     privacyPolicy: string;
     termsConditions: string;
+    cookiesPolicy: string;
+    gallery: string;
+    blog: string;
+    about: string;
+    giftCards: string;
+    routes: string;
   };
 
   // Related Boats

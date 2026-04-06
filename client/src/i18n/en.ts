@@ -467,6 +467,12 @@ export const en: Translations = {
     locationCalella: 'Boat Rental Calella',
     privacyPolicy: 'Privacy Policy',
     termsConditions: 'Terms and Conditions',
+    cookiesPolicy: 'Cookies Policy',
+    gallery: 'Gallery',
+    blog: 'Blog',
+    about: 'About Us',
+    giftCards: 'Gift Cards',
+    routes: 'Routes',
   },
   relatedBoats: {
     title: 'You might also like',

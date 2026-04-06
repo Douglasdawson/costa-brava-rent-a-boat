@@ -10,7 +10,7 @@ import { Calendar, User, ChevronLeft, ChevronRight, ArrowRight, Anchor } from "l
 import { useLanguage } from "@/hooks/use-language";
 import { useBookingModal } from "@/hooks/bookingModalContext";
 import { useTranslations } from "@/lib/translations";
-import { getSEOConfig, generateHreflangLinks, generateCanonicalUrl } from "@/utils/seo-config";
+import { getSEOConfig, generateHreflangLinks, generateCanonicalUrl, generateBreadcrumbSchema } from "@/utils/seo-config";
 import type { BlogPost } from "@shared/schema";
 
 const LOCALE_MAP: Record<string, string> = {
@@ -259,6 +259,10 @@ function BlogPage() {
   const seoConfig = getSEOConfig('blog', language);
   const hreflangLinks = generateHreflangLinks('blog');
   const canonical = generateCanonicalUrl('blog', language);
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: t.breadcrumbs.home, url: "/" },
+    { name: t.breadcrumbs.blog, url: "/blog" }
+  ]);
 
   // Fetch all published blog posts
   const { data: posts, isLoading, isError } = useQuery<BlogPost[]>({
@@ -328,7 +332,7 @@ function BlogPage() {
   if (isLoading) {
     return (
       <main id="main-content" className="min-h-screen bg-muted/30">
-        <SEO title={seoConfig.title} description={seoConfig.description} ogImage={seoConfig.image} canonical={canonical} hreflang={hreflangLinks} robots={['ca', 'it', 'ru'].includes(language) ? 'noindex, follow' : undefined} />
+        <SEO title={seoConfig.title} description={seoConfig.description} ogImage={seoConfig.image} canonical={canonical} hreflang={hreflangLinks} jsonLd={breadcrumbSchema} robots={['ca', 'it', 'ru'].includes(language) ? 'noindex, follow' : undefined} />
         <Navigation />
         {/* Skeleton header */}
         <div className="container mx-auto px-4 pt-20 sm:pt-24 pb-8 md:pb-12">
@@ -375,7 +379,7 @@ function BlogPage() {
   if (isError) {
     return (
       <main id="main-content" className="min-h-screen bg-background">
-        <SEO title={seoConfig.title} description={seoConfig.description} ogImage={seoConfig.image} canonical={canonical} hreflang={hreflangLinks} robots={['ca', 'it', 'ru'].includes(language) ? 'noindex, follow' : undefined} />
+        <SEO title={seoConfig.title} description={seoConfig.description} ogImage={seoConfig.image} canonical={canonical} hreflang={hreflangLinks} jsonLd={breadcrumbSchema} robots={['ca', 'it', 'ru'].includes(language) ? 'noindex, follow' : undefined} />
         <Navigation />
         <div className="flex flex-col items-center justify-center min-h-[60vh] px-4">
           <div className="text-center max-w-md">
@@ -393,7 +397,7 @@ function BlogPage() {
 
   return (
     <main id="main-content" className="min-h-screen bg-muted/30">
-      <SEO title={seoConfig.title} description={seoConfig.description} ogImage={seoConfig.image} canonical={canonical} hreflang={hreflangLinks} robots={['ca', 'it', 'ru'].includes(language) ? 'noindex, follow' : undefined} />
+      <SEO title={seoConfig.title} description={seoConfig.description} ogImage={seoConfig.image} canonical={canonical} hreflang={hreflangLinks} jsonLd={breadcrumbSchema} robots={['ca', 'it', 'ru'].includes(language) ? 'noindex, follow' : undefined} />
       <Navigation />
 
       {/* Header — editorial style, no gradient hero */}

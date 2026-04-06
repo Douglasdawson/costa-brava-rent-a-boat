@@ -467,6 +467,12 @@ export const ru: Translations = {
     locationCalella: 'Аренда лодок Калелья',
     privacyPolicy: 'Политика Конфиденциальности',
     termsConditions: 'Условия и Положения',
+    cookiesPolicy: 'Политика Cookies',
+    gallery: 'Галерея',
+    blog: 'Блог',
+    about: 'О Нас',
+    giftCards: 'Подарочные Карты',
+    routes: 'Маршруты',
   },
   relatedBoats: {
     title: 'Вам также может понравиться',

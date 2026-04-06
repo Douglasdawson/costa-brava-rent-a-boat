@@ -655,16 +655,28 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
   const requiresLicense = boatData.subtitle?.toLowerCase().includes("con licencia") ?? boatData.requiresLicense;
   const capacity = boatData.specifications ? parseInt(boatData.specifications.capacity?.split(' ')[0] || String(boatData.capacity)) : boatData.capacity;
   
+  const licenseLabels: Record<string, [string, string]> = {
+    es: ["con licencia", "sin licencia"],
+    en: ["with license", "without license"],
+    ca: ["amb llicència", "sense llicència"],
+    fr: ["avec permis", "sans permis"],
+    de: ["mit Lizenz", "ohne Lizenz"],
+    nl: ["met vaarbewijs", "zonder vaarbewijs"],
+    it: ["con patente", "senza patente"],
+    ru: ["с лицензией", "без лицензии"],
+  };
+  const [withLic, withoutLic] = licenseLabels[language] || licenseLabels.es;
   const dynamicSEOData = {
     boatName: boatData.name,
     capacity: capacity.toString(),
-    license: requiresLicense ? "con licencia" : "sin licencia",
+    license: requiresLicense ? withLic : withoutLic,
     pricePerHour: lowestPrice.toString()
   };
-  
-  const seoConfig = getSEOConfig('boatDetail', language, dynamicSEOData);
-  const hreflangLinks = generateHreflangLinks('boatDetail', boatId);
-  const canonical = generateCanonicalUrl('boatDetail', language, boatId);
+
+  const seoPageKey = boatId === "excursion-privada" ? 'excursionDetail' : 'boatDetail';
+  const seoConfig = getSEOConfig(seoPageKey, language, dynamicSEOData);
+  const hreflangLinks = generateHreflangLinks(seoPageKey, boatId);
+  const canonical = generateCanonicalUrl(seoPageKey, language, boatId);
   
   // Enhanced Product JSON-LD schema with breadcrumbs
   const makeAbsoluteUrl = (url: string): string => {

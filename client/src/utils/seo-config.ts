@@ -178,6 +178,11 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       description: "Alquila {boatName} en Blanes, Costa Brava. {capacity} personas, {license}. Desde {pricePerHour}€/h, gasolina incluida. 4.8★ Google. Reserva online!",
       keywords: "alquiler {boatName}, {boatName} blanes, barco {capacity} personas costa brava"
     },
+    excursionDetail: {
+      title: "Excursión Privada en Barco Blanes | {capacity} Personas desde {pricePerHour}€/h Costa Brava",
+      description: "Contrata una excursión privada en barco con patrón en Blanes, Costa Brava. {capacity} personas, capitán incluido. Desde {pricePerHour}€/h. 4.8★ Google. Reserva online!",
+      keywords: "excursión privada barco blanes, excursión con capitán costa brava, paseo en barco blanes"
+    },
     gallery: {
       title: "Galeria de Fotos Clientes | Costa Brava Rent a Boat",
       description: "Fotos reales de nuestros clientes disfrutando en barco por la Costa Brava desde Blanes. Comparte tu experiencia nautica!",
@@ -383,6 +388,11 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       title: "{boatName} Blanes | {capacity} People from {pricePerHour}€/h Costa Brava",
       description: "Rent {boatName} in Blanes, Costa Brava. {capacity} people, {license}. From {pricePerHour}€/h, fuel included. 4.8★ Google. Book online!",
       keywords: "rent {boatName}, {boatName} blanes, boat {capacity} people costa brava"
+    },
+    excursionDetail: {
+      title: "Private Boat Excursion Blanes | {capacity} People from {pricePerHour}€/h Costa Brava",
+      description: "Private boat trip with skipper in Blanes, Costa Brava. {capacity} people, captain included. From {pricePerHour}€/h. 4.8★ Google. Book online!",
+      keywords: "private boat excursion blanes, boat trip with captain costa brava, boat tour blanes"
     },
     gallery: {
       title: "Customer Photo Gallery | Costa Brava Rent a Boat",
@@ -1311,6 +1321,7 @@ const PAGE_NAME_ALIASES: Record<string, PageKey> = {
   testimonios: "testimonials",
   boatRentalBlanes: "locationBlanes",
   boatRentalCostaBrava: "locationCostaBrava",
+  excursionDetail: "boatDetail",
   notFound: "home",
 };
 

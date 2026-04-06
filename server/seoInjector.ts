@@ -2518,32 +2518,86 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
       const boats = await storage.getAllBoats();
       const boat = boats.find(b => b.id === boatId);
       if (boat) {
-        const licenseText = boat.requiresLicense
-          ? (lang === "en" ? "with license" : "con licencia")
-          : (lang === "en" ? "without license" : "sin licencia");
+        const licenseLabels: Record<string, [string, string]> = {
+          es: ["con licencia", "sin licencia"],
+          en: ["with license", "without license"],
+          ca: ["amb llicència", "sense llicència"],
+          fr: ["avec permis", "sans permis"],
+          de: ["mit Lizenz", "ohne Lizenz"],
+          nl: ["met vaarbewijs", "zonder vaarbewijs"],
+          it: ["con patente", "senza patente"],
+          ru: ["с лицензией", "без лицензии"],
+        };
+        const [withLic, withoutLic] = licenseLabels[lang] || licenseLabels.es;
+        const licenseText = boat.requiresLicense ? withLic : withoutLic;
         const fromPrice = (() => {
           if (!boat.pricing) return null;
           const seasons = Object.values(boat.pricing) as Array<{ prices?: Record<string, number> }>;
           const prices = seasons.flatMap(s => s?.prices ? Object.values(s.prices) : []);
           return prices.length > 0 ? Math.min(...prices) : null;
         })();
-        const priceStr = fromPrice ? ` | Desde ${fromPrice}€` : "";
+        const fromLabels: Record<string, string> = {
+          es: "Desde", en: "From", ca: "Des de", fr: "Dès", de: "Ab", nl: "Vanaf", it: "Da", ru: "От"
+        };
+        const priceStr = fromPrice ? ` | ${fromLabels[lang] || "Desde"} ${fromPrice}€` : "";
         // Build boat-specific og:image URL
         const boatOgImage = boat.imageUrl
           ? (boat.imageUrl.startsWith("http") ? boat.imageUrl
             : boat.imageUrl.startsWith("/") ? boat.imageUrl
             : `/object-storage/${boat.imageUrl}`)
           : undefined;
-        const meta: SEOMeta = lang === "en"
-          ? {
-              title: `Rent ${boat.name} in Blanes (${licenseText}) | Costa Brava${priceStr}`,
-              description: `Book the ${boat.name} in Blanes, Costa Brava. Up to ${boat.capacity} people, ${licenseText}. Reserve via WhatsApp.`,
-              ogImage: boatOgImage,
-              ogType: "product",
-            }
+        const isExcursion = boat.id === "excursion-privada";
+        const excursionMeta: Record<string, { title: string; description: string }> = {
+          es: {
+            title: `Excursión Privada en Barco en Blanes | Con Capitán | Costa Brava${priceStr}`,
+            description: `Contrata una excursión privada en barco con patrón en Blanes, Costa Brava. Hasta ${boat.capacity} personas. No necesitas licencia — capitán incluido. Reserva por WhatsApp.`,
+          },
+          en: {
+            title: `Private Boat Excursion in Blanes | With Captain | Costa Brava${priceStr}`,
+            description: `Private boat trip with skipper in Blanes, Costa Brava. Up to ${boat.capacity} people. No license required — captain included. Book via WhatsApp.`,
+          },
+          ca: {
+            title: `Excursió Privada en Vaixell a Blanes | Amb Patró | Costa Brava${priceStr}`,
+            description: `Contracta una excursió privada en vaixell amb patró a Blanes, Costa Brava. Fins a ${boat.capacity} persones. No necessites llicència — patró inclòs. Reserva per WhatsApp.`,
+          },
+          fr: {
+            title: `Excursion Privée en Bateau à Blanes | Avec Capitaine | Costa Brava${priceStr}`,
+            description: `Réservez une excursion privée en bateau avec skipper à Blanes, Costa Brava. Jusqu'à ${boat.capacity} personnes. Pas de permis requis — capitaine inclus. Réservez via WhatsApp.`,
+          },
+          de: {
+            title: `Private Bootsexkursion in Blanes | Mit Kapitän | Costa Brava${priceStr}`,
+            description: `Buchen Sie eine private Bootsexkursion mit Skipper in Blanes, Costa Brava. Bis zu ${boat.capacity} Personen. Kein Bootsführerschein nötig — Kapitän inklusive. Buchen per WhatsApp.`,
+          },
+          nl: {
+            title: `Privé Boottocht in Blanes | Met Schipper | Costa Brava${priceStr}`,
+            description: `Boek een privé boottocht met schipper in Blanes, Costa Brava. Tot ${boat.capacity} personen. Geen vaarbewijs nodig — schipper inbegrepen. Boek via WhatsApp.`,
+          },
+          it: {
+            title: `Escursione Privata in Barca a Blanes | Con Capitano | Costa Brava${priceStr}`,
+            description: `Prenota un'escursione privata in barca con skipper a Blanes, Costa Brava. Fino a ${boat.capacity} persone. Nessuna patente necessaria — capitano incluso. Prenota via WhatsApp.`,
+          },
+          ru: {
+            title: `Частная морская экскурсия в Бланесе | С капитаном | Коста Брава${priceStr}`,
+            description: `Закажите частную экскурсию на лодке с капитаном в Бланесе, Коста Брава. До ${boat.capacity} человек. Лицензия не нужна — капитан включён. Бронируйте через WhatsApp.`,
+          },
+        };
+        const rentLabels: Record<string, { verb: string; prep: string; upTo: string; bookVerb: string; people: string }> = {
+          es: { verb: "Alquiler", prep: "en", upTo: "Hasta", bookVerb: "Alquila el", people: "personas" },
+          en: { verb: "Rent", prep: "in", upTo: "Up to", bookVerb: "Book the", people: "people" },
+          ca: { verb: "Lloguer", prep: "a", upTo: "Fins a", bookVerb: "Lloga el", people: "persones" },
+          fr: { verb: "Location", prep: "à", upTo: "Jusqu'à", bookVerb: "Louez le", people: "personnes" },
+          de: { verb: "Mieten", prep: "in", upTo: "Bis zu", bookVerb: "Mieten Sie das", people: "Personen" },
+          nl: { verb: "Huur", prep: "in", upTo: "Tot", bookVerb: "Huur de", people: "personen" },
+          it: { verb: "Noleggio", prep: "a", upTo: "Fino a", bookVerb: "Noleggia il", people: "persone" },
+          ru: { verb: "Аренда", prep: "в", upTo: "До", bookVerb: "Арендуйте", people: "человек" },
+        };
+        const r = rentLabels[lang] || rentLabels.es;
+        const exc = excursionMeta[lang] || excursionMeta.es;
+        const meta: SEOMeta = isExcursion
+          ? { title: exc.title, description: exc.description, ogImage: boatOgImage, ogType: "product" }
           : {
-              title: `Alquiler ${boat.name} en Blanes (${licenseText}) | Costa Brava${priceStr}`,
-              description: `Alquila el ${boat.name} en Blanes, Costa Brava. Hasta ${boat.capacity} personas, ${licenseText}. Reserva por WhatsApp.`,
+              title: `${r.verb} ${boat.name} ${r.prep} Blanes (${licenseText}) | Costa Brava${priceStr}`,
+              description: `${r.bookVerb} ${boat.name} ${r.prep} Blanes, Costa Brava. ${r.upTo} ${boat.capacity} ${r.people}, ${licenseText}. WhatsApp.`,
               ogImage: boatOgImage,
               ogType: "product",
             };

@@ -275,6 +275,36 @@ export async function fetchGA4Conversions(startDate: string, endDate: string) {
   }));
 }
 
+// ==================== GA4 Top Pages ====================
+
+export async function fetchGA4TopPages(startDate: string, endDate: string, limit = 10) {
+  const auth = getGoogleAuth();
+  if (!auth) throw new Error("Google API not configured");
+
+  const propertyId = config.GOOGLE_ANALYTICS_PROPERTY_ID;
+  if (!propertyId) throw new Error("GA4 property ID not configured");
+
+  const analyticsdata = google.analyticsdata({ version: "v1beta", auth });
+
+  const response = await analyticsdata.properties.runReport({
+    property: `properties/${propertyId}`,
+    requestBody: {
+      dateRanges: [{ startDate, endDate }],
+      dimensions: [{ name: "pagePath" }],
+      metrics: [{ name: "screenPageViews" }, { name: "activeUsers" }, { name: "averageSessionDuration" }],
+      orderBys: [{ metric: { metricName: "screenPageViews" }, desc: true }],
+      limit,
+    },
+  });
+
+  return (response.data.rows || []).map((row) => ({
+    page: row.dimensionValues?.[0]?.value || "/",
+    views: parseInt(row.metricValues?.[0]?.value || "0"),
+    users: parseInt(row.metricValues?.[1]?.value || "0"),
+    avgDuration: parseFloat(row.metricValues?.[2]?.value || "0"),
+  }));
+}
+
 // ==================== GA4 Daily Trend ====================
 
 export async function fetchGA4DailyTrend(startDate: string, endDate: string) {

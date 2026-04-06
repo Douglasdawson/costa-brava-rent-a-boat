@@ -57,6 +57,9 @@ export function startSeoWorker(): void {
     // Export GSC data to markdown for marketing team
     const { exportGscMarkdown } = await import("./exportGscMarkdown");
     await exportGscMarkdown();
+    // Export GA4 data alongside GSC (same 6h cadence)
+    const { exportGa4Markdown } = await import("./exportGa4Markdown");
+    await exportGa4Markdown();
   });
 
   registerJob("site-health", schedules.siteHealth, async () => {
@@ -73,6 +76,15 @@ export function startSeoWorker(): void {
   registerJob("competitor-check", schedules.competitorCheck, async () => {
     const { checkCompetitors } = await import("./collectors/competitors");
     await checkCompetitors();
+    // Export competitor positions to markdown (runs after competitor data collected)
+    const { exportCompetitorsMarkdown } = await import("./exportCompetitorsMarkdown");
+    await exportCompetitorsMarkdown();
+  });
+
+  // Booking stats export — daily at 6:00 AM
+  registerJob("booking-stats-export", "0 6 * * *", async () => {
+    const { exportBookingStats } = await import("./exportBookingStats");
+    await exportBookingStats();
   });
 
   // Phase 3: Brain

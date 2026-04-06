@@ -3,7 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Anchor, ArrowRight, Clock, Fuel, Star, ThumbsUp } from "lucide-react";
 import { useTranslations } from "@/lib/translations";
 import { useLanguage } from "@/hooks/use-language";
-import { getBoatAverageRating } from "@/data/boatReviews";
+import { getBoatAverageRating } from "@/data/boatRatings";
 
 interface BoatCardProps {
   id: string;

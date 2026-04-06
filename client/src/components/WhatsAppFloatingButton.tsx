@@ -1,5 +1,5 @@
 import { useLocation } from "wouter";
-import { SiWhatsapp } from "react-icons/si";
+import { SiWhatsapp } from "@/components/icons/BrandIcons";
 import { trackWhatsAppClick } from "@/utils/analytics";
 import { useTranslations } from "@/lib/translations";
 

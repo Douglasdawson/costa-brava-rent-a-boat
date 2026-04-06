@@ -36,7 +36,7 @@ import ParkingIcon from "@/components/icons/ParkingIcon";
 import PaddleSurfIcon from "@/components/icons/PaddleSurfIcon";
 import NeveraIcon from "@/components/icons/NeveraIcon";
 import BebidasIcon from "@/components/icons/BebidasIcon";
-import { SiWhatsapp } from "react-icons/si";
+import { SiWhatsapp } from "@/components/icons/BrandIcons";
 import { openWhatsApp } from "@/utils/whatsapp";
 import { getBoatImage, getBoatImageSrcSet, getBoatAltText } from "@/utils/boatImages";
 import { useResponsiveGallery } from "@/hooks/useResponsiveGallery";

@@ -23,7 +23,7 @@ import {
   Ship,
   ArrowLeftRight
 } from "lucide-react";
-import { SiWhatsapp } from "react-icons/si";
+import { SiWhatsapp } from "@/components/icons/BrandIcons";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { SEO } from "@/components/SEO";

@@ -11,10 +11,10 @@ import { getBoatImage, getBoatImageSrcSet } from "@/utils/boatImages";
 import { useTranslations } from "@/lib/translations";
 import { useLanguage } from "@/hooks/use-language";
 import type { Boat } from "@shared/schema";
-import { SiWhatsapp } from "react-icons/si";
+import { SiWhatsapp } from "@/components/icons/BrandIcons";
 import { Phone, Users, CheckCircle, ChevronDown, Anchor, LayoutGrid, TableProperties, Star } from "lucide-react";
 import { useBookingModal } from "@/hooks/bookingModalContext";
-import { getBoatAverageRating } from "@/data/boatReviews";
+import { getBoatAverageRating } from "@/data/boatRatings";
 import { trackViewItemList, trackBoatClickedFromFleet } from "@/utils/analytics";
 import {
   Table,

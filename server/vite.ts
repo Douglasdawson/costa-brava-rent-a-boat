@@ -94,6 +94,34 @@ export function serveStatic(app: Express) {
     next();
   });
 
+  // Serve pre-compressed Brotli assets when available (built by vite-plugin-compression)
+  app.use("/assets", (req, res, next) => {
+    const acceptEncoding = req.headers["accept-encoding"] || "";
+    if (!acceptEncoding.includes("br")) return next();
+
+    const brPath = path.join(distPath, "assets", req.path + ".br");
+    if (!fs.existsSync(brPath)) return next();
+
+    // Map extension to MIME type
+    const ext = path.extname(req.path);
+    const mimeTypes: Record<string, string> = {
+      ".js": "application/javascript",
+      ".css": "text/css",
+      ".html": "text/html",
+      ".json": "application/json",
+      ".svg": "image/svg+xml",
+    };
+    const contentType = mimeTypes[ext];
+    if (!contentType) return next();
+
+    res.setHeader("Content-Encoding", "br");
+    res.setHeader("Content-Type", contentType + "; charset=UTF-8");
+    res.setHeader("Cache-Control", "public, max-age=31536000, immutable");
+    res.setHeader("CDN-Cache-Control", "public, s-maxage=31536000");
+    res.setHeader("Vary", "Accept-Encoding");
+    res.sendFile(brPath);
+  });
+
   // Hashed assets get immutable cache (1 year) — express.static handles MIME types reliably
   app.use("/assets", express.static(path.join(distPath, "assets"), {
     etag: true,

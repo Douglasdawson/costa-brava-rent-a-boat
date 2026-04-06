@@ -2,6 +2,7 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import path from "path";
 import runtimeErrorOverlay from "@replit/vite-plugin-runtime-error-modal";
+import compression from "vite-plugin-compression";
 
 export default defineConfig({
   plugins: [
@@ -15,6 +16,12 @@ export default defineConfig({
           ),
         ]
       : []),
+    // Pre-compress assets with Brotli at build time (10-20% smaller than gzip)
+    compression({
+      algorithm: "brotliCompress",
+      ext: ".br",
+      threshold: 1024,
+    }),
   ],
   resolve: {
     alias: {
@@ -47,7 +54,7 @@ export default defineConfig({
           if (id.includes("node_modules/date-fns")) {
             return "vendor-date";
           }
-          if (id.includes("node_modules/lucide-react") || id.includes("node_modules/react-icons")) {
+          if (id.includes("node_modules/lucide-react")) {
             return "vendor-icons";
           }
           if (id.includes("node_modules/zod") || id.includes("node_modules/react-hook-form") || id.includes("node_modules/@hookform/")) {

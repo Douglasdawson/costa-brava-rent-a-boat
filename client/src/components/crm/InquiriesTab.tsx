@@ -54,7 +54,7 @@ import {
   Trash2,
   MessageSquare,
 } from "lucide-react";
-import { SiWhatsapp } from "react-icons/si";
+import { SiWhatsapp } from "@/components/icons/BrandIcons";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { format } from "date-fns";
 import { es } from "date-fns/locale";

@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { CalendarIcon, Check, ChevronDown, ChevronLeft, ChevronUp, Clock, Gift, Loader2, Package, Star, Tag, Users, X } from "lucide-react";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Calendar } from "@/components/ui/calendar";
-import { SiWhatsapp } from "react-icons/si";
+import { SiWhatsapp } from "@/components/icons/BrandIcons";
 import type { Boat } from "@shared/schema";
 import { EXTRA_PACKS } from "@shared/boatData";
 import type { Translations } from "@/lib/translations";

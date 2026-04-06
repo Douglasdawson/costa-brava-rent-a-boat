@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { CalendarIcon, Check, ClipboardList, Clock, Loader2, Star, Users, X } from "lucide-react";
-import { SiWhatsapp } from "react-icons/si";
+import { SiWhatsapp } from "@/components/icons/BrandIcons";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Calendar } from "@/components/ui/calendar";
 import { Button } from "@/components/ui/button";

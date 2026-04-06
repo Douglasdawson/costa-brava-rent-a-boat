@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Phone, Mail, MapPin, Clock, Shield, ShieldCheck, FileCheck, Map, Lock } from "lucide-react";
 import logoHorizontal from "@/assets/real-photos/logo-horizontal.png";
 import LogoCostaBravaFooter from "@/components/icons/LogoCostaBravaFooter";
-import { SiWhatsapp, SiInstagram, SiFacebook, SiTiktok } from "react-icons/si";
+import { SiWhatsapp, SiInstagram, SiFacebook, SiTiktok } from "@/components/icons/BrandIcons";
 import { useTranslations } from "@/lib/translations";
 import { useLanguage } from "@/hooks/use-language";
 import CentresNLCatalunyaLogo from "@/components/icons/CentresNLCatalunyaLogo";

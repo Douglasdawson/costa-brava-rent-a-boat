@@ -413,13 +413,16 @@ app.use((req: Request, res: Response, next: NextFunction) => {
     startSeoWorker();
   });
 
-  // Graceful shutdown
+  // Graceful shutdown — guard against multiple calls
+  let shutdownCalled = false;
   const shutdown = () => {
+    if (shutdownCalled) return;
+    shutdownCalled = true;
     log("Shutting down gracefully...");
     server.close(() => {
       stopScheduler();
       stopSeoWorker();
-      pool.end().then(() => process.exit(0));
+      pool.end().then(() => process.exit(0)).catch(() => process.exit(0));
     });
     setTimeout(() => process.exit(1), 10000);
   };

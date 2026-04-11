@@ -336,7 +336,11 @@ function FleetSection() {
         imageSrcSet: (boat.imageGallery?.[0]?.trim()) ? '' : (boat.imageUrl ? getBoatImageSrcSet(boat.imageUrl) : ''),
         imageTablet: (boat.imageGalleryTablet?.[0]?.trim()) || (boat.imageGallery?.[0]?.trim()) || undefined,
         imageMobile: (boat.imageGalleryMobile?.[0]?.trim()) || (boat.imageGallery?.[0]?.trim()) || undefined,
-        imageAlt: `Alquiler barco ${boat.name} ${boat.requiresLicense ? "con licencia" : "sin licencia"} en Blanes Costa Brava 2026 - Capacidad ${boat.capacity} personas`,
+        imageAlt: (boat.requiresLicense ? t.boats.imageAltWithLicense : t.boats.imageAltNoLicense)
+          ?.replace('{name}', boat.name)
+          .replace('{capacity}', String(boat.capacity))
+          .replace('{price}', String(basePrice))
+          || `${boat.name} - ${boat.capacity} pax - Blanes, Costa Brava`,
         capacity: boat.capacity,
         requiresLicense: boat.requiresLicense,
         description: (() => {

@@ -1561,9 +1561,9 @@ export interface Translations {
 
   // Fleet Scarcity Badges
   scarcity?: {
-    soldOutSaturday: string;
+    soldOutToday: string;
     onlyXSlots: string;
-    availableSaturday: string;
+    availableToday: string;
   };
 
   // Season Urgency Banner

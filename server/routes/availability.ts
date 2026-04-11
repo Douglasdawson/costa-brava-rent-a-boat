@@ -215,21 +215,18 @@ export function registerAvailabilityRoutes(app: Express) {
   // Fleet-wide scarcity data for the next Saturday (used by boat cards)
   app.get("/api/fleet-availability", async (req, res) => {
     try {
-      // Find next Saturday (in Spain timezone)
+      // Use today's date in Spain timezone
       const now = new Date();
       const madridDate = new Date(
         now.toLocaleString("en-US", { timeZone: "Europe/Madrid" })
       );
-      const dayOfWeek = madridDate.getDay(); // 0=Sun, 6=Sat
-      const daysUntilSaturday = dayOfWeek === 6 ? 7 : (6 - dayOfWeek);
-      const nextSaturday = new Date(madridDate);
-      nextSaturday.setDate(madridDate.getDate() + daysUntilSaturday);
-      nextSaturday.setHours(0, 0, 0, 0);
+      const today = new Date(madridDate);
+      today.setHours(0, 0, 0, 0);
 
-      const dateStr = `${nextSaturday.getFullYear()}-${String(nextSaturday.getMonth() + 1).padStart(2, "0")}-${String(nextSaturday.getDate()).padStart(2, "0")}`;
+      const dateStr = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, "0")}-${String(today.getDate()).padStart(2, "0")}`;
 
       // Off-season check
-      const month = nextSaturday.getMonth() + 1;
+      const month = today.getMonth() + 1;
       if (month < SEASON_START_MONTH || month > SEASON_END_MONTH) {
         return res.json({ date: dateStr, boats: {} });
       }
@@ -241,7 +238,7 @@ export function registerAvailabilityRoutes(app: Express) {
       const boatsAvailability: Record<string, { availableSlots: number; totalSlots: number }> = {};
 
       for (const boat of activeBoats) {
-        const dayBookings = await storage.getDailyBookings(boat.id, nextSaturday);
+        const dayBookings = await storage.getDailyBookings(boat.id, today);
 
         // Build booked intervals in Madrid timezone
         const bookedIntervals = dayBookings.map((b) => {

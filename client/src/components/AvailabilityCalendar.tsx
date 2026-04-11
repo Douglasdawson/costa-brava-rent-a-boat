@@ -364,8 +364,28 @@ export default function AvailabilityCalendar({
   // ---------------------------------------------------------------------------
   // Render
   // ---------------------------------------------------------------------------
+  const selectDayLabel: Record<string, string> = {
+    es: "Selecciona un día para ver los horarios disponibles",
+    ca: "Selecciona un dia per veure els horaris disponibles",
+    en: "Select a day to see available time slots",
+    fr: "Sélectionnez un jour pour voir les créneaux disponibles",
+    de: "Wählen Sie einen Tag, um verfügbare Zeitfenster zu sehen",
+    nl: "Selecteer een dag om beschikbare tijdsloten te zien",
+    it: "Seleziona un giorno per vedere gli orari disponibili",
+    ru: "Выберите день, чтобы увидеть доступные временные слоты",
+  };
+
+  const showSlotPanel = boatId && onSlotSelect;
+
   return (
-    <div className="w-full max-w-md mx-auto select-none">
+    <div className={cn(
+      "w-full select-none",
+      showSlotPanel
+        ? "max-w-md lg:max-w-none mx-auto lg:grid lg:grid-cols-[minmax(0,28rem)_minmax(0,1fr)] lg:gap-8"
+        : "max-w-md mx-auto"
+    )}>
+      {/* Left column: calendar + legend */}
+      <div>
       {/* Header: month navigation */}
       <div className="flex items-center justify-between mb-4 px-1">
         <button
@@ -488,38 +508,47 @@ export default function AvailabilityCalendar({
           {legend.offSeason}
         </div>
       </div>
+      </div>
 
-      {/* Slot panel (legacy compat for BoatDetailPage) */}
-      {boatId && onSlotSelect && effectiveSelected && selectedDaySlots.length > 0 && (
-        <div className="mt-4 px-1">
-          <p className="text-sm font-medium mb-2">
-            {LEGEND_LABELS[lang]?.available || "Available"} - {effectiveSelected.toLocaleDateString(lang)}:
-          </p>
-          <div className="grid grid-cols-3 sm:grid-cols-5 gap-1.5">
-            {selectedDaySlots.map((slot) => {
-              const dateStr = toDateKey(
-                effectiveSelected.getFullYear(),
-                effectiveSelected.getMonth() + 1,
-                effectiveSelected.getDate()
-              );
-              return (
-                <button
-                  key={slot.time}
-                  type="button"
-                  disabled={!slot.available}
-                  onClick={() => slot.available && onSlotSelect(dateStr, slot.time)}
-                  className={cn(
-                    "py-1.5 px-2 rounded-md text-sm text-center transition-colors",
-                    slot.available
-                      ? "bg-primary/5 text-primary border border-primary/20 hover:bg-primary hover:text-white"
-                      : "bg-red-50 text-red-400 border border-red-200 cursor-not-allowed"
-                  )}
-                >
-                  {slot.time}
-                </button>
-              );
-            })}
-          </div>
+      {/* Right column: slot panel */}
+      {showSlotPanel && (
+        <div className="mt-4 lg:mt-0 px-1 lg:px-0">
+          {effectiveSelected && selectedDaySlots.length > 0 ? (
+            <>
+              <p className="text-sm font-medium mb-2">
+                {LEGEND_LABELS[lang]?.available || "Available"} - {effectiveSelected.toLocaleDateString(lang)}:
+              </p>
+              <div className="grid grid-cols-3 sm:grid-cols-5 lg:grid-cols-3 gap-1.5">
+                {selectedDaySlots.map((slot) => {
+                  const dateStr = toDateKey(
+                    effectiveSelected.getFullYear(),
+                    effectiveSelected.getMonth() + 1,
+                    effectiveSelected.getDate()
+                  );
+                  return (
+                    <button
+                      key={slot.time}
+                      type="button"
+                      disabled={!slot.available}
+                      onClick={() => slot.available && onSlotSelect(dateStr, slot.time)}
+                      className={cn(
+                        "py-1.5 px-2 rounded-md text-sm text-center transition-colors",
+                        slot.available
+                          ? "bg-primary/5 text-primary border border-primary/20 hover:bg-primary hover:text-white"
+                          : "bg-red-50 text-red-400 border border-red-200 cursor-not-allowed"
+                      )}
+                    >
+                      {slot.time}
+                    </button>
+                  );
+                })}
+              </div>
+            </>
+          ) : (
+            <p className="text-sm text-muted-foreground hidden lg:block">
+              {selectDayLabel[lang] || selectDayLabel.en}
+            </p>
+          )}
         </div>
       )}
     </div>

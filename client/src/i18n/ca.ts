@@ -71,6 +71,8 @@ export const ca: Translations = {
     bestForSundeck: 'Millor solàrium',
     bestForFamilies: 'Favorit famílies',
     bestForPremium: 'Premium sense llicència',
+    imageAltNoLicense: 'Lloguer vaixell {name} sense titol a Blanes, Costa Brava — {capacity} persones, des de {price}€',
+    imageAltWithLicense: 'Lloguer vaixell {name} amb titol a Blanes, Costa Brava — {capacity} persones, des de {price}€',
   },
   features: {
     title: 'Per què triar Costa Brava Rent a Boat',
@@ -571,9 +573,9 @@ export const ca: Translations = {
     readyForAdventure: 'T\'ho perdràs?',
     bookNowCTA: 'Consulta la disponibilitat del {boatName} i reserva el teu dia a la Costa Brava',
     pricesBySeason: 'Preus per Temporada',
-    seasonLow: 'Temporada BAIXA',
-    seasonMid: 'Temporada MITJA',
-    seasonHigh: 'Temporada ALTA',
+    seasonLow: 'Baixa',
+    seasonMid: 'Mitja',
+    seasonHigh: 'Alta',
     periodLow: 'Abril-Juny, Setembre-Octubre',
     periodMid: 'Juliol',
     periodHigh: 'Agost',
@@ -1492,9 +1494,9 @@ export const ca: Translations = {
   },
 
   scarcity: {
-    soldOutSaturday: 'Esgotat per al dissabte',
-    onlyXSlots: 'Només {count} llocs el dissabte',
-    availableSaturday: 'Disponible el dissabte',
+    soldOutToday: 'Esgotat avui',
+    onlyXSlots: 'Només {count} llocs avui',
+    availableToday: 'Disponible avui',
   },
 
   seasonBanner: {

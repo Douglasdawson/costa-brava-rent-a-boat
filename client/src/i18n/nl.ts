@@ -71,6 +71,8 @@ export const nl: Translations = {
     bestForSundeck: 'Beste zonnedek',
     bestForFamilies: 'Favoriet gezinnen',
     bestForPremium: 'Premium zonder vaarbewijs',
+    imageAltNoLicense: 'Boot huren {name} zonder vaarbewijs in Blanes, Costa Brava — {capacity} personen, vanaf {price}€',
+    imageAltWithLicense: 'Boot huren {name} met vaarbewijs in Blanes, Costa Brava — {capacity} personen, vanaf {price}€',
   },
   features: {
     title: 'Waarom Kiezen voor Costa Brava Rent a Boat',
@@ -571,9 +573,9 @@ export const nl: Translations = {
     readyForAdventure: 'Wil je dit missen?',
     bookNowCTA: 'Bekijk beschikbaarheid van de {boatName} en boek je Costa Brava dag',
     pricesBySeason: 'Prijzen per Seizoen',
-    seasonLow: 'LAAG Seizoen',
-    seasonMid: 'MID Seizoen',
-    seasonHigh: 'HOOG Seizoen',
+    seasonLow: 'Laag',
+    seasonMid: 'Mid',
+    seasonHigh: 'Hoog',
     periodLow: 'April-Juni, September-Oktober',
     periodMid: 'Juli',
     periodHigh: 'Augustus',
@@ -1492,9 +1494,9 @@ export const nl: Translations = {
   },
 
   scarcity: {
-    soldOutSaturday: 'Uitverkocht voor zaterdag',
-    onlyXSlots: 'Nog {count} plaatsen zaterdag',
-    availableSaturday: 'Beschikbaar zaterdag',
+    soldOutToday: 'Vandaag uitverkocht',
+    onlyXSlots: 'Nog {count} plaatsen vandaag',
+    availableToday: 'Vandaag beschikbaar',
   },
 
   seasonBanner: {

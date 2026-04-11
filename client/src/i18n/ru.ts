@@ -71,6 +71,8 @@ export const ru: Translations = {
     bestForSundeck: 'Лучшая палуба',
     bestForFamilies: 'Для семей',
     bestForPremium: 'Премиум без лицензии',
+    imageAltNoLicense: 'Аренда лодки {name} без лицензии в Бланес, Коста Брава — {capacity} человек, от {price}€',
+    imageAltWithLicense: 'Аренда лодки {name} с лицензией в Бланес, Коста Брава — {capacity} человек, от {price}€',
   },
   features: {
     title: 'Почему Выбрать Costa Brava Rent a Boat',
@@ -571,9 +573,9 @@ export const ru: Translations = {
     readyForAdventure: 'Вы это пропустите?',
     bookNowCTA: 'Проверьте наличие {boatName} и забронируйте день на Коста-Браве',
     pricesBySeason: 'Цены по сезонам',
-    seasonLow: 'НИЗКИЙ сезон',
-    seasonMid: 'СРЕДНИЙ сезон',
-    seasonHigh: 'ВЫСОКИЙ сезон',
+    seasonLow: 'Низкий',
+    seasonMid: 'Средний',
+    seasonHigh: 'Высокий',
     periodLow: 'Апрель-Июнь, Сентябрь-Октябрь',
     periodMid: 'Июль',
     periodHigh: 'Август',
@@ -1492,9 +1494,9 @@ export const ru: Translations = {
   },
 
   scarcity: {
-    soldOutSaturday: 'Распродано на субботу',
-    onlyXSlots: 'Только {count} мест в субботу',
-    availableSaturday: 'Доступно в субботу',
+    soldOutToday: 'Распродано сегодня',
+    onlyXSlots: 'Только {count} мест сегодня',
+    availableToday: 'Доступно сегодня',
   },
 
   seasonBanner: {

@@ -71,6 +71,8 @@ export const en: Translations = {
     bestForSundeck: 'Best sundeck',
     bestForFamilies: 'Family favourite',
     bestForPremium: 'Premium no-licence',
+    imageAltNoLicense: 'Rent {name} boat without license in Blanes, Costa Brava — {capacity} people, from {price}€',
+    imageAltWithLicense: 'Rent {name} boat with license in Blanes, Costa Brava — {capacity} people, from {price}€',
   },
   features: {
     title: 'Why Choose Costa Brava Rent a Boat',
@@ -571,9 +573,9 @@ export const en: Translations = {
     readyForAdventure: 'Don\'t miss out!',
     bookNowCTA: 'Check availability for the {boatName} and book your Costa Brava day',
     pricesBySeason: 'Prices by Season',
-    seasonLow: 'LOW Season',
-    seasonMid: 'MID Season',
-    seasonHigh: 'HIGH Season',
+    seasonLow: 'Low',
+    seasonMid: 'Mid',
+    seasonHigh: 'High',
     periodLow: 'April-June, September-October',
     periodMid: 'July',
     periodHigh: 'August',
@@ -1545,9 +1547,9 @@ export const en: Translations = {
   },
 
   scarcity: {
-    soldOutSaturday: 'Sold out for Saturday',
-    onlyXSlots: 'Only {count} slots Saturday',
-    availableSaturday: 'Available Saturday',
+    soldOutToday: 'Sold out today',
+    onlyXSlots: 'Only {count} slots today',
+    availableToday: 'Available today',
   },
 
   seasonBanner: {

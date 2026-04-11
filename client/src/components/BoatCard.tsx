@@ -229,7 +229,7 @@ function BoatCard({
             </span>
           )}
         </div>
-        {!requiresLicense && (
+        {!requiresLicense && !features.some(f => /combustible\s*no/i.test(f) || /fuel\s*not/i.test(f)) && (
           <div className="absolute top-3 right-3 inline-flex items-center gap-1.5 bg-green-600/90 backdrop-blur-sm text-white text-xs font-semibold px-2.5 py-1 rounded-full">
             <Fuel className="w-3 h-3" />
             {t.boatDetail.fuelIncluded}
@@ -302,7 +302,7 @@ function BoatCard({
             {scarcityData.availableSlots === 0 ? (
               <>
                 <span className="w-1.5 h-1.5 rounded-full bg-red-500 flex-shrink-0 urgency-dot-pulse" />
-                <span className="text-red-600">{t.scarcity?.soldOutSaturday}</span>
+                <span className="text-red-600">{t.scarcity?.soldOutToday}</span>
               </>
             ) : scarcityData.availableSlots <= 3 ? (
               <>
@@ -314,7 +314,7 @@ function BoatCard({
             ) : (
               <>
                 <span className="w-1.5 h-1.5 rounded-full bg-green-500 flex-shrink-0" />
-                <span className="text-green-600">{t.scarcity?.availableSaturday}</span>
+                <span className="text-green-600">{t.scarcity?.availableToday}</span>
               </>
             )}
           </div>

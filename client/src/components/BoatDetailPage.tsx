@@ -653,6 +653,8 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
   // SEO data for this boat
   const lowestPrice = boatData.pricing ? Math.min(...Object.values(boatData.pricing.BAJA.prices)) : 0;
   const requiresLicense = boatData.subtitle?.toLowerCase().includes("con licencia") ?? boatData.requiresLicense;
+  const fuelNotIncluded = boatData.features?.some((f: string) => /combustible\s*no/i.test(f) || /fuel\s*not/i.test(f)) ?? false;
+  const fuelIncluded = !requiresLicense && !fuelNotIncluded;
   const capacity = boatData.specifications ? parseInt(boatData.specifications.capacity?.split(' ')[0] || String(boatData.capacity)) : boatData.capacity;
   
   const licenseLabels: Record<string, [string, string]> = {
@@ -1042,7 +1044,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
               <p className="text-foreground/80 leading-relaxed">
                 {t.boatDescriptions?.[boatId] || boatData.description}
               </p>
-              {!requiresLicense && (
+              {fuelIncluded && (
                 <div className="mt-4 p-4 bg-primary/5 rounded-lg">
                   <p className="text-foreground font-medium flex items-center gap-2">
                     <Fuel className="w-5 h-5" />
@@ -1322,7 +1324,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                 <p>• {requiresLicense ? t.boatDetail.licenseRequired : t.boatDetail.noLicenseRequired}</p>
                 <p>• {t.boatDetail.idealForGroups.replace('{capacity}', String(capacity))}</p>
                 <p>• {t.boatDetail.perfectExplore}</p>
-                <p>• {requiresLicense ? t.boatDetail.fuelNotIncluded : t.boatDetail.fuelInsuranceIncluded}</p>
+                <p>• {fuelIncluded ? t.boatDetail.fuelInsuranceIncluded : t.boatDetail.fuelNotIncluded}</p>
                 {boatData.specifications?.deposit && <p>• {t.boatDetail.specDeposit} {boatData.specifications.deposit}</p>}
               </div>
               {/* What to bring section */}
@@ -1539,7 +1541,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
               <span className="text-sm text-muted-foreground">{t.boats.from}</span>
               <span className="text-2xl font-bold text-primary">{lowestPrice}€</span>
             </div>
-            {!requiresLicense && (
+            {fuelIncluded && (
               <p className="text-xs text-muted-foreground flex items-center gap-1">
                 <Fuel className="w-3 h-3" />
                 {translateBoatText("Gasolina incluida", language)}

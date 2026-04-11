@@ -519,6 +519,10 @@ export default function LocationBlanesPage() {
             <CardContent className="pt-6">
               <h3 className="font-semibold text-lg mb-4">Explora nuestros servicios desde Blanes</h3>
               <div className="flex flex-wrap gap-3">
+                <a href={localizedPath("locationCostaBrava")} className="text-primary hover:underline flex items-center gap-1">
+                  <ChevronRight className="w-4 h-4" />
+                  Explorar toda la Costa Brava en barco
+                </a>
                 <a href={localizedPath("categoryLicenseFree")} className="text-primary hover:underline flex items-center gap-1">
                   <ChevronRight className="w-4 h-4" />
                   Alquiler de barcos sin licencia

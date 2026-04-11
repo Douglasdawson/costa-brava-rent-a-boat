@@ -37,6 +37,18 @@ export default function RelatedLocationsSection({ currentLocation }: RelatedLoca
 
   const allLocations: RelatedLocation[] = [
     {
+      id: "costaBrava",
+      name: "Alquiler Barcos Costa Brava",
+      url: localizedPath("locationCostaBrava"),
+      description: "Descubre toda la costa en barco. Rutas, calas y destinos desde el Puerto de Blanes en el corazon de la Costa Brava.",
+      duration: "Region completa",
+      highlights: ["Calas virginales", "Rutas guiadas", "8 barcos"],
+      icon: Compass,
+      color: "text-primary",
+      bgColor: "bg-primary/5",
+      group: "boat"
+    },
+    {
       id: "blanes",
       name: "Alquiler Barcos Blanes",
       url: localizedPath("locationBlanes"),
@@ -170,6 +182,7 @@ export default function RelatedLocationsSection({ currentLocation }: RelatedLoca
   ];
 
   const locationMap: { [key: string]: string } = {
+    'costa-brava': 'costaBrava',
     'blanes': 'blanes',
     'lloret': 'lloret',
     'tossa': 'tossa',

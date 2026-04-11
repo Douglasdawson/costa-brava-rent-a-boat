@@ -351,6 +351,10 @@ export default function LocationTossaPage() {
             <CardContent className="pt-6">
               <h3 className="font-semibold text-lg mb-4">Servicios y destinos relacionados</h3>
               <div className="flex flex-wrap gap-3">
+                <a href={localizedPath("locationCostaBrava")} className="text-primary hover:underline flex items-center gap-1">
+                  <ChevronRight className="w-4 h-4" />
+                  Mas destinos en la Costa Brava
+                </a>
                 <a href={localizedPath("categoryLicensed")} className="text-primary hover:underline flex items-center gap-1">
                   <ChevronRight className="w-4 h-4" />
                   Barcos con licencia para llegar a Tossa

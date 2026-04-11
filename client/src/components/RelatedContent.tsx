@@ -24,9 +24,9 @@ const TYPE_STYLES: Record<ContentType, { label: string; labelEn: string; classNa
 
 const RELATED_CONTENT: Record<string, RelatedItemDef[]> = {
   locationBlanes: [
+    { title: "Explorar toda la Costa Brava en barco", description: "Rutas, calas y destinos desde el Puerto de Blanes", pageKey: "locationCostaBrava", type: "ubicacion" },
     { title: "Las 10 mejores calas de Blanes en barco", description: "Descubre las calas mas bonitas accesibles solo desde el mar", pageKey: "blogDetail", param: "mejores-calas-blanes-accesibles-en-barco", type: "blog" },
     { title: "Excursion de snorkel en barco", description: "Las mejores calas para snorkel cerca de Blanes", pageKey: "activitySnorkel", type: "actividad" },
-    { title: "Barcos para familias", description: "La experiencia perfecta para toda la familia", pageKey: "activityFamilies", type: "actividad" },
     { title: "Rutas en barco desde Blanes", description: "5 rutas con mapas interactivos", pageKey: "routes", type: "guia" },
   ],
   locationLloret: [
@@ -35,9 +35,16 @@ const RELATED_CONTENT: Record<string, RelatedItemDef[]> = {
     { title: "Barcos sin licencia", description: "5 barcos desde 70EUR/h, gasolina incluida", pageKey: "categoryLicenseFree", type: "guia" },
   ],
   locationTossa: [
+    { title: "Mas destinos en la Costa Brava", description: "Descubre todas las rutas y calas de la Costa Brava en barco", pageKey: "locationCostaBrava", type: "ubicacion" },
     { title: "Mejores calas Costa Brava en barco", description: "Las 10 calas mas espectaculares entre Blanes y Tossa", pageKey: "blogDetail", param: "mejores-calas-costa-brava-en-barco", type: "blog" },
     { title: "Barcos con licencia", description: "Llega a Tossa en 30 min con nuestros barcos potentes", pageKey: "categoryLicensed", type: "guia" },
     { title: "Pesca desde barco", description: "Pesca deportiva en las aguas de la Costa Brava", pageKey: "activityFishing", type: "actividad" },
+  ],
+  locationCostaBrava: [
+    { title: "Alquiler barcos en Blanes", description: "Puerto base con parking gratuito y todos los servicios", pageKey: "locationBlanes", type: "ubicacion" },
+    { title: "Excursion a Lloret de Mar", description: "Playas y calas espectaculares a 25 min en barco", pageKey: "locationLloret", type: "ubicacion" },
+    { title: "Navega hasta Tossa de Mar", description: "Vila Vella medieval y calas cristalinas a 1h", pageKey: "locationTossa", type: "ubicacion" },
+    { title: "Mejores calas Costa Brava en barco", description: "Las 10 calas mas espectaculares entre Blanes y Tossa", pageKey: "blogDetail", param: "mejores-calas-costa-brava-en-barco", type: "blog" },
   ],
   activitySnorkel: [
     { title: "Mejores calas de Blanes en barco", description: "Calas con aguas cristalinas perfectas para snorkel", pageKey: "blogDetail", param: "mejores-calas-blanes-accesibles-en-barco", type: "blog" },

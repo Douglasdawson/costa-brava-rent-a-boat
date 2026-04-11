@@ -299,6 +299,9 @@ export default function LocationTemplate({ config, extraCards, afterFaq }: Locat
               <CardContent>
                 <p className="text-muted-foreground mb-4">{s.boatDestinationsDesc}</p>
                 <div className="flex flex-wrap gap-3">
+                  <Link href={localizedPath("locationCostaBrava")}>
+                    <Badge variant="outline" className="cursor-pointer hover:bg-primary/10">Costa Brava</Badge>
+                  </Link>
                   <Link href={localizedPath("locationLloret")}>
                     <Badge variant="outline" className="cursor-pointer hover:bg-primary/10">Lloret de Mar - 25 min</Badge>
                   </Link>

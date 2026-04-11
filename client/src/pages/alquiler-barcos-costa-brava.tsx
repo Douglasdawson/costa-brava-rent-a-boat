@@ -10,6 +10,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import FleetSection from "@/components/FleetSection";
 import RelatedLocationsSection from "@/components/RelatedLocationsSection";
+import RelatedContent from "@/components/RelatedContent";
 import { SEO } from "@/components/SEO";
 import { useLanguage } from "@/hooks/use-language";
 import { useTranslations } from "@/lib/translations";
@@ -565,7 +566,9 @@ export default function LocationCostaBravaPage() {
         </div>
       </div>
 
-      <RelatedLocationsSection currentLocation="blanes" />
+      <RelatedLocationsSection currentLocation="costa-brava" />
+
+      <RelatedContent currentPage="locationCostaBrava" />
 
       <Footer />
     </div>

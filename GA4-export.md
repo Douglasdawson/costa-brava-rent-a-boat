@@ -1,6 +1,6 @@
 # GA4 Export — Costa Brava Rent a Boat
 
-**Ultima actualizacion:** 2026-04-06 16:39:54 UTC
+**Ultima actualizacion:** 2026-04-12 19:11:54 UTC
 
 ---
 
@@ -8,12 +8,12 @@
 
 | Metrica | Ultimas 24h | Ultimos 7 dias |
 |---------|-------------|----------------|
-| Sesiones | 18 | 95 |
-| Usuarios activos | 12 | 49 |
-| Nuevos usuarios | 9 | 47 |
-| Paginas vistas | 27 | 171 |
-| Tasa de rebote | 22.2% | 13.7% |
-| Duracion media sesion | 14m 54s | 9m 24s |
+| Sesiones | 30 | 112 |
+| Usuarios activos | 18 | 61 |
+| Nuevos usuarios | 13 | 56 |
+| Paginas vistas | 74 | 216 |
+| Tasa de rebote | 16.7% | 17.0% |
+| Duracion media sesion | 12m 26s | 14m 55s |
 
 ---
 
@@ -21,20 +21,21 @@
 
 | # | Canal | Sesiones | Usuarios |
 |---|-------|----------|----------|
-| 1 | Direct | 11 | 6 |
-| 2 | Organic Search | 3 | 2 |
-| 3 | Organic Social | 3 | 3 |
+| 1 | Direct | 21 | 11 |
+| 2 | Organic Search | 5 | 5 |
+| 3 | Organic Social | 2 | 2 |
 | 4 | Referral | 1 | 1 |
+| 5 | Unassigned | 1 | 1 |
 
 ## Trafico por Fuente (ultimos 7 dias)
 
 | # | Canal | Sesiones | Usuarios |
 |---|-------|----------|----------|
-| 1 | Direct | 49 | 20 |
-| 2 | Organic Search | 21 | 13 |
-| 3 | Organic Social | 17 | 13 |
-| 4 | Referral | 7 | 4 |
-| 5 | Unassigned | 1 | 1 |
+| 1 | Direct | 68 | 31 |
+| 2 | Organic Search | 25 | 16 |
+| 3 | Organic Social | 10 | 10 |
+| 4 | Referral | 5 | 3 |
+| 5 | Unassigned | 4 | 3 |
 
 ---
 
@@ -42,16 +43,16 @@
 
 | # | Pagina | Visitas | Usuarios | Duracion media |
 |---|--------|---------|----------|----------------|
-| 1 | /es/ | 88 | 30 | 10m 58s |
-| 2 | /en/ | 25 | 9 | 4m 53s |
-| 3 | /es/login | 10 | 1 | 0m 5s |
-| 4 | /de/ | 6 | 2 | 12m 21s |
-| 5 | /es | 5 | 1 | 34m 54s |
-| 6 | /es/barco/trimarchi-57s | 5 | 3 | 3m 53s |
-| 7 | /en | 4 | 1 | 6m 48s |
-| 8 | /fr/barco/trimarchi-57s | 4 | 2 | 6m 35s |
-| 9 | /de/boot/trimarchi-57s | 3 | 1 | 5m 57s |
-| 10 | /de/boot/mingolla-brava-19 | 2 | 1 | 2m 44s |
+| 1 | /es/ | 79 | 26 | 10m 1s |
+| 2 | /en/ | 36 | 14 | 4m 40s |
+| 3 | /de/ | 19 | 5 | 3m 42s |
+| 4 | /en/boat/excursion-privada | 6 | 2 | 11m 0s |
+| 5 | /es/barco/astec-480 | 6 | 3 | 0m 52s |
+| 6 | /es/login | 6 | 2 | 0m 4s |
+| 7 | /en/boat-rental-blanes | 5 | 3 | 3m 16s |
+| 8 | /es/barco/excursion-privada | 5 | 5 | 3m 5s |
+| 9 | /fr/ | 5 | 3 | 11m 22s |
+| 10 | /es/barco/solar-450 | 4 | 9 | 2m 3s |
 
 ---
 
@@ -59,17 +60,17 @@
 
 | Evento | Cantidad |
 |--------|----------|
-| whatsapp_click | 2 |
+| whatsapp_click | 3 |
 | phone_click | 0 |
-| booking_started | 0 |
+| booking_started | 2 |
 | purchase | 0 |
-| generate_lead | 0 |
+| generate_lead | 2 |
 
 ## Tasa de Conversion (ultimos 7 dias)
 
 | Metrica | Valor |
 |---------|-------|
-| Reservas iniciadas | 3 |
+| Reservas iniciadas | 4 |
 | Compras completadas | 0 |
 | Tasa de conversion | **0.0%** |
 

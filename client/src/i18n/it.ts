@@ -32,7 +32,7 @@ export const it: Translations = {
     clients: '+5000 clienti',
     insured: 'Assicurato',
     experience: '+5 anni di esp.',
-    freeCancellation: 'Cancellazione gratuita 48h',
+    freeCancellation: 'Cambio data gratuito',
     instantConfirmation: 'Conferma immediata',
     marqueeText: 'Noleggio Barche a Blanes | Con e Senza Patente | Carburante Incluso | Da 70\u20AC/ora',
     askWhatsApp: 'Chiedici su WhatsApp',
@@ -1320,7 +1320,7 @@ export const it: Translations = {
     googleReviews: 'su Google',
     happyCustomers: 'clienti soddisfatti',
     since2020: 'Dal 2020 a Blanes',
-    freeCancellation: 'Cancellazione gratuita 48h',
+    freeCancellation: 'Cambio data gratuito',
   },
 
   comparison: {
@@ -1433,7 +1433,7 @@ export const it: Translations = {
       {
         id: 'cancelacion',
         question: 'Qual è la politica di cancellazione?',
-        answer: 'Cancellazione flessibile: più di 48h prima = rimborso completo. 24-48h = rimborso del 50%. Meno di 24h = nessun rimborso. In caso di maltempo, riprogrammazione gratuita o rimborso totale.',
+        answer: 'Puoi cambiare la data della prenotazione senza costi con almeno 7 giorni di preavviso. Le cancellazioni non sono rimborsabili. In caso di maltempo, offriamo riprogrammazione completa senza costi.',
       },
       {
         id: 'donde-navegar',
@@ -1480,9 +1480,9 @@ export const it: Translations = {
 
   finalCta: {
     title: 'Ci stai ancora pensando?',
-    subtitle: 'Prenota ora e cancella gratis fino a 48h prima',
+    subtitle: 'Prenota ora con cambio data gratuito',
     cta: 'Prenota senza impegno',
-    trust: 'Cancellazione gratuita · Pagamento sicuro · Assicurazione inclusa',
+    trust: 'Cambio data gratuito · Pagamento sicuro · Assicurazione inclusa',
   },
 
   holdCountdown: {
@@ -1604,7 +1604,7 @@ export const it: Translations = {
     stepOf: "di",
   },
 
-  bookingTrust: { freeCancellation: 'Cancellazione gratuita 48h', securePayment: 'Pagamento sicuro', insuranceIncluded: 'Assicurazione inclusa' },
+  bookingTrust: { freeCancellation: 'Cambio data gratuito', securePayment: 'Pagamento sicuro', insuranceIncluded: 'Assicurazione inclusa' },
 
   boatDescriptions: {
     "solar-450": "Pensata per chi ama prendere il sole in mare. Il suo solarium imbottito e il piu ampio di tutta la flotta senza patente: ancorate in una cala dalle acque turchesi vicino a Blanes e rilassatevi come in nessun altro posto. Nessuna patente nautica necessaria — vi insegniamo a guidarla in 15 minuti. Carburante, assicurazione e dotazioni di sicurezza inclusi.",

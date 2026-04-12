@@ -374,7 +374,7 @@ const boatFaqTranslations: Record<string, {
     a4: (name, noLicense) =>
       `El alquiler incluye seguro a todo riesgo, equipo de seguridad homologado y formación previa.${noLicense ? " También incluye gasolina y, según disponibilidad, equipo de snorkel y paddle surf." : " El combustible se paga según consumo. Según disponibilidad, puede incluir extras como equipo de snorkel."}`,
     q5: "¿Cuál es la política de cancelación?",
-    a5: "Cancelación gratuita hasta 24 horas antes de la salida. En caso de mal tiempo, ofrecemos reprogramación completa sin coste.",
+    a5: "Puedes cambiar la fecha de tu reserva sin coste con un mínimo de 7 días de antelación. Las cancelaciones no son reembolsables. En caso de mal tiempo, ofrecemos reprogramación completa sin coste.",
   },
   en: {
     title: "Frequently asked questions about",
@@ -393,7 +393,7 @@ const boatFaqTranslations: Record<string, {
     a4: (name, noLicense) =>
       `The rental includes comprehensive insurance, certified safety equipment and a pre-departure briefing.${noLicense ? " It also includes fuel and, subject to availability, snorkelling and paddle surf gear." : " Fuel is charged based on consumption. Subject to availability, extras such as snorkelling gear may be included."}`,
     q5: "What is the cancellation policy",
-    a5: "Free cancellation up to 24 hours before departure. In case of bad weather, we offer full rescheduling at no cost.",
+    a5: "You can change your booking date at no cost with at least 7 days' notice. Cancellations are non-refundable. In case of bad weather, we offer full rescheduling at no cost.",
   },
   fr: {
     title: "Questions fréquentes sur le",
@@ -412,7 +412,7 @@ const boatFaqTranslations: Record<string, {
     a4: (name, noLicense) =>
       `La location comprend une assurance tous risques, un équipement de sécurité homologué et une formation préalable.${noLicense ? " Elle inclut également le carburant et, selon disponibilité, du matériel de snorkeling et paddle surf." : " Le carburant est facturé selon la consommation. Selon disponibilité, des extras comme le matériel de snorkeling peuvent être inclus."}`,
     q5: "Quelle est la politique d'annulation ?",
-    a5: "Annulation gratuite jusqu'à 24 heures avant le départ. En cas de mauvais temps, nous offrons une reprogrammation complète sans frais.",
+    a5: "Changement de date gratuit avec un minimum de 7 jours de préavis, sous réserve de disponibilité. Les annulations ne sont pas remboursables. En cas de mauvais temps, reprogrammation gratuite.",
   },
   de: {
     title: "Häufig gestellte Fragen zum",
@@ -431,7 +431,7 @@ const boatFaqTranslations: Record<string, {
     a4: (name, noLicense) =>
       `Die Miete beinhaltet Vollkaskoversicherung, zertifizierte Sicherheitsausrüstung und eine Einweisung vor der Abfahrt.${noLicense ? " Kraftstoff sowie nach Verfügbarkeit Schnorchel- und Paddle-Surf-Ausrüstung sind ebenfalls enthalten." : " Kraftstoff wird nach Verbrauch berechnet. Nach Verfügbarkeit können Extras wie Schnorchelausrüstung enthalten sein."}`,
     q5: "Wie lautet die Stornierungsrichtlinie?",
-    a5: "Kostenlose Stornierung bis 24 Stunden vor Abfahrt. Bei schlechtem Wetter bieten wir eine vollständige Umplanung ohne Kosten an.",
+    a5: "Kostenlose Umbuchung mit mindestens 7 Tagen Vorlauf, vorbehaltlich Verfügbarkeit. Stornierungen sind nicht erstattungsfähig. Bei schlechtem Wetter bieten wir kostenlose Umbuchung an.",
   },
   nl: {
     title: "Veelgestelde vragen over de",
@@ -450,7 +450,7 @@ const boatFaqTranslations: Record<string, {
     a4: (name, noLicense) =>
       `De huur omvat allriskverzekering, gecertificeerde veiligheidsuitrusting en een briefing voor vertrek.${noLicense ? " Ook brandstof en, afhankelijk van beschikbaarheid, snorkel- en paddle surf-uitrusting zijn inbegrepen." : " Brandstof wordt in rekening gebracht op basis van verbruik. Afhankelijk van beschikbaarheid kunnen extras zoals snorkeluitrusting inbegrepen zijn."}`,
     q5: "Wat is het annuleringsbeleid",
-    a5: "Gratis annulering tot 24 uur voor vertrek. Bij slecht weer bieden wij een volledige omboeking aan zonder extra kosten.",
+    a5: "Gratis datumwijziging met minimaal 7 dagen van tevoren, onder voorbehoud van beschikbaarheid. Annuleringen zijn niet restitueerbaar. Bij slecht weer bieden wij gratis omboeking aan.",
   },
   it: {
     title: "Domande frequenti sul",
@@ -469,7 +469,7 @@ const boatFaqTranslations: Record<string, {
     a4: (name, noLicense) =>
       `Il noleggio include assicurazione completa, equipaggiamento di sicurezza certificato e briefing pre-partenza.${noLicense ? " Include anche il carburante e, in base alla disponibilita, attrezzatura snorkeling e paddle surf." : " Il carburante viene addebitato in base al consumo. In base alla disponibilita, possono essere inclusi extra come attrezzatura snorkeling."}`,
     q5: "Qual e la politica di cancellazione",
-    a5: "Cancellazione gratuita fino a 24 ore prima della partenza. In caso di maltempo, offriamo una riprogrammazione completa senza costi.",
+    a5: "Cambio data gratuito con un minimo di 7 giorni di preavviso, soggetto a disponibilità. Le cancellazioni non sono rimborsabili. In caso di maltempo, riprogrammazione gratuita.",
   },
   ru: {
     title: "Chasto zadavaemye voprosy o",
@@ -488,7 +488,7 @@ const boatFaqTranslations: Record<string, {
     a4: (name, noLicense) =>
       `Arenda vklyuchaet polnuyu strakhovku, sertificirovannoe oborudovanie bezopasnosti i instruktazh pered otpravleniem.${noLicense ? " Takzhe vklyucheno toplivo i, pri nalichii, snaryazhenie dlya snorkelinga i paddle surf." : " Toplivo oplachivaetsya po rashodu. Pri nalichii mogut byt' vklyucheny dopolneniya, takie kak snaryazhenie dlya snorkelinga."}`,
     q5: "Kakova politika otmeny",
-    a5: "Besplatnaya otmena do 24 chasov do otpravleniya. V sluchae plokhoj pogody my predlagaem polnoe perenaplanirovanie bez dopolnitel'nykh zatrat.",
+    a5: "Besplatnoe izmenenie daty pri uvedomlenii za 7 dnej, pri nalichii mest. Otmeny ne podlezhat vozvratu. V sluchae plokhoj pogody — besplatnoe perenaplanirovanie.",
   },
   ca: {
     title: "Preguntes frequents sobre",
@@ -507,7 +507,7 @@ const boatFaqTranslations: Record<string, {
     a4: (name, noLicense) =>
       `El lloguer inclou asseguranca a tot risc, equip de seguretat homologat i formacio previa.${noLicense ? " Tambe inclou gasolina i, segons disponibilitat, equip de snorkel i paddle surf." : " El combustible es paga segons consum. Segons disponibilitat, pot incloure extres com equip de snorkel."}`,
     q5: "Quina es la politica de cancelacio",
-    a5: "Cancelacio gratuita fins a 24 hores abans de la sortida. En cas de mal temps, oferim reprogramacio completa sense cost.",
+    a5: "Canvi de data gratuit amb un minim de 7 dies d'antelacio, subjecte a disponibilitat. Les cancelacions no son reemborsables. En cas de mal temps, reprogramacio gratuita.",
   },
 };
 

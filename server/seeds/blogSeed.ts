@@ -10,116 +10,182 @@ interface BlogPostSeed extends InsertBlogPost {
 const blogPostsData: BlogPostSeed[] = [
   // ===== POST 1: Mejores Calas =====
   {
-    title: "Las 10 Mejores Calas de la Costa Brava para Visitar en Barco",
+    title: "Las 15 Mejores Calas de la Costa Brava que Solo Puedes Descubrir en Barco",
     slug: "mejores-calas-costa-brava-en-barco",
     category: "Destinos",
     author: "Costa Brava Rent a Boat",
     featuredImage: "/images/blog/calas-costa-brava.jpg",
-    metaDescription: "Descubre las 10 mejores calas de la Costa Brava accesibles en barco desde Blanes. Calas secretas, aguas cristalinas y rutas recomendadas.",
-    tags: ["mejores calas costa brava", "calas costa brava barco", "calas secretas", "calas blanes", "costa brava en barco"],
+    metaDescription: "Descubre las 15 mejores calas de la Costa Brava accesibles solo en barco. Mapa con coordenadas GPS, fotos y consejos para llegar desde Blanes.",
+    tags: ["mejores calas costa brava", "calas costa brava en barco", "calas secretas costa brava", "calas blanes", "costa brava en barco", "coordenadas GPS calas", "calas accesibles barco"],
     isPublished: true,
     _publishedAt: new Date("2026-03-16T10:00:00Z"),
-    excerpt: "Desde Cala Sant Francesc hasta Cala Giverola, te presentamos las 10 calas más espectaculares entre Blanes y Tossa de Mar que solo puedes disfrutar plenamente llegando en barco.",
-    content: `La Costa Brava esconde algunos de los rincones más bonitos del Mediterráneo, y la mejor forma de descubrirlos es navegando. Desde el puerto de Blanes, tienes acceso directo a decenas de calas de aguas cristalinas, muchas de ellas inaccesibles por tierra o con accesos complicados. En esta guía te presentamos las **10 mejores calas entre Blanes y Tossa de Mar** que puedes visitar alquilando un barco con nosotros.
+    excerpt: "Descubre las 15 calas más espectaculares entre Blanes y Tossa de Mar con coordenadas GPS exactas. Calas secretas accesibles solo en barco, consejos prácticos y rutas desde el Puerto de Blanes.",
+    titleByLang: {
+      es: "Las 15 Mejores Calas de la Costa Brava que Solo Puedes Descubrir en Barco",
+      en: "The 15 Best Costa Brava Coves You Can Only Discover by Boat",
+    },
+    excerptByLang: {
+      es: "Descubre las 15 calas más espectaculares entre Blanes y Tossa de Mar con coordenadas GPS exactas. Calas secretas accesibles solo en barco, consejos prácticos y rutas desde el Puerto de Blanes.",
+      en: "Discover the 15 most spectacular coves between Blanes and Tossa de Mar with exact GPS coordinates. Secret coves accessible only by boat, practical tips and routes from Puerto de Blanes.",
+    },
+    metaDescByLang: {
+      es: "Descubre las 15 mejores calas de la Costa Brava accesibles solo en barco. Mapa con coordenadas GPS, fotos y consejos para llegar desde Blanes.",
+      en: "Discover the 15 best Costa Brava coves accessible only by boat. GPS coordinates map, photos and tips for getting there from Blanes.",
+    },
+    content: `La Costa Brava esconde algunos de los rincones más espectaculares del Mediterráneo occidental, pero muchos de ellos tienen un secreto: solo se puede llegar por mar. Acantilados de 50 metros, pinos que crecen hasta el borde del agua y aguas tan transparentes que ves el fondo a 8 metros de profundidad. Todo esto está al alcance de cualquier persona con un barco, incluso sin licencia de navegación.
 
-## 1. Cala Sant Francesc
+En este artículo hemos recopilado las **15 calas más impresionantes entre Blanes y Tossa de Mar** — la zona sur de la Costa Brava — con coordenadas GPS exactas, nivel de dificultad, y consejos prácticos para que planifiques tu ruta desde el Puerto de Blanes.
 
-**Distancia desde el puerto de Blanes:** 1,5 km (5 minutos en barco)
+## Zona Blanes - Lloret de Mar
 
-Cala Sant Francesc es, para muchos, la joya escondida de Blanes. Rodeada de pinos y acantilados, esta cala ofrece aguas turquesas poco profundas ideales para el snorkel. Aunque se puede llegar a pie, el acceso en barco te permite disfrutarla sin las caminatas empinadas y llegar antes que la mayoría de visitantes.
+### 1. Cala Sa Forcanera (Blanes)
 
-**Por qué es especial:** Fue declarada una de las mejores playas de España. El fondo marino es espectacular para hacer snorkel.
+**Coordenadas GPS:** 41.6728°N, 2.7918°E
+**Acceso:** Solo por mar | **Dificultad:** Baja | **Tiempo desde Blanes:** 10 min
 
-**Barco recomendado:** Cualquiera de nuestros [barcos sin licencia](/barcos) como el [Solar 450](/barco/solar-450) o el [Remus 450](/barco/remus-450) son perfectos para esta escapada rápida.
+Probablemente la cala más recóndita de toda la Costa Brava. Con más de 15 hectáreas de extensión, Sa Forcanera está protegida por acantilados de más de 40 metros y no tiene ningún acceso terrestre práctico. El agua es de un azul turquesa que rivaliza con cualquier playa del Caribe.
 
-## 2. Cala Bona
+**Consejo:** Llega antes de las 11:00 en temporada alta. El fondeo es fácil sobre arena a 3-4 metros de profundidad. Lleva snorkel: la vida marina en las rocas laterales es espectacular.
 
-**Distancia desde el puerto de Blanes:** 2 km (7 minutos en barco)
+**Barco recomendado:** Cualquiera de nuestros [barcos sin licencia](/barcos) es perfecto para esta escapada rápida.
 
-Situada justo al lado de Cala Sant Francesc, Cala Bona es más pequeña y tranquila. Su nombre lo dice todo: es una cala "buena" en todos los sentidos. Aguas calmadas, arena fina y un entorno natural protegido.
+### 2. Cala Sant Francesc (Blanes)
 
-**Por qué es especial:** Al ser más pequeña, suele estar menos concurrida. Perfecta para fondear y darse un baño en completa tranquilidad.
+**Coordenadas GPS:** 41.6741°N, 2.7882°E
+**Acceso:** Mar y tierra (difícil) | **Dificultad:** Baja | **Tiempo desde Blanes:** 8 min
 
-**Barco recomendado:** El [Astec 400](/barco/astec-400) es ideal para parejas que buscan intimidad en esta cala.
+Aunque técnicamente se puede llegar andando por un sendero desde el Jardín Botánico de Marimurtra, la forma más cómoda es sin duda en barco. Rodeada de vegetación mediterránea y con arena fina, es una de las favoritas de los locales.
 
-## 3. Sa Palomera
+**Consejo:** Cuidado con las boyas de balizamiento en verano. Fondea en la parte derecha de la cala donde hay menos corriente.
 
-**Distancia desde el puerto de Blanes:** 0,3 km (2 minutos en barco)
+### 3. Cala del Senyor Ramón (Blanes-Lloret)
 
-La icónica roca de Sa Palomera marca la división entre las dos playas principales de Blanes. Desde el mar, las vistas de esta formación rocosa son impresionantes. No es una cala para fondear largo tiempo, pero sí para disfrutar del paisaje único desde una perspectiva que pocos conocen.
+**Coordenadas GPS:** 41.6890°N, 2.8185°E
+**Acceso:** Mar y tierra (difícil) | **Dificultad:** Baja | **Tiempo desde Blanes:** 15 min
 
-**Por qué es especial:** Es el símbolo de Blanes y el punto donde comienza oficialmente la Costa Brava. Las vistas desde el mar son inigualables.
+Una cala pequeña pero muy bonita, con un islote rocoso que la protege del oleaje. Fondo arenoso ideal para niños. Desde aquí se ven los jardines de Santa Clotilde arriba.
 
-## 4. Cala Treumal
+**Barco recomendado:** El [Astec 400](/barco/astec-400) es ideal para parejas que buscan intimidad.
 
-**Distancia desde el puerto de Blanes:** 3 km (10 minutos en barco)
+### 4. Cala Treumal (Lloret de Mar)
 
-Cala Treumal se encuentra en el límite entre Blanes y Lloret de Mar. Es una playa rodeada de vegetación exuberante con un chiringuito con encanto. Las aguas son tranquilas y poco profundas, perfectas para familias con niños.
+**Coordenadas GPS:** 41.6960°N, 2.8312°E
+**Acceso:** Mar y tierra | **Dificultad:** Baja | **Tiempo desde Blanes:** 18 min
 
-**Por qué es especial:** Combina naturaleza virgen con servicios. Puedes fondear el barco y acercarte nadando para tomar algo en el chiringuito.
+Dividida en dos por una formación rocosa, Treumal combina arena y roca con un agua excepcionalmente limpia. La parte sur es más tranquila y perfecta para anclar.
 
 **Barco recomendado:** El [Astec 480](/barco/astec-480) con su equipo de música bluetooth es genial para pasar una mañana relajada aquí.
 
-## 5. Playa de Santa Cristina
+### 5. Cala Boadella (Lloret de Mar)
 
-**Distancia desde el puerto de Blanes:** 3,5 km (12 minutos en barco)
+**Coordenadas GPS:** 41.6985°N, 2.8359°E
+**Acceso:** Mar y tierra | **Dificultad:** Baja | **Tiempo desde Blanes:** 20 min
 
-Santa Cristina es una playa de postal: arena dorada, pinos hasta la orilla y aguas de un azul intenso. La ermita de Santa Cristina en lo alto del acantilado completa un paisaje de ensueño.
+Escondida entre los jardines de Santa Clotilde y la Punta des Cards, Boadella es una media luna perfecta de arena dorada. La parte norte tiene zona nudista. Es una de las playas más fotogénicas de toda la costa.
 
-**Por qué es especial:** Considerada una de las playas más bonitas de la Costa Brava. El contraste entre el verde de los pinos y el azul del mar es fotográfico.
+**Consejo:** El fondeo es excelente sobre arena a 3-5 metros. Idónea para familias por su agua tranquila y protegida del viento de tramontana.
 
-## 6. Playa de Fenals
+### 6. Cala Banys (Lloret de Mar)
 
-**Distancia desde el puerto de Blanes:** 5 km (15 minutos en barco)
+**Coordenadas GPS:** 41.7005°N, 2.8410°E
+**Acceso:** Mar y tierra (sendero) | **Dificultad:** Media | **Tiempo desde Blanes:** 22 min
 
-Fenals es la playa más familiar de Lloret de Mar. Más tranquila que la playa principal de Lloret, ofrece buen fondeo y aguas cristalinas. Es un buen punto intermedio si planeas una ruta más larga hacia Tossa.
+Cala diminuta pero con un encanto especial: las ruinas de unos antiguos baños romanos se asoman sobre las rocas. El fondo es de roca y posidonia, ideal para snorkel. Aguas cristalinas incluso en pleno agosto.
 
-**Por qué es especial:** Aguas poco profundas y protegidas del oleaje. Ideal para familias y para descansar durante una ruta más larga.
+## Zona Lloret de Mar - Tossa de Mar
 
-## 7. Cala Canyelles
+### 7. Cala de los Frares (Lloret de Mar)
 
-**Distancia desde el puerto de Blanes:** 7 km (20 minutos en barco)
+**Coordenadas GPS:** 41.7123°N, 2.8585°E
+**Acceso:** Solo por mar | **Dificultad:** Baja | **Tiempo desde Blanes:** 30 min
 
-Cala Canyelles es la única cala entre Lloret y Tossa con un pequeño puerto deportivo. Sus aguas profundas y limpias la convierten en un paraíso para el snorkel y el submarinismo.
+Al pie del castillo de Sant Joan, esta cala minúscula es una joya escondida. El agua es tan transparente que parece que los barcos flotan en el aire. Fondo de arena y roca a poca profundidad.
 
-**Por qué es especial:** Ambiente más exclusivo y menos masificado que las playas de Lloret. Tiene un club náutico donde puedes amarrar temporalmente.
+### 8. Punta des Cards (Lloret de Mar)
+
+**Coordenadas GPS:** 41.7010°N, 2.8440°E
+**Acceso:** Solo por mar | **Dificultad:** Media | **Tiempo desde Blanes:** 25 min
+
+No es una cala en sí sino una punta rocosa con pequeñas piscinas naturales y un fondeo espectacular. El snorkel aquí es de los mejores de la zona: meros, sargos y pulpos entre las rocas.
+
+### 9. Cala d'en Carlos (Lloret - Tossa)
+
+**Coordenadas GPS:** 41.7155°N, 2.8780°E
+**Acceso:** Solo por mar | **Dificultad:** Media | **Tiempo desde Blanes:** 35 min
+
+Minúscula cala entre acantilados que pasa desapercibida incluso para los navegantes habituales. Perfecta para un baño en total soledad.
+
+### 10. Cala Futadera (Tossa de Mar)
+
+**Coordenadas GPS:** 41.7218°N, 2.9025°E
+**Acceso:** Mar (preferible) y tierra (muy difícil) | **Dificultad:** Media | **Tiempo desde Blanes:** 40 min
+
+Una de las calas más salvajes y vírgenes de la Costa Brava. Rodeada de bosque denso y acantilados, el acceso terrestre requiere una caminata empinada de 30 minutos. En barco, llegas directamente a su orilla de cantos rodados con agua color esmeralda.
+
+**Consejo:** Mar expuesta al sur. Consulta la previsión antes de ir. Si hay oleaje, es mejor evitarla.
 
 **Barco recomendado:** Para llegar cómodamente, te recomendamos el [Pacific Craft 625](/barco/pacific-craft-625) o la [Mingolla Brava 19](/barco/mingolla-brava-19) si tienes licencia.
 
-## 8. Platja de Lloret
+### 11. Cala Canyet (Tossa de Mar)
 
-**Distancia desde el puerto de Blanes:** 6 km (18 minutos en barco)
+**Coordenadas GPS:** 41.7245°N, 2.9060°E
+**Acceso:** Mar y tierra (muy difícil) | **Dificultad:** Media | **Tiempo desde Blanes:** 42 min
 
-La playa principal de Lloret de Mar ofrece una perspectiva totalmente diferente desde el mar. El castillo de Sa Caleta en el extremo sur y la escultura de la Doña Marinera son iconos que se aprecian mejor desde el agua.
+Encajonada entre paredes verticales cubiertas de pinos, Canyet es una de las calas más fotógenas de toda la Costa Brava. La luz de la mañana crea un efecto turquesa sobre el agua que es simplemente mágico.
 
-**Por qué es especial:** Las vistas del skyline de Lloret y el Castillo de Sa Caleta desde el barco son espectaculares. Puedes fondear y nadar hasta la playa.
+### 12. Cala Giverola (Tossa de Mar)
 
-## 9. Cala Banys
+**Coordenadas GPS:** 41.7325°N, 2.9107°E
+**Acceso:** Mar y tierra (por camping) | **Dificultad:** Baja | **Tiempo desde Blanes:** 45 min
 
-**Distancia desde el puerto de Blanes:** 8 km (25 minutos en barco)
+Cala amplia con arena gruesa rodeada de pinos. Tiene un camping adyacente pero desde el mar se disfruta sin aglomeraciones. El fondo es ideal para snorkel con posidonia y peces de roca abundantes.
 
-Cala Banys es una pequeña cala rocosa al sur de Lloret con las ruinas de unos antiguos baños romanos. Es un lugar con mucha historia y un fondo marino ideal para explorar con snorkel.
+### 13. Cala Pola (Tossa de Mar)
 
-**Por qué es especial:** Las ruinas romanas visibles junto al agua le dan un aire único. El snorkel aquí es excepcional gracias a las formaciones rocosas submarinas.
+**Coordenadas GPS:** 41.7360°N, 2.9155°E
+**Acceso:** Mar y tierra (sendero) | **Dificultad:** Baja | **Tiempo desde Blanes:** 48 min
 
-## 10. Cala Giverola
+Pequeña cala de arena y grava flanqueada por rocas. El agua tiene ese color turquesa tan característico de la zona. Relativamente poco frecuentada incluso en agosto si llegas por la mañana.
 
-**Distancia desde el puerto de Blanes:** 15 km (40 minutos en barco)
+### 14. Cala Llevadó (Tossa de Mar)
 
-Cala Giverola es la más lejana de nuestra lista pero merece cada minuto de navegación. Enclavada entre acantilados cubiertos de pinos, sus aguas son de un verde esmeralda impresionante. Es una de las calas más fotografiadas de la Costa Brava.
+**Coordenadas GPS:** 41.7395°N, 2.9198°E
+**Acceso:** Mar y tierra | **Dificultad:** Baja | **Tiempo desde Blanes:** 50 min
 
-**Por qué es especial:** Paisaje de película. Las aguas son tan claras que puedes ver el fondo a varios metros de profundidad. Es la recompensa perfecta para un día completo de navegación.
+Amplia cala con servicios básicos en verano (chiringuito, hamacas). Perfecta si quieres combinar la aventura náutica con algo de comodidad. Fondeo fácil sobre arena.
 
-**Barco recomendado:** Para esta ruta larga, recomendamos el [Pacific Craft 625](/barco/pacific-craft-625) con licencia, o contratar nuestra [excursión privada con capitán](/barco/excursion-privada) para disfrutar sin preocupaciones.
+## Las Joyas Escondidas
+
+### 15. Cala Morisca (Tossa de Mar)
+
+**Coordenadas GPS:** 41.7178°N, 2.9342°E
+**Acceso:** Solo por mar | **Dificultad:** Media | **Tiempo desde Blanes:** 55 min
+
+Completamente salvaje y sin ningún tipo de servicio ni acceso terrestre practicable. Agua cristalina sobre fondo de roca. Es la definición de "cala secreta". Solo la encontrarás si vienes en barco.
 
 ---
 
 ## Consejos para visitar las calas en barco
 
 - **Llega temprano:** Las calas más populares se llenan a partir de las 11:00 en verano.
-- **Lleva snorkel:** Muchas de estas calas tienen fondos marinos espectaculares. Puedes [alquilar equipo de snorkel](/barcos) con nosotros por solo 7,50EUR.
+- **Lleva snorkel:** Muchas de estas calas tienen fondos marinos espectaculares. Puedes [alquilar equipo de snorkel](/barcos) con nosotros.
+- **Guarda las coordenadas GPS:** Descarga un mapa offline en tu móvil antes de salir. Te servirán para encontrar las calas más escondidas.
 - **Respeta el entorno:** No tires basura al mar y respeta las zonas de fondeo marcadas.
 - **Consulta el tiempo:** Antes de planificar tu ruta, consulta la previsión meteorológica. Nosotros te asesoraremos en el briefing de seguridad.
+- **Combina calas:** Con 4 horas puedes visitar 3-4 calas cómodamente. Con 8 horas, puedes llegar hasta Tossa de Mar.
+
+## Cómo llegar a estas calas: Navegación sin licencia desde Blanes
+
+Todas las calas de este artículo son accesibles desde el Puerto de Blanes con los barcos de alquiler sin licencia de Costa Brava Rent a Boat. Nuestros barcos alcanzan una velocidad de crucero que te permite llegar a las calas más cercanas (Sa Forcanera, Sant Francesc) en menos de 10 minutos, y a las más lejanas (Tossa de Mar) en aproximadamente una hora.
+
+No necesitas ninguna titulación náutica. Antes de salir te damos una **formación práctica de 15 minutos** sobre el manejo del barco, las normas básicas de navegación y te indicamos las mejores calas según las condiciones del día. Todos nuestros precios incluyen gasolina, así que no tendrás sorpresas.
+
+| | Precio desde | Capacidad |
+|---|---|---|
+| [Astec 400](/barco/astec-400) | 70 EUR/hora | 4 personas |
+| [Solar 450](/barco/solar-450) | 75 EUR/hora | 5 personas |
+| [Remus 450](/barco/remus-450) | 75 EUR/hora | 5 personas |
+| [Astec 480](/barco/astec-480) | 80 EUR/hora | 5 personas |
 
 ## Reserva tu barco y descubre estas calas
 

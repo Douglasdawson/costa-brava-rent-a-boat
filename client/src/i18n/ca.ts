@@ -32,7 +32,7 @@ export const ca: Translations = {
     clients: '+5000 clients',
     insured: 'Assegurat',
     experience: '+5 anys exp.',
-    freeCancellation: "Cancel·lació gratuïta 48h",
+    freeCancellation: "Canvi de data gratuït",
     instantConfirmation: 'Confirmació immediata',
     marqueeText: 'Lloguer de Vaixells a Blanes | Amb i Sense Llicència | Gasolina Inclosa | Des de 70\u20AC/h',
     askWhatsApp: "Pregunta'ns per WhatsApp",
@@ -1320,7 +1320,7 @@ export const ca: Translations = {
     googleReviews: 'a Google',
     happyCustomers: 'clients satisfets',
     since2020: 'Des de 2020 a Blanes',
-    freeCancellation: 'Cancel\u00b7lació gratuïta 48h',
+    freeCancellation: 'Canvi de data gratuït',
   },
 
   comparison: {
@@ -1432,7 +1432,7 @@ export const ca: Translations = {
       {
         id: 'cancelacion',
         question: 'Quina és la política de cancel·lació?',
-        answer: 'Cancel·lació flexible: més de 48h abans = reemborsament complet. 24-48h = 50% de reemborsament. Menys de 24h = sense reemborsament. En cas de mal temps, reprogramació gratuïta o reemborsament total.',
+        answer: 'Pots canviar la data de la teva reserva sense cost amb un mínim de 7 dies d\'antelació. Les cancel·lacions no són reemborsables. En cas de mal temps, oferim reprogramació completa sense cost.',
       },
       {
         id: 'donde-navegar',
@@ -1479,9 +1479,9 @@ export const ca: Translations = {
 
   finalCta: {
     title: 'Encara hi estas pensant?',
-    subtitle: 'Reserva ara i cancel·la gratis fins a 48h abans',
+    subtitle: 'Reserva ara amb canvi de data gratuït',
     cta: 'Reservar sense compromis',
-    trust: 'Cancel·lacio gratuita · Pagament segur · Asseguranca inclosa',
+    trust: 'Canvi de data gratuït · Pagament segur · Assegurança inclosa',
   },
 
   holdCountdown: {
@@ -1603,7 +1603,7 @@ export const ca: Translations = {
     stepOf: "de",
   },
 
-  bookingTrust: { freeCancellation: 'Cancel·lacio gratuita 48h', securePayment: 'Pagament segur', insuranceIncluded: 'Asseguranca inclosa' },
+  bookingTrust: { freeCancellation: 'Canvi de data gratuït', securePayment: 'Pagament segur', insuranceIncluded: 'Asseguranca inclosa' },
 
   boatDescriptions: {
     "solar-450": "Pensada per als qui volen prendre el sol al mar. El seu solarium encoixinat es el mes ampli de tota la flota sense llicencia: fondeja en una cala d'aigues turqueses prop de Blanes i relaxa't com en cap altre lloc. Sense carnet necessari, t'ensenyem a manejar-la en 15 minuts. Gasolina, asseguranca i equip de seguretat inclosos.",

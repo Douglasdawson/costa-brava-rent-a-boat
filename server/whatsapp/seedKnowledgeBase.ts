@@ -48,7 +48,7 @@ const FAQS_ES = [
   },
   {
     title: "Politica de cancelacion",
-    content: "Las cancelaciones con mas de 48 horas de antelacion reciben reembolso completo. Cancelaciones entre 24-48 horas reciben el 50%. Cancelaciones con menos de 24 horas no son reembolsables, aunque ofrecemos cambio de fecha sujeto a disponibilidad. En caso de mal tiempo, reprogramamos sin coste.",
+    content: "El cambio de fecha es gratuito con un minimo de 7 dias de antelacion, sujeto a disponibilidad. Todas las cancelaciones son no reembolsables (el importe pagado no se devuelve). En caso de mal tiempo, reprogramamos sin coste.",
     category: "policy",
     keywords: ["cancelacion", "anular", "reembolso", "devolucion"],
     priority: 9,
@@ -165,7 +165,7 @@ const FAQS_CA = [
   },
   {
     title: "Politica de cancellacio",
-    content: "Les cancellacions amb mes de 48 hores d'antelacio reben reemborsament complet. Cancellacions entre 24-48 hores reben el 50%. Cancellacions amb menys de 24 hores no son reemborsables, tot i que oferim canvi de data subjecte a disponibilitat. En cas de mal temps, reprogramem sense cost.",
+    content: "El canvi de data es gratuit amb un minim de 7 dies d'antelacio, subjecte a disponibilitat. Totes les cancellacions no son reemborsables (l'import pagat no es retorna). En cas de mal temps, reprogramem sense cost.",
     category: "policy",
     keywords: ["cancellacio", "anullar", "reemborsament", "devolucio"],
     priority: 9,
@@ -282,7 +282,7 @@ const FAQS_EN = [
   },
   {
     title: "Cancellation policy",
-    content: "Cancellations made more than 48 hours in advance receive a full refund. Cancellations between 24 and 48 hours receive 50%. Cancellations with less than 24 hours notice are non-refundable, although we offer date changes subject to availability. In the event of bad weather, we reschedule at no cost.",
+    content: "Date changes are free with at least 7 days notice, subject to availability. All cancellations are non-refundable (the amount paid is not returned). In the event of bad weather, we reschedule at no cost.",
     category: "policy",
     keywords: ["cancellation", "cancel", "refund", "reschedule"],
     priority: 9,
@@ -399,7 +399,7 @@ const FAQS_FR = [
   },
   {
     title: "Politique d'annulation",
-    content: "Les annulations effectuees plus de 48 heures a l'avance sont integralement remboursees. Les annulations entre 24 et 48 heures sont remboursees a 50%. Les annulations de moins de 24 heures ne sont pas remboursables, bien que nous proposions un changement de date sous reserve de disponibilite. En cas de mauvais temps, nous reprogrammons sans frais.",
+    content: "Le changement de date est gratuit avec un minimum de 7 jours de preavis, sous reserve de disponibilite. Toutes les annulations sont non remboursables (le montant paye n'est pas restitue). En cas de mauvais temps, nous reprogrammons sans frais.",
     category: "policy",
     keywords: ["annulation", "annuler", "remboursement", "reprogrammer"],
     priority: 9,
@@ -516,7 +516,7 @@ const FAQS_DE = [
   },
   {
     title: "Stornierungsbedingungen",
-    content: "Stornierungen, die mehr als 48 Stunden im Voraus erfolgen, werden vollstandig erstattet. Stornierungen zwischen 24 und 48 Stunden werden zu 50% erstattet. Stornierungen mit weniger als 24 Stunden Vorlauf sind nicht erstattungsfahig, obwohl wir eine Anderung des Datums vorbehaltlich der Verfugbarkeit anbieten. Bei schlechtem Wetter wird kostenlos umgebucht.",
+    content: "Kostenlose Umbuchung mit mindestens 7 Tagen Vorlauf, vorbehaltlich Verfugbarkeit. Alle Stornierungen sind nicht erstattungsfahig (der gezahlte Betrag wird nicht zuruckerstattet). Bei schlechtem Wetter wird kostenlos umgebucht.",
     category: "policy",
     keywords: ["stornierung", "stornieren", "erstattung", "umbuchung"],
     priority: 9,
@@ -633,7 +633,7 @@ const FAQS_NL = [
   },
   {
     title: "Annuleringsbeleid",
-    content: "Annuleringen meer dan 48 uur van tevoren worden volledig terugbetaald. Annuleringen tussen 24 en 48 uur worden voor 50% terugbetaald. Annuleringen met minder dan 24 uur van tevoren zijn niet restitueerbaar, hoewel we een datumwijziging aanbieden onder voorbehoud van beschikbaarheid. Bij slecht weer plannen we kosteloos opnieuw in.",
+    content: "Gratis datumwijziging met minimaal 7 dagen van tevoren, onder voorbehoud van beschikbaarheid. Alle annuleringen zijn niet restitueerbaar (het betaalde bedrag wordt niet teruggestort). Bij slecht weer plannen we kosteloos opnieuw in.",
     category: "policy",
     keywords: ["annulering", "annuleren", "terugbetaling", "verplaatsen"],
     priority: 9,
@@ -750,7 +750,7 @@ const FAQS_IT = [
   },
   {
     title: "Politica di cancellazione",
-    content: "Le cancellazioni effettuate con piu di 48 ore di anticipo ricevono un rimborso completo. Le cancellazioni tra 24 e 48 ore ricevono il 50%. Le cancellazioni con meno di 24 ore di preavviso non sono rimborsabili, ma offriamo un cambio di data soggetto a disponibilita. In caso di maltempo, riprogrammiamo senza costi.",
+    content: "Il cambio data e gratuito con un minimo di 7 giorni di preavviso, soggetto a disponibilita. Tutte le cancellazioni non sono rimborsabili (l'importo pagato non viene restituito). In caso di maltempo, riprogrammiamo senza costi.",
     category: "policy",
     keywords: ["cancellazione", "annullare", "rimborso", "riprogrammare"],
     priority: 9,
@@ -867,7 +867,7 @@ const FAQS_RU = [
   },
   {
     title: "Politika otmeny",
-    content: "Otmeny bolee chem za 48 chasov do otpravleniya poluchayut polnyy vozvrat sredstv. Otmeny za 24-48 chasov poluchayut vozvrat 50%. Otmeny menee chem za 24 chasa ne vozvrashaemы, no my predlagaem izmenenie daty pri nalichii mest. V sluchaye plokhoy pogody my perenosim bespyatno.",
+    content: "Besplatnoe izmenenie daty pri uvedomlenii za 7 dnej, pri nalichii mest. Vse otmeny ne podlezhat vozvratu (uplachennaya summa ne vozvrashchaetsya). V sluchaye plokhoy pogody my perenosim besplatno.",
     category: "policy",
     keywords: ["отмена", "аннулировать", "возврат", "перенос"],
     priority: 9,

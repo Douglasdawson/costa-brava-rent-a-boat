@@ -95,7 +95,7 @@ const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
   "/": {
     es: {
       title: "Alquiler Barco en Blanes desde 70€/h | Gasolina Incluida",
-      description: "Alquila un barco sin licencia en el Puerto de Blanes desde 70€/h con gasolina incluida. 15 min de formación y a navegar. 8 barcos disponibles. Reserva online con cancelación gratuita 48h.",
+      description: "Alquila un barco sin licencia en el Puerto de Blanes desde 70€/h con gasolina incluida. 15 min de formación y a navegar. 8 barcos disponibles. Reserva online con cambio de fecha gratuito.",
       ogTitle: `Alquiler Barcos Sin Licencia Blanes | Puerto de Blanes ${SEASON_YEAR}`,
       ogDescription: "Alquila barcos sin licencia en Puerto de Blanes. Sin experiencia necesaria, desde 70€/h con gasolina incluida. 8 barcos disponibles. Reserva ya.",
     },
@@ -924,7 +924,7 @@ const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
   "/alquiler-barcos-costa-brava": {
     es: {
       title: `Alquiler Barcos Costa Brava ${SEASON_YEAR} | Sin Licencia desde 70\u20ac/h | Blanes, Lloret, Tossa`,
-      description: "Alquila barcos en la Costa Brava desde el Puerto de Blanes. 8 barcos sin licencia desde 70\u20ac/h con gasolina incluida. Navega a calas v\u00edrgenes entre Blanes y Tossa de Mar. Reserva online \u00b7 Cancelaci\u00f3n gratuita 48h.",
+      description: "Alquila barcos en la Costa Brava desde el Puerto de Blanes. 8 barcos sin licencia desde 70\u20ac/h con gasolina incluida. Navega a calas v\u00edrgenes entre Blanes y Tossa de Mar. Reserva online \u00b7 Cambio de fecha gratis.",
     },
     en: {
       title: `Boat Rental Costa Brava ${SEASON_YEAR} | No License from 70\u20ac/h | Blanes, Lloret, Tossa`,
@@ -932,27 +932,27 @@ const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
     },
     ca: {
       title: `Lloguer Barques Costa Brava ${SEASON_YEAR} | Sense Llic\u00e8ncia des de 70\u20ac/h | Blanes, Lloret, Tossa`,
-      description: "Lloga barques a la Costa Brava des del Port de Blanes. 8 barques sense llic\u00e8ncia des de 70\u20ac/h amb gasolina inclosa. Navega a cales verges entre Blanes i Tossa de Mar. Reserva online \u00b7 Cancel\u00b7laci\u00f3 gratu\u00efta 48h.",
+      description: "Lloga barques a la Costa Brava des del Port de Blanes. 8 barques sense llic\u00e8ncia des de 70\u20ac/h amb gasolina inclosa. Navega a cales verges entre Blanes i Tossa de Mar. Reserva online \u00b7 Canvi de data gratu\u00eft.",
     },
     fr: {
       title: `Location Bateaux Costa Brava ${SEASON_YEAR} | Sans Permis d\u00e8s 70\u20ac/h | Blanes, Lloret, Tossa`,
-      description: "Louez des bateaux sur la Costa Brava depuis le Port de Blanes. 8 bateaux sans permis d\u00e8s 70\u20ac/h, carburant inclus. Naviguez vers des criques vierges entre Blanes et Tossa de Mar. R\u00e9servez en ligne \u00b7 Annulation gratuite 48h.",
+      description: "Louez des bateaux sur la Costa Brava depuis le Port de Blanes. 8 bateaux sans permis d\u00e8s 70\u20ac/h, carburant inclus. Naviguez vers des criques vierges entre Blanes et Tossa de Mar. R\u00e9servez en ligne \u00b7 Changement de date gratuit.",
     },
     de: {
       title: `Bootsverleih Costa Brava ${SEASON_YEAR} | Ohne F\u00fchrerschein ab 70\u20ac/h | Blanes, Lloret, Tossa`,
-      description: "Mieten Sie Boote an der Costa Brava ab Hafen Blanes. 8 Boote ohne F\u00fchrerschein ab 70\u20ac/h, Kraftstoff inklusive. Segeln Sie zu versteckten Buchten zwischen Blanes und Tossa de Mar. Online buchen \u00b7 Kostenlose Stornierung 48h.",
+      description: "Mieten Sie Boote an der Costa Brava ab Hafen Blanes. 8 Boote ohne F\u00fchrerschein ab 70\u20ac/h, Kraftstoff inklusive. Segeln Sie zu versteckten Buchten zwischen Blanes und Tossa de Mar. Online buchen \u00b7 Kostenlose Umbuchung.",
     },
     nl: {
       title: `Bootverhuur Costa Brava ${SEASON_YEAR} | Zonder Vaarbewijs vanaf 70\u20ac/u | Blanes, Lloret, Tossa`,
-      description: "Huur boten aan de Costa Brava vanuit Haven Blanes. 8 boten zonder vaarbewijs vanaf 70\u20ac/u, brandstof inbegrepen. Vaar naar verborgen baaien tussen Blanes en Tossa de Mar. Online boeken \u00b7 Gratis annulering 48u.",
+      description: "Huur boten aan de Costa Brava vanuit Haven Blanes. 8 boten zonder vaarbewijs vanaf 70\u20ac/u, brandstof inbegrepen. Vaar naar verborgen baaien tussen Blanes en Tossa de Mar. Online boeken \u00b7 Gratis datumwijziging.",
     },
     it: {
       title: `Noleggio Barche Costa Brava ${SEASON_YEAR} | Senza Patente da 70\u20ac/h | Blanes, Lloret, Tossa`,
-      description: "Noleggia barche sulla Costa Brava dal Porto di Blanes. 8 barche senza patente da 70\u20ac/h, carburante incluso. Naviga verso calette nascoste tra Blanes e Tossa de Mar. Prenota online \u00b7 Cancellazione gratuita 48h.",
+      description: "Noleggia barche sulla Costa Brava dal Porto di Blanes. 8 barche senza patente da 70\u20ac/h, carburante incluso. Naviga verso calette nascoste tra Blanes e Tossa de Mar. Prenota online \u00b7 Cambio data gratuito.",
     },
     ru: {
       title: `\u0410\u0440\u0435\u043d\u0434\u0430 \u041b\u043e\u0434\u043e\u043a \u041a\u043e\u0441\u0442\u0430-\u0411\u0440\u0430\u0432\u0430 ${SEASON_YEAR} | \u0411\u0435\u0437 \u041b\u0438\u0446\u0435\u043d\u0437\u0438\u0438 \u043e\u0442 70\u20ac/\u0447 | \u0411\u043b\u0430\u043d\u0435\u0441, \u041b\u044c\u043e\u0440\u0435\u0442, \u0422\u043e\u0441\u0441\u0430`,
-      description: "\u0410\u0440\u0435\u043d\u0434\u0443\u0439\u0442\u0435 \u043b\u043e\u0434\u043a\u0438 \u043d\u0430 \u041a\u043e\u0441\u0442\u0430-\u0411\u0440\u0430\u0432\u0435 \u0438\u0437 \u043f\u043e\u0440\u0442\u0430 \u0411\u043b\u0430\u043d\u0435\u0441. 8 \u043b\u043e\u0434\u043e\u043a \u0431\u0435\u0437 \u043b\u0438\u0446\u0435\u043d\u0437\u0438\u0438 \u043e\u0442 70\u20ac/\u0447, \u0442\u043e\u043f\u043b\u0438\u0432\u043e \u0432\u043a\u043b\u044e\u0447\u0435\u043d\u043e. \u041f\u043b\u0430\u0432\u0430\u0439\u0442\u0435 \u043a \u0441\u043a\u0440\u044b\u0442\u044b\u043c \u0431\u0443\u0445\u0442\u0430\u043c \u043c\u0435\u0436\u0434\u0443 \u0411\u043b\u0430\u043d\u0435\u0441\u043e\u043c \u0438 \u0422\u043e\u0441\u0441\u0430-\u0434\u0435-\u041c\u0430\u0440. \u0411\u0440\u043e\u043d\u0438\u0440\u0443\u0439\u0442\u0435 \u043e\u043d\u043b\u0430\u0439\u043d \u00b7 \u0411\u0435\u0441\u043f\u043b\u0430\u0442\u043d\u0430\u044f \u043e\u0442\u043c\u0435\u043d\u0430 48\u0447.",
+      description: "\u0410\u0440\u0435\u043d\u0434\u0443\u0439\u0442\u0435 \u043b\u043e\u0434\u043a\u0438 \u043d\u0430 \u041a\u043e\u0441\u0442\u0430-\u0411\u0440\u0430\u0432\u0435 \u0438\u0437 \u043f\u043e\u0440\u0442\u0430 \u0411\u043b\u0430\u043d\u0435\u0441. 8 \u043b\u043e\u0434\u043e\u043a \u0431\u0435\u0437 \u043b\u0438\u0446\u0435\u043d\u0437\u0438\u0438 \u043e\u0442 70\u20ac/\u0447, \u0442\u043e\u043f\u043b\u0438\u0432\u043e \u0432\u043a\u043b\u044e\u0447\u0435\u043d\u043e. \u041f\u043b\u0430\u0432\u0430\u0439\u0442\u0435 \u043a \u0441\u043a\u0440\u044b\u0442\u044b\u043c \u0431\u0443\u0445\u0442\u0430\u043c \u043c\u0435\u0436\u0434\u0443 \u0411\u043b\u0430\u043d\u0435\u0441\u043e\u043c \u0438 \u0422\u043e\u0441\u0441\u0430-\u0434\u0435-\u041c\u0430\u0440. \u0411\u0440\u043e\u043d\u0438\u0440\u0443\u0439\u0442\u0435 \u043e\u043d\u043b\u0430\u0439\u043d \u00b7 \u0411\u0435\u0441\u043f\u043b\u0430\u0442\u043d\u043e\u0435 \u0438\u0437\u043c\u0435\u043d\u0435\u043d\u0438\u0435 \u0434\u0430\u0442\u044b.",
     },
   },
   "/boat-rental-costa-brava": {
@@ -1616,13 +1616,12 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
         hasMerchantReturnPolicy: {
           "@type": "MerchantReturnPolicy",
           applicableCountry: "ES",
-          returnPolicyCategory: "https://schema.org/MerchantReturnFiniteReturnWindow",
-          merchantReturnDays: 1,
+          returnPolicyCategory: "https://schema.org/MerchantReturnNotPermitted",
           returnMethod: "https://schema.org/ReturnInStore",
-          returnFees: "https://schema.org/FreeReturn",
+          returnFees: "https://schema.org/OriginalShippingFees",
           description: isEn
-            ? "100% refundable deposit. Free cancellation 24h before. Free rescheduling due to bad weather."
-            : "Fianza 100% reembolsable. Cancelación gratuita 24h antes. Cambio de fecha gratis por mal tiempo.",
+            ? "100% refundable deposit. Free date changes with 7 days' notice. Free rescheduling due to bad weather."
+            : "Fianza 100% reembolsable. Cambio de fecha gratis con 7 días de antelación. Reprogramación gratis por mal tiempo.",
         },
         openingHoursSpecification: [{
           "@type": "OpeningHoursSpecification",
@@ -1731,7 +1730,7 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
             name: "¿Cuál es la política de cancelación?",
             acceptedAnswer: {
               "@type": "Answer",
-              text: "Cancelación flexible: más de 48h antes = reembolso completo. Entre 24-48h = 50% de reembolso. Menos de 24h = sin reembolso. En caso de mal tiempo, reprogramación gratuita o reembolso total."
+              text: "El cambio de fecha es gratuito con un mínimo de 7 días de antelación, sujeto a disponibilidad. Las cancelaciones no son reembolsables. En caso de mal tiempo, reprogramación gratuita."
             }
           },
           {
@@ -1807,8 +1806,8 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
             "@type": "Question",
             name: isEn ? "What is the cancellation policy?" : "¿Cuál es la política de cancelación?",
             acceptedAnswer: { "@type": "Answer", text: isEn
-              ? "Free cancellation up to 24 hours before departure. Same-day cancellations may be rescheduled depending on availability. In case of bad weather, we offer full rescheduling."
-              : "Cancelación gratuita hasta 24 horas antes de la salida. Cancelaciones del mismo día pueden reprogramarse según disponibilidad. En caso de mal tiempo, ofrecemos reprogramación completa." },
+              ? "Free date changes with at least 7 days' notice. Cancellations are non-refundable. In case of bad weather, we offer full rescheduling at no cost."
+              : "Cambio de fecha gratuito con un mínimo de 7 días de antelación. Las cancelaciones no son reembolsables. En caso de mal tiempo, ofrecemos reprogramación completa sin coste." },
           },
           {
             "@type": "Question",

@@ -32,7 +32,7 @@ export const en: Translations = {
     clients: '+5000 clients',
     insured: 'Insured',
     experience: '+5 years exp.',
-    freeCancellation: 'Free cancellation 48h',
+    freeCancellation: 'Free date change',
     instantConfirmation: 'Instant confirmation',
     marqueeText: 'Boat Rental in Blanes | With and Without License | Fuel Included | From \u20AC70/h',
     askWhatsApp: 'Ask us on WhatsApp',
@@ -1324,7 +1324,7 @@ export const en: Translations = {
     googleReviews: 'on Google',
     happyCustomers: 'happy customers',
     since2020: 'Since 2020 in Blanes',
-    freeCancellation: 'Free cancellation 48h',
+    freeCancellation: 'Free date change',
   },
 
   comparison: {
@@ -1437,7 +1437,7 @@ export const en: Translations = {
       {
         id: 'cancelacion',
         question: 'What is the cancellation policy?',
-        answer: 'Flexible cancellation: more than 48h before = full refund. 24-48h = 50% refund. Less than 24h = no refund. In case of bad weather, free rescheduling or full refund.',
+        answer: 'You can change your booking date at no cost with at least 7 days\' notice. Cancellations are non-refundable. In case of bad weather, we offer full rescheduling at no cost.',
       },
       {
         id: 'donde-navegar',
@@ -1532,9 +1532,9 @@ export const en: Translations = {
 
   finalCta: {
     title: 'Still thinking about it?',
-    subtitle: 'Book now and cancel free up to 48h before',
+    subtitle: 'Book now with free date changes',
     cta: 'Book with no commitment',
-    trust: 'Free cancellation · Secure payment · Insurance included',
+    trust: 'Free date change · Secure payment · Insurance included',
   },
 
   holdCountdown: {
@@ -1656,7 +1656,7 @@ export const en: Translations = {
     stepOf: "of",
   },
 
-  bookingTrust: { freeCancellation: 'Free cancellation 48h', securePayment: 'Secure payment', insuranceIncluded: 'Insurance included' },
+  bookingTrust: { freeCancellation: 'Free date change', securePayment: 'Secure payment', insuranceIncluded: 'Insurance included' },
 
   boatDescriptions: {
     "solar-450": "Designed for sun lovers. Its cushioned solarium is the largest in the entire no-licence fleet: anchor in a turquoise cove near Blanes and relax like nowhere else. No licence needed — we teach you to drive in 15 minutes. Fuel, insurance and safety equipment included.",

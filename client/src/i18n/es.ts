@@ -32,7 +32,7 @@ export const es: Translations = {
     clients: '+5000 clientes',
     insured: 'Seguro incluido',
     experience: '+5 años exp.',
-    freeCancellation: 'Cancelación gratuita 48h',
+    freeCancellation: 'Cambio de fecha gratis',
     instantConfirmation: 'Confirmación inmediata',
     marqueeText: 'Alquiler de Barcos en Blanes | Con y Sin Licencia | Gasolina Incluida | Desde 70\u20AC/h',
     askWhatsApp: 'Preg\u00FAntanos por WhatsApp',
@@ -221,7 +221,7 @@ export const es: Translations = {
     accessibility: 'Accesibilidad',
   },
   booking: {
-    title: 'SOLICITA TU PETICIÓN DE RESERVA',
+    title: 'PETICIÓN DE RESERVA',
     modalSubtitle: 'Solo tardas 2 minutos. Te confirmamos por WhatsApp.',
     selectBoat: 'Seleccionar Barco',
     dateTime: 'Fecha y Hora',
@@ -1339,7 +1339,7 @@ export const es: Translations = {
     googleReviews: 'en Google',
     happyCustomers: 'clientes satisfechos',
     since2020: 'Desde 2020 en Blanes',
-    freeCancellation: 'Cancelación gratuita 48h',
+    freeCancellation: 'Cambio de fecha gratis',
   },
 
   comparison: {
@@ -1432,7 +1432,7 @@ export const es: Translations = {
     customers: '5000+ clientes',
     rating: '4.8 Google',
     confirmation: 'Respuesta en minutos',
-    freeCancellation: 'Cancelación gratuita 48h',
+    freeCancellation: 'Cambio de fecha gratis',
     securePayment: 'Pago seguro',
     insuranceIncluded: 'Seguro incluido',
   },
@@ -1460,7 +1460,7 @@ export const es: Translations = {
       {
         id: 'cancelacion',
         question: '¿Cuál es la política de cancelación?',
-        answer: 'Cancelación flexible: más de 48h antes = reembolso completo. Entre 24-48h = 50% de reembolso. Menos de 24h = sin reembolso. En caso de mal tiempo, reprogramación gratuita o reembolso total.',
+        answer: 'Puedes cambiar la fecha de tu reserva sin coste con un mínimo de 7 días de antelación. Las cancelaciones no son reembolsables. En caso de mal tiempo, ofrecemos reprogramación completa sin coste.',
       },
       {
         id: 'donde-navegar',
@@ -1555,9 +1555,9 @@ export const es: Translations = {
 
   finalCta: {
     title: '¿Todavía pensándolo?',
-    subtitle: 'Reserva ahora y cancela gratis hasta 48h antes',
+    subtitle: 'Reserva ahora con cambio de fecha gratuito',
     cta: 'Reservar sin compromiso',
-    trust: 'Cancelación gratuita · Pago seguro · Seguro incluido',
+    trust: 'Cambio de fecha gratis · Pago seguro · Seguro incluido',
   },
 
   holdCountdown: {
@@ -1709,7 +1709,7 @@ export const es: Translations = {
     insurance: 'Seguro de embarcación y ocupantes',
     safetyEquipment: 'Equipo de seguridad completo',
     briefing: 'Formación de 15 min incluida',
-    freeCancellation: 'Cancelación gratuita 48h',
+    freeCancellation: 'Cambio de fecha gratis',
     securePayment: 'Pago seguro',
     gpsAndSonar: 'GPS y sonda incluidos',
     professionalSkipper: 'Patron profesional incluido',

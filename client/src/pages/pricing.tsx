@@ -532,7 +532,7 @@ export default function PricingPage() {
                     finalizar el alquiler sin incidencias.
                   </li>
                   <li>
-                    <strong>Cancelación gratuita</strong> hasta 48h antes de la reserva.
+                    <strong>Cambio de fecha gratuito</strong> con un mínimo de 7 días de antelación.
                   </li>
                   <li>
                     Los barcos con licencia requieren <strong>PER o título náutico</strong>{" "}

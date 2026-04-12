@@ -32,7 +32,7 @@ export const nl: Translations = {
     clients: '+5000 klanten',
     insured: 'Verzekerd',
     experience: '+5 jaar ervaring',
-    freeCancellation: 'Gratis annulering 48h',
+    freeCancellation: 'Gratis datumwijziging',
     instantConfirmation: 'Directe bevestiging',
     marqueeText: 'Bootverhuur in Blanes | Met en Zonder Vaarbewijs | Brandstof Inbegrepen | Vanaf \u20AC70/u',
     askWhatsApp: 'Vraag ons via WhatsApp',
@@ -1320,7 +1320,7 @@ export const nl: Translations = {
     googleReviews: 'op Google',
     happyCustomers: 'tevreden klanten',
     since2020: 'Sinds 2020 in Blanes',
-    freeCancellation: 'Gratis annulering 48u',
+    freeCancellation: 'Gratis datumwijziging',
   },
 
   comparison: {
@@ -1432,7 +1432,7 @@ export const nl: Translations = {
       {
         id: 'cancelacion',
         question: 'Wat is het annuleringsbeleid?',
-        answer: 'Flexibele annulering: meer dan 48u van tevoren = volledige terugbetaling. 24-48u = 50% terugbetaling. Minder dan 24u = geen terugbetaling. Bij slecht weer gratis omboeken of volledige terugbetaling.',
+        answer: 'U kunt de datum van uw boeking gratis wijzigen met minimaal 7 dagen vooraf. Annuleringen worden niet terugbetaald. Bij slecht weer bieden wij gratis omboeken aan.',
       },
       {
         id: 'donde-navegar',
@@ -1479,9 +1479,9 @@ export const nl: Translations = {
 
   finalCta: {
     title: 'Nog aan het twijfelen?',
-    subtitle: 'Boek nu en annuleer gratis tot 48u van tevoren',
+    subtitle: 'Boek nu met gratis datumwijziging',
     cta: 'Boek vrijblijvend',
-    trust: 'Gratis annulering · Veilige betaling · Verzekering inbegrepen',
+    trust: 'Gratis datumwijziging · Veilige betaling · Verzekering inbegrepen',
   },
 
   holdCountdown: {
@@ -1603,7 +1603,7 @@ export const nl: Translations = {
     stepOf: "van",
   },
 
-  bookingTrust: { freeCancellation: 'Gratis annulering 48u', securePayment: 'Veilige betaling', insuranceIncluded: 'Verzekering inbegrepen' },
+  bookingTrust: { freeCancellation: 'Gratis datumwijziging', securePayment: 'Veilige betaling', insuranceIncluded: 'Verzekering inbegrepen' },
 
   boatDescriptions: {
     "solar-450": "Ontworpen voor zonliefhebbers. Het gewatteerde solarium is het grootste van de hele vaarbewijsvrije vloot: anker in een turquoise baai bij Blanes en ontspan als nergens anders. Geen vaarbewijs nodig — wij leren u in 15 minuten hoe u vaart. Brandstof, verzekering en veiligheidsuitrusting inbegrepen.",

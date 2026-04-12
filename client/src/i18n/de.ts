@@ -32,7 +32,7 @@ export const de: Translations = {
     clients: '+5000 Kunden',
     insured: 'Versichert',
     experience: '+5 Jahre Erfahrung',
-    freeCancellation: 'Kostenlose Stornierung 48h',
+    freeCancellation: 'Kostenlose Umbuchung',
     instantConfirmation: 'Sofortige Bestätigung',
     marqueeText: 'Bootsverleih in Blanes | Mit und Ohne Führerschein | Treibstoff Inklusive | Ab 70\u20AC/Std',
     askWhatsApp: 'Fragen Sie uns per WhatsApp',
@@ -1320,7 +1320,7 @@ export const de: Translations = {
     googleReviews: 'auf Google',
     happyCustomers: 'zufriedene Kunden',
     since2020: 'Seit 2020 in Blanes',
-    freeCancellation: 'Kostenlose Stornierung 48h',
+    freeCancellation: 'Kostenlose Umbuchung',
   },
 
   comparison: {
@@ -1433,7 +1433,7 @@ export const de: Translations = {
       {
         id: 'cancelacion',
         question: 'Wie lautet die Stornierungsrichtlinie?',
-        answer: 'Flexible Stornierung: mehr als 48h vorher = volle Rückerstattung. 24-48h = 50% Rückerstattung. Weniger als 24h = keine Rückerstattung. Bei schlechtem Wetter kostenlose Umbuchung oder volle Rückerstattung.',
+        answer: 'Sie können das Datum Ihrer Buchung kostenlos ändern, sofern Sie mindestens 7 Tage vorher Bescheid geben. Stornierungen sind nicht erstattungsfähig. Bei schlechtem Wetter bieten wir kostenlose Umbuchung an.',
       },
       {
         id: 'donde-navegar',
@@ -1480,9 +1480,9 @@ export const de: Translations = {
 
   finalCta: {
     title: 'Noch am Uberlegen?',
-    subtitle: 'Jetzt buchen und bis 48h vorher kostenlos stornieren',
+    subtitle: 'Jetzt buchen mit kostenloser Umbuchung',
     cta: 'Unverbindlich buchen',
-    trust: 'Kostenlose Stornierung · Sichere Zahlung · Versicherung inklusive',
+    trust: 'Kostenlose Umbuchung · Sichere Zahlung · Versicherung inklusive',
   },
 
   holdCountdown: {
@@ -1604,7 +1604,7 @@ export const de: Translations = {
     stepOf: "von",
   },
 
-  bookingTrust: { freeCancellation: 'Kostenlose Stornierung 48h', securePayment: 'Sichere Zahlung', insuranceIncluded: 'Versicherung inklusive' },
+  bookingTrust: { freeCancellation: 'Kostenlose Umbuchung', securePayment: 'Sichere Zahlung', insuranceIncluded: 'Versicherung inklusive' },
 
   boatDescriptions: {
     "solar-450": "Fur Sonnenliebhaber gemacht. Sein gepolstertes Solarium ist das grosste der gesamten fuhrerscheinfreien Flotte: Ankern Sie in einer turkisfarbenen Bucht nahe Blanes und entspannen Sie wie nirgendwo sonst. Kein Bootsfuhrerschein notig — wir zeigen Ihnen in 15 Minuten, wie es geht. Treibstoff, Versicherung und Sicherheitsausrustung inklusive.",

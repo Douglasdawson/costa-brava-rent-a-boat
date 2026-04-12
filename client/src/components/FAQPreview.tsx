@@ -25,7 +25,7 @@ export const FALLBACK_ITEMS = [
   {
     id: "cancelacion",
     question: "¿Cuál es la política de cancelación?",
-    answer: "Cancelación flexible: más de 48h antes = reembolso completo. Entre 24-48h = 50% de reembolso. Menos de 24h = sin reembolso. En caso de mal tiempo, reprogramación gratuita o reembolso total.",
+    answer: "El cambio de fecha es gratuito con un mínimo de 7 días de antelación, sujeto a disponibilidad. Las cancelaciones no son reembolsables. En caso de mal tiempo, reprogramación gratuita.",
   },
   {
     id: "donde-navegar",

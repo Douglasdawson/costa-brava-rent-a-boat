@@ -32,7 +32,7 @@ export const fr: Translations = {
     clients: '+5000 clients',
     insured: 'Assuré',
     experience: '+5 ans exp.',
-    freeCancellation: 'Annulation gratuite 48h',
+    freeCancellation: 'Changement de date gratuit',
     instantConfirmation: 'Confirmation immédiate',
     marqueeText: 'Location de Bateaux à Blanes | Avec et Sans Permis | Carburant Inclus | Dès 70\u20AC/h',
     askWhatsApp: 'Demandez-nous sur WhatsApp',
@@ -1320,7 +1320,7 @@ export const fr: Translations = {
     googleReviews: 'sur Google',
     happyCustomers: 'clients satisfaits',
     since2020: 'Depuis 2020 à Blanes',
-    freeCancellation: 'Annulation gratuite 48h',
+    freeCancellation: 'Changement de date gratuit',
   },
 
   comparison: {
@@ -1433,7 +1433,7 @@ export const fr: Translations = {
       {
         id: 'cancelacion',
         question: 'Quelle est la politique d\'annulation ?',
-        answer: 'Annulation flexible : plus de 48h avant = remboursement total. 24-48h = remboursement de 50%. Moins de 24h = pas de remboursement. En cas de mauvais temps, report gratuit ou remboursement intégral.',
+        answer: 'Vous pouvez changer la date de votre reservation sans frais avec un preavis d\'au moins 7 jours. Les annulations ne sont pas remboursables. En cas de mauvais temps, nous offrons un report complet sans frais.',
       },
       {
         id: 'donde-navegar',
@@ -1480,9 +1480,9 @@ export const fr: Translations = {
 
   finalCta: {
     title: 'Vous hesitez encore ?',
-    subtitle: 'Reservez maintenant, annulation gratuite jusqu\'a 48h avant',
+    subtitle: 'Reservez maintenant avec changement de date gratuit',
     cta: 'Reserver sans engagement',
-    trust: 'Annulation gratuite · Paiement securise · Assurance incluse',
+    trust: 'Changement de date gratuit · Paiement securise · Assurance incluse',
   },
 
   holdCountdown: {
@@ -1604,7 +1604,7 @@ export const fr: Translations = {
     stepOf: "de",
   },
 
-  bookingTrust: { freeCancellation: 'Annulation gratuite 48h', securePayment: 'Paiement securise', insuranceIncluded: 'Assurance incluse' },
+  bookingTrust: { freeCancellation: 'Changement de date gratuit', securePayment: 'Paiement securise', insuranceIncluded: 'Assurance incluse' },
 
   boatDescriptions: {
     "solar-450": "Concu pour les amoureux du soleil. Son solarium rembourre est le plus grand de toute la flotte sans permis : mouillez dans une crique aux eaux turquoise pres de Blanes et detendez-vous comme nulle part ailleurs. Aucun permis necessaire — nous vous apprenons a le piloter en 15 minutes. Carburant, assurance et equipement de securite inclus.",

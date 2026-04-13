@@ -19,7 +19,6 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { Textarea } from "@/components/ui/textarea";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -47,10 +46,6 @@ import {
   Gift,
   Globe,
   Monitor,
-  Loader2,
-  Send,
-  AlertCircle,
-  CheckCircle2,
   Trash2,
   MessageSquare,
 } from "lucide-react";
@@ -58,9 +53,11 @@ import { SiWhatsapp } from "@/components/icons/BrandIcons";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { format } from "date-fns";
 import { es } from "date-fns/locale";
-import type { WhatsappInquiry } from "@shared/schema";
+import type { WhatsappInquiry, Booking } from "@shared/schema";
 import { PaginationControls } from "./shared/PaginationControls";
 import type { PaginatedResponse } from "./types";
+import { BookingDetailsModal } from "./BookingDetailsModal";
+import { calculatePricingBreakdown, type Duration } from "@shared/pricing";
 
 type PaginatedInquiriesResponse = PaginatedResponse<WhatsappInquiry>;
 
@@ -72,6 +69,70 @@ const STATUS_CONFIG: Record<string, { label: string; color: string }> = {
   converted: { label: "Convertido", color: "bg-emerald-100 text-emerald-800" },
   lost: { label: "Perdido", color: "bg-red-100 text-red-800" },
 };
+
+const VALID_DURATIONS: Duration[] = ["1h", "2h", "3h", "4h", "6h", "8h"];
+
+// Builds the BookingDetailsModal prefill payload from a WhatsApp inquiry.
+// Parses text date/time into ISO timestamps and pre-calculates pricing via the
+// shared pricing helper so the admin only has to fill the customer nationality.
+function buildPrefillFromInquiry(inq: WhatsappInquiry) {
+  // Parse bookingDate (YYYY-MM-DD) + preferredTime (HH:MM, defaults to 10:00)
+  const timeStr = (inq.preferredTime && /^\d{1,2}:\d{2}$/.test(inq.preferredTime))
+    ? inq.preferredTime.padStart(5, "0")
+    : "10:00";
+  const startDate = new Date(`${inq.bookingDate}T${timeStr}:00`);
+  // If date parsing failed (invalid format), fall back to today at 10:00
+  const safeStart = isNaN(startDate.getTime())
+    ? new Date(new Date().toISOString().slice(0, 10) + "T10:00:00")
+    : startDate;
+
+  // Parse duration ("4h" → "4h" Duration; fallback to "2h")
+  const rawDuration = (inq.duration || "").toLowerCase().trim();
+  const duration: Duration = VALID_DURATIONS.includes(rawDuration as Duration)
+    ? (rawDuration as Duration)
+    : "2h";
+  const totalHours = parseInt(duration.replace("h", ""), 10);
+  const endDate = new Date(safeStart.getTime() + totalHours * 60 * 60 * 1000);
+
+  // Pre-calculate pricing (may throw if boat id is unknown — fall back to zeros)
+  let subtotal = "0";
+  let extrasTotal = "0";
+  let deposit = "0";
+  let totalAmount = "0";
+  try {
+    const extras = Array.isArray(inq.extras) ? (inq.extras as string[]) : [];
+    const packs = inq.packId ? [inq.packId] : [];
+    const pricing = calculatePricingBreakdown(inq.boatId, safeStart, duration, extras, packs);
+    subtotal = String(pricing.basePrice);
+    extrasTotal = String(pricing.extrasPrice);
+    deposit = String(pricing.deposit);
+    totalAmount = String(pricing.subtotal); // base + extras (no deposit) as the charge
+  } catch {
+    // Unknown boat or pricing error — admin will enter manually
+  }
+
+  const receivedDate = inq.createdAt
+    ? new Date(inq.createdAt).toLocaleDateString("es-ES")
+    : "";
+  const notes = `Convertido desde petición WhatsApp #${inq.id}${receivedDate ? ` recibida el ${receivedDate}` : ""}.`;
+
+  return {
+    boatId: inq.boatId,
+    startTime: safeStart.toISOString(),
+    endTime: endDate.toISOString(),
+    totalHours,
+    customerName: inq.firstName,
+    customerSurname: inq.lastName,
+    customerPhone: `${inq.phonePrefix}${inq.phoneNumber}`.replace(/\s+/g, ""),
+    customerEmail: inq.email ?? "",
+    numberOfPeople: inq.numberOfPeople,
+    subtotal,
+    extrasTotal,
+    deposit,
+    totalAmount,
+    notes,
+  };
+}
 
 interface InquiriesTabProps {
   adminToken: string;
@@ -86,11 +147,8 @@ export function InquiriesTab({ adminToken, onOpenWhatsApp }: InquiriesTabProps) 
   const [notesValue, setNotesValue] = useState("");
   const [updatingId, setUpdatingId] = useState<string | null>(null);
   const [detailInquiry, setDetailInquiry] = useState<WhatsappInquiry | null>(null);
-  const [sendingWhatsApp, setSendingWhatsApp] = useState<WhatsappInquiry | null>(null);
-  const [whatsAppMessage, setWhatsAppMessage] = useState("");
-  const [sendingInProgress, setSendingInProgress] = useState(false);
-  const [sendResult, setSendResult] = useState<{ type: "success" | "error"; message: string } | null>(null);
   const [deleteInquiryId, setDeleteInquiryId] = useState<string | null>(null);
+  const [convertingInquiry, setConvertingInquiry] = useState<WhatsappInquiry | null>(null);
 
   const queryClient = useQueryClient();
 
@@ -136,37 +194,17 @@ export function InquiriesTab({ adminToken, onOpenWhatsApp }: InquiriesTabProps) 
     }
   }, [adminToken, queryClient]);
 
-  const sendWhatsAppViaAPI = useCallback(async () => {
-    if (!sendingWhatsApp || !whatsAppMessage.trim()) return;
-    setSendingInProgress(true);
-    setSendResult(null);
-    try {
-      const res = await fetch(`/api/admin/booking-inquiries/${sendingWhatsApp.id}/send-whatsapp`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${adminToken}`,
-        },
-        body: JSON.stringify({ message: whatsAppMessage.trim() }),
-      });
-      const data = await res.json();
-      if (res.ok) {
-        setSendResult({ type: "success", message: "Mensaje enviado correctamente" });
-        setWhatsAppMessage("");
-        queryClient.invalidateQueries({ queryKey: ['/api/admin/booking-inquiries'] });
-        setTimeout(() => {
-          setSendingWhatsApp(null);
-          setSendResult(null);
-        }, 2000);
-      } else {
-        setSendResult({ type: "error", message: data.message || "Error al enviar" });
-      }
-    } catch {
-      setSendResult({ type: "error", message: "Error de conexión" });
-    } finally {
-      setSendingInProgress(false);
+  // Intercept status changes: if the new status is "converted", open the booking
+  // creation modal prefilled from the inquiry instead of PATCHing immediately.
+  // The PATCH only fires after the booking is successfully created.
+  const handleStatusChange = useCallback((inq: WhatsappInquiry, newStatus: string) => {
+    if (newStatus === "converted") {
+      if (inq.status === "converted") return; // no-op if already converted
+      setConvertingInquiry(inq);
+      return;
     }
-  }, [sendingWhatsApp, whatsAppMessage, adminToken, queryClient]);
+    updateInquiry(inq.id, { status: newStatus });
+  }, [updateInquiry]);
 
   const executeDeleteInquiry = useCallback(async (id: string) => {
     try {
@@ -320,7 +358,7 @@ export function InquiriesTab({ adminToken, onOpenWhatsApp }: InquiriesTabProps) 
                       <TableCell>
                         <Select
                           value={inq.status}
-                          onValueChange={(v) => updateInquiry(inq.id, { status: v })}
+                          onValueChange={(v) => handleStatusChange(inq, v)}
                           disabled={updatingId === inq.id}
                         >
                           <SelectTrigger className="h-7 w-32 text-xs p-1">
@@ -351,12 +389,8 @@ export function InquiriesTab({ adminToken, onOpenWhatsApp }: InquiriesTabProps) 
                             variant="ghost"
                             size="sm"
                             className="h-7 w-7 p-0"
-                            onClick={() => {
-                              setSendingWhatsApp(inq);
-                              setWhatsAppMessage("");
-                              setSendResult(null);
-                            }}
-                            title="Enviar WhatsApp"
+                            onClick={() => onOpenWhatsApp(`${inq.phonePrefix}${inq.phoneNumber}`, `${inq.firstName} ${inq.lastName}`)}
+                            title="Abrir WhatsApp"
                           >
                             <SiWhatsapp className="w-4 h-4 text-green-600" />
                           </Button>
@@ -451,7 +485,7 @@ export function InquiriesTab({ adminToken, onOpenWhatsApp }: InquiriesTabProps) 
                     <div className="text-sm font-semibold">{"\u20AC"}{inq.estimatedTotal}</div>
                   )}
                   <div className="flex items-center gap-2">
-                    <Select value={inq.status} onValueChange={(v) => updateInquiry(inq.id, { status: v })}>
+                    <Select value={inq.status} onValueChange={(v) => handleStatusChange(inq, v)}>
                       <SelectTrigger className="h-10 sm:h-8 text-xs flex-1">
                         <SelectValue />
                       </SelectTrigger>
@@ -474,11 +508,8 @@ export function InquiriesTab({ adminToken, onOpenWhatsApp }: InquiriesTabProps) 
                       variant="outline"
                       size="sm"
                       className="h-8"
-                      onClick={() => {
-                        setSendingWhatsApp(inq);
-                        setWhatsAppMessage("");
-                        setSendResult(null);
-                      }}
+                      onClick={() => onOpenWhatsApp(`${inq.phonePrefix}${inq.phoneNumber}`, `${inq.firstName} ${inq.lastName}`)}
+                      title="Abrir WhatsApp"
                     >
                       <SiWhatsapp className="w-4 h-4 text-green-600" />
                     </Button>
@@ -577,20 +608,20 @@ export function InquiriesTab({ adminToken, onOpenWhatsApp }: InquiriesTabProps) 
                       variant="outline"
                       className="flex-1"
                       onClick={() => {
+                        onOpenWhatsApp(`${inq.phonePrefix}${inq.phoneNumber}`, `${inq.firstName} ${inq.lastName}`);
                         setDetailInquiry(null);
-                        setSendingWhatsApp(inq);
-                        setWhatsAppMessage("");
-                        setSendResult(null);
                       }}
                     >
                       <SiWhatsapp className="w-4 h-4 mr-2 text-green-600" />
-                      Enviar WhatsApp
+                      Abrir WhatsApp
                     </Button>
                     <Select
                       value={inq.status}
                       onValueChange={(v) => {
-                        updateInquiry(inq.id, { status: v });
-                        setDetailInquiry({ ...inq, status: v });
+                        handleStatusChange(inq, v);
+                        if (v !== "converted") {
+                          setDetailInquiry({ ...inq, status: v });
+                        }
                       }}
                     >
                       <SelectTrigger className="flex-1">
@@ -608,81 +639,6 @@ export function InquiriesTab({ adminToken, onOpenWhatsApp }: InquiriesTabProps) 
               </>
             );
           })()}
-        </DialogContent>
-      </Dialog>
-
-      {/* WhatsApp Send Dialog */}
-      <Dialog open={!!sendingWhatsApp} onOpenChange={(open) => { if (!open) { setSendingWhatsApp(null); setSendResult(null); } }}>
-        <DialogContent className="max-w-md">
-          {sendingWhatsApp && (
-            <>
-              <DialogHeader>
-                <DialogTitle className="flex items-center gap-2">
-                  <SiWhatsapp className="w-5 h-5 text-green-600" />
-                  Enviar WhatsApp
-                </DialogTitle>
-              </DialogHeader>
-              <div className="space-y-4">
-                <div className="bg-muted rounded-lg p-3 text-sm space-y-1">
-                  <div className="font-medium">{sendingWhatsApp.firstName} {sendingWhatsApp.lastName}</div>
-                  <div className="text-muted-foreground flex items-center gap-1">
-                    <Phone className="w-3 h-3" />
-                    {sendingWhatsApp.phonePrefix} {sendingWhatsApp.phoneNumber}
-                  </div>
-                  <div className="text-muted-foreground flex items-center gap-1">
-                    <Ship className="w-3 h-3" />
-                    {sendingWhatsApp.boatName} · {formatBookingDate(sendingWhatsApp.bookingDate)}
-                  </div>
-                </div>
-
-                <div>
-                  <Textarea
-                    value={whatsAppMessage}
-                    onChange={(e) => setWhatsAppMessage(e.target.value)}
-                    placeholder="Escribe tu mensaje..."
-                    rows={4}
-                    className="resize-none"
-                    disabled={sendingInProgress}
-                  />
-                </div>
-
-                {sendResult && (
-                  <div className={`flex items-center gap-2 text-sm p-2 rounded ${
-                    sendResult.type === "success" ? "bg-green-50 text-green-700" : "bg-destructive/10 text-destructive"
-                  }`}>
-                    {sendResult.type === "success" ? (
-                      <CheckCircle2 className="w-4 h-4" />
-                    ) : (
-                      <AlertCircle className="w-4 h-4" />
-                    )}
-                    {sendResult.message}
-                  </div>
-                )}
-
-                <div className="flex gap-2">
-                  <Button
-                    variant="outline"
-                    className="flex-1"
-                    onClick={() => { setSendingWhatsApp(null); setSendResult(null); }}
-                    disabled={sendingInProgress}
-                  >
-                    Cancelar
-                  </Button>
-                  <Button
-                    className="flex-1 bg-green-600 hover:bg-green-700 text-white"
-                    onClick={sendWhatsAppViaAPI}
-                    disabled={sendingInProgress || !whatsAppMessage.trim()}
-                  >
-                    {sendingInProgress ? (
-                      <><Loader2 className="w-4 h-4 mr-2 animate-spin" />Enviando...</>
-                    ) : (
-                      <><Send className="w-4 h-4 mr-2" />Enviar</>
-                    )}
-                  </Button>
-                </div>
-              </div>
-            </>
-          )}
         </DialogContent>
       </Dialog>
 
@@ -711,6 +667,32 @@ export function InquiriesTab({ adminToken, onOpenWhatsApp }: InquiriesTabProps) 
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
+
+      {/* Booking creation modal — opened when admin marks an inquiry as "convertido" */}
+      {convertingInquiry && (
+        <BookingDetailsModal
+          open={!!convertingInquiry}
+          onOpenChange={(open) => { if (!open) setConvertingInquiry(null); }}
+          booking={null}
+          isEditing={false}
+          isCreating={true}
+          prefillData={buildPrefillFromInquiry(convertingInquiry)}
+          adminToken={adminToken}
+          onEditStart={() => {}}
+          onEditCancel={() => setConvertingInquiry(null)}
+          onOpenWhatsApp={onOpenWhatsApp}
+          onCreateSuccess={(_createdBooking: Booking) => {
+            const inq = convertingInquiry;
+            if (inq) {
+              updateInquiry(inq.id, { status: "converted" });
+              if (detailInquiry?.id === inq.id) {
+                setDetailInquiry({ ...inq, status: "converted" });
+              }
+            }
+            setConvertingInquiry(null);
+          }}
+        />
+      )}
     </div>
   );
 }

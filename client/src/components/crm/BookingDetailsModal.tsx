@@ -56,6 +56,18 @@ interface BookingPrefillData {
   startTime: string;
   endTime: string;
   totalHours: number;
+  // Optional fields used when prefilling from a WhatsApp inquiry
+  customerName?: string;
+  customerSurname?: string;
+  customerPhone?: string;
+  customerEmail?: string;
+  customerNationality?: string;
+  numberOfPeople?: number;
+  subtotal?: string;
+  extrasTotal?: string;
+  deposit?: string;
+  totalAmount?: string;
+  notes?: string;
 }
 
 interface BookingDetailsModalProps {
@@ -69,6 +81,7 @@ interface BookingDetailsModalProps {
   onEditStart: () => void;
   onEditCancel: () => void;
   onOpenWhatsApp: (phone: string, name: string) => void;
+  onCreateSuccess?: (createdBooking: Booking) => void;
 }
 
 export function BookingDetailsModal({
@@ -82,6 +95,7 @@ export function BookingDetailsModal({
   onEditStart,
   onEditCancel,
   onOpenWhatsApp,
+  onCreateSuccess,
 }: BookingDetailsModalProps) {
   const { toast } = useToast();
   const { data: boats = [] } = useQuery<Boat[]>({ queryKey: ["/api/boats"] });
@@ -113,7 +127,7 @@ export function BookingDetailsModal({
     resolver: zodResolver(editBookingSchema),
   });
 
-  // Pre-fill form when creating a booking from calendar slot click
+  // Pre-fill form when creating a booking (from calendar slot click or inquiry conversion)
   useEffect(() => {
     if (isCreating && open && prefillData) {
       const startDate = new Date(prefillData.startTime);
@@ -123,19 +137,19 @@ export function BookingDetailsModal({
         startTime: format(startDate, "yyyy-MM-dd'T'HH:mm"),
         endTime: format(endDate, "yyyy-MM-dd'T'HH:mm"),
         totalHours: prefillData.totalHours,
-        customerName: "",
-        customerSurname: "",
-        customerPhone: "",
-        customerEmail: "",
-        customerNationality: "",
-        numberOfPeople: 1,
-        subtotal: "0",
-        extrasTotal: "0",
-        deposit: "0",
-        totalAmount: "0",
+        customerName: prefillData.customerName ?? "",
+        customerSurname: prefillData.customerSurname ?? "",
+        customerPhone: prefillData.customerPhone ?? "",
+        customerEmail: prefillData.customerEmail ?? "",
+        customerNationality: prefillData.customerNationality ?? "",
+        numberOfPeople: prefillData.numberOfPeople ?? 1,
+        subtotal: prefillData.subtotal ?? "0",
+        extrasTotal: prefillData.extrasTotal ?? "0",
+        deposit: prefillData.deposit ?? "0",
+        totalAmount: prefillData.totalAmount ?? "0",
         bookingStatus: "confirmed",
         paymentStatus: "pending",
-        notes: "",
+        notes: prefillData.notes ?? "",
       });
     }
   }, [isCreating, open, prefillData, editForm]);
@@ -260,8 +274,9 @@ export function BookingDetailsModal({
       }
       return response.json();
     },
-    onSuccess: () => {
+    onSuccess: (response) => {
       queryClient.invalidateQueries({ queryKey: ['/api/admin/bookings'] });
+      queryClient.invalidateQueries({ queryKey: ['/api/admin/bookings/calendar'] });
       queryClient.invalidateQueries({ queryKey: ['/api/admin/stats'] });
       queryClient.invalidateQueries({ queryKey: ['/api/admin/customers'] });
       toast({
@@ -271,6 +286,9 @@ export function BookingDetailsModal({
       onOpenChange(false);
       onEditCancel();
       editForm.reset();
+      if (onCreateSuccess && response?.booking) {
+        onCreateSuccess(response.booking as Booking);
+      }
     },
     onError: (error: Error) => {
       toast({

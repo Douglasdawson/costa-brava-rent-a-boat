@@ -46,6 +46,11 @@ app.use((req: Request, _res: Response, next: NextFunction) => {
 // This must be set before any rate-limiting middleware
 app.set('trust proxy', 2);
 
+// ── Health check routes — registered FIRST, before CORS/rate-limiting ────────
+// Deployment platforms (Cloud Run, Replit autoscale) probe these endpoints
+// WITHOUT an Origin header. They must be reachable before any middleware runs.
+registerHealthRoutes(app);
+
 // Sentry error monitoring — only active when SENTRY_DSN is set
 if (config.SENTRY_DSN) {
   Sentry.init({
@@ -157,16 +162,22 @@ const allowedOrigins = isDev
   ? ['http://localhost:5000', 'http://localhost:3000', 'http://127.0.0.1:5000']
   : ['https://www.costabravarentaboat.com', 'https://costabravarentaboat.com'];
 
+// NOTE: when mounted at '/api/', Express strips that prefix from req.path.
+// So '/api/health' becomes '/health' inside this middleware. We include both
+// forms to be safe, and also check req.originalUrl for absolute matching.
 const corsExemptPaths = [
-  '/api/stripe-webhook',
-  '/api/meta-whatsapp/webhook',
-  '/api/health',
-  '/api/health/live',
+  '/api/stripe-webhook', '/stripe-webhook',
+  '/api/meta-whatsapp/webhook', '/meta-whatsapp/webhook',
+  '/api/health', '/health',
+  '/api/health/live', '/health/live',
 ];
 
 app.use('/api/', (req: Request, res: Response, next: NextFunction) => {
-  // Skip CORS for webhook endpoints — they use their own signature verification
-  if (corsExemptPaths.some(p => req.path === p || req.path.startsWith(p + '/'))) {
+  // Skip CORS for webhook and health endpoints
+  if (
+    corsExemptPaths.some(p => req.path === p || req.path.startsWith(p + '/')) ||
+    corsExemptPaths.some(p => req.originalUrl === p || req.originalUrl.startsWith(p + '/') || req.originalUrl.startsWith(p + '?'))
+  ) {
     return next();
   }
 
@@ -346,12 +357,8 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 });
 
 (async () => {
-  // ── STEP 1: Register health check endpoint immediately ──────────────────────────
-  // Health routes must respond before any async initialization so deployment
-  // platforms (Cloud Run) consider the server ready within the 30s window.
-  registerHealthRoutes(app);
-
-  // ── STEP 2: Create HTTP server and start listening immediately ───────────────────
+  // ── STEP 1: Create HTTP server and start listening immediately ───────────────────
+  // Health routes are already registered above (before CORS/rate-limiting).
   // The server is now accepting connections. /api/health returns 200 right away.
   // All other routes will be registered asynchronously below.
   const port = config.PORT;

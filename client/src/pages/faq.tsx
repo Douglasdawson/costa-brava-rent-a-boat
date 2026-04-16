@@ -741,15 +741,15 @@ export default function FAQPage() {
                   </AccordionItem>
 
                   <AccordionItem value="mejor-epoca" data-testid="faq-mejor-epoca">
-                    <AccordionTrigger>¿Cual es la mejor epoca para alquilar un barco en Blanes?</AccordionTrigger>
+                    <AccordionTrigger>¿Cuál es la mejor época para alquilar un barco en Blanes?</AccordionTrigger>
                     <AccordionContent>
                       <div className="space-y-3">
-                        <p><strong>Septiembre es el mes estrella:</strong> el agua del mar esta en su temperatura mas calida (24-25 grados C), los precios son de temporada media, hay menos turistas y las condiciones meteorologicas son excelentes.</p>
+                        <p><strong>Septiembre es el mes estrella:</strong> el agua del mar está en su temperatura más cálida (24-25 grados C), los precios son de temporada media, hay menos turistas y las condiciones meteorológicas son excelentes.</p>
                         <ul className="list-disc pl-6 space-y-1">
-                          <li><strong>Septiembre:</strong> Agua calida, precios medios, menos gente</li>
+                          <li><strong>Septiembre:</strong> Agua cálida, precios medios, menos gente</li>
                           <li><strong>Junio:</strong> Buen clima, precios asequibles</li>
-                          <li><strong>Julio-Agosto:</strong> Mejor clima, precios mas altos, mas afluencia</li>
-                          <li><strong>Abril-Mayo:</strong> Ideal para dias soleados puntuales</li>
+                          <li><strong>Julio-Agosto:</strong> Mejor clima, precios más altos, más afluencia</li>
+                          <li><strong>Abril-Mayo:</strong> Ideal para días soleados puntuales</li>
                         </ul>
                         <div className="flex items-center gap-2 mt-3 p-3 bg-primary/5 rounded-lg">
                           <Sun className="w-5 h-5 text-primary" />
@@ -880,7 +880,7 @@ export default function FAQPage() {
                           <li>Ancla y cabo</li>
                           <li>Escalera de baño</li>
                           <li>Instrucciones y mapa</li>
-                          <li>Seguro básico de la embarcacion</li>
+                          <li>Seguro básico de la embarcación</li>
                           <li>Soporte telefónico</li>
                         </ul>
                       </div>
@@ -991,7 +991,7 @@ export default function FAQPage() {
                       <div className="space-y-3">
                         <p><strong>Zona de navegación autorizada:</strong></p>
                         <ul className="list-disc pl-6 space-y-1">
-                          <li><strong>Norte:</strong> Para las embarcaciones Sin licencia, hasta la Playa de Fenals  (Lloret de Mar). Y para las embarcaciones Con Licencia, recomendamos no sobrepasar Sant Feliu de Guixols</li>
+                          <li><strong>Norte:</strong> Para las embarcaciones Sin licencia, hasta la Playa de Fenals  (Lloret de Mar). Y para las embarcaciones Con Licencia, recomendamos no sobrepasar Sant Feliu de Guíxols</li>
                           <li><strong>Sur:</strong> Hasta el final de la playa de Blanes para las embarcaciones sin licencia. Y sin límite para las embarcaciones Con Licencia</li>
                           <li><strong>Distancia:</strong> Máximo 2 millas de la costa</li>
                           <li><strong>Calas recomendadas:</strong> Cala Brava, Cala Sant Francesc, Playa de Lloret</li>

@@ -3,8 +3,10 @@ import compression from "compression";
 import cookieParser from "cookie-parser";
 import helmet from "helmet";
 import https from "https";
+import http from "http";
 import rateLimit from "express-rate-limit";
 import { registerRoutes } from "./routes";
+import { registerHealthRoutes } from "./routes/health";
 import { setupVite, serveStatic, log } from "./vite";
 import * as Sentry from "@sentry/node";
 import { randomUUID } from "crypto";
@@ -344,7 +346,28 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 });
 
 (async () => {
-  const server = await registerRoutes(app);
+  // ── STEP 1: Register health check endpoint immediately ──────────────────────────
+  // Health routes must respond before any async initialization so deployment
+  // platforms (Cloud Run) consider the server ready within the 30s window.
+  registerHealthRoutes(app);
+
+  // ── STEP 2: Create HTTP server and start listening immediately ───────────────────
+  // The server is now accepting connections. /api/health returns 200 right away.
+  // All other routes will be registered asynchronously below.
+  const port = config.PORT;
+  const httpServer = http.createServer(app);
+
+  await new Promise<void>((resolve) => {
+    httpServer.listen({ port, host: "0.0.0.0" }, () => {
+      log(`serving on port ${port}`);
+      resolve();
+    });
+  });
+
+  // ── STEP 3: Full async initialization (server already responding) ────────────────
+  // registerRoutes now: setupAuth is fire-and-forget, WhatsApp is fire-and-forget.
+  // All synchronous route registrations happen immediately.
+  await registerRoutes(app, httpServer);
 
   // Dynamic 301 redirects (managed via DB, seeded after listen)
   const { redirectMiddleware, seedLegacyRedirects } = await import("./seo/redirects");
@@ -397,7 +420,7 @@ app.use((req: Request, res: Response, next: NextFunction) => {
   // setting up all the other routes so the catch-all route
   // doesn't interfere with the other routes
   if (app.get("env") === "development") {
-    await setupVite(app, server);
+    await setupVite(app, httpServer);
   } else {
     // Add Cache-Control + CDN headers for production static assets
     app.use((req, res, next) => {
@@ -420,34 +443,22 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 
       next();
     });
-    
+
     serveStatic(app);
   }
 
-  // ALWAYS serve the app on the port specified in the environment variable PORT
-  // Other ports are firewalled. Default to 5000 if not specified.
-  // this serves both the API and the client.
-  // It is the only port that is not firewalled.
-  const port = config.PORT;
-  server.listen({
-    port,
-    host: "0.0.0.0",
-  }, () => {
-    log(`serving on port ${port}`);
-    // Seed redirects and start SEO worker after server is listening
-    // to avoid blocking health checks during deployment
-    seedLegacyRedirects().catch(err =>
-      log(`Warning: failed to seed legacy redirects: ${err}`));
-    startSeoWorker();
-  });
+  // ── STEP 4: Background tasks (after full initialization) ─────────────────────────
+  seedLegacyRedirects().catch(err =>
+    log(`Warning: failed to seed legacy redirects: ${err}`));
+  startSeoWorker();
 
-  // Graceful shutdown — guard against multiple calls
+  // ── Graceful shutdown — guard against multiple calls ─────────────────────────────
   let shutdownCalled = false;
   const shutdown = () => {
     if (shutdownCalled) return;
     shutdownCalled = true;
     log("Shutting down gracefully...");
-    server.close(() => {
+    httpServer.close(() => {
       stopScheduler();
       stopSeoWorker();
       pool.end().then(() => process.exit(0)).catch(() => process.exit(0));

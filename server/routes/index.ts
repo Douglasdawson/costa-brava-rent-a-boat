@@ -37,13 +37,17 @@ import { registerPartnershipRoutes } from "./admin-partnerships";
 import { registerGdprRoutes } from "./gdpr";
 import { startScheduledServices } from "../services";
 
-export async function registerRoutes(app: Express): Promise<Server> {
-  // Setup Replit Auth (customer authentication) — skip in local development
+export async function registerRoutes(app: Express, existingServer?: Server): Promise<Server> {
+  // Setup Replit Auth (customer authentication) — non-blocking: fire-and-forget so it
+  // doesn't delay the server listening during deployment health checks.
   if (process.env.REPLIT_DOMAINS) {
-    await setupAuth(app);
+    setupAuth(app).catch((err: unknown) => {
+      const msg = err instanceof Error ? err.message : String(err);
+      console.warn(`[Startup] Replit Auth setup deferred error: ${msg}`);
+    });
   }
 
-  // Register all route modules
+  // Register all route modules (synchronous — fast)
   registerSitemapRoutes(app);
   registerBoatRoutes(app);
   registerBookingRoutes(app);
@@ -75,8 +79,12 @@ export async function registerRoutes(app: Express): Promise<Server> {
   registerPartnershipRoutes(app);
   registerGdprRoutes(app);
 
-  // WhatsApp routes are async due to dynamic imports
-  await registerWhatsAppRoutes(app);
+  // WhatsApp routes — fire-and-forget: dynamic AI imports can be slow.
+  // The webhook endpoints will be available once the import resolves (<5s typically).
+  registerWhatsAppRoutes(app).catch((err: unknown) => {
+    const msg = err instanceof Error ? err.message : String(err);
+    console.warn(`[Startup] WhatsApp routes init error: ${msg}`);
+  });
 
   // Social proof / FOMO notifications (lightweight, public, cached)
   app.get("/api/social-proof", async (_req, res) => {
@@ -105,7 +113,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Start background scheduled services (email reminders, thank-you emails)
   startScheduledServices();
 
-  const httpServer = createServer(app);
+  // Return existing server if provided (pre-created in index.ts for early listening),
+  // otherwise create a new one.
+  const httpServer = existingServer ?? createServer(app);
 
   return httpServer;
 }

@@ -4,23 +4,23 @@
 Este es un proyecto de alquiler de barcos en Blanes, Costa Brava. Lee `PROJECT_CONTEXT.md` para contexto completo.
 
 ## Idioma
-- **Comunicación**: Español (el usuario prefiere español)
-- **Código**: Inglés (nombres de variables, funciones, comentarios técnicos)
-- **UI/Contenido**: Multi-idioma (8 idiomas soportados)
+- **Comunicacion**: Espanol (el usuario prefiere espanol)
+- **Codigo**: Ingles (nombres de variables, funciones, comentarios tecnicos)
+- **UI/Contenido**: Multi-idioma (es, en, ca, fr, de, nl, it, ru)
 
-## Convenciones de Código
+## Convenciones de Codigo
 
 ### TypeScript
 - Strict mode habilitado
-- Usar tipos explícitos, evitar `any`
+- Usar tipos explicitos, evitar `any`
 - Interfaces sobre types cuando sea posible
-- Usar Zod para validación runtime
+- Usar Zod para validacion runtime
 
 ### React
 - Componentes funcionales con hooks
 - Nombrar componentes en PascalCase
 - Usar `@/` para imports absolutos desde `client/src/`
-- Lazy loading para páginas no críticas
+- Lazy loading para paginas no criticas
 
 ### Estilos
 - TailwindCSS exclusivamente (no CSS custom)
@@ -29,56 +29,110 @@ Este es un proyecto de alquiler de barcos en Blanes, Costa Brava. Lee `PROJECT_C
 - Colores via CSS variables (ver `tailwind.config.ts`)
 
 ### API
-- RESTful endpoints
-- Validación con Zod en servidor
-- Errores en español para usuario final
-- Logs en inglés para debugging
+- RESTful endpoints en `server/routes/*.ts` (49 archivos modulares)
+- Rutas registradas en `server/routes/index.ts`
+- Auth admin: `requireAdminSession` de `server/routes/auth-middleware.ts`
+- Validacion con Zod en servidor
+- Errores en espanol para usuario final
+- Logs en ingles via `logger` de `server/lib/logger.ts`
 
 ### Base de Datos
+- Neon PostgreSQL (connection string en `DATABASE_URL`)
 - Drizzle ORM para queries
 - Schemas en `shared/schema.ts`
+- Storage layer en `server/storage/*.ts` (21 modulos)
 - Nombres de tablas en snake_case
 - Campos en camelCase en TypeScript
 
-## Archivos Importantes
+## Estructura del Proyecto
 
-| Modificación | Archivo(s) |
+### Frontend (`client/src/`)
+| Area | Ruta | Descripcion |
+|------|------|-------------|
+| Paginas publicas | `pages/*.tsx` | 37 paginas (10 locations, 4 activities, 2 categories, blog, FAQ, about, etc.) |
+| Componentes | `components/*.tsx` | Componentes publicos (Hero, Fleet, Booking, Navigation, etc.) |
+| Booking flow | `components/booking-flow/` | Wizard de reserva split en 8 steps |
+| Panel admin CRM | `components/crm/` | 25+ componentes (Dashboard, Calendar, Bookings, Fleet, etc.) |
+| UI base | `components/ui/` | Componentes shadcn/ui |
+| Traducciones i18n | `i18n/*.ts` | 8 idiomas (es, en, ca, fr, de, nl, it, ru) |
+| Hooks | `hooks/` | 20 hooks (useLanguage, useBookingModal, useFeatureFlag, etc.) |
+| SEO | `utils/seo-config.ts` | Titulos, descripciones, hreflang por idioma |
+| SEO schemas | `utils/seo-schemas.ts` | JSON-LD structured data |
+
+### Backend (`server/`)
+| Area | Ruta | Descripcion |
+|------|------|-------------|
+| Rutas API | `routes/*.ts` | 49 modulos (boats, bookings, admin-*, auth, blog, etc.) |
+| Storage/DB | `storage/*.ts` | 21 modulos de acceso a datos |
+| WhatsApp chatbot | `whatsapp/` | 16 archivos (AI, functions, RAG, flows, memory, etc.) |
+| Servicios | `services/` | Email, analytics, blog autopilot, lead nurturing, scheduler |
+| SEO engine | `seo/` | Monitorizacion, alertas, experiments, IndexNow |
+| MCP servers | `mcp/` | 7 servidores (business, chatbot, content, sendgrid, twilio, seo-engine, ads-intelligence) |
+| Utilidades | `lib/` | Logger, circuit breaker, retry queue, audit, occupancy calculator |
+
+### Shared (`shared/`)
+| Archivo | Contenido |
+|---------|-----------|
+| `schema.ts` | Schemas Drizzle de todas las tablas |
+| `boatData.ts` | Datos estaticos de la flota (nombres, specs, features) |
+| `pricing.ts` | Logica de precios por temporada y duracion |
+| `constants.ts` | Constantes compartidas |
+| `seoConstants.ts` | Idiomas soportados, hreflang codes |
+| `i18n-routes.ts` | Slugs traducidos por idioma para todas las rutas |
+| `routesData.ts` | Datos de rutas/excursiones maritimas |
+
+## Archivos Importantes (referencia rapida)
+
+| Modificacion | Archivo(s) |
 |--------------|------------|
-| Nueva ruta frontend | `client/src/App.tsx` |
+| Nueva ruta frontend | `client/src/App.tsx` + `shared/i18n-routes.ts` |
 | Nuevo componente | `client/src/components/` |
-| Nuevo endpoint API | `server/routes/*.ts` |
+| Nuevo endpoint API | `server/routes/<modulo>.ts` + registrar en `server/routes/index.ts` |
 | Nuevo campo DB | `shared/schema.ts` + `npm run db:push` |
 | Precios/temporadas | `shared/pricing.ts` |
 | Datos de barcos | `shared/boatData.ts` |
-| SEO de página | `client/src/utils/seo-config.ts` |
+| SEO de pagina | `client/src/utils/seo-config.ts` |
+| Slugs i18n de rutas | `shared/i18n-routes.ts` |
+| Traducciones UI | `client/src/i18n/<idioma>.ts` |
+| Traducciones a11y | `client/src/lib/translations.ts` |
 | Chatbot comportamiento | `server/whatsapp/aiService.ts` |
+| Chatbot functions | `server/whatsapp/functionCallingService.ts` |
 | Knowledge base | `server/whatsapp/seedKnowledgeBase.ts` |
 | Logger estructurado | `server/lib/logger.ts` |
 | Circuit breaker | `server/lib/circuitBreaker.ts` |
 | Retry queue | `server/lib/retryQueue.ts` |
 | Audit logs | `server/lib/audit.ts` |
-| Traducciones (a11y) | `client/src/lib/translations.ts` |
-| Booking flow (split) | `client/src/components/booking-flow/` |
-| Blog articulo detalle | `client/src/pages/blog-detail.tsx` |
+| Booking flow (wizard) | `client/src/components/booking-flow/` |
+| Panel admin layout | `client/src/components/crm/AdminLayout.tsx` |
+| CRM tabs/componentes | `client/src/components/crm/*.tsx` |
 
 ## Patrones Comunes
 
 ### Crear nuevo endpoint API
 ```typescript
-// En server/routes/<modulo>.ts
-app.get("/api/nuevo-endpoint", async (req, res) => {
-  try {
-    const data = await storage.getData();
-    res.json(data);
-  } catch (error) {
-    res.status(500).json({ message: "Error: " + (error instanceof Error ? error.message : "unknown") });
-  }
-});
+// 1. Crear o editar server/routes/<modulo>.ts
+import { requireAdminSession } from "./auth-middleware";
 
-// Con autenticación admin
-app.get("/api/admin/endpoint", requireAdminSession, async (req, res) => {
-  // ...
-});
+export function registerMyRoutes(app: Express, storage: IStorage) {
+  // Endpoint publico
+  app.get("/api/mi-endpoint", async (req, res) => {
+    try {
+      const data = await storage.getData();
+      res.json(data);
+    } catch (error) {
+      res.status(500).json({ message: "Error: " + (error instanceof Error ? error.message : "unknown") });
+    }
+  });
+
+  // Endpoint admin (requiere sesion)
+  app.get("/api/admin/mi-endpoint", requireAdminSession, async (req, res) => {
+    // ...
+  });
+}
+
+// 2. Registrar en server/routes/index.ts:
+//    import { registerMyRoutes } from "./mi-modulo";
+//    registerMyRoutes(app, storage);
 ```
 
 ### Crear nuevo componente
@@ -94,7 +148,7 @@ export function MiComponente() {
 }
 ```
 
-### Añadir campo a tabla existente
+### Anadir campo a tabla existente
 ```typescript
 // 1. Modificar shared/schema.ts
 export const miTabla = pgTable("mi_tabla", {
@@ -132,52 +186,83 @@ const [updated] = await db
   .returning();
 ```
 
+### Anadir traduccion a un nuevo idioma
+```typescript
+// 1. Archivo de traducciones: client/src/i18n/<idioma>.ts
+// 2. SEO config: client/src/utils/seo-config.ts
+// 3. Hreflang: shared/seoConstants.ts (HREFLANG_CODES)
+// 4. Slugs de rutas: shared/i18n-routes.ts
+// 5. Sitemaps: server/routes/sitemaps.ts
+```
+
 ## Cosas a Evitar
 
 - NO crear archivos `.md` nuevos sin que el usuario lo pida
-- NO añadir emojis al código o UI
-- NO usar `console.log` en producción — usar `logger` de `server/lib/logger.ts`
+- NO anadir emojis al codigo o UI
+- NO usar `console.log` en produccion -- usar `logger` de `server/lib/logger.ts`
 - NO commitear cambios sin que el usuario lo solicite
-- NO modificar `package.json` sin explicar por qué
+- NO modificar `package.json` sin explicar por que
 - NO usar `any` en TypeScript
-- Tests con Vitest: `npm test` para correr, archivos `*.test.ts` junto al código que testean
+- NO sugerir Stripe como solucion de pago -- la web captura solicitudes de reserva, el pago es manual
+- Tests con Vitest: `npm test` para correr, archivos `*.test.ts` junto al codigo que testean
 
 ## Flujo de Trabajo Recomendado
 
 1. **Antes de modificar**: Leer el archivo completo con `Read`
-2. **Cambios pequeños**: Usar `Edit` con old_string/new_string
+2. **Cambios pequenos**: Usar `Edit` con old_string/new_string
 3. **Archivos nuevos**: Usar `Write`
-4. **Verificar sintaxis**: `npm run check`
+4. **Verificar sintaxis**: `npm run check` (tsc tarda 2+ min en este proyecto)
 5. **Tests**: `npm test`
 6. **Lint**: `npm run lint`
-7. **Todo junto**: `npm run check:all`
-8. **Probar**: `npm run dev`
+7. **Format**: `npm run format:check`
+8. **Todo junto**: `npm run check:all`
+9. **Probar**: `npm run dev`
 
-## Información de Negocio
+## Informacion de Negocio
 
 - **Temporada**: Abril - Octubre (fuera de temporada no se aceptan reservas)
-- **Ubicación**: Puerto de Blanes, Girona, España
-- **Teléfono**: +34 611 500 372
+- **Ubicacion**: Puerto de Blanes, Girona, Espana
+- **Telefono**: +34 611 500 372
 - **Email**: costabravarentaboat@gmail.com
 - **PIN Admin CRM**: variable de entorno `ADMIN_PIN`
 - **JWT Secret**: variable de entorno `JWT_SECRET` (min 32 caracteres)
+- **Modelo**: Sin pagos online -- la web captura solicitudes de reserva, el pago se gestiona manualmente
+- **Combustible**: Solo barcos sin-licencia incluyen gasolina; barcos con licencia y excursion privada NO
 
 ## Preguntas Frecuentes del Desarrollo
 
-**¿Cómo añadir un nuevo barco?**
-1. Añadir datos en `shared/boatData.ts`
+**Como anadir un nuevo barco?**
+1. Anadir datos en `shared/boatData.ts`
 2. Insertar en DB via CRM o `POST /api/admin/boats`
 
-**¿Cómo cambiar precios?**
+**Como cambiar precios?**
 1. Modificar `pricing` en `shared/boatData.ts`
 2. Actualizar barco en DB
 
-**¿Cómo añadir nuevo idioma SEO?**
-1. Añadir traducciones en `client/src/utils/seo-config.ts`
-2. Añadir hreflang en `HREFLANG_CODES`
-3. Actualizar sitemaps en `server/routes.ts`
+**Como anadir nuevo idioma SEO?**
+1. Anadir traducciones en `client/src/i18n/<idioma>.ts`
+2. Anadir SEO config en `client/src/utils/seo-config.ts`
+3. Anadir hreflang en `shared/seoConstants.ts`
+4. Anadir slugs de rutas en `shared/i18n-routes.ts`
+5. Actualizar sitemaps en `server/routes/sitemaps.ts`
 
-**¿Cómo modificar el chatbot?**
+**Como modificar el chatbot?**
 1. Comportamiento IA: `server/whatsapp/aiService.ts`
 2. Functions: `server/whatsapp/functionCallingService.ts`
 3. Knowledge base: `server/whatsapp/seedKnowledgeBase.ts`
+4. Flujos de conversacion: `server/whatsapp/flows/`
+5. Deteccion de idioma: `server/whatsapp/languageDetector.ts`
+6. Memoria de chat: `server/whatsapp/chatMemoryService.ts`
+
+**Como anadir una nueva pagina publica?**
+1. Crear pagina en `client/src/pages/<nombre>.tsx`
+2. Anadir ruta en `client/src/App.tsx`
+3. Anadir slugs i18n en `shared/i18n-routes.ts`
+4. Anadir SEO config en `client/src/utils/seo-config.ts`
+
+**Como modificar el panel admin CRM?**
+1. Layout y navegacion: `client/src/components/crm/AdminLayout.tsx`
+2. Tabs: `client/src/components/crm/<NombreTab>.tsx`
+3. Tipos y schemas: `client/src/components/crm/types.ts`
+4. Constantes (colores, labels): `client/src/components/crm/constants.ts`
+5. Componentes compartidos: `client/src/components/crm/shared/`

@@ -790,7 +790,7 @@ export function MaintenanceTab({ adminToken }: MaintenanceTabProps) {
                 </SelectContent>
               </Select>
             </div>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <Label>Tipo *</Label>
                 <Select value={mForm.type} onValueChange={v => setMForm(p => ({ ...p, type: v }))}>
@@ -823,7 +823,7 @@ export function MaintenanceTab({ adminToken }: MaintenanceTabProps) {
                 rows={3}
               />
             </div>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <Label>Fecha *</Label>
                 <Input

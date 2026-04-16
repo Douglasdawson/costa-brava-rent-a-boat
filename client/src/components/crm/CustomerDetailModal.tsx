@@ -362,7 +362,26 @@ export function CustomerDetailModal({
               {customerBookings.length === 0 ? (
                 <p className="text-sm text-muted-foreground/70 italic">Sin reservas registradas</p>
               ) : (
-                <div className="overflow-x-auto">
+                <>
+                {/* Mobile booking list */}
+                <div className="sm:hidden space-y-2">
+                  {customerBookings.map((booking) => (
+                    <div key={booking.id} className="flex items-center justify-between py-2 border-b border-border last:border-0">
+                      <div>
+                        <p className="text-xs font-medium">{format(new Date(booking.startTime), "dd/MM/yy")} - {boatName(booking.boatId)}</p>
+                        <p className="text-xs text-muted-foreground">{booking.totalHours}h</p>
+                      </div>
+                      <div className="text-right">
+                        <p className="text-xs font-medium">{"\u20AC"}{parseFloat(booking.totalAmount).toFixed(2)}</p>
+                        <Badge className={`text-[10px] ${getStatusColor(booking.bookingStatus)}`}>
+                          {getStatusLabel(booking.bookingStatus)}
+                        </Badge>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                {/* Desktop booking table */}
+                <div className="hidden sm:block overflow-x-auto">
                   <Table>
                     <TableHeader>
                       <TableRow>
@@ -396,6 +415,7 @@ export function CustomerDetailModal({
                     </TableBody>
                   </Table>
                 </div>
+                </>
               )}
             </div>
 

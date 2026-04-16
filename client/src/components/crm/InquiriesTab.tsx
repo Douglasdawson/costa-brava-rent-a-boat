@@ -513,8 +513,50 @@ export function InquiriesTab({ adminToken, onOpenWhatsApp }: InquiriesTabProps) 
                     >
                       <SiWhatsapp className="w-4 h-4 text-green-600" />
                     </Button>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="h-8"
+                      onClick={() => setDeleteInquiryId(inq.id)}
+                    >
+                      <Trash2 className="w-4 h-4 text-red-500" />
+                    </Button>
                   </div>
-                  {inq.notes && <div className="text-xs text-muted-foreground/70">{inq.notes}</div>}
+                  <div className="space-y-1">
+                    <button
+                      onClick={() => {
+                        if (editingNotes === inq.id) {
+                          updateInquiry(inq.id, { notes: notesValue || null });
+                          setEditingNotes(null);
+                        } else {
+                          setEditingNotes(inq.id);
+                          setNotesValue(inq.notes || "");
+                        }
+                      }}
+                      className="text-xs text-muted-foreground hover:text-foreground transition-colors"
+                    >
+                      {editingNotes === inq.id ? "Guardar notas" : inq.notes ? "Editar notas" : "Agregar notas"}
+                    </button>
+                    {editingNotes === inq.id && (
+                      <Input
+                        value={notesValue}
+                        onChange={(e) => setNotesValue(e.target.value)}
+                        placeholder="Notas..."
+                        className="h-8 text-xs"
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter') {
+                            updateInquiry(inq.id, { notes: notesValue || null });
+                            setEditingNotes(null);
+                          }
+                          if (e.key === 'Escape') setEditingNotes(null);
+                        }}
+                        autoFocus
+                      />
+                    )}
+                    {editingNotes !== inq.id && inq.notes && (
+                      <div className="text-xs text-muted-foreground/70">{inq.notes}</div>
+                    )}
+                  </div>
                 </CardContent>
               </Card>
             );
@@ -524,7 +566,7 @@ export function InquiriesTab({ adminToken, onOpenWhatsApp }: InquiriesTabProps) 
 
       {/* Detail Modal */}
       <Dialog open={!!detailInquiry} onOpenChange={(open) => { if (!open) setDetailInquiry(null); }}>
-        <DialogContent className="max-w-lg">
+        <DialogContent className="w-full h-[100dvh] md:h-auto md:max-h-[85vh] max-w-none md:max-w-lg rounded-none md:rounded-lg overflow-y-auto">
           {detailInquiry && (() => {
             const inq = detailInquiry;
             const statusConf = STATUS_CONFIG[inq.status] || STATUS_CONFIG.pending;

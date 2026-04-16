@@ -158,7 +158,7 @@ export function AdminLayout({
   const [moreOpen, setMoreOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background pt-safe">
       {/* Trial Banner */}
       {showTrialBanner && (
         <div className={`px-4 py-2 text-sm flex items-center justify-between ${
@@ -198,7 +198,7 @@ export function AdminLayout({
               <h1 className="text-lg md:text-2xl font-bold font-heading text-foreground">
                 {tenantName || "Costa Brava Rent a Boat"}
               </h1>
-              <p className="text-xs md:text-sm text-muted-foreground hidden md:block">
+              <p className="text-xs md:text-sm text-muted-foreground block truncate max-w-[120px] md:max-w-none">
                 {adminUsername} · {adminRole === "owner" ? "Propietario" : adminRole === "admin" ? "Administrador" : "Empleado"}
               </p>
             </div>
@@ -213,13 +213,24 @@ export function AdminLayout({
             >
               <span className="text-xs">&#8984;</span>K
             </kbd>
+            <Button
+              variant="outline"
+              size="sm"
+              className="md:hidden"
+              onClick={() => {
+                document.dispatchEvent(new KeyboardEvent("keydown", { key: "k", metaKey: true }));
+              }}
+              title="Buscar"
+            >
+              <Search className="w-4 h-4" />
+            </Button>
             <Button variant="outline" onClick={onLogout} data-testid="button-logout" size="sm" className="md:h-10">
               <LogOut className="w-4 h-4 md:mr-2" />
               <span className="hidden md:inline">Cerrar Sesión</span>
             </Button>
-            <Button variant="outline" onClick={onExportCSV} data-testid="button-export-data" size="sm" className="hidden md:flex md:h-10">
-              <Download className="w-4 h-4 mr-2" />
-              Exportar
+            <Button variant="outline" onClick={onExportCSV} data-testid="button-export-data" size="sm" className="md:h-10">
+              <Download className="w-4 h-4 md:mr-2" />
+              <span className="hidden md:inline">Exportar</span>
             </Button>
             <Button onClick={onNewBooking} data-testid="button-new-booking" size="sm" className="md:h-10">
               <Plus className="w-4 h-4 md:mr-2" />
@@ -243,7 +254,7 @@ export function AdminLayout({
               data-testid={`tab-${tab.id}`}
             >
               <tab.icon className="w-4 h-4 md:w-4 md:h-4" />
-              <span className="hidden md:inline text-sm">{tab.label}</span>
+              <span className="text-xs sm:text-sm">{tab.label}</span>
             </button>
           ))}
 
@@ -261,7 +272,11 @@ export function AdminLayout({
                     data-testid="tab-more"
                   >
                     <MoreHorizontal className="w-4 h-4" />
-                    <span className="text-xs">Más</span>
+                    <span className="text-xs">
+                      {!visiblePrimaryTabs.some((t) => t.id === selectedTab)
+                        ? secondaryTabs.find(t => t.id === selectedTab)?.label || "Más"
+                        : "Más"}
+                    </span>
                   </button>
                 </PopoverTrigger>
                 <PopoverContent className="w-[min(256px,calc(100vw-2rem))] p-2" align="end">
@@ -278,7 +293,7 @@ export function AdminLayout({
                               onTabChange(tab.id);
                               setMoreOpen(false);
                             }}
-                            className={`flex items-center gap-2 px-2 py-1.5 text-sm rounded-md transition-colors w-full text-left min-h-[40px] ${
+                            className={`flex items-center gap-2 px-2 py-1.5 text-sm rounded-md transition-colors w-full text-left min-h-[44px] ${
                               selectedTab === tab.id
                                 ? 'bg-primary text-white'
                                 : 'text-muted-foreground hover:text-foreground hover:bg-muted'
@@ -329,7 +344,7 @@ export function AdminLayout({
         )}
       </div>
 
-      <div className="p-2 sm:p-3 md:p-5 lg:p-6">
+      <div className="p-2 sm:p-3 md:p-5 lg:p-6 pb-safe">
         {children}
       </div>
     </div>

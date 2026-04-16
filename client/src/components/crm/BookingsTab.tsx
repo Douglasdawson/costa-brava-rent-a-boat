@@ -304,6 +304,28 @@ export function BookingsTab({
             {total} resultado{total !== 1 ? 's' : ''}
           </span>
         </div>
+        <div className="flex gap-1.5 px-1 overflow-x-auto scrollbar-hide">
+          {[
+            { field: "startTime", label: "Fecha" },
+            { field: "customerName", label: "Nombre" },
+            { field: "totalAmount", label: "Importe" },
+          ].map(({ field, label }) => (
+            <button
+              key={field}
+              onClick={() => handleSort(field)}
+              className={`flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium border whitespace-nowrap transition-colors ${
+                sortBy === field
+                  ? "bg-primary text-white border-primary"
+                  : "bg-card border-border text-muted-foreground"
+              }`}
+            >
+              {label}
+              {sortBy === field && (
+                sortOrder === "asc" ? <ArrowUp className="w-3 h-3" /> : <ArrowDown className="w-3 h-3" />
+              )}
+            </button>
+          ))}
+        </div>
         {isLoading ? (
           <div className="space-y-3">
             <Skeleton className="h-10 w-full" />
@@ -346,14 +368,23 @@ export function BookingsTab({
                         </Badge>
                       </div>
                     </div>
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      onClick={() => onViewBooking(booking)}
-                      data-testid={`button-view-${booking.id}`}
-                    >
-                      <Eye className="w-4 h-4" />
-                    </Button>
+                    <div className="flex gap-1">
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={(e) => { e.stopPropagation(); onOpenWhatsApp(booking.customerPhone, booking.customerName); }}
+                      >
+                        <MessageCircle className="w-4 h-4 text-green-600" />
+                      </Button>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => onViewBooking(booking)}
+                        data-testid={`button-view-${booking.id}`}
+                      >
+                        <Eye className="w-4 h-4" />
+                      </Button>
+                    </div>
                   </div>
                   <div className="grid grid-cols-2 gap-2 text-sm border-t pt-3 mt-3">
                     <div>

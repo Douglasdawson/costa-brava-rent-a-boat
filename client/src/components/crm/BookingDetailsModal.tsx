@@ -338,7 +338,7 @@ export function BookingDetailsModal({
         onEditCancel();
       }
     }}>
-      <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+      <DialogContent className="w-full h-[100dvh] md:h-auto md:max-h-[90vh] max-w-none md:max-w-2xl rounded-none md:rounded-lg overflow-y-auto">
         <DialogHeader>
           <DialogTitle>
             {isCreating ? "Nueva Reserva" : isEditing ? "Editar Reserva" : "Detalles de la Reserva"}
@@ -560,8 +560,8 @@ export function BookingDetailsModal({
             )}
 
             {/* Actions */}
-            <div className="border-t border-border pt-4">
-              <h3 className="font-heading font-semibold text-lg mb-3">Acciones</h3>
+            <div className="border-t border-border pt-4 sticky bottom-0 bg-background pb-4 -mx-6 px-6 md:static md:mx-0 md:px-0 md:pb-0">
+              <h3 className="font-heading font-semibold text-lg mb-3 sr-only md:not-sr-only">Acciones</h3>
               <div className="flex flex-wrap gap-2">
                 <Button
                   variant="outline"
@@ -815,7 +815,7 @@ export function BookingDetailsModal({
               />
             </div>
 
-            <div className="flex gap-2">
+            <div className="flex gap-2 sticky bottom-0 bg-background pt-3 pb-4 -mx-6 px-6 md:static md:mx-0 md:px-0 md:pt-0 md:pb-0">
               <Button
                 type="submit"
                 disabled={isPending}

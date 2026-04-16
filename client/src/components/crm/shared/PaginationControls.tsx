@@ -29,7 +29,7 @@ export function PaginationControls({
   }
 
   return (
-    <div className="flex items-center justify-between mt-4 sm:mt-6 pt-3 sm:pt-4 border-t">
+    <div className="flex items-center justify-between flex-wrap gap-2 mt-4 sm:mt-6 pt-3 sm:pt-4 border-t">
       <div className="text-sm text-muted-foreground">
         Página {currentPage} de {totalPages}
       </div>
@@ -40,6 +40,7 @@ export function PaginationControls({
           onClick={() => onPageChange(1)}
           disabled={currentPage <= 1}
           title="Primera página"
+          className="hidden sm:inline-flex"
         >
           <ChevronsLeft className="w-4 h-4" />
         </Button>
@@ -59,7 +60,7 @@ export function PaginationControls({
             variant={pageNum === currentPage ? "default" : "outline"}
             size="sm"
             onClick={() => onPageChange(pageNum)}
-            className="min-w-[40px] h-9 sm:h-8 sm:min-w-[36px]"
+            className="min-w-[36px] h-9 sm:h-8 sm:min-w-[36px] text-xs sm:text-sm"
           >
             {pageNum}
           </Button>
@@ -80,6 +81,7 @@ export function PaginationControls({
           onClick={() => onPageChange(totalPages)}
           disabled={currentPage >= totalPages}
           title="Última página"
+          className="hidden sm:inline-flex"
         >
           <ChevronsRight className="w-4 h-4" />
         </Button>

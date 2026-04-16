@@ -299,8 +299,9 @@ export function GiftCardManagement({ adminToken }: GiftCardManagementProps) {
                     </span>
                   )}
                 </div>
-                <div className="text-sm text-muted-foreground">
-                  <p>{card.purchaserName} - {card.purchaserEmail}</p>
+                <div className="text-sm text-muted-foreground space-y-0.5">
+                  <p>De: {card.purchaserName}</p>
+                  <p>Para: {card.recipientName}</p>
                 </div>
                 <div className="flex items-center justify-between">
                   <span className="text-sm text-muted-foreground">

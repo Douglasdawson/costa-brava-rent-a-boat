@@ -686,9 +686,9 @@ function DayView({
         <div
           ref={containerRef}
           className="overflow-auto"
-          style={{ maxHeight: "calc(100vh - 320px)" }}
+          style={{ maxHeight: "calc(100dvh - 400px)" }}
         >
-          <div className="min-w-[600px]">
+          <div className="min-w-0 sm:min-w-[600px]">
             {/* Header row with boat names */}
             <div className="flex sticky top-0 z-20 bg-card border-b">
               <div className="w-16 sm:w-20 flex-shrink-0 border-r bg-muted" />
@@ -931,7 +931,8 @@ function WeekView({
   return (
     <Card className="overflow-hidden">
       <CardContent className="p-0">
-        <div className="overflow-x-auto">
+        {/* Desktop: grid view */}
+        <div className="hidden sm:block overflow-x-auto">
           <div className="min-w-[700px]">
             {/* Header: weekday names */}
             <div className="flex sticky top-0 z-10 bg-card border-b">
@@ -1043,6 +1044,64 @@ function WeekView({
               );
             })}
           </div>
+        </div>
+
+        {/* Mobile: stacked day list */}
+        <div className="sm:hidden divide-y">
+          {weekDays.map((day) => {
+            const today = isToday(day);
+            const dayKey = format(day, "yyyy-MM-dd");
+            const dayBookings = bookings.filter((b) => {
+              const bStart = new Date(b.startTime);
+              const bEnd = new Date(b.endTime);
+              return bStart <= endOfDay(day) && bEnd >= startOfDay(day);
+            });
+
+            return (
+              <div key={dayKey} className="p-3">
+                <button
+                  onClick={() => onDayClick(day)}
+                  className={`flex items-center gap-2 mb-2 ${today ? "text-primary font-bold" : "text-foreground"}`}
+                >
+                  <span className="text-sm font-heading font-semibold capitalize">
+                    {format(day, "EEEE d", { locale: es })}
+                  </span>
+                  {dayBookings.length > 0 && (
+                    <span className="text-xs bg-primary/10 text-primary px-1.5 py-0.5 rounded-full">
+                      {dayBookings.length}
+                    </span>
+                  )}
+                </button>
+                {dayBookings.length === 0 ? (
+                  <p className="text-xs text-muted-foreground/50 pl-1">Sin reservas</p>
+                ) : (
+                  <div className="space-y-1">
+                    {dayBookings.map((booking) => {
+                      const colors = STATUS_COLORS[booking.bookingStatus] || STATUS_COLORS.draft;
+                      const boatName = boats.find(b => b.id === booking.boatId)?.name || booking.boatId;
+                      return (
+                        <button
+                          key={booking.id}
+                          className={`w-full text-left rounded-lg px-3 py-2 border-l-[3px] ${colors.bg} ${colors.border} ${colors.text} ${colors.opacity || ""}`}
+                          onClick={() => onViewBooking(booking)}
+                        >
+                          <div className="flex items-center justify-between">
+                            <span className="text-sm font-medium">
+                              {format(new Date(booking.startTime), "HH:mm")} - {format(new Date(booking.endTime), "HH:mm")}
+                            </span>
+                            <span className="text-xs">{boatName}</span>
+                          </div>
+                          <p className="text-xs mt-0.5">
+                            {booking.customerName} {booking.customerSurname}
+                          </p>
+                        </button>
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
+            );
+          })}
         </div>
       </CardContent>
     </Card>

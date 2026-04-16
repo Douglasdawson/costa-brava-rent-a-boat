@@ -529,7 +529,7 @@ export function DashboardTab({
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="h-[300px] w-full">
+              <div className="h-[220px] md:h-[300px] w-full">
                 <ResponsiveContainer width="100%" height="100%">
                   <AreaChart
                     data={revenueTrend || []}
@@ -589,7 +589,7 @@ export function DashboardTab({
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="h-[300px] w-full">
+              <div className="h-[220px] md:h-[300px] w-full">
                 <ResponsiveContainer width="100%" height="100%">
                   <BarChart
                     data={boatsPerformance || []}
@@ -640,7 +640,7 @@ export function DashboardTab({
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="h-[300px] w-full">
+              <div className="h-[220px] md:h-[300px] w-full">
                 {pieData.length === 0 ? (
                   <div className="flex items-center justify-center h-full text-muted-foreground text-sm">
                     Sin datos de reservas
@@ -680,7 +680,7 @@ export function DashboardTab({
                       />
                       <Legend
                         verticalAlign="bottom"
-                        height={36}
+                        height={56}
                         formatter={(value: string) => (
                           <span className="text-xs text-muted-foreground">{value}</span>
                         )}
@@ -762,7 +762,7 @@ export function DashboardTab({
                     <Button
                       variant="ghost"
                       size="sm"
-                      className="opacity-0 group-hover:opacity-100 transition-opacity h-7 w-7 p-0"
+                      className="md:opacity-0 md:group-hover:opacity-100 transition-opacity h-7 w-7 p-0"
                       onClick={(e) => {
                         e.stopPropagation();
                         onEditBooking(booking.id);

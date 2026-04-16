@@ -221,7 +221,7 @@ export function CheckinForm({
             </div>
             <div className="space-y-2 bg-muted rounded-lg p-3">
               {checklist.map((item, index) => (
-                <div key={item.item} className="flex items-center space-x-3">
+                <div key={item.item} className="flex items-center space-x-3 py-1">
                   <Checkbox
                     id={`checklist-${index}`}
                     checked={item.checked}
@@ -229,7 +229,7 @@ export function CheckinForm({
                   />
                   <label
                     htmlFor={`checklist-${index}`}
-                    className={`text-sm cursor-pointer select-none ${
+                    className={`text-sm cursor-pointer select-none min-h-[44px] flex items-center ${
                       item.checked ? "text-primary line-through" : "text-foreground"
                     }`}
                   >
@@ -277,7 +277,7 @@ export function CheckinForm({
               <SignatureCanvas
                 onSave={(dataUrl) => setSignatureUrl(dataUrl)}
                 onClear={() => setSignatureUrl(null)}
-                height={150}
+                height={200}
               />
             )}
           </div>

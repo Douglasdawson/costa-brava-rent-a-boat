@@ -1,7 +1,7 @@
 # Costa Brava Rent a Boat - Contexto del Proyecto
 
-> **Última actualización**: Marzo 2026
-> **Versión**: 1.1.0
+> **Última actualización**: Abril 2026
+> **Versión**: 1.2.0
 > **Dominio**: https://costabravarentaboat.com
 
 ---
@@ -10,9 +10,11 @@
 
 ### 1.1 Descripción
 Plataforma full-stack de alquiler de barcos en Blanes, Costa Brava. Combina:
-- **Frontend público**: Catálogo, reservas, blog, destinos
-- **CRM administrativo**: Gestión de flota, reservas, clientes
-- **Chatbot WhatsApp con IA**: Atención automatizada con OpenAI
+- **Frontend publico**: Catalogo, reservas, blog, destinos, 10 paginas de ubicacion, 4 de actividades
+- **CRM administrativo**: Gestion de flota, reservas, clientes, mantenimiento, inventario, analytics
+- **Chatbot WhatsApp con IA**: Atencion automatizada con OpenAI (8 idiomas, RAG, memory)
+- **SEO Engine**: Monitorizacion de keywords, alertas, experiments, IndexNow
+- **MCP Servers**: 7 servidores para integracion con Claude Code
 
 ### 1.2 Información del Negocio
 | Campo | Valor |
@@ -28,6 +30,8 @@ Plataforma full-stack de alquiler de barcos en Blanes, Costa Brava. Combina:
 - **Con licencia**: Requieren PER o titulación náutica
 - **Duraciones**: 1h, 2h, 3h, 4h, 6h, 8h
 - **Temporadas**: BAJA (abr-jun, sep-oct), MEDIA (jul), ALTA (ago)
+- **Modelo de reserva**: La web captura solicitudes, el pago es manual (no hay pagos online)
+- **Combustible**: Incluido solo en barcos sin licencia; excursion privada y con licencia NO
 
 ---
 
@@ -35,13 +39,15 @@ Plataforma full-stack de alquiler de barcos en Blanes, Costa Brava. Combina:
 
 ### 2.1 Frontend
 ```
-React 18.3 + TypeScript 5.6 + Vite 5.4
+React 18.3 + TypeScript 5.6 + Vite 7.3
 ├── Routing: Wouter 3.3
 ├── Estado: TanStack React Query 5.60
 ├── UI: TailwindCSS 3.4 + Radix UI + shadcn/ui
-├── Formularios: React Hook Form 7.55 + Zod
-├── Animaciones: Framer Motion 11.13
+├── Formularios: React Hook Form 7.55 + Zod 3.25
+├── Animaciones: Framer Motion 12.35
+├── Charts: Recharts 3.7
 ├── SEO: React Helmet Async
+├── i18n: 8 idiomas (es, en, ca, fr, de, nl, it, ru)
 └── Accesibilidad: WCAG 2.1 AA (44px touch targets, safe areas iOS)
 ```
 
@@ -49,16 +55,17 @@ React 18.3 + TypeScript 5.6 + Vite 5.4
 ```
 Express.js 4.21 + TypeScript
 ├── DB: PostgreSQL 16 (Neon serverless)
-├── ORM: Drizzle ORM 0.39
-├── Auth: Replit Auth (OIDC) + PIN admin
+├── ORM: Drizzle ORM 0.45
+├── Auth: JWT + PIN admin + Replit Auth (OIDC)
+├── Testing: Vitest 4.0
 ├── Sesiones: express-session + connect-pg-simple
-└── Compresión: Gzip level 6
+└── Compresion: Gzip level 6
 ```
 
 ### 2.3 Servicios Externos
 | Servicio | Uso | Package |
 |----------|-----|---------|
-| Stripe | Pagos | stripe@18.5 |
+| Stripe | Configurado pero no activo (pagos manuales) | stripe@18.5 |
 | SendGrid | Email | @sendgrid/mail@8.1 |
 | Twilio | WhatsApp | twilio@5.12 |
 | OpenAI | Chatbot IA | openai@6.16 |
@@ -72,34 +79,31 @@ Express.js 4.21 + TypeScript
 costa-brava-rent-a-boat/
 ├── client/src/
 │   ├── App.tsx                 # Router + providers
-│   ├── components/             # React components
-│   │   ├── Navigation.tsx      # Header
-│   │   ├── Hero.tsx           # Landing hero
-│   │   ├── FleetSection.tsx   # Grid barcos
-│   │   ├── BookingFlow.tsx    # Wizard reservas
-│   │   ├── BoatDetailPage.tsx # Detalle barco
-│   │   ├── CRMDashboard.tsx   # Admin (114KB)
-│   │   ├── SEO.tsx            # Meta tags
-│   │   └── ui/                # 49 componentes shadcn
-│   ├── pages/                 # Rutas (lazy-loaded)
-│   ├── hooks/                 # use-language, usePrefetch
-│   └── utils/                 # seo-config.ts (1118 líneas)
+│   ├── components/             # ~142 componentes total
+│   │   ├── (54 publicos)      # Navigation, Hero, Fleet, BoatDetail, etc.
+│   │   ├── booking-flow/      # 12 componentes wizard reservas
+│   │   ├── CRMDashboard.tsx   # Admin (114KB, 30 componentes CRM)
+│   │   └── ui/                # 46 componentes shadcn
+│   ├── pages/                 # 37 paginas (lazy-loaded)
+│   ├── hooks/                 # 20 hooks
+│   ├── lib/                   # 9 archivos i18n + traducciones
+│   └── utils/                 # seo-config.ts, helpers
 │
 ├── server/
 │   ├── index.ts               # Express setup
-│   ├── routes.ts              # API endpoints (2061 líneas)
-│   ├── storage.ts             # Data access layer
-│   ├── db.ts                  # PostgreSQL connection
-│   └── whatsapp/              # Chatbot completo
-│       ├── aiService.ts       # OpenAI integration
-│       ├── ragService.ts      # Embeddings + búsqueda
-│       ├── chatMemoryService.ts
-│       └── functionCallingService.ts
+│   ├── routes/                # 49 modulos de rutas API
+│   ├── storage/               # 21 modulos data access
+│   ├── services/              # 15 servicios
+│   ├── seo/                   # 38 archivos SEO engine
+│   ├── whatsapp/              # 15 archivos chatbot completo
+│   ├── mcp/                   # 7 servidores MCP
+│   ├── lib/                   # logger, circuitBreaker, retryQueue, audit
+│   └── db.ts                  # PostgreSQL connection
 │
 └── shared/
-    ├── schema.ts              # Drizzle schemas (593 líneas)
-    ├── pricing.ts             # Cálculos precios
-    └── boatData.ts            # Datos flota (481 líneas)
+    ├── schema.ts              # Drizzle schemas (67 tablas)
+    ├── pricing.ts             # Calculos precios
+    └── boatData.ts            # Datos flota (9 barcos)
 ```
 
 ---
@@ -239,28 +243,34 @@ GET /sitemap-destinations.xml      # Destinos
 ## 6. Flota de Barcos
 
 ### 6.1 Sin Licencia
-| ID | Nombre | Capacidad | Depósito | Combustible |
+| ID | Nombre | Capacidad | Deposito | Combustible |
 |----|--------|-----------|----------|-------------|
 | solar-450 | Solar 450 | 5 | 250€ | Incluido |
 | remus-450 | Remus 450 | 5 | 200€ | Incluido |
+| remus-450-ii | Remus 450 II | 5 | 200€ | Incluido |
 | astec-400 | Astec 400 | 4 | 200€ | Incluido |
-| astec-450 | Astec 450 | 5 | 300€ | Incluido |
+| astec-480 | Astec 480 | 5 | 300€ | Incluido |
 
 ### 6.2 Con Licencia
-| ID | Nombre | Capacidad | Depósito | Combustible |
+| ID | Nombre | Capacidad | Deposito | Combustible |
 |----|--------|-----------|----------|-------------|
 | mingolla-brava-19 | Mingolla Brava 19 | 6 | 500€ | NO incluido |
 | trimarchi-57s | Trimarchi 57S | 7 | 500€ | NO incluido |
 | pacific-craft-625 | Pacific Craft 625 | 7 | 500€ | NO incluido |
 
-### 6.3 Precios (Ejemplo: Solar 450)
+### 6.3 Excursion Privada
+| ID | Nombre | Capacidad | Deposito | Combustible |
+|----|--------|-----------|----------|-------------|
+| excursion-privada | Excursion Privada | Variable | - | NO incluido |
+
+### 6.4 Precios (Ejemplo: Solar 450)
 | Temporada | 1h | 2h | 3h | 4h | 6h | 8h |
 |-----------|----|----|----|----|----|----|
 | BAJA | 75€ | 115€ | 130€ | 150€ | 190€ | 220€ |
 | MEDIA | 85€ | 130€ | 160€ | 180€ | 230€ | 270€ |
 | ALTA | 95€ | 140€ | 170€ | 195€ | 240€ | 290€ |
 
-### 6.4 Extras Disponibles
+### 6.5 Extras Disponibles
 | Extra | Precio |
 |-------|--------|
 | Parking | 10€ |
@@ -417,7 +427,7 @@ npm run db:push
 
 ---
 
-## 13. Mejoras Recientes (Marzo 2026)
+## 13. Mejoras Recientes (Abril 2026)
 
 - Mobile-First WCAG 2.1 AA: 44px touch targets en todos los botones/inputs, safe areas iOS, viewport-fit=cover, contraste mejorado
 - Color Harmonization: eliminación de todos los colores hardcoded (blue-*, green-*, purple-*, yellow-*, amber-*, indigo-*, slate-*), reemplazo con design system navy+coral
@@ -425,8 +435,6 @@ npm run db:push
 
 ## 14. Limitaciones Conocidas
 
-- Sin tests automatizados
-- Sin ESLint/Prettier configurado
 - Archivos grandes: CRMDashboard.tsx (114KB), routes.ts (70KB)
 - PIN admin fijo (configurar en variable de entorno ADMIN_PIN)
 - Booking desde WhatsApp no crea reserva real

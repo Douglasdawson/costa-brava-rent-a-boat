@@ -1,6 +1,6 @@
 # Costa Brava Rent a Boat - Estado Actual del Proyecto
 
-Actualizado: 11 Marzo 2026
+Actualizado: 16 Abril 2026
 
 ---
 
@@ -13,29 +13,39 @@ Actualizado: 11 Marzo 2026
 | Branch | main |
 | Despliegue | Replit (produccion) |
 | URL produccion | https://costabravarentaboat.com |
-| TypeScript | 0 errores (`tsc --noEmit` limpio) |
+| TypeScript | 86 errores pre-existentes (ninguno en archivos core) |
 
 ---
 
 ## Base de Datos
 
-### Tablas Totales: 36
+### Tablas Totales: 67
 
-**SaaS / Auth:**
-- `tenants` - Empresas registradas (plan, status, branding, settings)
-- `users` - Usuarios SaaS con roles (owner/admin/employee) por tenant
-- `refresh_tokens` - Tokens de refresco con rotation y cleanup
-- `password_reset_tokens` - Tokens de reset de contrasena (1h expiry)
-- `admin_sessions` - Sesiones de admin
-- `token_blacklist` - Tokens revocados
+**SaaS / Auth (6):**
+tenants, users, refresh_tokens, password_reset_tokens, admin_sessions, token_blacklist
 
-**Core del negocio (22 tablas):**
+**Core del negocio (22):**
 boats, bookings, customers, crm_customers, booking_extras, admin_users, customer_users, blog_posts, blog_clusters, blog_autopilot_config, blog_autopilot_log, blog_autopilot_queue, testimonials, discount_codes, gift_cards, knowledge_base, chatbot_conversations, ai_chat_sessions, ai_chat_messages, checkins, page_visits, whatsapp_inquiries
 
-**Operaciones:**
-maintenance_logs, boat_documents, inventory_items, inventory_movements, client_photos, newsletter_subscribers
+**Operaciones (8):**
+maintenance_logs, boat_documents, inventory_items, inventory_movements, client_photos, newsletter_subscribers, company_config, lead_nurturing_log
 
-**Global/Legacy:**
+**SEO Engine (18):**
+seo_keywords, seo_rankings, seo_campaigns, seo_competitors, seo_competitor_rankings, seo_experiments, seo_alerts, seo_engine_runs, seo_health_checks, seo_pages, seo_meta, seo_links, seo_faqs, seo_conversions, seo_cwv_metrics, seo_geo, seo_serp_features, seo_reports, seo_redirects, seo_learnings
+
+**Experiments & Features (5):**
+experiments, experiment_assignments, experiment_events, feature_flags, global_feature_flags
+
+**Analytics (2):**
+analytics_snapshots, audit_logs
+
+**Partnerships (1):**
+partnership_contacts
+
+**Memberships (1):**
+memberships
+
+**Global/Legacy (2):**
 sessions, destinations
 
 ---
@@ -59,26 +69,26 @@ sessions, destinations
 
 ## Frontend
 
-### Paginas: 22
+### Paginas: 37
 
-LoginPage, OnboardingPage, ClientDashboardPage, CancelBookingPage, blog, blog-detail, faq, gallery, gift-cards, routes, testimonios, location-blanes, location-lloret-de-mar, location-tossa-de-mar, category-license-free, category-licensed, destination-detail, privacy-policy, terms-conditions, cookies-policy, accessibility-declaration, not-found
+LoginPage, OnboardingPage, ClientDashboardPage, CancelBookingPage, blog, blog-detail, faq, gallery, gift-cards, routes, testimonios, about, pricing, location-blanes, location-lloret-de-mar, location-tossa-de-mar, location-malgrat-de-mar, location-santa-susanna, location-calella, location-pineda-de-mar, location-palafolls, location-tordera, location-barcelona, alquiler-barcos-costa-brava, category-license-free, category-licensed, activity-families, activity-fishing, activity-snorkel, activity-sunset, destination-detail, privacy-policy, terms-conditions, cookies-policy, accessibility-declaration, not-found, LocationTemplate
 
-### Componentes: ~86 custom + 46 shadcn/ui
+### Componentes: ~96 custom + 46 shadcn/ui
 
-### CRM Sub-componentes: 29 (en `components/crm/`)
+### CRM Sub-componentes: 30 (en `components/crm/`) + 12 booking-flow
 
-### Hooks personalizados: 11
+### Hooks personalizados: 20
 
 ---
 
 ## Backend
 
-### Rutas: 33 modulos en `server/routes/`
+### Rutas: 49 modulos en `server/routes/`
 
 El archivo `server/routes.ts` original (2061 lineas) fue dividido completamente en modulos independientes:
-admin.ts, admin-bookings.ts, admin-customers.ts, admin-fleet.ts, admin-marketing.ts, admin-operations.ts, admin-stats.ts, auth.ts, auth-legacy.ts, auth-middleware.ts, auth-saas.ts, auto-discounts.ts, availability.ts, blog.ts, boats.ts, bookings.ts, destinations.ts, discounts.ts, employees.ts, gallery.ts, giftcards.ts, health.ts, imageResize.ts, inquiries.ts, metaWebhook.ts, newsletter.ts, payments.ts, sitemaps.ts, superadmin.ts, tenant.ts, testimonials.ts, whatsapp.ts
+admin.ts, admin-analytics.ts, admin-bookings.ts, admin-customers.ts, admin-fleet.ts, admin-marketing.ts, admin-operations.ts, admin-partnerships.ts, admin-seo.ts, admin-stats.ts, auth.ts, auth-legacy.ts, auth-middleware.ts, auth-saas.ts, auto-discounts.ts, availability.ts, blog.ts, boats.ts, bookings.ts, company.ts, destinations.ts, discounts.ts, employees.ts, experiments.ts, feature-flags.ts, gallery.ts, gdpr.ts, giftcards.ts, health.ts, imageResize.ts, index.ts, inquiries.ts, memberships.ts, meta-capi.ts, metaWebhook.ts, newsletter.ts, payments.ts, robots.ts, sitemaps.ts, tenant.ts, tenant-metrics.ts, testimonials.ts, whatsapp.ts (plus test files)
 
-### MCP Servers: 5 custom + 3 externos
+### MCP Servers: 7 custom + 3 externos
 
 Servidores custom en `server/mcp/`:
 - `business-server.ts` - CRM/booking
@@ -86,10 +96,12 @@ Servidores custom en `server/mcp/`:
 - `content-server.ts` - Blog/SEO manager
 - `sendgrid-server.ts` - Email activity
 - `twilio-server.ts` - WhatsApp message logs
+- `seo-engine-server.ts` - SEO engine
+- `ads-intelligence-server.ts` - Ads intelligence
 
 Externos: neon, stripe, sentry
 
-### WhatsApp Chatbot: 19 archivos en `server/whatsapp/`
+### WhatsApp Chatbot: 15 archivos en `server/whatsapp/`
 
 ---
 
@@ -110,11 +122,11 @@ Externos: neon, stripe, sentry
 
 | Archivo | Lineas | Descripcion |
 |---------|--------|-------------|
-| `shared/schema.ts` | ~1439 | 36 tablas Drizzle + validacion Zod |
-| `server/routes/` | 33 modulos | API REST modularizada |
-| `client/src/components/CRMDashboard.tsx` | ~446 | Wrapper del CRM (logica en crm/) |
-| `client/src/pages/LoginPage.tsx` | ~123 | Login PIN-only simplificado |
-| `shared/pricing.ts` | ~210 | Logica de precios por temporada |
+| `shared/schema.ts` | ~2172 | 67 tablas Drizzle + validacion Zod |
+| `server/routes/` | 49 modulos | API REST modularizada |
+| `client/src/components/CRMDashboard.tsx` | ~471 | Wrapper del CRM (logica en crm/) |
+| `client/src/pages/LoginPage.tsx` | ~131 | Login PIN-only simplificado |
+| `shared/pricing.ts` | ~424 | Logica de precios por temporada |
 
 ---
 
@@ -122,6 +134,11 @@ Externos: neon, stripe, sentry
 
 | Commit | Descripcion |
 |--------|-------------|
+| 4e3d803 | Actualizar CLAUDE.md con estructura completa |
+| 64db612 | Corregir acentos/ortografia en 8 idiomas |
+| dca745d | Auditoria mobile completa del CRM: 30 fixes |
+| ed84d43 | Hardening de seguridad: auth, CSRF, headers |
+| 303066c | Convertir peticion WhatsApp en reserva calendario |
 | 9b2fc40 | Simplificar login a PIN-only |
 | 9d0df06 | Fix formato deposito como string decimal |
 | 6bdbc23 | Fix badge fuel included por case-sensitive |

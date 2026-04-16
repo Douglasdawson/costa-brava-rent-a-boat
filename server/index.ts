@@ -346,11 +346,10 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 (async () => {
   const server = await registerRoutes(app);
 
-  // Dynamic 301 redirects (managed via DB, seeded on startup)
+  // Dynamic 301 redirects (managed via DB, seeded after listen)
   const { redirectMiddleware, seedLegacyRedirects } = await import("./seo/redirects");
   const { isValidLang } = await import("../shared/i18n-routes");
   app.use(redirectMiddleware());
-  await seedLegacyRedirects();
 
   // Root redirect with Accept-Language detection (302 — destination depends on visitor)
   app.get("/", (req, res) => {
@@ -435,6 +434,10 @@ app.use((req: Request, res: Response, next: NextFunction) => {
     host: "0.0.0.0",
   }, () => {
     log(`serving on port ${port}`);
+    // Seed redirects and start SEO worker after server is listening
+    // to avoid blocking health checks during deployment
+    seedLegacyRedirects().catch(err =>
+      log(`Warning: failed to seed legacy redirects: ${err}`));
     startSeoWorker();
   });
 

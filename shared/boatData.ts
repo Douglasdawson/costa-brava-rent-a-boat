@@ -496,7 +496,7 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
     equipment: [
       "Radio bluetooth",
       "Altavoces",
-      "Solarium en proa y popa",
+      "Solárium en proa y popa",
       "Toldo bimini inox",
       "Mesa en popa y/o proa", 
       "Ducha de agua dulce",
@@ -547,7 +547,7 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
 
   "excursion-privada": {
     id: "excursion-privada",
-    name: "Excursion Privada con Capitan",
+    name: "Excursión Privada con Capitán",
     image: "PACIFIC_CRAFT_625_boat_fbe4f4d0.png",
     emotionTag: "emotionTags.vip",
     subtitle: "Con patrón · 7 personas · Experiencia VIP",
@@ -562,10 +562,10 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
       deposit: "500€"
     },
     equipment: [
-      "Patron profesional",
+      "Patrón profesional",
       "Radio bluetooth",
       "Altavoces",
-      "Solarium en proa y popa",
+      "Solárium en proa y popa",
       "Toldo bimini inox",
       "Mesa en popa y/o proa",
       "Ducha de agua dulce",
@@ -574,14 +574,14 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
     ],
     included: [
       "IVA",
-      "Patron profesional",
+      "Patrón profesional",
       "Amarre",
       "Limpieza",
       "Seguro embarcación y ocupantes"
     ],
     features: [
       "No requiere licencia",
-      "Patron profesional incluido",
+      "Patrón profesional incluido",
       "Hasta 7 personas",
       "Calas escondidas y cuevas",
       "Parada para nadar",

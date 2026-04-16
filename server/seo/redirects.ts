@@ -235,10 +235,17 @@ export async function seedLegacyRedirects(): Promise<void> {
     "/login": getLocalizedPath("login", "es"),
   };
 
-  for (const [from, to] of Object.entries(legacyRedirects)) {
+  const values = Object.entries(legacyRedirects).map(([from, to]) => ({
+    fromPath: from,
+    toPath: to,
+    statusCode: 301,
+    createdBy: "legacy",
+  }));
+
+  if (values.length > 0) {
     await db
       .insert(seoRedirects)
-      .values({ fromPath: from, toPath: to, statusCode: 301, createdBy: "legacy" })
+      .values(values)
       .onConflictDoNothing();
   }
 

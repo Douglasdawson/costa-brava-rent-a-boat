@@ -588,10 +588,10 @@ export default function FAQPage() {
               <CardContent>
                 <Accordion type="single" collapsible>
                   <AccordionItem value="diferencia-licencia" data-testid="faq-diferencia-licencia">
-                    <AccordionTrigger>¿Cual es la diferencia entre barcos sin licencia y con licencia?</AccordionTrigger>
+                    <AccordionTrigger>¿Cuál es la diferencia entre barcos sin licencia y con licencia?</AccordionTrigger>
                     <AccordionContent>
                       <div className="space-y-3">
-                        <p><strong>Comparativa de nuestras dos categorias de barcos:</strong></p>
+                        <p><strong>Comparativa de nuestras dos categorías de barcos:</strong></p>
                         <div className="grid sm:grid-cols-2 gap-4">
                           <div className="p-3 bg-primary/5 rounded-lg">
                             <h4 className="font-medium mb-2">Sin licencia</h4>
@@ -610,52 +610,52 @@ export default function FAQPage() {
                               <li>Hasta 8 personas</li>
                               <li>Gasolina NO incluida</li>
                               <li>Desde 150€</li>
-                              <li>Zona: sin limite costero</li>
+                              <li>Zona: sin límite costero</li>
                             </ul>
                           </div>
                         </div>
-                        <p className="text-sm text-muted-foreground">Los barcos con licencia permiten navegar mas lejos, hasta Tossa de Mar y mas alla.</p>
+                        <p className="text-sm text-muted-foreground">Los barcos con licencia permiten navegar más lejos, hasta Tossa de Mar y más allá.</p>
                       </div>
                     </AccordionContent>
                   </AccordionItem>
 
                   <AccordionItem value="precio-blanes-vs-lloret" data-testid="faq-precio-blanes-vs-lloret">
-                    <AccordionTrigger>¿Es mas barato alquilar un barco en Blanes o en Lloret de Mar?</AccordionTrigger>
+                    <AccordionTrigger>¿Es más barato alquilar un barco en Blanes o en Lloret de Mar?</AccordionTrigger>
                     <AccordionContent>
                       <div className="space-y-3">
-                        <p>Blanes es el punto de alquiler nautico mas asequible de la Costa Brava, con barcos sin licencia desde <strong>70€ la hora con gasolina incluida</strong>.</p>
-                        <p>Al operar desde el Puerto de Blanes con nuestra propia flota, ofrecemos precios mas competitivos que otras localidades como Lloret de Mar o Tossa de Mar.</p>
+                        <p>Blanes es el punto de alquiler náutico más asequible de la Costa Brava, con barcos sin licencia desde <strong>70€ la hora con gasolina incluida</strong>.</p>
+                        <p>Al operar desde el Puerto de Blanes con nuestra propia flota, ofrecemos precios más competitivos que otras localidades como Lloret de Mar o Tossa de Mar.</p>
                         <div className="flex items-center gap-2 mt-3 p-3 bg-primary/5 rounded-lg">
                           <Euro className="w-5 h-5 text-primary" />
-                          <span className="text-sm font-medium">Blanes: la opcion mas asequible de la Costa Brava</span>
+                          <span className="text-sm font-medium">Blanes: la opción más asequible de la Costa Brava</span>
                         </div>
                       </div>
                     </AccordionContent>
                   </AccordionItem>
 
                   <AccordionItem value="barco-grupo-grande" data-testid="faq-barco-grupo-grande">
-                    <AccordionTrigger>¿Que barco recomendais para un grupo grande?</AccordionTrigger>
+                    <AccordionTrigger>¿Qué barco recomendáis para un grupo grande?</AccordionTrigger>
                     <AccordionContent>
                       <div className="space-y-3">
                         <p><strong>Opciones para grupos grandes:</strong></p>
                         <ul className="list-disc pl-6 space-y-1">
                           <li><strong>Pacific Craft 625:</strong> Hasta 8 personas, requiere licencia. Barco potente con gran estabilidad.</li>
-                          <li><strong>Excursion Privada con patron:</strong> Hasta 10 personas, sin necesidad de licencia. Un capitan profesional os lleva a las mejores calas.</li>
+                          <li><strong>Excursión Privada con patrón:</strong> Hasta 10 personas, sin necesidad de licencia. Un capitán profesional os lleva a las mejores calas.</li>
                         </ul>
-                        <p className="text-sm text-muted-foreground">La excursion con patron es ideal si nadie del grupo tiene licencia nautica.</p>
+                        <p className="text-sm text-muted-foreground">La excursión con patrón es ideal si nadie del grupo tiene licencia náutica.</p>
                       </div>
                     </AccordionContent>
                   </AccordionItem>
 
                   <AccordionItem value="precio-costa-brava" data-testid="faq-precio-costa-brava">
-                    <AccordionTrigger>¿Cuanto cuesta alquilar un barco en la Costa Brava?</AccordionTrigger>
+                    <AccordionTrigger>¿Cuánto cuesta alquilar un barco en la Costa Brava?</AccordionTrigger>
                     <AccordionContent>
                       <div className="space-y-3">
                         <p>En la Costa Brava puedes alquilar un barco desde <strong>70€ la hora en Blanes</strong>, con gasolina incluida y sin necesidad de licencia.</p>
-                        <p>Los precios varian segun la duracion (de 1h a dia completo), el tipo de barco y la temporada.</p>
+                        <p>Los precios varían según la duración (de 1h a día completo), el tipo de barco y la temporada.</p>
                         <ul className="list-disc pl-6 space-y-1">
-                          <li><strong>Temporada alta (julio-agosto):</strong> Precios mas elevados, reservar con antelacion</li>
-                          <li><strong>Junio y septiembre:</strong> Mejor relacion calidad-precio</li>
+                          <li><strong>Temporada alta (julio-agosto):</strong> Precios más elevados, reservar con antelación</li>
+                          <li><strong>Junio y septiembre:</strong> Mejor relación calidad-precio</li>
                           <li><strong>Abril-mayo y octubre:</strong> Precios de temporada media</li>
                         </ul>
                       </div>
@@ -666,8 +666,8 @@ export default function FAQPage() {
                     <AccordionTrigger>¿Se puede ir a Tossa de Mar en barco desde Blanes?</AccordionTrigger>
                     <AccordionContent>
                       <div className="space-y-3">
-                        <p>Si, Tossa de Mar esta a unos <strong>30 minutos en barco</strong> desde Blanes. Sin embargo, necesitas un barco con licencia o contratar nuestra excursion con patron, ya que los barcos sin licencia tienen un radio de navegacion limitado.</p>
-                        <p>La ruta costera de Blanes a Tossa es espectacular, con calas virgenes y acantilados.</p>
+                        <p>Sí, Tossa de Mar está a unos <strong>30 minutos en barco</strong> desde Blanes. Sin embargo, necesitas un barco con licencia o contratar nuestra excursión con patrón, ya que los barcos sin licencia tienen un radio de navegación limitado.</p>
+                        <p>La ruta costera de Blanes a Tossa es espectacular, con calas vírgenes y acantilados.</p>
                         <div className="flex items-center gap-2 mt-3 p-3 bg-primary/5 rounded-lg">
                           <MapPin className="w-5 h-5 text-primary" />
                           <span className="text-sm">Ruta recomendada: Blanes - Sa Forcanera - Cala Bona - Cala Sant Francesc - Tossa</span>
@@ -677,17 +677,17 @@ export default function FAQPage() {
                   </AccordionItem>
 
                   <AccordionItem value="excursion-con-patron" data-testid="faq-excursion-con-patron">
-                    <AccordionTrigger>¿Cuanto cuesta una excursion en barco con patron?</AccordionTrigger>
+                    <AccordionTrigger>¿Cuánto cuesta una excursión en barco con patrón?</AccordionTrigger>
                     <AccordionContent>
                       <div className="space-y-3">
-                        <p>Nuestras excursiones privadas con patron profesional parten desde <strong>240€ por 2 horas</strong> para hasta 10 personas.</p>
+                        <p>Nuestras excursiones privadas con patrón profesional parten desde <strong>240€ por 2 horas</strong> para hasta 10 personas.</p>
                         <ul className="list-disc pl-6 space-y-1">
-                          <li>Patron profesional incluido</li>
-                          <li>No necesitas licencia nautica</li>
+                          <li>Patrón profesional incluido</li>
+                          <li>No necesitas licencia náutica</li>
                           <li>Hasta 10 personas</li>
                           <li>Visita a las mejores calas de la Costa Brava</li>
                         </ul>
-                        <p className="text-sm text-muted-foreground">La opcion perfecta para familias o grupos que quieren disfrutar sin preocuparse de nada.</p>
+                        <p className="text-sm text-muted-foreground">La opción perfecta para familias o grupos que quieren disfrutar sin preocuparse de nada.</p>
                       </div>
                     </AccordionContent>
                   </AccordionItem>
@@ -699,7 +699,7 @@ export default function FAQPage() {
                         <p><strong>Totalmente seguro.</strong> Antes de salir a navegar, nuestro equipo te da un briefing de 15 minutos donde te explica:</p>
                         <ul className="list-disc pl-6 space-y-1">
                           <li>Funcionamiento completo del barco</li>
-                          <li>Normas de navegacion</li>
+                          <li>Normas de navegación</li>
                           <li>Zona autorizada con mapa</li>
                           <li>Procedimiento de emergencia</li>
                         </ul>
@@ -712,7 +712,7 @@ export default function FAQPage() {
                   </AccordionItem>
 
                   <AccordionItem value="barco-vs-excursion" data-testid="faq-barco-vs-excursion">
-                    <AccordionTrigger>¿Que es mejor, alquilar un barco o una excursion con patron?</AccordionTrigger>
+                    <AccordionTrigger>¿Qué es mejor, alquilar un barco o una excursión con patrón?</AccordionTrigger>
                     <AccordionContent>
                       <div className="space-y-3">
                         <p>Depende de lo que busques:</p>
@@ -723,15 +723,15 @@ export default function FAQPage() {
                               <li>Desde 70€/h</li>
                               <li>Total libertad de horario y ruta</li>
                               <li>Exploras a tu ritmo</li>
-                              <li>Ideal para parejas y grupos pequenos</li>
+                              <li>Ideal para parejas y grupos pequeños</li>
                             </ul>
                           </div>
                           <div className="p-3 bg-primary/5 rounded-lg">
-                            <h4 className="font-medium mb-2">Excursion con patron</h4>
+                            <h4 className="font-medium mb-2">Excursión con patrón</h4>
                             <ul className="list-disc pl-6 space-y-1 text-sm">
                               <li>Desde 240€/2h (hasta 10 pers.)</li>
-                              <li>Relajacion total</li>
-                              <li>Calas mas lejanas (Tossa)</li>
+                              <li>Relajación total</li>
+                              <li>Calas más lejanas (Tossa)</li>
                               <li>No necesitas experiencia ni licencia</li>
                             </ul>
                           </div>

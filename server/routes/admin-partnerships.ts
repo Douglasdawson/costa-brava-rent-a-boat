@@ -33,7 +33,11 @@ export function registerPartnershipRoutes(app: Express) {
     try {
       const email = req.query.email as string;
       const token = req.query.token as string;
-      if (!email || !token || generateUnsubToken(email) !== token) {
+      const expectedToken = generateUnsubToken(email || "");
+      const isValidToken = token && expectedToken &&
+        token.length === expectedToken.length &&
+        crypto.timingSafeEqual(Buffer.from(token), Buffer.from(expectedToken));
+      if (!email || !isValidToken) {
         return res.status(400).send("<html><body><h2>Enlace no valido</h2></body></html>");
       }
       await db.update(partnershipContacts)
@@ -132,6 +136,10 @@ export function registerPartnershipRoutes(app: Express) {
       const updateData = { ...req.body, updatedAt: new Date() };
       delete updateData.id;
       delete updateData.createdAt;
+      // Prevent prototype pollution from user-controlled keys
+      delete updateData.__proto__;
+      delete updateData.constructor;
+      delete updateData.prototype;
 
       const [updated] = await db.update(partnershipContacts)
         .set(updateData)

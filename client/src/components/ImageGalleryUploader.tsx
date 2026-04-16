@@ -134,13 +134,10 @@ function GalleryTab({
 
   // Upload a single blob (cropped image) to object storage
   const uploadBlob = useCallback(async (blob: Blob): Promise<string> => {
-    const adminToken = sessionStorage.getItem("adminToken");
-    if (!adminToken) throw new Error("Admin token not found. Please login again.");
-
     const urlResponse = await fetch("/api/admin/boat-images/upload", {
       method: "POST",
       credentials: "include",
-      headers: { "Content-Type": "application/json", "Authorization": `Bearer ${adminToken}` },
+      headers: { "Content-Type": "application/json" },
     });
     if (!urlResponse.ok) throw new Error("Failed to get upload URL");
     const { uploadURL } = await urlResponse.json();
@@ -155,7 +152,7 @@ function GalleryTab({
     const normalizeResponse = await fetch("/api/admin/boat-images/normalize", {
       method: "POST",
       credentials: "include",
-      headers: { "Content-Type": "application/json", "Authorization": `Bearer ${adminToken}` },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ imageUrl: uploadURL }),
     });
     if (!normalizeResponse.ok) throw new Error("Failed to normalize image URL");

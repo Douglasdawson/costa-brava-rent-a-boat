@@ -5,6 +5,7 @@ import { trackMetaInitiateCheckout, trackMetaPurchase, trackMetaContact } from '
 import { trackGoogleAdsConversion, pushEnhancedConversionData, trackGoogleAdsRemarketing } from './google-ads';
 
 const ANALYTICS_DEBUG = typeof window !== 'undefined' &&
+  import.meta.env.DEV &&
   (new URLSearchParams(window.location?.search || '').has('gtm_debug') ||
    localStorage.getItem('analytics_debug') === 'true');
 

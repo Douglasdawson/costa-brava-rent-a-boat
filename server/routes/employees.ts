@@ -1,5 +1,6 @@
 import type { Express } from "express";
 import bcrypt from "bcrypt";
+import crypto from "crypto";
 import { z } from "zod";
 import { storage } from "../storage";
 import { requireAdminSession, requireOwner } from "./auth";
@@ -30,7 +31,8 @@ const updateEmployeeSchema = z.object({
 async function isPinTaken(pin: string, excludeUserId?: string): Promise<boolean> {
   // Check against owner PIN
   const adminPin = process.env.ADMIN_PIN;
-  if (adminPin && pin === adminPin) return true;
+  if (adminPin && adminPin.length === pin.length &&
+      crypto.timingSafeEqual(Buffer.from(pin), Buffer.from(adminPin))) return true;
 
   // Check against other users' PINs
   const usersWithPin = await storage.getAdminUsersWithPin();

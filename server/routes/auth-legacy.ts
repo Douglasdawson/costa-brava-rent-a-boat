@@ -1,4 +1,4 @@
-import type { Express } from "express";
+import type { Express, Response } from "express";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import crypto from "crypto";
@@ -7,8 +7,10 @@ import { storage } from "../storage";
 import { isAuthenticated } from "../replitAuth";
 import type { AuthenticatedRequest, AdminJwtPayload, SaasJwtPayload, JwtPayload } from "../types";
 import { logger } from "../lib/logger";
+import { isDev } from "../config";
 import {
   JWT_SECRET,
+  ADMIN_COOKIE_NAME,
   loginAttempts,
   checkRateLimit,
   trackFailedAttempt,
@@ -16,6 +18,27 @@ import {
   generateAdminToken,
   requireAdminSession,
 } from "./auth-middleware";
+
+/** Set the admin JWT as an HttpOnly cookie (browser cannot read it via JS). */
+function setAdminCookie(res: Response, token: string): void {
+  res.cookie(ADMIN_COOKIE_NAME, token, {
+    httpOnly: true,
+    secure: !isDev,
+    sameSite: "strict",
+    path: "/api",
+    maxAge: 24 * 60 * 60 * 1000, // 24h — matches JWT expiry
+  });
+}
+
+/** Clear the admin cookie on logout. */
+function clearAdminCookie(res: Response): void {
+  res.clearCookie(ADMIN_COOKIE_NAME, {
+    httpOnly: true,
+    secure: !isDev,
+    sameSite: "strict",
+    path: "/api",
+  });
+}
 
 const updateCustomerProfileSchema = z.object({
   firstName: z.string().min(1).max(100).optional(),
@@ -150,16 +173,21 @@ export function registerLegacyAuthRoutes(app: Express) {
     });
   });
 
-  // Admin logout - blacklist the JWT token (legacy)
+  // Admin logout - blacklist the JWT token and clear HttpOnly cookie
   app.post("/api/admin/logout", requireAdminSession, async (req, res) => {
+    // Read token from cookie or Authorization header
+    const cookieToken = req.cookies?.[ADMIN_COOKIE_NAME];
     const authHeader = req.headers.authorization;
-    if (authHeader && authHeader.startsWith("Bearer ")) {
-      const token = authHeader.substring(7);
+    const bearerToken = authHeader?.startsWith("Bearer ") ? authHeader.substring(7) : null;
+    const token = cookieToken || bearerToken;
+
+    if (token) {
       const decoded = jwt.decode(token) as JwtPayload | null;
       const expiresAt = decoded?.exp ? new Date(decoded.exp * 1000) : new Date(Date.now() + 24 * 60 * 60 * 1000);
       await storage.blacklistToken(token, expiresAt);
       await storage.deleteAdminSession(token);
     }
+    clearAdminCookie(res);
     res.json({ success: true, message: "Sesion cerrada correctamente" });
   });
 
@@ -182,10 +210,10 @@ export function registerLegacyAuthRoutes(app: Express) {
       if (crypto.timingSafeEqual(pinBuffer, adminPinBuffer)) {
         loginAttempts.delete(clientIp);
         const token = generateAdminToken("owner", "ivan", "owner");
+        setAdminCookie(res, token);
 
         return res.json({
           success: true,
-          token,
           role: "owner",
           username: "ivan",
           displayName: "Ivan",
@@ -215,10 +243,10 @@ export function registerLegacyAuthRoutes(app: Express) {
       loginAttempts.delete(clientIp);
       const allowedTabs = (matchedUser.allowedTabs as string[]) || [];
       const token = generateAdminToken(matchedUser.role, matchedUser.username, matchedUser.id, allowedTabs);
+      setAdminCookie(res, token);
 
       res.json({
         success: true,
-        token,
         role: matchedUser.role,
         username: matchedUser.username,
         displayName: matchedUser.displayName || matchedUser.username,
@@ -261,10 +289,10 @@ export function registerLegacyAuthRoutes(app: Express) {
 
       loginAttempts.delete(clientIp);
       const token = generateAdminToken(user.role, user.username, user.id);
+      setAdminCookie(res, token);
 
       res.json({
         success: true,
-        token,
         role: user.role,
         username: user.username,
         displayName: user.displayName || user.username,

@@ -63,12 +63,11 @@ export default function OnboardingPage() {
     }
     setIsSaving(true);
     try {
-      const token = sessionStorage.getItem("adminToken");
       await fetch("/api/auth/profile", {
         method: "PATCH",
+        credentials: "include",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({ phone: tenantData.phone }),
       });
@@ -87,12 +86,11 @@ export default function OnboardingPage() {
     }
     setIsSaving(true);
     try {
-      const token = sessionStorage.getItem("adminToken");
       await fetch("/api/admin/boats", {
         method: "POST",
+        credentials: "include",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({
           name: boatData.name,

@@ -1,7 +1,17 @@
 import type { Express } from "express";
+import rateLimit from "express-rate-limit";
 import sharp from "sharp";
 import path from "path";
 import fs from "fs";
+
+// Rate limit image resize to prevent CPU-intensive DoS
+const imageResizeLimiter = rateLimit({
+  windowMs: 60 * 1000,
+  max: 30, // 30 resizes per minute per IP
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { error: "Too many resize requests" },
+});
 
 const IMAGES_DIRS = [
   path.resolve(process.cwd(), "client/public/images/boats"),
@@ -38,8 +48,8 @@ const cache = new Map<string, Buffer>();
 const MAX_CACHE_ENTRIES = 500;
 
 export function registerImageResizeRoutes(app: Express) {
-  // Route outside /api/ to bypass the general rate limiter
-  app.get("/img/resize", async (req, res) => {
+  // Route outside /api/ — needs its own rate limiter
+  app.get("/img/resize", imageResizeLimiter, async (req, res) => {
     const { file, w, q } = req.query;
 
     if (!file || typeof file !== "string") {

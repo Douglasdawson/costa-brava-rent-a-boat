@@ -78,14 +78,13 @@ export function EmployeeManagement({ adminToken }: EmployeeManagementProps) {
   const { toast } = useToast();
 
   const headers = {
-    "Authorization": `Bearer ${adminToken}`,
     "Content-Type": "application/json",
   };
 
   const { data: dbEmployees = [], isLoading } = useQuery<Employee[]>({
     queryKey: ["/api/admin/employees"],
     queryFn: async () => {
-      const res = await fetch("/api/admin/employees", { headers });
+      const res = await fetch("/api/admin/employees", { credentials: "include" });
       if (!res.ok) throw new Error("Error fetching employees");
       return res.json();
     },
@@ -122,6 +121,7 @@ export function EmployeeManagement({ adminToken }: EmployeeManagementProps) {
       if (data.pin) body.pin = data.pin;
       const res = await fetch("/api/admin/employees", {
         method: "POST",
+        credentials: "include",
         headers,
         body: JSON.stringify(body),
       });
@@ -146,6 +146,7 @@ export function EmployeeManagement({ adminToken }: EmployeeManagementProps) {
     mutationFn: async ({ id, data }: { id: string; data: Record<string, unknown> }) => {
       const res = await fetch(`/api/admin/employees/${id}`, {
         method: "PATCH",
+        credentials: "include",
         headers,
         body: JSON.stringify(data),
       });
@@ -171,6 +172,7 @@ export function EmployeeManagement({ adminToken }: EmployeeManagementProps) {
     mutationFn: async ({ id, isActive }: { id: string; isActive: boolean }) => {
       const res = await fetch(`/api/admin/employees/${id}`, {
         method: "PATCH",
+        credentials: "include",
         headers,
         body: JSON.stringify({ isActive }),
       });

@@ -40,14 +40,15 @@ export const API = {
 } as const;
 
 /**
- * Fetch wrapper for admin API calls with auth token.
+ * Fetch wrapper for admin API calls with HttpOnly cookie auth.
+ * The token parameter is kept for backward compatibility but is no longer used.
  */
-export function adminFetch(url: string, token: string, options?: RequestInit): Promise<Response> {
+export function adminFetch(url: string, _token: string, options?: RequestInit): Promise<Response> {
   return fetch(url, {
     ...options,
+    credentials: "include",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
       ...options?.headers,
     },
   });

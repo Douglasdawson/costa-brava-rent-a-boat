@@ -2,7 +2,7 @@ import sgMail from "@sendgrid/mail";
 import type { Booking, Boat, BookingExtra } from "@shared/schema";
 import { logger } from "../lib/logger";
 import { sendgridBreaker } from "../lib/circuitBreaker";
-import { generateNewsletterUnsubToken } from "../routes/newsletter";
+import { generateOpaqueUnsubToken } from "../routes/newsletter";
 
 type EmailLang = "es" | "en" | "fr" | "de" | "nl" | "it" | "ru";
 
@@ -902,8 +902,8 @@ export async function sendNewsletterEmail(
 
   const strings = getNewsletterStrings(language);
   const appUrl = process.env.APP_URL || "https://www.costabravarentaboat.com";
-  const unsubToken = generateNewsletterUnsubToken(email);
-  const unsubUrl = `${appUrl}/api/newsletter/unsubscribe?email=${encodeURIComponent(email)}&token=${unsubToken}`;
+  const unsubToken = generateOpaqueUnsubToken(email);
+  const unsubUrl = `${appUrl}/api/newsletter/unsubscribe?token=${unsubToken}`;
 
   const postsHtml = posts.map(post => {
     const imgBlock = post.featuredImage

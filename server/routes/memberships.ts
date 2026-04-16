@@ -1,19 +1,29 @@
 import type { Express } from "express";
+import rateLimit from "express-rate-limit";
 import { z } from "zod";
 import { requireAdminSession } from "./auth";
 import { logger } from "../lib/logger";
 import * as membershipRepo from "../storage/memberships";
 import { insertMembershipSchema, updateMembershipSchema } from "@shared/schema";
 
+// Strict rate limit to prevent email enumeration
+const membershipCheckLimiter = rateLimit({
+  windowMs: 60 * 1000, // 1 minute
+  max: 3,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { active: false, error: "Demasiadas solicitudes" },
+});
+
 export function registerMembershipRoutes(app: Express) {
   // ===== PUBLIC ENDPOINTS =====
 
   /**
    * Check if an email has an active membership.
-   * Returns discount info if active, or { active: false } otherwise.
+   * Returns minimal discount info only — no PII exposed.
    * Used during booking flow to auto-apply member discounts.
    */
-  app.get("/api/memberships/check", async (req, res) => {
+  app.get("/api/memberships/check", membershipCheckLimiter, async (req, res) => {
     try {
       const emailSchema = z.object({
         email: z.string().email("Email invalido"),
@@ -33,15 +43,10 @@ export function registerMembershipRoutes(app: Express) {
         return res.json({ active: false });
       }
 
+      // Only return what the booking flow needs — no PII, no internal IDs
       res.json({
         active: true,
-        membershipId: membership.id,
-        plan: membership.plan,
         discountPercent: membership.discountPercent,
-        freeHoursRemaining: parseFloat(membership.freeHoursRemaining),
-        priorityBooking: membership.priorityBooking,
-        customerName: membership.customerName,
-        endDate: membership.endDate.toISOString(),
       });
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "Error desconocido";

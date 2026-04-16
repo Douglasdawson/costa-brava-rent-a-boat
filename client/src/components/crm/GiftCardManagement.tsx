@@ -59,14 +59,13 @@ export function GiftCardManagement({ adminToken }: GiftCardManagementProps) {
   const { toast } = useToast();
 
   const headers = {
-    Authorization: `Bearer ${adminToken}`,
     "Content-Type": "application/json",
   };
 
   const { data: giftCards = [], isLoading } = useQuery<GiftCard[]>({
     queryKey: ["/api/admin/gift-cards"],
     queryFn: async () => {
-      const res = await fetch("/api/admin/gift-cards", { headers });
+      const res = await fetch("/api/admin/gift-cards", { credentials: "include" });
       if (!res.ok) throw new Error("Error fetching gift cards");
       return res.json();
     },
@@ -76,6 +75,7 @@ export function GiftCardManagement({ adminToken }: GiftCardManagementProps) {
     mutationFn: async ({ id, updates }: { id: string; updates: Record<string, string> }) => {
       const res = await fetch(`/api/admin/gift-cards/${id}`, {
         method: "PATCH",
+        credentials: "include",
         headers,
         body: JSON.stringify(updates),
       });

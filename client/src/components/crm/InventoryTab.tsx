@@ -145,13 +145,13 @@ export function InventoryTab({ adminToken }: InventoryTabProps) {
   const [selectedItem, setSelectedItem] = useState<InventoryItem | null>(null);
   const [showDetail, setShowDetail] = useState(false);
 
-  const headers = { Authorization: `Bearer ${adminToken}` };
+  const credentialOpts = { credentials: "include" as const };
 
   // Queries
   const { data: items = [], isLoading } = useQuery<InventoryItem[]>({
     queryKey: ["/api/admin/inventory"],
     queryFn: async () => {
-      const res = await fetch("/api/admin/inventory", { headers });
+      const res = await fetch("/api/admin/inventory", credentialOpts);
       if (!res.ok) throw new Error("Error");
       return res.json();
     },
@@ -160,7 +160,7 @@ export function InventoryTab({ adminToken }: InventoryTabProps) {
   const { data: lowStockItems = [] } = useQuery<InventoryItem[]>({
     queryKey: ["/api/admin/inventory/low-stock"],
     queryFn: async () => {
-      const res = await fetch("/api/admin/inventory/low-stock", { headers });
+      const res = await fetch("/api/admin/inventory/low-stock", credentialOpts);
       if (!res.ok) throw new Error("Error");
       return res.json();
     },
@@ -170,7 +170,7 @@ export function InventoryTab({ adminToken }: InventoryTabProps) {
     queryKey: ["/api/admin/inventory/movements", selectedItem?.id],
     queryFn: async () => {
       if (!selectedItem) return [];
-      const res = await fetch(`/api/admin/inventory/${selectedItem.id}/movements`, { headers });
+      const res = await fetch(`/api/admin/inventory/${selectedItem.id}/movements`, credentialOpts);
       if (!res.ok) throw new Error("Error");
       return res.json();
     },
@@ -186,7 +186,8 @@ export function InventoryTab({ adminToken }: InventoryTabProps) {
     mutationFn: async (data: Record<string, unknown>) => {
       const res = await fetch("/api/admin/inventory", {
         method: "POST",
-        headers: { ...headers, "Content-Type": "application/json" },
+        credentials: "include",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
       });
       if (!res.ok) throw new Error((await res.json()).message || "Error");
@@ -204,7 +205,8 @@ export function InventoryTab({ adminToken }: InventoryTabProps) {
     mutationFn: async ({ id, data }: { id: string; data: Record<string, unknown> }) => {
       const res = await fetch(`/api/admin/inventory/${id}`, {
         method: "PATCH",
-        headers: { ...headers, "Content-Type": "application/json" },
+        credentials: "include",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
       });
       if (!res.ok) throw new Error((await res.json()).message || "Error");
@@ -221,7 +223,7 @@ export function InventoryTab({ adminToken }: InventoryTabProps) {
 
   const deleteItemMutation = useMutation({
     mutationFn: async (id: string) => {
-      const res = await fetch(`/api/admin/inventory/${id}`, { method: "DELETE", headers });
+      const res = await fetch(`/api/admin/inventory/${id}`, { method: "DELETE", credentials: "include" });
       if (!res.ok) throw new Error("Error");
       return res.json();
     },
@@ -235,7 +237,8 @@ export function InventoryTab({ adminToken }: InventoryTabProps) {
     mutationFn: async (data: Record<string, unknown>) => {
       const res = await fetch(`/api/admin/inventory/${data.itemId}/movements`, {
         method: "POST",
-        headers: { ...headers, "Content-Type": "application/json" },
+        credentials: "include",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
       });
       if (!res.ok) throw new Error((await res.json()).message || "Error");

@@ -1,5 +1,6 @@
 import express, { type Request, Response, NextFunction } from "express";
 import compression from "compression";
+import cookieParser from "cookie-parser";
 import helmet from "helmet";
 import https from "https";
 import rateLimit from "express-rate-limit";
@@ -52,6 +53,9 @@ if (config.SENTRY_DSN) {
   });
 }
 
+// Cookie parser — required for HttpOnly admin auth cookies
+app.use(cookieParser());
+
 // Security headers (disabled in development — CSP blocks HTTP localhost)
 if (!isDev) {
   app.use(helmet({
@@ -69,6 +73,8 @@ if (!isDev) {
     },
     referrerPolicy: { policy: "strict-origin-when-cross-origin" },
     crossOriginEmbedderPolicy: false,
+    xFrameOptions: { action: "deny" }, // Prevent clickjacking — no framing allowed
+    hidePoweredBy: true, // Don't leak Express version
     strictTransportSecurity: {
       maxAge: 31536000, // 1 year in seconds
       includeSubDomains: true,
@@ -143,21 +149,40 @@ app.use("/api/quote", quoteLimiter);
 app.use("/api/create-payment-intent", paymentLimiter);
 app.use("/api/create-checkout-session", paymentLimiter);
 
-// CORS — restrict API access to known origins
+// CORS — strict origin enforcement for API routes
+// Webhooks (Stripe, Meta) are exempt because they are server-to-server with their own auth
 const allowedOrigins = isDev
   ? ['http://localhost:5000', 'http://localhost:3000', 'http://127.0.0.1:5000']
   : ['https://www.costabravarentaboat.com', 'https://costabravarentaboat.com'];
 
-app.use('/api/', (req: Request, res: Response, next: NextFunction) => {
-  const origin = req.headers.origin as string | undefined;
-  const isAllowed = !origin
-    || allowedOrigins.includes(origin)
-    || (!isDev && origin.endsWith('.costabravarentaboat.com'));
+const corsExemptPaths = [
+  '/api/stripe-webhook',
+  '/api/meta-whatsapp/webhook',
+  '/api/health',
+  '/api/health/live',
+];
 
-  if (isAllowed && origin) {
-    res.setHeader('Access-Control-Allow-Origin', origin);
-    res.setHeader('Access-Control-Allow-Credentials', 'true');
+app.use('/api/', (req: Request, res: Response, next: NextFunction) => {
+  // Skip CORS for webhook endpoints — they use their own signature verification
+  if (corsExemptPaths.some(p => req.path === p || req.path.startsWith(p + '/'))) {
+    return next();
   }
+
+  const origin = req.headers.origin as string | undefined;
+
+  // Block requests with no Origin header (curl, scripts, etc.) — browsers always send it
+  if (!origin) {
+    res.status(403).json({ message: 'Forbidden: missing Origin header' });
+    return;
+  }
+
+  if (!allowedOrigins.includes(origin)) {
+    res.status(403).json({ message: 'Forbidden: origin not allowed' });
+    return;
+  }
+
+  res.setHeader('Access-Control-Allow-Origin', origin);
+  res.setHeader('Access-Control-Allow-Credentials', 'true');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PATCH, DELETE, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Tenant-Slug, X-Session-Id');
   res.setHeader('Vary', 'Origin');

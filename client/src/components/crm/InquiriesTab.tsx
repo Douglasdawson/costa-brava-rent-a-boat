@@ -168,7 +168,7 @@ export function InquiriesTab({ adminToken, onOpenWhatsApp }: InquiriesTabProps) 
       if (debouncedSearch) params.set("search", debouncedSearch);
 
       const res = await fetch(`/api/admin/booking-inquiries?${params.toString()}`, {
-        headers: { 'Authorization': `Bearer ${adminToken}` },
+        credentials: "include",
       });
       if (!res.ok) throw new Error("Error al cargar peticiones");
       return res.json();
@@ -180,9 +180,9 @@ export function InquiriesTab({ adminToken, onOpenWhatsApp }: InquiriesTabProps) 
     try {
       const res = await fetch(`/api/admin/booking-inquiries/${id}`, {
         method: 'PATCH',
+        credentials: "include",
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${adminToken}`,
         },
         body: JSON.stringify(data),
       });
@@ -210,7 +210,7 @@ export function InquiriesTab({ adminToken, onOpenWhatsApp }: InquiriesTabProps) 
     try {
       const res = await fetch(`/api/admin/booking-inquiries/${id}`, {
         method: 'DELETE',
-        headers: { 'Authorization': `Bearer ${adminToken}` },
+        credentials: "include",
       });
       if (res.ok) {
         queryClient.invalidateQueries({ queryKey: ['/api/admin/booking-inquiries'] });

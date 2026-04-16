@@ -8,6 +8,7 @@ import { logger } from "../lib/logger";
 // ===== Constants =====
 
 export const BCRYPT_ROUNDS = 12;
+export const ADMIN_COOKIE_NAME = "admin_token";
 
 // JWT secret - MUST be set via environment variable. No fallback allowed.
 if (!process.env.JWT_SECRET || process.env.JWT_SECRET.length < 32) {
@@ -144,10 +145,11 @@ export function generateRefreshTokenString(): string {
 // ===== Internal Helpers =====
 
 export async function getTokenData(req: Request): Promise<JwtPayload | null> {
+  const cookieToken = req.cookies?.[ADMIN_COOKIE_NAME];
   const authHeader = req.headers.authorization;
-  if (!authHeader || !authHeader.startsWith("Bearer ")) return null;
-
-  const token = authHeader.substring(7);
+  const bearerToken = authHeader?.startsWith("Bearer ") ? authHeader.substring(7) : null;
+  const token = cookieToken || bearerToken;
+  if (!token) return null;
   if (await storage.isTokenBlacklisted(token)) return null;
 
   try {
@@ -220,14 +222,16 @@ export async function resolveTenantFromRequest(req: Request): Promise<string | n
 // ===== Middleware =====
 
 // Admin session middleware - verifies JWT signature and expiry (supports both legacy and SaaS tokens)
+// Reads JWT from HttpOnly cookie first, falls back to Authorization header for backward compat
 export const requireAdminSession = async (req: Request, res: Response, next: NextFunction) => {
+  const cookieToken = req.cookies?.[ADMIN_COOKIE_NAME];
   const authHeader = req.headers.authorization;
+  const bearerToken = authHeader?.startsWith("Bearer ") ? authHeader.substring(7) : null;
+  const token = cookieToken || bearerToken;
 
-  if (!authHeader || !authHeader.startsWith("Bearer ")) {
+  if (!token) {
     return res.status(401).json({ message: "No autorizado" });
   }
-
-  const token = authHeader.substring(7);
 
   if (await storage.isTokenBlacklisted(token)) {
     return res.status(401).json({ message: "Token invalido o expirado" });

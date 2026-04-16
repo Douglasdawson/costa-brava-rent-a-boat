@@ -23,8 +23,16 @@ export function useAuth() {
       queryClient.clear();
       
       // Redirect to OIDC logout endpoint to properly end Replit session
+      // Validate redirect is same-origin to prevent open redirect attacks
       if (data.redirectUrl) {
-        window.location.href = data.redirectUrl;
+        try {
+          const url = new URL(data.redirectUrl, window.location.origin);
+          window.location.href = url.origin === window.location.origin
+            ? data.redirectUrl
+            : "/";
+        } catch {
+          window.location.href = "/";
+        }
       } else {
         window.location.href = "/";
       }

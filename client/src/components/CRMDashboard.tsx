@@ -114,7 +114,10 @@ export default function CRMDashboard({ adminToken }: CRMDashboardProps) {
 
   // Logout handler
   const handleLogout = useCallback(() => {
-    sessionStorage.removeItem("adminToken");
+    fetch("/api/admin/logout", { method: "POST", credentials: "include" }).catch(() => {});
+    sessionStorage.removeItem("adminAuthenticated");
+    sessionStorage.removeItem("adminRole");
+    sessionStorage.removeItem("adminUsername");
     sessionStorage.removeItem("allowedTabs");
     window.location.href = "/";
   }, []);
@@ -168,7 +171,7 @@ export default function CRMDashboard({ adminToken }: CRMDashboardProps) {
   const handleViewBookingById = useCallback((bookingId: string) => {
     // Fetch the booking data via API
     fetch(`/api/admin/bookings?search=${bookingId}&limit=1`, {
-      headers: { 'Authorization': `Bearer ${adminToken}` }
+      credentials: "include" as const
     })
       .then(res => res.json())
       .then((result: PaginatedBookingsResponse) => {
@@ -192,7 +195,7 @@ export default function CRMDashboard({ adminToken }: CRMDashboardProps) {
   // Handle edit booking by ID (from dashboard)
   const handleEditBookingById = useCallback((bookingId: string) => {
     fetch(`/api/admin/bookings?search=${bookingId}&limit=1`, {
-      headers: { 'Authorization': `Bearer ${adminToken}` }
+      credentials: "include" as const
     })
       .then(res => res.json())
       .then((result: PaginatedBookingsResponse) => {
@@ -233,7 +236,7 @@ export default function CRMDashboard({ adminToken }: CRMDashboardProps) {
       // Fetch bookings and boats in parallel
       const [response, boatsResponse] = await Promise.all([
         fetch(`/api/admin/bookings?${params.toString()}`, {
-          headers: { 'Authorization': `Bearer ${adminToken}` }
+          credentials: "include" as const
         }),
         fetch('/api/boats'),
       ]);

@@ -31,6 +31,7 @@ export default function LoginPage() {
     try {
       const response = await fetch("/api/admin/login", {
         method: "POST",
+        credentials: "include",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ pin }),
       });
@@ -42,7 +43,7 @@ export default function LoginPage() {
 
       const data = await response.json();
 
-      sessionStorage.setItem("adminToken", data.token);
+      sessionStorage.setItem("adminAuthenticated", "true");
       sessionStorage.setItem("adminRole", data.role || "admin");
       sessionStorage.setItem("adminUsername", data.displayName || data.username || "admin");
       if (data.allowedTabs) {

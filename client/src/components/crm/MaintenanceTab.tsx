@@ -174,7 +174,7 @@ export function MaintenanceTab({ adminToken }: MaintenanceTabProps) {
     notes: "",
   });
 
-  const headers = { Authorization: `Bearer ${adminToken}` };
+  const credentialOpts = { credentials: "include" as const };
 
   // Queries
   const { data: boats = [] } = useQuery<Boat[]>({ queryKey: ["/api/boats"] });
@@ -182,7 +182,7 @@ export function MaintenanceTab({ adminToken }: MaintenanceTabProps) {
     queryKey: ["/api/admin/maintenance", filterBoat],
     queryFn: async () => {
       const params = filterBoat !== "all" ? `?boatId=${filterBoat}` : "";
-      const res = await fetch(`/api/admin/maintenance${params}`, { headers });
+      const res = await fetch(`/api/admin/maintenance${params}`, credentialOpts);
       if (!res.ok) throw new Error("Error loading maintenance");
       return res.json();
     },
@@ -191,7 +191,7 @@ export function MaintenanceTab({ adminToken }: MaintenanceTabProps) {
     queryKey: ["/api/admin/documents", filterBoat],
     queryFn: async () => {
       const params = filterBoat !== "all" ? `?boatId=${filterBoat}` : "";
-      const res = await fetch(`/api/admin/documents${params}`, { headers });
+      const res = await fetch(`/api/admin/documents${params}`, credentialOpts);
       if (!res.ok) throw new Error("Error loading documents");
       return res.json();
     },
@@ -199,7 +199,7 @@ export function MaintenanceTab({ adminToken }: MaintenanceTabProps) {
   const { data: expiringDocs = [] } = useQuery<BoatDocument[]>({
     queryKey: ["/api/admin/documents/expiring"],
     queryFn: async () => {
-      const res = await fetch("/api/admin/documents/expiring?days=30", { headers });
+      const res = await fetch("/api/admin/documents/expiring?days=30", credentialOpts);
       if (!res.ok) throw new Error("Error");
       return res.json();
     },
@@ -210,7 +210,8 @@ export function MaintenanceTab({ adminToken }: MaintenanceTabProps) {
     mutationFn: async (data: Record<string, unknown>) => {
       const res = await fetch("/api/admin/maintenance", {
         method: "POST",
-        headers: { ...headers, "Content-Type": "application/json" },
+        credentials: "include",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
       });
       if (!res.ok) throw new Error((await res.json()).message || "Error");
@@ -228,7 +229,8 @@ export function MaintenanceTab({ adminToken }: MaintenanceTabProps) {
     mutationFn: async ({ id, data }: { id: string; data: Record<string, unknown> }) => {
       const res = await fetch(`/api/admin/maintenance/${id}`, {
         method: "PATCH",
-        headers: { ...headers, "Content-Type": "application/json" },
+        credentials: "include",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
       });
       if (!res.ok) throw new Error((await res.json()).message || "Error");
@@ -245,7 +247,7 @@ export function MaintenanceTab({ adminToken }: MaintenanceTabProps) {
 
   const deleteMaintMutation = useMutation({
     mutationFn: async (id: string) => {
-      const res = await fetch(`/api/admin/maintenance/${id}`, { method: "DELETE", headers });
+      const res = await fetch(`/api/admin/maintenance/${id}`, { method: "DELETE", credentials: "include" });
       if (!res.ok) throw new Error("Error");
       return res.json();
     },
@@ -260,7 +262,8 @@ export function MaintenanceTab({ adminToken }: MaintenanceTabProps) {
     mutationFn: async (data: Record<string, unknown>) => {
       const res = await fetch("/api/admin/documents", {
         method: "POST",
-        headers: { ...headers, "Content-Type": "application/json" },
+        credentials: "include",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
       });
       if (!res.ok) throw new Error((await res.json()).message || "Error");
@@ -278,7 +281,8 @@ export function MaintenanceTab({ adminToken }: MaintenanceTabProps) {
     mutationFn: async ({ id, data }: { id: string; data: Record<string, unknown> }) => {
       const res = await fetch(`/api/admin/documents/${id}`, {
         method: "PATCH",
-        headers: { ...headers, "Content-Type": "application/json" },
+        credentials: "include",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
       });
       if (!res.ok) throw new Error((await res.json()).message || "Error");
@@ -295,7 +299,7 @@ export function MaintenanceTab({ adminToken }: MaintenanceTabProps) {
 
   const deleteDocMutation = useMutation({
     mutationFn: async (id: string) => {
-      const res = await fetch(`/api/admin/documents/${id}`, { method: "DELETE", headers });
+      const res = await fetch(`/api/admin/documents/${id}`, { method: "DELETE", credentials: "include" });
       if (!res.ok) throw new Error("Error");
       return res.json();
     },

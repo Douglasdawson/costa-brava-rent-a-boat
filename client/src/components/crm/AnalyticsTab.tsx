@@ -249,14 +249,14 @@ export function AnalyticsTab({ adminToken }: AnalyticsTabProps) {
   const [keywordSort, setKeywordSort] = useState<{ key: string; dir: SortDirection }>({ key: "clicks", dir: "desc" });
   const [pageSort, setPageSort] = useState<{ key: string; dir: SortDirection }>({ key: "clicks", dir: "desc" });
 
-  const headers = { Authorization: `Bearer ${adminToken}` };
+  const credentialOpts = { credentials: "include" as const };
 
   // --- Queries ---
 
   const { data: status, isLoading: statusLoading } = useQuery<AnalyticsStatus>({
     queryKey: ["/api/admin/analytics/status"],
     queryFn: async () => {
-      const res = await fetch("/api/admin/analytics/status", { headers });
+      const res = await fetch("/api/admin/analytics/status", credentialOpts);
       if (!res.ok) throw new Error("Error");
       return res.json();
     },
@@ -265,7 +265,7 @@ export function AnalyticsTab({ adminToken }: AnalyticsTabProps) {
   const { data: overview, isLoading: overviewLoading, error: overviewError } = useQuery<AnalyticsOverview>({
     queryKey: ["/api/admin/analytics/overview"],
     queryFn: async () => {
-      const res = await fetch("/api/admin/analytics/overview", { headers });
+      const res = await fetch("/api/admin/analytics/overview", credentialOpts);
       if (!res.ok) throw new Error("Error");
       const json = await res.json();
       return { ...json.data, cached: json.cached };
@@ -276,7 +276,7 @@ export function AnalyticsTab({ adminToken }: AnalyticsTabProps) {
   const { data: trends, isLoading: trendsLoading } = useQuery<TrendsData>({
     queryKey: ["/api/admin/analytics/trends"],
     queryFn: async () => {
-      const res = await fetch("/api/admin/analytics/trends", { headers });
+      const res = await fetch("/api/admin/analytics/trends", credentialOpts);
       if (!res.ok) throw new Error("Error");
       const json = await res.json();
       return json.data;
@@ -287,7 +287,7 @@ export function AnalyticsTab({ adminToken }: AnalyticsTabProps) {
   const { data: keywordsData, isLoading: keywordsLoading } = useQuery<{ data: KeywordRow[] }>({
     queryKey: ["/api/admin/analytics/keywords"],
     queryFn: async () => {
-      const res = await fetch("/api/admin/analytics/keywords", { headers });
+      const res = await fetch("/api/admin/analytics/keywords", credentialOpts);
       if (!res.ok) throw new Error("Error");
       return res.json();
     },
@@ -297,7 +297,7 @@ export function AnalyticsTab({ adminToken }: AnalyticsTabProps) {
   const { data: pagesData, isLoading: pagesLoading } = useQuery<{ data: PageRow[] }>({
     queryKey: ["/api/admin/analytics/pages"],
     queryFn: async () => {
-      const res = await fetch("/api/admin/analytics/pages", { headers });
+      const res = await fetch("/api/admin/analytics/pages", credentialOpts);
       if (!res.ok) throw new Error("Error");
       return res.json();
     },
@@ -307,7 +307,7 @@ export function AnalyticsTab({ adminToken }: AnalyticsTabProps) {
   const { data: trafficData, isLoading: trafficLoading } = useQuery<{ data: TrafficRow[] }>({
     queryKey: ["/api/admin/analytics/traffic"],
     queryFn: async () => {
-      const res = await fetch("/api/admin/analytics/traffic", { headers });
+      const res = await fetch("/api/admin/analytics/traffic", credentialOpts);
       if (!res.ok) throw new Error("Error");
       return res.json();
     },
@@ -317,7 +317,7 @@ export function AnalyticsTab({ adminToken }: AnalyticsTabProps) {
   const { data: devicesData, isLoading: devicesLoading } = useQuery<{ data: DeviceRow[] }>({
     queryKey: ["/api/admin/analytics/devices"],
     queryFn: async () => {
-      const res = await fetch("/api/admin/analytics/devices", { headers });
+      const res = await fetch("/api/admin/analytics/devices", credentialOpts);
       if (!res.ok) throw new Error("Error");
       return res.json();
     },
@@ -327,7 +327,7 @@ export function AnalyticsTab({ adminToken }: AnalyticsTabProps) {
   const { data: countriesData, isLoading: countriesLoading } = useQuery<{ data: CountryRow[] }>({
     queryKey: ["/api/admin/analytics/countries"],
     queryFn: async () => {
-      const res = await fetch("/api/admin/analytics/countries", { headers });
+      const res = await fetch("/api/admin/analytics/countries", credentialOpts);
       if (!res.ok) throw new Error("Error");
       return res.json();
     },
@@ -337,7 +337,7 @@ export function AnalyticsTab({ adminToken }: AnalyticsTabProps) {
   const { data: conversionsData, isLoading: conversionsLoading } = useQuery<{ data: ConversionRow[] }>({
     queryKey: ["/api/admin/analytics/conversions"],
     queryFn: async () => {
-      const res = await fetch("/api/admin/analytics/conversions", { headers });
+      const res = await fetch("/api/admin/analytics/conversions", credentialOpts);
       if (!res.ok) throw new Error("Error");
       return res.json();
     },
@@ -350,7 +350,7 @@ export function AnalyticsTab({ adminToken }: AnalyticsTabProps) {
     mutationFn: async () => {
       const res = await fetch("/api/admin/analytics/sync", {
         method: "POST",
-        headers,
+        credentials: "include",
       });
       if (!res.ok) throw new Error("Error al sincronizar");
       return res.json();

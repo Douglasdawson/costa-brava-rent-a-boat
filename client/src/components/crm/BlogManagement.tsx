@@ -110,7 +110,7 @@ export function BlogManagement({ adminToken }: BlogManagementProps) {
     queryKey: ["/api/admin/blog"],
     queryFn: async () => {
       const res = await fetch("/api/admin/blog", {
-        headers: { Authorization: `Bearer ${adminToken}` },
+        credentials: "include",
       });
       if (!res.ok) throw new Error("Error al cargar entradas del blog");
       return res.json();
@@ -141,9 +141,9 @@ export function BlogManagement({ adminToken }: BlogManagementProps) {
     mutationFn: async (data: Record<string, unknown>) => {
       const res = await fetch("/api/admin/blog", {
         method: "POST",
+        credentials: "include",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${adminToken}`,
         },
         body: JSON.stringify(data),
       });
@@ -168,9 +168,9 @@ export function BlogManagement({ adminToken }: BlogManagementProps) {
     mutationFn: async ({ id, data }: { id: string; data: Record<string, unknown> }) => {
       const res = await fetch(`/api/admin/blog/${id}`, {
         method: "PUT",
+        credentials: "include",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${adminToken}`,
         },
         body: JSON.stringify(data),
       });
@@ -195,7 +195,7 @@ export function BlogManagement({ adminToken }: BlogManagementProps) {
     mutationFn: async (id: string) => {
       const res = await fetch(`/api/admin/blog/${id}`, {
         method: "DELETE",
-        headers: { Authorization: `Bearer ${adminToken}` },
+        credentials: "include",
       });
       if (!res.ok) throw new Error("Error al eliminar entrada");
     },
@@ -215,9 +215,9 @@ export function BlogManagement({ adminToken }: BlogManagementProps) {
     mutationFn: async ({ id, isPublished }: { id: string; isPublished: boolean }) => {
       const res = await fetch(`/api/admin/blog/${id}`, {
         method: "PUT",
+        credentials: "include",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${adminToken}`,
         },
         body: JSON.stringify({
           isPublished,

@@ -255,16 +255,14 @@ function BookingFlowPage() {
 
 function CRMDashboardPage() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [adminToken, setAdminToken] = useState<string | null>(null);
   const [, setLocation] = useLocation();
   const { localizedPath } = useLanguage();
   const setLocationRef = useRef(setLocation);
   useEffect(() => { setLocationRef.current = setLocation; });
 
   useEffect(() => {
-    const token = sessionStorage.getItem("adminToken");
-    if (token) {
-      setAdminToken(token);
+    const authenticated = sessionStorage.getItem("adminAuthenticated");
+    if (authenticated) {
       setIsAuthenticated(true);
     } else {
       setLocation(localizedPath("login"));
@@ -275,22 +273,13 @@ function CRMDashboardPage() {
     if (!isAuthenticated) return;
 
     const refreshInterval = setInterval(async () => {
-      const refreshToken = sessionStorage.getItem("refreshToken");
-      if (!refreshToken) return;
-
       try {
         const response = await fetch("/api/auth/refresh-token", {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ refreshToken }),
+          credentials: "include",
         });
 
-        if (response.ok) {
-          const data = await response.json();
-          sessionStorage.setItem("adminToken", data.accessToken);
-          sessionStorage.setItem("refreshToken", data.refreshToken);
-          setAdminToken(data.accessToken);
-        } else {
+        if (!response.ok) {
           sessionStorage.clear();
           setLocationRef.current(localizedPath("login"));
         }
@@ -306,7 +295,7 @@ function CRMDashboardPage() {
     return null;
   }
 
-  return <CRMDashboard adminToken={adminToken!} />;
+  return <CRMDashboard adminToken="cookie" />;
 }
 
 function MainRouteFallback() {

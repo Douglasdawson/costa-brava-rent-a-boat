@@ -110,7 +110,7 @@ export function BookingDetailsModal({
     queryKey: ["/api/admin/checkins/booking", booking?.id],
     queryFn: async () => {
       const response = await fetch(`/api/admin/checkins/booking/${booking!.id}`, {
-        headers: { Authorization: `Bearer ${adminToken}` },
+        credentials: "include",
       });
       if (!response.ok) throw new Error("Error fetching checkins");
       return response.json();
@@ -182,9 +182,9 @@ export function BookingDetailsModal({
     mutationFn: async ({ bookingId, updates }: { bookingId: string; updates: Record<string, string> }) => {
       const response = await fetch(`/api/admin/bookings/${bookingId}`, {
         method: 'PATCH',
+        credentials: "include",
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${adminToken}`
         },
         body: JSON.stringify(updates)
       });
@@ -217,9 +217,9 @@ export function BookingDetailsModal({
     mutationFn: async ({ bookingId, data }: { bookingId: string; data: EditBookingFormData }) => {
       const response = await fetch(`/api/admin/bookings/${bookingId}`, {
         method: 'PATCH',
+        credentials: "include",
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${adminToken}`
         },
         body: JSON.stringify(data),
       });
@@ -256,9 +256,9 @@ export function BookingDetailsModal({
       const endDate = new Date(data.endTime);
       const response = await fetch('/api/admin/bookings', {
         method: 'POST',
+        credentials: "include",
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${adminToken}`
         },
         body: JSON.stringify({
           ...data,

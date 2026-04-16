@@ -61,6 +61,23 @@ export function registerAdminRoutes(app: Express) {
     }
   });
 
+  // ===== CROSS-LINK BLOG SEED =====
+
+  app.post("/api/admin/seed-crosslink-blog", requireAdminSession, async (req, res) => {
+    try {
+      const { seedCrossLinkPosts } = await import("../seeds/blogCrossLinkSeed");
+      const created = await seedCrossLinkPosts(storage);
+      res.json({
+        message: "Cross-link blog seed completed",
+        created,
+        total: 2,
+      });
+    } catch (error: unknown) {
+      logger.error("[Admin] Error seeding cross-link blog posts", { error: error instanceof Error ? error.message : error });
+      res.status(500).json({ message: "Error interno del servidor" });
+    }
+  });
+
   // ===== TENANT MANAGEMENT =====
 
   // Seed default tenant and migrate existing data

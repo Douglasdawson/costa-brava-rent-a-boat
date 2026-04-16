@@ -1,4 +1,5 @@
 import type { Express } from "express";
+import crypto from "crypto";
 import { z } from "zod";
 import { storage } from "../storage";
 import { logger } from "../lib/logger";
@@ -363,7 +364,8 @@ export function registerAvailabilityRoutes(app: Express) {
         return res.status(503).json({ message: "iCal feed not configured" });
       }
 
-      if (!token || token !== expectedToken) {
+      if (!token || typeof token !== "string" || token.length !== expectedToken.length ||
+          !crypto.timingSafeEqual(Buffer.from(token), Buffer.from(expectedToken))) {
         return res.status(401).json({ message: "Token inválido" });
       }
 

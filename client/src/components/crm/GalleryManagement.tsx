@@ -42,15 +42,10 @@ export function GalleryManagement({ adminToken }: GalleryManagementProps) {
   const PAGE_SIZE = 12;
   const { toast } = useToast();
 
-  const headers = {
-    Authorization: `Bearer ${adminToken}`,
-    "Content-Type": "application/json",
-  };
-
   const { data: photos = [], isLoading } = useQuery<GalleryPhoto[]>({
     queryKey: ["/api/admin/gallery"],
     queryFn: async () => {
-      const res = await fetch("/api/admin/gallery", { headers });
+      const res = await fetch("/api/admin/gallery", { credentials: "include" });
       if (!res.ok) throw new Error("Error fetching photos");
       return res.json();
     },
@@ -60,7 +55,7 @@ export function GalleryManagement({ adminToken }: GalleryManagementProps) {
     mutationFn: async (id: string) => {
       const res = await fetch(`/api/admin/gallery/${id}/approve`, {
         method: "PATCH",
-        headers,
+        credentials: "include",
       });
       if (!res.ok) throw new Error("Error approving photo");
     },
@@ -74,7 +69,7 @@ export function GalleryManagement({ adminToken }: GalleryManagementProps) {
     mutationFn: async (id: string) => {
       const res = await fetch(`/api/admin/gallery/${id}/reject`, {
         method: "PATCH",
-        headers,
+        credentials: "include",
       });
       if (!res.ok) throw new Error("Error rejecting photo");
     },
@@ -88,7 +83,7 @@ export function GalleryManagement({ adminToken }: GalleryManagementProps) {
     mutationFn: async (id: string) => {
       const res = await fetch(`/api/admin/gallery/${id}`, {
         method: "DELETE",
-        headers,
+        credentials: "include",
       });
       if (!res.ok) throw new Error("Error deleting photo");
     },

@@ -112,9 +112,9 @@ export function CheckinForm({
 
       const response = await fetch("/api/admin/checkins", {
         method: "POST",
+        credentials: "include",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${adminToken}`,
         },
         body: JSON.stringify(body),
       });

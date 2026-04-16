@@ -84,7 +84,7 @@ export function CustomerDetailModal({
     queryKey: ["/api/admin/customers", customerId],
     queryFn: async () => {
       const response = await fetch(`/api/admin/customers/${customerId}`, {
-        headers: { Authorization: `Bearer ${adminToken}` },
+        credentials: "include",
       });
       if (!response.ok) {
         throw new Error("Error fetching customer");
@@ -99,9 +99,9 @@ export function CustomerDetailModal({
     mutationFn: async (updates: Record<string, unknown>) => {
       const response = await fetch(`/api/admin/customers/${customerId}`, {
         method: "PATCH",
+        credentials: "include",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${adminToken}`,
         },
         body: JSON.stringify(updates),
       });

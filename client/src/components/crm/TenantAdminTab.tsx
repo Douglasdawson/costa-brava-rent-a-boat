@@ -40,14 +40,13 @@ export function TenantAdminTab({ adminToken }: TenantAdminTabProps) {
   const [loaded, setLoaded] = useState(false);
 
   const headers = {
-    Authorization: `Bearer ${adminToken}`,
     "Content-Type": "application/json",
   };
 
   const { isLoading, data: config } = useQuery<CompanyConfig>({
     queryKey: ["/api/admin/company"],
     queryFn: async () => {
-      const res = await fetch("/api/admin/company", { headers });
+      const res = await fetch("/api/admin/company", { credentials: "include" });
       if (!res.ok) throw new Error("Error al cargar configuracion");
       return res.json();
     },
@@ -72,6 +71,7 @@ export function TenantAdminTab({ adminToken }: TenantAdminTabProps) {
     mutationFn: async (data: Partial<CompanyConfig>) => {
       const res = await fetch("/api/admin/company", {
         method: "PATCH",
+        credentials: "include",
         headers,
         body: JSON.stringify(data),
       });

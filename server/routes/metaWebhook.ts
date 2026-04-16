@@ -40,7 +40,9 @@ export function registerMetaWebhookRoutes(app: Express) {
       return res.sendStatus(403);
     }
 
-    if (mode === "subscribe" && token === verifyToken) {
+    if (mode === "subscribe" && typeof token === "string" &&
+        token.length === verifyToken.length &&
+        crypto.timingSafeEqual(Buffer.from(token), Buffer.from(verifyToken))) {
       logger.info("Meta Webhook verification successful");
       return res.status(200).send(challenge);
     }

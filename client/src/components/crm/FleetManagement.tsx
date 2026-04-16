@@ -77,7 +77,7 @@ export function FleetManagement({ adminToken }: FleetManagementProps) {
     queryKey: ["/api/admin/boats"],
     queryFn: async () => {
       const res = await fetch("/api/admin/boats", {
-        headers: { Authorization: `Bearer ${adminToken}` },
+        credentials: "include",
       });
       if (!res.ok) throw new Error("Error al cargar la flota");
       return res.json();
@@ -97,9 +97,9 @@ export function FleetManagement({ adminToken }: FleetManagementProps) {
     mutationFn: async (newOrder: BoatListItem[]) => {
       const response = await fetch("/api/admin/boats/reorder", {
         method: "POST",
+        credentials: "include",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${adminToken}`,
         },
         body: JSON.stringify({
           order: newOrder.map((boat, index) => ({
@@ -155,9 +155,9 @@ export function FleetManagement({ adminToken }: FleetManagementProps) {
     mutationFn: async (data: BoatFormData) => {
       const response = await fetch("/api/admin/boats", {
         method: "POST",
+        credentials: "include",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${adminToken}`,
         },
         body: JSON.stringify(data),
       });
@@ -191,9 +191,9 @@ export function FleetManagement({ adminToken }: FleetManagementProps) {
     mutationFn: async ({ id, data }: { id: string; data: Partial<BoatFormData> }) => {
       const response = await fetch(`/api/admin/boats/${id}`, {
         method: "PATCH",
+        credentials: "include",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${adminToken}`,
         },
         body: JSON.stringify(data),
       });
@@ -228,9 +228,7 @@ export function FleetManagement({ adminToken }: FleetManagementProps) {
     mutationFn: async (id: string) => {
       const response = await fetch(`/api/admin/boats/${id}`, {
         method: "DELETE",
-        headers: {
-          Authorization: `Bearer ${adminToken}`,
-        },
+        credentials: "include",
       });
       if (!response.ok) {
         const error = await response.json();
@@ -260,9 +258,7 @@ export function FleetManagement({ adminToken }: FleetManagementProps) {
     mutationFn: async () => {
       const response = await fetch("/api/admin/init-boats", {
         method: "POST",
-        headers: {
-          Authorization: `Bearer ${adminToken}`,
-        },
+        credentials: "include",
       });
       if (!response.ok) {
         const error = await response.json();

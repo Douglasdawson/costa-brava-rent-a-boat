@@ -116,13 +116,13 @@ export function ReportsTab({ adminToken }: ReportsTabProps) {
   const [fleetPeriod, setFleetPeriod] = useState<string>("season");
   const [activeReport, setActiveReport] = useState<string>("fleet");
 
-  const headers = { Authorization: `Bearer ${adminToken}` };
+  const credentialOpts = { credentials: "include" as const };
 
   // Fleet utilization
   const { data: fleetData = [], isLoading: loadingFleet } = useQuery<FleetReport[]>({
     queryKey: ["/api/admin/reports/fleet-utilization", fleetPeriod],
     queryFn: async () => {
-      const res = await fetch(`/api/admin/reports/fleet-utilization?period=${fleetPeriod}`, { headers });
+      const res = await fetch(`/api/admin/reports/fleet-utilization?period=${fleetPeriod}`, credentialOpts);
       if (!res.ok) throw new Error("Error");
       return res.json();
     },
@@ -132,7 +132,7 @@ export function ReportsTab({ adminToken }: ReportsTabProps) {
   const { data: maintSummary, isLoading: loadingMaint } = useQuery<MaintenanceSummary>({
     queryKey: ["/api/admin/reports/maintenance-summary"],
     queryFn: async () => {
-      const res = await fetch("/api/admin/reports/maintenance-summary", { headers });
+      const res = await fetch("/api/admin/reports/maintenance-summary", credentialOpts);
       if (!res.ok) throw new Error("Error");
       return res.json();
     },
@@ -142,7 +142,7 @@ export function ReportsTab({ adminToken }: ReportsTabProps) {
   const { data: topCustomers = [], isLoading: loadingCustomers } = useQuery<TopCustomer[]>({
     queryKey: ["/api/admin/reports/top-customers"],
     queryFn: async () => {
-      const res = await fetch("/api/admin/reports/top-customers", { headers });
+      const res = await fetch("/api/admin/reports/top-customers", credentialOpts);
       if (!res.ok) throw new Error("Error");
       return res.json();
     },
@@ -152,7 +152,7 @@ export function ReportsTab({ adminToken }: ReportsTabProps) {
   const { data: inventoryItems = [], isLoading: loadingInventory } = useQuery<InventoryItem[]>({
     queryKey: ["/api/admin/inventory"],
     queryFn: async () => {
-      const res = await fetch("/api/admin/inventory", { headers });
+      const res = await fetch("/api/admin/inventory", credentialOpts);
       if (!res.ok) throw new Error("Error");
       return res.json();
     },
@@ -162,7 +162,7 @@ export function ReportsTab({ adminToken }: ReportsTabProps) {
   const { data: analyticsData } = useQuery<AnalyticsOverview>({
     queryKey: ["/api/admin/analytics/overview"],
     queryFn: async () => {
-      const res = await fetch("/api/admin/analytics/overview", { headers });
+      const res = await fetch("/api/admin/analytics/overview", credentialOpts);
       if (!res.ok) throw new Error("Error");
       return res.json();
     },

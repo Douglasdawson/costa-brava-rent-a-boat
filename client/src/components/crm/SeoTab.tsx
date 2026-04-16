@@ -214,7 +214,7 @@ function useSeoQuery<T>(key: string, endpoint: string, adminToken: string, enabl
     queryKey: ["seo", key],
     queryFn: async () => {
       const res = await fetch(`/api/admin/seo/${endpoint}`, {
-        headers: { Authorization: `Bearer ${adminToken}` },
+        credentials: "include",
       });
       if (!res.ok) throw new Error("Error al cargar datos");
       return res.json();
@@ -275,7 +275,7 @@ function ResumenSubTab({ adminToken }: { adminToken: string }) {
     mutationFn: async (alertId: number) => {
       const res = await fetch(`/api/admin/seo/alerts/${alertId}/acknowledge`, {
         method: "POST",
-        headers: { Authorization: `Bearer ${adminToken}` },
+        credentials: "include",
       });
       if (!res.ok) throw new Error("Error");
       return res.json();
@@ -854,7 +854,7 @@ function CwvWidget({ adminToken }: { adminToken: string }) {
     queryKey: ["cwv-summary"],
     queryFn: async () => {
       const res = await fetch("/api/admin/cwv-summary", {
-        headers: { Authorization: `Bearer ${adminToken}` },
+        credentials: "include",
       });
       if (!res.ok) throw new Error("Error al cargar CWV");
       return res.json();

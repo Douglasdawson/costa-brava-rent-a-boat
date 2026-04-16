@@ -86,10 +86,10 @@ function calcChange(current: number, previous: number): number | null {
 }
 
 // --- Helper: fetch with auth ---
-function buildFetcher<T>(adminToken: string) {
+function buildFetcher<T>(_adminToken: string) {
   return async (url: string): Promise<T> => {
     const response = await fetch(url, {
-      headers: { Authorization: `Bearer ${adminToken}` },
+      credentials: "include",
     });
     if (!response.ok) {
       let errorMessage = "Error fetching data";

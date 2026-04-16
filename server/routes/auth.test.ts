@@ -58,6 +58,7 @@ vi.mock("../replitAuth", () => ({
 // ---- Now safe to import ----
 
 import express from "express";
+import cookieParser from "cookie-parser";
 import request from "supertest";
 import jwt from "jsonwebtoken";
 import { storage } from "../storage";
@@ -81,6 +82,7 @@ const mockStorage = vi.mocked(storage);
 function createApp() {
   const app = express();
   app.use(express.json());
+  app.use(cookieParser());
   registerLegacyAuthRoutes(app);
   registerSaasAuthRoutes(app);
   return app;
@@ -272,9 +274,16 @@ describe("Legacy Auth Routes", () => {
 
       expect(res.status).toBe(200);
       expect(res.body.success).toBe(true);
-      expect(res.body.token).toBeDefined();
+      expect(res.body.token).toBeUndefined(); // JWT now in HttpOnly cookie, not response body
       expect(res.body.role).toBe("owner");
       expect(res.body.username).toBe("ivan");
+      // Verify HttpOnly cookie is set
+      const cookies = res.headers["set-cookie"];
+      expect(cookies).toBeDefined();
+      const adminCookie = (Array.isArray(cookies) ? cookies : [cookies]).find((c: string) => c.startsWith("admin_token="));
+      expect(adminCookie).toBeDefined();
+      expect(adminCookie).toContain("HttpOnly");
+      expect(adminCookie).toContain("SameSite=Strict");
     });
 
     it("rejects incorrect PIN", async () => {

@@ -94,7 +94,7 @@ export function CustomersTab({
         params.set("search", debouncedSearch);
       }
       const response = await fetch(`/api/admin/customers?${params.toString()}`, {
-        headers: { Authorization: `Bearer ${adminToken}` },
+        credentials: "include" as const,
       });
       if (!response.ok) {
         const errorData = await response.json().catch(() => ({ message: "Error" }));
@@ -117,7 +117,7 @@ export function CustomersTab({
     mutationFn: async () => {
       const response = await fetch("/api/admin/customers/sync", {
         method: "POST",
-        headers: { Authorization: `Bearer ${adminToken}` },
+        credentials: "include" as const,
       });
       if (!response.ok) {
         const err = await response.json().catch(() => ({ message: "Error" }));
@@ -138,7 +138,7 @@ export function CustomersTab({
   const handleExportCSV = useCallback(async () => {
     try {
       const response = await fetch("/api/admin/customers/export", {
-        headers: { Authorization: `Bearer ${adminToken}` },
+        credentials: "include" as const,
       });
       if (!response.ok) throw new Error("Error exporting");
       const blob = await response.blob();

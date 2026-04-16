@@ -250,7 +250,7 @@ export function CalendarTab({
       const response = await fetch(
         `/api/admin/bookings/calendar?${params.toString()}`,
         {
-          headers: { Authorization: `Bearer ${adminToken}` },
+          credentials: "include" as const,
         }
       );
       if (!response.ok) throw new Error("Error fetching calendar bookings");

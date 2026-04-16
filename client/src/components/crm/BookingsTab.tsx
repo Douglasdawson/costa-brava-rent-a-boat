@@ -76,7 +76,7 @@ export function BookingsTab({
         params.set('search', debouncedSearch);
       }
       const response = await fetch(`/api/admin/bookings?${params.toString()}`, {
-        headers: { 'Authorization': `Bearer ${adminToken}` }
+        credentials: "include" as const
       });
       if (!response.ok) {
         let errorMessage = 'Error fetching bookings';

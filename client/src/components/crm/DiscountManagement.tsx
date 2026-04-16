@@ -78,15 +78,15 @@ export function DiscountManagement({ adminToken }: DiscountManagementProps) {
   const [newExpiresAt, setNewExpiresAt] = useState("");
 
   const headers = {
-    Authorization: `Bearer ${adminToken}`,
     "Content-Type": "application/json",
   };
+  const fetchOpts = { credentials: "include" as const, headers };
 
   // Fetch all discount codes
   const { data: discountCodes = [], isLoading } = useQuery<DiscountCode[]>({
     queryKey: ["/api/admin/discounts"],
     queryFn: async () => {
-      const res = await fetch("/api/admin/discounts", { headers });
+      const res = await fetch("/api/admin/discounts", fetchOpts);
       if (!res.ok) throw new Error("Error al cargar códigos de descuento");
       return res.json();
     },
@@ -103,6 +103,7 @@ export function DiscountManagement({ adminToken }: DiscountManagementProps) {
     }) => {
       const res = await fetch("/api/admin/discounts", {
         method: "POST",
+        credentials: "include",
         headers,
         body: JSON.stringify(data),
       });
@@ -128,7 +129,7 @@ export function DiscountManagement({ adminToken }: DiscountManagementProps) {
     mutationFn: async (id: string) => {
       const res = await fetch(`/api/admin/discounts/${id}`, {
         method: "DELETE",
-        headers,
+        credentials: "include",
       });
       if (!res.ok) {
         const error = await res.json();
@@ -150,7 +151,7 @@ export function DiscountManagement({ adminToken }: DiscountManagementProps) {
     mutationFn: async () => {
       const res = await fetch("/api/admin/discounts/pre-season-campaign", {
         method: "POST",
-        headers,
+        credentials: "include",
       });
       if (!res.ok) {
         const error = await res.json();

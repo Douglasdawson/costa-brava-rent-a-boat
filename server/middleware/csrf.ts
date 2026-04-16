@@ -14,7 +14,7 @@ export function csrfProtection(req: Request, res: Response, next: NextFunction):
   }
 
   // Skip for Stripe/Twilio webhooks (they use signature verification)
-  if (req.path === "/api/stripe-webhook" || req.path === "/api/whatsapp" || req.path === "/api/whatsapp/status") {
+  if (req.path === "/api/stripe-webhook" || req.path === "/api/whatsapp" || req.path === "/api/whatsapp/status" || req.path === "/api/meta-whatsapp/webhook") {
     return next();
   }
 
@@ -30,9 +30,10 @@ export function csrfProtection(req: Request, res: Response, next: NextFunction):
   const host = req.headers.host;
 
   if (!origin && !referer) {
-    // No origin/referer — could be server-to-server or same-origin form
-    // Allow for now but log for monitoring
-    return next();
+    // No origin/referer on a state-changing request — block it
+    logger.warn("CSRF: missing Origin and Referer on state-changing request", { path: req.path, method: req.method });
+    res.status(403).json({ message: "Forbidden: missing origin" });
+    return;
   }
 
   const allowedOrigin = origin || (referer ? new URL(referer).origin : null);

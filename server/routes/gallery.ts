@@ -4,8 +4,27 @@ import { storage } from "../storage";
 import { requireAdminSession, requireAdminRole, requireTabAccess } from "./auth";
 import { logger } from "../lib/logger";
 
+// Block URLs pointing to private/internal networks (SSRF prevention)
+function isSafeUrl(urlStr: string): boolean {
+  try {
+    const url = new URL(urlStr);
+    if (url.protocol !== "https:") return false;
+    const hostname = url.hostname;
+    // Block private IP ranges and localhost
+    if (hostname === "localhost" || hostname === "127.0.0.1" || hostname === "0.0.0.0") return false;
+    if (hostname.startsWith("10.")) return false;
+    if (hostname.startsWith("192.168.")) return false;
+    if (hostname.startsWith("169.254.")) return false;
+    if (/^172\.(1[6-9]|2\d|3[01])\./.test(hostname)) return false;
+    if (hostname.endsWith(".local") || hostname.endsWith(".internal")) return false;
+    return true;
+  } catch {
+    return false;
+  }
+}
+
 const gallerySubmitSchema = z.object({
-  imageUrl: z.string().url("URL de imagen invalida"),
+  imageUrl: z.string().url("URL de imagen invalida").refine(isSafeUrl, "URL no permitida"),
   caption: z.string().max(500).optional(),
   customerName: z.string().min(1, "El nombre es requerido").max(100),
   boatName: z.string().max(100).optional(),

@@ -183,10 +183,10 @@ app.use('/api/', (req: Request, res: Response, next: NextFunction) => {
 
   const origin = req.headers.origin as string | undefined;
 
-  // Block requests with no Origin header (curl, scripts, etc.) — browsers always send it
+  // No Origin header = same-origin request (browser omits Origin for same-origin GETs).
+  // Let it through — CSRF protection middleware handles state-changing methods separately.
   if (!origin) {
-    res.status(403).json({ message: 'Forbidden: missing Origin header' });
-    return;
+    return next();
   }
 
   if (!allowedOrigins.includes(origin)) {

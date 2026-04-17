@@ -110,10 +110,10 @@ export default function LocationTorderaPage() {
   return (
     <div className="min-h-screen">
       <SEO
-        title="Alquiler Barco cerca de Tordera | Puerto Blanes 15 min desde 70€"
-        description="Vives en Tordera? Puerto de Blanes a 15 min en coche o 8 min en tren. Alquiler barcos sin licencia desde 70€/h, gasolina incluida. 9 barcos. Facil parking."
-        ogTitle="Alquiler de Barcos cerca de Tordera | Desde Blanes Costa Brava"
-        ogDescription="Desde Tordera al Puerto de Blanes en 15 min. Barcos sin licencia desde 70€. Gasolina incluida. Reserva ya."
+        title="Alquiler Barco Tordera | Puerto Blanes 15 min | Sin Licencia 70€/h | Delta del Tordera"
+        description="¿Vives en Tordera o cerca del Delta? Puerto Blanes a 15 min en coche o 8 min en tren R1. Alquila barco sin licencia desde 70€/h con gasolina incluida. Navega el Delta del Tordera."
+        ogTitle="Alquiler Barco Tordera | Delta del Tordera en Barco"
+        ogDescription="Desde Tordera al Puerto Blanes en 15 min. Barco sin licencia desde 70€/h. Delta del Tordera en barco. 4.8★."
         canonical={getCanonicalUrl("/alquiler-barcos-tordera")}
         jsonLd={combinedJsonLd}
       />

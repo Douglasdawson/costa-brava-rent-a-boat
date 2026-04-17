@@ -85,8 +85,13 @@ export function trackBookingCompleted(bookingId: string, amount: number, boatId:
 
 export function trackWhatsAppClick(source: string, utm?: UtmParams) {
   const eventId = generateEventId();
+  const pagePath = typeof window !== 'undefined' ? window.location.pathname : '';
+  const pageLanguage = pagePath.match(/^\/([a-z]{2})\//)?.[1] || 'es';
+
   trackEvent("whatsapp_click", {
     source,
+    page_path: pagePath,
+    page_language: pageLanguage,
     event_id: eventId,
     ...(utm?.utm_source && { utm_source: utm.utm_source }),
     ...(utm?.utm_medium && { utm_medium: utm.utm_medium }),

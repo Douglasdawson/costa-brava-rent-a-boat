@@ -72,9 +72,19 @@ export function redirectMiddleware() {
       const pathWithoutQuery = req.path;
 
       // Root with ?lang= -> /{lang}/
-      const slug = pathWithoutQuery.replace(/^\//, "");
+      let slug = pathWithoutQuery.replace(/^\//, "");
       if (slug === "") {
         return res.redirect(301, `/${langParam}/`);
+      }
+
+      // If the path already has a valid lang prefix, strip it so we can re-localize.
+      // Example: /es/alquiler-barcos-blanes?lang=fr -> treat slug as "alquiler-barcos-blanes"
+      const firstSegment = slug.split("/")[0];
+      if (isValidLang(firstSegment)) {
+        slug = slug.substring(firstSegment.length + 1); // +1 for the trailing slash
+        if (slug === "") {
+          return res.redirect(301, `/${langParam}/`);
+        }
       }
 
       const resolved = resolveSlug(slug);
@@ -233,6 +243,60 @@ export async function seedLegacyRedirects(): Promise<void> {
     "/boat-rental-costa-brava": getLocalizedPath("locationCostaBrava", "en"),
 
     "/login": getLocalizedPath("login", "es"),
+
+    // Broken CA/FR URLs with Spanish-style slugs (from GSC 404 report 2026-04-17)
+    "/ca/blog/alquiler-barco-costa-brava-guia-completa": "/ca/blog/alquiler-barco-sin-licencia-blanes-guia",
+    "/ca/barco-con-licencia-blanes-pacific-craft-625": "/ca/vaixell/pacific-craft-625",
+    "/fr/barco-con-licencia-blanes-trimarchi-57-s": "/fr/bateau/trimarchi-57s",
+    "/ca/excursiones-moto-agua": "/ca/vaixell-sense-llicencia",
+    "/ca/barco-rodman-todo-incluido-blanes": "/ca/vaixell-amb-llicencia",
+    "/ca/barco-sin-licencia-blanes-remus-450": "/ca/vaixell/remus-450",
+    "/ca/barco-sin-licencia-blanes-astec-450": "/ca/vaixell/astec-480",
+
+    // Blog posts with outdated slugs (2026-04-17 audit)
+    "/es/blog/snorkel-costa-brava-mejores-spots-blanes": "/es/blog/snorkel-buceo-costa-brava-barco",
+    "/fr/blog/snorkel-costa-brava-mejores-spots-blanes": "/fr/blog/snorkel-buceo-costa-brava-barco",
+    "/en/blog/snorkel-costa-brava-mejores-spots-blanes": "/en/blog/snorkel-buceo-costa-brava-barco",
+    "/nl/blog/alquiler-barco-costa-brava-guia-completa": "/nl/blog/alquiler-barco-sin-licencia-blanes-guia",
+    "/es/blog/precios-alquiler-barcos-blanes-2026": "/es/blog/cuanto-cuesta-alquilar-barco-blanes-precios",
+    "/es/blog/alquiler-barco-costa-brava-guia-completa": "/es/blog/alquiler-barco-sin-licencia-blanes-guia",
+    "/es/blog/alquiler-barcos-sin-licencia-blanes-guia": "/es/blog/alquiler-barco-sin-licencia-blanes-guia",
+
+    // Retired boat (Beneteau Flyer 5.5) -> category licensed
+    "/es/barco/beneteau-flyer-5-5": "/es/barcos-con-licencia",
+    "/en/boat/beneteau-flyer-5-5": "/en/boats-with-license",
+    "/fr/bateau/beneteau-flyer-5-5": "/fr/bateau-avec-permis",
+    "/de/boot/beneteau-flyer-5-5": "/de/boote-mit-fuehrerschein",
+    "/ca/vaixell/beneteau-flyer-5-5": "/ca/vaixell-amb-llicencia",
+    "/nl/boot/beneteau-flyer-5-5": "/nl/boot-met-vaarbewijs",
+    "/it/barca/beneteau-flyer-5-5": "/it/barca-con-patente",
+    "/ru/lodka/beneteau-flyer-5-5": "/ru/lodka-s-litsenziei",
+
+    // Common contact URLs -> localized about page
+    "/contacto": "/es/sobre-nosotros",
+    "/es/contacto": "/es/sobre-nosotros",
+    "/contact": "/en/about",
+    "/en/contact": "/en/about",
+    "/fr/contact": "/fr/a-propos",
+    "/de/kontakt": "/de/ueber-uns",
+    "/it/contatto": "/it/chi-siamo",
+    "/nl/contact": "/nl/over-ons",
+
+    // Localized FAQ variants (UX: users type in their language)
+    "/es/preguntas-frecuentes": "/es/faq",
+    "/en/frequently-asked-questions": "/en/faq",
+    "/en/questions": "/en/faq",
+    "/fr/questions-frequentes": "/fr/faq",
+    "/fr/questions-frequemment-posees": "/fr/faq",
+    "/de/haeufig-gestellte-fragen": "/de/faq",
+    "/nl/veelgestelde-vragen": "/nl/faq",
+    "/it/domande-frequenti": "/it/faq",
+    "/ca/preguntes-frequents": "/ca/faq",
+    "/ru/chasto-zadavaemye-voprosy": "/ru/faq",
+    "/preguntas-frecuentes": "/es/faq",
+    "/preguntas-frequentes": "/es/faq",
+    "/veelgestelde-vragen": "/nl/faq",
+    "/domande-frequenti": "/it/faq",
   };
 
   const values = Object.entries(legacyRedirects).map(([from, to]) => ({

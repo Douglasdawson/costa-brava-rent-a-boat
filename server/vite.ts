@@ -80,14 +80,14 @@ export function serveStatic(app: Express) {
     );
   }
 
-  // Redirect old manifest path to new PWA-generated one
-  app.get('/site.webmanifest', (_req, res) => {
-    res.redirect(301, '/manifest.webmanifest');
+  // Redirect old manifest paths to current one (index.html references /manifest.json)
+  app.get(['/site.webmanifest', '/manifest.webmanifest'], (_req, res) => {
+    res.redirect(301, '/manifest.json');
   });
 
   // Force fresh HTML/SW/manifest — prevents stale Service Worker serving old cached HTML
   app.use((req, res, next) => {
-    const noCachePaths = ['/', '/index.html', '/sw.js', '/registerSW.js', '/manifest.webmanifest'];
+    const noCachePaths = ['/', '/index.html', '/sw.js', '/registerSW.js', '/manifest.json'];
     if (noCachePaths.includes(req.path)) {
       res.set('Cache-Control', 'no-cache, no-store, must-revalidate');
     }

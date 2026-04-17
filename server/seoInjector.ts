@@ -1147,7 +1147,7 @@ const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
       description: "Аренда лодки для семей в Бланесе. Стабильные лодки, безопасные для детей. Без лицензии от 70€/ч, топливо включено. 4.8★ Google.",
     },
   },
-  "/sunset-boat-trip-blanes": {
+  "/paseo-atardecer-barco-blanes": {
     es: {
       title: "Paseo en Barco al Atardecer Blanes | Sunset Trip Costa Brava desde 70€/h",
       description: "Paseo en barco al atardecer desde Blanes. Puesta de sol sobre la Costa Brava, calas doradas. Sin licencia desde 70€/h. 4.8★ Google. Reserva online.",
@@ -2733,6 +2733,17 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
       const posts = await storage.getAllBlogPosts();
       const post = posts.find(p => p.slug === slug && p.isPublished);
       if (post) {
+        // Localized title/description/content for non-Spanish languages.
+        // Falls back to Spanish defaults if translation missing.
+        const titleByLang = (post.titleByLang ?? {}) as Record<string, string>;
+        const excerptByLang = (post.excerptByLang ?? {}) as Record<string, string>;
+        const metaDescByLang = (post.metaDescByLang ?? {}) as Record<string, string>;
+        const contentByLang = (post.contentByLang ?? {}) as Record<string, string>;
+        const localizedTitle = titleByLang[lang] || post.title;
+        const localizedExcerpt = excerptByLang[lang] || post.excerpt || undefined;
+        const localizedMetaDesc = metaDescByLang[lang] || post.metaDescription || undefined;
+        const localizedContent = contentByLang[lang] || (typeof post.content === "string" ? post.content : "");
+
         // Build blog-specific og:image URL
         const postOgImage = post.featuredImage
           ? (post.featuredImage.startsWith("http") ? post.featuredImage
@@ -2742,8 +2753,8 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
         const publishedTime = post.publishedAt ? new Date(post.publishedAt).toISOString() : undefined;
         const modifiedTime = post.updatedAt ? new Date(post.updatedAt).toISOString() : publishedTime;
         const meta: SEOMeta = {
-          title: `${post.title} | Costa Brava Rent a Boat`,
-          description: post.excerpt || post.metaDescription || post.title,
+          title: `${localizedTitle} | Costa Brava Rent a Boat`,
+          description: localizedMetaDesc || localizedExcerpt || localizedTitle,
           ogImage: postOgImage,
           ogType: "article",
           articleMeta: {
@@ -2754,16 +2765,17 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
             tags: Array.isArray(post.tags) ? post.tags.filter((t): t is string => typeof t === "string") : undefined,
           },
         };
-        const contentText = typeof post.content === "string" ? post.content : "";
-        const wordCount = contentText.split(/\s+/).filter(Boolean).length || undefined;
+        const wordCount = localizedContent.split(/\s+/).filter(Boolean).length || undefined;
+        // Canonical URL is language-specific so JSON-LD url matches the actual page URL.
+        const localizedBlogUrl = `${BASE_URL}/${lang}/blog/${slug}`;
         const jsonLd: Record<string, unknown> = {
           "@context": "https://schema.org",
           "@type": "BlogPosting",
-          "@id": `${BASE_URL}/blog/${slug}#article`,
-          headline: post.title,
+          "@id": `${localizedBlogUrl}#article`,
+          headline: localizedTitle,
           description: meta.description,
-          url: `${BASE_URL}/blog/${slug}`,
-          mainEntityOfPage: { "@type": "WebPage", "@id": `${BASE_URL}/blog/${slug}` },
+          url: localizedBlogUrl,
+          mainEntityOfPage: { "@type": "WebPage", "@id": localizedBlogUrl },
           datePublished: post.publishedAt || post.createdAt,
           dateModified: post.updatedAt || post.publishedAt,
           author: { "@type": "Organization", name: "Costa Brava Rent a Boat", url: BASE_URL },

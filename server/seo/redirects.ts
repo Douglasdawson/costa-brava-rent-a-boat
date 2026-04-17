@@ -297,6 +297,23 @@ export async function seedLegacyRedirects(): Promise<void> {
     "/preguntas-frequentes": "/es/faq",
     "/veelgestelde-vragen": "/nl/faq",
     "/domande-frequenti": "/it/faq",
+
+    // Wix legacy 'copy-of-*' variants in non-ES langs
+    "/fr/copy-of-actividades-terrestres": "/fr/location-bateau-blanes",
+    "/en/copy-of-actividades-terrestres": "/en/boat-rental-blanes",
+    "/de/copy-of-actividades-terrestres": "/de/boot-mieten-blanes",
+    "/it/copy-of-actividades-terrestres": "/it/noleggio-barca-blanes",
+    "/nl/copy-of-actividades-terrestres": "/nl/boot-huren-blanes",
+    "/ca/copy-of-actividades-terrestres": "/ca/lloguer-vaixell-blanes",
+
+    // Astec-450 renamed to astec-480 across all languages
+    "/en/boat/astec-450": "/en/boat/astec-480",
+    "/fr/bateau/astec-450": "/fr/bateau/astec-480",
+    "/de/boot/astec-450": "/de/boot/astec-480",
+    "/ca/vaixell/astec-450": "/ca/vaixell/astec-480",
+    "/nl/boot/astec-450": "/nl/boot/astec-480",
+    "/it/barca/astec-450": "/it/barca/astec-480",
+    "/ru/lodka/astec-450": "/ru/lodka/astec-480",
   };
 
   const values = Object.entries(legacyRedirects).map(([from, to]) => ({

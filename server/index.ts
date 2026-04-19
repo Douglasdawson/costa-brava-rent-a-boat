@@ -162,6 +162,20 @@ const allowedOrigins = isDev
   ? ['http://localhost:5000', 'http://localhost:3000', 'http://127.0.0.1:5000']
   : ['https://www.costabravarentaboat.com', 'https://costabravarentaboat.com'];
 
+// Returns true when the origin should be allowed through CORS.
+// In addition to explicit allowed origins, we allow all Replit-hosted domains
+// so the app works both on the canonical domain and on *.replit.app preview URLs.
+function isOriginAllowed(origin: string): boolean {
+  if (allowedOrigins.includes(origin)) return true;
+  // Replit preview / deployment domains
+  if (
+    origin.endsWith('.replit.app') ||
+    origin.endsWith('.replit.dev') ||
+    origin.endsWith('.kirk.replit.dev')
+  ) return true;
+  return false;
+}
+
 // NOTE: when mounted at '/api/', Express strips that prefix from req.path.
 // So '/api/health' becomes '/health' inside this middleware. We include both
 // forms to be safe, and also check req.originalUrl for absolute matching.
@@ -189,7 +203,7 @@ app.use('/api/', (req: Request, res: Response, next: NextFunction) => {
     return next();
   }
 
-  if (!allowedOrigins.includes(origin)) {
+  if (!isOriginAllowed(origin)) {
     res.status(403).json({ message: 'Forbidden: origin not allowed' });
     return;
   }

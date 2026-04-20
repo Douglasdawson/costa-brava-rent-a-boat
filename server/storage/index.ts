@@ -24,9 +24,15 @@ import * as membershipRepo from "./memberships";
 import * as experimentsRepo from "./experiments";
 import * as featureFlagsRepo from "./featureFlags";
 import * as leadNurturingRepo from "./leadNurturing";
+import * as mcpTokensRepo from "./mcpTokens";
+import * as seoAutopilotRepo from "./seoAutopilot";
 
 // Re-export the IStorage interface for consumers that import it
 export type { IStorage } from "./types";
+
+// Re-export full modules for consumers that need more than what's exposed
+// on the unified `storage` object (routes, MCP server).
+export { mcpTokensRepo, seoAutopilotRepo };
 
 /**
  * Unified storage object — backwards-compatible with all existing code.
@@ -267,4 +273,27 @@ export const storage = {
   wasNurturedRecently: leadNurturingRepo.wasNurturedRecently,
   isAlreadySubscribed: leadNurturingRepo.isAlreadySubscribed,
   getNurturingStats: leadNurturingRepo.getNurturingStats,
+
+  // ===== MCP Tokens (seo-autopilot) =====
+  createMcpToken: mcpTokensRepo.createMcpToken,
+  listMcpTokens: mcpTokensRepo.listMcpTokens,
+  getMcpTokenById: mcpTokensRepo.getMcpTokenById,
+  validateMcpToken: mcpTokensRepo.validateMcpToken,
+  recordTokenUsage: mcpTokensRepo.recordTokenUsage,
+  revokeMcpToken: mcpTokensRepo.revokeMcpToken,
+
+  // ===== SEO Autopilot =====
+  createDistributionItem: seoAutopilotRepo.createDistributionItem,
+  createDistributionItemsBatch: seoAutopilotRepo.createDistributionItemsBatch,
+  getDistributionTray: seoAutopilotRepo.getDistributionTray,
+  getDistributionItemById: seoAutopilotRepo.getDistributionItemById,
+  updateDistributionStatus: seoAutopilotRepo.updateDistributionStatus,
+  markDistributionPublished: seoAutopilotRepo.markDistributionPublished,
+  markDistributionFailed: seoAutopilotRepo.markDistributionFailed,
+  deleteDistributionItem: seoAutopilotRepo.deleteDistributionItem,
+  getDistributionTrayStats: seoAutopilotRepo.getDistributionTrayStats,
+  recordAutopilotAudit: seoAutopilotRepo.recordAudit,
+  getAutopilotAuditLog: seoAutopilotRepo.getAuditLog,
+  getAutopilotOverview: seoAutopilotRepo.getOverviewData,
+  getAutopilotAlerts: seoAutopilotRepo.getAlerts,
 };

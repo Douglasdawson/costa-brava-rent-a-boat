@@ -63,6 +63,7 @@ const ADMIN_TABS = [
   { id: "giftcards", label: "Regalos", icon: Gift },
   { id: "discounts", label: "Descuentos", icon: Percent },
   { id: "seo", label: "SEO Engine", icon: Search },
+  { id: "autopilot", label: "Autopilot", icon: Zap },
 ];
 
 const OWNER_TABS = [
@@ -141,6 +142,7 @@ export function AdminLayout({
       { id: "giftcards", label: "Regalos", icon: Gift },
       { id: "discounts", label: "Descuentos", icon: Percent },
       { id: "seo", label: "SEO Engine", icon: Search },
+      { id: "autopilot", label: "Autopilot", icon: Zap },
     ].filter(t => canSeeTab(t.id));
     if (negocioTabs.length > 0) secondaryGroups.push({ label: "Negocio", tabs: negocioTabs });
   }

@@ -67,7 +67,7 @@ Este es un proyecto de alquiler de barcos en Blanes, Costa Brava. Lee `PROJECT_C
 | WhatsApp chatbot | `whatsapp/` | 16 archivos (AI, functions, RAG, flows, memory, etc.) |
 | Servicios | `services/` | Email, analytics, blog autopilot, lead nurturing, scheduler |
 | SEO engine | `seo/` | Monitorizacion, alertas, experiments, IndexNow |
-| MCP servers | `mcp/` | 7 servidores (business, chatbot, content, sendgrid, twilio, seo-engine, ads-intelligence) |
+| MCP servers | `mcp/` | 8 servidores: 7 stdio (business, chatbot, content, sendgrid, twilio, seo-engine, ads-intelligence) + 1 HTTP (`seo-autopilot/` con bearer auth para clientes externos) |
 | Utilidades | `lib/` | Logger, circuit breaker, retry queue, audit, occupancy calculator |
 
 ### Shared (`shared/`)
@@ -105,6 +105,10 @@ Este es un proyecto de alquiler de barcos en Blanes, Costa Brava. Lee `PROJECT_C
 | Booking flow (wizard) | `client/src/components/booking-flow/` |
 | Panel admin layout | `client/src/components/crm/AdminLayout.tsx` |
 | CRM tabs/componentes | `client/src/components/crm/*.tsx` |
+| SEO Autopilot MCP server | `server/mcp/seo-autopilot/{index,router,tools}.ts` (montado en `/api/mcp/seo-autopilot`) |
+| SEO Autopilot storage | `server/storage/{mcpTokens,seoAutopilot}.ts` |
+| SEO Autopilot admin API | `server/routes/admin-{mcp-tokens,seo-autopilot}.ts` |
+| SEO Autopilot UI (CRM tab) | `client/src/components/crm/AutopilotTab.tsx` |
 
 ## Patrones Comunes
 

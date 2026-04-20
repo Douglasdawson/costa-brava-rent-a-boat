@@ -2170,3 +2170,122 @@ export const partnershipContacts = pgTable("partnership_contacts", {
 
 export type PartnershipContact = typeof partnershipContacts.$inferSelect;
 export type InsertPartnershipContact = typeof partnershipContacts.$inferInsert;
+
+// ===== MCP TOKENS (for seo-autopilot public MCP server) =====
+
+export const mcpTokens = pgTable("mcp_tokens", {
+  id: serial("id").primaryKey(),
+  name: text("name").notNull(),                                   // Friendly name e.g. "Cowork — home"
+  tokenHash: text("token_hash").notNull(),                        // SHA-256 of the raw token + salt
+  tokenPrefix: varchar("token_prefix", { length: 8 }).notNull(),  // First 8 chars of raw token (for display)
+  scopes: jsonb("scopes").$type<string[]>().default([]),          // Optional future scoping
+  createdBy: text("created_by"),                                  // Admin session id if available
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().default(sql`now()`),
+  expiresAt: timestamp("expires_at", { withTimezone: true }),     // Null = no expiry
+  lastUsedAt: timestamp("last_used_at", { withTimezone: true }),
+  lastUsedIp: varchar("last_used_ip", { length: 64 }),
+  revokedAt: timestamp("revoked_at", { withTimezone: true }),
+  callCount: integer("call_count").notNull().default(0),
+}, (table) => ({
+  tokenHashIdx: uniqueIndex("mcp_tokens_hash_idx").on(table.tokenHash),
+  activeIdx: index("mcp_tokens_active_idx").on(table.revokedAt),
+}));
+
+export type McpToken = typeof mcpTokens.$inferSelect;
+export type InsertMcpToken = typeof mcpTokens.$inferInsert;
+
+export const insertMcpTokenSchema = z.object({
+  name: z.string().min(2, "El nombre debe tener al menos 2 caracteres").max(80),
+  expiresAt: z.string().datetime().optional().or(z.null()),
+  scopes: z.array(z.string()).optional(),
+});
+
+// ===== DISTRIBUTION TRAY (content pending to publish across platforms) =====
+
+export const DISTRIBUTION_PLATFORMS = [
+  "medium",
+  "linkedin",
+  "reddit",
+  "quora",
+  "google_business",
+  "tripadvisor",
+  "foro_nautico",
+  "outreach_email",
+  "twitter",
+  "instagram",
+  "facebook",
+] as const;
+
+export type DistributionPlatform = typeof DISTRIBUTION_PLATFORMS[number];
+
+export const DISTRIBUTION_STATUSES = [
+  "pending",
+  "scheduled",
+  "published",
+  "failed",
+  "discarded",
+] as const;
+
+export type DistributionStatus = typeof DISTRIBUTION_STATUSES[number];
+
+export const distributionTray = pgTable("distribution_tray", {
+  id: serial("id").primaryKey(),
+  slug: text("slug").notNull(),                               // Source blog post slug
+  platform: varchar("platform", { length: 30 }).notNull(),   // One of DISTRIBUTION_PLATFORMS
+  language: varchar("language", { length: 5 }).notNull().default("es"),
+  title: text("title"),
+  content: text("content").notNull(),                         // Markdown/text adapted to the platform
+  targetUrl: text("target_url"),                              // For outreach: destination URL
+  contactEmail: text("contact_email"),                        // For outreach: recipient email
+  metadata: jsonb("metadata").$type<Record<string, unknown>>(),
+  status: varchar("status", { length: 20 }).notNull().default("pending"),
+  scheduledFor: timestamp("scheduled_for", { withTimezone: true }),
+  publishedAt: timestamp("published_at", { withTimezone: true }),
+  publishedUrl: text("published_url"),                        // Resulting URL after publishing
+  failureReason: text("failure_reason"),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().default(sql`now()`),
+  updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().default(sql`now()`),
+}, (table) => ({
+  slugIdx: index("distribution_tray_slug_idx").on(table.slug),
+  platformIdx: index("distribution_tray_platform_idx").on(table.platform),
+  statusIdx: index("distribution_tray_status_idx").on(table.status),
+  createdIdx: index("distribution_tray_created_idx").on(table.createdAt),
+}));
+
+export type DistributionTrayItem = typeof distributionTray.$inferSelect;
+export type InsertDistributionTrayItem = typeof distributionTray.$inferInsert;
+
+export const insertDistributionTraySchema = z.object({
+  slug: z.string().min(1),
+  platform: z.enum(DISTRIBUTION_PLATFORMS),
+  language: z.string().length(2).default("es"),
+  title: z.string().optional().or(z.null()),
+  content: z.string().min(1),
+  targetUrl: z.string().url().optional().or(z.null()),
+  contactEmail: z.string().email().optional().or(z.null()),
+  metadata: z.record(z.unknown()).optional(),
+  status: z.enum(DISTRIBUTION_STATUSES).default("pending"),
+  scheduledFor: z.string().datetime().optional().or(z.null()),
+});
+
+// ===== SEO AUTOPILOT AUDIT LOG =====
+
+export const seoAutopilotAudit = pgTable("seo_autopilot_audit", {
+  id: serial("id").primaryKey(),
+  tokenId: integer("token_id").references(() => mcpTokens.id, { onDelete: "set null" }),
+  tool: varchar("tool", { length: 80 }).notNull(),
+  params: jsonb("params").$type<Record<string, unknown>>(),
+  success: boolean("success").notNull(),
+  resultSize: integer("result_size"),
+  durationMs: integer("duration_ms"),
+  errorMessage: text("error_message"),
+  ip: varchar("ip", { length: 64 }),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().default(sql`now()`),
+}, (table) => ({
+  tokenIdx: index("seo_autopilot_audit_token_idx").on(table.tokenId),
+  toolIdx: index("seo_autopilot_audit_tool_idx").on(table.tool),
+  createdIdx: index("seo_autopilot_audit_created_idx").on(table.createdAt),
+}));
+
+export type SeoAutopilotAudit = typeof seoAutopilotAudit.$inferSelect;
+export type InsertSeoAutopilotAudit = typeof seoAutopilotAudit.$inferInsert;

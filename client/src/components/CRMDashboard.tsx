@@ -25,6 +25,7 @@ import {
   ReportsTab,
   AnalyticsTab,
   SeoTab,
+  AutopilotTab,
   BookingDetailsModal,
   getStatusLabel,
 } from "./crm";
@@ -408,6 +409,11 @@ export default function CRMDashboard({ adminToken }: CRMDashboardProps) {
         {/* SEO Engine Tab */}
         {selectedTab === "seo" && (
           <SeoTab adminToken={adminToken} />
+        )}
+
+        {/* SEO Autopilot Tab */}
+        {selectedTab === "autopilot" && (
+          <AutopilotTab adminToken={adminToken} />
         )}
 
         {/* Gallery Tab */}

@@ -9,7 +9,7 @@ import { PHONE_PREFIXES, filterPhonePrefixes } from "@/utils/phone-prefixes";
 import type { Boat } from "@shared/schema";
 import type { BookingFlowProps, Customer, CustomerData, Quote, Duration, TimeSlot, Extra } from "./types";
 
-const nationalities = [
+export const NATIONALITIES = [
   "Afgana", "Albanesa", "Alemana", "Andorrana", "Angoleña", "Argentina", "Armenia", "Australiana", "Austríaca",
   "Azerbaiyana", "Bahameña", "Bangladesí", "Barbadense", "Bareiní", "Belga", "Beliceña", "Beninesa", "Bielorrusa",
   "Boliviana", "Bosnia", "Botsuanesa", "Brasileña", "Británica", "Bruneana", "Búlgara", "Burkinesa", "Burundesa",
@@ -130,7 +130,7 @@ export function useBookingFlowState(props: BookingFlowProps) {
   );
 
   const filteredNationalities = useMemo(
-    () => nationalities.filter(nationality =>
+    () => NATIONALITIES.filter(nationality =>
       nationality.toLowerCase().includes(debouncedNationalitySearch.toLowerCase())
     ),
     [debouncedNationalitySearch]

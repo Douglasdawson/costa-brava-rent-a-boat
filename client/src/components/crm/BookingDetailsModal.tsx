@@ -12,6 +12,21 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import {
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+} from "@/components/ui/command";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import { cn } from "@/lib/utils";
+import { NATIONALITIES } from "../booking-flow/useBookingFlowState";
+import {
   Dialog,
   DialogContent,
   DialogHeader,
@@ -39,6 +54,7 @@ import {
   ClipboardCheck,
   ClipboardList,
   Loader2,
+  ChevronsUpDown,
 } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -665,10 +681,9 @@ export function BookingDetailsModal({
                 </div>
                 <div>
                   <Label htmlFor="customerNationality">Nacionalidad</Label>
-                  <Input
-                    id="customerNationality"
-                    {...editForm.register("customerNationality")}
-                    data-testid="input-customer-nationality"
+                  <NationalityCombobox
+                    value={editForm.watch("customerNationality") ?? ""}
+                    onChange={(value) => editForm.setValue("customerNationality", value, { shouldDirty: true })}
                   />
                 </div>
                 <div>
@@ -894,5 +909,61 @@ export function BookingDetailsModal({
         </AlertDialogContent>
       </AlertDialog>
     </Dialog>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// Nationality combobox (dropdown + search)
+// ---------------------------------------------------------------------------
+function NationalityCombobox({
+  value,
+  onChange,
+}: {
+  value: string;
+  onChange: (value: string) => void;
+}) {
+  const [open, setOpen] = useState(false);
+  return (
+    <Popover open={open} onOpenChange={setOpen}>
+      <PopoverTrigger asChild>
+        <Button
+          type="button"
+          variant="outline"
+          role="combobox"
+          aria-expanded={open}
+          className={cn(
+            "w-full justify-between font-normal",
+            !value && "text-muted-foreground",
+          )}
+          data-testid="input-customer-nationality"
+        >
+          {value || "Selecciona nacionalidad"}
+          <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+        </Button>
+      </PopoverTrigger>
+      <PopoverContent className="w-[--radix-popover-trigger-width] p-0" align="start">
+        <Command>
+          <CommandInput placeholder="Buscar nacionalidad..." />
+          <CommandList>
+            <CommandEmpty>Sin resultados.</CommandEmpty>
+            <CommandGroup>
+              {NATIONALITIES.map((nationality) => (
+                <CommandItem
+                  key={nationality}
+                  value={nationality}
+                  onSelect={(selected) => {
+                    onChange(selected === value ? "" : selected);
+                    setOpen(false);
+                  }}
+                >
+                  <Check className={cn("mr-2 h-4 w-4", value === nationality ? "opacity-100" : "opacity-0")} />
+                  {nationality}
+                </CommandItem>
+              ))}
+            </CommandGroup>
+          </CommandList>
+        </Command>
+      </PopoverContent>
+    </Popover>
   );
 }

@@ -62,8 +62,9 @@ function getExitIntentVariant(): { variant: ExitIntentVariant; boatId?: string; 
 
 function isExcludedPage(): boolean {
   const segments = window.location.pathname.split("/").filter(Boolean);
-  const slug = segments[1] || "";
-  return EXIT_INTENT_EXCLUDED_SLUGS.includes(slug);
+  // Match against both segments[0] (unprefixed routes like /crm, /login) and
+  // segments[1] (prefixed routes like /es/faq, /en/booking).
+  return segments.some((seg) => EXIT_INTENT_EXCLUDED_SLUGS.includes(seg));
 }
 
 export function ExitIntentModal() {

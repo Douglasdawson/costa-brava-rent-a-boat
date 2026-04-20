@@ -30,24 +30,37 @@ interface AuthedRequest extends Request {
 }
 
 async function bearerAuth(req: AuthedRequest, res: Response, next: NextFunction): Promise<void> {
-  const header = req.headers.authorization;
-  if (!header || !header.toLowerCase().startsWith("bearer ")) {
-    res.status(401).json({ error: "missing_bearer_token" });
-    return;
+  // Wrap the whole middleware in try/catch because Express 4 does NOT
+  // capture rejections from async middleware — any throw here would leave
+  // the request hanging until Cloud Run kills it with a generic 500.
+  try {
+    const header = req.headers.authorization;
+    if (!header || !header.toLowerCase().startsWith("bearer ")) {
+      res.status(401).json({ error: "missing_bearer_token" });
+      return;
+    }
+    const raw = header.slice(7).trim();
+    const token = await validateMcpToken(raw);
+    if (!token) {
+      res.status(401).json({ error: "invalid_or_revoked_token" });
+      return;
+    }
+    req.mcpTokenId = token.id;
+    // Fire-and-forget usage record
+    const ip = (req.headers["x-forwarded-for"]?.toString().split(",")[0].trim()) || req.ip || null;
+    recordTokenUsage(token.id, ip).catch((err) => {
+      logger.warn("MCP token usage record failed", { err: err instanceof Error ? err.message : String(err) });
+    });
+    next();
+  } catch (err) {
+    logger.error("seo-autopilot bearerAuth failed", {
+      error: err instanceof Error ? err.message : String(err),
+      stack: err instanceof Error ? err.stack : undefined,
+    });
+    if (!res.headersSent) {
+      res.status(500).json({ error: "auth_check_failed" });
+    }
   }
-  const raw = header.slice(7).trim();
-  const token = await validateMcpToken(raw);
-  if (!token) {
-    res.status(401).json({ error: "invalid_or_revoked_token" });
-    return;
-  }
-  req.mcpTokenId = token.id;
-  // Fire-and-forget usage record
-  const ip = (req.headers["x-forwarded-for"]?.toString().split(",")[0].trim()) || req.ip || null;
-  recordTokenUsage(token.id, ip).catch((err) => {
-    logger.warn("MCP token usage record failed", { err: err instanceof Error ? err.message : String(err) });
-  });
-  next();
 }
 
 // ---------------------------------------------------------------------------

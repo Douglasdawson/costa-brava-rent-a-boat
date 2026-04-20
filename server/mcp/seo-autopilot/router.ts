@@ -12,7 +12,7 @@
 
 import type { Request, Response, NextFunction } from "express";
 import { Router } from "express";
-import rateLimit from "express-rate-limit";
+import rateLimit, { ipKeyGenerator } from "express-rate-limit";
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/streamableHttp.js";
 import { validateMcpToken, recordTokenUsage, type McpTokenPublic } from "../../storage/mcpTokens.js";
@@ -59,8 +59,12 @@ const mcpRateLimiter = rateLimit({
   standardHeaders: "draft-7",
   legacyHeaders: false,
   keyGenerator: (req: Request): string => {
-    const ip = (req.headers["x-forwarded-for"]?.toString().split(",")[0].trim()) || req.ip || "unknown";
-    return `mcp:${ip}`;
+    // express-rate-limit v7+ requires piping IPs through ipKeyGenerator so
+    // IPv6 addresses get truncated to their /64 subnet (prevents per-address
+    // bypass). Using req.ip directly throws ValidationError on every request.
+    const ip = (req.headers["x-forwarded-for"]?.toString().split(",")[0].trim()) || req.ip;
+    if (!ip) return "mcp:unknown";
+    return `mcp:${ipKeyGenerator(ip)}`;
   },
   message: { error: "rate_limit_exceeded" },
 });

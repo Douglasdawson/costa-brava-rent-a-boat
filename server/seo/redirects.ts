@@ -294,7 +294,7 @@ export async function seedLegacyRedirects(): Promise<void> {
     "/ca/preguntes-frequents": "/ca/faq",
     "/ru/chasto-zadavaemye-voprosy": "/ru/faq",
     "/preguntas-frecuentes": "/es/faq",
-    "/preguntas-frequentes": "/es/faq",
+    // "/preguntas-frequentes" (typo) ya cubierto arriba en línea 174
     "/veelgestelde-vragen": "/nl/faq",
     "/domande-frequenti": "/it/faq",
 

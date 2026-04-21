@@ -153,9 +153,6 @@ function HomePage() {
       <main id="main-content">
         <Hero />
         <Suspense fallback={<div className="min-h-[400px] below-fold" />}>
-          <RangeFromBlanesSection variant="home" />
-        </Suspense>
-        <Suspense fallback={<div className="min-h-[400px] below-fold" />}>
           <NeverSailedSection />
         </Suspense>
         <Suspense fallback={<div className="min-h-[400px] below-fold" />}>
@@ -163,6 +160,9 @@ function HomePage() {
         </Suspense>
         <Suspense fallback={<div className="min-h-[400px] below-fold" />}>
           <ReviewsSection />
+        </Suspense>
+        <Suspense fallback={<div className="min-h-[400px] below-fold" />}>
+          <RangeFromBlanesSection variant="home" />
         </Suspense>
         <Suspense fallback={<div className="min-h-[400px] below-fold" />}>
           <LicenseComparisonSection />

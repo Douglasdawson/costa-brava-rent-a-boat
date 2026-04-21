@@ -117,7 +117,7 @@ export const de: Translations = {
       snorkel: { name: 'Schnorchel', description: 'Komplette Schnorchelausrüstung um das Meeresleben zu entdecken' },
       paddle: { name: 'Stand-Up-Paddle', description: 'Stand-Up-Paddle-Board zum Erkunden von Buchten und Küsten' },
       cooler: { name: 'Kühlbox mit Getränken', description: 'Kühlbox mit Eis und erfrischenden Getränken für Ihren Tag auf See' },
-      privateTour: { name: 'Private Tour', description: 'Private Tour mit Kapitän inklusive für ein exklusives Erlebnis', price: 'Ab 180€' },
+      privateTour: { name: 'Private Tour', description: 'Private Tour mit Kapitän inklusive für ein exklusives Erlebnis', price: 'Ab 240€' },
       parking: { name: 'Parkplatz', description: 'Parkplatz in der Nähe des Hafens für mehr Komfort', price: '10€/Tag' },
     },
     exploreMore: 'Entdecken Sie unsere Services',

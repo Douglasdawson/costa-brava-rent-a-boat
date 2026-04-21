@@ -117,7 +117,7 @@ export const nl: Translations = {
       snorkel: { name: 'Snorkel', description: 'Complete snorkeluitrusting om het zeeleven te ontdekken' },
       paddle: { name: 'Stand-Up Paddle', description: 'Paddleboard om kreken en kusten te verkennen' },
       cooler: { name: 'Koelbox met Dranken', description: 'Koelbox met ijs en verfrissende dranken voor uw dag op zee' },
-      privateTour: { name: 'Privétour', description: 'Privétour met schipper inbegrepen voor een exclusieve ervaring', price: 'Vanaf €180' },
+      privateTour: { name: 'Privétour', description: 'Privétour met schipper inbegrepen voor een exclusieve ervaring', price: 'Vanaf €240' },
       parking: { name: 'Parkeren', description: 'Parkeerplaats nabij de haven voor meer gemak', price: '10€/dag' },
     },
     exploreMore: 'Ontdek onze diensten',

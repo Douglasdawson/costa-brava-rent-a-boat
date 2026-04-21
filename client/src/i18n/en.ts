@@ -117,7 +117,7 @@ export const en: Translations = {
       snorkel: { name: 'Snorkel', description: 'Complete snorkeling gear to discover marine life' },
       paddle: { name: 'Paddle Surf', description: 'Paddleboard to explore coves and coastlines' },
       cooler: { name: 'Cooler with Drinks', description: 'Cooler with ice and refreshing drinks for your day at sea' },
-      privateTour: { name: 'Private Tour', description: 'Private tour with skipper included for an exclusive experience', price: 'From €180' },
+      privateTour: { name: 'Private Tour', description: 'Private tour with skipper included for an exclusive experience', price: 'From €240' },
       parking: { name: 'Parking', description: 'Parking space near the harbour for your convenience', price: '€10/day' },
     },
     exploreMore: 'Explore our services',

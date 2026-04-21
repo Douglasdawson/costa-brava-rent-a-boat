@@ -117,7 +117,7 @@ export const es: Translations = {
       snorkel: { name: 'Snorkel', description: 'Equipo completo de snorkel para descubrir la vida marina' },
       paddle: { name: 'Paddle Surf', description: 'Tabla de paddle surf para explorar calas y costas' },
       cooler: { name: 'Nevera con Bebidas', description: 'Nevera con hielo y bebidas refrescantes para tu día en el mar' },
-      privateTour: { name: 'Excursión Privada', description: 'Tour privado con patrón incluido para una experiencia exclusiva', price: 'Desde 180€' },
+      privateTour: { name: 'Excursión Privada', description: 'Tour privado con patrón incluido para una experiencia exclusiva', price: 'Desde 240€' },
       parking: { name: 'Parking', description: 'Plaza de parking cerca del puerto para mayor comodidad', price: '10€/día' },
     },
     exploreMore: 'Explora nuestros servicios',

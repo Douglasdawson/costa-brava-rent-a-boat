@@ -117,7 +117,7 @@ export const ca: Translations = {
       snorkel: { name: 'Snorkel', description: 'Equip complet de snorkel per descobrir la vida marina' },
       paddle: { name: 'Paddle Surf', description: 'Taula de paddle surf per explorar cales i costes' },
       cooler: { name: 'Nevera amb Begudes', description: 'Nevera amb gel i begudes refrescants per al teu dia al mar' },
-      privateTour: { name: 'Excursió Privada', description: 'Tour privat amb patró inclòs per a una experiència exclusiva', price: 'Des de 180€' },
+      privateTour: { name: 'Excursió Privada', description: 'Tour privat amb patró inclòs per a una experiència exclusiva', price: 'Des de 240€' },
       parking: { name: 'Aparcament', description: 'Plaça d\'aparcament prop del port per a major comoditat', price: '10€/dia' },
     },
     exploreMore: 'Descobreix els nostres serveis',

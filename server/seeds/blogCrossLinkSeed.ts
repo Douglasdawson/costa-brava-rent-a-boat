@@ -138,7 +138,7 @@ No. Tenemos [barcos sin licencia](/barcos-sin-licencia) para hasta 5 personas co
 
 ### Cuanto cuesta alquilar un barco en Blanes?
 
-Los [barcos sin licencia](/barcos-sin-licencia) empiezan desde 70EUR/hora en temporada baja. Los [barcos con licencia](/barcos-con-licencia) desde 150EUR por 2 horas. Gasolina incluida en barcos sin licencia.
+Los [barcos sin licencia](/barcos-sin-licencia) empiezan desde 70EUR/hora en temporada baja. Los [barcos con licencia](/barcos-con-licencia) desde 160EUR por 2 horas. Gasolina incluida en barcos sin licencia.
 
 ### Se puede ir de Blanes a Tossa de Mar en barco?
 
@@ -260,7 +260,7 @@ No. We have [boats without licence](/boats-without-license) for up to 5 people w
 
 ### How much does it cost to rent a boat in Blanes?
 
-[Boats without licence](/boats-without-license) start from 70EUR/hour in low season. [Licensed boats](/boats-with-license) from 150EUR for 2 hours. Fuel included on boats without licence.
+[Boats without licence](/boats-without-license) start from 70EUR/hour in low season. [Licensed boats](/boats-with-license) from 160EUR for 2 hours. Fuel included on boats without licence.
 
 ### Can you go from Blanes to Tossa de Mar by boat?
 
@@ -383,7 +383,7 @@ No. Tenemos [barcos sin licencia](/barcos-sin-licencia) para hasta 5 personas co
 
 ### Cuanto cuesta alquilar un barco en Blanes?
 
-Los [barcos sin licencia](/barcos-sin-licencia) empiezan desde 70EUR/hora en temporada baja. Los [barcos con licencia](/barcos-con-licencia) desde 150EUR por 2 horas. Gasolina incluida en barcos sin licencia.
+Los [barcos sin licencia](/barcos-sin-licencia) empiezan desde 70EUR/hora en temporada baja. Los [barcos con licencia](/barcos-con-licencia) desde 160EUR por 2 horas. Gasolina incluida en barcos sin licencia.
 
 ### Se puede ir de Blanes a Tossa de Mar en barco?
 

@@ -1425,7 +1425,7 @@ export const ca: Translations = {
       {
         id: 'precios',
         question: 'Quins són els preus del lloguer?',
-        answer: 'Vaixells sense llicència des de 70€ amb gasolina inclosa (1h, 2h, 3h, 4h, 6h o dia complet). Vaixells amb llicència des de 150€ sense gasolina (2h, 4h, 8h). Els preus varien segons la temporada (juliol/agost) i l\'embarcació.',
+        answer: 'Vaixells sense llicència des de 70€ amb gasolina inclosa (1h, 2h, 3h, 4h, 6h o dia complet). Vaixells amb llicència des de 160€ sense gasolina (2h, 4h, 8h). Els preus varien segons la temporada (juliol/agost) i l\'embarcació.',
       },
       {
         id: 'sin-licencia',

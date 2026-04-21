@@ -20,7 +20,7 @@ export const FALLBACK_ITEMS = [
   {
     id: "precios",
     question: "¿Cuáles son los precios del alquiler?",
-    answer: "Barcos sin licencia desde 70€ con gasolina incluida (1h, 2h, 3h, 4h, 6h o dia completo). Barcos con licencia desde 150€ sin gasolina incluida (2h, 4h, 8h). Los precios varian segun temporada (julio/agosto) y embarcacion.",
+    answer: "Barcos sin licencia desde 70€ con gasolina incluida (1h, 2h, 3h, 4h, 6h o dia completo). Barcos con licencia desde 160€ sin gasolina incluida (2h, 4h, 8h). Los precios varian segun temporada (julio/agosto) y embarcacion.",
   },
   {
     id: "sin-licencia",

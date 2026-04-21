@@ -1426,7 +1426,7 @@ export const it: Translations = {
       {
         id: 'precios',
         question: 'Quali sono i prezzi del noleggio?',
-        answer: 'Barche senza patente da 70€ con carburante incluso (1h, 2h, 3h, 4h, 6h o giornata intera). Barche con patente da 150€ senza carburante (2h, 4h, 8h). I prezzi variano in base alla stagione (luglio/agosto) e alla barca.',
+        answer: 'Barche senza patente da 70€ con carburante incluso (1h, 2h, 3h, 4h, 6h o giornata intera). Barche con patente da 160€ senza carburante (2h, 4h, 8h). I prezzi variano in base alla stagione (luglio/agosto) e alla barca.',
       },
       {
         id: 'sin-licencia',

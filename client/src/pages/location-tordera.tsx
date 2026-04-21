@@ -74,7 +74,7 @@ export default function LocationTorderaPage() {
     },
     {
       question: "¿Cuanto cuesta alquilar un barco desde Blanes si vivo en Tordera?",
-      answer: "El alquiler de barco sin licencia empieza desde 70 EUR por hora con gasolina incluida. Barcos con licencia desde 150 EUR por 2 horas. Disponemos de 9 barcos para 4-11 personas."
+      answer: "El alquiler de barco sin licencia empieza desde 70 EUR por hora con gasolina incluida. Barcos con licencia desde 160 EUR por 2 horas. Disponemos de 9 barcos para 4-11 personas."
     },
     {
       question: "¿Necesito licencia de navegacion?",
@@ -319,7 +319,7 @@ export default function LocationTorderaPage() {
                 </div>
                 <div>
                   <h3 className="font-semibold text-lg mb-3">Barcos con licencia</h3>
-                  <p className="text-muted-foreground mb-2">Desde 150 EUR / 2 horas</p>
+                  <p className="text-muted-foreground mb-2">Desde 160 EUR / 2 horas</p>
                   <p className="text-muted-foreground mb-2">Motores de 40 a 115 CV</p>
                   <p className="text-muted-foreground">Capacidad: hasta 11 personas</p>
                 </div>

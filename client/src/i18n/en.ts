@@ -1441,7 +1441,7 @@ export const en: Translations = {
       {
         id: 'precios',
         question: 'What are the rental prices?',
-        answer: 'Licence-free boats from 70€ with fuel included (1h, 2h, 3h, 4h, 6h or full day). Licensed boats from 150€ without fuel (2h, 4h, 8h). Prices vary by season (July/August) and boat.',
+        answer: 'Licence-free boats from 70€ with fuel included (1h, 2h, 3h, 4h, 6h or full day). Licensed boats from 160€ without fuel (2h, 4h, 8h). Prices vary by season (July/August) and boat.',
       },
       {
         id: 'sin-licencia',
@@ -1497,7 +1497,7 @@ export const en: Translations = {
       {
         id: 'diferencia-licencia',
         question: 'What is the difference between licence-free and licensed boats?',
-        answer: 'Licence-free boats have up to 15 HP engines, capacity for 4-5 people, fuel included and start from 70€. Licensed boats have 40-150 HP engines, capacity for up to 8 people, greater range and start from 150€ (fuel not included). Licensed boats allow you to navigate further, all the way to Tossa de Mar and beyond.',
+        answer: 'Licence-free boats have up to 15 HP engines, capacity for 4-5 people, fuel included and start from 70€. Licensed boats have 40-150 HP engines, capacity for up to 8 people, greater range and start from 160€ (fuel not included). Licensed boats allow you to navigate further, all the way to Tossa de Mar and beyond.',
       },
       {
         id: 'precio-blanes-vs-lloret',

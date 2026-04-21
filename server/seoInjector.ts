@@ -396,37 +396,37 @@ const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
   },
   "/barcos-con-licencia": {
     es: {
-      title: "Alquiler Barcos Con Licencia Costa Brava | Blanes desde 150€/h",
+      title: "Alquiler Barcos Con Licencia Costa Brava | Blanes desde 160€/2h",
       description: "Navega a Lloret (15 min) y Tossa (30 min) desde Blanes. 3 barcos 80-115CV. Licencia Básica o con patrón incluido. 4.8★ Google. Reserva online.",
       ogTitle: "Barcos Con Licencia en Blanes | Lloret 15 min, Tossa 30 min",
       ogDescription: "3 barcos potentes 80-115CV en Blanes. Con tu Licencia Básica o con patrón. Reserva online.",
     },
     en: {
-      title: "Licensed Boat Rental Costa Brava | Blanes from 150€/h",
+      title: "Licensed Boat Rental Costa Brava | Blanes from 160€/2h",
       description: "Sail to Lloret (15 min) and Tossa (30 min) from Blanes. 3 boats 80-115HP. Basic License or with skipper. 4.8★ Google. Book online.",
     },
     ca: {
-      title: "Lloguer Barques Amb Llicència Costa Brava | Blanes des de 150€/h",
+      title: "Lloguer Barques Amb Llicència Costa Brava | Blanes des de 160€/2h",
       description: "Navega a Lloret (15 min) i Tossa (30 min) des de Blanes. 3 barques 80-115CV. Llicència Bàsica o amb patró. 4.8★ Google. Reserva online.",
     },
     fr: {
-      title: "Location Bateaux Avec Permis Costa Brava | Blanes dès 150€/h",
+      title: "Location Bateaux Avec Permis Costa Brava | Blanes dès 160€/2h",
       description: "Naviguez à Lloret (15 min) et Tossa (30 min) depuis Blanes. 3 bateaux 80-115CV. Permis côtier ou avec skipper. 4.8★ Google. Réservez en ligne.",
     },
     de: {
-      title: "Bootsverleih Mit Führerschein Costa Brava | Blanes ab 150€/h",
+      title: "Bootsverleih Mit Führerschein Costa Brava | Blanes ab 160€/2h",
       description: "Segeln Sie nach Lloret (15 Min) und Tossa (30 Min) ab Blanes. 3 Boote 80-115PS. Bootsführerschein oder mit Skipper. 4.8★ Google. Online buchen.",
     },
     nl: {
-      title: "Boten Met Vaarbewijs Costa Brava | Blanes vanaf 150€/u",
+      title: "Boten Met Vaarbewijs Costa Brava | Blanes vanaf 160€/2u",
       description: "Vaar naar Lloret (15 min) en Tossa (30 min) vanuit Blanes. 3 boten 80-115PK. Vaarbewijs of met schipper. 4.8★ Google. Boek online.",
     },
     it: {
-      title: "Barche Con Patente Costa Brava | Blanes da 150€/h",
+      title: "Barche Con Patente Costa Brava | Blanes da 160€/2h",
       description: "Naviga a Lloret (15 min) e Tossa (30 min) da Blanes. 3 barche 80-115CV. Patente nautica o con skipper. 4.8★ Google. Prenota online.",
     },
     ru: {
-      title: "Лодки С Лицензией Коста-Брава | Бланес от 150€/ч",
+      title: "Лодки С Лицензией Коста-Брава | Бланес от 160€/2ч",
       description: "Плавайте в Льорет (15 мин) и Тосса (30 мин) из Бланеса. 3 лодки 80-115 л.с. С лицензией или шкипером. 4.8★ Google. Бронируйте онлайн.",
     },
   },
@@ -927,13 +927,13 @@ const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
   "/precios": {
     es: {
       title: `Precios Alquiler Barcos Blanes ${SEASON_YEAR} | Costa Brava Rent a Boat`,
-      description: "Consulta precios de alquiler de barcos en Blanes. Sin licencia desde 70\u20ac/hora. Con licencia desde 150\u20ac. Gasolina incluida. Temporada baja, media y alta.",
+      description: "Consulta precios de alquiler de barcos en Blanes. Sin licencia desde 70\u20ac/hora. Con licencia desde 160\u20ac/2h. Gasolina incluida. Temporada baja, media y alta.",
       ogTitle: `Precios Alquiler Barcos Blanes ${SEASON_YEAR} | Desde 70\u20ac`,
       ogDescription: "Compara precios de todos nuestros barcos en Blanes. Sin licencia desde 70\u20ac/h. Gasolina incluida. Temporada baja, media y alta.",
     },
     en: {
       title: `Boat Rental Prices Blanes ${SEASON_YEAR} | Costa Brava Rent a Boat`,
-      description: "Check boat rental prices in Blanes. No license from 70\u20ac/h. Licensed from 150\u20ac. Fuel included. Low, mid and high season rates.",
+      description: "Check boat rental prices in Blanes. No license from 70\u20ac/h. Licensed from 160\u20ac/2h. Fuel included. Low, mid and high season rates.",
     },
     fr: {
       title: `Tarifs Location Bateaux Blanes ${SEASON_YEAR} | Costa Brava`,
@@ -1921,13 +1921,13 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
         totalTime: "PT5M",
         estimatedCost: { "@type": "MonetaryAmount", currency: "EUR", value: "70" },
         step: lang === "en" ? [
-          { "@type": "HowToStep", position: 1, name: "Choose your boat", text: "Select from license-free boats (from 70 EUR/hour) or licensed boats (from 150 EUR/2 hours)." },
+          { "@type": "HowToStep", position: 1, name: "Choose your boat", text: "Select from license-free boats (from 70 EUR/hour) or licensed boats (from 160 EUR/2 hours)." },
           { "@type": "HowToStep", position: 2, name: "Select date and time", text: "Choose date, start time, and duration. Available April to October, 09:00-20:00." },
           { "@type": "HowToStep", position: 3, name: "Confirm booking", text: "Book via WhatsApp (+34 611 500 372) or website. No deposit for license-free boats." },
           { "@type": "HowToStep", position: 4, name: "Receive briefing", text: "15-minute training on boat handling and safety at Puerto de Blanes." },
           { "@type": "HowToStep", position: 5, name: "Explore Costa Brava", text: "Discover coves and beaches. Fuel, insurance and safety equipment included." },
         ] : [
-          { "@type": "HowToStep", position: 1, name: "Elige tu barco", text: "Selecciona entre barcos sin licencia (desde 70 EUR/hora) o con licencia (desde 150 EUR/2 horas)." },
+          { "@type": "HowToStep", position: 1, name: "Elige tu barco", text: "Selecciona entre barcos sin licencia (desde 70 EUR/hora) o con licencia (desde 160 EUR/2 horas)." },
           { "@type": "HowToStep", position: 2, name: "Selecciona fecha y horario", text: "Elige fecha, hora de inicio y duracion. Disponible de abril a octubre, 09:00-20:00." },
           { "@type": "HowToStep", position: 3, name: "Confirma tu reserva", text: "Reserva por WhatsApp (+34 611 500 372) o web. No se requiere deposito para barcos sin licencia." },
           { "@type": "HowToStep", position: 4, name: "Recibe tu briefing", text: "Formacion de 15 minutos sobre manejo del barco y seguridad en Puerto de Blanes." },
@@ -1943,7 +1943,7 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
             name: "¿Cuáles son los precios del alquiler?",
             acceptedAnswer: {
               "@type": "Answer",
-              text: "Barcos sin licencia desde 70€ con gasolina incluida (1h, 2h, 3h, 4h, 6h o dia completo). Barcos con licencia desde 150€ sin gasolina incluida (2h, 4h, 8h). Los precios varian segun temporada (julio/agosto) y embarcacion."
+              text: "Barcos sin licencia desde 70€ con gasolina incluida (1h, 2h, 3h, 4h, 6h o dia completo). Barcos con licencia desde 160€ sin gasolina incluida (2h, 4h, 8h). Los precios varian segun temporada (julio/agosto) y embarcacion."
             }
           },
           {
@@ -2029,8 +2029,8 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
             "@type": "Question",
             name: isEn ? "How much does it cost to rent a boat in Blanes?" : "¿Cuánto cuesta alquilar un barco en Blanes?",
             acceptedAnswer: { "@type": "Answer", text: isEn
-              ? "License-free boats from 70 EUR/hour (low season) to 95 EUR/hour (high season). Licensed boats from 150 EUR/2 hours. Fuel, insurance and safety equipment are always included."
-              : "Barcos sin licencia desde 70 EUR/hora (temporada baja) hasta 95 EUR/hora (temporada alta). Barcos con licencia desde 150 EUR/2 horas. Combustible, seguro y equipo de seguridad siempre incluidos." },
+              ? "License-free boats from 70 EUR/hour (low season) to 95 EUR/hour (high season). Licensed boats from 160 EUR/2 hours. Fuel, insurance and safety equipment are always included."
+              : "Barcos sin licencia desde 70 EUR/hora (temporada baja) hasta 95 EUR/hora (temporada alta). Barcos con licencia desde 160 EUR/2 horas. Combustible, seguro y equipo de seguridad siempre incluidos." },
           },
           {
             "@type": "Question",
@@ -2705,8 +2705,8 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
             "@type": "Question",
             name: isEn ? "How much does it cost to rent a licensed boat in Blanes?" : "¿Cuánto cuesta alquilar un barco con licencia en Blanes?",
             acceptedAnswer: { "@type": "Answer", text: isEn
-              ? "Licensed boats in Blanes start from 150 EUR/hour in low season. They require a boating license (Basic Navigation License or ICC). More powerful boats with greater range to explore Costa Brava."
-              : "Los barcos con licencia en Blanes cuestan desde 150 EUR/hora en temporada baja. Requieren Licencia Básica de Navegación o ICC. Son barcos mas potentes con mayor autonomia para explorar la Costa Brava." },
+              ? "Licensed boats in Blanes start from 160 EUR/2h in low season. They require a boating license (Basic Navigation License or ICC). More powerful boats with greater range to explore Costa Brava."
+              : "Los barcos con licencia en Blanes cuestan desde 160 EUR/2h en temporada baja. Requieren Licencia Básica de Navegación o ICC. Son barcos mas potentes con mayor autonomia para explorar la Costa Brava." },
           },
         ],
       };

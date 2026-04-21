@@ -206,7 +206,7 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
     },
     pricing: {
       title: `Precios Alquiler Barcos Costa Brava ${SEASON_YEAR} | Desde 70\u20ac/h Gasolina Incluida | Blanes`,
-      description: "Tarifas de alquiler de barcos en la Costa Brava desde el Puerto de Blanes. Sin licencia desde 70\u20ac/h, con licencia desde 150\u20ac/h. Gasolina incluida. Temporada baja, media y alta.",
+      description: "Tarifas de alquiler de barcos en la Costa Brava desde el Puerto de Blanes. Sin licencia desde 70\u20ac/h, con licencia desde 160\u20ac/2h. Gasolina incluida. Temporada baja, media y alta.",
       keywords: "precios alquiler barco costa brava, tarifas barco costa brava, cu\u00e1nto cuesta alquilar barco costa brava, precio barco sin licencia costa brava, tarifas barco blanes costa brava",
       ogTitle: `Precios Alquiler Barcos Costa Brava ${SEASON_YEAR} | Desde 70\u20ac/h`,
       ogDescription: "Tarifas completas de todos nuestros barcos en la Costa Brava. Sin licencia desde 70\u20ac/h. Gasolina incluida. 3 temporadas."
@@ -341,7 +341,7 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       ogDescription: "Rent boats without license in Blanes. Up to 15 HP, 4-7 people. No qualification needed. Easy to drive. Book your adventure!"
     },
     categoryLicensed: {
-      title: "Licensed Boat Rental Costa Brava | Blanes from 150\u20ac/h",
+      title: "Licensed Boat Rental Costa Brava | Blanes from 160\u20ac/2h",
       description: "Sail to Lloret (15 min) and Tossa (30 min) from Blanes. 3 boats 80-115HP. Basic License or with skipper. 4.8\u2605 Google. Book online.",
       keywords: "licensed boats blanes, boats with license, basic license boat rental, powerful boats costa brava",
       ogTitle: "Licensed Boats in Blanes | Lloret 15 min, Tossa 30 min",
@@ -417,7 +417,7 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
     },
     pricing: {
       title: `Boat Rental Prices Blanes ${SEASON_YEAR} | Costa Brava Rent a Boat`,
-      description: "Check boat rental prices in Blanes. No license from 70\u20ac/h. Licensed from 150\u20ac. Fuel included. Low, mid and high season rates.",
+      description: "Check boat rental prices in Blanes. No license from 70\u20ac/h. Licensed from 160\u20ac/2h. Fuel included. Low, mid and high season rates.",
       keywords: "boat rental prices costa brava, how much boat rental blanes, boat hire rates blanes"
     },
     locationBarcelona: {
@@ -550,7 +550,7 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       ogDescription: "Lloga barques sense llicència a Blanes. Fins a 15 CV, 4-7 persones. No cal titulació. Fàcil de manejar. Reserva la teva aventura!"
     },
     categoryLicensed: {
-      title: "Lloguer Barques Amb Llic\u00e8ncia Costa Brava | Blanes des de 150\u20ac/h",
+      title: "Lloguer Barques Amb Llic\u00e8ncia Costa Brava | Blanes des de 160\u20ac/2h",
       description: "Navega a Lloret (15 min) i Tossa (30 min) des de Blanes. 3 barques 80-115CV. Llic\u00e8ncia B\u00e0sica o amb patr\u00f3. 4.8\u2605 Google. Reserva online.",
       keywords: "barques amb llic\u00e8ncia blanes, lloguer barques llic\u00e8ncia b\u00e0sica, embarcacions llic\u00e8ncia b\u00e0sica o ICC, barques potents costa brava",
       ogTitle: "Barques Amb Llic\u00e8ncia a Blanes | Lloret 15 min, Tossa 30 min",
@@ -697,7 +697,7 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       keywords: "bateaux sans permis blanes, location bateaux sans license, embarcations sans permis costa brava, bateaux 15cv blanes"
     },
     categoryLicensed: {
-      title: "Location Bateaux Avec Permis Costa Brava | Blanes d\u00e8s 150\u20ac/h",
+      title: "Location Bateaux Avec Permis Costa Brava | Blanes d\u00e8s 160\u20ac/2h",
       description: "Naviguez \u00e0 Lloret (15 min) et Tossa (30 min) depuis Blanes. 3 bateaux 80-115CV. Permis c\u00f4tier ou avec skipper. 4.8\u2605 Google. R\u00e9servez en ligne.",
       keywords: "bateaux avec permis blanes, location bateaux permis c\u00f4tier, embarcations permis bateau, bateaux puissants costa brava",
       ogTitle: "Bateaux Avec Permis \u00e0 Blanes | Lloret 15 min, Tossa 30 min",
@@ -844,7 +844,7 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       keywords: "boote ohne führerschein blanes, bootsverleih ohne lizenz, boote ohne erlaubnis costa brava, 15ps boote blanes"
     },
     categoryLicensed: {
-      title: "Bootsverleih Mit F\u00fchrerschein Costa Brava | Blanes ab 150\u20ac/h",
+      title: "Bootsverleih Mit F\u00fchrerschein Costa Brava | Blanes ab 160\u20ac/2h",
       description: "Segeln Sie nach Lloret (15 Min) und Tossa (30 Min) ab Blanes. 3 Boote 80-115PS. Bootsf\u00fchrerschein oder mit Skipper. 4.8\u2605 Google. Online buchen.",
       keywords: "boote mit f\u00fchrerschein blanes, bootsverleih bootsf\u00fchrerschein, boote mit lizenz costa brava, starke boote costa brava",
       ogTitle: "Boote Mit F\u00fchrerschein in Blanes | Lloret 15 Min, Tossa 30 Min",
@@ -991,7 +991,7 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       keywords: "boten zonder vaarbewijs blanes, bootverhuur zonder licentie, boten zonder vergunning costa brava, 15pk boten blanes"
     },
     categoryLicensed: {
-      title: "Boten Met Vaarbewijs Costa Brava | Blanes vanaf 150\u20ac/u",
+      title: "Boten Met Vaarbewijs Costa Brava | Blanes vanaf 160\u20ac/2u",
       description: "Vaar naar Lloret (15 min) en Tossa (30 min) vanuit Blanes. 3 boten 80-115PK. Vaarbewijs of met schipper. 4.8\u2605 Google. Boek online.",
       keywords: "boten met vaarbewijs blanes, bootverhuur vaarbewijs, boten met licentie costa brava, krachtige boten costa brava",
       ogTitle: "Boten Met Vaarbewijs in Blanes | Lloret 15 min, Tossa 30 min",
@@ -1138,7 +1138,7 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       keywords: "barche senza patente blanes, noleggio barche senza licenza, imbarcazioni senza permesso costa brava, barche 15cv blanes"
     },
     categoryLicensed: {
-      title: "Barche Con Patente Costa Brava | Blanes da 150\u20ac/h",
+      title: "Barche Con Patente Costa Brava | Blanes da 160\u20ac/2h",
       description: "Naviga a Lloret (15 min) e Tossa (30 min) da Blanes. 3 barche 80-115CV. Patente nautica o con skipper. 4.8\u2605 Google. Prenota online.",
       keywords: "barche con patente blanes, noleggio barche patente nautica, imbarcazioni con licenza costa brava, barche potenti costa brava",
       ogTitle: "Barche Con Patente a Blanes | Lloret 15 min, Tossa 30 min",
@@ -1285,7 +1285,7 @@ export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
       keywords: "лодки без лицензии бланес, аренда лодок без прав, лодки без разрешения коста брава, лодки 15лс бланес"
     },
     categoryLicensed: {
-      title: "\u041b\u043e\u0434\u043a\u0438 \u0421 \u041b\u0438\u0446\u0435\u043d\u0437\u0438\u0435\u0439 \u041a\u043e\u0441\u0442\u0430-\u0411\u0440\u0430\u0432\u0430 | \u0411\u043b\u0430\u043d\u0435\u0441 \u043e\u0442 150\u20ac/\u0447",
+      title: "\u041b\u043e\u0434\u043a\u0438 \u0421 \u041b\u0438\u0446\u0435\u043d\u0437\u0438\u0435\u0439 \u041a\u043e\u0441\u0442\u0430-\u0411\u0440\u0430\u0432\u0430 | \u0411\u043b\u0430\u043d\u0435\u0441 \u043e\u0442 160\u20ac/2\u0447",
       description: "\u041f\u043b\u0430\u0432\u0430\u0439\u0442\u0435 \u0432 \u041b\u044c\u043e\u0440\u0435\u0442 (15 \u043c\u0438\u043d) \u0438 \u0422\u043e\u0441\u0441\u0430 (30 \u043c\u0438\u043d) \u0438\u0437 \u0411\u043b\u0430\u043d\u0435\u0441\u0430. 3 \u043b\u043e\u0434\u043a\u0438 80-115 \u043b.\u0441. \u0421 \u043b\u0438\u0446\u0435\u043d\u0437\u0438\u0435\u0439 \u0438\u043b\u0438 \u0448\u043a\u0438\u043f\u0435\u0440\u043e\u043c. 4.8\u2605 Google. \u0411\u0440\u043e\u043d\u0438\u0440\u0443\u0439\u0442\u0435 \u043e\u043d\u043b\u0430\u0439\u043d.",
       keywords: "\u043b\u043e\u0434\u043a\u0438 \u0441 \u043b\u0438\u0446\u0435\u043d\u0437\u0438\u0435\u0439 \u0431\u043b\u0430\u043d\u0435\u0441, \u0430\u0440\u0435\u043d\u0434\u0430 \u043b\u043e\u0434\u043e\u043a \u0441 \u043b\u0438\u0446\u0435\u043d\u0437\u0438\u0435\u0439, \u043c\u043e\u0449\u043d\u044b\u0435 \u043b\u043e\u0434\u043a\u0438 \u043a\u043e\u0441\u0442\u0430 \u0431\u0440\u0430\u0432\u0430",
       ogTitle: "\u041b\u043e\u0434\u043a\u0438 \u0421 \u041b\u0438\u0446\u0435\u043d\u0437\u0438\u0435\u0439 \u0432 \u0411\u043b\u0430\u043d\u0435\u0441\u0435 | \u041b\u044c\u043e\u0440\u0435\u0442 15 \u043c\u0438\u043d, \u0422\u043e\u0441\u0441\u0430 30 \u043c\u0438\u043d",
@@ -1511,10 +1511,10 @@ export function generateLocalBusinessSchema(language: Language = 'es', rating?: 
           },
           "priceSpecification": {
             "@type": "UnitPriceSpecification",
-            "price": "150",
+            "price": "160",
             "priceCurrency": "EUR",
-            "unitText": "hora",
-            "description": "Precio desde (temporada baja)"
+            "unitText": "2 horas",
+            "description": "Precio desde (temporada baja, pack 2h)"
           },
           "availability": "https://schema.org/SeasonalAvailability",
           "validFrom": "2026-04-01",
@@ -1995,14 +1995,14 @@ export function generateHowToBookingSchema(language: Language = 'es') {
 
   const steps: Record<string, Array<{ name: string; text: string }>> = {
     es: [
-      { name: "Elige tu barco", text: "Selecciona entre nuestras embarcaciones sin licencia (desde 70 EUR/hora) o con licencia (desde 150 EUR/2 horas) en nuestra web o por WhatsApp." },
+      { name: "Elige tu barco", text: "Selecciona entre nuestras embarcaciones sin licencia (desde 70 EUR/hora) o con licencia (desde 160 EUR/2 horas) en nuestra web o por WhatsApp." },
       { name: "Selecciona fecha y horario", text: "Elige la fecha, hora de inicio y duración del alquiler. Disponible de abril a octubre, de 09:00 a 20:00." },
       { name: "Confirma tu reserva", text: "Reserva por WhatsApp (+34 611 500 372) o a través de la web. No se requiere depósito para barcos sin licencia." },
       { name: "Recibe tu briefing", text: "Al llegar al Puerto de Blanes, nuestro equipo te dará una formación de 15 minutos sobre el manejo del barco y las normas de seguridad." },
       { name: "Navega por la Costa Brava", text: "Explora calas, playas y destinos como Lloret de Mar y Tossa de Mar. Combustible, seguro y equipo de seguridad incluidos." }
     ],
     en: [
-      { name: "Choose your boat", text: "Select from our license-free boats (from 70 EUR/hour) or licensed boats (from 150 EUR/2 hours) on our website or via WhatsApp." },
+      { name: "Choose your boat", text: "Select from our license-free boats (from 70 EUR/hour) or licensed boats (from 160 EUR/2 hours) on our website or via WhatsApp." },
       { name: "Select date and time", text: "Choose your date, start time, and rental duration. Available April to October, 09:00 to 20:00." },
       { name: "Confirm your booking", text: "Book via WhatsApp (+34 611 500 372) or through the website. No deposit required for license-free boats." },
       { name: "Receive your briefing", text: "Upon arrival at Puerto de Blanes, our team will give you a 15-minute training on boat handling and safety rules." },

@@ -70,7 +70,7 @@ export default function FAQPage() {
         "name": "¿Cuáles son los precios del alquiler?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Nuestros precios varían según la embarcación y duración. Barcos sin licencia desde 70€ con gasolina incluida (1h, 2h, 3h, 4h, 6h, 8h). Barcos con licencia desde 150€ sin gasolina incluida (2h, 4h, 8h)."
+          "text": "Nuestros precios varían según la embarcación y duración. Barcos sin licencia desde 70€ con gasolina incluida (1h, 2h, 3h, 4h, 6h, 8h). Barcos con licencia desde 160€ sin gasolina incluida (2h, 4h, 8h)."
         }
       },
       {
@@ -317,7 +317,7 @@ export default function FAQPage() {
         "name": "¿Cuál es la diferencia entre barcos sin licencia y con licencia?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Los barcos sin licencia tienen hasta 15 CV, capacidad de 4-5 personas, gasolina incluida y cuestan desde 70€. Los barcos con licencia tienen motores de 40-150 CV, capacidad de hasta 8 personas, mayor autonomía y cuestan desde 150€ (gasolina no incluida). Los barcos con licencia permiten navegar más lejos, hasta Tossa de Mar y más allá."
+          "text": "Los barcos sin licencia tienen hasta 15 CV, capacidad de 4-5 personas, gasolina incluida y cuestan desde 70€. Los barcos con licencia tienen motores de 40-150 CV, capacidad de hasta 8 personas, mayor autonomía y cuestan desde 160€ (gasolina no incluida). Los barcos con licencia permiten navegar más lejos, hasta Tossa de Mar y más allá."
         }
       },
       {
@@ -494,7 +494,7 @@ export default function FAQPage() {
                         <p>Nuestros precios varían según la embarcación y duración:</p>
                         <ul className="list-disc pl-6 space-y-1">
                           <li><strong>Barcos sin licencia:</strong> Desde 70€. Con gasolina incluida y posibilidad de alquilar 1h, 2h, 3h, 4h, 6h, o 8h</li>
-                          <li><strong>Barcos con licencia:</strong> Desde 150€. Sin gasolina incluida y posibilidad de alquilar 2h, 4h y 8h.</li>
+                          <li><strong>Barcos con licencia:</strong> Desde 160€. Sin gasolina incluida y posibilidad de alquilar 2h, 4h y 8h.</li>
                         </ul>
                         <p className="text-sm text-muted-foreground">*Precios orientativos. Consulta disponibilidad y precios exactos para tu fecha.</p>
                       </div>
@@ -609,7 +609,7 @@ export default function FAQPage() {
                               <li>40-150 CV de motor</li>
                               <li>Hasta 8 personas</li>
                               <li>Gasolina NO incluida</li>
-                              <li>Desde 150€</li>
+                              <li>Desde 160€</li>
                               <li>Zona: sin límite costero</li>
                             </ul>
                           </div>

@@ -1425,7 +1425,7 @@ export const nl: Translations = {
       {
         id: 'precios',
         question: 'Wat zijn de huurprijzen?',
-        answer: 'Boten zonder vaarbewijs vanaf 70€ met brandstof inbegrepen (1u, 2u, 3u, 4u, 6u of hele dag). Boten met vaarbewijs vanaf 150€ zonder brandstof (2u, 4u, 8u). Prijzen variëren per seizoen (juli/augustus) en boot.',
+        answer: 'Boten zonder vaarbewijs vanaf 70€ met brandstof inbegrepen (1u, 2u, 3u, 4u, 6u of hele dag). Boten met vaarbewijs vanaf 160€ zonder brandstof (2u, 4u, 8u). Prijzen variëren per seizoen (juli/augustus) en boot.',
       },
       {
         id: 'sin-licencia',

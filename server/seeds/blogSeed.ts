@@ -497,7 +497,7 @@ If you **do** have a Spanish or international boating license, you can rent our 
 
 | Boat | Capacity | Engine | Price From |
 |------|----------|--------|------------|
-| [Mingolla Brava 19](/barco/mingolla-brava-19) | 6 people | Mercury 80hp | 150EUR/2h |
+| [Mingolla Brava 19](/barco/mingolla-brava-19) | 6 people | Mercury 80hp | 160EUR/2h |
 | [Trimarchi 57S](/barco/trimarchi-57s) | 7 people | Selva 110hp | 160EUR/2h |
 | [Pacific Craft 625](/barco/pacific-craft-625) | 7 people | Yamaha 115hp | 180EUR/2h |
 
@@ -3041,7 +3041,7 @@ Un atardecer desde el mar es uno de esos regalos que la Costa Brava te hace sin 
     category: "Destinos",
     author: "Costa Brava Rent a Boat",
     featuredImage: "/images/blog/ruta-costera.jpg",
-    metaDescription: "Guía completa para ir en barco de Blanes a Tossa de Mar. Precios desde 150 EUR, rutas, calas, Vila Vella y consejos. Todo lo que necesitas saber.",
+    metaDescription: "Guía completa para ir en barco de Blanes a Tossa de Mar. Precios desde 160 EUR, rutas, calas, Vila Vella y consejos. Todo lo que necesitas saber.",
     tags: ["excursion barco tossa de mar", "alquiler barco tossa de mar", "tossa de mar en barco", "vila vella tossa barco", "cuanto cuesta barco tossa", "blanes a tossa en barco"],
     isPublished: true,
     _publishedAt: new Date("2026-03-18T10:00:00Z"),
@@ -3056,7 +3056,7 @@ En esta guía te contamos **todo lo que necesitas saber** para hacer la excursi�
 |----------|---------|
 | **Distancia** | ~15 km por mar desde Puerto de Blanes |
 | **Tiempo** | 45 min - 1 hora (según barco y mar) |
-| **Precio desde** | 150 EUR / 2 horas (barco con licencia) |
+| **Precio desde** | 160 EUR / 2 horas (barco con licencia) |
 | **Licencia necesaria** | Sí (PER/PNB) o excursión con patrón |
 | **Mejor época** | Junio y septiembre |
 | **Dificultad** | Fácil con licencia, no apto sin licencia |
@@ -3781,13 +3781,13 @@ No necesitas ningun titulo nautico. Te ensenamos a manejar el barco en un briefi
 
 Sin embargo, **para llegar a la playa principal de Lloret de Mar** (que esta a unos 6 km del puerto de Blanes), la ruta costera supera el limite de 2 millas en algunos tramos. Para esa ruta necesitas un barco con licencia o nuestra excursion con capitan.
 
-### Barcos con licencia (desde 150 EUR/2 horas)
+### Barcos con licencia (desde 160 EUR/2 horas)
 
 Requieren titulacion nautica PER o PNB. **El combustible NO esta incluido** (se paga aparte al repostar).
 
 | Barco | Capacidad | Precio desde (temporada baja) | Motor |
 |-------|-----------|-------------------------------|-------|
-| [Mingolla Brava 19](/barco/mingolla-brava-19) | 6 personas | 150 EUR/2h | Mercury 80cv |
+| [Mingolla Brava 19](/barco/mingolla-brava-19) | 6 personas | 160 EUR/2h | Mercury 80cv |
 | [Trimarchi 57S](/barco/trimarchi-57s) | 7 personas | 160 EUR/2h | Selva 110cv |
 | [Pacific Craft 625](/barco/pacific-craft-625) | 7 personas | 180 EUR/2h | Yamaha 115cv |
 
@@ -3889,7 +3889,7 @@ Aunque Lloret de Mar no tiene puerto de alquiler propio, el Puerto de Blanes es 
     category: "Destinos",
     author: "Costa Brava Rent a Boat",
     featuredImage: "/images/blog/ruta-costera.jpg",
-    metaDescription: "Llega a Tossa de Mar en barco desde Blanes: Vila Vella desde el mar, calas virgenes, precios desde 150 EUR y excursion con capitan desde 240 EUR.",
+    metaDescription: "Llega a Tossa de Mar en barco desde Blanes: Vila Vella desde el mar, calas virgenes, precios desde 160 EUR y excursion con capitan desde 240 EUR.",
     tags: ["tossa de mar barco", "barco blanes tossa", "vila vella barco", "excursion tossa de mar"],
     isPublished: true,
     _publishedAt: new Date("2026-03-30T10:00:00Z"),
@@ -3929,7 +3929,7 @@ Requieren titulacion nautica PER o PNB. **El combustible NO esta incluido** y se
 
 | Barco | Capacidad | Precio desde (temporada baja) | Duracion recomendada |
 |-------|-----------|-------------------------------|----------------------|
-| [Mingolla Brava 19](/barco/mingolla-brava-19) | 6 personas | 150 EUR/2h | 6-8 horas |
+| [Mingolla Brava 19](/barco/mingolla-brava-19) | 6 personas | 160 EUR/2h | 6-8 horas |
 | [Trimarchi 57S](/barco/trimarchi-57s) | 7 personas | 160 EUR/2h | 6-8 horas |
 | [Pacific Craft 625](/barco/pacific-craft-625) | 7 personas | 180 EUR/2h | 6-8 horas |
 
@@ -4126,7 +4126,7 @@ El tramo de costa entre la playa de Lloret y Cala Canyelles es uno de los mas sa
 
 Hablamos de rincones de 10-20 metros de ancho, con paredes rocosas verticales cubiertas de vegetacion, aguas tan cristalinas que ves el fondo a 8-10 metros y una vida marina excepcional. Algunos tienen pequenas cuevas submarinas que puedes explorar con snorkel.
 
-**Por que necesitas barco con licencia:** No es solo por la distancia. Estas micro-calas requieren un motor con potencia suficiente para maniobrar cerca de las rocas con seguridad. Los barcos con licencia, como la [Mingolla Brava 19](/barco/mingolla-brava-19) (desde 150 EUR/2h), tienen la maniobrabilidad necesaria.
+**Por que necesitas barco con licencia:** No es solo por la distancia. Estas micro-calas requieren un motor con potencia suficiente para maniobrar cerca de las rocas con seguridad. Los barcos con licencia, como la [Mingolla Brava 19](/barco/mingolla-brava-19) (desde 160 EUR/2h), tienen la maniobrabilidad necesaria.
 
 **Consejo del capitan:** Si contratas nuestra [excursion privada con capitan](/barco/excursion-privada) (desde 240 EUR/2h), el patron conoce exactamente donde estan las mejores micro-calas de este tramo. Es conocimiento que no sale en ningun mapa.
 

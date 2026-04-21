@@ -77,7 +77,7 @@ export default function CategoryLicensedPage() {
     },
     "offers": {
       "@type": "AggregateOffer",
-      "lowPrice": "150",
+      "lowPrice": "160",
       "highPrice": "350",
       "priceCurrency": "EUR",
       "offerCount": "4",

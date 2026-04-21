@@ -1426,7 +1426,7 @@ export const fr: Translations = {
       {
         id: 'precios',
         question: 'Quels sont les tarifs de location ?',
-        answer: 'Bateaux sans permis à partir de 70€ carburant inclus (1h, 2h, 3h, 4h, 6h ou journée complète). Bateaux avec permis à partir de 150€ sans carburant (2h, 4h, 8h). Les prix varient selon la saison (juillet/août) et le bateau.',
+        answer: 'Bateaux sans permis à partir de 70€ carburant inclus (1h, 2h, 3h, 4h, 6h ou journée complète). Bateaux avec permis à partir de 160€ sans carburant (2h, 4h, 8h). Les prix varient selon la saison (juillet/août) et le bateau.',
       },
       {
         id: 'sin-licencia',

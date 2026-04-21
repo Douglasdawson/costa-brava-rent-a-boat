@@ -1463,7 +1463,7 @@ export const es: Translations = {
       {
         id: 'precios',
         question: '¿Cuáles son los precios del alquiler?',
-        answer: 'Barcos sin licencia desde 70€ con gasolina incluida (1h, 2h, 3h, 4h, 6h o día completo). Barcos con licencia desde 150€ sin gasolina incluida (2h, 4h, 8h). Los precios varían según temporada (julio/agosto) y embarcación.',
+        answer: 'Barcos sin licencia desde 70€ con gasolina incluida (1h, 2h, 3h, 4h, 6h o día completo). Barcos con licencia desde 160€ sin gasolina incluida (2h, 4h, 8h). Los precios varían según temporada (julio/agosto) y embarcación.',
       },
       {
         id: 'sin-licencia',
@@ -1519,7 +1519,7 @@ export const es: Translations = {
       {
         id: 'diferencia-licencia',
         question: '¿Cuál es la diferencia entre barcos sin licencia y con licencia?',
-        answer: 'Los barcos sin licencia tienen hasta 15 CV, capacidad de 4-5 personas, gasolina incluida y cuestan desde 70€. Los barcos con licencia tienen motores de 40-150 CV, capacidad de hasta 8 personas, mayor autonomía y cuestan desde 150€ (gasolina no incluida). Los barcos con licencia permiten navegar más lejos, hasta Tossa de Mar y más allá.',
+        answer: 'Los barcos sin licencia tienen hasta 15 CV, capacidad de 4-5 personas, gasolina incluida y cuestan desde 70€. Los barcos con licencia tienen motores de 40-150 CV, capacidad de hasta 8 personas, mayor autonomía y cuestan desde 160€ (gasolina no incluida). Los barcos con licencia permiten navegar más lejos, hasta Tossa de Mar y más allá.',
       },
       {
         id: 'precio-blanes-vs-lloret',

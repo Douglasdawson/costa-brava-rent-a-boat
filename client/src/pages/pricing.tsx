@@ -132,7 +132,7 @@ export default function PricingPage() {
         name: "¿Cuánto cuesta alquilar un barco con licencia en Blanes?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Los barcos con licencia en Blanes cuestan desde 150 €/hora en temporada baja. Requieren PER o título náutico equivalente. Son barcos más potentes con mayor autonomía para explorar la Costa Brava.",
+          text: "Los barcos con licencia en Blanes cuestan desde 160 €/2h en temporada baja. Requieren PER o título náutico equivalente. Son barcos más potentes con mayor autonomía para explorar la Costa Brava.",
         },
       },
     ],
@@ -593,7 +593,7 @@ export default function PricingPage() {
                     ¿Cuánto cuesta alquilar un barco con licencia?
                   </h3>
                   <p className="text-muted-foreground">
-                    Los barcos con licencia cuestan desde 150 €/hora en temporada baja.
+                    Los barcos con licencia cuestan desde 160 €/2h en temporada baja.
                     Requieren PER o título náutico equivalente. Son barcos más potentes
                     con mayor autonomía para explorar toda la Costa Brava.
                   </p>

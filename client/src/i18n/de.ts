@@ -1426,7 +1426,7 @@ export const de: Translations = {
       {
         id: 'precios',
         question: 'Wie hoch sind die Mietpreise?',
-        answer: 'Boote ohne Führerschein ab 70€ mit Treibstoff inklusive (1h, 2h, 3h, 4h, 6h oder ganzer Tag). Boote mit Führerschein ab 150€ ohne Treibstoff (2h, 4h, 8h). Die Preise variieren je nach Saison (Juli/August) und Boot.',
+        answer: 'Boote ohne Führerschein ab 70€ mit Treibstoff inklusive (1h, 2h, 3h, 4h, 6h oder ganzer Tag). Boote mit Führerschein ab 160€ ohne Treibstoff (2h, 4h, 8h). Die Preise variieren je nach Saison (Juli/August) und Boot.',
       },
       {
         id: 'sin-licencia',

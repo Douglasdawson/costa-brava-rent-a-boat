@@ -13,11 +13,11 @@ export const es: Translations = {
     myAccount: 'Mi Cuenta',
   },
   hero: {
-    title: 'Alquiler de Barcos en Blanes, Costa Brava',
-    subtitle: 'Sin experiencia necesaria. 15 min de formación y a navegar. Descubre calas secretas de la Costa Brava, solo accesibles desde el mar.',
-    subtitleLine1: 'Sin experiencia necesaria. 15 min de formación y a navegar.',
-    subtitleLine2: 'Descubre calas secretas de la Costa Brava, solo accesibles desde el mar.',
-    subtitleMobile: 'Barcos sin licencia en Costa Brava. Sin experiencia necesaria.',
+    title: 'Alquiler de Barcos Sin Licencia en Blanes — 7 Calas de la Costa Brava',
+    subtitle: 'Navega sin licencia ni experiencia previa desde el puerto de Blanes hasta la Playa de Fenals (Lloret). Siete calas vírgenes en tu ruta: Sa Forcanera, Cala Sant Francesc, Cala Treumal, Santa Cristina, Cala Sa Boadella y más. Gasolina incluida.',
+    subtitleLine1: 'Navega sin licencia desde Blanes hasta Playa de Fenals (Lloret).',
+    subtitleLine2: '7 calas vírgenes en ruta: Sa Forcanera, Cala Sant Francesc, Cala Treumal, Santa Cristina, Sa Boadella. Gasolina incluida.',
+    subtitleMobile: 'Barcos sin licencia desde Blanes. 7 calas hasta Playa de Fenals. Gasolina incluida.',
     priceBadge: 'Desde 70€',
     fuelBadge: 'Gasolina incluida',
     pricePerPerson: 'Desde 14€ por persona/hora',
@@ -1450,6 +1450,16 @@ export const es: Translations = {
     subtitle: 'Las respuestas que buscas, sin letra pequeña',
     viewAll: 'Ver todas las preguntas frecuentes',
     items: [
+      {
+        id: 'rango-sin-licencia',
+        question: '¿Hasta dónde puedo llegar con un barco sin licencia desde Blanes?',
+        answer: 'Con un barco sin licencia (2 millas de costa, 5 nudos, 15 CV) llegas hasta la Playa de Fenals, en el extremo sur de Lloret de Mar. En el trayecto pasas por 7 calas: Sa Forcanera, Cala Sant Francesc, Cala de s\'Agulla, Cala Treumal, Playa de Santa Cristina, Cala Sa Boadella y Playa de Fenals. La Playa de Lloret (centro) y Cala Canyelles quedan al norte de Fenals, fuera del rango sin licencia — requieren barco con licencia PER o charter con patrón.',
+      },
+      {
+        id: 'tossa-sin-licencia',
+        question: '¿Puedo llegar a Tossa de Mar sin licencia?',
+        answer: 'No. Tossa de Mar está fuera del rango legal de un barco sin licencia. Para llegar a Tossa desde Blanes necesitas (1) un barco con licencia PER, o (2) un charter con patrón incluido. La otra opción es ir en coche a Tossa (20 minutos desde Lloret) y alquilar un barco sin licencia localmente allí.',
+      },
       {
         id: 'precios',
         question: '¿Cuáles son los precios del alquiler?',

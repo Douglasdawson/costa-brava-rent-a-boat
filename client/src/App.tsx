@@ -22,6 +22,7 @@ import Footer from "./components/Footer";
 // Lazy load below-fold homepage sections
 const FleetSection = lazy(() => import("@/components/FleetSection"));
 const NeverSailedSection = lazy(() => import("@/components/NeverSailedSection"));
+const RangeFromBlanesSection = lazy(() => import("@/components/RangeFromBlanesSection"));
 const GiftCardBanner = lazy(() => import("@/components/GiftCardBanner"));
 const LicenseComparisonSection = lazy(() => import("@/components/LicenseComparisonSection"));
 const ReviewsSection = lazy(() => import("@/components/ReviewsSection"));
@@ -168,6 +169,9 @@ function HomePage() {
           </div>
         </div>
         <Suspense fallback={<div className="min-h-[400px] below-fold" />}>
+          <RangeFromBlanesSection variant="home" />
+        </Suspense>
+        <Suspense fallback={<div className="min-h-[400px] below-fold" />}>
           <NeverSailedSection />
         </Suspense>
         <Suspense fallback={<div className="min-h-[400px] below-fold" />}>
@@ -181,6 +185,9 @@ function HomePage() {
         </Suspense>
         <Suspense fallback={<div className="min-h-[400px] below-fold" />}>
           <FeaturesSection />
+        </Suspense>
+        <Suspense fallback={<div className="min-h-[400px] below-fold" />}>
+          <HomepageLocationsSection />
         </Suspense>
         <Suspense fallback={<div className="min-h-[400px] below-fold" />}>
           <FAQPreview />

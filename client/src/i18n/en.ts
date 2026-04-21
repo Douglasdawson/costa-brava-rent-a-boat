@@ -13,11 +13,11 @@ export const en: Translations = {
     myAccount: 'My Account',
   },
   hero: {
-    title: 'No Licence Boat Rental in Blanes',
-    subtitle: 'Explore secret Costa Brava coves only accessible by boat. No experience needed. 15 min training and off you go.',
-    subtitleLine1: 'No experience needed. 15 min training and off you go.',
-    subtitleLine2: 'Explore secret Costa Brava coves, only accessible by boat.',
-    subtitleMobile: 'Secret Costa Brava coves. No experience needed.',
+    title: 'Licence-Free Boat Rental in Blanes — 7 Costa Brava Coves',
+    subtitle: 'Sail without a licence or prior experience from Blanes port to Playa de Fenals (Lloret). Seven untouched coves on your route: Sa Forcanera, Cala Sant Francesc, Cala Treumal, Santa Cristina, Cala Sa Boadella and more. Fuel included.',
+    subtitleLine1: 'Sail licence-free from Blanes to Playa de Fenals (Lloret).',
+    subtitleLine2: '7 untouched coves en route: Sa Forcanera, Cala Sant Francesc, Cala Treumal, Santa Cristina, Sa Boadella. Fuel included.',
+    subtitleMobile: 'Licence-free boats from Blanes. 7 coves to Playa de Fenals. Fuel included.',
     priceBadge: 'From €70',
     fuelBadge: 'Fuel included',
     pricePerPerson: 'From €14 per person/hour',
@@ -1422,11 +1422,22 @@ export const en: Translations = {
   },
 
 
+  // TODO: pro-translate — first 2 items were added for 7-calas range clarity; proofread EN copy before prod marketing
   faqPreview: {
     title: 'Frequently asked questions',
     subtitle: 'Everything you need to know before setting sail',
     viewAll: 'View all frequently asked questions',
     items: [
+      {
+        id: 'rango-sin-licencia',
+        question: 'How far can I go with a licence-free boat from Blanes?',
+        answer: 'With a licence-free boat (2 nautical miles offshore, 5 knots, 15 HP) you can sail as far as Playa de Fenals, at the southern edge of Lloret de Mar. Along the way you pass 7 coves: Sa Forcanera, Cala Sant Francesc, Cala de s\'Agulla, Cala Treumal, Playa de Santa Cristina, Cala Sa Boadella and Playa de Fenals. Lloret main beach and Cala Canyelles are north of Fenals — outside the licence-free range, so they require a PER-licensed boat or a charter with skipper.',
+      },
+      {
+        id: 'tossa-sin-licencia',
+        question: 'Can I reach Tossa de Mar without a licence?',
+        answer: 'No. Tossa de Mar is outside the legal range of a licence-free boat. To reach Tossa from Blanes by boat you need (1) a PER-licensed boat, or (2) a charter with skipper included. The other option is to drive to Tossa (20 min from Lloret) and rent a licence-free boat locally there.',
+      },
       {
         id: 'precios',
         question: 'What are the rental prices?',

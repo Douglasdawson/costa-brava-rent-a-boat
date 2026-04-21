@@ -23,7 +23,7 @@ export const ru: Translations = {
     pricePerPerson: 'От 14€ с человека/час',
     pricePerPersonDetail: 'Полная лодка от 70€/ч на 5 человек',
     bookNow: 'Проверить наличие',
-    findYourBoat: 'Бронировать от 14€/чел.',
+    findYourBoat: 'Забронировать сейчас',
     viewFleet: 'Все лодки',
     trustText: 'Без обязательств • Прозрачные цены',
     whatsappContact: 'WhatsApp +34 611 500 372',
@@ -1488,7 +1488,7 @@ export const ru: Translations = {
   finalCta: {
     title: 'Все ещё думаете?',
     subtitle: 'Бронируйте сейчас — бесплатное изменение даты',
-    cta: 'Забронировать без обязательств',
+    cta: 'Забронировать сейчас',
     trust: 'Бесплатное изменение даты · Безопасная оплата · Страховка включена',
   },
 

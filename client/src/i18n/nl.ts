@@ -23,7 +23,7 @@ export const nl: Translations = {
     pricePerPerson: 'Vanaf €14 per persoon/uur',
     pricePerPersonDetail: 'Complete boot vanaf €70/u voor max 5 personen',
     bookNow: 'Beschikbaarheid bekijken',
-    findYourBoat: 'Boek vanaf €14/persoon',
+    findYourBoat: 'Boek nu',
     viewFleet: 'Bekijk alle boten',
     trustText: 'Geen verplichtingen • Transparante prijzen',
     whatsappContact: 'WhatsApp +34 611 500 372',
@@ -1488,7 +1488,7 @@ export const nl: Translations = {
   finalCta: {
     title: 'Nog aan het twijfelen?',
     subtitle: 'Boek nu met gratis datumwijziging',
-    cta: 'Boek vrijblijvend',
+    cta: 'Boek nu',
     trust: 'Gratis datumwijziging · Veilige betaling · Verzekering inbegrepen',
   },
 

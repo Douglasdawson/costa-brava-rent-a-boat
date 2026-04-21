@@ -23,7 +23,7 @@ export const de: Translations = {
     pricePerPerson: 'Ab 14€ pro Person/Stunde',
     pricePerPersonDetail: 'Ganzes Boot ab 70€/h für bis zu 5 Personen',
     bookNow: 'Verfügbarkeit prüfen',
-    findYourBoat: 'Buchen ab 14€/Person',
+    findYourBoat: 'Jetzt buchen',
     viewFleet: 'Alle Boote ansehen',
     trustText: 'Ohne Verpflichtung • Transparente Preise',
     whatsappContact: 'WhatsApp +34 611 500 372',
@@ -1489,7 +1489,7 @@ export const de: Translations = {
   finalCta: {
     title: 'Noch am Uberlegen?',
     subtitle: 'Jetzt buchen mit kostenloser Umbuchung',
-    cta: 'Unverbindlich buchen',
+    cta: 'Jetzt buchen',
     trust: 'Kostenlose Umbuchung · Sichere Zahlung · Versicherung inklusive',
   },
 

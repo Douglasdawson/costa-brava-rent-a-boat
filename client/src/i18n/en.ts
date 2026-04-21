@@ -23,7 +23,7 @@ export const en: Translations = {
     pricePerPerson: 'From €14 per person/hour',
     pricePerPersonDetail: 'Full boat from €70/h for up to 5 people',
     bookNow: 'Check Availability',
-    findYourBoat: 'Book from €14/person',
+    findYourBoat: 'Book now',
     viewFleet: 'See all boats',
     trustText: 'No commitment • Instant confirmation • Transparent prices',
     whatsappContact: 'WhatsApp +34 611 500 372',
@@ -1552,7 +1552,7 @@ export const en: Translations = {
   finalCta: {
     title: 'Still thinking about it?',
     subtitle: 'Book now with free date changes',
-    cta: 'Book with no commitment',
+    cta: 'Book now',
     trust: 'Free date change · Secure payment · Insurance included',
   },
 

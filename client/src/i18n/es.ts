@@ -23,7 +23,7 @@ export const es: Translations = {
     pricePerPerson: 'Desde 14€ por persona/hora',
     pricePerPersonDetail: 'Barco completo desde 70€/h para hasta 5 personas',
     bookNow: 'Reservar',
-    findYourBoat: 'Reservar desde 14€/persona',
+    findYourBoat: 'Reservar ahora',
     viewFleet: 'Ver todos los barcos',
     trustText: 'Sin compromiso • Precios transparentes',
     whatsappContact: 'WhatsApp +34 611 500 372',
@@ -1574,7 +1574,7 @@ export const es: Translations = {
   finalCta: {
     title: '¿Todavía pensándolo?',
     subtitle: 'Reserva ahora con cambio de fecha gratuito',
-    cta: 'Reservar sin compromiso',
+    cta: 'Reservar ahora',
     trust: 'Cambio de fecha gratis · Pago seguro · Seguro incluido',
   },
 

@@ -23,7 +23,7 @@ export const ca: Translations = {
     pricePerPerson: 'Des de 14€ per persona/hora',
     pricePerPersonDetail: 'Vaixell complet des de 70€/h per a 5 persones',
     bookNow: 'Veure Disponibilitat',
-    findYourBoat: 'Reservar des de 14€/persona',
+    findYourBoat: 'Reservar ara',
     viewFleet: 'Veure tots els vaixells',
     trustText: 'Sense compromís • Confirmació immediata • Preus transparents',
     whatsappContact: 'WhatsApp +34 611 500 372',
@@ -1488,7 +1488,7 @@ export const ca: Translations = {
   finalCta: {
     title: 'Encara hi estas pensant?',
     subtitle: 'Reserva ara amb canvi de data gratuït',
-    cta: 'Reservar sense compromis',
+    cta: 'Reservar ara',
     trust: 'Canvi de data gratuït · Pagament segur · Assegurança inclosa',
   },
 

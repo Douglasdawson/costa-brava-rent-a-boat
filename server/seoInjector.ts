@@ -506,8 +506,8 @@ const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
     es: {
       title: "Barco Tossa de Mar Con Licencia | Vila Vella desde el Mar",
       description: "Alquila barco con licencia PER o charter con patrón desde Blanes a Tossa de Mar. Navega frente a la Vila Vella medieval. 60 min ida. Cala Pola, Giverola.",
-      ogTitle: "Alquiler Barco Tossa de Mar | Vila Vella desde 70\u20ac/h",
-      ogDescription: "Navega a Tossa de Mar en 1h desde Blanes. Vila Vella y calas virgenes desde 70\u20ac/h. Gasolina incluida. 4.8\u2605.",
+      ogTitle: "Alquiler Barco Tossa de Mar | Licencia B\u00e1sica (LBN) o Excursi\u00f3n con Capit\u00e1n",
+      ogDescription: "Vila Vella de Tossa en 45-60 min desde Blanes. Con LBN desde 160\u20ac (2h) o Excursi\u00f3n con Capit\u00e1n 4h desde 380\u20ac. Combustible aparte. 4.8\u2605.",
     },
     en: {
       title: "Boat Trip to Tossa de Mar from Blanes",

@@ -180,8 +180,14 @@ export function registerAutopilotTools(server: McpServer, ctx: ToolContext): voi
     async (args) => {
       return TEXT(await withAudit(ctx, "autopilot_mark_distribution", args, async () => {
         if (args.result === "published") {
-          if (!args.publishedUrl) throw new Error("publishedUrl is required when result=published");
-          const row = await seoAutopilot.markDistributionPublished(args.id, args.publishedUrl);
+          // publishedUrl is optional: the URL can be supplied now or filled in
+          // later (e.g. platforms that assign the URL only after moderation).
+          // Persist the status update either way.
+          const row = await seoAutopilot.updateDistributionStatus(args.id, {
+            status: "published",
+            publishedUrl: args.publishedUrl ?? null,
+            publishedAt: new Date(),
+          });
           return { ok: !!row, item: row ?? null };
         }
         if (args.result === "failed") {

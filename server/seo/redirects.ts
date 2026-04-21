@@ -61,8 +61,10 @@ export function validateRedirect(fromPath: string, toPath: string): { valid: boo
 // Express middleware for dynamic redirects
 export function redirectMiddleware() {
   return async (req: Request, res: Response, next: NextFunction) => {
-    // Only check GET requests for non-API paths
-    if (req.method !== "GET" || req.path.startsWith("/api")) {
+    // Only check GET/HEAD requests for non-API paths. HEAD is included so that
+    // link-preflight tooling (curl -I, uptime checkers, headless auditors)
+    // sees the same 301 status as a real browser navigation.
+    if (!["GET", "HEAD"].includes(req.method) || req.path.startsWith("/api")) {
       return next();
     }
 

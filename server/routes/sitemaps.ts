@@ -7,6 +7,7 @@ import { SUPPORTED_LANGUAGES, HREFLANG_CODES } from "../../shared/seoConstants";
 import type { LangCode } from "../../shared/seoConstants";
 import { getLocalizedPath } from "../../shared/i18n-routes";
 import type { PageKey } from "../../shared/i18n-routes";
+import { getNativeOverride } from "../seo/nativeLanguageOverrides";
 // Static destination slugs for sitemap fallback (when DB has no published destinations)
 const FALLBACK_DESTINATION_SLUGS = [
   "sa-palomera",
@@ -51,9 +52,18 @@ const ES_ONLY: readonly LangCode[] = ["es"];
 // Compute sitemap-eligible languages for a blog post. ES is always included.
 // Other langs are added only when titleByLang[lang] has real content (mirrors
 // the hasTranslation check in seoInjector).
+//
+// When the post has a NativeLanguageOverride (authored in a non-ES language),
+// the native lang + any alsoIndexable locales replace the default ES-primary
+// behavior — the ES URL is noindex'd by seoInjector, so we exclude it here.
 const indexableLangsForBlogPost = (post: {
+  slug: string;
   titleByLang?: Record<string, string> | null;
 }): readonly LangCode[] => {
+  const override = getNativeOverride(post.slug, "blog");
+  if (override) {
+    return [override.nativeLang, ...(override.alsoIndexable ?? [])];
+  }
   const titleByLang = (post.titleByLang ?? {}) as Record<string, string>;
   const langs: LangCode[] = ["es"];
   for (const lang of SUPPORTED_LANGUAGES as readonly LangCode[]) {
@@ -88,14 +98,18 @@ const buildHreflangLinks = (
 
 // Build hreflang links for blog posts where each language may have a different slug.
 // Only emits alternates for langs that have a real translation.
+// For posts with a NativeLanguageOverride, x-default points to the native
+// language URL instead of ES.
 const buildBlogHreflangLinks = (
   baseUrl: string,
   post: { slug: string; slugByLang?: Record<string, string> | null },
   indexableLangs: readonly LangCode[],
 ): string => {
   let links = "";
-  const esSlug = post.slugByLang?.es || post.slug;
-  links += `    <xhtml:link rel="alternate" hreflang="x-default" href="${baseUrl}${getLocalizedPath("blogDetail", "es")}/${esSlug}"/>\n`;
+  const override = getNativeOverride(post.slug, "blog");
+  const xDefaultLang: LangCode = override ? override.nativeLang : "es";
+  const xDefaultSlug = post.slugByLang?.[xDefaultLang] || post.slug;
+  links += `    <xhtml:link rel="alternate" hreflang="x-default" href="${baseUrl}${getLocalizedPath("blogDetail", xDefaultLang)}/${xDefaultSlug}"/>\n`;
   indexableLangs.forEach(lang => {
     const code = HREFLANG_CODES[lang as keyof typeof HREFLANG_CODES] || lang;
     const langSlug = post.slugByLang?.[lang] || post.slug;
@@ -408,7 +422,7 @@ ${boatHreflang}  </url>
 
         // Blog posts opt into non-ES langs only when titleByLang[lang] has real
         // translated content; everything else defaults to ES-only.
-        const postLangs = indexableLangsForBlogPost(post as { titleByLang?: Record<string, string> | null });
+        const postLangs = indexableLangsForBlogPost(post as { slug: string; titleByLang?: Record<string, string> | null });
         const postHreflang = buildBlogHreflangLinks(baseUrl, post, postLangs);
 
         // Build image tag if featured image exists (with XML escaping)

@@ -9,6 +9,7 @@ import { SUPPORTED_LANGUAGES, HREFLANG_CODES, type LangCode } from "../shared/se
 import { isValidLang, resolveSlug, getSlugForPage, switchLanguagePath, type PageKey } from "../shared/i18n-routes";
 import { AI_CRAWLER_NAMES } from "./seo/constants";
 import { getBoatReviewStats } from "./data/boatReviewStats";
+import { getNativeOverride, type NativeLanguageOverride } from "./seo/nativeLanguageOverrides";
 
 const BASE_URL = process.env.BASE_URL || "https://www.costabravarentaboat.com";
 
@@ -1645,6 +1646,10 @@ interface ResolvedPage {
   // dynamic content like blog posts). When false on a non-ES non-home route, the
   // caller applies noindex+canonical-to-ES to avoid duplicate-content penalties.
   hasTranslation?: boolean;
+  // Present when the resource was authored natively in a non-Spanish language.
+  // Inverts the default ES-canonical logic: native lang becomes canonical and
+  // indexable, every other locale (including ES) gets noindex + canonical→native.
+  nativeOverride?: NativeLanguageOverride;
 }
 
 // Decide whether a given (pathname, lang) combo should be served with
@@ -1654,11 +1659,32 @@ interface ResolvedPage {
 // Everything else (boats, destinations, locations, activities, categories,
 // faq, legal, etc.) falls back to ES content from the DB, so we noindex them
 // in non-ES langs and canonicalize to the ES equivalent.
+//
+// When `nativeOverride` is set, the normal ES-as-canonical rule is inverted:
+// the native language is canonical and indexable, other locales noindex and
+// canonicalize to the native URL (except any listed in `alsoIndexable`, which
+// index themselves but still canonicalize to the native version).
 function computeTranslationIndex(
   pathname: string,
   lang: LangCode,
-  hasTranslation: boolean = false
+  hasTranslation: boolean = false,
+  nativeOverride?: NativeLanguageOverride,
 ): { noindex: boolean; canonicalOverride?: string } {
+  if (nativeOverride) {
+    const indexable = new Set<LangCode>([
+      nativeOverride.nativeLang,
+      ...(nativeOverride.alsoIndexable ?? []),
+    ]);
+    // The native URL is its own canonical; no override needed.
+    if (lang === nativeOverride.nativeLang) return { noindex: false };
+    const canonicalOverride = switchLanguagePath(pathname, nativeOverride.nativeLang);
+    // Additional indexable locales: index, but canonicalize to the native URL so
+    // Google consolidates signals on the single authoritative version.
+    if (indexable.has(lang)) return { noindex: false, canonicalOverride };
+    // Every other locale (including ES) gets noindex + canonical→native.
+    return { noindex: true, canonicalOverride };
+  }
+
   if (lang === "es") return { noindex: false };
   const isHome = pathname === "/" || /^\/[a-z]{2}\/?$/.test(pathname);
   if (isHome) return { noindex: false };
@@ -2840,7 +2866,8 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
         const hasBlogTranslation = Boolean(
           titleByLang[lang] && typeof titleByLang[lang] === "string" && titleByLang[lang].trim(),
         );
-        return { meta, jsonLd, hasTranslation: hasBlogTranslation };
+        const nativeOverride = getNativeOverride(slug, "blog");
+        return { meta, jsonLd, hasTranslation: hasBlogTranslation, nativeOverride };
       }
     } catch {
       // fall through
@@ -3064,6 +3091,7 @@ export async function serveWithSEO(
         canonicalPath,
         lang,
         resolved.hasTranslation ?? false,
+        resolved.nativeOverride,
       );
       const canonicalTarget = canonicalOverride || canonicalUrl;
 

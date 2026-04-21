@@ -221,9 +221,6 @@ function HomePage() {
         <Suspense fallback={<div className="min-h-[400px] below-fold" />}>
           <GiftCardBanner />
         </Suspense>
-        <Suspense fallback={<div className="min-h-[400px] below-fold" />}>
-          <HomepageLocationsSection />
-        </Suspense>
       </main>
       <Footer />
     </div>

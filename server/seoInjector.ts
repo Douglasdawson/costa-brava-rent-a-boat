@@ -467,10 +467,10 @@ const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
   },
   "/alquiler-barcos-lloret-de-mar": {
     es: {
-      title: "Alquiler Barco Lloret de Mar | Sin Licencia desde 70\u20ac/h Gasolina Incluida",
-      description: "Alquiler barco Lloret de Mar desde Blanes en 25 min. 5 barcos sin licencia desde 70\u20ac/h, gasolina incluida. 4.8\u2605 Google. Reserva online hoy.",
-      ogTitle: "Alquiler Barco Lloret de Mar | Sin Licencia desde 70\u20ac/h",
-      ogDescription: "Navega a Lloret de Mar en 25 min desde Blanes. 5 barcos sin licencia desde 70\u20ac/h. Gasolina incluida. 4.8\u2605.",
+      title: "Alquiler Barco Lloret de Mar Sin Licencia | Ruta 7 Calas",
+      description: "Navega sin licencia desde Blanes hasta Playa de Fenals (sur de Lloret). 7 calas vírgenes: Sa Forcanera, Santa Cristina, Cala Sa Boadella. Gasolina incluida.",
+      ogTitle: "Alquiler Barco Lloret de Mar Sin Licencia — Ruta 7 Calas",
+      ogDescription: "7 calas entre Blanes y Playa de Fenals con barco sin licencia. 25 min de navegación desde el puerto. Gasolina incluida.",
     },
     en: {
       title: "Boat Trip to Lloret de Mar from Blanes",
@@ -503,8 +503,8 @@ const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
   },
   "/alquiler-barcos-tossa-de-mar": {
     es: {
-      title: "Alquiler Barco Tossa de Mar | Vila Vella desde 70\u20ac/h Sin Licencia",
-      description: "Alquiler barco Tossa de Mar desde Blanes. Vila Vella y calas virgenes en 1h. Desde 70\u20ac/h, gasolina incluida. 4.8\u2605 Google. Reserva hoy.",
+      title: "Barco Tossa de Mar Con Licencia | Vila Vella desde el Mar",
+      description: "Alquila barco con licencia PER o charter con patrón desde Blanes a Tossa de Mar. Navega frente a la Vila Vella medieval. 60 min ida. Cala Pola, Giverola.",
       ogTitle: "Alquiler Barco Tossa de Mar | Vila Vella desde 70\u20ac/h",
       ogDescription: "Navega a Tossa de Mar en 1h desde Blanes. Vila Vella y calas virgenes desde 70\u20ac/h. Gasolina incluida. 4.8\u2605.",
     },
@@ -2213,7 +2213,17 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
         ],
       };
       const breadcrumb = buildBreadcrumb([homeCrumb, { name: isEn ? "Lloret de Mar by Boat" : "Lloret de Mar en Barco", url: `${BASE_URL}/alquiler-barcos-lloret-de-mar` }]);
-      return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [destination, faq, breadcrumb] }, availableLanguages };
+      // Preload the LCP hero image via a responsive imagesrcset that mirrors
+      // the <picture> inside location-lloret-de-mar.tsx. AVIF is preferred;
+      // browsers that don't support it ignore the preload and load the
+      // webp/jpg fallback at natural priority.
+      const lloretLcp: LcpPreload = {
+        href: "/images/locations/hero-lloret-de-mar-mobile.avif",
+        imagesrcset: "/images/locations/hero-lloret-de-mar-mobile.avif 768w, /images/locations/hero-lloret-de-mar.avif 1920w",
+        imagesizes: "100vw",
+        imageType: "image/avif",
+      };
+      return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [destination, faq, breadcrumb] }, availableLanguages, lcpPreload: lloretLcp };
     }
 
     // /alquiler-barcos-tossa-de-mar - TouristDestination + FAQPage for Tossa
@@ -2272,7 +2282,16 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
         ],
       };
       const breadcrumb = buildBreadcrumb([homeCrumb, { name: isEn ? "Tossa de Mar by Boat" : "Tossa de Mar en Barco", url: `${BASE_URL}/alquiler-barcos-tossa-de-mar` }]);
-      return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [destination, faq, breadcrumb] }, availableLanguages };
+      // Same preload mechanism as Lloret — mirrors the <picture> in
+      // location-tossa-de-mar.tsx so the LCP image is discovered before
+      // React hydrates.
+      const tossaLcp: LcpPreload = {
+        href: "/images/locations/hero-tossa-de-mar-mobile.avif",
+        imagesrcset: "/images/locations/hero-tossa-de-mar-mobile.avif 768w, /images/locations/hero-tossa-de-mar.avif 1920w",
+        imagesizes: "100vw",
+        imageType: "image/avif",
+      };
+      return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [destination, faq, breadcrumb] }, availableLanguages, lcpPreload: tossaLcp };
     }
 
     // /alquiler-barcos-malgrat-de-mar - TouristDestination + FAQPage

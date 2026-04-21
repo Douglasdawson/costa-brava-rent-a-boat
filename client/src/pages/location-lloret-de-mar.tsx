@@ -22,6 +22,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import RelatedLocationsSection from "@/components/RelatedLocationsSection";
 import RelatedContent from "@/components/RelatedContent";
+import RangeFromBlanesSection from "@/components/RangeFromBlanesSection";
 import { SEO } from "@/components/SEO";
 import { useLanguage } from "@/hooks/use-language";
 import { 
@@ -83,31 +84,32 @@ export default function LocationLloretPage() {
     { name: t.breadcrumbs.locationLloret, url: "/alquiler-barcos-lloret-de-mar" }
   ]);
 
-  // FAQ data for both schema and visible section - Lloret specific
-  const faqItems = [
+  // FAQ data for both schema and visible section. Reads from i18n first; if a
+  // locale hasn't been pro-translated yet, the Spanish source-of-truth array
+  // below is used so we never leak one language's copy into another (Round 2
+  // H1 bug lesson). Five questions, each tuned to a specific commercial
+  // intent around the real Blanes→Fenals sin-licencia range.
+  const lloretFaqFromI18n = (t.locationPages.lloret as { faqItems?: Array<{ question: string; answer: string }> } | undefined)?.faqItems;
+  const faqItems = lloretFaqFromI18n && lloretFaqFromI18n.length > 0 ? lloretFaqFromI18n : [
     {
-      question: "¿Cuánto se tarda en llegar a Lloret de Mar en barco desde Blanes?",
-      answer: "El trayecto desde el Puerto de Blanes hasta Lloret de Mar dura aproximadamente 20-30 minutos dependiendo del barco y las condiciones del mar. Es una ruta costera preciosa que pasa por calas como Cala Sant Francesc."
+      question: "¿Necesito licencia o experiencia para llegar a Lloret en barco?",
+      answer: "No. Nuestros barcos sin licencia cumplen las condiciones legales para navegar hasta Playa de Fenals (sur de Lloret) sin titulación ni experiencia previa. Te damos un briefing de 15 minutos antes de salir. La única restricción es ser mayor de 18 años."
     },
     {
-      question: "¿Se puede fondear en las playas de Lloret de Mar?",
-      answer: "Sí, puedes fondear en varias playas y calas de Lloret. Las mejores zonas de fondeo son Cala Boadella, Sa Caleta y la zona de Santa Cristina. Recuerda mantener distancia de la zona de bañistas."
+      question: "¿Hasta dónde exactamente puedo llegar con barco sin licencia?",
+      answer: "Legalmente, hasta 2 millas náuticas de la costa, a máximo 5 nudos, con 15 CV. Desde Blanes, eso son 25 minutos de navegación hasta la Playa de Fenals, pasando por 7 calas. La Playa de Lloret centro y Cala Canyelles quedan al norte de Fenals — no son accesibles con barco sin licencia."
     },
     {
-      question: "¿Necesito licencia para ir en barco a Lloret de Mar?",
-      answer: "No necesariamente. Con nuestros barcos sin licencia puedes llegar a Lloret de Mar cómodamente. Solo necesitas ser mayor de 18 años. También tenemos barcos con licencia para una experiencia más potente."
+      question: "¿Cuánto cuesta alquilar un barco sin licencia para ir a Lloret?",
+      answer: "Desde 70 €/hora (temporada baja) y 90 €/hora (temporada alta, julio–agosto). Packs de medio día (4 h) desde 240 € con gasolina incluida. Día completo (8 h) desde 480 €."
     },
     {
-      question: "¿Cuál es la mejor época para ir en barco a Lloret de Mar?",
-      answer: "Los mejores meses son junio y septiembre: temperaturas agradables, mar tranquilo y menos afluencia turística. Julio y agosto son más concurridos pero el agua está más cálida."
+      question: "¿Puedo llegar a Tossa de Mar desde Lloret con barco sin licencia?",
+      answer: "No. Tossa está 4–5 millas al norte de Fenals, fuera del rango legal sin licencia. Para ir a Tossa en barco desde Blanes necesitas (a) barco con licencia PER, o (b) charter con patrón incluido."
     },
     {
-      question: "¿Se puede ir a Lloret de Mar en barco sin licencia?",
-      answer: "Sí, Lloret de Mar está dentro de la zona de 2 millas náuticas, por lo que es accesible con nuestros barcos sin licencia. Solo necesitas ser mayor de 18 años y te damos 15 minutos de formación antes de zarpar."
-    },
-    {
-      question: "¿Cuánto cuesta alquilar un barco para ir a Lloret de Mar?",
-      answer: "El alquiler empieza desde 70 EUR por hora con gasolina incluida. Para una excursión completa a Lloret recomendamos mínimo 3 horas (ida, exploración y vuelta). Disponemos de 7 barcos para 4-7 personas."
+      question: "¿Qué pasa si el mar está malo?",
+      answer: "Si la previsión marca >20 nudos sostenidos o alerta por olas >1.5 m, cancelamos sin coste. El tramo Blanes–Fenals está protegido de la Tramuntana por la propia costa, así que es de los más seguros para principiantes incluso con viento del norte."
     }
   ];
 
@@ -146,37 +148,65 @@ export default function LocationLloretPage() {
         jsonLd={combinedJsonLd}
       />
       <Navigation />
-      
-      {/* Hero Section */}
-      <div className="bg-gradient-to-br from-blue-50 to-teal-50 pt-24 pb-12">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-8">
-            <div className="flex items-center justify-center mb-6">
-              <MapPin className="w-8 h-8 text-primary mr-4" />
-              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold text-foreground">
-                {t.locationPages.lloret.hero.title}
-              </h1>
-            </div>
-            <p className="text-lg text-muted-foreground mb-6 max-w-4xl mx-auto">
-              {t.locationPages.lloret.hero.subtitle}
-            </p>
-            <div className="flex flex-wrap gap-3 justify-center">
-              <Badge variant="outline" className="text-primary border-primary">
-                <Anchor className="w-4 h-4 mr-2" />
-                {t.locationPages.lloret.hero.badgeFrom}
-              </Badge>
-              <Badge variant="outline" className="text-primary border-primary">
-                <Clock className="w-4 h-4 mr-2" />
-                {t.locationPages.lloret.hero.badgeTime}
-              </Badge>
-              <Badge variant="outline" className="text-primary border-primary">
-                <Users className="w-4 h-4 mr-2" />
-                {t.locationPages.lloret.hero.badgeCapacity}
-              </Badge>
+
+      {/* Hero Section — full-bleed image + overlay with H1/subtitle/badges.
+          Image is the LCP element; server/seoInjector.ts emits the matching
+          <link rel="preload"> so the mobile variant starts downloading during
+          HTML parse, before React hydrates. */}
+      <div className="relative pt-20 sm:pt-24">
+        <div className="relative w-full h-[55vh] min-h-[420px] sm:min-h-[520px] overflow-hidden">
+          <picture>
+            <source media="(min-width: 768px)" type="image/avif" srcSet="/images/locations/hero-lloret-de-mar.avif" />
+            <source type="image/avif" srcSet="/images/locations/hero-lloret-de-mar-mobile.avif" />
+            <source media="(min-width: 768px)" type="image/webp" srcSet="/images/locations/hero-lloret-de-mar.webp" />
+            <source type="image/webp" srcSet="/images/locations/hero-lloret-de-mar-mobile.webp" />
+            <img
+              src="/images/locations/hero-lloret-de-mar.jpg"
+              alt="Cala cerca de Lloret de Mar desde un barco sin licencia, aguas turquesa Costa Brava"
+              className="absolute inset-0 w-full h-full object-cover"
+              width={1920}
+              height={1080}
+              loading="eager"
+              fetchPriority="high"
+            />
+          </picture>
+          <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/15 to-black/55" />
+          <div className="relative z-10 h-full flex items-center">
+            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+              <div className="text-center max-w-4xl mx-auto">
+                <div className="inline-flex items-center justify-center mb-4">
+                  <MapPin className="w-7 h-7 text-white mr-3 drop-shadow" />
+                  <h1 className="text-2xl sm:text-3xl lg:text-5xl font-heading font-bold text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)]">
+                    {t.locationPages.lloret.hero.title}
+                  </h1>
+                </div>
+                <p className="text-base sm:text-lg text-white/95 mb-5 max-w-3xl mx-auto drop-shadow-[0_1px_4px_rgba(0,0,0,0.4)]">
+                  {t.locationPages.lloret.hero.subtitle}
+                </p>
+                <div className="flex flex-wrap gap-2 sm:gap-3 justify-center">
+                  <Badge variant="outline" className="bg-white/90 text-primary border-white">
+                    <Anchor className="w-4 h-4 mr-2" />
+                    {t.locationPages.lloret.hero.badgeFrom}
+                  </Badge>
+                  <Badge variant="outline" className="bg-white/90 text-primary border-white">
+                    <Clock className="w-4 h-4 mr-2" />
+                    {t.locationPages.lloret.hero.badgeTime}
+                  </Badge>
+                  <Badge variant="outline" className="bg-white/90 text-primary border-white">
+                    <Users className="w-4 h-4 mr-2" />
+                    {t.locationPages.lloret.hero.badgeCapacity}
+                  </Badge>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
+
+      {/* 7-calas timeline (the page's SEO spine) — handled by the reusable
+          component so the Home and the Lloret page surface the exact same
+          data without duplication. */}
+      <RangeFromBlanesSection variant="lloret" />
 
       {/* Main Content */}
       <div className="py-12 bg-muted">
@@ -210,45 +240,10 @@ export default function LocationLloretPage() {
             </CardContent>
           </Card>
 
-          {/* Main Beaches and Spots in Lloret */}
-          <Card className="mb-8">
-            <CardHeader>
-              <h2 className="flex items-center gap-3 text-2xl font-semibold leading-none tracking-tight">
-                <Waves className="w-6 h-6 text-primary" />
-                {s.beachesTitle}
-              </h2>
-            </CardHeader>
-            <CardContent>
-              <div className="grid md:grid-cols-3 gap-6">
-                <div className="text-center">
-                  <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Users className="w-8 h-8 text-primary" />
-                  </div>
-                  <h3 className="font-semibold text-lg mb-2">{s.playaLloret}</h3>
-                  <p className="text-muted-foreground text-sm mb-2">{s.playaLloretSub}</p>
-                  <p className="text-muted-foreground">{s.playaLloretDesc}</p>
-                </div>
-
-                <div className="text-center">
-                  <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Sun className="w-8 h-8 text-primary" />
-                  </div>
-                  <h3 className="font-semibold text-lg mb-2">{s.calaBoadella}</h3>
-                  <p className="text-muted-foreground text-sm mb-2">{s.calaBoadellaSub}</p>
-                  <p className="text-muted-foreground">{s.calaBoadellaDesc}</p>
-                </div>
-
-                <div className="text-center">
-                  <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Camera className="w-8 h-8 text-orange-600" />
-                  </div>
-                  <h3 className="font-semibold text-lg mb-2">{s.santaCristina}</h3>
-                  <p className="text-muted-foreground text-sm mb-2">{s.santaCristinaSub}</p>
-                  <p className="text-muted-foreground">{s.santaCristinaDesc}</p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
+          {/* (Removed in Round 3 PR C — the old "3 playas" card conflated
+              Playa de Lloret centre (out of sin-licencia range) with Cala
+              Boadella / Santa Cristina (in range). The real route is now
+              surfaced by RangeFromBlanesSection above with honest boundaries.) */}
 
           {/* What to Do in Lloret */}
           <Card className="mb-8">

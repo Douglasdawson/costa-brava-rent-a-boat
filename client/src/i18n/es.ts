@@ -828,11 +828,11 @@ export const es: Translations = {
     },
     lloret: {
       hero: {
-        title: 'Excursiones en Barco a Lloret de Mar',
-        subtitle: 'Descubre las famosas playas de Lloret de Mar navegando desde el Puerto de Blanes. 25 minutos de navegación hasta uno de los destinos más populares de la Costa Brava.',
-        badgeFrom: 'Desde Puerto de Blanes',
-        badgeTime: '25 min navegando',
-        badgeCapacity: '4-7 personas',
+        title: 'Alquiler de Barcos en Lloret de Mar Sin Licencia — Ruta desde Blanes',
+        subtitle: 'Desde el puerto de Blanes hasta la Playa de Fenals: 25 minutos de navegación, siete calas vírgenes de la Costa Brava, sin licencia ni curso previo.',
+        badgeFrom: 'Desde el puerto de Blanes (3 millas)',
+        badgeTime: '25 min de navegación sin licencia',
+        badgeCapacity: '4-7 personas por barco',
       },
       sections: {
         whyLloretTitle: '¿Por qué visitar Lloret de Mar en barco?',

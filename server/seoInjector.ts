@@ -10,6 +10,7 @@ import { isValidLang, resolveSlug, getSlugForPage, switchLanguagePath, type Page
 import { AI_CRAWLER_NAMES } from "./seo/constants";
 import { getBoatReviewStats } from "./data/boatReviewStats";
 import { getNativeOverride, type NativeLanguageOverride } from "./seo/nativeLanguageOverrides";
+import { hasStaticTranslation } from "./seo/translatedStaticPaths";
 
 const BASE_URL = process.env.BASE_URL || "https://www.costabravarentaboat.com";
 
@@ -1742,6 +1743,11 @@ function computeTranslationIndex(
   const isHome = pathname === "/" || /^\/[a-z]{2}\/?$/.test(pathname);
   if (isHome) return { noindex: false };
   if (hasTranslation) return { noindex: false };
+  // Static pages whose UI is fully translated in i18n (location pages after
+  // Round 3 PR C) opt into indexability via translatedStaticPaths.ts — no DB
+  // row required. Route-to-metaKey resolution: strip the lang prefix.
+  const { metaKey } = pathToStaticMetaKey(pathname);
+  if (hasStaticTranslation(metaKey, lang)) return { noindex: false };
   return {
     noindex: true,
     canonicalOverride: switchLanguagePath(pathname, "es"),

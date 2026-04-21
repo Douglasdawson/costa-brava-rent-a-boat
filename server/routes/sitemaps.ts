@@ -270,8 +270,18 @@ export function registerSitemapRoutes(app: Express) {
         "locationSantaSusanna", "locationCalella", "locationPinedaDeMar",
         "locationPalafolls", "locationTordera",
       ];
+      // Location pages rewritten in Round 3 PR C with fully-translated i18n
+      // (Lloret + Tossa) are indexable in all 8 locales per
+      // server/seo/translatedStaticPaths.ts. The rest stay ES-only until
+      // their copy gets the same treatment.
+      const ALL_LOCATION_LANGS: readonly LangCode[] = ALL_LANGS;
+      const MULTILANG_LOCATIONS: Partial<Record<PageKey, readonly LangCode[]>> = {
+        locationLloret: ALL_LOCATION_LANGS,
+        locationTossa: ALL_LOCATION_LANGS,
+      };
       locationPages.forEach(pageKey => {
-        sitemap += generateUrlEntry(baseUrl, pageKey, "0.7", null, "monthly", ES_ONLY);
+        const langs = MULTILANG_LOCATIONS[pageKey] ?? ES_ONLY;
+        sitemap += generateUrlEntry(baseUrl, pageKey, "0.7", null, "monthly", langs);
       });
 
       sitemap += generateUrlEntry(baseUrl, "locationBarcelona", "0.7", null, "monthly", ES_ONLY);

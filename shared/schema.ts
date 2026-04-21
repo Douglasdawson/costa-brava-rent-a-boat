@@ -1541,6 +1541,7 @@ export const seoKeywords = pgTable("seo_keywords", {
   id: serial("id").primaryKey(),
   keyword: text("keyword").notNull(),
   language: varchar("language", { length: 5 }).notNull(),
+  volume: integer("volume"),
   intent: text("intent"),
   cluster: text("cluster"),
   tracked: boolean("tracked").notNull().default(false),

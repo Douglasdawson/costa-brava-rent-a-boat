@@ -57,8 +57,8 @@ export default function LocationLloretPage() {
     "description": "Alquiler de barcos para visitar Lloret de Mar desde Puerto de Blanes. Embarcaciones sin licencia y con licencia para descubrir las playas de Lloret.",
     "geo": {
       "@type": "GeoCoordinates",
-      "latitude": 41.7000,
-      "longitude": 2.8500
+      "latitude": 41.6988,
+      "longitude": 2.8466
     },
     "address": {
       "@type": "PostalAddress",

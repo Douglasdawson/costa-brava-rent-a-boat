@@ -4,8 +4,72 @@ import path from "path";
 import { storage } from "../storage";
 import { logger } from "../lib/logger";
 import { AI_CRAWLER_NAMES } from "../seo/constants";
+import { BOAT_DATA, type BoatData } from "../../shared/boatData";
 
 const BASE_URL = process.env.BASE_URL || "https://www.costabravarentaboat.com";
+
+type AiContextBoat = {
+  name: string;
+  capacity: number;
+  enginePower: string;
+  pricePerHour: number;
+  licenseRequired: boolean;
+};
+
+/** Extract HP value (e.g. "15hp", "80hp", "115hp") from a free-form engine description. */
+function extractEngineHp(engineDescription: string | undefined | null): string {
+  if (!engineDescription) return "15hp";
+  const match = engineDescription.match(/(\d+)\s*(cv|hp)/i);
+  return match ? `${match[1]}hp` : "15hp";
+}
+
+/** Parse the first integer out of a capacity string like "5 Personas". */
+function parseCapacity(raw: string | number | undefined | null, fallback = 5): number {
+  if (typeof raw === "number" && Number.isFinite(raw)) return raw;
+  if (!raw) return fallback;
+  const match = String(raw).match(/\d+/);
+  return match ? Number(match[0]) : fallback;
+}
+
+/** Find the canonical BoatData entry whose `name` matches (case-insensitive). */
+function findCanonicalBoatData(name: string): BoatData | undefined {
+  const target = name.trim().toLowerCase();
+  return Object.values(BOAT_DATA).find((b) => b.name.toLowerCase() === target);
+}
+
+/** Best-effort price-per-hour in EUR from a BoatData entry (low season). */
+function derivePricePerHour(data: BoatData | undefined, fallback = 70): number {
+  if (!data) return fallback;
+  const baja = data.pricing?.BAJA?.prices ?? {};
+  if (typeof baja["1h"] === "number") return baja["1h"];
+  if (typeof baja["2h"] === "number") return Math.round(baja["2h"] / 2);
+  if (typeof baja["4h"] === "number") return Math.round(baja["4h"] / 4);
+  return fallback;
+}
+
+/** Heuristic: derive licenseRequired from BoatData subtitle ("Sin licencia" / "Con patrón" → false). */
+function licenseRequiredFromData(data: BoatData | undefined): boolean {
+  if (!data) return false;
+  const subtitle = (data.subtitle || "").toLowerCase();
+  if (subtitle.startsWith("sin licencia")) return false;
+  if (subtitle.startsWith("con patrón") || subtitle.startsWith("con patron")) return false;
+  const features = (data.features || []).map((f) => f.toLowerCase());
+  if (features.some((f) => f.includes("sin licencia") || f.includes("no requiere licencia"))) {
+    return false;
+  }
+  return true;
+}
+
+/** Project a canonical BoatData entry into the /api/ai-context fleet shape. */
+function boatDataToAiContext(data: BoatData): AiContextBoat {
+  return {
+    name: data.name,
+    capacity: parseCapacity(data.specifications?.capacity),
+    enginePower: extractEngineHp(data.specifications?.engine),
+    pricePerHour: derivePricePerHour(data),
+    licenseRequired: licenseRequiredFromData(data),
+  };
+}
 
 // Paths that should always be disallowed
 const DISALLOWED_PATHS = [
@@ -142,18 +206,47 @@ export function registerRobotsRoutes(app: Express): void {
   // AI context endpoint — structured JSON-LD for AI agent consumption
   app.get("/api/ai-context", async (_req, res) => {
     try {
-      let boats: Array<{name: string; capacity: number; enginePower: string; pricePerHour: number; licenseRequired: boolean}> = [];
+      let boats: AiContextBoat[] = [];
       try {
         const allBoats = await storage.getAllBoats();
-        boats = allBoats.filter(b => b.isActive).map(b => ({
-          name: b.name,
-          capacity: b.capacity || 5,
-          enginePower: b.enginePower || "15hp",
-          pricePerHour: b.pricePerHour ? Number(b.pricePerHour) : 70,
-          licenseRequired: b.licenseType !== null && b.licenseType !== "none",
-        }));
-      } catch {
-        // Use empty array if DB unavailable
+        boats = allBoats
+          .filter((b) => b.isActive)
+          .map((b) => {
+            const canonical = findCanonicalBoatData(b.name);
+            const engineDescription = b.specifications?.engine ?? canonical?.specifications?.engine;
+            // requiresLicense is a not-null boolean in the DB; prefer it over licenseType which
+            // defaults to "none" and is frequently unset. Fall back to BoatData heuristics when
+            // both are absent.
+            let licenseRequired: boolean;
+            if (typeof b.requiresLicense === "boolean") {
+              licenseRequired = b.requiresLicense;
+            } else if (typeof b.licenseType === "string" && b.licenseType !== "" && b.licenseType !== "none") {
+              licenseRequired = true;
+            } else {
+              licenseRequired = licenseRequiredFromData(canonical);
+            }
+            return {
+              name: b.name,
+              capacity: parseCapacity(b.capacity ?? canonical?.specifications?.capacity),
+              enginePower: extractEngineHp(engineDescription),
+              pricePerHour:
+                b.pricePerHour != null && b.pricePerHour !== ""
+                  ? Number(b.pricePerHour)
+                  : derivePricePerHour(canonical),
+              licenseRequired,
+            };
+          });
+      } catch (dbError) {
+        logger.warn("[ai-context] DB lookup failed, falling back to static BoatData", {
+          error: dbError instanceof Error ? dbError.message : String(dbError),
+        });
+      }
+
+      // Ultimate fallback: if DB is unavailable or returned zero active boats, surface the
+      // canonical static fleet from shared/boatData.ts so AI agents never see an empty fleet
+      // (or worse, a partially populated one with default 70 EUR / 15hp for premium boats).
+      if (boats.length === 0) {
+        boats = Object.values(BOAT_DATA).map(boatDataToAiContext);
       }
 
       const context = {
@@ -172,7 +265,7 @@ export function registerRobotsRoutes(app: Express): void {
           addressRegion: "Girona",
           addressCountry: "ES",
         },
-        geo: { "@type": "GeoCoordinates", latitude: 41.6751, longitude: 2.7934 },
+        geo: { "@type": "GeoCoordinates", latitude: 41.6722504, longitude: 2.7978625 },
         openingHours: "Mo-Su 09:00-20:00",
         openingSeason: "April-October",
         priceRange: "70-420 EUR",
@@ -184,7 +277,8 @@ export function registerRobotsRoutes(app: Express): void {
           "https://maps.app.goo.gl/NHV4PcaFPmwBYqCt5",
         ],
         availableLanguage: ["es", "en", "ca", "fr", "de", "nl", "it", "ru"],
-        fleet: boats.length > 0 ? boats : undefined,
+        fleet: boats,
+        fleetSize: boats.length,
         destinations: [
           { name: "Sa Palomera", timeFromPort: "5 min", coordinates: "41.6742,2.7905", licenseRequired: false },
           { name: "Cala Brava", timeFromPort: "15 min", coordinates: "41.6820,2.8050", licenseRequired: false },

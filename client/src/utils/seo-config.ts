@@ -41,8 +41,8 @@ export const BUSINESS_INFO = {
     addressCountry: "ES"
   },
   geo: {
-    latitude: 41.6751,
-    longitude: 2.7934
+    latitude: 41.6722504,
+    longitude: 2.7978625
   },
   openingHours: [
     "Mo-Su 09:00-20:00"  // April-October season

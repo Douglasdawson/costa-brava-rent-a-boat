@@ -120,7 +120,7 @@ const t: Record<Language, {
     locationP1: "Estamos ubicados en el Puerto de Blanes, un puerto pesquero y deportivo en la localidad de Blanes, el municipio m\u00e1s meridional de la Costa Brava. Blanes se encuentra a 60 km al norte de Barcelona y es f\u00e1cilmente accesible por la autopista AP-7 y por la l\u00ednea de tren Rodalies (R1).",
     locationP2: "El puerto est\u00e1 junto al centro de Blanes, a 5 minutos a pie del paseo mar\u00edtimo y de la playa principal. Hay aparcamiento gratuito y de pago cerca del puerto. La oficina est\u00e1 en el mismo muelle donde se encuentran los barcos.",
     locationAddress: "Puerto de Blanes, Blanes, Girona, Espa\u00f1a",
-    locationCoords: "GPS: 41.6751 N, 2.7934 E",
+    locationCoords: "GPS: 41.6722504 N, 2.7978625 E",
     locationSeason: "Temporada: abril a octubre, todos los d\u00edas",
     locationHours: "Horario: 09:00 - 20:00",
     contactTitle: "Contacto",
@@ -175,7 +175,7 @@ const t: Record<Language, {
     locationP1: "We are located in the Port of Blanes, a fishing and marina port in the town of Blanes, the southernmost municipality of the Costa Brava. Blanes is 60 km north of Barcelona and easily accessible via the AP-7 motorway and the Rodalies commuter train line (R1).",
     locationP2: "The port is next to the town centre of Blanes, a 5-minute walk from the promenade and the main beach. Free and paid parking is available near the port. Our office is on the same dock where the boats are moored.",
     locationAddress: "Port of Blanes, Blanes, Girona, Spain",
-    locationCoords: "GPS: 41.6751 N, 2.7934 E",
+    locationCoords: "GPS: 41.6722504 N, 2.7978625 E",
     locationSeason: "Season: April to October, every day",
     locationHours: "Hours: 09:00 - 20:00",
     contactTitle: "Contact",
@@ -230,7 +230,7 @@ const t: Record<Language, {
     locationP1: "Estem al Port de Blanes, a 60 km al nord de Barcelona, f\u00e0cilment accessible per l'autopista AP-7 i la l\u00ednia de tren Rodalies (R1).",
     locationP2: "El port \u00e9s al costat del centre de Blanes, a 5 minuts a peu del passeig mar\u00edtim.",
     locationAddress: "Port de Blanes, Blanes, Girona, Espanya",
-    locationCoords: "GPS: 41.6751 N, 2.7934 E",
+    locationCoords: "GPS: 41.6722504 N, 2.7978625 E",
     locationSeason: "Temporada: abril a octubre, cada dia",
     locationHours: "Horari: 09:00 - 20:00",
     contactTitle: "Contacte",
@@ -285,7 +285,7 @@ const t: Record<Language, {
     locationP1: "Nous sommes situ\u00e9s au Port de Blanes, \u00e0 60 km au nord de Barcelone, facilement accessible par l'autoroute AP-7 et la ligne de train Rodalies (R1).",
     locationP2: "Le port est \u00e0 c\u00f4t\u00e9 du centre-ville de Blanes, \u00e0 5 minutes \u00e0 pied de la promenade maritime.",
     locationAddress: "Port de Blanes, Blanes, Girona, Espagne",
-    locationCoords: "GPS : 41.6751 N, 2.7934 E",
+    locationCoords: "GPS : 41.6722504 N, 2.7978625 E",
     locationSeason: "Saison : avril \u00e0 octobre, tous les jours",
     locationHours: "Horaires : 09:00 - 20:00",
     contactTitle: "Contact",
@@ -340,7 +340,7 @@ const t: Record<Language, {
     locationP1: "Wir befinden uns im Hafen von Blanes, 60 km nördlich von Barcelona, leicht erreichbar über die Autobahn AP-7 und die Rodalies-Zuglinie (R1).",
     locationP2: "Der Hafen liegt neben dem Stadtzentrum von Blanes, 5 Gehminuten von der Strandpromenade entfernt.",
     locationAddress: "Hafen von Blanes, Blanes, Girona, Spanien",
-    locationCoords: "GPS: 41.6751 N, 2.7934 E",
+    locationCoords: "GPS: 41.6722504 N, 2.7978625 E",
     locationSeason: "Saison: April bis Oktober, täglich",
     locationHours: "Öffnungszeiten: 09:00 - 20:00",
     contactTitle: "Kontakt",
@@ -395,7 +395,7 @@ const t: Record<Language, {
     locationP1: "Wij bevinden ons in de haven van Blanes, 60 km ten noorden van Barcelona, makkelijk bereikbaar via de snelweg AP-7 en de Rodalies-treinlijn (R1).",
     locationP2: "De haven ligt naast het centrum van Blanes, op 5 minuten lopen van de boulevard.",
     locationAddress: "Haven van Blanes, Blanes, Girona, Spanje",
-    locationCoords: "GPS: 41.6751 N, 2.7934 E",
+    locationCoords: "GPS: 41.6722504 N, 2.7978625 E",
     locationSeason: "Seizoen: april tot oktober, elke dag",
     locationHours: "Openingstijden: 09:00 - 20:00",
     contactTitle: "Contact",
@@ -450,7 +450,7 @@ const t: Record<Language, {
     locationP1: "Siamo situati nel Porto di Blanes, a 60 km a nord di Barcellona, facilmente raggiungibile tramite l'autostrada AP-7 e la linea ferroviaria Rodalies (R1).",
     locationP2: "Il porto \u00e8 accanto al centro di Blanes, a 5 minuti a piedi dal lungomare.",
     locationAddress: "Porto di Blanes, Blanes, Girona, Spagna",
-    locationCoords: "GPS: 41.6751 N, 2.7934 E",
+    locationCoords: "GPS: 41.6722504 N, 2.7978625 E",
     locationSeason: "Stagione: aprile a ottobre, tutti i giorni",
     locationHours: "Orario: 09:00 - 20:00",
     contactTitle: "Contatto",
@@ -505,7 +505,7 @@ const t: Record<Language, {
     locationP1: "My nahodimsja v portu Blanesa, v 60 km k severu ot Barselony, legko dostizhimy po avtomagistrali AP-7 i linii poezdov Rodalies (R1).",
     locationP2: "Port nahoditsja rjadom s centrom Blanesa, v 5 minutah hod'by ot nabereznoj.",
     locationAddress: "Port Blanesa, Blanes, Zhirona, Ispanija",
-    locationCoords: "GPS: 41.6751 N, 2.7934 E",
+    locationCoords: "GPS: 41.6722504 N, 2.7978625 E",
     locationSeason: "Sezon: aprel' - oktjabr', ezhednevno",
     locationHours: "Grafik: 09:00 - 20:00",
     contactTitle: "Kontakty",
@@ -596,8 +596,8 @@ export default function AboutPage() {
         },
         "geo": {
           "@type": "GeoCoordinates",
-          "latitude": 41.6751,
-          "longitude": 2.7934
+          "latitude": 41.6722504,
+          "longitude": 2.7978625
         },
         "openingHoursSpecification": {
           "@type": "OpeningHoursSpecification",
@@ -621,8 +621,8 @@ export default function AboutPage() {
           "@type": "GeoCircle",
           "geoMidpoint": {
             "@type": "GeoCoordinates",
-            "latitude": 41.6751,
-            "longitude": 2.7934
+            "latitude": 41.6722504,
+            "longitude": 2.7978625
           },
           "geoRadius": "30000"
         },

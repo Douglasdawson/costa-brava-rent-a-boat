@@ -54,8 +54,8 @@ export default function LocationBlanesPage() {
     "description": "Alquiler de barcos sin licencia y con licencia en Blanes. Puerto de Blanes, Costa Brava. Embarcaciones para 4-7 personas.",
     "geo": {
       "@type": "GeoCoordinates",
-      "latitude": 41.6667,
-      "longitude": 2.7833
+      "latitude": 41.6722504,
+      "longitude": 2.7978625
     },
     "address": {
       "@type": "PostalAddress",

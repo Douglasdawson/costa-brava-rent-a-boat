@@ -1634,7 +1634,7 @@ function buildSeasonalEvent(isEn: boolean): object {
         postalCode: "17300",
         addressCountry: "ES",
       },
-      geo: { "@type": "GeoCoordinates", latitude: 41.6751, longitude: 2.7934 },
+      geo: { "@type": "GeoCoordinates", latitude: 41.6722504, longitude: 2.7978625 },
       containedInPlace: GEO_HIERARCHY,
     },
     organizer: {
@@ -1837,7 +1837,7 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
           postalCode: "17300",
           addressCountry: "ES",
         },
-        geo: { "@type": "GeoCoordinates", latitude: 41.6751, longitude: 2.7934 },
+        geo: { "@type": "GeoCoordinates", latitude: 41.6722504, longitude: 2.7978625 },
         containedInPlace: GEO_HIERARCHY,
         areaServed: [
           {
@@ -1846,7 +1846,7 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
           },
           {
             "@type": "GeoCircle",
-            geoMidpoint: { "@type": "GeoCoordinates", latitude: 41.6751, longitude: 2.7934 },
+            geoMidpoint: { "@type": "GeoCoordinates", latitude: 41.6722504, longitude: 2.7978625 },
             geoRadius: "50000",
           },
         ],
@@ -2124,7 +2124,7 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
           { "@type": "Audience", audienceType: isEn ? "Families with children" : "Familias con ninos" },
           { "@type": "Audience", audienceType: isEn ? "Adventure seekers" : "Buscadores de aventura" },
         ],
-        geo: { "@type": "GeoCoordinates", latitude: 41.6751, longitude: 2.7934 },
+        geo: { "@type": "GeoCoordinates", latitude: 41.6722504, longitude: 2.7978625 },
         containedInPlace: GEO_HIERARCHY,
         includesAttraction: [
           { "@type": "TouristAttraction", name: "Sa Palomera", sameAs: "https://en.wikipedia.org/wiki/Sa_Palomera" },

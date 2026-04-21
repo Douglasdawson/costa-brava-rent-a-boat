@@ -77,8 +77,8 @@ export default function LocationBarcelonaPage() {
       "Alquiler de barcos sin licencia a 70 minutos de Barcelona. Puerto de Blanes, Costa Brava. Desde 70 € con gasolina incluida.",
     geo: {
       "@type": "GeoCoordinates",
-      latitude: 41.6667,
-      longitude: 2.7833,
+      latitude: 41.6722504,
+      longitude: 2.7978625,
     },
     address: {
       "@type": "PostalAddress",

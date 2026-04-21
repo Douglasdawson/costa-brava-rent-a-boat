@@ -64,23 +64,13 @@ export default function Hero() {
               <span className="hidden sm:inline">{t.hero.subtitleLine1}<br />{t.hero.subtitleLine2}</span>
               <span className="sm:hidden">{t.hero.subtitleMobile || t.hero.subtitleLine1}</span>
             </p>
-
-            {/* Price callout — visible on lg+ (desktop), hidden on mobile/tablet (shown near CTAs instead) */}
-            <div className="hidden lg:block mb-4 lg:mb-8 drop-shadow-[0_1px_4px_rgba(0,0,0,0.35)]">
-              <p className="font-semibold text-white text-sm sm:text-lg lg:text-xl">
-                {t.hero.pricePerPerson} &middot; {t.hero.fuelBadge}
-              </p>
-              <p className="text-white/85 text-xs sm:text-sm mt-0.5">
-                {t.hero.pricePerPersonDetail}
-              </p>
-            </div>
           </div>
 
           {/* CTA group — bottom on mobile, flows after text on tablet+ */}
           <div className="text-center flex flex-col items-center">
-            {/* Price callout — mobile + tablet, near CTAs */}
-            <div className="lg:hidden mb-3 drop-shadow-[0_1px_4px_rgba(0,0,0,0.35)]">
-              <p className="font-bold text-white text-base sm:text-lg">
+            {/* Price callout — single DOM instance, positioned above CTAs for all viewports */}
+            <div className="mb-3 lg:mb-6 drop-shadow-[0_1px_4px_rgba(0,0,0,0.35)]">
+              <p className="font-bold text-white text-base sm:text-lg lg:text-xl lg:font-semibold">
                 {t.hero.pricePerPerson} &middot; {t.hero.fuelBadge}
               </p>
               <p className="text-white/85 text-xs sm:text-sm mt-0.5">

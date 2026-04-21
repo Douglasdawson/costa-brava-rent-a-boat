@@ -17,7 +17,7 @@ export const it: Translations = {
     subtitle: 'Naviga senza patente o esperienza dal porto di Blanes fino a Playa de Fenals (Lloret). Sette cale vergini sulla rotta: Sa Forcanera, Cala Sant Francesc, Cala Treumal, Santa Cristina, Cala Sa Boadella e altre. Carburante incluso.',
     subtitleLine1: 'Naviga senza patente da Blanes a Playa de Fenals (Lloret).',
     subtitleLine2: '7 cale vergini sulla rotta: Sa Forcanera, Cala Sant Francesc, Cala Treumal, Santa Cristina, Sa Boadella. Carburante incluso.',
-    subtitleMobile: 'Barche senza patente da Blanes. 7 cale fino a Playa de Fenals. Carburante incluso.',
+    subtitleMobile: 'Barche senza patente da Blanes. 7 cale fino a Playa de Fenals.',
     priceBadge: 'Da 70€',
     fuelBadge: 'Carburante incluso',
     pricePerPerson: 'Da 14€ a persona/ora',

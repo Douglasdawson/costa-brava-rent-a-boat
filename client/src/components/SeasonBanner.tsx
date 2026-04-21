@@ -293,7 +293,7 @@ export function SeasonBanner() {
 
             {/* Price anchor */}
             <p className="text-white/50 text-xs mb-4">
-              {priceAnchor} · Gasolina incluida
+              {priceAnchor}
             </p>
 
             {/* Discount code */}

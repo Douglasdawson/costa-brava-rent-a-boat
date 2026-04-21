@@ -17,7 +17,7 @@ export const en: Translations = {
     subtitle: 'Sail without a licence or prior experience from Blanes port to Playa de Fenals (Lloret). Seven untouched coves on your route: Sa Forcanera, Cala Sant Francesc, Cala Treumal, Santa Cristina, Cala Sa Boadella and more. Fuel included.',
     subtitleLine1: 'Sail licence-free from Blanes to Playa de Fenals (Lloret).',
     subtitleLine2: '7 untouched coves en route: Sa Forcanera, Cala Sant Francesc, Cala Treumal, Santa Cristina, Sa Boadella. Fuel included.',
-    subtitleMobile: 'Licence-free boats from Blanes. 7 coves to Playa de Fenals. Fuel included.',
+    subtitleMobile: 'Licence-free boats from Blanes. 7 coves to Playa de Fenals.',
     priceBadge: 'From €70',
     fuelBadge: 'Fuel included',
     pricePerPerson: 'From €14 per person/hour',

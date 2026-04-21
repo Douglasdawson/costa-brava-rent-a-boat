@@ -17,7 +17,7 @@ export const es: Translations = {
     subtitle: 'Navega sin licencia ni experiencia previa desde el puerto de Blanes hasta la Playa de Fenals (Lloret). Siete calas vírgenes en tu ruta: Sa Forcanera, Cala Sant Francesc, Cala Treumal, Santa Cristina, Cala Sa Boadella y más. Gasolina incluida.',
     subtitleLine1: 'Navega sin licencia desde Blanes hasta Playa de Fenals (Lloret).',
     subtitleLine2: '7 calas vírgenes en ruta: Sa Forcanera, Cala Sant Francesc, Cala Treumal, Santa Cristina, Sa Boadella. Gasolina incluida.',
-    subtitleMobile: 'Barcos sin licencia desde Blanes. 7 calas hasta Playa de Fenals. Gasolina incluida.',
+    subtitleMobile: 'Barcos sin licencia desde Blanes. 7 calas hasta Playa de Fenals.',
     priceBadge: 'Desde 70€',
     fuelBadge: 'Gasolina incluida',
     pricePerPerson: 'Desde 14€ por persona/hora',

@@ -17,7 +17,7 @@ export const fr: Translations = {
     subtitle: 'Naviguez sans permis ni expérience depuis le port de Blanes jusqu\'à Playa de Fenals (Lloret). Sept criques vierges sur votre route : Sa Forcanera, Cala Sant Francesc, Cala Treumal, Santa Cristina, Cala Sa Boadella et plus. Carburant inclus.',
     subtitleLine1: 'Naviguez sans permis de Blanes à Playa de Fenals (Lloret).',
     subtitleLine2: '7 criques vierges : Sa Forcanera, Cala Sant Francesc, Cala Treumal, Santa Cristina, Sa Boadella. Carburant inclus.',
-    subtitleMobile: 'Bateaux sans permis depuis Blanes. 7 criques jusqu\'à Playa de Fenals. Carburant inclus.',
+    subtitleMobile: 'Bateaux sans permis depuis Blanes. 7 criques jusqu\'à Playa de Fenals.',
     priceBadge: 'Dès 70€',
     fuelBadge: 'Carburant inclus',
     pricePerPerson: 'Dès 14€ par personne/heure',

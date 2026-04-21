@@ -17,7 +17,7 @@ export const nl: Translations = {
     subtitle: 'Vaar zonder vaarbewijs of ervaring vanuit de haven van Blanes tot Playa de Fenals (Lloret). Zeven ongerepte baaien op je route: Sa Forcanera, Cala Sant Francesc, Cala Treumal, Santa Cristina, Cala Sa Boadella en meer. Brandstof inbegrepen.',
     subtitleLine1: 'Vaar zonder vaarbewijs van Blanes naar Playa de Fenals.',
     subtitleLine2: '7 ongerepte baaien: Sa Forcanera, Cala Sant Francesc, Cala Treumal, Santa Cristina, Sa Boadella. Brandstof inbegrepen.',
-    subtitleMobile: 'Boten zonder vaarbewijs vanuit Blanes. 7 baaien tot Playa de Fenals. Brandstof inbegrepen.',
+    subtitleMobile: 'Boten zonder vaarbewijs vanuit Blanes. 7 baaien tot Playa de Fenals.',
     priceBadge: 'Vanaf €70',
     fuelBadge: 'Brandstof inbegrepen',
     pricePerPerson: 'Vanaf €14 per persoon/uur',

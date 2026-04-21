@@ -17,7 +17,7 @@ export const ca: Translations = {
     subtitle: 'Navega sense llicència ni experiència des del port de Blanes fins a la Platja de Fenals (Lloret). Set cales verges a la ruta: Sa Forcanera, Cala Sant Francesc, Cala Treumal, Santa Cristina, Cala Sa Boadella i més. Gasolina inclosa.',
     subtitleLine1: 'Navega sense llicència des de Blanes fins a la Platja de Fenals.',
     subtitleLine2: '7 cales verges a la ruta: Sa Forcanera, Cala Sant Francesc, Cala Treumal, Santa Cristina, Sa Boadella. Gasolina inclosa.',
-    subtitleMobile: 'Vaixells sense llicència des de Blanes. 7 cales fins a la Platja de Fenals. Gasolina inclosa.',
+    subtitleMobile: 'Vaixells sense llicència des de Blanes. 7 cales fins a la Platja de Fenals.',
     priceBadge: 'Des de 70€',
     fuelBadge: 'Gasolina inclosa',
     pricePerPerson: 'Des de 14€ per persona/hora',

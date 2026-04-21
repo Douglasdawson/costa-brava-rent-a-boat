@@ -17,7 +17,7 @@ export const de: Translations = {
     subtitle: 'Fahren Sie ohne Führerschein oder Erfahrung vom Hafen Blanes bis Playa de Fenals (Lloret). Sieben unberührte Buchten auf Ihrer Route: Sa Forcanera, Cala Sant Francesc, Cala Treumal, Santa Cristina, Cala Sa Boadella und weitere. Kraftstoff inklusive.',
     subtitleLine1: 'Ohne Führerschein von Blanes bis Playa de Fenals (Lloret).',
     subtitleLine2: '7 unberührte Buchten auf dem Weg: Sa Forcanera, Cala Sant Francesc, Cala Treumal, Santa Cristina, Sa Boadella. Kraftstoff inklusive.',
-    subtitleMobile: 'Boote ohne Führerschein aus Blanes. 7 Buchten bis Playa de Fenals. Kraftstoff inklusive.',
+    subtitleMobile: 'Boote ohne Führerschein aus Blanes. 7 Buchten bis Playa de Fenals.',
     priceBadge: 'Ab 70€',
     fuelBadge: 'Benzin inklusive',
     pricePerPerson: 'Ab 14€ pro Person/Stunde',

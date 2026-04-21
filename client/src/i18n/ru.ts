@@ -17,7 +17,7 @@ export const ru: Translations = {
     subtitle: 'Плывите без лицензии и опыта из порта Бланес до Playa de Fenals (Льорет). Семь нетронутых бухт на маршруте: Sa Forcanera, Cala Sant Francesc, Cala Treumal, Santa Cristina, Cala Sa Boadella и другие. Топливо включено.',
     subtitleLine1: 'Плывите без лицензии из Бланеса до Playa de Fenals (Льорет).',
     subtitleLine2: '7 нетронутых бухт: Sa Forcanera, Cala Sant Francesc, Cala Treumal, Santa Cristina, Sa Boadella. Топливо включено.',
-    subtitleMobile: 'Лодки без лицензии из Бланеса. 7 бухт до Playa de Fenals. Топливо включено.',
+    subtitleMobile: 'Лодки без лицензии из Бланеса. 7 бухт до Playa de Fenals.',
     priceBadge: 'От 70€',
     fuelBadge: 'Топливо включено',
     pricePerPerson: 'От 14€ с человека/час',

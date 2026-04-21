@@ -82,31 +82,38 @@ export default function LocationTossaPage() {
     { name: t.breadcrumbs.locationTossa, url: "/alquiler-barcos-tossa-de-mar" }
   ]);
 
-  // FAQ data for both schema and visible section - Tossa specific
-  const faqItems = [
+  // FAQ data for both schema and visible section - Tossa specific.
+  //
+  // IMPORTANT commercial correction vs previous version: Tossa de Mar is
+  // OUT OF RANGE for a licence-free boat from Blanes (~7 nm > 2-mile legal
+  // limit). The previous copy mentioning "sin licencia" + "Cala Canyelles
+  // en ruta" was technically impossible and misleading. This version is
+  // honest: you reach Tossa only with a PER licence or a chartered skipper.
+  //
+  // Prices below are MARKET ASSUMPTIONS pending Ivan's confirmation — look
+  // for `// CONFIRM-PRICE` before publishing.
+  const tossaFaqFromI18n = (t.locationPages.tossa as { faqItems?: Array<{ question: string; answer: string }> } | undefined)?.faqItems;
+  const faqItems = tossaFaqFromI18n && tossaFaqFromI18n.length > 0 ? tossaFaqFromI18n : [
     {
-      question: "¿Cuánto se tarda en llegar a Tossa de Mar en barco desde Blanes?",
-      answer: "El trayecto dura entre 30-45 minutos dependiendo del barco. Es una ruta espectacular con vistas a acantilados y calas vírgenes. Recomendamos la ruta costera para disfrutar del paisaje."
+      question: "¿Puedo llegar a Tossa de Mar con barco sin licencia desde Blanes?",
+      answer: "No. Un barco sin licencia puede navegar legalmente hasta 2 millas de la costa a 5 nudos — eso llega hasta Playa de Fenals (sur de Lloret), 4 millas antes de Tossa. Para Tossa necesitas (1) barco con licencia PER, o (2) charter con patrón incluido."
     },
     {
-      question: "¿Se puede ver la Vila Vella de Tossa desde el barco?",
-      answer: "Sí, la Vila Vella (recinto amurallado medieval) es visible desde el mar y ofrece una perspectiva única. Es uno de los puntos más fotografiados de la Costa Brava desde el agua."
+      question: "¿Cuánto se tarda en barco de Blanes a Tossa?",
+      answer: "45–60 minutos con licencia PER navegando a 7 nudos de crucero. En charter con patrón calculamos 60 min por seguridad y margen meteorológico."
     },
     {
-      question: "¿Qué calas puedo visitar entre Blanes y Tossa de Mar?",
-      answer: "En la ruta encontrarás calas espectaculares como Cala Sant Francesc, Sa Palomera, Cala Boadella, Cala Santa Cristina y las calas de Lloret. Puedes parar a nadar en cualquiera de ellas."
+      // CONFIRM-PRICE: medio día 650 €, día completo 990 € — asunciones de mercado, validar con Ivan.
+      question: "¿Cuánto cuesta un charter con patrón Blanes–Tossa?",
+      answer: "Medio día (5 h) desde 650 € con todo incluido (barco, patrón, combustible, seguros). Día completo (8 h) desde 990 €. El precio es por barco entero — hasta 8 personas."
     },
     {
-      question: "¿Es seguro ir a Tossa de Mar en barco sin licencia?",
-      answer: "Sí, la ruta es segura en condiciones normales de mar. Antes de zarpar te damos formación completa y recomendaciones sobre la ruta. El barco incluye todo el equipo de seguridad homologado."
+      question: "¿Puedo desembarcar en Tossa pueblo desde el barco?",
+      answer: "Puedes fondear en Platja Gran (bajo la Vila Vella) fuera de la zona balizada y bajar a tierra con dinghy. El puerto deportivo de Tossa no suele tener amarres de visitante libres en temporada alta — si quieres amarre, reserva con antelación vía www.portdetossa.cat."
     },
     {
-      question: "¿Cuánto cuesta alquilar un barco para ir a Tossa de Mar?",
-      answer: "El alquiler empieza desde 70 EUR por hora con gasolina incluida. Para una excursión a Tossa recomendamos mínimo 4-5 horas para disfrutar del trayecto y explorar. También ofrecemos excursiones privadas con patrón."
-    },
-    {
-      question: "¿Cuánto se tarda en barco de Blanes a Tossa de Mar?",
-      answer: "Aproximadamente 1 hora desde el Puerto de Blanes con un barco con licencia. La ruta costera pasa por Lloret de Mar, acantilados espectaculares y calas escondidas como Cala Pola."
+      question: "¿Merece la pena ir a Tossa en barco si no tengo licencia?",
+      answer: "Depende de lo que busques. Si quieres la foto de la Vila Vella desde el mar — única en el Mediterráneo occidental — merece la pena el charter con patrón. Si prefieres máximo de calas por tu presupuesto, la ruta sin licencia hasta Fenals (Lloret sur) es más rentable: 7 calas por 90 €/h con gasolina incluida."
     }
   ];
 
@@ -145,33 +152,73 @@ export default function LocationTossaPage() {
         jsonLd={combinedJsonLd}
       />
       <Navigation />
-      
-      {/* Hero Section */}
-      <div className="bg-gradient-to-br from-blue-50 to-emerald-50 pt-24 pb-12">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-8">
-            <div className="flex items-center justify-center mb-6">
-              <Castle className="w-8 h-8 text-primary mr-4" />
-              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold text-foreground">
-                {t.locationPages.tossa.hero.title}
-              </h1>
+
+      {/* Hero Section — full-bleed image showing the Vila Vella from the sea,
+          which is the unique "only medieval castle on the Mediterranean"
+          framing the new Tossa positioning depends on. LCP image preloaded
+          via server/seoInjector.ts LcpPreload. */}
+      <div className="relative pt-20 sm:pt-24">
+        <div className="relative w-full h-[55vh] min-h-[420px] sm:min-h-[520px] overflow-hidden">
+          <picture>
+            <source media="(min-width: 768px)" type="image/avif" srcSet="/images/locations/hero-tossa-de-mar.avif" />
+            <source type="image/avif" srcSet="/images/locations/hero-tossa-de-mar-mobile.avif" />
+            <source media="(min-width: 768px)" type="image/webp" srcSet="/images/locations/hero-tossa-de-mar.webp" />
+            <source type="image/webp" srcSet="/images/locations/hero-tossa-de-mar-mobile.webp" />
+            <img
+              src="/images/locations/hero-tossa-de-mar.jpg"
+              alt="Vila Vella de Tossa de Mar desde el mar con barco, murallas medievales y aguas cristalinas Costa Brava"
+              className="absolute inset-0 w-full h-full object-cover"
+              width={1920}
+              height={1080}
+              loading="eager"
+              fetchPriority="high"
+            />
+          </picture>
+          <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/15 to-black/55" />
+          <div className="relative z-10 h-full flex items-center">
+            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+              <div className="text-center max-w-4xl mx-auto">
+                <div className="inline-flex items-center justify-center mb-4">
+                  <Castle className="w-7 h-7 text-white mr-3 drop-shadow" />
+                  <h1 className="text-2xl sm:text-3xl lg:text-5xl font-heading font-bold text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)]">
+                    {t.locationPages.tossa.hero.title}
+                  </h1>
+                </div>
+                <p className="text-base sm:text-lg text-white/95 mb-5 max-w-3xl mx-auto drop-shadow-[0_1px_4px_rgba(0,0,0,0.4)]">
+                  {t.locationPages.tossa.hero.subtitle}
+                </p>
+                <div className="flex flex-wrap gap-2 sm:gap-3 justify-center">
+                  <Badge variant="outline" className="bg-white/90 text-primary border-white">
+                    <Anchor className="w-4 h-4 mr-2" />
+                    {t.locationPages.tossa.hero.badgeFrom}
+                  </Badge>
+                  <Badge variant="outline" className="bg-white/90 text-primary border-white">
+                    <Clock className="w-4 h-4 mr-2" />
+                    {t.locationPages.tossa.hero.badgeTime}
+                  </Badge>
+                  <Badge variant="outline" className="bg-white/90 text-primary border-white">
+                    <Users className="w-4 h-4 mr-2" />
+                    {t.locationPages.tossa.hero.badgeCapacity}
+                  </Badge>
+                </div>
+              </div>
             </div>
-            <p className="text-lg text-muted-foreground mb-6 max-w-4xl mx-auto">
-              {t.locationPages.tossa.hero.subtitle}
-            </p>
-            <div className="flex flex-wrap gap-3 justify-center">
-              <Badge variant="outline" className="text-primary border-primary">
-                <Anchor className="w-4 h-4 mr-2" />
-                {t.locationPages.tossa.hero.badgeFrom}
-              </Badge>
-              <Badge variant="outline" className="text-primary border-primary">
-                <Clock className="w-4 h-4 mr-2" />
-                {t.locationPages.tossa.hero.badgeTime}
-              </Badge>
-              <Badge variant="outline" className="text-primary border-primary">
-                <Users className="w-4 h-4 mr-2" />
-                {t.locationPages.tossa.hero.badgeCapacity}
-              </Badge>
+          </div>
+        </div>
+      </div>
+
+      {/* Honest warning: Tossa is out of range for licence-free boats. Putting
+          this immediately under the hero anchors the commercial positioning
+          before any other content so users and crawlers see it first. */}
+      <div className="bg-amber-50 dark:bg-amber-950/30 border-y border-amber-300 py-6 sm:py-8">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6">
+          <div className="flex gap-3 sm:gap-4 items-start">
+            <span className="text-2xl" role="img" aria-label="warning">⚠️</span>
+            <div className="text-sm sm:text-base text-foreground">
+              <p className="font-semibold mb-1">Tossa no es alcanzable con barco sin licencia.</p>
+              <p className="text-muted-foreground leading-relaxed">
+                Los barcos sin licencia (2 millas, 5 nudos, 15 CV) llegan hasta Playa de Fenals (sur de Lloret) — 4 millas antes de Tossa. Para llegar a Tossa desde Blanes necesitas (1) barco con licencia PER, o (2) charter con patrón incluido. La tercera alternativa es ir en coche a Tossa (20 min desde Lloret) y alquilar barco sin licencia localmente allí.
+              </p>
             </div>
           </div>
         </div>

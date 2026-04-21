@@ -881,11 +881,11 @@ export const es: Translations = {
     },
     tossa: {
       hero: {
-        title: 'Excursiones en Barco a Tossa de Mar',
-        subtitle: 'Descubre el pueblo medieval más bonito de la Costa Brava navegando desde el Puerto de Blanes. 1 hora de navegación hasta la famosa Vila Vella de Tossa de Mar.',
-        badgeFrom: 'Desde Puerto de Blanes',
-        badgeTime: '1 hora navegando',
-        badgeCapacity: '4-7 personas',
+        title: 'Alquiler de Barcos en Tossa de Mar — Con Licencia PER o Charter con Patrón',
+        subtitle: 'Navega frente a la Vila Vella, el único castillo medieval sobre el mar del Mediterráneo occidental. Desde el puerto de Blanes, 60 minutos con licencia PER o charter con patrón incluido.',
+        badgeFrom: 'Desde el puerto de Blanes (7 millas)',
+        badgeTime: '45–60 min con licencia PER',
+        badgeCapacity: 'Vila Vella medieval desde el mar',
       },
       sections: {
         whyTossaTitle: '¿Por qué visitar Tossa de Mar en barco?',

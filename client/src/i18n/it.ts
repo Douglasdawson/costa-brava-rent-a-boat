@@ -118,7 +118,15 @@ export const it: Translations = {
       paddle: { name: 'Stand-Up Paddle', description: 'Tavola da paddle surf per esplorare cale e coste' },
       cooler: { name: 'Borsa Frigo con Bevande', description: 'Borsa frigo con ghiaccio e bevande rinfrescanti per la tua giornata in mare' },
       privateTour: { name: 'Escursione Privata', description: 'Tour privato con skipper incluso per un\'esperienza esclusiva', price: 'Da 180€' },
-      parking: { name: 'Parcheggio', description: 'Posto auto vicino al porto per maggiore comodità' },
+      parking: { name: 'Parcheggio', description: 'Posto auto vicino al porto per maggiore comodità', price: '10€/giorno' },
+    },
+    exploreMore: 'Scopri i nostri servizi',
+    exploreLinks: {
+      licenseFree: 'Barche senza patente',
+      licensed: 'Barche con patente',
+      pricing: 'Prezzi e tariffe',
+      costaBrava: 'Noleggio barche Costa Brava',
+      blog: 'Blog di navigazione',
     },
   },
   neverSailed: {
@@ -1616,5 +1624,17 @@ export const it: Translations = {
     "mingolla-brava-19": "110 cv di design italiano per gruppi fino a 7 persone che vogliono adrenalina e comfort in parti uguali. Doppio solarium a prua e poppa per prendere il sole, tavolo centrale per pranzare all'ancora in una cala e la potenza per raggiungere qualsiasi angolo tra Blanes e Tossa de Mar in pochi minuti. La barca di chi vuole velocità senza rinunciare a nulla. Patente nautica richiesta (patente entro 12 miglia).",
     "pacific-craft-625": "Il meglio che si possa noleggiare a Blanes. 6,24 metri, motore Yamaha 115 cv e spazio di lusso per 7 persone. Doppio solarium, tavolo per pranzare all'ancora, doccia d'acqua dolce e comandi elettronici. Per chi non vuole compromessi e cerca l'esperienza nautica più completa della Costa Brava. Patente nautica richiesta (patente entro 12 miglia).",
     "excursion-privada": "Voi vi godete il mare — il nostro skipper professionista vi porta in cale segrete, grotte marine e angoli inaccessibili a piedi tra Blanes e Tossa de Mar. Getterete l'ancora nella cala perfetta del giorno, scelta in base a vento e correnti. Ideale per celebrazioni, anniversari o famiglie che desiderano un'escursione privata esclusiva in Costa Brava senza pensieri.",
+  },
+
+  emotionTags: {
+    sunLovers: 'Per gli amanti del sole',
+    familyFavorite: 'Preferito dalle famiglie',
+    alwaysAvailable: 'Sempre disponibile',
+    bestPrice: 'Miglior prezzo a persona',
+    premiumNoLicense: 'Premium senza patente',
+    explorer: "L'esploratore",
+    adrenaline: 'Pura adrenalina',
+    luxury: "L'esperienza di lusso",
+    vip: 'VIP: goditi e basta',
   },
 };

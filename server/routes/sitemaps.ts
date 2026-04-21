@@ -4,6 +4,7 @@ import { logger } from "../lib/logger";
 import { registerRobotsRoutes } from "./robots";
 import { requireAdminSession } from "./auth-middleware";
 import { SUPPORTED_LANGUAGES, HREFLANG_CODES } from "../../shared/seoConstants";
+import type { LangCode } from "../../shared/seoConstants";
 import { getLocalizedPath } from "../../shared/i18n-routes";
 import type { PageKey } from "../../shared/i18n-routes";
 // Static destination slugs for sitemap fallback (when DB has no published destinations)
@@ -39,15 +40,44 @@ const escapeXml = (str: string): string =>
     .replace(/"/g, "&quot;")
     .replace(/'/g, "&apos;");
 
-// Build xhtml:link alternate tags for all languages using subdirectory URLs
-const buildHreflangLinks = (baseUrl: string, pageKey: PageKey, dynamicParam?: string): string => {
+// Sitemap-eligible languages per page type. ES is always indexable (canonical).
+// Home routes are fully i18n-covered in every language, so they index in all 8.
+// Everything else (boats, destinations, locations, activities, categories,
+// legal, faq) renders ES-only content from the DB — noindexed in non-ES langs
+// via seoInjector.computeTranslationIndex, so we exclude them from the sitemap.
+const ALL_LANGS: readonly LangCode[] = SUPPORTED_LANGUAGES as readonly LangCode[];
+const ES_ONLY: readonly LangCode[] = ["es"];
+
+// Compute sitemap-eligible languages for a blog post. ES is always included.
+// Other langs are added only when titleByLang[lang] has real content (mirrors
+// the hasTranslation check in seoInjector).
+const indexableLangsForBlogPost = (post: {
+  titleByLang?: Record<string, string> | null;
+}): readonly LangCode[] => {
+  const titleByLang = (post.titleByLang ?? {}) as Record<string, string>;
+  const langs: LangCode[] = ["es"];
+  for (const lang of SUPPORTED_LANGUAGES as readonly LangCode[]) {
+    if (lang === "es") continue;
+    const t = titleByLang[lang];
+    if (typeof t === "string" && t.trim()) langs.push(lang);
+  }
+  return langs;
+};
+
+// Build xhtml:link alternate tags for the given languages using subdirectory URLs.
+// x-default always points to the Spanish (canonical) version.
+const buildHreflangLinks = (
+  baseUrl: string,
+  pageKey: PageKey,
+  dynamicParam?: string,
+  indexableLangs: readonly LangCode[] = ALL_LANGS,
+): string => {
   let links = "";
-  // x-default points to the Spanish (canonical) version
   let xDefaultPath = getLocalizedPath(pageKey, "es");
   if (dynamicParam) xDefaultPath += `/${dynamicParam}`;
   links += `    <xhtml:link rel="alternate" hreflang="x-default" href="${baseUrl}${xDefaultPath}"/>\n`;
 
-  SUPPORTED_LANGUAGES.forEach(lang => {
+  indexableLangs.forEach(lang => {
     const code = HREFLANG_CODES[lang as keyof typeof HREFLANG_CODES] || lang;
     let path = getLocalizedPath(pageKey, lang);
     if (dynamicParam) path += `/${dynamicParam}`;
@@ -56,12 +86,17 @@ const buildHreflangLinks = (baseUrl: string, pageKey: PageKey, dynamicParam?: st
   return links;
 };
 
-// Build hreflang links for blog posts where each language may have a different slug
-const buildBlogHreflangLinks = (baseUrl: string, post: { slug: string; slugByLang?: Record<string, string> | null }): string => {
+// Build hreflang links for blog posts where each language may have a different slug.
+// Only emits alternates for langs that have a real translation.
+const buildBlogHreflangLinks = (
+  baseUrl: string,
+  post: { slug: string; slugByLang?: Record<string, string> | null },
+  indexableLangs: readonly LangCode[],
+): string => {
   let links = "";
   const esSlug = post.slugByLang?.es || post.slug;
   links += `    <xhtml:link rel="alternate" hreflang="x-default" href="${baseUrl}${getLocalizedPath("blogDetail", "es")}/${esSlug}"/>\n`;
-  SUPPORTED_LANGUAGES.forEach(lang => {
+  indexableLangs.forEach(lang => {
     const code = HREFLANG_CODES[lang as keyof typeof HREFLANG_CODES] || lang;
     const langSlug = post.slugByLang?.[lang] || post.slug;
     links += `    <xhtml:link rel="alternate" hreflang="${code}" href="${baseUrl}${getLocalizedPath("blogDetail", lang)}/${langSlug}"/>\n`;
@@ -95,14 +130,15 @@ const generateUrlEntry = (
   pageKey: PageKey,
   priority: string,
   lastmod: string | null,
-  changefreq?: string
+  changefreq?: string,
+  indexableLangs: readonly LangCode[] = ALL_LANGS,
 ): string => {
-  const hreflangLinks = buildHreflangLinks(baseUrl, pageKey);
+  const hreflangLinks = buildHreflangLinks(baseUrl, pageKey, undefined, indexableLangs);
   const lastmodTag = lastmod ? `\n    <lastmod>${lastmod}</lastmod>` : "";
   const changefreqTag = changefreq ? `\n    <changefreq>${changefreq}</changefreq>` : "";
   let urls = "";
 
-  SUPPORTED_LANGUAGES.forEach(lang => {
+  indexableLangs.forEach(lang => {
     const path = getLocalizedPath(pageKey, lang);
     const langPriority = getLanguagePriority(priority, lang);
     urls += `  <url>
@@ -207,50 +243,55 @@ export function registerSitemapRoutes(app: Express) {
       // Static pages omit <lastmod> — Google recommends only including lastmod
       // when the date is accurate. Static pages don't have real modification dates.
       // changefreq hints help AI crawlers (Perplexity, ChatGPT) understand content freshness.
-      sitemap += generateUrlEntry(baseUrl, "home", "1.0", null, "daily");
 
-      // Location pages
+      // Home is indexable in every language (fully i18n-covered UI + meta).
+      sitemap += generateUrlEntry(baseUrl, "home", "1.0", null, "daily", ALL_LANGS);
+
+      // All non-home pages render content sourced from the DB (ES-only) on
+      // every locale subdirectory. Only the ES URL is sitemap-eligible;
+      // non-ES counterparts are served with robots=noindex + canonical to ES
+      // by seoInjector until real translations exist in the DB.
       const locationPages: PageKey[] = [
         "locationBlanes", "locationLloret", "locationTossa", "locationMalgrat",
         "locationSantaSusanna", "locationCalella", "locationPinedaDeMar",
         "locationPalafolls", "locationTordera",
       ];
       locationPages.forEach(pageKey => {
-        sitemap += generateUrlEntry(baseUrl, pageKey, "0.7", null, "monthly");
+        sitemap += generateUrlEntry(baseUrl, pageKey, "0.7", null, "monthly", ES_ONLY);
       });
 
-      sitemap += generateUrlEntry(baseUrl, "locationBarcelona", "0.7", null, "monthly");
-      sitemap += generateUrlEntry(baseUrl, "locationCostaBrava", "0.9", null, "monthly");
+      sitemap += generateUrlEntry(baseUrl, "locationBarcelona", "0.7", null, "monthly", ES_ONLY);
+      sitemap += generateUrlEntry(baseUrl, "locationCostaBrava", "0.9", null, "monthly", ES_ONLY);
 
       // Content pages
-      sitemap += generateUrlEntry(baseUrl, "gallery", "0.6", null, "monthly");
-      sitemap += generateUrlEntry(baseUrl, "routes", "0.7", null, "monthly");
-      sitemap += generateUrlEntry(baseUrl, "giftCards", "0.6", null, "monthly");
-      sitemap += generateUrlEntry(baseUrl, "pricing", "0.8", null, "weekly");
-      sitemap += generateUrlEntry(baseUrl, "faq", "0.6", null, "monthly");
-      sitemap += generateUrlEntry(baseUrl, "testimonials", "0.6", null, "monthly");
-      sitemap += generateUrlEntry(baseUrl, "about", "0.6", null, "monthly");
-      sitemap += generateUrlEntry(baseUrl, "destinations", "0.7", null, "monthly");
+      sitemap += generateUrlEntry(baseUrl, "gallery", "0.6", null, "monthly", ES_ONLY);
+      sitemap += generateUrlEntry(baseUrl, "routes", "0.7", null, "monthly", ES_ONLY);
+      sitemap += generateUrlEntry(baseUrl, "giftCards", "0.6", null, "monthly", ES_ONLY);
+      sitemap += generateUrlEntry(baseUrl, "pricing", "0.8", null, "weekly", ES_ONLY);
+      sitemap += generateUrlEntry(baseUrl, "faq", "0.6", null, "monthly", ES_ONLY);
+      sitemap += generateUrlEntry(baseUrl, "testimonials", "0.6", null, "monthly", ES_ONLY);
+      sitemap += generateUrlEntry(baseUrl, "about", "0.6", null, "monthly", ES_ONLY);
+      sitemap += generateUrlEntry(baseUrl, "destinations", "0.7", null, "monthly", ES_ONLY);
 
       // Category pages
-      sitemap += generateUrlEntry(baseUrl, "categoryLicenseFree", "0.7", null, "monthly");
-      sitemap += generateUrlEntry(baseUrl, "categoryLicensed", "0.7", null, "monthly");
+      sitemap += generateUrlEntry(baseUrl, "categoryLicenseFree", "0.7", null, "monthly", ES_ONLY);
+      sitemap += generateUrlEntry(baseUrl, "categoryLicensed", "0.7", null, "monthly", ES_ONLY);
 
-      // Blog index
-      sitemap += generateUrlEntry(baseUrl, "blog", "0.7", null, "weekly");
+      // Blog index (the listing page itself; individual posts are in sitemap-blog.xml)
+      sitemap += generateUrlEntry(baseUrl, "blog", "0.7", null, "weekly", ES_ONLY);
 
       // Activity pages
-      sitemap += generateUrlEntry(baseUrl, "activitySnorkel", "0.7", null, "monthly");
-      sitemap += generateUrlEntry(baseUrl, "activityFamilies", "0.7", null, "monthly");
-      sitemap += generateUrlEntry(baseUrl, "activitySunset", "0.7", null, "monthly");
-      sitemap += generateUrlEntry(baseUrl, "activityFishing", "0.7", null, "monthly");
+      sitemap += generateUrlEntry(baseUrl, "activitySnorkel", "0.7", null, "monthly", ES_ONLY);
+      sitemap += generateUrlEntry(baseUrl, "activityFamilies", "0.7", null, "monthly", ES_ONLY);
+      sitemap += generateUrlEntry(baseUrl, "activitySunset", "0.7", null, "monthly", ES_ONLY);
+      sitemap += generateUrlEntry(baseUrl, "activityFishing", "0.7", null, "monthly", ES_ONLY);
 
       // Legal pages
-      sitemap += generateUrlEntry(baseUrl, "privacyPolicy", "0.3", null, "yearly");
-      sitemap += generateUrlEntry(baseUrl, "termsConditions", "0.3", null, "yearly");
-      sitemap += generateUrlEntry(baseUrl, "condicionesGenerales", "0.3", null, "yearly");
-      sitemap += generateUrlEntry(baseUrl, "cookiesPolicy", "0.3", null, "yearly");
-      sitemap += generateUrlEntry(baseUrl, "accessibility", "0.3", null, "yearly");
+      sitemap += generateUrlEntry(baseUrl, "privacyPolicy", "0.3", null, "yearly", ES_ONLY);
+      sitemap += generateUrlEntry(baseUrl, "termsConditions", "0.3", null, "yearly", ES_ONLY);
+      sitemap += generateUrlEntry(baseUrl, "condicionesGenerales", "0.3", null, "yearly", ES_ONLY);
+      sitemap += generateUrlEntry(baseUrl, "cookiesPolicy", "0.3", null, "yearly", ES_ONLY);
+      sitemap += generateUrlEntry(baseUrl, "accessibility", "0.3", null, "yearly", ES_ONLY);
 
       sitemap += `</urlset>`;
 
@@ -281,7 +322,8 @@ export function registerSitemapRoutes(app: Express) {
         const boatSlug = (boat as Record<string, any>).slug || String(boat.id);
         const boatLastmod = formatSitemapDate((boat as Record<string, any>).updatedAt || (boat as Record<string, any>).createdAt);
         const safeName = escapeXml(boat.name);
-        const boatHreflang = buildHreflangLinks(baseUrl, "boatDetail", boatSlug);
+        // Boat detail content is ES-only in the DB. Non-ES langs are noindex+canonical→ES.
+        const boatHreflang = buildHreflangLinks(baseUrl, "boatDetail", boatSlug, ES_ONLY);
 
         // Build image tags once (shared across all language URLs)
         let imageTags = "";
@@ -315,8 +357,9 @@ export function registerSitemapRoutes(app: Express) {
           });
         }
 
-        // Generate one <url> per language
-        SUPPORTED_LANGUAGES.forEach(lang => {
+        // Emit only the ES URL (non-ES are noindexed, so excluding them from
+        // sitemap keeps Search Console clean of "indexed but noindex" warnings).
+        ES_ONLY.forEach(lang => {
           const boatPath = getLocalizedPath("boatDetail", lang) + `/${boatSlug}`;
           const boatPriority = getLanguagePriority("0.8", lang);
           sitemap += `  <url>
@@ -363,7 +406,10 @@ ${boatHreflang}  </url>
         const priority = ageDays < 30 ? "0.9" : ageDays < 90 ? "0.8" : "0.7";
         const blogChangefreq = ageDays < 30 ? "weekly" : ageDays < 90 ? "monthly" : "yearly";
 
-        const postHreflang = buildBlogHreflangLinks(baseUrl, post);
+        // Blog posts opt into non-ES langs only when titleByLang[lang] has real
+        // translated content; everything else defaults to ES-only.
+        const postLangs = indexableLangsForBlogPost(post as { titleByLang?: Record<string, string> | null });
+        const postHreflang = buildBlogHreflangLinks(baseUrl, post, postLangs);
 
         // Build image tag if featured image exists (with XML escaping)
         let imageTag = "";
@@ -383,8 +429,8 @@ ${boatHreflang}  </url>
     </image:image>`;
         }
 
-        // Generate one <url> per language, each with its own localized slug
-        SUPPORTED_LANGUAGES.forEach(lang => {
+        // Emit one <url> only for sitemap-eligible langs (ES + translated).
+        postLangs.forEach(lang => {
           const postSlug = (post as Record<string, unknown>).slugByLang
             ? ((post as Record<string, unknown>).slugByLang as Record<string, string>)[lang] || post.slug
             : post.slug;
@@ -431,7 +477,8 @@ ${postHreflang}  </url>
         publishedDestinations.forEach(destination => {
           const destLastmod = formatSitemapDate((destination as Record<string, any>).updatedAt || (destination as Record<string, any>).createdAt);
           const safeName = escapeXml(destination.name);
-          const destHreflang = buildHreflangLinks(baseUrl, "destinationDetail", destination.slug);
+          // Destination content is ES-only; non-ES langs are noindex+canonical→ES.
+          const destHreflang = buildHreflangLinks(baseUrl, "destinationDetail", destination.slug, ES_ONLY);
 
           // Build image tag once (shared across all language URLs)
           let imageTag = "";
@@ -449,8 +496,8 @@ ${postHreflang}  </url>
     </image:image>`;
           }
 
-          // Generate one <url> per language; slug stays the same, only prefix changes
-          SUPPORTED_LANGUAGES.forEach(lang => {
+          // Emit only the ES URL — non-ES are noindexed.
+          ES_ONLY.forEach(lang => {
             const destPath = getLocalizedPath("destinationDetail", lang) + `/${destination.slug}`;
             const destPriority = getLanguagePriority("0.7", lang);
             sitemap += `  <url>
@@ -463,11 +510,11 @@ ${destHreflang}  </url>
           });
         });
       } else {
-        // Fallback: generate entries from static destination slugs
+        // Fallback: generate entries from static destination slugs (ES-only).
         FALLBACK_DESTINATION_SLUGS.forEach(slug => {
-          const destHreflang = buildHreflangLinks(baseUrl, "destinationDetail", slug);
+          const destHreflang = buildHreflangLinks(baseUrl, "destinationDetail", slug, ES_ONLY);
 
-          SUPPORTED_LANGUAGES.forEach(lang => {
+          ES_ONLY.forEach(lang => {
             const destPath = getLocalizedPath("destinationDetail", lang) + `/${slug}`;
             const destPriority = getLanguagePriority("0.7", lang);
             sitemap += `  <url>

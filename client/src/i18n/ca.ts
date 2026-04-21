@@ -118,7 +118,15 @@ export const ca: Translations = {
       paddle: { name: 'Paddle Surf', description: 'Taula de paddle surf per explorar cales i costes' },
       cooler: { name: 'Nevera amb Begudes', description: 'Nevera amb gel i begudes refrescants per al teu dia al mar' },
       privateTour: { name: 'Excursió Privada', description: 'Tour privat amb patró inclòs per a una experiència exclusiva', price: 'Des de 180€' },
-      parking: { name: 'Aparcament', description: 'Plaça d\'aparcament prop del port per a major comoditat' },
+      parking: { name: 'Aparcament', description: 'Plaça d\'aparcament prop del port per a major comoditat', price: '10€/dia' },
+    },
+    exploreMore: 'Descobreix els nostres serveis',
+    exploreLinks: {
+      licenseFree: 'Vaixells sense llicència',
+      licensed: 'Vaixells amb llicència',
+      pricing: 'Preus i tarifes',
+      costaBrava: 'Lloguer vaixells Costa Brava',
+      blog: 'Blog de navegació',
     },
   },
   neverSailed: {
@@ -1615,5 +1623,17 @@ export const ca: Translations = {
     "mingolla-brava-19": "110 cv de disseny italià per a grups de fins a 7 persones que volen adrenalina i confort a parts iguals. Solarium doble a proa i popa per prendre el sol, taula central per dinar fondejats en una cala i la potència per arribar a qualsevol racó entre Blanes i Tossa de Mar en minuts. L'embarcació que tria qui vol sentir la velocitat sense renunciar a res. Requereix llicència nàutica (PER/PNB).",
     "pacific-craft-625": "El millor que pots llogar a Blanes. 6,24 metres d'eslora, motor Yamaha 115 cv i espai de luxe per a 7 persones. Solarium doble, taula per dinar fondejats davant d'una cala, dutxa d'aigua dolça i comandament electrònic. Per als qui no volen compromisos i busquen l'experiència nàutica més completa de la Costa Brava. Requereix llicència nàutica (PER/PNB).",
     "excursion-privada": "Tu només gaudeixes: el nostre patró professional et porta a cales secretes, coves marines i racons inaccessibles a peu entre Blanes i Tossa de Mar. Fondejareu a la cala perfecta del dia, escollida segons vent i corrents. Ideal per a celebracions, aniversaris o famílies que volen una excursió privada exclusiva per la Costa Brava sense preocupar-se de res.",
+  },
+
+  emotionTags: {
+    sunLovers: 'Per als amants del sol',
+    familyFavorite: 'Favorit de les famílies',
+    alwaysAvailable: 'Sempre disponible',
+    bestPrice: 'Millor preu per persona',
+    premiumNoLicense: 'Premium sense llicència',
+    explorer: "L'explorador",
+    adrenaline: 'Pura adrenalina',
+    luxury: "L'experiència de luxe",
+    vip: 'VIP: tu només gaudeix',
   },
 };

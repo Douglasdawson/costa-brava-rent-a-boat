@@ -118,7 +118,15 @@ export const en: Translations = {
       paddle: { name: 'Paddle Surf', description: 'Paddleboard to explore coves and coastlines' },
       cooler: { name: 'Cooler with Drinks', description: 'Cooler with ice and refreshing drinks for your day at sea' },
       privateTour: { name: 'Private Tour', description: 'Private tour with skipper included for an exclusive experience', price: 'From €180' },
-      parking: { name: 'Parking', description: 'Parking space near the harbour for your convenience' },
+      parking: { name: 'Parking', description: 'Parking space near the harbour for your convenience', price: '€10/day' },
+    },
+    exploreMore: 'Explore our services',
+    exploreLinks: {
+      licenseFree: 'License-free boats',
+      licensed: 'Licensed boats',
+      pricing: 'Prices and rates',
+      costaBrava: 'Costa Brava boat rental',
+      blog: 'Sailing blog',
     },
   },
   neverSailed: {
@@ -1668,5 +1676,17 @@ export const en: Translations = {
     "mingolla-brava-19": "110 hp of Italian design for groups of up to 7 who want equal parts adrenaline and comfort. Double bow and stern solariums for sunbathing, a central table for lunch anchored in a cove, and the power to reach any spot between Blanes and Tossa de Mar in minutes. The boat for those who want speed without giving anything up. Boating licence required (ICC/Day Skipper).",
     "pacific-craft-625": "The best rental in Blanes. 6.24 m, 115 hp Yamaha engine and luxury space for 7. Double solarium, dining table for meals at anchor, freshwater shower and electronic controls. For those who want no compromises and seek the most complete boating experience on the Costa Brava. Boating licence required (ICC/Day Skipper).",
     "excursion-privada": "You just enjoy — our professional skipper takes you to secret coves, sea caves and spots inaccessible on foot between Blanes and Tossa de Mar. You'll anchor in the perfect cove of the day, chosen by wind and currents. Ideal for celebrations, anniversaries or families who want an exclusive private excursion on the Costa Brava with zero worries.",
+  },
+
+  emotionTags: {
+    sunLovers: 'For sun lovers',
+    familyFavorite: 'Family favourite',
+    alwaysAvailable: 'Always available',
+    bestPrice: 'Best price per person',
+    premiumNoLicense: 'Premium license-free',
+    explorer: 'The explorer',
+    adrenaline: 'Pure adrenaline',
+    luxury: 'The luxury experience',
+    vip: 'VIP: just enjoy',
   },
 };

@@ -118,7 +118,15 @@ export const nl: Translations = {
       paddle: { name: 'Stand-Up Paddle', description: 'Paddleboard om kreken en kusten te verkennen' },
       cooler: { name: 'Koelbox met Dranken', description: 'Koelbox met ijs en verfrissende dranken voor uw dag op zee' },
       privateTour: { name: 'Privétour', description: 'Privétour met schipper inbegrepen voor een exclusieve ervaring', price: 'Vanaf €180' },
-      parking: { name: 'Parkeren', description: 'Parkeerplaats nabij de haven voor meer gemak' },
+      parking: { name: 'Parkeren', description: 'Parkeerplaats nabij de haven voor meer gemak', price: '10€/dag' },
+    },
+    exploreMore: 'Ontdek onze diensten',
+    exploreLinks: {
+      licenseFree: 'Boten zonder vaarbewijs',
+      licensed: 'Boten met vaarbewijs',
+      pricing: 'Prijzen en tarieven',
+      costaBrava: 'Bootverhuur Costa Brava',
+      blog: 'Navigatieblog',
     },
   },
   neverSailed: {
@@ -1615,5 +1623,17 @@ export const nl: Translations = {
     "mingolla-brava-19": "110 pk Italiaans design voor groepen tot 7 personen die evenveel adrenaline als comfort willen. Dubbel solarium op voor- en achtersteven om te zonnen, een centrale tafel voor de lunch voor anker in een baai en het vermogen om elk plekje tussen Blanes en Tossa de Mar in minuten te bereiken. De boot voor wie snelheid wil zonder iets op te geven. Vaarbewijs vereist (ICC).",
     "pacific-craft-625": "Het beste wat u in Blanes kunt huren. 6,24 m, Yamaha 115 pk motor en luxe ruimte voor 7. Dubbel solarium, eettafel voor maaltijden voor anker, zoetwaterdouche en elektronische bediening. Voor wie geen compromissen wil en de meest complete vaarervaring van de Costa Brava zoekt. Vaarbewijs vereist (ICC).",
     "excursion-privada": "U geniet gewoon — onze professionele schipper brengt u naar geheime baaien, zeegrotten en plekken die te voet onbereikbaar zijn tussen Blanes en Tossa de Mar. U ankert in de perfecte baai van de dag, gekozen op basis van wind en stroming. Ideaal voor feesten, jubilea of gezinnen die een exclusief prive-uitje aan de Costa Brava willen zonder zorgen.",
+  },
+
+  emotionTags: {
+    sunLovers: 'Voor zonneliefhebbers',
+    familyFavorite: 'Familiefavoriet',
+    alwaysAvailable: 'Altijd beschikbaar',
+    bestPrice: 'Beste prijs per persoon',
+    premiumNoLicense: 'Premium zonder vaarbewijs',
+    explorer: 'De ontdekker',
+    adrenaline: 'Pure adrenaline',
+    luxury: 'De luxe-ervaring',
+    vip: 'VIP: gewoon genieten',
   },
 };

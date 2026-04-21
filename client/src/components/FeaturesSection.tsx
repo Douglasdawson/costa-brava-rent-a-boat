@@ -43,7 +43,7 @@ export default function FeaturesSection() {
     { icon: PaddleSurfIcon, name: t.features.extras.paddle.name, price: "25\u20AC" },
     { icon: NeveraIcon, name: t.features.extras.cooler.name, price: "10\u20AC" },
     { icon: Compass, name: t.features.extras.privateTour.name, price: t.features.extras.privateTour.price },
-    { icon: ParkingIcon, name: t.features.extras.parking.name, price: "10\u20AC/d\u00EDa" },
+    { icon: ParkingIcon, name: t.features.extras.parking.name, price: t.features.extras.parking.price || "10\u20AC/d\u00EDa" },
   ];
 
   return (
@@ -123,23 +123,23 @@ export default function FeaturesSection() {
           <div className="flex flex-wrap justify-center gap-x-6 gap-y-3">
             <a href={localizedPath("categoryLicenseFree")} className="text-primary hover:underline flex items-center gap-1 text-sm sm:text-base">
               <ChevronRight className="w-4 h-4" />
-              Barcos sin licencia
+              {t.features.exploreLinks?.licenseFree || 'Barcos sin licencia'}
             </a>
             <a href={localizedPath("categoryLicensed")} className="text-primary hover:underline flex items-center gap-1 text-sm sm:text-base">
               <ChevronRight className="w-4 h-4" />
-              Barcos con licencia
+              {t.features.exploreLinks?.licensed || 'Barcos con licencia'}
             </a>
             <a href={localizedPath("pricing")} className="text-primary hover:underline flex items-center gap-1 text-sm sm:text-base">
               <ChevronRight className="w-4 h-4" />
-              Precios y tarifas
+              {t.features.exploreLinks?.pricing || 'Precios y tarifas'}
             </a>
             <a href={localizedPath("locationCostaBrava")} className="text-primary hover:underline flex items-center gap-1 text-sm sm:text-base">
               <ChevronRight className="w-4 h-4" />
-              Alquiler barcos Costa Brava
+              {t.features.exploreLinks?.costaBrava || 'Alquiler barcos Costa Brava'}
             </a>
             <a href={localizedPath("blog")} className="text-primary hover:underline flex items-center gap-1 text-sm sm:text-base">
               <ChevronRight className="w-4 h-4" />
-              Blog de navegación
+              {t.features.exploreLinks?.blog || 'Blog de navegación'}
             </a>
           </div>
         </div>

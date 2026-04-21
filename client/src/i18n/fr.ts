@@ -118,7 +118,15 @@ export const fr: Translations = {
       paddle: { name: 'Paddle Surf', description: 'Planche de paddle surf pour explorer criques et côtes' },
       cooler: { name: 'Glacière avec Boissons', description: 'Glacière avec glace et boissons fraîches pour votre journée en mer' },
       privateTour: { name: 'Excursion Privée', description: 'Tour privé avec skipper inclus pour une expérience exclusive', price: 'À partir de 180€' },
-      parking: { name: 'Parking', description: 'Place de parking près du port pour plus de commodité' },
+      parking: { name: 'Parking', description: 'Place de parking près du port pour plus de commodité', price: '10€/jour' },
+    },
+    exploreMore: 'Découvrez nos services',
+    exploreLinks: {
+      licenseFree: 'Bateaux sans permis',
+      licensed: 'Bateaux avec permis',
+      pricing: 'Prix et tarifs',
+      costaBrava: 'Location bateau Costa Brava',
+      blog: 'Blog de navigation',
     },
   },
   neverSailed: {
@@ -1616,5 +1624,17 @@ export const fr: Translations = {
     "mingolla-brava-19": "110 cv de design italien pour des groupes jusqu'à 7 personnes qui veulent adrénaline et confort à parts égales. Double solarium à la proue et à la poupe, table centrale pour déjeuner au mouillage dans une crique et la puissance pour atteindre n'importe quel recoin entre Blanes et Tossa de Mar en minutes. Le bateau de ceux qui veulent de la vitesse sans rien sacrifier. Permis bateau requis (permis côtier).",
     "pacific-craft-625": "Le meilleur bateau à louer à Blanes. 6,24 m, moteur Yamaha 115 cv et espace de luxe pour 7 personnes. Double solarium, table pour déjeuner au mouillage, douche d'eau douce et commandes électroniques. Pour ceux qui ne veulent aucun compromis et recherchent l'expérience nautique la plus complète de la Costa Brava. Permis bateau requis (permis côtier).",
     "excursion-privada": "Vous n'avez qu'à profiter : notre skipper professionnel vous emmène vers des criques secrètes, des grottes marines et des recoins inaccessibles à pied entre Blanes et Tossa de Mar. Vous mouillerez dans la crique parfaite du jour, choisie selon le vent et les courants. Idéal pour les célébrations, anniversaires ou familles qui souhaitent une excursion privée exclusive sur la Costa Brava sans aucun souci.",
+  },
+
+  emotionTags: {
+    sunLovers: 'Pour les amateurs de soleil',
+    familyFavorite: 'Favori des familles',
+    alwaysAvailable: 'Toujours disponible',
+    bestPrice: 'Meilleur prix par personne',
+    premiumNoLicense: 'Premium sans permis',
+    explorer: "L'explorateur",
+    adrenaline: 'Pure adrénaline',
+    luxury: "L'expérience de luxe",
+    vip: 'VIP : profitez simplement',
   },
 };

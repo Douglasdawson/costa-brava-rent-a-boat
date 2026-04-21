@@ -125,7 +125,15 @@ export interface Translations {
       paddle: { name: string; description: string };
       cooler: { name: string; description: string };
       privateTour: { name: string; description: string; price: string };
-      parking: { name: string; description: string };
+      parking: { name: string; description: string; price?: string };
+    };
+    exploreMore?: string;
+    exploreLinks?: {
+      licenseFree: string;
+      licensed: string;
+      pricing: string;
+      costaBrava: string;
+      blog: string;
     };
   };
 

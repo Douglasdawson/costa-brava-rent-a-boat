@@ -118,7 +118,15 @@ export const de: Translations = {
       paddle: { name: 'Stand-Up-Paddle', description: 'Stand-Up-Paddle-Board zum Erkunden von Buchten und Küsten' },
       cooler: { name: 'Kühlbox mit Getränken', description: 'Kühlbox mit Eis und erfrischenden Getränken für Ihren Tag auf See' },
       privateTour: { name: 'Private Tour', description: 'Private Tour mit Kapitän inklusive für ein exklusives Erlebnis', price: 'Ab 180€' },
-      parking: { name: 'Parkplatz', description: 'Parkplatz in der Nähe des Hafens für mehr Komfort' },
+      parking: { name: 'Parkplatz', description: 'Parkplatz in der Nähe des Hafens für mehr Komfort', price: '10€/Tag' },
+    },
+    exploreMore: 'Entdecken Sie unsere Services',
+    exploreLinks: {
+      licenseFree: 'Boote ohne Führerschein',
+      licensed: 'Boote mit Führerschein',
+      pricing: 'Preise und Tarife',
+      costaBrava: 'Bootsverleih Costa Brava',
+      blog: 'Navigations-Blog',
     },
   },
   neverSailed: {
@@ -1616,5 +1624,17 @@ export const de: Translations = {
     "mingolla-brava-19": "110 PS italienisches Design für Gruppen bis 7 Personen, die gleichermaßen Adrenalin und Komfort suchen. Doppeltes Solarium an Bug und Heck zum Sonnenbaden, ein Tisch in der Mitte zum Mittagessen vor Anker in einer Bucht und die Power, jeden Winkel zwischen Blanes und Tossa de Mar in Minuten zu erreichen. Das Boot für alle, die Geschwindigkeit wollen, ohne auf etwas zu verzichten. Bootsführerschein erforderlich (SBF See).",
     "pacific-craft-625": "Das beste Mietboot in Blanes. 6,24 m, Yamaha 115 PS und luxuriöser Platz für 7. Doppeltes Solarium, Tisch für Mahlzeiten vor Anker, Süßwasserdusche und elektronische Steuerung. Für alle, die keine Kompromisse eingehen und das kompletteste Bootserlebnis an der Costa Brava suchen. Bootsführerschein erforderlich (SBF See).",
     "excursion-privada": "Sie genießen einfach — unser professioneller Skipper bringt Sie zu geheimen Buchten, Meerhöhlen und zu Fuß unzugänglichen Orten zwischen Blanes und Tossa de Mar. Sie ankern in der perfekten Bucht des Tages, ausgewählt nach Wind und Strömungen. Ideal für Feiern, Jubiläen oder Familien, die einen exklusiven Privatausflug an der Costa Brava ganz ohne Sorgen erleben möchten.",
+  },
+
+  emotionTags: {
+    sunLovers: 'Für Sonnenliebhaber',
+    familyFavorite: 'Familienfavorit',
+    alwaysAvailable: 'Immer verfügbar',
+    bestPrice: 'Bester Preis pro Person',
+    premiumNoLicense: 'Premium ohne Führerschein',
+    explorer: 'Der Entdecker',
+    adrenaline: 'Pures Adrenalin',
+    luxury: 'Das Luxuserlebnis',
+    vip: 'VIP: einfach genießen',
   },
 };

@@ -1311,11 +1311,21 @@ async function getBaseHtml(distPath: string): Promise<string> {
   return cachedBaseHtml;
 }
 
-function injectMeta(html: string, meta: SEOMeta, canonicalUrl: string, extraJsonLd?: object, lang: LangCode = "es", availableLanguages?: readonly string[]): string {
+function injectMeta(
+  html: string,
+  meta: SEOMeta,
+  canonicalUrl: string,
+  extraJsonLd?: object,
+  lang: LangCode = "es",
+  availableLanguages?: readonly string[],
+  noindex: boolean = false,
+  canonicalOverride?: string,
+): string {
   const title = esc(meta.title);
   const desc = esc(meta.description);
   const ogTitle = esc(meta.ogTitle || meta.title);
   const ogDesc = esc(meta.ogDescription || meta.description);
+  const effectiveCanonical = canonicalOverride || canonicalUrl;
 
   let result = html;
 
@@ -1340,8 +1350,18 @@ function injectMeta(html: string, meta: SEOMeta, canonicalUrl: string, extraJson
   result = result.replace(/<meta name="description" content="[^"]*">/, `<meta name="description" content="${desc}">`);
   result = result.replace(/<meta property="og:title" content="[^"]*">/, `<meta property="og:title" content="${ogTitle}">`);
   result = result.replace(/<meta property="og:description" content="[^"]*">/, `<meta property="og:description" content="${ogDesc}">`);
-  result = result.replace(/<meta property="og:url" content="[^"]*">/, `<meta property="og:url" content="${esc(BASE_URL + canonicalUrl)}">`);
-  result = result.replace(/<link rel="canonical" href="[^"]*">/, `<link rel="canonical" href="${esc(BASE_URL + canonicalUrl)}">`);
+  result = result.replace(/<meta property="og:url" content="[^"]*">/, `<meta property="og:url" content="${esc(BASE_URL + effectiveCanonical)}">`);
+  result = result.replace(/<link rel="canonical" href="[^"]*">/, `<link rel="canonical" href="${esc(BASE_URL + effectiveCanonical)}">`);
+
+  // When noindex is requested (non-ES non-home routes without real translation),
+  // override the default robots meta to noindex,follow so crawlers respect the
+  // canonical while still following outbound links for link-graph purposes.
+  if (noindex) {
+    result = result.replace(
+      /<meta name="robots" content="[^"]*">/,
+      `<meta name="robots" content="noindex, follow">`,
+    );
+  }
 
   // Strip hero image preloads on non-homepage routes (they cause "preloaded but not used" warnings)
   const isHome = canonicalUrl === "/" || /^\/[a-z]{2}\/?$/.test(canonicalUrl);
@@ -1394,11 +1414,9 @@ function injectMeta(html: string, meta: SEOMeta, canonicalUrl: string, extraJson
       result = result.replace("</head>", `${articleTags.join("\n")}\n</head>`);
     }
 
-    // noindex for blog posts in low-traffic languages (save crawl budget)
-    const noindexBlogLangs: readonly string[] = ["ca", "it", "ru"];
-    if (noindexBlogLangs.includes(lang)) {
-      result = result.replace("</head>", `  <meta name="robots" content="noindex, follow" />\n</head>`);
-    }
+    // Blog-lang noindex is now handled by the caller via computeTranslationIndex +
+    // the generic noindex flag on injectMeta. A blog post is indexable for non-ES
+    // langs only if it has a real titleByLang[lang] translation.
   }
 
   // Replace fallback JSON-LD with page-specific JSON-LD to avoid duplicate schemas
@@ -1623,6 +1641,32 @@ interface ResolvedPage {
   meta: SEOMeta;
   jsonLd?: object;
   availableLanguages?: readonly string[];
+  // True when this page/lang combo has real translated content (only relevant for
+  // dynamic content like blog posts). When false on a non-ES non-home route, the
+  // caller applies noindex+canonical-to-ES to avoid duplicate-content penalties.
+  hasTranslation?: boolean;
+}
+
+// Decide whether a given (pathname, lang) combo should be served with
+// robots=noindex and canonical pointing to the ES equivalent. ES is always
+// indexable. Home routes of every lang are fully i18n-covered (all UI strings
+// come from client/src/i18n/<lang>.ts). Blog posts opt in via titleByLang[lang].
+// Everything else (boats, destinations, locations, activities, categories,
+// faq, legal, etc.) falls back to ES content from the DB, so we noindex them
+// in non-ES langs and canonicalize to the ES equivalent.
+function computeTranslationIndex(
+  pathname: string,
+  lang: LangCode,
+  hasTranslation: boolean = false
+): { noindex: boolean; canonicalOverride?: string } {
+  if (lang === "es") return { noindex: false };
+  const isHome = pathname === "/" || /^\/[a-z]{2}\/?$/.test(pathname);
+  if (isHome) return { noindex: false };
+  if (hasTranslation) return { noindex: false };
+  return {
+    noindex: true,
+    canonicalOverride: switchLanguagePath(pathname, "es"),
+  };
 }
 
 // Convert a /:lang/:slug path to the STATIC_META key (Spanish path) for lookup.
@@ -2792,7 +2836,11 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
           const absImage = postOgImage.startsWith("http") ? postOgImage : `${BASE_URL}${postOgImage}`;
           jsonLd.image = absImage;
         }
-        return { meta, jsonLd };
+        // Signal real translation only when titleByLang actually has content for this lang.
+        const hasBlogTranslation = Boolean(
+          titleByLang[lang] && typeof titleByLang[lang] === "string" && titleByLang[lang].trim(),
+        );
+        return { meta, jsonLd, hasTranslation: hasBlogTranslation };
       }
     } catch {
       // fall through
@@ -3010,6 +3058,15 @@ export async function serveWithSEO(
 
     const resolved = await resolveMeta(canonicalPath, lang);
     if (resolved) {
+      // Decide indexability and canonical target up front so both the cache hit
+      // and miss paths emit a consistent Link header + X-Robots-Tag.
+      const { noindex, canonicalOverride } = computeTranslationIndex(
+        canonicalPath,
+        lang,
+        resolved.hasTranslation ?? false,
+      );
+      const canonicalTarget = canonicalOverride || canonicalUrl;
+
       // Check LRU cache for pre-injected HTML (avoids 9+ regex replacements)
       const cacheKey = `${canonicalPath}:${lang}`;
       const cachedHtml = getCachedInjectedHtml(cacheKey);
@@ -3018,7 +3075,8 @@ export async function serveWithSEO(
         res.set("Content-Language", lang);
         res.set("Cache-Control", "public, max-age=0, s-maxage=3600, stale-while-revalidate=86400");
         res.set("X-SEO-Cache", "HIT");
-        res.set("Link", `<${BASE_URL}${canonicalUrl}>; rel="canonical"`);
+        res.set("Link", `<${BASE_URL}${canonicalTarget}>; rel="canonical"`);
+        if (noindex) res.set("X-Robots-Tag", "noindex, follow");
         res.send(cachedHtml);
         return;
       }
@@ -3041,7 +3099,16 @@ export async function serveWithSEO(
         }
       }
       const baseHtml = await getBaseHtml(distPath);
-      const html = injectMeta(baseHtml, resolved.meta, canonicalUrl, resolved.jsonLd, lang, resolved.availableLanguages);
+      const html = injectMeta(
+        baseHtml,
+        resolved.meta,
+        canonicalUrl,
+        resolved.jsonLd,
+        lang,
+        resolved.availableLanguages,
+        noindex,
+        canonicalOverride,
+      );
 
       // Cache the final injected HTML
       setCachedInjectedHtml(cacheKey, html);
@@ -3050,7 +3117,8 @@ export async function serveWithSEO(
       res.set("Content-Language", lang);
       res.set("Cache-Control", "public, max-age=0, s-maxage=3600, stale-while-revalidate=86400");
       res.set("X-SEO-Cache", "MISS");
-      res.set("Link", `<${BASE_URL}${canonicalUrl}>; rel="canonical"`);
+      res.set("Link", `<${BASE_URL}${canonicalTarget}>; rel="canonical"`);
+      if (noindex) res.set("X-Robots-Tag", "noindex, follow");
       res.send(html);
     } else {
       // Dynamic content routes that resolveMeta couldn't match

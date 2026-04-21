@@ -200,6 +200,8 @@ export async function seedLegacyRedirects(): Promise<void> {
     "/barco-sin-licencia-solar-450-blanes": getLocalizedPath("boatDetail", "es") + "/solar-450",
     "/excursion-barco-privado": getLocalizedPath("categoryLicensed", "es"),
     "/condiciones-de-reserva": getLocalizedPath("condicionesGenerales", "es"),
+    "/es/condiciones-de-reserva": getLocalizedPath("condicionesGenerales", "es"),
+    "/es/motos-de-agua": getLocalizedPath("categoryLicenseFree", "es"),
     "/nota-legal": getLocalizedPath("privacyPolicy", "es"),
     "/beneteau-flyer-5-5": getLocalizedPath("categoryLicensed", "es"),
 

@@ -1,8 +1,6 @@
 import {
   Shield,
   ShieldCheck,
-  Fuel,
-  MapPin,
   Award,
   Anchor,
   Compass,
@@ -20,23 +18,6 @@ export default function FeaturesSection() {
   const t = useTranslations();
   const { localizedPath } = useLanguage();
   const { ref: revealRef, isVisible } = useScrollReveal();
-  const features = [
-    {
-      icon: Shield,
-      title: t.features.withoutLicense.title,
-      description: t.features.withoutLicense.description,
-    },
-    {
-      icon: Fuel,
-      title: t.features.includes.title,
-      description: t.features.includes.description,
-    },
-    {
-      icon: MapPin,
-      title: t.features.location.title,
-      description: t.features.location.description,
-    },
-  ];
 
   const extras = [
     { icon: SnorkelIcon, name: t.features.extras.snorkel.name, price: "7,50\u20AC" },
@@ -57,20 +38,6 @@ export default function FeaturesSection() {
           <p className="text-base text-muted-foreground font-light text-center mt-3 max-w-2xl mx-auto">
             {t.features.whyUsSub}
           </p>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 lg:gap-6 mb-8 sm:mb-12 lg:mb-16">
-          {features.map((feature, index) => (
-            <div key={index} className="text-center p-8">
-              <feature.icon className="w-8 h-8 text-muted-foreground stroke-[1.5] mx-auto" />
-              <h3 className="font-medium text-foreground text-lg mt-4">
-                {feature.title}
-              </h3>
-              <p className="text-muted-foreground text-sm mt-2">
-                {feature.description}
-              </p>
-            </div>
-          ))}
         </div>
 
         {/* Authority Trust Strip */}

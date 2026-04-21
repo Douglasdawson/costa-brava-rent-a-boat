@@ -1321,6 +1321,7 @@ function injectMeta(
   availableLanguages?: readonly string[],
   noindex: boolean = false,
   canonicalOverride?: string,
+  lcpPreload?: LcpPreload,
 ): string {
   const title = esc(meta.title);
   const desc = esc(meta.description);
@@ -1368,6 +1369,25 @@ function injectMeta(
   const isHome = canonicalUrl === "/" || /^\/[a-z]{2}\/?$/.test(canonicalUrl);
   if (!isHome) {
     result = result.replace(/\s*<link rel="preload" as="image"[^>]*hero-[^>]*>/g, "");
+  }
+
+  // Emit a route-specific LCP image preload when the resolver provided one
+  // (boat detail mini-hero, blog post featured image). This lets the browser
+  // discover the LCP resource before React hydrates, closing the ~7s
+  // resource-load-delay gap Lighthouse measured on 2026-04-21. The href/type
+  // MUST match what the eventual <img> renders or the browser double-fetches.
+  if (lcpPreload) {
+    const attrs: string[] = [
+      `rel="preload"`,
+      `as="image"`,
+      `fetchpriority="high"`,
+      `href="${esc(lcpPreload.href)}"`,
+    ];
+    if (lcpPreload.imageType) attrs.push(`type="${esc(lcpPreload.imageType)}"`);
+    if (lcpPreload.imagesrcset) attrs.push(`imagesrcset="${esc(lcpPreload.imagesrcset)}"`);
+    if (lcpPreload.imagesizes) attrs.push(`imagesizes="${esc(lcpPreload.imagesizes)}"`);
+    const preloadTag = `<link ${attrs.join(" ")}>`;
+    result = result.replace("</head>", `  ${preloadTag}\n</head>`);
   }
 
   // Replace og:image if a page-specific image is provided
@@ -1638,6 +1658,16 @@ function buildSeasonalEvent(isEn: boolean): object {
   };
 }
 
+interface LcpPreload {
+  // MUST match the `src` of the real LCP <img>, otherwise the browser fetches
+  // the image twice (once for the preload, once for the img). Type and srcset,
+  // if provided, must also match the eventual <img>/<picture> selection.
+  href: string;
+  imageType?: string;
+  imagesrcset?: string;
+  imagesizes?: string;
+}
+
 interface ResolvedPage {
   meta: SEOMeta;
   jsonLd?: object;
@@ -1650,7 +1680,30 @@ interface ResolvedPage {
   // Inverts the default ES-canonical logic: native lang becomes canonical and
   // indexable, every other locale (including ES) gets noindex + canonical→native.
   nativeOverride?: NativeLanguageOverride;
+  // LCP hero image to preload. Non-home routes strip the home hero preload but
+  // don't emit a replacement by default, which leaves the LCP image undiscovered
+  // until React hydrates (Lighthouse mobile 2026-04-21: ~7s resource load delay
+  // on boat + blog detail pages). When this field is set, injectMeta emits a
+  // <link rel="preload" as="image" fetchpriority="high"> that mirrors the eventual
+  // <img> src so the browser can start the fetch in parallel with JS evaluation.
+  lcpPreload?: LcpPreload;
 }
+
+// Hero images for boat detail pages. Mirrors the BOAT_IMAGES map in
+// client/src/utils/boatImages.ts — kept in sync manually because that file
+// lives under client/ and the server boundary avoids cross-importing it.
+// If a new boat is added, update both locations (client getBoatImage and this
+// map) or the preload will silently no-op and we lose the LCP win.
+const BOAT_HERO_PRELOAD_IMAGE: Record<string, string> = {
+  "solar-450": "/images/boats/solar-450/alquiler-barco-solar-450-rent-a-boat-costa-brava-blanes-exterior-puerto.webp",
+  "remus-450": "/images/boats/remus-450/alquiler-barco-remus-450-rent-a-boat-costa-brava-blanes-exterior-puerto.webp",
+  "remus-450-ii": "/images/boats/remus-450/alquiler-barco-remus-450-rent-a-boat-costa-brava-blanes-exterior-puerto.webp",
+  "astec-400": "/images/boats/astec-400/alquiler-barco-astec-400-rent-a-boat-costa-brava-blanes-exterior-puerto.webp",
+  "astec-480": "/images/boats/astec-480/alquiler-barco-astec-480-rent-a-boat-costa-brava-blanes-exterior-puerto.webp",
+  "mingolla-brava-19": "/images/boats/mingolla/alquiler-barco-mingolla-brava-19-rent-a-boat-costa-brava-blanes-exterior-puerto.webp",
+  "trimarchi-57s": "/images/boats/trimarchi/alquiler-barco-trimarchi-57s-rent-a-boat-costa-brava-blanes-exterior-puerto.webp",
+  "pacific-craft-625": "/images/boats/pacific-craft/alquiler-barco-pacific-craft-625-rent-a-boat-costa-brava-blanes-exterior-puerto.webp",
+};
 
 // Decide whether a given (pathname, lang) combo should be served with
 // robots=noindex and canonical pointing to the ES equivalent. ES is always
@@ -2788,7 +2841,15 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
           worstRating: "1",
         } : await buildAggregateRating();
         const jsonLd = buildBoatProductSchema(boat, fromPrice, boatAggregateRating, reviewStats?.reviews);
-        return { meta, jsonLd };
+        // Preload the same webp the BoatDetailPage mini-hero renders
+        // (client/src/components/BoatDetailPage.tsx:840 — loading="eager"
+        // fetchPriority="high"). Without this preload the LCP image is only
+        // discovered after React hydrates, adding ~7s of resource load delay.
+        const heroHref = BOAT_HERO_PRELOAD_IMAGE[boat.id];
+        const lcpPreload: LcpPreload | undefined = heroHref
+          ? { href: heroHref, imageType: "image/webp" }
+          : undefined;
+        return { meta, jsonLd, lcpPreload };
       }
     } catch {
       // fall through
@@ -2867,7 +2928,14 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
           titleByLang[lang] && typeof titleByLang[lang] === "string" && titleByLang[lang].trim(),
         );
         const nativeOverride = getNativeOverride(slug, "blog");
-        return { meta, jsonLd, hasTranslation: hasBlogTranslation, nativeOverride };
+        // Preload the featured image using the exact same resolution the
+        // blog-detail <img> uses (client/src/pages/blog-detail.tsx:815 —
+        // loading="eager" fetchPriority="high"). featuredImage is passed raw
+        // as src; match that here so the preload doesn't cause a double fetch.
+        const lcpPreload: LcpPreload | undefined = post.featuredImage
+          ? { href: post.featuredImage }
+          : undefined;
+        return { meta, jsonLd, hasTranslation: hasBlogTranslation, nativeOverride, lcpPreload };
       }
     } catch {
       // fall through
@@ -3136,6 +3204,7 @@ export async function serveWithSEO(
         resolved.availableLanguages,
         noindex,
         canonicalOverride,
+        resolved.lcpPreload,
       );
 
       // Cache the final injected HTML

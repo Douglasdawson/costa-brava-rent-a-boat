@@ -1,4 +1,4 @@
-import type { Express } from "express";
+import type { Express, Request, Response } from "express";
 import { storage } from "../storage";
 import { insertBlogPostSchema } from "@shared/schema";
 import { requireAdminSession, requireTabAccess } from "./auth";
@@ -30,7 +30,9 @@ export function registerBlogRoutes(app: Express) {
   });
 
   // Atom feed for published blog posts
-  app.get("/api/blog/feed.xml", async (req, res) => {
+  // Canonical path: /api/blog/feed.xml
+  // Convention aliases: /feed.xml, /rss.xml (crawlers and AI bots check root)
+  const atomFeedHandler = async (req: Request, res: Response) => {
     try {
       const posts = await storage.getPublishedBlogPosts();
       const siteUrl = "https://www.costabravarentaboat.com";
@@ -95,7 +97,10 @@ ${entries}
       logger.error("[Blog] Error generating Atom feed", { error: error instanceof Error ? error.message : String(error) });
       res.status(500).json({ message: "Error interno del servidor" });
     }
-  });
+  };
+  app.get("/api/blog/feed.xml", atomFeedHandler);
+  app.get("/feed.xml", atomFeedHandler);
+  app.get("/rss.xml", atomFeedHandler);
 
   // Get a single blog post by slug
   app.get("/api/blog/:slug", async (req, res) => {

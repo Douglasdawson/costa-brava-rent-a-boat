@@ -667,7 +667,10 @@ export default function AboutPage() {
           ]
         },
         "sameAs": [
-          "https://www.google.com/maps/place/Costa+Brava+Rent+a+Boat"
+          "https://maps.app.goo.gl/NHV4PcaFPmwBYqCt5",
+          "https://www.instagram.com/costabravarentaboat/",
+          "https://www.facebook.com/costabravarentaboat",
+          "https://www.tiktok.com/@costabravarentaboat"
         ]
       },
       {
@@ -682,7 +685,13 @@ export default function AboutPage() {
           "contactType": "customer service",
           "availableLanguage": ["Spanish", "English", "Catalan", "French", "German", "Dutch", "Italian", "Russian"],
           "areaServed": "ES"
-        }
+        },
+        "sameAs": [
+          "https://maps.app.goo.gl/NHV4PcaFPmwBYqCt5",
+          "https://www.instagram.com/costabravarentaboat/",
+          "https://www.facebook.com/costabravarentaboat",
+          "https://www.tiktok.com/@costabravarentaboat"
+        ]
       },
       generateBreadcrumbSchema([
         { name: tr.breadcrumbs.home, url: "/" },

@@ -33,7 +33,7 @@ export async function fetchGSCOverview(startDate: string, endDate: string) {
   if (!auth) throw new Error("Google API not configured");
 
   const searchconsole = google.searchconsole({ version: "v1", auth });
-  const siteUrl = config.GSC_SITE_URL || "sc-domain:costabravarentaboat.com";
+  const siteUrl = config.GSC_SITE_URL || "https://www.costabravarentaboat.com/";
 
   const response = await searchconsole.searchanalytics.query({
     siteUrl,
@@ -77,7 +77,7 @@ export async function fetchGSCKeywords(startDate: string, endDate: string, limit
   if (!auth) throw new Error("Google API not configured");
 
   const searchconsole = google.searchconsole({ version: "v1", auth });
-  const siteUrl = config.GSC_SITE_URL || "sc-domain:costabravarentaboat.com";
+  const siteUrl = config.GSC_SITE_URL || "https://www.costabravarentaboat.com/";
 
   const response = await searchconsole.searchanalytics.query({
     siteUrl,
@@ -104,7 +104,7 @@ export async function fetchGSCPages(startDate: string, endDate: string, limit = 
   if (!auth) throw new Error("Google API not configured");
 
   const searchconsole = google.searchconsole({ version: "v1", auth });
-  const siteUrl = config.GSC_SITE_URL || "sc-domain:costabravarentaboat.com";
+  const siteUrl = config.GSC_SITE_URL || "https://www.costabravarentaboat.com/";
 
   const response = await searchconsole.searchanalytics.query({
     siteUrl,

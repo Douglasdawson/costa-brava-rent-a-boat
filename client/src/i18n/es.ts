@@ -881,10 +881,10 @@ export const es: Translations = {
     },
     tossa: {
       hero: {
-        title: 'Alquiler de Barcos en Tossa de Mar — Con Licencia PER o Charter con Patrón',
-        subtitle: 'Navega frente a la Vila Vella, el único castillo medieval sobre el mar del Mediterráneo occidental. Desde el puerto de Blanes, 60 minutos con licencia PER o charter con patrón incluido.',
+        title: 'Alquiler de Barcos en Tossa de Mar — Con LBN o Excursión Privada con Capitán',
+        subtitle: 'Navega frente a la Vila Vella, el único castillo medieval sobre el mar del Mediterráneo occidental. Desde el puerto de Blanes, 60 minutos con Licencia Básica de Navegación (LBN) o Excursión Privada con Capitán.',
         badgeFrom: 'Desde el puerto de Blanes (7 millas)',
-        badgeTime: '45–60 min con licencia PER',
+        badgeTime: '45–60 min con LBN',
         badgeCapacity: 'Vila Vella medieval desde el mar',
       },
       sections: {
@@ -1453,12 +1453,12 @@ export const es: Translations = {
       {
         id: 'rango-sin-licencia',
         question: '¿Hasta dónde puedo llegar con un barco sin licencia desde Blanes?',
-        answer: 'Con un barco sin licencia (2 millas de costa, 5 nudos, 15 CV) llegas hasta la Playa de Fenals, en el extremo sur de Lloret de Mar. En el trayecto pasas por 7 calas: Sa Forcanera, Cala Sant Francesc, Cala de s\'Agulla, Cala Treumal, Playa de Santa Cristina, Cala Sa Boadella y Playa de Fenals. La Playa de Lloret (centro) y Cala Canyelles quedan al norte de Fenals, fuera del rango sin licencia — requieren barco con licencia PER o charter con patrón.',
+        answer: 'Con un barco sin licencia (2 millas de costa, 5 nudos, 15 CV) llegas hasta la Playa de Fenals, en el extremo sur de Lloret de Mar. En el trayecto pasas por 7 calas: Sa Forcanera, Cala Sant Francesc, Cala de s\'Agulla, Cala Treumal, Playa de Santa Cristina, Cala Sa Boadella y Playa de Fenals. La Playa de Lloret (centro) y Cala Canyelles quedan al norte de Fenals, fuera del rango sin licencia — requieren barco con Licencia Básica de Navegación (LBN) o Excursión Privada con Capitán.',
       },
       {
         id: 'tossa-sin-licencia',
         question: '¿Puedo llegar a Tossa de Mar sin licencia?',
-        answer: 'No. Tossa de Mar está fuera del rango legal de un barco sin licencia. Para llegar a Tossa desde Blanes necesitas (1) un barco con licencia PER, o (2) un charter con patrón incluido. La otra opción es ir en coche a Tossa (20 minutos desde Lloret) y alquilar un barco sin licencia localmente allí.',
+        answer: 'No. Tossa de Mar está fuera del rango legal de un barco sin licencia. Para llegar a Tossa desde Blanes necesitas (1) un barco con Licencia Básica de Navegación (LBN), o (2) la Excursión Privada con Capitán. La otra opción es ir en coche a Tossa (20 minutos desde Lloret) y alquilar un barco sin licencia localmente allí.',
       },
       {
         id: 'precios',
@@ -1781,7 +1781,7 @@ export const es: Translations = {
   rangeFromBlanes: {
     eyebrowHome: 'RANGO REAL DE NAVEGACIÓN',
     headlineHome: 'Hasta dónde llegas desde Blanes — sin licencia y con licencia',
-    introHome: 'Con un barco sin licencia navegas legalmente hasta 2 millas de la costa a 5 nudos. Desde el puerto de Blanes eso son 7 calas de Costa Brava auténtica en una sola jornada, con Playa de Fenals (sur de Lloret de Mar) como límite norte. Con licencia PER puedes extender la ruta hasta Tossa de Mar, Sant Feliu y Platja d\'Aro.',
+    introHome: 'Con un barco sin licencia navegas legalmente hasta 2 millas de la costa a 5 nudos. Desde el puerto de Blanes eso son 7 calas de Costa Brava auténtica en una sola jornada, con Playa de Fenals (sur de Lloret de Mar) como límite norte. Con Licencia Básica de Navegación (LBN) puedes extender la ruta hasta Tossa de Mar, Sant Feliu y Platja d\'Aro.',
     eyebrowLloret: 'TRAMO SIN LICENCIA — 25 MIN DE NAVEGACIÓN',
     headlineLloret: 'Las 7 calas entre Blanes y Playa de Fenals',
     introLloret: 'En orden desde el puerto de Blanes. Distancias acumuladas aproximadas a 5 nudos de crucero.',
@@ -1790,8 +1790,8 @@ export const es: Translations = {
     limitBoxTitle: '¿Por qué Fenals es el límite?',
     limitBoxBody: 'Un barco sin licencia puede navegar hasta 2 millas náuticas de la costa a 5 nudos y 15 CV. Desde el puerto de Blanes, Playa de Fenals está exactamente en el borde de esa distancia siguiendo la línea de costa.',
     noteNorthOfFenals: 'Nota: la Playa de Lloret (centro), Cala Banys y Cala Canyelles están al norte de Fenals — quedan fuera del rango sin licencia.',
-    conLicenciaTitle: 'Extensión con licencia PER',
-    conLicenciaIntro: 'Con licencia PER o patrón incluido, extiendes la ruta al norte:',
+    conLicenciaTitle: 'Extensión con Licencia Básica de Navegación (LBN)',
+    conLicenciaIntro: 'Con Licencia Básica de Navegación (LBN) o patrón incluido, extiendes la ruta al norte:',
     ext: {
       lloretCenter: 'Lloret centro y Cala Banys (pasado Fenals)',
       canyelles: 'Cala Canyelles — pequeño puerto náutico',
@@ -1800,7 +1800,7 @@ export const es: Translations = {
       platjaAro: 'Sant Feliu de Guíxols, S\'Agaró, Platja d\'Aro (medio día / día completo)',
     },
     ctaFleet: 'Ver flota sin licencia',
-    ctaLicensed: 'Barcos con licencia PER',
+    ctaLicensed: 'Barcos con Licencia Básica (LBN)',
     internalLinks: '¿Quieres saber más? Consulta la guía completa del tramo en <a href="/es/alquiler-barcos-lloret-de-mar" class="underline text-primary hover:text-primary/80">Lloret de Mar desde el mar</a> o la ruta con licencia hasta <a href="/es/alquiler-barcos-tossa-de-mar" class="underline text-primary hover:text-primary/80">Tossa de Mar</a>. Precios completos en <a href="/es/blog/cuanto-cuesta-alquilar-barco-blanes-precios" class="underline text-primary hover:text-primary/80">Cuánto cuesta alquilar un barco en Blanes</a>.',
   },
 };

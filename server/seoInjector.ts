@@ -3001,8 +3001,11 @@ export async function serveWithSEO(
       }
     }
 
-    // The canonical URL is the full localized path (e.g. /fr/location-bateau-blanes)
-    const canonicalPath = pathname === "/" ? `/${lang}/` : pathname.replace(/\/$/, "");
+    // The canonical URL is the full localized path (e.g. /fr/location-bateau-blanes).
+    // Home pages (root or /:lang[/?]) canonicalize to "/${lang}/" with trailing slash;
+    // internal routes strip the trailing slash (e.g. /es/alquiler-barcos-blanes).
+    const isHomePath = pathname === "/" || /^\/[a-z]{2}\/?$/.test(pathname);
+    const canonicalPath = isHomePath ? `/${lang}/` : pathname.replace(/\/$/, "");
     const canonicalUrl = canonicalPath;
 
     const resolved = await resolveMeta(canonicalPath, lang);

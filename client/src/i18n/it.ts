@@ -1626,6 +1626,33 @@ export const it: Translations = {
     "excursion-privada": "Voi vi godete il mare — il nostro skipper professionista vi porta in cale segrete, grotte marine e angoli inaccessibili a piedi tra Blanes e Tossa de Mar. Getterete l'ancora nella cala perfetta del giorno, scelta in base a vento e correnti. Ideale per celebrazioni, anniversari o famiglie che desiderano un'escursione privata esclusiva in Costa Brava senza pensieri.",
   },
 
+  // TODO: pro-translate — traduzione funzionale, revisionare prima dell'uso in mercati IT-heavy
+  rangeFromBlanes: {
+    eyebrowHome: 'PORTATA DI NAVIGAZIONE REALE',
+    headlineHome: 'Fin dove puoi arrivare da Blanes — con e senza patente',
+    introHome: 'Con una barca senza patente navighi legalmente fino a 2 miglia nautiche dalla costa a 5 nodi. Dal porto di Blanes sono 7 cale autentiche della Costa Brava in una sola giornata, con Playa de Fenals (sud di Lloret de Mar) come limite nord. Con patente PER estendi la rotta fino a Tossa de Mar, Sant Feliu e Platja d\'Aro.',
+    eyebrowLloret: 'TRATTO SENZA PATENTE — 25 MIN DI NAVIGAZIONE',
+    headlineLloret: 'Le 7 cale tra Blanes e Playa de Fenals',
+    introLloret: 'In ordine dal porto di Blanes. Distanze cumulative a 5 nodi di crociera.',
+    sinLicenciaTitle: 'Rotta senza patente (7 soste fino a Playa de Fenals)',
+    limitLabel: 'LIMITE',
+    limitBoxTitle: 'Perché Fenals è il limite?',
+    limitBoxBody: 'Una barca senza patente può navigare fino a 2 miglia nautiche dalla costa a 5 nodi e 15 CV. Dal porto di Blanes, Playa de Fenals si trova esattamente a quella distanza seguendo la linea di costa.',
+    noteNorthOfFenals: 'Nota: la spiaggia di Lloret (centro), Cala Banys e Cala Canyelles sono a nord di Fenals — fuori dal raggio senza patente.',
+    conLicenciaTitle: 'Estensione con patente PER',
+    conLicenciaIntro: 'Con patente PER o skipper incluso, la rotta si estende verso nord:',
+    ext: {
+      lloretCenter: 'Lloret centro e Cala Banys (oltre Fenals)',
+      canyelles: 'Cala Canyelles — piccolo porto turistico',
+      morisca: 'Cala Morisca — accessibile solo dal mare',
+      tossa: 'Tossa de Mar — Vila Vella medievale dal mare (~60 min)',
+      platjaAro: 'Sant Feliu de Guíxols, S\'Agaró, Platja d\'Aro (mezza giornata / giornata intera)',
+    },
+    ctaFleet: 'Vedi flotta senza patente',
+    ctaLicensed: 'Barche con patente PER',
+    internalLinks: 'Vuoi saperne di più? Consulta la guida <a href="/it/noleggio-barca-lloret-de-mar" class="underline text-primary hover:text-primary/80">Lloret de Mar dal mare</a> o la rotta con patente fino a <a href="/it/noleggio-barca-tossa-de-mar" class="underline text-primary hover:text-primary/80">Tossa de Mar</a>. Prezzi completi in <a href="/it/blog/cuanto-cuesta-alquilar-barco-blanes-precios" class="underline text-primary hover:text-primary/80">Quanto costa noleggiare una barca a Blanes</a>.',
+  },
+
   emotionTags: {
     sunLovers: 'Per gli amanti del sole',
     familyFavorite: 'Preferito dalle famiglie',

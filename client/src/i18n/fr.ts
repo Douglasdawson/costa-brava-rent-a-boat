@@ -1626,6 +1626,33 @@ export const fr: Translations = {
     "excursion-privada": "Vous n'avez qu'à profiter : notre skipper professionnel vous emmène vers des criques secrètes, des grottes marines et des recoins inaccessibles à pied entre Blanes et Tossa de Mar. Vous mouillerez dans la crique parfaite du jour, choisie selon le vent et les courants. Idéal pour les célébrations, anniversaires ou familles qui souhaitent une excursion privée exclusive sur la Costa Brava sans aucun souci.",
   },
 
+  // TODO: pro-translate — traduction fonctionnelle, à faire relire avant usage marketing FR
+  rangeFromBlanes: {
+    eyebrowHome: 'PORTÉE DE NAVIGATION RÉELLE',
+    headlineHome: 'Jusqu\'où naviguer depuis Blanes — avec et sans permis',
+    introHome: 'Avec un bateau sans permis, vous pouvez naviguer légalement jusqu\'à 2 milles nautiques de la côte à 5 nœuds. Depuis le port de Blanes, cela représente 7 criques authentiques de la Costa Brava en une journée, avec Playa de Fenals (sud de Lloret de Mar) comme limite nord. Avec un permis PER, la route s\'étend jusqu\'à Tossa de Mar, Sant Feliu et Platja d\'Aro.',
+    eyebrowLloret: 'TRONÇON SANS PERMIS — 25 MIN DE NAVIGATION',
+    headlineLloret: 'Les 7 criques entre Blanes et Playa de Fenals',
+    introLloret: 'Dans l\'ordre depuis le port de Blanes. Distances cumulées à 5 nœuds de croisière.',
+    sinLicenciaTitle: 'Itinéraire sans permis (7 arrêts jusqu\'à Playa de Fenals)',
+    limitLabel: 'LIMITE',
+    limitBoxTitle: 'Pourquoi Fenals est-elle la limite ?',
+    limitBoxBody: 'Un bateau sans permis peut naviguer jusqu\'à 2 milles nautiques de la côte à 5 nœuds et 15 CV. Depuis le port de Blanes, Playa de Fenals se trouve exactement à cette distance en suivant la côte.',
+    noteNorthOfFenals: 'Note : la plage de Lloret (centre), Cala Banys et Cala Canyelles sont au nord de Fenals — hors de la portée sans permis.',
+    conLicenciaTitle: 'Extension avec permis PER',
+    conLicenciaIntro: 'Avec un permis PER ou un skipper inclus, la route s\'étend vers le nord :',
+    ext: {
+      lloretCenter: 'Lloret centre et Cala Banys (après Fenals)',
+      canyelles: 'Cala Canyelles — petit port de plaisance',
+      morisca: 'Cala Morisca — uniquement accessible par la mer',
+      tossa: 'Tossa de Mar — Vila Vella médiévale depuis la mer (~60 min)',
+      platjaAro: 'Sant Feliu de Guíxols, S\'Agaró, Platja d\'Aro (demi-journée / journée complète)',
+    },
+    ctaFleet: 'Voir la flotte sans permis',
+    ctaLicensed: 'Bateaux avec permis PER',
+    internalLinks: 'Plus de détails ? Consultez le guide <a href="/fr/location-bateau-lloret-de-mar" class="underline text-primary hover:text-primary/80">Lloret de Mar depuis la mer</a> ou l\'itinéraire avec permis jusqu\'à <a href="/fr/location-bateau-tossa-de-mar" class="underline text-primary hover:text-primary/80">Tossa de Mar</a>. Tarifs complets dans <a href="/fr/blog/cuanto-cuesta-alquilar-barco-blanes-precios" class="underline text-primary hover:text-primary/80">Combien coûte la location d\'un bateau à Blanes</a>.',
+  },
+
   emotionTags: {
     sunLovers: 'Pour les amateurs de soleil',
     familyFavorite: 'Favori des familles',

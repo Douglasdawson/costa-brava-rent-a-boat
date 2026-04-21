@@ -1625,6 +1625,33 @@ export const ca: Translations = {
     "excursion-privada": "Tu només gaudeixes: el nostre patró professional et porta a cales secretes, coves marines i racons inaccessibles a peu entre Blanes i Tossa de Mar. Fondejareu a la cala perfecta del dia, escollida segons vent i corrents. Ideal per a celebracions, aniversaris o famílies que volen una excursió privada exclusiva per la Costa Brava sense preocupar-se de res.",
   },
 
+  // TODO: pro-translate — traducció funcional, revisar abans de publicar a mercats CA-heavy
+  rangeFromBlanes: {
+    eyebrowHome: 'ABAST REAL DE NAVEGACIÓ',
+    headlineHome: 'Fins on arribes des de Blanes — amb i sense llicència',
+    introHome: 'Amb una embarcació sense llicència navegues legalment fins a 2 milles de la costa a 5 nusos. Des del port de Blanes això són 7 cales autèntiques de la Costa Brava en una jornada, amb la Platja de Fenals (sud de Lloret de Mar) com a límit nord. Amb llicència PER pots estendre la ruta fins a Tossa de Mar, Sant Feliu i Platja d\'Aro.',
+    eyebrowLloret: 'TRAM SENSE LLICÈNCIA — 25 MIN DE NAVEGACIÓ',
+    headlineLloret: 'Les 7 cales entre Blanes i la Platja de Fenals',
+    introLloret: 'Per ordre des del port de Blanes. Distàncies acumulades a 5 nusos de creuer.',
+    sinLicenciaTitle: 'Ruta sense llicència (7 parades fins a la Platja de Fenals)',
+    limitLabel: 'LÍMIT',
+    limitBoxTitle: 'Per què Fenals és el límit?',
+    limitBoxBody: 'Una embarcació sense llicència pot navegar fins a 2 milles nàutiques de la costa a 5 nusos i 15 CV. Des del port de Blanes, la Platja de Fenals està just al llindar d\'aquesta distància seguint la línia de costa.',
+    noteNorthOfFenals: 'Nota: la Platja de Lloret (centre), Cala Banys i Cala Canyelles queden al nord de Fenals — fora del rang sense llicència.',
+    conLicenciaTitle: 'Extensió amb llicència PER',
+    conLicenciaIntro: 'Amb llicència PER o patró inclòs, estens la ruta cap al nord:',
+    ext: {
+      lloretCenter: 'Lloret centre i Cala Banys (passada Fenals)',
+      canyelles: 'Cala Canyelles — petit port esportiu',
+      morisca: 'Cala Morisca — només accessible per mar',
+      tossa: 'Tossa de Mar — Vila Vella medieval des del mar (~60 min)',
+      platjaAro: 'Sant Feliu de Guíxols, S\'Agaró, Platja d\'Aro (mig dia / dia complet)',
+    },
+    ctaFleet: 'Veure flota sense llicència',
+    ctaLicensed: 'Vaixells amb llicència PER',
+    internalLinks: 'Vols saber-ne més? Consulta la guia <a href="/ca/lloguer-vaixell-lloret-de-mar" class="underline text-primary hover:text-primary/80">Lloret de Mar des del mar</a> o la ruta amb llicència fins a <a href="/ca/lloguer-vaixell-tossa-de-mar" class="underline text-primary hover:text-primary/80">Tossa de Mar</a>. Preus complets a <a href="/ca/blog/cuanto-cuesta-alquilar-barco-blanes-precios" class="underline text-primary hover:text-primary/80">Quant costa llogar un vaixell a Blanes</a>.',
+  },
+
   emotionTags: {
     sunLovers: 'Per als amants del sol',
     familyFavorite: 'Favorit de les famílies',

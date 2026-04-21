@@ -1743,6 +1743,33 @@ export interface Translations {
 
   // Boat descriptions (keyed by boat ID)
   boatDescriptions?: Record<string, string>;
+
+  // Navigation range component (used on home + Lloret page)
+  rangeFromBlanes?: {
+    eyebrowHome: string;
+    headlineHome: string;
+    introHome: string;
+    eyebrowLloret: string;
+    headlineLloret: string;
+    introLloret: string;
+    sinLicenciaTitle: string;
+    limitLabel: string;
+    limitBoxTitle: string;
+    limitBoxBody: string;
+    noteNorthOfFenals: string;
+    conLicenciaTitle: string;
+    conLicenciaIntro: string;
+    ext: {
+      lloretCenter: string;
+      canyelles: string;
+      morisca: string;
+      tossa: string;
+      platjaAro: string;
+    };
+    ctaFleet: string;
+    ctaLicensed: string;
+    internalLinks?: string;
+  };
 }
 function deepMerge(target: Record<string, any>, fallback: Record<string, any>): Record<string, any> {
   const result = { ...fallback, ...target };

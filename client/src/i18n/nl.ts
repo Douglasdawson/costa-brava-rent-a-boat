@@ -1625,6 +1625,33 @@ export const nl: Translations = {
     "excursion-privada": "U geniet gewoon — onze professionele schipper brengt u naar geheime baaien, zeegrotten en plekken die te voet onbereikbaar zijn tussen Blanes en Tossa de Mar. U ankert in de perfecte baai van de dag, gekozen op basis van wind en stroming. Ideaal voor feesten, jubilea of gezinnen die een exclusief prive-uitje aan de Costa Brava willen zonder zorgen.",
   },
 
+  // TODO: pro-translate — functionele vertaling, proeflezen vóór productief gebruik in NL-markt
+  rangeFromBlanes: {
+    eyebrowHome: 'ECHT NAVIGATIEBEREIK',
+    headlineHome: 'Hoever je kunt varen vanaf Blanes — met en zonder vaarbewijs',
+    introHome: 'Met een boot zonder vaarbewijs mag je legaal tot 2 zeemijlen uit de kust varen met 5 knopen. Vanuit de haven van Blanes zijn dat 7 authentieke Costa Brava-baaien op één dag, met Playa de Fenals (zuid van Lloret de Mar) als noordelijke grens. Met een PER-vaarbewijs verleng je de route tot Tossa de Mar, Sant Feliu en Platja d\'Aro.',
+    eyebrowLloret: 'VAARBEWIJSVRIJ TRAJECT — 25 MIN VARENS',
+    headlineLloret: 'De 7 baaien tussen Blanes en Playa de Fenals',
+    introLloret: 'Op volgorde vanaf de haven van Blanes. Cumulatieve afstanden bij 5 knopen kruissnelheid.',
+    sinLicenciaTitle: 'Vaarbewijsvrije route (7 stops tot Playa de Fenals)',
+    limitLabel: 'LIMIET',
+    limitBoxTitle: 'Waarom is Fenals de limiet?',
+    limitBoxBody: 'Een boot zonder vaarbewijs mag tot 2 zeemijlen uit de kust varen met 5 knopen en 15 pk. Vanuit de haven van Blanes ligt Playa de Fenals precies op die afstand langs de kust.',
+    noteNorthOfFenals: 'Let op: Lloret centrum, Cala Banys en Cala Canyelles liggen ten noorden van Fenals — buiten het vaarbewijsvrije bereik.',
+    conLicenciaTitle: 'Uitbreiding met PER-vaarbewijs',
+    conLicenciaIntro: 'Met een PER-vaarbewijs of inclusive schipper breidt de route naar het noorden uit:',
+    ext: {
+      lloretCenter: 'Lloret centrum en Cala Banys (voorbij Fenals)',
+      canyelles: 'Cala Canyelles — kleine jachthaven',
+      morisca: 'Cala Morisca — alleen per zee bereikbaar',
+      tossa: 'Tossa de Mar — middeleeuwse Vila Vella vanaf zee (~60 min)',
+      platjaAro: 'Sant Feliu de Guíxols, S\'Agaró, Platja d\'Aro (halve / hele dag)',
+    },
+    ctaFleet: 'Vaarbewijsvrije vloot bekijken',
+    ctaLicensed: 'Boten met PER-vaarbewijs',
+    internalLinks: 'Meer weten? Zie de gids <a href="/nl/boot-huren-lloret-de-mar" class="underline text-primary hover:text-primary/80">Lloret de Mar vanaf zee</a> of de gelicentieerde route naar <a href="/nl/boot-huren-tossa-de-mar" class="underline text-primary hover:text-primary/80">Tossa de Mar</a>. Volledige prijzen in <a href="/nl/blog/cuanto-cuesta-alquilar-barco-blanes-precios" class="underline text-primary hover:text-primary/80">Wat kost het om een boot te huren in Blanes</a>.',
+  },
+
   emotionTags: {
     sunLovers: 'Voor zonneliefhebbers',
     familyFavorite: 'Familiefavoriet',

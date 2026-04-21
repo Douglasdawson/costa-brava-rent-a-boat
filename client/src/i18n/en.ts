@@ -1678,6 +1678,33 @@ export const en: Translations = {
     "excursion-privada": "You just enjoy — our professional skipper takes you to secret coves, sea caves and spots inaccessible on foot between Blanes and Tossa de Mar. You'll anchor in the perfect cove of the day, chosen by wind and currents. Ideal for celebrations, anniversaries or families who want an exclusive private excursion on the Costa Brava with zero worries.",
   },
 
+  // TODO: pro-translate — functional translation only, proofread before prod use in EN-heavy markets
+  rangeFromBlanes: {
+    eyebrowHome: 'REAL NAVIGATION RANGE',
+    headlineHome: 'How far you can sail from Blanes — with and without a licence',
+    introHome: 'With a licence-free boat you can legally navigate up to 2 nautical miles from the coast at 5 knots. From Blanes port that means 7 authentic Costa Brava coves in a single day, with Playa de Fenals (south of Lloret de Mar) as the northern limit. With a PER licence you can extend the route to Tossa de Mar, Sant Feliu and Platja d\'Aro.',
+    eyebrowLloret: 'LICENCE-FREE SECTION — 25 MIN CRUISING',
+    headlineLloret: 'The 7 coves between Blanes and Playa de Fenals',
+    introLloret: 'In order from Blanes port. Accumulated distances at 5-knot cruising speed.',
+    sinLicenciaTitle: 'Licence-free route (7 stops to Playa de Fenals)',
+    limitLabel: 'LIMIT',
+    limitBoxTitle: 'Why is Fenals the limit?',
+    limitBoxBody: 'A licence-free boat can sail up to 2 nautical miles from the coast at 5 knots and 15 HP. From Blanes port, Playa de Fenals is exactly at that distance following the coastline.',
+    noteNorthOfFenals: 'Note: Lloret main beach, Cala Banys and Cala Canyelles are north of Fenals — outside the licence-free range.',
+    conLicenciaTitle: 'Extension with a PER licence',
+    conLicenciaIntro: 'With a PER licence or included skipper, the route extends northward:',
+    ext: {
+      lloretCenter: 'Lloret centre and Cala Banys (past Fenals)',
+      canyelles: 'Cala Canyelles — small marina',
+      morisca: 'Cala Morisca — accessible only by sea',
+      tossa: 'Tossa de Mar — medieval Vila Vella from the sea (~60 min)',
+      platjaAro: 'Sant Feliu de Guíxols, S\'Agaró, Platja d\'Aro (half-day / full-day)',
+    },
+    ctaFleet: 'View licence-free fleet',
+    ctaLicensed: 'PER-licensed boats',
+    internalLinks: 'Want more detail? See the full guide for <a href="/en/boat-rental-lloret-de-mar" class="underline text-primary hover:text-primary/80">Lloret de Mar from the sea</a> or the licensed route to <a href="/en/boat-rental-tossa-de-mar" class="underline text-primary hover:text-primary/80">Tossa de Mar</a>. Full pricing in <a href="/en/blog/cuanto-cuesta-alquilar-barco-blanes-precios" class="underline text-primary hover:text-primary/80">How much does it cost to rent a boat in Blanes</a>.',
+  },
+
   emotionTags: {
     sunLovers: 'For sun lovers',
     familyFavorite: 'Family favourite',

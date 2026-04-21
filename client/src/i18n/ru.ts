@@ -1625,6 +1625,33 @@ export const ru: Translations = {
     "excursion-privada": "Вы просто наслаждаетесь — наш профессиональный шкипер отвезёт вас к секретным бухтам, морским пещерам и местам, недоступным пешком, между Бланесом и Тосса-де-Мар. Вы встанете на якорь в идеальной бухте дня, выбранной с учётом ветра и течений. Идеально для торжеств, юбилеев или семей, мечтающих об эксклюзивной частной экскурсии по Коста-Браве без забот.",
   },
 
+  // TODO: pro-translate — функциональный перевод, вычитать перед использованием в RU-heavy рынках
+  rangeFromBlanes: {
+    eyebrowHome: 'РЕАЛЬНАЯ ДАЛЬНОСТЬ НАВИГАЦИИ',
+    headlineHome: 'Куда можно дойти из Бланеса — с лицензией и без',
+    introHome: 'На лодке без лицензии можно легально идти до 2 морских миль от берега со скоростью 5 узлов. От порта Бланес — это 7 настоящих бухт Коста-Бравы за один день, с Playa de Fenals (юг Льорет-де-Мар) как северной границей. С лицензией PER маршрут продлевается до Тосса-де-Мар, Сант-Фелиу и Плайя-д\'Аро.',
+    eyebrowLloret: 'УЧАСТОК БЕЗ ЛИЦЕНЗИИ — 25 МИН ХОДА',
+    headlineLloret: '7 бухт между Бланесом и Playa de Fenals',
+    introLloret: 'По порядку от порта Бланес. Суммарные расстояния на крейсерской скорости 5 узлов.',
+    sinLicenciaTitle: 'Маршрут без лицензии (7 остановок до Playa de Fenals)',
+    limitLabel: 'ПРЕДЕЛ',
+    limitBoxTitle: 'Почему Fenals — предел?',
+    limitBoxBody: 'Лодка без лицензии может идти до 2 морских миль от берега на 5 узлах и 15 л.с. От порта Бланес Playa de Fenals находится ровно на этой дистанции вдоль береговой линии.',
+    noteNorthOfFenals: 'Внимание: центральный пляж Льорета, Cala Banys и Cala Canyelles расположены севернее Fenals — вне диапазона без лицензии.',
+    conLicenciaTitle: 'Расширение с лицензией PER',
+    conLicenciaIntro: 'С лицензией PER или шкипером в комплекте маршрут продлевается на север:',
+    ext: {
+      lloretCenter: 'Центр Льорет-де-Мар и Cala Banys (за Fenals)',
+      canyelles: 'Cala Canyelles — небольшая марина',
+      morisca: 'Cala Morisca — доступна только с моря',
+      tossa: 'Тосса-де-Мар — средневековая Vila Vella с моря (~60 мин)',
+      platjaAro: 'Сант-Фелиу-де-Гишольс, S\'Agaró, Плайя-д\'Аро (полдня / целый день)',
+    },
+    ctaFleet: 'Смотреть флот без лицензии',
+    ctaLicensed: 'Лодки с лицензией PER',
+    internalLinks: 'Подробнее: гид <a href="/ru/arenda-lodki-lloret-de-mar" class="underline text-primary hover:text-primary/80">Льорет-де-Мар с моря</a> или маршрут с лицензией до <a href="/ru/arenda-lodki-tossa-de-mar" class="underline text-primary hover:text-primary/80">Тосса-де-Мар</a>. Полные цены в <a href="/ru/blog/cuanto-cuesta-alquilar-barco-blanes-precios" class="underline text-primary hover:text-primary/80">Сколько стоит аренда лодки в Бланесе</a>.',
+  },
+
   emotionTags: {
     sunLovers: 'Для любителей солнца',
     familyFavorite: 'Любимый семейный',

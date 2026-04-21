@@ -426,7 +426,57 @@ export function startScheduler(): void {
     }
   }));
 
-  logger.info("Scheduled services started: reminders (:00), flywheel (:10), thank-you (:30), hold cleanup (every 5min), abandoned recovery (:15/:45), auto-complete (:45), blog autopilot (config), blog publish (Mon 9am), analytics sync (every 6h), newsletter (1st of month 10am), chatbot insights (Mon 6am), lead nurturing (every 2h at :20)");
+  // ===== SEO WAR ROOM — FASE 2 COLLECTORS =====
+  // GSC query-level extract (full fidelity). Runs twice daily to absorb the
+  // 3-day GSC reporting delay across re-runs.
+  scheduledTasks.push(cron.schedule("30 2,14 * * *", async () => {
+    try {
+      const { collectGscQueries } = await import("../seo/collectors/gscQueries");
+      logger.info("[Scheduler] Running GSC queries ETL");
+      await collectGscQueries();
+    } catch (error: unknown) {
+      const msg = error instanceof Error ? error.message : "Unknown error";
+      logger.error("[Scheduler] GSC queries ETL error", { error: msg });
+    }
+  }));
+
+  // GA4 daily landing-page metrics. Runs once a day after GA4 data stabilises.
+  scheduledTasks.push(cron.schedule("45 3 * * *", async () => {
+    try {
+      const { collectGa4Daily } = await import("../seo/collectors/ga4Daily");
+      logger.info("[Scheduler] Running GA4 daily ETL");
+      await collectGa4Daily();
+    } catch (error: unknown) {
+      const msg = error instanceof Error ? error.message : "Unknown error";
+      logger.error("[Scheduler] GA4 daily ETL error", { error: msg });
+    }
+  }));
+
+  // PageSpeed Insights (CWV + lab) for critical URLs. Daily.
+  scheduledTasks.push(cron.schedule("15 4 * * *", async () => {
+    try {
+      const { collectPsi } = await import("../seo/collectors/psi");
+      logger.info("[Scheduler] Running PSI collector");
+      await collectPsi();
+    } catch (error: unknown) {
+      const msg = error instanceof Error ? error.message : "Unknown error";
+      logger.error("[Scheduler] PSI collector error", { error: msg });
+    }
+  }));
+
+  // SERP snapshots (top-20 results per tracked keyword). Daily.
+  scheduledTasks.push(cron.schedule("30 5 * * *", async () => {
+    try {
+      const { collectSerpSnapshots } = await import("../seo/collectors/serpSnapshots");
+      logger.info("[Scheduler] Running SERP snapshots collector");
+      await collectSerpSnapshots();
+    } catch (error: unknown) {
+      const msg = error instanceof Error ? error.message : "Unknown error";
+      logger.error("[Scheduler] SERP snapshots error", { error: msg });
+    }
+  }));
+
+  logger.info("Scheduled services started: reminders (:00), flywheel (:10), thank-you (:30), hold cleanup (every 5min), abandoned recovery (:15/:45), auto-complete (:45), blog autopilot (config), blog publish (Mon 9am), analytics sync (every 6h), newsletter (1st of month 10am), chatbot insights (Mon 6am), lead nurturing (every 2h at :20), GSC queries ETL (02:30/14:30), GA4 daily ETL (03:45), PSI collector (04:15), SERP snapshots (05:30)");
 }
 
 /**

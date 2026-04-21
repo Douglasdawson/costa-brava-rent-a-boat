@@ -227,4 +227,55 @@ export function registerAdminSeoAutopilotRoutes(app: Express): void {
       res.status(500).json({ message: "Error obteniendo auditoría" });
     }
   });
+
+  // ===== WAR ROOM — FASE 2 MANUAL RUNS ==================================
+  // Trigger ETL collectors on demand (first-time backfill, or ad-hoc re-run).
+  // All POST to avoid accidental triggering from bookmarks / crawlers.
+
+  app.post("/api/admin/autopilot/collect/gsc-queries", requireAdminSession, async (req: Request, res: Response) => {
+    try {
+      const daysBack = Number(req.body?.daysBack) || 7;
+      const { collectGscQueries } = await import("../seo/collectors/gscQueries");
+      const result = await collectGscQueries({ daysBack });
+      res.json({ ok: true, ...result });
+    } catch (err) {
+      logger.error("[Admin:WarRoom] GSC queries ETL failed", { err: err instanceof Error ? err.message : String(err) });
+      res.status(500).json({ message: "Error ejecutando ETL de GSC queries", error: err instanceof Error ? err.message : String(err) });
+    }
+  });
+
+  app.post("/api/admin/autopilot/collect/ga4-daily", requireAdminSession, async (req: Request, res: Response) => {
+    try {
+      const daysBack = Number(req.body?.daysBack) || 7;
+      const { collectGa4Daily } = await import("../seo/collectors/ga4Daily");
+      const result = await collectGa4Daily({ daysBack });
+      res.json({ ok: true, ...result });
+    } catch (err) {
+      logger.error("[Admin:WarRoom] GA4 daily ETL failed", { err: err instanceof Error ? err.message : String(err) });
+      res.status(500).json({ message: "Error ejecutando ETL de GA4", error: err instanceof Error ? err.message : String(err) });
+    }
+  });
+
+  app.post("/api/admin/autopilot/collect/psi", requireAdminSession, async (_req: Request, res: Response) => {
+    try {
+      const { collectPsi } = await import("../seo/collectors/psi");
+      const result = await collectPsi();
+      res.json({ ok: true, ...result });
+    } catch (err) {
+      logger.error("[Admin:WarRoom] PSI collector failed", { err: err instanceof Error ? err.message : String(err) });
+      res.status(500).json({ message: "Error ejecutando PSI collector", error: err instanceof Error ? err.message : String(err) });
+    }
+  });
+
+  app.post("/api/admin/autopilot/collect/serp-snapshots", requireAdminSession, async (req: Request, res: Response) => {
+    try {
+      const maxKeywords = Number(req.body?.maxKeywords) || undefined;
+      const { collectSerpSnapshots } = await import("../seo/collectors/serpSnapshots");
+      const result = await collectSerpSnapshots({ maxKeywords });
+      res.json({ ok: true, ...result });
+    } catch (err) {
+      logger.error("[Admin:WarRoom] SERP snapshots failed", { err: err instanceof Error ? err.message : String(err) });
+      res.status(500).json({ message: "Error ejecutando SERP snapshots", error: err instanceof Error ? err.message : String(err) });
+    }
+  });
 }

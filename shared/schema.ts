@@ -2289,3 +2289,168 @@ export const seoAutopilotAudit = pgTable("seo_autopilot_audit", {
 
 export type SeoAutopilotAudit = typeof seoAutopilotAudit.$inferSelect;
 export type InsertSeoAutopilotAudit = typeof seoAutopilotAudit.$inferInsert;
+
+// ===== WAR ROOM: INTEGRATION SCHEMAS =====
+// Tables supporting external API integrations (GSC, GA4, PSI, SERP, AI search, GBP,
+// YouTube, Instagram, TikTok, Pinterest, backlinks) and the nightly orchestrator.
+
+// --- OAuth connections for APIs that require user OAuth flow ---
+export const oauthConnections = pgTable("oauth_connections", {
+  id: serial("id").primaryKey(),
+  provider: varchar("provider", { length: 40 }).notNull(), // gbp, youtube, instagram, tiktok, pinterest, bing_webmaster
+  accountIdentifier: text("account_identifier"), // email, channel id, page id, location id
+  accessToken: text("access_token").notNull(),
+  refreshToken: text("refresh_token"),
+  expiresAt: timestamp("expires_at", { withTimezone: true }),
+  scopes: jsonb("scopes").$type<string[]>(),
+  metadata: jsonb("metadata"),
+  status: varchar("status", { length: 20 }).notNull().default("active"), // active, expired, revoked, error
+  lastRefreshedAt: timestamp("last_refreshed_at", { withTimezone: true }),
+  lastErrorAt: timestamp("last_error_at", { withTimezone: true }),
+  lastErrorMessage: text("last_error_message"),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().default(sql`now()`),
+  updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().default(sql`now()`),
+}, (table) => ({
+  providerIdx: index("oauth_connections_provider_idx").on(table.provider),
+  providerAccountIdx: uniqueIndex("oauth_connections_provider_account_idx").on(table.provider, table.accountIdentifier),
+}));
+
+export type OAuthConnection = typeof oauthConnections.$inferSelect;
+export type InsertOAuthConnection = typeof oauthConnections.$inferInsert;
+
+// --- GSC queries time-series (full-fidelity daily extract from Search Console) ---
+export const gscQueries = pgTable("gsc_queries", {
+  id: serial("id").primaryKey(),
+  date: date("date").notNull(),
+  query: text("query").notNull(),
+  page: text("page"),
+  country: varchar("country", { length: 3 }), // ISO 3166-1 alpha-3
+  device: varchar("device", { length: 12 }), // mobile, desktop, tablet
+  clicks: integer("clicks").notNull().default(0),
+  impressions: integer("impressions").notNull().default(0),
+  ctr: decimal("ctr", { precision: 6, scale: 5 }),
+  position: decimal("position", { precision: 6, scale: 2 }),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().default(sql`now()`),
+}, (table) => ({
+  dateIdx: index("gsc_queries_date_idx").on(table.date),
+  queryIdx: index("gsc_queries_query_idx").on(table.query),
+  pageIdx: index("gsc_queries_page_idx").on(table.page),
+  uniqRow: uniqueIndex("gsc_queries_unique_idx").on(table.date, table.query, table.page, table.country, table.device),
+}));
+
+export type GscQueryRow = typeof gscQueries.$inferSelect;
+export type InsertGscQueryRow = typeof gscQueries.$inferInsert;
+
+// --- GA4 daily metrics per (date, landing_page, source/medium, country, device) ---
+export const ga4DailyMetrics = pgTable("ga4_daily_metrics", {
+  id: serial("id").primaryKey(),
+  date: date("date").notNull(),
+  landingPage: text("landing_page"),
+  source: text("source"),
+  medium: text("medium"),
+  country: varchar("country", { length: 3 }),
+  deviceCategory: varchar("device_category", { length: 12 }),
+  sessions: integer("sessions").notNull().default(0),
+  totalUsers: integer("total_users").notNull().default(0),
+  newUsers: integer("new_users").notNull().default(0),
+  engagedSessions: integer("engaged_sessions").notNull().default(0),
+  engagementRate: decimal("engagement_rate", { precision: 6, scale: 5 }),
+  averageSessionDuration: decimal("average_session_duration", { precision: 10, scale: 2 }),
+  screenPageViewsPerSession: decimal("screen_page_views_per_session", { precision: 8, scale: 2 }),
+  conversions: integer("conversions").notNull().default(0),
+  totalRevenue: decimal("total_revenue", { precision: 12, scale: 2 }),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().default(sql`now()`),
+}, (table) => ({
+  dateIdx: index("ga4_daily_date_idx").on(table.date),
+  landingIdx: index("ga4_daily_landing_idx").on(table.landingPage),
+  sourceIdx: index("ga4_daily_source_idx").on(table.source, table.medium),
+  uniqRow: uniqueIndex("ga4_daily_unique_idx").on(table.date, table.landingPage, table.source, table.medium, table.country, table.deviceCategory),
+}));
+
+export type Ga4DailyMetric = typeof ga4DailyMetrics.$inferSelect;
+export type InsertGa4DailyMetric = typeof ga4DailyMetrics.$inferInsert;
+
+// --- PSI measurements: lab + field data for CWV tracking per URL/strategy ---
+export const psiMeasurements = pgTable("psi_measurements", {
+  id: serial("id").primaryKey(),
+  url: text("url").notNull(),
+  strategy: varchar("strategy", { length: 10 }).notNull(), // mobile, desktop
+  performanceScore: integer("performance_score"), // 0-100
+  accessibilityScore: integer("accessibility_score"),
+  bestPracticesScore: integer("best_practices_score"),
+  seoScore: integer("seo_score"),
+  // Field data (CrUX origin summary)
+  lcpMs: integer("lcp_ms"),
+  clsScore: real("cls_score"),
+  inpMs: integer("inp_ms"),
+  ttfbMs: integer("ttfb_ms"),
+  fcpMs: integer("fcp_ms"),
+  // Lab data (Lighthouse synthetic)
+  labLcpMs: integer("lab_lcp_ms"),
+  labClsScore: real("lab_cls_score"),
+  labTbtMs: integer("lab_tbt_ms"),
+  labFcpMs: integer("lab_fcp_ms"),
+  labSiMs: integer("lab_si_ms"),
+  audits: jsonb("audits"),
+  measuredAt: timestamp("measured_at", { withTimezone: true }).notNull().default(sql`now()`),
+}, (table) => ({
+  urlIdx: index("psi_url_idx").on(table.url),
+  measuredAtIdx: index("psi_measured_at_idx").on(table.measuredAt),
+  urlStrategyIdx: index("psi_url_strategy_idx").on(table.url, table.strategy),
+}));
+
+export type PsiMeasurement = typeof psiMeasurements.$inferSelect;
+export type InsertPsiMeasurement = typeof psiMeasurements.$inferInsert;
+
+// --- SERP snapshots: top 20 results per keyword per day (DataForSEO/ValueSERP) ---
+export const serpSnapshots = pgTable("serp_snapshots", {
+  id: serial("id").primaryKey(),
+  keywordId: integer("keyword_id").notNull(),
+  date: date("date").notNull(),
+  searchEngine: varchar("search_engine", { length: 20 }).notNull().default("google"),
+  location: text("location"),
+  language: varchar("language", { length: 5 }),
+  position: integer("position").notNull(), // 1-20
+  url: text("url").notNull(),
+  title: text("title"),
+  description: text("description"),
+  domain: text("domain"),
+  resultType: varchar("result_type", { length: 30 }), // organic, local_pack, featured_snippet, video, images, ai_overview, people_also_ask
+  isOwn: boolean("is_own").notNull().default(false),
+  metadata: jsonb("metadata"),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().default(sql`now()`),
+}, (table) => ({
+  keywordDateIdx: index("serp_snapshots_keyword_date_idx").on(table.keywordId, table.date),
+  dateIdx: index("serp_snapshots_date_idx").on(table.date),
+  domainIdx: index("serp_snapshots_domain_idx").on(table.domain),
+}));
+
+export type SerpSnapshot = typeof serpSnapshots.$inferSelect;
+export type InsertSerpSnapshot = typeof serpSnapshots.$inferInsert;
+
+// --- War Room suggestions (F6 orchestrator output) ---
+export const warRoomSuggestions = pgTable("war_room_suggestions", {
+  id: serial("id").primaryKey(),
+  category: varchar("category", { length: 40 }).notNull(), // content_update, cta_optimization, internal_linking, new_content, outreach, distribution, technical_fix
+  priority: varchar("priority", { length: 10 }).notNull(), // critical, high, medium, low
+  estimatedImpact: varchar("estimated_impact", { length: 20 }), // traffic_high, traffic_medium, conversions, brand
+  title: text("title").notNull(),
+  rationale: text("rationale").notNull(),
+  data: jsonb("data"),
+  recommendedActions: jsonb("recommended_actions"),
+  status: varchar("status", { length: 20 }).notNull().default("pending"), // pending, approved, rejected, done, snoozed
+  snoozeUntil: timestamp("snooze_until", { withTimezone: true }),
+  approvedBy: text("approved_by"),
+  executedAt: timestamp("executed_at", { withTimezone: true }),
+  executionResult: jsonb("execution_result"),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().default(sql`now()`),
+  updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().default(sql`now()`),
+}, (table) => ({
+  statusIdx: index("war_room_suggestions_status_idx").on(table.status),
+  priorityIdx: index("war_room_suggestions_priority_idx").on(table.priority),
+  categoryIdx: index("war_room_suggestions_category_idx").on(table.category),
+  createdIdx: index("war_room_suggestions_created_idx").on(table.createdAt),
+}));
+
+export type WarRoomSuggestion = typeof warRoomSuggestions.$inferSelect;
+export type InsertWarRoomSuggestion = typeof warRoomSuggestions.$inferInsert;

@@ -7,7 +7,7 @@
 
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { z } from "zod";
-import { eq, desc, and, sql } from "drizzle-orm";
+import { eq, desc, asc, and, sql, gte, lte } from "drizzle-orm";
 import { db } from "../shared/db.js";
 import * as schema from "../../../shared/schema.js";
 import * as seoAutopilot from "../../storage/seoAutopilot.js";
@@ -262,6 +262,301 @@ export function registerAutopilotTools(server: McpServer, ctx: ToolContext): voi
           .orderBy(desc(schema.blogPosts.createdAt))
           .limit(args.limit ?? 20);
         return { count: rows.length, results: rows };
+      }));
+    },
+  );
+
+  // =========================================================================
+  // WAR ROOM — FASE 2 TOOLS (data surfaces for the SEO war machine)
+  // =========================================================================
+
+  // -------------------------------------------------------------------------
+  // 9) autopilot_gsc_queries — top GSC queries by clicks / impressions / CTR
+  // -------------------------------------------------------------------------
+  server.tool(
+    "autopilot_gsc_queries",
+    "Top Google Search Console queries in a date range, aggregated. Identify click winners, impression-heavy / low-CTR opportunities, and position-3-to-5 queries to push to top 1.",
+    {
+      startDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).optional().describe("YYYY-MM-DD, defaults to 7 days ago"),
+      endDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).optional().describe("YYYY-MM-DD, defaults to today"),
+      sortBy: z.enum(["clicks", "impressions", "ctr", "position"]).optional(),
+      minImpressions: z.number().int().nonnegative().optional(),
+      device: z.enum(["MOBILE", "DESKTOP", "TABLET"]).optional(),
+      country: z.string().length(3).optional().describe("ISO-3 country code"),
+      pageContains: z.string().optional().describe("Substring filter on page URL"),
+      limit: z.number().int().positive().max(500).optional(),
+    },
+    async (args) => {
+      return TEXT(await withAudit(ctx, "autopilot_gsc_queries", args, async () => {
+        const end = args.endDate || new Date().toISOString().split("T")[0];
+        const defaultStart = new Date();
+        defaultStart.setDate(defaultStart.getDate() - 7);
+        const start = args.startDate || defaultStart.toISOString().split("T")[0];
+        const sortBy = args.sortBy || "clicks";
+
+        const conditions: unknown[] = [
+          gte(schema.gscQueries.date, start),
+          lte(schema.gscQueries.date, end),
+        ];
+        if (args.device) conditions.push(eq(schema.gscQueries.device, args.device));
+        if (args.country) conditions.push(eq(schema.gscQueries.country, args.country));
+        if (args.pageContains) {
+          conditions.push(sql`${schema.gscQueries.page} ILIKE ${`%${args.pageContains}%`}`);
+        }
+        if (args.minImpressions != null) {
+          conditions.push(sql`${schema.gscQueries.impressions} >= ${args.minImpressions}`);
+        }
+
+        const rows = await db
+          .select({
+            query: schema.gscQueries.query,
+            page: schema.gscQueries.page,
+            clicks: sql<number>`SUM(${schema.gscQueries.clicks})::int`.as("clicks"),
+            impressions: sql<number>`SUM(${schema.gscQueries.impressions})::int`.as("impressions"),
+            ctr: sql<number>`CASE WHEN SUM(${schema.gscQueries.impressions}) > 0 THEN SUM(${schema.gscQueries.clicks})::float / SUM(${schema.gscQueries.impressions}) ELSE 0 END`.as("ctr"),
+            avgPosition: sql<number>`AVG(${schema.gscQueries.position})`.as("avg_position"),
+          })
+          .from(schema.gscQueries)
+          .where(and(...(conditions as ReturnType<typeof eq>[])))
+          .groupBy(schema.gscQueries.query, schema.gscQueries.page)
+          .orderBy(sortBy === "position" ? asc(sql`avg_position`) : desc(sql.identifier(sortBy === "ctr" ? "ctr" : sortBy)))
+          .limit(args.limit ?? 100);
+
+        return {
+          startDate: start,
+          endDate: end,
+          count: rows.length,
+          results: rows,
+        };
+      }));
+    },
+  );
+
+  // -------------------------------------------------------------------------
+  // 10) autopilot_ga4_lp — top landing pages with sessions + conversions
+  // -------------------------------------------------------------------------
+  server.tool(
+    "autopilot_ga4_lp",
+    "Top landing pages from GA4 with sessions, engagement, and conversions. Slice by source/medium to find channels where a page wins or loses.",
+    {
+      startDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).optional(),
+      endDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).optional(),
+      source: z.string().optional().describe("e.g. 'google', 'direct', 'instagram'"),
+      medium: z.string().optional().describe("e.g. 'organic', 'cpc', 'social'"),
+      country: z.string().length(3).optional(),
+      sortBy: z.enum(["sessions", "totalUsers", "conversions", "engagementRate"]).optional(),
+      limit: z.number().int().positive().max(500).optional(),
+    },
+    async (args) => {
+      return TEXT(await withAudit(ctx, "autopilot_ga4_lp", args, async () => {
+        const end = args.endDate || new Date().toISOString().split("T")[0];
+        const defaultStart = new Date();
+        defaultStart.setDate(defaultStart.getDate() - 7);
+        const start = args.startDate || defaultStart.toISOString().split("T")[0];
+        const sortBy = args.sortBy || "sessions";
+
+        const conditions: unknown[] = [
+          gte(schema.ga4DailyMetrics.date, start),
+          lte(schema.ga4DailyMetrics.date, end),
+        ];
+        if (args.source) conditions.push(eq(schema.ga4DailyMetrics.source, args.source));
+        if (args.medium) conditions.push(eq(schema.ga4DailyMetrics.medium, args.medium));
+        if (args.country) conditions.push(eq(schema.ga4DailyMetrics.country, args.country));
+
+        const rows = await db
+          .select({
+            landingPage: schema.ga4DailyMetrics.landingPage,
+            sessions: sql<number>`SUM(${schema.ga4DailyMetrics.sessions})::int`.as("sessions"),
+            totalUsers: sql<number>`SUM(${schema.ga4DailyMetrics.totalUsers})::int`.as("total_users"),
+            newUsers: sql<number>`SUM(${schema.ga4DailyMetrics.newUsers})::int`.as("new_users"),
+            engagedSessions: sql<number>`SUM(${schema.ga4DailyMetrics.engagedSessions})::int`.as("engaged_sessions"),
+            engagementRate: sql<number>`CASE WHEN SUM(${schema.ga4DailyMetrics.sessions}) > 0 THEN SUM(${schema.ga4DailyMetrics.engagedSessions})::float / SUM(${schema.ga4DailyMetrics.sessions}) ELSE 0 END`.as("engagement_rate"),
+            conversions: sql<number>`SUM(${schema.ga4DailyMetrics.conversions})::int`.as("conversions"),
+            revenue: sql<number>`COALESCE(SUM(${schema.ga4DailyMetrics.totalRevenue}), 0)`.as("revenue"),
+          })
+          .from(schema.ga4DailyMetrics)
+          .where(and(...(conditions as ReturnType<typeof eq>[])))
+          .groupBy(schema.ga4DailyMetrics.landingPage)
+          .orderBy(desc(sql.identifier(
+            sortBy === "totalUsers" ? "total_users" :
+            sortBy === "engagementRate" ? "engagement_rate" :
+            sortBy,
+          )))
+          .limit(args.limit ?? 50);
+
+        return { startDate: start, endDate: end, count: rows.length, results: rows };
+      }));
+    },
+  );
+
+  // -------------------------------------------------------------------------
+  // 11) autopilot_cwv_report — CWV summary from psi_measurements
+  // -------------------------------------------------------------------------
+  server.tool(
+    "autopilot_cwv_report",
+    "Latest Core Web Vitals per URL (field + lab). Flags URLs breaching CWV thresholds (LCP>2.5s, CLS>0.1, INP>200ms).",
+    {
+      urlContains: z.string().optional(),
+      strategy: z.enum(["mobile", "desktop"]).optional(),
+      limit: z.number().int().positive().max(200).optional(),
+    },
+    async (args) => {
+      return TEXT(await withAudit(ctx, "autopilot_cwv_report", args, async () => {
+        const conditions: unknown[] = [];
+        if (args.strategy) conditions.push(eq(schema.psiMeasurements.strategy, args.strategy));
+        if (args.urlContains) {
+          conditions.push(sql`${schema.psiMeasurements.url} ILIKE ${`%${args.urlContains}%`}`);
+        }
+
+        // Latest measurement per (url, strategy) using DISTINCT ON
+        const rows = await db.execute(sql`
+          SELECT DISTINCT ON (url, strategy)
+            url, strategy, performance_score, accessibility_score, seo_score,
+            lcp_ms, cls_score, inp_ms, ttfb_ms, fcp_ms,
+            lab_lcp_ms, lab_cls_score, lab_tbt_ms, lab_fcp_ms, lab_si_ms,
+            measured_at
+          FROM psi_measurements
+          ${conditions.length > 0 ? sql`WHERE ${and(...(conditions as ReturnType<typeof eq>[]))}` : sql``}
+          ORDER BY url, strategy, measured_at DESC
+          LIMIT ${args.limit ?? 50}
+        `);
+
+        const measurements = (rows as { rows?: unknown[] }).rows ?? rows;
+        const flagged = (measurements as Array<Record<string, number | null>>).filter((m) =>
+          (m.lcp_ms != null && m.lcp_ms > 2500) ||
+          (m.cls_score != null && m.cls_score > 0.1) ||
+          (m.inp_ms != null && m.inp_ms > 200),
+        );
+
+        return {
+          count: (measurements as unknown[]).length,
+          flaggedCount: flagged.length,
+          results: measurements,
+          flagged,
+        };
+      }));
+    },
+  );
+
+  // -------------------------------------------------------------------------
+  // 12) autopilot_serp_features — SERP feature occurrences from snapshots
+  // -------------------------------------------------------------------------
+  server.tool(
+    "autopilot_serp_features",
+    "Which SERP features appeared in snapshots (AI overview, local pack, PAA, featured snippet). Useful to target features we don't own.",
+    {
+      date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).optional().describe("YYYY-MM-DD, defaults to latest captured"),
+      resultType: z.enum(["organic", "local_pack", "featured_snippet", "video", "images", "ai_overview", "people_also_ask"]).optional(),
+      onlyNotOwned: z.boolean().optional().describe("If true, exclude features we already own"),
+      limit: z.number().int().positive().max(500).optional(),
+    },
+    async (args) => {
+      return TEXT(await withAudit(ctx, "autopilot_serp_features", args, async () => {
+        let date = args.date;
+        if (!date) {
+          const latest = await db
+            .select({ d: sql<string>`MAX(${schema.serpSnapshots.date})::text` })
+            .from(schema.serpSnapshots);
+          date = latest[0]?.d || new Date().toISOString().split("T")[0];
+        }
+
+        const conditions: unknown[] = [eq(schema.serpSnapshots.date, date)];
+        if (args.resultType) conditions.push(eq(schema.serpSnapshots.resultType, args.resultType));
+        if (args.onlyNotOwned) conditions.push(eq(schema.serpSnapshots.isOwn, false));
+
+        const rows = await db
+          .select({
+            keywordId: schema.serpSnapshots.keywordId,
+            keyword: schema.seoKeywords.keyword,
+            date: schema.serpSnapshots.date,
+            position: schema.serpSnapshots.position,
+            url: schema.serpSnapshots.url,
+            title: schema.serpSnapshots.title,
+            domain: schema.serpSnapshots.domain,
+            resultType: schema.serpSnapshots.resultType,
+            isOwn: schema.serpSnapshots.isOwn,
+          })
+          .from(schema.serpSnapshots)
+          .leftJoin(schema.seoKeywords, eq(schema.serpSnapshots.keywordId, schema.seoKeywords.id))
+          .where(and(...(conditions as ReturnType<typeof eq>[])))
+          .orderBy(desc(schema.serpSnapshots.keywordId), asc(schema.serpSnapshots.position))
+          .limit(args.limit ?? 200);
+
+        return { date, count: rows.length, results: rows };
+      }));
+    },
+  );
+
+  // -------------------------------------------------------------------------
+  // 13) autopilot_gbp_insights — Google Business Profile (OAuth-gated stub)
+  // -------------------------------------------------------------------------
+  server.tool(
+    "autopilot_gbp_insights",
+    "Google Business Profile reviews, posts, and insight metrics for the boat rental location. Returns status:'not_configured' until OAuth is completed.",
+    {
+      startDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).optional(),
+      endDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).optional(),
+    },
+    async (args) => {
+      return TEXT(await withAudit(ctx, "autopilot_gbp_insights", args, async () => {
+        const conn = await db
+          .select()
+          .from(schema.oauthConnections)
+          .where(and(
+            eq(schema.oauthConnections.provider, "gbp"),
+            eq(schema.oauthConnections.status, "active"),
+          ))
+          .limit(1);
+        if (conn.length === 0) {
+          return {
+            status: "not_configured",
+            message: "Connect Google Business Profile via OAuth to populate this tool.",
+            setupPath: "/crm/autopilot#connect-gbp",
+          };
+        }
+        // Placeholder — full integration lives behind OAuth. Returning shape
+        // keeps the contract stable for consumers.
+        return {
+          status: "pending_implementation",
+          account: conn[0].accountIdentifier,
+          note: "GBP API fetch is not yet wired. Reviews, posts, and insights will appear here once collectGbp() runs.",
+        };
+      }));
+    },
+  );
+
+  // -------------------------------------------------------------------------
+  // 14) autopilot_bing_queries — Bing Webmaster Tools (OAuth-gated stub)
+  // -------------------------------------------------------------------------
+  server.tool(
+    "autopilot_bing_queries",
+    "Top Bing / Copilot search queries from Bing Webmaster Tools. Returns status:'not_configured' until API credentials are set.",
+    {
+      startDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).optional(),
+      endDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).optional(),
+      limit: z.number().int().positive().max(500).optional(),
+    },
+    async (args) => {
+      return TEXT(await withAudit(ctx, "autopilot_bing_queries", args, async () => {
+        const conn = await db
+          .select()
+          .from(schema.oauthConnections)
+          .where(and(
+            eq(schema.oauthConnections.provider, "bing_webmaster"),
+            eq(schema.oauthConnections.status, "active"),
+          ))
+          .limit(1);
+        if (conn.length === 0) {
+          return {
+            status: "not_configured",
+            message: "Add your Bing Webmaster API key to enable this tool.",
+            setupPath: "/crm/autopilot#connect-bing",
+          };
+        }
+        return {
+          status: "pending_implementation",
+          note: "Bing Webmaster ingest is not yet wired. Queries will appear here after the collector runs.",
+        };
       }));
     },
   );

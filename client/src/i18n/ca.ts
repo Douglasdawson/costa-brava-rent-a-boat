@@ -1443,11 +1443,6 @@ export const ca: Translations = {
         answer: 'Pots canviar la data de la teva reserva sense cost amb un mínim de 7 dies d\'antelació. Les cancel·lacions no són reemborsables. En cas de mal temps, oferim reprogramació completa sense cost.',
       },
       {
-        id: 'donde-navegar',
-        question: 'Per on puc navegar?',
-        answer: 'Vaixells sense llicència: des de Blanes fins a la Platja de Fenals al nord i el final de la platja de Blanes al sud, sempre a menys de 2 milles de la costa. Vaixells amb llicència: radi més ampli, fins a Sant Feliu de Guíxols i més enllà.',
-      },
-      {
         id: 'mal-tiempo',
         question: 'Què passa si fa mal temps?',
         answer: 'Si les condicions meteorològiques no són segures, t\'oferim canvi de data gratuït o reemborsament complet. Consultem la previsió 24h abans i t\'avisem.',

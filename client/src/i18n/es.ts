@@ -1481,11 +1481,6 @@ export const es: Translations = {
         answer: 'Puedes cambiar la fecha de tu reserva sin coste con un mínimo de 7 días de antelación. Las cancelaciones no son reembolsables. En caso de mal tiempo, ofrecemos reprogramación completa sin coste.',
       },
       {
-        id: 'donde-navegar',
-        question: '¿Por dónde puedo navegar?',
-        answer: 'Barcos sin licencia: desde Blanes hasta Playa de Fenals al norte y el final de la playa de Blanes al sur, siempre a menos de 2 millas de la costa. Barcos con licencia: mayor radio de navegación, hasta Sant Feliu de Guíxols y más allá.',
-      },
-      {
         id: 'mal-tiempo',
         question: '¿Qué pasa si hace mal tiempo?',
         answer: 'Si las condiciones meteorológicas no son seguras, te ofrecemos cambio de fecha gratuito o reembolso completo. Consultamos la previsión 24h antes y te avisamos.',

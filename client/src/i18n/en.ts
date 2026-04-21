@@ -1459,11 +1459,6 @@ export const en: Translations = {
         answer: 'You can change your booking date at no cost with at least 7 days\' notice. Cancellations are non-refundable. In case of bad weather, we offer full rescheduling at no cost.',
       },
       {
-        id: 'donde-navegar',
-        question: 'Where can I navigate?',
-        answer: 'Licence-free boats: from Blanes to Fenals Beach northward and the end of Blanes beach southward, always within 2 miles of the coast. Licensed boats: wider range, up to Sant Feliu de Guíxols and beyond.',
-      },
-      {
         id: 'mal-tiempo',
         question: 'What happens if the weather is bad?',
         answer: 'If weather conditions are unsafe, we offer a free date change or full refund. We check the forecast 24h in advance and notify you.',

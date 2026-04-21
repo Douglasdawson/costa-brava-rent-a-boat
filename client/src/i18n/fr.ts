@@ -1444,11 +1444,6 @@ export const fr: Translations = {
         answer: 'Vous pouvez changer la date de votre reservation sans frais avec un preavis d\'au moins 7 jours. Les annulations ne sont pas remboursables. En cas de mauvais temps, nous offrons un report complet sans frais.',
       },
       {
-        id: 'donde-navegar',
-        question: 'Où puis-je naviguer ?',
-        answer: 'Bateaux sans permis : de Blanes à la plage de Fenals au nord et la fin de la plage de Blanes au sud, toujours à moins de 2 milles de la côte. Bateaux avec permis : rayon plus large, jusqu\'à Sant Feliu de Guíxols et au-delà.',
-      },
-      {
         id: 'mal-tiempo',
         question: 'Que se passe-t-il en cas de mauvais temps ?',
         answer: 'Si les conditions météo ne sont pas sûres, nous vous offrons un changement de date gratuit ou un remboursement complet. Nous consultons les prévisions 24h avant et vous prévenons.',

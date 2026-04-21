@@ -1444,11 +1444,6 @@ export const de: Translations = {
         answer: 'Sie können das Datum Ihrer Buchung kostenlos ändern, sofern Sie mindestens 7 Tage vorher Bescheid geben. Stornierungen sind nicht erstattungsfähig. Bei schlechtem Wetter bieten wir kostenlose Umbuchung an.',
       },
       {
-        id: 'donde-navegar',
-        question: 'Wo kann ich navigieren?',
-        answer: 'Boote ohne Führerschein: von Blanes bis zum Strand von Fenals im Norden und dem Ende des Strandes von Blanes im Süden, immer innerhalb von 2 Meilen zur Küste. Boote mit Führerschein: größerer Radius, bis Sant Feliu de Guixols und darüber hinaus.',
-      },
-      {
         id: 'mal-tiempo',
         question: 'Was passiert bei schlechtem Wetter?',
         answer: 'Wenn die Wetterbedingungen unsicher sind, bieten wir Ihnen eine kostenlose Terminänderung oder eine vollständige Rückerstattung an. Wir prüfen die Vorhersage 24h vorher und informieren Sie.',

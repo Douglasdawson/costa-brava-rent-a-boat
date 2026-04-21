@@ -1443,11 +1443,6 @@ export const nl: Translations = {
         answer: 'U kunt de datum van uw boeking gratis wijzigen met minimaal 7 dagen vooraf. Annuleringen worden niet terugbetaald. Bij slecht weer bieden wij gratis omboeken aan.',
       },
       {
-        id: 'donde-navegar',
-        question: 'Waar kan ik varen?',
-        answer: 'Boten zonder vaarbewijs: van Blanes tot het strand van Fenals in het noorden en het einde van het strand van Blanes in het zuiden, altijd binnen 2 mijl van de kust. Boten met vaarbewijs: groter bereik, tot Sant Feliu de Guixols en verder.',
-      },
-      {
         id: 'mal-tiempo',
         question: 'Wat gebeurt er bij slecht weer?',
         answer: 'Als de weersomstandigheden onveilig zijn, bieden we een gratis datumwijziging of volledige terugbetaling. We raadplegen de voorspelling 24u van tevoren en laten het je weten.',

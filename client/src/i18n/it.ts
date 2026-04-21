@@ -1444,11 +1444,6 @@ export const it: Translations = {
         answer: 'Puoi cambiare la data della prenotazione senza costi con almeno 7 giorni di preavviso. Le cancellazioni non sono rimborsabili. In caso di maltempo, offriamo riprogrammazione completa senza costi.',
       },
       {
-        id: 'donde-navegar',
-        question: 'Dove posso navigare?',
-        answer: 'Barche senza patente: da Blanes alla spiaggia di Fenals a nord e la fine della spiaggia di Blanes a sud, sempre entro 2 miglia dalla costa. Barche con patente: raggio più ampio, fino a Sant Feliu de Guixols e oltre.',
-      },
-      {
         id: 'mal-tiempo',
         question: 'Cosa succede se c\'è brutto tempo?',
         answer: 'Se le condizioni meteo non sono sicure, offriamo cambio data gratuito o rimborso completo. Controlliamo le previsioni 24h prima e ti avvisiamo.',

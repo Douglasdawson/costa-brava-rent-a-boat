@@ -1,0 +1,55 @@
+{
+  "competitor": "EricBoats Blanes",
+  "url": "https://ericboatsblanes.com/",
+  "snapshot_date": "2026-04-21",
+  "port": "Club de Vela Blanes",
+  "languages": ["es", "ca", "en", "fr"],
+  "fleet": {
+    "count": 12,
+    "models": [
+      "Cobra RIB 700 (7.4m)",
+      "Sportdeck 6.6",
+      "Cap Camarat 650 (6.5m)",
+      "Key Largo 22",
+      "Marsea CM100",
+      "Cap Camarat 5.5",
+      "Flyer 5.5",
+      "Voraz 500",
+      "Cobra 480",
+      "Voraz 475",
+      "Voraz 450",
+      "Remus 450"
+    ],
+    "motor_range_cv": [15, 250],
+    "capacity_range": [5, 8],
+    "license_and_no_license": true
+  },
+  "pricing": {
+    "homepage_listed": false,
+    "notes": "Solo por contacto directo — sin transparencia de precio"
+  },
+  "services": [
+    "Alquiler barcos Blanes y Lloret de Mar",
+    "Excursiones desde Blanes",
+    "Salidas de pesca",
+    "Con y sin licencia"
+  ],
+  "content_strategy": {
+    "blog_active": "mencionado pero sin artículos destacados",
+    "recent_posts": []
+  },
+  "strengths": [
+    "Flota amplia y variada (12 barcos, motores 15-250cv)",
+    "Cubre tanto Blanes como Lloret de Mar",
+    "4 idiomas incluyendo catalán",
+    "Salidas de pesca — nicho especializado"
+  ],
+  "weaknesses": [
+    "Sin precios públicos en web",
+    "Blog inactivo o sin contenido reciente",
+    "Sin USPs claros en homepage",
+    "Depende fuertemente de contacto telefónico"
+  ],
+  "changes_vs_previous": "Primer snapshot — no hay baseline",
+  "alert_level": "none"
+}

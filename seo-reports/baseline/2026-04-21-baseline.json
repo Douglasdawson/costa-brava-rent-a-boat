@@ -1,0 +1,72 @@
+{
+  "snapshotDate": "2026-04-21",
+  "source": {
+    "gsc": {
+      "from": "2026-03-12",
+      "to": "2026-04-09",
+      "file": "GSC-export.md"
+    },
+    "ga4": {
+      "file": "GA4-export.md",
+      "updated": "2026-04-12T19:11:54Z"
+    },
+    "webSearch": {
+      "queries": 7,
+      "engines": ["google.es", "google.com"],
+      "executedAt": "2026-04-21"
+    }
+  },
+  "northStar": {
+    "clicks28d": 89,
+    "impressions28d": 5178,
+    "ctrAvg": 0.0172,
+    "positionAvg": 12.3,
+    "top3Keywords": 3,
+    "top10Keywords": 8,
+    "sessionsOrganic7d": 25,
+    "organicUsers7d": 16,
+    "bookingStarted7d": 4,
+    "purchases7d": 0,
+    "bounceRate": 0.17,
+    "avgSessionDurationSec": 895
+  },
+  "heroKeywords": [
+    { "id": 1, "kw": "alquiler barcos Blanes", "lang": "es", "cluster": "Local-Blanes", "targetUrl": "/alquiler-barcos-blanes", "gscPos": 9.5, "serpObs": "9-11", "competitors": ["yumping.com", "bluesailcostabrava.com", "rentaboatblanes.com"] },
+    { "id": 2, "kw": "alquiler barco sin licencia Blanes", "lang": "es", "cluster": "Sin-licencia", "targetUrl": "/alquiler-barcos-sin-licencia-blanes", "gscPos": 5.4, "serpObs": "5-8", "competitors": ["rentaboatblanes.com", "ericboatsblanes.com", "samboat.com"] },
+    { "id": 3, "kw": "alquiler barco sin licencia Costa Brava", "lang": "es", "cluster": "Sin-licencia", "targetUrl": "/alquiler-barcos-sin-licencia-costa-brava", "gscPos": 14.8, "serpObs": "pag 2", "competitors": ["palamosboats.com", "navegaenbarco.com", "rentboatscostabrava.com"] },
+    { "id": 4, "kw": "boat rental Blanes", "lang": "en", "cluster": "Local-Blanes", "targetUrl": "/en/boat-rental-blanes", "gscPos": null, "serpObs": "5-10", "competitors": ["blanesboats.com", "samboat.com", "tripadvisor"] },
+    { "id": 5, "kw": "boat rental Costa Brava", "lang": "en", "cluster": "Costa-Brava", "targetUrl": "/en/boat-rental-costa-brava", "gscPos": 30.5, "serpObs": "pag 3", "competitors": ["boatsmediterrani.com", "samboat.com", "rentboatsestartit.com"] },
+    { "id": 6, "kw": "boat rental without license Spain", "lang": "en", "cluster": "Sin-licencia", "targetUrl": "/en/boat-rental-no-license-spain", "gscPos": 8.2, "serpObs": "8-12", "competitors": ["costabravaboats.com", "samboat.com", "checkyeti.com"] },
+    { "id": 7, "kw": "lloguer vaixells Blanes", "lang": "ca", "cluster": "Local-Blanes", "targetUrl": "/ca/lloguer-vaixells-blanes", "gscPos": 21.4, "serpObs": "pag 2-3", "competitors": ["rentaboatblanes.com", "renteolo.com"] },
+    { "id": 8, "kw": "location bateau Blanes", "lang": "fr", "cluster": "Local-Blanes", "targetUrl": "/fr/location-bateau-blanes", "gscPos": null, "serpObs": "5-10", "competitors": ["samboat.com", "rentaboatblanes.com", "ericboatsblanes.com"] },
+    { "id": 9, "kw": "Bootverleih Blanes", "lang": "de", "cluster": "Local-Blanes", "targetUrl": "/de/bootverleih-blanes", "gscPos": null, "serpObs": "8-15", "competitors": ["topboats.com", "checkyeti.com", "visittoo.com"] },
+    { "id": 10, "kw": "Barcelona boat rental day trip", "lang": "en", "cluster": "Barcelona", "targetUrl": "/en/boat-rental-day-trip-barcelona", "gscPos": null, "serpObs": ">30", "competitors": ["barcelonaboatrental.com", "getmyboat.com", "samboat.com"] },
+    { "id": 11, "kw": "alquiler barco Barcelona un dia", "lang": "es", "cluster": "Barcelona", "targetUrl": "/es/alquiler-barco-un-dia-barcelona", "gscPos": null, "serpObs": ">30", "competitors": ["barcelonaboatrental.com", "samboat.com"] },
+    { "id": 12, "kw": "excursion privada barco Costa Brava", "lang": "es", "cluster": "Excursiones", "targetUrl": "/es/excursion-privada-barco", "gscPos": null, "serpObs": ">20", "competitors": ["bluesailcostabrava.com", "catamaran-costabrava.com", "dofijetboats.com"] }
+  ],
+  "clusterSerpLandscape": {
+    "Local-Blanes": { "top5": ["yumping.com", "bluesailcostabrava.com", "costabravarentaboat.com/es/precios", "lifeboatcostabrava.com", "samboat.com"] },
+    "Costa-Brava": { "top5": ["palamosboats.com", "navegaenbarco.com", "rentboatscostabrava.com", "estartitrentaboat.com", "manawa.com"] },
+    "Sin-licencia": { "top5": ["en.costabravarentaboat.com", "samboat.com", "checkyeti.com", "costabravarentaboat.com/es/barcos-sin-licencia", "ericboatsblanes.com"] },
+    "Excursiones": { "top5": ["bluesailcostabrava.com (blog 2026)", "bluesailcostabrava.com hub", "catamaran-costabrava.com", "bluesailcostabrava.com FAQ", "costabravaexperiences.com"] },
+    "Barcelona": { "top5": ["barcelonaboatrental.com", "getmyboat.com", "samboat.com", "barcelonasailboats.com", "barcelonaboatrips.com"] }
+  },
+  "opportunitiesFromGsc": [
+    { "kw": "alquiler barco blanes", "pos": 10.9, "imp": 98, "clicks": 0, "action": "Mejorar landing + interlinking + schema LocalBusiness" },
+    { "kw": "alquilar barco costa brava", "pos": 12.2, "imp": 103, "clicks": 0, "action": "Reforzar /es/alquiler-barcos-costa-brava" },
+    { "kw": "alquiler barcos costa brava", "pos": 12.4, "imp": 113, "clicks": 0, "action": "Consolidar intent canonical" },
+    { "kw": "alquiler barco costa brava", "pos": 13.7, "imp": 222, "clicks": 2, "action": "Prioridad 1 — 222 imp, optimizar snippet" },
+    { "kw": "alquiler barco sin licencia costa brava", "pos": 14.8, "imp": 53, "clicks": 1, "action": "Landing dedicada" },
+    { "kw": "alquiler barco sin licencia lloret de mar", "pos": 7.5, "imp": 40, "clicks": 0, "action": "Top 10 sin clic — snippet" },
+    { "kw": "alquiler barco blanes sin licencia", "pos": 5.4, "imp": 32, "clicks": 0, "action": "Top 5 sin clic — revisar snippet" }
+  ],
+  "summary": {
+    "heroKeywordsTop10": 2,
+    "heroKeywordsWithoutPresence": 4,
+    "heroKeywordsNearTop10": 2,
+    "heroKeywordsPage2Plus": 4,
+    "greenfieldClusters": ["Barcelona"],
+    "dominantCompetitorContentMarketing": "bluesailcostabrava.com",
+    "dominantAggregators": ["samboat.com", "yumping.com", "checkyeti.com", "getmyboat.com"]
+  }
+}

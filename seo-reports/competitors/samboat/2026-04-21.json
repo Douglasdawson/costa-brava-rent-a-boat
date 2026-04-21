@@ -1,0 +1,47 @@
+{
+  "competitor": "SamBoat (Costa Brava landing)",
+  "url": "https://www.samboat.es/alquiler-barco/costa-brava",
+  "snapshot_date": "2026-04-21",
+  "type": "Agregador internacional",
+  "boats_listed": 451,
+  "boats_visible": 441,
+  "languages": ["es", "fr", "en-us", "en-gb", "de", "nl", "it", "cs", "sv", "pl"],
+  "pricing_ranges_eur": {
+    "motorboats_per_day": [120, 600],
+    "motorboats_per_week": [null, 2000],
+    "sailboats_per_day": [160, null],
+    "sailboats_per_week": [1010, 3000],
+    "catamarans_per_day": [290, null],
+    "catamarans_per_week": [null, 16000],
+    "luxury_yachts_per_day": [1000, null],
+    "luxury_yachts_per_week": [3000, 11000],
+    "no_license_per_day": [80, 120],
+    "extras": "captain/fuel: €100-300"
+  },
+  "seo": {
+    "h1": "Alquiler de barcos y alquiler de yates en Costa Brava, España",
+    "landing_type": "SEO page con regional copy y FAQs"
+  },
+  "promoted_categories": [
+    "Lanchas motoras",
+    "Veleros",
+    "Catamaranes",
+    "Neumáticas",
+    "Yates de lujo",
+    "Sin licencia"
+  ],
+  "strengths": [
+    "Volumen enorme de inventario (441 barcos)",
+    "9 idiomas — captura tráfico paneuropeo",
+    "Dominio de autoridad alto (link equity global)",
+    "Precios desde €80/día sin licencia compiten con nuestros precios"
+  ],
+  "weaknesses": [
+    "Experiencia genérica marketplace — sin patrón/servicio local",
+    "Sin narrativa local Blanes ni Ruta del Contrabando",
+    "Reviews dispersas por propietario individual",
+    "Peaje de comisión encarece al cliente final"
+  ],
+  "changes_vs_previous": "Primer snapshot — no hay baseline",
+  "alert_level": "none"
+}

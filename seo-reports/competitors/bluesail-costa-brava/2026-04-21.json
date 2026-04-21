@@ -1,0 +1,61 @@
+{
+  "competitor": "BlueSail Costa Brava",
+  "url": "https://bluesailcostabrava.com/",
+  "snapshot_date": "2026-04-21",
+  "port": "Blanes",
+  "years_in_business": "25+",
+  "languages": ["es", "en", "fr"],
+  "fleet": {
+    "private_boats_capacity": [11, 22, 25],
+    "catamarans_capacity": [80, 97, 115, 143],
+    "notes": "Flota grande, catamaranes de alta capacidad, eventos, campamentos náuticos"
+  },
+  "pricing": {
+    "homepage_listed": false,
+    "shared_catamaran_per_person_eur": 50,
+    "private_excursion_hours": 3,
+    "notes": "Precios solo en páginas de servicio individuales"
+  },
+  "services": [
+    "Alquiler privado con patrón",
+    "La Ruta del Contrabando (3h, excursión privada)",
+    "Catamarán privado y compartido",
+    "Party boats y eventos",
+    "Campamentos náuticos escolares",
+    "Transfer en barco"
+  ],
+  "content_strategy": {
+    "blog_active": true,
+    "blog_url": "https://bluesailcostabrava.com/alquiler-barcos/",
+    "recent_posts_detected_april_2026": [
+      "Los Fuegos de Blanes 2026",
+      "Excursión en barco desde Blanes: guía completa 2026",
+      "Qué hacer en la Costa Brava: guía definitiva 2026",
+      "Las mejores excursiones en barco en la Costa Brava (Blanes, Lloret y Tossa)",
+      "Qué hacer en Blanes: actividades en el mar imprescindibles",
+      "Cuánto cuesta una excursión en barco en la Costa Brava (precios reales 2026)",
+      "Excursión en barco Costa Brava: qué incluye y cuál elegir",
+      "Preguntas frecuentes sobre excursiones en barco en la Costa Brava",
+      "Qué hacer en Lloret de Mar: actividades diferentes en el mar"
+    ],
+    "content_pillars": [
+      "Guías 2026 por puerto (Blanes/Lloret/Tossa)",
+      "FAQ y precios transparentes",
+      "Eventos locales (Fuegos de Blanes)",
+      "Ruta del Contrabando (diferencial histórico)"
+    ]
+  },
+  "strengths": [
+    "Estrategia de contenido SEO muy agresiva con guías '2026'",
+    "Catamaranes grandes (grupos y eventos) — segmento que no cubrimos",
+    "Narrativa histórica de la Ruta del Contrabando",
+    "25+ años de autoridad local"
+  ],
+  "weaknesses": [
+    "Solo 3 idiomas (vs nuestros 8)",
+    "Sin precios visibles en homepage",
+    "Sin versión catalana, holandesa, alemana, italiana o rusa"
+  ],
+  "changes_vs_previous": "Primer snapshot — no hay baseline",
+  "alert_level": "none"
+}

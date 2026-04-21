@@ -1,0 +1,51 @@
+{
+  "competitor": "Rent a Boat Blanes",
+  "url": "https://www.rentaboatblanes.com/",
+  "snapshot_date": "2026-04-21",
+  "port": "Blanes",
+  "languages": ["es", "ca", "en", "fr"],
+  "fleet": {
+    "count": 5,
+    "models": [
+      "Estable 415 I (5 pax)",
+      "Estable 415 II (5 pax)",
+      "Estable 415 III (5 pax)",
+      "Marion 450 (5 pax)",
+      "Marion 500 (4+2 pax)"
+    ],
+    "all_license_free": true
+  },
+  "pricing": {
+    "starting_eur": 80,
+    "pricing_unit": "desde 80€ (5 pax, sin titulación)",
+    "fuel_included": true,
+    "granularity": "paquetes diarios/periodos, sin precio por hora visible"
+  },
+  "services": [
+    "Alquiler barcos sin licencia",
+    "Asistencia selección de embarcación",
+    "Acceso a calas doradas ocultas",
+    "Costeo litoral",
+    "Salidas familia/grupos"
+  ],
+  "content_strategy": {
+    "blog_active": false,
+    "recent_posts": [],
+    "seo_focus": "Landing única fuerte en 'alquiler barcos Blanes' + 'sin licencia'"
+  },
+  "strengths": [
+    "Catalán como idioma — captura búsquedas locales catalanas",
+    "Gasolina incluida en todos los paquetes (diferencial claro)",
+    "WhatsApp 24/7 activo",
+    "Mensaje 'mejor precio' simple y directo"
+  ],
+  "weaknesses": [
+    "Flota muy limitada (solo 5 barcos, todos sin licencia)",
+    "Sin opción con licencia",
+    "Sin excursiones privadas ni productos premium",
+    "Sin blog/content marketing",
+    "Precios poco transparentes (sin desglose horario)"
+  ],
+  "changes_vs_previous": "Primer snapshot — no hay baseline",
+  "alert_level": "none"
+}

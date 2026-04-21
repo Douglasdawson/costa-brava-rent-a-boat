@@ -1,0 +1,58 @@
+{
+  "competitor": "Costa Brava Boats",
+  "url": "https://costabravaboats.com/",
+  "snapshot_date": "2026-04-21",
+  "ports": ["L'Estartit", "Begur", "Palamós"],
+  "languages": ["es", "en", "fr"],
+  "fleet": {
+    "count": 25,
+    "categories": [
+      "Barcos con licencia PNB",
+      "Barcos sin licencia",
+      "Capacidad 4-10 pax"
+    ]
+  },
+  "pricing_eur": {
+    "MV_MARINE_gt27_half_day_low": 560,
+    "BENETEAU_Flyer_9_day_may": 700,
+    "MARINELLO_16_half_day_may": 137,
+    "fuel_included": false,
+    "insurance": "todo riesgo con franquicia incluida"
+  },
+  "content_strategy": {
+    "blog_active": true,
+    "posts_detected": [
+      "Paseo marítimo de Palamós",
+      "Mejores campings cerca de Palamós",
+      "Bautismos de buceo en Estartit",
+      "Alquiler sin licencia en Palamós",
+      "Alquiler sin licencia Costa Brava"
+    ],
+    "seo_landings": [
+      "Begur",
+      "Palamós",
+      "L'Estartit",
+      "Aiguablava",
+      "Aiguafreda",
+      "Llafranc",
+      "Palafrugell",
+      "Calella de Palafrugell",
+      "Por longitud (5-12 metros)"
+    ]
+  },
+  "strengths": [
+    "Cubre el Norte (Begur/Estartit/Palamós) — complementa a los de Blanes",
+    "Múltiples landing pages por cala y por tamaño de barco",
+    "Flota grande (25 barcos) en dos categorías",
+    "Content marketing activo (campings, buceo, paseos)"
+  ],
+  "weaknesses": [
+    "Fuel NO incluido (nosotros incluimos en sin licencia)",
+    "Sin cobertura de Blanes/Lloret/Tossa (nuestro core)",
+    "3 idiomas solamente",
+    "Precios altos en segmento medio (560€ medio día)"
+  ],
+  "opportunity_for_us": "Replicar su estrategia de landing por cala + por longitud aplicada a Blanes/Lloret/Tossa",
+  "changes_vs_previous": "Primer snapshot — no hay baseline",
+  "alert_level": "none"
+}

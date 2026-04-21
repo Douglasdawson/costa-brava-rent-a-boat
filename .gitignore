@@ -16,3 +16,6 @@ vite.config.ts.*
 
 # Claude Code config (local)
 .claude/
+
+# LibreOffice / OpenOffice lockfiles
+.~lock.*#

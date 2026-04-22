@@ -29,6 +29,13 @@ export interface PageSEOConfig {
   [key: string]: SEOConfig;
 }
 
+// Map 2-letter language code → BCP-47 locale tag for schema inLanguage fields.
+// Same mapping as client/src/pages/blog.tsx LOCALE_MAP.
+const LOCALE_MAP: Record<string, string> = {
+  es: "es-ES", en: "en-GB", ca: "ca-ES", fr: "fr-FR",
+  de: "de-DE", nl: "nl-NL", it: "it-IT", ru: "ru-RU",
+};
+
 // Business information for JSON-LD schemas
 export const BUSINESS_INFO = {
   name: "Costa Brava Rent a Boat Blanes",
@@ -1460,6 +1467,7 @@ export function generateLocalBusinessSchema(language: Language = 'es', rating?: 
     "legalName": BUSINESS_INFO.legalName,
     "description": BUSINESS_INFO.description,
     "url": baseUrl,
+    "inLanguage": LOCALE_MAP[language] ?? "es-ES",
     "telephone": BUSINESS_INFO.phone,
     "email": BUSINESS_INFO.email,
     "priceRange": BUSINESS_INFO.priceRange,
@@ -1618,7 +1626,16 @@ export function generateLocalBusinessSchema(language: Language = 'es', rating?: 
       "https://www.instagram.com/costabravarentaboat/",
       "https://www.facebook.com/costabravarentaboat",
       "https://www.tiktok.com/@costabravarentaboat",
-    ]
+    ],
+    "hasMerchantReturnPolicy": {
+      "@type": "MerchantReturnPolicy",
+      "@id": "https://www.costabravarentaboat.com/#return-policy",
+      "applicableCountry": "ES",
+      "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted",
+      "refundType": "https://schema.org/NoReturnRefund",
+      "additionalType": "https://www.costabravarentaboat.com/terms-conditions",
+      "description": "Las cancelaciones no son reembolsables. Se admite cambio de fecha gratuito con un mínimo de 7 días de antelación sujeto a disponibilidad. En caso de mal tiempo ofrecemos reprogramación completa sin coste. / Cancellations are non-refundable. Date change is free with at least 7 days' notice subject to availability. In case of bad weather we offer full free rescheduling."
+    }
   };
 
   // Add aggregate rating if provided
@@ -1645,6 +1662,7 @@ export function generateServiceSchema(language: Language = 'es') {
     "@id": `${baseUrl}/#service`,
     "name": "Alquiler de Barcos en Costa Brava",
     "description": "Servicio de alquiler de embarcaciones sin licencia y con licencia en Blanes, Costa Brava. Desde 1 hora hasta jornada completa.",
+    "inLanguage": LOCALE_MAP[language] ?? "es-ES",
     "provider": {
       "@type": "LocalBusiness",
       "@id": `${baseUrl}/#organization`

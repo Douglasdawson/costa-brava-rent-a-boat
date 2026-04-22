@@ -1903,6 +1903,15 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
           "https://maps.app.goo.gl/NHV4PcaFPmwBYqCt5",
           "https://en.wikipedia.org/wiki/Blanes",
         ],
+        hasMerchantReturnPolicy: {
+          "@type": "MerchantReturnPolicy",
+          "@id": "https://www.costabravarentaboat.com/#return-policy",
+          applicableCountry: "ES",
+          returnPolicyCategory: "https://schema.org/MerchantReturnNotPermitted",
+          refundType: "https://schema.org/NoReturnRefund",
+          additionalType: "https://www.costabravarentaboat.com/terms-conditions",
+          description: "Las cancelaciones no son reembolsables. Cambio de fecha gratuito con un mínimo de 7 días de antelación sujeto a disponibilidad. En caso de mal tiempo ofrecemos reprogramación completa sin coste.",
+        },
         speakable: {
           "@type": "SpeakableSpecification",
           cssSelector: [

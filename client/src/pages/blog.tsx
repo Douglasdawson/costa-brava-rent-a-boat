@@ -269,6 +269,29 @@ function BlogPage() {
     queryKey: ['/api/blog']
   });
 
+  // ItemList schema — makes the index discoverable as a structured list of
+  // BlogPosting items (position + url + headline). GEO benefit: answer engines
+  // can enumerate posts by topic when the page carries this graph.
+  const origin = canonical.replace(/\/(?:es|en|ca|fr|de|nl|it|ru)\/blog.*$/, "");
+  const itemListSchema = posts && posts.length > 0 ? {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "@id": `${canonical}#itemlist`,
+    "itemListOrder": "https://schema.org/ItemListOrderDescending",
+    "numberOfItems": posts.length,
+    "itemListElement": posts.slice(0, 20).map((p, i) => ({
+      "@type": "ListItem",
+      "position": i + 1,
+      "url": `${origin}/${language}/blog/${p.slug}`,
+      "name": localized(p.titleByLang as Record<string, string> | null, p.title, language),
+      "datePublished": p.publishedAt ?? p.createdAt ?? undefined,
+    })),
+  } : null;
+
+  const combinedJsonLd = itemListSchema
+    ? { "@context": "https://schema.org", "@graph": [breadcrumbSchema, itemListSchema] }
+    : breadcrumbSchema;
+
   // Get unique categories (normalized to avoid duplicates like "Guias" vs "Guías")
   const categories = posts
     ? Array.from(new Set(posts.map(p => normalizeCategory(p.category))))
@@ -332,7 +355,7 @@ function BlogPage() {
   if (isLoading) {
     return (
       <main id="main-content" className="min-h-screen bg-muted/30">
-        <SEO title={seoConfig.title} description={seoConfig.description} ogImage={seoConfig.image} canonical={canonical} hreflang={hreflangLinks} jsonLd={breadcrumbSchema} robots={['ca', 'it', 'ru'].includes(language) ? 'noindex, follow' : undefined} />
+        <SEO title={seoConfig.title} description={seoConfig.description} ogImage={seoConfig.image} canonical={canonical} hreflang={hreflangLinks} jsonLd={combinedJsonLd} robots={['ca', 'it', 'ru'].includes(language) ? 'noindex, follow' : undefined} />
         <Navigation />
         {/* Skeleton header */}
         <div className="container mx-auto px-4 pt-20 sm:pt-24 pb-8 md:pb-12">
@@ -379,7 +402,7 @@ function BlogPage() {
   if (isError) {
     return (
       <main id="main-content" className="min-h-screen bg-background">
-        <SEO title={seoConfig.title} description={seoConfig.description} ogImage={seoConfig.image} canonical={canonical} hreflang={hreflangLinks} jsonLd={breadcrumbSchema} robots={['ca', 'it', 'ru'].includes(language) ? 'noindex, follow' : undefined} />
+        <SEO title={seoConfig.title} description={seoConfig.description} ogImage={seoConfig.image} canonical={canonical} hreflang={hreflangLinks} jsonLd={combinedJsonLd} robots={['ca', 'it', 'ru'].includes(language) ? 'noindex, follow' : undefined} />
         <Navigation />
         <div className="flex flex-col items-center justify-center min-h-[60vh] px-4">
           <div className="text-center max-w-md">
@@ -397,7 +420,7 @@ function BlogPage() {
 
   return (
     <main id="main-content" className="min-h-screen bg-muted/30">
-      <SEO title={seoConfig.title} description={seoConfig.description} ogImage={seoConfig.image} canonical={canonical} hreflang={hreflangLinks} jsonLd={breadcrumbSchema} robots={['ca', 'it', 'ru'].includes(language) ? 'noindex, follow' : undefined} />
+      <SEO title={seoConfig.title} description={seoConfig.description} ogImage={seoConfig.image} canonical={canonical} hreflang={hreflangLinks} jsonLd={combinedJsonLd} robots={['ca', 'it', 'ru'].includes(language) ? 'noindex, follow' : undefined} />
       <Navigation />
 
       {/* Header — editorial style, no gradient hero */}

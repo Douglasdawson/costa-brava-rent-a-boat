@@ -4,6 +4,7 @@ import { AlertCircle, Anchor, HelpCircle, Phone } from "lucide-react";
 import { Link } from "wouter";
 import { useTranslations } from "@/lib/translations";
 import { useLanguage } from "@/hooks/use-language";
+import { trackPhoneClick } from "@/utils/analytics";
 
 export default function NotFound() {
   const t = useTranslations();
@@ -36,7 +37,7 @@ export default function NotFound() {
               </Link>
             </Button>
             <Button asChild variant="ghost" className="w-full">
-              <a href="tel:+34611500372">
+              <a href="tel:+34611500372" onClick={() => trackPhoneClick()}>
                 <Phone className="w-4 h-4 mr-2" />
                 +34 611 500 372
               </a>

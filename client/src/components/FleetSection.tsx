@@ -15,7 +15,7 @@ import { SiWhatsapp } from "@/components/icons/BrandIcons";
 import { Phone, Users, CheckCircle, ChevronDown, Anchor, LayoutGrid, TableProperties, Star } from "lucide-react";
 import { useBookingModal } from "@/hooks/bookingModalContext";
 import { getBoatAverageRating } from "@/data/boatRatings";
-import { trackViewItemList, trackBoatClickedFromFleet } from "@/utils/analytics";
+import { trackViewItemList, trackBoatClickedFromFleet, trackPhoneClick } from "@/utils/analytics";
 import {
   Table,
   TableBody,
@@ -803,7 +803,7 @@ function FleetSection() {
               className="border border-border text-foreground hover:border-foreground/30 px-5 py-3 rounded-full font-medium flex items-center justify-center transition-colors text-sm lg:text-base min-h-11"
               data-testid="button-call-help"
               aria-label={`${t.a11y.callPhone} +34 611 500 372`}
-              onClick={() => window.open("tel:+34611500372", "_self")}
+              onClick={() => { trackPhoneClick(); window.open("tel:+34611500372", "_self"); }}
             >
               <Phone className="w-4 h-4 sm:w-5 sm:h-5" />
               <span className="ml-1">{t.fleet.callButton}</span>

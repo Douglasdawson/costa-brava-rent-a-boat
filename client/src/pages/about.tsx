@@ -22,6 +22,7 @@ import { generateBreadcrumbSchema } from "@/utils/seo-config";
 import { useLanguage, type Language } from "@/hooks/use-language";
 import { useTranslations } from "@/lib/translations";
 import { openWhatsApp, createBookingMessage } from "@/utils/whatsapp";
+import { trackPhoneClick } from "@/utils/analytics";
 import {
   BUSINESS_RATING_STR,
   BUSINESS_REVIEW_COUNT_STR,
@@ -885,7 +886,7 @@ export default function AboutPage() {
                     <Phone className="w-5 h-5 text-primary flex-shrink-0" />
                     <div>
                       <p className="text-sm text-muted-foreground">WhatsApp / Tel</p>
-                      <a href="tel:+34611500372" className="font-medium text-foreground hover:text-primary transition-colors">
+                      <a href="tel:+34611500372" onClick={() => trackPhoneClick()} className="font-medium text-foreground hover:text-primary transition-colors">
                         +34 611 500 372
                       </a>
                     </div>

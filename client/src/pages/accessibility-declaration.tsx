@@ -3,6 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { SEO } from "@/components/SEO";
+import { trackPhoneClick } from "@/utils/analytics";
 
 export default function AccessibilityDeclarationPage() {
   return (
@@ -135,7 +136,7 @@ export default function AccessibilityDeclarationPage() {
                 </li>
                 <li>
                   <strong>Teléfono:</strong>{" "}
-                  <a href="tel:+34611500372" className="text-primary underline">
+                  <a href="tel:+34611500372" onClick={() => trackPhoneClick()} className="text-primary underline">
                     +34 611 500 372
                   </a>
                 </li>

@@ -31,6 +31,7 @@ export const ROUTE_SLUGS = {
   // Content pages
   blog: { es: "blog", en: "blog", fr: "blog", de: "blog", nl: "blog", it: "blog", ca: "blog", ru: "blog" },
   faq: { es: "faq", en: "faq", fr: "faq", de: "faq", nl: "faq", it: "faq", ca: "faq", ru: "faq" },
+  glossary: { es: "glosario", en: "glossary", fr: "glossaire", de: "glossar", nl: "woordenlijst", it: "glossario", ca: "glossari", ru: "glossariy" },
   gallery: { es: "galeria", en: "gallery", fr: "galerie", de: "galerie", nl: "galerij", it: "galleria", ca: "galeria", ru: "galereya" },
   routes: { es: "rutas", en: "routes", fr: "itineraires", de: "routen", nl: "routes", it: "itinerari", ca: "rutes", ru: "marshruty" },
   pricing: { es: "precios", en: "prices", fr: "tarifs", de: "preise", nl: "prijzen", it: "prezzi", ca: "preus", ru: "tseny" },

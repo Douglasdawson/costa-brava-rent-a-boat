@@ -36,6 +36,7 @@ const CRMDashboard = lazy(() => import("./components/CRMDashboard"));
 const BoatDetailPage = lazy(() => import("./components/BoatDetailPage"));
 const CondicionesGenerales = lazy(() => import("./components/CondicionesGenerales"));
 const FAQPage = lazy(() => import("@/pages/faq"));
+const GlosarioPage = lazy(() => import("@/pages/glosario"));
 const PrivacyPolicyPage = lazy(() => import("@/pages/privacy-policy"));
 const TermsConditionsPage = lazy(() => import("@/pages/terms-conditions"));
 const CookiesPolicyPage = lazy(() => import("@/pages/cookies-policy"));
@@ -319,6 +320,7 @@ const PAGE_COMPONENTS: Record<string, React.LazyExoticComponent<any> | React.Com
   categoryLicensed: CategoryLicensedPage,
   blog: BlogPage,
   faq: FAQPage,
+  glossary: GlosarioPage,
   gallery: GalleryPage,
   routes: RoutesPage,
   destinations: RoutesPage,

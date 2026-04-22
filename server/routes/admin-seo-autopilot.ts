@@ -256,6 +256,18 @@ export function registerAdminSeoAutopilotRoutes(app: Express): void {
     }
   });
 
+  app.post("/api/admin/autopilot/collect/ga4-conversion-events", requireAdminSession, async (req: Request, res: Response) => {
+    try {
+      const daysBack = Number(req.body?.daysBack) || 7;
+      const { collectGa4ConversionEvents } = await import("../seo/collectors/ga4ConversionEvents");
+      const result = await collectGa4ConversionEvents({ daysBack });
+      res.json({ ok: true, ...result });
+    } catch (err) {
+      logger.error("[Admin:WarRoom] GA4 conversion events ETL failed", { err: err instanceof Error ? err.message : String(err) });
+      res.status(500).json({ message: "Error ejecutando ETL de GA4 conversion events", error: err instanceof Error ? err.message : String(err) });
+    }
+  });
+
   app.post("/api/admin/autopilot/collect/psi", requireAdminSession, async (_req: Request, res: Response) => {
     try {
       const { collectPsi } = await import("../seo/collectors/psi");

@@ -26,6 +26,7 @@ import {
   AnalyticsTab,
   SeoTab,
   AutopilotTab,
+  CompetitionTab,
   BookingDetailsModal,
   getStatusLabel,
 } from "./crm";
@@ -414,6 +415,11 @@ export default function CRMDashboard({ adminToken }: CRMDashboardProps) {
         {/* SEO Autopilot Tab */}
         {selectedTab === "autopilot" && (
           <AutopilotTab adminToken={adminToken} />
+        )}
+
+        {/* Competition Tab */}
+        {selectedTab === "competition" && (
+          <CompetitionTab />
         )}
 
         {/* Gallery Tab */}

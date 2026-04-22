@@ -27,6 +27,7 @@ import {
   FileText,
   MoreHorizontal,
   Search,
+  Swords,
 } from "lucide-react";
 
 interface AdminLayoutProps {
@@ -64,6 +65,7 @@ const ADMIN_TABS = [
   { id: "discounts", label: "Descuentos", icon: Percent },
   { id: "seo", label: "SEO Engine", icon: Search },
   { id: "autopilot", label: "Autopilot", icon: Zap },
+  { id: "competition", label: "Competencia", icon: Swords },
 ];
 
 const OWNER_TABS = [

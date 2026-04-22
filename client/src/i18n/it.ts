@@ -227,6 +227,8 @@ export const it: Translations = {
     destinations: 'Destinazioni',
     gallery: 'Galleria',
     accessibility: 'Accessibilità',
+    independentOperator: 'Operatore indipendente · Porto di Blanes',
+    nameDifferentiator: 'Costa Brava Rent a Boat è un\'azienda indipendente. Da non confondere con altri operatori dal nome simile.',
   },
   booking: {
     title: 'RICHIEDI LA TUA PRENOTAZIONE',

@@ -227,6 +227,8 @@ export const nl: Translations = {
     destinations: 'Bestemmingen',
     gallery: 'Galerij',
     accessibility: 'Toegankelijkheid',
+    independentOperator: 'Eigen exploitatie · Haven van Blanes',
+    nameDifferentiator: 'Costa Brava Rent a Boat is een onafhankelijk bedrijf. Niet te verwarren met andere aanbieders met een vergelijkbare naam.',
   },
   booking: {
     title: 'VRAAG JE RESERVERING AAN',

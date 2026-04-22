@@ -240,8 +240,10 @@ export interface Translations {
     destinations: string;
     gallery: string;
     accessibility: string;
+    independentOperator: string;
+    nameDifferentiator: string;
   };
-  
+
   // Booking Flow
   booking: {
     title: string;

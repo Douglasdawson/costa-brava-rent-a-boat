@@ -1508,6 +1508,29 @@ function buildAggregateRating(): object {
   };
 }
 
+// Build individual Review[] schemas from the 5 most recent reviews cached in
+// business_stats. Each is a Review with author Person, reviewRating Rating,
+// reviewBody, datePublished. AI crawlers cite these individually as
+// authoritative first-party content (vs generic "we have 4.8 stars").
+// Returns undefined when no reviews are cached (prevents empty review key).
+function buildReviews(): object[] | undefined {
+  const stats = getCurrentStats();
+  if (!stats.reviews || stats.reviews.length === 0) return undefined;
+  return stats.reviews.slice(0, 5).map((r) => ({
+    "@type": "Review",
+    author: { "@type": "Person", name: r.author || "Google user" },
+    reviewRating: {
+      "@type": "Rating",
+      ratingValue: String(r.rating),
+      bestRating: "5",
+      worstRating: "1",
+    },
+    reviewBody: r.text,
+    ...(r.publishTime ? { datePublished: r.publishTime } : {}),
+    publisher: { "@type": "Organization", name: "Google Maps" },
+  }));
+}
+
 // Geographic hierarchy for location schemas (aggressive entity stacking)
 const GEO_HIERARCHY = {
   "@type": "Place",
@@ -1888,13 +1911,33 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
         paymentAccepted: ["Cash", "Credit Card", "Debit Card"],
         currenciesAccepted: "EUR",
         aggregateRating,
+        ...(buildReviews() ? { review: buildReviews() } : {}),
         image: `${BASE_URL}/og-image.jpg`,
         logo: `${BASE_URL}/og-image.jpg`,
+        // Knowledge graph signal — entities this business has expertise on.
+        // AI agents use knowsAbout to route topical queries to authoritative
+        // sources. More entities = wider topical authority fingerprint.
         knowsAbout: [
-          "Costa Brava", "Blanes", "Boat Rental", "Boat Navigation",
-          "Maritime Safety", "License-Free Boating", "Lloret de Mar",
-          "Tossa de Mar", "Mediterranean Sea", "Nautical Tourism",
-          "Costa Brava Coves", "Water Sports"
+          // Destinos geográficos
+          "Costa Brava", "Blanes", "Lloret de Mar", "Tossa de Mar",
+          "Sant Feliu de Guíxols", "Playa de Fenals", "Port de Blanes",
+          "Maresme", "Costa Brava Sur",
+          // Calas específicas
+          "Sa Palomera", "Sa Forcanera", "Cala Sant Francesc", "Cala de s'Agulla",
+          "Cala Treumal", "Platja de Santa Cristina", "Cala Sa Boadella",
+          "Cala Bona", "Cala Canyelles",
+          // Terminología y regulación náutica
+          "Licencia Básica de Navegación (LBN)", "PER (Patrón de Embarcaciones de Recreo)",
+          "PNB (Patrón de Navegación Básica)", "Límite 2 millas náuticas",
+          "Navegación a 5 nudos", "Matrícula lista 6ª", "Título náutico",
+          // Actividades / servicios
+          "Alquiler de barcos sin licencia", "Alquiler de barcos con licencia",
+          "Excursión privada con capitán", "Snorkel Costa Brava",
+          "Pesca recreativa marítima", "Fondeo en calas",
+          "Tarifas estacionales náuticas", "Seguro embarcaciones ocupantes",
+          // Ecosistema marino y turismo
+          "Mediterranean Sea", "Nautical Tourism", "Water Sports",
+          "Maritime Safety", "Cabo de Santa Anna", "Botánico Marimurtra",
         ],
         sameAs: [
           "https://www.instagram.com/costabravarentaboat/",

@@ -17,12 +17,21 @@ import {
   BUSINESS_DISPLAY_NAME,
 } from "../../shared/businessProfile";
 
+export interface CachedReview {
+  rating: number;
+  text: string;
+  author: string;
+  publishTime: string | null;
+  relativeTime?: string | null;
+}
+
 interface CachedStats {
   rating: number;
   userRatingCount: number;
   displayName: string;
   lastSyncedAt: Date | null;
   isFallback: boolean;
+  reviews: CachedReview[];
 }
 
 const FALLBACK: CachedStats = {
@@ -31,6 +40,7 @@ const FALLBACK: CachedStats = {
   displayName: BUSINESS_DISPLAY_NAME,
   lastSyncedAt: null,
   isFallback: true,
+  reviews: [],
 };
 
 let cached: CachedStats = FALLBACK;
@@ -41,12 +51,18 @@ async function loadFromDb(): Promise<void> {
   try {
     const row = await storage.getBusinessStats();
     if (row) {
+      const reviews = Array.isArray(row.recentReviews)
+        ? (row.recentReviews as CachedReview[]).filter(
+            (r) => r && typeof r.rating === "number" && typeof r.text === "string" && r.text.length > 0,
+          )
+        : [];
       cached = {
         rating: row.rating,
         userRatingCount: row.userRatingCount,
         displayName: row.displayName ?? FALLBACK.displayName,
         lastSyncedAt: row.lastSyncedAt,
         isFallback: false,
+        reviews,
       };
       logger.info("[businessStatsCache] Loaded", {
         rating: cached.rating,

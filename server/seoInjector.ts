@@ -36,7 +36,10 @@ interface SEOMeta {
   ogTitle?: string;
   ogDescription?: string;
   ogImage?: string;
+  ogImageAlt?: string;
   ogType?: string;
+  twitterTitle?: string;
+  twitterDescription?: string;
   articleMeta?: {
     publishedTime?: string;
     modifiedTime?: string;
@@ -45,6 +48,19 @@ interface SEOMeta {
     tags?: string[];
   };
 }
+
+// Default og:image:alt per language, used when a resolver doesn't provide a
+// page-specific alt. Matches the generic brand image in client/index.html.
+const DEFAULT_OG_IMAGE_ALT: Record<LangCode, string> = {
+  es: "Costa Brava Rent a Boat - Alquiler de barcos en Puerto de Blanes",
+  en: "Costa Brava Rent a Boat - Boat rental at Blanes Port",
+  ca: "Costa Brava Rent a Boat - Lloguer de vaixells al Port de Blanes",
+  fr: "Costa Brava Rent a Boat - Location de bateaux au Port de Blanes",
+  de: "Costa Brava Rent a Boat - Bootsverleih im Hafen von Blanes",
+  nl: "Costa Brava Rent a Boat - Botenverhuur in de haven van Blanes",
+  it: "Costa Brava Rent a Boat - Noleggio barche al Porto di Blanes",
+  ru: "Costa Brava Rent a Boat - Аренда лодок в порту Бланес",
+};
 
 
 // Escape special HTML attribute characters
@@ -1329,6 +1345,9 @@ function injectMeta(
   const desc = esc(meta.description);
   const ogTitle = esc(meta.ogTitle || meta.title);
   const ogDesc = esc(meta.ogDescription || meta.description);
+  const twitterTitle = esc(meta.twitterTitle || meta.ogTitle || meta.title);
+  const twitterDesc = esc(meta.twitterDescription || meta.ogDescription || meta.description);
+  const ogImageAlt = esc(meta.ogImageAlt || DEFAULT_OG_IMAGE_ALT[lang] || DEFAULT_OG_IMAGE_ALT.es);
   const effectiveCanonical = canonicalOverride || canonicalUrl;
 
   let result = html;
@@ -1356,6 +1375,14 @@ function injectMeta(
   result = result.replace(/<meta property="og:description" content="[^"]*">/, `<meta property="og:description" content="${ogDesc}">`);
   result = result.replace(/<meta property="og:url" content="[^"]*">/, `<meta property="og:url" content="${esc(BASE_URL + effectiveCanonical)}">`);
   result = result.replace(/<link rel="canonical" href="[^"]*">/, `<link rel="canonical" href="${esc(BASE_URL + effectiveCanonical)}">`);
+
+  // Twitter card + og:image:alt were hardcoded Spanish in client/index.html
+  // until 2026-04-22; they are now rewritten per-language so shared previews
+  // match the page locale.
+  result = result.replace(/<meta property="og:image:alt" content="[^"]*">/, `<meta property="og:image:alt" content="${ogImageAlt}">`);
+  result = result.replace(/<meta name="twitter:title" content="[^"]*">/, `<meta name="twitter:title" content="${twitterTitle}">`);
+  result = result.replace(/<meta name="twitter:description" content="[^"]*">/, `<meta name="twitter:description" content="${twitterDesc}">`);
+  result = result.replace(/<meta name="twitter:image:alt" content="[^"]*">/, `<meta name="twitter:image:alt" content="${ogImageAlt}">`);
 
   // When noindex is requested (non-ES non-home routes without real translation),
   // override the default robots meta to noindex,follow so crawlers respect the
@@ -2837,12 +2864,27 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
         };
         const r = rentLabels[lang] || rentLabels.es;
         const exc = excursionMeta[lang] || excursionMeta.es;
+        // Per-language og:image:alt for social sharing. Using the translated
+        // verb + boat name keeps the alt consistent with the title and avoids
+        // Spanish leaking into FB/WhatsApp/Twitter previews of /en/, /fr/, etc.
+        const ogImageAltByLang: Record<string, string> = {
+          es: `${boat.name} - Alquiler de barcos en Puerto de Blanes, Costa Brava`,
+          en: `${boat.name} - Boat rental at Blanes Port, Costa Brava`,
+          ca: `${boat.name} - Lloguer de vaixells al Port de Blanes, Costa Brava`,
+          fr: `${boat.name} - Location de bateaux au Port de Blanes, Costa Brava`,
+          de: `${boat.name} - Bootsverleih im Hafen von Blanes, Costa Brava`,
+          nl: `${boat.name} - Botenverhuur in de haven van Blanes, Costa Brava`,
+          it: `${boat.name} - Noleggio barche al Porto di Blanes, Costa Brava`,
+          ru: `${boat.name} - Аренда лодок в порту Бланес, Коста-Брава`,
+        };
+        const boatOgImageAlt = ogImageAltByLang[lang] || ogImageAltByLang.es;
         const meta: SEOMeta = isExcursion
-          ? { title: exc.title, description: exc.description, ogImage: boatOgImage, ogType: "product" }
+          ? { title: exc.title, description: exc.description, ogImage: boatOgImage, ogImageAlt: boatOgImageAlt, ogType: "product" }
           : {
               title: `${r.verb} ${boat.name} ${r.prep} Blanes (${licenseText}) | Costa Brava${priceStr}`,
               description: `${r.bookVerb} ${boat.name} ${r.prep} Blanes, Costa Brava. ${r.upTo} ${boat.capacity} ${r.people}, ${licenseText}. WhatsApp.`,
               ogImage: boatOgImage,
+              ogImageAlt: boatOgImageAlt,
               ogType: "product",
             };
         // Build Product schema with AggregateRating + Reviews for star snippets
@@ -2863,7 +2905,12 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
         const lcpPreload: LcpPreload | undefined = heroHref
           ? { href: heroHref, imageType: "image/webp" }
           : undefined;
-        return { meta, jsonLd, lcpPreload };
+        // hasTranslation: true — boat detail meta (title/description/ogImageAlt)
+        // is fully generated per-language above via rentLabels/excursionMeta, so
+        // non-ES URLs should be indexable and self-canonical, not redirected to
+        // the ES equivalent. Prior default (hasTranslation: false) caused Google
+        // to see noindex + canonical→/es/barco/... on every non-Spanish boat URL.
+        return { meta, jsonLd, lcpPreload, hasTranslation: true };
       }
     } catch {
       // fall through

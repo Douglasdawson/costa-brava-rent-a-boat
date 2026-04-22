@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Handoff Cowork · Prompts Listos · Fase 1</title>
+<style>
+  :root {
+    --bg-primary: #0a0d14;
+    --bg-elevated: #0f131c;
+    --bg-surface: #161b28;
+    --bg-hover: #1e2536;
+    --border: rgba(255,255,255,0.08);
+    --text-primary: #ffffff;
+    --text-secondary: rgba(255,255,255,0.72);
+    --text-muted: rgba(255,255,255,0.48);
+    --accent: #A8C4DD;
+    --navy: #1a2a42;
+    --you-win: #10b981;
+    --they-win: #ef4444;
+    --tie: #f59e0b;
+    --code-bg: #0a0e17;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.55;
+  }
+  .container { max-width: 1100px; margin: 0 auto; padding: 32px 24px; }
+
+  header.top {
+    background: linear-gradient(135deg, var(--navy) 0%, #0c1520 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 40px 24px 32px;
+  }
+  header.top .inner { max-width: 1100px; margin: 0 auto; }
+  header.top h1 { font-size: 30px; font-weight: 700; margin-bottom: 8px; }
+  header.top h1 .accent { color: var(--accent); }
+  header.top p { color: var(--text-secondary); font-size: 15px; max-width: 800px; }
+
+  nav.tabs {
+    position: sticky;
+    top: 0;
+    background: rgba(10,13,20,0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+    z-index: 10;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+  nav.tabs .tabs-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    gap: 4px;
+    padding: 12px 16px;
+  }
+  nav.tabs button.tab {
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 14px;
+    font-weight: 500;
+    padding: 10px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 150ms ease;
+    font-family: inherit;
+  }
+  nav.tabs button.tab:hover { background: var(--bg-hover); color: var(--text-primary); }
+  nav.tabs button.tab.active { background: var(--accent); color: var(--navy); font-weight: 600; }
+
+  .tab-content { display: none; animation: fadeIn 200ms ease; }
+  .tab-content.active { display: block; }
+  @keyframes fadeIn { from {opacity:0; transform:translateY(4px);} to {opacity:1; transform:none;} }
+
+  h2 { font-size: 22px; font-weight: 700; margin-bottom: 16px; }
+  h3 { font-size: 16px; font-weight: 600; margin-bottom: 10px; margin-top: 24px; color: var(--accent); }
+  p { color: var(--text-secondary); margin-bottom: 12px; font-size: 14px; }
+
+  .section { margin-bottom: 32px; }
+
+  .prompt-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 24px;
+  }
+  .prompt-header {
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg-elevated);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .prompt-header .title { font-size: 16px; font-weight: 600; color: var(--text-primary); }
+  .prompt-header .meta { display: flex; gap: 6px; flex-wrap: wrap; }
+
+  .pill {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 600;
+    background: var(--bg-hover);
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .pill.skill { background: rgba(168,196,221,0.15); color: var(--accent); }
+  .pill.time { background: rgba(16,185,129,0.15); color: #6ee7b7; }
+  .pill.priority { background: rgba(239,68,68,0.15); color: #fca5a5; }
+  .pill.priority.mid { background: rgba(245,158,11,0.15); color: #fcd34d; }
+
+  .prompt-body { padding: 20px; }
+
+  pre.code {
+    background: var(--code-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px;
+    color: var(--text-primary);
+    font-family: "SF Mono", Menlo, Monaco, Consolas, monospace;
+    font-size: 13px;
+    line-height: 1.6;
+    overflow-x: auto;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    position: relative;
+  }
+  .copy-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: var(--accent);
+    color: var(--navy);
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-family: inherit;
+  }
+  .copy-btn:hover { background: #bcd0e3; }
+  .copy-btn.copied { background: var(--you-win); color: var(--navy); }
+
+  .step-checklist { list-style: none; }
+  .step-checklist li {
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+    margin-bottom: 10px;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .step-checklist li .step-num {
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    background: var(--accent);
+    color: var(--navy);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+  }
+  .step-checklist li .step-body { flex: 1; }
+  .step-checklist li .step-title { font-size: 14px; font-weight: 600; color: var(--text-primary); margin-bottom: 4px; }
+  .step-checklist li .step-desc { font-size: 13px; color: var(--text-secondary); }
+
+  .status-track {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 12px;
+    margin-top: 16px;
+  }
+  .status-box {
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px;
+    border-left: 3px solid var(--accent);
+  }
+  .status-box.done { border-left-color: var(--you-win); }
+  .status-box.inprogress { border-left-color: var(--tie); }
+  .status-box.pending { border-left-color: var(--they-win); }
+  .status-box .who { font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin-bottom: 4px; }
+  .status-box .what { font-size: 14px; color: var(--text-primary); font-weight: 500; margin-bottom: 6px; }
+  .status-box .note { font-size: 12px; color: var(--text-secondary); }
+
+  footer {
+    margin-top: 48px;
+    padding: 24px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 12px;
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="inner">
+    <h1>Handoff <span class="accent">Claude Cowork</span> · Prompts listos</h1>
+    <p>6 tareas listas para lanzar en Cowork en paralelo mientras Claude Code ejecuta el código. Cada prompt está optimizado para la skill correcta. Copia, pega y ejecuta.</p>
+  </div>
+</header>
+
+<nav class="tabs">
+  <div class="tabs-inner">
+    <button class="tab active" data-tab="resumen">Resumen</button>
+    <button class="tab" data-tab="p1">1 · Google Ads Marca</button>
+    <button class="tab" data-tab="p2">2 · GBP 8 Idiomas</button>
+    <button class="tab" data-tab="p3">3 · Roll-up Muelle</button>
+    <button class="tab" data-tab="p4">4 · Revisión Traducción DE</button>
+    <button class="tab" data-tab="p5">5 · Scripts WhatsApp</button>
+    <button class="tab" data-tab="p6">6 · Brochure Hoteles</button>
+    <button class="tab" data-tab="orquestacion">Orquestación</button>
+  </div>
+</nav>
+
+<div class="container">
+
+<!-- ================ RESUMEN ================ -->
+<section id="resumen" class="tab-content active">
+  <div class="section">
+    <h2>Cómo usar este documento</h2>
+    <ol class="step-checklist" style="list-style:none;padding:0">
+      <li><div class="step-num">1</div><div class="step-body"><div class="step-title">Abre Claude Cowork</div><div class="step-desc">(desktop app o web — según lo tengas configurado)</div></div></li>
+      <li><div class="step-num">2</div><div class="step-body"><div class="step-title">Ejecuta los 6 prompts en orden</div><div class="step-desc">Cada uno usa una skill distinta. Son independientes, puedes lanzarlos todos a la vez en sesiones separadas si quieres.</div></div></li>
+      <li><div class="step-num">3</div><div class="step-body"><div class="step-title">Guarda los outputs</div><div class="step-desc">Cada tab indica dónde guardar (carpeta sugerida, formato de archivo).</div></div></li>
+      <li><div class="step-num">4</div><div class="step-body"><div class="step-title">Mientras tanto, Claude Code trabaja en paralelo</div><div class="step-desc">Yo ejecuto las tareas técnicas de la Fase 1 aquí en el codebase (ver pestaña "Orquestación").</div></div></li>
+    </ol>
+  </div>
+
+  <div class="section">
+    <h2>Reparto de trabajo — quién hace qué</h2>
+    <div class="status-track">
+      <div class="status-box inprogress">
+        <div class="who">Claude Code (este entorno)</div>
+        <div class="what">Código + integración técnica</div>
+        <div class="note">Microcopy i18n · Schema.org · Reseñas WhatsApp · Dashboard CRM competencia · Baseline KPIs</div>
+      </div>
+      <div class="status-box pending">
+        <div class="who">Claude Cowork (prompts abajo)</div>
+        <div class="what">Contenido + diseño + copy</div>
+        <div class="note">Google Ads · GBP multi-idioma · Roll-up · Traducción audit · Scripts bot · Brochure B2B</div>
+      </div>
+      <div class="status-box">
+        <div class="who">Humano (tú)</div>
+        <div class="what">Decisiones + acción física</div>
+        <div class="note">Aprobar presupuesto Ads · Subir contenido a GBP · Imprimir roll-up · Visitar hoteles · Pagos</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================ PROMPT 1 — Google Ads Marca ================ -->
+<section id="p1" class="tab-content">
+  <div class="prompt-card">
+    <div class="prompt-header">
+      <div class="title">1 · Campaña Google Ads Marca Defensiva</div>
+      <div class="meta">
+        <span class="pill priority">Urgente · semana 1</span>
+        <span class="pill skill">/marketing:campaign-plan</span>
+        <span class="pill time">~10 min</span>
+      </div>
+    </div>
+    <div class="prompt-body">
+      <p><strong>Objetivo:</strong> Generar una campaña completa de Google Ads para proteger la marca "Costa Brava Rent a Boat" del competidor nominalmente similar "Rent a Boat Blanes".</p>
+      <p><strong>Salida esperada:</strong> 10 keywords + 5 anuncios + extensiones + estrategia puja.</p>
+      <pre class="code"><button class="copy-btn" onclick="copyPrompt(this)">Copiar</button>Eres experto en Google Ads para un negocio local estacional de alquiler de barcos en Blanes, Costa Brava.
+
+Mi empresa: "Costa Brava Rent a Boat" (costabravarentaboat.com)
+Teléfono: +34 611 500 372
+Ubicación: Puerto de Blanes, Girona
+Temporada: Abril-Octubre
+Precio sin licencia: desde 70€/h · Con licencia: desde 280€
+
+Tengo un competidor con marca confusamente similar: "Rent a Boat Blanes" (rentaboatblanes.com) que me roba tráfico en búsquedas de marca. Está en el mismo muelle. Su entry price es 80€/h. No tiene barcos con licencia ni excursión privada.
+
+Diseña una campaña Google Ads defensiva en español + inglés con:
+
+1. **10 keywords exact match** sobre términos de marca
+2. **10 keywords frase** defensivas
+3. **5 anuncios responsive search ads** (3 headlines + 2 descriptions cada uno) en español
+4. **3 anuncios responsive en inglés** para turistas internacionales
+5. **Extensiones:**
+   - 4 sitelinks (ver flota, precios, excursión privada, contacto WhatsApp)
+   - 3 callouts (8 idiomas, gasolina incluida sin licencia, puerto de Blanes)
+   - 1 extensión de llamada con +34 611 500 372
+6. **Estrategia de puja:** recomendación CPC manual o automática para budget 300€/mes, con target CPA
+7. **Negative keywords** obligatorios para no malgastar budget (ej. "empleo", "comprar", "usado")
+
+Tono de los anuncios: confiable, local, acento en "operador propio del Puerto de Blanes" y "atención en 8 idiomas". Evitar comparaciones directas con el competidor.
+
+Formato de salida: tabla markdown lista para copiar a Google Ads Editor o subir vía CSV.</pre>
+      <p style="margin-top:12px;font-size:13px;color:var(--text-muted)"><strong>Dónde guardar:</strong> <code>docs/sales/ads-campaign-brand-defense.md</code></p>
+    </div>
+  </div>
+</section>
+
+<!-- ================ PROMPT 2 — GBP 8 idiomas ================ -->
+<section id="p2" class="tab-content">
+  <div class="prompt-card">
+    <div class="prompt-header">
+      <div class="title">2 · Descripciones Google Business Profile en 8 idiomas</div>
+      <div class="meta">
+        <span class="pill priority">Urgente · semanas 1-2</span>
+        <span class="pill skill">/marketing:draft-content</span>
+        <span class="pill time">~15 min</span>
+      </div>
+    </div>
+    <div class="prompt-body">
+      <p><strong>Objetivo:</strong> Optimizar la ficha de Google Business Profile con descripciones de calidad nativa para los 8 mercados del negocio.</p>
+      <pre class="code"><button class="copy-btn" onclick="copyPrompt(this)">Copiar</button>Genera la descripción de Google Business Profile para "Costa Brava Rent a Boat" en 8 idiomas, cada una optimizada para el mercado de destino y para SEO local.
+
+DATOS DEL NEGOCIO:
+- Nombre: Costa Brava Rent a Boat
+- Ubicación: Puerto de Blanes, Girona, España
+- Teléfono: +34 611 500 372
+- Web: costabravarentaboat.com
+- Temporada: Abril-Octubre
+- Productos:
+  * Alquiler de barcos SIN licencia (desde 70€/h, gasolina incluida, hasta 5 personas)
+  * Alquiler de barcos CON licencia (desde 280€)
+  * Excursión privada con patrón (Costa Brava / Tossa de Mar)
+- Diferenciadores clave:
+  * ÚNICOS con atención en 8 idiomas (ES/EN/CA/FR/DE/NL/IT/RU)
+  * Chatbot WhatsApp IA 24/7
+  * Operador propio (no intermediario)
+  * Ubicado directamente en el Puerto de Blanes
+  * Reservas online en 2 minutos
+- Cobertura de rutas: Blanes, Lloret de Mar, Tossa de Mar (30-45 min de navegación desde Blanes con barco con licencia), Costa Brava
+
+IDIOMAS (genera uno por uno):
+1. Español (es) - mercado principal
+2. Inglés (en) - turistas internacionales general
+3. Catalán (ca) - mercado local Catalunya
+4. Francés (fr) - turistas DACH/Francia
+5. Alemán (de) - turistas Alemania/Austria/Suiza (mercado prioritario Costa Brava)
+6. Holandés (nl) - turistas Países Bajos (mercado prioritario)
+7. Italiano (it) - turistas Italia
+8. Ruso (ru) - turistas CEE/ex-URSS
+
+REQUISITOS POR DESCRIPCIÓN:
+- Máximo 750 caracteres (límite GBP)
+- Keyword principal al inicio traducida al idioma (ej. "Bootsverleih", "Boot huren", "Noleggio barche", "Аренда лодки")
+- Incluir "Puerto de Blanes"
+- CTA natural (ej. "Reserva por WhatsApp" traducido)
+- Tono local y cercano, no corporativo
+- Acento cultural: qué esperaría un alemán / holandés / italiano de un servicio local
+
+FORMATO DE SALIDA:
+Para cada idioma, genera:
+```
+## [ES | EN | CA | FR | DE | NL | IT | RU]
+[Descripción de máx 750 caracteres]
+
+Caracteres: XXX/750
+Keyword principal: XXX
+CTA: "..."
+```</pre>
+      <p style="margin-top:12px;font-size:13px;color:var(--text-muted)"><strong>Dónde guardar:</strong> <code>docs/sales/gbp-descriptions-multilingual.md</code></p>
+      <p style="font-size:13px;color:var(--text-muted)"><strong>Después:</strong> Tú (humano) copia cada descripción y la subes manualmente en GBP → Editar información → Descripción (por cada idioma).</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================ PROMPT 3 — Roll-up muelle ================ -->
+<section id="p3" class="tab-content">
+  <div class="prompt-card">
+    <div class="prompt-header">
+      <div class="title">3 · Diseño Roll-up Muelle (punto de encuentro)</div>
+      <div class="meta">
+        <span class="pill priority mid">Importante · semanas 2-3</span>
+        <span class="pill skill">/design:ux-copy + nanobanana</span>
+        <span class="pill time">~20 min + iteración</span>
+      </div>
+    </div>
+    <div class="prompt-body">
+      <p><strong>Objetivo:</strong> Crear un roll-up vertical (85x200cm) para identificar claramente el punto de encuentro en el Puerto de Blanes y eliminar confusión con el competidor nominal.</p>
+      <pre class="code"><button class="copy-btn" onclick="copyPrompt(this)">Copiar</button>Necesito diseñar un roll-up vertical profesional (85 x 200 cm) para mi negocio de alquiler de barcos en el Puerto de Blanes, Costa Brava.
+
+CONTEXTO:
+- Empresa: Costa Brava Rent a Boat
+- Hay un competidor con marca muy similar ("Rent a Boat Blanes") en el mismo muelle → necesito que mi roll-up identifique inequívocamente la empresa
+- Colocación: punto de encuentro físico, visible para clientes que bajan del paseo marítimo
+
+ELEMENTOS A INCLUIR (de arriba a abajo):
+1. Logo grande "Costa Brava Rent a Boat" (alto aprox. 30cm)
+2. Tagline hero en 4 idiomas: "Tu día en el mar empieza aquí" (ES/EN/DE/FR)
+3. 3 íconos de diferenciadores:
+   - "8 idiomas / Languages"
+   - "Desde 70€/h · Gasolina incluida"
+   - "WhatsApp 24/7"
+4. Foto hero lifestyle (barco en cala, familia feliz)
+5. QR code grande (~10x10cm) al WhatsApp +34 611 500 372
+6. Texto debajo del QR: "Reserva en 2 minutos · Book in 2 minutes"
+7. Badge pequeño: "Operador propio · Puerto de Blanes"
+8. Pie: URL web + teléfono
+
+PALETA DE COLORES (corporativa, respetar estrictamente):
+- Azul celeste CTA: #A8C4DD (HSL 210 35% 76%)
+- Navy oscuro (fondo/texto): HSL 215 45% 20%
+- Blanco hueso: #F8F8F5
+- Acento ámbar para urgencia opcional: #E4A853
+
+TIPOGRAFÍA:
+- Titulares: Clash Display (bold)
+- Cuerpo: Archivo (regular/medium)
+
+INSTRUCCIONES PARA nanobanana (image generation):
+Genera un mockup realista del roll-up terminado (como si estuviera impreso y de pie en el puerto). Incluye:
+- Contexto: muelle del Puerto de Blanes al amanecer
+- El roll-up en primer plano con todos los elementos descritos
+- Aspect ratio 9:16 vertical
+- Estilo fotográfico premium
+
+Tras el mockup, dame:
+1. Versión 1: mockup en contexto real (muelle)
+2. Versión 2: mockup sobre fondo neutro (para enviar a imprenta)
+3. Sugerencia de proveedor imprenta online Barcelona/Girona con coste estimado (~50-100€)
+
+Formato exportable: PDF listo para imprenta + PNG alta resolución.</pre>
+      <p style="margin-top:12px;font-size:13px;color:var(--text-muted)"><strong>Dónde guardar:</strong> <code>docs/sales/rollup-design/</code> (carpeta nueva con PNGs y PDF)</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================ PROMPT 4 — Revisión traducción DE ================ -->
+<section id="p4" class="tab-content">
+  <div class="prompt-card">
+    <div class="prompt-header">
+      <div class="title">4 · Auditoría Traducción Alemán (DE)</div>
+      <div class="meta">
+        <span class="pill priority mid">Importante · semanas 2-3</span>
+        <span class="pill skill">/marketing:brand-review</span>
+        <span class="pill time">~30 min</span>
+      </div>
+    </div>
+    <div class="prompt-body">
+      <p><strong>Objetivo:</strong> Revisar la calidad nativa del contenido en alemán (DE es el primer mercado internacional de Costa Brava) y marcar errores/mejoras priorizados.</p>
+      <pre class="code"><button class="copy-btn" onclick="copyPrompt(this)">Copiar</button>Actúa como hablante nativo de alemán (Hochdeutsch estándar) especializado en marketing digital para turismo náutico en España. Tu tarea es auditar la calidad lingüística del sitio web en alemán de "Costa Brava Rent a Boat".
+
+URL a revisar: https://www.costabravarentaboat.com/de
+
+Hazlo en pasadas:
+
+PASADA 1 - PÁGINAS PRIORITARIAS (por este orden):
+1. Home (/de)
+2. Flota y precios (/de/flota o /de/preise)
+3. Alquiler sin licencia (/de/barcos-sin-licencia equivalente alemán)
+4. Excursión privada (si existe)
+5. Blog principales artículos
+6. FAQ / Preguntas frecuentes
+7. Formulario de reserva
+
+PARA CADA PÁGINA/SECCIÓN, GENERA UNA TABLA:
+| Texto actual (DE) | Problema detectado | Sugerencia | Prioridad |
+|-------------------|--------------------|-----------|----------|
+| "..."            | Traducción literal del ES / gramática incorrecta / tono no nativo / terminología náutica incorrecta / falta Umlaut / ... | "..." | Alta / Media / Baja |
+
+TIPOS DE PROBLEMAS A DETECTAR:
+- Traducción demasiado literal desde español (sintaxis castellanizada)
+- Falta de Sie/du coherente según contexto (¿tuteamos al turista o usamos formal?)
+- Terminología náutica incorrecta (Führerschein vs. Bootsführerschein, Küstenpatent, etc.)
+- Formato de precios (€ antes vs. después, punto vs. coma decimal alemán)
+- Fechas en formato DE (DD.MM.YYYY) vs. formato ES
+- Errores de género gramatical (der/die/das)
+- CTAs débiles o poco naturales en alemán
+- SEO: keywords alemanas que debería usar y no usa (Bootsverleih vs. Bootsvermietung, Kein Führerschein vs. Führerscheinfrei, etc.)
+
+DELIVERABLES:
+1. Informe ejecutivo (1 página): estado general, top 5 problemas más urgentes
+2. Tabla detallada (20-40 sugerencias priorizadas) por sección
+3. Glosario sugerido de terminología náutica DE para uso consistente
+4. Recomendaciones de keywords DE para Google Ads y SEO orgánico
+5. Estimación coste de corrección si se contrata a un nativo: (horas y € aproximados)
+
+TONO DE SALIDA:
+Profesional pero constructivo. No destructivo. Objetivo: mejorar, no desacreditar.</pre>
+      <p style="margin-top:12px;font-size:13px;color:var(--text-muted)"><strong>Dónde guardar:</strong> <code>docs/sales/translation-audit-de.md</code></p>
+      <p style="font-size:13px;color:var(--text-muted)"><strong>Nota:</strong> Duplica este prompt para NL, IT y RU cambiando el idioma. Lanza las 4 auditorías en sesiones Cowork separadas.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================ PROMPT 5 — Scripts WhatsApp ================ -->
+<section id="p5" class="tab-content">
+  <div class="prompt-card">
+    <div class="prompt-header">
+      <div class="title">5 · Scripts Comerciales WhatsApp — Derivación a Excursión Privada</div>
+      <div class="meta">
+        <span class="pill priority mid">Importante · semanas 5-7</span>
+        <span class="pill skill">/sales:draft-outreach</span>
+        <span class="pill time">~20 min</span>
+      </div>
+    </div>
+    <div class="prompt-body">
+      <p><strong>Objetivo:</strong> Guión conversacional para que el chatbot WhatsApp detecte el perfil premium y derive naturalmente del alquiler estándar al producto "Excursión Privada" (ticket medio 3-5x mayor).</p>
+      <pre class="code"><button class="copy-btn" onclick="copyPrompt(this)">Copiar</button>Diseña una secuencia conversacional para un chatbot de WhatsApp con IA (ya existente) que vende alquiler de barcos en Blanes, Costa Brava.
+
+OBJETIVO: Derivar clientes del alquiler estándar (70-80€/h) al producto premium "Excursión Privada" (480€+) cuando el perfil lo justifique.
+
+PRODUCTO PREMIUM "EXCURSIÓN PRIVADA COSTA BRAVA":
+- 4h con patrón profesional a bordo
+- Ruta curada según viento del día (3 calas: Cala Bona, Fornells, Sant Francesc)
+- Parada 45 min en Tossa de Mar
+- Snorkel + equipamiento incluido
+- Fotografía digital del día enviada en 48h
+- Bebidas frías + snack
+- Máx 6-8 personas
+- Atención en 8 idiomas
+- Desde 480€ (4h) / 680€ (6h) / 880€ (8h)
+
+TRIGGERS DE DERIVACIÓN (el bot debe detectar estos signos):
+- Grupo familia con niños pequeños
+- Cumpleaños / aniversario / luna de miel / pedida mano mencionados
+- Sin experiencia náutica ("nunca he llevado un barco")
+- Budget elevado o "no hay problema con el precio"
+- Grupo grande (>5 personas)
+- Cliente corporativo / team building
+- Cliente de país premium (DE, CH, NL, noruegos, etc.)
+- Preguntas sobre "qué se puede hacer en el barco" (busca experiencia, no vehículo)
+
+DELIVERABLES:
+
+1. **3 preguntas de calificación** que el bot hace conversacionalmente al inicio para detectar perfil premium (en ES / EN / DE / FR — 4 idiomas principales)
+
+2. **Árbol de decisión** (flowchart en ASCII o markdown mermaid):
+   - Si perfil = premium → derivar
+   - Si perfil = estándar → alquiler normal
+   - Si perfil = dudoso → pregunta adicional
+
+3. **5 respuestas tipo bot** para momentos clave (en ES / EN / DE / FR):
+   - Saludo inicial + 1ª pregunta calificación
+   - "Viajo con familia, niños 5 y 8 años" → respuesta derivando a excursión
+   - "Es mi aniversario" → respuesta derivando con upsell aniversario +60€
+   - "Es mucho dinero" (objeción) → respuesta que pone en valor la experiencia
+   - Cierre: oferta final con CTA reserva
+
+4. **Guión anti-objeción "es caro"** en las 4 lenguas, con:
+   - Validación de la preocupación (no ignorar)
+   - Reframe: precio por persona vs. total
+   - Comparación vs. alternativas (restaurante + excursión guiada agrupada)
+   - Mención de fotografía + recuerdo para siempre
+   - Flexibilidad: "si quieres prueba con 4h por 480€ y si te encaja repites más tiempo"
+
+5. **Integración técnica sugerida** (para el equipo de Claude Code):
+   - Dónde encaja en server/whatsapp/flows/ y functionCallingService.ts
+   - Qué nueva función añadir al modelo (detectPremiumProfile)
+   - Estructura del prompt system que refuerce estas derivaciones
+
+FORMATO DE SALIDA: Markdown estructurado con secciones claras, listo para que Claude Code lo integre.</pre>
+      <p style="margin-top:12px;font-size:13px;color:var(--text-muted)"><strong>Dónde guardar:</strong> <code>docs/sales/chatbot-upsell-scripts.md</code></p>
+    </div>
+  </div>
+</section>
+
+<!-- ================ PROMPT 6 — Brochure Hoteles ================ -->
+<section id="p6" class="tab-content">
+  <div class="prompt-card">
+    <div class="prompt-header">
+      <div class="title">6 · Brochure B2B Partnership Hoteles 4-5*</div>
+      <div class="meta">
+        <span class="pill priority mid">Importante · semanas 9-12</span>
+        <span class="pill skill">anthropic-skills:canvas-design + pptx</span>
+        <span class="pill time">~25 min</span>
+      </div>
+    </div>
+    <div class="prompt-body">
+      <p><strong>Objetivo:</strong> Brochure profesional A4 (2 caras) para visitar 10 hoteles top de Blanes/Lloret con propuesta de partnership con 10% de comisión al conserje.</p>
+      <pre class="code"><button class="copy-btn" onclick="copyPrompt(this)">Copiar</button>Diseña un brochure B2B profesional en formato A4 (2 caras, díptico) para cerrar partnerships con hoteles 4-5 estrellas de Blanes, Lloret de Mar y Tossa de Mar.
+
+CLIENTE B2B: Hoteles 4-5* (target: 10 hoteles en visitas presenciales del dueño del negocio)
+PROPUESTA: Comisión del 10% al conserje o recepción por cada "Excursión Privada Costa Brava" derivada al hotel. Cliente VIP = ticket medio 500-900€.
+
+ESTRUCTURA:
+
+## CARA 1 - "EL PRODUCTO" (hero comercial)
+- Header: Logo Costa Brava Rent a Boat + tagline "El regalo perfecto para tu cliente VIP"
+- Hero visual: foto cinematográfica de barco en cala con familia/pareja disfrutando
+- Sección "El Producto" con:
+  * Título: "Excursión Privada Costa Brava"
+  * 4h con patrón · 3 calas · Tossa de Mar · snorkel · fotografía · 8 idiomas
+  * Desde 480€ (4h) · 680€ (6h) · 880€ (8h)
+  * "Máx 8 personas · Exclusividad total"
+- Sección "Por qué recomendarlo":
+  * Experiencia memorable no-genérica
+  * Exclusivo: único operador propio del Puerto de Blanes con producto premium empaquetado
+  * Atención en el idioma del cliente (8 idiomas)
+  * Sin preocupaciones: patrón profesional, todo incluido
+  * Fotografía como recuerdo: el cliente presume del hotel que lo recomendó
+- Testimonio visual: quote + nombre + ciudad de cliente real (placeholder para rellenar tras fotografía)
+
+## CARA 2 - "EL PARTNERSHIP" (oferta B2B)
+- Header: "Programa Partner Hotel · Ganar mientras deleitas"
+- Los 3 beneficios para el hotel/conserje:
+  1. **10% comisión directa al conserje** por cada excursión derivada (48-88€ por reserva)
+  2. **Cliente feliz = más upsells en el hotel** (spa, restaurante, etc.)
+  3. **Zero fricción:** entregamos material promocional, QR en tarjeta de habitación, comunicación fluida por WhatsApp privado
+- "Cómo funciona" (4 pasos visuales):
+  1. Conserje escanea QR o llama a +34 611 500 372 para reservar
+  2. Nosotros confirmamos disponibilidad y precio cerrado en 15 min
+  3. Cliente acude al Puerto de Blanes y vive la experiencia
+  4. Comisión se abona semanalmente vía transferencia
+- Sección "Material incluido para el hotel":
+  * Tarjetones con QR para habitaciones
+  * Poster A3 para área de conserjería
+  * Display con fotos para la recepción
+  * Contacto directo con el dueño por WhatsApp para cualquier duda
+- CTA grande: "Cerrar partnership en 10 minutos"
+  * QR contacto directo
+  * Teléfono +34 611 500 372
+  * "Te visito en tu hotel sin compromiso"
+- Footer: Logo + dirección Puerto de Blanes + web + redes
+
+DISEÑO:
+- Paleta: Azul celeste #A8C4DD + Navy HSL 215 45% 20% + blanco hueso
+- Tipografía: Clash Display (titulares) + Archivo (cuerpo)
+- Estilo: premium, náutico, profesional (no turístico barato)
+- Fotografía tipo: luz natural, composición tipo revista de viajes
+- Iconografía: líneas finas, minimalista
+
+DELIVERABLES:
+1. PDF listo para impresión (300 DPI, marca de recorte, CMYK)
+2. Versión PPT editable (para actualizar precios/textos fácilmente)
+3. Versión digital PNG alta calidad (para enviar por email al hotel)
+4. Guión de visita de 3 minutos (talk track para el dueño cuando entrega el brochure en persona)
+
+PRESUPUESTO: el dueño imprimirá 20 copias (~20-40€) para las visitas comerciales.</pre>
+      <p style="margin-top:12px;font-size:13px;color:var(--text-muted)"><strong>Dónde guardar:</strong> <code>docs/sales/hotel-partnership-brochure/</code></p>
+    </div>
+  </div>
+</section>
+
+<!-- ================ ORQUESTACIÓN ================ -->
+<section id="orquestacion" class="tab-content">
+
+  <div class="section">
+    <h2>Cómo se orquesta todo</h2>
+    <p>Mientras tú lanzas los prompts de arriba en Claude Cowork, yo (Claude Code) ejecuto estas tareas en paralelo en el codebase. Cero duplicación de esfuerzo.</p>
+  </div>
+
+  <div class="section">
+    <h3>🤖 Claude Code · Estoy haciendo / haré</h3>
+    <div class="status-track">
+      <div class="status-box inprogress">
+        <div class="who">EN CURSO</div>
+        <div class="what">Microcopy diferenciador · Footer + Home</div>
+        <div class="note">Añadir claves i18n "Operador propio · Puerto de Blanes" en los 8 idiomas. Actualizar Footer.tsx.</div>
+      </div>
+      <div class="status-box pending">
+        <div class="who">SIGUIENTE</div>
+        <div class="what">Refuerzo Schema.org LocalBusiness + Organization</div>
+        <div class="note">Nueva función en seo-schemas.ts. Integrar en layout principal. Validar en schema.org validator.</div>
+      </div>
+      <div class="status-box pending">
+        <div class="who">SIGUIENTE</div>
+        <div class="what">Mensaje automático reseñas post-servicio</div>
+        <div class="note">Extender whatsapp flows. Trigger 24h tras servicio. Multi-idioma. Link directo a GBP.</div>
+      </div>
+      <div class="status-box pending">
+        <div class="who">SIGUIENTE</div>
+        <div class="what">Dashboard competencia en CRM</div>
+        <div class="note">Nueva tab AdminLayout. Endpoint admin-competition. Monitor de reseñas propias vs. competidores.</div>
+      </div>
+      <div class="status-box pending">
+        <div class="who">SIGUIENTE</div>
+        <div class="what">Script baseline KPIs</div>
+        <div class="note">Solo lectura. Valores actuales reseñas GBP, % reservas por idioma, ratio solicitud → confirmada.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h3>👤 Humano (tú) · Acciones que nadie puede hacer por ti</h3>
+    <ol class="step-checklist" style="list-style:none;padding:0">
+      <li><div class="step-num">1</div><div class="step-body"><div class="step-title">Aprobar presupuesto Google Ads mensual</div><div class="step-desc">Recomendado: 300 €/mes para Ads marca + reserva temporada alta</div></div></li>
+      <li><div class="step-num">2</div><div class="step-body"><div class="step-title">Crear/confirmar acceso a Google Ads y GBP</div><div class="step-desc">Si no tienes cuenta Google Ads activa, crearla. Email admin: ivanramirezdawson@gmail.com según memoria</div></div></li>
+      <li><div class="step-num">3</div><div class="step-body"><div class="step-title">Pagar imprenta del roll-up + encargar 2 uniformes</div><div class="step-desc">~150-200€. Plazo: 1-2 semanas desde aprobación del diseño</div></div></li>
+      <li><div class="step-num">4</div><div class="step-body"><div class="step-title">Contratar fotógrafo profesional (para excursión premium)</div><div class="step-desc">~250-350€ por medio día de shooting. Ideal en mayo para tener material antes de Junio</div></div></li>
+      <li><div class="step-num">5</div><div class="step-body"><div class="step-title">Recoger testimonios reales y autorización de clientes</div><div class="step-desc">Proceso orgánico durante operación de mayo-julio. Claude Code puede automatizar el pedido por WhatsApp.</div></div></li>
+      <li><div class="step-num">6</div><div class="step-body"><div class="step-title">Visitas comerciales a 10 hoteles 4-5*</div><div class="step-desc">Presencial. Brochure lo genera Cowork, tú lo llevas.</div></div></li>
+    </ol>
+  </div>
+
+  <div class="section">
+    <h3>Orden sugerido de ejecución hoy</h3>
+    <ol class="step-checklist" style="list-style:none;padding:0">
+      <li><div class="step-num">1</div><div class="step-body"><div class="step-title">[Ahora] Lanza los 6 prompts en Cowork</div><div class="step-desc">30-60 min recibiendo outputs. Cada skill genera en paralelo si abres múltiples sesiones.</div></div></li>
+      <li><div class="step-num">2</div><div class="step-body"><div class="step-title">[Paralelo] Claude Code aplica cambios de código</div><div class="step-desc">Yo aplico microcopy, Schema.org, empiezo dashboard CRM mientras tú trabajas con Cowork.</div></div></li>
+      <li><div class="step-num">3</div><div class="step-body"><div class="step-title">[Cuando termine Cowork] Revisas outputs</div><div class="step-desc">Google Ads (apruebas) · GBP (subes tú) · Roll-up (envías a imprenta) · Scripts chatbot (me los pasas y los integro)</div></div></li>
+      <li><div class="step-num">4</div><div class="step-body"><div class="step-title">[Cuando termine Claude Code] Review y commit</div><div class="step-desc">Te muestro diffs, revisas, comiteamos juntos cuando apruebes.</div></div></li>
+    </ol>
+  </div>
+</section>
+
+<footer>
+  <p>Handoff Cowork generado 22/04/2026 · Fase 1 del Plan 90 días · Costa Brava Rent a Boat</p>
+  <p style="margin-top:6px">Para cada prompt hay un botón "Copiar" — pulsa, pega en Cowork, ejecuta.</p>
+</footer>
+
+</div>
+
+<script>
+  const tabs = document.querySelectorAll('nav.tabs button.tab');
+  const contents = document.querySelectorAll('.tab-content');
+  tabs.forEach(t => {
+    t.addEventListener('click', () => {
+      const target = t.dataset.tab;
+      tabs.forEach(x => x.classList.toggle('active', x === t));
+      contents.forEach(c => c.classList.toggle('active', c.id === target));
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  });
+
+  function copyPrompt(btn) {
+    const pre = btn.parentElement;
+    const text = pre.innerText.replace(/^Copiar\n?/, '').trim();
+    navigator.clipboard.writeText(text).then(() => {
+      btn.textContent = '✓ Copiado';
+      btn.classList.add('copied');
+      setTimeout(() => {
+        btn.textContent = 'Copiar';
+        btn.classList.remove('copied');
+      }, 2000);
+    });
+  }
+</script>
+</body>
+</html>

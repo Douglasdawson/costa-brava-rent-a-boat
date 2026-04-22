@@ -1,0 +1,1122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Plan 90 días · Costa Brava Rent a Boat · Temporada 2026</title>
+<style>
+  :root {
+    --bg-primary: #0a0d14;
+    --bg-elevated: #0f131c;
+    --bg-surface: #161b28;
+    --bg-hover: #1e2536;
+    --border: rgba(255,255,255,0.08);
+    --border-strong: rgba(255,255,255,0.14);
+    --text-primary: #ffffff;
+    --text-secondary: rgba(255,255,255,0.72);
+    --text-muted: rgba(255,255,255,0.48);
+    --accent: #A8C4DD;
+    --accent-strong: #7aa6c9;
+    --navy: #1a2a42;
+    --you-win: #10b981;
+    --they-win: #ef4444;
+    --tie: #f59e0b;
+    --radius: 12px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.55;
+    min-height: 100vh;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  .container { max-width: 1200px; margin: 0 auto; padding: 32px 24px; }
+
+  header.top {
+    background: linear-gradient(135deg, var(--navy) 0%, #0c1520 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 40px 24px 32px;
+  }
+  header.top .inner { max-width: 1200px; margin: 0 auto; }
+  header.top h1 {
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 8px;
+  }
+  header.top h1 .accent { color: var(--accent); }
+  header.top .meta {
+    color: var(--text-secondary);
+    font-size: 14px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-top: 12px;
+  }
+  header.top .meta span { display: inline-flex; align-items: center; gap: 6px; }
+  header.top .meta .dot { width: 6px; height: 6px; background: var(--accent); border-radius: 50%; }
+
+  nav.tabs {
+    position: sticky;
+    top: 0;
+    background: rgba(10,13,20,0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+    z-index: 10;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+  nav.tabs .tabs-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    gap: 4px;
+    padding: 12px 16px;
+  }
+  nav.tabs button.tab {
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 14px;
+    font-weight: 500;
+    padding: 10px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 150ms ease;
+    font-family: inherit;
+  }
+  nav.tabs button.tab:hover { background: var(--bg-hover); color: var(--text-primary); }
+  nav.tabs button.tab.active { background: var(--accent); color: var(--navy); font-weight: 600; }
+
+  .tab-content { display: none; animation: fadeIn 200ms ease; }
+  .tab-content.active { display: block; }
+  @keyframes fadeIn { from {opacity:0; transform: translateY(4px);} to {opacity:1; transform:none;} }
+
+  h2 { font-size: 24px; font-weight: 700; margin-bottom: 16px; letter-spacing: -0.01em; }
+  h3 { font-size: 12px; font-weight: 600; color: var(--text-muted); margin-bottom: 10px; margin-top: 24px; text-transform: uppercase; letter-spacing: 0.06em; }
+  h4 { font-size: 17px; font-weight: 600; margin-bottom: 8px; }
+  p { color: var(--text-secondary); margin-bottom: 10px; font-size: 14px; }
+
+  .section { margin-bottom: 32px; }
+
+  .card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+    margin-bottom: 16px;
+  }
+  .card.accent { border-left: 3px solid var(--accent); }
+  .card.urgent { border-left: 3px solid var(--they-win); }
+  .card.warning { border-left: 3px solid var(--tie); }
+  .card.success { border-left: 3px solid var(--you-win); }
+
+  .grid { display: grid; gap: 16px; }
+  .grid-2 { grid-template-columns: repeat(2, 1fr); }
+  .grid-3 { grid-template-columns: repeat(3, 1fr); }
+  @media (max-width: 800px) { .grid-2, .grid-3 { grid-template-columns: 1fr; } }
+
+  ul.clean { list-style: none; }
+  ul.clean li { padding: 6px 0 6px 20px; position: relative; color: var(--text-secondary); font-size: 14px; }
+  ul.clean li::before { content: "›"; position: absolute; left: 0; color: var(--accent); font-weight: 700; }
+  ul.check li::before { content: "✓"; color: var(--you-win); }
+  ul.cross li::before { content: "×"; color: var(--they-win); }
+
+  .pill {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 600;
+    background: var(--bg-hover);
+    color: var(--text-secondary);
+    margin-right: 4px;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .pill.urgent { background: rgba(239,68,68,0.15); color: #fca5a5; }
+  .pill.warn { background: rgba(245,158,11,0.15); color: #fcd34d; }
+  .pill.ok { background: rgba(16,185,129,0.15); color: #6ee7b7; }
+  .pill.accent { background: rgba(168,196,221,0.15); color: var(--accent); }
+
+  table.plan {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    font-size: 13px;
+    margin-bottom: 16px;
+  }
+  table.plan th {
+    background: var(--bg-elevated);
+    padding: 12px;
+    text-align: left;
+    font-weight: 600;
+    color: var(--text-secondary);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-bottom: 1px solid var(--border);
+  }
+  table.plan td {
+    padding: 12px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+    color: var(--text-secondary);
+  }
+  table.plan td:first-child {
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+  table.plan tbody tr:last-child td { border-bottom: none; }
+
+  .kpi-box {
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+    text-align: center;
+  }
+  .kpi-box .label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin-bottom: 4px; }
+  .kpi-box .value { font-size: 18px; font-weight: 700; color: var(--accent); }
+  .kpi-box .sub { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+
+  .timeline {
+    border-left: 2px solid var(--border);
+    padding-left: 24px;
+    margin-left: 8px;
+    margin-top: 8px;
+  }
+  .timeline-item { position: relative; padding-bottom: 18px; }
+  .timeline-item::before {
+    content: "";
+    position: absolute;
+    left: -31px;
+    top: 4px;
+    width: 12px;
+    height: 12px;
+    background: var(--accent);
+    border-radius: 50%;
+    border: 2px solid var(--bg-primary);
+  }
+  .timeline-item.urgent::before { background: var(--they-win); }
+  .timeline-item.mid::before { background: var(--tie); }
+  .timeline-item .date { font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin-bottom: 4px; }
+  .timeline-item .event { font-size: 14px; color: var(--text-primary); font-weight: 500; margin-bottom: 4px; }
+  .timeline-item .detail { font-size: 13px; color: var(--text-secondary); }
+
+  .task-list { list-style: none; }
+  .task-list li {
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px 14px;
+    margin-bottom: 8px;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .task-list li .num {
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    background: var(--accent);
+    color: var(--navy);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+  }
+  .task-list li .body { flex: 1; }
+  .task-list li .title { font-size: 14px; font-weight: 600; color: var(--text-primary); margin-bottom: 4px; }
+  .task-list li .desc { font-size: 13px; color: var(--text-secondary); }
+  .task-list li .meta { font-size: 11px; color: var(--text-muted); margin-top: 6px; }
+  .task-list li .meta .pill { margin-right: 4px; }
+
+  .assumption {
+    background: rgba(245,158,11,0.08);
+    border: 1px solid rgba(245,158,11,0.25);
+    border-radius: 8px;
+    padding: 12px 14px;
+    margin-bottom: 8px;
+  }
+  .assumption .label {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #fcd34d;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .assumption .text { font-size: 13px; color: var(--text-primary); }
+
+  footer {
+    margin-top: 48px;
+    padding: 24px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 12px;
+  }
+
+  .budget-total {
+    background: linear-gradient(135deg, rgba(168,196,221,0.12), rgba(168,196,221,0.04));
+    border: 1px solid rgba(168,196,221,0.25);
+    border-radius: var(--radius);
+    padding: 20px;
+    text-align: center;
+    margin-top: 16px;
+  }
+  .budget-total .label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--accent); font-weight: 700; }
+  .budget-total .value { font-size: 32px; font-weight: 700; color: var(--text-primary); margin-top: 4px; }
+  .budget-total .sub { font-size: 13px; color: var(--text-secondary); margin-top: 4px; }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="inner">
+    <h1>Plan 90 días · <span class="accent">Temporada 2026</span></h1>
+    <p style="color:var(--text-secondary);font-size:15px;max-width:800px">
+      De amenaza identificada a ventaja defendible. Tres iniciativas priorizadas, timeline semanal, KPIs medibles, y primera fase lista para ejecutar en codebase.
+    </p>
+    <div class="meta">
+      <span><span class="dot"></span>Inicio: 22 abril 2026</span>
+      <span><span class="dot"></span>Cierre plan: 22 julio 2026 (mid-temporada)</span>
+      <span><span class="dot"></span>Revisión: cada 30 días</span>
+    </div>
+  </div>
+</header>
+
+<nav class="tabs">
+  <div class="tabs-inner">
+    <button class="tab active" data-tab="resumen">Resumen</button>
+    <button class="tab" data-tab="iniciativa-1">1 · Marca Defensiva</button>
+    <button class="tab" data-tab="iniciativa-2">2 · Idiomas como Foso</button>
+    <button class="tab" data-tab="iniciativa-3">3 · Excursión Privada</button>
+    <button class="tab" data-tab="timeline">Timeline 30-60-90</button>
+    <button class="tab" data-tab="kpis">KPIs y Tracking</button>
+    <button class="tab" data-tab="asunciones">Asunciones a Validar</button>
+    <button class="tab" data-tab="fase-1">Fase 1 Ejecución</button>
+  </div>
+</nav>
+
+<div class="container">
+
+<!-- ================= RESUMEN ================= -->
+<section id="resumen" class="tab-content active">
+
+  <div class="section">
+    <h2>Contexto estratégico</h2>
+    <div class="card">
+      <p><strong>Situación:</strong> Temporada 2026 arranca en semanas. Competencia en Blanes mapeada: 3 operadores directos (EricBoats, Blanes Boats, Rent a Boat Blanes) + marketplaces (SamBoat/Click&amp;Boat).</p>
+      <p><strong>Ventana:</strong> 90 días antes del pico Jul–Ago. El trabajo hecho ahora se capitaliza en verano; lo que llegue tarde se pierde hasta 2027.</p>
+      <p><strong>Objetivo global:</strong> capturar cuota en los segmentos donde tu ventaja es defendible, sin malgastar capital compitiendo de frente.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Tres iniciativas priorizadas</h2>
+    <div class="grid grid-3">
+      <div class="card urgent">
+        <span class="pill urgent">Urgente · mes 1</span>
+        <h4 style="margin-top:10px">1. Marca defensiva</h4>
+        <p style="font-size:13px">Proteger tu nombre del competidor nominalmente idéntico (rentaboatblanes.com). Ads de marca, GBP reforzado, señalética.</p>
+        <p style="font-size:13px;color:var(--text-muted);margin-top:8px"><strong>Coste aprox:</strong> 250–400 €/mes</p>
+      </div>
+      <div class="card accent">
+        <span class="pill accent">Importante · meses 1-2</span>
+        <h4 style="margin-top:10px">2. Idiomas como foso</h4>
+        <p style="font-size:13px">Activar los 8 idiomas como ventaja real (DE/NL/IT/RU sin competencia). Landings, Ads geo-target, calidad de traducción.</p>
+        <p style="font-size:13px;color:var(--text-muted);margin-top:8px"><strong>Coste aprox:</strong> 500–900 €/mes (Ads incluidos)</p>
+      </div>
+      <div class="card warning">
+        <span class="pill warn">Importante · meses 2-3</span>
+        <h4 style="margin-top:10px">3. Excursión Privada Premium</h4>
+        <p style="font-size:13px">Empaquetar producto diferenciado con precio cerrado. Landing dedicada, contenido, scripting ventas.</p>
+        <p style="font-size:13px;color:var(--text-muted);margin-top:8px"><strong>Coste aprox:</strong> 200–400 € setup + operación</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Qué NO haremos (tan importante como lo que sí)</h2>
+    <div class="card">
+      <ul class="clean cross">
+        <li>No compramos barcos nuevos para igualar la flota de EricBoats (malo ROI).</li>
+        <li>No listamos en SamBoat/Click&amp;Boat (18% comisión + fricción con nuestro modelo de solicitud manual).</li>
+        <li>No entramos en guerra de precios por debajo de 70 €/h (erosiona margen sin ganar cuota sostenible).</li>
+        <li>No atacamos a competidores públicamente en reseñas o copy (juego limpio + posicionamiento propio).</li>
+        <li>No iniciamos refactor/rediseño web grande antes de temporada (riesgo &gt; beneficio con pico en 6 semanas).</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Presupuesto estimado 90 días</h2>
+    <div class="grid grid-3">
+      <div class="kpi-box">
+        <div class="label">Ads marca + idiomas</div>
+        <div class="value">~1.800 €</div>
+        <div class="sub">3 meses activos</div>
+      </div>
+      <div class="kpi-box">
+        <div class="label">Traducción calidad nativa</div>
+        <div class="value">~600 €</div>
+        <div class="sub">Revisión DE/NL/IT/RU</div>
+      </div>
+      <div class="kpi-box">
+        <div class="label">Setup producto premium</div>
+        <div class="value">~300 €</div>
+        <div class="sub">Fotografía + landing</div>
+      </div>
+    </div>
+    <div class="budget-total">
+      <div class="label">Inversión total plan 90d</div>
+      <div class="value">≈ 2.700 €</div>
+      <div class="sub">Sujeto a validación de presupuesto contigo</div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= INICIATIVA 1 ================= -->
+<section id="iniciativa-1" class="tab-content">
+
+  <div class="section">
+    <h2>Iniciativa 1 · Marca Defensiva <span class="pill urgent">Urgente</span></h2>
+    <div class="card urgent">
+      <h4>Problema</h4>
+      <p>El competidor <strong>"Rent a Boat Blanes"</strong> (rentaboatblanes.com) tiene marca casi idéntica a la tuya y está físicamente en el mismo muelle. Turista que busca "rent a boat blanes" puede aterrizar en cualquiera. No estás midiendo cuánto tráfico pierdes por esta confusión.</p>
+    </div>
+
+    <h3>Objetivos</h3>
+    <div class="card">
+      <ul class="clean">
+        <li>Interceptar el 80% del tráfico search "rent a boat blanes" con Ads defensivos.</li>
+        <li>Duplicar reseñas GBP recientes (últimos 90 días) para dominar mapa local.</li>
+        <li>Eliminar la confusión en el punto de encuentro físico (puerto).</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section">
+    <h3>Acciones (semanas 1-4)</h3>
+    <ul class="task-list">
+      <li>
+        <div class="num">1</div>
+        <div class="body">
+          <div class="title">Campaña Google Ads de marca defensiva</div>
+          <div class="desc">Keywords: "rent a boat blanes", "alquiler barcos blanes", "boat rental blanes" + variantes long-tail. Match type exacto + frase. Budget 10-15 €/día durante temporada.</div>
+          <div class="meta">
+            <span class="pill urgent">Semana 1</span>
+            <span class="pill">~300 €/mes</span>
+            <span class="pill">Canal: Google Ads</span>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="num">2</div>
+        <div class="body">
+          <div class="title">Auditoría y refuerzo Google Business Profile</div>
+          <div class="desc">Confirmar NAP (name-address-phone) consistente en toda la web, Schema.org, redes. Subir 20 fotos nuevas del año (barcos, clientes con autorización, punto de encuentro). Descripción en 8 idiomas.</div>
+          <div class="meta">
+            <span class="pill urgent">Semanas 1-2</span>
+            <span class="pill">Coste: tiempo</span>
+            <span class="pill">Canal: GBP</span>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="num">3</div>
+        <div class="body">
+          <div class="title">Campaña de solicitud de reseñas sistemática</div>
+          <div class="desc">Mensaje WhatsApp automático 24h post-navegación pidiendo reseña Google con link directo. Objetivo: 15-20 reseñas nuevas en mes 1, luego cadencia estable de 10+/mes.</div>
+          <div class="meta">
+            <span class="pill urgent">Semana 2</span>
+            <span class="pill">Coste: tiempo</span>
+            <span class="pill">Canal: Chatbot WhatsApp</span>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="num">4</div>
+        <div class="body">
+          <div class="title">Microcopy diferenciador en home y footer</div>
+          <div class="desc">Añadir "Costa Brava Rent a Boat — operador propio desde Puerto de Blanes" en header. Footer con "No confundir con otros operadores de nombre similar". Sin atacar, sólo clarificar.</div>
+          <div class="meta">
+            <span class="pill urgent">Semana 1</span>
+            <span class="pill">Coste: 0 €</span>
+            <span class="pill">Canal: Web</span>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="num">5</div>
+        <div class="body">
+          <div class="title">Señalética física en el muelle</div>
+          <div class="desc">Cartel/roll-up con logo grande en punto de encuentro. Uniformes/camisetas con logo (mínimo 2 unidades). Clientes deben saber con quién están antes de subir al barco.</div>
+          <div class="meta">
+            <span class="pill urgent">Semanas 2-3</span>
+            <span class="pill">~150 €</span>
+            <span class="pill">Canal: Físico</span>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="num">6</div>
+        <div class="body">
+          <div class="title">Monitor semanal de la competencia nominal</div>
+          <div class="desc">Dashboard en CRM: reseñas nuevas de rentaboatblanes.com (positivas y negativas), cambios de precio en su web, horarios de apertura. Alerta si lanzan promoción.</div>
+          <div class="meta">
+            <span class="pill urgent">Semana 3</span>
+            <span class="pill">Coste: tiempo</span>
+            <span class="pill">Canal: CRM</span>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h3>KPIs específicos</h3>
+    <div class="grid grid-3">
+      <div class="kpi-box"><div class="label">CTR Ads marca</div><div class="value">&gt;8%</div><div class="sub">Baseline industry: 3-5%</div></div>
+      <div class="kpi-box"><div class="label">Reseñas GBP nuevas/mes</div><div class="value">+10</div><div class="sub">Mes 2 en adelante</div></div>
+      <div class="kpi-box"><div class="label">Coste por clic marca</div><div class="value">&lt;0,40 €</div><div class="sub">Términos de marca propia</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= INICIATIVA 2 ================= -->
+<section id="iniciativa-2" class="tab-content">
+
+  <div class="section">
+    <h2>Iniciativa 2 · Idiomas como Foso <span class="pill accent">Importante</span></h2>
+    <div class="card accent">
+      <h4>Problema</h4>
+      <p>Tu web existe en 8 idiomas pero probablemente la calidad de traducción y el SEO por idioma no están al nivel del núcleo ES/EN. Alemán, holandés, italiano y ruso son mercados grandes en Costa Brava y ninguno de tus competidores los cubre seriamente. Es tu única ventaja que no pueden copiar rápido.</p>
+    </div>
+
+    <h3>Objetivos</h3>
+    <div class="card">
+      <ul class="clean">
+        <li>Elevar DE, NL, IT, RU a misma calidad que ES/EN (contenido + traducción nativa).</li>
+        <li>Capturar tráfico búsqueda en idioma con landings específicas por mercado.</li>
+        <li>Activar Google Ads geo-target en DE, NL, AT, CH, IT.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section">
+    <h3>Acciones (semanas 2-8)</h3>
+    <ul class="task-list">
+      <li>
+        <div class="num">1</div>
+        <div class="body">
+          <div class="title">Auditoría de calidad de traducción por idioma</div>
+          <div class="desc">Hablante nativo revisa: home, flota, precios, FAQ, CTA. Marca errores y tono no nativo. Prioridad DE &gt; NL &gt; IT &gt; RU (por volumen de turistas en Blanes).</div>
+          <div class="meta">
+            <span class="pill">Semanas 2-3</span>
+            <span class="pill">~400 € (4 idiomas)</span>
+            <span class="pill">Canal: Fiverr / Upwork nativos</span>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="num">2</div>
+        <div class="body">
+          <div class="title">Landing pages específicas por origen</div>
+          <div class="desc">/de/bootverleih-blanes, /nl/boot-huren-blanes, /it/noleggio-barche-blanes, /ru/аренда-лодки-бланес. Contenido cultural + ruta local + testimonios en idioma.</div>
+          <div class="meta">
+            <span class="pill">Semanas 3-5</span>
+            <span class="pill">Código + copy</span>
+            <span class="pill">Canal: Web</span>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="num">3</div>
+        <div class="body">
+          <div class="title">Google Ads geo-target por idioma</div>
+          <div class="desc">Campaña separada por país: Alemania, Países Bajos, Italia, Austria, Suiza. Keywords en idioma local. Budget 5-7 €/día/país durante Jun-Ago.</div>
+          <div class="meta">
+            <span class="pill">Semana 6</span>
+            <span class="pill">~800 €/mes pico verano</span>
+            <span class="pill">Canal: Google Ads</span>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="num">4</div>
+        <div class="body">
+          <div class="title">Validar calidad del chatbot WhatsApp por idioma</div>
+          <div class="desc">Probar flujo completo en DE/NL/IT/RU. Corregir falsos-positivos de detección de idioma. Asegurar que el tono es correcto y las respuestas de negocio son exactas.</div>
+          <div class="meta">
+            <span class="pill">Semanas 4-5</span>
+            <span class="pill">Coste: tiempo</span>
+            <span class="pill">Canal: aiService.ts</span>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="num">5</div>
+        <div class="body">
+          <div class="title">Testimonios y fotos con clientes de cada mercado</div>
+          <div class="desc">Recoger 2-3 testimonios por idioma (DE, NL, IT, RU). Pedir autorización para foto + nombre + país. Publicar en landing de cada idioma para prueba social.</div>
+          <div class="meta">
+            <span class="pill">Semanas 5-10</span>
+            <span class="pill">Coste: 0 €</span>
+            <span class="pill">Canal: Orgánico</span>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h3>KPIs específicos</h3>
+    <div class="grid grid-3">
+      <div class="kpi-box"><div class="label">% reservas no-ES/EN</div><div class="value">&gt;25%</div><div class="sub">Meta fin de temporada</div></div>
+      <div class="kpi-box"><div class="label">Tráfico orgánico DE/NL/IT/RU</div><div class="value">+300%</div><div class="sub">vs. baseline mes 0</div></div>
+      <div class="kpi-box"><div class="label">Conversión bot por idioma</div><div class="value">≥ ES/EN</div><div class="sub">Paridad mínima</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= INICIATIVA 3 ================= -->
+<section id="iniciativa-3" class="tab-content">
+
+  <div class="section">
+    <h2>Iniciativa 3 · Excursión Privada Premium <span class="pill warn">Importante</span></h2>
+    <div class="card warning">
+      <h4>Problema</h4>
+      <p>Hoy compites en commodity (horas de barco a 70-80 €). Ningún competidor de Blanes ha empaquetado una <strong>excursión privada premium</strong> con precio cerrado, ruta curada y experiencia diferenciable. Es el hueco más claro del mercado.</p>
+    </div>
+
+    <h3>Propuesta de producto</h3>
+    <div class="card">
+      <h4 style="color:var(--accent)">"Día Privado Costa Brava" — desde 480 €</h4>
+      <ul class="clean" style="margin-top:10px">
+        <li><strong>4-5 horas con patrón profesional</strong> (no te preocupas por nada).</li>
+        <li><strong>Ruta curada:</strong> 3 calas seleccionadas según viento del día (Cala Bona, Fornells, Sant Francesc).</li>
+        <li><strong>Parada en Tossa de Mar</strong> (castillo + tiempo libre 45 min).</li>
+        <li><strong>Snorkel + equipamiento incluido.</strong></li>
+        <li><strong>Fotografía digital</strong> del día enviada en 48h.</li>
+        <li><strong>Bebidas frías</strong> y snack a bordo.</li>
+        <li><strong>Máximo 6-8 personas</strong> (exclusividad).</li>
+        <li><strong>Atención en tu idioma</strong> (8 disponibles).</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section">
+    <h3>Acciones (semanas 5-12)</h3>
+    <ul class="task-list">
+      <li>
+        <div class="num">1</div>
+        <div class="body">
+          <div class="title">Definir pricing y márgenes exactos</div>
+          <div class="desc">Calcular coste real (combustible, patrón, snacks, fotografía, desgaste). Proponer 3 niveles: 4h 480€ / 6h 680€ / 8h 880€. Validar que margen es ≥ alquiler estándar.</div>
+          <div class="meta">
+            <span class="pill">Semana 5</span>
+            <span class="pill">Coste: tiempo</span>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="num">2</div>
+        <div class="body">
+          <div class="title">Landing dedicada /excursion-privada con bookings en 8 idiomas</div>
+          <div class="desc">Página con hero cinematográfico, itinerario con mapa, incluye/no-incluye claro, galería premium, testimonios, reserva vía formulario mejorado.</div>
+          <div class="meta">
+            <span class="pill">Semanas 6-7</span>
+            <span class="pill">Dev: 2-3 días</span>
+            <span class="pill">Canal: Web</span>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="num">3</div>
+        <div class="body">
+          <div class="title">Sesión fotográfica profesional del producto</div>
+          <div class="desc">Medio día de shooting en barco con 2-4 personas. Calas, patrón, snorkel, atardecer. 30-40 fotos seleccionadas para landing + ads + redes.</div>
+          <div class="meta">
+            <span class="pill">Semana 6</span>
+            <span class="pill">~250-350 €</span>
+            <span class="pill">Canal: Fotógrafo local</span>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="num">4</div>
+        <div class="body">
+          <div class="title">Scripting comercial para WhatsApp / bot / teléfono</div>
+          <div class="desc">Cuando cliente consulta "¿cuánto cuesta alquilar un barco?", derivar conversacionalmente hacia excursión privada si el perfil encaja (grupo familia, luna de miel, aniversario, sin experiencia náutica).</div>
+          <div class="meta">
+            <span class="pill">Semana 7</span>
+            <span class="pill">Coste: tiempo</span>
+            <span class="pill">Canal: Chatbot + equipo</span>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="num">5</div>
+        <div class="body">
+          <div class="title">Paquetes corporate y celebración</div>
+          <div class="desc">Sub-producto: "Aniversario" (botella cava + decoración) +60€ / "Despedida soltera/o" (música + fotos grupales) +80€ / "Corporate team-building" (logística para empresa). Up-sell natural.</div>
+          <div class="meta">
+            <span class="pill">Semanas 8-10</span>
+            <span class="pill">Coste: variable</span>
+            <span class="pill">Canal: Web + ventas</span>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="num">6</div>
+        <div class="body">
+          <div class="title">Partnerships con hoteles 4-5* de Blanes/Lloret</div>
+          <div class="desc">Visita comercial a 10 hoteles top de la zona. Oferta: comisión 10% para conserje que derive cliente + material promocional. Foco en hoteles con clientela internacional.</div>
+          <div class="meta">
+            <span class="pill">Semanas 9-12</span>
+            <span class="pill">Coste: tiempo + folletos</span>
+            <span class="pill">Canal: Offline / B2B</span>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h3>KPIs específicos</h3>
+    <div class="grid grid-3">
+      <div class="kpi-box"><div class="label">Ticket medio excursión</div><div class="value">&gt;500 €</div><div class="sub">Vs. 200 € alquiler estándar</div></div>
+      <div class="kpi-box"><div class="label">% reservas premium sobre total</div><div class="value">15-20%</div><div class="sub">Fin de temporada</div></div>
+      <div class="kpi-box"><div class="label">Conversión landing excursión</div><div class="value">&gt;4%</div><div class="sub">Visita → solicitud</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TIMELINE ================= -->
+<section id="timeline" class="tab-content">
+
+  <div class="section">
+    <h2>Timeline 30-60-90 días</h2>
+
+    <h3>Mes 1 (22 abril – 22 mayo) · Defensa + Setup</h3>
+    <div class="timeline">
+      <div class="timeline-item urgent">
+        <div class="date">Semana 1</div>
+        <div class="event">Ads marca defensiva activos</div>
+        <div class="detail">Campañas Google creadas, keywords configurados, presupuesto diario 10€. Primer reporte a fin de semana.</div>
+      </div>
+      <div class="timeline-item urgent">
+        <div class="date">Semana 1</div>
+        <div class="event">Microcopy diferenciador en web</div>
+        <div class="detail">Header y footer actualizados con identificación clara vs. competidor nominal.</div>
+      </div>
+      <div class="timeline-item urgent">
+        <div class="date">Semanas 1-2</div>
+        <div class="event">GBP audit + 20 fotos nuevas</div>
+        <div class="detail">Perfil impecable, descripción multi-idioma, fotos recientes profesionales.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="date">Semana 2</div>
+        <div class="event">Auditoría traducción DE/NL/IT/RU</div>
+        <div class="detail">Contratado revisor nativo, informe por idioma con correcciones priorizadas.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="date">Semanas 2-3</div>
+        <div class="event">Señalética física y uniformes</div>
+        <div class="detail">Roll-up logo + 2 uniformes entregados. Punto de encuentro inequívoco.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="date">Semana 3</div>
+        <div class="event">Campaña reseñas WhatsApp automática</div>
+        <div class="detail">Mensaje post-servicio 24h con link directo a GBP. Meta 10+ reseñas en mes 1.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="date">Semana 4</div>
+        <div class="event">Review mes 1 + ajustes</div>
+        <div class="detail">Dashboard de los 3 KPIs iniciales. Re-prioriza si algo no tracciona.</div>
+      </div>
+    </div>
+
+    <h3>Mes 2 (22 mayo – 22 junio) · Idiomas + Producto Premium</h3>
+    <div class="timeline">
+      <div class="timeline-item mid">
+        <div class="date">Semanas 5-6</div>
+        <div class="event">Landings DE/NL/IT/RU publicadas</div>
+        <div class="detail">4 landings específicas con copy nativo y CTAs adaptados a cada mercado.</div>
+      </div>
+      <div class="timeline-item mid">
+        <div class="date">Semana 5</div>
+        <div class="event">Pricing y márgenes "Excursión Privada" cerrados</div>
+        <div class="detail">3 niveles definidos (4h/6h/8h), márgenes validados, upsell corporate diseñado.</div>
+      </div>
+      <div class="timeline-item mid">
+        <div class="date">Semana 6</div>
+        <div class="event">Fotografía profesional producto premium</div>
+        <div class="detail">40 fotos seleccionadas listas para landing, ads y redes sociales.</div>
+      </div>
+      <div class="timeline-item mid">
+        <div class="date">Semanas 6-7</div>
+        <div class="event">Landing /excursion-privada live</div>
+        <div class="detail">Producto lanzado en 8 idiomas con formulario de reserva mejorado.</div>
+      </div>
+      <div class="timeline-item mid">
+        <div class="date">Semana 7</div>
+        <div class="event">Google Ads geo-target DACH/NL/IT activos</div>
+        <div class="detail">Campañas separadas por país, budget pico verano, monitor semanal CTR.</div>
+      </div>
+      <div class="timeline-item mid">
+        <div class="date">Semana 8</div>
+        <div class="event">Review mes 2 + ajuste iniciativas</div>
+        <div class="detail">Evaluar qué landing convierte, qué idioma tracciona, qué hueco queda.</div>
+      </div>
+    </div>
+
+    <h3>Mes 3 (22 junio – 22 julio) · Consolidación pre-pico</h3>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="date">Semanas 9-10</div>
+        <div class="event">Upsells premium activos (aniversario/corporate)</div>
+        <div class="detail">Sub-productos publicados, scripting de ventas entrenado.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="date">Semanas 9-12</div>
+        <div class="event">Partnerships hoteles 4-5*</div>
+        <div class="detail">10 visitas comerciales, 3-4 acuerdos firmados con comisión.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="date">Semana 11</div>
+        <div class="event">Testimonios multi-idioma publicados</div>
+        <div class="detail">2-3 por idioma prioritario en landings y redes.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="date">Semana 12</div>
+        <div class="event">Review 90 días completa</div>
+        <div class="detail">KPIs vs. objetivos, decisión sobre qué mantener/escalar para pico Jul-Ago.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= KPIs ================= -->
+<section id="kpis" class="tab-content">
+
+  <div class="section">
+    <h2>KPIs y tracking</h2>
+    <p>Todos los KPIs deben estar visibles en un dashboard semanal. Si ahora mismo no los estás midiendo, crearlo es parte del plan.</p>
+  </div>
+
+  <div class="section">
+    <h3>Dashboard semanal (ideal: tab en CRM)</h3>
+    <table class="plan">
+      <thead>
+        <tr>
+          <th>KPI</th>
+          <th>Iniciativa</th>
+          <th>Baseline</th>
+          <th>Meta 30d</th>
+          <th>Meta 90d</th>
+          <th>Fuente</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>CTR Ads marca</td>
+          <td>1 · Marca</td>
+          <td>–</td>
+          <td>&gt;5%</td>
+          <td>&gt;8%</td>
+          <td>Google Ads</td>
+        </tr>
+        <tr>
+          <td>Reseñas GBP nuevas/mes</td>
+          <td>1 · Marca</td>
+          <td>?</td>
+          <td>+10</td>
+          <td>+30 total</td>
+          <td>GBP</td>
+        </tr>
+        <tr>
+          <td>% reservas no-ES/EN</td>
+          <td>2 · Idiomas</td>
+          <td>?</td>
+          <td>10%</td>
+          <td>25%</td>
+          <td>CRM reservas</td>
+        </tr>
+        <tr>
+          <td>Tráfico orgánico DE/NL/IT/RU</td>
+          <td>2 · Idiomas</td>
+          <td>Medir hoy</td>
+          <td>+50%</td>
+          <td>+300%</td>
+          <td>Analytics</td>
+        </tr>
+        <tr>
+          <td>Conversión landing por idioma</td>
+          <td>2 · Idiomas</td>
+          <td>Medir hoy</td>
+          <td>Paridad EN</td>
+          <td>Paridad EN</td>
+          <td>Analytics</td>
+        </tr>
+        <tr>
+          <td>% reservas "excursión privada"</td>
+          <td>3 · Producto</td>
+          <td>–</td>
+          <td>5%</td>
+          <td>15-20%</td>
+          <td>CRM reservas</td>
+        </tr>
+        <tr>
+          <td>Ticket medio excursión</td>
+          <td>3 · Producto</td>
+          <td>–</td>
+          <td>&gt;450 €</td>
+          <td>&gt;500 €</td>
+          <td>CRM reservas</td>
+        </tr>
+        <tr>
+          <td>Ratio solicitud → confirmada</td>
+          <td>Transversal</td>
+          <td>Medir hoy</td>
+          <td>≥70%</td>
+          <td>≥80%</td>
+          <td>CRM funnel</td>
+        </tr>
+        <tr>
+          <td>NPS / satisfacción post-servicio</td>
+          <td>Transversal</td>
+          <td>Medir hoy</td>
+          <td>&gt;8/10</td>
+          <td>&gt;9/10</td>
+          <td>WhatsApp post-nav</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <h3>Cadencia de revisión</h3>
+    <div class="card">
+      <ul class="clean">
+        <li><strong>Semanal (lunes 30 min):</strong> CTR Ads, reservas nuevas, reseñas nuevas.</li>
+        <li><strong>Mensual (1h):</strong> Revisión completa de KPIs, ajuste de budget/prioridades.</li>
+        <li><strong>Quincenal en temporada alta (Jul-Ago):</strong> Ajuste fino de Ads, monitoreo competencia.</li>
+        <li><strong>Post-temporada (noviembre):</strong> Retrospectiva completa, preparación 2027.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ASUNCIONES ================= -->
+<section id="asunciones" class="tab-content">
+
+  <div class="section">
+    <h2>Asunciones que hice — necesito que las valides</h2>
+    <p>Este plan se construyó con los datos del battlecard + supuestos razonables. Estos son los que tienes que confirmar o corregir antes de ejecutar:</p>
+  </div>
+
+  <div class="section">
+    <div class="assumption">
+      <div class="label">Asunción #1 · Presupuesto</div>
+      <div class="text"><strong>Asumo ~900 €/mes en Ads</strong> durante temporada alta (Jun-Ago) y ~300 €/mes en temporada baja. Total plan 90d ≈ 2.700 €. Si tu presupuesto real es 50% de esto, reducimos idiomas a 2 (DE + NL). Si es el doble, aceleramos todo.</div>
+    </div>
+
+    <div class="assumption">
+      <div class="label">Asunción #2 · Equipo</div>
+      <div class="text"><strong>Asumo que operas solo o con 1 persona de apoyo.</strong> Por eso hay tareas (traducción, fotografía, desarrollo web) que se externalizan. Si tienes un equipo interno fuerte, podemos internalizar algunas y bajar coste.</div>
+    </div>
+
+    <div class="assumption">
+      <div class="label">Asunción #3 · Capacidad operativa</div>
+      <div class="text"><strong>Asumo que tu flota actual puede absorber +25% reservas en verano.</strong> Si ya estás al tope de capacidad en Jul-Ago, el foco cambia: menos captación y más rentabilidad (precio + excursión premium).</div>
+    </div>
+
+    <div class="assumption">
+      <div class="label">Asunción #4 · Tecnología</div>
+      <div class="text"><strong>Asumo que el stack actual (Neon, chatbot WhatsApp IA, CRM) soporta las integraciones del plan.</strong> Landings nuevas, dashboard de KPIs y campañas reseñas son extensiones del sistema existente, no refactor.</div>
+    </div>
+
+    <div class="assumption">
+      <div class="label">Asunción #5 · Competencia estática</div>
+      <div class="text"><strong>Asumo que EricBoats y Rent a Boat Blanes no lanzan nada disruptivo en estos 90 días.</strong> Si uno de ellos lanza pago online o entra fuerte en DE/NL, replanificamos.</div>
+    </div>
+
+    <div class="assumption">
+      <div class="label">Asunción #6 · Objetivo principal</div>
+      <div class="text"><strong>Asumo que tu objetivo es crecer ingresos 2026, no rentabilidad pura.</strong> Si prefieres mismo volumen con más margen, inviértase el enfoque: cortar todos los marketplaces/ads baratos y doblar en excursión premium únicamente.</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h3>Decisiones que necesito que tomes para arrancar la Fase 1</h3>
+    <div class="card accent">
+      <ul class="clean">
+        <li>¿Presupuesto Ads aprobado para mes 1? (recomendado: 300 €)</li>
+        <li>¿Quién maneja las reseñas de GBP y el mensaje post-servicio?</li>
+        <li>¿Autorizas gasto ~150 € en señalética física + uniformes?</li>
+        <li>¿Tienes acceso admin a Google Ads y GBP, o hay que crear cuentas/transferir?</li>
+        <li>¿El texto del microcopy diferenciador lo apruebas tú antes de publicar?</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FASE 1 EJECUCIÓN ================= -->
+<section id="fase-1" class="tab-content">
+
+  <div class="section">
+    <h2>Fase 1 · Marca Defensiva — Listo para ejecutar en código</h2>
+    <p>Esto es el subconjunto del plan que toca el <strong>codebase</strong>. Lo que se hace fuera del código (Ads, señalética, fotografía) queda en las iniciativas arriba.</p>
+    <div class="card accent">
+      <p><strong>Ventana:</strong> 2-3 días de trabajo efectivo.</p>
+      <p><strong>Convertible a fase GSD:</strong> sí, ejecuta <code>/gsd:plan-phase</code> cuando estés listo. Te acompañaré a desglosarlo.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h3>Objetivo de fase</h3>
+    <div class="card">
+      <p>En 3 días, la web debe <strong>identificarse inequívocamente</strong> como Costa Brava Rent a Boat (no rentaboatblanes.com), capturar reseñas automáticamente post-servicio, y dar al CRM un dashboard para monitorear la competencia nominal.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h3>Tareas técnicas concretas</h3>
+    <ul class="task-list">
+      <li>
+        <div class="num">1</div>
+        <div class="body">
+          <div class="title">Microcopy diferenciador en home y footer</div>
+          <div class="desc">
+            Añadir en <code>client/src/components/Navigation.tsx</code> o <code>Hero.tsx</code>: badge "Operador propio · Puerto de Blanes" junto al logo.<br>
+            En <code>Footer.tsx</code>: línea "Costa Brava Rent a Boat es una empresa independiente. No confundir con operadores de nombre similar."<br>
+            Traducir a los 8 idiomas en <code>client/src/i18n/*.ts</code>.
+          </div>
+          <div class="meta">
+            <span class="pill">2-3h</span>
+            <span class="pill">Frontend + i18n</span>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="num">2</div>
+        <div class="body">
+          <div class="title">Mensaje automático post-servicio pidiendo reseña GBP</div>
+          <div class="desc">
+            Extender <code>server/whatsapp/flows/</code> o <code>server/services/scheduler</code> para enviar WhatsApp 24h después del servicio con mensaje en idioma del cliente + link directo a GBP.<br>
+            Tracking: marcar en CRM si ya se envió y si vino reseña nueva tras el envío.
+          </div>
+          <div class="meta">
+            <span class="pill">4-6h</span>
+            <span class="pill">Backend + chatbot</span>
+            <span class="pill">whatsapp/</span>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="num">3</div>
+        <div class="body">
+          <div class="title">Dashboard CRM · Monitor competencia nominal</div>
+          <div class="desc">
+            Nueva tab en <code>client/src/components/crm/</code> (ej. <code>CompetitionTab.tsx</code>).<br>
+            KPIs: reseñas GBP propias últimos 30d · reseñas competidor últimos 30d (scraping GBP público) · precio mostrado en rentaboatblanes.com (alerta si cambia) · horarios.<br>
+            Endpoint nuevo en <code>server/routes/admin-competition.ts</code>. Cache diario.
+          </div>
+          <div class="meta">
+            <span class="pill">8-10h</span>
+            <span class="pill">Full-stack</span>
+            <span class="pill">Nueva tab CRM</span>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="num">4</div>
+        <div class="body">
+          <div class="title">Schema.org refuerzo en home (Organization + LocalBusiness)</div>
+          <div class="desc">
+            En <code>client/src/utils/seo-schemas.ts</code>: asegurar que el JSON-LD de Organization tiene <code>name</code>, <code>alternateName</code>, <code>url</code>, <code>address</code>, <code>telephone</code>, <code>sameAs</code> (redes sociales) consistentes con GBP.<br>
+            Añadir <code>@id</code> único para que Google no confunda entidades.
+          </div>
+          <div class="meta">
+            <span class="pill">1-2h</span>
+            <span class="pill">SEO</span>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="num">5</div>
+        <div class="body">
+          <div class="title">Ficha de métricas iniciales (baseline)</div>
+          <div class="desc">
+            Crear script puntual o tabla en <code>docs/sales/</code> con los valores actuales de todos los KPIs del plan (reseñas GBP, tráfico orgánico por idioma, ratio solicitud → reserva). Sin baseline no hay mejora medible.
+          </div>
+          <div class="meta">
+            <span class="pill">1h</span>
+            <span class="pill">Tracking</span>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h3>Criterios de aceptación (verification)</h3>
+    <div class="card success">
+      <ul class="clean check">
+        <li>Cualquier visita a la home ve "Costa Brava Rent a Boat · Operador propio" en los 3 primeros segundos.</li>
+        <li>Una reserva completada genera, 24h después, un WhatsApp al cliente pidiendo reseña en su idioma.</li>
+        <li>El CRM tiene una tab "Competencia" con al menos 3 KPIs actualizándose diariamente.</li>
+        <li>Schema.org validado sin errores en <a href="https://validator.schema.org/" target="_blank">Schema.org validator</a>.</li>
+        <li>Baseline de KPIs documentada y firmada por el owner (tú).</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section">
+    <h3>Siguiente paso propuesto</h3>
+    <div class="card accent">
+      <p>Si apruebas este alcance, el siguiente comando natural sería:</p>
+      <p style="margin-top:10px;color:var(--accent);font-family:monospace;background:var(--bg-elevated);padding:10px;border-radius:6px">
+        /gsd:plan-phase "Fase 1 — Marca Defensiva"
+      </p>
+      <p>Eso desencadenará el workflow GSD con investigación técnica, plan atómico, y ejecución con checkpoints. Yo te acompaño.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Plan 90 días generado con <a href="#">/sales:competitive-intelligence</a> · Basado en battlecard 22/04/2026</p>
+  <p style="margin-top:6px">Documento vivo — revisa y ajusta mensualmente.</p>
+</footer>
+
+</div>
+
+<script>
+  const tabs = document.querySelectorAll('nav.tabs button.tab');
+  const contents = document.querySelectorAll('.tab-content');
+  tabs.forEach(t => {
+    t.addEventListener('click', () => {
+      const target = t.dataset.tab;
+      tabs.forEach(x => x.classList.toggle('active', x === t));
+      contents.forEach(c => c.classList.toggle('active', c.id === target));
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Battlecard · Costa Brava Rent a Boat vs Competencia Blanes</title>
+<style>
+  :root {
+    --bg-primary: #0a0d14;
+    --bg-elevated: #0f131c;
+    --bg-surface: #161b28;
+    --bg-hover: #1e2536;
+    --border: rgba(255,255,255,0.08);
+    --border-strong: rgba(255,255,255,0.14);
+    --text-primary: #ffffff;
+    --text-secondary: rgba(255,255,255,0.72);
+    --text-muted: rgba(255,255,255,0.48);
+    --accent: #A8C4DD;
+    --accent-strong: #7aa6c9;
+    --navy: #1a2a42;
+    --you-win: #10b981;
+    --they-win: #ef4444;
+    --tie: #f59e0b;
+    --radius: 12px;
+    --radius-lg: 16px;
+    --shadow-sm: 0 1px 2px rgba(0,0,0,0.3);
+    --shadow-md: 0 4px 12px rgba(0,0,0,0.25);
+    --shadow-lg: 0 12px 40px rgba(0,0,0,0.35);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.55;
+    min-height: 100vh;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  .container { max-width: 1280px; margin: 0 auto; padding: 32px 24px; }
+
+  header.top {
+    background: linear-gradient(135deg, var(--navy) 0%, #0c1520 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 40px 24px 32px;
+  }
+  header.top .inner { max-width: 1280px; margin: 0 auto; }
+  header.top h1 {
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 8px;
+  }
+  header.top h1 .accent { color: var(--accent); }
+  header.top .meta {
+    color: var(--text-secondary);
+    font-size: 14px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  header.top .meta span { display: inline-flex; align-items: center; gap: 6px; }
+  header.top .meta .dot { width: 6px; height: 6px; background: var(--accent); border-radius: 50%; }
+
+  nav.tabs {
+    position: sticky;
+    top: 0;
+    background: rgba(10,13,20,0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+    z-index: 10;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+  nav.tabs .tabs-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: flex;
+    gap: 4px;
+    padding: 12px 16px;
+  }
+  nav.tabs button.tab {
+    background: transparent;
+    border: 1px solid transparent;
+    color: var(--text-secondary);
+    font-size: 14px;
+    font-weight: 500;
+    padding: 10px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 150ms ease;
+    font-family: inherit;
+  }
+  nav.tabs button.tab:hover {
+    background: var(--bg-hover);
+    color: var(--text-primary);
+  }
+  nav.tabs button.tab.active {
+    background: var(--accent);
+    color: var(--navy);
+    font-weight: 600;
+  }
+  nav.tabs button.tab .count {
+    display: inline-block;
+    margin-left: 6px;
+    padding: 1px 6px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 10px;
+    font-size: 11px;
+  }
+  nav.tabs button.tab.active .count {
+    background: rgba(26,42,66,0.25);
+  }
+
+  .tab-content { display: none; animation: fadeIn 200ms ease; }
+  .tab-content.active { display: block; }
+  @keyframes fadeIn { from {opacity:0; transform: translateY(4px);} to {opacity:1; transform:none;} }
+
+  h2 {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    letter-spacing: -0.01em;
+  }
+  h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+  h4 {
+    font-size: 17px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+
+  .section { margin-bottom: 32px; }
+
+  .card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+    transition: border-color 150ms ease;
+  }
+  .card:hover { border-color: var(--border-strong); }
+
+  .grid { display: grid; gap: 16px; }
+  .grid-2 { grid-template-columns: repeat(2, 1fr); }
+  .grid-3 { grid-template-columns: repeat(3, 1fr); }
+  @media (max-width: 800px) {
+    .grid-2, .grid-3 { grid-template-columns: 1fr; }
+  }
+
+  /* Comparison Matrix */
+  table.matrix {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    font-size: 13px;
+  }
+  table.matrix thead th {
+    background: var(--bg-elevated);
+    padding: 14px 12px;
+    text-align: left;
+    font-weight: 600;
+    color: var(--text-secondary);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+  }
+  table.matrix thead th.you {
+    background: var(--accent);
+    color: var(--navy);
+  }
+  table.matrix tbody td {
+    padding: 12px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+    color: var(--text-secondary);
+  }
+  table.matrix tbody td:first-child {
+    font-weight: 600;
+    color: var(--text-primary);
+    white-space: nowrap;
+  }
+  table.matrix tbody td.you-cell {
+    background: rgba(168,196,221,0.05);
+    color: var(--text-primary);
+  }
+  table.matrix tbody tr:last-child td { border-bottom: none; }
+  .winner-you { color: var(--you-win); font-weight: 600; }
+  .winner-them { color: var(--they-win); font-weight: 600; }
+  .winner-tie { color: var(--tie); font-weight: 600; }
+
+  /* Win/Loss panels */
+  .win-loss-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px;
+    margin-top: 16px;
+  }
+  .win-loss-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 18px;
+    border-left: 3px solid var(--tie);
+  }
+  .win-loss-card.you { border-left-color: var(--you-win); }
+  .win-loss-card.them { border-left-color: var(--they-win); }
+  .win-loss-card .name { font-size: 15px; font-weight: 600; margin-bottom: 8px; }
+  .win-loss-card ul { list-style: none; font-size: 13px; color: var(--text-secondary); }
+  .win-loss-card ul li { padding: 4px 0; padding-left: 18px; position: relative; }
+  .win-loss-card.you ul li::before { content: "✓"; position: absolute; left: 0; color: var(--you-win); }
+  .win-loss-card.them ul li::before { content: "×"; position: absolute; left: 0; color: var(--they-win); }
+
+  /* Competitor profile */
+  .profile-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  @media (max-width: 700px) { .profile-grid { grid-template-columns: 1fr; } }
+  .profile-item {
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px 14px;
+  }
+  .profile-item .label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+    margin-bottom: 4px;
+  }
+  .profile-item .value { font-size: 14px; color: var(--text-primary); font-weight: 500; }
+
+  /* Talk tracks */
+  .talk-track {
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    border-radius: 8px;
+    padding: 14px 16px;
+    margin-bottom: 10px;
+  }
+  .talk-track .scenario {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+  .talk-track .text { font-size: 14px; color: var(--text-secondary); line-height: 1.6; }
+  .talk-track .text strong { color: var(--text-primary); }
+
+  /* Objections */
+  .objection {
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+    margin-bottom: 10px;
+  }
+  .objection .q {
+    font-size: 14px;
+    color: var(--text-primary);
+    font-weight: 500;
+    margin-bottom: 8px;
+  }
+  .objection .q::before {
+    content: "« ";
+    color: var(--accent);
+  }
+  .objection .q::after {
+    content: " »";
+    color: var(--accent);
+  }
+  .objection .a {
+    font-size: 13px;
+    color: var(--text-secondary);
+    padding-left: 14px;
+    border-left: 2px solid var(--accent);
+  }
+
+  /* Landmines */
+  .landmines { list-style: none; }
+  .landmines li {
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--tie);
+    border-radius: 8px;
+    padding: 12px 14px;
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: var(--text-primary);
+  }
+  .landmines li::before {
+    content: "? ";
+    color: var(--tie);
+    font-weight: 700;
+  }
+
+  /* Threat badge */
+  .threat {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-left: 8px;
+  }
+  .threat.high { background: rgba(239,68,68,0.15); color: #fca5a5; }
+  .threat.mid { background: rgba(245,158,11,0.15); color: #fcd34d; }
+  .threat.low { background: rgba(16,185,129,0.15); color: #6ee7b7; }
+
+  /* Release timeline */
+  .timeline {
+    border-left: 2px solid var(--border);
+    padding-left: 20px;
+    margin-left: 8px;
+  }
+  .timeline-item {
+    position: relative;
+    padding-bottom: 14px;
+  }
+  .timeline-item::before {
+    content: "";
+    position: absolute;
+    left: -27px;
+    top: 4px;
+    width: 10px;
+    height: 10px;
+    background: var(--accent);
+    border-radius: 50%;
+    border: 2px solid var(--bg-primary);
+  }
+  .timeline-item .date {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--text-muted);
+    margin-bottom: 2px;
+  }
+  .timeline-item .event {
+    font-size: 14px;
+    color: var(--text-primary);
+    font-weight: 500;
+  }
+
+  .pill {
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 600;
+    background: var(--bg-hover);
+    color: var(--text-secondary);
+    margin-right: 4px;
+    margin-bottom: 4px;
+  }
+  .pill.green { background: rgba(16,185,129,0.15); color: #6ee7b7; }
+  .pill.red { background: rgba(239,68,68,0.15); color: #fca5a5; }
+  .pill.amber { background: rgba(245,158,11,0.15); color: #fcd34d; }
+  .pill.accent { background: rgba(168,196,221,0.15); color: var(--accent); }
+
+  footer {
+    margin-top: 48px;
+    padding: 24px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 12px;
+  }
+  footer a { color: var(--accent); }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="inner">
+    <h1><span class="accent">Costa Brava Rent a Boat</span> — Battlecard Competencia</h1>
+    <div class="meta">
+      <span><span class="dot"></span>Generado: 22 Abril 2026</span>
+      <span><span class="dot"></span>Zona: Blanes / Lloret / Tossa</span>
+      <span><span class="dot"></span>4 competidores analizados</span>
+      <span><span class="dot"></span>Fuentes: Web, TripAdvisor, SamBoat, Click&amp;Boat</span>
+    </div>
+  </div>
+</header>
+
+<nav class="tabs">
+  <div class="tabs-inner">
+    <button class="tab active" data-tab="matrix">Matriz Comparativa</button>
+    <button class="tab" data-tab="us">Tu Empresa</button>
+    <button class="tab" data-tab="ericboats">EricBoats<span class="count">ALTO</span></button>
+    <button class="tab" data-tab="blanesboats">Blanes Boats<span class="count">MEDIO</span></button>
+    <button class="tab" data-tab="rentaboat">Rent a Boat Blanes<span class="count">ALTO</span></button>
+    <button class="tab" data-tab="marketplaces">Marketplaces (SamBoat/Click&amp;Boat)<span class="count">CANAL</span></button>
+    <button class="tab" data-tab="strategy">Estrategia Global</button>
+  </div>
+</nav>
+
+<div class="container">
+
+<!-- =============================================================== -->
+<!-- MATRIX TAB -->
+<!-- =============================================================== -->
+<section id="matrix" class="tab-content active">
+
+  <div class="section">
+    <h2>Head-to-head: Tú vs. competencia directa en Blanes</h2>
+    <table class="matrix">
+      <thead>
+        <tr>
+          <th>Dimensión</th>
+          <th class="you">Costa Brava Rent a Boat</th>
+          <th>EricBoats</th>
+          <th>Blanes Boats</th>
+          <th>Rent a Boat Blanes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Ubicación</td>
+          <td class="you-cell">Puerto de Blanes</td>
+          <td>Esplanada del Port (mismo muelle)</td>
+          <td>Pg. Mestrança 116</td>
+          <td>Esplanada del Port (mismo muelle)</td>
+        </tr>
+        <tr>
+          <td>Precio desde (sin licencia)</td>
+          <td class="you-cell"><span class="winner-you">70 €</span> / hora</td>
+          <td>80 € / hora</td>
+          <td>~80 € / hora</td>
+          <td>80 € / hora</td>
+        </tr>
+        <tr>
+          <td>Barco con licencia</td>
+          <td class="you-cell">Sí, desde 280 €</td>
+          <td>Sí (hasta 250hp / 12 pax)</td>
+          <td>Sí (Pacific Craft 670)</td>
+          <td class="winner-you">No — sólo sin licencia</td>
+        </tr>
+        <tr>
+          <td>Tamaño flota</td>
+          <td class="you-cell">Flota mixta con &amp; sin licencia</td>
+          <td><span class="winner-them">12 modelos (4.5m–7.4m)</span></td>
+          <td>~6 Voraz 450 + 1 Pacific Craft</td>
+          <td>5 (Estable/Marion)</td>
+        </tr>
+        <tr>
+          <td>Excursión privada con patrón</td>
+          <td class="you-cell"><span class="winner-you">Producto dedicado</span></td>
+          <td>Sí (alquiler con patrón)</td>
+          <td>Sí (pesca + paseos con capitán)</td>
+          <td>No documentado</td>
+        </tr>
+        <tr>
+          <td>Pesca como producto</td>
+          <td class="you-cell">Secundario</td>
+          <td>Sí</td>
+          <td><span class="winner-them">Especialistas (3 modalidades)</span></td>
+          <td>No</td>
+        </tr>
+        <tr>
+          <td>Idiomas web</td>
+          <td class="you-cell"><span class="winner-you">8 idiomas</span> (ES/EN/CA/FR/DE/NL/IT/RU)</td>
+          <td>3 (ES/EN/CA)</td>
+          <td>4 (ES/EN/CA/FR)</td>
+          <td>4 (ES/EN/CA/FR)</td>
+        </tr>
+        <tr>
+          <td>Chatbot WhatsApp con IA</td>
+          <td class="you-cell"><span class="winner-you">Sí — multi-idioma, 24/7</span></td>
+          <td>WhatsApp manual</td>
+          <td>WhatsApp manual</td>
+          <td>WhatsApp manual</td>
+        </tr>
+        <tr>
+          <td>Reserva online</td>
+          <td class="you-cell">Solicitud online + confirmación manual</td>
+          <td>Principalmente WhatsApp/tel</td>
+          <td>Web + agregadores</td>
+          <td>Web básica</td>
+        </tr>
+        <tr>
+          <td>Gasolina incluida</td>
+          <td class="you-cell">Sin licencia: <span class="winner-you">sí</span> · Con licencia &amp; excursión: no</td>
+          <td>Sin licencia: sí</td>
+          <td>Sin licencia: sí</td>
+          <td>Sí (todos los precios)</td>
+        </tr>
+        <tr>
+          <td>Horario</td>
+          <td class="you-cell">Temporada Abr–Oct</td>
+          <td>Temporada</td>
+          <td>Temporada</td>
+          <td>9:00–21:00 / 7 días</td>
+        </tr>
+        <tr>
+          <td>Reputación (TripAdvisor)</td>
+          <td class="you-cell">Buenas reseñas</td>
+          <td><span class="winner-them">8+ años, reseñas sólidas</span></td>
+          <td>Reseñas mixtas</td>
+          <td>Pocas reseñas</td>
+        </tr>
+        <tr>
+          <td>Presencia SEO (páginas indexadas)</td>
+          <td class="you-cell"><span class="winner-you">Alta — rutas locales + blog</span></td>
+          <td>Media</td>
+          <td>Media</td>
+          <td>Baja</td>
+        </tr>
+        <tr>
+          <td>Teléfono</td>
+          <td class="you-cell">+34 611 500 372</td>
+          <td>+34 696 409 149</td>
+          <td>+34 690 222 118</td>
+          <td>+34 601 909 910</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <h2>Dónde ganas vs. dónde pierdes</h2>
+    <div class="win-loss-grid">
+      <div class="win-loss-card you">
+        <div class="name">✓ Ganas cuando…</div>
+        <ul>
+          <li>Cliente extranjero busca su idioma (DE/NL/IT/RU — sólo tú)</li>
+          <li>Cliente prioriza precio (70€/h vs. 80€/h competencia)</li>
+          <li>Reserva urgente por WhatsApp de madrugada (bot IA 24/7)</li>
+          <li>Cliente busca "excursión privada" como producto claro</li>
+          <li>Cliente llega vía búsqueda SEO long-tail (Blanes→Tossa, rutas)</li>
+          <li>Cliente quiere ver flota completa &amp; precios transparentes online</li>
+        </ul>
+      </div>
+      <div class="win-loss-card them">
+        <div class="name">× Pierdes cuando…</div>
+        <ul>
+          <li>Cliente quiere barco grande (&gt;8 pax, &gt;150hp): EricBoats tiene Cobra RIB 700</li>
+          <li>Cliente busca charter de pesca serio (Blanes Boats gana)</li>
+          <li>Cliente llega vía SamBoat/Click&amp;Boat (no listas allí)</li>
+          <li>Confusión nominal: cliente busca "Rent a Boat Blanes" y aterriza en competidor</li>
+          <li>Repeat customers de EricBoats (8 años de base instalada)</li>
+          <li>Cliente quiere ver flota en persona y ellos tienen mismo muelle</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Mapa de amenazas</h2>
+    <div class="grid grid-3">
+      <div class="card" style="border-left:3px solid var(--they-win)">
+        <h4 style="color:#fca5a5">Alto riesgo</h4>
+        <p style="color:var(--text-secondary);font-size:14px;margin-top:4px">
+          <strong>EricBoats</strong> (flota 4× más variada, premium)<br>
+          <strong>Rent a Boat Blanes</strong> (confusión nominal, mismo muelle)
+        </p>
+      </div>
+      <div class="card" style="border-left:3px solid var(--tie)">
+        <h4 style="color:#fcd34d">Riesgo medio</h4>
+        <p style="color:var(--text-secondary);font-size:14px;margin-top:4px">
+          <strong>Blanes Boats</strong> (nicho pesca, captura tráfico específico)
+        </p>
+      </div>
+      <div class="card" style="border-left:3px solid var(--accent)">
+        <h4 style="color:var(--accent)">Canal alternativo</h4>
+        <p style="color:var(--text-secondary);font-size:14px;margin-top:4px">
+          <strong>SamBoat / Click&amp;Boat</strong> — 200+ barcos listados Blanes, cobran 18%
+        </p>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- =============================================================== -->
+<!-- YOUR COMPANY TAB -->
+<!-- =============================================================== -->
+<section id="us" class="tab-content">
+
+  <div class="section">
+    <h2>Costa Brava Rent a Boat</h2>
+    <div class="profile-grid">
+      <div class="profile-item"><div class="label">Puerto</div><div class="value">Puerto de Blanes</div></div>
+      <div class="profile-item"><div class="label">Teléfono</div><div class="value">+34 611 500 372</div></div>
+      <div class="profile-item"><div class="label">Email</div><div class="value">costabravarentaboat@gmail.com</div></div>
+      <div class="profile-item"><div class="label">Temporada</div><div class="value">Abril – Octubre</div></div>
+      <div class="profile-item"><div class="label">Modelo</div><div class="value">Solicitud online, pago manual</div></div>
+      <div class="profile-item"><div class="label">Web</div><div class="value">costabravarentaboat.com (8 idiomas)</div></div>
+    </div>
+
+    <h3>Tus diferenciadores únicos</h3>
+    <div style="margin-bottom:16px">
+      <span class="pill accent">8 idiomas</span>
+      <span class="pill accent">Chatbot WhatsApp IA</span>
+      <span class="pill accent">SEO Autopilot</span>
+      <span class="pill accent">CRM propio</span>
+      <span class="pill accent">Desde 70 €/h</span>
+      <span class="pill accent">Excursión privada como producto</span>
+      <span class="pill accent">SEO rutas locales (Blanes→Tossa 30-45min)</span>
+      <span class="pill accent">Cross-linking coastrent.es (scooter Lloret)</span>
+    </div>
+  </div>
+
+  <div class="section grid grid-2">
+    <div class="card">
+      <h4 style="color:var(--you-win)">Puntos fuertes</h4>
+      <ul style="color:var(--text-secondary);font-size:14px;padding-left:18px;margin-top:8px">
+        <li style="padding:4px 0">Única web en 8 idiomas — incluye DE, NL, IT, RU (mercados desatendidos)</li>
+        <li style="padding:4px 0">Bot IA en WhatsApp responde 24/7 en idioma del cliente</li>
+        <li style="padding:4px 0">Precio entry 70 €/h (por debajo del 80 € de competidores)</li>
+        <li style="padding:4px 0">Honestidad sobre gasolina (sólo incluida en sin-licencia)</li>
+        <li style="padding:4px 0">Contenido SEO dedicado por ruta/location</li>
+        <li style="padding:4px 0">CRM propio con historial GBP, delta detection, analytics</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h4 style="color:var(--they-win)">Puntos débiles a cerrar</h4>
+      <ul style="color:var(--text-secondary);font-size:14px;padding-left:18px;margin-top:8px">
+        <li style="padding:4px 0">Flota más pequeña que EricBoats (sin Cobra RIB 700 / 12 pax)</li>
+        <li style="padding:4px 0">Sin charter de pesca serio (Blanes Boats lo tiene)</li>
+        <li style="padding:4px 0">No estás en SamBoat/Click&amp;Boat (pierdes tráfico marketplace)</li>
+        <li style="padding:4px 0">Confusión nominal con "Rent a Boat Blanes" — riesgo reputacional</li>
+        <li style="padding:4px 0">Pago manual puede fricción con turista internacional last-minute</li>
+        <li style="padding:4px 0">Dependes de temporada Abr–Oct — sin ingresos Nov–Mar</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section">
+    <h3>Últimos envíos (90 días)</h3>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="date">Abril 2026</div>
+        <div class="event">Fix nav Blanes→Tossa 30-45 min (antes 60 min incorrecto) — SEO + i18n</div>
+      </div>
+      <div class="timeline-item">
+        <div class="date">Abril 2026</div>
+        <div class="event">Flywheel GBP Place ID correcto + i18n WhatsApp thank-you</div>
+      </div>
+      <div class="timeline-item">
+        <div class="date">Abril 2026</div>
+        <div class="event">PROYECTO 1 MVP — GBP Stats History + delta detection (inteligencia local SEO)</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============================================================== -->
+<!-- ERICBOATS TAB -->
+<!-- =============================================================== -->
+<section id="ericboats" class="tab-content">
+  <div class="section">
+    <h2>EricBoats <span class="threat high">Amenaza alta</span></h2>
+    <div class="profile-grid">
+      <div class="profile-item"><div class="label">Web</div><div class="value"><a href="https://ericboatsblanes.com" target="_blank">ericboatsblanes.com</a></div></div>
+      <div class="profile-item"><div class="label">Dirección</div><div class="value">Carrer Esplanada del Port, Blanes (mismo muelle)</div></div>
+      <div class="profile-item"><div class="label">Teléfono / WhatsApp</div><div class="value">+34 696 409 149</div></div>
+      <div class="profile-item"><div class="label">Origen</div><div class="value">8 años en Sitges — expansión a Blanes</div></div>
+      <div class="profile-item"><div class="label">Idiomas web</div><div class="value">ES / EN / CA</div></div>
+      <div class="profile-item"><div class="label">Pricing desde</div><div class="value">80 € / hora (sin licencia)</div></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h3>Flota (12 modelos — la más amplia de Blanes)</h3>
+    <div class="card">
+      <p style="color:var(--text-secondary);font-size:13px;line-height:1.9">
+        <strong>Sin licencia (15 CV):</strong> Remus 450 Open · Voraz 450 Open · Voraz 475 · Cobra 480 Sport (6+2) · Voraz 500<br>
+        <strong>Con licencia:</strong> Flyer 5.5 Spacedeck (90hp · 6 pax) · Cap Camarat 5.5 (115hp · 6 pax) · Marsea CM100 (100cv · 8 pax) · Key Largo 22 (150hp · 8 pax) · Cap Camarat 650 (150hp · 7 pax) · Sportdeck 6.6 (150hp · 10 pax) · <strong style="color:var(--tie)">Cobra RIB 700 (250hp · 12 pax)</strong> ← top del mercado local
+      </p>
+    </div>
+  </div>
+
+  <div class="section grid grid-2">
+    <div class="win-loss-card them">
+      <div class="name">Dónde ellos ganan</div>
+      <ul>
+        <li>Flota más amplia y variada</li>
+        <li>Cobra RIB 700 (12 pax) — único en Blanes</li>
+        <li>8 años de trayectoria en Sitges → credibilidad</li>
+        <li>Reseñas TripAdvisor consolidadas</li>
+        <li>Mismo muelle que tú → competencia directa in-situ</li>
+      </ul>
+    </div>
+    <div class="win-loss-card you">
+      <div class="name">Dónde tú ganas</div>
+      <ul>
+        <li>8 idiomas vs. sus 3 (DE/NL/IT/RU ni lo intentan)</li>
+        <li>Precio entry 70€ vs. 80€ (10€ de ventaja por hora)</li>
+        <li>Bot IA WhatsApp 24/7 multi-idioma</li>
+        <li>SEO long-tail específico (ellos apuestan por marca)</li>
+        <li>Son "de Sitges" — tú eres local Blanes (raíces reales)</li>
+        <li>Excursión privada como producto empaquetado</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section">
+    <h3>Talk tracks</h3>
+    <div class="talk-track">
+      <div class="scenario">Cliente menciona EricBoats temprano</div>
+      <div class="text">
+        "EricBoats tiene buena flota, son colegas del puerto. La diferencia con nosotros es el <strong>idioma del cliente</strong>: atendemos en 8 idiomas incluyendo alemán, holandés, italiano y ruso — ellos sólo ES/EN/CA. Y nuestra tarifa sin licencia arranca en <strong>70€/h vs. 80€/h</strong>. ¿De dónde vienes y qué tipo de día tienes pensado?"
+      </div>
+    </div>
+    <div class="talk-track">
+      <div class="scenario">Cliente quiere barco grande (8+ personas)</div>
+      <div class="text">
+        <strong>Honestidad táctica:</strong> si pide 10-12 pax y sólo tienes hasta 8, derívalo amablemente antes que perderlo por mala experiencia. "Para 12 personas el mercado local serio es limitado — si quieres te lo gestiono como excursión privada con patrón en una embarcación adecuada." (Así no lo pierdes del todo.)
+      </div>
+    </div>
+    <div class="talk-track">
+      <div class="scenario">Cliente ya reservó con EricBoats</div>
+      <div class="text">
+        "Perfecto, lo pasarás bien. Guárdanos para la próxima visita — y si viajas con familia que habla alemán/holandés/italiano, nuestra ventaja real es la comunicación en su idioma y el asesoramiento de ruta."
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h3>Objeciones y respuestas</h3>
+    <div class="objection">
+      <div class="q">EricBoats tiene más barcos</div>
+      <div class="a">Cierto — tienen flota mayor. Nosotros apostamos por barcos bien mantenidos y <strong>atención personalizada en tu idioma</strong>. Una flota grande tiene más barcos desgastados; la nuestra es más pequeña pero cada cliente tiene al dueño al otro lado del WhatsApp.</div>
+    </div>
+    <div class="objection">
+      <div class="q">EricBoats llevan más años</div>
+      <div class="a">En Sitges sí. En Blanes tienen poco tiempo — igual que nosotros. La diferencia es que <strong>nuestra operación entera está en Blanes</strong>: conocemos cada cala, cada horario de puerto, cada regla local. Ellos reparten su atención entre dos puertos.</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h3>Preguntas-mina (hazlas al cliente, no a ellos)</h3>
+    <ul class="landmines">
+      <li>¿En qué idioma quieres recibir las indicaciones de seguridad antes de zarpar?</li>
+      <li>Si tu barco tuviera un problema a mitad del día, ¿cómo esperas que te contesten? ¿En tu idioma?</li>
+      <li>¿Te han mostrado la ruta completa adaptada al viento del día o sólo un mapa genérico?</li>
+      <li>¿La empresa que elegiste opera sólo en Blanes o reparte su flota entre varios puertos?</li>
+    </ul>
+  </div>
+</section>
+
+<!-- =============================================================== -->
+<!-- BLANES BOATS TAB -->
+<!-- =============================================================== -->
+<section id="blanesboats" class="tab-content">
+  <div class="section">
+    <h2>Blanes Boats <span class="threat mid">Amenaza media</span></h2>
+    <div class="profile-grid">
+      <div class="profile-item"><div class="label">Web</div><div class="value"><a href="https://www.blanesboats.com" target="_blank">blanesboats.com</a></div></div>
+      <div class="profile-item"><div class="label">Dirección</div><div class="value">Pg. de Mestrança, 116, Blanes</div></div>
+      <div class="profile-item"><div class="label">Teléfono</div><div class="value">+34 690 222 118</div></div>
+      <div class="profile-item"><div class="label">Email</div><div class="value">info@blanesboats.com</div></div>
+      <div class="profile-item"><div class="label">Idiomas web</div><div class="value">ES / EN / CA / FR (4)</div></div>
+      <div class="profile-item"><div class="label">Nicho fuerte</div><div class="value">Pesca profesional (3 modalidades)</div></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h3>Flota</h3>
+    <div class="card">
+      <p style="color:var(--text-secondary);font-size:13px;line-height:1.9">
+        <strong>Sin licencia:</strong> Voraz 450 (6 unidades numeradas 1-6, 5 pax, gasolina incluida)<br>
+        <strong>Con licencia:</strong> Pacific Craft 670 Open ("diseño premium, motor potente y moderno")<br>
+        <strong>Extras:</strong> Alquiler de material de watersports
+      </p>
+    </div>
+  </div>
+
+  <div class="section grid grid-2">
+    <div class="win-loss-card them">
+      <div class="name">Dónde ellos ganan</div>
+      <ul>
+        <li>Pesca: 3 modalidades (fondo, jigging/live bait, trolling) — NICHO ÚNICO</li>
+        <li>4 idiomas incluido francés (mercado clave verano)</li>
+        <li>Servicio con capitán profesional</li>
+        <li>Alquiler de equipamiento de pesca incluido</li>
+      </ul>
+    </div>
+    <div class="win-loss-card you">
+      <div class="name">Dónde tú ganas</div>
+      <ul>
+        <li>8 idiomas vs. sus 4 (DE/NL/IT/RU sin cubrir)</li>
+        <li>Flota sin-licencia más diversa (ellos = sólo Voraz 450 repetido)</li>
+        <li>Precio entry más bajo</li>
+        <li>SEO moderno + bot IA 24/7</li>
+        <li>Excursión privada como producto separado y claro</li>
+        <li>Contenido de rutas (Blanes→Tossa) mucho más completo</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section">
+    <h3>Talk tracks</h3>
+    <div class="talk-track">
+      <div class="scenario">Cliente quiere hacer pesca</div>
+      <div class="text">
+        Honestidad: "Para pesca seria — jigging, trolling, fondo — Blanes Boats está muy especializados y tienen capitanes dedicados. <strong>Si quieres pesca como actividad principal, ellos son la referencia.</strong> Nosotros encajamos mejor si la pesca es secundaria y buscas un día completo mixto (playa, coves, paseo)."<br><br>
+        <em>Regla:</em> nunca mientas sobre pesca — los pescadores se dan cuenta al segundo mensaje.
+      </div>
+    </div>
+    <div class="talk-track">
+      <div class="scenario">Cliente busca día de playa / coves / familia</div>
+      <div class="text">
+        "Blanes Boats son buenos para pesca, pero para <strong>día familiar en coves</strong> (Cala Bona, Cala Fornells, Tossa) nuestro producto está diseñado exactamente para eso: rutas documentadas, tiempos reales (Blanes→Tossa 30-45 min), y atención en tu idioma. ¿Cuántas personas y qué edades viajan?"
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h3>Objeciones y respuestas</h3>
+    <div class="objection">
+      <div class="q">Blanes Boats tiene capitán incluido</div>
+      <div class="a">Nosotros también ofrecemos <strong>excursión privada con patrón</strong> — producto dedicado, no "añadido". Te cuento la ruta, las calas del día según el viento y el precio cerrado antes de zarpar.</div>
+    </div>
+    <div class="objection">
+      <div class="q">Su web tiene más info de pesca</div>
+      <div class="a">Porque es su especialidad. La nuestra tiene <strong>rutas, calas, tiempos de navegación y guía por temporada</strong> en 8 idiomas — enfoque distinto: experiencia completa de día, no sólo caña.</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h3>Preguntas-mina</h3>
+    <ul class="landmines">
+      <li>¿Quieres que la pesca sea lo central del día o una actividad de 30-45 min en medio de una ruta?</li>
+      <li>¿Viajas con no-pescadores en el grupo? ¿Qué hacen ellos mientras se pesca?</li>
+      <li>¿Tienes claras las zonas de pesca permitida y los periodos de veda locales?</li>
+    </ul>
+  </div>
+</section>
+
+<!-- =============================================================== -->
+<!-- RENT A BOAT BLANES TAB -->
+<!-- =============================================================== -->
+<section id="rentaboat" class="tab-content">
+  <div class="section">
+    <h2>Rent a Boat Blanes (rentaboatblanes.com) <span class="threat high">Amenaza alta</span></h2>
+    <div class="profile-grid">
+      <div class="profile-item"><div class="label">Web</div><div class="value"><a href="https://www.rentaboatblanes.com" target="_blank">rentaboatblanes.com</a></div></div>
+      <div class="profile-item"><div class="label">Razón social</div><div class="value">Boat Rental Blanes, S.L.</div></div>
+      <div class="profile-item"><div class="label">Dirección</div><div class="value">C/ Esplanada del Port, Blanes (tu muelle)</div></div>
+      <div class="profile-item"><div class="label">Teléfono / WhatsApp</div><div class="value">+34 601 909 910</div></div>
+      <div class="profile-item"><div class="label">Horario</div><div class="value">9:00–21:00 · 7 días</div></div>
+      <div class="profile-item"><div class="label">Idiomas web</div><div class="value">ES / EN / CA / FR</div></div>
+    </div>
+
+    <div class="card" style="background:rgba(239,68,68,0.08);border-color:rgba(239,68,68,0.25);margin-top:16px">
+      <h4 style="color:#fca5a5">⚠ Riesgo de confusión nominal</h4>
+      <p style="color:var(--text-secondary);font-size:14px;margin-top:6px">
+        Su marca es <strong>"Rent a Boat Blanes"</strong>, la tuya <strong>"Costa Brava Rent a Boat"</strong>. Turista que escribe "rent a boat blanes" en Google puede aterrizar en cualquiera de las dos. Revisa tu estrategia GBP + Ads marca para proteger el nombre.
+      </p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h3>Flota (5 barcos, todos sin licencia)</h3>
+    <div class="card">
+      <p style="color:var(--text-secondary);font-size:13px;line-height:1.9">
+        Estable 415 (×3) · Marion 450 · Marion 500 (4+2 pax)<br>
+        <strong>Todos sin licencia · 5 pax máx · gasolina incluida en todos los precios</strong>
+      </p>
+    </div>
+  </div>
+
+  <div class="section grid grid-2">
+    <div class="win-loss-card them">
+      <div class="name">Dónde ellos ganan</div>
+      <ul>
+        <li>Horario extenso 9–21h los 7 días (cubre demanda tarde)</li>
+        <li>Nombre muy SEO-friendly para búsquedas "rent a boat blanes"</li>
+        <li>Mismo muelle que tú — el cliente camina y los ve</li>
+        <li>Mensaje de "el mejor precio" agresivo</li>
+        <li>Gasolina incluida en TODOS sus precios (simple de entender)</li>
+      </ul>
+    </div>
+    <div class="win-loss-card you">
+      <div class="name">Dónde tú ganas</div>
+      <ul>
+        <li>Ellos NO tienen barcos con licencia — tú sí</li>
+        <li>Ellos NO tienen excursión privada — tú sí</li>
+        <li>8 idiomas vs. sus 4</li>
+        <li>Flota más variada (ellos sólo Estable/Marion)</li>
+        <li>SEO muchísimo más amplio (rutas, blog, ubicaciones)</li>
+        <li>Bot IA multi-idioma 24/7 (fuera de su horario 21h)</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section">
+    <h3>Talk tracks</h3>
+    <div class="talk-track">
+      <div class="scenario">Cliente llega confundido ("os llamé antes")</div>
+      <div class="text">
+        "Es posible que hayas hablado con <strong>Rent a Boat Blanes</strong> (otra empresa del mismo muelle). Nosotros somos <strong>Costa Brava Rent a Boat</strong>. ¿Quieres que te mande una foto del barco que reservaste por WhatsApp para confirmar con quién hablaste?" <em>→ Elegante, no desprestigia, y recupera la venta si aún no ha pagado.</em>
+      </div>
+    </div>
+    <div class="talk-track">
+      <div class="scenario">Cliente quiere licencia o grupo grande</div>
+      <div class="text">
+        Ataque directo: "Rent a Boat Blanes sólo opera barcos sin licencia (máximo 5 personas, 15 CV). Si tienes titulación o sois más de 5, <strong>nosotros sí tenemos flota con licencia</strong> — desde 280€."
+      </div>
+    </div>
+    <div class="talk-track">
+      <div class="scenario">Cliente compara precio "el mejor precio"</div>
+      <div class="text">
+        "Su entry 80€/h, el nuestro 70€/h. No competimos por ser 'el más barato', competimos por <strong>ser el mejor día en el mar</strong>: atención en tu idioma, ruta diseñada según viento, y respaldo WhatsApp si pasa cualquier cosa."
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h3>Preguntas-mina</h3>
+    <ul class="landmines">
+      <li>¿Quieres un barco para 4-5 personas como máximo o vais más? (expone su techo)</li>
+      <li>¿Alguien del grupo tiene licencia de navegación? (expone que ellos no tienen opción)</li>
+      <li>¿En qué idioma prefieres comunicarte? (expone sus 4 vs. tus 8)</li>
+      <li>¿A qué hora pensáis volver al puerto? (si pasa de 21h, están fuera)</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h3>Acciones recomendadas — Proteger tu marca</h3>
+    <div class="card">
+      <ul style="color:var(--text-secondary);font-size:14px;padding-left:18px;line-height:1.8">
+        <li>Reforzar <strong>Google Business Profile</strong> de "Costa Brava Rent a Boat" con fotos únicas y 50+ reseñas recientes</li>
+        <li>Comprar <strong>Ads de marca</strong> sobre "rent a boat blanes" para interceptar tráfico antes de que vaya al .com competidor</li>
+        <li>Incluir <strong>microcopy diferenciador</strong> en página de inicio: "Costa Brava Rent a Boat — NO somos rentaboatblanes.com"</li>
+        <li>Monitorizar reseñas cruzadas: si alguien deja una mala review en el competidor, tener respuesta rápida capturando al cliente</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- =============================================================== -->
+<!-- MARKETPLACES TAB -->
+<!-- =============================================================== -->
+<section id="marketplaces" class="tab-content">
+  <div class="section">
+    <h2>Marketplaces: SamBoat / Click&amp;Boat / CheckYeti <span class="threat mid">Canal alternativo</span></h2>
+    <p style="color:var(--text-secondary);font-size:14px;margin-bottom:16px">
+      Estos no son competidores directos sino <strong>canales de distribución</strong> donde puedes listar (pagando comisión) o competir por tráfico orgánico.
+    </p>
+
+    <div class="grid grid-3">
+      <div class="card">
+        <h4>SamBoat</h4>
+        <p style="color:var(--text-secondary);font-size:13px;margin-top:6px">
+          203 barcos listados "Blanes" área.<br>
+          <span class="pill amber">18% comisión</span><br>
+          Multi-idioma, gestionan pago.<br>
+          Precio desde $142/día.
+        </p>
+      </div>
+      <div class="card">
+        <h4>Click&amp;Boat</h4>
+        <p style="color:var(--text-secondary);font-size:13px;margin-top:6px">
+          "Airbnb de barcos", Paris.<br>
+          Adquirieron Nautal (consolidador).<br>
+          Mix pro + privados.<br>
+          Comisión no publicada (similar a SamBoat).
+        </p>
+      </div>
+      <div class="card">
+        <h4>CheckYeti / Civitatis / Yumping</h4>
+        <p style="color:var(--text-secondary);font-size:13px;margin-top:6px">
+          Agregadores de actividades turísticas.<br>
+          <span class="pill amber">15-25% comisión típica</span><br>
+          Alto volumen verano.<br>
+          Listan a tus competidores.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section grid grid-2">
+    <div class="win-loss-card them">
+      <div class="name">Por qué te roban tráfico hoy</div>
+      <ul>
+        <li>Dominan búsquedas "boat rental Blanes" para turistas internacionales no-locales</li>
+        <li>SEO en DE, NL, IT, RU integrado por defecto (tu ventaja desaparece en esa superficie)</li>
+        <li>Confianza de marketplace + pago con tarjeta reduce fricción</li>
+        <li>Reseñas centralizadas → efecto red</li>
+      </ul>
+    </div>
+    <div class="win-loss-card you">
+      <div class="name">Por qué tú ganas si pelean en tu terreno</div>
+      <ul>
+        <li>Tu web directa = sin comisión 18-25% → puedes ser más barato</li>
+        <li>Relación directa con cliente = re-reservas sin intermediario</li>
+        <li>Puedes ofrecer "excursión privada" como paquete custom (marketplace no lo cubre bien)</li>
+        <li>Datos del cliente para remarketing propio</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section">
+    <h3>Decisión estratégica: ¿listar o no en marketplaces?</h3>
+    <div class="talk-track">
+      <div class="scenario">Caso a favor de listar</div>
+      <div class="text">
+        Captar demanda internacional que <strong>nunca encontrarías</strong> con SEO directo. Úsalo sólo con <strong>1-2 barcos de baja ocupación</strong> y precio +18% respecto a tu web. Así el margen cae un poco pero llenas huecos.
+      </div>
+    </div>
+    <div class="talk-track">
+      <div class="scenario">Caso en contra</div>
+      <div class="text">
+        Tu modelo es solicitud + pago manual. Marketplaces empujan pago automático y evaluación pública de reseñas — cualquier incidente de gasolina o retraso climático se amplifica. Si no quieres ese riesgo operativo: <strong>no listar</strong> y doblar apuesta en SEO + GBP + Ads de marca.
+      </div>
+    </div>
+    <div class="talk-track">
+      <div class="scenario">Recomendación híbrida (mejor ROI)</div>
+      <div class="text">
+        <strong>No listes en marketplaces generales</strong> (SamBoat/Click&amp;Boat). En su lugar:
+        <ul style="padding-left:20px;margin-top:8px">
+          <li>Lista en <strong>CheckYeti / Civitatis</strong> sólo como inventario complementario a precio +25% (captas turista last-minute).</li>
+          <li>Invierte en <strong>SEO multi-idioma</strong> (tu ventaja real — DE/NL/IT/RU casi sin competencia).</li>
+          <li>Crea <strong>landing pages por origen</strong> (/de/blanes-bootverleih, /nl/boot-huren-blanes, etc.) — ya tienes parte de esto.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============================================================== -->
+<!-- STRATEGY TAB -->
+<!-- =============================================================== -->
+<section id="strategy" class="tab-content">
+  <div class="section">
+    <h2>Estrategia global 2026</h2>
+    <p style="color:var(--text-secondary);font-size:15px;margin-bottom:20px">
+      Tres movimientos para salir ganando de la temporada Abr–Oct 2026 vs. competencia local y marketplaces.
+    </p>
+  </div>
+
+  <div class="section">
+    <div class="grid grid-3">
+      <div class="card" style="border-top:3px solid var(--you-win)">
+        <h4>1. Defiende tu muelle</h4>
+        <p style="color:var(--text-secondary);font-size:13px;margin-top:8px;line-height:1.6">
+          EricBoats y Rent a Boat Blanes están literalmente a 50m. Refuerza identidad visual del punto de encuentro, uniformes con logo, cartelería clara, QR al WhatsApp bot. El turista no debe confundirse nunca de empresa.
+        </p>
+      </div>
+      <div class="card" style="border-top:3px solid var(--accent)">
+        <h4>2. Multi-idioma como foso</h4>
+        <p style="color:var(--text-secondary);font-size:13px;margin-top:8px;line-height:1.6">
+          DE, NL, IT, RU prácticamente nadie los cubre bien en Blanes. Auditoría de contenido por idioma, landing pages dedicadas con ruta local traducida, FAQ específico por mercado, campañas Ads geo-target.
+        </p>
+      </div>
+      <div class="card" style="border-top:3px solid var(--tie)">
+        <h4>3. Producto "excursión privada"</h4>
+        <p style="color:var(--text-secondary);font-size:13px;margin-top:8px;line-height:1.6">
+          Empaqueta como premium diferenciable: 4h con patrón + ruta curada (3 calas + parada en Tossa + snorkel) + fotografía incluida. Precio cerrado 450–600€. Es algo que ni EricBoats ni marketplaces venden con claridad.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h3>Plan 30-60-90 días</h3>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="date">30 días</div>
+        <div class="event">Ads marca sobre "rent a boat blanes" · Auditoría GBP reseñas · Microcopy diferenciador vs. rentaboatblanes.com</div>
+      </div>
+      <div class="timeline-item">
+        <div class="date">60 días</div>
+        <div class="event">Landing pages DE/NL/IT/RU optimizadas · Empaquetar "Excursión Privada Premium" con página propia · Decidir si listar en CheckYeti</div>
+      </div>
+      <div class="timeline-item">
+        <div class="date">90 días</div>
+        <div class="event">Campaña verano en 4 idiomas prioritarios · Monitor competencia semanal (cambios flota/precio) · Medir canibalización de Ads marca</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h3>KPIs que deberías empezar a medir hoy</h3>
+    <div class="grid grid-2">
+      <div class="card">
+        <ul style="color:var(--text-secondary);font-size:14px;padding-left:18px;line-height:1.8">
+          <li>% reservas por idioma (tu foso real)</li>
+          <li>CTR Ads marca "rent a boat blanes" vs. competidor</li>
+          <li>Reseñas GBP nuevas por mes (vs. EricBoats)</li>
+          <li>Conversión bot WhatsApp por idioma</li>
+        </ul>
+      </div>
+      <div class="card">
+        <ul style="color:var(--text-secondary);font-size:14px;padding-left:18px;line-height:1.8">
+          <li>Precio medio ticket excursión privada</li>
+          <li>% tráfico orgánico multi-idioma vs. ES/EN</li>
+          <li>Ratio solicitud → reserva confirmada (pago manual friction)</li>
+          <li>Cancelaciones por confusión con competidor nominal</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h3>Refresh cadence recomendada</h3>
+    <p style="color:var(--text-secondary);font-size:14px">
+      Este battlecard caduca. Recomendado:
+    </p>
+    <ul style="color:var(--text-secondary);font-size:14px;padding-left:20px;margin-top:8px;line-height:1.8">
+      <li><strong>Mensual:</strong> cambios de precio de EricBoats, Blanes Boats, Rent a Boat Blanes</li>
+      <li><strong>Inicio de temporada (abril):</strong> nuevas barcas incorporadas a flotas competidoras</li>
+      <li><strong>Post-temporada (noviembre):</strong> análisis de reseñas acumuladas en Google/TripAdvisor vs. tus números</li>
+      <li><strong>Trigger evento:</strong> si cualquier competidor saca barco nuevo, baja precio o abre canal nuevo, actualiza inmediatamente</li>
+    </ul>
+  </div>
+</section>
+
+<footer>
+  <p>Battlecard generado con <a href="#">/sales:competitive-intelligence</a> · Fuentes: web pública, TripAdvisor, SamBoat, Click&amp;Boat · 22 abril 2026</p>
+  <p style="margin-top:6px">Para actualizar: vuelve a ejecutar la skill con contexto refrescado.</p>
+</footer>
+
+</div>
+
+<script>
+  const tabs = document.querySelectorAll('nav.tabs button.tab');
+  const contents = document.querySelectorAll('.tab-content');
+  tabs.forEach(t => {
+    t.addEventListener('click', () => {
+      const target = t.dataset.tab;
+      tabs.forEach(x => x.classList.toggle('active', x === t));
+      contents.forEach(c => c.classList.toggle('active', c.id === target));
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  });
+</script>
+</body>
+</html>

@@ -73,6 +73,124 @@ export const HOW_TO_BLOG_POSTS: Record<string, HowToBlogEntry> = {
     ],
   },
 
+  "consejos-primera-vez-alquilar-barco": {
+    name: "Cómo alquilar un barco por primera vez — guía paso a paso",
+    description: "Proceso completo para quien nunca ha alquilado un barco: desde elegir el tipo adecuado hasta devolverlo sin cargos extra. Específico para barco sin licencia en Blanes.",
+    totalTime: "PT45M",
+    tool: ["DNI o pasaporte", "Tarjeta bancaria para fianza"],
+    supply: ["Protección solar SPF 50+", "Gafas de sol polarizadas", "Calzado antideslizante", "Agua en botella", "Móvil cargado"],
+    steps: [
+      {
+        name: "Decide tipo de barco según grupo y experiencia",
+        text: "Si eres novato sin licencia náutica y grupo de 2-5 personas, elige un barco sin licencia 15 CV (Solar 450, Remus 450 o Astec). Para grupos de 6-7 con alguno con licencia, elige barco con Licencia Básica de Navegación (LBN). Si no tiene nadie licencia pero el grupo es grande, reserva Excursión Privada con Capitán.",
+      },
+      {
+        name: "Elige duración realista",
+        text: "1h es poco para disfrutar, solo útil para probar. 2h permite ir a 1 cala y fondear. 4h es el sweet spot: 2-3 calas + snorkel + baño. 8h es día completo con comida a bordo. Primera vez: recomendamos 2h o 4h.",
+      },
+      {
+        name: "Reserva online o por WhatsApp",
+        text: "En costabravarentaboat.com elige fecha + barco + duración. Es solicitud de reserva, no pago online. Recibes confirmación en minutos por email y WhatsApp.",
+      },
+      {
+        name: "Llega al Puerto de Blanes 15 min antes",
+        text: "Dirección: Carrer Esplanada del Port, 17300 Blanes, Girona. Parking gratuito cerca. Preséntate en la oficina del muelle.",
+      },
+      {
+        name: "Paga la fianza (200-500€) con tarjeta",
+        text: "Se bloquea en tu tarjeta, no se cobra. Se libera al devolver el barco en buen estado. Firma el contrato simplificado. Se valida el DNI.",
+      },
+      {
+        name: "Sigue atentamente el briefing de seguridad (15 min)",
+        text: "Te explican: arranque del motor, cambio de marchas, maniobra de fondeo, uso del ancla y escalera, chalecos salvavidas, kit de emergencia, límite legal 2 millas, zona prohibida de baño. Pregunta lo que no entiendas — es el momento clave.",
+      },
+      {
+        name: "Navega respetando las 3 reglas básicas",
+        text: "(1) Velocidad máxima 5 nudos para sin licencia. (2) Distancia mínima 200m de la costa (balizas amarillas). (3) Vuelve al puerto con margen para no llegar tarde. Si dudas, llámanos por WhatsApp.",
+      },
+      {
+        name: "Devuelve el barco a tiempo y sin daños",
+        text: "Regresa 5-10 min antes del horario. Entrega las llaves. Nuestro equipo inspecciona brevemente el barco. Si todo está bien, la fianza se libera en minutos. Retraso sin aviso: 150€ por cada 30 min.",
+      },
+    ],
+  },
+
+  "navegar-con-ninos-costa-brava-guia-familias": {
+    name: "Cómo navegar con niños en la Costa Brava de forma segura",
+    description: "Guía práctica para familias con niños de 3-14 años: qué barco elegir, qué llevar, normas de seguridad infantil a bordo y rutas recomendadas para una primera experiencia sin estrés.",
+    totalTime: "PT4H",
+    tool: ["Chalecos salvavidas talla infantil (incluidos)", "Crema solar resistente al agua SPF 50+"],
+    supply: ["Gorras con cordón", "Toallas grandes", "Snacks y agua (sin cristal)", "Nevera portátil (opcional)", "Pulseras de identificación con teléfono", "Cambio de ropa seca"],
+    steps: [
+      {
+        name: "Elige barco estable con toldo bimini",
+        text: "Para familias recomendamos Remus 450 o Solar 450: sin licencia, toldo bimini integral que cubre a los niños del sol, escalera de baño trasera, estable con mar calmo. Evita barcos deportivos sin sombra.",
+      },
+      {
+        name: "Reserva horario templado (evita medio día)",
+        text: "Salida recomendada con niños: 10:00-14:00 (mar más calmo, luz mejor) o 16:30-20:00 (atardecer, menos sol directo). Evita 13:00-16:00 que es el pico de calor y radiación solar.",
+      },
+      {
+        name: "Explica las reglas a bordo antes de salir",
+        text: "Regla 1: chaleco puesto desde que se sube al barco (obligatorio por ley para menores). Regla 2: sentados mientras navega. Regla 3: bañarse solo con el motor parado y ancla echada. Regla 4: mantenerse en la zona marcada de la escalera al subir/bajar del agua.",
+      },
+      {
+        name: "Navega a velocidad reducida a calas familiares",
+        text: "Las 3 mejores calas para niños desde Blanes: (a) Cala Sant Francesc — protegida del viento, fondo arenoso, entrada suave al agua; (b) Playa de Santa Cristina — con servicios en tierra si necesitas baño; (c) Cala Treumal — pinos hasta el agua, sombra natural.",
+      },
+      {
+        name: "Para fondear: elige zona arenosa sin bañistas",
+        text: "Busca zona arenosa (se ve turquesa claro desde el barco), NO rocosa. Echa el ancla. Espera 2-3 min para comprobar que no garrea. Apaga el motor. Baja la escalera de baño. Solo entonces los niños pueden bajar al agua con chaleco.",
+      },
+      {
+        name: "Alterna 20 min de navegación / 40 min fondeo",
+        text: "Los niños se cansan rápido del balanceo. Alterna trayectos cortos con paradas largas en calas. En 4h de alquiler: 2 calas con 45-60 min de baño en cada una es el ritmo ideal. Lleva snacks para fondeos.",
+      },
+      {
+        name: "Regresa con margen antes del horario límite",
+        text: "Calcula 30 min extra para volver tranquilo. Niños cansados no ayudan a maniobrar. Regresa a velocidad reducida con el viento controlado. En la oficina dejan devolver 5-10 min antes sin problema.",
+      },
+    ],
+  },
+
+  "seguridad-navegacion-mar-guia": {
+    name: "Cómo preparar tu salida en barco con máxima seguridad",
+    description: "Checklist pre-salida completo para alquiler de barco sin licencia en la Costa Brava: desde consultar el parte meteorológico hasta verificar equipamiento de emergencia a bordo.",
+    totalTime: "PT30M",
+    tool: ["App meteorológica (Windguru / Windy)", "Móvil cargado con Google Maps"],
+    supply: ["Botellín de agua por persona", "Protección solar", "Chalecos salvavidas (incluidos)", "Silbato emergencia (incluido en kit)"],
+    steps: [
+      {
+        name: "Consulta parte meteorológico 24h antes",
+        text: "Revisa Windguru, Windy o la AEMET para Blanes. Criterios de NO salida: viento sostenido >20 nudos, rachas >25, olas >1m significativas, alerta naranja/roja. Si hay tramuntana fuerte (viento del norte), la costa queda desprotegida.",
+      },
+      {
+        name: "Revisa parte meteo el día de la salida",
+        text: "El día del alquiler consulta el parte de Capitanía Marítima o pregunta al personal del puerto antes de zarpar. Las condiciones pueden cambiar en 6h. Si hay duda, nuestro equipo decide: priorizamos tu seguridad sobre mantener la reserva.",
+      },
+      {
+        name: "Verifica el kit de seguridad a bordo durante el briefing",
+        text: "Comprueba que están: chalecos salvavidas (1 por persona, tallas correctas), bengalas de emergencia, silbato, extintor, ancla con 30m de cabo, escalera de baño, bichero, cabos de amarre, botiquín básico, espejo señalizador.",
+      },
+      {
+        name: "Pon chalecos a niños y personas no nadadoras",
+        text: "Por ley, menores de 12 años llevan chaleco puesto permanentemente. Recomendamos también a adultos no nadadores o que toman medicación. El chaleco puede salvar vidas incluso en aguas calmas.",
+      },
+      {
+        name: "Planifica la ruta y avisa a alguien en tierra",
+        text: "Decide calas objetivo antes de salir. Envía a un contacto (familia o amigo) un mensaje con: ruta planeada, hora prevista de regreso, número del barco (en la ficha). Si no regresas a tiempo, pueden alertar al 112 o al puerto.",
+      },
+      {
+        name: "Lleva el móvil en bolsa estanca",
+        text: "Bolsas estancas de 10€ en ferretería. El móvil te permite llamar al 112 (rescate marítimo gratuito), a nuestro WhatsApp (24/7), o consultar GPS si pierdes la orientación. Cargado al 100% antes de salir.",
+      },
+      {
+        name: "Conoce las señales de emergencia",
+        text: "Si hay emergencia grave: llama al 112 o canal 16 VHF (si el barco tiene radio). Brazos en cruz subidos/bajados = señal internacional de ayuda. Bengala roja si tienes visibilidad nocturna limitada. Silbato: 3 pitidos cortos repetidos.",
+      },
+    ],
+  },
+
   "como-llegar-puerto-blanes-desde-barcelona": {
     name: "Cómo llegar al Puerto de Blanes desde Barcelona",
     description: "Opciones de transporte para llegar al Puerto de Blanes desde Barcelona y alrededores: coche, tren Rodalies R1, autobús y bus directo desde el aeropuerto.",

@@ -467,6 +467,19 @@ export function startScheduler(): void {
     }
   }));
 
+  // GA4 per-event conversion counts (booking_started, whatsapp_click, etc.).
+  // Runs right after the aggregate GA4 ETL so both land in the same batch window.
+  scheduledTasks.push(cron.schedule("55 3 * * *", async () => {
+    try {
+      const { collectGa4ConversionEvents } = await import("../seo/collectors/ga4ConversionEvents");
+      logger.info("[Scheduler] Running GA4 conversion events ETL");
+      await collectGa4ConversionEvents();
+    } catch (error: unknown) {
+      const msg = error instanceof Error ? error.message : "Unknown error";
+      logger.error("[Scheduler] GA4 conversion events ETL error", { error: msg });
+    }
+  }));
+
   // PageSpeed Insights (CWV + lab) for critical URLs. Daily.
   scheduledTasks.push(cron.schedule("15 4 * * *", async () => {
     try {

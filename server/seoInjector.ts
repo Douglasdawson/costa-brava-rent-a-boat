@@ -11,6 +11,7 @@ import { AI_CRAWLER_NAMES } from "./seo/constants";
 import { getBoatReviewStats } from "./data/boatReviewStats";
 import { getNativeOverride, type NativeLanguageOverride } from "./seo/nativeLanguageOverrides";
 import { hasStaticTranslation } from "./seo/translatedStaticPaths";
+import { get404Meta } from "./seo/helpers";
 import { getCurrentStats } from "./lib/businessStatsCache";
 
 const BASE_URL = process.env.BASE_URL || "https://www.costabravarentaboat.com";
@@ -3336,6 +3337,34 @@ export async function serveWithSEO(
       // Match both new /:lang/(blog|barco|destinos)/:slug and legacy /(blog|barco|destinos)/:slug
       const isDynamicContentRoute = /^(\/[a-z]{2})?\/(blog|barco|destinos)\/[\w-]+$/.test(pathname);
       const status = isDynamicContentRoute ? 404 : (isValidSPARoute(pathname) ? 200 : 404);
+
+      // On 404, inject lang-aware meta + noindex so crawlers don't index the
+      // soft-404 under the Spanish homepage title (which was the old behaviour
+      // because sendFile served raw index.html with its hardcoded ES <title>).
+      if (status === 404) {
+        try {
+          const notFound = get404Meta(lang);
+          const baseHtml = await getBaseHtml(distPath);
+          const html = injectMeta(
+            baseHtml,
+            { title: notFound.title, description: notFound.description },
+            pathname,
+            undefined, // no JSON-LD — 404 is not a real content page
+            lang,
+            undefined,
+            true, // noindex
+          );
+          res.status(404);
+          res.set("Content-Type", "text/html; charset=utf-8");
+          res.set("Content-Language", lang);
+          res.set("X-Robots-Tag", "noindex, follow");
+          res.send(html);
+          return;
+        } catch {
+          // Fall through to raw sendFile if injection fails.
+        }
+      }
+
       res.status(status).sendFile(path.resolve(distPath, "index.html"));
     }
   } catch {

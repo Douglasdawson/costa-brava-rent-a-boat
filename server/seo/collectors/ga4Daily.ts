@@ -74,6 +74,7 @@ async function fetchRowsForDate(propertyId: string, date: string, auth: Instance
           { name: "landingPagePlusQueryString" },
           { name: "sessionSource" },
           { name: "sessionMedium" },
+          { name: "sessionDefaultChannelGroup" },
           { name: "country" },
           { name: "deviceCategory" },
         ],
@@ -141,14 +142,16 @@ export async function collectGa4Daily(options?: { daysBack?: number }): Promise<
         const landingPage = dims[1]?.value || null;
         const source = dims[2]?.value || null;
         const medium = dims[3]?.value || null;
-        const country = (dims[4]?.value || "").slice(0, 3) || null;
-        const deviceCategory = (dims[5]?.value || "").slice(0, 12) || null;
+        const channelGroup = (dims[4]?.value || "").slice(0, 40) || null;
+        const country = (dims[5]?.value || "").slice(0, 3) || null;
+        const deviceCategory = (dims[6]?.value || "").slice(0, 12) || null;
 
         return {
           date,
           landingPage,
           source,
           medium,
+          channelGroup,
           country,
           deviceCategory,
           sessions: num(mets[0]?.value),
@@ -179,6 +182,7 @@ export async function collectGa4Daily(options?: { daysBack?: number }): Promise<
               ga4DailyMetrics.deviceCategory,
             ],
             set: {
+              channelGroup: sql`EXCLUDED.channel_group`,
               sessions: sql`EXCLUDED.sessions`,
               totalUsers: sql`EXCLUDED.total_users`,
               newUsers: sql`EXCLUDED.new_users`,

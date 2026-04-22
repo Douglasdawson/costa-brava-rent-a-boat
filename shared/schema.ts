@@ -2343,12 +2343,15 @@ export type GscQueryRow = typeof gscQueries.$inferSelect;
 export type InsertGscQueryRow = typeof gscQueries.$inferInsert;
 
 // --- GA4 daily metrics per (date, landing_page, source/medium, country, device) ---
+// channelGroup is derived by GA4 from source+medium (sessionDefaultChannelGroup).
+// Stored redundantly for fast channel-level aggregation without re-mapping on read.
 export const ga4DailyMetrics = pgTable("ga4_daily_metrics", {
   id: serial("id").primaryKey(),
   date: date("date").notNull(),
   landingPage: text("landing_page"),
   source: text("source"),
   medium: text("medium"),
+  channelGroup: varchar("channel_group", { length: 40 }),
   country: varchar("country", { length: 3 }),
   deviceCategory: varchar("device_category", { length: 12 }),
   sessions: integer("sessions").notNull().default(0),
@@ -2365,11 +2368,34 @@ export const ga4DailyMetrics = pgTable("ga4_daily_metrics", {
   dateIdx: index("ga4_daily_date_idx").on(table.date),
   landingIdx: index("ga4_daily_landing_idx").on(table.landingPage),
   sourceIdx: index("ga4_daily_source_idx").on(table.source, table.medium),
+  channelIdx: index("ga4_daily_channel_idx").on(table.channelGroup),
   uniqRow: uniqueIndex("ga4_daily_unique_idx").on(table.date, table.landingPage, table.source, table.medium, table.country, table.deviceCategory),
 }));
 
 export type Ga4DailyMetric = typeof ga4DailyMetrics.$inferSelect;
 export type InsertGa4DailyMetric = typeof ga4DailyMetrics.$inferInsert;
+
+// --- GA4 conversion events per day — per-event counts broken down by landing page ---
+// Separate from ga4_daily_metrics because eventName is high-cardinality and would
+// explode the unique key in ga4DailyMetrics. Used to derive whatsapp_click_rate,
+// booking_started_rate, etc. per landing page and per channel.
+export const ga4ConversionEvents = pgTable("ga4_conversion_events", {
+  id: serial("id").primaryKey(),
+  date: date("date").notNull(),
+  eventName: varchar("event_name", { length: 60 }).notNull(),
+  landingPage: text("landing_page"),
+  source: text("source"),
+  medium: text("medium"),
+  eventCount: integer("event_count").notNull().default(0),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().default(sql`now()`),
+}, (table) => ({
+  dateEventIdx: index("ga4_conv_events_date_event_idx").on(table.date, table.eventName),
+  landingIdx: index("ga4_conv_events_landing_idx").on(table.landingPage),
+  uniqRow: uniqueIndex("ga4_conv_events_unique_idx").on(table.date, table.eventName, table.landingPage, table.source, table.medium),
+}));
+
+export type Ga4ConversionEvent = typeof ga4ConversionEvents.$inferSelect;
+export type InsertGa4ConversionEvent = typeof ga4ConversionEvents.$inferInsert;
 
 // --- PSI measurements: lab + field data for CWV tracking per URL/strategy ---
 export const psiMeasurements = pgTable("psi_measurements", {

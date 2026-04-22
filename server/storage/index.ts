@@ -26,6 +26,7 @@ import * as featureFlagsRepo from "./featureFlags";
 import * as leadNurturingRepo from "./leadNurturing";
 import * as mcpTokensRepo from "./mcpTokens";
 import * as seoAutopilotRepo from "./seoAutopilot";
+import * as businessStatsRepo from "./businessStats";
 
 // Re-export the IStorage interface for consumers that import it
 export type { IStorage } from "./types";
@@ -296,4 +297,8 @@ export const storage = {
   getAutopilotAuditLog: seoAutopilotRepo.getAuditLog,
   getAutopilotOverview: seoAutopilotRepo.getOverviewData,
   getAutopilotAlerts: seoAutopilotRepo.getAlerts,
+
+  // ===== Business Stats (Google Business Profile sync) =====
+  getBusinessStats: businessStatsRepo.getBusinessStats,
+  upsertBusinessStats: businessStatsRepo.upsertBusinessStats,
 };

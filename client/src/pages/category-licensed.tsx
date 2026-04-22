@@ -31,6 +31,10 @@ import {
 } from "@/utils/seo-config";
 import { openWhatsApp, createBookingMessage } from "@/utils/whatsapp";
 import { useTranslations } from "@/lib/translations";
+import {
+  BUSINESS_RATING_STR,
+  BUSINESS_REVIEW_COUNT_STR,
+} from "@shared/businessProfile";
 
 export default function CategoryLicensedPage() {
   const { language, localizedPath } = useLanguage();
@@ -70,8 +74,8 @@ export default function CategoryLicensedPage() {
     },
     "aggregateRating": {
       "@type": "AggregateRating",
-      "ratingValue": "4.8",
-      "reviewCount": "307",
+      "ratingValue": BUSINESS_RATING_STR,
+      "reviewCount": BUSINESS_REVIEW_COUNT_STR,
       "bestRating": "5",
       "worstRating": "1"
     },
@@ -108,8 +112,8 @@ export default function CategoryLicensedPage() {
         "brand": { "@type": "Brand", "name": "Costa Brava Rent a Boat" },
         "aggregateRating": {
           "@type": "AggregateRating",
-          "ratingValue": "4.8",
-          "reviewCount": "307",
+          "ratingValue": BUSINESS_RATING_STR,
+          "reviewCount": BUSINESS_REVIEW_COUNT_STR,
           "bestRating": "5",
           "worstRating": "1"
         },

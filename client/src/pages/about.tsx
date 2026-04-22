@@ -22,6 +22,10 @@ import { generateBreadcrumbSchema } from "@/utils/seo-config";
 import { useLanguage, type Language } from "@/hooks/use-language";
 import { useTranslations } from "@/lib/translations";
 import { openWhatsApp, createBookingMessage } from "@/utils/whatsapp";
+import {
+  BUSINESS_RATING_STR,
+  BUSINESS_REVIEW_COUNT_STR,
+} from "@shared/businessProfile";
 
 // ---------------------------------------------------------------------------
 // Inline translations (8 languages)
@@ -609,10 +613,10 @@ export default function AboutPage() {
         },
         "aggregateRating": {
           "@type": "AggregateRating",
-          "ratingValue": "4.8",
+          "ratingValue": BUSINESS_RATING_STR,
           "bestRating": "5",
-          "ratingCount": "300",
-          "reviewCount": "300"
+          "ratingCount": BUSINESS_REVIEW_COUNT_STR,
+          "reviewCount": BUSINESS_REVIEW_COUNT_STR
         },
         "priceRange": "EUR 70-450",
         "currenciesAccepted": "EUR",

@@ -414,6 +414,28 @@ export function startScheduler(): void {
     }
   }));
 
+  // ===== GOOGLE BUSINESS PROFILE SYNC =====
+  // Sync rating + review count + recent reviews from Google Places API.
+  // Sundays at 03:00 UTC. Cost: ~$0.005/run × 52 runs/year ≈ $0.26/year.
+  scheduledTasks.push(cron.schedule("0 3 * * 0", async () => {
+    try {
+      logger.info("[Scheduler] Running GBP weekly sync");
+      const { syncGbpStats } = await import("./gbpSync");
+      const result = await syncGbpStats();
+      if (result.success) {
+        logger.info("[Scheduler] GBP sync OK", {
+          rating: result.rating,
+          userRatingCount: result.userRatingCount,
+        });
+      } else {
+        logger.warn("[Scheduler] GBP sync failed", { error: result.error });
+      }
+    } catch (error: unknown) {
+      const msg = error instanceof Error ? error.message : "Unknown error";
+      logger.error("[Scheduler] GBP sync crash", { error: msg });
+    }
+  }));
+
   // ===== LEAD NURTURING =====
   // Process chatbot leads every 2 hours at :20 (avoids overlap with other jobs)
   scheduledTasks.push(cron.schedule("20 */2 * * *", async () => {

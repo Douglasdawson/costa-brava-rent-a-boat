@@ -3,6 +3,10 @@ import { getBaseUrl } from "@/lib/domain";
 import { HREFLANG_CODES } from "@shared/seoConstants";
 import { getLocalizedPath } from "@shared/i18n-routes";
 import type { PageKey } from "@shared/i18n-routes";
+import {
+  BUSINESS_RATING_STR,
+  BUSINESS_REVIEW_COUNT_STR,
+} from "@shared/businessProfile";
 
 // Dynamic season year: Nov-Dec → next year, otherwise current year
 function getSeasonYear(): number {
@@ -1667,8 +1671,8 @@ export function generateServiceSchema(language: Language = 'es') {
     },
     "aggregateRating": {
       "@type": "AggregateRating",
-      "ratingValue": "4.8",
-      "reviewCount": "307",
+      "ratingValue": BUSINESS_RATING_STR,
+      "reviewCount": BUSINESS_REVIEW_COUNT_STR,
       "bestRating": "5",
       "worstRating": "1"
     },
@@ -1838,11 +1842,11 @@ export function generateEnhancedProductSchema(boatData: BoatProductData, languag
     "requiresSubscription": false,
     "aggregateRating": {
       "@type": "AggregateRating",
-      "ratingValue": "4.8",
+      "ratingValue": BUSINESS_RATING_STR,
       "bestRating": "5",
       "worstRating": "1",
-      "ratingCount": "307",
-      "reviewCount": "307"
+      "ratingCount": BUSINESS_REVIEW_COUNT_STR,
+      "reviewCount": BUSINESS_REVIEW_COUNT_STR
     }
   };
 

@@ -5,6 +5,7 @@ import { storage } from "../storage";
 import { logger } from "../lib/logger";
 import { AI_CRAWLER_NAMES } from "../seo/constants";
 import { BOAT_DATA, type BoatData } from "../../shared/boatData";
+import { getCurrentStats } from "../lib/businessStatsCache";
 
 const BASE_URL = process.env.BASE_URL || "https://www.costabravarentaboat.com";
 
@@ -121,7 +122,7 @@ export function registerRobotsRoutes(app: Express): void {
     res.send(lines.join("\n") + "\n");
   });
 
-  // Serve static llms.txt from client/public with dynamic date injection
+  // Serve static llms.txt from client/public with dynamic date + GBP stats injection
   app.get("/llms.txt", (_req, res) => {
     try {
       const llmsPath = path.resolve(process.cwd(), "client/public/llms.txt");
@@ -132,6 +133,18 @@ export function registerRobotsRoutes(app: Express): void {
       content = content.replace(
         /> Last updated: \d{4}-\d{2}-\d{2}/,
         `> Last updated: ${lastUpdated}`,
+      );
+
+      // Inject live rating + review count from cached GBP stats
+      const stats = getCurrentStats();
+      content = content.replace(
+        /\b4\.8(★)?\s*(?:Google\s*)?\(?(\d{2,4})\+?\s*reviews?\)?/gi,
+        `${stats.rating.toFixed(1)}★ Google (${stats.userRatingCount}+ reviews)`,
+      );
+      // Standalone "300+ reviews" / "307 reviews" / "200+ reviews" phrases
+      content = content.replace(
+        /\b(?:300|307|310|200)\+?\s*Google\s*reviews?\b/gi,
+        `${stats.userRatingCount}+ Google reviews`,
       );
 
       res.setHeader("Content-Type", "text/plain; charset=utf-8");
@@ -163,7 +176,7 @@ export function registerRobotsRoutes(app: Express): void {
     }
   });
 
-  // Serve static llms-full.txt with dynamic date injection
+  // Serve static llms-full.txt with dynamic date + GBP stats injection
   app.get("/llms-full.txt", (_req, res) => {
     try {
       const llmsFullPath = path.resolve(process.cwd(), "client/public/llms-full.txt");
@@ -174,6 +187,17 @@ export function registerRobotsRoutes(app: Express): void {
       content = content.replace(
         /> Last updated: \d{4}-\d{2}-\d{2}/,
         `> Last updated: ${lastUpdated}`,
+      );
+
+      // Inject live rating + review count from cached GBP stats
+      const stats = getCurrentStats();
+      content = content.replace(
+        /\b4\.8(★)?\s*(?:Google\s*)?\(?(\d{2,4})\+?\s*reviews?\)?/gi,
+        `${stats.rating.toFixed(1)}★ Google (${stats.userRatingCount}+ reviews)`,
+      );
+      content = content.replace(
+        /\b(?:300|307|310|200)\+?\s*Google\s*reviews?\b/gi,
+        `${stats.userRatingCount}+ Google reviews`,
       );
 
       res.setHeader("Content-Type", "text/plain; charset=utf-8");
@@ -249,6 +273,7 @@ export function registerRobotsRoutes(app: Express): void {
         boats = Object.values(BOAT_DATA).map(boatDataToAiContext);
       }
 
+      const gbpStats = getCurrentStats();
       const context = {
         "@context": "https://schema.org",
         "@type": "LocalBusiness",
@@ -269,7 +294,7 @@ export function registerRobotsRoutes(app: Express): void {
         openingHours: "Mo-Su 09:00-20:00",
         openingSeason: "April-October",
         priceRange: "70-420 EUR",
-        aggregateRating: { "@type": "AggregateRating", ratingValue: 4.8, reviewCount: 300, bestRating: 5 },
+        aggregateRating: { "@type": "AggregateRating", ratingValue: gbpStats.rating, reviewCount: gbpStats.userRatingCount, bestRating: 5 },
         sameAs: [
           "https://www.instagram.com/costabravarentaboat/",
           "https://www.facebook.com/costabravarentaboat",

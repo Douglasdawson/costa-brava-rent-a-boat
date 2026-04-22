@@ -11,6 +11,7 @@ import { AI_CRAWLER_NAMES } from "./seo/constants";
 import { getBoatReviewStats } from "./data/boatReviewStats";
 import { getNativeOverride, type NativeLanguageOverride } from "./seo/nativeLanguageOverrides";
 import { hasStaticTranslation } from "./seo/translatedStaticPaths";
+import { getCurrentStats } from "./lib/businessStatsCache";
 
 const BASE_URL = process.env.BASE_URL || "https://www.costabravarentaboat.com";
 
@@ -1466,29 +1467,17 @@ function injectMeta(
   return result;
 }
 
-// Build AggregateRating schema from DB testimonials (with Google Maps data as baseline)
-async function buildAggregateRating(): Promise<object> {
-  let ratingValue = 4.8;
-  let reviewCount = 307; // Known Google Maps rating as baseline
-  try {
-    const testimonialsData = await storage.getTestimonials();
-    if (testimonialsData && testimonialsData.length > 0) {
-      const dbCount = testimonialsData.length;
-      const dbAvg = testimonialsData.reduce((sum: number, t: { rating?: number | null }) => sum + (t.rating || 5), 0) / dbCount;
-      // Blend Google Maps (307 reviews, 4.8) with DB reviews for a realistic aggregate
-      const totalCount = reviewCount + dbCount;
-      ratingValue = Math.round(((ratingValue * reviewCount + dbAvg * dbCount) / totalCount) * 10) / 10;
-      reviewCount = totalCount;
-    }
-  } catch {
-    // Fall back to hardcoded Google data
-  }
+// Build AggregateRating schema from cached Google Business Profile stats.
+// Cache is hydrated from DB at startup + refreshed hourly via businessStatsCache.
+// Source of truth: weekly Places API sync → business_stats table.
+function buildAggregateRating(): object {
+  const stats = getCurrentStats();
   return {
     "@type": "AggregateRating",
-    ratingValue: ratingValue.toFixed(1),
+    ratingValue: stats.rating.toFixed(1),
     bestRating: "5",
     worstRating: "1",
-    reviewCount: String(reviewCount),
+    reviewCount: String(stats.userRatingCount),
   };
 }
 
@@ -1819,7 +1808,7 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
     // Stars can only appear on Product schemas (boat detail pages). The AggregateRating
     // here is kept for general structured data quality, not for SERP star snippets.
     if (metaKey === "/") {
-      const aggregateRating = await buildAggregateRating();
+      const aggregateRating = buildAggregateRating();
       const localBusiness = {
         "@type": "LocalBusiness",
         "@id": `${BASE_URL}/#organization`,
@@ -2061,7 +2050,7 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
 
     // /testimonios - LocalBusiness with AggregateRating + individual Reviews
     else if (metaKey === "/testimonios") {
-      const aggregateRating = await buildAggregateRating();
+      const aggregateRating = buildAggregateRating();
       const localBusiness: Record<string, unknown> = {
         "@type": "LocalBusiness",
         "@id": `${BASE_URL}/#organization`,
@@ -2864,7 +2853,7 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
           reviewCount: String(reviewStats.count),
           bestRating: "5",
           worstRating: "1",
-        } : await buildAggregateRating();
+        } : buildAggregateRating();
         const jsonLd = buildBoatProductSchema(boat, fromPrice, boatAggregateRating, reviewStats?.reviews);
         // Preload the same webp the BoatDetailPage mini-hero renders
         // (client/src/components/BoatDetailPage.tsx:840 — loading="eager"

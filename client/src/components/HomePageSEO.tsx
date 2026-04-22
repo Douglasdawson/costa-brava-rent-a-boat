@@ -14,6 +14,8 @@ import {
 } from "@/utils/seo-config";
 import { generateItemListSchema, generateSeasonalEventSchema } from "@/utils/seo-schemas";
 import { FALLBACK_ITEMS } from "@/components/FAQPreview";
+import { useBusinessStats } from "@/hooks/useBusinessStats";
+import { BUSINESS_RATING, BUSINESS_REVIEW_COUNT } from "@shared/businessProfile";
 import type { Boat } from "@shared/schema";
 
 export default function HomePageSEO() {
@@ -25,8 +27,13 @@ export default function HomePageSEO() {
   const { data: boats } = useQuery<Boat[]>({
     queryKey: ['/api/boats']
   });
+  const { data: stats } = useBusinessStats();
 
-  const localBusinessSchema = generateLocalBusinessSchema(language, 4.8, 307);
+  const localBusinessSchema = generateLocalBusinessSchema(
+    language,
+    stats?.rating ?? BUSINESS_RATING,
+    stats?.userRatingCount ?? BUSINESS_REVIEW_COUNT,
+  );
   const serviceSchema = generateServiceSchema(language);
   const breadcrumbSchema = generateBreadcrumbSchema([
     { name: "Inicio", url: "/" }

@@ -2455,3 +2455,22 @@ export const warRoomSuggestions = pgTable("war_room_suggestions", {
 
 export type WarRoomSuggestion = typeof warRoomSuggestions.$inferSelect;
 export type InsertWarRoomSuggestion = typeof warRoomSuggestions.$inferInsert;
+
+// --- Google Business Profile stats (singleton row, synced weekly via Places API) ---
+export const businessStats = pgTable("business_stats", {
+  id: serial("id").primaryKey(),
+  placeId: text("place_id").notNull(),
+  rating: real("rating").notNull(),
+  userRatingCount: integer("user_rating_count").notNull(),
+  displayName: text("display_name"),
+  internationalPhoneNumber: text("international_phone_number"),
+  websiteUri: text("website_uri"),
+  weekdayHours: jsonb("weekday_hours"),
+  recentReviews: jsonb("recent_reviews"),
+  rawPayload: jsonb("raw_payload"),
+  lastSyncedAt: timestamp("last_synced_at", { withTimezone: true }).notNull().default(sql`now()`),
+  syncSource: varchar("sync_source", { length: 30 }).notNull().default("places_api_new"),
+});
+
+export type BusinessStats = typeof businessStats.$inferSelect;
+export type InsertBusinessStats = typeof businessStats.$inferInsert;

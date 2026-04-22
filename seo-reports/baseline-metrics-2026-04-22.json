@@ -1,0 +1,956 @@
+{
+  "ga4": {
+    "note": "ga4_daily_metrics table in schema.ts is not migrated to DB. Only aggregate snapshots available.",
+    "totals": {
+      "users": 79,
+      "sessions": 137,
+      "new_users": 72,
+      "pageviews": 202,
+      "bounce_rate": 0.1678832116788321,
+      "avg_session_duration_s": 612.3792337883212
+    },
+    "by_device": [
+      {
+        "users": 71,
+        "device": "mobile",
+        "sessions": 125
+      },
+      {
+        "users": 8,
+        "device": "desktop",
+        "sessions": 12
+      }
+    ],
+    "by_channel": [
+      {
+        "users": 41,
+        "channel": "Direct",
+        "sessions": 65
+      },
+      {
+        "users": 17,
+        "channel": "Organic Search",
+        "sessions": 41
+      },
+      {
+        "users": 8,
+        "channel": "Referral",
+        "sessions": 16
+      },
+      {
+        "users": 13,
+        "channel": "Organic Social",
+        "sessions": 13
+      },
+      {
+        "users": 2,
+        "channel": "Unassigned",
+        "sessions": 2
+      }
+    ],
+    "by_country": [
+      {
+        "users": 47,
+        "country": "Spain",
+        "sessions": 89
+      },
+      {
+        "users": 7,
+        "country": "France",
+        "sessions": 13
+      },
+      {
+        "users": 7,
+        "country": "United Kingdom",
+        "sessions": 10
+      },
+      {
+        "users": 3,
+        "country": "Poland",
+        "sessions": 4
+      },
+      {
+        "users": 2,
+        "country": "Saudi Arabia",
+        "sessions": 3
+      },
+      {
+        "users": 1,
+        "country": "Belgium",
+        "sessions": 3
+      },
+      {
+        "users": 2,
+        "country": "Germany",
+        "sessions": 3
+      },
+      {
+        "users": 2,
+        "country": "Peru",
+        "sessions": 3
+      },
+      {
+        "users": 1,
+        "country": "(not set)",
+        "sessions": 2
+      },
+      {
+        "users": 2,
+        "country": "Portugal",
+        "sessions": 2
+      },
+      {
+        "users": 1,
+        "country": "Australia",
+        "sessions": 1
+      },
+      {
+        "users": 1,
+        "country": "Canada",
+        "sessions": 1
+      },
+      {
+        "users": 1,
+        "country": "Israel",
+        "sessions": 1
+      },
+      {
+        "users": 1,
+        "country": "Latvia",
+        "sessions": 1
+      },
+      {
+        "users": 1,
+        "country": "Morocco",
+        "sessions": 1
+      },
+      {
+        "users": 1,
+        "country": "Netherlands",
+        "sessions": 1
+      },
+      {
+        "users": 1,
+        "country": "Tunisia",
+        "sessions": 1
+      }
+    ],
+    "conversions": {
+      "generate_lead": 9,
+      "whatsapp_click": 13,
+      "booking_started": 9
+    },
+    "whatsapp_clicks": {
+      "total": 13,
+      "from_organic": null
+    },
+    "organic_sessions": null,
+    "top_landing_pages_organic": "UNAVAILABLE: snapshot type landing_pages_organic not in analytics_snapshots"
+  },
+  "gsc": {
+    "totals": {
+      "ctr": 0.01667735728030789,
+      "clicks": 26,
+      "impressions": 1559,
+      "avg_position": 13.120886471653856
+    },
+    "top_pages": [
+      {
+        "ctr": 0.02054794520547945,
+        "page": "https://www.costabravarentaboat.com/",
+        "clicks": 24,
+        "position": 11.8125,
+        "impressions": 1168
+      },
+      {
+        "ctr": 0.3333333333333333,
+        "page": "https://www.costabravarentaboat.com/ca/rutes",
+        "clicks": 1,
+        "position": 33,
+        "impressions": 3
+      },
+      {
+        "ctr": 1,
+        "page": "https://www.costabravarentaboat.com/es/blog/tarjetas-regalo-experiencias-nauticas-costa-brava",
+        "clicks": 1,
+        "position": 1,
+        "impressions": 1
+      },
+      {
+        "ctr": 0,
+        "page": "https://www.costabravarentaboat.com/barco-sin-licencia-blanes-remus-450",
+        "clicks": 0,
+        "position": 24.5,
+        "impressions": 6
+      },
+      {
+        "ctr": 0,
+        "page": "https://www.costabravarentaboat.com/barco-sin-licencia-blanes-solar-450",
+        "clicks": 0,
+        "position": 7,
+        "impressions": 1
+      },
+      {
+        "ctr": 0,
+        "page": "https://www.costabravarentaboat.com/barco/astec-400",
+        "clicks": 0,
+        "position": 12.411764705882353,
+        "impressions": 17
+      },
+      {
+        "ctr": 0,
+        "page": "https://www.costabravarentaboat.com/barco/astec-480",
+        "clicks": 0,
+        "position": 7,
+        "impressions": 3
+      },
+      {
+        "ctr": 0,
+        "page": "https://www.costabravarentaboat.com/ca/",
+        "clicks": 0,
+        "position": 2,
+        "impressions": 1
+      },
+      {
+        "ctr": 0,
+        "page": "https://www.costabravarentaboat.com/ca/blog/fauna-marina-costa-brava-barco",
+        "clicks": 0,
+        "position": 38.5,
+        "impressions": 2
+      },
+      {
+        "ctr": 0,
+        "page": "https://www.costabravarentaboat.com/ca/blog/historia-maritima-blanes",
+        "clicks": 0,
+        "position": 3,
+        "impressions": 1
+      },
+      {
+        "ctr": 0,
+        "page": "https://www.costabravarentaboat.com/ca/blog/rutas-barco-desde-blanes",
+        "clicks": 0,
+        "position": 34.25,
+        "impressions": 4
+      },
+      {
+        "ctr": 0,
+        "page": "https://www.costabravarentaboat.com/ca/blog/snorkel-buceo-costa-brava-barco",
+        "clicks": 0,
+        "position": 26,
+        "impressions": 1
+      },
+      {
+        "ctr": 0,
+        "page": "https://www.costabravarentaboat.com/ca/condiciones-de-reserva",
+        "clicks": 0,
+        "position": 11,
+        "impressions": 1
+      },
+      {
+        "ctr": 0,
+        "page": "https://www.costabravarentaboat.com/ca/fuegos-artificiales-blanes-2025",
+        "clicks": 0,
+        "position": 18.916666666666668,
+        "impressions": 24
+      },
+      {
+        "ctr": 0,
+        "page": "https://www.costabravarentaboat.com/ca/lloguer-vaixell-blanes",
+        "clicks": 0,
+        "position": 33.333333333333336,
+        "impressions": 3
+      },
+      {
+        "ctr": 0,
+        "page": "https://www.costabravarentaboat.com/ca/lloguer-vaixell-calella",
+        "clicks": 0,
+        "position": 30.833333333333332,
+        "impressions": 6
+      },
+      {
+        "ctr": 0,
+        "page": "https://www.costabravarentaboat.com/ca/lloguer-vaixell-costa-brava",
+        "clicks": 0,
+        "position": 28.227272727272727,
+        "impressions": 22
+      },
+      {
+        "ctr": 0,
+        "page": "https://www.costabravarentaboat.com/ca/lloguer-vaixell-lloret-de-mar",
+        "clicks": 0,
+        "position": 4,
+        "impressions": 1
+      },
+      {
+        "ctr": 0,
+        "page": "https://www.costabravarentaboat.com/ca/lloguer-vaixell-malgrat-de-mar",
+        "clicks": 0,
+        "position": 6,
+        "impressions": 2
+      },
+      {
+        "ctr": 0,
+        "page": "https://www.costabravarentaboat.com/ca/lloguer-vaixell-santa-susanna",
+        "clicks": 0,
+        "position": 4.5,
+        "impressions": 2
+      },
+      {
+        "ctr": 0,
+        "page": "https://www.costabravarentaboat.com/ca/lloguer-vaixell-tossa-de-mar",
+        "clicks": 0,
+        "position": 1,
+        "impressions": 1
+      },
+      {
+        "ctr": 0,
+        "page": "https://www.costabravarentaboat.com/ca/motos-de-agua",
+        "clicks": 0,
+        "position": 36.6,
+        "impressions": 5
+      },
+      {
+        "ctr": 0,
+        "page": "https://www.costabravarentaboat.com/ca/passeig-posta-sol-vaixell-blanes",
+        "clicks": 0,
+        "position": 8,
+        "impressions": 4
+      },
+      {
+        "ctr": 0,
+        "page": "https://www.costabravarentaboat.com/ca/preus",
+        "clicks": 0,
+        "position": 7.5,
+        "impressions": 2
+      },
+      {
+        "ctr": 0,
+        "page": "https://www.costabravarentaboat.com/ca/sobre-nosaltres",
+        "clicks": 0,
+        "position": 2,
+        "impressions": 1
+      },
+      {
+        "ctr": 0,
+        "page": "https://www.costabravarentaboat.com/ca/vaixell-amb-llicencia",
+        "clicks": 0,
+        "position": 10,
+        "impressions": 1
+      },
+      {
+        "ctr": 0,
+        "page": "https://www.costabravarentaboat.com/ca/vaixell-sense-llicencia",
+        "clicks": 0,
+        "position": 26.375,
+        "impressions": 16
+      },
+      {
+        "ctr": 0,
+        "page": "https://www.costabravarentaboat.com/condiciones-generales-alquiler",
+        "clicks": 0,
+        "position": 9,
+        "impressions": 1
+      },
+      {
+        "ctr": 0,
+        "page": "https://www.costabravarentaboat.com/copia-de-embarcaciones",
+        "clicks": 0,
+        "position": 3,
+        "impressions": 1
+      },
+      {
+        "ctr": 0,
+        "page": "https://www.costabravarentaboat.com/de/",
+        "clicks": 0,
+        "position": 9.5,
+        "impressions": 14
+      },
+      {
+        "ctr": 0,
+        "page": "https://www.costabravarentaboat.com/de/bewertungen",
+        "clicks": 0,
+        "position": 4,
+        "impressions": 1
+      },
+      {
+        "ctr": 0,
+        "page": "https://www.costabravarentaboat.com/de/boot-mieten-calella",
+        "clicks": 0,
+        "position": 10,
+        "impressions": 2
+      },
+      {
+        "ctr": 0,
+        "page": "https://www.costabravarentaboat.com/de/boot-mieten-lloret-de-mar",
+        "clicks": 0,
+        "position": 17,
+        "impressions": 1
+      },
+      {
+        "ctr": 0,
+        "page": "https://www.costabravarentaboat.com/de/boot-mieten-malgrat-de-mar",
+        "clicks": 0,
+        "position": 9.5,
+        "impressions": 2
+      },
+      {
+        "ctr": 0,
+        "page": "https://www.costabravarentaboat.com/en/",
+        "clicks": 0,
+        "position": 12.846153846153847,
+        "impressions": 13
+      },
+      {
+        "ctr": 0,
+        "page": "https://www.costabravarentaboat.com/en/barco-sin-licencia-blanes-solar-450",
+        "clicks": 0,
+        "position": 10.666666666666666,
+        "impressions": 6
+      },
+      {
+        "ctr": 0,
+        "page": "https://www.costabravarentaboat.com/en/blog",
+        "clicks": 0,
+        "position": 8,
+        "impressions": 1
+      },
+      {
+        "ctr": 0,
+        "page": "https://www.costabravarentaboat.com/en/blog/boat-rental-costa-brava-english-guide",
+        "clicks": 0,
+        "position": 12,
+        "impressions": 2
+      },
+      {
+        "ctr": 0,
+        "page": "https://www.costabravarentaboat.com/en/blog/consejos-primera-vez-alquilar-barco",
+        "clicks": 0,
+        "position": 5.5,
+        "impressions": 2
+      },
+      {
+        "ctr": 0,
+        "page": "https://www.costabravarentaboat.com/en/blog/excursiones-barco-grupos-eventos-blanes",
+        "clicks": 0,
+        "position": 6,
+        "impressions": 1
+      },
+      {
+        "ctr": 0,
+        "page": "https://www.costabravarentaboat.com/en/boat-rental-costa-brava",
+        "clicks": 0,
+        "position": 6.875,
+        "impressions": 8
+      },
+      {
+        "ctr": 0,
+        "page": "https://www.costabravarentaboat.com/en/boats-with-license",
+        "clicks": 0,
+        "position": 62.625,
+        "impressions": 16
+      },
+      {
+        "ctr": 0,
+        "page": "https://www.costabravarentaboat.com/en/fuegos-artificiales-blanes-2025",
+        "clicks": 0,
+        "position": 15.411764705882353,
+        "impressions": 34
+      },
+      {
+        "ctr": 0,
+        "page": "https://www.costabravarentaboat.com/en/routes",
+        "clicks": 0,
+        "position": 57,
+        "impressions": 1
+      },
+      {
+        "ctr": 0,
+        "page": "https://www.costabravarentaboat.com/es/alquiler-barcos-blanes",
+        "clicks": 0,
+        "position": 12,
+        "impressions": 1
+      },
+      {
+        "ctr": 0,
+        "page": "https://www.costabravarentaboat.com/es/alquiler-barcos-cerca-barcelona",
+        "clicks": 0,
+        "position": 36.125,
+        "impressions": 8
+      },
+      {
+        "ctr": 0,
+        "page": "https://www.costabravarentaboat.com/es/alquiler-barcos-costa-brava",
+        "clicks": 0,
+        "position": 19,
+        "impressions": 1
+      },
+      {
+        "ctr": 0,
+        "page": "https://www.costabravarentaboat.com/es/alquiler-barcos-santa-susanna",
+        "clicks": 0,
+        "position": 8.333333333333332,
+        "impressions": 3
+      },
+      {
+        "ctr": 0,
+        "page": "https://www.costabravarentaboat.com/es/barco-familias-costa-brava",
+        "clicks": 0,
+        "position": 72.64,
+        "impressions": 25
+      },
+      {
+        "ctr": 0,
+        "page": "https://www.costabravarentaboat.com/es/barcos-sin-licencia",
+        "clicks": 0,
+        "position": 13.931034482758621,
+        "impressions": 29
+      }
+    ],
+    "top_queries": [
+      {
+        "ctr": 0,
+        "query": "alquiler barco costa brava",
+        "clicks": 0,
+        "country": null,
+        "position": 17.174603174603174,
+        "impressions": 63
+      },
+      {
+        "ctr": 0.02702702702702703,
+        "query": "alquiler barco blanes",
+        "clicks": 1,
+        "country": null,
+        "position": 5.243243243243243,
+        "impressions": 37
+      },
+      {
+        "ctr": 0,
+        "query": "alquiler barcos costa brava",
+        "clicks": 0,
+        "country": null,
+        "position": 13.81081081081081,
+        "impressions": 37
+      },
+      {
+        "ctr": 0,
+        "query": "alquilar barco costa brava",
+        "clicks": 0,
+        "country": null,
+        "position": 9.96,
+        "impressions": 25
+      },
+      {
+        "ctr": 0,
+        "query": "blanes 2025",
+        "clicks": 0,
+        "country": null,
+        "position": 9.954545454545455,
+        "impressions": 22
+      },
+      {
+        "ctr": 0,
+        "query": "alquiler barco sin licencia",
+        "clicks": 0,
+        "country": null,
+        "position": 12.35,
+        "impressions": 20
+      },
+      {
+        "ctr": 0.05263157894736842,
+        "query": "rent boat costa brava",
+        "clicks": 1,
+        "country": null,
+        "position": 9.526315789473685,
+        "impressions": 19
+      },
+      {
+        "ctr": 0.058823529411764705,
+        "query": "costa brava rent boat",
+        "clicks": 1,
+        "country": null,
+        "position": 4,
+        "impressions": 17
+      },
+      {
+        "ctr": 0,
+        "query": "alquiler barcos sin licencia",
+        "clicks": 0,
+        "country": null,
+        "position": 31.529411764705884,
+        "impressions": 17
+      },
+      {
+        "ctr": 0,
+        "query": "astec 400",
+        "clicks": 0,
+        "country": null,
+        "position": 12.5625,
+        "impressions": 16
+      },
+      {
+        "ctr": 0.0625,
+        "query": "alquilar barco blanes",
+        "clicks": 1,
+        "country": null,
+        "position": 5.25,
+        "impressions": 16
+      },
+      {
+        "ctr": 0,
+        "query": "alquiler barco lloret de mar",
+        "clicks": 0,
+        "country": null,
+        "position": 10.6,
+        "impressions": 15
+      },
+      {
+        "ctr": 0,
+        "query": "alquiler de barcos en blanes",
+        "clicks": 0,
+        "country": null,
+        "position": 5.142857142857143,
+        "impressions": 14
+      },
+      {
+        "ctr": 0,
+        "query": "alquiler lancha costa brava",
+        "clicks": 0,
+        "country": null,
+        "position": 10.785714285714286,
+        "impressions": 14
+      },
+      {
+        "ctr": 0,
+        "query": "alquiler barco sin licencia lloret de mar",
+        "clicks": 0,
+        "country": null,
+        "position": 8.76923076923077,
+        "impressions": 13
+      },
+      {
+        "ctr": 0,
+        "query": "alquiler barco sin licencia costa brava",
+        "clicks": 0,
+        "country": null,
+        "position": 8.083333333333332,
+        "impressions": 12
+      },
+      {
+        "ctr": 0,
+        "query": "alquiler barca blanes",
+        "clicks": 0,
+        "country": null,
+        "position": 4.416666666666666,
+        "impressions": 12
+      },
+      {
+        "ctr": 0.09090909090909091,
+        "query": "alquiler barco blanes sin licencia",
+        "clicks": 1,
+        "country": null,
+        "position": 8.272727272727273,
+        "impressions": 11
+      },
+      {
+        "ctr": 0,
+        "query": "alquiler barcos blanes",
+        "clicks": 0,
+        "country": null,
+        "position": 8.181818181818182,
+        "impressions": 11
+      },
+      {
+        "ctr": 0,
+        "query": "barcos costa brava",
+        "clicks": 0,
+        "country": null,
+        "position": 17,
+        "impressions": 11
+      },
+      {
+        "ctr": 0,
+        "query": "alquiler de barcos costa brava",
+        "clicks": 0,
+        "country": null,
+        "position": 17.22222222222222,
+        "impressions": 9
+      },
+      {
+        "ctr": 0,
+        "query": "barco sin licencia costa brava",
+        "clicks": 0,
+        "country": null,
+        "position": 6.333333333333333,
+        "impressions": 9
+      },
+      {
+        "ctr": 0,
+        "query": "alquiler barco sin licencia platja d'aro",
+        "clicks": 0,
+        "country": null,
+        "position": 18,
+        "impressions": 9
+      },
+      {
+        "ctr": 0,
+        "query": "barcos sin licencia",
+        "clicks": 0,
+        "country": null,
+        "position": 14.375,
+        "impressions": 8
+      },
+      {
+        "ctr": 0,
+        "query": "alquiler barco tossa de mar",
+        "clicks": 0,
+        "country": null,
+        "position": 14,
+        "impressions": 7
+      },
+      {
+        "ctr": 0.42857142857142855,
+        "query": "bateau blanes",
+        "clicks": 3,
+        "country": null,
+        "position": 3.5714285714285716,
+        "impressions": 7
+      },
+      {
+        "ctr": 0,
+        "query": "alquiler barco sin licencia mataró",
+        "clicks": 0,
+        "country": null,
+        "position": 14,
+        "impressions": 6
+      },
+      {
+        "ctr": 0,
+        "query": "alquiler barca",
+        "clicks": 0,
+        "country": null,
+        "position": 26.166666666666668,
+        "impressions": 6
+      },
+      {
+        "ctr": 0,
+        "query": "alquiler barco girona",
+        "clicks": 0,
+        "country": null,
+        "position": 14.833333333333334,
+        "impressions": 6
+      },
+      {
+        "ctr": 0,
+        "query": "alquiler embarcaciones ebro",
+        "clicks": 0,
+        "country": null,
+        "position": 66.2,
+        "impressions": 5
+      },
+      {
+        "ctr": 0,
+        "query": "alquiler barca costa brava",
+        "clicks": 0,
+        "country": null,
+        "position": 12.25,
+        "impressions": 4
+      },
+      {
+        "ctr": 0,
+        "query": "alquiler barco con patron costa brava",
+        "clicks": 0,
+        "country": null,
+        "position": 18.666666666666668,
+        "impressions": 3
+      },
+      {
+        "ctr": 0,
+        "query": "blanes boat",
+        "clicks": 0,
+        "country": null,
+        "position": 9.333333333333334,
+        "impressions": 3
+      },
+      {
+        "ctr": 0,
+        "query": "alquiler barcos tossa de mar",
+        "clicks": 0,
+        "country": null,
+        "position": 18.333333333333332,
+        "impressions": 3
+      },
+      {
+        "ctr": 0,
+        "query": "alquiler barco costa brava por horas",
+        "clicks": 0,
+        "country": null,
+        "position": 9.666666666666666,
+        "impressions": 3
+      },
+      {
+        "ctr": 0,
+        "query": "alquiler embarcacion sin titulacion",
+        "clicks": 0,
+        "country": null,
+        "position": 19.333333333333332,
+        "impressions": 3
+      },
+      {
+        "ctr": 0,
+        "query": "alquiler de barcos blanes",
+        "clicks": 0,
+        "country": null,
+        "position": 9,
+        "impressions": 3
+      },
+      {
+        "ctr": 0,
+        "query": "blanes boats",
+        "clicks": 0,
+        "country": null,
+        "position": 10.333333333333334,
+        "impressions": 3
+      },
+      {
+        "ctr": 0,
+        "query": "alquiler barcos platja d aro",
+        "clicks": 0,
+        "country": null,
+        "position": 34,
+        "impressions": 2
+      },
+      {
+        "ctr": 0.5,
+        "query": "boat costa brava",
+        "clicks": 1,
+        "country": null,
+        "position": 5.5,
+        "impressions": 2
+      },
+      {
+        "ctr": 0,
+        "query": "alquilar velero costa brava",
+        "clicks": 0,
+        "country": null,
+        "position": 27.5,
+        "impressions": 2
+      },
+      {
+        "ctr": 0,
+        "query": "alquiler barca sin licencia",
+        "clicks": 0,
+        "country": null,
+        "position": 14,
+        "impressions": 2
+      },
+      {
+        "ctr": 0,
+        "query": "alquiler barcas costa brava",
+        "clicks": 0,
+        "country": null,
+        "position": 20.5,
+        "impressions": 2
+      },
+      {
+        "ctr": 0,
+        "query": "alquiler barco begur",
+        "clicks": 0,
+        "country": null,
+        "position": 52.5,
+        "impressions": 2
+      },
+      {
+        "ctr": 0,
+        "query": "alquiler barco por horas",
+        "clicks": 0,
+        "country": null,
+        "position": 39,
+        "impressions": 2
+      },
+      {
+        "ctr": 0,
+        "query": "alquiler barco sin carnet costa brava",
+        "clicks": 0,
+        "country": null,
+        "position": 31.5,
+        "impressions": 2
+      },
+      {
+        "ctr": 0,
+        "query": "alquiler barco sin licencia barcelona",
+        "clicks": 0,
+        "country": null,
+        "position": 21,
+        "impressions": 2
+      },
+      {
+        "ctr": 0,
+        "query": "alquiler barcos calella",
+        "clicks": 0,
+        "country": null,
+        "position": 49,
+        "impressions": 2
+      },
+      {
+        "ctr": 0,
+        "query": "alquiler barcos con licencia",
+        "clicks": 0,
+        "country": null,
+        "position": 61.5,
+        "impressions": 2
+      },
+      {
+        "ctr": 0,
+        "query": "alquiler barcos lloret de mar",
+        "clicks": 0,
+        "country": null,
+        "position": 7,
+        "impressions": 2
+      }
+    ],
+    "opportunities": {
+      "ranking_5_to_20": [
+        {
+          "ctr": 0,
+          "query": "alquiler barco costa brava",
+          "clicks": 0,
+          "position": 17.174603174603174,
+          "impressions": 63
+        }
+      ],
+      "high_impr_low_ctr": null
+    },
+    "ctr_by_position_bucket": [
+      {
+        "bucket": "1-3",
+        "avg_ctr": 0.125,
+        "page_count": 8
+      },
+      {
+        "bucket": "4-10",
+        "avg_ctr": 0,
+        "page_count": 31
+      },
+      {
+        "bucket": "11-20",
+        "avg_ctr": 0.0009784735812133072,
+        "page_count": 21
+      },
+      {
+        "bucket": "21-50",
+        "avg_ctr": 0.017543859649122806,
+        "page_count": 19
+      }
+    ]
+  },
+  "window": {
+    "to": "2026-04-21",
+    "from": "2026-03-25"
+  },
+  "baseline_date": "2026-04-22",
+  "window_real_gsc": {
+    "to": "2026-04-20",
+    "from": "2026-04-15",
+    "note": "Snapshot in analytics_snapshots only contains last 6 days; 28-day window unavailable in current DB. Historical gsc_queries table is in schema.ts but not migrated."
+  }
+}

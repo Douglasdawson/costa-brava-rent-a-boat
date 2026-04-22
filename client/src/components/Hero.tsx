@@ -3,13 +3,18 @@ import { Button } from "./ui/button";
 import { Shield, Award, Users, Star } from "lucide-react";
 import { useTranslations } from "@/lib/translations";
 import { useBookingModal } from "@/hooks/bookingModalContext";
+import { useBusinessStats } from "@/hooks/useBusinessStats";
 
 import BoatQuizModal from "./BoatQuizModal";
 
 export default function Hero() {
   const t = useTranslations();
   const { openBookingModal } = useBookingModal();
+  const { data: businessStats } = useBusinessStats();
   const [quizOpen, setQuizOpen] = useState(false);
+  const ratingDisplay = businessStats
+    ? `${businessStats.rating.toFixed(1)}/5 · ${businessStats.userRatingCount}+ reseñas`
+    : t.hero.googleRating;
 
   // Listen for exit intent quiz trigger
   useEffect(() => {
@@ -123,7 +128,7 @@ export default function Hero() {
           </span>
           <span className="inline-flex items-center gap-1 sm:gap-1.5 text-white dark:text-foreground text-xs sm:text-sm font-medium whitespace-nowrap">
             <Star className="w-3 h-3 sm:w-3.5 sm:h-3.5 flex-shrink-0 fill-amber-400 text-amber-400" aria-hidden="true" />
-            {t.hero.googleRating}
+            {ratingDisplay}
           </span>
         </div>
       </div>

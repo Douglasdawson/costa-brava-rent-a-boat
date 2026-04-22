@@ -522,33 +522,33 @@ const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
   "/alquiler-barcos-tossa-de-mar": {
     es: {
       title: "Barco Tossa de Mar Con Licencia | Vila Vella desde el Mar",
-      description: "Alquila barco con licencia PER o charter con patrón desde Blanes a Tossa de Mar. Navega frente a la Vila Vella medieval. 60 min ida. Cala Pola, Giverola.",
+      description: "Alquila barco con licencia PER o charter con patrón desde Blanes a Tossa de Mar. Navega frente a la Vila Vella medieval. 30-45 min ida. Cala Pola, Giverola.",
       ogTitle: "Alquiler Barco Tossa de Mar | Licencia B\u00e1sica (LBN) o Excursi\u00f3n con Capit\u00e1n",
-      ogDescription: "Vila Vella de Tossa en 45-60 min desde Blanes. Con LBN desde 160\u20ac (2h) o Excursi\u00f3n con Capit\u00e1n 4h desde 380\u20ac. Combustible aparte. 4.8\u2605.",
+      ogDescription: "Vila Vella de Tossa en 30-45 min desde Blanes. Con LBN desde 160\u20ac (2h) o Excursi\u00f3n con Capit\u00e1n 4h desde 380\u20ac. Combustible aparte. 4.8\u2605.",
     },
     en: {
       title: "Boat Trip to Tossa de Mar from Blanes",
-      description: "Sail to Tossa de Mar in 1 hour from Blanes. Discover the most beautiful medieval town of Costa Brava.",
+      description: "Sail to Tossa de Mar in 30-45 min from Blanes. Discover the most beautiful medieval town of Costa Brava.",
     },
     ca: {
       title: "Excursió en Barca a Tossa de Mar des de Blanes",
-      description: "Navega a Tossa de Mar en 1 hora des de Blanes. Descobreix el poble medieval més bonic de la Costa Brava.",
+      description: "Navega a Tossa de Mar en 30-45 min des de Blanes. Descobreix el poble medieval més bonic de la Costa Brava.",
     },
     fr: {
       title: "Excursion en Bateau à Tossa de Mar depuis Blanes",
-      description: "Naviguez vers Tossa de Mar en 1h depuis Blanes. Découvrez la plus belle ville médiévale de la Costa Brava.",
+      description: "Naviguez vers Tossa de Mar en 30-45 min depuis Blanes. Découvrez la plus belle ville médiévale de la Costa Brava.",
     },
     de: {
       title: "Bootsausflug nach Tossa de Mar von Blanes",
-      description: "Segeln Sie in 1h von Blanes nach Tossa de Mar. Entdecken Sie die schönste mittelalterliche Stadt der Costa Brava.",
+      description: "Segeln Sie in 30-45 Min. von Blanes nach Tossa de Mar. Entdecken Sie die schönste mittelalterliche Stadt der Costa Brava.",
     },
     nl: {
       title: "Boottocht naar Tossa de Mar vanuit Blanes",
-      description: "Vaar in 1 uur van Blanes naar Tossa de Mar. Ontdek de mooiste middeleeuwse stad van de Costa Brava.",
+      description: "Vaar in 30-45 min van Blanes naar Tossa de Mar. Ontdek de mooiste middeleeuwse stad van de Costa Brava.",
     },
     it: {
       title: "Escursione in Barca a Tossa de Mar da Blanes",
-      description: "Naviga verso Tossa de Mar in 1 ora da Blanes. Scopri la città medievale più bella della Costa Brava.",
+      description: "Naviga verso Tossa de Mar in 30-45 min da Blanes. Scopri la città medievale più bella della Costa Brava.",
     },
     ru: {
       title: "Экскурсия на Лодке в Тосса-де-Мар из Бланеса",
@@ -2306,8 +2306,8 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
         "@type": "TouristDestination",
         name: isEn ? "Boat Trip to Tossa de Mar from Blanes" : "Excursion en Barco a Tossa de Mar desde Blanes",
         description: isEn
-          ? "Sail from Blanes to Tossa de Mar in about 1 hour. Discover the medieval Vila Vella, stunning cliffs, and hidden coves."
-          : "Navega desde Blanes hasta Tossa de Mar en aproximadamente 1 hora. Descubre la Vila Vella medieval, acantilados impresionantes y calas escondidas.",
+          ? "Sail from Blanes to Tossa de Mar in 30-45 min. Discover the medieval Vila Vella, stunning cliffs, and hidden coves."
+          : "Navega desde Blanes hasta Tossa de Mar en 30-45 min. Descubre la Vila Vella medieval, acantilados impresionantes y calas escondidas.",
         url: `${BASE_URL}/alquiler-barcos-tossa-de-mar`,
         touristType: [
           { "@type": "Audience", audienceType: isEn ? "Nautical tourists" : "Turistas náuticos" },

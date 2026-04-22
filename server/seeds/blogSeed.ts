@@ -3105,7 +3105,7 @@ Entre Lloret y Tossa. Cala más salvaje, rocas, buena para snorkel. Buen punto i
 
 Una de las calas más bonitas de toda la Costa Brava. Pequeña, rodeada de acantilados, aguas cristalinas. **Solo accesible cómodamente por mar.** Imprescindible si tienes tiempo.
 
-### Llegada: Tossa de Mar (km 15 — 50-60 min)
+### Llegada: Tossa de Mar (km 15 — 30-45 min)
 
 La silueta de la Vila Vella creciendo en el horizonte es el momento mágico de la excursión. Las torres medievales y las murallas del siglo XII cayendo sobre el mar forman una imagen que parece sacada de una película.
 

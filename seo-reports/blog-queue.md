@@ -90,3 +90,4 @@ Cambios de prioridad: actualizar columna `estado` y mover posicion en tabla.
 | Fecha | Post # | Slug | Idiomas | Estado |
 |-------|--------|------|---------|--------|
 | 2026-04-21 | 1 | excursion-barco-blanes-2026-guia-completa | ES + EN | draft-generated |
+| 2026-04-22 | 1 | excursion-barco-blanes-2026-guia-completa | ES + EN | distribution-ready (9 piezas en distribucion-blog/excursion-barco-blanes-2026-guia-completa/) |

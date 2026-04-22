@@ -104,9 +104,6 @@ export default function Hero() {
                 {t.hero.viewFleet}
               </Button>
             </div>
-            <p className="text-white/80 text-xs sm:text-sm mt-1.5 sm:mt-3">
-              {t.hero.freeCancellation}
-            </p>
           </div>
         </div>
       </div>

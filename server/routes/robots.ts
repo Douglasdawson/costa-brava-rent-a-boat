@@ -135,17 +135,27 @@ export function registerRobotsRoutes(app: Express): void {
         `> Last updated: ${lastUpdated}`,
       );
 
-      // Inject live rating + review count from cached GBP stats
+      // Inject live rating + review count from cached GBP stats.
+      // Hardcoded rating (e.g. "4.8") → live value. Permissive patterns
+      // to match natural-language variants present in the static file.
       const stats = getCurrentStats();
-      content = content.replace(
-        /\b4\.8(★)?\s*(?:Google\s*)?\(?(\d{2,4})\+?\s*reviews?\)?/gi,
-        `${stats.rating.toFixed(1)}★ Google (${stats.userRatingCount}+ reviews)`,
-      );
-      // Standalone "300+ reviews" / "307 reviews" / "200+ reviews" phrases
-      content = content.replace(
-        /\b(?:300|307|310|200)\+?\s*Google\s*reviews?\b/gi,
-        `${stats.userRatingCount}+ Google reviews`,
-      );
+      const r = stats.rating.toFixed(1);
+      const n = stats.userRatingCount;
+      content = content
+        // "4.8 stars" → "4.8 stars"
+        .replace(/\b4\.8\s+stars?\b/gi, `${r} stars`)
+        // "4.8/5" → "4.8/5"
+        .replace(/\b4\.8\s*\/\s*5\b/g, `${r}/5`)
+        // "4.8★" → "4.8★"
+        .replace(/\b4\.8★/g, `${r}★`)
+        // Naked "4.8" near rating keywords (careful: not in prices/specs)
+        .replace(/(\brating\s*[:\-]?\s*)4\.8\b/gi, `$1${r}`)
+        // Variants of review count
+        .replace(/\bover\s+300\s+(verified\s+|Google\s+)?reviews?\b/gi, `over ${n} $1reviews`)
+        .replace(/\b300\+\s*(verified\s+|Google\s+)?reviews?\b/gi, `${n}+ $1reviews`)
+        .replace(/\b300\+?\s*reviews?\b/gi, `${n}+ reviews`)
+        .replace(/\b307\s+reviews?\b/gi, `${n} reviews`)
+        .replace(/\b200\+\s+(verified\s+|Google\s+)?reviews?\b/gi, `${n}+ $1reviews`);
 
       res.setHeader("Content-Type", "text/plain; charset=utf-8");
       res.setHeader("Cache-Control", "public, max-age=86400, stale-while-revalidate=604800");
@@ -189,16 +199,20 @@ export function registerRobotsRoutes(app: Express): void {
         `> Last updated: ${lastUpdated}`,
       );
 
-      // Inject live rating + review count from cached GBP stats
+      // Inject live rating + review count from cached GBP stats.
       const stats = getCurrentStats();
-      content = content.replace(
-        /\b4\.8(★)?\s*(?:Google\s*)?\(?(\d{2,4})\+?\s*reviews?\)?/gi,
-        `${stats.rating.toFixed(1)}★ Google (${stats.userRatingCount}+ reviews)`,
-      );
-      content = content.replace(
-        /\b(?:300|307|310|200)\+?\s*Google\s*reviews?\b/gi,
-        `${stats.userRatingCount}+ Google reviews`,
-      );
+      const r = stats.rating.toFixed(1);
+      const n = stats.userRatingCount;
+      content = content
+        .replace(/\b4\.8\s+stars?\b/gi, `${r} stars`)
+        .replace(/\b4\.8\s*\/\s*5\b/g, `${r}/5`)
+        .replace(/\b4\.8★/g, `${r}★`)
+        .replace(/(\brating\s*[:\-]?\s*)4\.8\b/gi, `$1${r}`)
+        .replace(/\bover\s+300\s+(verified\s+|Google\s+)?reviews?\b/gi, `over ${n} $1reviews`)
+        .replace(/\b300\+\s*(verified\s+|Google\s+)?reviews?\b/gi, `${n}+ $1reviews`)
+        .replace(/\b300\+?\s*reviews?\b/gi, `${n}+ reviews`)
+        .replace(/\b307\s+reviews?\b/gi, `${n} reviews`)
+        .replace(/\b200\+\s+(verified\s+|Google\s+)?reviews?\b/gi, `${n}+ $1reviews`);
 
       res.setHeader("Content-Type", "text/plain; charset=utf-8");
       res.setHeader("Cache-Control", "public, max-age=86400, stale-while-revalidate=604800");

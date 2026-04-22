@@ -597,24 +597,28 @@
 <section id="iniciativa-3" class="tab-content">
 
   <div class="section">
-    <h2>Iniciativa 3 · Excursión Privada Premium <span class="pill warn">Importante</span></h2>
+    <h2>Iniciativa 3 · Excursión Privada con Capitán <span class="pill warn">Importante</span></h2>
     <div class="card warning">
       <h4>Problema</h4>
-      <p>Hoy compites en commodity (horas de barco a 70-80 €). Ningún competidor de Blanes ha empaquetado una <strong>excursión privada premium</strong> con precio cerrado, ruta curada y experiencia diferenciable. Es el hueco más claro del mercado.</p>
+      <p>Hoy el producto existe pero está infra-explotado: no tiene landing dedicada, no aparece priorizado en la home, el chatbot no lo deriva y no hay material visual premium. Ningún competidor de Blanes tiene un producto así empaquetado. Es el hueco más claro del mercado.</p>
     </div>
 
-    <h3>Propuesta de producto</h3>
+    <h3>Producto actual (source of truth: <code>shared/boatData.ts</code>)</h3>
     <div class="card">
-      <h4 style="color:var(--accent)">"Día Privado Costa Brava" — desde 480 €</h4>
-      <ul class="clean" style="margin-top:10px">
-        <li><strong>4-5 horas con patrón profesional</strong> (no te preocupas por nada).</li>
-        <li><strong>Ruta curada:</strong> 3 calas seleccionadas según viento del día (Cala Bona, Fornells, Sant Francesc).</li>
-        <li><strong>Parada en Tossa de Mar</strong> (castillo + tiempo libre 45 min).</li>
-        <li><strong>Snorkel + equipamiento incluido.</strong></li>
-        <li><strong>Fotografía digital</strong> del día enviada en 48h.</li>
-        <li><strong>Bebidas frías</strong> y snack a bordo.</li>
-        <li><strong>Máximo 6-8 personas</strong> (exclusividad).</li>
-        <li><strong>Atención en tu idioma</strong> (8 disponibles).</li>
+      <h4 style="color:var(--accent)">"Excursión Privada con Capitán" — desde 240 €</h4>
+      <p style="color:var(--text-secondary);font-size:13px;margin-bottom:10px">Pacific Craft 625 Open · Yamaha 115cv · <strong>hasta 7 personas</strong></p>
+      <table style="width:100%;font-size:13px;border-collapse:collapse">
+        <tr><th style="text-align:left;padding:4px 8px;border-bottom:1px solid var(--border)">Duración</th><th style="text-align:right;padding:4px 8px;border-bottom:1px solid var(--border)">BAJA</th><th style="text-align:right;padding:4px 8px;border-bottom:1px solid var(--border)">MEDIA (Jul)</th><th style="text-align:right;padding:4px 8px;border-bottom:1px solid var(--border)">ALTA (Ago)</th></tr>
+        <tr><td style="padding:4px 8px">2h</td><td style="text-align:right;padding:4px 8px">240 €</td><td style="text-align:right;padding:4px 8px">260 €</td><td style="text-align:right;padding:4px 8px">280 €</td></tr>
+        <tr><td style="padding:4px 8px">3h</td><td style="text-align:right;padding:4px 8px">320 €</td><td style="text-align:right;padding:4px 8px">340 €</td><td style="text-align:right;padding:4px 8px">360 €</td></tr>
+        <tr><td style="padding:4px 8px">4h</td><td style="text-align:right;padding:4px 8px">380 €</td><td style="text-align:right;padding:4px 8px">400 €</td><td style="text-align:right;padding:4px 8px">420 €</td></tr>
+      </table>
+      <ul class="clean" style="margin-top:12px">
+        <li><strong>Incluye:</strong> patrón profesional · amarre · limpieza · seguro · IVA</li>
+        <li><strong>No incluye:</strong> combustible (paga el cliente al final, ~20-30 €/h navegación)</li>
+        <li><strong>Extras opcionales:</strong> snorkel 7,5€ · paddle 25€ · nevera 5€ · seascooter 60€</li>
+        <li><strong>Fianza:</strong> 500 €</li>
+        <li><strong>Atención en 8 idiomas</strong> (foso competitivo)</li>
       </ul>
     </div>
   </div>
@@ -625,8 +629,8 @@
       <li>
         <div class="num">1</div>
         <div class="body">
-          <div class="title">Definir pricing y márgenes exactos</div>
-          <div class="desc">Calcular coste real (combustible, patrón, snacks, fotografía, desgaste). Proponer 3 niveles: 4h 480€ / 6h 680€ / 8h 880€. Validar que margen es ≥ alquiler estándar.</div>
+          <div class="title">Validar márgenes de los 3 niveles existentes</div>
+          <div class="desc">Pricing ya definido en <code>boatData.ts</code> (2h/3h/4h × BAJA/MEDIA/ALTA). Validar margen neto real por reserva (ya hecho 2026-04-22: ~132 € en 2h BAJA, ~161 € en 3h BAJA, ~173 € en 4h BAJA). Evaluar si merece la pena <em>añadir</em> 6h y 8h como producto nuevo.</div>
           <div class="meta">
             <span class="pill">Semana 5</span>
             <span class="pill">Coste: tiempo</span>
@@ -672,8 +676,8 @@
       <li>
         <div class="num">5</div>
         <div class="body">
-          <div class="title">Paquetes corporate y celebración</div>
-          <div class="desc">Sub-producto: "Aniversario" (botella cava + decoración) +60€ / "Despedida soltera/o" (música + fotos grupales) +80€ / "Corporate team-building" (logística para empresa). Up-sell natural.</div>
+          <div class="title">Evaluar lanzar packs de celebración (no existen hoy)</div>
+          <div class="desc">Estudio de viabilidad para nuevos sub-productos: "Aniversario" (cava + decoración), "Despedida" (música + fotos), "Corporate team-building". Incluiría definir coste real, añadir a <code>boatData.ts</code> como <code>extras</code>, y activar en chatbot. NO implementado todavía — solo análisis en este paso.</div>
           <div class="meta">
             <span class="pill">Semanas 8-10</span>
             <span class="pill">Coste: variable</span>
@@ -761,7 +765,7 @@
       <div class="timeline-item mid">
         <div class="date">Semana 5</div>
         <div class="event">Pricing y márgenes "Excursión Privada" cerrados</div>
-        <div class="detail">3 niveles definidos (4h/6h/8h), márgenes validados, upsell corporate diseñado.</div>
+        <div class="detail">3 niveles existentes (2h/3h/4h) validados por margen, decisión sobre packs de celebración tomada.</div>
       </div>
       <div class="timeline-item mid">
         <div class="date">Semana 6</div>

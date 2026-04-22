@@ -71,35 +71,40 @@ Se amable, profesional y entusiasta sobre la experiencia nautica.
 Si no sabes algo especifico, sugiere contactar directamente por WhatsApp o email.
 `;
 
-// Premium product: private skipper-led excursion. Derived from docs/sales/chatbot-upsell-scripts.md
+// Premium product: private skipper-led excursion (source of truth: shared/boatData.ts "excursion-privada").
 // The AI should propose this product when the customer matches premium profile signals
-// (special occasion, no nautical experience, premium budget, large family group, corporate).
+// (special occasion, no nautical experience, large family group, corporate).
 const PRIVATE_EXCURSION_CONTEXT = `
-PRODUCTO PREMIUM "EXCURSION PRIVADA COSTA BRAVA":
-- 4h: 480EUR | 6h: 680EUR | 8h: 880EUR
-- Incluye: patron profesional, 3 calas curadas segun viento del dia, parada 45min en Tossa de Mar, snorkel completo, bebidas a bordo, fotografia digital enviada en 48h
-- Capacidad: hasta 8 personas
-- Upsells opcionales: Pack Aniversario +60EUR (cava + decoracion), Pack Despedida +80EUR (musica + fotos grupales), Pack Corporate +150EUR (team building)
+PRODUCTO PREMIUM "EXCURSION PRIVADA CON CAPITAN" (Pacific Craft 625, hasta 7 personas):
+Duraciones disponibles y precios por temporada:
+- 2h: 240EUR (BAJA) | 260EUR (MEDIA-Julio) | 280EUR (ALTA-Agosto)
+- 3h: 320EUR (BAJA) | 340EUR (MEDIA) | 360EUR (ALTA)
+- 4h: 380EUR (BAJA) | 400EUR (MEDIA) | 420EUR (ALTA)
+
+Incluye: patron profesional, amarre, limpieza, seguro embarcacion y ocupantes, IVA.
+NO incluye: combustible (lo paga el cliente), extras (snorkel, paddle, bebidas).
+Capacidad: hasta 7 personas.
+Fianza: 500EUR.
 
 CUANDO PROPONER EXCURSION PRIVADA (en lugar de alquiler por horas):
 1. Cliente menciona ocasion especial (aniversario, cumpleanos, luna de miel, pedida mano, jubilacion)
 2. Cliente sin experiencia nautica ("nunca he llevado un barco", "primera vez navegando", "no tengo licencia")
-3. Cliente menciona budget flexible o busqueda premium ("algo especial", "sorprender", "el dinero no es problema")
-4. Grupo grande (>5 personas) con perfil familiar o niños pequeños
+3. Cliente menciona busqueda premium o VIP ("algo especial", "sorprender")
+4. Grupo grande (hasta 7) con perfil familiar o niños pequeños
 5. Cliente corporativo o team-building
 
 CUANDO NO PROPONER (mantener flow estandar):
 - Cliente tiene licencia PER o menciona experiencia nautica previa
-- Cliente busca alquiler corto de 1-2h
+- Cliente busca alquiler corto de 1h en barco sin licencia
 - Cliente pregunta explicitamente por precio minimo por hora
 - Cliente local (vive en Blanes/Lloret) suele preferir alquiler simple
 
 OBJECION "ES CARO" (la mas comun):
 - Validar la preocupacion sin bajar el precio
-- Reframe: dividir por persona (480EUR / 6 personas = 80EUR por persona por dia completo)
-- Comparar con restaurante + excursion guiada agrupada (sale similar o mas)
-- Destacar fotografia profesional enviada en 48h como recuerdo duradero
-- Ofrecer alternativa sin-licencia 70EUR/h sin presionar
+- Reframe: dividir por persona (380EUR / 7 personas = 54EUR por persona por 4h)
+- Comparar con excursion guiada publica agrupada en barco con 40 desconocidos
+- Destacar la exclusividad: calas escondidas, ruta curada segun viento del dia, patron dedicado
+- Ofrecer alternativa sin-licencia desde 75EUR/h sin presionar
 
 IMPORTANTE: Si el usuario muestra perfil premium, propone la Excursion Privada ANTES del alquiler por horas. La Excursion Privada es el producto diferenciador de Costa Brava Rent a Boat (ningun competidor local lo tiene empaquetado con precio cerrado).
 `;

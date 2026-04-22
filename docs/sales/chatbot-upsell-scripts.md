@@ -1,67 +1,62 @@
-# Scripts WhatsApp · Derivación a Excursión Privada Premium
+# Scripts WhatsApp · Derivación a Excursión Privada
 
-**Generado:** 2026-04-22
-**Objetivo:** Detectar perfiles premium en WhatsApp y derivar del alquiler estándar (70-80€/h) al producto "Excursión Privada Costa Brava" (480-880€).
-**Integración técnica:** `server/whatsapp/aiService.ts` + `server/whatsapp/functionCallingService.ts`
-**Impacto esperado:** Ticket medio +250-400% en conversaciones derivadas, con mayor satisfacción (servicio completo).
-
----
-
-## 1. Producto de destino
-
-### "Excursión Privada Costa Brava"
-
-| Duración | Precio | Incluye |
-|---|---|---|
-| 4h | **480 €** | Patrón · 3 calas · Tossa · snorkel · fotografía · bebidas |
-| 6h | **680 €** | Todo lo anterior + comida ligera a bordo |
-| 8h | **880 €** | Día completo · ruta extendida · 4-5 calas · 2 paradas en pueblos |
-
-Máx 6-8 personas · Atención en 8 idiomas · Reserva con 7 días de antelación.
-
-**Upsells adicionales:**
-- Aniversario/Luna de miel · +60 € · cava + decoración discreta
-- Despedida soltero/a · +80 € · música + fotos grupales
-- Corporate team-building · +150 € · logística empresa + briefing
+**Generado:** 2026-04-22 (corregido con datos reales de `shared/boatData.ts`)
+**Objetivo:** Detectar perfiles premium en WhatsApp y derivar del alquiler estándar al producto "Excursión Privada con Capitán".
+**Integración técnica:** `server/whatsapp/aiService.ts` (integrado commit `7bb79ef`, corregido tras este documento)
 
 ---
 
-## 2. Triggers de detección (el bot debe captar estos signos)
+## 1. Producto real (source of truth: `shared/boatData.ts` → `excursion-privada`)
 
-Cuando el bot detecte **≥2 señales** de la lista, debe proponer la Excursión Privada en lugar del alquiler estándar:
+### "Excursión Privada con Capitán"
 
-### Señales fuertes (cualquiera de estas → derivar inmediatamente)
+**Barco:** Pacific Craft 625 Open · 6,24 m · Yamaha 115cv 4T · hasta **7 personas**
+
+| Duración | BAJA (Abr-Jun, Sep-Oct) | MEDIA (Julio) | ALTA (Agosto) |
+|---|---|---|---|
+| **2h** | 240 € | 260 € | 280 € |
+| **3h** | 320 € | 340 € | 360 € |
+| **4h** | 380 € | 400 € | 420 € |
+
+**Incluye:** patrón profesional · amarre · limpieza · seguro embarcación y ocupantes · IVA
+**NO incluye:** combustible (lo paga el cliente al final) · extras opcionales (snorkel 7,5€, paddle 25€, seascooter 60€, etc.)
+**Fianza:** 500 €
+**Capacidad:** hasta 7 personas
+
+---
+
+## 2. Triggers de detección
+
+Cuando el bot detecte **≥1 señal fuerte** o **≥2 señales compuestas** debe proponer la Excursión Privada en lugar del alquiler por horas.
+
+### Señales fuertes (cualquiera → derivar)
 
 - "Aniversario" / "cumpleaños" / "luna de miel" / "pedida de mano" / "celebración"
 - "Jubilación" / "despedida"
 - "Team building" / "empresa" / "corporate"
 - "Sin experiencia" / "nunca he llevado un barco" / "primera vez navegando"
-- "No me apetece conducir yo" / "que alguien nos lleve"
-- "Budget flexible" / "el dinero no importa" / "lo que haga falta"
-- "Quiero algo especial" / "quiero algo premium" / "quiero sorprender"
+- "No me apetece conducir" / "que alguien nos lleve"
+- "Algo especial" / "quiero sorprender" / "quiero algo premium"
 
-### Señales compuestas (≥2 de estas → derivar)
+### Señales compuestas (≥2 → derivar)
 
-- Grupo > 5 personas mencionado
+- Grupo > 5 personas
 - Viaje con niños pequeños (<8 años)
 - Pareja sin experiencia náutica
-- Procedencia país premium: DE, CH, NL, NO, SE, AT, US, UK
-- Pregunta "¿qué se puede hacer en el barco?" (busca experiencia, no vehículo)
-- Menciona foto / recuerdo / vídeo
-- Pregunta por gastronomía / comida a bordo
-- Pide itinerario cerrado: "¿qué ruta hacemos?"
+- Procedencia de país premium: DE, CH, NL, NO, SE, AT, US, UK
+- Pregunta "¿qué se puede hacer en el barco?"
+- Pide itinerario cerrado
 
-### Señales negativas (NO derivar, cliente busca alquiler simple)
+### Señales negativas (NO derivar)
 
 - "Sé navegar" / "tengo licencia PER"
 - "Solo una hora" / "una mañana corta"
-- Pregunta explícita por precio por hora más bajo
-- Busca adrenalina solo (jetski, moto acuática)
-- Localos (vive en Blanes/Lloret) — suelen preferir alquiler simple
+- Pregunta explícita por el precio más económico
+- Cliente local (Blanes/Lloret) — suele preferir alquiler simple
 
 ---
 
-## 3. Árbol de decisión conversacional
+## 3. Árbol de decisión
 
 ```
 Cliente abre chat
@@ -69,31 +64,23 @@ Cliente abre chat
     ├─► Bot saluda en su idioma
     │
     ▼
-Bot: pregunta calificación 1 (grupo y ocasión)
+Pregunta calificación 1 (grupo y ocasión)
     │
-    ├─► Respuesta revela SEÑAL FUERTE
-    │   └─► DERIVAR a Excursión Privada (script A)
-    │
-    ├─► Respuesta revela SEÑAL NEGATIVA
-    │   └─► Flow alquiler estándar (no modificar)
-    │
-    └─► Respuesta neutral
+    ├─► SEÑAL FUERTE → DERIVAR (Script A)
+    ├─► SEÑAL NEGATIVA → Flow estándar
+    └─► Neutral
         │
         ▼
-        Bot: pregunta calificación 2 (experiencia náutica)
+        Pregunta calificación 2 (experiencia náutica)
             │
-            ├─► "Nunca he llevado" / "sin experiencia"
-            │   └─► DERIVAR a Excursión Privada (script B)
-            │
-            └─► "Tengo experiencia" / "alquilé antes"
+            ├─► "Sin experiencia" → DERIVAR (Script B)
+            └─► Con experiencia
                 │
                 ▼
-                Bot: pregunta calificación 3 (budget/expectativa)
+                Pregunta calificación 3 (expectativa)
                     │
-                    ├─► "Algo especial" / "premium" / "budget flexible"
-                    │   └─► DERIVAR a Excursión Privada (script C)
-                    │
-                    └─► Flow alquiler estándar
+                    ├─► "Algo especial" / VIP → DERIVAR (Script C)
+                    └─► Flow estándar
 ```
 
 ---
@@ -128,383 +115,245 @@ Bot: pregunta calificación 1 (grupo y ocasión)
 **FR:**
 > "Quelqu'un dans votre groupe a-t-il un permis bateau ou de l'expérience en navigation ? Cela m'aide à vous proposer l'option la plus confortable."
 
-### Pregunta 3 · Budget / expectativa
+### Pregunta 3 · Expectativa
 
 **ES:**
-> "Última pregunta: ¿buscáis un alquiler por horas para ir a vuestro aire, o preferís una experiencia cerrada con patrón que os lleve a las mejores calas y Tossa de Mar sin tener que preocuparos de nada?"
+> "Última pregunta: ¿buscáis un alquiler por horas para ir a vuestro aire, o preferís una experiencia con patrón que os lleve a las mejores calas de la zona sin tener que preocuparos de nada?"
 
 **EN:**
-> "Last question: are you looking for an hourly rental to go on your own, or would you prefer a closed experience with a skipper who takes you to the best coves and Tossa de Mar so you don't have to worry about anything?"
+> "Last question: are you looking for an hourly rental to go on your own, or would you prefer an experience with a skipper who takes you to the best coves of the area so you don't have to worry about anything?"
 
 **DE:**
-> "Letzte Frage: Suchen Sie eine stundenweise Vermietung, um selbst zu fahren, oder bevorzugen Sie ein Komplett-Erlebnis mit Skipper, der Sie zu den schönsten Buchten und nach Tossa de Mar bringt — ganz ohne Sorgen?"
+> "Letzte Frage: Suchen Sie eine stundenweise Vermietung, um selbst zu fahren, oder bevorzugen Sie ein Erlebnis mit Skipper, der Sie zu den schönsten Buchten bringt — ganz ohne Sorgen?"
 
 **FR:**
-> "Dernière question : cherchez-vous une location à l'heure pour naviguer vous-mêmes, ou préférez-vous une expérience complète avec un skipper qui vous emmène dans les plus belles criques et à Tossa de Mar, sans avoir à vous soucier de rien ?"
+> "Dernière question : cherchez-vous une location à l'heure pour naviguer vous-mêmes, ou préférez-vous une expérience avec un skipper qui vous emmène dans les plus belles criques, sans avoir à vous soucier de rien ?"
 
 ---
 
 ## 5. Scripts de derivación (respuestas tipo bot)
 
-### Script A · Ocasión especial detectada (aniversario, cumpleaños, etc.)
+### Script A · Ocasión especial detectada
 
 **ES:**
-> "¡Qué bien! Para una ocasión así **tenemos algo perfecto: nuestra Excursión Privada Costa Brava**. Es un día privado en barco con un patrón profesional que os lleva a 3 calas cuidadosamente elegidas según el viento del día, parada de 45 minutos en Tossa de Mar para pasear por el castillo, snorkel incluido con equipamiento, bebidas frías a bordo, y **fotografías digitales del día enviadas en 48h** (perfecto como recuerdo).
+> "¡Qué bien! Para una ocasión así **tenemos algo perfecto: nuestra Excursión Privada con Capitán**. Un barco (Pacific Craft 625, hasta 7 personas) con patrón profesional que os lleva a calas escondidas y cuevas marinas entre Blanes y Tossa de Mar. La ruta del día la eligen según viento y corrientes para daros la mejor experiencia.
 >
-> Es desde **480 €** por 4 horas para hasta 8 personas. Si queréis que sea más especial, podemos añadir un **paquete aniversario (+60€)** con botella de cava y una pequeña decoración.
+> Tres duraciones según lo que busquéis:
+> · **2h — desde 240 €** (paseo íntimo, calas cercanas)
+> · **3h — desde 320 €** (ruta extendida con parada para nadar)
+> · **4h — desde 380 €** (experiencia completa, más calas)
 >
-> ¿Quieres que te cuente una ruta típica y preparamos disponibilidad?"
+> Incluye patrón, amarre, seguro y limpieza. El combustible va aparte (se paga al final según lo usado).
+>
+> ¿Cuánto tiempo tenéis pensado y para qué fecha?"
 
 **EN:**
-> "Wonderful! For an occasion like that **we have something perfect: our Costa Brava Private Excursion**. It's a private day on the boat with a professional skipper who takes you to 3 carefully chosen coves depending on the day's wind, a 45-minute stop in Tossa de Mar to walk up to the castle, snorkeling gear included, cold drinks on board, and **digital photos from the day sent within 48h** (perfect as a memory).
+> "Wonderful! For an occasion like that **we have something perfect: our Private Excursion with Skipper**. A boat (Pacific Craft 625, up to 7 people) with a professional skipper who takes you to hidden coves and sea caves between Blanes and Tossa de Mar. The route is chosen according to wind and currents for the best experience of the day.
 >
-> From **€480** for 4 hours, up to 8 people. If you want to make it more special, we can add an **Anniversary Package (+€60)** with a bottle of cava and discreet decoration.
+> Three durations:
+> · **2h — from €240** (intimate cruise, nearby coves)
+> · **3h — from €320** (extended route with swim stop)
+> · **4h — from €380** (full experience, more coves)
 >
-> Want me to tell you a typical route and check availability?"
+> Includes skipper, mooring, insurance and cleaning. Fuel is billed separately (paid at the end based on usage).
+>
+> How long were you thinking and for what date?"
 
 **DE:**
-> "Wie schön! Für einen solchen Anlass **haben wir das Richtige: unsere private Costa-Brava-Ausflugsfahrt**. Ein privater Tag an Bord mit einem professionellen Skipper, der Sie je nach Wind zu 3 sorgfältig ausgewählten Buchten bringt, mit einem 45-minütigen Stopp in Tossa de Mar zum Spaziergang zur Burg, Schnorchelausrüstung inklusive, kalten Getränken an Bord und **digitalen Fotos des Tages innerhalb von 48 Stunden** (als perfekte Erinnerung).
+> "Wie schön! Für einen solchen Anlass **haben wir das Richtige: unsere private Ausflugsfahrt mit Skipper**. Ein Boot (Pacific Craft 625, bis 7 Personen) mit einem professionellen Skipper, der Sie zu versteckten Buchten und Meereshöhlen zwischen Blanes und Tossa de Mar bringt. Die Route wird je nach Wind und Strömung ausgewählt.
 >
-> Ab **480 €** für 4 Stunden für bis zu 8 Personen. Wenn Sie es besonders machen möchten, können wir das **Jubiläums-Paket (+60 €)** mit einer Flasche Cava und dezenter Dekoration hinzufügen.
+> Drei Dauern:
+> · **2h — ab 240 €** (intime Fahrt, nahe Buchten)
+> · **3h — ab 320 €** (erweiterte Route mit Badestopp)
+> · **4h — ab 380 €** (komplettes Erlebnis, mehr Buchten)
 >
-> Möchten Sie eine typische Route hören und die Verfügbarkeit prüfen?"
+> Beinhaltet: Skipper, Liegeplatz, Versicherung, Reinigung. Kraftstoff wird separat am Ende je nach Verbrauch abgerechnet.
+>
+> Wie lange hatten Sie gedacht und für welches Datum?"
 
 **FR:**
-> "Parfait ! Pour une telle occasion **nous avons quelque chose d'idéal : notre Excursion Privée Costa Brava**. Une journée privée à bord avec un skipper professionnel qui vous emmène dans 3 criques choisies selon le vent du jour, un arrêt de 45 minutes à Tossa de Mar pour monter au château, équipement de snorkeling inclus, boissons fraîches à bord, et **photos numériques envoyées sous 48h** (un souvenir parfait).
+> "Parfait ! Pour une telle occasion **nous avons quelque chose d'idéal : notre Excursion Privée avec Skipper**. Un bateau (Pacific Craft 625, jusqu'à 7 personnes) avec un skipper professionnel qui vous emmène dans des criques cachées et des grottes marines entre Blanes et Tossa de Mar. L'itinéraire est choisi selon le vent et les courants.
 >
-> À partir de **480 €** pour 4 heures, jusqu'à 8 personnes. Pour une touche supplémentaire, nous proposons un **Pack Anniversaire (+60€)** avec bouteille de cava et décoration discrète.
+> Trois durées :
+> · **2h — dès 240 €** (balade intime, criques proches)
+> · **3h — dès 320 €** (itinéraire étendu avec pause baignade)
+> · **4h — dès 380 €** (expérience complète, plus de criques)
 >
-> Voulez-vous que je vous décrive un itinéraire type et qu'on vérifie la disponibilité ?"
+> Inclus : skipper, amarrage, assurance, nettoyage. Le carburant est facturé séparément à la fin selon la consommation.
+>
+> Combien de temps aviez-vous prévu et pour quelle date ?"
 
 ---
 
 ### Script B · Sin experiencia náutica
 
 **ES:**
-> "Entiendo perfectamente. Mucha gente nos pregunta lo mismo y **por eso tenemos la Excursión Privada**: vais con un patrón profesional que lleva el barco todo el día, vosotros solo disfrutáis. Desde **480€ por 4 horas para hasta 8 personas**, incluye ruta por 3 calas + parada en Tossa de Mar + snorkel + fotografía.
+> "Entiendo perfectamente. Mucha gente nos pregunta lo mismo y **por eso tenemos la Excursión Privada con Capitán**: vais con un patrón profesional que lleva el barco, vosotros solo disfrutáis. Tres opciones según tiempo: **2h desde 240 €**, **3h desde 320 €**, **4h desde 380 €** — hasta 7 personas.
 >
 > Ventajas:
-> · Nada de estrés aprendiendo a manejar
-> · Vais donde vayan las mejores condiciones ese día
+> · Cero estrés aprendiendo a manejar
+> · Vais donde las condiciones son mejores ese día
 > · El patrón os cuenta la zona en vuestro idioma
-> · Fotos profesionales como recuerdo
+> · Ruta hasta calas a las que no llegan los barcos de alquiler sin licencia
 >
-> La alternativa del alquiler sin licencia también existe (15min de formación y os vais solos), pero la Excursión Privada es lo que recomendaría para vuestro perfil. ¿Quieres que os reserve una fecha?"
+> La alternativa del alquiler sin licencia también existe (15 min de formación y os vais solos, desde 75€/h con gasolina incluida), pero para vuestro perfil recomendaría la Excursión Privada. ¿Os encaja alguna duración?"
 
 **EN:**
-> "Totally understand. Many guests ask the same, and **that's why we have the Private Excursion**: you go with a professional skipper who handles the boat all day, you just enjoy it. From **€480 for 4 hours for up to 8 people**, includes a route through 3 coves + stop in Tossa de Mar + snorkeling + photography.
+> "Totally understand. Many guests ask the same, and **that's why we have the Private Excursion with Skipper**: you go with a professional skipper who handles the boat, you just enjoy it. Three options depending on time: **2h from €240**, **3h from €320**, **4h from €380** — up to 7 people.
 >
 > What you get:
 > · No stress learning to drive
 > · You go where the conditions are best that day
 > · The skipper tells you about the area in your language
-> · Professional photos as a keepsake
+> · Access to coves that license-free rentals can't reach
 >
-> The no-license rental alternative exists (15 min of training and you're on your own), but the Private Excursion is what I'd recommend for your profile. Want me to check a date for you?"
+> The no-license rental alternative also exists (15 min training and you're on your own, from €75/h with fuel included), but for your profile I'd recommend the Private Excursion. Does any duration fit your plan?"
 
 **DE:**
-> "Völlig nachvollziehbar. Viele Gäste fragen dasselbe, **und genau dafür haben wir die private Ausflugsfahrt**: Sie fahren mit einem professionellen Skipper, der sich den ganzen Tag um das Boot kümmert, Sie genießen nur. Ab **480 € für 4 Stunden für bis zu 8 Personen**, inklusive Route über 3 Buchten + Stopp in Tossa de Mar + Schnorcheln + Fotografie.
+> "Völlig nachvollziehbar. Viele Gäste fragen dasselbe, **und genau dafür haben wir die private Ausflugsfahrt mit Skipper**: Sie fahren mit einem professionellen Skipper, Sie genießen nur. Drei Optionen je nach Zeit: **2h ab 240 €**, **3h ab 320 €**, **4h ab 380 €** — bis 7 Personen.
 >
 > Was Sie bekommen:
 > · Kein Stress beim Bootfahren lernen
 > · Sie fahren dorthin, wo die Bedingungen am besten sind
 > · Der Skipper erklärt Ihnen die Region in Ihrer Sprache
-> · Professionelle Fotos als Erinnerung
+> · Zugang zu Buchten, die führerscheinfreie Boote nicht erreichen
 >
-> Die führerscheinfreie Alternative gibt es auch (15 Min. Einweisung und Sie fahren allein), aber für Ihr Profil würde ich die private Ausfahrt empfehlen. Soll ich einen Termin prüfen?"
+> Die führerscheinfreie Alternative gibt es auch (15 Min. Einweisung und Sie fahren allein, ab 75 €/Std. mit Benzin inklusive), aber für Ihr Profil würde ich die private Ausfahrt empfehlen. Passt eine der Dauern?"
 
 **FR:**
-> "Je comprends tout à fait. Beaucoup de clients nous posent la même question, **et c'est exactement pour ça qu'existe notre Excursion Privée** : vous partez avec un skipper professionnel qui pilote le bateau toute la journée, vous profitez simplement. À partir de **480 € pour 4 heures jusqu'à 8 personnes**, avec une route par 3 criques + arrêt à Tossa de Mar + snorkeling + photos.
+> "Je comprends tout à fait. Beaucoup de clients nous posent la même question, **et c'est exactement pour ça qu'existe notre Excursion Privée avec Skipper** : vous partez avec un skipper professionnel, vous profitez simplement. Trois options selon le temps : **2h dès 240 €**, **3h dès 320 €**, **4h dès 380 €** — jusqu'à 7 personnes.
 >
 > Ce que vous obtenez :
 > · Aucun stress à apprendre à piloter
 > · Vous allez là où les conditions sont les meilleures
 > · Le skipper commente la région dans votre langue
-> · Photos professionnelles comme souvenir
+> · Accès à des criques inaccessibles aux locations sans permis
 >
-> L'alternative sans permis existe aussi (15 min de formation et vous partez seuls), mais pour votre profil je recommanderais l'Excursion Privée. Voulez-vous que je vérifie une date ?"
+> L'alternative sans permis existe aussi (15 min de formation et vous partez seuls, dès 75 €/h avec essence incluse), mais pour votre profil je recommanderais l'Excursion Privée. Une durée vous convient-elle ?"
 
 ---
 
 ### Script C · Budget flexible / busca premium
 
 **ES:**
-> "Perfecto. Entonces la opción que mejor encaja es nuestra **Excursión Privada Costa Brava**: día privado con patrón, ruta curada de 3 calas + Tossa de Mar, snorkel, fotografía y bebidas. Es un producto pensado exactamente para cuando no buscáis alquiler por horas, sino **un día memorable sin preocupaciones**.
+> "Perfecto. La opción que mejor encaja es nuestra **Excursión Privada con Capitán**: día privado con patrón profesional, ruta curada por la costa entre Blanes y Tossa, calas escondidas y cuevas marinas. Pacific Craft 625, hasta 7 personas.
 >
 > Tres formatos:
-> · **4h — 480€** (media jornada, ideal para mañana o tarde)
-> · **6h — 680€** (+comida ligera a bordo, la opción más elegida)
-> · **8h — 880€** (día completo, 4-5 calas, 2 paradas en pueblos)
+> · **2h — 240 €** (BAJA · Abril-Junio y Septiembre-Octubre)
+> · **3h — 320 €** (la más elegida: da tiempo a una parada larga para bañarse)
+> · **4h — 380 €** (experiencia completa, ruta extendida)
 >
-> Todos hasta 8 personas. ¿Qué grupo sois y qué fecha tenéis en mente?"
+> Todos incluyen patrón, amarre, seguro y limpieza. Combustible a parte según uso (~20-30 €/h de navegación real).
+>
+> ¿Qué grupo sois y qué fecha tenéis en mente?"
 
-**EN:**
-> "Perfect. Then the option that fits best is our **Costa Brava Private Excursion**: private day with a skipper, curated route of 3 coves + Tossa de Mar, snorkeling, photography, and drinks. It's a product designed exactly for when you're not looking for hourly rental but a **memorable worry-free day**.
->
-> Three formats:
-> · **4h — €480** (half-day, ideal for morning or afternoon)
-> · **6h — €680** (+light meal on board, the most popular choice)
-> · **8h — €880** (full day, 4-5 coves, 2 village stops)
->
-> All up to 8 people. What's your group like and what date do you have in mind?"
-
-**DE & FR:** Follow same structure, adapt pricing format (680 € · 880 €).
+**EN, DE, FR:** Follow same structure with exact prices from the table above.
 
 ---
 
 ## 6. Guión anti-objeción "es caro"
 
-Esta es la objeción más común. El bot debe responder con validación + reframe, no con descuento.
-
 **ES:**
-> "Entiendo que 480€ a primera vista parece una inversión importante. Déjame ponerlo en contexto:
+> "Entiendo que 380€ a primera vista parece una inversión importante. Déjame ponerlo en contexto:
 >
-> · Para un grupo de 6 personas son **80€ por persona** por un día entero en el mar
-> · Incluye todo: patrón profesional, gasolina, equipamiento snorkel, bebidas, **y las fotos que os mandamos después** (tipo restaurante + excursión guiada, sale similar o más)
-> · No es el mismo producto que el alquiler estándar. En el estándar alquilas un barco; con nosotros alquilas **un día organizado profesionalmente**.
+> · Para un grupo de 6 personas son **63€ por persona** por 4 horas de excursión privada
+> · Incluye patrón profesional, amarre, seguro y limpieza — lo único aparte es el combustible (~20-30€/h de navegación)
+> · No es el mismo producto que una excursión en grupo de 40 personas: con nosotros tenéis el barco entero para vosotros, el patrón os hace una ruta personalizada y paráis donde queráis
 >
-> Si aun así prefieres opción más económica, tenemos el alquiler sin licencia desde 70€/h (hasta 5 personas, gasolina incluida). Es totalmente válido para un paseo corto por la zona — lo disfrutaréis igual, solo es una experiencia diferente.
+> Si aun así prefieres una opción más económica, tenemos alquiler sin licencia desde 75€/h (hasta 5 personas, gasolina incluida). Se conduce solo tras 15 min de formación. Es totalmente válido para un paseo corto — lo disfrutaréis igual, solo es una experiencia diferente.
 >
 > ¿Qué prefieres que explore?"
 
 **EN:**
-> "I get it — €480 feels like a significant investment at first glance. Let me put it in context:
+> "I get it — €380 feels significant at first glance. Let me put it in context:
 >
-> · For a group of 6 people, that's **€80 per person** for a full day at sea
-> · It includes everything: professional skipper, fuel, snorkeling gear, drinks, **and the photos we send you afterwards** (compared to a restaurant + guided tour bundle, it's similar or less)
-> · It's not the same product as the standard rental. With the standard you're renting a boat; with us you're renting a **professionally organized day**.
+> · For a group of 6 people, that's **€63 per person** for 4 hours of private excursion
+> · Includes professional skipper, mooring, insurance and cleaning — only fuel is separate (~€20-30 per hour of navigation)
+> · It's not the same as a group excursion with 40 people: with us you have the whole boat to yourselves, the skipper does a personalized route, and you stop where you want
 >
-> If you still prefer a more economical option, we have license-free rental from €70/h (up to 5 people, fuel included). It's perfectly valid for a shorter ride in the area — you'll enjoy it too, just a different experience.
+> If you still prefer a more economical option, we have license-free rental from €75/h (up to 5 people, fuel included). Self-drive after 15 min training. Perfectly valid for a shorter ride — you'll enjoy it too, just a different experience.
 >
 > Which one should I look into?"
 
 **DE:**
-> "Ich verstehe — 480 € wirken auf den ersten Blick wie eine größere Investition. Lassen Sie mich das einordnen:
+> "Ich verstehe — 380 € wirken auf den ersten Blick wie eine größere Investition. Lassen Sie mich das einordnen:
 >
-> · Bei einer Gruppe von 6 Personen sind das **80 € pro Person** für einen ganzen Tag auf dem Meer
-> · Alles inklusive: professioneller Skipper, Benzin, Schnorchelausrüstung, Getränke **und die Fotos, die wir Ihnen danach schicken** (verglichen mit Restaurant + geführter Ausflug kommt ähnlich oder günstiger heraus)
-> · Es ist nicht dasselbe Produkt wie die Standard-Vermietung. Bei der Standard mieten Sie ein Boot; bei uns mieten Sie **einen professionell organisierten Tag**.
+> · Bei einer Gruppe von 6 Personen sind das **63 € pro Person** für 4 Stunden private Ausfahrt
+> · Beinhaltet professioneller Skipper, Liegeplatz, Versicherung und Reinigung — nur der Kraftstoff kommt separat dazu (ca. 20-30 €/Std. Fahrt)
+> · Es ist nicht dasselbe wie eine Gruppenausfahrt mit 40 Personen: Bei uns haben Sie das Boot ganz für sich, der Skipper macht eine personalisierte Route, und Sie stoppen, wo Sie möchten
 >
-> Falls Sie dennoch eine günstigere Option bevorzugen: Führerscheinfreie Vermietung ab 70 €/Std. (bis 5 Personen, Benzin inklusive). Perfekt für eine kürzere Fahrt in der Umgebung — auch ein schönes Erlebnis, nur anders.
+> Falls Sie dennoch eine günstigere Option bevorzugen: führerscheinfreie Vermietung ab 75 €/Std. (bis 5 Personen, Benzin inklusive). Selbst fahren nach 15 Min. Einweisung. Perfekt für eine kürzere Fahrt — auch ein schönes Erlebnis, nur anders.
 >
 > Welche Option soll ich für Sie prüfen?"
 
 **FR:**
-> "Je comprends — 480€ paraissent à première vue un investissement important. Laissez-moi remettre en contexte :
+> "Je comprends — 380€ paraissent à première vue un investissement important. Laissez-moi remettre en contexte :
 >
-> · Pour un groupe de 6 personnes, cela fait **80€ par personne** pour une journée entière en mer
-> · Tout est inclus : skipper professionnel, essence, équipement snorkeling, boissons, **et les photos que nous vous envoyons après** (comparé à un restaurant + excursion guidée, c'est similaire ou moins)
-> · Ce n'est pas le même produit que la location standard. En standard vous louez un bateau ; avec nous vous louez **une journée organisée professionnellement**.
+> · Pour un groupe de 6 personnes, cela fait **63€ par personne** pour 4 heures d'excursion privée
+> · Inclus : skipper professionnel, amarrage, assurance et nettoyage — seul le carburant est à part (environ 20-30€/h de navigation)
+> · Ce n'est pas comme une excursion en groupe de 40 personnes : avec nous vous avez le bateau entier pour vous, le skipper fait un itinéraire personnalisé et vous vous arrêtez où vous voulez
 >
-> Si vous préférez quand même une option plus économique, nous avons la location sans permis dès 70€/h (jusqu'à 5 personnes, essence incluse). Parfait pour une sortie plus courte — vous en profiterez aussi, c'est simplement une expérience différente.
+> Si vous préférez quand même une option plus économique, nous avons la location sans permis dès 75€/h (jusqu'à 5 personnes, essence incluse). Auto-pilotage après 15 min de formation. Parfait pour une sortie plus courte — vous en profiterez aussi, c'est simplement une expérience différente.
 >
 > Laquelle je vérifie pour vous ?"
 
 ---
 
-## 7. Integración técnica sugerida
+## 7. Integración técnica (YA integrada en `aiService.ts`)
 
-### 7.1 · Modificar `server/whatsapp/aiService.ts`
+La integración está activa a nivel de código (commit `7bb79ef`, corregida con datos reales en commit pendiente tras este doc). Contiene:
 
-**A) Ampliar `detectIntent()` con nuevo intent `premium_signals`:**
+1. **`PREMIUM_KEYWORDS`** — array multi-idioma con ~40 keywords detectadas en `detectIntent()`
+2. **Nuevo intent `'premium_profile_detected'`** evaluado PRIMERO en `detectIntent()`
+3. **`PRIVATE_EXCURSION_CONTEXT`** inyectado en el `systemPrompt` con:
+   - Precios reales (2h/3h/4h por temporada)
+   - Reglas CUANDO proponer y CUANDO NO
+   - Guión anti-objeción con reframe por persona
+   - Capacidad correcta (7 personas, no 8)
 
-```typescript
-// server/whatsapp/aiService.ts (línea ~143)
-
-function detectIntent(message: string): string {
-  const lowerMessage = message.toLowerCase();
-
-  // NEW: Premium profile signals (add BEFORE other intents to catch first)
-  const premiumKeywords = [
-    // ES
-    'aniversario', 'cumpleaños', 'luna de miel', 'pedida de mano',
-    'celebración', 'sorprender', 'algo especial', 'jubilación',
-    'nunca he llevado', 'sin experiencia', 'primera vez',
-    'no me apetece conducir', 'empresa', 'team building',
-    'presupuesto flexible',
-    // EN
-    'anniversary', 'birthday', 'honeymoon', 'proposal',
-    'celebration', 'surprise', 'something special', 'retirement',
-    'never driven', 'no experience', 'first time',
-    'don\'t want to drive', 'company', 'team building',
-    'budget flexible',
-    // DE
-    'jubiläum', 'geburtstag', 'flitterwochen', 'heiratsantrag',
-    'feier', 'überraschen', 'etwas besonderes', 'ruhestand',
-    'noch nie gefahren', 'keine erfahrung', 'zum ersten mal',
-    'möchte nicht fahren', 'firma', 'team building',
-    // FR
-    'anniversaire', 'lune de miel', 'demande en mariage',
-    'célébration', 'surprendre', 'quelque chose de spécial',
-    'jamais piloté', 'sans expérience', 'première fois',
-    'ne veux pas conduire', 'entreprise', 'team building',
-  ];
-
-  if (premiumKeywords.some(keyword => lowerMessage.includes(keyword))) {
-    return 'premium_profile_detected';
-  }
-
-  // ... rest of existing logic
-}
-```
-
-**B) Ampliar el `systemPrompt` con instrucciones de derivación:**
-
-```typescript
-// server/whatsapp/aiService.ts (línea ~231)
-
-const PRIVATE_EXCURSION_CONTEXT = `
-PRODUCTO PREMIUM "EXCURSION PRIVADA COSTA BRAVA":
-- 4h: 480€ | 6h: 680€ | 8h: 880€
-- Incluye: patron profesional, 3 calas curadas, parada Tossa de Mar (45min), snorkel completo, bebidas, fotografia digital enviada en 48h
-- Capacidad: hasta 8 personas
-- Upsells: Pack Aniversario +60€, Despedida +80€, Corporate +150€
-
-CUANDO PROPONER EXCURSION PRIVADA (en lugar de alquiler por horas):
-1. Cliente menciona ocasion especial (aniversario, cumpleanos, luna de miel, jubilacion)
-2. Cliente sin experiencia nautica ("nunca he llevado", "primera vez")
-3. Cliente menciona budget flexible o busqueda premium
-4. Grupo grande (>5 personas) con perfil familiar
-5. Cliente corporativo o team-building
-
-CUANDO NO PROPONER (mantener flow estandar):
-- Cliente tiene licencia o menciona experiencia nautica
-- Cliente busca alquiler por 1-2h corto
-- Cliente pregunta explicitamente por precio minimo por hora
-
-OBJECION "ES CARO":
-- Validar la preocupacion
-- Reframing: dividir por persona (480€ / 6 personas = 80€/pax por dia completo)
-- Comparar con restaurante + excursion guiada agrupada
-- Destacar fotografia como recuerdo duradero
-- Ofrecer alternativa sin-licencia 70€/h sin presionar
-`;
-
-// En el systemPrompt principal, añadir:
-const systemPrompt = `${BUSINESS_CONTEXT}
-
-${boatsContext}
-
-${PRIVATE_EXCURSION_CONTEXT}
-
-${ragContext ? `\n${ragContext}\n` : ""}
-
-IDIOMA_USUARIO: ${language} (${languageName})
-...resto igual...
-`;
-```
-
-### 7.2 · Opcional: Nueva función en `functionCallingService.ts`
-
-Si quieres tracking estructurado, añade una función que el modelo pueda llamar:
-
-```typescript
-// server/whatsapp/functionCallingService.ts
-
-{
-  type: "function",
-  function: {
-    name: "suggest_private_excursion",
-    description: "Call when the customer profile matches premium criteria (special occasion, no nautical experience, budget-flexible, or group >5 with family profile). This logs the suggestion and returns pricing details.",
-    parameters: {
-      type: "object",
-      properties: {
-        reason: {
-          type: "string",
-          enum: ["special_occasion", "no_experience", "premium_budget", "large_group", "corporate"],
-          description: "Primary reason for the suggestion"
-        },
-        hours: {
-          type: "integer",
-          enum: [4, 6, 8],
-          description: "Recommended duration in hours"
-        },
-        language: {
-          type: "string",
-          description: "Customer language for the response"
-        }
-      },
-      required: ["reason", "hours", "language"]
-    }
-  }
-}
-```
-
-Handler en `aiService.ts`:
-
-```typescript
-case "suggest_private_excursion":
-  // Log the derivation (for analytics)
-  await storage.logChatEvent({
-    sessionId: session.id,
-    type: "premium_derivation",
-    reason: parsedArgs.reason,
-    suggestedHours: parsedArgs.hours,
-    timestamp: new Date(),
-  });
-
-  // Return pricing + script to the model
-  return {
-    hours: parsedArgs.hours,
-    price: { 4: 480, 6: 680, 8: 880 }[parsedArgs.hours],
-    response: PREMIUM_SCRIPTS[parsedArgs.reason]?.[parsedArgs.language] ?? PREMIUM_SCRIPTS.default[parsedArgs.language],
-  };
-```
-
-### 7.3 · Añadir al tracking de analytics
-
-```typescript
-// server/lib/analytics.ts (o donde centralices eventos)
-
-export async function trackPremiumSuggestion(
-  sessionId: string,
-  reason: string,
-  accepted: boolean,
-) {
-  await db.insert(chatEvents).values({
-    sessionId,
-    eventType: "premium_suggestion",
-    metadata: { reason, accepted },
-    createdAt: new Date(),
-  });
-}
-```
-
-Esto te permite medir en CRM Dashboard:
-- % clientes derivados a Excursión Privada
-- Tasa de aceptación tras derivación
-- Razón más efectiva (aniversario vs. sin experiencia, etc.)
+Estado: **código listo, chatbot no activado en producción todavía.**
 
 ---
 
-## 8. Checklist implementación
+## 8. Tests manuales recomendados (antes de activar producción)
 
-- [ ] **Fase 2** (ahora): añadir `premium_profile_detected` a `detectIntent()` con los keywords multi-idioma
-- [ ] **Fase 2** (ahora): ampliar `systemPrompt` con `PRIVATE_EXCURSION_CONTEXT`
-- [ ] **Fase 3** (cuando esté la landing /excursion-privada): añadir function calling `suggest_private_excursion`
-- [ ] **Fase 3**: trackear eventos `premium_derivation` para medir ROI
-- [ ] **Fase 3**: mostrar en CRM Dashboard el ratio de derivaciones por razón
+Probar estas conversaciones simuladas en cada idioma:
 
----
+1. **Caso aniversario DE:** "Hallo, wir sind zu zweit und feiern unseren 10. Hochzeitstag." → debe proponer Excursión Privada 3h/4h (240-420€)
+2. **Caso sin experiencia EN:** "Hi, we're 4 people, never been on a boat before." → debe proponer Excursión Privada (Script B)
+3. **Caso budget ES:** "Buscamos algo especial para el cumple de mi padre." → debe proponer Excursión Privada 4h (380-420€)
+4. **Caso alquiler simple FR:** "Je loue un bateau 2h demain matin." → NO debe derivar, flow estándar
+5. **Caso objeción precio:** tras propuesta responder "es caro" → debe aplicar reframe sin bajar el precio
 
-## 9. Tests manuales recomendados
-
-Antes de subir a producción, probar estas conversaciones simuladas en cada idioma:
-
-1. **Caso aniversario DE:** "Hallo, wir sind zu zweit und feiern unseren 10. Hochzeitstag. Was empfehlen Sie?" → Bot debe proponer Excursión Privada + Pack Aniversario
-2. **Caso sin experiencia EN:** "Hi, we're 4 people, never been on a boat before, what's easiest?" → Bot debe proponer Excursión Privada (Script B)
-3. **Caso budget ES:** "Hola, buscamos algo especial para el cumple de mi padre, el dinero no es problema" → Bot debe proponer Excursión Privada 8h con Pack Aniversario
-4. **Caso alquiler simple FR:** "Bonjour, je loue un bateau 2h demain matin, combien ça coute?" → Bot NO debe derivar, flow estándar
-5. **Caso objeción precio:** después de propuesta responder "es caro" → Bot debe aplicar reframe sin bajar el precio
+Confirmar en cada uno:
+- Precio correcto según boatData.ts
+- No inventa duraciones de 6h/8h
+- Menciona 7 personas (no 8)
+- Menciona que combustible va aparte
+- No inventa packs (aniversario/despedida/corporate) — ninguno existe en boatData.ts
 
 ---
 
-## 10. Métricas a trackear
+## 9. Métricas a trackear (cuando se active)
 
 | Métrica | Meta mes 1 | Meta mes 3 |
 |---|---|---|
 | % conversaciones con derivación premium | 10% | 15-20% |
 | Tasa aceptación tras derivación | 20% | 30-40% |
-| Ticket medio reservas vía derivación | >480€ | >550€ (con upsells) |
+| Ticket medio reservas derivadas | >280€ | >350€ |
 | Razón más efectiva | — | Identificar top 2 |
-| Detección falsos positivos (clientes NO-premium derivados) | <5% | <3% |
+| Detección falsos positivos (no-premium derivados) | <5% | <3% |
+
+---
+
+## Nota sobre packs inventados
+
+La versión anterior de este documento (descartada) proponía "Pack Aniversario +60 €", "Pack Despedida +80 €", "Pack Corporate +150 €". **Ninguno existe en `boatData.ts`** y por tanto no los debe ofrecer el bot.
+
+Si en el futuro se quieren lanzar, hay que:
+1. Definir coste real (cava, decoración, fotógrafo, etc.)
+2. Añadirlos como `extras` en `shared/boatData.ts` → bloque `excursion-privada`
+3. Actualizar `PRIVATE_EXCURSION_CONTEXT` en `aiService.ts`
+4. Lanzar como iniciativa de producto separada
+
+Son una oportunidad REAL de upsell pero hoy **no existen operativamente**.

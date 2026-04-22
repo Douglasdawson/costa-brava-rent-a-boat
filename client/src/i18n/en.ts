@@ -28,7 +28,7 @@ export const en: Translations = {
     trustText: 'No commitment • Instant confirmation • Transparent prices',
     whatsappContact: 'WhatsApp +34 611 500 372',
     location: 'Location',
-    googleRating: '4.7/5 on Google',
+    googleRating: '4.8/5 on Google',
     clients: '+5000 clients',
     insured: 'Insured',
     experience: '+5 years exp.',

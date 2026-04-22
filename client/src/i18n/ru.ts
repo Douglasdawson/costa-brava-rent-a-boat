@@ -28,7 +28,7 @@ export const ru: Translations = {
     trustText: 'Без обязательств • Прозрачные цены',
     whatsappContact: 'WhatsApp +34 611 500 372',
     location: 'Местоположение',
-    googleRating: '4.7/5 в Google',
+    googleRating: '4.8/5 в Google',
     clients: '+5000 клиентов',
     insured: 'Застраховано',
     experience: '+5 лет опыта',

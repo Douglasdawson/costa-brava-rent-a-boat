@@ -28,7 +28,7 @@ export const nl: Translations = {
     trustText: 'Geen verplichtingen • Transparante prijzen',
     whatsappContact: 'WhatsApp +34 611 500 372',
     location: 'Locatie',
-    googleRating: '4.7/5 op Google',
+    googleRating: '4.8/5 op Google',
     clients: '+5000 klanten',
     insured: 'Verzekerd',
     experience: '+5 jaar ervaring',

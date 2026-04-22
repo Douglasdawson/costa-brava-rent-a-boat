@@ -12,7 +12,7 @@ import {
   generateHowToBookingSchema,
   generateSpeakableSchema
 } from "@/utils/seo-config";
-import { generateItemListSchema, generateSeasonalEventSchema, generateCovesItemListSchema } from "@/utils/seo-schemas";
+import { generateItemListSchema, generateSeasonalEventSchema, generateCovesItemListSchema, generateGlossarySchema } from "@/utils/seo-schemas";
 import { FALLBACK_ITEMS } from "@/components/FAQPreview";
 import { useBusinessStats } from "@/hooks/useBusinessStats";
 import { BUSINESS_RATING, BUSINESS_REVIEW_COUNT } from "@shared/businessProfile";
@@ -50,6 +50,7 @@ export default function HomePageSEO() {
   const howToSchema = generateHowToBookingSchema(language);
   const seasonalEventSchema = generateSeasonalEventSchema();
   const covesItemListSchema = generateCovesItemListSchema();
+  const glossarySchema = generateGlossarySchema();
 
   // FAQPage schema using homepage FAQ preview items
   const faqPageSchema = {
@@ -79,6 +80,7 @@ export default function HomePageSEO() {
       breadcrumbSchema,
       itemListSchema,
       covesItemListSchema,
+      glossarySchema,
       webSiteSchema,
       howToSchema,
       seasonalEventSchema,

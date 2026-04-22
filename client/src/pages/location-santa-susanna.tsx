@@ -41,6 +41,18 @@ const config: LocationConfig = {
       question: "¿Es fácil llegar en transporte público desde Santa Susanna?",
       answer: "Sí, la línea R1 de RENFE conecta Santa Susanna con Blanes en solo 10 minutos. Los trenes salen cada 30 minutos en temporada alta. La estación de Blanes está a 10 minutos andando del puerto.",
     },
+    {
+      question: "¿Hay alquiler de barcos en la propia Santa Susanna?",
+      answer: "No. Santa Susanna tiene playa amplia pero no dispone de puerto deportivo ni servicio de alquiler de barcos a motor. El puerto náutico más cercano es el Puerto de Blanes (12 km, 15 min en coche o 10 min en tren R1). Es el punto de alquiler más práctico si te alojas en Santa Susanna.",
+    },
+    {
+      question: "¿Cuál es la mejor excursión en barco si me alojo en Santa Susanna?",
+      answer: "Desde Blanes recomendamos: (a) Ruta de calas 4h sin licencia hasta Playa de Fenals fondeando en 2-3 calas cristalinas (desde 135 EUR para 5 personas); (b) Excursión privada con patrón 4h hasta Tossa y Cala Bona (desde 380 EUR, ideal si no tienes experiencia náutica); (c) Barco con Licencia Básica si alguno del grupo tiene titulación (desde 240 EUR / 4h).",
+    },
+    {
+      question: "¿Puedo hacer una excursión en barco al atardecer desde Santa Susanna?",
+      answer: "Sí, es muy popular. Desde Blanes ofrecemos paseos al atardecer (18:30-21:00 según mes) con barco sin licencia a 115 EUR por 2 horas. Navegarás por las 7 calas con luz dorada. Desde Santa Susanna llegas en 15 min en coche o 10 min en tren. Reserva con antelación en verano.",
+    },
   ],
 };
 

@@ -41,6 +41,18 @@ const config: LocationConfig = {
       question: "¿Hay parking en el Puerto de Blanes?",
       answer: "Sí, hay parking gratuito disponible cerca del Puerto de Blanes. En temporada alta recomendamos llegar temprano para asegurar plaza, o considerar tren/taxi.",
     },
+    {
+      question: "¿Puedo alquilar el barco directamente desde Malgrat de Mar?",
+      answer: "No. Malgrat de Mar no tiene puerto deportivo ni punto de alquiler de barcos a motor. El puerto náutico más cercano a Malgrat es el Puerto de Blanes (8 km, 10 min en coche o 5 min en tren R1). Todas nuestras embarcaciones salen y regresan al Puerto de Blanes.",
+    },
+    {
+      question: "¿Qué calas se pueden alcanzar en barco desde Blanes si estoy alojado en Malgrat?",
+      answer: "Con un barco sin licencia desde Blanes llegas en 25 minutos a Playa de Fenals (sur de Lloret), pasando por 7 calas: Sa Forcanera, Cala Sant Francesc, Cala de s'Agulla, Cala Treumal, Playa de Santa Cristina, Cala Sa Boadella y Playa de Fenals. Con barco con Licencia Básica puedes llegar a Tossa de Mar (45 min) y más allá.",
+    },
+    {
+      question: "¿Hay servicio de transfer desde hoteles de Malgrat al Puerto de Blanes?",
+      answer: "No ofrecemos transfer directo, pero el trayecto es muy corto: 5 minutos en tren R1 (Malgrat → Blanes) o 10 minutos en coche/taxi (coste aproximado 12-15 EUR). La estación de Blanes está a 10 minutos andando del puerto. También hay bus local L23.",
+    },
   ],
 };
 

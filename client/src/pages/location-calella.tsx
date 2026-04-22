@@ -41,6 +41,18 @@ const config: LocationConfig = {
       question: "¿Puedo ir y volver desde Calella en transporte público?",
       answer: "Sí, la línea R1 de RENFE conecta Calella con Blanes en 15 minutos. Los trenes salen cada 30 minutos en temporada. La estación de Blanes está a unos 10 minutos andando del puerto.",
     },
+    {
+      question: "¿Hay alquiler de barcos en el propio Calella?",
+      answer: "Calella es la localidad más grande del tramo pero no dispone de puerto deportivo con servicio de alquiler a motor. Los puertos náuticos más cercanos son Blanes (17 km al norte, mejor flota del tramo) y Arenys de Mar (15 km al sur, precios más altos). Recomendamos Blanes para mejor relación calidad-precio y conexión directa por R1 en 15 minutos.",
+    },
+    {
+      question: "¿Puedo hacer una excursión en barco desde Calella a Tossa de Mar?",
+      answer: "No directamente desde Calella (no hay alquiler). Desde Blanes sí: con un barco con Licencia Básica de Navegación (LBN) llegas a Tossa en 45 min (desde 160 EUR/2h), o con nuestra Excursión Privada con Capitán 4h hasta Tossa incluyendo Cala Bona y Vila Vella (desde 380 EUR para hasta 7 personas). Los barcos sin licencia no pueden llegar a Tossa por el límite legal de 2 millas.",
+    },
+    {
+      question: "¿Cuánto cuesta el tren R1 de Calella a Blanes?",
+      answer: "El billete sencillo R1 Calella → Blanes cuesta aproximadamente 3 EUR (tarifa ATM zona 4-5). Con tarjeta T-Casual 10 viajes es más económico. Duración: 15 minutos. Frecuencia: cada 30 minutos en temporada. Desde la estación de Blanes al Puerto son 10 minutos andando o 3 min en taxi.",
+    },
   ],
 };
 

@@ -1465,6 +1465,11 @@ export function generateLocalBusinessSchema(language: Language = 'es', rating?: 
     "@id": `${baseUrl}/#organization`,
     "name": BUSINESS_INFO.name,
     "legalName": BUSINESS_INFO.legalName,
+    "alternateName": [
+      "Costa Brava Rent a Boat Blanes",
+      "Alquiler de Barcos Costa Brava",
+      "CBRaB",
+    ],
     "description": BUSINESS_INFO.description,
     "url": baseUrl,
     "inLanguage": LOCALE_MAP[language] ?? "es-ES",

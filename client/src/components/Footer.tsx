@@ -64,9 +64,13 @@ export default function Footer() {
             >
               <LogoCostaBravaFooter className="h-10" />
             </a>
-            <p className="text-sm text-white/60 mb-4 leading-relaxed">
+            <p className="text-sm text-white/60 mb-3 leading-relaxed">
               {t.footer.description}
             </p>
+            <div className="inline-flex items-center gap-1.5 text-xs text-cta bg-cta/10 border border-cta/20 rounded-full px-3 py-1 mb-4" data-testid="footer-independent-operator-badge">
+              <ShieldCheck className="w-3 h-3" aria-hidden="true" />
+              <span>{t.footer.independentOperator}</span>
+            </div>
             <div className="flex items-center space-x-2 text-sm mb-6">
               <div className={`w-2 h-2 rounded-full ${isOperatingSeason() ? 'bg-green-400' : 'bg-red-400'}`} aria-hidden="true"></div>
               <span>{t.footer.operatingSeason}</span>
@@ -286,6 +290,9 @@ export default function Footer() {
             </div>
             <p className="text-white/50 text-xs text-center text-balance">
               &copy; {currentYear} Costa Brava Rent a Boat Blanes. {t.footer.rights}
+            </p>
+            <p className="text-white/60 text-xs text-center text-balance max-w-md px-2 mt-1" data-testid="footer-brand-differentiator">
+              {t.footer.nameDifferentiator}
             </p>
             <div className="flex items-center justify-center gap-3 text-white/50 text-xs">
               <span>NIF: B22566327</span>

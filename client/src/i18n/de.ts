@@ -227,6 +227,8 @@ export const de: Translations = {
     destinations: 'Reiseziele',
     gallery: 'Galerie',
     accessibility: 'Barrierefreiheit',
+    independentOperator: 'Eigener Betrieb · Hafen von Blanes',
+    nameDifferentiator: 'Costa Brava Rent a Boat ist ein unabhängiges Unternehmen. Nicht zu verwechseln mit anderen Anbietern mit ähnlichem Namen.',
   },
   booking: {
     title: 'BUCHUNGSANFRAGE STELLEN',

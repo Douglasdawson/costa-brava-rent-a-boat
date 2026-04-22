@@ -227,6 +227,8 @@ export const ru: Translations = {
     destinations: 'Направления',
     gallery: 'Галерея',
     accessibility: 'Доступность',
+    independentOperator: 'Собственный оператор · Порт Бланеса',
+    nameDifferentiator: 'Costa Brava Rent a Boat — независимая компания. Не путать с другими операторами с похожим названием.',
   },
   booking: {
     title: 'ОСТАВЬТЕ ЗАЯВКУ НА БРОНИРОВАНИЕ',

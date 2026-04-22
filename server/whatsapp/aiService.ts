@@ -71,6 +71,39 @@ Se amable, profesional y entusiasta sobre la experiencia nautica.
 Si no sabes algo especifico, sugiere contactar directamente por WhatsApp o email.
 `;
 
+// Premium product: private skipper-led excursion. Derived from docs/sales/chatbot-upsell-scripts.md
+// The AI should propose this product when the customer matches premium profile signals
+// (special occasion, no nautical experience, premium budget, large family group, corporate).
+const PRIVATE_EXCURSION_CONTEXT = `
+PRODUCTO PREMIUM "EXCURSION PRIVADA COSTA BRAVA":
+- 4h: 480EUR | 6h: 680EUR | 8h: 880EUR
+- Incluye: patron profesional, 3 calas curadas segun viento del dia, parada 45min en Tossa de Mar, snorkel completo, bebidas a bordo, fotografia digital enviada en 48h
+- Capacidad: hasta 8 personas
+- Upsells opcionales: Pack Aniversario +60EUR (cava + decoracion), Pack Despedida +80EUR (musica + fotos grupales), Pack Corporate +150EUR (team building)
+
+CUANDO PROPONER EXCURSION PRIVADA (en lugar de alquiler por horas):
+1. Cliente menciona ocasion especial (aniversario, cumpleanos, luna de miel, pedida mano, jubilacion)
+2. Cliente sin experiencia nautica ("nunca he llevado un barco", "primera vez navegando", "no tengo licencia")
+3. Cliente menciona budget flexible o busqueda premium ("algo especial", "sorprender", "el dinero no es problema")
+4. Grupo grande (>5 personas) con perfil familiar o niños pequeños
+5. Cliente corporativo o team-building
+
+CUANDO NO PROPONER (mantener flow estandar):
+- Cliente tiene licencia PER o menciona experiencia nautica previa
+- Cliente busca alquiler corto de 1-2h
+- Cliente pregunta explicitamente por precio minimo por hora
+- Cliente local (vive en Blanes/Lloret) suele preferir alquiler simple
+
+OBJECION "ES CARO" (la mas comun):
+- Validar la preocupacion sin bajar el precio
+- Reframe: dividir por persona (480EUR / 6 personas = 80EUR por persona por dia completo)
+- Comparar con restaurante + excursion guiada agrupada (sale similar o mas)
+- Destacar fotografia profesional enviada en 48h como recuerdo duradero
+- Ofrecer alternativa sin-licencia 70EUR/h sin presionar
+
+IMPORTANTE: Si el usuario muestra perfil premium, propone la Excursion Privada ANTES del alquiler por horas. La Excursion Privada es el producto diferenciador de Costa Brava Rent a Boat (ningun competidor local lo tiene empaquetado con precio cerrado).
+`;
+
 // Language codes and their full names for the AI
 const LANGUAGE_NAMES: Record<string, string> = {
   es: "espanol",
@@ -139,12 +172,50 @@ async function getBoatsContext(): Promise<string> {
   }
 }
 
+// Keywords that signal a premium-profile customer (special occasion, inexperienced,
+// flexible budget, corporate). Multi-language. Used to trigger Excursion Privada upsell.
+const PREMIUM_KEYWORDS = [
+  // Special occasion — ES
+  'aniversario', 'cumpleanos', 'cumpleaños', 'luna de miel', 'pedida de mano',
+  'celebracion', 'celebración', 'sorprender', 'algo especial', 'jubilacion', 'jubilación',
+  // No experience — ES
+  'nunca he llevado', 'sin experiencia', 'primera vez', 'no tengo licencia',
+  'no me apetece conducir', 'que alguien nos lleve',
+  // Premium budget — ES
+  'presupuesto flexible', 'el dinero no es problema', 'algo premium', 'quiero lo mejor',
+  // Corporate — ES
+  'empresa', 'team building', 'corporate', 'corporativo',
+  // EN equivalents
+  'anniversary', 'birthday', 'honeymoon', 'proposal', 'celebration',
+  'surprise', 'something special', 'retirement',
+  'never driven', 'no experience', 'first time', 'no license',
+  "don't want to drive", 'dont want to drive',
+  'budget flexible', 'money is not an issue', 'something premium',
+  // DE equivalents
+  'jubilaum', 'jubiläum', 'geburtstag', 'flitterwochen', 'heiratsantrag',
+  'feier', 'uberraschen', 'überraschen', 'etwas besonderes', 'ruhestand',
+  'noch nie gefahren', 'keine erfahrung', 'zum ersten mal',
+  'mochte nicht fahren', 'möchte nicht fahren', 'firma',
+  // FR equivalents
+  'anniversaire', 'lune de miel', 'demande en mariage',
+  'celebration', 'célébration', 'surprendre', 'quelque chose de special',
+  'jamais pilote', 'jamais piloté', 'sans experience', 'sans expérience',
+  'premiere fois', 'première fois', 'ne veux pas conduire',
+  'entreprise',
+];
+
 // Detect intent from message
 function detectIntent(message: string): string {
   const lowerMessage = message.toLowerCase();
-  
+
+  // Premium profile signals — checked FIRST to catch upsell opportunities
+  // before other intents override them
+  if (PREMIUM_KEYWORDS.some(keyword => lowerMessage.includes(keyword))) {
+    return 'premium_profile_detected';
+  }
+
   // Booking intent
-  if (lowerMessage.includes('reserv') || lowerMessage.includes('book') || 
+  if (lowerMessage.includes('reserv') || lowerMessage.includes('book') ||
       lowerMessage.includes('alquil') || lowerMessage.includes('rent')) {
     return 'booking_request';
   }
@@ -231,6 +302,8 @@ export async function getAIResponseEnhanced(
     const systemPrompt = `${BUSINESS_CONTEXT}
 
 ${boatsContext}
+
+${PRIVATE_EXCURSION_CONTEXT}
 
 ${ragContext ? `\n${ragContext}\n` : ""}
 

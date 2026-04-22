@@ -872,7 +872,7 @@ function Step4Confirm({
                           <div className="flex items-center gap-2">
                             <IconComp className="w-4 h-4 text-primary" />
                             <span className="text-sm font-semibold">{isSpanishLang ? pack.name : pack.nameEN}</span>
-                            <span className="text-xs text-muted-foreground/60 font-normal">{pack.extras.join(', ')}</span>
+                            <span className="text-xs text-muted-foreground/60 font-normal">{pack.extras.map(e => translateExtraName(e, language)).join(', ')}</span>
                           </div>
                           <div className="text-right">
                             <span className="text-sm font-bold text-primary">{pack.price}€</span>

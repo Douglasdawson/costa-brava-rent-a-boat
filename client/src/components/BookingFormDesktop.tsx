@@ -210,7 +210,7 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
                 handlePackSelect={handlePackSelect} handleExtraToggle={handleExtraToggle}
                 availablePacks={availablePacks} iconMap={iconMap}
                 calculatePackSavings={calculatePackSavings}
-                isSpanishLang={isSpanishLang} t={t}
+                isSpanishLang={isSpanishLang} language={language} t={t}
               />
             )}
             {currentStep === 4 && (
@@ -666,6 +666,7 @@ interface Step3Props {
   iconMap: BookingWizardMobileProps["iconMap"];
   calculatePackSavings: (packId: string) => number;
   isSpanishLang: boolean;
+  language: string;
   t: BookingWizardMobileProps["t"];
 }
 
@@ -673,7 +674,7 @@ function Step3Extras({
   boatExtras, selectedExtras, selectedPack, extrasInPack,
   totalExtrasPrice, handlePackSelect, handleExtraToggle,
   availablePacks, iconMap, calculatePackSavings,
-  isSpanishLang, t,
+  isSpanishLang, language, t,
 }: Step3Props) {
   if (boatExtras.length === 0) {
     return (
@@ -717,7 +718,7 @@ function Step3Extras({
                 {isSpanishLang ? pack.name : pack.nameEN}
               </p>
               <p className="text-xs text-muted-foreground leading-tight">
-                {pack.extras.join(', ')}
+                {pack.extras.map(e => translateExtraName(e, language)).join(', ')}
               </p>
             </div>
             <p className="text-base font-bold text-foreground">{pack.price}€</p>

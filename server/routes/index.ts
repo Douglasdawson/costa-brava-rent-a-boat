@@ -38,6 +38,7 @@ import { registerGdprRoutes } from "./gdpr";
 import { registerAdminMcpTokensRoutes } from "./admin-mcp-tokens";
 import { registerAdminSeoAutopilotRoutes } from "./admin-seo-autopilot";
 import { registerBusinessStatsRoutes } from "./business-stats";
+import { registerAdminFlywheelRoutes } from "./admin-flywheel";
 import { createSeoAutopilotRouter } from "../mcp/seo-autopilot";
 import { startScheduledServices } from "../services";
 
@@ -89,6 +90,9 @@ export async function registerRoutes(app: Express, existingServer?: Server): Pro
 
   // Google Business Profile stats (rating + reviews, weekly cron sync)
   registerBusinessStatsRoutes(app);
+
+  // Post-rental flywheel admin endpoints (manual back-fill of missed review requests)
+  registerAdminFlywheelRoutes(app);
 
   // SEO Autopilot — public MCP server (bearer-token auth, rate-limited).
   // Mounted at /api/mcp/seo-autopilot — external MCP clients connect here.

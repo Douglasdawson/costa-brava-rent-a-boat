@@ -12,10 +12,9 @@
 import { storage } from "../storage";
 import { sendReferralEmail, sendEarlyBirdEmail } from "./emailService";
 import { logger } from "../lib/logger";
+import { GOOGLE_REVIEW_URL } from "../../shared/businessProfile";
 
-/** Google review place ID — update if the Google Business Profile changes */
-const GOOGLE_REVIEW_PLACE_ID = "ChIJrTRWOdA0uxIR_vCCNfbFNpE";
-export const GOOGLE_REVIEW_URL = `https://search.google.com/local/writereview?placeid=${GOOGLE_REVIEW_PLACE_ID}`;
+export { GOOGLE_REVIEW_URL };
 
 /**
  * Generate a short random alphanumeric string (uppercase).

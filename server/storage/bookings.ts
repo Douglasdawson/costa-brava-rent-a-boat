@@ -578,11 +578,16 @@ export async function getUpcomingBookingsForReminder(hoursAhead: number, tenantI
 
 export async function getCompletedBookingsForThankYou(hoursAfter: number, tenantId?: string): Promise<Booking[]> {
   const now = new Date();
+  // Lower bound: earliest the trip must have ended for the thank-you to make sense.
+  // Upper bound: up to 72h ago, so if cron misses the ideal hour the booking isn't
+  // lost forever. Filter on emailThankYouSent=false ensures we only fire once.
+  // Also accept 'completed' (autoCompleteBookings may have flipped the status by
+  // the time this query runs, or admin may have created the booking retroactively).
   const windowEnd = new Date(now.getTime() - (hoursAfter - 2) * 60 * 60 * 1000);
-  const windowStart = new Date(now.getTime() - (hoursAfter + 2) * 60 * 60 * 1000);
+  const windowStart = new Date(now.getTime() - 72 * 60 * 60 * 1000);
 
   const conditions = [
-    eq(bookings.bookingStatus, "confirmed"),
+    inArray(bookings.bookingStatus, ["confirmed", "completed"]),
     eq(bookings.emailThankYouSent, false),
     gte(bookings.endTime, windowStart),
     lte(bookings.endTime, windowEnd),
@@ -662,8 +667,9 @@ export async function updateBookingWhatsAppThankYouStatus(id: string, sent: bool
  */
 export async function getBookingsForReviewRequest(tenantId?: string): Promise<Booking[]> {
   const now = new Date();
-  // Window: 22-26 hours after endTime (same pattern as thank-you)
-  const windowStart = new Date(now.getTime() - 26 * 60 * 60 * 1000);
+  // 22h lower bound = give the customer a full day to settle after the trip.
+  // 72h upper bound = tolerate cron outages. reviewRequestSent=false prevents duplicates.
+  const windowStart = new Date(now.getTime() - 72 * 60 * 60 * 1000);
   const windowEnd = new Date(now.getTime() - 22 * 60 * 60 * 1000);
 
   const conditions = [

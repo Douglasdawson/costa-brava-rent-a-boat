@@ -9,6 +9,7 @@ import { processAbandonedBookings } from "./abandonedBookingService";
 import { runAutopilotPipeline, publishNextDraft, getConfig } from "./blogAutopilot.js";
 import { syncAllAnalytics } from "./googleAnalyticsService";
 import { syncReviewRequests, sendReferralCodes, sendEarlyBirdOffers } from "./flywheelService";
+import { renderThankYouWhatsApp } from "./whatsappTemplates";
 import { generateWeeklyInsights } from "./chatbotInsightsService";
 import { processLeadNurturing } from "./leadNurturingService";
 import type { Booking, Boat, BlogPost } from "@shared/schema";
@@ -91,18 +92,10 @@ async function trySendWhatsAppThankYou(booking: Booking): Promise<boolean> {
       return false;
     }
 
-    const message = [
-      `Hola ${booking.customerName}!`,
-      ``,
-      `Esperamos que tu salida de ayer haya sido increíble.`,
-      ``,
-      `Si lo disfrutaste, te agradeceríamos mucho que nos dejaras una reseña en Google:`,
-      `https://g.page/r/costabravarentaboat/review`,
-      ``,
-      `Como cliente especial, tienes un descuento exclusivo para tu próxima reserva. ¡Solo pregúntanos!`,
-      ``,
-      `Un abrazo, Costa Brava Rent a Boat`,
-    ].join("\n");
+    const message = renderThankYouWhatsApp({
+      customerName: booking.customerName,
+      language: booking.language,
+    });
 
     await sendWhatsAppMessage(booking.customerPhone, message);
     return true;

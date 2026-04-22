@@ -3,6 +3,7 @@ import type { Booking, Boat, BookingExtra } from "@shared/schema";
 import { logger } from "../lib/logger";
 import { sendgridBreaker } from "../lib/circuitBreaker";
 import { generateOpaqueUnsubToken } from "../routes/newsletter";
+import { GOOGLE_REVIEW_URL } from "../../shared/businessProfile";
 
 type EmailLang = "es" | "en" | "fr" | "de" | "nl" | "it" | "ru";
 
@@ -596,7 +597,7 @@ export async function sendThankYouEmail(data: BookingEmailData, discountCode: st
   }
 
   const strings = getEmailStrings(booking.language);
-  const googleReviewUrl = "https://search.google.com/local/writereview?placeid=ChIJrTRWOdA0uxIR_vCCNfbFNpE";
+  const googleReviewUrl = GOOGLE_REVIEW_URL;
 
   const content = `
     <h2 style="margin:0 0 8px; color:#1e3a5f; font-size:20px;">${strings.thankYouTitle}</h2>

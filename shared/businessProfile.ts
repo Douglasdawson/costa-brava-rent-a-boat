@@ -22,3 +22,9 @@ export const BUSINESS_RATING_STR = BUSINESS_RATING.toFixed(1);
 export const BUSINESS_REVIEW_COUNT_STR = String(BUSINESS_REVIEW_COUNT);
 
 export const BUSINESS_DISPLAY_NAME = "Costa Brava Rent a Boat - Blanes";
+
+// Google Business Profile Place ID. Single source of truth. Verified via
+// Places API v1 (rating 4.8, 310 reviews, name "Costa Brava Rent a Boat - Blanes").
+// Used to build the canonical "write review" URL that opens the correct GBP.
+export const BUSINESS_PLACE_ID = "ChIJb4WolCwXuxIRp-DybpP6LZo";
+export const GOOGLE_REVIEW_URL = `https://search.google.com/local/writereview?placeid=${BUSINESS_PLACE_ID}`;

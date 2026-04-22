@@ -68,6 +68,7 @@ import { trackMetaViewContent } from "@/utils/meta-pixel";
 import { trackViewItem } from "@/utils/analytics";
 import { useScrollDepthTracking } from "@/hooks/useScrollDepthTracking";
 import { saveLastViewedBoat } from "@/hooks/useJourneyState";
+import { translateExtraName } from "@/utils/extraNameTranslations";
 
 // Translation map for boat data strings that come from the DB in Spanish
 const boatTextTranslations: Record<string, Record<string, string>> = {
@@ -325,6 +326,9 @@ const boatTextTranslations: Record<string, Record<string, string>> = {
     en: "Suitable for water sports", fr: "Adaptee aux sports nautiques", de: "Geeignet fuer Wassersport", nl: "Geschikt voor watersporten", it: "Adatta per sport acquatici", ru: "Podkhodit dlya vodnogo sporta", ca: "Apta per a esports nautics",
   },
 
+  // Extras names live in a shared util (client/src/utils/extraNameTranslations.ts)
+  // so the booking modal renders them the same way as this tab.
+
   // === Hardcoded UI strings ===
   "Ver galería de fotos de clientes": {
     en: "View customer photo gallery", fr: "Voir la galerie photos clients", de: "Kundenfotogalerie ansehen", nl: "Bekijk klantenfotogalerij", it: "Vedi galleria foto clienti", ru: "Smotret' galereyu foto klientov", ca: "Veure galeria de fotos de clients",
@@ -341,6 +345,35 @@ const boatTextTranslations: Record<string, Record<string, string>> = {
 function translateBoatText(text: string, lang: string): string {
   if (lang === "es") return text;
   return boatTextTranslations[text]?.[lang] ?? text;
+}
+
+/**
+ * Translate the free-form values that live in boatData.specifications
+ * (capacity / fuel / engine). Exact-match translation doesn't work here
+ * because numbers vary per boat ("4 Personas", "5 Personas", "Gasolina 30L",
+ * "Gasolina 50L", "Parsun 40/15cv"...), so we pattern-replace just the
+ * Spanish nouns/units and leave the numeric/brand parts intact.
+ */
+function translateBoatSpec(value: string, lang: string): string {
+  if (lang === "es" || !value) return value;
+  let out = value;
+  out = out.replace(/(\d+)\s*Personas?/g, (_, n) => {
+    const map: Record<string, string> = {
+      en: `${n} people`, fr: `${n} personnes`, de: `${n} Personen`,
+      nl: `${n} personen`, it: `${n} persone`, ru: `${n} человек`, ca: `${n} persones`,
+    };
+    return map[lang] ?? `${n} Personas`;
+  });
+  out = out.replace(/Gasolina\s+(\d+)\s*L/gi, (_, n) => {
+    const map: Record<string, string> = {
+      en: `Petrol ${n}L`, fr: `Essence ${n}L`, de: `Benzin ${n}L`,
+      nl: `Benzine ${n}L`, it: `Benzina ${n}L`, ru: `Бензин ${n}L`, ca: `Gasolina ${n}L`,
+    };
+    return map[lang] ?? `Gasolina ${n}L`;
+  });
+  const hpMap: Record<string, string> = { en: "hp", de: "PS", nl: "pk", ru: "л.с." };
+  if (hpMap[lang]) out = out.replace(/(\d+)cv/g, `$1${hpMap[lang]}`);
+  return out;
 }
 
 /** FAQ translations keyed by language */
@@ -1277,7 +1310,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                       <Icon className="w-4 h-4 mr-2 text-primary flex-shrink-0" />
                       <span className="font-medium text-foreground/80">{label}</span>
                     </div>
-                    <span className="text-foreground font-medium">{boatData.specifications![key as keyof typeof boatData.specifications]}</span>
+                    <span className="text-foreground font-medium">{translateBoatSpec(boatData.specifications![key as keyof typeof boatData.specifications] ?? '', language)}</span>
                   </div>
                 ))}
               </div>
@@ -1308,7 +1341,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                       <div className="flex justify-center mb-2">
                         <IconComponent className="w-8 h-8 text-primary" />
                       </div>
-                      <div className="font-medium text-sm text-foreground">{extra.name}</div>
+                      <div className="font-medium text-sm text-foreground">{translateExtraName(extra.name, language)}</div>
                       <div className="text-primary font-bold text-sm mt-0.5">{extra.price}</div>
                     </div>
                   );

@@ -13,6 +13,7 @@ import { BookingTrustBanner } from "@/components/booking-flow/BookingTrustBanner
 import HoldCountdown from "@/components/HoldCountdown";
 import PriceSummaryBar from "@/components/PriceSummaryBar";
 import { trackWhatsAppClick } from "@/utils/analytics";
+import { translateExtraName } from "@/utils/extraNameTranslations";
 import { useLanguage } from "@/hooks/use-language";
 
 // Slide animation variants
@@ -749,7 +750,7 @@ function Step3Extras({
             >
               {Icon && <Icon className="w-7 h-7 text-foreground" />}
               <span className="text-xs font-medium text-foreground leading-tight">
-                {extra.name}
+                {translateExtraName(extra.name, language)}
               </span>
               {inPack ? (
                 <span className="text-xs text-foreground font-semibold">

@@ -13,6 +13,7 @@ import { BookingTrustBanner } from "@/components/booking-flow/BookingTrustBanner
 import HoldCountdown from "@/components/HoldCountdown";
 import PriceSummaryBar from "@/components/PriceSummaryBar";
 import { trackWhatsAppClick } from "@/utils/analytics";
+import { translateExtraName } from "@/utils/extraNameTranslations";
 import { useLanguage } from "@/hooks/use-language";
 
 interface PhonePrefix {
@@ -910,7 +911,7 @@ function Step4Confirm({
                           {(isChecked || isInPack) && <Check className="w-2.5 h-2.5 text-white" />}
                         </div>
                         <div className="min-w-0">
-                          <p className="text-sm font-medium text-muted-foreground truncate">{extra.name}</p>
+                          <p className="text-sm font-medium text-muted-foreground truncate">{translateExtraName(extra.name, language)}</p>
                           <p className="text-xs text-muted-foreground/60">{isInPack ? t.booking.extrasSection.included : extra.price}</p>
                         </div>
                       </button>

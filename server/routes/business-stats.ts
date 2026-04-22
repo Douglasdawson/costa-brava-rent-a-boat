@@ -50,6 +50,27 @@ export function registerBusinessStatsRoutes(app: Express) {
     }
   });
 
+  // Admin — history of syncs with delta rating/count per entry.
+  // Useful to detect reputation trends (rating going up/down over weeks).
+  app.get("/api/admin/business-stats/history", requireAdminSession, async (_req, res) => {
+    try {
+      const { db } = await import("../db");
+      const { sql } = await import("drizzle-orm");
+      const result = await db.execute(sql`
+        SELECT id, rating, user_rating_count, delta_rating, delta_review_count,
+               is_significant_change, raw_payload, synced_at
+        FROM business_stats_history
+        ORDER BY synced_at DESC
+        LIMIT 20
+      `);
+      res.json({ history: result.rows });
+    } catch (error: unknown) {
+      const msg = error instanceof Error ? error.message : "unknown";
+      logger.error("[business-stats] GET history error", { error: msg });
+      res.status(500).json({ message: "Error: " + msg });
+    }
+  });
+
   // Admin manual trigger — useful for forcing a refresh after rotating key,
   // updating GBP info, or testing.
   app.post("/api/admin/business-stats/sync", requireAdminSession, async (_req, res) => {

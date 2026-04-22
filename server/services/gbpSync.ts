@@ -9,7 +9,10 @@
  */
 
 import { storage } from "../storage";
+import { db } from "../db";
+import { sql } from "drizzle-orm";
 import { logger } from "../lib/logger";
+import { detectChange, alertStatsChange } from "../lib/businessStatsAlerter";
 import {
   BUSINESS_RATING,
   BUSINESS_REVIEW_COUNT,
@@ -104,6 +107,9 @@ export async function syncGbpStats(): Promise<GbpSyncResult> {
       relativeTime: r.relativePublishTimeDescription ?? null,
     }));
 
+    // Snapshot previous row BEFORE upsert — needed to compute delta
+    const previous = await storage.getBusinessStats();
+
     const saved = await storage.upsertBusinessStats({
       placeId: data.id,
       rating: data.rating,
@@ -117,10 +123,41 @@ export async function syncGbpStats(): Promise<GbpSyncResult> {
       syncSource: "places_api_new",
     });
 
+    // History + delta detection
+    const change = detectChange(previous, saved);
+    try {
+      await db.execute(sql`
+        INSERT INTO business_stats_history (rating, user_rating_count, delta_rating, delta_review_count, is_significant_change, raw_payload)
+        VALUES (${saved.rating}, ${saved.userRatingCount}, ${change.deltaRating}, ${change.deltaCount}, ${change.isSignificant}, ${JSON.stringify({ reasons: change.reasons })}::jsonb)
+      `);
+    } catch (err) {
+      logger.warn("[gbpSync] Failed to insert history row (non-fatal)", {
+        error: err instanceof Error ? err.message : "unknown",
+      });
+    }
+
+    if (change.isSignificant && previous) {
+      await alertStatsChange(
+        {
+          previousRating: previous.rating,
+          previousCount: previous.userRatingCount,
+          newRating: saved.rating,
+          newCount: saved.userRatingCount,
+          deltaRating: change.deltaRating ?? 0,
+          deltaCount: change.deltaCount ?? 0,
+          syncedAt: saved.lastSyncedAt,
+        },
+        change.reasons,
+      );
+    }
+
     logger.info("[gbpSync] Synced", {
       rating: saved.rating,
       userRatingCount: saved.userRatingCount,
       reviewsCount: recentReviews.length,
+      deltaRating: change.deltaRating,
+      deltaCount: change.deltaCount,
+      isSignificant: change.isSignificant,
     });
 
     return {

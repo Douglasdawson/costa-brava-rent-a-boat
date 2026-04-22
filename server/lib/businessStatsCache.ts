@@ -105,7 +105,21 @@ async function ensureTableExists(): Promise<void> {
         sync_source VARCHAR(30) NOT NULL DEFAULT 'places_api_new'
       );
     `);
-    logger.info("[businessStatsCache] Table ensured");
+    await db.execute(sql`
+      CREATE TABLE IF NOT EXISTS business_stats_history (
+        id SERIAL PRIMARY KEY,
+        rating REAL NOT NULL,
+        user_rating_count INTEGER NOT NULL,
+        delta_rating REAL,
+        delta_review_count INTEGER,
+        is_significant_change BOOLEAN NOT NULL DEFAULT false,
+        raw_payload JSONB,
+        synced_at TIMESTAMPTZ NOT NULL DEFAULT now()
+      );
+      CREATE INDEX IF NOT EXISTS business_stats_history_synced_idx ON business_stats_history(synced_at);
+      CREATE INDEX IF NOT EXISTS business_stats_history_significant_idx ON business_stats_history(is_significant_change);
+    `);
+    logger.info("[businessStatsCache] Tables ensured (business_stats + history)");
   } catch (error: unknown) {
     const msg = error instanceof Error ? error.message : "unknown";
     logger.warn("[businessStatsCache] ensureTableExists error (non-fatal)", { error: msg });

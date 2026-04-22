@@ -2474,3 +2474,23 @@ export const businessStats = pgTable("business_stats", {
 
 export type BusinessStats = typeof businessStats.$inferSelect;
 export type InsertBusinessStats = typeof businessStats.$inferInsert;
+
+// --- Business Stats history (monitoring: append-only log of each sync) ---
+// Every gbpSync inserts a new row. Enables trend analysis, regression
+// detection, and alerting when rating/reviewCount change significantly.
+export const businessStatsHistory = pgTable("business_stats_history", {
+  id: serial("id").primaryKey(),
+  rating: real("rating").notNull(),
+  userRatingCount: integer("user_rating_count").notNull(),
+  deltaRating: real("delta_rating"),
+  deltaReviewCount: integer("delta_review_count"),
+  isSignificantChange: boolean("is_significant_change").notNull().default(false),
+  rawPayload: jsonb("raw_payload"),
+  syncedAt: timestamp("synced_at", { withTimezone: true }).notNull().default(sql`now()`),
+}, (table) => ({
+  syncedAtIdx: index("business_stats_history_synced_idx").on(table.syncedAt),
+  significantIdx: index("business_stats_history_significant_idx").on(table.isSignificantChange),
+}));
+
+export type BusinessStatsHistory = typeof businessStatsHistory.$inferSelect;
+export type InsertBusinessStatsHistory = typeof businessStatsHistory.$inferInsert;

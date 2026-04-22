@@ -154,9 +154,46 @@ export default function ActivityFishingPage() {
     }))
   };
 
+  const touristTripSchema = {
+    "@type": "TouristTrip",
+    "@id": `${canonical}#tour`,
+    "name": "Alquiler de Barco para Pesca Recreativa desde Blanes",
+    "description": "Alquiler de barco sin licencia o con licencia desde el Puerto de Blanes para pesca recreativa en calas rocosas o aguas abiertas de la Costa Brava. Equipo de pesca NO incluido (trae el tuyo). Requiere licencia de pesca recreativa de la Generalitat.",
+    "touristType": ["Adventure", "Sports", "Fishing"],
+    "inLanguage": ["es-ES", "en-GB", "ca-ES", "fr-FR", "de-DE", "nl-NL", "it-IT", "ru-RU"],
+    "provider": {
+      "@type": "LocalBusiness",
+      "@id": "https://www.costabravarentaboat.com/#organization",
+      "name": "Costa Brava Rent a Boat",
+    },
+    "offers": [
+      {
+        "@type": "Offer",
+        "name": "Barco sin licencia para pesca costera (2h)",
+        "price": "115",
+        "priceCurrency": "EUR",
+        "priceValidUntil": "2026-10-31",
+        "availability": "https://schema.org/InStock",
+        "url": canonical,
+        "description": "Ideal para pesca a fondo en calas cercanas (lubinas, doradas). Hasta 15 CV, gasolina incluida.",
+      },
+      {
+        "@type": "Offer",
+        "name": "Barco con licencia para pesca en aguas abiertas (2h)",
+        "price": "160",
+        "priceCurrency": "EUR",
+        "priceValidUntil": "2026-10-31",
+        "availability": "https://schema.org/InStock",
+        "url": canonical,
+        "description": "Para pesca en aguas abiertas (serviolas, curricán). Requiere Licencia Básica de Navegación (LBN) o PER. Gasolina NO incluida.",
+      },
+    ],
+    "maximumAttendeeCapacity": 7,
+  };
+
   const jsonLd = {
     "@context": "https://schema.org",
-    "@graph": [breadcrumbSchema, faqSchema]
+    "@graph": [breadcrumbSchema, touristTripSchema, faqSchema]
   };
 
   return (

@@ -16,6 +16,7 @@ import { useTranslations } from "@/lib/translations";
 import { generateHreflangLinks, generateCanonicalUrl, BASE_DOMAIN } from "@/utils/seo-config";
 import BoatQuiz from "@/components/BoatQuiz";
 import { generateArticleSchema, generateBreadcrumbSchema, generateFAQSchema } from "@/utils/seo-schemas";
+import { generateHowToSchema } from "@/data/howToBlogPosts";
 import { trackBlogView, trackBlogScroll, trackBlogCtaClick, trackBlogShare, trackWhatsAppClick } from "@/utils/analytics";
 import { useBookingModal } from "@/hooks/bookingModalContext";
 import type { BlogPost } from "@shared/schema";
@@ -665,8 +666,13 @@ export default function BlogDetailPage({ slug: slugProp }: { slug?: string }) {
   // S3: FAQ schema (only for posts with FAQ-like headings)
   const faqSchema = faqItems.length >= 2 ? generateFAQSchema(faqItems) : null;
 
+  // S4: HowTo schema for procedural posts. Only posts with step-by-step
+  // content in howToBlogPosts.ts get the schema. Perplexity/ChatGPT/SGE
+  // prefer HowTo over Article for queries like "how to rent a boat".
+  const howToSchema = post ? generateHowToSchema(post.slug, `${BASE_DOMAIN}/blog/${post.slug}`) : null;
+
   // Combine schemas
-  const schemas = [articleSchema, breadcrumbSchema, faqSchema].filter(Boolean);
+  const schemas = [articleSchema, breadcrumbSchema, faqSchema, howToSchema].filter(Boolean);
   const combinedJsonLd = schemas.length > 1 ? schemas : schemas[0] || undefined;
 
   // Format date

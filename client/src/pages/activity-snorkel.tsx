@@ -112,9 +112,46 @@ export default function ActivitySnorkelPage() {
     }))
   };
 
+  // TouristTrip + Offer: positions this page as a bookable snorkel experience
+  // so Google SGE / Perplexity can enumerate it for "snorkel Costa Brava" queries.
+  const touristTripSchema = {
+    "@type": "TouristTrip",
+    "@id": `${canonical}#tour`,
+    "name": "Ruta de Snorkel en Barco desde Blanes",
+    "description": "Excursión en barco sin licencia desde el Puerto de Blanes hacia calas vírgenes de aguas cristalinas ideales para snorkel. Equipo opcional (7,50€). Gasolina, seguro y kit de seguridad incluidos.",
+    "touristType": ["Adventure", "Family", "Nature"],
+    "inLanguage": ["es-ES", "en-GB", "ca-ES", "fr-FR", "de-DE", "nl-NL", "it-IT", "ru-RU"],
+    "provider": {
+      "@type": "LocalBusiness",
+      "@id": "https://www.costabravarentaboat.com/#organization",
+      "name": "Costa Brava Rent a Boat",
+    },
+    "itinerary": {
+      "@type": "ItemList",
+      "itemListElement": [
+        { "@type": "Place", "name": "Sa Palomera", "description": "5 min desde puerto — roca emblemática con vida marina" },
+        { "@type": "Place", "name": "Cala Sant Francesc", "description": "Pinos y agua turquesa, ideal para primer snorkel" },
+        { "@type": "Place", "name": "Cala Sa Forcanera", "description": "Cala virgen con fondo rocoso y biodiversidad" },
+      ],
+    },
+    "offers": [
+      {
+        "@type": "Offer",
+        "name": "Barco sin licencia 2h con equipo snorkel",
+        "price": "125",
+        "priceCurrency": "EUR",
+        "priceValidUntil": "2026-10-31",
+        "availability": "https://schema.org/InStock",
+        "url": canonical,
+        "description": "Barco sin licencia 2h (desde 115€) + equipo snorkel opcional (7,50€ por persona). Gasolina incluida.",
+      },
+    ],
+    "maximumAttendeeCapacity": 7,
+  };
+
   const jsonLd = {
     "@context": "https://schema.org",
-    "@graph": [breadcrumbSchema, faqSchema]
+    "@graph": [breadcrumbSchema, touristTripSchema, faqSchema]
   };
 
   return (

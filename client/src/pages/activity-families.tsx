@@ -111,9 +111,37 @@ export default function ActivityFamiliesPage() {
     }))
   };
 
+  const touristTripSchema = {
+    "@type": "TouristTrip",
+    "@id": `${canonical}#tour`,
+    "name": "Excursión Familiar en Barco desde Blanes",
+    "description": "Alquiler de barco sin licencia desde el Puerto de Blanes para familias con niños. Navegación a calas tranquilas y aguas cristalinas en la Costa Brava Sur. Briefing de seguridad 15 min. Chalecos salvavidas infantiles incluidos.",
+    "touristType": ["Family", "Beach", "Nature"],
+    "inLanguage": ["es-ES", "en-GB", "ca-ES", "fr-FR", "de-DE", "nl-NL", "it-IT", "ru-RU"],
+    "provider": {
+      "@type": "LocalBusiness",
+      "@id": "https://www.costabravarentaboat.com/#organization",
+      "name": "Costa Brava Rent a Boat",
+    },
+    "offers": [
+      {
+        "@type": "Offer",
+        "name": "Pack familia 4h (hasta 5 personas)",
+        "price": "150",
+        "priceCurrency": "EUR",
+        "priceValidUntil": "2026-10-31",
+        "availability": "https://schema.org/InStock",
+        "url": canonical,
+        "description": "Barco sin licencia para 4-5 personas, 4h, gasolina + chalecos niños + kit seguridad incluido.",
+      },
+    ],
+    "maximumAttendeeCapacity": 7,
+    "isFamilyFriendly": true,
+  };
+
   const jsonLd = {
     "@context": "https://schema.org",
-    "@graph": [breadcrumbSchema, faqSchema]
+    "@graph": [breadcrumbSchema, touristTripSchema, faqSchema]
   };
 
   return (

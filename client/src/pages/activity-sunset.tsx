@@ -121,9 +121,36 @@ export default function ActivitySunsetPage() {
     }))
   };
 
+  const touristTripSchema = {
+    "@type": "TouristTrip",
+    "@id": `${canonical}#tour`,
+    "name": "Paseo en Barco al Atardecer desde Blanes",
+    "description": "Alquiler de barco sin licencia para disfrutar del atardecer mediterráneo sobre las calas de la Costa Brava. Navegación a las 7 calas entre Blanes y Fenals con luz dorada. Romántico para parejas o grupos. Gasolina, seguro y kit de seguridad incluidos.",
+    "touristType": ["Romance", "Nature", "Couples"],
+    "inLanguage": ["es-ES", "en-GB", "ca-ES", "fr-FR", "de-DE", "nl-NL", "it-IT", "ru-RU"],
+    "provider": {
+      "@type": "LocalBusiness",
+      "@id": "https://www.costabravarentaboat.com/#organization",
+      "name": "Costa Brava Rent a Boat",
+    },
+    "offers": [
+      {
+        "@type": "Offer",
+        "name": "Pack atardecer 2h",
+        "price": "115",
+        "priceCurrency": "EUR",
+        "priceValidUntil": "2026-10-31",
+        "availability": "https://schema.org/InStock",
+        "url": canonical,
+        "description": "Barco sin licencia 2h en franja atardecer (salida ~18:30-19:30 según mes). Gasolina incluida.",
+      },
+    ],
+    "maximumAttendeeCapacity": 7,
+  };
+
   const jsonLd = {
     "@context": "https://schema.org",
-    "@graph": [breadcrumbSchema, faqSchema]
+    "@graph": [breadcrumbSchema, touristTripSchema, faqSchema]
   };
 
   return (

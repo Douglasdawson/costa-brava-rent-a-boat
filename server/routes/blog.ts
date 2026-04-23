@@ -160,7 +160,7 @@ ${entries}
 
         // Notify search engines via IndexNow for faster indexing
         notifyIndexNow([`/blog/${post.slug}`]).catch(err =>
-          logger.warn({ err, slug: post.slug }, "[Blog] IndexNow notification failed")
+          logger.warn("[Blog] IndexNow notification failed", { err, slug: post.slug })
         );
       }
 
@@ -212,7 +212,7 @@ ${entries}
       // Notify IndexNow on publish or update of published posts
       if (post.isPublished) {
         notifyIndexNow([`/blog/${post.slug}`]).catch(err =>
-          logger.warn({ err, slug: post.slug }, "[Blog] IndexNow notification failed")
+          logger.warn("[Blog] IndexNow notification failed", { err, slug: post.slug })
         );
       }
 

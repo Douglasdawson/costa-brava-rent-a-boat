@@ -1631,8 +1631,43 @@ export const nl: Translations = {
       description: 'Ontdek meer over varen langs de Costa Brava op onze <a href="{blogPath}" class="text-primary hover:underline font-medium">vaarblog</a>.',
     },
   },
+  whatsappMessages: {
+    bookingWithBoatAndPrice: 'Hallo! Ik ben geïnteresseerd in een reservering voor de {boatName} (vanaf {price}€). Kunnen jullie me helpen met beschikbaarheid en prijzen? Bedankt!',
+    bookingWithBoat: 'Hallo! Ik ben geïnteresseerd in een reservering voor de {boatName}. Kunnen jullie me helpen met beschikbaarheid en prijzen? Bedankt!',
+    bookingGeneric: 'Hallo! Ik zou graag een boot willen huren. Kunnen jullie me helpen met beschikbaarheid en prijzen?',
+  },
   locationPages: {
     blanes: {
+      faqItems: [
+        {
+          question: 'Heb ik een vaarbewijs nodig om een boot te huren in Blanes?',
+          answer: 'Nee. We hebben 5 boten zonder vaarbewijs voor maximaal 5 personen. Je hoeft alleen 18 jaar of ouder te zijn. We geven je een instructie van 15 minuten voordat je vertrekt.',
+        },
+        {
+          question: 'Hoeveel kost het om een boot te huren in de haven van Blanes?',
+          answer: 'Boten zonder vaarbewijs kosten vanaf {noLicBaja1h} EUR/uur in het laagseizoen (april-juni, september-oktober). In het hoogseizoen (augustus) vanaf {noLicAlta1h} EUR/uur. De prijs is inclusief brandstof, verzekering en veiligheidsuitrusting.',
+        },
+        {
+          question: 'Waar kan ik naartoe varen vanuit Blanes?',
+          answer: 'Vanuit de haven van Blanes kun je Cala Brava bezoeken (15 min), Cala Sant Francesc (20 min), Lloret de Mar (30 min) en Tossa de Mar (45 min). Boten met vaarbewijs hebben een groter bereik voor verder gelegen bestemmingen.',
+        },
+        {
+          question: 'Is er parkeergelegenheid bij de haven van Blanes?',
+          answer: 'Ja. Er is gratis parkeren bij de haven van Blanes. Ook zijn er restaurants, nautische winkels en een tankstation in de havenwijk.',
+        },
+        {
+          question: 'Wat is de beste tijd om een boot te huren in Blanes?',
+          answer: 'Het seizoen loopt van april tot oktober. Juni en september bieden de beste prijzen en minder drukte. Augustus is hoogseizoen met de beste zeecondities maar hogere prijzen.',
+        },
+        {
+          question: 'Kan ik een boot huren in Blanes op dezelfde dag?',
+          answer: 'Ja, we accepteren last-minute reserveringen als er beschikbaarheid is. Neem contact op via WhatsApp op +34 611 500 372 om beschikbaarheid voor dezelfde dag te controleren.',
+        },
+        {
+          question: 'Is het veilig om zonder vaarbewijs te varen vanuit Blanes?',
+          answer: 'Ja. Onze boten zonder vaarbewijs hebben maximaal 15 pk, vereisen geen vaarbewijs en varen dicht bij de kust. We geven een veiligheidsinstructie van 15 minuten, reddingsvesten en nooduitrusting zijn inbegrepen.',
+        },
+      ],
       hero: {
         title: 'Bootverhuur in Blanes',
         subtitle: 'Ontdek de mooiste kreken van de Costa Brava vanuit de haven van Blanes. Boten met en zonder vaarbewijs voor het hele gezin.',
@@ -1711,6 +1746,28 @@ export const nl: Translations = {
       },
     },
     lloret: {
+      faqItems: [
+        {
+          question: 'Heb ik een vaarbewijs of ervaring nodig om Lloret per boot te bereiken?',
+          answer: 'Nee. Onze boten zonder vaarbewijs voldoen aan de wettelijke vereisten om naar Playa de Fenals (zuid-Lloret) te varen zonder vaarbewijs of eerdere ervaring. We geven je een briefing van 15 minuten voordat je vertrekt. De enige voorwaarde is dat je 18 jaar of ouder bent.',
+        },
+        {
+          question: 'Tot waar precies kan ik met een boot zonder vaarbewijs?',
+          answer: 'Wettelijk gezien tot 2 zeemijl van de kust, met maximaal 5 knopen, met 15 pk. Vanuit Blanes betekent dat 25 minuten varen naar Playa de Fenals, langs 7 baaien. Playa de Lloret centrum en Cala Canyelles liggen ten noorden van Fenals — deze zijn niet bereikbaar met een boot zonder vaarbewijs.',
+        },
+        {
+          question: 'Hoeveel kost het huren van een boot zonder vaarbewijs om naar Lloret te gaan?',
+          answer: 'Vanaf {noLicBaja1h} €/uur (laagseizoen) en {noLicAlta1h} €/uur (hoogseizoen, juli–augustus). Inclusief benzine bij boten zonder vaarbewijs.',
+        },
+        {
+          question: 'Kan ik met een boot zonder vaarbewijs van Lloret naar Tossa de Mar varen?',
+          answer: 'Nee. Tossa ligt 4–5 mijl ten noorden van Fenals, buiten het wettelijke bereik zonder vaarbewijs. Om met een boot van Blanes naar Tossa te gaan heb je nodig: (a) een boot met een basisvaarbewijs (LBN), of (b) een privé-excursie met schipper.',
+        },
+        {
+          question: 'Wat gebeurt er als het slecht weer is?',
+          answer: 'Als de voorspelling >20 knopen aanhoudt of een waarschuwing geeft voor golven >1,5 m, annuleren we kosteloos. Het traject Blanes–Fenals is beschermd tegen de Tramuntana door de kust zelf, dus het is een van de veiligste voor beginners, zelfs bij noordenwind.',
+        },
+      ],
       hero: {
         title: 'Boottochten naar Lloret de Mar',
         subtitle: 'Ontdek de beroemde stranden van Lloret de Mar vanuit de haven van Blanes. 25 minuten varen naar een van de populairste bestemmingen van de Costa Brava.',
@@ -1770,6 +1827,32 @@ export const nl: Translations = {
       },
     },
     tossa: {
+      faqItems: [
+        {
+          question: 'Kan ik Tossa de Mar bereiken met een boot zonder vaarbewijs vanuit Blanes?',
+          answer: 'Nee. Boten zonder vaarbewijs (2 mijl van de kust, 5 knopen, 15 pk) bereiken tot Playa de Fenals (zuid-Lloret), 4 mijl vóór Tossa. Om Tossa te bereiken heb je een basisvaarbewijs (LBN) nodig of moet je de privé-excursie met schipper boeken.',
+        },
+        {
+          question: 'Hoe lang duurt het met de boot van Blanes naar Tossa?',
+          answer: 'Tussen 45 minuten en 1 uur vanuit de haven van Blanes. 7 mijl spectaculaire kust met kliffen en maagdelijke baaien.',
+        },
+        {
+          question: 'Hoeveel kost de privé-excursie met schipper naar Tossa?',
+          answer: 'Pacific Craft 625 met professionele schipper, maximaal 4 uur, tot 7 personen. Vanaf {excursionBaja4h} € laagseizoen (april-juni, september-sluiting). Inclusief btw, schipper, aanlegplaats, reiniging en verzekering. Brandstof apart.',
+        },
+        {
+          question: 'Hoeveel kost huren naar Tossa met een basisvaarbewijs (LBN)?',
+          answer: 'Vaste pakketten 2 u / 4 u / 8 u, zonder schipper. Vanaf {licBaja2h} € (2 u laagseizoen) met de boten met vaarbewijs. 3 seizoenscategorieën. Borg 500 €. Btw, aanlegplaats, reiniging en verzekering inbegrepen; brandstof apart.',
+        },
+        {
+          question: 'Kan ik in het dorp Tossa aanleggen met de boot?',
+          answer: 'Er is geen openbare toeristische aanlegplaats in Tossa. Je kunt wel ankeren in nabijgelegen baaien zoals Cala Llevadó, Mar d\'en Roig of Cala Pola.',
+        },
+        {
+          question: 'Is het de moeite waard om naar Tossa te varen als ik geen vaarbewijs heb?',
+          answer: 'Ja, via de privé-excursie met schipper (Pacific Craft 625, 4 u, vanaf {excursionBaja4h} €). Dit is de enige optie zonder vaarbewijs.',
+        },
+      ],
       hero: {
         title: 'Boottochten naar Tossa de Mar',
         subtitle: 'Ontdek het mooiste middeleeuwse dorp van de Costa Brava vanuit de haven van Blanes. 30-45 min varen naar de beroemde Vila Vella van Tossa de Mar.',
@@ -1871,8 +1954,68 @@ export const nl: Translations = {
         ctaDescription: 'Slechts 10 minuten met de auto. Reserveer en ontdek de Costa Brava.',
         ctaButton: 'Boot Reserveren vanuit Blanes',
       },
+      faqItems: [
+        {
+          question: 'Hoe ver ligt Malgrat de Mar van de haven van Blanes?',
+          answer: 'Malgrat de Mar ligt op slechts 8 km van de haven van Blanes, ongeveer 10 minuten rijden via de N-II. Je kunt er ook komen met de trein RENFE lijn R1 in slechts 5 minuten.',
+        },
+        {
+          question: 'Hoeveel kost het huren van een boot vanuit Blanes?',
+          answer: 'Bootverhuur begint vanaf {noLicBaja1h} EUR per uur inclusief benzine. Je hebt geen vaarbewijs nodig voor boten tot 15 pk. We hebben {fleetCount} boten voor 4-11 personen.',
+        },
+        {
+          question: 'Heb ik een vaarbewijs nodig?',
+          answer: 'Niet noodzakelijk. We bieden boten zonder vaarbewijs die iedereen van 18 jaar of ouder kan besturen. We geven je 15 minuten instructie voordat je vertrekt. We hebben ook boten met vaarbewijs.',
+        },
+        {
+          question: 'Is er parkeergelegenheid bij de haven van Blanes?',
+          answer: 'Ja, er is gratis parkeren beschikbaar bij de haven van Blanes. In het hoogseizoen raden we aan vroeg te komen om een plek te garanderen, of overweeg de trein/taxi.',
+        },
+        {
+          question: 'Kan ik de boot direct vanuit Malgrat de Mar huren?',
+          answer: 'Nee. Malgrat de Mar heeft geen jachthaven of verhuurpunt voor motorboten. De dichtstbijzijnde haven bij Malgrat is de haven van Blanes (8 km, 10 min met de auto of 5 min met trein R1). Alle boten vertrekken vanuit en keren terug naar de haven van Blanes.',
+        },
+        {
+          question: 'Welke baaien kan ik per boot vanuit Blanes bereiken als ik in Malgrat verblijf?',
+          answer: 'Met een boot zonder vaarbewijs vanuit Blanes bereik je in 25 minuten Playa de Fenals (zuid-Lloret), langs 7 baaien: Sa Forcanera, Cala Sant Francesc, Cala de s\'Agulla, Cala Treumal, Playa de Santa Cristina, Cala Sa Boadella en Playa de Fenals. Met een boot met basisvaarbewijs kun je Tossa de Mar bereiken (45 min) en verder.',
+        },
+        {
+          question: 'Is er een transferservice van hotels in Malgrat naar de haven van Blanes?',
+          answer: 'We bieden geen directe transfer, maar de rit is zeer kort: 5 minuten met trein R1 (Malgrat → Blanes) of 10 minuten met auto/taxi (kosten ongeveer 12-15 EUR). Het station van Blanes ligt op 10 minuten lopen van de haven. Er is ook lokale bus L23.',
+        },
+      ],
     },
     santaSusanna: {
+      faqItems: [
+        {
+          question: 'Hoe ver ligt Santa Susanna van de haven van Blanes?',
+          answer: 'Santa Susanna ligt op 12 km van de haven van Blanes, ongeveer 15 minuten rijden via de N-II. Je kunt er ook komen met de trein RENFE lijn R1 in slechts 10 minuten.',
+        },
+        {
+          question: 'Hoeveel kost het huren van een boot vanuit Blanes als ik in Santa Susanna ben?',
+          answer: 'Bootverhuur begint vanaf {noLicBaja1h} EUR per uur inclusief benzine. Je hebt geen vaarbewijs nodig voor boten tot 15 pk. We hebben {fleetCount} boten voor 4-11 personen.',
+        },
+        {
+          question: 'Heb ik een vaarbewijs nodig om een boot te huren?',
+          answer: 'Niet noodzakelijk. We bieden boten zonder vaarbewijs die iedereen van 18 jaar of ouder kan besturen. We geven je 15 minuten instructie voordat je vertrekt. We hebben ook boten met vaarbewijs.',
+        },
+        {
+          question: 'Is het makkelijk om met het openbaar vervoer te komen vanuit Santa Susanna?',
+          answer: 'Ja, de RENFE lijn R1 verbindt Santa Susanna met Blanes in slechts 10 minuten. De treinen rijden elke 30 minuten in het hoogseizoen. Het station van Blanes ligt op 10 minuten lopen van de haven.',
+        },
+        {
+          question: 'Is er bootverhuur in Santa Susanna zelf?',
+          answer: 'Nee. Santa Susanna heeft een breed strand maar geen jachthaven of motorbootverhuur. De dichtstbijzijnde haven is de haven van Blanes (12 km, 15 min met de auto of 10 min met trein R1). Dit is het meest praktische verhuurpunt als je in Santa Susanna verblijft.',
+        },
+        {
+          question: 'Wat is de beste bootexcursie als ik in Santa Susanna verblijf?',
+          answer: 'Vanuit Blanes raden we aan: (a) Baaiënroute 4u zonder vaarbewijs tot Playa de Fenals met ankeren in 2-3 kristalheldere baaien (vanaf 135 EUR voor 5 personen); (b) Privé-excursie met schipper 4u naar Tossa en Cala Bona (vanaf {excursionBaja4h} EUR, ideaal als je geen vaarervaring hebt); (c) Boot met basisvaarbewijs als iemand in de groep een vaarbewijs heeft (vanaf 240 EUR / 4u).',
+        },
+        {
+          question: 'Kan ik een bootexcursie bij zonsondergang maken vanuit Santa Susanna?',
+          answer: 'Ja, dat is erg populair. Vanuit Blanes bieden we zonsondergangstochten (18:30-21:00 afhankelijk van de maand) met een boot zonder vaarbewijs voor 115 EUR voor 2 uur. Je vaart langs de 7 baaien in goudkleurig licht. Vanuit Santa Susanna ben je er in 15 min met de auto of 10 min met de trein. Reserveer van tevoren in de zomer.',
+        },
+      ],
       hero: {
         title: 'Boothuur bij Santa Susanna',
         subtitle: 'Op vakantie in Santa Susanna? De haven van Blanes is slechts 15 minuten met de auto. Huur een boot zonder vaarbewijs en verken de Costa Brava.',
@@ -1914,6 +2057,36 @@ export const nl: Translations = {
       },
     },
     calella: {
+      faqItems: [
+        {
+          question: 'Hoe ver ligt Calella van de haven van Blanes?',
+          answer: 'Calella ligt op 17 km van de haven van Blanes, ongeveer 20 minuten rijden via de N-II. Je kunt er ook komen met de trein RENFE lijn R1 in slechts 15 minuten.',
+        },
+        {
+          question: 'Hoeveel kost het huren van een boot vanuit Blanes als ik in Calella ben?',
+          answer: 'Bootverhuur begint vanaf {noLicBaja1h} EUR per uur inclusief benzine. Je hebt geen vaarbewijs nodig voor boten tot 15 pk. We hebben {fleetCount} boten voor 4-11 personen.',
+        },
+        {
+          question: 'Heb ik eerdere ervaring nodig om een boot te huren?',
+          answer: 'Je hebt geen ervaring nodig. We bieden boten zonder vaarbewijs die iedereen van 18 jaar of ouder kan besturen. We geven je 15 minuten instructie voordat je vertrekt, inclusief navigatieregels en veiligheid.',
+        },
+        {
+          question: 'Kan ik heen en terug vanuit Calella met het openbaar vervoer?',
+          answer: 'Ja, de RENFE lijn R1 verbindt Calella met Blanes in 15 minuten. De treinen rijden elke 30 minuten in het seizoen. Het station van Blanes ligt op ongeveer 10 minuten lopen van de haven.',
+        },
+        {
+          question: 'Is er bootverhuur in Calella zelf?',
+          answer: 'Calella is de grootste plaats in dit gebied maar heeft geen jachthaven met motorbootverhuur. De dichtstbijzijnde havens zijn Blanes (17 km naar het noorden, beste vloot in de regio) en Arenys de Mar (15 km naar het zuiden, hogere prijzen). We raden Blanes aan voor de beste prijs-kwaliteitverhouding en directe verbinding met R1 in 15 minuten.',
+        },
+        {
+          question: 'Kan ik een bootexcursie maken van Calella naar Tossa de Mar?',
+          answer: 'Niet direct vanuit Calella (geen verhuur). Vanuit Blanes wel: met een boot met basisvaarbewijs (LBN) bereik je Tossa in 45 min (vanaf {licBaja2h} EUR/2u), of met onze privé-excursie met schipper 4u naar Tossa inclusief Cala Bona en Vila Vella (vanaf {excursionBaja4h} EUR voor maximaal 7 personen). Boten zonder vaarbewijs kunnen Tossa niet bereiken vanwege de wettelijke limiet van 2 mijl.',
+        },
+        {
+          question: 'Hoeveel kost de trein R1 van Calella naar Blanes?',
+          answer: 'Een enkel ticket R1 Calella → Blanes kost ongeveer 3 EUR (ATM tarief zone 4-5). Met een T-Casual kaart voor 10 ritten is het goedkoper. Duur: 15 minuten. Frequentie: elke 30 minuten in het seizoen. Van het station van Blanes naar de haven is het 10 minuten lopen of 3 min met de taxi.',
+        },
+      ],
       hero: {
         title: 'Boothuur bij Calella',
         subtitle: 'Verblijft u in Calella? Slechts 20 minuten met de auto naar de haven van Blanes. Huur een boot voor een unieke ervaring.',
@@ -2027,6 +2200,66 @@ export const nl: Translations = {
         petsA: 'Ja, huisdieren zijn welkom op al onze boten. Wij raden aan om vers water, een handdoek en geschikte zonnebescherming voor uw dier mee te nemen.',
       },
     },
+    tordera: {
+      faqItems: [
+        {
+          question: 'Hoe ver ligt Tordera van de haven van Blanes?',
+          answer: 'Tordera ligt op slechts 10 km van de haven van Blanes, ongeveer 15 minuten rijden via de C-32 of de lokale weg. Je kunt er ook komen met de trein RENFE lijn R1 in slechts 8 minuten vanaf het station van Blanes.',
+        },
+        {
+          question: 'Hoeveel kost het huren van een boot vanuit Blanes als ik in Tordera woon?',
+          answer: 'Bootverhuur zonder vaarbewijs begint vanaf {noLicBaja1h} EUR per uur inclusief benzine. Boten met vaarbewijs vanaf {licBaja2h} EUR voor 2 uur. We hebben {fleetCount} boten voor 4-11 personen.',
+        },
+        {
+          question: 'Heb ik een vaarbewijs nodig?',
+          answer: 'Niet noodzakelijk. We bieden boten zonder vaarbewijs die iedereen van 18 jaar of ouder kan besturen. We geven je 15 minuten instructie voordat je vertrekt. We hebben ook boten met vaarbewijs voor ervaren vaarders.',
+        },
+        {
+          question: 'Is er parkeergelegenheid bij de haven van Blanes?',
+          answer: 'Ja, er is gratis parkeren beschikbaar bij de haven van Blanes. Vanuit Tordera kun je comfortabel parkeren, aangezien het een minder toeristische zone is dan andere kustplaatsen, waardoor er zelfs in het hoogseizoen meestal wel plek is.',
+        },
+      ],
+    },
+    palafolls: {
+      faqItems: [
+        {
+          question: 'Hoe ver ligt Palafolls van de haven van Blanes?',
+          answer: 'Palafolls ligt op slechts 8 km van de haven van Blanes, ongeveer 12 minuten rijden. Het is een van de dichtstbijzijnde gemeenten bij de haven, wat het een ideaal startpunt maakt voor een bootexcursie langs de Costa Brava.',
+        },
+        {
+          question: 'Hoeveel kost het huren van een boot vanuit Blanes als ik in Palafolls ben?',
+          answer: 'Bootverhuur zonder vaarbewijs begint vanaf {noLicBaja1h} EUR per uur inclusief benzine. Boten met vaarbewijs vanaf {licBaja2h} EUR voor 2 uur. We hebben {fleetCount} boten voor 4-11 personen.',
+        },
+        {
+          question: 'Kan ik vanaf de camping in Palafolls gemakkelijk naar de haven van Blanes?',
+          answer: 'Ja, vanaf de campings in de omgeving van Palafolls (zoals La Masía of Neptuno) bereik je de haven van Blanes in ongeveer 10-15 minuten met de auto. Er zijn buslijnen die beide plaatsen verbinden, hoewel de auto de meest comfortabele optie is.',
+        },
+        {
+          question: 'Heb ik ervaring nodig om een boot te huren?',
+          answer: 'Je hebt geen ervaring nodig. We bieden boten zonder vaarbewijs die iedereen van 18 jaar of ouder kan besturen. We geven je 15 minuten instructie voordat je vertrekt, inclusief navigatieregels en veiligheidstips.',
+        },
+      ],
+    },
+    pineda: {
+      faqItems: [
+        {
+          question: 'Hoe ver ligt Pineda de Mar van de haven van Blanes?',
+          answer: 'Pineda de Mar ligt op 15 km van de haven van Blanes, ongeveer 18 minuten rijden via de N-II. Je kunt er ook komen met de trein RENFE lijn R1 in slechts 12 minuten vanaf het station van Blanes.',
+        },
+        {
+          question: 'Hoeveel kost het huren van een boot vanuit Blanes als ik in Pineda de Mar ben?',
+          answer: 'Bootverhuur zonder vaarbewijs begint vanaf {noLicBaja1h} EUR per uur inclusief benzine. Boten met vaarbewijs vanaf {licBaja2h} EUR voor 2 uur. We hebben {fleetCount} boten voor 4-11 personen.',
+        },
+        {
+          question: 'Heb ik een vaarbewijs nodig om een boot te huren?',
+          answer: 'Niet noodzakelijk. We bieden boten zonder vaarbewijs die iedereen van 18 jaar of ouder kan besturen. We geven je 15 minuten instructie voordat je vertrekt. We hebben ook boten met vaarbewijs voor meer ervaren vaarders.',
+        },
+        {
+          question: 'Kan ik van Pineda de Mar naar Blanes met het openbaar vervoer?',
+          answer: 'Ja, de RENFE lijn R1 verbindt Pineda de Mar met Blanes in 12 minuten. De treinen rijden elke 30 minuten in het seizoen. Het station van Blanes ligt op ongeveer 10 minuten lopen van de haven.',
+        },
+      ],
+    },
     newsletter: {
       title: 'Gratis gids voor geheime baaien',
       subtitle: 'Ontvang onze gids met de 10 beste baaien van de Costa Brava die alleen per boot bereikbaar zijn',
@@ -2035,10 +2268,5 @@ export const nl: Translations = {
       success: 'Gids verzonden! Controleer uw e-mail.',
       error: 'Verzenden mislukt. Probeer opnieuw.',
     },
-  },
-  whatsappMessages: {
-    bookingWithBoatAndPrice: 'Hallo! Ik ben geïnteresseerd in een reservering voor de {boatName} (vanaf {price}€). Kunnen jullie me helpen met beschikbaarheid en prijzen? Bedankt!',
-    bookingWithBoat: 'Hallo! Ik ben geïnteresseerd in een reservering voor de {boatName}. Kunnen jullie me helpen met beschikbaarheid en prijzen? Bedankt!',
-    bookingGeneric: 'Hallo! Ik zou graag een boot willen huren. Kunnen jullie me helpen met beschikbaarheid en prijzen?',
   },
 };

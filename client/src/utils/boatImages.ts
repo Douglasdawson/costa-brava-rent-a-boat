@@ -1,50 +1,20 @@
-// Client-side image mapping for boat data
-// SEO-friendly filenames: alquiler-barco-{model}-rent-a-boat-costa-brava-blanes-{description}.webp
+// Client-side image mapping for boat data.
+// Canonical resolution lives in @shared/boatImages so the server's SEO injector
+// emits the same URLs in og:image as the client renders in <img>.
 
-const BOAT_IMAGES: Record<string, string> = {
-  "solar-450": "/images/boats/solar-450/alquiler-barco-solar-450-rent-a-boat-costa-brava-blanes-exterior-puerto.webp",
-  "remus-450": "/images/boats/remus-450/alquiler-barco-remus-450-rent-a-boat-costa-brava-blanes-exterior-puerto.webp",
-  "astec-400": "/images/boats/astec-400/alquiler-barco-astec-400-rent-a-boat-costa-brava-blanes-exterior-puerto.webp",
-  "astec-480": "/images/boats/astec-480/alquiler-barco-astec-480-rent-a-boat-costa-brava-blanes-exterior-puerto.webp",
-  "mingolla-brava-19": "/images/boats/mingolla/alquiler-barco-mingolla-brava-19-rent-a-boat-costa-brava-blanes-exterior-puerto.webp",
-  "trimarchi-57s": "/images/boats/trimarchi/alquiler-barco-trimarchi-57s-rent-a-boat-costa-brava-blanes-exterior-puerto.webp",
-  "pacific-craft-625": "/images/boats/pacific-craft/alquiler-barco-pacific-craft-625-rent-a-boat-costa-brava-blanes-exterior-puerto.webp",
-};
-
-// Legacy prefix mapping for DB-stored filenames (e.g. "SOLAR_450_boat_photo_xxx.webp")
-const LEGACY_PREFIX_MAP: Array<{ pattern: string; boatId: string }> = [
-  { pattern: "SOLAR_450", boatId: "solar-450" },
-  { pattern: "REMUS_450", boatId: "remus-450" },
-  { pattern: "ASTEC_400", boatId: "astec-400" },
-  { pattern: "ASTEC_480", boatId: "astec-480" },
-  { pattern: "ASTEC_450", boatId: "astec-480" },
-  { pattern: "MINGOLLA", boatId: "mingolla-brava-19" },
-  { pattern: "TRIMARCHI", boatId: "trimarchi-57s" },
-  { pattern: "PACIFIC_CRAFT", boatId: "pacific-craft-625" },
-];
+import { resolveBoatImagePath } from "@shared/boatImages";
 
 // Helper function to resolve boat image path to actual imported image
 export function getBoatImage(imagePath: string): string {
-  if (!imagePath) return "/placeholder-boat.jpg";
+  const resolved = resolveBoatImagePath(imagePath);
+  if (resolved) return resolved;
 
-  // Direct match by boat ID
-  if (BOAT_IMAGES[imagePath]) return BOAT_IMAGES[imagePath];
-
-  // Match legacy DB filenames by prefix (case-insensitive)
-  const upper = imagePath.toUpperCase();
-  for (const entry of LEGACY_PREFIX_MAP) {
-    if (upper.startsWith(entry.pattern)) {
-      return BOAT_IMAGES[entry.boatId] || "/placeholder-boat.jpg";
-    }
-  }
-
-  // If not matched and looks like a filename, construct Object Storage URL
-  if (!imagePath.startsWith("http") && !imagePath.startsWith("/")) {
+  // Filename-looking input that didn't match any known boat: legacy object-storage fallback
+  if (imagePath && !imagePath.startsWith("http") && !imagePath.startsWith("/")) {
     return `/objects/${imagePath}`;
   }
 
-  // Otherwise return as-is (could be full URL or path already)
-  return imagePath;
+  return "/placeholder-boat.jpg";
 }
 
 /**

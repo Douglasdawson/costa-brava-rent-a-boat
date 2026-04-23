@@ -8,6 +8,7 @@ import type { LangCode } from "../../shared/seoConstants";
 import { getLocalizedPath } from "../../shared/i18n-routes";
 import type { PageKey } from "../../shared/i18n-routes";
 import { getNativeOverride } from "../seo/nativeLanguageOverrides";
+import { resolveBoatImagePath } from "../../shared/boatImages";
 // Static destination slugs for sitemap fallback (when DB has no published destinations)
 const FALLBACK_DESTINATION_SLUGS = [
   "sa-palomera",
@@ -351,10 +352,9 @@ export function registerSitemapRoutes(app: Express) {
 
         // Build image tags once (shared across all language URLs)
         let imageTags = "";
-        if (boat.imageUrl) {
-          const rawImageUrl = boat.imageUrl.startsWith("http")
-            ? boat.imageUrl
-            : `${baseUrl}/object-storage/${boat.imageUrl}`;
+        const resolvedMain = resolveBoatImagePath(boat.imageUrl) || resolveBoatImagePath(boat.id);
+        if (resolvedMain) {
+          const rawImageUrl = resolvedMain.startsWith("http") ? resolvedMain : `${baseUrl}${resolvedMain}`;
           const imageUrl = escapeXml(rawImageUrl);
 
           imageTags += `
@@ -366,10 +366,13 @@ export function registerSitemapRoutes(app: Express) {
         }
 
         if (boat.imageGallery && Array.isArray(boat.imageGallery)) {
+          const seen = new Set<string>();
           boat.imageGallery.forEach((galleryImg, index) => {
-            const rawGalleryUrl = galleryImg.startsWith("http")
-              ? galleryImg
-              : `${baseUrl}/object-storage/${galleryImg}`;
+            const resolvedGallery = resolveBoatImagePath(galleryImg);
+            if (!resolvedGallery) return;
+            const rawGalleryUrl = resolvedGallery.startsWith("http") ? resolvedGallery : `${baseUrl}${resolvedGallery}`;
+            if (seen.has(rawGalleryUrl)) return;
+            seen.add(rawGalleryUrl);
             const galleryUrl = escapeXml(rawGalleryUrl);
 
             imageTags += `

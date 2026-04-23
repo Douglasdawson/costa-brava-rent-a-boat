@@ -75,24 +75,7 @@ export default function LocationTorderaPage() {
     { name: "Alquiler Barcos Tordera", url: "/alquiler-barcos-tordera" }
   ]);
 
-  const faqItems = [
-    {
-      question: "¿A cuanta distancia esta Tordera del Puerto de Blanes?",
-      answer: "Tordera esta a solo 10 km del Puerto de Blanes, unos 15 minutos en coche por la C-32 o la carretera local. Tambien puedes llegar en tren RENFE linea R1 en solo 8 minutos desde la estacion de Blanes."
-    },
-    {
-      question: "¿Cuanto cuesta alquilar un barco desde Blanes si vivo en Tordera?",
-      answer: "El alquiler de barco sin licencia empieza desde {noLicBaja1h} EUR por hora con gasolina incluida. Barcos con licencia desde {licBaja2h} EUR por 2 horas. Disponemos de {fleetCount} barcos para 4-11 personas."
-    },
-    {
-      question: "¿Necesito licencia de navegacion?",
-      answer: "No necesariamente. Ofrecemos barcos sin licencia que cualquier mayor de 18 anos puede manejar. Te damos 15 minutos de formacion antes de zarpar. Tambien tenemos barcos con licencia para navegantes experimentados."
-    },
-    {
-      question: "¿Hay parking en el Puerto de Blanes?",
-      answer: "Si, hay parking gratuito disponible cerca del Puerto de Blanes. Desde Tordera puedes aparcar comodamente ya que al ser una zona menos turistica que otros puntos de la costa, suele haber disponibilidad incluso en temporada alta."
-    }
-  ];
+  const faqItems = t.locationPages.tordera?.faqItems ?? [];
 
   const processedFaqItems = useMemo(
     () => faqItems.map((item) => ({

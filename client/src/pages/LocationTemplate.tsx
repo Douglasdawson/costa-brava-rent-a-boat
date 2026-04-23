@@ -90,13 +90,24 @@ export default function LocationTemplate({ config, extraCards, afterFaq }: Locat
 
   // Live data for FAQ placeholder substitution — keeps page copy in sync with admin prices.
   const { data: boatsData } = useQuery<Boat[]>({ queryKey: ["/api/boats"] });
+
+  // Prefer translated FAQ items from i18n; fall back to the Spanish config only
+  // if the current locale hasn't been populated yet (defensive — we keep all 8
+  // locales in sync via npm run i18n:translate).
+  const localeFaqItems = (
+    (t.locationPages as Record<string, Record<string, unknown>>)[config.translationKey] as
+      | { faqItems?: Array<{ question: string; answer: string }> }
+      | undefined
+  )?.faqItems;
+  const rawFaqItems = localeFaqItems && localeFaqItems.length > 0 ? localeFaqItems : config.faqItems;
+
   const processedFaqItems = useMemo(() => {
     const vars = computeFaqVars(boatsData);
-    return config.faqItems.map((item) => ({
+    return rawFaqItems.map((item) => ({
       question: substituteFaqVars(item.question, vars),
       answer: substituteFaqVars(item.answer, vars),
     }));
-  }, [boatsData, config.faqItems]);
+  }, [boatsData, rawFaqItems]);
 
   const loc = (t.locationPages as Record<string, Record<string, unknown>>)[config.translationKey] as {
     hero: { title: string; subtitle: string; badgeDistance: string; badgeTime: string; badgeBeach: string };

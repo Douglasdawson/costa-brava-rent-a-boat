@@ -23,6 +23,12 @@ function fmtPos(pos: number | null): string {
   return pos.toFixed(1);
 }
 
+function parsePos(s: string | null | undefined): number | null {
+  if (s === null || s === undefined) return null;
+  const n = parseFloat(s);
+  return Number.isFinite(n) ? n : null;
+}
+
 export async function exportCompetitorsMarkdown(): Promise<void> {
   try {
     const now = new Date();
@@ -77,8 +83,8 @@ export async function exportCompetitorsMarkdown(): Promise<void> {
         .orderBy(desc(seoRankings.date))
         .limit(2);
 
-      const currentPos = ourRankings[0] ? parseFloat(ourRankings[0].position) : null;
-      const prevPos = ourRankings[1] ? parseFloat(ourRankings[1].position) : null;
+      const currentPos = parsePos(ourRankings[0]?.position);
+      const prevPos = parsePos(ourRankings[1]?.position);
 
       let changeStr = "";
       if (currentPos !== null && prevPos !== null) {
@@ -117,8 +123,8 @@ export async function exportCompetitorsMarkdown(): Promise<void> {
 
       // Sort by position
       const aboveUs = latestCompRankings
-        .filter((r) => currentPos === null || parseFloat(r.position) < currentPos)
-        .sort((a, b) => parseFloat(a.position) - parseFloat(b.position));
+        .filter((r) => currentPos === null || (parsePos(r.position) ?? Infinity) < currentPos)
+        .sort((a, b) => (parsePos(a.position) ?? 0) - (parsePos(b.position) ?? 0));
 
       if (aboveUs.length > 0) {
         lines.push(
@@ -128,7 +134,7 @@ export async function exportCompetitorsMarkdown(): Promise<void> {
         for (const r of aboveUs) {
           const name = compMap.get(r.competitorId) || r.competitorId;
           const shortUrl = r.url ? new URL(r.url).pathname : "-";
-          lines.push(`| ${fmtPos(parseFloat(r.position))} | ${name} | ${shortUrl} |`);
+          lines.push(`| ${fmtPos(parsePos(r.position))} | ${name} | ${shortUrl} |`);
         }
       } else {
         lines.push(`*Ningun competidor trackeado por encima de nosotros.*`);

@@ -104,7 +104,7 @@ export async function checkCwvAlerts(): Promise<{ hasAlerts: boolean; alerts: st
       if (rating === "poor") {
         const msg = `${row.metricName} p75=${p75} is POOR`;
         alerts.push(msg);
-        logger.warn({ metric: row.metricName, p75, rating }, `[CWV:Alert] ${msg}`);
+        logger.warn(`[CWV:Alert] ${msg}`, { metric: row.metricName, p75, rating });
       }
     }
   }

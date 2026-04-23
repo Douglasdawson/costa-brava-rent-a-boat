@@ -74,24 +74,7 @@ export default function LocationPalafollsPage() {
     { name: "Alquiler Barcos Palafolls", url: "/alquiler-barcos-palafolls" }
   ]);
 
-  const faqItems = [
-    {
-      question: "¿A cuanta distancia esta Palafolls del Puerto de Blanes?",
-      answer: "Palafolls esta a solo 8 km del Puerto de Blanes, unos 12 minutos en coche. Es uno de los municipios mas cercanos al puerto, lo que lo convierte en un punto ideal para hacer una excursion en barco por la Costa Brava."
-    },
-    {
-      question: "¿Cuanto cuesta alquilar un barco desde Blanes si estoy en Palafolls?",
-      answer: "El alquiler de barco sin licencia empieza desde {noLicBaja1h} EUR por hora con gasolina incluida. Barcos con licencia desde {licBaja2h} EUR por 2 horas. Disponemos de {fleetCount} barcos para 4-11 personas."
-    },
-    {
-      question: "¿Puedo ir desde el camping de Palafolls al Puerto de Blanes facilmente?",
-      answer: "Si, desde los campings de la zona de Palafolls (como La Masia o Neptuno) llegas al Puerto de Blanes en unos 10-15 minutos en coche. Hay lineas de autobus que conectan ambas localidades, aunque el coche es la opcion mas comoda."
-    },
-    {
-      question: "¿Necesito experiencia para alquilar un barco?",
-      answer: "No necesitas experiencia. Ofrecemos barcos sin licencia que cualquier mayor de 18 anos puede manejar. Te damos 15 minutos de formacion antes de zarpar, incluyendo normas de navegacion y consejos de seguridad."
-    }
-  ];
+  const faqItems = t.locationPages.palafolls?.faqItems ?? [];
 
   const processedFaqItems = useMemo(
     () => faqItems.map((item) => ({

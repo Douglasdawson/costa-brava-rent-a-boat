@@ -74,24 +74,7 @@ export default function LocationPinedaDeMarPage() {
     { name: "Alquiler Barcos Pineda de Mar", url: "/alquiler-barcos-pineda-de-mar" }
   ]);
 
-  const faqItems = [
-    {
-      question: "¿A cuanta distancia esta Pineda de Mar del Puerto de Blanes?",
-      answer: "Pineda de Mar esta a 15 km del Puerto de Blanes, unos 18 minutos en coche por la N-II. Tambien puedes llegar en tren RENFE linea R1 en solo 12 minutos desde la estacion de Blanes."
-    },
-    {
-      question: "¿Cuanto cuesta alquilar un barco desde Blanes si estoy en Pineda de Mar?",
-      answer: "El alquiler de barco sin licencia empieza desde {noLicBaja1h} EUR por hora con gasolina incluida. Barcos con licencia desde {licBaja2h} EUR por 2 horas. Disponemos de {fleetCount} barcos para 4-11 personas."
-    },
-    {
-      question: "¿Necesito licencia de navegacion para alquilar un barco?",
-      answer: "No necesariamente. Ofrecemos barcos sin licencia que cualquier mayor de 18 anos puede manejar. Te damos 15 minutos de formacion antes de zarpar. Tambien tenemos barcos con licencia para navegantes mas experimentados."
-    },
-    {
-      question: "¿Puedo ir desde Pineda de Mar a Blanes en transporte publico?",
-      answer: "Si, la linea R1 de RENFE conecta Pineda de Mar con Blanes en 12 minutos. Los trenes salen cada 30 minutos en temporada. La estacion de Blanes esta a unos 10 minutos andando del puerto."
-    }
-  ];
+  const faqItems = t.locationPages.pineda?.faqItems ?? [];
 
   const processedFaqItems = useMemo(
     () => faqItems.map((item) => ({

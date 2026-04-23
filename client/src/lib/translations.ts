@@ -811,6 +811,7 @@ export interface Translations {
         badgeCapacity: string;
         badgeDuration: string;
       };
+      faqItems?: Array<{ question: string; answer: string }>;
       sections?: {
         whyBlanesTitle: string;
         strategicLocation: string;
@@ -886,6 +887,7 @@ export interface Translations {
       };
     };
     lloret: {
+      faqItems?: Array<{ question: string; answer: string }>;
       hero: {
         title: string;
         subtitle: string;
@@ -945,6 +947,7 @@ export interface Translations {
       };
     };
     tossa: {
+      faqItems?: Array<{ question: string; answer: string }>;
       hero: {
         title: string;
         subtitle: string;
@@ -1007,6 +1010,7 @@ export interface Translations {
       };
     };
     malgrat: {
+      faqItems?: Array<{ question: string; answer: string }>;
       hero: {
         title: string;
         subtitle: string;
@@ -1048,6 +1052,7 @@ export interface Translations {
       };
     };
     santaSusanna: {
+      faqItems?: Array<{ question: string; answer: string }>;
       hero: {
         title: string;
         subtitle: string;
@@ -1089,6 +1094,7 @@ export interface Translations {
       };
     };
     calella: {
+      faqItems?: Array<{ question: string; answer: string }>;
       hero: {
         title: string;
         subtitle: string;
@@ -1201,6 +1207,15 @@ export interface Translations {
         petsQ: string;
         petsA: string;
       };
+    };
+    tordera?: {
+      faqItems: Array<{ question: string; answer: string }>;
+    };
+    palafolls?: {
+      faqItems: Array<{ question: string; answer: string }>;
+    };
+    pineda?: {
+      faqItems: Array<{ question: string; answer: string }>;
     };
     newsletter: {
       title: string;

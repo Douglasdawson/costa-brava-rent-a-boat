@@ -1434,7 +1434,7 @@ export async function sendPartnershipProposal(data: PartnershipEmailData): Promi
       </table>
     </div>
 
-    <!-- 8. Que ofrecemos a ${hotelName} -->
+    <!-- 8. Que ofrecemos a ${data.hotelName} -->
     <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:12px; padding:24px; margin:0 0 28px;">
       <h3 style="margin:0 0 16px; color:#0d1a2d; font-size:17px; font-weight:700; font-family:'Clash Display', Arial, sans-serif;">Qu&eacute; ofrecemos a ${data.hotelName}</h3>
       <table role="presentation" cellpadding="0" cellspacing="0">

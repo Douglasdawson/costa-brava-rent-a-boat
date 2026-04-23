@@ -29,19 +29,19 @@ export async function notifyIndexNow(urls: string[], retryCount = 0): Promise<vo
     });
 
     if (response.ok || response.status === 202) {
-      logger.info({ urls: fullUrls.length, status: response.status }, "[SEO:IndexNow] Submission successful");
+      logger.info("[SEO:IndexNow] Submission successful", { urls: fullUrls.length, status: response.status });
     } else if ((response.status === 429 || response.status >= 500) && retryCount < 1) {
-      logger.warn({ status: response.status }, "[SEO:IndexNow] Retrying in 5s");
+      logger.warn("[SEO:IndexNow] Retrying in 5s", { status: response.status });
       setTimeout(() => notifyIndexNow(urls, retryCount + 1), 5000);
     } else {
-      logger.warn({ status: response.status, statusText: response.statusText }, "[SEO:IndexNow] Submission failed");
+      logger.warn("[SEO:IndexNow] Submission failed", { status: response.status, statusText: response.statusText });
     }
   } catch (error) {
     if (retryCount < 1) {
-      logger.warn({ error: error instanceof Error ? error.message : String(error) }, "[SEO:IndexNow] Request failed, retrying in 5s");
+      logger.warn("[SEO:IndexNow] Request failed, retrying in 5s", { error: error instanceof Error ? error.message : String(error) });
       setTimeout(() => notifyIndexNow(urls, retryCount + 1), 5000);
     } else {
-      logger.warn({ error: error instanceof Error ? error.message : String(error) }, "[SEO:IndexNow] Request failed after retry");
+      logger.warn("[SEO:IndexNow] Request failed after retry", { error: error instanceof Error ? error.message : String(error) });
     }
   }
 }
@@ -51,7 +51,7 @@ export async function notifyPageChangedSafe(path: string): Promise<void> {
   try {
     await notifyIndexNow([path]);
   } catch (err) {
-    logger.warn({ err, path }, "[SEO:IndexNow] Page change notification failed");
+    logger.warn("[SEO:IndexNow] Page change notification failed", { err, path });
   }
 }
 
@@ -69,6 +69,6 @@ export async function notifyCriticalPagesOnDeploy(): Promise<void> {
     "/excursion-snorkel-barco-blanes", "/barco-familias-costa-brava",
     "/sunset-boat-trip-blanes", "/pesca-barco-blanes",
   ];
-  logger.info({ count: criticalPages.length }, "[SEO:IndexNow] Notifying critical pages on deploy");
+  logger.info("[SEO:IndexNow] Notifying critical pages on deploy", { count: criticalPages.length });
   await notifyIndexNow(criticalPages);
 }

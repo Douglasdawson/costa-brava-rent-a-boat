@@ -81,67 +81,18 @@ export default function LocationBlanesPage() {
     { name: t.breadcrumbs.locationBlanes, url: "/alquiler-barcos-blanes" }
   ]);
 
-  // FAQ schema for AI search extraction - Blanes specific
+  // FAQ schema — reads from i18n for all 8 locales.
+  const blanesFaqItems = t.locationPages.blanes.faqItems ?? [];
   const faqSchema = {
     "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "¿Necesito licencia para alquilar un barco en Blanes?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "No. Tenemos 5 barcos sin licencia para hasta 5 personas. Solo necesitas ser mayor de 18 años. Te damos una formación de 15 minutos antes de salir."
-        }
+    "mainEntity": blanesFaqItems.map((item) => ({
+      "@type": "Question",
+      "name": item.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": item.answer,
       },
-      {
-        "@type": "Question",
-        "name": "¿Cuánto cuesta alquilar un barco en el Puerto de Blanes?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Los barcos sin licencia cuestan desde 70 EUR/hora en temporada baja (abril-junio, septiembre-octubre). En temporada alta (agosto) desde 90 EUR/hora. El precio incluye combustible, seguro y equipo de seguridad."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "¿A dónde puedo ir en barco desde Blanes?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Desde el Puerto de Blanes puedes visitar Cala Brava (15 min), Cala Sant Francesc (20 min), Lloret de Mar (30 min) y Tossa de Mar (45 min). Los barcos con licencia tienen mayor autonomía para destinos más lejanos."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "¿Hay aparcamiento cerca del Puerto de Blanes?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Sí. Hay aparcamiento gratuito junto al Puerto de Blanes. También hay restaurantes, tiendas náuticas y gasolinera en la zona portuaria."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "¿Cual es la mejor epoca para alquilar un barco en Blanes?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "La temporada va de abril a octubre. Junio y septiembre ofrecen los mejores precios y menos afluencia. Agosto es temporada alta con las mejores condiciones de mar pero precios mas altos."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "¿Se puede alquilar un barco en Blanes el mismo dia?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Si, aceptamos reservas de ultimo momento si hay disponibilidad. Contacta por WhatsApp al +34 611 500 372 para comprobar disponibilidad el mismo dia."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "¿Es seguro navegar sin licencia desde Blanes?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Si. Nuestros barcos sin licencia tienen un maximo de 15CV, no requieren titulacion y navegan cerca de la costa. Incluimos formacion de seguridad de 15 minutos, chalecos salvavidas y equipo de emergencia."
-        }
-      }
-    ]
+    })),
   };
 
   // Combine schemas

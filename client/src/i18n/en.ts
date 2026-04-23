@@ -1691,8 +1691,43 @@ export const en: Translations = {
       description: 'Discover more about sailing the Costa Brava on our <a href="{blogPath}" class="text-primary hover:underline font-medium">boating blog</a>.',
     },
   },
+  whatsappMessages: {
+    bookingWithBoatAndPrice: 'Hello! I\'m interested in booking the {boatName} (from {price}€). Could you help me with availability and prices? Thanks!',
+    bookingWithBoat: 'Hello! I\'m interested in booking the {boatName}. Could you help me with availability and prices? Thanks!',
+    bookingGeneric: 'Hello! I\'d like to make a reservation to rent a boat. Could you help me with availability and prices?',
+  },
   locationPages: {
     blanes: {
+      faqItems: [
+        {
+          question: 'Do I need a license to rent a boat in Blanes?',
+          answer: 'No. We have 5 boats that don\'t require a license for up to 5 people. You just need to be over 18 years old. We give you a 15-minute briefing before you set off.',
+        },
+        {
+          question: 'How much does it cost to rent a boat at Blanes Marina?',
+          answer: 'Boats without license start from {noLicBaja1h} EUR/hour in low season (April–June, September–October). In high season (August) from {noLicAlta1h} EUR/hour. The price includes fuel, insurance and safety equipment.',
+        },
+        {
+          question: 'Where can I go by boat from Blanes?',
+          answer: 'From Blanes Marina you can visit Cala Brava (15 min), Cala Sant Francesc (20 min), Lloret de Mar (30 min) and Tossa de Mar (45 min). Licensed boats have greater range for more distant destinations.',
+        },
+        {
+          question: 'Is there parking near Blanes Marina?',
+          answer: 'Yes. There is free parking next to Blanes Marina. There are also restaurants, chandleries and a petrol station in the marina area.',
+        },
+        {
+          question: 'What\'s the best time to rent a boat in Blanes?',
+          answer: 'The season runs from April to October. June and September offer the best prices and fewer crowds. August is high season with the best sea conditions but higher prices.',
+        },
+        {
+          question: 'Can I rent a boat in Blanes on the same day?',
+          answer: 'Yes, we accept last-minute bookings if there\'s availability. Contact us on WhatsApp at +34 611 500 372 to check same-day availability.',
+        },
+        {
+          question: 'Is it safe to navigate without a license from Blanes?',
+          answer: 'Yes. Our license-free boats have a maximum of 15 HP, require no qualification and navigate close to the coast. We include 15 minutes of safety training, life jackets and emergency equipment.',
+        },
+      ],
       hero: {
         title: 'Boat Rentals in Blanes',
         subtitle: 'Discover the most beautiful coves of the Costa Brava from Blanes Harbour. Boats with and without licence for the whole family.',
@@ -1771,6 +1806,28 @@ export const en: Translations = {
       },
     },
     lloret: {
+      faqItems: [
+        {
+          question: 'Do I need a license or experience to reach Lloret by boat?',
+          answer: 'No. Our license-free boats meet the legal requirements to navigate to Fenals Beach (south of Lloret) without a qualification or prior experience. We give you a 15-minute briefing before you set off. The only restriction is being over 18 years old.',
+        },
+        {
+          question: 'How far exactly can I go with a license-free boat?',
+          answer: 'Legally, up to 2 nautical miles from the coast, at a maximum of 5 knots, with 15 HP. From Blanes, that\'s 25 minutes of navigation to Fenals Beach, passing 7 coves. Lloret town beach and Cala Canyelles are north of Fenals — they are not accessible with a license-free boat.',
+        },
+        {
+          question: 'How much does it cost to rent a license-free boat to go to Lloret?',
+          answer: 'From {noLicBaja1h} €/hour (low season) and {noLicAlta1h} €/hour (high season, July–August). With fuel included on license-free boats.',
+        },
+        {
+          question: 'Can I reach Tossa de Mar from Lloret with a license-free boat?',
+          answer: 'No. Tossa is 4–5 miles north of Fenals, outside the legal range without a license. To go to Tossa by boat from Blanes you need (a) a boat with a Basic Navigation License (LBN), or (b) a Private Excursion with Captain.',
+        },
+        {
+          question: 'What happens if the sea is rough?',
+          answer: 'If the forecast shows >20 sustained knots or a warning for waves >1.5 m, we cancel at no cost. The Blanes–Fenals stretch is protected from the Tramuntana by the coast itself, so it\'s one of the safest for beginners even with northerly winds.',
+        },
+      ],
       hero: {
         title: 'Boat Trips to Lloret de Mar',
         subtitle: 'Discover the famous beaches of Lloret de Mar sailing from Blanes Harbour. 25 minutes by sea to one of the most popular destinations on the Costa Brava.',
@@ -1830,6 +1887,32 @@ export const en: Translations = {
       },
     },
     tossa: {
+      faqItems: [
+        {
+          question: 'Can I reach Tossa de Mar with a license-free boat from Blanes?',
+          answer: 'No. License-free boats (2 miles from coast, 5 knots, 15 HP) reach as far as Fenals Beach (south of Lloret), 4 miles before Tossa. To reach Tossa you need a Basic Navigation License (LBN) or book the Private Excursion with Captain.',
+        },
+        {
+          question: 'How long does it take by boat from Blanes to Tossa?',
+          answer: 'Between 45 minutes and 1 hour from Blanes Marina. 7 miles of spectacular coast with cliffs and hidden coves.',
+        },
+        {
+          question: 'How much does the Private Excursion with Captain to Tossa cost?',
+          answer: 'Pacific Craft 625 with professional skipper, 4 h maximum, up to 7 people. From {excursionBaja4h} € low season (April–June, September–close). Includes VAT, skipper, mooring, cleaning and insurance. Fuel extra.',
+        },
+        {
+          question: 'How much does it cost to rent to Tossa with a Basic License (LBN)?',
+          answer: 'Fixed packs 2 h / 4 h / 8 h, without skipper. From {licBaja2h} € (2 h low season) with licensed boats. 3 seasonal tiers. Deposit 500 €. VAT, mooring, cleaning and insurance included; fuel extra.',
+        },
+        {
+          question: 'Can I disembark in Tossa town from the boat?',
+          answer: 'There is no public tourist mooring in Tossa. You can anchor in nearby coves such as Cala Llevadó, Mar d\'en Roig or Cala Pola.',
+        },
+        {
+          question: 'Is it worth going to Tossa by boat if I don\'t have a license?',
+          answer: 'Yes, via the Private Excursion with Captain (Pacific Craft 625, 4 h, from {excursionBaja4h} €). The only option without needing a license.',
+        },
+      ],
       hero: {
         title: 'Boat Trips to Tossa de Mar',
         subtitle: 'Discover the most beautiful medieval village on the Costa Brava sailing from Blanes Harbour. 30-45 min by sea to the famous Vila Vella of Tossa de Mar.',
@@ -1931,8 +2014,68 @@ export const en: Translations = {
         ctaDescription: 'Just 10 minutes by car. Book your boat and discover the Costa Brava from the sea.',
         ctaButton: 'Book a Boat from Blanes',
       },
+      faqItems: [
+        {
+          question: 'How far is Malgrat de Mar from Blanes Marina?',
+          answer: 'Malgrat de Mar is just 8 km from Blanes Marina, about 10 minutes by car on the N-II. You can also get there by RENFE train on the R1 line in just 5 minutes.',
+        },
+        {
+          question: 'How much does it cost to rent a boat from Blanes?',
+          answer: 'Boat rental starts from {noLicBaja1h} EUR per hour with fuel included. No license required for boats up to 15 HP. We have {fleetCount} boats for 4-11 people.',
+        },
+        {
+          question: 'Do I need a boating license?',
+          answer: 'Not necessarily. We offer license-free boats that anyone over 18 can operate. We give you 15 minutes of training before setting off. We also have licensed boats.',
+        },
+        {
+          question: 'Is there parking at Blanes Marina?',
+          answer: 'Yes, there is free parking available near Blanes Marina. In high season we recommend arriving early to secure a space, or considering train/taxi.',
+        },
+        {
+          question: 'Can I rent the boat directly from Malgrat de Mar?',
+          answer: 'No. Malgrat de Mar does not have a marina or motorboat rental facility. The nearest marina to Malgrat is Blanes Marina (8 km, 10 min by car or 5 min by R1 train). All our boats depart from and return to Blanes Marina.',
+        },
+        {
+          question: 'What coves can I reach by boat from Blanes if I\'m staying in Malgrat?',
+          answer: 'With a license-free boat from Blanes you reach Fenals Beach (south of Lloret) in 25 minutes, passing 7 coves: Sa Forcanera, Cala Sant Francesc, Cala de s\'Agulla, Cala Treumal, Santa Cristina Beach, Cala Sa Boadella and Fenals Beach. With a Basic License boat you can reach Tossa de Mar (45 min) and beyond.',
+        },
+        {
+          question: 'Is there a transfer service from Malgrat hotels to Blanes Marina?',
+          answer: 'We don\'t offer a direct transfer, but the journey is very short: 5 minutes by R1 train (Malgrat → Blanes) or 10 minutes by car/taxi (approximate cost 12-15 EUR). Blanes station is a 10-minute walk from the marina. There\'s also local bus L23.',
+        },
+      ],
     },
     santaSusanna: {
+      faqItems: [
+        {
+          question: 'How far is Santa Susanna from Blanes Marina?',
+          answer: 'Santa Susanna is 12 km from Blanes Marina, about 15 minutes by car on the N-II. You can also get there by RENFE train on the R1 line in just 10 minutes.',
+        },
+        {
+          question: 'How much does it cost to rent a boat from Blanes if I\'m in Santa Susanna?',
+          answer: 'Boat rental starts from {noLicBaja1h} EUR per hour with fuel included. No license required for boats up to 15 HP. We have {fleetCount} boats for 4-11 people.',
+        },
+        {
+          question: 'Do I need a boating license to rent a boat?',
+          answer: 'Not necessarily. We offer license-free boats that anyone over 18 can operate. We give you 15 minutes of training before setting off. We also have licensed boats.',
+        },
+        {
+          question: 'Is it easy to get there by public transport from Santa Susanna?',
+          answer: 'Yes, the RENFE R1 line connects Santa Susanna with Blanes in just 10 minutes. Trains run every 30 minutes in high season. Blanes station is a 10-minute walk from the marina.',
+        },
+        {
+          question: 'Is there boat rental in Santa Susanna itself?',
+          answer: 'No. Santa Susanna has a wide beach but does not have a marina or motorboat rental service. The nearest marina is Blanes Marina (12 km, 15 min by car or 10 min by R1 train). It\'s the most practical rental point if you\'re staying in Santa Susanna.',
+        },
+        {
+          question: 'What\'s the best boat trip if I\'m staying in Santa Susanna?',
+          answer: 'From Blanes we recommend: (a) 4h cove route without license to Fenals Beach anchoring in 2-3 crystal-clear coves (from 135 EUR for 5 people); (b) 4h private excursion with skipper to Tossa and Cala Bona (from {excursionBaja4h} EUR, ideal if you have no boating experience); (c) Basic License boat if someone in the group has a qualification (from 240 EUR / 4h).',
+        },
+        {
+          question: 'Can I do a sunset boat trip from Santa Susanna?',
+          answer: 'Yes, it\'s very popular. From Blanes we offer sunset trips (18:30-21:00 depending on month) with a license-free boat at 115 EUR for 2 hours. You\'ll navigate the 7 coves in golden light. From Santa Susanna you\'re 15 min by car or 10 min by train. Book ahead in summer.',
+        },
+      ],
       hero: {
         title: 'Boat Rental near Santa Susanna',
         subtitle: 'On holiday in Santa Susanna? Blanes Port is just 15 minutes by car. Rent a license-free boat and explore the Costa Brava.',
@@ -1974,6 +2117,36 @@ export const en: Translations = {
       },
     },
     calella: {
+      faqItems: [
+        {
+          question: 'How far is Calella from Blanes Marina?',
+          answer: 'Calella is 17 km from Blanes Marina, about 20 minutes by car on the N-II. You can also get there by RENFE train on the R1 line in just 15 minutes.',
+        },
+        {
+          question: 'How much does it cost to rent a boat from Blanes if I\'m in Calella?',
+          answer: 'Boat rental starts from {noLicBaja1h} EUR per hour with fuel included. No license required for boats up to 15 HP. We have {fleetCount} boats for 4-11 people.',
+        },
+        {
+          question: 'Do I need prior experience to rent a boat?',
+          answer: 'You don\'t need experience. We offer license-free boats that anyone over 18 can operate. We give you 15 minutes of training before setting off, including navigation rules and safety.',
+        },
+        {
+          question: 'Can I get to and from Calella by public transport?',
+          answer: 'Yes, the RENFE R1 line connects Calella with Blanes in 15 minutes. Trains run every 30 minutes in season. Blanes station is about a 10-minute walk from the marina.',
+        },
+        {
+          question: 'Is there boat rental in Calella itself?',
+          answer: 'Calella is the largest town in the area but does not have a marina with motorboat rental service. The nearest marinas are Blanes (17 km north, best fleet in the area) and Arenys de Mar (15 km south, higher prices). We recommend Blanes for better value and a direct R1 connection in 15 minutes.',
+        },
+        {
+          question: 'Can I do a boat trip from Calella to Tossa de Mar?',
+          answer: 'Not directly from Calella (no rentals). From Blanes yes: with a boat with Basic Navigation License (LBN) you reach Tossa in 45 min (from {licBaja2h} EUR/2h), or with our Private Excursion with Captain 4h to Tossa including Cala Bona and Vila Vella (from {excursionBaja4h} EUR for up to 7 people). License-free boats cannot reach Tossa due to the legal limit of 2 miles.',
+        },
+        {
+          question: 'How much does the R1 train from Calella to Blanes cost?',
+          answer: 'A single R1 ticket Calella → Blanes costs approximately 3 EUR (ATM zone 4-5 fare). With a T-Casual 10-journey card it\'s more economical. Duration: 15 minutes. Frequency: every 30 minutes in season. From Blanes station to the Marina it\'s a 10-minute walk or 3 min by taxi.',
+        },
+      ],
       hero: {
         title: 'Boat Rental near Calella',
         subtitle: 'Staying in Calella? Just 20 minutes by car from Blanes Port. Rent a boat and live a unique Costa Brava experience.',
@@ -2087,6 +2260,66 @@ export const en: Translations = {
         petsA: 'Yes, pets are welcome on all our boats. We recommend bringing fresh water for your pet, a towel and suitable sun protection. For large dogs, licensed boats offer more space. We ask that you keep your pet in a canine life jacket if it will be near the water. We can provide one upon request.',
       },
     },
+    tordera: {
+      faqItems: [
+        {
+          question: 'How far is Tordera from Blanes Marina?',
+          answer: 'Tordera is just 10 km from Blanes Marina, about 15 minutes by car on the C-32 or local road. You can also get there by RENFE train on the R1 line in just 8 minutes from Blanes station.',
+        },
+        {
+          question: 'How much does it cost to rent a boat from Blanes if I live in Tordera?',
+          answer: 'License-free boat rental starts from {noLicBaja1h} EUR per hour with fuel included. Licensed boats from {licBaja2h} EUR for 2 hours. We have {fleetCount} boats for 4-11 people.',
+        },
+        {
+          question: 'Do I need a boating license?',
+          answer: 'Not necessarily. We offer license-free boats that anyone over 18 can operate. We give you 15 minutes of training before setting off. We also have licensed boats for experienced boaters.',
+        },
+        {
+          question: 'Is there parking at Blanes Marina?',
+          answer: 'Yes, there is free parking available near Blanes Marina. From Tordera you can park comfortably as, being a less touristy area than other coastal points, there is usually availability even in high season.',
+        },
+      ],
+    },
+    palafolls: {
+      faqItems: [
+        {
+          question: 'How far is Palafolls from Blanes Marina?',
+          answer: 'Palafolls is just 8 km from Blanes Marina, about 12 minutes by car. It\'s one of the closest towns to the marina, making it an ideal base for a Costa Brava boat trip.',
+        },
+        {
+          question: 'How much does it cost to rent a boat from Blanes if I\'m in Palafolls?',
+          answer: 'License-free boat rental starts from {noLicBaja1h} EUR per hour with fuel included. Licensed boats from {licBaja2h} EUR for 2 hours. We have {fleetCount} boats for 4-11 people.',
+        },
+        {
+          question: 'Can I easily get from the Palafolls campsite to Blanes Marina?',
+          answer: 'Yes, from the campsites in the Palafolls area (such as La Masía or Neptuno) you reach Blanes Marina in about 10-15 minutes by car. There are bus lines connecting both towns, although car is the most convenient option.',
+        },
+        {
+          question: 'Do I need experience to rent a boat?',
+          answer: 'You don\'t need experience. We offer license-free boats that anyone over 18 can operate. We give you 15 minutes of training before setting off, including navigation rules and safety tips.',
+        },
+      ],
+    },
+    pineda: {
+      faqItems: [
+        {
+          question: 'How far is Pineda de Mar from Blanes Marina?',
+          answer: 'Pineda de Mar is 15 km from Blanes Marina, about 18 minutes by car on the N-II. You can also get there by RENFE train on the R1 line in just 12 minutes from Blanes station.',
+        },
+        {
+          question: 'How much does it cost to rent a boat from Blanes if I\'m in Pineda de Mar?',
+          answer: 'License-free boat rental starts from {noLicBaja1h} EUR per hour with fuel included. Licensed boats from {licBaja2h} EUR for 2 hours. We have {fleetCount} boats for 4-11 people.',
+        },
+        {
+          question: 'Do I need a boating license to rent a boat?',
+          answer: 'Not necessarily. We offer license-free boats that anyone over 18 can operate. We give you 15 minutes of training before setting off. We also have licensed boats for more experienced boaters.',
+        },
+        {
+          question: 'Can I get from Pineda de Mar to Blanes by public transport?',
+          answer: 'Yes, the RENFE R1 line connects Pineda de Mar with Blanes in 12 minutes. Trains run every 30 minutes in season. Blanes station is about a 10-minute walk from the marina.',
+        },
+      ],
+    },
     newsletter: {
       title: 'Free guide to secret coves',
       subtitle: 'Get our guide with the 10 best coves on the Costa Brava accessible only by boat',
@@ -2095,10 +2328,5 @@ export const en: Translations = {
       success: 'Guide sent! Check your email.',
       error: 'Failed to send. Please try again.',
     },
-  },
-  whatsappMessages: {
-    bookingWithBoatAndPrice: 'Hello! I\'m interested in booking the {boatName} (from {price}€). Could you help me with availability and prices? Thanks!',
-    bookingWithBoat: 'Hello! I\'m interested in booking the {boatName}. Could you help me with availability and prices? Thanks!',
-    bookingGeneric: 'Hello! I\'d like to make a reservation to rent a boat. Could you help me with availability and prices?',
   },
 };

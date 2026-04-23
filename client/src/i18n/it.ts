@@ -1632,8 +1632,43 @@ export const it: Translations = {
       description: 'Scopri di più sulla navigazione sulla Costa Brava nel nostro <a href="{blogPath}" class="text-primary hover:underline font-medium">blog nautico</a>.',
     },
   },
+  whatsappMessages: {
+    bookingWithBoatAndPrice: 'Ciao! Sono interessato a prenotare il {boatName} (da {price}€). Potreste aiutarmi con disponibilità e prezzi? Grazie!',
+    bookingWithBoat: 'Ciao! Sono interessato a prenotare il {boatName}. Potreste aiutarmi con disponibilità e prezzi? Grazie!',
+    bookingGeneric: 'Ciao! Vorrei fare una prenotazione per noleggiare una barca. Potreste aiutarmi con disponibilità e prezzi?',
+  },
   locationPages: {
     blanes: {
+      faqItems: [
+        {
+          question: 'Ho bisogno della patente per noleggiare una barca a Blanes?',
+          answer: 'No. Abbiamo 5 barche senza patente per un massimo di 5 persone. Devi solo essere maggiorenne. Ti forniamo una formazione di 15 minuti prima di partire.',
+        },
+        {
+          question: 'Quanto costa noleggiare una barca al Porto di Blanes?',
+          answer: 'Le barche senza patente costano a partire da {noLicBaja1h} EUR/ora in bassa stagione (aprile-giugno, settembre-ottobre). In alta stagione (agosto) a partire da {noLicAlta1h} EUR/ora. Il prezzo include carburante, assicurazione e attrezzatura di sicurezza.',
+        },
+        {
+          question: 'Dove posso andare in barca da Blanes?',
+          answer: 'Dal Porto di Blanes puoi visitare Cala Brava (15 min), Cala Sant Francesc (20 min), Lloret de Mar (30 min) e Tossa de Mar (45 min). Le barche con patente hanno maggiore autonomia per destinazioni più lontane.',
+        },
+        {
+          question: 'C\'è un parcheggio vicino al Porto di Blanes?',
+          answer: 'Sì. C\'è un parcheggio gratuito accanto al Porto di Blanes. Nella zona portuale ci sono anche ristoranti, negozi nautici e stazione di servizio.',
+        },
+        {
+          question: 'Qual è il periodo migliore per noleggiare una barca a Blanes?',
+          answer: 'La stagione va da aprile a ottobre. Giugno e settembre offrono i prezzi migliori e meno affollamento. Agosto è alta stagione con le migliori condizioni del mare ma prezzi più alti.',
+        },
+        {
+          question: 'Si può noleggiare una barca a Blanes lo stesso giorno?',
+          answer: 'Sì, accettiamo prenotazioni dell\'ultimo momento se c\'è disponibilità. Contattaci su WhatsApp al +34 611 500 372 per verificare la disponibilità lo stesso giorno.',
+        },
+        {
+          question: 'È sicuro navigare senza patente da Blanes?',
+          answer: 'Sì. Le nostre barche senza patente hanno un massimo di 15 CV, non richiedono abilitazione e navigano vicino alla costa. Includiamo formazione di sicurezza di 15 minuti, giubbotti di salvataggio e attrezzatura di emergenza.',
+        },
+      ],
       hero: {
         title: 'Noleggio Barche a Blanes',
         subtitle: 'Scopri le insenature più belle della Costa Brava dal Porto di Blanes. Barche con e senza patente per tutta la famiglia.',
@@ -1712,6 +1747,28 @@ export const it: Translations = {
       },
     },
     lloret: {
+      faqItems: [
+        {
+          question: 'Ho bisogno della patente o esperienza per arrivare a Lloret in barca?',
+          answer: 'No. Le nostre barche senza patente rispettano i requisiti legali per navigare fino a Playa de Fenals (sud di Lloret) senza abilitazione né esperienza precedente. Ti diamo un briefing di 15 minuti prima di partire. L\'unica restrizione è essere maggiorenne.',
+        },
+        {
+          question: 'Fino a dove esattamente posso arrivare con una barca senza patente?',
+          answer: 'Legalmente, fino a 2 miglia nautiche dalla costa, a massimo 5 nodi, con 15 CV. Da Blanes sono 25 minuti di navigazione fino a Playa de Fenals, passando per 7 calette. Playa de Lloret centro e Cala Canyelles si trovano a nord di Fenals — non sono accessibili con barca senza patente.',
+        },
+        {
+          question: 'Quanto costa noleggiare una barca senza patente per andare a Lloret?',
+          answer: 'A partire da {noLicBaja1h} €/ora (bassa stagione) e {noLicAlta1h} €/ora (alta stagione, luglio–agosto). Benzina inclusa nelle barche senza patente.',
+        },
+        {
+          question: 'Posso arrivare a Tossa de Mar da Lloret con una barca senza patente?',
+          answer: 'No. Tossa si trova 4–5 miglia a nord di Fenals, fuori dal raggio legale senza patente. Per andare a Tossa in barca da Blanes ti serve (a) barca con Patente Nautica di Base (LBN), o (b) Escursione Privata con Capitano.',
+        },
+        {
+          question: 'Cosa succede se il mare è mosso?',
+          answer: 'Se le previsioni indicano >20 nodi sostenuti o allerta per onde >1,5 m, cancelliamo senza costi. Il tratto Blanes–Fenals è protetto dalla Tramontana dalla costa stessa, quindi è uno dei più sicuri per principianti anche con vento da nord.',
+        },
+      ],
       hero: {
         title: 'Escursioni in Barca a Lloret de Mar',
         subtitle: 'Scopri le famose spiagge di Lloret de Mar navigando dal Porto di Blanes. 25 minuti di navigazione verso una delle destinazioni più popolari della Costa Brava.',
@@ -1771,6 +1828,32 @@ export const it: Translations = {
       },
     },
     tossa: {
+      faqItems: [
+        {
+          question: 'Posso arrivare a Tossa de Mar con una barca senza patente da Blanes?',
+          answer: 'No. Le barche senza patente (2 miglia dalla costa, 5 nodi, 15 CV) arrivano fino a Playa de Fenals (sud di Lloret), 4 miglia prima di Tossa. Per arrivare a Tossa ti serve la Patente Nautica di Base (LBN) oppure prenotare l\'Escursione Privata con Capitano.',
+        },
+        {
+          question: 'Quanto ci vuole in barca da Blanes a Tossa?',
+          answer: 'Tra 45 minuti e 1 ora dal Porto di Blanes. 7 miglia di costa spettacolare con scogliere e calette vergini.',
+        },
+        {
+          question: 'Quanto costa l\'Escursione Privata con Capitano a Tossa?',
+          answer: 'Pacific Craft 625 con skipper professionista, 4 h massimo, fino a 7 persone. A partire da {excursionBaja4h} € bassa stagione (aprile-giugno, settembre-chiusura). Include IVA, skipper, ormeggio, pulizia e assicurazione. Carburante a parte.',
+        },
+        {
+          question: 'Quanto costa noleggiare per Tossa con Patente di Base (LBN)?',
+          answer: 'Pacchetti fissi 2 h / 4 h / 8 h, senza skipper. A partire da {licBaja2h} € (2 h bassa stagione) con le barche con patente. 3 fasce stagionali. Cauzione 500 €. IVA, ormeggio, pulizia e assicurazione inclusi; carburante a parte.',
+        },
+        {
+          question: 'Posso sbarcare a Tossa paese dalla barca?',
+          answer: 'Non c\'è ormeggio turistico pubblico a Tossa. Si può ancorare in calette vicine come Cala Llevadó, Mar d\'en Roig o Cala Pola.',
+        },
+        {
+          question: 'Vale la pena andare a Tossa in barca se non ho la patente?',
+          answer: 'Sì, tramite l\'Escursione Privata con Capitano (Pacific Craft 625, 4 h, a partire da {excursionBaja4h} €). Unica opzione senza necessità di patente.',
+        },
+      ],
       hero: {
         title: 'Escursioni in Barca a Tossa de Mar',
         subtitle: 'Scopri il più bello villaggio medievale della Costa Brava navigando dal Porto di Blanes. 30-45 min di navigazione fino alla famosa Vila Vella di Tossa de Mar.',
@@ -1872,8 +1955,68 @@ export const it: Translations = {
         ctaDescription: 'A soli 10 minuti in auto. Prenota e scopri la Costa Brava.',
         ctaButton: 'Prenota una Barca da Blanes',
       },
+      faqItems: [
+        {
+          question: 'A che distanza si trova Malgrat de Mar dal Porto di Blanes?',
+          answer: 'Malgrat de Mar si trova a soli 8 km dal Porto di Blanes, circa 10 minuti in auto sulla N-II. Puoi anche arrivarci in treno RENFE linea R1 in soli 5 minuti.',
+        },
+        {
+          question: 'Quanto costa noleggiare una barca da Blanes?',
+          answer: 'Il noleggio barca parte da {noLicBaja1h} EUR all\'ora con benzina inclusa. Non serve la patente per barche fino a 15 CV. Disponiamo di {fleetCount} barche per 4-11 persone.',
+        },
+        {
+          question: 'Ho bisogno della patente nautica?',
+          answer: 'Non necessariamente. Offriamo barche senza patente che qualsiasi maggiorenne può guidare. Ti diamo 15 minuti di formazione prima di salpare. Abbiamo anche barche con patente.',
+        },
+        {
+          question: 'C\'è parcheggio al Porto di Blanes?',
+          answer: 'Sì, c\'è parcheggio gratuito disponibile vicino al Porto di Blanes. In alta stagione consigliamo di arrivare presto per assicurarsi un posto, o considerare treno/taxi.',
+        },
+        {
+          question: 'Posso noleggiare la barca direttamente da Malgrat de Mar?',
+          answer: 'No. Malgrat de Mar non ha porto turistico né punto di noleggio barche a motore. Il porto nautico più vicino a Malgrat è il Porto di Blanes (8 km, 10 min in auto o 5 min in treno R1). Tutte le nostre imbarcazioni partono e ritornano al Porto di Blanes.',
+        },
+        {
+          question: 'Quali calette si possono raggiungere in barca da Blanes se alloggio a Malgrat?',
+          answer: 'Con una barca senza patente da Blanes arrivi in 25 minuti a Playa de Fenals (sud di Lloret), passando per 7 calette: Sa Forcanera, Cala Sant Francesc, Cala de s\'Agulla, Cala Treumal, Playa de Santa Cristina, Cala Sa Boadella e Playa de Fenals. Con barca con Patente di Base puoi arrivare a Tossa de Mar (45 min) e oltre.',
+        },
+        {
+          question: 'C\'è un servizio transfer dagli hotel di Malgrat al Porto di Blanes?',
+          answer: 'Non offriamo transfer diretto, ma il tragitto è molto breve: 5 minuti in treno R1 (Malgrat → Blanes) o 10 minuti in auto/taxi (costo approssimativo 12-15 EUR). La stazione di Blanes è a 10 minuti a piedi dal porto. C\'è anche l\'autobus locale L23.',
+        },
+      ],
     },
     santaSusanna: {
+      faqItems: [
+        {
+          question: 'A che distanza si trova Santa Susanna dal Porto di Blanes?',
+          answer: 'Santa Susanna si trova a 12 km dal Porto di Blanes, circa 15 minuti in auto sulla N-II. Puoi anche arrivarci in treno RENFE linea R1 in soli 10 minuti.',
+        },
+        {
+          question: 'Quanto costa noleggiare una barca da Blanes se sono a Santa Susanna?',
+          answer: 'Il noleggio barca parte da {noLicBaja1h} EUR all\'ora con benzina inclusa. Non serve la patente per barche fino a 15 CV. Disponiamo di {fleetCount} barche per 4-11 persone.',
+        },
+        {
+          question: 'Ho bisogno della patente nautica per noleggiare una barca?',
+          answer: 'Non necessariamente. Offriamo barche senza patente che qualsiasi maggiorenne può guidare. Ti diamo 15 minuti di formazione prima di salpare. Abbiamo anche barche con patente.',
+        },
+        {
+          question: 'È facile arrivare con i mezzi pubblici da Santa Susanna?',
+          answer: 'Sì, la linea R1 di RENFE collega Santa Susanna con Blanes in soli 10 minuti. I treni partono ogni 30 minuti in alta stagione. La stazione di Blanes è a 10 minuti a piedi dal porto.',
+        },
+        {
+          question: 'C\'è noleggio barche nella stessa Santa Susanna?',
+          answer: 'No. Santa Susanna ha una spiaggia ampia ma non dispone di porto turistico né servizio di noleggio barche a motore. Il porto nautico più vicino è il Porto di Blanes (12 km, 15 min in auto o 10 min in treno R1). È il punto di noleggio più pratico se alloggi a Santa Susanna.',
+        },
+        {
+          question: 'Qual è l\'escursione in barca migliore se alloggio a Santa Susanna?',
+          answer: 'Da Blanes consigliamo: (a) Percorso delle calette 4h senza patente fino a Playa de Fenals con ancoraggio in 2-3 calette cristalline (da 135 EUR per 5 persone); (b) Escursione privata con skipper 4h fino a Tossa e Cala Bona (da {excursionBaja4h} EUR, ideale se non hai esperienza nautica); (c) Barca con Patente di Base se qualcuno del gruppo ha l\'abilitazione (da 240 EUR / 4h).',
+        },
+        {
+          question: 'Posso fare un\'escursione in barca al tramonto da Santa Susanna?',
+          answer: 'Sì, è molto popolare. Da Blanes offriamo giri al tramonto (18:30-21:00 secondo il mese) con barca senza patente a 115 EUR per 2 ore. Navigherai per le 7 calette con luce dorata. Da Santa Susanna arrivi in 15 min in auto o 10 min in treno. Prenota in anticipo in estate.',
+        },
+      ],
       hero: {
         title: 'Noleggio Barche vicino a Santa Susanna',
         subtitle: 'In vacanza a Santa Susanna? Il Porto di Blanes è a 15 minuti in auto. Noleggia una barca senza patente ed esplora la Costa Brava.',
@@ -1915,6 +2058,36 @@ export const it: Translations = {
       },
     },
     calella: {
+      faqItems: [
+        {
+          question: 'A che distanza si trova Calella dal Porto di Blanes?',
+          answer: 'Calella si trova a 17 km dal Porto di Blanes, circa 20 minuti in auto sulla N-II. Puoi anche arrivarci in treno RENFE linea R1 in soli 15 minuti.',
+        },
+        {
+          question: 'Quanto costa noleggiare una barca da Blanes se sono a Calella?',
+          answer: 'Il noleggio barca parte da {noLicBaja1h} EUR all\'ora con benzina inclusa. Non serve la patente per barche fino a 15 CV. Disponiamo di {fleetCount} barche per 4-11 persone.',
+        },
+        {
+          question: 'Ho bisogno di esperienza precedente per noleggiare una barca?',
+          answer: 'Non serve esperienza. Offriamo barche senza patente che qualsiasi maggiorenne può guidare. Ti diamo 15 minuti di formazione prima di salpare, incluse norme di navigazione e sicurezza.',
+        },
+        {
+          question: 'Posso andare e tornare da Calella con i mezzi pubblici?',
+          answer: 'Sì, la linea R1 di RENFE collega Calella con Blanes in 15 minuti. I treni partono ogni 30 minuti in stagione. La stazione di Blanes è a circa 10 minuti a piedi dal porto.',
+        },
+        {
+          question: 'C\'è noleggio barche nella stessa Calella?',
+          answer: 'Calella è la località più grande del tratto ma non dispone di porto turistico con servizio di noleggio a motore. I porti nautici più vicini sono Blanes (17 km a nord, miglior flotta del tratto) e Arenys de Mar (15 km a sud, prezzi più alti). Consigliamo Blanes per il miglior rapporto qualità-prezzo e collegamento diretto con R1 in 15 minuti.',
+        },
+        {
+          question: 'Posso fare un\'escursione in barca da Calella a Tossa de Mar?',
+          answer: 'Non direttamente da Calella (non c\'è noleggio). Da Blanes sì: con una barca con Patente Nautica di Base (LBN) arrivi a Tossa in 45 min (da {licBaja2h} EUR/2h), oppure con la nostra Escursione Privata con Capitano 4h fino a Tossa includendo Cala Bona e Vila Vella (da {excursionBaja4h} EUR per un massimo di 7 persone). Le barche senza patente non possono arrivare a Tossa per il limite legale di 2 miglia.',
+        },
+        {
+          question: 'Quanto costa il treno R1 da Calella a Blanes?',
+          answer: 'Il biglietto singolo R1 Calella → Blanes costa circa 3 EUR (tariffa ATM zona 4-5). Con la tessera T-Casual 10 viaggi è più economico. Durata: 15 minuti. Frequenza: ogni 30 minuti in stagione. Dalla stazione di Blanes al Porto sono 10 minuti a piedi o 3 min in taxi.',
+        },
+      ],
       hero: {
         title: 'Noleggio Barche vicino a Calella',
         subtitle: 'Soggiorni a Calella? A soli 20 minuti in auto dal Porto di Blanes. Noleggia una barca per un\'esperienza unica.',
@@ -2028,6 +2201,66 @@ export const it: Translations = {
         petsA: 'Sì, gli animali domestici sono benvenuti su tutte le nostre barche. Consigliamo di portare acqua fresca, un asciugamano e una protezione solare adeguata per il vostro animale.',
       },
     },
+    tordera: {
+      faqItems: [
+        {
+          question: 'A che distanza si trova Tordera dal Porto di Blanes?',
+          answer: 'Tordera si trova a soli 10 km dal Porto di Blanes, circa 15 minuti in auto sulla C-32 o sulla strada locale. Puoi anche arrivarci in treno RENFE linea R1 in soli 8 minuti dalla stazione di Blanes.',
+        },
+        {
+          question: 'Quanto costa noleggiare una barca da Blanes se abito a Tordera?',
+          answer: 'Il noleggio barca senza patente parte da {noLicBaja1h} EUR all\'ora con benzina inclusa. Barche con patente da {licBaja2h} EUR per 2 ore. Disponiamo di {fleetCount} barche per 4-11 persone.',
+        },
+        {
+          question: 'Ho bisogno della patente nautica?',
+          answer: 'Non necessariamente. Offriamo barche senza patente che qualsiasi maggiorenne può guidare. Ti diamo 15 minuti di formazione prima di salpare. Abbiamo anche barche con patente per navigatori esperti.',
+        },
+        {
+          question: 'C\'è parcheggio al Porto di Blanes?',
+          answer: 'Sì, c\'è parcheggio gratuito disponibile vicino al Porto di Blanes. Da Tordera puoi parcheggiare comodamente dato che essendo una zona meno turistica di altri punti della costa, di solito c\'è disponibilità anche in alta stagione.',
+        },
+      ],
+    },
+    palafolls: {
+      faqItems: [
+        {
+          question: 'A che distanza si trova Palafolls dal Porto di Blanes?',
+          answer: 'Palafolls si trova a soli 8 km dal Porto di Blanes, circa 12 minuti in auto. È uno dei comuni più vicini al porto, il che lo rende un punto ideale per fare un\'escursione in barca sulla Costa Brava.',
+        },
+        {
+          question: 'Quanto costa noleggiare una barca da Blanes se sono a Palafolls?',
+          answer: 'Il noleggio barca senza patente parte da {noLicBaja1h} EUR all\'ora con benzina inclusa. Barche con patente da {licBaja2h} EUR per 2 ore. Disponiamo di {fleetCount} barche per 4-11 persone.',
+        },
+        {
+          question: 'Posso andare dal campeggio di Palafolls al Porto di Blanes facilmente?',
+          answer: 'Sì, dai campeggi della zona di Palafolls (come La Masía o Neptuno) arrivi al Porto di Blanes in circa 10-15 minuti in auto. Ci sono linee di autobus che collegano entrambe le località, anche se l\'auto è l\'opzione più comoda.',
+        },
+        {
+          question: 'Ho bisogno di esperienza per noleggiare una barca?',
+          answer: 'Non serve esperienza. Offriamo barche senza patente che qualsiasi maggiorenne può guidare. Ti diamo 15 minuti di formazione prima di salpare, incluse norme di navigazione e consigli di sicurezza.',
+        },
+      ],
+    },
+    pineda: {
+      faqItems: [
+        {
+          question: 'A che distanza si trova Pineda de Mar dal Porto di Blanes?',
+          answer: 'Pineda de Mar si trova a 15 km dal Porto di Blanes, circa 18 minuti in auto sulla N-II. Puoi anche arrivarci in treno RENFE linea R1 in soli 12 minuti dalla stazione di Blanes.',
+        },
+        {
+          question: 'Quanto costa noleggiare una barca da Blanes se sono a Pineda de Mar?',
+          answer: 'Il noleggio barca senza patente parte da {noLicBaja1h} EUR all\'ora con benzina inclusa. Barche con patente da {licBaja2h} EUR per 2 ore. Disponiamo di {fleetCount} barche per 4-11 persone.',
+        },
+        {
+          question: 'Ho bisogno della patente nautica per noleggiare una barca?',
+          answer: 'Non necessariamente. Offriamo barche senza patente che qualsiasi maggiorenne può guidare. Ti diamo 15 minuti di formazione prima di salpare. Abbiamo anche barche con patente per navigatori più esperti.',
+        },
+        {
+          question: 'Posso andare da Pineda de Mar a Blanes con i mezzi pubblici?',
+          answer: 'Sì, la linea R1 di RENFE collega Pineda de Mar con Blanes in 12 minuti. I treni partono ogni 30 minuti in stagione. La stazione di Blanes è a circa 10 minuti a piedi dal porto.',
+        },
+      ],
+    },
     newsletter: {
       title: 'Guida gratuita alle calette segrete',
       subtitle: 'Ricevi la nostra guida con le 10 migliori calette della Costa Brava accessibili solo in barca',
@@ -2036,10 +2269,5 @@ export const it: Translations = {
       success: 'Guida inviata! Controlla la tua email.',
       error: 'Errore di invio. Riprova.',
     },
-  },
-  whatsappMessages: {
-    bookingWithBoatAndPrice: 'Ciao! Sono interessato a prenotare il {boatName} (da {price}€). Potreste aiutarmi con disponibilità e prezzi? Grazie!',
-    bookingWithBoat: 'Ciao! Sono interessato a prenotare il {boatName}. Potreste aiutarmi con disponibilità e prezzi? Grazie!',
-    bookingGeneric: 'Ciao! Vorrei fare una prenotazione per noleggiare una barca. Potreste aiutarmi con disponibilità e prezzi?',
   },
 };

@@ -7,6 +7,7 @@ import { seoMeta } from "../shared/schema";
 import { eq, and } from "drizzle-orm";
 import { SUPPORTED_LANGUAGES, HREFLANG_CODES, type LangCode } from "../shared/seoConstants";
 import { isValidLang, resolveSlug, getSlugForPage, switchLanguagePath, type PageKey } from "../shared/i18n-routes";
+import { resolveBoatImagePath, BOAT_IMAGE_WIDTH, BOAT_IMAGE_HEIGHT } from "../shared/boatImages";
 import { AI_CRAWLER_NAMES } from "./seo/constants";
 import { getBoatReviewStats } from "./data/boatReviewStats";
 import { getNativeOverride, type NativeLanguageOverride } from "./seo/nativeLanguageOverrides";
@@ -38,6 +39,8 @@ interface SEOMeta {
   ogDescription?: string;
   ogImage?: string;
   ogImageAlt?: string;
+  ogImageWidth?: number;
+  ogImageHeight?: number;
   ogType?: string;
   twitterTitle?: string;
   twitterDescription?: string;
@@ -1423,11 +1426,19 @@ function injectMeta(
   // Replace og:image if a page-specific image is provided
   if (meta.ogImage) {
     const absImage = meta.ogImage.startsWith("http") ? meta.ogImage : `${BASE_URL}${meta.ogImage}`;
+    const imageMime = absImage.toLowerCase().endsWith(".png") ? "image/png"
+      : absImage.toLowerCase().endsWith(".jpg") || absImage.toLowerCase().endsWith(".jpeg") ? "image/jpeg"
+      : "image/webp";
     result = result.replace(/<meta property="og:image" content="[^"]*">/, `<meta property="og:image" content="${esc(absImage)}">`);
     result = result.replace(/<meta name="twitter:image" content="[^"]*">/, `<meta name="twitter:image" content="${esc(absImage)}">`);
-    // Remove hardcoded dimensions for dynamic images — crawlers determine size automatically
-    result = result.replace(/\s*<meta property="og:image:width" content="[^"]*">/, "");
-    result = result.replace(/\s*<meta property="og:image:height" content="[^"]*">/, "");
+    result = result.replace(/<meta property="og:image:type" content="[^"]*">/, `<meta property="og:image:type" content="${imageMime}">`);
+    if (meta.ogImageWidth && meta.ogImageHeight) {
+      result = result.replace(/<meta property="og:image:width" content="[^"]*">/, `<meta property="og:image:width" content="${meta.ogImageWidth}">`);
+      result = result.replace(/<meta property="og:image:height" content="[^"]*">/, `<meta property="og:image:height" content="${meta.ogImageHeight}">`);
+    } else {
+      result = result.replace(/\s*<meta property="og:image:width" content="[^"]*">/, "");
+      result = result.replace(/\s*<meta property="og:image:height" content="[^"]*">/, "");
+    }
     // Add og:image:secure_url for parsers that require explicit HTTPS reference
     result = result.replace("</head>", `  <meta property="og:image:secure_url" content="${esc(absImage)}" />\n</head>`);
   } else {
@@ -1592,8 +1603,9 @@ function buildBoatProductSchema(
   }
 
   let imgUrl: string | undefined;
-  if (boat.imageUrl) {
-    imgUrl = boat.imageUrl.startsWith("http") ? boat.imageUrl : `${BASE_URL}/object-storage/${boat.imageUrl}`;
+  const resolved = resolveBoatImagePath(boat.imageUrl) || resolveBoatImagePath(boat.id);
+  if (resolved) {
+    imgUrl = resolved.startsWith("http") ? resolved : `${BASE_URL}${resolved}`;
   }
 
   const schema: Record<string, unknown> = {
@@ -1619,8 +1631,10 @@ function buildBoatProductSchema(
     const allImages = [imgUrl];
     if (boat.imageGallery?.length) {
       for (const img of boat.imageGallery) {
-        const fullUrl = img.startsWith("http") ? img : `${BASE_URL}/object-storage/${img}`;
-        allImages.push(fullUrl);
+        const resolvedGallery = resolveBoatImagePath(img);
+        if (!resolvedGallery) continue;
+        const fullUrl = resolvedGallery.startsWith("http") ? resolvedGallery : `${BASE_URL}${resolvedGallery}`;
+        if (!allImages.includes(fullUrl)) allImages.push(fullUrl);
       }
     }
     schema.image = allImages;
@@ -2854,12 +2868,11 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
           es: "Desde", en: "From", ca: "Des de", fr: "Dès", de: "Ab", nl: "Vanaf", it: "Da", ru: "От"
         };
         const priceStr = fromPrice ? ` | ${fromLabels[lang] || "Desde"} ${fromPrice}€` : "";
-        // Build boat-specific og:image URL
-        const boatOgImage = boat.imageUrl
-          ? (boat.imageUrl.startsWith("http") ? boat.imageUrl
-            : boat.imageUrl.startsWith("/") ? boat.imageUrl
-            : `/object-storage/${boat.imageUrl}`)
-          : undefined;
+        // Build boat-specific og:image URL. resolveBoatImagePath maps legacy DB
+        // filenames (e.g. "SOLAR_450_boat_photo_xxx.png") to real /images/boats/
+        // asset paths so social crawlers get a 200 instead of a 404.
+        const resolvedBoatImage = resolveBoatImagePath(boat.imageUrl) || resolveBoatImagePath(boat.id);
+        const boatOgImage = resolvedBoatImage ?? undefined;
         const isExcursion = boat.id === "excursion-privada";
         const excursionMeta: Record<string, { title: string; description: string }> = {
           es: {
@@ -2921,13 +2934,17 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
           ru: `${boat.name} - Аренда лодок в порту Бланес, Коста-Брава`,
         };
         const boatOgImageAlt = ogImageAltByLang[lang] || ogImageAltByLang.es;
+        const boatOgImageWidth = boatOgImage ? BOAT_IMAGE_WIDTH : undefined;
+        const boatOgImageHeight = boatOgImage ? BOAT_IMAGE_HEIGHT : undefined;
         const meta: SEOMeta = isExcursion
-          ? { title: exc.title, description: exc.description, ogImage: boatOgImage, ogImageAlt: boatOgImageAlt, ogType: "product" }
+          ? { title: exc.title, description: exc.description, ogImage: boatOgImage, ogImageAlt: boatOgImageAlt, ogImageWidth: boatOgImageWidth, ogImageHeight: boatOgImageHeight, ogType: "product" }
           : {
               title: `${r.verb} ${boat.name} ${r.prep} Blanes (${licenseText}) | Costa Brava${priceStr}`,
               description: `${r.bookVerb} ${boat.name} ${r.prep} Blanes, Costa Brava. ${r.upTo} ${boat.capacity} ${r.people}, ${licenseText}. WhatsApp.`,
               ogImage: boatOgImage,
               ogImageAlt: boatOgImageAlt,
+              ogImageWidth: boatOgImageWidth,
+              ogImageHeight: boatOgImageHeight,
               ogType: "product",
             };
         // Build Product schema with AggregateRating + Reviews for star snippets

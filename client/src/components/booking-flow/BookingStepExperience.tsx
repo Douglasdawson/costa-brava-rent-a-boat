@@ -9,6 +9,7 @@ import type { Boat } from "@shared/schema";
 import type { Translations } from "@/lib/translations";
 import type { Duration, TimeSlot } from "./types";
 import { BookingTrustBanner } from "./BookingTrustBanner";
+import { getMinActivePrice } from "@shared/pricing";
 
 interface PopularChoices {
   popularTime: string;
@@ -170,7 +171,7 @@ export function BookingStepExperience({
                 const isSelected = selectedBoat === boat.id;
                 const boatName = boat.name;
                 const boatCapacity = boat.capacity || parseInt(boat.specifications?.capacity?.split(' ')[0] || '5');
-                const boatPrice = boat.pricePerHour ? parseFloat(boat.pricePerHour) : Math.min(...Object.values(boat.pricing?.BAJA?.prices || {"1h": 75}) as number[]);
+                const boatPrice = boat.pricePerHour ? parseFloat(boat.pricePerHour) : (getMinActivePrice(boat.pricing?.BAJA?.prices) ?? 75);
                 const boatImage = boat.imageUrl || (boat as Record<string, unknown>).image as string || "/placeholder-boat.jpg";
                 const requiresLicense = boat.requiresLicense !== undefined ? boat.requiresLicense : boat.subtitle?.includes("Con Licencia");
 
@@ -355,7 +356,7 @@ export function BookingStepExperience({
               const boat = availableBoats.find(b => b.id === selectedBoat);
               const boatName = boat?.name || selectedBoat;
               const pricing = boat?.pricing as Record<string, { prices: Record<string, number> }> | null;
-              const price = pricing ? Math.min(...Object.values(pricing.BAJA?.prices || { "1h": 75 })) : 0;
+              const price = pricing ? (getMinActivePrice(pricing.BAJA?.prices) ?? 75) : 0;
               const utm = getStoredUtm();
               trackAddToCart(selectedBoat, boatName, price);
               trackBeginCheckout(selectedBoat, boatName, price, utm);

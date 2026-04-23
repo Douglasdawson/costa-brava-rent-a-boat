@@ -15,7 +15,7 @@ import type { Boat } from "@shared/schema";
 import { trackBookingStarted, trackWhatsAppClick, trackGenerateLead } from "@/utils/analytics";
 import { getStoredUtm } from "@/hooks/useUtmCapture";
 import { BOAT_DATA, EXTRA_PACKS } from "@shared/boatData";
-import { calculateExtrasPrice, calculatePackSavings, getAvailableDurationsForDate, type DurationOption } from "@shared/pricing";
+import { calculateExtrasPrice, calculatePackSavings, getAvailableDurationsForDate, filterActivePrices, type DurationOption } from "@shared/pricing";
 import type { AutoDiscountResult } from "@shared/discounts";
 import BookingWizardMobile from "@/components/BookingWizardMobile";
 import BookingFormDesktop from "@/components/BookingFormDesktop";
@@ -447,6 +447,12 @@ export default function BookingFormWidget({ preSelectedBoatId, prefillDate, pref
       return seasonPricing?.prices[durationKey] || null;
     };
 
+    // Durations the admin has disabled (price 0 / null) for the current season must not be offered.
+    const hasActivePriceForDuration = (durationKey: string) => {
+      const p = getPriceForDuration(durationKey);
+      return typeof p === 'number' && p > 0;
+    };
+
     const formatLabel = (durationKey: string, baseLabel: string) => {
       const price = getPriceForDuration(durationKey);
       return price ? `${baseLabel} - ${price}€` : baseLabel;
@@ -464,19 +470,21 @@ export default function BookingFormWidget({ preSelectedBoatId, prefillDate, pref
       }
 
       if (durationAvailability.length > 0) {
-        return durationAvailability.map((opt) => {
-          const baseLabel = durationLabelMap[opt.duration] || opt.duration;
-          const label = formatLabel(opt.duration, baseLabel);
-          if (!opt.available) {
-            return {
-              value: opt.duration,
-              label: baseLabel,
-              disabled: true,
-              disabledReason: getRestrictionTooltip(opt),
-            };
-          }
-          return { value: opt.duration, label, price: getPriceForDuration(opt.duration) ?? undefined };
-        });
+        return durationAvailability
+          .filter((opt) => hasActivePriceForDuration(opt.duration))
+          .map((opt) => {
+            const baseLabel = durationLabelMap[opt.duration] || opt.duration;
+            const label = formatLabel(opt.duration, baseLabel);
+            if (!opt.available) {
+              return {
+                value: opt.duration,
+                label: baseLabel,
+                disabled: true,
+                disabledReason: getRestrictionTooltip(opt),
+              };
+            }
+            return { value: opt.duration, label, price: getPriceForDuration(opt.duration) ?? undefined };
+          });
       }
     }
 
@@ -500,21 +508,24 @@ export default function BookingFormWidget({ preSelectedBoatId, prefillDate, pref
     }
 
     // Boat selected but no date — show boat-specific durations without restrictions
-    if (selectedBoatInfo.requiresLicense) {
-      return [
-        { value: "2h", label: formatLabel("2h", t.booking.twoHours || "2 horas"), price: getPriceForDuration("2h") ?? undefined },
-        { value: "4h", label: formatLabel("4h", t.booking.fourHours || "4 horas - Medio dia"), price: getPriceForDuration("4h") ?? undefined },
-        { value: "8h", label: formatLabel("8h", t.booking.eightHours || "8 horas - Dia completo"), price: getPriceForDuration("8h") ?? undefined },
-      ];
-    }
-    return [
-      { value: "1h", label: formatLabel("1h", t.booking.oneHour || "1 hora"), price: getPriceForDuration("1h") ?? undefined },
-      { value: "2h", label: formatLabel("2h", t.booking.twoHours || "2 horas"), price: getPriceForDuration("2h") ?? undefined },
-      { value: "3h", label: formatLabel("3h", t.booking.threeHours || "3 horas"), price: getPriceForDuration("3h") ?? undefined },
-      { value: "4h", label: formatLabel("4h", t.booking.fourHours || "4 horas - Medio dia"), price: getPriceForDuration("4h") ?? undefined },
-      { value: "6h", label: formatLabel("6h", t.booking.sixHours || "6 horas"), price: getPriceForDuration("6h") ?? undefined },
-      { value: "8h", label: formatLabel("8h", t.booking.eightHours || "8 horas - Dia completo"), price: getPriceForDuration("8h") ?? undefined },
-    ];
+    const licensedDurations = ["2h", "4h", "8h"] as const;
+    const unlicensedDurations = ["1h", "2h", "3h", "4h", "6h", "8h"] as const;
+    const durationLabelsBoat: Record<string, string> = {
+      "1h": t.booking.oneHour || "1 hora",
+      "2h": t.booking.twoHours || "2 horas",
+      "3h": t.booking.threeHours || "3 horas",
+      "4h": t.booking.fourHours || "4 horas - Medio dia",
+      "6h": t.booking.sixHours || "6 horas",
+      "8h": t.booking.eightHours || "8 horas - Dia completo",
+    };
+    const catalog = selectedBoatInfo.requiresLicense ? licensedDurations : unlicensedDurations;
+    return catalog
+      .filter(hasActivePriceForDuration)
+      .map((d) => ({
+        value: d,
+        label: formatLabel(d, durationLabelsBoat[d]),
+        price: getPriceForDuration(d) ?? undefined,
+      }));
   };
 
   // Reset duration when the season changes OR when selected duration becomes disabled due to date change

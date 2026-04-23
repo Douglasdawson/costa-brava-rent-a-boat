@@ -10,6 +10,7 @@ import { BookingStepPersonalize } from "./BookingStepPersonalize";
 import { BookingStepPayment } from "./BookingStepPayment";
 import type { BookingFlowProps } from "./types";
 import { trackBookingAbandoned } from "@/utils/analytics";
+import { getMinActivePrice } from "@shared/pricing";
 
 export default function BookingFlow(props: BookingFlowProps) {
   const { onClose } = props;
@@ -64,7 +65,7 @@ export default function BookingFlow(props: BookingFlowProps) {
           const boat = state.availableBoats.find(b => b.id === state.selectedBoat);
           const boatName = boat?.name || state.selectedBoat;
           const pricing = boat?.pricing as Record<string, { prices: Record<string, number> }> | null;
-          const boatPrice = pricing ? Math.min(...Object.values(pricing.BAJA?.prices || { "1h": 75 })) : 0;
+          const boatPrice = pricing ? (getMinActivePrice(pricing.BAJA?.prices) ?? 75) : 0;
           return (
             <BookingStepPersonalize
               availableExtras={state.availableExtras}

@@ -24,6 +24,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { filterActivePrices, getMinActivePrice } from "@shared/pricing";
 
 /** Skeleton that mirrors BoatCard layout: image 4/3 + content + buttons */
 function BoatCardSkeleton() {
@@ -276,7 +277,7 @@ function FleetSection() {
     if (boatsData && boatsData.length > 0) {
       trackViewItemList('fleet', 'Fleet Section', boatsData.filter(b => b.isActive).map(boat => {
         const pricing = boat.pricing as Record<string, { prices: Record<string, number> }> | null;
-        const price = pricing?.BAJA?.prices ? Math.min(...Object.values(pricing.BAJA.prices)) : 75;
+        const price = getMinActivePrice(pricing?.BAJA?.prices) ?? 75;
         return { id: boat.id, name: boat.name, price };
       }));
     }
@@ -313,18 +314,13 @@ function FleetSection() {
     .filter(boat => boat.isActive)
     .sort((a, b) => (a.displayOrder ?? 999) - (b.displayOrder ?? 999))
     .map(boat => {
-      // Current season base price (minimum duration price), fallback to BAJA
+      // Current season base price (minimum duration price), fallback to BAJA.
+      // Skip 0/null entries so admin-disabled durations don't anchor the price.
       const season = currentSeason || 'BAJA';
-      const seasonPricing = boat.pricing?.[season]?.prices;
-      const basePrice = seasonPricing
-        ? Math.min(...Object.values(seasonPricing))
-        : 0;
+      const basePrice = getMinActivePrice(boat.pricing?.[season]?.prices) ?? 0;
 
       // High season minimum price for price anchoring
-      const highSeasonPrices = boat.pricing?.ALTA?.prices;
-      const highSeasonPrice = highSeasonPrices
-        ? Math.min(...Object.values(highSeasonPrices))
-        : 0;
+      const highSeasonPrice = getMinActivePrice(boat.pricing?.ALTA?.prices) ?? 0;
 
       // Extract engine power from specifications
       const enginePower = boat.specifications?.engine || '';
@@ -704,9 +700,8 @@ function FleetSection() {
                   {sortedBoats.map((boat) => {
                     const rawBoat = boatsData?.find(b => b.id === boat.id);
                     const season = currentSeason || 'BAJA';
-                    const durations = rawBoat?.pricing?.[season]?.prices
-                      ? Object.keys(rawBoat.pricing[season].prices).sort((a, b) => parseFloat(a) - parseFloat(b))
-                      : [];
+                    const durations = Object.keys(filterActivePrices(rawBoat?.pricing?.[season]?.prices))
+                      .sort((a, b) => parseFloat(a) - parseFloat(b));
                     return (
                       <TableCell key={boat.id} className="text-center text-sm">
                         {durations.length > 0 ? durations.map(d => String(d).endsWith('h') ? d : `${d}h`).join(', ') : '-'}

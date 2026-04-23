@@ -288,6 +288,32 @@ export function getAllBoatIds(): string[] {
 }
 
 /**
+ * Filter a prices record to only entries offered (price > 0).
+ * Admins can set a duration's price to 0 to hide it from public pages.
+ */
+export function filterActivePrices(
+  prices: Record<string, number | null | undefined> | null | undefined,
+): Record<string, number> {
+  if (!prices) return {};
+  const out: Record<string, number> = {};
+  for (const [k, v] of Object.entries(prices)) {
+    if (typeof v === 'number' && v > 0) out[k] = v;
+  }
+  return out;
+}
+
+/**
+ * Minimum offered price across durations, ignoring 0 / null entries.
+ * Returns null when no active price is configured.
+ */
+export function getMinActivePrice(
+  prices: Record<string, number | null | undefined> | null | undefined,
+): number | null {
+  const active = Object.values(filterActivePrices(prices));
+  return active.length ? Math.min(...active) : null;
+}
+
+/**
  * Format price for display (e.g., 150 -> "150€")
  */
 export function formatPrice(amount: number): string {

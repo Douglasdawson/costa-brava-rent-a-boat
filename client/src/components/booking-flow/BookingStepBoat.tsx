@@ -4,6 +4,7 @@ import { Anchor, Gauge } from "lucide-react";
 import { getBoatAltText } from "@/utils/boatImages";
 import type { Boat } from "@shared/schema";
 import type { Translations } from "@/lib/translations";
+import { getMinActivePrice } from "@shared/pricing";
 
 interface BookingStepBoatProps {
   availableBoats: Boat[];
@@ -63,7 +64,7 @@ export function BookingStepBoat({
             const isSelected = selectedBoat === boat.id;
             const boatName = boat.name;
             const boatCapacity = boat.capacity || parseInt(boat.specifications?.capacity?.split(' ')[0] || '5');
-            const boatPrice = boat.pricePerHour ? parseFloat(boat.pricePerHour) : Math.min(...Object.values(boat.pricing?.BAJA?.prices || {"1h": 75}) as number[]);
+            const boatPrice = boat.pricePerHour ? parseFloat(boat.pricePerHour) : (getMinActivePrice(boat.pricing?.BAJA?.prices) ?? 75);
             const boatImage = boat.imageUrl || (boat as Record<string, unknown>).image as string || "/placeholder-boat.jpg";
             const requiresLicense = boat.requiresLicense !== undefined ? boat.requiresLicense : boat.subtitle?.includes("Con Licencia");
 

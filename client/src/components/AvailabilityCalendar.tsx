@@ -102,7 +102,7 @@ function getCheapestPrice(season: Season, weekend: boolean): number {
     if (!seasonPricing) continue;
     // Use the shortest available duration (1h) as the "desde" price
     const price1h = seasonPricing.prices["1h"];
-    if (price1h !== undefined && price1h < min) {
+    if (price1h !== undefined && price1h > 0 && price1h < min) {
       min = price1h;
     }
   }
@@ -117,7 +117,7 @@ function getBoatCheapestPrice(boatId: string, season: Season, weekend: boolean):
   const seasonPricing = boat.pricing[season];
   if (!seasonPricing) return 0;
   const price1h = seasonPricing.prices["1h"];
-  if (price1h === undefined) return 0;
+  if (price1h === undefined || price1h <= 0) return 0;
   return weekend ? Math.round(price1h * WEEKEND_SURCHARGE_FACTOR) : price1h;
 }
 

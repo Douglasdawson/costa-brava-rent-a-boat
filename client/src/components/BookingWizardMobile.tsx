@@ -6,6 +6,7 @@ import { Calendar } from "@/components/ui/calendar";
 import { SiWhatsapp } from "@/components/icons/BrandIcons";
 import type { Boat } from "@shared/schema";
 import { EXTRA_PACKS } from "@shared/boatData";
+import { getMinActivePrice } from "@shared/pricing";
 import type { Translations } from "@/lib/translations";
 import BookingProgressBar from "@/components/BookingProgressBar";
 import { ValueStack } from "@/components/booking-flow/ValueStack";
@@ -335,9 +336,7 @@ function Step1Boat({
           )}
           {filteredBoats.map((boat) => {
             const firstSeason = boat.pricing?.BAJA ?? (boat.pricing ? Object.values(boat.pricing)[0] : null);
-            const minPrice = firstSeason?.prices
-              ? Math.min(...(Object.values(firstSeason.prices) as number[]))
-              : null;
+            const minPrice = getMinActivePrice(firstSeason?.prices);
             return (
               <button
                 key={boat.id}

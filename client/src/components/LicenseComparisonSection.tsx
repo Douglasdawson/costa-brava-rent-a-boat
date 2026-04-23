@@ -6,6 +6,7 @@ import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "wouter";
 import type { Boat } from "@shared/schema";
+import { getMinActivePrice } from "@shared/pricing";
 
 export default function LicenseComparisonSection() {
   const t = useTranslations();
@@ -14,21 +15,25 @@ export default function LicenseComparisonSection() {
 
   const { data: boats } = useQuery<Boat[]>({ queryKey: ['/api/boats'] });
 
-  const noLicenseMinPrice = boats
+  const noLicenseMinPriceRaw = boats
     ?.filter(b => !b.requiresLicense && b.pricing)
     .reduce((min, b) => {
-      const prices = Object.values(b.pricing!.BAJA.prices);
-      const boatMin = Math.min(...prices);
-      return boatMin < min ? boatMin : min;
-    }, Infinity) || 70;
+      const boatMin = getMinActivePrice(b.pricing!.BAJA?.prices);
+      return boatMin !== null && boatMin < min ? boatMin : min;
+    }, Infinity);
+  const noLicenseMinPrice = noLicenseMinPriceRaw && Number.isFinite(noLicenseMinPriceRaw)
+    ? noLicenseMinPriceRaw
+    : 70;
 
-  const withLicenseMinPrice = boats
+  const withLicenseMinPriceRaw = boats
     ?.filter(b => b.requiresLicense && b.pricing)
     .reduce((min, b) => {
-      const prices = Object.values(b.pricing!.BAJA.prices);
-      const boatMin = Math.min(...prices);
-      return boatMin < min ? boatMin : min;
-    }, Infinity) || 150;
+      const boatMin = getMinActivePrice(b.pricing!.BAJA?.prices);
+      return boatMin !== null && boatMin < min ? boatMin : min;
+    }, Infinity);
+  const withLicenseMinPrice = withLicenseMinPriceRaw && Number.isFinite(withLicenseMinPriceRaw)
+    ? withLicenseMinPriceRaw
+    : 150;
 
   // Extract max engine HP from licensed boats
   const maxEngineHP = boats

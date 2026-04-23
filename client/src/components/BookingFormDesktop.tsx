@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "motion/react";
 import type { BookingWizardMobileProps } from "./BookingWizardMobile";
 import { EXTRA_PACKS } from "@shared/boatData";
+import { getMinActivePrice } from "@shared/pricing";
 import BookingProgressBar from "@/components/BookingProgressBar";
 import { ValueStack } from "@/components/booking-flow/ValueStack";
 import { BookingTrustBanner } from "@/components/booking-flow/BookingTrustBanner";
@@ -387,9 +388,7 @@ function Step1BoatDate({
           <div className="grid grid-cols-2 gap-2">
             {filteredBoats.map((boat) => {
               const firstSeason = boat.pricing?.BAJA ?? (boat.pricing ? Object.values(boat.pricing)[0] : null);
-              const minPrice = firstSeason?.prices
-                ? Math.min(...(Object.values(firstSeason.prices) as number[]))
-                : null;
+              const minPrice = getMinActivePrice(firstSeason?.prices);
               const isSelected = selectedBoat === boat.id;
               return (
                 <button

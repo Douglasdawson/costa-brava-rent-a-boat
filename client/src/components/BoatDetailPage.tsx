@@ -53,6 +53,7 @@ import {
   generateBreadcrumbSchema
 } from "@/utils/seo-config";
 import type { Boat } from "@shared/schema";
+import { filterActivePrices, getMinActivePrice } from "@shared/pricing";
 import { Breadcrumbs } from "./Breadcrumbs";
 import { useTranslations } from "@/lib/translations";
 import AvailabilityCalendar from "./AvailabilityCalendar";
@@ -603,7 +604,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
   useEffect(() => {
     if (boatData) {
       const pricing = boatData.pricing as Record<string, { prices: Record<string, number> }> | null;
-      const price = pricing ? Math.min(...Object.values(pricing.BAJA.prices)) : 0;
+      const price = pricing ? (getMinActivePrice(pricing.BAJA?.prices) ?? 0) : 0;
       trackGoogleAdsRemarketing({
         ecommPageType: 'product',
         productId: boatId,
@@ -684,7 +685,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
   };
 
   // SEO data for this boat
-  const lowestPrice = boatData.pricing ? Math.min(...Object.values(boatData.pricing.BAJA.prices)) : 0;
+  const lowestPrice = boatData.pricing ? (getMinActivePrice(boatData.pricing.BAJA?.prices) ?? 0) : 0;
   const requiresLicense = boatData.subtitle?.toLowerCase().includes("con licencia") ?? boatData.requiresLicense;
   const fuelNotIncluded = boatData.features?.some((f: string) => /combustible\s*no/i.test(f) || /fuel\s*not/i.test(f)) ?? false;
   const fuelIncluded = !requiresLicense && !fuelNotIncluded;
@@ -1154,7 +1155,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                   <p className="text-sm text-muted-foreground mb-4">{seasonPeriods[selectedSeason]}</p>
                   
                   <div className="flex flex-wrap justify-center gap-4">
-                    {Object.entries(boatData.pricing[selectedSeason].prices).sort((a, b) => parseInt(a[0]) - parseInt(b[0])).map(([duration, price]) => {
+                    {Object.entries(filterActivePrices(boatData.pricing[selectedSeason].prices)).sort((a, b) => parseInt(a[0]) - parseInt(b[0])).map(([duration, price]) => {
                       const isRecommended = !requiresLicense && duration === "4h";
                       return (
                         <div key={duration} className={`relative text-center p-3 rounded-lg min-w-[120px] transition-all cursor-pointer ${isRecommended ? "bg-background border-2 border-primary shadow-md scale-105 hover:shadow-lg ring-3 ring-cta/35" : "bg-background border hover:bg-primary/5"}`}
@@ -1417,7 +1418,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {relatedBoats.map((relBoat) => {
-                const relPrice = relBoat.pricing ? Math.min(...Object.values(relBoat.pricing.BAJA.prices)) : 0;
+                const relPrice = relBoat.pricing ? (getMinActivePrice(relBoat.pricing.BAJA?.prices) ?? 0) : 0;
                 const relCapacity = relBoat.specifications
                   ? parseInt(relBoat.specifications.capacity?.split(' ')[0] || String(relBoat.capacity))
                   : relBoat.capacity;

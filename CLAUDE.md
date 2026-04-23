@@ -214,6 +214,22 @@ Fuente de verdad: `client/src/i18n/es.ts`. Los otros 7 idiomas (en, ca, fr, de, 
 
 **Regla**: nunca añadir texto visible al usuario directamente en JSX/JSON-LD; siempre meterlo primero en `es.ts` y luego ejecutar `i18n:translate`.
 
+### Deuda i18n pendiente (2026-04-23)
+
+Estos archivos tienen texto visible en español hardcoded que **no se propaga** al cambiar a otros idiomas. Migrar a `es.ts` + `i18n:translate` cuando se toquen:
+
+| Archivo | Qué mover | Tamaño |
+|---------|-----------|--------|
+| `client/src/pages/faq.tsx` | 39 Q&A del `faqSchema.mainEntity` + los `AccordionItem` con contenido narrativo (listas, CTAs, notas) | Grande (~3h) |
+| `client/src/pages/pricing.tsx` | `SEASON_LABELS`, `SEASON_NAMES`, `LICENSE_TYPE_LABELS`, título H1, descripción, badges, FAQ inferior, labels tabla | Medio (~45min) |
+| `client/src/pages/category-licensed.tsx` | Array `licensedBoats` (features, range), descripciones, CTAs | Medio (~30min) |
+| `client/src/pages/location-barcelona.tsx` | Textos largos en `<Card>` body fuera del FAQ | Medio (~30min) |
+| `client/src/pages/location-tossa-de-mar.tsx` | Texto largo del aviso "Tossa no es alcanzable" + sections | Medio (~30min) |
+| `client/src/pages/location-tordera/palafolls/pineda-de-mar.tsx` | "Barcos sin licencia" / "con licencia" headers + descriptions | Pequeño (~20min c/u) |
+| `client/src/components/FAQPreview.tsx` | `FALLBACK_ITEMS` (8 Q&A — ya hay `t.faqPreview?.items` como override, pero el fallback está hardcoded) | Pequeño (~15min) |
+
+Cuando añadas texto nuevo a cualquiera de estos archivos durante trabajo normal, **aprovecha para migrarlo al sistema i18n** en el mismo commit.
+
 ## Cosas a Evitar
 
 - NO crear archivos `.md` nuevos sin que el usuario lo pida

@@ -214,21 +214,28 @@ Fuente de verdad: `client/src/i18n/es.ts`. Los otros 7 idiomas (en, ca, fr, de, 
 
 **Regla**: nunca añadir texto visible al usuario directamente en JSX/JSON-LD; siempre meterlo primero en `es.ts` y luego ejecutar `i18n:translate`.
 
-### Deuda i18n pendiente (2026-04-23)
+### Deuda i18n pendiente
 
-Estos archivos tienen texto visible en español hardcoded que **no se propaga** al cambiar a otros idiomas. Migrar a `es.ts` + `i18n:translate` cuando se toquen:
+Los siguientes archivos **todavía tienen texto visible en español hardcoded** en JSX que no se propaga al cambiar a otros idiomas. Migrar a `es.ts` + `npm run i18n:translate` cuando se toquen:
 
 | Archivo | Qué mover | Tamaño |
 |---------|-----------|--------|
-| `client/src/pages/faq.tsx` | 39 Q&A del `faqSchema.mainEntity` + los `AccordionItem` con contenido narrativo (listas, CTAs, notas) | Grande (~3h) |
-| `client/src/pages/pricing.tsx` | `SEASON_LABELS`, `SEASON_NAMES`, `LICENSE_TYPE_LABELS`, título H1, descripción, badges, FAQ inferior, labels tabla | Medio (~45min) |
-| `client/src/pages/category-licensed.tsx` | Array `licensedBoats` (features, range), descripciones, CTAs | Medio (~30min) |
-| `client/src/pages/location-barcelona.tsx` | Textos largos en `<Card>` body fuera del FAQ | Medio (~30min) |
-| `client/src/pages/location-tossa-de-mar.tsx` | Texto largo del aviso "Tossa no es alcanzable" + sections | Medio (~30min) |
-| `client/src/pages/location-tordera/palafolls/pineda-de-mar.tsx` | "Barcos sin licencia" / "con licencia" headers + descriptions | Pequeño (~20min c/u) |
-| `client/src/components/FAQPreview.tsx` | `FALLBACK_ITEMS` (8 Q&A — ya hay `t.faqPreview?.items` como override, pero el fallback está hardcoded) | Pequeño (~15min) |
+| `client/src/pages/faq.tsx` | Los `AccordionItem` del body (contenido narrativo rico con listas, CTAs, botones, notas internas). El JSON-LD schema YA está en i18n vía `t.faqPage.items`; los Accordion siguen hardcoded pero Google solo lee el schema. | Grande (~3h) |
+| `client/src/pages/location-tordera.tsx` | Hero, "Por qué Blanes desde Tordera", attractions, "Cómo llegar", precios block, FAQ rich body | Medio (~45min) |
+| `client/src/pages/location-palafolls.tsx` | Ídem tordera — misma plantilla, contenido específico de Palafolls | Medio (~45min) |
+| `client/src/pages/location-pineda-de-mar.tsx` | Ídem tordera — misma plantilla, contenido específico de Pineda de Mar | Medio (~45min) |
+| `client/src/components/FAQPreview.tsx` | `FALLBACK_ITEMS` (8 Q&A — ya hay `t.faqPreview?.items` como override que cubre los 8 idiomas; el fallback solo se mostraría si algún idioma perdiera los items) | Pequeño (safety-net, baja prioridad) |
 
-Cuando añadas texto nuevo a cualquiera de estos archivos durante trabajo normal, **aprovecha para migrarlo al sistema i18n** en el mismo commit.
+**Ya migrados (100 % vivos):**
+- `pricing.tsx` → `t.pricingPage` (54 claves)
+- `category-licensed.tsx` → `t.categoryLicensed`
+- `faq.tsx` JSON-LD schema + hero + categorías → `t.faqPage` (92 claves)
+- `location-barcelona.tsx` → `t.locationBarcelona` (41 claves)
+- `location-tossa-de-mar.tsx` warning + cross-links + related → `t.locationPages.tossa.sections` (9 claves nuevas)
+- `location-lloret-de-mar.tsx` cross-links + related → `t.locationPages.lloret.sections` (6 claves nuevas)
+- `location-malgrat-de-mar.tsx` / `santa-susanna.tsx` / `calella.tsx` → FAQ placeholders procesados por `LocationTemplate`
+
+Cuando añadas texto nuevo a cualquiera de los archivos pendientes, **aprovecha para migrarlo al sistema i18n** en el mismo commit.
 
 ## Cosas a Evitar
 

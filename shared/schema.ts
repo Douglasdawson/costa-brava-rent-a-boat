@@ -329,7 +329,7 @@ export const bookings = pgTable("bookings", {
   stripePaymentIntentId: text("stripe_payment_intent_id"),
   paymentStatus: text("payment_status").notNull().default("pending"), // pending, completed, failed, refunded
   bookingStatus: text("booking_status").notNull().default("draft"), // draft, hold, pending_payment, confirmed, cancelled, completed
-  source: text("source").notNull().default("web"), // web, admin
+  source: text("source").notNull().default("web"), // web, admin, whatsapp
   couponCode: text("coupon_code"), // Optional discount code
   refundStatus: text("refund_status"), // null, requested, processing, completed
   refundAmount: decimal("refund_amount", { precision: 10, scale: 2 }), // Amount refunded if any
@@ -501,7 +501,7 @@ export const insertBookingSchema = createInsertSchema(bookings).omit({
   // Enum validations
   paymentStatus: z.enum(['pending', 'completed', 'failed', 'refunded']),
   bookingStatus: z.enum(['draft', 'hold', 'pending_payment', 'confirmed', 'cancelled', 'completed']),
-  source: z.enum(['web', 'admin']),
+  source: z.enum(['web', 'admin', 'whatsapp']),
   language: z.string().max(5).optional(),
   cancelationToken: z.string().uuid().optional(),
 }).refine((data) => data.startTime < data.endTime, {

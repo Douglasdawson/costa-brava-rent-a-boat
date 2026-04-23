@@ -195,7 +195,7 @@ export function BookingStepPayment({
               </div>
 
               <Button
-                onClick={() => { trackPaymentInitiated(calculateTotal(), selectedBoat); handlePayment(); }}
+                onClick={() => { trackPaymentInitiated(calculateTotal() ?? 0, selectedBoat); handlePayment(); }}
                 disabled={isLoading || isProcessingPayment || !termsAccepted}
                 className="w-full py-3 text-lg font-medium"
                 data-testid="button-pay-now"
@@ -205,7 +205,7 @@ export function BookingStepPayment({
                 ) : (
                   <CreditCard className="w-5 h-5 mr-2" />
                 )}
-                {(isLoading || isProcessingPayment) ? t.booking.processingPayment : `${t.booking.sendRequest || t.booking.pay || 'Solicitar reserva'} ${calculateTotal()}€`}
+                {(isLoading || isProcessingPayment) ? t.booking.processingPayment : `${t.booking.sendRequest || t.booking.pay || 'Solicitar reserva'} ${calculateTotal() ?? 0}€`}
               </Button>
 
               <p className="text-xs text-muted-foreground text-center">

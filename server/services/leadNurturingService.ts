@@ -112,7 +112,7 @@ async function sendHotLeadMessage(session: AiChatSession): Promise<boolean> {
     const boat = await storage.getBoat(boatSlug);
     if (boat) {
       boatName = boat.name;
-      bookingUrl = `${BASE_URL}/boats/${boat.slug || boat.id}`;
+      bookingUrl = `${BASE_URL}/boats/${boat.id}`;
     }
   }
 

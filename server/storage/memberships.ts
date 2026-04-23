@@ -138,7 +138,7 @@ export async function getMembershipStats(tenantId?: string): Promise<MembershipS
     ? sql`AND tenant_id = ${tenantId}`
     : sql``;
 
-  const [result] = await db.execute<{
+  const result = (await db.execute<{
     total_active: string;
     total_expired: string;
     total_cancelled: string;
@@ -155,7 +155,18 @@ export async function getMembershipStats(tenantId?: string): Promise<MembershipS
       COALESCE(SUM(1.0 - free_hours_remaining::numeric), 0) AS free_hours_used
     FROM memberships
     WHERE 1=1 ${tenantCondition}
-  `);
+  `)).rows[0];
+
+  if (!result) {
+    return {
+      totalActive: 0,
+      totalExpired: 0,
+      totalCancelled: 0,
+      totalRevenue: 0,
+      averageDiscount: 0,
+      freeHoursUsed: 0,
+    };
+  }
 
   return {
     totalActive: parseInt(String(result.total_active) || "0", 10),

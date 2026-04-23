@@ -621,7 +621,7 @@ export function BookingDetailsModal({
 
             <div className="text-xs text-muted-foreground border-t border-border pt-4">
               <p>Creada: {format(new Date(booking.createdAt), 'dd/MM/yyyy HH:mm')}</p>
-              <p>Fuente: {booking.source === 'web' ? 'Web' : 'Admin'}</p>
+              <p>Fuente: {booking.source === 'web' ? 'Web' : booking.source === 'whatsapp' ? 'WhatsApp' : 'Admin'}</p>
             </div>
           </div>
         )}

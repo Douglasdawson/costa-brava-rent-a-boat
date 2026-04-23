@@ -314,6 +314,24 @@ export function getMinActivePrice(
 }
 
 /**
+ * Cheapest active (>0) price for a specific duration across a set of boats.
+ * Used by public pages to render "desde X€" figures derived from live admin data.
+ */
+export function minPriceAcrossBoats(
+  boats: Array<{ pricing?: unknown } | undefined | null>,
+  duration: string,
+  season: Season,
+): number | null {
+  let min = Infinity;
+  for (const b of boats) {
+    const pricing = b?.pricing as Record<Season, { prices?: Record<string, number | null | undefined> }> | null | undefined;
+    const p = pricing?.[season]?.prices?.[duration];
+    if (typeof p === 'number' && p > 0 && p < min) min = p;
+  }
+  return Number.isFinite(min) ? min : null;
+}
+
+/**
  * Format price for display (e.g., 150 -> "150€")
  */
 export function formatPrice(amount: number): string {

@@ -1,4 +1,7 @@
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
+import { useQuery } from "@tanstack/react-query";
+import type { Boat } from "@shared/schema";
+import { computeFaqVars, substituteFaqVars } from "@/utils/faqVars";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -30,6 +33,9 @@ import { trackLocationPageView } from "@/utils/analytics";
 export default function LocationTorderaPage() {
   const { language, localizedPath } = useLanguage();
   useEffect(() => { trackLocationPageView("tordera"); }, []);
+
+  const { data: boatsData } = useQuery<Boat[]>({ queryKey: ["/api/boats"] });
+  const faqVars = useMemo(() => computeFaqVars(boatsData), [boatsData]);
 
   const handleBookingWhatsApp = () => {
     const message = createBookingMessage();
@@ -74,7 +80,7 @@ export default function LocationTorderaPage() {
     },
     {
       question: "¿Cuanto cuesta alquilar un barco desde Blanes si vivo en Tordera?",
-      answer: "El alquiler de barco sin licencia empieza desde 70 EUR por hora con gasolina incluida. Barcos con licencia desde 160 EUR por 2 horas. Disponemos de 9 barcos para 4-11 personas."
+      answer: "El alquiler de barco sin licencia empieza desde {noLicBaja1h} EUR por hora con gasolina incluida. Barcos con licencia desde {licBaja2h} EUR por 2 horas. Disponemos de {fleetCount} barcos para 4-11 personas."
     },
     {
       question: "¿Necesito licencia de navegacion?",
@@ -86,9 +92,17 @@ export default function LocationTorderaPage() {
     }
   ];
 
+  const processedFaqItems = useMemo(
+    () => faqItems.map((item) => ({
+      question: substituteFaqVars(item.question, faqVars),
+      answer: substituteFaqVars(item.answer, faqVars),
+    })),
+    [faqVars],
+  );
+
   const faqSchema = {
     "@type": "FAQPage",
-    "mainEntity": faqItems.map(item => ({
+    "mainEntity": processedFaqItems.map(item => ({
       "@type": "Question",
       "name": item.question,
       "acceptedAnswer": {
@@ -169,9 +183,9 @@ export default function LocationTorderaPage() {
                   <p className="text-muted-foreground mb-4">
                     El Puerto de Blanes esta a solo 10 km de Tordera, lo que lo convierte en el punto de alquiler de barcos mas cercano y accesible. Tanto si eres residente como si estas de paso, en 15 minutos puedes estar navegando por las aguas cristalinas de la Costa Brava. La conexion por carretera es directa y sin complicaciones.
                   </p>
-                  <h3 className="font-semibold text-lg mb-3">9 barcos disponibles</h3>
+                  <h3 className="font-semibold text-lg mb-3">{faqVars.fleetCount} barcos disponibles</h3>
                   <p className="text-muted-foreground">
-                    Nuestra flota incluye 9 barcos: embarcaciones sin licencia ideales para familias y principiantes, y barcos con licencia para los mas experimentados. Desde barcas para 4 personas hasta embarcaciones para grupos de hasta 11 personas.
+                    Nuestra flota incluye {faqVars.fleetCount} barcos: embarcaciones sin licencia ideales para familias y principiantes, y barcos con licencia para los mas experimentados. Desde barcas para 4 personas hasta embarcaciones para grupos de hasta 11 personas.
                   </p>
                 </div>
                 <div>
@@ -313,13 +327,12 @@ export default function LocationTorderaPage() {
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
                   <h3 className="font-semibold text-lg mb-3">Barcos sin licencia</h3>
-                  <p className="text-muted-foreground mb-2">Astec 400: desde 70 EUR/hora (gasolina incluida)</p>
-                  <p className="text-muted-foreground mb-2">Otros modelos: desde 75 EUR/hora (gasolina incluida)</p>
+                  <p className="text-muted-foreground mb-2">Desde {faqVars.noLicBaja1h} EUR/hora (gasolina incluida)</p>
                   <p className="text-muted-foreground">Capacidad: 4-7 personas segun modelo</p>
                 </div>
                 <div>
                   <h3 className="font-semibold text-lg mb-3">Barcos con licencia</h3>
-                  <p className="text-muted-foreground mb-2">Desde 160 EUR / 2 horas</p>
+                  <p className="text-muted-foreground mb-2">Desde {faqVars.licBaja2h} EUR / 2 horas</p>
                   <p className="text-muted-foreground mb-2">Motores de 40 a 115 CV</p>
                   <p className="text-muted-foreground">Capacidad: hasta 11 personas</p>
                 </div>
@@ -365,7 +378,7 @@ export default function LocationTorderaPage() {
             Preguntas frecuentes sobre alquilar barco desde Tordera
           </h2>
           <div className="space-y-3">
-            {faqItems.map((item, index) => (
+            {processedFaqItems.map((item, index) => (
               <details
                 key={index}
                 className="group border border-border rounded-lg bg-card"

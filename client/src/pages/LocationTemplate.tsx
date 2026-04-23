@@ -1,5 +1,8 @@
 import type React from "react";
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
+import { useQuery } from "@tanstack/react-query";
+import type { Boat } from "@shared/schema";
+import { computeFaqVars, substituteFaqVars } from "@/utils/faqVars";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -85,6 +88,16 @@ export default function LocationTemplate({ config, extraCards, afterFaq }: Locat
   const hreflangLinks = generateHreflangLinks(config.seoKey);
   const canonical = generateCanonicalUrl(config.seoKey, language);
 
+  // Live data for FAQ placeholder substitution — keeps page copy in sync with admin prices.
+  const { data: boatsData } = useQuery<Boat[]>({ queryKey: ["/api/boats"] });
+  const processedFaqItems = useMemo(() => {
+    const vars = computeFaqVars(boatsData);
+    return config.faqItems.map((item) => ({
+      question: substituteFaqVars(item.question, vars),
+      answer: substituteFaqVars(item.answer, vars),
+    }));
+  }, [boatsData, config.faqItems]);
+
   const loc = (t.locationPages as Record<string, Record<string, unknown>>)[config.translationKey] as {
     hero: { title: string; subtitle: string; badgeDistance: string; badgeTime: string; badgeBeach: string };
     sections: Record<string, string>;
@@ -131,7 +144,7 @@ export default function LocationTemplate({ config, extraCards, afterFaq }: Locat
 
   const faqSchema = {
     "@type": "FAQPage",
-    "mainEntity": config.faqItems.map((item) => ({
+    "mainEntity": processedFaqItems.map((item) => ({
       "@type": "Question",
       "name": item.question,
       "acceptedAnswer": { "@type": "Answer", "text": item.answer },
@@ -348,7 +361,7 @@ export default function LocationTemplate({ config, extraCards, afterFaq }: Locat
             {config.faqTitle}
           </h2>
           <div className="space-y-3">
-            {config.faqItems.map((item, index) => (
+            {processedFaqItems.map((item, index) => (
               <details
                 key={index}
                 className="group border border-border rounded-lg bg-card"

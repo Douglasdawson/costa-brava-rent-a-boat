@@ -1,4 +1,7 @@
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
+import { useQuery } from "@tanstack/react-query";
+import type { Boat } from "@shared/schema";
+import { computeFaqVars, substituteFaqVars } from "@/utils/faqVars";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -28,6 +31,8 @@ import { getCanonicalUrl } from "@/lib/domain";
 import { trackLocationPageView } from "@/utils/analytics";
 
 export default function LocationPalafollsPage() {
+  const { data: boatsData } = useQuery<Boat[]>({ queryKey: ["/api/boats"] });
+  const faqVars = useMemo(() => computeFaqVars(boatsData), [boatsData]);
   const { language, localizedPath } = useLanguage();
   useEffect(() => { trackLocationPageView("palafolls"); }, []);
 
@@ -74,7 +79,7 @@ export default function LocationPalafollsPage() {
     },
     {
       question: "¿Cuanto cuesta alquilar un barco desde Blanes si estoy en Palafolls?",
-      answer: "El alquiler de barco sin licencia empieza desde 70 EUR por hora con gasolina incluida. Barcos con licencia desde 160 EUR por 2 horas. Disponemos de 9 barcos para 4-11 personas."
+      answer: "El alquiler de barco sin licencia empieza desde {noLicBaja1h} EUR por hora con gasolina incluida. Barcos con licencia desde {licBaja2h} EUR por 2 horas. Disponemos de {fleetCount} barcos para 4-11 personas."
     },
     {
       question: "¿Puedo ir desde el camping de Palafolls al Puerto de Blanes facilmente?",
@@ -86,9 +91,17 @@ export default function LocationPalafollsPage() {
     }
   ];
 
+  const processedFaqItems = useMemo(
+    () => faqItems.map((item) => ({
+      question: substituteFaqVars(item.question, faqVars),
+      answer: substituteFaqVars(item.answer, faqVars),
+    })),
+    [faqVars],
+  );
+
   const faqSchema = {
     "@type": "FAQPage",
-    "mainEntity": faqItems.map(item => ({
+    "mainEntity": processedFaqItems.map(item => ({
       "@type": "Question",
       "name": item.question,
       "acceptedAnswer": {
@@ -313,13 +326,12 @@ export default function LocationPalafollsPage() {
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
                   <h3 className="font-semibold text-lg mb-3">Barcos sin licencia</h3>
-                  <p className="text-muted-foreground mb-2">Astec 400: desde 70 EUR/hora (gasolina incluida)</p>
-                  <p className="text-muted-foreground mb-2">Otros modelos: desde 75 EUR/hora (gasolina incluida)</p>
+                  <p className="text-muted-foreground mb-2">Desde {faqVars.noLicBaja1h} EUR/hora (gasolina incluida)</p>
                   <p className="text-muted-foreground">Capacidad: 4-7 personas segun modelo</p>
                 </div>
                 <div>
                   <h3 className="font-semibold text-lg mb-3">Barcos con licencia</h3>
-                  <p className="text-muted-foreground mb-2">Desde 160 EUR / 2 horas</p>
+                  <p className="text-muted-foreground mb-2">Desde {faqVars.licBaja2h} EUR / 2 horas</p>
                   <p className="text-muted-foreground mb-2">Motores de 40 a 115 CV</p>
                   <p className="text-muted-foreground">Capacidad: hasta 11 personas</p>
                 </div>
@@ -365,7 +377,7 @@ export default function LocationPalafollsPage() {
             Preguntas frecuentes sobre alquilar barco desde Palafolls
           </h2>
           <div className="space-y-3">
-            {faqItems.map((item, index) => (
+            {processedFaqItems.map((item, index) => (
               <details
                 key={index}
                 className="group border border-border rounded-lg bg-card"

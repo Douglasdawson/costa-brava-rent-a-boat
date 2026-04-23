@@ -17,6 +17,8 @@ import { FALLBACK_ITEMS } from "@/components/FAQPreview";
 import { useBusinessStats } from "@/hooks/useBusinessStats";
 import { BUSINESS_RATING, BUSINESS_REVIEW_COUNT } from "@shared/businessProfile";
 import type { Boat } from "@shared/schema";
+import { computeFaqVars, substituteFaqVars } from "@/utils/faqVars";
+import { getMinActivePrice } from "@shared/pricing";
 
 export default function HomePageSEO() {
   const { language } = useLanguage();
@@ -48,20 +50,41 @@ export default function HomePageSEO() {
 
   const webSiteSchema = generateWebSiteSchema();
   const howToSchema = generateHowToBookingSchema(language);
-  const seasonalEventSchema = generateSeasonalEventSchema();
+
+  // Derive live price range for AggregateOffer so Google Rich Results stay in sync with admin pricing.
+  const priceRange = (() => {
+    const lows: number[] = [];
+    const highs: number[] = [];
+    for (const b of activeBoats) {
+      const p = b.pricing as Record<string, { prices: Record<string, number> }> | null;
+      for (const season of ["BAJA", "MEDIA", "ALTA"] as const) {
+        const vals = Object.values(p?.[season]?.prices ?? {}).filter((v): v is number => typeof v === "number" && v > 0);
+        if (vals.length) {
+          lows.push(Math.min(...vals));
+          highs.push(Math.max(...vals));
+        }
+      }
+      // Also use the cheapest active BAJA price via helper for consistency
+      getMinActivePrice(p?.BAJA?.prices);
+    }
+    return lows.length && highs.length ? { low: Math.min(...lows), high: Math.max(...highs) } : null;
+  })();
+
+  const seasonalEventSchema = generateSeasonalEventSchema(priceRange);
   const covesItemListSchema = generateCovesItemListSchema();
   const glossarySchema = generateGlossarySchema();
 
-  // FAQPage schema using homepage FAQ preview items
+  // FAQPage schema using homepage FAQ preview items (with live-data substitution)
+  const faqVars = computeFaqVars(boats);
   const faqPageSchema = {
     "@type": "FAQPage",
     "@id": `${canonical}#faq`,
     "mainEntity": FALLBACK_ITEMS.slice(0, 8).map(item => ({
       "@type": "Question",
-      "name": item.question,
+      "name": substituteFaqVars(item.question, faqVars),
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": item.answer
+        "text": substituteFaqVars(item.answer, faqVars)
       }
     }))
   };

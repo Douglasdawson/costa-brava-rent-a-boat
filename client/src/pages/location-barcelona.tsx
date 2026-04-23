@@ -1,4 +1,7 @@
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
+import { useQuery } from "@tanstack/react-query";
+import type { Boat } from "@shared/schema";
+import { computeFaqVars, substituteFaqVars } from "@/utils/faqVars";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -31,6 +34,9 @@ import { trackLocationPageView } from "@/utils/analytics";
 export default function LocationBarcelonaPage() {
   const { language, localizedPath } = useLanguage();
   useEffect(() => { trackLocationPageView("barcelona"); }, []);
+
+  const { data: boatsData } = useQuery<Boat[]>({ queryKey: ["/api/boats"] });
+  const faqVars = useMemo(() => computeFaqVars(boatsData), [boatsData]);
   const t = useTranslations();
   const { openBookingModal } = useBookingModal();
   const seoConfig = getSEOConfig("locationBarcelona", language);
@@ -45,7 +51,7 @@ export default function LocationBarcelonaPage() {
   const faqItems = [
     {
       question: "¿Puedo alquilar un barco sin licencia cerca de Barcelona?",
-      answer: "Sí, en Blanes (Costa Brava), a solo 70 minutos de Barcelona por la autopista AP-7, puedes alquilar barcos sin licencia desde 70 €/hora. No necesitas experiencia previa ni titulación náutica, solo ser mayor de 18 años.",
+      answer: "Sí, en Blanes (Costa Brava), a solo 70 minutos de Barcelona por la autopista AP-7, puedes alquilar barcos sin licencia desde {noLicBaja1h} €/hora. No necesitas experiencia previa ni titulación náutica, solo ser mayor de 18 años.",
     },
     {
       question: "¿Cuánto se tarda de Barcelona a Blanes?",
@@ -53,13 +59,21 @@ export default function LocationBarcelonaPage() {
     },
     {
       question: "¿Es más barato alquilar un barco en Blanes que en Barcelona?",
-      answer: "Sí, significativamente. En Blanes los barcos sin licencia cuestan desde 70 €/hora con gasolina incluida, mientras que en puertos de Barcelona los precios suelen empezar desde 120-150 €/hora. Además, las aguas en la Costa Brava son mucho más cristalinas y hay menos tráfico marítimo.",
+      answer: "Sí, significativamente. En Blanes los barcos sin licencia cuestan desde {noLicBaja1h} €/hora con gasolina incluida, mientras que en puertos de Barcelona los precios suelen empezar desde 120-150 €/hora. Además, las aguas en la Costa Brava son mucho más cristalinas y hay menos tráfico marítimo.",
     },
   ];
 
+  const processedFaqItems = useMemo(
+    () => faqItems.map((item) => ({
+      question: substituteFaqVars(item.question, faqVars),
+      answer: substituteFaqVars(item.answer, faqVars),
+    })),
+    [faqVars],
+  );
+
   const faqSchema = {
     "@type": "FAQPage",
-    mainEntity: faqItems.map(item => ({
+    mainEntity: processedFaqItems.map(item => ({
       "@type": "Question",
       name: item.question,
       acceptedAnswer: {
@@ -127,7 +141,7 @@ export default function LocationBarcelonaPage() {
           </div>
           <p className="text-lg text-muted-foreground max-w-4xl mx-auto mb-6">
             A solo 70 minutos de Barcelona, el Puerto de Blanes te ofrece la mejor experiencia
-            nautica de la Costa Brava. Barcos sin licencia desde 70 € con gasolina incluida.
+            nautica de la Costa Brava. Barcos sin licencia desde {faqVars.noLicBaja1h} € con gasolina incluida.
           </p>
           <div className="flex flex-wrap gap-3 justify-center">
             <Badge variant="outline" className="text-primary border-primary">
@@ -136,7 +150,7 @@ export default function LocationBarcelonaPage() {
             </Badge>
             <Badge variant="outline" className="text-primary border-primary">
               <Anchor className="w-4 h-4 mr-2" />
-              Sin licencia desde 70 €
+              Sin licencia desde {faqVars.noLicBaja1h} €
             </Badge>
             <Badge variant="outline" className="text-primary border-primary">
               <Waves className="w-4 h-4 mr-2" />
@@ -162,7 +176,7 @@ export default function LocationBarcelonaPage() {
                 <div>
                   <h3 className="font-semibold text-lg mb-3">Mejores precios</h3>
                   <p className="text-muted-foreground mb-4">
-                    En Blanes los barcos sin licencia cuestan desde 70 €/hora con gasolina
+                    En Blanes los barcos sin licencia cuestan desde {faqVars.noLicBaja1h} €/hora con gasolina
                     incluida. En Barcelona los precios empiezan desde 120-150 €/hora sin
                     gasolina. Te ahorras hasta un 50% en el alquiler.
                   </p>
@@ -322,7 +336,7 @@ export default function LocationBarcelonaPage() {
               Preguntas frecuentes
             </h2>
             <div className="space-y-3 max-w-3xl mx-auto">
-              {faqItems.map((item, index) => (
+              {processedFaqItems.map((item, index) => (
                 <details
                   key={index}
                   className="group border border-border rounded-lg bg-card"
@@ -346,7 +360,7 @@ export default function LocationBarcelonaPage() {
                 Escapa de Barcelona y navega por la Costa Brava
               </h2>
               <p className="text-lg mb-6 opacity-90">
-                A solo 70 minutos de Barcelona. Barcos sin licencia desde 70 € con
+                A solo 70 minutos de Barcelona. Barcos sin licencia desde {faqVars.noLicBaja1h} € con
                 gasolina incluida. Aguas cristalinas y calas secretas te esperan.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">

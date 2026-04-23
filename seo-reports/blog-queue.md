@@ -19,7 +19,7 @@
 | # | Titulo | Slug | Cluster | keyword_primary | tier | estado | notas |
 |---|--------|------|---------|-----------------|------|--------|-------|
 | 1 | Excursion en barco desde Blanes 2026: guia completa (precios, rutas, que incluye) | excursion-barco-blanes-2026-guia-completa | Excursiones | excursion barco Blanes 2026 | T1 | draft-generated | ES + EN drafts 2026-04-21. Respuesta directa a BlueSail blitz. FAQ schema |
-| 2 | Precios reales alquiler barco Costa Brava 2026 (con y sin licencia) | precios-alquiler-barco-costa-brava-2026 | Costa-Brava | precios alquiler barco Costa Brava 2026 | T1 | pending | Tabla PriceSpecification JSON-LD, comparativa SamBoat |
+| 2 | Precios reales alquiler barco Costa Brava 2026 (con y sin licencia) | precios-alquiler-barco-costa-brava-2026 | Costa-Brava | precios alquiler barco Costa Brava 2026 | T1 | draft-generated | ES + EN drafts 2026-04-23. Tabla PriceSpecification JSON-LD, comparativa SamBoat |
 | 3 | Alquiler barco Barcelona un dia: por que Blanes es la mejor opcion | alquiler-barco-barcelona-un-dia-blanes | Barcelona | alquiler barco Barcelona un dia | T1 | pending | Angulo "36 min en tren desde BCN" + mapa |
 | 4 | Ruta del Contrabando en barco: historia y calas secretas de Lloret a Tossa | ruta-contrabando-costa-brava-barco | Excursiones | ruta del contrabando Costa Brava | T1 | pending | TouristAttraction schema + fotos cuevas |
 | 5 | Como alquilar un barco sin licencia en Blanes: requisitos y proceso 2026 | como-alquilar-barco-sin-licencia-blanes-2026 | Sin-licencia | como alquilar barco sin licencia Blanes | T1 | pending | Step-by-step + HowTo schema |
@@ -91,3 +91,4 @@ Cambios de prioridad: actualizar columna `estado` y mover posicion en tabla.
 |-------|--------|------|---------|--------|
 | 2026-04-21 | 1 | excursion-barco-blanes-2026-guia-completa | ES + EN | draft-generated |
 | 2026-04-22 | 1 | excursion-barco-blanes-2026-guia-completa | ES + EN | distribution-ready (9 piezas en distribucion-blog/excursion-barco-blanes-2026-guia-completa/) |
+| 2026-04-23 | 2 | precios-alquiler-barco-costa-brava-2026 | ES + EN | draft-generated |

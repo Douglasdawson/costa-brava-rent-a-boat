@@ -1,9 +1,13 @@
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { HelpCircle, ArrowRight } from "lucide-react";
+import { useMemo } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { useTranslations } from "@/lib/translations";
 import { useLanguage } from "@/hooks/use-language";
 import { trackFaqExpanded } from "@/utils/analytics";
+import { computeFaqVars, substituteFaqVars } from "@/utils/faqVars";
+import type { Boat } from "@shared/schema";
 
 /** Fallback items (Spanish) used when faqPreview translations are not loaded */
 export const FALLBACK_ITEMS = [
@@ -20,7 +24,7 @@ export const FALLBACK_ITEMS = [
   {
     id: "precios",
     question: "¿Cuáles son los precios del alquiler?",
-    answer: "Barcos sin licencia desde 70€ con gasolina incluida (1h, 2h, 3h, 4h, 6h o dia completo). Barcos con licencia desde 160€ sin gasolina incluida (2h, 4h, 8h). Los precios varian segun temporada (julio/agosto) y embarcacion.",
+    answer: "Barcos sin licencia desde {noLicBaja1h}€ con gasolina incluida (1h, 2h, 3h, 4h, 6h o dia completo). Barcos con licencia desde {licBaja2h}€ sin gasolina incluida (2h, 4h, 8h). Los precios varian segun temporada (julio/agosto) y embarcacion.",
   },
   {
     id: "sin-licencia",
@@ -75,7 +79,7 @@ export const FALLBACK_ITEMS = [
   {
     id: "pueblos-cercanos",
     question: "Estoy alojado en Malgrat de Mar / Santa Susanna / Calella. ¿Puedo alquilar un barco?",
-    answer: "¡Sí! El Puerto de Blanes es el punto de alquiler náutico más cercano. Malgrat de Mar está a 10 minutos en coche, Santa Susanna a 15 minutos y Calella a 20 minutos. También puedes llegar en tren RENFE línea R1. Tenemos 7 barcos disponibles desde 70 EUR/hora con gasolina incluida.",
+    answer: "¡Sí! El Puerto de Blanes es el punto de alquiler náutico más cercano. Malgrat de Mar está a 10 minutos en coche, Santa Susanna a 15 minutos y Calella a 20 minutos. También puedes llegar en tren RENFE línea R1. Tenemos {fleetCount} barcos disponibles desde {noLicBaja1h} EUR/hora con gasolina incluida.",
   },
   {
     id: "como-llegar-puerto",
@@ -92,7 +96,16 @@ export default function FAQPreview() {
   const t = useTranslations();
   const { localizedPath } = useLanguage();
 
-  const items = t.faqPreview?.items?.length ? t.faqPreview.items : FALLBACK_ITEMS;
+  const { data: boats } = useQuery<Boat[]>({ queryKey: ["/api/boats"] });
+  const rawItems = t.faqPreview?.items?.length ? t.faqPreview.items : FALLBACK_ITEMS;
+  const items = useMemo(() => {
+    const vars = computeFaqVars(boats);
+    return rawItems.map((item) => ({
+      ...item,
+      question: substituteFaqVars(item.question, vars),
+      answer: substituteFaqVars(item.answer, vars),
+    }));
+  }, [rawItems, boats]);
   const previewItems = items.slice(0, PREVIEW_COUNT);
   const title = t.faqPreview?.title ?? "Preguntas frecuentes";
   const subtitle = t.faqPreview?.subtitle ?? "Todo lo que necesitas saber antes de salir a navegar";

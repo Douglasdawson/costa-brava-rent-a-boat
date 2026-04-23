@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import type { Boat } from "@shared/schema";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -28,6 +30,8 @@ export default function GiftCardsPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [purchaseComplete, setPurchaseComplete] = useState(false);
   const [giftCardCode, setGiftCardCode] = useState("");
+  const { data: boats } = useQuery<Boat[]>({ queryKey: ["/api/boats"] });
+  const fleetCount = (boats || []).filter((b) => b.isActive).length || 9;
   const { toast } = useToast();
   const { language, localizedPath } = useLanguage();
   const t = useTranslations();
@@ -180,7 +184,7 @@ export default function GiftCardsPage() {
               </p>
               <p>
                 Nuestras tarjetas regalo son válidas para cualquiera de nuestros{" "}
-                <a href={localizedPath("home") + "#fleet"} className="text-primary hover:underline">7 barcos</a>,
+                <a href={localizedPath("home") + "#fleet"} className="text-primary hover:underline">{fleetCount} barcos</a>,
                 tanto sin licencia como con licencia. El destinatario puede elegir el barco,
                 la fecha y la duración que prefiera durante toda la temporada (abril a octubre).
               </p>

@@ -1,4 +1,7 @@
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
+import { useQuery } from "@tanstack/react-query";
+import type { Boat } from "@shared/schema";
+import { computeFaqVars, substituteFaqVars } from "@/utils/faqVars";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -36,6 +39,9 @@ import { trackLocationPageView } from "@/utils/analytics";
 export default function LocationTossaPage() {
   const { language, localizedPath } = useLanguage();
   useEffect(() => { trackLocationPageView("tossa"); }, []);
+
+  const { data: boatsData } = useQuery<Boat[]>({ queryKey: ["/api/boats"] });
+  const faqVars = useMemo(() => computeFaqVars(boatsData), [boatsData]);
   const t = useTranslations();
   const seoConfig = getSEOConfig('locationTossa', language);
   const hreflangLinks = generateHreflangLinks('locationTossa');
@@ -110,11 +116,11 @@ export default function LocationTossaPage() {
     },
     {
       question: "¿Cuánto cuesta la Excursión Privada con Capitán a Tossa?",
-      answer: "Pacific Craft 625 con patrón profesional, 4 h máximo, hasta 7 personas. Desde 380 € temporada baja (abril-junio, septiembre-cierre), 400 € en julio, 420 € en agosto. Incluye IVA, patrón, amarre, limpieza y seguro. Combustible aparte."
+      answer: "Pacific Craft 625 con patrón profesional, 4 h máximo, hasta 7 personas. Desde {excursionBaja4h} € temporada baja (abril-junio, septiembre-cierre). Incluye IVA, patrón, amarre, limpieza y seguro. Combustible aparte."
     },
     {
       question: "¿Cuánto cuesta alquilar a Tossa con Licencia Básica (LBN)?",
-      answer: "Packs cerrados 2 h / 4 h / 8 h, sin patrón. Desde 160 € con Mingolla Brava 19 (2 h baja), 160 € con Trimarchi 57S o 180 € con Pacific Craft 625. 3 tiers estacionales. Fianza 500 €. IVA, amarre, limpieza y seguro incluidos; combustible aparte."
+      answer: "Packs cerrados 2 h / 4 h / 8 h, sin patrón. Desde {licBaja2h} € (2 h temporada baja) con los barcos con licencia. 3 tiers estacionales. Fianza 500 €. IVA, amarre, limpieza y seguro incluidos; combustible aparte."
     },
     {
       question: "¿Puedo desembarcar en Tossa pueblo desde el barco?",
@@ -122,13 +128,21 @@ export default function LocationTossaPage() {
     },
     {
       question: "¿Merece la pena ir a Tossa en barco si no tengo licencia?",
-      answer: "Sí, mediante la Excursión Privada con Capitán (Pacific Craft 625, 4 h, desde 380 €). Única opción sin necesidad de licencia."
+      answer: "Sí, mediante la Excursión Privada con Capitán (Pacific Craft 625, 4 h, desde {excursionBaja4h} €). Única opción sin necesidad de licencia."
     }
   ];
 
+  const processedFaqItems = useMemo(
+    () => faqItems.map((item) => ({
+      question: substituteFaqVars(item.question, faqVars),
+      answer: substituteFaqVars(item.answer, faqVars),
+    })),
+    [faqVars],
+  );
+
   const faqSchema = {
     "@type": "FAQPage",
-    "mainEntity": faqItems.map(item => ({
+    "mainEntity": processedFaqItems.map(item => ({
       "@type": "Question",
       "name": item.question,
       "acceptedAnswer": {
@@ -226,11 +240,11 @@ export default function LocationTossaPage() {
             <div className="text-sm sm:text-base text-foreground">
               <p className="font-semibold mb-1">Tossa no es alcanzable con barco sin licencia.</p>
               <p className="text-muted-foreground leading-relaxed">
-                Los barcos sin licencia (2 millas, 5 nudos, 15 CV) llegan hasta Playa de Fenals (sur de Lloret) — 4 millas antes de Tossa. Para llegar a Tossa desde Blanes necesitas (1) auto-alquiler con Licencia Básica de Navegación / LBN (packs cerrados 2 h / 4 h / 8 h desde 160 € con Mingolla Brava 19 o Trimarchi 57S, o 180 € con Pacific Craft 625, IVA, amarre, limpieza y seguro incluidos; combustible y fianza 500 € aparte), o (2) la{" "}
+                Los barcos sin licencia (2 millas, 5 nudos, 15 CV) llegan hasta Playa de Fenals (sur de Lloret) — 4 millas antes de Tossa. Para llegar a Tossa desde Blanes necesitas (1) auto-alquiler con Licencia Básica de Navegación / LBN (packs cerrados 2 h / 4 h / 8 h desde {faqVars.licBaja2h} € con Mingolla Brava 19 o Trimarchi 57S, IVA, amarre, limpieza y seguro incluidos; combustible y fianza 500 € aparte), o (2) la{" "}
                 <a href="/es/barco/excursion-privada" className="underline font-medium text-foreground hover:text-primary">
                   Excursión Privada con Capitán
                 </a>{" "}
-                (Pacific Craft 625 + patrón, 4 h máximo, hasta 7 pax, desde 380 € con IVA, patrón, amarre, limpieza y seguro incluidos — combustible aparte). La tercera alternativa es ir en coche a Tossa (20 min desde Lloret) y alquilar barco sin licencia localmente allí.
+                (Pacific Craft 625 + patrón, 4 h máximo, hasta 7 pax, desde {faqVars.excursionBaja4h} € con IVA, patrón, amarre, limpieza y seguro incluidos — combustible aparte). La tercera alternativa es ir en coche a Tossa (20 min desde Lloret) y alquilar barco sin licencia localmente allí.
               </p>
             </div>
           </div>
@@ -466,7 +480,7 @@ export default function LocationTossaPage() {
             Preguntas frecuentes sobre Tossa de Mar en barco
           </h2>
           <div className="space-y-3">
-            {faqItems.map((item, index) => (
+            {processedFaqItems.map((item, index) => (
               <details
                 key={index}
                 className="group border border-border rounded-lg bg-card"

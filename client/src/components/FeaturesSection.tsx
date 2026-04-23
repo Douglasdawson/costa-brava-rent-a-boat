@@ -13,17 +13,31 @@ import ParkingIcon from "./icons/ParkingIcon";
 import { useTranslations } from "@/lib/translations";
 import { useLanguage } from "@/hooks/use-language";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
+import { useQuery } from "@tanstack/react-query";
+import type { Boat } from "@shared/schema";
+import { minPriceAcrossBoats } from "@shared/pricing";
 
 export default function FeaturesSection() {
   const t = useTranslations();
   const { localizedPath } = useLanguage();
   const { ref: revealRef, isVisible } = useScrollReveal();
 
+  // Live price for "Excursión Privada" — falls back to the i18n label only before boats load.
+  const { data: boats } = useQuery<Boat[]>({ queryKey: ["/api/boats"] });
+  const excursionPrice = minPriceAcrossBoats(
+    (boats || []).filter((b) => b.isActive && b.id === "excursion-privada"),
+    "2h",
+    "BAJA",
+  );
+  const privateTourPrice = excursionPrice
+    ? `${t.boats?.from ?? "Desde"} ${excursionPrice}€`
+    : t.features.extras.privateTour.price;
+
   const extras = [
     { icon: SnorkelIcon, name: t.features.extras.snorkel.name, price: "7,50\u20AC" },
     { icon: PaddleSurfIcon, name: t.features.extras.paddle.name, price: "25\u20AC" },
     { icon: NeveraIcon, name: t.features.extras.cooler.name, price: "10\u20AC" },
-    { icon: Compass, name: t.features.extras.privateTour.name, price: t.features.extras.privateTour.price },
+    { icon: Compass, name: t.features.extras.privateTour.name, price: privateTourPrice },
     { icon: ParkingIcon, name: t.features.extras.parking.name, price: t.features.extras.parking.price || "10\u20AC/d\u00EDa" },
   ];
 

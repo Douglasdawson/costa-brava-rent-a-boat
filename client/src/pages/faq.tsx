@@ -35,8 +35,11 @@ import {
   generateBreadcrumbSchema
 } from "@/utils/seo-config";
 import { openWhatsApp, createBookingMessage } from "@/utils/whatsapp";
-import { useState } from "react";
+import { useMemo, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import type { Boat } from "@shared/schema";
 import { useTranslations } from "@/lib/translations";
+import { computeFaqVars, substituteFaqVars } from "@/utils/faqVars";
 
 export default function FAQPage() {
   const { language } = useLanguage();
@@ -46,6 +49,10 @@ export default function FAQPage() {
   const canonical = generateCanonicalUrl('faq', language);
   
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
+
+  const { data: boats } = useQuery<Boat[]>({ queryKey: ["/api/boats"] });
+  const faqVars = useMemo(() => computeFaqVars(boats), [boats]);
+  const sub = (text: string) => substituteFaqVars(text, faqVars);
 
   const handleWhatsAppContact = () => {
     const message = "Hola, tengo una pregunta sobre el alquiler de barcos. ¿Podrían ayudarme?";
@@ -70,7 +77,7 @@ export default function FAQPage() {
         "name": "¿Cuáles son los precios del alquiler?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Nuestros precios varían según la embarcación y duración. Barcos sin licencia desde 70€ con gasolina incluida (1h, 2h, 3h, 4h, 6h, 8h). Barcos con licencia desde 160€ sin gasolina incluida (2h, 4h, 8h)."
+          "text": sub("Nuestros precios varían según la embarcación y duración. Barcos sin licencia desde {noLicBaja1h}€ con gasolina incluida (1h, 2h, 3h, 4h, 6h, 8h). Barcos con licencia desde {licBaja2h}€ sin gasolina incluida (2h, 4h, 8h).")
         }
       },
       {
@@ -317,7 +324,7 @@ export default function FAQPage() {
         "name": "¿Cuál es la diferencia entre barcos sin licencia y con licencia?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Los barcos sin licencia tienen hasta 15 CV, capacidad de 4-5 personas, gasolina incluida y cuestan desde 70€. Los barcos con licencia tienen motores de 40-150 CV, capacidad de hasta 8 personas, mayor autonomía y cuestan desde 160€ (gasolina no incluida). Los barcos con licencia permiten navegar más lejos, hasta Tossa de Mar y más allá."
+          "text": sub("Los barcos sin licencia tienen hasta 15 CV, capacidad de 4-5 personas, gasolina incluida y cuestan desde {noLicBaja1h}€. Los barcos con licencia tienen motores de 40-150 CV, capacidad de hasta 8 personas, mayor autonomía y cuestan desde {licBaja2h}€ (gasolina no incluida). Los barcos con licencia permiten navegar más lejos, hasta Tossa de Mar y más allá.")
         }
       },
       {
@@ -325,7 +332,7 @@ export default function FAQPage() {
         "name": "¿Es más barato alquilar un barco en Blanes o en Lloret de Mar?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Blanes es el punto de alquiler náutico más asequible de la Costa Brava, con barcos sin licencia desde 70€ la hora con gasolina incluida. Al operar desde el Puerto de Blanes con nuestra propia flota, ofrecemos precios más competitivos que otras localidades como Lloret de Mar o Tossa de Mar."
+          "text": sub("Blanes es el punto de alquiler náutico más asequible de la Costa Brava, con barcos sin licencia desde {noLicBaja1h}€ la hora con gasolina incluida. Al operar desde el Puerto de Blanes con nuestra propia flota, ofrecemos precios más competitivos que otras localidades como Lloret de Mar o Tossa de Mar.")
         }
       },
       {
@@ -341,7 +348,7 @@ export default function FAQPage() {
         "name": "¿Cuánto cuesta alquilar un barco en la Costa Brava?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "En la Costa Brava puedes alquilar un barco desde 70€ la hora en Blanes, con gasolina incluida y sin necesidad de licencia. Los precios varían según la duración (de 1h a día completo), el tipo de barco y la temporada. Julio y agosto son temporada alta con precios más elevados; junio y septiembre ofrecen la mejor relación calidad-precio."
+          "text": sub("En la Costa Brava puedes alquilar un barco desde {noLicBaja1h}€ la hora en Blanes, con gasolina incluida y sin necesidad de licencia. Los precios varían según la duración (de 1h a día completo), el tipo de barco y la temporada. Julio y agosto son temporada alta con precios más elevados; junio y septiembre ofrecen la mejor relación calidad-precio.")
         }
       },
       {
@@ -357,7 +364,7 @@ export default function FAQPage() {
         "name": "¿Cuánto cuesta una excursión en barco con patrón?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Nuestras excursiones privadas con patrón profesional parten desde 240€ por 2 horas para hasta 10 personas. El patrón os lleva a las mejores calas, se encarga de toda la navegación y no necesitáis licencia. Es la opción perfecta para familias o grupos que quieren disfrutar sin preocuparse de nada."
+          "text": sub("Nuestras excursiones privadas con patrón profesional parten desde {excursionBaja2h}€ por 2 horas para hasta 10 personas. El patrón os lleva a las mejores calas, se encarga de toda la navegación y no necesitáis licencia. Es la opción perfecta para familias o grupos que quieren disfrutar sin preocuparse de nada.")
         }
       },
       {
@@ -373,7 +380,7 @@ export default function FAQPage() {
         "name": "¿Qué es mejor, alquilar un barco o una excursión con patrón?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Depende de lo que busques. Alquilar un barco sin licencia (desde 70€/h) te da total libertad para ir a tu ritmo y explorar por tu cuenta. La excursión con patrón (desde 240€/2h) es ideal si quieres relajarte completamente, no tienes experiencia o quieres llegar a calas más lejanas como Tossa de Mar."
+          "text": sub("Depende de lo que busques. Alquilar un barco sin licencia (desde {noLicBaja1h}€/h) te da total libertad para ir a tu ritmo y explorar por tu cuenta. La excursión con patrón (desde {excursionBaja2h}€/2h) es ideal si quieres relajarte completamente, no tienes experiencia o quieres llegar a calas más lejanas como Tossa de Mar.")
         }
       },
       {
@@ -493,8 +500,8 @@ export default function FAQPage() {
                       <div className="space-y-3">
                         <p>Nuestros precios varían según la embarcación y duración:</p>
                         <ul className="list-disc pl-6 space-y-1">
-                          <li><strong>Barcos sin licencia:</strong> Desde 70€. Con gasolina incluida y posibilidad de alquilar 1h, 2h, 3h, 4h, 6h, o 8h</li>
-                          <li><strong>Barcos con licencia:</strong> Desde 160€. Sin gasolina incluida y posibilidad de alquilar 2h, 4h y 8h.</li>
+                          <li><strong>Barcos sin licencia:</strong> Desde {faqVars.noLicBaja1h}€. Con gasolina incluida y posibilidad de alquilar 1h, 2h, 3h, 4h, 6h, o 8h</li>
+                          <li><strong>Barcos con licencia:</strong> Desde {faqVars.licBaja2h}€. Sin gasolina incluida y posibilidad de alquilar 2h, 4h y 8h.</li>
                         </ul>
                         <p className="text-sm text-muted-foreground">*Precios orientativos. Consulta disponibilidad y precios exactos para tu fecha.</p>
                       </div>
@@ -599,7 +606,7 @@ export default function FAQPage() {
                               <li>Hasta 15 CV de motor</li>
                               <li>4-5 personas max.</li>
                               <li>Gasolina incluida</li>
-                              <li>Desde 70€</li>
+                              <li>Desde {faqVars.noLicBaja1h}€</li>
                               <li>Zona: Blanes - Fenals</li>
                             </ul>
                           </div>
@@ -609,7 +616,7 @@ export default function FAQPage() {
                               <li>40-150 CV de motor</li>
                               <li>Hasta 8 personas</li>
                               <li>Gasolina NO incluida</li>
-                              <li>Desde 160€</li>
+                              <li>Desde {faqVars.licBaja2h}€</li>
                               <li>Zona: sin límite costero</li>
                             </ul>
                           </div>
@@ -623,7 +630,7 @@ export default function FAQPage() {
                     <AccordionTrigger>¿Es más barato alquilar un barco en Blanes o en Lloret de Mar?</AccordionTrigger>
                     <AccordionContent>
                       <div className="space-y-3">
-                        <p>Blanes es el punto de alquiler náutico más asequible de la Costa Brava, con barcos sin licencia desde <strong>70€ la hora con gasolina incluida</strong>.</p>
+                        <p>Blanes es el punto de alquiler náutico más asequible de la Costa Brava, con barcos sin licencia desde <strong>{faqVars.noLicBaja1h}€ la hora con gasolina incluida</strong>.</p>
                         <p>Al operar desde el Puerto de Blanes con nuestra propia flota, ofrecemos precios más competitivos que otras localidades como Lloret de Mar o Tossa de Mar.</p>
                         <div className="flex items-center gap-2 mt-3 p-3 bg-primary/5 rounded-lg">
                           <Euro className="w-5 h-5 text-primary" />
@@ -651,7 +658,7 @@ export default function FAQPage() {
                     <AccordionTrigger>¿Cuánto cuesta alquilar un barco en la Costa Brava?</AccordionTrigger>
                     <AccordionContent>
                       <div className="space-y-3">
-                        <p>En la Costa Brava puedes alquilar un barco desde <strong>70€ la hora en Blanes</strong>, con gasolina incluida y sin necesidad de licencia.</p>
+                        <p>En la Costa Brava puedes alquilar un barco desde <strong>{faqVars.noLicBaja1h}€ la hora en Blanes</strong>, con gasolina incluida y sin necesidad de licencia.</p>
                         <p>Los precios varían según la duración (de 1h a día completo), el tipo de barco y la temporada.</p>
                         <ul className="list-disc pl-6 space-y-1">
                           <li><strong>Temporada alta (julio-agosto):</strong> Precios más elevados, reservar con antelación</li>
@@ -680,7 +687,7 @@ export default function FAQPage() {
                     <AccordionTrigger>¿Cuánto cuesta una excursión en barco con patrón?</AccordionTrigger>
                     <AccordionContent>
                       <div className="space-y-3">
-                        <p>Nuestras excursiones privadas con patrón profesional parten desde <strong>240€ por 2 horas</strong> para hasta 10 personas.</p>
+                        <p>Nuestras excursiones privadas con patrón profesional parten desde <strong>{faqVars.excursionBaja2h}€ por 2 horas</strong> para hasta 10 personas.</p>
                         <ul className="list-disc pl-6 space-y-1">
                           <li>Patrón profesional incluido</li>
                           <li>No necesitas licencia náutica</li>
@@ -720,7 +727,7 @@ export default function FAQPage() {
                           <div className="p-3 bg-primary/5 rounded-lg">
                             <h4 className="font-medium mb-2">Alquilar barco</h4>
                             <ul className="list-disc pl-6 space-y-1 text-sm">
-                              <li>Desde 70€/h</li>
+                              <li>Desde {faqVars.noLicBaja1h}€/h</li>
                               <li>Total libertad de horario y ruta</li>
                               <li>Exploras a tu ritmo</li>
                               <li>Ideal para parejas y grupos pequeños</li>
@@ -729,7 +736,7 @@ export default function FAQPage() {
                           <div className="p-3 bg-primary/5 rounded-lg">
                             <h4 className="font-medium mb-2">Excursión con patrón</h4>
                             <ul className="list-disc pl-6 space-y-1 text-sm">
-                              <li>Desde 240€/2h (hasta 10 pers.)</li>
+                              <li>Desde {faqVars.excursionBaja2h}€/2h (hasta 10 pers.)</li>
                               <li>Relajación total</li>
                               <li>Calas más lejanas (Tossa)</li>
                               <li>No necesitas experiencia ni licencia</li>

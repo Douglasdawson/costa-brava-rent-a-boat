@@ -31,7 +31,7 @@ const config: LocationConfig = {
     },
     {
       question: "¿Cuánto cuesta alquilar un barco desde Blanes si estoy en Santa Susanna?",
-      answer: "El alquiler de barco empieza desde 70 EUR por hora con gasolina incluida. No se necesita licencia para barcos de hasta 15 CV. Disponemos de 7 barcos para 4-7 personas.",
+      answer: "El alquiler de barco empieza desde {noLicBaja1h} EUR por hora con gasolina incluida. No se necesita licencia para barcos de hasta 15 CV. Disponemos de {fleetCount} barcos para 4-11 personas.",
     },
     {
       question: "¿Necesito licencia de navegación para alquilar un barco?",

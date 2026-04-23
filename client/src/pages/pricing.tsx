@@ -29,7 +29,7 @@ import {
   generateBreadcrumbSchema,
 } from "@/utils/seo-config";
 import type { Boat } from "@shared/schema";
-import { getMinActivePrice } from "@shared/pricing";
+import { getMinActivePrice, minPriceAcrossBoats } from "@shared/pricing";
 
 type SeasonKey = "BAJA" | "MEDIA" | "ALTA";
 
@@ -49,21 +49,6 @@ function getMinPrice(boat: Boat, season: SeasonKey): number | null {
   if (!boat.pricing) return null;
   const seasonData = (boat.pricing as Record<SeasonKey, { period: string; prices: Record<string, number> }>)[season];
   return getMinActivePrice(seasonData?.prices);
-}
-
-/** Cheapest active price for a given duration across a list of boats, or null. */
-function minPriceAcrossBoats(
-  boats: Boat[],
-  duration: string,
-  season: SeasonKey,
-): number | null {
-  let min = Infinity;
-  for (const b of boats) {
-    const pricing = b.pricing as Record<SeasonKey, { prices: Record<string, number | null | undefined> }> | null;
-    const p = pricing?.[season]?.prices?.[duration];
-    if (typeof p === "number" && p > 0 && p < min) min = p;
-  }
-  return Number.isFinite(min) ? min : null;
 }
 
 function formatPrice(price: number | null): string {

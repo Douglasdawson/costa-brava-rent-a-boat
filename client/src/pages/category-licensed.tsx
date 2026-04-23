@@ -35,6 +35,9 @@ import {
   BUSINESS_RATING_STR,
   BUSINESS_REVIEW_COUNT_STR,
 } from "@shared/businessProfile";
+import { useQuery } from "@tanstack/react-query";
+import type { Boat } from "@shared/schema";
+import { minPriceAcrossBoats } from "@shared/pricing";
 
 export default function CategoryLicensedPage() {
   const { language, localizedPath } = useLanguage();
@@ -42,6 +45,14 @@ export default function CategoryLicensedPage() {
   const seoConfig = getSEOConfig('categoryLicensed', language);
   const hreflangLinks = generateHreflangLinks('categoryLicensed');
   const canonical = generateCanonicalUrl('categoryLicensed', language);
+
+  const { data: boats } = useQuery<Boat[]>({ queryKey: ["/api/boats"] });
+  const priceFromId = (id: string): string => {
+    const boat = (boats || []).find((b) => b.id === id);
+    if (!boat) return "";
+    const min = minPriceAcrossBoats([boat], "2h", "BAJA");
+    return min ? `Desde ${min}€` : "";
+  };
 
   const handleBookingWhatsApp = () => {
     const message = createBookingMessage();
@@ -95,30 +106,31 @@ export default function CategoryLicensedPage() {
     { name: t.breadcrumbs.categoryLicensed, url: "/barcos-con-licencia" }
   ]);
 
-  // Licensed boats data
+  // Licensed boats data — prices derived from live admin pricing.
+  // (Astec 480 is license-free in the DB so it's intentionally excluded from this licensed-category list.)
   const licensedBoats = [
     {
-      name: "Astec 480",
-      capacity: "6-7 personas",
-      engine: "40 CV",
-      features: ["GPS", "Sonda", "Radio VHF", "Bimini grande"],
-      price: "Desde 220€",
-      range: "Mayor autonomía"
+      name: "Mingolla Brava 19",
+      capacity: "6 personas",
+      engine: "80 CV",
+      features: ["GPS", "Sonda", "Ducha", "Bluetooth"],
+      price: priceFromId("mingolla-brava-19") || "Desde 160€",
+      range: "Lloret/Tossa"
     },
     {
       name: "Pacific Craft 625",
-      capacity: "6-7 personas",
+      capacity: "7 personas",
       engine: "115 CV",
-      features: ["Consola central", "GPS Garmin", "Ducha", "Nevera 40L"],
-      price: "Desde 320€",
+      features: ["Consola central", "GPS Garmin", "Ducha", "Solárium"],
+      price: priceFromId("pacific-craft-625") || "Desde 180€",
       range: "Navegación deportiva"
     },
     {
       name: "Trimarchi 57S",
-      capacity: "6-7 personas",
-      engine: "40 CV",
-      features: ["Solárium", "Mesa central", "Radio", "Toldo completo"],
-      price: "Desde 240€",
+      capacity: "7 personas",
+      engine: "110 CV",
+      features: ["Solárium doble", "Mesa central", "Radio", "Toldo"],
+      price: priceFromId("trimarchi-57s") || "Desde 160€",
       range: "Máximo confort"
     }
   ];

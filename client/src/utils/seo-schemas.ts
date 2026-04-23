@@ -138,9 +138,12 @@ export function generateFAQSchema(faqs: FAQItem[]) {
   };
 }
 
-export function generateSeasonalEventSchema() {
+export function generateSeasonalEventSchema(priceRange?: { low: number; high: number } | null) {
   const now = new Date();
   const year = now.getMonth() >= 10 ? now.getFullYear() + 1 : now.getFullYear();
+  // Fallbacks used only before the /api/boats query resolves; keep conservative.
+  const low = priceRange?.low ?? 75;
+  const high = priceRange?.high ?? 450;
   return {
     "@context": "https://schema.org",
     "@type": "Event",
@@ -168,8 +171,8 @@ export function generateSeasonalEventSchema() {
     },
     offers: {
       "@type": "AggregateOffer",
-      lowPrice: "80",
-      highPrice: "450",
+      lowPrice: String(low),
+      highPrice: String(high),
       priceCurrency: "EUR",
       availability: "https://schema.org/InStock",
     },

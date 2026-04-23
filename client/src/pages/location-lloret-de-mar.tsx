@@ -1,4 +1,7 @@
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
+import { useQuery } from "@tanstack/react-query";
+import type { Boat } from "@shared/schema";
+import { computeFaqVars, substituteFaqVars } from "@/utils/faqVars";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -38,6 +41,9 @@ import { trackLocationPageView } from "@/utils/analytics";
 export default function LocationLloretPage() {
   const { language, localizedPath } = useLanguage();
   useEffect(() => { trackLocationPageView("lloret"); }, []);
+
+  const { data: boatsData } = useQuery<Boat[]>({ queryKey: ["/api/boats"] });
+  const faqVars = useMemo(() => computeFaqVars(boatsData), [boatsData]);
   const t = useTranslations();
   const seoConfig = getSEOConfig('locationLloret', language);
   const hreflangLinks = generateHreflangLinks('locationLloret');
@@ -101,7 +107,7 @@ export default function LocationLloretPage() {
     },
     {
       question: "¿Cuánto cuesta alquilar un barco sin licencia para ir a Lloret?",
-      answer: "Desde 70 €/hora (temporada baja) y 90 €/hora (temporada alta, julio–agosto). Packs de medio día (4 h) desde 240 € con gasolina incluida. Día completo (8 h) desde 480 €."
+      answer: "Desde {noLicBaja1h} €/hora (temporada baja) y {noLicAlta1h} €/hora (temporada alta, julio–agosto). Con gasolina incluida en barcos sin licencia."
     },
     {
       question: "¿Puedo llegar a Tossa de Mar desde Lloret con barco sin licencia?",
@@ -113,9 +119,17 @@ export default function LocationLloretPage() {
     }
   ];
 
+  const processedFaqItems = useMemo(
+    () => faqItems.map((item) => ({
+      question: substituteFaqVars(item.question, faqVars),
+      answer: substituteFaqVars(item.answer, faqVars),
+    })),
+    [faqVars],
+  );
+
   const faqSchema = {
     "@type": "FAQPage",
-    "mainEntity": faqItems.map(item => ({
+    "mainEntity": processedFaqItems.map(item => ({
       "@type": "Question",
       "name": item.question,
       "acceptedAnswer": {
@@ -398,7 +412,7 @@ export default function LocationLloretPage() {
             Preguntas frecuentes sobre Lloret de Mar en barco
           </h2>
           <div className="space-y-3">
-            {faqItems.map((item, index) => (
+            {processedFaqItems.map((item, index) => (
               <details
                 key={index}
                 className="group border border-border rounded-lg bg-card"

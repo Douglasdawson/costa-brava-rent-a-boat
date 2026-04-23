@@ -35,9 +35,11 @@ export default function LocationBarcelonaPage() {
   const { language, localizedPath } = useLanguage();
   useEffect(() => { trackLocationPageView("barcelona"); }, []);
 
+  const t = useTranslations();
   const { data: boatsData } = useQuery<Boat[]>({ queryKey: ["/api/boats"] });
   const faqVars = useMemo(() => computeFaqVars(boatsData), [boatsData]);
-  const t = useTranslations();
+  const lb = t.locationBarcelona!;
+  const sub = (s: string) => substituteFaqVars(s, faqVars);
   const { openBookingModal } = useBookingModal();
   const seoConfig = getSEOConfig("locationBarcelona", language);
   const hreflangLinks = generateHreflangLinks("locationBarcelona");
@@ -136,25 +138,24 @@ export default function LocationBarcelonaPage() {
           <div className="flex items-center justify-center mb-6">
             <MapPin className="w-8 h-8 text-primary mr-4" />
             <h1 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold text-foreground">
-              Alquiler de Barcos cerca de Barcelona
+              {lb.hero.title}
             </h1>
           </div>
           <p className="text-lg text-muted-foreground max-w-4xl mx-auto mb-6">
-            A solo 70 minutos de Barcelona, el Puerto de Blanes te ofrece la mejor experiencia
-            nautica de la Costa Brava. Barcos sin licencia desde {faqVars.noLicBaja1h} € con gasolina incluida.
+            {sub(lb.hero.description)}
           </p>
           <div className="flex flex-wrap gap-3 justify-center">
             <Badge variant="outline" className="text-primary border-primary">
               <Car className="w-4 h-4 mr-2" />
-              70 min desde Barcelona
+              {lb.hero.badgeDistance}
             </Badge>
             <Badge variant="outline" className="text-primary border-primary">
               <Anchor className="w-4 h-4 mr-2" />
-              Sin licencia desde {faqVars.noLicBaja1h} €
+              {sub(lb.hero.badgeLicense)}
             </Badge>
             <Badge variant="outline" className="text-primary border-primary">
               <Waves className="w-4 h-4 mr-2" />
-              Aguas cristalinas
+              {lb.hero.badgeWaters}
             </Badge>
           </div>
         </div>
@@ -168,43 +169,24 @@ export default function LocationBarcelonaPage() {
             <CardHeader>
               <h2 className="flex items-center gap-3 text-2xl font-semibold leading-none tracking-tight">
                 <Waves className="w-6 h-6 text-cta" />
-                Por que alquilar en Blanes y no en Barcelona
+                {lb.whyBlanes.title}
               </h2>
             </CardHeader>
             <CardContent>
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
-                  <h3 className="font-semibold text-lg mb-3">Mejores precios</h3>
-                  <p className="text-muted-foreground mb-4">
-                    En Blanes los barcos sin licencia cuestan desde {faqVars.noLicBaja1h} €/hora con gasolina
-                    incluida. En Barcelona los precios empiezan desde 120-150 €/hora sin
-                    gasolina. Te ahorras hasta un 50% en el alquiler.
-                  </p>
+                  <h3 className="font-semibold text-lg mb-3">{lb.whyBlanes.betterPricesTitle}</h3>
+                  <p className="text-muted-foreground mb-4">{sub(lb.whyBlanes.betterPricesBody)}</p>
 
-                  <h3 className="font-semibold text-lg mb-3">Aguas cristalinas</h3>
-                  <p className="text-muted-foreground">
-                    La Costa Brava ofrece aguas transparentes y turquesas que no encontrarás
-                    en el litoral de Barcelona. Calas escondidas, fondos rocosos para
-                    hacer snorkel y paisajes naturales espectaculares.
-                  </p>
+                  <h3 className="font-semibold text-lg mb-3">{lb.whyBlanes.crystalWatersTitle}</h3>
+                  <p className="text-muted-foreground">{lb.whyBlanes.crystalWatersBody}</p>
                 </div>
                 <div>
-                  <h3 className="font-semibold text-lg mb-3">Menos tráfico marítimo</h3>
-                  <p className="text-muted-foreground mb-4">
-                    El puerto de Barcelona tiene un intenso tráfico de ferries, cruceros y
-                    embarcaciones comerciales. En Blanes navegas tranquilamente por aguas
-                    limpias y sin aglomeraciones.
-                  </p>
+                  <h3 className="font-semibold text-lg mb-3">{lb.whyBlanes.lessTrafficTitle}</h3>
+                  <p className="text-muted-foreground mb-4">{lb.whyBlanes.lessTrafficBody}</p>
 
-                  <h3 className="font-semibold text-lg mb-3">
-                    La auténtica Costa Brava
-                  </h3>
-                  <p className="text-muted-foreground">
-                    Desde Blanes puedes explorar calas secretas como Cala Sant Francesc,
-                    llegar a Lloret de Mar o incluso a Tossa de Mar. Es la puerta de
-                    entrada a la Costa Brava real, con acantilados, pinos y aguas
-                    color esmeralda.
-                  </p>
+                  <h3 className="font-semibold text-lg mb-3">{lb.whyBlanes.realCostaBravaTitle}</h3>
+                  <p className="text-muted-foreground">{lb.whyBlanes.realCostaBravaBody}</p>
                 </div>
               </div>
             </CardContent>
@@ -215,7 +197,7 @@ export default function LocationBarcelonaPage() {
             <CardHeader>
               <h2 className="flex items-center gap-3 text-2xl font-semibold leading-none tracking-tight">
                 <MapPin className="w-6 h-6 text-primary" />
-                Cómo llegar de Barcelona a Blanes
+                {lb.howToGet.title}
               </h2>
             </CardHeader>
             <CardContent>
@@ -224,42 +206,27 @@ export default function LocationBarcelonaPage() {
                   <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
                     <Car className="w-8 h-8 text-primary" />
                   </div>
-                  <h3 className="font-semibold text-lg mb-2">En coche</h3>
-                  <p className="text-muted-foreground text-sm mb-2">
-                    <strong>70 minutos</strong> por la AP-7
-                  </p>
-                  <p className="text-muted-foreground text-sm">
-                    Toma la autopista AP-7 dirección Girona/Francia. Salida 9 (Blanes).
-                    Aparcamiento gratuito junto al puerto.
-                  </p>
+                  <h3 className="font-semibold text-lg mb-2">{lb.howToGet.carTitle}</h3>
+                  <p className="text-muted-foreground text-sm mb-2" dangerouslySetInnerHTML={{ __html: lb.howToGet.carDuration }} />
+                  <p className="text-muted-foreground text-sm">{lb.howToGet.carBody}</p>
                 </div>
 
                 <div className="text-center">
                   <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
                     <Train className="w-8 h-8 text-primary" />
                   </div>
-                  <h3 className="font-semibold text-lg mb-2">En tren</h3>
-                  <p className="text-muted-foreground text-sm mb-2">
-                    <strong>90 minutos</strong> RENFE Rodalies
-                  </p>
-                  <p className="text-muted-foreground text-sm">
-                    Línea R1 desde Barcelona Sants o Passeig de Gràcia hasta
-                    Blanes. Trenes cada 30 minutos. Estación a 10 min del puerto.
-                  </p>
+                  <h3 className="font-semibold text-lg mb-2">{lb.howToGet.trainTitle}</h3>
+                  <p className="text-muted-foreground text-sm mb-2" dangerouslySetInnerHTML={{ __html: lb.howToGet.trainDuration }} />
+                  <p className="text-muted-foreground text-sm">{lb.howToGet.trainBody}</p>
                 </div>
 
                 <div className="text-center">
                   <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
                     <Bus className="w-8 h-8 text-primary" />
                   </div>
-                  <h3 className="font-semibold text-lg mb-2">En autobús</h3>
-                  <p className="text-muted-foreground text-sm mb-2">
-                    <strong>80 minutos</strong> desde Estación del Nord
-                  </p>
-                  <p className="text-muted-foreground text-sm">
-                    Autobuses directos desde la Estación del Nord de Barcelona.
-                    Varias frecuencias diarias en temporada de verano.
-                  </p>
+                  <h3 className="font-semibold text-lg mb-2">{lb.howToGet.busTitle}</h3>
+                  <p className="text-muted-foreground text-sm mb-2" dangerouslySetInnerHTML={{ __html: lb.howToGet.busDuration }} />
+                  <p className="text-muted-foreground text-sm">{lb.howToGet.busBody}</p>
                 </div>
               </div>
             </CardContent>
@@ -270,59 +237,44 @@ export default function LocationBarcelonaPage() {
             <CardHeader>
               <h2 className="flex items-center gap-3 text-2xl font-semibold leading-none tracking-tight">
                 <Anchor className="w-6 h-6 text-primary" />
-                Nuestros barcos
+                {lb.boats.title}
               </h2>
             </CardHeader>
             <CardContent>
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
-                  <h3 className="font-semibold text-lg mb-3">
-                    Barcos sin licencia
-                  </h3>
-                  <p className="text-muted-foreground mb-3">
-                    5 embarcaciones para 4-5 personas. No necesitas experiencia previa ni
-                    titulación. Te damos una formación de 15 minutos y listo para navegar.
-                    Gasolina incluida en el precio.
-                  </p>
+                  <h3 className="font-semibold text-lg mb-3">{lb.boats.noLicenseTitle}</h3>
+                  <p className="text-muted-foreground mb-3">{lb.boats.noLicenseBody}</p>
                   <ul className="space-y-1 text-muted-foreground text-sm">
                     <li className="flex items-center gap-2">
                       <Users className="w-4 h-4 text-primary" />
-                      Hasta 5 personas por barco
+                      {lb.boats.noLicenseBullet1}
                     </li>
                     <li className="flex items-center gap-2">
                       <Clock className="w-4 h-4 text-primary" />
-                      Desde 1 hora de alquiler
+                      {lb.boats.noLicenseBullet2}
                     </li>
                   </ul>
                 </div>
                 <div>
-                  <h3 className="font-semibold text-lg mb-3">
-                    Barcos con licencia
-                  </h3>
-                  <p className="text-muted-foreground mb-3">
-                    2 embarcaciones potentes para hasta 7 personas. Requieren PER o
-                    título náutico equivalente. Mayor autonomía y velocidad para
-                    explorar toda la Costa Brava.
-                  </p>
+                  <h3 className="font-semibold text-lg mb-3">{lb.boats.licensedTitle}</h3>
+                  <p className="text-muted-foreground mb-3">{lb.boats.licensedBody}</p>
                   <ul className="space-y-1 text-muted-foreground text-sm">
                     <li className="flex items-center gap-2">
                       <Users className="w-4 h-4 text-primary" />
-                      Hasta 7 personas por barco
+                      {lb.boats.licensedBullet1}
                     </li>
                     <li className="flex items-center gap-2">
                       <Clock className="w-4 h-4 text-primary" />
-                      Jornada completa disponible
+                      {lb.boats.licensedBullet2}
                     </li>
                   </ul>
                 </div>
               </div>
               <div className="mt-6 text-center">
-                <Button
-                  variant="outline"
-                  asChild
-                >
+                <Button variant="outline" asChild>
                   <a href={localizedPath("home") + "#fleet"}>
-                    Ver todos los barcos
+                    {lb.boats.viewAllCta}
                     <ArrowRight className="w-4 h-4 ml-2" />
                   </a>
                 </Button>
@@ -333,7 +285,7 @@ export default function LocationBarcelonaPage() {
           {/* FAQ section */}
           <div className="mt-12">
             <h2 className="text-2xl font-heading font-bold text-center mb-8">
-              Preguntas frecuentes
+              {lb.faqTitle}
             </h2>
             <div className="space-y-3 max-w-3xl mx-auto">
               {processedFaqItems.map((item, index) => (
@@ -356,13 +308,8 @@ export default function LocationBarcelonaPage() {
           {/* CTA */}
           <Card className="mt-12 bg-primary text-white">
             <CardContent className="p-8 text-center">
-              <h2 className="text-2xl font-bold mb-4">
-                Escapa de Barcelona y navega por la Costa Brava
-              </h2>
-              <p className="text-lg mb-6 opacity-90">
-                A solo 70 minutos de Barcelona. Barcos sin licencia desde {faqVars.noLicBaja1h} € con
-                gasolina incluida. Aguas cristalinas y calas secretas te esperan.
-              </p>
+              <h2 className="text-2xl font-bold mb-4">{lb.cta.title}</h2>
+              <p className="text-lg mb-6 opacity-90">{sub(lb.cta.subtitle)}</p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button
                   size="lg"
@@ -370,7 +317,7 @@ export default function LocationBarcelonaPage() {
                   onClick={() => openBookingModal()}
                 >
                   <Anchor className="w-5 h-5 mr-2" />
-                  Reservar barco
+                  {lb.cta.reserveButton}
                 </Button>
                 <Button
                   size="lg"
@@ -379,7 +326,7 @@ export default function LocationBarcelonaPage() {
                   asChild
                 >
                   <a href={localizedPath("pricing")}>
-                    Ver precios
+                    {lb.cta.viewPricesButton}
                     <ArrowRight className="w-4 h-4 ml-2" />
                   </a>
                 </Button>
@@ -394,12 +341,14 @@ export default function LocationBarcelonaPage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="py-8">
             <h2 className="text-xl font-heading font-bold text-foreground mb-4">
-              Artículos del blog
+              {lb.blog.title}
             </h2>
-            <p className="text-muted-foreground mb-4">
-              Descubre más sobre navegar por la Costa Brava en nuestro{" "}
-              <a href={localizedPath("blog")} className="text-primary hover:underline font-medium">blog de navegación</a>.
-            </p>
+            <p
+              className="text-muted-foreground mb-4"
+              dangerouslySetInnerHTML={{
+                __html: lb.blog.description.replace("{blogPath}", localizedPath("blog")),
+              }}
+            />
           </div>
         </div>
       </div>

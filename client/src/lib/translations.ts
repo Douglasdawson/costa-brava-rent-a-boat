@@ -1775,6 +1775,30 @@ export interface Translations {
     internalLinks?: string;
   };
 
+  locationBarcelona?: {
+    hero: {
+      title: string;
+      description: string;
+      badgeDistance: string;
+      badgeLicense: string;
+      badgeWaters: string;
+    };
+    whyBlanes: Record<string, string>;
+    howToGet: Record<string, string>;
+    boats: Record<string, string>;
+    faqTitle: string;
+    cta: {
+      title: string;
+      subtitle: string;
+      reserveButton: string;
+      viewPricesButton: string;
+    };
+    blog: {
+      title: string;
+      description: string;
+    };
+  };
+
   faqPage?: {
     heroTitle: string;
     heroDescription: string;

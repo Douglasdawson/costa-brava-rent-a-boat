@@ -1285,8 +1285,8 @@ export const en: Translations = {
     "remus-450-ii": "Same model as our most popular boat, with guaranteed availability even in peak August. Ideal when the Remus 450 is already booked: enjoy the same comfort, stability and Bi Mini canopy that families on the Costa Brava love. Fuel, insurance and safety equipment included.",
     "astec-400": "The most affordable option for couples and families who want to enjoy the sea without overspending. With 2-4 passengers, the price per person is the lowest in the entire fleet. Stable, easy to handle and with a Bi Mini canopy to protect the little ones. Anchor in quiet coves near Blanes — no boating licence required. Fuel, insurance and safety equipment included.",
     "astec-480": "The premium no-licence experience. At 4.80 m, with Bluetooth speakers, a cushioned solarium and double fuel tank, it's the most complete no-licence boat in Blanes. Sail to the most beautiful Costa Brava coves with your favourite music. Fuel, insurance and safety equipment included.",
-    "trimarchi-57s": "The ideal speedboat to explore the full coastline: Lloret de Mar in 15 minutes, Tossa de Mar in half an hour. With 80 hp, GPS and depth sounder, you'll reach coves other boats can't. Freshwater shower, Bluetooth and stainless-steel arch for water sports. All the gear to cruise the Costa Brava with total freedom. Boating licence required (ICC/Day Skipper).",
-    "mingolla-brava-19": "110 hp of Italian design for groups of up to 7 who want equal parts adrenaline and comfort. Double bow and stern solariums for sunbathing, a central table for lunch anchored in a cove, and the power to reach any spot between Blanes and Tossa de Mar in minutes. The boat for those who want speed without giving anything up. Boating licence required (ICC/Day Skipper).",
+    "trimarchi-57s": "110 hp of Italian design for groups of up to 7 who want equal parts adrenaline and comfort. Double bow and stern solariums for sunbathing, a central table for lunch anchored in a cove, and the power to reach any spot between Blanes and Tossa de Mar in minutes. The boat for those who want speed without giving anything up. Basic Navigation License (LBN) required.",
+    "mingolla-brava-19": "The ideal speedboat to explore the full coastline: Lloret de Mar in 15 minutes, Tossa de Mar in half an hour. With 80 hp, GPS and depth sounder, you'll reach coves other boats can't. Freshwater shower, Bluetooth and stainless-steel arch for water sports. All the gear to cruise the Costa Brava with total freedom. Basic Navigation License (LBN) required.",
     "pacific-craft-625": "The best rental in Blanes. 6.24 m, 115 hp Yamaha engine and luxury space for 7. Double solarium, dining table for meals at anchor, freshwater shower and electronic controls. For those who want no compromises and seek the most complete boating experience on the Costa Brava. Boating licence required (ICC/Day Skipper).",
     "excursion-privada": "You just enjoy — our professional skipper takes you to secret coves, sea caves and spots inaccessible on foot between Blanes and Tossa de Mar. You'll anchor in the perfect cove of the day, chosen by wind and currents. Ideal for celebrations, anniversaries or families who want an exclusive private excursion on the Costa Brava with zero worries.",
   },
@@ -2328,5 +2328,85 @@ export const en: Translations = {
       success: 'Guide sent! Check your email.',
       error: 'Failed to send. Please try again.',
     },
+  },
+  activitySunset: {
+    faqItems: [
+      {
+        question: 'What time should I leave for a sunset boat trip?',
+        answer: 'We recommend leaving 2 hours before sunset. That gives you time to cruise along the coast, find a lovely cove and get settled before golden hour. In summer (June-July), head out around 7:00-7:30 PM. In spring and autumn, around 5:30-6:30 PM. Our team at the port will let you know the exact sunset time on the day of your trip.',
+      },
+      {
+        question: 'Do I need a boat licence for a sunset trip?',
+        answer: 'No. Our licence-free boats are perfect for sunset trips. You just need to be over 18. We give you a 15-minute safety briefing before you head out. The boats are easy to handle and have a maximum speed that makes them very safe for sunset cruising.',
+      },
+      {
+        question: 'Is it safe to be on the boat at sunset and return in low light?',
+        answer: 'Yes. All our boats are equipped with navigation lights for use after dark. Blanes port is well lit and easy to enter at dusk. We recommend returning no later than 30 minutes after sunset, when there\'s still plenty of light. Our team will brief you on the return route.',
+      },
+      {
+        question: 'How much does a sunset boat trip cost?',
+        answer: 'A 2-hour sunset trip in a licence-free boat costs from 140 EUR in total ({noLicBaja1h} EUR/hour in low season). Fuel is included for licence-free boats. The boat takes up to 5 people, so the cost per person can be as low as 28 EUR. Licence-free boats include fuel, insurance, safety equipment and the briefing.',
+      },
+    ],
+  },
+  activitySnorkel: {
+    faqItems: [
+      {
+        question: 'Can I rent snorkeling equipment with the boat?',
+        answer: 'Yes. We offer snorkel kits (mask, snorkel and fins) for 7.50 EUR per person. Equipment is collected when boarding and returned at the end of the rental. You can also bring your own equipment at no extra cost.',
+      },
+      {
+        question: 'What\'s the best time for snorkeling in Blanes?',
+        answer: 'From June to September the water temperature ranges between 22 and 26 degrees, ideal for snorkeling without a wetsuit. The best visibility is in June and September, when it\'s less crowded and the water is calmer. In July and August the water is warmer but there may be more waves on windy days.',
+      },
+      {
+        question: 'Is it safe to snorkel from the boat without experience?',
+        answer: 'Absolutely. Before heading out we give you a 15-minute safety briefing where we explain how to anchor the boat correctly. All boats carry life jackets. We recommend snorkeling in sheltered coves like Cala Sant Francesc for beginners.',
+      },
+      {
+        question: 'How many coves can I visit on a snorkeling trip?',
+        answer: 'In 2 hours you can visit 1-2 coves with enough time for snorkeling. In 4 hours you can do a full route of 3-4 coves. We recommend a minimum of 3 hours to enjoy the snorkeling and boating without rushing.',
+      },
+    ],
+  },
+  activityFamilies: {
+    faqItems: [
+      {
+        question: 'From what age can children board the boat?',
+        answer: 'There is no minimum age. Babies and children of any age are welcome. All minors must wear approved life jackets during navigation. For babies we recommend short trips of 1-2 hours and choosing days with calm seas.',
+      },
+      {
+        question: 'Do I need a boating license to rent a family boat?',
+        answer: 'No. Our license-free boats do not require any nautical qualification. You only need to be over 18 years old. We give you a full 15-minute briefing before departure. They are safe, stable boats that are very easy to handle.',
+      },
+      {
+        question: 'What does the rental price include?',
+        answer: 'The price for license-free boats includes fuel, insurance, life jackets for everyone (including children\'s), bathing ladder, awning/bimini for shade and the safety briefing. Only snorkeling equipment is additional (7.50 EUR/person).',
+      },
+      {
+        question: 'What should we bring for a boat trip with children?',
+        answer: 'We recommend bringing: high protection sunscreen (waterproof), caps or hats, plenty of water, snacks or picnic, towels, swimwear and a change of dry clothes. Optional: waterproof camera, beach toys and your own snorkeling equipment.',
+      },
+    ],
+  },
+  activityFishing: {
+    faqItems: [
+      {
+        question: 'Do the boats include fishing equipment?',
+        answer: 'No. You must bring your own fishing equipment (rods, reels, lures, bait). Our boats provide the navigation platform, but do not include fishing gear. In Blanes there are chandleries near the port where you can buy fresh bait and basic equipment.',
+      },
+      {
+        question: 'Do I need a fishing licence to fish from the boat?',
+        answer: 'Yes. For recreational sea fishing you need the maritime recreational fishing licence from the Generalitat de Catalunya. You can obtain it online at gencat.cat for approximately 14 EUR (valid for 2 years). It is different from the boating licence: the fishing licence is for fishing, the boating licence is for operating the boat.',
+      },
+      {
+        question: 'What boat do I need for sea fishing?',
+        answer: 'It depends on the type of fishing. For bottom fishing in nearby coves (sea bass, sea bream), a licence-free boat is sufficient. For open water fishing (amberjack, trolling), you need a licensed boat which has greater range and power. Contact us on WhatsApp and we\'ll advise you based on your experience.',
+      },
+      {
+        question: 'What are the fishing regulations on the Costa Brava?',
+        answer: 'Recreational fishing in Catalonia has catch limits: maximum 5 kg per person per day (except if a single fish exceeds that weight). There are minimum sizes by species (sea bass 36 cm, sea bream 20 cm). Fishing is prohibited in marine reserves and bathing areas. Some techniques such as spearfishing require a specific licence.',
+      },
+    ],
   },
 };

@@ -355,7 +355,7 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
     image: "MINGOLLA_BRAVA_19_boat_c0e4a5b5.png",
     emotionTag: "emotionTags.explorer",
     subtitle: "Con licencia · 6 personas · Lloret en 15 min, Tossa en 30",
-    description: "La lancha ideal para explorar toda la costa: Lloret de Mar en 15 minutos, Tossa de Mar en media hora. Con 80cv, GPS y sonda náutica, llegas a calas que otros barcos no alcanzan. Ducha de agua dulce, bluetooth y arco inox para deportes acuáticos. Todo el equipamiento para recorrer la Costa Brava con total autonomía. Requiere licencia náutica (PER/PNB).",
+    description: "La lancha ideal para explorar toda la costa: Lloret de Mar en 15 minutos, Tossa de Mar en media hora. Con 80cv, GPS y sonda náutica, llegas a calas que otros barcos no alcanzan. Ducha de agua dulce, bluetooth y arco inox para deportes acuáticos. Todo el equipamiento para recorrer la Costa Brava con total autonomía. Requiere Licencia Básica de Navegación (LBN).",
     specifications: {
       model: "Brava 19",
       length: "5,99m",
@@ -419,7 +419,7 @@ export const BOAT_DATA: { [key: string]: BoatData } = {
     image: "Trimarchi_57S_luxury_boat_0ef0159a.png",
     emotionTag: "emotionTags.adrenaline",
     subtitle: "Con licencia · 7 personas · Adrenalina para grupos",
-    description: "110cv de diseño italiano para grupos de hasta 7 personas que quieren adrenalina y confort a partes iguales. Solárium doble en proa y popa para tomar el sol, mesa central para comer fondeados en una cala y la potencia para llegar a cualquier rincón entre Blanes y Tossa de Mar en minutos. La embarcación que elige quien quiere sentir la velocidad sin renunciar a nada. Requiere licencia náutica (PER/PNB).",
+    description: "110cv de diseño italiano para grupos de hasta 7 personas que quieren adrenalina y confort a partes iguales. Solárium doble en proa y popa para tomar el sol, mesa central para comer fondeados en una cala y la potencia para llegar a cualquier rincón entre Blanes y Tossa de Mar en minutos. La embarcación que elige quien quiere sentir la velocidad sin renunciar a nada. Requiere Licencia Básica de Navegación (LBN).",
     specifications: {
       model: "Trimarchi 57S",
       length: "5,7m",

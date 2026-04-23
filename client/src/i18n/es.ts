@@ -2012,8 +2012,8 @@ export const es: Translations = {
     "remus-450-ii": "Mismo modelo que nuestro barco más popular, con disponibilidad garantizada incluso en pleno agosto. Ideal si la Remus 450 ya está reservada: disfrutas del mismo confort, la misma estabilidad y el toldo Bi Mini que tanto valoran las familias en la Costa Brava. Gasolina, seguro y equipo de seguridad incluidos.",
     "astec-400": "La opción más económica para parejas y familias que quieren disfrutar del mar sin gastar de más. Al ser 2-4 personas, el precio por persona es el más bajo de toda la flota. Estable, fácil de manejar y con toldo Bi Mini para proteger a los peques del sol. Fondea en calas tranquilas cerca de Blanes sin necesidad de carnet náutico. Gasolina, seguro y equipo de seguridad incluidos.",
     "astec-480": "La experiencia premium sin necesidad de carnet náutico. Con 4,80m de eslora, equipo de música bluetooth, solárium acolchado y el doble de depósito de combustible, es la embarcación sin licencia más completa de Blanes. Navega con tu música favorita hacia las calas más bonitas de la Costa Brava. Gasolina, seguro y equipo de seguridad incluidos.",
-    "trimarchi-57s": "La lancha ideal para explorar toda la costa: Lloret de Mar en 15 minutos, Tossa de Mar en media hora. Con 80cv, GPS y sonda náutica, llegas a calas que otros barcos no alcanzan. Ducha de agua dulce, bluetooth y arco inox para deportes acuáticos. Todo el equipamiento para recorrer la Costa Brava con total autonomía. Requiere licencia náutica (PER/PNB).",
-    "mingolla-brava-19": "110cv de diseño italiano para grupos de hasta 7 personas que quieren adrenalina y confort a partes iguales. Solárium doble en proa y popa para tomar el sol, mesa central para comer fondeados en una cala y la potencia para llegar a cualquier rincón entre Blanes y Tossa de Mar en minutos. La embarcación que elige quien quiere sentir la velocidad sin renunciar a nada. Requiere licencia náutica (PER/PNB).",
+    "trimarchi-57s": "110cv de diseño italiano para grupos de hasta 7 personas que quieren adrenalina y confort a partes iguales. Solárium doble en proa y popa para tomar el sol, mesa central para comer fondeados en una cala y la potencia para llegar a cualquier rincón entre Blanes y Tossa de Mar en minutos. La embarcación que elige quien quiere sentir la velocidad sin renunciar a nada. Requiere Licencia Básica de Navegación (LBN).",
+    "mingolla-brava-19": "La lancha ideal para explorar toda la costa: Lloret de Mar en 15 minutos, Tossa de Mar en media hora. Con 80cv, GPS y sonda náutica, llegas a calas que otros barcos no alcanzan. Ducha de agua dulce, bluetooth y arco inox para deportes acuáticos. Todo el equipamiento para recorrer la Costa Brava con total autonomía. Requiere Licencia Básica de Navegación (LBN).",
     "pacific-craft-625": "Lo mejor que puedes alquilar en Blanes. 6,24 metros de eslora, motor Yamaha 115cv y espacio de lujo para 7 personas. Solárium doble, mesa para comer fondeados frente a una cala, ducha de agua dulce y mando electrónico. Para quienes no quieren compromisos y buscan la experiencia náutica más completa de la Costa Brava. Requiere licencia náutica (PER/PNB).",
     "excursion-privada": "Tú solo disfrutas: nuestro patrón profesional te lleva a calas secretas, cuevas marinas y rincones inaccesibles a pie entre Blanes y Tossa de Mar. Fondearéis en la cala perfecta del día, elegida según viento y corrientes. Ideal para celebraciones, aniversarios o familias que quieren una excursión privada exclusiva por la Costa Brava sin preocuparse de nada.",
   },
@@ -2042,6 +2042,90 @@ export const es: Translations = {
     ctaFleet: 'Ver flota sin licencia',
     ctaLicensed: 'Barcos con Licencia Básica (LBN)',
     internalLinks: '¿Quieres saber más? Consulta la guía completa del tramo en <a href="/es/alquiler-barcos-lloret-de-mar" class="underline text-primary hover:text-primary/80">Lloret de Mar desde el mar</a> o la ruta con licencia hasta <a href="/es/alquiler-barcos-tossa-de-mar" class="underline text-primary hover:text-primary/80">Tossa de Mar</a>. Precios completos en <a href="/es/blog/cuanto-cuesta-alquilar-barco-blanes-precios" class="underline text-primary hover:text-primary/80">Cuánto cuesta alquilar un barco en Blanes</a>.',
+  },
+
+  activitySunset: {
+    faqItems: [
+      {
+        question: '¿A qué hora debo salir para una excursión en barco al atardecer?',
+        answer: 'Recomendamos salir 2 horas antes del atardecer. Así tienes tiempo de navegar por la costa, encontrar una cala bonita y acomodarte antes de la hora dorada. En verano (junio-julio), sal sobre las 19:00-19:30. En primavera y otoño, sobre las 17:30-18:30. Nuestro equipo en el puerto te indicará la hora exacta de la puesta de sol el día de tu salida.',
+      },
+      {
+        question: '¿Necesito licencia de navegación para una excursión al atardecer?',
+        answer: 'No. Nuestros barcos sin licencia son perfectos para excursiones al atardecer. Solo necesitas ser mayor de 18 años. Te damos una formación de seguridad de 15 minutos antes de salir. Los barcos son fáciles de manejar y tienen una velocidad máxima que los hace muy seguros para navegar al atardecer.',
+      },
+      {
+        question: '¿Es seguro estar en barco al atardecer y volver con poca luz?',
+        answer: 'Sí. Todos nuestros barcos están equipados con luces de navegación para uso nocturno. El puerto de Blanes está bien iluminado y es fácil de entrar al anochecer. Recomendamos regresar a más tardar 30 minutos después de la puesta de sol, cuando aún hay claridad. Nuestro equipo te informará sobre la ruta de regreso.',
+      },
+      {
+        question: '¿Cuánto cuesta una excursión en barco al atardecer?',
+        answer: 'Una excursión de 2 horas al atardecer en barco sin licencia cuesta desde 140 EUR en total ({noLicBaja1h} EUR/hora en temporada baja). La gasolina está incluida en barcos sin licencia. El barco admite hasta 5 personas, así que el coste por persona puede ser desde 28 EUR. Los barcos sin licencia incluyen gasolina, seguro, equipo de seguridad y la formación.',
+      },
+    ],
+  },
+
+  activitySnorkel: {
+    faqItems: [
+      {
+        question: '¿Puedo alquilar equipo de snorkel con el barco?',
+        answer: 'Sí. Ofrecemos kits de snorkel (máscara, tubo y aletas) por 7,50 EUR por persona. El equipo se recoge al embarcar y se devuelve al final del alquiler. También puedes traer tu propio equipo sin coste adicional.',
+      },
+      {
+        question: '¿Cuál es la mejor época para hacer snorkel en Blanes?',
+        answer: 'De junio a septiembre la temperatura del agua oscila entre 22 y 26 grados, ideal para snorkel sin neopreno. La mejor visibilidad se da en junio y septiembre, cuando hay menos afluencia y el agua está más calmada. En julio y agosto el agua está más cálida pero puede haber más oleaje en días de viento.',
+      },
+      {
+        question: '¿Es seguro hacer snorkel desde el barco sin experiencia?',
+        answer: 'Totalmente. Antes de salir te damos una formación de seguridad de 15 minutos donde explicamos cómo fondear el barco correctamente. Todos los barcos llevan chalecos salvavidas. Recomendamos snorkel en calas protegidas como Cala Sant Francesc para principiantes.',
+      },
+      {
+        question: '¿Cuántas calas puedo visitar en una salida de snorkel?',
+        answer: 'En 2 horas puedes visitar 1-2 calas con tiempo suficiente para snorkel. En 4 horas puedes hacer una ruta completa de 3-4 calas. Recomendamos un mínimo de 3 horas para disfrutar sin prisas del snorkel y la navegación.',
+      },
+    ],
+  },
+
+  activityFamilies: {
+    faqItems: [
+      {
+        question: '¿A partir de qué edad pueden subir los niños al barco?',
+        answer: 'No hay edad mínima. Bebés y niños de cualquier edad son bienvenidos. Todos los menores deben llevar chaleco salvavidas homologado durante la navegación. Para bebés recomendamos salidas cortas de 1-2 horas y elegir días con mar en calma.',
+      },
+      {
+        question: '¿Necesito licencia de navegación para alquilar un barco familiar?',
+        answer: 'No. Nuestros barcos sin licencia no requieren ningún título náutico. Solo necesitas ser mayor de 18 años. Te damos una formación completa de 15 minutos antes de salir. Son barcos seguros, estables y muy fáciles de manejar.',
+      },
+      {
+        question: '¿Qué incluye el precio del alquiler?',
+        answer: 'El precio de los barcos sin licencia incluye gasolina, seguro, chalecos salvavidas para todos (incluidos infantiles), escalera de baño, toldo/bimini para sombra y la formación de seguridad. Solo el equipo de snorkel es adicional (7,50 EUR/persona).',
+      },
+      {
+        question: '¿Qué debemos llevar para una salida en barco con niños?',
+        answer: 'Recomendamos llevar: crema solar de alta protección (waterproof), gorras o sombreros, agua abundante, snacks o picnic, toallas, ropa de baño y una muda de ropa seca. Opcional: cámara acuática, juguetes de playa y equipo de snorkel propio.',
+      },
+    ],
+  },
+
+  activityFishing: {
+    faqItems: [
+      {
+        question: '¿Los barcos incluyen equipo de pesca?',
+        answer: 'No. Debes traer tu propio equipo de pesca (cañas, carretes, señuelos, cebo). Nuestros barcos proporcionan la plataforma de navegación, pero no incluyen material de pesca. En Blanes hay tiendas náuticas cerca del puerto donde puedes comprar cebo fresco y material básico.',
+      },
+      {
+        question: '¿Necesito licencia de pesca para pescar desde el barco?',
+        answer: 'Sí. Para pesca recreativa en el mar necesitas la licencia de pesca recreativa marítima de la Generalitat de Catalunya. Puedes obtenerla online en gencat.cat por aproximadamente 14 EUR (validez 2 años). Es diferente de la licencia de navegación: la licencia de pesca es para pescar, la de navegación para conducir el barco.',
+      },
+      {
+        question: '¿Qué barco necesito para pescar en el mar?',
+        answer: 'Depende del tipo de pesca. Para pesca a fondo en calas cercanas (lubinas, doradas), un barco sin licencia es suficiente. Para pesca en aguas abiertas (serviolas, curricán), necesitas un barco con licencia que tiene mayor autonomía y potencia. Contáctanos por WhatsApp y te asesoramos según tu experiencia.',
+      },
+      {
+        question: '¿Cuáles son las regulaciones de pesca en la Costa Brava?',
+        answer: 'La pesca recreativa en Catalunya tiene límites de captura: máximo 5 kg por persona y día (excepto si una pieza supera ese peso). Hay tallas mínimas por especie (lubina 36 cm, dorada 20 cm). Está prohibido pescar en reservas marinas y zonas de baño. Algunas técnicas como la pesca con arpón requieren licencia específica.',
+      },
+    ],
   },
 
   whatsappMessages: {

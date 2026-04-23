@@ -108,28 +108,12 @@ const fishingSpots = [
   }
 ];
 
-const faqs = [
-  {
-    question: "Los barcos incluyen equipo de pesca?",
-    answer: "No. Debes traer tu propio equipo de pesca (canas, carretes, senuelos, cebo). Nuestros barcos proporcionan la plataforma de navegacion, pero no incluyen material de pesca. En Blanes hay tiendas nauticas cerca del puerto donde puedes comprar cebo fresco y material basico."
-  },
-  {
-    question: "Necesito licencia de pesca para pescar desde el barco?",
-    answer: "Si. Para pesca recreativa en el mar necesitas la licencia de pesca recreativa maritima de la Generalitat de Catalunya. Puedes obtenerla online en gencat.cat por aproximadamente 14 EUR (validez 2 anos). Es diferente de la licencia de navegacion: la licencia de pesca es para pescar, la de navegacion para conducir el barco."
-  },
-  {
-    question: "Que barco necesito para pescar en el mar?",
-    answer: "Depende del tipo de pesca. Para pesca a fondo en calas cercanas (lubinas, doradas), un barco sin licencia es suficiente. Para pesca en aguas abiertas (serviolas, curricán), necesitas un barco con licencia que tiene mayor autonomia y potencia. Contactanos por WhatsApp y te asesoramos segun tu experiencia."
-  },
-  {
-    question: "Cuales son las regulaciones de pesca en la Costa Brava?",
-    answer: "La pesca recreativa en Catalunya tiene limites de captura: maximo 5 kg por persona y dia (excepto si una pieza supera ese peso). Hay tallas minimas por especie (lubina 36 cm, dorada 20 cm). Esta prohibido pescar en reservas marinas y zonas de bano. Algunas tecnicas como la pesca con arpón requieren licencia especifica."
-  }
-];
+const faqsFallback: Array<{ question: string; answer: string }> = [];
 
 export default function ActivityFishingPage() {
   const { language, localizedPath } = useLanguage();
   const t = useTranslations();
+  const faqs = t.activityFishing?.faqItems ?? faqsFallback;
   const seoConfig = getSEOConfig('activityFishing', language);
   const hreflangLinks = generateHreflangLinks('activityFishing');
   const canonical = generateCanonicalUrl('activityFishing', language);

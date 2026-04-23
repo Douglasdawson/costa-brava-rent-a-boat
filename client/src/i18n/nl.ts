@@ -1225,8 +1225,8 @@ export const nl: Translations = {
     "remus-450-ii": "Zelfde model als onze populairste boot, met gegarandeerde beschikbaarheid zelfs in het hoogseizoen augustus. Ideaal wanneer de Remus 450 al geboekt is: geniet van hetzelfde comfort, dezelfde stabiliteit en de Bi Mini kap waar gezinnen aan de Costa Brava zo van houden. Brandstof, verzekering en veiligheidsuitrusting inbegrepen.",
     "astec-400": "De voordeligste optie voor koppels en gezinnen die van de zee willen genieten zonder te veel uit te geven. Met 2-4 passagiers is de prijs per persoon de laagste van de hele vloot. Stabiel, makkelijk te besturen en met Bi Mini kap om de kleintjes te beschermen. Anker in rustige baaien bij Blanes — geen vaarbewijs nodig. Brandstof, verzekering en veiligheidsuitrusting inbegrepen.",
     "astec-480": "De premium ervaring zonder vaarbewijs. Met 4,80 m, Bluetooth speakers, gewatteerd solarium en dubbele brandstoftank is het de meest complete vaarbewijsvrije boot in Blanes. Vaar met uw favoriete muziek naar de mooiste baaien van de Costa Brava. Brandstof, verzekering en veiligheidsuitrusting inbegrepen.",
-    "trimarchi-57s": "De ideale speedboot om de hele kust te verkennen: Lloret de Mar in 15 minuten, Tossa de Mar in een half uur. Met 80 pk, GPS en dieptemeter bereikt u baaien die andere boten niet halen. Zoetwaterdouche, Bluetooth en RVS beugel voor watersport. Alle uitrusting om de Costa Brava in totale vrijheid te verkennen. Vaarbewijs vereist (ICC).",
-    "mingolla-brava-19": "110 pk Italiaans design voor groepen tot 7 personen die evenveel adrenaline als comfort willen. Dubbel solarium op voor- en achtersteven om te zonnen, een centrale tafel voor de lunch voor anker in een baai en het vermogen om elk plekje tussen Blanes en Tossa de Mar in minuten te bereiken. De boot voor wie snelheid wil zonder iets op te geven. Vaarbewijs vereist (ICC).",
+    "trimarchi-57s": "110 pk Italiaans design voor groepen tot 7 personen die evenveel adrenaline als comfort willen. Dubbel solarium op voor- en achtersteven om te zonnen, een centrale tafel voor de lunch voor anker in een baai en het vermogen om elk plekje tussen Blanes en Tossa de Mar in minuten te bereiken. De boot voor wie snelheid wil zonder iets op te geven. Basisvaarbewijs (LBN) vereist.",
+    "mingolla-brava-19": "De ideale speedboot om de hele kust te verkennen: Lloret de Mar in 15 minuten, Tossa de Mar in een half uur. Met 80 pk, GPS en dieptemeter bereikt u baaien die andere boten niet halen. Zoetwaterdouche, Bluetooth en RVS beugel voor watersport. Alle uitrusting om de Costa Brava in totale vrijheid te verkennen. Basisvaarbewijs (LBN) vereist.",
     "pacific-craft-625": "Het beste wat u in Blanes kunt huren. 6,24 m, Yamaha 115 pk motor en luxe ruimte voor 7. Dubbel solarium, eettafel voor maaltijden voor anker, zoetwaterdouche en elektronische bediening. Voor wie geen compromissen wil en de meest complete vaarervaring van de Costa Brava zoekt. Vaarbewijs vereist (ICC).",
     "excursion-privada": "U geniet gewoon — onze professionele schipper brengt u naar geheime baaien, zeegrotten en plekken die te voet onbereikbaar zijn tussen Blanes en Tossa de Mar. U ankert in de perfecte baai van de dag, gekozen op basis van wind en stroming. Ideaal voor feesten, jubilea of gezinnen die een exclusief prive-uitje aan de Costa Brava willen zonder zorgen.",
   },
@@ -2268,5 +2268,85 @@ export const nl: Translations = {
       success: 'Gids verzonden! Controleer uw e-mail.',
       error: 'Verzenden mislukt. Probeer opnieuw.',
     },
+  },
+  activitySunset: {
+    faqItems: [
+      {
+        question: 'Hoe laat moet ik vertrekken voor een boottocht bij zonsondergang?',
+        answer: 'We raden aan om 2 uur voor zonsondergang te vertrekken. Zo heb je tijd om langs de kust te varen, een mooie baai te vinden en je te installeren voor het gouden uur. In de zomer (juni-juli) vertrek je rond 19:00-19:30 uur. In de lente en herfst rond 17:30-18:30 uur. Ons team in de haven geeft je op de dag van vertrek het exacte tijdstip van de zonsondergang door.',
+      },
+      {
+        question: 'Heb ik een vaarbewijs nodig voor een tocht bij zonsondergang?',
+        answer: 'Nee. Onze boten zonder vaarbewijs zijn perfect voor tochten bij zonsondergang. Je moet alleen ouder zijn dan 18 jaar. We geven je voor vertrek een veiligheidsinstructie van 15 minuten. De boten zijn gemakkelijk te besturen en hebben een maximumsnelheid die ze zeer veilig maakt om bij zonsondergang mee te varen.',
+      },
+      {
+        question: 'Is het veilig om bij zonsondergang op een boot te zijn en terug te keren bij weinig licht?',
+        answer: 'Ja. Al onze boten zijn uitgerust met navigatielichten voor gebruik bij schemering. De haven van Blanes is goed verlicht en gemakkelijk binnen te varen bij het vallen van de avond. We raden aan uiterlijk 30 minuten na zonsondergang terug te keren, wanneer het nog licht genoeg is. Ons team informeert je over de terugroute.',
+      },
+      {
+        question: 'Hoeveel kost een boottocht bij zonsondergang?',
+        answer: 'Een boottocht van 2 uur bij zonsondergang in een boot zonder vaarbewijs kost vanaf 140 EUR in totaal ({noLicBaja1h} EUR/uur in het laagseizoen). Brandstof is inbegrepen bij boten zonder vaarbewijs. De boot is geschikt voor maximaal 5 personen, dus de prijs per persoon kan vanaf 28 EUR zijn. Boten zonder vaarbewijs zijn inclusief brandstof, verzekering, veiligheidsuitrusting en instructie.',
+      },
+    ],
+  },
+  activitySnorkel: {
+    faqItems: [
+      {
+        question: 'Kan ik snorkeluitrusting huren bij de boot?',
+        answer: 'Ja. Wij bieden snorkelsets (masker, snorkel en vinnen) aan voor 7,50 EUR per persoon. De uitrusting wordt opgehaald bij het instappen en ingeleverd aan het einde van de huurperiode. Je mag ook je eigen uitrusting meenemen zonder extra kosten.',
+      },
+      {
+        question: 'Wat is de beste tijd om te snorkelen in Blanes?',
+        answer: 'Van juni tot september ligt de watertemperatuur tussen de 22 en 26 graden, ideaal om te snorkelen zonder wetsuit. Het beste zicht is er in juni en september, wanneer het minder druk is en het water rustiger. In juli en augustus is het water warmer maar kan er meer golfslag zijn op winderige dagen.',
+      },
+      {
+        question: 'Is snorkelen vanaf de boot veilig zonder ervaring?',
+        answer: 'Absoluut. Voordat je vertrekt geven we een veiligheidsinstructie van 15 minuten waarin we uitleggen hoe je de boot correct afmeert. Alle boten hebben reddingsvesten aan boord. Voor beginners raden we beschutte baaien aan zoals Cala Sant Francesc.',
+      },
+      {
+        question: 'Hoeveel baaien kan ik bezoeken tijdens een snorkeltocht?',
+        answer: 'In 2 uur kun je 1-2 baaien bezoeken met voldoende tijd om te snorkelen. In 4 uur kun je een volledige route van 3-4 baaien doen. We raden minimaal 3 uur aan om zonder haast te genieten van het snorkelen en varen.',
+      },
+    ],
+  },
+  activityFamilies: {
+    faqItems: [
+      {
+        question: 'Vanaf welke leeftijd mogen kinderen mee op de boot?',
+        answer: 'Er is geen minimumleeftijd. Baby\'s en kinderen van alle leeftijden zijn welkom. Alle minderjarigen moeten tijdens de vaart een goedgekeurd zwemvest dragen. Voor baby\'s raden we korte tochten van 1-2 uur aan en het kiezen van dagen met rustige zee.',
+      },
+      {
+        question: 'Heb ik een vaarbewijs nodig om een gezinsboot te huren?',
+        answer: 'Nee. Voor onze boten zonder vaarbewijs is geen enkel vaardiploma vereist. Je hoeft alleen 18 jaar of ouder te zijn. We geven je voor vertrek een volledige instructie van 15 minuten. Het zijn veilige, stabiele boten die zeer gemakkelijk te besturen zijn.',
+      },
+      {
+        question: 'Wat is inbegrepen bij de huurprijs?',
+        answer: 'De prijs voor boten zonder vaarbewijs is inclusief brandstof, verzekering, zwemvesten voor iedereen (ook kindermaten), zwemladder, zonnescherm/bimini en de veiligheidsinstructie. Alleen snorkeluitrusting is extra (7,50 EUR/persoon).',
+      },
+      {
+        question: 'Wat moeten we meenemen voor een boottocht met kinderen?',
+        answer: 'We raden aan om mee te nemen: zonnebrandcrème met hoge beschermingsfactor (waterproof), petten of hoeden, voldoende water, snacks of picknick, handdoeken, zwemkleding en een set droge kleren. Optioneel: waterdichte camera, strandspeelgoed en eigen snorkeluitrusting.',
+      },
+    ],
+  },
+  activityFishing: {
+    faqItems: [
+      {
+        question: 'Is er visuitrusting inbegrepen bij de boten?',
+        answer: 'Nee. Je moet je eigen visuitrusting meenemen (hengels, molens, kunstaas, aas). Onze boten bieden het vaarplatform, maar vismateriaal is niet inbegrepen. In Blanes zijn er nautische winkels bij de haven waar je vers aas en basismateriaal kunt kopen.',
+      },
+      {
+        question: 'Heb ik een visvergunning nodig om vanaf de boot te vissen?',
+        answer: 'Ja. Voor recreatief zeevissen heb je de recreatieve zeevisvergunning van de Generalitat de Catalunya nodig. Je kunt deze online verkrijgen via gencat.cat voor ongeveer 14 EUR (geldig 2 jaar). Dit is iets anders dan een vaarbewijs: de visvergunning is voor het vissen, het vaarbewijs voor het besturen van de boot.',
+      },
+      {
+        question: 'Welke boot heb ik nodig om op zee te vissen?',
+        answer: 'Dat hangt af van het type vissen. Voor bodemvissen in nabijgelegen baaien (zeebaarzen, dorades) is een boot zonder vergunning voldoende. Voor vissen in open water (seriola\'s, trolling) heb je een boot met vergunning nodig die meer bereik en vermogen heeft. Neem via WhatsApp contact met ons op en we adviseren je op basis van je ervaring.',
+      },
+      {
+        question: 'Wat zijn de visregels aan de Costa Brava?',
+        answer: 'Recreatief vissen in Catalunya kent vangstlimieten: maximaal 5 kg per persoon per dag (behalve als één exemplaar dit gewicht overschrijdt). Er gelden minimummaten per vissoort (zeebaarzen 36 cm, dorade 20 cm). Vissen is verboden in zeereservaten en in zwemzones. Sommige technieken zoals onderwatervissen vereisen een specifieke vergunning.',
+      },
+    ],
   },
 };

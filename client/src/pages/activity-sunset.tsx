@@ -75,28 +75,12 @@ const romanticIdeas = [
   }
 ];
 
-const faqs = [
-  {
-    question: "What time should I depart for a sunset boat trip?",
-    answer: "We recommend departing 2 hours before sunset. This gives you time to cruise along the coast, find a beautiful cove, and settle in before the golden hour begins. In summer (June-July), depart around 19:00-19:30. In spring and autumn, depart around 17:30-18:30. Our team at the port will advise you on the exact sunset time on your day."
-  },
-  {
-    question: "Do I need a boat license for a sunset trip?",
-    answer: "No. Our no-license boats are perfect for sunset trips. You only need to be 18 or older. We provide a 15-minute safety briefing before departure. The boats are easy to handle and have a maximum speed that makes them very safe for evening navigation."
-  },
-  {
-    question: "Is it safe to be on a boat at sunset and return in low light?",
-    answer: "Yes. All our boats are equipped with navigation lights for evening use. The port of Blanes is well-lit and easy to enter after dark. We recommend returning no later than 30 minutes after sunset while there is still twilight. Our team will brief you on the return route."
-  },
-  {
-    question: "How much does a sunset boat trip cost?",
-    answer: "A 2-hour sunset trip on a no-license boat costs from 140 EUR total (70 EUR/hour in low season). Fuel is included for no-license boats. The boat fits up to 5 people, so the cost per person can be as low as 28 EUR. No license boats include fuel, insurance, safety equipment, and the safety briefing."
-  }
-];
+const faqsFallback: Array<{ question: string; answer: string }> = [];
 
 export default function ActivitySunsetPage() {
   const { language, localizedPath } = useLanguage();
   const t = useTranslations();
+  const faqs = t.activitySunset?.faqItems ?? faqsFallback;
   const seoConfig = getSEOConfig('activitySunset', language);
   const hreflangLinks = generateHreflangLinks('activitySunset');
   const canonical = generateCanonicalUrl('activitySunset', language);

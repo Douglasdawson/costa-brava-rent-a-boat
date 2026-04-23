@@ -1744,20 +1744,11 @@ interface ResolvedPage {
   lcpPreload?: LcpPreload;
 }
 
-// Hero images for boat detail pages. Mirrors the BOAT_IMAGES map in
-// client/src/utils/boatImages.ts — kept in sync manually because that file
-// lives under client/ and the server boundary avoids cross-importing it.
-// If a new boat is added, update both locations (client getBoatImage and this
-// map) or the preload will silently no-op and we lose the LCP win.
-const BOAT_HERO_PRELOAD_IMAGE: Record<string, string> = {
-  "solar-450": "/images/boats/solar-450/alquiler-barco-solar-450-rent-a-boat-costa-brava-blanes-exterior-puerto.webp",
-  "remus-450": "/images/boats/remus-450/alquiler-barco-remus-450-rent-a-boat-costa-brava-blanes-exterior-puerto.webp",
-  "remus-450-ii": "/images/boats/remus-450/alquiler-barco-remus-450-rent-a-boat-costa-brava-blanes-exterior-puerto.webp",
-  "astec-400": "/images/boats/astec-400/alquiler-barco-astec-400-rent-a-boat-costa-brava-blanes-exterior-puerto.webp",
-  "astec-480": "/images/boats/astec-480/alquiler-barco-astec-480-rent-a-boat-costa-brava-blanes-exterior-puerto.webp",
-  "mingolla-brava-19": "/images/boats/mingolla/alquiler-barco-mingolla-brava-19-rent-a-boat-costa-brava-blanes-exterior-puerto.webp",
-  "trimarchi-57s": "/images/boats/trimarchi/alquiler-barco-trimarchi-57s-rent-a-boat-costa-brava-blanes-exterior-puerto.webp",
-  "pacific-craft-625": "/images/boats/pacific-craft/alquiler-barco-pacific-craft-625-rent-a-boat-costa-brava-blanes-exterior-puerto.webp",
+// Hero image preload aliases. Most boat ids resolve via resolveBoatImagePath;
+// aliases like "remus-450-ii" (same underlying asset as "remus-450") live here
+// so the LCP preload still fires for legacy/duplicate ids in the DB.
+const BOAT_HERO_PRELOAD_ALIASES: Record<string, string> = {
+  "remus-450-ii": "remus-450",
 };
 
 // Decide whether a given (pathname, lang) combo should be served with
@@ -2961,7 +2952,7 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
         // (client/src/components/BoatDetailPage.tsx:840 — loading="eager"
         // fetchPriority="high"). Without this preload the LCP image is only
         // discovered after React hydrates, adding ~7s of resource load delay.
-        const heroHref = BOAT_HERO_PRELOAD_IMAGE[boat.id];
+        const heroHref = resolveBoatImagePath(BOAT_HERO_PRELOAD_ALIASES[boat.id] ?? boat.id);
         const lcpPreload: LcpPreload | undefined = heroHref
           ? { href: heroHref, imageType: "image/webp" }
           : undefined;

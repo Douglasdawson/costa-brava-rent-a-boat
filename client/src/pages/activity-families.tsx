@@ -65,28 +65,12 @@ const familyRoutes = [
   }
 ];
 
-const faqs = [
-  {
-    question: "A partir de que edad pueden subir los ninos al barco?",
-    answer: "No hay edad minima. Bebes y ninos de cualquier edad son bienvenidos. Todos los menores deben llevar chaleco salvavidas homologado durante la navegacion. Para bebes recomendamos salidas cortas de 1-2 horas y elegir dias con mar en calma."
-  },
-  {
-    question: "Necesito licencia de navegacion para alquilar un barco familiar?",
-    answer: "No. Nuestros barcos sin licencia no requieren ningun titulo nautico. Solo necesitas ser mayor de 18 anos. Te damos una formacion completa de 15 minutos antes de salir. Son barcos seguros, estables y muy faciles de manejar."
-  },
-  {
-    question: "Que incluye el precio del alquiler?",
-    answer: "El precio de los barcos sin licencia incluye gasolina, seguro, chalecos salvavidas para todos (incluidos infantiles), escalera de bano, toldo/bimini para sombra y la formacion de seguridad. Solo el equipo de snorkel es adicional (7,50 EUR/persona)."
-  },
-  {
-    question: "Que debemos llevar para una salida en barco con ninos?",
-    answer: "Recomendamos llevar: crema solar de alta proteccion (waterproof), gorras o sombreros, agua abundante, snacks o picnic, toallas, ropa de bano y una muda de ropa seca. Opcional: camara acuatica, juguetes de playa y equipo de snorkel propio."
-  }
-];
+const faqsFallback: Array<{ question: string; answer: string }> = [];
 
 export default function ActivityFamiliesPage() {
   const { language, localizedPath } = useLanguage();
   const t = useTranslations();
+  const faqs = t.activityFamilies?.faqItems ?? faqsFallback;
   const seoConfig = getSEOConfig('activityFamilies', language);
   const hreflangLinks = generateHreflangLinks('activityFamilies');
   const canonical = generateCanonicalUrl('activityFamilies', language);

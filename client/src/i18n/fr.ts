@@ -1226,8 +1226,8 @@ export const fr: Translations = {
     "remus-450-ii": "Même modèle que notre bateau le plus populaire, avec disponibilité garantie même en plein mois d'août. Idéal quand le Remus 450 est déjà réservé : profitez du même confort, de la même stabilité et de l'auvent Bi Mini tant apprécié des familles sur la Costa Brava. Carburant, assurance et équipement de sécurité inclus.",
     "astec-400": "L'option la plus économique pour les couples et familles qui veulent profiter de la mer sans trop dépenser. À 2-4 passagers, le prix par personne est le plus bas de toute la flotte. Stable, facile à manoeuvrer et avec un auvent Bi Mini pour protéger les petits. Mouillez dans des criques calmes près de Blanes — aucun permis bateau nécessaire. Carburant, assurance et équipement de sécurité inclus.",
     "astec-480": "L'expérience premium sans permis. Avec 4,80 m, haut-parleurs Bluetooth, solarium rembourré et double réservoir, c'est le bateau sans permis le plus complet de Blanes. Naviguez vers les plus belles criques de la Costa Brava avec votre musique préférée. Carburant, assurance et équipement de sécurité inclus.",
-    "trimarchi-57s": "Le hors-bord idéal pour explorer toute la côte : Lloret de Mar en 15 minutes, Tossa de Mar en une demi-heure. Avec 80 cv, GPS et sondeur, vous atteindrez des criques inaccessibles aux autres bateaux. Douche d'eau douce, Bluetooth et arceau inox pour les sports nautiques. Tout l'équipement pour parcourir la Costa Brava en toute liberté. Permis bateau requis (permis côtier).",
-    "mingolla-brava-19": "110 cv de design italien pour des groupes jusqu'à 7 personnes qui veulent adrénaline et confort à parts égales. Double solarium à la proue et à la poupe, table centrale pour déjeuner au mouillage dans une crique et la puissance pour atteindre n'importe quel recoin entre Blanes et Tossa de Mar en minutes. Le bateau de ceux qui veulent de la vitesse sans rien sacrifier. Permis bateau requis (permis côtier).",
+    "trimarchi-57s": "110 cv de design italien pour des groupes jusqu'à 7 personnes qui veulent adrénaline et confort à parts égales. Double solarium à la proue et à la poupe, table centrale pour déjeuner au mouillage dans une crique et la puissance pour atteindre n'importe quel recoin entre Blanes et Tossa de Mar en minutes. Le bateau de ceux qui veulent de la vitesse sans rien sacrifier. Permis de Navigation de Base (LBN) requis.",
+    "mingolla-brava-19": "Le hors-bord idéal pour explorer toute la côte : Lloret de Mar en 15 minutes, Tossa de Mar en une demi-heure. Avec 80 cv, GPS et sondeur, vous atteindrez des criques inaccessibles aux autres bateaux. Douche d'eau douce, Bluetooth et arceau inox pour les sports nautiques. Tout l'équipement pour parcourir la Costa Brava en toute liberté. Permis de Navigation de Base (LBN) requis.",
     "pacific-craft-625": "Le meilleur bateau à louer à Blanes. 6,24 m, moteur Yamaha 115 cv et espace de luxe pour 7 personnes. Double solarium, table pour déjeuner au mouillage, douche d'eau douce et commandes électroniques. Pour ceux qui ne veulent aucun compromis et recherchent l'expérience nautique la plus complète de la Costa Brava. Permis bateau requis (permis côtier).",
     "excursion-privada": "Vous n'avez qu'à profiter : notre skipper professionnel vous emmène vers des criques secrètes, des grottes marines et des recoins inaccessibles à pied entre Blanes et Tossa de Mar. Vous mouillerez dans la crique parfaite du jour, choisie selon le vent et les courants. Idéal pour les célébrations, anniversaires ou familles qui souhaitent une excursion privée exclusive sur la Costa Brava sans aucun souci.",
   },
@@ -2269,5 +2269,85 @@ export const fr: Translations = {
       success: 'Guide envoyé ! Vérifiez votre email.',
       error: 'Échec de l\'envoi. Veuillez réessayer.',
     },
+  },
+  activitySunset: {
+    faqItems: [
+      {
+        question: 'À quelle heure dois-je partir pour une excursion en bateau au coucher du soleil ?',
+        answer: 'Nous recommandons de partir 2 heures avant le coucher du soleil. Vous aurez ainsi le temps de naviguer le long de la côte, de trouver une jolie crique et de vous installer avant l\'heure dorée. En été (juin-juillet), partez vers 19h00-19h30. Au printemps et en automne, vers 17h30-18h30. Notre équipe au port vous indiquera l\'heure exacte du coucher du soleil le jour de votre départ.',
+      },
+      {
+        question: 'Ai-je besoin d\'un permis bateau pour une excursion au coucher du soleil ?',
+        answer: 'Non. Nos bateaux sans permis sont parfaits pour les excursions au coucher du soleil. Vous devez seulement avoir plus de 18 ans. Nous vous donnons une formation de sécurité de 15 minutes avant le départ. Les bateaux sont faciles à manœuvrer et ont une vitesse maximale qui les rend très sûrs pour naviguer au coucher du soleil.',
+      },
+      {
+        question: 'Est-il sûr d\'être en bateau au coucher du soleil et de rentrer avec peu de lumière ?',
+        answer: 'Oui. Tous nos bateaux sont équipés de feux de navigation pour usage nocturne. Le port de Blanes est bien éclairé et facile d\'accès à la tombée de la nuit. Nous recommandons de rentrer au plus tard 30 minutes après le coucher du soleil, lorsqu\'il fait encore clair. Notre équipe vous informera sur l\'itinéraire de retour.',
+      },
+      {
+        question: 'Combien coûte une excursion en bateau au coucher du soleil ?',
+        answer: 'Une excursion de 2 heures au coucher du soleil en bateau sans permis coûte à partir de 140 EUR au total ({noLicBaja1h} EUR/heure en basse saison). L\'essence est incluse pour les bateaux sans permis. Le bateau peut accueillir jusqu\'à 5 personnes, donc le coût par personne peut être à partir de 28 EUR. Les bateaux sans permis incluent l\'essence, l\'assurance, l\'équipement de sécurité et la formation.',
+      },
+    ],
+  },
+  activitySnorkel: {
+    faqItems: [
+      {
+        question: 'Puis-je louer du matériel de snorkeling avec le bateau ?',
+        answer: 'Oui. Nous proposons des kits de snorkeling (masque, tuba et palmes) pour 7,50 EUR par personne. Le matériel est récupéré à l\'embarquement et rendu à la fin de la location. Vous pouvez également apporter votre propre équipement sans frais supplémentaires.',
+      },
+      {
+        question: 'Quelle est la meilleure période pour faire du snorkeling à Blanes ?',
+        answer: 'De juin à septembre, la température de l\'eau oscille entre 22 et 26 degrés, idéale pour le snorkeling sans combinaison. La meilleure visibilité se situe en juin et septembre, lorsqu\'il y a moins de fréquentation et que l\'eau est plus calme. En juillet et août, l\'eau est plus chaude mais il peut y avoir plus de houle les jours de vent.',
+      },
+      {
+        question: 'Est-il sûr de faire du snorkeling depuis le bateau sans expérience ?',
+        answer: 'Tout à fait. Avant de partir, nous vous donnons une formation à la sécurité de 15 minutes où nous expliquons comment mouiller le bateau correctement. Tous les bateaux sont équipés de gilets de sauvetage. Nous recommandons le snorkeling dans des criques protégées comme Cala Sant Francesc pour les débutants.',
+      },
+      {
+        question: 'Combien de criques puis-je visiter lors d\'une sortie snorkeling ?',
+        answer: 'En 2 heures, vous pouvez visiter 1 à 2 criques avec suffisamment de temps pour le snorkeling. En 4 heures, vous pouvez faire un circuit complet de 3 à 4 criques. Nous recommandons un minimum de 3 heures pour profiter du snorkeling et de la navigation sans être pressé.',
+      },
+    ],
+  },
+  activityFamilies: {
+    faqItems: [
+      {
+        question: 'À partir de quel âge les enfants peuvent-ils monter à bord ?',
+        answer: 'Il n\'y a pas d\'âge minimum. Les bébés et les enfants de tout âge sont les bienvenus. Tous les mineurs doivent porter un gilet de sauvetage homologué pendant la navigation. Pour les bébés, nous recommandons des sorties courtes de 1 à 2 heures et de choisir des jours de mer calme.',
+      },
+      {
+        question: 'Ai-je besoin d\'un permis bateau pour louer un bateau familial ?',
+        answer: 'Non. Nos bateaux sans permis ne nécessitent aucun titre nautique. Il vous suffit d\'avoir plus de 18 ans. Nous vous donnons une formation complète de 15 minutes avant le départ. Ce sont des bateaux sûrs, stables et très faciles à piloter.',
+      },
+      {
+        question: 'Qu\'est-ce qui est inclus dans le prix de la location ?',
+        answer: 'Le prix des bateaux sans permis comprend l\'essence, l\'assurance, les gilets de sauvetage pour tous (y compris enfants), l\'échelle de bain, le taud/bimini pour l\'ombrage et la formation à la sécurité. Seul l\'équipement de snorkeling est en supplément (7,50 EUR/personne).',
+      },
+      {
+        question: 'Que devons-nous emporter pour une sortie en bateau avec des enfants ?',
+        answer: 'Nous recommandons d\'apporter : crème solaire haute protection (waterproof), casquettes ou chapeaux, eau en abondance, collations ou pique-nique, serviettes, maillots de bain et des vêtements de rechange secs. Optionnel : appareil photo étanche, jouets de plage et équipement de snorkeling personnel.',
+      },
+    ],
+  },
+  activityFishing: {
+    faqItems: [
+      {
+        question: 'Les bateaux incluent-ils du matériel de pêche ?',
+        answer: 'Non. Vous devez apporter votre propre équipement de pêche (cannes, moulinets, leurres, appâts). Nos bateaux fournissent la plateforme de navigation, mais n\'incluent pas de matériel de pêche. À Blanes, il y a des magasins nautiques près du port où vous pouvez acheter des appâts frais et du matériel de base.',
+      },
+      {
+        question: 'Ai-je besoin d\'un permis de pêche pour pêcher depuis le bateau ?',
+        answer: 'Oui. Pour la pêche récréative en mer, vous avez besoin du permis de pêche récréative maritime de la Generalitat de Catalunya. Vous pouvez l\'obtenir en ligne sur gencat.cat pour environ 14 EUR (validité 2 ans). Il est différent du permis de navigation : le permis de pêche est pour pêcher, celui de navigation pour piloter le bateau.',
+      },
+      {
+        question: 'Quel bateau me faut-il pour pêcher en mer ?',
+        answer: 'Cela dépend du type de pêche. Pour la pêche au fond dans les criques proches (bars, dorades), un bateau sans permis suffit. Pour la pêche en eaux ouvertes (sérioles, traîne), vous avez besoin d\'un bateau avec permis qui a plus d\'autonomie et de puissance. Contactez-nous par WhatsApp et nous vous conseillerons selon votre expérience.',
+      },
+      {
+        question: 'Quelles sont les réglementations de pêche sur la Costa Brava ?',
+        answer: 'La pêche récréative en Catalogne a des limites de capture : maximum 5 kg par personne et par jour (sauf si une prise dépasse ce poids). Il y a des tailles minimales par espèce (bar 36 cm, dorade 20 cm). Il est interdit de pêcher dans les réserves marines et les zones de baignade. Certaines techniques comme la pêche au harpon nécessitent un permis spécifique.',
+      },
+    ],
   },
 };

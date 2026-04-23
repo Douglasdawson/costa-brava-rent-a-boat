@@ -66,28 +66,12 @@ const recommendedBoats = [
   }
 ];
 
-const faqs = [
-  {
-    question: "Puedo alquilar equipo de snorkel con el barco?",
-    answer: "Si. Ofrecemos kits de snorkel (mascara, tubo y aletas) por 7,50 EUR por persona. El equipo se recoge al embarcar y se devuelve al final del alquiler. Tambien puedes traer tu propio equipo sin coste adicional."
-  },
-  {
-    question: "Cual es la mejor epoca para hacer snorkel en Blanes?",
-    answer: "De junio a septiembre la temperatura del agua oscila entre 22 y 26 grados, ideal para snorkel sin neopreno. La mejor visibilidad se da en junio y septiembre, cuando hay menos afluencia y el agua esta mas calmada. En julio y agosto el agua esta mas calida pero puede haber mas oleaje en dias de viento."
-  },
-  {
-    question: "Es seguro hacer snorkel desde el barco sin experiencia?",
-    answer: "Totalmente. Antes de salir te damos una formacion de seguridad de 15 minutos donde explicamos como fondear el barco correctamente. Todos los barcos llevan chalecos salvavidas. Recomendamos snorkel en calas protegidas como Cala Sant Francesc para principiantes."
-  },
-  {
-    question: "Cuantas calas puedo visitar en una salida de snorkel?",
-    answer: "En 2 horas puedes visitar 1-2 calas con tiempo suficiente para snorkel. En 4 horas puedes hacer una ruta completa de 3-4 calas. Recomendamos un minimo de 3 horas para disfrutar sin prisas del snorkel y la navegacion."
-  }
-];
+const faqsFallback: Array<{ question: string; answer: string }> = [];
 
 export default function ActivitySnorkelPage() {
   const { language, localizedPath } = useLanguage();
   const t = useTranslations();
+  const faqs = t.activitySnorkel?.faqItems ?? faqsFallback;
   const seoConfig = getSEOConfig('activitySnorkel', language);
   const hreflangLinks = generateHreflangLinks('activitySnorkel');
   const canonical = generateCanonicalUrl('activitySnorkel', language);

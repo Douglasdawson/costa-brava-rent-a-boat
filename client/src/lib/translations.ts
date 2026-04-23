@@ -1805,6 +1805,19 @@ export interface Translations {
     internalLinks?: string;
   };
 
+  activitySunset?: {
+    faqItems: Array<{ question: string; answer: string }>;
+  };
+  activitySnorkel?: {
+    faqItems: Array<{ question: string; answer: string }>;
+  };
+  activityFamilies?: {
+    faqItems: Array<{ question: string; answer: string }>;
+  };
+  activityFishing?: {
+    faqItems: Array<{ question: string; answer: string }>;
+  };
+
   whatsappMessages?: {
     bookingWithBoatAndPrice: string;
     bookingWithBoat: string;

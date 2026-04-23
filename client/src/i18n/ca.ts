@@ -1225,8 +1225,8 @@ export const ca: Translations = {
     "remus-450-ii": "Mateix model que el nostre vaixell més popular, amb disponibilitat garantida fins i tot a l'agost. Ideal si la Remus 450 ja està reservada: gaudeix del mateix confort, la mateixa estabilitat i el tendal Bi Mini que tant valoren les famílies a la Costa Brava. Gasolina, assegurança i equip de seguretat inclosos.",
     "astec-400": "L'opció més econòmica per a parelles i famílies que volen gaudir del mar sense gastar de més. En ser 2-4 persones, el preu per persona és el més baix de tota la flota. Estable, fàcil de manejar i amb tendal Bi Mini per protegir els petits del sol. Fondeja en cales tranquil·les prop de Blanes sense necessitat de carnet nàutic. Gasolina, assegurança i equip de seguretat inclosos.",
     "astec-480": "L'experiència premium sense necessitat de carnet nàutic. Amb 4,80 m d'eslora, equip de música bluetooth, solarium encoixinat i el doble de dipòsit de combustible, és l'embarcació sense llicència més completa de Blanes. Navega amb la teva música preferida cap a les cales més boniques de la Costa Brava. Gasolina, assegurança i equip de seguretat inclosos.",
-    "trimarchi-57s": "La llanxa ideal per explorar tota la costa: Lloret de Mar en 15 minuts, Tossa de Mar en mitja hora. Amb 80 cv, GPS i sonda nàutica, arribes a cales que altres vaixells no assoleixen. Dutxa d'aigua dolça, bluetooth i arc d'acer inoxidable per a esports aquàtics. Tot l'equipament per recórrer la Costa Brava amb total autonomia. Requereix llicència nàutica (PER/PNB).",
-    "mingolla-brava-19": "110 cv de disseny italià per a grups de fins a 7 persones que volen adrenalina i confort a parts iguals. Solarium doble a proa i popa per prendre el sol, taula central per dinar fondejats en una cala i la potència per arribar a qualsevol racó entre Blanes i Tossa de Mar en minuts. L'embarcació que tria qui vol sentir la velocitat sense renunciar a res. Requereix llicència nàutica (PER/PNB).",
+    "trimarchi-57s": "110 cv de disseny italià per a grups de fins a 7 persones que volen adrenalina i confort a parts iguals. Solarium doble a proa i popa per prendre el sol, taula central per dinar fondejats en una cala i la potència per arribar a qualsevol racó entre Blanes i Tossa de Mar en minuts. L'embarcació que tria qui vol sentir la velocitat sense renunciar a res. Requereix Llicència Bàsica de Navegació (LBN).",
+    "mingolla-brava-19": "La llanxa ideal per explorar tota la costa: Lloret de Mar en 15 minuts, Tossa de Mar en mitja hora. Amb 80 cv, GPS i sonda nàutica, arribes a cales que altres vaixells no assoleixen. Dutxa d'aigua dolça, bluetooth i arc d'acer inoxidable per a esports aquàtics. Tot l'equipament per recórrer la Costa Brava amb total autonomia. Requereix Llicència Bàsica de Navegació (LBN).",
     "pacific-craft-625": "El millor que pots llogar a Blanes. 6,24 metres d'eslora, motor Yamaha 115 cv i espai de luxe per a 7 persones. Solarium doble, taula per dinar fondejats davant d'una cala, dutxa d'aigua dolça i comandament electrònic. Per als qui no volen compromisos i busquen l'experiència nàutica més completa de la Costa Brava. Requereix llicència nàutica (PER/PNB).",
     "excursion-privada": "Tu només gaudeixes: el nostre patró professional et porta a cales secretes, coves marines i racons inaccessibles a peu entre Blanes i Tossa de Mar. Fondejareu a la cala perfecta del dia, escollida segons vent i corrents. Ideal per a celebracions, aniversaris o famílies que volen una excursió privada exclusiva per la Costa Brava sense preocupar-se de res.",
   },
@@ -2268,5 +2268,85 @@ export const ca: Translations = {
       success: 'Guia enviada. Revisa el teu email.',
       error: 'Error en enviar. Torna-ho a intentar.',
     },
+  },
+  activitySunset: {
+    faqItems: [
+      {
+        question: 'A quina hora he de sortir per fer una excursió en vaixell a la posta de sol?',
+        answer: 'Recomanem sortir 2 hores abans de la posta de sol. Així tens temps de navegar per la costa, trobar una cala bonica i acomodar-te abans de l\'hora daurada. A l\'estiu (juny-juliol), surt sobre les 19:00-19:30. A la primavera i la tardor, sobre les 17:30-18:30. El nostre equip al port t\'indicarà l\'hora exacta de la posta de sol el dia de la teva sortida.',
+      },
+      {
+        question: 'Necessito llicència de navegació per fer una excursió a la posta de sol?',
+        answer: 'No. Els nostres vaixells sense llicència són perfectes per a excursions a la posta de sol. Només cal que siguis major de 18 anys. Et donem una formació de seguretat de 15 minuts abans de sortir. Els vaixells són fàcils de manejar i tenen una velocitat màxima que els fa molt segurs per navegar a la posta de sol.',
+      },
+      {
+        question: 'És segur estar en vaixell a la posta de sol i tornar amb poca llum?',
+        answer: 'Sí. Tots els nostres vaixells estan equipats amb llums de navegació per a ús nocturn. El port de Blanes està ben il·luminat i és fàcil d\'entrar a la nit. Recomanem retornar com a màxim 30 minuts després de la posta de sol, quan encara hi ha claredat. El nostre equip t\'informarà sobre la ruta de retorn.',
+      },
+      {
+        question: 'Quant costa una excursió en vaixell a la posta de sol?',
+        answer: 'Una excursió de 2 hores a la posta de sol en vaixell sense llicència costa des de 140 EUR en total ({noLicBaja1h} EUR/hora en temporada baixa). La gasolina està inclosa en vaixells sense llicència. El vaixell admet fins a 5 persones, així que el cost per persona pot ser des de 28 EUR. Els vaixells sense llicència inclouen gasolina, assegurança, equip de seguretat i la formació.',
+      },
+    ],
+  },
+  activitySnorkel: {
+    faqItems: [
+      {
+        question: 'Puc llogar equip d\'snorkel amb la barca?',
+        answer: 'Sí. Oferim kits d\'snorkel (màscara, tub i aletes) per 7,50 EUR per persona. L\'equip es recull en embarcar i es retorna al final del lloguer. També pots portar el teu propi equip sense cost addicional.',
+      },
+      {
+        question: 'Quina és la millor època per fer snorkel a Blanes?',
+        answer: 'De juny a setembre la temperatura de l\'aigua oscil·la entre 22 i 26 graus, ideal per fer snorkel sense neoprè. La millor visibilitat es dona al juny i al setembre, quan hi ha menys afluència i l\'aigua està més tranquil·la. Al juliol i l\'agost l\'aigua està més càlida però pot haver-hi més onatge en dies de vent.',
+      },
+      {
+        question: 'És segur fer snorkel des de la barca sense experiència?',
+        answer: 'Totalment. Abans de sortir et donem una formació de seguretat de 15 minuts on expliquem com fondejar la barca correctament. Totes les barques porten armilles salvavides. Recomanem fer snorkel a cales protegides com Cala Sant Francesc per a principiants.',
+      },
+      {
+        question: 'Quantes cales puc visitar en una sortida d\'snorkel?',
+        answer: 'En 2 hores pots visitar 1-2 cales amb temps suficient per fer snorkel. En 4 hores pots fer una ruta completa de 3-4 cales. Recomanem un mínim de 3 hores per gaudir sense presses de l\'snorkel i la navegació.',
+      },
+    ],
+  },
+  activityFamilies: {
+    faqItems: [
+      {
+        question: 'A partir de quina edat poden pujar els nens al vaixell?',
+        answer: 'No hi ha edat mínima. Nadons i nens de qualsevol edat són benvinguts. Tots els menors han de portar armilla salvavides homologada durant la navegació. Per a nadons recomanem sortides curtes d\'1-2 hores i triar dies amb mar en calma.',
+      },
+      {
+        question: 'Necessito llicència de navegació per llogar un vaixell familiar?',
+        answer: 'No. Els nostres vaixells sense llicència no requereixen cap títol nàutic. Només necessites ser major de 18 anys. Et donem una formació completa de 15 minuts abans de sortir. Són vaixells segurs, estables i molt fàcils de manejar.',
+      },
+      {
+        question: 'Què inclou el preu del lloguer?',
+        answer: 'El preu dels vaixells sense llicència inclou gasolina, assegurança, armilles salvavides per a tothom (incloses infantils), escala de bany, tendal/bimini per fer ombra i la formació de seguretat. Només l\'equip d\'esnòrquel és addicional (7,50 EUR/persona).',
+      },
+      {
+        question: 'Què hem de portar per a una sortida en vaixell amb nens?',
+        answer: 'Recomanem portar: crema solar d\'alta protecció (waterproof), gorres o barrets, aigua abundant, snacks o pícnic, tovalloles, roba de bany i una muda de roba seca. Opcional: càmera aquàtica, joguines de platja i equip d\'esnòrquel propi.',
+      },
+    ],
+  },
+  activityFishing: {
+    faqItems: [
+      {
+        question: 'Els vaixells inclouen equip de pesca?',
+        answer: 'No. Has de portar el teu propi equip de pesca (canyes, reels, esquers, esquer). Els nostres vaixells proporcionen la plataforma de navegació, però no inclouen material de pesca. A Blanes hi ha botigues nàutiques a prop del port on pots comprar esquer fresc i material bàsic.',
+      },
+      {
+        question: 'Necessito llicència de pesca per pescar des del vaixell?',
+        answer: 'Sí. Per a pesca recreativa al mar necessites la llicència de pesca recreativa marítima de la Generalitat de Catalunya. Pots obtenir-la online a gencat.cat per aproximadament 14 EUR (validesa 2 anys). És diferent de la llicència de navegació: la llicència de pesca és per pescar, la de navegació per conduir el vaixell.',
+      },
+      {
+        question: 'Quin vaixell necessito per pescar al mar?',
+        answer: 'Depèn del tipus de pesca. Per a pesca de fons a cales properes (llobarro, orades), un vaixell sense llicència és suficient. Per a pesca en aigües obertes (serioles, curricà), necessites un vaixell amb llicència que té més autonomia i potència. Contacta\'ns per WhatsApp i t\'assessorem segons la teva experiència.',
+      },
+      {
+        question: 'Quines són les regulacions de pesca a la Costa Brava?',
+        answer: 'La pesca recreativa a Catalunya té límits de captura: màxim 5 kg per persona i dia (excepte si una peça supera aquest pes). Hi ha talles mínimes per espècie (llobarro 36 cm, orada 20 cm). Està prohibit pescar a reserves marines i zones de bany. Algunes tècniques com la pesca amb arpó requereixen llicència específica.',
+      },
+    ],
   },
 };

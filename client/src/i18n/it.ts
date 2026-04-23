@@ -1762,6 +1762,12 @@ export const it: Translations = {
         ctaTitle: 'Pronto per la tua Escursione a Lloret de Mar?',
         ctaDescription: 'Prenota la tua barca dal porto di Blanes e scopri le migliori spiagge di Lloret de Mar con totale libertà e comodità.',
         ctaButton: 'Prenota Escursione a Lloret',
+        crossLinkingText: 'Offriamo anche servizi per turisti alloggiati a <a href="{malgratPath}" class="text-primary hover:underline font-medium">Malgrat de Mar</a>, <a href="{santaSusannaPath}" class="text-primary hover:underline font-medium">Santa Susanna</a> e <a href="{calellaPath}" class="text-primary hover:underline font-medium">Calella</a>. Da questi paesi della costa del Maresme si raggiunge il Porto di Blanes in 10-20 minuti di auto.',
+        relatedTitle: 'Servizi e destinazioni correlate',
+        relatedLicenseFree: 'Barche senza patente disponibili a Blanes',
+        relatedPricing: 'Vedi prezzi per stagione',
+        relatedTossa: 'Prosegui il percorso fino a Tossa de Mar',
+        relatedCostaBrava: 'Noleggio barche sulla Costa Brava',
       },
     },
     tossa: {

@@ -1761,6 +1761,12 @@ export const nl: Translations = {
         ctaTitle: 'Klaar voor je Uitstapje naar Lloret de Mar?',
         ctaDescription: 'Reserveer je boot vanuit de haven van Blanes en ontdek de mooiste stranden van Lloret de Mar met volledige vrijheid en comfort.',
         ctaButton: 'Uitstapje naar Lloret Reserveren',
+        crossLinkingText: 'Wij bieden ook service aan toeristen die verblijven in <a href="{malgratPath}" class="text-primary hover:underline font-medium">Malgrat de Mar</a>, <a href="{santaSusannaPath}" class="text-primary hover:underline font-medium">Santa Susanna</a> en <a href="{calellaPath}" class="text-primary hover:underline font-medium">Calella</a>. Vanuit deze kustplaatsen aan de Maresme bereik je de haven van Blanes in 10-20 minuten met de auto.',
+        relatedTitle: 'Gerelateerde diensten en bestemmingen',
+        relatedLicenseFree: 'Boten zonder vaarbewijs beschikbaar in Blanes',
+        relatedPricing: 'Bekijk prijzen per seizoen',
+        relatedTossa: 'Vaar door naar Tossa de Mar',
+        relatedCostaBrava: 'Bootverhuur aan de Costa Brava',
       },
     },
     tossa: {

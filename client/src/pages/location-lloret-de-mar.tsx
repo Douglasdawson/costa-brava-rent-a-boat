@@ -346,36 +346,38 @@ export default function LocationLloretPage() {
           {/* Cross-linking to southern towns */}
           <Card className="mb-8">
             <CardContent className="py-6">
-              <p className="text-muted-foreground">
-                También ofrecemos servicio para turistas alojados en{" "}
-                <a href={localizedPath("locationMalgrat")} className="text-primary hover:underline font-medium">Malgrat de Mar</a>,{" "}
-                <a href={localizedPath("locationSantaSusanna")} className="text-primary hover:underline font-medium">Santa Susanna</a> y{" "}
-                <a href={localizedPath("locationCalella")} className="text-primary hover:underline font-medium">Calella</a>.
-                Desde estos pueblos de la costa del Maresme se llega al Puerto de Blanes en 10-20 minutos en coche.
-              </p>
+              <p
+                className="text-muted-foreground"
+                dangerouslySetInnerHTML={{
+                  __html: s.crossLinkingText
+                    .replace("{malgratPath}", localizedPath("locationMalgrat"))
+                    .replace("{santaSusannaPath}", localizedPath("locationSantaSusanna"))
+                    .replace("{calellaPath}", localizedPath("locationCalella")),
+                }}
+              />
             </CardContent>
           </Card>
 
           {/* Related Services - Internal Linking */}
           <Card className="mb-8">
             <CardContent className="pt-6">
-              <h3 className="font-semibold text-lg mb-4">Servicios y destinos relacionados</h3>
+              <h3 className="font-semibold text-lg mb-4">{s.relatedTitle}</h3>
               <div className="flex flex-wrap gap-3">
                 <a href={localizedPath("categoryLicenseFree")} className="text-primary hover:underline flex items-center gap-1">
                   <ChevronRight className="w-4 h-4" />
-                  Barcos sin licencia disponibles en Blanes
+                  {s.relatedLicenseFree}
                 </a>
                 <a href={localizedPath("pricing")} className="text-primary hover:underline flex items-center gap-1">
                   <ChevronRight className="w-4 h-4" />
-                  Ver precios por temporada
+                  {s.relatedPricing}
                 </a>
                 <a href={localizedPath("locationTossa")} className="text-primary hover:underline flex items-center gap-1">
                   <ChevronRight className="w-4 h-4" />
-                  Continua la ruta hasta Tossa de Mar
+                  {s.relatedTossa}
                 </a>
                 <a href={localizedPath("locationCostaBrava")} className="text-primary hover:underline flex items-center gap-1">
                   <ChevronRight className="w-4 h-4" />
-                  Alquiler de barcos en la Costa Brava
+                  {s.relatedCostaBrava}
                 </a>
               </div>
             </CardContent>

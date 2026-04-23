@@ -936,6 +936,12 @@ export interface Translations {
         ctaTitle: string;
         ctaDescription: string;
         ctaButton: string;
+        crossLinkingText: string;
+        relatedTitle: string;
+        relatedLicenseFree: string;
+        relatedPricing: string;
+        relatedTossa: string;
+        relatedCostaBrava: string;
       };
     };
     tossa: {

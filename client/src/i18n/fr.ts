@@ -1762,6 +1762,12 @@ export const fr: Translations = {
         ctaTitle: 'Prêt pour votre Excursion à Lloret de Mar ?',
         ctaDescription: 'Réservez votre bateau depuis le Port de Blanes et découvrez les meilleures plages de Lloret de Mar en toute liberté et confort.',
         ctaButton: 'Réserver une Excursion à Lloret',
+        crossLinkingText: 'Nous proposons également nos services aux touristes séjournant à <a href="{malgratPath}" class="text-primary hover:underline font-medium">Malgrat de Mar</a>, <a href="{santaSusannaPath}" class="text-primary hover:underline font-medium">Santa Susanna</a> et <a href="{calellaPath}" class="text-primary hover:underline font-medium">Calella</a>. Depuis ces villages de la côte du Maresme, le Port de Blanes est accessible en 10-20 minutes en voiture.',
+        relatedTitle: 'Services et destinations associés',
+        relatedLicenseFree: 'Bateaux sans permis disponibles à Blanes',
+        relatedPricing: 'Voir les tarifs par saison',
+        relatedTossa: 'Poursuivez la route jusqu\'à Tossa de Mar',
+        relatedCostaBrava: 'Location de bateaux sur la Costa Brava',
       },
     },
     tossa: {

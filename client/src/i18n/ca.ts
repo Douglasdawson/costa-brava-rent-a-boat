@@ -1761,6 +1761,12 @@ export const ca: Translations = {
         ctaTitle: 'Preparat per a la teva Excursió a Lloret de Mar?',
         ctaDescription: 'Reserva el teu vaixell des del Port de Blanes i descobreix les millors platges de Lloret de Mar amb total llibertat i comoditat.',
         ctaButton: 'Reservar Excursió a Lloret',
+        crossLinkingText: 'També oferim servei per a turistes allotjats a <a href="{malgratPath}" class="text-primary hover:underline font-medium">Malgrat de Mar</a>, <a href="{santaSusannaPath}" class="text-primary hover:underline font-medium">Santa Susanna</a> i <a href="{calellaPath}" class="text-primary hover:underline font-medium">Calella</a>. Des d\'aquests pobles de la costa del Maresme s\'arriba al Port de Blanes en 10-20 minuts amb cotxe.',
+        relatedTitle: 'Serveis i destinacions relacionats',
+        relatedLicenseFree: 'Barques sense llicència disponibles a Blanes',
+        relatedPricing: 'Veure preus per temporada',
+        relatedTossa: 'Continua la ruta fins a Tossa de Mar',
+        relatedCostaBrava: 'Lloguer de barques a la Costa Brava',
       },
     },
     tossa: {

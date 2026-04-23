@@ -1761,6 +1761,12 @@ export const ru: Translations = {
         ctaTitle: 'Готовы к экскурсии в Льорет-де-Мар?',
         ctaDescription: 'Забронируйте лодку из порта Бланес и откройте для себя лучшие пляжи Льорет-де-Мар с полной свободой и комфортом.',
         ctaButton: 'Забронировать экскурсию в Льорет',
+        crossLinkingText: 'Мы также предлагаем услуги для туристов, проживающих в <a href="{malgratPath}" class="text-primary hover:underline font-medium">Мальграт-де-Мар</a>, <a href="{santaSusannaPath}" class="text-primary hover:underline font-medium">Санта-Сусанна</a> и <a href="{calellaPath}" class="text-primary hover:underline font-medium">Калелья</a>. Из этих городков побережья Маресме до порта Бланес можно добраться на машине за 10-20 минут.',
+        relatedTitle: 'Связанные услуги и направления',
+        relatedLicenseFree: 'Лодки без лицензии в Бланесе',
+        relatedPricing: 'Посмотреть цены по сезонам',
+        relatedTossa: 'Продолжите маршрут до Тосса-де-Мар',
+        relatedCostaBrava: 'Аренда лодок на побережье Коста-Брава',
       },
     },
     tossa: {

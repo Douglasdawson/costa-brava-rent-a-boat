@@ -1762,6 +1762,12 @@ export const de: Translations = {
         ctaTitle: 'Bereit für Ihren Ausflug nach Lloret de Mar?',
         ctaDescription: 'Buchen Sie Ihr Boot ab dem Hafen von Blanes und entdecken Sie die besten Strände von Lloret de Mar in völliger Freiheit und Komfort.',
         ctaButton: 'Ausflug nach Lloret buchen',
+        crossLinkingText: 'Wir bieten auch Service für Touristen, die in <a href="{malgratPath}" class="text-primary hover:underline font-medium">Malgrat de Mar</a>, <a href="{santaSusannaPath}" class="text-primary hover:underline font-medium">Santa Susanna</a> und <a href="{calellaPath}" class="text-primary hover:underline font-medium">Calella</a> untergebracht sind. Von diesen Küstenorten am Maresme erreicht man den Hafen von Blanes in 10-20 Minuten mit dem Auto.',
+        relatedTitle: 'Verwandte Dienstleistungen und Reiseziele',
+        relatedLicenseFree: 'Führerscheinfreie Boote in Blanes verfügbar',
+        relatedPricing: 'Preise nach Saison ansehen',
+        relatedTossa: 'Route fortsetzen bis Tossa de Mar',
+        relatedCostaBrava: 'Bootsvermietung an der Costa Brava',
       },
     },
     tossa: {

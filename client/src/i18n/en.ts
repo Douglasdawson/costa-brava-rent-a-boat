@@ -1821,6 +1821,12 @@ export const en: Translations = {
         ctaTitle: 'Ready for Your Trip to Lloret de Mar?',
         ctaDescription: 'Book your boat from the Port of Blanes and discover the best beaches of Lloret de Mar in complete freedom and comfort.',
         ctaButton: 'Book a Trip to Lloret',
+        crossLinkingText: 'We also offer services for tourists staying in <a href="{malgratPath}" class="text-primary hover:underline font-medium">Malgrat de Mar</a>, <a href="{santaSusannaPath}" class="text-primary hover:underline font-medium">Santa Susanna</a> and <a href="{calellaPath}" class="text-primary hover:underline font-medium">Calella</a>. From these towns on the Maresme coast, you can reach the Port of Blanes in 10-20 minutes by car.',
+        relatedTitle: 'Related services and destinations',
+        relatedLicenseFree: 'License-free boats available in Blanes',
+        relatedPricing: 'View prices by season',
+        relatedTossa: 'Continue your route to Tossa de Mar',
+        relatedCostaBrava: 'Boat rentals on the Costa Brava',
       },
     },
     tossa: {

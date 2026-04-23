@@ -1637,86 +1637,6 @@ export const fr: Translations = {
     bookingWithBoat: 'Bonjour ! Je souhaiterais réserver le {boatName}. Pourriez-vous m\'aider concernant les disponibilités et les tarifs ? Merci !',
     bookingGeneric: 'Bonjour ! J\'aimerais faire une réservation pour louer un bateau. Pourriez-vous m\'aider concernant les disponibilités et les tarifs ?',
   },
-  activitySunset: {
-    faqItems: [
-      {
-        question: 'À quelle heure dois-je partir pour une excursion en bateau au coucher du soleil ?',
-        answer: 'Nous recommandons de partir 2 heures avant le coucher du soleil. Vous aurez ainsi le temps de naviguer le long de la côte, de trouver une jolie crique et de vous installer avant l\'heure dorée. En été (juin-juillet), partez vers 19h00-19h30. Au printemps et en automne, vers 17h30-18h30. Notre équipe au port vous indiquera l\'heure exacte du coucher du soleil le jour de votre départ.',
-      },
-      {
-        question: 'Ai-je besoin d\'un permis bateau pour une excursion au coucher du soleil ?',
-        answer: 'Non. Nos bateaux sans permis sont parfaits pour les excursions au coucher du soleil. Vous devez seulement avoir plus de 18 ans. Nous vous donnons une formation de sécurité de 15 minutes avant le départ. Les bateaux sont faciles à manœuvrer et ont une vitesse maximale qui les rend très sûrs pour naviguer au coucher du soleil.',
-      },
-      {
-        question: 'Est-il sûr d\'être en bateau au coucher du soleil et de rentrer avec peu de lumière ?',
-        answer: 'Oui. Tous nos bateaux sont équipés de feux de navigation pour usage nocturne. Le port de Blanes est bien éclairé et facile d\'accès à la tombée de la nuit. Nous recommandons de rentrer au plus tard 30 minutes après le coucher du soleil, lorsqu\'il fait encore clair. Notre équipe vous informera sur l\'itinéraire de retour.',
-      },
-      {
-        question: 'Combien coûte une excursion en bateau au coucher du soleil ?',
-        answer: 'Une excursion de 2 heures au coucher du soleil en bateau sans permis coûte à partir de 140 EUR au total ({noLicBaja1h} EUR/heure en basse saison). L\'essence est incluse pour les bateaux sans permis. Le bateau peut accueillir jusqu\'à 5 personnes, donc le coût par personne peut être à partir de 28 EUR. Les bateaux sans permis incluent l\'essence, l\'assurance, l\'équipement de sécurité et la formation.',
-      },
-    ],
-  },
-  activitySnorkel: {
-    faqItems: [
-      {
-        question: 'Puis-je louer du matériel de snorkeling avec le bateau ?',
-        answer: 'Oui. Nous proposons des kits de snorkeling (masque, tuba et palmes) pour 7,50 EUR par personne. Le matériel est récupéré à l\'embarquement et rendu à la fin de la location. Vous pouvez également apporter votre propre équipement sans frais supplémentaires.',
-      },
-      {
-        question: 'Quelle est la meilleure période pour faire du snorkeling à Blanes ?',
-        answer: 'De juin à septembre, la température de l\'eau oscille entre 22 et 26 degrés, idéale pour le snorkeling sans combinaison. La meilleure visibilité se situe en juin et septembre, lorsqu\'il y a moins de fréquentation et que l\'eau est plus calme. En juillet et août, l\'eau est plus chaude mais il peut y avoir plus de houle les jours de vent.',
-      },
-      {
-        question: 'Est-il sûr de faire du snorkeling depuis le bateau sans expérience ?',
-        answer: 'Tout à fait. Avant de partir, nous vous donnons une formation à la sécurité de 15 minutes où nous expliquons comment mouiller le bateau correctement. Tous les bateaux sont équipés de gilets de sauvetage. Nous recommandons le snorkeling dans des criques protégées comme Cala Sant Francesc pour les débutants.',
-      },
-      {
-        question: 'Combien de criques puis-je visiter lors d\'une sortie snorkeling ?',
-        answer: 'En 2 heures, vous pouvez visiter 1 à 2 criques avec suffisamment de temps pour le snorkeling. En 4 heures, vous pouvez faire un circuit complet de 3 à 4 criques. Nous recommandons un minimum de 3 heures pour profiter du snorkeling et de la navigation sans être pressé.',
-      },
-    ],
-  },
-  activityFamilies: {
-    faqItems: [
-      {
-        question: 'À partir de quel âge les enfants peuvent-ils monter à bord ?',
-        answer: 'Il n\'y a pas d\'âge minimum. Les bébés et les enfants de tout âge sont les bienvenus. Tous les mineurs doivent porter un gilet de sauvetage homologué pendant la navigation. Pour les bébés, nous recommandons des sorties courtes de 1 à 2 heures et de choisir des jours de mer calme.',
-      },
-      {
-        question: 'Ai-je besoin d\'un permis bateau pour louer un bateau familial ?',
-        answer: 'Non. Nos bateaux sans permis ne nécessitent aucun titre nautique. Il vous suffit d\'avoir plus de 18 ans. Nous vous donnons une formation complète de 15 minutes avant le départ. Ce sont des bateaux sûrs, stables et très faciles à piloter.',
-      },
-      {
-        question: 'Qu\'est-ce qui est inclus dans le prix de la location ?',
-        answer: 'Le prix des bateaux sans permis comprend l\'essence, l\'assurance, les gilets de sauvetage pour tous (y compris enfants), l\'échelle de bain, le taud/bimini pour l\'ombrage et la formation à la sécurité. Seul l\'équipement de snorkeling est en supplément (7,50 EUR/personne).',
-      },
-      {
-        question: 'Que devons-nous emporter pour une sortie en bateau avec des enfants ?',
-        answer: 'Nous recommandons d\'apporter : crème solaire haute protection (waterproof), casquettes ou chapeaux, eau en abondance, collations ou pique-nique, serviettes, maillots de bain et des vêtements de rechange secs. Optionnel : appareil photo étanche, jouets de plage et équipement de snorkeling personnel.',
-      },
-    ],
-  },
-  activityFishing: {
-    faqItems: [
-      {
-        question: 'Les bateaux incluent-ils du matériel de pêche ?',
-        answer: 'Non. Vous devez apporter votre propre équipement de pêche (cannes, moulinets, leurres, appâts). Nos bateaux fournissent la plateforme de navigation, mais n\'incluent pas de matériel de pêche. À Blanes, il y a des magasins nautiques près du port où vous pouvez acheter des appâts frais et du matériel de base.',
-      },
-      {
-        question: 'Ai-je besoin d\'un permis de pêche pour pêcher depuis le bateau ?',
-        answer: 'Oui. Pour la pêche récréative en mer, vous avez besoin du permis de pêche récréative maritime de la Generalitat de Catalunya. Vous pouvez l\'obtenir en ligne sur gencat.cat pour environ 14 EUR (validité 2 ans). Il est différent du permis de navigation : le permis de pêche est pour pêcher, celui de navigation pour piloter le bateau.',
-      },
-      {
-        question: 'Quel bateau me faut-il pour pêcher en mer ?',
-        answer: 'Cela dépend du type de pêche. Pour la pêche au fond dans les criques proches (bars, dorades), un bateau sans permis suffit. Pour la pêche en eaux ouvertes (sérioles, traîne), vous avez besoin d\'un bateau avec permis qui a plus d\'autonomie et de puissance. Contactez-nous par WhatsApp et nous vous conseillerons selon votre expérience.',
-      },
-      {
-        question: 'Quelles sont les réglementations de pêche sur la Costa Brava ?',
-        answer: 'La pêche récréative en Catalogne a des limites de capture : maximum 5 kg par personne et par jour (sauf si une prise dépasse ce poids). Il y a des tailles minimales par espèce (bar 36 cm, dorade 20 cm). Il est interdit de pêcher dans les réserves marines et les zones de baignade. Certaines techniques comme la pêche au harpon nécessitent un permis spécifique.',
-      },
-    ],
-  },
   locationPages: {
     blanes: {
       faqItems: [
@@ -2424,5 +2344,319 @@ export const fr: Translations = {
     a4FuelNotIncluded: 'Le carburant n\'est pas inclus (à régler séparément selon la consommation).',
     q5: 'Quelle est la politique d\'annulation ?',
     a5: 'Vous pouvez modifier la date de votre réservation sans frais avec un minimum de 7 jours d\'anticipation. Les annulations ne sont pas remboursables. En cas de mauvais temps, nous proposons une reprogrammation complète sans frais.',
+  },
+  activitySunset: {
+    faqItems: [
+      {
+        question: 'À quelle heure dois-je partir pour une excursion en bateau au coucher du soleil ?',
+        answer: 'Nous recommandons de partir 2 heures avant le coucher du soleil. Vous aurez ainsi le temps de naviguer le long de la côte, de trouver une jolie crique et de vous installer avant l\'heure dorée. En été (juin-juillet), partez vers 19h00-19h30. Au printemps et en automne, vers 17h30-18h30. Notre équipe au port vous indiquera l\'heure exacte du coucher du soleil le jour de votre départ.',
+      },
+      {
+        question: 'Ai-je besoin d\'un permis bateau pour une excursion au coucher du soleil ?',
+        answer: 'Non. Nos bateaux sans permis sont parfaits pour les excursions au coucher du soleil. Vous devez seulement avoir plus de 18 ans. Nous vous donnons une formation de sécurité de 15 minutes avant le départ. Les bateaux sont faciles à manœuvrer et ont une vitesse maximale qui les rend très sûrs pour naviguer au coucher du soleil.',
+      },
+      {
+        question: 'Est-il sûr d\'être en bateau au coucher du soleil et de rentrer avec peu de lumière ?',
+        answer: 'Oui. Tous nos bateaux sont équipés de feux de navigation pour usage nocturne. Le port de Blanes est bien éclairé et facile d\'accès à la tombée de la nuit. Nous recommandons de rentrer au plus tard 30 minutes après le coucher du soleil, lorsqu\'il fait encore clair. Notre équipe vous informera sur l\'itinéraire de retour.',
+      },
+      {
+        question: 'Combien coûte une excursion en bateau au coucher du soleil ?',
+        answer: 'Une excursion de 2 heures au coucher du soleil en bateau sans permis coûte à partir de 140 EUR au total ({noLicBaja1h} EUR/heure en basse saison). L\'essence est incluse pour les bateaux sans permis. Le bateau peut accueillir jusqu\'à 5 personnes, donc le coût par personne peut être à partir de 28 EUR. Les bateaux sans permis incluent l\'essence, l\'assurance, l\'équipement de sécurité et la formation.',
+      },
+    ],
+    sunsetTimes: [
+      {
+        month: 'Avril',
+        time: '20:15 - 20:30',
+        suggestion: 'Partez à 18h30 pour profiter pleinement de l\'heure dorée.',
+      },
+      {
+        month: 'Mai',
+        time: '20:45 - 21:00',
+        suggestion: 'Partez à 19h00 et admirez le coucher de soleil complet sur la mer.',
+      },
+      {
+        month: 'Juin',
+        time: '21:15 - 21:30',
+        suggestion: 'Partez à 19h30 — ce sont les couchers de soleil les plus longs de l\'année.',
+      },
+      {
+        month: 'Juillet',
+        time: '21:15 - 21:30',
+        suggestion: 'Partez à 19h30 pour profiter des douces soirées d\'été.',
+      },
+      {
+        month: 'Août',
+        time: '20:45 - 21:00',
+        suggestion: 'Partez à 19h00 ; les jours commencent déjà à raccourcir.',
+      },
+      {
+        month: 'Septembre',
+        time: '20:00 - 20:15',
+        suggestion: 'Partez à 18h15 pour la lumière chaude du début d\'automne.',
+      },
+      {
+        month: 'Octobre',
+        time: '19:00 - 19:15',
+        suggestion: 'Partez à 17h15 pour les premiers couchers de soleil d\'automne.',
+      },
+    ],
+    viewpoints: [
+      {
+        name: 'Mirador de Cala Sant Francesc',
+        description: 'Jetez l\'ancre face à Cala Sant Francesc et regardez le soleil disparaître derrière les collines de Blanes. Les falaises reçoivent la lumière dorée de façon spectaculaire et l\'eau passe de l\'ambre au rose.',
+        distance: '20 minutes depuis le port',
+      },
+      {
+        name: 'Large face à Sa Palomera',
+        description: 'Positionnez le bateau face au rocher emblématique de Sa Palomera à Blanes. Tandis que le soleil se couche derrière le village, le rocher crée une silhouette spectaculaire sur le ciel orangé.',
+        distance: '10 minutes depuis le port',
+      },
+      {
+        name: 'Tronçon entre Blanes et Lloret',
+        description: 'Le littoral entre Blanes et Lloret de Mar offre une vue dégagée vers l\'ouest. Pas de bâtiments, pas de foule — juste vous, la mer et un coucher de soleil inoubliable.',
+        distance: '25 minutes depuis le port',
+      },
+    ],
+    romanticIdeas: [
+      {
+        title: 'Apportez un pique-nique',
+        description: 'Préparez du fromage, de la charcuterie, des olives, du pain et une bouteille de cava ou de vin. Savourez l\'apéritif en flottant dans une crique pendant que le ciel change de couleur.',
+      },
+      {
+        title: 'Musique à bord',
+        description: 'Emportez une petite enceinte Bluetooth avec une playlist soigneusement choisie. Du jazz doux, de la guitare acoustique ou de la musique électronique relaxante s\'accordent parfaitement avec l\'heure dorée.',
+      },
+      {
+        title: 'Capturez l\'instant',
+        description: 'La lumière de l\'heure dorée (30-60 minutes avant le coucher de soleil) est la plus flatteuse pour les photos. Utilisez le mode portrait de votre téléphone pour des résultats spectaculaires.',
+      },
+      {
+        title: 'Baignez-vous à l\'heure dorée',
+        description: 'Piquez une tête juste avant le coucher de soleil. L\'eau est plus chaude en fin d\'après-midi et nager dans la lumière dorée est une expérience inoubliable.',
+      },
+    ],
+  },
+  activitySnorkel: {
+    faqItems: [
+      {
+        question: 'Puis-je louer du matériel de snorkeling avec le bateau ?',
+        answer: 'Oui. Nous proposons des kits de snorkeling (masque, tuba et palmes) pour 7,50 EUR par personne. Le matériel est récupéré à l\'embarquement et rendu à la fin de la location. Vous pouvez également apporter votre propre équipement sans frais supplémentaires.',
+      },
+      {
+        question: 'Quelle est la meilleure période pour faire du snorkeling à Blanes ?',
+        answer: 'De juin à septembre, la température de l\'eau oscille entre 22 et 26 degrés, idéale pour le snorkeling sans combinaison. La meilleure visibilité se situe en juin et septembre, lorsqu\'il y a moins de fréquentation et que l\'eau est plus calme. En juillet et août, l\'eau est plus chaude mais il peut y avoir plus de houle les jours de vent.',
+      },
+      {
+        question: 'Est-il sûr de faire du snorkeling depuis le bateau sans expérience ?',
+        answer: 'Tout à fait. Avant de partir, nous vous donnons une formation à la sécurité de 15 minutes où nous expliquons comment mouiller le bateau correctement. Tous les bateaux sont équipés de gilets de sauvetage. Nous recommandons le snorkeling dans des criques protégées comme Cala Sant Francesc pour les débutants.',
+      },
+      {
+        question: 'Combien de criques puis-je visiter lors d\'une sortie snorkeling ?',
+        answer: 'En 2 heures, vous pouvez visiter 1 à 2 criques avec suffisamment de temps pour le snorkeling. En 4 heures, vous pouvez faire un circuit complet de 3 à 4 criques. Nous recommandons un minimum de 3 heures pour profiter du snorkeling et de la navigation sans être pressé.',
+      },
+    ],
+    spots: [
+      {
+        name: 'Cala Sant Francesc',
+        distance: '20 minutes depuis le port',
+        depth: '2-8 mètres',
+        highlights: 'Posidonie océanique, sars, oblades, étoiles de mer. Fond mixte de sable et roche avec une excellente visibilité.',
+        ideal: 'Idéale pour les débutants et les familles grâce à son eau cristalline et son faible courant.',
+      },
+      {
+        name: 'Cala Bona',
+        distance: '15 minutes depuis le port',
+        depth: '3-10 mètres',
+        highlights: 'Formations rocheuses, mérous juvéniles, poulpes, nudibranches. Parois immergées avec une vie marine abondante.',
+        ideal: 'Parfaite pour le snorkeling intermédiaire. Mouiller le bateau et explorer la côte rocheuse.',
+      },
+      {
+        name: 'Cala Treumal',
+        distance: '25 minutes depuis le port',
+        depth: '2-6 mètres',
+        highlights: 'Herbiers de posidonie, hippocampes (espèce protégée), bancs de castagnoles et demoiselles.',
+        ideal: 'La crique la plus tranquille pour un snorkeling relaxant. Eau turquoise et peu de fréquentation.',
+      },
+    ],
+    recommendedBoats: [
+      {
+        name: 'Bateaux sans permis (4-5 personnes)',
+        duration: '2-3 heures recommandées',
+        price: 'À partir de 70 EUR/heure',
+        description: 'Parfaits pour le snorkeling dans les criques proches comme Cala Sant Francesc et Cala Bona. Essence incluse. Vous mouillez le bateau et vous vous mettez à l\'eau directement.',
+      },
+      {
+        name: 'Bateaux avec permis (6-7 personnes)',
+        duration: '4-6 heures recommandées',
+        price: 'À partir de 90 EUR/heure',
+        description: 'Plus grande autonomie pour visiter plusieurs criques en une seule sortie. Idéaux pour les groupes qui souhaitent combiner snorkeling et navigation vers Lloret ou Tossa.',
+      },
+    ],
+    depthLabel: 'Profondeur :',
+  },
+  activityFamilies: {
+    faqItems: [
+      {
+        question: 'À partir de quel âge les enfants peuvent-ils monter à bord ?',
+        answer: 'Il n\'y a pas d\'âge minimum. Les bébés et les enfants de tout âge sont les bienvenus. Tous les mineurs doivent porter un gilet de sauvetage homologué pendant la navigation. Pour les bébés, nous recommandons des sorties courtes de 1 à 2 heures et de choisir des jours de mer calme.',
+      },
+      {
+        question: 'Ai-je besoin d\'un permis bateau pour louer un bateau familial ?',
+        answer: 'Non. Nos bateaux sans permis ne nécessitent aucun titre nautique. Il vous suffit d\'avoir plus de 18 ans. Nous vous donnons une formation complète de 15 minutes avant le départ. Ce sont des bateaux sûrs, stables et très faciles à piloter.',
+      },
+      {
+        question: 'Qu\'est-ce qui est inclus dans le prix de la location ?',
+        answer: 'Le prix des bateaux sans permis comprend l\'essence, l\'assurance, les gilets de sauvetage pour tous (y compris enfants), l\'échelle de bain, le taud/bimini pour l\'ombrage et la formation à la sécurité. Seul l\'équipement de snorkeling est en supplément (7,50 EUR/personne).',
+      },
+      {
+        question: 'Que devons-nous emporter pour une sortie en bateau avec des enfants ?',
+        answer: 'Nous recommandons d\'apporter : crème solaire haute protection (waterproof), casquettes ou chapeaux, eau en abondance, collations ou pique-nique, serviettes, maillots de bain et des vêtements de rechange secs. Optionnel : appareil photo étanche, jouets de plage et équipement de snorkeling personnel.',
+      },
+    ],
+    safetyFeatures: [
+      {
+        title: 'Gilets de sauvetage pour enfants',
+        description: 'Tous les bateaux sont équipés de gilets homologués pour enfants de tous âges et toutes tailles. Le port est obligatoire pour les mineurs pendant la navigation.',
+      },
+      {
+        title: 'Formation complète à la sécurité',
+        description: 'Avant le départ, nous consacrons 15 minutes à enseigner le pilotage du bateau, les zones de navigation sûres et les règles de base. Nous répondons à toutes vos questions avant d\'appareiller.',
+      },
+      {
+        title: 'Bateaux stables et faciles à piloter',
+        description: 'Nos bateaux sans permis ont une coque en fibre de verre très stable. Moteur de faible puissance, vitesse contrôlée et pilotage facile même pour les débutants.',
+      },
+      {
+        title: 'Zone de navigation protégée',
+        description: 'La côte entre Blanes et Lloret offre des criques protégées de la houle. Nous recommandons des criques tranquilles où les enfants peuvent se baigner en toute sécurité.',
+      },
+    ],
+    familyRoutes: [
+      {
+        name: 'Circuit familial court (2 heures)',
+        stops: [
+          'Port de Blanes',
+          'Cala Sant Francesc',
+          'Retour',
+        ],
+        description: 'Idéal pour les familles avec jeunes enfants. Navigation courte jusqu\'à une crique protégée avec eau peu profonde et cristalline. Temps pour se baigner, faire du snorkeling léger et pique-niquer à bord.',
+        price: 'À partir de 140 EUR (70 EUR/h)',
+        tip: 'Parfait pour une première expérience en bateau avec des enfants. La crique dispose d\'une zone de sable et d\'une eau calme.',
+      },
+      {
+        name: 'Circuit familial complet (4 heures)',
+        stops: [
+          'Port de Blanes',
+          'Cala Bona',
+          'Cala Sant Francesc',
+          'Plage de Fenals',
+          'Retour',
+        ],
+        description: 'L\'expérience complète pour les familles. Trois arrêts avec suffisamment de temps pour explorer chaque crique. Combine baignade, snorkeling, pique-nique et vues spectaculaires sur la côte.',
+        price: 'À partir de 280 EUR (70 EUR/h)',
+        tip: 'Recommandé pour les enfants à partir de 4 ans. Prévoir nourriture, eau, crème solaire et casquettes.',
+      },
+    ],
+  },
+  activityFishing: {
+    faqItems: [
+      {
+        question: 'Les bateaux incluent-ils du matériel de pêche ?',
+        answer: 'Non. Vous devez apporter votre propre équipement de pêche (cannes, moulinets, leurres, appâts). Nos bateaux fournissent la plateforme de navigation, mais n\'incluent pas de matériel de pêche. À Blanes, il y a des magasins nautiques près du port où vous pouvez acheter des appâts frais et du matériel de base.',
+      },
+      {
+        question: 'Ai-je besoin d\'un permis de pêche pour pêcher depuis le bateau ?',
+        answer: 'Oui. Pour la pêche récréative en mer, vous avez besoin du permis de pêche récréative maritime de la Generalitat de Catalunya. Vous pouvez l\'obtenir en ligne sur gencat.cat pour environ 14 EUR (validité 2 ans). Il est différent du permis de navigation : le permis de pêche est pour pêcher, celui de navigation pour piloter le bateau.',
+      },
+      {
+        question: 'Quel bateau me faut-il pour pêcher en mer ?',
+        answer: 'Cela dépend du type de pêche. Pour la pêche au fond dans les criques proches (bars, dorades), un bateau sans permis suffit. Pour la pêche en eaux ouvertes (sérioles, traîne), vous avez besoin d\'un bateau avec permis qui a plus d\'autonomie et de puissance. Contactez-nous par WhatsApp et nous vous conseillerons selon votre expérience.',
+      },
+      {
+        question: 'Quelles sont les réglementations de pêche sur la Costa Brava ?',
+        answer: 'La pêche récréative en Catalogne a des limites de capture : maximum 5 kg par personne et par jour (sauf si une prise dépasse ce poids). Il y a des tailles minimales par espèce (bar 36 cm, dorade 20 cm). Il est interdit de pêcher dans les réserves marines et les zones de baignade. Certaines techniques comme la pêche au harpon nécessitent un permis spécifique.',
+      },
+    ],
+    fishSpecies: [
+      {
+        name: 'Bar (Dicentrarchus labrax)',
+        season: 'Toute l\'année, meilleur en automne et hiver',
+        where: 'Zones rocheuses près de la côte, embouchures',
+        technique: 'Spinning aux leurres, traîne',
+      },
+      {
+        name: 'Daurade royale (Sparus aurata)',
+        season: 'Printemps et été',
+        where: 'Fonds de sable et herbiers de posidonie, près de la côte',
+        technique: 'Pêche au fond avec appât naturel (ver, crevette)',
+      },
+      {
+        name: 'Sériole (Seriola dumerili)',
+        season: 'Juin à octobre',
+        where: 'Eaux du large, 2-5 milles de la côte',
+        technique: 'Jigging, traîne avec gros leurres',
+      },
+      {
+        name: 'Denté (Dentex dentex)',
+        season: 'Printemps et automne',
+        where: 'Fonds rocheux entre 20-60 m de profondeur',
+        technique: 'Pêche au fond, jigging léger',
+      },
+      {
+        name: 'Calmars (Loligo vulgaris)',
+        season: 'Automne et hiver (septembre-février)',
+        where: 'Fonds de sable, près des herbiers de posidonie',
+        technique: 'Pêche aux turluttes',
+      },
+    ],
+    recommendedBoats: [
+      {
+        type: 'Bateaux avec permis',
+        capacity: '6-7 personnes',
+        autonomy: 'Plus grande autonomie et rayon d\'action',
+        price: 'À partir de 90 EUR/heure (essence non incluse)',
+        advantages: [
+          'Accès aux zones de pêche plus éloignées (5+ milles)',
+          'Plus de puissance pour la traîne et le jigging',
+          'Espace généreux pour le matériel de pêche',
+          'Possibilité de sortir par mer plus agitée',
+        ],
+        recommendation: 'Recommandé pour les pêcheurs expérimentés souhaitant pêcher en eaux du large.',
+      },
+      {
+        type: 'Bateaux sans permis',
+        capacity: '4-5 personnes',
+        autonomy: 'Pêche côtière (jusqu\'à 2 milles)',
+        price: 'À partir de 70 EUR/heure (essence incluse)',
+        advantages: [
+          'Sans permis bateau nécessaire',
+          'Essence incluse dans le prix',
+          'Parfaits pour la pêche au fond dans les criques',
+          'Idéal pour s\'initier à la pêche en bateau',
+        ],
+        recommendation: 'Recommandé pour la pêche de loisir légère près de la côte.',
+      },
+    ],
+    fishingSpots: [
+      {
+        name: 'Rochers de Sa Palomera',
+        distance: '10 minutes du port',
+        target: 'Bars, sars, bogues',
+        description: 'Les formations rocheuses face à Sa Palomera sont un classique pour le spinning côtier. Fonds de 5-15 mètres très poissonneux.',
+      },
+      {
+        name: 'Zone de Cala Bona - Cala Sant Francesc',
+        distance: '15-20 minutes du port',
+        target: 'Daurades royales, dentés, poulpes',
+        description: 'Fonds mixtes de roche et sable entre 10-25 mètres. Excellent pour la pêche au fond avec appât naturel.',
+      },
+      {
+        name: 'Eaux du large face à Blanes',
+        distance: '30-45 minutes du port',
+        target: 'Sérioles, bonites, coryphènes',
+        description: 'À 3-5 milles de la côte, profondeurs de 40-80 mètres. Accessible uniquement avec bateaux avec permis. Jigging et traîne.',
+      },
+    ],
   },
 };

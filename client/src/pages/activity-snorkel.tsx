@@ -24,47 +24,8 @@ import { getSEOConfig, generateHreflangLinks, generateCanonicalUrl, generateBrea
 import { openWhatsApp, createBookingMessage } from "@/utils/whatsapp";
 import { useTranslations } from "@/lib/translations";
 
-const snorkelSpots = [
-  {
-    name: "Cala Sant Francesc",
-    distance: "20 minutos desde el puerto",
-    depth: "2-8 metros",
-    highlights: "Posidonia oceanica, sargos, obladas, estrellas de mar. Fondo mixto de arena y roca con excelente visibilidad.",
-    ideal: "Ideal para principiantes y familias por su agua cristalina y poca corriente.",
-    icon: Star
-  },
-  {
-    name: "Cala Bona",
-    distance: "15 minutos desde el puerto",
-    depth: "3-10 metros",
-    highlights: "Formaciones rocosas, meros juveniles, pulpos, nudibranquios. Paredes sumergidas con mucha vida marina.",
-    ideal: "Perfecta para snorkel intermedio. Fondear el barco y explorar la costa rocosa.",
-    icon: Eye
-  },
-  {
-    name: "Cala Treumal",
-    distance: "25 minutos desde el puerto",
-    depth: "2-6 metros",
-    highlights: "Praderas de posidonia, caballitos de mar (especie protegida), bancos de castanolas y doncellas.",
-    ideal: "La cala mas tranquila para snorkel relajado. Agua turquesa y poca afluencia.",
-    icon: Fish
-  }
-];
-
-const recommendedBoats = [
-  {
-    name: "Barcos sin licencia (4-5 personas)",
-    duration: "2-3 horas recomendadas",
-    price: "Desde 70 EUR/hora",
-    description: "Perfectos para snorkel en calas cercanas como Cala Sant Francesc y Cala Bona. Gasolina incluida. Fondeas el barco y te tiras al agua directamente."
-  },
-  {
-    name: "Barcos con licencia (6-7 personas)",
-    duration: "4-6 horas recomendadas",
-    price: "Desde 90 EUR/hora",
-    description: "Mayor autonomia para visitar multiples calas en una sola salida. Ideales para grupos que quieren combinar snorkel con navegacion a Lloret o Tossa."
-  }
-];
+// Icons paired by position to the `spots` array in t.activitySnorkel.
+const SPOT_ICONS = [Star, Eye, Fish];
 
 const faqsFallback: Array<{ question: string; answer: string }> = [];
 
@@ -72,6 +33,12 @@ export default function ActivitySnorkelPage() {
   const { language, localizedPath } = useLanguage();
   const t = useTranslations();
   const faqs = t.activitySnorkel?.faqItems ?? faqsFallback;
+  const snorkelSpots = (t.activitySnorkel?.spots ?? []).map((spot, i) => ({
+    ...spot,
+    icon: SPOT_ICONS[i] ?? Star,
+  }));
+  const recommendedBoats = t.activitySnorkel?.recommendedBoats ?? [];
+  const depthLabel = t.activitySnorkel?.depthLabel ?? 'Profundidad:';
   const seoConfig = getSEOConfig('activitySnorkel', language);
   const hreflangLinks = generateHreflangLinks('activitySnorkel');
   const canonical = generateCanonicalUrl('activitySnorkel', language);
@@ -254,7 +221,7 @@ export default function ActivitySnorkelPage() {
                         </div>
                         <h3 className="font-semibold text-lg mb-2">{spot.name}</h3>
                         <p className="text-muted-foreground text-sm mb-2">{spot.distance}</p>
-                        <p className="text-sm text-primary font-medium mb-2">Profundidad: {spot.depth}</p>
+                        <p className="text-sm text-primary font-medium mb-2">{depthLabel} {spot.depth}</p>
                         <p className="text-muted-foreground text-sm mb-3">{spot.highlights}</p>
                         <p className="text-sm font-medium text-foreground">{spot.ideal}</p>
                       </div>

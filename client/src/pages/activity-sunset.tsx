@@ -25,55 +25,8 @@ import { getSEOConfig, generateHreflangLinks, generateCanonicalUrl, generateBrea
 import { openWhatsApp, createBookingMessage } from "@/utils/whatsapp";
 import { useTranslations } from "@/lib/translations";
 
-const sunsetTimes = [
-  { month: "April", time: "20:15 - 20:30", suggestion: "Depart at 18:30 for a golden hour cruise" },
-  { month: "May", time: "20:45 - 21:00", suggestion: "Depart at 19:00 to catch the full sunset" },
-  { month: "June", time: "21:15 - 21:30", suggestion: "Depart at 19:30 for the longest evenings of the year" },
-  { month: "July", time: "21:15 - 21:30", suggestion: "Depart at 19:30 to enjoy warm summer evenings" },
-  { month: "August", time: "20:45 - 21:00", suggestion: "Depart at 19:00 as the days start getting shorter" },
-  { month: "September", time: "20:00 - 20:15", suggestion: "Depart at 18:15 for warm autumn light" },
-  { month: "October", time: "19:00 - 19:15", suggestion: "Depart at 17:15 for early autumn sunsets" }
-];
-
-const viewpoints = [
-  {
-    name: "Cala Sant Francesc viewpoint",
-    description: "Anchor off Cala Sant Francesc and watch the sun dip behind the hills of Blanes. The cliffs catch the golden light beautifully, and the water turns amber and pink.",
-    distance: "20 minutes from port",
-    icon: MapPin
-  },
-  {
-    name: "Open sea facing Sa Palomera",
-    description: "Position your boat facing the iconic Sa Palomera rock of Blanes. As the sun sets behind the town, the rock creates a dramatic silhouette against the orange sky.",
-    distance: "10 minutes from port",
-    icon: Camera
-  },
-  {
-    name: "Between Blanes and Lloret",
-    description: "The stretch of coast between Blanes and Lloret de Mar offers unobstructed western views. No buildings, no crowds - just you, the sea, and an incredible sunset.",
-    distance: "25 minutes from port",
-    icon: Star
-  }
-];
-
-const romanticIdeas = [
-  {
-    title: "Bring a picnic",
-    description: "Pack cheese, cured meats, olives, bread and a bottle of cava or wine. Enjoy your aperitivo floating in a cove as the sky changes colour."
-  },
-  {
-    title: "Music on board",
-    description: "Bring a small Bluetooth speaker with a curated playlist. Soft jazz, acoustic guitar or chill electronic music pairs perfectly with the golden hour."
-  },
-  {
-    title: "Capture the moment",
-    description: "The light during golden hour (30-60 minutes before sunset) is the most flattering for photos. Use portrait mode on your phone for stunning results."
-  },
-  {
-    title: "Swim at golden hour",
-    description: "Take a dip just before sunset. The water is warmest in the late afternoon, and swimming in golden light is an unforgettable experience."
-  }
-];
+// Icons paired by position to t.activitySunset.viewpoints.
+const VIEWPOINT_ICONS = [MapPin, Camera, Star];
 
 const faqsFallback: Array<{ question: string; answer: string }> = [];
 
@@ -81,6 +34,12 @@ export default function ActivitySunsetPage() {
   const { language, localizedPath } = useLanguage();
   const t = useTranslations();
   const faqs = t.activitySunset?.faqItems ?? faqsFallback;
+  const sunsetTimes = t.activitySunset?.sunsetTimes ?? [];
+  const viewpoints = (t.activitySunset?.viewpoints ?? []).map((vp, i) => ({
+    ...vp,
+    icon: VIEWPOINT_ICONS[i] ?? MapPin,
+  }));
+  const romanticIdeas = t.activitySunset?.romanticIdeas ?? [];
   const seoConfig = getSEOConfig('activitySunset', language);
   const hreflangLinks = generateHreflangLinks('activitySunset');
   const canonical = generateCanonicalUrl('activitySunset', language);

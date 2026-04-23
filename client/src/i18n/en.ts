@@ -1696,86 +1696,6 @@ export const en: Translations = {
     bookingWithBoat: 'Hello! I\'m interested in booking the {boatName}. Could you help me with availability and prices? Thanks!',
     bookingGeneric: 'Hello! I\'d like to make a reservation to rent a boat. Could you help me with availability and prices?',
   },
-  activitySunset: {
-    faqItems: [
-      {
-        question: 'What time should I leave for a sunset boat trip?',
-        answer: 'We recommend leaving 2 hours before sunset. That gives you time to cruise along the coast, find a lovely cove and get settled before golden hour. In summer (June-July), head out around 7:00-7:30 PM. In spring and autumn, around 5:30-6:30 PM. Our team at the port will let you know the exact sunset time on the day of your trip.',
-      },
-      {
-        question: 'Do I need a boat licence for a sunset trip?',
-        answer: 'No. Our licence-free boats are perfect for sunset trips. You just need to be over 18. We give you a 15-minute safety briefing before you head out. The boats are easy to handle and have a maximum speed that makes them very safe for sunset cruising.',
-      },
-      {
-        question: 'Is it safe to be on the boat at sunset and return in low light?',
-        answer: 'Yes. All our boats are equipped with navigation lights for use after dark. Blanes port is well lit and easy to enter at dusk. We recommend returning no later than 30 minutes after sunset, when there\'s still plenty of light. Our team will brief you on the return route.',
-      },
-      {
-        question: 'How much does a sunset boat trip cost?',
-        answer: 'A 2-hour sunset trip in a licence-free boat costs from 140 EUR in total ({noLicBaja1h} EUR/hour in low season). Fuel is included for licence-free boats. The boat takes up to 5 people, so the cost per person can be as low as 28 EUR. Licence-free boats include fuel, insurance, safety equipment and the briefing.',
-      },
-    ],
-  },
-  activitySnorkel: {
-    faqItems: [
-      {
-        question: 'Can I rent snorkeling equipment with the boat?',
-        answer: 'Yes. We offer snorkel kits (mask, snorkel and fins) for 7.50 EUR per person. Equipment is collected when boarding and returned at the end of the rental. You can also bring your own equipment at no extra cost.',
-      },
-      {
-        question: 'What\'s the best time for snorkeling in Blanes?',
-        answer: 'From June to September the water temperature ranges between 22 and 26 degrees, ideal for snorkeling without a wetsuit. The best visibility is in June and September, when it\'s less crowded and the water is calmer. In July and August the water is warmer but there may be more waves on windy days.',
-      },
-      {
-        question: 'Is it safe to snorkel from the boat without experience?',
-        answer: 'Absolutely. Before heading out we give you a 15-minute safety briefing where we explain how to anchor the boat correctly. All boats carry life jackets. We recommend snorkeling in sheltered coves like Cala Sant Francesc for beginners.',
-      },
-      {
-        question: 'How many coves can I visit on a snorkeling trip?',
-        answer: 'In 2 hours you can visit 1-2 coves with enough time for snorkeling. In 4 hours you can do a full route of 3-4 coves. We recommend a minimum of 3 hours to enjoy the snorkeling and boating without rushing.',
-      },
-    ],
-  },
-  activityFamilies: {
-    faqItems: [
-      {
-        question: 'From what age can children board the boat?',
-        answer: 'There is no minimum age. Babies and children of any age are welcome. All minors must wear approved life jackets during navigation. For babies we recommend short trips of 1-2 hours and choosing days with calm seas.',
-      },
-      {
-        question: 'Do I need a boating license to rent a family boat?',
-        answer: 'No. Our license-free boats do not require any nautical qualification. You only need to be over 18 years old. We give you a full 15-minute briefing before departure. They are safe, stable boats that are very easy to handle.',
-      },
-      {
-        question: 'What does the rental price include?',
-        answer: 'The price for license-free boats includes fuel, insurance, life jackets for everyone (including children\'s), bathing ladder, awning/bimini for shade and the safety briefing. Only snorkeling equipment is additional (7.50 EUR/person).',
-      },
-      {
-        question: 'What should we bring for a boat trip with children?',
-        answer: 'We recommend bringing: high protection sunscreen (waterproof), caps or hats, plenty of water, snacks or picnic, towels, swimwear and a change of dry clothes. Optional: waterproof camera, beach toys and your own snorkeling equipment.',
-      },
-    ],
-  },
-  activityFishing: {
-    faqItems: [
-      {
-        question: 'Do the boats include fishing equipment?',
-        answer: 'No. You must bring your own fishing equipment (rods, reels, lures, bait). Our boats provide the navigation platform, but do not include fishing gear. In Blanes there are chandleries near the port where you can buy fresh bait and basic equipment.',
-      },
-      {
-        question: 'Do I need a fishing licence to fish from the boat?',
-        answer: 'Yes. For recreational sea fishing you need the maritime recreational fishing licence from the Generalitat de Catalunya. You can obtain it online at gencat.cat for approximately 14 EUR (valid for 2 years). It is different from the boating licence: the fishing licence is for fishing, the boating licence is for operating the boat.',
-      },
-      {
-        question: 'What boat do I need for sea fishing?',
-        answer: 'It depends on the type of fishing. For bottom fishing in nearby coves (sea bass, sea bream), a licence-free boat is sufficient. For open water fishing (amberjack, trolling), you need a licensed boat which has greater range and power. Contact us on WhatsApp and we\'ll advise you based on your experience.',
-      },
-      {
-        question: 'What are the fishing regulations on the Costa Brava?',
-        answer: 'Recreational fishing in Catalonia has catch limits: maximum 5 kg per person per day (except if a single fish exceeds that weight). There are minimum sizes by species (sea bass 36 cm, sea bream 20 cm). Fishing is prohibited in marine reserves and bathing areas. Some techniques such as spearfishing require a specific licence.',
-      },
-    ],
-  },
   locationPages: {
     blanes: {
       faqItems: [
@@ -2483,5 +2403,319 @@ export const en: Translations = {
     a4FuelNotIncluded: 'Fuel is not included (paid separately based on consumption).',
     q5: 'What is the cancellation policy?',
     a5: 'You can change your booking date free of charge with a minimum of 7 days\' notice. Cancellations are non-refundable. In case of bad weather, we offer full rescheduling at no cost.',
+  },
+  activitySunset: {
+    faqItems: [
+      {
+        question: 'What time should I leave for a sunset boat trip?',
+        answer: 'We recommend leaving 2 hours before sunset. That gives you time to cruise along the coast, find a lovely cove and get settled before golden hour. In summer (June-July), head out around 7:00-7:30 PM. In spring and autumn, around 5:30-6:30 PM. Our team at the port will let you know the exact sunset time on the day of your trip.',
+      },
+      {
+        question: 'Do I need a boat licence for a sunset trip?',
+        answer: 'No. Our licence-free boats are perfect for sunset trips. You just need to be over 18. We give you a 15-minute safety briefing before you head out. The boats are easy to handle and have a maximum speed that makes them very safe for sunset cruising.',
+      },
+      {
+        question: 'Is it safe to be on the boat at sunset and return in low light?',
+        answer: 'Yes. All our boats are equipped with navigation lights for use after dark. Blanes port is well lit and easy to enter at dusk. We recommend returning no later than 30 minutes after sunset, when there\'s still plenty of light. Our team will brief you on the return route.',
+      },
+      {
+        question: 'How much does a sunset boat trip cost?',
+        answer: 'A 2-hour sunset trip in a licence-free boat costs from 140 EUR in total ({noLicBaja1h} EUR/hour in low season). Fuel is included for licence-free boats. The boat takes up to 5 people, so the cost per person can be as low as 28 EUR. Licence-free boats include fuel, insurance, safety equipment and the briefing.',
+      },
+    ],
+    sunsetTimes: [
+      {
+        month: 'April',
+        time: '20:15 - 20:30',
+        suggestion: 'Set off at 18:30 to enjoy the full golden hour.',
+      },
+      {
+        month: 'May',
+        time: '20:45 - 21:00',
+        suggestion: 'Set off at 19:00 and catch the entire sunset over the sea.',
+      },
+      {
+        month: 'June',
+        time: '21:15 - 21:30',
+        suggestion: 'Set off at 19:30 — these are the longest sunsets of the year.',
+      },
+      {
+        month: 'July',
+        time: '21:15 - 21:30',
+        suggestion: 'Set off at 19:30 to make the most of the warm summer evenings.',
+      },
+      {
+        month: 'August',
+        time: '20:45 - 21:00',
+        suggestion: 'Set off at 19:00; the days are already starting to get shorter.',
+      },
+      {
+        month: 'September',
+        time: '20:00 - 20:15',
+        suggestion: 'Set off at 18:15 for the warm light of early autumn.',
+      },
+      {
+        month: 'October',
+        time: '19:00 - 19:15',
+        suggestion: 'Set off at 17:15 for the first autumn sunsets.',
+      },
+    ],
+    viewpoints: [
+      {
+        name: 'Cala Sant Francesc Viewpoint',
+        description: 'Anchor off Cala Sant Francesc and watch the sun disappear behind the hills of Blanes. The cliffs catch the golden light spectacularly and the water shifts from amber to pink.',
+        distance: '20 minutes from the harbour',
+      },
+      {
+        name: 'Open sea off Sa Palomera',
+        description: 'Position your boat facing Blanes\' iconic Sa Palomera rock. As the sun sets behind the town, the rock creates a dramatic silhouette against the orange sky.',
+        distance: '10 minutes from the harbour',
+      },
+      {
+        name: 'Stretch between Blanes and Lloret',
+        description: 'The coastline between Blanes and Lloret de Mar offers unobstructed westward views. No buildings, no crowds — just you, the sea and an incredible sunset.',
+        distance: '25 minutes from the harbour',
+      },
+    ],
+    romanticIdeas: [
+      {
+        title: 'Bring a picnic',
+        description: 'Pack cheese, cured meats, olives, bread and a bottle of cava or wine. Enjoy your spread floating in a cove as the sky changes colour.',
+      },
+      {
+        title: 'Music on board',
+        description: 'Bring a small Bluetooth speaker with a curated playlist. Soft jazz, acoustic guitar or chilled electronic music pair perfectly with golden hour.',
+      },
+      {
+        title: 'Capture the moment',
+        description: 'Golden hour light (30-60 minutes before sunset) is the most flattering for photos. Use your phone\'s portrait mode for stunning results.',
+      },
+      {
+        title: 'Swim at golden hour',
+        description: 'Take a dip just before sunset. The water is warmest in the late afternoon and swimming in golden light is an unforgettable experience.',
+      },
+    ],
+  },
+  activitySnorkel: {
+    faqItems: [
+      {
+        question: 'Can I rent snorkeling equipment with the boat?',
+        answer: 'Yes. We offer snorkel kits (mask, snorkel and fins) for 7.50 EUR per person. Equipment is collected when boarding and returned at the end of the rental. You can also bring your own equipment at no extra cost.',
+      },
+      {
+        question: 'What\'s the best time for snorkeling in Blanes?',
+        answer: 'From June to September the water temperature ranges between 22 and 26 degrees, ideal for snorkeling without a wetsuit. The best visibility is in June and September, when it\'s less crowded and the water is calmer. In July and August the water is warmer but there may be more waves on windy days.',
+      },
+      {
+        question: 'Is it safe to snorkel from the boat without experience?',
+        answer: 'Absolutely. Before heading out we give you a 15-minute safety briefing where we explain how to anchor the boat correctly. All boats carry life jackets. We recommend snorkeling in sheltered coves like Cala Sant Francesc for beginners.',
+      },
+      {
+        question: 'How many coves can I visit on a snorkeling trip?',
+        answer: 'In 2 hours you can visit 1-2 coves with enough time for snorkeling. In 4 hours you can do a full route of 3-4 coves. We recommend a minimum of 3 hours to enjoy the snorkeling and boating without rushing.',
+      },
+    ],
+    spots: [
+      {
+        name: 'Cala Sant Francesc',
+        distance: '20 minutes from the port',
+        depth: '2-8 metres',
+        highlights: 'Posidonia oceanica, white seabream, saddled seabream, starfish. Mixed sandy and rocky bottom with excellent visibility.',
+        ideal: 'Ideal for beginners and families thanks to its crystal-clear water and mild currents.',
+      },
+      {
+        name: 'Cala Bona',
+        distance: '15 minutes from the port',
+        depth: '3-10 metres',
+        highlights: 'Rock formations, juvenile groupers, octopuses, nudibranchs. Submerged walls teeming with marine life.',
+        ideal: 'Perfect for intermediate snorkelling. Anchor the boat and explore the rocky coastline.',
+      },
+      {
+        name: 'Cala Treumal',
+        distance: '25 minutes from the port',
+        depth: '2-6 metres',
+        highlights: 'Posidonia meadows, seahorses (protected species), shoals of damselfish and wrasse.',
+        ideal: 'The quietest cove for relaxed snorkelling. Turquoise water and very few visitors.',
+      },
+    ],
+    recommendedBoats: [
+      {
+        name: 'No-licence boats (4-5 people)',
+        duration: '2-3 hours recommended',
+        price: 'From 70 EUR/hour',
+        description: 'Perfect for snorkelling in nearby coves like Cala Sant Francesc and Cala Bona. Fuel included. Anchor the boat and jump straight into the water.',
+      },
+      {
+        name: 'Licence boats (6-7 people)',
+        duration: '4-6 hours recommended',
+        price: 'From 90 EUR/hour',
+        description: 'Greater range to visit multiple coves in one trip. Ideal for groups wanting to combine snorkelling with sailing to Lloret or Tossa.',
+      },
+    ],
+    depthLabel: 'Depth:',
+  },
+  activityFamilies: {
+    faqItems: [
+      {
+        question: 'From what age can children board the boat?',
+        answer: 'There is no minimum age. Babies and children of any age are welcome. All minors must wear approved life jackets during navigation. For babies we recommend short trips of 1-2 hours and choosing days with calm seas.',
+      },
+      {
+        question: 'Do I need a boating license to rent a family boat?',
+        answer: 'No. Our license-free boats do not require any nautical qualification. You only need to be over 18 years old. We give you a full 15-minute briefing before departure. They are safe, stable boats that are very easy to handle.',
+      },
+      {
+        question: 'What does the rental price include?',
+        answer: 'The price for license-free boats includes fuel, insurance, life jackets for everyone (including children\'s), bathing ladder, awning/bimini for shade and the safety briefing. Only snorkeling equipment is additional (7.50 EUR/person).',
+      },
+      {
+        question: 'What should we bring for a boat trip with children?',
+        answer: 'We recommend bringing: high protection sunscreen (waterproof), caps or hats, plenty of water, snacks or picnic, towels, swimwear and a change of dry clothes. Optional: waterproof camera, beach toys and your own snorkeling equipment.',
+      },
+    ],
+    safetyFeatures: [
+      {
+        title: 'Children\'s life jackets',
+        description: 'All boats carry approved life jackets for children of all ages and sizes. Minors are required to wear them while sailing.',
+      },
+      {
+        title: 'Complete safety briefing',
+        description: 'Before departure, we spend 15 minutes teaching you how to operate the boat, safe navigation areas, and basic rules. We answer all questions before you set off.',
+      },
+      {
+        title: 'Stable and easy-to-handle boats',
+        description: 'Our licence-free boats have fibreglass hulls with excellent stability. Low-power engine, controlled speed, and easy handling even for beginners.',
+      },
+      {
+        title: 'Protected navigation area',
+        description: 'The coast between Blanes and Lloret offers coves sheltered from the waves. We recommend calm coves where children can swim safely.',
+      },
+    ],
+    familyRoutes: [
+      {
+        name: 'Short family route (2 hours)',
+        stops: [
+          'Port of Blanes',
+          'Cala Sant Francesc',
+          'Return',
+        ],
+        description: 'Ideal for families with young children. Short sail to a sheltered cove with shallow, crystal-clear water. Time for swimming, easy snorkelling, and a picnic on board.',
+        price: 'From 140 EUR (70 EUR/h)',
+        tip: 'Perfect for a first boating experience with children. The cove has a sandy area and calm water.',
+      },
+      {
+        name: 'Full family route (4 hours)',
+        stops: [
+          'Port of Blanes',
+          'Cala Bona',
+          'Cala Sant Francesc',
+          'Fenals Beach',
+          'Return',
+        ],
+        description: 'The complete experience for families. Three stops with enough time to explore each cove. Combines swimming, snorkelling, picnicking, and spectacular coastal views.',
+        price: 'From 280 EUR (70 EUR/h)',
+        tip: 'Recommended for children aged 4 and up. Bring food, water, sun cream, and hats.',
+      },
+    ],
+  },
+  activityFishing: {
+    faqItems: [
+      {
+        question: 'Do the boats include fishing equipment?',
+        answer: 'No. You must bring your own fishing equipment (rods, reels, lures, bait). Our boats provide the navigation platform, but do not include fishing gear. In Blanes there are chandleries near the port where you can buy fresh bait and basic equipment.',
+      },
+      {
+        question: 'Do I need a fishing licence to fish from the boat?',
+        answer: 'Yes. For recreational sea fishing you need the maritime recreational fishing licence from the Generalitat de Catalunya. You can obtain it online at gencat.cat for approximately 14 EUR (valid for 2 years). It is different from the boating licence: the fishing licence is for fishing, the boating licence is for operating the boat.',
+      },
+      {
+        question: 'What boat do I need for sea fishing?',
+        answer: 'It depends on the type of fishing. For bottom fishing in nearby coves (sea bass, sea bream), a licence-free boat is sufficient. For open water fishing (amberjack, trolling), you need a licensed boat which has greater range and power. Contact us on WhatsApp and we\'ll advise you based on your experience.',
+      },
+      {
+        question: 'What are the fishing regulations on the Costa Brava?',
+        answer: 'Recreational fishing in Catalonia has catch limits: maximum 5 kg per person per day (except if a single fish exceeds that weight). There are minimum sizes by species (sea bass 36 cm, sea bream 20 cm). Fishing is prohibited in marine reserves and bathing areas. Some techniques such as spearfishing require a specific licence.',
+      },
+    ],
+    fishSpecies: [
+      {
+        name: 'Sea Bass (Dicentrarchus labrax)',
+        season: 'Year-round, best in autumn and winter',
+        where: 'Rocky areas near the coast, river mouths',
+        technique: 'Spinning with lures, trolling',
+      },
+      {
+        name: 'Gilt-Head Bream (Sparus aurata)',
+        season: 'Spring and summer',
+        where: 'Sandy bottoms and seagrass beds, near the coast',
+        technique: 'Bottom fishing with natural bait (worm, shrimp)',
+      },
+      {
+        name: 'Greater Amberjack (Seriola dumerili)',
+        season: 'June to October',
+        where: 'Open waters, 2-5 miles from the coast',
+        technique: 'Jigging, trolling with large lures',
+      },
+      {
+        name: 'Common Dentex (Dentex dentex)',
+        season: 'Spring and autumn',
+        where: 'Rocky bottoms between 20-60 m depth',
+        technique: 'Bottom fishing, light jigging',
+      },
+      {
+        name: 'Squid (Loligo vulgaris)',
+        season: 'Autumn and winter (September-February)',
+        where: 'Sandy bottoms, near seagrass meadows',
+        technique: 'Squid jig fishing',
+      },
+    ],
+    recommendedBoats: [
+      {
+        type: 'Licensed boats',
+        capacity: '6-7 people',
+        autonomy: 'Greater range and autonomy',
+        price: 'From 90 EUR/hour (fuel not included)',
+        advantages: [
+          'Access to more distant fishing areas (5+ miles)',
+          'More power for trolling and jigging',
+          'Ample space for fishing gear',
+          'Able to go out in rougher seas',
+        ],
+        recommendation: 'Recommended for experienced anglers wanting to fish in open waters.',
+      },
+      {
+        type: 'License-free boats',
+        capacity: '4-5 people',
+        autonomy: 'Coastal fishing (up to 2 miles)',
+        price: 'From 70 EUR/hour (fuel included)',
+        advantages: [
+          'No boating license required',
+          'Fuel included in the price',
+          'Perfect for bottom fishing in coves',
+          'Ideal for beginners to boat fishing',
+        ],
+        recommendation: 'Recommended for light recreational fishing near the coast.',
+      },
+    ],
+    fishingSpots: [
+      {
+        name: 'Sa Palomera Rocks',
+        distance: '10 minutes from the port',
+        target: 'Sea bass, white seabream, picarel',
+        description: 'The rocky formations off Sa Palomera are a classic for coastal spinning. Depths of 5-15 meters with plenty of marine life.',
+      },
+      {
+        name: 'Cala Bona - Cala Sant Francesc Area',
+        distance: '15-20 minutes from the port',
+        target: 'Gilt-head bream, dentex, octopus',
+        description: 'Mixed rock and sand bottoms between 10-25 meters. Excellent for bottom fishing with natural bait.',
+      },
+      {
+        name: 'Open Waters off Blanes',
+        distance: '30-45 minutes from the port',
+        target: 'Greater amberjack, bonito, mahi-mahi',
+        description: '3-5 miles from the coast, depths of 40-80 meters. Only accessible with licensed boats. Jigging and trolling.',
+      },
+    ],
   },
 };

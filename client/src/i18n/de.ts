@@ -1637,86 +1637,6 @@ export const de: Translations = {
     bookingWithBoat: 'Hallo! Ich interessiere mich für eine Buchung der {boatName}. Könnten Sie mir bei Verfügbarkeit und Preisen weiterhelfen? Vielen Dank!',
     bookingGeneric: 'Hallo! Ich würde gerne ein Boot mieten. Könnten Sie mir bei Verfügbarkeit und Preisen weiterhelfen?',
   },
-  activitySunset: {
-    faqItems: [
-      {
-        question: 'Wann sollte ich zu einem Bootsausflug bei Sonnenuntergang aufbrechen?',
-        answer: 'Wir empfehlen, 2 Stunden vor Sonnenuntergang aufzubrechen. So haben Sie genügend Zeit, entlang der Küste zu fahren, eine schöne Bucht zu finden und es sich vor der goldenen Stunde gemütlich zu machen. Im Sommer (Juni-Juli) brechen Sie gegen 19:00-19:30 Uhr auf. Im Frühling und Herbst gegen 17:30-18:30 Uhr. Unser Team im Hafen teilt Ihnen am Tag Ihrer Abfahrt die genaue Uhrzeit des Sonnenuntergangs mit.',
-      },
-      {
-        question: 'Brauche ich einen Bootsführerschein für einen Sonnenuntergangsausflug?',
-        answer: 'Nein. Unsere führerscheinfreien Boote sind perfekt für Sonnenuntergangsausflüge geeignet. Sie müssen nur mindestens 18 Jahre alt sein. Wir geben Ihnen vor der Abfahrt eine 15-minütige Sicherheitseinweisung. Die Boote sind leicht zu steuern und haben eine Höchstgeschwindigkeit, die sie sehr sicher für Fahrten bei Sonnenuntergang macht.',
-      },
-      {
-        question: 'Ist es sicher, bei Sonnenuntergang mit dem Boot unterwegs zu sein und bei wenig Licht zurückzukehren?',
-        answer: 'Ja. Alle unsere Boote sind mit Navigationslichtern für den Einsatz bei Dunkelheit ausgestattet. Der Hafen von Blanes ist gut beleuchtet und bei Einbruch der Dunkelheit einfach anzusteuern. Wir empfehlen, spätestens 30 Minuten nach Sonnenuntergang zurückzukehren, wenn es noch hell genug ist. Unser Team informiert Sie über die Rückfahrtroute.',
-      },
-      {
-        question: 'Was kostet ein Bootsausflug bei Sonnenuntergang?',
-        answer: 'Ein 2-stündiger Sonnenuntergangsausflug mit einem führerscheinfreien Boot kostet ab 140 EUR insgesamt ({noLicBaja1h} EUR/Stunde in der Nebensaison). Der Treibstoff ist bei führerscheinfreien Booten im Preis inbegriffen. Das Boot bietet Platz für bis zu 5 Personen, sodass die Kosten pro Person ab 28 EUR betragen können. Die führerscheinfreien Boote beinhalten Treibstoff, Versicherung, Sicherheitsausrüstung und die Einweisung.',
-      },
-    ],
-  },
-  activitySnorkel: {
-    faqItems: [
-      {
-        question: 'Kann ich Schnorchelausrüstung mit dem Boot mieten?',
-        answer: 'Ja. Wir bieten Schnorchelsets (Maske, Schnorchel und Flossen) für 7,50 EUR pro Person an. Die Ausrüstung wird beim Einsteigen abgeholt und am Ende der Miete zurückgegeben. Sie können auch Ihre eigene Ausrüstung ohne zusätzliche Kosten mitbringen.',
-      },
-      {
-        question: 'Wann ist die beste Zeit zum Schnorcheln in Blanes?',
-        answer: 'Von Juni bis September liegt die Wassertemperatur zwischen 22 und 26 Grad, ideal zum Schnorcheln ohne Neoprenanzug. Die beste Sicht hat man im Juni und September, wenn es weniger Besucher gibt und das Wasser ruhiger ist. Im Juli und August ist das Wasser wärmer, aber an windigen Tagen kann es mehr Wellengang geben.',
-      },
-      {
-        question: 'Ist Schnorcheln vom Boot aus ohne Erfahrung sicher?',
-        answer: 'Absolut. Vor der Abfahrt geben wir Ihnen eine 15-minütige Sicherheitseinweisung, in der wir erklären, wie man das Boot richtig ankert. Alle Boote sind mit Schwimmwesten ausgestattet. Wir empfehlen Anfängern das Schnorcheln in geschützten Buchten wie Cala Sant Francesc.',
-      },
-      {
-        question: 'Wie viele Buchten kann ich bei einem Schnorchelausflug besuchen?',
-        answer: 'In 2 Stunden können Sie 1-2 Buchten mit ausreichend Zeit zum Schnorcheln besuchen. In 4 Stunden können Sie eine komplette Route mit 3-4 Buchten machen. Wir empfehlen mindestens 3 Stunden, um das Schnorcheln und die Bootsfahrt in Ruhe zu genießen.',
-      },
-    ],
-  },
-  activityFamilies: {
-    faqItems: [
-      {
-        question: 'Ab welchem Alter dürfen Kinder mit an Bord?',
-        answer: 'Es gibt kein Mindestalter. Babys und Kinder jeden Alters sind willkommen. Alle Minderjährigen müssen während der Fahrt eine zugelassene Schwimmweste tragen. Für Babys empfehlen wir kurze Ausflüge von 1-2 Stunden und ruhige Seetage.',
-      },
-      {
-        question: 'Brauche ich einen Bootsführerschein, um ein Familienboot zu mieten?',
-        answer: 'Nein. Unsere führerscheinfreien Boote erfordern keinen Bootsführerschein. Sie müssen lediglich mindestens 18 Jahre alt sein. Wir geben Ihnen vor der Abfahrt eine vollständige Einweisung von 15 Minuten. Es sind sichere, stabile und sehr leicht zu steuernde Boote.',
-      },
-      {
-        question: 'Was ist im Mietpreis enthalten?',
-        answer: 'Der Preis für die führerscheinfreien Boote beinhaltet Benzin, Versicherung, Schwimmwesten für alle (einschließlich Kinder), Badeleiter, Sonnenverdeck/Bimini und die Sicherheitseinweisung. Nur die Schnorchelausrüstung kostet extra (7,50 EUR/Person).',
-      },
-      {
-        question: 'Was sollten wir für einen Bootsausflug mit Kindern mitnehmen?',
-        answer: 'Wir empfehlen mitzubringen: Sonnencreme mit hohem Lichtschutzfaktor (wasserfest), Kappen oder Hüte, reichlich Wasser, Snacks oder Picknick, Handtücher, Badesachen und Wechselkleidung. Optional: Unterwasserkamera, Strandspielzeug und eigene Schnorchelausrüstung.',
-      },
-    ],
-  },
-  activityFishing: {
-    faqItems: [
-      {
-        question: 'Ist Angelausrüstung in den Booten enthalten?',
-        answer: 'Nein. Sie müssen Ihre eigene Angelausrüstung mitbringen (Ruten, Rollen, Köder, Köderfische). Unsere Boote stellen die Navigationsplattform bereit, beinhalten jedoch kein Angelmaterial. In Blanes gibt es Schiffszubehörgeschäfte in Hafennähe, wo Sie frischen Köder und Grundausstattung kaufen können.',
-      },
-      {
-        question: 'Benötige ich einen Angelschein, um vom Boot aus zu angeln?',
-        answer: 'Ja. Für das Freizeitangeln auf See benötigen Sie den maritimen Freizeitangelschein der Generalitat de Catalunya. Sie können ihn online auf gencat.cat für ca. 14 EUR erwerben (Gültigkeit 2 Jahre). Er unterscheidet sich vom Bootsführerschein: Der Angelschein ist zum Angeln, der Bootsführerschein zum Führen des Bootes.',
-      },
-      {
-        question: 'Welches Boot brauche ich zum Meeresangeln?',
-        answer: 'Das hängt von der Art des Angelns ab. Für Grundangeln in nahen Buchten (Wolfsbarsche, Goldbrassen) reicht ein Boot ohne Führerschein aus. Für das Angeln auf offenem Wasser (Bernsteinmakrelen, Schleppangeln) benötigen Sie ein Boot mit Führerschein, das größere Reichweite und Leistung hat. Kontaktieren Sie uns per WhatsApp und wir beraten Sie entsprechend Ihrer Erfahrung.',
-      },
-      {
-        question: 'Welche Fischereivorschriften gelten an der Costa Brava?',
-        answer: 'Das Freizeitangeln in Catalunya hat Fangbeschränkungen: maximal 5 kg pro Person und Tag (außer wenn ein einzelnes Exemplar dieses Gewicht überschreitet). Es gibt Mindestgrößen je Art (Wolfsbarsch 36 cm, Goldbrasse 20 cm). Das Angeln in Meeresschutzgebieten und Badezonen ist verboten. Einige Techniken wie das Harpunenfischen erfordern eine spezielle Lizenz.',
-      },
-    ],
-  },
   locationPages: {
     blanes: {
       faqItems: [
@@ -2424,5 +2344,319 @@ export const de: Translations = {
     a4FuelNotIncluded: 'Der Kraftstoff ist nicht im Preis enthalten (wird separat je nach Verbrauch berechnet).',
     q5: 'Wie lautet die Stornierungsbedingung?',
     a5: 'Du kannst dein Buchungsdatum kostenlos ändern, sofern dies mindestens 7 Tage im Voraus erfolgt. Stornierungen sind nicht erstattungsfähig. Bei schlechtem Wetter bieten wir eine kostenlose Umbuchung an.',
+  },
+  activitySunset: {
+    faqItems: [
+      {
+        question: 'Wann sollte ich zu einem Bootsausflug bei Sonnenuntergang aufbrechen?',
+        answer: 'Wir empfehlen, 2 Stunden vor Sonnenuntergang aufzubrechen. So haben Sie genügend Zeit, entlang der Küste zu fahren, eine schöne Bucht zu finden und es sich vor der goldenen Stunde gemütlich zu machen. Im Sommer (Juni-Juli) brechen Sie gegen 19:00-19:30 Uhr auf. Im Frühling und Herbst gegen 17:30-18:30 Uhr. Unser Team im Hafen teilt Ihnen am Tag Ihrer Abfahrt die genaue Uhrzeit des Sonnenuntergangs mit.',
+      },
+      {
+        question: 'Brauche ich einen Bootsführerschein für einen Sonnenuntergangsausflug?',
+        answer: 'Nein. Unsere führerscheinfreien Boote sind perfekt für Sonnenuntergangsausflüge geeignet. Sie müssen nur mindestens 18 Jahre alt sein. Wir geben Ihnen vor der Abfahrt eine 15-minütige Sicherheitseinweisung. Die Boote sind leicht zu steuern und haben eine Höchstgeschwindigkeit, die sie sehr sicher für Fahrten bei Sonnenuntergang macht.',
+      },
+      {
+        question: 'Ist es sicher, bei Sonnenuntergang mit dem Boot unterwegs zu sein und bei wenig Licht zurückzukehren?',
+        answer: 'Ja. Alle unsere Boote sind mit Navigationslichtern für den Einsatz bei Dunkelheit ausgestattet. Der Hafen von Blanes ist gut beleuchtet und bei Einbruch der Dunkelheit einfach anzusteuern. Wir empfehlen, spätestens 30 Minuten nach Sonnenuntergang zurückzukehren, wenn es noch hell genug ist. Unser Team informiert Sie über die Rückfahrtroute.',
+      },
+      {
+        question: 'Was kostet ein Bootsausflug bei Sonnenuntergang?',
+        answer: 'Ein 2-stündiger Sonnenuntergangsausflug mit einem führerscheinfreien Boot kostet ab 140 EUR insgesamt ({noLicBaja1h} EUR/Stunde in der Nebensaison). Der Treibstoff ist bei führerscheinfreien Booten im Preis inbegriffen. Das Boot bietet Platz für bis zu 5 Personen, sodass die Kosten pro Person ab 28 EUR betragen können. Die führerscheinfreien Boote beinhalten Treibstoff, Versicherung, Sicherheitsausrüstung und die Einweisung.',
+      },
+    ],
+    sunsetTimes: [
+      {
+        month: 'April',
+        time: '20:15 - 20:30',
+        suggestion: 'Fahren Sie um 18:30 Uhr los, um die gesamte goldene Stunde zu genießen.',
+      },
+      {
+        month: 'Mai',
+        time: '20:45 - 21:00',
+        suggestion: 'Fahren Sie um 19:00 Uhr los und erleben Sie den kompletten Sonnenuntergang über dem Meer.',
+      },
+      {
+        month: 'Juni',
+        time: '21:15 - 21:30',
+        suggestion: 'Fahren Sie um 19:30 Uhr los — es sind die längsten Sonnenuntergänge des Jahres.',
+      },
+      {
+        month: 'Juli',
+        time: '21:15 - 21:30',
+        suggestion: 'Fahren Sie um 19:30 Uhr los, um die warmen Sommerabende zu genießen.',
+      },
+      {
+        month: 'August',
+        time: '20:45 - 21:00',
+        suggestion: 'Fahren Sie um 19:00 Uhr los; die Tage werden bereits wieder kürzer.',
+      },
+      {
+        month: 'September',
+        time: '20:00 - 20:15',
+        suggestion: 'Fahren Sie um 18:15 Uhr los für das warme Licht des frühen Herbstes.',
+      },
+      {
+        month: 'Oktober',
+        time: '19:00 - 19:15',
+        suggestion: 'Fahren Sie um 17:15 Uhr los für die ersten Herbstsonnenuntergänge.',
+      },
+    ],
+    viewpoints: [
+      {
+        name: 'Aussichtspunkt Cala Sant Francesc',
+        description: 'Ankern Sie vor Cala Sant Francesc und beobachten Sie, wie die Sonne hinter den Hügeln von Blanes verschwindet. Die Klippen werden spektakulär vom goldenen Licht erfasst und das Wasser wechselt von Bernstein zu Rosa.',
+        distance: '20 Minuten vom Hafen',
+      },
+      {
+        name: 'Offenes Meer vor Sa Palomera',
+        description: 'Positionieren Sie das Boot mit Blick auf den markanten Felsen Sa Palomera von Blanes. Wenn die Sonne hinter dem Ort untergeht, bildet der Fels eine dramatische Silhouette vor dem orangefarbenen Himmel.',
+        distance: '10 Minuten vom Hafen',
+      },
+      {
+        name: 'Küstenabschnitt zwischen Blanes und Lloret',
+        description: 'Die Küste zwischen Blanes und Lloret de Mar bietet freien Blick nach Westen. Keine Gebäude, keine Menschenmassen — nur Sie, das Meer und ein fantastischer Sonnenuntergang.',
+        distance: '25 Minuten vom Hafen',
+      },
+    ],
+    romanticIdeas: [
+      {
+        title: 'Bringen Sie ein Picknick mit',
+        description: 'Bereiten Sie Käse, Aufschnitt, Oliven, Brot und eine Flasche Cava oder Wein vor. Genießen Sie den Aperitif in einer Bucht schaukelnd, während der Himmel seine Farbe wechselt.',
+      },
+      {
+        title: 'Musik an Bord',
+        description: 'Nehmen Sie einen kleinen Bluetooth-Lautsprecher mit einer ausgewählten Playlist mit. Sanfter Jazz, Akustikgitarre oder entspannende elektronische Musik passen perfekt zur goldenen Stunde.',
+      },
+      {
+        title: 'Halten Sie den Moment fest',
+        description: 'Das Licht der goldenen Stunde (30-60 Minuten vor Sonnenuntergang) ist am schmeichelhaftesten für Fotos. Nutzen Sie den Porträtmodus Ihres Smartphones für spektakuläre Ergebnisse.',
+      },
+      {
+        title: 'Baden Sie zur goldenen Stunde',
+        description: 'Nehmen Sie kurz vor Sonnenuntergang ein Bad. Das Wasser ist am späten Nachmittag wärmer und Schwimmen im goldenen Licht ist ein unvergessliches Erlebnis.',
+      },
+    ],
+  },
+  activitySnorkel: {
+    faqItems: [
+      {
+        question: 'Kann ich Schnorchelausrüstung mit dem Boot mieten?',
+        answer: 'Ja. Wir bieten Schnorchelsets (Maske, Schnorchel und Flossen) für 7,50 EUR pro Person an. Die Ausrüstung wird beim Einsteigen abgeholt und am Ende der Miete zurückgegeben. Sie können auch Ihre eigene Ausrüstung ohne zusätzliche Kosten mitbringen.',
+      },
+      {
+        question: 'Wann ist die beste Zeit zum Schnorcheln in Blanes?',
+        answer: 'Von Juni bis September liegt die Wassertemperatur zwischen 22 und 26 Grad, ideal zum Schnorcheln ohne Neoprenanzug. Die beste Sicht hat man im Juni und September, wenn es weniger Besucher gibt und das Wasser ruhiger ist. Im Juli und August ist das Wasser wärmer, aber an windigen Tagen kann es mehr Wellengang geben.',
+      },
+      {
+        question: 'Ist Schnorcheln vom Boot aus ohne Erfahrung sicher?',
+        answer: 'Absolut. Vor der Abfahrt geben wir Ihnen eine 15-minütige Sicherheitseinweisung, in der wir erklären, wie man das Boot richtig ankert. Alle Boote sind mit Schwimmwesten ausgestattet. Wir empfehlen Anfängern das Schnorcheln in geschützten Buchten wie Cala Sant Francesc.',
+      },
+      {
+        question: 'Wie viele Buchten kann ich bei einem Schnorchelausflug besuchen?',
+        answer: 'In 2 Stunden können Sie 1-2 Buchten mit ausreichend Zeit zum Schnorcheln besuchen. In 4 Stunden können Sie eine komplette Route mit 3-4 Buchten machen. Wir empfehlen mindestens 3 Stunden, um das Schnorcheln und die Bootsfahrt in Ruhe zu genießen.',
+      },
+    ],
+    spots: [
+      {
+        name: 'Cala Sant Francesc',
+        distance: '20 Minuten vom Hafen',
+        depth: '2-8 Meter',
+        highlights: 'Neptungras, Geißbrassen, Brandbrassen, Seesterne. Gemischter Sand- und Felsuntergrund mit ausgezeichneter Sicht.',
+        ideal: 'Ideal für Anfänger und Familien dank kristallklarem Wasser und geringer Strömung.',
+      },
+      {
+        name: 'Cala Bona',
+        distance: '15 Minuten vom Hafen',
+        depth: '3-10 Meter',
+        highlights: 'Felsformationen, junge Zackenbarsche, Kraken, Nacktschnecken. Unterwasserwände mit reichem Meeresleben.',
+        ideal: 'Perfekt für fortgeschrittenes Schnorcheln. Boot ankern und die felsige Küste erkunden.',
+      },
+      {
+        name: 'Cala Treumal',
+        distance: '25 Minuten vom Hafen',
+        depth: '2-6 Meter',
+        highlights: 'Neptungraswiesen, Seepferdchen (geschützte Art), Schwärme von Riffbarschen und Lippfischen.',
+        ideal: 'Die ruhigste Bucht für entspanntes Schnorcheln. Türkisfarbenes Wasser und wenig Andrang.',
+      },
+    ],
+    recommendedBoats: [
+      {
+        name: 'Boote ohne Führerschein (4-5 Personen)',
+        duration: '2-3 Stunden empfohlen',
+        price: 'Ab 70 EUR/Stunde',
+        description: 'Perfekt zum Schnorcheln in nahen Buchten wie Cala Sant Francesc und Cala Bona. Benzin inklusive. Boot ankern und direkt ins Wasser springen.',
+      },
+      {
+        name: 'Boote mit Führerschein (6-7 Personen)',
+        duration: '4-6 Stunden empfohlen',
+        price: 'Ab 90 EUR/Stunde',
+        description: 'Größere Reichweite für den Besuch mehrerer Buchten in einem Ausflug. Ideal für Gruppen, die Schnorcheln mit einer Fahrt nach Lloret oder Tossa verbinden möchten.',
+      },
+    ],
+    depthLabel: 'Tiefe:',
+  },
+  activityFamilies: {
+    faqItems: [
+      {
+        question: 'Ab welchem Alter dürfen Kinder mit an Bord?',
+        answer: 'Es gibt kein Mindestalter. Babys und Kinder jeden Alters sind willkommen. Alle Minderjährigen müssen während der Fahrt eine zugelassene Schwimmweste tragen. Für Babys empfehlen wir kurze Ausflüge von 1-2 Stunden und ruhige Seetage.',
+      },
+      {
+        question: 'Brauche ich einen Bootsführerschein, um ein Familienboot zu mieten?',
+        answer: 'Nein. Unsere führerscheinfreien Boote erfordern keinen Bootsführerschein. Sie müssen lediglich mindestens 18 Jahre alt sein. Wir geben Ihnen vor der Abfahrt eine vollständige Einweisung von 15 Minuten. Es sind sichere, stabile und sehr leicht zu steuernde Boote.',
+      },
+      {
+        question: 'Was ist im Mietpreis enthalten?',
+        answer: 'Der Preis für die führerscheinfreien Boote beinhaltet Benzin, Versicherung, Schwimmwesten für alle (einschließlich Kinder), Badeleiter, Sonnenverdeck/Bimini und die Sicherheitseinweisung. Nur die Schnorchelausrüstung kostet extra (7,50 EUR/Person).',
+      },
+      {
+        question: 'Was sollten wir für einen Bootsausflug mit Kindern mitnehmen?',
+        answer: 'Wir empfehlen mitzubringen: Sonnencreme mit hohem Lichtschutzfaktor (wasserfest), Kappen oder Hüte, reichlich Wasser, Snacks oder Picknick, Handtücher, Badesachen und Wechselkleidung. Optional: Unterwasserkamera, Strandspielzeug und eigene Schnorchelausrüstung.',
+      },
+    ],
+    safetyFeatures: [
+      {
+        title: 'Kinder-Schwimmwesten',
+        description: 'Alle Boote sind mit zugelassenen Schwimmwesten für Kinder jeden Alters und jeder Größe ausgestattet. Kinder müssen diese während der Fahrt tragen.',
+      },
+      {
+        title: 'Umfassende Sicherheitseinweisung',
+        description: 'Vor der Abfahrt nehmen wir uns 15 Minuten Zeit, um die Bedienung des Bootes, die sicheren Fahrtgebiete und die Grundregeln zu erklären. Wir beantworten alle Fragen vor dem Ablegen.',
+      },
+      {
+        title: 'Stabile und leicht zu steuernde Boote',
+        description: 'Unsere führerscheinfreien Boote haben einen Fiberglasrumpf mit hoher Stabilität. Schwacher Motor, kontrollierte Geschwindigkeit und einfache Handhabung selbst für Anfänger.',
+      },
+      {
+        title: 'Geschütztes Fahrgebiet',
+        description: 'Die Küste zwischen Blanes und Lloret bietet vom Wellengang geschützte Buchten. Wir empfehlen ruhige Buchten, in denen Kinder sicher baden können.',
+      },
+    ],
+    familyRoutes: [
+      {
+        name: 'Kurze Familienroute (2 Stunden)',
+        stops: [
+          'Hafen von Blanes',
+          'Cala Sant Francesc',
+          'Rückfahrt',
+        ],
+        description: 'Ideal für Familien mit kleinen Kindern. Kurze Fahrt zu einer geschützten Bucht mit flachem, kristallklarem Wasser. Zeit zum Baden, sanftem Schnorcheln und Picknick an Bord.',
+        price: 'Ab 140 EUR (70 EUR/Std.)',
+        tip: 'Perfekt für die erste Bootserfahrung mit Kindern. Die Bucht hat einen Sandbereich und ruhiges Wasser.',
+      },
+      {
+        name: 'Große Familienroute (4 Stunden)',
+        stops: [
+          'Hafen von Blanes',
+          'Cala Bona',
+          'Cala Sant Francesc',
+          'Strand von Fenals',
+          'Rückfahrt',
+        ],
+        description: 'Das komplette Erlebnis für Familien. Drei Stopps mit ausreichend Zeit, um jede Bucht zu erkunden. Kombiniert Baden, Schnorcheln, Picknick und spektakuläre Ausblicke auf die Küste.',
+        price: 'Ab 280 EUR (70 EUR/Std.)',
+        tip: 'Empfohlen für Kinder ab 4 Jahren. Essen, Wasser, Sonnencreme und Mützen mitbringen.',
+      },
+    ],
+  },
+  activityFishing: {
+    faqItems: [
+      {
+        question: 'Ist Angelausrüstung in den Booten enthalten?',
+        answer: 'Nein. Sie müssen Ihre eigene Angelausrüstung mitbringen (Ruten, Rollen, Köder, Köderfische). Unsere Boote stellen die Navigationsplattform bereit, beinhalten jedoch kein Angelmaterial. In Blanes gibt es Schiffszubehörgeschäfte in Hafennähe, wo Sie frischen Köder und Grundausstattung kaufen können.',
+      },
+      {
+        question: 'Benötige ich einen Angelschein, um vom Boot aus zu angeln?',
+        answer: 'Ja. Für das Freizeitangeln auf See benötigen Sie den maritimen Freizeitangelschein der Generalitat de Catalunya. Sie können ihn online auf gencat.cat für ca. 14 EUR erwerben (Gültigkeit 2 Jahre). Er unterscheidet sich vom Bootsführerschein: Der Angelschein ist zum Angeln, der Bootsführerschein zum Führen des Bootes.',
+      },
+      {
+        question: 'Welches Boot brauche ich zum Meeresangeln?',
+        answer: 'Das hängt von der Art des Angelns ab. Für Grundangeln in nahen Buchten (Wolfsbarsche, Goldbrassen) reicht ein Boot ohne Führerschein aus. Für das Angeln auf offenem Wasser (Bernsteinmakrelen, Schleppangeln) benötigen Sie ein Boot mit Führerschein, das größere Reichweite und Leistung hat. Kontaktieren Sie uns per WhatsApp und wir beraten Sie entsprechend Ihrer Erfahrung.',
+      },
+      {
+        question: 'Welche Fischereivorschriften gelten an der Costa Brava?',
+        answer: 'Das Freizeitangeln in Catalunya hat Fangbeschränkungen: maximal 5 kg pro Person und Tag (außer wenn ein einzelnes Exemplar dieses Gewicht überschreitet). Es gibt Mindestgrößen je Art (Wolfsbarsch 36 cm, Goldbrasse 20 cm). Das Angeln in Meeresschutzgebieten und Badezonen ist verboten. Einige Techniken wie das Harpunenfischen erfordern eine spezielle Lizenz.',
+      },
+    ],
+    fishSpecies: [
+      {
+        name: 'Wolfsbarsch (Dicentrarchus labrax)',
+        season: 'Ganzjährig, am besten im Herbst und Winter',
+        where: 'Felsige Zonen in Küstennähe, Flussmündungen',
+        technique: 'Spinnfischen mit Kunstködern, Schleppangeln',
+      },
+      {
+        name: 'Goldbrasse (Sparus aurata)',
+        season: 'Frühling und Sommer',
+        where: 'Sand- und Seegrasböden in Küstennähe',
+        technique: 'Grundangeln mit Naturköder (Wurm, Garnele)',
+      },
+      {
+        name: 'Große Bernsteinmakrele (Seriola dumerili)',
+        season: 'Juni bis Oktober',
+        where: 'Offene Gewässer, 2-5 Meilen von der Küste',
+        technique: 'Jigging, Schleppangeln mit großen Kunstködern',
+      },
+      {
+        name: 'Zahnbrasse (Dentex dentex)',
+        season: 'Frühling und Herbst',
+        where: 'Felsiger Grund zwischen 20-60 m Tiefe',
+        technique: 'Grundangeln, leichtes Jigging',
+      },
+      {
+        name: 'Kalmar (Loligo vulgaris)',
+        season: 'Herbst und Winter (September-Februar)',
+        where: 'Sandböden in der Nähe von Seegraswiesen',
+        technique: 'Angeln mit Tintenfischködern',
+      },
+    ],
+    recommendedBoats: [
+      {
+        type: 'Boote mit Lizenz',
+        capacity: '6-7 Personen',
+        autonomy: 'Größere Reichweite und Aktionsradius',
+        price: 'Ab 90 EUR/Stunde (Benzin nicht inkludiert)',
+        advantages: [
+          'Zugang zu weiter entfernten Angelgebieten (5+ Meilen)',
+          'Mehr Leistung für Schlepp- und Jigging-Angeln',
+          'Viel Platz für Angelausrüstung',
+          'Möglichkeit, auch bei bewegterer See auszufahren',
+        ],
+        recommendation: 'Empfohlen für erfahrene Angler, die in offenen Gewässern fischen möchten.',
+      },
+      {
+        type: 'Boote ohne Lizenz',
+        capacity: '4-5 Personen',
+        autonomy: 'Küstenfischerei (bis 2 Meilen)',
+        price: 'Ab 70 EUR/Stunde (Benzin inkludiert)',
+        advantages: [
+          'Kein Bootsführerschein erforderlich',
+          'Benzin im Preis inbegriffen',
+          'Perfekt zum Grundangeln in Buchten',
+          'Ideal für Einsteiger ins Bootsangeln',
+        ],
+        recommendation: 'Empfohlen für leichtes Freizeitangeln in Küstennähe.',
+      },
+    ],
+    fishingSpots: [
+      {
+        name: 'Felsen von Sa Palomera',
+        distance: '10 Minuten vom Hafen',
+        target: 'Wolfsbarsche, Geißbrassen, Meerbrassen',
+        description: 'Die Felsformationen vor Sa Palomera sind ein Klassiker für Küsten-Spinnfischen. Grund zwischen 5-15 Metern mit reichem Leben.',
+      },
+      {
+        name: 'Gebiet Cala Bona - Cala Sant Francesc',
+        distance: '15-20 Minuten vom Hafen',
+        target: 'Goldbrassen, Zahnbrassen, Kraken',
+        description: 'Gemischter Fels- und Sandgrund zwischen 10-25 Metern. Hervorragend zum Grundangeln mit Naturköder.',
+      },
+      {
+        name: 'Offene Gewässer vor Blanes',
+        distance: '30-45 Minuten vom Hafen',
+        target: 'Bernsteinmakrelen, Bonitos, Goldmakrelen',
+        description: '3-5 Meilen von der Küste, Tiefen von 40-80 Metern. Nur mit Booten mit Lizenz erreichbar. Jigging und Schleppangeln.',
+      },
+    ],
   },
 };

@@ -1829,15 +1829,26 @@ export interface Translations {
 
   activitySunset?: {
     faqItems: Array<{ question: string; answer: string }>;
+    sunsetTimes?: Array<{ month: string; time: string; suggestion: string }>;
+    viewpoints?: Array<{ name: string; description: string; distance: string }>;
+    romanticIdeas?: Array<{ title: string; description: string }>;
   };
   activitySnorkel?: {
     faqItems: Array<{ question: string; answer: string }>;
+    spots?: Array<{ name: string; distance: string; depth: string; highlights: string; ideal: string }>;
+    recommendedBoats?: Array<{ name: string; duration: string; price: string; description: string }>;
+    depthLabel?: string;
   };
   activityFamilies?: {
     faqItems: Array<{ question: string; answer: string }>;
+    safetyFeatures?: Array<{ title: string; description: string }>;
+    familyRoutes?: Array<{ name: string; stops: string[]; description: string; price: string; tip: string }>;
   };
   activityFishing?: {
     faqItems: Array<{ question: string; answer: string }>;
+    fishSpecies?: Array<{ name: string; season: string; where: string; technique: string }>;
+    recommendedBoats?: Array<{ type: string; capacity: string; autonomy: string; price: string; advantages: string[]; recommendation: string }>;
+    fishingSpots?: Array<{ name: string; distance: string; target: string; description: string }>;
   };
 
   whatsappMessages?: {

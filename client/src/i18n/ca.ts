@@ -1636,86 +1636,6 @@ export const ca: Translations = {
     bookingWithBoat: 'Hola! M\'interessa fer una reserva del {boatName}. Em podríeu ajudar amb la disponibilitat i preus? Gràcies!',
     bookingGeneric: 'Hola! M\'agradaria fer una reserva per llogar un vaixell. Em podríeu ajudar amb la disponibilitat i preus?',
   },
-  activitySunset: {
-    faqItems: [
-      {
-        question: 'A quina hora he de sortir per fer una excursió en vaixell a la posta de sol?',
-        answer: 'Recomanem sortir 2 hores abans de la posta de sol. Així tens temps de navegar per la costa, trobar una cala bonica i acomodar-te abans de l\'hora daurada. A l\'estiu (juny-juliol), surt sobre les 19:00-19:30. A la primavera i la tardor, sobre les 17:30-18:30. El nostre equip al port t\'indicarà l\'hora exacta de la posta de sol el dia de la teva sortida.',
-      },
-      {
-        question: 'Necessito llicència de navegació per fer una excursió a la posta de sol?',
-        answer: 'No. Els nostres vaixells sense llicència són perfectes per a excursions a la posta de sol. Només cal que siguis major de 18 anys. Et donem una formació de seguretat de 15 minuts abans de sortir. Els vaixells són fàcils de manejar i tenen una velocitat màxima que els fa molt segurs per navegar a la posta de sol.',
-      },
-      {
-        question: 'És segur estar en vaixell a la posta de sol i tornar amb poca llum?',
-        answer: 'Sí. Tots els nostres vaixells estan equipats amb llums de navegació per a ús nocturn. El port de Blanes està ben il·luminat i és fàcil d\'entrar a la nit. Recomanem retornar com a màxim 30 minuts després de la posta de sol, quan encara hi ha claredat. El nostre equip t\'informarà sobre la ruta de retorn.',
-      },
-      {
-        question: 'Quant costa una excursió en vaixell a la posta de sol?',
-        answer: 'Una excursió de 2 hores a la posta de sol en vaixell sense llicència costa des de 140 EUR en total ({noLicBaja1h} EUR/hora en temporada baixa). La gasolina està inclosa en vaixells sense llicència. El vaixell admet fins a 5 persones, així que el cost per persona pot ser des de 28 EUR. Els vaixells sense llicència inclouen gasolina, assegurança, equip de seguretat i la formació.',
-      },
-    ],
-  },
-  activitySnorkel: {
-    faqItems: [
-      {
-        question: 'Puc llogar equip d\'snorkel amb la barca?',
-        answer: 'Sí. Oferim kits d\'snorkel (màscara, tub i aletes) per 7,50 EUR per persona. L\'equip es recull en embarcar i es retorna al final del lloguer. També pots portar el teu propi equip sense cost addicional.',
-      },
-      {
-        question: 'Quina és la millor època per fer snorkel a Blanes?',
-        answer: 'De juny a setembre la temperatura de l\'aigua oscil·la entre 22 i 26 graus, ideal per fer snorkel sense neoprè. La millor visibilitat es dona al juny i al setembre, quan hi ha menys afluència i l\'aigua està més tranquil·la. Al juliol i l\'agost l\'aigua està més càlida però pot haver-hi més onatge en dies de vent.',
-      },
-      {
-        question: 'És segur fer snorkel des de la barca sense experiència?',
-        answer: 'Totalment. Abans de sortir et donem una formació de seguretat de 15 minuts on expliquem com fondejar la barca correctament. Totes les barques porten armilles salvavides. Recomanem fer snorkel a cales protegides com Cala Sant Francesc per a principiants.',
-      },
-      {
-        question: 'Quantes cales puc visitar en una sortida d\'snorkel?',
-        answer: 'En 2 hores pots visitar 1-2 cales amb temps suficient per fer snorkel. En 4 hores pots fer una ruta completa de 3-4 cales. Recomanem un mínim de 3 hores per gaudir sense presses de l\'snorkel i la navegació.',
-      },
-    ],
-  },
-  activityFamilies: {
-    faqItems: [
-      {
-        question: 'A partir de quina edat poden pujar els nens al vaixell?',
-        answer: 'No hi ha edat mínima. Nadons i nens de qualsevol edat són benvinguts. Tots els menors han de portar armilla salvavides homologada durant la navegació. Per a nadons recomanem sortides curtes d\'1-2 hores i triar dies amb mar en calma.',
-      },
-      {
-        question: 'Necessito llicència de navegació per llogar un vaixell familiar?',
-        answer: 'No. Els nostres vaixells sense llicència no requereixen cap títol nàutic. Només necessites ser major de 18 anys. Et donem una formació completa de 15 minuts abans de sortir. Són vaixells segurs, estables i molt fàcils de manejar.',
-      },
-      {
-        question: 'Què inclou el preu del lloguer?',
-        answer: 'El preu dels vaixells sense llicència inclou gasolina, assegurança, armilles salvavides per a tothom (incloses infantils), escala de bany, tendal/bimini per fer ombra i la formació de seguretat. Només l\'equip d\'esnòrquel és addicional (7,50 EUR/persona).',
-      },
-      {
-        question: 'Què hem de portar per a una sortida en vaixell amb nens?',
-        answer: 'Recomanem portar: crema solar d\'alta protecció (waterproof), gorres o barrets, aigua abundant, snacks o pícnic, tovalloles, roba de bany i una muda de roba seca. Opcional: càmera aquàtica, joguines de platja i equip d\'esnòrquel propi.',
-      },
-    ],
-  },
-  activityFishing: {
-    faqItems: [
-      {
-        question: 'Els vaixells inclouen equip de pesca?',
-        answer: 'No. Has de portar el teu propi equip de pesca (canyes, reels, esquers, esquer). Els nostres vaixells proporcionen la plataforma de navegació, però no inclouen material de pesca. A Blanes hi ha botigues nàutiques a prop del port on pots comprar esquer fresc i material bàsic.',
-      },
-      {
-        question: 'Necessito llicència de pesca per pescar des del vaixell?',
-        answer: 'Sí. Per a pesca recreativa al mar necessites la llicència de pesca recreativa marítima de la Generalitat de Catalunya. Pots obtenir-la online a gencat.cat per aproximadament 14 EUR (validesa 2 anys). És diferent de la llicència de navegació: la llicència de pesca és per pescar, la de navegació per conduir el vaixell.',
-      },
-      {
-        question: 'Quin vaixell necessito per pescar al mar?',
-        answer: 'Depèn del tipus de pesca. Per a pesca de fons a cales properes (llobarro, orades), un vaixell sense llicència és suficient. Per a pesca en aigües obertes (serioles, curricà), necessites un vaixell amb llicència que té més autonomia i potència. Contacta\'ns per WhatsApp i t\'assessorem segons la teva experiència.',
-      },
-      {
-        question: 'Quines són les regulacions de pesca a la Costa Brava?',
-        answer: 'La pesca recreativa a Catalunya té límits de captura: màxim 5 kg per persona i dia (excepte si una peça supera aquest pes). Hi ha talles mínimes per espècie (llobarro 36 cm, orada 20 cm). Està prohibit pescar a reserves marines i zones de bany. Algunes tècniques com la pesca amb arpó requereixen llicència específica.',
-      },
-    ],
-  },
   locationPages: {
     blanes: {
       faqItems: [
@@ -2423,5 +2343,319 @@ export const ca: Translations = {
     a4FuelNotIncluded: 'El combustible no està inclòs (es paga a part segons consum).',
     q5: 'Quina és la política de cancel·lació?',
     a5: 'Pots canviar la data de la teva reserva sense cost amb un mínim de 7 dies d\'antelació. Les cancel·lacions no són reemborsables. En cas de mal temps, oferim reprogramació completa sense cost.',
+  },
+  activitySunset: {
+    faqItems: [
+      {
+        question: 'A quina hora he de sortir per fer una excursió en vaixell a la posta de sol?',
+        answer: 'Recomanem sortir 2 hores abans de la posta de sol. Així tens temps de navegar per la costa, trobar una cala bonica i acomodar-te abans de l\'hora daurada. A l\'estiu (juny-juliol), surt sobre les 19:00-19:30. A la primavera i la tardor, sobre les 17:30-18:30. El nostre equip al port t\'indicarà l\'hora exacta de la posta de sol el dia de la teva sortida.',
+      },
+      {
+        question: 'Necessito llicència de navegació per fer una excursió a la posta de sol?',
+        answer: 'No. Els nostres vaixells sense llicència són perfectes per a excursions a la posta de sol. Només cal que siguis major de 18 anys. Et donem una formació de seguretat de 15 minuts abans de sortir. Els vaixells són fàcils de manejar i tenen una velocitat màxima que els fa molt segurs per navegar a la posta de sol.',
+      },
+      {
+        question: 'És segur estar en vaixell a la posta de sol i tornar amb poca llum?',
+        answer: 'Sí. Tots els nostres vaixells estan equipats amb llums de navegació per a ús nocturn. El port de Blanes està ben il·luminat i és fàcil d\'entrar a la nit. Recomanem retornar com a màxim 30 minuts després de la posta de sol, quan encara hi ha claredat. El nostre equip t\'informarà sobre la ruta de retorn.',
+      },
+      {
+        question: 'Quant costa una excursió en vaixell a la posta de sol?',
+        answer: 'Una excursió de 2 hores a la posta de sol en vaixell sense llicència costa des de 140 EUR en total ({noLicBaja1h} EUR/hora en temporada baixa). La gasolina està inclosa en vaixells sense llicència. El vaixell admet fins a 5 persones, així que el cost per persona pot ser des de 28 EUR. Els vaixells sense llicència inclouen gasolina, assegurança, equip de seguretat i la formació.',
+      },
+    ],
+    sunsetTimes: [
+      {
+        month: 'Abril',
+        time: '20:15 - 20:30',
+        suggestion: 'Surt a les 18:30 per gaudir de l\'hora daurada completa.',
+      },
+      {
+        month: 'Maig',
+        time: '20:45 - 21:00',
+        suggestion: 'Surt a les 19:00 i agafa la posta de sol sencera sobre el mar.',
+      },
+      {
+        month: 'Juny',
+        time: '21:15 - 21:30',
+        suggestion: 'Surt a les 19:30 — són les postes de sol més llargues de l\'any.',
+      },
+      {
+        month: 'Juliol',
+        time: '21:15 - 21:30',
+        suggestion: 'Surt a les 19:30 per aprofitar les tardes càlides d\'estiu.',
+      },
+      {
+        month: 'Agost',
+        time: '20:45 - 21:00',
+        suggestion: 'Surt a les 19:00; els dies ja comencen a escurçar-se.',
+      },
+      {
+        month: 'Setembre',
+        time: '20:00 - 20:15',
+        suggestion: 'Surt a les 18:15 per la llum càlida de la tardor primerenca.',
+      },
+      {
+        month: 'Octubre',
+        time: '19:00 - 19:15',
+        suggestion: 'Surt a les 17:15 per les primeres postes de sol de tardor.',
+      },
+    ],
+    viewpoints: [
+      {
+        name: 'Mirador de Cala Sant Francesc',
+        description: 'Fondeja davant de Cala Sant Francesc i mira com el sol s\'amaga darrere els turons de Blanes. Els penya-segats reben la llum daurada de forma espectacular i l\'aigua passa de l\'ambre al rosa.',
+        distance: '20 minuts des del port',
+      },
+      {
+        name: 'Mar obert davant de Sa Palomera',
+        description: 'Col·loca la barca mirant cap a la roca emblemàtica de Sa Palomera de Blanes. Mentre el sol es pon darrere el poble, la roca crea una silueta dramàtica sobre el cel taronja.',
+        distance: '10 minuts des del port',
+      },
+      {
+        name: 'Tram entre Blanes i Lloret',
+        description: 'El litoral entre Blanes i Lloret de Mar ofereix vistes a l\'oest sense obstacles. Sense edificis, sense multituds — només tu, el mar i una posta de sol increïble.',
+        distance: '25 minuts des del port',
+      },
+    ],
+    romanticIdeas: [
+      {
+        title: 'Porta un pícnic',
+        description: 'Prepara formatge, embotits, olives, pa i una ampolla de cava o vi. Gaudeix de l\'aperitiu flotant en una cala mentre el cel canvia de color.',
+      },
+      {
+        title: 'Música a bord',
+        description: 'Porta un altaveu Bluetooth petit amb una playlist escollida. Jazz suau, guitarra acústica o música electrònica relaxada casen perfectament amb l\'hora daurada.',
+      },
+      {
+        title: 'Captura el moment',
+        description: 'La llum de l\'hora daurada (30-60 minuts abans de la posta de sol) és la més favorecedora per a les fotos. Utilitza el mode retrat del mòbil per a resultats espectaculars.',
+      },
+      {
+        title: 'Banya\'t a l\'hora daurada',
+        description: 'Fes-te un capbussó just abans de la posta de sol. L\'aigua està més càlida al final de la tarda i nedar amb llum daurada és una experiència inoblidable.',
+      },
+    ],
+  },
+  activitySnorkel: {
+    faqItems: [
+      {
+        question: 'Puc llogar equip d\'snorkel amb la barca?',
+        answer: 'Sí. Oferim kits d\'snorkel (màscara, tub i aletes) per 7,50 EUR per persona. L\'equip es recull en embarcar i es retorna al final del lloguer. També pots portar el teu propi equip sense cost addicional.',
+      },
+      {
+        question: 'Quina és la millor època per fer snorkel a Blanes?',
+        answer: 'De juny a setembre la temperatura de l\'aigua oscil·la entre 22 i 26 graus, ideal per fer snorkel sense neoprè. La millor visibilitat es dona al juny i al setembre, quan hi ha menys afluència i l\'aigua està més tranquil·la. Al juliol i l\'agost l\'aigua està més càlida però pot haver-hi més onatge en dies de vent.',
+      },
+      {
+        question: 'És segur fer snorkel des de la barca sense experiència?',
+        answer: 'Totalment. Abans de sortir et donem una formació de seguretat de 15 minuts on expliquem com fondejar la barca correctament. Totes les barques porten armilles salvavides. Recomanem fer snorkel a cales protegides com Cala Sant Francesc per a principiants.',
+      },
+      {
+        question: 'Quantes cales puc visitar en una sortida d\'snorkel?',
+        answer: 'En 2 hores pots visitar 1-2 cales amb temps suficient per fer snorkel. En 4 hores pots fer una ruta completa de 3-4 cales. Recomanem un mínim de 3 hores per gaudir sense presses de l\'snorkel i la navegació.',
+      },
+    ],
+    spots: [
+      {
+        name: 'Cala Sant Francesc',
+        distance: '20 minuts des del port',
+        depth: '2-8 metres',
+        highlights: 'Posidònia oceànica, sargs, oblades, estrelles de mar. Fons mixt de sorra i roca amb excel·lent visibilitat.',
+        ideal: 'Ideal per a principiants i famílies pel seu aigua cristal·lina i poc corrent.',
+      },
+      {
+        name: 'Cala Bona',
+        distance: '15 minuts des del port',
+        depth: '3-10 metres',
+        highlights: 'Formacions rocoses, llots juvenils, pops, nudibranquis. Parets submergides amb molta vida marina.',
+        ideal: 'Perfecta per a snorkel intermedi. Fondejar el vaixell i explorar la costa rocosa.',
+      },
+      {
+        name: 'Cala Treumal',
+        distance: '25 minuts des del port',
+        depth: '2-6 metres',
+        highlights: 'Praderies de posidònia, cavallets de mar (espècie protegida), bancs de castanyoles i donzelles.',
+        ideal: 'La cala més tranquil·la per a snorkel relaxat. Aigua turquesa i poca afluència.',
+      },
+    ],
+    recommendedBoats: [
+      {
+        name: 'Barques sense llicència (4-5 persones)',
+        duration: '2-3 hores recomanades',
+        price: 'Des de 70 EUR/hora',
+        description: 'Perfectes per a snorkel a cales properes com Cala Sant Francesc i Cala Bona. Gasolina inclosa. Fondeges el vaixell i et llences a l\'aigua directament.',
+      },
+      {
+        name: 'Barques amb llicència (6-7 persones)',
+        duration: '4-6 hores recomanades',
+        price: 'Des de 90 EUR/hora',
+        description: 'Major autonomia per visitar múltiples cales en una sola sortida. Ideals per a grups que volen combinar snorkel amb navegació a Lloret o Tossa.',
+      },
+    ],
+    depthLabel: 'Profunditat:',
+  },
+  activityFamilies: {
+    faqItems: [
+      {
+        question: 'A partir de quina edat poden pujar els nens al vaixell?',
+        answer: 'No hi ha edat mínima. Nadons i nens de qualsevol edat són benvinguts. Tots els menors han de portar armilla salvavides homologada durant la navegació. Per a nadons recomanem sortides curtes d\'1-2 hores i triar dies amb mar en calma.',
+      },
+      {
+        question: 'Necessito llicència de navegació per llogar un vaixell familiar?',
+        answer: 'No. Els nostres vaixells sense llicència no requereixen cap títol nàutic. Només necessites ser major de 18 anys. Et donem una formació completa de 15 minuts abans de sortir. Són vaixells segurs, estables i molt fàcils de manejar.',
+      },
+      {
+        question: 'Què inclou el preu del lloguer?',
+        answer: 'El preu dels vaixells sense llicència inclou gasolina, assegurança, armilles salvavides per a tothom (incloses infantils), escala de bany, tendal/bimini per fer ombra i la formació de seguretat. Només l\'equip d\'esnòrquel és addicional (7,50 EUR/persona).',
+      },
+      {
+        question: 'Què hem de portar per a una sortida en vaixell amb nens?',
+        answer: 'Recomanem portar: crema solar d\'alta protecció (waterproof), gorres o barrets, aigua abundant, snacks o pícnic, tovalloles, roba de bany i una muda de roba seca. Opcional: càmera aquàtica, joguines de platja i equip d\'esnòrquel propi.',
+      },
+    ],
+    safetyFeatures: [
+      {
+        title: 'Armilles salvavides infantils',
+        description: 'Tots els vaixells porten armilles homologades per a nens de totes les edats i talles. És obligatori que els menors les portin posades durant la navegació.',
+      },
+      {
+        title: 'Formació de seguretat completa',
+        description: 'Abans de sortir, dediquem 15 minuts a ensenyar el maneig del vaixell, les zones de navegació segures i les normes bàsiques. Resolem tots els dubtes abans d\'enfilar-nos a la mar.',
+      },
+      {
+        title: 'Vaixells estables i fàcils de manejar',
+        description: 'Els nostres vaixells sense llicència tenen casc de fibra de vidre amb gran estabilitat. Motor de baixa potència, velocitat controlada i fàcil maneig fins i tot per a principiants.',
+      },
+      {
+        title: 'Zona de navegació protegida',
+        description: 'La costa entre Blanes i Lloret ofereix cales protegides de l\'onatge. Recomanem cales tranquil·les on els nens poden banyar-se amb seguretat.',
+      },
+    ],
+    familyRoutes: [
+      {
+        name: 'Ruta familiar curta (2 hores)',
+        stops: [
+          'Port de Blanes',
+          'Cala Sant Francesc',
+          'Retorn',
+        ],
+        description: 'Ideal per a famílies amb nens petits. Navegació curta fins a una cala protegida amb aigua poc profunda i cristal·lina. Temps per banyar-se, fer esnòrquel suau i pícnic a bord.',
+        price: 'Des de 140 EUR (70 EUR/h)',
+        tip: 'Perfecta per a una primera experiència en vaixell amb nens. La cala té zona de sorra i aigua tranquil·la.',
+      },
+      {
+        name: 'Ruta familiar completa (4 hores)',
+        stops: [
+          'Port de Blanes',
+          'Cala Bona',
+          'Cala Sant Francesc',
+          'Platja de Fenals',
+          'Retorn',
+        ],
+        description: 'L\'experiència completa per a famílies. Tres parades amb temps suficient per explorar cada cala. Combina bany, esnòrquel, pícnic i vistes espectaculars de la costa.',
+        price: 'Des de 280 EUR (70 EUR/h)',
+        tip: 'Recomanada per a nens a partir de 4 anys. Porteu menjar, aigua, crema solar i gorres.',
+      },
+    ],
+  },
+  activityFishing: {
+    faqItems: [
+      {
+        question: 'Els vaixells inclouen equip de pesca?',
+        answer: 'No. Has de portar el teu propi equip de pesca (canyes, reels, esquers, esquer). Els nostres vaixells proporcionen la plataforma de navegació, però no inclouen material de pesca. A Blanes hi ha botigues nàutiques a prop del port on pots comprar esquer fresc i material bàsic.',
+      },
+      {
+        question: 'Necessito llicència de pesca per pescar des del vaixell?',
+        answer: 'Sí. Per a pesca recreativa al mar necessites la llicència de pesca recreativa marítima de la Generalitat de Catalunya. Pots obtenir-la online a gencat.cat per aproximadament 14 EUR (validesa 2 anys). És diferent de la llicència de navegació: la llicència de pesca és per pescar, la de navegació per conduir el vaixell.',
+      },
+      {
+        question: 'Quin vaixell necessito per pescar al mar?',
+        answer: 'Depèn del tipus de pesca. Per a pesca de fons a cales properes (llobarro, orades), un vaixell sense llicència és suficient. Per a pesca en aigües obertes (serioles, curricà), necessites un vaixell amb llicència que té més autonomia i potència. Contacta\'ns per WhatsApp i t\'assessorem segons la teva experiència.',
+      },
+      {
+        question: 'Quines són les regulacions de pesca a la Costa Brava?',
+        answer: 'La pesca recreativa a Catalunya té límits de captura: màxim 5 kg per persona i dia (excepte si una peça supera aquest pes). Hi ha talles mínimes per espècie (llobarro 36 cm, orada 20 cm). Està prohibit pescar a reserves marines i zones de bany. Algunes tècniques com la pesca amb arpó requereixen llicència específica.',
+      },
+    ],
+    fishSpecies: [
+      {
+        name: 'Llobarro (Dicentrarchus labrax)',
+        season: 'Tot l\'any, millor a la tardor i l\'hivern',
+        where: 'Zones rocoses prop de la costa, desembocadures',
+        technique: 'Spinning amb esquer artificial, curricà',
+      },
+      {
+        name: 'Orada (Sparus aurata)',
+        season: 'Primavera i estiu',
+        where: 'Fons de sorra i posidònia, prop de la costa',
+        technique: 'Pesca de fons amb esquer natural (cuc, gamba)',
+      },
+      {
+        name: 'Seriola (Seriola dumerili)',
+        season: 'Juny a octubre',
+        where: 'Aigües obertes, 2-5 milles de la costa',
+        technique: 'Jigging, curricà amb esquers grans',
+      },
+      {
+        name: 'Déntol (Dentex dentex)',
+        season: 'Primavera i tardor',
+        where: 'Fons rocosos entre 20-60 m de profunditat',
+        technique: 'Pesca de fons, jigging lleuger',
+      },
+      {
+        name: 'Calamars (Loligo vulgaris)',
+        season: 'Tardor i hivern (setembre-febrer)',
+        where: 'Fons de sorra, prop de praderies de posidònia',
+        technique: 'Pesca amb poteres',
+      },
+    ],
+    recommendedBoats: [
+      {
+        type: 'Embarcacions amb llicència',
+        capacity: '6-7 persones',
+        autonomy: 'Major autonomia i abast',
+        price: 'Des de 90 EUR/hora (gasolina no inclosa)',
+        advantages: [
+          'Accés a zones de pesca més llunyanes (5+ milles)',
+          'Major potència per a curricà i jigging',
+          'Espai ampli per a equip de pesca',
+          'Possibilitat de sortir amb mar més moguda',
+        ],
+        recommendation: 'Recomanat per a pescadors amb experiència que vulguin pescar en aigües obertes.',
+      },
+      {
+        type: 'Embarcacions sense llicència',
+        capacity: '4-5 persones',
+        autonomy: 'Pesca costanera (fins a 2 milles)',
+        price: 'Des de 70 EUR/hora (gasolina inclosa)',
+        advantages: [
+          'Sense necessitat de títol nàutic',
+          'Gasolina inclosa en el preu',
+          'Perfectes per a pesca de fons en cales',
+          'Ideal per iniciar-se en la pesca des de barca',
+        ],
+        recommendation: 'Recomanat per a pesca recreativa lleugera prop de la costa.',
+      },
+    ],
+    fishingSpots: [
+      {
+        name: 'Roques de Sa Palomera',
+        distance: '10 minuts del port',
+        target: 'Llobarros, sards, mólleres',
+        description: 'Les formacions rocoses davant de Sa Palomera són un clàssic per a spinning costaner. Fons de 5-15 metres amb molta vida.',
+      },
+      {
+        name: 'Zona de Cala Bona - Cala Sant Francesc',
+        distance: '15-20 minuts del port',
+        target: 'Orades, déntols, pops',
+        description: 'Fons mixtos de roca i sorra entre 10-25 metres. Excel·lent per a pesca de fons amb esquer natural.',
+      },
+      {
+        name: 'Aigües obertes davant de Blanes',
+        distance: '30-45 minuts del port',
+        target: 'Serioles, bonítols, lampugues',
+        description: 'A 3-5 milles de la costa, profunditats de 40-80 metres. Només accessible amb embarcacions amb llicència. Jigging i curricà.',
+      },
+    ],
   },
 };

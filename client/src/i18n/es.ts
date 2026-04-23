@@ -2085,6 +2085,50 @@ export const es: Translations = {
         answer: 'Una excursión de 2 horas al atardecer en barco sin licencia cuesta desde 140 EUR en total ({noLicBaja1h} EUR/hora en temporada baja). La gasolina está incluida en barcos sin licencia. El barco admite hasta 5 personas, así que el coste por persona puede ser desde 28 EUR. Los barcos sin licencia incluyen gasolina, seguro, equipo de seguridad y la formación.',
       },
     ],
+    sunsetTimes: [
+      { month: 'Abril', time: '20:15 - 20:30', suggestion: 'Sal a las 18:30 para disfrutar de la hora dorada completa.' },
+      { month: 'Mayo', time: '20:45 - 21:00', suggestion: 'Sal a las 19:00 y pilla el atardecer entero sobre el mar.' },
+      { month: 'Junio', time: '21:15 - 21:30', suggestion: 'Sal a las 19:30 — son los atardeceres más largos del año.' },
+      { month: 'Julio', time: '21:15 - 21:30', suggestion: 'Sal a las 19:30 para aprovechar las tardes cálidas de verano.' },
+      { month: 'Agosto', time: '20:45 - 21:00', suggestion: 'Sal a las 19:00; los días ya empiezan a acortarse.' },
+      { month: 'Septiembre', time: '20:00 - 20:15', suggestion: 'Sal a las 18:15 para la luz cálida del otoño temprano.' },
+      { month: 'Octubre', time: '19:00 - 19:15', suggestion: 'Sal a las 17:15 para los primeros atardeceres de otoño.' },
+    ],
+    viewpoints: [
+      {
+        name: 'Mirador de Cala Sant Francesc',
+        description: 'Fondea frente a Cala Sant Francesc y mira cómo el sol se esconde tras las colinas de Blanes. Los acantilados reciben la luz dorada de forma espectacular y el agua pasa del ámbar al rosa.',
+        distance: '20 minutos desde el puerto',
+      },
+      {
+        name: 'Mar abierto frente a Sa Palomera',
+        description: 'Coloca el barco mirando hacia la roca emblemática de Sa Palomera de Blanes. Mientras el sol se pone tras el pueblo, la roca crea una silueta dramática sobre el cielo naranja.',
+        distance: '10 minutos desde el puerto',
+      },
+      {
+        name: 'Tramo entre Blanes y Lloret',
+        description: 'El litoral entre Blanes y Lloret de Mar ofrece vistas al oeste sin obstáculos. Sin edificios, sin multitudes — solo tú, el mar y un atardecer increíble.',
+        distance: '25 minutos desde el puerto',
+      },
+    ],
+    romanticIdeas: [
+      {
+        title: 'Trae un picnic',
+        description: 'Prepara queso, embutidos, aceitunas, pan y una botella de cava o vino. Disfruta del aperitivo flotando en una cala mientras el cielo cambia de color.',
+      },
+      {
+        title: 'Música a bordo',
+        description: 'Lleva un altavoz Bluetooth pequeño con una playlist elegida. Jazz suave, guitarra acústica o música electrónica relajada casan perfectamente con la hora dorada.',
+      },
+      {
+        title: 'Captura el momento',
+        description: 'La luz de la hora dorada (30-60 minutos antes del atardecer) es la más favorecedora para las fotos. Usa el modo retrato del móvil para resultados espectaculares.',
+      },
+      {
+        title: 'Báñate a la hora dorada',
+        description: 'Date un chapuzón justo antes del atardecer. El agua está más cálida al final de la tarde y nadar con luz dorada es una experiencia inolvidable.',
+      },
+    ],
   },
 
   activitySnorkel: {
@@ -2106,6 +2150,44 @@ export const es: Translations = {
         answer: 'En 2 horas puedes visitar 1-2 calas con tiempo suficiente para snorkel. En 4 horas puedes hacer una ruta completa de 3-4 calas. Recomendamos un mínimo de 3 horas para disfrutar sin prisas del snorkel y la navegación.',
       },
     ],
+    spots: [
+      {
+        name: 'Cala Sant Francesc',
+        distance: '20 minutos desde el puerto',
+        depth: '2-8 metros',
+        highlights: 'Posidonia oceánica, sargos, obladas, estrellas de mar. Fondo mixto de arena y roca con excelente visibilidad.',
+        ideal: 'Ideal para principiantes y familias por su agua cristalina y poca corriente.',
+      },
+      {
+        name: 'Cala Bona',
+        distance: '15 minutos desde el puerto',
+        depth: '3-10 metros',
+        highlights: 'Formaciones rocosas, meros juveniles, pulpos, nudibranquios. Paredes sumergidas con mucha vida marina.',
+        ideal: 'Perfecta para snorkel intermedio. Fondear el barco y explorar la costa rocosa.',
+      },
+      {
+        name: 'Cala Treumal',
+        distance: '25 minutos desde el puerto',
+        depth: '2-6 metros',
+        highlights: 'Praderas de posidonia, caballitos de mar (especie protegida), bancos de castañolas y doncellas.',
+        ideal: 'La cala más tranquila para snorkel relajado. Agua turquesa y poca afluencia.',
+      },
+    ],
+    recommendedBoats: [
+      {
+        name: 'Barcos sin licencia (4-5 personas)',
+        duration: '2-3 horas recomendadas',
+        price: 'Desde 70 EUR/hora',
+        description: 'Perfectos para snorkel en calas cercanas como Cala Sant Francesc y Cala Bona. Gasolina incluida. Fondeas el barco y te tiras al agua directamente.',
+      },
+      {
+        name: 'Barcos con licencia (6-7 personas)',
+        duration: '4-6 horas recomendadas',
+        price: 'Desde 90 EUR/hora',
+        description: 'Mayor autonomía para visitar múltiples calas en una sola salida. Ideales para grupos que quieren combinar snorkel con navegación a Lloret o Tossa.',
+      },
+    ],
+    depthLabel: 'Profundidad:',
   },
 
   activityFamilies: {
@@ -2127,6 +2209,40 @@ export const es: Translations = {
         answer: 'Recomendamos llevar: crema solar de alta protección (waterproof), gorras o sombreros, agua abundante, snacks o picnic, toallas, ropa de baño y una muda de ropa seca. Opcional: cámara acuática, juguetes de playa y equipo de snorkel propio.',
       },
     ],
+    safetyFeatures: [
+      {
+        title: 'Chalecos salvavidas infantiles',
+        description: 'Todos los barcos llevan chalecos homologados para niños de todas las edades y tallas. Es obligatorio que los menores los lleven puestos durante la navegación.',
+      },
+      {
+        title: 'Formación de seguridad completa',
+        description: 'Antes de salir, dedicamos 15 minutos a enseñar el manejo del barco, las zonas de navegación seguras y las normas básicas. Resolvemos todas las dudas antes de zarpar.',
+      },
+      {
+        title: 'Barcos estables y fáciles de manejar',
+        description: 'Nuestros barcos sin licencia tienen casco de fibra de vidrio con gran estabilidad. Motor de baja potencia, velocidad controlada y fácil manejo incluso para novatos.',
+      },
+      {
+        title: 'Zona de navegación protegida',
+        description: 'La costa entre Blanes y Lloret ofrece calas protegidas del oleaje. Recomendamos calas tranquilas donde los niños pueden bañarse con seguridad.',
+      },
+    ],
+    familyRoutes: [
+      {
+        name: 'Ruta familiar corta (2 horas)',
+        stops: ['Puerto de Blanes', 'Cala Sant Francesc', 'Regreso'],
+        description: 'Ideal para familias con niños pequeños. Navegación corta hasta una cala protegida con agua poco profunda y cristalina. Tiempo para bañarse, hacer snorkel suave y picnic a bordo.',
+        price: 'Desde 140 EUR (70 EUR/h)',
+        tip: 'Perfecta para una primera experiencia en barco con niños. La cala tiene zona de arena y agua tranquila.',
+      },
+      {
+        name: 'Ruta familiar completa (4 horas)',
+        stops: ['Puerto de Blanes', 'Cala Bona', 'Cala Sant Francesc', 'Playa de Fenals', 'Regreso'],
+        description: 'La experiencia completa para familias. Tres paradas con tiempo suficiente para explorar cada cala. Combina baño, snorkel, picnic y vistas espectaculares de la costa.',
+        price: 'Desde 280 EUR (70 EUR/h)',
+        tip: 'Recomendada para niños a partir de 4 años. Llevar comida, agua, crema solar y gorras.',
+      },
+    ],
   },
 
   activityFishing: {
@@ -2146,6 +2262,86 @@ export const es: Translations = {
       {
         question: '¿Cuáles son las regulaciones de pesca en la Costa Brava?',
         answer: 'La pesca recreativa en Catalunya tiene límites de captura: máximo 5 kg por persona y día (excepto si una pieza supera ese peso). Hay tallas mínimas por especie (lubina 36 cm, dorada 20 cm). Está prohibido pescar en reservas marinas y zonas de baño. Algunas técnicas como la pesca con arpón requieren licencia específica.',
+      },
+    ],
+    fishSpecies: [
+      {
+        name: 'Lubina (Dicentrarchus labrax)',
+        season: 'Todo el año, mejor en otoño e invierno',
+        where: 'Zonas rocosas cerca de la costa, desembocaduras',
+        technique: 'Spinning con señuelos, curricán',
+      },
+      {
+        name: 'Dorada (Sparus aurata)',
+        season: 'Primavera y verano',
+        where: 'Fondos de arena y posidonia, cerca de la costa',
+        technique: 'Pesca a fondo con cebo natural (gusano, gamba)',
+      },
+      {
+        name: 'Serviola (Seriola dumerili)',
+        season: 'Junio a octubre',
+        where: 'Aguas abiertas, 2-5 millas de la costa',
+        technique: 'Jigging, curricán con señuelos grandes',
+      },
+      {
+        name: 'Dentón (Dentex dentex)',
+        season: 'Primavera y otoño',
+        where: 'Fondos rocosos entre 20-60 m de profundidad',
+        technique: 'Pesca a fondo, jigging ligero',
+      },
+      {
+        name: 'Calamares (Loligo vulgaris)',
+        season: 'Otoño e invierno (septiembre-febrero)',
+        where: 'Fondos de arena, cerca de praderas de posidonia',
+        technique: 'Pesca con poteras / jibioneras',
+      },
+    ],
+    recommendedBoats: [
+      {
+        type: 'Barcos con licencia',
+        capacity: '6-7 personas',
+        autonomy: 'Mayor autonomía y rango',
+        price: 'Desde 90 EUR/hora (gasolina no incluida)',
+        advantages: [
+          'Acceso a zonas de pesca más lejanas (5+ millas)',
+          'Mayor potencia para curricán y jigging',
+          'Espacio amplio para equipo de pesca',
+          'Posibilidad de salir con mar más movido',
+        ],
+        recommendation: 'Recomendado para pescadores con experiencia que quieran pescar en aguas abiertas.',
+      },
+      {
+        type: 'Barcos sin licencia',
+        capacity: '4-5 personas',
+        autonomy: 'Pesca costera (hasta 2 millas)',
+        price: 'Desde 70 EUR/hora (gasolina incluida)',
+        advantages: [
+          'Sin necesidad de título náutico',
+          'Gasolina incluida en el precio',
+          'Perfectos para pesca a fondo en calas',
+          'Ideal para iniciarse en la pesca desde barco',
+        ],
+        recommendation: 'Recomendado para pesca recreativa ligera cerca de la costa.',
+      },
+    ],
+    fishingSpots: [
+      {
+        name: 'Rocas de Sa Palomera',
+        distance: '10 minutos del puerto',
+        target: 'Lubinas, sargos, mojarras',
+        description: 'Las formaciones rocosas frente a Sa Palomera son un clásico para spinning costero. Fondos de 5-15 metros con mucha vida.',
+      },
+      {
+        name: 'Zona de Cala Bona - Cala Sant Francesc',
+        distance: '15-20 minutos del puerto',
+        target: 'Doradas, dentones, pulpos',
+        description: 'Fondos mixtos de roca y arena entre 10-25 metros. Excelente para pesca a fondo con cebo natural.',
+      },
+      {
+        name: 'Aguas abiertas frente a Blanes',
+        distance: '30-45 minutos del puerto',
+        target: 'Serviolas, bonitos, llampugas',
+        description: 'A 3-5 millas de la costa, profundidades de 40-80 metros. Solo accesible con barcos con licencia. Jigging y curricán.',
       },
     ],
   },

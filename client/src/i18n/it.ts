@@ -1637,86 +1637,6 @@ export const it: Translations = {
     bookingWithBoat: 'Ciao! Sono interessato a prenotare il {boatName}. Potreste aiutarmi con disponibilità e prezzi? Grazie!',
     bookingGeneric: 'Ciao! Vorrei fare una prenotazione per noleggiare una barca. Potreste aiutarmi con disponibilità e prezzi?',
   },
-  activitySunset: {
-    faqItems: [
-      {
-        question: 'A che ora devo partire per un\'escursione in barca al tramonto?',
-        answer: 'Consigliamo di partire 2 ore prima del tramonto. Così hai tempo per navigare lungo la costa, trovare una bella caletta e sistemarti prima dell\'ora dorata. In estate (giugno-luglio), parti verso le 19:00-19:30. In primavera e autunno, verso le 17:30-18:30. Il nostro staff al porto ti indicherà l\'orario esatto del tramonto il giorno della tua uscita.',
-      },
-      {
-        question: 'Ho bisogno della patente nautica per un\'escursione al tramonto?',
-        answer: 'No. Le nostre barche senza patente sono perfette per escursioni al tramonto. Devi solo essere maggiorenne. Ti forniamo una formazione sulla sicurezza di 15 minuti prima di partire. Le barche sono facili da manovrare e hanno una velocità massima che le rende molto sicure per navigare al tramonto.',
-      },
-      {
-        question: 'È sicuro stare in barca al tramonto e rientrare con poca luce?',
-        answer: 'Sì. Tutte le nostre barche sono dotate di luci di navigazione per uso notturno. Il porto di Blanes è ben illuminato e facile da raggiungere al crepuscolo. Consigliamo di rientrare al massimo 30 minuti dopo il tramonto, quando c\'è ancora luce. Il nostro staff ti informerà sul percorso di ritorno.',
-      },
-      {
-        question: 'Quanto costa un\'escursione in barca al tramonto?',
-        answer: 'Un\'escursione di 2 ore al tramonto in barca senza patente costa a partire da 140 EUR in totale ({noLicBaja1h} EUR/ora in bassa stagione). Il carburante è incluso nelle barche senza patente. La barca può ospitare fino a 5 persone, quindi il costo a persona può essere a partire da 28 EUR. Le barche senza patente includono carburante, assicurazione, attrezzatura di sicurezza e formazione.',
-      },
-    ],
-  },
-  activitySnorkel: {
-    faqItems: [
-      {
-        question: 'Posso noleggiare l\'attrezzatura da snorkeling con la barca?',
-        answer: 'Sì. Offriamo kit da snorkeling (maschera, boccaglio e pinne) a 7,50 EUR a persona. L\'attrezzatura viene ritirata all\'imbarco e restituita alla fine del noleggio. Puoi anche portare la tua attrezzatura senza costi aggiuntivi.',
-      },
-      {
-        question: 'Qual è il periodo migliore per fare snorkeling a Blanes?',
-        answer: 'Da giugno a settembre la temperatura dell\'acqua oscilla tra 22 e 26 gradi, ideale per fare snorkeling senza muta. La migliore visibilità si ha a giugno e settembre, quando c\'è meno afflusso e l\'acqua è più calma. A luglio e agosto l\'acqua è più calda ma può esserci più moto ondoso nei giorni di vento.',
-      },
-      {
-        question: 'È sicuro fare snorkeling dalla barca senza esperienza?',
-        answer: 'Assolutamente. Prima di partire ti diamo un briefing di sicurezza di 15 minuti in cui spieghiamo come ancorare la barca correttamente. Tutte le barche sono dotate di giubbotti di salvataggio. Consigliamo lo snorkeling in calette protette come Cala Sant Francesc per i principianti.',
-      },
-      {
-        question: 'Quante calette posso visitare in un\'uscita di snorkeling?',
-        answer: 'In 2 ore puoi visitare 1-2 calette con tempo sufficiente per lo snorkeling. In 4 ore puoi fare un itinerario completo di 3-4 calette. Consigliamo un minimo di 3 ore per goderti con calma lo snorkeling e la navigazione.',
-      },
-    ],
-  },
-  activityFamilies: {
-    faqItems: [
-      {
-        question: 'A partire da che età possono salire i bambini in barca?',
-        answer: 'Non c\'è un\'età minima. Neonati e bambini di qualsiasi età sono i benvenuti. Tutti i minori devono indossare un giubbotto di salvataggio omologato durante la navigazione. Per i neonati consigliamo uscite brevi di 1-2 ore e di scegliere giornate con mare calmo.',
-      },
-      {
-        question: 'Ho bisogno della patente nautica per noleggiare una barca familiare?',
-        answer: 'No. Le nostre barche senza patente non richiedono alcun titolo nautico. Devi solo essere maggiorenne. Ti forniamo una formazione completa di 15 minuti prima della partenza. Sono barche sicure, stabili e molto facili da manovrare.',
-      },
-      {
-        question: 'Cosa include il prezzo del noleggio?',
-        answer: 'Il prezzo delle barche senza patente include carburante, assicurazione, giubbotti di salvataggio per tutti (inclusi quelli per bambini), scaletta da bagno, tendalino/bimini per l\'ombra e il briefing di sicurezza. Solo l\'attrezzatura da snorkeling è aggiuntiva (7,50 EUR/persona).',
-      },
-      {
-        question: 'Cosa dobbiamo portare per un\'uscita in barca con bambini?',
-        answer: 'Consigliamo di portare: crema solare ad alta protezione (waterproof), cappellini o cappelli, abbondante acqua, snack o picnic, asciugamani, costumi da bagno e un cambio di vestiti asciutti. Opzionale: fotocamera subacquea, giochi da spiaggia e attrezzatura da snorkeling propria.',
-      },
-    ],
-  },
-  activityFishing: {
-    faqItems: [
-      {
-        question: 'Le barche includono attrezzatura da pesca?',
-        answer: 'No. Devi portare la tua attrezzatura da pesca (canne, mulinelli, esche artificiali, esca viva). Le nostre barche forniscono la piattaforma di navigazione, ma non includono materiale da pesca. A Blanes ci sono negozi nautici vicino al porto dove puoi acquistare esca fresca e materiale base.',
-      },
-      {
-        question: 'Ho bisogno di una licenza di pesca per pescare dalla barca?',
-        answer: 'Sì. Per la pesca ricreativa in mare hai bisogno della licenza di pesca ricreativa marittima della Generalitat de Catalunya. Puoi ottenerla online su gencat.cat per circa 14 EUR (validità 2 anni). È diversa dalla licenza di navigazione: la licenza di pesca serve per pescare, quella di navigazione per condurre la barca.',
-      },
-      {
-        question: 'Che barca mi serve per pescare in mare?',
-        answer: 'Dipende dal tipo di pesca. Per la pesca a fondo in calette vicine (spigole, orate), è sufficiente una barca senza licenza. Per la pesca in acque aperte (ricciole, traina), hai bisogno di una barca con licenza che ha maggiore autonomia e potenza. Contattaci su WhatsApp e ti consiglieremo in base alla tua esperienza.',
-      },
-      {
-        question: 'Quali sono le normative di pesca sulla Costa Brava?',
-        answer: 'La pesca ricreativa in Catalunya ha limiti di cattura: massimo 5 kg per persona al giorno (tranne se un singolo esemplare supera quel peso). Ci sono taglie minime per specie (spigola 36 cm, orata 20 cm). È vietato pescare nelle riserve marine e nelle zone di balneazione. Alcune tecniche come la pesca subacquea richiedono licenza specifica.',
-      },
-    ],
-  },
   locationPages: {
     blanes: {
       faqItems: [
@@ -2424,5 +2344,319 @@ export const it: Translations = {
     a4FuelNotIncluded: 'Il carburante non è incluso (si paga a parte in base al consumo).',
     q5: 'Qual è la politica di cancellazione?',
     a5: 'Puoi modificare la data della tua prenotazione senza costi con un minimo di 7 giorni di anticipo. Le cancellazioni non sono rimborsabili. In caso di maltempo, offriamo la riprogrammazione completa senza alcun costo.',
+  },
+  activitySunset: {
+    faqItems: [
+      {
+        question: 'A che ora devo partire per un\'escursione in barca al tramonto?',
+        answer: 'Consigliamo di partire 2 ore prima del tramonto. Così hai tempo per navigare lungo la costa, trovare una bella caletta e sistemarti prima dell\'ora dorata. In estate (giugno-luglio), parti verso le 19:00-19:30. In primavera e autunno, verso le 17:30-18:30. Il nostro staff al porto ti indicherà l\'orario esatto del tramonto il giorno della tua uscita.',
+      },
+      {
+        question: 'Ho bisogno della patente nautica per un\'escursione al tramonto?',
+        answer: 'No. Le nostre barche senza patente sono perfette per escursioni al tramonto. Devi solo essere maggiorenne. Ti forniamo una formazione sulla sicurezza di 15 minuti prima di partire. Le barche sono facili da manovrare e hanno una velocità massima che le rende molto sicure per navigare al tramonto.',
+      },
+      {
+        question: 'È sicuro stare in barca al tramonto e rientrare con poca luce?',
+        answer: 'Sì. Tutte le nostre barche sono dotate di luci di navigazione per uso notturno. Il porto di Blanes è ben illuminato e facile da raggiungere al crepuscolo. Consigliamo di rientrare al massimo 30 minuti dopo il tramonto, quando c\'è ancora luce. Il nostro staff ti informerà sul percorso di ritorno.',
+      },
+      {
+        question: 'Quanto costa un\'escursione in barca al tramonto?',
+        answer: 'Un\'escursione di 2 ore al tramonto in barca senza patente costa a partire da 140 EUR in totale ({noLicBaja1h} EUR/ora in bassa stagione). Il carburante è incluso nelle barche senza patente. La barca può ospitare fino a 5 persone, quindi il costo a persona può essere a partire da 28 EUR. Le barche senza patente includono carburante, assicurazione, attrezzatura di sicurezza e formazione.',
+      },
+    ],
+    sunsetTimes: [
+      {
+        month: 'Aprile',
+        time: '20:15 - 20:30',
+        suggestion: 'Parti alle 18:30 per goderti tutta la golden hour.',
+      },
+      {
+        month: 'Maggio',
+        time: '20:45 - 21:00',
+        suggestion: 'Parti alle 19:00 e goditi tutto il tramonto sul mare.',
+      },
+      {
+        month: 'Giugno',
+        time: '21:15 - 21:30',
+        suggestion: 'Parti alle 19:30 — sono i tramonti più lunghi dell\'anno.',
+      },
+      {
+        month: 'Luglio',
+        time: '21:15 - 21:30',
+        suggestion: 'Parti alle 19:30 per approfittare delle calde serate estive.',
+      },
+      {
+        month: 'Agosto',
+        time: '20:45 - 21:00',
+        suggestion: 'Parti alle 19:00; le giornate iniziano già ad accorciarsi.',
+      },
+      {
+        month: 'Settembre',
+        time: '20:00 - 20:15',
+        suggestion: 'Parti alle 18:15 per la luce calda del primo autunno.',
+      },
+      {
+        month: 'Ottobre',
+        time: '19:00 - 19:15',
+        suggestion: 'Parti alle 17:15 per i primi tramonti autunnali.',
+      },
+    ],
+    viewpoints: [
+      {
+        name: 'Mirador de Cala Sant Francesc',
+        description: 'Gettati l\'ancora davanti a Cala Sant Francesc e guarda il sole scomparire dietro le colline di Blanes. Le scogliere si tingono di una luce dorata spettacolare e l\'acqua passa dall\'ambra al rosa.',
+        distance: '20 minuti dal porto',
+      },
+      {
+        name: 'Mare aperto davanti a Sa Palomera',
+        description: 'Posiziona la barca con vista verso l\'iconica roccia Sa Palomera di Blanes. Mentre il sole tramonta dietro il paese, la roccia crea una sagoma drammatica sul cielo arancione.',
+        distance: '10 minuti dal porto',
+      },
+      {
+        name: 'Tratto tra Blanes e Lloret',
+        description: 'Il litorale tra Blanes e Lloret de Mar offre una vista a ovest senza ostacoli. Niente edifici, niente folla — solo tu, il mare e un tramonto straordinario.',
+        distance: '25 minuti dal porto',
+      },
+    ],
+    romanticIdeas: [
+      {
+        title: 'Porta un picnic',
+        description: 'Prepara formaggi, salumi, olive, pane e una bottiglia di cava o vino. Goditi l\'aperitivo galleggiando in una caletta mentre il cielo cambia colore.',
+      },
+      {
+        title: 'Musica a bordo',
+        description: 'Porta un piccolo altoparlante Bluetooth con una playlist scelta. Jazz soft, chitarra acustica o musica elettronica rilassante si abbinano perfettamente alla golden hour.',
+      },
+      {
+        title: 'Cattura il momento',
+        description: 'La luce della golden hour (30-60 minuti prima del tramonto) è la più favorevole per le foto. Usa la modalità ritratto del cellulare per risultati spettacolari.',
+      },
+      {
+        title: 'Fai il bagno nella golden hour',
+        description: 'Fatti un tuffo poco prima del tramonto. L\'acqua è più calda a fine pomeriggio e nuotare con la luce dorata è un\'esperienza indimenticabile.',
+      },
+    ],
+  },
+  activitySnorkel: {
+    faqItems: [
+      {
+        question: 'Posso noleggiare l\'attrezzatura da snorkeling con la barca?',
+        answer: 'Sì. Offriamo kit da snorkeling (maschera, boccaglio e pinne) a 7,50 EUR a persona. L\'attrezzatura viene ritirata all\'imbarco e restituita alla fine del noleggio. Puoi anche portare la tua attrezzatura senza costi aggiuntivi.',
+      },
+      {
+        question: 'Qual è il periodo migliore per fare snorkeling a Blanes?',
+        answer: 'Da giugno a settembre la temperatura dell\'acqua oscilla tra 22 e 26 gradi, ideale per fare snorkeling senza muta. La migliore visibilità si ha a giugno e settembre, quando c\'è meno afflusso e l\'acqua è più calma. A luglio e agosto l\'acqua è più calda ma può esserci più moto ondoso nei giorni di vento.',
+      },
+      {
+        question: 'È sicuro fare snorkeling dalla barca senza esperienza?',
+        answer: 'Assolutamente. Prima di partire ti diamo un briefing di sicurezza di 15 minuti in cui spieghiamo come ancorare la barca correttamente. Tutte le barche sono dotate di giubbotti di salvataggio. Consigliamo lo snorkeling in calette protette come Cala Sant Francesc per i principianti.',
+      },
+      {
+        question: 'Quante calette posso visitare in un\'uscita di snorkeling?',
+        answer: 'In 2 ore puoi visitare 1-2 calette con tempo sufficiente per lo snorkeling. In 4 ore puoi fare un itinerario completo di 3-4 calette. Consigliamo un minimo di 3 ore per goderti con calma lo snorkeling e la navigazione.',
+      },
+    ],
+    spots: [
+      {
+        name: 'Cala Sant Francesc',
+        distance: '20 minuti dal porto',
+        depth: '2-8 metri',
+        highlights: 'Posidonia oceanica, saraghi, occhiate, stelle marine. Fondale misto di sabbia e roccia con ottima visibilità.',
+        ideal: 'Ideale per principianti e famiglie grazie all\'acqua cristallina e alle correnti deboli.',
+      },
+      {
+        name: 'Cala Bona',
+        distance: '15 minuti dal porto',
+        depth: '3-10 metri',
+        highlights: 'Formazioni rocciose, cernie giovani, polpi, nudibranchi. Pareti sommerse ricche di vita marina.',
+        ideal: 'Perfetta per snorkeling di livello intermedio. Ancorare la barca ed esplorare la costa rocciosa.',
+      },
+      {
+        name: 'Cala Treumal',
+        distance: '25 minuti dal porto',
+        depth: '2-6 metri',
+        highlights: 'Praterie di posidonia, cavallucci marini (specie protetta), banchi di castagnole e donzelle.',
+        ideal: 'La caletta più tranquilla per snorkeling rilassato. Acqua turchese e poca affluenza.',
+      },
+    ],
+    recommendedBoats: [
+      {
+        name: 'Barche senza patente (4-5 persone)',
+        duration: '2-3 ore consigliate',
+        price: 'A partire da 70 EUR/ora',
+        description: 'Perfette per snorkeling nelle calette vicine come Cala Sant Francesc e Cala Bona. Carburante incluso. Ancori la barca e ti tuffi direttamente in acqua.',
+      },
+      {
+        name: 'Barche con patente (6-7 persone)',
+        duration: '4-6 ore consigliate',
+        price: 'A partire da 90 EUR/ora',
+        description: 'Maggiore autonomia per visitare più calette in un\'unica uscita. Ideali per gruppi che vogliono combinare snorkeling con navigazione verso Lloret o Tossa.',
+      },
+    ],
+    depthLabel: 'Profondità:',
+  },
+  activityFamilies: {
+    faqItems: [
+      {
+        question: 'A partire da che età possono salire i bambini in barca?',
+        answer: 'Non c\'è un\'età minima. Neonati e bambini di qualsiasi età sono i benvenuti. Tutti i minori devono indossare un giubbotto di salvataggio omologato durante la navigazione. Per i neonati consigliamo uscite brevi di 1-2 ore e di scegliere giornate con mare calmo.',
+      },
+      {
+        question: 'Ho bisogno della patente nautica per noleggiare una barca familiare?',
+        answer: 'No. Le nostre barche senza patente non richiedono alcun titolo nautico. Devi solo essere maggiorenne. Ti forniamo una formazione completa di 15 minuti prima della partenza. Sono barche sicure, stabili e molto facili da manovrare.',
+      },
+      {
+        question: 'Cosa include il prezzo del noleggio?',
+        answer: 'Il prezzo delle barche senza patente include carburante, assicurazione, giubbotti di salvataggio per tutti (inclusi quelli per bambini), scaletta da bagno, tendalino/bimini per l\'ombra e il briefing di sicurezza. Solo l\'attrezzatura da snorkeling è aggiuntiva (7,50 EUR/persona).',
+      },
+      {
+        question: 'Cosa dobbiamo portare per un\'uscita in barca con bambini?',
+        answer: 'Consigliamo di portare: crema solare ad alta protezione (waterproof), cappellini o cappelli, abbondante acqua, snack o picnic, asciugamani, costumi da bagno e un cambio di vestiti asciutti. Opzionale: fotocamera subacquea, giochi da spiaggia e attrezzatura da snorkeling propria.',
+      },
+    ],
+    safetyFeatures: [
+      {
+        title: 'Giubbotti di salvataggio per bambini',
+        description: 'Tutte le barche sono dotate di giubbotti omologati per bambini di tutte le età e taglie. È obbligatorio che i minori li indossino durante la navigazione.',
+      },
+      {
+        title: 'Briefing di sicurezza completo',
+        description: 'Prima della partenza, dedichiamo 15 minuti a spiegare il funzionamento della barca, le zone di navigazione sicure e le norme base. Risolviamo tutti i dubbi prima di salpare.',
+      },
+      {
+        title: 'Barche stabili e facili da manovrare',
+        description: 'Le nostre barche senza patente hanno scafo in vetroresina con grande stabilità. Motore di bassa potenza, velocità controllata e facile manovra anche per principianti.',
+      },
+      {
+        title: 'Zona di navigazione protetta',
+        description: 'La costa tra Blanes e Lloret offre calette riparate dalle onde. Consigliamo calette tranquille dove i bambini possono fare il bagno in sicurezza.',
+      },
+    ],
+    familyRoutes: [
+      {
+        name: 'Percorso famiglia breve (2 ore)',
+        stops: [
+          'Porto di Blanes',
+          'Cala Sant Francesc',
+          'Ritorno',
+        ],
+        description: 'Ideale per famiglie con bambini piccoli. Breve navigazione fino a una caletta protetta con acqua bassa e cristallina. Tempo per fare il bagno, snorkeling leggero e picnic a bordo.',
+        price: 'A partire da 140 EUR (70 EUR/h)',
+        tip: 'Perfetta per una prima esperienza in barca con bambini. La caletta ha zona sabbiosa e acqua tranquilla.',
+      },
+      {
+        name: 'Percorso famiglia completo (4 ore)',
+        stops: [
+          'Porto di Blanes',
+          'Cala Bona',
+          'Cala Sant Francesc',
+          'Spiaggia di Fenals',
+          'Ritorno',
+        ],
+        description: 'L\'esperienza completa per famiglie. Tre soste con tempo sufficiente per esplorare ogni caletta. Combina bagno, snorkeling, picnic e viste spettacolari della costa.',
+        price: 'A partire da 280 EUR (70 EUR/h)',
+        tip: 'Consigliata per bambini dai 4 anni in su. Portare cibo, acqua, crema solare e cappelli.',
+      },
+    ],
+  },
+  activityFishing: {
+    faqItems: [
+      {
+        question: 'Le barche includono attrezzatura da pesca?',
+        answer: 'No. Devi portare la tua attrezzatura da pesca (canne, mulinelli, esche artificiali, esca viva). Le nostre barche forniscono la piattaforma di navigazione, ma non includono materiale da pesca. A Blanes ci sono negozi nautici vicino al porto dove puoi acquistare esca fresca e materiale base.',
+      },
+      {
+        question: 'Ho bisogno di una licenza di pesca per pescare dalla barca?',
+        answer: 'Sì. Per la pesca ricreativa in mare hai bisogno della licenza di pesca ricreativa marittima della Generalitat de Catalunya. Puoi ottenerla online su gencat.cat per circa 14 EUR (validità 2 anni). È diversa dalla licenza di navigazione: la licenza di pesca serve per pescare, quella di navigazione per condurre la barca.',
+      },
+      {
+        question: 'Che barca mi serve per pescare in mare?',
+        answer: 'Dipende dal tipo di pesca. Per la pesca a fondo in calette vicine (spigole, orate), è sufficiente una barca senza licenza. Per la pesca in acque aperte (ricciole, traina), hai bisogno di una barca con licenza che ha maggiore autonomia e potenza. Contattaci su WhatsApp e ti consiglieremo in base alla tua esperienza.',
+      },
+      {
+        question: 'Quali sono le normative di pesca sulla Costa Brava?',
+        answer: 'La pesca ricreativa in Catalunya ha limiti di cattura: massimo 5 kg per persona al giorno (tranne se un singolo esemplare supera quel peso). Ci sono taglie minime per specie (spigola 36 cm, orata 20 cm). È vietato pescare nelle riserve marine e nelle zone di balneazione. Alcune tecniche come la pesca subacquea richiedono licenza specifica.',
+      },
+    ],
+    fishSpecies: [
+      {
+        name: 'Spigola (Dicentrarchus labrax)',
+        season: 'Tutto l\'anno, migliore in autunno e inverno',
+        where: 'Zone rocciose vicino alla costa, foci dei fiumi',
+        technique: 'Spinning con esche artificiali, traina',
+      },
+      {
+        name: 'Orata (Sparus aurata)',
+        season: 'Primavera ed estate',
+        where: 'Fondali sabbiosi e praterie di posidonia, vicino alla costa',
+        technique: 'Pesca a fondo con esca naturale (verme, gambero)',
+      },
+      {
+        name: 'Ricciola (Seriola dumerili)',
+        season: 'Da giugno a ottobre',
+        where: 'Acque aperte, 2-5 miglia dalla costa',
+        technique: 'Jigging, traina con esche artificiali grandi',
+      },
+      {
+        name: 'Dentice (Dentex dentex)',
+        season: 'Primavera e autunno',
+        where: 'Fondali rocciosi tra 20-60 m di profondità',
+        technique: 'Pesca a fondo, jigging leggero',
+      },
+      {
+        name: 'Calamari (Loligo vulgaris)',
+        season: 'Autunno e inverno (settembre-febbraio)',
+        where: 'Fondali sabbiosi, vicino a praterie di posidonia',
+        technique: 'Pesca con totanare',
+      },
+    ],
+    recommendedBoats: [
+      {
+        type: 'Barche con patente',
+        capacity: '6-7 persone',
+        autonomy: 'Maggiore autonomia e raggio d\'azione',
+        price: 'A partire da 90 EUR/ora (carburante escluso)',
+        advantages: [
+          'Accesso a zone di pesca più lontane (5+ miglia)',
+          'Maggiore potenza per traina e jigging',
+          'Ampio spazio per attrezzatura da pesca',
+          'Possibilità di uscire con mare mosso',
+        ],
+        recommendation: 'Consigliata per pescatori esperti che vogliono pescare in acque aperte.',
+      },
+      {
+        type: 'Barche senza patente',
+        capacity: '4-5 persone',
+        autonomy: 'Pesca costiera (fino a 2 miglia)',
+        price: 'A partire da 70 EUR/ora (carburante incluso)',
+        advantages: [
+          'Senza necessità di patente nautica',
+          'Carburante incluso nel prezzo',
+          'Perfette per pesca a fondo nelle calette',
+          'Ideali per iniziare a pescare in barca',
+        ],
+        recommendation: 'Consigliata per pesca ricreativa leggera vicino alla costa.',
+      },
+    ],
+    fishingSpots: [
+      {
+        name: 'Scogli di Sa Palomera',
+        distance: '10 minuti dal porto',
+        target: 'Spigole, saraghi, boghe',
+        description: 'Le formazioni rocciose di fronte a Sa Palomera sono un classico per lo spinning costiero. Fondali di 5-15 metri ricchi di vita.',
+      },
+      {
+        name: 'Zona di Cala Bona - Cala Sant Francesc',
+        distance: '15-20 minuti dal porto',
+        target: 'Orate, dentici, polpi',
+        description: 'Fondali misti di roccia e sabbia tra 10-25 metri. Eccellente per pesca a fondo con esca naturale.',
+      },
+      {
+        name: 'Acque aperte al largo di Blanes',
+        distance: '30-45 minuti dal porto',
+        target: 'Ricciole, palamite, lampughe',
+        description: 'A 3-5 miglia dalla costa, profondità di 40-80 metri. Accessibile solo con barche con patente. Jigging e traina.',
+      },
+    ],
   },
 };

@@ -25,45 +25,8 @@ import { getSEOConfig, generateHreflangLinks, generateCanonicalUrl, generateBrea
 import { openWhatsApp, createBookingMessage } from "@/utils/whatsapp";
 import { useTranslations } from "@/lib/translations";
 
-const safetyFeatures = [
-  {
-    title: "Chalecos salvavidas infantiles",
-    description: "Todos los barcos llevan chalecos homologados para ninos de todas las edades y tallas. Es obligatorio que los menores los lleven puestos durante la navegacion.",
-    icon: Shield
-  },
-  {
-    title: "Formacion de seguridad completa",
-    description: "Antes de salir, dedicamos 15 minutos a ensenar el manejo del barco, las zonas de navegacion seguras y las normas basicas. Resolvemos todas las dudas antes de zarpar.",
-    icon: Star
-  },
-  {
-    title: "Barcos estables y faciles de manejar",
-    description: "Nuestros barcos sin licencia tienen casco de fibra de vidrio con gran estabilidad. Motor de baja potencia, velocidad controlada y facil manejo incluso para novatos.",
-    icon: Anchor
-  },
-  {
-    title: "Zona de navegacion protegida",
-    description: "La costa entre Blanes y Lloret ofrece calas protegidas del oleaje. Recomendamos calas tranquilas donde los ninos pueden banarse con seguridad.",
-    icon: Waves
-  }
-];
-
-const familyRoutes = [
-  {
-    name: "Ruta familiar corta (2 horas)",
-    stops: ["Puerto de Blanes", "Cala Sant Francesc", "Regreso"],
-    description: "Ideal para familias con ninos pequenos. Navegacion corta hasta una cala protegida con agua poco profunda y cristalina. Tiempo para banarse, hacer snorkel suave y picnic a bordo.",
-    price: "Desde 140 EUR (70 EUR/h)",
-    tip: "Perfecta para una primera experiencia en barco con ninos. La cala tiene zona de arena y agua tranquila."
-  },
-  {
-    name: "Ruta familiar completa (4 horas)",
-    stops: ["Puerto de Blanes", "Cala Bona", "Cala Sant Francesc", "Playa de Fenals", "Regreso"],
-    description: "La experiencia completa para familias. Tres paradas con tiempo suficiente para explorar cada cala. Combina bano, snorkel, picnic y vistas espectaculares de la costa.",
-    price: "Desde 280 EUR (70 EUR/h)",
-    tip: "Recomendada para ninos a partir de 4 anos. Llevar comida, agua, crema solar y gorras."
-  }
-];
+// Icons paired by position to the i18n arrays.
+const SAFETY_ICONS = [Shield, Star, Anchor, Waves];
 
 const faqsFallback: Array<{ question: string; answer: string }> = [];
 
@@ -71,6 +34,11 @@ export default function ActivityFamiliesPage() {
   const { language, localizedPath } = useLanguage();
   const t = useTranslations();
   const faqs = t.activityFamilies?.faqItems ?? faqsFallback;
+  const safetyFeatures = (t.activityFamilies?.safetyFeatures ?? []).map((feat, i) => ({
+    ...feat,
+    icon: SAFETY_ICONS[i] ?? Shield,
+  }));
+  const familyRoutes = t.activityFamilies?.familyRoutes ?? [];
   const seoConfig = getSEOConfig('activityFamilies', language);
   const hreflangLinks = generateHreflangLinks('activityFamilies');
   const canonical = generateCanonicalUrl('activityFamilies', language);

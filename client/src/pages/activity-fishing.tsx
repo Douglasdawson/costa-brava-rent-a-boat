@@ -25,94 +25,14 @@ import { getSEOConfig, generateHreflangLinks, generateCanonicalUrl, generateBrea
 import { openWhatsApp, createBookingMessage } from "@/utils/whatsapp";
 import { useTranslations } from "@/lib/translations";
 
-const fishSpecies = [
-  {
-    name: "Lubina (Dicentrarchus labrax)",
-    season: "Todo el ano, mejor en otono e invierno",
-    where: "Zonas rocosas cerca de la costa, desembocaduras",
-    technique: "Spinning con senuelos, curricán"
-  },
-  {
-    name: "Dorada (Sparus aurata)",
-    season: "Primavera y verano",
-    where: "Fondos de arena y posidonia, cerca de la costa",
-    technique: "Pesca a fondo con cebo natural (gusano, gamba)"
-  },
-  {
-    name: "Serviola (Seriola dumerili)",
-    season: "Junio a octubre",
-    where: "Aguas abiertas, 2-5 millas de la costa",
-    technique: "Jigging, curricán con senuelos grandes"
-  },
-  {
-    name: "Dentón (Dentex dentex)",
-    season: "Primavera y otono",
-    where: "Fondos rocosos entre 20-60m de profundidad",
-    technique: "Pesca a fondo, jigging ligero"
-  },
-  {
-    name: "Calamares (Loligo vulgaris)",
-    season: "Otono e invierno (septiembre-febrero)",
-    where: "Fondos de arena, cerca de praderas de posidonia",
-    technique: "Pesca con poteras / jibioneras"
-  }
-];
-
-const recommendedBoats = [
-  {
-    type: "Barcos con licencia",
-    capacity: "6-7 personas",
-    autonomy: "Mayor autonomia y rango",
-    price: "Desde 90 EUR/hora (gasolina no incluida)",
-    advantages: [
-      "Acceso a zonas de pesca mas lejanas (5+ millas)",
-      "Mayor potencia para curricán y jigging",
-      "Espacio amplio para equipo de pesca",
-      "Posibilidad de salir con mar mas movido"
-    ],
-    recommendation: "Recomendado para pescadores con experiencia que quieran pescar en aguas abiertas."
-  },
-  {
-    type: "Barcos sin licencia",
-    capacity: "4-5 personas",
-    autonomy: "Pesca costera (hasta 2 millas)",
-    price: "Desde 70 EUR/hora (gasolina incluida)",
-    advantages: [
-      "Sin necesidad de titulo nautico",
-      "Gasolina incluida en el precio",
-      "Perfectos para pesca a fondo en calas",
-      "Ideal para iniciarse en la pesca desde barco"
-    ],
-    recommendation: "Recomendado para pesca recreativa ligera cerca de la costa."
-  }
-];
-
-const fishingSpots = [
-  {
-    name: "Rocas de Sa Palomera",
-    distance: "10 minutos del puerto",
-    target: "Lubinas, sargos, mojarras",
-    description: "Las formaciones rocosas frente a Sa Palomera son un clasico para spinning costero. Fondos de 5-15 metros con mucha vida."
-  },
-  {
-    name: "Zona de Cala Bona - Cala Sant Francesc",
-    distance: "15-20 minutos del puerto",
-    target: "Doradas, dentones, pulpos",
-    description: "Fondos mixtos de roca y arena entre 10-25 metros. Excelente para pesca a fondo con cebo natural."
-  },
-  {
-    name: "Aguas abiertas frente a Blanes",
-    distance: "30-45 minutos del puerto",
-    target: "Serviolas, bonitos, llampugas",
-    description: "A 3-5 millas de la costa, profundidades de 40-80 metros. Solo accesible con barcos con licencia. Jigging y curricán."
-  }
-];
-
 const faqsFallback: Array<{ question: string; answer: string }> = [];
 
 export default function ActivityFishingPage() {
   const { language, localizedPath } = useLanguage();
   const t = useTranslations();
+  const fishSpecies = t.activityFishing?.fishSpecies ?? [];
+  const recommendedBoats = t.activityFishing?.recommendedBoats ?? [];
+  const fishingSpots = t.activityFishing?.fishingSpots ?? [];
   const faqs = t.activityFishing?.faqItems ?? faqsFallback;
   const seoConfig = getSEOConfig('activityFishing', language);
   const hreflangLinks = generateHreflangLinks('activityFishing');

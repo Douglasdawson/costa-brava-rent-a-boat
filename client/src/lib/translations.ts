@@ -1774,6 +1774,67 @@ export interface Translations {
     ctaLicensed: string;
     internalLinks?: string;
   };
+
+  pricingPage?: {
+    heroTitle: string;
+    heroSubtitle: string;
+    fuelBadge: string;
+    fleetCountSuffix: string;
+    portAccessible: string;
+    seasonLabels: { BAJA: string; MEDIA: string; ALTA: string };
+    seasonNames: { BAJA: string; MEDIA: string; ALTA: string };
+    seasonShort: { BAJA: string; MEDIA: string; ALTA: string };
+    licenseTypes: {
+      none: string;
+      navegacion: string;
+      pnb: string;
+      per: string;
+      patron_yate: string;
+      capitan_yate: string;
+    };
+    licenseFallback: string;
+    table: {
+      boat: string;
+      capacity: string;
+      license: string;
+    };
+    fuelIncludedTag: string;
+    fuelIncludedFull: string;
+    perHour: string;
+    perHourLong: string;
+    from: string;
+    reserveButton: string;
+    reserveSpecificButton: string;
+    peopleSuffix: string;
+    info: {
+      whatIncludesTitle: string;
+      fuelIncludedItem: string;
+      insurance: string;
+      briefing: string;
+      equipment: string;
+      importantTitle: string;
+      minPerHour: string;
+      deposit: string;
+      freeCancellation: string;
+      licenseRequired: string;
+    };
+    faqTitle: string;
+    faq: {
+      q1: string;
+      a1Template: string;
+      q2: string;
+      a2: string;
+      q3: string;
+      a3: string;
+      q4: string;
+      a4Template: string;
+    };
+    cta: {
+      title: string;
+      subtitle: string;
+      button: string;
+    };
+  };
 }
 function deepMerge(target: Record<string, any>, fallback: Record<string, any>): Record<string, any> {
   const result = { ...fallback, ...target };

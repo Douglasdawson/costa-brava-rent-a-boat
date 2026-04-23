@@ -238,14 +238,11 @@ export default function LocationTossaPage() {
           <div className="flex gap-3 sm:gap-4 items-start">
             <span className="text-2xl" role="img" aria-label="warning">⚠️</span>
             <div className="text-sm sm:text-base text-foreground">
-              <p className="font-semibold mb-1">Tossa no es alcanzable con barco sin licencia.</p>
-              <p className="text-muted-foreground leading-relaxed">
-                Los barcos sin licencia (2 millas, 5 nudos, 15 CV) llegan hasta Playa de Fenals (sur de Lloret) — 4 millas antes de Tossa. Para llegar a Tossa desde Blanes necesitas (1) auto-alquiler con Licencia Básica de Navegación / LBN (packs cerrados 2 h / 4 h / 8 h desde {faqVars.licBaja2h} € con Mingolla Brava 19 o Trimarchi 57S, IVA, amarre, limpieza y seguro incluidos; combustible y fianza 500 € aparte), o (2) la{" "}
-                <a href="/es/barco/excursion-privada" className="underline font-medium text-foreground hover:text-primary">
-                  Excursión Privada con Capitán
-                </a>{" "}
-                (Pacific Craft 625 + patrón, 4 h máximo, hasta 7 pax, desde {faqVars.excursionBaja4h} € con IVA, patrón, amarre, limpieza y seguro incluidos — combustible aparte). La tercera alternativa es ir en coche a Tossa (20 min desde Lloret) y alquilar barco sin licencia localmente allí.
-              </p>
+              <p className="font-semibold mb-1">{s.warningTitle}</p>
+              <p
+                className="text-muted-foreground leading-relaxed"
+                dangerouslySetInnerHTML={{ __html: substituteFaqVars(s.warningBody, faqVars) }}
+              />
             </div>
           </div>
         </div>
@@ -410,40 +407,42 @@ export default function LocationTossaPage() {
           {/* Cross-linking to southern towns */}
           <Card className="mb-8">
             <CardContent className="py-6">
-              <p className="text-muted-foreground">
-                También ofrecemos servicio para turistas alojados en{" "}
-                <a href={localizedPath("locationMalgrat")} className="text-primary hover:underline font-medium">Malgrat de Mar</a>,{" "}
-                <a href={localizedPath("locationSantaSusanna")} className="text-primary hover:underline font-medium">Santa Susanna</a> y{" "}
-                <a href={localizedPath("locationCalella")} className="text-primary hover:underline font-medium">Calella</a>.
-                Desde estos pueblos de la costa del Maresme se llega al Puerto de Blanes en 10-20 minutos en coche.
-              </p>
+              <p
+                className="text-muted-foreground"
+                dangerouslySetInnerHTML={{
+                  __html: s.crossLinkingText
+                    .replace("{malgratPath}", localizedPath("locationMalgrat"))
+                    .replace("{santaSusannaPath}", localizedPath("locationSantaSusanna"))
+                    .replace("{calellaPath}", localizedPath("locationCalella")),
+                }}
+              />
             </CardContent>
           </Card>
 
           {/* Related Services - Internal Linking */}
           <Card className="mb-8">
             <CardContent className="pt-6">
-              <h3 className="font-semibold text-lg mb-4">Servicios y destinos relacionados</h3>
+              <h3 className="font-semibold text-lg mb-4">{s.relatedTitle}</h3>
               <div className="flex flex-wrap gap-3">
                 <a href={localizedPath("locationCostaBrava")} className="text-primary hover:underline flex items-center gap-1">
                   <ChevronRight className="w-4 h-4" />
-                  Mas destinos en la Costa Brava
+                  {s.relatedCostaBrava}
                 </a>
                 <a href={localizedPath("categoryLicensed")} className="text-primary hover:underline flex items-center gap-1">
                   <ChevronRight className="w-4 h-4" />
-                  Barcos con licencia para llegar a Tossa
+                  {s.relatedLicensed}
                 </a>
                 <a href={localizedPath("pricing")} className="text-primary hover:underline flex items-center gap-1">
                   <ChevronRight className="w-4 h-4" />
-                  Consulta precios y temporadas
+                  {s.relatedPricing}
                 </a>
                 <a href={localizedPath("locationLloret")} className="text-primary hover:underline flex items-center gap-1">
                   <ChevronRight className="w-4 h-4" />
-                  Ruta intermedia: Lloret de Mar en barco
+                  {s.relatedLloret}
                 </a>
                 <a href={localizedPath("locationBlanes")} className="text-primary hover:underline flex items-center gap-1">
                   <ChevronRight className="w-4 h-4" />
-                  Puerto de salida: Blanes
+                  {s.relatedBlanes}
                 </a>
               </div>
             </CardContent>

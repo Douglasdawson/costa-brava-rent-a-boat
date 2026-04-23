@@ -989,6 +989,15 @@ export interface Translations {
         ctaTitle: string;
         ctaDescription: string;
         ctaButton: string;
+        warningTitle: string;
+        warningBody: string;
+        crossLinkingText: string;
+        relatedTitle: string;
+        relatedCostaBrava: string;
+        relatedLicensed: string;
+        relatedPricing: string;
+        relatedLloret: string;
+        relatedBlanes: string;
       };
     };
     malgrat: {

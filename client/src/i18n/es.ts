@@ -2461,4 +2461,67 @@ export const es: Translations = {
       button: 'Reservar ahora',
     },
   },
+
+  // JSON-LD schema copy (Google reads this for rich results; must stay in
+  // the user's language because the homepage serves different URLs per
+  // hreflang — each locale emits its own JSON-LD with localized text).
+  seoSchemas: {
+    seasonalEvent: {
+      name: 'Temporada {year} — Alquiler de Barcos en Costa Brava',
+      description: 'Alquila barcos sin licencia en Blanes, Costa Brava. Temporada de abril a octubre.',
+    },
+    coves: {
+      listName: 'Calas accesibles desde el Puerto de Blanes con barco sin licencia',
+      listDescription: 'Lista ordenada de las 8 calas principales entre Blanes y Playa de Fenals accesibles con barco sin licencia en menos de 25 minutos de navegación (límite legal 2 millas náuticas, 5 nudos).',
+      propTimeFromPort: 'Tiempo de navegación desde Port de Blanes',
+      propDistance: 'Distancia náutica desde Port de Blanes',
+      propDistanceUnit: 'millas náuticas',
+      propLicenseRequired: 'Requiere licencia náutica',
+      propEndpoint: 'Límite norte legal sin-licencia',
+      descriptions: {
+        saPalomera: 'Roca emblemática en el Port de Blanes, punto de referencia costero. Primera parada natural. Aguas cristalinas.',
+        saForcanera: 'Cala virgen rocosa con fondo de grava. Biodiversidad marina rica, ideal para snorkel.',
+        calaSantFrancescBlanes: 'Cala con pinos hasta la arena y aguas turquesa. Protegida del viento del norte. Ideal para primer snorkel.',
+        calaDeSAgulla: 'Cala pequeña semi-virgen, acceso difícil por tierra. Agua transparente.',
+        calaTreumal: 'Cala rocosa con pinos, aguas cristalinas. Fondeo tranquilo. Acceso a pie por camino de ronda.',
+        playaDeSantaCristina: 'Playa familiar tranquila con pinar. Servicios playeros en temporada. Fondo arenoso.',
+        calaSaBoadella: 'Cala semi-virgen con sección naturista. Roca y pinos. Acceso a pie difícil, barco la mejor opción.',
+        playaDeFenals: 'Playa urbana al sur de Lloret de Mar. Límite norte legal para embarcaciones sin licencia desde Blanes.',
+      },
+    },
+  },
+
+  licenseTypes: {
+    none: 'No requiere licencia',
+    navegacion: 'Licencia Básica de Navegación (LBN)',
+    pnb: 'Patrón para Navegación Básica (PNB)',
+    per: 'Patrón de Embarcaciones de Recreo (PER)',
+    patron_yate: 'Patrón de Yate',
+    capitan_yate: 'Capitán de Yate',
+  },
+
+  boatFaq: {
+    title: 'Preguntas frecuentes sobre {name}',
+    q1: '¿Cuánto cuesta alquilar el {name}?',
+    a1Intro: 'Packs en temporada baja (abril-junio y septiembre-octubre):',
+    a1PackItem: '{hours}h desde {price}€',
+    a1Empty: 'Consulta los precios actualizados al hacer tu reserva por WhatsApp.',
+    q2: '¿Cuántas personas caben en el {name}?',
+    a2: 'El {name} tiene capacidad para {capacity} personas. Ideal para {audience}.',
+    audienceSmall: 'parejas y familias pequeñas',
+    audienceMedium: 'familias y grupos de amigos',
+    audienceLarge: 'grupos grandes y celebraciones',
+    q3: '¿Necesito licencia para el {name}?',
+    a3None: 'No, el {name} no requiere licencia de navegación. Solo necesitas ser mayor de 18 años. Antes de zarpar recibirás una formación de 15 minutos sobre el manejo del barco.',
+    a3Licensed: 'Sí, el {name} requiere {license}. Deberás presentar tu titulación en vigor antes de zarpar.',
+    a3Fallback: 'licencia náutica en vigor',
+    q4: '¿Qué incluye el alquiler del {name}?',
+    a4Base: 'El alquiler incluye: {items}.',
+    a4Empty: 'El alquiler incluye los servicios básicos del barco.',
+    a4FuelIncluded: 'El combustible está incluido.',
+    a4FuelNotIncluded: 'El combustible no está incluido (se paga aparte según consumo).',
+    q5: '¿Cuál es la política de cancelación?',
+    // TODO Fase B — migrar a site_content editable desde admin (tabla site_content + endpoint + tab CRM)
+    a5: 'Puedes cambiar la fecha de tu reserva sin coste con un mínimo de 7 días de antelación. Las cancelaciones no son reembolsables. En caso de mal tiempo, ofrecemos reprogramación completa sin coste.',
+  },
 };

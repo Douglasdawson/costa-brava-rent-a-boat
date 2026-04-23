@@ -1941,6 +1941,67 @@ export interface Translations {
       button: string;
     };
   };
+
+  // Boat FAQ (per-boat FAQ on /barco/:id, driven by admin data via shared/boatFaqBuilder)
+  boatFaq?: {
+    title: string;
+    q1: string;
+    a1Intro: string;
+    a1PackItem: string;
+    a1Empty: string;
+    q2: string;
+    a2: string;
+    audienceSmall: string;
+    audienceMedium: string;
+    audienceLarge: string;
+    q3: string;
+    a3None: string;
+    a3Licensed: string;
+    a3Fallback: string;
+    q4: string;
+    a4Base: string;
+    a4Empty: string;
+    a4FuelIncluded: string;
+    a4FuelNotIncluded: string;
+    q5: string;
+    a5: string;
+  };
+
+  // License type labels (maps to boat.licenseType values from admin)
+  licenseTypes?: {
+    none: string;
+    navegacion: string;
+    pnb: string;
+    per: string;
+    patron_yate: string;
+    capitan_yate: string;
+  };
+
+  seoSchemas?: {
+    seasonalEvent: {
+      name: string;
+      description: string;
+    };
+    coves: {
+      listName: string;
+      listDescription: string;
+      propTimeFromPort: string;
+      propDistance: string;
+      propDistanceUnit: string;
+      propLicenseRequired: string;
+      propEndpoint: string;
+      descriptions: {
+        saPalomera: string;
+        saForcanera: string;
+        calaSantFrancescBlanes: string;
+        calaDeSAgulla: string;
+        calaTreumal: string;
+        playaDeSantaCristina: string;
+        calaSaBoadella: string;
+        playaDeFenals: string;
+      };
+    };
+  };
 }
 function deepMerge(target: Record<string, any>, fallback: Record<string, any>): Record<string, any> {
   const result = { ...fallback, ...target };

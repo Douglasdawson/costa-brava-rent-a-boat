@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { useLanguage } from "@/hooks/use-language";
+import { useTranslations } from "@/lib/translations";
 import { SEO } from "@/components/SEO";
 import {
   getSEOConfig,
@@ -22,6 +23,7 @@ import { getMinActivePrice } from "@shared/pricing";
 
 export default function HomePageSEO() {
   const { language } = useLanguage();
+  const t = useTranslations();
   const seoConfig = getSEOConfig('home', language);
   const hreflangLinks = generateHreflangLinks('home');
   const canonical = generateCanonicalUrl('home', language);
@@ -70,8 +72,8 @@ export default function HomePageSEO() {
     return lows.length && highs.length ? { low: Math.min(...lows), high: Math.max(...highs) } : null;
   })();
 
-  const seasonalEventSchema = generateSeasonalEventSchema(priceRange);
-  const covesItemListSchema = generateCovesItemListSchema();
+  const seasonalEventSchema = generateSeasonalEventSchema(priceRange, t);
+  const covesItemListSchema = generateCovesItemListSchema(t);
   const glossarySchema = generateGlossarySchema();
 
   // FAQPage schema using homepage FAQ preview items (with live-data substitution)

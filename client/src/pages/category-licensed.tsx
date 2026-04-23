@@ -95,6 +95,34 @@ export default function CategoryLicensedPage() {
     { name: t.breadcrumbs.categoryLicensed, url: "/barcos-con-licencia" }
   ]);
 
+  // Licensed boats data
+  const licensedBoats = [
+    {
+      name: "Astec 480",
+      capacity: "6-7 personas",
+      engine: "40 CV",
+      features: ["GPS", "Sonda", "Radio VHF", "Bimini grande"],
+      price: "Desde 220€",
+      range: "Mayor autonomía"
+    },
+    {
+      name: "Pacific Craft 625",
+      capacity: "6-7 personas",
+      engine: "115 CV",
+      features: ["Consola central", "GPS Garmin", "Ducha", "Nevera 40L"],
+      price: "Desde 320€",
+      range: "Navegación deportiva"
+    },
+    {
+      name: "Trimarchi 57S",
+      capacity: "6-7 personas",
+      engine: "40 CV",
+      features: ["Solárium", "Mesa central", "Radio", "Toldo completo"],
+      price: "Desde 240€",
+      range: "Máximo confort"
+    }
+  ];
+
   // ItemList schema for category page (helps Google understand this is a product listing)
   const itemListSchema = {
     "@type": "ItemList",
@@ -149,34 +177,6 @@ export default function CategoryLicensedPage() {
       breadcrumbSchema
     ]
   };
-
-  // Licensed boats data
-  const licensedBoats = [
-    {
-      name: "Astec 480",
-      capacity: "6-7 personas",
-      engine: "40 CV",
-      features: ["GPS", "Sonda", "Radio VHF", "Bimini grande"],
-      price: "Desde 220€",
-      range: "Mayor autonomía"
-    },
-    {
-      name: "Pacific Craft 625",
-      capacity: "6-7 personas", 
-      engine: "115 CV",
-      features: ["Consola central", "GPS Garmin", "Ducha", "Nevera 40L"],
-      price: "Desde 320€",
-      range: "Navegación deportiva"
-    },
-    {
-      name: "Trimarchi 57S",
-      capacity: "6-7 personas",
-      engine: "40 CV", 
-      features: ["Solárium", "Mesa central", "Radio", "Toldo completo"],
-      price: "Desde 240€",
-      range: "Máximo confort"
-    }
-  ];
 
   const cl = t.categoryLicensed!;
 

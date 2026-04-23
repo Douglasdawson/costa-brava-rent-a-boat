@@ -95,7 +95,7 @@ export default function LocationTemplate({ config, extraCards, afterFaq }: Locat
   // if the current locale hasn't been populated yet (defensive — we keep all 8
   // locales in sync via npm run i18n:translate).
   const localeFaqItems = (
-    (t.locationPages as Record<string, Record<string, unknown>>)[config.translationKey] as
+    (t.locationPages as unknown as Record<string, Record<string, unknown>>)[config.translationKey] as
       | { faqItems?: Array<{ question: string; answer: string }> }
       | undefined
   )?.faqItems;
@@ -109,7 +109,7 @@ export default function LocationTemplate({ config, extraCards, afterFaq }: Locat
     }));
   }, [boatsData, rawFaqItems]);
 
-  const loc = (t.locationPages as Record<string, Record<string, unknown>>)[config.translationKey] as {
+  const loc = (t.locationPages as unknown as Record<string, Record<string, unknown>>)[config.translationKey] as {
     hero: { title: string; subtitle: string; badgeDistance: string; badgeTime: string; badgeBeach: string };
     sections: Record<string, string>;
   } | undefined;

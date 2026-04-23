@@ -35,18 +35,24 @@ export default function LocationPalafollsPage() {
   const { data: boatsData } = useQuery<Boat[]>({ queryKey: ["/api/boats"] });
   const faqVars = useMemo(() => computeFaqVars(boatsData), [boatsData]);
   const t = useTranslations();
-  const { language, localizedPath } = useLanguage();
+  const { localizedPath } = useLanguage();
   useEffect(() => { trackLocationPageView("palafolls"); }, []);
+
+  const page = t.locationPages.palafolls;
+  const s = page?.sections;
 
   const handleBookingWhatsApp = () => {
     const message = createBookingMessage(undefined, undefined, t.whatsappMessages);
     openWhatsApp(message);
   };
 
+  const render = (tpl: string | undefined, fallback: string) =>
+    substituteFaqVars(tpl ?? fallback, faqVars);
+
   const locationSchema = {
     "@type": "TouristDestination",
-    "name": "Alquiler de Barcos cerca de Palafolls",
-    "description": "Alquila barcos desde el Puerto de Blanes, a solo 12 minutos en coche de Palafolls. Barcos sin licencia desde 70 EUR/hora con gasolina incluida.",
+    "name": page?.schema?.name ?? "Alquiler de Barcos cerca de Palafolls",
+    "description": page?.schema?.description ?? "Alquila barcos desde el Puerto de Blanes, a solo 12 minutos en coche de Palafolls. Barcos sin licencia desde 70 EUR/hora con gasolina incluida.",
     "geo": {
       "@type": "GeoCoordinates",
       "latitude": 41.6694,
@@ -70,18 +76,18 @@ export default function LocationPalafollsPage() {
   };
 
   const breadcrumbSchema = generateBreadcrumbSchema([
-    { name: "Inicio", url: "/" },
-    { name: "Alquiler Barcos Palafolls", url: "/alquiler-barcos-palafolls" }
+    { name: t.breadcrumbs.home, url: "/" },
+    { name: page?.breadcrumbName ?? "Alquiler Barcos Palafolls", url: "/alquiler-barcos-palafolls" }
   ]);
 
-  const faqItems = t.locationPages.palafolls?.faqItems ?? [];
+  const faqItems = page?.faqItems ?? [];
 
   const processedFaqItems = useMemo(
     () => faqItems.map((item) => ({
       question: substituteFaqVars(item.question, faqVars),
       answer: substituteFaqVars(item.answer, faqVars),
     })),
-    [faqVars],
+    [faqItems, faqVars],
   );
 
   const faqSchema = {
@@ -108,10 +114,10 @@ export default function LocationPalafollsPage() {
   return (
     <div className="min-h-screen">
       <SEO
-        title="Alquiler Barco Palafolls | Puerto Blanes 12 min | Sin Licencia 70€/h"
-        description="¿En camping o alojamiento en Palafolls? Puerto Blanes a 12 min en coche. Alquila barco sin licencia desde 70€/h con gasolina incluida. Excursión ideal Costa Brava."
-        ogTitle="Alquiler Barco Palafolls | 12 min al Puerto Blanes"
-        ogDescription="Desde Palafolls al Puerto Blanes en 12 min. Barco sin licencia desde 70€/h. Gasolina incluida. 4.8★."
+        title={page?.seo?.title ?? "Alquiler Barco Palafolls | Puerto Blanes 12 min | Sin Licencia 70€/h"}
+        description={page?.seo?.description ?? "¿En camping o alojamiento en Palafolls? Puerto Blanes a 12 min en coche. Alquila barco sin licencia desde 70€/h con gasolina incluida. Excursión ideal Costa Brava."}
+        ogTitle={page?.seo?.ogTitle ?? "Alquiler Barco Palafolls | 12 min al Puerto Blanes"}
+        ogDescription={page?.seo?.ogDescription ?? "Desde Palafolls al Puerto Blanes en 12 min. Barco sin licencia desde 70€/h. Gasolina incluida. 4.8★."}
         canonical={getCanonicalUrl("/alquiler-barcos-palafolls")}
         jsonLd={combinedJsonLd}
       />
@@ -124,24 +130,24 @@ export default function LocationPalafollsPage() {
             <div className="flex items-center justify-center mb-6">
               <MapPin className="w-8 h-8 text-primary mr-4" />
               <h1 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold text-foreground">
-                Alquiler de Barcos cerca de Palafolls
+                {s?.heroTitle ?? "Alquiler de Barcos cerca de Palafolls"}
               </h1>
             </div>
             <p className="text-lg text-muted-foreground mb-6 max-w-4xl mx-auto">
-              Palafolls es un municipio del interior del Maresme conocido por su amplia zona de campings y resorts naturales. A solo 12 minutos en coche del Puerto de Blanes, es el punto de partida perfecto para una excursion en barco por la Costa Brava. Nuestros barcos sin licencia son ideales para familias de camping que buscan una actividad diferente.
+              {s?.heroSubtitle}
             </p>
             <div className="flex flex-wrap gap-3 justify-center">
               <Badge variant="outline" className="text-primary border-primary">
                 <Car className="w-4 h-4 mr-2" />
-                8 km / 12 min en coche
+                {s?.heroBadgeCar}
               </Badge>
               <Badge variant="outline" className="text-primary border-primary">
                 <Clock className="w-4 h-4 mr-2" />
-                Muy cerca de Blanes
+                {s?.heroBadgeTransport}
               </Badge>
               <Badge variant="outline" className="text-primary border-primary">
                 <Tent className="w-4 h-4 mr-2" />
-                Zona de campings
+                {s?.heroBadgeExtra}
               </Badge>
             </div>
           </div>
@@ -157,30 +163,22 @@ export default function LocationPalafollsPage() {
             <CardHeader>
               <h2 className="flex items-center gap-3 text-2xl font-semibold leading-none tracking-tight">
                 <Anchor className="w-6 h-6 text-cta" />
-                ¿Por que alquilar un barco desde Blanes si estas en Palafolls?
+                {s?.whyTitle}
               </h2>
             </CardHeader>
             <CardContent>
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
-                  <h3 className="font-semibold text-lg mb-3">A 12 minutos del puerto</h3>
-                  <p className="text-muted-foreground mb-4">
-                    Palafolls es uno de los municipios mas cercanos al Puerto de Blanes. Con solo 8 km de distancia, puedes salir del camping por la manana, navegar durante unas horas por la Costa Brava y volver a tiempo para la comida. Es la excursion perfecta para un dia de vacaciones diferente.
-                  </p>
-                  <h3 className="font-semibold text-lg mb-3">Ideal para campistas</h3>
-                  <p className="text-muted-foreground">
-                    Si te alojas en uno de los campings de Palafolls como La Masia, Neptuno, o los complejos de bungalows de la zona, alquilar un barco es la actividad estrella que hara unicas tus vacaciones. Muchas familias de campings cercanos nos visitan cada temporada.
-                  </p>
+                  <h3 className="font-semibold text-lg mb-3">{s?.whyCard1Title}</h3>
+                  <p className="text-muted-foreground mb-4">{s?.whyCard1Desc}</p>
+                  <h3 className="font-semibold text-lg mb-3">{s?.whyCard2Title}</h3>
+                  <p className="text-muted-foreground">{s?.whyCard2Desc}</p>
                 </div>
                 <div>
-                  <h3 className="font-semibold text-lg mb-3">Gasolina incluida en barcos sin licencia</h3>
-                  <p className="text-muted-foreground mb-4">
-                    El precio de los barcos sin licencia incluye la gasolina. Desde 70 EUR por hora con el Astec 400, o desde 75 EUR por hora con otros modelos de mayor eslora. Sin costes ocultos ni suplementos por combustible.
-                  </p>
-                  <h3 className="font-semibold text-lg mb-3">Sin experiencia previa necesaria</h3>
-                  <p className="text-muted-foreground">
-                    Antes de zarpar, nuestro equipo te da 15 minutos de formacion practica. Te ensenamos a manejar el motor, las normas basicas de navegacion y los mejores rincones para explorar. Cualquier persona mayor de 18 anos puede pilotar nuestros barcos sin licencia.
-                  </p>
+                  <h3 className="font-semibold text-lg mb-3">{s?.whyCard3Title}</h3>
+                  <p className="text-muted-foreground mb-4">{s?.whyCard3Desc}</p>
+                  <h3 className="font-semibold text-lg mb-3">{s?.whyCard4Title}</h3>
+                  <p className="text-muted-foreground">{s?.whyCard4Desc}</p>
                 </div>
               </div>
             </CardContent>
@@ -191,34 +189,32 @@ export default function LocationPalafollsPage() {
             <CardHeader>
               <h2 className="flex items-center gap-3 text-2xl font-semibold leading-none tracking-tight">
                 <Star className="w-6 h-6 text-primary" />
-                Palafolls: campings, naturaleza y mar
+                {s?.townTitle}
               </h2>
             </CardHeader>
             <CardContent>
-              <p className="text-muted-foreground mb-6">
-                Palafolls combina la tranquilidad de un pueblo de interior con la proximidad al mar. Su amplia oferta de campings y alojamientos rurales atrae a miles de familias europeas cada verano. Complementa tu estancia con una jornada de navegacion por las calas mas bonitas de la Costa Brava.
-              </p>
+              <p className="text-muted-foreground mb-6">{s?.townIntro}</p>
               <div className="grid md:grid-cols-3 gap-6">
                 <div className="text-center">
                   <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
                     <Tent className="w-8 h-8 text-green-600" />
                   </div>
-                  <h3 className="font-semibold text-lg mb-2">Zona de campings</h3>
-                  <p className="text-muted-foreground">Camping La Masia, Neptuno y otros complejos turisticos de la zona atraen a familias de toda Europa. Una excursion en barco es la actividad perfecta para completar las vacaciones.</p>
+                  <h3 className="font-semibold text-lg mb-2">{s?.townCard1Title}</h3>
+                  <p className="text-muted-foreground">{s?.townCard1Desc}</p>
                 </div>
                 <div className="text-center">
                   <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
                     <Waves className="w-8 h-8 text-blue-600" />
                   </div>
-                  <h3 className="font-semibold text-lg mb-2">A minutos del mar</h3>
-                  <p className="text-muted-foreground">Aunque Palafolls es un municipio de interior, las playas de Blanes y Malgrat estan a menos de 10 minutos. El Puerto de Blanes es tu puerta de entrada a la Costa Brava por mar.</p>
+                  <h3 className="font-semibold text-lg mb-2">{s?.townCard2Title}</h3>
+                  <p className="text-muted-foreground">{s?.townCard2Desc}</p>
                 </div>
                 <div className="text-center">
                   <div className="w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-4">
                     <TreePine className="w-8 h-8 text-amber-600" />
                   </div>
-                  <h3 className="font-semibold text-lg mb-2">Naturaleza y castillo</h3>
-                  <p className="text-muted-foreground">El Castillo de Palafolls y los senderos de la zona ofrecen paseos tranquilos. Combina naturaleza de interior con la emocion de navegar por aguas cristalinas.</p>
+                  <h3 className="font-semibold text-lg mb-2">{s?.townCard3Title}</h3>
+                  <p className="text-muted-foreground">{s?.townCard3Desc}</p>
                 </div>
               </div>
             </CardContent>
@@ -229,7 +225,7 @@ export default function LocationPalafollsPage() {
             <CardHeader>
               <h2 className="flex items-center gap-3 text-2xl font-semibold leading-none tracking-tight">
                 <Car className="w-6 h-6 text-primary" />
-                Como llegar de Palafolls al Puerto de Blanes
+                {s?.howTitle}
               </h2>
             </CardHeader>
             <CardContent>
@@ -237,34 +233,26 @@ export default function LocationPalafollsPage() {
                 <div>
                   <h3 className="font-semibold text-lg mb-3 flex items-center gap-2">
                     <Car className="w-5 h-5 text-primary" />
-                    En coche (12 minutos)
+                    {s?.howCarTitle}
                   </h3>
-                  <p className="text-muted-foreground mb-4">
-                    Desde Palafolls, toma la BV-6001 en direccion a Blanes. Son solo 8 km hasta el Puerto de Blanes. El trayecto es rapido y sencillo, con buena senalizacion. Desde los campings de la zona, el recorrido es aun mas directo.
-                  </p>
+                  <p className="text-muted-foreground mb-4">{s?.howCarDesc}</p>
                   <h3 className="font-semibold text-lg mb-3 flex items-center gap-2">
                     <Users className="w-5 h-5 text-primary" />
-                    En taxi
+                    {s?.howTaxiTitle}
                   </h3>
-                  <p className="text-muted-foreground">
-                    Un taxi desde Palafolls al Puerto de Blanes cuesta aproximadamente 12-18 EUR. Es una opcion comoda si no dispones de coche propio.
-                  </p>
+                  <p className="text-muted-foreground">{s?.howTaxiDesc}</p>
                 </div>
                 <div>
                   <h3 className="font-semibold text-lg mb-3 flex items-center gap-2">
                     <Bus className="w-5 h-5 text-primary" />
-                    En autobus
+                    {s?.howTransportTitle}
                   </h3>
-                  <p className="text-muted-foreground mb-4">
-                    Palafolls no tiene estacion de tren, pero hay lineas de autobus que conectan con Blanes. El trayecto dura unos 20 minutos. Consulta los horarios de las lineas locales en temporada alta, ya que la frecuencia aumenta durante el verano.
-                  </p>
+                  <p className="text-muted-foreground mb-4">{s?.howTransportDesc}</p>
                   <h3 className="font-semibold text-lg mb-3 flex items-center gap-2">
                     <ParkingCircle className="w-5 h-5 text-primary" />
-                    Aparcamiento en Blanes
+                    {s?.howParkingTitle}
                   </h3>
-                  <p className="text-muted-foreground">
-                    Hay aparcamiento gratuito disponible cerca del Puerto de Blanes. En temporada alta (julio-agosto) recomendamos llegar temprano para asegurar plaza de parking.
-                  </p>
+                  <p className="text-muted-foreground">{s?.howParkingDesc}</p>
                 </div>
               </div>
             </CardContent>
@@ -275,22 +263,20 @@ export default function LocationPalafollsPage() {
             <CardHeader>
               <h2 className="flex items-center gap-3 text-2xl font-semibold leading-none tracking-tight">
                 <Anchor className="w-6 h-6 text-primary" />
-                ¿Que puedes ver en barco desde Blanes?
+                {s?.destsTitle}
               </h2>
             </CardHeader>
             <CardContent>
-              <p className="text-muted-foreground mb-4">
-                Desde el Puerto de Blanes puedes navegar hacia el norte explorando la espectacular costa de la Costa Brava. Calas escondidas de aguas turquesas, acantilados cubiertos de pinos y la impresionante silueta de Tossa de Mar en el horizonte. Todo esto a tu alcance desde el barco.
-              </p>
+              <p className="text-muted-foreground mb-4">{s?.destsIntro}</p>
               <div className="flex flex-wrap gap-3">
                 <Link href={localizedPath("locationLloret")}>
-                  <Badge variant="outline" className="cursor-pointer hover:bg-primary/10">Lloret de Mar - 25 min</Badge>
+                  <Badge variant="outline" className="cursor-pointer hover:bg-primary/10">{s?.destLloret}</Badge>
                 </Link>
                 <Link href={localizedPath("locationTossa")}>
-                  <Badge variant="outline" className="cursor-pointer hover:bg-primary/10">Tossa de Mar - 1h</Badge>
+                  <Badge variant="outline" className="cursor-pointer hover:bg-primary/10">{s?.destTossa}</Badge>
                 </Link>
                 <Link href={localizedPath("locationBlanes")}>
-                  <Badge variant="outline" className="cursor-pointer hover:bg-primary/10">Calas de Blanes</Badge>
+                  <Badge variant="outline" className="cursor-pointer hover:bg-primary/10">{s?.destBlanes}</Badge>
                 </Link>
               </div>
             </CardContent>
@@ -301,30 +287,28 @@ export default function LocationPalafollsPage() {
             <CardHeader>
               <h2 className="flex items-center gap-3 text-2xl font-semibold leading-none tracking-tight">
                 <Clock className="w-6 h-6 text-primary" />
-                Precios de alquiler de barcos
+                {s?.pricingTitle}
               </h2>
             </CardHeader>
             <CardContent>
-              <p className="text-muted-foreground mb-4">
-                Precios transparentes con gasolina incluida en todos los barcos sin licencia. Sin costes ocultos.
-              </p>
+              <p className="text-muted-foreground mb-4">{s?.pricingIntro}</p>
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
-                  <h3 className="font-semibold text-lg mb-3">Barcos sin licencia</h3>
-                  <p className="text-muted-foreground mb-2">Desde {faqVars.noLicBaja1h} EUR/hora (gasolina incluida)</p>
-                  <p className="text-muted-foreground">Capacidad: 4-7 personas segun modelo</p>
+                  <h3 className="font-semibold text-lg mb-3">{s?.pricingNoLicTitle}</h3>
+                  <p className="text-muted-foreground mb-2">{render(s?.pricingNoLicFrom, '')}</p>
+                  <p className="text-muted-foreground">{s?.pricingNoLicCapacity}</p>
                 </div>
                 <div>
-                  <h3 className="font-semibold text-lg mb-3">Barcos con licencia</h3>
-                  <p className="text-muted-foreground mb-2">Desde {faqVars.licBaja2h} EUR / 2 horas</p>
-                  <p className="text-muted-foreground mb-2">Motores de 40 a 115 CV</p>
-                  <p className="text-muted-foreground">Capacidad: hasta 11 personas</p>
+                  <h3 className="font-semibold text-lg mb-3">{s?.pricingLicTitle}</h3>
+                  <p className="text-muted-foreground mb-2">{render(s?.pricingLicFrom, '')}</p>
+                  <p className="text-muted-foreground mb-2">{s?.pricingLicEngines}</p>
+                  <p className="text-muted-foreground">{s?.pricingLicCapacity}</p>
                 </div>
               </div>
               <div className="mt-4">
                 <Link href={localizedPath("pricing")}>
                   <Button variant="outline" size="sm">
-                    Ver todos los precios y barcos
+                    {s?.pricingButton}
                   </Button>
                 </Link>
               </div>
@@ -334,12 +318,8 @@ export default function LocationPalafollsPage() {
           {/* CTA Section */}
           <Card className="bg-primary text-white">
             <CardContent className="py-8 text-center">
-              <h2 className="text-2xl font-bold mb-4">
-                Reserva tu barco desde Palafolls
-              </h2>
-              <p className="text-lg mb-6 max-w-2xl mx-auto">
-                En 12 minutos estaras en el Puerto de Blanes listo para zarpar. La excursion perfecta desde tu camping. Contactanos por WhatsApp para reservar.
-              </p>
+              <h2 className="text-2xl font-bold mb-4">{s?.ctaTitle}</h2>
+              <p className="text-lg mb-6 max-w-2xl mx-auto">{s?.ctaDesc}</p>
               <Button
                 onClick={handleBookingWhatsApp}
                 size="lg"
@@ -347,7 +327,7 @@ export default function LocationPalafollsPage() {
                 className="text-primary hover:text-primary"
                 data-testid="button-whatsapp-palafolls"
               >
-                Reservar por WhatsApp
+                {s?.ctaButton}
               </Button>
             </CardContent>
           </Card>
@@ -359,7 +339,7 @@ export default function LocationPalafollsPage() {
       <div className="py-12 bg-background">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-2xl font-heading font-bold text-center mb-8">
-            Preguntas frecuentes sobre alquilar barco desde Palafolls
+            {s?.faqTitle}
           </h2>
           <div className="space-y-3">
             {processedFaqItems.map((item, index) => (

@@ -1,6 +1,76 @@
 import { Language, useLanguage } from '@/hooks/use-language';
 import { es } from '../i18n/es';
 
+// Shared shape for Tordera / Palafolls / Pineda — 3 inland-town pages
+// that share the same template. Each field is optional because faqItems
+// shipped first and the section/seo/schema blocks were back-filled later.
+interface TownLocationPage {
+  faqItems: Array<{ question: string; answer: string }>;
+  seo?: {
+    title: string;
+    description: string;
+    ogTitle: string;
+    ogDescription: string;
+  };
+  schema?: {
+    name: string;
+    description: string;
+  };
+  breadcrumbName?: string;
+  sections?: {
+    heroTitle: string;
+    heroSubtitle: string;
+    heroBadgeCar: string;
+    heroBadgeTransport: string;
+    heroBadgeExtra: string;
+    whyTitle: string;
+    whyCard1Title: string;
+    whyCard1Desc: string;
+    whyCard2Title: string;
+    whyCard2Desc: string;
+    whyCard3Title: string;
+    whyCard3Desc: string;
+    whyCard4Title: string;
+    whyCard4Desc: string;
+    townTitle: string;
+    townIntro: string;
+    townCard1Title: string;
+    townCard1Desc: string;
+    townCard2Title: string;
+    townCard2Desc: string;
+    townCard3Title: string;
+    townCard3Desc: string;
+    howTitle: string;
+    howCarTitle: string;
+    howCarDesc: string;
+    howTaxiTitle: string;
+    howTaxiDesc: string;
+    howTransportTitle: string;
+    howTransportDesc: string;
+    howParkingTitle: string;
+    howParkingDesc: string;
+    destsTitle: string;
+    destsIntro: string;
+    destLloret: string;
+    destTossa: string;
+    destBlanes: string;
+    pricingTitle: string;
+    pricingIntro: string;
+    pricingNoLicTitle: string;
+    pricingNoLicFrom: string;
+    pricingNoLicCapacity: string;
+    pricingLicTitle: string;
+    pricingLicFrom: string;
+    pricingLicEngines: string;
+    pricingLicCapacity: string;
+    pricingButton: string;
+    ctaTitle: string;
+    ctaDesc: string;
+    ctaButton: string;
+    faqTitle: string;
+  };
+}
+
 export interface Translations {
   // Navigation
   nav: {
@@ -1230,15 +1300,9 @@ export interface Translations {
         petsA: string;
       };
     };
-    tordera?: {
-      faqItems: Array<{ question: string; answer: string }>;
-    };
-    palafolls?: {
-      faqItems: Array<{ question: string; answer: string }>;
-    };
-    pineda?: {
-      faqItems: Array<{ question: string; answer: string }>;
-    };
+    tordera?: TownLocationPage;
+    palafolls?: TownLocationPage;
+    pineda?: TownLocationPage;
     newsletter: {
       title: string;
       subtitle: string;

@@ -35,22 +35,28 @@ export default function LocationPinedaDeMarPage() {
   const { data: boatsData } = useQuery<Boat[]>({ queryKey: ["/api/boats"] });
   const faqVars = useMemo(() => computeFaqVars(boatsData), [boatsData]);
   const t = useTranslations();
-  const { language, localizedPath } = useLanguage();
+  const { localizedPath } = useLanguage();
   useEffect(() => { trackLocationPageView("pineda"); }, []);
+
+  const page = t.locationPages.pineda;
+  const s = page?.sections;
 
   const handleBookingWhatsApp = () => {
     const message = createBookingMessage(undefined, undefined, t.whatsappMessages);
     openWhatsApp(message);
   };
 
+  const render = (tpl: string | undefined, fallback: string) =>
+    substituteFaqVars(tpl ?? fallback, faqVars);
+
   const locationSchema = {
     "@type": "TouristDestination",
-    "name": "Alquiler de Barcos cerca de Pineda de Mar",
-    "description": "Alquila barcos desde el Puerto de Blanes, a solo 18 minutos en coche de Pineda de Mar. Barcos sin licencia desde 70 EUR/hora con gasolina incluida.",
+    "name": page?.schema?.name ?? "Alquiler de Barcos cerca de Pineda de Mar",
+    "description": page?.schema?.description ?? "Alquila barcos desde el Puerto de Blanes, a solo 18 minutos en coche de Pineda de Mar. Barcos sin licencia desde 70 EUR/hora con gasolina incluida.",
     "geo": {
       "@type": "GeoCoordinates",
-      "latitude": 41.6278,
-      "longitude": 2.6923
+      "latitude": 41.6281,
+      "longitude": 2.6914
     },
     "address": {
       "@type": "PostalAddress",
@@ -59,7 +65,7 @@ export default function LocationPinedaDeMarPage() {
       "postalCode": "08397",
       "addressCountry": "ES"
     },
-    "touristType": ["Family", "Beach", "Resort"],
+    "touristType": ["Family", "Hotels", "Beach"],
     "availableLanguage": ["Spanish", "Catalan", "English", "French"],
     "provider": {
       "@type": "LocalBusiness",
@@ -70,18 +76,18 @@ export default function LocationPinedaDeMarPage() {
   };
 
   const breadcrumbSchema = generateBreadcrumbSchema([
-    { name: "Inicio", url: "/" },
-    { name: "Alquiler Barcos Pineda de Mar", url: "/alquiler-barcos-pineda-de-mar" }
+    { name: t.breadcrumbs.home, url: "/" },
+    { name: page?.breadcrumbName ?? "Alquiler Barcos Pineda de Mar", url: "/alquiler-barcos-pineda-de-mar" }
   ]);
 
-  const faqItems = t.locationPages.pineda?.faqItems ?? [];
+  const faqItems = page?.faqItems ?? [];
 
   const processedFaqItems = useMemo(
     () => faqItems.map((item) => ({
       question: substituteFaqVars(item.question, faqVars),
       answer: substituteFaqVars(item.answer, faqVars),
     })),
-    [faqVars],
+    [faqItems, faqVars],
   );
 
   const faqSchema = {
@@ -108,10 +114,10 @@ export default function LocationPinedaDeMarPage() {
   return (
     <div className="min-h-screen">
       <SEO
-        title="Alquiler Barco Pineda de Mar | Puerto Blanes 18 min | Sin Licencia 70€/h"
-        description="¿Alojado en Pineda de Mar? Puerto Blanes a 18 min en coche o 12 min en tren R1. Alquila barco sin licencia desde 70€/h con gasolina incluida. Navega a Blanes, Lloret o Tossa."
-        ogTitle="Alquiler Barco Pineda de Mar | 18 min al Puerto Blanes"
-        ogDescription="Desde Pineda de Mar al Puerto Blanes en 18 min. Barco sin licencia desde 70€/h. 4.8★ Google."
+        title={page?.seo?.title ?? "Alquiler Barco Pineda de Mar | Puerto Blanes 18 min | Sin Licencia 70€/h"}
+        description={page?.seo?.description ?? "¿Alojado en Pineda de Mar? Puerto Blanes a 18 min en coche o 12 min en tren R1. Alquila barco sin licencia desde 70€/h con gasolina incluida. Navega a Blanes, Lloret o Tossa."}
+        ogTitle={page?.seo?.ogTitle ?? "Alquiler Barco Pineda de Mar | 18 min al Puerto Blanes"}
+        ogDescription={page?.seo?.ogDescription ?? "Desde Pineda de Mar al Puerto Blanes en 18 min. Barco sin licencia desde 70€/h. 4.8★ Google."}
         canonical={getCanonicalUrl("/alquiler-barcos-pineda-de-mar")}
         jsonLd={combinedJsonLd}
       />
@@ -124,24 +130,24 @@ export default function LocationPinedaDeMarPage() {
             <div className="flex items-center justify-center mb-6">
               <MapPin className="w-8 h-8 text-primary mr-4" />
               <h1 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold text-foreground">
-                Alquiler de Barcos cerca de Pineda de Mar
+                {s?.heroTitle ?? "Alquiler de Barcos cerca de Pineda de Mar"}
               </h1>
             </div>
             <p className="text-lg text-muted-foreground mb-6 max-w-4xl mx-auto">
-              Pineda de Mar es uno de los destinos turisticos mas importantes de la costa del Maresme, con decenas de hoteles y resorts all-inclusive. El Puerto de Blanes, a solo 18 minutos en coche o 12 minutos en tren, es el punto de alquiler de barcos mas cercano. Disfruta de la Costa Brava sin necesidad de licencia de navegacion.
+              {s?.heroSubtitle}
             </p>
             <div className="flex flex-wrap gap-3 justify-center">
               <Badge variant="outline" className="text-primary border-primary">
                 <Car className="w-4 h-4 mr-2" />
-                15 km / 18 min en coche
+                {s?.heroBadgeCar}
               </Badge>
               <Badge variant="outline" className="text-primary border-primary">
                 <Train className="w-4 h-4 mr-2" />
-                RENFE R1: 12 min
+                {s?.heroBadgeTransport}
               </Badge>
               <Badge variant="outline" className="text-primary border-primary">
                 <Waves className="w-4 h-4 mr-2" />
-                Costa del Maresme
+                {s?.heroBadgeExtra}
               </Badge>
             </div>
           </div>
@@ -157,30 +163,22 @@ export default function LocationPinedaDeMarPage() {
             <CardHeader>
               <h2 className="flex items-center gap-3 text-2xl font-semibold leading-none tracking-tight">
                 <Anchor className="w-6 h-6 text-cta" />
-                ¿Por que alquilar un barco desde Blanes si estas en Pineda de Mar?
+                {s?.whyTitle}
               </h2>
             </CardHeader>
             <CardContent>
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
-                  <h3 className="font-semibold text-lg mb-3">El puerto mas cercano con alquiler de barcos</h3>
-                  <p className="text-muted-foreground mb-4">
-                    Pineda de Mar no dispone de puerto deportivo ni de servicio de alquiler de embarcaciones. El Puerto de Blanes es el punto mas cercano donde puedes alquilar un barco, a tan solo 15 km por la carretera N-II. Si estas alojado en uno de los muchos hoteles de Pineda, en menos de 20 minutos estaras navegando por las aguas cristalinas de la Costa Brava.
-                  </p>
-                  <h3 className="font-semibold text-lg mb-3">{faqVars.fleetCount} barcos para elegir</h3>
-                  <p className="text-muted-foreground">
-                    Disponemos de una flota de {faqVars.fleetCount} barcos que incluye embarcaciones sin licencia ideales para familias y principiantes, asi como barcos con licencia para navegantes experimentados. Capacidad de 4 a 11 personas segun el modelo elegido.
-                  </p>
+                  <h3 className="font-semibold text-lg mb-3">{s?.whyCard1Title}</h3>
+                  <p className="text-muted-foreground mb-4">{s?.whyCard1Desc}</p>
+                  <h3 className="font-semibold text-lg mb-3">{render(s?.whyCard2Title, '')}</h3>
+                  <p className="text-muted-foreground">{render(s?.whyCard2Desc, '')}</p>
                 </div>
                 <div>
-                  <h3 className="font-semibold text-lg mb-3">Gasolina incluida en barcos sin licencia</h3>
-                  <p className="text-muted-foreground mb-4">
-                    El precio de los barcos sin licencia incluye la gasolina, asi que no hay sorpresas. Desde 70 EUR por hora con el Astec 400, o desde 75 EUR por hora con otros modelos de mayor eslora. El precio que ves es el precio final.
-                  </p>
-                  <h3 className="font-semibold text-lg mb-3">Sin experiencia previa necesaria</h3>
-                  <p className="text-muted-foreground">
-                    Antes de zarpar, nuestro equipo te da 15 minutos de formacion practica: manejo del motor, normas basicas de navegacion y consejos sobre las mejores calas. Cualquier persona mayor de 18 anos puede pilotar un barco sin licencia.
-                  </p>
+                  <h3 className="font-semibold text-lg mb-3">{s?.whyCard3Title}</h3>
+                  <p className="text-muted-foreground mb-4">{s?.whyCard3Desc}</p>
+                  <h3 className="font-semibold text-lg mb-3">{s?.whyCard4Title}</h3>
+                  <p className="text-muted-foreground">{s?.whyCard4Desc}</p>
                 </div>
               </div>
             </CardContent>
@@ -191,34 +189,32 @@ export default function LocationPinedaDeMarPage() {
             <CardHeader>
               <h2 className="flex items-center gap-3 text-2xl font-semibold leading-none tracking-tight">
                 <Star className="w-6 h-6 text-primary" />
-                Pineda de Mar: actividades para huespedes de hotel
+                {s?.townTitle}
               </h2>
             </CardHeader>
             <CardContent>
-              <p className="text-muted-foreground mb-6">
-                Pineda de Mar es conocida por su amplia oferta hotelera, con numerosos hoteles y resorts que atraen a familias de toda Europa. Si buscas una actividad diferente durante tus vacaciones, alquilar un barco y explorar la Costa Brava desde el agua es una experiencia inolvidable que complementa perfectamente tu estancia en la playa.
-              </p>
+              <p className="text-muted-foreground mb-6">{s?.townIntro}</p>
               <div className="grid md:grid-cols-3 gap-6">
                 <div className="text-center">
                   <div className="w-16 h-16 bg-sky-100 rounded-full flex items-center justify-center mx-auto mb-4">
                     <Hotel className="w-8 h-8 text-sky-600" />
                   </div>
-                  <h3 className="font-semibold text-lg mb-2">Zona hotelera de primer nivel</h3>
-                  <p className="text-muted-foreground">Decenas de hoteles y resorts all-inclusive en primera linea de playa. Escapate unas horas para vivir la experiencia nautica que hara unicas tus vacaciones.</p>
+                  <h3 className="font-semibold text-lg mb-2">{s?.townCard1Title}</h3>
+                  <p className="text-muted-foreground">{s?.townCard1Desc}</p>
                 </div>
                 <div className="text-center">
                   <div className="w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-4">
                     <Sun className="w-8 h-8 text-amber-600" />
                   </div>
-                  <h3 className="font-semibold text-lg mb-2">Playa de Pineda</h3>
-                  <p className="text-muted-foreground">Mas de 1 km de playa de arena dorada con todos los servicios. Despues de navegar, vuelve a tu hotel a relajarte junto al mar.</p>
+                  <h3 className="font-semibold text-lg mb-2">{s?.townCard2Title}</h3>
+                  <p className="text-muted-foreground">{s?.townCard2Desc}</p>
                 </div>
                 <div className="text-center">
                   <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
                     <Users className="w-8 h-8 text-green-600" />
                   </div>
-                  <h3 className="font-semibold text-lg mb-2">Perfecta para familias</h3>
-                  <p className="text-muted-foreground">Pineda es un destino familiar por excelencia. Nuestros barcos sin licencia son seguros y faciles de manejar, ideales para una excursion en familia por la costa.</p>
+                  <h3 className="font-semibold text-lg mb-2">{s?.townCard3Title}</h3>
+                  <p className="text-muted-foreground">{s?.townCard3Desc}</p>
                 </div>
               </div>
             </CardContent>
@@ -229,7 +225,7 @@ export default function LocationPinedaDeMarPage() {
             <CardHeader>
               <h2 className="flex items-center gap-3 text-2xl font-semibold leading-none tracking-tight">
                 <Car className="w-6 h-6 text-primary" />
-                Como llegar de Pineda de Mar al Puerto de Blanes
+                {s?.howTitle}
               </h2>
             </CardHeader>
             <CardContent>
@@ -237,34 +233,26 @@ export default function LocationPinedaDeMarPage() {
                 <div>
                   <h3 className="font-semibold text-lg mb-3 flex items-center gap-2">
                     <Car className="w-5 h-5 text-primary" />
-                    En coche (18 minutos)
+                    {s?.howCarTitle}
                   </h3>
-                  <p className="text-muted-foreground mb-4">
-                    Toma la N-II en direccion norte hacia Blanes. Son 15 km de trayecto comodo y directo. Desde la mayoria de hoteles de Pineda de Mar llegaras al Puerto de Blanes en unos 18 minutos. El trayecto bordea la costa y es muy agradable.
-                  </p>
+                  <p className="text-muted-foreground mb-4">{s?.howCarDesc}</p>
                   <h3 className="font-semibold text-lg mb-3 flex items-center gap-2">
                     <Users className="w-5 h-5 text-primary" />
-                    En taxi
+                    {s?.howTaxiTitle}
                   </h3>
-                  <p className="text-muted-foreground">
-                    Un taxi desde Pineda de Mar al Puerto de Blanes cuesta aproximadamente 20-25 EUR. Es una buena opcion si no dispones de coche o prefieres no preocuparte por el aparcamiento.
-                  </p>
+                  <p className="text-muted-foreground">{s?.howTaxiDesc}</p>
                 </div>
                 <div>
                   <h3 className="font-semibold text-lg mb-3 flex items-center gap-2">
                     <Train className="w-5 h-5 text-primary" />
-                    En tren RENFE (12 minutos)
+                    {s?.howTransportTitle}
                   </h3>
-                  <p className="text-muted-foreground mb-4">
-                    La linea R1 de Rodalies de RENFE conecta Pineda de Mar con Blanes en solo 12 minutos. Los trenes salen cada 30 minutos en temporada alta. Desde la estacion de Blanes, el puerto esta a unos 10-15 minutos caminando por el paseo maritimo.
-                  </p>
+                  <p className="text-muted-foreground mb-4">{s?.howTransportDesc}</p>
                   <h3 className="font-semibold text-lg mb-3 flex items-center gap-2">
                     <ParkingCircle className="w-5 h-5 text-primary" />
-                    Aparcamiento en Blanes
+                    {s?.howParkingTitle}
                   </h3>
-                  <p className="text-muted-foreground">
-                    Hay aparcamiento gratuito disponible cerca del Puerto de Blanes. En temporada alta (julio-agosto) recomendamos llegar temprano o considerar el tren como alternativa comoda y rapida.
-                  </p>
+                  <p className="text-muted-foreground">{s?.howParkingDesc}</p>
                 </div>
               </div>
             </CardContent>
@@ -275,22 +263,20 @@ export default function LocationPinedaDeMarPage() {
             <CardHeader>
               <h2 className="flex items-center gap-3 text-2xl font-semibold leading-none tracking-tight">
                 <Anchor className="w-6 h-6 text-primary" />
-                ¿Que puedes ver en barco desde Blanes?
+                {s?.destsTitle}
               </h2>
             </CardHeader>
             <CardContent>
-              <p className="text-muted-foreground mb-4">
-                Desde el Puerto de Blanes puedes navegar hacia el norte por la espectacular costa de la Costa Brava. Descubre calas escondidas, acantilados impresionantes y pueblos medievales como Tossa de Mar. Con un barco sin licencia puedes explorar hasta 2 millas de la costa, suficiente para llegar a las calas mas bonitas de la zona.
-              </p>
+              <p className="text-muted-foreground mb-4">{s?.destsIntro}</p>
               <div className="flex flex-wrap gap-3">
                 <Link href={localizedPath("locationLloret")}>
-                  <Badge variant="outline" className="cursor-pointer hover:bg-primary/10">Lloret de Mar - 25 min</Badge>
+                  <Badge variant="outline" className="cursor-pointer hover:bg-primary/10">{s?.destLloret}</Badge>
                 </Link>
                 <Link href={localizedPath("locationTossa")}>
-                  <Badge variant="outline" className="cursor-pointer hover:bg-primary/10">Tossa de Mar - 1h</Badge>
+                  <Badge variant="outline" className="cursor-pointer hover:bg-primary/10">{s?.destTossa}</Badge>
                 </Link>
                 <Link href={localizedPath("locationBlanes")}>
-                  <Badge variant="outline" className="cursor-pointer hover:bg-primary/10">Calas de Blanes</Badge>
+                  <Badge variant="outline" className="cursor-pointer hover:bg-primary/10">{s?.destBlanes}</Badge>
                 </Link>
               </div>
             </CardContent>
@@ -301,30 +287,28 @@ export default function LocationPinedaDeMarPage() {
             <CardHeader>
               <h2 className="flex items-center gap-3 text-2xl font-semibold leading-none tracking-tight">
                 <Clock className="w-6 h-6 text-primary" />
-                Precios de alquiler de barcos
+                {s?.pricingTitle}
               </h2>
             </CardHeader>
             <CardContent>
-              <p className="text-muted-foreground mb-4">
-                Ofrecemos precios competitivos con gasolina incluida en todos los barcos sin licencia. No hay costes ocultos ni suplementos por combustible.
-              </p>
+              <p className="text-muted-foreground mb-4">{s?.pricingIntro}</p>
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
-                  <h3 className="font-semibold text-lg mb-3">Barcos sin licencia</h3>
-                  <p className="text-muted-foreground mb-2">Desde {faqVars.noLicBaja1h} EUR/hora (gasolina incluida)</p>
-                  <p className="text-muted-foreground">Capacidad: 4-7 personas segun modelo</p>
+                  <h3 className="font-semibold text-lg mb-3">{s?.pricingNoLicTitle}</h3>
+                  <p className="text-muted-foreground mb-2">{render(s?.pricingNoLicFrom, '')}</p>
+                  <p className="text-muted-foreground">{s?.pricingNoLicCapacity}</p>
                 </div>
                 <div>
-                  <h3 className="font-semibold text-lg mb-3">Barcos con licencia</h3>
-                  <p className="text-muted-foreground mb-2">Desde {faqVars.licBaja2h} EUR / 2 horas</p>
-                  <p className="text-muted-foreground mb-2">Motores de 40 a 115 CV</p>
-                  <p className="text-muted-foreground">Capacidad: hasta 11 personas</p>
+                  <h3 className="font-semibold text-lg mb-3">{s?.pricingLicTitle}</h3>
+                  <p className="text-muted-foreground mb-2">{render(s?.pricingLicFrom, '')}</p>
+                  <p className="text-muted-foreground mb-2">{s?.pricingLicEngines}</p>
+                  <p className="text-muted-foreground">{s?.pricingLicCapacity}</p>
                 </div>
               </div>
               <div className="mt-4">
                 <Link href={localizedPath("pricing")}>
                   <Button variant="outline" size="sm">
-                    Ver todos los precios y barcos
+                    {s?.pricingButton}
                   </Button>
                 </Link>
               </div>
@@ -334,12 +318,8 @@ export default function LocationPinedaDeMarPage() {
           {/* CTA Section */}
           <Card className="bg-primary text-white">
             <CardContent className="py-8 text-center">
-              <h2 className="text-2xl font-bold mb-4">
-                Reserva tu barco desde Pineda de Mar
-              </h2>
-              <p className="text-lg mb-6 max-w-2xl mx-auto">
-                En 18 minutos estaras en el Puerto de Blanes listo para zarpar. Contactanos por WhatsApp para reservar tu barco y vivir una experiencia unica en la Costa Brava.
-              </p>
+              <h2 className="text-2xl font-bold mb-4">{s?.ctaTitle}</h2>
+              <p className="text-lg mb-6 max-w-2xl mx-auto">{s?.ctaDesc}</p>
               <Button
                 onClick={handleBookingWhatsApp}
                 size="lg"
@@ -347,7 +327,7 @@ export default function LocationPinedaDeMarPage() {
                 className="text-primary hover:text-primary"
                 data-testid="button-whatsapp-pineda"
               >
-                Reservar por WhatsApp
+                {s?.ctaButton}
               </Button>
             </CardContent>
           </Card>
@@ -359,7 +339,7 @@ export default function LocationPinedaDeMarPage() {
       <div className="py-12 bg-background">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-2xl font-heading font-bold text-center mb-8">
-            Preguntas frecuentes sobre alquilar barco desde Pineda de Mar
+            {s?.faqTitle}
           </h2>
           <div className="space-y-3">
             {processedFaqItems.map((item, index) => (

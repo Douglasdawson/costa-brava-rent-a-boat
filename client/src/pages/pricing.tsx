@@ -29,6 +29,7 @@ import {
   generateBreadcrumbSchema,
 } from "@/utils/seo-config";
 import type { Boat } from "@shared/schema";
+import { getMinActivePrice } from "@shared/pricing";
 
 type SeasonKey = "BAJA" | "MEDIA" | "ALTA";
 
@@ -47,10 +48,22 @@ const SEASON_NAMES: Record<SeasonKey, string> = {
 function getMinPrice(boat: Boat, season: SeasonKey): number | null {
   if (!boat.pricing) return null;
   const seasonData = (boat.pricing as Record<SeasonKey, { period: string; prices: Record<string, number> }>)[season];
-  if (!seasonData?.prices) return null;
-  const values = Object.values(seasonData.prices);
-  if (values.length === 0) return null;
-  return Math.min(...values);
+  return getMinActivePrice(seasonData?.prices);
+}
+
+/** Cheapest active price for a given duration across a list of boats, or null. */
+function minPriceAcrossBoats(
+  boats: Boat[],
+  duration: string,
+  season: SeasonKey,
+): number | null {
+  let min = Infinity;
+  for (const b of boats) {
+    const pricing = b.pricing as Record<SeasonKey, { prices: Record<string, number | null | undefined> }> | null;
+    const p = pricing?.[season]?.prices?.[duration];
+    if (typeof p === "number" && p > 0 && p < min) min = p;
+  }
+  return Number.isFinite(min) ? min : null;
 }
 
 function formatPrice(price: number | null): string {
@@ -95,6 +108,22 @@ export default function PricingPage() {
     .filter((boat) => boat.isActive)
     .sort((a, b) => (a.displayOrder ?? 999) - (b.displayOrder ?? 999));
 
+  const unlicensedBoats = activeBoats.filter((b) => !b.requiresLicense);
+  const licensedBoats = activeBoats.filter((b) => b.requiresLicense);
+
+  // Dynamic "desde X €" figures for FAQ + JSON-LD so they stay in sync with admin pricing.
+  const noLic1h = {
+    BAJA: minPriceAcrossBoats(unlicensedBoats, "1h", "BAJA"),
+    MEDIA: minPriceAcrossBoats(unlicensedBoats, "1h", "MEDIA"),
+    ALTA: minPriceAcrossBoats(unlicensedBoats, "1h", "ALTA"),
+  };
+  const lic2hBaja = minPriceAcrossBoats(licensedBoats, "2h", "BAJA");
+
+  const priceTag = (v: number | null, unit: string) => (v !== null ? `${v} €${unit}` : "—");
+
+  const noLicAnswer = `Los barcos sin licencia en Blanes cuestan desde ${priceTag(noLic1h.BAJA, "/hora")} en temporada baja (abril-junio, septiembre-octubre). En temporada media (julio) desde ${priceTag(noLic1h.MEDIA, "/hora")} y en temporada alta (agosto) desde ${priceTag(noLic1h.ALTA, "/hora")}. El precio incluye gasolina, seguro y equipo de seguridad.`;
+  const licAnswer = `Los barcos con licencia en Blanes cuestan desde ${priceTag(lic2hBaja, "/2h")} en temporada baja. Requieren PER o título náutico equivalente. Son barcos más potentes con mayor autonomía para explorar la Costa Brava.`;
+
   const breadcrumbSchema = generateBreadcrumbSchema([
     { name: t.breadcrumbs?.home || "Inicio", url: "/" },
     { name: "Precios", url: "/precios" },
@@ -106,10 +135,7 @@ export default function PricingPage() {
       {
         "@type": "Question",
         name: "¿Cuánto cuesta alquilar un barco sin licencia en Blanes?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Los barcos sin licencia en Blanes cuestan desde 70 €/hora en temporada baja (abril-junio, septiembre-octubre). En temporada media (julio) desde 80 €/hora y en temporada alta (agosto) desde 90 €/hora. El precio incluye gasolina, seguro y equipo de seguridad.",
-        },
+        acceptedAnswer: { "@type": "Answer", text: noLicAnswer },
       },
       {
         "@type": "Question",
@@ -130,10 +156,7 @@ export default function PricingPage() {
       {
         "@type": "Question",
         name: "¿Cuánto cuesta alquilar un barco con licencia en Blanes?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Los barcos con licencia en Blanes cuestan desde 160 €/2h en temporada baja. Requieren PER o título náutico equivalente. Son barcos más potentes con mayor autonomía para explorar la Costa Brava.",
-        },
+        acceptedAnswer: { "@type": "Answer", text: licAnswer },
       },
     ],
   };
@@ -216,7 +239,7 @@ export default function PricingPage() {
             </Badge>
             <Badge variant="outline" className="text-primary border-primary">
               <Anchor className="w-4 h-4 mr-2" />
-              7 embarcaciones disponibles
+              {activeBoats.length} embarcaciones disponibles
             </Badge>
           </div>
           <p className="text-muted-foreground text-sm text-center mb-8">
@@ -554,12 +577,7 @@ export default function PricingPage() {
                   <h3 className="font-semibold mb-2">
                     ¿Cuánto cuesta alquilar un barco sin licencia en Blanes?
                   </h3>
-                  <p className="text-muted-foreground">
-                    Los barcos sin licencia cuestan desde 70 €/hora en temporada baja
-                    (abril-junio, septiembre-octubre). En temporada media (julio) desde
-                    80 €/hora y en temporada alta (agosto) desde 90 €/hora. El precio incluye
-                    gasolina, seguro y equipo de seguridad.
-                  </p>
+                  <p className="text-muted-foreground">{noLicAnswer}</p>
                 </CardContent>
               </Card>
               <Card>
@@ -592,11 +610,7 @@ export default function PricingPage() {
                   <h3 className="font-semibold mb-2">
                     ¿Cuánto cuesta alquilar un barco con licencia?
                   </h3>
-                  <p className="text-muted-foreground">
-                    Los barcos con licencia cuestan desde 160 €/2h en temporada baja.
-                    Requieren PER o título náutico equivalente. Son barcos más potentes
-                    con mayor autonomía para explorar toda la Costa Brava.
-                  </p>
+                  <p className="text-muted-foreground">{licAnswer}</p>
                 </CardContent>
               </Card>
             </div>

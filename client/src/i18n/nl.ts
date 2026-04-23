@@ -1636,6 +1636,86 @@ export const nl: Translations = {
     bookingWithBoat: 'Hallo! Ik ben geïnteresseerd in een reservering voor de {boatName}. Kunnen jullie me helpen met beschikbaarheid en prijzen? Bedankt!',
     bookingGeneric: 'Hallo! Ik zou graag een boot willen huren. Kunnen jullie me helpen met beschikbaarheid en prijzen?',
   },
+  activitySunset: {
+    faqItems: [
+      {
+        question: 'Hoe laat moet ik vertrekken voor een boottocht bij zonsondergang?',
+        answer: 'We raden aan om 2 uur voor zonsondergang te vertrekken. Zo heb je tijd om langs de kust te varen, een mooie baai te vinden en je te installeren voor het gouden uur. In de zomer (juni-juli) vertrek je rond 19:00-19:30 uur. In de lente en herfst rond 17:30-18:30 uur. Ons team in de haven geeft je op de dag van vertrek het exacte tijdstip van de zonsondergang door.',
+      },
+      {
+        question: 'Heb ik een vaarbewijs nodig voor een tocht bij zonsondergang?',
+        answer: 'Nee. Onze boten zonder vaarbewijs zijn perfect voor tochten bij zonsondergang. Je moet alleen ouder zijn dan 18 jaar. We geven je voor vertrek een veiligheidsinstructie van 15 minuten. De boten zijn gemakkelijk te besturen en hebben een maximumsnelheid die ze zeer veilig maakt om bij zonsondergang mee te varen.',
+      },
+      {
+        question: 'Is het veilig om bij zonsondergang op een boot te zijn en terug te keren bij weinig licht?',
+        answer: 'Ja. Al onze boten zijn uitgerust met navigatielichten voor gebruik bij schemering. De haven van Blanes is goed verlicht en gemakkelijk binnen te varen bij het vallen van de avond. We raden aan uiterlijk 30 minuten na zonsondergang terug te keren, wanneer het nog licht genoeg is. Ons team informeert je over de terugroute.',
+      },
+      {
+        question: 'Hoeveel kost een boottocht bij zonsondergang?',
+        answer: 'Een boottocht van 2 uur bij zonsondergang in een boot zonder vaarbewijs kost vanaf 140 EUR in totaal ({noLicBaja1h} EUR/uur in het laagseizoen). Brandstof is inbegrepen bij boten zonder vaarbewijs. De boot is geschikt voor maximaal 5 personen, dus de prijs per persoon kan vanaf 28 EUR zijn. Boten zonder vaarbewijs zijn inclusief brandstof, verzekering, veiligheidsuitrusting en instructie.',
+      },
+    ],
+  },
+  activitySnorkel: {
+    faqItems: [
+      {
+        question: 'Kan ik snorkeluitrusting huren bij de boot?',
+        answer: 'Ja. Wij bieden snorkelsets (masker, snorkel en vinnen) aan voor 7,50 EUR per persoon. De uitrusting wordt opgehaald bij het instappen en ingeleverd aan het einde van de huurperiode. Je mag ook je eigen uitrusting meenemen zonder extra kosten.',
+      },
+      {
+        question: 'Wat is de beste tijd om te snorkelen in Blanes?',
+        answer: 'Van juni tot september ligt de watertemperatuur tussen de 22 en 26 graden, ideaal om te snorkelen zonder wetsuit. Het beste zicht is er in juni en september, wanneer het minder druk is en het water rustiger. In juli en augustus is het water warmer maar kan er meer golfslag zijn op winderige dagen.',
+      },
+      {
+        question: 'Is snorkelen vanaf de boot veilig zonder ervaring?',
+        answer: 'Absoluut. Voordat je vertrekt geven we een veiligheidsinstructie van 15 minuten waarin we uitleggen hoe je de boot correct afmeert. Alle boten hebben reddingsvesten aan boord. Voor beginners raden we beschutte baaien aan zoals Cala Sant Francesc.',
+      },
+      {
+        question: 'Hoeveel baaien kan ik bezoeken tijdens een snorkeltocht?',
+        answer: 'In 2 uur kun je 1-2 baaien bezoeken met voldoende tijd om te snorkelen. In 4 uur kun je een volledige route van 3-4 baaien doen. We raden minimaal 3 uur aan om zonder haast te genieten van het snorkelen en varen.',
+      },
+    ],
+  },
+  activityFamilies: {
+    faqItems: [
+      {
+        question: 'Vanaf welke leeftijd mogen kinderen mee op de boot?',
+        answer: 'Er is geen minimumleeftijd. Baby\'s en kinderen van alle leeftijden zijn welkom. Alle minderjarigen moeten tijdens de vaart een goedgekeurd zwemvest dragen. Voor baby\'s raden we korte tochten van 1-2 uur aan en het kiezen van dagen met rustige zee.',
+      },
+      {
+        question: 'Heb ik een vaarbewijs nodig om een gezinsboot te huren?',
+        answer: 'Nee. Voor onze boten zonder vaarbewijs is geen enkel vaardiploma vereist. Je hoeft alleen 18 jaar of ouder te zijn. We geven je voor vertrek een volledige instructie van 15 minuten. Het zijn veilige, stabiele boten die zeer gemakkelijk te besturen zijn.',
+      },
+      {
+        question: 'Wat is inbegrepen bij de huurprijs?',
+        answer: 'De prijs voor boten zonder vaarbewijs is inclusief brandstof, verzekering, zwemvesten voor iedereen (ook kindermaten), zwemladder, zonnescherm/bimini en de veiligheidsinstructie. Alleen snorkeluitrusting is extra (7,50 EUR/persoon).',
+      },
+      {
+        question: 'Wat moeten we meenemen voor een boottocht met kinderen?',
+        answer: 'We raden aan om mee te nemen: zonnebrandcrème met hoge beschermingsfactor (waterproof), petten of hoeden, voldoende water, snacks of picknick, handdoeken, zwemkleding en een set droge kleren. Optioneel: waterdichte camera, strandspeelgoed en eigen snorkeluitrusting.',
+      },
+    ],
+  },
+  activityFishing: {
+    faqItems: [
+      {
+        question: 'Is er visuitrusting inbegrepen bij de boten?',
+        answer: 'Nee. Je moet je eigen visuitrusting meenemen (hengels, molens, kunstaas, aas). Onze boten bieden het vaarplatform, maar vismateriaal is niet inbegrepen. In Blanes zijn er nautische winkels bij de haven waar je vers aas en basismateriaal kunt kopen.',
+      },
+      {
+        question: 'Heb ik een visvergunning nodig om vanaf de boot te vissen?',
+        answer: 'Ja. Voor recreatief zeevissen heb je de recreatieve zeevisvergunning van de Generalitat de Catalunya nodig. Je kunt deze online verkrijgen via gencat.cat voor ongeveer 14 EUR (geldig 2 jaar). Dit is iets anders dan een vaarbewijs: de visvergunning is voor het vissen, het vaarbewijs voor het besturen van de boot.',
+      },
+      {
+        question: 'Welke boot heb ik nodig om op zee te vissen?',
+        answer: 'Dat hangt af van het type vissen. Voor bodemvissen in nabijgelegen baaien (zeebaarzen, dorades) is een boot zonder vergunning voldoende. Voor vissen in open water (seriola\'s, trolling) heb je een boot met vergunning nodig die meer bereik en vermogen heeft. Neem via WhatsApp contact met ons op en we adviseren je op basis van je ervaring.',
+      },
+      {
+        question: 'Wat zijn de visregels aan de Costa Brava?',
+        answer: 'Recreatief vissen in Catalunya kent vangstlimieten: maximaal 5 kg per persoon per dag (behalve als één exemplaar dit gewicht overschrijdt). Er gelden minimummaten per vissoort (zeebaarzen 36 cm, dorade 20 cm). Vissen is verboden in zeereservaten en in zwemzones. Sommige technieken zoals onderwatervissen vereisen een specifieke vergunning.',
+      },
+    ],
+  },
   locationPages: {
     blanes: {
       faqItems: [
@@ -1743,6 +1823,25 @@ export const nl: Translations = {
         expTossaDesc: 'Met een boot met vaarbewijs vaart u 30-45 min naar het noorden naar de Vila Vella van Tossa de Mar, langs verborgen baaien en spectaculaire kliffen.',
         expFishingTitle: 'Sportvissen',
         expFishingDesc: 'De wateren voor Blanes zijn rijk aan goudbrasem, zeebaars en zeebrasem. Anker boven de rotsachtige zeebodem tussen Blanes en Lloret voor een dag vissen.',
+        nearbyTownsTitle: 'Plaatsen in de buurt van de haven van Blanes',
+        nearbyTownsIntro: 'Toeristen die verblijven aan de kust van Maresme kunnen gemakkelijk de haven van Blanes bereiken:',
+        nearbyTownsMalgratTime: '10 min',
+        nearbyTownsSantaSusannaTime: '15 min',
+        nearbyTownsCalellaTime: '20 min met de auto',
+        nearbyTownsConjunction: 'en',
+        nearbyTownsTransport: 'Ook bereikbaar met de RENFE-trein lijn R1.',
+        crossLinksTitle: 'Ontdek onze diensten vanuit Blanes',
+        crossLinkCostaBrava: 'Verken de hele Costa Brava per boot',
+        crossLinkLicenseFree: 'Bootverhuur zonder vaarbewijs',
+        crossLinkLicensed: 'Boten met vaarbewijs in Blanes',
+        crossLinkPricing: 'Prijzen en tarieven per seizoen',
+        crossLinkLloret: 'Boottocht naar Lloret de Mar',
+        crossLinkTossa: 'Vaar naar Tossa de Mar',
+        mapIframeTitle: 'Locatiekaart - Haven van Blanes',
+      },
+      schema: {
+        name: 'Bootverhuur in Blanes, Costa Brava',
+        description: 'Bootverhuur met en zonder vaarbewijs in Blanes. Haven van Blanes, Costa Brava. Boten voor 4-7 personen.',
       },
     },
     lloret: {
@@ -2268,85 +2367,5 @@ export const nl: Translations = {
       success: 'Gids verzonden! Controleer uw e-mail.',
       error: 'Verzenden mislukt. Probeer opnieuw.',
     },
-  },
-  activitySunset: {
-    faqItems: [
-      {
-        question: 'Hoe laat moet ik vertrekken voor een boottocht bij zonsondergang?',
-        answer: 'We raden aan om 2 uur voor zonsondergang te vertrekken. Zo heb je tijd om langs de kust te varen, een mooie baai te vinden en je te installeren voor het gouden uur. In de zomer (juni-juli) vertrek je rond 19:00-19:30 uur. In de lente en herfst rond 17:30-18:30 uur. Ons team in de haven geeft je op de dag van vertrek het exacte tijdstip van de zonsondergang door.',
-      },
-      {
-        question: 'Heb ik een vaarbewijs nodig voor een tocht bij zonsondergang?',
-        answer: 'Nee. Onze boten zonder vaarbewijs zijn perfect voor tochten bij zonsondergang. Je moet alleen ouder zijn dan 18 jaar. We geven je voor vertrek een veiligheidsinstructie van 15 minuten. De boten zijn gemakkelijk te besturen en hebben een maximumsnelheid die ze zeer veilig maakt om bij zonsondergang mee te varen.',
-      },
-      {
-        question: 'Is het veilig om bij zonsondergang op een boot te zijn en terug te keren bij weinig licht?',
-        answer: 'Ja. Al onze boten zijn uitgerust met navigatielichten voor gebruik bij schemering. De haven van Blanes is goed verlicht en gemakkelijk binnen te varen bij het vallen van de avond. We raden aan uiterlijk 30 minuten na zonsondergang terug te keren, wanneer het nog licht genoeg is. Ons team informeert je over de terugroute.',
-      },
-      {
-        question: 'Hoeveel kost een boottocht bij zonsondergang?',
-        answer: 'Een boottocht van 2 uur bij zonsondergang in een boot zonder vaarbewijs kost vanaf 140 EUR in totaal ({noLicBaja1h} EUR/uur in het laagseizoen). Brandstof is inbegrepen bij boten zonder vaarbewijs. De boot is geschikt voor maximaal 5 personen, dus de prijs per persoon kan vanaf 28 EUR zijn. Boten zonder vaarbewijs zijn inclusief brandstof, verzekering, veiligheidsuitrusting en instructie.',
-      },
-    ],
-  },
-  activitySnorkel: {
-    faqItems: [
-      {
-        question: 'Kan ik snorkeluitrusting huren bij de boot?',
-        answer: 'Ja. Wij bieden snorkelsets (masker, snorkel en vinnen) aan voor 7,50 EUR per persoon. De uitrusting wordt opgehaald bij het instappen en ingeleverd aan het einde van de huurperiode. Je mag ook je eigen uitrusting meenemen zonder extra kosten.',
-      },
-      {
-        question: 'Wat is de beste tijd om te snorkelen in Blanes?',
-        answer: 'Van juni tot september ligt de watertemperatuur tussen de 22 en 26 graden, ideaal om te snorkelen zonder wetsuit. Het beste zicht is er in juni en september, wanneer het minder druk is en het water rustiger. In juli en augustus is het water warmer maar kan er meer golfslag zijn op winderige dagen.',
-      },
-      {
-        question: 'Is snorkelen vanaf de boot veilig zonder ervaring?',
-        answer: 'Absoluut. Voordat je vertrekt geven we een veiligheidsinstructie van 15 minuten waarin we uitleggen hoe je de boot correct afmeert. Alle boten hebben reddingsvesten aan boord. Voor beginners raden we beschutte baaien aan zoals Cala Sant Francesc.',
-      },
-      {
-        question: 'Hoeveel baaien kan ik bezoeken tijdens een snorkeltocht?',
-        answer: 'In 2 uur kun je 1-2 baaien bezoeken met voldoende tijd om te snorkelen. In 4 uur kun je een volledige route van 3-4 baaien doen. We raden minimaal 3 uur aan om zonder haast te genieten van het snorkelen en varen.',
-      },
-    ],
-  },
-  activityFamilies: {
-    faqItems: [
-      {
-        question: 'Vanaf welke leeftijd mogen kinderen mee op de boot?',
-        answer: 'Er is geen minimumleeftijd. Baby\'s en kinderen van alle leeftijden zijn welkom. Alle minderjarigen moeten tijdens de vaart een goedgekeurd zwemvest dragen. Voor baby\'s raden we korte tochten van 1-2 uur aan en het kiezen van dagen met rustige zee.',
-      },
-      {
-        question: 'Heb ik een vaarbewijs nodig om een gezinsboot te huren?',
-        answer: 'Nee. Voor onze boten zonder vaarbewijs is geen enkel vaardiploma vereist. Je hoeft alleen 18 jaar of ouder te zijn. We geven je voor vertrek een volledige instructie van 15 minuten. Het zijn veilige, stabiele boten die zeer gemakkelijk te besturen zijn.',
-      },
-      {
-        question: 'Wat is inbegrepen bij de huurprijs?',
-        answer: 'De prijs voor boten zonder vaarbewijs is inclusief brandstof, verzekering, zwemvesten voor iedereen (ook kindermaten), zwemladder, zonnescherm/bimini en de veiligheidsinstructie. Alleen snorkeluitrusting is extra (7,50 EUR/persoon).',
-      },
-      {
-        question: 'Wat moeten we meenemen voor een boottocht met kinderen?',
-        answer: 'We raden aan om mee te nemen: zonnebrandcrème met hoge beschermingsfactor (waterproof), petten of hoeden, voldoende water, snacks of picknick, handdoeken, zwemkleding en een set droge kleren. Optioneel: waterdichte camera, strandspeelgoed en eigen snorkeluitrusting.',
-      },
-    ],
-  },
-  activityFishing: {
-    faqItems: [
-      {
-        question: 'Is er visuitrusting inbegrepen bij de boten?',
-        answer: 'Nee. Je moet je eigen visuitrusting meenemen (hengels, molens, kunstaas, aas). Onze boten bieden het vaarplatform, maar vismateriaal is niet inbegrepen. In Blanes zijn er nautische winkels bij de haven waar je vers aas en basismateriaal kunt kopen.',
-      },
-      {
-        question: 'Heb ik een visvergunning nodig om vanaf de boot te vissen?',
-        answer: 'Ja. Voor recreatief zeevissen heb je de recreatieve zeevisvergunning van de Generalitat de Catalunya nodig. Je kunt deze online verkrijgen via gencat.cat voor ongeveer 14 EUR (geldig 2 jaar). Dit is iets anders dan een vaarbewijs: de visvergunning is voor het vissen, het vaarbewijs voor het besturen van de boot.',
-      },
-      {
-        question: 'Welke boot heb ik nodig om op zee te vissen?',
-        answer: 'Dat hangt af van het type vissen. Voor bodemvissen in nabijgelegen baaien (zeebaarzen, dorades) is een boot zonder vergunning voldoende. Voor vissen in open water (seriola\'s, trolling) heb je een boot met vergunning nodig die meer bereik en vermogen heeft. Neem via WhatsApp contact met ons op en we adviseren je op basis van je ervaring.',
-      },
-      {
-        question: 'Wat zijn de visregels aan de Costa Brava?',
-        answer: 'Recreatief vissen in Catalunya kent vangstlimieten: maximaal 5 kg per persoon per dag (behalve als één exemplaar dit gewicht overschrijdt). Er gelden minimummaten per vissoort (zeebaarzen 36 cm, dorade 20 cm). Vissen is verboden in zeereservaten en in zwemzones. Sommige technieken zoals onderwatervissen vereisen een specifieke vergunning.',
-      },
-    ],
   },
 };

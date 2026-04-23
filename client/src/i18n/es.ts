@@ -856,6 +856,28 @@ export const es: Translations = {
         expTossaDesc: 'Con un barco con licencia, navega 30-45 min hacia el norte hasta la Vila Vella de Tossa de Mar, pasando por calas escondidas y acantilados espectaculares. Fondea frente a las murallas medievales y báñate en aguas turquesa.',
         expFishingTitle: 'Pesca deportiva',
         expFishingDesc: 'Las aguas frente a Blanes son ricas en doradas, lubinas y sargos. Sal temprano con tu barco, fondea sobre los fondos rocosos entre Blanes y Lloret, y disfruta de una jornada de pesca en la Costa Brava.',
+        // Nearby towns block
+        nearbyTownsTitle: 'Pueblos cercanos al Puerto de Blanes',
+        nearbyTownsIntro: 'Turistas alojados en la costa del Maresme pueden llegar fácilmente al Puerto de Blanes:',
+        nearbyTownsMalgratTime: '10 min',
+        nearbyTownsSantaSusannaTime: '15 min',
+        nearbyTownsCalellaTime: '20 min en coche',
+        nearbyTownsConjunction: 'y',
+        nearbyTownsTransport: 'También accesible en tren RENFE línea R1.',
+        // Cross-links (related services)
+        crossLinksTitle: 'Explora nuestros servicios desde Blanes',
+        crossLinkCostaBrava: 'Explorar toda la Costa Brava en barco',
+        crossLinkLicenseFree: 'Alquiler de barcos sin licencia',
+        crossLinkLicensed: 'Barcos con licencia en Blanes',
+        crossLinkPricing: 'Precios y tarifas por temporada',
+        crossLinkLloret: 'Excursión en barco a Lloret de Mar',
+        crossLinkTossa: 'Navega hasta Tossa de Mar',
+        // Map iframe (accessible title attribute)
+        mapIframeTitle: 'Mapa de ubicación - Puerto de Blanes',
+      },
+      schema: {
+        name: 'Alquiler de Barcos en Blanes, Costa Brava',
+        description: 'Alquiler de barcos sin licencia y con licencia en Blanes. Puerto de Blanes, Costa Brava. Embarcaciones para 4-7 personas.',
       },
     },
     lloret: {

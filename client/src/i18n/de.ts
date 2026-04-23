@@ -1637,6 +1637,86 @@ export const de: Translations = {
     bookingWithBoat: 'Hallo! Ich interessiere mich für eine Buchung der {boatName}. Könnten Sie mir bei Verfügbarkeit und Preisen weiterhelfen? Vielen Dank!',
     bookingGeneric: 'Hallo! Ich würde gerne ein Boot mieten. Könnten Sie mir bei Verfügbarkeit und Preisen weiterhelfen?',
   },
+  activitySunset: {
+    faqItems: [
+      {
+        question: 'Wann sollte ich zu einem Bootsausflug bei Sonnenuntergang aufbrechen?',
+        answer: 'Wir empfehlen, 2 Stunden vor Sonnenuntergang aufzubrechen. So haben Sie genügend Zeit, entlang der Küste zu fahren, eine schöne Bucht zu finden und es sich vor der goldenen Stunde gemütlich zu machen. Im Sommer (Juni-Juli) brechen Sie gegen 19:00-19:30 Uhr auf. Im Frühling und Herbst gegen 17:30-18:30 Uhr. Unser Team im Hafen teilt Ihnen am Tag Ihrer Abfahrt die genaue Uhrzeit des Sonnenuntergangs mit.',
+      },
+      {
+        question: 'Brauche ich einen Bootsführerschein für einen Sonnenuntergangsausflug?',
+        answer: 'Nein. Unsere führerscheinfreien Boote sind perfekt für Sonnenuntergangsausflüge geeignet. Sie müssen nur mindestens 18 Jahre alt sein. Wir geben Ihnen vor der Abfahrt eine 15-minütige Sicherheitseinweisung. Die Boote sind leicht zu steuern und haben eine Höchstgeschwindigkeit, die sie sehr sicher für Fahrten bei Sonnenuntergang macht.',
+      },
+      {
+        question: 'Ist es sicher, bei Sonnenuntergang mit dem Boot unterwegs zu sein und bei wenig Licht zurückzukehren?',
+        answer: 'Ja. Alle unsere Boote sind mit Navigationslichtern für den Einsatz bei Dunkelheit ausgestattet. Der Hafen von Blanes ist gut beleuchtet und bei Einbruch der Dunkelheit einfach anzusteuern. Wir empfehlen, spätestens 30 Minuten nach Sonnenuntergang zurückzukehren, wenn es noch hell genug ist. Unser Team informiert Sie über die Rückfahrtroute.',
+      },
+      {
+        question: 'Was kostet ein Bootsausflug bei Sonnenuntergang?',
+        answer: 'Ein 2-stündiger Sonnenuntergangsausflug mit einem führerscheinfreien Boot kostet ab 140 EUR insgesamt ({noLicBaja1h} EUR/Stunde in der Nebensaison). Der Treibstoff ist bei führerscheinfreien Booten im Preis inbegriffen. Das Boot bietet Platz für bis zu 5 Personen, sodass die Kosten pro Person ab 28 EUR betragen können. Die führerscheinfreien Boote beinhalten Treibstoff, Versicherung, Sicherheitsausrüstung und die Einweisung.',
+      },
+    ],
+  },
+  activitySnorkel: {
+    faqItems: [
+      {
+        question: 'Kann ich Schnorchelausrüstung mit dem Boot mieten?',
+        answer: 'Ja. Wir bieten Schnorchelsets (Maske, Schnorchel und Flossen) für 7,50 EUR pro Person an. Die Ausrüstung wird beim Einsteigen abgeholt und am Ende der Miete zurückgegeben. Sie können auch Ihre eigene Ausrüstung ohne zusätzliche Kosten mitbringen.',
+      },
+      {
+        question: 'Wann ist die beste Zeit zum Schnorcheln in Blanes?',
+        answer: 'Von Juni bis September liegt die Wassertemperatur zwischen 22 und 26 Grad, ideal zum Schnorcheln ohne Neoprenanzug. Die beste Sicht hat man im Juni und September, wenn es weniger Besucher gibt und das Wasser ruhiger ist. Im Juli und August ist das Wasser wärmer, aber an windigen Tagen kann es mehr Wellengang geben.',
+      },
+      {
+        question: 'Ist Schnorcheln vom Boot aus ohne Erfahrung sicher?',
+        answer: 'Absolut. Vor der Abfahrt geben wir Ihnen eine 15-minütige Sicherheitseinweisung, in der wir erklären, wie man das Boot richtig ankert. Alle Boote sind mit Schwimmwesten ausgestattet. Wir empfehlen Anfängern das Schnorcheln in geschützten Buchten wie Cala Sant Francesc.',
+      },
+      {
+        question: 'Wie viele Buchten kann ich bei einem Schnorchelausflug besuchen?',
+        answer: 'In 2 Stunden können Sie 1-2 Buchten mit ausreichend Zeit zum Schnorcheln besuchen. In 4 Stunden können Sie eine komplette Route mit 3-4 Buchten machen. Wir empfehlen mindestens 3 Stunden, um das Schnorcheln und die Bootsfahrt in Ruhe zu genießen.',
+      },
+    ],
+  },
+  activityFamilies: {
+    faqItems: [
+      {
+        question: 'Ab welchem Alter dürfen Kinder mit an Bord?',
+        answer: 'Es gibt kein Mindestalter. Babys und Kinder jeden Alters sind willkommen. Alle Minderjährigen müssen während der Fahrt eine zugelassene Schwimmweste tragen. Für Babys empfehlen wir kurze Ausflüge von 1-2 Stunden und ruhige Seetage.',
+      },
+      {
+        question: 'Brauche ich einen Bootsführerschein, um ein Familienboot zu mieten?',
+        answer: 'Nein. Unsere führerscheinfreien Boote erfordern keinen Bootsführerschein. Sie müssen lediglich mindestens 18 Jahre alt sein. Wir geben Ihnen vor der Abfahrt eine vollständige Einweisung von 15 Minuten. Es sind sichere, stabile und sehr leicht zu steuernde Boote.',
+      },
+      {
+        question: 'Was ist im Mietpreis enthalten?',
+        answer: 'Der Preis für die führerscheinfreien Boote beinhaltet Benzin, Versicherung, Schwimmwesten für alle (einschließlich Kinder), Badeleiter, Sonnenverdeck/Bimini und die Sicherheitseinweisung. Nur die Schnorchelausrüstung kostet extra (7,50 EUR/Person).',
+      },
+      {
+        question: 'Was sollten wir für einen Bootsausflug mit Kindern mitnehmen?',
+        answer: 'Wir empfehlen mitzubringen: Sonnencreme mit hohem Lichtschutzfaktor (wasserfest), Kappen oder Hüte, reichlich Wasser, Snacks oder Picknick, Handtücher, Badesachen und Wechselkleidung. Optional: Unterwasserkamera, Strandspielzeug und eigene Schnorchelausrüstung.',
+      },
+    ],
+  },
+  activityFishing: {
+    faqItems: [
+      {
+        question: 'Ist Angelausrüstung in den Booten enthalten?',
+        answer: 'Nein. Sie müssen Ihre eigene Angelausrüstung mitbringen (Ruten, Rollen, Köder, Köderfische). Unsere Boote stellen die Navigationsplattform bereit, beinhalten jedoch kein Angelmaterial. In Blanes gibt es Schiffszubehörgeschäfte in Hafennähe, wo Sie frischen Köder und Grundausstattung kaufen können.',
+      },
+      {
+        question: 'Benötige ich einen Angelschein, um vom Boot aus zu angeln?',
+        answer: 'Ja. Für das Freizeitangeln auf See benötigen Sie den maritimen Freizeitangelschein der Generalitat de Catalunya. Sie können ihn online auf gencat.cat für ca. 14 EUR erwerben (Gültigkeit 2 Jahre). Er unterscheidet sich vom Bootsführerschein: Der Angelschein ist zum Angeln, der Bootsführerschein zum Führen des Bootes.',
+      },
+      {
+        question: 'Welches Boot brauche ich zum Meeresangeln?',
+        answer: 'Das hängt von der Art des Angelns ab. Für Grundangeln in nahen Buchten (Wolfsbarsche, Goldbrassen) reicht ein Boot ohne Führerschein aus. Für das Angeln auf offenem Wasser (Bernsteinmakrelen, Schleppangeln) benötigen Sie ein Boot mit Führerschein, das größere Reichweite und Leistung hat. Kontaktieren Sie uns per WhatsApp und wir beraten Sie entsprechend Ihrer Erfahrung.',
+      },
+      {
+        question: 'Welche Fischereivorschriften gelten an der Costa Brava?',
+        answer: 'Das Freizeitangeln in Catalunya hat Fangbeschränkungen: maximal 5 kg pro Person und Tag (außer wenn ein einzelnes Exemplar dieses Gewicht überschreitet). Es gibt Mindestgrößen je Art (Wolfsbarsch 36 cm, Goldbrasse 20 cm). Das Angeln in Meeresschutzgebieten und Badezonen ist verboten. Einige Techniken wie das Harpunenfischen erfordern eine spezielle Lizenz.',
+      },
+    ],
+  },
   locationPages: {
     blanes: {
       faqItems: [
@@ -1744,6 +1824,25 @@ export const de: Translations = {
         expTossaDesc: 'Mit einem fuehrerscheinpflichtigen Boot fahren Sie 30-45 Min. nach Norden zur Vila Vella von Tossa de Mar, vorbei an versteckten Buchten und spektakulaeren Klippen.',
         expFishingTitle: 'Sportfischen',
         expFishingDesc: 'Die Gewaesser vor Blanes sind reich an Goldbrassen, Wolfsbarsch und Geissbrassen. Ankern Sie ueber den Felsgruenden zwischen Blanes und Lloret fuer einen Tag Angeln.',
+        nearbyTownsTitle: 'Orte in der Nähe des Hafens von Blanes',
+        nearbyTownsIntro: 'Touristen, die an der Küste des Maresme untergebracht sind, erreichen den Hafen von Blanes bequem:',
+        nearbyTownsMalgratTime: '10 Min.',
+        nearbyTownsSantaSusannaTime: '15 Min.',
+        nearbyTownsCalellaTime: '20 Min. mit dem Auto',
+        nearbyTownsConjunction: 'und',
+        nearbyTownsTransport: 'Auch mit dem Zug RENFE Linie R1 erreichbar.',
+        crossLinksTitle: 'Entdecken Sie unsere Dienstleistungen ab Blanes',
+        crossLinkCostaBrava: 'Die gesamte Costa Brava mit dem Boot erkunden',
+        crossLinkLicenseFree: 'Bootsverleih ohne Führerschein',
+        crossLinkLicensed: 'Boote mit Führerschein in Blanes',
+        crossLinkPricing: 'Preise und Tarife nach Saison',
+        crossLinkLloret: 'Bootsausflug nach Lloret de Mar',
+        crossLinkTossa: 'Fahrt nach Tossa de Mar',
+        mapIframeTitle: 'Standortkarte - Hafen von Blanes',
+      },
+      schema: {
+        name: 'Bootsverleih in Blanes, Costa Brava',
+        description: 'Bootsverleih ohne und mit Führerschein in Blanes. Hafen von Blanes, Costa Brava. Boote für 4-7 Personen.',
       },
     },
     lloret: {
@@ -2269,85 +2368,5 @@ export const de: Translations = {
       success: 'Führer gesendet! Prüfen Sie Ihre E-Mail.',
       error: 'Fehler beim Senden. Bitte erneut versuchen.',
     },
-  },
-  activitySunset: {
-    faqItems: [
-      {
-        question: 'Wann sollte ich zu einem Bootsausflug bei Sonnenuntergang aufbrechen?',
-        answer: 'Wir empfehlen, 2 Stunden vor Sonnenuntergang aufzubrechen. So haben Sie genügend Zeit, entlang der Küste zu fahren, eine schöne Bucht zu finden und es sich vor der goldenen Stunde gemütlich zu machen. Im Sommer (Juni-Juli) brechen Sie gegen 19:00-19:30 Uhr auf. Im Frühling und Herbst gegen 17:30-18:30 Uhr. Unser Team im Hafen teilt Ihnen am Tag Ihrer Abfahrt die genaue Uhrzeit des Sonnenuntergangs mit.',
-      },
-      {
-        question: 'Brauche ich einen Bootsführerschein für einen Sonnenuntergangsausflug?',
-        answer: 'Nein. Unsere führerscheinfreien Boote sind perfekt für Sonnenuntergangsausflüge geeignet. Sie müssen nur mindestens 18 Jahre alt sein. Wir geben Ihnen vor der Abfahrt eine 15-minütige Sicherheitseinweisung. Die Boote sind leicht zu steuern und haben eine Höchstgeschwindigkeit, die sie sehr sicher für Fahrten bei Sonnenuntergang macht.',
-      },
-      {
-        question: 'Ist es sicher, bei Sonnenuntergang mit dem Boot unterwegs zu sein und bei wenig Licht zurückzukehren?',
-        answer: 'Ja. Alle unsere Boote sind mit Navigationslichtern für den Einsatz bei Dunkelheit ausgestattet. Der Hafen von Blanes ist gut beleuchtet und bei Einbruch der Dunkelheit einfach anzusteuern. Wir empfehlen, spätestens 30 Minuten nach Sonnenuntergang zurückzukehren, wenn es noch hell genug ist. Unser Team informiert Sie über die Rückfahrtroute.',
-      },
-      {
-        question: 'Was kostet ein Bootsausflug bei Sonnenuntergang?',
-        answer: 'Ein 2-stündiger Sonnenuntergangsausflug mit einem führerscheinfreien Boot kostet ab 140 EUR insgesamt ({noLicBaja1h} EUR/Stunde in der Nebensaison). Der Treibstoff ist bei führerscheinfreien Booten im Preis inbegriffen. Das Boot bietet Platz für bis zu 5 Personen, sodass die Kosten pro Person ab 28 EUR betragen können. Die führerscheinfreien Boote beinhalten Treibstoff, Versicherung, Sicherheitsausrüstung und die Einweisung.',
-      },
-    ],
-  },
-  activitySnorkel: {
-    faqItems: [
-      {
-        question: 'Kann ich Schnorchelausrüstung mit dem Boot mieten?',
-        answer: 'Ja. Wir bieten Schnorchelsets (Maske, Schnorchel und Flossen) für 7,50 EUR pro Person an. Die Ausrüstung wird beim Einsteigen abgeholt und am Ende der Miete zurückgegeben. Sie können auch Ihre eigene Ausrüstung ohne zusätzliche Kosten mitbringen.',
-      },
-      {
-        question: 'Wann ist die beste Zeit zum Schnorcheln in Blanes?',
-        answer: 'Von Juni bis September liegt die Wassertemperatur zwischen 22 und 26 Grad, ideal zum Schnorcheln ohne Neoprenanzug. Die beste Sicht hat man im Juni und September, wenn es weniger Besucher gibt und das Wasser ruhiger ist. Im Juli und August ist das Wasser wärmer, aber an windigen Tagen kann es mehr Wellengang geben.',
-      },
-      {
-        question: 'Ist Schnorcheln vom Boot aus ohne Erfahrung sicher?',
-        answer: 'Absolut. Vor der Abfahrt geben wir Ihnen eine 15-minütige Sicherheitseinweisung, in der wir erklären, wie man das Boot richtig ankert. Alle Boote sind mit Schwimmwesten ausgestattet. Wir empfehlen Anfängern das Schnorcheln in geschützten Buchten wie Cala Sant Francesc.',
-      },
-      {
-        question: 'Wie viele Buchten kann ich bei einem Schnorchelausflug besuchen?',
-        answer: 'In 2 Stunden können Sie 1-2 Buchten mit ausreichend Zeit zum Schnorcheln besuchen. In 4 Stunden können Sie eine komplette Route mit 3-4 Buchten machen. Wir empfehlen mindestens 3 Stunden, um das Schnorcheln und die Bootsfahrt in Ruhe zu genießen.',
-      },
-    ],
-  },
-  activityFamilies: {
-    faqItems: [
-      {
-        question: 'Ab welchem Alter dürfen Kinder mit an Bord?',
-        answer: 'Es gibt kein Mindestalter. Babys und Kinder jeden Alters sind willkommen. Alle Minderjährigen müssen während der Fahrt eine zugelassene Schwimmweste tragen. Für Babys empfehlen wir kurze Ausflüge von 1-2 Stunden und ruhige Seetage.',
-      },
-      {
-        question: 'Brauche ich einen Bootsführerschein, um ein Familienboot zu mieten?',
-        answer: 'Nein. Unsere führerscheinfreien Boote erfordern keinen Bootsführerschein. Sie müssen lediglich mindestens 18 Jahre alt sein. Wir geben Ihnen vor der Abfahrt eine vollständige Einweisung von 15 Minuten. Es sind sichere, stabile und sehr leicht zu steuernde Boote.',
-      },
-      {
-        question: 'Was ist im Mietpreis enthalten?',
-        answer: 'Der Preis für die führerscheinfreien Boote beinhaltet Benzin, Versicherung, Schwimmwesten für alle (einschließlich Kinder), Badeleiter, Sonnenverdeck/Bimini und die Sicherheitseinweisung. Nur die Schnorchelausrüstung kostet extra (7,50 EUR/Person).',
-      },
-      {
-        question: 'Was sollten wir für einen Bootsausflug mit Kindern mitnehmen?',
-        answer: 'Wir empfehlen mitzubringen: Sonnencreme mit hohem Lichtschutzfaktor (wasserfest), Kappen oder Hüte, reichlich Wasser, Snacks oder Picknick, Handtücher, Badesachen und Wechselkleidung. Optional: Unterwasserkamera, Strandspielzeug und eigene Schnorchelausrüstung.',
-      },
-    ],
-  },
-  activityFishing: {
-    faqItems: [
-      {
-        question: 'Ist Angelausrüstung in den Booten enthalten?',
-        answer: 'Nein. Sie müssen Ihre eigene Angelausrüstung mitbringen (Ruten, Rollen, Köder, Köderfische). Unsere Boote stellen die Navigationsplattform bereit, beinhalten jedoch kein Angelmaterial. In Blanes gibt es Schiffszubehörgeschäfte in Hafennähe, wo Sie frischen Köder und Grundausstattung kaufen können.',
-      },
-      {
-        question: 'Benötige ich einen Angelschein, um vom Boot aus zu angeln?',
-        answer: 'Ja. Für das Freizeitangeln auf See benötigen Sie den maritimen Freizeitangelschein der Generalitat de Catalunya. Sie können ihn online auf gencat.cat für ca. 14 EUR erwerben (Gültigkeit 2 Jahre). Er unterscheidet sich vom Bootsführerschein: Der Angelschein ist zum Angeln, der Bootsführerschein zum Führen des Bootes.',
-      },
-      {
-        question: 'Welches Boot brauche ich zum Meeresangeln?',
-        answer: 'Das hängt von der Art des Angelns ab. Für Grundangeln in nahen Buchten (Wolfsbarsche, Goldbrassen) reicht ein Boot ohne Führerschein aus. Für das Angeln auf offenem Wasser (Bernsteinmakrelen, Schleppangeln) benötigen Sie ein Boot mit Führerschein, das größere Reichweite und Leistung hat. Kontaktieren Sie uns per WhatsApp und wir beraten Sie entsprechend Ihrer Erfahrung.',
-      },
-      {
-        question: 'Welche Fischereivorschriften gelten an der Costa Brava?',
-        answer: 'Das Freizeitangeln in Catalunya hat Fangbeschränkungen: maximal 5 kg pro Person und Tag (außer wenn ein einzelnes Exemplar dieses Gewicht überschreitet). Es gibt Mindestgrößen je Art (Wolfsbarsch 36 cm, Goldbrasse 20 cm). Das Angeln in Meeresschutzgebieten und Badezonen ist verboten. Einige Techniken wie das Harpunenfischen erfordern eine spezielle Lizenz.',
-      },
-    ],
   },
 };

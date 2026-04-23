@@ -884,6 +884,28 @@ export interface Translations {
         expTossaDesc: string;
         expFishingTitle: string;
         expFishingDesc: string;
+        // Nearby towns
+        nearbyTownsTitle?: string;
+        nearbyTownsIntro?: string;
+        nearbyTownsMalgratTime?: string;
+        nearbyTownsSantaSusannaTime?: string;
+        nearbyTownsCalellaTime?: string;
+        nearbyTownsConjunction?: string;
+        nearbyTownsTransport?: string;
+        // Cross-links
+        crossLinksTitle?: string;
+        crossLinkCostaBrava?: string;
+        crossLinkLicenseFree?: string;
+        crossLinkLicensed?: string;
+        crossLinkPricing?: string;
+        crossLinkLloret?: string;
+        crossLinkTossa?: string;
+        // Map iframe title
+        mapIframeTitle?: string;
+      };
+      schema?: {
+        name: string;
+        description: string;
       };
     };
     lloret: {

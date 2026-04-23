@@ -47,11 +47,12 @@ export default function LocationBlanesPage() {
   };
 
   // Location-specific schema
+  const blanesSchema = t.locationPages.blanes.schema;
   const locationSchema = {
     "@context": "https://schema.org",
     "@type": "TouristDestination",
-    "name": "Alquiler de Barcos en Blanes, Costa Brava",
-    "description": "Alquiler de barcos sin licencia y con licencia en Blanes. Puerto de Blanes, Costa Brava. Embarcaciones para 4-7 personas.",
+    "name": blanesSchema?.name ?? "Alquiler de Barcos en Blanes, Costa Brava",
+    "description": blanesSchema?.description ?? "Alquiler de barcos sin licencia y con licencia en Blanes. Puerto de Blanes, Costa Brava. Embarcaciones para 4-7 personas.",
     "geo": {
       "@type": "GeoCoordinates",
       "latitude": 41.6722504,
@@ -454,13 +455,13 @@ export default function LocationBlanesPage() {
           {/* Nearby Towns */}
           <Card className="mb-8">
             <CardContent className="py-6">
-              <h3 className="font-semibold text-lg mb-3">Pueblos cercanos al Puerto de Blanes</h3>
+              <h3 className="font-semibold text-lg mb-3">{s.nearbyTownsTitle}</h3>
               <p className="text-muted-foreground">
-                Turistas alojados en la costa del Maresme pueden llegar facilmente al Puerto de Blanes:{" "}
-                <a href={localizedPath("locationMalgrat")} className="text-primary hover:underline font-medium">Malgrat de Mar</a> (10 min),{" "}
-                <a href={localizedPath("locationSantaSusanna")} className="text-primary hover:underline font-medium">Santa Susanna</a> (15 min) y{" "}
-                <a href={localizedPath("locationCalella")} className="text-primary hover:underline font-medium">Calella</a> (20 min en coche).
-                Tambien accesible en tren RENFE linea R1.
+                {s.nearbyTownsIntro}{" "}
+                <a href={localizedPath("locationMalgrat")} className="text-primary hover:underline font-medium">Malgrat de Mar</a> ({s.nearbyTownsMalgratTime}),{" "}
+                <a href={localizedPath("locationSantaSusanna")} className="text-primary hover:underline font-medium">Santa Susanna</a> ({s.nearbyTownsSantaSusannaTime}) {s.nearbyTownsConjunction}{" "}
+                <a href={localizedPath("locationCalella")} className="text-primary hover:underline font-medium">Calella</a> ({s.nearbyTownsCalellaTime}).{" "}
+                {s.nearbyTownsTransport}
               </p>
             </CardContent>
           </Card>
@@ -468,31 +469,31 @@ export default function LocationBlanesPage() {
           {/* Related Services - Internal Linking */}
           <Card className="mb-8">
             <CardContent className="pt-6">
-              <h3 className="font-semibold text-lg mb-4">Explora nuestros servicios desde Blanes</h3>
+              <h3 className="font-semibold text-lg mb-4">{s.crossLinksTitle}</h3>
               <div className="flex flex-wrap gap-3">
                 <a href={localizedPath("locationCostaBrava")} className="text-primary hover:underline flex items-center gap-1">
                   <ChevronRight className="w-4 h-4" />
-                  Explorar toda la Costa Brava en barco
+                  {s.crossLinkCostaBrava}
                 </a>
                 <a href={localizedPath("categoryLicenseFree")} className="text-primary hover:underline flex items-center gap-1">
                   <ChevronRight className="w-4 h-4" />
-                  Alquiler de barcos sin licencia
+                  {s.crossLinkLicenseFree}
                 </a>
                 <a href={localizedPath("categoryLicensed")} className="text-primary hover:underline flex items-center gap-1">
                   <ChevronRight className="w-4 h-4" />
-                  Barcos con licencia en Blanes
+                  {s.crossLinkLicensed}
                 </a>
                 <a href={localizedPath("pricing")} className="text-primary hover:underline flex items-center gap-1">
                   <ChevronRight className="w-4 h-4" />
-                  Precios y tarifas por temporada
+                  {s.crossLinkPricing}
                 </a>
                 <a href={localizedPath("locationLloret")} className="text-primary hover:underline flex items-center gap-1">
                   <ChevronRight className="w-4 h-4" />
-                  Excursion en barco a Lloret de Mar
+                  {s.crossLinkLloret}
                 </a>
                 <a href={localizedPath("locationTossa")} className="text-primary hover:underline flex items-center gap-1">
                   <ChevronRight className="w-4 h-4" />
-                  Navega hasta Tossa de Mar
+                  {s.crossLinkTossa}
                 </a>
               </div>
             </CardContent>
@@ -534,7 +535,7 @@ export default function LocationBlanesPage() {
                   allowFullScreen
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
-                  title="Mapa de ubicación - Puerto de Blanes"
+                  title={s.mapIframeTitle ?? "Mapa de ubicación - Puerto de Blanes"}
                   data-testid="map-blanes"
                 />
               </div>

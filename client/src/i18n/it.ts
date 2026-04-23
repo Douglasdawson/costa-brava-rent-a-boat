@@ -1401,182 +1401,6 @@ export const it: Translations = {
       button: 'Prenota ora',
     },
   },
-  faqPage: {
-    heroTitle: 'Domande Frequenti',
-    heroDescription: 'Trova le risposte a tutti i tuoi dubbi sul noleggio barche a Blanes, Costa Brava. Se non trovi quello che cerchi, contattaci direttamente!',
-    schemaName: 'Domande Frequenti - Noleggio Barche a Blanes',
-    schemaDescription: 'Risolvi tutti i tuoi dubbi sul noleggio barche a Blanes, Costa Brava',
-    whatsappGenericMessage: 'Ciao, ho una domanda sul noleggio barche. Potreste aiutarmi?',
-    filterLabel: 'Filtra per categoria',
-    categories: {
-      all: 'Tutte',
-      reservas: 'Prenotazioni e Prezzi',
-      comparativas: 'Confronti e Raccomandazioni',
-      licencias: 'Patenti e Requisiti',
-      incluye: 'Cosa Include',
-      navegacion: 'Navigazione e Sicurezza',
-      practica: 'Informazioni Pratiche',
-      temporada: 'Stagione',
-    },
-    items: {
-      precios: {
-        question: 'Quali sono i prezzi del noleggio?',
-        answer: 'I nostri prezzi variano in base all\'imbarcazione e alla durata. Barche senza patente da {noLicBaja1h}€ con carburante incluso (1h, 2h, 3h, 4h, 6h, 8h). Barche con patente da {licBaja2h}€ senza carburante incluso (2h, 4h, 8h).',
-      },
-      reserva: {
-        question: 'Come posso fare una prenotazione?',
-        answer: 'Prenotare è molto semplice: 1) Scegli la tua barca preferita, 2) Seleziona data, ora e durata, 3) Completa i tuoi dati ed extra, 4) Effettua il pagamento sicuro, 5) Ricevi la conferma via WhatsApp ed email.',
-      },
-      pago: {
-        question: 'Quali metodi di pagamento accettate?',
-        answer: 'Accettiamo carta di credito/debito (Visa, Mastercard), bonifico bancario, contanti (solo al porto, prima della partenza) e Bizum (per clienti spagnoli). È richiesta una caparra di 50€ per confermare la prenotazione.',
-      },
-      cancelacion: {
-        question: 'Qual è la politica di cancellazione?',
-        answer: 'Politica flessibile: Più di 48h prima = rimborso 100%, 24-48h prima = rimborso 50%, meno di 24h = nessun rimborso. Maltempo = riprogrammazione gratuita o rimborso 100%.',
-      },
-      sinLicencia: {
-        question: 'Posso noleggiare senza avere la patente nautica?',
-        answer: 'Sì! Abbiamo barche perfette senza patente. Sono fino a 15 CV, massimo 4-5 persone, facili da manovrare con briefing completo. Basta essere maggiorenni.',
-      },
-      licenciasAceptadas: {
-        question: 'Quali patenti accettate per le barche grandi?',
-        answer: 'Per le barche con patente accettiamo: PER (Patrón de Embarcaciones de Recreo), PNB (Patrón de Navegación Básica), Capitán de Yate, patenti europee equivalenti e patenti internazionali omologate. Devi presentare la patente originale il giorno del noleggio.',
-      },
-      edadMinima: {
-        question: 'Qual è l\'età minima per noleggiare?',
-        answer: 'Il comandante deve avere almeno 18 anni. I passeggeri non hanno limiti di età (con adulto responsabile). I minori di 12 anni devono indossare il giubbotto di salvataggio obbligatorio. Il comandante deve presentare carta d\'identità o passaporto valido.',
-      },
-      experiencia: {
-        question: 'Ho bisogno di esperienza precedente di navigazione?',
-        answer: 'Non è necessaria esperienza precedente. Forniamo spiegazione completa del funzionamento, mappa della zona autorizzata, consigli di sicurezza, contatto diretto per emergenze e imbarcazioni facili da manovrare.',
-      },
-      queIncluye: {
-        question: 'Cosa è incluso nel prezzo?',
-        answer: 'Incluso: imbarcazione equipaggiata, carburante (nelle barche senza patente), giubbotti di salvataggio, kit di sicurezza, ancora e cima, scaletta da bagno, istruzioni e mappa, assicurazione base e supporto telefonico.',
-      },
-      combustible: {
-        question: 'Devo pagare il carburante?',
-        answer: 'Il carburante è incluso nelle imbarcazioni senza patente. Nelle imbarcazioni con patente, vengono consegnate con il serbatoio pieno e al termine del noleggio il nostro team ti accompagna alla stazione di rifornimento per riempire nuovamente il serbatoio.',
-      },
-      extras: {
-        question: 'Quali extra posso aggiungere?',
-        answer: 'Extra disponibili: Paddle Surf (+25€), Maschera da snorkeling (+5€), Fotocamera subacquea GoPro (+30€) e Skipper professionista (+100€).',
-      },
-      queLlevar: {
-        question: 'Cosa devo portare?',
-        answer: 'Indispensabile: carta d\'identità o passaporto, patente nautica (se applicabile), crema solare, cappello e asciugamani. Consigliato: cibo e bevande, occhiali da sole, calzature antiscivolo, cambio d\'abiti e fotocamera/cellulare in custodia impermeabile.',
-      },
-      porDondeNavegar: {
-        question: 'Dove posso navigare?',
-        answer: 'Zona autorizzata: Nord fino a Playa de Fenals (senza patente) o Sant Feliu de Guíxols (con patente). Sud fino alla fine della spiaggia di Blanes (senza patente) o senza limiti (con patente). Massimo 2 miglia dalla costa. Calette consigliate: Cala Brava, Cala Sant Francesc, Playa de Lloret.',
-      },
-      seguridad: {
-        question: 'Quali misure di sicurezza avete?',
-        answer: 'Giubbotti di salvataggio omologati per tutti, kit di sicurezza regolamentare, GPS e plotter sulle barche grandi, segnaletica marittima completa, contatto 24h per emergenze e revisioni giornaliere delle imbarcazioni.',
-      },
-      malTiempo: {
-        question: 'Cosa succede se c\'è maltempo?',
-        answer: 'Vento forte: non usciamo con vento superiore a forza 4. Pioggia intensa: riprogrammiamo senza costi. Temporale: sospensione automatica. Cambiamento durante la navigazione: rientro guidato al porto. Diamo sempre priorità alla sicurezza con riprogrammazione gratuita o rimborso del 100%.',
-      },
-      emergencia: {
-        question: 'Cosa faccio in caso di emergenza?',
-        answer: 'Procedura di emergenza: 1) Mantieni la calma, 2) Chiamaci immediatamente al +34 611 500 372, 3) Troveremo la tua posizione grazie ai GPS installati sulle nostre barche. Numeri di emergenza inclusi nel briefing.',
-      },
-      horarios: {
-        question: 'Quali sono gli orari disponibili?',
-        answer: 'Orari di noleggio: Mezza mattina (09:00 - 13:00), Pomeriggio (14:00 - 18:00), Giornata intera (09:00 - 17:00), Tramonto (18:00 - 21:00). Gli orari possono variare in base alla stagione e alla disponibilità.',
-      },
-      llegadaPuerto: {
-        question: 'Quando devo arrivare al porto?',
-        answer: 'Consigliamo di arrivare 30 minuti prima dell\'orario di partenza per check-in e verifica documenti, briefing di sicurezza completo, spiegazione del funzionamento, consegna del materiale e mappa, e risolvere dubbi dell\'ultimo minuto.',
-      },
-      parking: {
-        question: 'C\'è un parcheggio disponibile?',
-        answer: 'Opzioni di parcheggio: Parcheggio Porto 10€/noleggio (dentro il porto e davanti alla barca), Zona blu 1,5€/ora (10 min a piedi), Parcheggio gratuito (20/30 min a piedi). In alta stagione consigliamo di prenotare il posto.',
-      },
-      equipaje: {
-        question: 'Posso lasciare i bagagli al porto?',
-        answer: 'Opzioni per i bagagli: sull\'imbarcazione (spazio limitato ma sicuro), deposito bagagli porto (5€/giorno per valigia), hotel/appartamento (consigliamo di lasciare i bagagli grandi). Evita di portare oggetti di valore.',
-      },
-      temporada: {
-        question: 'Quando è aperta la stagione?',
-        answer: 'Alta stagione: Giugno - Settembre. Media stagione: Aprile-Maggio e Ottobre. Chiuso: Novembre - Marzo. Il periodo migliore è maggio-giugno e settembre (meno affollato, bel tempo).',
-      },
-      disponibilidad: {
-        question: 'Come posso consultare la disponibilità?',
-        answer: 'Puoi consultare la disponibilità attraverso il nostro sito web (calendario in tempo reale), WhatsApp (risposta immediata), telefono (chiamata diretta) o email (richieste dettagliate).',
-      },
-      antelacion: {
-        question: 'Con quanto anticipo devo prenotare?',
-        answer: 'Raccomandazioni: Alta stagione minimo 1-2 settimane, weekend 3-5 giorni, giorni infrasettimanali possibile prenotazione del giorno, gruppi grandi massimo anticipo possibile. A luglio-agosto prenotare con almeno 2 settimane di anticipo.',
-      },
-      comidaBebida: {
-        question: 'Posso portare cibo e bevande a bordo?',
-        answer: 'Certamente! Puoi portare il tuo cibo, bevande e snack. Abbiamo un frigorifero a bordo. Chiediamo solo di non usare vetro per motivi di sicurezza.',
-      },
-      fianza: {
-        question: 'Cos\'è la cauzione e quando viene restituita?',
-        answer: 'La cauzione è un deposito cauzionale (200-500€ a seconda della barca) che si paga al porto prima di partire e viene restituito integralmente al rientro se la barca è in buone condizioni.',
-      },
-      equipoSeguridad: {
-        question: 'Quale equipaggiamento di sicurezza include la barca?',
-        answer: 'Tutte le nostre barche includono giubbotti di salvataggio per tutti i passeggeri, kit di pronto soccorso, estintore, ancora e kit di segnalazione secondo normativa.',
-      },
-      descuentos: {
-        question: 'Ci sono sconti per gruppi o prenotazioni anticipate?',
-        answer: 'Sì, offriamo il codice BIENVENIDO10 per uno sconto del 10% sulla tua prima prenotazione. Abbiamo anche tariffe speciali per prenotazioni di giornata intera.',
-      },
-      hastaDondeNavegar: {
-        question: 'Fino a dove posso navigare da Blanes?',
-        answer: 'Puoi esplorare tutta la costa tra Blanes e Tossa de Mar. Ti consigliamo le calette di Sa Forcanera, Cala Bona e Cala Sant Francesc, accessibili solo via mare.',
-      },
-      mascotas: {
-        question: 'Posso portare animali domestici a bordo?',
-        answer: 'Sì, gli animali domestici sono benvenuti sulle nostre barche. Consigliamo di portare acqua fresca e un asciugamano per il tuo animale. L\'animale deve indossare un giubbotto di salvataggio se disponibile.',
-      },
-      pesca: {
-        question: 'Si può pescare dalla barca?',
-        answer: 'Sì, puoi pescare dalle nostre barche. Avrai bisogno della tua licenza di pesca ricreativa. Non forniamo attrezzatura da pesca, ma puoi portare la tua.',
-      },
-      diferenciaLicencia: {
-        question: 'Qual è la differenza tra barche senza patente e con patente?',
-        answer: 'Le barche senza patente hanno fino a 15 CV, capacità di 4-5 persone, carburante incluso e costano da {noLicBaja1h}€. Le barche con patente hanno motori da 40-150 CV, capacità fino a 8 persone, maggiore autonomia e costano da {licBaja2h}€ (carburante non incluso). Le barche con patente permettono di navigare più lontano, fino a Tossa de Mar e oltre.',
-      },
-      precioBlanesVsLloret: {
-        question: 'È più economico noleggiare una barca a Blanes o a Lloret de Mar?',
-        answer: 'Blanes è il punto di noleggio nautico più conveniente della Costa Brava, con barche senza patente da {noLicBaja1h}€ l\'ora con carburante incluso. Operando dal Porto di Blanes con la nostra flotta, offriamo prezzi più competitivi rispetto ad altre località come Lloret de Mar o Tossa de Mar.',
-      },
-      barcoGrupoGrande: {
-        question: 'Quale barca consigliate per un gruppo grande?',
-        answer: 'Per gruppi grandi consigliamo il Pacific Craft 625 (fino a 8 persone, con patente) o la nostra Escursione Privata con skipper (fino a 10 persone). L\'escursione con skipper è ideale se nessuno del gruppo ha la patente nautica, poiché include un capitano professionista che vi porta alle migliori calette.',
-      },
-      precioCostaBrava: {
-        question: 'Quanto costa noleggiare una barca in Costa Brava?',
-        answer: 'In Costa Brava puoi noleggiare una barca da {noLicBaja1h}€ l\'ora a Blanes, con carburante incluso e senza bisogno di patente. I prezzi variano in base alla durata (da 1h a giornata intera), al tipo di barca e alla stagione. Luglio e agosto sono alta stagione con prezzi più elevati; giugno e settembre offrono il miglior rapporto qualità-prezzo.',
-      },
-      tossaBarco: {
-        question: 'Si può andare a Tossa de Mar in barca da Blanes?',
-        answer: 'Sì, Tossa de Mar è a circa 30 minuti in barca da Blanes. Tuttavia, hai bisogno di una barca con patente o di prenotare la nostra escursione con skipper, poiché le barche senza patente hanno un raggio di navigazione limitato. Il percorso costiero da Blanes a Tossa è spettacolare, con calette vergini e scogliere.',
-      },
-      excursionPatron: {
-        question: 'Quanto costa un\'escursione in barca con skipper?',
-        answer: 'Le nostre escursioni private con skipper professionista partono da {excursionBaja2h}€ per 2 ore per un massimo di 10 persone. Lo skipper vi porta alle migliori calette, si occupa di tutta la navigazione e non serve la patente. È l\'opzione perfetta per famiglie o gruppi che vogliono godersi la giornata senza preoccuparsi di nulla.',
-      },
-      seguroSinExperiencia: {
-        question: 'È sicuro noleggiare una barca senza esperienza?',
-        answer: 'Assolutamente sicuro. Prima di uscire in mare, il nostro team ti fa un briefing di 15 minuti dove ti spiega il funzionamento della barca, le norme di navigazione e la zona autorizzata. Le barche senza patente sono molto stabili e facili da manovrare, e la zona di Blanes ha acque tranquille e protette.',
-      },
-      barcoVsExcursion: {
-        question: 'Cosa è meglio, noleggiare una barca o un\'escursione con skipper?',
-        answer: 'Dipende da cosa cerchi. Noleggiare una barca senza patente (da {noLicBaja1h}€/h) ti dà totale libertà per andare al tuo ritmo ed esplorare per conto tuo. L\'escursione con skipper (da {excursionBaja2h}€/2h) è ideale se vuoi rilassarti completamente, non hai esperienza o vuoi raggiungere calette più lontane come Tossa de Mar.',
-      },
-      mejorEpoca: {
-        question: 'Qual è il periodo migliore per noleggiare una barca a Blanes?',
-        answer: 'Settembre è il mese d\'oro: l\'acqua del mare è alla sua temperatura più calda (24-25°C), i prezzi sono di media stagione, ci sono meno turisti e le condizioni meteorologiche sono eccellenti. Anche giugno e la prima quindicina di luglio sono ottime opzioni.',
-      },
-    },
-  },
   locationBarcelona: {
     hero: {
       title: 'Noleggio Barche vicino a Barcellona',
@@ -2963,5 +2787,191 @@ export const it: Translations = {
         category: 'parte',
       },
     ],
+  },
+  faqPage: {
+    heroTitle: 'Domande Frequenti',
+    heroDescription: 'Trova le risposte a tutti i tuoi dubbi sul noleggio barche a Blanes, Costa Brava. Se non trovi quello che cerchi, contattaci direttamente!',
+    schemaName: 'Domande Frequenti - Noleggio Barche a Blanes',
+    schemaDescription: 'Risolvi tutti i tuoi dubbi sul noleggio barche a Blanes, Costa Brava',
+    whatsappGenericMessage: 'Ciao, ho una domanda sul noleggio barche. Potreste aiutarmi?',
+    filterLabel: 'Filtra per categoria',
+    contactTitle: 'Altre Domande?',
+    contactDesc: 'Se non hai trovato la risposta che cercavi, siamo qui per aiutarti. Il nostro team risponde rapidamente e sarà lieto di risolvere qualsiasi dubbio.',
+    contactWhatsApp: 'Chiedi su WhatsApp',
+    contactBooking: 'Prenota Direttamente',
+    infoPortTitle: 'Porto di Blanes',
+    infoPortDesc: 'Partenza dal Porto di Blanes, Costa Brava. Facile accesso e parcheggio disponibile.',
+    infoSeasonTitle: 'Stagione',
+    infoSeasonDesc: 'Aprile - Ottobre. Prenotazioni flessibili da 1 a 8 ore.',
+    infoFleetTitle: '7 Imbarcazioni',
+    infoFleetDesc: 'Flotta per 4-7 persone. Con e senza patente nautica.',
+    categories: {
+      all: 'Tutte',
+      reservas: 'Prenotazioni e Prezzi',
+      comparativas: 'Confronti e Raccomandazioni',
+      licencias: 'Patenti e Requisiti',
+      incluye: 'Cosa Include',
+      navegacion: 'Navigazione e Sicurezza',
+      practica: 'Informazioni Pratiche',
+      temporada: 'Stagione',
+    },
+    items: {
+      precios: {
+        question: 'Quali sono i prezzi del noleggio?',
+        answer: 'I nostri prezzi variano in base all\'imbarcazione e alla durata. Barche senza patente da {noLicBaja1h}€ con carburante incluso (1h, 2h, 3h, 4h, 6h, 8h). Barche con patente da {licBaja2h}€ senza carburante incluso (2h, 4h, 8h).',
+      },
+      reserva: {
+        question: 'Come posso fare una prenotazione?',
+        answer: 'Prenotare è molto semplice: 1) Scegli la tua barca preferita, 2) Seleziona data, ora e durata, 3) Completa i tuoi dati ed extra, 4) Effettua il pagamento sicuro, 5) Ricevi la conferma via WhatsApp ed email.',
+      },
+      pago: {
+        question: 'Quali metodi di pagamento accettate?',
+        answer: 'Accettiamo carta di credito/debito (Visa, Mastercard), bonifico bancario, contanti (solo al porto, prima della partenza) e Bizum (per clienti spagnoli). È richiesta una caparra di 50€ per confermare la prenotazione.',
+      },
+      cancelacion: {
+        question: 'Qual è la politica di cancellazione?',
+        answer: 'Politica flessibile: Più di 48h prima = rimborso 100%, 24-48h prima = rimborso 50%, meno di 24h = nessun rimborso. Maltempo = riprogrammazione gratuita o rimborso 100%.',
+      },
+      sinLicencia: {
+        question: 'Posso noleggiare senza avere la patente nautica?',
+        answer: 'Sì! Abbiamo barche perfette senza patente. Sono fino a 15 CV, massimo 4-5 persone, facili da manovrare con briefing completo. Basta essere maggiorenni.',
+      },
+      licenciasAceptadas: {
+        question: 'Quali patenti accettate per le barche grandi?',
+        answer: 'Per le barche con patente accettiamo: PER (Patrón de Embarcaciones de Recreo), PNB (Patrón de Navegación Básica), Capitán de Yate, patenti europee equivalenti e patenti internazionali omologate. Devi presentare la patente originale il giorno del noleggio.',
+      },
+      edadMinima: {
+        question: 'Qual è l\'età minima per noleggiare?',
+        answer: 'Il comandante deve avere almeno 18 anni. I passeggeri non hanno limiti di età (con adulto responsabile). I minori di 12 anni devono indossare il giubbotto di salvataggio obbligatorio. Il comandante deve presentare carta d\'identità o passaporto valido.',
+      },
+      experiencia: {
+        question: 'Ho bisogno di esperienza precedente di navigazione?',
+        answer: 'Non è necessaria esperienza precedente. Forniamo spiegazione completa del funzionamento, mappa della zona autorizzata, consigli di sicurezza, contatto diretto per emergenze e imbarcazioni facili da manovrare.',
+      },
+      queIncluye: {
+        question: 'Cosa è incluso nel prezzo?',
+        answer: 'Incluso: imbarcazione equipaggiata, carburante (nelle barche senza patente), giubbotti di salvataggio, kit di sicurezza, ancora e cima, scaletta da bagno, istruzioni e mappa, assicurazione base e supporto telefonico.',
+      },
+      combustible: {
+        question: 'Devo pagare il carburante?',
+        answer: 'Il carburante è incluso nelle imbarcazioni senza patente. Nelle imbarcazioni con patente, vengono consegnate con il serbatoio pieno e al termine del noleggio il nostro team ti accompagna alla stazione di rifornimento per riempire nuovamente il serbatoio.',
+      },
+      extras: {
+        question: 'Quali extra posso aggiungere?',
+        answer: 'Extra disponibili: Paddle Surf (+25€), Maschera da snorkeling (+5€), Fotocamera subacquea GoPro (+30€) e Skipper professionista (+100€).',
+      },
+      queLlevar: {
+        question: 'Cosa devo portare?',
+        answer: 'Indispensabile: carta d\'identità o passaporto, patente nautica (se applicabile), crema solare, cappello e asciugamani. Consigliato: cibo e bevande, occhiali da sole, calzature antiscivolo, cambio d\'abiti e fotocamera/cellulare in custodia impermeabile.',
+      },
+      porDondeNavegar: {
+        question: 'Dove posso navigare?',
+        answer: 'Zona autorizzata: Nord fino a Playa de Fenals (senza patente) o Sant Feliu de Guíxols (con patente). Sud fino alla fine della spiaggia di Blanes (senza patente) o senza limiti (con patente). Massimo 2 miglia dalla costa. Calette consigliate: Cala Brava, Cala Sant Francesc, Playa de Lloret.',
+      },
+      seguridad: {
+        question: 'Quali misure di sicurezza avete?',
+        answer: 'Giubbotti di salvataggio omologati per tutti, kit di sicurezza regolamentare, GPS e plotter sulle barche grandi, segnaletica marittima completa, contatto 24h per emergenze e revisioni giornaliere delle imbarcazioni.',
+      },
+      malTiempo: {
+        question: 'Cosa succede se c\'è maltempo?',
+        answer: 'Vento forte: non usciamo con vento superiore a forza 4. Pioggia intensa: riprogrammiamo senza costi. Temporale: sospensione automatica. Cambiamento durante la navigazione: rientro guidato al porto. Diamo sempre priorità alla sicurezza con riprogrammazione gratuita o rimborso del 100%.',
+      },
+      emergencia: {
+        question: 'Cosa faccio in caso di emergenza?',
+        answer: 'Procedura di emergenza: 1) Mantieni la calma, 2) Chiamaci immediatamente al +34 611 500 372, 3) Troveremo la tua posizione grazie ai GPS installati sulle nostre barche. Numeri di emergenza inclusi nel briefing.',
+      },
+      horarios: {
+        question: 'Quali sono gli orari disponibili?',
+        answer: 'Orari di noleggio: Mezza mattina (09:00 - 13:00), Pomeriggio (14:00 - 18:00), Giornata intera (09:00 - 17:00), Tramonto (18:00 - 21:00). Gli orari possono variare in base alla stagione e alla disponibilità.',
+      },
+      llegadaPuerto: {
+        question: 'Quando devo arrivare al porto?',
+        answer: 'Consigliamo di arrivare 30 minuti prima dell\'orario di partenza per check-in e verifica documenti, briefing di sicurezza completo, spiegazione del funzionamento, consegna del materiale e mappa, e risolvere dubbi dell\'ultimo minuto.',
+      },
+      parking: {
+        question: 'C\'è un parcheggio disponibile?',
+        answer: 'Opzioni di parcheggio: Parcheggio Porto 10€/noleggio (dentro il porto e davanti alla barca), Zona blu 1,5€/ora (10 min a piedi), Parcheggio gratuito (20/30 min a piedi). In alta stagione consigliamo di prenotare il posto.',
+      },
+      equipaje: {
+        question: 'Posso lasciare i bagagli al porto?',
+        answer: 'Opzioni per i bagagli: sull\'imbarcazione (spazio limitato ma sicuro), deposito bagagli porto (5€/giorno per valigia), hotel/appartamento (consigliamo di lasciare i bagagli grandi). Evita di portare oggetti di valore.',
+      },
+      temporada: {
+        question: 'Quando è aperta la stagione?',
+        answer: 'Alta stagione: Giugno - Settembre. Media stagione: Aprile-Maggio e Ottobre. Chiuso: Novembre - Marzo. Il periodo migliore è maggio-giugno e settembre (meno affollato, bel tempo).',
+      },
+      disponibilidad: {
+        question: 'Come posso consultare la disponibilità?',
+        answer: 'Puoi consultare la disponibilità attraverso il nostro sito web (calendario in tempo reale), WhatsApp (risposta immediata), telefono (chiamata diretta) o email (richieste dettagliate).',
+      },
+      antelacion: {
+        question: 'Con quanto anticipo devo prenotare?',
+        answer: 'Raccomandazioni: Alta stagione minimo 1-2 settimane, weekend 3-5 giorni, giorni infrasettimanali possibile prenotazione del giorno, gruppi grandi massimo anticipo possibile. A luglio-agosto prenotare con almeno 2 settimane di anticipo.',
+      },
+      comidaBebida: {
+        question: 'Posso portare cibo e bevande a bordo?',
+        answer: 'Certamente! Puoi portare il tuo cibo, bevande e snack. Abbiamo un frigorifero a bordo. Chiediamo solo di non usare vetro per motivi di sicurezza.',
+      },
+      fianza: {
+        question: 'Cos\'è la cauzione e quando viene restituita?',
+        answer: 'La cauzione è un deposito cauzionale (200-500€ a seconda della barca) che si paga al porto prima di partire e viene restituito integralmente al rientro se la barca è in buone condizioni.',
+      },
+      equipoSeguridad: {
+        question: 'Quale equipaggiamento di sicurezza include la barca?',
+        answer: 'Tutte le nostre barche includono giubbotti di salvataggio per tutti i passeggeri, kit di pronto soccorso, estintore, ancora e kit di segnalazione secondo normativa.',
+      },
+      descuentos: {
+        question: 'Ci sono sconti per gruppi o prenotazioni anticipate?',
+        answer: 'Sì, offriamo il codice BIENVENIDO10 per uno sconto del 10% sulla tua prima prenotazione. Abbiamo anche tariffe speciali per prenotazioni di giornata intera.',
+      },
+      hastaDondeNavegar: {
+        question: 'Fino a dove posso navigare da Blanes?',
+        answer: 'Puoi esplorare tutta la costa tra Blanes e Tossa de Mar. Ti consigliamo le calette di Sa Forcanera, Cala Bona e Cala Sant Francesc, accessibili solo via mare.',
+      },
+      mascotas: {
+        question: 'Posso portare animali domestici a bordo?',
+        answer: 'Sì, gli animali domestici sono benvenuti sulle nostre barche. Consigliamo di portare acqua fresca e un asciugamano per il tuo animale. L\'animale deve indossare un giubbotto di salvataggio se disponibile.',
+      },
+      pesca: {
+        question: 'Si può pescare dalla barca?',
+        answer: 'Sì, puoi pescare dalle nostre barche. Avrai bisogno della tua licenza di pesca ricreativa. Non forniamo attrezzatura da pesca, ma puoi portare la tua.',
+      },
+      diferenciaLicencia: {
+        question: 'Qual è la differenza tra barche senza patente e con patente?',
+        answer: 'Le barche senza patente hanno fino a 15 CV, capacità di 4-5 persone, carburante incluso e costano da {noLicBaja1h}€. Le barche con patente hanno motori da 40-150 CV, capacità fino a 8 persone, maggiore autonomia e costano da {licBaja2h}€ (carburante non incluso). Le barche con patente permettono di navigare più lontano, fino a Tossa de Mar e oltre.',
+      },
+      precioBlanesVsLloret: {
+        question: 'È più economico noleggiare una barca a Blanes o a Lloret de Mar?',
+        answer: 'Blanes è il punto di noleggio nautico più conveniente della Costa Brava, con barche senza patente da {noLicBaja1h}€ l\'ora con carburante incluso. Operando dal Porto di Blanes con la nostra flotta, offriamo prezzi più competitivi rispetto ad altre località come Lloret de Mar o Tossa de Mar.',
+      },
+      barcoGrupoGrande: {
+        question: 'Quale barca consigliate per un gruppo grande?',
+        answer: 'Per gruppi grandi consigliamo il Pacific Craft 625 (fino a 8 persone, con patente) o la nostra Escursione Privata con skipper (fino a 10 persone). L\'escursione con skipper è ideale se nessuno del gruppo ha la patente nautica, poiché include un capitano professionista che vi porta alle migliori calette.',
+      },
+      precioCostaBrava: {
+        question: 'Quanto costa noleggiare una barca in Costa Brava?',
+        answer: 'In Costa Brava puoi noleggiare una barca da {noLicBaja1h}€ l\'ora a Blanes, con carburante incluso e senza bisogno di patente. I prezzi variano in base alla durata (da 1h a giornata intera), al tipo di barca e alla stagione. Luglio e agosto sono alta stagione con prezzi più elevati; giugno e settembre offrono il miglior rapporto qualità-prezzo.',
+      },
+      tossaBarco: {
+        question: 'Si può andare a Tossa de Mar in barca da Blanes?',
+        answer: 'Sì, Tossa de Mar è a circa 30 minuti in barca da Blanes. Tuttavia, hai bisogno di una barca con patente o di prenotare la nostra escursione con skipper, poiché le barche senza patente hanno un raggio di navigazione limitato. Il percorso costiero da Blanes a Tossa è spettacolare, con calette vergini e scogliere.',
+      },
+      excursionPatron: {
+        question: 'Quanto costa un\'escursione in barca con skipper?',
+        answer: 'Le nostre escursioni private con skipper professionista partono da {excursionBaja2h}€ per 2 ore per un massimo di 10 persone. Lo skipper vi porta alle migliori calette, si occupa di tutta la navigazione e non serve la patente. È l\'opzione perfetta per famiglie o gruppi che vogliono godersi la giornata senza preoccuparsi di nulla.',
+      },
+      seguroSinExperiencia: {
+        question: 'È sicuro noleggiare una barca senza esperienza?',
+        answer: 'Assolutamente sicuro. Prima di uscire in mare, il nostro team ti fa un briefing di 15 minuti dove ti spiega il funzionamento della barca, le norme di navigazione e la zona autorizzata. Le barche senza patente sono molto stabili e facili da manovrare, e la zona di Blanes ha acque tranquille e protette.',
+      },
+      barcoVsExcursion: {
+        question: 'Cosa è meglio, noleggiare una barca o un\'escursione con skipper?',
+        answer: 'Dipende da cosa cerchi. Noleggiare una barca senza patente (da {noLicBaja1h}€/h) ti dà totale libertà per andare al tuo ritmo ed esplorare per conto tuo. L\'escursione con skipper (da {excursionBaja2h}€/2h) è ideale se vuoi rilassarti completamente, non hai esperienza o vuoi raggiungere calette più lontane come Tossa de Mar.',
+      },
+      mejorEpoca: {
+        question: 'Qual è il periodo migliore per noleggiare una barca a Blanes?',
+        answer: 'Settembre è il mese d\'oro: l\'acqua del mare è alla sua temperatura più calda (24-25°C), i prezzi sono di media stagione, ci sono meno turisti e le condizioni meteorologiche sono eccellenti. Anche giugno e la prima quindicina di luglio sono ottime opzioni.',
+      },
+    },
   },
 };

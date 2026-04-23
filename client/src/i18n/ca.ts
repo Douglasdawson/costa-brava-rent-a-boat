@@ -1400,182 +1400,6 @@ export const ca: Translations = {
       button: 'Reservar ara',
     },
   },
-  faqPage: {
-    heroTitle: 'Preguntes Freqüents',
-    heroDescription: 'Troba respostes a tots els teus dubtes sobre el lloguer de barques a Blanes, Costa Brava. Si no trobes el que busques, contacta\'ns directament!',
-    schemaName: 'Preguntes Freqüents - Lloguer de Barques a Blanes',
-    schemaDescription: 'Resol tots els teus dubtes sobre el lloguer de barques a Blanes, Costa Brava',
-    whatsappGenericMessage: 'Hola, tinc una pregunta sobre el lloguer de barques. Podríeu ajudar-me?',
-    filterLabel: 'Filtrar per categoria',
-    categories: {
-      all: 'Totes',
-      reservas: 'Reserves i Preus',
-      comparativas: 'Comparatives i Recomanacions',
-      licencias: 'Llicències i Requisits',
-      incluye: 'Què Inclou',
-      navegacion: 'Navegació i Seguretat',
-      practica: 'Informació Pràctica',
-      temporada: 'Temporada',
-    },
-    items: {
-      precios: {
-        question: 'Quins són els preus del lloguer?',
-        answer: 'Els nostres preus varien segons l\'embarcació i la durada. Barques sense llicència des de {noLicBaja1h}€ amb benzina inclosa (1h, 2h, 3h, 4h, 6h, 8h). Barques amb llicència des de {licBaja2h}€ sense benzina inclosa (2h, 4h, 8h).',
-      },
-      reserva: {
-        question: 'Com puc fer una reserva?',
-        answer: 'Fer una reserva és molt fàcil: 1) Selecciona la teva barca preferida, 2) Tria data, hora i durada, 3) Completa les teves dades i extres, 4) Realitza el pagament segur, 5) Rep confirmació per WhatsApp i email.',
-      },
-      pago: {
-        question: 'Quines formes de pagament accepteu?',
-        answer: 'Acceptem targeta de crèdit/dèbit (Visa, Mastercard), transferència bancària, efectiu (només al port, abans de sortir) i Bizum (per a clients espanyols). Es requereix una paga i senyal de 50€ per confirmar la reserva.',
-      },
-      cancelacion: {
-        question: 'Quina és la política de cancel·lació?',
-        answer: 'Política flexible: Més de 48h abans = 100% reemborsament, 24-48h abans = 50% reemborsament, menys de 24h = sense reemborsament. Mal temps = reprogramació gratuïta o 100% reemborsament.',
-      },
-      sinLicencia: {
-        question: 'Puc llogar sense tenir llicència nàutica?',
-        answer: 'Sí! Tenim barques perfectes sense llicència. Són de fins a 15 CV, màxim 4-5 persones, fàcils de manejar amb briefing complet. Només cal ser major de 18 anys.',
-      },
-      licenciasAceptadas: {
-        question: 'Quines llicències accepteu per a barques grans?',
-        answer: 'Per a barques amb llicència acceptem: PER (Patró d\'Embarcacions d\'Esbarjo), PNB (Patró de Navegació Bàsica), Capità de Iot, llicències europees equivalents i llicències internacionals homologades. Has de presentar la llicència original el dia del lloguer.',
-      },
-      edadMinima: {
-        question: 'Quina és l\'edat mínima per llogar?',
-        answer: 'El patró ha de tenir mínim 18 anys. Els passatgers no tenen límit d\'edat (amb adult responsable). Menors de 12 anys han de portar armilla salvavides obligatòria. El patró ha de presentar DNI o passaport vàlid.',
-      },
-      experiencia: {
-        question: 'Necessito experiència prèvia navegant?',
-        answer: 'No cal experiència prèvia. Proporcionem explicació completa del funcionament, mapa de la zona autoritzada, consells de seguretat, contacte directe per a emergències i embarcacions fàcils de manejar.',
-      },
-      queIncluye: {
-        question: 'Què està inclòs en el preu?',
-        answer: 'Inclòs: embarcació equipada, combustible (a barques sense llicència), armilles salvavides, kit de seguretat, àncora i cap, escala de bany, instruccions i mapa, assegurança bàsica i suport telefònic.',
-      },
-      combustible: {
-        question: 'He de pagar combustible?',
-        answer: 'El combustible està inclòs a les embarcacions sense llicència. A les embarcacions amb llicència, es lliuren amb el dipòsit ple i en finalitzar el lloguer el nostre equip t\'acompanya a la gasolinera per tornar a omplir el dipòsit.',
-      },
-      extras: {
-        question: 'Quins extres puc afegir?',
-        answer: 'Extres disponibles: Paddle Surf (+25€), Ulleres de snorkel (+5€), Càmera aquàtica GoPro (+30€) i Patró professional (+100€).',
-      },
-      queLlevar: {
-        question: 'Què haig de portar jo?',
-        answer: 'Imprescindible: DNI o passaport, llicència nàutica (si escau), protector solar, gorra/barret i tovalloles. Recomanat: menjar i begudes, ulleres de sol, calçat antilliscant, roba de recanvi i càmera/mòbil en bossa estanca.',
-      },
-      porDondeNavegar: {
-        question: 'Per on puc navegar?',
-        answer: 'Zona autoritzada: Nord fins a Platja de Fenals (sense llicència) o Sant Feliu de Guíxols (amb llicència). Sud fins a final platja de Blanes (sense llicència) o sense límit (amb llicència). Màxim 2 milles de la costa. Cales recomanades: Cala Brava, Cala Sant Francesc, Platja de Lloret.',
-      },
-      seguridad: {
-        question: 'Quines mesures de seguretat teniu?',
-        answer: 'Armilles salvavides homologades per a tothom, kit de seguretat reglamentari, GPS i plotter a barques grans, senyalització marítima completa, contacte 24h per a emergències i revisions diàries d\'embarcacions.',
-      },
-      malTiempo: {
-        question: 'Què passa si fa mal temps?',
-        answer: 'Vent fort: no sortim amb vent superior a força 4. Pluja intensa: reprogramem sense cost. Tempesta: suspensió automàtica. Canvi durant navegació: retorn guiat al port. Sempre prioritzem la seguretat amb reprogramació gratuïta o reemborsament del 100%.',
-      },
-      emergencia: {
-        question: 'Què faig en cas d\'emergència?',
-        answer: 'Procediment d\'emergència: 1) Mantén la calma, 2) Truca\'ns immediatament al +34 611 500 372, 3) Trobarem la teva posició gràcies als GPS instal·lats a les nostres barques. Números d\'emergència inclosos al briefing.',
-      },
-      horarios: {
-        question: 'Quins són els horaris disponibles?',
-        answer: 'Horaris de lloguer: Mig matí (09:00 - 13:00), Tarda (14:00 - 18:00), Dia complet (09:00 - 17:00), Capvespre (18:00 - 21:00). Els horaris poden variar segons temporada i disponibilitat.',
-      },
-      llegadaPuerto: {
-        question: 'Quan he d\'arribar al port?',
-        answer: 'Recomanem arribar 30 minuts abans de l\'hora de sortida per a check-in i verificació de documents, briefing de seguretat complet, explicació del funcionament, lliurament de material i mapa, i resoldre dubtes d\'última hora.',
-      },
-      parking: {
-        question: 'Hi ha pàrquing disponible?',
-        answer: 'Opcions d\'aparcament: Pàrquing Port 10€/lloguer (dins del port i davant de la barca), Zona blava 1,5€/hora (10 min caminant), Pàrquing gratuït (20/30 min caminant). A temporada alta recomanem reservar plaça.',
-      },
-      equipaje: {
-        question: 'Puc deixar equipatge al port?',
-        answer: 'Opcions per a equipatge: a l\'embarcació (espai limitat però segur), consignes port (5€/dia per maleta), hotel/apartament (recomanem deixar equipatge gran). Evita portar objectes de valor.',
-      },
-      temporada: {
-        question: 'Quan està oberta la temporada?',
-        answer: 'Temporada alta: Juny - Setembre. Temporada mitjana: Abril-Maig i Octubre. Tancat: Novembre - Març. La millor època és maig-juny i setembre (menys massificat, bon temps).',
-      },
-      disponibilidad: {
-        question: 'Com puc consultar disponibilitat?',
-        answer: 'Pots consultar disponibilitat a través del nostre web (calendari en temps real), WhatsApp (resposta immediata), telèfon (trucada directa) o email (consultes detallades).',
-      },
-      antelacion: {
-        question: 'Amb quanta antelació he de reservar?',
-        answer: 'Recomanacions: Temporada alta 1-2 setmanes mínim, caps de setmana 3-5 dies, entre setmana possible reserva del dia, grups grans màxima antelació possible. Al juliol-agost reservar amb almenys 2 setmanes d\'antelació.',
-      },
-      comidaBebida: {
-        question: 'Puc portar menjar i beguda a bord?',
-        answer: 'És clar! Pots portar el teu propi menjar, begudes i snacks. Tenim nevera a bord. Només demanem que no s\'usi vidre per seguretat.',
-      },
-      fianza: {
-        question: 'Què és la fiança i quan es retorna?',
-        answer: 'La fiança és un dipòsit de seguretat (200-500€ segons la barca) que es paga al port abans de sortir i es retorna íntegrament en tornar si la barca està en bon estat.',
-      },
-      equipoSeguridad: {
-        question: 'Quin equipament de seguretat inclou la barca?',
-        answer: 'Totes les nostres barques inclouen armilles salvavides per a tots els passatgers, farmaciola de primers auxilis, extintor, àncora, i kit de senyalització segons normativa.',
-      },
-      descuentos: {
-        question: 'Hi ha descomptes per a grups o reserves anticipades?',
-        answer: 'Sí, oferim el codi BIENVENIDO10 per a un 10% de descompte a la teva primera reserva. També tenim tarifes especials per a reserves de dia complet.',
-      },
-      hastaDondeNavegar: {
-        question: 'Fins on puc navegar des de Blanes?',
-        answer: 'Pots explorar tota la costa entre Blanes i Tossa de Mar. Et recomanem les cales de Sa Forcanera, Cala Bona i Cala Sant Francesc, accessibles només per mar.',
-      },
-      mascotas: {
-        question: 'Puc portar mascotes a bord?',
-        answer: 'Sí, les mascotes són benvingudes a les nostres barques. Recomanem portar aigua fresca i una tovallola per a la teva mascota. L\'animal ha de portar armilla salvavides si està disponible.',
-      },
-      pesca: {
-        question: 'Es pot pescar des de la barca?',
-        answer: 'Sí, pots pescar des de les nostres barques. Necessitaràs la teva pròpia llicència de pesca recreativa. No proporcionem equips de pesca, però pots portar els teus.',
-      },
-      diferenciaLicencia: {
-        question: 'Quina és la diferència entre barques sense llicència i amb llicència?',
-        answer: 'Les barques sense llicència tenen fins a 15 CV, capacitat de 4-5 persones, benzina inclosa i costen des de {noLicBaja1h}€. Les barques amb llicència tenen motors de 40-150 CV, capacitat de fins a 8 persones, major autonomia i costen des de {licBaja2h}€ (benzina no inclosa). Les barques amb llicència permeten navegar més lluny, fins a Tossa de Mar i més enllà.',
-      },
-      precioBlanesVsLloret: {
-        question: 'És més barat llogar una barca a Blanes o a Lloret de Mar?',
-        answer: 'Blanes és el punt de lloguer nàutic més assequible de la Costa Brava, amb barques sense llicència des de {noLicBaja1h}€ l\'hora amb benzina inclosa. En operar des del Port de Blanes amb la nostra pròpia flota, oferim preus més competitius que altres localitats com Lloret de Mar o Tossa de Mar.',
-      },
-      barcoGrupoGrande: {
-        question: 'Quina barca recomaneu per a un grup gran?',
-        answer: 'Per a grups grans recomanem el Pacific Craft 625 (fins a 8 persones, amb llicència) o la nostra Excursió Privada amb patró (fins a 10 persones). L\'excursió amb patró és ideal si ningú del grup té llicència nàutica, ja que inclou un capità professional que us porta a les millors cales.',
-      },
-      precioCostaBrava: {
-        question: 'Quant costa llogar una barca a la Costa Brava?',
-        answer: 'A la Costa Brava pots llogar una barca des de {noLicBaja1h}€ l\'hora a Blanes, amb benzina inclosa i sense necessitat de llicència. Els preus varien segons la durada (d\'1h a dia complet), el tipus de barca i la temporada. Juliol i agost són temporada alta amb preus més elevats; juny i setembre ofereixen la millor relació qualitat-preu.',
-      },
-      tossaBarco: {
-        question: 'Es pot anar a Tossa de Mar en barca des de Blanes?',
-        answer: 'Sí, Tossa de Mar és a uns 30 minuts en barca des de Blanes. Tanmateix, necessites una barca amb llicència o contractar la nostra excursió amb patró, ja que les barques sense llicència tenen un radi de navegació limitat. La ruta costanera de Blanes a Tossa és espectacular, amb cales verges i penya-segats.',
-      },
-      excursionPatron: {
-        question: 'Quant costa una excursió en barca amb patró?',
-        answer: 'Les nostres excursions privades amb patró professional des de {excursionBaja2h}€ per 2 hores per a fins a 10 persones. El patró us porta a les millors cales, s\'encarrega de tota la navegació i no necessiteu llicència. És l\'opció perfecta per a famílies o grups que volen gaudir sense preocupar-se de res.',
-      },
-      seguroSinExperiencia: {
-        question: 'És segur llogar una barca sense experiència?',
-        answer: 'Totalment segur. Abans de sortir a navegar, el nostre equip et fa un briefing de 15 minuts on t\'explica el funcionament de la barca, les normes de navegació i la zona autoritzada. Les barques sense llicència són molt estables i fàcils de manejar, i la zona de Blanes té aigües tranquil·les i protegides.',
-      },
-      barcoVsExcursion: {
-        question: 'Què és millor, llogar una barca o una excursió amb patró?',
-        answer: 'Depèn del que busquis. Llogar una barca sense llicència (des de {noLicBaja1h}€/h) et dóna total llibertat per anar al teu ritme i explorar pel teu compte. L\'excursió amb patró (des de {excursionBaja2h}€/2h) és ideal si vols relaxar-te completament, no tens experiència o vols arribar a cales més llunyanes com Tossa de Mar.',
-      },
-      mejorEpoca: {
-        question: 'Quina és la millor època per llogar una barca a Blanes?',
-        answer: 'Setembre és el mes estrella: l\'aigua del mar està a la seva temperatura més càlida (24-25°C), els preus són de temporada mitjana, hi ha menys turistes i les condicions meteorològiques són excel·lents. Juny i la primera quinzena de juliol també són molt bones opcions.',
-      },
-    },
-  },
   locationBarcelona: {
     hero: {
       title: 'Lloguer de Barques a prop de Barcelona',
@@ -2962,5 +2786,191 @@ export const ca: Translations = {
         category: 'parte',
       },
     ],
+  },
+  faqPage: {
+    heroTitle: 'Preguntes Freqüents',
+    heroDescription: 'Troba respostes a tots els teus dubtes sobre el lloguer de barques a Blanes, Costa Brava. Si no trobes el que busques, contacta\'ns directament!',
+    schemaName: 'Preguntes Freqüents - Lloguer de Barques a Blanes',
+    schemaDescription: 'Resol tots els teus dubtes sobre el lloguer de barques a Blanes, Costa Brava',
+    whatsappGenericMessage: 'Hola, tinc una pregunta sobre el lloguer de barques. Podríeu ajudar-me?',
+    filterLabel: 'Filtrar per categoria',
+    contactTitle: 'Més Preguntes?',
+    contactDesc: 'Si no has trobat la resposta que buscaves, som aquí per ajudar-te. El nostre equip respon ràpidament i estarà encantat de resoldre qualsevol dubte.',
+    contactWhatsApp: 'Preguntar per WhatsApp',
+    contactBooking: 'Reservar Directament',
+    infoPortTitle: 'Port de Blanes',
+    infoPortDesc: 'Sortida des del Port de Blanes, Costa Brava. Fàcil accés i pàrquing disponible.',
+    infoSeasonTitle: 'Temporada',
+    infoSeasonDesc: 'Abril - Octubre. Reserves flexibles amb durada d\'1-8 hores.',
+    infoFleetTitle: '7 Embarcacions',
+    infoFleetDesc: 'Flota per a 4-7 persones. Amb i sense llicència nàutica.',
+    categories: {
+      all: 'Totes',
+      reservas: 'Reserves i Preus',
+      comparativas: 'Comparatives i Recomanacions',
+      licencias: 'Llicències i Requisits',
+      incluye: 'Què Inclou',
+      navegacion: 'Navegació i Seguretat',
+      practica: 'Informació Pràctica',
+      temporada: 'Temporada',
+    },
+    items: {
+      precios: {
+        question: 'Quins són els preus del lloguer?',
+        answer: 'Els nostres preus varien segons l\'embarcació i la durada. Barques sense llicència des de {noLicBaja1h}€ amb benzina inclosa (1h, 2h, 3h, 4h, 6h, 8h). Barques amb llicència des de {licBaja2h}€ sense benzina inclosa (2h, 4h, 8h).',
+      },
+      reserva: {
+        question: 'Com puc fer una reserva?',
+        answer: 'Fer una reserva és molt fàcil: 1) Selecciona la teva barca preferida, 2) Tria data, hora i durada, 3) Completa les teves dades i extres, 4) Realitza el pagament segur, 5) Rep confirmació per WhatsApp i email.',
+      },
+      pago: {
+        question: 'Quines formes de pagament accepteu?',
+        answer: 'Acceptem targeta de crèdit/dèbit (Visa, Mastercard), transferència bancària, efectiu (només al port, abans de sortir) i Bizum (per a clients espanyols). Es requereix una paga i senyal de 50€ per confirmar la reserva.',
+      },
+      cancelacion: {
+        question: 'Quina és la política de cancel·lació?',
+        answer: 'Política flexible: Més de 48h abans = 100% reemborsament, 24-48h abans = 50% reemborsament, menys de 24h = sense reemborsament. Mal temps = reprogramació gratuïta o 100% reemborsament.',
+      },
+      sinLicencia: {
+        question: 'Puc llogar sense tenir llicència nàutica?',
+        answer: 'Sí! Tenim barques perfectes sense llicència. Són de fins a 15 CV, màxim 4-5 persones, fàcils de manejar amb briefing complet. Només cal ser major de 18 anys.',
+      },
+      licenciasAceptadas: {
+        question: 'Quines llicències accepteu per a barques grans?',
+        answer: 'Per a barques amb llicència acceptem: PER (Patró d\'Embarcacions d\'Esbarjo), PNB (Patró de Navegació Bàsica), Capità de Iot, llicències europees equivalents i llicències internacionals homologades. Has de presentar la llicència original el dia del lloguer.',
+      },
+      edadMinima: {
+        question: 'Quina és l\'edat mínima per llogar?',
+        answer: 'El patró ha de tenir mínim 18 anys. Els passatgers no tenen límit d\'edat (amb adult responsable). Menors de 12 anys han de portar armilla salvavides obligatòria. El patró ha de presentar DNI o passaport vàlid.',
+      },
+      experiencia: {
+        question: 'Necessito experiència prèvia navegant?',
+        answer: 'No cal experiència prèvia. Proporcionem explicació completa del funcionament, mapa de la zona autoritzada, consells de seguretat, contacte directe per a emergències i embarcacions fàcils de manejar.',
+      },
+      queIncluye: {
+        question: 'Què està inclòs en el preu?',
+        answer: 'Inclòs: embarcació equipada, combustible (a barques sense llicència), armilles salvavides, kit de seguretat, àncora i cap, escala de bany, instruccions i mapa, assegurança bàsica i suport telefònic.',
+      },
+      combustible: {
+        question: 'He de pagar combustible?',
+        answer: 'El combustible està inclòs a les embarcacions sense llicència. A les embarcacions amb llicència, es lliuren amb el dipòsit ple i en finalitzar el lloguer el nostre equip t\'acompanya a la gasolinera per tornar a omplir el dipòsit.',
+      },
+      extras: {
+        question: 'Quins extres puc afegir?',
+        answer: 'Extres disponibles: Paddle Surf (+25€), Ulleres de snorkel (+5€), Càmera aquàtica GoPro (+30€) i Patró professional (+100€).',
+      },
+      queLlevar: {
+        question: 'Què haig de portar jo?',
+        answer: 'Imprescindible: DNI o passaport, llicència nàutica (si escau), protector solar, gorra/barret i tovalloles. Recomanat: menjar i begudes, ulleres de sol, calçat antilliscant, roba de recanvi i càmera/mòbil en bossa estanca.',
+      },
+      porDondeNavegar: {
+        question: 'Per on puc navegar?',
+        answer: 'Zona autoritzada: Nord fins a Platja de Fenals (sense llicència) o Sant Feliu de Guíxols (amb llicència). Sud fins a final platja de Blanes (sense llicència) o sense límit (amb llicència). Màxim 2 milles de la costa. Cales recomanades: Cala Brava, Cala Sant Francesc, Platja de Lloret.',
+      },
+      seguridad: {
+        question: 'Quines mesures de seguretat teniu?',
+        answer: 'Armilles salvavides homologades per a tothom, kit de seguretat reglamentari, GPS i plotter a barques grans, senyalització marítima completa, contacte 24h per a emergències i revisions diàries d\'embarcacions.',
+      },
+      malTiempo: {
+        question: 'Què passa si fa mal temps?',
+        answer: 'Vent fort: no sortim amb vent superior a força 4. Pluja intensa: reprogramem sense cost. Tempesta: suspensió automàtica. Canvi durant navegació: retorn guiat al port. Sempre prioritzem la seguretat amb reprogramació gratuïta o reemborsament del 100%.',
+      },
+      emergencia: {
+        question: 'Què faig en cas d\'emergència?',
+        answer: 'Procediment d\'emergència: 1) Mantén la calma, 2) Truca\'ns immediatament al +34 611 500 372, 3) Trobarem la teva posició gràcies als GPS instal·lats a les nostres barques. Números d\'emergència inclosos al briefing.',
+      },
+      horarios: {
+        question: 'Quins són els horaris disponibles?',
+        answer: 'Horaris de lloguer: Mig matí (09:00 - 13:00), Tarda (14:00 - 18:00), Dia complet (09:00 - 17:00), Capvespre (18:00 - 21:00). Els horaris poden variar segons temporada i disponibilitat.',
+      },
+      llegadaPuerto: {
+        question: 'Quan he d\'arribar al port?',
+        answer: 'Recomanem arribar 30 minuts abans de l\'hora de sortida per a check-in i verificació de documents, briefing de seguretat complet, explicació del funcionament, lliurament de material i mapa, i resoldre dubtes d\'última hora.',
+      },
+      parking: {
+        question: 'Hi ha pàrquing disponible?',
+        answer: 'Opcions d\'aparcament: Pàrquing Port 10€/lloguer (dins del port i davant de la barca), Zona blava 1,5€/hora (10 min caminant), Pàrquing gratuït (20/30 min caminant). A temporada alta recomanem reservar plaça.',
+      },
+      equipaje: {
+        question: 'Puc deixar equipatge al port?',
+        answer: 'Opcions per a equipatge: a l\'embarcació (espai limitat però segur), consignes port (5€/dia per maleta), hotel/apartament (recomanem deixar equipatge gran). Evita portar objectes de valor.',
+      },
+      temporada: {
+        question: 'Quan està oberta la temporada?',
+        answer: 'Temporada alta: Juny - Setembre. Temporada mitjana: Abril-Maig i Octubre. Tancat: Novembre - Març. La millor època és maig-juny i setembre (menys massificat, bon temps).',
+      },
+      disponibilidad: {
+        question: 'Com puc consultar disponibilitat?',
+        answer: 'Pots consultar disponibilitat a través del nostre web (calendari en temps real), WhatsApp (resposta immediata), telèfon (trucada directa) o email (consultes detallades).',
+      },
+      antelacion: {
+        question: 'Amb quanta antelació he de reservar?',
+        answer: 'Recomanacions: Temporada alta 1-2 setmanes mínim, caps de setmana 3-5 dies, entre setmana possible reserva del dia, grups grans màxima antelació possible. Al juliol-agost reservar amb almenys 2 setmanes d\'antelació.',
+      },
+      comidaBebida: {
+        question: 'Puc portar menjar i beguda a bord?',
+        answer: 'És clar! Pots portar el teu propi menjar, begudes i snacks. Tenim nevera a bord. Només demanem que no s\'usi vidre per seguretat.',
+      },
+      fianza: {
+        question: 'Què és la fiança i quan es retorna?',
+        answer: 'La fiança és un dipòsit de seguretat (200-500€ segons la barca) que es paga al port abans de sortir i es retorna íntegrament en tornar si la barca està en bon estat.',
+      },
+      equipoSeguridad: {
+        question: 'Quin equipament de seguretat inclou la barca?',
+        answer: 'Totes les nostres barques inclouen armilles salvavides per a tots els passatgers, farmaciola de primers auxilis, extintor, àncora, i kit de senyalització segons normativa.',
+      },
+      descuentos: {
+        question: 'Hi ha descomptes per a grups o reserves anticipades?',
+        answer: 'Sí, oferim el codi BIENVENIDO10 per a un 10% de descompte a la teva primera reserva. També tenim tarifes especials per a reserves de dia complet.',
+      },
+      hastaDondeNavegar: {
+        question: 'Fins on puc navegar des de Blanes?',
+        answer: 'Pots explorar tota la costa entre Blanes i Tossa de Mar. Et recomanem les cales de Sa Forcanera, Cala Bona i Cala Sant Francesc, accessibles només per mar.',
+      },
+      mascotas: {
+        question: 'Puc portar mascotes a bord?',
+        answer: 'Sí, les mascotes són benvingudes a les nostres barques. Recomanem portar aigua fresca i una tovallola per a la teva mascota. L\'animal ha de portar armilla salvavides si està disponible.',
+      },
+      pesca: {
+        question: 'Es pot pescar des de la barca?',
+        answer: 'Sí, pots pescar des de les nostres barques. Necessitaràs la teva pròpia llicència de pesca recreativa. No proporcionem equips de pesca, però pots portar els teus.',
+      },
+      diferenciaLicencia: {
+        question: 'Quina és la diferència entre barques sense llicència i amb llicència?',
+        answer: 'Les barques sense llicència tenen fins a 15 CV, capacitat de 4-5 persones, benzina inclosa i costen des de {noLicBaja1h}€. Les barques amb llicència tenen motors de 40-150 CV, capacitat de fins a 8 persones, major autonomia i costen des de {licBaja2h}€ (benzina no inclosa). Les barques amb llicència permeten navegar més lluny, fins a Tossa de Mar i més enllà.',
+      },
+      precioBlanesVsLloret: {
+        question: 'És més barat llogar una barca a Blanes o a Lloret de Mar?',
+        answer: 'Blanes és el punt de lloguer nàutic més assequible de la Costa Brava, amb barques sense llicència des de {noLicBaja1h}€ l\'hora amb benzina inclosa. En operar des del Port de Blanes amb la nostra pròpia flota, oferim preus més competitius que altres localitats com Lloret de Mar o Tossa de Mar.',
+      },
+      barcoGrupoGrande: {
+        question: 'Quina barca recomaneu per a un grup gran?',
+        answer: 'Per a grups grans recomanem el Pacific Craft 625 (fins a 8 persones, amb llicència) o la nostra Excursió Privada amb patró (fins a 10 persones). L\'excursió amb patró és ideal si ningú del grup té llicència nàutica, ja que inclou un capità professional que us porta a les millors cales.',
+      },
+      precioCostaBrava: {
+        question: 'Quant costa llogar una barca a la Costa Brava?',
+        answer: 'A la Costa Brava pots llogar una barca des de {noLicBaja1h}€ l\'hora a Blanes, amb benzina inclosa i sense necessitat de llicència. Els preus varien segons la durada (d\'1h a dia complet), el tipus de barca i la temporada. Juliol i agost són temporada alta amb preus més elevats; juny i setembre ofereixen la millor relació qualitat-preu.',
+      },
+      tossaBarco: {
+        question: 'Es pot anar a Tossa de Mar en barca des de Blanes?',
+        answer: 'Sí, Tossa de Mar és a uns 30 minuts en barca des de Blanes. Tanmateix, necessites una barca amb llicència o contractar la nostra excursió amb patró, ja que les barques sense llicència tenen un radi de navegació limitat. La ruta costanera de Blanes a Tossa és espectacular, amb cales verges i penya-segats.',
+      },
+      excursionPatron: {
+        question: 'Quant costa una excursió en barca amb patró?',
+        answer: 'Les nostres excursions privades amb patró professional des de {excursionBaja2h}€ per 2 hores per a fins a 10 persones. El patró us porta a les millors cales, s\'encarrega de tota la navegació i no necessiteu llicència. És l\'opció perfecta per a famílies o grups que volen gaudir sense preocupar-se de res.',
+      },
+      seguroSinExperiencia: {
+        question: 'És segur llogar una barca sense experiència?',
+        answer: 'Totalment segur. Abans de sortir a navegar, el nostre equip et fa un briefing de 15 minuts on t\'explica el funcionament de la barca, les normes de navegació i la zona autoritzada. Les barques sense llicència són molt estables i fàcils de manejar, i la zona de Blanes té aigües tranquil·les i protegides.',
+      },
+      barcoVsExcursion: {
+        question: 'Què és millor, llogar una barca o una excursió amb patró?',
+        answer: 'Depèn del que busquis. Llogar una barca sense llicència (des de {noLicBaja1h}€/h) et dóna total llibertat per anar al teu ritme i explorar pel teu compte. L\'excursió amb patró (des de {excursionBaja2h}€/2h) és ideal si vols relaxar-te completament, no tens experiència o vols arribar a cales més llunyanes com Tossa de Mar.',
+      },
+      mejorEpoca: {
+        question: 'Quina és la millor època per llogar una barca a Blanes?',
+        answer: 'Setembre és el mes estrella: l\'aigua del mar està a la seva temperatura més càlida (24-25°C), els preus són de temporada mitjana, hi ha menys turistes i les condicions meteorològiques són excel·lents. Juny i la primera quinzena de juliol també són molt bones opcions.',
+      },
+    },
   },
 };

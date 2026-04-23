@@ -1952,6 +1952,16 @@ export interface Translations {
     schemaDescription: string;
     whatsappGenericMessage: string;
     filterLabel: string;
+    contactTitle?: string;
+    contactDesc?: string;
+    contactWhatsApp?: string;
+    contactBooking?: string;
+    infoPortTitle?: string;
+    infoPortDesc?: string;
+    infoSeasonTitle?: string;
+    infoSeasonDesc?: string;
+    infoFleetTitle?: string;
+    infoFleetDesc?: string;
     categories: Record<string, string>;
     items: Record<string, { question: string; answer: string }>;
   };

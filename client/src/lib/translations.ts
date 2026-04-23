@@ -78,6 +78,8 @@ export interface Translations {
     bestForSundeck?: string;
     bestForFamilies?: string;
     bestForPremium?: string;
+    imageAltWithLicense: string;
+    imageAltNoLicense: string;
   };
 
   // Features Section

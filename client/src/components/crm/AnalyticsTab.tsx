@@ -1059,8 +1059,8 @@ export function AnalyticsTab({ adminToken }: AnalyticsTabProps) {
                             paddingAngle={3}
                             dataKey="value"
                             stroke="none"
-                            label={({ name, percent }: { name: string; percent: number }) =>
-                              `${name} (${(percent * 100).toFixed(0)}%)`
+                            label={({ name, percent }: { name?: string; percent?: number }) =>
+                              `${name ?? ""} (${((percent ?? 0) * 100).toFixed(0)}%)`
                             }
                           >
                             {trafficPieData.map((entry, index) => (
@@ -1150,8 +1150,8 @@ export function AnalyticsTab({ adminToken }: AnalyticsTabProps) {
                             paddingAngle={3}
                             dataKey="value"
                             stroke="none"
-                            label={({ name, percent }: { name: string; percent: number }) =>
-                              `${name} (${(percent * 100).toFixed(0)}%)`
+                            label={({ name, percent }: { name?: string; percent?: number }) =>
+                              `${name ?? ""} (${((percent ?? 0) * 100).toFixed(0)}%)`
                             }
                           >
                             {devicesPieData.map((entry, index) => (

@@ -1890,16 +1890,6 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
             geoRadius: "50000",
           },
         ],
-        hasMerchantReturnPolicy: {
-          "@type": "MerchantReturnPolicy",
-          applicableCountry: "ES",
-          returnPolicyCategory: "https://schema.org/MerchantReturnNotPermitted",
-          returnMethod: "https://schema.org/ReturnInStore",
-          returnFees: "https://schema.org/OriginalShippingFees",
-          description: isEn
-            ? "100% refundable deposit. Free date changes with 7 days' notice. Free rescheduling due to bad weather."
-            : "Fianza 100% reembolsable. Cambio de fecha gratis con 7 días de antelación. Reprogramación gratis por mal tiempo.",
-        },
         openingHoursSpecification: [{
           "@type": "OpeningHoursSpecification",
           dayOfWeek: ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],

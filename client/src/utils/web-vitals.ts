@@ -24,7 +24,7 @@ function sendToBeacon(metric: { name: string; value: number; id: string }) {
   const deviceType = window.innerWidth < 768 ? "mobile" : window.innerWidth < 1024 ? "tablet" : "desktop";
   const navEntry = performance.getEntriesByType("navigation")[0] as PerformanceNavigationTiming | undefined;
   const navigationType = navEntry?.type || "navigate";
-  const connection = (navigator as Record<string, unknown>).connection as { effectiveType?: string } | undefined;
+  const connection = (navigator as unknown as Record<string, unknown>).connection as { effectiveType?: string } | undefined;
   const connectionType = connection?.effectiveType || "unknown";
 
   const data = JSON.stringify({

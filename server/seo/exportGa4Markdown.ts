@@ -100,7 +100,7 @@ export async function exportGa4Markdown(): Promise<void> {
       `|---|-------|----------|----------|`,
     ];
 
-    traffic24h.forEach((t, i) => {
+    traffic24h.forEach((t: { channel: string; sessions: number; users: number }, i: number) => {
       lines.push(`| ${i + 1} | ${t.channel} | ${fmtNum(t.sessions)} | ${fmtNum(t.users)} |`);
     });
 
@@ -112,7 +112,7 @@ export async function exportGa4Markdown(): Promise<void> {
       `|---|-------|----------|----------|`,
     );
 
-    traffic7d.forEach((t, i) => {
+    traffic7d.forEach((t: { channel: string; sessions: number; users: number }, i: number) => {
       lines.push(`| ${i + 1} | ${t.channel} | ${fmtNum(t.sessions)} | ${fmtNum(t.users)} |`);
     });
 
@@ -126,7 +126,7 @@ export async function exportGa4Markdown(): Promise<void> {
       `|---|--------|---------|----------|----------------|`,
     );
 
-    topPages7d.forEach((p, i) => {
+    topPages7d.forEach((p: { page: string; views: number; users: number; avgDuration: number }, i: number) => {
       lines.push(`| ${i + 1} | ${p.page} | ${fmtNum(p.views)} | ${fmtNum(p.users)} | ${fmtDuration(p.avgDuration)} |`);
     });
 

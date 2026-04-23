@@ -42,7 +42,7 @@ export function registerGdprRoutes(app: Express): void {
       return res.status(400).json({ message: "Email invalido" });
     }
 
-    logger.info("[GDPR] Data export requested", { email, admin: (req as Record<string, unknown>).adminUser ?? "unknown" });
+    logger.info("[GDPR] Data export requested", { email, admin: (req as unknown as Record<string, unknown>).adminUser ?? "unknown" });
 
     try {
       // --- customer_users ---
@@ -158,7 +158,7 @@ export function registerGdprRoutes(app: Express): void {
       return res.status(400).json({ message: "Email invalido" });
     }
 
-    logger.info("[GDPR] Data deletion requested", { email, admin: (req as Record<string, unknown>).adminUser ?? "unknown" });
+    logger.info("[GDPR] Data deletion requested", { email, admin: (req as unknown as Record<string, unknown>).adminUser ?? "unknown" });
 
     try {
       const summary: Record<string, number> = {};

@@ -698,7 +698,7 @@ async function createBookingLink(params: CreateBookingLinkParams): Promise<strin
       customerName: firstName,
       customerSurname: surname,
       customerPhone,
-      customerEmail: customerEmail || null,
+      customerEmail: customerEmail || undefined,
       customerNationality: "N/A",
       numberOfPeople,
       totalHours: durationHours,

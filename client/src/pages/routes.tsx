@@ -10,7 +10,7 @@ const RouteMap = lazy(() => import("@/components/RouteMap"));
 import { boatRoutes } from "@shared/routesData";
 import { trackRouteSelected } from "@/utils/analytics";
 import type { BoatRoute } from "@shared/routesData";
-import { useLanguage } from "@/hooks/use-language";
+import { useLanguage, type Language } from "@/hooks/use-language";
 import { useTranslations } from "@/lib/translations";
 import { getSEOConfig, generateCanonicalUrl, generateHreflangLinks, generateBreadcrumbSchema } from "@/utils/seo-config";
 
@@ -40,7 +40,7 @@ const RouteCard = React.memo(function RouteCard({
   bookBoatLabel: string;
   onSelect: (id: string) => void;
 }) {
-  const desc = route.descriptions[language] || route.descriptions.es;
+  const desc = route.descriptions[language as Language] || route.descriptions.es;
   const { localizedPath } = useLanguage();
   const handleClick = useCallback(() => onSelect(route.id), [onSelect, route.id]);
   const handleBookClick = useCallback((e: React.MouseEvent) => {
@@ -79,7 +79,7 @@ const RouteCard = React.memo(function RouteCard({
         </div>
 
         <div className="flex flex-wrap gap-1.5">
-          {desc.highlights.map((highlight, i) => (
+          {desc.highlights.map((highlight: string, i: number) => (
             <Badge key={i} variant="secondary" className="text-xs">
               <MapPin className="w-3 h-3 mr-1" />
               {highlight}

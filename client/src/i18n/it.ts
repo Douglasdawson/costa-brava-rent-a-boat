@@ -1609,7 +1609,6 @@ export const it: Translations = {
     stepOf: "di",
   },
 
-  bookingTrust: { freeCancellation: 'Cambio data gratuito', securePayment: 'Pagamento sicuro', insuranceIncluded: 'Assicurazione inclusa' },
 
   boatDescriptions: {
     "solar-450": "Pensata per chi ama prendere il sole in mare. Il suo solarium imbottito è il più ampio di tutta la flotta senza patente: ancorate in una cala dalle acque turchesi vicino a Blanes e rilassatevi come in nessun altro posto. Nessuna patente nautica necessaria — vi insegniamo a guidarla in 15 minuti. Carburante, assicurazione e dotazioni di sicurezza inclusi.",
@@ -1660,5 +1659,64 @@ export const it: Translations = {
     adrenaline: 'Pura adrenalina',
     luxury: "L'esperienza di lusso",
     vip: 'VIP: goditi e basta',
+  },
+  bookingTrust: {
+    customers: 'Più di 5000 clienti',
+    rating: '4.8 Google',
+    confirmation: 'Risposta in pochi minuti',
+    freeCancellation: 'Cambio data gratuito',
+    securePayment: 'Pagamento sicuro',
+    insuranceIncluded: 'Assicurazione inclusa',
+  },
+  returnVisitor: {
+    welcomeBack: 'Bentornato',
+    stillThinking: 'Stai ancora pensando al {boat}?',
+    continueBooking: 'Continua da dove avevi lasciato',
+    checkAvailability: 'Verifica disponibilità',
+  },
+  neuro: {
+    mostPopular: 'Più popolare',
+    bestValue: 'Miglior rapporto qualità-prezzo',
+    perHour: '/ora',
+  },
+  valueStack: {
+    title: 'Tutto incluso nel tuo prezzo',
+    fuelIncluded: 'Carburante incluso',
+    insurance: 'Assicurazione imbarcazione e occupanti',
+    safetyEquipment: 'Equipaggiamento di sicurezza completo',
+    briefing: 'Briefing di 15 min incluso',
+    freeCancellation: 'Cambio data gratuito',
+    securePayment: 'Pagamento sicuro',
+    gpsAndSonar: 'GPS e ecoscandaglio inclusi',
+    professionalSkipper: 'Skipper professionista incluso',
+  },
+  liveInterest: {
+    viewing: '{count} persone stanno guardando questa barca in questo momento',
+  },
+  adaptiveUrgency: {
+    popularBoat: 'Barca popolare questa stagione',
+    highDemandWeekend: 'Alta richiesta questo fine settimana',
+    bookingsToday: '{count} prenotazioni oggi',
+    mostBookedWeek: 'Il più prenotato questa settimana',
+    onlyXSlots: 'Rimangono solo {count} slot per il {date}',
+    limitedAvailability: 'Disponibilità limitata',
+  },
+  trustEscalation: {
+    familiesThisSeason: '100+ famiglie questa stagione',
+    bookingsThisWeek: '{count}+ prenotazioni questa settimana',
+    officialPort: 'Porto ufficiale di Blanes',
+    googleRating: '4.8 su Google',
+    fullInsurance: 'Assicurazione completa',
+    yearsExperience: '5 anni di esperienza',
+  },
+  sensoryHero: {
+    morningLine: 'Senti la brezza mediterranea sulla pelle',
+    afternoonLine: 'Domani, questo potrebbe essere il tuo tramonto',
+    eveningLine: 'Domani svegliati sull\'acqua',
+    nightLine: 'Domani il mare ti aspetta',
+    seasonLow: 'Stagione tranquilla — calette tutte per te',
+    seasonMid: 'Il momento migliore dell\'estate inizia ora',
+    seasonHigh: 'Ultimi posti ad agosto — non aspettare oltre',
+    seasonOff: 'La stagione apre ad aprile',
   },
 };

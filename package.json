@@ -15,10 +15,11 @@
     "format:check": "prettier --check \"**/*.{ts,tsx,json,md}\"",
     "test": "vitest run",
     "test:watch": "vitest",
-    "check:all": "npm run check && npm run lint && npm run format:check && npm run test",
+    "check:all": "npm run check && npm run lint && npm run format:check && npm run test && npm run i18n:validate",
     "clean": "rm -rf dist node_modules/.vite",
     "remotion": "remotion studio client/src/remotion/index.tsx",
     "i18n:validate": "tsx scripts/validate-translations.ts",
+    "i18n:translate": "tsx scripts/i18n-translate.ts",
     "seo:worker": "NODE_ENV=production tsx server/seo/worker.ts",
     "prerender": "npx playwright install chromium 2>/dev/null; tsx scripts/prerender.ts",
     "build:full": "npm run build && npm run prerender"

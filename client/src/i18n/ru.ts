@@ -1608,7 +1608,6 @@ export const ru: Translations = {
     stepOf: "из",
   },
 
-  bookingTrust: { freeCancellation: 'Бесплатное изменение даты', securePayment: 'Безопасная оплата', insuranceIncluded: 'Страховка включена' },
 
   boatDescriptions: {
     "solar-450": "Создана для любителей солнца. Мягкий солярий — самый просторный во всем флоте без лицензии: встаньте на якорь в бирюзовой бухте у Бланеса и отдыхайте как нигде больше. Лицензия не нужна — научим управлять за 15 минут. Топливо, страховка и спасательное оборудование включены.",
@@ -1659,5 +1658,64 @@ export const ru: Translations = {
     adrenaline: 'Чистый адреналин',
     luxury: 'Роскошный опыт',
     vip: 'VIP: просто наслаждайтесь',
+  },
+  bookingTrust: {
+    customers: '5000+ клиентов',
+    rating: '4.8 Google',
+    confirmation: 'Ответ в течение нескольких минут',
+    freeCancellation: 'Бесплатное изменение даты',
+    securePayment: 'Безопасная оплата',
+    insuranceIncluded: 'Страховка включена',
+  },
+  returnVisitor: {
+    welcomeBack: 'С возвращением',
+    stillThinking: 'Всё ещё думаете о {boat}?',
+    continueBooking: 'Продолжите с того места, где остановились',
+    checkAvailability: 'Проверить наличие',
+  },
+  neuro: {
+    mostPopular: 'Самое популярное',
+    bestValue: 'Лучшее предложение',
+    perHour: '/час',
+  },
+  valueStack: {
+    title: 'Всё включено в стоимость',
+    fuelIncluded: 'Топливо включено',
+    insurance: 'Страхование судна и пассажиров',
+    safetyEquipment: 'Полный комплект оборудования безопасности',
+    briefing: '15-минутный инструктаж включён',
+    freeCancellation: 'Бесплатный перенос даты',
+    securePayment: 'Безопасная оплата',
+    gpsAndSonar: 'GPS и эхолот включены',
+    professionalSkipper: 'Профессиональный шкипер включён',
+  },
+  liveInterest: {
+    viewing: '{count} человек смотрят эту лодку прямо сейчас',
+  },
+  adaptiveUrgency: {
+    popularBoat: 'Популярная лодка в этом сезоне',
+    highDemandWeekend: 'Высокий спрос в эти выходные',
+    bookingsToday: '{count} бронирований сегодня',
+    mostBookedWeek: 'Самая бронируемая на этой неделе',
+    onlyXSlots: 'Осталось только {count} часов на {date}',
+    limitedAvailability: 'Ограниченная доступность',
+  },
+  trustEscalation: {
+    familiesThisSeason: '100+ семей в этом сезоне',
+    bookingsThisWeek: '{count}+ бронирований на этой неделе',
+    officialPort: 'Официальный порт Бланеса',
+    googleRating: '4.8 на Google',
+    fullInsurance: 'Полная страховка',
+    yearsExperience: '5 лет опыта',
+  },
+  sensoryHero: {
+    morningLine: 'Почувствуй средиземноморский бриз на своей коже',
+    afternoonLine: 'Завтра это может быть твой закат',
+    eveningLine: 'Проснись завтра на воде',
+    nightLine: 'Завтра море ждёт тебя',
+    seasonLow: 'Спокойный сезон — бухты только для тебя',
+    seasonMid: 'Лучшее время лета начинается сейчас',
+    seasonHigh: 'Последние места в августе — не жди больше',
+    seasonOff: 'Сезон открывается в апреле',
   },
 };

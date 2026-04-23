@@ -1608,7 +1608,6 @@ export const nl: Translations = {
     stepOf: "van",
   },
 
-  bookingTrust: { freeCancellation: 'Gratis datumwijziging', securePayment: 'Veilige betaling', insuranceIncluded: 'Verzekering inbegrepen' },
 
   boatDescriptions: {
     "solar-450": "Ontworpen voor zonliefhebbers. Het gewatteerde solarium is het grootste van de hele vaarbewijsvrije vloot: anker in een turquoise baai bij Blanes en ontspan als nergens anders. Geen vaarbewijs nodig — wij leren u in 15 minuten hoe u vaart. Brandstof, verzekering en veiligheidsuitrusting inbegrepen.",
@@ -1659,5 +1658,64 @@ export const nl: Translations = {
     adrenaline: 'Pure adrenaline',
     luxury: 'De luxe-ervaring',
     vip: 'VIP: gewoon genieten',
+  },
+  bookingTrust: {
+    customers: '5000+ klanten',
+    rating: '4.8 Google',
+    confirmation: 'Reactie binnen enkele minuten',
+    freeCancellation: 'Gratis datumwijziging',
+    securePayment: 'Veilige betaling',
+    insuranceIncluded: 'Verzekering inbegrepen',
+  },
+  returnVisitor: {
+    welcomeBack: 'Welkom terug',
+    stillThinking: 'Nog aan het twijfelen over de {boat}?',
+    continueBooking: 'Ga verder waar je gebleven was',
+    checkAvailability: 'Bekijk beschikbaarheid',
+  },
+  neuro: {
+    mostPopular: 'Meest populair',
+    bestValue: 'Beste prijs-kwaliteit',
+    perHour: '/uur',
+  },
+  valueStack: {
+    title: 'Alles inbegrepen in je prijs',
+    fuelIncluded: 'Brandstof inbegrepen',
+    insurance: 'Verzekering voor boot en inzittenden',
+    safetyEquipment: 'Volledige veiligheidsuitrusting',
+    briefing: 'Instructie van 15 min inbegrepen',
+    freeCancellation: 'Gratis datum wijzigen',
+    securePayment: 'Veilige betaling',
+    gpsAndSonar: 'GPS en dieptemeter inbegrepen',
+    professionalSkipper: 'Professionele schipper inbegrepen',
+  },
+  liveInterest: {
+    viewing: '{count} personen bekijken deze boot op dit moment',
+  },
+  adaptiveUrgency: {
+    popularBoat: 'Populaire boot dit seizoen',
+    highDemandWeekend: 'Grote vraag dit weekend',
+    bookingsToday: '{count} boekingen vandaag',
+    mostBookedWeek: 'Meest geboekt deze week',
+    onlyXSlots: 'Nog maar {count} uur beschikbaar op {date}',
+    limitedAvailability: 'Beperkte beschikbaarheid',
+  },
+  trustEscalation: {
+    familiesThisSeason: '100+ gezinnen dit seizoen',
+    bookingsThisWeek: '{count}+ boekingen deze week',
+    officialPort: 'Officiële haven van Blanes',
+    googleRating: '4.8 op Google',
+    fullInsurance: 'Volledig verzekerd',
+    yearsExperience: '5 jaar ervaring',
+  },
+  sensoryHero: {
+    morningLine: 'Voel de Middellandse Zeebries op je huid',
+    afternoonLine: 'Morgen kan dit jouw zonsondergang zijn',
+    eveningLine: 'Word morgen wakker op het water',
+    nightLine: 'Morgen wacht de zee op je',
+    seasonLow: 'Rustig seizoen — baaien alleen voor jou',
+    seasonMid: 'Het beste moment van de zomer begint nu',
+    seasonHigh: 'Laatste plekken in augustus — wacht niet langer',
+    seasonOff: 'Het seizoen opent in april',
   },
 };

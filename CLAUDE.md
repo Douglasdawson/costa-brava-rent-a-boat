@@ -199,6 +199,21 @@ const [updated] = await db
 // 5. Sitemaps: server/routes/sitemaps.ts
 ```
 
+## Traducciones i18n (sincronización viva)
+
+Fuente de verdad: `client/src/i18n/es.ts`. Los otros 7 idiomas (en, ca, fr, de, nl, it, ru) deben reflejarla al 100%.
+
+**Flujo cuando añades o cambias una clave en `es.ts`:**
+1. Edita `es.ts` con el nuevo texto.
+2. Ejecuta `npm run i18n:translate` — Claude traduce automáticamente las claves faltantes a los 7 idiomas.
+3. Ejecuta `npm run i18n:validate` para confirmar 0 diferencias.
+4. Revisa los diffs en los archivos `<lang>.ts` y ajusta si alguna traducción suena rara (revisión humana opcional).
+5. Commit + push.
+
+`npm run check:all` incluye `i18n:validate` — CI falla si algún idioma queda desincronizado. Requiere `ANTHROPIC_API_KEY` en `.env`.
+
+**Regla**: nunca añadir texto visible al usuario directamente en JSX/JSON-LD; siempre meterlo primero en `es.ts` y luego ejecutar `i18n:translate`.
+
 ## Cosas a Evitar
 
 - NO crear archivos `.md` nuevos sin que el usuario lo pida

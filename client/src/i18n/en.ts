@@ -1672,7 +1672,6 @@ export const en: Translations = {
     stepOf: "of",
   },
 
-  bookingTrust: { freeCancellation: 'Free date change', securePayment: 'Secure payment', insuranceIncluded: 'Insurance included' },
 
   boatDescriptions: {
     "solar-450": "Designed for sun lovers. Its cushioned solarium is the largest in the entire no-licence fleet: anchor in a turquoise cove near Blanes and relax like nowhere else. No licence needed — we teach you to drive in 15 minutes. Fuel, insurance and safety equipment included.",
@@ -1723,5 +1722,64 @@ export const en: Translations = {
     adrenaline: 'Pure adrenaline',
     luxury: 'The luxury experience',
     vip: 'VIP: just enjoy',
+  },
+  bookingTrust: {
+    customers: '5000+ customers',
+    rating: '4.8 Google',
+    confirmation: 'Reply within minutes',
+    freeCancellation: 'Free date change',
+    securePayment: 'Secure payment',
+    insuranceIncluded: 'Insurance included',
+  },
+  returnVisitor: {
+    welcomeBack: 'Welcome back',
+    stillThinking: 'Still thinking about the {boat}?',
+    continueBooking: 'Continue where you left off',
+    checkAvailability: 'Check availability',
+  },
+  neuro: {
+    mostPopular: 'Most popular',
+    bestValue: 'Best value',
+    perHour: '/hour',
+  },
+  valueStack: {
+    title: 'Everything included in your price',
+    fuelIncluded: 'Fuel included',
+    insurance: 'Boat and passenger insurance',
+    safetyEquipment: 'Complete safety equipment',
+    briefing: '15-min training included',
+    freeCancellation: 'Free date change',
+    securePayment: 'Secure payment',
+    gpsAndSonar: 'GPS and sonar included',
+    professionalSkipper: 'Professional skipper included',
+  },
+  liveInterest: {
+    viewing: '{count} people viewing this boat right now',
+  },
+  adaptiveUrgency: {
+    popularBoat: 'Popular boat this season',
+    highDemandWeekend: 'High demand this weekend',
+    bookingsToday: '{count} bookings today',
+    mostBookedWeek: 'Most booked this week',
+    onlyXSlots: 'Only {count} slots left for {date}',
+    limitedAvailability: 'Limited availability',
+  },
+  trustEscalation: {
+    familiesThisSeason: '100+ families this season',
+    bookingsThisWeek: '{count}+ bookings this week',
+    officialPort: 'Official port of Blanes',
+    googleRating: '4.8 on Google',
+    fullInsurance: 'Full insurance',
+    yearsExperience: '5 years of experience',
+  },
+  sensoryHero: {
+    morningLine: 'Feel the Mediterranean breeze on your skin',
+    afternoonLine: 'Tomorrow, this could be your sunset',
+    eveningLine: 'Wake up tomorrow on the water',
+    nightLine: 'Tomorrow, the sea awaits you',
+    seasonLow: 'Quiet season — coves all to yourself',
+    seasonMid: 'The best part of summer starts now',
+    seasonHigh: 'Last spots available in August — don\'t wait',
+    seasonOff: 'The season opens in April',
   },
 };

@@ -1608,7 +1608,6 @@ export const ca: Translations = {
     stepOf: "de",
   },
 
-  bookingTrust: { freeCancellation: 'Canvi de data gratuït', securePayment: 'Pagament segur', insuranceIncluded: 'Assegurança inclosa' },
 
   boatDescriptions: {
     "solar-450": "Pensada per als qui volen prendre el sol al mar. El seu solarium encoixinat és el més ampli de tota la flota sense llicència: fondeja en una cala d'aigües turqueses prop de Blanes i relaxa't com en cap altre lloc. Sense carnet necessari, t'ensenyem a manejar-la en 15 minuts. Gasolina, assegurança i equip de seguretat inclosos.",
@@ -1659,5 +1658,64 @@ export const ca: Translations = {
     adrenaline: 'Pura adrenalina',
     luxury: "L'experiència de luxe",
     vip: 'VIP: tu només gaudeix',
+  },
+  bookingTrust: {
+    customers: 'Més de 5000 clients',
+    rating: '4.8 Google',
+    confirmation: 'Resposta en minuts',
+    freeCancellation: 'Canvi de data gratuït',
+    securePayment: 'Pagament segur',
+    insuranceIncluded: 'Assegurança inclosa',
+  },
+  returnVisitor: {
+    welcomeBack: 'Benvingut de nou',
+    stillThinking: 'Encara penses en el {boat}?',
+    continueBooking: 'Continua on ho vas deixar',
+    checkAvailability: 'Veure disponibilitat',
+  },
+  neuro: {
+    mostPopular: 'Més popular',
+    bestValue: 'Millor preu',
+    perHour: '/hora',
+  },
+  valueStack: {
+    title: 'Tot inclòs en el teu preu',
+    fuelIncluded: 'Combustible inclòs',
+    insurance: 'Assegurança de l\'embarcació i ocupants',
+    safetyEquipment: 'Equip de seguretat complet',
+    briefing: 'Formació de 15 min inclosa',
+    freeCancellation: 'Canvi de data gratuït',
+    securePayment: 'Pagament segur',
+    gpsAndSonar: 'GPS i sonda inclosos',
+    professionalSkipper: 'Patró professional inclòs',
+  },
+  liveInterest: {
+    viewing: '{count} persones mirant aquest vaixell ara mateix',
+  },
+  adaptiveUrgency: {
+    popularBoat: 'Embarcació popular aquesta temporada',
+    highDemandWeekend: 'Alta demanda aquest cap de setmana',
+    bookingsToday: '{count} reserves avui',
+    mostBookedWeek: 'El més reservat aquesta setmana',
+    onlyXSlots: 'Només queden {count} hores per al {date}',
+    limitedAvailability: 'Disponibilitat limitada',
+  },
+  trustEscalation: {
+    familiesThisSeason: 'Més de 100 famílies aquesta temporada',
+    bookingsThisWeek: 'Més de {count} reserves aquesta setmana',
+    officialPort: 'Port oficial de Blanes',
+    googleRating: '4,8 a Google',
+    fullInsurance: 'Assegurança completa',
+    yearsExperience: '5 anys d\'experiència',
+  },
+  sensoryHero: {
+    morningLine: 'Sent la brisa mediterrània a la teva pell',
+    afternoonLine: 'Demà, aquest podria ser el teu capvespre',
+    eveningLine: 'Desperta demà a l\'aigua',
+    nightLine: 'Demà, el mar t\'espera',
+    seasonLow: 'Temporada tranquil·la — cales només per a tu',
+    seasonMid: 'El millor moment de l\'estiu comença ara',
+    seasonHigh: 'Últimes places d\'agost — no esperis més',
+    seasonOff: 'La temporada obre l\'abril',
   },
 };

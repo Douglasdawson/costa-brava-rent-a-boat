@@ -52,7 +52,7 @@ export default function LocationLloretPage() {
   const s = t.locationPages.lloret.sections!;
 
   const handleBookingWhatsApp = () => {
-    const message = createBookingMessage();
+    const message = createBookingMessage(undefined, undefined, t.whatsappMessages);
     openWhatsApp(message);
   };
 

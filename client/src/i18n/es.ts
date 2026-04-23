@@ -1816,6 +1816,12 @@ export const es: Translations = {
     internalLinks: '¿Quieres saber más? Consulta la guía completa del tramo en <a href="/es/alquiler-barcos-lloret-de-mar" class="underline text-primary hover:text-primary/80">Lloret de Mar desde el mar</a> o la ruta con licencia hasta <a href="/es/alquiler-barcos-tossa-de-mar" class="underline text-primary hover:text-primary/80">Tossa de Mar</a>. Precios completos en <a href="/es/blog/cuanto-cuesta-alquilar-barco-blanes-precios" class="underline text-primary hover:text-primary/80">Cuánto cuesta alquilar un barco en Blanes</a>.',
   },
 
+  whatsappMessages: {
+    bookingWithBoatAndPrice: 'Hola! Me interesa hacer una reserva del {boatName} (desde {price}€). ¿Podrían ayudarme con la disponibilidad y precios? ¡Gracias!',
+    bookingWithBoat: 'Hola! Me interesa hacer una reserva del {boatName}. ¿Podrían ayudarme con la disponibilidad y precios? ¡Gracias!',
+    bookingGeneric: 'Hola! Me gustaría hacer una reserva para alquilar un barco. ¿Podrían ayudarme con la disponibilidad y precios?',
+  },
+
   locationBarcelona: {
     hero: {
       title: 'Alquiler de Barcos cerca de Barcelona',

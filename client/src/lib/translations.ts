@@ -1790,6 +1790,12 @@ export interface Translations {
     internalLinks?: string;
   };
 
+  whatsappMessages?: {
+    bookingWithBoatAndPrice: string;
+    bookingWithBoat: string;
+    bookingGeneric: string;
+  };
+
   locationBarcelona?: {
     hero: {
       title: string;

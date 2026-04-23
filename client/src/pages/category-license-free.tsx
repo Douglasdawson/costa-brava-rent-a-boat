@@ -50,7 +50,7 @@ export default function CategoryLicenseFreePage() {
   const canonical = generateCanonicalUrl('categoryLicenseFree', language);
 
   const handleBookingWhatsApp = () => {
-    const message = createBookingMessage();
+    const message = createBookingMessage(undefined, undefined, t.whatsappMessages);
     openWhatsApp(message);
   };
 

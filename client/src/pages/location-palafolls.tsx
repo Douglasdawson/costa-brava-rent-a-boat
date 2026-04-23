@@ -27,17 +27,19 @@ import { SEO } from "@/components/SEO";
 import { useLanguage } from "@/hooks/use-language";
 import { generateBreadcrumbSchema } from "@/utils/seo-config";
 import { openWhatsApp, createBookingMessage } from "@/utils/whatsapp";
+import { useTranslations } from "@/lib/translations";
 import { getCanonicalUrl } from "@/lib/domain";
 import { trackLocationPageView } from "@/utils/analytics";
 
 export default function LocationPalafollsPage() {
   const { data: boatsData } = useQuery<Boat[]>({ queryKey: ["/api/boats"] });
   const faqVars = useMemo(() => computeFaqVars(boatsData), [boatsData]);
+  const t = useTranslations();
   const { language, localizedPath } = useLanguage();
   useEffect(() => { trackLocationPageView("palafolls"); }, []);
 
   const handleBookingWhatsApp = () => {
-    const message = createBookingMessage();
+    const message = createBookingMessage(undefined, undefined, t.whatsappMessages);
     openWhatsApp(message);
   };
 

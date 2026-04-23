@@ -32,7 +32,7 @@ export default function LocationCostaBravaPage() {
   const faqT = cb?.faq;
 
   const handleBookingWhatsApp = () => {
-    const message = createBookingMessage();
+    const message = createBookingMessage(undefined, undefined, t.whatsappMessages);
     openWhatsApp(message);
   };
 

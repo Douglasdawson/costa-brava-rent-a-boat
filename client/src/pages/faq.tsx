@@ -62,7 +62,7 @@ export default function FAQPage() {
   };
 
   const handleBookingWhatsApp = () => {
-    const message = createBookingMessage();
+    const message = createBookingMessage(undefined, undefined, t.whatsappMessages);
     openWhatsApp(message);
   };
 

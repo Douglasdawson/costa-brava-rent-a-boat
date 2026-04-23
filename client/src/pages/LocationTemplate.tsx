@@ -107,7 +107,7 @@ export default function LocationTemplate({ config, extraCards, afterFaq }: Locat
   const s = loc?.sections;
 
   const handleBookingWhatsApp = () => {
-    const message = createBookingMessage();
+    const message = createBookingMessage(undefined, undefined, t.whatsappMessages);
     openWhatsApp(message);
   };
 

@@ -23,6 +23,7 @@ import { SEO } from "@/components/SEO";
 import { useLanguage } from "@/hooks/use-language";
 import { getSEOConfig, generateHreflangLinks, generateCanonicalUrl, generateBreadcrumbSchema } from "@/utils/seo-config";
 import { openWhatsApp, createBookingMessage } from "@/utils/whatsapp";
+import { useTranslations } from "@/lib/translations";
 
 const sunsetTimes = [
   { month: "April", time: "20:15 - 20:30", suggestion: "Depart at 18:30 for a golden hour cruise" },
@@ -95,12 +96,13 @@ const faqs = [
 
 export default function ActivitySunsetPage() {
   const { language, localizedPath } = useLanguage();
+  const t = useTranslations();
   const seoConfig = getSEOConfig('activitySunset', language);
   const hreflangLinks = generateHreflangLinks('activitySunset');
   const canonical = generateCanonicalUrl('activitySunset', language);
 
   const handleBookingWhatsApp = () => {
-    const message = createBookingMessage();
+    const message = createBookingMessage(undefined, undefined, t.whatsappMessages);
     openWhatsApp(message);
   };
 

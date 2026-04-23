@@ -2096,4 +2096,9 @@ export const en: Translations = {
       error: 'Failed to send. Please try again.',
     },
   },
+  whatsappMessages: {
+    bookingWithBoatAndPrice: 'Hello! I\'m interested in booking the {boatName} (from {price}€). Could you help me with availability and prices? Thanks!',
+    bookingWithBoat: 'Hello! I\'m interested in booking the {boatName}. Could you help me with availability and prices? Thanks!',
+    bookingGeneric: 'Hello! I\'d like to make a reservation to rent a boat. Could you help me with availability and prices?',
+  },
 };

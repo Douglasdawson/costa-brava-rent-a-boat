@@ -49,7 +49,7 @@ export default function CategoryLicensedPage() {
   const { data: boats } = useQuery<Boat[]>({ queryKey: ["/api/boats"] });
 
   const handleBookingWhatsApp = () => {
-    const message = createBookingMessage();
+    const message = createBookingMessage(undefined, undefined, t.whatsappMessages);
     openWhatsApp(message);
   };
 

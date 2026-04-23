@@ -42,7 +42,7 @@ export default function LocationBlanesPage() {
   const s = t.locationPages.blanes.sections!;
 
   const handleBookingWhatsApp = () => {
-    const message = createBookingMessage();
+    const message = createBookingMessage(undefined, undefined, t.whatsappMessages);
     openWhatsApp(message);
   };
 

@@ -22,6 +22,7 @@ import { SEO } from "@/components/SEO";
 import { useLanguage } from "@/hooks/use-language";
 import { getSEOConfig, generateHreflangLinks, generateCanonicalUrl, generateBreadcrumbSchema } from "@/utils/seo-config";
 import { openWhatsApp, createBookingMessage } from "@/utils/whatsapp";
+import { useTranslations } from "@/lib/translations";
 
 const snorkelSpots = [
   {
@@ -86,12 +87,13 @@ const faqs = [
 
 export default function ActivitySnorkelPage() {
   const { language, localizedPath } = useLanguage();
+  const t = useTranslations();
   const seoConfig = getSEOConfig('activitySnorkel', language);
   const hreflangLinks = generateHreflangLinks('activitySnorkel');
   const canonical = generateCanonicalUrl('activitySnorkel', language);
 
   const handleBookingWhatsApp = () => {
-    const message = createBookingMessage();
+    const message = createBookingMessage(undefined, undefined, t.whatsappMessages);
     openWhatsApp(message);
   };
 

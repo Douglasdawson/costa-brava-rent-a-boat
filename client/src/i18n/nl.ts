@@ -2036,4 +2036,9 @@ export const nl: Translations = {
       error: 'Verzenden mislukt. Probeer opnieuw.',
     },
   },
+  whatsappMessages: {
+    bookingWithBoatAndPrice: 'Hallo! Ik ben geïnteresseerd in een reservering voor de {boatName} (vanaf {price}€). Kunnen jullie me helpen met beschikbaarheid en prijzen? Bedankt!',
+    bookingWithBoat: 'Hallo! Ik ben geïnteresseerd in een reservering voor de {boatName}. Kunnen jullie me helpen met beschikbaarheid en prijzen? Bedankt!',
+    bookingGeneric: 'Hallo! Ik zou graag een boot willen huren. Kunnen jullie me helpen met beschikbaarheid en prijzen?',
+  },
 };

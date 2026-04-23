@@ -50,7 +50,7 @@ export default function LocationTossaPage() {
   const s = t.locationPages.tossa.sections!;
 
   const handleBookingWhatsApp = () => {
-    const message = createBookingMessage();
+    const message = createBookingMessage(undefined, undefined, t.whatsappMessages);
     openWhatsApp(message);
   };
 

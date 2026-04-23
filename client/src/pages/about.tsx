@@ -574,7 +574,7 @@ export default function AboutPage() {
   const tr = useTranslations();
 
   const handleBookingWhatsApp = () => {
-    const message = createBookingMessage();
+    const message = createBookingMessage(undefined, undefined, tr.whatsappMessages);
     openWhatsApp(message);
   };
 

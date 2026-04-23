@@ -2036,4 +2036,9 @@ export const ca: Translations = {
       error: 'Error en enviar. Torna-ho a intentar.',
     },
   },
+  whatsappMessages: {
+    bookingWithBoatAndPrice: 'Hola! M\'interessa fer una reserva del {boatName} (des de {price}€). Em podríeu ajudar amb la disponibilitat i preus? Gràcies!',
+    bookingWithBoat: 'Hola! M\'interessa fer una reserva del {boatName}. Em podríeu ajudar amb la disponibilitat i preus? Gràcies!',
+    bookingGeneric: 'Hola! M\'agradaria fer una reserva per llogar un vaixell. Em podríeu ajudar amb la disponibilitat i preus?',
+  },
 };

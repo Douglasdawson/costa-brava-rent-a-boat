@@ -23,6 +23,7 @@ import { SEO } from "@/components/SEO";
 import { useLanguage } from "@/hooks/use-language";
 import { getSEOConfig, generateHreflangLinks, generateCanonicalUrl, generateBreadcrumbSchema } from "@/utils/seo-config";
 import { openWhatsApp, createBookingMessage } from "@/utils/whatsapp";
+import { useTranslations } from "@/lib/translations";
 
 const safetyFeatures = [
   {
@@ -85,12 +86,13 @@ const faqs = [
 
 export default function ActivityFamiliesPage() {
   const { language, localizedPath } = useLanguage();
+  const t = useTranslations();
   const seoConfig = getSEOConfig('activityFamilies', language);
   const hreflangLinks = generateHreflangLinks('activityFamilies');
   const canonical = generateCanonicalUrl('activityFamilies', language);
 
   const handleBookingWhatsApp = () => {
-    const message = createBookingMessage();
+    const message = createBookingMessage(undefined, undefined, t.whatsappMessages);
     openWhatsApp(message);
   };
 

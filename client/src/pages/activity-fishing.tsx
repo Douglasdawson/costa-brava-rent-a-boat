@@ -23,6 +23,7 @@ import { SEO } from "@/components/SEO";
 import { useLanguage } from "@/hooks/use-language";
 import { getSEOConfig, generateHreflangLinks, generateCanonicalUrl, generateBreadcrumbSchema } from "@/utils/seo-config";
 import { openWhatsApp, createBookingMessage } from "@/utils/whatsapp";
+import { useTranslations } from "@/lib/translations";
 
 const fishSpecies = [
   {
@@ -128,12 +129,13 @@ const faqs = [
 
 export default function ActivityFishingPage() {
   const { language, localizedPath } = useLanguage();
+  const t = useTranslations();
   const seoConfig = getSEOConfig('activityFishing', language);
   const hreflangLinks = generateHreflangLinks('activityFishing');
   const canonical = generateCanonicalUrl('activityFishing', language);
 
   const handleBookingWhatsApp = () => {
-    const message = createBookingMessage();
+    const message = createBookingMessage(undefined, undefined, t.whatsappMessages);
     openWhatsApp(message);
   };
 

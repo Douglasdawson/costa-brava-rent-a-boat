@@ -114,7 +114,7 @@ export async function exportCompetitorsMarkdown(): Promise<void> {
         .limit(competitors.length);
 
       // Deduplicate by competitor (keep latest)
-      const seen = new Set<string>();
+      const seen = new Set<number>();
       const latestCompRankings = compRankings.filter((r) => {
         if (seen.has(r.competitorId)) return false;
         seen.add(r.competitorId);

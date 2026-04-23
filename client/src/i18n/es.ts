@@ -1780,6 +1780,13 @@ export const es: Translations = {
     ctaSubtitle: 'Alquila un barco desde 70\u20AC/hora \u00B7 Gasolina incluida',
     ctaBookNow: 'Reservar ahora',
     ctaWhatsApp: 'Preguntar por WhatsApp',
+    relatedDestinationsTitle: 'Destinos relacionados',
+    relatedBlanesName: 'Blanes',
+    relatedBlanesDesc: 'Puerto base. Barcos sin licencia desde 70€/h.',
+    relatedLloretName: 'Lloret de Mar',
+    relatedLloretDesc: 'Calas y playas a 20 min en barco desde Blanes.',
+    relatedTossaName: 'Tossa de Mar',
+    relatedTossaDesc: 'Vila Vella medieval y las mejores calas de la Costa Brava.',
   },
   exitIntent: {
     title: '10% de descuento en tu primera reserva',

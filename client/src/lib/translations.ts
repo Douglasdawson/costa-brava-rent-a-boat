@@ -1507,6 +1507,13 @@ export interface Translations {
     ctaSubtitle: string;
     ctaBookNow: string;
     ctaWhatsApp: string;
+    relatedDestinationsTitle?: string;
+    relatedBlanesName?: string;
+    relatedBlanesDesc?: string;
+    relatedLloretName?: string;
+    relatedLloretDesc?: string;
+    relatedTossaName?: string;
+    relatedTossaDesc?: string;
   };
 
   // Social Proof Strip (homepage)

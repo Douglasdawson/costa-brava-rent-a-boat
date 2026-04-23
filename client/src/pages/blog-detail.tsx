@@ -961,19 +961,21 @@ export default function BlogDetailPage({ slug: slugProp }: { slug?: string }) {
 
       {/* Related destinations */}
       <div className="max-w-4xl mx-auto px-4 sm:px-6 pb-12">
-        <h2 className="text-xl font-heading font-bold text-foreground mb-4">Destinos relacionados</h2>
+        <h2 className="text-xl font-heading font-bold text-foreground mb-4">
+          {t.blogDetail?.relatedDestinationsTitle ?? "Destinos relacionados"}
+        </h2>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           <a href={localizedPath("locationBlanes")} className="block p-4 bg-background rounded-lg border border-border hover:border-primary hover:shadow-sm transition-all">
-            <h3 className="font-semibold mb-1">Blanes</h3>
-            <p className="text-sm text-muted-foreground">Puerto base. Barcos sin licencia desde 70€/h.</p>
+            <h3 className="font-semibold mb-1">{t.blogDetail?.relatedBlanesName ?? "Blanes"}</h3>
+            <p className="text-sm text-muted-foreground">{t.blogDetail?.relatedBlanesDesc}</p>
           </a>
           <a href={localizedPath("locationLloret")} className="block p-4 bg-background rounded-lg border border-border hover:border-primary hover:shadow-sm transition-all">
-            <h3 className="font-semibold mb-1">Lloret de Mar</h3>
-            <p className="text-sm text-muted-foreground">Calas y playas a 20 min en barco desde Blanes.</p>
+            <h3 className="font-semibold mb-1">{t.blogDetail?.relatedLloretName ?? "Lloret de Mar"}</h3>
+            <p className="text-sm text-muted-foreground">{t.blogDetail?.relatedLloretDesc}</p>
           </a>
           <a href={localizedPath("locationTossa")} className="block p-4 bg-background rounded-lg border border-border hover:border-primary hover:shadow-sm transition-all">
-            <h3 className="font-semibold mb-1">Tossa de Mar</h3>
-            <p className="text-sm text-muted-foreground">Vila Vella medieval y las mejores calas de la Costa Brava.</p>
+            <h3 className="font-semibold mb-1">{t.blogDetail?.relatedTossaName ?? "Tossa de Mar"}</h3>
+            <p className="text-sm text-muted-foreground">{t.blogDetail?.relatedTossaDesc}</p>
           </a>
         </div>
       </div>

@@ -9,6 +9,7 @@ import { getLocalizedPath } from "../../shared/i18n-routes";
 import type { PageKey } from "../../shared/i18n-routes";
 import { getNativeOverride } from "../seo/nativeLanguageOverrides";
 import { resolveBoatImagePath } from "../../shared/boatImages";
+import { resolveMediaAbsoluteUrl } from "../../shared/mediaUrl";
 // Static destination slugs for sitemap fallback (when DB has no published destinations)
 const FALLBACK_DESTINATION_SLUGS = [
   "sa-palomera",
@@ -440,11 +441,8 @@ ${boatHreflang}  </url>
 
         // Build image tag if featured image exists (with XML escaping)
         let imageTag = "";
-        if (post.featuredImage) {
-          const rawImageUrl = post.featuredImage.startsWith("http")
-            ? post.featuredImage
-            : `${baseUrl}/object-storage/${post.featuredImage}`;
-
+        const rawImageUrl = resolveMediaAbsoluteUrl(post.featuredImage, baseUrl);
+        if (rawImageUrl) {
           const imageUrl = escapeXml(rawImageUrl);
           const safeTitle = escapeXml(post.title);
 
@@ -509,10 +507,8 @@ ${postHreflang}  </url>
 
           // Build image tag once (shared across all language URLs)
           let imageTag = "";
-          if (destination.featuredImage) {
-            const rawImageUrl = destination.featuredImage.startsWith("http")
-              ? destination.featuredImage
-              : `${baseUrl}/object-storage/${destination.featuredImage}`;
+          const rawImageUrl = resolveMediaAbsoluteUrl(destination.featuredImage, baseUrl);
+          if (rawImageUrl) {
             const imageUrl = escapeXml(rawImageUrl);
 
             imageTag = `

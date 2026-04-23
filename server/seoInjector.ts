@@ -8,6 +8,7 @@ import { eq, and } from "drizzle-orm";
 import { SUPPORTED_LANGUAGES, HREFLANG_CODES, type LangCode } from "../shared/seoConstants";
 import { isValidLang, resolveSlug, getSlugForPage, switchLanguagePath, type PageKey } from "../shared/i18n-routes";
 import { resolveBoatImagePath, BOAT_IMAGE_WIDTH, BOAT_IMAGE_HEIGHT } from "../shared/boatImages";
+import { resolveMediaPath } from "../shared/mediaUrl";
 import { AI_CRAWLER_NAMES } from "./seo/constants";
 import { getBoatReviewStats } from "./data/boatReviewStats";
 import { getNativeOverride, type NativeLanguageOverride } from "./seo/nativeLanguageOverrides";
@@ -2987,12 +2988,9 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
         const localizedMetaDesc = metaDescByLang[lang] || post.metaDescription || undefined;
         const localizedContent = contentByLang[lang] || (typeof post.content === "string" ? post.content : "");
 
-        // Build blog-specific og:image URL
-        const postOgImage = post.featuredImage
-          ? (post.featuredImage.startsWith("http") ? post.featuredImage
-            : post.featuredImage.startsWith("/") ? post.featuredImage
-            : `/object-storage/${post.featuredImage}`)
-          : undefined;
+        // Build blog-specific og:image URL (resolveMediaPath returns null for
+        // bare filenames so we skip the tag instead of emitting a 404 URL).
+        const postOgImage = resolveMediaPath(post.featuredImage) ?? undefined;
         const publishedTime = post.publishedAt ? new Date(post.publishedAt).toISOString() : undefined;
         const modifiedTime = post.updatedAt ? new Date(post.updatedAt).toISOString() : publishedTime;
         const meta: SEOMeta = {
@@ -3061,11 +3059,7 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
     try {
       const dest = await storage.getDestinationBySlug(slug);
       if (dest) {
-        const destOgImage = dest.featuredImage
-          ? (dest.featuredImage.startsWith("http") ? dest.featuredImage
-            : dest.featuredImage.startsWith("/") ? dest.featuredImage
-            : `/object-storage/${dest.featuredImage}`)
-          : undefined;
+        const destOgImage = resolveMediaPath(dest.featuredImage) ?? undefined;
         const meta: SEOMeta = {
           title: `${dest.name} | Costa Brava Rent a Boat`,
           description: dest.metaDescription || dest.description || dest.name,

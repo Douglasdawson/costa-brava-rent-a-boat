@@ -54,9 +54,11 @@ export default function FAQPage() {
   const faqVars = useMemo(() => computeFaqVars(boats), [boats]);
   const sub = (text: string) => substituteFaqVars(text, faqVars);
 
+  // Always defined at runtime: useTranslations deep-merges missing keys from es.ts.
+  const fp = t.faqPage!;
+
   const handleWhatsAppContact = () => {
-    const message = "Hola, tengo una pregunta sobre el alquiler de barcos. ¿Podrían ayudarme?";
-    openWhatsApp(message);
+    openWhatsApp(fp.whatsappGenericMessage);
   };
 
   const handleBookingWhatsApp = () => {
@@ -64,12 +66,30 @@ export default function FAQPage() {
     openWhatsApp(message);
   };
 
-  // FAQ Schema for structured data — includes ALL questions displayed on the page
+  // FAQ Schema for structured data — rendered from the live i18n items so edits
+  // to es.ts propagate to all 8 locales automatically.
+  const faqSchemaFromI18n = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "name": fp.schemaName,
+    "description": fp.schemaDescription,
+    "mainEntity": Object.values(fp.items).map((item) => ({
+      "@type": "Question",
+      "name": item.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": substituteFaqVars(item.answer, faqVars),
+      },
+    })),
+  };
+
+  // Legacy schema kept only for reference/diffing while rich-HTML Accordion copy below
+  // is still hardcoded. The schema ABOVE (faqSchemaFromI18n) is the one emitted in JSON-LD.
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    "name": "Preguntas Frecuentes - Alquiler de Barcos en Blanes",
-    "description": "Resuelve todas tus dudas sobre el alquiler de barcos en Blanes, Costa Brava",
+    "name": fp.schemaName,
+    "description": fp.schemaDescription,
     "mainEntity": [
       // Reservas y Precios
       {
@@ -400,24 +420,27 @@ export default function FAQPage() {
     { name: t.breadcrumbs.faq, url: "/faq" }
   ]);
 
-  // Combine schemas using @graph
+  // Combine schemas using @graph.  We reference the i18n-driven schema so crawlers
+  // see the FAQ in the user's language, not just Spanish.
   const combinedJsonLd = {
     "@context": "https://schema.org",
     "@graph": [
-      faqSchema,
+      faqSchemaFromI18n,
       breadcrumbSchema
     ]
   };
+  // Reference to keep ESLint happy while the legacy hardcoded schema lives side by side.
+  void faqSchema;
 
   const categories = [
-    { id: 'all', name: 'Todas', icon: FileText },
-    { id: 'reservas', name: 'Reservas y Precios', icon: Euro },
-    { id: 'comparativas', name: 'Comparativas y Recomendaciones', icon: ArrowLeftRight },
-    { id: 'licencias', name: 'Licencias y Requisitos', icon: Shield },
-    { id: 'incluye', name: 'Qué Incluye', icon: CheckCircle },
-    { id: 'navegacion', name: 'Navegación y Seguridad', icon: Waves },
-    { id: 'practica', name: 'Información Práctica', icon: Clock },
-    { id: 'temporada', name: 'Temporada', icon: Calendar }
+    { id: 'all', name: fp.categories.all, icon: FileText },
+    { id: 'reservas', name: fp.categories.reservas, icon: Euro },
+    { id: 'comparativas', name: fp.categories.comparativas, icon: ArrowLeftRight },
+    { id: 'licencias', name: fp.categories.licencias, icon: Shield },
+    { id: 'incluye', name: fp.categories.incluye, icon: CheckCircle },
+    { id: 'navegacion', name: fp.categories.navegacion, icon: Waves },
+    { id: 'practica', name: fp.categories.practica, icon: Clock },
+    { id: 'temporada', name: fp.categories.temporada, icon: Calendar }
   ];
 
   const shouldShowCategory = (categoryId: string) => {
@@ -444,13 +467,11 @@ export default function FAQPage() {
           <div className="flex items-center justify-center mb-6">
             <Anchor className="w-8 h-8 text-primary mr-4" />
             <h1 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold text-foreground">
-              Preguntas Frecuentes
+              {fp.heroTitle}
             </h1>
           </div>
           <p className="text-base sm:text-lg text-muted-foreground mb-4 sm:mb-8 max-w-4xl mx-auto">
-            Encuentra respuestas a todas tus dudas sobre el alquiler de barcos en Blanes, Costa Brava.
-            <br />
-            Si no encuentras lo que buscas, ¡contáctanos directamente!
+            {fp.heroDescription}
           </p>
         </div>
       </div>
@@ -462,7 +483,7 @@ export default function FAQPage() {
           
           {/* Category Filter */}
           <div className="mb-6 sm:mb-8">
-            <h2 className="text-lg font-semibold mb-4 text-foreground">Filtrar por categoría</h2>
+            <h2 className="text-lg font-semibold mb-4 text-foreground">{fp.filterLabel}</h2>
             <div className="flex flex-wrap gap-2">
               {categories.map((category) => {
                 const Icon = category.icon;

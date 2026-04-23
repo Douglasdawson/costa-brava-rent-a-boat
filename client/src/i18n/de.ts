@@ -1791,4 +1791,180 @@ export const de: Translations = {
       button: 'Jetzt reservieren',
     },
   },
+  faqPage: {
+    heroTitle: 'Häufig gestellte Fragen',
+    heroDescription: 'Hier finden Sie Antworten auf all Ihre Fragen zur Bootsvermietung in Blanes, Costa Brava. Falls Sie nicht finden, was Sie suchen, kontaktieren Sie uns einfach direkt!',
+    schemaName: 'Häufig gestellte Fragen - Bootsvermietung in Blanes',
+    schemaDescription: 'Antworten auf alle Fragen zur Bootsvermietung in Blanes, Costa Brava',
+    whatsappGenericMessage: 'Hallo, ich habe eine Frage zur Bootsvermietung. Können Sie mir helfen?',
+    filterLabel: 'Nach Kategorie filtern',
+    categories: {
+      all: 'Alle',
+      reservas: 'Buchungen und Preise',
+      comparativas: 'Vergleiche und Empfehlungen',
+      licencias: 'Lizenzen und Anforderungen',
+      incluye: 'Was ist inbegriffen',
+      navegacion: 'Navigation und Sicherheit',
+      practica: 'Praktische Informationen',
+      temporada: 'Saison',
+    },
+    items: {
+      precios: {
+        question: 'Wie hoch sind die Mietpreise?',
+        answer: 'Unsere Preise variieren je nach Boot und Mietdauer. Boote ohne Führerschein ab {noLicBaja1h}€ mit Benzin inklusive (1h, 2h, 3h, 4h, 6h, 8h). Boote mit Führerschein ab {licBaja2h}€ ohne Benzin (2h, 4h, 8h).',
+      },
+      reserva: {
+        question: 'Wie kann ich eine Buchung vornehmen?',
+        answer: 'Eine Buchung ist ganz einfach: 1) Wählen Sie Ihr Lieblingsboot, 2) Wählen Sie Datum, Uhrzeit und Dauer, 3) Geben Sie Ihre Daten und Extras ein, 4) Führen Sie die sichere Zahlung durch, 5) Erhalten Sie die Bestätigung per WhatsApp und E-Mail.',
+      },
+      pago: {
+        question: 'Welche Zahlungsmethoden akzeptieren Sie?',
+        answer: 'Wir akzeptieren Kredit-/Debitkarte (Visa, Mastercard), Banküberweisung, Bargeld (nur im Hafen, vor Abfahrt) und Bizum (für spanische Kunden). Zur Bestätigung der Buchung ist eine Anzahlung von 50€ erforderlich.',
+      },
+      cancelacion: {
+        question: 'Wie lautet die Stornierungsbedingung?',
+        answer: 'Flexible Regelung: Mehr als 48h vorher = 100% Erstattung, 24-48h vorher = 50% Erstattung, weniger als 24h = keine Erstattung. Schlechtes Wetter = kostenlose Umbuchung oder 100% Erstattung.',
+      },
+      sinLicencia: {
+        question: 'Kann ich ein Boot ohne Bootsführerschein mieten?',
+        answer: 'Ja! Wir haben perfekte Boote ohne Führerschein. Sie haben bis zu 15 PS, maximal 4-5 Personen, sind einfach zu bedienen mit vollständiger Einweisung. Sie müssen nur mindestens 18 Jahre alt sein.',
+      },
+      licenciasAceptadas: {
+        question: 'Welche Lizenzen akzeptieren Sie für größere Boote?',
+        answer: 'Für Boote mit Führerschein akzeptieren wir: PER (Patrón de Embarcaciones de Recreo), PNB (Patrón de Navegación Básica), Kapitänspatent, gleichwertige europäische Lizenzen und anerkannte internationale Lizenzen. Sie müssen die Originallizenz am Miettag vorlegen.',
+      },
+      edadMinima: {
+        question: 'Was ist das Mindestalter für die Anmietung?',
+        answer: 'Der Bootsführer muss mindestens 18 Jahre alt sein. Für Passagiere gibt es keine Altersbeschränkung (mit verantwortlichem Erwachsenen). Kinder unter 12 Jahren müssen eine Rettungsweste tragen. Der Bootsführer muss einen gültigen Personalausweis oder Reisepass vorlegen.',
+      },
+      experiencia: {
+        question: 'Benötige ich Vorerfahrung im Bootfahren?',
+        answer: 'Vorerfahrung ist nicht erforderlich. Wir bieten eine vollständige Einweisung in die Bedienung, eine Karte des zugelassenen Bereichs, Sicherheitstipps, direkten Kontakt für Notfälle und einfach zu bedienende Boote.',
+      },
+      queIncluye: {
+        question: 'Was ist im Preis inbegriffen?',
+        answer: 'Inbegriffen: ausgestattetes Boot, Kraftstoff (bei Booten ohne Führerschein), Rettungswesten, Sicherheitsausrüstung, Anker und Leine, Badeleiter, Anleitung und Karte, Grundversicherung und telefonischer Support.',
+      },
+      combustible: {
+        question: 'Muss ich Kraftstoff bezahlen?',
+        answer: 'Der Kraftstoff ist bei Booten ohne Führerschein inbegriffen. Bei Booten mit Führerschein werden diese mit vollem Tank übergeben, und am Ende der Mietzeit begleitet Sie unser Team zur Tankstelle, um den Tank wieder aufzufüllen.',
+      },
+      extras: {
+        question: 'Welche Extras kann ich hinzufügen?',
+        answer: 'Verfügbare Extras: Paddle Board (+25€), Schnorchelbrille (+5€), Wasserkamera GoPro (+30€) und professioneller Skipper (+100€).',
+      },
+      queLlevar: {
+        question: 'Was sollte ich mitbringen?',
+        answer: 'Unverzichtbar: Personalausweis oder Reisepass, Bootsführerschein (falls zutreffend), Sonnenschutz, Kappe/Hut und Handtücher. Empfohlen: Essen und Getränke, Sonnenbrille, rutschfestes Schuhwerk, Wechselkleidung und Kamera/Handy in wasserdichter Tasche.',
+      },
+      porDondeNavegar: {
+        question: 'Wo darf ich fahren?',
+        answer: 'Zugelassener Bereich: Norden bis Playa de Fenals (ohne Führerschein) oder Sant Feliu de Guíxols (mit Führerschein). Süden bis Ende Strand von Blanes (ohne Führerschein) oder ohne Limit (mit Führerschein). Maximal 2 Meilen von der Küste. Empfohlene Buchten: Cala Brava, Cala Sant Francesc, Playa de Lloret.',
+      },
+      seguridad: {
+        question: 'Welche Sicherheitsmaßnahmen gibt es?',
+        answer: 'Zugelassene Rettungswesten für alle, vorschriftsmäßige Sicherheitsausrüstung, GPS und Plotter in großen Booten, vollständige Schifffahrtszeichen, 24h-Notfallkontakt und tägliche Bootsinspektionen.',
+      },
+      malTiempo: {
+        question: 'Was passiert bei schlechtem Wetter?',
+        answer: 'Starker Wind: Wir fahren nicht bei Wind über Stärke 4. Starker Regen: Kostenlose Umbuchung. Gewitter: Automatische Stornierung. Wetterumschwung während der Fahrt: Geführte Rückkehr zum Hafen. Sicherheit hat immer Vorrang mit kostenloser Umbuchung oder 100% Erstattung.',
+      },
+      emergencia: {
+        question: 'Was mache ich im Notfall?',
+        answer: 'Notfallverfahren: 1) Ruhe bewahren, 2) Rufen Sie uns sofort an unter +34 611 500 372, 3) Wir orten Ihre Position dank der GPS-Geräte in unseren Booten. Notrufnummern sind im Briefing enthalten.',
+      },
+      horarios: {
+        question: 'Welche Zeiten sind verfügbar?',
+        answer: 'Mietzeiten: Vormittag (09:00 - 13:00), Nachmittag (14:00 - 18:00), Ganztägig (09:00 - 17:00), Sonnenuntergang (18:00 - 21:00). Die Zeiten können je nach Saison und Verfügbarkeit variieren.',
+      },
+      llegadaPuerto: {
+        question: 'Wann sollte ich am Hafen ankommen?',
+        answer: 'Wir empfehlen, 30 Minuten vor Abfahrt anzukommen für Check-in und Dokumentenprüfung, vollständiges Sicherheitsbriefing, Erklärung der Bedienung, Übergabe von Material und Karte sowie zur Klärung letzter Fragen.',
+      },
+      parking: {
+        question: 'Gibt es Parkmöglichkeiten?',
+        answer: 'Parkmöglichkeiten: Hafenparkplatz 10€/Miete (innerhalb des Hafens direkt am Boot), Blaue Zone 1,5€/Stunde (10 Min. zu Fuß), Kostenloser Parkplatz (20/30 Min. zu Fuß). In der Hochsaison empfehlen wir, einen Platz zu reservieren.',
+      },
+      equipaje: {
+        question: 'Kann ich Gepäck im Hafen lassen?',
+        answer: 'Optionen für Gepäck: Im Boot (begrenzter aber sicherer Platz), Hafenschließfächer (5€/Tag pro Koffer), Hotel/Apartment (wir empfehlen, großes Gepäck dort zu lassen). Vermeiden Sie Wertsachen.',
+      },
+      temporada: {
+        question: 'Wann ist die Saison geöffnet?',
+        answer: 'Hochsaison: Juni - September. Nebensaison: April-Mai und Oktober. Geschlossen: November - März. Die beste Zeit ist Mai-Juni und September (weniger überfüllt, gutes Wetter).',
+      },
+      disponibilidad: {
+        question: 'Wie kann ich die Verfügbarkeit prüfen?',
+        answer: 'Sie können die Verfügbarkeit über unsere Website (Echtzeitkalender), WhatsApp (sofortige Antwort), Telefon (Direktanruf) oder E-Mail (detaillierte Anfragen) prüfen.',
+      },
+      antelacion: {
+        question: 'Wie lange im Voraus sollte ich buchen?',
+        answer: 'Empfehlungen: Hochsaison mindestens 1-2 Wochen, Wochenenden 3-5 Tage, unter der Woche Buchung am selben Tag möglich, große Gruppen so früh wie möglich. Im Juli-August mindestens 2 Wochen im Voraus buchen.',
+      },
+      comidaBebida: {
+        question: 'Kann ich Essen und Getränke an Bord mitbringen?',
+        answer: 'Selbstverständlich! Sie können Ihr eigenes Essen, Getränke und Snacks mitbringen. Wir haben eine Kühlbox an Bord. Wir bitten nur, aus Sicherheitsgründen kein Glas zu verwenden.',
+      },
+      fianza: {
+        question: 'Was ist die Kaution und wann wird sie zurückerstattet?',
+        answer: 'Die Kaution ist eine Sicherheitsleistung (200-500€ je nach Boot), die vor Abfahrt im Hafen bezahlt wird und bei Rückgabe in gutem Zustand vollständig zurückerstattet wird.',
+      },
+      equipoSeguridad: {
+        question: 'Welche Sicherheitsausrüstung ist im Boot enthalten?',
+        answer: 'Alle unsere Boote enthalten Rettungswesten für alle Passagiere, Erste-Hilfe-Set, Feuerlöscher, Anker und Signalisierungsset gemäß Vorschriften.',
+      },
+      descuentos: {
+        question: 'Gibt es Rabatte für Gruppen oder Frühbucher?',
+        answer: 'Ja, wir bieten den Code BIENVENIDO10 für 10% Rabatt auf Ihre erste Buchung. Wir haben auch Sonderpreise für ganztägige Buchungen.',
+      },
+      hastaDondeNavegar: {
+        question: 'Wie weit kann ich von Blanes aus fahren?',
+        answer: 'Sie können die gesamte Küste zwischen Blanes und Tossa de Mar erkunden. Wir empfehlen die Buchten Sa Forcanera, Cala Bona und Cala Sant Francesc, die nur auf dem Seeweg erreichbar sind.',
+      },
+      mascotas: {
+        question: 'Kann ich Haustiere an Bord mitnehmen?',
+        answer: 'Ja, Haustiere sind auf unseren Booten willkommen. Wir empfehlen, frisches Wasser und ein Handtuch für Ihr Haustier mitzubringen. Das Tier sollte eine Rettungsweste tragen, falls verfügbar.',
+      },
+      pesca: {
+        question: 'Kann man vom Boot aus angeln?',
+        answer: 'Ja, Sie können von unseren Booten aus angeln. Sie benötigen Ihre eigene Freizeitfischerei-Lizenz. Wir stellen keine Angelausrüstung zur Verfügung, aber Sie können Ihre eigene mitbringen.',
+      },
+      diferenciaLicencia: {
+        question: 'Was ist der Unterschied zwischen Booten ohne und mit Führerschein?',
+        answer: 'Boote ohne Führerschein haben bis zu 15 PS, Kapazität für 4-5 Personen, Benzin inklusive und kosten ab {noLicBaja1h}€. Boote mit Führerschein haben Motoren von 40-150 PS, Kapazität bis zu 8 Personen, größere Reichweite und kosten ab {licBaja2h}€ (Benzin nicht inbegriffen). Boote mit Führerschein ermöglichen Fahrten bis nach Tossa de Mar und darüber hinaus.',
+      },
+      precioBlanesVsLloret: {
+        question: 'Ist es günstiger, ein Boot in Blanes oder in Lloret de Mar zu mieten?',
+        answer: 'Blanes ist der günstigste Standort für Bootsvermietung an der Costa Brava, mit Booten ohne Führerschein ab {noLicBaja1h}€ pro Stunde inklusive Benzin. Da wir vom Hafen Blanes aus mit unserer eigenen Flotte arbeiten, bieten wir wettbewerbsfähigere Preise als andere Orte wie Lloret de Mar oder Tossa de Mar.',
+      },
+      barcoGrupoGrande: {
+        question: 'Welches Boot empfehlen Sie für eine große Gruppe?',
+        answer: 'Für große Gruppen empfehlen wir die Pacific Craft 625 (bis zu 8 Personen, mit Führerschein) oder unsere private Ausfahrt mit Skipper (bis zu 10 Personen). Die Ausfahrt mit Skipper ist ideal, wenn niemand in der Gruppe einen Bootsführerschein hat, da ein professioneller Kapitän Sie zu den besten Buchten bringt.',
+      },
+      precioCostaBrava: {
+        question: 'Wie viel kostet es, ein Boot an der Costa Brava zu mieten?',
+        answer: 'An der Costa Brava können Sie ein Boot ab {noLicBaja1h}€ pro Stunde in Blanes mieten, mit Benzin inklusive und ohne Führerschein. Die Preise variieren je nach Dauer (von 1h bis ganztägig), Bootstyp und Saison. Juli und August sind Hochsaison mit höheren Preisen; Juni und September bieten das beste Preis-Leistungs-Verhältnis.',
+      },
+      tossaBarco: {
+        question: 'Kann man von Blanes mit dem Boot nach Tossa de Mar fahren?',
+        answer: 'Ja, Tossa de Mar ist etwa 30 Minuten mit dem Boot von Blanes entfernt. Sie benötigen jedoch ein Boot mit Führerschein oder buchen unsere Ausfahrt mit Skipper, da Boote ohne Führerschein einen begrenzten Fahrbereich haben. Die Küstenroute von Blanes nach Tossa ist spektakulär mit unberührten Buchten und Klippen.',
+      },
+      excursionPatron: {
+        question: 'Wie viel kostet eine Bootsausfahrt mit Skipper?',
+        answer: 'Unsere privaten Ausfahrten mit professionellem Skipper beginnen bei {excursionBaja2h}€ für 2 Stunden für bis zu 10 Personen. Der Skipper bringt Sie zu den besten Buchten, übernimmt die gesamte Navigation und Sie benötigen keinen Führerschein. Die perfekte Option für Familien oder Gruppen, die sich um nichts kümmern möchten.',
+      },
+      seguroSinExperiencia: {
+        question: 'Ist es sicher, ein Boot ohne Erfahrung zu mieten?',
+        answer: 'Absolut sicher. Vor der Abfahrt gibt Ihnen unser Team ein 15-minütiges Briefing, in dem die Bedienung des Bootes, die Navigationsregeln und der zugelassene Bereich erklärt werden. Boote ohne Führerschein sind sehr stabil und einfach zu bedienen, und der Bereich um Blanes hat ruhige und geschützte Gewässer.',
+      },
+      barcoVsExcursion: {
+        question: 'Was ist besser: ein Boot mieten oder eine Ausfahrt mit Skipper?',
+        answer: 'Das hängt davon ab, was Sie suchen. Ein Boot ohne Führerschein zu mieten (ab {noLicBaja1h}€/h) gibt Ihnen völlige Freiheit, in Ihrem eigenen Tempo zu fahren und auf eigene Faust zu erkunden. Die Ausfahrt mit Skipper (ab {excursionBaja2h}€/2h) ist ideal, wenn Sie sich völlig entspannen möchten, keine Erfahrung haben oder weiter entfernte Buchten wie Tossa de Mar erreichen wollen.',
+      },
+      mejorEpoca: {
+        question: 'Was ist die beste Zeit, um ein Boot in Blanes zu mieten?',
+        answer: 'September ist der Top-Monat: Das Meerwasser hat seine wärmste Temperatur (24-25°C), die Preise sind Nebensaison, es gibt weniger Touristen und die Wetterbedingungen sind ausgezeichnet. Juni und die erste Julihälfte sind ebenfalls sehr gute Optionen.',
+      },
+    },
+  },
 };

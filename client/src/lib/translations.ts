@@ -1775,6 +1775,17 @@ export interface Translations {
     internalLinks?: string;
   };
 
+  faqPage?: {
+    heroTitle: string;
+    heroDescription: string;
+    schemaName: string;
+    schemaDescription: string;
+    whatsappGenericMessage: string;
+    filterLabel: string;
+    categories: Record<string, string>;
+    items: Record<string, { question: string; answer: string }>;
+  };
+
   pricingPage?: {
     heroTitle: string;
     heroSubtitle: string;

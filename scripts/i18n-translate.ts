@@ -130,13 +130,37 @@ Context: these values live under the top-level key "${rootKey}" of the i18n dict
 Input (Spanish):
 ${JSON.stringify(toTranslate, null, 2)}`;
 
-  const response = await anthropic.messages.create({
-    model: "claude-sonnet-4-5",
-    max_tokens: 4096,
-    messages: [{ role: "user", content: prompt }],
-  });
-
-  const text = response.content[0].type === "text" ? response.content[0].text : "";
+  // Stream so long responses don't hit the 10-minute undici socket idle timeout.
+  // Retry up to 3 times for transient network hiccups.
+  let text = "";
+  let lastErr: unknown;
+  for (let attempt = 1; attempt <= 3; attempt++) {
+    text = "";
+    try {
+      const stream = anthropic.messages.stream({
+        model: "claude-sonnet-4-5",
+        max_tokens: 8192,
+        messages: [{ role: "user", content: prompt }],
+      });
+      for await (const event of stream) {
+        if (
+          event.type === "content_block_delta" &&
+          event.delta.type === "text_delta"
+        ) {
+          text += event.delta.text;
+        }
+      }
+      lastErr = undefined;
+      break;
+    } catch (err) {
+      lastErr = err;
+      if (attempt < 3) {
+        console.log(`[${lang}] attempt ${attempt} for "${rootKey}" failed, retrying...`);
+        await new Promise((r) => setTimeout(r, 2000 * attempt));
+      }
+    }
+  }
+  if (lastErr) throw lastErr;
   const cleaned = text
     .replace(/^\s*```(?:json)?\s*\n?/, "")
     .replace(/\n?```\s*$/, "")

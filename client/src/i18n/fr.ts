@@ -1791,4 +1791,180 @@ export const fr: Translations = {
       button: 'Réserver maintenant',
     },
   },
+  faqPage: {
+    heroTitle: 'Questions Fréquentes',
+    heroDescription: 'Trouvez les réponses à toutes vos questions sur la location de bateaux à Blanes, Costa Brava. Si vous ne trouvez pas ce que vous cherchez, contactez-nous directement !',
+    schemaName: 'Questions Fréquentes - Location de Bateaux à Blanes',
+    schemaDescription: 'Répondez à toutes vos questions sur la location de bateaux à Blanes, Costa Brava',
+    whatsappGenericMessage: 'Bonjour, j\'ai une question concernant la location de bateaux. Pourriez-vous m\'aider ?',
+    filterLabel: 'Filtrer par catégorie',
+    categories: {
+      all: 'Toutes',
+      reservas: 'Réservations et Tarifs',
+      comparativas: 'Comparatifs et Recommandations',
+      licencias: 'Permis et Conditions',
+      incluye: 'Ce qui est Inclus',
+      navegacion: 'Navigation et Sécurité',
+      practica: 'Informations Pratiques',
+      temporada: 'Saison',
+    },
+    items: {
+      precios: {
+        question: 'Quels sont les tarifs de location ?',
+        answer: 'Nos tarifs varient selon le bateau et la durée. Bateaux sans permis à partir de {noLicBaja1h}€ avec essence incluse (1h, 2h, 3h, 4h, 6h, 8h). Bateaux avec permis à partir de {licBaja2h}€ sans essence incluse (2h, 4h, 8h).',
+      },
+      reserva: {
+        question: 'Comment puis-je effectuer une réservation ?',
+        answer: 'Réserver est très simple : 1) Sélectionnez votre bateau préféré, 2) Choisissez la date, l\'heure et la durée, 3) Complétez vos informations et les extras, 4) Effectuez le paiement sécurisé, 5) Recevez la confirmation par WhatsApp et email.',
+      },
+      pago: {
+        question: 'Quels moyens de paiement acceptez-vous ?',
+        answer: 'Nous acceptons les cartes de crédit/débit (Visa, Mastercard), le virement bancaire, les espèces (uniquement au port, avant le départ) et Bizum (pour les clients espagnols). Un acompte de 50€ est requis pour confirmer la réservation.',
+      },
+      cancelacion: {
+        question: 'Quelle est la politique d\'annulation ?',
+        answer: 'Politique flexible : Plus de 48h avant = remboursement à 100%, 24-48h avant = remboursement à 50%, moins de 24h = aucun remboursement. Mauvais temps = reprogrammation gratuite ou remboursement à 100%.',
+      },
+      sinLicencia: {
+        question: 'Puis-je louer sans avoir de permis bateau ?',
+        answer: 'Oui ! Nous avons des bateaux parfaits sans permis. Ils font jusqu\'à 15 CV, maximum 4-5 personnes, faciles à manœuvrer avec briefing complet. Il suffit d\'avoir 18 ans ou plus.',
+      },
+      licenciasAceptadas: {
+        question: 'Quels permis acceptez-vous pour les grands bateaux ?',
+        answer: 'Pour les bateaux avec permis nous acceptons : PER (Patrón de Embarcaciones de Recreo), PNB (Patrón de Navegación Básica), Capitaine de Yacht, permis européens équivalents et permis internationaux homologués. Vous devez présenter le permis original le jour de la location.',
+      },
+      edadMinima: {
+        question: 'Quel est l\'âge minimum pour louer ?',
+        answer: 'Le pilote doit avoir au minimum 18 ans. Les passagers n\'ont pas de limite d\'âge (avec un adulte responsable). Les moins de 12 ans doivent porter un gilet de sauvetage obligatoire. Le pilote doit présenter une carte d\'identité ou un passeport valide.',
+      },
+      experiencia: {
+        question: 'Ai-je besoin d\'une expérience préalable de navigation ?',
+        answer: 'Aucune expérience préalable n\'est nécessaire. Nous fournissons une explication complète du fonctionnement, une carte de la zone autorisée, des conseils de sécurité, un contact direct pour les urgences et des embarcations faciles à manœuvrer.',
+      },
+      queIncluye: {
+        question: 'Qu\'est-ce qui est inclus dans le prix ?',
+        answer: 'Inclus : embarcation équipée, carburant (pour les bateaux sans permis), gilets de sauvetage, kit de sécurité, ancre et cordage, échelle de bain, instructions et carte, assurance de base et assistance téléphonique.',
+      },
+      combustible: {
+        question: 'Dois-je payer le carburant ?',
+        answer: 'Le carburant est inclus dans les embarcations sans permis. Pour les embarcations avec permis, elles sont fournies avec le réservoir plein et à la fin de la location notre équipe vous accompagne à la station-service pour remplir à nouveau le réservoir.',
+      },
+      extras: {
+        question: 'Quels extras puis-je ajouter ?',
+        answer: 'Extras disponibles : Paddle Surf (+25€), Masque de snorkeling (+5€), Caméra aquatique GoPro (+30€) et Skipper professionnel (+100€).',
+      },
+      queLlevar: {
+        question: 'Que dois-je apporter ?',
+        answer: 'Indispensable : carte d\'identité ou passeport, permis bateau (si applicable), crème solaire, casquette/chapeau et serviettes. Recommandé : nourriture et boissons, lunettes de soleil, chaussures antidérapantes, vêtements de rechange et appareil photo/téléphone dans un sac étanche.',
+      },
+      porDondeNavegar: {
+        question: 'Où puis-je naviguer ?',
+        answer: 'Zone autorisée : Nord jusqu\'à Playa de Fenals (sans permis) ou Sant Feliu de Guíxols (avec permis). Sud jusqu\'à la fin de la plage de Blanes (sans permis) ou sans limite (avec permis). Maximum 2 milles de la côte. Criques recommandées : Cala Brava, Cala Sant Francesc, Playa de Lloret.',
+      },
+      seguridad: {
+        question: 'Quelles mesures de sécurité avez-vous ?',
+        answer: 'Gilets de sauvetage homologués pour tous, kit de sécurité réglementaire, GPS et traceur sur les grands bateaux, signalisation maritime complète, contact 24h pour les urgences et révisions quotidiennes des embarcations.',
+      },
+      malTiempo: {
+        question: 'Que se passe-t-il s\'il fait mauvais temps ?',
+        answer: 'Vent fort : nous ne sortons pas avec un vent supérieur à force 4. Pluie intense : nous reprogrammons sans frais. Orage : suspension automatique. Changement pendant la navigation : retour guidé au port. Nous privilégions toujours la sécurité avec reprogrammation gratuite ou remboursement à 100%.',
+      },
+      emergencia: {
+        question: 'Que faire en cas d\'urgence ?',
+        answer: 'Procédure d\'urgence : 1) Gardez votre calme, 2) Appelez-nous immédiatement au +34 611 500 372, 3) Nous localiserons votre position grâce aux GPS installés sur nos bateaux. Numéros d\'urgence inclus dans le briefing.',
+      },
+      horarios: {
+        question: 'Quels sont les horaires disponibles ?',
+        answer: 'Horaires de location : Matinée (09:00 - 13:00), Après-midi (14:00 - 18:00), Journée complète (09:00 - 17:00), Coucher de soleil (18:00 - 21:00). Les horaires peuvent varier selon la saison et la disponibilité.',
+      },
+      llegadaPuerto: {
+        question: 'Quand dois-je arriver au port ?',
+        answer: 'Nous recommandons d\'arriver 30 minutes avant l\'heure de départ pour l\'enregistrement et la vérification des documents, le briefing de sécurité complet, l\'explication du fonctionnement, la remise du matériel et de la carte, et répondre aux dernières questions.',
+      },
+      parking: {
+        question: 'Y a-t-il un parking disponible ?',
+        answer: 'Options de stationnement : Parking du Port 10€/location (dans le port et devant le bateau), Zone bleue 1,5€/heure (10 min à pied), Parking gratuit (20/30 min à pied). En haute saison nous recommandons de réserver une place.',
+      },
+      equipaje: {
+        question: 'Puis-je laisser des bagages au port ?',
+        answer: 'Options pour les bagages : dans l\'embarcation (espace limité mais sécurisé), consignes du port (5€/jour par valise), hôtel/appartement (nous recommandons de laisser les gros bagages). Évitez d\'emporter des objets de valeur.',
+      },
+      temporada: {
+        question: 'Quand est ouverte la saison ?',
+        answer: 'Haute saison : Juin - Septembre. Moyenne saison : Avril-Mai et Octobre. Fermé : Novembre - Mars. La meilleure période est mai-juin et septembre (moins de monde, beau temps).',
+      },
+      disponibilidad: {
+        question: 'Comment puis-je consulter les disponibilités ?',
+        answer: 'Vous pouvez consulter les disponibilités via notre site web (calendrier en temps réel), WhatsApp (réponse immédiate), téléphone (appel direct) ou email (demandes détaillées).',
+      },
+      antelacion: {
+        question: 'Avec quelle anticipation dois-je réserver ?',
+        answer: 'Recommandations : Haute saison 1-2 semaines minimum, week-ends 3-5 jours, en semaine réservation du jour possible, grands groupes anticipation maximale. En juillet-août réserver au moins 2 semaines à l\'avance.',
+      },
+      comidaBebida: {
+        question: 'Puis-je apporter de la nourriture et des boissons à bord ?',
+        answer: 'Bien sûr ! Vous pouvez apporter votre propre nourriture, boissons et snacks. Nous avons une glacière à bord. Nous demandons simplement de ne pas utiliser de verre pour des raisons de sécurité.',
+      },
+      fianza: {
+        question: 'Qu\'est-ce que la caution et quand est-elle remboursée ?',
+        answer: 'La caution est un dépôt de garantie (200-500€ selon le bateau) qui est payé au port avant le départ et remboursé intégralement au retour si le bateau est en bon état.',
+      },
+      equipoSeguridad: {
+        question: 'Quel équipement de sécurité est inclus dans le bateau ?',
+        answer: 'Tous nos bateaux incluent des gilets de sauvetage pour tous les passagers, une trousse de premiers secours, un extincteur, une ancre et un kit de signalisation conforme à la réglementation.',
+      },
+      descuentos: {
+        question: 'Y a-t-il des réductions pour les groupes ou les réservations anticipées ?',
+        answer: 'Oui, nous offrons le code BIENVENIDO10 pour une réduction de 10% sur votre première réservation. Nous avons également des tarifs spéciaux pour les locations à la journée.',
+      },
+      hastaDondeNavegar: {
+        question: 'Jusqu\'où puis-je naviguer depuis Blanes ?',
+        answer: 'Vous pouvez explorer toute la côte entre Blanes et Tossa de Mar. Nous vous recommandons les criques de Sa Forcanera, Cala Bona et Cala Sant Francesc, accessibles uniquement par la mer.',
+      },
+      mascotas: {
+        question: 'Puis-je emmener des animaux à bord ?',
+        answer: 'Oui, les animaux sont les bienvenus sur nos bateaux. Nous recommandons d\'apporter de l\'eau fraîche et une serviette pour votre animal. L\'animal doit porter un gilet de sauvetage si disponible.',
+      },
+      pesca: {
+        question: 'Peut-on pêcher depuis le bateau ?',
+        answer: 'Oui, vous pouvez pêcher depuis nos bateaux. Vous aurez besoin de votre propre permis de pêche récréative. Nous ne fournissons pas d\'équipement de pêche, mais vous pouvez apporter le vôtre.',
+      },
+      diferenciaLicencia: {
+        question: 'Quelle est la différence entre les bateaux sans permis et avec permis ?',
+        answer: 'Les bateaux sans permis ont jusqu\'à 15 CV, une capacité de 4-5 personnes, l\'essence incluse et coûtent à partir de {noLicBaja1h}€. Les bateaux avec permis ont des moteurs de 40-150 CV, une capacité jusqu\'à 8 personnes, une plus grande autonomie et coûtent à partir de {licBaja2h}€ (essence non incluse). Les bateaux avec permis permettent de naviguer plus loin, jusqu\'à Tossa de Mar et au-delà.',
+      },
+      precioBlanesVsLloret: {
+        question: 'Est-il moins cher de louer un bateau à Blanes ou à Lloret de Mar ?',
+        answer: 'Blanes est le point de location nautique le plus abordable de la Costa Brava, avec des bateaux sans permis à partir de {noLicBaja1h}€ de l\'heure avec essence incluse. En opérant depuis le Port de Blanes avec notre propre flotte, nous offrons des prix plus compétitifs que d\'autres localités comme Lloret de Mar ou Tossa de Mar.',
+      },
+      barcoGrupoGrande: {
+        question: 'Quel bateau recommandez-vous pour un grand groupe ?',
+        answer: 'Pour les grands groupes nous recommandons le Pacific Craft 625 (jusqu\'à 8 personnes, avec permis) ou notre Excursion Privée avec skipper (jusqu\'à 10 personnes). L\'excursion avec skipper est idéale si personne dans le groupe n\'a de permis bateau, car elle inclut un capitaine professionnel qui vous emmène aux meilleures criques.',
+      },
+      precioCostaBrava: {
+        question: 'Combien coûte la location d\'un bateau sur la Costa Brava ?',
+        answer: 'Sur la Costa Brava vous pouvez louer un bateau à partir de {noLicBaja1h}€ de l\'heure à Blanes, avec essence incluse et sans besoin de permis. Les prix varient selon la durée (de 1h à la journée), le type de bateau et la saison. Juillet et août sont la haute saison avec des prix plus élevés ; juin et septembre offrent le meilleur rapport qualité-prix.',
+      },
+      tossaBarco: {
+        question: 'Peut-on aller à Tossa de Mar en bateau depuis Blanes ?',
+        answer: 'Oui, Tossa de Mar est à environ 30 minutes en bateau depuis Blanes. Cependant, vous avez besoin d\'un bateau avec permis ou de réserver notre excursion avec skipper, car les bateaux sans permis ont un rayon de navigation limité. La route côtière de Blanes à Tossa est spectaculaire, avec des criques vierges et des falaises.',
+      },
+      excursionPatron: {
+        question: 'Combien coûte une excursion en bateau avec skipper ?',
+        answer: 'Nos excursions privées avec skipper professionnel démarrent à partir de {excursionBaja2h}€ pour 2 heures pour jusqu\'à 10 personnes. Le skipper vous emmène aux meilleures criques, s\'occupe de toute la navigation et vous n\'avez pas besoin de permis. C\'est l\'option parfaite pour les familles ou groupes qui veulent profiter sans se soucier de rien.',
+      },
+      seguroSinExperiencia: {
+        question: 'Est-il sûr de louer un bateau sans expérience ?',
+        answer: 'Totalement sûr. Avant de sortir naviguer, notre équipe vous donne un briefing de 15 minutes où elle vous explique le fonctionnement du bateau, les règles de navigation et la zone autorisée. Les bateaux sans permis sont très stables et faciles à manœuvrer, et la zone de Blanes a des eaux calmes et protégées.',
+      },
+      barcoVsExcursion: {
+        question: 'Qu\'est-ce qui est mieux, louer un bateau ou une excursion avec skipper ?',
+        answer: 'Cela dépend de ce que vous recherchez. Louer un bateau sans permis (à partir de {noLicBaja1h}€/h) vous donne une liberté totale pour aller à votre rythme et explorer par vous-même. L\'excursion avec skipper (à partir de {excursionBaja2h}€/2h) est idéale si vous voulez vous détendre complètement, n\'avez pas d\'expérience ou voulez atteindre des criques plus éloignées comme Tossa de Mar.',
+      },
+      mejorEpoca: {
+        question: 'Quelle est la meilleure période pour louer un bateau à Blanes ?',
+        answer: 'Septembre est le mois idéal : l\'eau de mer est à sa température la plus chaude (24-25°C), les prix sont en moyenne saison, il y a moins de touristes et les conditions météorologiques sont excellentes. Juin et la première quinzaine de juillet sont également de très bonnes options.',
+      },
+    },
+  },
 };

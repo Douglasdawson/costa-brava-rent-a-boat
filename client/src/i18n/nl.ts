@@ -1790,4 +1790,180 @@ export const nl: Translations = {
       button: 'Nu reserveren',
     },
   },
+  faqPage: {
+    heroTitle: 'Veelgestelde Vragen',
+    heroDescription: 'Vind antwoorden op al je vragen over bootverhuur in Blanes, Costa Brava. Vind je niet wat je zoekt? Neem dan direct contact met ons op!',
+    schemaName: 'Veelgestelde Vragen - Bootverhuur in Blanes',
+    schemaDescription: 'Krijg antwoord op al je vragen over bootverhuur in Blanes, Costa Brava',
+    whatsappGenericMessage: 'Hallo, ik heb een vraag over bootverhuur. Kunnen jullie me helpen?',
+    filterLabel: 'Filter op categorie',
+    categories: {
+      all: 'Alle',
+      reservas: 'Reserveringen en Prijzen',
+      comparativas: 'Vergelijkingen en Aanbevelingen',
+      licencias: 'Vaarbewijzen en Vereisten',
+      incluye: 'Wat is Inbegrepen',
+      navegacion: 'Navigatie en Veiligheid',
+      practica: 'Praktische Informatie',
+      temporada: 'Seizoen',
+    },
+    items: {
+      precios: {
+        question: 'Wat zijn de huurprijzen?',
+        answer: 'Onze prijzen variëren per boot en duur. Boten zonder vaarbewijs vanaf {noLicBaja1h}€ inclusief brandstof (1u, 2u, 3u, 4u, 6u, 8u). Boten met vaarbewijs vanaf {licBaja2h}€ exclusief brandstof (2u, 4u, 8u).',
+      },
+      reserva: {
+        question: 'Hoe kan ik een reservering maken?',
+        answer: 'Reserveren is heel eenvoudig: 1) Kies je favoriete boot, 2) Selecteer datum, tijd en duur, 3) Vul je gegevens en extra\'s in, 4) Doe de veilige betaling, 5) Ontvang bevestiging via WhatsApp en e-mail.',
+      },
+      pago: {
+        question: 'Welke betaalmethoden accepteren jullie?',
+        answer: 'We accepteren credit-/debetkaart (Visa, Mastercard), bankoverschrijving, contant (alleen in de haven, vóór vertrek) en Bizum (voor Spaanse klanten). Er is een aanbetaling van 50€ vereist om de reservering te bevestigen.',
+      },
+      cancelacion: {
+        question: 'Wat is het annuleringsbeleid?',
+        answer: 'Flexibel beleid: Meer dan 48u van tevoren = 100% restitutie, 24-48u van tevoren = 50% restitutie, minder dan 24u = geen restitutie. Slecht weer = gratis omboeken of 100% restitutie.',
+      },
+      sinLicencia: {
+        question: 'Kan ik huren zonder vaarbewijs?',
+        answer: 'Ja! We hebben perfecte boten zonder vaarbewijs. Ze hebben maximaal 15 PK, plek voor maximaal 4-5 personen en zijn makkelijk te besturen met volledige instructie. Je hoeft alleen 18 jaar of ouder te zijn.',
+      },
+      licenciasAceptadas: {
+        question: 'Welke vaarbewijzen accepteren jullie voor grote boten?',
+        answer: 'Voor boten met vaarbewijs accepteren we: PER (Patrón de Embarcaciones de Recreo), PNB (Patrón de Navegación Básica), Jachtkapitein, gelijkwaardige Europese vaarbewijzen en erkende internationale vaarbewijzen. Je moet het originele vaarbewijs tonen op de dag van de huur.',
+      },
+      edadMinima: {
+        question: 'Wat is de minimumleeftijd om te huren?',
+        answer: 'De schipper moet minimaal 18 jaar zijn. Passagiers hebben geen leeftijdsbeperking (met verantwoordelijke volwassene). Kinderen jonger dan 12 jaar moeten verplicht een reddingsvest dragen. De schipper moet een geldig identiteitsbewijs of paspoort tonen.',
+      },
+      experiencia: {
+        question: 'Heb ik voorafgaande vaarervaring nodig?',
+        answer: 'Voorafgaande ervaring is niet nodig. We bieden een volledige uitleg van de bediening, een kaart van het toegestane gebied, veiligheidstips, direct contact voor noodgevallen en gemakkelijk te besturen boten.',
+      },
+      queIncluye: {
+        question: 'Wat is inbegrepen in de prijs?',
+        answer: 'Inbegrepen: uitgeruste boot, brandstof (bij boten zonder vaarbewijs), reddingsvesten, veiligheidskit, anker en touw, zwemladder, instructies en kaart, basisverzekering en telefonische ondersteuning.',
+      },
+      combustible: {
+        question: 'Moet ik brandstof betalen?',
+        answer: 'Brandstof is inbegrepen bij boten zonder vaarbewijs. Bij boten met vaarbewijs wordt de boot met volle tank overhandigd en gaat ons team na afloop met je mee naar het tankstation om de tank weer te vullen.',
+      },
+      extras: {
+        question: 'Welke extra\'s kan ik toevoegen?',
+        answer: 'Beschikbare extra\'s: Paddleboard (+25€), Snorkelmasker (+5€), Waterbestendige GoPro-camera (+30€) en Professionele schipper (+100€).',
+      },
+      queLlevar: {
+        question: 'Wat moet ik meenemen?',
+        answer: 'Essentieel: identiteitsbewijs of paspoort, vaarbewijs (indien van toepassing), zonnebrandcrème, pet/hoed en handdoeken. Aanbevolen: eten en drinken, zonnebril, antislipschoeisel, wisselkleding en camera/mobiel in waterdichte tas.',
+      },
+      porDondeNavegar: {
+        question: 'Waar kan ik varen?',
+        answer: 'Toegestaan gebied: Noordelijk tot Playa de Fenals (zonder vaarbewijs) of Sant Feliu de Guíxols (met vaarbewijs). Zuidelijk tot einde van het strand van Blanes (zonder vaarbewijs) of onbeperkt (met vaarbewijs). Maximaal 2 mijl uit de kust. Aanbevolen baaien: Cala Brava, Cala Sant Francesc, Playa de Lloret.',
+      },
+      seguridad: {
+        question: 'Welke veiligheidsmaatregelen hebben jullie?',
+        answer: 'Goedgekeurde reddingsvesten voor iedereen, wettelijk verplichte veiligheidskit, GPS en plotter op grote boten, volledige maritieme markering, 24-uurs noodcontact en dagelijkse bootinspecties.',
+      },
+      malTiempo: {
+        question: 'Wat gebeurt er bij slecht weer?',
+        answer: 'Harde wind: we varen niet uit bij wind boven kracht 4. Hevige regen: kosteloos omboeken. Onweer: automatische annulering. Weersverandering tijdens het varen: begeleide terugkeer naar de haven. We stellen veiligheid altijd voorop met gratis omboeken of 100% restitutie.',
+      },
+      emergencia: {
+        question: 'Wat moet ik doen bij een noodgeval?',
+        answer: 'Noodprocedure: 1) Blijf kalm, 2) Bel ons direct op +34 611 500 372, 3) We kunnen je locatie bepalen dankzij de GPS die in onze boten is geïnstalleerd. Noodnummers worden vermeld tijdens de instructie.',
+      },
+      horarios: {
+        question: 'Wat zijn de beschikbare tijden?',
+        answer: 'Verhuurtijden: Late ochtend (09:00 - 13:00), Middag (14:00 - 18:00), Hele dag (09:00 - 17:00), Zonsondergang (18:00 - 21:00). Tijden kunnen variëren per seizoen en beschikbaarheid.',
+      },
+      llegadaPuerto: {
+        question: 'Wanneer moet ik bij de haven zijn?',
+        answer: 'We raden aan om 30 minuten voor vertrektijd te komen voor check-in en verificatie van documenten, volledige veiligheidsinstructie, uitleg over de bediening, overhandiging van materiaal en kaart, en om laatste vragen te beantwoorden.',
+      },
+      parking: {
+        question: 'Is er parkeergelegenheid beschikbaar?',
+        answer: 'Parkeermogelijkheden: Parkeerterrein Haven 10€/huurperiode (in de haven en voor de boot), Blauwe zone 1,5€/uur (10 min lopen), Gratis parkeren (20/30 min lopen). In het hoogseizoen raden we aan om een plek te reserveren.',
+      },
+      equipaje: {
+        question: 'Kan ik bagage achterlaten in de haven?',
+        answer: 'Mogelijkheden voor bagage: op de boot (beperkte maar veilige ruimte), kluisjes in de haven (5€/dag per koffer), hotel/appartement (we raden aan grote bagage daar te laten). Neem geen waardevolle spullen mee.',
+      },
+      temporada: {
+        question: 'Wanneer is het seizoen geopend?',
+        answer: 'Hoogseizoen: Juni - September. Middenseizoen: April-Mei en Oktober. Gesloten: November - Maart. De beste periode is mei-juni en september (minder druk, goed weer).',
+      },
+      disponibilidad: {
+        question: 'Hoe kan ik de beschikbaarheid raadplegen?',
+        answer: 'Je kunt de beschikbaarheid raadplegen via onze website (realtime kalender), WhatsApp (directe reactie), telefoon (rechtstreeks bellen) of e-mail (gedetailleerde vragen).',
+      },
+      antelacion: {
+        question: 'Hoe ver van tevoren moet ik reserveren?',
+        answer: 'Aanbevelingen: Hoogseizoen minimaal 1-2 weken, weekenden 3-5 dagen, doordeweeks reserveren op de dag zelf mogelijk, grote groepen zo vroeg mogelijk. In juli-augustus minimaal 2 weken van tevoren reserveren.',
+      },
+      comidaBebida: {
+        question: 'Kan ik eten en drinken meenemen aan boord?',
+        answer: 'Natuurlijk! Je mag je eigen eten, drinken en snacks meenemen. We hebben een koelbox aan boord. We vragen alleen om geen glas te gebruiken voor de veiligheid.',
+      },
+      fianza: {
+        question: 'Wat is de borg en wanneer krijg ik die terug?',
+        answer: 'De borg is een waarborg (200-500€ afhankelijk van de boot) die je in de haven betaalt voor vertrek en volledig wordt terugbetaald bij terugkomst als de boot in goede staat is.',
+      },
+      equipoSeguridad: {
+        question: 'Welke veiligheidsuitrusting zit er op de boot?',
+        answer: 'Al onze boten zijn uitgerust met reddingsvesten voor alle passagiers, EHBO-kit, brandblusser, anker en markeringkit volgens de regelgeving.',
+      },
+      descuentos: {
+        question: 'Zijn er kortingen voor groepen of vroegboekingen?',
+        answer: 'Ja, we bieden de code BIENVENIDO10 voor 10% korting op je eerste reservering. Ook hebben we speciale tarieven voor reserveringen van een hele dag.',
+      },
+      hastaDondeNavegar: {
+        question: 'Hoe ver kan ik varen vanaf Blanes?',
+        answer: 'Je kunt de hele kust verkennen tussen Blanes en Tossa de Mar. We raden de baaien Sa Forcanera, Cala Bona en Cala Sant Francesc aan, alleen bereikbaar per boot.',
+      },
+      mascotas: {
+        question: 'Kan ik huisdieren meenemen aan boord?',
+        answer: 'Ja, huisdieren zijn welkom op onze boten. We raden aan om vers water en een handdoek mee te nemen voor je huisdier. Het dier moet indien beschikbaar een reddingsvest dragen.',
+      },
+      pesca: {
+        question: 'Kan ik vissen vanaf de boot?',
+        answer: 'Ja, je kunt vissen vanaf onze boten. Je hebt wel je eigen sportvisvergunning nodig. We leveren geen visuitrusting, maar je mag je eigen spullen meenemen.',
+      },
+      diferenciaLicencia: {
+        question: 'Wat is het verschil tussen boten zonder en met vaarbewijs?',
+        answer: 'Boten zonder vaarbewijs hebben maximaal 15 PK, capaciteit van 4-5 personen, brandstof inbegrepen en kosten vanaf {noLicBaja1h}€. Boten met vaarbewijs hebben motoren van 40-150 PK, capaciteit van maximaal 8 personen, groter bereik en kosten vanaf {licBaja2h}€ (brandstof niet inbegrepen). Met boten met vaarbewijs kun je verder varen, tot Tossa de Mar en verder.',
+      },
+      precioBlanesVsLloret: {
+        question: 'Is het goedkoper om een boot te huren in Blanes of in Lloret de Mar?',
+        answer: 'Blanes is het voordeligste punt voor bootverhuur aan de Costa Brava, met boten zonder vaarbewijs vanaf {noLicBaja1h}€ per uur inclusief brandstof. Doordat we vanuit de haven van Blanes met onze eigen vloot werken, bieden we competitievere prijzen dan andere plaatsen zoals Lloret de Mar of Tossa de Mar.',
+      },
+      barcoGrupoGrande: {
+        question: 'Welke boot raden jullie aan voor een grote groep?',
+        answer: 'Voor grote groepen raden we de Pacific Craft 625 aan (maximaal 8 personen, met vaarbewijs) of onze Privé-excursie met schipper (maximaal 10 personen). De excursie met schipper is ideaal als niemand in de groep een vaarbewijs heeft, want die omvat een professionele kapitein die jullie naar de mooiste baaien brengt.',
+      },
+      precioCostaBrava: {
+        question: 'Hoeveel kost het om een boot te huren aan de Costa Brava?',
+        answer: 'Aan de Costa Brava kun je een boot huren vanaf {noLicBaja1h}€ per uur in Blanes, inclusief brandstof en zonder vaarbewijs. De prijzen variëren naar gelang van de duur (van 1u tot een hele dag), het type boot en het seizoen. Juli en augustus zijn hoogseizoen met hogere prijzen; juni en september bieden de beste prijs-kwaliteitverhouding.',
+      },
+      tossaBarco: {
+        question: 'Kan je per boot van Blanes naar Tossa de Mar?',
+        answer: 'Ja, Tossa de Mar ligt ongeveer 30 minuten varen vanaf Blanes. Je hebt echter wel een boot met vaarbewijs nodig of je moet onze excursie met schipper boeken, omdat boten zonder vaarbewijs een beperkt vaargebied hebben. De kustroute van Blanes naar Tossa is spectaculair, met ongerepte baaien en kliffen.',
+      },
+      excursionPatron: {
+        question: 'Hoeveel kost een bootexcursie met schipper?',
+        answer: 'Onze privé-excursies met professionele schipper beginnen vanaf {excursionBaja2h}€ voor 2 uur voor maximaal 10 personen. De schipper brengt jullie naar de mooiste baaien, verzorgt alle navigatie en je hebt geen vaarbewijs nodig. Het is de perfecte optie voor gezinnen of groepen die willen genieten zonder zorgen.',
+      },
+      seguroSinExperiencia: {
+        question: 'Is het veilig om een boot te huren zonder ervaring?',
+        answer: 'Absoluut veilig. Voor je uitvaart geeft ons team een instructie van 15 minuten waarin de bediening van de boot, de vaarregels en het toegestane gebied worden uitgelegd. Boten zonder vaarbewijs zijn zeer stabiel en gemakkelijk te besturen, en het gebied rond Blanes heeft kalm en beschut water.',
+      },
+      barcoVsExcursion: {
+        question: 'Wat is beter, een boot huren of een excursie met schipper?',
+        answer: 'Dat hangt af van wat je zoekt. Een boot zonder vaarbewijs huren (vanaf {noLicBaja1h}€/u) geeft je volledige vrijheid om in je eigen tempo te varen en op eigen gelegenheid te verkennen. De excursie met schipper (vanaf {excursionBaja2h}€/2u) is ideaal als je volledig wilt ontspannen, geen ervaring hebt of verder weg gelegen baaien zoals Tossa de Mar wilt bereiken.',
+      },
+      mejorEpoca: {
+        question: 'Wat is de beste tijd om een boot te huren in Blanes?',
+        answer: 'September is de topmaand: de zeetemperatuur is op zijn warmst (24-25°C), de prijzen zijn middenseizoen, er zijn minder toeristen en de weersomstandigheden zijn uitstekend. Juni en de eerste helft van juli zijn ook zeer goede opties.',
+      },
+    },
+  },
 };

@@ -1801,6 +1801,183 @@ export const es: Translations = {
     internalLinks: '¿Quieres saber más? Consulta la guía completa del tramo en <a href="/es/alquiler-barcos-lloret-de-mar" class="underline text-primary hover:text-primary/80">Lloret de Mar desde el mar</a> o la ruta con licencia hasta <a href="/es/alquiler-barcos-tossa-de-mar" class="underline text-primary hover:text-primary/80">Tossa de Mar</a>. Precios completos en <a href="/es/blog/cuanto-cuesta-alquilar-barco-blanes-precios" class="underline text-primary hover:text-primary/80">Cuánto cuesta alquilar un barco en Blanes</a>.',
   },
 
+  faqPage: {
+    heroTitle: 'Preguntas Frecuentes',
+    heroDescription: 'Encuentra respuestas a todas tus dudas sobre el alquiler de barcos en Blanes, Costa Brava. Si no encuentras lo que buscas, ¡contáctanos directamente!',
+    schemaName: 'Preguntas Frecuentes - Alquiler de Barcos en Blanes',
+    schemaDescription: 'Resuelve todas tus dudas sobre el alquiler de barcos en Blanes, Costa Brava',
+    whatsappGenericMessage: 'Hola, tengo una pregunta sobre el alquiler de barcos. ¿Podrían ayudarme?',
+    filterLabel: 'Filtrar por categoría',
+    categories: {
+      all: 'Todas',
+      reservas: 'Reservas y Precios',
+      comparativas: 'Comparativas y Recomendaciones',
+      licencias: 'Licencias y Requisitos',
+      incluye: 'Qué Incluye',
+      navegacion: 'Navegación y Seguridad',
+      practica: 'Información Práctica',
+      temporada: 'Temporada',
+    },
+    items: {
+      precios: {
+        question: '¿Cuáles son los precios del alquiler?',
+        answer: 'Nuestros precios varían según la embarcación y duración. Barcos sin licencia desde {noLicBaja1h}€ con gasolina incluida (1h, 2h, 3h, 4h, 6h, 8h). Barcos con licencia desde {licBaja2h}€ sin gasolina incluida (2h, 4h, 8h).',
+      },
+      reserva: {
+        question: '¿Cómo puedo hacer una reserva?',
+        answer: 'Hacer una reserva es muy fácil: 1) Selecciona tu barco favorito, 2) Elige fecha, hora y duración, 3) Completa tus datos y extras, 4) Realiza el pago seguro, 5) Recibe confirmación por WhatsApp y email.',
+      },
+      pago: {
+        question: '¿Qué formas de pago aceptan?',
+        answer: 'Aceptamos tarjeta de crédito/débito (Visa, Mastercard), transferencia bancaria, efectivo (solo en puerto, antes de salir) y Bizum (para clientes españoles). Se requiere una paga y señal de 50€ para confirmar la reserva.',
+      },
+      cancelacion: {
+        question: '¿Cuál es la política de cancelación?',
+        answer: 'Política flexible: Más de 48h antes = 100% reembolso, 24-48h antes = 50% reembolso, menos de 24h = sin reembolso. Mal tiempo = reprogramación gratuita o 100% reembolso.',
+      },
+      sinLicencia: {
+        question: '¿Puedo alquilar sin tener licencia náutica?',
+        answer: '¡Sí! Tenemos barcos perfectos sin licencia. Son de hasta 15 CV, máximo 4-5 personas, fáciles de manejar con briefing completo. Solo necesitas ser mayor de 18 años.',
+      },
+      licenciasAceptadas: {
+        question: '¿Qué licencias aceptan para barcos grandes?',
+        answer: 'Para barcos con licencia aceptamos: PER (Patrón de Embarcaciones de Recreo), PNB (Patrón de Navegación Básica), Capitán de Yate, licencias europeas equivalentes y licencias internacionales homologadas. Debes presentar la licencia original el día del alquiler.',
+      },
+      edadMinima: {
+        question: '¿Cuál es la edad mínima para alquilar?',
+        answer: 'El patrón debe tener mínimo 18 años. Los pasajeros no tienen límite de edad (con adulto responsable). Menores de 12 años deben llevar chaleco salvavidas obligatorio. El patrón debe presentar DNI o pasaporte válido.',
+      },
+      experiencia: {
+        question: '¿Necesito experiencia previa navegando?',
+        answer: 'No es necesaria experiencia previa. Proporcionamos explicación completa del funcionamiento, mapa de la zona autorizada, consejos de seguridad, contacto directo para emergencias y embarcaciones fáciles de manejar.',
+      },
+      queIncluye: {
+        question: '¿Qué está incluido en el precio?',
+        answer: 'Incluido: embarcación equipada, combustible (en barcos sin licencia), chalecos salvavidas, kit de seguridad, ancla y cabo, escalera de baño, instrucciones y mapa, seguro básico y soporte telefónico.',
+      },
+      combustible: {
+        question: '¿Tengo que pagar combustible?',
+        answer: 'El combustible está incluido en las embarcaciones sin licencia. En las embarcaciones con licencia, se entregan con el depósito lleno y al finalizar el alquiler nuestro equipo te acompaña a la gasolinera para llenar de nuevo el depósito.',
+      },
+      extras: {
+        question: '¿Qué extras puedo añadir?',
+        answer: 'Extras disponibles: Paddle Surf (+25€), Gafas de snorkel (+5€), Cámara acuática GoPro (+30€) y Patrón profesional (+100€).',
+      },
+      queLlevar: {
+        question: '¿Qué debo llevar yo?',
+        answer: 'Imprescindible: DNI o pasaporte, licencia náutica (si aplica), protector solar, gorra/sombrero y toallas. Recomendado: comida y bebidas, gafas de sol, calzado antideslizante, ropa de cambio y cámara/móvil en bolsa estanca.',
+      },
+      porDondeNavegar: {
+        question: '¿Por dónde puedo navegar?',
+        answer: 'Zona autorizada: Norte hasta Playa de Fenals (sin licencia) o Sant Feliu de Guíxols (con licencia). Sur hasta final playa de Blanes (sin licencia) o sin límite (con licencia). Máximo 2 millas de la costa. Calas recomendadas: Cala Brava, Cala Sant Francesc, Playa de Lloret.',
+      },
+      seguridad: {
+        question: '¿Qué medidas de seguridad tienen?',
+        answer: 'Chalecos salvavidas homologados para todos, kit de seguridad reglamentario, GPS y plotter en barcos grandes, señalización marítima completa, contacto 24h para emergencias y revisiones diarias de embarcaciones.',
+      },
+      malTiempo: {
+        question: '¿Qué pasa si hace mal tiempo?',
+        answer: 'Viento fuerte: no salimos con viento superior a fuerza 4. Lluvia intensa: reprogramamos sin coste. Tormenta: suspensión automática. Cambio durante navegación: regreso guiado al puerto. Siempre priorizamos la seguridad con reprogramación gratuita o reembolso del 100%.',
+      },
+      emergencia: {
+        question: '¿Qué hago en caso de emergencia?',
+        answer: 'Procedimiento de emergencia: 1) Mantén la calma, 2) Llámanos inmediatamente al +34 611 500 372, 3) Encontraremos tu posición gracias a los GPS instalados en nuestros barcos. Números de emergencia incluidos en el briefing.',
+      },
+      horarios: {
+        question: '¿Cuáles son los horarios disponibles?',
+        answer: 'Horarios de alquiler: Media mañana (09:00 - 13:00), Tarde (14:00 - 18:00), Día completo (09:00 - 17:00), Atardecer (18:00 - 21:00). Los horarios pueden variar según temporada y disponibilidad.',
+      },
+      llegadaPuerto: {
+        question: '¿Cuándo debo llegar al puerto?',
+        answer: 'Recomendamos llegar 30 minutos antes de la hora de salida para check-in y verificación de documentos, briefing de seguridad completo, explicación del funcionamiento, entrega de material y mapa, y resolver dudas de última hora.',
+      },
+      parking: {
+        question: '¿Hay parking disponible?',
+        answer: 'Opciones de aparcamiento: Parking Puerto 10€/alquiler (dentro del puerto y delante del barco), Zona azul 1,5€/hora (10 min andando), Parking gratuito (20/30 min andando). En temporada alta recomendamos reservar plaza.',
+      },
+      equipaje: {
+        question: '¿Puedo dejar equipaje en el puerto?',
+        answer: 'Opciones para equipaje: en la embarcación (espacio limitado pero seguro), consignas puerto (5€/día por maleta), hotel/apartamento (recomendamos dejar equipaje grande). Evita llevar objetos de valor.',
+      },
+      temporada: {
+        question: '¿Cuándo está abierta la temporada?',
+        answer: 'Temporada alta: Junio - Septiembre. Temporada media: Abril-Mayo y Octubre. Cerrado: Noviembre - Marzo. La mejor época es mayo-junio y septiembre (menos masificado, buen tiempo).',
+      },
+      disponibilidad: {
+        question: '¿Cómo puedo consultar disponibilidad?',
+        answer: 'Puedes consultar disponibilidad a través de nuestra web (calendario en tiempo real), WhatsApp (respuesta inmediata), teléfono (llamada directa) o email (consultas detalladas).',
+      },
+      antelacion: {
+        question: '¿Con qué antelación debo reservar?',
+        answer: 'Recomendaciones: Temporada alta 1-2 semanas mínimo, fines de semana 3-5 días, entre semana posible reserva del día, grupos grandes máximo antelación posible. En julio-agosto reservar con al menos 2 semanas de antelación.',
+      },
+      comidaBebida: {
+        question: '¿Puedo llevar comida y bebida a bordo?',
+        answer: '¡Por supuesto! Puedes traer tu propia comida, bebidas y snacks. Tenemos nevera a bordo. Solo pedimos que no se use cristal por seguridad.',
+      },
+      fianza: {
+        question: '¿Qué es la fianza y cuándo se devuelve?',
+        answer: 'La fianza es un depósito de seguridad (200-500€ según el barco) que se paga en el puerto antes de salir y se devuelve íntegramente al regresar si el barco está en buen estado.',
+      },
+      equipoSeguridad: {
+        question: '¿Qué equipamiento de seguridad incluye el barco?',
+        answer: 'Todos nuestros barcos incluyen chalecos salvavidas para todos los pasajeros, botiquín de primeros auxilios, extintor, ancla, y kit de señalización según normativa.',
+      },
+      descuentos: {
+        question: '¿Hay descuentos para grupos o reservas anticipadas?',
+        answer: 'Sí, ofrecemos el código BIENVENIDO10 para un 10% de descuento en tu primera reserva. También tenemos tarifas especiales para reservas de día completo.',
+      },
+      hastaDondeNavegar: {
+        question: '¿Hasta dónde puedo navegar desde Blanes?',
+        answer: 'Puedes explorar toda la costa entre Blanes y Tossa de Mar. Te recomendamos las calas de Sa Forcanera, Cala Bona y Cala Sant Francesc, accesibles solo por mar.',
+      },
+      mascotas: {
+        question: '¿Puedo llevar mascotas a bordo?',
+        answer: 'Sí, las mascotas son bienvenidas en nuestros barcos. Recomendamos traer agua fresca y una toalla para tu mascota. El animal debe llevar chaleco salvavidas si está disponible.',
+      },
+      pesca: {
+        question: '¿Se puede pescar desde el barco?',
+        answer: 'Sí, puedes pescar desde nuestros barcos. Necesitarás tu propia licencia de pesca recreativa. No proporcionamos equipos de pesca, pero puedes traer los tuyos.',
+      },
+      diferenciaLicencia: {
+        question: '¿Cuál es la diferencia entre barcos sin licencia y con licencia?',
+        answer: 'Los barcos sin licencia tienen hasta 15 CV, capacidad de 4-5 personas, gasolina incluida y cuestan desde {noLicBaja1h}€. Los barcos con licencia tienen motores de 40-150 CV, capacidad de hasta 8 personas, mayor autonomía y cuestan desde {licBaja2h}€ (gasolina no incluida). Los barcos con licencia permiten navegar más lejos, hasta Tossa de Mar y más allá.',
+      },
+      precioBlanesVsLloret: {
+        question: '¿Es más barato alquilar un barco en Blanes o en Lloret de Mar?',
+        answer: 'Blanes es el punto de alquiler náutico más asequible de la Costa Brava, con barcos sin licencia desde {noLicBaja1h}€ la hora con gasolina incluida. Al operar desde el Puerto de Blanes con nuestra propia flota, ofrecemos precios más competitivos que otras localidades como Lloret de Mar o Tossa de Mar.',
+      },
+      barcoGrupoGrande: {
+        question: '¿Qué barco recomendáis para un grupo grande?',
+        answer: 'Para grupos grandes recomendamos el Pacific Craft 625 (hasta 8 personas, con licencia) o nuestra Excursión Privada con patrón (hasta 10 personas). La excursión con patrón es ideal si nadie del grupo tiene licencia náutica, ya que incluye un capitán profesional que os lleva a las mejores calas.',
+      },
+      precioCostaBrava: {
+        question: '¿Cuánto cuesta alquilar un barco en la Costa Brava?',
+        answer: 'En la Costa Brava puedes alquilar un barco desde {noLicBaja1h}€ la hora en Blanes, con gasolina incluida y sin necesidad de licencia. Los precios varían según la duración (de 1h a día completo), el tipo de barco y la temporada. Julio y agosto son temporada alta con precios más elevados; junio y septiembre ofrecen la mejor relación calidad-precio.',
+      },
+      tossaBarco: {
+        question: '¿Se puede ir a Tossa de Mar en barco desde Blanes?',
+        answer: 'Sí, Tossa de Mar está a unos 30 minutos en barco desde Blanes. Sin embargo, necesitas un barco con licencia o contratar nuestra excursión con patrón, ya que los barcos sin licencia tienen un radio de navegación limitado. La ruta costera de Blanes a Tossa es espectacular, con calas vírgenes y acantilados.',
+      },
+      excursionPatron: {
+        question: '¿Cuánto cuesta una excursión en barco con patrón?',
+        answer: 'Nuestras excursiones privadas con patrón profesional parten desde {excursionBaja2h}€ por 2 horas para hasta 10 personas. El patrón os lleva a las mejores calas, se encarga de toda la navegación y no necesitáis licencia. Es la opción perfecta para familias o grupos que quieren disfrutar sin preocuparse de nada.',
+      },
+      seguroSinExperiencia: {
+        question: '¿Es seguro alquilar un barco sin experiencia?',
+        answer: 'Totalmente seguro. Antes de salir a navegar, nuestro equipo te da un briefing de 15 minutos donde te explica el funcionamiento del barco, las normas de navegación y la zona autorizada. Los barcos sin licencia son muy estables y fáciles de manejar, y la zona de Blanes tiene aguas tranquilas y protegidas.',
+      },
+      barcoVsExcursion: {
+        question: '¿Qué es mejor, alquilar un barco o una excursión con patrón?',
+        answer: 'Depende de lo que busques. Alquilar un barco sin licencia (desde {noLicBaja1h}€/h) te da total libertad para ir a tu ritmo y explorar por tu cuenta. La excursión con patrón (desde {excursionBaja2h}€/2h) es ideal si quieres relajarte completamente, no tienes experiencia o quieres llegar a calas más lejanas como Tossa de Mar.',
+      },
+      mejorEpoca: {
+        question: '¿Cuál es la mejor época para alquilar un barco en Blanes?',
+        answer: 'Septiembre es el mes estrella: el agua del mar está en su temperatura más cálida (24-25°C), los precios son de temporada media, hay menos turistas y las condiciones meteorológicas son excelentes. Junio y la primera quincena de julio también son muy buenas opciones.',
+      },
+    },
+  },
+
   pricingPage: {
     heroTitle: 'Precios Alquiler de Barcos en Blanes 2026',
     heroSubtitle: 'Consulta y compara los precios de todos nuestros barcos. Temporada baja, media y alta. Barcos sin licencia con gasolina incluida.',

@@ -1854,4 +1854,180 @@ export const en: Translations = {
       button: 'Book now',
     },
   },
+  faqPage: {
+    heroTitle: 'Frequently Asked Questions',
+    heroDescription: 'Find answers to all your questions about boat rentals in Blanes, Costa Brava. If you can\'t find what you\'re looking for, contact us directly!',
+    schemaName: 'FAQ - Boat Rentals in Blanes',
+    schemaDescription: 'Get answers to all your questions about boat rentals in Blanes, Costa Brava',
+    whatsappGenericMessage: 'Hello, I have a question about boat rentals. Could you help me?',
+    filterLabel: 'Filter by category',
+    categories: {
+      all: 'All',
+      reservas: 'Bookings & Pricing',
+      comparativas: 'Comparisons & Recommendations',
+      licencias: 'Licenses & Requirements',
+      incluye: 'What\'s Included',
+      navegacion: 'Navigation & Safety',
+      practica: 'Practical Information',
+      temporada: 'Season',
+    },
+    items: {
+      precios: {
+        question: 'What are the rental prices?',
+        answer: 'Our prices vary depending on the boat and duration. Boats without license from {noLicBaja1h}€ with fuel included (1h, 2h, 3h, 4h, 6h, 8h). Boats with license from {licBaja2h}€ without fuel included (2h, 4h, 8h).',
+      },
+      reserva: {
+        question: 'How can I make a booking?',
+        answer: 'Making a booking is very easy: 1) Select your favorite boat, 2) Choose date, time and duration, 3) Complete your details and extras, 4) Make secure payment, 5) Receive confirmation via WhatsApp and email.',
+      },
+      pago: {
+        question: 'What payment methods do you accept?',
+        answer: 'We accept credit/debit card (Visa, Mastercard), bank transfer, cash (only at the port, before departure) and Bizum (for Spanish customers). A deposit of 50€ is required to confirm the booking.',
+      },
+      cancelacion: {
+        question: 'What is the cancellation policy?',
+        answer: 'Flexible policy: More than 48h before = 100% refund, 24-48h before = 50% refund, less than 24h = no refund. Bad weather = free rescheduling or 100% refund.',
+      },
+      sinLicencia: {
+        question: 'Can I rent without a boat license?',
+        answer: 'Yes! We have perfect boats without license. They\'re up to 15 HP, maximum 4-5 people, easy to handle with a complete briefing. You only need to be over 18 years old.',
+      },
+      licenciasAceptadas: {
+        question: 'What licenses do you accept for larger boats?',
+        answer: 'For boats with license we accept: PER (Patrón de Embarcaciones de Recreo), PNB (Patrón de Navegación Básica), Yacht Captain, equivalent European licenses and approved international licenses. You must present the original license on the day of rental.',
+      },
+      edadMinima: {
+        question: 'What is the minimum age to rent?',
+        answer: 'The captain must be at least 18 years old. Passengers have no age limit (with a responsible adult). Children under 12 must wear a life jacket. The captain must present a valid ID or passport.',
+      },
+      experiencia: {
+        question: 'Do I need previous boating experience?',
+        answer: 'No previous experience necessary. We provide a complete explanation of how it works, a map of the authorized area, safety tips, direct contact for emergencies and easy-to-handle boats.',
+      },
+      queIncluye: {
+        question: 'What\'s included in the price?',
+        answer: 'Included: equipped boat, fuel (on boats without license), life jackets, safety kit, anchor and rope, bathing ladder, instructions and map, basic insurance and telephone support.',
+      },
+      combustible: {
+        question: 'Do I have to pay for fuel?',
+        answer: 'Fuel is included on boats without license. On boats with license, they\'re delivered with a full tank and at the end of the rental our team accompanies you to the fuel station to refill the tank.',
+      },
+      extras: {
+        question: 'What extras can I add?',
+        answer: 'Available extras: Paddle Board (+25€), Snorkel mask (+5€), GoPro waterproof camera (+30€) and Professional captain (+100€).',
+      },
+      queLlevar: {
+        question: 'What should I bring?',
+        answer: 'Essential: ID or passport, boat license (if applicable), sunscreen, cap/hat and towels. Recommended: food and drinks, sunglasses, non-slip footwear, change of clothes and camera/phone in waterproof bag.',
+      },
+      porDondeNavegar: {
+        question: 'Where can I navigate?',
+        answer: 'Authorized area: North to Fenals Beach (without license) or Sant Feliu de Guíxols (with license). South to the end of Blanes beach (without license) or no limit (with license). Maximum 2 miles from the coast. Recommended coves: Cala Brava, Cala Sant Francesc, Lloret Beach.',
+      },
+      seguridad: {
+        question: 'What safety measures do you have?',
+        answer: 'Approved life jackets for everyone, regulation safety kit, GPS and plotter on large boats, complete maritime signaling, 24h emergency contact and daily boat inspections.',
+      },
+      malTiempo: {
+        question: 'What happens if the weather is bad?',
+        answer: 'Strong wind: we don\'t go out in winds above force 4. Heavy rain: we reschedule at no cost. Storm: automatic suspension. Change during navigation: guided return to port. We always prioritize safety with free rescheduling or 100% refund.',
+      },
+      emergencia: {
+        question: 'What do I do in case of emergency?',
+        answer: 'Emergency procedure: 1) Stay calm, 2) Call us immediately at +34 611 500 372, 3) We\'ll find your position thanks to the GPS installed on our boats. Emergency numbers included in the briefing.',
+      },
+      horarios: {
+        question: 'What are the available times?',
+        answer: 'Rental times: Mid-morning (09:00 - 13:00), Afternoon (14:00 - 18:00), Full day (09:00 - 17:00), Sunset (18:00 - 21:00). Times may vary depending on season and availability.',
+      },
+      llegadaPuerto: {
+        question: 'When should I arrive at the port?',
+        answer: 'We recommend arriving 30 minutes before departure time for check-in and document verification, complete safety briefing, explanation of how it works, delivery of materials and map, and to answer any last-minute questions.',
+      },
+      parking: {
+        question: 'Is parking available?',
+        answer: 'Parking options: Port Parking 10€/rental (inside the port and in front of the boat), Blue zone 1.5€/hour (10 min walk), Free parking (20/30 min walk). In high season we recommend booking a space.',
+      },
+      equipaje: {
+        question: 'Can I leave luggage at the port?',
+        answer: 'Options for luggage: on the boat (limited but secure space), port lockers (5€/day per suitcase), hotel/apartment (we recommend leaving large luggage there). Avoid bringing valuables.',
+      },
+      temporada: {
+        question: 'When is the season open?',
+        answer: 'High season: June - September. Mid season: April-May and October. Closed: November - March. The best time is May-June and September (less crowded, good weather).',
+      },
+      disponibilidad: {
+        question: 'How can I check availability?',
+        answer: 'You can check availability through our website (real-time calendar), WhatsApp (immediate response), phone (direct call) or email (detailed inquiries).',
+      },
+      antelacion: {
+        question: 'How far in advance should I book?',
+        answer: 'Recommendations: High season 1-2 weeks minimum, weekends 3-5 days, weekdays same-day booking possible, large groups as much advance notice as possible. In July-August book at least 2 weeks in advance.',
+      },
+      comidaBebida: {
+        question: 'Can I bring food and drinks on board?',
+        answer: 'Of course! You can bring your own food, drinks and snacks. We have a cooler on board. We only ask that you don\'t use glass for safety reasons.',
+      },
+      fianza: {
+        question: 'What is the deposit and when is it returned?',
+        answer: 'The deposit is a security deposit (200-500€ depending on the boat) that is paid at the port before departure and is fully refunded upon return if the boat is in good condition.',
+      },
+      equipoSeguridad: {
+        question: 'What safety equipment does the boat include?',
+        answer: 'All our boats include life jackets for all passengers, first aid kit, fire extinguisher, anchor, and signaling kit according to regulations.',
+      },
+      descuentos: {
+        question: 'Are there discounts for groups or advance bookings?',
+        answer: 'Yes, we offer the code BIENVENIDO10 for a 10% discount on your first booking. We also have special rates for full-day bookings.',
+      },
+      hastaDondeNavegar: {
+        question: 'How far can I navigate from Blanes?',
+        answer: 'You can explore the entire coast between Blanes and Tossa de Mar. We recommend the coves of Sa Forcanera, Cala Bona and Cala Sant Francesc, accessible only by sea.',
+      },
+      mascotas: {
+        question: 'Can I bring pets on board?',
+        answer: 'Yes, pets are welcome on our boats. We recommend bringing fresh water and a towel for your pet. The animal should wear a life jacket if available.',
+      },
+      pesca: {
+        question: 'Can I fish from the boat?',
+        answer: 'Yes, you can fish from our boats. You\'ll need your own recreational fishing license. We don\'t provide fishing equipment, but you can bring your own.',
+      },
+      diferenciaLicencia: {
+        question: 'What\'s the difference between boats without license and with license?',
+        answer: 'Boats without license have up to 15 HP, capacity for 4-5 people, fuel included and cost from {noLicBaja1h}€. Boats with license have 40-150 HP engines, capacity for up to 8 people, greater range and cost from {licBaja2h}€ (fuel not included). Boats with license allow you to navigate further, to Tossa de Mar and beyond.',
+      },
+      precioBlanesVsLloret: {
+        question: 'Is it cheaper to rent a boat in Blanes or Lloret de Mar?',
+        answer: 'Blanes is the most affordable boat rental point on the Costa Brava, with boats without license from {noLicBaja1h}€ per hour with fuel included. Operating from the Port of Blanes with our own fleet, we offer more competitive prices than other locations like Lloret de Mar or Tossa de Mar.',
+      },
+      barcoGrupoGrande: {
+        question: 'Which boat do you recommend for a large group?',
+        answer: 'For large groups we recommend the Pacific Craft 625 (up to 8 people, with license) or our Private Excursion with captain (up to 10 people). The excursion with captain is ideal if no one in the group has a boat license, as it includes a professional captain who takes you to the best coves.',
+      },
+      precioCostaBrava: {
+        question: 'How much does it cost to rent a boat on the Costa Brava?',
+        answer: 'On the Costa Brava you can rent a boat from {noLicBaja1h}€ per hour in Blanes, with fuel included and no license required. Prices vary depending on duration (from 1h to full day), type of boat and season. July and August are high season with higher prices; June and September offer the best value for money.',
+      },
+      tossaBarco: {
+        question: 'Can you go to Tossa de Mar by boat from Blanes?',
+        answer: 'Yes, Tossa de Mar is about 30 minutes by boat from Blanes. However, you need a boat with license or hire our excursion with captain, as boats without license have a limited navigation radius. The coastal route from Blanes to Tossa is spectacular, with virgin coves and cliffs.',
+      },
+      excursionPatron: {
+        question: 'How much does an excursion with a captain cost?',
+        answer: 'Our private excursions with professional captain start from {excursionBaja2h}€ for 2 hours for up to 10 people. The captain takes you to the best coves, handles all the navigation and you don\'t need a license. It\'s the perfect option for families or groups who want to enjoy without worrying about anything.',
+      },
+      seguroSinExperiencia: {
+        question: 'Is it safe to rent a boat without experience?',
+        answer: 'Totally safe. Before going out to navigate, our team gives you a 15-minute briefing where they explain how the boat works, navigation rules and the authorized area. Boats without license are very stable and easy to handle, and the Blanes area has calm and protected waters.',
+      },
+      barcoVsExcursion: {
+        question: 'What\'s better, renting a boat or an excursion with captain?',
+        answer: 'It depends on what you\'re looking for. Renting a boat without license (from {noLicBaja1h}€/h) gives you total freedom to go at your own pace and explore on your own. The excursion with captain (from {excursionBaja2h}€/2h) is ideal if you want to relax completely, have no experience or want to reach more distant coves like Tossa de Mar.',
+      },
+      mejorEpoca: {
+        question: 'What\'s the best time to rent a boat in Blanes?',
+        answer: 'September is the star month: the sea water is at its warmest temperature (24-25°C), prices are mid-season, there are fewer tourists and weather conditions are excellent. June and the first half of July are also very good options.',
+      },
+    },
+  },
 };

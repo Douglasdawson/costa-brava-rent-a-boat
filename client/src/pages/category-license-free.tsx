@@ -33,7 +33,10 @@ import {
 } from "@/utils/seo-config";
 import { openWhatsApp, createBookingMessage } from "@/utils/whatsapp";
 import { useTranslations } from "@/lib/translations";
-import { BOAT_DATA } from "@shared/boatData";
+import { BOAT_DATA, type BoatData } from "@shared/boatData";
+import type { Boat } from "@shared/schema";
+import { minPriceAcrossBoats } from "@shared/pricing";
+import { useQuery } from "@tanstack/react-query";
 import {
   BUSINESS_RATING_STR,
   BUSINESS_REVIEW_COUNT_STR,
@@ -51,30 +54,35 @@ export default function CategoryLicenseFreePage() {
     openWhatsApp(message);
   };
 
-  // License-free boats data for fleet cards
-  const licenseFreeBoats = [
-    {
-      name: "Solar 450",
-      capacity: "4-5 personas",
-      engine: "15 CV",
-      features: ["Toldo", "Escalera", "Radio FM"],
-      price: "Desde 160€"
-    },
-    {
-      name: "Remus 450",
-      capacity: "4-5 personas",
-      engine: "15 CV",
-      features: ["Bimini", "Nevera", "Radio Bluetooth"],
-      price: "Desde 160€"
-    },
-    {
-      name: "Astec 400",
-      capacity: "4-5 personas",
-      engine: "15 CV",
-      features: ["Sombra", "Escalera", "Equipo snorkel"],
-      price: "Desde 150€"
-    }
-  ];
+  // License-free fleet: derived from /api/boats with a BOAT_DATA fallback so
+  // SSR and first-paint never render an empty grid. Excursión Privada is
+  // excluded because it's a captained service, not a self-service rental.
+  const { data: apiBoats } = useQuery<Boat[]>({ queryKey: ["/api/boats"] });
+  const liveUnlicensed = (apiBoats ?? []).filter(
+    (b) => b.isActive && !b.requiresLicense && b.id !== "excursion-privada",
+  );
+  const fallbackUnlicensed = Object.values(BOAT_DATA).filter(
+    (b) => b.subtitle.startsWith("Sin licencia") && b.id !== "excursion-privada",
+  );
+  const sourceBoats: Array<Boat | BoatData> =
+    liveUnlicensed.length > 0 ? liveUnlicensed : fallbackUnlicensed;
+
+  const licenseFreeBoats = sourceBoats.map((b) => {
+    const specs = (b.specifications ?? {}) as { engine?: string; capacity?: string };
+    const isDbBoat = "isActive" in b;
+    const capacity = isDbBoat
+      ? `${(b as Boat).capacity} personas`
+      : (specs.capacity ?? "");
+    const minPrice = minPriceAcrossBoats([b as { pricing?: unknown }], "1h", "BAJA");
+    return {
+      id: b.id,
+      name: b.name,
+      capacity,
+      engine: specs.engine ?? "",
+      features: (b.features ?? []).slice(0, 3),
+      price: minPrice ? `Desde ${minPrice}€/h` : "",
+    };
+  });
 
   // Detailed comparison data from boatData.ts for the comparison table
   const comparisonBoats = [

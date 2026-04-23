@@ -15,7 +15,6 @@ import {
   Waves,
   Compass,
   Target,
-  TrendingUp,
   ChevronRight
 } from "lucide-react";
 import Navigation from "@/components/Navigation";
@@ -37,6 +36,7 @@ import {
 } from "@shared/businessProfile";
 import { useQuery } from "@tanstack/react-query";
 import type { Boat } from "@shared/schema";
+import { BOAT_DATA, type BoatData } from "@shared/boatData";
 import { minPriceAcrossBoats } from "@shared/pricing";
 
 export default function CategoryLicensedPage() {
@@ -47,12 +47,6 @@ export default function CategoryLicensedPage() {
   const canonical = generateCanonicalUrl('categoryLicensed', language);
 
   const { data: boats } = useQuery<Boat[]>({ queryKey: ["/api/boats"] });
-  const priceFromId = (id: string): string => {
-    const boat = (boats || []).find((b) => b.id === id);
-    if (!boat) return "";
-    const min = minPriceAcrossBoats([boat], "2h", "BAJA");
-    return min ? `Desde ${min}€` : "";
-  };
 
   const handleBookingWhatsApp = () => {
     const message = createBookingMessage();
@@ -106,34 +100,33 @@ export default function CategoryLicensedPage() {
     { name: t.breadcrumbs.categoryLicensed, url: "/barcos-con-licencia" }
   ]);
 
-  // Licensed boats data — prices derived from live admin pricing.
-  // (Astec 480 is license-free in the DB so it's intentionally excluded from this licensed-category list.)
-  const licensedBoats = [
-    {
-      name: "Mingolla Brava 19",
-      capacity: "6 personas",
-      engine: "80 CV",
-      features: ["GPS", "Sonda", "Ducha", "Bluetooth"],
-      price: priceFromId("mingolla-brava-19") || "Desde 160€",
-      range: "Lloret/Tossa"
-    },
-    {
-      name: "Pacific Craft 625",
-      capacity: "7 personas",
-      engine: "115 CV",
-      features: ["Consola central", "GPS Garmin", "Ducha", "Solárium"],
-      price: priceFromId("pacific-craft-625") || "Desde 180€",
-      range: "Navegación deportiva"
-    },
-    {
-      name: "Trimarchi 57S",
-      capacity: "7 personas",
-      engine: "110 CV",
-      features: ["Solárium doble", "Mesa central", "Radio", "Toldo"],
-      price: priceFromId("trimarchi-57s") || "Desde 160€",
-      range: "Máximo confort"
-    }
-  ];
+  // Licensed fleet: derived from /api/boats with a BOAT_DATA fallback so SSR
+  // and first-paint never render an empty grid.
+  const liveLicensed = (boats ?? []).filter(
+    (b) => b.isActive && b.requiresLicense,
+  );
+  const fallbackLicensed = Object.values(BOAT_DATA).filter((b) =>
+    b.subtitle.startsWith("Con licencia"),
+  );
+  const sourceLicensed: Array<Boat | BoatData> =
+    liveLicensed.length > 0 ? liveLicensed : fallbackLicensed;
+
+  const licensedBoats = sourceLicensed.map((b) => {
+    const specs = (b.specifications ?? {}) as { engine?: string; capacity?: string };
+    const isDbBoat = "isActive" in b;
+    const capacity = isDbBoat
+      ? `${(b as Boat).capacity} personas`
+      : (specs.capacity ?? "");
+    const minPrice = minPriceAcrossBoats([b as { pricing?: unknown }], "2h", "BAJA");
+    return {
+      id: b.id,
+      name: b.name,
+      capacity,
+      engine: specs.engine ?? "",
+      features: (b.features ?? []).slice(0, 4),
+      price: minPrice ? `Desde ${minPrice}€` : "",
+    };
+  });
 
   // ItemList schema for category page (helps Google understand this is a product listing)
   const itemListSchema = {
@@ -148,7 +141,7 @@ export default function CategoryLicensedPage() {
       "item": {
         "@type": "Product",
         "name": boat.name,
-        "description": `Barco con licencia ${boat.name}, ${boat.capacity}, motor ${boat.engine} - ${boat.range}`,
+        "description": `Barco con licencia ${boat.name}, ${boat.capacity}, motor ${boat.engine}`,
         "brand": { "@type": "Brand", "name": "Costa Brava Rent a Boat" },
         "aggregateRating": {
           "@type": "AggregateRating",
@@ -290,10 +283,6 @@ export default function CategoryLicensedPage() {
                       <div className="flex items-center text-muted-foreground">
                         <Gauge className="w-4 h-4 mr-2" />
                         <span>{boat.engine}</span>
-                      </div>
-                      <div className="flex items-center text-primary">
-                        <TrendingUp className="w-4 h-4 mr-2" />
-                        <span className="text-sm font-medium">{boat.range}</span>
                       </div>
                       <div className="space-y-1">
                         {boat.features.map((feature, idx) => (

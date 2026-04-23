@@ -54,6 +54,7 @@ import {
 } from "@/utils/seo-config";
 import type { Boat } from "@shared/schema";
 import { filterActivePrices, getMinActivePrice } from "@shared/pricing";
+import { buildBoatFaqItems, buildBoatFaqTitle, type BoatFaqText } from "@shared/boatFaqBuilder";
 import { Breadcrumbs } from "./Breadcrumbs";
 import { useTranslations } from "@/lib/translations";
 import AvailabilityCalendar from "./AvailabilityCalendar";
@@ -377,174 +378,6 @@ function translateBoatSpec(value: string, lang: string): string {
   return out;
 }
 
-/** FAQ translations keyed by language */
-const boatFaqTranslations: Record<string, {
-  title: string;
-  q1: string;
-  a1: (name: string, price: number, noLicense: boolean) => string;
-  q2: string;
-  a2: (name: string, capacity: number) => string;
-  q3: string;
-  a3: (name: string, noLicense: boolean) => string;
-  q4: string;
-  a4: (name: string, noLicense: boolean) => string;
-  q5: string;
-  a5: string;
-}> = {
-  es: {
-    title: "Preguntas frecuentes sobre",
-    q1: "¿Cuánto cuesta alquilar el",
-    a1: (name, price, noLicense) =>
-      `El ${name} tiene precios desde ${price}€/hora en temporada baja (abril-junio, septiembre-octubre).${noLicense ? " El precio incluye gasolina, seguro a todo riesgo y equipo de seguridad." : " El combustible se paga aparte según consumo real. Incluye seguro a todo riesgo."}`,
-    q2: "¿Cuántas personas caben en el",
-    a2: (name, cap) =>
-      `El ${name} tiene capacidad para ${cap} personas. Es ideal para ${cap <= 4 ? "parejas y familias pequeñas" : cap <= 6 ? "familias y grupos de amigos" : "grupos grandes y celebraciones"}.`,
-    q3: "¿Necesito licencia para el",
-    a3: (name, noLicense) =>
-      noLicense
-        ? `No, el ${name} no requiere licencia de navegación. Solo necesitas ser mayor de 18 años. Antes de zarpar recibirás una formación de 15 minutos sobre el manejo del barco.`
-        : `Sí, el ${name} requiere licencia de navegación (PER o título equivalente en vigor). Deberás presentar tu titulación antes de zarpar.`,
-    q4: "¿Qué incluye el alquiler del",
-    a4: (name, noLicense) =>
-      `El alquiler incluye seguro a todo riesgo, equipo de seguridad homologado y formación previa.${noLicense ? " También incluye gasolina y, según disponibilidad, equipo de snorkel y paddle surf." : " El combustible se paga según consumo. Según disponibilidad, puede incluir extras como equipo de snorkel."}`,
-    q5: "¿Cuál es la política de cancelación?",
-    a5: "Puedes cambiar la fecha de tu reserva sin coste con un mínimo de 7 días de antelación. Las cancelaciones no son reembolsables. En caso de mal tiempo, ofrecemos reprogramación completa sin coste.",
-  },
-  en: {
-    title: "Frequently asked questions about",
-    q1: "How much does it cost to rent the",
-    a1: (name, price, noLicense) =>
-      `The ${name} starts from ${price}€/hour in low season (April-June, September-October).${noLicense ? " The price includes fuel, comprehensive insurance and safety equipment." : " Fuel is charged separately based on actual consumption. Comprehensive insurance is included."}`,
-    q2: "How many people fit on the",
-    a2: (name, cap) =>
-      `The ${name} has a capacity of ${cap} people. It is ideal for ${cap <= 4 ? "couples and small families" : cap <= 6 ? "families and groups of friends" : "large groups and celebrations"}.`,
-    q3: "Do I need a licence for the",
-    a3: (name, noLicense) =>
-      noLicense
-        ? `No, the ${name} does not require a boating licence. You only need to be over 18. Before departure you will receive a 15-minute briefing on how to operate the boat.`
-        : `Yes, the ${name} requires a boating licence (PER or equivalent valid qualification). You must present your licence before departure.`,
-    q4: "What is included in the rental of the",
-    a4: (name, noLicense) =>
-      `The rental includes comprehensive insurance, certified safety equipment and a pre-departure briefing.${noLicense ? " It also includes fuel and, subject to availability, snorkelling and paddle surf gear." : " Fuel is charged based on consumption. Subject to availability, extras such as snorkelling gear may be included."}`,
-    q5: "What is the cancellation policy",
-    a5: "You can change your booking date at no cost with at least 7 days' notice. Cancellations are non-refundable. In case of bad weather, we offer full rescheduling at no cost.",
-  },
-  fr: {
-    title: "Questions fréquentes sur le",
-    q1: "Combien coûte la location du",
-    a1: (name, price, noLicense) =>
-      `Le ${name} est disponible à partir de ${price}€/heure en basse saison (avril-juin, septembre-octobre).${noLicense ? " Le prix comprend le carburant, l'assurance tous risques et l'équipement de sécurité." : " Le carburant est facturé séparément selon la consommation réelle. L'assurance tous risques est incluse."}`,
-    q2: "Combien de personnes peuvent monter sur le",
-    a2: (name, cap) =>
-      `Le ${name} a une capacité de ${cap} personnes. Il est idéal pour ${cap <= 4 ? "les couples et les petites familles" : cap <= 6 ? "les familles et les groupes d'amis" : "les grands groupes et les célébrations"}.`,
-    q3: "Ai-je besoin d'un permis pour le",
-    a3: (name, noLicense) =>
-      noLicense
-        ? `Non, le ${name} ne nécessite pas de permis bateau. Il suffit d'avoir plus de 18 ans. Avant le départ, vous recevrez une formation de 15 minutes sur la conduite du bateau.`
-        : `Oui, le ${name} nécessite un permis bateau (PER ou titre équivalent en vigueur). Vous devrez présenter votre permis avant le départ.`,
-    q4: "Que comprend la location du",
-    a4: (name, noLicense) =>
-      `La location comprend une assurance tous risques, un équipement de sécurité homologué et une formation préalable.${noLicense ? " Elle inclut également le carburant et, selon disponibilité, du matériel de snorkeling et paddle surf." : " Le carburant est facturé selon la consommation. Selon disponibilité, des extras comme le matériel de snorkeling peuvent être inclus."}`,
-    q5: "Quelle est la politique d'annulation ?",
-    a5: "Changement de date gratuit avec un minimum de 7 jours de préavis, sous réserve de disponibilité. Les annulations ne sont pas remboursables. En cas de mauvais temps, reprogrammation gratuite.",
-  },
-  de: {
-    title: "Häufig gestellte Fragen zum",
-    q1: "Wie viel kostet die Miete des",
-    a1: (name, price, noLicense) =>
-      `Das ${name} ist ab ${price}€/Stunde in der Nebensaison (April-Juni, September-Oktober) verfügbar.${noLicense ? " Der Preis beinhaltet Kraftstoff, Vollkaskoversicherung und Sicherheitsausrüstung." : " Der Kraftstoff wird separat nach tatsächlichem Verbrauch berechnet. Vollkaskoversicherung ist inklusive."}`,
-    q2: "Wie viele Personen passen auf das",
-    a2: (name, cap) =>
-      `Das ${name} bietet Platz für ${cap} Personen. Es ist ideal für ${cap <= 4 ? "Paare und kleine Familien" : cap <= 6 ? "Familien und Freundesgruppen" : "große Gruppen und Feiern"}.`,
-    q3: "Brauche ich einen Führerschein für das",
-    a3: (name, noLicense) =>
-      noLicense
-        ? `Nein, das ${name} erfordert keinen Bootsführerschein. Sie müssen lediglich über 18 Jahre alt sein. Vor der Abfahrt erhalten Sie eine 15-minütige Einweisung.`
-        : `Ja, das ${name} erfordert einen Bootsführerschein (PER oder gleichwertiger gültiger Nachweis). Sie müssen Ihren Führerschein vor der Abfahrt vorlegen.`,
-    q4: "Was ist in der Miete des enthalten",
-    a4: (name, noLicense) =>
-      `Die Miete beinhaltet Vollkaskoversicherung, zertifizierte Sicherheitsausrüstung und eine Einweisung vor der Abfahrt.${noLicense ? " Kraftstoff sowie nach Verfügbarkeit Schnorchel- und Paddle-Surf-Ausrüstung sind ebenfalls enthalten." : " Kraftstoff wird nach Verbrauch berechnet. Nach Verfügbarkeit können Extras wie Schnorchelausrüstung enthalten sein."}`,
-    q5: "Wie lautet die Stornierungsrichtlinie?",
-    a5: "Kostenlose Umbuchung mit mindestens 7 Tagen Vorlauf, vorbehaltlich Verfügbarkeit. Stornierungen sind nicht erstattungsfähig. Bei schlechtem Wetter bieten wir kostenlose Umbuchung an.",
-  },
-  nl: {
-    title: "Veelgestelde vragen over de",
-    q1: "Hoeveel kost het huren van de",
-    a1: (name, price, noLicense) =>
-      `De ${name} is beschikbaar vanaf ${price}€/uur in het laagseizoen (april-juni, september-oktober).${noLicense ? " De prijs is inclusief brandstof, allriskverzekering en veiligheidsuitrusting." : " Brandstof wordt apart in rekening gebracht op basis van werkelijk verbruik. Allriskverzekering is inbegrepen."}`,
-    q2: "Hoeveel personen passen er op de",
-    a2: (name, cap) =>
-      `De ${name} biedt plaats aan ${cap} personen. Ideaal voor ${cap <= 4 ? "koppels en kleine gezinnen" : cap <= 6 ? "gezinnen en vriendengroepen" : "grote groepen en feesten"}.`,
-    q3: "Heb ik een vaarbewijs nodig voor de",
-    a3: (name, noLicense) =>
-      noLicense
-        ? `Nee, de ${name} vereist geen vaarbewijs. U hoeft alleen ouder dan 18 jaar te zijn. Voor vertrek ontvangt u een instructie van 15 minuten.`
-        : `Ja, de ${name} vereist een vaarbewijs (PER of gelijkwaardig geldig bewijs). U dient uw vaarbewijs voor vertrek te tonen.`,
-    q4: "Wat is inbegrepen bij de huur van de",
-    a4: (name, noLicense) =>
-      `De huur omvat allriskverzekering, gecertificeerde veiligheidsuitrusting en een briefing voor vertrek.${noLicense ? " Ook brandstof en, afhankelijk van beschikbaarheid, snorkel- en paddle surf-uitrusting zijn inbegrepen." : " Brandstof wordt in rekening gebracht op basis van verbruik. Afhankelijk van beschikbaarheid kunnen extras zoals snorkeluitrusting inbegrepen zijn."}`,
-    q5: "Wat is het annuleringsbeleid",
-    a5: "Gratis datumwijziging met minimaal 7 dagen van tevoren, onder voorbehoud van beschikbaarheid. Annuleringen zijn niet restitueerbaar. Bij slecht weer bieden wij gratis omboeking aan.",
-  },
-  it: {
-    title: "Domande frequenti sul",
-    q1: "Quanto costa noleggiare il",
-    a1: (name, price, noLicense) =>
-      `Il ${name} parte da ${price}€/ora in bassa stagione (aprile-giugno, settembre-ottobre).${noLicense ? " Il prezzo include carburante, assicurazione completa e equipaggiamento di sicurezza." : " Il carburante viene addebitato separatamente in base al consumo effettivo. L'assicurazione completa e inclusa."}`,
-    q2: "Quante persone possono salire sul",
-    a2: (name, cap) =>
-      `Il ${name} ha una capacita di ${cap} persone. E ideale per ${cap <= 4 ? "coppie e piccole famiglie" : cap <= 6 ? "famiglie e gruppi di amici" : "grandi gruppi e celebrazioni"}.`,
-    q3: "Ho bisogno di una patente per il",
-    a3: (name, noLicense) =>
-      noLicense
-        ? `No, il ${name} non richiede patente nautica. Basta avere piu di 18 anni. Prima della partenza riceverete un briefing di 15 minuti.`
-        : `Si, il ${name} richiede una patente nautica (PER o titolo equivalente valido). Dovrete presentare la patente prima della partenza.`,
-    q4: "Cosa include il noleggio del",
-    a4: (name, noLicense) =>
-      `Il noleggio include assicurazione completa, equipaggiamento di sicurezza certificato e briefing pre-partenza.${noLicense ? " Include anche il carburante e, in base alla disponibilita, attrezzatura snorkeling e paddle surf." : " Il carburante viene addebitato in base al consumo. In base alla disponibilita, possono essere inclusi extra come attrezzatura snorkeling."}`,
-    q5: "Qual e la politica di cancellazione",
-    a5: "Cambio data gratuito con un minimo di 7 giorni di preavviso, soggetto a disponibilità. Le cancellazioni non sono rimborsabili. In caso di maltempo, riprogrammazione gratuita.",
-  },
-  ru: {
-    title: "Chasto zadavaemye voprosy o",
-    q1: "Skol'ko stoit arenda",
-    a1: (name, price, noLicense) =>
-      `${name} dostupna ot ${price}€/chas v nizkij sezon (aprel'-iyun', sentyabr'-oktyabr').${noLicense ? " V cenu vkhodit toplivo, polnaya strakhovka i oborudovanie bezopasnosti." : " Toplivo oplachivaetsya otdel'no po faktu rashoda. Polnaya strakhovka vklyuchena."}`,
-    q2: "Skol'ko chelovek vmeshchaet",
-    a2: (name, cap) =>
-      `${name} vmeshchaet do ${cap} chelovek. Ideal'no podkhodit dlya ${cap <= 4 ? "par i nebol'shikh semej" : cap <= 6 ? "semej i druzheskih grupp" : "bol'shikh grupp i prazdnikov"}.`,
-    q3: "Nuzhna li licenziya dlya",
-    a3: (name, noLicense) =>
-      noLicense
-        ? `Net, ${name} ne trebuet licenzii. Nuzhno tol'ko byt' starshe 18 let. Pered otpravleniem vy poluchite 15-minutnyj instruktazh.`
-        : `Da, ${name} trebuet licenziyu na upravlenie lodkoj (PER ili ehkvivalent). Vy dolzhny pred"yavit' licenziyu pered otpravleniem.`,
-    q4: "Chto vklyucheno v arendu",
-    a4: (name, noLicense) =>
-      `Arenda vklyuchaet polnuyu strakhovku, sertificirovannoe oborudovanie bezopasnosti i instruktazh pered otpravleniem.${noLicense ? " Takzhe vklyucheno toplivo i, pri nalichii, snaryazhenie dlya snorkelinga i paddle surf." : " Toplivo oplachivaetsya po rashodu. Pri nalichii mogut byt' vklyucheny dopolneniya, takie kak snaryazhenie dlya snorkelinga."}`,
-    q5: "Kakova politika otmeny",
-    a5: "Besplatnoe izmenenie daty pri uvedomlenii za 7 dnej, pri nalichii mest. Otmeny ne podlezhat vozvratu. V sluchae plokhoj pogody — besplatnoe perenaplanirovanie.",
-  },
-  ca: {
-    title: "Preguntes frequents sobre",
-    q1: "Quant costa llogar el",
-    a1: (name, price, noLicense) =>
-      `El ${name} te preus des de ${price}€/hora en temporada baixa (abril-juny, setembre-octubre).${noLicense ? " El preu inclou gasolina, asseguranca a tot risc i equip de seguretat." : " El combustible es paga a part segons el consum real. Inclou asseguranca a tot risc."}`,
-    q2: "Quantes persones caben al",
-    a2: (name, cap) =>
-      `El ${name} te capacitat per a ${cap} persones. Es ideal per a ${cap <= 4 ? "parelles i families petites" : cap <= 6 ? "families i grups d'amics" : "grups grans i celebracions"}.`,
-    q3: "Necessito llicencia per al",
-    a3: (name, noLicense) =>
-      noLicense
-        ? `No, el ${name} no requereix llicencia de navegacio. Nomes cal ser major de 18 anys. Abans de sortir rebras una formacio de 15 minuts sobre el maneig del vaixell.`
-        : `Si, el ${name} requereix llicencia de navegacio (PER o titol equivalent en vigor). Hauras de presentar la teva titulacio abans de sortir.`,
-    q4: "Que inclou el lloguer del",
-    a4: (name, noLicense) =>
-      `El lloguer inclou asseguranca a tot risc, equip de seguretat homologat i formacio previa.${noLicense ? " Tambe inclou gasolina i, segons disponibilitat, equip de snorkel i paddle surf." : " El combustible es paga segons consum. Segons disponibilitat, pot incloure extres com equip de snorkel."}`,
-    q5: "Quina es la politica de cancelacio",
-    a5: "Canvi de data gratuit amb un minim de 7 dies d'antelacio, subjecte a disponibilitat. Les cancelacions no son reemborsables. En cas de mal temps, reprogramacio gratuita.",
-  },
-};
-
 interface BoatDetailPageProps {
   boatId?: string;
   onBack?: () => void;
@@ -793,53 +626,55 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
     { name: boatData.name, url: `/barco/${boatId}` }
   ]);
 
-  // FAQ schema for boat page (translated to match visible FAQ)
-  const faqLang = boatFaqTranslations[language] || boatFaqTranslations.es;
-  const noLicenseFlag = !requiresLicense;
+  // FAQ (visible + FAQPage JSON-LD) — all answers derived from admin-edited
+  // boat fields via shared/boatFaqBuilder. Questions + template phrasing live
+  // in t.boatFaq / t.licenseTypes.
+  const boatFaqText: BoatFaqText = {
+    title: t.boatFaq!.title,
+    q1: t.boatFaq!.q1,
+    a1Intro: t.boatFaq!.a1Intro,
+    a1PackItem: t.boatFaq!.a1PackItem,
+    a1Empty: t.boatFaq!.a1Empty,
+    q2: t.boatFaq!.q2,
+    a2: t.boatFaq!.a2,
+    audienceSmall: t.boatFaq!.audienceSmall,
+    audienceMedium: t.boatFaq!.audienceMedium,
+    audienceLarge: t.boatFaq!.audienceLarge,
+    q3: t.boatFaq!.q3,
+    a3None: t.boatFaq!.a3None,
+    a3Licensed: t.boatFaq!.a3Licensed,
+    a3Fallback: t.boatFaq!.a3Fallback,
+    q4: t.boatFaq!.q4,
+    a4Base: t.boatFaq!.a4Base,
+    a4Empty: t.boatFaq!.a4Empty,
+    a4FuelIncluded: t.boatFaq!.a4FuelIncluded,
+    a4FuelNotIncluded: t.boatFaq!.a4FuelNotIncluded,
+    q5: t.boatFaq!.q5,
+    a5: t.boatFaq!.a5,
+    licenseTypes: t.licenseTypes!,
+  };
+  const boatFaqItems = buildBoatFaqItems(
+    {
+      name: boatData.name,
+      capacity,
+      requiresLicense,
+      licenseType: boatData.licenseType,
+      pricing: boatData.pricing as { BAJA?: { prices?: Record<string, number | null | undefined> | null } | null } | null,
+      included: boatData.included,
+    },
+    boatFaqText,
+  );
+  const boatFaqTitle = buildBoatFaqTitle({ name: boatData.name }, boatFaqText);
   const boatFaqSchema = {
     "@type": "FAQPage",
-    mainEntity: [
-      {
-        "@type": "Question",
-        name: `${faqLang.q1} ${boatData.name}?`,
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: faqLang.a1(boatData.name, lowestPrice, noLicenseFlag),
-        },
+    mainEntity: boatFaqItems.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer,
       },
-      {
-        "@type": "Question",
-        name: `${faqLang.q2} ${boatData.name}?`,
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: faqLang.a2(boatData.name, capacity),
-        },
-      },
-      {
-        "@type": "Question",
-        name: `${faqLang.q3} ${boatData.name}?`,
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: faqLang.a3(boatData.name, noLicenseFlag),
-        },
-      },
-      {
-        "@type": "Question",
-        name: `${faqLang.q4} ${boatData.name}?`,
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: faqLang.a4(boatData.name, noLicenseFlag),
-        },
-      },
-      {
-        "@type": "Question",
-        name: `${faqLang.q5}?`,
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: faqLang.a5,
-        },
-      },
-    ],
+    })),
   };
 
   // Combine schemas using @graph
@@ -1474,65 +1309,25 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
         </section>
       )}
 
-      {/* FAQ Section */}
-      {(() => {
-        const faq = boatFaqTranslations[language] || boatFaqTranslations.es;
-        const noLicense = !requiresLicense;
-        return (
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
-            <h2 className="text-2xl font-heading font-bold text-foreground mb-6">
-              {faq.title} {boatData.name}
-            </h2>
-            <div className="space-y-4 max-w-3xl">
-              <details className="group border border-border rounded-lg">
-                <summary className="flex items-center justify-between cursor-pointer p-4 font-medium">
-                  {faq.q1} {boatData.name}?
-                  <ChevronRight className="w-4 h-4 transition-transform group-open:rotate-90" />
-                </summary>
-                <div className="px-4 pb-4 text-muted-foreground">
-                  {faq.a1(boatData.name, lowestPrice, noLicense)}
-                </div>
-              </details>
-              <details className="group border border-border rounded-lg">
-                <summary className="flex items-center justify-between cursor-pointer p-4 font-medium">
-                  {faq.q2} {boatData.name}?
-                  <ChevronRight className="w-4 h-4 transition-transform group-open:rotate-90" />
-                </summary>
-                <div className="px-4 pb-4 text-muted-foreground">
-                  {faq.a2(boatData.name, capacity)}
-                </div>
-              </details>
-              <details className="group border border-border rounded-lg">
-                <summary className="flex items-center justify-between cursor-pointer p-4 font-medium">
-                  {faq.q3} {boatData.name}?
-                  <ChevronRight className="w-4 h-4 transition-transform group-open:rotate-90" />
-                </summary>
-                <div className="px-4 pb-4 text-muted-foreground">
-                  {faq.a3(boatData.name, noLicense)}
-                </div>
-              </details>
-              <details className="group border border-border rounded-lg">
-                <summary className="flex items-center justify-between cursor-pointer p-4 font-medium">
-                  {faq.q4} {boatData.name}?
-                  <ChevronRight className="w-4 h-4 transition-transform group-open:rotate-90" />
-                </summary>
-                <div className="px-4 pb-4 text-muted-foreground">
-                  {faq.a4(boatData.name, noLicense)}
-                </div>
-              </details>
-              <details className="group border border-border rounded-lg">
-                <summary className="flex items-center justify-between cursor-pointer p-4 font-medium">
-                  {faq.q5}?
-                  <ChevronRight className="w-4 h-4 transition-transform group-open:rotate-90" />
-                </summary>
-                <div className="px-4 pb-4 text-muted-foreground">
-                  {faq.a5}
-                </div>
-              </details>
-            </div>
-          </div>
-        );
-      })()}
+      {/* FAQ Section — items come from shared/boatFaqBuilder, derived from admin data */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
+        <h2 className="text-2xl font-heading font-bold text-foreground mb-6">
+          {boatFaqTitle}
+        </h2>
+        <div className="space-y-4 max-w-3xl">
+          {boatFaqItems.map((item, idx) => (
+            <details key={idx} className="group border border-border rounded-lg">
+              <summary className="flex items-center justify-between cursor-pointer p-4 font-medium">
+                {item.question}
+                <ChevronRight className="w-4 h-4 transition-transform group-open:rotate-90" />
+              </summary>
+              <div className="px-4 pb-4 text-muted-foreground">
+                {item.answer}
+              </div>
+            </details>
+          ))}
+        </div>
+      </div>
 
       <Footer />
 

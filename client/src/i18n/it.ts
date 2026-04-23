@@ -2848,4 +2848,120 @@ export const it: Translations = {
       error: 'Errore di invio. Riprova.',
     },
   },
+  glossaryPage: {
+    seo: {
+      title: 'Glossario Nautico — Noleggio Barche Costa Brava | Costa Brava Rent a Boat',
+      description: 'Glossario dei termini nautici essenziali: LBN, PER, PNB, nodi, miglia nautiche, lunghezza, ancoraggio, calette e parti della barca. Dizionario pratico per noleggiare una barca a Blanes.',
+      keywords: 'glossario nautico, cosa è LBN, cosa è PER, cosa è PNB, miglia nautiche, nodi, lunghezza, ancorare, glossario barche',
+    },
+    breadcrumbName: 'Glossario Nautico',
+    h1: 'Glossario Nautico',
+    intro: '{count} termini essenziali per noleggiare una barca sulla Costa Brava. Patenti nautiche, unità di misura, parti della barca e vocabolario marino.',
+    filterAll: 'Tutti',
+    ctaTitle: 'Pronto a noleggiare la tua barca?',
+    ctaDesc: 'Ora che conosci la terminologia, scegli la tua barca senza patente o con patente per esplorare la Costa Brava.',
+    ctaFleet: 'Vedi la flotta',
+    ctaFaq: 'Domande frequenti',
+    schemaName: 'Glossario nautico — Noleggio barche Costa Brava',
+    schemaDescription: 'Definizioni dei termini nautici essenziali per noleggiare una barca sulla Costa Brava: patenti nautiche, unità di misura, parti della barca e terminologia marittima.',
+    categories: {
+      titulacion: 'Patenti nautiche',
+      unidad: 'Unità di misura',
+      accion: 'Azioni',
+      parte: 'Parti della barca e costa',
+      equipamiento: 'Equipaggiamento',
+    },
+    terms: [
+      {
+        term: 'LBN (Licencia Básica de Navegación)',
+        definition: 'Patente nautica spagnola che permette di governare imbarcazioni fino a 8 metri di lunghezza e fino a 5 miglia dalla costa. Obbligatoria per noleggiare barche con più di 15 CV. Valida a vita dopo aver superato l\'esame teorico + corso pratico.',
+        category: 'titulacion',
+      },
+      {
+        term: 'PER (Patrón de Embarcaciones de Recreo)',
+        definition: 'Patente nautica spagnola superiore alla LBN. Permette di governare imbarcazioni fino a 15 metri di lunghezza e fino a 12 miglia dalla costa. Richiede esame teorico + pratiche di navigazione + radiocomunicazioni.',
+        category: 'titulacion',
+      },
+      {
+        term: 'PNB (Patrón de Navegación Básica)',
+        definition: 'Vecchia patente nautica sostituita nel 2014 dalla LBN. Permette di governare imbarcazioni fino a 8 metri fino a 5 miglia. Chi la possiede può continuare a usarla senza necessità di aggiornarla alla LBN.',
+        category: 'titulacion',
+      },
+      {
+        term: 'Miglio nautico',
+        definition: 'Unità di distanza marittima internazionale equivalente a 1.852 metri (1,852 km). Le imbarcazioni senza patente in Spagna possono navigare fino a un massimo di 2 miglia nautiche dalla costa (3,7 km).',
+        category: 'unidad',
+      },
+      {
+        term: 'Nodo',
+        definition: 'Unità di velocità marittima equivalente a 1 miglio nautico all\'ora (1,852 km/h). Le imbarcazioni senza patente sono limitate a 5 nodi (9,3 km/h). Le barche con patente possono raggiungere velocità molto maggiori.',
+        category: 'unidad',
+      },
+      {
+        term: 'Lunghezza fuori tutto',
+        definition: 'Lunghezza totale della barca, misurata da prua a poppa. Unità: metri. In Spagna, la lunghezza determina la patente nautica minima: fino a 5m può non richiedere patente, fino a 8m richiede LBN, fino a 15m richiede PER.',
+        category: 'unidad',
+      },
+      {
+        term: 'Baglio',
+        definition: 'Larghezza massima della barca, misurata da un lato all\'altro nel suo punto più largo. Unità: metri. Insieme alla lunghezza definisce la stabilità e lo spazio disponibile a bordo.',
+        category: 'unidad',
+      },
+      {
+        term: 'CV (cavalli vapore)',
+        definition: 'Unità di potenza del motore marino. Le barche senza patente in Spagna sono limitate a 15 CV. Le barche con patente hanno tipicamente 40-150 CV, permettendo navigazione più veloce e maggiore autonomia.',
+        category: 'unidad',
+      },
+      {
+        term: 'Ancorare',
+        definition: 'Azione di fermare la barca gettando l\'ancora sul fondo marino per mantenerla ferma in una caletta o zona senza ormeggio. Richiede di scegliere un fondo sabbioso (non roccioso), dare cima sufficiente (3-4 volte la profondità) e verificare che l\'ancora faccia presa.',
+        category: 'accion',
+      },
+      {
+        term: 'Caletta',
+        definition: 'Piccola insenatura riparata sulla costa, tipicamente circondata da scogliere o vegetazione. Sulla Costa Brava esistono decine di calette accessibili solo via mare, con acque cristalline e fondali rocciosi ideali per lo snorkeling.',
+        category: 'parte',
+      },
+      {
+        term: 'Porto turistico',
+        definition: 'Infrastruttura portuale destinata alle imbarcazioni da diporto con ormeggi, servizi di rifornimento carburante, acqua, elettricità e cantiere. Il Porto di Blanes (Girona) è il porto turistico nautico di riferimento sulla Costa Brava meridionale.',
+        category: 'parte',
+      },
+      {
+        term: 'Prua',
+        definition: 'Parte anteriore della barca, opposta alla poppa. Nelle barche da diporto ospita solitamente il prendisole principale e la luce di navigazione bianca.',
+        category: 'parte',
+      },
+      {
+        term: 'Poppa',
+        definition: 'Parte posteriore della barca, opposta alla prua. Ospita il motore fuoribordo, la scaletta da bagno e tipicamente la zona con tavolo centrale.',
+        category: 'parte',
+      },
+      {
+        term: 'Dritta',
+        definition: 'Lato destro della barca guardando da poppa verso prua. Si identifica con la luce di navigazione verde. Regola d\'oro: "Dritta = destra" (entrambe iniziano con D).',
+        category: 'parte',
+      },
+      {
+        term: 'Sinistra',
+        definition: 'Lato sinistro della barca guardando da poppa verso prua. Si identifica con la luce di navigazione rossa.',
+        category: 'parte',
+      },
+      {
+        term: 'Bimini / Tendalino bimini',
+        definition: 'Tendalino apribile che copre il pozzetto della barca fornendo ombra. Essenziale per la navigazione con bambini o in estate. La maggior parte delle nostre barche senza patente lo include di serie.',
+        category: 'equipamiento',
+      },
+      {
+        term: 'Prendisole',
+        definition: 'Zona imbottita della barca destinata a sdraiarsi al sole, tipicamente a prua o a poppa. Le barche premium hanno prendisole doppio (prua e poppa).',
+        category: 'equipamiento',
+      },
+      {
+        term: 'Pozzetto',
+        definition: 'Zona centrale della barca dove si trovano i sedili, il posto di comando e il tavolo. È lo spazio operativo della barca durante la navigazione.',
+        category: 'parte',
+      },
+    ],
+  },
 };

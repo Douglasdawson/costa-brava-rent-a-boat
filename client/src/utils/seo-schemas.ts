@@ -321,18 +321,23 @@ export const NAUTICAL_GLOSSARY_ES: GlossaryTerm[] = [
   { term: "Bañera", definition: "Zona central del barco donde se ubican los asientos, el puesto de gobierno y la mesa. Es el espacio operativo del barco durante la navegación.", category: "parte" },
 ];
 
-export function generateGlossarySchema() {
+export function generateGlossarySchema(t?: Translations, lang: string = "es") {
+  const g = t?.glossaryPage;
+  const terms = g?.terms ?? NAUTICAL_GLOSSARY_ES.map((entry) => ({
+    term: entry.term,
+    definition: entry.definition,
+  }));
   return {
     "@context": "https://schema.org",
     "@type": "DefinedTermSet",
     "@id": "https://www.costabravarentaboat.com/#glossary-nautical",
-    "name": "Glosario náutico — Alquiler de barcos Costa Brava",
-    "description": "Definiciones de términos náuticos esenciales para alquilar un barco en la Costa Brava: titulaciones, unidades de medida, partes del barco y terminología marina.",
-    "inLanguage": "es",
-    "hasDefinedTerm": NAUTICAL_GLOSSARY_ES.map((t) => ({
+    "name": g?.schemaName ?? "Glosario náutico — Alquiler de barcos Costa Brava",
+    "description": g?.schemaDescription ?? "Definiciones de términos náuticos esenciales para alquilar un barco en la Costa Brava: titulaciones, unidades de medida, partes del barco y terminología marina.",
+    "inLanguage": lang,
+    "hasDefinedTerm": terms.map((entry) => ({
       "@type": "DefinedTerm",
-      "name": t.term,
-      "description": t.definition,
+      "name": entry.term,
+      "description": entry.definition,
       "inDefinedTermSet": "https://www.costabravarentaboat.com/#glossary-nautical",
     })),
   };

@@ -2052,6 +2052,28 @@ export interface Translations {
     capitan_yate: string;
   };
 
+  glossaryPage?: {
+    seo: { title: string; description: string; keywords: string };
+    breadcrumbName: string;
+    h1: string;
+    intro: string;
+    filterAll: string;
+    ctaTitle: string;
+    ctaDesc: string;
+    ctaFleet: string;
+    ctaFaq: string;
+    schemaName: string;
+    schemaDescription: string;
+    categories: {
+      titulacion: string;
+      unidad: string;
+      accion: string;
+      parte: string;
+      equipamiento: string;
+    };
+    terms: Array<{ term: string; definition: string; category: string }>;
+  };
+
   seoSchemas?: {
     seasonalEvent: {
       name: string;

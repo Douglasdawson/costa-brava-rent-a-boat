@@ -2848,4 +2848,120 @@ export const fr: Translations = {
       error: 'Échec de l\'envoi. Veuillez réessayer.',
     },
   },
+  glossaryPage: {
+    seo: {
+      title: 'Glossaire Nautique — Location Bateaux Costa Brava | Costa Brava Rent a Boat',
+      description: 'Glossaire des termes nautiques essentiels : LBN, PER, PNB, nœuds, milles nautiques, longueur, mouiller, criques et parties du bateau. Dictionnaire pratique pour louer un bateau à Blanes.',
+      keywords: 'glossaire nautique, qu\'est-ce que LBN, qu\'est-ce que PER, qu\'est-ce que PNB, milles nautiques, nœuds, longueur, mouiller, glossaire bateaux',
+    },
+    breadcrumbName: 'Glossaire Nautique',
+    h1: 'Glossaire Nautique',
+    intro: '{count} termes essentiels pour louer un bateau sur la Costa Brava. Permis, unités de mesure, parties du bateau et vocabulaire marin.',
+    filterAll: 'Tous',
+    ctaTitle: 'Prêt à louer votre bateau ?',
+    ctaDesc: 'Maintenant que vous maîtrisez la terminologie, choisissez votre bateau sans permis ou avec permis pour explorer la Costa Brava.',
+    ctaFleet: 'Voir la flotte',
+    ctaFaq: 'Questions fréquentes',
+    schemaName: 'Glossaire nautique — Location de bateaux Costa Brava',
+    schemaDescription: 'Définitions des termes nautiques essentiels pour louer un bateau sur la Costa Brava : permis, unités de mesure, parties du bateau et terminologie marine.',
+    categories: {
+      titulacion: 'Permis',
+      unidad: 'Unités de mesure',
+      accion: 'Actions',
+      parte: 'Parties du bateau et côte',
+      equipamiento: 'Équipement',
+    },
+    terms: [
+      {
+        term: 'LBN (Licencia Básica de Navegación)',
+        definition: 'Permis nautique espagnol permettant de piloter des embarcations jusqu\'à 8 mètres de longueur et jusqu\'à 5 milles de la côte. Obligatoire pour louer des bateaux de plus de 15 CV. Valable à vie après avoir réussi l\'examen théorique + formation pratique.',
+        category: 'titulacion',
+      },
+      {
+        term: 'PER (Patrón de Embarcaciones de Recreo)',
+        definition: 'Permis nautique espagnol supérieur au LBN. Permet de piloter des embarcations jusqu\'à 15 mètres de longueur et jusqu\'à 12 milles de la côte. Nécessite un examen théorique + pratiques de navigation + radiocommunications.',
+        category: 'titulacion',
+      },
+      {
+        term: 'PNB (Patrón de Navegación Básica)',
+        definition: 'Ancien permis nautique remplacé en 2014 par le LBN. Permet de piloter des embarcations jusqu\'à 8 mètres jusqu\'à 5 milles. Ceux qui le possèdent restent valables sans nécessité de mise à jour vers le LBN.',
+        category: 'titulacion',
+      },
+      {
+        term: 'Mille nautique',
+        definition: 'Unité de distance maritime internationale équivalant à 1 852 mètres (1,852 km). Les embarcations sans permis en Espagne peuvent naviguer jusqu\'à un maximum de 2 milles nautiques de la côte (3,7 km).',
+        category: 'unidad',
+      },
+      {
+        term: 'Nœud',
+        definition: 'Unité de vitesse maritime équivalant à 1 mille nautique par heure (1,852 km/h). Les embarcations sans permis sont limitées à 5 nœuds (9,3 km/h). Les bateaux avec permis peuvent atteindre une vitesse bien supérieure.',
+        category: 'unidad',
+      },
+      {
+        term: 'Eslora',
+        definition: 'Longueur totale du bateau, mesurée de la proue à la poupe. Unité : mètres. En Espagne, la longueur détermine le permis nautique minimum : jusqu\'à 5m peut ne pas nécessiter de permis, jusqu\'à 8m nécessite le LBN, jusqu\'à 15m nécessite le PER.',
+        category: 'unidad',
+      },
+      {
+        term: 'Manga',
+        definition: 'Largeur maximale du bateau, mesurée d\'un côté à l\'autre en son point le plus large. Unité : mètres. Avec la longueur, elle définit la stabilité et l\'espace disponible à bord.',
+        category: 'unidad',
+      },
+      {
+        term: 'CV (caballos de vapor)',
+        definition: 'Unité de puissance du moteur marin. Les bateaux sans permis en Espagne sont limités à 15 CV. Les bateaux avec permis ont généralement entre 40 et 150 CV, permettant une navigation plus rapide et une plus grande autonomie.',
+        category: 'unidad',
+      },
+      {
+        term: 'Fondear',
+        definition: 'Action d\'arrêter le bateau en jetant l\'ancre sur le fond marin pour le maintenir immobile dans une crique ou zone sans amarrage. Nécessite de choisir un fond sableux (non rocheux), de laisser suffisamment de chaîne (3-4 fois la profondeur) et de vérifier que l\'ancre accroche.',
+        category: 'accion',
+      },
+      {
+        term: 'Cala',
+        definition: 'Petite anse abritée sur la côte, généralement entourée de falaises ou de végétation. Sur la Costa Brava, il existe des dizaines de criques accessibles uniquement par la mer, avec des eaux cristallines et des fonds rocheux idéaux pour le snorkeling.',
+        category: 'parte',
+      },
+      {
+        term: 'Puerto deportivo',
+        definition: 'Installation portuaire destinée aux embarcations de plaisance avec amarrages, services de carburant, eau, électricité et aire de carénage. Le Port de Blanes (Gérone) est le port de plaisance de référence sur la Costa Brava Sud.',
+        category: 'parte',
+      },
+      {
+        term: 'Proa',
+        definition: 'Partie avant du bateau, opposée à la poupe. Sur les bateaux de plaisance, elle accueille généralement le bain de soleil principal et le feu de navigation blanc.',
+        category: 'parte',
+      },
+      {
+        term: 'Popa',
+        definition: 'Partie arrière du bateau, opposée à la proue. Elle accueille le moteur hors-bord, l\'échelle de bain et généralement la zone de table centrale.',
+        category: 'parte',
+      },
+      {
+        term: 'Estribor',
+        definition: 'Côté droit du bateau en regardant de la poupe vers la proue. Il est identifié par le feu de navigation vert. Règle d\'or : « Tribord = droit ».',
+        category: 'parte',
+      },
+      {
+        term: 'Babor',
+        definition: 'Côté gauche du bateau en regardant de la poupe vers la proue. Il est identifié par le feu de navigation rouge.',
+        category: 'parte',
+      },
+      {
+        term: 'Bimini / Toldo bimini',
+        definition: 'Taud dépliable qui couvre le cockpit du bateau en fournissant de l\'ombre. Essentiel pour la navigation avec des enfants ou en été. La plupart de nos bateaux sans permis l\'incluent de série.',
+        category: 'equipamiento',
+      },
+      {
+        term: 'Solárium',
+        definition: 'Zone rembourrée du bateau destinée à s\'allonger au soleil, généralement à la proue ou à la poupe. Les bateaux premium ont un double bain de soleil (proue et poupe).',
+        category: 'equipamiento',
+      },
+      {
+        term: 'Bañera',
+        definition: 'Zone centrale du bateau où se trouvent les sièges, le poste de pilotage et la table. C\'est l\'espace opérationnel du bateau pendant la navigation.',
+        category: 'parte',
+      },
+    ],
+  },
 };

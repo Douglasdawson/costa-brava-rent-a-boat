@@ -2847,4 +2847,120 @@ export const nl: Translations = {
       error: 'Verzenden mislukt. Probeer opnieuw.',
     },
   },
+  glossaryPage: {
+    seo: {
+      title: 'Nautische Woordenlijst — Bootverhuur Costa Brava | Costa Brava Rent a Boat',
+      description: 'Woordenlijst van essentiële nautische termen: LBN, PER, PNB, knopen, zeemijlen, lengte, ankeren, baaien en delen van de boot. Praktisch lexicon voor bootverhuur in Blanes.',
+      keywords: 'nautische woordenlijst, wat is LBN, wat is PER, wat is PNB, zeemijlen, knopen, lengte, ankeren, woordenlijst boten',
+    },
+    breadcrumbName: 'Nautische Woordenlijst',
+    h1: 'Nautische Woordenlijst',
+    intro: '{count} essentiële termen voor het huren van een boot aan de Costa Brava. Vaarbewijzen, meeteenheden, delen van de boot en maritiem vocabulaire.',
+    filterAll: 'Alle',
+    ctaTitle: 'Klaar om je boot te huren?',
+    ctaDesc: 'Nu je de terminologie beheerst, kies je boot zonder vaarbewijs of met vaarbewijs om de Costa Brava te verkennen.',
+    ctaFleet: 'Bekijk de vloot',
+    ctaFaq: 'Veelgestelde vragen',
+    schemaName: 'Nautische woordenlijst — Bootverhuur Costa Brava',
+    schemaDescription: 'Definities van essentiële nautische termen voor het huren van een boot aan de Costa Brava: vaarbewijzen, meeteenheden, delen van de boot en maritieme terminologie.',
+    categories: {
+      titulacion: 'Vaarbewijzen',
+      unidad: 'Meeteenheden',
+      accion: 'Handelingen',
+      parte: 'Delen van boot en kust',
+      equipamiento: 'Uitrusting',
+    },
+    terms: [
+      {
+        term: 'LBN (Licencia Básica de Navegación)',
+        definition: 'Spaans vaarbewijs waarmee je boten tot 8 meter lengte mag besturen tot 5 mijl uit de kust. Verplicht voor het huren van boten met meer dan 15 pk. Levenslang geldig na het slagen voor het theoretisch examen + praktijkcursus.',
+        category: 'titulacion',
+      },
+      {
+        term: 'PER (Patrón de Embarcaciones de Recreo)',
+        definition: 'Spaans vaarbewijs van hoger niveau dan de LBN. Geeft toestemming om boten tot 15 meter lengte te besturen tot 12 mijl uit de kust. Vereist theoretisch examen + vaarpraktijk + radiocommunicatie.',
+        category: 'titulacion',
+      },
+      {
+        term: 'PNB (Patrón de Navegación Básica)',
+        definition: 'Oud vaarbewijs vervangen in 2014 door de LBN. Geeft toestemming om boten tot 8 meter te besturen tot 5 mijl uit de kust. Houders blijven geldig zonder updaten naar LBN.',
+        category: 'titulacion',
+      },
+      {
+        term: 'Zeemijl',
+        definition: 'Internationale maritieme afstandseenheid gelijk aan 1.852 meter (1,852 km). Boten zonder vaarbewijs mogen in Spanje tot maximaal 2 zeemijl uit de kust varen (3,7 km).',
+        category: 'unidad',
+      },
+      {
+        term: 'Knoop',
+        definition: 'Maritieme snelheidseenheid gelijk aan 1 zeemijl per uur (1,852 km/u). Boten zonder vaarbewijs zijn beperkt tot 5 knopen (9,3 km/u). Boten met vaarbewijs kunnen veel hogere snelheden bereiken.',
+        category: 'unidad',
+      },
+      {
+        term: 'Lengte',
+        definition: 'Totale lengte van de boot, gemeten van boeg tot achtersteven. Eenheid: meters. In Spanje bepaalt de lengte het minimaal vereiste vaarbewijs: tot 5m kan zonder titel, tot 8m vereist LBN, tot 15m vereist PER.',
+        category: 'unidad',
+      },
+      {
+        term: 'Breedte',
+        definition: 'Maximale breedte van de boot, gemeten van de ene naar de andere zijde op het breedste punt. Eenheid: meters. Bepaalt samen met de lengte de stabiliteit en beschikbare ruimte aan boord.',
+        category: 'unidad',
+      },
+      {
+        term: 'PK (paardenkracht)',
+        definition: 'Eenheid van motorvermogen. Boten zonder vaarbewijs zijn in Spanje beperkt tot 15 pk. Boten met vaarbewijs hebben doorgaans 40-150 pk, wat sneller varen en groter bereik mogelijk maakt.',
+        category: 'unidad',
+      },
+      {
+        term: 'Ankeren',
+        definition: 'Handeling waarbij de boot tot stilstand wordt gebracht door het anker op de zeebodem te laten zakken om hem vast te houden in een baai of gebied zonder ligplaats. Vereist keuze van zanderige bodem (niet rotsachtig), voldoende touwlengte (3-4 keer de diepte) en controle dat het anker houdt.',
+        category: 'accion',
+      },
+      {
+        term: 'Baai',
+        definition: 'Kleine, beschutte inham aan de kust, doorgaans omgeven door kliffen of vegetatie. Aan de Costa Brava zijn tientallen baaien alleen per boot bereikbaar, met kristalhelder water en rotsachtige bodems ideaal voor snorkelen.',
+        category: 'parte',
+      },
+      {
+        term: 'Jachthaven',
+        definition: 'Haveninstallatie voor pleziervaartuigen met ligplaatsen, brandstof-, water-, elektriciteitsvoorzieningen en scheepshelling. De haven van Blanes (Girona) is de referentie jachthaven aan de zuidelijke Costa Brava.',
+        category: 'parte',
+      },
+      {
+        term: 'Boeg',
+        definition: 'Voorkant van de boot, tegenovergesteld aan de achtersteven. Op plezierboten bevindt zich hier meestal het hoofdzonnedek en de witte navigatieverlichting.',
+        category: 'parte',
+      },
+      {
+        term: 'Achtersteven',
+        definition: 'Achterkant van de boot, tegenovergesteld aan de boeg. Hier bevinden zich de buitenboordmotor, de zwemladder en meestal de centrale tafelzone.',
+        category: 'parte',
+      },
+      {
+        term: 'Stuurboord',
+        definition: 'Rechterkant van de boot kijkend van achtersteven naar boeg. Wordt geïdentificeerd door de groene navigatieverlichting. Ezelsbruggetje: "Stuurboord = rechts".',
+        category: 'parte',
+      },
+      {
+        term: 'Bakboord',
+        definition: 'Linkerkant van de boot kijkend van achtersteven naar boeg. Wordt geïdentificeerd door de rode navigatieverlichting.',
+        category: 'parte',
+      },
+      {
+        term: 'Bimini / Bimini zonnescherm',
+        definition: 'Opvouwbaar zonnescherm dat de kuip van de boot bedekt en schaduw geeft. Essentieel voor varen met kinderen of in de zomer. De meeste van onze boten zonder vaarbewijs hebben dit standaard.',
+        category: 'equipamiento',
+      },
+      {
+        term: 'Zonnedek',
+        definition: 'Gevoerde zone van de boot bedoeld om in de zon te liggen, meestal op de boeg of achtersteven. Premium boten hebben een dubbel zonnedek (boeg en achtersteven).',
+        category: 'equipamiento',
+      },
+      {
+        term: 'Kuip',
+        definition: 'Centrale zone van de boot waar de zitplaatsen, de stuurpositie en de tafel zich bevinden. Dit is de operationele ruimte van de boot tijdens het varen.',
+        category: 'parte',
+      },
+    ],
+  },
 };

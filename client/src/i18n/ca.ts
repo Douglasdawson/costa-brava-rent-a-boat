@@ -2847,4 +2847,120 @@ export const ca: Translations = {
       error: 'Error en enviar. Torna-ho a intentar.',
     },
   },
+  glossaryPage: {
+    seo: {
+      title: 'Glossari Nàutic — Lloguer Barques Costa Brava | Costa Brava Rent a Boat',
+      description: 'Glossari de termes nàutics essencials: LBN, PER, PNB, nusos, milles nàutiques, eslora, fondejar, cales i parts de l\'embarcació. Diccionari pràctic per llogar un vaixell a Blanes.',
+      keywords: 'glossari nautic, que es LBN, que es PER, que es PNB, milles nautiques, nusos, eslora, fondejar, glossari barques',
+    },
+    breadcrumbName: 'Glossari Nàutic',
+    h1: 'Glossari Nàutic',
+    intro: '{count} termes essencials per llogar una barca a la Costa Brava. Titulacions, unitats de mesura, parts de l\'embarcació i vocabulari marí.',
+    filterAll: 'Tots',
+    ctaTitle: 'A punt per llogar la teva barca?',
+    ctaDesc: 'Ara que domines la terminologia, tria la teva barca sense llicència o amb llicència per explorar la Costa Brava.',
+    ctaFleet: 'Veure la flota',
+    ctaFaq: 'Preguntes freqüents',
+    schemaName: 'Glossari nàutic — Lloguer de barques Costa Brava',
+    schemaDescription: 'Definicions de termes nàutics essencials per llogar una barca a la Costa Brava: titulacions, unitats de mesura, parts de l\'embarcació i terminologia marina.',
+    categories: {
+      titulacion: 'Titulacions',
+      unidad: 'Unitats de mesura',
+      accion: 'Accions',
+      parte: 'Parts de l\'embarcació i costa',
+      equipamiento: 'Equipament',
+    },
+    terms: [
+      {
+        term: 'LBN (Llicència Bàsica de Navegació)',
+        definition: 'Titulació nàutica espanyola que permet governar embarcacions de fins a 8 metres d\'eslora i fins a 5 milles de la costa. Obligatòria per llogar barques amb més de 15 CV. Vàlida de per vida després d\'aprovar l\'examen teòric + curs pràctic.',
+        category: 'titulacion',
+      },
+      {
+        term: 'PER (Patró d\'Embarcacions d\'Esbarjo)',
+        definition: 'Titulació nàutica espanyola superior a la LBN. Permet governar embarcacions de fins a 15 metres d\'eslora i fins a 12 milles de la costa. Requereix examen teòric + pràctiques de navegació + radiocomunicacions.',
+        category: 'titulacion',
+      },
+      {
+        term: 'PNB (Patró de Navegació Bàsica)',
+        definition: 'Antiga titulació nàutica reemplaçada el 2014 per la LBN. Permet governar embarcacions de fins a 8 metres fins a 5 milles. Els qui la tenen continuen sent vàlids sense necessitat d\'actualitzar a LBN.',
+        category: 'titulacion',
+      },
+      {
+        term: 'Milla nàutica',
+        definition: 'Unitat de distància marítima internacional equivalent a 1.852 metres (1,852 km). Les embarcacions sense llicència a Espanya poden navegar fins a un màxim de 2 milles nàutiques de la costa (3,7 km).',
+        category: 'unidad',
+      },
+      {
+        term: 'Nus',
+        definition: 'Unitat de velocitat marítima equivalent a 1 milla nàutica per hora (1,852 km/h). Les embarcacions sense llicència estan limitades a 5 nusos (9,3 km/h). Les barques amb llicència poden assolir molta més velocitat.',
+        category: 'unidad',
+      },
+      {
+        term: 'Eslora',
+        definition: 'Longitud total de la barca, mesurada de proa a popa. Unitat: metres. A Espanya, l\'eslora determina la titulació nàutica mínima: fins a 5m pot no requerir títol, fins a 8m requereix LBN, fins a 15m requereix PER.',
+        category: 'unidad',
+      },
+      {
+        term: 'Mànega',
+        definition: 'Amplada màxima de la barca, mesurada d\'un costat a l\'altre en el seu punt més ample. Unitat: metres. Juntament amb l\'eslora defineix l\'estabilitat i l\'espai disponible a bord.',
+        category: 'unidad',
+      },
+      {
+        term: 'CV (cavalls de vapor)',
+        definition: 'Unitat de potència del motor marí. Les barques sense llicència a Espanya estan limitades a 15 CV. Les barques amb llicència típicament tenen 40-150 CV, permetent navegació més ràpida i abast més gran.',
+        category: 'unidad',
+      },
+      {
+        term: 'Fondejar',
+        definition: 'Acció d\'aturar la barca llançant l\'àncora al fons marí per mantenir-la estàtica en una cala o zona sense amarratge. Requereix triar fons arenós (no rocós), llançar cap suficient (3-4 vegades la profunditat) i verificar que l\'àncora agafa.',
+        category: 'accion',
+      },
+      {
+        term: 'Cala',
+        definition: 'Ensenada petita i abrigada a la costa, típicament envoltada de penya-segats o vegetació. A la Costa Brava hi ha desenes de cales accessibles només per mar, amb aigües cristal·lines i fons rocosos ideals per fer snorkel.',
+        category: 'parte',
+      },
+      {
+        term: 'Port esportiu',
+        definition: 'Instal·lació portuària destinada a embarcacions d\'esbarjo amb amarratges, serveis de combustible, aigua, electricitat i varador. El Port de Blanes (Girona) és el port esportiu nàutic de referència a la Costa Brava Sud.',
+        category: 'parte',
+      },
+      {
+        term: 'Proa',
+        definition: 'Part davantera de la barca, oposada a la popa. En barques d\'esbarjo sol portar el solàrium principal i el llum de navegació blanc.',
+        category: 'parte',
+      },
+      {
+        term: 'Popa',
+        definition: 'Part posterior de la barca, oposada a la proa. Allotja el motor fora borda, l\'escala de bany i típicament la zona de taula central.',
+        category: 'parte',
+      },
+      {
+        term: 'Estribord',
+        definition: 'Costat dret de la barca mirant des de popa cap a proa. S\'identifica pel llum verd de navegació. Regla d\'or: "Estribord = dret" (tots dos comencen amb E).',
+        category: 'parte',
+      },
+      {
+        term: 'Babord',
+        definition: 'Costat esquerre de la barca mirant des de popa cap a proa. S\'identifica pel llum vermell de navegació.',
+        category: 'parte',
+      },
+      {
+        term: 'Bimini / Tendal bimini',
+        definition: 'Tendal desplegable que cobreix la banyera de la barca proporcionant ombra. Essencial per a navegació amb nens o a l\'estiu. La majoria de les nostres barques sense llicència el porten de sèrie.',
+        category: 'equipamiento',
+      },
+      {
+        term: 'Solàrium',
+        definition: 'Zona encoixinada de la barca destinada a estirar-se al sol, típicament a proa o popa. Les barques prèmium tenen solàrium doble (proa i popa).',
+        category: 'equipamiento',
+      },
+      {
+        term: 'Banyera',
+        definition: 'Zona central de la barca on s\'ubiquen els seients, el lloc de govern i la taula. És l\'espai operatiu de la barca durant la navegació.',
+        category: 'parte',
+      },
+    ],
+  },
 };

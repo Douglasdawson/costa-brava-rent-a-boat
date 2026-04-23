@@ -2848,4 +2848,120 @@ export const de: Translations = {
       error: 'Fehler beim Senden. Bitte erneut versuchen.',
     },
   },
+  glossaryPage: {
+    seo: {
+      title: 'Nautisches Glossar — Bootsverleih Costa Brava | Costa Brava Rent a Boat',
+      description: 'Glossar wichtiger nautischer Begriffe: LBN, PER, PNB, Knoten, Seemeilen, Länge, Ankern, Buchten und Bootsteile. Praktisches Wörterbuch für die Bootsmiete in Blanes.',
+      keywords: 'nautisches glossar, was ist LBN, was ist PER, was ist PNB, seemeilen, knoten, bootslänge, ankern, boots glossar',
+    },
+    breadcrumbName: 'Nautisches Glossar',
+    h1: 'Nautisches Glossar',
+    intro: '{count} wichtige Begriffe für die Bootsmiete an der Costa Brava. Befähigungsnachweise, Maßeinheiten, Bootsteile und nautisches Vokabular.',
+    filterAll: 'Alle',
+    ctaTitle: 'Bereit, Ihr Boot zu mieten?',
+    ctaDesc: 'Jetzt, da Sie die Terminologie beherrschen, wählen Sie Ihr Boot ohne oder mit Führerschein, um die Costa Brava zu erkunden.',
+    ctaFleet: 'Zur Flotte',
+    ctaFaq: 'Häufige Fragen',
+    schemaName: 'Nautisches Glossar — Bootsverleih Costa Brava',
+    schemaDescription: 'Definitionen wichtiger nautischer Begriffe für die Bootsmiete an der Costa Brava: Befähigungsnachweise, Maßeinheiten, Bootsteile und maritime Terminologie.',
+    categories: {
+      titulacion: 'Befähigungsnachweise',
+      unidad: 'Maßeinheiten',
+      accion: 'Aktionen',
+      parte: 'Bootsteile und Küste',
+      equipamiento: 'Ausstattung',
+    },
+    terms: [
+      {
+        term: 'LBN (Licencia Básica de Navegación)',
+        definition: 'Spanischer Bootsführerschein, der zum Führen von Booten bis 8 Meter Länge und bis 5 Seemeilen Küstenentfernung berechtigt. Pflicht für Bootsvermietung mit mehr als 15 PS. Lebenslang gültig nach bestandener Theorieprüfung + Praxiskurs.',
+        category: 'titulacion',
+      },
+      {
+        term: 'PER (Patrón de Embarcaciones de Recreo)',
+        definition: 'Spanischer Bootsführerschein höher als LBN. Berechtigt zum Führen von Booten bis 15 Meter Länge und bis 12 Seemeilen Küstenentfernung. Erfordert Theorieprüfung + Navigations- und Funkpraxis.',
+        category: 'titulacion',
+      },
+      {
+        term: 'PNB (Patrón de Navegación Básica)',
+        definition: 'Alter Bootsführerschein, der 2014 durch die LBN ersetzt wurde. Berechtigt zum Führen von Booten bis 8 Meter bis 5 Seemeilen. Bestehende Inhaber behalten ihre Gültigkeit ohne Aktualisierung auf LBN.',
+        category: 'titulacion',
+      },
+      {
+        term: 'Seemeile',
+        definition: 'Internationale maritime Entfernungseinheit, entspricht 1.852 Meter (1,852 km). Boote ohne Führerschein dürfen in Spanien maximal 2 Seemeilen von der Küste entfernt fahren (3,7 km).',
+        category: 'unidad',
+      },
+      {
+        term: 'Knoten',
+        definition: 'Maritime Geschwindigkeitseinheit, entspricht 1 Seemeile pro Stunde (1,852 km/h). Boote ohne Führerschein sind auf 5 Knoten (9,3 km/h) begrenzt. Boote mit Führerschein können deutlich schneller fahren.',
+        category: 'unidad',
+      },
+      {
+        term: 'Länge (Eslora)',
+        definition: 'Gesamtlänge des Bootes, gemessen von Bug bis Heck. Einheit: Meter. In Spanien bestimmt die Länge den erforderlichen Mindestführerschein: bis 5m ggf. ohne Schein, bis 8m LBN erforderlich, bis 15m PER erforderlich.',
+        category: 'unidad',
+      },
+      {
+        term: 'Breite (Manga)',
+        definition: 'Maximale Breite des Bootes, gemessen von einer Seite zur anderen an der breitesten Stelle. Einheit: Meter. Bestimmt zusammen mit der Länge die Stabilität und den verfügbaren Raum an Bord.',
+        category: 'unidad',
+      },
+      {
+        term: 'PS (Pferdestärken)',
+        definition: 'Leistungseinheit des Bootsmotors. Boote ohne Führerschein sind in Spanien auf 15 PS begrenzt. Boote mit Führerschein haben typischerweise 40-150 PS, was schnellere Navigation und größere Reichweite ermöglicht.',
+        category: 'unidad',
+      },
+      {
+        term: 'Ankern (Fondear)',
+        definition: 'Vorgang, bei dem das Boot durch Auswerfen des Ankers auf den Meeresgrund gestoppt wird, um es in einer Bucht oder Zone ohne Liegeplatz zu fixieren. Erfordert sandigen Grund (nicht felsig), ausreichend Ankerleine (3-4 mal die Tiefe) und Überprüfung, dass der Anker hält.',
+        category: 'accion',
+      },
+      {
+        term: 'Bucht (Cala)',
+        definition: 'Kleine geschützte Meeresbucht an der Küste, typischerweise von Klippen oder Vegetation umgeben. An der Costa Brava gibt es Dutzende nur vom Meer aus zugängliche Buchten mit kristallklarem Wasser und felsigem Grund, ideal zum Schnorcheln.',
+        category: 'parte',
+      },
+      {
+        term: 'Yachthafen (Puerto deportivo)',
+        definition: 'Hafenanlage für Freizeitboote mit Liegeplätzen, Treibstoff-, Wasser-, Strom- und Slipanlagen. Der Hafen von Blanes (Girona) ist der nautische Referenzhafen im Süden der Costa Brava.',
+        category: 'parte',
+      },
+      {
+        term: 'Bug (Proa)',
+        definition: 'Vorderer Teil des Bootes, gegenüber dem Heck. Bei Freizeitbooten befindet sich hier meist das Hauptsonnendeck und die weiße Navigationsleuchte.',
+        category: 'parte',
+      },
+      {
+        term: 'Heck (Popa)',
+        definition: 'Hinterer Teil des Bootes, gegenüber dem Bug. Beherbergt den Außenbordmotor, die Badeleiter und typischerweise den zentralen Tischbereich.',
+        category: 'parte',
+      },
+      {
+        term: 'Steuerbord (Estribor)',
+        definition: 'Rechte Seite des Bootes, vom Heck in Richtung Bug blickend. Gekennzeichnet durch die grüne Navigationsleuchte. Faustregel: "Steuerbord = rechts".',
+        category: 'parte',
+      },
+      {
+        term: 'Backbord (Babor)',
+        definition: 'Linke Seite des Bootes, vom Heck in Richtung Bug blickend. Gekennzeichnet durch die rote Navigationsleuchte.',
+        category: 'parte',
+      },
+      {
+        term: 'Bimini / Bimini-Verdeck',
+        definition: 'Ausklappbares Sonnenverdeck, das das Cockpit des Bootes abdeckt und Schatten spendet. Unverzichtbar für Fahrten mit Kindern oder im Sommer. Die meisten unserer Boote ohne Führerschein haben es serienmäßig.',
+        category: 'equipamiento',
+      },
+      {
+        term: 'Sonnendeck (Solárium)',
+        definition: 'Gepolsterter Bereich des Bootes zum Sonnen, typischerweise am Bug oder Heck. Premium-Boote haben ein Doppel-Sonnendeck (Bug und Heck).',
+        category: 'equipamiento',
+      },
+      {
+        term: 'Cockpit (Bañera)',
+        definition: 'Zentraler Bereich des Bootes mit Sitzgelegenheiten, Steuerstand und Tisch. Dies ist der Arbeitsbereich des Bootes während der Fahrt.',
+        category: 'parte',
+      },
+    ],
+  },
 };

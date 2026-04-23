@@ -2907,4 +2907,120 @@ export const en: Translations = {
       error: 'Failed to send. Please try again.',
     },
   },
+  glossaryPage: {
+    seo: {
+      title: 'Nautical Glossary — Boat Rental Costa Brava | Costa Brava Rent a Boat',
+      description: 'Glossary of essential nautical terms: LBN, PER, PNB, knots, nautical miles, length, anchoring, coves and boat parts. Practical dictionary for renting a boat in Blanes.',
+      keywords: 'nautical glossary, what is LBN, what is PER, what is PNB, nautical miles, knots, length, anchoring, boat glossary',
+    },
+    breadcrumbName: 'Nautical Glossary',
+    h1: 'Nautical Glossary',
+    intro: '{count} essential terms for renting a boat on the Costa Brava. Licenses, units of measurement, boat parts and marine vocabulary.',
+    filterAll: 'All',
+    ctaTitle: 'Ready to rent your boat?',
+    ctaDesc: 'Now that you know the terminology, choose your license-free or licensed boat to explore the Costa Brava.',
+    ctaFleet: 'View the fleet',
+    ctaFaq: 'Frequently asked questions',
+    schemaName: 'Nautical glossary — Costa Brava boat rental',
+    schemaDescription: 'Definitions of essential nautical terms for renting a boat on the Costa Brava: licenses, units of measurement, boat parts and marine terminology.',
+    categories: {
+      titulacion: 'Licenses',
+      unidad: 'Units of measurement',
+      accion: 'Actions',
+      parte: 'Boat and coast parts',
+      equipamiento: 'Equipment',
+    },
+    terms: [
+      {
+        term: 'LBN (Licencia Básica de Navegación)',
+        definition: 'Spanish boating license that allows you to operate vessels up to 8 metres in length and up to 5 miles from the coast. Mandatory for renting boats with more than 15 HP. Valid for life after passing the theoretical exam + practical course.',
+        category: 'titulacion',
+      },
+      {
+        term: 'PER (Patrón de Embarcaciones de Recreo)',
+        definition: 'Spanish boating license higher than the LBN. Allows you to operate vessels up to 15 metres in length and up to 12 miles from the coast. Requires theoretical exam + navigation practice + radio communications.',
+        category: 'titulacion',
+      },
+      {
+        term: 'PNB (Patrón de Navegación Básica)',
+        definition: 'Former Spanish boating license replaced in 2014 by the LBN. Allows you to operate vessels up to 8 metres and up to 5 miles. Those who hold it remain valid without needing to upgrade to LBN.',
+        category: 'titulacion',
+      },
+      {
+        term: 'Nautical mile',
+        definition: 'International maritime distance unit equivalent to 1,852 metres (1.852 km). License-free boats in Spain can navigate up to a maximum of 2 nautical miles from the coast (3.7 km).',
+        category: 'unidad',
+      },
+      {
+        term: 'Knot',
+        definition: 'Maritime speed unit equivalent to 1 nautical mile per hour (1.852 km/h). License-free boats are limited to 5 knots (9.3 km/h). Licensed boats can reach much higher speeds.',
+        category: 'unidad',
+      },
+      {
+        term: 'Length (Eslora)',
+        definition: 'Total length of the boat, measured from bow to stern. Unit: metres. In Spain, the length determines the minimum boating license: up to 5m may not require a license, up to 8m requires LBN, up to 15m requires PER.',
+        category: 'unidad',
+      },
+      {
+        term: 'Beam (Manga)',
+        definition: 'Maximum width of the boat, measured from one side to the other at its widest point. Unit: metres. Together with the length, it defines the stability and available space on board.',
+        category: 'unidad',
+      },
+      {
+        term: 'HP (horsepower)',
+        definition: 'Marine engine power unit. License-free boats in Spain are limited to 15 HP. Licensed boats typically have 40-150 HP, allowing faster navigation and greater range.',
+        category: 'unidad',
+      },
+      {
+        term: 'Anchor (Fondear)',
+        definition: 'Action of stopping the boat by dropping the anchor to the seabed to keep it stationary in a cove or area without mooring. Requires choosing a sandy bottom (not rocky), letting out enough rope (3-4 times the depth) and checking that the anchor holds.',
+        category: 'accion',
+      },
+      {
+        term: 'Cove (Cala)',
+        definition: 'Small sheltered inlet on the coast, typically surrounded by cliffs or vegetation. On the Costa Brava there are dozens of coves accessible only by sea, with crystal-clear waters and rocky bottoms ideal for snorkelling.',
+        category: 'parte',
+      },
+      {
+        term: 'Marina',
+        definition: 'Port facility for recreational vessels with moorings, fuel services, water, electricity and slipway. The Port of Blanes (Girona) is the reference marina on the southern Costa Brava.',
+        category: 'parte',
+      },
+      {
+        term: 'Bow',
+        definition: 'Front part of the boat, opposite the stern. On recreational boats it usually has the main sun deck and the white navigation light.',
+        category: 'parte',
+      },
+      {
+        term: 'Stern',
+        definition: 'Rear part of the boat, opposite the bow. Houses the outboard motor, bathing ladder and typically the central table area.',
+        category: 'parte',
+      },
+      {
+        term: 'Starboard',
+        definition: 'Right side of the boat looking from stern to bow. Identified by the green navigation light. Golden rule: "Starboard = right side".',
+        category: 'parte',
+      },
+      {
+        term: 'Port',
+        definition: 'Left side of the boat looking from stern to bow. Identified by the red navigation light.',
+        category: 'parte',
+      },
+      {
+        term: 'Bimini / Bimini top',
+        definition: 'Foldable awning that covers the cockpit of the boat providing shade. Essential for sailing with children or in summer. Most of our license-free boats include it as standard.',
+        category: 'equipamiento',
+      },
+      {
+        term: 'Sun deck',
+        definition: 'Cushioned area of the boat for sunbathing, typically at the bow or stern. Premium boats have double sun decks (bow and stern).',
+        category: 'equipamiento',
+      },
+      {
+        term: 'Cockpit',
+        definition: 'Central area of the boat where the seats, helm station and table are located. It is the operational space of the boat during navigation.',
+        category: 'parte',
+      },
+    ],
+  },
 };

@@ -2980,4 +2980,159 @@ export const nl: Translations = {
     relatedTossaName: 'Tossa de Mar',
     relatedTossaDesc: 'Middeleeuwse Vila Vella en de mooiste baaien van de Costa Brava.',
   },
+  legalPages: {
+    legalDisclaimer: 'Deze tekst is beschikbaar in meerdere talen. In geval van discrepantie of dubbelzinnigheid in de vertaling prevaleert de Spaanse versie (castellano) voor alle juridische doeleinden.',
+    privacy: {
+      heroTitle: 'Privacybeleid',
+      lastUpdated: 'Laatste update: februari 2026',
+      sections: [
+        {
+          title: '1. Verwerkingsverantwoordelijke',
+          body: 'Identiteit: Costa Brava Rent a Boat\nNIF: B22566327\nAdres: Haven van Blanes, Girona, Spanje\nTelefoon: +34 611 500 372\nContacte-mail: costabravarentaboat@gmail.com',
+        },
+        {
+          title: '2. Persoonsgegevens die we verzamelen',
+          body: 'Gegevens verstrekt door de gebruiker bij het maken van een reservering:\n- Voor- en achternaam\n- Telefoonnummer\n- E-mailadres\n- Datum en tijd van de reservering, geselecteerde boot en aantal personen\n\nAutomatisch verzamelde gegevens:\n- Navigatiegegevens (IP-adres, browsertype, bezochte pagina\'s) via Google Analytics\n- Technische en voorkeurscookies (geselecteerde taal)\n\nWe verzamelen geen gegevens uit bijzondere categorieën (gezondheid, raciale afkomst, politieke opvattingen, enz.) noch gegevens van minderjarigen onder de 14 jaar.',
+        },
+        {
+          title: '3. Doel van de verwerking en rechtsgrondslag',
+          body: 'We verwerken uw gegevens voor de volgende doeleinden en rechtsgronden (AVG):\n\n- Beheer en bevestiging van bootverhuurreserveringen — Art. 6.1.b, uitvoering van een overeenkomst\n- Verzenden van herinneringen en communicatie met betrekking tot de reservering — Art. 6.1.b, uitvoering van een overeenkomst\n- Klantenservice en afhandeling van incidenten — Art. 6.1.b en 6.1.f, uitvoering van overeenkomst / gerechtvaardigd belang\n- Statistische analyse van webverkeer (Google Analytics) — Art. 6.1.a, toestemming (cookiebanner)\n- Naleving van wettelijke en fiscale verplichtingen — Art. 6.1.c, wettelijke verplichting\n\nWe nemen geen geautomatiseerde beslissingen en maken geen profielen voor reclamedoeleinden op basis van uw reserveringsgegevens.',
+        },
+        {
+          title: '4. Bewaartermijnen',
+          body: '- Reserveringsgegevens: 5 jaar vanaf de datum van de dienstverlening (RD 1619/2012, Ley 58/2003 General Tributaria).\n- Communicatie via WhatsApp/e-mail: 1 jaar vanaf de laatste communicatie, tenzij er een lopende klacht is.\n- Webanalysegegevens (Google Analytics): volgens de bewaarinstellingen van Google Analytics (standaard 14 maanden).\n- Sessiecookies: worden verwijderd bij het sluiten van de browser.',
+        },
+        {
+          title: '5. Ontvangers en internationale doorgifte',
+          body: 'Uw gegevens kunnen worden doorgegeven aan de volgende verwerkers:\n\n- SendGrid (Twilio Inc., VS): Service voor het verzenden van bevestigings- en herinneringsmails. Internationale doorgifte op basis van de door de Europese Commissie goedgekeurde Standaard Contractuele Clausules.\n- Google LLC (VS): Google Analytics en Google Tag Manager. Alleen als de gebruiker toestemming heeft gegeven via de cookiebanner. Doorgifte op basis van het EU-VS Data Privacy Framework.\n- Stripe Inc. (VS): Verwerking van kaartbetalingen, indien van toepassing. We slaan geen kaartgegevens op; Stripe handelt als onafhankelijke verwerker onder PCI-DSS.\n- WhatsApp (Meta Platforms Ireland Ltd.): Communicatiekanaal voor reserveringsbeheer. Door de gebruiker geïnitieerde communicatie via WhatsApp valt onder het privacybeleid van WhatsApp.\n\nWe verkopen of verstrekken uw gegevens niet aan derden voor commerciële doeleinden.',
+        },
+        {
+          title: '6. Uw rechten (ARCO+)',
+          body: 'Op grond van de artikelen 15 tot en met 22 van de AVG en de LOPD-GDD heeft u het recht op:\n\n- Inzage: bevestiging verkrijgen of we uw gegevens verwerken en, indien van toepassing, een kopie ontvangen.\n- Rectificatie: correctie van onjuiste gegevens verzoeken.\n- Wissing (recht op vergetelheid): verwijdering van uw gegevens vragen wanneer deze niet langer nodig zijn voor de doeleinden waarvoor ze zijn verzameld, behoudens wettelijke bewaarplicht.\n- Bezwaar: bezwaar maken tegen verwerking op basis van gerechtvaardigd belang.\n- Beperking van de verwerking: vragen om opschorting van de verwerking terwijl een klacht wordt behandeld.\n- Gegevensoverdraagbaarheid: uw gegevens ontvangen in een gestructureerd, machineleesbaar formaat.\n- Intrekking van toestemming: u kunt te allen tijde uw toestemming intrekken (bijv. voor analytische cookies) zonder dat dit afbreuk doet aan de rechtmatigheid van de eerdere verwerking.\n\nHoe u uw rechten uitoefent: stuur een e-mail naar costabravarentaboat@gmail.com met vermelding van het recht dat u wilt uitoefenen en voeg een kopie van uw identiteitsbewijs of ander identificatiedocument toe. We reageren binnen maximaal 1 maand.\n\nAls u van mening bent dat de verwerking niet in overeenstemming is met de AVG, heeft u het recht een klacht in te dienen bij de Spaanse Autoriteit Gegevensbescherming (AEPD): www.aepd.es',
+        },
+        {
+          title: '7. Beveiligingsmaatregelen',
+          body: 'We passen passende technische en organisatorische maatregelen toe om uw gegevens te beschermen tegen ongeautoriseerde toegang, verlies of onopzettelijke vernietiging, conform art. 32 AVG:\n- Versleutelde overdracht via HTTPS (TLS 1.2+)\n- Beperkte toegang tot gegevens via authenticatie\n- HTTP-beveiligingsheaders (Content-Security-Policy, X-Frame-Options, enz.)\n- Rate limiting om aanvallen te voorkomen',
+        },
+        {
+          title: '8. Cookies',
+          body: 'Voor gedetailleerde informatie over de cookies die we gebruiken, raadpleeg ons Cookiebeleid.',
+        },
+        {
+          title: '9. Wijzigingen in dit beleid',
+          body: 'We kunnen dit privacybeleid bijwerken om wettelijke wijzigingen of veranderingen in onze diensten weer te geven. We informeren u over relevante wijzigingen via een bericht op de website. De datum van de laatste update wordt altijd aan het begin van dit document vermeld.',
+        },
+      ],
+    },
+    cookies: {
+      heroTitle: 'Cookiebeleid',
+      lastUpdated: 'Laatste update: februari 2026',
+      sections: [
+        {
+          title: 'Inleiding',
+          body: 'In overeenstemming met artikel 22.2 van Wet 34/2002 van 11 juli betreffende diensten van de informatiemaatschappij en elektronische handel, informeert deze website u in deze sectie over het beleid inzake het verzamelen en verwerken van cookies.',
+        },
+        {
+          title: 'Wat zijn cookies?',
+          body: 'Een cookie is een bestand dat op uw computer wordt gedownload wanneer u bepaalde webpagina\'s bezoekt. Cookies stellen een website onder andere in staat om informatie over de surfgewoonten van een gebruiker of diens apparaat op te slaan en op te halen en, afhankelijk van de informatie die ze bevatten en de manier waarop u uw apparaat gebruikt, kunnen ze worden gebruikt om de gebruiker te herkennen.',
+        },
+        {
+          title: 'Welke soorten cookies gebruikt deze website?',
+          body: 'Deze website gebruikt de volgende soorten cookies:\n\nAnalytische cookies: Dit zijn cookies die, verwerkt door ons of door derden, ons in staat stellen het aantal gebruikers te kwantificeren en zo een statistische meting en analyse uit te voeren van het gebruik dat gebruikers maken van de aangeboden dienst.\n\nTechnische cookies: Stellen de gebruiker in staat om door het beveiligde gebied te navigeren en de verschillende functies ervan te gebruiken, zoals het uitvoeren van het reserveringsproces voor een boot.\n\nPersonalisatiecookies: Stellen de gebruiker in staat om toegang te krijgen tot de dienst met bepaalde vooraf gedefinieerde algemene kenmerken op basis van een reeks criteria zoals de taal of het type browser.\n\nReclamecookies: Verwerkt door deze website of door derden, stellen ze ons in staat om het aanbod van advertentieruimte op de website zo efficiënt mogelijk te beheren.\n\nCookies van derden: We gebruiken de diensten van Google Analytics voor onze statistieken. Sommige cookies zijn essentieel voor het functioneren van de site. Onze site bevat andere functionaliteiten van derden (delen op sociale media zoals Facebook, Instagram of TikTok).',
+        },
+        {
+          title: 'Cookies uitschakelen',
+          body: 'U kunt de op uw apparaat geïnstalleerde cookies toestaan, blokkeren of verwijderen door de opties van de op uw computer geïnstalleerde browser te configureren. In de meeste webbrowsers kunt u geïnstalleerde cookies toestaan, blokkeren of verwijderen.\n\nU kunt toegang krijgen tot de instellingen van de meest gebruikte webbrowsers om cookies te accepteren, installeren of uitschakelen: Google Chrome, Microsoft Internet Explorer, Mozilla Firefox, Safari (Apple), Opera.',
+        },
+        {
+          title: 'Waarschuwing over het verwijderen van cookies',
+          body: 'U kunt alle cookies van deze site verwijderen en blokkeren, maar een deel van de site zal dan niet functioneren of de kwaliteit van de website kan worden aangetast.',
+        },
+        {
+          title: 'Contact',
+          body: 'Als u vragen heeft over ons cookiebeleid, kunt u contact met ons opnemen via onze contactkanalen die beschikbaar zijn in het contactgedeelte van de website.',
+        },
+      ],
+    },
+    terms: {
+      heroTitle: 'Algemene Voorwaarden',
+      lastUpdated: 'Laatste update: februari 2026',
+      sections: [
+        {
+          title: '1. Identificatie van de eigenaar',
+          body: 'Costa Brava Rent a Boat\nNIF: B22566327\nMaatschappelijke zetel: Haven van Blanes, Girona, Spanje\nContacttelefoon: +34 611 500 372\nE-mail: costabravarentaboat@gmail.com\nActiviteit: verhuur van recreatieboten (met en zonder vaarbewijs) in de haven van Blanes, Costa Brava.',
+        },
+        {
+          title: '2. Doel',
+          body: 'Deze Algemene Voorwaarden regelen de contractuele relatie tussen Costa Brava Rent a Boat (hierna: de aanbieder) en elke persoon die de website costabravarentaboat.com gebruikt of de diensten voor bootverhuur afneemt (hierna: de klant).\n\nHet gebruik van de website en het maken van een reservering impliceren volledige en onvoorwaardelijke aanvaarding van deze voorwaarden.',
+        },
+        {
+          title: '3. Reserveringsproces',
+          body: 'De website registreert reserveringsaanvragen. De klant vult een formulier in met datum, boot, duur en contactgegevens. De aanbieder zal handmatig de beschikbaarheid bevestigen en een bevestigingsbericht sturen via WhatsApp of e-mail.\n\nDe betaling wordt handmatig ter plaatse in de haven van Blanes geregeld op het moment van inscheping. Er worden geen automatische online betalingen verricht.\n\nDe reservering is pas definitief na uitdrukkelijke bevestiging door de aanbieder.',
+        },
+        {
+          title: '4. Vereisten voor de huurder',
+          body: '- De schipper moet 18 jaar of ouder zijn en een geldig identiteitsbewijs of paspoort tonen.\n- Voor boten waarvoor een vergunning vereist is, moet de schipper het originele vaarbewijs tonen (LBN, PER, PNB, Kapitein Jacht of Europees equivalent).\n- Voor boten zonder vergunning is geen vaarbewijs vereist, maar de schipper krijgt een training van 15 minuten voordat hij uitvaart.\n- Minderjarigen moeten vergezeld zijn van een verantwoordelijke volwassene en tijdens de vaart verplicht een reddingsvest dragen.',
+        },
+        {
+          title: '5. Borg en betalingsvoorwaarden',
+          body: 'Voor vertrek wordt een borg betaald (200-500 € afhankelijk van de boot) die volledig wordt terugbetaald bij terugkeer als de boot in dezelfde staat wordt ingeleverd als waarin deze werd ontvangen.\n\nBij schade, verlies van materiaal of niet-naleving van de toegestane vaarzone, kan de aanbieder de borg geheel of gedeeltelijk inhouden om de kosten te dekken.',
+        },
+        {
+          title: '6. Vaargebied en duur',
+          body: 'Toegestane zones: noord tot Playa de Fenals (zonder vergunning) of Sant Feliu de Guíxols (met vergunning); zuid tot het einde van het strand van Blanes (zonder vergunning) of zonder limiet (met vergunning). Maximaal 2 zeemijl van de kust voor boten zonder vergunning, met maximaal 5 knopen.\n\nDe boten moeten vóór het einde van de gecontracteerde tijdsperiode terugkeren naar de haven van Blanes. Ongerechtvaardigde vertragingen worden gefactureerd tegen 50 €/extra uur.',
+        },
+        {
+          title: '7. Annuleringsbeleid',
+          body: '- Annulering meer dan 48 uur van tevoren: 100% terugbetaling.\n- Annulering tussen 24 en 48 uur van tevoren: 50% terugbetaling.\n- Annulering minder dan 24 uur van tevoren: geen terugbetaling.\n- Slecht weer (wind hoger dan kracht 4, hevige regen of maritiem alarm): gratis herschikking of 100% terugbetaling.\n\nDe beslissing over opschorting wegens weersomstandigheden ligt bij de aanbieder en wordt genomen op basis van veiligheidscriteria.',
+        },
+        {
+          title: '8. Verplichtingen van de klant',
+          body: 'De klant verplicht zich om:\n- De boot te gebruiken conform de instructies die tijdens de veiligheidsbriefing zijn gegeven.\n- De toegestane maximumcapaciteit voor elke boot niet te overschrijden.\n- Geen verboden activiteiten uit te voeren (illegale visserij, toegang tot beschermde zeereservaten, gebruik van middelen tijdens het varen, enz.).\n- Elk incident, defect of ongeval onmiddellijk te melden aan de aanbieder.\n- De regelgeving van de Maritieme Autoriteit van Girona en de maritieme bebording te respecteren.',
+        },
+        {
+          title: '9. Aansprakelijkheid en verzekering',
+          body: 'Alle boten hebben een allrisk verzekering voor boot en inzittenden, in overeenstemming met de Spaanse regelgeving voor recreatieboten. De verzekering dekt accidentele schade tijdens het varen binnen de toegestane zone.\n\nNiet gedekt zijn schade als gevolg van nalatig gebruik, dronkenschap, varen buiten de toegestane zone, genegeerde weersomstandigheden na waarschuwing, of niet-naleving van de veiligheidsinstructies.',
+        },
+        {
+          title: '10. Intellectueel eigendom',
+          body: 'Alle inhoud van de website (teksten, afbeeldingen, logo\'s, merken, ontwerp) is eigendom van Costa Brava Rent a Boat of van derden met een licentie. Reproductie, distributie of wijziging zonder uitdrukkelijke schriftelijke toestemming is verboden.',
+        },
+        {
+          title: '11. Toepasselijk recht en jurisdictie',
+          body: 'Deze voorwaarden worden beheerst door de Spaanse wetgeving. Voor elk geschil onderwerpen de partijen zich aan de rechtbanken van Girona, met uitdrukkelijke afstand van enig ander forum dat hun zou kunnen toekomen.\n\nDe consument kan een beroep doen op het platform voor onlinegeschillenbeslechting van de Europese Commissie (https://ec.europa.eu/consumers/odr) voor buitengerechtelijke geschillenbeslechting.',
+        },
+        {
+          title: '12. Wijzigingen',
+          body: 'Costa Brava Rent a Boat behoudt zich het recht voor om deze voorwaarden op elk moment te wijzigen door de nieuwe versie op de website te publiceren. De toepasselijke versie is die welke van kracht is op het moment van de reservering.',
+        },
+      ],
+    },
+    accessibility: {
+      heroTitle: 'Toegankelijkheidsverklaring',
+      lastUpdated: 'Conform Koninklijk Besluit 1112/2018 van 7 september',
+      sections: [
+        {
+          title: 'Toewijding aan toegankelijkheid',
+          body: 'Costa Brava Rent a Boat verbindt zich ertoe haar website costabravarentaboat.com toegankelijk te maken in overeenstemming met Koninklijk Besluit 1112/2018 van 7 september betreffende de toegankelijkheid van websites en mobiele applicaties van de publieke sector, en rekening houdend met de Web Content Accessibility Guidelines (WCAG) 2.1, niveau AA.\n\nHoewel deze site privaat is en niet strikt onderworpen is aan RD 1112/2018 (dat voornamelijk van toepassing is op de publieke sector), verbinden we ons vrijwillig tot het bereiken en handhaven van het WCAG 2.1 AA-conformiteitsniveau ten behoeve van al onze gebruikers.',
+        },
+        {
+          title: 'Status van conformiteit',
+          body: 'Deze website is gedeeltelijk conform WCAG 2.1, niveau AA. De bekende niet-conformiteiten worden hieronder beschreven.\n\nConforme aspecten:\n- Aria-label labels op alle interactieve elementen\n- Alt-attributen op afbeeldingen\n- Volledige toetsenbordnavigatie in formulieren en aangepaste dropdowns\n- Minimale grootte van aanraakvlakken (44×44 px)\n- WCAG AA kleurcontrastverhouding in hoofdtekst\n- Formulieren met aria-describedby, aria-invalid en aria-required\n- Semantische structuur met hiërarchische koppen\n- Navigatiemenu met aria-expanded, aria-hidden en aria-current\n- Landmark-regio\'s (nav, main, footer) op alle pagina\'s\n- Modale dialogen met role=dialog, aria-modal en focusbeheer\n- Dropdowns met ARIA-rollen (combobox, listbox, option) en pijltjesnavigatie\n- Carrousels met aria-live=polite en aria-roledescription\n- Decoratieve pictogrammen gemarkeerd met aria-hidden=true\n- Tabellen met scope=col in koppen\n- Galerij met semantische knoppen die toegankelijk zijn via toetsenbord',
+        },
+        {
+          title: 'Bekende niet-conformiteiten',
+          body: '- Contrast van placeholders: sommige formuliervelden hebben placeholder-tekst met een contrast lager dan 4.5:1 (browserbeperking).\n- CSP-header met inline scripts: het inhoudsbeveiligingsbeleid bevat unsafe-inline vereist door Google Tag Manager. We evalueren alternatieven op basis van nonce.\n\nLaatste audit uitgevoerd: maart 2026. Volgende herziening gepland: september 2026.',
+        },
+        {
+          title: 'Contact en klachten',
+          body: 'Als u een toegankelijkheidsbarrière op onze website detecteert of toegang nodig heeft tot inhoud in een alternatief formaat, kunt u contact met ons opnemen:\n- E-mail: costabravarentaboat@gmail.com\n- Telefoon: +34 611 500 372\n\nWe verbinden ons ertoe binnen maximaal 5 werkdagen te reageren.\n\nAls u geen bevredigend antwoord ontvangt, kunt u een klacht indienen via het portaal van de Spaanse algemene overheid (https://administracion.gob.es).',
+        },
+        {
+          title: 'Datum van bijwerking',
+          body: 'Deze verklaring is bijgewerkt op 17 maart 2026 door middel van zelfevaluatie.',
+        },
+      ],
+    },
+  },
 };

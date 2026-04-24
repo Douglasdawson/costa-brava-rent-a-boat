@@ -2981,4 +2981,159 @@ export const it: Translations = {
     relatedTossaName: 'Tossa de Mar',
     relatedTossaDesc: 'Vila Vella medievale e le migliori calette della Costa Brava.',
   },
+  legalPages: {
+    legalDisclaimer: 'Questo testo è disponibile in diverse lingue. In caso di discrepanza o ambiguità nella traduzione, la versione in castigliano (spagnolo) prevale a tutti gli effetti giuridici.',
+    privacy: {
+      heroTitle: 'Informativa sulla Privacy',
+      lastUpdated: 'Ultimo aggiornamento: febbraio 2026',
+      sections: [
+        {
+          title: '1. Titolare del trattamento',
+          body: 'Identità: Costa Brava Rent a Boat\nPartita IVA: B22566327\nSede: Porto di Blanes, Girona, Spagna\nTelefono: +34 611 500 372\nEmail di contatto: costabravarentaboat@gmail.com',
+        },
+        {
+          title: '2. Dati personali che raccogliamo',
+          body: 'Dati forniti dall\'utente al momento della prenotazione:\n- Nome e cognome\n- Numero di telefono\n- Indirizzo email\n- Data e ora della prenotazione, imbarcazione selezionata e numero di persone\n\nDati raccolti automaticamente:\n- Dati di navigazione (indirizzo IP, tipo di browser, pagine visitate) tramite Google Analytics\n- Cookie tecnici e di preferenza (lingua selezionata)\n\nNon raccogliamo dati di categorie particolari (salute, origine razziale, opinioni politiche, ecc.) né dati di minori di 14 anni.',
+        },
+        {
+          title: '3. Finalità del trattamento e base giuridica',
+          body: 'Trattiamo i tuoi dati con le seguenti finalità e basi giuridiche (GDPR):\n\n- Gestione e conferma delle prenotazioni di imbarcazioni — Art. 6.1.b, esecuzione di un contratto\n- Invio di promemoria e comunicazioni relative alla prenotazione — Art. 6.1.b, esecuzione di un contratto\n- Assistenza clienti e risoluzione di problemi — Art. 6.1.b e 6.1.f, esecuzione di contratto / legittimo interesse\n- Analisi statistica del traffico web (Google Analytics) — Art. 6.1.a, consenso (banner dei cookie)\n- Adempimento di obblighi legali e fiscali — Art. 6.1.c, obbligo legale\n\nNon prendiamo decisioni automatizzate né elaboriamo profili a fini pubblicitari a partire dai tuoi dati di prenotazione.',
+        },
+        {
+          title: '4. Tempi di conservazione',
+          body: '- Dati di prenotazione: 5 anni dalla data del servizio (RD 1619/2012, Legge 58/2003 Tributaria Generale).\n- Comunicazioni via WhatsApp/email: 1 anno dall\'ultima comunicazione, salvo reclamo in corso.\n- Dati di analisi web (Google Analytics): secondo la configurazione di conservazione di Google Analytics (per impostazione predefinita, 14 mesi).\n- Cookie di sessione: vengono eliminati alla chiusura del browser.',
+        },
+        {
+          title: '5. Destinatari e trasferimenti internazionali',
+          body: 'I tuoi dati possono essere comunicati ai seguenti responsabili del trattamento:\n\n- SendGrid (Twilio Inc., USA): Servizio di invio email di conferma e promemoria. Trasferimento internazionale basato sulle Clausole Contrattuali Standard approvate dalla Commissione Europea.\n- Google LLC (USA): Google Analytics e Google Tag Manager. Solo se l\'utente ha prestato il consenso tramite il banner dei cookie. Trasferimento basato sul Quadro sulla privacy dei dati UE-USA.\n- Stripe Inc. (USA): Elaborazione di pagamenti con carta, se del caso. Non memorizziamo dati di carta; Stripe agisce come responsabile indipendente ai sensi di PCI-DSS.\n- WhatsApp (Meta Platforms Ireland Ltd.): Canale di comunicazione per la gestione delle prenotazioni. Le comunicazioni iniziate dall\'utente su WhatsApp sono soggette all\'informativa sulla privacy di WhatsApp.\n\nNon vendiamo né cediamo i tuoi dati a terzi a scopo commerciale.',
+        },
+        {
+          title: '6. I tuoi diritti',
+          body: 'Ai sensi degli articoli da 15 a 22 del GDPR e della LOPD-GDD, hai diritto a:\n\n- Accesso: ottenere conferma sul trattamento dei tuoi dati e, se del caso, una copia.\n- Rettifica: richiedere la correzione di dati inesatti.\n- Cancellazione (diritto all\'oblio): chiedere l\'eliminazione dei tuoi dati quando non sono più necessari per le finalità per cui sono stati raccolti, salvo obbligo legale di conservazione.\n- Opposizione: opporti al trattamento basato su legittimo interesse.\n- Limitazione del trattamento: richiedere la sospensione del trattamento in attesa della risoluzione di un reclamo.\n- Portabilità: ricevere i tuoi dati in formato strutturato e leggibile da dispositivo automatico.\n- Revoca del consenso: puoi revocare in qualsiasi momento il consenso prestato (ad es., per i cookie analitici) senza che ciò pregiudichi la liceità del trattamento precedente.\n\nCome esercitare i tuoi diritti: invia un\'email a costabravarentaboat@gmail.com indicando il diritto che desideri esercitare e allegando copia del tuo documento d\'identità. Risponderemo entro il termine massimo di 1 mese.\n\nSe ritieni che il trattamento non sia conforme al GDPR, hai diritto di presentare reclamo all\'Agenzia Spagnola per la Protezione dei Dati (AEPD): www.aepd.es',
+        },
+        {
+          title: '7. Misure di sicurezza',
+          body: 'Applichiamo misure tecniche e organizzative adeguate per proteggere i tuoi dati da accessi non autorizzati, perdita o distruzione accidentale, conformemente all\'art. 32 GDPR:\n- Trasmissione cifrata tramite HTTPS (TLS 1.2+)\n- Accesso limitato ai dati tramite autenticazione\n- Header di sicurezza HTTP (Content-Security-Policy, X-Frame-Options, ecc.)\n- Limitazione della velocità delle richieste (rate limiting) per prevenire attacchi',
+        },
+        {
+          title: '8. Cookie',
+          body: 'Per informazioni dettagliate sui cookie che utilizziamo, consulta la nostra Informativa sui Cookie.',
+        },
+        {
+          title: '9. Modifiche a questa informativa',
+          body: 'Possiamo aggiornare questa informativa sulla privacy per riflettere modifiche legislative o ai nostri servizi. Ti informeremo delle modifiche rilevanti tramite un avviso sul sito web. La data dell\'ultimo aggiornamento apparirà sempre all\'inizio di questo documento.',
+        },
+      ],
+    },
+    cookies: {
+      heroTitle: 'Informativa sui Cookie',
+      lastUpdated: 'Ultimo aggiornamento: febbraio 2026',
+      sections: [
+        {
+          title: 'Introduzione',
+          body: 'In conformità con quanto previsto dall\'articolo 22.2 della Legge 34/2002, dell\'11 luglio, sui Servizi della Società dell\'Informazione e del Commercio Elettronico, questo sito web informa, in questa sezione, sulla politica di raccolta e trattamento dei cookie.',
+        },
+        {
+          title: 'Cosa sono i cookie?',
+          body: 'Un cookie è un file che viene scaricato sul tuo computer quando accedi a determinate pagine web. I cookie consentono a una pagina web, tra le altre cose, di memorizzare e recuperare informazioni sulle abitudini di navigazione di un utente o del suo dispositivo e, a seconda delle informazioni contenute e del modo in cui viene utilizzato il dispositivo, possono essere utilizzati per riconoscere l\'utente.',
+        },
+        {
+          title: 'Quali tipi di cookie utilizza questo sito web?',
+          body: 'Questo sito web utilizza i seguenti tipi di cookie:\n\nCookie analitici: Sono quelli che, trattati da noi o da terze parti, ci permettono di quantificare il numero di utenti e quindi effettuare la misurazione e l\'analisi statistica dell\'utilizzo che gli utenti fanno del servizio offerto.\n\nCookie tecnici: Consentono all\'utente di navigare attraverso l\'area riservata e utilizzare le sue diverse funzioni, come ad esempio effettuare il processo di prenotazione di un\'imbarcazione.\n\nCookie di personalizzazione: Consentono all\'utente di accedere al servizio con alcune caratteristiche generali predefinite in base a una serie di criteri come la lingua o il tipo di browser.\n\nCookie pubblicitari: Trattati da questo sito web o da terze parti, consentono di gestire nel modo più efficace possibile l\'offerta degli spazi pubblicitari presenti sulla pagina web.\n\nCookie di terze parti: Utilizziamo i servizi di Google Analytics per le nostre statistiche. Alcuni cookie sono essenziali per il funzionamento del sito. Il nostro sito include altre funzionalità fornite da terze parti (condivisione sui social network come Facebook, Instagram o TikTok).',
+        },
+        {
+          title: 'Disattivare i cookie',
+          body: 'Puoi consentire, bloccare o eliminare i cookie installati sul tuo dispositivo mediante la configurazione delle opzioni del browser installato sul tuo computer. Nella maggior parte dei browser web è possibile consentire, bloccare o eliminare i cookie installati sul tuo dispositivo.\n\nPuoi accedere alle impostazioni dei browser web più comuni per accettare, installare o disattivare i cookie: Google Chrome, Microsoft Internet Explorer, Mozilla Firefox, Safari (Apple), Opera.',
+        },
+        {
+          title: 'Avviso sull\'eliminazione dei cookie',
+          body: 'Puoi eliminare e bloccare tutti i cookie di questo sito, ma parte del sito non funzionerà o la qualità della pagina web potrebbe risultare compromessa.',
+        },
+        {
+          title: 'Contatto',
+          body: 'Se hai domande sulla nostra politica sui cookie, puoi contattarci attraverso i nostri canali di contatto disponibili nella sezione contatti del sito web.',
+        },
+      ],
+    },
+    terms: {
+      heroTitle: 'Termini e Condizioni',
+      lastUpdated: 'Ultimo aggiornamento: febbraio 2026',
+      sections: [
+        {
+          title: '1. Identificazione del titolare',
+          body: 'Costa Brava Rent a Boat\nPartita IVA: B22566327\nSede legale: Porto di Blanes, Girona, Spagna\nTelefono di contatto: +34 611 500 372\nEmail: costabravarentaboat@gmail.com\nAttività: noleggio di imbarcazioni da diporto (con e senza patente nautica) nel Porto di Blanes, Costa Brava.',
+        },
+        {
+          title: '2. Oggetto',
+          body: 'Le presenti Condizioni Generali regolano il rapporto contrattuale tra Costa Brava Rent a Boat (di seguito, il prestatore) e qualsiasi persona che utilizzi il sito web costabravarentaboat.com o prenoti i servizi di noleggio imbarcazioni (di seguito, il cliente).\n\nL\'utilizzo del sito web e la formalizzazione di una prenotazione implicano l\'accettazione piena e senza riserve delle presenti condizioni.',
+        },
+        {
+          title: '3. Processo di prenotazione',
+          body: 'Il sito web raccoglie richieste di prenotazione. Il cliente compila un modulo con data, barca, durata e dati di contatto. Il prestatore confermerà manualmente la disponibilità e invierà un messaggio di conferma tramite WhatsApp o email.\n\nIl pagamento viene gestito manualmente di persona presso il Porto di Blanes, al momento dell\'imbarco. Non vengono effettuati addebiti automatici online.\n\nLa prenotazione diventa definitiva solo dopo la conferma esplicita del prestatore.',
+        },
+        {
+          title: '4. Requisiti per il noleggiante',
+          body: '- Il comandante deve essere maggiorenne e presentare documento d\'identità o passaporto in corso di validità.\n- Per imbarcazioni con patente, il comandante deve presentare la patente nautica originale (LBN, PER, PNB, Capitano di Yacht o equivalente europeo).\n- Per imbarcazioni senza patente, non è richiesta patente, ma il comandante riceverà una formazione di 15 minuti prima della partenza.\n- I minori devono essere accompagnati da un adulto responsabile e indossare giubbotto di salvataggio obbligatorio durante la navigazione.',
+        },
+        {
+          title: '5. Deposito cauzionale e condizioni di pagamento',
+          body: 'Prima della partenza viene versato un deposito cauzionale (200-500 € a seconda dell\'imbarcazione) che viene restituito interamente al rientro se l\'imbarcazione viene riconsegnata nelle stesse condizioni in cui è stata ritirata.\n\nIn caso di danni, perdita di materiale o mancato rispetto della zona di navigazione autorizzata, il prestatore potrà trattenere in tutto o in parte il deposito per coprire i costi.',
+        },
+        {
+          title: '6. Zona di navigazione e durata',
+          body: 'Zone autorizzate: nord fino a Playa de Fenals (senza patente) o Sant Feliu de Guíxols (con patente); sud fino alla fine della spiaggia di Blanes (senza patente) o senza limite (con patente). Massimo 2 miglia nautiche dalla costa per barche senza patente, a velocità massima di 5 nodi.\n\nLe imbarcazioni devono rientrare al Porto di Blanes prima della fine della fascia oraria prenotata. Ritardi non giustificati comportano un addebito di 50 €/ora extra.',
+        },
+        {
+          title: '7. Politica di cancellazione',
+          body: '- Cancellazione con più di 48 ore di anticipo: rimborso del 100%.\n- Cancellazione tra 24 e 48 ore prima: rimborso del 50%.\n- Cancellazione con meno di 24 ore: nessun rimborso.\n- Maltempo (vento superiore a forza 4, pioggia intensa o allerta marittima): riprogrammazione gratuita o rimborso del 100%.\n\nLa decisione sulla sospensione per condizioni meteorologiche spetta al prestatore ed è presa con criteri di sicurezza.',
+        },
+        {
+          title: '8. Obblighi del cliente',
+          body: 'Il cliente si impegna a:\n- Utilizzare l\'imbarcazione conformemente alle istruzioni ricevute nel briefing di sicurezza.\n- Non superare la capacità massima autorizzata per ciascuna imbarcazione.\n- Non svolgere attività vietate (pesca illegale, accesso a riserve marine protette, consumo di sostanze durante la navigazione, ecc.).\n- Notificare immediatamente al prestatore qualsiasi incidente, avaria o incidente.\n- Rispettare la normativa della Capitaneria Marittima di Girona e la segnaletica marittima.',
+        },
+        {
+          title: '9. Responsabilità e assicurazione',
+          body: 'Tutte le imbarcazioni sono dotate di assicurazione casco completo per imbarcazione e occupanti, conforme alla normativa spagnola sulle imbarcazioni da diporto. L\'assicurazione copre i danni accidentali durante la navigazione all\'interno della zona autorizzata.\n\nNon sono coperti i danni derivanti da uso negligente, stato di ebbrezza, navigazione fuori dalla zona consentita, condizioni meteorologiche avverse ignorate dopo avviso, o mancato rispetto delle istruzioni di sicurezza.',
+        },
+        {
+          title: '10. Proprietà intellettuale',
+          body: 'Tutti i contenuti del sito web (testi, immagini, loghi, marchi, design) sono di proprietà di Costa Brava Rent a Boat o di terzi con licenza. È vietata la loro riproduzione, distribuzione o modifica senza espressa autorizzazione scritta.',
+        },
+        {
+          title: '11. Legislazione applicabile e giurisdizione',
+          body: 'Queste condizioni sono disciplinate dalla legislazione spagnola. Per qualsiasi controversia, le parti si sottomettono ai Tribunali di Girona, con rinuncia espressa a qualsiasi altro foro che potrebbe spettare loro.\n\nIl cliente consumatore potrà rivolgersi alla Piattaforma di Risoluzione delle Controversie Online della Commissione Europea (https://ec.europa.eu/consumers/odr) per la risoluzione extragiudiziale delle controversie.',
+        },
+        {
+          title: '12. Modifiche',
+          body: 'Costa Brava Rent a Boat si riserva il diritto di modificare queste condizioni in qualsiasi momento, pubblicando la nuova versione sul sito web. La versione applicabile è quella vigente al momento della prenotazione.',
+        },
+      ],
+    },
+    accessibility: {
+      heroTitle: 'Dichiarazione di Accessibilità',
+      lastUpdated: 'Conforme al Regio Decreto 1112/2018, del 7 settembre',
+      sections: [
+        {
+          title: 'Impegno per l\'accessibilità',
+          body: 'Costa Brava Rent a Boat si impegna a rendere accessibile il proprio sito web costabravarentaboat.com in conformità con il Regio Decreto 1112/2018, del 7 settembre, sull\'accessibilità dei siti web e delle applicazioni per dispositivi mobili del settore pubblico, e tenendo conto delle Linee Guida per l\'Accessibilità dei Contenuti Web (WCAG) 2.1, livello AA.\n\nSebbene questo sito sia di carattere privato e non sia soggetto in modo rigoroso al RD 1112/2018 (che si applica principalmente al settore pubblico), ci impegniamo volontariamente a raggiungere e mantenere il livello di conformità WCAG 2.1 AA a beneficio di tutti i nostri utenti.',
+        },
+        {
+          title: 'Stato di conformità',
+          body: 'Questo sito web è parzialmente conforme alle WCAG 2.1, livello AA. Le non conformità note sono dettagliate di seguito.\n\nAspetti conformi:\n- Etichette aria-label su tutti gli elementi interattivi\n- Attributi alt sulle immagini\n- Navigazione completa da tastiera su moduli e dropdown personalizzati\n- Dimensione minima delle aree touch (44×44 px)\n- Rapporto di contrasto dei colori WCAG AA nel testo principale\n- Moduli con aria-describedby, aria-invalid e aria-required\n- Struttura semantica con intestazioni gerarchiche\n- Menu di navigazione con aria-expanded, aria-hidden e aria-current\n- Regioni landmark (nav, main, footer) in tutte le pagine\n- Finestre modali con role=dialog, aria-modal e gestione del focus\n- Dropdown con ruoli ARIA (combobox, listbox, option) e navigazione con frecce\n- Caroselli con aria-live=polite e aria-roledescription\n- Icone decorative contrassegnate con aria-hidden=true\n- Tabelle con scope=col nelle intestazioni\n- Galleria con pulsanti semantici accessibili da tastiera',
+        },
+        {
+          title: 'Non conformità note',
+          body: '- Contrasto dei placeholder: alcuni campi modulo presentano testo segnaposto con contrasto inferiore a 4.5:1 (limitazione del browser).\n- Header CSP con script inline: la politica di sicurezza dei contenuti include unsafe-inline richiesto da Google Tag Manager. Stiamo valutando alternative basate su nonce.\n\nUltima verifica effettuata: marzo 2026. Prossima revisione prevista: settembre 2026.',
+        },
+        {
+          title: 'Contatto e reclami',
+          body: 'Se rilevi una barriera di accessibilità sul nostro sito web o hai bisogno di accedere a contenuti in formato alternativo, puoi contattarci:\n- Email: costabravarentaboat@gmail.com\n- Telefono: +34 611 500 372\n\nCi impegniamo a rispondere entro un termine massimo di 5 giorni lavorativi.\n\nSe non ricevi una risposta soddisfacente, puoi presentare un reclamo tramite il Portale dell\'Amministrazione Generale dello Stato (https://administracion.gob.es).',
+        },
+        {
+          title: 'Data di aggiornamento',
+          body: 'Questa dichiarazione è stata aggiornata il 17 marzo 2026 mediante autovalutazione.',
+        },
+      ],
+    },
+  },
 };

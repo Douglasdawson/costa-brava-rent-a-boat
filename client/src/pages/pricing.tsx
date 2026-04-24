@@ -159,8 +159,11 @@ export default function PricingPage() {
     })
   } : null;
 
-  const graphItems = [breadcrumbSchema, faqSchema];
-  if (itemListSchema) graphItems.push(itemListSchema);
+  const graphItems = [
+    breadcrumbSchema,
+    faqSchema,
+    ...(itemListSchema ? [itemListSchema] : []),
+  ];
 
   const combinedJsonLd = {
     "@context": "https://schema.org",

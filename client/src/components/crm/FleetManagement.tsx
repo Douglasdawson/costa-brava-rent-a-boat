@@ -296,7 +296,7 @@ export function FleetManagement({ adminToken }: FleetManagementProps) {
       name: boat.name as string,
       capacity: boat.capacity as number,
       requiresLicense: boat.requiresLicense as boolean,
-      licenseType: (boat.licenseType as string) || "none",
+      licenseType: (boat.licenseType as BoatFormData["licenseType"]) || "none",
       deposit: boat.deposit as string,
       isActive: boat.isActive as boolean,
       imageUrl: (boat.imageUrl as string) || "",

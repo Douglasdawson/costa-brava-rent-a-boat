@@ -60,4 +60,24 @@ describe("seo-autopilot rate limits", () => {
     }
     expect(last).toBe(429);
   });
+
+  it("unauth flood does not lock out a legitimate auth request from same IP", async () => {
+    const app = makeApp();
+    const ip = "9.9.9.9";
+    // Burn 100 unauth requests from one IP — under old design (60/min/IP pre-auth)
+    // the legit auth request below would be 429-blocked.
+    for (let i = 0; i < 100; i++) {
+      await request(app)
+        .post("/mcp")
+        .set("X-Forwarded-For", ip)
+        .send({});
+    }
+    const r = await request(app)
+      .post("/mcp")
+      .set("Authorization", "Bearer good")
+      .set("X-Forwarded-For", ip)
+      .send({ jsonrpc: "2.0", id: 1, method: "ping" });
+    expect(r.status).not.toBe(429);
+    expect(r.status).toBe(200);
+  });
 });

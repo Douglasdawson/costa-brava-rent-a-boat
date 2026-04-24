@@ -66,22 +66,43 @@ async function bearerAuth(req: AuthedRequest, res: Response, next: NextFunction)
 // ---------------------------------------------------------------------------
 // Rate limit factories — instantiated per router so each createSeoAutopilotRouter()
 // call gets independent state (required for clean isolation in tests).
-// Pre-auth: 60 req/min/IP. Post-auth token quota: 60 req/min/token.
+//
+// Three layers of defense:
+//   1. preAuthIpLimiter (300 req/min/IP) — anti-DDoS only. Loose enough that
+//      a burst of unauthenticated probes from a shared NAT cannot lock out
+//      a co-located legitimate token holder.
+//   2. postAuthIpLimiter (60 req/min/IP) — real per-IP quota for authenticated
+//      traffic. Same effective cap as the original single limiter.
+//   3. tokenLimiter (60 req/min/token) — per-token quota; a leaked token cant
+//      be amplified across distinct NAT IPs.
 // ---------------------------------------------------------------------------
-function makeIpRateLimiter() {
+function ipKeyOf(req: Request, prefix: string): string {
+  // express-rate-limit v7+ requires piping IPs through ipKeyGenerator so
+  // IPv6 addresses get truncated to their /64 subnet (prevents per-address
+  // bypass). Using req.ip directly throws ValidationError on every request.
+  const ip = (req.headers["x-forwarded-for"]?.toString().split(",")[0].trim()) || req.ip;
+  if (!ip) return `${prefix}:unknown`;
+  return `${prefix}:${ipKeyGenerator(ip)}`;
+}
+
+function makePreAuthIpLimiter() {
+  return rateLimit({
+    windowMs: 60_000,
+    limit: 300,
+    standardHeaders: "draft-7",
+    legacyHeaders: false,
+    keyGenerator: (req: Request) => ipKeyOf(req, "mcp:preauth"),
+    message: { error: "rate_limit_exceeded" },
+  });
+}
+
+function makePostAuthIpLimiter() {
   return rateLimit({
     windowMs: 60_000,
     limit: 60,
     standardHeaders: "draft-7",
     legacyHeaders: false,
-    keyGenerator: (req: Request): string => {
-      // express-rate-limit v7+ requires piping IPs through ipKeyGenerator so
-      // IPv6 addresses get truncated to their /64 subnet (prevents per-address
-      // bypass). Using req.ip directly throws ValidationError on every request.
-      const ip = (req.headers["x-forwarded-for"]?.toString().split(",")[0].trim()) || req.ip;
-      if (!ip) return "mcp:unknown";
-      return `mcp:${ipKeyGenerator(ip)}`;
-    },
+    keyGenerator: (req: Request) => ipKeyOf(req, "mcp:authip"),
     message: { error: "rate_limit_exceeded" },
   });
 }
@@ -143,7 +164,8 @@ async function handleMcpRequest(req: AuthedRequest, res: Response): Promise<void
 // ---------------------------------------------------------------------------
 export function createSeoAutopilotRouter(): Router {
   const router = Router();
-  const ipLimiter = makeIpRateLimiter();
+  const preAuthIp = makePreAuthIpLimiter();
+  const postAuthIp = makePostAuthIpLimiter();
   const tokenLimiter = makeTokenRateLimiter();
 
   // Health check — does NOT require auth so status pages can hit it.
@@ -152,13 +174,13 @@ export function createSeoAutopilotRouter(): Router {
   });
 
   // Main MCP endpoint. Streamable HTTP uses POST for all JSON-RPC messages.
-  router.post("/", ipLimiter, bearerAuth, tokenLimiter, handleMcpRequest);
+  router.post("/", preAuthIp, bearerAuth, postAuthIp, tokenLimiter, handleMcpRequest);
 
   // GET is used by the SSE leg of Streamable HTTP.
-  router.get("/", ipLimiter, bearerAuth, tokenLimiter, handleMcpRequest);
+  router.get("/", preAuthIp, bearerAuth, postAuthIp, tokenLimiter, handleMcpRequest);
 
   // DELETE is used to terminate sessions (no-op in stateless mode).
-  router.delete("/", ipLimiter, bearerAuth, tokenLimiter, (_req: Request, res: Response) => {
+  router.delete("/", preAuthIp, bearerAuth, postAuthIp, tokenLimiter, (_req: Request, res: Response) => {
     res.status(204).end();
   });
 

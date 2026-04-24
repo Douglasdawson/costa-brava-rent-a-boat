@@ -46,7 +46,7 @@ export async function fetchGSCOverview(startDate: string, endDate: string) {
   });
 
   const rows = response.data.rows || [];
-  const totals = rows.reduce(
+  const totals = rows.reduce<{ clicks: number; impressions: number; ctr: number; position: number }>(
     (acc, row) => ({
       clicks: acc.clicks + (row.clicks || 0),
       impressions: acc.impressions + (row.impressions || 0),
@@ -86,7 +86,6 @@ export async function fetchGSCKeywords(startDate: string, endDate: string, limit
       endDate,
       dimensions: ["query"],
       rowLimit: limit,
-      orderBy: [{ fieldName: "clicks", sortOrder: "DESCENDING" }],
     },
   });
 
@@ -113,7 +112,6 @@ export async function fetchGSCPages(startDate: string, endDate: string, limit = 
       endDate,
       dimensions: ["page"],
       rowLimit: limit,
-      orderBy: [{ fieldName: "clicks", sortOrder: "DESCENDING" }],
     },
   });
 
@@ -180,7 +178,7 @@ export async function fetchGA4TrafficSources(startDate: string, endDate: string)
       dimensions: [{ name: "sessionDefaultChannelGroup" }],
       metrics: [{ name: "sessions" }, { name: "activeUsers" }],
       orderBys: [{ metric: { metricName: "sessions" }, desc: true }],
-      limit: 10,
+      limit: "10",
     },
   });
 
@@ -232,7 +230,7 @@ export async function fetchGA4Countries(startDate: string, endDate: string, limi
       dimensions: [{ name: "country" }],
       metrics: [{ name: "activeUsers" }, { name: "sessions" }],
       orderBys: [{ metric: { metricName: "activeUsers" }, desc: true }],
-      limit,
+      limit: String(limit),
     },
   });
 
@@ -293,7 +291,7 @@ export async function fetchGA4TopPages(startDate: string, endDate: string, limit
       dimensions: [{ name: "pagePath" }],
       metrics: [{ name: "screenPageViews" }, { name: "activeUsers" }, { name: "averageSessionDuration" }],
       orderBys: [{ metric: { metricName: "screenPageViews" }, desc: true }],
-      limit,
+      limit: String(limit),
     },
   });
 

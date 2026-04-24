@@ -1566,6 +1566,37 @@ const GEO_HIERARCHY = {
   },
 };
 
+// Service schema with AggregateRating + AggregateOffer for landing pages.
+// Google shows star snippets + price for Service schemas (same treatment as
+// Product). Reads rating/reviews from buildAggregateRating() → businessStatsCache
+// (DB-backed with GBP sync, fallback to shared/businessProfile.ts).
+// Prices sourced from shared/boatData.ts (verified 2026-04-24 season).
+function buildLandingService(
+  serviceName: string,
+  description: string,
+  priceRange: { low: number; high: number },
+): object {
+  return {
+    "@type": "Service",
+    name: serviceName,
+    description,
+    provider: { "@type": "LocalBusiness", "@id": `${BASE_URL}/#organization` },
+    areaServed: GEO_HIERARCHY,
+    aggregateRating: buildAggregateRating(),
+    offers: {
+      "@type": "AggregateOffer",
+      lowPrice: String(priceRange.low),
+      highPrice: String(priceRange.high),
+      priceCurrency: "EUR",
+      availability: "https://schema.org/InStock",
+      availabilityStarts: `${SEASON_YEAR}-04-01`,
+      availabilityEnds: `${SEASON_YEAR}-10-31`,
+      priceValidUntil: `${SEASON_YEAR}-10-31`,
+      seller: { "@type": "LocalBusiness", "@id": `${BASE_URL}/#organization` },
+    },
+  };
+}
+
 // Build Product JSON-LD for a boat detail page
 // NOTE: Google shows star snippets for Product schemas (NOT for self-reviewed LocalBusiness).
 // AggregateRating + Review here is the primary path to getting stars in SERP.
@@ -2225,7 +2256,14 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
         ],
       };
       const breadcrumb = buildBreadcrumb([homeCrumb, { name: isEn ? "Boat Rental in Blanes" : "Alquiler Barcos Blanes", url: `${BASE_URL}/alquiler-barcos-blanes` }]);
-      return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [destination, faq, breadcrumb] }, availableLanguages };
+      const service = buildLandingService(
+        isEn ? "Boat Rental in Blanes, Costa Brava" : "Alquiler de Barcos en Blanes, Costa Brava",
+        isEn
+          ? "Rent license-free and licensed boats from Blanes Port. 8 boats available, up to 7 people, from 70 EUR/hour. Fuel included on license-free boats."
+          : "Alquiler de barcos sin licencia y con licencia desde el Puerto de Blanes. 8 embarcaciones disponibles, hasta 7 personas, desde 70€/hora. Gasolina incluida en los barcos sin licencia.",
+        { low: 70, high: 420 },
+      );
+      return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [service, destination, faq, breadcrumb] }, availableLanguages };
     }
 
     // /alquiler-barcos-lloret-de-mar - TouristDestination + FAQPage for Lloret
@@ -2294,7 +2332,14 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
         imagesizes: "100vw",
         imageType: "image/avif",
       };
-      return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [destination, faq, breadcrumb] }, availableLanguages, lcpPreload: lloretLcp };
+      const service = buildLandingService(
+        isEn ? "Boat Rental from Blanes to Lloret de Mar" : "Alquiler de Barcos de Blanes a Lloret de Mar",
+        isEn
+          ? "Sail from Blanes to Lloret de Mar. License-free boats reach Fenals Beach in 25 min (2-mile zone). Licensed boats explore the full Lloret coastline. From 70 EUR/hour, up to 7 people."
+          : "Navega desde Blanes hasta Lloret de Mar. Los barcos sin licencia llegan a Playa de Fenals en 25 min (zona de 2 millas). Los barcos con licencia recorren toda la costa de Lloret. Desde 70€/hora, hasta 7 personas.",
+        { low: 70, high: 420 },
+      );
+      return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [service, destination, faq, breadcrumb] }, availableLanguages, lcpPreload: lloretLcp };
     }
 
     // /alquiler-barcos-tossa-de-mar - TouristDestination + FAQPage for Tossa
@@ -2362,7 +2407,14 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
         imagesizes: "100vw",
         imageType: "image/avif",
       };
-      return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [destination, faq, breadcrumb] }, availableLanguages, lcpPreload: tossaLcp };
+      const service = buildLandingService(
+        isEn ? "Boat Trip from Blanes to Tossa de Mar" : "Excursión en Barco de Blanes a Tossa de Mar",
+        isEn
+          ? "Reach Tossa de Mar from Blanes Port in 30-45 min with a licensed boat or our private excursion with captain (no license required). Licensed boats from 160 EUR/2h; private excursion from 240 EUR/2h with skipper."
+          : "Llega a Tossa de Mar desde el Puerto de Blanes en 30-45 min con barco con licencia o nuestra excursión privada con patrón (sin licencia). Barcos con licencia desde 160€/2h; excursión privada desde 240€/2h con patrón.",
+        { low: 160, high: 420 },
+      );
+      return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [service, destination, faq, breadcrumb] }, availableLanguages, lcpPreload: tossaLcp };
     }
 
     // /alquiler-barcos-malgrat-de-mar - TouristDestination + FAQPage
@@ -2602,7 +2654,14 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
         ],
       };
       const breadcrumb = buildBreadcrumb([homeCrumb, { name: isEn ? "No License Boats" : "Barcos Sin Licencia", url: `${BASE_URL}/barcos-sin-licencia` }]);
-      return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [itemList, faqNoLicense, breadcrumb] }, availableLanguages };
+      const service = buildLandingService(
+        isEn ? "License-Free Boat Rental in Blanes" : "Alquiler de Barcos Sin Licencia en Blanes",
+        isEn
+          ? "5 license-free boats (up to 15 HP) for rent in Blanes, Costa Brava. No qualification needed, anyone 18+ can drive. 15-minute safety briefing included. Fuel, insurance and safety equipment included in price."
+          : "5 barcos sin licencia (hasta 15 CV) para alquilar en Blanes, Costa Brava. No se necesita titulación, cualquier persona mayor de 18 años puede conducir. Formación de seguridad de 15 minutos incluida. Gasolina, seguro y equipo de seguridad incluidos en el precio.",
+        { low: 70, high: 370 },
+      );
+      return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [service, itemList, faqNoLicense, breadcrumb] }, availableLanguages };
     }
 
     // /barcos-con-licencia - ItemList of licensed boats (dynamic from DB)
@@ -2675,7 +2734,14 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
         ],
       };
       const breadcrumb = buildBreadcrumb([homeCrumb, { name: isEn ? "Licensed Boats" : "Barcos Con Licencia", url: `${BASE_URL}/barcos-con-licencia` }]);
-      return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [itemList, faqLicense, breadcrumb] }, availableLanguages };
+      const service = buildLandingService(
+        isEn ? "Licensed Boat Rental in Blanes" : "Alquiler de Barcos Con Licencia en Blanes",
+        isEn
+          ? "3 licensed boats (70-115 HP, Yamaha engines) for rent in Blanes, Costa Brava. Requires valid boating license (PER, PNB or equivalent). Greater range: reach Tossa de Mar, Cala Giverola and beyond. Fuel charged separately."
+          : "3 barcos con licencia (70-115 CV, motores Yamaha) para alquilar en Blanes, Costa Brava. Requiere titulación náutica (PER, PNB o equivalente). Mayor autonomía: llega a Tossa de Mar, Cala Giverola y más allá. Combustible aparte.",
+        { low: 160, high: 420 },
+      );
+      return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [service, itemList, faqLicense, breadcrumb] }, availableLanguages };
     }
 
     // /rutas - ItemList of routes
@@ -2808,7 +2874,14 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
         ],
       };
       const breadcrumb = buildBreadcrumb([homeCrumb, { name: isEn ? "Prices" : "Precios", url: `${BASE_URL}/precios` }]);
-      return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [faq, offerCatalog, breadcrumb] }, availableLanguages };
+      const service = buildLandingService(
+        isEn ? `Boat Rental Prices Blanes ${SEASON_YEAR}` : `Precios Alquiler Barcos Blanes ${SEASON_YEAR}`,
+        isEn
+          ? "Transparent prices for all our boats in Blanes, Costa Brava. License-free boats from 70 EUR/hour (fuel included). Licensed boats from 160 EUR/2h. Private excursion with captain from 240 EUR/2h. Low, mid and high season pricing."
+          : "Precios transparentes para todos nuestros barcos en Blanes, Costa Brava. Barcos sin licencia desde 70€/hora (gasolina incluida). Barcos con licencia desde 160€/2h. Excursión privada con patrón desde 240€/2h. Tarifas temporada baja, media y alta.",
+        { low: 70, high: 420 },
+      );
+      return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [service, faq, offerCatalog, breadcrumb] }, availableLanguages };
     }
 
     // /blog - CollectionPage schema

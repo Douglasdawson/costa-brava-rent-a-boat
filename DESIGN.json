@@ -1,0 +1,364 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-04-25T00:00:00Z",
+  "title": "Design System: Costa Brava Rent a Boat",
+  "extensions": {
+    "colorMeta": {
+      "deep-navy-cta": {
+        "role": "primary",
+        "displayName": "Deep Navy CTA",
+        "canonical": "oklch(18% 0.06 270)",
+        "tonalRamp": [
+          "oklch(10% 0.04 270)",
+          "oklch(15% 0.05 270)",
+          "oklch(18% 0.06 270)",
+          "oklch(30% 0.06 265)",
+          "oklch(45% 0.05 260)",
+          "oklch(60% 0.04 255)",
+          "oklch(75% 0.03 250)",
+          "oklch(90% 0.01 250)"
+        ]
+      },
+      "coastal-navy": {
+        "role": "neutral",
+        "displayName": "Coastal Navy",
+        "canonical": "oklch(28% 0.04 240)",
+        "tonalRamp": [
+          "oklch(15% 0.03 240)",
+          "oklch(22% 0.04 240)",
+          "oklch(28% 0.04 240)",
+          "oklch(40% 0.035 238)",
+          "oklch(55% 0.03 236)",
+          "oklch(70% 0.02 234)",
+          "oklch(82% 0.01 232)",
+          "oklch(93% 0.005 230)"
+        ]
+      },
+      "soft-steel": {
+        "role": "neutral",
+        "displayName": "Soft Steel",
+        "canonical": "oklch(84% 0.01 240)",
+        "tonalRamp": [
+          "oklch(20% 0.01 240)",
+          "oklch(35% 0.01 240)",
+          "oklch(50% 0.01 240)",
+          "oklch(65% 0.01 240)",
+          "oklch(75% 0.01 240)",
+          "oklch(84% 0.01 240)",
+          "oklch(91% 0.005 240)",
+          "oklch(96% 0.003 240)"
+        ]
+      },
+      "salt-mist": {
+        "role": "neutral",
+        "displayName": "Salt Mist",
+        "canonical": "oklch(97% 0.005 240)",
+        "tonalRamp": [
+          "oklch(20% 0.005 240)",
+          "oklch(40% 0.005 240)",
+          "oklch(55% 0.005 240)",
+          "oklch(70% 0.005 240)",
+          "oklch(80% 0.005 240)",
+          "oklch(88% 0.005 240)",
+          "oklch(93% 0.005 240)",
+          "oklch(97% 0.005 240)"
+        ]
+      },
+      "warm-card": {
+        "role": "neutral",
+        "displayName": "Warm Card",
+        "canonical": "oklch(97% 0.006 240)",
+        "tonalRamp": [
+          "oklch(20% 0.006 240)",
+          "oklch(40% 0.006 240)",
+          "oklch(55% 0.006 240)",
+          "oklch(70% 0.006 240)",
+          "oklch(80% 0.006 240)",
+          "oklch(88% 0.006 240)",
+          "oklch(93% 0.006 240)",
+          "oklch(97% 0.006 240)"
+        ]
+      },
+      "teal-ring": {
+        "role": "secondary",
+        "displayName": "Teal Ring",
+        "canonical": "oklch(65% 0.14 185)",
+        "tonalRamp": [
+          "oklch(20% 0.06 185)",
+          "oklch(30% 0.08 185)",
+          "oklch(40% 0.10 185)",
+          "oklch(50% 0.12 185)",
+          "oklch(65% 0.14 185)",
+          "oklch(75% 0.10 185)",
+          "oklch(85% 0.06 185)",
+          "oklch(93% 0.03 185)"
+        ]
+      },
+      "warm-coral-cta-dark": {
+        "role": "primary",
+        "displayName": "Warm Coral (Dark Mode CTA)",
+        "canonical": "oklch(65% 0.18 30)",
+        "tonalRamp": [
+          "oklch(20% 0.06 30)",
+          "oklch(30% 0.10 30)",
+          "oklch(40% 0.13 30)",
+          "oklch(50% 0.15 30)",
+          "oklch(65% 0.18 30)",
+          "oklch(75% 0.14 30)",
+          "oklch(85% 0.08 30)",
+          "oklch(93% 0.04 30)"
+        ]
+      },
+      "signal-red": {
+        "role": "semantic",
+        "displayName": "Signal Red",
+        "canonical": "oklch(45% 0.20 25)",
+        "tonalRamp": [
+          "oklch(15% 0.08 25)",
+          "oklch(25% 0.12 25)",
+          "oklch(35% 0.16 25)",
+          "oklch(45% 0.20 25)",
+          "oklch(55% 0.18 25)",
+          "oklch(65% 0.14 25)",
+          "oklch(80% 0.08 25)",
+          "oklch(92% 0.03 25)"
+        ]
+      },
+      "sea-green-fuel": {
+        "role": "semantic",
+        "displayName": "Sea Green",
+        "canonical": "oklch(55% 0.16 155)",
+        "tonalRamp": [
+          "oklch(15% 0.06 155)",
+          "oklch(25% 0.08 155)",
+          "oklch(35% 0.12 155)",
+          "oklch(45% 0.14 155)",
+          "oklch(55% 0.16 155)",
+          "oklch(65% 0.12 155)",
+          "oklch(80% 0.06 155)",
+          "oklch(93% 0.03 155)"
+        ]
+      },
+      "amber-popular": {
+        "role": "semantic",
+        "displayName": "Amber Popular",
+        "canonical": "oklch(75% 0.16 80)",
+        "tonalRamp": [
+          "oklch(20% 0.06 80)",
+          "oklch(30% 0.08 80)",
+          "oklch(45% 0.12 80)",
+          "oklch(55% 0.14 80)",
+          "oklch(65% 0.15 80)",
+          "oklch(75% 0.16 80)",
+          "oklch(85% 0.10 80)",
+          "oklch(93% 0.04 80)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Hero headlines only. Uppercase, tight tracking. Always white on photography or Coastal Navy on light surfaces."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Section headings, page titles. The primary structural level."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Card titles, boat names, step labels. The workhorse heading level."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Descriptions, paragraphs, form labels. Max line length 65-75ch."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Badges, meta text, timestamps, auxiliary info."
+      }
+    },
+    "shadows": [
+      {
+        "name": "2xs",
+        "value": "0px 1px 2px 0px hsl(210 15% 25% / 0.05)",
+        "purpose": "Pressed/active state feedback. Barely visible."
+      },
+      {
+        "name": "xs",
+        "value": "0px 1px 3px 0px hsl(210 15% 25% / 0.08)",
+        "purpose": "Default resting shadow for outline buttons."
+      },
+      {
+        "name": "sm",
+        "value": "0px 2px 4px 0px hsl(210 15% 25% / 0.06), 0px 1px 2px -1px hsl(210 15% 25% / 0.06)",
+        "purpose": "Input focus, dropdown triggers."
+      },
+      {
+        "name": "elevated",
+        "value": "0 4px 14px hsl(215 45% 20% / 0.35)",
+        "purpose": "Primary CTA buttons at rest. The signature floating shadow."
+      },
+      {
+        "name": "elevated-hover",
+        "value": "0 6px 20px hsl(215 45% 20% / 0.45)",
+        "purpose": "CTA hover state. Deeper, wider. Paired with translateY(-2px)."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-standard",
+        "value": "0.2s ease",
+        "purpose": "Default easing for button hover/active, color transitions."
+      },
+      {
+        "name": "ease-smooth",
+        "value": "0.3s cubic-bezier(0.22, 1, 0.36, 1)",
+        "purpose": "Card tilt, social proof transitions. Overshoots slightly for tactile feel."
+      },
+      {
+        "name": "ease-menu",
+        "value": "0.2s ease-in-out",
+        "purpose": "Mobile menu open/close (max-height + opacity)."
+      },
+      {
+        "name": "pulse-cta",
+        "value": "2s ease-out infinite",
+        "purpose": "CTA ring breathing animation. Scale 1 to 1.15 with opacity fade."
+      },
+      {
+        "name": "pulse-urgency",
+        "value": "2s ease-in-out infinite",
+        "purpose": "Scarcity dot opacity pulse. 1 to 0.4 and back."
+      }
+    ],
+    "breakpoints": [
+      { "name": "xs", "value": "375px" },
+      { "name": "sm", "value": "640px" },
+      { "name": "md", "value": "768px" },
+      { "name": "lg", "value": "1024px" },
+      { "name": "xl", "value": "1280px" },
+      { "name": "2xl", "value": "1536px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary CTA Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The signature pill button with floating shadow and breathing ring. Used for booking CTAs and primary actions.",
+      "html": "<button class=\"ds-btn-primary\">RESERVAR AHORA</button>",
+      "css": ".ds-btn-primary { background: #1a1a3e; color: #fff; padding: 10px 24px; font-family: 'Archivo', Inter, sans-serif; font-size: 0.875rem; font-weight: 600; border: none; border-radius: 9999px; cursor: pointer; position: relative; box-shadow: 0 4px 14px hsl(215 45% 20% / 0.35); transition: transform 0.2s ease, box-shadow 0.2s ease; will-change: transform, box-shadow; } .ds-btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 20px hsl(215 45% 20% / 0.45); } .ds-btn-primary:active { transform: translateY(0); box-shadow: 0 2px 8px hsl(215 45% 20% / 0.3); } .ds-btn-primary:focus-visible { outline: 2px solid #1fb8a8; outline-offset: 2px; } .ds-btn-primary::after { content: ''; position: absolute; inset: 0; border-radius: inherit; border: 2px solid rgba(26, 26, 62, 0.6); animation: ds-cta-ring 2s ease-out infinite; pointer-events: none; } @keyframes ds-cta-ring { 0% { transform: scale(1); opacity: 1; } 70% { transform: scale(1.15); opacity: 0; } 100% { transform: scale(1.15); opacity: 0; } }"
+    },
+    {
+      "name": "Secondary Button (Outline)",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Transparent pill with subtle border. Used for secondary actions alongside the primary CTA.",
+      "html": "<button class=\"ds-btn-secondary\">VER FLOTA</button>",
+      "css": ".ds-btn-secondary { background: transparent; color: #1f3044; padding: 10px 24px; font-family: 'Archivo', Inter, sans-serif; font-size: 0.875rem; font-weight: 500; border: 1px solid rgba(0,0,0,0.10); border-radius: 9999px; cursor: pointer; transition: border-color 0.2s ease; } .ds-btn-secondary:hover { border-color: rgba(31,48,68,0.30); } .ds-btn-secondary:active { box-shadow: none; } .ds-btn-secondary:focus-visible { outline: 2px solid #1fb8a8; outline-offset: 2px; }"
+    },
+    {
+      "name": "Ghost Button",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "Invisible button that reveals itself on hover with an underline. The quietest action available.",
+      "html": "<button class=\"ds-btn-ghost\">Ver detalles</button>",
+      "css": ".ds-btn-ghost { background: transparent; color: #1f3044; padding: 10px 24px; font-family: 'Archivo', Inter, sans-serif; font-size: 0.875rem; font-weight: 500; border: 1px solid transparent; border-radius: 9999px; cursor: pointer; transition: color 0.2s ease; } .ds-btn-ghost:hover { text-decoration: underline; } .ds-btn-ghost:focus-visible { outline: 2px solid #1fb8a8; outline-offset: 2px; }"
+    },
+    {
+      "name": "Text Input",
+      "kind": "input",
+      "refersTo": "input-default",
+      "description": "Standard form input with rounded-md corners (not pill). 44px height matches button alignment.",
+      "html": "<input class=\"ds-input\" type=\"text\" placeholder=\"Tu nombre\" />",
+      "css": ".ds-input { width: 100%; height: 44px; padding: 12px; font-family: 'Archivo', Inter, sans-serif; font-size: 1rem; font-weight: 400; color: #1f3044; background: #fff; border: 1px solid #c4cdd5; border-radius: 8px; transition: border-color 0.2s ease; } .ds-input::placeholder { color: #5a6b7a; } .ds-input:focus-visible { outline: none; box-shadow: 0 0 0 2px #1fb8a8; } .ds-input:disabled { opacity: 0.5; cursor: not-allowed; }"
+    },
+    {
+      "name": "Badge (Default)",
+      "kind": "chip",
+      "refersTo": "badge-default",
+      "description": "Small pill-shaped status indicator. Never interactive.",
+      "html": "<span class=\"ds-badge\">Sin licencia</span>",
+      "css": ".ds-badge { display: inline-flex; align-items: center; padding: 2px 10px; font-family: 'Archivo', Inter, sans-serif; font-size: 0.75rem; font-weight: 500; color: #1f3044; background: rgba(31,48,68,0.10); border-radius: 9999px; white-space: nowrap; }"
+    },
+    {
+      "name": "Badge (Popular)",
+      "kind": "chip",
+      "refersTo": "badge-default",
+      "description": "Amber badge for popular boats. Full saturation, used on card images.",
+      "html": "<span class=\"ds-badge-popular\">Popular</span>",
+      "css": ".ds-badge-popular { display: inline-flex; align-items: center; padding: 4px 10px; font-family: 'Archivo', Inter, sans-serif; font-size: 0.75rem; font-weight: 700; color: #451a03; background: #f59e0b; border-radius: 9999px; white-space: nowrap; box-shadow: 0 2px 6px rgba(0,0,0,0.15); }"
+    },
+    {
+      "name": "Floating Navigation Bar",
+      "kind": "nav",
+      "refersTo": "nav-container",
+      "description": "Frosted pill bar fixed near the top of the viewport. The most distinctive structural element.",
+      "html": "<nav class=\"ds-nav\"><span class=\"ds-nav-link ds-nav-active\">Inicio</span><span class=\"ds-nav-link\">Flota</span><span class=\"ds-nav-link\">Destinos</span><button class=\"ds-nav-cta\">Reservar</button></nav>",
+      "css": ".ds-nav { display: flex; align-items: center; gap: 24px; padding: 12px 24px; background: rgba(255,255,255,0.95); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border: 1px solid #e4e8eb; border-radius: 16px; box-shadow: 0 4px 6px -1px hsl(210 15% 25% / 0.05); } .ds-nav-link { font-family: 'Archivo', Inter, sans-serif; font-size: 0.875rem; font-weight: 500; color: rgba(31,48,68,0.70); cursor: pointer; transition: color 0.2s ease; text-decoration: none; } .ds-nav-link:hover { color: #1f3044; } .ds-nav-active { color: #1f3044; font-weight: 600; } .ds-nav-cta { background: #1a1a3e; color: #fff; padding: 8px 24px; font-family: 'Archivo', Inter, sans-serif; font-size: 0.875rem; font-weight: 500; border: none; border-radius: 9999px; cursor: pointer; transition: background 0.2s ease; } .ds-nav-cta:hover { background: rgba(26,26,62,0.90); } .ds-nav-link:focus-visible, .ds-nav-cta:focus-visible { outline: 2px solid #1fb8a8; outline-offset: 2px; }"
+    },
+    {
+      "name": "Boat Card",
+      "kind": "card",
+      "refersTo": "card-default",
+      "description": "Product card with 3D perspective tilt on hover, image zoom, and floating badges. The primary browsing element.",
+      "html": "<div class=\"ds-boat-card\"><div class=\"ds-boat-card-img\"><img src=\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' fill='%23e4e8eb'%3E%3Crect width='400' height='300'/%3E%3C/svg%3E\" alt=\"Boat\" /><span class=\"ds-badge-popular\" style=\"position:absolute;top:12px;left:12px\">Popular</span></div><div class=\"ds-boat-card-body\"><h3 class=\"ds-boat-card-title\">Trimarchi 57S</h3><p class=\"ds-boat-card-meta\">5.7m &middot; 40CV &middot; 7 personas</p><p class=\"ds-boat-card-price\">Desde <strong>89&euro;</strong>/hora</p><button class=\"ds-btn-primary\" style=\"width:100%;margin-top:12px\">Reservar</button></div></div>",
+      "css": ".ds-boat-card { background: #f2f5f7; border: 1px solid #e8ecef; border-radius: 16px; overflow: hidden; transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1); cursor: pointer; } .ds-boat-card:hover { transform: perspective(800px) rotateY(2deg) scale(1.015); } .ds-boat-card-img { position: relative; aspect-ratio: 4/3; overflow: hidden; } .ds-boat-card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1); } .ds-boat-card:hover .ds-boat-card-img img { transform: scale(1.03); } .ds-boat-card-body { padding: 16px; } .ds-boat-card-title { font-family: 'Clash Display', 'Archivo', sans-serif; font-size: 1.125rem; font-weight: 500; color: #1f3044; margin: 0 0 4px; } .ds-boat-card-meta { font-family: 'Archivo', Inter, sans-serif; font-size: 0.875rem; color: #5a6b7a; margin: 0 0 8px; } .ds-boat-card-price { font-family: 'Archivo', Inter, sans-serif; font-size: 0.875rem; color: #5a6b7a; margin: 0; } .ds-boat-card-price strong { color: #1a1a3e; font-size: 1.25rem; font-weight: 600; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Salt Memory",
+    "overview": "What remains after a day on the water: warmth on the skin, the smell of salt, light reflecting off a surface that never stays still. This design system captures that afterglow. It is not about the boat. It is about the feeling of having been out there, and the pull to go back.\n\nThe system rejects three things by name. It is not a luxury yacht charter site (too cold, too aspirational, too much marble and gold). It is not a budget excursion aggregator (clip art, stock photos, screaming prices). It is not a generic travel platform (Booking.com templates, conversion-machine UI, soulless grids). The Salt Memory sits in the space between: professional enough to trust with your family, warm enough to feel like a recommendation from someone who lives here.\n\nSurfaces are quiet. Photography carries emotion. Typography is confident without shouting. The palette is coastal but never obvious. Interactions feel tactile: buttons that respond, cards that breathe, a system that rewards touch.",
+    "keyCharacteristics": [
+      "Light mode. A tourist on the beach in July, phone tilted against the sun. High contrast is not optional.",
+      "Mobile-first. Most visitors browse on phones. Every element is designed for thumbs, not cursors.",
+      "Photography-led. The sea sells itself. The interface recedes.",
+      "Pill-shaped CTAs as the signature interactive element.",
+      "Flat by default, elevated on interaction. Depth is earned, not decorative.",
+      "GPU-composited motion only. Transform and opacity. Nothing else animates."
+    ],
+    "rules": [
+      {
+        "name": "The Quiet Surface Rule",
+        "body": "Backgrounds never compete with photography. Card backgrounds stay within 3% lightness of the page background. If a surface is louder than the image on it, the surface is wrong.",
+        "section": "colors"
+      },
+      {
+        "name": "The One Action Rule",
+        "body": "Deep Navy CTA appears on at most two interactive elements per viewport. Its rarity is what makes it unmissable. Secondary actions use outline or ghost variants.",
+        "section": "colors"
+      },
+      {
+        "name": "The Weight Ladder Rule",
+        "body": "Adjacent hierarchy levels must differ by at least one weight step (100 units) AND one size step (ratio >= 1.25). Flat hierarchy (same weight, different size only) is prohibited.",
+        "section": "typography"
+      },
+      {
+        "name": "The Earned Depth Rule",
+        "body": "Shadows appear only as a response to state: hover, focus, active, open. A card at rest has no shadow. A card being hovered gets sm. A modal gets lg. If a surface has a shadow and no interaction caused it, the shadow is wrong.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do use pill-shaped buttons (rounded-full) for every interactive action.",
+      "Do let photography fill at least 40% of above-the-fold viewport on landing pages.",
+      "Do test every color pairing at WCAG AA (4.5:1 for text, 3:1 for large text).",
+      "Do use GPU-composited properties only for animation (transform, opacity).",
+      "Do respect prefers-reduced-motion by killing all animation and scroll behavior.",
+      "Do disable hover transforms on touch devices via @media (hover: none).",
+      "Do use Clash Display for headings and Archivo for body. Never swap their roles."
+    ],
+    "donts": [
+      "Don't make it look like a luxury yacht charter. No gold accents, no black marble textures, no script fonts.",
+      "Don't make it look like a budget excursion site. No clip art, no densely packed grids, no flashing price banners.",
+      "Don't make it look like a generic travel platform. No Booking.com-style search bars, no infinite card grids.",
+      "Don't add decorative shadows to resting surfaces (The Earned Depth Rule).",
+      "Don't use border-left or border-right greater than 1px as colored accent stripes.",
+      "Don't use gradient text (background-clip: text with gradients).",
+      "Don't use glassmorphism decoratively. Navigation backdrop-blur is the only permitted use.",
+      "Don't animate CSS layout properties. Transform and opacity only.",
+      "Don't use #000 or #fff anywhere. Every neutral is tinted toward the coastal navy hue.",
+      "Don't use em dashes in copy."
+    ]
+  }
+}

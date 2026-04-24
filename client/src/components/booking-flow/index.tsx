@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Clock } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import { useLocation } from "wouter";
 import { useLanguage } from "@/hooks/use-language";
 import { useBookingFlowState } from "./useBookingFlowState";
@@ -11,15 +11,6 @@ import { BookingStepPayment } from "./BookingStepPayment";
 import type { BookingFlowProps } from "./types";
 import { trackBookingAbandoned } from "@/utils/analytics";
 import { getMinActivePrice } from "@shared/pricing";
-
-// Days remaining until 2026 season price increase (June 1). Recomputed on
-// every render — cheap and always fresh without effects. Clamped to >=0 so
-// the banner silently disappears after the deadline.
-function daysUntilSeasonIncrease(): number {
-  const target = new Date("2026-06-01T00:00:00Z").getTime();
-  const diff = target - Date.now();
-  return Math.max(0, Math.ceil(diff / 86400000));
-}
 
 export default function BookingFlow(props: BookingFlowProps) {
   const { onClose } = props;
@@ -45,21 +36,6 @@ export default function BookingFlow(props: BookingFlowProps) {
             {t.booking.backToHome}
           </Button>
         </div>
-
-        {(() => {
-          const days = daysUntilSeasonIncrease();
-          if (days === 0) return null;
-          return (
-            <div className="mb-3 rounded-lg border border-amber-200 bg-amber-50 px-3 py-2 text-xs sm:text-sm text-amber-900 flex items-center gap-2">
-              <Clock className="w-4 h-4 shrink-0" aria-hidden />
-              <span>
-                {t.booking?.seasonCountdown
-                  ? t.booking.seasonCountdown.replace("{days}", String(days))
-                  : `Precios temporada 2026 suben el 1 de junio · quedan ${days} días · confirma hoy`}
-              </span>
-            </div>
-          );
-        })()}
 
         <BookingProgressIndicator currentStep={step} t={t} />
 
@@ -129,6 +105,7 @@ export default function BookingFlow(props: BookingFlowProps) {
             durations={state.durations}
             extras={state.extras}
             availableExtras={state.availableExtras}
+            customerData={state.customerData}
             isLoading={state.isLoading}
             isProcessingPayment={state.isProcessingPayment}
             calculateTotal={state.calculateTotal}

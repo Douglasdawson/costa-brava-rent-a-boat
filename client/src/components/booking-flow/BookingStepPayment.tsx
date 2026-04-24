@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Send, Euro } from "lucide-react";
+import { Send, Euro, User, Mail, Phone, Users } from "lucide-react";
 import type { Boat } from "@shared/schema";
 import type { Translations } from "@/lib/translations";
 import { useLanguage } from "@/hooks/use-language";
-import type { Quote, Duration, Extra } from "./types";
+import type { Quote, Duration, Extra, CustomerData } from "./types";
 import { trackPaymentInitiated } from "@/utils/analytics";
 import { BookingTrustBanner } from "./BookingTrustBanner";
 import { ValueStack } from "./ValueStack";
@@ -21,6 +21,7 @@ interface BookingStepPaymentProps {
   durations: Duration[];
   extras: Record<string, number>;
   availableExtras: Extra[];
+  customerData: CustomerData;
   isLoading: boolean;
   isProcessingPayment: boolean;
   calculateTotal: () => number | undefined;
@@ -32,8 +33,8 @@ interface BookingStepPaymentProps {
 export function BookingStepPayment({
   selectedDate, selectedTime, duration, selectedBoat,
   availableBoats, quote, holdId, durations, extras,
-  availableExtras, isLoading, isProcessingPayment, calculateTotal,
-  createQuote, handlePayment, t,
+  availableExtras, customerData, isLoading, isProcessingPayment,
+  calculateTotal, createQuote, handlePayment, t,
 }: BookingStepPaymentProps) {
   const [termsAccepted, setTermsAccepted] = useState(false);
   const { localizedPath } = useLanguage();
@@ -63,6 +64,23 @@ export function BookingStepPayment({
             <div className="flex justify-between">
               <span>{t.booking.summaryBoat}</span>
               <span className="font-medium">{availableBoats.find((b: Boat) => b.id === selectedBoat)?.name || 'N/A'}</span>
+            </div>
+            <hr className="my-2" />
+            <div className="flex justify-between items-center">
+              <span className="inline-flex items-center gap-1.5"><User className="w-3.5 h-3.5 text-muted-foreground" />{t.booking.customerDetails}</span>
+              <span className="font-medium">{customerData.customerName} {customerData.customerSurname}</span>
+            </div>
+            <div className="flex justify-between items-center">
+              <span className="inline-flex items-center gap-1.5"><Mail className="w-3.5 h-3.5 text-muted-foreground" />{t.booking.emailLabel}</span>
+              <span className="font-medium truncate max-w-[200px]">{customerData.customerEmail}</span>
+            </div>
+            <div className="flex justify-between items-center">
+              <span className="inline-flex items-center gap-1.5"><Phone className="w-3.5 h-3.5 text-muted-foreground" />{t.booking.phone}</span>
+              <span className="font-medium">{customerData.phonePrefix} {customerData.customerPhone}</span>
+            </div>
+            <div className="flex justify-between items-center">
+              <span className="inline-flex items-center gap-1.5"><Users className="w-3.5 h-3.5 text-muted-foreground" />{t.booking.people}</span>
+              <span className="font-medium">{customerData.numberOfPeople}</span>
             </div>
             <hr className="my-2" />
             {quote ? (
@@ -187,7 +205,7 @@ export function BookingStepPayment({
                   onChange={(e) => setTermsAccepted(e.target.checked)}
                 />
                 <label htmlFor="terms">
-                  {t.booking.iAcceptThe} <a href={localizedPath("termsConditions")} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">{t.booking.termsAndConditions}</a> {t.booking.andThe} <a href={localizedPath("privacyPolicy")} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">{t.booking.privacyPolicy}</a>
+                  {t.booking.iAcceptThe} <a href={localizedPath("termsConditions")} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none rounded-sm">{t.booking.termsAndConditions}</a> {t.booking.andThe} <a href={localizedPath("privacyPolicy")} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none rounded-sm">{t.booking.privacyPolicy}</a>
                 </label>
               </div>
 

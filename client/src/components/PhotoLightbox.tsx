@@ -65,7 +65,7 @@ export default function PhotoLightbox({ photos, initialIndex, open, onOpenChange
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent
         ref={dialogRef}
-        className="max-w-4xl w-[95vw] p-0 gap-0 bg-black/95 border-none [&>button]:hidden"
+        className="max-w-4xl w-[95vw] p-0 gap-0 bg-slate-950/95 border-none [&>button]:hidden"
         aria-label="Visor de imagenes"
       >
         <DialogTitle className="sr-only">Visor de imagenes</DialogTitle>

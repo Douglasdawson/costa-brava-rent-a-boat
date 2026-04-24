@@ -1,6 +1,6 @@
 import React, { memo, useCallback, useMemo, useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Anchor, ArrowRight, Clock, Fuel, Star, ThumbsUp } from "lucide-react";
+import { Anchor, ArrowRight, Fuel, Star, ThumbsUp } from "lucide-react";
 import { useTranslations } from "@/lib/translations";
 import { useLanguage } from "@/hooks/use-language";
 import { getBoatAverageRating } from "@/data/boatRatings";
@@ -17,16 +17,11 @@ interface BoatCardProps {
   requiresLicense: boolean;
   description: string;
   basePrice: number;
-  highSeasonPrice?: number;
   features: string[];
   available: boolean;
   enginePower?: string;
   isPopular?: boolean;
   isRecommended?: boolean;
-  scarcityData?: { availableSlots: number; totalSlots: number };
-  weeklyBookings?: number;
-  bestFor?: string;
-  emotionTag?: string;
   onBooking: (boatId: string) => void;
   onDetails: (boatId: string) => void;
 }
@@ -81,36 +76,22 @@ const BoatCardImage = memo(function BoatCardImage({
   );
 });
 
-/** Memoized pricing display with price anchoring */
+/** Memoized pricing display — clean, no anchoring */
 const BoatCardPricing = memo(function BoatCardPricing({
   basePrice,
-  highSeasonPrice,
   capacity,
   perPersonLabel,
   fromLabel,
-  highSeasonLabel,
 }: {
   basePrice: number;
-  highSeasonPrice?: number;
   capacity: number;
   perPersonLabel: string;
   fromLabel: string;
-  highSeasonLabel: string;
 }) {
-  const savingsPercent = highSeasonPrice && highSeasonPrice > basePrice
-    ? Math.round(((highSeasonPrice - basePrice) / highSeasonPrice) * 100)
-    : 0;
-  const showPriceAnchoring = savingsPercent > 15;
-
   return (
     <div className="text-right flex-shrink-0 space-y-0.5">
       <div className="text-sm text-muted-foreground">{fromLabel}</div>
       <div className="flex items-baseline gap-1.5 justify-end">
-        {showPriceAnchoring && (
-          <span className="text-xs text-muted-foreground line-through">
-            {Math.ceil((highSeasonPrice || 0) / capacity)}&euro;
-          </span>
-        )}
         <span className="text-cta font-semibold text-xl">
           {Math.ceil(basePrice / capacity)}&euro;
         </span>
@@ -118,16 +99,9 @@ const BoatCardPricing = memo(function BoatCardPricing({
           /{perPersonLabel}
         </span>
       </div>
-      <div className="flex items-center gap-2 justify-end">
-        {showPriceAnchoring && (
-          <span className="inline-flex items-center bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 text-xs font-semibold px-1.5 py-0.5 rounded-full">
-            -{savingsPercent}%
-          </span>
-        )}
-        <span className="text-xs text-muted-foreground">
-          {basePrice}&euro; total
-        </span>
-      </div>
+      <span className="text-xs text-muted-foreground">
+        {basePrice}&euro; total
+      </span>
     </div>
   );
 });
@@ -144,16 +118,11 @@ function BoatCard({
   requiresLicense,
   description,
   basePrice,
-  highSeasonPrice,
   features,
   available,
   enginePower,
   isPopular,
   isRecommended,
-  scarcityData,
-  weeklyBookings,
-  bestFor,
-  emotionTag,
   onBooking,
   onDetails
 }: BoatCardProps) {
@@ -161,15 +130,6 @@ function BoatCard({
   const { localizedPath } = useLanguage();
   const [imageError, setImageError] = useState(false);
   const ratingData = useMemo(() => getBoatAverageRating(id), [id]);
-
-  const currentSeason = useMemo(() => {
-    const parts = new Intl.DateTimeFormat('en-US', { timeZone: 'Europe/Madrid', month: 'numeric' }).formatToParts(new Date());
-    const month = parseInt(parts.find(p => p.type === 'month')?.value || '0');
-    if (month === 7) return 'MEDIA';
-    if (month === 8) return 'ALTA';
-    if ((month >= 4 && month <= 6) || (month >= 9 && month <= 10)) return 'BAJA';
-    return null;
-  }, []);
 
   const handleDetails = useCallback(() => {
     onDetails(id);
@@ -223,11 +183,6 @@ function BoatCard({
           <span className="bg-white/90 backdrop-blur-sm text-slate-800 text-sm font-medium rounded-full px-3 py-1 self-start">
             {requiresLicense ? t.boats.withLicense : t.boats.withoutLicense}
           </span>
-          {bestFor && (
-            <span className="bg-indigo-50 dark:bg-indigo-950/30 text-indigo-700 dark:text-indigo-400 text-xs font-semibold rounded-full px-3 py-1 self-start">
-              {bestFor}
-            </span>
-          )}
         </div>
         {!requiresLicense && !features.some(f => /combustible\s*no/i.test(f) || /fuel\s*not/i.test(f)) && (
           <div className="absolute top-3 right-3 inline-flex items-center gap-1.5 bg-green-600/90 backdrop-blur-sm text-white text-xs font-semibold px-2.5 py-1 rounded-full">
@@ -258,17 +213,12 @@ function BoatCard({
                 <span className="text-xs text-muted-foreground">({ratingData.count})</span>
               </div>
             )}
-            {emotionTag && (
-              <p className="text-xs italic text-muted-foreground/80 mt-0.5">{emotionTag}</p>
-            )}
           </div>
           <BoatCardPricing
             basePrice={basePrice}
-            highSeasonPrice={highSeasonPrice}
             capacity={capacity}
             perPersonLabel={t.boats.perPerson}
             fromLabel={t.boats.from}
-            highSeasonLabel={t.pricing?.highSeason || 'High season'}
           />
         </div>
 
@@ -278,53 +228,6 @@ function BoatCard({
           {capacity} {t.boats.people}{enginePower ? ` | ${enginePower}` : ''}{` | ${requiresLicense ? t.boats.withLicense : t.boats.withoutLicense}`}
         </p>
 
-        <div className="flex flex-wrap gap-1.5 mb-3">
-          {!requiresLicense && (
-            <span className="inline-flex items-center gap-1 text-xs text-muted-foreground bg-muted px-2 py-0.5 rounded-full">
-              <Clock className="w-3 h-3" />
-              {t.boats.popularDuration}
-            </span>
-          )}
-          {currentSeason === 'BAJA' && (
-            <span className="inline-flex items-center text-xs text-green-700 dark:text-green-400 bg-green-50 dark:bg-green-900/20 px-2 py-0.5 rounded-full font-medium">
-              {t.boats.seasonPriceLow}
-            </span>
-          )}
-          {currentSeason === 'MEDIA' && (
-            <span className="inline-flex items-center text-xs text-amber-700 dark:text-amber-400 bg-amber-50 dark:bg-amber-900/20 px-2 py-0.5 rounded-full font-medium">
-              {t.boats.seasonPriceMid}
-            </span>
-          )}
-        </div>
-
-        {scarcityData && (
-          <div className="flex items-center gap-1.5 text-xs font-medium">
-            {scarcityData.availableSlots === 0 ? (
-              <>
-                <span className="w-1.5 h-1.5 rounded-full bg-red-500 flex-shrink-0 urgency-dot-pulse" />
-                <span className="text-red-600">{t.scarcity?.soldOutToday}</span>
-              </>
-            ) : scarcityData.availableSlots <= 3 ? (
-              <>
-                <span className="w-1.5 h-1.5 rounded-full bg-amber-500 flex-shrink-0 urgency-dot-pulse" />
-                <span className="text-amber-600">
-                  {t.scarcity?.onlyXSlots?.replace('{count}', String(scarcityData.availableSlots))}
-                </span>
-              </>
-            ) : (
-              <>
-                <span className="w-1.5 h-1.5 rounded-full bg-green-500 flex-shrink-0" />
-                <span className="text-green-600">{t.scarcity?.availableToday}</span>
-              </>
-            )}
-          </div>
-        )}
-
-        {weeklyBookings !== undefined && weeklyBookings >= 2 && (
-          <p className="text-xs text-orange-600 font-medium mt-1">
-            {t.boats.weeklyBookings?.replace('{count}', String(weeklyBookings))}
-          </p>
-        )}
       </CardContent>
       <div className="px-3 sm:px-4 pb-3 sm:pb-4 flex items-center justify-between gap-2">
         <a

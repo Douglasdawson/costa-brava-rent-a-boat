@@ -99,7 +99,7 @@ export default function RangeFromBlanesSection({ variant = "home" }: RangeFromBl
           </ol>
 
           {/* Note about Fenals being the limit */}
-          <div className="mt-6 bg-amber-50/70 dark:bg-amber-950/30 border-l-4 border-amber-400 rounded-r-xl p-4 sm:p-5">
+          <div className="mt-6 bg-amber-50/70 dark:bg-amber-950/30 rounded-xl p-4 sm:p-5">
             <div className="font-semibold text-sm text-foreground mb-1">{r?.limitBoxTitle}</div>
             <p className="text-sm text-muted-foreground leading-relaxed">{r?.limitBoxBody}</p>
             <p className="text-xs text-muted-foreground mt-2 italic">{r?.noteNorthOfFenals}</p>

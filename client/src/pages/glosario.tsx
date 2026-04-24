@@ -167,7 +167,7 @@ export default function GlosarioPage() {
                       <div
                         key={slugify(entry.term)}
                         id={slugify(entry.term)}
-                        className="border-l-4 border-border hover:border-primary/40 pl-4 py-1 transition-colors"
+                        className="pl-4 py-1 hover:bg-muted/50 rounded-lg transition-colors"
                       >
                         <dt className="font-heading font-semibold text-foreground text-lg mb-1">
                           {entry.term}
@@ -187,7 +187,7 @@ export default function GlosarioPage() {
                 <div
                   key={slugify(entry.term)}
                   id={slugify(entry.term)}
-                  className="border-l-4 border-border hover:border-primary/40 pl-4 py-1 transition-colors"
+                  className="pl-4 py-1 hover:bg-muted/50 rounded-lg transition-colors"
                 >
                   <dt className="font-heading font-semibold text-foreground text-lg mb-1">
                     {entry.term}

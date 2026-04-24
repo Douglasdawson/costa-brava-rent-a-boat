@@ -44,7 +44,7 @@ export function LegalPageLayout({ heroTitle, lastUpdated, sections }: LegalPageL
       <div className="pt-6 pb-10 sm:pt-8 sm:pb-16 bg-muted">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
           {disclaimer && (
-            <div className="bg-amber-50 border-l-4 border-amber-500 rounded p-4 text-sm text-amber-900">
+            <div className="bg-amber-50 dark:bg-amber-950/30 rounded-xl p-4 text-sm text-amber-900 dark:text-amber-200">
               <p>{disclaimer}</p>
             </div>
           )}

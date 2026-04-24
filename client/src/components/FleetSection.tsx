@@ -132,7 +132,6 @@ interface VirtualizedBoatGridProps {
     requiresLicense: boolean;
     description: string;
     basePrice: number;
-    highSeasonPrice?: number;
     features: string[];
     available: boolean;
     enginePower: string;
@@ -140,11 +139,6 @@ interface VirtualizedBoatGridProps {
   popularBoatId: string;
   selectedGroupSize: string | null;
   isBoatRecommended: (capacity: number) => boolean;
-  fleetAvailability?: {
-    date: string;
-    boats: Record<string, { availableSlots: number; totalSlots: number }>;
-  };
-  weeklyBookings?: Record<string, number>;
   onBooking: (boatId: string) => void;
   onDetails: (boatId: string) => void;
 }
@@ -159,8 +153,6 @@ const VirtualizedBoatGrid = React.memo(function VirtualizedBoatGrid({
   popularBoatId,
   selectedGroupSize,
   isBoatRecommended,
-  fleetAvailability,
-  weeklyBookings,
   onBooking,
   onDetails,
 }: VirtualizedBoatGridProps) {
@@ -215,8 +207,6 @@ const VirtualizedBoatGrid = React.memo(function VirtualizedBoatGrid({
                   {...boat}
                   isPopular={boat.id === popularBoatId}
                   isRecommended={isBoatRecommended(boat.capacity)}
-                  scarcityData={fleetAvailability?.boats[boat.id]}
-                  weeklyBookings={weeklyBookings?.[boat.id]}
                   onBooking={onBooking}
                   onDetails={onDetails}
                 />
@@ -257,20 +247,6 @@ function FleetSection() {
     queryKey: ['/api/boats'],
   });
 
-  // Fetch weekly bookings count per boat (social proof)
-  const { data: weeklyBookings } = useQuery<Record<string, number>>({
-    queryKey: ['/api/boats/weekly-bookings'],
-    staleTime: 5 * 60 * 1000,
-  });
-
-  // Fetch fleet-wide scarcity data for the next Saturday
-  const { data: fleetAvailability } = useQuery<{
-    date: string;
-    boats: Record<string, { availableSlots: number; totalSlots: number }>;
-  }>({
-    queryKey: ['/api/fleet-availability'],
-    staleTime: 5 * 60 * 1000, // match server cache: 5 minutes
-  });
 
   // GA4 ecommerce view_item_list tracking
   useEffect(() => {
@@ -287,27 +263,6 @@ function FleetSection() {
 
   const popularBoatId = "solar-450";
 
-  // "Best for" labels to differentiate similar no-license boats
-  const bestForLabels: Record<string, string> = useMemo(() => ({
-    'astec-400': t.boats?.bestForBudget || '',
-    'solar-450': t.boats?.bestForSundeck || '',
-    'remus-450': t.boats?.bestForFamilies || '',
-    'remus-450-ii': t.boats?.bestForFamilies || '',
-    'astec-480': t.boats?.bestForPremium || '',
-  }), [t]);
-
-  // Emotion tags for identity-based decision making (Cialdini)
-  const emotionTagLabels: Record<string, string> = useMemo(() => ({
-    'solar-450': t.emotionTags?.sunLovers || '',
-    'remus-450': t.emotionTags?.familyFavorite || '',
-    'remus-450-ii': t.emotionTags?.alwaysAvailable || '',
-    'astec-400': t.emotionTags?.bestPrice || '',
-    'astec-480': t.emotionTags?.premiumNoLicense || '',
-    'mingolla-brava-19': t.emotionTags?.explorer || '',
-    'trimarchi-57s': t.emotionTags?.adrenaline || '',
-    'pacific-craft-625': t.emotionTags?.luxury || '',
-    'excursion-privada': t.emotionTags?.vip || '',
-  }), [t]);
 
   // Transform API data to BoatCard format — memoized to avoid recalculation on every render
   const boats = useMemo(() => (boatsData || [])
@@ -318,9 +273,6 @@ function FleetSection() {
       // Skip 0/null entries so admin-disabled durations don't anchor the price.
       const season = currentSeason || 'BAJA';
       const basePrice = getMinActivePrice(boat.pricing?.[season]?.prices) ?? 0;
-
-      // High season minimum price for price anchoring
-      const highSeasonPrice = getMinActivePrice(boat.pricing?.ALTA?.prices) ?? 0;
 
       // Extract engine power from specifications
       const enginePower = boat.specifications?.engine || '';
@@ -344,15 +296,11 @@ function FleetSection() {
           return desc.length > 150 ? desc.substring(0, 150) + "..." : desc;
         })(),
         basePrice,
-        // Only pass high season price when we're NOT in high season
-        highSeasonPrice: currentSeason !== 'ALTA' ? highSeasonPrice : undefined,
         features: boat.equipment || [],
         available: true,
         enginePower: enginePower,
-        bestFor: bestForLabels[boat.id] || '',
-        emotionTag: emotionTagLabels[boat.id] || ''
       };
-    }), [boatsData, currentSeason, t, bestForLabels, emotionTagLabels]);
+    }), [boatsData, currentSeason, t]);
 
   // Dynamic group size options based on max boat capacity
   const groupSizeOptions = useMemo(() => {
@@ -552,8 +500,6 @@ function FleetSection() {
                 popularBoatId={popularBoatId}
                 selectedGroupSize={selectedGroupSize}
                 isBoatRecommended={isBoatRecommended}
-                fleetAvailability={fleetAvailability}
-                weeklyBookings={weeklyBookings}
                 onBooking={handleBooking}
                 onDetails={handleDetails}
               />
@@ -572,8 +518,6 @@ function FleetSection() {
                       {...boat}
                       isPopular={boat.id === popularBoatId}
                       isRecommended={isBoatRecommended(boat.capacity)}
-                      scarcityData={fleetAvailability?.boats[boat.id]}
-                      weeklyBookings={weeklyBookings?.[boat.id]}
                       onBooking={handleBooking}
                       onDetails={handleDetails}
                     />

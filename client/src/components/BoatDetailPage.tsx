@@ -721,7 +721,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
         {onBack && (
           <button
             onClick={onBack}
-            className="absolute top-4 left-4 flex items-center gap-1.5 text-white/90 hover:text-white text-sm font-medium bg-black/30 hover:bg-black/50 rounded-full px-3 py-1.5 transition-colors"
+            className="absolute top-4 left-4 flex items-center gap-1.5 text-white/90 hover:text-white text-sm font-medium bg-foreground/30 hover:bg-foreground/50 rounded-full px-3 py-1.5 transition-colors"
             data-testid="button-back"
           >
             <ArrowLeft className="w-4 h-4" />
@@ -811,7 +811,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                 onClick={() => setLightboxOpen(true)}
               />
               {/* Zoom hint */}
-              <div className="absolute top-2 left-2 bg-black/50 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+              <div className="absolute top-2 left-2 bg-foreground/50 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
                 <Eye className="w-3 h-3 inline mr-1" />
                 {t.boatDetail.imageAria}
               </div>
@@ -844,7 +844,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
               
               {/* Image counter */}
               {displayImages.length > 1 && (
-                <div className="absolute bottom-2 right-2 bg-black/70 text-white px-3 py-1 rounded-full text-sm">
+                <div className="absolute bottom-2 right-2 bg-foreground/70 text-white px-3 py-1 rounded-full text-sm">
                   {currentImageIndex + 1} / {displayImages.length}
                 </div>
               )}
@@ -1398,7 +1398,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
 
       {/* Lightbox for gallery images */}
       <Dialog open={lightboxOpen} onOpenChange={setLightboxOpen}>
-        <DialogContent className="max-w-4xl w-[95vw] p-0 gap-0 bg-black/95 border-none [&>button]:hidden">
+        <DialogContent className="max-w-4xl w-[95vw] p-0 gap-0 bg-slate-950/95 border-none [&>button]:hidden">
           <div className="relative">
             <Button
               variant="ghost"

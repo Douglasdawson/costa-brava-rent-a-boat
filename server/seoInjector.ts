@@ -131,13 +131,13 @@ const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
     },
     fr: {
       title: "Location Bateau Costa Brava | Sans Permis dès 70€/h | Port de Blanes",
-      description: "Location de bateaux sur la Costa Brava depuis le Port de Blanes. Sans permis dès 70€/h, carburant inclus, jusqu'à 7 personnes. 8 bateaux · 4.8★ Google.",
+      description: "Location de bateau au Port de Blanes — sans permis dès 70€/h. Carburant inclus, jusqu'à 7 personnes. 4.8★ · 310 avis · 15 min briefing. Réservez en ligne.",
       ogTitle: `Location Bateau Costa Brava ${SEASON_YEAR} | Sans Permis dès 70€/h`,
       ogDescription: "Louez un bateau sur la Costa Brava depuis Blanes. Sans permis, carburant inclus, dès 70€/h. 8 bateaux disponibles. 4.8★ Google.",
     },
     de: {
       title: "Bootsverleih Costa Brava | Ohne Führerschein ab 70€/h | Hafen Blanes",
-      description: "Bootsverleih an der Costa Brava vom Hafen Blanes. Ohne Führerschein ab 70€/h, Kraftstoff inklusive, bis zu 7 Personen. 8 Boote · 4.8★ Google (300+ Bewertungen).",
+      description: "Bootsverleih Hafen Blanes — ohne Führerschein ab 70€/h. Kraftstoff inklusive, bis zu 7 Personen. 4.8★ · 310 Bewertungen · 15 Min Einweisung. Online buchen.",
       ogTitle: `Bootsverleih Costa Brava ${SEASON_YEAR} | Ohne Führerschein ab 70€/h`,
       ogDescription: "Mieten Sie ein Boot an der Costa Brava vom Hafen Blanes. Ohne Führerschein, Kraftstoff inklusive, ab 70€/h. 8 Boote verfügbar. 4.8★ Google.",
     },
@@ -405,7 +405,7 @@ const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
     },
     nl: {
       title: "Boten Zonder Vaarbewijs Costa Brava | 5 Boten vanaf 70€/u Blanes",
-      description: "5 boten zonder vaarbewijs in Blanes vanaf 70€/u. Brandstof inbegrepen, 4-7 personen. Geen ervaring nodig, 15 min instructie. 4.8★ Google. Boek online.",
+      description: "Huur een boot zonder vaarbewijs in Blanes, Costa Brava vanaf €70/u. Brandstof inbegrepen, tot 7 personen. 4.8★ · 310 reviews · 15 min training. Online boeken.",
     },
     it: {
       title: "Barche Senza Patente Costa Brava | 5 Barche da 70€/h Blanes",
@@ -513,7 +513,7 @@ const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
     },
     nl: {
       title: "Boottocht naar Lloret de Mar vanuit Blanes",
-      description: "Vaar van Blanes naar Lloret de Mar. Bootverhuur met of zonder vaarbewijs. Ontdek de mooiste stranden.",
+      description: "Vaar naar Lloret de Mar vanaf Blanes. 7 cala's op de route. Boot huren zonder vaarbewijs vanaf €70/u. Brandstof inbegrepen. 4.8★ · 310 reviews. Boek online.",
     },
     it: {
       title: "Escursione in Barca a Lloret de Mar da Blanes",
@@ -549,7 +549,7 @@ const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
     },
     nl: {
       title: "Boottocht naar Tossa de Mar vanuit Blanes",
-      description: "Vaar in 30-45 min van Blanes naar Tossa de Mar. Ontdek de mooiste middeleeuwse stad van de Costa Brava.",
+      description: "Vaar naar Tossa de Mar vanaf Blanes. Boot huren zonder vaarbewijs vanaf €70/u. Brandstof inbegrepen, tot 7 personen. 4.8★ · 310 reviews. Online boeken.",
     },
     it: {
       title: "Escursione in Barca a Tossa de Mar da Blanes",
@@ -1090,13 +1090,13 @@ const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
   "/boat-rental-costa-brava": {
     en: {
       title: "Boat Rental Costa Brava | No License from 70\u20ac/h — Blanes, Spain",
-      description: "Rent a boat on the Costa Brava from Blanes port. No license required. 9 boats for 4-12 people. Explore hidden coves, snorkel spots & medieval villages.",
+      description: "Rent a boat in Blanes, Costa Brava from €70/h. License-free, fuel included, up to 7 people. 4.8★ · 310 Google reviews · 15 min training · book online.",
       ogTitle: "Boat Rental Costa Brava — From Blanes Port",
       ogDescription: "Explore Spain's most beautiful coastline by boat. No license needed. From 70\u20ac/hour.",
     },
     es: {
       title: "Boat Rental Costa Brava | No License from 70\u20ac/h — Blanes, Spain",
-      description: "Rent a boat on the Costa Brava from Blanes port. No license required. 9 boats for 4-12 people. Explore hidden coves, snorkel spots & medieval villages.",
+      description: "Rent a boat in Blanes, Costa Brava from €70/h. License-free, fuel included, up to 7 people. 4.8★ · 310 Google reviews · 15 min training · book online.",
     },
   },
   "/excursion-snorkel-barco-blanes": {

@@ -19,9 +19,9 @@ server/mcp/
 ```
 
 ### A.2 Transport
-Exponer mediante HTTP SSE en `/mcp/seo-autopilot` en el mismo server Express ya existente (`server/index.ts`), con endpoint dedicado:
-- `GET /mcp/seo-autopilot/sse` — stream SSE
-- `POST /mcp/seo-autopilot/rpc` — JSON-RPC message
+Exponer mediante HTTP SSE en `/api/mcp/seo-autopilot` en el mismo server Express ya existente (`server/index.ts`), con endpoint dedicado:
+- `GET /api/mcp/seo-autopilot/sse` — stream SSE
+- `POST /api/mcp/seo-autopilot/rpc` — JSON-RPC message
 
 ### A.3 Autenticacion
 - Bearer token: header `Authorization: Bearer <token>`
@@ -114,7 +114,7 @@ Variable de entorno `SEO_AUTOPILOT_AUTO_APPROVE` con valores:
 Toda invocacion se escribe en `audit.ts` con: tool, params, tokenName, resultSize, durationMs, success.
 
 ### A.7 Registro en el registry de Cowork
-Registrar el MCP en el registry publico o internamente. URL: `https://costabravarentaboat.com/mcp/seo-autopilot`
+Registrar el MCP en el registry publico o internamente. URL: `https://costabravarentaboat.com/api/mcp/seo-autopilot`
 
 ---
 
@@ -247,7 +247,7 @@ El dashboard es para uso interno del propietario → solo en espanol (no multila
 
 3. **MCP server**
    - Crear `server/mcp/seo-autopilot-server.ts`
-   - Integrar con Express en `server/index.ts` (ruta `/mcp/seo-autopilot/*`)
+   - Integrar con Express en `server/index.ts` (ruta `/api/mcp/seo-autopilot/*`)
    - Middleware de auth con token
    - Implementar las ~25 tools (wrapping de MCPs internos + nuevas)
 

@@ -296,7 +296,7 @@ Total nuevas URLs a generar: 20 × 8 idiomas = 160 paginas programaticas adicion
 
 ## 7. MCP `seo-autopilot-mcp` (nuevo) — especificacion
 
-Ubicacion propuesta: `server/mcp/seo-autopilot-server.ts` + expuesto via HTTP SSE en `/mcp/seo-autopilot` con auth por token.
+Ubicacion propuesta: `server/mcp/seo-autopilot-server.ts` + expuesto via HTTP SSE en `/api/mcp/seo-autopilot` con auth por token.
 
 ### 7.1 Tools que expone
 
@@ -343,7 +343,7 @@ Ubicacion propuesta: `server/mcp/seo-autopilot-server.ts` + expuesto via HTTP SS
 ### 7.3 Conectar Cowork → MCP
 Flow:
 1. Usuario genera token desde el dashboard CRM (boton "Generar token MCP").
-2. En Cowork: `mcp-registry` → instalar MCP con URL `https://costabravarentaboat.com/mcp/seo-autopilot` y token.
+2. En Cowork: `mcp-registry` → instalar MCP con URL `https://costabravarentaboat.com/api/mcp/seo-autopilot` y token.
 3. A partir de ahi, todas las scheduled tasks lo usan.
 
 ---

@@ -2980,4 +2980,159 @@ export const ca: Translations = {
     relatedTossaName: 'Tossa de Mar',
     relatedTossaDesc: 'Vila Vella medieval i les millors cales de la Costa Brava.',
   },
+  legalPages: {
+    legalDisclaimer: 'Aquest text està disponible en diversos idiomes. En cas de discrepància o ambigüitat en la traducció, la versió en castellà (espanyol) prevaldrà a tots els efectes jurídics.',
+    privacy: {
+      heroTitle: 'Política de Privadesa',
+      lastUpdated: 'Darrera actualització: febrer de 2026',
+      sections: [
+        {
+          title: '1. Responsable del tractament',
+          body: 'Identitat: Costa Brava Rent a Boat\nNIF: B22566327\nDomicili: Port de Blanes, Girona, Espanya\nTelèfon: +34 611 500 372\nEmail de contacte: costabravarentaboat@gmail.com',
+        },
+        {
+          title: '2. Dades personals que recopilem',
+          body: 'Dades facilitades per l\'usuari en fer una reserva:\n- Nom i cognoms\n- Número de telèfon\n- Adreça de correu electrònic\n- Data i hora de la reserva, embarcació seleccionada i nombre de persones\n\nDades recopilades automàticament:\n- Dades de navegació (adreça IP, tipus de navegador, pàgines visitades) mitjançant Google Analytics\n- Galetes tècniques i de preferència (idioma seleccionat)\n\nNo recopilem dades de categories especials (salut, origen racial, opinions polítiques, etc.) ni dades de menors de 14 anys.',
+        },
+        {
+          title: '3. Finalitat del tractament i base jurídica',
+          body: 'Gestionem les teves dades amb les finalitats i bases jurídiques següents (RGPD):\n\n- Gestió i confirmació de reserves d\'embarcacions — Art. 6.1.b, execució d\'un contracte\n- Enviament de recordatoris i comunicacions relatives a la reserva — Art. 6.1.b, execució d\'un contracte\n- Atenció al client i resolució d\'incidències — Art. 6.1.b i 6.1.f, execució de contracte / interès legítim\n- Anàlisi estadística del trànsit web (Google Analytics) — Art. 6.1.a, consentiment (bàner de galetes)\n- Compliment d\'obligacions legals i fiscals — Art. 6.1.c, obligació legal\n\nNo prenem decisions automatitzades ni elaborem perfils amb fins de segmentació publicitària a partir de les teves dades de reserva.',
+        },
+        {
+          title: '4. Terminis de conservació',
+          body: '- Dades de reserva: 5 anys des de la data del servei (RD 1619/2012, Llei 58/2003 General Tributària).\n- Comunicacions per WhatsApp/email: 1 any des de la darrera comunicació, llevat que hi hagi una reclamació en curs.\n- Dades d\'anàlisi web (Google Analytics): segons la configuració de retenció de Google Analytics (per defecte, 14 mesos).\n- Galetes de sessió: s\'eliminen en tancar el navegador.',
+        },
+        {
+          title: '5. Destinataris i transferències internacionals',
+          body: 'Les teves dades poden ser comunicades als tercers encarregats del tractament següents:\n\n- SendGrid (Twilio Inc., EUA): Servei d\'enviament d\'emails de confirmació i recordatoris. Transferència internacional emparada en les Clàusules Contractuals Tipus aprovades per la Comissió Europea.\n- Google LLC (EUA): Google Analytics i Google Tag Manager. Només si l\'usuari ha donat el seu consentiment a través del bàner de galetes. Transferència emparada en el Marc de Privadesa de Dades UE-EUA.\n- Stripe Inc. (EUA): Processament de pagaments amb targeta, si escau. No emmagatzemem dades de targeta; Stripe actua com a encarregat independent sota PCI-DSS.\n- WhatsApp (Meta Platforms Ireland Ltd.): Canal de comunicació per a gestió de reserves. Les comunicacions iniciades per l\'usuari a WhatsApp estan subjectes a la política de privadesa de WhatsApp.\n\nNo venem ni cedim les teves dades a tercers amb fins comercials.',
+        },
+        {
+          title: '6. Els teus drets (ARCO+)',
+          body: 'En virtut dels articles 15 a 22 del RGPD i la LOPD-GDD, tens dret a:\n\n- Accés: obtenir confirmació sobre si tractem les teves dades i, si escau, una còpia.\n- Rectificació: sol·licitar la correcció de dades inexactes.\n- Supressió («dret a l\'oblit»): demanar l\'eliminació de les teves dades quan ja no siguin necessàries per a les finalitats per a les quals van ser recollides, llevat d\'obligació legal de conservació.\n- Oposició: oposar-te al tractament basat en interès legítim.\n- Limitació del tractament: sol·licitar que suspenguem el tractament mentre es resol una reclamació.\n- Portabilitat: rebre les teves dades en format estructurat i llegible per màquina.\n- Retirada del consentiment: pots retirar en qualsevol moment el consentiment prestat (p. ex., per a galetes analítiques) sense que això afecti la licitud del tractament previ.\n\nCom exercir els teus drets: envia un email a costabravarentaboat@gmail.com indicant el dret que vols exercir i adjuntant còpia del teu DNI o un altre document identificatiu. Respondrem en el termini màxim d\'1 mes.\n\nSi consideres que el tractament no és conforme al RGPD, tens dret a presentar una reclamació davant l\'Agència Espanyola de Protecció de Dades (AEPD): www.aepd.es',
+        },
+        {
+          title: '7. Mesures de seguretat',
+          body: 'Apliquem mesures tècniques i organitzatives adequades per protegir les teves dades contra accessos no autoritzats, pèrdua o destrucció accidental, conforme a l\'art. 32 RGPD:\n- Transmissió xifrada mitjançant HTTPS (TLS 1.2+)\n- Accés restringit a les dades mitjançant autenticació\n- Capçaleres de seguretat HTTP (Content-Security-Policy, X-Frame-Options, etc.)\n- Limitació de velocitat de peticions (rate limiting) per prevenir atacs',
+        },
+        {
+          title: '8. Galetes',
+          body: 'Per a informació detallada sobre les galetes que utilitzem, consulta la nostra Política de Galetes.',
+        },
+        {
+          title: '9. Canvis en aquesta política',
+          body: 'Podem actualitzar aquesta política de privadesa per reflectir canvis legals o en els nostres serveis. Et notificarem els canvis rellevants mitjançant un avís al web. La data de darrera actualització sempre apareixerà a l\'inici d\'aquest document.',
+        },
+      ],
+    },
+    cookies: {
+      heroTitle: 'Política de Galetes',
+      lastUpdated: 'Darrera actualització: febrer de 2026',
+      sections: [
+        {
+          title: 'Introducció',
+          body: 'En compliment del que disposa l\'article 22.2 de la Llei 34/2002, d\'11 de juliol, de Serveis de la Societat de la Informació i de Comerç Electrònic, aquest lloc web t\'informa, en aquesta secció, sobre la política de recollida i tractament de galetes.',
+        },
+        {
+          title: 'Què són les galetes?',
+          body: 'Una galeta és un fitxer que es descarrega al teu ordinador en accedir a determinades pàgines web. Les galetes permeten a una pàgina web, entre altres coses, emmagatzemar i recuperar informació sobre els hàbits de navegació d\'un usuari o del seu equip i, depenent de la informació que continguin i de la forma en què utilitzis el teu equip, poden utilitzar-se per reconèixer l\'usuari.',
+        },
+        {
+          title: 'Quins tipus de galetes utilitza aquest lloc web?',
+          body: 'Aquest lloc web utilitza els tipus de galetes següents:\n\nGaletes d\'anàlisi: Són aquelles que, ben tractades per nosaltres o per tercers, ens permeten quantificar el nombre d\'usuaris i així fer el mesurament i l\'anàlisi estadística de la utilització que fan els usuaris del servei ofert.\n\nGaletes tècniques: Permeten a l\'usuari la navegació a través de l\'àrea restringida i la utilització de les seves diferents funcions, com ara dur a terme el procés de reserva d\'una embarcació.\n\nGaletes de personalització: Permeten a l\'usuari accedir al servei amb algunes característiques de caràcter general predefinides en funció d\'una sèrie de criteris com l\'idioma o el tipus de navegador.\n\nGaletes publicitàries: Tractades per aquest web o per tercers, permeten gestionar de la forma més eficaç possible l\'oferta dels espais publicitaris que hi ha a la pàgina web.\n\nGaletes de tercers: Fem servir els serveis de Google Analytics per a les nostres estadístiques. Algunes galetes són essencials per al funcionament del lloc. El nostre lloc inclou altres funcionalitats proporcionades per tercers (compartir a xarxes socials com Facebook, Instagram o TikTok).',
+        },
+        {
+          title: 'Desactivar les galetes',
+          body: 'Pots permetre, bloquejar o eliminar les galetes instal·lades al teu equip mitjançant la configuració de les opcions del navegador instal·lat al teu ordinador. A la majoria dels navegadors web s\'ofereix la possibilitat de permetre, bloquejar o eliminar les galetes instal·lades al teu equip.\n\nPots accedir a la configuració dels navegadors webs més freqüents per acceptar, instal·lar o desactivar les galetes: Google Chrome, Microsoft Internet Explorer, Mozilla Firefox, Safari (Apple), Opera.',
+        },
+        {
+          title: 'Advertència sobre eliminar galetes',
+          body: 'Pots eliminar i bloquejar totes les galetes d\'aquest lloc, però part del lloc no funcionarà o la qualitat de la pàgina web pot veure\'s afectada.',
+        },
+        {
+          title: 'Contacte',
+          body: 'Si tens qualsevol dubte sobre la nostra política de galetes, pots contactar amb nosaltres a través dels nostres canals de contacte disponibles a la secció de contacte del web.',
+        },
+      ],
+    },
+    terms: {
+      heroTitle: 'Termes i Condicions',
+      lastUpdated: 'Darrera actualització: febrer de 2026',
+      sections: [
+        {
+          title: '1. Identificació del titular',
+          body: 'Costa Brava Rent a Boat\nNIF: B22566327\nDomicili social: Port de Blanes, Girona, Espanya\nTelèfon de contacte: +34 611 500 372\nCorreu electrònic: costabravarentaboat@gmail.com\nActivitat: lloguer d\'embarcacions de recreació (amb i sense titulació nàutica) al Port de Blanes, Costa Brava.',
+        },
+        {
+          title: '2. Objecte',
+          body: 'Les presents Condicions Generals regulen la relació contractual entre Costa Brava Rent a Boat (d\'ara endavant, «el prestador») i qualsevol persona que utilitzi el lloc web costabravarentaboat.com o contracti els serveis de lloguer d\'embarcacions (d\'ara endavant, «el client»).\n\nLa utilització del lloc web i la formalització d\'una reserva impliquen l\'acceptació plena i sense reserves de les presents condicions.',
+        },
+        {
+          title: '3. Procés de reserva',
+          body: 'El web captura sol·licituds de reserva. El client completa un formulari amb data, vaixell, durada i dades de contacte. El prestador confirmarà manualment la disponibilitat i enviarà un missatge de confirmació per WhatsApp o correu electrònic.\n\nEl pagament es gestiona manualment de forma presencial al Port de Blanes, en el moment d\'embarcar. No es fan cobraments automàtics en línia.\n\nLa reserva queda ferma només després de la confirmació explícita del prestador.',
+        },
+        {
+          title: '4. Requisits per a l\'arrendatari',
+          body: '- El patró ha de ser major de 18 anys i presentar DNI o passaport en vigor.\n- Per a embarcacions amb llicència, el patró ha de presentar la titulació nàutica original (LBN, PER, PNB, Capità de Iot o equivalent europea).\n- Per a embarcacions sense llicència, no es requereix titulació, però el patró rebrà una formació de 15 minuts abans de zarpar.\n- Els menors d\'edat hauran d\'anar acompanyats d\'un adult responsable i portar armilla salvavides obligatòria durant la navegació.',
+        },
+        {
+          title: '5. Fiança i condicions de pagament',
+          body: 'Abans de zarpar s\'abona una fiança (200-500 € segons embarcació) que es retorna íntegrament al retorn si l\'embarcació és lliurada en el mateix estat en què es va rebre.\n\nEn cas de danys, pèrdua de material o incompliment de la zona de navegació autoritzada, el prestador podrà retenir totalment o parcialment la fiança per cobrir els costos.',
+        },
+        {
+          title: '6. Zona de navegació i durada',
+          body: 'Zones autoritzades: nord fins a Platja de Fenals (sense llicència) o Sant Feliu de Guíxols (amb llicència); sud fins a final platja de Blanes (sense llicència) o sense límit (amb llicència). Màxim 2 milles nàutiques de la costa per a vaixells sense llicència, a 5 nusos màxim.\n\nLes embarcacions hauran de retornar al Port de Blanes abans que acabi la franja horària contractada. Els retards no justificats facturen 50 €/hora extra.',
+        },
+        {
+          title: '7. Política de cancel·lació',
+          body: '- Cancel·lació amb més de 48 h d\'antelació: reemborsament del 100 %.\n- Cancel·lació entre 24 i 48 h abans: reemborsament del 50 %.\n- Cancel·lació amb menys de 24 h: sense reemborsament.\n- Mal temps (vent superior a força 4, pluja intensa o alerta marítima): reprogramació gratuïta o reemborsament del 100 %.\n\nLa decisió sobre suspensió per condicions meteorològiques correspon al prestador i es pren amb criteris de seguretat.',
+        },
+        {
+          title: '8. Obligacions del client',
+          body: 'El client es compromet a:\n- Utilitzar l\'embarcació d\'acord amb les instruccions rebudes al briefing de seguretat.\n- No superar la capacitat màxima autoritzada per a cada embarcació.\n- No dur a terme activitats prohibides (pesca il·legal, accés a reserves marines protegides, consum de substàncies durant la navegació, etc.).\n- Notificar immediatament al prestador qualsevol incidència, avaria o accident.\n- Respectar la normativa de la Capitania Marítima de Girona i les senyalitzacions marítimes.',
+        },
+        {
+          title: '9. Responsabilitat i assegurança',
+          body: 'Totes les embarcacions compten amb assegurança a tot risc per a embarcació i ocupants, d\'acord amb la normativa espanyola d\'embarcacions de recreació. L\'assegurança cobreix danys accidentals durant la navegació dins de la zona autoritzada.\n\nNo es cobreixen danys derivats d\'ús negligent, embriaguesa, navegació fora de la zona permesa, condicions meteorològiques adverses ignorades després d\'avís, o incompliment de les instruccions de seguretat.',
+        },
+        {
+          title: '10. Propietat intel·lectual',
+          body: 'Tots els continguts del lloc web (textos, imatges, logotips, marques, disseny) són propietat de Costa Brava Rent a Boat o de tercers amb llicència. Queda prohibida la seva reproducció, distribució o modificació sense autorització expressa per escrit.',
+        },
+        {
+          title: '11. Legislació aplicable i jurisdicció',
+          body: 'Aquestes condicions es regeixen per la legislació espanyola. Per a qualsevol controvèrsia, les parts se sotmeten als Jutjats i Tribunals de Girona, amb renúncia expressa a qualsevol altre fur que els pogués correspondre.\n\nEl client consumidor podrà acudir a la Plataforma de Resolució de Litigis en Línia de la Comissió Europea (https://ec.europa.eu/consumers/odr) per a la resolució extrajudicial de conflictes.',
+        },
+        {
+          title: '12. Modificacions',
+          body: 'Costa Brava Rent a Boat es reserva el dret a modificar aquestes condicions en qualsevol moment, publicant la nova versió al lloc web. La versió aplicable és la vigent en el moment de la reserva.',
+        },
+      ],
+    },
+    accessibility: {
+      heroTitle: 'Declaració d\'Accessibilitat',
+      lastUpdated: 'Conforme al Reial Decret 1112/2018, de 7 de setembre',
+      sections: [
+        {
+          title: 'Compromís amb l\'accessibilitat',
+          body: 'Costa Brava Rent a Boat es compromet a fer accessible el seu lloc web costabravarentaboat.com d\'acord amb el Reial Decret 1112/2018, de 7 de setembre, sobre accessibilitat dels llocs web i aplicacions per a dispositius mòbils del sector públic, i tenint en compte les Directrius d\'Accessibilitat per al Contingut Web (WCAG) 2.1, nivell AA.\n\nTot i que aquest lloc és de caràcter privat i no està subjecte de forma estricta al RD 1112/2018 (que s\'aplica principalment al sector públic), ens comprometem voluntàriament a assolir i mantenir el nivell de conformitat WCAG 2.1 AA en benefici de tots els nostres usuaris.',
+        },
+        {
+          title: 'Estat de conformitat',
+          body: 'Aquest lloc web és parcialment conforme amb les WCAG 2.1, nivell AA. Les no conformitats conegudes es detallen a continuació.\n\nAspectes conformes:\n- Etiquetes aria-label en tots els elements interactius\n- Atributs alt en imatges\n- Navegació completa per teclat en formularis i dropdowns personalitzats\n- Mida mínima d\'àrees tàctils (44×44 px)\n- Ràtio de contrast de color WCAG AA en text principal\n- Formularis amb aria-describedby, aria-invalid i aria-required\n- Estructura semàntica amb encapçalaments jerarquitzats\n- Menú de navegació amb aria-expanded, aria-hidden i aria-current\n- Landmark regions (nav, main, footer) en totes les pàgines\n- Diàlegs modals amb role="dialog", aria-modal i gestió de focus\n- Dropdowns amb rols ARIA (combobox, listbox, option) i navegació amb fletxes\n- Carrusels amb aria-live="polite" i aria-roledescription\n- Icones decoratives marcades amb aria-hidden="true"\n- Taules amb scope="col" en encapçalaments\n- Galeria amb botons semàntics accessibles per teclat',
+        },
+        {
+          title: 'No conformitats conegudes',
+          body: '- Contrast de placeholders: alguns camps de formulari presenten text de marcador de posició amb contrast inferior a 4.5:1 (limitació del navegador).\n- Capçalera CSP amb scripts inline: la política de seguretat de continguts inclou unsafe-inline requerit per Google Tag Manager. Estem avaluant alternatives basades en nonce.\n\nDarrera auditoria realitzada: març de 2026. Propera revisió prevista: setembre de 2026.',
+        },
+        {
+          title: 'Contacte i reclamacions',
+          body: 'Si detectes alguna barrera d\'accessibilitat al nostre lloc web o necessites accedir a contingut en un format alternatiu, pots contactar amb nosaltres:\n- Email: costabravarentaboat@gmail.com\n- Telèfon: +34 611 500 372\n\nEns comprometem a respondre en un termini màxim de 5 dies hàbils.\n\nSi no reps una resposta satisfactòria, pots presentar una reclamació a través del Portal de l\'Administració General de l\'Estat (https://administracion.gob.es).',
+        },
+        {
+          title: 'Data d\'actualització',
+          body: 'Aquesta declaració va ser actualitzada el 17 de març de 2026 mitjançant autoavaluació.',
+        },
+      ],
+    },
+  },
 };

@@ -139,7 +139,7 @@ ${JSON.stringify(toTranslate, null, 2)}`;
     try {
       const stream = anthropic.messages.stream({
         model: "claude-sonnet-4-5",
-        max_tokens: 8192,
+        max_tokens: 32000,
         messages: [{ role: "user", content: prompt }],
       });
       for await (const event of stream) {
@@ -209,7 +209,15 @@ function renderValue(v: unknown, indent = 2): string {
   const padInner = " ".repeat(indent + 2);
   if (v === null) return "null";
   if (typeof v === "boolean" || typeof v === "number") return String(v);
-  if (typeof v === "string") return `'${v.replace(/\\/g, "\\\\").replace(/'/g, "\\'")}'`;
+  if (typeof v === "string") {
+    const escaped = v
+      .replace(/\\/g, "\\\\")
+      .replace(/'/g, "\\'")
+      .replace(/\n/g, "\\n")
+      .replace(/\r/g, "\\r")
+      .replace(/\t/g, "\\t");
+    return `'${escaped}'`;
+  }
   if (Array.isArray(v)) {
     if (v.length === 0) return "[]";
     const items = v.map((x) => `${padInner}${renderValue(x, indent + 2)}`).join(",\n");

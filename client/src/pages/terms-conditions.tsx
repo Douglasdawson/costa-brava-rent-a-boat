@@ -1,346 +1,37 @@
-import { FileText, UserCheck, AlertTriangle, Shield, ArrowLeftRight, Fuel, DollarSign, MapPin, XCircle, Edit, Cloud, Wrench, Scale } from "lucide-react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import Navigation from "@/components/Navigation";
-import Footer from "@/components/Footer";
 import { SEO } from "@/components/SEO";
 import { useLanguage } from "@/hooks/use-language";
 import { getSEOConfig, generateHreflangLinks, generateCanonicalUrl, generateBreadcrumbSchema } from "@/utils/seo-config";
 import { useTranslations } from "@/lib/translations";
+import { LegalPageLayout } from "@/components/LegalPageLayout";
 
 export default function TermsConditionsPage() {
-  const { language, localizedPath } = useLanguage();
+  const { language } = useLanguage();
   const t = useTranslations();
   const seoConfig = getSEOConfig('termsConditions', language);
   const hreflangLinks = generateHreflangLinks('termsConditions');
   const canonical = generateCanonicalUrl('termsConditions', language);
 
-  // Generate breadcrumb schema with localized names
   const breadcrumbSchema = generateBreadcrumbSchema([
     { name: t.breadcrumbs.home, url: "/" },
     { name: t.breadcrumbs.termsConditions, url: "/terms-conditions" }
   ]);
 
+  const page = t.legalPages?.terms;
+
   return (
-    <div className="min-h-screen">
-      <SEO 
+    <>
+      <SEO
         title={seoConfig.title}
         description={seoConfig.description}
         canonical={canonical}
         hreflang={hreflangLinks}
         jsonLd={breadcrumbSchema}
       />
-      <Navigation />
-      
-      {/* Hero Section */}
-      <div className="bg-gradient-to-br from-blue-50 to-teal-50 pt-20 sm:pt-24 pb-8">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="flex items-center justify-center mb-6">
-            <FileText className="w-8 h-8 text-primary mr-4" />
-            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold text-foreground">
-              Términos y Condiciones
-            </h1>
-          </div>
-        </div>
-      </div>
-
-      {/* Content */}
-      <div className="pt-2 pb-12 sm:pt-4 sm:pb-20 bg-muted">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          
-          {/* Embarcaciones CON Titulación */}
-          <Card className="mb-6 sm:mb-8" id="embarcaciones-con-licencia">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-3 text-xl">
-                <FileText className="w-6 h-6 text-primary" />
-                Condiciones para Embarcaciones CON Titulación
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-6">
-              
-              <div>
-                <h3 className="text-lg font-semibold text-foreground mb-3 flex items-center gap-2">
-                  <UserCheck className="w-5 h-5 text-primary" />
-                  Requisitos de Alquiler
-                </h3>
-                <p className="text-sm text-muted-foreground">Las embarcaciones con titulación sólo podrán ser arrendadas por la persona designada en el contrato y que debe poseer la correspondiente titulación en vigor.</p>
-              </div>
-
-              <div>
-                <h3 className="text-lg font-semibold text-foreground mb-3 flex items-center gap-2">
-                  <AlertTriangle className="w-5 h-5 text-primary" />
-                  Prohibiciones
-                </h3>
-                <ul className="list-disc pl-6 space-y-2 text-sm text-muted-foreground">
-                  <li>Sobrepasar la distancia de una milla desde la costa</li>
-                  <li>Sobrepasar el número de plazas máximo permitido según el modelo de la embarcación</li>
-                  <li>Varar la embarcación en la playa o acceder a ella</li>
-                  <li>Entrar, permanecer o salir del agua con el motor en funcionamiento</li>
-                  <li>Dejar la embarcación amarrada o anclada sin ninguna persona a bordo</li>
-                </ul>
-              </div>
-
-              <div>
-                <h3 className="text-lg font-semibold text-foreground mb-3 flex items-center gap-2">
-                  <Shield className="w-5 h-5 text-primary" />
-                  Responsabilidades
-                </h3>
-                <div className="space-y-3 text-sm text-muted-foreground">
-                  <ul className="list-disc pl-6 space-y-2">
-                    <li>La velocidad máxima en puertos y canales específicos es de 3 nudos</li>
-                    <li>Respetar la zona de bañistas y fondear fuera de las boyas amarillas</li>
-                    <li>Mantener distancia mínima de 200m de playas y acantilados</li>
-                    <li>Guardar 100m de distancia de embarcaciones con bandera de submarinistas</li>
-                    <li>Se recomienda el uso de chalecos salvavidas durante la navegación</li>
-                  </ul>
-                  <p>El arrendatario asume toda responsabilidad por multas, sanciones, perjuicios o daños causados por infracción de alguna cláusula del contrato.</p>
-                </div>
-              </div>
-
-              <div>
-                <h3 className="text-lg font-semibold text-foreground mb-3 flex items-center gap-2">
-                  <ArrowLeftRight className="w-5 h-5 text-primary" />
-                  Entrega y Recogida
-                </h3>
-                <div className="space-y-3 text-sm text-muted-foreground">
-                  <p>La embarcación será entregada y devuelta en el Puerto de Blanes. Se devolverá con todo su equipamiento en las mismas condiciones en las que se entregó.</p>
-                  <p><strong>Importante:</strong> Si el check-out se realiza más tarde de la hora estipulada sin aviso se cobrará 150€ por cada 30 minutos de retraso.</p>
-                </div>
-              </div>
-
-              <div>
-                <h3 className="text-lg font-semibold text-foreground mb-3 flex items-center gap-2">
-                  <Fuel className="w-5 h-5 text-primary" />
-                  Carburante
-                </h3>
-                <p className="text-sm text-muted-foreground">La gasolina NO está incluida en el precio. La embarcación se entregará con el depósito lleno y se devolverá en el mismo estado.</p>
-              </div>
-
-              <div>
-                <h3 className="text-lg font-semibold text-foreground mb-3 flex items-center gap-2">
-                  <Shield className="w-5 h-5 text-primary" />
-                  Seguro y Fianza
-                </h3>
-                <div className="space-y-3 text-sm text-muted-foreground">
-                  <p>Las tarifas incluyen seguro de Responsabilidad Civil Obligatoria y seguro para daños físicos para la tripulación.</p>
-                  <p><strong>Fianza:</strong> 500€ o 1.000€ dependiendo de la embarcación alquilada para responder a cualquier desperfecto, pérdida de material o retraso en la devolución.</p>
-                  <p>Quedan excluidas del seguro las actividades que conlleven el arrastre de artefactos como bananas, ruedas neumáticas, esquís, etc.</p>
-                </div>
-              </div>
-
-            </CardContent>
-          </Card>
-
-          {/* Embarcaciones SIN Titulación */}
-          <Card className="mb-6 sm:mb-8" id="embarcaciones-sin-licencia">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-3 text-xl">
-                <FileText className="w-6 h-6 text-primary" />
-                Condiciones para Embarcaciones SIN Titulación
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-6">
-              
-              <div>
-                <h3 className="text-lg font-semibold text-foreground mb-3 flex items-center gap-2">
-                  <UserCheck className="w-5 h-5 text-primary" />
-                  Requisitos de Alquiler
-                </h3>
-                <p className="text-sm text-muted-foreground">La embarcación sólo podrá ser arrendada por la persona designada en el contrato, que debe ser mayor de 18 años.</p>
-              </div>
-
-              <div>
-                <h3 className="text-lg font-semibold text-foreground mb-3 flex items-center gap-2">
-                  <AlertTriangle className="w-5 h-5 text-primary" />
-                  Prohibiciones
-                </h3>
-                <ul className="list-disc pl-6 space-y-2 text-sm text-muted-foreground">
-                  <li>Sobrepasar la distancia de una milla desde la costa (1.8 km)</li>
-                  <li>Sobrepasar el número de plazas máximo permitido</li>
-                  <li>Varar la embarcación en la playa o acceder a ella</li>
-                  <li>Entrar, permanecer o salir del agua con el motor en funcionamiento</li>
-                  <li>Realizar giros bruscos y continuos (donuts) con la embarcación</li>
-                  <li>Dejar la embarcación amarrada sin ninguna persona a bordo</li>
-                </ul>
-              </div>
-
-              <div>
-                <h3 className="text-lg font-semibold text-foreground mb-3 flex items-center gap-2">
-                  <MapPin className="w-5 h-5 text-primary" />
-                  Zona de Navegación Restringida
-                </h3>
-                <div className="space-y-3 text-sm text-muted-foreground">
-                  <p>Las embarcaciones tienen una zona restringida de navegación que abarca desde el río Tordera al sur hasta el final de la playa de Fenals al norte.</p>
-                  <p><strong>Importante:</strong> Si se sobrepasa la zona de navegación indicada podrá ser sancionado con 200€ por imprudencia.</p>
-                  <p>En caso de necesidad de remolque fuera de la zona autorizada se cobrará 500€ por dicho servicio.</p>
-                </div>
-              </div>
-
-              <div>
-                <h3 className="text-lg font-semibold text-foreground mb-3 flex items-center gap-2">
-                  <Fuel className="w-5 h-5 text-primary" />
-                  Carburante
-                </h3>
-                <p className="text-sm text-muted-foreground">La gasolina SÍ está incluida en el precio. Las embarcaciones disponen de un depósito de 25 litros incluido en el precio del alquiler.</p>
-              </div>
-
-              <div>
-                <h3 className="text-lg font-semibold text-foreground mb-3 flex items-center gap-2">
-                  <Shield className="w-5 h-5 text-primary" />
-                  Seguro y Fianza
-                </h3>
-                <div className="space-y-3 text-sm text-muted-foreground">
-                  <p>Las tarifas incluyen seguro de Responsabilidad Civil Obligatoria y seguro para daños físicos para la tripulación.</p>
-                  <p><strong>Fianza:</strong> 200€ para responder a cualquier desperfecto, pérdida de material o retraso en la devolución de la embarcación.</p>
-                </div>
-              </div>
-
-            </CardContent>
-          </Card>
-
-          {/* Cancelaciones y Cambios */}
-          <Card className="mb-6 sm:mb-8" id="cancelaciones-cambios">
-            <CardHeader>
-              <CardTitle className="text-xl">
-                Cancelaciones y Cambios
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-6">
-              
-              <div>
-                <h3 className="text-lg font-semibold text-foreground mb-3 flex items-center gap-2">
-                  <XCircle className="w-5 h-5 text-primary" />
-                  Política de Cancelación
-                </h3>
-                <p className="text-sm text-muted-foreground mb-3">La cancelación de la reserva por parte del cliente ocasionará gastos de tramitación, gestión y bloqueo de la embarcación, por lo que <strong>todas las cancelaciones conllevarán la no devolución del importe pagado</strong> al formalizar la reserva.</p>
-              </div>
-
-              <div>
-                <h3 className="text-lg font-semibold text-foreground mb-3 flex items-center gap-2">
-                  <Edit className="w-5 h-5 text-primary" />
-                  Cambios de Reserva
-                </h3>
-                <div className="space-y-3 text-sm text-muted-foreground">
-                  <p>Costa Brava Rent a Boat acepta el cambio de una reserva únicamente con una comunicación previa por escrito a:</p>
-                  <ul className="list-disc pl-6 space-y-1">
-                    <li>Email: costabravarentaboat@gmail.com</li>
-                    <li>WhatsApp: +34 611 500 372</li>
-                  </ul>
-                  <p><strong>Requisito:</strong> Mínimo de 7 días de antelación al día del alquiler.</p>
-                </div>
-              </div>
-
-              <div>
-                <h3 className="text-lg font-semibold text-foreground mb-3 flex items-center gap-2">
-                  <Cloud className="w-5 h-5 text-primary" />
-                  Condiciones Meteorológicas
-                </h3>
-                <div className="space-y-3 text-sm text-muted-foreground">
-                  <p>Cuando el alquiler no pueda disfrutarse por motivos climatológicos justificados y verificados por Costa Brava Rent a Boat, se ofrecerá al cliente un cambio de fecha, sujeto a disponibilidad.</p>
-                  <p>Si el cliente decide no salir a navegar aun siendo positivo el veredicto de nuestro personal, no se efectuará la devolución del importe pagado.</p>
-                </div>
-              </div>
-
-            </CardContent>
-          </Card>
-
-          {/* Averías y Responsabilidades */}
-          <Card className="mb-6 sm:mb-8">
-            <CardHeader>
-              <CardTitle className="text-xl">
-                Averías y Responsabilidades
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-6">
-              
-              <div>
-                <h3 className="text-lg font-semibold text-foreground mb-3 flex items-center gap-2">
-                  <Wrench className="w-5 h-5 text-primary" />
-                  En Caso de Avería
-                </h3>
-                <div className="space-y-3 text-sm text-muted-foreground">
-                  <p>En caso de avería, colisión o pérdida de material, el arrendatario deberá avisar inmediatamente a Costa Brava Rent a Boat.</p>
-                  <p>Si la avería no es imputable al arrendatario, Costa Brava Rent a Boat reembolsará las horas no navegadas o entregará una embarcación de características similares.</p>
-                  <p>Si la avería es imputable al contratante, éste deberá abonar los gastos de remolque y reparaciones necesarias.</p>
-                </div>
-              </div>
-
-              <div>
-                <h3 className="text-lg font-semibold text-foreground mb-3 flex items-center gap-2">
-                  <Scale className="w-5 h-5 text-primary" />
-                  Limitación de Responsabilidad
-                </h3>
-                <div className="space-y-3 text-sm text-muted-foreground">
-                  <p>La empresa no asume responsabilidad alguna por pérdidas o daños en cualquiera de los bienes que el arrendatario u otra persona olvide, deposite o transporte en la embarcación.</p>
-                  <p>El arrendatario asume el riesgo de tales pérdidas y exime a la empresa de toda reclamación por retrasos consecuencia de avería o cambios meteorológicos imprevistas.</p>
-                </div>
-              </div>
-
-            </CardContent>
-          </Card>
-
-          {/* Derecho de desistimiento */}
-          <Card className="mb-6 sm:mb-8">
-            <CardHeader>
-              <CardTitle className="text-xl flex items-center gap-3">
-                <ArrowLeftRight className="w-5 h-5 text-primary" />
-                Derecho de Desistimiento
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-3 text-sm text-muted-foreground">
-              <p>De conformidad con el artículo 16.l) de la Directiva 2011/83/UE y el Real Decreto Legislativo 1/2007, de 16 de noviembre, por el que se aprueba el Texto Refundido de la Ley General para la Defensa de los Consumidores y Usuarios (TRLGDCU), <strong>el derecho de desistimiento de 14 días no es aplicable</strong> a los contratos de servicios de alquiler de embarcaciones recreativas para una fecha o período concreto.</p>
-              <p>Esto se debe a que los servicios de alquiler náutico están vinculados a actividades de ocio en fechas específicas, excepción expresamente prevista en el art. 103.l) del TRLGDCU.</p>
-              <p>Para cancelaciones y cambios, consulta nuestra{" "}
-                <a href={localizedPath("termsConditions") + "#cancelaciones-cambios"} className="text-primary underline">
-                  Política de Cancelación
-                </a>.
-              </p>
-            </CardContent>
-          </Card>
-
-          {/* Resolución de disputas — ODR */}
-          <Card className="mb-6 sm:mb-8">
-            <CardHeader>
-              <CardTitle className="text-xl flex items-center gap-3">
-                <Scale className="w-5 h-5 text-primary" />
-                Resolución de Litigios en Línea (ODR)
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-3 text-sm text-muted-foreground">
-              <p>De conformidad con el Reglamento (UE) N.º 524/2013, si usted es consumidor residente en la Unión Europea y tiene una reclamación respecto a un servicio contratado a través de internet, puede utilizar la plataforma de Resolución de Litigios en Línea de la Comisión Europea:</p>
-              <p>
-                <a
-                  href="https://ec.europa.eu/consumers/odr"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-primary underline break-all"
-                >
-                  https://ec.europa.eu/consumers/odr
-                </a>
-              </p>
-              <p>Nuestro email de contacto para reclamaciones:{" "}
-                <a href="mailto:costabravarentaboat@gmail.com" className="text-primary underline">
-                  costabravarentaboat@gmail.com
-                </a>
-              </p>
-            </CardContent>
-          </Card>
-
-          {/* Legislación */}
-          <Card className="mb-6 sm:mb-8">
-            <CardHeader>
-              <CardTitle className="text-xl">
-                Legislación Aplicable
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-sm text-muted-foreground">Para cualquier controversia que pudiera surgir del contenido o interpretación del presente documento, ambas partes se comprometen a los jueces y tribunales de Blanes y superiores jerarquías correspondientes.</p>
-            </CardContent>
-          </Card>
-
-        </div>
-      </div>
-
-      <Footer />
-    </div>
+      <LegalPageLayout
+        heroTitle={page?.heroTitle ?? "Términos y Condiciones"}
+        lastUpdated={page?.lastUpdated ?? "Última actualización: febrero de 2026"}
+        sections={page?.sections ?? []}
+      />
+    </>
   );
 }

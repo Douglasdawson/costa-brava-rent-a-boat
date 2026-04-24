@@ -2981,4 +2981,159 @@ export const fr: Translations = {
     relatedTossaName: 'Tossa de Mar',
     relatedTossaDesc: 'Vila Vella médiévale et les plus belles criques de la Costa Brava.',
   },
+  legalPages: {
+    legalDisclaimer: 'Ce texte est disponible en plusieurs langues. En cas de divergence ou d\'ambiguïté dans la traduction, la version en castillan (espagnol) prévaut à toutes fins juridiques.',
+    privacy: {
+      heroTitle: 'Politique de Confidentialité',
+      lastUpdated: 'Dernière mise à jour : février 2026',
+      sections: [
+        {
+          title: '1. Responsable du traitement',
+          body: 'Identité : Costa Brava Rent a Boat\nNIF : B22566327\nAdresse : Port de Blanes, Gérone, Espagne\nTéléphone : +34 611 500 372\nEmail de contact : costabravarentaboat@gmail.com',
+        },
+        {
+          title: '2. Données personnelles que nous collectons',
+          body: 'Données fournies par l\'utilisateur lors d\'une réservation :\n- Nom et prénoms\n- Numéro de téléphone\n- Adresse e-mail\n- Date et heure de la réservation, embarcation sélectionnée et nombre de personnes\n\nDonnées collectées automatiquement :\n- Données de navigation (adresse IP, type de navigateur, pages visitées) via Google Analytics\n- Cookies techniques et de préférence (langue sélectionnée)\n\nNous ne collectons pas de données de catégories particulières (santé, origine raciale, opinions politiques, etc.) ni de données de mineurs de moins de 14 ans.',
+        },
+        {
+          title: '3. Finalité du traitement et base juridique',
+          body: 'Nous traitons vos données pour les finalités et bases juridiques suivantes (RGPD) :\n\n- Gestion et confirmation des réservations d\'embarcations — Art. 6.1.b, exécution d\'un contrat\n- Envoi de rappels et communications relatives à la réservation — Art. 6.1.b, exécution d\'un contrat\n- Service client et résolution d\'incidents — Art. 6.1.b et 6.1.f, exécution de contrat / intérêt légitime\n- Analyse statistique du trafic web (Google Analytics) — Art. 6.1.a, consentement (bannière de cookies)\n- Respect des obligations légales et fiscales — Art. 6.1.c, obligation légale\n\nNous ne prenons pas de décisions automatisées et n\'établissons pas de profils à des fins de segmentation publicitaire à partir de vos données de réservation.',
+        },
+        {
+          title: '4. Durées de conservation',
+          body: '- Données de réservation : 5 ans à compter de la date du service (RD 1619/2012, Loi 58/2003 Générale des Impôts).\n- Communications par WhatsApp/e-mail : 1 an à compter de la dernière communication, sauf réclamation en cours.\n- Données d\'analyse web (Google Analytics) : selon la configuration de rétention de Google Analytics (par défaut, 14 mois).\n- Cookies de session : supprimés à la fermeture du navigateur.',
+        },
+        {
+          title: '5. Destinataires et transferts internationaux',
+          body: 'Vos données peuvent être communiquées aux sous-traitants suivants :\n\n- SendGrid (Twilio Inc., États-Unis) : Service d\'envoi d\'e-mails de confirmation et de rappels. Transfert international couvert par les Clauses Contractuelles Types approuvées par la Commission Européenne.\n- Google LLC (États-Unis) : Google Analytics et Google Tag Manager. Uniquement si l\'utilisateur a donné son consentement via la bannière de cookies. Transfert couvert par le Cadre de Confidentialité des Données UE-États-Unis.\n- Stripe Inc. (États-Unis) : Traitement des paiements par carte, le cas échéant. Nous ne stockons pas les données de carte ; Stripe agit en tant que sous-traitant indépendant sous PCI-DSS.\n- WhatsApp (Meta Platforms Ireland Ltd.) : Canal de communication pour la gestion des réservations. Les communications initiées par l\'utilisateur sur WhatsApp sont soumises à la politique de confidentialité de WhatsApp.\n\nNous ne vendons ni ne cédons vos données à des tiers à des fins commerciales.',
+        },
+        {
+          title: '6. Vos droits (ARCO+)',
+          body: 'En vertu des articles 15 à 22 du RGPD et de la LOPD-GDD, vous avez le droit de :\n\n- Accès : obtenir la confirmation que nous traitons vos données et, le cas échéant, une copie.\n- Rectification : demander la correction de données inexactes.\n- Suppression (« droit à l\'oubli ») : demander l\'effacement de vos données lorsqu\'elles ne sont plus nécessaires aux finalités pour lesquelles elles ont été collectées, sauf obligation légale de conservation.\n- Opposition : vous opposer au traitement fondé sur l\'intérêt légitime.\n- Limitation du traitement : demander que nous suspendions le traitement pendant la résolution d\'une réclamation.\n- Portabilité : recevoir vos données dans un format structuré et lisible par machine.\n- Retrait du consentement : vous pouvez retirer à tout moment le consentement donné (par ex., pour les cookies analytiques) sans que cela n\'affecte la licéité du traitement antérieur.\n\nComment exercer vos droits : envoyez un e-mail à costabravarentaboat@gmail.com en indiquant le droit que vous souhaitez exercer et en joignant une copie de votre pièce d\'identité ou autre document d\'identification. Nous vous répondrons dans un délai maximum d\'1 mois.\n\nSi vous estimez que le traitement n\'est pas conforme au RGPD, vous avez le droit de déposer une réclamation auprès de l\'Agence Espagnole de Protection des Données (AEPD) : www.aepd.es',
+        },
+        {
+          title: '7. Mesures de sécurité',
+          body: 'Nous appliquons des mesures techniques et organisationnelles appropriées pour protéger vos données contre les accès non autorisés, la perte ou la destruction accidentelle, conformément à l\'art. 32 du RGPD :\n- Transmission chiffrée via HTTPS (TLS 1.2+)\n- Accès restreint aux données par authentification\n- En-têtes de sécurité HTTP (Content-Security-Policy, X-Frame-Options, etc.)\n- Limitation du débit de requêtes (rate limiting) pour prévenir les attaques',
+        },
+        {
+          title: '8. Cookies',
+          body: 'Pour des informations détaillées sur les cookies que nous utilisons, consultez notre Politique relative aux Cookies.',
+        },
+        {
+          title: '9. Modifications de cette politique',
+          body: 'Nous pouvons mettre à jour cette politique de confidentialité pour refléter des changements légaux ou dans nos services. Nous vous informerons des changements importants par un avis sur le site web. La date de dernière mise à jour apparaîtra toujours au début de ce document.',
+        },
+      ],
+    },
+    cookies: {
+      heroTitle: 'Politique relative aux Cookies',
+      lastUpdated: 'Dernière mise à jour : février 2026',
+      sections: [
+        {
+          title: 'Introduction',
+          body: 'Conformément aux dispositions de l\'article 22.2 de la Loi 34/2002, du 11 juillet, relative aux Services de la Société de l\'Information et au Commerce Électronique, ce site web vous informe, dans cette section, de la politique de collecte et de traitement des cookies.',
+        },
+        {
+          title: 'Qu\'est-ce qu\'un cookie ?',
+          body: 'Un cookie est un fichier qui se télécharge sur votre ordinateur lors de l\'accès à certaines pages web. Les cookies permettent à une page web, entre autres choses, de stocker et de récupérer des informations sur les habitudes de navigation d\'un utilisateur ou de son équipement et, selon les informations qu\'ils contiennent et la façon dont vous utilisez votre équipement, ils peuvent être utilisés pour reconnaître l\'utilisateur.',
+        },
+        {
+          title: 'Quels types de cookies ce site web utilise-t-il ?',
+          body: 'Ce site web utilise les types de cookies suivants :\n\nCookies d\'analyse : Ce sont ceux qui, traités par nous ou par des tiers, nous permettent de quantifier le nombre d\'utilisateurs et ainsi de réaliser la mesure et l\'analyse statistique de l\'utilisation que font les utilisateurs du service proposé.\n\nCookies techniques : Ils permettent à l\'utilisateur de naviguer dans l\'espace restreint et d\'utiliser ses différentes fonctions, comme par exemple effectuer le processus de réservation d\'une embarcation.\n\nCookies de personnalisation : Ils permettent à l\'utilisateur d\'accéder au service avec certaines caractéristiques générales prédéfinies en fonction d\'une série de critères tels que la langue ou le type de navigateur.\n\nCookies publicitaires : Traités par ce site ou par des tiers, ils permettent de gérer de la manière la plus efficace possible l\'offre des espaces publicitaires présents sur la page web.\n\nCookies tiers : Nous utilisons les services de Google Analytics pour nos statistiques. Certains cookies sont essentiels au fonctionnement du site. Notre site inclut d\'autres fonctionnalités fournies par des tiers (partage sur les réseaux sociaux tels que Facebook, Instagram ou TikTok).',
+        },
+        {
+          title: 'Désactiver les cookies',
+          body: 'Vous pouvez autoriser, bloquer ou supprimer les cookies installés sur votre équipement en configurant les options du navigateur installé sur votre ordinateur. Dans la plupart des navigateurs web, il est possible d\'autoriser, de bloquer ou de supprimer les cookies installés sur votre équipement.\n\nVous pouvez accéder aux paramètres des navigateurs web les plus courants pour accepter, installer ou désactiver les cookies : Google Chrome, Microsoft Internet Explorer, Mozilla Firefox, Safari (Apple), Opera.',
+        },
+        {
+          title: 'Avertissement concernant la suppression des cookies',
+          body: 'Vous pouvez supprimer et bloquer tous les cookies de ce site, mais une partie du site ne fonctionnera pas ou la qualité de la page web pourra être affectée.',
+        },
+        {
+          title: 'Contact',
+          body: 'Si vous avez des questions concernant notre politique relative aux cookies, vous pouvez nous contacter via nos canaux de contact disponibles dans la section contact du site web.',
+        },
+      ],
+    },
+    terms: {
+      heroTitle: 'Conditions Générales',
+      lastUpdated: 'Dernière mise à jour : février 2026',
+      sections: [
+        {
+          title: '1. Identification du titulaire',
+          body: 'Costa Brava Rent a Boat\nNIF : B22566327\nSiège social : Port de Blanes, Gérone, Espagne\nTéléphone de contact : +34 611 500 372\nAdresse e-mail : costabravarentaboat@gmail.com\nActivité : location d\'embarcations de plaisance (avec et sans permis nautique) au Port de Blanes, Costa Brava.',
+        },
+        {
+          title: '2. Objet',
+          body: 'Les présentes Conditions Générales régissent la relation contractuelle entre Costa Brava Rent a Boat (ci-après, « le prestataire ») et toute personne utilisant le site web costabravarentaboat.com ou contractant les services de location d\'embarcations (ci-après, « le client »).\n\nL\'utilisation du site web et la formalisation d\'une réservation impliquent l\'acceptation pleine et entière des présentes conditions.',
+        },
+        {
+          title: '3. Processus de réservation',
+          body: 'Le site web recueille les demandes de réservation. Le client remplit un formulaire avec la date, le bateau, la durée et les coordonnées. Le prestataire confirmera manuellement la disponibilité et enverra un message de confirmation par WhatsApp ou par e-mail.\n\nLe paiement est géré manuellement en personne au Port de Blanes, au moment de l\'embarquement. Aucun prélèvement automatique en ligne n\'est effectué.\n\nLa réservation n\'est ferme qu\'après confirmation explicite du prestataire.',
+        },
+        {
+          title: '4. Conditions requises pour le locataire',
+          body: '- Le capitaine doit être âgé de plus de 18 ans et présenter une carte d\'identité ou un passeport en cours de validité.\n- Pour les embarcations avec permis, le capitaine doit présenter le permis nautique original (LBN, PER, PNB, Capitaine de Yacht ou équivalent européen).\n- Pour les embarcations sans permis, aucun titre n\'est requis, mais le capitaine recevra une formation de 15 minutes avant de prendre la mer.\n- Les mineurs doivent être accompagnés d\'un adulte responsable et porter un gilet de sauvetage obligatoire pendant la navigation.',
+        },
+        {
+          title: '5. Caution et conditions de paiement',
+          body: 'Avant de prendre la mer, une caution est versée (200-500 € selon l\'embarcation) qui est restituée intégralement au retour si l\'embarcation est rendue dans le même état qu\'elle a été reçue.\n\nEn cas de dommages, de perte de matériel ou de non-respect de la zone de navigation autorisée, le prestataire pourra retenir tout ou partie de la caution pour couvrir les frais.',
+        },
+        {
+          title: '6. Zone de navigation et durée',
+          body: 'Zones autorisées : nord jusqu\'à Playa de Fenals (sans permis) ou Sant Feliu de Guíxols (avec permis) ; sud jusqu\'à la fin de la plage de Blanes (sans permis) ou sans limite (avec permis). Maximum 2 milles nautiques de la côte pour les bateaux sans permis, à 5 nœuds maximum.\n\nLes embarcations devront revenir au Port de Blanes avant la fin de la tranche horaire contractée. Les retards non justifiés sont facturés 50 €/heure supplémentaire.',
+        },
+        {
+          title: '7. Politique d\'annulation',
+          body: '- Annulation plus de 48 h à l\'avance : remboursement à 100 %.\n- Annulation entre 24 et 48 h avant : remboursement à 50 %.\n- Annulation moins de 24 h avant : aucun remboursement.\n- Mauvais temps (vent supérieur à force 4, pluie intense ou alerte maritime) : reprogrammation gratuite ou remboursement à 100 %.\n\nLa décision de suspension pour conditions météorologiques relève du prestataire et est prise selon des critères de sécurité.',
+        },
+        {
+          title: '8. Obligations du client',
+          body: 'Le client s\'engage à :\n- Utiliser l\'embarcation conformément aux instructions reçues lors du briefing de sécurité.\n- Ne pas dépasser la capacité maximale autorisée pour chaque embarcation.\n- Ne pas pratiquer d\'activités interdites (pêche illégale, accès aux réserves marines protégées, consommation de substances pendant la navigation, etc.).\n- Signaler immédiatement au prestataire tout incident, panne ou accident.\n- Respecter la réglementation de la Capitainerie Maritime de Gérone et les signalisations maritimes.',
+        },
+        {
+          title: '9. Responsabilité et assurance',
+          body: 'Toutes les embarcations sont couvertes par une assurance tous risques pour l\'embarcation et les occupants, conformément à la réglementation espagnole sur les embarcations de plaisance. L\'assurance couvre les dommages accidentels pendant la navigation dans la zone autorisée.\n\nNe sont pas couverts les dommages résultant d\'une utilisation négligente, de l\'ivresse, d\'une navigation hors de la zone autorisée, de conditions météorologiques défavorables ignorées après avertissement, ou du non-respect des consignes de sécurité.',
+        },
+        {
+          title: '10. Propriété intellectuelle',
+          body: 'Tous les contenus du site web (textes, images, logos, marques, design) sont la propriété de Costa Brava Rent a Boat ou de tiers titulaires de licences. Leur reproduction, distribution ou modification est interdite sans autorisation écrite expresse.',
+        },
+        {
+          title: '11. Législation applicable et juridiction',
+          body: 'Ces conditions sont régies par la législation espagnole. Pour tout litige, les parties se soumettent aux Tribunaux de Gérone, avec renonciation expresse à tout autre for qui pourrait leur correspondre.\n\nLe client consommateur pourra recourir à la Plateforme de Règlement en Ligne des Litiges de la Commission Européenne (https://ec.europa.eu/consumers/odr) pour la résolution extrajudiciaire des conflits.',
+        },
+        {
+          title: '12. Modifications',
+          body: 'Costa Brava Rent a Boat se réserve le droit de modifier ces conditions à tout moment, en publiant la nouvelle version sur le site web. La version applicable est celle en vigueur au moment de la réservation.',
+        },
+      ],
+    },
+    accessibility: {
+      heroTitle: 'Déclaration d\'Accessibilité',
+      lastUpdated: 'Conformément au Décret Royal 1112/2018, du 7 septembre',
+      sections: [
+        {
+          title: 'Engagement en matière d\'accessibilité',
+          body: 'Costa Brava Rent a Boat s\'engage à rendre son site web costabravarentaboat.com accessible conformément au Décret Royal 1112/2018, du 7 septembre, sur l\'accessibilité des sites web et des applications mobiles du secteur public, et en tenant compte des Règles pour l\'accessibilité des contenus Web (WCAG) 2.1, niveau AA.\n\nBien que ce site soit de nature privée et ne soit pas strictement soumis au RD 1112/2018 (qui s\'applique principalement au secteur public), nous nous engageons volontairement à atteindre et à maintenir le niveau de conformité WCAG 2.1 AA au bénéfice de tous nos utilisateurs.',
+        },
+        {
+          title: 'État de conformité',
+          body: 'Ce site web est partiellement conforme aux WCAG 2.1, niveau AA. Les non-conformités connues sont détaillées ci-dessous.\n\nAspects conformes :\n- Attributs aria-label sur tous les éléments interactifs\n- Attributs alt sur les images\n- Navigation complète au clavier dans les formulaires et les menus déroulants personnalisés\n- Taille minimale des zones tactiles (44×44 px)\n- Rapport de contraste de couleur WCAG AA pour le texte principal\n- Formulaires avec aria-describedby, aria-invalid et aria-required\n- Structure sémantique avec en-têtes hiérarchisés\n- Menu de navigation avec aria-expanded, aria-hidden et aria-current\n- Régions repères (nav, main, footer) sur toutes les pages\n- Boîtes de dialogue modales avec role="dialog", aria-modal et gestion du focus\n- Menus déroulants avec rôles ARIA (combobox, listbox, option) et navigation avec les flèches\n- Carrousels avec aria-live="polite" et aria-roledescription\n- Icônes décoratives marquées avec aria-hidden="true"\n- Tableaux avec scope="col" dans les en-têtes\n- Galerie avec boutons sémantiques accessibles au clavier',
+        },
+        {
+          title: 'Non-conformités connues',
+          body: '- Contraste des espaces réservés : certains champs de formulaire présentent un texte d\'espace réservé avec un contraste inférieur à 4.5:1 (limitation du navigateur).\n- En-tête CSP avec scripts inline : la politique de sécurité du contenu inclut unsafe-inline requis par Google Tag Manager. Nous évaluons des alternatives basées sur nonce.\n\nDernière audit réalisé : mars 2026. Prochaine révision prévue : septembre 2026.',
+        },
+        {
+          title: 'Contact et réclamations',
+          body: 'Si vous détectez une barrière d\'accessibilité sur notre site web ou si vous avez besoin d\'accéder à du contenu dans un format alternatif, vous pouvez nous contacter :\n- E-mail : costabravarentaboat@gmail.com\n- Téléphone : +34 611 500 372\n\nNous nous engageons à répondre dans un délai maximum de 5 jours ouvrables.\n\nSi vous ne recevez pas de réponse satisfaisante, vous pouvez déposer une réclamation via le Portail de l\'Administration Générale de l\'État (https://administracion.gob.es).',
+        },
+        {
+          title: 'Date de mise à jour',
+          body: 'Cette déclaration a été mise à jour le 17 mars 2026 par auto-évaluation.',
+        },
+      ],
+    },
+  },
 };

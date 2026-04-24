@@ -2069,6 +2069,14 @@ export interface Translations {
     capitan_yate: string;
   };
 
+  legalPages?: {
+    legalDisclaimer: string;
+    privacy: { heroTitle: string; lastUpdated: string; sections: Array<{ title: string; body: string }> };
+    cookies: { heroTitle: string; lastUpdated: string; sections: Array<{ title: string; body: string }> };
+    terms: { heroTitle: string; lastUpdated: string; sections: Array<{ title: string; body: string }> };
+    accessibility: { heroTitle: string; lastUpdated: string; sections: Array<{ title: string; body: string }> };
+  };
+
   glossaryPage?: {
     seo: { title: string; description: string; keywords: string };
     breadcrumbName: string;

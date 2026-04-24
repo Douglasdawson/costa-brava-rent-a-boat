@@ -1,4 +1,4 @@
-import { describe, it, expect, vi, beforeEach } from "vitest";
+import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import express from "express";
 import request from "supertest";
 
@@ -21,10 +21,17 @@ vi.mock("@modelcontextprotocol/sdk/server/mcp.js", () => {
   return { McpServer };
 });
 
+const transportState = vi.hoisted(() => ({ hangNext: false }));
+
 vi.mock("@modelcontextprotocol/sdk/server/streamableHttp.js", () => {
   class StreamableHTTPServerTransport {
     constructor(_opts: unknown) {}
     async handleRequest(_req: unknown, res: { status: (n: number) => { json: (b: unknown) => void } }, body: { id?: number }): Promise<void> {
+      if (transportState.hangNext) {
+        return new Promise<void>(() => {
+          /* never resolves — simulates a hung tool call */
+        });
+      }
       res.status(200).json({ jsonrpc: "2.0", id: body?.id ?? null, result: "ok" });
     }
     async close(): Promise<void> {}
@@ -44,6 +51,7 @@ function makeApp() {
 describe("seo-autopilot rate limits", () => {
   beforeEach(() => {
     vi.clearAllMocks();
+    transportState.hangNext = false;
   });
 
   it("limits the same token to 60 req/min regardless of IP", async () => {
@@ -78,6 +86,42 @@ describe("seo-autopilot rate limits", () => {
       .set("X-Forwarded-For", ip)
       .send({ jsonrpc: "2.0", id: 1, method: "ping" });
     expect(r.status).not.toBe(429);
+    expect(r.status).toBe(200);
+  });
+});
+
+describe("seo-autopilot request timeout", () => {
+  const ORIGINAL_TIMEOUT = process.env.MCP_REQUEST_TIMEOUT_MS;
+
+  beforeEach(() => {
+    vi.clearAllMocks();
+    transportState.hangNext = false;
+    process.env.MCP_REQUEST_TIMEOUT_MS = "150";
+  });
+
+  afterEach(() => {
+    if (ORIGINAL_TIMEOUT === undefined) delete process.env.MCP_REQUEST_TIMEOUT_MS;
+    else process.env.MCP_REQUEST_TIMEOUT_MS = ORIGINAL_TIMEOUT;
+  });
+
+  it("returns 504 when handler hangs longer than the timeout", async () => {
+    transportState.hangNext = true;
+    const app = makeApp();
+    const r = await request(app)
+      .post("/mcp")
+      .set("Authorization", "Bearer good")
+      .set("X-Forwarded-For", "7.7.7.7")
+      .send({ jsonrpc: "2.0", id: 99, method: "stuck" });
+    expect(r.status).toBe(504);
+  }, 5_000);
+
+  it("does not 504 when handler responds promptly", async () => {
+    const app = makeApp();
+    const r = await request(app)
+      .post("/mcp")
+      .set("Authorization", "Bearer good")
+      .set("X-Forwarded-For", "7.7.7.8")
+      .send({ jsonrpc: "2.0", id: 1, method: "ping" });
     expect(r.status).toBe(200);
   });
 });

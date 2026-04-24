@@ -123,6 +123,11 @@ function makeTokenRateLimiter() {
 // ---------------------------------------------------------------------------
 // Per-request MCP handler
 // ---------------------------------------------------------------------------
+function getRequestTimeoutMs(): number {
+  const raw = Number(process.env.MCP_REQUEST_TIMEOUT_MS);
+  return Number.isFinite(raw) && raw > 0 ? raw : 30_000;
+}
+
 async function handleMcpRequest(req: AuthedRequest, res: Response): Promise<void> {
   const started = Date.now();
   const ctx: ToolContext = {
@@ -138,8 +143,30 @@ async function handleMcpRequest(req: AuthedRequest, res: Response): Promise<void
     sessionIdGenerator: undefined,
   });
 
-  // Clean up transport when the client disconnects.
+  // Hard timeout — frees the connection if a tool hangs forever, otherwise
+  // Cloud Run keeps the request alive until its own (much longer) limit.
+  const timeoutMs = getRequestTimeoutMs();
+  const timeout = setTimeout(() => {
+    if (res.writableEnded) return;
+    logger.warn("seo-autopilot MCP request timed out", {
+      tokenId: ctx.tokenId,
+      timeoutMs,
+      elapsedMs: Date.now() - started,
+    });
+    if (!res.headersSent) {
+      try {
+        res.status(504).json({ error: "request_timeout" });
+      } catch {
+        /* response already partially written; fall through to destroy */
+      }
+    }
+    res.destroy();
+  }, timeoutMs);
+
+  // Clean up timer + transport when the response closes (timeout, success, or
+  // client disconnect — all paths funnel through here).
   res.on("close", () => {
+    clearTimeout(timeout);
     transport.close().catch(() => undefined);
     server.close().catch(() => undefined);
   });

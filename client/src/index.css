@@ -206,11 +206,42 @@ body { overflow-x: hidden; }
   .dark .btn-elevated:hover { box-shadow: 0 6px 20px hsl(var(--foreground) / 0.2); }
   .dark .btn-elevated:active { box-shadow: 0 2px 8px hsl(var(--foreground) / 0.1); }
 
-  @keyframes savings-pulse {
-    0%, 100% { background-color: hsl(var(--foreground)); }
-    50% { background-color: hsl(var(--cta)); }
+  /* Savings pulse: opacity-based overlay instead of background-color animation (GPU-composited) */
+  .animate-savings-pulse {
+    position: relative;
+    overflow: hidden;
   }
-  .animate-savings-pulse { animation: savings-pulse 2s ease-in-out infinite; will-change: background-color; }
+  .animate-savings-pulse::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: hsl(var(--cta));
+    animation: savings-pulse 2s ease-in-out infinite;
+    pointer-events: none;
+    will-change: opacity;
+  }
+  @keyframes savings-pulse {
+    0%, 100% { opacity: 0; }
+    50% { opacity: 0.3; }
+  }
+
+  /* Step indicator pulse: GPU-composited ring using pseudo-element */
+  .step-pulse { position: relative; }
+  .step-pulse::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    border: 2px solid hsl(var(--foreground) / 0.4);
+    animation: pulse-subtle 2s ease-in-out infinite;
+    pointer-events: none;
+    will-change: transform, opacity;
+  }
+  @keyframes pulse-subtle {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.4); opacity: 0; }
+  }
 
   /* Compositable CTA pulse: uses transform+opacity (GPU) instead of box-shadow (CPU) */
   .cta-pulse { position: relative; }

@@ -755,7 +755,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
             <Button
               onClick={() => handleReservation()}
               size="sm"
-              className="bg-primary hover:bg-primary/90 text-white rounded-full px-5 h-11 text-xs font-semibold"
+              className="bg-primary hover:bg-primary/90 text-white rounded-full px-5 h-11 text-xs font-semibold transition-colors"
               data-testid="button-price-pill-reserve"
             >
               {t.hero.bookNow}
@@ -944,7 +944,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button
                   onClick={() => handleReservation()}
-                  className="bg-primary hover:bg-primary/90 text-white px-8 py-3"
+                  className="bg-primary hover:bg-primary/90 text-white px-8 py-3 transition-colors"
                   data-testid="button-make-reservation"
                 >
                   <Calendar className="w-4 h-4 mr-2" />
@@ -1387,7 +1387,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
             <button
               onClick={handleWhatsApp}
               tabIndex={showStickyCTA && !isBookingModalOpen ? 0 : -1}
-              className="w-full text-xs text-primary hover:text-primary/80 flex items-center justify-center gap-1.5 py-1"
+              className="w-full text-xs text-primary hover:text-primary/80 flex items-center justify-center gap-1.5 py-1 transition-colors"
             >
               <SiWhatsapp className="w-3.5 h-3.5 text-[#25D366]" />
               {t.contact?.whatsapp || "Consultar por WhatsApp"}
@@ -1403,7 +1403,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
             <Button
               variant="ghost"
               size="icon"
-              className="absolute top-2 right-2 z-10 text-white hover:bg-white/20"
+              className="absolute top-2 right-2 z-10 text-white hover:bg-white/20 transition-colors"
               onClick={() => setLightboxOpen(false)}
               aria-label="Close lightbox"
             >
@@ -1421,7 +1421,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                 <Button
                   variant="ghost"
                   size="icon"
-                  className="absolute left-2 top-1/2 -translate-y-1/2 text-white hover:bg-white/20"
+                  className="absolute left-2 top-1/2 -translate-y-1/2 text-white hover:bg-white/20 transition-colors"
                   onClick={prevImage}
                   aria-label="Previous image"
                 >
@@ -1430,7 +1430,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                 <Button
                   variant="ghost"
                   size="icon"
-                  className="absolute right-2 top-1/2 -translate-y-1/2 text-white hover:bg-white/20"
+                  className="absolute right-2 top-1/2 -translate-y-1/2 text-white hover:bg-white/20 transition-colors"
                   onClick={nextImage}
                   aria-label="Next image"
                 >

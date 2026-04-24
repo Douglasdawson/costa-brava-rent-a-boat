@@ -42,7 +42,7 @@ export default function FeaturesSection() {
   ];
 
   return (
-    <section ref={revealRef} className={`py-16 sm:py-24 lg:py-32 bg-background transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+    <section ref={revealRef} className={`py-16 sm:py-24 lg:py-32 bg-background transition-[opacity,transform] duration-500 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
       <div className="container mx-auto px-3 sm:px-4 max-w-7xl">
         {/* Main Features */}
         <div className="text-center mb-8 sm:mb-12 lg:mb-16">

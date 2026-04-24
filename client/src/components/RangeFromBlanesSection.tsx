@@ -40,7 +40,7 @@ export default function RangeFromBlanesSection({ variant = "home" }: RangeFromBl
   return (
     <section
       ref={revealRef}
-      className={`py-16 sm:py-20 lg:py-24 bg-background transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+      className={`py-16 sm:py-20 lg:py-24 bg-background transition-[opacity,transform] duration-500 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
       aria-labelledby="range-from-blanes-title"
     >
       <div className="container mx-auto px-4 sm:px-6 max-w-6xl">

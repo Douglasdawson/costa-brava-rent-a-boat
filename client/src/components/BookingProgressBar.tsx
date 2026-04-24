@@ -32,7 +32,7 @@ export default function BookingProgressBar({
                       ${isComplete
                         ? "bg-foreground text-white"
                         : isActive
-                        ? "bg-foreground text-white ring-[3px] ring-foreground/30 animate-pulse-subtle"
+                        ? "bg-foreground text-white step-pulse"
                         : "bg-transparent border-2 border-border text-muted-foreground"
                       }
                     `}

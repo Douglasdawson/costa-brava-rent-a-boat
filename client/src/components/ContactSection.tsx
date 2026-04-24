@@ -13,7 +13,7 @@ export default function ContactSection() {
   const { ref: revealRef, isVisible } = useScrollReveal();
 
   return (
-    <section ref={revealRef} className={`py-12 sm:py-16 lg:py-20 bg-background transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`} id="contact">
+    <section ref={revealRef} className={`py-12 sm:py-16 lg:py-20 bg-background transition-[opacity,transform] duration-500 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`} id="contact">
       <div className="container mx-auto px-3 sm:px-4 max-w-7xl">
         <div className="text-center mb-6 sm:mb-8 lg:mb-12">
           <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl font-semibold mb-2 sm:mb-3 lg:mb-4 text-foreground tracking-tight">
@@ -98,7 +98,7 @@ export default function ContactSection() {
               <div className="pt-6 border-t border-border">
                 <Button
                   onClick={() => { trackWhatsAppClick("contact_section"); window.open("https://wa.me/34611500372", "_blank"); }}
-                  className="w-full bg-[#25D366] hover:bg-[#128C7E] text-white px-6 py-3 h-12 text-base"
+                  className="w-full bg-[#25D366] hover:bg-[#128C7E] text-white px-6 py-3 h-12 text-base transition-colors"
                   data-testid="button-whatsapp-quick"
                   aria-label={t.a11y.checkWhatsApp}
                 >

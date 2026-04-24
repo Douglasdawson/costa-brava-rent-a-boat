@@ -183,7 +183,7 @@ export function BookingStepExperience({
                     onClick={() => setSelectedBoat(boat.id)}
                     aria-pressed={isSelected}
                     aria-label={`${boatName}, ${boatCapacity} ${t.booking.people}, ${t.boats.from} ${boatPrice}€`}
-                    className={`w-full text-left p-3 border rounded-lg cursor-pointer hover-elevate focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none ${
+                    className={`w-full text-left p-3 border rounded-lg cursor-pointer hover-elevate focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none transition-colors ${
                       isSelected
                         ? 'border-primary bg-primary/10'
                         : 'border-primary/20 hover:border-primary/20'
@@ -262,7 +262,7 @@ export function BookingStepExperience({
                         }
                       }}
                       disabled={!slot.available}
-                      className={`relative p-2 border rounded-lg text-sm font-medium text-center ${
+                      className={`relative p-2 border rounded-lg text-sm font-medium text-center transition-colors ${
                         selectedTime === slot.id
                           ? 'border-primary bg-primary/10 text-primary'
                           : !slot.available

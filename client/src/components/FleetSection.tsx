@@ -346,7 +346,7 @@ function FleetSection() {
   }, [setLocation, localizedPath]);
 
   return (
-    <section ref={revealRef} className={`py-16 sm:py-24 lg:py-32 bg-background transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`} id="fleet">
+    <section ref={revealRef} className={`py-16 sm:py-24 lg:py-32 bg-background transition-[opacity,transform] duration-500 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`} id="fleet">
       <div className="container mx-auto px-3 sm:px-4 max-w-7xl">
         <div className="text-center mb-8 sm:mb-12 lg:mb-16">
           <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl font-semibold text-foreground tracking-tight mb-2 sm:mb-3 lg:mb-4 px-2 text-balance">
@@ -760,8 +760,8 @@ function FleetSection() {
             <span>{t.reciprocity?.whatToBring}</span>
             <ChevronDown className={`w-4 h-4 text-muted-foreground transition-transform duration-200 ${checklistOpen ? 'rotate-180' : ''}`} />
           </button>
-          {checklistOpen && (
-            <ul className="mt-2 space-y-2 px-4 pb-2">
+          <div className={`grid transition-[grid-template-rows] duration-200 ease-out ${checklistOpen ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'}`}>
+            <ul className="overflow-hidden mt-2 space-y-2 px-4 pb-2">
               {[
                 t.reciprocity?.sunscreen,
                 t.reciprocity?.towels,
@@ -775,7 +775,7 @@ function FleetSection() {
                 </li>
               ))}
             </ul>
-          )}
+          </div>
         </div>
       </div>
 

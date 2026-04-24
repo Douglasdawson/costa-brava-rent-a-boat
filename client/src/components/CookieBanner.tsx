@@ -21,34 +21,40 @@ function updateGTMConsent(granted: boolean) {
 export default function CookieBanner() {
   const { localizedPath } = useLanguage();
   const [visible, setVisible] = useState(false);
+  const [animateIn, setAnimateIn] = useState(false);
 
   useEffect(() => {
     const stored = localStorage.getItem("cookieConsent");
     if (!stored) {
       setVisible(true);
+      requestAnimationFrame(() => requestAnimationFrame(() => setAnimateIn(true)));
     }
   }, []);
 
-  const handleAcceptAll = () => {
+  const dismiss = (action: () => void) => {
+    setAnimateIn(false);
+    setTimeout(() => {
+      action();
+      setVisible(false);
+    }, 200);
+  };
+
+  const handleAcceptAll = () => dismiss(() => {
     localStorage.setItem("cookieConsent", "accepted");
     updateGTMConsent(true);
     trackCookieConsent('accepted');
 
-    // Initialize Meta Pixel now that consent is granted
     const metaPixelId = document.querySelector('meta[name="fb-pixel-id"]')?.getAttribute('content');
     if (metaPixelId) {
       import('@/utils/meta-pixel').then(({ initMetaPixel }) => initMetaPixel(metaPixelId));
     }
+  });
 
-    setVisible(false);
-  };
-
-  const handleEssentialOnly = () => {
+  const handleEssentialOnly = () => dismiss(() => {
     localStorage.setItem("cookieConsent", "essential");
     updateGTMConsent(false);
     trackCookieConsent('essential');
-    setVisible(false);
-  };
+  });
 
   if (!visible) return null;
 
@@ -57,7 +63,9 @@ export default function CookieBanner() {
       role="dialog"
       aria-modal="true"
       aria-label="Aviso de cookies"
-      className="fixed bottom-0 left-0 right-0 z-[300] bg-background border-t border-border shadow-lg pb-safe"
+      className={`fixed bottom-0 left-0 right-0 z-[300] bg-background border-t border-border shadow-lg pb-safe transition-transform duration-200 ease-out ${
+        animateIn ? "translate-y-0" : "translate-y-full"
+      }`}
     >
       <div className="container mx-auto px-4 py-4 max-w-6xl">
         <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
@@ -67,14 +75,14 @@ export default function CookieBanner() {
               Utilizamos cookies propias y de terceros (Google Analytics) para mejorar tu experiencia y analizar el tráfico web. Puedes aceptar todas las cookies o solo las esenciales.{" "}
               <a
                 href={localizedPath("cookiesPolicy")}
-                className="text-primary underline hover:text-primary/80"
+                className="text-primary underline hover:text-primary/80 transition-colors"
               >
                 Política de Cookies
               </a>
               {" · "}
               <a
                 href={localizedPath("privacyPolicy")}
-                className="text-primary underline hover:text-primary/80"
+                className="text-primary underline hover:text-primary/80 transition-colors"
               >
                 Política de Privacidad
               </a>

@@ -42,6 +42,7 @@ export default function BookingFlow(props: BookingFlowProps) {
         {/* min-height prevents CLS when switching between steps */}
         <div className="min-h-[420px]" aria-live="polite" aria-atomic="false">
         {step === 1 && (
+          <div className="animate-in fade-in slide-in-from-bottom-2 duration-300">
           <BookingStepExperience
             selectedDate={state.selectedDate}
             setSelectedDate={state.setSelectedDate}
@@ -59,6 +60,7 @@ export default function BookingFlow(props: BookingFlowProps) {
             setStep={setStep}
             t={t}
           />
+          </div>
         )}
 
         {step === 2 && (() => {
@@ -67,6 +69,7 @@ export default function BookingFlow(props: BookingFlowProps) {
           const pricing = boat?.pricing as Record<string, { prices: Record<string, number> }> | null;
           const boatPrice = pricing ? (getMinActivePrice(pricing.BAJA?.prices) ?? 75) : 0;
           return (
+            <div className="animate-in fade-in slide-in-from-bottom-2 duration-300">
             <BookingStepPersonalize
               availableExtras={state.availableExtras}
               extras={state.extras}
@@ -90,10 +93,12 @@ export default function BookingFlow(props: BookingFlowProps) {
               setStep={setStep}
               t={t}
             />
+            </div>
           );
         })()}
 
         {step === 3 && (
+          <div className="animate-in fade-in slide-in-from-bottom-2 duration-300">
           <BookingStepPayment
             selectedDate={state.selectedDate}
             selectedTime={state.selectedTime}
@@ -113,6 +118,7 @@ export default function BookingFlow(props: BookingFlowProps) {
             handlePayment={handlePayment}
             t={t}
           />
+          </div>
         )}
         </div>
 

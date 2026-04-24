@@ -70,7 +70,7 @@ export function useBookingFlowState(props: BookingFlowProps) {
     customerPhone: initialCustomerData.phoneNumber || "",
     phonePrefix: initialCustomerData.phonePrefix || "+34",
     customerNationality: "",
-    numberOfPeople: 1
+    numberOfPeople: 2
   });
   const [isLoading, setIsLoading] = useState(false);
   const [phonePrefixSearch, setPhonePrefixSearch] = useState("");

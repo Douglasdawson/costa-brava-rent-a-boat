@@ -233,6 +233,7 @@ export const ru: Translations = {
   booking: {
     title: 'ОСТАВЬТЕ ЗАЯВКУ НА БРОНИРОВАНИЕ',
     modalSubtitle: 'Всего 2 минуты. Подтверждение через WhatsApp.',
+    seasonCountdown: 'Цены сезона 2026 поднимутся 1 июня · осталось {days} дней · подтвердите сегодня',
     selectBoat: 'Выбрать Лодку',
     dateTime: 'Дата и Время',
     customerDetails: 'Данные Клиента',

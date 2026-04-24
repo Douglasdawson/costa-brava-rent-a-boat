@@ -320,6 +320,7 @@ export interface Translations {
   booking: {
     title: string;
     modalSubtitle: string;
+    seasonCountdown?: string;
     selectBoat: string;
     dateTime: string;
     customerDetails: string;

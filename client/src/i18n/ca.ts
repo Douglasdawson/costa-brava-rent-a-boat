@@ -233,6 +233,7 @@ export const ca: Translations = {
   booking: {
     title: 'SOL·LICITA LA TEVA RESERVA',
     modalSubtitle: 'Només 2 minuts. Confirmem per WhatsApp.',
+    seasonCountdown: 'Els preus de la temporada 2026 pugen l\'1 de juny · queden {days} dies · confirma avui',
     selectBoat: 'Seleccionar Barca',
     dateTime: 'Data i Hora',
     customerDetails: 'Dades del Client',

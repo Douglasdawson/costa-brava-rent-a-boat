@@ -233,6 +233,7 @@ export const fr: Translations = {
   booking: {
     title: 'DEMANDEZ VOTRE RÉSERVATION',
     modalSubtitle: 'En seulement 2 minutes. Confirmation par WhatsApp.',
+    seasonCountdown: 'Les prix de la saison 2026 augmentent le 1er juin · il reste {days} jours · confirmez aujourd\'hui',
     selectBoat: 'Sélectionner Bateau',
     dateTime: 'Date et Heure',
     customerDetails: 'Détails Client',

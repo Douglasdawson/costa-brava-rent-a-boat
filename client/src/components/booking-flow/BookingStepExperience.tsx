@@ -302,19 +302,24 @@ export function BookingStepExperience({
                       const perPersonPerHour = perHour / boatCapacity;
                       const isBestValue = dur.id === bestValueId && availableDurations.length > 1;
                       const isPopularDuration = popularChoices && popularChoices.sampleSize > 0 && dur.id === popularChoices.popularDuration;
+                      const isDisabledOneHour = minDuration2h && dur.id === "1h";
 
                       return (
                         <button
                           key={dur.id}
                           onClick={() => {
+                            if (isDisabledOneHour) return;
                             userChangedDuration.current = true;
                             setDuration(dur.id);
                             trackDurationSelected(dur.id, selectedBoat);
                           }}
+                          disabled={isDisabledOneHour}
                           className={`relative p-3 border rounded-lg text-left transition-colors ${
-                            isSelected
-                              ? 'border-primary bg-primary/10'
-                              : 'border-primary/20 hover:border-primary/40'
+                            isDisabledOneHour
+                              ? 'border-primary/10 bg-muted/30 opacity-50 cursor-not-allowed'
+                              : isSelected
+                                ? 'border-primary bg-primary/10'
+                                : 'border-primary/20 hover:border-primary/40'
                           }`}
                           data-testid={`duration-card-${dur.id}`}
                         >

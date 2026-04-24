@@ -233,6 +233,7 @@ export const nl: Translations = {
   booking: {
     title: 'VRAAG JE RESERVERING AAN',
     modalSubtitle: 'Duurt maar 2 minuten. Bevestiging via WhatsApp.',
+    seasonCountdown: 'Prijzen seizoen 2026 stijgen op 1 juni · nog {days} dagen · bevestig vandaag',
     selectBoat: 'Boot Selecteren',
     dateTime: 'Datum & Tijd',
     customerDetails: 'Klantgegevens',

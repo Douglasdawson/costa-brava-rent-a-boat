@@ -46,6 +46,7 @@ const VALID_TABS = [
   "dashboard", "calendar", "bookings", "customers", "inquiries",
   "fleet", "maintenance", "inventory", "reports", "analytics", "gallery",
   "giftcards", "discounts", "blog", "employees", "config", "seo",
+  "autopilot", "competition",
 ];
 
 export default function CRMDashboard({ adminToken }: CRMDashboardProps) {

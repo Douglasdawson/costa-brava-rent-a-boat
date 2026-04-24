@@ -2884,6 +2884,20 @@ async function resolveMeta(pathname: string, lang: LangCode): Promise<ResolvedPa
       return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [service, faq, offerCatalog, breadcrumb] }, availableLanguages };
     }
 
+    // /boat-rental-costa-brava - EN landing for Costa Brava boat rental.
+    // Adds Service schema with AggregateRating + AggregateOffer so Google
+    // shows star snippet + "from €70" in SERP (already had rating client-side
+    // but lacked Offer — fixed via SSR @graph here).
+    else if (metaKey === "/boat-rental-costa-brava") {
+      const breadcrumb = buildBreadcrumb([homeCrumb, { name: "Boat Rental Costa Brava", url: `${BASE_URL}/boat-rental-costa-brava` }]);
+      const service = buildLandingService(
+        `Boat Rental Costa Brava ${SEASON_YEAR}`,
+        "Boat rental on the Costa Brava from Blanes port. License-free boats from 70 EUR/hour (fuel included). Licensed boats and private excursions with captain available. Up to 12 people. Hidden coves, snorkel spots and medieval coastal villages.",
+        { low: 70, high: 420 },
+      );
+      return { meta, jsonLd: { "@context": "https://schema.org", "@graph": [service, breadcrumb] }, availableLanguages };
+    }
+
     // /blog - CollectionPage schema
     else if (metaKey === "/blog") {
       const collectionPage = {

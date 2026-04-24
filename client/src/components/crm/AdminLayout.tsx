@@ -63,7 +63,7 @@ const ADMIN_TABS = [
   { id: "blog", label: "Blog", icon: FileText },
   { id: "giftcards", label: "Regalos", icon: Gift },
   { id: "discounts", label: "Descuentos", icon: Percent },
-  { id: "seo", label: "SEO Engine", icon: Search },
+  { id: "seo", label: "SEO Engine (beta)", icon: Search },
   { id: "autopilot", label: "Autopilot", icon: Zap },
   { id: "competition", label: "Competencia", icon: Swords },
 ];
@@ -143,7 +143,7 @@ export function AdminLayout({
       { id: "blog", label: "Blog", icon: FileText },
       { id: "giftcards", label: "Regalos", icon: Gift },
       { id: "discounts", label: "Descuentos", icon: Percent },
-      { id: "seo", label: "SEO Engine", icon: Search },
+      { id: "seo", label: "SEO Engine (beta)", icon: Search },
       { id: "autopilot", label: "Autopilot", icon: Zap },
     ].filter(t => canSeeTab(t.id));
     if (negocioTabs.length > 0) secondaryGroups.push({ label: "Negocio", tabs: negocioTabs });

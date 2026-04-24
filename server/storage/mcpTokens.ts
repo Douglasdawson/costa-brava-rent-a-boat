@@ -45,6 +45,45 @@ function prefixOf(raw: string): string {
   return raw.slice(0, 8);
 }
 
+// ===== TOKEN VALIDATION CACHE =====
+// In-memory cache to skip hash + DB lookup on every request.
+// 60s TTL keeps revocation latency bounded; revokeMcpToken also evicts.
+const TOKEN_CACHE_TTL_MS = 60_000;
+const TOKEN_CACHE_MAX = 512;
+
+interface CacheEntry {
+  value: McpToken | null;
+  expiresAt: number;
+}
+
+const tokenCache = new Map<string, CacheEntry>();
+
+export function __cachePut(hash: string, value: McpToken | null): void {
+  if (tokenCache.size >= TOKEN_CACHE_MAX) {
+    const oldest = tokenCache.keys().next().value;
+    if (oldest !== undefined) tokenCache.delete(oldest);
+  }
+  tokenCache.set(hash, { value, expiresAt: Date.now() + TOKEN_CACHE_TTL_MS });
+}
+
+export function __cacheGet(hash: string): McpToken | null | undefined {
+  const e = tokenCache.get(hash);
+  if (!e) return undefined;
+  if (e.expiresAt <= Date.now()) {
+    tokenCache.delete(hash);
+    return undefined;
+  }
+  return e.value;
+}
+
+export function __resetTokenCache(): void {
+  tokenCache.clear();
+}
+
+export function __cacheStats(): { size: number } {
+  return { size: tokenCache.size };
+}
+
 // ===== CRUD =====
 
 export async function createMcpToken(params: {
@@ -86,13 +125,23 @@ export async function validateMcpToken(rawToken: string): Promise<McpToken | nul
   if (rawToken.length < 10 || rawToken.length > 200) return null;
 
   const hash = hashToken(rawToken);
+  const cached = __cacheGet(hash);
+  if (cached !== undefined) return cached;
+
   const [row] = await db
     .select()
     .from(mcpTokens)
     .where(and(eq(mcpTokens.tokenHash, hash), isNull(mcpTokens.revokedAt)));
 
-  if (!row) return null;
-  if (row.expiresAt && row.expiresAt.getTime() <= Date.now()) return null;
+  if (!row) {
+    __cachePut(hash, null);
+    return null;
+  }
+  if (row.expiresAt && row.expiresAt.getTime() <= Date.now()) {
+    __cachePut(hash, null);
+    return null;
+  }
+  __cachePut(hash, row);
   return row;
 }
 
@@ -115,6 +164,9 @@ export async function revokeMcpToken(id: number): Promise<boolean> {
 
   const revoked = (result.rowCount ?? 0) > 0;
   if (revoked) {
+    for (const [h, e] of tokenCache) {
+      if (e.value?.id === id) tokenCache.delete(h);
+    }
     logger.info("MCP token revoked", { id });
   }
   return revoked;

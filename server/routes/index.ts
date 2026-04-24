@@ -36,6 +36,7 @@ import { registerTenantMetricsRoutes } from "./tenant-metrics";
 import { registerPartnershipRoutes } from "./admin-partnerships";
 import { registerGdprRoutes } from "./gdpr";
 import { registerAdminMcpTokensRoutes } from "./admin-mcp-tokens";
+import { registerSeoRoutes } from "./admin-seo";
 import { registerAdminSeoAutopilotRoutes } from "./admin-seo-autopilot";
 import { registerBusinessStatsRoutes } from "./business-stats";
 import { registerAdminFlywheelRoutes } from "./admin-flywheel";
@@ -86,6 +87,7 @@ export async function registerRoutes(app: Express, existingServer?: Server): Pro
 
   // SEO Autopilot — admin routes (dashboard APIs + token management)
   registerAdminMcpTokensRoutes(app);
+  registerSeoRoutes(app);
   registerAdminSeoAutopilotRoutes(app);
 
   // Google Business Profile stats (rating + reviews, weekly cron sync)

@@ -119,6 +119,7 @@ export function BookingStepExperience({
             value={selectedDate}
             onChange={(e) => { setSelectedDate(e.target.value); if (e.target.value) trackDateSelected(e.target.value, selectedBoat); }}
             min={new Intl.DateTimeFormat('en-CA', { timeZone: 'Europe/Madrid' }).format(new Date())}
+            aria-label={t.booking.selectDate}
             className="w-full p-3 border border-primary/20 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary text-base text-left text-foreground"
             data-testid="input-booking-date"
           />
@@ -176,10 +177,13 @@ export function BookingStepExperience({
                 const requiresLicense = boat.requiresLicense !== undefined ? boat.requiresLicense : boat.subtitle?.includes("Con Licencia");
 
                 return (
-                  <div
+                  <button
+                    type="button"
                     key={boat.id}
                     onClick={() => setSelectedBoat(boat.id)}
-                    className={`p-3 border rounded-lg cursor-pointer hover-elevate ${
+                    aria-pressed={isSelected}
+                    aria-label={`${boatName}, ${boatCapacity} ${t.booking.people}, ${t.boats.from} ${boatPrice}€`}
+                    className={`w-full text-left p-3 border rounded-lg cursor-pointer hover-elevate focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none ${
                       isSelected
                         ? 'border-primary bg-primary/10'
                         : 'border-primary/20 hover:border-primary/20'
@@ -205,7 +209,7 @@ export function BookingStepExperience({
                       <div className="flex items-center"><Gauge className="w-3 h-3 mr-1" />{boat.specifications?.engine || boat.specifications?.model || "Motor"}</div>
                       <div>{t.boats.from} {boatPrice}€</div>
                     </div>
-                  </div>
+                  </button>
                 );
               })}
             </div>

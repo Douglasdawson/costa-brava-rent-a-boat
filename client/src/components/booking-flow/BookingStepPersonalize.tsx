@@ -187,20 +187,22 @@ export function BookingStepPersonalize({
                     <Button
                       variant="outline"
                       size="icon"
-                      className="h-8 w-8"
+                      className="h-11 w-11 sm:h-8 sm:w-8"
                       onClick={() => updateExtra(extra.id, false)}
+                      aria-label={`- ${extra.name}`}
                       data-testid={`button-decrease-${extra.id}`}
                     >
                       <Minus className="w-3 h-3" />
                     </Button>
-                    <span className="w-6 text-center font-medium text-sm">
+                    <span className="w-6 text-center font-medium text-sm" aria-live="polite">
                       {extras[extra.id] || 0}
                     </span>
                     <Button
                       variant="outline"
                       size="icon"
-                      className="h-8 w-8"
+                      className="h-11 w-11 sm:h-8 sm:w-8"
                       onClick={() => updateExtra(extra.id, true)}
+                      aria-label={`+ ${extra.name}`}
                       data-testid={`button-increase-${extra.id}`}
                     >
                       <Plus className="w-3 h-3" />

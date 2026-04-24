@@ -186,7 +186,7 @@ export default function PricingPage() {
       <Navigation />
 
       {/* Hero */}
-      <div className="bg-gradient-to-br from-blue-50 to-teal-50 pt-28 pb-12">
+      <div className="bg-card border-b border-border pt-28 pb-12">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold text-foreground mb-4">
             {pp.heroTitle}
@@ -204,7 +204,7 @@ export default function PricingPage() {
               {activeBoats.length} {pp.fleetCountSuffix}
             </Badge>
           </div>
-          <p className="text-muted-foreground text-sm text-center mb-8">
+          <p className="text-muted-foreground text-sm text-center mt-4">
             {pp.portAccessible}{" "}
             <a href={localizedPath("locationMalgrat")} className="text-primary hover:underline">Malgrat de Mar</a> (10 min),{" "}
             <a href={localizedPath("locationSantaSusanna")} className="text-primary hover:underline">Santa Susanna</a> (15 min),{" "}
@@ -240,8 +240,9 @@ export default function PricingPage() {
       <div className="py-12 bg-muted">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           {isLoading ? (
-            <div className="flex justify-center py-12">
+            <div className="flex justify-center py-12" role="status">
               <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary" />
+              <span className="sr-only">Loading...</span>
             </div>
           ) : (
             <>
@@ -274,7 +275,7 @@ export default function PricingPage() {
                               </div>
                             </TableHead>
                           ))}
-                          <TableHead className="text-center w-[140px]"></TableHead>
+                          <TableHead className="text-center w-[140px]"><span className="sr-only">Actions</span></TableHead>
                         </TableRow>
                       </TableHeader>
                       <TableBody>
@@ -288,7 +289,7 @@ export default function PricingPage() {
                               <TableCell className="font-medium">
                                 <a
                                   href={localizedPath("boatDetail", boat.id)}
-                                  className="hover:text-primary transition-colors underline-offset-2 hover:underline"
+                                  className="hover:text-primary transition-colors underline-offset-2 hover:underline focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none rounded-sm"
                                 >
                                   {boat.name}
                                 </a>
@@ -336,6 +337,7 @@ export default function PricingPage() {
                                   size="sm"
                                   className="bg-cta hover:bg-cta/90 text-white"
                                   onClick={() => openBookingModal(boat.id)}
+                                  aria-label={`${pp.reserveButton}: ${boat.name}`}
                                 >
                                   {pp.reserveButton}
                                   <ArrowRight className="w-4 h-4 ml-1" />
@@ -364,7 +366,7 @@ export default function PricingPage() {
                           <div>
                             <a
                               href={localizedPath("boatDetail", boat.id)}
-                              className="text-lg font-semibold hover:text-primary transition-colors"
+                              className="text-lg font-semibold hover:text-primary transition-colors focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none rounded-sm"
                             >
                               {boat.name}
                             </a>
@@ -432,6 +434,7 @@ export default function PricingPage() {
                         <Button
                           className="w-full bg-cta hover:bg-cta/90 text-white"
                           onClick={() => openBookingModal(boat.id)}
+                          aria-label={pp.reserveSpecificButton.replace("{name}", boat.name)}
                         >
                           {pp.reserveSpecificButton.replace("{name}", boat.name)}
                           <ArrowRight className="w-4 h-4 ml-2" />
@@ -521,20 +524,19 @@ export default function PricingPage() {
           </div>
 
           {/* CTA */}
-          <Card className="mt-12 bg-primary text-white">
-            <CardContent className="p-8 text-center">
-              <h2 className="text-2xl font-bold mb-4">{pp.cta.title}</h2>
-              <p className="text-lg mb-6 opacity-90">{pp.cta.subtitle}</p>
-              <Button
-                size="lg"
-                variant="secondary"
-                onClick={() => openBookingModal()}
-              >
-                <Anchor className="w-5 h-5 mr-2" />
-                {pp.cta.button}
-              </Button>
-            </CardContent>
-          </Card>
+          <section className="mt-12 bg-primary text-primary-foreground rounded-2xl p-8 sm:p-12 text-center">
+            <h2 className="text-2xl font-heading font-bold mb-4">{pp.cta.title}</h2>
+            <p className="text-lg mb-6 text-primary-foreground/85 max-w-2xl mx-auto">{pp.cta.subtitle}</p>
+            <Button
+              size="lg"
+              variant="secondary"
+              onClick={() => openBookingModal()}
+              className="rounded-full"
+            >
+              <Anchor className="w-5 h-5 mr-2" />
+              {pp.cta.button}
+            </Button>
+          </section>
         </div>
       </div>
 

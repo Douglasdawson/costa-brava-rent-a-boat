@@ -133,14 +133,11 @@ export default function LocationBarcelonaPage() {
       <Navigation />
 
       {/* Hero */}
-      <div className="bg-gradient-to-br from-blue-50 to-teal-50 pt-24 pb-12">
+      <div className="bg-card border-b border-border pt-24 pb-12">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="flex items-center justify-center mb-6">
-            <MapPin className="w-8 h-8 text-primary mr-4" />
-            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold text-foreground">
-              {lb.hero.title}
-            </h1>
-          </div>
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold text-foreground mb-6">
+            {lb.hero.title}
+          </h1>
           <p className="text-lg text-muted-foreground max-w-4xl mx-auto mb-6">
             {sub(lb.hero.description)}
           </p>
@@ -201,32 +198,32 @@ export default function LocationBarcelonaPage() {
               </h2>
             </CardHeader>
             <CardContent>
-              <div className="grid md:grid-cols-3 gap-6">
-                <div className="text-center">
-                  <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Car className="w-8 h-8 text-primary" />
+              <div className="space-y-6">
+                <div className="flex gap-4 items-start">
+                  <Car className="w-5 h-5 text-primary mt-0.5 shrink-0" />
+                  <div>
+                    <h3 className="font-semibold mb-1">{lb.howToGet.carTitle}</h3>
+                    <p className="text-muted-foreground text-sm mb-1" dangerouslySetInnerHTML={{ __html: lb.howToGet.carDuration }} />
+                    <p className="text-muted-foreground text-sm">{lb.howToGet.carBody}</p>
                   </div>
-                  <h3 className="font-semibold text-lg mb-2">{lb.howToGet.carTitle}</h3>
-                  <p className="text-muted-foreground text-sm mb-2" dangerouslySetInnerHTML={{ __html: lb.howToGet.carDuration }} />
-                  <p className="text-muted-foreground text-sm">{lb.howToGet.carBody}</p>
                 </div>
 
-                <div className="text-center">
-                  <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Train className="w-8 h-8 text-primary" />
+                <div className="flex gap-4 items-start">
+                  <Train className="w-5 h-5 text-primary mt-0.5 shrink-0" />
+                  <div>
+                    <h3 className="font-semibold mb-1">{lb.howToGet.trainTitle}</h3>
+                    <p className="text-muted-foreground text-sm mb-1" dangerouslySetInnerHTML={{ __html: lb.howToGet.trainDuration }} />
+                    <p className="text-muted-foreground text-sm">{lb.howToGet.trainBody}</p>
                   </div>
-                  <h3 className="font-semibold text-lg mb-2">{lb.howToGet.trainTitle}</h3>
-                  <p className="text-muted-foreground text-sm mb-2" dangerouslySetInnerHTML={{ __html: lb.howToGet.trainDuration }} />
-                  <p className="text-muted-foreground text-sm">{lb.howToGet.trainBody}</p>
                 </div>
 
-                <div className="text-center">
-                  <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Bus className="w-8 h-8 text-primary" />
+                <div className="flex gap-4 items-start">
+                  <Bus className="w-5 h-5 text-primary mt-0.5 shrink-0" />
+                  <div>
+                    <h3 className="font-semibold mb-1">{lb.howToGet.busTitle}</h3>
+                    <p className="text-muted-foreground text-sm mb-1" dangerouslySetInnerHTML={{ __html: lb.howToGet.busDuration }} />
+                    <p className="text-muted-foreground text-sm">{lb.howToGet.busBody}</p>
                   </div>
-                  <h3 className="font-semibold text-lg mb-2">{lb.howToGet.busTitle}</h3>
-                  <p className="text-muted-foreground text-sm mb-2" dangerouslySetInnerHTML={{ __html: lb.howToGet.busDuration }} />
-                  <p className="text-muted-foreground text-sm">{lb.howToGet.busBody}</p>
                 </div>
               </div>
             </CardContent>
@@ -306,33 +303,32 @@ export default function LocationBarcelonaPage() {
           </div>
 
           {/* CTA */}
-          <Card className="mt-12 bg-primary text-white">
-            <CardContent className="p-8 text-center">
-              <h2 className="text-2xl font-bold mb-4">{lb.cta.title}</h2>
-              <p className="text-lg mb-6 opacity-90">{sub(lb.cta.subtitle)}</p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button
-                  size="lg"
-                  variant="secondary"
-                  onClick={() => openBookingModal()}
-                >
-                  <Anchor className="w-5 h-5 mr-2" />
-                  {lb.cta.reserveButton}
-                </Button>
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="border-white text-white hover:bg-white/10"
-                  asChild
-                >
-                  <a href={localizedPath("pricing")}>
-                    {lb.cta.viewPricesButton}
-                    <ArrowRight className="w-4 h-4 ml-2" />
-                  </a>
-                </Button>
-              </div>
-            </CardContent>
-          </Card>
+          <section className="mt-12 bg-primary text-primary-foreground rounded-2xl p-8 sm:p-12 text-center">
+            <h2 className="text-2xl font-heading font-bold mb-4">{lb.cta.title}</h2>
+            <p className="text-lg mb-6 text-primary-foreground/85 max-w-2xl mx-auto">{sub(lb.cta.subtitle)}</p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button
+                size="lg"
+                variant="secondary"
+                onClick={() => openBookingModal()}
+                className="rounded-full"
+              >
+                <Anchor className="w-5 h-5 mr-2" />
+                {lb.cta.reserveButton}
+              </Button>
+              <Button
+                size="lg"
+                variant="outline"
+                className="border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10 rounded-full"
+                asChild
+              >
+                <a href={localizedPath("pricing")}>
+                  {lb.cta.viewPricesButton}
+                  <ArrowRight className="w-4 h-4 ml-2" />
+                </a>
+              </Button>
+            </div>
+          </section>
         </div>
       </div>
 

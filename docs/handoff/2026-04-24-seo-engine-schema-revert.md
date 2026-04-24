@@ -215,28 +215,84 @@ GET /api/admin/seo/dashboard  → 401  (middleware requireAdminSession)
 
 ### Fase 1 — Identificar el mecanismo de reversión (1-2h de investigación)
 
+#### ✅ Pasos 3 y 4 — Investigación en repo (ejecutado 2026-04-24 ~17:00)
+
+**Resumen: el repo está limpio. No hay mecanismo de reversión originado en el código o CI.**
+
+Evidencia concreta recolectada:
+
+1. **`.replit` / `replit.nix` / `package.json` / `drizzle.config.ts`**
+   - `.replit` tiene `deploymentTarget = "autoscale"`, `modules = ["nodejs-20", "web", "postgresql-16"]`, y en `[agent].integrations` solo aparecen Stripe, SendGrid, Object Storage, OpenAI. Ningún integration relacionado con DB/schema.
+   - `replit.nix` **no existe**.
+   - `package.json` scripts: no hay `postinstall`, `prebuild`, `predeploy`, ni ningún hook que invoque `drizzle-kit` fuera del manual `npm run db:push`.
+   - `drizzle.config.ts` es el standard; no expone hooks.
+   - `[deployment] build = ["npm", "run", "build"]` y `run = ["npm", "run", "start"]` — ambos verificados y no tocan DB.
+
+2. **`.github/workflows/ci.yml`** corre `lint`, `typecheck`, `test`, `quality-gate`. **No invoca drizzle-kit ni toca DB**.
+
+3. **Grep `replit.*migrate|replit.*database|REPLIT_DB` en `.ts/.toml/.json/.nix`**: 0 resultados.
+
+4. **Grep `ALTER TABLE|DROP TABLE|DROP COLUMN` en `server/` y `shared/`** (excluyendo `migrations/` y tests): 0 resultados. Nada de DDL hardcodeada en runtime code.
+
+5. **`server/index.ts` / `server/db.ts`**: 0 llamadas a `migrate()`, `drizzle-kit push`, o equivalentes al arrancar. `db.ts` sólo crea el `Pool` de Neon y el cliente Drizzle.
+
+6. **`client/replit_integrations/` y `server/replit_integrations/`**: contienen solo OpenAI/audio/chat/image — no tocan schema. Solo `chat/storage.ts` hace `import { conversations, messages } from "@shared/schema"` (reads normales de Drizzle).
+
+7. **`.bridge/`**: buzón de briefs Cowork↔Claude, irrelevante para DB.
+
+8. **`migrations/meta/`**: 
+   - `_journal.json` solo lista `0000_bitter_forgotten_one`.
+   - `0000_snapshot.json` **SÍ contiene el schema NUEVO** para las 4 tablas críticas (seo_alerts: title/status/sent_via/resolved_at, seo_keywords: language, seo_reports: period_start/period_end/summary/sent_via, seo_experiments: action/previous_value/new_value/...). Confirmado vía parseo JSON.
+   - `0000_bitter_forgotten_one.sql` también contiene el schema NUEVO (`CREATE TABLE seo_alerts (..., title text NOT NULL, ..., status text, sent_via text, resolved_at ...)`).
+   - Mi `0001_sync_seo_engine_to_db.sql` existe en disk pero NO está en `_journal.json` — drizzle-kit migrate la ignoraría si corriera.
+
+**Conclusión de pasos 3+4**: no hay ningún sitio en el repo que pueda revertir el schema. El mecanismo está fuera del repo — en la plataforma Replit, en otra sesión (otra checkout), o en Neon.
+
+#### Hipótesis reforzada tras pasos 3+4
+
+La reversión actúa con una clara "LEGACY target schema" en mente (DROPs selectivos de las columnas NEW + ADDs de las columnas LEGACY en 12 tablas, **preservando rows**). Ese patrón es idéntico al output de `drizzle-kit push` cuando se le da un `shared/schema.ts` LEGACY contra una DB con schema NEW. Los prompts que viste ("Is `period` renamed or created?") son exactamente los que `drizzle-kit push` genera cuando detecta un column rename.
+
+**Hipótesis #1 (leading)**: Replit Autoscale Deploy tiene un **schema-validation step oculto** que corre `drizzle-kit push` (o equivalente) con una versión cacheada/vieja de `shared/schema.ts` (o un snapshot interno del DB previo al commit `40a69e6`). Al hacer Publish, ese step detecta "diffs" contra su baseline LEGACY y, al timeout, aplica un default destructivo que re-sincroniza la DB al LEGACY. El hecho de que el prompt desapareció solo (reportado por la otra sesión Claude) es consistente con "timeout → apply default".
+
+**Hipótesis #2**: Otra sesión de Claude Code corriendo en **Replit Workspace** (no en tu Mac) tiene un checkout con `shared/schema.ts` LEGACY (por ej. pre-`40a69e6`) y disparó `npm run db:push` → drizzle-kit compara su LEGACY schema.ts contra la DB NEW y DROP-ea las NEW, ADD-ea las LEGACY.
+
+Ambas hipótesis requieren acceso a la UI de Replit para confirmar (pasos 1 y 2 siguientes). **Los datos preservados (176 rows en seo_keywords) son fatales para cualquier hipótesis de "restore desde backup" y consistentes con "ALTER TABLE coordinado".**
+
+#### ⏳ Pasos 1 y 2 — Requieren acceso a la UI de Replit (pending Ivan)
+
 1. **Revisar UI de Replit Database** (Workspace → Database en Replit):
    - Buscar una tab tipo "Migrations" o "Schema history"
    - Verificar si hay "migrations applied automatically" o similar
    - Revisar si existe un toggle "Auto-sync schema with deploy"
+   - **En particular**: ¿hay una tab "Schema" que muestre un "baseline schema" distinto del actual? Si la respuesta es sí, ése es el culpable.
 
 2. **Revisar logs del último Publish en Replit Deploy**:
-   - Replit UI → Deployments → último "Published your App" → ver logs completos
-   - Buscar evidencia de drizzle-kit / db:push / ALTER TABLE
+   - Replit UI → Deployments → último "Published your App" (commit `0aeabdf`) → ver logs completos
+   - Buscar líneas que contengan: `drizzle-kit`, `ALTER TABLE`, `DROP COLUMN`, `ADD COLUMN`, `schema validation`, `migration`, `database sync`
    - Buscar cualquier step entre "Build complete" y "Deploy successful" que toque DB
+   - **Smoking gun a buscar**: logs tipo "detected schema change", "reverting to baseline", "running migrations", o timestamps ~15:20 mostrando DDL ejecutadas contra la DB
 
-3. **Grep de cualquier feature Replit-specific en el repo**:
-   ```bash
-   grep -rn "replit.*migrate\|replit.*database\|REPLIT_DB\|.replit" . \
-     --include="*.ts" --include="*.toml" --include="*.json" | head
+3. **Verificar si hay OTRO Replit Workspace / checkout con `shared/schema.ts` desactualizado**:
+   - En Replit UI: ¿hay múltiples Workspaces vinculados a este Deploy?
+   - Si hay un "Replit Agent" / "Replit AI" con acceso al repo: ¿su copia está sincronizada con `main` o en un branch antiguo?
+   - En caso afirmativo, verificar que `shared/schema.ts` en esos Workspaces contiene las líneas NEW (language, title, status, period_start, etc.)
+
+4. **Si los pasos 1-3 no revelan el mecanismo**: abrir ticket a Replit Support con este bloque de info:
+   ```
+   Project: costa-brava-rent-a-boat
+   Deployment type: autoscale
+   Problem: After Publish, DB schema for 12 specific tables reverts from
+   commit ef5b300's target schema to a legacy schema. Data in rows is
+   preserved; only ALTER TABLE operations occur. No drizzle-kit in CI or
+   build scripts. Prompts "Is <column> renamed?" appeared in Deploy UI
+   and then vanished without user input ~15:20 2026-04-24.
+   Question: Does Replit Autoscale Deploy run any schema validation or
+   migration step that compares live DB against a cached baseline?
    ```
 
-4. **Revisar cualquier workflow o integration configurada**:
-   ```bash
-   cat .replit | grep -A 5 "workflows\|integrations\|agent"
-   ```
-
-5. **Si todo lo anterior viene negativo, abrir ticket/ask a Replit support** con el caso concreto: "después de Publish, mi schema de DB revierte de X a Y sin que haya drizzle-kit en el pipeline".
+5. **Verificar Neon directamente** (neon.tech console o MCP):
+   - ¿Hay alguna "protection rule" o "schema snapshot" configurado?
+   - ¿Hay branches de DB con el schema LEGACY que puedan haberse promovido?
 
 ### Fase 2 — Desactivar el mecanismo (si se identifica)
 

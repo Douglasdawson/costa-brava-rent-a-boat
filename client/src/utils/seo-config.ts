@@ -71,11 +71,11 @@ export const BASE_DOMAIN = getBaseUrl();
 export const SEO_CONFIGS: Record<Language, Record<string, SEOConfig>> = {
   es: {
     home: {
-      title: "Alquiler de Barcos Costa Brava | Sin Licencia desde 70\u20ac/h | Blanes",
-      description: "Alquiler de barcos en la Costa Brava desde Puerto de Blanes. Sin licencia desde 70\u20ac/h, gasolina incluida, hasta 7 personas. 8 embarcaciones. Reserva WhatsApp \u00b7 Cambio fecha gratis.",
+      title: `Alquiler Barcos Costa Brava ${SEASON_YEAR} \u00b7 Sin Licencia desde 70\u20ac/h`,
+      description: `Alquila barcos sin licencia en Blanes, Costa Brava desde 70\u20ac/h con gasolina incluida. ${BUSINESS_RATING_STR}\u2605 Google (${BUSINESS_REVIEW_COUNT_STR} rese\u00f1as). Reserva por WhatsApp en 2 minutos.`,
       keywords: "alquiler barco costa brava, alquiler barcos costa brava, alquiler barco blanes, alquiler barcos sin licencia costa brava, alquiler embarcaciones costa brava, rent a boat costa brava, barco sin licencia costa brava, alquilar barco costa brava",
-      ogTitle: `Alquiler de Barcos Costa Brava ${SEASON_YEAR} | Sin Licencia desde 70\u20ac/h`,
-      ogDescription: "Alquila barcos en la Costa Brava desde Puerto de Blanes. Sin licencia, gasolina incluida, desde 70\u20ac/h. 8 barcos disponibles. 4.8\u2605 Google."
+      ogTitle: `Alquiler Barcos Costa Brava ${SEASON_YEAR} \u00b7 Sin Licencia desde 70\u20ac/h`,
+      ogDescription: `Alquila barcos sin licencia en Blanes, Costa Brava desde 70\u20ac/h con gasolina incluida. ${BUSINESS_RATING_STR}\u2605 Google (${BUSINESS_REVIEW_COUNT_STR} rese\u00f1as). Reserva por WhatsApp en 2 minutos.`
     },
     booking: {
       title: "Solicitar Reserva de Barco en Blanes | Costa Brava",

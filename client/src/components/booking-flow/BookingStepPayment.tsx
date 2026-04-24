@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { CreditCard, Euro } from "lucide-react";
+import { Send, Euro } from "lucide-react";
 import type { Boat } from "@shared/schema";
 import type { Translations } from "@/lib/translations";
 import { useLanguage } from "@/hooks/use-language";
@@ -44,7 +44,7 @@ export function BookingStepPayment({
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center">
-            <CreditCard className="w-5 h-5 mr-2" />
+            <Send className="w-5 h-5 mr-2" />
             {t.booking.summaryTitle}
           </CardTitle>
         </CardHeader>
@@ -175,9 +175,6 @@ export function BookingStepPayment({
               <div className="bg-primary/5 p-3 rounded-lg">
                 <p className="text-sm text-primary">
                   {t.booking.quoteCreated} <strong>{t.booking.quoteTimeLimit}</strong>
-                  {holdId && (
-                    <span className="block text-xs mt-1">Hold ID: {holdId}</span>
-                  )}
                 </p>
               </div>
 
@@ -203,9 +200,9 @@ export function BookingStepPayment({
                 {(isLoading || isProcessingPayment) ? (
                   <div className="animate-spin w-4 h-4 border-2 border-white border-t-transparent rounded-full mr-2" />
                 ) : (
-                  <CreditCard className="w-5 h-5 mr-2" />
+                  <Send className="w-5 h-5 mr-2" />
                 )}
-                {(isLoading || isProcessingPayment) ? t.booking.processingPayment : `${t.booking.sendRequest || t.booking.pay || 'Solicitar reserva'} ${calculateTotal() ?? 0}€`}
+                {(isLoading || isProcessingPayment) ? t.booking.processingPayment : t.booking.sendRequest}
               </Button>
 
               <p className="text-xs text-muted-foreground text-center">

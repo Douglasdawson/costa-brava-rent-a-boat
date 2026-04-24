@@ -1,0 +1,41 @@
+{
+  "competitor": "BlueSail Costa Brava",
+  "url": "https://bluesailcostabrava.com/",
+  "snapshot_date": "2026-04-24",
+  "port": "Blanes",
+  "languages": ["es", "en", "fr"],
+  "fleet": {
+    "private_boats_capacity": [11, 22, 25],
+    "catamarans_capacity": [80, 97, 115, 143],
+    "notes": "Sin cambios detectados respecto a 2026-04-21"
+  },
+  "pricing": {
+    "homepage_listed": false,
+    "shared_catamaran_per_person_eur": 50,
+    "private_excursion_hours": 3,
+    "notes": "Sin cambios"
+  },
+  "content_strategy": {
+    "blog_active": true,
+    "blog_url": "https://bluesailcostabrava.com/alquiler-barcos/",
+    "new_posts_since_2026_04_21": [],
+    "known_posts_still_live": [
+      "Los Fuegos de Blanes 2026",
+      "Excursión en barco desde Blanes: guía completa 2026",
+      "Qué hacer en la Costa Brava: guía definitiva 2026",
+      "Las mejores excursiones en barco en la Costa Brava (Blanes, Lloret y Tossa)",
+      "Qué hacer en Blanes: actividades en el mar imprescindibles",
+      "Cuánto cuesta una excursión en barco en la Costa Brava (precios reales 2026)",
+      "Excursión en barco Costa Brava: qué incluye y cuál elegir",
+      "Preguntas frecuentes sobre excursiones en barco en la Costa Brava",
+      "Qué hacer en Lloret de Mar: actividades diferentes en el mar"
+    ],
+    "observation": "Ritmo de publicación plateaued esta semana — no hay artículos nuevos detectables vía SERP site:bluesailcostabrava.com. La ofensiva editorial '2026' sigue activa en rankings (ocupan #1 en 'alquiler barcos Blanes 2026')."
+  },
+  "serp_position": {
+    "alquiler_barcos_blanes_2026": 1,
+    "observation": "Dominan la query objetivo con su guía completa 2026; nosotros (costabravarentaboat.com) aparecemos #2."
+  },
+  "changes_vs_previous": "Sin nuevos artículos detectados en 3 días. Ranking consolidado #1 en query core.",
+  "alert_level": "none"
+}

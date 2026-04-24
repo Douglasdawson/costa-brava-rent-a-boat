@@ -1,0 +1,40 @@
+{
+  "competitor": "Rent a Boat Blanes",
+  "url": "https://www.rentaboatblanes.com/",
+  "snapshot_date": "2026-04-24",
+  "port": "Blanes (C/ Esperança 93)",
+  "languages": ["es", "ca", "en", "fr"],
+  "fleet": {
+    "total_boats": 6,
+    "previous_total": 5,
+    "sin_licencia": ["Estable 415 (4.17m, Suzuki 15cv, 5 pax)", "Marion 450 (4.50m, 5 pax)", "otros 3 sin licencia"],
+    "con_licencia_nuevos": [
+      {
+        "model": "Master Craft NXT",
+        "length_m": 7.0,
+        "engine": "350cv V8",
+        "capacity_pax": 7,
+        "includes": ["patrón/skipper", "gasolina", "banana inflable"],
+        "notes": "DETECTADO NUEVO — entrada al segmento con-licencia con paquete experiencia (barco + patrón + banana). Compite directamente con nuestra oferta de excursión privada."
+      }
+    ],
+    "notes": "Crecieron de 5 → 6 barcos. Primer barco con licencia en su catálogo."
+  },
+  "pricing": {
+    "homepage_listed": "parcial",
+    "phone": "+34 636 718 016",
+    "notes": "Siguen posicionándose como 'Mejor Precio'. Nuevo paquete Master Craft (precio no público)."
+  },
+  "content_strategy": {
+    "blog_active": false,
+    "observation": "Mantienen la web estática — no compiten en contenido SEO editorial."
+  },
+  "usps": [
+    "Mejor Precio (branding)",
+    "4 idiomas incluye catalán",
+    "Nuevo: barco con licencia + patrón + banana (experiencia premium)",
+    "Incluye gasolina"
+  ],
+  "changes_vs_previous": "CAMBIO MATERIAL — añadieron Master Craft NXT 7m con licencia, patrón, gasolina y banana inflable. Primera entrada al segmento con-licencia. Competencia directa con nuestra excursión privada.",
+  "alert_level": "medium"
+}

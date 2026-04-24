@@ -5,6 +5,36 @@ Estados: `open` · `in-progress` · `shipped` · `dropped`
 
 ---
 
+## 2026-04-24
+
+### OPP-2026-04-24-11 · Responder al price floor crash de SamBoat (80 € → 55 €/día) 🚨
+- **Origen:** SamBoat — price floor SERP cayó ~31 %
+- **Acción:** Actualizar `/es/precios` y `/en/pricing` con bloque comparativo "Qué incluye 55 €/día en SamBoat vs qué incluye X € en CBRaB". Diferenciales clave: fuel incluido sin-licencia, sin comisión marketplace, WhatsApp local 24/7, 8 idiomas, patrón nativo, Ruta del Contrabando editorial
+- **Archivos:** `client/src/pages/pricing.tsx` + traducciones `client/src/i18n/*.ts` (clave `pricingPage.comparisonBlock`)
+- **Estado:** open
+- **Prioridad:** alta
+
+### OPP-2026-04-24-12 · Blindar segmento "excursión privada con patrón" en Blanes 🚨
+- **Origen:** Rent a Boat Blanes entra en con-licencia con Master Craft NXT 7m + patrón + banana inflable
+- **Acción:** Landing page pilar "Excursión privada con patrón en Blanes: qué incluye y por qué elegir CBRaB" antes de que Rent a Boat Blanes posicione. Incluir fotos reales, testimonios, comparativa cualitativa (8 idiomas, servicio local, experiencia editorial)
+- **Archivos:** nueva página en `client/src/pages/` + slugs i18n en `shared/i18n-routes.ts` + seo-config
+- **Estado:** open
+- **Prioridad:** alta
+
+### OPP-2026-04-24-13 · Defender marca frente a costabravarentboat.com (dominio sin "a")
+- **Origen:** SERP "alquiler barcos sin licencia Costa Brava" — dominio homónimo detectado
+- **Acción:** (a) registrar variaciones de dominio libres (`.com`, `.es`, guiones); (b) auditar menciones online para detectar confusión; (c) evaluar campaña PPC defensiva en marca "costa brava rent a boat"; (d) reforzar branding tipográfico en meta-descriptions
+- **Estado:** open
+- **Prioridad:** media
+
+### OPP-2026-04-24-14 · Año-framing sistemático "2026" en nuestras páginas core
+- **Origen:** BlueSail + Costa Brava Boats + Yumping — todos adoptaron "2026" en titles
+- **Acción:** Auditar titles, h1 y meta-descriptions en páginas core (precios, FAQ, excursion-blanes, excursion-costa-brava, flota) y añadir framing "2026" donde aporte intent match. Plan: dejar una sola plantilla i18n para rotar "2026/2027" anualmente
+- **Estado:** open
+- **Prioridad:** media
+
+---
+
 ## 2026-04-21
 
 ### OPP-2026-04-21-01 · Responder a BlueSail content blitz 2026 🚨

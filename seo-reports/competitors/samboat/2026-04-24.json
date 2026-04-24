@@ -1,0 +1,36 @@
+{
+  "competitor": "SamBoat",
+  "url": "https://www.samboat.es/alquiler-barco/costa-brava",
+  "snapshot_date": "2026-04-24",
+  "type": "Marketplace internacional",
+  "languages": ["es", "fr", "en-US", "en-GB", "de", "nl", "it", "cs", "sv", "pl"],
+  "inventory": {
+    "costa_brava_boats_current": 462,
+    "costa_brava_boats_previous": 441,
+    "delta_absolute": 21,
+    "delta_percent": 4.76,
+    "luxury_yachts_count": 4,
+    "empuriabrava_sin_licencia_count": 65
+  },
+  "pricing": {
+    "floor_price_eur_per_day": 55,
+    "previous_floor": 80,
+    "sin_licencia_range_previous_eur_per_day": "80-120",
+    "yacht_floor_eur_per_day": 990,
+    "empuriabrava_sin_licencia_from_eur_per_day": 105,
+    "observation": "CAMBIO MATERIAL — el price floor anunciado cayó de 80€/día a 55€/día (~31 % bajada). Esto puede reflejar (a) listings promocionales para kickoff de temporada abril-mayo, (b) nueva política de 'precio desde' agresiva, o (c) inclusión de barcos más pequeños/compartidos. En cualquier caso, afecta CTR de nuestras páginas de precio."
+  },
+  "content_strategy": {
+    "blog_active": true,
+    "blog_url": "https://www.samboat.es/blog",
+    "notable_posts_live": [
+      "Blanes, un día por el sur de la Costa Brava",
+      "5 días para conocer los mejores rincones de la Costa Brava",
+      "Empuriabrava itinerario un día"
+    ],
+    "observation": "Blog existente, activo, con contenido itinerario. No se detectaron posts nuevos esta semana."
+  },
+  "ports_covered_with_landing_pages": ["Costa Brava", "Girona", "Blanes", "Tossa de Mar", "Empuriabrava", "L'Escala"],
+  "changes_vs_previous": "+21 barcos (441→462) y precio floor cayó de 80€ a 55€/día. Ambos datos deberían disparar alerta — SamBoat está siendo más agresivo de cara a temporada alta.",
+  "alert_level": "medium"
+}

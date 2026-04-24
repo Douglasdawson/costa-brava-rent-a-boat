@@ -1,0 +1,25 @@
+{
+  "competitor": "EricBoats",
+  "url": "https://ericboatsblanes.com/",
+  "snapshot_date": "2026-04-24",
+  "port": "Club de Vela Blanes",
+  "languages": ["es", "ca", "en", "fr"],
+  "fleet": {
+    "total_boats": 12,
+    "with_and_without_license": true,
+    "notable_models": ["Marsea CM100 semirrígida", "Cap Camarat 5.5", "Cobra 700", "Flyer 5.5 Spacedeck"]
+  },
+  "pricing": {
+    "homepage_listed": false,
+    "notes": "Sin precios públicos — continúa siendo una debilidad frente a nosotros y a SamBoat."
+  },
+  "content_strategy": {
+    "blog_active": "estancado",
+    "blog_url": "https://ericboatsblanes.com/blog-costa-brava/",
+    "visible_posts": ["Qué ver en Blanes: Descubre cada uno de sus rincones"],
+    "observation": "Blog existe pero sin frecuencia de publicación. Sin cambios respecto al baseline."
+  },
+  "services_highlighted": ["Alquiler con/sin licencia", "Salidas de pesca (nicho)", "Accesorios"],
+  "changes_vs_previous": "Sin cambios materiales detectables en 3 días.",
+  "alert_level": "none"
+}

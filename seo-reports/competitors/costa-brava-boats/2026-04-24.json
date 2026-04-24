@@ -1,0 +1,30 @@
+{
+  "competitor": "Costa Brava Boats",
+  "url": "https://costabravaboats.com/",
+  "snapshot_date": "2026-04-24",
+  "ports": ["L'Estartit", "Begur", "Palamós", "Calella de Palafrugell", "Llafranc"],
+  "languages": ["es", "en", "fr"],
+  "fleet": {
+    "total_boats": 25,
+    "observation": "Sin cambios en conteo de flota."
+  },
+  "content_strategy": {
+    "blog_active": true,
+    "landing_pages_detected": [
+      "/mejores-playas-calas-begur/ — Las mejores playas y calas de Begur en 2026 (año-framing detectado)",
+      "/en/lestartit-coves-to-visit/",
+      "/en/the-best-coves-in-llafranc/",
+      "/calella-de-palafrugell-calas/",
+      "/alquiler-barco-2-personas/",
+      "/alquiler-barcos-palafrugell/",
+      "/en/6-meter-boat-rentals/",
+      "/ruta-palamos/ — Descubre la ruta Palamós en barco (NUEVO detectable)",
+      "/campings-palamos/ — Descubre los mejores campings de Palamós (NUEVO detectable)",
+      "/alquiler-barcos-sin-licencia-costa-brava/"
+    ],
+    "pattern": "Doble arquitectura: (a) landing pages por cala/localidad, (b) landing pages por longitud de barco (2 pax, 6m, etc.), (c) rutas + camping geo-cluster.",
+    "observation": "Detectadas 2-3 URLs no vistas en baseline: ruta-palamos y campings-palamos refuerzan estrategia geo-cluster. También vieron framing 'en 2026' en post de calas Begur — están adoptando el mismo año-framing que BlueSail."
+  },
+  "changes_vs_previous": "Expansión continuada de landing pages geo + año-framing '2026' apareciendo. No cambia el cuadrante estratégico pero confirma que el playbook 'landing cala + año' se está consolidando como estándar de mercado en Costa Brava.",
+  "alert_level": "low"
+}

@@ -1104,8 +1104,8 @@ export function AnalyticsTab({ adminToken }: AnalyticsTabProps) {
                 </Card>
               )}
 
-              {/* Traffic table */}
-              <Card>
+              {/* Traffic table — desktop */}
+              <Card className="hidden md:block">
                 <CardHeader>
                   <CardTitle className="text-base font-semibold">Detalle por canal</CardTitle>
                 </CardHeader>
@@ -1132,6 +1132,32 @@ export function AnalyticsTab({ adminToken }: AnalyticsTabProps) {
                   </div>
                 </CardContent>
               </Card>
+
+              {/* Traffic cards — mobile */}
+              <div className="md:hidden space-y-3">
+                <Card>
+                  <CardHeader className="pb-2">
+                    <CardTitle className="text-base font-semibold">Detalle por canal</CardTitle>
+                  </CardHeader>
+                </Card>
+                {(trafficData?.data || []).map((row, i) => (
+                  <Card key={i}>
+                    <CardContent className="p-4">
+                      <p className="font-medium text-sm mb-2">{row.channel}</p>
+                      <div className="grid grid-cols-2 gap-2 text-xs">
+                        <div>
+                          <p className="text-muted-foreground">Sesiones</p>
+                          <p className="font-medium">{row.sessions.toLocaleString("es-ES")}</p>
+                        </div>
+                        <div>
+                          <p className="text-muted-foreground">Usuarios</p>
+                          <p className="font-medium">{row.users.toLocaleString("es-ES")}</p>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
             </>
           )}
         </div>
@@ -1219,35 +1245,65 @@ export function AnalyticsTab({ adminToken }: AnalyticsTabProps) {
                 </div>
               )}
 
-              {/* Countries table */}
+              {/* Countries table — desktop */}
               {(countriesData?.data || []).length > 0 && (
-                <Card>
-                  <CardHeader>
-                    <CardTitle className="text-base font-semibold">Paises</CardTitle>
-                  </CardHeader>
-                  <CardContent className="p-0">
-                    <div className="overflow-x-auto">
-                      <Table>
-                        <TableHeader>
-                          <TableRow>
-                            <TableHead>Pais</TableHead>
-                            <TableHead className="text-right">Usuarios</TableHead>
-                            <TableHead className="text-right">Sesiones</TableHead>
-                          </TableRow>
-                        </TableHeader>
-                        <TableBody>
-                          {(countriesData?.data || []).map((row, i) => (
-                            <TableRow key={i}>
-                              <TableCell className="font-medium">{row.country}</TableCell>
-                              <TableCell className="text-right tabular-nums">{row.users.toLocaleString("es-ES")}</TableCell>
-                              <TableCell className="text-right tabular-nums">{row.sessions.toLocaleString("es-ES")}</TableCell>
+                <>
+                  <Card className="hidden md:block">
+                    <CardHeader>
+                      <CardTitle className="text-base font-semibold">Paises</CardTitle>
+                    </CardHeader>
+                    <CardContent className="p-0">
+                      <div className="overflow-x-auto">
+                        <Table>
+                          <TableHeader>
+                            <TableRow>
+                              <TableHead>Pais</TableHead>
+                              <TableHead className="text-right">Usuarios</TableHead>
+                              <TableHead className="text-right">Sesiones</TableHead>
                             </TableRow>
-                          ))}
-                        </TableBody>
-                      </Table>
-                    </div>
-                  </CardContent>
-                </Card>
+                          </TableHeader>
+                          <TableBody>
+                            {(countriesData?.data || []).map((row, i) => (
+                              <TableRow key={i}>
+                                <TableCell className="font-medium">{row.country}</TableCell>
+                                <TableCell className="text-right tabular-nums">{row.users.toLocaleString("es-ES")}</TableCell>
+                                <TableCell className="text-right tabular-nums">{row.sessions.toLocaleString("es-ES")}</TableCell>
+                              </TableRow>
+                            ))}
+                          </TableBody>
+                        </Table>
+                      </div>
+                    </CardContent>
+                  </Card>
+
+                  {/* Countries cards — mobile */}
+                  <div className="md:hidden space-y-3">
+                    <Card>
+                      <CardHeader className="pb-2">
+                        <CardTitle className="text-base font-semibold">Paises</CardTitle>
+                      </CardHeader>
+                    </Card>
+                    {(countriesData?.data || []).map((row, i) => (
+                      <Card key={i}>
+                        <CardContent className="p-4">
+                          <div className="flex items-center justify-between">
+                            <p className="font-medium text-sm">{row.country}</p>
+                          </div>
+                          <div className="grid grid-cols-2 gap-2 mt-2 text-xs">
+                            <div>
+                              <p className="text-muted-foreground">Usuarios</p>
+                              <p className="font-medium">{row.users.toLocaleString("es-ES")}</p>
+                            </div>
+                            <div>
+                              <p className="text-muted-foreground">Sesiones</p>
+                              <p className="font-medium">{row.sessions.toLocaleString("es-ES")}</p>
+                            </div>
+                          </div>
+                        </CardContent>
+                      </Card>
+                    ))}
+                  </div>
+                </>
               )}
 
               {(devicesData?.data || []).length === 0 && (countriesData?.data || []).length === 0 && (

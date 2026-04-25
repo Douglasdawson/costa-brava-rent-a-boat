@@ -695,15 +695,15 @@ export function ReportsTab({ adminToken }: ReportsTabProps) {
                 </Card>
               </div>
 
-              {/* Table */}
-              <Card>
+              {/* Desktop table */}
+              <Card className="hidden md:block">
                 <CardContent className="p-0">
                   <div className="overflow-x-auto">
                     <Table>
                       <TableHeader>
                         <TableRow>
                           <TableHead>Item</TableHead>
-                          <TableHead>Categoría</TableHead>
+                          <TableHead>Categoria</TableHead>
                           <TableHead className="text-right">Disponible</TableHead>
                           <TableHead className="text-right">Total</TableHead>
                           <TableHead>Estado</TableHead>
@@ -733,6 +733,36 @@ export function ReportsTab({ adminToken }: ReportsTabProps) {
                   </div>
                 </CardContent>
               </Card>
+
+              {/* Mobile card view - inventory */}
+              <div className="block md:hidden space-y-3">
+                {inventoryItems.map(item => (
+                  <div key={item.id} className="bg-card border border-border rounded-xl p-4 space-y-2">
+                    <div className="flex items-center justify-between">
+                      <span className="font-medium text-sm text-foreground">{item.name}</span>
+                      <Badge className={
+                        item.status === "available" ? "bg-emerald-100 text-emerald-800" :
+                        item.status === "low_stock" ? "bg-amber-100 text-amber-800" :
+                        "bg-red-100 text-red-800"
+                      }>
+                        {item.status === "available" ? "OK" :
+                         item.status === "low_stock" ? "Bajo" : "Sin Stock"}
+                      </Badge>
+                    </div>
+                    <p className="text-xs text-muted-foreground">{item.category}</p>
+                    <div className="grid grid-cols-2 gap-2 text-xs">
+                      <div>
+                        <p className="text-muted-foreground">Disponible</p>
+                        <p className="font-medium tabular-nums">{item.availableStock}</p>
+                      </div>
+                      <div>
+                        <p className="text-muted-foreground">Total</p>
+                        <p className="font-medium tabular-nums">{item.totalStock}</p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </>
           )}
         </div>

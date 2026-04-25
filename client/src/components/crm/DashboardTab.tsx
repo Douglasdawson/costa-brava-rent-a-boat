@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -38,6 +39,7 @@ import {
   Legend,
 } from "recharts";
 import type { PaginatedResponse, DashboardStats } from "./types";
+import { DashboardHoy } from "./DashboardHoy";
 
 // --- Types ---
 
@@ -242,6 +244,7 @@ export function DashboardTab({
   onViewBooking,
   onEditBooking,
 }: DashboardTabProps) {
+  const [mode, setMode] = useState<"hoy" | "reportes">("hoy");
   const { data: boats = [] } = useQuery<Boat[]>({ queryKey: ["/api/boats"] });
   const boatName = (id: string) => boats.find(b => b.id === id)?.name || id;
 
@@ -356,6 +359,31 @@ export function DashboardTab({
 
   return (
     <div className="flex flex-col gap-6">
+      {/* Mode toggle */}
+      <div className="flex gap-1">
+        <Button
+          variant={mode === "hoy" ? "default" : "outline"}
+          size="sm"
+          onClick={() => setMode("hoy")}
+          className="min-h-[44px]"
+        >
+          Hoy
+        </Button>
+        <Button
+          variant={mode === "reportes" ? "default" : "outline"}
+          size="sm"
+          onClick={() => setMode("reportes")}
+          className="min-h-[44px]"
+        >
+          Reportes
+        </Button>
+      </div>
+
+      {mode === "hoy" && (
+        <DashboardHoy adminToken={adminToken} onViewBooking={onViewBooking} />
+      )}
+
+      {mode === "reportes" && (<>
       {/* Period Selector */}
       <div className="flex flex-wrap items-center gap-2">
         <span className="text-sm font-medium text-muted-foreground mr-1">Periodo:</span>
@@ -762,6 +790,7 @@ export function DashboardTab({
           </Card>
         )}
       </div>
+      </>)}
     </div>
   );
 }

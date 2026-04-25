@@ -79,7 +79,7 @@ export function StatCard({
         )}
       </CardHeader>
       <CardContent>
-        <div className="text-2xl font-bold text-foreground tabular-nums">
+        <div className="text-2xl font-bold text-foreground" style={{ fontVariantNumeric: "tabular-nums" }}>
           {value}
         </div>
         {(change != null || description || changeLabel) && (

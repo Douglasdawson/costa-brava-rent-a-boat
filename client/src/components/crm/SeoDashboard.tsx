@@ -898,7 +898,7 @@ export function SeoDashboard({ adminToken }: { adminToken: string }) {
           <CardContent className="flex flex-col items-center justify-center py-12 text-center">
             <Target className="h-12 w-12 text-muted-foreground mb-4" />
             <p className="text-sm text-muted-foreground">
-              Sin datos de ranking — Anade keywords en el SEO Engine y espera a
+              Sin datos de ranking. Anade keywords en el SEO Engine y espera a
               que se recopilen datos (min. 7 dias).
             </p>
           </CardContent>

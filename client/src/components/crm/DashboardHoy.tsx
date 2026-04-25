@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
-import { Anchor, Loader2 } from "lucide-react";
+import { Anchor, Loader2, AlertTriangle } from "lucide-react";
 import { format } from "date-fns";
 import { es } from "date-fns/locale";
 import { useToast } from "@/hooks/use-toast";
@@ -42,6 +42,16 @@ function timeUntil(date: Date): string {
   return remainMins > 0 ? `${hours}h ${remainMins}m` : `${hours}h`;
 }
 
+function timeOverdue(date: Date): string {
+  const diffMs = Date.now() - date.getTime();
+  if (diffMs <= 0) return "";
+  const mins = Math.floor(diffMs / 60000);
+  if (mins < 60) return `${mins}m`;
+  const hours = Math.floor(mins / 60);
+  const remainMins = mins % 60;
+  return remainMins > 0 ? `${hours}h ${remainMins}m` : `${hours}h`;
+}
+
 function todayRange(): { start: string; end: string } {
   const now = new Date();
   const start = new Date(now.getFullYear(), now.getMonth(), now.getDate());
@@ -54,6 +64,12 @@ function tomorrowRange(): { start: string; end: string } {
   const start = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
   const end = new Date(start.getTime() + 86400000 - 1);
   return { start: start.toISOString(), end: end.toISOString() };
+}
+
+/** Build display name handling missing surname gracefully */
+function customerDisplay(name: string, surname?: string | null): string {
+  const parts = [name, surname].filter(Boolean);
+  return parts.join(" ") || "Cliente";
 }
 
 // --- Component ---
@@ -142,11 +158,12 @@ export function DashboardHoy({ adminToken: _adminToken, onViewBooking }: Dashboa
 
   const now = new Date();
 
+  // "En agua" includes bookings that started and haven't been completed,
+  // even if endTime is past (overdue returns)
   const enAgua = todayBookings.filter(
     (b) =>
       b.bookingStatus === "confirmed" &&
-      new Date(b.startTime) <= now &&
-      new Date(b.endTime) >= now,
+      new Date(b.startTime) <= now,
   );
 
   const upcoming = todayBookings
@@ -173,83 +190,136 @@ export function DashboardHoy({ adminToken: _adminToken, onViewBooking }: Dashboa
 
   // --- Render ---
 
+  // Loading skeleton
+  if (todayLoading) {
+    return (
+      <div className="space-y-4">
+        <div className="flex items-center gap-2 text-sm text-muted-foreground">
+          <Loader2 className="h-4 w-4 animate-spin" />
+          <span className="sr-only">Cargando datos del dia</span>
+          <span>Cargando...</span>
+        </div>
+        <div className="space-y-2">
+          {[1, 2].map((i) => (
+            <div key={i} className="h-14 rounded-lg bg-muted/50 animate-pulse" />
+          ))}
+        </div>
+      </div>
+    );
+  }
+
   return (
-    <div className="space-y-4">
+    <div className="space-y-2">
       {/* Status bar */}
       <div className="flex items-center gap-2 text-sm text-muted-foreground">
         <span className="font-medium text-foreground">{enAgua.length} en agua</span>
-        <span>·</span>
+        <span aria-hidden="true">&middot;</span>
         <span>{boatsLibres} libres</span>
-        <span>·</span>
+        <span aria-hidden="true">&middot;</span>
         <span>{totalReservasHoy} reservas hoy</span>
       </div>
 
-      {/* EN AGUA */}
+      {/* EN AGUA — tight with status bar (space-y-2) */}
       {enAgua.length > 0 && (
         <div className="space-y-2">
           <h3 className="text-xs font-medium text-muted-foreground uppercase tracking-wide">
             En agua
           </h3>
-          {enAgua.map((booking) => (
-            <div
-              key={booking.id}
-              className="flex items-center justify-between p-3 rounded-lg bg-accent/30 min-h-[44px]"
-            >
+          {enAgua.map((booking) => {
+            const endTime = new Date(booking.endTime);
+            const isOverdue = endTime < now;
+            const resolvedBoatName = boatName(booking.boatId);
+
+            return (
               <div
-                className="flex-1 min-w-0 cursor-pointer"
-                onClick={() => onViewBooking(booking.id)}
+                key={booking.id}
+                className={`flex items-center justify-between p-3 rounded-lg min-h-[44px] ${
+                  isOverdue ? "bg-destructive/10" : "bg-accent/30"
+                }`}
               >
-                <p className="text-sm font-medium text-foreground truncate">
-                  {boatName(booking.boatId)} · {booking.customerName}
-                </p>
-                <p className="text-xs text-muted-foreground">
-                  vuelve{" "}
-                  {format(new Date(booking.endTime), "HH:mm", { locale: es })} (en{" "}
-                  {timeUntil(new Date(booking.endTime))})
-                </p>
+                <div
+                  className="flex-1 min-w-0 cursor-pointer min-h-[44px] flex flex-col justify-center"
+                  onClick={() => onViewBooking(booking.id)}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      e.preventDefault();
+                      onViewBooking(booking.id);
+                    }
+                  }}
+                >
+                  <p className="text-sm font-medium text-foreground truncate">
+                    {resolvedBoatName} &middot; {booking.customerName}
+                  </p>
+                  {isOverdue ? (
+                    <p className="text-xs text-destructive flex items-center gap-1">
+                      <AlertTriangle className="h-3 w-3 flex-shrink-0" />
+                      atrasado {timeOverdue(endTime)}
+                    </p>
+                  ) : (
+                    <p className="text-xs text-muted-foreground">
+                      vuelve{" "}
+                      {format(endTime, "HH:mm", { locale: es })} (en{" "}
+                      {timeUntil(endTime)})
+                    </p>
+                  )}
+                </div>
+                <Button
+                  size="sm"
+                  variant="outline"
+                  className="ml-2 flex-shrink-0 min-h-[44px] min-w-[44px]"
+                  onClick={() => markCompleted.mutate(booking.id)}
+                  disabled={markCompleted.isPending}
+                  aria-label={`Marcar ${resolvedBoatName} como devuelto`}
+                >
+                  {markCompleted.isPending ? (
+                    <>
+                      <Loader2 className="h-3 w-3 animate-spin" />
+                      <span className="sr-only">Guardando...</span>
+                    </>
+                  ) : (
+                    "Devuelto"
+                  )}
+                </Button>
               </div>
-              <Button
-                size="sm"
-                variant="outline"
-                className="ml-2 flex-shrink-0 min-h-[44px]"
-                onClick={() => markCompleted.mutate(booking.id)}
-                disabled={markCompleted.isPending}
-              >
-                {markCompleted.isPending ? (
-                  <Loader2 className="h-3 w-3 animate-spin" />
-                ) : (
-                  "Devuelto"
-                )}
-              </Button>
-            </div>
-          ))}
+            );
+          })}
         </div>
       )}
 
       {/* Empty state: all boats in port */}
-      {!todayLoading && enAgua.length === 0 && upcoming.length === 0 && (
+      {enAgua.length === 0 && upcoming.length === 0 && (
         <div className="text-center py-8 text-muted-foreground">
           <Anchor className="h-8 w-8 mx-auto mb-2 opacity-50" />
           <p className="text-sm">Todos los barcos en puerto. No hay reservas hoy.</p>
         </div>
       )}
 
-      {/* SIGUIENTE */}
+      {/* SIGUIENTE — larger gap from En Agua section */}
       {siguiente && (
-        <div className="space-y-2">
+        <div className="space-y-2 pt-2">
           <h3 className="text-xs font-medium text-muted-foreground uppercase tracking-wide">
             Siguiente (en {timeUntil(new Date(siguiente.startTime))})
           </h3>
           <div
             className="flex items-center gap-3 p-3 rounded-lg border border-border cursor-pointer hover:bg-muted transition-colors min-h-[44px]"
             onClick={() => onViewBooking(siguiente.id)}
+            role="button"
+            tabIndex={0}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                onViewBooking(siguiente.id);
+              }
+            }}
           >
             <div className="text-sm font-medium text-foreground">
               {format(new Date(siguiente.startTime), "HH:mm", { locale: es })}
             </div>
             <div className="flex-1 min-w-0">
               <p className="text-sm text-foreground truncate">
-                {siguiente.customerName} {siguiente.customerSurname} ·{" "}
+                {customerDisplay(siguiente.customerName, siguiente.customerSurname)} &middot;{" "}
                 {boatName(siguiente.boatId)}
               </p>
               <p className="text-xs text-muted-foreground">{siguiente.totalHours}h</p>
@@ -262,28 +332,36 @@ export function DashboardHoy({ adminToken: _adminToken, onViewBooking }: Dashboa
       {masTarde.length > 0 && (
         <div className="space-y-2">
           <h3 className="text-xs font-medium text-muted-foreground uppercase tracking-wide">
-            Mas tarde
+            {"M\u00e1s tarde"}
           </h3>
           {masTarde.map((booking) => (
             <div
               key={booking.id}
               className="flex items-center gap-3 px-3 py-2 rounded-lg cursor-pointer hover:bg-muted transition-colors min-h-[44px]"
               onClick={() => onViewBooking(booking.id)}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  onViewBooking(booking.id);
+                }
+              }}
             >
               <span className="text-sm text-muted-foreground w-12">
                 {format(new Date(booking.startTime), "HH:mm", { locale: es })}
               </span>
               <span className="text-sm text-foreground truncate">
-                {booking.customerName} · {boatName(booking.boatId)} · {booking.totalHours}h
+                {booking.customerName} &middot; {boatName(booking.boatId)} &middot; {booking.totalHours}h
               </span>
             </div>
           ))}
         </div>
       )}
 
-      {/* PETICIONES */}
+      {/* PETICIONES — larger gap (different context) */}
       {inquiries.length > 0 && (
-        <div className="space-y-2">
+        <div className="space-y-2 pt-3">
           <h3 className="text-xs font-medium text-muted-foreground uppercase tracking-wide">
             Peticiones ({inquiriesResponse?.total ?? inquiries.length})
           </h3>
@@ -293,9 +371,9 @@ export function DashboardHoy({ adminToken: _adminToken, onViewBooking }: Dashboa
               className="flex items-center gap-3 px-3 py-2 text-sm min-h-[44px]"
             >
               <span className="text-foreground">
-                {inq.firstName} {inq.lastName}
+                {customerDisplay(inq.firstName, inq.lastName)}
               </span>
-              <span className="text-muted-foreground">·</span>
+              <span className="text-muted-foreground" aria-hidden="true">&middot;</span>
               <span className="text-muted-foreground">
                 {inq.bookingDate
                   ? format(new Date(inq.bookingDate + "T00:00:00"), "d MMM", { locale: es })
@@ -306,14 +384,14 @@ export function DashboardHoy({ adminToken: _adminToken, onViewBooking }: Dashboa
         </div>
       )}
 
-      {/* MANANA */}
+      {/* MANANA — larger gap (different context) */}
       {confirmedTomorrow.length > 0 && (
-        <div className="pt-2 border-t border-border">
+        <div className="pt-4 border-t border-border">
           <p className="text-xs text-muted-foreground">
-            <span className="font-medium uppercase tracking-wide">Manana</span>
-            {" · "}
+            <span className="font-medium uppercase tracking-wide">{"Ma\u00f1ana"}</span>
+            {" \u00B7 "}
             {confirmedTomorrow.length} reservas
-            {" · "}
+            {" \u00B7 "}
             {confirmedTomorrow
               .slice(0, 4)
               .map((b) => format(new Date(b.startTime), "HH:mm", { locale: es }))

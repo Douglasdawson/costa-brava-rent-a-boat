@@ -98,7 +98,7 @@ export default function Hero() {
                   const fleet = document.getElementById('fleet');
                   if (fleet) fleet.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }}
-                className="bg-white/90 hover:bg-white text-cta sm:bg-[#A8C4DD] sm:hover:bg-[#93b5d2] sm:text-[hsl(215_45%_20%)] px-6 py-2.5 text-sm sm:py-3.5 sm:text-base lg:px-10 lg:py-3.5 lg:text-lg rounded-full font-medium btn-elevated w-full sm:w-auto"
+                className="bg-white/90 hover:bg-white text-cta sm:bg-hero-cta-secondary sm:hover:bg-hero-cta-secondary-hover sm:text-foreground px-6 py-2.5 text-sm sm:py-3.5 sm:text-base lg:px-10 lg:py-3.5 lg:text-lg rounded-full font-medium btn-elevated w-full sm:w-auto"
                 data-testid="button-hero-explore"
               >
                 {t.hero.viewFleet}

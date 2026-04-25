@@ -98,7 +98,7 @@ export default function ContactSection() {
               <div className="pt-6 border-t border-border">
                 <Button
                   onClick={() => { trackWhatsAppClick("contact_section"); window.open("https://wa.me/34611500372", "_blank"); }}
-                  className="w-full bg-[#25D366] hover:bg-[#128C7E] text-white px-6 py-3 h-12 text-base transition-colors"
+                  className="w-full bg-whatsapp hover:bg-whatsapp-hover text-white px-6 py-3 h-12 text-base transition-colors"
                   data-testid="button-whatsapp-quick"
                   aria-label={t.a11y.checkWhatsApp}
                 >

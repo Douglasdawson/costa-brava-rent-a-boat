@@ -61,7 +61,7 @@ const HoldCountdown = memo(function HoldCountdown({ expiresAt, onExpired, softEx
     ? "bg-red-500"
     : isWarning
     ? "bg-amber-500"
-    : "bg-[#0D0D2B]";
+    : "bg-dark-surface";
 
   const holdCountdownText = t.holdCountdown;
 

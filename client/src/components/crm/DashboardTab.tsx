@@ -106,8 +106,6 @@ function buildFetcher<T>(_adminToken: string) {
 
 // --- Sub-components ---
 
-// ChangeIndicator removed — unified into StatCard
-
 function KPICardSkeleton() {
   return (
     <Card>
@@ -123,14 +121,14 @@ function KPICardSkeleton() {
   );
 }
 
-function ChartSkeleton({ height = "h-[300px]" }: { height?: string }) {
+function ChartSkeleton() {
   return (
     <Card>
       <CardHeader>
         <Skeleton className="h-5 w-40" />
       </CardHeader>
       <CardContent>
-        <Skeleton className={`w-full ${height} rounded`} />
+        <Skeleton className="w-full h-[220px] md:h-[300px] rounded" />
       </CardContent>
     </Card>
   );
@@ -356,14 +354,8 @@ export function DashboardTab({
     return parts.slice(0, 2).join(" ");
   }
 
-  // --- Period label helper ---
-  function periodLabel(range: string): string {
-    const found = PERIOD_OPTIONS.find((p) => p.value === range);
-    return found ? found.label : range;
-  }
-
   return (
-    <div className="space-y-6">
+    <div className="flex flex-col gap-6">
       {/* Period Selector */}
       <div className="flex flex-wrap items-center gap-2">
         <span className="text-sm font-medium text-muted-foreground mr-1">Periodo:</span>
@@ -373,17 +365,19 @@ export function DashboardTab({
             variant={selectedTimeRange === opt.value ? "default" : "outline"}
             size="sm"
             onClick={() => onTimeRangeChange(opt.value)}
-            className={
+            className={`min-h-[44px] ${
               selectedTimeRange === opt.value
                 ? ""
                 : "text-muted-foreground hover:text-foreground"
-            }
+            }`}
           >
             {opt.label}
           </Button>
         ))}
       </div>
 
+      {/* Quick-glance group: upcoming bookings + KPIs */}
+      <div className="flex flex-col gap-3">
       {/* Upcoming Bookings */}
       <Card>
         <CardHeader className="pb-2 flex flex-row items-center justify-between">
@@ -393,7 +387,7 @@ export function DashboardTab({
           <Button
             variant="ghost"
             size="sm"
-            className="text-xs text-muted-foreground hover:text-foreground"
+            className="text-xs text-muted-foreground hover:text-foreground min-h-[44px]"
             onClick={() => onTimeRangeChange("week")}
           >
             Ver todas
@@ -405,7 +399,7 @@ export function DashboardTab({
             <div className="space-y-3">
               {[...Array(4)].map((_, i) => (
                 <div key={i} className="flex items-center gap-3">
-                  <Skeleton className="h-10 w-10 rounded-full" />
+                  <Skeleton className="h-4 w-4 rounded" />
                   <div className="flex-1">
                     <Skeleton className="h-4 w-32 mb-1" />
                     <Skeleton className="h-3 w-24" />
@@ -417,19 +411,26 @@ export function DashboardTab({
           ) : upcomingBookings.length === 0 ? (
             <div className="flex flex-col items-center justify-center py-8 text-muted-foreground">
               <Anchor className="h-8 w-8 mb-2 opacity-50" />
-              <p className="text-sm">No hay reservas próximas</p>
+              <p className="text-sm mb-3">No hay reservas proximas</p>
+              <Button
+                variant="outline"
+                size="sm"
+                className="min-h-[44px]"
+                onClick={() => onTimeRangeChange("month")}
+              >
+                <Calendar className="h-4 w-4 mr-1.5" />
+                Ver calendario
+              </Button>
             </div>
           ) : (
             <div className="space-y-2">
               {upcomingBookings.map((booking: Booking) => (
                 <div
                   key={booking.id}
-                  className="flex items-center gap-3 p-2.5 rounded-lg hover:bg-muted transition-colors cursor-pointer group"
+                  className="flex items-center gap-3 p-2.5 rounded-lg hover:bg-muted transition-colors cursor-pointer group min-h-[44px]"
                   onClick={() => onViewBooking(booking.id)}
                 >
-                  <div className="flex-shrink-0 w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
-                    <Clock className="h-4 w-4 text-primary" />
-                  </div>
+                  <Clock className="h-4 w-4 text-muted-foreground flex-shrink-0" />
                   <div className="flex-1 min-w-0">
                     <p className="text-sm font-medium text-foreground truncate">
                       {booking.customerName} {booking.customerSurname}
@@ -510,6 +511,8 @@ export function DashboardTab({
         )}
       </div>
 
+      </div>
+
       {/* Recent Activity */}
       <Card>
         <CardHeader className="pb-2">
@@ -550,7 +553,7 @@ export function DashboardTab({
                 return (
                   <div
                     key={booking.id}
-                    className="flex items-center gap-3 py-2.5 px-2 rounded-lg hover:bg-muted transition-colors cursor-pointer"
+                    className="flex items-center gap-3 py-2.5 px-2 rounded-lg hover:bg-muted transition-colors cursor-pointer min-h-[44px]"
                     onClick={() => onViewBooking(booking.id)}
                   >
                     <div className="flex-shrink-0 w-8 h-8 rounded-full bg-muted flex items-center justify-center">

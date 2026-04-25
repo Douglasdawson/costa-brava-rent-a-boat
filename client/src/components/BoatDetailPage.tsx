@@ -42,6 +42,7 @@ import { getBoatImage, getBoatImageSrcSet, getBoatAltText } from "@/utils/boatIm
 import { useResponsiveGallery } from "@/hooks/useResponsiveGallery";
 import { useThrottledScroll } from "@/hooks/useThrottledScroll";
 import Navigation from "./Navigation";
+import { ReadingProgressBar } from "./ReadingProgressBar";
 import Footer from "./Footer";
 import { SEO } from "./SEO";
 import { useLanguage } from "@/hooks/use-language";
@@ -708,7 +709,8 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
         jsonLd={combinedJsonLd}
       />
       <Navigation />
-      
+      <ReadingProgressBar />
+
       {/* Spacer for fixed navbar */}
       <div className="pt-20 sm:pt-24" />
 
@@ -810,7 +812,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                 srcSet={getBoatImageSrcSet(displayImages[currentImageIndex]) || undefined}
                 sizes="(max-width: 767px) 100vw, 800px"
                 alt={getBoatAltText(boatData.name, currentImageIndex)}
-                className="w-full aspect-[4/3] object-cover cursor-zoom-in"
+                className="w-full aspect-[4/3] object-cover cursor-zoom-in boat-image-reveal"
                 width={800}
                 height={600}
                 loading="lazy"
@@ -1271,7 +1273,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                     href={localizedPath("boatDetail", relBoat.id)}
                     className="group bg-background rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-200 border border-border"
                   >
-                    <div className="relative overflow-hidden" style={{ aspectRatio: '4/3' }}>
+                    <div className="relative overflow-hidden boat-image-reveal" style={{ aspectRatio: '4/3' }}>
                       <img
                         src={relBoat.imageGallery?.find((img: string) => !img.includes('portrait')) || relBoat.imageGallery?.[0] || getBoatImage(relBoat.imageUrl || '')}
                         alt={getBoatAltText(relBoat.name)}

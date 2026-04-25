@@ -416,6 +416,7 @@ export interface SeoTrendsResult {
  * per-keyword detail for the top 20 by total impressions.
  */
 export async function getSeoTrends(days: number): Promise<SeoTrendsResult> {
+  try {
   const sinceDate = new Date(Date.now() - days * 24 * 3600_000)
     .toISOString()
     .slice(0, 10);
@@ -443,6 +444,11 @@ export async function getSeoTrends(days: number): Promise<SeoTrendsResult> {
     totalClicks: Number(r.totalClicks),
     totalImpressions: Number(r.totalImpressions),
   }));
+
+  // If no daily data, return early (empty DB or no tracked keywords with rankings)
+  if (dailyAgg.length === 0) {
+    return { rankings: [], byKeyword: [] };
+  }
 
   // Top 20 tracked keywords by total impressions in the period
   const topKws = await db
@@ -505,6 +511,9 @@ export async function getSeoTrends(days: number): Promise<SeoTrendsResult> {
   }
 
   return { rankings, byKeyword };
+  } catch {
+    return { rankings: [], byKeyword: [] };
+  }
 }
 
 // ================================================================
@@ -547,6 +556,7 @@ export interface CompetitorTrendsResult {
  * (latest position per keyword: us vs them), and daily trend lines.
  */
 export async function getCompetitorTrends(days: number): Promise<CompetitorTrendsResult> {
+  try {
   const sinceDate = new Date(Date.now() - days * 24 * 3600_000)
     .toISOString()
     .slice(0, 10);
@@ -656,4 +666,7 @@ export async function getCompetitorTrends(days: number): Promise<CompetitorTrend
   }));
 
   return { competitors: activeComps, scoreboard, trends };
+  } catch {
+    return { competitors: [], scoreboard: [], trends: [] };
+  }
 }

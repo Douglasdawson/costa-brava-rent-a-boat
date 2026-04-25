@@ -9,8 +9,9 @@
  */
 
 import {
-  db, eq, and, desc, sql, gte, inArray,
+  db, eq, and, desc, asc, sql, gte, inArray,
   distributionTray, seoAutopilotAudit, blogPosts,
+  seoKeywords, seoRankings, seoCompetitors, seoCompetitorRankings,
   type DistributionTrayItem, type InsertDistributionTrayItem,
   type DistributionPlatform, type DistributionStatus,
   type SeoAutopilotAudit, type InsertSeoAutopilotAudit,
@@ -383,4 +384,270 @@ export async function getAlerts(): Promise<AutopilotAlert[]> {
   }
 
   return alerts;
+}
+
+// ================================================================
+// SEO TRENDS (dashboard charts)
+// ================================================================
+
+export interface RankingDayPoint {
+  date: string;
+  avgPosition: number;
+  totalClicks: number;
+  totalImpressions: number;
+}
+
+export interface KeywordTrend {
+  keywordId: number;
+  keyword: string;
+  language: string;
+  points: Array<{ date: string; position: number; clicks: number; impressions: number }>;
+}
+
+export interface SeoTrendsResult {
+  rankings: RankingDayPoint[];
+  byKeyword: KeywordTrend[];
+}
+
+/**
+ * Aggregated ranking trends over the given number of days.
+ * Returns daily averages across all tracked keywords, plus
+ * per-keyword detail for the top 20 by total impressions.
+ */
+export async function getSeoTrends(days: number): Promise<SeoTrendsResult> {
+  const sinceDate = new Date(Date.now() - days * 24 * 3600_000)
+    .toISOString()
+    .slice(0, 10);
+
+  // Daily aggregates across all tracked keywords
+  const dailyAgg = await db
+    .select({
+      date: seoRankings.date,
+      avgPosition: sql<number>`coalesce(avg(${seoRankings.position}::numeric), 0)::float`,
+      totalClicks: sql<number>`coalesce(sum(${seoRankings.clicks}), 0)::int`,
+      totalImpressions: sql<number>`coalesce(sum(${seoRankings.impressions}), 0)::int`,
+    })
+    .from(seoRankings)
+    .innerJoin(seoKeywords, eq(seoRankings.keywordId, seoKeywords.id))
+    .where(and(
+      eq(seoKeywords.tracked, true),
+      gte(seoRankings.date, sinceDate),
+    ))
+    .groupBy(seoRankings.date)
+    .orderBy(asc(seoRankings.date));
+
+  const rankings: RankingDayPoint[] = dailyAgg.map((r) => ({
+    date: r.date,
+    avgPosition: Number(r.avgPosition),
+    totalClicks: Number(r.totalClicks),
+    totalImpressions: Number(r.totalImpressions),
+  }));
+
+  // Top 20 tracked keywords by total impressions in the period
+  const topKws = await db
+    .select({
+      keywordId: seoKeywords.id,
+      keyword: seoKeywords.keyword,
+      language: seoKeywords.language,
+      totalImpressions: sql<number>`coalesce(sum(${seoRankings.impressions}), 0)::int`,
+    })
+    .from(seoKeywords)
+    .innerJoin(seoRankings, eq(seoKeywords.id, seoRankings.keywordId))
+    .where(and(
+      eq(seoKeywords.tracked, true),
+      gte(seoRankings.date, sinceDate),
+    ))
+    .groupBy(seoKeywords.id, seoKeywords.keyword, seoKeywords.language)
+    .orderBy(sql`coalesce(sum(${seoRankings.impressions}), 0) desc`)
+    .limit(20);
+
+  const kwIds = topKws.map((k) => k.keywordId);
+
+  let byKeyword: KeywordTrend[] = [];
+  if (kwIds.length > 0) {
+    const kwPoints = await db
+      .select({
+        keywordId: seoRankings.keywordId,
+        date: seoRankings.date,
+        position: sql<number>`coalesce(${seoRankings.position}::numeric, 0)::float`,
+        clicks: sql<number>`coalesce(${seoRankings.clicks}, 0)::int`,
+        impressions: sql<number>`coalesce(${seoRankings.impressions}, 0)::int`,
+      })
+      .from(seoRankings)
+      .where(and(
+        inArray(seoRankings.keywordId, kwIds),
+        gte(seoRankings.date, sinceDate),
+      ))
+      .orderBy(asc(seoRankings.date));
+
+    // Group points by keyword
+    const pointsByKw = new Map<number, Array<{ date: string; position: number; clicks: number; impressions: number }>>();
+    for (const p of kwPoints) {
+      const arr = pointsByKw.get(p.keywordId) ?? [];
+      arr.push({
+        date: p.date,
+        position: Number(p.position),
+        clicks: Number(p.clicks),
+        impressions: Number(p.impressions),
+      });
+      pointsByKw.set(p.keywordId, arr);
+    }
+
+    byKeyword = topKws.map((k) => ({
+      keywordId: k.keywordId,
+      keyword: k.keyword,
+      language: k.language,
+      points: pointsByKw.get(k.keywordId) ?? [],
+    }));
+  }
+
+  return { rankings, byKeyword };
+}
+
+// ================================================================
+// COMPETITOR TRENDS
+// ================================================================
+
+export interface CompetitorInfo {
+  id: number;
+  domain: string;
+  name: string | null;
+  type: string | null;
+}
+
+export interface ScoreboardEntry {
+  keywordId: number;
+  keyword: string;
+  myPosition: number | null;
+  competitors: Array<{ competitorId: number; domain: string; position: number | null }>;
+}
+
+export interface CompetitorDayPoint {
+  date: string;
+  avgPosition: number;
+}
+
+export interface CompetitorTrendLine {
+  competitorId: number;
+  domain: string;
+  points: CompetitorDayPoint[];
+}
+
+export interface CompetitorTrendsResult {
+  competitors: CompetitorInfo[];
+  scoreboard: ScoreboardEntry[];
+  trends: CompetitorTrendLine[];
+}
+
+/**
+ * Competitor comparison data: active competitors, scoreboard
+ * (latest position per keyword: us vs them), and daily trend lines.
+ */
+export async function getCompetitorTrends(days: number): Promise<CompetitorTrendsResult> {
+  const sinceDate = new Date(Date.now() - days * 24 * 3600_000)
+    .toISOString()
+    .slice(0, 10);
+
+  // Active competitors
+  const activeComps = await db
+    .select({
+      id: seoCompetitors.id,
+      domain: seoCompetitors.domain,
+      name: seoCompetitors.name,
+      type: seoCompetitors.type,
+    })
+    .from(seoCompetitors)
+    .where(eq(seoCompetitors.active, true));
+
+  if (activeComps.length === 0) {
+    return { competitors: [], scoreboard: [], trends: [] };
+  }
+
+  const compIds = activeComps.map((c) => c.id);
+
+  // Tracked keywords for scoreboard
+  const trackedKws = await db
+    .select({ id: seoKeywords.id, keyword: seoKeywords.keyword })
+    .from(seoKeywords)
+    .where(eq(seoKeywords.tracked, true));
+
+  // Latest own ranking per keyword (most recent date)
+  const myLatest = await db
+    .select({
+      keywordId: seoRankings.keywordId,
+      position: sql<number>`(array_agg(${seoRankings.position}::numeric order by ${seoRankings.date} desc))[1]::float`,
+    })
+    .from(seoRankings)
+    .innerJoin(seoKeywords, eq(seoRankings.keywordId, seoKeywords.id))
+    .where(eq(seoKeywords.tracked, true))
+    .groupBy(seoRankings.keywordId);
+
+  const myPosMap = new Map<number, number | null>();
+  for (const r of myLatest) {
+    myPosMap.set(r.keywordId, r.position != null ? Number(r.position) : null);
+  }
+
+  // Latest competitor ranking per keyword+competitor
+  const compLatest = await db
+    .select({
+      competitorId: seoCompetitorRankings.competitorId,
+      keywordId: seoCompetitorRankings.keywordId,
+      position: sql<number>`(array_agg(${seoCompetitorRankings.position}::numeric order by ${seoCompetitorRankings.date} desc))[1]::float`,
+    })
+    .from(seoCompetitorRankings)
+    .where(inArray(seoCompetitorRankings.competitorId, compIds))
+    .groupBy(seoCompetitorRankings.competitorId, seoCompetitorRankings.keywordId);
+
+  // Build lookup: keywordId -> competitorId -> position
+  const compPosMap = new Map<number, Map<number, number | null>>();
+  for (const r of compLatest) {
+    let inner = compPosMap.get(r.keywordId);
+    if (!inner) {
+      inner = new Map();
+      compPosMap.set(r.keywordId, inner);
+    }
+    inner.set(r.competitorId, r.position != null ? Number(r.position) : null);
+  }
+
+  const scoreboard: ScoreboardEntry[] = trackedKws.map((kw) => ({
+    keywordId: kw.id,
+    keyword: kw.keyword,
+    myPosition: myPosMap.get(kw.id) ?? null,
+    competitors: activeComps.map((c) => ({
+      competitorId: c.id,
+      domain: c.domain,
+      position: compPosMap.get(kw.id)?.get(c.id) ?? null,
+    })),
+  }));
+
+  // Daily trend lines per competitor
+  const compDaily = await db
+    .select({
+      competitorId: seoCompetitorRankings.competitorId,
+      date: seoCompetitorRankings.date,
+      avgPosition: sql<number>`coalesce(avg(${seoCompetitorRankings.position}::numeric), 0)::float`,
+    })
+    .from(seoCompetitorRankings)
+    .where(and(
+      inArray(seoCompetitorRankings.competitorId, compIds),
+      gte(seoCompetitorRankings.date, sinceDate),
+    ))
+    .groupBy(seoCompetitorRankings.competitorId, seoCompetitorRankings.date)
+    .orderBy(asc(seoCompetitorRankings.date));
+
+  // Group by competitor
+  const trendsByComp = new Map<number, CompetitorDayPoint[]>();
+  for (const r of compDaily) {
+    const arr = trendsByComp.get(r.competitorId) ?? [];
+    arr.push({ date: r.date, avgPosition: Number(r.avgPosition) });
+    trendsByComp.set(r.competitorId, arr);
+  }
+
+  const trends: CompetitorTrendLine[] = activeComps.map((c) => ({
+    competitorId: c.id,
+    domain: c.domain,
+    points: trendsByComp.get(c.id) ?? [],
+  }));
+
+  return { competitors: activeComps, scoreboard, trends };
 }

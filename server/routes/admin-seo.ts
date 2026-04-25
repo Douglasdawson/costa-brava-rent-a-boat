@@ -1,6 +1,7 @@
 import type { Express } from "express";
 import { logger } from "../lib/logger";
 import { db } from "../db";
+import { getSeoTrends, getCompetitorTrends } from "../storage/seoAutopilot";
 import {
   seoKeywords,
   seoRankings,
@@ -55,6 +56,21 @@ export function registerSeoRoutes(app: Express): void {
       });
     } catch (error) {
       res.status(500).json({ message: "Error fetching SEO dashboard" });
+    }
+  });
+
+  // Trends (ranking charts + competitor comparison)
+  app.get("/api/admin/seo/trends", requireAdminSession, async (req, res) => {
+    try {
+      const days = Math.min(Number(req.query.days) || 30, 365);
+      const [rankings, competitors] = await Promise.all([
+        getSeoTrends(days),
+        getCompetitorTrends(days),
+      ]);
+      res.json({ rankings, competitors });
+    } catch (error) {
+      logger.error("Failed to fetch SEO trends", { error });
+      res.status(500).json({ message: "Error al cargar tendencias SEO" });
     }
   });
 

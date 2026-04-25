@@ -25,6 +25,7 @@ import { useQuery } from "@tanstack/react-query";
 import { EmptyState } from "./shared/EmptyState";
 import { ErrorState } from "./shared/ErrorState";
 import { SeoDashboard } from "./SeoDashboard";
+import { AnalyticsTab } from "./AnalyticsTab";
 
 // --- Types ---
 
@@ -78,10 +79,11 @@ interface HealthCheck {
 
 // --- Sub-tab definitions ---
 
-type SubTab = "dashboard" | "campanas" | "experimentos" | "informes" | "salud";
+type SubTab = "resumen" | "analisis" | "campanas" | "experimentos" | "informes" | "salud";
 
 const SUB_TABS: { id: SubTab; label: string }[] = [
-  { id: "dashboard", label: "Dashboard" },
+  { id: "resumen", label: "Resumen" },
+  { id: "analisis", label: "Analisis" },
   { id: "campanas", label: "Campanas" },
   { id: "experimentos", label: "Experimentos" },
   { id: "informes", label: "Informes" },
@@ -132,7 +134,7 @@ function useSeoQuery<T>(key: string, endpoint: string, adminToken: string, enabl
 // --- Main Component ---
 
 export function SeoTab({ adminToken }: SeoTabProps) {
-  const [activeSubTab, setActiveSubTab] = useState<SubTab>("dashboard");
+  const [activeSubTab, setActiveSubTab] = useState<SubTab>("resumen");
 
   return (
     <div className="space-y-4">
@@ -152,7 +154,8 @@ export function SeoTab({ adminToken }: SeoTabProps) {
       </div>
 
       {/* Sub-tab content */}
-      {activeSubTab === "dashboard" && <SeoDashboard adminToken={adminToken} />}
+      {activeSubTab === "resumen" && <SeoDashboard adminToken={adminToken} />}
+      {activeSubTab === "analisis" && <AnalyticsTab adminToken={adminToken} />}
       {activeSubTab === "campanas" && <CampanasSubTab adminToken={adminToken} />}
       {activeSubTab === "experimentos" && <ExperimentosSubTab adminToken={adminToken} />}
       {activeSubTab === "informes" && <InformesSubTab adminToken={adminToken} />}

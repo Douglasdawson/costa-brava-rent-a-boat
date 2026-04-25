@@ -28,6 +28,7 @@ import {
 } from "@/utils/seo-config";
 import { openWhatsApp, createBookingMessage } from "@/utils/whatsapp";
 import { useMemo, useState, type ComponentType } from "react";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { useQuery } from "@tanstack/react-query";
 import type { Boat } from "@shared/schema";
 import { useTranslations } from "@/lib/translations";
@@ -138,6 +139,7 @@ export default function FAQPage() {
   const canonical = generateCanonicalUrl("faq", language);
 
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
+  const { ref: faqRef, isVisible: faqVisible } = useScrollReveal();
 
   const { data: boats } = useQuery<Boat[]>({ queryKey: ["/api/boats"] });
   const faqVars = useMemo(() => computeFaqVars(boats), [boats]);
@@ -220,7 +222,7 @@ export default function FAQPage() {
       </div>
 
       {/* FAQ Sections */}
-      <div className="pt-6 pb-10 sm:pt-8 sm:pb-16 bg-primary/5">
+      <div ref={faqRef} className={`pt-6 pb-10 sm:pt-8 sm:pb-16 bg-primary/5 transition-[opacity,transform,filter] duration-500 ${faqVisible ? "opacity-100 translate-y-0 blur-none" : "opacity-0 translate-y-8 blur-[2px]"}`}>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Category Filter */}
           <div className="mb-6 sm:mb-8">

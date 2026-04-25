@@ -22,6 +22,7 @@ import { SEO } from "@/components/SEO";
 import { useLanguage } from "@/hooks/use-language";
 import { useTranslations } from "@/lib/translations";
 import { useBookingModal } from "@/hooks/bookingModalContext";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 import {
   getSEOConfig,
   generateHreflangLinks,
@@ -70,6 +71,7 @@ export default function PricingPage() {
   const hreflangLinks = generateHreflangLinks("pricing");
   const canonical = generateCanonicalUrl("pricing", language);
 
+  const { ref: contentRef, isVisible: contentVisible } = useScrollReveal();
   const { data: boats, isLoading } = useQuery<Boat[]>({
     queryKey: ["/api/boats"],
   });
@@ -237,7 +239,7 @@ export default function PricingPage() {
       </div>
 
       {/* Main content */}
-      <div className="py-12 bg-muted">
+      <div ref={contentRef} className={`py-12 bg-muted transition-[opacity,transform,filter] duration-500 ${contentVisible ? "opacity-100 translate-y-0 blur-none" : "opacity-0 translate-y-8 blur-[2px]"}`}>
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           {isLoading ? (
             <div className="flex justify-center py-12" role="status">

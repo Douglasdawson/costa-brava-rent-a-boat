@@ -21,6 +21,7 @@ import { SEO } from "@/components/SEO";
 import { generateBreadcrumbSchema } from "@/utils/seo-config";
 import { useLanguage, type Language } from "@/hooks/use-language";
 import { useTranslations } from "@/lib/translations";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { openWhatsApp, createBookingMessage } from "@/utils/whatsapp";
 import { trackPhoneClick } from "@/utils/analytics";
 import {
@@ -573,6 +574,7 @@ export default function AboutPage() {
   const txt = t[language];
   const tr = useTranslations();
 
+  const { ref: contentRef, isVisible: contentVisible } = useScrollReveal();
   const handleBookingWhatsApp = () => {
     const message = createBookingMessage(undefined, undefined, tr.whatsappMessages);
     openWhatsApp(message);
@@ -748,7 +750,7 @@ export default function AboutPage() {
         </div>
 
         {/* Main Content */}
-        <div className="py-12 bg-muted">
+        <div ref={contentRef} className={`py-12 bg-muted transition-[opacity,transform,filter] duration-500 ${contentVisible ? "opacity-100 translate-y-0 blur-none" : "opacity-0 translate-y-8 blur-[2px]"}`}>
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
 
             {/* Who We Are */}

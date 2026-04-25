@@ -163,8 +163,8 @@ export default function ActivityFishingPage() {
       {/* Why Fish from Blanes */}
       <RevealSection className="py-16 sm:py-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="flex items-center gap-3 text-2xl font-heading font-semibold mb-8">
-            <Star className="w-6 h-6 text-cta" />
+          <h2 className="flex items-center gap-3 text-2xl sm:text-3xl font-heading font-bold mb-8">
+            <Star className="w-6 h-6 text-primary" />
             Por que pescar desde Blanes
           </h2>
           <div className="grid lg:grid-cols-5 gap-10 lg:gap-16 items-center">
@@ -227,7 +227,7 @@ export default function ActivityFishingPage() {
       {/* Fish Species */}
       <RevealSection className="py-16 sm:py-20 bg-muted">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="flex items-center gap-3 text-2xl font-heading font-semibold mb-8">
+          <h2 className="flex items-center gap-3 text-2xl sm:text-3xl font-heading font-bold mb-8">
             <Fish className="w-6 h-6 text-primary" />
             Especies que puedes pescar en Blanes
           </h2>
@@ -258,7 +258,7 @@ export default function ActivityFishingPage() {
       {/* Recommended Boats */}
       <RevealSection className="py-16 sm:py-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="flex items-center gap-3 text-2xl font-heading font-semibold mb-8">
+          <h2 className="flex items-center gap-3 text-2xl sm:text-3xl font-heading font-bold mb-8">
             <Anchor className="w-6 h-6 text-primary" />
             Barcos recomendados para pesca
           </h2>
@@ -294,7 +294,7 @@ export default function ActivityFishingPage() {
       {/* Fishing Spots */}
       <RevealSection className="py-16 sm:py-20 bg-muted">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="flex items-center gap-3 text-2xl font-heading font-semibold mb-8">
+          <h2 className="flex items-center gap-3 text-2xl sm:text-3xl font-heading font-bold mb-8">
             <MapPin className="w-6 h-6 text-primary" />
             Zonas de pesca desde Blanes
           </h2>
@@ -317,7 +317,7 @@ export default function ActivityFishingPage() {
       {/* Regulations */}
       <RevealSection className="py-16 sm:py-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="flex items-center gap-3 text-2xl font-heading font-semibold mb-8">
+          <h2 className="flex items-center gap-3 text-2xl sm:text-3xl font-heading font-bold mb-8">
             <AlertTriangle className="w-6 h-6 text-primary" />
             Regulaciones y normativa de pesca
           </h2>
@@ -378,7 +378,7 @@ export default function ActivityFishingPage() {
       {/* Bring Your Own Equipment */}
       <RevealSection className="py-16 sm:py-20 bg-muted">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="flex items-center gap-3 text-2xl font-heading font-semibold mb-8">
+          <h2 className="flex items-center gap-3 text-2xl sm:text-3xl font-heading font-bold mb-8">
             <Shield className="w-6 h-6 text-primary" />
             Equipo de pesca: trae el tuyo
           </h2>
@@ -458,7 +458,7 @@ export default function ActivityFishingPage() {
       {/* CTA Section */}
       <div className="py-16 sm:py-20 bg-primary">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-2xl font-heading font-bold mb-4 text-white">Reserva tu barco para pescar en Blanes</h2>
+          <h2 className="text-2xl sm:text-3xl font-heading font-bold mb-4 text-white">Reserva tu barco para pescar en Blanes</h2>
           <p className="text-lg mb-6 text-white/90 leading-relaxed">
             Trae tu equipo, nosotros ponemos el barco. Lubinas, doradas, serviolas y mas
             te esperan en las aguas de la Costa Brava. Salidas desde el Puerto de Blanes.
@@ -485,7 +485,7 @@ export default function ActivityFishingPage() {
       {/* FAQ Section */}
       <RevealSection className="py-16 sm:py-20">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="flex items-center gap-3 text-2xl font-heading font-semibold mb-8">
+          <h2 className="flex items-center gap-3 text-2xl sm:text-3xl font-heading font-bold mb-8">
             Preguntas frecuentes sobre pesca desde barco
           </h2>
           <FAQSection items={faqs} />

@@ -16,10 +16,10 @@ interface RelatedContentProps {
 }
 
 const TYPE_STYLES: Record<ContentType, { label: string; labelEn: string; className: string }> = {
-  blog: { label: "Blog", labelEn: "Blog", className: "bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300" },
-  actividad: { label: "Actividad", labelEn: "Activity", className: "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-300" },
-  ubicacion: { label: "Ubicacion", labelEn: "Location", className: "bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-300" },
-  guia: { label: "Guia", labelEn: "Guide", className: "bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-300" },
+  blog: { label: "Blog", labelEn: "Blog", className: "bg-primary/10 text-primary" },
+  actividad: { label: "Actividad", labelEn: "Activity", className: "bg-primary/15 text-primary" },
+  ubicacion: { label: "Ubicacion", labelEn: "Location", className: "bg-muted text-foreground" },
+  guia: { label: "Guia", labelEn: "Guide", className: "bg-primary/5 text-primary" },
 };
 
 const RELATED_CONTENT: Record<string, RelatedItemDef[]> = {
@@ -106,7 +106,7 @@ export default function RelatedContent({ currentPage }: RelatedContentProps) {
               <a
                 key={index}
                 href={href}
-                className="group bg-background border rounded-lg p-5 flex flex-col gap-3 transition-all duration-200 hover:-translate-y-1 hover:shadow-lg"
+                className="group bg-background border rounded-lg p-5 flex flex-col gap-3 transition-all duration-200 [@media(hover:hover)]:hover:-translate-y-1 [@media(hover:hover)]:hover:shadow-lg"
               >
                 <span className={`inline-block w-fit text-xs font-medium px-2.5 py-0.5 rounded-full ${typeStyle.className}`}>
                   {typeLabel}

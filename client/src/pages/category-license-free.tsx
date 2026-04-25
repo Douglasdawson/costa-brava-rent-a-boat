@@ -336,7 +336,7 @@ export default function CategoryLicenseFreePage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-5 gap-10 lg:gap-16 items-center">
             <div className="lg:col-span-3">
-              <h2 className="flex items-center gap-3 text-2xl font-heading font-semibold mb-6">
+              <h2 className="flex items-center gap-3 text-2xl sm:text-3xl font-heading font-bold mb-6">
                 <Shield className="w-6 h-6 text-primary" />
                 {clf.whatAreTitle}
               </h2>
@@ -394,7 +394,7 @@ export default function CategoryLicenseFreePage() {
       {/* Section A: Legal Framework / Regulation */}
       <RevealSection className="py-16 sm:py-20 bg-muted">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="flex items-center gap-3 text-2xl font-heading font-semibold mb-6">
+          <h2 className="flex items-center gap-3 text-2xl sm:text-3xl font-heading font-bold mb-6">
             <FileText className="w-6 h-6 text-primary" />
             {clf.regulationTitle}
           </h2>
@@ -438,7 +438,7 @@ export default function CategoryLicenseFreePage() {
       {/* Our License-Free Fleet */}
       <RevealSection className="py-16 sm:py-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="flex items-center gap-3 text-2xl font-heading font-semibold mb-6">
+          <h2 className="flex items-center gap-3 text-2xl sm:text-3xl font-heading font-bold mb-6">
             <Anchor className="w-6 h-6 text-primary" />
             {clf.fleetTitle}
           </h2>
@@ -476,7 +476,7 @@ export default function CategoryLicenseFreePage() {
       {/* Section B: Detailed Comparison Table */}
       <RevealSection className="py-16 sm:py-20 bg-muted">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="flex items-center gap-3 text-2xl font-heading font-semibold mb-6">
+          <h2 className="flex items-center gap-3 text-2xl sm:text-3xl font-heading font-bold mb-6">
             <ArrowLeftRight className="w-6 h-6 text-primary" />
             {clf.comparisonTitle}
           </h2>
@@ -521,7 +521,7 @@ export default function CategoryLicenseFreePage() {
       {/* Advantages */}
       <RevealSection className="py-16 sm:py-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="flex items-center gap-3 text-2xl font-heading font-semibold mb-6">
+          <h2 className="flex items-center gap-3 text-2xl sm:text-3xl font-heading font-bold mb-6">
             <Heart className="w-6 h-6 text-primary" />
             {clf.advantagesTitle}
           </h2>
@@ -575,7 +575,7 @@ export default function CategoryLicenseFreePage() {
       {/* Section C: Testimonials */}
       <RevealSection className="py-16 sm:py-20 bg-muted">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="flex items-center gap-3 text-2xl font-heading font-semibold mb-6">
+          <h2 className="flex items-center gap-3 text-2xl sm:text-3xl font-heading font-bold mb-6">
             <Star className="w-6 h-6 text-primary" />
             {clf.testimonialsTitle}
           </h2>
@@ -608,7 +608,7 @@ export default function CategoryLicenseFreePage() {
       {/* Safety and Requirements */}
       <RevealSection className="py-16 sm:py-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="flex items-center gap-3 text-2xl font-heading font-semibold mb-6">
+          <h2 className="flex items-center gap-3 text-2xl sm:text-3xl font-heading font-bold mb-6">
             <Shield className="w-6 h-6 text-primary" />
             {clf.safetyTitle}
           </h2>
@@ -662,7 +662,7 @@ export default function CategoryLicenseFreePage() {
       {/* FAQ Section */}
       <RevealSection className="py-16 sm:py-20 bg-muted">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="flex items-center gap-3 text-2xl font-heading font-semibold mb-6">
+          <h2 className="flex items-center gap-3 text-2xl sm:text-3xl font-heading font-bold mb-6">
             <FileText className="w-6 h-6 text-primary" />
             {language === 'es' ? 'Preguntas Frecuentes' : language === 'en' ? 'Frequently Asked Questions' : language === 'ca' ? 'Preguntes Frequents' : language === 'fr' ? 'Questions Frequentes' : language === 'de' ? 'Haufig Gestellte Fragen' : language === 'nl' ? 'Veelgestelde Vragen' : language === 'it' ? 'Domande Frequenti' : 'Часто задаваемые вопросы'}
           </h2>
@@ -698,7 +698,7 @@ export default function CategoryLicenseFreePage() {
       {/* CTA Section */}
       <div className="py-16 sm:py-20 bg-primary">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-2xl font-heading font-bold mb-4 text-white">
+          <h2 className="text-2xl sm:text-3xl font-heading font-bold mb-4 text-white">
             {clf.ctaTitle}
           </h2>
           <p className="text-lg mb-6 max-w-2xl mx-auto text-white/90 leading-relaxed">

@@ -160,8 +160,8 @@ export default function ActivityFamiliesPage() {
       {/* Why Perfect for Families */}
       <RevealSection className="py-16 sm:py-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="flex items-center gap-3 text-2xl font-heading font-semibold mb-10">
-            <Star className="w-6 h-6 text-cta" />
+          <h2 className="flex items-center gap-3 text-2xl sm:text-3xl font-heading font-bold mb-10">
+            <Star className="w-6 h-6 text-primary" />
             Por que es perfecto para familias
           </h2>
           <div className="grid lg:grid-cols-5 gap-10 lg:gap-16 items-center">
@@ -222,7 +222,7 @@ export default function ActivityFamiliesPage() {
       {/* Safety Features */}
       <RevealSection className="py-16 sm:py-20 bg-muted">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="flex items-center gap-3 text-2xl font-heading font-semibold mb-10">
+          <h2 className="flex items-center gap-3 text-2xl sm:text-3xl font-heading font-bold mb-10">
             <Shield className="w-6 h-6 text-primary" />
             Seguridad para toda la familia
           </h2>
@@ -248,7 +248,7 @@ export default function ActivityFamiliesPage() {
       {/* Family Routes */}
       <RevealSection className="py-16 sm:py-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="flex items-center gap-3 text-2xl font-heading font-semibold mb-10">
+          <h2 className="flex items-center gap-3 text-2xl sm:text-3xl font-heading font-bold mb-10">
             <MapPin className="w-6 h-6 text-primary" />
             Itinerarios recomendados para familias
           </h2>
@@ -280,7 +280,7 @@ export default function ActivityFamiliesPage() {
       {/* What to Bring */}
       <RevealSection className="py-16 sm:py-20 bg-muted">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="flex items-center gap-3 text-2xl font-heading font-semibold mb-10">
+          <h2 className="flex items-center gap-3 text-2xl sm:text-3xl font-heading font-bold mb-10">
             <Users className="w-6 h-6 text-primary" />
             Que llevar para un dia en barco con ninos
           </h2>
@@ -384,7 +384,7 @@ export default function ActivityFamiliesPage() {
       {/* CTA Section */}
       <div className="py-16 sm:py-20 bg-primary">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-2xl font-heading font-bold mb-4 text-white">Reserva un barco para toda la familia</h2>
+          <h2 className="text-2xl sm:text-3xl font-heading font-bold mb-4 text-white">Reserva un barco para toda la familia</h2>
           <p className="text-lg mb-6 text-white/90 leading-relaxed">
             Barcos seguros, faciles de manejar y con todo incluido. El plan perfecto para un dia
             en familia en la Costa Brava. Salidas desde el Puerto de Blanes de abril a octubre.
@@ -411,7 +411,7 @@ export default function ActivityFamiliesPage() {
       {/* FAQ Section */}
       <RevealSection className="py-16 sm:py-20">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="flex items-center gap-3 text-2xl font-heading font-semibold mb-10">
+          <h2 className="flex items-center gap-3 text-2xl sm:text-3xl font-heading font-bold mb-10">
             <HelpCircle className="w-6 h-6 text-primary" />
             Preguntas frecuentes sobre barcos para familias
           </h2>

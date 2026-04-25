@@ -233,7 +233,7 @@ export default function RelatedLocationsSection({ currentLocation }: RelatedLoca
             <Button
               variant="outline"
               size="sm"
-              className="group-hover:bg-primary group-hover:text-white transition-colors"
+              className="[@media(hover:hover)]:group-hover:bg-primary [@media(hover:hover)]:group-hover:text-white transition-colors"
               data-testid={`link-related-${location.id}`}
             >
               Ver Detalles
@@ -326,7 +326,7 @@ export default function RelatedLocationsSection({ currentLocation }: RelatedLoca
                       <Button
                         variant="outline"
                         size="sm"
-                        className="group-hover:bg-primary group-hover:text-white transition-colors"
+                        className="[@media(hover:hover)]:group-hover:bg-primary [@media(hover:hover)]:group-hover:text-white transition-colors"
                         data-testid={`link-related-category-${category.id}`}
                       >
                         Ver Barcos

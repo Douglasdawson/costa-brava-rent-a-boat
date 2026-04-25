@@ -2,13 +2,12 @@ import { useEffect, useMemo } from "react";
 import { useQuery } from "@tanstack/react-query";
 import type { Boat } from "@shared/schema";
 import { computeFaqVars, substituteFaqVars } from "@/utils/faqVars";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
   Clock,
-  Anchor, 
-  Users, 
+  Anchor,
+  Users,
   Star,
   Navigation as NavigationIcon,
   Sun,
@@ -21,20 +20,32 @@ import {
   ChevronRight
 } from "lucide-react";
 import Navigation from "@/components/Navigation";
+import { ReadingProgressBar } from "@/components/ReadingProgressBar";
 import Footer from "@/components/Footer";
 import RelatedLocationsSection from "@/components/RelatedLocationsSection";
 import RelatedContent from "@/components/RelatedContent";
+import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
 import { useLanguage } from "@/hooks/use-language";
-import { 
-  getSEOConfig, 
-  generateHreflangLinks, 
+import { useScrollReveal } from "@/hooks/useScrollReveal";
+import {
+  getSEOConfig,
+  generateHreflangLinks,
   generateCanonicalUrl,
   generateBreadcrumbSchema
 } from "@/utils/seo-config";
 import { openWhatsApp, createBookingMessage } from "@/utils/whatsapp";
 import { useTranslations } from "@/lib/translations";
 import { trackLocationPageView } from "@/utils/analytics";
+
+function RevealSection({ children, className = "" }: { children: React.ReactNode; className?: string }) {
+  const { ref, isVisible } = useScrollReveal();
+  return (
+    <div ref={ref} className={`transition-[opacity,transform,filter] duration-700 ${isVisible ? "opacity-100 translate-y-0 blur-none" : "opacity-0 translate-y-6 blur-[2px]"} ${className}`}>
+      {children}
+    </div>
+  );
+}
 
 export default function LocationTossaPage() {
   const { language, localizedPath } = useLanguage();
@@ -175,6 +186,7 @@ export default function LocationTossaPage() {
         jsonLd={combinedJsonLd}
       />
       <Navigation />
+      <ReadingProgressBar />
 
       {/* Hero Section — full-bleed image showing the Vila Vella from the sea,
           which is the unique "only medieval castle on the Mediterranean"
@@ -248,269 +260,257 @@ export default function LocationTossaPage() {
         </div>
       </div>
 
-      {/* Main Content */}
-      <div className="py-12 bg-muted">
+      {/* Why Visit Tossa de Mar by Boat — text + image */}
+      <RevealSection className="py-16 sm:py-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          
-          {/* Why Visit Tossa de Mar by Boat */}
-          <Card className="mb-8">
-            <CardHeader>
-              <h2 className="flex items-center gap-3 text-2xl font-semibold leading-none tracking-tight">
+          <div className="grid lg:grid-cols-5 gap-10 items-center">
+            <div className="lg:col-span-3">
+              <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground flex items-center gap-3 mb-6">
                 <Crown className="w-6 h-6 text-cta" />
                 {s.whyTossaTitle}
               </h2>
-            </CardHeader>
-            <CardContent>
-              <div className="grid md:grid-cols-2 gap-6">
+              <div className="grid sm:grid-cols-2 gap-6">
                 <div>
-                  <h3 className="font-semibold text-lg mb-3">{s.jewelCostaBrava}</h3>
-                  <p className="text-muted-foreground mb-4">{s.jewelCostaBravaDesc}</p>
-
-                  <h3 className="font-semibold text-lg mb-3">{s.historicHeritage}</h3>
-                  <p className="text-muted-foreground">{s.historicHeritageDesc}</p>
+                  <h3 className="font-heading font-semibold text-lg mb-3">{s.jewelCostaBrava}</h3>
+                  <p className="text-muted-foreground leading-relaxed mb-4">{s.jewelCostaBravaDesc}</p>
+                  <h3 className="font-heading font-semibold text-lg mb-3">{s.historicHeritage}</h3>
+                  <p className="text-muted-foreground leading-relaxed">{s.historicHeritageDesc}</p>
                 </div>
                 <div>
-                  <h3 className="font-semibold text-lg mb-3">{s.paradisiacalCoves}</h3>
-                  <p className="text-muted-foreground mb-4">{s.paradisiacalCovesDesc}</p>
-
-                  <h3 className="font-semibold text-lg mb-3">{s.panoramicNavigation}</h3>
-                  <p className="text-muted-foreground">{s.panoramicNavigationDesc}</p>
+                  <h3 className="font-heading font-semibold text-lg mb-3">{s.paradisiacalCoves}</h3>
+                  <p className="text-muted-foreground leading-relaxed mb-4">{s.paradisiacalCovesDesc}</p>
+                  <h3 className="font-heading font-semibold text-lg mb-3">{s.panoramicNavigation}</h3>
+                  <p className="text-muted-foreground leading-relaxed">{s.panoramicNavigationDesc}</p>
                 </div>
               </div>
-            </CardContent>
-          </Card>
-
-          {/* Main Beaches and Historic Sites */}
-          <Card className="mb-8">
-            <CardHeader>
-              <h2 className="flex items-center gap-3 text-2xl font-semibold leading-none tracking-tight">
-                <Shield className="w-6 h-6 text-primary" />
-                {s.attractionsTitle}
-              </h2>
-            </CardHeader>
-            <CardContent>
-              <div className="grid md:grid-cols-3 gap-6">
-                <div className="text-center">
-                  <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Castle className="w-8 h-8 text-purple-600" />
-                  </div>
-                  <h3 className="font-semibold text-lg mb-2">{s.vilaVella}</h3>
-                  <p className="text-muted-foreground text-sm mb-2">{s.vilaVellaSub}</p>
-                  <p className="text-muted-foreground">{s.vilaVellaDesc}</p>
-                </div>
-
-                <div className="text-center">
-                  <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Waves className="w-8 h-8 text-primary" />
-                  </div>
-                  <h3 className="font-semibold text-lg mb-2">{s.playaGrande}</h3>
-                  <p className="text-muted-foreground text-sm mb-2">{s.playaGrandeSub}</p>
-                  <p className="text-muted-foreground">{s.playaGrandeDesc}</p>
-                </div>
-
-                <div className="text-center">
-                  <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Sun className="w-8 h-8 text-primary" />
-                  </div>
-                  <h3 className="font-semibold text-lg mb-2">{s.virginCoves}</h3>
-                  <p className="text-muted-foreground text-sm mb-2">{s.virginCovesSub}</p>
-                  <p className="text-muted-foreground">{s.virginCovesDesc}</p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* What to Do in Tossa */}
-          <Card className="mb-8">
-            <CardHeader>
-              <h2 className="flex items-center gap-3 text-2xl font-semibold leading-none tracking-tight">
-                <Heart className="w-6 h-6 text-primary" />
-                {s.whatToDoTitle}
-              </h2>
-            </CardHeader>
-            <CardContent>
-              <div className="grid md:grid-cols-2 gap-6">
-                <div>
-                  <h3 className="font-semibold text-lg mb-3">{s.cultureHistory}</h3>
-                  <ul className="space-y-2">
-                    <li className="flex items-center">
-                      <Castle className="w-4 h-4 text-primary mr-2" />
-                      <span>{s.exploreVilaVella}</span>
-                    </li>
-                    <li className="flex items-center">
-                      <Shield className="w-4 h-4 text-primary mr-2" />
-                      <span>{s.climbWalls}</span>
-                    </li>
-                    <li className="flex items-center">
-                      <Camera className="w-4 h-4 text-primary mr-2" />
-                      <span>{s.municipalMuseum}</span>
-                    </li>
-                    <li className="flex items-center">
-                      <Star className="w-4 h-4 text-primary mr-2" />
-                      <span>{s.tossaLighthouse}</span>
-                    </li>
-                  </ul>
-                </div>
-                <div>
-                  <h3 className="font-semibold text-lg mb-3">{s.natureRelax}</h3>
-                  <ul className="space-y-2">
-                    <li className="flex items-center">
-                      <Waves className="w-4 h-4 text-primary mr-2" />
-                      <span>{s.diveCrystalWaters}</span>
-                    </li>
-                    <li className="flex items-center">
-                      <Sun className="w-4 h-4 text-primary mr-2" />
-                      <span>{s.anchorSecretCoves}</span>
-                    </li>
-                    <li className="flex items-center">
-                      <NavigationIcon className="w-4 h-4 text-primary mr-2" />
-                      <span>{s.coastalPaths}</span>
-                    </li>
-                    <li className="flex items-center">
-                      <Camera className="w-4 h-4 text-primary mr-2" />
-                      <span>{s.sunsetFromSea}</span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Navigation Tips */}
-          <Card className="mb-8">
-            <CardHeader>
-              <h2 className="flex items-center gap-3 text-2xl font-semibold leading-none tracking-tight">
-                <NavigationIcon className="w-6 h-6 text-primary" />
-                {s.navigationTipsTitle}
-              </h2>
-            </CardHeader>
-            <CardContent>
-              <div className="grid md:grid-cols-2 gap-6">
-                <div>
-                  <h3 className="font-semibold text-lg mb-3">{s.recommendedRoute}</h3>
-                  <p className="text-muted-foreground mb-4">{s.recommendedRouteDesc}</p>
-
-                  <h3 className="font-semibold text-lg mb-3">{s.bestSeason}</h3>
-                  <p className="text-muted-foreground">{s.bestSeasonDesc}</p>
-                </div>
-                <div>
-                  <h3 className="font-semibold text-lg mb-3">{s.anchoringZones}</h3>
-                  <p className="text-muted-foreground mb-4">{s.anchoringZonesDesc}</p>
-
-                  <h3 className="font-semibold text-lg mb-3">{s.safeNavigation}</h3>
-                  <p className="text-muted-foreground">{s.safeNavigationDesc}</p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Cross-linking to southern towns */}
-          <Card className="mb-8">
-            <CardContent className="py-6">
-              <p
-                className="text-muted-foreground"
-                dangerouslySetInnerHTML={{
-                  __html: s.crossLinkingText
-                    .replace("{malgratPath}", localizedPath("locationMalgrat"))
-                    .replace("{santaSusannaPath}", localizedPath("locationSantaSusanna"))
-                    .replace("{calellaPath}", localizedPath("locationCalella")),
-                }}
+            </div>
+            <div className="lg:col-span-2">
+              <img
+                src="/images/boats/pacific-craft/alquiler-barco-pacific-craft-625-rent-a-boat-costa-brava-blanes-proa-solarium-cala.webp"
+                alt="Pacific Craft 625 fondeado en una cala cerca de Tossa de Mar"
+                className="rounded-2xl w-full h-auto object-cover shadow-lg"
+                loading="lazy"
+                width={800}
+                height={600}
               />
-            </CardContent>
-          </Card>
+            </div>
+          </div>
+        </div>
+      </RevealSection>
 
-          {/* Related Services - Internal Linking */}
-          <Card className="mb-8">
-            <CardContent className="pt-6">
-              <h3 className="font-semibold text-lg mb-4">{s.relatedTitle}</h3>
-              <div className="flex flex-wrap gap-3">
-                <a href={localizedPath("locationCostaBrava")} className="text-primary hover:underline flex items-center gap-1">
-                  <ChevronRight className="w-4 h-4" />
-                  {s.relatedCostaBrava}
-                </a>
-                <a href={localizedPath("categoryLicensed")} className="text-primary hover:underline flex items-center gap-1">
-                  <ChevronRight className="w-4 h-4" />
-                  {s.relatedLicensed}
-                </a>
-                <a href={localizedPath("pricing")} className="text-primary hover:underline flex items-center gap-1">
-                  <ChevronRight className="w-4 h-4" />
-                  {s.relatedPricing}
-                </a>
-                <a href={localizedPath("locationLloret")} className="text-primary hover:underline flex items-center gap-1">
-                  <ChevronRight className="w-4 h-4" />
-                  {s.relatedLloret}
-                </a>
-                <a href={localizedPath("locationBlanes")} className="text-primary hover:underline flex items-center gap-1">
-                  <ChevronRight className="w-4 h-4" />
-                  {s.relatedBlanes}
-                </a>
+      {/* Photo break */}
+      <div className="relative w-full h-64 sm:h-80 overflow-hidden">
+        <img
+          src="/images/blog/ruta-costera.jpg"
+          alt="Ruta costera por la Costa Brava"
+          className="absolute inset-0 w-full h-full object-cover"
+          loading="lazy"
+        />
+      </div>
+
+      {/* Main Beaches and Historic Sites */}
+      <RevealSection className="py-16 sm:py-20 bg-muted">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground flex items-center gap-3 mb-8">
+            <Shield className="w-6 h-6 text-primary" />
+            {s.attractionsTitle}
+          </h2>
+          <div className="grid md:grid-cols-3 gap-6">
+            <div className="text-center">
+              <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Castle className="w-8 h-8 text-purple-600" />
               </div>
-            </CardContent>
-          </Card>
+              <h3 className="font-heading font-semibold text-lg mb-2">{s.vilaVella}</h3>
+              <p className="text-muted-foreground text-sm mb-2">{s.vilaVellaSub}</p>
+              <p className="text-muted-foreground leading-relaxed">{s.vilaVellaDesc}</p>
+            </div>
 
-          {/* CTA Section */}
-          <Card className="bg-primary text-white">
-            <CardContent className="py-8 text-center">
-              <h2 className="text-2xl font-bold mb-4">
-                {s.ctaTitle}
-              </h2>
-              <p className="text-lg mb-6 max-w-2xl mx-auto">
-                {s.ctaDescription}
-              </p>
-              <Button
-                onClick={handleBookingWhatsApp}
-                size="lg"
-                variant="secondary"
-                className="text-primary hover:text-primary"
-                data-testid="button-whatsapp-tossa"
-              >
-                {s.ctaButton}
-              </Button>
-            </CardContent>
-          </Card>
+            <div className="text-center">
+              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Waves className="w-8 h-8 text-primary" />
+              </div>
+              <h3 className="font-heading font-semibold text-lg mb-2">{s.playaGrande}</h3>
+              <p className="text-muted-foreground text-sm mb-2">{s.playaGrandeSub}</p>
+              <p className="text-muted-foreground leading-relaxed">{s.playaGrandeDesc}</p>
+            </div>
 
+            <div className="text-center">
+              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Sun className="w-8 h-8 text-primary" />
+              </div>
+              <h3 className="font-heading font-semibold text-lg mb-2">{s.virginCoves}</h3>
+              <p className="text-muted-foreground text-sm mb-2">{s.virginCovesSub}</p>
+              <p className="text-muted-foreground leading-relaxed">{s.virginCovesDesc}</p>
+            </div>
+          </div>
+        </div>
+      </RevealSection>
+
+      {/* What to Do in Tossa */}
+      <RevealSection className="py-16 sm:py-20">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground flex items-center gap-3 mb-6">
+            <Heart className="w-6 h-6 text-primary" />
+            {s.whatToDoTitle}
+          </h2>
+          <div className="grid md:grid-cols-2 gap-6">
+            <div>
+              <h3 className="font-heading font-semibold text-lg mb-3">{s.cultureHistory}</h3>
+              <ul className="space-y-2">
+                <li className="flex items-center">
+                  <Castle className="w-4 h-4 text-primary mr-2" />
+                  <span>{s.exploreVilaVella}</span>
+                </li>
+                <li className="flex items-center">
+                  <Shield className="w-4 h-4 text-primary mr-2" />
+                  <span>{s.climbWalls}</span>
+                </li>
+                <li className="flex items-center">
+                  <Camera className="w-4 h-4 text-primary mr-2" />
+                  <span>{s.municipalMuseum}</span>
+                </li>
+                <li className="flex items-center">
+                  <Star className="w-4 h-4 text-primary mr-2" />
+                  <span>{s.tossaLighthouse}</span>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="font-heading font-semibold text-lg mb-3">{s.natureRelax}</h3>
+              <ul className="space-y-2">
+                <li className="flex items-center">
+                  <Waves className="w-4 h-4 text-primary mr-2" />
+                  <span>{s.diveCrystalWaters}</span>
+                </li>
+                <li className="flex items-center">
+                  <Sun className="w-4 h-4 text-primary mr-2" />
+                  <span>{s.anchorSecretCoves}</span>
+                </li>
+                <li className="flex items-center">
+                  <NavigationIcon className="w-4 h-4 text-primary mr-2" />
+                  <span>{s.coastalPaths}</span>
+                </li>
+                <li className="flex items-center">
+                  <Camera className="w-4 h-4 text-primary mr-2" />
+                  <span>{s.sunsetFromSea}</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </RevealSection>
+
+      {/* Navigation Tips */}
+      <RevealSection className="py-16 sm:py-20 bg-muted">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground flex items-center gap-3 mb-6">
+            <NavigationIcon className="w-6 h-6 text-primary" />
+            {s.navigationTipsTitle}
+          </h2>
+          <div className="grid md:grid-cols-2 gap-6">
+            <div>
+              <h3 className="font-heading font-semibold text-lg mb-3">{s.recommendedRoute}</h3>
+              <p className="text-muted-foreground leading-relaxed mb-4">{s.recommendedRouteDesc}</p>
+              <h3 className="font-heading font-semibold text-lg mb-3">{s.bestSeason}</h3>
+              <p className="text-muted-foreground leading-relaxed">{s.bestSeasonDesc}</p>
+            </div>
+            <div>
+              <h3 className="font-heading font-semibold text-lg mb-3">{s.anchoringZones}</h3>
+              <p className="text-muted-foreground leading-relaxed mb-4">{s.anchoringZonesDesc}</p>
+              <h3 className="font-heading font-semibold text-lg mb-3">{s.safeNavigation}</h3>
+              <p className="text-muted-foreground leading-relaxed">{s.safeNavigationDesc}</p>
+            </div>
+          </div>
+        </div>
+      </RevealSection>
+
+      {/* Cross-linking to southern towns */}
+      <RevealSection className="py-16 sm:py-20">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <p
+            className="text-muted-foreground leading-relaxed"
+            dangerouslySetInnerHTML={{
+              __html: s.crossLinkingText
+                .replace("{malgratPath}", localizedPath("locationMalgrat"))
+                .replace("{santaSusannaPath}", localizedPath("locationSantaSusanna"))
+                .replace("{calellaPath}", localizedPath("locationCalella")),
+            }}
+          />
+        </div>
+      </RevealSection>
+
+      {/* Related Services - Internal Linking */}
+      <RevealSection className="py-16 sm:py-20 bg-muted">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h3 className="font-heading font-semibold text-lg mb-4">{s.relatedTitle}</h3>
+          <div className="flex flex-wrap gap-3">
+            <a href={localizedPath("locationCostaBrava")} className="text-primary hover:underline flex items-center gap-1">
+              <ChevronRight className="w-4 h-4" />
+              {s.relatedCostaBrava}
+            </a>
+            <a href={localizedPath("categoryLicensed")} className="text-primary hover:underline flex items-center gap-1">
+              <ChevronRight className="w-4 h-4" />
+              {s.relatedLicensed}
+            </a>
+            <a href={localizedPath("pricing")} className="text-primary hover:underline flex items-center gap-1">
+              <ChevronRight className="w-4 h-4" />
+              {s.relatedPricing}
+            </a>
+            <a href={localizedPath("locationLloret")} className="text-primary hover:underline flex items-center gap-1">
+              <ChevronRight className="w-4 h-4" />
+              {s.relatedLloret}
+            </a>
+            <a href={localizedPath("locationBlanes")} className="text-primary hover:underline flex items-center gap-1">
+              <ChevronRight className="w-4 h-4" />
+              {s.relatedBlanes}
+            </a>
+          </div>
+        </div>
+      </RevealSection>
+
+      {/* CTA Section */}
+      <div className="py-16 sm:py-20 bg-primary">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-2xl sm:text-3xl font-heading font-bold text-white mb-4">
+            {s.ctaTitle}
+          </h2>
+          <p className="text-lg text-white/90 mb-6 max-w-2xl mx-auto">
+            {s.ctaDescription}
+          </p>
+          <Button
+            onClick={handleBookingWhatsApp}
+            size="lg"
+            variant="secondary"
+            className="text-primary hover:text-primary"
+            data-testid="button-whatsapp-tossa"
+          >
+            {s.ctaButton}
+          </Button>
         </div>
       </div>
 
       {/* FAQ Section */}
-      <div className="py-12 bg-background">
+      <RevealSection className="py-16 sm:py-20">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl font-heading font-bold text-center mb-8">
+          <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground text-center mb-8">
             Preguntas frecuentes sobre Tossa de Mar en barco
           </h2>
-          <div className="space-y-3">
-            {processedFaqItems.map((item, index) => (
-              <details
-                key={index}
-                className="group border border-border rounded-lg bg-card"
-              >
-                <summary className="flex cursor-pointer items-center justify-between px-6 py-4 font-semibold text-foreground [&::-webkit-details-marker]:hidden">
-                  <span className="pr-4">{item.question}</span>
-                  <ChevronRight className="w-5 h-5 shrink-0 text-muted-foreground transition-transform group-open:rotate-90" />
-                </summary>
-                <div className="px-6 pb-4 text-muted-foreground">
-                  {item.answer}
-                </div>
-              </details>
-            ))}
-          </div>
+          <FAQSection items={processedFaqItems} />
         </div>
-      </div>
+      </RevealSection>
 
       {/* Blog section */}
-      <div className="py-12 bg-muted">
+      <RevealSection className="py-16 sm:py-20 bg-muted">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="py-8">
-            <h2 className="text-xl font-heading font-bold text-foreground mb-4">
-              Artículos del blog
-            </h2>
-            <p className="text-muted-foreground mb-4">
-              Descubre más sobre navegar por la Costa Brava en nuestro{" "}
-              <a href={localizedPath("blog")} className="text-primary hover:underline font-medium">blog de navegación</a>.
-            </p>
-          </div>
+          <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground mb-4">
+            Artículos del blog
+          </h2>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Descubre más sobre navegar por la Costa Brava en nuestro{" "}
+            <a href={localizedPath("blog")} className="text-primary hover:underline font-medium">blog de navegación</a>.
+          </p>
         </div>
-      </div>
+      </RevealSection>
 
       <RelatedLocationsSection currentLocation="tossa" />
 

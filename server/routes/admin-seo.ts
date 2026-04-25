@@ -62,7 +62,7 @@ export function registerSeoRoutes(app: Express): void {
   // Trends (ranking charts + competitor comparison)
   app.get("/api/admin/seo/trends", requireAdminSession, async (req, res) => {
     try {
-      const days = Math.min(Number(req.query.days) || 30, 365);
+      const days = Math.max(1, Math.min(Number(req.query.days) || 30, 365));
       const [rankings, competitors] = await Promise.all([
         getSeoTrends(days),
         getCompetitorTrends(days),

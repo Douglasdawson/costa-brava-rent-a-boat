@@ -400,6 +400,7 @@ export interface RankingDayPoint {
 export interface KeywordTrend {
   keywordId: number;
   keyword: string;
+  cluster: string | null;
   language: string;
   points: Array<{ date: string; position: number; clicks: number; impressions: number }>;
 }
@@ -448,6 +449,7 @@ export async function getSeoTrends(days: number): Promise<SeoTrendsResult> {
     .select({
       keywordId: seoKeywords.id,
       keyword: seoKeywords.keyword,
+      cluster: seoKeywords.cluster,
       language: seoKeywords.language,
       totalImpressions: sql<number>`coalesce(sum(${seoRankings.impressions}), 0)::int`,
     })
@@ -457,7 +459,7 @@ export async function getSeoTrends(days: number): Promise<SeoTrendsResult> {
       eq(seoKeywords.tracked, true),
       gte(seoRankings.date, sinceDate),
     ))
-    .groupBy(seoKeywords.id, seoKeywords.keyword, seoKeywords.language)
+    .groupBy(seoKeywords.id, seoKeywords.keyword, seoKeywords.cluster, seoKeywords.language)
     .orderBy(sql`coalesce(sum(${seoRankings.impressions}), 0) desc`)
     .limit(20);
 
@@ -496,6 +498,7 @@ export async function getSeoTrends(days: number): Promise<SeoTrendsResult> {
     byKeyword = topKws.map((k) => ({
       keywordId: k.keywordId,
       keyword: k.keyword,
+      cluster: k.cluster,
       language: k.language,
       points: pointsByKw.get(k.keywordId) ?? [],
     }));
@@ -579,7 +582,7 @@ export async function getCompetitorTrends(days: number): Promise<CompetitorTrend
     })
     .from(seoRankings)
     .innerJoin(seoKeywords, eq(seoRankings.keywordId, seoKeywords.id))
-    .where(eq(seoKeywords.tracked, true))
+    .where(and(eq(seoKeywords.tracked, true), gte(seoRankings.date, sinceDate)))
     .groupBy(seoRankings.keywordId);
 
   const myPosMap = new Map<number, number | null>();
@@ -595,7 +598,10 @@ export async function getCompetitorTrends(days: number): Promise<CompetitorTrend
       position: sql<number>`(array_agg(${seoCompetitorRankings.position}::numeric order by ${seoCompetitorRankings.date} desc))[1]::float`,
     })
     .from(seoCompetitorRankings)
-    .where(inArray(seoCompetitorRankings.competitorId, compIds))
+    .where(and(
+      inArray(seoCompetitorRankings.competitorId, compIds),
+      gte(seoCompetitorRankings.date, sinceDate),
+    ))
     .groupBy(seoCompetitorRankings.competitorId, seoCompetitorRankings.keywordId);
 
   // Build lookup: keywordId -> competitorId -> position

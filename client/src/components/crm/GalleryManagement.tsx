@@ -144,7 +144,7 @@ export function GalleryManagement({ adminToken }: GalleryManagementProps) {
       ) : filteredPhotos.length === 0 ? (
         <div className="flex flex-col items-center justify-center py-12 text-center">
           <Camera className="w-12 h-12 text-muted-foreground/50 mb-4" />
-          <p className="text-lg font-heading font-medium text-foreground mb-1">No hay fotos en la galería</p>
+          <p className="text-lg font-medium text-foreground mb-1">No hay fotos en la galería</p>
           <p className="text-sm text-muted-foreground">
             {filter === "pending" ? "No hay fotos pendientes de aprobación" : filter === "approved" ? "No hay fotos aprobadas" : "Las fotos de clientes aparecerán aquí"}
           </p>

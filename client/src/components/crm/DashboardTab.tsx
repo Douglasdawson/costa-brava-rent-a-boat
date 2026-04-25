@@ -470,7 +470,7 @@ export function DashboardTab({
                     </p>
                   </div>
                   <div className="flex items-center gap-2">
-                    <span className="text-sm font-semibold text-foreground">
+                    <span className="text-sm font-semibold text-foreground tabular-nums">
                       {parseFloat(booking.totalAmount).toLocaleString("es-ES", { minimumFractionDigits: 0 })}{"\u20AC"}
                     </span>
                     <Badge

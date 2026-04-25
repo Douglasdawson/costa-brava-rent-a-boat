@@ -160,7 +160,7 @@ function SortableBoatCard({
           </div>
           <div className="flex-1">
             <div className="flex justify-between items-start mb-2">
-              <h3 className="font-semibold font-heading text-lg">{boat.name}</h3>
+              <h3 className="font-semibold text-lg">{boat.name}</h3>
               <div className="flex gap-1">
                 <Button
                   size="icon"
@@ -263,7 +263,7 @@ export function BoatListTable({
       <Card>
         <CardContent className="py-12 text-center">
           <Anchor className="w-12 h-12 mx-auto mb-4 text-muted-foreground/70" />
-          <h3 className="text-lg font-semibold font-heading mb-2">No hay barcos registrados</h3>
+          <h3 className="text-lg font-semibold mb-2">No hay barcos registrados</h3>
           <p className="text-muted-foreground mb-4">
             Importa los 7 barcos de la flota o agrega uno manualmente
           </p>

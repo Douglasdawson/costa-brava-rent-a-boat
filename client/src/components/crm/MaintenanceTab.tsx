@@ -501,7 +501,7 @@ export function MaintenanceTab({ adminToken }: MaintenanceTabProps) {
             <Card>
               <CardContent className="flex flex-col items-center justify-center py-12 text-center">
                 <Wrench className="w-12 h-12 text-muted-foreground/50 mb-4" />
-                <p className="text-lg font-heading font-medium text-foreground mb-1">No hay registros de mantenimiento</p>
+                <p className="text-lg font-medium text-foreground mb-1">No hay registros de mantenimiento</p>
                 <p className="text-sm text-muted-foreground">Registra el mantenimiento de tus barcos para llevar un control</p>
               </CardContent>
             </Card>
@@ -650,7 +650,7 @@ export function MaintenanceTab({ adminToken }: MaintenanceTabProps) {
             <Card>
               <CardContent className="flex flex-col items-center justify-center py-12 text-center">
                 <FileText className="w-12 h-12 text-muted-foreground/50 mb-4" />
-                <p className="text-lg font-heading font-medium text-foreground mb-1">No hay documentos registrados</p>
+                <p className="text-lg font-medium text-foreground mb-1">No hay documentos registrados</p>
                 <p className="text-sm text-muted-foreground">Agrega documentos como seguros, matrículas e ITVs</p>
               </CardContent>
             </Card>
@@ -777,7 +777,7 @@ export function MaintenanceTab({ adminToken }: MaintenanceTabProps) {
       <Dialog open={showMaintenanceDialog} onOpenChange={setShowMaintenanceDialog}>
         <DialogContent className="max-w-lg max-h-[95vh] overflow-y-auto">
           <DialogHeader>
-            <DialogTitle className="font-heading">{editingMaintenance ? "Editar Mantenimiento" : "Registrar Mantenimiento"}</DialogTitle>
+            <DialogTitle className="font-semibold">{editingMaintenance ? "Editar Mantenimiento" : "Registrar Mantenimiento"}</DialogTitle>
             <DialogDescription>Completa los datos del mantenimiento</DialogDescription>
           </DialogHeader>
           <div className="space-y-4">
@@ -881,7 +881,7 @@ export function MaintenanceTab({ adminToken }: MaintenanceTabProps) {
       <Dialog open={showDocDialog} onOpenChange={setShowDocDialog}>
         <DialogContent className="max-w-lg max-h-[95vh] overflow-y-auto">
           <DialogHeader>
-            <DialogTitle className="font-heading">{editingDoc ? "Editar Documento" : "Agregar Documento"}</DialogTitle>
+            <DialogTitle className="font-semibold">{editingDoc ? "Editar Documento" : "Agregar Documento"}</DialogTitle>
             <DialogDescription>Registra un documento del barco</DialogDescription>
           </DialogHeader>
           <div className="space-y-4">

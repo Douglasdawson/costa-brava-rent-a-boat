@@ -402,7 +402,7 @@ export function AnalyticsTab({ adminToken }: AnalyticsTabProps) {
         <h2 className="text-xl sm:text-2xl font-bold font-heading">SEO y Analytics</h2>
         <Card className="border-amber-300 bg-amber-50 dark:bg-amber-950/20 dark:border-amber-700">
           <CardHeader>
-            <CardTitle className="text-base font-heading flex items-center gap-2 text-amber-800 dark:text-amber-300">
+            <CardTitle className="text-base font-semibold flex items-center gap-2 text-amber-800 dark:text-amber-300">
               <AlertTriangle className="w-5 h-5" />
               Google API no configurada
             </CardTitle>
@@ -562,7 +562,7 @@ export function AnalyticsTab({ adminToken }: AnalyticsTabProps) {
                     </div>
                   </CardHeader>
                   <CardContent>
-                    <div className="text-2xl font-bold text-foreground">
+                    <div className="text-2xl font-bold text-foreground tabular-nums">
                       {overview.gsc?.totals?.clicks?.toLocaleString("es-ES") ?? "—"}
                     </div>
                   </CardContent>
@@ -579,7 +579,7 @@ export function AnalyticsTab({ adminToken }: AnalyticsTabProps) {
                     </div>
                   </CardHeader>
                   <CardContent>
-                    <div className="text-2xl font-bold text-foreground">
+                    <div className="text-2xl font-bold text-foreground tabular-nums">
                       {overview.gsc?.totals?.impressions?.toLocaleString("es-ES") ?? "—"}
                     </div>
                   </CardContent>
@@ -596,7 +596,7 @@ export function AnalyticsTab({ adminToken }: AnalyticsTabProps) {
                     </div>
                   </CardHeader>
                   <CardContent>
-                    <div className="text-2xl font-bold text-foreground">
+                    <div className="text-2xl font-bold text-foreground tabular-nums">
                       {overview.gsc?.totals ? formatCtr(overview.gsc.totals.ctr) : "—"}
                     </div>
                   </CardContent>
@@ -613,7 +613,7 @@ export function AnalyticsTab({ adminToken }: AnalyticsTabProps) {
                     </div>
                   </CardHeader>
                   <CardContent>
-                    <div className="text-2xl font-bold text-foreground">
+                    <div className="text-2xl font-bold text-foreground tabular-nums">
                       {overview.gsc?.totals ? formatPosition(overview.gsc.totals.position) : "—"}
                     </div>
                   </CardContent>
@@ -630,7 +630,7 @@ export function AnalyticsTab({ adminToken }: AnalyticsTabProps) {
                     </div>
                   </CardHeader>
                   <CardContent>
-                    <div className="text-2xl font-bold text-foreground">
+                    <div className="text-2xl font-bold text-foreground tabular-nums">
                       {overview.ga4?.activeUsers?.toLocaleString("es-ES") ?? "—"}
                     </div>
                   </CardContent>
@@ -647,7 +647,7 @@ export function AnalyticsTab({ adminToken }: AnalyticsTabProps) {
                     </div>
                   </CardHeader>
                   <CardContent>
-                    <div className="text-2xl font-bold text-foreground">
+                    <div className="text-2xl font-bold text-foreground tabular-nums">
                       {overview.ga4?.sessions?.toLocaleString("es-ES") ?? "—"}
                     </div>
                   </CardContent>
@@ -664,7 +664,7 @@ export function AnalyticsTab({ adminToken }: AnalyticsTabProps) {
               ) : mergedTrends.length > 0 ? (
                 <Card>
                   <CardHeader>
-                    <CardTitle className="text-base font-heading">Tendencia: Clics y Usuarios</CardTitle>
+                    <CardTitle className="text-base font-semibold">Tendencia: Clics y Usuarios</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <div className="h-[250px] sm:h-[300px] w-full">
@@ -778,7 +778,7 @@ export function AnalyticsTab({ adminToken }: AnalyticsTabProps) {
                     {lowCtrKeywords.length > 0 && (
                       <Card className="bg-amber-500/5 border-amber-200">
                         <CardHeader className="pb-2">
-                          <CardTitle className="text-sm font-heading flex items-center gap-2">
+                          <CardTitle className="text-sm font-semibold flex items-center gap-2">
                             <AlertTriangle className="h-4 w-4 text-amber-500" />
                             Mejorar meta title ({lowCtrKeywords.length})
                           </CardTitle>
@@ -815,7 +815,7 @@ export function AnalyticsTab({ adminToken }: AnalyticsTabProps) {
                     {almostPage1Keywords.length > 0 && (
                       <Card className="bg-emerald-500/5 border-emerald-200">
                         <CardHeader className="pb-2">
-                          <CardTitle className="text-sm font-heading flex items-center gap-2">
+                          <CardTitle className="text-sm font-semibold flex items-center gap-2">
                             <TrendingUp className="h-4 w-4 text-emerald-500" />
                             Casi en pagina 1 ({almostPage1Keywords.length})
                           </CardTitle>
@@ -855,7 +855,7 @@ export function AnalyticsTab({ adminToken }: AnalyticsTabProps) {
               {/* Desktop table */}
               <Card className="hidden md:block">
                 <CardHeader>
-                  <CardTitle className="text-base font-heading">
+                  <CardTitle className="text-base font-semibold">
                     Keywords ({sortedKeywords.length})
                   </CardTitle>
                 </CardHeader>
@@ -875,10 +875,10 @@ export function AnalyticsTab({ adminToken }: AnalyticsTabProps) {
                         {sortedKeywords.map((kw, i) => (
                           <TableRow key={i}>
                             <TableCell className="font-medium max-w-[300px] truncate">{kw.keyword}</TableCell>
-                            <TableCell className="text-right">{kw.clicks.toLocaleString("es-ES")}</TableCell>
-                            <TableCell className="text-right">{kw.impressions.toLocaleString("es-ES")}</TableCell>
-                            <TableCell className="text-right">{formatCtr(kw.ctr)}</TableCell>
-                            <TableCell className="text-right">{formatPosition(kw.position)}</TableCell>
+                            <TableCell className="text-right tabular-nums">{kw.clicks.toLocaleString("es-ES")}</TableCell>
+                            <TableCell className="text-right tabular-nums">{kw.impressions.toLocaleString("es-ES")}</TableCell>
+                            <TableCell className="text-right tabular-nums">{formatCtr(kw.ctr)}</TableCell>
+                            <TableCell className="text-right tabular-nums">{formatPosition(kw.position)}</TableCell>
                           </TableRow>
                         ))}
                       </TableBody>
@@ -891,7 +891,7 @@ export function AnalyticsTab({ adminToken }: AnalyticsTabProps) {
               <div className="block md:hidden space-y-3">
                 <Card>
                   <CardHeader className="pb-2">
-                    <CardTitle className="text-base font-heading">
+                    <CardTitle className="text-base font-semibold">
                       Keywords ({sortedKeywords.length})
                     </CardTitle>
                   </CardHeader>
@@ -948,7 +948,7 @@ export function AnalyticsTab({ adminToken }: AnalyticsTabProps) {
               {/* Desktop table */}
               <Card className="hidden md:block">
                 <CardHeader>
-                  <CardTitle className="text-base font-heading">
+                  <CardTitle className="text-base font-semibold">
                     Paginas ({sortedPages.length})
                   </CardTitle>
                 </CardHeader>
@@ -970,10 +970,10 @@ export function AnalyticsTab({ adminToken }: AnalyticsTabProps) {
                             <TableCell className="font-medium max-w-[300px] truncate font-mono text-xs">
                               {stripDomain(pg.page)}
                             </TableCell>
-                            <TableCell className="text-right">{pg.clicks.toLocaleString("es-ES")}</TableCell>
-                            <TableCell className="text-right">{pg.impressions.toLocaleString("es-ES")}</TableCell>
-                            <TableCell className="text-right">{formatCtr(pg.ctr)}</TableCell>
-                            <TableCell className="text-right">{formatPosition(pg.position)}</TableCell>
+                            <TableCell className="text-right tabular-nums">{pg.clicks.toLocaleString("es-ES")}</TableCell>
+                            <TableCell className="text-right tabular-nums">{pg.impressions.toLocaleString("es-ES")}</TableCell>
+                            <TableCell className="text-right tabular-nums">{formatCtr(pg.ctr)}</TableCell>
+                            <TableCell className="text-right tabular-nums">{formatPosition(pg.position)}</TableCell>
                           </TableRow>
                         ))}
                       </TableBody>
@@ -986,7 +986,7 @@ export function AnalyticsTab({ adminToken }: AnalyticsTabProps) {
               <div className="block md:hidden space-y-3">
                 <Card>
                   <CardHeader className="pb-2">
-                    <CardTitle className="text-base font-heading">
+                    <CardTitle className="text-base font-semibold">
                       Paginas ({sortedPages.length})
                     </CardTitle>
                   </CardHeader>
@@ -1044,7 +1044,7 @@ export function AnalyticsTab({ adminToken }: AnalyticsTabProps) {
               {trafficPieData.length > 0 && (
                 <Card>
                   <CardHeader>
-                    <CardTitle className="text-base font-heading">Trafico por canal</CardTitle>
+                    <CardTitle className="text-base font-semibold">Trafico por canal</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <div className="h-[280px] w-full">
@@ -1089,7 +1089,7 @@ export function AnalyticsTab({ adminToken }: AnalyticsTabProps) {
               {/* Traffic table */}
               <Card>
                 <CardHeader>
-                  <CardTitle className="text-base font-heading">Detalle por canal</CardTitle>
+                  <CardTitle className="text-base font-semibold">Detalle por canal</CardTitle>
                 </CardHeader>
                 <CardContent className="p-0">
                   <div className="overflow-x-auto">
@@ -1105,8 +1105,8 @@ export function AnalyticsTab({ adminToken }: AnalyticsTabProps) {
                         {(trafficData?.data || []).map((row, i) => (
                           <TableRow key={i}>
                             <TableCell className="font-medium">{row.channel}</TableCell>
-                            <TableCell className="text-right">{row.sessions.toLocaleString("es-ES")}</TableCell>
-                            <TableCell className="text-right">{row.users.toLocaleString("es-ES")}</TableCell>
+                            <TableCell className="text-right tabular-nums">{row.sessions.toLocaleString("es-ES")}</TableCell>
+                            <TableCell className="text-right tabular-nums">{row.users.toLocaleString("es-ES")}</TableCell>
                           </TableRow>
                         ))}
                       </TableBody>
@@ -1135,7 +1135,7 @@ export function AnalyticsTab({ adminToken }: AnalyticsTabProps) {
               {devicesPieData.length > 0 && (
                 <Card>
                   <CardHeader>
-                    <CardTitle className="text-base font-heading">Dispositivos</CardTitle>
+                    <CardTitle className="text-base font-semibold">Dispositivos</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <div className="h-[280px] w-full">
@@ -1205,7 +1205,7 @@ export function AnalyticsTab({ adminToken }: AnalyticsTabProps) {
               {(countriesData?.data || []).length > 0 && (
                 <Card>
                   <CardHeader>
-                    <CardTitle className="text-base font-heading">Paises</CardTitle>
+                    <CardTitle className="text-base font-semibold">Paises</CardTitle>
                   </CardHeader>
                   <CardContent className="p-0">
                     <div className="overflow-x-auto">
@@ -1221,8 +1221,8 @@ export function AnalyticsTab({ adminToken }: AnalyticsTabProps) {
                           {(countriesData?.data || []).map((row, i) => (
                             <TableRow key={i}>
                               <TableCell className="font-medium">{row.country}</TableCell>
-                              <TableCell className="text-right">{row.users.toLocaleString("es-ES")}</TableCell>
-                              <TableCell className="text-right">{row.sessions.toLocaleString("es-ES")}</TableCell>
+                              <TableCell className="text-right tabular-nums">{row.users.toLocaleString("es-ES")}</TableCell>
+                              <TableCell className="text-right tabular-nums">{row.sessions.toLocaleString("es-ES")}</TableCell>
                             </TableRow>
                           ))}
                         </TableBody>
@@ -1287,7 +1287,7 @@ export function AnalyticsTab({ adminToken }: AnalyticsTabProps) {
               {overview && (
                 <Card>
                   <CardHeader>
-                    <CardTitle className="text-base font-heading flex items-center gap-2">
+                    <CardTitle className="text-base font-semibold flex items-center gap-2">
                       <Filter className="h-4 w-4" />
                       Embudo de conversion
                     </CardTitle>

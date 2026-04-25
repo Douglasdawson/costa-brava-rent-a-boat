@@ -354,7 +354,7 @@ export function CalendarTab({
                   <Button variant="outline" size="icon" onClick={goNext} aria-label="Next period">
                     <ChevronRight className="w-4 h-4" />
                   </Button>
-                  <h2 className="text-sm sm:text-lg font-heading font-semibold capitalize ml-2 whitespace-nowrap">
+                  <h2 className="text-sm sm:text-lg font-semibold capitalize ml-2 whitespace-nowrap">
                     {viewTitle}
                   </h2>
                 </div>
@@ -699,7 +699,7 @@ function DayView({
                     key={boat.id}
                     className="flex-1 min-w-[140px] text-center py-2 px-1 border-r bg-muted"
                   >
-                    <p className="text-xs sm:text-sm font-heading font-semibold truncate">
+                    <p className="text-xs sm:text-sm font-semibold truncate">
                       {boat.name}
                     </p>
                     <p className="text-[10px] text-muted-foreground">
@@ -710,7 +710,7 @@ function DayView({
               </div>
               {/* Mobile: show selected boat */}
               <div className="sm:hidden flex-1 text-center py-2 px-1 bg-muted">
-                <p className="text-sm font-heading font-semibold">
+                <p className="text-sm font-semibold">
                   {currentMobileBoat?.name}
                 </p>
               </div>
@@ -937,7 +937,7 @@ function WeekView({
             {/* Header: weekday names */}
             <div className="flex sticky top-0 z-10 bg-card border-b">
               <div className="w-32 sm:w-40 flex-shrink-0 border-r bg-muted py-2 px-2">
-                <span className="text-xs font-heading font-semibold text-muted-foreground">
+                <span className="text-xs font-semibold text-muted-foreground">
                   Barco
                 </span>
               </div>
@@ -976,7 +976,7 @@ function WeekView({
                 <div key={boat.id} className="flex border-b">
                   <div className="w-32 sm:w-40 flex-shrink-0 border-r bg-muted py-2 px-2 flex items-center">
                     <div>
-                      <p className="text-xs sm:text-sm font-heading font-semibold truncate">
+                      <p className="text-xs sm:text-sm font-semibold truncate">
                         {boat.name}
                       </p>
                       <p className="text-[10px] text-muted-foreground">
@@ -1063,7 +1063,7 @@ function WeekView({
                   onClick={() => onDayClick(day)}
                   className={`flex items-center gap-2 mb-2 ${today ? "text-primary font-bold" : "text-foreground"}`}
                 >
-                  <span className="text-sm font-heading font-semibold capitalize">
+                  <span className="text-sm font-semibold capitalize">
                     {format(day, "EEEE d", { locale: es })}
                   </span>
                   {dayBookings.length > 0 && (

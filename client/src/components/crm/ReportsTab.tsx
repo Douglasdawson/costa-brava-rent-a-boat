@@ -249,7 +249,7 @@ export function ReportsTab({ adminToken }: ReportsTabProps) {
       <div className="space-y-3">
         <div className="flex items-center gap-2">
           <Search className="w-5 h-5 text-muted-foreground" />
-          <h3 className="text-lg font-semibold font-heading">Google Search</h3>
+          <h3 className="text-lg font-semibold">Google Search</h3>
         </div>
         {gscTotals ? (
           <>
@@ -259,7 +259,7 @@ export function ReportsTab({ adminToken }: ReportsTabProps) {
                   <CardTitle className="text-sm font-medium text-muted-foreground">Clics organicos</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-2xl font-bold">{gscTotals.clicks.toLocaleString()}</p>
+                  <p className="text-2xl font-bold tabular-nums">{gscTotals.clicks.toLocaleString()}</p>
                 </CardContent>
               </Card>
               <Card>
@@ -267,7 +267,7 @@ export function ReportsTab({ adminToken }: ReportsTabProps) {
                   <CardTitle className="text-sm font-medium text-muted-foreground">Impresiones</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-2xl font-bold">{gscTotals.impressions.toLocaleString()}</p>
+                  <p className="text-2xl font-bold tabular-nums">{gscTotals.impressions.toLocaleString()}</p>
                 </CardContent>
               </Card>
               <Card>
@@ -275,7 +275,7 @@ export function ReportsTab({ adminToken }: ReportsTabProps) {
                   <CardTitle className="text-sm font-medium text-muted-foreground">CTR medio</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-2xl font-bold">{(gscTotals.ctr * 100).toFixed(1)}%</p>
+                  <p className="text-2xl font-bold tabular-nums">{(gscTotals.ctr * 100).toFixed(1)}%</p>
                 </CardContent>
               </Card>
               <Card>
@@ -283,7 +283,7 @@ export function ReportsTab({ adminToken }: ReportsTabProps) {
                   <CardTitle className="text-sm font-medium text-muted-foreground">Posicion media</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-2xl font-bold">{gscTotals.position.toFixed(1)}</p>
+                  <p className="text-2xl font-bold tabular-nums">{gscTotals.position.toFixed(1)}</p>
                 </CardContent>
               </Card>
             </div>
@@ -344,7 +344,7 @@ export function ReportsTab({ adminToken }: ReportsTabProps) {
               {fleetChartData.length > 0 && (
                 <Card>
                   <CardHeader>
-                    <CardTitle className="text-base font-heading">Ingresos vs Mantenimiento por Barco</CardTitle>
+                    <CardTitle className="text-base font-semibold">Ingresos vs Mantenimiento por Barco</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <div className="h-[250px] sm:h-[300px] w-full">
@@ -394,20 +394,20 @@ export function ReportsTab({ adminToken }: ReportsTabProps) {
                                 {boat.utilization}%
                               </Badge>
                             </TableCell>
-                            <TableCell className="text-right">{"\u20AC"}{boat.revenue.toFixed(2)}</TableCell>
-                            <TableCell className="text-right text-red-600">{"\u20AC"}{boat.maintenanceCost.toFixed(2)}</TableCell>
-                            <TableCell className="text-right font-medium">{"\u20AC"}{boat.netRevenue.toFixed(2)}</TableCell>
+                            <TableCell className="text-right tabular-nums">{"\u20AC"}{boat.revenue.toFixed(2)}</TableCell>
+                            <TableCell className="text-right tabular-nums text-red-600">{"\u20AC"}{boat.maintenanceCost.toFixed(2)}</TableCell>
+                            <TableCell className="text-right tabular-nums font-medium">{"\u20AC"}{boat.netRevenue.toFixed(2)}</TableCell>
                           </TableRow>
                         ))}
                         {fleetData.length > 0 && (
                           <TableRow className="font-bold bg-muted">
                             <TableCell>TOTAL</TableCell>
-                            <TableCell className="text-right">{fleetData.reduce((s, b) => s + b.bookings, 0)}</TableCell>
-                            <TableCell className="text-right">{fleetData.reduce((s, b) => s + b.hours, 0)}h</TableCell>
+                            <TableCell className="text-right tabular-nums">{fleetData.reduce((s, b) => s + b.bookings, 0)}</TableCell>
+                            <TableCell className="text-right tabular-nums">{fleetData.reduce((s, b) => s + b.hours, 0)}h</TableCell>
                             <TableCell className="text-right">-</TableCell>
-                            <TableCell className="text-right">{"\u20AC"}{fleetData.reduce((s, b) => s + b.revenue, 0).toFixed(2)}</TableCell>
-                            <TableCell className="text-right text-red-600">{"\u20AC"}{fleetData.reduce((s, b) => s + b.maintenanceCost, 0).toFixed(2)}</TableCell>
-                            <TableCell className="text-right">{"\u20AC"}{fleetData.reduce((s, b) => s + b.netRevenue, 0).toFixed(2)}</TableCell>
+                            <TableCell className="text-right tabular-nums">{"\u20AC"}{fleetData.reduce((s, b) => s + b.revenue, 0).toFixed(2)}</TableCell>
+                            <TableCell className="text-right tabular-nums text-red-600">{"\u20AC"}{fleetData.reduce((s, b) => s + b.maintenanceCost, 0).toFixed(2)}</TableCell>
+                            <TableCell className="text-right tabular-nums">{"\u20AC"}{fleetData.reduce((s, b) => s + b.netRevenue, 0).toFixed(2)}</TableCell>
                           </TableRow>
                         )}
                       </TableBody>
@@ -442,17 +442,17 @@ export function ReportsTab({ adminToken }: ReportsTabProps) {
                         </div>
                         <div>
                           <p className="text-muted-foreground">Ingresos</p>
-                          <p className="font-medium">{"\u20AC"}{boat.revenue.toFixed(2)}</p>
+                          <p className="font-medium tabular-nums">{"\u20AC"}{boat.revenue.toFixed(2)}</p>
                         </div>
                       </div>
                       <div className="grid grid-cols-2 gap-2 text-xs pt-1 border-t">
                         <div>
                           <p className="text-muted-foreground">Mantenimiento</p>
-                          <p className="font-medium text-red-600">{"\u20AC"}{boat.maintenanceCost.toFixed(2)}</p>
+                          <p className="font-medium tabular-nums text-red-600">{"\u20AC"}{boat.maintenanceCost.toFixed(2)}</p>
                         </div>
                         <div>
                           <p className="text-muted-foreground">Neto</p>
-                          <p className="font-bold">{"\u20AC"}{boat.netRevenue.toFixed(2)}</p>
+                          <p className="font-bold tabular-nums">{"\u20AC"}{boat.netRevenue.toFixed(2)}</p>
                         </div>
                       </div>
                     </CardContent>
@@ -464,15 +464,15 @@ export function ReportsTab({ adminToken }: ReportsTabProps) {
                       <div className="grid grid-cols-3 gap-2 text-xs">
                         <div>
                           <p className="text-muted-foreground">Reservas</p>
-                          <p className="font-bold">{fleetData.reduce((s, b) => s + b.bookings, 0)}</p>
+                          <p className="font-bold tabular-nums">{fleetData.reduce((s, b) => s + b.bookings, 0)}</p>
                         </div>
                         <div>
                           <p className="text-muted-foreground">Ingresos</p>
-                          <p className="font-bold">{"\u20AC"}{fleetData.reduce((s, b) => s + b.revenue, 0).toFixed(2)}</p>
+                          <p className="font-bold tabular-nums">{"\u20AC"}{fleetData.reduce((s, b) => s + b.revenue, 0).toFixed(2)}</p>
                         </div>
                         <div>
                           <p className="text-muted-foreground">Neto</p>
-                          <p className="font-bold">{"\u20AC"}{fleetData.reduce((s, b) => s + b.netRevenue, 0).toFixed(2)}</p>
+                          <p className="font-bold tabular-nums">{"\u20AC"}{fleetData.reduce((s, b) => s + b.netRevenue, 0).toFixed(2)}</p>
                         </div>
                       </div>
                     </CardContent>
@@ -501,7 +501,7 @@ export function ReportsTab({ adminToken }: ReportsTabProps) {
             {/* Desktop table */}
             <Card className="hidden md:block">
               <CardHeader>
-                <CardTitle className="text-base font-heading">Top 20 Clientes por Valor</CardTitle>
+                <CardTitle className="text-base font-semibold">Top 20 Clientes por Valor</CardTitle>
               </CardHeader>
               <CardContent className="p-0">
                 <div className="overflow-x-auto">
@@ -530,8 +530,8 @@ export function ReportsTab({ adminToken }: ReportsTabProps) {
                               {customer.segment.toUpperCase()}
                             </Badge>
                           </TableCell>
-                          <TableCell className="text-right">{customer.totalBookings}</TableCell>
-                          <TableCell className="text-right font-medium">{"\u20AC"}{parseFloat(customer.totalSpent).toFixed(2)}</TableCell>
+                          <TableCell className="text-right tabular-nums">{customer.totalBookings}</TableCell>
+                          <TableCell className="text-right tabular-nums font-medium">{"\u20AC"}{parseFloat(customer.totalSpent).toFixed(2)}</TableCell>
                         </TableRow>
                       ))}
                     </TableBody>
@@ -544,7 +544,7 @@ export function ReportsTab({ adminToken }: ReportsTabProps) {
             <div className="block md:hidden space-y-3">
               <Card>
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-base font-heading">Top 20 Clientes por Valor</CardTitle>
+                  <CardTitle className="text-base font-semibold">Top 20 Clientes por Valor</CardTitle>
                 </CardHeader>
               </Card>
               {topCustomers.map((customer, index) => (
@@ -587,7 +587,7 @@ export function ReportsTab({ adminToken }: ReportsTabProps) {
                 <Card>
                   <CardContent className="p-4 text-center">
                     <p className="text-sm text-muted-foreground">Total</p>
-                    <p className="text-2xl font-bold">{maintSummary.total}</p>
+                    <p className="text-2xl font-bold tabular-nums">{maintSummary.total}</p>
                   </CardContent>
                 </Card>
                 <Card>
@@ -605,7 +605,7 @@ export function ReportsTab({ adminToken }: ReportsTabProps) {
                 <Card>
                   <CardContent className="p-4 text-center">
                     <p className="text-sm text-muted-foreground">Coste Total</p>
-                    <p className="text-2xl font-bold">{"\u20AC"}{maintSummary.totalCost.toFixed(2)}</p>
+                    <p className="text-2xl font-bold tabular-nums">{"\u20AC"}{maintSummary.totalCost.toFixed(2)}</p>
                   </CardContent>
                 </Card>
               </div>
@@ -614,7 +614,7 @@ export function ReportsTab({ adminToken }: ReportsTabProps) {
               {maintPieData.length > 0 && (
                 <Card>
                   <CardHeader>
-                    <CardTitle className="text-base font-heading">Distribución por Tipo</CardTitle>
+                    <CardTitle className="text-base font-semibold">Distribución por Tipo</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <ResponsiveContainer width="100%" height={250}>
@@ -666,7 +666,7 @@ export function ReportsTab({ adminToken }: ReportsTabProps) {
                 <Card>
                   <CardContent className="p-4 text-center">
                     <p className="text-sm text-muted-foreground">Items</p>
-                    <p className="text-2xl font-bold">{inventoryItems.length}</p>
+                    <p className="text-2xl font-bold tabular-nums">{inventoryItems.length}</p>
                   </CardContent>
                 </Card>
                 <Card>

@@ -299,7 +299,7 @@ export function DiscountManagement({ adminToken }: DiscountManagementProps) {
       ) : filteredCodes.length === 0 ? (
         <div className="flex flex-col items-center justify-center py-12 text-center">
           <Percent className="w-12 h-12 text-muted-foreground/50 mb-4" />
-          <p className="text-lg font-heading font-medium text-foreground mb-1">No hay códigos de descuento</p>
+          <p className="text-lg font-medium text-foreground mb-1">No hay códigos de descuento</p>
           <p className="text-sm text-muted-foreground mb-4">
             {filter !== "all" ? "No hay códigos con este filtro" : "Crea tu primer código de descuento"}
           </p>
@@ -398,7 +398,7 @@ export function DiscountManagement({ adminToken }: DiscountManagementProps) {
               return (
                 <div key={code.id} className="bg-card border border-border rounded-lg p-4 space-y-2">
                   <div className="flex items-center justify-between">
-                    <span className="font-heading font-semibold font-mono text-foreground">{code.code}</span>
+                    <span className="font-semibold font-mono text-foreground">{code.code}</span>
                     {isEffectivelyActive ? (
                       <Badge className="bg-emerald-100 text-emerald-800">Activo</Badge>
                     ) : isExpired ? (
@@ -454,7 +454,7 @@ export function DiscountManagement({ adminToken }: DiscountManagementProps) {
       <Dialog open={showCreateDialog} onOpenChange={setShowCreateDialog}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle className="font-heading">Crear Código de Descuento</DialogTitle>
+            <DialogTitle className="font-semibold">Crear Código de Descuento</DialogTitle>
             <DialogDescription>
               Introduce los datos del nuevo código de descuento
             </DialogDescription>
@@ -535,7 +535,7 @@ export function DiscountManagement({ adminToken }: DiscountManagementProps) {
       <Dialog open={showCampaignResults} onOpenChange={setShowCampaignResults}>
         <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
           <DialogHeader>
-            <DialogTitle className="font-heading">Resultados de la Campaña Pre-temporada</DialogTitle>
+            <DialogTitle className="font-semibold">Resultados de la Campaña Pre-temporada</DialogTitle>
             <DialogDescription>
               {campaignData
                 ? `${campaignData.codesGenerated} códigos generados para ${campaignData.customersFound} clientes`

@@ -145,7 +145,7 @@ export function CompetitionTab() {
           <div className="flex items-start gap-3">
             <AlertCircle className="w-5 h-5 text-red-600 dark:text-red-400 flex-shrink-0 mt-0.5" />
             <div>
-              <h3 className="font-semibold text-red-900 dark:text-red-100 font-heading">
+              <h3 className="font-semibold text-red-900 dark:text-red-100">
                 Riesgo activo: confusión nominal
               </h3>
               <p className="text-sm text-red-800/90 dark:text-red-200/90 mt-1">
@@ -160,12 +160,12 @@ export function CompetitionTab() {
 
       {/* Lista competidores */}
       <div className="grid gap-4">
-        <h3 className="text-lg font-semibold font-heading">Competidores directos</h3>
+        <h3 className="text-lg font-semibold">Competidores directos</h3>
         {COMPETITORS.map((c) => (
           <Card key={c.slug} data-testid={`competitor-${c.slug}`}>
             <CardHeader className="flex flex-row items-start justify-between space-y-0 pb-3">
               <div>
-                <CardTitle className="text-lg font-heading">{c.name}</CardTitle>
+                <CardTitle className="text-lg font-semibold">{c.name}</CardTitle>
                 <p className="text-sm text-muted-foreground mt-1">
                   <MapPin className="w-3 h-3 inline mr-1" />
                   {c.address}
@@ -265,7 +265,7 @@ export function CompetitionTab() {
       {/* Próximas mejoras */}
       <Card className="bg-muted/30">
         <CardContent className="pt-6">
-          <h3 className="text-sm font-semibold font-heading mb-2">Próximas mejoras de este dashboard</h3>
+          <h3 className="text-sm font-semibold mb-2">Próximas mejoras de este dashboard</h3>
           <ul className="text-xs text-muted-foreground space-y-1">
             <li>· Tracking automático de reseñas GBP de competidores (vía Places API)</li>
             <li>· Histórico mensual con gráfica delta rating/reviews</li>

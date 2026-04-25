@@ -19,7 +19,6 @@ import {
   Percent,
   Wrench,
   Package,
-  BarChart3,
   AlertCircle,
   Zap,
   Settings,
@@ -27,7 +26,6 @@ import {
   FileText,
   MoreHorizontal,
   Search,
-  Swords,
 } from "lucide-react";
 
 interface AdminLayoutProps {
@@ -45,27 +43,24 @@ interface AdminLayoutProps {
   children: ReactNode;
 }
 
-const TAB_CONFIG = [
+const PRIMARY_TABS = [
   { id: "dashboard", label: "Dashboard", icon: TrendingUp },
   { id: "calendar", label: "Calendario", icon: CalendarDays },
   { id: "bookings", label: "Reservas", icon: Calendar },
-];
-
-const ADMIN_TABS = [
-  { id: "customers", label: "Clientes", icon: Users },
   { id: "inquiries", label: "Peticiones", icon: MessageSquare },
   { id: "fleet", label: "Flota", icon: Anchor },
-  { id: "maintenance", label: "Mant.", icon: Wrench },
+  { id: "analytics", label: "SEO", icon: Search },
+  { id: "autopilot", label: "Autopilot", icon: Zap },
+];
+
+const OVERFLOW_TABS = [
+  { id: "customers", label: "Clientes", icon: Users },
+  { id: "maintenance", label: "Mantenimiento", icon: Wrench },
   { id: "inventory", label: "Inventario", icon: Package },
-  { id: "reports", label: "Reportes", icon: BarChart3 },
-  { id: "analytics", label: "SEO", icon: BarChart3 },
-  { id: "gallery", label: "Galería", icon: Camera },
+  { id: "gallery", label: "Galeria", icon: Camera },
   { id: "blog", label: "Blog", icon: FileText },
   { id: "giftcards", label: "Regalos", icon: Gift },
   { id: "discounts", label: "Descuentos", icon: Percent },
-  { id: "seo", label: "SEO Engine (beta)", icon: Search },
-  { id: "autopilot", label: "Autopilot", icon: Zap },
-  { id: "competition", label: "Competencia", icon: Swords },
 ];
 
 const OWNER_TABS = [
@@ -113,50 +108,14 @@ export function AdminLayout({
   };
 
   // Filter primary tabs by permissions
-  const visiblePrimaryTabs = TAB_CONFIG.filter(t => canSeeTab(t.id));
+  const visiblePrimaryTabs = PRIMARY_TABS.filter(t => canSeeTab(t.id));
 
-  const secondaryTabs = [
-    ...(adminRole === "admin" || adminRole === "owner" ? ADMIN_TABS.filter(t => canSeeTab(t.id)) : []),
+  const overflowTabs = [
+    ...OVERFLOW_TABS.filter(t => canSeeTab(t.id)),
     ...(isOwner ? OWNER_TABS : []),
   ];
 
-  // Build grouped secondary tabs for the new layout
-  const secondaryGroups: { label: string; tabs: typeof ADMIN_TABS }[] = [];
-  if (adminRole === "admin" || adminRole === "owner") {
-    const crmTabs = [
-      { id: "customers", label: "Clientes", icon: Users },
-      { id: "inquiries", label: "Peticiones", icon: MessageSquare },
-    ].filter(t => canSeeTab(t.id));
-    if (crmTabs.length > 0) secondaryGroups.push({ label: "CRM", tabs: crmTabs });
-
-    const flotaTabs = [
-      { id: "fleet", label: "Flota", icon: Anchor },
-      { id: "maintenance", label: "Mant.", icon: Wrench },
-      { id: "inventory", label: "Inventario", icon: Package },
-    ].filter(t => canSeeTab(t.id));
-    if (flotaTabs.length > 0) secondaryGroups.push({ label: "Flota", tabs: flotaTabs });
-
-    const negocioTabs = [
-      { id: "reports", label: "Reportes", icon: BarChart3 },
-      { id: "analytics", label: "SEO", icon: BarChart3 },
-      { id: "gallery", label: "Galeria", icon: Camera },
-      { id: "blog", label: "Blog", icon: FileText },
-      { id: "giftcards", label: "Regalos", icon: Gift },
-      { id: "discounts", label: "Descuentos", icon: Percent },
-      { id: "seo", label: "SEO Engine (beta)", icon: Search },
-      { id: "autopilot", label: "Autopilot", icon: Zap },
-    ].filter(t => canSeeTab(t.id));
-    if (negocioTabs.length > 0) secondaryGroups.push({ label: "Negocio", tabs: negocioTabs });
-  }
-  if (isOwner) {
-    secondaryGroups.push({
-      label: "Ajustes",
-      tabs: [
-        { id: "employees", label: "Usuarios", icon: Users },
-        { id: "config", label: "Config", icon: Settings },
-      ],
-    });
-  }
+  const primaryTabIds = new Set(PRIMARY_TABS.map(t => t.id));
 
   // State for mobile popover
   const [moreOpen, setMoreOpen] = useState(false);
@@ -262,14 +221,14 @@ export function AdminLayout({
             </button>
           ))}
 
-          {/* Mobile: "Mas" popover for secondary tabs */}
-          {secondaryTabs.length > 0 && (
+          {/* Mobile: "Mas" popover for overflow tabs */}
+          {overflowTabs.length > 0 && (
             <div className="flex md:hidden flex-shrink-0">
               <Popover open={moreOpen} onOpenChange={setMoreOpen}>
                 <PopoverTrigger asChild>
                   <button
                     className={`flex items-center justify-center gap-1 px-3 py-2 font-medium rounded-lg transition-colors whitespace-nowrap flex-shrink-0 min-w-[44px] min-h-[44px] ${
-                      !visiblePrimaryTabs.some((t) => t.id === selectedTab)
+                      !primaryTabIds.has(selectedTab)
                         ? 'bg-primary/20 text-primary'
                         : 'text-muted-foreground hover:text-foreground hover:bg-muted'
                     }`}
@@ -277,73 +236,79 @@ export function AdminLayout({
                   >
                     <MoreHorizontal className="w-4 h-4" />
                     <span className="text-xs">
-                      {!visiblePrimaryTabs.some((t) => t.id === selectedTab)
-                        ? secondaryTabs.find(t => t.id === selectedTab)?.label || "Más"
-                        : "Más"}
+                      {!primaryTabIds.has(selectedTab)
+                        ? overflowTabs.find(t => t.id === selectedTab)?.label || "Mas"
+                        : "Mas"}
                     </span>
                   </button>
                 </PopoverTrigger>
                 <PopoverContent className="w-[min(256px,calc(100vw-2rem))] p-2" align="end">
-                  {secondaryGroups.map((group) => (
-                    <div key={group.label} className="mb-2 last:mb-0">
-                      <span className="text-[11px] sm:text-[10px] uppercase tracking-wider text-muted-foreground/60 px-2 font-medium">
-                        {group.label}
-                      </span>
-                      <div className="flex flex-col gap-0.5 mt-0.5">
-                        {group.tabs.map((tab) => (
-                          <button
-                            key={tab.id}
-                            onClick={() => {
-                              onTabChange(tab.id);
-                              setMoreOpen(false);
-                            }}
-                            className={`flex items-center gap-2 px-2 py-1.5 text-sm rounded-md transition-colors w-full text-left min-h-[44px] ${
-                              selectedTab === tab.id
-                                ? 'bg-primary text-white'
-                                : 'text-muted-foreground hover:text-foreground hover:bg-muted'
-                            }`}
-                            data-testid={`tab-${tab.id}`}
-                          >
-                            <tab.icon className="w-4 h-4 flex-shrink-0" />
-                            <span>{tab.label}</span>
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-                  ))}
+                  <div className="flex flex-col gap-0.5">
+                    {overflowTabs.map((tab) => (
+                      <button
+                        key={tab.id}
+                        onClick={() => {
+                          onTabChange(tab.id);
+                          setMoreOpen(false);
+                        }}
+                        className={`flex items-center gap-2 px-2 py-1.5 text-sm rounded-md transition-colors w-full text-left min-h-[44px] ${
+                          selectedTab === tab.id
+                            ? 'bg-primary text-white'
+                            : 'text-muted-foreground hover:text-foreground hover:bg-muted'
+                        }`}
+                        data-testid={`tab-${tab.id}`}
+                      >
+                        <tab.icon className="w-4 h-4 flex-shrink-0" />
+                        <span>{tab.label}</span>
+                      </button>
+                    ))}
+                  </div>
                 </PopoverContent>
               </Popover>
             </div>
           )}
         </div>
 
-        {/* Secondary tabs — desktop grouped layout */}
-        {secondaryGroups.length > 0 && (
-          <div className="hidden md:flex flex-wrap items-end gap-x-4 gap-y-1 mt-2">
-            {secondaryGroups.map((group) => (
-              <div key={group.label} className="flex flex-col gap-0.5">
-                <span className="text-[10px] uppercase tracking-wider text-muted-foreground/60 px-3 font-medium">
-                  {group.label}
-                </span>
-                <div className="flex gap-1">
-                  {group.tabs.map((tab) => (
+        {/* Desktop: "Mas" overflow popover */}
+        {overflowTabs.length > 0 && (
+          <div className="hidden md:flex mt-2">
+            <Popover>
+              <PopoverTrigger asChild>
+                <button
+                  className={`flex items-center justify-center gap-1.5 px-3 py-1.5 font-medium rounded-lg transition-colors whitespace-nowrap min-w-[44px] ${
+                    !primaryTabIds.has(selectedTab)
+                      ? 'bg-primary/20 text-primary'
+                      : 'text-muted-foreground hover:text-foreground hover:bg-muted'
+                  }`}
+                >
+                  <MoreHorizontal className="w-4 h-4" />
+                  <span className="text-sm">
+                    {!primaryTabIds.has(selectedTab)
+                      ? overflowTabs.find(t => t.id === selectedTab)?.label || "Mas"
+                      : "Mas"}
+                  </span>
+                </button>
+              </PopoverTrigger>
+              <PopoverContent className="w-56 p-2" align="start">
+                <div className="flex flex-col gap-0.5">
+                  {overflowTabs.map((tab) => (
                     <button
                       key={tab.id}
                       onClick={() => onTabChange(tab.id)}
-                      className={`flex items-center justify-center gap-1.5 px-3 py-1.5 font-medium rounded-lg transition-colors whitespace-nowrap flex-shrink-0 min-w-[44px] ${
+                      className={`flex items-center gap-2 px-2 py-1.5 text-sm rounded-md transition-colors w-full text-left min-h-[44px] ${
                         selectedTab === tab.id
                           ? 'bg-primary text-white'
                           : 'text-muted-foreground hover:text-foreground hover:bg-muted'
                       }`}
                       data-testid={`tab-${tab.id}`}
                     >
-                      <tab.icon className="w-4 h-4" />
-                      <span className="text-xs md:text-sm">{tab.label}</span>
+                      <tab.icon className="w-4 h-4 flex-shrink-0" />
+                      <span>{tab.label}</span>
                     </button>
                   ))}
                 </div>
-              </div>
-            ))}
+              </PopoverContent>
+            </Popover>
           </div>
         )}
       </div>

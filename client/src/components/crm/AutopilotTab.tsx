@@ -118,12 +118,12 @@ export function AutopilotTab({ adminToken }: AutopilotTabProps) {
       </div>
 
       <Tabs defaultValue="overview" className="w-full">
-        <TabsList className="grid grid-cols-5 w-full max-w-3xl">
-          <TabsTrigger value="overview"><Activity className="h-4 w-4 mr-1" />Overview</TabsTrigger>
-          <TabsTrigger value="distribution"><Send className="h-4 w-4 mr-1" />Bandeja</TabsTrigger>
-          <TabsTrigger value="alerts"><AlertTriangle className="h-4 w-4 mr-1" />Alertas</TabsTrigger>
-          <TabsTrigger value="audit"><FileText className="h-4 w-4 mr-1" />Auditoría</TabsTrigger>
-          <TabsTrigger value="tokens"><KeyRound className="h-4 w-4 mr-1" />Tokens MCP</TabsTrigger>
+        <TabsList className="flex w-full max-w-3xl overflow-x-auto">
+          <TabsTrigger value="overview" className="flex-shrink-0"><Activity className="h-4 w-4 mr-1" /><span className="hidden sm:inline">Overview</span><span className="sm:hidden">Info</span></TabsTrigger>
+          <TabsTrigger value="distribution" className="flex-shrink-0"><Send className="h-4 w-4 mr-1" />Bandeja</TabsTrigger>
+          <TabsTrigger value="alerts" className="flex-shrink-0"><AlertTriangle className="h-4 w-4 mr-1" />Alertas</TabsTrigger>
+          <TabsTrigger value="audit" className="flex-shrink-0"><FileText className="h-4 w-4 mr-1" /><span className="hidden sm:inline">Auditoría</span><span className="sm:hidden">Audit</span></TabsTrigger>
+          <TabsTrigger value="tokens" className="flex-shrink-0"><KeyRound className="h-4 w-4 mr-1" />Tokens</TabsTrigger>
         </TabsList>
 
         <TabsContent value="overview" className="mt-4">
@@ -284,7 +284,9 @@ function DistributionPanel({ adminToken }: { adminToken: string }) {
       {items.length === 0 ? (
         <EmptyState icon={Send} title="Bandeja vacía" description="Cuando la autopilot encole contenido, aparecerá aquí." />
       ) : (
-        <Card>
+        <>
+        {/* Desktop table */}
+        <Card className="hidden md:block">
           <CardContent className="p-0">
             <Table>
               <TableHeader>
@@ -336,6 +338,57 @@ function DistributionPanel({ adminToken }: { adminToken: string }) {
             </Table>
           </CardContent>
         </Card>
+
+        {/* Mobile cards */}
+        <div className="md:hidden space-y-3">
+          {items.map((it) => {
+            const sb = statusBadge(it.status);
+            return (
+              <Card key={it.id}>
+                <CardContent className="p-4">
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="font-medium text-sm capitalize">{it.platform.replace("_", " ")}</span>
+                    <Badge variant={sb.variant}>{sb.label}</Badge>
+                  </div>
+                  <div className="grid grid-cols-2 gap-2 text-xs text-muted-foreground">
+                    <div>
+                      <p className="text-muted-foreground">Idioma</p>
+                      <p className="font-medium text-foreground uppercase font-mono">{it.language}</p>
+                    </div>
+                    <div>
+                      <p className="text-muted-foreground">Creado</p>
+                      <p className="font-medium text-foreground">{formatDate(it.createdAt)}</p>
+                    </div>
+                  </div>
+                  <p className="font-mono text-xs text-muted-foreground mt-1 truncate">{it.slug}</p>
+                  <div className="flex gap-2 mt-3">
+                    {it.publishedUrl && (
+                      <a href={it.publishedUrl} target="_blank" rel="noopener noreferrer">
+                        <Button size="sm" variant="ghost" className="min-h-[44px]"><ExternalLink className="h-3 w-3" /></Button>
+                      </a>
+                    )}
+                    {(it.status === "pending" || it.status === "scheduled") && (
+                      <Button size="sm" variant="outline" className="min-h-[44px]"
+                        onClick={() => {
+                          const url = window.prompt("URL de publicación:");
+                          if (url) markMutation.mutate({ id: it.id, result: "published", publishedUrl: url });
+                        }}>
+                        <CheckCircle2 className="h-3 w-3 mr-1" />Publicado
+                      </Button>
+                    )}
+                    <Button size="sm" variant="ghost" className="min-h-[44px]"
+                      onClick={() => {
+                        if (window.confirm("¿Eliminar este item?")) deleteMutation.mutate(it.id);
+                      }}>
+                      <Trash2 className="h-3 w-3" />
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+            );
+          })}
+        </div>
+        </>
       )}
     </div>
   );
@@ -409,7 +462,9 @@ function AuditPanel({ adminToken }: { adminToken: string }) {
       {entries.length === 0 ? (
         <EmptyState icon={Clock} title="Sin registros" description="Aún no se han realizado llamadas." />
       ) : (
-        <Card>
+        <>
+        {/* Desktop table */}
+        <Card className="hidden md:block">
           <CardContent className="p-0">
             <Table>
               <TableHeader>
@@ -437,6 +492,34 @@ function AuditPanel({ adminToken }: { adminToken: string }) {
             </Table>
           </CardContent>
         </Card>
+
+        {/* Mobile cards */}
+        <div className="md:hidden space-y-3">
+          {entries.map((e) => (
+            <Card key={e.id}>
+              <CardContent className="p-4">
+                <div className="flex items-center justify-between mb-2">
+                  <code className="text-xs font-medium">{e.tool}</code>
+                  {e.success ? <CheckCircle2 className="h-4 w-4 text-green-600" /> : <XCircle className="h-4 w-4 text-red-600" />}
+                </div>
+                <div className="grid grid-cols-2 gap-2 text-xs">
+                  <div>
+                    <p className="text-muted-foreground">Cuándo</p>
+                    <p className="font-medium">{formatDate(e.createdAt)}</p>
+                  </div>
+                  <div>
+                    <p className="text-muted-foreground">Duración</p>
+                    <p className="font-medium font-mono">{e.durationMs ? `${e.durationMs}ms` : "—"}</p>
+                  </div>
+                </div>
+                {e.errorMessage && (
+                  <p className="text-xs text-destructive mt-2 line-clamp-2">{e.errorMessage}</p>
+                )}
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+        </>
       )}
     </div>
   );
@@ -530,7 +613,9 @@ function TokensPanel({ adminToken }: { adminToken: string }) {
       {tokens.length === 0 ? (
         <EmptyState icon={KeyRound} title="Sin tokens" description="Crea uno para conectar un cliente MCP externo." />
       ) : (
-        <Card>
+        <>
+        {/* Desktop table */}
+        <Card className="hidden md:block">
           <CardContent className="p-0">
             <Table>
               <TableHeader>
@@ -575,6 +660,53 @@ function TokensPanel({ adminToken }: { adminToken: string }) {
             </Table>
           </CardContent>
         </Card>
+
+        {/* Mobile cards */}
+        <div className="md:hidden space-y-3">
+          {tokens.map((t) => (
+            <Card key={t.id}>
+              <CardContent className="p-4">
+                <div className="flex items-center justify-between mb-2">
+                  <span className="font-medium text-sm">{t.name}</span>
+                  {t.active
+                    ? <Badge>Activo</Badge>
+                    : t.revokedAt
+                      ? <Badge variant="destructive">Revocado</Badge>
+                      : <Badge variant="outline">Expirado</Badge>}
+                </div>
+                <div className="grid grid-cols-2 gap-2 text-xs">
+                  <div>
+                    <p className="text-muted-foreground">Prefijo</p>
+                    <p className="font-medium font-mono">{t.tokenPrefix}…</p>
+                  </div>
+                  <div>
+                    <p className="text-muted-foreground">Llamadas</p>
+                    <p className="font-medium font-mono">{t.callCount}</p>
+                  </div>
+                  <div>
+                    <p className="text-muted-foreground">Creado</p>
+                    <p className="font-medium">{formatDate(t.createdAt)}</p>
+                  </div>
+                  <div>
+                    <p className="text-muted-foreground">Último uso</p>
+                    <p className="font-medium">{formatDate(t.lastUsedAt)}</p>
+                  </div>
+                </div>
+                {t.active && (
+                  <div className="flex gap-2 mt-3">
+                    <Button size="sm" variant="ghost" className="min-h-[44px]"
+                      onClick={() => {
+                        if (window.confirm(`¿Revocar "${t.name}"?`)) revokeMutation.mutate(t.id);
+                      }}>
+                      Revocar
+                    </Button>
+                  </div>
+                )}
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+        </>
       )}
     </div>
   );

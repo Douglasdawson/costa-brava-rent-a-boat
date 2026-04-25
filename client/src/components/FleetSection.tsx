@@ -741,7 +741,7 @@ function FleetSection() {
               data-testid="button-whatsapp-help"
               aria-label={t.a11y.checkWhatsApp}
             >
-              <SiWhatsapp className="w-4 h-4 sm:w-5 sm:h-5 text-[#25D366]" aria-hidden="true" />
+              <SiWhatsapp className="w-4 h-4 sm:w-5 sm:h-5 text-whatsapp" aria-hidden="true" />
               <span className="ml-1 sm:ml-2">{t.contact.whatsapp}</span>
             </button>
             <button

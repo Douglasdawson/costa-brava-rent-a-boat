@@ -258,7 +258,7 @@ export function SeasonBanner() {
           <div className="px-6 pt-10 pb-8 sm:px-10 sm:pt-12 sm:pb-10 text-center">
             {/* Anchor icon */}
             <div className="inline-flex items-center justify-center w-12 h-12 rounded-full border border-white/15 mb-5">
-              <Anchor className="w-6 h-6 text-[#A8C4DD]" />
+              <Anchor className="w-6 h-6 text-hero-cta-secondary" />
             </div>
 
             {/* Headline */}

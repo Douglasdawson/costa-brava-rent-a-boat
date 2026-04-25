@@ -247,7 +247,7 @@ export default function BookingWizardMobile(props: BookingWizardMobileProps) {
               disabled={isSubmitting || props.isValidatingCode}
               aria-label={props.t.a11y.submitBookingWhatsApp}
               aria-busy={isSubmitting || props.isValidatingCode}
-              className="flex-1 py-5 text-sm font-semibold bg-[#25D366] hover:bg-[#1ebe5d] text-white border-0 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="flex-1 py-5 text-sm font-semibold bg-whatsapp hover:bg-whatsapp-hover text-white border-0 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {isSubmitting || props.isValidatingCode
                 ? <Loader2 className="w-4 h-4 mr-2 animate-spin" aria-hidden="true" />

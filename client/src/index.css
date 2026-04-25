@@ -71,6 +71,12 @@ body { overflow-x: hidden; }
   --chart-5: 270 60% 55%;
   --cta: 240 53% 11%;
   --cta-foreground: 0 0% 100%;
+  --whatsapp: 142 70% 49%;
+  --whatsapp-hover: 152 68% 34%;
+  --whatsapp-active: 157 80% 24%;
+  --hero-cta-secondary: 210 35% 76%;
+  --hero-cta-secondary-hover: 210 30% 70%;
+  --dark-surface: 240 53% 11%;
   --font-sans: 'Archivo', Inter, sans-serif;
   --font-display: 'Clash Display', 'Archivo', sans-serif;
   --font-serif: Georgia, serif;

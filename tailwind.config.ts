@@ -70,6 +70,16 @@ export default {
           DEFAULT: "hsl(var(--cta) / <alpha-value>)",
           foreground: "hsl(var(--cta-foreground) / <alpha-value>)",
         },
+        whatsapp: {
+          DEFAULT: "hsl(var(--whatsapp) / <alpha-value>)",
+          hover: "hsl(var(--whatsapp-hover) / <alpha-value>)",
+          active: "hsl(var(--whatsapp-active) / <alpha-value>)",
+        },
+        "hero-cta-secondary": {
+          DEFAULT: "hsl(var(--hero-cta-secondary) / <alpha-value>)",
+          hover: "hsl(var(--hero-cta-secondary-hover) / <alpha-value>)",
+        },
+        "dark-surface": "hsl(var(--dark-surface) / <alpha-value>)",
         ring: "hsl(var(--ring) / <alpha-value>)",
         chart: {
           "1": "hsl(var(--chart-1) / <alpha-value>)",

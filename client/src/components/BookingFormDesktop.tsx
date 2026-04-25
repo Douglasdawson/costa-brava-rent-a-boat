@@ -290,7 +290,7 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
                 setIsSubmitting(false);
               }}
               disabled={isSubmitting}
-              className="bg-[#25D366] hover:bg-[#1ebe5d] text-white rounded-full px-8 py-2.5 font-medium text-sm border-0 disabled:opacity-50 disabled:cursor-not-allowed btn-elevated"
+              className="bg-whatsapp hover:bg-whatsapp-hover text-white rounded-full px-8 py-2.5 font-medium text-sm border-0 disabled:opacity-50 disabled:cursor-not-allowed btn-elevated"
             >
               {isSubmitting
                 ? <Loader2 className="w-4 h-4 mr-2 animate-spin" />

@@ -1360,7 +1360,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
             target="_blank"
             rel="noopener noreferrer"
             tabIndex={showStickyCTA && !isBookingModalOpen ? 0 : -1}
-            className="flex-1 bg-[#25D366] text-white py-3 px-4 font-semibold rounded-lg flex items-center justify-center gap-2"
+            className="flex-1 bg-whatsapp text-white py-3 px-4 font-semibold rounded-lg flex items-center justify-center gap-2"
           >
             <SiWhatsapp className="w-4 h-4" />
             <span>WhatsApp</span>
@@ -1399,7 +1399,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
               tabIndex={showStickyCTA && !isBookingModalOpen ? 0 : -1}
               className="w-full text-xs text-primary hover:text-primary/80 flex items-center justify-center gap-1.5 py-1 transition-colors"
             >
-              <SiWhatsapp className="w-3.5 h-3.5 text-[#25D366]" />
+              <SiWhatsapp className="w-3.5 h-3.5 text-whatsapp" />
               {t.contact?.whatsapp || "Consultar por WhatsApp"}
             </button>
           </div>

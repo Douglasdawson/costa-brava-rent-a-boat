@@ -27,10 +27,9 @@ export default function WhatsAppFloatingButton() {
       title="WhatsApp"
       aria-label="Contactar por WhatsApp"
       onClick={() => trackWhatsAppClick("floating_button")}
-      className={`fixed right-4 z-50 items-center justify-center w-14 h-14 md:w-16 md:h-16 rounded-full shadow-lg transition-transform hover:scale-110 focus-visible:ring-2 focus-visible:ring-green-400 focus-visible:ring-offset-2 focus-visible:outline-none ${
+      className={`fixed right-4 z-50 items-center justify-center w-14 h-14 md:w-16 md:h-16 rounded-full shadow-lg transition-transform hover:scale-110 focus-visible:ring-2 focus-visible:ring-green-400 focus-visible:ring-offset-2 focus-visible:outline-none bg-whatsapp ${
         isBoatDetailPage ? "flex bottom-20 md:bottom-6 mb-safe" : "flex bottom-16 sm:bottom-6 mb-safe"
       }`}
-      style={{ backgroundColor: "#25D366" }}
     >
       <SiWhatsapp className="w-7 h-7 md:w-8 md:h-8 text-white" />
     </a>

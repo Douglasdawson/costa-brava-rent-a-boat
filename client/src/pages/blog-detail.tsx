@@ -925,6 +925,8 @@ export default function BlogDetailPage({ slug: slugProp }: { slug?: string }) {
                         alt={localized(relatedPost.featuredImageAltByLang as Record<string, string> | null, null, language) || localized(relatedPost.titleByLang as Record<string, string> | null, relatedPost.title, language)}
                         className="w-full aspect-[3/2] object-cover"
                         loading="lazy"
+                        width={600}
+                        height={400}
                         onError={(e) => { (e.target as HTMLImageElement).src = "/images/blog/barco-mar.jpg"; }}
                       />
                     )}

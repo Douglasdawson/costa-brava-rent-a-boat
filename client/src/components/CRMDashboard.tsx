@@ -23,6 +23,7 @@ import {
   MaintenanceTab,
   InventoryTab,
   AnalyticsTab,
+  SeoTab,
   AutopilotTab,
   BookingDetailsModal,
   getStatusLabel,
@@ -402,9 +403,9 @@ export default function CRMDashboard({ adminToken }: CRMDashboardProps) {
           <InventoryTab adminToken={adminToken} />
         )}
 
-        {/* SEO & Analytics Tab */}
+        {/* SEO Tab (Dashboard + Campanas + Experimentos + Informes + Salud) */}
         {selectedTab === "analytics" && (
-          <AnalyticsTab adminToken={adminToken} />
+          <SeoTab adminToken={adminToken} />
         )}
 
         {/* SEO Autopilot Tab */}

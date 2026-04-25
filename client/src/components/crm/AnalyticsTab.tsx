@@ -27,9 +27,14 @@ import {
   TrendingUp,
   Target,
   Filter,
+  Star,
+  Languages,
+  AlertCircle,
 } from "lucide-react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useToast } from "@/hooks/use-toast";
+import { StatCard } from "./shared/StatCard";
+import { useBusinessStats } from "@/hooks/useBusinessStats";
 import {
   LineChart,
   Line,
@@ -244,6 +249,12 @@ export function AnalyticsTab({ adminToken }: AnalyticsTabProps) {
   const { toast } = useToast();
   const queryClient = useQueryClient();
   const [activeTab, setActiveTab] = useState<TabId>("general");
+
+  // Competitive intelligence data
+  const { data: bizStats, isLoading: bizStatsLoading } = useBusinessStats();
+  const ourRating = bizStats?.rating ?? null;
+  const ourReviews = bizStats?.userRatingCount ?? null;
+  const lastSynced = bizStats?.lastSyncedAt ? new Date(bizStats.lastSyncedAt).toLocaleDateString("es-ES") : "--";
 
   // Sort state for tables
   const [keywordSort, setKeywordSort] = useState<{ key: string; dir: SortDirection }>({ key: "clicks", dir: "desc" });
@@ -1394,6 +1405,52 @@ export function AnalyticsTab({ adminToken }: AnalyticsTabProps) {
           )}
         </div>
       )}
+
+      {/* ==================== COMPETITIVE INTELLIGENCE ==================== */}
+      <div className="space-y-4">
+        <h3 className="text-xs font-medium text-muted-foreground uppercase tracking-wide">
+          Inteligencia competitiva
+        </h3>
+        <div className="grid gap-4 md:grid-cols-3">
+          <StatCard
+            title="Nuestro rating GBP"
+            value={bizStatsLoading ? "-" : ourRating !== null ? ourRating.toFixed(2) : "N/A"}
+            description={`${ourReviews ?? "-"} resenas · Sync ${lastSynced}`}
+            icon={<Star className="h-4 w-4" />}
+          />
+          <StatCard
+            title="Objetivo resenas/mes"
+            value="+10"
+            description="Meta del plan 90d (+30 total)"
+            icon={<TrendingUp className="h-4 w-4" />}
+          />
+          <StatCard
+            title="Nuestro foso idioma"
+            value="8"
+            description="Max. competencia: 4 (DE/NL/IT/RU desatendidos)"
+            icon={<Languages className="h-4 w-4" />}
+          />
+        </div>
+
+        {/* Alerta confusion nominal */}
+        <Card className="border-red-200 dark:border-red-900/40 bg-red-50/60 dark:bg-red-950/20">
+          <CardContent className="pt-6">
+            <div className="flex items-start gap-3">
+              <AlertCircle className="w-5 h-5 text-red-600 dark:text-red-400 flex-shrink-0 mt-0.5" />
+              <div>
+                <h3 className="font-semibold text-red-900 dark:text-red-100">
+                  Riesgo activo: confusion nominal
+                </h3>
+                <p className="text-sm text-red-800/90 dark:text-red-200/90 mt-1">
+                  "Rent a Boat Blanes" (rentaboatblanes.com) opera desde el mismo muelle con marca casi identica.
+                  Verifica mensualmente que <strong>Ads de marca defensiva</strong> esten activos y tu GBP tenga{" "}
+                  <strong>mas resenas recientes que ellos</strong>.
+                </p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
     </div>
   );
 }

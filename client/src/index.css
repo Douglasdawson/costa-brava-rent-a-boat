@@ -217,7 +217,7 @@ body { overflow-x: hidden; }
     inset: 0;
     border-radius: inherit;
     background: hsl(var(--cta));
-    animation: savings-pulse 2s ease-in-out infinite;
+    animation: savings-pulse 2s ease-in-out 3;
     pointer-events: none;
     will-change: opacity;
   }
@@ -251,7 +251,7 @@ body { overflow-x: hidden; }
     inset: 0;
     border-radius: inherit;
     border: 2px solid hsl(var(--cta) / 0.6);
-    animation: cta-ring 2s ease-out infinite;
+    animation: cta-ring 2s ease-out 3;
     pointer-events: none;
   }
   @keyframes cta-ring {

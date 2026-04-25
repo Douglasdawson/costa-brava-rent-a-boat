@@ -54,7 +54,7 @@ export default function LicenseComparisonSection() {
   };
 
   return (
-    <section ref={revealRef} className={`py-16 sm:py-20 lg:py-24 bg-muted/30 transition-[opacity,transform] duration-500 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+    <section ref={revealRef} className={`py-16 sm:py-20 lg:py-24 bg-muted/30 transition-[opacity,transform,filter] duration-500 ${isVisible ? "opacity-100 translate-y-0 blur-none" : "opacity-0 translate-y-8 blur-[2px]"}`}>
       <div className="container mx-auto px-4 max-w-4xl">
         <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl font-semibold text-foreground text-center tracking-tight mb-3">
           {t.comparison.title}

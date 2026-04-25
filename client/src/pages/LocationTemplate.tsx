@@ -2,6 +2,7 @@ import type React from "react";
 import { useEffect, useMemo } from "react";
 import { useQuery } from "@tanstack/react-query";
 import type { Boat } from "@shared/schema";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { computeFaqVars, substituteFaqVars } from "@/utils/faqVars";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -83,6 +84,9 @@ export default function LocationTemplate({ config, extraCards, afterFaq }: Locat
   const t = useTranslations();
 
   useEffect(() => { trackLocationPageView(config.slug); }, [config.slug]);
+
+  const { ref: contentRef, isVisible: contentVisible } = useScrollReveal();
+  const { ref: faqRef, isVisible: faqVisible } = useScrollReveal();
 
   const seoConfig = getSEOConfig(config.seoKey, language);
   const hreflangLinks = generateHreflangLinks(config.seoKey);
@@ -212,7 +216,7 @@ export default function LocationTemplate({ config, extraCards, afterFaq }: Locat
       </div>
 
       {/* Main Content */}
-      <div className="py-12 bg-muted">
+      <div ref={contentRef} className={`py-12 bg-muted transition-[opacity,transform,filter] duration-500 ${contentVisible ? "opacity-100 translate-y-0 blur-none" : "opacity-0 translate-y-8 blur-[2px]"}`}>
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
           {/* Why Rent from Blanes */}
@@ -366,7 +370,7 @@ export default function LocationTemplate({ config, extraCards, afterFaq }: Locat
       </div>
 
       {/* FAQ */}
-      <div className="py-12 bg-background">
+      <div ref={faqRef} className={`py-12 bg-background transition-[opacity,transform,filter] duration-500 ${faqVisible ? "opacity-100 translate-y-0 blur-none" : "opacity-0 translate-y-8 blur-[2px]"}`}>
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-2xl font-heading font-bold text-center mb-8">
             {config.faqTitle}

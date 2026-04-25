@@ -19,9 +19,9 @@ import { useLanguage } from "@/hooks/use-language";
 
 // Slide animation variants
 const slideVariants = {
-  enter: (dir: number) => ({ x: dir > 0 ? 80 : -80, opacity: 0 }),
-  center: { x: 0, opacity: 1 },
-  exit: (dir: number) => ({ x: dir > 0 ? -80 : 80, opacity: 0 }),
+  enter: (dir: number) => ({ x: dir > 0 ? 80 : -80, opacity: 0, filter: "blur(4px)" }),
+  center: { x: 0, opacity: 1, filter: "blur(0px)" },
+  exit: (dir: number) => ({ x: dir > 0 ? -80 : 80, opacity: 0, filter: "blur(4px)" }),
 };
 
 const LOCALE_MAP_DESKTOP: Record<string, string> = {

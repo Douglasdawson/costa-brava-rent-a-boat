@@ -171,7 +171,7 @@ export default function LocationPinedaDeMarPage() {
           <div className="grid lg:grid-cols-5 gap-10 lg:gap-16 items-center">
             <div className="lg:col-span-3">
               <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground flex items-center gap-3 mb-8">
-                <Anchor className="w-6 h-6 text-cta" />
+                <Anchor className="w-6 h-6 text-primary" />
                 {s?.whyTitle}
               </h2>
               <div className="grid md:grid-cols-2 gap-6">

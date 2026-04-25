@@ -33,13 +33,14 @@ const faqsFallback: Array<{ question: string; answer: string }> = [];
 export default function ActivitySunsetPage() {
   const { language, localizedPath } = useLanguage();
   const t = useTranslations();
-  const faqs = t.activitySunset?.faqItems ?? faqsFallback;
-  const sunsetTimes = t.activitySunset?.sunsetTimes ?? [];
-  const viewpoints = (t.activitySunset?.viewpoints ?? []).map((vp, i) => ({
+  const s = t.activitySunset!;
+  const faqs = s.faqItems ?? faqsFallback;
+  const sunsetTimes = s.sunsetTimes ?? [];
+  const viewpoints = (s.viewpoints ?? []).map((vp, i) => ({
     ...vp,
     icon: VIEWPOINT_ICONS[i] ?? MapPin,
   }));
-  const romanticIdeas = t.activitySunset?.romanticIdeas ?? [];
+  const romanticIdeas = s.romanticIdeas ?? [];
   const seoConfig = getSEOConfig('activitySunset', language);
   const hreflangLinks = generateHreflangLinks('activitySunset');
   const canonical = generateCanonicalUrl('activitySunset', language);
@@ -50,8 +51,8 @@ export default function ActivitySunsetPage() {
   };
 
   const breadcrumbSchema = generateBreadcrumbSchema([
-    { name: "Home", url: "/" },
-    { name: "Sunset Boat Trip", url: "/sunset-boat-trip-blanes" }
+    { name: s.breadcrumbHome ?? "Inicio", url: "/" },
+    { name: s.breadcrumbSunset ?? "Paseo en barco al atardecer", url: "/sunset-boat-trip-blanes" }
   ]);
 
   const faqSchema = {
@@ -69,8 +70,8 @@ export default function ActivitySunsetPage() {
   const touristTripSchema = {
     "@type": "TouristTrip",
     "@id": `${canonical}#tour`,
-    "name": "Paseo en Barco al Atardecer desde Blanes",
-    "description": "Alquiler de barco sin licencia para disfrutar del atardecer mediterráneo sobre las calas de la Costa Brava. Navegación a las 7 calas entre Blanes y Fenals con luz dorada. Romántico para parejas o grupos. Gasolina, seguro y kit de seguridad incluidos.",
+    "name": s.heroTitle,
+    "description": s.heroDescription,
     "touristType": ["Romance", "Nature", "Couples"],
     "inLanguage": ["es-ES", "en-GB", "ca-ES", "fr-FR", "de-DE", "nl-NL", "it-IT", "ru-RU"],
     "provider": {
@@ -87,7 +88,7 @@ export default function ActivitySunsetPage() {
         "priceValidUntil": "2026-10-31",
         "availability": "https://schema.org/InStock",
         "url": canonical,
-        "description": "Barco sin licencia 2h en franja atardecer (salida ~18:30-19:30 según mes). Gasolina incluida.",
+        "description": s.ctaDescription,
       },
     ],
     "maximumAttendeeCapacity": 7,
@@ -120,26 +121,24 @@ export default function ActivitySunsetPage() {
               <div className="flex items-center justify-center mb-6">
                 <Sunset className="w-8 h-8 text-primary mr-4" />
                 <h1 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold text-foreground">
-                  Sunset Boat Trip from Blanes
+                  {s.heroTitle}
                 </h1>
               </div>
               <p className="text-lg text-muted-foreground mb-6 max-w-4xl mx-auto">
-                Watch the sun set over the Costa Brava from the deck of your own boat. Depart from Blanes
-                port, cruise along hidden coves, and enjoy the most magical light of the day on the Mediterranean.
-                No boat license needed. From 70 EUR/hour.
+                {s.heroDescription}
               </p>
               <div className="flex flex-wrap gap-3 justify-center">
                 <Badge variant="outline" className="text-primary border-primary">
                   <Sunset className="w-4 h-4 mr-2" />
-                  Golden hour views
+                  {s.badgeGoldenHour}
                 </Badge>
                 <Badge variant="outline" className="text-primary border-primary">
                   <Clock className="w-4 h-4 mr-2" />
-                  2 hours recommended
+                  {s.badgeDuration}
                 </Badge>
                 <Badge variant="outline" className="text-primary border-primary">
                   <Heart className="w-4 h-4 mr-2" />
-                  Perfect for couples
+                  {s.badgeCouples}
                 </Badge>
               </div>
             </div>
@@ -155,41 +154,22 @@ export default function ActivitySunsetPage() {
               <CardHeader>
                 <h2 className="flex items-center gap-3 text-2xl font-semibold leading-none tracking-tight">
                   <Star className="w-6 h-6 text-cta" />
-                  Why a sunset boat trip from Blanes
+                  {s.whyTitle}
                 </h2>
               </CardHeader>
               <CardContent>
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
-                    <h3 className="font-semibold text-lg mb-3">The Mediterranean golden hour</h3>
-                    <p className="text-muted-foreground mb-4">
-                      There is something extraordinary about watching the sun set from the sea. The light
-                      turns golden, then amber, then pink. The cliffs of Costa Brava glow like they are
-                      on fire. The water becomes a mirror reflecting every colour of the sky. It is the
-                      kind of experience that makes a holiday unforgettable.
-                    </p>
-                    <h3 className="font-semibold text-lg mb-3">Your own private experience</h3>
-                    <p className="text-muted-foreground">
-                      Unlike group sunset cruises, you have the boat entirely to yourselves. You choose
-                      where to anchor, how long to stay, and what to bring on board. There is no guide
-                      rushing you, no other tourists. Just you and the Mediterranean at its most beautiful.
-                    </p>
+                    <h3 className="font-semibold text-lg mb-3">{s.whyGoldenHourTitle}</h3>
+                    <p className="text-muted-foreground mb-4">{s.whyGoldenHourDesc}</p>
+                    <h3 className="font-semibold text-lg mb-3">{s.whyPrivateTitle}</h3>
+                    <p className="text-muted-foreground">{s.whyPrivateDesc}</p>
                   </div>
                   <div>
-                    <h3 className="font-semibold text-lg mb-3">Easy and affordable</h3>
-                    <p className="text-muted-foreground mb-4">
-                      Our no-license boats are incredibly easy to drive. After a 15-minute briefing at
-                      the port, you are ready to go. The boat fits up to 5 people, so a 2-hour sunset
-                      trip can cost as little as 28 EUR per person including fuel. That is less than most
-                      restaurant dinners on the Costa Brava.
-                    </p>
-                    <h3 className="font-semibold text-lg mb-3">Perfect evening temperature</h3>
-                    <p className="text-muted-foreground">
-                      By late afternoon, the heat of the day has mellowed. The sea breeze keeps you
-                      comfortable. The water is at its warmest after absorbing sunshine all day. It is
-                      the ideal time to be on the water, whether for swimming, floating, or simply
-                      watching the sky change colour.
-                    </p>
+                    <h3 className="font-semibold text-lg mb-3">{s.whyAffordableTitle}</h3>
+                    <p className="text-muted-foreground mb-4">{s.whyAffordableDesc}</p>
+                    <h3 className="font-semibold text-lg mb-3">{s.whyTemperatureTitle}</h3>
+                    <p className="text-muted-foreground">{s.whyTemperatureDesc}</p>
                   </div>
                 </div>
               </CardContent>
@@ -200,7 +180,7 @@ export default function ActivitySunsetPage() {
               <CardHeader>
                 <h2 className="flex items-center gap-3 text-2xl font-semibold leading-none tracking-tight">
                   <Camera className="w-6 h-6 text-primary" />
-                  Best sunset viewpoints from the sea
+                  {s.viewpointsTitle}
                 </h2>
               </CardHeader>
               <CardContent>
@@ -227,7 +207,7 @@ export default function ActivitySunsetPage() {
               <CardHeader>
                 <h2 className="flex items-center gap-3 text-2xl font-semibold leading-none tracking-tight">
                   <Calendar className="w-6 h-6 text-primary" />
-                  Sunset times and departure suggestions
+                  {s.sunsetTimesTitle}
                 </h2>
               </CardHeader>
               <CardContent>
@@ -235,9 +215,9 @@ export default function ActivitySunsetPage() {
                   <table className="w-full text-left">
                     <thead>
                       <tr className="border-b">
-                        <th className="py-3 pr-4 font-semibold">Month</th>
-                        <th className="py-3 pr-4 font-semibold">Sunset time</th>
-                        <th className="py-3 font-semibold">Recommended departure</th>
+                        <th className="py-3 pr-4 font-semibold">{s.sunsetTimesTableMonth}</th>
+                        <th className="py-3 pr-4 font-semibold">{s.sunsetTimesTableTime}</th>
+                        <th className="py-3 font-semibold">{s.sunsetTimesTableDeparture}</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -251,10 +231,7 @@ export default function ActivitySunsetPage() {
                     </tbody>
                   </table>
                 </div>
-                <p className="text-sm text-muted-foreground mt-4">
-                  Times are approximate and vary by a few minutes each week. Our team at the port
-                  will confirm the exact sunset time on your day and recommend the best departure time.
-                </p>
+                <p className="text-sm text-muted-foreground mt-4">{s.sunsetTimesNote}</p>
               </CardContent>
             </Card>
 
@@ -263,7 +240,7 @@ export default function ActivitySunsetPage() {
               <CardHeader>
                 <h2 className="flex items-center gap-3 text-2xl font-semibold leading-none tracking-tight">
                   <Wine className="w-6 h-6 text-primary" />
-                  Ideas to make it special
+                  {s.romanticIdeasTitle}
                 </h2>
               </CardHeader>
               <CardContent>
@@ -288,51 +265,31 @@ export default function ActivitySunsetPage() {
               <CardHeader>
                 <h2 className="flex items-center gap-3 text-2xl font-semibold leading-none tracking-tight">
                   <Users className="w-6 h-6 text-primary" />
-                  What to bring on your sunset trip
+                  {s.whatToBringTitle}
                 </h2>
               </CardHeader>
               <CardContent>
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
-                    <h3 className="font-semibold mb-3">Essentials</h3>
+                    <h3 className="font-semibold mb-3">{s.whatToBringEssentials}</h3>
                     <ul className="space-y-2 text-muted-foreground">
-                      <li className="flex items-center">
-                        <ChevronRight className="w-4 h-4 text-primary mr-2 flex-shrink-0" />
-                        Light jacket or sweater (it cools down after sunset)
-                      </li>
-                      <li className="flex items-center">
-                        <ChevronRight className="w-4 h-4 text-primary mr-2 flex-shrink-0" />
-                        Sunglasses (the low sun can be bright)
-                      </li>
-                      <li className="flex items-center">
-                        <ChevronRight className="w-4 h-4 text-primary mr-2 flex-shrink-0" />
-                        Phone or camera for photos
-                      </li>
-                      <li className="flex items-center">
-                        <ChevronRight className="w-4 h-4 text-primary mr-2 flex-shrink-0" />
-                        Swimsuit if you want to swim at golden hour
-                      </li>
+                      {(s.whatToBringEssentialItems ?? []).map((item: string, i: number) => (
+                        <li key={i} className="flex items-center">
+                          <ChevronRight className="w-4 h-4 text-primary mr-2 flex-shrink-0" />
+                          {item}
+                        </li>
+                      ))}
                     </ul>
                   </div>
                   <div>
-                    <h3 className="font-semibold mb-3">Nice to have</h3>
+                    <h3 className="font-semibold mb-3">{s.whatToBringNice}</h3>
                     <ul className="space-y-2 text-muted-foreground">
-                      <li className="flex items-center">
-                        <ChevronRight className="w-4 h-4 text-primary mr-2 flex-shrink-0" />
-                        Picnic or aperitivo snacks
-                      </li>
-                      <li className="flex items-center">
-                        <ChevronRight className="w-4 h-4 text-primary mr-2 flex-shrink-0" />
-                        Wine, cava or drinks in a cool bag
-                      </li>
-                      <li className="flex items-center">
-                        <ChevronRight className="w-4 h-4 text-primary mr-2 flex-shrink-0" />
-                        Bluetooth speaker for music
-                      </li>
-                      <li className="flex items-center">
-                        <ChevronRight className="w-4 h-4 text-primary mr-2 flex-shrink-0" />
-                        Towels if swimming
-                      </li>
+                      {(s.whatToBringNiceItems ?? []).map((item: string, i: number) => (
+                        <li key={i} className="flex items-center">
+                          <ChevronRight className="w-4 h-4 text-primary mr-2 flex-shrink-0" />
+                          {item}
+                        </li>
+                      ))}
                     </ul>
                   </div>
                 </div>
@@ -342,27 +299,27 @@ export default function ActivitySunsetPage() {
             {/* Internal Links */}
             <Card className="mb-8">
               <CardContent className="pt-6">
-                <h3 className="font-semibold text-lg mb-4">Explore more experiences</h3>
+                <h3 className="font-semibold text-lg mb-4">{s.exploreMore}</h3>
                 <div className="flex flex-wrap gap-3">
                   <a href={localizedPath("categoryLicenseFree")} className="text-primary hover:underline flex items-center gap-1">
                     <ChevronRight className="w-4 h-4" />
-                    No-license boats
+                    {s.linkNoLicense}
                   </a>
                   <a href={localizedPath("activitySnorkel")} className="text-primary hover:underline flex items-center gap-1">
                     <ChevronRight className="w-4 h-4" />
-                    Snorkeling excursion
+                    {s.linkSnorkel}
                   </a>
                   <a href={localizedPath("pricing")} className="text-primary hover:underline flex items-center gap-1">
                     <ChevronRight className="w-4 h-4" />
-                    Prices and rates
+                    {s.linkPrices}
                   </a>
                   <a href={localizedPath("locationBlanes")} className="text-primary hover:underline flex items-center gap-1">
                     <ChevronRight className="w-4 h-4" />
-                    Blanes port info
+                    {s.linkBlanes}
                   </a>
                   <a href={localizedPath("routes")} className="text-primary hover:underline flex items-center gap-1">
                     <ChevronRight className="w-4 h-4" />
-                    Maritime routes
+                    {s.linkRoutes}
                   </a>
                 </div>
               </CardContent>
@@ -373,7 +330,7 @@ export default function ActivitySunsetPage() {
               <CardHeader>
                 <h2 className="flex items-center gap-3 text-2xl font-semibold leading-none tracking-tight">
                   <HelpCircle className="w-6 h-6 text-primary" />
-                  Frequently asked questions
+                  {s.faqTitle}
                 </h2>
               </CardHeader>
               <CardContent>
@@ -392,11 +349,8 @@ export default function ActivitySunsetPage() {
             {/* CTA Section */}
             <Card className="bg-primary text-white">
               <CardContent className="p-8 text-center">
-                <h2 className="text-2xl font-bold mb-4">Book your sunset boat trip from Blanes</h2>
-                <p className="text-lg mb-6 opacity-90">
-                  The most magical way to end a day on the Costa Brava. Departures from Blanes port,
-                  April to October. No license required. Fuel included.
-                </p>
+                <h2 className="text-2xl font-bold mb-4">{s.ctaTitle}</h2>
+                <p className="text-lg mb-6 opacity-90">{s.ctaDescription}</p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Button
                     size="lg"
@@ -404,12 +358,12 @@ export default function ActivitySunsetPage() {
                     onClick={handleBookingWhatsApp}
                   >
                     <MessageCircle className="w-5 h-5 mr-2" />
-                    Book via WhatsApp
+                    {s.ctaWhatsApp}
                   </Button>
                   <a href={localizedPath("categoryLicenseFree")}>
                     <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 w-full">
                       <Anchor className="w-5 h-5 mr-2" />
-                      View available boats
+                      {s.ctaViewBoats}
                     </Button>
                   </a>
                 </div>

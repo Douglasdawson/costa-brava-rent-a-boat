@@ -349,6 +349,14 @@ body { overflow-x: hidden; }
   input, select, textarea { font-size: 16px !important; }
 }
 
+/* Fallback: show content when JS is disabled or slow to load */
+@media (scripting: none) {
+  [class*="opacity-0"] { opacity: 1 !important; }
+  [class*="translate-y-"] { transform: none !important; }
+  [class*="blur-"] { filter: none !important; }
+  .boat-image-reveal { clip-path: none !important; opacity: 1 !important; animation: none !important; }
+}
+
 /* Touch devices: prevent sticky hover on scale transforms */
 @media (hover: none) {
   .hover\:scale-110:hover { transform: none !important; }

@@ -173,7 +173,7 @@ export default function GiftCardsPage() {
       <ReadingProgressBar />
 
       {/* Hero */}
-      <div className="bg-gradient-to-br from-blue-600 to-teal-600 text-white pt-20 pb-12">
+      <div className="bg-gradient-to-br from-primary/5 to-primary/10 pt-24 pb-12">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mt-8">
             <Gift className="w-10 h-10 sm:w-12 sm:h-12 mx-auto mb-4 text-blue-100" />

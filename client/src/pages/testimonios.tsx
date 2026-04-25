@@ -172,7 +172,7 @@ export default function TestimoniosPage() {
       <ReadingProgressBar />
 
       {/* Hero Section */}
-      <div className="bg-gradient-to-br from-blue-600 to-teal-600 text-white pt-20 pb-12">
+      <div className="bg-gradient-to-br from-primary/5 to-primary/10 pt-24 pb-12">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mt-8">
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6">

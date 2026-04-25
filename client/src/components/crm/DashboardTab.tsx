@@ -203,7 +203,7 @@ function RevenueTooltip({ active, payload, label }: {
         <p key={idx} className="text-sm">
           {entry.dataKey === "revenue" ? (
             <span className="font-semibold text-foreground">
-              {"\u20AC"}{entry.value.toLocaleString("es-ES", { minimumFractionDigits: 2 })}
+              {entry.value.toLocaleString("es-ES", { minimumFractionDigits: 2 })}{"\u20AC"}
             </span>
           ) : (
             <span className="text-muted-foreground">{entry.value} reservas</span>
@@ -227,7 +227,7 @@ function BoatTooltip({ active, payload }: {
       <p className="text-xs text-muted-foreground">{data.bookings} reservas</p>
       <p className="text-xs text-muted-foreground">{data.hours}h navegadas</p>
       <p className="text-xs font-medium text-foreground">
-        {"\u20AC"}{data.revenue.toLocaleString("es-ES", { minimumFractionDigits: 2 })}
+        {data.revenue.toLocaleString("es-ES", { minimumFractionDigits: 2 })}{"\u20AC"}
       </p>
     </div>
   );
@@ -443,7 +443,7 @@ export function DashboardTab({
                   </div>
                   <div className="flex items-center gap-2">
                     <span className="text-sm font-semibold text-foreground">
-                      {"\u20AC"}{parseFloat(booking.totalAmount).toLocaleString("es-ES", { minimumFractionDigits: 0 })}
+                      {parseFloat(booking.totalAmount).toLocaleString("es-ES", { minimumFractionDigits: 0 })}{"\u20AC"}
                     </span>
                     <Badge
                       className={`text-[10px] ${getStatusColor(booking.bookingStatus)}`}
@@ -483,7 +483,7 @@ export function DashboardTab({
             <StatCard
               title="Ingresos"
               icon={<Euro className="h-4 w-4" />}
-              value={`\u20AC${(stats?.revenue ?? 0).toLocaleString("es-ES", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`}
+              value={`${(stats?.revenue ?? 0).toLocaleString("es-ES", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}\u20AC`}
               change={revenueChange}
               changeLabel="vs periodo anterior"
             />
@@ -497,7 +497,7 @@ export function DashboardTab({
             <StatCard
               title="Ticket Medio"
               icon={<Receipt className="h-4 w-4" />}
-              value={`\u20AC${(stats?.averageTicket ?? 0).toLocaleString("es-ES", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`}
+              value={`${(stats?.averageTicket ?? 0).toLocaleString("es-ES", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}\u20AC`}
               change={ticketChange}
               changeLabel="vs periodo anterior"
             />
@@ -568,7 +568,7 @@ export function DashboardTab({
                         {activityText}
                       </p>
                       <p className="text-xs text-muted-foreground">
-                        {boatName(booking.boatId)} \u00b7 {"\u20AC"}{booking.totalAmount}
+                        {boatName(booking.boatId)} \u00b7 {booking.totalAmount}{"\u20AC"}
                       </p>
                     </div>
                     <span className="text-xs text-muted-foreground whitespace-nowrap flex-shrink-0">

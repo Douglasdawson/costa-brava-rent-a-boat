@@ -84,9 +84,10 @@ export default function PhotoLightbox({ photos, initialIndex, open, onOpenChange
           {/* Image */}
           <div className="flex items-center justify-center min-h-[50vh] max-h-[80vh]">
             <img
+              key={currentIndex}
               src={photo.imageUrl}
               alt={photo.caption || `Foto de experiencia nautica en Costa Brava por ${photo.customerName}${photo.boatName ? ` en ${photo.boatName}` : ""}`}
-              className="max-w-full max-h-[80vh] object-contain"
+              className="max-w-full max-h-[80vh] object-contain animate-in fade-in duration-200"
             />
           </div>
 

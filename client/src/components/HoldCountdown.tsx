@@ -134,9 +134,11 @@ const HoldCountdown = memo(function HoldCountdown({ expiresAt, onExpired, softEx
         </div>
       )}
       <style>{`
-        @keyframes hold-countdown-progress {
-          from { transform: scaleX(1); }
-          to { transform: scaleX(0); }
+        @media (prefers-reduced-motion: no-preference) {
+          @keyframes hold-countdown-progress {
+            from { transform: scaleX(1); }
+            to { transform: scaleX(0); }
+          }
         }
       `}</style>
     </div>

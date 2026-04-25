@@ -130,7 +130,7 @@ function StepContentWrapper({ isCompleted, currentStep, direction, children, cla
       className={className}
       style={{ position: 'relative', overflow: 'hidden' }}
       animate={{ height: isCompleted ? 0 : parentHeight }}
-      transition={{ type: 'spring', duration: 0.4 }}
+      transition={{ type: 'spring', stiffness: 300, damping: 30 }}
     >
       <AnimatePresence initial={false} mode="sync" custom={direction}>
         {!isCompleted && (
@@ -158,7 +158,7 @@ function SlideTransition({ children, direction, onHeightReady }) {
       initial="enter"
       animate="center"
       exit="exit"
-      transition={{ duration: 0.4 }}
+      transition={{ duration: 0.35, ease: "easeOut" }}
       style={{ position: 'absolute', left: 0, right: 0, top: 0 }}
     >
       {children}

@@ -485,7 +485,7 @@ export function BlogManagement({ adminToken }: BlogManagementProps) {
         </h2>
       </div>
 
-      <div className="grid gap-4">
+      <div className="grid gap-3 sm:gap-4">
         {/* Title */}
         <div className="space-y-1.5">
           <Label htmlFor="title">Título *</Label>
@@ -571,7 +571,7 @@ export function BlogManagement({ adminToken }: BlogManagementProps) {
             value={form.content}
             onChange={(e) => setForm((prev) => ({ ...prev, content: e.target.value }))}
             placeholder="Escribe el contenido del artículo en Markdown..."
-            rows={16}
+            rows={10}
             className="font-mono text-sm"
           />
           <p className="text-xs text-muted-foreground">
@@ -631,7 +631,7 @@ export function BlogManagement({ adminToken }: BlogManagementProps) {
         </div>
 
         {/* Actions */}
-        <Card>
+        <Card className="sticky bottom-0 bg-background py-3 border-t border-border z-10 md:static md:border-0 md:py-0 md:bg-transparent">
           <CardContent className="flex items-center justify-between pt-6">
             <Button variant="outline" onClick={resetAndGoToList}>
               Cancelar

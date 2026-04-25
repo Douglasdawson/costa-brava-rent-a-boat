@@ -53,7 +53,7 @@ const BoatCardImage = memo(function BoatCardImage({
   }
 
   return (
-    <div className="relative w-full aspect-[4/3] overflow-hidden">
+    <div className="relative w-full aspect-[4/3] overflow-hidden boat-image-reveal">
       <picture>
         {imageMobile && (
           <source media="(max-width: 767px)" srcSet={imageMobile} type="image/webp" />

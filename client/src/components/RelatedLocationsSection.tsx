@@ -1,4 +1,3 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -206,14 +205,14 @@ export default function RelatedLocationsSection({ currentLocation }: RelatedLoca
     const IconComponent = location.icon;
     return (
       <Link key={location.id} href={location.url} asChild>
-        <Card className="hover:shadow-lg transition-shadow cursor-pointer group">
-          <CardHeader>
-            <div className={`w-12 h-12 ${location.bgColor} rounded-full flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform`}>
+        <div className="bg-background border border-border rounded-2xl p-6 [@media(hover:hover)]:hover:shadow-lg transition-shadow cursor-pointer group">
+          <div className="text-center mb-4">
+            <div className={`w-12 h-12 ${location.bgColor} rounded-full flex items-center justify-center mx-auto mb-3 [@media(hover:hover)]:group-hover:scale-110 transition-transform`}>
               <IconComponent className={`w-6 h-6 ${location.color}`} />
             </div>
-            <CardTitle className="text-lg text-center">{location.name}</CardTitle>
-          </CardHeader>
-          <CardContent className="text-center">
+            <h3 className="font-heading font-semibold text-lg">{location.name}</h3>
+          </div>
+          <div className="text-center">
             <div className="mb-3">
               <Badge variant="outline" className="mb-2">
                 <Clock className="w-3 h-3 mr-1" />
@@ -233,14 +232,14 @@ export default function RelatedLocationsSection({ currentLocation }: RelatedLoca
             <Button
               variant="outline"
               size="sm"
-              className="group-hover:bg-primary group-hover:text-white transition-colors"
+              className="[@media(hover:hover)]:group-hover:bg-primary [@media(hover:hover)]:group-hover:text-white transition-colors"
               data-testid={`link-related-${location.id}`}
             >
               Ver Detalles
               <ExternalLink className="w-3 h-3 ml-1" />
             </Button>
-          </CardContent>
-        </Card>
+          </div>
+        </div>
       </Link>
     );
   };
@@ -305,14 +304,14 @@ export default function RelatedLocationsSection({ currentLocation }: RelatedLoca
               const IconComponent = category.icon;
               return (
                 <Link key={category.id} href={category.url} asChild>
-                  <Card className="hover:shadow-lg transition-shadow cursor-pointer group">
-                    <CardHeader>
-                      <div className={`w-12 h-12 ${category.bgColor} rounded-full flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform`}>
+                  <div className="bg-background border border-border rounded-2xl p-6 [@media(hover:hover)]:hover:shadow-lg transition-shadow cursor-pointer group">
+                    <div className="text-center mb-4">
+                      <div className={`w-12 h-12 ${category.bgColor} rounded-full flex items-center justify-center mx-auto mb-3 [@media(hover:hover)]:group-hover:scale-110 transition-transform`}>
                         <IconComponent className={`w-6 h-6 ${category.color}`} />
                       </div>
-                      <CardTitle className="text-lg text-center">{category.name}</CardTitle>
-                    </CardHeader>
-                    <CardContent className="text-center">
+                      <h3 className="font-heading font-semibold text-lg">{category.name}</h3>
+                    </div>
+                    <div className="text-center">
                       <p className="text-muted-foreground mb-3 text-sm leading-relaxed">
                         {category.description}
                       </p>
@@ -326,14 +325,14 @@ export default function RelatedLocationsSection({ currentLocation }: RelatedLoca
                       <Button
                         variant="outline"
                         size="sm"
-                        className="group-hover:bg-primary group-hover:text-white transition-colors"
+                        className="[@media(hover:hover)]:group-hover:bg-primary [@media(hover:hover)]:group-hover:text-white transition-colors"
                         data-testid={`link-related-category-${category.id}`}
                       >
                         Ver Barcos
                         <Waves className="w-3 h-3 ml-1" />
                       </Button>
-                    </CardContent>
-                  </Card>
+                    </div>
+                  </div>
                 </Link>
               );
             })}

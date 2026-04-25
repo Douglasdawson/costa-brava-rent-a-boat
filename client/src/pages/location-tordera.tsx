@@ -2,7 +2,6 @@ import { useEffect, useMemo } from "react";
 import { useQuery } from "@tanstack/react-query";
 import type { Boat } from "@shared/schema";
 import { computeFaqVars, substituteFaqVars } from "@/utils/faqVars";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -17,10 +16,12 @@ import {
   Waves,
   TreePine,
   Mountain,
-  ChevronRight
 } from "lucide-react";
 import { Link } from "wouter";
 import Navigation from "@/components/Navigation";
+import { ReadingProgressBar } from "@/components/ReadingProgressBar";
+import { FAQSection } from "@/components/FAQSection";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 import Footer from "@/components/Footer";
 import RelatedLocationsSection from "@/components/RelatedLocationsSection";
 import { SEO } from "@/components/SEO";
@@ -30,6 +31,15 @@ import { openWhatsApp, createBookingMessage } from "@/utils/whatsapp";
 import { useTranslations } from "@/lib/translations";
 import { getCanonicalUrl } from "@/lib/domain";
 import { trackLocationPageView } from "@/utils/analytics";
+
+function RevealSection({ children, className = "" }: { children: React.ReactNode; className?: string }) {
+  const { ref, isVisible } = useScrollReveal();
+  return (
+    <div ref={ref} className={`transition-[opacity,transform,filter] duration-700 ${isVisible ? "opacity-100 translate-y-0 blur-none" : "opacity-0 translate-y-6 blur-[2px]"} ${className}`}>
+      {children}
+    </div>
+  );
+}
 
 export default function LocationTorderaPage() {
   const { localizedPath } = useLanguage();
@@ -123,6 +133,7 @@ export default function LocationTorderaPage() {
         jsonLd={combinedJsonLd}
       />
       <Navigation />
+      <ReadingProgressBar />
 
       {/* Hero Section */}
       <div className="bg-gradient-to-br from-emerald-50 to-blue-50 pt-24 pb-12">
@@ -155,211 +166,213 @@ export default function LocationTorderaPage() {
         </div>
       </div>
 
-      {/* Main Content */}
-      <div className="py-12 bg-muted">
+      {/* Why Rent from Blanes */}
+      <RevealSection className="py-16 sm:py-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-
-          {/* Why Rent from Blanes */}
-          <Card className="mb-8">
-            <CardHeader>
-              <h2 className="flex items-center gap-3 text-2xl font-semibold leading-none tracking-tight">
-                <Anchor className="w-6 h-6 text-cta" />
+          <div className="grid lg:grid-cols-5 gap-10 lg:gap-16 items-center">
+            <div className="lg:col-span-3">
+              <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground flex items-center gap-3 mb-8">
+                <Anchor className="w-6 h-6 text-primary" />
                 {s?.whyTitle}
               </h2>
-            </CardHeader>
-            <CardContent>
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
-                  <h3 className="font-semibold text-lg mb-3">{s?.whyCard1Title}</h3>
-                  <p className="text-muted-foreground mb-4">{s?.whyCard1Desc}</p>
-                  <h3 className="font-semibold text-lg mb-3">{render(s?.whyCard2Title, '')}</h3>
-                  <p className="text-muted-foreground">{render(s?.whyCard2Desc, '')}</p>
+                  <h3 className="font-heading font-semibold text-lg mb-3">{s?.whyCard1Title}</h3>
+                  <p className="text-muted-foreground leading-relaxed mb-4">{s?.whyCard1Desc}</p>
+                  <h3 className="font-heading font-semibold text-lg mb-3">{render(s?.whyCard2Title, '')}</h3>
+                  <p className="text-muted-foreground leading-relaxed">{render(s?.whyCard2Desc, '')}</p>
                 </div>
                 <div>
-                  <h3 className="font-semibold text-lg mb-3">{s?.whyCard3Title}</h3>
-                  <p className="text-muted-foreground mb-4">{s?.whyCard3Desc}</p>
-                  <h3 className="font-semibold text-lg mb-3">{s?.whyCard4Title}</h3>
-                  <p className="text-muted-foreground">{s?.whyCard4Desc}</p>
+                  <h3 className="font-heading font-semibold text-lg mb-3">{s?.whyCard3Title}</h3>
+                  <p className="text-muted-foreground leading-relaxed mb-4">{s?.whyCard3Desc}</p>
+                  <h3 className="font-heading font-semibold text-lg mb-3">{s?.whyCard4Title}</h3>
+                  <p className="text-muted-foreground leading-relaxed">{s?.whyCard4Desc}</p>
                 </div>
               </div>
-            </CardContent>
-          </Card>
+            </div>
+            <div className="lg:col-span-2">
+              <img
+                src="/images/alquiler-barco-trimarchi-57s-rent-a-boat-costa-brava-blanes-amigos-snorkel.webp"
+                alt="Friends enjoying a boat day on the Costa Brava"
+                className="w-full rounded-2xl object-cover aspect-[4/5]"
+                loading="lazy"
+                width={640}
+                height={800}
+              />
+            </div>
+          </div>
+        </div>
+      </RevealSection>
 
-          {/* Town Attractions */}
-          <Card className="mb-8">
-            <CardHeader>
-              <h2 className="flex items-center gap-3 text-2xl font-semibold leading-none tracking-tight">
-                <Star className="w-6 h-6 text-primary" />
-                {s?.townTitle}
-              </h2>
-            </CardHeader>
-            <CardContent>
-              <p className="text-muted-foreground mb-6">{s?.townIntro}</p>
-              <div className="grid md:grid-cols-3 gap-6">
-                <div className="text-center">
-                  <div className="w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Mountain className="w-8 h-8 text-emerald-600" />
-                  </div>
-                  <h3 className="font-semibold text-lg mb-2">{s?.townCard1Title}</h3>
-                  <p className="text-muted-foreground">{s?.townCard1Desc}</p>
-                </div>
-                <div className="text-center">
-                  <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Waves className="w-8 h-8 text-blue-600" />
-                  </div>
-                  <h3 className="font-semibold text-lg mb-2">{s?.townCard2Title}</h3>
-                  <p className="text-muted-foreground">{s?.townCard2Desc}</p>
-                </div>
-                <div className="text-center">
-                  <div className="w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <TreePine className="w-8 h-8 text-amber-600" />
-                  </div>
-                  <h3 className="font-semibold text-lg mb-2">{s?.townCard3Title}</h3>
-                  <p className="text-muted-foreground">{s?.townCard3Desc}</p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
+      {/* Photo break */}
+      <div className="w-full overflow-hidden">
+        <img
+          src="/images/mejores-calas-costa-brava-mingolla-brava-rent-a-boat.webp"
+          alt="Boat anchored in a crystal-clear cove along the Costa Brava coast"
+          className="w-full h-[35vh] min-h-[250px] max-h-[400px] object-cover"
+          loading="lazy"
+          width={1920}
+          height={600}
+        />
+      </div>
 
-          {/* How to Get to Blanes */}
-          <Card className="mb-8">
-            <CardHeader>
-              <h2 className="flex items-center gap-3 text-2xl font-semibold leading-none tracking-tight">
-                <Car className="w-6 h-6 text-primary" />
-                {s?.howTitle}
-              </h2>
-            </CardHeader>
-            <CardContent>
-              <div className="grid md:grid-cols-2 gap-6">
-                <div>
-                  <h3 className="font-semibold text-lg mb-3 flex items-center gap-2">
-                    <Car className="w-5 h-5 text-primary" />
-                    {s?.howCarTitle}
-                  </h3>
-                  <p className="text-muted-foreground mb-4">{s?.howCarDesc}</p>
-                  <h3 className="font-semibold text-lg mb-3 flex items-center gap-2">
-                    <Users className="w-5 h-5 text-primary" />
-                    {s?.howTaxiTitle}
-                  </h3>
-                  <p className="text-muted-foreground">{s?.howTaxiDesc}</p>
-                </div>
-                <div>
-                  <h3 className="font-semibold text-lg mb-3 flex items-center gap-2">
-                    <Train className="w-5 h-5 text-primary" />
-                    {s?.howTransportTitle}
-                  </h3>
-                  <p className="text-muted-foreground mb-4">{s?.howTransportDesc}</p>
-                  <h3 className="font-semibold text-lg mb-3 flex items-center gap-2">
-                    <ParkingCircle className="w-5 h-5 text-primary" />
-                    {s?.howParkingTitle}
-                  </h3>
-                  <p className="text-muted-foreground">{s?.howParkingDesc}</p>
-                </div>
+      {/* Town Attractions */}
+      <RevealSection className="py-16 sm:py-20 bg-muted">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground flex items-center gap-3 mb-4">
+            <Star className="w-6 h-6 text-primary" />
+            {s?.townTitle}
+          </h2>
+          <p className="text-muted-foreground leading-relaxed mb-10">{s?.townIntro}</p>
+          <div className="grid md:grid-cols-3 gap-6">
+            <div className="text-center">
+              <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
+                <Mountain className="w-5 h-5 text-primary" />
               </div>
-            </CardContent>
-          </Card>
+              <h3 className="font-heading font-semibold text-lg mb-2">{s?.townCard1Title}</h3>
+              <p className="text-muted-foreground leading-relaxed">{s?.townCard1Desc}</p>
+            </div>
+            <div className="text-center">
+              <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
+                <Waves className="w-5 h-5 text-primary" />
+              </div>
+              <h3 className="font-heading font-semibold text-lg mb-2">{s?.townCard2Title}</h3>
+              <p className="text-muted-foreground leading-relaxed">{s?.townCard2Desc}</p>
+            </div>
+            <div className="text-center">
+              <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
+                <TreePine className="w-5 h-5 text-primary" />
+              </div>
+              <h3 className="font-heading font-semibold text-lg mb-2">{s?.townCard3Title}</h3>
+              <p className="text-muted-foreground leading-relaxed">{s?.townCard3Desc}</p>
+            </div>
+          </div>
+        </div>
+      </RevealSection>
 
-          {/* Boat Destinations from Blanes */}
-          <Card className="mb-8">
-            <CardHeader>
-              <h2 className="flex items-center gap-3 text-2xl font-semibold leading-none tracking-tight">
-                <Anchor className="w-6 h-6 text-primary" />
-                {s?.destsTitle}
-              </h2>
-            </CardHeader>
-            <CardContent>
-              <p className="text-muted-foreground mb-4">{s?.destsIntro}</p>
-              <div className="flex flex-wrap gap-3">
-                <Link href={localizedPath("locationLloret")}>
-                  <Badge variant="outline" className="cursor-pointer hover:bg-primary/10">{s?.destLloret}</Badge>
-                </Link>
-                <Link href={localizedPath("locationTossa")}>
-                  <Badge variant="outline" className="cursor-pointer hover:bg-primary/10">{s?.destTossa}</Badge>
-                </Link>
-                <Link href={localizedPath("locationBlanes")}>
-                  <Badge variant="outline" className="cursor-pointer hover:bg-primary/10">{s?.destBlanes}</Badge>
-                </Link>
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Pricing Overview */}
-          <Card className="mb-8">
-            <CardHeader>
-              <h2 className="flex items-center gap-3 text-2xl font-semibold leading-none tracking-tight">
-                <Clock className="w-6 h-6 text-primary" />
-                {s?.pricingTitle}
-              </h2>
-            </CardHeader>
-            <CardContent>
-              <p className="text-muted-foreground mb-4">{s?.pricingIntro}</p>
-              <div className="grid md:grid-cols-2 gap-6">
-                <div>
-                  <h3 className="font-semibold text-lg mb-3">{s?.pricingNoLicTitle}</h3>
-                  <p className="text-muted-foreground mb-2">{render(s?.pricingNoLicFrom, '')}</p>
-                  <p className="text-muted-foreground">{s?.pricingNoLicCapacity}</p>
+      {/* How to Get to Blanes */}
+      <RevealSection className="py-16 sm:py-20">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground flex items-center gap-3 mb-8">
+            <Car className="w-6 h-6 text-primary" />
+            {s?.howTitle}
+          </h2>
+          <div className="grid md:grid-cols-2 gap-6">
+            <div>
+              <h3 className="font-heading font-semibold text-lg mb-3 flex items-center gap-2">
+                <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+                  <Car className="w-5 h-5 text-primary" />
                 </div>
-                <div>
-                  <h3 className="font-semibold text-lg mb-3">{s?.pricingLicTitle}</h3>
-                  <p className="text-muted-foreground mb-2">{render(s?.pricingLicFrom, '')}</p>
-                  <p className="text-muted-foreground mb-2">{s?.pricingLicEngines}</p>
-                  <p className="text-muted-foreground">{s?.pricingLicCapacity}</p>
+                {s?.howCarTitle}
+              </h3>
+              <p className="text-muted-foreground leading-relaxed mb-4">{s?.howCarDesc}</p>
+              <h3 className="font-heading font-semibold text-lg mb-3 flex items-center gap-2">
+                <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+                  <Users className="w-5 h-5 text-primary" />
                 </div>
-              </div>
-              <div className="mt-4">
-                <Link href={localizedPath("pricing")}>
-                  <Button variant="outline" size="sm">
-                    {s?.pricingButton}
-                  </Button>
-                </Link>
-              </div>
-            </CardContent>
-          </Card>
+                {s?.howTaxiTitle}
+              </h3>
+              <p className="text-muted-foreground leading-relaxed">{s?.howTaxiDesc}</p>
+            </div>
+            <div>
+              <h3 className="font-heading font-semibold text-lg mb-3 flex items-center gap-2">
+                <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+                  <Train className="w-5 h-5 text-primary" />
+                </div>
+                {s?.howTransportTitle}
+              </h3>
+              <p className="text-muted-foreground leading-relaxed mb-4">{s?.howTransportDesc}</p>
+              <h3 className="font-heading font-semibold text-lg mb-3 flex items-center gap-2">
+                <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+                  <ParkingCircle className="w-5 h-5 text-primary" />
+                </div>
+                {s?.howParkingTitle}
+              </h3>
+              <p className="text-muted-foreground leading-relaxed">{s?.howParkingDesc}</p>
+            </div>
+          </div>
+        </div>
+      </RevealSection>
 
-          {/* CTA Section */}
-          <Card className="bg-primary text-white">
-            <CardContent className="py-8 text-center">
-              <h2 className="text-2xl font-bold mb-4">{s?.ctaTitle}</h2>
-              <p className="text-lg mb-6 max-w-2xl mx-auto">{s?.ctaDesc}</p>
-              <Button
-                onClick={handleBookingWhatsApp}
-                size="lg"
-                variant="secondary"
-                className="text-primary hover:text-primary"
-                data-testid="button-whatsapp-tordera"
-              >
-                {s?.ctaButton}
+      {/* Boat Destinations from Blanes */}
+      <div className="py-8 bg-muted">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground flex items-center gap-3 mb-4">
+            <Anchor className="w-6 h-6 text-primary" />
+            {s?.destsTitle}
+          </h2>
+          <p className="text-muted-foreground leading-relaxed mb-4">{s?.destsIntro}</p>
+          <div className="flex flex-wrap gap-3">
+            <Link href={localizedPath("locationLloret")}>
+              <Badge variant="outline" className="cursor-pointer hover:bg-primary/10">{s?.destLloret}</Badge>
+            </Link>
+            <Link href={localizedPath("locationTossa")}>
+              <Badge variant="outline" className="cursor-pointer hover:bg-primary/10">{s?.destTossa}</Badge>
+            </Link>
+            <Link href={localizedPath("locationBlanes")}>
+              <Badge variant="outline" className="cursor-pointer hover:bg-primary/10">{s?.destBlanes}</Badge>
+            </Link>
+          </div>
+        </div>
+      </div>
+
+      {/* Pricing Overview */}
+      <RevealSection className="py-16 sm:py-20">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground flex items-center gap-3 mb-4">
+            <Clock className="w-6 h-6 text-primary" />
+            {s?.pricingTitle}
+          </h2>
+          <p className="text-muted-foreground leading-relaxed mb-6">{s?.pricingIntro}</p>
+          <div className="grid md:grid-cols-2 gap-6">
+            <div>
+              <h3 className="font-heading font-semibold text-lg mb-3">{s?.pricingNoLicTitle}</h3>
+              <p className="text-muted-foreground leading-relaxed mb-2">{render(s?.pricingNoLicFrom, '')}</p>
+              <p className="text-muted-foreground leading-relaxed">{s?.pricingNoLicCapacity}</p>
+            </div>
+            <div>
+              <h3 className="font-heading font-semibold text-lg mb-3">{s?.pricingLicTitle}</h3>
+              <p className="text-muted-foreground leading-relaxed mb-2">{render(s?.pricingLicFrom, '')}</p>
+              <p className="text-muted-foreground leading-relaxed mb-2">{s?.pricingLicEngines}</p>
+              <p className="text-muted-foreground leading-relaxed">{s?.pricingLicCapacity}</p>
+            </div>
+          </div>
+          <div className="mt-4">
+            <Link href={localizedPath("pricing")}>
+              <Button variant="outline" size="sm">
+                {s?.pricingButton}
               </Button>
-            </CardContent>
-          </Card>
+            </Link>
+          </div>
+        </div>
+      </RevealSection>
 
+      {/* CTA Section */}
+      <div className="py-16 sm:py-20 bg-primary">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-2xl sm:text-3xl font-heading font-bold text-white mb-4">{s?.ctaTitle}</h2>
+          <p className="text-lg text-white/90 mb-6 max-w-2xl mx-auto">{s?.ctaDesc}</p>
+          <Button
+            onClick={handleBookingWhatsApp}
+            size="lg"
+            variant="secondary"
+            className="text-primary hover:text-primary"
+            data-testid="button-whatsapp-tordera"
+          >
+            {s?.ctaButton}
+          </Button>
         </div>
       </div>
 
       {/* FAQ Section */}
-      <div className="py-12 bg-background">
+      <RevealSection className="py-16 sm:py-20">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl font-heading font-bold text-center mb-8">
+          <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground text-center mb-8">
             {s?.faqTitle}
           </h2>
-          <div className="space-y-3">
-            {processedFaqItems.map((item, index) => (
-              <details
-                key={index}
-                className="group border border-border rounded-lg bg-card"
-              >
-                <summary className="flex cursor-pointer items-center justify-between px-6 py-4 font-semibold text-foreground [&::-webkit-details-marker]:hidden">
-                  <span className="pr-4">{item.question}</span>
-                  <ChevronRight className="w-5 h-5 shrink-0 text-muted-foreground transition-transform group-open:rotate-90" />
-                </summary>
-                <div className="px-6 pb-4 text-muted-foreground">
-                  {item.answer}
-                </div>
-              </details>
-            ))}
-          </div>
+          <FAQSection items={processedFaqItems} />
         </div>
-      </div>
+      </RevealSection>
 
       <RelatedLocationsSection currentLocation="tordera" />
 

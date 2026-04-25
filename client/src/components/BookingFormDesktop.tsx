@@ -19,9 +19,9 @@ import { useLanguage } from "@/hooks/use-language";
 
 // Slide animation variants
 const slideVariants = {
-  enter: (dir: number) => ({ x: dir > 0 ? 80 : -80, opacity: 0 }),
-  center: { x: 0, opacity: 1 },
-  exit: (dir: number) => ({ x: dir > 0 ? -80 : 80, opacity: 0 }),
+  enter: (dir: number) => ({ x: dir > 0 ? 80 : -80, opacity: 0, filter: "blur(4px)" }),
+  center: { x: 0, opacity: 1, filter: "blur(0px)" },
+  exit: (dir: number) => ({ x: dir > 0 ? -80 : 80, opacity: 0, filter: "blur(4px)" }),
 };
 
 const LOCALE_MAP_DESKTOP: Record<string, string> = {
@@ -290,7 +290,7 @@ export default function BookingFormDesktop(props: BookingWizardMobileProps) {
                 setIsSubmitting(false);
               }}
               disabled={isSubmitting}
-              className="bg-[#25D366] hover:bg-[#1ebe5d] text-white rounded-full px-8 py-2.5 font-medium text-sm border-0 disabled:opacity-50 disabled:cursor-not-allowed btn-elevated"
+              className="bg-whatsapp hover:bg-whatsapp-hover text-white rounded-full px-8 py-2.5 font-medium text-sm border-0 disabled:opacity-50 disabled:cursor-not-allowed btn-elevated"
             >
               {isSubmitting
                 ? <Loader2 className="w-4 h-4 mr-2 animate-spin" />
@@ -951,7 +951,7 @@ function Step4Contact({
                 <span className="truncate text-sm">{phonePrefix}</span>
               </button>
               {showPrefixDropdown && (
-                <div className="absolute top-full left-0 mt-1 w-64 bg-background border border-cta/40 rounded-xl shadow-lg z-50 max-h-48 overflow-y-auto">
+                <div className="absolute top-full left-0 mt-1 w-64 bg-background border border-cta/40 rounded-xl shadow-lg z-50 max-h-48 overflow-y-auto animate-in fade-in slide-in-from-top-1 duration-150">
                   <div className="p-2 border-b sticky top-0 bg-background">
                     <input
                       type="text" value={prefixSearch}

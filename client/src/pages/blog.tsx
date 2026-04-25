@@ -483,7 +483,7 @@ function BlogPage() {
                       <img
                         src={featuredPost.featuredImage}
                         alt={localized(featuredPost.featuredImageAltByLang as Record<string, string> | null, null, language) || localized(featuredPost.titleByLang as Record<string, string> | null, featuredPost.title, language)}
-                        className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                        className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                         loading="eager"
                         fetchPriority="high"
                         width={1200}
@@ -569,7 +569,9 @@ function BlogPage() {
             </div>
           ) : (
             <>
-              <BlogPostGrid posts={paginatedPosts} language={language} bp={bp} />
+              <div key={currentPage} className="animate-in fade-in duration-200">
+                <BlogPostGrid posts={paginatedPosts} language={language} bp={bp} />
+              </div>
 
               {/* Pagination */}
               {totalPages > 1 && (

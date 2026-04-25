@@ -42,6 +42,7 @@ import { getBoatImage, getBoatImageSrcSet, getBoatAltText } from "@/utils/boatIm
 import { useResponsiveGallery } from "@/hooks/useResponsiveGallery";
 import { useThrottledScroll } from "@/hooks/useThrottledScroll";
 import Navigation from "./Navigation";
+import { ReadingProgressBar } from "./ReadingProgressBar";
 import Footer from "./Footer";
 import { SEO } from "./SEO";
 import { useLanguage } from "@/hooks/use-language";
@@ -708,7 +709,8 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
         jsonLd={combinedJsonLd}
       />
       <Navigation />
-      
+      <ReadingProgressBar />
+
       {/* Spacer for fixed navbar */}
       <div className="pt-20 sm:pt-24" />
 
@@ -810,7 +812,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                 srcSet={getBoatImageSrcSet(displayImages[currentImageIndex]) || undefined}
                 sizes="(max-width: 767px) 100vw, 800px"
                 alt={getBoatAltText(boatData.name, currentImageIndex)}
-                className="w-full aspect-[4/3] object-cover cursor-zoom-in"
+                className="w-full aspect-[4/3] object-cover cursor-zoom-in boat-image-reveal"
                 width={800}
                 height={600}
                 loading="lazy"
@@ -819,7 +821,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                 onClick={() => setLightboxOpen(true)}
               />
               {/* Zoom hint */}
-              <div className="absolute top-2 left-2 bg-foreground/50 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+              <div className="absolute top-2 left-2 bg-foreground/50 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
                 <Eye className="w-3 h-3 inline mr-1" />
                 {t.boatDetail.imageAria}
               </div>
@@ -831,7 +833,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                     variant="ghost"
                     size="icon"
                     onClick={prevImage}
-                    className="absolute left-2 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white/90 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity"
+                    className="absolute left-2 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white/90 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-200"
                     data-testid="button-prev-image"
                     aria-label="Previous image"
                   >
@@ -841,7 +843,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                     variant="ghost"
                     size="icon"
                     onClick={nextImage}
-                    className="absolute right-2 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white/90 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity"
+                    className="absolute right-2 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white/90 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-200"
                     data-testid="button-next-image"
                     aria-label="Next image"
                   >
@@ -1089,7 +1091,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
             </div>
 
             {/* Tab: Características */}
-            <TabsContent value="caracteristicas" className="mt-0 p-4 sm:p-6">
+            <TabsContent value="caracteristicas" className="mt-0 p-4 sm:p-6 data-[state=active]:animate-in data-[state=active]:fade-in data-[state=active]:duration-200">
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
                 {boatData.features?.map((feature, index) => (
                   <div key={index} className="flex items-center">
@@ -1138,7 +1140,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
             </TabsContent>
 
             {/* Tab: Ficha Técnica */}
-            <TabsContent value="tecnico" className="mt-0 p-4 sm:p-6">
+            <TabsContent value="tecnico" className="mt-0 p-4 sm:p-6 data-[state=active]:animate-in data-[state=active]:fade-in data-[state=active]:duration-200">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {[
                   { key: "model", icon: Anchor, label: t.boatDetail.specModel },
@@ -1161,7 +1163,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
             </TabsContent>
 
             {/* Tab: Equipamiento */}
-            <TabsContent value="equipamiento" className="mt-0 p-4 sm:p-6">
+            <TabsContent value="equipamiento" className="mt-0 p-4 sm:p-6 data-[state=active]:animate-in data-[state=active]:fade-in data-[state=active]:duration-200">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                 {boatData.equipment?.map((item, index) => (
                   <div key={index} className="flex items-center">
@@ -1173,7 +1175,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
             </TabsContent>
 
             {/* Tab: Extras */}
-            <TabsContent value="extras" className="mt-0 p-4 sm:p-6">
+            <TabsContent value="extras" className="mt-0 p-4 sm:p-6 data-[state=active]:animate-in data-[state=active]:fade-in data-[state=active]:duration-200">
               <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
                 {boatData.extras?.map((extra, index) => {
                   const iconMap: { [key: string]: React.ComponentType<{ className?: string }> } = {
@@ -1195,7 +1197,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
             </TabsContent>
 
             {/* Tab: Información */}
-            <TabsContent value="info" className="mt-0 p-4 sm:p-6">
+            <TabsContent value="info" className="mt-0 p-4 sm:p-6 data-[state=active]:animate-in data-[state=active]:fade-in data-[state=active]:duration-200">
               <div className="text-sm text-foreground/80 space-y-2 mb-4">
                 <p>• <strong>{t.boatDetail.essentialDoc}</strong>{requiresLicense ? t.boatDetail.essentialDocLicense : ""}</p>
                 <p>• {requiresLicense ? t.boatDetail.licenseRequired : t.boatDetail.noLicenseRequired}</p>
@@ -1269,9 +1271,9 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
                   <a
                     key={relBoat.id}
                     href={localizedPath("boatDetail", relBoat.id)}
-                    className="group bg-background rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow border border-border"
+                    className="group bg-background rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-200 border border-border"
                   >
-                    <div className="relative overflow-hidden" style={{ aspectRatio: '4/3' }}>
+                    <div className="relative overflow-hidden boat-image-reveal" style={{ aspectRatio: '4/3' }}>
                       <img
                         src={relBoat.imageGallery?.find((img: string) => !img.includes('portrait')) || relBoat.imageGallery?.[0] || getBoatImage(relBoat.imageUrl || '')}
                         alt={getBoatAltText(relBoat.name)}
@@ -1327,7 +1329,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
             <details key={idx} className="group border border-border rounded-lg">
               <summary className="flex items-center justify-between cursor-pointer p-4 font-medium">
                 {item.question}
-                <ChevronRight className="w-4 h-4 transition-transform group-open:rotate-90" />
+                <ChevronRight className="w-4 h-4 transition-transform duration-200 group-open:rotate-90" />
               </summary>
               <div className="px-4 pb-4 text-muted-foreground">
                 {item.answer}
@@ -1358,7 +1360,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
             target="_blank"
             rel="noopener noreferrer"
             tabIndex={showStickyCTA && !isBookingModalOpen ? 0 : -1}
-            className="flex-1 bg-[#25D366] text-white py-3 px-4 font-semibold rounded-lg flex items-center justify-center gap-2"
+            className="flex-1 bg-whatsapp text-white py-3 px-4 font-semibold rounded-lg flex items-center justify-center gap-2"
           >
             <SiWhatsapp className="w-4 h-4" />
             <span>WhatsApp</span>
@@ -1397,7 +1399,7 @@ export default function BoatDetailPage({ boatId = "solar-450", onBack }: BoatDet
               tabIndex={showStickyCTA && !isBookingModalOpen ? 0 : -1}
               className="w-full text-xs text-primary hover:text-primary/80 flex items-center justify-center gap-1.5 py-1 transition-colors"
             >
-              <SiWhatsapp className="w-3.5 h-3.5 text-[#25D366]" />
+              <SiWhatsapp className="w-3.5 h-3.5 text-whatsapp" />
               {t.contact?.whatsapp || "Consultar por WhatsApp"}
             </button>
           </div>

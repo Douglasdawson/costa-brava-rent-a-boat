@@ -71,6 +71,12 @@ body { overflow-x: hidden; }
   --chart-5: 270 60% 55%;
   --cta: 240 53% 11%;
   --cta-foreground: 0 0% 100%;
+  --whatsapp: 142 70% 49%;
+  --whatsapp-hover: 152 68% 34%;
+  --whatsapp-active: 157 80% 24%;
+  --hero-cta-secondary: 210 35% 76%;
+  --hero-cta-secondary-hover: 210 30% 70%;
+  --dark-surface: 240 53% 11%;
   --font-sans: 'Archivo', Inter, sans-serif;
   --font-display: 'Clash Display', 'Archivo', sans-serif;
   --font-serif: Georgia, serif;
@@ -217,7 +223,7 @@ body { overflow-x: hidden; }
     inset: 0;
     border-radius: inherit;
     background: hsl(var(--cta));
-    animation: savings-pulse 2s ease-in-out infinite;
+    animation: savings-pulse 2s ease-in-out 3;
     pointer-events: none;
     will-change: opacity;
   }
@@ -251,7 +257,7 @@ body { overflow-x: hidden; }
     inset: 0;
     border-radius: inherit;
     border: 2px solid hsl(var(--cta) / 0.6);
-    animation: cta-ring 2s ease-out infinite;
+    animation: cta-ring 2s ease-out 3;
     pointer-events: none;
   }
   @keyframes cta-ring {
@@ -315,6 +321,26 @@ body { overflow-x: hidden; }
   .confirm-enter {
     animation: confirm-slide-up 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
   }
+
+  /* Chart/table fade-in on swap */
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  .animate-fade-in {
+    animation: fadeIn 150ms ease-out;
+  }
+
+  /* Clip-path image reveal: cinematic bottom-to-top unveil */
+  @keyframes clipReveal {
+    from { clip-path: inset(0 0 100% 0); opacity: 0; }
+    to   { clip-path: inset(0 0 0 0);    opacity: 1; }
+  }
+  .boat-image-reveal {
+    clip-path: inset(0 0 100% 0);
+    opacity: 0;
+    animation: clipReveal 0.7s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+  }
 }
 
 /* Below-fold sections: skip style/layout/paint until near viewport */
@@ -327,6 +353,14 @@ body { overflow-x: hidden; }
 /* iOS Safari: prevent auto-zoom on input focus (requires font-size >= 16px) */
 @supports (-webkit-touch-callout: none) {
   input, select, textarea { font-size: 16px !important; }
+}
+
+/* Fallback: show content when JS is disabled or slow to load */
+@media (scripting: none) {
+  [class*="opacity-0"] { opacity: 1 !important; }
+  [class*="translate-y-"] { transform: none !important; }
+  [class*="blur-"] { filter: none !important; }
+  .boat-image-reveal { clip-path: none !important; opacity: 1 !important; animation: none !important; }
 }
 
 /* Touch devices: prevent sticky hover on scale transforms */

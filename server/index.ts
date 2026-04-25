@@ -159,7 +159,7 @@ app.use("/api/create-checkout-session", paymentLimiter);
 // CORS — strict origin enforcement for API routes
 // Webhooks (Stripe, Meta) are exempt because they are server-to-server with their own auth
 const allowedOrigins = isDev
-  ? ['http://localhost:5000', 'http://localhost:3000', 'http://127.0.0.1:5000']
+  ? ['http://localhost:5000', 'http://localhost:3000', 'http://localhost:4000', 'http://127.0.0.1:5000']
   : ['https://www.costabravarentaboat.com', 'https://costabravarentaboat.com'];
 
 // Returns true when the origin should be allowed through CORS.

@@ -1,4 +1,3 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import {
@@ -17,6 +16,7 @@ import {
 } from "lucide-react";
 import { SiWhatsapp } from "@/components/icons/BrandIcons";
 import Navigation from "@/components/Navigation";
+import { ReadingProgressBar } from "@/components/ReadingProgressBar";
 import Footer from "@/components/Footer";
 import { SEO } from "@/components/SEO";
 import { useLanguage } from "@/hooks/use-language";
@@ -28,18 +28,41 @@ import {
 } from "@/utils/seo-config";
 import { openWhatsApp, createBookingMessage } from "@/utils/whatsapp";
 import { useMemo, useState, type ComponentType } from "react";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { useQuery } from "@tanstack/react-query";
 import type { Boat } from "@shared/schema";
 import { useTranslations } from "@/lib/translations";
 import { computeFaqVars, substituteFaqVars } from "@/utils/faqVars";
 
-// Category definitions: maps UI-stable category id → list of AccordionItem
+function RevealSection({
+  children,
+  className = "",
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) {
+  const { ref, isVisible } = useScrollReveal();
+  return (
+    <div
+      ref={ref}
+      className={`transition-[opacity,transform,filter] duration-700 ${
+        isVisible
+          ? "opacity-100 translate-y-0 blur-none"
+          : "opacity-0 translate-y-6 blur-[2px]"
+      } ${className}`}
+    >
+      {children}
+    </div>
+  );
+}
+
+// Category definitions: maps UI-stable category id -> list of AccordionItem
 // values with their matching fp.items key. The accordion `value` keys are
 // kebab-case (stable URLs / testids); fp.items keys are camelCase (i18n).
 //
 // Everything below comes from t.faqPage.items, which is already translated
 // to all 8 locales via npm run i18n:translate. Rich JSX bodies (bullets,
-// inline CTAs) were replaced with plain-text answers — the SEO schema
+// inline CTAs) were replaced with plain-text answers -- the SEO schema
 // already used the plain text, so now UI and schema show the same content
 // in the user's language.
 interface CategoryDef {
@@ -155,7 +178,7 @@ export default function FAQPage() {
     openWhatsApp(message);
   };
 
-  // FAQ Schema for structured data — rendered from live i18n so edits to
+  // FAQ Schema for structured data -- rendered from live i18n so edits to
   // es.ts propagate to all 8 locales automatically.
   const faqSchemaFromI18n = {
     "@context": "https://schema.org",
@@ -203,8 +226,9 @@ export default function FAQPage() {
         jsonLd={combinedJsonLd}
       />
       <Navigation />
+      <ReadingProgressBar />
 
-      {/* Hero Section */}
+      {/* ═══ HERO ═══ */}
       <div className="bg-gradient-to-br from-primary/5 to-primary/10 pt-20 sm:pt-24 pb-8">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="flex items-center justify-center mb-6">
@@ -219,124 +243,144 @@ export default function FAQPage() {
         </div>
       </div>
 
-      {/* FAQ Sections */}
-      <div className="pt-6 pb-10 sm:pt-8 sm:pb-16 bg-primary/5">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Category Filter */}
-          <div className="mb-6 sm:mb-8">
-            <h2 className="text-lg font-semibold mb-4 text-foreground">{fp.filterLabel}</h2>
-            <div className="flex flex-wrap gap-2">
-              {filterButtons.map(({ id, name, icon: Icon }) => (
-                <Button
-                  key={id}
-                  variant={selectedCategory === id ? "default" : "outline"}
-                  size="sm"
-                  onClick={() => setSelectedCategory(id)}
-                  className="gap-2"
-                  data-testid={`filter-${id}`}
-                >
-                  <Icon className="w-4 h-4" />
-                  {name}
-                </Button>
-              ))}
+      {/* ═══ INTRO: text + image ═══ */}
+      <RevealSection className="py-16 sm:py-20 bg-background">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-5 gap-10 lg:gap-16 items-center">
+            <div className="lg:col-span-3">
+              <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground mb-4">
+                {fp.filterLabel}
+              </h2>
+              <p className="text-muted-foreground leading-relaxed mb-6">
+                {fp.heroDescription}
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {filterButtons.map(({ id, name, icon: Icon }) => (
+                  <Button
+                    key={id}
+                    variant={selectedCategory === id ? "default" : "outline"}
+                    size="sm"
+                    onClick={() => setSelectedCategory(id)}
+                    className="gap-2"
+                    data-testid={`filter-${id}`}
+                  >
+                    <Icon className="w-4 h-4" />
+                    {name}
+                  </Button>
+                ))}
+              </div>
+            </div>
+            <div className="lg:col-span-2">
+              <img
+                src="/images/blog/seguridad-barco.jpg"
+                alt="Boat safety and frequently asked questions"
+                className="w-full rounded-2xl object-cover aspect-[4/5]"
+                loading="lazy"
+                width={640}
+                height={800}
+              />
             </div>
           </div>
+        </div>
+      </RevealSection>
 
-          {/* Category cards with Accordion items */}
+      {/* ═══ FAQ ACCORDIONS ═══ */}
+      <RevealSection className="py-16 sm:py-20 bg-muted">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           {CATEGORIES.filter((cat) => shouldShowCategory(cat.id)).map((cat) => {
             const Icon = cat.icon;
             return (
-              <Card key={cat.id} className="mb-6 sm:mb-8">
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-3 text-xl">
-                    <Icon className="w-6 h-6 text-primary" />
-                    {fp.categories[cat.id] ?? cat.id}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <Accordion type="single" collapsible>
-                    {cat.items.map(({ value, fpKey }) => {
-                      const item = (fp.items as Record<string, { question: string; answer: string } | undefined>)[fpKey];
-                      if (!item) return null;
-                      return (
-                        <AccordionItem key={value} value={value} data-testid={`faq-${value}`}>
-                          <AccordionTrigger>{sub(item.question)}</AccordionTrigger>
-                          <AccordionContent>
-                            <p className="whitespace-pre-line text-muted-foreground">
-                              {sub(item.answer)}
-                            </p>
-                          </AccordionContent>
-                        </AccordionItem>
-                      );
-                    })}
-                  </Accordion>
-                </CardContent>
-              </Card>
+              <div key={cat.id} className="mb-10">
+                <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground flex items-center gap-3 mb-6">
+                  <Icon className="w-6 h-6 text-primary" />
+                  {fp.categories[cat.id] ?? cat.id}
+                </h2>
+                <Accordion type="single" collapsible>
+                  {cat.items.map(({ value, fpKey }) => {
+                    const item = (fp.items as Record<string, { question: string; answer: string } | undefined>)[fpKey];
+                    if (!item) return null;
+                    return (
+                      <AccordionItem key={value} value={value} data-testid={`faq-${value}`}>
+                        <AccordionTrigger>{sub(item.question)}</AccordionTrigger>
+                        <AccordionContent>
+                          <p className="whitespace-pre-line text-muted-foreground leading-relaxed">
+                            {sub(item.answer)}
+                          </p>
+                        </AccordionContent>
+                      </AccordionItem>
+                    );
+                  })}
+                </Accordion>
+              </div>
             );
           })}
-
-          {/* Contact and Support */}
-          <Card className="mb-8 bg-primary/5 border-primary/20">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-3 text-xl">
-                <Phone className="w-6 h-6 text-primary" />
-                {fp.contactTitle ?? "¿Más Preguntas?"}
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-muted-foreground mb-6">{fp.contactDesc}</p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button
-                  onClick={handleWhatsAppContact}
-                  className="gap-2 flex-1 bg-[#25D366] hover:bg-[#128C7E] active:bg-[#075E54] border-[#25D366]"
-                  data-testid="button-whatsapp-questions"
-                >
-                  <SiWhatsapp className="w-5 h-5" />
-                  {fp.contactWhatsApp ?? "Preguntar por WhatsApp"}
-                </Button>
-                <Button
-                  onClick={handleBookingWhatsApp}
-                  variant="outline"
-                  className="gap-2 flex-1"
-                  data-testid="button-direct-booking"
-                >
-                  <Anchor className="w-5 h-5" />
-                  {fp.contactBooking ?? "Reservar Directamente"}
-                </Button>
-              </div>
-            </CardContent>
-          </Card>
         </div>
+      </RevealSection>
+
+      {/* ═══ PHOTO BREAK ═══ */}
+      <div className="w-full overflow-hidden">
+        <img
+          src="/images/blog/familias-barco.jpg"
+          alt="Families enjoying a boat trip on the Costa Brava"
+          className="w-full h-[35vh] min-h-[250px] max-h-[400px] object-cover"
+          loading="lazy"
+          width={1920}
+          height={600}
+        />
       </div>
 
-      {/* Quick Info Cards */}
-      <div className="py-8 sm:py-12 bg-background">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-3 gap-4 sm:gap-6 mb-8 sm:mb-12">
-            <Card className="text-center hover-elevate">
-              <CardContent className="p-6">
-                <MapPin className="w-8 h-8 text-primary mx-auto mb-3" />
-                <h3 className="font-semibold text-lg mb-2">{fp.infoPortTitle}</h3>
-                <p className="text-muted-foreground text-sm">{fp.infoPortDesc}</p>
-              </CardContent>
-            </Card>
-            <Card className="text-center hover-elevate">
-              <CardContent className="p-6">
-                <Calendar className="w-8 h-8 text-primary mx-auto mb-3" />
-                <h3 className="font-semibold text-lg mb-2">{fp.infoSeasonTitle}</h3>
-                <p className="text-muted-foreground text-sm">{fp.infoSeasonDesc}</p>
-              </CardContent>
-            </Card>
-            <Card className="text-center hover-elevate">
-              <CardContent className="p-6">
-                <Ship className="w-8 h-8 text-primary mx-auto mb-3" />
-                <h3 className="font-semibold text-lg mb-2">{fp.infoFleetTitle}</h3>
-                <p className="text-muted-foreground text-sm">{fp.infoFleetDesc}</p>
-              </CardContent>
-            </Card>
+      {/* ═══ CONTACT ═══ */}
+      <RevealSection className="py-16 sm:py-20 bg-background">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground flex items-center gap-3 mb-4">
+            <Phone className="w-6 h-6 text-primary" />
+            {fp.contactTitle ?? "Mas Preguntas?"}
+          </h2>
+          <p className="text-muted-foreground leading-relaxed mb-8">{fp.contactDesc}</p>
+          <div className="flex flex-col sm:flex-row gap-4">
+            <Button
+              onClick={handleWhatsAppContact}
+              className="gap-2 flex-1 bg-whatsapp hover:bg-whatsapp-hover active:bg-whatsapp-active border-whatsapp"
+              data-testid="button-whatsapp-questions"
+            >
+              <SiWhatsapp className="w-5 h-5" />
+              {fp.contactWhatsApp ?? "Preguntar por WhatsApp"}
+            </Button>
+            <Button
+              onClick={handleBookingWhatsApp}
+              variant="outline"
+              className="gap-2 flex-1"
+              data-testid="button-direct-booking"
+            >
+              <Anchor className="w-5 h-5" />
+              {fp.contactBooking ?? "Reservar Directamente"}
+            </Button>
           </div>
         </div>
-      </div>
+      </RevealSection>
+
+      {/* ═══ QUICK INFO ═══ */}
+      <RevealSection className="py-16 sm:py-20 bg-muted">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="text-center">
+              <MapPin className="w-8 h-8 text-primary mx-auto mb-3" />
+              <h3 className="font-heading font-semibold text-lg mb-2">{fp.infoPortTitle}</h3>
+              <p className="text-muted-foreground leading-relaxed text-sm">{fp.infoPortDesc}</p>
+            </div>
+            <div className="text-center">
+              <Calendar className="w-8 h-8 text-primary mx-auto mb-3" />
+              <h3 className="font-heading font-semibold text-lg mb-2">{fp.infoSeasonTitle}</h3>
+              <p className="text-muted-foreground leading-relaxed text-sm">{fp.infoSeasonDesc}</p>
+            </div>
+            <div className="text-center">
+              <Ship className="w-8 h-8 text-primary mx-auto mb-3" />
+              <h3 className="font-heading font-semibold text-lg mb-2">{fp.infoFleetTitle}</h3>
+              <p className="text-muted-foreground leading-relaxed text-sm">{fp.infoFleetDesc}</p>
+            </div>
+          </div>
+        </div>
+      </RevealSection>
 
       <Footer />
     </main>

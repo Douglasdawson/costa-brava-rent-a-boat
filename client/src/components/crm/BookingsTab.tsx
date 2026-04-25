@@ -21,7 +21,6 @@ import {
   Eye,
   MessageCircle,
   Calendar,
-  ArrowUpDown,
   ArrowUp,
   ArrowDown,
 } from "lucide-react";
@@ -30,6 +29,7 @@ import { format } from "date-fns";
 import type { Booking, Boat } from "@shared/schema";
 import { getStatusColor, getStatusLabel, getPaymentStatusColor, getPaymentStatusLabel } from "./constants";
 import { PaginationControls } from "./shared/PaginationControls";
+import { SortableTableHead } from "./shared/SortableTableHead";
 import type { PaginatedResponse } from "./types";
 
 type PaginatedBookingsResponse = PaginatedResponse<Booking>;
@@ -103,15 +103,6 @@ export function BookingsTab({
   const total = bookingsResponse?.total ?? 0;
 
 
-  const renderSortIcon = (column: string) => {
-    if (sortBy === column) {
-      return sortOrder === "asc"
-        ? <ArrowUp className="w-3 h-3" />
-        : <ArrowDown className="w-3 h-3" />;
-    }
-    return <ArrowUpDown className="w-3 h-3 text-muted-foreground/50" />;
-  };
-
   return (
     <div className="space-y-6">
       {/* Filters and Search */}
@@ -175,54 +166,24 @@ export function BookingsTab({
               <Table>
                 <TableHeader>
                   <TableRow>
-                    <TableHead
-                      className="cursor-pointer select-none hover:bg-muted/50"
-                      onClick={() => handleSort("startTime")}
-                    >
-                      <div className="flex items-center gap-1">
-                        Fecha
-                        {renderSortIcon("startTime")}
-                      </div>
-                    </TableHead>
-                    <TableHead
-                      className="cursor-pointer select-none hover:bg-muted/50"
-                      onClick={() => handleSort("customerName")}
-                    >
-                      <div className="flex items-center gap-1">
-                        Cliente
-                        {renderSortIcon("customerName")}
-                      </div>
-                    </TableHead>
-                    <TableHead>Contacto</TableHead>
-                    <TableHead
-                      className="cursor-pointer select-none hover:bg-muted/50"
-                      onClick={() => handleSort("boatId")}
-                    >
-                      <div className="flex items-center gap-1">
-                        Barco
-                        {renderSortIcon("boatId")}
-                      </div>
-                    </TableHead>
-                    <TableHead>Horas</TableHead>
-                    <TableHead
-                      className="cursor-pointer select-none hover:bg-muted/50"
-                      onClick={() => handleSort("totalAmount")}
-                    >
-                      <div className="flex items-center gap-1">
-                        Total
-                        {renderSortIcon("totalAmount")}
-                      </div>
-                    </TableHead>
-                    <TableHead
-                      className="cursor-pointer select-none hover:bg-muted/50"
-                      onClick={() => handleSort("bookingStatus")}
-                    >
-                      <div className="flex items-center gap-1">
-                        Estado
-                        {renderSortIcon("bookingStatus")}
-                      </div>
-                    </TableHead>
-                    <TableHead>Pago</TableHead>
+                    <SortableTableHead field="startTime" currentField={sortBy} ascending={sortOrder === "asc"} onSort={handleSort}>
+                      Fecha
+                    </SortableTableHead>
+                    <SortableTableHead field="customerName" currentField={sortBy} ascending={sortOrder === "asc"} onSort={handleSort}>
+                      Cliente
+                    </SortableTableHead>
+                    <TableHead className="hidden lg:table-cell">Contacto</TableHead>
+                    <SortableTableHead field="boatId" currentField={sortBy} ascending={sortOrder === "asc"} onSort={handleSort}>
+                      Barco
+                    </SortableTableHead>
+                    <TableHead className="hidden lg:table-cell">Horas</TableHead>
+                    <SortableTableHead field="totalAmount" currentField={sortBy} ascending={sortOrder === "asc"} onSort={handleSort}>
+                      Total
+                    </SortableTableHead>
+                    <SortableTableHead field="bookingStatus" currentField={sortBy} ascending={sortOrder === "asc"} onSort={handleSort}>
+                      Estado
+                    </SortableTableHead>
+                    <TableHead className="hidden lg:table-cell">Pago</TableHead>
                     <TableHead className="text-right">Acciones</TableHead>
                   </TableRow>
                 </TableHeader>
@@ -235,14 +196,14 @@ export function BookingsTab({
                       <TableCell>
                         {booking.customerName} {booking.customerSurname}
                       </TableCell>
-                      <TableCell className="text-sm text-muted-foreground">
+                      <TableCell className="hidden lg:table-cell text-sm text-muted-foreground">
                         <div>{booking.customerPhone}</div>
                         {booking.customerEmail && (
                           <div className="text-xs">{booking.customerEmail}</div>
                         )}
                       </TableCell>
                       <TableCell>{boatName(booking.boatId)}</TableCell>
-                      <TableCell>{booking.totalHours}h</TableCell>
+                      <TableCell className="hidden lg:table-cell">{booking.totalHours}h</TableCell>
                       <TableCell className="font-semibold">
                         {"\u20AC"}{parseFloat(booking.totalAmount).toFixed(2)}
                       </TableCell>
@@ -251,7 +212,7 @@ export function BookingsTab({
                           {getStatusLabel(booking.bookingStatus)}
                         </Badge>
                       </TableCell>
-                      <TableCell>
+                      <TableCell className="hidden lg:table-cell">
                         <Badge className={getPaymentStatusColor(booking.paymentStatus)}>
                           {getPaymentStatusLabel(booking.paymentStatus)}
                         </Badge>

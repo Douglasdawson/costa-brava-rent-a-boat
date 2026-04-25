@@ -1,4 +1,3 @@
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -17,16 +16,27 @@ import {
 } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import { ReadingProgressBar } from "@/components/ReadingProgressBar";
 import { SEO } from "@/components/SEO";
 import { generateBreadcrumbSchema } from "@/utils/seo-config";
 import { useLanguage, type Language } from "@/hooks/use-language";
 import { useTranslations } from "@/lib/translations";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { openWhatsApp, createBookingMessage } from "@/utils/whatsapp";
 import { trackPhoneClick } from "@/utils/analytics";
 import {
   BUSINESS_RATING_STR,
   BUSINESS_REVIEW_COUNT_STR,
 } from "@shared/businessProfile";
+
+function RevealSection({ children, className = "" }: { children: React.ReactNode; className?: string }) {
+  const { ref, isVisible } = useScrollReveal();
+  return (
+    <div ref={ref} className={`transition-[opacity,transform,filter] duration-700 ${isVisible ? "opacity-100 translate-y-0 blur-none" : "opacity-0 translate-y-6 blur-[2px]"} ${className}`}>
+      {children}
+    </div>
+  );
+}
 
 // ---------------------------------------------------------------------------
 // Inline translations (8 languages)
@@ -714,258 +724,267 @@ export default function AboutPage() {
         jsonLd={jsonLd}
       />
       <Navigation />
+      <ReadingProgressBar />
 
-      <main className="pt-20">
-        {/* Hero Section */}
-        <div className="bg-gradient-to-br from-blue-50 to-sky-50 pt-8 pb-12">
-          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-8">
-              <div className="flex items-center justify-center mb-6">
-                <Anchor className="w-8 h-8 text-primary mr-4" />
-                <h1 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold text-foreground">
-                  {txt.heroHeading}
-                </h1>
+      {/* Hero Section */}
+      <div className="bg-gradient-to-br from-blue-50 to-sky-50 pt-24 pb-12">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-8">
+            <div className="flex items-center justify-center mb-6">
+              <Anchor className="w-8 h-8 text-primary mr-4" />
+              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold text-foreground">
+                {txt.heroHeading}
+              </h1>
+            </div>
+            <p className="text-lg text-muted-foreground leading-relaxed mb-6 max-w-4xl mx-auto">
+              {txt.heroSubheading}
+            </p>
+            <div className="flex flex-wrap gap-3 justify-center">
+              <Badge variant="outline" className="text-primary border-primary">
+                <Users className="w-4 h-4 mr-2" />
+                {txt.badgeFamily}
+              </Badge>
+              <Badge variant="outline" className="text-primary border-primary">
+                <Ship className="w-4 h-4 mr-2" />
+                {txt.badgeFleet}
+              </Badge>
+              <Badge variant="outline" className="text-primary border-primary">
+                <Star className="w-4 h-4 mr-2" />
+                {txt.badgeReviews}
+              </Badge>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Who We Are */}
+      <RevealSection className="py-16 sm:py-20">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-5 gap-10 lg:gap-16 items-center">
+            <div className="lg:col-span-3 space-y-5">
+              <h2 className="flex items-center gap-3 text-2xl sm:text-3xl font-heading font-bold text-foreground">
+                <Users className="w-6 h-6 text-primary" />
+                {txt.whoWeAreTitle}
+              </h2>
+              <p className="text-muted-foreground leading-relaxed">{txt.whoWeAreP1}</p>
+              <p className="text-muted-foreground leading-relaxed">{txt.whoWeAreP2}</p>
+              <p className="text-muted-foreground leading-relaxed">{txt.whoWeAreP3}</p>
+            </div>
+            <div className="lg:col-span-2">
+              <img
+                src="/images/boats/trimarchi/alquiler-barco-trimarchi-57s-rent-a-boat-costa-brava-blanes-vista-completa-puerto.webp"
+                alt="Costa Brava Rent a Boat fleet in the Port of Blanes"
+                className="w-full rounded-2xl object-cover aspect-[4/5]"
+                loading="lazy"
+                width={640}
+                height={800}
+              />
+            </div>
+          </div>
+        </div>
+      </RevealSection>
+
+      {/* Photo break */}
+      <div className="w-full overflow-hidden">
+        <img
+          src="/images/blog/ruta-costera.jpg"
+          alt="Coastal route along the Costa Brava from Blanes"
+          className="w-full h-[35vh] min-h-[250px] max-h-[400px] object-cover"
+          loading="lazy"
+          width={1920}
+          height={600}
+        />
+      </div>
+
+      {/* Our Fleet */}
+      <RevealSection className="py-16 sm:py-20 bg-muted">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="flex items-center gap-3 text-2xl sm:text-3xl font-heading font-bold text-foreground mb-4">
+            <Ship className="w-6 h-6 text-primary" />
+            {txt.fleetTitle}
+          </h2>
+          <p className="text-muted-foreground leading-relaxed mb-8">{txt.fleetIntro}</p>
+
+          <div className="grid md:grid-cols-3 gap-6 mb-8">
+            <div className="border rounded-lg p-6 bg-background">
+              <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+                <Anchor className="w-6 h-6 text-primary" />
               </div>
-              <p className="text-lg text-muted-foreground mb-6 max-w-4xl mx-auto">
-                {txt.heroSubheading}
-              </p>
-              <div className="flex flex-wrap gap-3 justify-center">
-                <Badge variant="outline" className="text-primary border-primary">
-                  <Users className="w-4 h-4 mr-2" />
-                  {txt.badgeFamily}
-                </Badge>
-                <Badge variant="outline" className="text-primary border-primary">
-                  <Ship className="w-4 h-4 mr-2" />
-                  {txt.badgeFleet}
-                </Badge>
-                <Badge variant="outline" className="text-primary border-primary">
-                  <Star className="w-4 h-4 mr-2" />
-                  {txt.badgeReviews}
-                </Badge>
+              <h3 className="font-heading font-semibold text-lg mb-2">{txt.fleetLicenseFree}</h3>
+              <p className="text-muted-foreground text-sm leading-relaxed">{txt.fleetLicenseFreeDesc}</p>
+            </div>
+            <div className="border rounded-lg p-6 bg-background">
+              <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+                <Ship className="w-6 h-6 text-primary" />
+              </div>
+              <h3 className="font-heading font-semibold text-lg mb-2">{txt.fleetLicensed}</h3>
+              <p className="text-muted-foreground text-sm leading-relaxed">{txt.fleetLicensedDesc}</p>
+            </div>
+            <div className="border rounded-lg p-6 bg-background">
+              <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+                <Star className="w-6 h-6 text-primary" />
+              </div>
+              <h3 className="font-heading font-semibold text-lg mb-2">{txt.fleetExcursion}</h3>
+              <p className="text-muted-foreground text-sm leading-relaxed">{txt.fleetExcursionDesc}</p>
+            </div>
+          </div>
+
+          <div className="bg-primary/5 border border-primary/20 rounded-lg p-4">
+            <p className="text-sm font-medium text-foreground leading-relaxed">{txt.fleetIncluded}</p>
+          </div>
+        </div>
+      </RevealSection>
+
+      {/* Why Choose Us */}
+      <RevealSection className="py-16 sm:py-20">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="flex items-center gap-3 text-2xl sm:text-3xl font-heading font-bold text-foreground mb-8">
+            <Shield className="w-6 h-6 text-primary" />
+            {txt.whyTitle}
+          </h2>
+          <div className="grid md:grid-cols-2 gap-8">
+            {whyItems.map((item) => {
+              const Icon = item.icon;
+              return (
+                <div key={item.key} className="flex items-start gap-4">
+                  <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
+                    <Icon className="w-5 h-5 text-primary" />
+                  </div>
+                  <div>
+                    <h3 className="font-heading font-semibold text-lg mb-1">{getWhyTitle(item.key, language)}</h3>
+                    <p className="text-muted-foreground leading-relaxed">{getWhyDesc(item.key, language)}</p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </RevealSection>
+
+      {/* Location */}
+      <RevealSection className="py-16 sm:py-20 bg-muted">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="flex items-center gap-3 text-2xl sm:text-3xl font-heading font-bold text-foreground mb-8">
+            <MapPin className="w-6 h-6 text-primary" />
+            {txt.locationTitle}
+          </h2>
+          <div className="grid md:grid-cols-2 gap-10">
+            <div className="space-y-4">
+              <p className="text-muted-foreground leading-relaxed">{txt.locationP1}</p>
+              <p className="text-muted-foreground leading-relaxed">{txt.locationP2}</p>
+            </div>
+            <div className="space-y-3">
+              <div className="flex items-center gap-3">
+                <MapPin className="w-5 h-5 text-primary flex-shrink-0" />
+                <span className="text-foreground">{txt.locationAddress}</span>
+              </div>
+              <div className="flex items-center gap-3">
+                <Globe className="w-5 h-5 text-primary flex-shrink-0" />
+                <span className="text-muted-foreground">{txt.locationCoords}</span>
+              </div>
+              <div className="flex items-center gap-3">
+                <Clock className="w-5 h-5 text-primary flex-shrink-0" />
+                <span className="text-muted-foreground">{txt.locationSeason}</span>
+              </div>
+              <div className="flex items-center gap-3">
+                <Clock className="w-5 h-5 text-primary flex-shrink-0" />
+                <span className="text-muted-foreground">{txt.locationHours}</span>
               </div>
             </div>
           </div>
         </div>
+      </RevealSection>
 
-        {/* Main Content */}
-        <div className="py-12 bg-muted">
-          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-
-            {/* Who We Are */}
-            <Card className="mb-8">
-              <CardHeader>
-                <h2 className="flex items-center gap-3 text-2xl font-semibold leading-none tracking-tight">
-                  <Users className="w-6 h-6 text-cta" />
-                  {txt.whoWeAreTitle}
-                </h2>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <p className="text-muted-foreground leading-relaxed">{txt.whoWeAreP1}</p>
-                <p className="text-muted-foreground leading-relaxed">{txt.whoWeAreP2}</p>
-                <p className="text-muted-foreground leading-relaxed">{txt.whoWeAreP3}</p>
-              </CardContent>
-            </Card>
-
-            {/* Our Fleet */}
-            <Card className="mb-8">
-              <CardHeader>
-                <h2 className="flex items-center gap-3 text-2xl font-semibold leading-none tracking-tight">
-                  <Ship className="w-6 h-6 text-primary" />
-                  {txt.fleetTitle}
-                </h2>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground leading-relaxed mb-6">{txt.fleetIntro}</p>
-
-                <div className="grid md:grid-cols-3 gap-6 mb-6">
-                  <div className="border rounded-lg p-6">
-                    <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4">
-                      <Anchor className="w-6 h-6 text-primary" />
-                    </div>
-                    <h3 className="font-semibold text-lg mb-2">{txt.fleetLicenseFree}</h3>
-                    <p className="text-muted-foreground text-sm leading-relaxed">{txt.fleetLicenseFreeDesc}</p>
-                  </div>
-                  <div className="border rounded-lg p-6">
-                    <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4">
-                      <Ship className="w-6 h-6 text-primary" />
-                    </div>
-                    <h3 className="font-semibold text-lg mb-2">{txt.fleetLicensed}</h3>
-                    <p className="text-muted-foreground text-sm leading-relaxed">{txt.fleetLicensedDesc}</p>
-                  </div>
-                  <div className="border rounded-lg p-6">
-                    <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4">
-                      <Star className="w-6 h-6 text-primary" />
-                    </div>
-                    <h3 className="font-semibold text-lg mb-2">{txt.fleetExcursion}</h3>
-                    <p className="text-muted-foreground text-sm leading-relaxed">{txt.fleetExcursionDesc}</p>
-                  </div>
-                </div>
-
-                <div className="bg-primary/5 border border-primary/20 rounded-lg p-4">
-                  <p className="text-sm font-medium text-foreground">{txt.fleetIncluded}</p>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Why Choose Us */}
-            <Card className="mb-8">
-              <CardHeader>
-                <h2 className="flex items-center gap-3 text-2xl font-semibold leading-none tracking-tight">
-                  <Shield className="w-6 h-6 text-primary" />
-                  {txt.whyTitle}
-                </h2>
-              </CardHeader>
-              <CardContent>
-                <div className="grid md:grid-cols-2 gap-6">
-                  {whyItems.map((item) => {
-                    const Icon = item.icon;
-                    return (
-                      <div key={item.key} className="flex items-start gap-4">
-                        <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
-                          <Icon className="w-6 h-6 text-primary" />
-                        </div>
-                        <div>
-                          <h3 className="font-semibold text-lg mb-1">{getWhyTitle(item.key, language)}</h3>
-                          <p className="text-muted-foreground leading-relaxed">{getWhyDesc(item.key, language)}</p>
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Location */}
-            <Card className="mb-8">
-              <CardHeader>
-                <h2 className="flex items-center gap-3 text-2xl font-semibold leading-none tracking-tight">
-                  <MapPin className="w-6 h-6 text-primary" />
-                  {txt.locationTitle}
-                </h2>
-              </CardHeader>
-              <CardContent>
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div className="space-y-4">
-                    <p className="text-muted-foreground leading-relaxed">{txt.locationP1}</p>
-                    <p className="text-muted-foreground leading-relaxed">{txt.locationP2}</p>
-                  </div>
-                  <div className="space-y-3">
-                    <div className="flex items-center gap-3">
-                      <MapPin className="w-5 h-5 text-primary flex-shrink-0" />
-                      <span className="text-foreground">{txt.locationAddress}</span>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <Globe className="w-5 h-5 text-primary flex-shrink-0" />
-                      <span className="text-muted-foreground">{txt.locationCoords}</span>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <Clock className="w-5 h-5 text-primary flex-shrink-0" />
-                      <span className="text-muted-foreground">{txt.locationSeason}</span>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <Clock className="w-5 h-5 text-primary flex-shrink-0" />
-                      <span className="text-muted-foreground">{txt.locationHours}</span>
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Contact */}
-            <Card className="mb-8">
-              <CardHeader>
-                <h2 className="flex items-center gap-3 text-2xl font-semibold leading-none tracking-tight">
-                  <Phone className="w-6 h-6 text-primary" />
-                  {txt.contactTitle}
-                </h2>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground leading-relaxed mb-6">{txt.contactP1}</p>
-                <div className="grid sm:grid-cols-3 gap-4">
-                  <div className="flex items-center gap-3 p-4 border rounded-lg">
-                    <Phone className="w-5 h-5 text-primary flex-shrink-0" />
-                    <div>
-                      <p className="text-sm text-muted-foreground">WhatsApp / Tel</p>
-                      <a href="tel:+34611500372" onClick={() => trackPhoneClick()} className="font-medium text-foreground hover:text-primary transition-colors">
-                        +34 611 500 372
-                      </a>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-3 p-4 border rounded-lg">
-                    <Mail className="w-5 h-5 text-primary flex-shrink-0" />
-                    <div>
-                      <p className="text-sm text-muted-foreground">Email</p>
-                      <a href="mailto:costabravarentaboat@gmail.com" className="font-medium text-foreground hover:text-primary transition-colors text-sm">
-                        costabravarentaboat@gmail.com
-                      </a>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-3 p-4 border rounded-lg">
-                    <Clock className="w-5 h-5 text-primary flex-shrink-0" />
-                    <div>
-                      <p className="text-sm text-muted-foreground">{txt.locationSeason}</p>
-                      <p className="font-medium text-foreground">09:00 - 20:00</p>
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Internal Links */}
-            <Card className="mb-8">
-              <CardContent className="pt-6">
-                <h3 className="font-semibold text-lg mb-4">{txt.linksTitle}</h3>
-                <div className="flex flex-wrap gap-3">
-                  <a href={localizedPath("categoryLicenseFree")} className="text-primary hover:underline flex items-center gap-1">
-                    <ChevronRight className="w-4 h-4" />
-                    {txt.linkFleet}
-                  </a>
-                  <a href={localizedPath("pricing")} className="text-primary hover:underline flex items-center gap-1">
-                    <ChevronRight className="w-4 h-4" />
-                    {txt.linkPricing}
-                  </a>
-                  <a href={localizedPath("faq")} className="text-primary hover:underline flex items-center gap-1">
-                    <ChevronRight className="w-4 h-4" />
-                    {txt.linkFaq}
-                  </a>
-                  <a href={localizedPath("testimonials")} className="text-primary hover:underline flex items-center gap-1">
-                    <ChevronRight className="w-4 h-4" />
-                    {txt.linkTestimonials}
-                  </a>
-                  <a href={localizedPath("routes")} className="text-primary hover:underline flex items-center gap-1">
-                    <ChevronRight className="w-4 h-4" />
-                    {txt.linkRoutes}
-                  </a>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* CTA Section */}
-            <Card className="bg-primary text-white">
-              <CardContent className="p-8 text-center">
-                <h2 className="text-2xl font-bold mb-4">{txt.ctaHeading}</h2>
-                <p className="text-lg mb-6 opacity-90">{txt.ctaText}</p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Button
-                    size="lg"
-                    variant="secondary"
-                    onClick={handleBookingWhatsApp}
-                  >
-                    <MessageCircle className="w-5 h-5 mr-2" />
-                    {txt.ctaWhatsApp}
-                  </Button>
-                  <a href={localizedPath("home") + "#fleet"}>
-                    <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 w-full">
-                      <Ship className="w-5 h-5 mr-2" />
-                      {txt.ctaFleet}
-                    </Button>
-                  </a>
-                </div>
-              </CardContent>
-            </Card>
+      {/* Contact */}
+      <RevealSection className="py-16 sm:py-20">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="flex items-center gap-3 text-2xl sm:text-3xl font-heading font-bold text-foreground mb-4">
+            <Phone className="w-6 h-6 text-primary" />
+            {txt.contactTitle}
+          </h2>
+          <p className="text-muted-foreground leading-relaxed mb-8">{txt.contactP1}</p>
+          <div className="grid sm:grid-cols-3 gap-4">
+            <div className="flex items-center gap-3 p-4 border rounded-lg bg-background">
+              <Phone className="w-5 h-5 text-primary flex-shrink-0" />
+              <div>
+                <p className="text-sm text-muted-foreground">WhatsApp / Tel</p>
+                <a href="tel:+34611500372" onClick={() => trackPhoneClick()} className="font-medium text-foreground hover:text-primary transition-colors">
+                  +34 611 500 372
+                </a>
+              </div>
+            </div>
+            <div className="flex items-center gap-3 p-4 border rounded-lg bg-background">
+              <Mail className="w-5 h-5 text-primary flex-shrink-0" />
+              <div>
+                <p className="text-sm text-muted-foreground">Email</p>
+                <a href="mailto:costabravarentaboat@gmail.com" className="font-medium text-foreground hover:text-primary transition-colors text-sm">
+                  costabravarentaboat@gmail.com
+                </a>
+              </div>
+            </div>
+            <div className="flex items-center gap-3 p-4 border rounded-lg bg-background">
+              <Clock className="w-5 h-5 text-primary flex-shrink-0" />
+              <div>
+                <p className="text-sm text-muted-foreground">{txt.locationSeason}</p>
+                <p className="font-medium text-foreground">09:00 - 20:00</p>
+              </div>
+            </div>
           </div>
         </div>
-      </main>
+      </RevealSection>
+
+      {/* Internal Links */}
+      <div className="py-8 bg-muted">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h3 className="font-heading font-semibold text-lg mb-4">{txt.linksTitle}</h3>
+          <div className="flex flex-wrap gap-3">
+            <a href={localizedPath("categoryLicenseFree")} className="text-primary hover:underline flex items-center gap-1">
+              <ChevronRight className="w-4 h-4" />
+              {txt.linkFleet}
+            </a>
+            <a href={localizedPath("pricing")} className="text-primary hover:underline flex items-center gap-1">
+              <ChevronRight className="w-4 h-4" />
+              {txt.linkPricing}
+            </a>
+            <a href={localizedPath("faq")} className="text-primary hover:underline flex items-center gap-1">
+              <ChevronRight className="w-4 h-4" />
+              {txt.linkFaq}
+            </a>
+            <a href={localizedPath("testimonials")} className="text-primary hover:underline flex items-center gap-1">
+              <ChevronRight className="w-4 h-4" />
+              {txt.linkTestimonials}
+            </a>
+            <a href={localizedPath("routes")} className="text-primary hover:underline flex items-center gap-1">
+              <ChevronRight className="w-4 h-4" />
+              {txt.linkRoutes}
+            </a>
+          </div>
+        </div>
+      </div>
+
+      {/* CTA Section */}
+      <div className="py-16 sm:py-20 bg-primary">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-2xl sm:text-3xl font-heading font-bold text-white mb-4">{txt.ctaHeading}</h2>
+          <p className="text-lg text-white/90 leading-relaxed mb-8 max-w-2xl mx-auto">{txt.ctaText}</p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button
+              size="lg"
+              variant="secondary"
+              onClick={handleBookingWhatsApp}
+            >
+              <MessageCircle className="w-5 h-5 mr-2" />
+              {txt.ctaWhatsApp}
+            </Button>
+            <a href={localizedPath("home") + "#fleet"}>
+              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 w-full">
+                <Ship className="w-5 h-5 mr-2" />
+                {txt.ctaFleet}
+              </Button>
+            </a>
+          </div>
+        </div>
+      </div>
 
       <Footer />
     </div>

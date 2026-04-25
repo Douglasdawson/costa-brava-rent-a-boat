@@ -56,7 +56,7 @@ export function StatCard({
     <Card
       className={[
         "transition-shadow",
-        isClickable && "cursor-pointer hover:shadow-md",
+        isClickable && "cursor-pointer hover:shadow-md active:scale-[0.97] transition-transform duration-75",
         active && "ring-2 ring-primary/50 bg-accent/30",
       ]
         .filter(Boolean)

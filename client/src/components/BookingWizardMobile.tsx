@@ -247,7 +247,7 @@ export default function BookingWizardMobile(props: BookingWizardMobileProps) {
               disabled={isSubmitting || props.isValidatingCode}
               aria-label={props.t.a11y.submitBookingWhatsApp}
               aria-busy={isSubmitting || props.isValidatingCode}
-              className="flex-1 py-5 text-sm font-semibold bg-[#25D366] hover:bg-[#1ebe5d] text-white border-0 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="flex-1 py-5 text-sm font-semibold bg-whatsapp hover:bg-whatsapp-hover text-white border-0 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {isSubmitting || props.isValidatingCode
                 ? <Loader2 className="w-4 h-4 mr-2 animate-spin" aria-hidden="true" />
@@ -693,7 +693,7 @@ function Step3PersonalData({
               <span className="truncate">{selectedPrefixInfo?.flag} {phonePrefix}</span>
             </button>
             {showPrefixDropdown && (
-              <div className="absolute top-full left-0 mt-1 w-72 max-w-[calc(100vw-2rem)] bg-background border border-border rounded-xl shadow-lg z-50 max-h-80 overflow-y-auto">
+              <div className="absolute top-full left-0 mt-1 w-72 max-w-[calc(100vw-2rem)] bg-background border border-border rounded-xl shadow-lg z-50 max-h-80 overflow-y-auto animate-in fade-in slide-in-from-top-1 duration-150">
                 <div className="p-2 border-b sticky top-0 bg-background">
                   <input
                     type="text"

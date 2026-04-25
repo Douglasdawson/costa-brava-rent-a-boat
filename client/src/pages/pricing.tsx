@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { FAQSection } from "@/components/FAQSection";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -17,11 +17,13 @@ import {
   ArrowRight,
 } from "lucide-react";
 import Navigation from "@/components/Navigation";
+import { ReadingProgressBar } from "@/components/ReadingProgressBar";
 import Footer from "@/components/Footer";
 import { SEO } from "@/components/SEO";
 import { useLanguage } from "@/hooks/use-language";
 import { useTranslations } from "@/lib/translations";
 import { useBookingModal } from "@/hooks/bookingModalContext";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 import {
   getSEOConfig,
   generateHreflangLinks,
@@ -31,8 +33,31 @@ import {
 import type { Boat } from "@shared/schema";
 import { getMinActivePrice, minPriceAcrossBoats } from "@shared/pricing";
 import { substituteFaqVars, computeFaqVars } from "@/utils/faqVars";
+import { getBoatImage } from "@/utils/boatImages";
 
 type SeasonKey = "BAJA" | "MEDIA" | "ALTA";
+
+function RevealSection({
+  children,
+  className = "",
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) {
+  const { ref, isVisible } = useScrollReveal();
+  return (
+    <div
+      ref={ref}
+      className={`transition-[opacity,transform,filter] duration-700 ${
+        isVisible
+          ? "opacity-100 translate-y-0 blur-none"
+          : "opacity-0 translate-y-6 blur-[2px]"
+      } ${className}`}
+    >
+      {children}
+    </div>
+  );
+}
 
 function getMinPrice(boat: Boat, season: SeasonKey): number | null {
   if (!boat.pricing) return null;
@@ -184,9 +209,10 @@ export default function PricingPage() {
         jsonLd={combinedJsonLd}
       />
       <Navigation />
+      <ReadingProgressBar />
 
-      {/* Hero */}
-      <div className="bg-card border-b border-border pt-28 pb-12">
+      {/* ═══ HERO ═══ */}
+      <div className="bg-gradient-to-br from-primary/5 to-primary/10 pt-28 pb-12">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold text-foreground mb-4">
             {pp.heroTitle}
@@ -213,8 +239,49 @@ export default function PricingPage() {
         </div>
       </div>
 
-      {/* Season legend */}
-      <div className="bg-background border-b border-border">
+      {/* ═══ INTRO: text + image ═══ */}
+      <RevealSection className="py-16 sm:py-20 bg-background">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-5 gap-10 lg:gap-16 items-center">
+            <div className="lg:col-span-3">
+              <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground mb-6">
+                {pp.info.whatIncludesTitle}
+              </h2>
+              <ul className="space-y-4 text-muted-foreground leading-relaxed">
+                <li className="flex items-start gap-2">
+                  <Fuel className="w-4 h-4 text-green-600 mt-1 shrink-0" />
+                  <span dangerouslySetInnerHTML={{ __html: pp.info.fuelIncludedItem }} />
+                </li>
+                <li className="flex items-start gap-2">
+                  <Anchor className="w-4 h-4 text-primary mt-1 shrink-0" />
+                  <span>{pp.info.insurance}</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <Users className="w-4 h-4 text-primary mt-1 shrink-0" />
+                  <span>{pp.info.briefing}</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <Anchor className="w-4 h-4 text-primary mt-1 shrink-0" />
+                  <span>{pp.info.equipment}</span>
+                </li>
+              </ul>
+            </div>
+            <div className="lg:col-span-2">
+              <img
+                src="/images/boats/astec-480/alquiler-barco-astec-480-rent-a-boat-costa-brava-blanes-navegando-patron.webp"
+                alt="Boat rental pricing - navigating the Costa Brava coast"
+                className="w-full rounded-2xl object-cover aspect-[4/5]"
+                loading="lazy"
+                width={640}
+                height={800}
+              />
+            </div>
+          </div>
+        </div>
+      </RevealSection>
+
+      {/* ═══ SEASON LEGEND ═══ */}
+      <div className="bg-muted border-y border-border">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex flex-wrap gap-4 justify-center text-sm">
             {(["BAJA", "MEDIA", "ALTA"] as SeasonKey[]).map((season) => (
@@ -236,8 +303,8 @@ export default function PricingPage() {
         </div>
       </div>
 
-      {/* Main content */}
-      <div className="py-12 bg-muted">
+      {/* ═══ PRICING TABLE ═══ */}
+      <RevealSection className="py-16 sm:py-20 bg-background">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           {isLoading ? (
             <div className="flex justify-center py-12" role="status">
@@ -247,109 +314,113 @@ export default function PricingPage() {
           ) : (
             <>
               {/* Desktop table view */}
-              <div className="hidden lg:block">
-                <Card>
-                  <CardContent className="p-0">
-                    <Table>
-                      <TableHeader>
-                        <TableRow>
-                          <TableHead className="w-[200px]">{pp.table.boat}</TableHead>
-                          <TableHead className="text-center">{pp.table.capacity}</TableHead>
-                          <TableHead className="text-center">{pp.table.license}</TableHead>
-                          {(["BAJA", "MEDIA", "ALTA"] as SeasonKey[]).map((season) => (
-                            <TableHead key={season} className="text-center">
-                              <div className="flex flex-col items-center">
-                                <span
-                                  className={`inline-block w-3 h-3 rounded-full mb-1 ${
-                                    season === "BAJA"
-                                      ? "bg-green-500"
-                                      : season === "MEDIA"
-                                        ? "bg-yellow-500"
-                                        : "bg-red-500"
-                                  }`}
-                                />
-                                <span>{pp.seasonShort[season]}</span>
-                                <span className="text-xs font-normal text-muted-foreground">
-                                  {pp.seasonLabels[season]}
-                                </span>
-                              </div>
-                            </TableHead>
-                          ))}
-                          <TableHead className="text-center w-[140px]"><span className="sr-only">Actions</span></TableHead>
-                        </TableRow>
-                      </TableHeader>
-                      <TableBody>
-                        {activeBoats.map((boat) => {
-                          const minBaja = getMinPrice(boat, "BAJA");
-                          const minMedia = getMinPrice(boat, "MEDIA");
-                          const minAlta = getMinPrice(boat, "ALTA");
+              <div className="hidden lg:block rounded-2xl border border-border overflow-hidden">
+                <Table>
+                  <TableHeader>
+                    <TableRow>
+                      <TableHead className="w-[200px]">{pp.table.boat}</TableHead>
+                      <TableHead className="text-center">{pp.table.capacity}</TableHead>
+                      <TableHead className="text-center">{pp.table.license}</TableHead>
+                      {(["BAJA", "MEDIA", "ALTA"] as SeasonKey[]).map((season) => (
+                        <TableHead key={season} className="text-center">
+                          <div className="flex flex-col items-center">
+                            <span
+                              className={`inline-block w-3 h-3 rounded-full mb-1 ${
+                                season === "BAJA"
+                                  ? "bg-green-500"
+                                  : season === "MEDIA"
+                                    ? "bg-yellow-500"
+                                    : "bg-red-500"
+                              }`}
+                            />
+                            <span>{pp.seasonShort[season]}</span>
+                            <span className="text-xs font-normal text-muted-foreground">
+                              {pp.seasonLabels[season]}
+                            </span>
+                          </div>
+                        </TableHead>
+                      ))}
+                      <TableHead className="text-center w-[140px]"><span className="sr-only">Actions</span></TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    {activeBoats.map((boat) => {
+                      const minBaja = getMinPrice(boat, "BAJA");
+                      const minMedia = getMinPrice(boat, "MEDIA");
+                      const minAlta = getMinPrice(boat, "ALTA");
 
-                          return (
-                            <TableRow key={boat.id}>
-                              <TableCell className="font-medium">
-                                <a
-                                  href={localizedPath("boatDetail", boat.id)}
-                                  className="hover:text-primary transition-colors underline-offset-2 hover:underline focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none rounded-sm"
-                                >
-                                  {boat.name}
-                                </a>
-                                {!boat.requiresLicense && (
-                                  <Badge
-                                    variant="secondary"
-                                    className="ml-2 text-xs bg-green-100 text-green-800"
-                                  >
-                                    <Fuel className="w-3 h-3 mr-1" />
-                                    {pp.fuelIncludedTag}
-                                  </Badge>
-                                )}
-                              </TableCell>
-                              <TableCell className="text-center">
-                                <div className="flex items-center justify-center gap-1">
-                                  <Users className="w-4 h-4 text-muted-foreground" />
-                                  {boat.capacity}
-                                </div>
-                              </TableCell>
-                              <TableCell className="text-center">
-                                <Badge
-                                  variant={boat.requiresLicense ? "default" : "outline"}
-                                  className={
-                                    boat.requiresLicense
-                                      ? "bg-blue-100 text-blue-800 hover:bg-blue-100"
-                                      : "border-green-600 text-green-700"
-                                  }
-                                >
-                                  {getLicenseLabel(boat, pp)}
-                                </Badge>
-                              </TableCell>
-                              {[minBaja, minMedia, minAlta].map((min, i) => (
-                                <TableCell key={i} className="text-center font-semibold">
-                                  {min !== null ? (
-                                    <span>
-                                      {pp.from} {formatPrice(min)}<span className="text-sm font-normal">{pp.perHour}</span>
-                                    </span>
-                                  ) : (
-                                    "-"
-                                  )}
-                                </TableCell>
-                              ))}
-                              <TableCell className="text-center">
-                                <Button
-                                  size="sm"
-                                  className="bg-cta hover:bg-cta/90 text-white"
-                                  onClick={() => openBookingModal(boat.id)}
-                                  aria-label={`${pp.reserveButton}: ${boat.name}`}
-                                >
-                                  {pp.reserveButton}
-                                  <ArrowRight className="w-4 h-4 ml-1" />
-                                </Button>
-                              </TableCell>
-                            </TableRow>
-                          );
-                        })}
-                      </TableBody>
-                    </Table>
-                  </CardContent>
-                </Card>
+                      return (
+                        <TableRow key={boat.id}>
+                          <TableCell className="font-medium">
+                            <a
+                              href={localizedPath("boatDetail", boat.id)}
+                              className="flex items-center gap-3 hover:text-primary transition-colors underline-offset-2 hover:underline focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none rounded-sm"
+                            >
+                              <img
+                                src={getBoatImage(boat.imageUrl || '')}
+                                alt={boat.name}
+                                className="w-12 h-9 rounded object-cover flex-shrink-0"
+                                loading="lazy"
+                                width={48}
+                                height={36}
+                              />
+                              {boat.name}
+                            </a>
+                            {!boat.requiresLicense && (
+                              <Badge
+                                variant="secondary"
+                                className="ml-2 text-xs bg-green-100 text-green-800"
+                              >
+                                <Fuel className="w-3 h-3 mr-1" />
+                                {pp.fuelIncludedTag}
+                              </Badge>
+                            )}
+                          </TableCell>
+                          <TableCell className="text-center">
+                            <div className="flex items-center justify-center gap-1">
+                              <Users className="w-4 h-4 text-muted-foreground" />
+                              {boat.capacity}
+                            </div>
+                          </TableCell>
+                          <TableCell className="text-center">
+                            <Badge
+                              variant={boat.requiresLicense ? "default" : "outline"}
+                              className={
+                                boat.requiresLicense
+                                  ? "bg-blue-100 text-blue-800 hover:bg-blue-100"
+                                  : "border-green-600 text-green-700"
+                              }
+                            >
+                              {getLicenseLabel(boat, pp)}
+                            </Badge>
+                          </TableCell>
+                          {[minBaja, minMedia, minAlta].map((min, i) => (
+                            <TableCell key={i} className="text-center font-semibold">
+                              {min !== null ? (
+                                <span>
+                                  {pp.from} {formatPrice(min)}<span className="text-sm font-normal">{pp.perHour}</span>
+                                </span>
+                              ) : (
+                                "-"
+                              )}
+                            </TableCell>
+                          ))}
+                          <TableCell className="text-center">
+                            <Button
+                              size="sm"
+                              className="bg-cta hover:bg-cta/90 text-white"
+                              onClick={() => openBookingModal(boat.id)}
+                              aria-label={`${pp.reserveButton}: ${boat.name}`}
+                            >
+                              {pp.reserveButton}
+                              <ArrowRight className="w-4 h-4 ml-1" />
+                            </Button>
+                          </TableCell>
+                        </TableRow>
+                      );
+                    })}
+                  </TableBody>
+                </Table>
               </div>
 
               {/* Mobile card view */}
@@ -360,9 +431,19 @@ export default function PricingPage() {
                   const minAlta = getMinPrice(boat, "ALTA");
 
                   return (
-                    <Card key={boat.id}>
-                      <CardHeader className="pb-3">
-                        <div className="flex items-start justify-between">
+                    <div key={boat.id} className="bg-background rounded-2xl border border-border p-5">
+                      <div className="flex items-start gap-3 mb-3">
+                        <a href={localizedPath("boatDetail", boat.id)} className="flex-shrink-0">
+                          <img
+                            src={getBoatImage(boat.imageUrl || '')}
+                            alt={boat.name}
+                            className="w-16 h-12 rounded-lg object-cover"
+                            loading="lazy"
+                            width={64}
+                            height={48}
+                          />
+                        </a>
+                        <div className="flex-1 flex items-start justify-between min-w-0">
                           <div>
                             <a
                               href={localizedPath("boatDetail", boat.id)}
@@ -388,155 +469,124 @@ export default function PricingPage() {
                             {getLicenseLabel(boat, pp)}
                           </Badge>
                         </div>
-                        {!boat.requiresLicense && (
-                          <Badge
-                            variant="secondary"
-                            className="w-fit text-xs bg-green-100 text-green-800 mt-2"
-                          >
-                            <Fuel className="w-3 h-3 mr-1" />
-                            {pp.fuelIncludedFull}
-                          </Badge>
-                        )}
-                      </CardHeader>
-                      <CardContent className="pt-0">
-                        <div className="grid grid-cols-3 gap-3 mb-4">
-                          {(["BAJA", "MEDIA", "ALTA"] as SeasonKey[]).map((season) => {
-                            const price = getMinPrice(boat, season);
-                            return (
-                              <div
-                                key={season}
-                                className="text-center rounded-lg bg-muted p-3"
-                              >
-                                <div className="flex items-center justify-center gap-1 mb-1">
-                                  <span
-                                    className={`inline-block w-2 h-2 rounded-full ${
-                                      season === "BAJA"
-                                        ? "bg-green-500"
-                                        : season === "MEDIA"
-                                          ? "bg-yellow-500"
-                                          : "bg-red-500"
-                                    }`}
-                                  />
-                                  <span className="text-xs text-muted-foreground font-medium">
-                                    {pp.seasonShort[season]}
-                                  </span>
-                                </div>
-                                <div className="font-bold text-lg">
-                                  {price !== null ? `${formatPrice(price)}` : "-"}
-                                </div>
-                                {price !== null && (
-                                  <div className="text-xs text-muted-foreground">{pp.perHourLong}</div>
-                                )}
-                              </div>
-                            );
-                          })}
-                        </div>
-                        <Button
-                          className="w-full bg-cta hover:bg-cta/90 text-white"
-                          onClick={() => openBookingModal(boat.id)}
-                          aria-label={pp.reserveSpecificButton.replace("{name}", boat.name)}
+                      </div>
+                      {!boat.requiresLicense && (
+                        <Badge
+                          variant="secondary"
+                          className="w-fit text-xs bg-green-100 text-green-800 mb-3"
                         >
-                          {pp.reserveSpecificButton.replace("{name}", boat.name)}
-                          <ArrowRight className="w-4 h-4 ml-2" />
-                        </Button>
-                      </CardContent>
-                    </Card>
+                          <Fuel className="w-3 h-3 mr-1" />
+                          {pp.fuelIncludedFull}
+                        </Badge>
+                      )}
+                      <div className="grid grid-cols-3 gap-3 mb-4">
+                        {(["BAJA", "MEDIA", "ALTA"] as SeasonKey[]).map((season) => {
+                          const price = getMinPrice(boat, season);
+                          return (
+                            <div
+                              key={season}
+                              className="text-center rounded-lg bg-muted p-3"
+                            >
+                              <div className="flex items-center justify-center gap-1 mb-1">
+                                <span
+                                  className={`inline-block w-2 h-2 rounded-full ${
+                                    season === "BAJA"
+                                      ? "bg-green-500"
+                                      : season === "MEDIA"
+                                        ? "bg-yellow-500"
+                                        : "bg-red-500"
+                                  }`}
+                                />
+                                <span className="text-xs text-muted-foreground font-medium">
+                                  {pp.seasonShort[season]}
+                                </span>
+                              </div>
+                              <div className="font-bold text-lg">
+                                {price !== null ? `${formatPrice(price)}` : "-"}
+                              </div>
+                              {price !== null && (
+                                <div className="text-xs text-muted-foreground">{pp.perHourLong}</div>
+                              )}
+                            </div>
+                          );
+                        })}
+                      </div>
+                      <Button
+                        className="w-full bg-cta hover:bg-cta/90 text-white"
+                        onClick={() => openBookingModal(boat.id)}
+                        aria-label={pp.reserveSpecificButton.replace("{name}", boat.name)}
+                      >
+                        {pp.reserveSpecificButton.replace("{name}", boat.name)}
+                        <ArrowRight className="w-4 h-4 ml-2" />
+                      </Button>
+                    </div>
                   );
                 })}
               </div>
             </>
           )}
+        </div>
+      </RevealSection>
 
-          {/* Info section */}
-          <div className="mt-12 grid md:grid-cols-2 gap-6">
-            <Card>
-              <CardHeader>
-                <h2 className="text-xl font-semibold">{pp.info.whatIncludesTitle}</h2>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-2 text-muted-foreground">
-                  <li className="flex items-start gap-2">
-                    <Fuel className="w-4 h-4 text-green-600 mt-1 shrink-0" />
-                    <span dangerouslySetInnerHTML={{ __html: pp.info.fuelIncludedItem }} />
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <Anchor className="w-4 h-4 text-primary mt-1 shrink-0" />
-                    <span>{pp.info.insurance}</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <Users className="w-4 h-4 text-primary mt-1 shrink-0" />
-                    <span>{pp.info.briefing}</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <Anchor className="w-4 h-4 text-primary mt-1 shrink-0" />
-                    <span>{pp.info.equipment}</span>
-                  </li>
-                </ul>
-              </CardContent>
-            </Card>
+      {/* ═══ PHOTO BREAK ═══ */}
+      <div className="w-full overflow-hidden">
+        <img
+          src="/images/blog/grupos-barco.jpg"
+          alt="Group enjoying a boat day on the Costa Brava"
+          className="w-full h-[35vh] min-h-[250px] max-h-[400px] object-cover"
+          loading="lazy"
+          width={1920}
+          height={600}
+        />
+      </div>
 
-            <Card>
-              <CardHeader>
-                <h2 className="text-xl font-semibold">{pp.info.importantTitle}</h2>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-2 text-muted-foreground">
-                  <li dangerouslySetInnerHTML={{ __html: pp.info.minPerHour }} />
-                  <li dangerouslySetInnerHTML={{ __html: pp.info.deposit }} />
-                  <li dangerouslySetInnerHTML={{ __html: pp.info.freeCancellation }} />
-                  <li dangerouslySetInnerHTML={{ __html: pp.info.licenseRequired }} />
-                </ul>
-              </CardContent>
-            </Card>
-          </div>
+      {/* ═══ IMPORTANT INFO ═══ */}
+      <RevealSection className="py-16 sm:py-20 bg-muted">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground mb-10">
+            {pp.info.importantTitle}
+          </h2>
+          <ul className="space-y-3 text-muted-foreground leading-relaxed max-w-3xl">
+            <li dangerouslySetInnerHTML={{ __html: pp.info.minPerHour }} />
+            <li dangerouslySetInnerHTML={{ __html: pp.info.deposit }} />
+            <li dangerouslySetInnerHTML={{ __html: pp.info.freeCancellation }} />
+            <li dangerouslySetInnerHTML={{ __html: pp.info.licenseRequired }} />
+          </ul>
+        </div>
+      </RevealSection>
 
-          {/* FAQ section */}
-          <div className="mt-12">
-            <h2 className="text-2xl font-heading font-bold text-center mb-8">
-              {pp.faqTitle}
-            </h2>
-            <div className="space-y-4 max-w-3xl mx-auto">
-              <Card>
-                <CardContent className="pt-6">
-                  <h3 className="font-semibold mb-2">{pp.faq.q1}</h3>
-                  <p className="text-muted-foreground">{noLicAnswer}</p>
-                </CardContent>
-              </Card>
-              <Card>
-                <CardContent className="pt-6">
-                  <h3 className="font-semibold mb-2">{pp.faq.q2}</h3>
-                  <p className="text-muted-foreground">{pp.faq.a2}</p>
-                </CardContent>
-              </Card>
-              <Card>
-                <CardContent className="pt-6">
-                  <h3 className="font-semibold mb-2">{pp.faq.q3}</h3>
-                  <p className="text-muted-foreground">{pp.faq.a3}</p>
-                </CardContent>
-              </Card>
-              <Card>
-                <CardContent className="pt-6">
-                  <h3 className="font-semibold mb-2">{pp.faq.q4}</h3>
-                  <p className="text-muted-foreground">{licAnswer}</p>
-                </CardContent>
-              </Card>
-            </div>
-          </div>
+      {/* ═══ FAQ ═══ */}
+      <RevealSection className="py-16 sm:py-20 bg-background">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground text-center mb-8">
+            {pp.faqTitle}
+          </h2>
+          <FAQSection
+            className="max-w-3xl mx-auto"
+            items={[
+              { question: pp.faq.q1, answer: noLicAnswer },
+              { question: pp.faq.q2, answer: pp.faq.a2 },
+              { question: pp.faq.q3, answer: pp.faq.a3 },
+              { question: pp.faq.q4, answer: licAnswer },
+            ]}
+          />
+        </div>
+      </RevealSection>
 
-          {/* CTA */}
-          <section className="mt-12 bg-primary text-primary-foreground rounded-2xl p-8 sm:p-12 text-center">
-            <h2 className="text-2xl font-heading font-bold mb-4">{pp.cta.title}</h2>
-            <p className="text-lg mb-6 text-primary-foreground/85 max-w-2xl mx-auto">{pp.cta.subtitle}</p>
-            <Button
-              size="lg"
-              variant="secondary"
-              onClick={() => openBookingModal()}
-              className="rounded-full"
-            >
-              <Anchor className="w-5 h-5 mr-2" />
-              {pp.cta.button}
-            </Button>
-          </section>
+      {/* ═══ CTA ═══ full-width */}
+      <div className="py-16 sm:py-20 bg-primary">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-2xl sm:text-3xl font-heading font-bold text-white mb-4">{pp.cta.title}</h2>
+          <p className="text-lg text-white/85 mb-8 max-w-2xl mx-auto">{pp.cta.subtitle}</p>
+          <Button
+            size="lg"
+            variant="secondary"
+            onClick={() => openBookingModal()}
+            className="rounded-full"
+          >
+            <Anchor className="w-5 h-5 mr-2" />
+            {pp.cta.button}
+          </Button>
         </div>
       </div>
 

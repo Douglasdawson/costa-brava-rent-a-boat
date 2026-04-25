@@ -352,7 +352,7 @@ function FleetSection() {
   }, [setLocation, localizedPath]);
 
   return (
-    <section ref={revealRef} className={`py-16 sm:py-24 lg:py-32 bg-background transition-[opacity,transform] duration-500 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`} id="fleet">
+    <section ref={revealRef} className={`py-16 sm:py-24 lg:py-32 bg-background transition-[opacity,transform,filter] duration-500 ${isVisible ? "opacity-100 translate-y-0 blur-none" : "opacity-0 translate-y-8 blur-[2px]"}`} id="fleet">
       <div className="container mx-auto px-3 sm:px-4 max-w-7xl">
         <div className="text-center mb-8 sm:mb-12 lg:mb-16">
           <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl font-semibold text-foreground tracking-tight mb-2 sm:mb-3 lg:mb-4 px-2 text-balance">
@@ -741,7 +741,7 @@ function FleetSection() {
               data-testid="button-whatsapp-help"
               aria-label={t.a11y.checkWhatsApp}
             >
-              <SiWhatsapp className="w-4 h-4 sm:w-5 sm:h-5 text-[#25D366]" aria-hidden="true" />
+              <SiWhatsapp className="w-4 h-4 sm:w-5 sm:h-5 text-whatsapp" aria-hidden="true" />
               <span className="ml-1 sm:ml-2">{t.contact.whatsapp}</span>
             </button>
             <button

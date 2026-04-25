@@ -2,7 +2,6 @@ import { useEffect, useMemo } from "react";
 import { useQuery } from "@tanstack/react-query";
 import type { Boat } from "@shared/schema";
 import { computeFaqVars, substituteFaqVars } from "@/utils/faqVars";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -18,9 +17,12 @@ import {
   ChevronRight,
 } from "lucide-react";
 import Navigation from "@/components/Navigation";
+import { ReadingProgressBar } from "@/components/ReadingProgressBar";
 import Footer from "@/components/Footer";
+import { FAQSection } from "@/components/FAQSection";
 import { SEO } from "@/components/SEO";
 import { useLanguage } from "@/hooks/use-language";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { useTranslations } from "@/lib/translations";
 import { useBookingModal } from "@/hooks/bookingModalContext";
 import {
@@ -30,6 +32,15 @@ import {
   generateBreadcrumbSchema,
 } from "@/utils/seo-config";
 import { trackLocationPageView } from "@/utils/analytics";
+
+function RevealSection({ children, className = "" }: { children: React.ReactNode; className?: string }) {
+  const { ref, isVisible } = useScrollReveal();
+  return (
+    <div ref={ref} className={`transition-[opacity,transform,filter] duration-700 ${isVisible ? "opacity-100 translate-y-0 blur-none" : "opacity-0 translate-y-6 blur-[2px]"} ${className}`}>
+      {children}
+    </div>
+  );
+}
 
 export default function LocationBarcelonaPage() {
   const { language, localizedPath } = useLanguage();
@@ -131,6 +142,7 @@ export default function LocationBarcelonaPage() {
         jsonLd={combinedJsonLd}
       />
       <Navigation />
+      <ReadingProgressBar />
 
       {/* Hero */}
       <div className="bg-card border-b border-border pt-24 pb-12">
@@ -158,196 +170,196 @@ export default function LocationBarcelonaPage() {
         </div>
       </div>
 
-      {/* Main content */}
-      <div className="py-12 bg-muted">
+      {/* Why Blanes instead of Barcelona — text + image */}
+      <RevealSection className="py-16 sm:py-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Why Blanes instead of Barcelona */}
-          <Card className="mb-8">
-            <CardHeader>
-              <h2 className="flex items-center gap-3 text-2xl font-semibold leading-none tracking-tight">
-                <Waves className="w-6 h-6 text-cta" />
+          <div className="grid lg:grid-cols-5 gap-10 items-center">
+            <div className="lg:col-span-3">
+              <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground flex items-center gap-3 mb-6">
+                <Waves className="w-6 h-6 text-primary" />
                 {lb.whyBlanes.title}
               </h2>
-            </CardHeader>
-            <CardContent>
-              <div className="grid md:grid-cols-2 gap-6">
+              <div className="grid sm:grid-cols-2 gap-6">
                 <div>
-                  <h3 className="font-semibold text-lg mb-3">{lb.whyBlanes.betterPricesTitle}</h3>
-                  <p className="text-muted-foreground mb-4">{sub(lb.whyBlanes.betterPricesBody)}</p>
-
-                  <h3 className="font-semibold text-lg mb-3">{lb.whyBlanes.crystalWatersTitle}</h3>
-                  <p className="text-muted-foreground">{lb.whyBlanes.crystalWatersBody}</p>
+                  <h3 className="font-heading font-semibold text-lg mb-3">{lb.whyBlanes.betterPricesTitle}</h3>
+                  <p className="text-muted-foreground leading-relaxed mb-4">{sub(lb.whyBlanes.betterPricesBody)}</p>
+                  <h3 className="font-heading font-semibold text-lg mb-3">{lb.whyBlanes.crystalWatersTitle}</h3>
+                  <p className="text-muted-foreground leading-relaxed">{lb.whyBlanes.crystalWatersBody}</p>
                 </div>
                 <div>
-                  <h3 className="font-semibold text-lg mb-3">{lb.whyBlanes.lessTrafficTitle}</h3>
-                  <p className="text-muted-foreground mb-4">{lb.whyBlanes.lessTrafficBody}</p>
-
-                  <h3 className="font-semibold text-lg mb-3">{lb.whyBlanes.realCostaBravaTitle}</h3>
-                  <p className="text-muted-foreground">{lb.whyBlanes.realCostaBravaBody}</p>
+                  <h3 className="font-heading font-semibold text-lg mb-3">{lb.whyBlanes.lessTrafficTitle}</h3>
+                  <p className="text-muted-foreground leading-relaxed mb-4">{lb.whyBlanes.lessTrafficBody}</p>
+                  <h3 className="font-heading font-semibold text-lg mb-3">{lb.whyBlanes.realCostaBravaTitle}</h3>
+                  <p className="text-muted-foreground leading-relaxed">{lb.whyBlanes.realCostaBravaBody}</p>
                 </div>
               </div>
-            </CardContent>
-          </Card>
-
-          {/* How to get from Barcelona */}
-          <Card className="mb-8">
-            <CardHeader>
-              <h2 className="flex items-center gap-3 text-2xl font-semibold leading-none tracking-tight">
-                <MapPin className="w-6 h-6 text-primary" />
-                {lb.howToGet.title}
-              </h2>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-6">
-                <div className="flex gap-4 items-start">
-                  <Car className="w-5 h-5 text-primary mt-0.5 shrink-0" />
-                  <div>
-                    <h3 className="font-semibold mb-1">{lb.howToGet.carTitle}</h3>
-                    <p className="text-muted-foreground text-sm mb-1" dangerouslySetInnerHTML={{ __html: lb.howToGet.carDuration }} />
-                    <p className="text-muted-foreground text-sm">{lb.howToGet.carBody}</p>
-                  </div>
-                </div>
-
-                <div className="flex gap-4 items-start">
-                  <Train className="w-5 h-5 text-primary mt-0.5 shrink-0" />
-                  <div>
-                    <h3 className="font-semibold mb-1">{lb.howToGet.trainTitle}</h3>
-                    <p className="text-muted-foreground text-sm mb-1" dangerouslySetInnerHTML={{ __html: lb.howToGet.trainDuration }} />
-                    <p className="text-muted-foreground text-sm">{lb.howToGet.trainBody}</p>
-                  </div>
-                </div>
-
-                <div className="flex gap-4 items-start">
-                  <Bus className="w-5 h-5 text-primary mt-0.5 shrink-0" />
-                  <div>
-                    <h3 className="font-semibold mb-1">{lb.howToGet.busTitle}</h3>
-                    <p className="text-muted-foreground text-sm mb-1" dangerouslySetInnerHTML={{ __html: lb.howToGet.busDuration }} />
-                    <p className="text-muted-foreground text-sm">{lb.howToGet.busBody}</p>
-                  </div>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Our boats */}
-          <Card className="mb-8">
-            <CardHeader>
-              <h2 className="flex items-center gap-3 text-2xl font-semibold leading-none tracking-tight">
-                <Anchor className="w-6 h-6 text-primary" />
-                {lb.boats.title}
-              </h2>
-            </CardHeader>
-            <CardContent>
-              <div className="grid md:grid-cols-2 gap-6">
-                <div>
-                  <h3 className="font-semibold text-lg mb-3">{lb.boats.noLicenseTitle}</h3>
-                  <p className="text-muted-foreground mb-3">{lb.boats.noLicenseBody}</p>
-                  <ul className="space-y-1 text-muted-foreground text-sm">
-                    <li className="flex items-center gap-2">
-                      <Users className="w-4 h-4 text-primary" />
-                      {lb.boats.noLicenseBullet1}
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <Clock className="w-4 h-4 text-primary" />
-                      {lb.boats.noLicenseBullet2}
-                    </li>
-                  </ul>
-                </div>
-                <div>
-                  <h3 className="font-semibold text-lg mb-3">{lb.boats.licensedTitle}</h3>
-                  <p className="text-muted-foreground mb-3">{lb.boats.licensedBody}</p>
-                  <ul className="space-y-1 text-muted-foreground text-sm">
-                    <li className="flex items-center gap-2">
-                      <Users className="w-4 h-4 text-primary" />
-                      {lb.boats.licensedBullet1}
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <Clock className="w-4 h-4 text-primary" />
-                      {lb.boats.licensedBullet2}
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              <div className="mt-6 text-center">
-                <Button variant="outline" asChild>
-                  <a href={localizedPath("home") + "#fleet"}>
-                    {lb.boats.viewAllCta}
-                    <ArrowRight className="w-4 h-4 ml-2" />
-                  </a>
-                </Button>
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* FAQ section */}
-          <div className="mt-12">
-            <h2 className="text-2xl font-heading font-bold text-center mb-8">
-              {lb.faqTitle}
-            </h2>
-            <div className="space-y-3 max-w-3xl mx-auto">
-              {processedFaqItems.map((item, index) => (
-                <details
-                  key={index}
-                  className="group border border-border rounded-lg bg-card"
-                >
-                  <summary className="flex cursor-pointer items-center justify-between px-6 py-4 font-semibold text-foreground [&::-webkit-details-marker]:hidden">
-                    <span className="pr-4">{item.question}</span>
-                    <ChevronRight className="w-5 h-5 shrink-0 text-muted-foreground transition-transform group-open:rotate-90" />
-                  </summary>
-                  <div className="px-6 pb-4 text-muted-foreground">
-                    {item.answer}
-                  </div>
-                </details>
-              ))}
+            </div>
+            <div className="lg:col-span-2">
+              <img
+                src="/images/boats/trimarchi/alquiler-barco-trimarchi-57s-rent-a-boat-costa-brava-blanes-pareja-navegando.webp"
+                alt="Pareja navegando en Trimarchi 57S por la Costa Brava"
+                className="rounded-2xl w-full h-auto object-cover shadow-lg"
+                loading="lazy"
+                width={800}
+                height={600}
+              />
             </div>
           </div>
+        </div>
+      </RevealSection>
 
-          {/* CTA */}
-          <section className="mt-12 bg-primary text-primary-foreground rounded-2xl p-8 sm:p-12 text-center">
-            <h2 className="text-2xl font-heading font-bold mb-4">{lb.cta.title}</h2>
-            <p className="text-lg mb-6 text-primary-foreground/85 max-w-2xl mx-auto">{sub(lb.cta.subtitle)}</p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button
-                size="lg"
-                variant="secondary"
-                onClick={() => openBookingModal()}
-                className="rounded-full"
-              >
-                <Anchor className="w-5 h-5 mr-2" />
-                {lb.cta.reserveButton}
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10 rounded-full"
-                asChild
-              >
-                <a href={localizedPath("pricing")}>
-                  {lb.cta.viewPricesButton}
-                  <ArrowRight className="w-4 h-4 ml-2" />
-                </a>
-              </Button>
+      {/* Photo break */}
+      <div className="relative w-full h-64 sm:h-80 overflow-hidden">
+        <img
+          src="/images/mejores-calas-costa-brava-mingolla-brava-rent-a-boat.webp"
+          alt="Mejores calas de la Costa Brava"
+          className="absolute inset-0 w-full h-full object-cover"
+          loading="lazy"
+          width={1920}
+          height={600}
+        />
+      </div>
+
+      {/* How to get from Barcelona */}
+      <RevealSection className="py-16 sm:py-20 bg-muted">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground flex items-center gap-3 mb-6">
+            <MapPin className="w-6 h-6 text-primary" />
+            {lb.howToGet.title}
+          </h2>
+          <div className="space-y-6">
+            <div className="flex gap-4 items-start">
+              <Car className="w-5 h-5 text-primary mt-0.5 shrink-0" />
+              <div>
+                <h3 className="font-heading font-semibold text-lg mb-1">{lb.howToGet.carTitle}</h3>
+                <p className="text-muted-foreground leading-relaxed text-sm mb-1" dangerouslySetInnerHTML={{ __html: lb.howToGet.carDuration }} />
+                <p className="text-muted-foreground leading-relaxed text-sm">{lb.howToGet.carBody}</p>
+              </div>
             </div>
-          </section>
+
+            <div className="flex gap-4 items-start">
+              <Train className="w-5 h-5 text-primary mt-0.5 shrink-0" />
+              <div>
+                <h3 className="font-heading font-semibold text-lg mb-1">{lb.howToGet.trainTitle}</h3>
+                <p className="text-muted-foreground leading-relaxed text-sm mb-1" dangerouslySetInnerHTML={{ __html: lb.howToGet.trainDuration }} />
+                <p className="text-muted-foreground leading-relaxed text-sm">{lb.howToGet.trainBody}</p>
+              </div>
+            </div>
+
+            <div className="flex gap-4 items-start">
+              <Bus className="w-5 h-5 text-primary mt-0.5 shrink-0" />
+              <div>
+                <h3 className="font-heading font-semibold text-lg mb-1">{lb.howToGet.busTitle}</h3>
+                <p className="text-muted-foreground leading-relaxed text-sm mb-1" dangerouslySetInnerHTML={{ __html: lb.howToGet.busDuration }} />
+                <p className="text-muted-foreground leading-relaxed text-sm">{lb.howToGet.busBody}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </RevealSection>
+
+      {/* Our boats */}
+      <RevealSection className="py-16 sm:py-20">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground flex items-center gap-3 mb-6">
+            <Anchor className="w-6 h-6 text-primary" />
+            {lb.boats.title}
+          </h2>
+          <div className="grid md:grid-cols-2 gap-6">
+            <div>
+              <h3 className="font-heading font-semibold text-lg mb-3">{lb.boats.noLicenseTitle}</h3>
+              <p className="text-muted-foreground leading-relaxed mb-3">{lb.boats.noLicenseBody}</p>
+              <ul className="space-y-1 text-muted-foreground text-sm">
+                <li className="flex items-center gap-2">
+                  <Users className="w-4 h-4 text-primary" />
+                  {lb.boats.noLicenseBullet1}
+                </li>
+                <li className="flex items-center gap-2">
+                  <Clock className="w-4 h-4 text-primary" />
+                  {lb.boats.noLicenseBullet2}
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="font-heading font-semibold text-lg mb-3">{lb.boats.licensedTitle}</h3>
+              <p className="text-muted-foreground leading-relaxed mb-3">{lb.boats.licensedBody}</p>
+              <ul className="space-y-1 text-muted-foreground text-sm">
+                <li className="flex items-center gap-2">
+                  <Users className="w-4 h-4 text-primary" />
+                  {lb.boats.licensedBullet1}
+                </li>
+                <li className="flex items-center gap-2">
+                  <Clock className="w-4 h-4 text-primary" />
+                  {lb.boats.licensedBullet2}
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div className="mt-6 text-center">
+            <Button variant="outline" asChild>
+              <a href={localizedPath("home") + "#fleet"}>
+                {lb.boats.viewAllCta}
+                <ArrowRight className="w-4 h-4 ml-2" />
+              </a>
+            </Button>
+          </div>
+        </div>
+      </RevealSection>
+
+      {/* FAQ section */}
+      <RevealSection className="py-16 sm:py-20 bg-muted">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground text-center mb-8">
+            {lb.faqTitle}
+          </h2>
+          <FAQSection items={processedFaqItems} />
+        </div>
+      </RevealSection>
+
+      {/* CTA */}
+      <div className="py-16 sm:py-20 bg-primary">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-2xl sm:text-3xl font-heading font-bold text-white mb-4">{lb.cta.title}</h2>
+          <p className="text-lg text-white/85 mb-6 max-w-2xl mx-auto">{sub(lb.cta.subtitle)}</p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button
+              size="lg"
+              variant="secondary"
+              onClick={() => openBookingModal()}
+              className="rounded-full"
+            >
+              <Anchor className="w-5 h-5 mr-2" />
+              {lb.cta.reserveButton}
+            </Button>
+            <Button
+              size="lg"
+              variant="outline"
+              className="border-white/30 text-white hover:bg-white/10 rounded-full"
+              asChild
+            >
+              <a href={localizedPath("pricing")}>
+                {lb.cta.viewPricesButton}
+                <ArrowRight className="w-4 h-4 ml-2" />
+              </a>
+            </Button>
+          </div>
         </div>
       </div>
 
       {/* Blog section */}
-      <div className="py-12 bg-muted">
+      <RevealSection className="py-16 sm:py-20 bg-muted">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="py-8">
-            <h2 className="text-xl font-heading font-bold text-foreground mb-4">
-              {lb.blog.title}
-            </h2>
-            <p
-              className="text-muted-foreground mb-4"
-              dangerouslySetInnerHTML={{
-                __html: lb.blog.description.replace("{blogPath}", localizedPath("blog")),
-              }}
-            />
-          </div>
+          <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground mb-4">
+            {lb.blog.title}
+          </h2>
+          <p
+            className="text-muted-foreground leading-relaxed mb-4"
+            dangerouslySetInnerHTML={{
+              __html: lb.blog.description.replace("{blogPath}", localizedPath("blog")),
+            }}
+          />
         </div>
-      </div>
+      </RevealSection>
 
       <Footer />
     </div>

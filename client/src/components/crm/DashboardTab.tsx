@@ -130,7 +130,7 @@ function ChartSkeleton() {
         <Skeleton className="h-5 w-40" />
       </CardHeader>
       <CardContent>
-        <Skeleton className="w-full h-[220px] md:h-[300px] rounded" />
+        <Skeleton className="w-full h-[180px] sm:h-[220px] md:h-[300px] rounded" />
       </CardContent>
     </Card>
   );
@@ -470,7 +470,7 @@ export function DashboardTab({
                     </p>
                   </div>
                   <div className="flex items-center gap-2">
-                    <span className="text-sm font-semibold text-foreground">
+                    <span className="text-sm font-semibold text-foreground tabular-nums">
                       {parseFloat(booking.totalAmount).toLocaleString("es-ES", { minimumFractionDigits: 0 })}{"\u20AC"}
                     </span>
                     <Badge
@@ -482,7 +482,7 @@ export function DashboardTab({
                   <Button
                     variant="ghost"
                     size="sm"
-                    className="md:opacity-0 md:group-hover:opacity-100 transition-opacity h-7 w-7 p-0"
+                    className="[@media(hover:hover)]:opacity-0 [@media(hover:hover)]:group-hover:opacity-100 transition-opacity h-7 w-7 p-0"
                     onClick={(e) => {
                       e.stopPropagation();
                       onEditBooking(booking.id);
@@ -626,11 +626,11 @@ export function DashboardTab({
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="h-[220px] md:h-[300px] w-full">
+              <div className="h-[180px] sm:h-[220px] md:h-[300px] w-full">
                 <ResponsiveContainer width="100%" height="100%">
                   <AreaChart
                     data={revenueTrend || []}
-                    margin={{ top: 5, right: 10, left: 0, bottom: 0 }}
+                    margin={{ top: 5, right: 5, left: 0, bottom: 0 }}
                   >
                     <defs>
                       <linearGradient id="revenueGradient" x1="0" y1="0" x2="0" y2="1">
@@ -649,7 +649,7 @@ export function DashboardTab({
                       tickLine={false}
                       axisLine={{ stroke: "hsl(var(--border))" }}
                       interval="preserveStartEnd"
-                      minTickGap={40}
+                      minTickGap={20}
                     />
                     <YAxis
                       tickFormatter={(v: number) => `${v >= 1000 ? `${(v / 1000).toFixed(0)}k` : v}`}
@@ -686,11 +686,11 @@ export function DashboardTab({
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="h-[220px] md:h-[300px] w-full">
+              <div className="h-[180px] sm:h-[220px] md:h-[300px] w-full">
                 <ResponsiveContainer width="100%" height="100%">
                   <BarChart
                     data={boatsPerformance || []}
-                    margin={{ top: 5, right: 10, left: 0, bottom: 30 }}
+                    margin={{ top: 5, right: 5, left: 0, bottom: 20 }}
                   >
                     <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" vertical={false} />
                     <XAxis
@@ -737,7 +737,7 @@ export function DashboardTab({
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="h-[220px] md:h-[300px] w-full">
+              <div className="h-[180px] sm:h-[220px] md:h-[300px] w-full">
                 {pieData.length === 0 ? (
                   <div className="flex items-center justify-center h-full text-muted-foreground text-sm">
                     Sin datos de reservas
@@ -749,8 +749,8 @@ export function DashboardTab({
                         data={pieData}
                         cx="50%"
                         cy="50%"
-                        innerRadius={60}
-                        outerRadius={100}
+                        innerRadius={45}
+                        outerRadius={75}
                         paddingAngle={3}
                         dataKey="value"
                         stroke="none"
@@ -777,7 +777,7 @@ export function DashboardTab({
                       />
                       <Legend
                         verticalAlign="bottom"
-                        height={56}
+                        height={40}
                         formatter={(value: string) => (
                           <span className="text-xs text-muted-foreground">{value}</span>
                         )}

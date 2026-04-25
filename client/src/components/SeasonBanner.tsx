@@ -192,14 +192,29 @@ export function SeasonBanner() {
     <>
       {/* Shimmer + pulse keyframes */}
       <style>{`
-        @keyframes seasonShimmer {
-          0% { transform: translateX(-100%); }
-          100% { transform: translateX(100%); }
-        }
-        @keyframes countdownPop {
-          0% { transform: scale(1); }
-          50% { transform: scale(1.08); }
-          100% { transform: scale(1); }
+        @media (prefers-reduced-motion: no-preference) {
+          @keyframes seasonShimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+          }
+          @keyframes countdownPop {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.08); }
+            100% { transform: scale(1); }
+          }
+          @keyframes seasonPulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.12); opacity: 0; }
+          }
+          .season-cta-btn::after {
+            animation: seasonPulse 2.5s ease-in-out infinite;
+          }
+          .season-cta-btn:hover::after {
+            animation: none;
+          }
+          .countdown-tick {
+            animation: countdownPop 0.3s ease-out;
+          }
         }
         .season-cta-btn {
           position: relative;
@@ -210,18 +225,7 @@ export function SeasonBanner() {
           inset: 0;
           border-radius: inherit;
           border: 2px solid rgba(168, 196, 221, 0.4);
-          animation: seasonPulse 2.5s ease-in-out infinite;
           pointer-events: none;
-        }
-        @keyframes seasonPulse {
-          0%, 100% { transform: scale(1); opacity: 1; }
-          50% { transform: scale(1.12); opacity: 0; }
-        }
-        .season-cta-btn:hover {
-          animation: none;
-        }
-        .countdown-tick {
-          animation: countdownPop 0.3s ease-out;
         }
       `}</style>
 
@@ -254,7 +258,7 @@ export function SeasonBanner() {
           <div className="px-6 pt-10 pb-8 sm:px-10 sm:pt-12 sm:pb-10 text-center">
             {/* Anchor icon */}
             <div className="inline-flex items-center justify-center w-12 h-12 rounded-full border border-white/15 mb-5">
-              <Anchor className="w-6 h-6 text-[#A8C4DD]" />
+              <Anchor className="w-6 h-6 text-hero-cta-secondary" />
             </div>
 
             {/* Headline */}

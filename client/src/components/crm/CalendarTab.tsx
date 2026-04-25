@@ -344,17 +344,17 @@ export function CalendarTab({
                     variant="outline"
                     size="sm"
                     onClick={goToday}
-                    className="text-xs sm:text-sm"
+                    className="text-xs sm:text-sm min-h-[44px]"
                   >
                     Hoy
                   </Button>
-                  <Button variant="outline" size="icon" onClick={goPrev} aria-label="Previous period">
+                  <Button variant="outline" size="icon" onClick={goPrev} aria-label="Previous period" className="min-h-[44px] min-w-[44px]">
                     <ChevronLeft className="w-4 h-4" />
                   </Button>
-                  <Button variant="outline" size="icon" onClick={goNext} aria-label="Next period">
+                  <Button variant="outline" size="icon" onClick={goNext} aria-label="Next period" className="min-h-[44px] min-w-[44px]">
                     <ChevronRight className="w-4 h-4" />
                   </Button>
-                  <h2 className="text-sm sm:text-lg font-heading font-semibold capitalize ml-2 whitespace-nowrap">
+                  <h2 className="text-sm sm:text-lg font-semibold capitalize ml-2 whitespace-nowrap">
                     {viewTitle}
                   </h2>
                 </div>
@@ -365,7 +365,7 @@ export function CalendarTab({
                     variant={view === "day" ? "default" : "ghost"}
                     size="sm"
                     onClick={() => setView("day")}
-                    className="text-xs px-3"
+                    className="text-xs px-3 min-h-[44px]"
                   >
                     <Clock className="w-3.5 h-3.5 mr-1" />
                     Día
@@ -374,7 +374,7 @@ export function CalendarTab({
                     variant={view === "week" ? "default" : "ghost"}
                     size="sm"
                     onClick={() => setView("week")}
-                    className="text-xs px-3"
+                    className="text-xs px-3 min-h-[44px]"
                   >
                     <List className="w-3.5 h-3.5 mr-1" />
                     Semana
@@ -383,7 +383,7 @@ export function CalendarTab({
                     variant={view === "month" ? "default" : "ghost"}
                     size="sm"
                     onClick={() => setView("month")}
-                    className="text-xs px-3"
+                    className="text-xs px-3 min-h-[44px]"
                   >
                     <LayoutGrid className="w-3.5 h-3.5 mr-1" />
                     Mes
@@ -538,7 +538,7 @@ function BookingTooltipContent({ booking }: { booking: Booking }) {
   const durationStr = mins > 0 ? `${hours}h ${mins}m` : `${hours}h`;
 
   return (
-    <div className="space-y-1 text-xs max-w-[220px]">
+    <div className="space-y-1 text-xs max-w-[min(220px,calc(100vw-48px))]">
       <p className="font-semibold text-sm">
         {booking.customerName} {booking.customerSurname}
       </p>
@@ -663,6 +663,7 @@ function DayView({
           onClick={() => onMobileBoatChange(Math.max(0, mobileBoatIndex - 1))}
           disabled={mobileBoatIndex <= 0}
           aria-label="Previous boat"
+          className="min-h-[44px] min-w-[44px]"
         >
           <ChevronLeft className="w-4 h-4" />
         </Button>
@@ -677,6 +678,7 @@ function DayView({
           }
           disabled={mobileBoatIndex >= boats.length - 1}
           aria-label="Next boat"
+          className="min-h-[44px] min-w-[44px]"
         >
           <ChevronRight className="w-4 h-4" />
         </Button>
@@ -686,7 +688,7 @@ function DayView({
         <div
           ref={containerRef}
           className="overflow-auto"
-          style={{ maxHeight: "calc(100dvh - 400px)" }}
+          style={{ maxHeight: "calc(100dvh - 340px)", minHeight: "300px" }}
         >
           <div className="min-w-0 sm:min-w-[600px]">
             {/* Header row with boat names */}
@@ -699,7 +701,7 @@ function DayView({
                     key={boat.id}
                     className="flex-1 min-w-[140px] text-center py-2 px-1 border-r bg-muted"
                   >
-                    <p className="text-xs sm:text-sm font-heading font-semibold truncate">
+                    <p className="text-xs sm:text-sm font-semibold truncate">
                       {boat.name}
                     </p>
                     <p className="text-[10px] text-muted-foreground">
@@ -710,7 +712,7 @@ function DayView({
               </div>
               {/* Mobile: show selected boat */}
               <div className="sm:hidden flex-1 text-center py-2 px-1 bg-muted">
-                <p className="text-sm font-heading font-semibold">
+                <p className="text-sm font-semibold">
                   {currentMobileBoat?.name}
                 </p>
               </div>
@@ -851,7 +853,7 @@ function BoatColumn({
                   </div>
                 </button>
               </TooltipTrigger>
-              <TooltipContent side="right" className="max-w-[250px]">
+              <TooltipContent side="right" className="max-w-[min(250px,calc(100vw-48px))]">
                 <BookingTooltipContent booking={booking} />
               </TooltipContent>
             </Tooltip>
@@ -932,12 +934,12 @@ function WeekView({
     <Card className="overflow-hidden">
       <CardContent className="p-0">
         {/* Desktop: grid view */}
-        <div className="hidden sm:block overflow-x-auto">
+        <div className="hidden md:block overflow-x-auto">
           <div className="min-w-[700px]">
             {/* Header: weekday names */}
             <div className="flex sticky top-0 z-10 bg-card border-b">
               <div className="w-32 sm:w-40 flex-shrink-0 border-r bg-muted py-2 px-2">
-                <span className="text-xs font-heading font-semibold text-muted-foreground">
+                <span className="text-xs font-semibold text-muted-foreground">
                   Barco
                 </span>
               </div>
@@ -976,7 +978,7 @@ function WeekView({
                 <div key={boat.id} className="flex border-b">
                   <div className="w-32 sm:w-40 flex-shrink-0 border-r bg-muted py-2 px-2 flex items-center">
                     <div>
-                      <p className="text-xs sm:text-sm font-heading font-semibold truncate">
+                      <p className="text-xs sm:text-sm font-semibold truncate">
                         {boat.name}
                       </p>
                       <p className="text-[10px] text-muted-foreground">
@@ -1024,7 +1026,7 @@ function WeekView({
                                 </TooltipTrigger>
                                 <TooltipContent
                                   side="top"
-                                  className="max-w-[250px]"
+                                  className="max-w-[min(250px,calc(100vw-48px))]"
                                 >
                                   <BookingTooltipContent booking={booking} />
                                 </TooltipContent>
@@ -1047,7 +1049,7 @@ function WeekView({
         </div>
 
         {/* Mobile: stacked day list */}
-        <div className="sm:hidden divide-y">
+        <div className="md:hidden divide-y">
           {weekDays.map((day) => {
             const today = isToday(day);
             const dayKey = format(day, "yyyy-MM-dd");
@@ -1061,9 +1063,9 @@ function WeekView({
               <div key={dayKey} className="p-3">
                 <button
                   onClick={() => onDayClick(day)}
-                  className={`flex items-center gap-2 mb-2 ${today ? "text-primary font-bold" : "text-foreground"}`}
+                  className={`flex items-center gap-2 mb-2 min-h-[44px] ${today ? "text-primary font-bold" : "text-foreground"}`}
                 >
-                  <span className="text-sm font-heading font-semibold capitalize">
+                  <span className="text-sm font-semibold capitalize">
                     {format(day, "EEEE d", { locale: es })}
                   </span>
                   {dayBookings.length > 0 && (
@@ -1082,7 +1084,7 @@ function WeekView({
                       return (
                         <button
                           key={booking.id}
-                          className={`w-full text-left rounded-lg px-3 py-2 border-l-[3px] ${colors.bg} ${colors.border} ${colors.text} ${colors.opacity || ""}`}
+                          className={`w-full text-left rounded-lg px-3 py-2 min-h-[44px] border-l-[3px] ${colors.bg} ${colors.border} ${colors.text} ${colors.opacity || ""}`}
                           onClick={() => onViewBooking(booking)}
                         >
                           <div className="flex items-center justify-between">
@@ -1181,9 +1183,9 @@ function MonthView({ date, bookings, onDayClick }: MonthViewProps) {
 
   return (
     <Card className="overflow-hidden">
-      <CardContent className="p-2 sm:p-4">
+      <CardContent className="p-1.5 sm:p-4">
         {/* Weekday headers */}
-        <div className="grid grid-cols-7 gap-1 mb-1">
+        <div className="grid grid-cols-7 gap-0.5 sm:gap-1 mb-1">
           {weekdayLabels.map((label) => (
             <div
               key={label}
@@ -1195,7 +1197,7 @@ function MonthView({ date, bookings, onDayClick }: MonthViewProps) {
         </div>
 
         {/* Calendar grid */}
-        <div className="grid grid-cols-7 gap-1">
+        <div className="grid grid-cols-7 gap-0.5 sm:gap-1">
           {calendarDays.map((day) => {
             const dayKey = format(day, "yyyy-MM-dd");
             const entry = bookingCountByDay.get(dayKey);
@@ -1246,13 +1248,13 @@ function MonthView({ date, bookings, onDayClick }: MonthViewProps) {
                       {count}
                     </span>
 
-                    {/* Status dots - show up to 5 */}
-                    <div className="hidden sm:flex flex-wrap gap-0.5 mt-1">
+                    {/* Status dots - always visible, smaller on mobile */}
+                    <div className="flex flex-wrap gap-0.5 mt-1">
                       {statusEntries.slice(0, 5).map(([status, statusCount]) => (
                         <Tooltip key={status}>
                           <TooltipTrigger asChild>
                             <span
-                              className={`w-2 h-2 rounded-full ${STATUS_DOT_COLORS[status] || "bg-muted-foreground/40"}`}
+                              className={`w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full ${STATUS_DOT_COLORS[status] || "bg-muted-foreground/40"}`}
                             />
                           </TooltipTrigger>
                           <TooltipContent side="top" className="text-xs">

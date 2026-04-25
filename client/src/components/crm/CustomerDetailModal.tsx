@@ -183,7 +183,7 @@ export function CustomerDetailModal({
           <div className="space-y-6 mt-6">
             {/* Contact Info */}
             <div>
-              <h3 className="font-heading font-semibold text-sm text-muted-foreground uppercase tracking-wide mb-3">
+              <h3 className="font-medium text-xs text-muted-foreground uppercase tracking-wide mb-3">
                 Datos de Contacto
               </h3>
               <div className="grid grid-cols-2 gap-3 text-sm">
@@ -219,7 +219,7 @@ export function CustomerDetailModal({
 
             {/* Stats Cards */}
             <div>
-              <h3 className="font-heading font-semibold text-sm text-muted-foreground uppercase tracking-wide mb-3">
+              <h3 className="font-medium text-xs text-muted-foreground uppercase tracking-wide mb-3">
                 Estadísticas
               </h3>
               <div className="grid grid-cols-2 gap-3">
@@ -277,7 +277,7 @@ export function CustomerDetailModal({
             {/* Notes & Document Edit Section */}
             <div>
               <div className="flex items-center justify-between mb-3">
-                <h3 className="font-heading font-semibold text-sm text-muted-foreground uppercase tracking-wide">
+                <h3 className="font-medium text-xs text-muted-foreground uppercase tracking-wide">
                   Notas y Segmento
                 </h3>
                 {!isEditing && (
@@ -356,7 +356,7 @@ export function CustomerDetailModal({
 
             {/* Booking History */}
             <div>
-              <h3 className="font-heading font-semibold text-sm text-muted-foreground uppercase tracking-wide mb-3">
+              <h3 className="font-medium text-xs text-muted-foreground uppercase tracking-wide mb-3">
                 Historial de Reservas ({customerBookings.length})
               </h3>
               {customerBookings.length === 0 ? (

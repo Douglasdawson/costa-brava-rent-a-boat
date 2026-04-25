@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Button } from "@/components/ui/button";
 import {
   AlertDialog,
@@ -149,6 +149,32 @@ export function FleetManagement({ adminToken }: FleetManagementProps) {
       });
     }
   };
+
+  // Move boat up (swap with previous item)
+  const handleMoveUp = useCallback(
+    (index: number) => {
+      if (index <= 0) return;
+      setOrderedBoats(items => {
+        const newOrder = arrayMove(items, index, index - 1);
+        reorderBoatsMutation.mutate(newOrder);
+        return newOrder;
+      });
+    },
+    [reorderBoatsMutation]
+  );
+
+  // Move boat down (swap with next item)
+  const handleMoveDown = useCallback(
+    (index: number) => {
+      setOrderedBoats(items => {
+        if (index >= items.length - 1) return items;
+        const newOrder = arrayMove(items, index, index + 1);
+        reorderBoatsMutation.mutate(newOrder);
+        return newOrder;
+      });
+    },
+    [reorderBoatsMutation]
+  );
 
   // Create boat mutation
   const createBoatMutation = useMutation({
@@ -396,6 +422,8 @@ export function FleetManagement({ adminToken }: FleetManagementProps) {
         onEdit={handleEditBoat}
         onDeactivate={(id, name) => setDeactivateTarget({ id, name })}
         onDragEnd={handleDragEnd}
+        onMoveUp={handleMoveUp}
+        onMoveDown={handleMoveDown}
         onImport={() => importBoatsMutation.mutate()}
         onAdd={() => setShowBoatDialog(true)}
         isImporting={importBoatsMutation.isPending}

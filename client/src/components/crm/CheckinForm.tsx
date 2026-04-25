@@ -152,7 +152,7 @@ export function CheckinForm({
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="max-w-lg max-h-[95vh] overflow-y-auto">
         <DialogHeader>
-          <DialogTitle className="font-heading">Registrar {title}</DialogTitle>
+          <DialogTitle className="font-semibold">Registrar {title}</DialogTitle>
           <DialogDescription>
             Completa el formulario de {title.toLowerCase()} para esta reserva
           </DialogDescription>

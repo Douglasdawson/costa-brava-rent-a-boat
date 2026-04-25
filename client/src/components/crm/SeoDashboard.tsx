@@ -974,10 +974,14 @@ export function SeoDashboard({ adminToken }: { adminToken: string }) {
       </div>
 
       {/* Chart */}
-      <SeoTrendChart activeCard={activeCard} data={data} isLoading={isLoading} />
+      <div key={`chart-${activeCard}`} className="animate-fade-in">
+        <SeoTrendChart activeCard={activeCard} data={data} isLoading={isLoading} />
+      </div>
 
       {/* Table */}
-      <SeoDataTable activeCard={activeCard} data={data} isLoading={isLoading} />
+      <div key={`table-${activeCard}`} className="animate-fade-in">
+        <SeoDataTable activeCard={activeCard} data={data} isLoading={isLoading} />
+      </div>
     </div>
   );
 }

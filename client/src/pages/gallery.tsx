@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
+import { ReadingProgressBar } from "@/components/ReadingProgressBar";
 import { Button } from "@/components/ui/button";
 import { Camera, Plus } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
@@ -11,6 +13,15 @@ import { useLanguage, type Language } from "@/hooks/use-language";
 import { useTranslations } from "@/lib/translations";
 import { getSEOConfig, generateCanonicalUrl, generateHreflangLinks, generateBreadcrumbSchema } from "@/utils/seo-config";
 import { queryClient } from "@/lib/queryClient";
+
+function RevealSection({ children, className = "" }: { children: React.ReactNode; className?: string }) {
+  const { ref, isVisible } = useScrollReveal();
+  return (
+    <div ref={ref} className={`transition-[opacity,transform,filter] duration-700 ${isVisible ? "opacity-100 translate-y-0 blur-none" : "opacity-0 translate-y-6 blur-[2px]"} ${className}`}>
+      {children}
+    </div>
+  );
+}
 
 const galleryText: Record<string, {
   introP1: string;
@@ -141,6 +152,7 @@ export default function GalleryPage() {
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(0);
   const [showSubmitForm, setShowSubmitForm] = useState(false);
+  const { ref: gridRef, isVisible: gridVisible } = useScrollReveal();
   const { language, localizedPath } = useLanguage();
   const t = useTranslations();
   const gt = getGalleryText(language);
@@ -166,7 +178,7 @@ export default function GalleryPage() {
   };
 
   return (
-    <main id="main-content" className="min-h-screen bg-muted">
+    <main id="main-content" className="min-h-screen bg-background">
       <SEO
         title={seoConfig.title}
         description={seoConfig.description}
@@ -177,98 +189,144 @@ export default function GalleryPage() {
         jsonLd={breadcrumbSchema}
       />
       <Navigation />
+      <ReadingProgressBar />
 
-      <div className="container mx-auto px-4 pt-20 sm:pt-24 pb-8 sm:pb-12">
-        <div className="text-center mb-8">
-          <h1 className="text-3xl sm:text-4xl font-bold text-foreground mb-3">
-            {t.gallery?.title || "Galeria de Fotos"}
-          </h1>
-          <p className="text-muted-foreground max-w-2xl mx-auto mb-6">
-            {t.gallery?.subtitle || "Fotos de nuestros clientes disfrutando de la Costa Brava"}
-          </p>
-
-          {/* Rich intro paragraph with internal links */}
-          <div className="max-w-3xl mx-auto text-left mt-6 mb-8 space-y-4 text-muted-foreground">
-            <p>{gt.introP1}</p>
-            <p>
-              {gt.introP2pre}{" "}
-              <a href={localizedPath("home") + "#fleet"} className="text-primary hover:underline">{gt.introP2licenseFree}</a>{" "}
-              {gt.introP2mid}{" "}
-              <a href={localizedPath("categoryLicensed")} className="text-primary hover:underline">{gt.introP2licensed}</a>{" "}
-              {gt.introP2post}
+      {/* Hero */}
+      <div className="bg-gradient-to-br from-primary/5 to-primary/10 pt-24 pb-12">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mt-8">
+            <Camera className="w-10 h-10 sm:w-12 sm:h-12 mx-auto mb-4 text-blue-100" />
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold mb-4">
+              {t.gallery?.title || "Galeria de Fotos"}
+            </h1>
+            <p className="text-lg sm:text-xl max-w-3xl mx-auto text-blue-50">
+              {t.gallery?.subtitle || "Fotos de nuestros clientes disfrutando de la Costa Brava"}
             </p>
           </div>
-
-          <Button onClick={() => setShowSubmitForm(true)}>
-            <Plus className="w-4 h-4 mr-2" />
-            {t.gallery?.sharePhoto || "Comparte tu foto"}
-          </Button>
         </div>
+      </div>
 
-        {isLoading ? (
-          <div className="flex justify-center py-12">
-            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary" />
+      {/* Intro text + image section */}
+      <RevealSection className="py-16 sm:py-20 bg-background">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-5 gap-10 lg:gap-16 items-center">
+            <div className="lg:col-span-3 space-y-5">
+              <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground">
+                {t.gallery?.title || "Momentos en el mar"}
+              </h2>
+              <p className="text-muted-foreground leading-relaxed">{gt.introP1}</p>
+              <p className="text-muted-foreground leading-relaxed">
+                {gt.introP2pre}{" "}
+                <a href={localizedPath("home") + "#fleet"} className="text-primary hover:underline">{gt.introP2licenseFree}</a>{" "}
+                {gt.introP2mid}{" "}
+                <a href={localizedPath("categoryLicensed")} className="text-primary hover:underline">{gt.introP2licensed}</a>{" "}
+                {gt.introP2post}
+              </p>
+              <Button variant="outline" onClick={() => setShowSubmitForm(true)}>
+                <Plus className="w-4 h-4 mr-2" />
+                {t.gallery?.sharePhoto || "Comparte tu foto"}
+              </Button>
+            </div>
+            <div className="lg:col-span-2">
+              <img
+                src="/images/boats/pacific-craft/alquiler-barco-pacific-craft-625-rent-a-boat-costa-brava-blanes-cala-agua-cristalina.webp"
+                alt="Pacific Craft 625 en cala de agua cristalina, Costa Brava"
+                className="w-full rounded-2xl object-cover aspect-[4/5]"
+                loading="lazy"
+                width={640}
+                height={800}
+              />
+            </div>
           </div>
-        ) : photos.length === 0 ? (
-          <div className="text-center py-16">
-            <Camera className="w-16 h-16 text-muted-foreground/40 mx-auto mb-4" />
-            <p className="text-muted-foreground/60 text-lg">
-              {t.gallery?.noPhotos || "Aun no hay fotos. Se el primero en compartir!"}
-            </p>
-          </div>
-        ) : (
-          /* Masonry grid with CSS columns */
-          <div className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-4 space-y-4">
-            {photos.map((photo, index) => (
-              <button
-                key={photo.id}
-                type="button"
-                className="break-inside-avoid cursor-pointer group text-left w-full"
-                onClick={() => openLightbox(index)}
-                aria-label={`Ver imagen ${index + 1} en pantalla completa`}
-              >
-                <div className="bg-background rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow">
-                  <img
-                    src={photo.imageUrl}
-                    alt={photo.caption || `Photo by ${photo.customerName}`}
-                    className="w-full object-cover group-hover:opacity-95 transition-opacity aspect-[4/3]"
-                    loading="lazy"
-                    width={600}
-                    height={450}
-                  />
-                  <div className="p-3">
-                    {photo.caption && (
-                      <p className="text-sm text-muted-foreground mb-1">{photo.caption}</p>
-                    )}
-                    <p className="text-xs text-muted-foreground/60">
-                      {photo.customerName}
-                      {photo.boatName && ` - ${photo.boatName}`}
-                    </p>
+        </div>
+      </RevealSection>
+
+      {/* Photo gallery grid */}
+      <RevealSection className="py-16 sm:py-20 bg-muted">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-2xl sm:text-3xl font-heading font-bold text-foreground mb-8 text-center">
+            {t.gallery?.title || "Galeria"}
+          </h2>
+
+          {isLoading ? (
+            <div className="flex justify-center py-12">
+              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary" />
+            </div>
+          ) : photos.length === 0 ? (
+            <div className="text-center py-16">
+              <Camera className="w-16 h-16 text-muted-foreground/40 mx-auto mb-4" />
+              <p className="text-muted-foreground/60 text-lg">
+                {t.gallery?.noPhotos || "Aun no hay fotos. Se el primero en compartir!"}
+              </p>
+            </div>
+          ) : (
+            /* Masonry grid with CSS columns */
+            <div ref={gridRef} className={`columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-4 space-y-4 transition-[opacity,transform,filter] duration-500 ${gridVisible ? "opacity-100 translate-y-0 blur-none" : "opacity-0 translate-y-8 blur-[2px]"}`}>
+              {photos.map((photo, index) => (
+                <button
+                  key={photo.id}
+                  type="button"
+                  className="break-inside-avoid cursor-pointer group text-left w-full"
+                  onClick={() => openLightbox(index)}
+                  aria-label={`Ver imagen ${index + 1} en pantalla completa`}
+                >
+                  <div className="bg-background rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                    <img
+                      src={photo.imageUrl}
+                      alt={photo.caption || `Photo by ${photo.customerName}`}
+                      className="w-full object-cover group-hover:opacity-95 transition-opacity aspect-[4/3]"
+                      loading="lazy"
+                      width={600}
+                      height={450}
+                    />
+                    <div className="p-3">
+                      {photo.caption && (
+                        <p className="text-sm text-muted-foreground mb-1">{photo.caption}</p>
+                      )}
+                      <p className="text-xs text-muted-foreground/60">
+                        {photo.customerName}
+                        {photo.boatName && ` - ${photo.boatName}`}
+                      </p>
+                    </div>
                   </div>
-                </div>
-              </button>
-            ))}
-          </div>
-        )}
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
+      </RevealSection>
 
-        {/* CTA Section */}
-        <div className="mt-12 text-center space-y-4">
-          <h2 className="text-2xl font-heading font-bold text-foreground">
+      {/* Photo break */}
+      <div className="w-full overflow-hidden">
+        <img
+          src="/images/blog/calas-costa-brava.jpg"
+          alt="Calas de la Costa Brava desde el mar"
+          className="w-full h-[35vh] min-h-[250px] max-h-[400px] object-cover"
+          loading="lazy"
+          width={1920}
+          height={600}
+        />
+      </div>
+
+      {/* CTA Section */}
+      <RevealSection className="py-16 sm:py-20 bg-primary text-primary-foreground">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-2xl sm:text-3xl font-heading font-bold mb-4">
             {gt.ctaTitle}
           </h2>
-          <p className="text-muted-foreground max-w-xl mx-auto">
+          <p className="text-primary-foreground/85 mb-8 max-w-2xl mx-auto text-lg leading-relaxed">
             {gt.ctaSubtitle}
           </p>
           <div className="flex flex-wrap gap-3 justify-center">
-            <a href={localizedPath("home") + "#fleet"} className="inline-flex items-center gap-2 bg-primary text-white px-6 py-3 rounded-lg font-medium hover:bg-primary/90 transition-colors">
+            <a href={localizedPath("home") + "#fleet"} className="inline-flex items-center gap-2 bg-white text-primary px-6 py-3 rounded-lg font-medium hover:bg-white/90 transition-colors">
               {gt.ctaFleet}
             </a>
-            <a href={localizedPath("routes")} className="inline-flex items-center gap-2 border border-primary text-primary px-6 py-3 rounded-lg font-medium hover:bg-primary/5 transition-colors">
+            <a href={localizedPath("routes")} className="inline-flex items-center gap-2 border border-primary-foreground/30 text-primary-foreground px-6 py-3 rounded-lg font-medium hover:bg-primary-foreground/10 transition-colors">
               {gt.ctaRoutes}
             </a>
           </div>
         </div>
-      </div>
+      </RevealSection>
 
       <PhotoLightbox
         photos={photos}

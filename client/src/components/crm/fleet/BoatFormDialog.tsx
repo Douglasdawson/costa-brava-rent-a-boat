@@ -68,7 +68,7 @@ export function BoatFormDialog({
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
           {/* Información Básica */}
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold font-heading">Información Básica</h3>
+            <h3 className="text-lg font-semibold">Información Básica</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <Label htmlFor="id">ID del Barco *</Label>
@@ -122,7 +122,7 @@ export function BoatFormDialog({
           {/* Imágenes */}
           <div className="space-y-4">
             <div className="flex items-center justify-between">
-              <h3 className="text-lg font-semibold font-heading">Imágenes</h3>
+              <h3 className="text-lg font-semibold">Imágenes</h3>
               {(form.watch("imageGallery") || []).length > 0 && (
                 <Button
                   type="button"
@@ -185,7 +185,7 @@ export function BoatFormDialog({
 
           {/* Características Principales */}
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold font-heading">Características Principales</h3>
+            <h3 className="text-lg font-semibold">Características Principales</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <Label htmlFor="capacity">Capacidad (personas) *</Label>
@@ -277,7 +277,7 @@ export function BoatFormDialog({
 
           {/* Especificaciones Técnicas */}
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold font-heading">Especificaciones Técnicas</h3>
+            <h3 className="text-lg font-semibold">Especificaciones Técnicas</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <Label>Modelo</Label>
@@ -340,7 +340,7 @@ export function BoatFormDialog({
 
           {/* Equipamiento */}
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold font-heading">Equipamiento e Incluido</h3>
+            <h3 className="text-lg font-semibold">Equipamiento e Incluido</h3>
             <div>
               <Label>Equipamiento</Label>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-2">
@@ -425,7 +425,7 @@ export function BoatFormDialog({
 
           {/* Precios por Temporada */}
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold font-heading">Precios por Temporada</h3>
+            <h3 className="text-lg font-semibold">Precios por Temporada</h3>
             <PricingSeasonSection
               seasonKey="BAJA"
               seasonLabel="BAJA"

@@ -274,7 +274,7 @@ export function EmployeeManagement({ adminToken }: EmployeeManagementProps) {
           <CardContent>
             <div className="flex flex-col items-center justify-center py-12 text-center">
               <Users className="w-12 h-12 text-muted-foreground/50 mb-4" />
-              <p className="text-lg font-heading font-medium text-foreground mb-1">No hay usuarios registrados</p>
+              <p className="text-lg font-medium text-foreground mb-1">No hay usuarios registrados</p>
               <p className="text-sm text-muted-foreground">Agrega usuarios para gestionar el acceso al CRM</p>
             </div>
           </CardContent>
@@ -415,7 +415,7 @@ export function EmployeeManagement({ adminToken }: EmployeeManagementProps) {
               return (
               <div key={employee.id} className={`bg-card border border-border rounded-lg p-4 space-y-2 ${isOwnerRow ? "border-amber-200 bg-primary/5" : ""}`}>
                 <div className="flex items-center justify-between">
-                  <span className="font-heading font-semibold text-foreground">
+                  <span className="font-semibold text-foreground">
                     {employee.displayName || employee.username}
                   </span>
                   <Badge className={employee.isActive ? "bg-emerald-100 text-emerald-800" : "bg-red-100 text-red-800"}>

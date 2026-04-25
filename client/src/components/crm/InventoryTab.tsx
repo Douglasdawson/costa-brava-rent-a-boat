@@ -396,7 +396,7 @@ export function InventoryTab({ adminToken }: InventoryTabProps) {
                 <CardContent className="p-4">
                   <div className="flex justify-between items-start mb-3">
                     <div className="flex-1">
-                      <h3 className="font-semibold text-lg font-heading">{item.name}</h3>
+                      <h3 className="font-semibold text-lg">{item.name}</h3>
                       <p className="text-sm text-muted-foreground">{CATEGORY_LABELS[item.category] || item.category}</p>
                     </div>
                     <Badge className={statusConfig.color}>{statusConfig.label}</Badge>
@@ -621,7 +621,7 @@ export function InventoryTab({ adminToken }: InventoryTabProps) {
               </Button>
 
               <div>
-                <h4 className="font-medium mb-2 font-heading">Movimientos recientes</h4>
+                <h4 className="font-medium mb-2">Movimientos recientes</h4>
                 {movements.length === 0 ? (
                   <p className="text-sm text-muted-foreground">Sin movimientos registrados</p>
                 ) : (

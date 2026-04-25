@@ -369,7 +369,7 @@ export function BookingDetailsModal({
           <div className="space-y-6">
             {/* Customer Info */}
             <div>
-              <h3 className="font-heading font-semibold text-lg mb-3">Información del Cliente</h3>
+              <h3 className="font-semibold text-lg mb-3">Información del Cliente</h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
                 <div>
                   <p className="text-muted-foreground">Nombre Completo</p>
@@ -398,7 +398,7 @@ export function BookingDetailsModal({
 
             {/* Booking Info */}
             <div>
-              <h3 className="font-heading font-semibold text-lg mb-3">Detalles de la Reserva</h3>
+              <h3 className="font-semibold text-lg mb-3">Detalles de la Reserva</h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
                 <div>
                   <p className="text-muted-foreground">Barco</p>
@@ -433,7 +433,7 @@ export function BookingDetailsModal({
 
             {/* Payment Info */}
             <div>
-              <h3 className="font-heading font-semibold text-lg mb-3">Información de Pago</h3>
+              <h3 className="font-semibold text-lg mb-3">Información de Pago</h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
                 <div>
                   <p className="text-muted-foreground">Subtotal</p>
@@ -463,7 +463,7 @@ export function BookingDetailsModal({
             {/* Additional Info */}
             {(booking.notes || booking.couponCode) && (
               <div>
-                <h3 className="font-heading font-semibold text-lg mb-3">Información Adicional</h3>
+                <h3 className="font-semibold text-lg mb-3">Información Adicional</h3>
                 <div className="space-y-2 text-sm">
                   {booking.couponCode && (
                     <div>
@@ -484,7 +484,7 @@ export function BookingDetailsModal({
             {/* Check-in / Check-out Section */}
             {(booking.bookingStatus === "confirmed") && (
               <div className="border-t border-border pt-4">
-                <h3 className="font-heading font-semibold text-lg mb-3">Check-in / Check-out</h3>
+                <h3 className="font-semibold text-lg mb-3">Check-in / Check-out</h3>
                 <div className="space-y-3">
                   {/* Status indicators */}
                   <div className="flex flex-wrap gap-3 text-sm">
@@ -577,7 +577,7 @@ export function BookingDetailsModal({
 
             {/* Actions */}
             <div className="border-t border-border pt-4 sticky bottom-0 bg-background pb-4 -mx-6 px-6 md:static md:mx-0 md:px-0 md:pb-0">
-              <h3 className="font-heading font-semibold text-lg mb-3 sr-only md:not-sr-only">Acciones</h3>
+              <h3 className="font-semibold text-lg mb-3 sr-only md:not-sr-only">Acciones</h3>
               <div className="flex flex-wrap gap-2">
                 <Button
                   variant="outline"
@@ -631,7 +631,7 @@ export function BookingDetailsModal({
           <form onSubmit={editForm.handleSubmit(isCreating ? handleCreateSubmit : handleEditSubmit)} className="space-y-6">
             {/* Customer Info */}
             <div>
-              <h3 className="font-heading font-semibold text-lg mb-3">Información del Cliente</h3>
+              <h3 className="font-semibold text-lg mb-3">Información del Cliente</h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <Label htmlFor="customerName">Nombre</Label>
@@ -700,7 +700,7 @@ export function BookingDetailsModal({
 
             {/* Booking Info */}
             <div>
-              <h3 className="font-heading font-semibold text-lg mb-3">Detalles de la Reserva</h3>
+              <h3 className="font-semibold text-lg mb-3">Detalles de la Reserva</h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <Label htmlFor="boatId">Barco</Label>
@@ -782,7 +782,7 @@ export function BookingDetailsModal({
 
             {/* Payment Info */}
             <div>
-              <h3 className="font-heading font-semibold text-lg mb-3">Información de Pago</h3>
+              <h3 className="font-semibold text-lg mb-3">Información de Pago</h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <Label htmlFor="subtotal">Subtotal ({"\u20AC"})</Label>

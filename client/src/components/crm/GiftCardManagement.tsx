@@ -160,7 +160,7 @@ export function GiftCardManagement({ adminToken }: GiftCardManagementProps) {
       ) : filteredCards.length === 0 ? (
         <div className="flex flex-col items-center justify-center py-12 text-center">
           <Gift className="w-12 h-12 text-muted-foreground/50 mb-4" />
-          <p className="text-lg font-heading font-medium text-foreground mb-1">No hay tarjetas regalo</p>
+          <p className="text-lg font-medium text-foreground mb-1">No hay tarjetas regalo</p>
           <p className="text-sm text-muted-foreground">
             {filter !== "all" ? `No hay tarjetas ${statusLabels[filter]?.toLowerCase() || ""}` : "Las tarjetas regalo aparecerán aquí cuando se creen"}
           </p>
@@ -286,7 +286,7 @@ export function GiftCardManagement({ adminToken }: GiftCardManagementProps) {
             {paginatedCards.map((card) => (
               <div key={card.id} className="bg-card border border-border rounded-lg p-4 space-y-2">
                 <div className="flex items-center justify-between">
-                  <span className="font-heading font-semibold font-mono text-foreground">{card.code}</span>
+                  <span className="font-semibold font-mono text-foreground">{card.code}</span>
                   <Badge className={statusColors[card.status] || "bg-muted text-muted-foreground"}>
                     {statusLabels[card.status] || card.status}
                   </Badge>

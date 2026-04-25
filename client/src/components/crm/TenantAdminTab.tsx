@@ -146,7 +146,7 @@ export function TenantAdminTab({ adminToken }: TenantAdminTabProps) {
       {/* Company Info */}
       <Card>
         <CardHeader>
-          <CardTitle className="text-base font-heading flex items-center gap-2">
+          <CardTitle className="text-base font-semibold flex items-center gap-2">
             <Building2 className="w-4 h-4" />
             Informacion de la empresa
           </CardTitle>
@@ -209,7 +209,7 @@ export function TenantAdminTab({ adminToken }: TenantAdminTabProps) {
       {/* Branding */}
       <Card>
         <CardHeader>
-          <CardTitle className="text-base font-heading flex items-center gap-2">
+          <CardTitle className="text-base font-semibold flex items-center gap-2">
             <Palette className="w-4 h-4" />
             Branding
           </CardTitle>

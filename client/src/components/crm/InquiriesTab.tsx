@@ -246,7 +246,7 @@ export function InquiriesTab({ adminToken, onOpenWhatsApp }: InquiriesTabProps) 
       {/* Header with stats */}
       <div className="flex items-center justify-between">
         <div>
-          <h2 className="text-xl font-heading font-bold text-foreground">Peticiones de WhatsApp</h2>
+          <h2 className="text-xl font-bold font-heading text-foreground">Peticiones de WhatsApp</h2>
           <p className="text-sm text-muted-foreground">{total} peticiones en total</p>
         </div>
       </div>
@@ -581,7 +581,7 @@ export function InquiriesTab({ adminToken, onOpenWhatsApp }: InquiriesTabProps) 
                 <div className="space-y-4">
                   {/* Cliente */}
                   <div className="bg-muted rounded-lg p-4 space-y-2">
-                    <h4 className="font-heading font-semibold text-sm text-foreground/80 uppercase tracking-wide">Cliente</h4>
+                    <h4 className="font-medium text-xs text-foreground/80 uppercase tracking-wide">Cliente</h4>
                     <div className="grid grid-cols-2 gap-2 text-sm">
                       <div><span className="text-muted-foreground">Nombre:</span> {inq.firstName} {inq.lastName}</div>
                       <div className="flex items-center gap-1"><Globe className="w-3 h-3 text-muted-foreground/70" />{inq.language?.toUpperCase()}</div>
@@ -592,7 +592,7 @@ export function InquiriesTab({ adminToken, onOpenWhatsApp }: InquiriesTabProps) 
 
                   {/* Reserva */}
                   <div className="bg-muted rounded-lg p-4 space-y-2">
-                    <h4 className="font-heading font-semibold text-sm text-foreground/80 uppercase tracking-wide">Reserva</h4>
+                    <h4 className="font-medium text-xs text-foreground/80 uppercase tracking-wide">Reserva</h4>
                     <div className="grid grid-cols-2 gap-2 text-sm">
                       <div className="flex items-center gap-1"><Ship className="w-3 h-3 text-muted-foreground/70" />{inq.boatName}</div>
                       <div className="flex items-center gap-1"><CalendarDays className="w-3 h-3 text-muted-foreground/70" />{formatBookingDate(inq.bookingDate)}</div>
@@ -606,7 +606,7 @@ export function InquiriesTab({ adminToken, onOpenWhatsApp }: InquiriesTabProps) 
                   {/* Extras & Pack */}
                   {((inq.extras && (inq.extras as string[]).length > 0) || inq.packId) && (
                     <div className="bg-muted rounded-lg p-4 space-y-2">
-                      <h4 className="font-heading font-semibold text-sm text-foreground/80 uppercase tracking-wide">Extras y Packs</h4>
+                      <h4 className="font-medium text-xs text-foreground/80 uppercase tracking-wide">Extras y Packs</h4>
                       {inq.packId && (
                         <div className="flex items-center gap-1 text-sm"><Gift className="w-3 h-3 text-muted-foreground/70" />Pack: {inq.packId}</div>
                       )}
@@ -622,9 +622,9 @@ export function InquiriesTab({ adminToken, onOpenWhatsApp }: InquiriesTabProps) 
 
                   {/* Precio y Código */}
                   <div className="bg-muted rounded-lg p-4 space-y-2">
-                    <h4 className="font-heading font-semibold text-sm text-foreground/80 uppercase tracking-wide">Precio</h4>
+                    <h4 className="font-medium text-xs text-foreground/80 uppercase tracking-wide">Precio</h4>
                     <div className="grid grid-cols-2 gap-2 text-sm">
-                      <div className="text-lg font-bold">{inq.estimatedTotal ? `\u20AC${inq.estimatedTotal}` : 'No calculado'}</div>
+                      <div className="text-lg font-bold tabular-nums">{inq.estimatedTotal ? `\u20AC${inq.estimatedTotal}` : 'No calculado'}</div>
                       {inq.couponCode && (
                         <div className="flex items-center gap-1"><Tag className="w-3 h-3 text-muted-foreground/70" />Código: {inq.couponCode}</div>
                       )}
@@ -634,7 +634,7 @@ export function InquiriesTab({ adminToken, onOpenWhatsApp }: InquiriesTabProps) 
                   {/* Notas */}
                   {inq.notes && (
                     <div className="bg-accent rounded-lg p-4 space-y-1">
-                      <h4 className="font-heading font-semibold text-sm text-accent-foreground uppercase tracking-wide">Notas</h4>
+                      <h4 className="font-medium text-xs text-accent-foreground uppercase tracking-wide">Notas</h4>
                       <p className="text-sm">{inq.notes}</p>
                     </div>
                   )}

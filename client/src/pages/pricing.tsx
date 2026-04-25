@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { FAQSection } from "@/components/FAQSection";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -32,6 +33,7 @@ import {
 import type { Boat } from "@shared/schema";
 import { getMinActivePrice, minPriceAcrossBoats } from "@shared/pricing";
 import { substituteFaqVars, computeFaqVars } from "@/utils/faqVars";
+import { getBoatImage } from "@/utils/boatImages";
 
 type SeasonKey = "BAJA" | "MEDIA" | "ALTA";
 
@@ -291,8 +293,16 @@ export default function PricingPage() {
                               <TableCell className="font-medium">
                                 <a
                                   href={localizedPath("boatDetail", boat.id)}
-                                  className="hover:text-primary transition-colors underline-offset-2 hover:underline focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none rounded-sm"
+                                  className="flex items-center gap-3 hover:text-primary transition-colors underline-offset-2 hover:underline focus-visible:ring-2 focus-visible:ring-cta focus-visible:outline-none rounded-sm"
                                 >
+                                  <img
+                                    src={getBoatImage(boat.imageUrl || '')}
+                                    alt={boat.name}
+                                    className="w-12 h-9 rounded object-cover flex-shrink-0"
+                                    loading="lazy"
+                                    width={48}
+                                    height={36}
+                                  />
                                   {boat.name}
                                 </a>
                                 {!boat.requiresLicense && (
@@ -364,7 +374,18 @@ export default function PricingPage() {
                   return (
                     <Card key={boat.id}>
                       <CardHeader className="pb-3">
-                        <div className="flex items-start justify-between">
+                        <div className="flex items-start gap-3">
+                          <a href={localizedPath("boatDetail", boat.id)} className="flex-shrink-0">
+                            <img
+                              src={getBoatImage(boat.imageUrl || '')}
+                              alt={boat.name}
+                              className="w-16 h-12 rounded-lg object-cover"
+                              loading="lazy"
+                              width={64}
+                              height={48}
+                            />
+                          </a>
+                          <div className="flex-1 flex items-start justify-between min-w-0">
                           <div>
                             <a
                               href={localizedPath("boatDetail", boat.id)}
@@ -389,6 +410,7 @@ export default function PricingPage() {
                           >
                             {getLicenseLabel(boat, pp)}
                           </Badge>
+                        </div>
                         </div>
                         {!boat.requiresLicense && (
                           <Badge
@@ -497,32 +519,15 @@ export default function PricingPage() {
             <h2 className="text-2xl font-heading font-bold text-center mb-8">
               {pp.faqTitle}
             </h2>
-            <div className="space-y-4 max-w-3xl mx-auto">
-              <Card>
-                <CardContent className="pt-6">
-                  <h3 className="font-semibold mb-2">{pp.faq.q1}</h3>
-                  <p className="text-muted-foreground">{noLicAnswer}</p>
-                </CardContent>
-              </Card>
-              <Card>
-                <CardContent className="pt-6">
-                  <h3 className="font-semibold mb-2">{pp.faq.q2}</h3>
-                  <p className="text-muted-foreground">{pp.faq.a2}</p>
-                </CardContent>
-              </Card>
-              <Card>
-                <CardContent className="pt-6">
-                  <h3 className="font-semibold mb-2">{pp.faq.q3}</h3>
-                  <p className="text-muted-foreground">{pp.faq.a3}</p>
-                </CardContent>
-              </Card>
-              <Card>
-                <CardContent className="pt-6">
-                  <h3 className="font-semibold mb-2">{pp.faq.q4}</h3>
-                  <p className="text-muted-foreground">{licAnswer}</p>
-                </CardContent>
-              </Card>
-            </div>
+            <FAQSection
+              className="max-w-3xl mx-auto"
+              items={[
+                { question: pp.faq.q1, answer: noLicAnswer },
+                { question: pp.faq.q2, answer: pp.faq.a2 },
+                { question: pp.faq.q3, answer: pp.faq.a3 },
+                { question: pp.faq.q4, answer: licAnswer },
+              ]}
+            />
           </div>
 
           {/* CTA */}

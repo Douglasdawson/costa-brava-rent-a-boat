@@ -16,12 +16,12 @@ import {
   Car,
   Train,
   ParkingCircle,
-  ChevronRight,
   type LucideIcon,
 } from "lucide-react";
 import { Link } from "wouter";
 import Navigation from "@/components/Navigation";
 import { ReadingProgressBar } from "@/components/ReadingProgressBar";
+import { FAQSection } from "@/components/FAQSection";
 import Footer from "@/components/Footer";
 import RelatedLocationsSection from "@/components/RelatedLocationsSection";
 import RelatedContent from "@/components/RelatedContent";
@@ -377,22 +377,7 @@ export default function LocationTemplate({ config, extraCards, afterFaq }: Locat
           <h2 className="text-2xl font-heading font-bold text-center mb-8">
             {config.faqTitle}
           </h2>
-          <div className="space-y-3">
-            {processedFaqItems.map((item, index) => (
-              <details
-                key={index}
-                className="group rounded-lg bg-card shadow-[0_0_0_1px_rgba(0,0,0,0.06),0_1px_2px_-1px_rgba(0,0,0,0.06),0_2px_4px_0_rgba(0,0,0,0.04)]"
-              >
-                <summary className="flex cursor-pointer items-center justify-between px-6 py-4 font-semibold text-foreground [&::-webkit-details-marker]:hidden">
-                  <span className="pr-4">{item.question}</span>
-                  <ChevronRight className="w-5 h-5 shrink-0 text-muted-foreground transition-transform duration-200 group-open:rotate-90" />
-                </summary>
-                <div className="px-6 pb-4 text-muted-foreground animate-in fade-in duration-200">
-                  {item.answer}
-                </div>
-              </details>
-            ))}
-          </div>
+          <FAQSection items={processedFaqItems} />
         </div>
       </div>
 

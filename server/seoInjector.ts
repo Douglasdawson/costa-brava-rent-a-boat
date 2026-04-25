@@ -454,8 +454,8 @@ const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
   },
   "/alquiler-barcos-blanes": {
     es: {
-      title: `Alquiler Barcos Puerto de Blanes ${SEASON_YEAR} | Sin Licencia desde 70\u20ac/h`,
-      description: "Alquila barco en el Puerto de Blanes: parking gratis, snorkel y paddle board incluidos. 8 barcos sin licencia desde 70\u20ac/h con gasolina incluida. Reserva hoy.",
+      title: "Alquiler Barcos Puerto de Blanes | Sin Licencia 70\u20ac/h | 4.8\u2605",
+      description: "Alquila barco sin licencia en Puerto de Blanes desde 70\u20ac/h. Gasolina incluida, 8 barcos, parking gratis. 4.8\u2605 Google. Reserva online.",
       ogTitle: `Alquiler de Barcos en Puerto de Blanes | ${SEASON_YEAR}`,
       ogDescription: "Alquila barcos en Puerto de Blanes. Sin licencia desde 70\u20ac/h con gasolina incluida. 8 embarcaciones disponibles. Reserva ya.",
     },
@@ -1055,8 +1055,8 @@ const STATIC_META: Record<string, Partial<Record<LangCode, SEOMeta>>> = {
   },
   "/alquiler-barcos-costa-brava": {
     es: {
-      title: `Alquiler Barcos Costa Brava ${SEASON_YEAR} | Sin Licencia desde 70\u20ac/h | Blanes, Lloret, Tossa`,
-      description: "Alquila barcos en la Costa Brava desde el Puerto de Blanes. 8 barcos sin licencia desde 70\u20ac/h con gasolina incluida. Navega a calas v\u00edrgenes entre Blanes y Tossa de Mar. Reserva online \u00b7 Cambio de fecha gratis.",
+      title: "Alquiler Barcos Costa Brava | Sin Licencia 70\u20ac/h | 4.8\u2605",
+      description: "Alquila barco en la Costa Brava desde Puerto de Blanes. 8 barcos sin licencia, 70\u20ac/h, gasolina incluida. Calas v\u00edrgenes Blanes-Tossa. 4.8\u2605 Google.",
     },
     en: {
       title: `Boat Rental Costa Brava ${SEASON_YEAR} | No License from 70\u20ac/h | Blanes, Lloret, Tossa`,

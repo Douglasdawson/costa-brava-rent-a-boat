@@ -193,8 +193,10 @@ export default function DestinationDetailPage({ slug: slugProp }: { slug?: strin
               <img
                 src={destination.featuredImage}
                 alt={destination.name}
-                className="w-full h-auto rounded-lg"
+                className="w-full aspect-video object-cover rounded-lg"
                 loading="lazy"
+                width={1200}
+                height={675}
                 data-testid={`img-featured-${destination.slug}`}
               />
             </div>
@@ -240,6 +242,8 @@ export default function DestinationDetailPage({ slug: slugProp }: { slug?: strin
                     alt={`${destination.name} - Imagen ${index + 1}`}
                     className="w-full h-32 sm:h-48 object-cover rounded-lg"
                     loading="lazy"
+                    width={400}
+                    height={300}
                     data-testid={`img-gallery-${index}`}
                   />
                 ))}

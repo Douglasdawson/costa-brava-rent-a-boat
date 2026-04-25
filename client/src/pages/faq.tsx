@@ -340,7 +340,7 @@ export default function FAQPage() {
           <div className="flex flex-col sm:flex-row gap-4">
             <Button
               onClick={handleWhatsAppContact}
-              className="gap-2 flex-1 bg-[#25D366] hover:bg-[#128C7E] active:bg-[#075E54] border-[#25D366]"
+              className="gap-2 flex-1 bg-green-600 hover:bg-green-700 active:bg-green-800 border-green-600"
               data-testid="button-whatsapp-questions"
             >
               <SiWhatsapp className="w-5 h-5" />
